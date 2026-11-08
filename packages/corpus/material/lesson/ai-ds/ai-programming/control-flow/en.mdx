@@ -94,6 +94,23 @@ else:
   ]}
 />
 
+Compare the two ways out of the loop body in this diagram.
+
+<Mermaid
+  title="break and continue"
+  description="break leaves the loop, continue jumps to the next pass."
+  chart={`
+    flowchart TD
+        A[Loop pass] --> B{break?}
+        B -->|Yes| C[Leave the loop]
+        B -->|No| D{continue?}
+        D -->|Yes| E[Jump to the next pass]
+        D -->|No| F[Run the rest of the body]
+        E --> A
+        F --> A
+  `}
+/>
+
 ## Enumerate Function
 
 Use `enumerate()` when an iteration needs **both a counter and each value**. It returns an iterator that yields `(index, value)` tuples.
@@ -324,6 +341,29 @@ for i in range(n):  # Doesn't store all numbers in memory
     else:
         break`
     }
+  ]}
+/>
+
+Follow the loop `for i in range(1, 6): total += i` pass by pass. Before the loop, `total` is `0`, and each pass adds the current value of `i`. The points climb more steeply because the additions keep growing: `1`, `3`, `6`, `10`, then `15`. The last value equals `sum(range(1, 6))`, and `range(1, 6)` stops before `6`.
+
+<LineEquation
+  title="Building a running sum with total += i"
+  description="Each point is the value of total after one pass of the loop for i in range(1, 6)."
+  showZAxis={false}
+  cameraPosition={[3, 7.5, 22]}
+  cameraTarget={[3, 7.5, 0]}
+  data={[
+    ...(() => {
+      const points = [];
+      let total = 0;
+      for (const i of Array.from({ length: 5 }, (_, index) => index + 1)) {
+        total += i;
+        points.push({ x: i, y: total, z: 0 });
+      }
+      return [
+        { points: [{ x: 0, y: 0, z: 0 }, ...points], color: "#8242e5", smooth: false, showPoints: true, labels: points.map(({ y }, index) => ({ text: `total = ${y}`, at: index + 1, offset: [-1.3, 0.3, 0] })) },
+      ];
+    })(),
   ]}
 />
 

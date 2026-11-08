@@ -153,6 +153,19 @@ print(f"Circle area with radius {test_radius} is {result:.2f}")`
   }]}
 />
 
+This diagram pairs each way of running Python with what it suits.
+
+<Mermaid
+  title="Three ways to run Python"
+  description="Pick the way that fits the length of your code."
+  chart={`
+    flowchart TD
+        A[Python code] --> B[Interactive shell: try one line]
+        A --> C[.py file: python file.py]
+        A --> D[Notebook: code and output per cell]
+  `}
+/>
+
 ## Basic Python Syntax
 
 A first Python program reads its statements from top to bottom. A variable stores a value, a **data type decides which operations** that value supports, and input, output, and arithmetic turn those values into a working program.
@@ -411,3 +424,43 @@ else:
 - The calculator asks for two numbers and one operator, then displays the result of the selected operation.
 - The temperature converter displays Fahrenheit and Kelvin values from the Celsius input.
 - The student profile displays the entered data, entry year, estimated graduation year, and semester-based message.
+
+Fix `number1 = 2` and imagine trying many values of `number2` in the calculator above. Each operator gives its own graph: `+` and `-` are lines tilted in opposite directions, `*` is a steeper line, and `/` is the magenta curve. The division curve has no point at `number2 = 0`, because Python refuses division by zero with a `ZeroDivisionError`. Every other line passes through there without trouble.
+
+<LineEquation
+  title="The four calculator operators for number1 = 2"
+  description="Each line is the calculator result as number2 changes while number1 = 2. The magenta division curve breaks at number2 = 0."
+  showZAxis={false}
+  cameraPosition={[0, 0, 22]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    { points: [{ x: -4, y: -2, z: 0 }, { x: 4, y: 6, z: 0 }], color: "#8242e5", smooth: false, showPoints: false, labels: [{ text: "2 + number2", at: 1, offset: [0.4, 0.6, 0] }] },
+    { points: [{ x: -4, y: 6, z: 0 }, { x: 4, y: -2, z: 0 }], color: "#0d9488", smooth: false, showPoints: false, labels: [{ text: "2 - number2", at: 1, offset: [0.4, -0.6, 0] }] },
+    { points: [{ x: -4, y: -8, z: 0 }, { x: 4, y: 8, z: 0 }], color: "#b98d00", smooth: false, showPoints: false, labels: [{ text: "2 * number2", at: 1, offset: [0.4, 0.6, 0] }] },
+    ...[-1, 1].map((side) => ({
+      points: Array.from({ length: 401 }, (_, index) => {
+        const x = side * (1 / 3 + (index / 400) * (4 - 1 / 3));
+        return { x, y: 2 / x, z: 0 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      ...(side === 1 ? { labels: [{ text: "2 / number2", at: 400, offset: [0.6, 0.5, 0] }] } : {}),
+    })),
+  ]}
+/>
+
+Follow the calculator program from input to output.
+
+<Mermaid
+  title="Flow of the simple calculator"
+  description="The program runs from top to bottom."
+  chart={`
+    flowchart TD
+        A[Read number1 with float] --> B[Read operator]
+        B --> C[Read number2 with float]
+        C --> D{Operator?}
+        D --> E[Compute the result]
+        E --> F[print the result]
+  `}
+/>

@@ -386,6 +386,20 @@ print(square(5))                    # 25`
   }]}
 />
 
+Jeder Weg in diesem Diagramm zeigt auf dasselbe Funktionsobjekt.
+
+<Mermaid
+  title="Eine Funktion, viele Namen"
+  description="Eine Funktion ist ein Objekt, das du speichern und weitergeben kannst."
+  chart={`
+    flowchart LR
+        A[def gruss] --> F[Funktionsobjekt]
+        B[g = gruss] --> F
+        C["ausfuehren(gruss)"] --> F
+        D["liste = [gruss]"] --> F
+  `}
+/>
+
 ## Klassen und Instanzen als Objekte
 
 Eine Klasse definiert, wie ihre Instanzen entstehen und wie gemeinsames Verhalten aufgelöst wird. Die Klasse selbst ist ebenfalls ein Objekt, während **jede Instanz ihren eigenen Instanzzustand** trägt.
@@ -460,6 +474,19 @@ print(Student.university)           # Universitas Indonesia`
   }]}
 />
 
+Dieses Diagramm trennt, was eine Instanz besitzt, von dem, was die Klasse teilt.
+
+<Mermaid
+  title="Klassen und Instanzen"
+  description="Jede Instanz hat eigene Attribute und teilt die Methoden der Klasse."
+  chart={`
+    flowchart TD
+        A[Klasse Auto] --> B[auto1: eigene Attribute]
+        A --> C[auto2: eigene Attribute]
+        A --> D[Methoden für alle Instanzen]
+  `}
+/>
+
 ## Spezielle Methoden
 
 Spezielle Methoden beginnen und enden mit **doppelten Unterstrichen**. Python ruft sie über Syntax und Built-ins wie `+`, `abs()`, `repr()` und Wahrheitstests auf. Implementiere eine solche Methode nur, wenn ihre Bedeutung für die Domäne natürlich ist.
@@ -519,6 +546,21 @@ zero = Vector2D(0, 0)
 print(bool(first))                   # True
 print(bool(zero))                    # False`
   }]}
+/>
+
+Angenommen, eine Klasse `Vector` hat eine spezielle Methode `__add__`, die die Komponenten addiert. Wenn du `v + w` schreibst, ruft Python eigentlich `v.__add__(w)` auf. Dieses Bild zeigt das Ergebnis für `Vector(2, 1)` und `Vector(1, 2)`: Der Pfeil `w` hängt an der Spitze von `v`, und der magentafarbene Pfeil vom Anfang zum Ende ist das neue Objekt `Vector(3, 3)`. So bekommt der Operator `+` eine Bedeutung für deine eigenen Objekte.
+
+<LineEquation
+  title="Die spezielle Methode __add__ hinter v + w"
+  description="Der violette Pfeil ist v, der türkise Pfeil w an der Spitze von v, und der magentafarbene Pfeil ist das Ergebnis v + w."
+  showZAxis={false}
+  cameraPosition={[1.5, 1.5, 8]}
+  cameraTarget={[1.5, 1.5, 0]}
+  data={[
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "v = Vector(2, 1)", at: 0, offset: [0.7, -0.4, 0] }] },
+    { points: [{ x: 2, y: 1, z: 0 }, { x: 3, y: 3, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "w = Vector(1, 2)", at: 0, offset: [1.4, 0.7, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 3, z: 0 }], color: "#c026d3", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "v + w = Vector(3, 3)", at: 0, offset: [0.6, 1.4, 0] }] },
+  ]}
 />
 
 ## Objektorientierte Programmierpraxis

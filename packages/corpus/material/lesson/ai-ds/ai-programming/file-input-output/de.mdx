@@ -160,6 +160,19 @@ with open('data.txt', 'r+', encoding='utf-8') as f:
 
 Der Modus bestimmt, **ob die Datei bereits existieren muss**, ob ihr alter Inhalt beim Öffnen gelöscht wird und welche Operationen erlaubt sind. `r` und `r+` benötigen eine vorhandene Datei. `w` erstellt oder leert sie, während `a` sie erstellt oder Daten anhängt. Das Suffix `b` wählt den Binärmodus, in dem keine `encoding`-Angabe verwendet wird.
 
+Wähl den Modus danach, was mit dem alten Dateiinhalt passieren darf.
+
+<Mermaid
+  title="Drei Grundmodi zum Öffnen einer Datei"
+  description="Der Modus entscheidet, was mit dem Dateiinhalt passiert."
+  chart={`
+    flowchart TD
+        A["open(path, mode)"] --> B["'r': lesen, die Datei muss existieren"]
+        A --> C["'w': schreiben, alter Inhalt gelöscht oder Datei erstellt"]
+        A --> D["'a': am Ende anhängen, Datei wird bei Bedarf erstellt"]
+  `}
+/>
+
 ## Methoden zum Lesen von Dateien
 
 Python bietet mehr als einen Weg, eine Datei zu lesen. Die Wahl hängt davon ab, **wie viel Inhalt** du auf einmal brauchst und ob die Leseposition danach noch eine Rolle spielt. `read()` liest den gesamten Rest oder höchstens die angeforderte Zeichenzahl. `readline()` liest eine Zeile, während `readlines()` ohne Argument alle verbleibenden Zeilen in eine Liste lädt.
@@ -218,6 +231,44 @@ with open('sample.txt', 'r', encoding='utf-8') as f:
 />
 
 Im Textmodus geben `read()` und `readline()` Strings zurück. Ist kein Text mehr vorhanden, liefern sie `''`. Im Binärmodus geben sie `bytes` zurück und verwenden am Dateiende `b''`. Eine Iteration endet dort automatisch.
+
+Eine geöffnete Datei hat eine Position, und jedes Lesen schiebt sie weiter. Beim Inhalt `"Hi!\nPython\n"` steht die Position nach `open()` am Anfang. `read(3)` nimmt `Hi!` und hält bei Position `3`, das erste `readline()` nimmt den Rest dieser Zeile bis `\n`, und das zweite `readline()` nimmt `Python\n` bis zum Dateiende. Das nächste Lesen liefert einen leeren String, weil die Position schon am Ende steht.
+
+<LineEquation
+  title="Die Dateiposition beim Lesen"
+  description="Jedes Zeichen der Datei ist ein Punkt, und ↵ ist ein Zeilenumbruch. Die Pfeile zeigen die Position nach jedem Aufruf."
+  showZAxis={false}
+  cameraPosition={[5, 0.2, 9]}
+  cameraTarget={[5, 0.2, 0]}
+  data={[
+    ...(() => {
+      const text = "Hi!\nPython\n";
+      const firstLine = text.indexOf("\n") + 1;
+      const stops = [
+        { at: 0, label: "open()", color: "#64748b" },
+        { at: 3, label: "read(3)", color: "#8242e5" },
+        { at: firstLine, label: "readline()", color: "#0d9488" },
+        { at: text.length, label: "readline()", color: "#bb6800" },
+      ];
+      return [
+        ...Array.from(text).map((char, index) => ({
+          points: [{ x: index, y: 0, z: 0 }],
+          color: "#64748b",
+          showPoints: true,
+          labels: [{ text: char === "\n" ? "↵" : char, at: 0, offset: [0, 0.35, 0] }],
+        })),
+        ...stops.map(({ at, label, color }, index) => ({
+          points: [{ x: at - 0.5, y: -0.6 - 0.5 * index, z: 0 }, { x: at - 0.5, y: -0.2, z: 0 }],
+          color,
+          cone: { position: "end", size: 0.15 },
+          smooth: false,
+          showPoints: false,
+          labels: [{ text: label, at: 0, offset: [0.6, -0.1, 0] }],
+        })),
+      ];
+    })(),
+  ]}
+/>
 
 ## Sicherer Umgang mit Dateien
 

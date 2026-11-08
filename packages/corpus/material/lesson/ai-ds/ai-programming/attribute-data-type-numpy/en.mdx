@@ -125,6 +125,20 @@ print("Array result:", a)  # Output: Array result: [0. 1. 2.]`
   ]}
 />
 
+This diagram groups the data types you meet most often.
+
+<Mermaid
+  title="NumPy data type families"
+  description="Each family comes in several bit sizes."
+  chart={`
+    flowchart TD
+        A[dtype] --> B[Integers: int8, int32, int64]
+        A --> C[Floats: float32, float64]
+        A --> D[Complex: complex128]
+        A --> E[Logical: bool]
+  `}
+/>
+
 ## NumPy Array Attributes
 
 Attributes describe the **array structure** without reading every value: its shape, element count, dtype, and bytes occupied by elements. `nbytes` measures element storage, not all Python process memory or the array object’s metadata.
@@ -193,6 +207,28 @@ a = np.array([0, 1, 2.])
 print("Mixed - dtype:", a.dtype)  # Output: Mixed - dtype: float64
 print("Mixed result:", a)  # Output: Mixed result: [0. 1. 2.]`
     }
+  ]}
+/>
+
+Rotate this grid of points, which stands for `np.zeros((2, 3, 4))`. It has two layers along `axis 0`, three rows along `axis 1`, and four columns along `axis 2`, so `arr.shape` is `(2, 3, 4)` and `arr.ndim` is `3`. Count the points: `2 * 3 * 4 = 24`, which is `arr.size`. Every number in `shape` is the count of steps along one arrow.
+
+<LineEquation
+  title="An array of shape (2, 3, 4) in three dimensions"
+  description="Each point is one element. The violet and teal layers are axis 0, rows are axis 1, and columns are axis 2."
+  cameraPosition={[6, 5, 7]}
+  cameraTarget={[1.5, 1, 0.5]}
+  data={[
+    ...Array.from({ length: 2 }, (_, layer) =>
+      Array.from({ length: 3 }, (_, row) => ({
+        points: Array.from({ length: 4 }, (_, column) => ({ x: column, y: 2 - row, z: layer })),
+        color: layer === 0 ? "#8242e5" : "#0d9488",
+        smooth: false,
+        showPoints: true,
+      }))
+    ).flat(),
+    { points: [{ x: -0.8, y: 2, z: 0 }, { x: -0.8, y: 2, z: 1.6 }], color: "#c026d3", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "axis 0", at: 1, offset: [-0.2, 0.3, 0] }] },
+    { points: [{ x: -0.8, y: 2, z: 0 }, { x: -0.8, y: -0.6, z: 0 }], color: "#b98d00", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "axis 1", at: 1, offset: [-0.5, 0, 0] }] },
+    { points: [{ x: -0.8, y: 2.6, z: 0 }, { x: 3.6, y: 2.6, z: 0 }], color: "#bb6800", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "axis 2", at: 1, offset: [0.5, 0, 0] }] },
   ]}
 />
 
@@ -298,6 +334,17 @@ for name, arr in arrays.items():
 # float64  - itemsize:  8 bytes, dtype: float64`
     }
   ]}
+/>
+
+Look at the result of astype in this diagram, especially for the negative number.
+
+<Mermaid
+  title="astype truncates toward zero"
+  description="Converting from float to int drops the decimal part."
+  chart={`
+    flowchart LR
+        A["np.array([1.7, -1.7])"] -->|"astype(np.int32)"| B["[1, -1]"]
+  `}
 />
 
 ## Practical Array Attribute Usage

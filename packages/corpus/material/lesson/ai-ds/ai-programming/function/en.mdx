@@ -145,6 +145,32 @@ student_info("Maya", age=20, major="Informatics", gpa=3.8)
 
 Parameter `*args` collects additional positional arguments into a tuple, while `**kwargs` collects additional keyword arguments into a dictionary.
 
+Suppose `def power(x, n=2): return x ** n`. If you call `power(x)` without a second argument, Python uses the default `n=2`, which gives the violet curve. A second argument overrides the default: `power(x, 3)` gives the teal curve and `power(x, 1)` the gray line. All three curves meet at `x = 1`, because `1 ** n` is always `1`.
+
+<LineEquation
+  title="The default parameter in power(x, n=2)"
+  description="Each curve is the result of power for one value of n. The violet curve uses the default n = 2."
+  showZAxis={false}
+  cameraPosition={[0, 0, 9]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    ...[
+      { n: 1, color: "#64748b", label: "power(x, 1)", at: 400 },
+      { n: 2, color: "#8242e5", label: "power(x)", at: 400 },
+      { n: 3, color: "#0d9488", label: "power(x, 3)", at: 400 },
+    ].map(({ n, color, label, at }) => ({
+      points: Array.from({ length: 401 }, (_, index) => {
+        const x = -1.5 + (index / 400) * 3;
+        return { x, y: x ** n, z: 0 };
+      }),
+      color,
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: label, at, offset: [0.8, 0, 0] }],
+    })),
+  ]}
+/>
+
 ## Function Return Values
 
 Functions can **return values** using the `return` statement. If there's no `return` or `return` without a value, the function will return `None`.
@@ -234,6 +260,20 @@ Name lookup follows **LEGB order**:
 2. **Enclosing** - in enclosing function (for nested functions)
 3. **Global** - at module level
 4. **Built-in** - Python built-in names
+
+When a function uses a name, Python looks for it in the order of this diagram.
+
+<Mermaid
+  title="The order of name lookup"
+  description="Python searches for a name from the innermost scope outward."
+  chart={`
+    flowchart LR
+        A[Local] --> B[Enclosing function]
+        B --> C[Global]
+        C --> D[Built in]
+        D --> E[NameError if missing]
+  `}
+/>
 
 ## Functions as First Class Objects
 

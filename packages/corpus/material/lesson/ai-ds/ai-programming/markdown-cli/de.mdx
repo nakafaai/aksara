@@ -88,6 +88,19 @@ open document.html`
   }]}
 />
 
+Dieses Diagramm fasst den Markdown-Ablauf mit pandoc zusammen.
+
+<Mermaid
+  title="Von Markdown zum fertigen Dokument"
+  description="Eine Markdown-Datei kann mehrere Formate werden."
+  chart={`
+    flowchart LR
+        A[.md-Datei schreiben] --> B[pandoc]
+        B --> C[HTML]
+        B --> D[PDF, wenn eine PDF-Engine installiert ist]
+  `}
+/>
+
 ## Grundlagen der Befehlszeilenschnittstelle
 
 Eine Befehlszeilenschnittstelle oder CLI nimmt **Textbefehle über eine Shell** entgegen. Jeder Befehl besteht aus einem Programmnamen, optionalen Schaltern und Argumenten wie Pfaden.
@@ -348,3 +361,39 @@ chmod +x scripts/build-docs.sh
 />
 
 Markdown hält die Dokumentstruktur in der Versionsverwaltung lesbar. Mit einer CLI lassen sich dieselben Prüf- und Umwandlungsschritte erneut ausführen. Ein verlässlicher Ablauf bewahrt diese Grenze: Bearbeite die Quelle, prüfe Befehle und Pfade, erzeuge die Ausgabe neu und begutachte die entstandenen Änderungen.
+
+Stell dir vor, dein aktueller Arbeitsordner ist `/home/user`, der magentafarbene Punkt in diesem Baum. `cd projects` geht entlang des türkisen Pfeils eine Ebene tiefer in einen Unterordner, und dort würde `ls` die Datei `notes.md` zeigen. `cd ..` geht über den orangen Pfeil zurück zum übergeordneten Ordner. Ein relativer Pfad wie `projects` zählt vom Arbeitsordner aus, ein absoluter Pfad wie `/home/user/docs` beginnt immer bei der Wurzel.
+
+<LineEquation
+  title="Mit cd zwischen Ordnern wechseln"
+  description="Jeder Punkt ist ein Ordner oder eine Datei. Der magentafarbene Punkt ist der aktuelle Arbeitsordner, der türkise Pfeil ist cd projects und der orange Pfeil cd .."
+  showZAxis={false}
+  cameraPosition={[1.5, -1, 8]}
+  cameraTarget={[1.5, -1, 0]}
+  data={[
+    { points: [{ x: 1.5, y: 1, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "/home", at: 0, offset: [0, 0.35, 0] }] },
+    { points: [{ x: 1.5, y: 0, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: "user", at: 0, offset: [0.6, 0.1, 0] }] },
+    { points: [{ x: 0, y: -1.5, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "docs", at: 0, offset: [0, -0.4, 0] }] },
+    { points: [{ x: 3, y: -1.5, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "projects", at: 0, offset: [0.7, 0.1, 0] }] },
+    { points: [{ x: 3, y: -3, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "notes.md", at: 0, offset: [0, -0.4, 0] }] },
+    { points: [{ x: 1.5, y: 1, z: 0 }, { x: 1.5, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: 1.5, y: 0, z: 0 }, { x: 0, y: -1.5, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: 1.5, y: 0, z: 0 }, { x: 3, y: -1.5, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: 3, y: -1.5, z: 0 }, { x: 3, y: -3, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: 1.8, y: -0.1, z: 0 }, { x: 2.9, y: -1.2, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "cd projects", at: 0, offset: [0.9, 0.3, 0] }] },
+    { points: [{ x: 2.7, y: -1.6, z: 0 }, { x: 1.6, y: -0.4, z: 0 }], color: "#bb6800", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "cd ..", at: 0, offset: [-0.6, -0.4, 0] }] },
+  ]}
+/>
+
+Wiederhol den Kreislauf in diesem Diagramm, wann immer du Ordner erkundest.
+
+<Mermaid
+  title="Der Kreislauf beim Erkunden von Ordnern"
+  description="Drei Befehle, die du beim Wechseln der Ordner wiederholst."
+  chart={`
+    flowchart LR
+        A[pwd: wo bin ich?] --> B[ls: was ist hier?]
+        B --> C[cd name: in einen Ordner wechseln]
+        C --> A
+  `}
+/>

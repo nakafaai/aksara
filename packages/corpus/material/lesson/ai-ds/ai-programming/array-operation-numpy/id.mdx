@@ -133,6 +133,20 @@ except ValueError as e:
   ]}
 />
 
+Ikuti aturan ini untuk setiap pasangan sumbu, mulai dari yang paling kanan.
+
+<Mermaid
+  title="Aturan broadcasting"
+  description="Bentuk dibandingkan dari sumbu terakhir."
+  chart={`
+    flowchart TD
+        A["(3, 1) dan (1, 4)"] --> B{Panjang sumbu sama atau salah satu 1?}
+        B -->|Ya| C[Sumbu berpanjang 1 direntang]
+        B -->|Tidak| D[ValueError]
+        C --> E["Hasil (3, 4)"]
+  `}
+/>
+
 ## Operasi Aritmetika Array
 
 Operator aritmetika NumPy bekerja **elemen per elemen**, kecuali operasi yang memang memiliki semantik lain, seperti perkalian matriks.
@@ -441,6 +455,19 @@ print("Apakah transpose adalah view?", np.shares_memory(a, b))`
   ]}
 />
 
+Diagram ini mengikuti 12 elemen yang sama melewati tiga perubahan bentuk.
+
+<Mermaid
+  title="Mengubah bentuk tanpa mengubah isi"
+  description="Jumlah elemen selalu tetap 12."
+  chart={`
+    flowchart LR
+        A["(12,)"] -->|"reshape(3, 4)"| B["(3, 4)"]
+        B -->|".T"| C["(4, 3)"]
+        C -->|"flatten()"| D["(12,)"]
+  `}
+/>
+
 ## Standardisasi Data dengan Z Score
 
 Standardisasi z-score memusatkan setiap fitur pada rata-rata <InlineMath math="0" /> dan menskalakannya ke standar deviasi <InlineMath math="1" />. Operasi ini hanya terdefinisi untuk fitur dengan **standar deviasi tak nol**. Setelah standardisasi, fitur yang semula memakai skala berbeda dapat dibandingkan pada skala yang sama.
@@ -490,3 +517,30 @@ print(f"Standar deviasi baru: {np.std(Z, axis=0)}")  # Harus mendekati 1
 />
 
 Standardisasi mencegah perbedaan satuan saja menciptakan selisih skala yang besar. Namun, standardisasi tidak menjamin setiap fitur sama penting atau sama berpengaruh karena hal itu tetap ditentukan oleh model dan datanya. Misalnya, tinggi dalam sentimeter dan berat dalam kilogram menjadi sebanding secara numerik setelah distandardisasi.
+
+Ambil `data = np.array([1, 3, 5, 7, 9])`. Rata-ratanya `5` dan simpangan bakunya `np.std(data)` sama dengan `np.sqrt(8)`. Garis abu-abu di gambar menunjukkan dua hal sekaligus: pengurangan rata-rata menggeser pusat ke `0`, dan pembagian dengan simpangan baku merapatkan jarak antar titik. Hasilnya, nilai `5` jatuh tepat di `0`, dan nilai terjauh menjadi kira-kira `-1.41` dan `1.41`.
+
+<LineEquation
+  title="Standardisasi z-score pada data [1, 3, 5, 7, 9]"
+  description="Titik ungu adalah data asli, titik magenta adalah (data - mean) / std, dan garis abu-abu menunjukkan ke mana setiap nilai pindah."
+  showZAxis={false}
+  cameraPosition={[1.5, 0.75, 9]}
+  cameraTarget={[1.5, 0.75, 0]}
+  data={[
+    ...(() => {
+      const data = [1, 3, 5, 7, 9];
+      const mean = data.reduce((sum, value) => sum + value, 0) / data.length;
+      const std = Math.sqrt(data.reduce((sum, value) => sum + (value - mean) ** 2, 0) / data.length);
+      return data.flatMap((value) => {
+        const z = (value - mean) / std;
+        return [
+          { points: [{ x: value, y: 1.5, z: 0 }, { x: z, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+          { points: [{ x: value, y: 1.5, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: String(value), at: 0, offset: [0, 0.35, 0] }] },
+          { points: [{ x: z, y: 0, z: 0 }], color: "#c026d3", showPoints: true },
+        ];
+      });
+    })(),
+    { points: [{ x: 9.6, y: 1.5, z: 0 }], color: "#8242e5", showPoints: false, labels: [{ text: "data", at: 0, offset: [0.4, 0, 0] }] },
+    { points: [{ x: 1.8, y: 0, z: 0 }], color: "#c026d3", showPoints: false, labels: [{ text: "(data - mean) / std", at: 0, offset: [1.5, 0, 0] }] },
+  ]}
+/>

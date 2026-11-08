@@ -154,6 +154,20 @@ print("Tipe data otomatis:", arr_mixed.dtype)  # Output: Tipe data otomatis: flo
   ]}
 />
 
+Diagram ini menunjukkan apa yang terjadi saat list masuk ke np.array.
+
+<Mermaid
+  title="Dari list ke ndarray"
+  description="np.array mengubah list biasa menjadi array dengan satu tipe data."
+  chart={`
+    flowchart LR
+        A["[1, 2, 3]"] --> B["np.array()"]
+        B --> C[ndarray, satu dtype]
+        D["[[1, 2], [3, 4]]"] --> B
+        B --> E[ndarray dua dimensi]
+  `}
+/>
+
 ## Fungsi Pembuat Array
 
 Menuliskan setiap elemen satu per satu hanya praktis untuk contoh yang sangat kecil. NumPy menyediakan fungsi khusus yang membangun **array dari sebuah aturan**, bukan dari daftar literal, sehingga kode tetap singkat dan bentuk array tetap eksplisit. Fungsi-fungsi di bawah ini terbagi menjadi tiga kelompok: array berisi nilai konstan, array berisi bilangan acak, dan array yang mengikuti pola matematis.
@@ -333,6 +347,32 @@ print("Dtype:", a.dtype)  # Output: Dtype: float64`
   ]}
 />
 
+Bandingkan dua baris titik di bawah. `np.linspace(0, 10, 5)` membagi selang menjadi lima titik dengan jarak sama dan ikut memasukkan ujung `10`. `np.arange(0, 10, 2.5)` melangkah `2.5` setiap kali dan berhenti sebelum `10`, jadi hanya ada empat nilai. Ingat aturannya: `linspace` menentukan banyak titik, `arange` menentukan lebar langkah.
+
+<LineEquation
+  title="np.linspace dan np.arange pada garis bilangan"
+  description="Baris atas adalah np.linspace(0, 10, 5), baris bawah np.arange(0, 10, 2.5). Nilai 10 tidak ada di baris bawah."
+  showZAxis={false}
+  cameraPosition={[5, 0.5, 9]}
+  cameraTarget={[5, 0.5, 0]}
+  data={[
+    ...Array.from({ length: 5 }, (_, index) => (10 * index) / 4).map((value) => ({
+      points: [{ x: value, y: 1, z: 0 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: String(value), at: 0, offset: [0, 0.35, 0] }],
+    })),
+    ...Array.from({ length: Math.ceil(10 / 2.5) }, (_, index) => 2.5 * index).map((value) => ({
+      points: [{ x: value, y: 0, z: 0 }],
+      color: "#0d9488",
+      showPoints: true,
+      labels: [{ text: String(value), at: 0, offset: [0, -0.4, 0] }],
+    })),
+    { points: [{ x: -0.6, y: 1, z: 0 }], color: "#8242e5", showPoints: false, labels: [{ text: "np.linspace(0, 10, 5)", at: 0, offset: [-1.6, 0, 0] }] },
+    { points: [{ x: -0.6, y: 0, z: 0 }], color: "#0d9488", showPoints: false, labels: [{ text: "np.arange(0, 10, 2.5)", at: 0, offset: [-1.6, 0, 0] }] },
+  ]}
+/>
+
 ## Membuat Array Berpola
 
 Sebagian array lebih mudah dijelaskan sebagai urutan daripada sebagai aturan untuk tiap elemen: semua nilai di antara dua batas, atau **sejumlah titik yang jaraknya sama**. `np.arange` dan `np.linspace` membangun array semacam itu, dan perbedaannya terletak pada cara batas akhir urutan ditentukan.
@@ -479,4 +519,16 @@ print(d)
 #  [ 9 10 11]]`
     }
   ]}
+/>
+
+Ikuti satu array melewati dua operasi per elemen.
+
+<Mermaid
+  title="Operasi per elemen"
+  description="Satu operasi berlaku untuk setiap elemen tanpa loop."
+  chart={`
+    flowchart LR
+        A["arr = [1, 2, 3]"] -->|"arr + 1"| B["[2, 3, 4]"]
+        A -->|"arr * 2"| C["[2, 4, 6]"]
+  `}
 />

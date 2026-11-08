@@ -144,6 +144,19 @@ print(phone)
 
 Akses kurung siku mengambil nilai yang sudah ada. Assignment dengan kurung siku **memperbarui kunci lama** atau menambahkan pasangan kunci dan nilai baru ke insertion order.
 
+Pilih cara membaca nilai berdasarkan apa yang harus terjadi jika kunci tidak ada.
+
+<Mermaid
+  title="Kurung siku atau get"
+  description="Dua cara membaca nilai berbeda saat kuncinya tidak ada."
+  chart={`
+    flowchart TD
+        A{Kunci ada?} -->|Ya| B["d[key] dan d.get(key) memberi nilainya"]
+        A -->|Tidak| C["d[key]: KeyError"]
+        A -->|Tidak| D["d.get(key, default): nilai default"]
+  `}
+/>
+
 ## Iterasi Dictionary
 
 Pilih bentuk iterasi sesuai kebutuhanmu: **kunci saja, nilai saja**, atau kedua bagian setiap entri. Mengiterasi dictionary secara langsung menghasilkan kunci, memanggil `.values()` menghasilkan nilai, dan memanggil `.items()` menghasilkan pasangan kunci dan nilai.
@@ -287,3 +300,23 @@ print("Hasil get('ann'):", result)
 />
 
 `get()` mengembalikan value yang tersimpan ketika key ditemukan. Jika key tidak ditemukan, method ini mengembalikan **default value yang diberikan**, atau `None` bila default value tidak ditentukan. Pilih default value yang tidak dapat tertukar dengan value yang sah ketika kedua keadaan perlu dibedakan.
+
+Hitung huruf di kata `"banana"` dengan `counts[ch] = counts.get(ch, 0) + 1`. Saat sebuah huruf muncul pertama kali, `get` mengembalikan nilai bawaan `0`, jadi tidak ada `KeyError`. Hasilnya ada di gambar: `{"b": 1, "a": 3, "n": 2}`, dengan urutan kunci sesuai urutan pertama kali muncul. Jumlah tinggi semua batang adalah `6`, sama dengan `len("banana")`.
+
+<LineEquation
+  title="Menghitung huruf dengan get"
+  description="Setiap batang adalah satu kunci dictionary counts untuk kata banana, dan tingginya adalah nilainya."
+  showZAxis={false}
+  cameraPosition={[1, 1.5, 8]}
+  cameraTarget={[1, 1.5, 0]}
+  data={[
+    ...(() => {
+      const letters = Array.from("banana");
+      const keys = letters.filter((char, index) => letters.indexOf(char) === index);
+      return keys.map((char, index) => {
+        const count = letters.filter((other) => other === char).length;
+        return { points: [{ x: index, y: 0, z: 0 }, { x: index, y: count, z: 0 }], color: "#c026d3", smooth: false, showPoints: true, labels: [{ text: `'${char}': ${count}`, at: 1, offset: [0, 0.4, 0] }] };
+      });
+    })(),
+  ]}
+/>

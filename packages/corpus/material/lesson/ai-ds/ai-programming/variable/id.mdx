@@ -66,6 +66,25 @@ print(z == x)   # Output: True
 
 Assignment `y = x` membuat kedua nama merujuk pada objek yang sama pada saat itu. Jika kamu membuat nilai lain yang setara, perbandingan dengan `==` akan bernilai benar, tetapi Python tetap dapat menyimpannya sebagai objek terpisah. Beberapa implementasi Python memakai kembali objek immutable tertentu. Kode yang benar tidak boleh bergantung pada optimasi tersebut.
 
+Jalankan `x = 5`, lalu `y = x`, lalu `x = 7`, dan ikuti panahnya. `y = x` tidak menyalin angka, tapi membuat `y` menunjuk objek `5` yang sama dengan `x`. Saat `x = 7` dijalankan, hanya panah `x` yang pindah ke objek baru, dari panah abu-abu ke panah ungu. Panah `y` tidak ikut pindah, jadi `print(y)` tetap menampilkan `5`.
+
+<LineEquation
+  title="Mengikat ulang x tidak mengubah y"
+  description="Setelah x = 5, y = x, dan x = 7: panah abu-abu adalah ikatan lama x, panah ungu ikatan baru, dan panah hijau toska tetap menunjuk 5."
+  showZAxis={false}
+  cameraPosition={[2, 0, 7]}
+  cameraTarget={[2, 0, 0]}
+  data={[
+    { points: [{ x: 0, y: 0.6, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "x", at: 0, offset: [-0.3, 0, 0] }] },
+    { points: [{ x: 0, y: -0.6, z: 0 }], color: "#0d9488", showPoints: true, labels: [{ text: "y", at: 0, offset: [-0.3, 0, 0] }] },
+    { points: [{ x: 4, y: 1.2, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "7", at: 0, offset: [0.4, 0, 0] }] },
+    { points: [{ x: 4, y: -0.6, z: 0 }], color: "#0d9488", showPoints: true, labels: [{ text: "5", at: 0, offset: [0.4, 0, 0] }] },
+    { points: [{ x: 0.2, y: 0.6, z: 0 }, { x: 3.8, y: 1.2, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "x = 7", at: 0, offset: [1.8, 0.5, 0] }] },
+    { points: [{ x: 0.2, y: -0.6, z: 0 }, { x: 3.8, y: -0.6, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "y = x", at: 0, offset: [1.8, -0.35, 0] }] },
+    { points: [{ x: 0.2, y: 0.6, z: 0 }, { x: 3.8, y: -0.5, z: 0 }], color: "#64748b", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "x = 5", at: 0, offset: [1.3, -0.15, 0] }] },
+  ]}
+/>
+
 ## Karakteristik Variabel Python
 
 Saat kamu memberi nilai pada sebuah nama, ingat dua hal. Python langsung mengikat nama itu pada sebuah objek **tanpa deklarasi terpisah**. Setelah itu, kamu dapat mengikat nama yang sama pada objek bertipe berbeda.
@@ -192,6 +211,23 @@ print(nama == Nama)         # Output: False
 print(Nama == NAMA)         # Output: False`
     }
   ]}
+/>
+
+Cek setiap nama variabel dengan tiga pertanyaan ini.
+
+<Mermaid
+  title="Apakah nama variabel sah"
+  description="Tiga syarat yang dicek Python."
+  chart={`
+    flowchart TD
+        A[Nama] --> B{Diawali huruf atau _?}
+        B -->|Tidak| X[Tidak sah]
+        B -->|Ya| C{Hanya huruf, angka, dan _?}
+        C -->|Tidak| X
+        C -->|Ya| D{Bukan kata kunci?}
+        D -->|Tidak| X
+        D -->|Ya| E[Sah]
+  `}
 />
 
 ## Kata Kunci yang Tidak Boleh Digunakan

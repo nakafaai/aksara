@@ -386,6 +386,20 @@ print(square(5))                    # 25`
   }]}
 />
 
+Semua jalan di diagram ini menunjuk objek fungsi yang sama.
+
+<Mermaid
+  title="Satu fungsi, banyak nama"
+  description="Fungsi adalah objek yang bisa disimpan dan dikirim."
+  chart={`
+    flowchart LR
+        A[def sapa] --> F[Objek fungsi]
+        B[g = sapa] --> F
+        C["jalankan(sapa)"] --> F
+        D["daftar = [sapa]"] --> F
+  `}
+/>
+
 ## Class dan Instance sebagai Objek
 
 Class menentukan cara instance dibuat serta menyediakan class attribute dan method yang dipakai bersama. Class itu sendiri juga merupakan objek, sedangkan **setiap instance menyimpan state masing-masing**.
@@ -460,6 +474,19 @@ print(Student.university)           # Universitas Indonesia`
   }]}
 />
 
+Diagram ini memisahkan apa yang dimiliki instans dan apa yang dibagi kelas.
+
+<Mermaid
+  title="Kelas dan instans"
+  description="Setiap instans punya atribut sendiri dan berbagi metode kelas."
+  chart={`
+    flowchart TD
+        A[Kelas Mobil] --> B[mobil1: atribut sendiri]
+        A --> C[mobil2: atribut sendiri]
+        A --> D[Metode dibagi semua instans]
+  `}
+/>
+
 ## Special Methods
 
 Nama special method dimulai dan diakhiri dengan **double underscore**, seperti `__len__`. Python memanggil method ini melalui sintaks atau built-in function seperti `+`, `abs()`, `repr()`, dan `bool()`. Tambahkan special method hanya jika operasi tersebut memang masuk akal untuk objek yang dibuat.
@@ -519,6 +546,21 @@ nol = Vector2D(0, 0)
 print(bool(pertama))                   # True
 print(bool(nol))                       # False`
   }]}
+/>
+
+Misalkan kelas `Vector` punya metode khusus `__add__` yang menjumlahkan komponen. Saat kamu menulis `v + w`, Python sebenarnya memanggil `v.__add__(w)`. Gambar ini menunjukkan hasilnya untuk `Vector(2, 1)` dan `Vector(1, 2)`: panah `w` ditempel di ujung `v`, dan panah magenta dari pangkal ke ujung adalah objek baru `Vector(3, 3)`. Operator `+` jadi bermakna untuk objekmu sendiri.
+
+<LineEquation
+  title="Metode khusus __add__ untuk v + w"
+  description="Panah ungu adalah v, panah hijau toska adalah w yang ditempel di ujung v, dan panah magenta adalah hasil v + w."
+  showZAxis={false}
+  cameraPosition={[1.5, 1.5, 8]}
+  cameraTarget={[1.5, 1.5, 0]}
+  data={[
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "v = Vector(2, 1)", at: 0, offset: [0.7, -0.4, 0] }] },
+    { points: [{ x: 2, y: 1, z: 0 }, { x: 3, y: 3, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "w = Vector(1, 2)", at: 0, offset: [1.4, 0.7, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 3, z: 0 }], color: "#c026d3", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "v + w = Vector(3, 3)", at: 0, offset: [0.6, 1.4, 0] }] },
+  ]}
 />
 
 ## Praktik Object Oriented Programming

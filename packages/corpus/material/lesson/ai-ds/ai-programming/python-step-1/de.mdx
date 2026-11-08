@@ -153,6 +153,19 @@ print(f"Kreisfläche mit Radius {test_radius} ist {result:.2f}")`
   }]}
 />
 
+Dieses Diagramm ordnet jedem Weg, Python auszuführen, seinen Einsatz zu.
+
+<Mermaid
+  title="Drei Wege, Python auszuführen"
+  description="Wähl den Weg, der zur Länge deines Codes passt."
+  chart={`
+    flowchart TD
+        A[Python-Code] --> B[Interaktive Shell: eine Zeile testen]
+        A --> C[.py-Datei: python file.py]
+        A --> D[Notebook: Code und Ausgabe pro Zelle]
+  `}
+/>
+
 ## Grundlegende Syntax von Python
 
 Ein erstes Python-Programm liest seine Anweisungen von oben nach unten. Eine Variable speichert einen Wert, ein **Datentyp legt fest**, welche Operationen dieser Wert unterstützt, und Eingabe, Ausgabe und Rechenoperationen ergeben zusammen ein vollständiges Programm.
@@ -411,3 +424,43 @@ else:
 - Der Rechner fragt nach zwei Zahlen und einem Operator und zeigt dann das Ergebnis der ausgewählten Operation an.
 - Der Temperaturkonverter zeigt Fahrenheit- und Kelvin-Werte vom Celsius-Eingang an.
 - Im Studierendenprofil werden die eingegebenen Daten, das Eintrittsjahr, das voraussichtliche Abschlussjahr und die semesterbezogene Nachricht angezeigt.
+
+Setz `number1 = 2` fest und stell dir vor, du probierst im Rechner oben viele Werte für `number2` aus. Jeder Operator liefert seinen eigenen Graphen: `+` und `-` sind Geraden mit entgegengesetzter Neigung, `*` ist eine steilere Gerade und `/` die magentafarbene Kurve. Die Divisionskurve hat bei `number2 = 0` keinen Punkt, weil Python eine Division durch null mit `ZeroDivisionError` ablehnt. Alle anderen Linien laufen dort problemlos durch.
+
+<LineEquation
+  title="Die vier Rechenoperatoren für number1 = 2"
+  description="Jede Linie ist das Ergebnis des Rechners, wenn sich number2 ändert und number1 = 2 bleibt. Die magentafarbene Divisionskurve bricht bei number2 = 0 ab."
+  showZAxis={false}
+  cameraPosition={[0, 0, 22]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    { points: [{ x: -4, y: -2, z: 0 }, { x: 4, y: 6, z: 0 }], color: "#8242e5", smooth: false, showPoints: false, labels: [{ text: "2 + number2", at: 1, offset: [0.4, 0.6, 0] }] },
+    { points: [{ x: -4, y: 6, z: 0 }, { x: 4, y: -2, z: 0 }], color: "#0d9488", smooth: false, showPoints: false, labels: [{ text: "2 - number2", at: 1, offset: [0.4, -0.6, 0] }] },
+    { points: [{ x: -4, y: -8, z: 0 }, { x: 4, y: 8, z: 0 }], color: "#b98d00", smooth: false, showPoints: false, labels: [{ text: "2 * number2", at: 1, offset: [0.4, 0.6, 0] }] },
+    ...[-1, 1].map((side) => ({
+      points: Array.from({ length: 401 }, (_, index) => {
+        const x = side * (1 / 3 + (index / 400) * (4 - 1 / 3));
+        return { x, y: 2 / x, z: 0 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      ...(side === 1 ? { labels: [{ text: "2 / number2", at: 400, offset: [0.6, 0.5, 0] }] } : {}),
+    })),
+  ]}
+/>
+
+Folg dem Rechnerprogramm von der Eingabe bis zur Ausgabe.
+
+<Mermaid
+  title="Ablauf des einfachen Rechners"
+  description="Das Programm läuft von oben nach unten."
+  chart={`
+    flowchart TD
+        A[number1 mit float einlesen] --> B[Operator einlesen]
+        B --> C[number2 mit float einlesen]
+        C --> D{Operator?}
+        D --> E[Ergebnis berechnen]
+        E --> F[Ergebnis mit print ausgeben]
+  `}
+/>

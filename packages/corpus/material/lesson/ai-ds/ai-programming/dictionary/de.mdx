@@ -144,6 +144,19 @@ print(phone)
 
 Der Zugriff mit eckigen Klammern liest einen vorhandenen Wert. Eine Zuweisung mit eckigen Klammern **aktualisiert einen vorhandenen Schlüssel** oder hängt ein neues Schlüssel-Wert-Paar an die Einfügereihenfolge an.
 
+Wähl die Leseart danach, was bei fehlendem Schlüssel passieren soll.
+
+<Mermaid
+  title="Eckige Klammern oder get"
+  description="Die zwei Arten, einen Wert zu lesen, unterscheiden sich bei fehlendem Schlüssel."
+  chart={`
+    flowchart TD
+        A{Schlüssel vorhanden?} -->|Ja| B["d[key] und d.get(key) liefern den Wert"]
+        A -->|Nein| C["d[key]: KeyError"]
+        A -->|Nein| D["d.get(key, default): der Standardwert"]
+  `}
+/>
+
 ## Wörterbuch Iteration
 
 Wähle die Iterationsform danach, ob du **nur Schlüssel, nur Werte** oder beide Teile jedes Eintrags brauchst. Ein Dictionary direkt zu durchlaufen liefert die Schlüssel, `.values()` liefert die Werte, und `.items()` liefert Schlüssel-Wert-Paare.
@@ -287,3 +300,23 @@ print("Ergebnis get('ann'):", result)
 />
 
 `get()` gibt den gespeicherten Wert zurück, wenn der Schlüssel vorhanden ist. Andernfalls liefert die Methode den **angegebenen Standardwert** oder `None`, wenn kein Standardwert übergeben wurde. Wähle einen Standard, der nicht mit einem gültigen gespeicherten Wert verwechselt werden kann, falls diese Unterscheidung wichtig ist.
+
+Zähl die Buchstaben in `"banana"` mit `counts[ch] = counts.get(ch, 0) + 1`. Taucht ein Buchstabe zum ersten Mal auf, gibt `get` den Standardwert `0` zurück, also gibt es keinen `KeyError`. Das Ergebnis steht im Bild: `{"b": 1, "a": 3, "n": 2}`, mit den Schlüsseln in der Reihenfolge ihres ersten Auftretens. Die Höhen aller Balken ergeben zusammen `6`, genau `len("banana")`.
+
+<LineEquation
+  title="Buchstaben mit get zählen"
+  description="Jeder Balken ist ein Schlüssel des Dictionarys counts für das Wort banana, und seine Höhe ist der Wert."
+  showZAxis={false}
+  cameraPosition={[1, 1.5, 8]}
+  cameraTarget={[1, 1.5, 0]}
+  data={[
+    ...(() => {
+      const letters = Array.from("banana");
+      const keys = letters.filter((char, index) => letters.indexOf(char) === index);
+      return keys.map((char, index) => {
+        const count = letters.filter((other) => other === char).length;
+        return { points: [{ x: index, y: 0, z: 0 }, { x: index, y: count, z: 0 }], color: "#c026d3", smooth: false, showPoints: true, labels: [{ text: `'${char}': ${count}`, at: 1, offset: [0, 0.4, 0] }] };
+      });
+    })(),
+  ]}
+/>

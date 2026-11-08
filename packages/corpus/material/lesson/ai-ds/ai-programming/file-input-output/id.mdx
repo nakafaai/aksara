@@ -160,6 +160,19 @@ with open('data.txt', 'r+', encoding='utf-8') as f:
 
 Mode menentukan **apakah file harus sudah ada**, apakah pembukaan file mengosongkan isi lama, dan operasi apa yang diizinkan. `r` dan `r+` memerlukan file yang sudah ada. `w` membuat atau mengosongkan file, sedangkan `a` membuat atau menambahkan data. Sufiks `b` memilih binary mode yang tidak memakai `encoding`.
 
+Pilih mode berdasarkan apa yang boleh terjadi pada isi file lama.
+
+<Mermaid
+  title="Tiga mode dasar membuka file"
+  description="Mode menentukan apa yang terjadi pada isi file."
+  chart={`
+    flowchart TD
+        A["open(path, mode)"] --> B["'r': baca, file harus ada"]
+        A --> C["'w': tulis, isi lama dihapus atau file dibuat"]
+        A --> D["'a': tambah di akhir, file dibuat jika belum ada"]
+  `}
+/>
+
 ## Method untuk Membaca File
 
 Python menyediakan lebih dari satu cara membaca file, dan pilihannya bergantung pada **berapa banyak isi** yang dibutuhkan sekaligus serta apakah posisi baca perlu diperhatikan setelahnya. `read()` mengambil seluruh sisa isi atau paling banyak sejumlah karakter tertentu. `readline()` mengambil satu baris, sedangkan `readlines()` tanpa argumen memuat semua baris tersisa ke dalam list.
@@ -218,6 +231,44 @@ with open('sample.txt', 'r', encoding='utf-8') as f:
 />
 
 Dalam text mode, `read()` dan `readline()` mengembalikan string serta menghasilkan `''` ketika tidak ada teks tersisa. Dalam binary mode, keduanya mengembalikan `bytes` dan memakai `b''` pada akhir file. Iterasi berhenti otomatis ketika mencapai akhir.
+
+File yang dibuka punya penunjuk posisi, dan setiap pembacaan menggesernya maju. Untuk isi `"Hi!\nPython\n"`, penunjuk mulai di awal setelah `open()`. `read(3)` mengambil `Hi!` dan berhenti di posisi `3`, `readline()` pertama mengambil sisa baris itu sampai `\n`, dan `readline()` kedua mengambil `Python\n` sampai akhir file. Pembacaan berikutnya mengembalikan string kosong, karena penunjuk sudah di ujung.
+
+<LineEquation
+  title="Penunjuk posisi file saat membaca"
+  description="Setiap karakter file adalah satu titik, dan ↵ adalah baris baru. Panah menunjukkan posisi penunjuk setelah setiap panggilan."
+  showZAxis={false}
+  cameraPosition={[5, 0.2, 9]}
+  cameraTarget={[5, 0.2, 0]}
+  data={[
+    ...(() => {
+      const text = "Hi!\nPython\n";
+      const firstLine = text.indexOf("\n") + 1;
+      const stops = [
+        { at: 0, label: "open()", color: "#64748b" },
+        { at: 3, label: "read(3)", color: "#8242e5" },
+        { at: firstLine, label: "readline()", color: "#0d9488" },
+        { at: text.length, label: "readline()", color: "#bb6800" },
+      ];
+      return [
+        ...Array.from(text).map((char, index) => ({
+          points: [{ x: index, y: 0, z: 0 }],
+          color: "#64748b",
+          showPoints: true,
+          labels: [{ text: char === "\n" ? "↵" : char, at: 0, offset: [0, 0.35, 0] }],
+        })),
+        ...stops.map(({ at, label, color }, index) => ({
+          points: [{ x: at - 0.5, y: -0.6 - 0.5 * index, z: 0 }, { x: at - 0.5, y: -0.2, z: 0 }],
+          color,
+          cone: { position: "end", size: 0.15 },
+          smooth: false,
+          showPoints: false,
+          labels: [{ text: label, at: 0, offset: [0.6, -0.1, 0] }],
+        })),
+      ];
+    })(),
+  ]}
+/>
 
 ## Penanganan File yang Aman
 

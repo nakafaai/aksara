@@ -154,6 +154,20 @@ print("Automatischer Datentyp:", arr_mixed.dtype)  # Ausgabe: Automatischer Date
   ]}
 />
 
+Dieses Diagramm zeigt, was passiert, wenn eine Liste in np.array geht.
+
+<Mermaid
+  title="Von der Liste zum ndarray"
+  description="np.array macht aus einer normalen Liste ein Array mit einem Datentyp."
+  chart={`
+    flowchart LR
+        A["[1, 2, 3]"] --> B["np.array()"]
+        B --> C[ndarray, ein dtype]
+        D["[[1, 2], [3, 4]]"] --> B
+        B --> E[Zweidimensionales ndarray]
+  `}
+/>
+
 ## Funktionen zum Erstellen von Arrays
 
 Jedes Element von Hand zu schreiben lohnt sich nur für sehr kleine Beispiele. NumPy bringt deshalb eigene Erzeugungsfunktionen mit, die ein **Array aus einer Regel** statt aus einer literalen Liste aufbauen, wodurch der Code kurz bleibt und die Form ausdrücklich dasteht. Die folgenden Funktionen bilden drei Gruppen: Arrays mit einem konstanten Wert, Arrays mit Zufallszahlen und Arrays nach einem mathematischen Muster.
@@ -333,6 +347,32 @@ print("Dtype:", a.dtype)  # Ausgabe: Dtype: float64`
   ]}
 />
 
+Vergleich die zwei Punktreihen unten. `np.linspace(0, 10, 5)` teilt das Intervall in fünf gleich weit entfernte Punkte und nimmt das Ende `10` mit. `np.arange(0, 10, 2.5)` geht jedes Mal `2.5` weiter und hört vor `10` auf, also gibt es nur vier Werte. Merk dir die Regel: `linspace` legt die Anzahl der Punkte fest, `arange` die Schrittweite.
+
+<LineEquation
+  title="np.linspace und np.arange auf dem Zahlenstrahl"
+  description="Die obere Zeile ist np.linspace(0, 10, 5), die untere np.arange(0, 10, 2.5). Der Wert 10 fehlt in der unteren Zeile."
+  showZAxis={false}
+  cameraPosition={[5, 0.5, 9]}
+  cameraTarget={[5, 0.5, 0]}
+  data={[
+    ...Array.from({ length: 5 }, (_, index) => (10 * index) / 4).map((value) => ({
+      points: [{ x: value, y: 1, z: 0 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: String(value), at: 0, offset: [0, 0.35, 0] }],
+    })),
+    ...Array.from({ length: Math.ceil(10 / 2.5) }, (_, index) => 2.5 * index).map((value) => ({
+      points: [{ x: value, y: 0, z: 0 }],
+      color: "#0d9488",
+      showPoints: true,
+      labels: [{ text: String(value), at: 0, offset: [0, -0.4, 0] }],
+    })),
+    { points: [{ x: -0.6, y: 1, z: 0 }], color: "#8242e5", showPoints: false, labels: [{ text: "np.linspace(0, 10, 5)", at: 0, offset: [-1.6, 0, 0] }] },
+    { points: [{ x: -0.6, y: 0, z: 0 }], color: "#0d9488", showPoints: false, labels: [{ text: "np.arange(0, 10, 2.5)", at: 0, offset: [-1.6, 0, 0] }] },
+  ]}
+/>
+
 ## Arrays aus Sequenzen
 
 Manche Arrays lassen sich leichter als Sequenz beschreiben denn als Regel für jedes einzelne Element: alle Werte zwischen zwei Grenzen oder eine **feste Anzahl gleichmäßig verteilter Punkte**. `np.arange` und `np.linspace` erzeugen solche Arrays, und der Unterschied liegt darin, wie das Ende der Sequenz festgelegt wird.
@@ -479,4 +519,16 @@ print(d)
 #  [ 9 10 11]]`
     }
   ]}
+/>
+
+Folg einem Array durch zwei elementweise Operationen.
+
+<Mermaid
+  title="Elementweise Operationen"
+  description="Eine Operation gilt ohne Schleife für jedes Element."
+  chart={`
+    flowchart LR
+        A["arr = [1, 2, 3]"] -->|"arr + 1"| B["[2, 3, 4]"]
+        A -->|"arr * 2"| C["[2, 4, 6]"]
+  `}
 />

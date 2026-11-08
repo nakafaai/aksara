@@ -153,6 +153,19 @@ print(f"Luas lingkaran dengan radius {test_radius} adalah {result:.2f}")`
   }]}
 />
 
+Diagram ini memasangkan setiap cara menjalankan Python dengan kegunaannya.
+
+<Mermaid
+  title="Tiga cara menjalankan Python"
+  description="Pilih cara sesuai panjang kodenya."
+  chart={`
+    flowchart TD
+        A[Kode Python] --> B[Shell interaktif: coba satu baris]
+        A --> C[File .py: python file.py]
+        A --> D[Notebook: kode dan hasil per sel]
+  `}
+/>
+
 ## Sintaks Dasar Python
 
 Program Python pertama membaca perintahnya dari atas ke bawah. Variabel menyimpan nilai, **tipe data menentukan operasi** yang didukung nilai itu, dan input, output, serta aritmetika menyusun program pertama yang lengkap.
@@ -411,3 +424,43 @@ else:
 - Kalkulator meminta dua angka dan satu operator, lalu menampilkan hasil operasi yang dipilih.
 - Konverter suhu menampilkan nilai Fahrenheit dan Kelvin dari input Celsius.
 - Profil mahasiswa menampilkan data yang dimasukkan, tahun masuk, perkiraan lulus, dan pesan sesuai semester.
+
+Tetapkan `number1 = 2` dan bayangkan kamu mencoba banyak nilai `number2` di kalkulator tadi. Setiap operator memberi grafik sendiri: `+` dan `-` adalah garis miring ke arah berlawanan, `*` adalah garis yang lebih curam, dan `/` adalah kurva magenta. Kurva pembagian tidak punya titik di `number2 = 0`, karena Python menolak pembagian dengan nol dengan `ZeroDivisionError`. Semua garis lain lewat tanpa masalah di situ.
+
+<LineEquation
+  title="Empat operator kalkulator untuk number1 = 2"
+  description="Setiap garis adalah hasil kalkulator saat number2 berubah dan number1 = 2. Kurva magenta untuk pembagian terputus di number2 = 0."
+  showZAxis={false}
+  cameraPosition={[0, 0, 22]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    { points: [{ x: -4, y: -2, z: 0 }, { x: 4, y: 6, z: 0 }], color: "#8242e5", smooth: false, showPoints: false, labels: [{ text: "2 + number2", at: 1, offset: [0.4, 0.6, 0] }] },
+    { points: [{ x: -4, y: 6, z: 0 }, { x: 4, y: -2, z: 0 }], color: "#0d9488", smooth: false, showPoints: false, labels: [{ text: "2 - number2", at: 1, offset: [0.4, -0.6, 0] }] },
+    { points: [{ x: -4, y: -8, z: 0 }, { x: 4, y: 8, z: 0 }], color: "#b98d00", smooth: false, showPoints: false, labels: [{ text: "2 * number2", at: 1, offset: [0.4, 0.6, 0] }] },
+    ...[-1, 1].map((side) => ({
+      points: Array.from({ length: 401 }, (_, index) => {
+        const x = side * (1 / 3 + (index / 400) * (4 - 1 / 3));
+        return { x, y: 2 / x, z: 0 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      ...(side === 1 ? { labels: [{ text: "2 / number2", at: 400, offset: [0.6, 0.5, 0] }] } : {}),
+    })),
+  ]}
+/>
+
+Ikuti alur program kalkulator dari masukan sampai keluaran.
+
+<Mermaid
+  title="Alur kalkulator sederhana"
+  description="Program berjalan dari atas ke bawah."
+  chart={`
+    flowchart TD
+        A[Baca number1 dengan float] --> B[Baca operator]
+        B --> C[Baca number2 dengan float]
+        C --> D{Operator?}
+        D --> E[Hitung hasil]
+        E --> F[print hasil]
+  `}
+/>

@@ -66,6 +66,25 @@ print(z == x)   # Output: True
 
 Assignment `y = x` guarantees that both names refer to the same object at that moment. Creating another equal value guarantees that the values compare equal. It may create a separate object. Some Python implementations reuse immutable objects, but correct code never depends on that optimization.
 
+Run `x = 5`, then `y = x`, then `x = 7`, and follow the arrows. `y = x` does not copy a number, it makes `y` point at the same object `5` as `x`. When `x = 7` runs, only the arrow of `x` moves to a new object, from the gray arrow to the violet one. The arrow of `y` stays where it was, so `print(y)` still shows `5`.
+
+<LineEquation
+  title="Rebinding x does not change y"
+  description="After x = 5, y = x, and x = 7: the gray arrow is the old binding of x, the violet arrow the new one, and the teal arrow still points at 5."
+  showZAxis={false}
+  cameraPosition={[2, 0, 7]}
+  cameraTarget={[2, 0, 0]}
+  data={[
+    { points: [{ x: 0, y: 0.6, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "x", at: 0, offset: [-0.3, 0, 0] }] },
+    { points: [{ x: 0, y: -0.6, z: 0 }], color: "#0d9488", showPoints: true, labels: [{ text: "y", at: 0, offset: [-0.3, 0, 0] }] },
+    { points: [{ x: 4, y: 1.2, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "7", at: 0, offset: [0.4, 0, 0] }] },
+    { points: [{ x: 4, y: -0.6, z: 0 }], color: "#0d9488", showPoints: true, labels: [{ text: "5", at: 0, offset: [0.4, 0, 0] }] },
+    { points: [{ x: 0.2, y: 0.6, z: 0 }, { x: 3.8, y: 1.2, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "x = 7", at: 0, offset: [1.8, 0.5, 0] }] },
+    { points: [{ x: 0.2, y: -0.6, z: 0 }, { x: 3.8, y: -0.6, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "y = x", at: 0, offset: [1.8, -0.35, 0] }] },
+    { points: [{ x: 0.2, y: 0.6, z: 0 }, { x: 3.8, y: -0.5, z: 0 }], color: "#64748b", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "x = 5", at: 0, offset: [1.3, -0.15, 0] }] },
+  ]}
+/>
+
 ## Python Variable Characteristics
 
 When you assign a value to a name, remember two things. Python binds the name to an object **without a separate declaration**. You can later bind the same name to an object of a different type.
@@ -192,6 +211,23 @@ print(nama == Nama)         # Output: False
 print(Nama == NAMA)         # Output: False`
     }
   ]}
+/>
+
+Check every variable name with these three questions.
+
+<Mermaid
+  title="Is a variable name valid"
+  description="Three conditions Python checks."
+  chart={`
+    flowchart TD
+        A[Name] --> B{Starts with a letter or _?}
+        B -->|No| X[Invalid]
+        B -->|Yes| C{Only letters, digits, and _?}
+        C -->|No| X
+        C -->|Yes| D{Not a keyword?}
+        D -->|No| X
+        D -->|Yes| E[Valid]
+  `}
 />
 
 ## Keywords That Cannot Be Used

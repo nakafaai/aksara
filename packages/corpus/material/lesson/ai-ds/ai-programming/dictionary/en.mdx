@@ -144,6 +144,19 @@ print(phone)
 
 Square-bracket access retrieves an existing value. Assignment with brackets **updates an existing key** or appends a new key-value pair to the insertion order.
 
+Pick how you read a value by what should happen when the key is missing.
+
+<Mermaid
+  title="Brackets or get"
+  description="The two ways of reading a value differ when the key is missing."
+  chart={`
+    flowchart TD
+        A{Key present?} -->|Yes| B["d[key] and d.get(key) return the value"]
+        A -->|No| C["d[key]: KeyError"]
+        A -->|No| D["d.get(key, default): the default"]
+  `}
+/>
+
 ## Dictionary Iteration
 
 Choose the iteration form that matches whether you need **keys alone, values alone**, or both parts of each entry. Iterating a dictionary directly gives keys, calling `.values()` gives values, and calling `.items()` gives key-value pairs.
@@ -287,3 +300,23 @@ print("Result get('ann'):", result)
 />
 
 `get()` returns the stored value when the key exists. Otherwise it returns the **supplied default**, or `None` when no default is supplied. Choose a default that cannot be confused with a valid stored value when that distinction matters.
+
+Count the letters in `"banana"` with `counts[ch] = counts.get(ch, 0) + 1`. When a letter appears for the first time, `get` returns the default `0`, so there is no `KeyError`. The result is in the picture: `{"b": 1, "a": 3, "n": 2}`, with the keys in the order they first appeared. The heights of all bars add up to `6`, the same as `len("banana")`.
+
+<LineEquation
+  title="Counting letters with get"
+  description="Each bar is one key of the dictionary counts for the word banana, and its height is the value."
+  showZAxis={false}
+  cameraPosition={[1, 1.5, 8]}
+  cameraTarget={[1, 1.5, 0]}
+  data={[
+    ...(() => {
+      const letters = Array.from("banana");
+      const keys = letters.filter((char, index) => letters.indexOf(char) === index);
+      return keys.map((char, index) => {
+        const count = letters.filter((other) => other === char).length;
+        return { points: [{ x: index, y: 0, z: 0 }, { x: index, y: count, z: 0 }], color: "#c026d3", smooth: false, showPoints: true, labels: [{ text: `'${char}': ${count}`, at: 1, offset: [0, 0.4, 0] }] };
+      });
+    })(),
+  ]}
+/>

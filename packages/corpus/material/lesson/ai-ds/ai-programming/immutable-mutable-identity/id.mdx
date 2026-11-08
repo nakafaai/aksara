@@ -126,6 +126,26 @@ print(a == c)  # True: nilainya setara`
   ]}
 />
 
+Jalankan `a = [1, 2]`, `b = a`, `c = a.copy()`, lalu `b.append(3)`. Gambar ini menunjukkan keadaannya: `a` dan `b` adalah dua nama untuk satu objek list, jadi `a` ikut berubah menjadi `[1, 2, 3]` dan `a is b` bernilai `True`. `c` menunjuk objek lain yang masih `[1, 2]`, sehingga `a is c` bernilai `False` walaupun isinya pernah sama. Identitas mengikuti panah, bukan isi.
+
+<LineEquation
+  title="Dua nama untuk satu list, satu nama untuk salinan"
+  description="Setelah a = [1, 2], b = a, c = a.copy(), dan b.append(3): panah ungu menunjukkan a dan b ke objek yang sama, panah hijau toska menunjukkan c ke salinannya."
+  showZAxis={false}
+  cameraPosition={[2, 0, 7]}
+  cameraTarget={[2, 0, 0]}
+  data={[
+    { points: [{ x: 0, y: 1, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "a", at: 0, offset: [-0.3, 0, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "b", at: 0, offset: [-0.3, 0, 0] }] },
+    { points: [{ x: 0, y: -1, z: 0 }], color: "#0d9488", showPoints: true, labels: [{ text: "c", at: 0, offset: [-0.3, 0, 0] }] },
+    { points: [{ x: 4, y: 0.5, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "[1, 2, 3]", at: 0, offset: [0.8, 0, 0] }] },
+    { points: [{ x: 4, y: -1, z: 0 }], color: "#0d9488", showPoints: true, labels: [{ text: "[1, 2]", at: 0, offset: [0.6, 0, 0] }] },
+    { points: [{ x: 0.2, y: 1, z: 0 }, { x: 3.8, y: 0.55, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false },
+    { points: [{ x: 0.2, y: 0, z: 0 }, { x: 3.8, y: 0.45, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false },
+    { points: [{ x: 0.2, y: -1, z: 0 }, { x: 3.8, y: -1, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false },
+  ]}
+/>
+
 ## Perubahan Isi Objek dan Pengikatan Ulang Nama
 
 Python membagi objeknya menurut satu pertanyaan, yaitu apakah isinya bisa berubah setelah objek itu ada. Objek immutable seperti `int`, `str`, atau `tuple` menyimpan nilai yang sama sepanjang umurnya, sehingga operasi yang terlihat mengubah isi sebenarnya membuat objek baru. Objek mutable seperti `list`, `dict`, atau `set` menyimpan isi yang bisa berubah tanpa mengganti objeknya.

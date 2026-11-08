@@ -88,6 +88,19 @@ open document.html`
   }]}
 />
 
+This diagram sums up the Markdown workflow with pandoc.
+
+<Mermaid
+  title="From Markdown to a finished document"
+  description="One Markdown file can become several formats."
+  chart={`
+    flowchart LR
+        A[Write a .md file] --> B[pandoc]
+        B --> C[HTML]
+        B --> D[PDF, when a PDF engine is installed]
+  `}
+/>
+
 ## Command Line Interface Basics
 
 A command-line interface, or CLI, accepts **textual commands through a shell**. Each command has a program name, optional flags, and arguments such as paths.
@@ -348,3 +361,39 @@ chmod +x scripts/build-docs.sh
 />
 
 Markdown keeps document structure readable in version control. With a CLI, the same validation and conversion steps can be run again. A trustworthy workflow preserves that boundary: edit the source, verify commands and paths, regenerate output, and review the resulting changes.
+
+Imagine your current working folder is `/home/user`, the magenta point in this tree. `cd projects` moves one level down into a child folder along the teal arrow, and from there `ls` would list `notes.md`. `cd ..` moves back up to the parent along the orange arrow. A relative path like `projects` counts from the working folder, while an absolute path like `/home/user/docs` always starts at the root.
+
+<LineEquation
+  title="Moving between folders with cd"
+  description="Each point is a folder or a file. The magenta point is the current working folder, the teal arrow is cd projects, and the orange arrow is cd .."
+  showZAxis={false}
+  cameraPosition={[1.5, -1, 8]}
+  cameraTarget={[1.5, -1, 0]}
+  data={[
+    { points: [{ x: 1.5, y: 1, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "/home", at: 0, offset: [0, 0.35, 0] }] },
+    { points: [{ x: 1.5, y: 0, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: "user", at: 0, offset: [0.6, 0.1, 0] }] },
+    { points: [{ x: 0, y: -1.5, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "docs", at: 0, offset: [0, -0.4, 0] }] },
+    { points: [{ x: 3, y: -1.5, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "projects", at: 0, offset: [0.7, 0.1, 0] }] },
+    { points: [{ x: 3, y: -3, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: "notes.md", at: 0, offset: [0, -0.4, 0] }] },
+    { points: [{ x: 1.5, y: 1, z: 0 }, { x: 1.5, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: 1.5, y: 0, z: 0 }, { x: 0, y: -1.5, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: 1.5, y: 0, z: 0 }, { x: 3, y: -1.5, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: 3, y: -1.5, z: 0 }, { x: 3, y: -3, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+    { points: [{ x: 1.8, y: -0.1, z: 0 }, { x: 2.9, y: -1.2, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "cd projects", at: 0, offset: [0.9, 0.3, 0] }] },
+    { points: [{ x: 2.7, y: -1.6, z: 0 }, { x: 1.6, y: -0.4, z: 0 }], color: "#bb6800", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "cd ..", at: 0, offset: [-0.6, -0.4, 0] }] },
+  ]}
+/>
+
+Repeat the loop in this diagram every time you explore folders.
+
+<Mermaid
+  title="The folder exploration loop"
+  description="Three commands you repeat while moving between folders."
+  chart={`
+    flowchart LR
+        A[pwd: where am I?] --> B[ls: what is here?]
+        B --> C[cd name: go into a folder]
+        C --> A
+  `}
+/>

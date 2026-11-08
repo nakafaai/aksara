@@ -126,6 +126,26 @@ print(a == c)  # True: gleiche Werte`
   ]}
 />
 
+Führ `a = [1, 2]`, `b = a`, `c = a.copy()` und dann `b.append(3)` aus. Dieses Bild zeigt den Zustand: `a` und `b` sind zwei Namen für ein Listenobjekt, also ändert sich auch `a` zu `[1, 2, 3]`, und `a is b` ist `True`. `c` zeigt auf ein anderes Objekt, das noch `[1, 2]` ist, deshalb ist `a is c` gleich `False`, obwohl der Inhalt einmal gleich war. Identität folgt den Pfeilen, nicht dem Inhalt.
+
+<LineEquation
+  title="Zwei Namen für eine Liste, ein Name für eine Kopie"
+  description="Nach a = [1, 2], b = a, c = a.copy() und b.append(3): Violette Pfeile zeigen a und b auf dasselbe Objekt, der türkise Pfeil zeigt c auf die Kopie."
+  showZAxis={false}
+  cameraPosition={[2, 0, 7]}
+  cameraTarget={[2, 0, 0]}
+  data={[
+    { points: [{ x: 0, y: 1, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "a", at: 0, offset: [-0.3, 0, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "b", at: 0, offset: [-0.3, 0, 0] }] },
+    { points: [{ x: 0, y: -1, z: 0 }], color: "#0d9488", showPoints: true, labels: [{ text: "c", at: 0, offset: [-0.3, 0, 0] }] },
+    { points: [{ x: 4, y: 0.5, z: 0 }], color: "#8242e5", showPoints: true, labels: [{ text: "[1, 2, 3]", at: 0, offset: [0.8, 0, 0] }] },
+    { points: [{ x: 4, y: -1, z: 0 }], color: "#0d9488", showPoints: true, labels: [{ text: "[1, 2]", at: 0, offset: [0.6, 0, 0] }] },
+    { points: [{ x: 0.2, y: 1, z: 0 }, { x: 3.8, y: 0.55, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false },
+    { points: [{ x: 0.2, y: 0, z: 0 }, { x: 3.8, y: 0.45, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false },
+    { points: [{ x: 0.2, y: -1, z: 0 }, { x: 3.8, y: -1, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false },
+  ]}
+/>
+
 ## Veränderliche und unveränderliche Objekte
 
 Python teilt seine Objekte nach einer einzigen Frage ein, nämlich ob sich der Inhalt nach der Erstellung noch ändern lässt. Ein unveränderliches Objekt wie ein `int`, ein `str` oder ein `tuple` behält sein Leben lang denselben Wert, eine Operation, die wie eine Änderung aussieht, erzeugt deshalb ein neues Objekt. Ein veränderliches Objekt wie eine `list`, ein `dict` oder ein `set` trägt einen Inhalt, der sich ändern kann, während das Objekt dasselbe bleibt.

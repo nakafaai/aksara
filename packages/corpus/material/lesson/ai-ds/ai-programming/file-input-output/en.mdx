@@ -160,6 +160,19 @@ with open('data.txt', 'r+', encoding='utf-8') as f:
 
 The mode controls **whether a file must already exist**, whether opening it truncates existing content, and which operations are allowed. `r` and `r+` require an existing file. `w` creates or truncates, while `a` creates or appends. Adding `b` selects binary mode, where `encoding` is not used.
 
+Pick the mode by what may happen to the old file contents.
+
+<Mermaid
+  title="Three basic modes for opening a file"
+  description="The mode decides what happens to the file contents."
+  chart={`
+    flowchart TD
+        A["open(path, mode)"] --> B["'r': read, the file must exist"]
+        A --> C["'w': write, old contents erased or file created"]
+        A --> D["'a': append at the end, file created if missing"]
+  `}
+/>
+
 ## File Reading Methods
 
 Python offers more than one way to read a file, and the choice depends on **how much of the content** you need at once and whether the read position matters afterwards. `read()` takes the whole remainder or at most a requested number of characters. `readline()` takes one line, while `readlines()` without arguments loads all remaining lines into a list.
@@ -218,6 +231,44 @@ with open('sample.txt', 'r', encoding='utf-8') as f:
 />
 
 In text mode, `read()` and `readline()` return strings and return `''` when no more text is available. In binary mode they return `bytes` and use `b''` at end of file. Iteration stops automatically at the end.
+
+An open file has a position, and every read moves it forward. For the contents `"Hi!\nPython\n"`, the position starts at the beginning after `open()`. `read(3)` takes `Hi!` and stops at position `3`, the first `readline()` takes the rest of that line up to `\n`, and the second `readline()` takes `Python\n` up to the end of the file. The next read returns an empty string, because the position is already at the end.
+
+<LineEquation
+  title="The file position while reading"
+  description="Each character of the file is one point, and ↵ is a newline. The arrows show the position after each call."
+  showZAxis={false}
+  cameraPosition={[5, 0.2, 9]}
+  cameraTarget={[5, 0.2, 0]}
+  data={[
+    ...(() => {
+      const text = "Hi!\nPython\n";
+      const firstLine = text.indexOf("\n") + 1;
+      const stops = [
+        { at: 0, label: "open()", color: "#64748b" },
+        { at: 3, label: "read(3)", color: "#8242e5" },
+        { at: firstLine, label: "readline()", color: "#0d9488" },
+        { at: text.length, label: "readline()", color: "#bb6800" },
+      ];
+      return [
+        ...Array.from(text).map((char, index) => ({
+          points: [{ x: index, y: 0, z: 0 }],
+          color: "#64748b",
+          showPoints: true,
+          labels: [{ text: char === "\n" ? "↵" : char, at: 0, offset: [0, 0.35, 0] }],
+        })),
+        ...stops.map(({ at, label, color }, index) => ({
+          points: [{ x: at - 0.5, y: -0.6 - 0.5 * index, z: 0 }, { x: at - 0.5, y: -0.2, z: 0 }],
+          color,
+          cone: { position: "end", size: 0.15 },
+          smooth: false,
+          showPoints: false,
+          labels: [{ text: label, at: 0, offset: [0.6, -0.1, 0] }],
+        })),
+      ];
+    })(),
+  ]}
+/>
 
 ## Safe File Handling
 

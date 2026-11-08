@@ -166,6 +166,30 @@ Die Tabelle sammelt die Index- und Slice-Formen für ein zweidimensionales Array
 | `a[::2, :]` | Jede zweite Zeile | Zweidimensionales Array mit Zeilen <InlineMath math="0, 2" /> |
 | `a[:, ::2]` | Jede zweite Spalte | Zweidimensionales Array mit Spalten <InlineMath math="0, 2" /> |
 
+Dieses Bild ordnet `a = np.arange(20).reshape(4, 5)` als vier Zeilen und fünf Spalten an. Der erste Slice `1:3` wählt die Zeilen `1` und `2`, der zweite Slice `2:5` die Spalten `2`, `3` und `4`, und beide hören vor ihrer oberen Grenze auf. Das Ergebnis ist der magentafarbene Kasten der Form `(2, 3)` mit `7, 8, 9, 12, 13, 14`. Jedes Komma in den eckigen Klammern trennt eine Achse.
+
+<LineEquation
+  title="Der zweidimensionale Slice a[1:3, 2:5]"
+  description="Das Gitter ist a = np.arange(20).reshape(4, 5). Die magentafarbenen Elemente im Kasten sind das Ergebnis von a[1:3, 2:5]."
+  showZAxis={false}
+  cameraPosition={[2, -1.5, 8]}
+  cameraTarget={[2, -1.5, 0]}
+  data={[
+    ...Array.from({ length: 20 }, (_, value) => {
+      const row = Math.floor(value / 5);
+      const column = value % 5;
+      const sliced = row >= 1 && row < 3 && column >= 2 && column < 5;
+      return {
+        points: [{ x: column, y: -row, z: 0 }],
+        color: sliced ? "#c026d3" : "#64748b",
+        showPoints: true,
+        labels: [{ text: String(value), at: 0, offset: [0, 0.32, 0] }],
+      };
+    }),
+    { points: [{ x: 1.6, y: -0.6, z: 0 }, { x: 4.4, y: -0.6, z: 0 }, { x: 4.4, y: -2.4, z: 0 }, { x: 1.6, y: -2.4, z: 0 }, { x: 1.6, y: -0.6, z: 0 }], color: "#c026d3", smooth: false, showPoints: false, labels: [{ text: "a[1:3, 2:5]", at: 1, offset: [0.9, 0.2, 0] }] },
+  ]}
+/>
+
 ## Erweiterte Indizierung
 
 Advanced Indexing wählt mit Integer- oder Boolean-Arrays beliebige Elemente aus und liefert immer eine Kopie. Bei einer eindimensionalen Quelle bestimmt das Indexarray die **Form des Ergebnisses**. Bei mehrdimensionalen Quellen broadcastet NumPy die Indexarrays und kombiniert ihre Form mit den Dimensionen, die durch Basic Slices übrig bleiben.
@@ -421,6 +445,20 @@ print(a)
 
 Unterscheide **das Lesen einer Auswahl von einer Zuweisung**. `selected = a[mask]` erzeugt eine Kopie, doch `a[a < 5] = 0` schreibt direkt an die ausgewählten Positionen in `a`. Der Wert `5` bleibt erhalten, weil die Bedingung `< 5` und nicht `<= 5` lautet.
 
+Folg diesen zwei Schritten vom Vergleich bis zum Ergebnis.
+
+<Mermaid
+  title="Schritte der booleschen Indizierung"
+  description="Ein Vergleich erzeugt eine Maske, die Maske wählt Elemente aus."
+  chart={`
+    flowchart LR
+        A[a] --> B["a > 10"]
+        B --> C[Maske aus True und False]
+        C --> D["a[mask]"]
+        D --> E[Eindimensionales Array der gewählten Werte]
+  `}
+/>
+
 ## Fancy Indexing
 
 Fancy Indexing ist eine gebräuchliche Bezeichnung für Advanced Indexing mit Integern. Damit kannst du **Positionen neu anordnen, wiederholen** oder das Ergebnis entsprechend der Form eines Indexarrays aufbauen.
@@ -503,6 +541,20 @@ print(a[[0, 2], 1:4])
 #  [13 14 15]]`
     }
   ]}
+/>
+
+Dieses Diagramm trennt die zwei Arten von Indizierungsergebnissen.
+
+<Mermaid
+  title="View oder Kopie"
+  description="Ein einfacher Slice teilt Daten, Fancy Indexing erzeugt eine Kopie."
+  chart={`
+    flowchart TD
+        A[Indizierung] --> B["Slice a[1:3]"]
+        A --> C["Fancy a[[0, 2]]"]
+        B --> D[View: teilt Daten mit a]
+        C --> E[Kopie: neue Daten]
+  `}
 />
 
 ## Daten in Arrays auswählen und neu anordnen

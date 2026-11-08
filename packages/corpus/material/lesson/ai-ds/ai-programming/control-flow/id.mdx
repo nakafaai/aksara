@@ -94,6 +94,23 @@ else:
   ]}
 />
 
+Bandingkan dua jalan keluar dari badan loop di diagram ini.
+
+<Mermaid
+  title="break dan continue"
+  description="break keluar dari loop, continue melompat ke putaran berikutnya."
+  chart={`
+    flowchart TD
+        A[Putaran loop] --> B{break?}
+        B -->|Ya| C[Keluar dari loop]
+        B -->|Tidak| D{continue?}
+        D -->|Ya| E[Lompat ke putaran berikutnya]
+        D -->|Tidak| F[Jalankan sisa badan loop]
+        E --> A
+        F --> A
+  `}
+/>
+
 ## Fungsi Enumerate
 
 Gunakan `enumerate()` ketika iterasi membutuhkan **pencacah sekaligus nilai setiap elemen**. Fungsi ini mengembalikan iterator yang menghasilkan tuple `(indeks, nilai)`.
@@ -324,6 +341,29 @@ for i in range(n):  # Tidak menyimpan semua angka di memori
     else:
         break`
     }
+  ]}
+/>
+
+Ikuti loop `for i in range(1, 6): total += i` putaran demi putaran. Sebelum loop, `total` bernilai `0`, lalu setiap putaran menambahkan nilai `i` yang sedang berjalan. Titik-titik naik makin curam karena tambahannya makin besar: `1`, `3`, `6`, `10`, lalu `15`. Nilai terakhir sama dengan `sum(range(1, 6))`, dan `range(1, 6)` berhenti sebelum `6`.
+
+<LineEquation
+  title="Jumlah berjalan total += i"
+  description="Setiap titik adalah nilai total setelah satu putaran loop for i in range(1, 6)."
+  showZAxis={false}
+  cameraPosition={[3, 7.5, 22]}
+  cameraTarget={[3, 7.5, 0]}
+  data={[
+    ...(() => {
+      const points = [];
+      let total = 0;
+      for (const i of Array.from({ length: 5 }, (_, index) => index + 1)) {
+        total += i;
+        points.push({ x: i, y: total, z: 0 });
+      }
+      return [
+        { points: [{ x: 0, y: 0, z: 0 }, ...points], color: "#8242e5", smooth: false, showPoints: true, labels: points.map(({ y }, index) => ({ text: `total = ${y}`, at: index + 1, offset: [-1.3, 0.3, 0] })) },
+      ];
+    })(),
   ]}
 />
 

@@ -386,6 +386,20 @@ print(square(5))                    # 25`
   }]}
 />
 
+Every path in this diagram points at the same function object.
+
+<Mermaid
+  title="One function, many names"
+  description="A function is an object you can store and pass around."
+  chart={`
+    flowchart LR
+        A[def greet] --> F[Function object]
+        B[g = greet] --> F
+        C["run(greet)"] --> F
+        D["items = [greet]"] --> F
+  `}
+/>
+
 ## Classes and Instances as Objects
 
 A class defines how its instances are constructed and how their shared behavior is resolved. The class itself is also an object, and **each instance carries its own instance state**.
@@ -460,6 +474,19 @@ print(Student.university)           # University of Indonesia`
   }]}
 />
 
+This diagram separates what an instance owns from what the class shares.
+
+<Mermaid
+  title="Classes and instances"
+  description="Each instance has its own attributes and shares the class methods."
+  chart={`
+    flowchart TD
+        A[Class Car] --> B[car1: own attributes]
+        A --> C[car2: own attributes]
+        A --> D[Methods shared by all instances]
+  `}
+/>
+
 ## Special Methods
 
 Special methods begin and end with **double underscores**. Python invokes them through syntax and built-ins such as `+`, `abs()`, `repr()`, and truth testing. Implement one only when its meaning is natural for the domain.
@@ -519,6 +546,21 @@ zero = Vector2D(0, 0)
 print(bool(first))                   # True
 print(bool(zero))                    # False`
   }]}
+/>
+
+Suppose a `Vector` class has a special method `__add__` that adds the components. When you write `v + w`, Python actually calls `v.__add__(w)`. This picture shows the result for `Vector(2, 1)` and `Vector(1, 2)`: the arrow `w` is attached at the tip of `v`, and the magenta arrow from start to end is the new object `Vector(3, 3)`. That is how the `+` operator gets a meaning for your own objects.
+
+<LineEquation
+  title="The special method __add__ behind v + w"
+  description="The violet arrow is v, the teal arrow is w attached at the tip of v, and the magenta arrow is the result v + w."
+  showZAxis={false}
+  cameraPosition={[1.5, 1.5, 8]}
+  cameraTarget={[1.5, 1.5, 0]}
+  data={[
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }], color: "#8242e5", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "v = Vector(2, 1)", at: 0, offset: [0.7, -0.4, 0] }] },
+    { points: [{ x: 2, y: 1, z: 0 }, { x: 3, y: 3, z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "w = Vector(1, 2)", at: 0, offset: [1.4, 0.7, 0] }] },
+    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 3, z: 0 }], color: "#c026d3", cone: { position: "end", size: 0.2 }, smooth: false, showPoints: false, labels: [{ text: "v + w = Vector(3, 3)", at: 0, offset: [0.6, 1.4, 0] }] },
+  ]}
 />
 
 ## Object Oriented Programming Practice
