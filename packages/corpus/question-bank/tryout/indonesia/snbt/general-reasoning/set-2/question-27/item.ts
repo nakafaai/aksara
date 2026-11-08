@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "motion",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$20\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$22{,}5\\%$$",
+          label: "$$300\\text{ m}$$",
         },
         {
           correct: true,
-          label: "$$23{,}75\\%$$",
+          label: "$$450\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$25\\%$$",
+          label: "$$525\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$27{,}5\\%$$",
+          label: "$$600\\text{ m}$$",
+        },
+        {
+          correct: false,
+          label: "$$750\\text{ m}$$",
         },
       ],
     },

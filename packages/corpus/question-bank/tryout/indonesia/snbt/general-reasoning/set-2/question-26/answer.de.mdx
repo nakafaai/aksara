@@ -1,9 +1,18 @@
-Ziehe die fehlerhaften Einheiten von der Produktion ab, um die **fehlerfreien Einheiten** zu bestimmen. Der gesamte Energieverbrauch ist Betriebszeit mal stündlicher Energieverbrauch, also <InlineMath math="te" />. Teile die fehlerfreien Einheiten durch diesen Energieverbrauch, um den Index jeder Maschine zu berechnen.
+Seien Länge und Breite <InlineMath math="p" /> und <InlineMath math="l" />. Gesucht ist der Flächeninhalt <InlineMath math="pl" />. Du **brauchst <InlineMath math="p" /> und <InlineMath math="l" /> nicht einzeln**, nur ihr Produkt.
 
-<BlockMath math="\begin{aligned}I_A&amp;=\frac{560-20}{10\times5}=10{,}8\\I_B&amp;=\frac{500-20}{10\times4}=12\\I_C&amp;=\frac{650-30}{13\times5}\\&amp;=\frac{620}{65}\approx9{,}54\end{aligned}" />
+**Aussage (1) allein**. Ein Umfang von <InlineMath math="30" /> ergibt <InlineMath math="p+l=15" />. Viele Paare passen, etwa <InlineMath math="10" /> und <InlineMath math="5" /> mit Fläche <InlineMath math="50" /> oder <InlineMath math="8" /> und <InlineMath math="7" /> mit Fläche <InlineMath math="56" />. Der Flächeninhalt ist nicht eindeutig, also reicht das nicht.
 
-Die Reihenfolge lautet <InlineMath math="I_B>I_A>I_C" />. Maschine <InlineMath math="B" /> ist am besten, gefolgt von Maschine <InlineMath math="A" />.
+**Aussage (2) allein**. Eine Diagonale von <InlineMath math="11" /> ergibt <InlineMath math="p^2+l^2=121" />. Das Rechteck kann lang und schmal oder fast quadratisch sein, die Fläche ist also wieder nicht eindeutig. Das reicht nicht.
 
-Die Differenz beträgt
+**Beide Aussagen zusammen**. Nutze das Quadrat einer Summe:
 
-<BlockMath math="12-10{,}8=1{,}2" />
+<BlockMath math="\begin{aligned}
+(p+l)^2 &= p^2+2pl+l^2 \\
+15^2 &= 121+2pl \\
+2pl &= 225-121=104 \\
+pl &= 52
+\end{aligned}" />
+
+Die Fläche ist eindeutig, nämlich <InlineMath math="52\text{ cm}^2" />. So ein Rechteck gibt es, denn <InlineMath math="p" /> und <InlineMath math="l" /> sind die positiven Lösungen von <InlineMath math="t^2-15t+52=0" />, deren Diskriminante <InlineMath math="225-208=17>0" /> ist. Die Seiten sind keine ganzen Zahlen, die Fläche ist trotzdem bestimmt.
+
+Beide Aussagen zusammen reichen also, jede allein nicht.

@@ -1,23 +1,19 @@
-Gunakan simbol berikut untuk waktu memasak setiap potong daging.
+Terapkan aturan **sesuai urutan prioritasnya**. Aturan yang lebih awal selalu mengalahkan aturan berikutnya, sedangkan jam datang hanya dipakai untuk pasien yang setara.
 
-| Daging | Waktu |
-| :--- | :---: |
-| Domba | <InlineMath math="t_1" /> |
-| Sapi | <InlineMath math="t_2" /> |
-| Bebek | <InlineMath math="t_3" /> |
-| Kelinci | <InlineMath math="t_4" /> |
-| Ayam | <InlineMath math="t_5" /> |
+**Aturan 1**. Hanya Jihan yang menunjukkan tanda bahaya, jadi Jihan dilayani pertama walaupun datang pukul <InlineMath math="08.00" />.
 
-Sapi memerlukan waktu lebih lama daripada domba. <InlineMath math="t_2>t_1" />.
+**Aturan 2**. Di antara pasien lain, yang didahulukan adalah Kurnia (<InlineMath math="62" /> tahun), Ilham (<InlineMath math="70" /> tahun), dan Gita (hamil). Hadi berusia <InlineMath math="45" /> tahun dan tidak hamil, jadi berada di kelompok terakhir.
 
-Sapi memerlukan waktu **tidak lebih lama** daripada bebek. <InlineMath math="t_2\leq t_3" />.
+**Aturan 3**. Di dalam kelompok prioritas, urutkan menurut jam datang: Kurnia <InlineMath math="07.55" />, Ilham <InlineMath math="08.10" />, lalu Gita <InlineMath math="08.15" />.
 
-Kelinci memerlukan waktu lebih singkat daripada ayam. <InlineMath math="t_4<t_5" />.
+<BlockMath math="\text{Jihan},\ \text{Kurnia},\ \text{Ilham},\ \text{Gita},\ \text{Hadi}" />
 
-Kelinci memerlukan waktu lebih lama daripada bebek. <InlineMath math="t_4>t_3" />.
+Pasien urutan ketiga adalah Ilham.
 
-Gabungkan hubungan tersebut:
+Jawaban lain muncul dari salah menerapkan aturan:
 
-<BlockMath math="t_1<t_2\leq t_3<t_4<t_5" />
+- Jika hanya jam datang yang dipakai, urutannya Hadi, Kurnia, Jihan, sehingga Jihan menjadi ketiga.
+- Jika aturan 2 diabaikan setelah Jihan, urutannya Jihan, Hadi, Kurnia, sehingga Kurnia menjadi ketiga.
+- Jika ibu hamil dianggap selalu lebih didahulukan daripada pasien lanjut usia, urutannya Jihan, Gita, Kurnia, sehingga Kurnia lagi-lagi menjadi ketiga. Aturan 2 menyebut keduanya memiliki **prioritas yang sama**.
 
-Jadi, **domba** memiliki waktu memasak paling singkat. Walaupun waktu sapi dan bebek dapat sama, keduanya tetap lebih lama daripada domba.
+Jadi, pasien yang dilayani pada urutan ketiga adalah Ilham.

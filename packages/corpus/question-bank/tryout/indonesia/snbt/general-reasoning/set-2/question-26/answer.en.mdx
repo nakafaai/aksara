@@ -1,9 +1,18 @@
-Subtract defective units from output to find the **good units**. Total energy use equals operating time multiplied by hourly energy use, <InlineMath math="te" />. Divide good units by total energy use to calculate each machine’s index.
+Let the length and width be <InlineMath math="p" /> and <InlineMath math="l" />. The area is <InlineMath math="pl" />. You **do not need <InlineMath math="p" /> and <InlineMath math="l" /> separately**, only their product.
 
-<BlockMath math="\begin{aligned}I_A&amp;=\frac{560-20}{10\times5}=10.8\\I_B&amp;=\frac{500-20}{10\times4}=12\\I_C&amp;=\frac{650-30}{13\times5}\\&amp;=\frac{620}{65}\approx9.54\end{aligned}" />
+**Statement (1) alone**. A perimeter of <InlineMath math="30" /> gives <InlineMath math="p+l=15" />. Many pairs fit, such as <InlineMath math="10" /> and <InlineMath math="5" /> with area <InlineMath math="50" />, or <InlineMath math="8" /> and <InlineMath math="7" /> with area <InlineMath math="56" />. The area is not unique, so it is not sufficient.
 
-The ranking is <InlineMath math="I_B>I_A>I_C" />. Machine <InlineMath math="B" /> is best and machine <InlineMath math="A" /> is second.
+**Statement (2) alone**. A diagonal of <InlineMath math="11" /> gives <InlineMath math="p^2+l^2=121" />. The rectangle can be long and thin or nearly square, so the area is again not unique. Not sufficient.
 
-The difference between their indices is
+**Both statements together**. Use the square of a sum:
 
-<BlockMath math="12-10.8=1.2" />
+<BlockMath math="\begin{aligned}
+(p+l)^2 &= p^2+2pl+l^2 \\
+15^2 &= 121+2pl \\
+2pl &= 225-121=104 \\
+pl &= 52
+\end{aligned}" />
+
+The area is unique, <InlineMath math="52\text{ cm}^2" />. Such a rectangle exists, because <InlineMath math="p" /> and <InlineMath math="l" /> are the positive roots of <InlineMath math="t^2-15t+52=0" />, whose discriminant is <InlineMath math="225-208=17>0" />. The sides are not whole numbers, but the area is still determined.
+
+So both statements together are sufficient, but neither alone is.

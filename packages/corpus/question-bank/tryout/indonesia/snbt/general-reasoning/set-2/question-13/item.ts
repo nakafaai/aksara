@@ -1,6 +1,11 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "negation",
+  },
   versions: {
     id: {
       kind: "choice",
@@ -8,27 +13,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Serapan dalam negeri dan impor beras digambarkan bergerak searah",
+            "Semua kendaraan yang melintas di jalan itu tidak membayar tol dan tidak memiliki kartu elektronik.",
         },
         {
           correct: false,
           label:
-            "Bacaan tidak menggambarkan hubungan antara serapan dalam negeri dan impor beras",
+            "Ada kendaraan yang melintas di jalan itu yang tidak membayar tol dan tidak memiliki kartu elektronik.",
+        },
+        {
+          correct: false,
+          label:
+            "Semua kendaraan yang tidak melintas di jalan itu membayar tol dan memiliki kartu elektronik.",
         },
         {
           correct: true,
           label:
-            "Serapan dalam negeri dan impor beras digambarkan bergerak berlawanan arah",
+            "Ada kendaraan yang melintas di jalan itu yang tidak membayar tol atau tidak memiliki kartu elektronik.",
         },
         {
           correct: false,
           label:
-            "Serapan dalam negeri dan ekspor beras digambarkan bergerak berlawanan arah",
-        },
-        {
-          correct: false,
-          label:
-            "Solusi merevisi Peraturan Presiden Nomor $$63$$ Tahun $$2017$$ akan mengubah alokasi anggaran",
+            "Tidak ada kendaraan yang melintas di jalan itu yang membayar tol atau memiliki kartu elektronik.",
         },
       ],
     },

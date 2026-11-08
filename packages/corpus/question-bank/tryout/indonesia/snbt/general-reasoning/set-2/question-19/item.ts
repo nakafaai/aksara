@@ -1,34 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "necessary-condition",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "Pada hari Minggu dilaksanakan kerja bakti mengumpulkan barang bekas.",
+          label: "Hari ini tidak ada kunjungan dinas.",
         },
         {
           correct: false,
           label:
-            "Pada hari Minggu tidak jadi dilaksanakan kerja bakti karena turun hujan.",
+            "Setiap kali ketua panitia hadir, rapat koordinasi pasti dimulai.",
         },
         {
           correct: false,
           label:
-            "Pada hari Minggu dilaksanakan kerja bakti membersihkan selokan dan mengumpulkan barang bekas.",
+            "Hari ini ada kunjungan dinas, tetapi ketua panitia tetap hadir.",
         },
         {
           correct: false,
-          label:
-            "Pada hari Minggu hanya selokan yang dibersihkan, sedangkan barang bekas tidak dikumpulkan.",
+          label: "Kemarin juga tidak ada kunjungan dinas.",
         },
         {
           correct: false,
-          label:
-            "Pada hari Minggu kerja bakti tidak dilaksanakan karena turun hujan.",
+          label: "Ketua panitia tidak hadir pada hari ini.",
         },
       ],
     },
