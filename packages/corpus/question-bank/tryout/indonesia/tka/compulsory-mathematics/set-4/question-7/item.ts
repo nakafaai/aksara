@@ -6,30 +6,29 @@ const item: ItemSource = {
     contentDomain: "algebra",
     topic: "functions",
   },
-  stimulus: "freight-lift",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$\\frac{13}{20}\\text{ m/s}$$",
+          label: "$$1{.}067^\\circ\\text{F}$$",
         },
         {
           correct: false,
-          label: "$$\\frac{19}{20}\\text{ m/s}$$",
+          label: "$$575{,}6^\\circ\\text{F}$$",
         },
         {
           correct: false,
-          label: "$$1\\text{ m/s}$$",
+          label: "$$357{,}2^\\circ\\text{F}$$",
+        },
+        {
+          correct: false,
+          label: "$$109{,}8^\\circ\\text{F}$$",
         },
         {
           correct: true,
-          label: "$$\\frac{5}{4}\\text{ m/s}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{5}{3}\\text{ m/s}$$",
+          label: "$$84{,}2^\\circ\\text{F}$$",
         },
       ],
     },

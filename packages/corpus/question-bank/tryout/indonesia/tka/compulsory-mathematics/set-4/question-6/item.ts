@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$1\\text{ tahun}$$",
-        },
-        {
-          correct: false,
-          label: "$$5\\text{ tahun}$$",
-        },
-        {
-          correct: false,
-          label: "$$20\\text{ tahun}$$",
-        },
-        {
           correct: true,
-          label: "$$25\\text{ tahun}$$",
+          label: "$$\\{x\\mid x\\le4,\\ x\\ne-1\\}$$",
         },
         {
           correct: false,
-          label: "$$30\\text{ tahun}$$",
+          label: "$$\\{x\\mid x\\le4\\}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\{x\\mid x<4,\\ x\\ne-1\\}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\{x\\mid x\\ge4\\}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\{x\\mid x\\ge-4,\\ x\\ne-1\\}$$",
         },
       ],
     },

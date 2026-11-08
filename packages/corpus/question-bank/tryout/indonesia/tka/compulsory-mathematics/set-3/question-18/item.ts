@@ -6,30 +6,29 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "courtyard-layout",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$3\\text{ cm}$$",
+        },
+        {
+          correct: false,
+          label: "$$5\\text{ cm}$$",
+        },
+        {
           correct: true,
-          label: "$$288$$",
+          label: "$$9\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$252$$",
+          label: "$$13{,}5\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$276$$",
-        },
-        {
-          correct: false,
-          label: "$$292$$",
-        },
-        {
-          correct: false,
-          label: "$$304$$",
+          label: "$$27\\text{ cm}$$",
         },
       ],
     },

@@ -1,0 +1,49 @@
+Den Scheitelpunkt liest du am einfachsten aus der **Scheitelpunktform** <InlineMath math="y=(x-d)^2+e" /> ab, die du durch quadratische Ergänzung erhältst. Halbiere den Koeffizienten von <InlineMath math="x" />, also <InlineMath math="6" />, zu <InlineMath math="3" />. Addiere dann sein Quadrat <InlineMath math="9" /> und ziehe es gleich wieder ab.
+
+<BlockMath math="\begin{aligned}
+y&=x^2+6x+9-9+7 \\
+&=(x+3)^2-2
+\end{aligned}" />
+
+Der Ausdruck <InlineMath math="(x+3)^2" /> ist nie negativ und genau bei <InlineMath math="x=-3" /> null. Der kleinste <InlineMath math="y" />-Wert ist also <InlineMath math="-2" />, und der Scheitelpunkt ist <InlineMath math="(-3\mid-2)" />.
+
+<MathVisual
+  title="Parabel mit Scheitelpunkt"
+  description={<>Die Parabel <InlineMath math="y=x^2+6x+7" /> ist nach oben geöffnet. Ihr tiefster Punkt ist <InlineMath math="(-3\mid-2)" />. Die Punkte <InlineMath math="(-6\mid7)" /> und <InlineMath math="(0\mid7)" /> liegen auf der Parabel, symmetrisch zur Geraden <InlineMath math="x=-3" />.</>}
+  labels={{
+    vertex: <InlineMath math="(-3\mid-2)" />,
+    "point-left": <InlineMath math="(-6\mid7)" />,
+    "point-right": <InlineMath math="(0\mid7)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 1 },
+      y: { min: -3, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: 6, c: 7 }, domain: { min: -6.2, max: 0.2 }, inputAxis: "x" },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: -3, y: -2 }, to: { x: -3, y: 8 } },
+      { id: "vertex-point", kind: "point", appearance: "answer", at: { x: -3, y: -2 } },
+      { id: "point-left-dot", kind: "point", appearance: "reference", at: { x: -6, y: 7 } },
+      { id: "point-right-dot", kind: "point", appearance: "reference", at: { x: 0, y: 7 } },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex-point", at: { x: -3, y: -2 }, placement: "below" },
+      { key: "point-left", objectId: "point-left-dot", at: { x: -6, y: 7 }, placement: "left" },
+      { key: "point-right", objectId: "point-right-dot", at: { x: 0, y: 7 }, placement: "right" },
+    ],
+  }}
+/>
+
+Zur Kontrolle: Die Punkte <InlineMath math="(-6\mid7)" /> und <InlineMath math="(0\mid7)" /> liegen auf der Parabel und haben denselben <InlineMath math="y" />-Wert. Der Scheitel liegt genau in der Mitte zwischen ihnen, bei <InlineMath math="x=-3" />, und <InlineMath math="(-3)^2+6\cdot(-3)+7=-2" />.
+
+Der Scheitelpunkt ist also <InlineMath math="(-3\mid-2)" />.
+
+- <InlineMath math="(-3\mid7)" /> hat die richtige <InlineMath math="x" />-Koordinate, nimmt aber das Absolutglied <InlineMath math="7" /> als <InlineMath math="y" />-Wert, statt <InlineMath math="x=-3" /> einzusetzen.
+- <InlineMath math="(3\mid34)" /> entsteht mit dem falschen Vorzeichen bei der <InlineMath math="x" />-Koordinate, denn der Scheitel liegt bei <InlineMath math="x=-\frac{b}{2a}=-3" />.
+- <InlineMath math="(-6\mid7)" /> nimmt den Koeffizienten <InlineMath math="6" /> mit Minuszeichen als <InlineMath math="x" />-Koordinate, ohne ihn zu halbieren. Dieser Punkt liegt zwar auf der Parabel, ist aber nicht ihr tiefster Punkt.
+- <InlineMath math="(-3\mid2)" /> vertauscht bei der Ergänzung die Vorzeichen und rechnet <InlineMath math="9-7=2" /> statt <InlineMath math="-9+7=-2" />.
+- <InlineMath math="(-3\mid16)" /> addiert das ergänzte Quadrat, statt es wieder abzuziehen, denn <InlineMath math="9+7=16" />.

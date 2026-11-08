@@ -1,33 +1,17 @@
-Let the team win <InlineMath math="x" /> matches, draw <InlineMath math="y" /> matches, and lose <InlineMath math="z" /> matches. The problem gives three facts, and **each fact becomes one equation**: the number of matches, the number of points, and the link between losses and draws. A loss is worth <InlineMath math="0" /> points, so <InlineMath math="z" /> does not appear in the points equation.
+Let there be <InlineMath math="a" /> teams of <InlineMath math="3" /> and <InlineMath math="b" /> teams of <InlineMath math="5" />. Then <InlineMath math="3a+5b=41" />, with <InlineMath math="a" /> and <InlineMath math="b" /> **whole numbers**. Try every <InlineMath math="b" /> from <InlineMath math="0" /> to <InlineMath math="8" />, since <InlineMath math="5b\le41" />.
 
 <BlockMath math="\begin{aligned}
-x+y+z&=16 \\
-3x+y&=33 \\
-z&=y
+41-5b&:\ 41,\ 36,\ 31,\ 26,\ 21,\ 16,\ 11,\ 6,\ 1 \\
+\text{divisible by }3&:\ 36\ (b=1),\ 21\ (b=4),\ 6\ (b=7)
 \end{aligned}" />
 
-Substitute <InlineMath math="z=y" /> into the first equation, write <InlineMath math="x" /> in terms of <InlineMath math="y" />, and put the result into the points equation.
+The possible pairs are <InlineMath math="(12,1)" />, <InlineMath math="(7,4)" /> and <InlineMath math="(2,7)" />. The value of <InlineMath math="b" /> goes up by <InlineMath math="3" /> each time, because swapping three teams of <InlineMath math="5" /> for five teams of <InlineMath math="3" /> still uses <InlineMath math="15" /> students.
 
-<BlockMath math="\begin{aligned}
-x+2y&=16 \\
-x&=16-2y \\
-3(16-2y)+y&=33 \\
-48-5y&=33 \\
-y&=3
-\end{aligned}" />
+As a check, <InlineMath math="36+5=41" />, <InlineMath math="21+20=41" /> and <InlineMath math="6+35=41" />.
 
-From <InlineMath math="y=3" /> you get <InlineMath math="x=16-2(3)=10" /> and <InlineMath math="z=y=3" />. The table checks all three facts at once: <InlineMath math="16" /> matches, <InlineMath math="33" /> points, and as many losses as draws.
+So there are <InlineMath math="3" /> possible pairs.
 
-| Result | Number of matches | Points per match | Total points |
-| --- | ---: | ---: | ---: |
-| Win | <InlineMath math="10" /> | <InlineMath math="3" /> | <InlineMath math="30" /> |
-| Draw | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="3" /> |
-| Loss | <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
-| Total | <InlineMath math="16" /> |  | <InlineMath math="33" /> |
-
-The futsal team therefore won <InlineMath math="10" /> matches that season.
-
-- <InlineMath math="3" /> is the number of draws, which also equals the number of losses, not the number of wins.
-- <InlineMath math="6" /> is the number of matches the team did not win, <InlineMath math="y+z" />.
-- <InlineMath math="11" /> comes from assuming every point came from a win, <InlineMath math="\frac{33}{3}=11" />. With <InlineMath math="11" /> wins and no draws, the team lost <InlineMath math="5" /> times, so the losses would not equal the draws.
-- <InlineMath math="13" /> is the number of matches the team did not lose, <InlineMath math="x+y" />.
+- <InlineMath math="0" /> concludes it is impossible because <InlineMath math="41" /> is divisible by neither <InlineMath math="3" /> nor <InlineMath math="5" />, but the two kinds of team may be mixed.
+- <InlineMath math="1" /> stops at the first pair found.
+- <InlineMath math="2" /> misses one pair, such as <InlineMath math="(12,1)" /> with only one team of <InlineMath math="5" />.
+- <InlineMath math="4" /> also counts <InlineMath math="b=10" /> with <InlineMath math="a=-3" />, but a number of teams cannot be negative.

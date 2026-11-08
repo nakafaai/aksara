@@ -1,0 +1,67 @@
+Misalkan <InlineMath math="x" /> banyak rak selada dan <InlineMath math="y" /> banyak rak pakcoy. Persediaan larutan nutrisi dan jam perawatan memberikan **dua batasan**, ditambah syarat bahwa banyak rak tidak negatif. Batasan jam perawatan dapat dibagi <InlineMath math="2" />.
+
+<BlockMath math="\begin{aligned}
+3x+2y&\le120 \\
+2x+4y\le160\iff x+2y&\le80 \\
+x\ge0,\quad y&\ge0
+\end{aligned}" />
+
+Titik pojok tempat kedua batasan habis terpakai bersamaan diperoleh dengan mengurangkan kedua persamaan.
+
+<BlockMath math="\begin{aligned}
+(3x+2y)-(x+2y)&=120-80 \\
+2x&=40\ \Rightarrow\ x=20,\quad y=\frac{80-20}{2}=30
+\end{aligned}" />
+
+<MathVisual
+  title="Daerah penyelesaian"
+  description={<>Daerah penyelesaian adalah segi empat dengan titik pojok <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" />, dan <InlineMath math="(0,40)" />. Daerah itu terletak di bawah garis <InlineMath math="3x+2y=120" /> dan di bawah garis <InlineMath math="x+2y=80" />.</>}
+  labels={{
+    optimum: <InlineMath math="(20,30)" />,
+    "corner-x": <InlineMath math="(40,0)" />,
+    "corner-y": <InlineMath math="(0,40)" />,
+    nutrient: <InlineMath math="3x+2y=120" />,
+    care: <InlineMath math="x+2y=80" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 85 },
+      y: { min: -5, max: 65 },
+    },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 20, y: 30 }, { x: 0, y: 40 }] },
+      { id: "nutrient-line", kind: "segment", appearance: "primary", from: { x: 0, y: 60 }, to: { x: 40, y: 0 } },
+      { id: "care-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 40 }, to: { x: 80, y: 0 } },
+      { id: "optimum-point", kind: "point", appearance: "answer", at: { x: 20, y: 30 } },
+      { id: "corner-x-point", kind: "point", appearance: "reference", at: { x: 40, y: 0 } },
+      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 40 } },
+    ],
+    labels: [
+      { key: "optimum", objectId: "optimum-point", at: { x: 20, y: 30 }, placement: "above-right" },
+      { key: "corner-x", objectId: "corner-x-point", at: { x: 40, y: 0 }, placement: "below" },
+      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "nutrient", objectId: "nutrient-line", at: { x: 10, y: 45 }, placement: "right" },
+      { key: "care", objectId: "care-line", at: { x: 60, y: 10 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Substitusikan titik-titik pojok ke fungsi keuntungan <InlineMath math="K=180{.}000x+200{.}000y" />.
+
+<BlockMath math="\begin{aligned}
+K(40,0)&=7{.}200{.}000 \\
+K(0,40)&=8{.}000{.}000 \\
+K(20,30)&=3{.}600{.}000+6{.}000{.}000=9{.}600{.}000
+\end{aligned}" />
+
+Sebagai pemeriksaan, pada <InlineMath math="(20,30)" /> terpakai tepat <InlineMath math="60+60=120" /> liter larutan nutrisi dan <InlineMath math="40+120=160" /> jam perawatan.
+
+Jadi, keuntungan maksimumnya adalah <InlineMath math="\text{Rp}9{.}600{.}000{,}00" />.
+
+- <InlineMath math="\text{Rp}7{.}200{.}000{,}00" /> milik titik pojok <InlineMath math="(40,0)" />, yaitu hanya menanam selada.
+- <InlineMath math="\text{Rp}8{.}000{.}000{,}00" /> milik titik pojok <InlineMath math="(0,40)" />, yaitu hanya menanam pakcoy.
+- <InlineMath math="\text{Rp}11{.}200{.}000{,}00" /> milik <InlineMath math="(40,20)" />. Titik itu memerlukan <InlineMath math="120+40=160" /> liter larutan nutrisi, melebihi persediaan <InlineMath math="120" /> liter.
+- <InlineMath math="\text{Rp}12{.}000{.}000{,}00" /> milik <InlineMath math="(0,60)" /> dan hanya memperhatikan batasan larutan nutrisi. Titik itu memerlukan <InlineMath math="240" /> jam perawatan.

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan hukum perkalian dan invers perkalian untuk mengubah serta membuktikan ekspresi bilangan kompleks.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Bilangan Kompleks",
 };
 
@@ -28,6 +28,33 @@ Misal <InlineMath math="z_1 = 1+2i" /> dan <InlineMath math="z_2 = 3-i" />.
 
 Kedua hasil kali bernilai <InlineMath math="5+5i" />, sehingga sifat komutatif terverifikasi pada contoh ini.
 
+Hasil kali juga punya gambar. Untuk <InlineMath math="z_1 = 1 + i" /> dan <InlineMath math="z_2 = 2 + i" />, hasil kalinya <InlineMath math="z_1z_2 = 2 + i + 2i + i^2 = 1 + 3i" />. Panjangnya <InlineMath math="\sqrt{10} = \sqrt 2 \cdot \sqrt 5" />, hasil kali kedua panjang, dan menukar faktornya memberi titik yang sama.
+
+<MathVisual
+  title={<>Hasil kali 1 + i dan 2 + i</>}
+  description={<>Panah <InlineMath math="1 + i" />, <InlineMath math="2 + i" />, dan hasil kalinya <InlineMath math="1 + 3i" />, yang panjangnya <InlineMath math="\sqrt{10}" /> sama dengan <InlineMath math="\sqrt2 \cdot \sqrt5" />.</>}
+  labels={{
+    z1: <InlineMath math="1 + i" />,
+    z2: <InlineMath math="2 + i" />,
+    p: <InlineMath math="1 + 3i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "z2", objectId: "z2", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 1, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
 ### Asosiatif
 
 Sifat asosiatif menyatakan bahwa saat mengalikan tiga bilangan kompleks atau lebih, **pengelompokan perkalian** tidak mengubah hasil.
@@ -44,6 +71,30 @@ Misal <InlineMath math="z_1 = i" />, <InlineMath math="z_2 = 2" />, dan <InlineM
 </MathContainer>
 
 Kedua pengelompokan bernilai <InlineMath math="2+6i" />, sehingga sifat asosiatif terverifikasi pada contoh ini.
+
+Faktor seperti <InlineMath math="2i" /> melakukan dua hal sekaligus: menggandakan panjang dan memutar seperempat putaran. Untuk <InlineMath math="z = 2 + i" />, <InlineMath math="2iz = 4i + 2i^2 = -2 + 4i" />, dua kali lebih jauh dari titik asal dan tegak lurus terhadap <InlineMath math="z" />. Mengalikan dengan <InlineMath math="2" /> dan dengan <InlineMath math="i" /> dalam urutan mana pun memberi titik yang sama.
+
+<MathVisual
+  title={<>Mengalikan dengan <InlineMath math="2i" /> menggandakan dan memutar</>}
+  description={<>Titik <InlineMath math="z = 2 + i" /> dan titik <InlineMath math="2iz = -2 + 4i" />, dua kali lebih jauh dan seperempat putaran lebih jauh.</>}
+  labels={{
+    z: <InlineMath math="z = 2 + i" />,
+    w: <InlineMath math="2iz = -2 + 4i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.5, max: 4.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "w", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "w", objectId: "w", at: { x: -2, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
 
 ### Identitas Perkalian
 
@@ -85,6 +136,41 @@ Kedua ruas bernilai <InlineMath math="8-2i" />, sehingga hukum distributif terve
 Gunakan **distributif** untuk menghasilkan empat suku, lalu **komutatif** untuk menyamakan dua hasil kali campuran. Setelah itu, dua suku yang sama dapat digabungkan menjadi dua kali hasil kali tersebut:
 
 <BlockMath math="\begin{aligned}(z_1+z_2)^2&amp;=(z_1+z_2)(z_1+z_2) \\ &amp;=z_1(z_1+z_2)+z_2(z_1+z_2) \\ &amp;=z_1^2+z_1z_2+z_2z_1+z_2^2 \\ &amp;=z_1^2+z_1z_2+z_1z_2+z_2^2 \\ &amp;=z_1^2+2z_1z_2+z_2^2\end{aligned}" />
+
+Mengalikan dengan <InlineMath math="i" /> memutar bilangan seperempat putaran mengelilingi titik asal. Mulai dari <InlineMath math="z = 3 + i" />: <InlineMath math="iz = 3i + i^2 = -1 + 3i" />. Tiga perkalian lagi memberi <InlineMath math="-3 - i" />, <InlineMath math="1 - 3i" />, dan kembali ke <InlineMath math="3 + i" />, yaitu pojok-pojok sebuah persegi, karena <InlineMath math="i^4 = 1" />.
+
+<MathVisual
+  title={<>Mengalikan dengan i memutar 90 derajat</>}
+  description={<>Titik <InlineMath math="z" />, <InlineMath math="iz" />, <InlineMath math="i^2z" />, dan <InlineMath math="i^3z" /> untuk <InlineMath math="z = 3 + i" />, keempat pojok persegi di sekeliling titik asal.</>}
+  labels={{
+    w0: <InlineMath math="z = 3 + i" />,
+    w1: <InlineMath math="iz = -1 + 3i" />,
+    w2: <InlineMath math="i^2 z = -3 - i" />,
+    w3: <InlineMath math="i^3 z = 1 - 3i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 3, y: 1 }, { x: -1, y: 3 }, { x: -3, y: -1 }, { x: 1, y: -3 }], appearance: "reference" },
+      { id: "w0r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "w1r", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 3 }, appearance: "construction" },
+      { id: "w2r", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: -1 }, appearance: "construction" },
+      { id: "w3r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -3 }, appearance: "construction" },
+      { id: "w0", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "w1", kind: "point", at: { x: -1, y: 3 }, appearance: "primary" },
+      { id: "w2", kind: "point", at: { x: -3, y: -1 }, appearance: "primary" },
+      { id: "w3", kind: "point", at: { x: 1, y: -3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "w0", objectId: "w0", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "w1", objectId: "w1", at: { x: -1, y: 3 }, placement: "above" },
+      { key: "w2", objectId: "w2", at: { x: -3, y: -1 }, placement: "left" },
+      { key: "w3", objectId: "w3", at: { x: 1, y: -3 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Invers Perkalian
 

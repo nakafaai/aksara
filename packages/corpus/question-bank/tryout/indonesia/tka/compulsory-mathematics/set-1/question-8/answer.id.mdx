@@ -1,73 +1,21 @@
-# Domain dan Asimtot
-
-Tulis pembilang sebagai <InlineMath math="2(x-1)+5" />. Pemisahan ini memperlihatkan **penyebut yang tidak boleh nol** dan garis yang didekati grafik.
-
-<BlockMath math="f(x)=\frac{2(x-1)+5}{x-1}=2+\frac5{x-1}" />
-
-Domainnya adalah <InlineMath math="\mathbb R\setminus\{1\}" />. Saat <InlineMath math="x" /> mendekati satu, penyebut mendekati nol sedangkan pembilang pecahan tetap lima. Jadi, <InlineMath math="x=1" /> adalah asimtot tegak. Saat <InlineMath math="|x|" /> membesar, pecahan mendekati nol, sehingga <InlineMath math="y=2" /> adalah asimtot mendatar. Kedua garis berpotongan di <InlineMath math="(1,2)" />.
-
-<LineEquation
-  title="Dua cabang fungsi rasional"
-  description="Garis abu-abu adalah asimtot. Cabang di kanan garis x=1 berada di atas y=2, sedangkan cabang kiri berada di bawahnya."
-  cameraPosition={[1, 2, 16]}
-  cameraTarget={[1, 2, 0]}
-  showZAxis={false}
-  data={[
-    ...[[-5, 0.25], [1.75, 7]].map(([start, end]) => ({
-      points: Array.from({ length: 121 }, (_, i) => {
-        const x = start + (end - start) * i / 120;
-        return { x, y: 2 + 5 / (x - 1), z: 0 };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-      smooth: false,
-    })),
-    {
-      points: [{ x: 1, y: -5, z: 0 }, { x: 1, y: 9, z: 0 }],
-      color: "#64748b",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 1,
-      labels: [{ text: <InlineMath math="x=1" />, at: 1, offset: [1, -0.4, 0] }],
-    },
-    {
-      points: [{ x: -5, y: 2, z: 0 }, { x: 7, y: 2, z: 0 }],
-      color: "#64748b",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 1,
-      labels: [{ text: <InlineMath math="y=2" />, at: 1, offset: [-0.5, 0.5, 0] }],
-    },
-  ]}
-/>
-
-# Menurun pada Masing-Masing Interval
-
-Untuk <InlineMath math="x>1" />, pecahan <InlineMath math="5/(x-1)" /> positif, jadi <InlineMath math="f(x)>2" />. Grafik memiliki **dua interval terpisah**: <InlineMath math="(-\infty,1)" /> dan <InlineMath math="(1,\infty)" />. Ambil <InlineMath math="a<b" /> dalam satu interval yang sama. Selisih nilainya adalah:
+Panjang paving setiap hari membentuk **barisan aritmetika** dengan <InlineMath math="u_1=24" /> dan <InlineMath math="b=4" />. Panjang seluruh jalan adalah jumlah semua hari. Gunakan jumlah itu untuk menentukan banyak hari kerja <InlineMath math="n" /> lebih dulu.
 
 <BlockMath math="\begin{aligned}
-f(b)-f(a)&=\frac5{b-1}-\frac5{a-1} \\
-&=\frac{5(a-1)-5(b-1)}{(a-1)(b-1)} \\
-&=\frac{5(a-b)}{(a-1)(b-1)}<0
+S_n=\frac n2\bigl(2\cdot24+(n-1)\cdot4\bigr)&=1{.}240 \\
+n(2n+22)&=1{.}240 \\
+n^2+11n-620&=0 \\
+(n-20)(n+31)&=0
 \end{aligned}" />
 
-Kedua faktor penyebut memiliki tanda yang sama, sehingga hasil kalinya positif. Pembilang negatif karena <InlineMath math="a-b<0" />. Maka <InlineMath math="f(b)-f(a)<0" />, yang membuktikan fungsi menurun ketat pada setiap interval. Pernyataan ini tidak menggabungkan dua cabang menjadi satu interval.
+Banyak hari pasti positif, jadi <InlineMath math="n=20" />. Hari terakhir adalah hari ke-20.
 
-# Menentukan Invers
+<BlockMath math="u_{20}=24+19\cdot4=100" />
 
-Untuk mencari **fungsi invers**, tulis <InlineMath math="y=f(x)" /> lalu selesaikan terhadap <InlineMath math="x" />. Pecahan <InlineMath math="5/(x-1)" /> tidak pernah nol, sehingga <InlineMath math="y\ne2" />.
+Sebagai pemeriksaan, <InlineMath math="S_{20}=\frac{20}{2}(24+100)=10\cdot124=1{.}240" />.
 
-<BlockMath math="\begin{aligned}
-y&=\frac{2x+3}{x-1} \\
-y(x-1)&=2x+3 \\
-xy-y&=2x+3 \\
-xy-2x&=y+3 \\
-x(y-2)&=y+3 \\
-x&=\frac{y+3}{y-2}
-\end{aligned}" />
+Jadi, panjang paving yang dipasang pada hari terakhir adalah <InlineMath math="100\text{ m}" />.
 
-Setiap <InlineMath math="y\ne2" /> menghasilkan <InlineMath math="x=1+5/(y-2)\ne1" />. Jadi, semua nilai real kecuali dua memang masuk range. Tukar nama variabel untuk menulis invers:
-
-<BlockMath math="f^{-1}(x)=\frac{x+3}{x-2},\qquad x\ne2" />
-
-Pernyataan tentang titik potong asimtot, sifat menurun, nilai di kanan asimtot, dan invers benar. Pernyataan <InlineMath math="f(1)=0" /> salah karena pembagian dengan nol membuat <InlineMath math="f(1)" /> tidak terdefinisi.
+- <InlineMath math="20\text{ m}" /> mencampuradukkan banyak hari dengan panjang.
+- <InlineMath math="96\text{ m}" /> adalah <InlineMath math="u_{19}" />, panjang paving pada hari sebelum terakhir.
+- <InlineMath math="104\text{ m}" /> menghitung <InlineMath math="24+20\cdot4" />. Padahal sampai hari ke-20 hanya ada <InlineMath math="19" /> kali penambahan.
+- <InlineMath math="124\text{ m}" /> adalah <InlineMath math="u_1+u_{20}" /> dari <InlineMath math="S_{20}=\frac{20}{2}(u_1+u_{20})" />. Nilai <InlineMath math="u_1=24" /> masih harus dikurangkan.

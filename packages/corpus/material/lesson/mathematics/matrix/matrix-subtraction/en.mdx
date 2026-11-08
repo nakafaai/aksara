@@ -3,7 +3,7 @@ export const metadata = {
   description: "Subtract corresponding matrix entries, check the required dimensions, and apply the operation in examples and exercises.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -80,6 +80,96 @@ Then, add <InlineMath math="P" /> to <InlineMath math="-Q" />:
 </MathContainer>
 
 Both methods yield the same matrix.
+
+Read each row as a point to see what the difference measures. Row 1 of <InlineMath math="P" /> is <InlineMath math="P_1(8, 5)" /> and row 1 of <InlineMath math="Q" /> is <InlineMath math="Q_1(2, 1)" />. Row 1 of <InlineMath math="P-Q" />, <InlineMath math="(6, 4)" />, is the step from <InlineMath math="Q_1" /> to <InlineMath math="P_1" />: 6 to the right and 4 up. Row 2 works the same way. <InlineMath math="Q-P" /> is the same step walked backwards, <InlineMath math="(-6, -4)" />, which is why subtraction is not commutative.
+
+<MathVisual
+  title={<><InlineMath math="P - Q" /> is the step from each row of <InlineMath math="Q" /> to <InlineMath math="P" /></>}
+  description={<>Rows of <InlineMath math="P" /> and <InlineMath math="Q" /> drawn as points. Each segment joins <InlineMath math="Q_i" /> to <InlineMath math="P_i" /> and is labelled with row <InlineMath math="i" /> of <InlineMath math="P-Q" />.</>}
+  labels={{
+    p1: <InlineMath math="P_1(8, 5)" />,
+    p2: <InlineMath math="P_2(3, 7)" />,
+    q1: <InlineMath math="Q_1(2, 1)" />,
+    q2: <InlineMath math="Q_2(-1, 4)" />,
+    d1: <InlineMath math="(6, 4)" />,
+    d2: <InlineMath math="(4, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 9 }, y: { min: 0, max: 8 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "p1", kind: "point", at: { x: 8, y: 5 }, appearance: "primary" },
+      { id: "p2", kind: "point", at: { x: 3, y: 7 }, appearance: "primary" },
+      { id: "q1", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "q2", kind: "point", at: { x: -1, y: 4 }, appearance: "secondary" },
+      { id: "d1", kind: "segment", from: { x: 2, y: 1 }, to: { x: 8, y: 5 }, appearance: "answer" },
+      { id: "d2", kind: "segment", from: { x: -1, y: 4 }, to: { x: 3, y: 7 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p1", objectId: "p1", at: { x: 8, y: 5 }, placement: "right" },
+      { key: "p2", objectId: "p2", at: { x: 3, y: 7 }, placement: "above" },
+      { key: "q1", objectId: "q1", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "q2", objectId: "q2", at: { x: -1, y: 4 }, placement: "left" },
+      { key: "d1", objectId: "d1", at: { x: 5, y: 3 }, placement: "below-right" },
+      { key: "d2", objectId: "d2", at: { x: 1, y: 5.5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Subtracting <InlineMath math="Q" /> is the same as adding <InlineMath math="-Q" />. Row 1 of <InlineMath math="-Q" /> is <InlineMath math="(-2, -1)" />. Adding it to <InlineMath math="(8, 5)" /> lands on <InlineMath math="(6, 4)" />, the same row that subtracting entry by entry gave.
+
+<MathVisual
+  title={<><InlineMath math="P - Q" /> is <InlineMath math="P + (-Q)" /></>}
+  description={<>Row 1 of <InlineMath math="P" /> plus row 1 of <InlineMath math="-Q" /> gives the point <InlineMath math="(6, 4)" />.</>}
+  labels={{
+    p: <InlineMath math="(8, 5)" />,
+    negq: <InlineMath math="(-2, -1)" />,
+    diff: <InlineMath math="(6, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 9 }, y: { min: -2, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 8, y: 5 }, appearance: "primary" },
+      { id: "negq", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2, y: -1 }, appearance: "secondary" },
+      { id: "s1", kind: "segment", from: { x: 8, y: 5 }, to: { x: 6, y: 4 }, appearance: "construction" },
+      { id: "s2", kind: "segment", from: { x: -2, y: -1 }, to: { x: 6, y: 4 }, appearance: "construction" },
+      { id: "diff", kind: "point", at: { x: 6, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 8, y: 5 }, placement: "right" },
+      { key: "negq", objectId: "negq", at: { x: -2, y: -1 }, placement: "below" },
+      { key: "diff", objectId: "diff", at: { x: 6, y: 4 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Swap the order and the step reverses. Row 1 of <InlineMath math="P - Q" /> is <InlineMath math="(6, 4)" />, and row 1 of <InlineMath math="Q - P" /> is <InlineMath math="(-6, -4)" />: the same length, pointing the opposite way. That is why <InlineMath math="P - Q = -(Q - P)" />, and not <InlineMath math="Q - P" />.
+
+<MathVisual
+  title={<><InlineMath math="P - Q" /> and <InlineMath math="Q - P" /> point opposite ways</>}
+  description={<>The rows <InlineMath math="(6, 4)" /> of <InlineMath math="P - Q" /> and <InlineMath math="(-6, -4)" /> of <InlineMath math="Q - P" /> drawn from the origin.</>}
+  labels={{
+    pq: <InlineMath math="P - Q" />,
+    qp: <InlineMath math="Q - P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "pq", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 4 }, appearance: "primary" },
+      { id: "qp", kind: "segment", from: { x: 0, y: 0 }, to: { x: -6, y: -4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "pq", objectId: "pq", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "qp", objectId: "qp", at: { x: -6, y: -4 }, placement: "left" },
+    ],
+  }}
+/>
+
 ### Example of Matrices That Cannot Be Subtracted
 
 These two matrices do not have the **same order**:

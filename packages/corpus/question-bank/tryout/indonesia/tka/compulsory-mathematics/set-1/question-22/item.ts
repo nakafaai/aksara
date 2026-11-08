@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "knowledge-understanding",
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "grade-distribution",
+  stimulus: "coffee-sales",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$12$$",
+          label: "$$5$$",
         },
         {
           correct: false,
-          label: "$$13$$",
+          label: "$$15$$",
         },
         {
           correct: false,
-          label: "$$14$$",
+          label: "$$20$$",
         },
         {
           correct: false,
-          label: "$$16$$",
+          label: "$$8$$",
         },
         {
           correct: true,
-          label: "$$15$$",
+          label: "$$10$$",
         },
       ],
     },

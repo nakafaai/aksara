@@ -3,7 +3,7 @@ export const metadata = {
   description: "Track how determinants change under matrix products and scalar multiplication in worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -101,6 +101,90 @@ If <InlineMath math="A" /> is a square matrix of order <InlineMath math="n \time
 <BlockMath math="|kA| = k^n |A|" />
 
 Here, <InlineMath math="n" /> is the order (number of rows or columns) of the square matrix <InlineMath math="A" />.
+
+This rule has a picture. For a <InlineMath math="2 \times 2" /> matrix, <InlineMath math="|\det|" /> is the area of the parallelogram spanned by its two columns. The columns of <InlineMath math="A" />, <InlineMath math="(-5, 1)" /> and <InlineMath math="(2, -3)" />, span an area of <InlineMath math="|\det(A)| = 13" />. Doubling <InlineMath math="A" /> doubles both columns, so both sides of the parallelogram double and the area grows by <InlineMath math="2 \cdot 2 = 4" /> to <InlineMath math="52" />. That is exactly <InlineMath math="\det(2A) = 2^2 \det(A) = 4 \cdot 13 = 52" />.
+
+<MathVisual
+  title={<>Doubling <InlineMath math="A" /> multiplies the area by <InlineMath math="4" /></>}
+  description={<>The columns of <InlineMath math="A" /> span a parallelogram of area 13. The columns of <InlineMath math="2A" /> are twice as long and span area 52.</>}
+  labels={{
+    single: <InlineMath math="13" />,
+    double: <InlineMath math="52" />,
+    a1: <InlineMath math="(-5, 1)" />,
+    a2: <InlineMath math="(2, -3)" />,
+    d1: <InlineMath math="(-10, 2)" />,
+    d2: <InlineMath math="(4, -6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -11, max: 5 }, y: { min: -7, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "double", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -10, y: 2 }, { x: -6, y: -4 }, { x: 4, y: -6 }], appearance: "secondary" },
+      { id: "single", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -5, y: 1 }, { x: -3, y: -2 }, { x: 2, y: -3 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "single", objectId: "single", at: { x: -1.5, y: -1 }, placement: "center" },
+      { key: "double", objectId: "double", at: { x: -7, y: -0.5 }, placement: "center" },
+      { key: "a1", objectId: "single", at: { x: -5, y: 1 }, placement: "above" },
+      { key: "a2", objectId: "single", at: { x: 2, y: -3 }, placement: "right" },
+      { key: "d1", objectId: "double", at: { x: -10, y: 2 }, placement: "above" },
+      { key: "d2", objectId: "double", at: { x: 4, y: -6 }, placement: "right" },
+    ],
+  }}
+/>
+
+Swapping the two rows of <InlineMath math="A=\begin{bmatrix}1&2\\3&4\end{bmatrix}" /> gives <InlineMath math="B" /> and mirrors the parallelogram of the columns across the line <InlineMath math="y = x" />. The area stays <InlineMath math="2" />, but the orientation flips, which is why <InlineMath math="\det(B) = 2 = -\det(A)" />.
+
+<MathVisual
+  title={<>Swapping rows mirrors the parallelogram</>}
+  description={<>The column parallelograms of <InlineMath math="A" /> and of <InlineMath math="B" />, its rows swapped, are mirror images across <InlineMath math="y = x" /> with the same area 2.</>}
+  labels={{
+    a: <InlineMath math="A: \det = -2" />,
+    b: <InlineMath math="B: \det = 2" />,
+    mirror: <InlineMath math="y = x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 3 }, { x: 3, y: 7 }, { x: 2, y: 4 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 1 }, { x: 7, y: 3 }, { x: 4, y: 2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 3, y: 7 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 7, y: 3 }, placement: "below" },
+      { key: "mirror", objectId: "mirror", at: { x: 6, y: 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+For simple matrices the product rule is plain to see. <InlineMath math="B = \begin{bmatrix} 1 & 0 \\ 0 & 3 \end{bmatrix}" /> stretches the unit square to a <InlineMath math="1" /> by <InlineMath math="3" /> rectangle, area <InlineMath math="3" />. <InlineMath math="A = \begin{bmatrix} 2 & 0 \\ 0 & 1 \end{bmatrix}" /> then doubles the width, area <InlineMath math="6" />. So <InlineMath math="\det(AB) = 6 = 2 \cdot 3 = \det(A)\det(B)" />.
+
+<MathVisual
+  title={<>Areas multiply when matrices multiply</>}
+  description={<>The unit square, its image under <InlineMath math="B" /> with area 3, and its image under <InlineMath math="AB" /> with area 6.</>}
+  labels={{
+    bb: <InlineMath math="B" />,
+    ab: <InlineMath math="AB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 2.5 }, y: { min: -0.3, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "ab", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "bb", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "bb", objectId: "bb", at: { x: 0.5, y: 2 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 1.5, y: 2 }, placement: "center" },
+    ],
+  }}
+/>
 
 ## Other Determinant Properties
 

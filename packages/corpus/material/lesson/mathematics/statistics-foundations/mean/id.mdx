@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung rata-rata, lihat pengaruh nilai ekstrem, lalu bandingkan rata-rata dengan median dan modus melalui contoh data.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -29,6 +29,38 @@ Pada rumus ini:
 - <InlineMath math="\bar{x}" />, dibaca "x bar", melambangkan **mean**.
 - <InlineMath math="\sum x" />, dibaca "sigma x", melambangkan **jumlah seluruh nilai data**.
 - <InlineMath math="n" /> adalah **banyaknya data**.
+
+Bayangkan sepuluh data itu sebagai titik di garis bilangan, dan rata-ratanya sebagai titik tumpu tempat garis itu seimbang. Titik di kiri <InlineMath math="6" /> berjarak total <InlineMath math="3 + 3 + 2 + 1 + 1 = 10" /> satuan, dan titik di kanan berjarak total <InlineMath math="1 + 2 + 3 + 4 = 10" /> satuan. Jarak-jarak itu saling meniadakan tepat di rata-rata.
+
+<MathVisual
+  title={<>Rata-rata adalah titik keseimbangan</>}
+  description={<>Titik untuk <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10" /> di garis bilangan, seimbang di atas tumpuan pada rata-rata <InlineMath math="6" />.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 11 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 2, y: 0 }, to: { x: 11, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 3, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 3, y: 1.2 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 4, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 5, y: 0.6 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 5, y: 1.2 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 6, y: 0.6 }, appearance: "primary" },
+      { id: "d6", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d7", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d8", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d9", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "mean", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 6 - 0.5, y: -0.5 }, { x: 6 + 0.5, y: -0.5 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 6 - 0.5, y: -0.5 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Pengaruh Nilai Besar terhadap Rata-rata Median dan Modus
 
@@ -125,6 +157,43 @@ Penambahan <InlineMath math="20" /> dan <InlineMath math="22" />, dua nilai yang
 
 Median juga berubah, tetapi tidak setajam mean. Modus sama sekali tidak berubah.
 
+Sekarang tambahkan dua nilai besar, <InlineMath math="20" /> dan <InlineMath math="22" />. Titik tumpunya harus bergeser ke kanan sampai <InlineMath math="102 / 12 = 8{,}5" /> supaya titik-titik yang jauh tetap seimbang. Median, yaitu nilai tengah data terurut, hanya bergeser dari <InlineMath math="5{,}5" /> ke <InlineMath math="6{,}5" />.
+
+<MathVisual
+  title={<>Dua nilai besar menarik rata-rata</>}
+  description={<>Dua belas nilai di garis bilangan dengan rata-rata <InlineMath math="8{,}5" /> sebagai tumpuan dan median <InlineMath math="6{,}5" /> ditandai terpisah.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 8{,}5" />,
+    median: <InlineMath math="\operatorname{Me} = 6{,}5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 23 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 2, y: 0 }, to: { x: 23, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 3, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 3, y: 1.2 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 4, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 5, y: 0.6 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 5, y: 1.2 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 6, y: 0.6 }, appearance: "primary" },
+      { id: "d6", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d7", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d8", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d9", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "d10", kind: "point", at: { x: 20, y: 0.6 }, appearance: "primary" },
+      { id: "d11", kind: "point", at: { x: 22, y: 0.6 }, appearance: "primary" },
+      { id: "mean", kind: "polygon", vertices: [{ x: 102 / 12, y: 0 }, { x: 102 / 12 - 0.5, y: -0.5 }, { x: 102 / 12 + 0.5, y: -0.5 }], appearance: "answer" },
+      { id: "median", kind: "segment", from: { x: 6.5, y: 0 }, to: { x: 6.5, y: 1.4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 102 / 12 + 0.5, y: -0.5 }, placement: "right" },
+      { key: "median", objectId: "median", at: { x: 6.5, y: 1.4 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Pengaruh Satu Nilai Ekstrem
 
 Ganti sumbangan siswa ke-<InlineMath math="12" /> dengan <InlineMath math="100 \text{ baju}" />, lalu hitung kembali mean untuk mengukur pengaruh nilai yang jauh lebih besar ini.
@@ -151,3 +220,13 @@ Data menjadi: <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 20, 100" /> (<Inl
     Modus tetap <InlineMath math="3" /> dan <InlineMath math="5" />.
 
 Mengganti <InlineMath math="22" /> dengan <InlineMath math="100" /> mengubah jumlah seluruh data, tetapi posisi tengah dan frekuensi tertinggi tetap sama. Karena itu, rata-rata naik sementara median dan modus tetap. Nilai ekstrem disebut **pencilan** jika memenuhi aturan statistik atau pertimbangan bidang yang digunakan. Pilih ukuran pemusatan sesuai besaran yang ingin kamu jelaskan.
+
+Ini banyak barang setiap anggota dalam bentuk batang. Batang tertinggi <InlineMath math="10" /> dan yang terpendek <InlineMath math="3" />. Kalau semua menyumbang sama banyak, setiap batang akan setinggi rata-ratanya, <InlineMath math="6" />, karena totalnya <InlineMath math="60" /> barang untuk <InlineMath math="10" /> anggota.
+
+<BarChart
+  title={<>Barang yang dikumpulkan setiap anggota</>}
+  description={<>Banyak barang yang dikumpulkan kesepuluh anggota, yang jumlahnya 60.</>}
+  yAxisLabel="Barang"
+  data={[["1", 3], ["2", 5], ["3", 7], ["4", 10], ["5", 5], ["6", 3], ["7", 4], ["8", 6], ["9", 9], ["10", 8]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Barang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

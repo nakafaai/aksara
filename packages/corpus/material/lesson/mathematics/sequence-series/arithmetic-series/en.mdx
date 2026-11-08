@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use Gauss's pairing method and the arithmetic-series formula to calculate sums in worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-08",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Sequence and Series",
 };
 
@@ -28,6 +28,43 @@ Gauss paired terms from **opposite ends of the list**:
 | 50 | 50 | 51 | 101 |
 
 There are <InlineMath math="50" /> pairs, and every pair sums to <InlineMath math="101" />. Therefore, the total is <InlineMath math="50 \times 101 = 5050" />.
+
+Here is the pairing as a picture for <InlineMath math="1 + 2 + \cdots + 6" />. The orange staircase holds columns of height 1 to 6. A second copy turned upside down fills the rest, with columns 6 down to 1. Each column pair is <InlineMath math="7" /> tall, so the two copies make a <InlineMath math="6 \times 7" /> rectangle and one copy is <InlineMath math="42 / 2 = 21" />.
+
+<MathVisual
+  title={<>Two staircases fill a rectangle</>}
+  description={<>The staircase of <InlineMath math="1 + 2 + \cdots + 6" /> and its turned copy together fill a 6 by 7 rectangle, so the sum is half of 42.</>}
+  labels={{
+    frame: <InlineMath math="6 \times 7 = 42" />,
+    lo6: <InlineMath math="1 + 2 + \cdots + 6" />,
+    hi1: <InlineMath math="6 + 5 + \cdots + 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "frame", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 7 }, { x: 0, y: 7 }], appearance: "reference" },
+      { id: "lo1", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "lo2", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "lo3", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 2, y: 3 }], appearance: "primary" },
+      { id: "lo4", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 3, y: 4 }], appearance: "primary" },
+      { id: "lo5", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 5 }, { x: 4, y: 5 }], appearance: "primary" },
+      { id: "lo6", kind: "polygon", vertices: [{ x: 5, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 6 }, { x: 5, y: 6 }], appearance: "primary" },
+      { id: "hi1", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 1, y: 7 }, { x: 0, y: 7 }], appearance: "secondary" },
+      { id: "hi2", kind: "polygon", vertices: [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 7 }, { x: 1, y: 7 }], appearance: "secondary" },
+      { id: "hi3", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 7 }, { x: 2, y: 7 }], appearance: "secondary" },
+      { id: "hi4", kind: "polygon", vertices: [{ x: 3, y: 4 }, { x: 4, y: 4 }, { x: 4, y: 7 }, { x: 3, y: 7 }], appearance: "secondary" },
+      { id: "hi5", kind: "polygon", vertices: [{ x: 4, y: 5 }, { x: 5, y: 5 }, { x: 5, y: 7 }, { x: 4, y: 7 }], appearance: "secondary" },
+      { id: "hi6", kind: "polygon", vertices: [{ x: 5, y: 6 }, { x: 6, y: 6 }, { x: 6, y: 7 }, { x: 5, y: 7 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "frame", objectId: "frame", at: { x: 3, y: 7 }, placement: "above" },
+      { key: "lo6", objectId: "lo6", at: { x: 5.5, y: 3 }, placement: "center" },
+      { key: "hi1", objectId: "hi1", at: { x: 0.5, y: 4 }, placement: "center" },
+    ],
+  }}
+/>
 
 ## Finding the General Formula
 
@@ -95,6 +132,16 @@ There are two main formulas commonly used to calculate <InlineMath math="S_n" />
 - <InlineMath math="b" /> = Common difference (difference between terms)
 - <InlineMath math="U_n" /> = Term number <InlineMath math="n" />
 
+Pair the numbers from <InlineMath math="1" /> to <InlineMath math="10" /> from both ends: <InlineMath math="1 + 10" />, <InlineMath math="2 + 9" />, and so on. Every pair has the same height <InlineMath math="11" />, and there are <InlineMath math="5" /> pairs, so <InlineMath math="1 + 2 + \cdots + 10 = 5 \cdot 11 = 55" />.
+
+<BarChart
+  title={<>Every pair from both ends has the same sum</>}
+  description={<>The five pairs of the numbers 1 to 10, taken from both ends, each with the sum 11.</>}
+  yAxisLabel="Pair sum"
+  data={[["pair 1", 1 + (11 - 1)], ["pair 2", 2 + (11 - 2)], ["pair 3", 3 + (11 - 3)], ["pair 4", 4 + (11 - 4)], ["pair 5", 5 + (11 - 5)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Pair sum", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Calculating Two Arithmetic Series
 
 Both problems below supply the **terms needed** for a sum formula. Substitute the values first, then compare your result with the worked answer. In each problem decide first whether the series is arithmetic, because that choice fixes which formula applies.
@@ -153,6 +200,19 @@ A theater has <InlineMath math="20" /> seats in the **first** row and <InlineMat
 </MathContainer>
 
 The first result describes only row <InlineMath math="15" />. The second result describes all seats across the first fifteen rows, so the sequence term and the series sum answer different questions.
+
+Run the series row by row for the theater. Each bar is the total <InlineMath math="S_n" /> after <InlineMath math="n" /> rows, from <InlineMath math="S_1 = 20" /> up to <InlineMath math="S_{15} = 720" />. The bars grow faster and faster because every new row is 4 seats longer than the last.
+
+<BarChart
+  title={<>Total seats after each row</>}
+  description={<>Bar <InlineMath math="n" /> shows <InlineMath math="S_n = \frac{n}{2}(2 \cdot 20 + (n-1)4)" />, the seats in the first <InlineMath math="n" /> rows.</>}
+  yAxisLabel="Total seats"
+  data={Array.from({ length: 15 }, (_, i) => {
+    const n = i + 1;
+    return { name: `${n}`, value: (n / 2) * (2 * 20 + (n - 1) * 4) };
+  })}
+  chartConfig={{ value: { label: "Total seats", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Exercise
 

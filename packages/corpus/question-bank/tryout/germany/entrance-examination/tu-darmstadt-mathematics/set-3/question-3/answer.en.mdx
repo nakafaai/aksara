@@ -1,0 +1,16 @@
+First write the decimal as a **power of ten**, then handle the digits and the powers separately. Note that the German prompt writes the decimal as <InlineMath math="0{,}002" />, which is <InlineMath math="0.002=2\cdot10^{-3}" />, because the <InlineMath math="2" /> sits in the third decimal place.
+
+<BlockMath math="\begin{aligned}
+\frac{2\cdot10^{-3}\cdot3\cdot10^5}{6\cdot10^{-2}}&=\frac{6\cdot10^{2}}{6\cdot10^{-2}} \\
+&=10^{2-(-2)}=10^4
+\end{aligned}" />
+
+As a check without powers: the numerator is <InlineMath math="0.002\cdot300{,}000=600" /> and the denominator is <InlineMath math="0.06" />. Then <InlineMath math="600\div0.06=60{,}000\div6=10{,}000=10^4" />.
+
+So the expression has the value <InlineMath math="10^4" />.
+
+- <InlineMath math="10^5" /> comes from writing <InlineMath math="0.002" /> as <InlineMath math="2\cdot10^{-2}" />, which makes the numerator ten times too large.
+- <InlineMath math="10^3" /> comes from <InlineMath math="0.002=2\cdot10^{-4}" />, one place too many.
+- <InlineMath math="10^2" /> is only the numerator divided by <InlineMath math="6" />, without dividing by <InlineMath math="10^{-2}" />.
+- <InlineMath math="10^6" /> comes from dividing by <InlineMath math="10^{-2}" /> twice, as if it appeared twice in the denominator.
+- <InlineMath math="10" /> fits none of these steps, because the exponent is <InlineMath math="-3+5-(-2)=4" />.
