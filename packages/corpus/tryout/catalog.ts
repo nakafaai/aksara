@@ -7,9 +7,10 @@ import {
 import { Array as Arr, Effect, MutableHashMap, Schema } from "effect";
 
 import { requireSourceLocale } from "#corpus/locale/source";
-import { type PaperOf, projectTryoutExam } from "#corpus/tryout/exam";
+import { projectTryoutExam } from "#corpus/tryout/exam";
 import { validateTryoutRoutes } from "#corpus/tryout/route";
 import type { ExamSource } from "#corpus/tryout/schema";
+import type { PaperOf } from "#corpus/tryout/track";
 
 const TRYOUT_PATH = "try-out";
 
