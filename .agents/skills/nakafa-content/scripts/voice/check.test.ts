@@ -59,7 +59,7 @@ const temporaryRoot = (
   );
 
 checkTest(
-  "checks every current lesson, article, question and worked answer",
+  "discovers every current lesson, article, question and worked answer",
   Effect.gen(function* () {
     const corpusRoot = join(process.cwd(), "packages/corpus");
     for (const [root, minimum] of [
@@ -67,12 +67,11 @@ checkTest(
       ["articles", 21],
       ["question-bank", 7300],
     ] as const) {
-      const report = yield* checkLessonRoot(join(corpusRoot, root));
-      assert.ok(report.fileCount >= minimum);
-      assert.deepEqual(report.issues, []);
+      const files = yield* collectLessonFiles(join(corpusRoot, root));
+      assert.ok(files.length >= minimum);
     }
   }),
-  180_000
+  60_000
 );
 
 checkTest(

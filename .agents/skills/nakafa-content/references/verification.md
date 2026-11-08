@@ -84,9 +84,12 @@ an editorial audit. Inspect each match with its complete paragraph, subject
 terminology, and locale siblings. Rerun after corrections and account for every
 remaining match. Do not rewrite valid prose to obtain a zero count.
 
-The corpus suites assert an empty issue list for all three authored scopes at every
-tier, so a `review` candidate fails the repository suite exactly as a blocking
-rule does. The CLI default mode is a debugging filter for a focused run, not a
+`bun run test:lesson-voice` runs the unit suite, then this CLI with
+`--strict-review` on each authored root, so a `review` candidate fails the
+repository gate exactly as a blocking rule does. The whole-corpus scan is a
+gate step rather than a test, because its time grows with the corpus and with
+the machine's load; the unit suite only proves that discovery still finds every
+root's documents. The CLI default mode is a debugging filter for a focused run, not a
 release exception: narrow or repair the rule and the sentence before landing a
 change that leaves any finding.
 
