@@ -16,11 +16,11 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "$$T(1,0)=(1,3)$$",
+          label: "$$T(1,0)=(5,-2)$$",
         },
         {
           correct: true,
-          label: "$$T$$ sama dengan pencerminan terhadap garis $$x=1$$, dilanjutkan translasi $$\\begin{pmatrix} 0 \\\\ 3 \\end{pmatrix}$$.",
+          label: "$$T$$ sama dengan pencerminan terhadap garis $$x=3$$, dilanjutkan translasi $$\\begin{pmatrix} 0 \\\\ -2 \\end{pmatrix}$$.",
         },
         {
           correct: false,
@@ -28,7 +28,7 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Bayangan setiap titik pada garis $$x=1$$ tetap terletak pada garis $$x=1$$.",
+          label: "Bayangan setiap titik pada garis $$x=3$$ tetap terletak pada garis $$x=3$$.",
         },
       ],
     },

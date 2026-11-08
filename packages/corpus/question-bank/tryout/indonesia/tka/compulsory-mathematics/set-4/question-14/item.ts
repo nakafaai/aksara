@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$3$$ satuan luas",
+          label: "$$y=-2x-4$$",
         },
         {
           correct: false,
-          label: "$$9$$ satuan luas",
+          label: "$$y=-2x+4$$",
         },
         {
           correct: false,
-          label: "$$27$$ satuan luas",
+          label: "$$y=2x-4$$",
         },
         {
           correct: true,
-          label: "$$81$$ satuan luas",
+          label: "$$y=-\\frac12x-2$$",
         },
         {
           correct: false,
-          label: "$$243$$ satuan luas",
+          label: "$$y=-\\frac12x+2$$",
         },
       ],
     },
