@@ -1,14 +1,16 @@
-Split the rule for <InlineMath math="T" /> by coordinate: **the <InlineMath math="x" />-coordinate changes from <InlineMath math="x" /> to <InlineMath math="6-x" />**, the reflection in the line <InlineMath math="x=3" />, since <InlineMath math="x" /> and <InlineMath math="6-x" /> lie the same distance from <InlineMath math="3" />. The <InlineMath math="y" />-coordinate just moves down by <InlineMath math="2" />.
+Every image coordinate is the original coordinate **multiplied by <InlineMath math="-2" />**: <InlineMath math="(3,0)\to(-6,0)" /> and <InlineMath math="(0,2)\to(0,-4)" />. So check whether each transformation maps <InlineMath math="(x,y)" /> to <InlineMath math="(-2x,-2y)" />.
 
 <BlockMath math="\begin{aligned}
-T(1,0)&=(6-1,\ 0-2)=(5,-2) \\
-T(t,t)&=(6-t,\ t-2),\quad (6-t)+(t-2)=4
+\text{rotation }180^\circ\text{ then dilation }2&:\ (x,y)\to(-x,-y)\to(-2x,-2y) \\
+\text{dilation }2\text{ then reflection in }O&:\ (x,y)\to(2x,2y)\to(-2x,-2y) \\
+\text{reflection in the }y\text{-axis then dilation }2&:\ C(0,2)\to(0,2)\to(0,4) \\
+\text{reflection in }y=x\text{ then dilation }-2&:\ B(3,0)\to(0,3)\to(0,-6)
 \end{aligned}" />
 
-- A reflection and a translation keep sizes, so the area stays the same. The statement that the area doubles is false.
-- <InlineMath math="T(1,0)=(5,-2)" /> is true.
-- The reflection in <InlineMath math="x=3" /> maps <InlineMath math="(x,y)" /> to <InlineMath math="(6-x,y)" />, and the translation <InlineMath math="(0,-2)" /> then gives <InlineMath math="(6-x,y-2)" />. This statement is true.
-- A point <InlineMath math="(t,t)" /> on the line <InlineMath math="y=x" /> goes to <InlineMath math="(6-t,t-2)" />, which satisfies <InlineMath math="x+y=4" />. The image is the line <InlineMath math="y=-x+4" />, not <InlineMath math="y=x" />. This statement is false.
-- For <InlineMath math="x=3" /> the image's <InlineMath math="x" />-coordinate is <InlineMath math="6-3=3" />, so the point only moves down along the line <InlineMath math="x=3" />. This statement is true.
+- The dilation about <InlineMath math="O" /> with factor <InlineMath math="-2" /> maps <InlineMath math="(x,y)" /> straight to <InlineMath math="(-2x,-2y)" />. True.
+- The reflection in the <InlineMath math="y" />-axis then dilation by <InlineMath math="2" /> sends <InlineMath math="C" /> to <InlineMath math="(0,4)" />, not <InlineMath math="(0,-4)" />. False.
+- The rotation by <InlineMath math="180^\circ" /> then dilation by <InlineMath math="2" /> gives <InlineMath math="(-2x,-2y)" />. True.
+- The reflection in <InlineMath math="y=x" /> then dilation by <InlineMath math="-2" /> sends <InlineMath math="B" /> to <InlineMath math="(0,-6)" />, not <InlineMath math="(-6,0)" />. False.
+- A reflection in the point <InlineMath math="O" /> is a rotation by <InlineMath math="180^\circ" />, so dilation by <InlineMath math="2" /> then reflection in <InlineMath math="O" /> also gives <InlineMath math="(-2x,-2y)" />. True.
 
-So the true statements are <InlineMath math="T(1,0)=(5,-2)" />, the splitting of <InlineMath math="T" /> into a reflection and a translation, and the points of the line <InlineMath math="x=3" /> staying on it.
+So the transformations that work are the dilation by <InlineMath math="-2" />, the rotation by <InlineMath math="180^\circ" /> then dilation by <InlineMath math="2" />, and the dilation by <InlineMath math="2" /> then reflection in <InlineMath math="O" />.

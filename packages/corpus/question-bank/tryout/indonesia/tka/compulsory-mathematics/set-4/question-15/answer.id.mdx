@@ -1,14 +1,16 @@
-Pisahkan aturan <InlineMath math="T" /> per koordinat: **absis berubah dari <InlineMath math="x" /> menjadi <InlineMath math="6-x" />**, yaitu pencerminan terhadap garis <InlineMath math="x=3" /> karena <InlineMath math="x" /> dan <InlineMath math="6-x" /> berjarak sama dari <InlineMath math="3" />. Ordinat hanya bergeser <InlineMath math="2" /> ke bawah.
+Setiap koordinat bayangan sama dengan koordinat asalnya **dikalikan <InlineMath math="-2" />**: <InlineMath math="(3,0)\to(-6,0)" /> dan <InlineMath math="(0,2)\to(0,-4)" />. Jadi, cukup periksa apakah setiap transformasi memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(-2x,-2y)" />.
 
 <BlockMath math="\begin{aligned}
-T(1,0)&=(6-1,\ 0-2)=(5,-2) \\
-T(t,t)&=(6-t,\ t-2),\quad (6-t)+(t-2)=4
+\text{rotasi }180^\circ\text{ lalu dilatasi }2&:\ (x,y)\to(-x,-y)\to(-2x,-2y) \\
+\text{dilatasi }2\text{ lalu pencerminan terhadap }O&:\ (x,y)\to(2x,2y)\to(-2x,-2y) \\
+\text{pencerminan sumbu }y\text{ lalu dilatasi }2&:\ C(0,2)\to(0,2)\to(0,4) \\
+\text{pencerminan }y=x\text{ lalu dilatasi }-2&:\ B(3,0)\to(0,3)\to(0,-6)
 \end{aligned}" />
 
-- Pencerminan dan translasi tidak mengubah ukuran, jadi luas tetap. Pernyataan bahwa luas menjadi dua kali salah.
-- <InlineMath math="T(1,0)=(5,-2)" /> benar.
-- Pencerminan terhadap <InlineMath math="x=3" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(6-x,y)" />, lalu translasi <InlineMath math="(0,-2)" /> menghasilkan <InlineMath math="(6-x,y-2)" />. Pernyataan ini benar.
-- Titik <InlineMath math="(t,t)" /> pada garis <InlineMath math="y=x" /> dipetakan ke <InlineMath math="(6-t,t-2)" />, yang memenuhi <InlineMath math="x+y=4" />. Bayangannya garis <InlineMath math="y=-x+4" />, bukan <InlineMath math="y=x" />. Pernyataan ini salah.
-- Untuk <InlineMath math="x=3" />, absis bayangannya <InlineMath math="6-3=3" />, jadi titik itu hanya bergeser ke bawah di sepanjang garis <InlineMath math="x=3" />. Pernyataan ini benar.
+- Dilatasi dengan pusat <InlineMath math="O" /> dan faktor <InlineMath math="-2" /> langsung memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(-2x,-2y)" />. Benar.
+- Pencerminan terhadap sumbu <InlineMath math="y" /> lalu dilatasi <InlineMath math="2" /> memetakan <InlineMath math="C" /> ke <InlineMath math="(0,4)" />, bukan <InlineMath math="(0,-4)" />. Salah.
+- Rotasi <InlineMath math="180^\circ" /> lalu dilatasi <InlineMath math="2" /> menghasilkan <InlineMath math="(-2x,-2y)" />. Benar.
+- Pencerminan terhadap <InlineMath math="y=x" /> lalu dilatasi <InlineMath math="-2" /> memetakan <InlineMath math="B" /> ke <InlineMath math="(0,-6)" />, bukan <InlineMath math="(-6,0)" />. Salah.
+- Pencerminan terhadap titik <InlineMath math="O" /> sama dengan rotasi <InlineMath math="180^\circ" />, jadi dilatasi <InlineMath math="2" /> lalu pencerminan terhadap <InlineMath math="O" /> juga menghasilkan <InlineMath math="(-2x,-2y)" />. Benar.
 
-Jadi, pernyataan yang benar adalah <InlineMath math="T(1,0)=(5,-2)" />, penguraian <InlineMath math="T" /> menjadi pencerminan dan translasi, dan titik pada garis <InlineMath math="x=3" /> yang tetap pada garis itu.
+Jadi, transformasi yang memenuhi adalah dilatasi berfaktor <InlineMath math="-2" />, rotasi <InlineMath math="180^\circ" /> lalu dilatasi <InlineMath math="2" />, dan dilatasi <InlineMath math="2" /> lalu pencerminan terhadap <InlineMath math="O" />.

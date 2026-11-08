@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$T$$ mengubah luas setiap bangun menjadi dua kalinya.",
-        },
-        {
           correct: true,
-          label: "$$T(1,0)=(5,-2)$$",
-        },
-        {
-          correct: true,
-          label: "$$T$$ sama dengan pencerminan terhadap garis $$x=3$$, dilanjutkan translasi $$\\begin{pmatrix} 0 \\\\ -2 \\end{pmatrix}$$.",
+          label: "dilatasi dengan pusat $$O$$ dan faktor skala $$-2$$",
         },
         {
           correct: false,
-          label: "$$T$$ memetakan garis $$y=x$$ ke garis itu sendiri.",
+          label: "pencerminan terhadap sumbu $$y$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$2$$",
         },
         {
           correct: true,
-          label: "Bayangan setiap titik pada garis $$x=3$$ tetap terletak pada garis $$x=3$$.",
+          label: "rotasi $$180^\\circ$$ dengan pusat $$O$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$2$$",
+        },
+        {
+          correct: false,
+          label: "pencerminan terhadap garis $$y=x$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$-2$$",
+        },
+        {
+          correct: true,
+          label: "dilatasi dengan pusat $$O$$ dan faktor skala $$2$$, dilanjutkan pencerminan terhadap titik $$O$$",
         },
       ],
     },
