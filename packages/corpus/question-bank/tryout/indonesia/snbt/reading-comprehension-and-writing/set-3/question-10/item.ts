@@ -29,7 +29,7 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "buah kopi di kebun yang dekat dengan kotak lebah lebih lebat",
+          label: "buah kopi di kebun yang dekat dengan kotak lebah lebih lebat daripada di kebun yang jauh",
         },
       ],
     },

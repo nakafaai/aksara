@@ -17,7 +17,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "sehingga",
+          label: "tetapi",
         },
         {
           correct: false,

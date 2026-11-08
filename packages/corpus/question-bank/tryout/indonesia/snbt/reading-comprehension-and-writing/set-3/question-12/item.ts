@@ -13,23 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "_sedangkan_ diganti _sehingga_",
+          label: "_membawa_ diganti _membawakan_",
         },
         {
           correct: true,
-          label: "_dari_ diganti _oleh_",
+          label: "_seluas_ diganti _sejauh_",
         },
         {
           correct: false,
-          label: "_tenaga_ diganti _kekuatan_",
+          label: "_memutar_ diganti _berputar_",
         },
         {
           correct: false,
-          label: "_disediakan_ diganti _menyediakan_",
+          label: "_tanpa_ diganti _dengan_",
         },
         {
           correct: false,
-          label: "_menyumbang_ diganti _disumbang_",
+          label: "_ke pasar_ diganti _di pasar_",
         },
       ],
     },

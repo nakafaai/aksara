@@ -17,7 +17,7 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "garam yang belum dipanen larut kembali sehingga panen mereka tertunda",
+          label: "garam yang belum dipanen larut kembali sehingga mereka bisa gagal panen",
         },
         {
           correct: false,

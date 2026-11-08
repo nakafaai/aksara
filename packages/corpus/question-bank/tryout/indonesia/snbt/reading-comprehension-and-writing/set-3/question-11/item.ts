@@ -13,7 +13,7 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "dapat membawa hasil kebun ke pasar tanpa memutar sejauh sembilan kilometer",
+          label: "tidak perlu lagi menempuh jalan memutar untuk sampai ke pasar",
         },
         {
           correct: false,
