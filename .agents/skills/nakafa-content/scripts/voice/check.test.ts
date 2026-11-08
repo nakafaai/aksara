@@ -58,21 +58,24 @@ const temporaryRoot = (
     (root) => Effect.sync(() => rmSync(root, { force: true, recursive: true }))
   );
 
-checkTest(
-  "discovers every current lesson, article, question and worked answer",
-  Effect.gen(function* () {
-    const corpusRoot = join(process.cwd(), "packages/corpus");
-    for (const [root, minimum] of [
-      ["material/lesson", 1149],
-      ["articles", 21],
-      ["question-bank", 7300],
-    ] as const) {
-      const files = yield* collectLessonFiles(join(corpusRoot, root));
-      assert.ok(files.length >= minimum);
-    }
-  }),
-  60_000
-);
+/** The corpus whose every root must pass the gate, one test per root. */
+const CORPUS = join(process.cwd(), "packages/corpus");
+
+for (const [root, minimum] of [
+  ["material/lesson", 1149],
+  ["articles", 21],
+  ["question-bank", 7300],
+] as const) {
+  checkTest(
+    `checks every current document in ${root}`,
+    Effect.gen(function* () {
+      const report = yield* checkLessonRoot(join(CORPUS, root));
+      assert.ok(report.fileCount >= minimum);
+      assert.deepEqual(report.issues, []);
+    }),
+    180_000
+  );
+}
 
 checkTest(
   "scans every locale sibling below a lesson root",

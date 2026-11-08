@@ -67,7 +67,7 @@
     "security:audit": "bash scripts/osv",
     "status": "turbo run status --filter=@nakafa/aksara-cli --",
     "test": "turbo run test test:lesson-voice test:root --concurrency=1",
-    "test:lesson-voice": "vitest run --config scripts/voice.config.ts && node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --strict-review --root packages/corpus/material/lesson && node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --strict-review --root packages/corpus/articles && node --conditions=aksara-source .agents/skills/nakafa-content/scripts/voice/check.ts --strict-review --root packages/corpus/question-bank",
+    "test:lesson-voice": "vitest run --config scripts/voice.config.ts",
     "test:root": "vitest run --config scripts/vitest.config.ts",
     "typecheck": "turbo run typecheck",
     "typecheck:root": "tsrs --project tsconfig.json",
