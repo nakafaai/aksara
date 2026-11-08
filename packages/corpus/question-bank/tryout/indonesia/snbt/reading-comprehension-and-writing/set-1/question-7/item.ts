@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "conjunction",
+  },
+  stimulus: "rooftop-garden",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "kalimat (4).",
+          label: "Meskipun demikian",
         },
         {
           correct: false,
-          label: "kalimat (7).",
+          label: "Oleh karena itu",
         },
         {
           correct: false,
-          label: "kalimat (6).",
+          label: "Dengan demikian",
         },
         {
           correct: false,
-          label: "kalimat (5).",
+          label: "Selain itu",
         },
         {
           correct: false,
-          label: "kalimat (3).",
+          label: "Akibatnya",
         },
       ],
     },

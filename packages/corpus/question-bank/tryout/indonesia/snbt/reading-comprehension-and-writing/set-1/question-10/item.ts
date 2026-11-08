@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "inference",
+  },
+  stimulus: "rooftop-garden",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Negara mana yang pertama kali mengadopsi Kerangka Sendai?",
+          label: "Tanaman hidroponik di sekolah itu tidak memerlukan unsur hara.",
         },
         {
           correct: false,
-          label: "Berapa biaya untuk memulihkan ekosistem yang rusak?",
+          label: "Sabut kelapa menjadi sumber nutrisi utama bagi tanaman.",
         },
         {
           correct: false,
-          label: "Kapan degradasi lingkungan mulai terjadi di Indonesia?",
+          label: "Larutan yang asam membuat akar tumbuh lebih cepat.",
         },
         {
           correct: false,
-          label: "Metode pemulihan ekosistem mana yang paling efektif?",
+          label: "Hasil panen pertama dibagikan tanpa bayaran kepada orang tua siswa.",
         },
         {
           correct: true,
-          label: "Apa saja tiga pendorong risiko yang diakui Kerangka Sendai?",
+          label: "Jika pompa berhenti bekerja, larutan tidak lagi sampai ke ujung atas pipa.",
         },
       ],
     },

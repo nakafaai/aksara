@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "conclusion",
+  },
+  stimulus: "waste-bank",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Satu Usia Aman untuk Gawai Pertama Anak.",
+          label: "Bank sampah itu hanya menerima botol plastik dan kardus.",
         },
         {
           correct: false,
-          label: "Mengapa Semua Waktu Layar Berbahaya.",
+          label: "Nasabah mendapat uang tunai setiap kali menyetor sampah.",
         },
         {
           correct: false,
-          label: "Cara Membeli Ponsel Pertama Anak.",
-        },
-        {
-          correct: false,
-          label: "Aturan Satu Jam untuk Setiap Anggota Keluarga.",
+          label: "Kertas campur adalah jenis sampah yang paling banyak diterima pada bulan Agustus.",
         },
         {
           correct: true,
-          label: "Penggunaan Media Keluarga Sesuai Usia.",
+          label: "Nasabah yang menyetor sampah dengan berat yang sama dapat memperoleh nilai tabungan yang berbeda.",
+        },
+        {
+          correct: false,
+          label: "Harga beli semua jenis sampah naik pada bulan September.",
         },
       ],
     },

@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "sentence-core",
+  },
+  stimulus: "rooftop-garden",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Kalimat (2).",
-        },
-        {
-          correct: false,
-          label: "Kalimat (4).",
+          label: "Gelas-gelas itu diletakkan pada pipa paralon.",
         },
         {
           correct: true,
-          label: "Kalimat (8).",
+          label: "Gelas-gelas itu diletakkan.",
         },
         {
           correct: false,
-          label: "Kalimat (6).",
+          label: "Pipa paralon dialiri larutan nutrisi.",
         },
         {
           correct: false,
-          label: "Kalimat (7).",
+          label: "Gelas-gelas dialiri larutan.",
+        },
+        {
+          correct: false,
+          label: "Larutan nutrisi diletakkan terus-menerus.",
         },
       ],
     },

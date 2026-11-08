@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "effective-sentence",
+  },
+  stimulus: "village-radio",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "produk.",
+          label: "Penyiarnya adalah para pemuda-pemuda desa yang belajar mengoperasikan pemancar dengan cara otodidak.",
         },
         {
           correct: false,
-          label: "produktif.",
+          label: "Penyiar-penyiarnya adalah para pemuda desa yang belajar mengoperasikan pemancar secara otodidak.",
         },
         {
           correct: true,
-          label: "produktivitas.",
+          label: "Penyiarnya adalah para pemuda desa yang belajar mengoperasikan pemancar secara otodidak.",
         },
         {
           correct: false,
-          label: "produksi.",
+          label: "Penyiarnya adalah pemuda-pemuda desa-desa yang belajar mengoperasikan pemancar secara otodidak.",
         },
         {
           correct: false,
-          label: "produsen.",
+          label: "Penyiarnya adalah para pemuda desa yang mana belajar mengoperasikan pemancar secara otodidak.",
         },
       ],
     },

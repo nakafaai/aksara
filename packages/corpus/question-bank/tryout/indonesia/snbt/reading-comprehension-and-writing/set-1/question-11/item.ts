@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "main-idea",
+  },
+  stimulus: "grain-barn",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "tangguh (kalimat (1)).",
+          label: "Petani lebih suka langsung menjual seluruh hasil panennya.",
         },
         {
           correct: true,
-          label: "memperkecil (kalimat (7)).",
+          label: "Pemerintah desa perlu menghidupkan kembali lumbung padi bersama.",
         },
         {
           correct: false,
-          label: "akibat (kalimat (2)).",
+          label: "Harga beras sering melonjak pada musim paceklik.",
         },
         {
           correct: false,
-          label: "memenuhi (kalimat (3)).",
+          label: "Gabah yang disimpan di lumbung mudah berjamur.",
         },
         {
           correct: false,
-          label: "mengakui (kalimat (4)).",
+          label: "Laporan pengelolaan lumbung harus dibacakan setiap panen.",
         },
       ],
     },
