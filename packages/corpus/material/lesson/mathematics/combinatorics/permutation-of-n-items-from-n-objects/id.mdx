@@ -3,7 +3,7 @@ export const metadata = {
    description: "Hitung banyak susunan yang memakai semua objek dengan rumus faktorial, contoh, dan latihan.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Kombinatorik",
 };
 
@@ -54,6 +54,19 @@ Faktorial <InlineMath math="n!" /> adalah hasil kali bilangan bulat positif dari
 - <InlineMath math="0! = 1" /> (berdasarkan definisi matematis)
 - <InlineMath math="1! = 1" />
 
+Faktorial tumbuh cepat. Batangnya menunjukkan <InlineMath math="n!" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="7" />: <InlineMath math="1, 2, 6, 24, 120, 720, 5040" />. Setiap batang adalah batang sebelumnya dikali bilangan bulat berikutnya, karena satu objek tambahan memberi satu pilihan lagi untuk tempat pertama.
+
+<BarChart
+  title={<>Secepat apa faktorial tumbuh</>}
+  description={<>Batang ke-<InlineMath math="n" /> menunjukkan <InlineMath math="n!" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="7" />.</>}
+  yAxisLabel="Urutan"
+  data={Array.from({ length: 7 }, (_, i) => {
+    const n = i + 1;
+    return { name: `${n}`, value: Array.from({ length: n }, (_, k) => k + 1).reduce((product, k) => product * k, 1) };
+  })}
+  chartConfig={{ value: { label: "Urutan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Menempatkan Semua Objek pada Posisi Berbeda
 
 Setiap susunan di bawah memberi setiap objek **satu posisi**, sehingga tidak ada objek yang tertinggal dan tidak ada yang berulang. Perhitungan mulai dari banyak objek, lalu berkurang satu pilihan pada setiap langkah.
@@ -73,6 +86,79 @@ Sebuah keluarga yang terdiri dari <InlineMath math="6" /> anggota akan **duduk b
 <MathContainer>
 <BlockMath math="6P_6 = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720 \text{ cara}" />
 </MathContainer>
+
+Ini semua urutan tiga objek <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" />, satu urutan per baris. Tempat pertama punya 3 pilihan, tempat kedua 2, dan tempat terakhir 1, jadi ada tepat <InlineMath math="3! = 6" /> baris dan tidak ada urutan yang muncul dua kali.
+
+<MathVisual
+  title={<>Keenam urutan A, B, dan C</>}
+  description={<>Enam baris, masing-masing urutan A, B, dan C yang berbeda: <InlineMath math="3! = 3 \cdot 2 \cdot 1 = 6" />.</>}
+  labels={{
+    o00: <InlineMath math="A" />,
+    o01: <InlineMath math="B" />,
+    o02: <InlineMath math="C" />,
+    o10: <InlineMath math="A" />,
+    o11: <InlineMath math="C" />,
+    o12: <InlineMath math="B" />,
+    o20: <InlineMath math="B" />,
+    o21: <InlineMath math="A" />,
+    o22: <InlineMath math="C" />,
+    o30: <InlineMath math="B" />,
+    o31: <InlineMath math="C" />,
+    o32: <InlineMath math="A" />,
+    o40: <InlineMath math="C" />,
+    o41: <InlineMath math="A" />,
+    o42: <InlineMath math="B" />,
+    o50: <InlineMath math="C" />,
+    o51: <InlineMath math="B" />,
+    o52: <InlineMath math="A" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 3.8 }, y: { min: 0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "o00", kind: "point", at: { x: 1, y: 6 }, appearance: "primary" },
+      { id: "o01", kind: "point", at: { x: 2, y: 6 }, appearance: "secondary" },
+      { id: "o02", kind: "point", at: { x: 3, y: 6 }, appearance: "answer" },
+      { id: "o10", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "o11", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+      { id: "o12", kind: "point", at: { x: 3, y: 5 }, appearance: "secondary" },
+      { id: "o20", kind: "point", at: { x: 1, y: 4 }, appearance: "secondary" },
+      { id: "o21", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "o22", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "o30", kind: "point", at: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "o31", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
+      { id: "o32", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "o40", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "o41", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "o42", kind: "point", at: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "o50", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "o51", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "o52", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "o00", objectId: "o00", at: { x: 1, y: 6 }, placement: "right" },
+      { key: "o01", objectId: "o01", at: { x: 2, y: 6 }, placement: "right" },
+      { key: "o02", objectId: "o02", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "o10", objectId: "o10", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "o11", objectId: "o11", at: { x: 2, y: 5 }, placement: "right" },
+      { key: "o12", objectId: "o12", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "o20", objectId: "o20", at: { x: 1, y: 4 }, placement: "right" },
+      { key: "o21", objectId: "o21", at: { x: 2, y: 4 }, placement: "right" },
+      { key: "o22", objectId: "o22", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "o30", objectId: "o30", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "o31", objectId: "o31", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "o32", objectId: "o32", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "o40", objectId: "o40", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "o41", objectId: "o41", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "o42", objectId: "o42", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "o50", objectId: "o50", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "o51", objectId: "o51", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "o52", objectId: "o52", at: { x: 3, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Menghitung Permutasi Lengkap
 
 Untuk permutasi lengkap dari <InlineMath math="n" /> objek:
@@ -101,6 +187,16 @@ Uraikan <InlineMath math="5!" /> **satu faktor setiap langkah**:
 <BlockMath math="\begin{aligned}5P_3 &amp;=\frac{5!}{(5-3)!}=\frac{5!}{2!}\\ &amp;=\frac{5\times4\times3\times2\times1}{2\times1}\\ &amp;=\frac{120}{2}=60\text{ cara}\end{aligned}" />
 
 Dalam permutasi <InlineMath math="n" /> item dari <InlineMath math="n" /> objek, **tidak ada objek yang tersisa** dan **semua posisi harus diisi**.
+
+Menyusun hanya <InlineMath math="r" /> dari <InlineMath math="5" /> objek menghentikan perkaliannya lebih awal: <InlineMath math="5, 20, 60, 120, 120" /> untuk <InlineMath math="r = 1" /> sampai <InlineMath math="5" />. Dua batang terakhir sama karena tempat terakhir hanya menyisakan satu objek, jadi <InlineMath math="{}_5P_4 = {}_5P_5 = 5!" />.
+
+<BarChart
+  title={<>Permutasi sebagian dan lengkap dari lima objek</>}
+  description={<>Batang <InlineMath math="r" /> menunjukkan banyak susunan berurutan dari <InlineMath math="r" /> di antara 5 objek.</>}
+  yAxisLabel="Susunan"
+  data={[["1", 5], ["2", 5 * 4], ["3", 5 * 4 * 3], ["4", 5 * 4 * 3 * 2], ["5", 5 * 4 * 3 * 2 * 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Susunan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Latihan
 

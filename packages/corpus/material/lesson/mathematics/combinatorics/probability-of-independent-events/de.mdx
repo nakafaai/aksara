@@ -3,7 +3,7 @@ export const metadata = {
    description: "Unabhängigkeit prüfen und gemeinsame Wahrscheinlichkeiten berechnen, ohne sich von oberflächlichen Schlüsselwörtern täuschen zu lassen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Kombinatorik",
 };
 
@@ -61,6 +61,34 @@ Da unabhängige Ereignisse sich nicht gegenseitig beeinflussen, wird die Berechn
 
 Die Wahrscheinlichkeit dafür, dass <InlineMath math="A" /> und <InlineMath math="B" /> gemeinsam eintreten, ist also das Produkt ihrer Einzelwahrscheinlichkeiten.
 
+Stell dir alle Ergebnisse als Einheitsquadrat der Wahrscheinlichkeit vor. Das Ereignis <InlineMath math="A" />, ein gerader erster Würfel, nimmt die linke Hälfte ein, Breite <InlineMath math="\tfrac12" />. Das Ereignis <InlineMath math="B" />, eine 1 oder 2 beim zweiten Würfel, nimmt das untere Drittel ein, Höhe <InlineMath math="\tfrac13" />. Weil sich die Würfel nicht beeinflussen, ist die Überschneidung ein Rechteck mit Fläche <InlineMath math="\tfrac12 \cdot \tfrac13 = \tfrac16" />, also <InlineMath math="P(A \cap B)" />.
+
+<MathVisual
+  title={<>Unabhängigkeit als Rechteck der Fläche P(A)P(B)</>}
+  description={<>Ein Einheitsquadrat mit dem Streifen <InlineMath math="A" /> der Breite einhalb, dem Streifen <InlineMath math="B" /> der Höhe ein Drittel und ihrer Überschneidung mit Fläche ein Sechstel.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    ab: <InlineMath math="\tfrac16" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 1.1 }, y: { min: -0.1, max: 1.1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1 / 2, y: 0 }, { x: 1 / 2, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 / 3 }, { x: 0, y: 1 / 3 }], appearance: "secondary" },
+      { id: "ab", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1 / 2, y: 0 }, { x: 1 / 2, y: 1 / 3 }, { x: 0, y: 1 / 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1 / 4, y: 2 / 3 }, placement: "center" },
+      { key: "b", objectId: "b", at: { x: 3 / 4, y: 1 / 6 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 1 / 4, y: 1 / 6 }, placement: "center" },
+    ],
+  }}
+/>
+
 ### Warum die beiden Wahrscheinlichkeiten multipliziert werden
 
 Bei unabhängigen Ereignissen stimmt die **bedingte Wahrscheinlichkeit** mit der gewöhnlichen Wahrscheinlichkeit überein. Wegen <InlineMath math="P(A|B) = P(A)" /> lautet die Multiplikationsregel:
@@ -112,6 +140,40 @@ Beide Ereignisse sind **unabhängig**, da das Ergebnis des Würfels keinen Einfl
 <BlockMath math="P(A \cap B) = P(A) \times P(B) = \frac{1}{2} \times \frac{1}{2} = \frac{1}{4}" />
 </MathContainer>
 
+Wirf einen Würfel und eine Münze: Es gibt <InlineMath math="6 \cdot 2 = 12" /> gleich wahrscheinliche Paare. Die drei hervorgehobenen sind eine gerade Zahl mit Kopf, also <InlineMath math="P = \frac{3}{12} = \frac12 \cdot \frac12" />. Jede Spalte des Rasters hat denselben Anteil Kopf, genau so sieht Unabhängigkeit aus.
+
+<MathVisual
+  title={<>Zwölf Ergebnisse von Würfel und Münze</>}
+  description={<>Würfelergebnisse nach rechts, die Münze nach oben, die drei Ergebnisse gerade und Kopf hervorgehoben.</>}
+  labels={{
+    c12: <>Kopf</>,
+    c11: <>Zahl</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c11", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "c12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "c21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "c22", kind: "point", at: { x: 2, y: 2 }, appearance: "answer" },
+      { id: "c31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "c32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "c41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "c42", kind: "point", at: { x: 4, y: 2 }, appearance: "answer" },
+      { id: "c51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "c52", kind: "point", at: { x: 5, y: 2 }, appearance: "reference" },
+      { id: "c61", kind: "point", at: { x: 6, y: 1 }, appearance: "reference" },
+      { id: "c62", kind: "point", at: { x: 6, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "c12", objectId: "c12", at: { x: 1, y: 2 }, placement: "left" },
+      { key: "c11", objectId: "c11", at: { x: 1, y: 1 }, placement: "left" },
+    ],
+  }}
+/>
+
 ### Unabhängige Selbsttests zweier Sensoren
 
 Zwei unabhängig versorgte Überwachungssensoren führen täglich einen Selbsttest durch. Sensor <InlineMath math="A" /> besteht ihn mit Wahrscheinlichkeit <InlineMath math="0{,}98" />, Sensor <InlineMath math="B" /> mit Wahrscheinlichkeit <InlineMath math="0{,}92" />. Wie groß ist im angegebenen Unabhängigkeitsmodell die Wahrscheinlichkeit, dass beide Tests erfolgreich sind?
@@ -147,6 +209,16 @@ Bei Aufgaben mit unabhängigen Ereignissen gehst du so vor:
 3. **Berechne die Einzelwahrscheinlichkeiten**
 4. **Wende die Formel an** <InlineMath math="P(A \cap B) = P(A) \times P(B)" />
 5. **Prüfe das Ergebnis** im Kontext der Aufgabe
+
+Bei unabhängigen Ereignissen ist der dritte Balken das Produkt der ersten beiden. Ein gerader erster Würfel hat <InlineMath math="\frac12" />, eine 1 oder 2 beim zweiten Würfel hat <InlineMath math="\frac13" />, und beides zusammen hat <InlineMath math="\frac12 \cdot \frac13 = \frac16" />.
+
+<BarChart
+  title={<>Die Produktregel für unabhängige Ereignisse</>}
+  description={<>Balken für <InlineMath math="P(A) = \frac12" />, <InlineMath math="P(B) = \frac13" /> und <InlineMath math="P(A \cap B) = \frac16" />.</>}
+  yAxisLabel="Wahrscheinlichkeit"
+  data={[["A", 1 / 2], ["B", 1 / 3], ["A und B", 1 / 6]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Kontrollen für das Endergebnis
 

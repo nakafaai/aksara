@@ -274,7 +274,7 @@ export function findStructuralIssues(
   if (metadataTitleIssue) {
     issues.push(metadataTitleIssue);
   }
-  if (isProtectedRegion || genre === "article") {
+  if (isProtectedRegion || genre !== "lesson") {
     return issues;
   }
   const headingIssue = locateIssue(

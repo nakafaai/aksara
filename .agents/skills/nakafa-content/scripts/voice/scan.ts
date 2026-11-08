@@ -25,6 +25,7 @@ import {
   ANSWER_VOICE_RULES,
   ARTICLE_VOICE_RULES,
   LESSON_VOICE_RULES,
+  PAGE_VOICE_RULES,
 } from "#nakafa-content/voice/rules";
 import {
   classifyLine,
@@ -224,6 +225,8 @@ export function findLessonVoiceIssues(
     voiceRules = ANSWER_VOICE_RULES;
   } else if (genre === "article") {
     voiceRules = ARTICLE_VOICE_RULES;
+  } else if (genre === "page") {
+    voiceRules = PAGE_VOICE_RULES;
   }
   const matchesByRule = new Map<string, LessonVoiceIssue[]>(
     REPETITIVE_OPENER_RULES.map(({ id }): [string, LessonVoiceIssue[]] => [
@@ -261,10 +264,10 @@ export function findLessonVoiceIssues(
     ...findDisplayedMathCompositionIssues(source, parsedTree),
     ...findBlockquoteEditorialLabelIssues(locale, source, parsedTree),
     ...findEmphasisArtifactIssues(source, parsedTree),
-    ...(bodyKind || genre === "article"
+    ...(bodyKind || genre !== "lesson"
       ? []
       : findSectionBodyIssues(source, parsedTree)),
-    ...(bodyKind || genre === "article"
+    ...(bodyKind || genre !== "lesson"
       ? []
       : findUndefinedHeadingAbbreviationIssues(source, parsedTree))
   );

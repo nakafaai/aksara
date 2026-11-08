@@ -3,7 +3,7 @@ export const metadata = {
   description: "Nutze den Nullvektor als additives neutrales Element und deute ihn in Algebra, Physik und Computergrafik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Vektoren und ihre Operationen",
 };
 
@@ -53,6 +53,36 @@ Wähle Osten als positive Richtung und die Anfangsposition als <InlineMath math=
 
 <BlockMath math="\Delta x=100\text{ m}+(-100\text{ m})=0\text{ m}" />
 
+Geh von <InlineMath math="A" /> nach <InlineMath math="B" />, dann nach <InlineMath math="C" /> und zurück nach <InlineMath math="A" />. Die drei Verschiebungen <InlineMath math="\overrightarrow{AB} + \overrightarrow{BC} + \overrightarrow{CA}" /> bringen dich zum Start zurück, ihre Summe ist also der Nullvektor <InlineMath math="\vec 0" />: überhaupt keine Ortsänderung.
+
+<MathVisual
+  title={<>Ein geschlossener Weg ergibt den Nullvektor</>}
+  description={<>Der Dreiecksweg von A über B und C zurück nach A, dessen drei Verschiebungsvektoren zusammen <InlineMath math="\vec 0" /> ergeben.</>}
+  labels={{
+    pa: <InlineMath math="A" />,
+    pb: <InlineMath math="B" />,
+    pc: <InlineMath math="C" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "bc", kind: "segment", from: { x: 4, y: 1 }, to: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "ca", kind: "segment", from: { x: 1, y: 3 }, to: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "pa", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "pb", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "pc", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "pa", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "pb", objectId: "pb", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "pc", objectId: "pc", at: { x: 1, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Nullvektor in Vektoroperationen
 
 Sowohl das Addieren als auch das Subtrahieren des Nullvektors **lässt den ursprünglichen Vektor unverändert**. Bei der Subtraktion zählt die Reihenfolge: Ziehst du einen Vektor vom Nullvektor ab, erhältst du seinen Gegenvektor.
@@ -76,6 +106,33 @@ Für jeden Vektor <InlineMath math="\vec{a}" />:
   <BlockMath math="\vec{0} - \vec{a} = -\vec{a},\qquad (0,0)-(3,-2)=(-3,2)" />
 </MathContainer>
 
+Ein Vektor minus sich selbst lässt nichts übrig. <InlineMath math="\vec a = (3, 1)" /> und <InlineMath math="-\vec a = (-3, -1)" /> sind gleich lang und entgegengesetzt, also <InlineMath math="\vec a - \vec a = \vec a + (-\vec a) = \vec 0" />, ein Vektor der Länge <InlineMath math="0" /> im Ursprung.
+
+<MathVisual
+  title={<>Ein Vektor und sein Gegenvektor heben sich auf</>}
+  description={<>Die Vektoren <InlineMath math="(3, 1)" /> und <InlineMath math="(-3, -1)" /> vom Ursprung, deren Summe der Nullvektor im Ursprung ist.</>}
+  labels={{
+    a: <InlineMath math="\vec a" />,
+    neg: <InlineMath math="-\vec a" />,
+    zero: <InlineMath math="\vec 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: -1 }, appearance: "secondary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "neg", objectId: "neg", at: { x: -3, y: -1 }, placement: "left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 ### Skalare Multiplikation mit Nullvektor
 
 Jede Nullkomponente bleibt nach der Multiplikation null. Das Ergebnis ist daher **weiterhin der Nullvektor**, unabhängig vom Skalar.
@@ -83,6 +140,37 @@ Jede Nullkomponente bleibt nach der Multiplikation null. Das Ergebnis ist daher 
 Für jeden Skalar <InlineMath math="k" />:
 
 <BlockMath math="k \cdot \vec{0} = \vec{0}" />
+
+Verkleinere einen Vektor mit immer kleineren Skalaren, dann rutscht seine Spitze zum Ursprung: <InlineMath math="2\vec a" />, <InlineMath math="\vec a" />, <InlineMath math="\tfrac12 \vec a" />. Beim Skalar <InlineMath math="0" /> landet die Spitze auf dem Startpunkt, also <InlineMath math="0\vec a = \vec 0" /> für jeden Vektor.
+
+<MathVisual
+  title={<>Skalare Vielfache schrumpfen zum Nullvektor</>}
+  description={<>Die Spitzen von <InlineMath math="2\vec a" />, <InlineMath math="\vec a" />, <InlineMath math="\tfrac12 \vec a" /> und <InlineMath math="0\vec a" /> für <InlineMath math="\vec a = (2, 1)" />.</>}
+  labels={{
+    two: <InlineMath math="2\vec a" />,
+    one: <InlineMath math="\vec a" />,
+    half: <InlineMath math="\tfrac12 \vec a" />,
+    zero: <InlineMath math="0\vec a = \vec 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.8 }, y: { min: -0.8, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ray", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "two", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "one", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "half", kind: "point", at: { x: 1, y: 0.5 }, appearance: "primary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "two", objectId: "two", at: { x: 4, y: 2 }, placement: "above-left" },
+      { key: "one", objectId: "one", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "half", objectId: "half", at: { x: 1, y: 0.5 }, placement: "above-left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Anwendungen des Nullvektors
 

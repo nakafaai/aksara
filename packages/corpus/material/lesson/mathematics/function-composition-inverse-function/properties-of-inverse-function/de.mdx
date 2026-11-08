@@ -3,7 +3,7 @@ export const metadata = {
   description: "Prüfe Umkehrfunktionen mit Kompositionsidentitäten, doppelter Umkehrung und dem Tausch von Definitions- und Bildmenge.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Funktionszusammensetzung und Umkehrfunktion",
 };
 
@@ -34,6 +34,53 @@ Für <InlineMath math="f(x) = 2x + 3" /> lautet die Umkehrfunktion <InlineMath m
 
 Beide Zusammensetzungen geben die ursprüngliche Eingabe <InlineMath math="x" /> zurück.
 
+Verfolg Eingaben durch <InlineMath math="f^{-1}(x) = \tfrac{x - 3}{2}" /> und dann <InlineMath math="f(x) = 2x + 3" />. Die Eingabe <InlineMath math="5" /> geht zu <InlineMath math="1" /> und kommt zu <InlineMath math="5" /> zurück, und jeder andere Weg endet dort, wo er begann. Das ist <InlineMath math="(f \circ f^{-1})(x) = x" />.
+
+<MathVisual
+  title={<>f macht die Umkehrfunktion rückgängig</>}
+  description={<>Drei Achsen für <InlineMath math="x" />, <InlineMath math="f^{-1}(x)" /> und <InlineMath math="f(f^{-1}(x))" />, auf denen jeder Weg zu seinem Startwert zurückkehrt.</>}
+  labels={{
+    x: <InlineMath math="x" />,
+    inv: <InlineMath math="f^{-1}(x)" />,
+    back: <InlineMath math="f(f^{-1}(x))" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -3.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis0", kind: "segment", from: { x: 0, y: -3 }, to: { x: 0, y: 6 }, appearance: "reference" },
+      { id: "axis1", kind: "segment", from: { x: 3, y: -3 }, to: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "axis2", kind: "segment", from: { x: 6, y: -3 }, to: { x: 6, y: 6 }, appearance: "reference" },
+      { id: "p0s0", kind: "segment", from: { x: 0, y: -1 }, to: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "p0s1", kind: "segment", from: { x: 3, y: -2 }, to: { x: 6, y: -1 }, appearance: "primary" },
+      { id: "p0v0", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "p0v1", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "p0v2", kind: "point", at: { x: 6, y: -1 }, appearance: "primary" },
+      { id: "p1s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "p1s1", kind: "segment", from: { x: 3, y: -1 }, to: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "p1v0", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "p1v1", kind: "point", at: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "p1v2", kind: "point", at: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "p2s0", kind: "segment", from: { x: 0, y: 3 }, to: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "p2s1", kind: "segment", from: { x: 3, y: 0 }, to: { x: 6, y: 3 }, appearance: "answer" },
+      { id: "p2v0", kind: "point", at: { x: 0, y: 3 }, appearance: "answer" },
+      { id: "p2v1", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "p2v2", kind: "point", at: { x: 6, y: 3 }, appearance: "answer" },
+      { id: "p3s0", kind: "segment", from: { x: 0, y: 5 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "p3s1", kind: "segment", from: { x: 3, y: 1 }, to: { x: 6, y: 5 }, appearance: "construction" },
+      { id: "p3v0", kind: "point", at: { x: 0, y: 5 }, appearance: "construction" },
+      { id: "p3v1", kind: "point", at: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "p3v2", kind: "point", at: { x: 6, y: 5 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "x", objectId: "axis0", at: { x: 0, y: 6 }, placement: "above" },
+      { key: "inv", objectId: "axis1", at: { x: 3, y: 6 }, placement: "above" },
+      { key: "back", objectId: "axis2", at: { x: 6, y: 6 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Umkehrung einer Umkehrfunktion
 
 Kehrt man eine Umkehrfunktion erneut um, erhält man die ursprüngliche Funktion zurück.
@@ -48,6 +95,38 @@ Eingabe und Ausgabe werden **zweimal vertauscht**. Für die Funktion von oben ka
 | --- | --- | --- |
 | <InlineMath math="(0,3)" /> | <InlineMath math="(3,0)" /> | <InlineMath math="(0,3)" /> |
 | <InlineMath math="(2,7)" /> | <InlineMath math="(7,2)" /> | <InlineMath math="(2,7)" /> |
+
+Der Graph von <InlineMath math="f^{-1}" /> ist das Spiegelbild von <InlineMath math="f" /> an der Geraden <InlineMath math="y = x" />. Für <InlineMath math="f(x) = 2x + 3" /> wird der Punkt <InlineMath math="(1, 5)" /> auf <InlineMath math="f" /> zu <InlineMath math="(5, 1)" /> auf <InlineMath math="f^{-1}(x) = \tfrac{x - 3}{2}" /> gespiegelt. Spiegelst du noch einmal, bist du wieder auf <InlineMath math="f" />, darum gilt <InlineMath math="(f^{-1})^{-1} = f" />.
+
+<MathVisual
+  title={<>f und ihre Umkehrfunktion spiegeln einander</>}
+  description={<>Die Geraden <InlineMath math="f(x) = 2x + 3" /> und <InlineMath math="f^{-1}(x) = \tfrac{x-3}{2}" />, Spiegelbilder an <InlineMath math="y = x" />, mit den gespiegelten Punkten <InlineMath math="(1, 5)" /> und <InlineMath math="(5, 1)" />.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    inv: <InlineMath math="f^{-1}" />,
+    p: <InlineMath math="(1, 5)" />,
+    q: <InlineMath math="(5, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 7 }, y: { min: -2, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "f", kind: "line", through: [{ x: 0, y: 3 }, { x: 1, y: 5 }], appearance: "primary" },
+      { id: "inv", kind: "line", through: [{ x: 3, y: 0 }, { x: 5, y: 1 }], appearance: "secondary" },
+      { id: "link", kind: "segment", from: { x: 1, y: 5 }, to: { x: 5, y: 1 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "q", kind: "point", at: { x: 5, y: 1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2, y: 7 }, placement: "right" },
+      { key: "inv", objectId: "inv", at: { x: 7, y: 2 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: 5, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Umkehrfunktion einer Zusammensetzung
 
@@ -85,8 +164,8 @@ Also <InlineMath math="(f \circ g)^{-1}(x) = \frac{x - 1}{3}" />.
 Da die Ergebnisse aus den Schritten 2 und 3 gleich sind, ist bewiesen, dass <InlineMath math="(f \circ g)^{-1}(x) = (g^{-1} \circ f^{-1})(x)" />.
 
 <Mermaid
-  title="Die Rechenschritte umkehren"
-  description="Zuerst wird mit drei multipliziert, dann eins addiert. Auf dem Rückweg ziehst du zuerst eins ab und teilst danach durch drei."
+  title={<>Die Rechenschritte umkehren</>}
+  description={<>Zuerst wird mit drei multipliziert, dann eins addiert. Auf dem Rückweg ziehst du zuerst eins ab und teilst danach durch drei.</>}
   chart={`flowchart LR
     A["2"] -->|"mal 3"| B["6"] -->|"plus 1"| C["7"]
     D["7"] -->|"minus 1"| E["6"] -->|"geteilt durch 3"| F["2"]
@@ -120,3 +199,38 @@ Die Quadratwurzel liefert die ursprüngliche Eingabe, weil die quadratische Funk
   <BlockMath math="q^{-1}(q(x))=\sqrt{x^2}=x,\quad x\geq0" />
   <BlockMath math="q(q^{-1}(y))=(\sqrt{y-1})^2+1=y,\quad y\geq1" />
 </MathContainer>
+
+Die Umkehrfunktion tauscht Eingaben und Ausgaben. Die Punkte von <InlineMath math="f(x) = 2x + 3" /> für <InlineMath math="x = 0, 1, 2, 3" /> sind <InlineMath math="(0, 3)" /> bis <InlineMath math="(3, 9)" />, die Punkte von <InlineMath math="f^{-1}" /> dieselben Paare umgekehrt, <InlineMath math="(3, 0)" /> bis <InlineMath math="(9, 3)" />. Die Definitionsmenge von <InlineMath math="f^{-1}" /> ist also die Wertemenge von <InlineMath math="f" /> und umgekehrt.
+
+<MathVisual
+  title={<>Eingaben und Ausgaben tauschen die Plätze</>}
+  description={<>Vier Punkte von <InlineMath math="f" /> und ihre Spiegelbilder an <InlineMath math="y = x" />, die Punkte von <InlineMath math="f^{-1}" />.</>}
+  labels={{
+    f3: <InlineMath math="(3, 9)" />,
+    g3: <InlineMath math="(9, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -0.5, max: 10 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "m0", kind: "segment", from: { x: 0, y: 3 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "m1", kind: "segment", from: { x: 1, y: 5 }, to: { x: 5, y: 1 }, appearance: "construction" },
+      { id: "m2", kind: "segment", from: { x: 2, y: 7 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "m3", kind: "segment", from: { x: 3, y: 9 }, to: { x: 9, y: 3 }, appearance: "construction" },
+      { id: "f0", kind: "point", at: { x: 0, y: 3 }, appearance: "primary" },
+      { id: "f1", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "f2", kind: "point", at: { x: 2, y: 7 }, appearance: "primary" },
+      { id: "f3", kind: "point", at: { x: 3, y: 9 }, appearance: "primary" },
+      { id: "g0", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "g1", kind: "point", at: { x: 5, y: 1 }, appearance: "secondary" },
+      { id: "g2", kind: "point", at: { x: 7, y: 2 }, appearance: "secondary" },
+      { id: "g3", kind: "point", at: { x: 9, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f3", objectId: "f3", at: { x: 3, y: 9 }, placement: "left" },
+      { key: "g3", objectId: "g3", at: { x: 9, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
