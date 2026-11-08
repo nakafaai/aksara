@@ -113,7 +113,7 @@ function edgeRuns(pieces: readonly EdgePiece[]) {
       }
       points = MutableList.make<SamplePoint>();
       MutableList.append(points, piece.point);
-      strict = piece.strict;
+      ({ strict } = piece);
     }
     MutableList.append(points, piece.next);
   });
