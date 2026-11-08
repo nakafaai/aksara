@@ -10,7 +10,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Mobil yang tidak dinyatakan melanggar pasti tidak pernah melaju lebih dari 100 km/jam di antara kedua kamera.",
+            "Mobil yang tidak dinyatakan melanggar pasti tidak pernah melaju lebih dari 100 km/jam pada saat mana pun di antara kedua kamera.",
         },
         { column: 1, label: "Mobil P tidak dinyatakan melanggar." },
         {
