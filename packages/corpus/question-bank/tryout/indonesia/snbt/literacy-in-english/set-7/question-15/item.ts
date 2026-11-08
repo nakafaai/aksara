@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Comparing July to December with January to June of the same year again",
+            "Comparing July to December with January to June of the same year",
         },
         {
           correct: false,

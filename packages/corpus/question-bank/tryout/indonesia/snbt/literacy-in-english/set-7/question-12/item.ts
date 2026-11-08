@@ -20,7 +20,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Families' average visit became longer by half after the gallery opened.",
+            "Families' average visit became 50 percent longer after the gallery opened.",
         },
         {
           column: 1,

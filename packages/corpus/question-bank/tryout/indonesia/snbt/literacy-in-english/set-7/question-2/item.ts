@@ -28,7 +28,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "The Tokyo network kept working well when one of its links was cut.",
+            "The slime mould's network around Tokyo kept working well when one link was cut.",
         },
       ],
     },
