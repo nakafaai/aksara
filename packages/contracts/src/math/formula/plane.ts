@@ -85,7 +85,10 @@ export function planeFormulaPoint(
   });
 }
 
-/** Places every point of a path; one point that is not finite breaks the path. */
+/**
+ * Places every point of a path, back to the first for a loop; one point that
+ * is not finite breaks it.
+ */
 function pathBranch(
   points: readonly PlaneFormulaPoint[],
   closed: boolean,
@@ -165,10 +168,10 @@ export function planeFormulaGeometry(
       const placed = yield* planeFormulaPoint(object, scope);
       return { kind: "points" as const, points: Option.toArray(placed) };
     }
-    if (object.kind === "path") {
+    if (object.kind === "path" || object.kind === "loop") {
       const branches = yield* pathBranch(
         object.points,
-        object.closed ?? false,
+        object.kind === "loop",
         scope
       );
       return { branches, kind: "curves" as const };

@@ -109,6 +109,7 @@ function planeObjectContained(
   }
   if (
     object.kind === "implicit" ||
+    object.kind === "loop" ||
     object.kind === "marker" ||
     object.kind === "parametric" ||
     object.kind === "path" ||

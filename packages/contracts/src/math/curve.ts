@@ -67,20 +67,29 @@ const PlaneMarkerObjectSchema = Schema.Struct({
 
 /**
  * Straight segments through points placed by formulas of the sliders, such as
- * the sides of a right triangle with angle a. `closed` joins the last point
- * back to the first, which draws a polygon's outline.
+ * the moving radius of a unit circle. A `path` stays open.
  */
 const PlanePathObjectSchema = Schema.Struct({
   ...MathObjectFields,
-  closed: Schema.optionalKey(Schema.Boolean),
   kind: Schema.Literal("path"),
   points: Schema.Array(PlaneFormulaPointSchema).check(Schema.isMinLength(2)),
+});
+
+/**
+ * A closed outline through points placed by formulas of the sliders, such as
+ * a right triangle with angle a: the last point joins back to the first.
+ */
+const PlaneLoopObjectSchema = Schema.Struct({
+  ...MathObjectFields,
+  kind: Schema.Literal("loop"),
+  points: Schema.Array(PlaneFormulaPointSchema).check(Schema.isMinLength(3)),
 });
 
 /** The plane objects a formula defines, which a renderer samples itself. */
 export const PlaneCurveObjectSchemas = [
   PlaneFunctionObjectSchema,
   PlaneImplicitObjectSchema,
+  PlaneLoopObjectSchema,
   PlaneMarkerObjectSchema,
   PlaneParametricObjectSchema,
   PlanePathObjectSchema,

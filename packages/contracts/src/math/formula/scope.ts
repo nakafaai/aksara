@@ -61,7 +61,7 @@ export function planeFormulaFields(
   if (object.kind === "marker") {
     return [expression(["x"], object.x, []), expression(["y"], object.y, [])];
   }
-  if (object.kind === "path") {
+  if (object.kind === "path" || object.kind === "loop") {
     return Arr.flatMap(object.points, (point, index) => [
       expression(["points", index, "x"], point.x, []),
       expression(["points", index, "y"], point.y, []),

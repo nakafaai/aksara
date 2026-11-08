@@ -166,9 +166,8 @@ describe("math visual boundary", () => {
             },
             {
               appearance: "secondary",
-              closed: true,
               id: "legs",
-              kind: "path",
+              kind: "loop",
               points: [
                 { x: "0", y: "0" },
                 { x: "cos(a)", y: "0" },

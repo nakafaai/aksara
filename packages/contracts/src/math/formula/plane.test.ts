@@ -175,7 +175,7 @@ describe("planeFormulaGeometry", () => {
     assert.deepStrictEqual(missing, { kind: "points", points: [] });
   });
 
-  it("joins a path through its formula points and closes it on request", () => {
+  it("joins a path through its formula points and a loop back to its first", () => {
     const corners = [
       { x: "0", y: "0" },
       { x: "cos(a)", y: "0" },
@@ -186,7 +186,7 @@ describe("planeFormulaGeometry", () => {
       { a: 0 }
     );
     const closed = geometry(
-      { ...fields, closed: true, kind: "path", points: corners },
+      { ...fields, kind: "loop", points: corners },
       { a: 0 }
     );
     const broken = geometry(
