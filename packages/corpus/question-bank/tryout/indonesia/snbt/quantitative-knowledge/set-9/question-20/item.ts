@@ -3,27 +3,27 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$3$$",
+          column: 2,
+          label: "Pendapatan Toko P naik $$50\\%$$ dari Maret ke April.",
         },
         {
-          correct: true,
-          label: "$$6$$",
+          column: 2,
+          label:
+            "Rata-rata pendapatan bulanan Toko Q selama lima bulan itu adalah 25 juta rupiah.",
         },
         {
-          correct: false,
-          label: "$$5$$",
+          column: 1,
+          label:
+            "Ada tepat dua bulan ketika pendapatan Toko P lebih besar daripada pendapatan Toko Q.",
         },
         {
-          correct: false,
-          label: "$$9$$",
-        },
-        {
-          correct: false,
-          label: "$$11$$",
+          column: 1,
+          label:
+            "Total pendapatan Toko Q selama lima bulan itu lebih besar daripada total pendapatan Toko P.",
         },
       ],
     },
