@@ -4,7 +4,7 @@ export const metadata = {
     "Menentukan besar resultan dua vektor yang membentuk sudut menggunakan rumus kosinus.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Vektor",
 };
 
@@ -98,7 +98,21 @@ R&=\sqrt{A^2+B^2+2AB\cos\theta} \\
 &\approx15{,}6\text{ N}
 \end{aligned}" />
 
-Resultannya lebih kecil dari <InlineMath math="18\text{ N}" /> karena kedua gaya tidak searah penuh, tetapi lebih besar dari tiap gaya tunggal karena keduanya masih memiliki arah yang cukup berdekatan.
+Resultannya lebih kecil dari <InlineMath math="18\text{ N}" /> karena kedua gaya tidak searah penuh, tetapi lebih besar dari tiap gaya tunggal karena keduanya masih memiliki arah yang cukup berdekatan. Periksa batasnya: <InlineMath math="15{,}6" /> berada di antara <InlineMath math="10 - 8 = 2" /> dan <InlineMath math="10 + 8 = 18" />. Arah resultan terhadap gaya pertama, sekitar <InlineMath math="26{,}3^\circ" />, dihitung dengan [rumus sinus](/id/materi/fisika/vektor/penentuan-arah-resultan-vektor-dengan-rumus-sinus).
+
+## Contoh Mencari Sudut Apit dari Resultan
+
+Dua gaya sebesar <InlineMath math="5\text{ N}" /> dan <InlineMath math="3\text{ N}" /> menghasilkan resultan <InlineMath math="7\text{ N}" />. Tentukan sudut apit kedua gaya.
+
+Rumus kosinus juga bisa dibalik untuk mencari sudut. **Kuadratkan resultan**, lalu selesaikan untuk <InlineMath math="\cos\theta" />:
+
+<MathContainer>
+  <BlockMath math="7^2 = 5^2 + 3^2 + 2(5)(3)\cos\theta" />
+  <BlockMath math="49 = 34 + 30\cos\theta" />
+  <BlockMath math="\cos\theta = \frac{15}{30} = \frac12 \quad\Longrightarrow\quad \theta = 60^\circ" />
+</MathContainer>
+
+Periksa dengan memasukkan sudut itu kembali: <InlineMath math="\sqrt{25 + 9 + 30 \cdot \frac12} = \sqrt{49} = 7\text{ N}" />.
 
 ## Memeriksa Jawaban dengan Kasus Batas
 
@@ -121,4 +135,39 @@ Pakai rumus kosinus ketika:
 - **sudut apit** kedua vektor diketahui
 - yang ditanya adalah besar resultan
 
-Jika vektornya lebih dari dua, uraikan setiap vektor menjadi komponen koordinat, lalu jumlahkan semua komponen <InlineMath math="x" /> dan <InlineMath math="y" />. Rumus kosinus dapat langsung dipakai jika besar dua vektor dan sudut apitnya diketahui.
+Jika vektornya lebih dari dua, uraikan setiap vektor menjadi komponen koordinat, lalu jumlahkan semua komponen <InlineMath math="x" /> dan <InlineMath math="y" />. Rumus kosinus dapat langsung dipakai jika besar dua vektor dan sudut apitnya diketahui. Untuk lebih dari dua vektor, pakai [metode analitis](/id/materi/fisika/vektor/penjumlahan-dan-pengurangan-vektor-dengan-metode-analitis) dengan komponen.
+
+## Kesalahan yang Sering Terjadi
+
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Memakai sudut dalam segitiga pangkal ke ujung sebagai <InlineMath math="\theta" /> | Rumus resultan memakai **sudut antara kedua vektor saat pangkalnya berimpit** | Untuk vektor searah, <InlineMath math="\theta = 0^\circ" /> harus memberi <InlineMath math="A + B" /> |
+| Memakai tanda minus seperti rumus kosinus segitiga | Sudut dalam segitiga adalah pelurus <InlineMath math="\theta" />, sehingga tandanya berubah | Hasil untuk <InlineMath math="\theta = 60^\circ" /> harus lebih besar dari setiap vektor tunggal |
+| Lupa menarik akar | Rumus memberi <InlineMath math="R^2" />, bukan <InlineMath math="R" /> | Resultan harus berada di antara <InlineMath math="\lvert A - B \rvert" /> dan <InlineMath math="A + B" /> |
+| Kalkulator dalam mode radian | <InlineMath math="\cos 60" /> dalam radian bernilai sekitar <InlineMath math="-0{,}95" /> | Periksa bahwa <InlineMath math="\cos 60^\circ = 0{,}5" /> |
+
+## Latihan Soal
+
+Hitung dengan rumus kosinus, lalu **periksa bahwa resultan berada di antara <InlineMath math="\lvert A - B \rvert" /> dan <InlineMath math="A + B" />**.
+
+1. Dua gaya sebesar <InlineMath math="6\text{ N}" /> dan <InlineMath math="8\text{ N}" /> saling tegak lurus. Tentukan besar resultannya.
+
+2. Dua vektor sebesar <InlineMath math="12" /> dan <InlineMath math="5" /> satuan membentuk sudut <InlineMath math="120^\circ" />. Tentukan besar resultannya.
+
+3. Dua gaya yang sama besar, masing-masing <InlineMath math="4\text{ N}" />, menghasilkan resultan <InlineMath math="4\text{ N}" />. Tentukan sudut apitnya.
+
+### Pembahasan
+
+**Soal 1**. **Tegak lurus berarti** <InlineMath math="\cos\theta = 0" />. Untuk <InlineMath math="\theta = 90^\circ" />, <InlineMath math="\cos\theta = 0" />, jadi <InlineMath math="R = \sqrt{36 + 64} = 10\text{ N}" />. Periksa: <InlineMath math="10" /> berada di antara <InlineMath math="2" /> dan <InlineMath math="14" />.
+
+**Soal 2**. Dengan <InlineMath math="\cos 120^\circ = -\frac12" />:
+
+<BlockMath math="R = \sqrt{144 + 25 + 2(12)(5)\left(-\frac12\right)} = \sqrt{109} \approx 10{,}4" />
+
+Periksa: <InlineMath math="10{,}4" /> berada di antara <InlineMath math="12 - 5 = 7" /> dan <InlineMath math="17" />, dan lebih kecil dari <InlineMath math="\sqrt{169} = 13" /> untuk sudut siku-siku karena kedua vektor makin berlawanan arah.
+
+**Soal 3**. Balik rumusnya:
+
+<BlockMath math="16 = 16 + 16 + 32\cos\theta \quad\Longrightarrow\quad \cos\theta = -\frac12 \quad\Longrightarrow\quad \theta = 120^\circ" />
+
+Periksa: <InlineMath math="\sqrt{16 + 16 + 32 \cdot \left(-\frac12\right)} = \sqrt{16} = 4\text{ N}" />.
