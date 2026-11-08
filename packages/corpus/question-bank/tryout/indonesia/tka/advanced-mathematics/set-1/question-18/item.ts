@@ -20,7 +20,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "rotasi $$90^\\circ$$ searah jarum jam dengan pusat $$O$$",
+          label: "pencerminan terhadap garis $$y=x$$",
         },
         {
           correct: false,
