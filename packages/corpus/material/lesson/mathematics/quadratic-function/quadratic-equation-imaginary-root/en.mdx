@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Imaginary Roots of a Quadratic Equation",
-  description: "A quadratic has imaginary roots when its discriminant is negative. Find the conjugate pair of roots and see what they mean on the parabola.",
+  description: "A quadratic with real coefficients has imaginary roots when its discriminant is negative. Find the conjugate roots and read them from the parabola.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
   dateModified: "2026-11-08",
@@ -85,7 +85,7 @@ Check <InlineMath math="x_1" /> by substituting it into the equation:
 
 <BlockMath math="\begin{aligned}(-2+i)^2+4(-2+i)+5&amp;=4-4i+i^2-8+4i+5\\&amp;=1+i^2=1-1=0\end{aligned}" />
 
-The root <InlineMath math="x_2" /> passes the same way, because only the sign of its imaginary part differs.
+The root <InlineMath math="x_2" /> satisfies the equation too, because the conjugate of a root of a polynomial with real coefficients is always a root as well.
 
 ## Example When the Leading Coefficient Is Not One
 
@@ -106,7 +106,7 @@ Write the function in vertex form, <InlineMath math="f(x) = a(x - h)^2 + k" />. 
 
 <BlockMath math="x = h \pm i\sqrt{\frac{k}{a}}" />
 
-So **the real part of the roots is the x-coordinate of the vertex**, and the imaginary part depends on how high the vertex sits above the axis.
+So **the real part of the roots is the x-coordinate of the vertex**, and the imaginary part depends on <InlineMath math="\frac{k}{a}" />, the height of the vertex divided by <InlineMath math="a" />.
 
 <MathVisual
   title="A parabola without an x-intercept"
@@ -149,11 +149,11 @@ For <InlineMath math="x^2 + 4x + 5 = (x + 2)^2 + 1" />, the vertex is <InlineMat
   }}
 />
 
-For <InlineMath math="2x^2 + x + 3" />, the vertex has <InlineMath math="h = -\frac14" /> and <InlineMath math="k = \frac{23}{8}" />. The vertex rule gives <InlineMath math="\sqrt{\frac{k}{a}} = \sqrt{\frac{23}{16}} = \frac{\sqrt{23}}{4}" />, so the roots are <InlineMath math="-\frac14 \pm \frac{\sqrt{23}}{4}\,i" />, matching the previous example.
+For <InlineMath math="2x^2 + x + 3" />, the vertex has <InlineMath math="h = -\frac14" /> and <InlineMath math="k = \frac{23}{8}" />. The vertex rule gives <InlineMath math="\sqrt{\frac{k}{a}} = \sqrt{\frac{23}{16}} = \frac{\sqrt{23}}{4}" />, so the roots are <InlineMath math="-\frac14 \pm \frac{\sqrt{23}}{4}\,i" />. The real part <InlineMath math="-\frac14" /> is the x-coordinate of the vertex, and <InlineMath math="\frac{\sqrt{23}}{4}" /> is the imaginary part, the same as the quadratic formula gives.
 
 ## Why the Roots Always Come in Conjugate Pairs
 
-In the formula <InlineMath math="x = -\frac{b}{2a} \pm \frac{\sqrt{|D|}}{2a}\,i" />, the <InlineMath math="\pm" /> sign changes only **the imaginary part**. The two roots have the form <InlineMath math="u + vi" /> and <InlineMath math="u - vi" />, called [conjugate complex numbers](/en/subjects/mathematics/complex-number/conjugate-complex-numbers).
+In the formula <InlineMath math="x = -\frac{b}{2a} \pm \frac{\sqrt{|D|}}{2a}\,i" />, the <InlineMath math="\pm" /> sign changes only **the imaginary part**. The two roots have the form <InlineMath math="u + vi" /> and <InlineMath math="u - vi" />, and such roots are [conjugate complex numbers](/en/subjects/mathematics/complex-number/conjugate-complex-numbers).
 
 So the sum of the roots is always real, <InlineMath math="2u = -\frac{b}{a}" />, and so is their product, <InlineMath math="u^2 + v^2 = \frac{c}{a}" />. Another consequence: a quadratic with real coefficients **cannot** have exactly one imaginary root. If <InlineMath math="3 + 2i" /> is a root, then <InlineMath math="3 - 2i" /> is a root too.
 
@@ -212,4 +212,4 @@ Check two values. For <InlineMath math="k = 0" />, the equation <InlineMath math
   <BlockMath math="x^2 - 2x + 5 = 0" />
 </MathContainer>
 
-Check: the discriminant is <InlineMath math="4 - 20 = -16" />, and the quadratic formula gives <InlineMath math="\frac{2 \pm 4i}{2} = 1 \pm 2i" />.
+Check: the discriminant is <InlineMath math="4 - 20 = -16" />, and the quadratic formula gives <InlineMath math="\frac{2 \pm 4i}{2} = 1 \pm 2i" />. Any nonzero integer multiple of this equation works too, for example <InlineMath math="2x^2 - 4x + 10 = 0" />.

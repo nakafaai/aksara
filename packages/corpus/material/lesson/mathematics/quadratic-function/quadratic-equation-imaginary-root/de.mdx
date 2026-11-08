@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Komplexe Lösungen quadratischer Gleichungen",
-  description: "Eine quadratische Gleichung hat komplexe Lösungen, wenn ihre Diskriminante negativ ist. Bestimme das konjugierte Paar und deute es an der Parabel.",
+  description: "Bei reellen Koeffizienten und negativer Diskriminante hat eine quadratische Gleichung komplexe Lösungen. Bestimme sie und deute sie am Graphen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
   dateModified: "2026-11-08",
@@ -13,7 +13,7 @@ Eine quadratische Gleichung <InlineMath math="ax^2 + bx + c = 0" /> mit reellen 
 
 <BlockMath math="x = \frac{-b \pm i\sqrt{|D|}}{2a}" />
 
-Dabei ist <InlineMath math="i" /> die imaginäre Einheit mit <InlineMath math="i^2 = -1" />. Die Lösungen bilden immer **ein konjugiertes Paar**: Sie haben denselben Realteil <InlineMath math="-\frac{b}{2a}" />, und ihre Imaginärteile haben entgegengesetzte Vorzeichen. Im Graphen schneidet die Parabel <InlineMath math="y = ax^2 + bx + c" /> die <InlineMath math="x" />-Achse nicht.
+Dabei ist <InlineMath math="i" /> die imaginäre Einheit mit <InlineMath math="i^2 = -1" />. Die Lösungen bilden immer **ein konjugiert komplexes Paar**: Sie haben denselben Realteil <InlineMath math="-\frac{b}{2a}" />, und ihre Imaginärteile haben entgegengesetzte Vorzeichen. Im Graphen schneidet die Parabel <InlineMath math="y = ax^2 + bx + c" /> die <InlineMath math="x" />-Achse nicht.
 
 <MathVisual
   title="Drei Parabeln mit verschiedenen Diskriminanten"
@@ -43,7 +43,7 @@ Dabei ist <InlineMath math="i" /> die imaginäre Einheit mit <InlineMath math="i
   }}
 />
 
-Für <InlineMath math="c = 3" /> schneidet die Parabel die <InlineMath math="x" />-Achse bei <InlineMath math="-3" /> und <InlineMath math="-1" />. Für <InlineMath math="c = 4" /> berührt sie die Achse nur bei <InlineMath math="-2" />. Für <InlineMath math="c = 5" /> hebt sich die Parabel über die Achse, und ihre beiden Lösungen werden zu <InlineMath math="-2 \pm i" />.
+Für <InlineMath math="c = 3" /> schneidet die Parabel die <InlineMath math="x" />-Achse bei <InlineMath math="-3" /> und <InlineMath math="-1" />. Für <InlineMath math="c = 4" /> berührt sie die Achse nur bei <InlineMath math="-2" />. Für <InlineMath math="c = 5" /> liegt die Parabel über der <InlineMath math="x" />-Achse, und ihre beiden Lösungen sind <InlineMath math="-2 \pm i" />.
 
 ## Die imaginäre Einheit i
 
@@ -85,7 +85,7 @@ Prüfe <InlineMath math="x_1" />, indem du es in die Gleichung einsetzt:
 
 <BlockMath math="\begin{aligned}(-2+i)^2+4(-2+i)+5&amp;=4-4i+i^2-8+4i+5\\&amp;=1+i^2=1-1=0\end{aligned}" />
 
-Die Lösung <InlineMath math="x_2" /> besteht die Probe genauso, weil sich nur das Vorzeichen ihres Imaginärteils unterscheidet.
+Auch <InlineMath math="x_2" /> erfüllt die Gleichung, denn die Konjugierte einer Lösung einer Gleichung mit reellen Koeffizienten ist immer ebenfalls eine Lösung.
 
 ## Beispiel mit führendem Koeffizienten ungleich eins
 
@@ -98,7 +98,7 @@ Hier ist <InlineMath math="a = 2" />, <InlineMath math="b = 1" /> und <InlineMat
   <BlockMath math="x = \frac{-1 \pm i\sqrt{23}}{2 \cdot 2} = -\frac{1}{4} \pm \frac{\sqrt{23}}{4}\,i" />
 </MathContainer>
 
-Teile **beide Teile** durch <InlineMath math="2a = 4" />, nicht nur den Realteil. Prüfe mit Summe und Produkt der Lösungen. Die Summe ist <InlineMath math="-\frac14 - \frac14 = -\frac12" />, gleich <InlineMath math="-\frac{b}{a}" />. Das Produkt ist <InlineMath math="\left(-\frac14\right)^2 + \left(\frac{\sqrt{23}}{4}\right)^2 = \frac{1}{16} + \frac{23}{16} = \frac{3}{2}" />, gleich <InlineMath math="\frac{c}{a}" />.
+Teile **Real- und Imaginärteil** durch <InlineMath math="2a = 4" />, nicht nur den Realteil. Prüfe mit Summe und Produkt der Lösungen. Die Summe ist <InlineMath math="-\frac14 - \frac14 = -\frac12" />, gleich <InlineMath math="-\frac{b}{a}" />. Das Produkt ist <InlineMath math="\left(-\frac14\right)^2 + \left(\frac{\sqrt{23}}{4}\right)^2 = \frac{1}{16} + \frac{23}{16} = \frac{3}{2}" />, gleich <InlineMath math="\frac{c}{a}" />.
 
 ## Der Scheitelpunkt verrät die komplexen Lösungen
 
@@ -106,7 +106,7 @@ Schreibe die Funktion in Scheitelpunktform, <InlineMath math="f(x) = a(x - h)^2 
 
 <BlockMath math="x = h \pm i\sqrt{\frac{k}{a}}" />
 
-Also ist **der Realteil der Lösungen die x-Koordinate des Scheitelpunkts**, und der Imaginärteil hängt davon ab, wie hoch der Scheitelpunkt über der Achse liegt.
+Also ist **der Realteil der Lösungen die x-Koordinate des Scheitelpunkts**, und der Imaginärteil hängt von <InlineMath math="\frac{k}{a}" /> ab, also von der Scheitelpunkthöhe geteilt durch <InlineMath math="a" />.
 
 <MathVisual
   title="Eine Parabel ohne Schnittpunkt mit der x-Achse"
@@ -149,7 +149,7 @@ Für <InlineMath math="x^2 + 4x + 5 = (x + 2)^2 + 1" /> ist der Scheitelpunkt <I
   }}
 />
 
-Für <InlineMath math="2x^2 + x + 3" /> hat der Scheitelpunkt <InlineMath math="h = -\frac14" /> und <InlineMath math="k = \frac{23}{8}" />. Die Scheitelpunktregel liefert <InlineMath math="\sqrt{\frac{k}{a}} = \sqrt{\frac{23}{16}} = \frac{\sqrt{23}}{4}" />, also sind die Lösungen <InlineMath math="-\frac14 \pm \frac{\sqrt{23}}{4}\,i" />, wie im vorigen Beispiel.
+Für <InlineMath math="2x^2 + x + 3" /> hat der Scheitelpunkt <InlineMath math="h = -\frac14" /> und <InlineMath math="k = \frac{23}{8}" />. Die Scheitelpunktregel liefert <InlineMath math="\sqrt{\frac{k}{a}} = \sqrt{\frac{23}{16}} = \frac{\sqrt{23}}{4}" />, also sind die Lösungen <InlineMath math="-\frac14 \pm \frac{\sqrt{23}}{4}\,i" />. Der Realteil <InlineMath math="-\frac14" /> ist die x-Koordinate des Scheitelpunkts, und <InlineMath math="\frac{\sqrt{23}}{4}" /> ist der Imaginärteil, wie bei der Lösungsformel.
 
 ## Warum die Lösungen immer konjugiert auftreten
 
@@ -202,7 +202,7 @@ Probe: Die Summe ist <InlineMath math="-1 = -\frac{b}{a}" />, und das Produkt is
   <BlockMath math="k^2 < 36 \quad\Longrightarrow\quad -6 < k < 6" />
 </MathContainer>
 
-Prüfe zwei Werte. Für <InlineMath math="k = 0" /> liefert <InlineMath math="x^2 + 9 = 0" /> die Lösungen <InlineMath math="x = \pm 3i" />. Für <InlineMath math="k = 6" /> ist <InlineMath math="D = 0" /> und die Lösung die doppelte reelle Zahl <InlineMath math="-3" />, also gehört der Rand <InlineMath math="6" /> nicht dazu.
+Prüfe zwei Werte. Für <InlineMath math="k = 0" /> liefert <InlineMath math="x^2 + 9 = 0" /> die Lösungen <InlineMath math="x = \pm 3i" />. Für <InlineMath math="k = 6" /> ist <InlineMath math="D = 0" /> mit der reellen Doppellösung <InlineMath math="-3" />, also gehört <InlineMath math="6" /> nicht dazu.
 
 **Aufgabe 4**. Nutze Summe und Produkt der Lösungen:
 
@@ -212,4 +212,4 @@ Prüfe zwei Werte. Für <InlineMath math="k = 0" /> liefert <InlineMath math="x^
   <BlockMath math="x^2 - 2x + 5 = 0" />
 </MathContainer>
 
-Probe: Die Diskriminante ist <InlineMath math="4 - 20 = -16" />, und die Lösungsformel liefert <InlineMath math="\frac{2 \pm 4i}{2} = 1 \pm 2i" />.
+Probe: Die Diskriminante ist <InlineMath math="4 - 20 = -16" />, und die Lösungsformel liefert <InlineMath math="\frac{2 \pm 4i}{2} = 1 \pm 2i" />. Jedes ganzzahlige Vielfache ungleich null dieser Gleichung passt ebenfalls, zum Beispiel <InlineMath math="2x^2 - 4x + 10 = 0" />.
