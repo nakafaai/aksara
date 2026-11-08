@@ -4,7 +4,7 @@ import type { TrackSourceInput } from "#corpus/tryout/schema";
 /** Active official-format TKA Advanced Mathematics sets, an elective subject. */
 export const tkaAdvancedMathematicsTrack = {
   key: "advanced-mathematics",
-  kind: "subject",
+  group: "senior-high-school",
   order: 4,
   profile: {
     names: {
