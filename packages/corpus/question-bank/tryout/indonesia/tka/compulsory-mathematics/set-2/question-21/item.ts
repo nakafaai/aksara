@@ -13,7 +13,7 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$32^\\circ\\text{C}$$",
+          label: "$$32{,}0^\\circ\\text{C}$$",
         },
         {
           correct: true,
@@ -21,15 +21,15 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "sekitar $$32{,}7^\\circ\\text{C}$$",
+          label: "$$32{,}7^\\circ\\text{C}$$",
         },
         {
           correct: false,
-          label: "$$33^\\circ\\text{C}$$",
+          label: "$$33{,}0^\\circ\\text{C}$$",
         },
         {
           correct: false,
-          label: "sekitar $$32{,}2^\\circ\\text{C}$$",
+          label: "$$32{,}2^\\circ\\text{C}$$",
         },
       ],
     },
