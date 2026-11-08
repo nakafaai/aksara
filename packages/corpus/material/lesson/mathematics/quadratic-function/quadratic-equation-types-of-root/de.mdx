@@ -1,61 +1,31 @@
 export const metadata = {
   title: "Arten von Lösungen quadratischer Gleichungen",
-  description: "Unterscheide mithilfe der Diskriminante zwei reelle Lösungen, eine doppelte Lösung und zwei nichtreelle komplexe Lösungen.",
+  description: "Lies an der Diskriminante ab, ob zwei reelle, eine doppelte oder zwei komplexe Lösungen vorliegen, und bestimme die Vorzeichen der Lösungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Quadratische Funktionen",
 };
 
-## Lösungen mithilfe der Diskriminante einordnen
+## Die Art der Lösungen an der Diskriminante ablesen
 
-Für eine quadratische Gleichung <InlineMath math="ax^2 + bx + c = 0" /> mit reellen Koeffizienten und <InlineMath math="a \neq 0" /> ist jede Zahl <InlineMath math="x" /> eine Lösung, die die Gleichung erfüllt: Setzt du sie ein, stimmen beide Seiten überein. Zum Beispiel ergibt <InlineMath math="x = 2" /> in <InlineMath math="x^2 - 5x + 6 = 0" /> den Wert <InlineMath math="4 - 10 + 6 = 0" />, also ist 2 eine Lösung.
+Welche Art von Lösungen eine quadratische Gleichung <InlineMath math="ax^2 + bx + c = 0" /> mit reellen Koeffizienten und <InlineMath math="a \ne 0" /> hat, entscheidet die **Diskriminante** <InlineMath math="D = b^2 - 4ac" />. Du musst nur <InlineMath math="D" /> berechnen und das Vorzeichen ablesen, ohne die Gleichung ganz zu lösen:
 
-Über den reellen Zahlen allein hat eine Gleichung mit negativer Diskriminante keine Lösung. Über den komplexen Zahlen besitzt dagegen jede quadratische Gleichung zwei Lösungen. Fallen beide zusammen, wie bei <InlineMath math="x^2 - 6x + 9 = 0" /> unten, zählen wir diese doppelte Lösung zweimal.
+| Diskriminante | Art der Lösungen | Graph von <InlineMath math="y = ax^2 + bx + c" /> |
+| --- | --- | --- |
+| <InlineMath math="D > 0" /> | Zwei verschiedene reelle Lösungen | Schneidet die <InlineMath math="x" />-Achse in zwei Punkten |
+| <InlineMath math="D = 0" /> | Eine doppelte reelle Lösung | Berührt die <InlineMath math="x" />-Achse im Scheitelpunkt |
+| <InlineMath math="D < 0" /> | Zwei nicht reelle komplexe Lösungen | Trifft die <InlineMath math="x" />-Achse nicht |
 
-[Die Lösungsformel](/de/faecher/mathematik/quadratische-funktionen/loesungsformel-fuer-quadratische-gleichungen) berechnet beide Lösungen direkt aus <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" />:
+Die Diskriminante ist der Ausdruck unter der Wurzel in der [Lösungsformel für quadratische Gleichungen](/de/faecher/mathematik/quadratische-funktionen/loesungsformel-fuer-quadratische-gleichungen):
 
-<BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
+<BlockMath math="x = \frac{-b \pm \sqrt{D}}{2a}" />
 
-Der Ausdruck <InlineMath math="b^2 - 4ac" /> heißt <Highlight>Diskriminante</Highlight> und wird mit <InlineMath math="D" /> bezeichnet. Bei <InlineMath math="D > 0" /> liegen zwei verschiedene reelle Lösungen vor, bei <InlineMath math="D = 0" /> eine doppelte und bei <InlineMath math="D < 0" /> **zwei nichtreelle komplexe Lösungen**. Am Vorzeichen von <InlineMath math="D" /> erkennst du also die Lösungsart, ohne die Formel ganz auszurechnen.
-
-### Zwei verschiedene reelle Lösungen
-
-Für <InlineMath math="D > 0" /> oder <InlineMath math="b^2 > 4ac" /> besitzt die quadratische Gleichung **zwei verschiedene reelle Lösungen**.
-
-<BlockMath math="\begin{aligned} &amp;x_1 = \frac{-b + \sqrt{D}}{2a} \\ &amp;\text{und} \\ &amp;x_2 = \frac{-b - \sqrt{D}}{2a} \end{aligned}" />
-
-Beispiel: <InlineMath math="x^2 - 5x + 6 = 0" />
-
-<BlockMath math="\begin{aligned}D&amp;=(-5)^2-4\cdot1\cdot6=1\\x_1&amp;=\frac{5+\sqrt1}{2}=3\\x_2&amp;=\frac{5-\sqrt1}{2}=2\end{aligned}" />
-
-### Eine doppelte reelle Lösung
-
-Für <InlineMath math="D = 0" /> oder <InlineMath math="b^2 = 4ac" /> stimmen beide Werte aus der Lösungsformel überein. Die Gleichung besitzt eine **doppelte reelle Lösung**.
-
-<BlockMath math="x_1 = x_2 = \frac{-b}{2a}" />
-
-Beispiel: <InlineMath math="x^2 - 6x + 9 = 0" />
-
-<BlockMath math="\begin{aligned}D&amp;=(-6)^2-4\cdot1\cdot9=0\\x_1=x_2&amp;=\frac{6\pm0}{2}=3\end{aligned}" />
-
-### Zwei nichtreelle komplexe Lösungen
-
-Für <InlineMath math="D < 0" /> oder <InlineMath math="b^2 < 4ac" /> besitzt die quadratische Gleichung **zwei nichtreelle komplexe Lösungen**. Sie bilden ein konjugiertes Paar.
-
-<BlockMath math="\begin{aligned} &amp;x_1 = \frac{-b + i\sqrt{|D|}}{2a} \\ &amp;\text{und} \\ &amp;x_2 = \frac{-b - i\sqrt{|D|}}{2a} \end{aligned}" />
-
-Dabei definiert <InlineMath math="i^2=-1" /> die imaginäre Einheit.
-
-Beispiel: <InlineMath math="x^2 + 2x + 5 = 0" />
-
-<BlockMath math="\begin{aligned}D&amp;=2^2-4\cdot1\cdot5=-16\\x&amp;=\frac{-2\pm i\sqrt{16}}{2}\\&amp;=\frac{-2\pm4i}{2}=-1\pm2i\end{aligned}" />
-
-Im reellen Graphen sind **reelle Lösungen die x-Koordinaten der Schnittpunkte mit der x-Achse**. Die erste Kurve schneidet die Achse zweimal, die zweite berührt sie an der doppelten Lösung und die dritte bleibt darüber. Nichtreelle komplexe Lösungen liegen nicht auf der reellen x-Achse.
+Das Zeichen <InlineMath math="\pm" /> liefert zwei verschiedene Werte, wenn <InlineMath math="\sqrt{D}" /> positiv ist, einen Wert, wenn <InlineMath math="\sqrt{D} = 0" /> ist, und imaginäre Zahlen, wenn <InlineMath math="D" /> negativ ist.
 
 <MathVisual
-  title="Diskriminante und Achsenschnittpunkte"
-  description="Vergleiche die drei berechneten Beispiele. Folge jeder Kurve von ihrer Gleichungsbeschriftung zur x-Achse und zähle ihre Schnittpunkte."
+  title="Diskriminante und Schnittpunkte des Graphen"
+  description="Die Parabeln von x² − 5x + 6, x² − 6x + 9 und x² + 2x + 5. Folge jeder Kurve von ihrer Gleichung zur x-Achse und zähle die Schnittpunkte."
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.5, max: 5.5 }, y: { min: -1, max: 10 } },
@@ -78,49 +48,172 @@ Im reellen Graphen sind **reelle Lösungen die x-Koordinaten der Schnittpunkte m
   }}
 />
 
-## Lösungen und Koeffizienten verknüpfen
+## Zwei verschiedene reelle Lösungen
 
-Sind <InlineMath math="x_1" /> und <InlineMath math="x_2" /> die Lösungen von <InlineMath math="ax^2 + bx + c = 0" />, gelten nach den Formeln von Vieta:
+Ist <InlineMath math="D > 0" />, hat die Gleichung **zwei verschiedene reelle Lösungen**:
 
-Multipliziere die Faktorform aus und vergleiche die Koeffizienten gleicher Potenzen von x. So erhältst du **Summe und Produkt der Lösungen**:
+<BlockMath math="x_1 = \frac{-b + \sqrt{D}}{2a}, \qquad x_2 = \frac{-b - \sqrt{D}}{2a}" />
+
+Für <InlineMath math="x^2 - 5x + 6 = 0" /> ist die Diskriminante <InlineMath math="D = (-5)^2 - 4 \cdot 1 \cdot 6 = 1" />, also <InlineMath math="x = \frac{5 \pm 1}{2}" />, das heißt <InlineMath math="3" /> und <InlineMath math="2" />. Probe durch Faktorisieren: <InlineMath math="(x - 2)(x - 3) = x^2 - 5x + 6" />.
+
+Bei ganzzahligen Koeffizienten verrät <InlineMath math="D" /> außerdem, **ob die Lösungen rational sind**. Ist <InlineMath math="D" /> eine Quadratzahl wie <InlineMath math="1" />, sind die Lösungen rational, und die Gleichung lässt sich faktorisieren. Sonst sind sie irrational. Zum Beispiel hat <InlineMath math="x^2 - 4x + 1 = 0" /> die Diskriminante <InlineMath math="D = 12" />, also <InlineMath math="x = \frac{4 \pm 2\sqrt{3}}{2} = 2 \pm \sqrt{3}" />.
+
+## Eine doppelte reelle Lösung
+
+Ist <InlineMath math="D = 0" />, ändert das Zeichen <InlineMath math="\pm" /> nichts, und die Gleichung hat **eine doppelte reelle Lösung**:
+
+<BlockMath math="x_1 = x_2 = -\frac{b}{2a}" />
+
+Für <InlineMath math="x^2 - 6x + 9 = 0" /> ist die Diskriminante <InlineMath math="(-6)^2 - 4 \cdot 1 \cdot 9 = 0" /> und die Lösung <InlineMath math="x = \frac{6}{2} = 3" />. Probe: Die linke Seite ist das vollständige Quadrat <InlineMath math="(x - 3)^2" />, also berührt der Graph die <InlineMath math="x" />-Achse genau im Scheitelpunkt <InlineMath math="(3, 0)" />.
+
+Die Bedingung <InlineMath math="D = 0" /> dient oft dazu, einen Parameter zu bestimmen. Angenommen, <InlineMath math="x^2 + (m - 2)x + 4 = 0" /> soll eine doppelte Lösung haben:
+
+<MathContainer>
+  <BlockMath math="D = (m - 2)^2 - 4 \cdot 1 \cdot 4 = 0" />
+  <BlockMath math="(m - 2)^2 = 16 \quad\Longrightarrow\quad m - 2 = \pm 4" />
+  <BlockMath math="m = 6 \quad \text{oder} \quad m = -2" />
+</MathContainer>
+
+<MathVisual
+  title="Zwei Werte von m mit doppelter Lösung"
+  description={<>Für <InlineMath math="m = 6" /> lautet die Gleichung <InlineMath math="x^2 + 4x + 4 = 0" />, für <InlineMath math="m = -2" /> lautet sie <InlineMath math="x^2 - 4x + 4 = 0" />. Beide Parabeln berühren die x-Achse.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 4 }, domain: { min: -5, max: 1 }, appearance: "primary" },
+      { id: "right", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -4, c: 4 }, domain: { min: -1, max: 5 }, appearance: "secondary" },
+      { id: "left-root", kind: "point", at: { x: -2, y: 0 }, appearance: "primary" },
+      { id: "right-root", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -5, y: 9 }, placement: "right" },
+      { key: "right", objectId: "right", at: { x: 5, y: 9 }, placement: "left" },
+      { key: "left-root", objectId: "left-root", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "right-root", objectId: "right-root", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    left: <InlineMath math="m = 6" />,
+    right: <InlineMath math="m = -2" />,
+    "left-root": <InlineMath math="-2" />,
+    "right-root": <InlineMath math="2" />,
+  }}
+/>
+
+Prüfe beide Werte. Für <InlineMath math="m = 6" /> ist <InlineMath math="x^2 + 4x + 4 = (x + 2)^2" /> mit der doppelten Lösung <InlineMath math="-2" />. Für <InlineMath math="m = -2" /> ist <InlineMath math="x^2 - 4x + 4 = (x - 2)^2" /> mit der doppelten Lösung <InlineMath math="2" />.
+
+## Zwei nicht reelle komplexe Lösungen
+
+Ist <InlineMath math="D < 0" />, ist die Wurzel aus <InlineMath math="D" /> keine reelle Zahl. Beide Lösungen sind **komplex und nicht reell**, und sie bilden immer ein konjugiert komplexes Paar:
+
+<BlockMath math="x = \frac{-b \pm i\sqrt{|D|}}{2a}, \qquad i^2 = -1" />
+
+Für <InlineMath math="x^2 + 2x + 5 = 0" /> ist die Diskriminante <InlineMath math="2^2 - 4 \cdot 1 \cdot 5 = -16" />, also <InlineMath math="x = \frac{-2 \pm 4i}{2} = -1 \pm 2i" />. Probe mit Summe und Produkt: <InlineMath math="(-1 + 2i) + (-1 - 2i) = -2 = -\frac{b}{a}" /> und <InlineMath math="(-1)^2 + 2^2 = 5 = \frac{c}{a}" />. Der Realteil <InlineMath math="-1" /> ist die x-Koordinate des Scheitelpunkts von <InlineMath math="(x + 1)^2 + 4" />, der Zusammenhang im Kern der [komplexen Lösungen quadratischer Gleichungen](/de/faecher/mathematik/quadratische-funktionen/komplexe-loesungen-quadratischer-gleichungen).
+
+## Vorzeichen der Lösungen aus Summe und Produkt
+
+Die faktorisierte Form <InlineMath math="a(x - x_1)(x - x_2)" /> muss gleich <InlineMath math="ax^2 + bx + c" /> sein. Vergleiche die Koeffizienten gleicher Potenzen:
 
 <BlockMath math="\begin{aligned}a(x-x_1)(x-x_2)&amp;=a[x^2-(x_1+x_2)x+x_1x_2]\\b&amp;=-a(x_1+x_2)\\c&amp;=ax_1x_2\end{aligned}" />
 
+Also ist **die Summe der Lösungen** <InlineMath math="x_1 + x_2 = -\frac{b}{a}" /> und **das Produkt der Lösungen** <InlineMath math="x_1 x_2 = \frac{c}{a}" />. Bei reellen Lösungen (<InlineMath math="D \ge 0" />) bestimmen diese beiden Werte die Vorzeichen, ohne dass du die Lösungen berechnest:
+
+| Bedingung (mit <InlineMath math="D \ge 0" />) | Vorzeichen der Lösungen |
+| --- | --- |
+| <InlineMath math="x_1 x_2 > 0" /> und <InlineMath math="x_1 + x_2 > 0" /> | Beide positiv |
+| <InlineMath math="x_1 x_2 > 0" /> und <InlineMath math="x_1 + x_2 < 0" /> | Beide negativ |
+| <InlineMath math="x_1 x_2 < 0" /> | Verschiedene Vorzeichen |
+
+Ein positives Produkt bedeutet, dass beide Lösungen dasselbe Vorzeichen haben, und dann entscheidet die Summe über dieses Vorzeichen. Ein negatives Produkt bedeutet, dass eine Lösung positiv und die andere negativ ist.
+
+<MathVisual
+  title="Ein negatives Produkt der Lösungen"
+  description={<>Der Graph von <InlineMath math="y = x^2 + x - 6" /> schneidet die y-Achse bei <InlineMath math="-6" />, unterhalb der x-Achse, also liegen seine Nullstellen auf beiden Seiten des Ursprungs.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 3.5 }, y: { min: -7, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 1, c: -6 }, domain: { min: -4, max: 3 }, appearance: "primary" },
+      { id: "negative-root", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "positive-root", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: -6 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "negative-root", objectId: "negative-root", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "positive-root", objectId: "positive-root", at: { x: 2, y: 0 }, placement: "above-right" },
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: -6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "negative-root": <InlineMath math="-3" />,
+    "positive-root": <InlineMath math="2" />,
+    intercept: <InlineMath math="(0, -6)" />,
+  }}
+/>
+
+Für <InlineMath math="x^2 + x - 6 = 0" /> ist das Produkt der Lösungen <InlineMath math="\frac{c}{a} = -6 < 0" />, also haben die Lösungen verschiedene Vorzeichen. Probe: <InlineMath math="x^2 + x - 6 = (x + 3)(x - 2)" /> mit den Lösungen <InlineMath math="-3" /> und <InlineMath math="2" />. Der Graph zeigt den Grund: Für <InlineMath math="a > 0" /> liegt die Parabel bei negativem <InlineMath math="f(0) = c" /> an der Stelle <InlineMath math="x = 0" /> unter der Achse, also muss sie die Achse einmal links und einmal rechts vom Ursprung schneiden.
+
+## Beispiel zur Bedingung für zwei verschiedene reelle Lösungen
+
+Bestimme die Werte von <InlineMath math="k" />, für die <InlineMath math="kx^2 + 4x + 1 = 0" /> zwei verschiedene reelle Lösungen hat.
+
+Es gibt **zwei Bedingungen**. Die Gleichung muss quadratisch sein, also <InlineMath math="k \ne 0" />, und die Diskriminante muss positiv sein:
+
 <MathContainer>
-  <BlockMath math="x_1 + x_2 = -\frac{b}{a}" />
-  <BlockMath math="x_1 \times x_2 = \frac{c}{a}" />
+  <BlockMath math="D = 4^2 - 4 \cdot k \cdot 1 = 16 - 4k > 0" />
+  <BlockMath math="k < 4" />
 </MathContainer>
 
-Mit diesen Beziehungen lassen sich berechnete Lösungen überprüfen oder die Koeffizientenverhältnisse <InlineMath math="b/a" /> und <InlineMath math="c/a" /> bestimmen. Eine konkrete Gleichung ist festgelegt, sobald zusätzlich der Leitkoeffizient <InlineMath math="a" /> bekannt ist.
+Also gilt <InlineMath math="k < 4" /> und <InlineMath math="k \ne 0" />. Probe mit <InlineMath math="k = 3" />: Die Gleichung <InlineMath math="3x^2 + 4x + 1 = (3x + 1)(x + 1)" /> hat die Lösungen <InlineMath math="-\frac13" /> und <InlineMath math="-1" />. Für <InlineMath math="k = 0" /> wird daraus <InlineMath math="4x + 1 = 0" /> mit nur einer Lösung, also muss dieser Wert wegfallen.
 
-## Übung
+## Typische Fehler
 
-Die Aufgabe verlangt zuerst die Einordnung und danach die Lösungen, deshalb berechnest du die **Diskriminante vor dem Wurzelziehen**. Die Probe über Summe und Produkt zeigt anschließend, ob beide Nullstellen zusammenpassen.
+| Fehler | Warum er scheitert | So prüfst du |
+| --- | --- | --- |
+| <InlineMath math="(-5)^2" /> als <InlineMath math="-25" /> rechnen | Das Quadrat einer negativen Zahl ist immer positiv | <InlineMath math="(-5)^2 = 25" />, also ist <InlineMath math="D" /> für <InlineMath math="x^2 - 5x + 6" /> gleich <InlineMath math="1" /> |
+| Die Bedingung <InlineMath math="a \ne 0" /> vergessen | Für <InlineMath math="a = 0" /> ist die Gleichung linear, und <InlineMath math="D" /> gilt nicht | Schreibe die Bedingung an den Leitkoeffizienten auf, bevor du <InlineMath math="D" /> berechnest |
+| Bei <InlineMath math="D = 0" /> von keiner Lösung sprechen | Die Lösung existiert und ist doppelt, nämlich <InlineMath math="-\frac{b}{2a}" /> | Der Graph berührt die Achse im Scheitelpunkt |
+| Die Vorzeichen nur aus der Summe ablesen | Eine positive Summe kann aus einer großen und einer negativen Lösung entstehen | Prüfe zuerst das Produkt |
+| Die Vorzeichenregeln bei <InlineMath math="D < 0" /> anwenden | Nicht reelle komplexe Lösungen sind weder positiv noch negativ | Stelle zuerst <InlineMath math="D \ge 0" /> sicher |
 
-Ordne die Lösungen der Gleichung <InlineMath math="2x^2-4x+5=0" /> ein und bestimme sie. Prüfe sie anschließend über ihre Summe und ihr Produkt.
+Die schnellste Probe nach dem Lösen ist, **Summe und Produkt** mit <InlineMath math="-\frac{b}{a}" /> und <InlineMath math="\frac{c}{a}" /> zu vergleichen.
 
-### Ausführliche Lösung
+## Übungsaufgaben
 
-Die Koeffizienten sind <InlineMath math="a=2" />, <InlineMath math="b=-4" /> und <InlineMath math="c=5" />. Die Diskriminante ist
+Berechne zuerst die Diskriminante und **bestimme die Art der Lösungen, bevor du die Gleichung löst**.
 
-<BlockMath math="\begin{aligned} D &amp;=(-4)^2-4\cdot2\cdot5 \\ &amp;=16-40 \\ &amp;=-24 \end{aligned}" />
+1. Bestimme die Art der Lösungen von <InlineMath math="3x^2 - 7x + 2 = 0" /> und löse die Gleichung.
 
-Wegen <InlineMath math="D<0" /> besitzt die Gleichung **zwei nichtreelle komplexe Lösungen**. Wir setzen in die Lösungsformel ein und verwenden <InlineMath math="\sqrt{-24}=2i\sqrt6" />:
+2. Bestimme die Art der Lösungen von <InlineMath math="2x^2 - 4x + 5 = 0" />, löse die Gleichung und prüfe mit Summe und Produkt der Lösungen.
+
+3. Bestimme die Werte von <InlineMath math="p" />, für die <InlineMath math="x^2 - 2px + 9 = 0" /> eine doppelte Lösung hat, und gib die Lösung an.
+
+4. Bestimme ohne Lösen der Gleichung die Vorzeichen beider Lösungen von <InlineMath math="x^2 - 8x + 12 = 0" />.
+
+### Lösungen
+
+**Aufgabe 1**. Die Diskriminante ist <InlineMath math="D = (-7)^2 - 4 \cdot 3 \cdot 2 = 49 - 24 = 25" />. Wegen <InlineMath math="D > 0" /> und <InlineMath math="25 = 5^2" /> gibt es **zwei verschiedene rationale reelle Lösungen**:
+
+<BlockMath math="x = \frac{7 \pm 5}{6} \quad\Longrightarrow\quad x_1 = 2, \quad x_2 = \frac13" />
+
+Probe: <InlineMath math="(3x - 1)(x - 2) = 3x^2 - 7x + 2" />.
+
+**Aufgabe 2**. Die Diskriminante ist <InlineMath math="D = (-4)^2 - 4 \cdot 2 \cdot 5 = -24" />, also gibt es **zwei nicht reelle komplexe Lösungen**. Mit <InlineMath math="\sqrt{-24} = 2i\sqrt{6}" /> gilt:
+
+<BlockMath math="x = \frac{4 \pm 2i\sqrt{6}}{4} = 1 \pm \frac{\sqrt{6}}{2}\,i" />
+
+Probe: Die Summe ist <InlineMath math="2 = -\frac{b}{a}" />, und das Produkt ist <InlineMath math="1 + \frac{6}{4} = \frac52 = \frac{c}{a}" />.
+
+**Aufgabe 3**. Eine doppelte Lösung bedeutet <InlineMath math="D = 0" />:
 
 <MathContainer>
-  <BlockMath math="x=\frac{-(-4)\pm\sqrt{-24}}{2\cdot2}" />
-  <BlockMath math="x=\frac{4\pm2i\sqrt6}{4}=1\pm\frac{i\sqrt6}{2}" />
+  <BlockMath math="D = (-2p)^2 - 4 \cdot 1 \cdot 9 = 4p^2 - 36 = 0" />
+  <BlockMath math="p^2 = 9 \quad\Longrightarrow\quad p = 3 \quad \text{oder} \quad p = -3" />
 </MathContainer>
 
-Somit gilt:
+Die Lösung ist <InlineMath math="x = -\frac{b}{2a} = p" />, also <InlineMath math="3" /> für <InlineMath math="p = 3" /> und <InlineMath math="-3" /> für <InlineMath math="p = -3" />. Probe: <InlineMath math="x^2 - 6x + 9 = (x - 3)^2" /> und <InlineMath math="x^2 + 6x + 9 = (x + 3)^2" />.
 
-<BlockMath math="\begin{aligned} &amp;x_1=1+\frac{i\sqrt6}{2} \\ &amp;\text{und} \\ &amp;x_2=1-\frac{i\sqrt6}{2} \end{aligned}" />
-
-Summe und Produkt stimmen mit den Formeln von Vieta überein:
-
-<MathContainer>
-  <BlockMath math="x_1+x_2=2=-\frac{b}{a}" />
-  <BlockMath math="x_1x_2=1+\frac{6}{4}=\frac52=\frac{c}{a}" />
-</MathContainer>
-
-Beide Kontrollen verwenden die ursprünglichen Koeffizienten. Dadurch fallen ein verlorenes Vorzeichen oder ein falscher Nenner in der Lösungsformel auf.
+**Aufgabe 4**. Die Diskriminante ist <InlineMath math="64 - 48 = 16 > 0" />, also sind beide Lösungen reell. Das Produkt ist <InlineMath math="12 > 0" />, also haben die Lösungen dasselbe Vorzeichen, und die Summe ist <InlineMath math="8 > 0" />, also sind **beide positiv**. Probe: <InlineMath math="x^2 - 8x + 12 = (x - 2)(x - 6)" /> mit den Lösungen <InlineMath math="2" /> und <InlineMath math="6" />.

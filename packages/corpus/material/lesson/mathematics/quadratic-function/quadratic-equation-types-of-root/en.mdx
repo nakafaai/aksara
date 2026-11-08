@@ -1,61 +1,31 @@
 export const metadata = {
-  title: "Types of Quadratic Equation Roots",
-  description: "Classify quadratic roots as distinct real, repeated real, or complex by checking the discriminant.",
+  title: "Nature of the Roots of a Quadratic Equation",
+  description: "Read the nature of a quadratic's roots from its discriminant, then find the signs of the roots from their sum and product.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Quadratic Functions",
 };
 
-## Quadratic Equation Roots
+## Reading the Nature of the Roots from the Discriminant
 
-In a quadratic equation <InlineMath math="ax^2 + bx + c = 0" /> with real coefficients and <InlineMath math="a \neq 0" />, a root is any value of <InlineMath math="x" /> that satisfies the equation: plug it in and both sides match. For example, <InlineMath math="x = 2" /> in <InlineMath math="x^2 - 5x + 6 = 0" /> gives <InlineMath math="4 - 10 + 6 = 0" />, so 2 is a root.
+The nature of the roots of a quadratic equation <InlineMath math="ax^2 + bx + c = 0" /> with real coefficients and <InlineMath math="a \ne 0" /> is decided by the **discriminant** <InlineMath math="D = b^2 - 4ac" />. You only need to compute <InlineMath math="D" /> and read its sign, without solving the equation all the way:
 
-Over the real numbers alone, an equation with a negative discriminant has no root. But over the complex numbers, every quadratic equation has two roots. When both roots are the same, as in <InlineMath math="x^2 - 6x + 9 = 0" /> below, we count that repeated root twice.
+| Discriminant | Nature of the roots | Graph of <InlineMath math="y = ax^2 + bx + c" /> |
+| --- | --- | --- |
+| <InlineMath math="D > 0" /> | Two different real roots | Crosses the <InlineMath math="x" />-axis at two points |
+| <InlineMath math="D = 0" /> | One repeated real root | Touches the <InlineMath math="x" />-axis at its vertex |
+| <InlineMath math="D < 0" /> | Two complex, nonreal roots | Never meets the <InlineMath math="x" />-axis |
 
-[The quadratic formula](/en/subjects/mathematics/quadratic-function/quadratic-equation-formula) computes both roots directly from <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" />:
+The discriminant is the part under the square root in the [quadratic formula](/en/subjects/mathematics/quadratic-function/quadratic-equation-formula):
 
-<BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
+<BlockMath math="x = \frac{-b \pm \sqrt{D}}{2a}" />
 
-The expression <InlineMath math="b^2 - 4ac" /> is the <Highlight>discriminant</Highlight>, denoted by <InlineMath math="D" />. When <InlineMath math="D > 0" /> the roots are two distinct reals. When <InlineMath math="D = 0" /> the root is repeated. When <InlineMath math="D < 0" /> the roots are nonreal complex. So the sign of <InlineMath math="D" /> already tells you the root type before you finish evaluating the formula.
-
-### Different Real Roots
-
-If <InlineMath math="D > 0" /> (or <InlineMath math="b^2 > 4ac" />), then the quadratic equation has **two different real roots**.
-
-<BlockMath math="\begin{aligned} &amp;x_1 = \frac{-b + \sqrt{D}}{2a} \\ &amp;\text{and} \\ &amp;x_2 = \frac{-b - \sqrt{D}}{2a} \end{aligned}" />
-
-Example: <InlineMath math="x^2 - 5x + 6 = 0" />
-
-<BlockMath math="\begin{aligned}D&amp;=(-5)^2-4\cdot1\cdot6=1\\x_1&amp;=\frac{5+\sqrt1}{2}=3\\x_2&amp;=\frac{5-\sqrt1}{2}=2\end{aligned}" />
-
-### Equal or Repeated Roots
-
-If <InlineMath math="D = 0" /> (or <InlineMath math="b^2 = 4ac" />), then the quadratic equation has one **real repeated root** (two roots with the same value).
-
-<BlockMath math="x_1 = x_2 = \frac{-b}{2a}" />
-
-Example: <InlineMath math="x^2 - 6x + 9 = 0" />
-
-<BlockMath math="\begin{aligned}D&amp;=(-6)^2-4\cdot1\cdot9=0\\x_1=x_2&amp;=\frac{6\pm0}{2}=3\end{aligned}" />
-
-### Two Nonreal Complex Roots
-
-If <InlineMath math="D < 0" /> (or <InlineMath math="b^2 < 4ac" />), then the quadratic equation has two distinct non-real complex roots. For real coefficients, they form a conjugate pair.
-
-<BlockMath math="\begin{aligned} &amp;x_1 = \frac{-b + i\sqrt{|D|}}{2a} \\ &amp;\text{and} \\ &amp;x_2 = \frac{-b - i\sqrt{|D|}}{2a} \end{aligned}" />
-
-Here <InlineMath math="i^2=-1" /> defines the imaginary unit.
-
-Example: <InlineMath math="x^2 + 2x + 5 = 0" />
-
-<BlockMath math="\begin{aligned}D&amp;=2^2-4\cdot1\cdot5=-16\\x&amp;=\frac{-2\pm i\sqrt{16}}{2}\\&amp;=\frac{-2\pm4i}{2}=-1\pm2i\end{aligned}" />
-
-On a real graph, **real roots are the x-coordinates of the x-intercepts**. The first curve crosses the axis twice, the second touches it at a repeated root, and the third stays above it. Nonreal complex roots do not appear on the real x-axis.
+The <InlineMath math="\pm" /> sign gives two different values when <InlineMath math="\sqrt{D}" /> is positive, one value when <InlineMath math="\sqrt{D} = 0" />, and imaginary numbers when <InlineMath math="D" /> is negative.
 
 <MathVisual
-  title="Discriminant and Graph Intercepts"
-  description="Compare the three examples calculated above. Follow each curve from its equation label toward the x-axis and count its intercepts."
+  title="The discriminant and the x-intercepts"
+  description="The parabolas of x² − 5x + 6, x² − 6x + 9, and x² + 2x + 5. Follow each curve from its equation label to the x-axis and count its intercepts."
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.5, max: 5.5 }, y: { min: -1, max: 10 } },
@@ -78,49 +48,172 @@ On a real graph, **real roots are the x-coordinates of the x-intercepts**. The f
   }}
 />
 
-## Relationship Between Roots and Coefficients
+## Two Different Real Roots
 
-If <InlineMath math="x_1" /> and <InlineMath math="x_2" /> are the roots of the quadratic equation <InlineMath math="ax^2 + bx + c = 0" />, then:
+If <InlineMath math="D > 0" />, the equation has **two different real roots**:
 
-Expand the factored form and match coefficients of the same powers of x. This gives the **sum and product of the roots**:
+<BlockMath math="x_1 = \frac{-b + \sqrt{D}}{2a}, \qquad x_2 = \frac{-b - \sqrt{D}}{2a}" />
+
+For <InlineMath math="x^2 - 5x + 6 = 0" />, the discriminant is <InlineMath math="D = (-5)^2 - 4 \cdot 1 \cdot 6 = 1" />, so <InlineMath math="x = \frac{5 \pm 1}{2}" />, that is <InlineMath math="3" /> and <InlineMath math="2" />. Check by factoring: <InlineMath math="(x - 2)(x - 3) = x^2 - 5x + 6" />.
+
+For an equation with integer coefficients, <InlineMath math="D" /> also tells you **whether the roots are rational**. If <InlineMath math="D" /> is a perfect square such as <InlineMath math="1" />, the roots are rational and the equation factors. If not, the roots are irrational. For example, <InlineMath math="x^2 - 4x + 1 = 0" /> has <InlineMath math="D = 12" />, so <InlineMath math="x = \frac{4 \pm 2\sqrt{3}}{2} = 2 \pm \sqrt{3}" />.
+
+## One Repeated Real Root
+
+If <InlineMath math="D = 0" />, the <InlineMath math="\pm" /> sign changes nothing, so the equation has **one repeated real root**:
+
+<BlockMath math="x_1 = x_2 = -\frac{b}{2a}" />
+
+For <InlineMath math="x^2 - 6x + 9 = 0" />, the discriminant is <InlineMath math="(-6)^2 - 4 \cdot 1 \cdot 9 = 0" /> and the root is <InlineMath math="x = \frac{6}{2} = 3" />. Check: the left side is the perfect square <InlineMath math="(x - 3)^2" />, so the graph touches the <InlineMath math="x" />-axis exactly at the vertex <InlineMath math="(3, 0)" />.
+
+The condition <InlineMath math="D = 0" /> often finds a parameter. Suppose <InlineMath math="x^2 + (m - 2)x + 4 = 0" /> must have a repeated root:
+
+<MathContainer>
+  <BlockMath math="D = (m - 2)^2 - 4 \cdot 1 \cdot 4 = 0" />
+  <BlockMath math="(m - 2)^2 = 16 \quad\Longrightarrow\quad m - 2 = \pm 4" />
+  <BlockMath math="m = 6 \quad \text{or} \quad m = -2" />
+</MathContainer>
+
+<MathVisual
+  title="Two values of m that give a repeated root"
+  description={<>For <InlineMath math="m = 6" /> the equation is <InlineMath math="x^2 + 4x + 4 = 0" />, and for <InlineMath math="m = -2" /> it is <InlineMath math="x^2 - 4x + 4 = 0" />. Both parabolas touch the x-axis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 4 }, domain: { min: -5, max: 1 }, appearance: "primary" },
+      { id: "right", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -4, c: 4 }, domain: { min: -1, max: 5 }, appearance: "secondary" },
+      { id: "left-root", kind: "point", at: { x: -2, y: 0 }, appearance: "primary" },
+      { id: "right-root", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -5, y: 9 }, placement: "right" },
+      { key: "right", objectId: "right", at: { x: 5, y: 9 }, placement: "left" },
+      { key: "left-root", objectId: "left-root", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "right-root", objectId: "right-root", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    left: <InlineMath math="m = 6" />,
+    right: <InlineMath math="m = -2" />,
+    "left-root": <InlineMath math="-2" />,
+    "right-root": <InlineMath math="2" />,
+  }}
+/>
+
+Check both values. For <InlineMath math="m = 6" />, <InlineMath math="x^2 + 4x + 4 = (x + 2)^2" />, with the repeated root <InlineMath math="-2" />. For <InlineMath math="m = -2" />, <InlineMath math="x^2 - 4x + 4 = (x - 2)^2" />, with the repeated root <InlineMath math="2" />.
+
+## Two Complex Nonreal Roots
+
+If <InlineMath math="D < 0" />, the square root of <InlineMath math="D" /> is not a real number. Both roots are **complex and nonreal**, and they always form a conjugate pair:
+
+<BlockMath math="x = \frac{-b \pm i\sqrt{|D|}}{2a}, \qquad i^2 = -1" />
+
+For <InlineMath math="x^2 + 2x + 5 = 0" />, the discriminant is <InlineMath math="2^2 - 4 \cdot 1 \cdot 5 = -16" />, so <InlineMath math="x = \frac{-2 \pm 4i}{2} = -1 \pm 2i" />. Check with the sum and product: <InlineMath math="(-1 + 2i) + (-1 - 2i) = -2 = -\frac{b}{a}" /> and <InlineMath math="(-1)^2 + 2^2 = 5 = \frac{c}{a}" />. The real part <InlineMath math="-1" /> equals the x-coordinate of the vertex of <InlineMath math="(x + 1)^2 + 4" />, the link at the heart of [imaginary roots of a quadratic equation](/en/subjects/mathematics/quadratic-function/quadratic-equation-imaginary-root).
+
+## Signs of the Roots from Their Sum and Product
+
+The factored form <InlineMath math="a(x - x_1)(x - x_2)" /> must equal <InlineMath math="ax^2 + bx + c" />. Match the coefficients of equal powers:
 
 <BlockMath math="\begin{aligned}a(x-x_1)(x-x_2)&amp;=a[x^2-(x_1+x_2)x+x_1x_2]\\b&amp;=-a(x_1+x_2)\\c&amp;=ax_1x_2\end{aligned}" />
 
+So **the sum of the roots** is <InlineMath math="x_1 + x_2 = -\frac{b}{a}" /> and **the product of the roots** is <InlineMath math="x_1 x_2 = \frac{c}{a}" />. For real roots (<InlineMath math="D \ge 0" />), these two values decide the signs of the roots without computing them:
+
+| Condition (with <InlineMath math="D \ge 0" />) | Signs of the roots |
+| --- | --- |
+| <InlineMath math="x_1 x_2 > 0" /> and <InlineMath math="x_1 + x_2 > 0" /> | Both positive |
+| <InlineMath math="x_1 x_2 > 0" /> and <InlineMath math="x_1 + x_2 < 0" /> | Both negative |
+| <InlineMath math="x_1 x_2 < 0" /> | Opposite signs |
+
+A positive product means both roots have the same sign, and then the sum decides that sign. A negative product means one root is positive and the other negative.
+
+<MathVisual
+  title="A negative product of the roots"
+  description={<>The graph of <InlineMath math="y = x^2 + x - 6" /> meets the y-axis at <InlineMath math="-6" />, below the x-axis, so its roots lie on both sides of the origin.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 3.5 }, y: { min: -7, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 1, c: -6 }, domain: { min: -4, max: 3 }, appearance: "primary" },
+      { id: "negative-root", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "positive-root", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: -6 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "negative-root", objectId: "negative-root", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "positive-root", objectId: "positive-root", at: { x: 2, y: 0 }, placement: "above-right" },
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: -6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "negative-root": <InlineMath math="-3" />,
+    "positive-root": <InlineMath math="2" />,
+    intercept: <InlineMath math="(0, -6)" />,
+  }}
+/>
+
+For <InlineMath math="x^2 + x - 6 = 0" />, the product of the roots is <InlineMath math="\frac{c}{a} = -6 < 0" />, so the roots have opposite signs. Check: <InlineMath math="x^2 + x - 6 = (x + 3)(x - 2)" />, with roots <InlineMath math="-3" /> and <InlineMath math="2" />. The graph shows why: for <InlineMath math="a > 0" />, a negative <InlineMath math="f(0) = c" /> puts the parabola below the axis at <InlineMath math="x = 0" />, so it must cross the axis once on the left of the origin and once on the right.
+
+## Example of the Condition for Two Different Real Roots
+
+Find the values of <InlineMath math="k" /> for which <InlineMath math="kx^2 + 4x + 1 = 0" /> has two different real roots.
+
+There are **two conditions**. The equation must be quadratic, so <InlineMath math="k \ne 0" />, and the discriminant must be positive:
+
 <MathContainer>
-  <BlockMath math="x_1 + x_2 = -\frac{b}{a}" />
-  <BlockMath math="x_1 \times x_2 = \frac{c}{a}" />
+  <BlockMath math="D = 4^2 - 4 \cdot k \cdot 1 = 16 - 4k > 0" />
+  <BlockMath math="k < 4" />
 </MathContainer>
 
-These relationships can verify calculated roots or determine the coefficient ratios <InlineMath math="b/a" /> and <InlineMath math="c/a" />. A specific equation is fixed once the leading coefficient <InlineMath math="a" /> is also known.
+So <InlineMath math="k < 4" /> and <InlineMath math="k \ne 0" />. Check with <InlineMath math="k = 3" />: the equation <InlineMath math="3x^2 + 4x + 1 = (3x + 1)(x + 1)" /> has roots <InlineMath math="-\frac13" /> and <InlineMath math="-1" />. For <InlineMath math="k = 0" />, the equation becomes <InlineMath math="4x + 1 = 0" />, which has only one root, so that value must be removed.
 
-## Exercise
+## Common Mistakes
 
-The problem asks you to classify first and solve second, so compute the **discriminant before taking any square root**. Checking the sum and the product afterwards shows whether the two roots belong together.
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Computing <InlineMath math="(-5)^2" /> as <InlineMath math="-25" /> | The square of a negative number is always positive | <InlineMath math="(-5)^2 = 25" />, so <InlineMath math="D" /> for <InlineMath math="x^2 - 5x + 6" /> is <InlineMath math="1" /> |
+| Forgetting the condition <InlineMath math="a \ne 0" /> | For <InlineMath math="a = 0" /> the equation is linear and <InlineMath math="D" /> does not apply | Write the condition on the leading coefficient before computing <InlineMath math="D" /> |
+| Calling <InlineMath math="D = 0" /> no roots | The root exists and is repeated, namely <InlineMath math="-\frac{b}{2a}" /> | The graph touches the axis at its vertex |
+| Deciding the signs from the sum alone | A positive sum can come from one large root and one negative root | Check the product first |
+| Using the sign rules when <InlineMath math="D < 0" /> | Complex nonreal roots are neither positive nor negative | Make sure <InlineMath math="D \ge 0" /> first |
 
-Classify and solve the equation <InlineMath math="2x^2-4x+5=0" />. Then verify the roots using their sum and product.
+The quickest check after computing the roots is **to match their sum and product** with <InlineMath math="-\frac{b}{a}" /> and <InlineMath math="\frac{c}{a}" />.
 
-### Worked Solution
+## Practice Problems
 
-The coefficients are <InlineMath math="a=2" />, <InlineMath math="b=-4" />, and <InlineMath math="c=5" />. Its discriminant is
+Compute the discriminant first, then **decide the nature of the roots before solving the equation**.
 
-<BlockMath math="\begin{aligned} D &amp;=(-4)^2-4\cdot2\cdot5 \\ &amp;=16-40 \\ &amp;=-24 \end{aligned}" />
+1. Find the nature of the roots of <InlineMath math="3x^2 - 7x + 2 = 0" />, then solve it.
 
-Because <InlineMath math="D<0" />, the equation has **two non-real complex roots**. Apply the quadratic formula and use <InlineMath math="\sqrt{-24}=2i\sqrt6" />:
+2. Find the nature of the roots of <InlineMath math="2x^2 - 4x + 5 = 0" />, then solve it and check with the sum and product of the roots.
+
+3. Find the values of <InlineMath math="p" /> for which <InlineMath math="x^2 - 2px + 9 = 0" /> has a repeated root, then find the root.
+
+4. Without solving the equation, find the signs of both roots of <InlineMath math="x^2 - 8x + 12 = 0" />.
+
+### Solutions
+
+**Problem 1**. The discriminant is <InlineMath math="D = (-7)^2 - 4 \cdot 3 \cdot 2 = 49 - 24 = 25" />. Since <InlineMath math="D > 0" /> and <InlineMath math="25 = 5^2" />, the roots are **two different rational real numbers**:
+
+<BlockMath math="x = \frac{7 \pm 5}{6} \quad\Longrightarrow\quad x_1 = 2, \quad x_2 = \frac13" />
+
+Check: <InlineMath math="(3x - 1)(x - 2) = 3x^2 - 7x + 2" />.
+
+**Problem 2**. The discriminant is <InlineMath math="D = (-4)^2 - 4 \cdot 2 \cdot 5 = -24" />, so the roots are **two complex nonreal numbers**. With <InlineMath math="\sqrt{-24} = 2i\sqrt{6}" />:
+
+<BlockMath math="x = \frac{4 \pm 2i\sqrt{6}}{4} = 1 \pm \frac{\sqrt{6}}{2}\,i" />
+
+Check: the sum is <InlineMath math="2 = -\frac{b}{a}" />, and the product is <InlineMath math="1 + \frac{6}{4} = \frac52 = \frac{c}{a}" />.
+
+**Problem 3**. A repeated root means <InlineMath math="D = 0" />:
 
 <MathContainer>
-  <BlockMath math="x=\frac{-(-4)\pm\sqrt{-24}}{2\cdot2}" />
-  <BlockMath math="x=\frac{4\pm2i\sqrt6}{4}=1\pm\frac{i\sqrt6}{2}" />
+  <BlockMath math="D = (-2p)^2 - 4 \cdot 1 \cdot 9 = 4p^2 - 36 = 0" />
+  <BlockMath math="p^2 = 9 \quad\Longrightarrow\quad p = 3 \quad \text{or} \quad p = -3" />
 </MathContainer>
 
-The calculation gives:
+The root is <InlineMath math="x = -\frac{b}{2a} = p" />, so it is <InlineMath math="3" /> for <InlineMath math="p = 3" /> and <InlineMath math="-3" /> for <InlineMath math="p = -3" />. Check: <InlineMath math="x^2 - 6x + 9 = (x - 3)^2" /> and <InlineMath math="x^2 + 6x + 9 = (x + 3)^2" />.
 
-<BlockMath math="\begin{aligned} &amp;x_1=1+\frac{i\sqrt6}{2} \\ &amp;\text{and} \\ &amp;x_2=1-\frac{i\sqrt6}{2} \end{aligned}" />
-
-Their sum and product agree with Vieta's formulas:
-
-<MathContainer>
-  <BlockMath math="x_1+x_2=2=-\frac{b}{a}" />
-  <BlockMath math="x_1x_2=1+\frac{6}{4}=\frac52=\frac{c}{a}" />
-</MathContainer>
-
-Both checks use the original coefficients, so they also catch a lost sign or an incorrect denominator in the quadratic formula.
+**Problem 4**. The discriminant is <InlineMath math="64 - 48 = 16 > 0" />, so both roots are real. The product is <InlineMath math="12 > 0" />, so the roots have the same sign, and the sum is <InlineMath math="8 > 0" />, so **both are positive**. Check: <InlineMath math="x^2 - 8x + 12 = (x - 2)(x - 6)" />, with roots <InlineMath math="2" /> and <InlineMath math="6" />.

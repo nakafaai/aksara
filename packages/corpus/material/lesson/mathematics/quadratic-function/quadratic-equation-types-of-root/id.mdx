@@ -1,61 +1,31 @@
 export const metadata = {
-  title: "Berbagai Jenis Akar Persamaan Kuadrat",
-  description: "Klasifikasikan akar persamaan kuadrat sebagai akar real berbeda, akar real kembar, atau akar kompleks dari nilai diskriminannya.",
+  title: "Jenis-jenis Akar Persamaan Kuadrat",
+  description: "Baca jenis akar persamaan kuadrat dari diskriminan: real berbeda, kembar, atau kompleks. Tentukan juga tanda akar dari jumlah dan hasil kalinya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Persamaan dan Fungsi Kuadrat",
 };
 
-## Pengertian Akar Persamaan Kuadrat
+## Jenis Akar Dibaca dari Diskriminan
 
-Dalam persamaan kuadrat <InlineMath math="ax^2 + bx + c = 0" /> dengan koefisien real dan <InlineMath math="a \neq 0" />, akar adalah setiap nilai <InlineMath math="x" /> yang kalau kamu masukkan ke persamaan, ruas kiri dan ruas kanannya sama. Contohnya <InlineMath math="x = 2" /> pada <InlineMath math="x^2 - 5x + 6 = 0" />: <InlineMath math="4 - 10 + 6 = 0" />, cocok, jadi 2 adalah akar.
+Jenis akar persamaan kuadrat <InlineMath math="ax^2 + bx + c = 0" /> dengan koefisien real dan <InlineMath math="a \ne 0" /> ditentukan oleh **diskriminan** <InlineMath math="D = b^2 - 4ac" />. Kamu cukup menghitung <InlineMath math="D" /> dan membaca tandanya, tanpa menyelesaikan persamaan sampai selesai:
 
-Kalau kamu hanya melihat bilangan real, persamaan dengan diskriminan negatif tidak punya akar. Tapi di dalam bilangan kompleks, setiap persamaan kuadrat punya dua akar. Kalau kedua akarnya sama seperti pada <InlineMath math="x^2 - 6x + 9 = 0" /> di bawah, akar kembar itu kita hitung dua kali.
+| Diskriminan | Jenis akar | Grafik <InlineMath math="y = ax^2 + bx + c" /> |
+| --- | --- | --- |
+| <InlineMath math="D > 0" /> | Dua akar real berbeda | Memotong sumbu <InlineMath math="x" /> di dua titik |
+| <InlineMath math="D = 0" /> | Satu akar real kembar | Menyinggung sumbu <InlineMath math="x" /> di puncaknya |
+| <InlineMath math="D < 0" /> | Dua akar kompleks tidak real | Tidak menyentuh sumbu <InlineMath math="x" /> |
 
-[Rumus kuadrat](/id/materi/matematika/persamaan-dan-fungsi-kuadrat/rumus-persamaan-kuadrat) menghitung kedua akar itu langsung dari <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />:
+Diskriminan berasal dari bagian di bawah tanda akar pada [rumus kuadrat](/id/materi/matematika/persamaan-dan-fungsi-kuadrat/rumus-persamaan-kuadrat):
 
-<BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
+<BlockMath math="x = \frac{-b \pm \sqrt{D}}{2a}" />
 
-Ekspresi <InlineMath math="b^2 - 4ac" /> disebut <Highlight>diskriminan</Highlight> dan dilambangkan dengan <InlineMath math="D" />. Kalau <InlineMath math="D > 0" />, akarnya dua dan real berbeda. Kalau <InlineMath math="D = 0" />, akarnya kembar. Kalau <InlineMath math="D < 0" />, akarnya kompleks tidak real. Jadi cukup dengan melihat tanda <InlineMath math="D" />, kamu sudah tahu jenis akarnya tanpa menghitung rumus sampai selesai.
-
-### Akar Berbeda dan Real
-
-Jika <InlineMath math="D > 0" /> (atau <InlineMath math="b^2 > 4ac" />), maka persamaan kuadrat memiliki **dua akar real yang berbeda**.
-
-<BlockMath math="\begin{aligned} &amp;x_1 = \frac{-b + \sqrt{D}}{2a} \\ &amp;\text{dan} \\ &amp;x_2 = \frac{-b - \sqrt{D}}{2a} \end{aligned}" />
-
-Contoh: <InlineMath math="x^2 - 5x + 6 = 0" />
-
-<BlockMath math="\begin{aligned}D&amp;=(-5)^2-4\cdot1\cdot6=1\\x_1&amp;=\frac{5+\sqrt1}{2}=3\\x_2&amp;=\frac{5-\sqrt1}{2}=2\end{aligned}" />
-
-### Akar Kembar dengan Nilai yang Sama
-
-Jika <InlineMath math="D = 0" /> (atau <InlineMath math="b^2 = 4ac" />), maka persamaan kuadrat memiliki satu **akar real yang kembar** (dua akar yang sama nilainya).
-
-<BlockMath math="x_1 = x_2 = \frac{-b}{2a}" />
-
-Contoh: <InlineMath math="x^2 - 6x + 9 = 0" />
-
-<BlockMath math="\begin{aligned}D&amp;=(-6)^2-4\cdot1\cdot9=0\\x_1=x_2&amp;=\frac{6\pm0}{2}=3\end{aligned}" />
-
-### Dua Akar Kompleks Tidak Real
-
-Jika <InlineMath math="D < 0" /> (atau <InlineMath math="b^2 < 4ac" />), persamaan kuadrat memiliki dua akar kompleks tidak real yang berbeda. Untuk koefisien real, keduanya membentuk pasangan konjugat.
-
-<BlockMath math="\begin{aligned} &amp;x_1 = \frac{-b + i\sqrt{|D|}}{2a} \\ &amp;\text{dan} \\ &amp;x_2 = \frac{-b - i\sqrt{|D|}}{2a} \end{aligned}" />
-
-Di sini <InlineMath math="i^2=-1" /> mendefinisikan satuan imajiner.
-
-Contoh: <InlineMath math="x^2 + 2x + 5 = 0" />
-
-<BlockMath math="\begin{aligned}D&amp;=2^2-4\cdot1\cdot5=-16\\x&amp;=\frac{-2\pm i\sqrt{16}}{2}\\&amp;=\frac{-2\pm4i}{2}=-1\pm2i\end{aligned}" />
-
-Pada grafik real, **akar real adalah koordinat x titik potong dengan sumbu x**. Kurva pertama memotong sumbu di dua titik, kurva kedua menyentuh sumbu di akar kembar, dan kurva ketiga tetap di atas sumbu. Akar kompleks tidak real tidak menjadi titik pada sumbu x real.
+Tanda <InlineMath math="\pm" /> menghasilkan dua nilai berbeda jika <InlineMath math="\sqrt{D}" /> positif, satu nilai jika <InlineMath math="\sqrt{D} = 0" />, dan bilangan imajiner jika <InlineMath math="D" /> negatif.
 
 <MathVisual
-  title="Diskriminan dan Titik Potong Grafik"
-  description="Bandingkan tiga contoh yang sudah dihitung. Ikuti setiap kurva dari label persamaannya menuju sumbu x dan hitung banyak titik potongnya."
+  title="Diskriminan dan titik potong grafik"
+  description="Parabola dari x² − 5x + 6, x² − 6x + 9, dan x² + 2x + 5. Ikuti setiap kurva dari label persamaannya menuju sumbu x dan hitung banyak titik potongnya."
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3.5, max: 5.5 }, y: { min: -1, max: 10 } },
@@ -78,49 +48,172 @@ Pada grafik real, **akar real adalah koordinat x titik potong dengan sumbu x**. 
   }}
 />
 
-## Hubungan Akar Persamaan dengan Koefisien
+## Dua Akar Real Berbeda
 
-Jika <InlineMath math="x_1" /> dan <InlineMath math="x_2" /> adalah akar-akar persamaan kuadrat <InlineMath math="ax^2 + bx + c = 0" />, maka:
+Jika <InlineMath math="D > 0" />, persamaan punya **dua akar real yang berbeda**:
 
-Tuliskan bentuk faktornya, lalu cocokkan koefisien pangkat x yang sama. Cara ini menunjukkan asal hubungan **jumlah dan hasil kali akar**:
+<BlockMath math="x_1 = \frac{-b + \sqrt{D}}{2a}, \qquad x_2 = \frac{-b - \sqrt{D}}{2a}" />
+
+Untuk <InlineMath math="x^2 - 5x + 6 = 0" />, diskriminannya <InlineMath math="D = (-5)^2 - 4 \cdot 1 \cdot 6 = 1" />, jadi <InlineMath math="x = \frac{5 \pm 1}{2}" />, yaitu <InlineMath math="3" /> dan <InlineMath math="2" />. Periksa dengan pemfaktoran: <InlineMath math="(x - 2)(x - 3) = x^2 - 5x + 6" />.
+
+Pada persamaan berkoefisien bulat, bentuk <InlineMath math="D" /> juga memberi tahu **apakah akarnya rasional**. Jika <InlineMath math="D" /> bilangan kuadrat sempurna seperti <InlineMath math="1" />, akarnya rasional dan persamaannya bisa difaktorkan. Jika bukan, akarnya irasional. Contohnya <InlineMath math="x^2 - 4x + 1 = 0" /> punya <InlineMath math="D = 12" />, sehingga <InlineMath math="x = \frac{4 \pm 2\sqrt{3}}{2} = 2 \pm \sqrt{3}" />.
+
+## Akar Real Kembar
+
+Jika <InlineMath math="D = 0" />, tanda <InlineMath math="\pm" /> tidak mengubah apa pun, sehingga persamaan punya **satu akar real kembar**:
+
+<BlockMath math="x_1 = x_2 = -\frac{b}{2a}" />
+
+Untuk <InlineMath math="x^2 - 6x + 9 = 0" />, diskriminannya <InlineMath math="(-6)^2 - 4 \cdot 1 \cdot 9 = 0" /> dan akarnya <InlineMath math="x = \frac{6}{2} = 3" />. Periksa: ruas kirinya adalah kuadrat sempurna <InlineMath math="(x - 3)^2" />, jadi grafiknya menyentuh sumbu <InlineMath math="x" /> tepat di puncak <InlineMath math="(3, 0)" />.
+
+Syarat <InlineMath math="D = 0" /> sering dipakai untuk mencari parameter. Misalkan <InlineMath math="x^2 + (m - 2)x + 4 = 0" /> harus punya akar kembar:
+
+<MathContainer>
+  <BlockMath math="D = (m - 2)^2 - 4 \cdot 1 \cdot 4 = 0" />
+  <BlockMath math="(m - 2)^2 = 16 \quad\Longrightarrow\quad m - 2 = \pm 4" />
+  <BlockMath math="m = 6 \quad \text{atau} \quad m = -2" />
+</MathContainer>
+
+<MathVisual
+  title="Dua nilai m yang memberi akar kembar"
+  description={<>Untuk <InlineMath math="m = 6" /> persamaannya <InlineMath math="x^2 + 4x + 4 = 0" />, dan untuk <InlineMath math="m = -2" /> persamaannya <InlineMath math="x^2 - 4x + 4 = 0" />. Kedua parabola menyinggung sumbu x.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 4 }, domain: { min: -5, max: 1 }, appearance: "primary" },
+      { id: "right", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -4, c: 4 }, domain: { min: -1, max: 5 }, appearance: "secondary" },
+      { id: "left-root", kind: "point", at: { x: -2, y: 0 }, appearance: "primary" },
+      { id: "right-root", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -5, y: 9 }, placement: "right" },
+      { key: "right", objectId: "right", at: { x: 5, y: 9 }, placement: "left" },
+      { key: "left-root", objectId: "left-root", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "right-root", objectId: "right-root", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    left: <InlineMath math="m = 6" />,
+    right: <InlineMath math="m = -2" />,
+    "left-root": <InlineMath math="-2" />,
+    "right-root": <InlineMath math="2" />,
+  }}
+/>
+
+Periksa kedua nilai. Untuk <InlineMath math="m = 6" />, <InlineMath math="x^2 + 4x + 4 = (x + 2)^2" />, akar kembarnya <InlineMath math="-2" />. Untuk <InlineMath math="m = -2" />, <InlineMath math="x^2 - 4x + 4 = (x - 2)^2" />, akar kembarnya <InlineMath math="2" />.
+
+## Dua Akar Kompleks Tidak Real
+
+Jika <InlineMath math="D < 0" />, akar kuadrat <InlineMath math="D" /> bukan bilangan real. Kedua akarnya **kompleks tidak real** dan selalu berpasangan konjugat:
+
+<BlockMath math="x = \frac{-b \pm i\sqrt{|D|}}{2a}, \qquad i^2 = -1" />
+
+Untuk <InlineMath math="x^2 + 2x + 5 = 0" />, diskriminannya <InlineMath math="2^2 - 4 \cdot 1 \cdot 5 = -16" />, jadi <InlineMath math="x = \frac{-2 \pm 4i}{2} = -1 \pm 2i" />. Periksa dengan jumlah dan hasil kali: <InlineMath math="(-1 + 2i) + (-1 - 2i) = -2 = -\frac{b}{a}" /> dan <InlineMath math="(-1)^2 + 2^2 = 5 = \frac{c}{a}" />. Bagian real <InlineMath math="-1" /> sama dengan absis puncak parabola <InlineMath math="(x + 1)^2 + 4" />, hubungan yang menjadi inti [akar imajiner persamaan kuadrat](/id/materi/matematika/persamaan-dan-fungsi-kuadrat/akar-tidak-nyata-atau-imajiner).
+
+## Tanda Akar dari Jumlah dan Hasil Kali
+
+Bentuk faktor <InlineMath math="a(x - x_1)(x - x_2)" /> harus sama dengan <InlineMath math="ax^2 + bx + c" />. Cocokkan koefisien pangkat yang sama:
 
 <BlockMath math="\begin{aligned}a(x-x_1)(x-x_2)&amp;=a[x^2-(x_1+x_2)x+x_1x_2]\\b&amp;=-a(x_1+x_2)\\c&amp;=ax_1x_2\end{aligned}" />
 
+Jadi **jumlah akar** <InlineMath math="x_1 + x_2 = -\frac{b}{a}" /> dan **hasil kali akar** <InlineMath math="x_1 x_2 = \frac{c}{a}" />. Untuk akar real (<InlineMath math="D \ge 0" />), kedua nilai ini menentukan tanda akar tanpa menghitung akarnya:
+
+| Syarat (dengan <InlineMath math="D \ge 0" />) | Tanda akar |
+| --- | --- |
+| <InlineMath math="x_1 x_2 > 0" /> dan <InlineMath math="x_1 + x_2 > 0" /> | Keduanya positif |
+| <InlineMath math="x_1 x_2 > 0" /> dan <InlineMath math="x_1 + x_2 < 0" /> | Keduanya negatif |
+| <InlineMath math="x_1 x_2 < 0" /> | Berlainan tanda |
+
+Hasil kali positif berarti kedua akar bertanda sama, lalu jumlahnya menentukan tanda itu. Hasil kali negatif berarti satu akar positif dan satu negatif.
+
+<MathVisual
+  title="Hasil kali akar negatif"
+  description={<>Grafik <InlineMath math="y = x^2 + x - 6" /> memotong sumbu y di <InlineMath math="-6" />, di bawah sumbu x, sehingga akarnya berada di kedua sisi titik asal.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 3.5 }, y: { min: -7, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 1, c: -6 }, domain: { min: -4, max: 3 }, appearance: "primary" },
+      { id: "negative-root", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "positive-root", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: -6 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "negative-root", objectId: "negative-root", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "positive-root", objectId: "positive-root", at: { x: 2, y: 0 }, placement: "above-right" },
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: -6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "negative-root": <InlineMath math="-3" />,
+    "positive-root": <InlineMath math="2" />,
+    intercept: <InlineMath math="(0, -6)" />,
+  }}
+/>
+
+Untuk <InlineMath math="x^2 + x - 6 = 0" />, hasil kali akarnya <InlineMath math="\frac{c}{a} = -6 < 0" />, jadi kedua akar berlainan tanda. Periksa: <InlineMath math="x^2 + x - 6 = (x + 3)(x - 2)" />, dengan akar <InlineMath math="-3" /> dan <InlineMath math="2" />. Grafiknya menunjukkan alasannya: untuk <InlineMath math="a > 0" />, nilai <InlineMath math="f(0) = c" /> yang negatif membuat parabola berada di bawah sumbu pada <InlineMath math="x = 0" />, sehingga parabola harus memotong sumbu sekali di kiri dan sekali di kanan titik asal.
+
+## Contoh Syarat Dua Akar Real Berbeda
+
+Tentukan nilai <InlineMath math="k" /> agar <InlineMath math="kx^2 + 4x + 1 = 0" /> mempunyai dua akar real berbeda.
+
+Ada **dua syarat**. Persamaannya harus kuadrat, jadi <InlineMath math="k \ne 0" />, dan diskriminannya harus positif:
+
 <MathContainer>
-  <BlockMath math="x_1 + x_2 = -\frac{b}{a}" />
-  <BlockMath math="x_1 \times x_2 = \frac{c}{a}" />
+  <BlockMath math="D = 4^2 - 4 \cdot k \cdot 1 = 16 - 4k > 0" />
+  <BlockMath math="k < 4" />
 </MathContainer>
 
-Hubungan ini dapat dipakai untuk memeriksa akar yang sudah dihitung atau menentukan rasio koefisien <InlineMath math="b/a" /> dan <InlineMath math="c/a" />. Persamaan tertentu dapat ditetapkan setelah koefisien utama <InlineMath math="a" /> juga diketahui.
+Jadi <InlineMath math="k < 4" /> dan <InlineMath math="k \ne 0" />. Periksa dengan <InlineMath math="k = 3" />: persamaan <InlineMath math="3x^2 + 4x + 1 = (3x + 1)(x + 1)" /> punya akar <InlineMath math="-\frac13" /> dan <InlineMath math="-1" />. Untuk <InlineMath math="k = 0" />, persamaannya menjadi <InlineMath math="4x + 1 = 0" /> yang hanya punya satu akar, sehingga nilai itu memang harus dibuang.
 
-## Latihan
+## Kesalahan yang Sering Terjadi
 
-Soal ini meminta pengelompokan lebih dahulu lalu penyelesaiannya, jadi hitung **diskriminannya sebelum menarik akar**. Pemeriksaan lewat jumlah dan hasil kali akar menunjukkan apakah kedua akarnya memang berpasangan.
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Menghitung <InlineMath math="(-5)^2" /> sebagai <InlineMath math="-25" /> | Kuadrat bilangan negatif selalu positif | <InlineMath math="(-5)^2 = 25" />, jadi <InlineMath math="D" /> untuk <InlineMath math="x^2 - 5x + 6" /> adalah <InlineMath math="1" /> |
+| Lupa syarat <InlineMath math="a \ne 0" /> | Untuk <InlineMath math="a = 0" />, persamaannya linear dan rumus <InlineMath math="D" /> tidak berlaku | Tulis syarat koefisien kuadrat sebelum menghitung <InlineMath math="D" /> |
+| Menyebut <InlineMath math="D = 0" /> sebagai tidak punya akar | Akarnya ada dan kembar, yaitu <InlineMath math="-\frac{b}{2a}" /> | Grafik menyinggung sumbu di puncaknya |
+| Menentukan tanda akar hanya dari jumlahnya | Jumlah positif bisa datang dari satu akar besar dan satu akar negatif | Periksa hasil kali lebih dulu |
+| Memakai aturan tanda saat <InlineMath math="D < 0" /> | Akar kompleks tidak real tidak positif dan tidak negatif | Pastikan <InlineMath math="D \ge 0" /> lebih dulu |
 
-Kelompokkan jenis akar dan selesaikan persamaan <InlineMath math="2x^2-4x+5=0" />. Setelah itu, periksa akar-akarnya melalui jumlah dan hasil kali.
+Pemeriksaan paling cepat setelah menghitung akar adalah **mencocokkan jumlah dan hasil kalinya** dengan <InlineMath math="-\frac{b}{a}" /> dan <InlineMath math="\frac{c}{a}" />.
+
+## Latihan Soal
+
+Hitung diskriminannya dulu, lalu **tentukan jenis akarnya sebelum menyelesaikan persamaan**.
+
+1. Tentukan jenis akar <InlineMath math="3x^2 - 7x + 2 = 0" />, lalu selesaikan.
+
+2. Tentukan jenis akar <InlineMath math="2x^2 - 4x + 5 = 0" />, lalu selesaikan dan periksa dengan jumlah dan hasil kali akar.
+
+3. Tentukan nilai <InlineMath math="p" /> agar <InlineMath math="x^2 - 2px + 9 = 0" /> mempunyai akar kembar, lalu tentukan akarnya.
+
+4. Tanpa menyelesaikan persamaan, tentukan tanda kedua akar <InlineMath math="x^2 - 8x + 12 = 0" />.
 
 ### Pembahasan
 
-Koefisiennya adalah <InlineMath math="a=2" />, <InlineMath math="b=-4" />, dan <InlineMath math="c=5" />. Diskriminannya adalah
+**Soal 1**. Diskriminannya <InlineMath math="D = (-7)^2 - 4 \cdot 3 \cdot 2 = 49 - 24 = 25" />. Karena <InlineMath math="D > 0" /> dan <InlineMath math="25 = 5^2" />, akarnya **dua bilangan real rasional yang berbeda**:
 
-<BlockMath math="\begin{aligned} D &amp;=(-4)^2-4\cdot2\cdot5 \\ &amp;=16-40 \\ &amp;=-24 \end{aligned}" />
+<BlockMath math="x = \frac{7 \pm 5}{6} \quad\Longrightarrow\quad x_1 = 2, \quad x_2 = \frac13" />
 
-Karena <InlineMath math="D<0" />, persamaan memiliki **dua akar kompleks tidak real**. Terapkan rumus kuadrat dan gunakan <InlineMath math="\sqrt{-24}=2i\sqrt6" />:
+Periksa: <InlineMath math="(3x - 1)(x - 2) = 3x^2 - 7x + 2" />.
 
-<MathContainer>
-  <BlockMath math="x=\frac{-(-4)\pm\sqrt{-24}}{2\cdot2}" />
-  <BlockMath math="x=\frac{4\pm2i\sqrt6}{4}=1\pm\frac{i\sqrt6}{2}" />
-</MathContainer>
+**Soal 2**. Diskriminannya <InlineMath math="D = (-4)^2 - 4 \cdot 2 \cdot 5 = -24" />, jadi akarnya **dua bilangan kompleks tidak real**. Dengan <InlineMath math="\sqrt{-24} = 2i\sqrt{6}" />:
 
-Jadi,
+<BlockMath math="x = \frac{4 \pm 2i\sqrt{6}}{4} = 1 \pm \frac{\sqrt{6}}{2}\,i" />
 
-<BlockMath math="\begin{aligned} &amp;x_1=1+\frac{i\sqrt6}{2} \\ &amp;\text{dan} \\ &amp;x_2=1-\frac{i\sqrt6}{2} \end{aligned}" />
+Periksa: jumlahnya <InlineMath math="2 = -\frac{b}{a}" />, dan hasil kalinya <InlineMath math="1 + \frac{6}{4} = \frac52 = \frac{c}{a}" />.
 
-Jumlah dan hasil kalinya sesuai dengan rumus Vieta:
+**Soal 3**. Akar kembar berarti <InlineMath math="D = 0" />:
 
 <MathContainer>
-  <BlockMath math="x_1+x_2=2=-\frac{b}{a}" />
-  <BlockMath math="x_1x_2=1+\frac{6}{4}=\frac52=\frac{c}{a}" />
+  <BlockMath math="D = (-2p)^2 - 4 \cdot 1 \cdot 9 = 4p^2 - 36 = 0" />
+  <BlockMath math="p^2 = 9 \quad\Longrightarrow\quad p = 3 \quad \text{atau} \quad p = -3" />
 </MathContainer>
 
-Kedua pemeriksaan memakai koefisien dari persamaan semula, sehingga tanda yang hilang atau penyebut yang keliru dalam rumus kuadrat dapat terdeteksi.
+Akarnya <InlineMath math="x = -\frac{b}{2a} = p" />, yaitu <InlineMath math="3" /> untuk <InlineMath math="p = 3" /> dan <InlineMath math="-3" /> untuk <InlineMath math="p = -3" />. Periksa: <InlineMath math="x^2 - 6x + 9 = (x - 3)^2" /> dan <InlineMath math="x^2 + 6x + 9 = (x + 3)^2" />.
+
+**Soal 4**. Diskriminannya <InlineMath math="64 - 48 = 16 > 0" />, jadi kedua akar real. Hasil kalinya <InlineMath math="12 > 0" />, sehingga kedua akar bertanda sama, dan jumlahnya <InlineMath math="8 > 0" />, sehingga **keduanya positif**. Periksa: <InlineMath math="x^2 - 8x + 12 = (x - 2)(x - 6)" />, dengan akar <InlineMath math="2" /> dan <InlineMath math="6" />.
