@@ -13,11 +13,13 @@ Bestehen <InlineMath math="n" /> Objekte aus Gruppen gleicher Objekte, mit <Inli
 
 <BlockMath math="P = \frac{n!}{r_1! \, r_2! \cdots r_k!}, \qquad r_1 + r_2 + \cdots + r_k = n" />
 
+Dabei ist <InlineMath math="k" /> die Anzahl der Gruppen gleicher Objekte.
+
 Zum Beispiel hat das Wort MAMA <InlineMath math="n = 4" /> Buchstaben mit zweimal M und zweimal A, also gibt es <InlineMath math="\frac{4!}{2! \, 2!} = \frac{24}{4} = 6" /> Anordnungen. Das sind **weniger** als <InlineMath math="4! = 24" />, weil das Vertauschen zweier gleicher Buchstaben keine neue Anordnung erzeugt.
 
 ## Warum durch die Fakultät jeder Gruppe geteilt wird
 
-Gib den gleichen Buchstaben vorübergehend Nummern: <InlineMath math="M_1, M_2, A_1, A_2" />. Mit Nummern sind alle vier Buchstaben verschieden und lassen sich auf <InlineMath math="4! = 24" /> Arten anordnen. Ohne Nummern werden <InlineMath math="M_1 A_1 M_2 A_2" /> und <InlineMath math="M_2 A_1 M_1 A_2" /> zum selben Wort MAMA.
+Versieh gleiche Buchstaben vorübergehend mit Nummern: <InlineMath math="M_1, M_2, A_1, A_2" />. Mit Nummern sind alle vier Buchstaben verschieden und lassen sich auf <InlineMath math="4! = 24" /> Arten anordnen. Ohne Nummern werden <InlineMath math="M_1 A_1 M_2 A_2" /> und <InlineMath math="M_2 A_1 M_1 A_2" /> zum selben Wort MAMA.
 
 Jede sichtbare Anordnung kommt unter den 24 nummerierten genau <InlineMath math="2! \times 2! = 4" />-mal vor: <InlineMath math="2!" /> Arten, die beiden M zu tauschen, und <InlineMath math="2!" /> Arten, die beiden A zu tauschen. Also gibt es <InlineMath math="\frac{24}{4} = 6" /> sichtbare Anordnungen. Du kannst das prüfen, indem du alle Plätze für M aufschreibst:
 
@@ -30,7 +32,7 @@ Jede sichtbare Anordnung kommt unter den 24 nummerierten genau <InlineMath math=
 | 2 und 4 | AMAM |
 | 3 und 4 | AAMM |
 
-Die Tabelle enthält **genau sechs Anordnungen**, wie die Formel. Das Teilen durch <InlineMath math="r_i!" /> entfernt alle Vertauschungen innerhalb einer Gruppe, die man nicht sehen kann.
+Das Aufschreiben der Plätze liefert **genau sechs Anordnungen**, so viele, wie die Formel angibt. Das Teilen durch <InlineMath math="r_i!" /> entfernt alle Vertauschungen innerhalb einer Gruppe, die man nicht sehen kann.
 
 ## Beispiel mit den Buchstaben von KALIMANTAN
 
@@ -47,11 +49,19 @@ Prüfe durch Auswählen der Plätze. Wähle <InlineMath math="3" /> der <InlineM
 
 <BlockMath math="\binom{10}{3} \times \binom{7}{2} \times 5! = 120 \times 21 \times 120 = 302\,400" />
 
-Beide Wege liefern **dasselbe Ergebnis**, also wird keine Anordnung doppelt gezählt oder vergessen.
+Beide Wege liefern **dasselbe Ergebnis**, und das gibt dir Sicherheit, dass keine Anordnung doppelt gezählt oder vergessen wurde.
 
 ## Beispiel mit BANANA und einer Bedingung
 
-Das Wort BANANA hat <InlineMath math="n = 6" /> Buchstaben: ein B, drei A und zwei N. Ohne Bedingung gibt es <InlineMath math="\frac{6!}{1! \, 3! \, 2!} = \frac{720}{12} = 60" /> Anordnungen.
+Das Wort BANANA hat <InlineMath math="n = 6" /> Buchstaben. Notiere zuerst die Häufigkeiten:
+
+| Buchstabe | Häufigkeit |
+| --- | --- |
+| B | 1 |
+| A | 3 |
+| N | 2 |
+
+Die Häufigkeiten ergeben <InlineMath math="1 + 3 + 2 = 6" />, also <InlineMath math="n" />. Ohne Bedingung gibt es <InlineMath math="\frac{6!}{1! \, 3! \, 2!} = \frac{720}{12} = 60" /> Anordnungen.
 
 Eine Bedingung ändert, was angeordnet wird. Muss B vorne stehen, ist der erste Platz besetzt, und nur noch ANANA wird angeordnet:
 
@@ -61,7 +71,7 @@ Müssen die beiden N nebeneinander stehen, behandelst du NN als **einen Block**.
 
 <BlockMath math="\frac{5!}{3!} = \frac{120}{6} = 20" />
 
-Der Block NN wird nicht mit <InlineMath math="2!" /> multipliziert, weil das Vertauschen der beiden N im Block das Wort nicht ändert. Prüfe das erste Ergebnis über die Symmetrie. B ist einer von sechs Buchstaben, also steht B in <InlineMath math="\frac{1}{6}" /> aller Anordnungen vorne, und <InlineMath math="\frac{1}{6} \times 60 = 10" />.
+Der Block NN wird nicht mit <InlineMath math="2!" /> multipliziert, weil das Vertauschen der beiden N im Block das Wort nicht ändert. Prüfe das zweite Ergebnis über die Lage des Blocks: NN kann <InlineMath math="5" /> Paare benachbarter Plätze belegen, und für jedes Paar füllen B, A, A, A die übrigen vier Plätze auf <InlineMath math="\frac{4!}{3!} = 4" /> Arten, also <InlineMath math="5 \times 4 = 20" />. Prüfe das erste Ergebnis über die Symmetrie. Ein Buchstabe, der unter <InlineMath math="n" /> Buchstaben <InlineMath math="r" />-mal vorkommt, steht in <InlineMath math="\frac{r}{n}" /> aller Anordnungen vorne, weil jede sichtbare Anordnung gleich viele nummerierte Fassungen hat. B kommt einmal vor, also steht B in <InlineMath math="\frac{1}{6} \times 60 = 10" /> Anordnungen vorne.
 
 ## Zwei Sorten von Objekten und die Kombination
 
@@ -69,7 +79,7 @@ Gibt es nur zwei Sorten von Objekten, **ist die Formel gleich einer** [Kombinati
 
 <BlockMath math="\frac{5!}{3! \, 2!} = \binom{5}{2} = 10" />
 
-Dieser Zusammenhang taucht in vielen Aufgaben auf. Die Anzahl der kürzesten Wege über ein <InlineMath math="3 \times 2" />-Gitter von der unteren linken zur oberen rechten Ecke ist die Anzahl der Anordnungen der Schritte RRROO (dreimal rechts, zweimal oben), also <InlineMath math="10" /> Wege.
+Zum Beispiel ist ein kürzester Weg, der <InlineMath math="3" /> Kästchen nach rechts und <InlineMath math="2" /> Kästchen nach oben führt, eine Anordnung der Schritte RRROO, wobei R einen Schritt nach rechts und O einen Schritt nach oben bedeutet. Es gibt also <InlineMath math="10" /> Wege.
 
 ## Der Unterschied zur gewöhnlichen Permutation
 
@@ -81,7 +91,7 @@ Eine [Permutation aller Objekte](/de/faecher/mathematik/kombinatorik/permutation
 | A, A, B, C (zwei gleiche A) | <InlineMath math="\frac{4!}{2!}" /> | <InlineMath math="12" /> |
 | A, A, B, B (zwei gleiche Paare) | <InlineMath math="\frac{4!}{2! \, 2!}" /> | <InlineMath math="6" /> |
 
-Jedes weitere gleiche Objekt **teilt** das Ergebnis erneut, weil mehr Vertauschungen unsichtbar werden.
+Je mehr gleiche Objekte eine Gruppe enthält, **desto größer ist die Fakultät im Nenner**, und desto kleiner wird das Ergebnis.
 
 ## Typische Fehler
 
@@ -93,7 +103,7 @@ Jedes weitere gleiche Objekt **teilt** das Ergebnis erneut, weil mehr Vertauschu
 | Den Block NN mit <InlineMath math="2!" /> multiplizieren | Die beiden N sind gleich, also entsteht kein neues Wort | Multipliziere nur dann mit inneren Anordnungen, wenn der Block verschiedene Objekte enthält |
 | Eine Bedingung vergessen, die einen Platz festlegt | Steht B fest vorne, wird B nicht mehr angeordnet | Verringere <InlineMath math="n" /> und die Häufigkeiten für fest platzierte Objekte |
 
-Die stärkste Probe ist **das Zählen über das Auswählen der Plätze**, wie im Beispiel KALIMANTAN. Das Ergebnis muss mit der Fakultätsformel übereinstimmen.
+Die stärkste Probe ist **das Zählen über das Auswählen der Plätze** für jede Gruppe. Das Ergebnis muss mit der Fakultätsformel übereinstimmen.
 
 ## Übungsaufgaben
 
@@ -121,10 +131,10 @@ Probe durch Auswählen der Plätze: <InlineMath math="\binom{10}{3}\binom{7}{2}\
 
 Probe: Wähle <InlineMath math="3" /> rote Plätze aus <InlineMath math="8" />, dann <InlineMath math="3" /> weiße Plätze aus <InlineMath math="5" />, und der Rest ist gelb, also <InlineMath math="\binom{8}{3}\binom{5}{3} = 56 \times 10 = 560" />.
 
-**Aufgabe 3**. Die Ziffer 1 kommt zweimal vor, die 2 dreimal und die 3 einmal, also entstehen <InlineMath math="\frac{6!}{2! \, 3!} = \frac{720}{12} = 60" /> Zahlen. Eine Zahl größer als <InlineMath math="300\,000" /> muss mit 3 beginnen, weil jede andere führende Ziffer eine Zahl unter <InlineMath math="300\,000" /> ergibt. Der Rest, <InlineMath math="1, 1, 2, 2, 2" />, lässt sich auf <InlineMath math="\frac{5!}{2! \, 3!} = 10" /> Arten anordnen. Probe: Die Ziffer 3 steht in <InlineMath math="\frac{1}{6}" /> aller Anordnungen vorne, und <InlineMath math="\frac{1}{6} \times 60 = 10" />.
+**Aufgabe 3**. Die Ziffer 1 kommt zweimal vor, die 2 dreimal und die 3 einmal, also entstehen <InlineMath math="\frac{6!}{2! \, 3!} = \frac{720}{12} = 60" /> Zahlen. Eine Zahl größer als <InlineMath math="300\,000" /> muss mit 3 beginnen, weil jede andere führende Ziffer eine Zahl unter <InlineMath math="300\,000" /> ergibt. Umgekehrt ist jede Zahl, die mit 3 beginnt, größer als <InlineMath math="300\,000" />, weil keine 0 vorkommt und die kleinste solche Zahl <InlineMath math="311\,222" /> ist. Der Rest, <InlineMath math="1, 1, 2, 2, 2" />, lässt sich auf <InlineMath math="\frac{5!}{2! \, 3!} = 10" /> Arten anordnen. Probe: Die Ziffer 3 steht in <InlineMath math="\frac{1}{6}" /> aller Anordnungen vorne, und <InlineMath math="\frac{1}{6} \times 60 = 10" />.
 
 **Aufgabe 4**. INDONESIA hat <InlineMath math="9" /> Buchstaben: I zweimal, N zweimal und D, O, E, S, A je einmal.
 
 <BlockMath math="P = \frac{9!}{2! \, 2!} = \frac{362\,880}{4} = 90\,720" />
 
-Probe: Die Häufigkeiten ergeben <InlineMath math="2 + 2 + 5 \times 1 = 9" />, die Anzahl der Buchstaben.
+Probe durch Auswählen der Plätze: <InlineMath math="\binom{9}{2}\binom{7}{2} \times 5! = 36 \times 21 \times 120 = 90\,720" />.

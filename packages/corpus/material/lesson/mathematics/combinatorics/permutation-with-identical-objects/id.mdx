@@ -13,6 +13,8 @@ Jika <InlineMath math="n" /> objek terdiri atas kelompok-kelompok objek yang sam
 
 <BlockMath math="P = \frac{n!}{r_1! \, r_2! \cdots r_k!}, \qquad r_1 + r_2 + \cdots + r_k = n" />
 
+Di sini <InlineMath math="k" /> adalah banyak kelompok objek yang sama.
+
 Contohnya, huruf kata MAMA punya <InlineMath math="n = 4" /> dengan dua M dan dua A, jadi banyak susunannya <InlineMath math="\frac{4!}{2! \, 2!} = \frac{24}{4} = 6" />. Hasilnya **lebih sedikit** daripada <InlineMath math="4! = 24" />, karena menukar dua huruf yang sama tidak menghasilkan susunan baru.
 
 ## Mengapa Dibagi dengan Faktorial Setiap Kelompok
@@ -30,7 +32,7 @@ Setiap susunan yang terlihat muncul tepat <InlineMath math="2! \times 2! = 4" />
 | 2 dan 4 | AMAM |
 | 3 dan 4 | AAMM |
 
-Tabel memuat **tepat enam susunan**, sama dengan hasil rumus. Pembagian dengan <InlineMath math="r_i!" /> menghapus semua penukaran di dalam satu kelompok yang tidak terlihat oleh mata.
+Daftar posisi itu menghasilkan **tepat enam susunan**, sesuai dengan rumus. Pembagian dengan <InlineMath math="r_i!" /> menghapus semua penukaran di dalam satu kelompok yang tidak terlihat oleh mata.
 
 ## Contoh Susunan Huruf KALIMANTAN
 
@@ -47,11 +49,19 @@ Periksa dengan cara memilih posisi. Pilih <InlineMath math="3" /> dari <InlineMa
 
 <BlockMath math="\binom{10}{3} \times \binom{7}{2} \times 5! = 120 \times 21 \times 120 = 302\,400" />
 
-Kedua cara memberi **hasil yang sama**, jadi tidak ada susunan yang terhitung dua kali atau terlewat.
+Kedua cara memberi **hasil yang sama**, sehingga kamu bisa yakin tidak ada susunan yang terhitung dua kali atau terlewat.
 
 ## Contoh Susunan BANANA dengan Syarat
 
-Kata BANANA punya <InlineMath math="n = 6" /> huruf: satu B, tiga A, dan dua N. Tanpa syarat, banyak susunannya <InlineMath math="\frac{6!}{1! \, 3! \, 2!} = \frac{720}{12} = 60" />.
+Kata BANANA punya <InlineMath math="n = 6" /> huruf. Catat frekuensinya dulu:
+
+| Huruf | Banyak kemunculan |
+| --- | --- |
+| B | 1 |
+| A | 3 |
+| N | 2 |
+
+Jumlah frekuensinya <InlineMath math="1 + 3 + 2 = 6" />, sama dengan <InlineMath math="n" />. Tanpa syarat, banyak susunannya <InlineMath math="\frac{6!}{1! \, 3! \, 2!} = \frac{720}{12} = 60" />.
 
 Syarat mengubah apa yang disusun. Jika huruf B harus di depan, posisi pertama sudah terisi, dan yang disusun hanya ANANA:
 
@@ -61,7 +71,7 @@ Jika kedua huruf N harus berdampingan, anggap NN sebagai **satu blok**. Objek ya
 
 <BlockMath math="\frac{5!}{3!} = \frac{120}{6} = 20" />
 
-Blok NN tidak perlu dikalikan <InlineMath math="2!" />, karena menukar kedua N di dalam blok tidak mengubah kata. Periksa hasil pertama dengan kesimetrian. B adalah satu dari enam huruf, jadi B berada di depan pada <InlineMath math="\frac{1}{6}" /> dari semua susunan, dan <InlineMath math="\frac{1}{6} \times 60 = 10" />.
+Blok NN tidak perlu dikalikan <InlineMath math="2!" />, karena menukar kedua N di dalam blok tidak mengubah kata. Periksa hasil kedua dengan menghitung tempat blok: blok NN bisa menempati <InlineMath math="5" /> pasang posisi berdampingan, dan untuk setiap pasang, B, A, A, A mengisi empat posisi sisanya dalam <InlineMath math="\frac{4!}{3!} = 4" /> cara, sehingga <InlineMath math="5 \times 4 = 20" />. Periksa hasil pertama dengan kesimetrian. Huruf yang muncul <InlineMath math="r" /> kali dari <InlineMath math="n" /> huruf berada di depan pada <InlineMath math="\frac{r}{n}" /> dari semua susunan, karena setiap susunan terlihat punya banyak versi berlabel yang sama. B muncul sekali, jadi B di depan pada <InlineMath math="\frac{1}{6} \times 60 = 10" /> susunan.
 
 ## Dua Jenis Objek dan Kombinasi
 
@@ -69,7 +79,7 @@ Jika hanya ada dua jenis objek, **rumusnya sama dengan** [kombinasi](/id/materi/
 
 <BlockMath math="\frac{5!}{3! \, 2!} = \binom{5}{2} = 10" />
 
-Hubungan ini muncul di banyak soal. Banyak jalur terpendek pada petak <InlineMath math="3 \times 2" />, dari pojok kiri bawah ke pojok kanan atas, adalah banyak susunan langkah KKKAA (tiga ke kanan, dua ke atas), yaitu <InlineMath math="10" /> jalur.
+Contohnya, jalur terpendek yang bergerak <InlineMath math="3" /> petak ke kanan dan <InlineMath math="2" /> petak ke atas adalah susunan langkah KKKAA, dengan K berarti satu petak ke kanan dan A satu petak ke atas. Jadi ada <InlineMath math="10" /> jalur.
 
 ## Bedanya dengan Permutasi Biasa
 
@@ -81,7 +91,7 @@ Hubungan ini muncul di banyak soal. Banyak jalur terpendek pada petak <InlineMat
 | A, A, B, C (dua A sama) | <InlineMath math="\frac{4!}{2!}" /> | <InlineMath math="12" /> |
 | A, A, B, B (dua pasang sama) | <InlineMath math="\frac{4!}{2! \, 2!}" /> | <InlineMath math="6" /> |
 
-Setiap tambahan objek yang sama **membagi** hasilnya lagi, karena semakin banyak penukaran yang tidak terlihat.
+Makin banyak objek yang sama dalam satu kelompok, **makin besar faktorial penyebutnya**, sehingga hasilnya makin kecil.
 
 ## Kesalahan yang Sering Terjadi
 
@@ -93,7 +103,7 @@ Setiap tambahan objek yang sama **membagi** hasilnya lagi, karena semakin banyak
 | Mengalikan blok NN dengan <InlineMath math="2!" /> | Kedua N sama, jadi menukarnya tidak menghasilkan kata baru | Kalikan dengan susunan internal hanya jika isi blok berbeda |
 | Lupa syarat yang mengunci posisi | Jika B harus di depan, B tidak ikut disusun lagi | Kurangi <InlineMath math="n" /> dan frekuensi untuk objek yang posisinya sudah tetap |
 
-Pemeriksaan paling kuat adalah **menghitung dengan cara memilih posisi**, seperti pada contoh KALIMANTAN. Hasilnya harus sama dengan rumus faktorial.
+Pemeriksaan paling kuat adalah **menghitung dengan cara memilih posisi** untuk setiap kelompok. Hasilnya harus sama dengan rumus faktorial.
 
 ## Latihan Soal
 
@@ -121,10 +131,10 @@ Periksa dengan memilih posisi: <InlineMath math="\binom{10}{3}\binom{7}{2}\binom
 
 Periksa: pilih <InlineMath math="3" /> posisi merah dari <InlineMath math="8" />, lalu <InlineMath math="3" /> posisi putih dari <InlineMath math="5" />, dan sisanya kuning, sehingga <InlineMath math="\binom{8}{3}\binom{5}{3} = 56 \times 10 = 560" />.
 
-**Soal 3**. Angka 1 muncul dua kali, angka 2 tiga kali, dan angka 3 sekali, jadi banyak bilangannya <InlineMath math="\frac{6!}{2! \, 3!} = \frac{720}{12} = 60" />. Bilangan lebih dari <InlineMath math="300\,000" /> harus diawali angka 3, karena angka lain di depan memberi bilangan di bawah <InlineMath math="300\,000" />. Sisanya, <InlineMath math="1, 1, 2, 2, 2" />, disusun dalam <InlineMath math="\frac{5!}{2! \, 3!} = 10" /> cara. Periksa: angka 3 berada di depan pada <InlineMath math="\frac{1}{6}" /> dari semua susunan, dan <InlineMath math="\frac{1}{6} \times 60 = 10" />.
+**Soal 3**. Angka 1 muncul dua kali, angka 2 tiga kali, dan angka 3 sekali, jadi banyak bilangannya <InlineMath math="\frac{6!}{2! \, 3!} = \frac{720}{12} = 60" />. Bilangan lebih dari <InlineMath math="300\,000" /> harus diawali angka 3, karena angka lain di depan memberi bilangan di bawah <InlineMath math="300\,000" />. Sebaliknya, setiap bilangan yang diawali 3 pasti lebih dari <InlineMath math="300\,000" />, karena tidak ada angka 0 dan bilangan terkecilnya <InlineMath math="311\,222" />. Sisanya, <InlineMath math="1, 1, 2, 2, 2" />, disusun dalam <InlineMath math="\frac{5!}{2! \, 3!} = 10" /> cara. Periksa: angka 3 berada di depan pada <InlineMath math="\frac{1}{6}" /> dari semua susunan, dan <InlineMath math="\frac{1}{6} \times 60 = 10" />.
 
 **Soal 4**. INDONESIA punya <InlineMath math="9" /> huruf: I dua kali, N dua kali, dan D, O, E, S, A masing-masing sekali.
 
 <BlockMath math="P = \frac{9!}{2! \, 2!} = \frac{362\,880}{4} = 90\,720" />
 
-Periksa: frekuensinya <InlineMath math="2 + 2 + 5 \times 1 = 9" />, sama dengan banyak huruf.
+Periksa dengan memilih posisi: <InlineMath math="\binom{9}{2}\binom{7}{2} \times 5! = 36 \times 21 \times 120 = 90\,720" />.

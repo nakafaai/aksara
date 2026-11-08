@@ -13,6 +13,8 @@ If <InlineMath math="n" /> objects split into groups of identical objects, with 
 
 <BlockMath math="P = \frac{n!}{r_1! \, r_2! \cdots r_k!}, \qquad r_1 + r_2 + \cdots + r_k = n" />
 
+Here <InlineMath math="k" /> is the number of groups of identical objects.
+
 For example, the letters of MAMA have <InlineMath math="n = 4" /> with two M and two A, so the number of arrangements is <InlineMath math="\frac{4!}{2! \, 2!} = \frac{24}{4} = 6" />. That is **fewer** than <InlineMath math="4! = 24" />, because swapping two identical letters does not create a new arrangement.
 
 ## Why You Divide by the Factorial of Each Group
@@ -30,7 +32,7 @@ Each visible arrangement appears exactly <InlineMath math="2! \times 2! = 4" /> 
 | 2 and 4 | AMAM |
 | 3 and 4 | AAMM |
 
-The table holds **exactly six arrangements**, the same as the formula. Dividing by <InlineMath math="r_i!" /> removes every swap inside one group that the eye cannot see.
+Listing the positions gives **exactly six arrangements**, as the formula says. Dividing by <InlineMath math="r_i!" /> removes every swap inside one group that the eye cannot see.
 
 ## Example with the Letters of KALIMANTAN
 
@@ -47,11 +49,19 @@ Check by choosing positions. Choose <InlineMath math="3" /> of the <InlineMath m
 
 <BlockMath math="\binom{10}{3} \times \binom{7}{2} \times 5! = 120 \times 21 \times 120 = 302\,400" />
 
-Both methods give **the same result**, so no arrangement is counted twice or missed.
+Both methods give **the same result**, which gives you confidence that no arrangement is counted twice or missed.
 
 ## Example with BANANA and a Condition
 
-The word BANANA has <InlineMath math="n = 6" /> letters: one B, three A, and two N. Without a condition, the number of arrangements is <InlineMath math="\frac{6!}{1! \, 3! \, 2!} = \frac{720}{12} = 60" />.
+The word BANANA has <InlineMath math="n = 6" /> letters. Record the frequencies first:
+
+| Letter | Frequency |
+| --- | --- |
+| B | 1 |
+| A | 3 |
+| N | 2 |
+
+The frequencies add up to <InlineMath math="1 + 3 + 2 = 6" />, equal to <InlineMath math="n" />. Without a condition, the number of arrangements is <InlineMath math="\frac{6!}{1! \, 3! \, 2!} = \frac{720}{12} = 60" />.
 
 A condition changes what you arrange. If B must come first, the first position is filled, and only ANANA is left to arrange:
 
@@ -61,7 +71,7 @@ If the two N must stand together, treat NN as **one block**. The objects to arra
 
 <BlockMath math="\frac{5!}{3!} = \frac{120}{6} = 20" />
 
-The block NN is not multiplied by <InlineMath math="2!" />, because swapping the two N inside the block does not change the word. Check the first result by symmetry. B is one of six letters, so B comes first in <InlineMath math="\frac{1}{6}" /> of all arrangements, and <InlineMath math="\frac{1}{6} \times 60 = 10" />.
+The block NN is not multiplied by <InlineMath math="2!" />, because swapping the two N inside the block does not change the word. Check the second result by placing the block: NN can occupy <InlineMath math="5" /> pairs of adjacent positions, and for each pair, B, A, A, A fill the other four positions in <InlineMath math="\frac{4!}{3!} = 4" /> ways, so <InlineMath math="5 \times 4 = 20" />. Check the first result by symmetry. A letter that appears <InlineMath math="r" /> times among <InlineMath math="n" /> letters comes first in <InlineMath math="\frac{r}{n}" /> of all arrangements, because every visible arrangement has the same number of labelled versions. B appears once, so B comes first in <InlineMath math="\frac{1}{6} \times 60 = 10" /> arrangements.
 
 ## Two Kinds of Objects and Combinations
 
@@ -69,7 +79,7 @@ When there are only two kinds of objects, **the formula equals a** [combination]
 
 <BlockMath math="\frac{5!}{3! \, 2!} = \binom{5}{2} = 10" />
 
-This link appears in many problems. The number of shortest paths across a <InlineMath math="3 \times 2" /> grid, from the bottom left corner to the top right corner, is the number of arrangements of the steps RRRUU (three right, two up), which is <InlineMath math="10" /> paths.
+For example, a shortest path that moves <InlineMath math="3" /> squares right and <InlineMath math="2" /> squares up is an arrangement of the steps RRRUU, where R means one square right and U one square up. So there are <InlineMath math="10" /> paths.
 
 ## How It Differs from Ordinary Permutations
 
@@ -81,7 +91,7 @@ A [permutation of all the objects](/en/subjects/mathematics/combinatorics/permut
 | A, A, B, C (two A identical) | <InlineMath math="\frac{4!}{2!}" /> | <InlineMath math="12" /> |
 | A, A, B, B (two identical pairs) | <InlineMath math="\frac{4!}{2! \, 2!}" /> | <InlineMath math="6" /> |
 
-Each extra identical object **divides** the result again, because more swaps become invisible.
+The more identical objects a group holds, **the larger the factorial in the denominator**, so the result gets smaller.
 
 ## Common Mistakes
 
@@ -93,7 +103,7 @@ Each extra identical object **divides** the result again, because more swaps bec
 | Multiplying the block NN by <InlineMath math="2!" /> | The two N are identical, so swapping them gives no new word | Multiply by the inner arrangements only when the block holds different objects |
 | Forgetting a condition that fixes a position | If B must come first, B is no longer arranged | Reduce <InlineMath math="n" /> and the frequencies for objects whose position is fixed |
 
-The strongest check is **counting by choosing positions**, as in the KALIMANTAN example. The result must match the factorial formula.
+The strongest check is **counting by choosing positions** for each group. The result must match the factorial formula.
 
 ## Practice Problems
 
@@ -121,10 +131,10 @@ Check by choosing positions: <InlineMath math="\binom{10}{3}\binom{7}{2}\binom{5
 
 Check: choose <InlineMath math="3" /> red positions from <InlineMath math="8" />, then <InlineMath math="3" /> white positions from <InlineMath math="5" />, and the rest are yellow, so <InlineMath math="\binom{8}{3}\binom{5}{3} = 56 \times 10 = 560" />.
 
-**Problem 3**. The digit 1 appears twice, 2 three times, and 3 once, so there are <InlineMath math="\frac{6!}{2! \, 3!} = \frac{720}{12} = 60" /> numbers. A number greater than <InlineMath math="300\,000" /> must start with 3, because any other leading digit gives a number below <InlineMath math="300\,000" />. The rest, <InlineMath math="1, 1, 2, 2, 2" />, can be arranged in <InlineMath math="\frac{5!}{2! \, 3!} = 10" /> ways. Check: the digit 3 comes first in <InlineMath math="\frac{1}{6}" /> of all arrangements, and <InlineMath math="\frac{1}{6} \times 60 = 10" />.
+**Problem 3**. The digit 1 appears twice, 2 three times, and 3 once, so there are <InlineMath math="\frac{6!}{2! \, 3!} = \frac{720}{12} = 60" /> numbers. A number greater than <InlineMath math="300\,000" /> must start with 3, because any other leading digit gives a number below <InlineMath math="300\,000" />. Conversely, every number that starts with 3 is greater than <InlineMath math="300\,000" />, because there is no digit 0 and the smallest such number is <InlineMath math="311\,222" />. The rest, <InlineMath math="1, 1, 2, 2, 2" />, can be arranged in <InlineMath math="\frac{5!}{2! \, 3!} = 10" /> ways. Check: the digit 3 comes first in <InlineMath math="\frac{1}{6}" /> of all arrangements, and <InlineMath math="\frac{1}{6} \times 60 = 10" />.
 
 **Problem 4**. INDONESIA has <InlineMath math="9" /> letters: I twice, N twice, and D, O, E, S, A once each.
 
 <BlockMath math="P = \frac{9!}{2! \, 2!} = \frac{362\,880}{4} = 90\,720" />
 
-Check: the frequencies add up to <InlineMath math="2 + 2 + 5 \times 1 = 9" />, the number of letters.
+Check by choosing positions: <InlineMath math="\binom{9}{2}\binom{7}{2} \times 5! = 36 \times 21 \times 120 = 90\,720" />.
