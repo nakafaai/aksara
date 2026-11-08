@@ -20,7 +20,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Dengan tangki penuh, mobil itu dapat menempuh 500 km jika seluruhnya melalui jalan tol.",
+            "Dengan tangki penuh, jarak terjauh yang dapat ditempuh mobil itu jika seluruhnya melalui jalan tol adalah 500 km.",
         },
         {
           column: 1,

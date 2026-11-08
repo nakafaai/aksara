@@ -10,7 +10,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Banyak PIN yang digitnya naik dari kiri ke kanan, misalnya 1358, adalah 252.",
+            "Banyak PIN yang setiap digitnya lebih besar daripada digit di sebelah kirinya, misalnya 1358, adalah 252.",
         },
         {
           column: 1,
