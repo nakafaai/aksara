@@ -1,111 +1,116 @@
 export const metadata = {
-  title: "Akar Tak Real Persamaan Kuadrat",
-  description: "Perluas persamaan kuadrat ke bilangan kompleks, gunakan diskriminan negatif untuk menemukan akar konjugat, lalu hubungkan hasilnya dengan grafik real.",
+  title: "Akar Imajiner Persamaan Kuadrat",
+  description: "Akar persamaan kuadrat menjadi imajiner saat diskriminannya negatif. Hitung pasangan akar konjugatnya dan lihat artinya pada grafik parabola.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Persamaan dan Fungsi Kuadrat",
 };
 
-## Memperluas Bilangan Real
+## Akar Imajiner Muncul saat Diskriminan Negatif
 
-Kita mulai dari persamaan berikut:
+Persamaan kuadrat <InlineMath math="ax^2 + bx + c = 0" /> dengan koefisien real punya **akar imajiner** (akar tidak real) tepat ketika diskriminannya negatif, <InlineMath math="D = b^2 - 4ac < 0" />. Kedua akarnya adalah
 
-<BlockMath math="x^2+1=0" />
+<BlockMath math="x = \frac{-b \pm i\sqrt{|D|}}{2a}" />
 
-Agar persamaan ini terpenuhi, <InlineMath math="x^2" /> harus sama dengan <InlineMath math="-1" />. Kuadrat bilangan real **tidak pernah negatif**, sehingga persamaan tersebut tidak mempunyai solusi real. Kita memperluas sistem bilangan dengan satuan imajiner <InlineMath math="i" /> yang memenuhi definisi berikut:
-
-<BlockMath math="i^2=-1" />
-
-Bilangan kompleks berbentuk
-
-<BlockMath math="z=a+bi\qquad(a,b\in\mathbb R)" />
-
-Bilangan <InlineMath math="2+5i" /> merupakan bilangan kompleks. Bilangan itu tidak murni imajiner karena bagian realnya tidak nol. Sementara itu, bilangan seperti <InlineMath math="3i" /> murni imajiner.
-
-## Diskriminan Negatif
-
-Untuk persamaan kuadrat <InlineMath math="ax^2+bx+c=0" /> dengan koefisien real, diskriminannya adalah
-
-<BlockMath math="D=b^2-4ac" />
-
-Jika <InlineMath math="D<0" />, persamaan tidak mempunyai akar real. Persamaan tersebut mempunyai <Highlight>dua akar kompleks tak real yang berbeda</Highlight> dan keduanya membentuk pasangan konjugat.
-
-Kita tetap memulai dengan [rumus kuadrat](/id/materi/matematika/persamaan-dan-fungsi-kuadrat/rumus-persamaan-kuadrat):
-
-<BlockMath math="x=\frac{-b\pm\sqrt{D}}{2a}" />
-
-Karena <InlineMath math="D<0" />, tulis <InlineMath math="D=-|D|" />. Dengan demikian,
-
-<MathContainer>
-  <BlockMath math="\sqrt D=\sqrt{-|D|}=i\sqrt{|D|}" />
-  <BlockMath math="x=\frac{-b\pm i\sqrt{|D|}}{2a}" />
-</MathContainer>
-
-## Menentukan dan Mengelompokkan Akar Tak Real
-
-Untuk menghitung akar saat diskriminan negatif, ambil akar kuadrat nilai mutlak diskriminan terlebih dahulu, lalu sertakan faktor <InlineMath math="i" />. Tanda tambah dan kurang menghasilkan dua akar konjugat, dengan **bagian real yang sama** dan bagian imajiner berlawanan.
-
-### Menentukan Dua Akar Tak Real
-
-Selesaikan
-
-<BlockMath math="x^2+4x+5=0" />
-
-Koefisiennya adalah <InlineMath math="a=1" />, <InlineMath math="b=4" />, dan <InlineMath math="c=5" />. Hitung **diskriminannya** terlebih dahulu:
-
-<BlockMath math="D=4^2-4\cdot1\cdot5=16-20=-4" />
-
-Karena <InlineMath math="D=-4<0" />, kedua akarnya tak real. Substitusikan nilainya ke rumus kuadrat:
-
-<MathContainer>
-  <BlockMath math="x=\frac{-4\pm\sqrt{-4}}{2\cdot1}" />
-  <BlockMath math="x=\frac{-4\pm2i}{2}=-2\pm i" />
-</MathContainer>
-
-Jadi,
-
-<BlockMath math="\begin{aligned} &amp;x_1=-2+i \\ &amp;\text{dan} \\ &amp;x_2=-2-i \end{aligned}" />
-
-Kita dapat memeriksa salah satu akar secara langsung:
-
-<BlockMath math="\begin{aligned}(-2+i)^2+4(-2+i)+5&amp;=4-4i+i^2-8+4i+5\\&amp;=1+i^2\\&amp;=1-1=0\end{aligned}" />
-
-Akar lainnya diperoleh dengan mengubah tanda bagian imajinernya.
-
-### Mengelompokkan Akar Sebelum Menyelesaikan Persamaan
-
-Perhatikan persamaan
-
-<BlockMath math="2x^2+x+3=0" />
-
-Di sini <InlineMath math="a=2" />, <InlineMath math="b=1" />, dan <InlineMath math="c=3" />. **Diskriminannya** adalah
-
-<BlockMath math="D=1^2-4\cdot2\cdot3=1-24=-23" />
-
-Diskriminan negatif menunjukkan bahwa persamaan mempunyai dua akar kompleks tak real. Nilai eksaknya adalah
-
-<MathContainer>
-  <BlockMath math="x=\frac{-1\pm\sqrt{-23}}{2\cdot2}" />
-  <BlockMath math="x=\frac{-1\pm i\sqrt{23}}4" />
-</MathContainer>
-
-Dengan demikian,
-
-<BlockMath math="\begin{aligned} &amp;x_1=\frac{-1+i\sqrt{23}}4 \\ &amp;\text{dan} \\ &amp;x_2=\frac{-1-i\sqrt{23}}4 \end{aligned}" />
-
-## Makna pada Grafik Real
-
-Persamaan pada contoh pertama dapat ditulis ulang sebagai
-
-<BlockMath math="f(x)=x^2+4x+5=(x+2)^2+1" />
-
-Untuk setiap <InlineMath math="x" /> real, nilai <InlineMath math="(x+2)^2" /> **tidak negatif**, sehingga <InlineMath math="f(x)\ge1" />. Grafik selalu berada di atas sumbu <InlineMath math="x" /> dan tidak memotongnya. Akar kompleks bukan titik potong tambahan pada grafik real ini. Akar tersebut berada dalam sistem bilangan yang lebih luas.
-
+Di sini <InlineMath math="i" /> adalah satuan imajiner dengan <InlineMath math="i^2 = -1" />. Akar-akar itu selalu **sepasang konjugat**: bagian realnya sama, yaitu <InlineMath math="-\frac{b}{2a}" />, dan bagian imajinernya berlawanan tanda. Pada grafik, parabola <InlineMath math="y = ax^2 + bx + c" /> tidak memotong sumbu <InlineMath math="x" /> sama sekali.
 
 <MathVisual
-  title="Parabola Tanpa Titik Potong Sumbu x"
-  description="Puncak parabola berada di titik (-2,1). Geser atau perbesar grafik untuk memeriksa bahwa nilai terendahnya satu, bukan nol."
+  title="Tiga parabola dengan diskriminan berbeda"
+  description={<>Grafik <InlineMath math="y = x^2 + 4x + c" /> untuk <InlineMath math="c = 3" />, <InlineMath math="4" />, dan <InlineMath math="5" />. Diskriminannya <InlineMath math="4" />, <InlineMath math="0" />, dan <InlineMath math="-4" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 1.5 }, y: { min: -2, max: 11 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 3 }, domain: { min: -5, max: 1 }, appearance: "secondary" },
+      { id: "one", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 4 }, domain: { min: -5, max: 1 }, appearance: "highlight" },
+      { id: "none", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 5 }, domain: { min: -5, max: 1 }, appearance: "primary" },
+      { id: "left-root", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "right-root", kind: "point", at: { x: -1, y: 0 }, appearance: "secondary" },
+      { id: "double-root", kind: "point", at: { x: -2, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "two", objectId: "two", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: 1, y: 9 }, placement: "right" },
+      { key: "none", objectId: "none", at: { x: 1, y: 10 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    two: <InlineMath math="c = 3" />,
+    one: <InlineMath math="c = 4" />,
+    none: <InlineMath math="c = 5" />,
+  }}
+/>
+
+Untuk <InlineMath math="c = 3" />, parabola memotong sumbu <InlineMath math="x" /> di <InlineMath math="-3" /> dan <InlineMath math="-1" />. Untuk <InlineMath math="c = 4" />, parabola hanya menyentuh sumbu di <InlineMath math="-2" />. Untuk <InlineMath math="c = 5" />, parabola terangkat di atas sumbu, dan kedua akarnya menjadi <InlineMath math="-2 \pm i" />.
+
+## Satuan Imajiner i
+
+Persamaan <InlineMath math="x^2 + 1 = 0" /> meminta <InlineMath math="x^2 = -1" />. Kuadrat bilangan real **tidak pernah negatif**, jadi tidak ada bilangan real yang memenuhinya. Karena itu, sistem bilangan diperluas dengan satuan imajiner <InlineMath math="i" /> yang memenuhi <InlineMath math="i^2 = -1" />.
+
+Dengan <InlineMath math="i" />, akar kuadrat bilangan negatif bisa ditulis. Untuk <InlineMath math="k > 0" /> berlaku <InlineMath math="\sqrt{-k} = i\sqrt{k}" />, misalnya <InlineMath math="\sqrt{-4} = 2i" /> dan <InlineMath math="\sqrt{-23} = i\sqrt{23}" />. Bilangan berbentuk <InlineMath math="z = p + qi" /> dengan <InlineMath math="p" /> dan <InlineMath math="q" /> real disebut [bilangan kompleks](/id/materi/matematika/bilangan-kompleks/konsep-bilangan-kompleks). Bilangan <InlineMath math="2 + 5i" /> punya bagian real <InlineMath math="2" />, sedangkan <InlineMath math="3i" /> imajiner murni.
+
+## Rumus Akar saat Diskriminan Negatif
+
+Mulailah dari [rumus kuadrat](/id/materi/matematika/persamaan-dan-fungsi-kuadrat/rumus-persamaan-kuadrat):
+
+<BlockMath math="x = \frac{-b \pm \sqrt{D}}{2a}" />
+
+Jika <InlineMath math="D < 0" />, tulis <InlineMath math="D = -|D|" />. Akar kuadratnya menjadi bilangan imajiner, dan rumusnya berubah menjadi
+
+<MathContainer>
+  <BlockMath math="\sqrt{D} = \sqrt{-|D|} = i\sqrt{|D|}" />
+  <BlockMath math="x = \frac{-b \pm i\sqrt{|D|}}{2a} = -\frac{b}{2a} \pm \frac{\sqrt{|D|}}{2a}\,i" />
+</MathContainer>
+
+Bentuk terakhir memisahkan **bagian real** <InlineMath math="-\frac{b}{2a}" /> dari **bagian imajiner** <InlineMath math="\pm\frac{\sqrt{|D|}}{2a}" />. Kamu bisa langsung membaca kedua bagian itu dari koefisien, tanpa menyusun ulang persamaan.
+
+## Contoh saat Koefisien Kuadratnya Satu
+
+Selesaikan <InlineMath math="x^2 + 4x + 5 = 0" />.
+
+Koefisiennya <InlineMath math="a = 1" />, <InlineMath math="b = 4" />, dan <InlineMath math="c = 5" />. Hitung diskriminannya dulu:
+
+<BlockMath math="D = 4^2 - 4 \cdot 1 \cdot 5 = 16 - 20 = -4" />
+
+Karena <InlineMath math="D < 0" />, **kedua akarnya imajiner**. Substitusikan ke rumus:
+
+<MathContainer>
+  <BlockMath math="x = \frac{-4 \pm \sqrt{-4}}{2 \cdot 1} = \frac{-4 \pm 2i}{2}" />
+  <BlockMath math="x_1 = -2 + i, \qquad x_2 = -2 - i" />
+</MathContainer>
+
+Periksa <InlineMath math="x_1" /> dengan menyubstitusikannya ke persamaan:
+
+<BlockMath math="\begin{aligned}(-2+i)^2+4(-2+i)+5&amp;=4-4i+i^2-8+4i+5\\&amp;=1+i^2=1-1=0\end{aligned}" />
+
+Akar <InlineMath math="x_2" /> lolos dengan cara yang sama, karena hanya tanda bagian imajinernya yang berbeda.
+
+## Contoh saat Koefisien Kuadratnya Bukan Satu
+
+Selesaikan <InlineMath math="2x^2 + x + 3 = 0" />.
+
+Di sini <InlineMath math="a = 2" />, <InlineMath math="b = 1" />, dan <InlineMath math="c = 3" />, sehingga
+
+<MathContainer>
+  <BlockMath math="D = 1^2 - 4 \cdot 2 \cdot 3 = 1 - 24 = -23" />
+  <BlockMath math="x = \frac{-1 \pm i\sqrt{23}}{2 \cdot 2} = -\frac{1}{4} \pm \frac{\sqrt{23}}{4}\,i" />
+</MathContainer>
+
+Bagi **kedua bagian** dengan <InlineMath math="2a = 4" />, bukan hanya bagian realnya. Periksa dengan jumlah dan hasil kali akar. Jumlahnya <InlineMath math="-\frac14 - \frac14 = -\frac12" />, sama dengan <InlineMath math="-\frac{b}{a}" />. Hasil kalinya <InlineMath math="\left(-\frac14\right)^2 + \left(\frac{\sqrt{23}}{4}\right)^2 = \frac{1}{16} + \frac{23}{16} = \frac{3}{2}" />, sama dengan <InlineMath math="\frac{c}{a}" />.
+
+## Puncak Parabola Menyimpan Akar Imajinernya
+
+Tulis fungsi dalam bentuk puncak, <InlineMath math="f(x) = a(x - h)^2 + k" />. Persamaan <InlineMath math="f(x) = 0" /> memberi <InlineMath math="(x - h)^2 = -\frac{k}{a}" />. Jika <InlineMath math="a" /> dan <InlineMath math="k" /> bertanda sama, ruas kanan negatif, parabola tidak memotong sumbu <InlineMath math="x" />, dan
+
+<BlockMath math="x = h \pm i\sqrt{\frac{k}{a}}" />
+
+Jadi **bagian real akar adalah absis puncak**, dan bagian imajinernya ditentukan oleh tinggi puncak di atas sumbu.
+
+<MathVisual
+  title="Parabola tanpa titik potong sumbu x"
+  description={<>Grafik <InlineMath math="y = x^2 + 4x + 5 = (x + 2)^2 + 1" /> dengan puncak <InlineMath math="(-2, 1)" />. Nilai terendahnya <InlineMath math="1" />, bukan <InlineMath math="0" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5.5, max: 1.5 }, y: { min: -1, max: 11 } },
@@ -119,42 +124,92 @@ Untuk setiap <InlineMath math="x" /> real, nilai <InlineMath math="(x+2)^2" /> *
   labels={{ vertex: <InlineMath math="(-2,1)" /> }}
 />
 
-## Mengapa Akar Membentuk Pasangan Konjugat
+Untuk <InlineMath math="x^2 + 4x + 5 = (x + 2)^2 + 1" />, puncaknya <InlineMath math="(-2, 1)" />, jadi akarnya <InlineMath math="-2 \pm i\sqrt{1} = -2 \pm i" />, sama dengan hasil rumus kuadrat. Akar imajiner bukan titik potong tersembunyi pada grafik real. Kedua akar itu berada di bidang kompleks, di luar bidang <InlineMath math="xy" /> tempat parabola digambar.
 
-Untuk koefisien real, rumus kuadrat memuat
+<MathVisual
+  title="Puncak parabola 2x² + x + 3"
+  description={<>Grafik <InlineMath math="y = 2x^2 + x + 3" /> berpuncak di <InlineMath math="\left(-\frac14, \frac{23}{8}\right)" />. Bagian real kedua akarnya sama dengan absis puncak.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 1, c: 3 }, domain: { min: -2.25, max: 1.75 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: -1 / 4, y: 23 / 8 }, appearance: "answer" },
+      { id: "axis", kind: "segment", from: { x: -1 / 4, y: 0 }, to: { x: -1 / 4, y: 23 / 8 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex", at: { x: -1 / 4, y: 23 / 8 }, placement: "below-right" },
+      { key: "axis", objectId: "axis", at: { x: -1 / 4, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    vertex: <InlineMath math="\left(-\frac14, \frac{23}{8}\right)" />,
+    axis: <InlineMath math="x = -\frac14" />,
+  }}
+/>
 
-<BlockMath math="-b\pm i\sqrt{|D|}" />
+Untuk <InlineMath math="2x^2 + x + 3" />, puncaknya <InlineMath math="h = -\frac14" /> dan <InlineMath math="k = \frac{23}{8}" />. Rumus puncak memberi <InlineMath math="\sqrt{\frac{k}{a}} = \sqrt{\frac{23}{16}} = \frac{\sqrt{23}}{4}" />, jadi akarnya <InlineMath math="-\frac14 \pm \frac{\sqrt{23}}{4}\,i" />, cocok dengan contoh sebelumnya.
 
-Kedua pilihan tanda hanya mengubah **bagian imajiner**. Hasilnya berbentuk <InlineMath math="u+vi" /> dan <InlineMath math="u-vi" /> yang disebut konjugat kompleks. Jika salah satunya merupakan akar polinom berkoefisien real, konjugatnya juga merupakan akar.
+## Mengapa Akar Selalu Berpasangan Konjugat
 
-## Latihan
+Pada rumus <InlineMath math="x = -\frac{b}{2a} \pm \frac{\sqrt{|D|}}{2a}\,i" />, tanda <InlineMath math="\pm" /> hanya mengubah **bagian imajiner**. Kedua akar berbentuk <InlineMath math="u + vi" /> dan <InlineMath math="u - vi" />, yang disebut [konjugat bilangan kompleks](/id/materi/matematika/bilangan-kompleks/konjugat-bilangan-kompleks).
 
-Soal ini meminta penyelesaian dalam **bilangan kompleks**, sehingga akar dari bilangan negatif boleh dihitung. Tuliskan <InlineMath math="i" /> secara eksplisit lalu kumpulkan bagian real dan imajiner di akhir.
+Karena itu, jumlah kedua akar selalu real, <InlineMath math="2u = -\frac{b}{a}" />, dan hasil kalinya juga real, <InlineMath math="u^2 + v^2 = \frac{c}{a}" />. Akibat lainnya: persamaan kuadrat berkoefisien real **tidak mungkin** punya tepat satu akar imajiner. Jika <InlineMath math="3 + 2i" /> adalah akar, maka <InlineMath math="3 - 2i" /> juga akar.
 
-Selesaikan <InlineMath math="2x^2+2x+5=0" /> dalam bilangan kompleks.
+## Kesalahan yang Sering Terjadi
 
-### Pembahasan Lengkap
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Menulis <InlineMath math="\sqrt{-4} = -2" /> | <InlineMath math="(-2)^2 = 4" />, bukan <InlineMath math="-4" /> | <InlineMath math="(2i)^2 = 4i^2 = -4" />, jadi <InlineMath math="\sqrt{-4} = 2i" /> |
+| Hanya membagi bagian real dengan <InlineMath math="2a" /> | <InlineMath math="\frac{-4 \pm 2i}{2}" /> menjadi <InlineMath math="-2 \pm 2i" /> | Bagi setiap suku: <InlineMath math="-2 \pm i" /> |
+| Menganggap <InlineMath math="i^2 = 1" /> | Definisi satuan imajiner adalah <InlineMath math="i^2 = -1" /> | Substitusikan akar ke persamaan, hasilnya harus <InlineMath math="0" /> |
+| Lupa tanda negatif pada <InlineMath math="-b" /> | Untuk <InlineMath math="x^2 - 6x + 13 = 0" />, bagian realnya <InlineMath math="3" />, bukan <InlineMath math="-3" /> | Bagian real sama dengan absis puncak |
+| Mengira grafik memotong sumbu di bagian real akar | Parabola dengan <InlineMath math="D < 0" /> tidak menyentuh sumbu <InlineMath math="x" /> | Hitung nilai fungsi di puncak, hasilnya tidak nol |
 
-Mulai dari diskriminan:
+Pemeriksaan yang paling cepat memakai **jumlah dan hasil kali akar**: jumlahnya harus <InlineMath math="-\frac{b}{a}" /> dan hasil kalinya <InlineMath math="\frac{c}{a}" />.
 
-<BlockMath math="D=2^2-4\cdot2\cdot5=4-40=-36" />
+## Latihan Soal
 
-Karena <InlineMath math="D<0" />, gunakan <InlineMath math="\sqrt{-36}=6i" /> dalam rumus kuadrat:
+Hitung diskriminannya dulu, lalu tulis akarnya sebagai **bagian real ditambah atau dikurangi bagian imajiner**.
+
+1. Selesaikan <InlineMath math="x^2 - 6x + 13 = 0" />.
+
+2. Selesaikan <InlineMath math="2x^2 + 2x + 5 = 0" /> dalam bilangan kompleks.
+
+3. Tentukan semua nilai <InlineMath math="k" /> agar <InlineMath math="x^2 + kx + 9 = 0" /> mempunyai akar imajiner.
+
+4. Susun persamaan kuadrat dengan koefisien bulat yang akar-akarnya <InlineMath math="1 + 2i" /> dan <InlineMath math="1 - 2i" />.
+
+### Pembahasan
+
+**Soal 1**. Hitung **diskriminannya dulu**. Diskriminannya <InlineMath math="D = (-6)^2 - 4 \cdot 1 \cdot 13 = 36 - 52 = -16" />, jadi <InlineMath math="\sqrt{D} = 4i" />:
+
+<BlockMath math="x = \frac{6 \pm 4i}{2} = 3 \pm 2i" />
+
+Periksa: jumlahnya <InlineMath math="6 = -\frac{b}{a}" />, dan hasil kalinya <InlineMath math="3^2 + 2^2 = 13 = \frac{c}{a}" />. Puncak parabola <InlineMath math="(x - 3)^2 + 4" /> adalah <InlineMath math="(3, 4)" />, cocok dengan rumus puncak <InlineMath math="3 \pm i\sqrt{4}" />.
+
+**Soal 2**. Diskriminannya <InlineMath math="D = 2^2 - 4 \cdot 2 \cdot 5 = -36" />, jadi <InlineMath math="\sqrt{D} = 6i" />:
+
+<BlockMath math="x = \frac{-2 \pm 6i}{4} = -\frac12 \pm \frac32 i" />
+
+Periksa: jumlahnya <InlineMath math="-1 = -\frac{b}{a}" />, dan hasil kalinya <InlineMath math="\frac14 + \frac94 = \frac52 = \frac{c}{a}" />.
+
+**Soal 3**. Akar imajiner muncul tepat ketika diskriminannya negatif:
 
 <MathContainer>
-  <BlockMath math="x=\frac{-2\pm\sqrt{-36}}{2\cdot2}" />
-  <BlockMath math="x=\frac{-2\pm6i}{4}=-\frac12\pm\frac32i" />
+  <BlockMath math="D = k^2 - 4 \cdot 1 \cdot 9 = k^2 - 36 < 0" />
+  <BlockMath math="k^2 < 36 \quad\Longrightarrow\quad -6 < k < 6" />
 </MathContainer>
 
-Jadi, pasangan akar konjugatnya adalah
+Periksa dua nilai. Untuk <InlineMath math="k = 0" />, persamaan <InlineMath math="x^2 + 9 = 0" /> memberi <InlineMath math="x = \pm 3i" />. Untuk <InlineMath math="k = 6" />, <InlineMath math="D = 0" /> dan akarnya kembar real <InlineMath math="-3" />, jadi batas <InlineMath math="6" /> tidak termasuk.
 
-<BlockMath math="\begin{aligned} &amp;x_1=-\frac12+\frac32i \\ &amp;\text{dan} \\ &amp;x_2=-\frac12-\frac32i \end{aligned}" />
-
-Jumlah kedua akar adalah <InlineMath math="-1=-\frac ba" /> dan hasil kalinya <InlineMath math="\frac52=\frac ca" />. Keduanya sesuai dengan rumus Vieta sehingga hasilnya terkonfirmasi.
-
-Saat menjumlahkan konjugat, **bagian imajiner saling menghapus**. Saat mengalikannya, gunakan selisih dua kuadrat dan <InlineMath math="i^2=-1" />:
+**Soal 4**. Gunakan jumlah dan hasil kali akar:
 
 <MathContainer>
-  <BlockMath math="x_1+x_2=-\frac12-\frac12+\left(\frac32-\frac32\right)i=-1" />
-  <BlockMath math="\begin{aligned}x_1x_2&amp;=\left(-\frac12\right)^2-\left(\frac32i\right)^2\\&amp;=\frac14-\frac94(-1)=\frac52\end{aligned}" />
+  <BlockMath math="x_1 + x_2 = (1 + 2i) + (1 - 2i) = 2" />
+  <BlockMath math="x_1 x_2 = 1^2 - (2i)^2 = 1 + 4 = 5" />
+  <BlockMath math="x^2 - 2x + 5 = 0" />
 </MathContainer>
+
+Periksa: diskriminannya <InlineMath math="4 - 20 = -16" />, dan rumus kuadrat memberi <InlineMath math="\frac{2 \pm 4i}{2} = 1 \pm 2i" />.

@@ -1,111 +1,116 @@
 export const metadata = {
-  title: "Nonreal Roots of Quadratic Equations",
-  description: "Extend quadratic equations to complex numbers, use a negative discriminant to find conjugate roots, and connect those roots to the real graph.",
+  title: "Imaginary Roots of a Quadratic Equation",
+  description: "A quadratic has imaginary roots when its discriminant is negative. Find the conjugate pair of roots and see what they mean on the parabola.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Quadratic Functions",
 };
 
-## Extending Beyond the Real Numbers
+## Imaginary Roots Appear When the Discriminant Is Negative
 
-Start with the equation:
+A quadratic equation <InlineMath math="ax^2 + bx + c = 0" /> with real coefficients has **imaginary roots** (nonreal roots) exactly when its discriminant is negative, <InlineMath math="D = b^2 - 4ac < 0" />. The two roots are
 
-<BlockMath math="x^2+1=0" />
+<BlockMath math="x = \frac{-b \pm i\sqrt{|D|}}{2a}" />
 
-To satisfy this equation, <InlineMath math="x^2" /> would have to equal <InlineMath math="-1" />. The square of a real number is **never negative**, so the equation has no real solution. We extend the number system with the imaginary unit <InlineMath math="i" />, which satisfies the following definition:
-
-<BlockMath math="i^2=-1" />
-
-A complex number has the form
-
-<BlockMath math="z=a+bi\qquad(a,b\in\mathbb R)" />
-
-The number <InlineMath math="2+5i" /> is complex. It is not purely imaginary because its real part is not zero. A number such as <InlineMath math="3i" /> is purely imaginary.
-
-## A Negative Discriminant
-
-For a quadratic equation <InlineMath math="ax^2+bx+c=0" /> with real coefficients, the discriminant is
-
-<BlockMath math="D=b^2-4ac" />
-
-If <InlineMath math="D<0" />, the equation has no real roots. It has two distinct non-real complex roots, <Highlight>and those roots form a conjugate pair</Highlight>.
-
-We still begin with [the quadratic formula](/en/subjects/mathematics/quadratic-function/quadratic-equation-formula):
-
-<BlockMath math="x=\frac{-b\pm\sqrt{D}}{2a}" />
-
-Because <InlineMath math="D<0" />, write <InlineMath math="D=-|D|" />. Then
-
-<MathContainer>
-  <BlockMath math="\sqrt D=\sqrt{-|D|}=i\sqrt{|D|}" />
-  <BlockMath math="x=\frac{-b\pm i\sqrt{|D|}}{2a}" />
-</MathContainer>
-
-## Finding and Classifying Nonreal Roots
-
-For a negative discriminant, first take the square root of its absolute value, then include the factor <InlineMath math="i" />. The plus and minus choices produce conjugate roots with **the same real part** and opposite imaginary parts.
-
-### Finding Two Nonreal Roots
-
-Solve
-
-<BlockMath math="x^2+4x+5=0" />
-
-The coefficients are <InlineMath math="a=1" />, <InlineMath math="b=4" />, and <InlineMath math="c=5" />. First calculate the **discriminant**:
-
-<BlockMath math="D=4^2-4\cdot1\cdot5=16-20=-4" />
-
-Since <InlineMath math="D=-4<0" />, the roots are non-real. Substitute the values into the quadratic formula:
-
-<MathContainer>
-  <BlockMath math="x=\frac{-4\pm\sqrt{-4}}{2\cdot1}" />
-  <BlockMath math="x=\frac{-4\pm2i}{2}=-2\pm i" />
-</MathContainer>
-
-The calculation gives:
-
-<BlockMath math="\begin{aligned} &amp;x_1=-2+i \\ &amp;\text{and} \\ &amp;x_2=-2-i \end{aligned}" />
-
-We can check one root directly:
-
-<BlockMath math="\begin{aligned}(-2+i)^2+4(-2+i)+5&amp;=4-4i+i^2-8+4i+5\\&amp;=1+i^2\\&amp;=1-1=0\end{aligned}" />
-
-The other root follows by changing the sign of the imaginary part.
-
-### Classifying Roots Before Solving
-
-Consider
-
-<BlockMath math="2x^2+x+3=0" />
-
-Here <InlineMath math="a=2" />, <InlineMath math="b=1" />, and <InlineMath math="c=3" />. Its **discriminant** is
-
-<BlockMath math="D=1^2-4\cdot2\cdot3=1-24=-23" />
-
-The negative discriminant tells us that the equation has two non-real complex roots. Their exact values are
-
-<MathContainer>
-  <BlockMath math="x=\frac{-1\pm\sqrt{-23}}{2\cdot2}" />
-  <BlockMath math="x=\frac{-1\pm i\sqrt{23}}4" />
-</MathContainer>
-
-The calculation gives:
-
-<BlockMath math="\begin{aligned} &amp;x_1=\frac{-1+i\sqrt{23}}4 \\ &amp;\text{and} \\ &amp;x_2=\frac{-1-i\sqrt{23}}4 \end{aligned}" />
-
-## What the Real Graph Shows
-
-The first example can be rewritten as
-
-<BlockMath math="f(x)=x^2+4x+5=(x+2)^2+1" />
-
-For every real <InlineMath math="x" />, the value of <InlineMath math="(x+2)^2" /> is **nonnegative**, so <InlineMath math="f(x)\ge1" />. The graph stays above the <InlineMath math="x" />-axis and has no real intercepts. The complex roots are not extra points on this real graph. They belong to the extended number system.
-
+Here <InlineMath math="i" /> is the imaginary unit with <InlineMath math="i^2 = -1" />. The roots always form **a conjugate pair**: they share the real part <InlineMath math="-\frac{b}{2a}" />, and their imaginary parts have opposite signs. On the graph, the parabola <InlineMath math="y = ax^2 + bx + c" /> never meets the <InlineMath math="x" />-axis.
 
 <MathVisual
-  title="A Parabola Without an x Intercept"
-  description="The vertex is at (-2,1). Pan or zoom to check that the smallest function value is one, not zero."
+  title="Three parabolas with different discriminants"
+  description={<>The graphs of <InlineMath math="y = x^2 + 4x + c" /> for <InlineMath math="c = 3" />, <InlineMath math="4" />, and <InlineMath math="5" />. Their discriminants are <InlineMath math="4" />, <InlineMath math="0" />, and <InlineMath math="-4" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 1.5 }, y: { min: -2, max: 11 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 3 }, domain: { min: -5, max: 1 }, appearance: "secondary" },
+      { id: "one", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 4 }, domain: { min: -5, max: 1 }, appearance: "highlight" },
+      { id: "none", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 5 }, domain: { min: -5, max: 1 }, appearance: "primary" },
+      { id: "left-root", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "right-root", kind: "point", at: { x: -1, y: 0 }, appearance: "secondary" },
+      { id: "double-root", kind: "point", at: { x: -2, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "two", objectId: "two", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: 1, y: 9 }, placement: "right" },
+      { key: "none", objectId: "none", at: { x: 1, y: 10 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    two: <InlineMath math="c = 3" />,
+    one: <InlineMath math="c = 4" />,
+    none: <InlineMath math="c = 5" />,
+  }}
+/>
+
+For <InlineMath math="c = 3" />, the parabola crosses the <InlineMath math="x" />-axis at <InlineMath math="-3" /> and <InlineMath math="-1" />. For <InlineMath math="c = 4" />, it only touches the axis at <InlineMath math="-2" />. For <InlineMath math="c = 5" />, the parabola lifts above the axis, and its two roots become <InlineMath math="-2 \pm i" />.
+
+## The Imaginary Unit i
+
+The equation <InlineMath math="x^2 + 1 = 0" /> asks for <InlineMath math="x^2 = -1" />. The square of a real number is **never negative**, so no real number solves it. That is why the number system is extended with the imaginary unit <InlineMath math="i" />, which satisfies <InlineMath math="i^2 = -1" />.
+
+With <InlineMath math="i" />, you can write the square root of a negative number. For <InlineMath math="k > 0" />, <InlineMath math="\sqrt{-k} = i\sqrt{k}" />, for example <InlineMath math="\sqrt{-4} = 2i" /> and <InlineMath math="\sqrt{-23} = i\sqrt{23}" />. A number of the form <InlineMath math="z = p + qi" /> with real <InlineMath math="p" /> and <InlineMath math="q" /> is a [complex number](/en/subjects/mathematics/complex-number/complex-number-concept). The number <InlineMath math="2 + 5i" /> has real part <InlineMath math="2" />, while <InlineMath math="3i" /> is purely imaginary.
+
+## The Root Formula When the Discriminant Is Negative
+
+Start from the [quadratic formula](/en/subjects/mathematics/quadratic-function/quadratic-equation-formula):
+
+<BlockMath math="x = \frac{-b \pm \sqrt{D}}{2a}" />
+
+If <InlineMath math="D < 0" />, write <InlineMath math="D = -|D|" />. Its square root becomes an imaginary number, and the formula turns into
+
+<MathContainer>
+  <BlockMath math="\sqrt{D} = \sqrt{-|D|} = i\sqrt{|D|}" />
+  <BlockMath math="x = \frac{-b \pm i\sqrt{|D|}}{2a} = -\frac{b}{2a} \pm \frac{\sqrt{|D|}}{2a}\,i" />
+</MathContainer>
+
+The last form separates the **real part** <InlineMath math="-\frac{b}{2a}" /> from the **imaginary part** <InlineMath math="\pm\frac{\sqrt{|D|}}{2a}" />. You can read both parts straight from the coefficients, without rearranging the equation.
+
+## Example When the Leading Coefficient Is One
+
+Solve <InlineMath math="x^2 + 4x + 5 = 0" />.
+
+The coefficients are <InlineMath math="a = 1" />, <InlineMath math="b = 4" />, and <InlineMath math="c = 5" />. Compute the discriminant first:
+
+<BlockMath math="D = 4^2 - 4 \cdot 1 \cdot 5 = 16 - 20 = -4" />
+
+Since <InlineMath math="D < 0" />, **both roots are imaginary**. Substitute into the formula:
+
+<MathContainer>
+  <BlockMath math="x = \frac{-4 \pm \sqrt{-4}}{2 \cdot 1} = \frac{-4 \pm 2i}{2}" />
+  <BlockMath math="x_1 = -2 + i, \qquad x_2 = -2 - i" />
+</MathContainer>
+
+Check <InlineMath math="x_1" /> by substituting it into the equation:
+
+<BlockMath math="\begin{aligned}(-2+i)^2+4(-2+i)+5&amp;=4-4i+i^2-8+4i+5\\&amp;=1+i^2=1-1=0\end{aligned}" />
+
+The root <InlineMath math="x_2" /> passes the same way, because only the sign of its imaginary part differs.
+
+## Example When the Leading Coefficient Is Not One
+
+Solve <InlineMath math="2x^2 + x + 3 = 0" />.
+
+Here <InlineMath math="a = 2" />, <InlineMath math="b = 1" />, and <InlineMath math="c = 3" />, so
+
+<MathContainer>
+  <BlockMath math="D = 1^2 - 4 \cdot 2 \cdot 3 = 1 - 24 = -23" />
+  <BlockMath math="x = \frac{-1 \pm i\sqrt{23}}{2 \cdot 2} = -\frac{1}{4} \pm \frac{\sqrt{23}}{4}\,i" />
+</MathContainer>
+
+Divide **both parts** by <InlineMath math="2a = 4" />, not only the real part. Check with the sum and product of the roots. The sum is <InlineMath math="-\frac14 - \frac14 = -\frac12" />, equal to <InlineMath math="-\frac{b}{a}" />. The product is <InlineMath math="\left(-\frac14\right)^2 + \left(\frac{\sqrt{23}}{4}\right)^2 = \frac{1}{16} + \frac{23}{16} = \frac{3}{2}" />, equal to <InlineMath math="\frac{c}{a}" />.
+
+## The Vertex Holds the Imaginary Roots
+
+Write the function in vertex form, <InlineMath math="f(x) = a(x - h)^2 + k" />. The equation <InlineMath math="f(x) = 0" /> gives <InlineMath math="(x - h)^2 = -\frac{k}{a}" />. If <InlineMath math="a" /> and <InlineMath math="k" /> have the same sign, the right side is negative, the parabola misses the <InlineMath math="x" />-axis, and
+
+<BlockMath math="x = h \pm i\sqrt{\frac{k}{a}}" />
+
+So **the real part of the roots is the x-coordinate of the vertex**, and the imaginary part depends on how high the vertex sits above the axis.
+
+<MathVisual
+  title="A parabola without an x-intercept"
+  description={<>The graph of <InlineMath math="y = x^2 + 4x + 5 = (x + 2)^2 + 1" /> with vertex <InlineMath math="(-2, 1)" />. Its lowest value is <InlineMath math="1" />, not <InlineMath math="0" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5.5, max: 1.5 }, y: { min: -1, max: 11 } },
@@ -119,42 +124,92 @@ For every real <InlineMath math="x" />, the value of <InlineMath math="(x+2)^2" 
   labels={{ vertex: <InlineMath math="(-2,1)" /> }}
 />
 
-## Why the Roots Come in Conjugate Pairs
+For <InlineMath math="x^2 + 4x + 5 = (x + 2)^2 + 1" />, the vertex is <InlineMath math="(-2, 1)" />, so the roots are <InlineMath math="-2 \pm i\sqrt{1} = -2 \pm i" />, the same as the quadratic formula gave. Imaginary roots are not hidden crossing points on the real graph. They live in the complex plane, outside the <InlineMath math="xy" />-plane where the parabola is drawn.
 
-For real coefficients, the quadratic formula contains
+<MathVisual
+  title="The vertex of the parabola 2x² + x + 3"
+  description={<>The graph of <InlineMath math="y = 2x^2 + x + 3" /> has its vertex at <InlineMath math="\left(-\frac14, \frac{23}{8}\right)" />. The real part of both roots equals the x-coordinate of the vertex.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 1, c: 3 }, domain: { min: -2.25, max: 1.75 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: -1 / 4, y: 23 / 8 }, appearance: "answer" },
+      { id: "axis", kind: "segment", from: { x: -1 / 4, y: 0 }, to: { x: -1 / 4, y: 23 / 8 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex", at: { x: -1 / 4, y: 23 / 8 }, placement: "below-right" },
+      { key: "axis", objectId: "axis", at: { x: -1 / 4, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    vertex: <InlineMath math="\left(-\frac14, \frac{23}{8}\right)" />,
+    axis: <InlineMath math="x = -\frac14" />,
+  }}
+/>
 
-<BlockMath math="-b\pm i\sqrt{|D|}" />
+For <InlineMath math="2x^2 + x + 3" />, the vertex has <InlineMath math="h = -\frac14" /> and <InlineMath math="k = \frac{23}{8}" />. The vertex rule gives <InlineMath math="\sqrt{\frac{k}{a}} = \sqrt{\frac{23}{16}} = \frac{\sqrt{23}}{4}" />, so the roots are <InlineMath math="-\frac14 \pm \frac{\sqrt{23}}{4}\,i" />, matching the previous example.
 
-The two choices of the sign change only the **imaginary part**. This produces <InlineMath math="u+vi" /> and <InlineMath math="u-vi" />, called complex conjugates. If one is a root of a polynomial with real coefficients, its conjugate is also a root.
+## Why the Roots Always Come in Conjugate Pairs
 
-## Practice Problem
+In the formula <InlineMath math="x = -\frac{b}{2a} \pm \frac{\sqrt{|D|}}{2a}\,i" />, the <InlineMath math="\pm" /> sign changes only **the imaginary part**. The two roots have the form <InlineMath math="u + vi" /> and <InlineMath math="u - vi" />, called [conjugate complex numbers](/en/subjects/mathematics/complex-number/conjugate-complex-numbers).
 
-The problem asks for the solutions over the **complex numbers**, so the square root of a negative number is allowed. Write <InlineMath math="i" /> explicitly and collect the real and imaginary parts at the end.
+So the sum of the roots is always real, <InlineMath math="2u = -\frac{b}{a}" />, and so is their product, <InlineMath math="u^2 + v^2 = \frac{c}{a}" />. Another consequence: a quadratic with real coefficients **cannot** have exactly one imaginary root. If <InlineMath math="3 + 2i" /> is a root, then <InlineMath math="3 - 2i" /> is a root too.
 
-Solve <InlineMath math="2x^2+2x+5=0" /> over the complex numbers.
+## Common Mistakes
 
-### Worked Solution
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Writing <InlineMath math="\sqrt{-4} = -2" /> | <InlineMath math="(-2)^2 = 4" />, not <InlineMath math="-4" /> | <InlineMath math="(2i)^2 = 4i^2 = -4" />, so <InlineMath math="\sqrt{-4} = 2i" /> |
+| Dividing only the real part by <InlineMath math="2a" /> | <InlineMath math="\frac{-4 \pm 2i}{2}" /> turns into <InlineMath math="-2 \pm 2i" /> | Divide every term: <InlineMath math="-2 \pm i" /> |
+| Taking <InlineMath math="i^2 = 1" /> | The imaginary unit is defined by <InlineMath math="i^2 = -1" /> | Substitute the root into the equation, the result must be <InlineMath math="0" /> |
+| Dropping the minus sign in <InlineMath math="-b" /> | For <InlineMath math="x^2 - 6x + 13 = 0" />, the real part is <InlineMath math="3" />, not <InlineMath math="-3" /> | The real part equals the x-coordinate of the vertex |
+| Thinking the graph crosses the axis at the real part | A parabola with <InlineMath math="D < 0" /> never touches the <InlineMath math="x" />-axis | Evaluate the function at the vertex, the result is not zero |
 
-Start with the discriminant:
+The quickest check uses **the sum and product of the roots**: the sum must be <InlineMath math="-\frac{b}{a}" /> and the product <InlineMath math="\frac{c}{a}" />.
 
-<BlockMath math="D=2^2-4\cdot2\cdot5=4-40=-36" />
+## Practice Problems
 
-Because <InlineMath math="D<0" />, use <InlineMath math="\sqrt{-36}=6i" /> in the quadratic formula:
+Compute the discriminant first, then write the roots as **the real part plus or minus the imaginary part**.
+
+1. Solve <InlineMath math="x^2 - 6x + 13 = 0" />.
+
+2. Solve <InlineMath math="2x^2 + 2x + 5 = 0" /> over the complex numbers.
+
+3. Find every value of <InlineMath math="k" /> for which <InlineMath math="x^2 + kx + 9 = 0" /> has imaginary roots.
+
+4. Write a quadratic equation with integer coefficients whose roots are <InlineMath math="1 + 2i" /> and <InlineMath math="1 - 2i" />.
+
+### Solutions
+
+**Problem 1**. Compute **the discriminant first**. It is <InlineMath math="D = (-6)^2 - 4 \cdot 1 \cdot 13 = 36 - 52 = -16" />, so <InlineMath math="\sqrt{D} = 4i" />:
+
+<BlockMath math="x = \frac{6 \pm 4i}{2} = 3 \pm 2i" />
+
+Check: the sum is <InlineMath math="6 = -\frac{b}{a}" />, and the product is <InlineMath math="3^2 + 2^2 = 13 = \frac{c}{a}" />. The vertex of <InlineMath math="(x - 3)^2 + 4" /> is <InlineMath math="(3, 4)" />, which fits the vertex rule <InlineMath math="3 \pm i\sqrt{4}" />.
+
+**Problem 2**. The discriminant is <InlineMath math="D = 2^2 - 4 \cdot 2 \cdot 5 = -36" />, so <InlineMath math="\sqrt{D} = 6i" />:
+
+<BlockMath math="x = \frac{-2 \pm 6i}{4} = -\frac12 \pm \frac32 i" />
+
+Check: the sum is <InlineMath math="-1 = -\frac{b}{a}" />, and the product is <InlineMath math="\frac14 + \frac94 = \frac52 = \frac{c}{a}" />.
+
+**Problem 3**. Imaginary roots appear exactly when the discriminant is negative:
 
 <MathContainer>
-  <BlockMath math="x=\frac{-2\pm\sqrt{-36}}{2\cdot2}" />
-  <BlockMath math="x=\frac{-2\pm6i}{4}=-\frac12\pm\frac32i" />
+  <BlockMath math="D = k^2 - 4 \cdot 1 \cdot 9 = k^2 - 36 < 0" />
+  <BlockMath math="k^2 < 36 \quad\Longrightarrow\quad -6 < k < 6" />
 </MathContainer>
 
-So the conjugate roots are
+Check two values. For <InlineMath math="k = 0" />, the equation <InlineMath math="x^2 + 9 = 0" /> gives <InlineMath math="x = \pm 3i" />. For <InlineMath math="k = 6" />, <InlineMath math="D = 0" /> and the root is the repeated real number <InlineMath math="-3" />, so the endpoint <InlineMath math="6" /> is not included.
 
-<BlockMath math="\begin{aligned} &amp;x_1=-\frac12+\frac32i \\ &amp;\text{and} \\ &amp;x_2=-\frac12-\frac32i \end{aligned}" />
-
-Their sum is <InlineMath math="-1=-\frac ba" /> and their product is <InlineMath math="\frac52=\frac ca" />, which checks the result against Vieta's formulas.
-
-When adding conjugates, **the imaginary parts cancel**. For their product, use the difference of two squares and <InlineMath math="i^2=-1" />:
+**Problem 4**. Use the sum and product of the roots:
 
 <MathContainer>
-  <BlockMath math="x_1+x_2=-\frac12-\frac12+\left(\frac32-\frac32\right)i=-1" />
-  <BlockMath math="\begin{aligned}x_1x_2&amp;=\left(-\frac12\right)^2-\left(\frac32i\right)^2\\&amp;=\frac14-\frac94(-1)=\frac52\end{aligned}" />
+  <BlockMath math="x_1 + x_2 = (1 + 2i) + (1 - 2i) = 2" />
+  <BlockMath math="x_1 x_2 = 1^2 - (2i)^2 = 1 + 4 = 5" />
+  <BlockMath math="x^2 - 2x + 5 = 0" />
 </MathContainer>
+
+Check: the discriminant is <InlineMath math="4 - 20 = -16" />, and the quadratic formula gives <InlineMath math="\frac{2 \pm 4i}{2} = 1 \pm 2i" />.
