@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "term-meaning",
+  },
+  stimulus: "batik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Sumber, metode, dan jejak data dapat diperiksa secara mandiri sebelum klaim diterima.",
+          label: "Mencetak motif pada kain dengan mesin.",
         },
         {
           correct: false,
-          label:
-            "Instrumen diuji untuk memastikan bahwa skor benar-benar mewakili konsep yang hendak diukur.",
-        },
-        {
-          correct: false,
-          label:
-            "Penilai memakai rubrik yang ditetapkan sebelum mengetahui identitas peserta atau hasil akhirnya.",
+          label: "Mencampur dua pewarna agar muncul warna baru.",
         },
         {
           correct: true,
-          label:
-            "Tim menolak grafik yang menarik karena grafik itu tidak menjawab pertanyaan penelitian.",
+          label: "Menutup bagian kain tertentu agar tidak menyerap pewarna.",
         },
         {
           correct: false,
-          label:
-            "Tim membuka data, metode, alasan pengecualian, dan keterbatasan agar proses dapat diperiksa.",
+          label: "Mencuci kain dengan air mendidih sesudah dicelup.",
+        },
+        {
+          correct: false,
+          label: "Menggambar pola dengan pensil sebelum diwarnai.",
         },
       ],
     },

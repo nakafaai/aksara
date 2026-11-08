@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "word-relation",
+    topic: "synonym",
+  },
+  stimulus: "bunga",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Catatan tertulis selalu benar, sedangkan semua kesaksian lisan harus ditolak.",
+          label: "hukuman",
         },
         {
           correct: false,
-          label:
-            "Museum sebaiknya memilih kisah paling menarik dan menghapus keterangan yang mengganggu kelancaran cerita.",
-        },
-        {
-          correct: false,
-          label: "Museum akan menampilkan riwayat revisi label pameran.",
-        },
-        {
-          correct: false,
-          label:
-            "Museum akan menerima koreksi yang dilengkapi asal sumber yang dapat diperiksa.",
+          label: "pinjaman",
         },
         {
           correct: true,
-          label:
-            "Keterbukaan terhadap perbedaan sumber dapat membuat arsip lebih dapat dipercaya selama status setiap klaim dijelaskan.",
+          label: "balas jasa",
+        },
+        {
+          correct: false,
+          label: "potongan",
+        },
+        {
+          correct: false,
+          label: "sumbangan",
         },
       ],
     },

@@ -1,34 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "sentence-relation",
+  },
+  stimulus: "batik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Nilai pengukuran berulang tetap berada dalam rentang sempit meskipun waktu pengambilan berbeda.",
+          label: "Kalimat (7) menjelaskan penyebab batik cap menjadi murah.",
         },
         {
           correct: false,
-          label:
-            "Tahap persiapan, pengumpulan, dan penyimpanan data disusun dalam urutan kerja yang terencana.",
+          label: "Kalimat (7) memberikan contoh lain keunggulan batik cap.",
+        },
+        {
+          correct: false,
+          label: "Kalimat (7) mengulang isi kalimat (6) dengan kata-kata lain.",
         },
         {
           correct: true,
           label:
-            "Aturan pengodean yang sama diterapkan pada setiap kelompok dan setiap waktu pengukuran.",
+            "Kalimat (7) menyampaikan kekurangan batik cap setelah kalimat (6) menyebut kelebihannya.",
         },
         {
           correct: false,
-          label:
-            "Klaim disusun dari pengamatan berulang dan hasil pengukuran, bukan dari dugaan semata.",
-        },
-        {
-          correct: false,
-          label:
-            "Catatan disusun dari kejadian paling awal hingga paling akhir agar urutan perubahan dapat ditelusuri.",
+          label: "Kalimat (7) menyimpulkan seluruh isi paragraf pertama.",
         },
       ],
     },

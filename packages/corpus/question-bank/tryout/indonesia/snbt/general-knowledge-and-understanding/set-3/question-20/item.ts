@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "lebah",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Satu terjemahan yang lulus uji kedua pasti dapat digunakan tanpa perubahan di seluruh daerah.",
+          column: 1,
+          label: "Serbuk sari jagung berpindah terutama karena tiupan angin.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Terjemahan harus mengikuti setiap kata sumber meskipun warga salah memahami tindakan yang diminta.",
+            "Para peneliti menyatakan pestisida sebagai satu-satunya penyebab menurunnya populasi lebah.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Tim menempatkan tindakan sebelum alasan dalam susunan pesan baru.",
+            "Menyemprot pestisida di luar jam aktif lebah termasuk salah satu langkah melindungi lebah.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Perubahan urutan dan pilihan kata dapat meningkatkan keselamatan meskipun isi faktual pesannya tidak berubah.",
-        },
-        {
-          correct: false,
-          label:
-            "Setiap versi akan diuji lagi bersama warga sebelum digunakan.",
+            "Lebah memindahkan serbuk sari dengan sengaja untuk membantu petani.",
         },
       ],
     },

@@ -1,34 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "sentence-function",
+  },
+  stimulus: "tsunami",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Catatan tertulis selalu benar, sedangkan semua kesaksian lisan harus ditolak.",
-        },
-        {
-          correct: false,
-          label:
-            "Museum sebaiknya memilih kisah paling menarik dan menghapus keterangan yang mengganggu kelancaran cerita.",
-        },
-        {
           correct: true,
           label:
-            "Kejujuran tentang bagian yang belum pasti merupakan bagian dari ketelitian arsip, bukan tanda bahwa penelitian gagal.",
-        },
-        {
-          correct: false,
-          label: "Museum akan menampilkan riwayat revisi label pameran.",
+            "Menegaskan bahwa peringatan resmi tetap diperlukan karena tsunami tidak selalu didahului surutnya air laut.",
         },
         {
           correct: false,
           label:
-            "Museum akan menerima koreksi yang dilengkapi asal sumber yang dapat diperiksa.",
+            "Membuktikan bahwa surutnya air laut tidak berkaitan dengan tsunami.",
+        },
+        {
+          correct: false,
+          label:
+            "Menyarankan agar warga mendekati pantai ketika air laut surut.",
+        },
+        {
+          correct: false,
+          label:
+            "Menjelaskan cara lembaga resmi mengukur tinggi gelombang tsunami.",
+        },
+        {
+          correct: false,
+          label:
+            "Mengulang isi kalimat (6) tentang kecepatan gelombang di laut lepas.",
         },
       ],
     },

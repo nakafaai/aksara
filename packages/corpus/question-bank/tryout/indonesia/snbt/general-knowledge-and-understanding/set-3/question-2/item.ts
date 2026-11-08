@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "word-relation",
+    topic: "antonym",
+  },
+  stimulus: "batik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Nilai pengukuran berulang tetap berada dalam rentang sempit meskipun waktu pengambilan berbeda.",
-        },
-        {
-          correct: false,
-          label:
-            "Instrumen diuji untuk memastikan bahwa skor benar-benar mewakili konsep yang hendak diukur.",
-        },
-        {
-          correct: false,
-          label:
-            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Penilai memakai rubrik yang ditetapkan sebelum mengetahui identitas peserta atau hasil akhirnya.",
+          label: "sama",
         },
         {
           correct: true,
-          label:
-            "Satuan, aturan pembulatan, dan batas setiap kategori ditetapkan sebelum pencatatan dimulai.",
+          label: "beragam",
+        },
+        {
+          correct: false,
+          label: "teratur",
+        },
+        {
+          correct: false,
+          label: "rapi",
+        },
+        {
+          correct: false,
+          label: "berulang",
         },
       ],
     },

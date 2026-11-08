@@ -1,33 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "word-relation",
+    topic: "analogy",
+  },
+  stimulus: "bunga",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "kata yang ejaan dan urutannya harus sama persis dalam dua bahasa",
+          label: "setoran awal",
         },
         {
           correct: false,
-          label:
-            "ringkasan yang menghapus tingkat bahaya dan tindakan yang diminta",
+          label: "kartu kredit",
         },
         {
           correct: false,
-          label: "peringatan tambahan yang tidak terdapat dalam pesan sumber",
+          label: "tagihan",
         },
         {
           correct: true,
-          label:
-            "ungkapan dalam bahasa sasaran yang membawa fungsi makna yang sebanding",
+          label: "saldo terbaru",
         },
         {
           correct: false,
-          label: "panduan pelafalan tanpa pemindahan fungsi makna",
+          label: "bank",
         },
       ],
     },

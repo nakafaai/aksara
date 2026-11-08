@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "term-meaning",
+  },
+  stimulus: "tsunami",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "memeriksa satu sumber berulang kali sampai keterangannya tampak konsisten",
+          label: "Pancuran air yang menyembur tegak ke atas.",
         },
         {
           correct: false,
-          label:
-            "memilih kisah yang paling hidup tanpa menilai asal dan proses pembentukannya",
-        },
-        {
-          correct: false,
-          label:
-            "memberi bobot yang sama kepada semua sumber tanpa melihat konteksnya",
-        },
-        {
-          correct: false,
-          label:
-            "menyunting perbedaan kata sampai seluruh keterangan tampak seragam",
+          label: "Tabel yang memuat data ketinggian air laut.",
         },
         {
           correct: true,
           label:
-            "membandingkan beberapa sumber yang berdiri sendiri sebelum menetapkan kesimpulan",
+            "Seluruh massa air laut dari dasar sampai permukaan di atas suatu tempat.",
+        },
+        {
+          correct: false,
+          label: "Aliran sungai yang bermuara ke laut.",
+        },
+        {
+          correct: false,
+          label: "Awan tebal yang membawa hujan.",
         },
       ],
     },

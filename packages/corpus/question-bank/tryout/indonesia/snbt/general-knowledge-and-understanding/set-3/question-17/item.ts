@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "word-relation",
+    topic: "synonym",
+  },
+  stimulus: "lebah",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "seragam",
+        },
+        {
+          correct: false,
+          label: "sedikit",
+        },
+        {
           correct: true,
-          label:
-            "Pada uji kedua, peserta baru memilih rute dan waktu berangkat dengan lebih tepat.",
+          label: "bermacam-macam",
         },
         {
           correct: false,
-          label:
-            "Pesan darurat perlu mempertahankan makna dan tindakan melalui bahasa yang dipahami warga, bukan sekadar menyalin urutan kata resmi.",
+          label: "tersembunyi",
         },
         {
           correct: false,
-          label:
-            "Sebagian penyiar menganggap terjemahan paling aman adalah terjemahan yang mengikuti urutan kata sumber.",
-        },
-        {
-          correct: false,
-          label:
-            "Setiap versi akan diuji lagi bersama warga sebelum digunakan.",
-        },
-        {
-          correct: false,
-          label:
-            "Satu terjemahan yang lulus uji kedua pasti dapat digunakan tanpa perubahan di seluruh daerah.",
+          label: "sederhana",
         },
       ],
     },
