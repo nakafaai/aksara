@@ -3,7 +3,7 @@ export const metadata = {
   description: "Schätze das arithmetische Mittel gruppierter Daten aus Klassenmitten und Häufigkeiten anhand eines vollständig gerechneten Beispiels.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Statistik",
 };
 
@@ -38,6 +38,17 @@ Die Größen in dieser Formel bedeuten:
 - <InlineMath math="x_i" /> ist der Mittelpunkt der Klasse <InlineMath math="i" />.
 - <InlineMath math="\sum (f_i \times x_i)" /> ist die Summe aller Produkte aus Klassenhäufigkeit und Klassenmitte.
 - <InlineMath math="\sum f_i" /> ist die Summe aller Häufigkeiten, gleich der Gesamtzahl der Werte <InlineMath math="n" />.
+
+<Mermaid
+  title="Den Mittelwert klassierter Daten schätzen"
+  description="Jede Klasse wird durch ihre Mitte vertreten, mit ihrer Häufigkeit gewichtet, und die gewichtete Summe wird durch die Anzahl der Daten geteilt."
+  chart={`flowchart LR
+  A["Klasse"] --> B["Klassenmitte xᵢ"]
+  B --> C["fᵢ · xᵢ"]
+  C --> D["Σ fᵢxᵢ"]
+  D -->|"durch Σ fᵢ teilen"| E["x̄ ≈ Σ fᵢxᵢ / Σ fᵢ"]`}
+/>
+
 ## Durchschnittliche Schuhgröße aus gruppierten Daten
 
 Ein Geschäft hat seine verkauften Schuhgrößen in Klassen zusammengefasst:
@@ -68,3 +79,38 @@ Die Summe der Produkte schätzt die Summe aller Schuhgrößen. Teile sie durch d
 </MathContainer>
 
 Das Ergebnis ist eine **Schätzung**, weil <Highlight>die Klassenmitte alle Einzelwerte ihres Intervalls ersetzt</Highlight>. Genau dieses Verfahren verwenden wir, wenn nur gruppierte Häufigkeiten vorliegen.
+
+Das Histogramm zeigt, warum die Schuhgrößen nicht einzeln aufgelistet werden können: Wir wissen nur, wie viele in jede Klasse fallen. Die meisten der <InlineMath math="30" /> Lernenden liegen in den Klassen <InlineMath math="40\text{-}42" /> und <InlineMath math="43\text{-}45" />.
+
+<HistogramChart
+  title="Schuhgrößen von 30 Lernenden"
+  description="Die Anzahl der Lernenden in jeder Schuhgrößenklasse."
+  yAxisLabel="Lernende"
+  data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 16 }, { name: "46-48", value: 1 }]}
+  chartConfig={{ value: { label: "Lernende", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Jede Klasse steht jetzt bei ihrer Klassenmitte, mit der Häufigkeit als Höhe. Der Mittelwert der klassierten Daten <InlineMath math="1278 / 30 = 42{,}6" /> ist der Schwerpunkt dieser gewichteten Klassenmitten: Der schwere Punkt bei <InlineMath math="44" /> mit Häufigkeit <InlineMath math="16" /> zieht ihn rechts über <InlineMath math="41" /> hinaus.
+
+<LineEquation
+  title="Klassenmitten, gewichtet mit der Häufigkeit"
+  description={<>Das Häufigkeitspolygon durch die Klassenmitten 38, 41, 44 und 47 mit dem Mittelwert <InlineMath math="42{,}6" />.</>}
+  cameraPosition={[42.5, 8.5, 24]}
+  cameraTarget={[42.5, 8.5, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: [[38, 2], [41, 11], [44, 16], [47, 1]].map(([x, f]) => ({ x, y: f, z: 0 })),
+      smooth: false,
+      showPoints: true,
+      color: "#8242e5",
+    },
+    {
+      points: [{ x: [[38, 2], [41, 11], [44, 16], [47, 1]].reduce((sum, [x, f]) => sum + x * f, 0) / 30, y: 0, z: 0 }, { x: [[38, 2], [41, 11], [44, 16], [47, 1]].reduce((sum, [x, f]) => sum + x * f, 0) / 30, y: 17, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="\bar{x} = 42{,}6" />, at: 1, offset: [0, 1.5, 0] }],
+    }
+  ]}
+/>

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bestimme Q1, Q2 und Q3 ungruppierter Daten mit einer klar benannten Interpolationskonvention und einem vollständig gelösten Beispiel.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistik",
 };
 
@@ -20,6 +20,16 @@ Es gibt drei Quartilgrenzen:
 3.  **Oberes Quartil (<InlineMath math="Q_3" />)**: Die Grenze bei ungefähr <InlineMath math="75\%" /> der Rangordnung.
 
 Zusammen beschreiben <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath math="Q_3" /> das untere Viertel, die Mitte und das obere Viertel einer geordneten Verteilung.
+
+<Mermaid
+  title="Quartile von Einzeldaten finden"
+  description="Sortier die Daten, bestimm die Position jedes Quartils und lies den Wert dort ab oder interpolier ihn."
+  chart={`flowchart LR
+  A["Daten sortieren"] --> B["Position von Qᵢ: i(n + 1)/4"]
+  B --> C{"Ganzzahlige Position?"}
+  C -->|"Ja"| D["Wert dort ablesen"]
+  C -->|"Nein"| E["Zwischen den beiden Nachbarn interpolieren"]`}
+/>
 
 ## Position der Quartile bestimmen
 
@@ -127,6 +137,41 @@ Mit dem sortierten Datensatz aus Schritt 1:
 - <InlineMath math="Q_2" /> liegt an Position <InlineMath math="4" /> und hat den Wert <InlineMath math="7" />.
 - <InlineMath math="Q_3" /> liegt an Position <InlineMath math="6" /> und hat den Wert <InlineMath math="9" />.
 
+Hier sind die sieben sortierten Punktzahlen als Punkte. Die drei Quartilsschnitte liegen auf den Positionen 2, 4 und 6: <InlineMath math="Q_1 = 6" />, <InlineMath math="Q_2 = 7" /> und <InlineMath math="Q_3 = 9" />. Jeder Schnitt lässt auf beiden Seiten gleich viele Punkte übrig, genau das verspricht ein Quartil.
+
+<MathVisual
+  title="Drei Schnitte durch sieben Punktzahlen"
+  description={<>Die Punktzahlen <InlineMath math="5, 6, 7, 7, 8, 9, 10" /> als Punkte mit Schnitten bei <InlineMath math="Q_1 = 6" />, <InlineMath math="Q_2 = 7" /> und <InlineMath math="Q_3 = 9" />.</>}
+  labels={{
+    q1: <InlineMath math="Q_1" />,
+    q2: <InlineMath math="Q_2" />,
+    q3: <InlineMath math="Q_3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 4, max: 11 }, y: { min: -0.4, max: 1.8 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 4, y: 0 }, to: { x: 11, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 5, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 6, y: 0.6 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 7, y: 1.2 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d6", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "q1", kind: "segment", from: { x: 6, y: -0.3 }, to: { x: 6, y: 1.6 }, appearance: "secondary" },
+      { id: "q2", kind: "segment", from: { x: 7, y: -0.3 }, to: { x: 7, y: 1.6 }, appearance: "answer" },
+      { id: "q3", kind: "segment", from: { x: 9, y: -0.3 }, to: { x: 9, y: 1.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 6, y: 1.6 }, placement: "above" },
+      { key: "q2", objectId: "q2", at: { x: 7, y: 1.6 }, placement: "above" },
+      { key: "q3", objectId: "q3", at: { x: 9, y: 1.6 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Das vierte Quartil
 
 Wenn es <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath math="Q_3" /> gibt, liegt die Frage nach <InlineMath math="Q_4" /> nahe.
@@ -134,3 +179,35 @@ Wenn es <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath mat
 Quartile <Highlight>teilen die Daten in vier Bereiche</Highlight>. <InlineMath math="Q_1" /> markiert die Grenze bei <InlineMath math="25\%" />, <InlineMath math="Q_2" /> als Median die Grenze bei <InlineMath math="50\%" /> und <InlineMath math="Q_3" /> die Grenze bei <InlineMath math="75\%" />. Die äußere Grenze bei <InlineMath math="100\%" /> entspricht dem **Maximum** des Datensatzes.
 
 Man könnte dieses Maximum als <InlineMath math="Q_4" /> bezeichnen, der Ausdruck <InlineMath math="Q_4" /> wird in der üblichen statistischen Darstellung jedoch kaum verwendet. Im Mittelpunkt stehen <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath math="Q_3" />, weil sie die innere Verteilung des Datensatzes beschreiben. Das Minimum wird gelegentlich <InlineMath math="Q_0" /> genannt. Wie <InlineMath math="Q_4" /> ist auch diese äußere Grenze deutlich seltener als <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath math="Q_3" />.
+
+Ein Boxplot packt dieselben fünf Zahlen in ein Bild. Die Antennen reichen vom Minimum <InlineMath math="5" /> bis <InlineMath math="Q_1 = 6" /> und von <InlineMath math="Q_3 = 9" /> bis zum Maximum <InlineMath math="10" />. Die Box umfasst die mittlere Hälfte der Punktzahlen, und die Linie darin ist der Median <InlineMath math="7" />.
+
+<MathVisual
+  title="Der Boxplot der sieben Punktzahlen"
+  description={<>Antennen von 5 bis 6 und von 9 bis 10, eine Box von <InlineMath math="Q_1 = 6" /> bis <InlineMath math="Q_3 = 9" /> und die Medianlinie bei 7.</>}
+  labels={{
+    min: <InlineMath math="5" />,
+    q1: <InlineMath math="Q_1 = 6" />,
+    q2: <InlineMath math="Q_2 = 7" />,
+    q3: <InlineMath math="Q_3 = 9" />,
+    max: <InlineMath math="10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 4, max: 11 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "blo", kind: "segment", from: { x: 5, y: 0 }, to: { x: 6, y: 0 }, appearance: "primary" },
+      { id: "bhi", kind: "segment", from: { x: 9, y: 0 }, to: { x: 10, y: 0 }, appearance: "primary" },
+      { id: "bbox", kind: "polygon", vertices: [{ x: 6, y: 0 - 0.4 }, { x: 9, y: 0 - 0.4 }, { x: 9, y: 0 + 0.4 }, { x: 6, y: 0 + 0.4 }], appearance: "primary" },
+      { id: "bmid", kind: "segment", from: { x: 7, y: 0 - 0.4 }, to: { x: 7, y: 0 + 0.4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "min", objectId: "blo", at: { x: 5, y: 0 }, placement: "left" },
+      { key: "q1", objectId: "bbox", at: { x: 6, y: -0.4 }, placement: "below" },
+      { key: "q2", objectId: "bmid", at: { x: 7, y: 0.4 }, placement: "above" },
+      { key: "q3", objectId: "bbox", at: { x: 9, y: -0.4 }, placement: "below" },
+      { key: "max", objectId: "bhi", at: { x: 10, y: 0 }, placement: "right" },
+    ],
+  }}
+/>

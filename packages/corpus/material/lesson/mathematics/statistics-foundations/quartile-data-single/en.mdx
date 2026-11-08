@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate Q1, Q2, and Q3 for ungrouped data with one declared interpolation convention and a complete worked example.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistics",
 };
 
@@ -20,6 +20,16 @@ There are three quartile boundaries:
 3.  **Upper Quartile (<InlineMath math="Q_3" />)**: The boundary at approximately the <InlineMath math="75\%" /> rank.
 
 Together, <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, and <InlineMath math="Q_3" /> describe the lower quarter, center, and upper quarter of an ordered distribution.
+
+<Mermaid
+  title="Finding the quartiles of single data"
+  description="Sort the data, locate each quartile by its position, and read or interpolate the value at that position."
+  chart={`flowchart LR
+  A["Sort the data"] --> B["Position of Qᵢ: i(n + 1)/4"]
+  B --> C{"Whole-number position?"}
+  C -->|"Yes"| D["Read the value there"]
+  C -->|"No"| E["Interpolate between the two neighbors"]`}
+/>
 
 ## How to Find the Position of Quartiles
 
@@ -127,8 +137,75 @@ Using the sorted data from Step 1:
 - <InlineMath math="Q_2" /> is <InlineMath math="4" />th data point = <InlineMath math="7" />
 - <InlineMath math="Q_3" /> is <InlineMath math="6" />th data point = <InlineMath math="9" />
 
+Here are the seven sorted scores as dots. The three quartile cuts land on positions 2, 4 and 6: <InlineMath math="Q_1 = 6" />, <InlineMath math="Q_2 = 7" /> and <InlineMath math="Q_3 = 9" />. Each cut leaves the same number of dots on either side of it, which is what a quartile promises.
+
+<MathVisual
+  title="Three cuts through seven scores"
+  description={<>The scores <InlineMath math="5, 6, 7, 7, 8, 9, 10" /> as dots, with cuts at <InlineMath math="Q_1 = 6" />, <InlineMath math="Q_2 = 7" /> and <InlineMath math="Q_3 = 9" />.</>}
+  labels={{
+    q1: <InlineMath math="Q_1" />,
+    q2: <InlineMath math="Q_2" />,
+    q3: <InlineMath math="Q_3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 4, max: 11 }, y: { min: -0.4, max: 1.8 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 4, y: 0 }, to: { x: 11, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 5, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 6, y: 0.6 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 7, y: 1.2 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d6", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "q1", kind: "segment", from: { x: 6, y: -0.3 }, to: { x: 6, y: 1.6 }, appearance: "secondary" },
+      { id: "q2", kind: "segment", from: { x: 7, y: -0.3 }, to: { x: 7, y: 1.6 }, appearance: "answer" },
+      { id: "q3", kind: "segment", from: { x: 9, y: -0.3 }, to: { x: 9, y: 1.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 6, y: 1.6 }, placement: "above" },
+      { key: "q2", objectId: "q2", at: { x: 7, y: 1.6 }, placement: "above" },
+      { key: "q3", objectId: "q3", at: { x: 9, y: 1.6 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## The Fourth Quartile
 
 Quartiles <Highlight>divide ordered data into four parts</Highlight>. <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, and <InlineMath math="Q_3" /> mark the boundaries at <InlineMath math="25\%" />, <InlineMath math="50\%" />, and <InlineMath math="75\%" />. The outer boundary at <InlineMath math="100\%" /> is the maximum value.
 
 The maximum is sometimes labeled <InlineMath math="Q_4" />, and the minimum is sometimes labeled <InlineMath math="Q_0" />. Most statistical summaries name the minimum and maximum directly and reserve quartile notation for <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, and <InlineMath math="Q_3" />.
+
+A box plot packs the same five numbers into one picture. The whiskers run from the minimum <InlineMath math="5" /> to <InlineMath math="Q_1 = 6" /> and from <InlineMath math="Q_3 = 9" /> to the maximum <InlineMath math="10" />. The box covers the middle half of the scores, and the line inside it is the median <InlineMath math="7" />.
+
+<MathVisual
+  title="The box plot of the seven scores"
+  description={<>Whiskers from 5 to 6 and from 9 to 10, a box from <InlineMath math="Q_1 = 6" /> to <InlineMath math="Q_3 = 9" />, and the median line at 7.</>}
+  labels={{
+    min: <InlineMath math="5" />,
+    q1: <InlineMath math="Q_1 = 6" />,
+    q2: <InlineMath math="Q_2 = 7" />,
+    q3: <InlineMath math="Q_3 = 9" />,
+    max: <InlineMath math="10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 4, max: 11 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "blo", kind: "segment", from: { x: 5, y: 0 }, to: { x: 6, y: 0 }, appearance: "primary" },
+      { id: "bhi", kind: "segment", from: { x: 9, y: 0 }, to: { x: 10, y: 0 }, appearance: "primary" },
+      { id: "bbox", kind: "polygon", vertices: [{ x: 6, y: 0 - 0.4 }, { x: 9, y: 0 - 0.4 }, { x: 9, y: 0 + 0.4 }, { x: 6, y: 0 + 0.4 }], appearance: "primary" },
+      { id: "bmid", kind: "segment", from: { x: 7, y: 0 - 0.4 }, to: { x: 7, y: 0 + 0.4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "min", objectId: "blo", at: { x: 5, y: 0 }, placement: "left" },
+      { key: "q1", objectId: "bbox", at: { x: 6, y: -0.4 }, placement: "below" },
+      { key: "q2", objectId: "bmid", at: { x: 7, y: 0.4 }, placement: "above" },
+      { key: "q3", objectId: "bbox", at: { x: 9, y: -0.4 }, placement: "below" },
+      { key: "max", objectId: "bhi", at: { x: 10, y: 0 }, placement: "right" },
+    ],
+  }}
+/>

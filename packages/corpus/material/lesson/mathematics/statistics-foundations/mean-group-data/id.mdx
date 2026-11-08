@@ -3,7 +3,7 @@ export const metadata = {
   description: "Perkirakan mean data kelompok dari nilai tengah dan frekuensi kelas melalui satu contoh dengan pembahasan lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -38,6 +38,17 @@ Pada rumus ini:
 - <InlineMath math="x_i" /> adalah nilai tengah kelas ke-<InlineMath math="i" />.
 - <InlineMath math="\sum (f_i \times x_i)" /> adalah jumlah hasil kali frekuensi dan nilai tengah setiap kelas.
 - <InlineMath math="\sum f_i" /> adalah jumlah seluruh frekuensi, sama dengan banyaknya data <InlineMath math="n" />.
+
+<Mermaid
+  title="Menaksir rata-rata data berkelompok"
+  description="Setiap kelas diwakili titik tengahnya, diberi bobot frekuensinya, lalu total berbobot dibagi banyak data."
+  chart={`flowchart LR
+  A["Interval kelas"] --> B["Titik tengah xᵢ"]
+  B --> C["fᵢ · xᵢ"]
+  C --> D["Σ fᵢxᵢ"]
+  D -->|"bagi dengan Σ fᵢ"| E["x̄ ≈ Σ fᵢxᵢ / Σ fᵢ"]`}
+/>
+
 ## Rata-rata Ukuran Sepatu
 
 Perhatikan data penjualan sepatu di Toko A yang sudah dikelompokkan berikut:
@@ -68,3 +79,38 @@ Jumlah hasil kali memperkirakan jumlah seluruh ukuran sepatu. Bagi jumlah terseb
 </MathContainer>
 
 Hasil ini merupakan **perkiraan** karena <Highlight>nilai tengah mewakili semua nilai</Highlight> dalam satu kelas. Pendekatan tersebut menjadi standar ketika data yang tersedia hanya berupa frekuensi kelompok.
+
+Histogram ini menunjukkan mengapa ukuran sepatu tidak bisa didaftar satu per satu: kita hanya tahu banyak data di setiap kelas. Sebagian besar dari <InlineMath math="30" /> siswa ada di kelas <InlineMath math="40\text{-}42" /> dan <InlineMath math="43\text{-}45" />.
+
+<HistogramChart
+  title="Ukuran sepatu 30 siswa"
+  description="Banyak siswa di setiap kelas ukuran sepatu."
+  yAxisLabel="Siswa"
+  data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 16 }, { name: "46-48", value: 1 }]}
+  chartConfig={{ value: { label: "Siswa", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Sekarang setiap kelas berdiri di titik tengahnya dengan frekuensi sebagai tingginya. Rata-rata data berkelompok <InlineMath math="1278 / 30 = 42{,}6" /> adalah titik keseimbangan titik-titik tengah berbobot ini: titik berat di <InlineMath math="44" /> dengan frekuensi <InlineMath math="16" /> menariknya ke kanan dari <InlineMath math="41" />.
+
+<LineEquation
+  title="Titik tengah berbobot frekuensi"
+  description={<>Poligon frekuensi melalui titik tengah 38, 41, 44, dan 47, dengan rata-rata data berkelompok <InlineMath math="42{,}6" /> ditandai.</>}
+  cameraPosition={[42.5, 8.5, 24]}
+  cameraTarget={[42.5, 8.5, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: [[38, 2], [41, 11], [44, 16], [47, 1]].map(([x, f]) => ({ x, y: f, z: 0 })),
+      smooth: false,
+      showPoints: true,
+      color: "#8242e5",
+    },
+    {
+      points: [{ x: [[38, 2], [41, 11], [44, 16], [47, 1]].reduce((sum, [x, f]) => sum + x * f, 0) / 30, y: 0, z: 0 }, { x: [[38, 2], [41, 11], [44, 16], [47, 1]].reduce((sum, [x, f]) => sum + x * f, 0) / 30, y: 17, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="\bar{x} = 42{,}6" />, at: 1, offset: [0, 1.5, 0] }],
+    }
+  ]}
+/>

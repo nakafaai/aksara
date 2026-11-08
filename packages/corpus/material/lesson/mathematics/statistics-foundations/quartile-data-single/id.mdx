@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung Q1, Q2, dan Q3 data tunggal dengan satu konvensi interpolasi yang dinyatakan jelas serta contoh pembahasan lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -20,6 +20,16 @@ Ada tiga batas kuartil:
 3.  **Kuartil Atas (<InlineMath math="Q_3" />)**: Batas pada sekitar peringkat <InlineMath math="75\%" />.
 
 Secara bersama, <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> menggambarkan seperempat bawah, pusat, dan seperempat atas suatu distribusi terurut.
+
+<Mermaid
+  title="Mencari kuartil data tunggal"
+  description="Urutkan data, tentukan letak setiap kuartil dari posisinya, lalu baca atau interpolasikan nilai di posisi itu."
+  chart={`flowchart LR
+  A["Urutkan data"] --> B["Letak Qᵢ: i(n + 1)/4"]
+  B --> C{"Posisinya bilangan bulat?"}
+  C -->|"Ya"| D["Baca nilai di posisi itu"]
+  C -->|"Tidak"| E["Interpolasikan di antara dua tetangganya"]`}
+/>
 
 ## Cara Mencari Letak Kuartil
 
@@ -127,8 +137,75 @@ Dengan data terurut dari Langkah 1:
 - <InlineMath math="Q_2" /> = Data ke-<InlineMath math="4" /> = <InlineMath math="7" />
 - <InlineMath math="Q_3" /> = Data ke-<InlineMath math="6" /> = <InlineMath math="9" />
 
+Ini tujuh nilai terurut dalam bentuk titik. Tiga potongan kuartil jatuh di posisi 2, 4, dan 6: <InlineMath math="Q_1 = 6" />, <InlineMath math="Q_2 = 7" />, dan <InlineMath math="Q_3 = 9" />. Setiap potongan menyisakan banyak titik yang sama di kedua sisinya, sesuai janji kuartil.
+
+<MathVisual
+  title="Tiga potongan pada tujuh nilai"
+  description={<>Nilai <InlineMath math="5, 6, 7, 7, 8, 9, 10" /> sebagai titik, dengan potongan di <InlineMath math="Q_1 = 6" />, <InlineMath math="Q_2 = 7" />, dan <InlineMath math="Q_3 = 9" />.</>}
+  labels={{
+    q1: <InlineMath math="Q_1" />,
+    q2: <InlineMath math="Q_2" />,
+    q3: <InlineMath math="Q_3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 4, max: 11 }, y: { min: -0.4, max: 1.8 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 4, y: 0 }, to: { x: 11, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 5, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 6, y: 0.6 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 7, y: 1.2 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d6", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "q1", kind: "segment", from: { x: 6, y: -0.3 }, to: { x: 6, y: 1.6 }, appearance: "secondary" },
+      { id: "q2", kind: "segment", from: { x: 7, y: -0.3 }, to: { x: 7, y: 1.6 }, appearance: "answer" },
+      { id: "q3", kind: "segment", from: { x: 9, y: -0.3 }, to: { x: 9, y: 1.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 6, y: 1.6 }, placement: "above" },
+      { key: "q2", objectId: "q2", at: { x: 7, y: 1.6 }, placement: "above" },
+      { key: "q3", objectId: "q3", at: { x: 9, y: 1.6 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Kuartil Keempat
 
 Kuartil <Highlight>membagi data terurut menjadi empat bagian</Highlight>. <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> menandai batas pada <InlineMath math="25\%" />, <InlineMath math="50\%" />, dan <InlineMath math="75\%" />. Batas terluar pada <InlineMath math="100\%" /> adalah nilai maksimum.
 
 Nilai maksimum kadang diberi lambang <InlineMath math="Q_4" />, sedangkan nilai minimum kadang diberi lambang <InlineMath math="Q_0" />. Dalam ringkasan statistik, keduanya biasanya disebut langsung sebagai nilai minimum dan maksimum. Notasi kuartil umumnya dipakai untuk <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" />.
+
+Diagram kotak garis memadatkan lima bilangan yang sama ke dalam satu gambar. Garisnya membentang dari nilai minimum <InlineMath math="5" /> sampai <InlineMath math="Q_1 = 6" /> dan dari <InlineMath math="Q_3 = 9" /> sampai nilai maksimum <InlineMath math="10" />. Kotaknya mencakup separuh nilai di tengah, dan garis di dalamnya adalah median <InlineMath math="7" />.
+
+<MathVisual
+  title="Diagram kotak garis tujuh nilai"
+  description={<>Garis dari 5 sampai 6 dan dari 9 sampai 10, kotak dari <InlineMath math="Q_1 = 6" /> sampai <InlineMath math="Q_3 = 9" />, dan garis median di 7.</>}
+  labels={{
+    min: <InlineMath math="5" />,
+    q1: <InlineMath math="Q_1 = 6" />,
+    q2: <InlineMath math="Q_2 = 7" />,
+    q3: <InlineMath math="Q_3 = 9" />,
+    max: <InlineMath math="10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 4, max: 11 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "blo", kind: "segment", from: { x: 5, y: 0 }, to: { x: 6, y: 0 }, appearance: "primary" },
+      { id: "bhi", kind: "segment", from: { x: 9, y: 0 }, to: { x: 10, y: 0 }, appearance: "primary" },
+      { id: "bbox", kind: "polygon", vertices: [{ x: 6, y: 0 - 0.4 }, { x: 9, y: 0 - 0.4 }, { x: 9, y: 0 + 0.4 }, { x: 6, y: 0 + 0.4 }], appearance: "primary" },
+      { id: "bmid", kind: "segment", from: { x: 7, y: 0 - 0.4 }, to: { x: 7, y: 0 + 0.4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "min", objectId: "blo", at: { x: 5, y: 0 }, placement: "left" },
+      { key: "q1", objectId: "bbox", at: { x: 6, y: -0.4 }, placement: "below" },
+      { key: "q2", objectId: "bmid", at: { x: 7, y: 0.4 }, placement: "above" },
+      { key: "q3", objectId: "bbox", at: { x: 9, y: -0.4 }, placement: "below" },
+      { key: "max", objectId: "bhi", at: { x: 10, y: 0 }, placement: "right" },
+    ],
+  }}
+/>

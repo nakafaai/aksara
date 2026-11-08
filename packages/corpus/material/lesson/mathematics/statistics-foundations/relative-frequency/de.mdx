@@ -3,7 +3,7 @@ export const metadata = {
    description: "Berechne relative Häufigkeiten, vergleiche Gruppen unterschiedlicher Größe und interpretiere Anteile als Brüche, Dezimalzahlen und Prozentsätze.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
    subject: "Statistik",
 };
 
@@ -45,6 +45,15 @@ Die relative Häufigkeit wird normalerweise wie folgt ausgedrückt:
 - **Dezimalzahl**: Ergebnis der Division.
 - **Prozentsatz**: Dezimalzahl multipliziert mit <InlineMath math="100\%" />.
 
+<Mermaid
+  title="Von der Anzahl zum Prozentsatz"
+  description="Eine Anzahl geteilt durch die Gesamtzahl ergibt eine relative Häufigkeit zwischen 0 und 1, mal 100 wird daraus ein Prozentsatz."
+  chart={`flowchart LR
+  A["Anzahl f"] -->|"durch die Gesamtzahl n teilen"| B["Relative Häufigkeit f/n"]
+  B -->|"mal 100 %"| C["Prozentsatz"]
+  B --> D["Alle relativen Häufigkeiten ergeben zusammen 1"]`}
+/>
+
 ## Beispiel für die Berechnung der relativen Häufigkeit
 
 Betrachten wir die Smartphone-Marken von <InlineMath math="30 \text{ Schülerinnen und Schülern}" />:
@@ -77,6 +86,16 @@ Berechne jeden Prozentsatz direkt aus dem Bruch, damit eine vorher gerundete Dez
 
 Die Summe der relativen Häufigkeiten (in Dezimalform) sollte immer <InlineMath math="1" /> und in Prozent <InlineMath math="100\%" /> betragen. Aufgrund der Rundung kann es zu geringfügigen Abweichungen kommen, der Wert sollte jedoch sehr nahe bei <InlineMath math="1" /> oder <InlineMath math="100\%" /> liegen.
 
+Zuerst die reinen Anzahlen. Apple hat den höchsten Balken mit <InlineMath math="12" /> von <InlineMath math="30" /> Lernenden, dann Samsung mit <InlineMath math="10" /> und Xiaomi mit <InlineMath math="8" />. Anzahlen beantworten "wie viele", ändern sich aber, wenn die Gruppengröße sich ändert.
+
+<BarChart
+  title="Wie viele Lernende jede Marke nutzen"
+  description="Die Anzahl der Lernenden, die jede Handymarke nutzen, von 30 Lernenden."
+  yAxisLabel="Lernende"
+  data={[["Apple", 12], ["Samsung", 10], ["Xiaomi", 8]].map(([name, count]) => ({ name, value: count }))}
+  chartConfig={{ value: { label: "Lernende", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Interpretation der relativen Häufigkeit
 
 Aus der obigen relativen Häufigkeitstabelle können wir sagen:
@@ -88,3 +107,13 @@ Aus der obigen relativen Häufigkeitstabelle können wir sagen:
 Damit ist auf einen Blick erkennbar, welchen Anteil jede Marke an den <InlineMath math="30 \text{ Befragten}" /> hat.
 
 Die relative Häufigkeit <Highlight>macht absolute Anzahlen vergleichbar</Highlight>, indem sie jede Anzahl auf die Größe des gesamten Datensatzes bezieht.
+
+Teil jede Anzahl durch die Gesamtzahl <InlineMath math="30" />, dann bekommst du die relativen Häufigkeiten <InlineMath math="0{,}40" />, <InlineMath math="0{,}33" /> und <InlineMath math="0{,}27" />, auf zwei Dezimalstellen gerundet. Die Balken behalten genau ihre Form, zeigen jetzt aber Anteile am Ganzen und ergeben zusammen <InlineMath math="1" />. So kannst du sie mit einer Klasse beliebiger Größe vergleichen.
+
+<BarChart
+  title="Der Anteil der Lernenden für jede Marke"
+  description={<>Jeder Balken ist die Anzahl geteilt durch 30: <InlineMath math="12/30" />, <InlineMath math="10/30" /> und <InlineMath math="8/30" />, zusammen 1.</>}
+  yAxisLabel="Relative Häufigkeit"
+  data={[["Apple", 12], ["Samsung", 10], ["Xiaomi", 8]].map(([name, count]) => ({ name, value: count / 30 }))}
+  chartConfig={{ value: { label: "Relative Häufigkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

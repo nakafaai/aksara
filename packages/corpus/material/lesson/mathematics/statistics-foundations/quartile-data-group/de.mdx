@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bestimme Quartile gruppierter Daten mithilfe kumulierter Häufigkeiten, Klassengrenzen und linearer Interpolation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistik",
 };
 
@@ -20,6 +20,15 @@ Wir bestimmen die Position des Quartils mit dieser Formel:
 - <InlineMath math="Q_3" /> liegt an der Position <InlineMath math="\frac{3}{4}n" />.
 
 Dabei bezeichnet <InlineMath math="n" /> die Gesamtzahl aller Werte.
+
+<Mermaid
+  title="Ein Quartil klassierter Daten schätzen"
+  description="Bilde die Summenhäufigkeiten, such die Klasse mit der Position i·n/4 und interpolier darin."
+  chart={`flowchart LR
+  A["Tabelle der Summenhäufigkeiten"] --> B["Position i · n / 4"]
+  B --> C["Quartilsklasse"]
+  C --> D["Qᵢ = Tb + (i·n/4 − F) / f · p"]`}
+/>
 
 ## Vorgehen bei gruppierten Daten
 
@@ -44,6 +53,16 @@ Die untere Klassenschwelle ist die untere Klassengrenze minus <InlineMath math="
 Die obere Klassenschwelle ist die obere Klassengrenze plus <InlineMath math="0{,}5" />.
 
 Die Klassenbreite ist die obere Klassenschwelle minus die untere Klassenschwelle.
+
+Hier ist die Tabelle der Schuhverkäufe als Histogramm. Die meisten der <InlineMath math="30" /> verkauften Paare stammen aus den Klassen <InlineMath math="40\text{-}42" /> und <InlineMath math="43\text{-}45" />, und genau dort landen die Quartile.
+
+<HistogramChart
+  title="Schuhverkäufe nach Größenklasse"
+  description="Die Anzahl verkaufter Paare in jeder Schuhgrößenklasse."
+  yAxisLabel="Verkaufte Paare"
+  data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 10 }, { name: "46-48", value: 5 }, { name: "49-51", value: 2 }]}
+  chartConfig={{ value: { label: "Verkaufte Paare", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Quartilklasse bestimmen
 
@@ -107,6 +126,38 @@ Werte einsetzen:
 </MathContainer>
 
 Damit ergibt sich für <InlineMath math="Q_1" /> der Wert <InlineMath math="41" />. Nach dem gruppierten Modell entfallen also etwa <InlineMath math="25\%" /> der Verkäufe auf Schuhgröße <InlineMath math="41" /> oder kleiner.
+
+Du kannst die Interpolationsformel an der Summenhäufigkeitslinie überprüfen. Auf der Höhe <InlineMath math="n/4 = 7{,}5" /> liegt die Linie in der Klasse <InlineMath math="40\text{-}42" />, über <InlineMath math="Q_1 = 41" />. Bei <InlineMath math="3n/4 = 22{,}5" /> liegt sie in <InlineMath math="43\text{-}45" />, über <InlineMath math="Q_3 = 45{,}35" />. Zwischen den Klassengrenzen ist die Linie gerade, genau das nimmt die Formel an.
+
+<LineEquation
+  title="Quartile auf der Summenhäufigkeitslinie"
+  description={<>Die Summenhäufigkeitslinie der Schuhverkäufe, abgelesen bei 7,5 für <InlineMath math="Q_1 = 41" /> und bei 22,5 für <InlineMath math="Q_3 = 45{,}35" />.</>}
+  cameraPosition={[44, 15, 40]}
+  cameraTarget={[44, 15, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 6 }, (_, i) => ({ x: 36.5 + 3 * i, y: [2, 11, 10, 5, 2].slice(0, i).reduce((sum, value) => sum + value, 0), z: 0 })),
+      smooth: false,
+      showPoints: true,
+      color: "#8242e5",
+    },
+    {
+      points: [{ x: 36.5, y: 30 / 4, z: 0 }, { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 30 / 4, z: 0 }, { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 0, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="Q_1" />, at: 2, offset: [0, -1.2, 0] }],
+    },
+    {
+      points: [{ x: 36.5, y: (3 * 30) / 4, z: 0 }, { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: (3 * 30) / 4, z: 0 }, { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: 0, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="Q_3" />, at: 2, offset: [0, -1.2, 0] }],
+    }
+  ]}
+/>
 
 ## Übung
 

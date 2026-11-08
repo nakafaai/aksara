@@ -3,7 +3,7 @@ export const metadata = {
   description: "Choose the mean, median, or mode based on the data and the effect of unusually large or small values.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistics",
 };
 
@@ -12,6 +12,38 @@ export const metadata = {
 The **mean, median, and mode** describe the center of a dataset in different ways. The mean uses every value, the median uses the middle position, and the mode uses the highest frequency. They can therefore answer different questions about the same data.
 
 Choose the measure from the data type, the distribution's shape, and the question being asked. The mean changes when extreme values change, the median uses rank without measuring the gaps between values, and the mode identifies only the most frequent value or category.
+
+Here are the scores <InlineMath math="7, 8, 8, 9, 10" /> as dots. The mean <InlineMath math="8.4" /> is the balance point, the median is the middle dot at <InlineMath math="8" />, and the mode <InlineMath math="8" /> is the tallest stack. For data this even, the three measures sit close together.
+
+<MathVisual
+  title="Three centers of the same scores"
+  description={<>Dots for the five scores with the mean 8.4 as a support and the median and mode both at 8.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 8.4" />,
+    median: <InlineMath math="\operatorname{Me} = 8" />,
+    mode: <InlineMath math="\operatorname{Mo} = 8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 6, max: 11 }, y: { min: -0.6, max: 1.8 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 6, y: 0 }, to: { x: 11, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 8, y: 1.2 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "mean", kind: "polygon", vertices: [{ x: 42 / 5, y: 0 }, { x: 42 / 5 - 0.5, y: -0.5 }, { x: 42 / 5 + 0.5, y: -0.5 }], appearance: "answer" },
+      { id: "median", kind: "segment", from: { x: 8, y: 0 }, to: { x: 8, y: 1.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 42 / 5 - 0.5, y: -0.5 }, placement: "left" },
+      { key: "median", objectId: "median", at: { x: 8, y: 1.6 }, placement: "above-right" },
+      { key: "mode", objectId: "median", at: { x: 8, y: 1.6 }, placement: "above-left" },
+    ],
+  }}
+/>
 
 ## How Mean Median and Mode Respond to Data
 
@@ -32,6 +64,39 @@ Add every value and divide the sum by how many values there are. Because every v
   <BlockMath math="\bar x_{\text{before}}=\frac{7+8+9+8+10}{5}=\frac{42}{5}=8.4" />
   <BlockMath math="\bar x_{\text{after}}=\frac{42+1}{6}=\frac{43}{6}\approx7.17" />
 </MathContainer>
+
+Add the extreme score <InlineMath math="1" />. The balance point slides left to <InlineMath math="43 / 6 \approx 7.17" /> because the far dot pulls on it. The median and the mode stay at <InlineMath math="8" />: the middle and the tallest stack did not move.
+
+<MathVisual
+  title="One extreme score moves only the mean"
+  description={<>The six scores with the extra score 1. The mean support moves to about 7.17, while the median and mode stay at 8.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} \approx 7.17" />,
+    median: <InlineMath math="\operatorname{Me} = 8" />,
+    mode: <InlineMath math="\operatorname{Mo} = 8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: -0.6, max: 1.8 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 0, y: 0 }, to: { x: 11, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 1, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 8, y: 1.2 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "mean", kind: "polygon", vertices: [{ x: 43 / 6, y: 0 }, { x: 43 / 6 - 0.5, y: -0.5 }, { x: 43 / 6 + 0.5, y: -0.5 }], appearance: "answer" },
+      { id: "median", kind: "segment", from: { x: 8, y: 0 }, to: { x: 8, y: 1.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 43 / 6 - 0.5, y: -0.5 }, placement: "left" },
+      { key: "median", objectId: "median", at: { x: 8, y: 1.6 }, placement: "above-right" },
+      { key: "mode", objectId: "median", at: { x: 8, y: 1.6 }, placement: "above-left" },
+    ],
+  }}
+/>
 
 ### Median as the Middle Value
 
@@ -57,3 +122,13 @@ Here's a concise guide on when to use each measure:
 - **Describing a typical income in an area**: A few very high incomes can pull the **mean** upward. The **median** then stays closer to the income of a person in the middle of the ordered data.
 - **Determining the best-selling shoe size in a store**: We want to know the size most frequently purchased, so the **Mode** is the right choice.
 - **Finding the favorite color among students**: Since the data is categorical (colors), the only applicable measure is the **Mode**.
+
+<Mermaid
+  title="Choosing a measure of center"
+  description="Categories call for the mode. Numbers with extreme or skewed values call for the median, and numbers without them can use the mean."
+  chart={`flowchart TD
+  A["What kind of data?"] -->|"categories"| MO["Mode"]
+  A -->|"numbers"| B{"Extreme or skewed values?"}
+  B -->|"Yes"| ME["Median"]
+  B -->|"No"| MN["Mean"]`}
+/>

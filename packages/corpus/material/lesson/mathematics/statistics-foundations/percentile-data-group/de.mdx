@@ -3,7 +3,7 @@ export const metadata = {
   description: "Schätze ein Perzentil gruppierter Daten aus einer Tabelle mit kumulierten Häufigkeiten und erkläre seine Position in der Verteilung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistik",
 };
 
@@ -30,6 +30,15 @@ Perzentile beschreiben <Highlight>die relative Position eines Werts innerhalb ei
 Wie bei Quartilen verwenden wir bei gruppierten Daten eine **Interpolation**, um den Perzentilwert <InlineMath math="P_i" /> innerhalb seines Klassenintervalls zu schätzen.
 
 Das Verfahren besteht aus zwei Schritten.
+
+<Mermaid
+  title="Ein Perzentil klassierter Daten schätzen"
+  description="Mach aus dem Prozentsatz eine Position, such die Klasse, die sie enthält, und interpolier in dieser Klasse."
+  chart={`flowchart LR
+  A["Pₖ"] --> B["Position k/100 · n"]
+  B --> C["Perzentilklasse"]
+  C --> D["Pₖ = Tb + (k/100 · n − F) / f · p"]`}
+/>
 
 ### Position der Perzentilklasse bestimmen
 
@@ -103,6 +112,48 @@ Die kumulierte Häufigkeit erreicht <InlineMath math="F_k = 30" /> bis zur Klass
 </MathContainer>
 
 Das geschätzte <InlineMath math="85" />. Perzentil beträgt <InlineMath math="94{,}5" />. Im interpolierten Modell liegen etwa <InlineMath math="85\%" /> der Werte auf oder unter <InlineMath math="94{,}5" /> und etwa <InlineMath math="15\%" /> darüber.
+
+Die Mathetestergebnisse als Histogramm: Die Klasse <InlineMath math="81\text{-}90" /> enthält die meisten Lernenden, <InlineMath math="16" /> von <InlineMath math="40" />.
+
+<HistogramChart
+  title="Mathetestergebnisse nach Klasse"
+  description="Die Anzahl der Lernenden in jeder Klasse der Testergebnisse."
+  yAxisLabel="Lernende"
+  data={[{ name: "61-70", value: 4 }, { name: "71-80", value: 10 }, { name: "81-90", value: 16 }, { name: "91-100", value: 10 }]}
+  chartConfig={{ value: { label: "Lernende", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Ein Perzentil ist eine Höhe auf der Summenhäufigkeitslinie. <InlineMath math="20\,\%" /> von <InlineMath math="40" /> Lernenden ist die Höhe <InlineMath math="8" />, die die Linie über <InlineMath math="P_{20} = 74{,}5" /> erreicht. <InlineMath math="85\,\%" /> ist die Höhe <InlineMath math="34" />, erreicht über <InlineMath math="P_{85} = 94{,}5" />.
+
+<LineEquation
+  title="Perzentile auf der Summenhäufigkeitslinie"
+  description={<>Die Summenhäufigkeitslinie der Testergebnisse, abgelesen bei 8 für <InlineMath math="P_{20} = 74{,}5" /> und bei 34 für <InlineMath math="P_{85} = 94{,}5" />.</>}
+  cameraPosition={[80.5, 20, 50]}
+  cameraTarget={[80.5, 20, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 5 }, (_, i) => ({ x: 60.5 + 10 * i, y: [4, 10, 16, 10].slice(0, i).reduce((sum, value) => sum + value, 0), z: 0 })),
+      smooth: false,
+      showPoints: true,
+      color: "#8242e5",
+    },
+    {
+      points: [{ x: 60.5, y: (20 / 100) * 40, z: 0 }, { x: 70.5 + (((20 / 100) * 40 - 4) / 10) * 10, y: (20 / 100) * 40, z: 0 }, { x: 70.5 + (((20 / 100) * 40 - 4) / 10) * 10, y: 0, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="P_{20}" />, at: 2, offset: [0, -1.2, 0] }],
+    },
+    {
+      points: [{ x: 60.5, y: (85 / 100) * 40, z: 0 }, { x: 90.5 + (((85 / 100) * 40 - 30) / 10) * 10, y: (85 / 100) * 40, z: 0 }, { x: 90.5 + (((85 / 100) * 40 - 30) / 10) * 10, y: 0, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="P_{85}" />, at: 2, offset: [0, -1.2, 0] }],
+    }
+  ]}
+/>
 
 ## Übung
 

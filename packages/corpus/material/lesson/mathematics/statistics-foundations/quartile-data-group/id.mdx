@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung kuartil data kelompok dengan menentukan posisi pada frekuensi kumulatif dan melakukan interpolasi di antara tepi kelas.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -20,6 +20,15 @@ Posisi setiap kuartil dihitung dengan rumus berikut:
 - Letak <InlineMath math="Q_3" /> adalah data ke-<InlineMath math="\frac{3}{4}n" />
 
 Pada rumus ini, <InlineMath math="n" /> adalah banyaknya data.
+
+<Mermaid
+  title="Menaksir kuartil data berkelompok"
+  description="Susun frekuensi kumulatif, cari kelas yang memuat posisi i·n/4, lalu lakukan interpolasi di dalamnya."
+  chart={`flowchart LR
+  A["Tabel frekuensi kumulatif"] --> B["Posisi i · n / 4"]
+  B --> C["Kelas kuartil"]
+  C --> D["Qᵢ = Tb + (i·n/4 − F) / f · p"]`}
+/>
 
 ## Langkah Mencari Nilai Kuartil Data Kelompok
 
@@ -44,6 +53,16 @@ Tepi bawah adalah batas bawah kelas dikurangi <InlineMath math="0{,}5" />.
 Tepi atas adalah batas atas kelas ditambah <InlineMath math="0{,}5" />.
 
 Panjang kelas adalah tepi atas dikurangi tepi bawah.
+
+Ini tabel penjualan sepatu dalam bentuk histogram. Sebagian besar dari <InlineMath math="30" /> pasang yang terjual berasal dari kelas <InlineMath math="40\text{-}42" /> dan <InlineMath math="43\text{-}45" />, dan di situlah kuartilnya akan jatuh.
+
+<HistogramChart
+  title="Penjualan sepatu per kelas ukuran"
+  description="Banyak pasang sepatu terjual di setiap kelas ukuran."
+  yAxisLabel="Pasang terjual"
+  data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 10 }, { name: "46-48", value: 5 }, { name: "49-51", value: 2 }]}
+  chartConfig={{ value: { label: "Pasang terjual", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Tentukan Letak Kelas Kuartil
 
@@ -107,6 +126,38 @@ Masukkan ke rumus:
 </MathContainer>
 
 Jadi, nilai <InlineMath math="Q_1" /> adalah <InlineMath math="41" />. Artinya, sekitar <InlineMath math="25\%" /> sepatu yang terjual ukurannya <InlineMath math="41" /> atau lebih kecil.
+
+Kamu bisa mengecek rumus interpolasi pada garis frekuensi kumulatif. Pada ketinggian <InlineMath math="n/4 = 7{,}5" />, garisnya ada di dalam kelas <InlineMath math="40\text{-}42" />, tepat di atas <InlineMath math="Q_1 = 41" />. Pada <InlineMath math="3n/4 = 22{,}5" />, garisnya ada di dalam <InlineMath math="43\text{-}45" />, di atas <InlineMath math="Q_3 = 45{,}35" />. Di antara tepi kelas, garisnya lurus, persis seperti yang diasumsikan rumus.
+
+<LineEquation
+  title="Kuartil pada garis frekuensi kumulatif"
+  description={<>Garis frekuensi kumulatif penjualan sepatu, dibaca di 7,5 untuk <InlineMath math="Q_1 = 41" /> dan di 22,5 untuk <InlineMath math="Q_3 = 45{,}35" />.</>}
+  cameraPosition={[44, 15, 40]}
+  cameraTarget={[44, 15, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 6 }, (_, i) => ({ x: 36.5 + 3 * i, y: [2, 11, 10, 5, 2].slice(0, i).reduce((sum, value) => sum + value, 0), z: 0 })),
+      smooth: false,
+      showPoints: true,
+      color: "#8242e5",
+    },
+    {
+      points: [{ x: 36.5, y: 30 / 4, z: 0 }, { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 30 / 4, z: 0 }, { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 0, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="Q_1" />, at: 2, offset: [0, -1.2, 0] }],
+    },
+    {
+      points: [{ x: 36.5, y: (3 * 30) / 4, z: 0 }, { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: (3 * 30) / 4, z: 0 }, { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: 0, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="Q_3" />, at: 2, offset: [0, -1.2, 0] }],
+    }
+  ]}
+/>
 
 ## Latihan
 

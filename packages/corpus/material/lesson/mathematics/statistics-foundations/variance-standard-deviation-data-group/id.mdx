@@ -3,7 +3,7 @@ export const metadata = {
   description: "Perkirakan varian dan simpangan baku populasi dari frekuensi dan nilai tengah kelas data kelompok.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -33,6 +33,17 @@ Suku pertama adalah mean kuadrat nilai tengah yang dibobot frekuensi. Suku kedua
 Seperti pada data tunggal, simpangan baku adalah **akar kuadrat varian**:
 
 <BlockMath math="\sigma = \sqrt{\sigma^2}" />
+
+<Mermaid
+  title="Ragam data berkelompok langkah demi langkah"
+  description="Setiap kelas menyumbang titik tengahnya sebanyak frekuensinya, jadi jumlah f·x dan f·x² memberi rata-rata dan ragam."
+  chart={`flowchart LR
+  A["Titik tengah xᵢ dan frekuensi fᵢ"] --> B["Σ fᵢxᵢ dan Σ fᵢxᵢ²"]
+  B --> C["x̄ = Σ fᵢxᵢ / Σ fᵢ"]
+  C --> D["σ² = Σ fᵢxᵢ² / Σ fᵢ − x̄²"]
+  D --> E["σ = √σ²"]`}
+/>
+
 ## Menghitung Varian dan Simpangan Baku Durasi Baterai Ponsel
 
 Misalkan durasi baterai dicatat setelah dibulatkan ke **jam terdekat**, lalu dikelompokkan dalam interval berikut. Jadi, kelas pertama memuat catatan 6, 7, 8, 9, dan 10 jam.
@@ -46,6 +57,16 @@ Misalkan durasi baterai dicatat setelah dibulatkan ke **jam terdekat**, lalu dik
 | <InlineMath math="26\text{-}30" /> | <InlineMath math="5" />  |
 
 Kita akan memperkirakan varian dan simpangan baku populasi dari durasi tersebut.
+
+Daya tahan baterai dalam bentuk histogram: <InlineMath math="45" /> dari <InlineMath math="80" /> ponsel bertahan antara <InlineMath math="21" /> dan <InlineMath math="25" /> jam, jadi datanya condong ke ujung atas.
+
+<HistogramChart
+  title="Daya tahan baterai 80 ponsel"
+  description="Banyak ponsel di setiap kelas daya tahan baterai, dalam jam."
+  yAxisLabel="Ponsel"
+  data={[{ name: "6-10", value: 2 }, { name: "11-15", value: 10 }, { name: "16-20", value: 18 }, { name: "21-25", value: 45 }, { name: "26-30", value: 5 }]}
+  chartConfig={{ value: { label: "Ponsel", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Buat Tabel Bantu
 
@@ -82,3 +103,42 @@ Ambil akar kuadrat dari varian:
 Perkiraan simpangan bakunya adalah <InlineMath math="4{,}4 \text{ jam}" />. Nilai tersebut adalah akar rata-rata kuadrat jarak setiap nilai tengah kelas dari perkiraan mean <InlineMath math="\frac{1645}{80} \approx 20{,}56 \text{ jam}" />.
 
 Untuk data dengan satuan dan skala yang sebanding, simpangan baku yang lebih kecil menunjukkan bahwa <Highlight>nilainya mengelompok lebih rapat di sekitar mean</Highlight>.
+
+Tandai rata-rata <InlineMath math="\bar{x} = 1645 / 80 \approx 20{,}56" /> pada poligon frekuensi, lalu melangkahlah satu simpangan baku <InlineMath math="\sigma \approx 4{,}4" /> ke setiap sisi. Pita dari sekitar <InlineMath math="16{,}2" /> sampai <InlineMath math="25{,}0" /> jam memuat puncak tinggi di <InlineMath math="23" /> jam, yaitu sebagian besar ponsel.
+
+<LineEquation
+  title="Satu simpangan baku di sekitar rata-rata"
+  description={<>Poligon frekuensi daya tahan baterai dengan rata-rata sekitar 20,56 dan garis sejauh satu simpangan baku, sekitar 4,4 jam, di kedua sisi.</>}
+  cameraPosition={[18, 23, 62]}
+  cameraTarget={[18, 23, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: [[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].map(([x, f]) => ({ x, y: f, z: 0 })),
+      smooth: false,
+      showPoints: true,
+      color: "#8242e5",
+    },
+    {
+      points: [{ x: [[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + x * f, 0) / 80, y: 0, z: 0 }, { x: [[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + x * f, 0) / 80, y: 47, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="\bar{x}" />, at: 1, offset: [0, 1.5, 0] }],
+    },
+    {
+      points: [{ x: [[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + x * f, 0) / 80 - Math.sqrt([[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + f * x ** 2, 0) / 80 - (1645 / 80) ** 2), y: 0, z: 0 }, { x: [[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + x * f, 0) / 80 - Math.sqrt([[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + f * x ** 2, 0) / 80 - (1645 / 80) ** 2), y: 47, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="\bar{x} - \sigma" />, at: 1, offset: [0, 1.5, 0] }],
+    },
+    {
+      points: [{ x: [[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + x * f, 0) / 80 + Math.sqrt([[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + f * x ** 2, 0) / 80 - (1645 / 80) ** 2), y: 0, z: 0 }, { x: [[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + x * f, 0) / 80 + Math.sqrt([[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + f * x ** 2, 0) / 80 - (1645 / 80) ** 2), y: 47, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="\bar{x} + \sigma" />, at: 1, offset: [0, 1.5, 0] }],
+    }
+  ]}
+/>

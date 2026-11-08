@@ -3,7 +3,7 @@ export const metadata = {
   description: "Perkirakan persentil data kelompok dari tabel frekuensi kumulatif, lalu jelaskan posisi persentil tersebut dalam distribusi data.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -28,6 +28,15 @@ Persentil menunjukkan <Highlight>posisi relatif suatu nilai dalam distribusi</Hi
 ## Cara Mencari Nilai Persentil Data Kelompok
 
 Seperti pada kuartil, data kelompok memerlukan **interpolasi** untuk memperkirakan nilai persentil <InlineMath math="P_i" /> di dalam kelasnya. Caranya terdiri dari dua tahap: temukan kelas yang memuat peringkat yang dicari, lalu lakukan interpolasi di dalam kelas tersebut. Tabel contoh di bawah menerapkan kedua tahap itu pada data yang sama.
+
+<Mermaid
+  title="Menaksir persentil data berkelompok"
+  description="Ubah persentase menjadi posisi, cari kelas yang memuatnya, lalu lakukan interpolasi di dalam kelas itu."
+  chart={`flowchart LR
+  A["Pₖ"] --> B["Posisi k/100 · n"]
+  B --> C["Kelas persentil"]
+  C --> D["Pₖ = Tb + (k/100 · n − F) / f · p"]`}
+/>
 
 ### Cari Letak Kelas Persentil
 
@@ -101,6 +110,48 @@ Hitung <InlineMath math="P_{85}" />:
 </MathContainer>
 
 Perkiraan persentil ke-<InlineMath math="85" /> adalah <InlineMath math="94{,}5" />. Dalam model interpolasi data kelompok, sekitar <InlineMath math="85\%" /> nilai berada pada atau di bawah <InlineMath math="94{,}5" />, sedangkan sekitar <InlineMath math="15\%" /> berada di atasnya.
+
+Nilai ulangan matematika dalam bentuk histogram: kelas <InlineMath math="81\text{-}90" /> berisi siswa terbanyak, <InlineMath math="16" /> dari <InlineMath math="40" /> siswa.
+
+<HistogramChart
+  title="Nilai ulangan matematika per kelas"
+  description="Banyak siswa di setiap kelas nilai ulangan."
+  yAxisLabel="Siswa"
+  data={[{ name: "61-70", value: 4 }, { name: "71-80", value: 10 }, { name: "81-90", value: 16 }, { name: "91-100", value: 10 }]}
+  chartConfig={{ value: { label: "Siswa", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Persentil adalah sebuah ketinggian pada garis frekuensi kumulatif. <InlineMath math="20\%" /> dari <InlineMath math="40" /> siswa adalah ketinggian <InlineMath math="8" />, yang dicapai garis di atas <InlineMath math="P_{20} = 74{,}5" />. <InlineMath math="85\%" /> adalah ketinggian <InlineMath math="34" />, yang dicapai di atas <InlineMath math="P_{85} = 94{,}5" />.
+
+<LineEquation
+  title="Persentil pada garis frekuensi kumulatif"
+  description={<>Garis frekuensi kumulatif nilai ulangan, dibaca di 8 untuk <InlineMath math="P_{20} = 74{,}5" /> dan di 34 untuk <InlineMath math="P_{85} = 94{,}5" />.</>}
+  cameraPosition={[80.5, 20, 50]}
+  cameraTarget={[80.5, 20, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 5 }, (_, i) => ({ x: 60.5 + 10 * i, y: [4, 10, 16, 10].slice(0, i).reduce((sum, value) => sum + value, 0), z: 0 })),
+      smooth: false,
+      showPoints: true,
+      color: "#8242e5",
+    },
+    {
+      points: [{ x: 60.5, y: (20 / 100) * 40, z: 0 }, { x: 70.5 + (((20 / 100) * 40 - 4) / 10) * 10, y: (20 / 100) * 40, z: 0 }, { x: 70.5 + (((20 / 100) * 40 - 4) / 10) * 10, y: 0, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="P_{20}" />, at: 2, offset: [0, -1.2, 0] }],
+    },
+    {
+      points: [{ x: 60.5, y: (85 / 100) * 40, z: 0 }, { x: 90.5 + (((85 / 100) * 40 - 30) / 10) * 10, y: (85 / 100) * 40, z: 0 }, { x: 90.5 + (((85 / 100) * 40 - 30) / 10) * 10, y: 0, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="P_{85}" />, at: 2, offset: [0, -1.2, 0] }],
+    }
+  ]}
+/>
 
 ## Latihan
 

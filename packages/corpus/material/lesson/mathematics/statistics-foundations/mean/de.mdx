@@ -3,7 +3,7 @@ export const metadata = {
   description: "Berechne das arithmetische Mittel, untersuche den Einfluss eines Extremwerts und vergleiche Mittelwert, Median und Modus an einem anschaulichen Beispiel.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistik",
 };
 
@@ -29,6 +29,38 @@ Die Größen in dieser Formel bedeuten:
 - <InlineMath math="\bar{x}" />, gesprochen „x quer“, steht für das **arithmetische Mittel**.
 - <InlineMath math="\sum x" />, gesprochen „Sigma x“, steht für die **Summe aller Datenwerte**.
 - <InlineMath math="n" /> ist die **Anzahl der Datenwerte**.
+
+Stell dir die zehn Werte als Punkte auf einem Zahlenstrahl vor und den Mittelwert als die Stelle, an der der Strahl im Gleichgewicht ist. Die Punkte links von <InlineMath math="6" /> liegen zusammen <InlineMath math="3 + 3 + 2 + 1 + 1 = 10" /> Einheiten entfernt, die Punkte rechts <InlineMath math="1 + 2 + 3 + 4 = 10" /> Einheiten. Genau am Mittelwert heben sich die Abstände auf.
+
+<MathVisual
+  title="Der Mittelwert ist der Schwerpunkt"
+  description={<>Punkte für <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10" /> auf einem Zahlenstrahl, im Gleichgewicht auf einer Stütze beim Mittelwert <InlineMath math="6" />.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 11 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 2, y: 0 }, to: { x: 11, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 3, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 3, y: 1.2 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 4, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 5, y: 0.6 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 5, y: 1.2 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 6, y: 0.6 }, appearance: "primary" },
+      { id: "d6", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d7", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d8", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d9", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "mean", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 6 - 0.5, y: -0.5 }, { x: 6 + 0.5, y: -0.5 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 6 - 0.5, y: -0.5 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Einfluss großer Werte auf Mittelwert Median und Modus
 
@@ -125,6 +157,43 @@ Die zusätzlichen Werte <InlineMath math="20" /> und <InlineMath math="22" /> li
 
 Der Median verschiebt sich ebenfalls, aber weniger stark. Der Modus bleibt unverändert.
 
+Füg jetzt die beiden großen Werte <InlineMath math="20" /> und <InlineMath math="22" /> hinzu. Der Schwerpunkt muss nach rechts auf <InlineMath math="102 / 12 = 8{,}5" /> rutschen, damit die weit entfernten Punkte im Gleichgewicht bleiben. Der Median, die Mitte der sortierten Liste, wandert nur von <InlineMath math="5{,}5" /> auf <InlineMath math="6{,}5" />.
+
+<MathVisual
+  title="Zwei große Werte ziehen den Mittelwert"
+  description={<>Die zwölf Werte auf einem Zahlenstrahl mit dem Mittelwert <InlineMath math="8{,}5" /> als Stütze und dem Median <InlineMath math="6{,}5" /> extra markiert.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 8{,}5" />,
+    median: <InlineMath math="\operatorname{Me} = 6{,}5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 23 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 2, y: 0 }, to: { x: 23, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 3, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 3, y: 1.2 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 4, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 5, y: 0.6 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 5, y: 1.2 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 6, y: 0.6 }, appearance: "primary" },
+      { id: "d6", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d7", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d8", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d9", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "d10", kind: "point", at: { x: 20, y: 0.6 }, appearance: "primary" },
+      { id: "d11", kind: "point", at: { x: 22, y: 0.6 }, appearance: "primary" },
+      { id: "mean", kind: "polygon", vertices: [{ x: 102 / 12, y: 0 }, { x: 102 / 12 - 0.5, y: -0.5 }, { x: 102 / 12 + 0.5, y: -0.5 }], appearance: "answer" },
+      { id: "median", kind: "segment", from: { x: 6.5, y: 0 }, to: { x: 6.5, y: 1.4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 102 / 12 + 0.5, y: -0.5 }, placement: "right" },
+      { key: "median", objectId: "median", at: { x: 6.5, y: 1.4 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Auswirkung eines Extremwerts
 
 Ersetze den Wert des <InlineMath math="12" />. Mitglieds durch <InlineMath math="100 \text{ Kleidungsstücke}" />. Die neue Berechnung zeigt den Einfluss dieses ungewöhnlich großen Werts auf das arithmetische Mittel.
@@ -151,3 +220,12 @@ Der Datensatz lautet dann: <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 20, 
     Auch die Modi bleiben <InlineMath math="3" /> und <InlineMath math="5" />.
 
 Ein Extremwert kann nach einer ausdrücklich genannten statistischen Regel oder aufgrund fachlicher Beurteilung als **Ausreißer** gelten. In diesem Beispiel verändert das Ersetzen von <InlineMath math="22" /> durch <InlineMath math="100" /> die Summe. Die mittleren Positionen und die größten Häufigkeiten bleiben gleich. Deshalb steigt der Mittelwert, während Median und Modi unverändert bleiben. Wähle das Lagemaß passend zur Größe, die du beschreiben möchtest.
+
+<Mermaid
+  title="Wie jedes Lagemaß auf zwei große Werte reagiert"
+  description="Das Hinzufügen von 20 und 22 verschiebt den Mittelwert am stärksten, den Median ein wenig und lässt den Modus unverändert."
+  chart={`flowchart LR
+  A["20 und 22 hinzufügen"] --> B["Mittelwert: 6 → 8,5"]
+  A --> C["Median: 5,5 → 6,5"]
+  A --> D["Modus: 3 und 5, unverändert"]`}
+/>

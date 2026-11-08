@@ -3,7 +3,7 @@ export const metadata = {
   description: "Tentukan kelas modus dan perkirakan median data kelompok dari tabel frekuensi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -29,9 +29,29 @@ Frekuensi tertinggi adalah <InlineMath math="16" />, sehingga kelas modusnya ada
 
 Kelompok ukuran tersebut memuat **penjualan terbanyak sebagai satu kelas**. Ukuran tunggal yang paling sering dibeli belum tentu berada di kelas itu. Misalnya, frekuensi <InlineMath math="16" /> dapat terbagi ke tiga ukuran, sedangkan frekuensi <InlineMath math="11" /> pada kelas lain dapat terkumpul pada satu ukuran. Tabel kelompok tidak memberikan rincian tersebut.
 
+Pada histogram, kelas modus adalah batang tertinggi: <InlineMath math="43\text{-}45" /> dengan <InlineMath math="16" /> siswa. Tidak ada kelas lain yang mendekati, jadi ukuran sepatu yang paling sering ada di interval itu.
+
+<HistogramChart
+  title="Kelas modus adalah batang tertinggi"
+  description="Banyak siswa di setiap kelas ukuran sepatu. Kelas 43 sampai 45 punya batang tertinggi."
+  yAxisLabel="Siswa"
+  data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 16 }, { name: "46-48", value: 1 }]}
+  chartConfig={{ value: { label: "Siswa", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Median Data Kelompok
 
 Median membagi data yang telah diurutkan menjadi dua bagian sama banyak. Tabel data kelompok memuat interval beserta frekuensinya. Karena itu, kita menentukan kelas median lalu **memperkirakan posisi median** di dalam kelas tersebut.
+
+<Mermaid
+  title="Menaksir median data berkelompok"
+  description="Cari posisi n/2, temukan kelas yang frekuensi kumulatifnya pertama kali melewatinya, lalu lakukan interpolasi di dalam kelas itu."
+  chart={`flowchart LR
+  A["Posisi n/2"] --> B["Kelas median: frekuensi kumulatif pertama kali melewati n/2"]
+  B --> C["Baca L, F, f, dan c"]
+  C --> D["Me = L + (n/2 − F) / f · c"]`}
+/>
+
 ### Menentukan Kelas dan Posisi Median
 
 Hitung **frekuensi kumulatif** dengan menjumlahkan frekuensi kelas dari yang pertama sampai kelas yang sedang diperiksa. Cari kelas pertama yang frekuensi kumulatifnya mencapai <InlineMath math="n/2" />. Di dalam kelas itu, median diperkirakan dengan interpolasi:
@@ -88,3 +108,28 @@ Lebar kelas adalah selisih kedua tepi kelas:
 Perkiraan median ukuran sepatu adalah <InlineMath math="42{,}875" />. Nilai ini berada di antara tepi kelas <InlineMath math="42{,}5" /> dan <InlineMath math="45{,}5" /> yang dipakai untuk interpolasi.
 
 Hasil ini merupakan **perkiraan**. Pengelompokan membuat nilai tepat di dalam setiap interval tidak lagi diketahui, sehingga nilai mentahnya tidak dapat ditemukan kembali. [Mean data kelompok](/id/materi/matematika/statistika-dasar/mean-rata-rata-data-kelompok) memiliki keterbatasan yang sama.
+
+Kamu bisa membaca median langsung dari garis frekuensi kumulatif pada separuh data. Garisnya naik melalui tepi kelas <InlineMath math="36{,}5; 39{,}5; 42{,}5; 45{,}5; 48{,}5" />. Garis itu mencapai <InlineMath math="n/2 = 15" /> di dalam kelas <InlineMath math="43\text{-}45" />, tepatnya di <InlineMath math="42{,}5 + \frac{15 - 13}{16} \cdot 3 = 42{,}875" />, sama dengan hasil rumus.
+
+<LineEquation
+  title="Membaca median dari frekuensi kumulatif"
+  description={<>Garis frekuensi kumulatif ukuran sepatu. Ketinggian 15 bertemu garis itu di atas 42,875, yaitu taksiran median.</>}
+  cameraPosition={[42.5, 15, 40]}
+  cameraTarget={[42.5, 15, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 5 }, (_, i) => ({ x: 36.5 + 3 * i, y: [2, 11, 16, 1].slice(0, i).reduce((sum, value) => sum + value, 0), z: 0 })),
+      smooth: false,
+      showPoints: true,
+      color: "#8242e5",
+    },
+    {
+      points: [{ x: 36.5, y: 30 / 2, z: 0 }, { x: 42.5 + ((30 / 2 - 13) / 16) * 3, y: 30 / 2, z: 0 }, { x: 42.5 + ((30 / 2 - 13) / 16) * 3, y: 0, z: 0 }],
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="\operatorname{Me}" />, at: 2, offset: [0, -1.2, 0] }],
+    }
+  ]}
+/>
