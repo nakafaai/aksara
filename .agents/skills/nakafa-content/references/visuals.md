@@ -181,8 +181,37 @@ graph teaches the wrong mathematics on an education platform.
   last digits. A plane scene draws points, lines, rays, segments, polylines,
   polygons, circles, arcs, and the exact `quadratic` object, which draws a
   parabola without sampling. A space scene draws points, lines, rays,
-  segments, polylines, polygons, and cuboids. A sampled curve belongs to
-  `LineEquation`.
+  segments, polylines, polygons, and cuboids, plus the formula objects below.
+- **`MathVisual` draws a formula, not its points.** A formula object names
+  what the lesson teaches, and the renderer samples it: at least two hundred
+  samples per visible branch, exact samples at the domain ends and at every
+  label, a split at every break and asymptote, and only the part inside the
+  frame. Prefer it to a `LineEquation` series built with `Array.from`. A
+  formula is text that the contract parses without running code: numbers,
+  `+ - * / ^`, implied multiplication (`2x`, `a sin(t)`), parentheses, the
+  constants `pi` and `e`, and the functions `abs acos asin atan cbrt ceil cos
+  cosh cot csc exp floor ln log sec sign sin sinh sqrt tan tanh`, plus `min`,
+  `max`, and `log_b(x)`. Angles are in radians.
+
+  | Scene | `kind` | Fields | Draws |
+  | --- | --- | --- | --- |
+  | plane | `function` | `formula`, optional `domain`, optional `inputAxis: "y"` | `y = f(x)`, or `x = f(y)` |
+  | plane | `parametric` | `x`, `y` in `t`, `parameter: { min, max }` | a curve traced by `t` |
+  | plane | `polar` | `radius` in `theta`, `angle: { min, max }` | `r = f(theta)` |
+  | plane | `implicit` | `equation`, such as `"x^2 + y^2 = 4"` | every point where it holds, such as a conic |
+  | plane | `region` | `inequalities`, such as `["x + y <= 10", "y > 0"]` | the shaded part where all hold; `<=` and `>=` edges solid, `<` and `>` dashed |
+  | space | `function` | `formula` in `x` and `y`, optional `domain: { x, y }` | the surface `z = f(x, y)` |
+  | space | `parametric` | `x`, `y`, `z` in `t`, `parameter` | a space curve, such as a helix |
+  | space | `surface` | `x`, `y`, `z` in `u` and `v`, `u`, `v` | a parametric surface, such as a sphere or torus |
+  | space | `revolution` | `axis`, `formula` (the radius, in that axis's variable), `domain` | the solid a profile sweeps around the axis |
+  | space | `prism` | `base` (coplanar corners), `offset` | the base moved along the offset |
+  | space | `pyramid` | `base`, `apex` | a pyramid or a cone of straight edges |
+
+  A scene's `parameters` add sliders: `{ name, min, max, value, step? }`,
+  with a one-letter name other than `e`, `t`, `u`, `v`, `x`, `y`, or `z`.
+  Every formula that reads the name redraws as the learner moves its slider,
+  such as `a` in `{ kind: "function", formula: "a sin(x)" }`. Points,
+  segments, and labels keep constant coordinates and do not read parameters.
 - **A smooth function renders smooth.** Sample only the part of the domain
   that stays inside the frame: solve for the frame bounds instead of sampling
   far outside them, so the visible part gets the samples. Use at least two
