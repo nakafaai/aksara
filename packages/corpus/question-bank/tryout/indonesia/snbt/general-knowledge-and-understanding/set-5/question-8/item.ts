@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "application",
+  },
+  stimulus: "petir",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Dokumen pada bagian awal menetapkan satu hari perpindahan, lalu bagian berikutnya menghapus kesaksian tentang perpindahan bertahap.",
+            "Berteduh di bawah satu-satunya pohon tinggi di tengah sawah ketika hujan petir turun.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Bagian awal membandingkan keyakinan narasumber, lalu bagian berikutnya memilih suara yang paling meyakinkan untuk pameran.",
+            "Berlindung di dalam mobil beratap logam ketika guruh mulai terdengar.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Bagian awal menjelaskan kerusakan gedung, lalu bagian berikutnya menilai teknik pembangunan yang mempercepat perpindahan.",
+            "Melanjutkan pertandingan sepak bola lima menit setelah guruh terakhir terdengar.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Pertentangan kesaksian memicu pemeriksaan dokumen, lalu hasilnya dipakai untuk menyusun tafsir yang tetap menampilkan kedua suara.",
-        },
-        {
-          correct: false,
-          label:
-            "Bagian awal mengumpulkan sumber tertulis, lalu bagian berikutnya menyatakan rekonstruksi sudah final dan tidak perlu diperiksa ulang.",
+            "Menghentikan latihan di lapangan terbuka begitu guruh terdengar walaupun hujan belum turun.",
         },
       ],
     },

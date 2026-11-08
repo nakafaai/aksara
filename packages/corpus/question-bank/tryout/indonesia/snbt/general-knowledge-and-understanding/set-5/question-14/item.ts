@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "sentence-relation",
+  },
+  stimulus: "mikroplastik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "sebab dan akibat, karena larangan itu dibuat setelah dampaknya terbukti",
+        },
+        {
           correct: true,
           label:
-            "Pola keterlambatan menjadi dasar dua usulan, lalu hasil uji dan masalah komunikasi membentuk rancangan lanjutan.",
+            "pertentangan, karena larangan dibuat walaupun dampaknya belum dipastikan",
         },
         {
           correct: false,
           label:
-            "Bagian awal menunjukkan semua keterlambatan berdampak sama, lalu bagian berikutnya menerapkan pembatasan yang sama kepada semua pengguna.",
+            "urutan waktu, karena larangan dibuat sebelum penelitian dimulai",
         },
         {
           correct: false,
           label:
-            "Bagian awal membandingkan pendapatan denda, lalu bagian berikutnya memilih usulan dengan penerimaan uang terbesar.",
+            "penjelasan, karena larangan itu merinci hasil penelitian para ahli",
         },
         {
           correct: false,
           label:
-            "Bagian awal menguji dua saluran pengingat, lalu bagian berikutnya menghentikan uji karena semua pengguna sudah menerima pesan.",
-        },
-        {
-          correct: false,
-          label:
-            "Bagian awal menetapkan aturan baru sebagai keputusan final, lalu bagian berikutnya hanya menjelaskan cara membayar denda.",
+            "perbandingan, karena larangan itu dianggap lebih penting daripada penelitian",
         },
       ],
     },

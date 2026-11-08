@@ -1,31 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "mikroplastik",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "memberi konsekuensi yang sama untuk setiap keterlambatan",
-        },
-        {
-          correct: false,
-          label: "memilih konsekuensi terberat yang diizinkan aturan",
-        },
-        {
-          correct: false,
-          label: "menentukan konsekuensi hanya dari besarnya pendapatan denda",
-        },
-        {
-          correct: false,
-          label: "mengubah konsekuensi secara acak untuk setiap pengguna",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "sebanding dengan tingkat kesalahan dan dampak yang ditimbulkan",
+            "Mikroplastik dapat terbentuk dari plastik besar yang hancur menjadi potongan kecil.",
+        },
+        {
+          column: 2,
+          label: "Semua mikroplastik di sungai berasal dari produk kosmetik.",
+        },
+        {
+          column: 1,
+          label:
+            "Mencuci pakaian sintetis dengan air bersuhu rendah dapat mengurangi serat yang terlepas.",
+        },
+        {
+          column: 2,
+          label:
+            "Para peneliti sudah memastikan seberapa besar kerusakan yang ditimbulkan mikroplastik pada kesehatan manusia.",
         },
       ],
     },

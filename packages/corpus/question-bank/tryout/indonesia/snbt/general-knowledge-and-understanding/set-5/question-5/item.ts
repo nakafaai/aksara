@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
+  },
+  stimulus: "subak",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Subak adalah organisasi pemerintah yang membagi air secara merata kepada semua petani di Bali.",
+        },
+        {
+          correct: false,
+          label:
+            "Penetapan oleh UNESCO telah menghentikan alih fungsi sawah subak menjadi bangunan.",
+        },
+        {
+          correct: false,
+          label:
+            "Sawah di bagian hulu selalu menghasilkan padi lebih banyak daripada sawah di bagian hilir.",
+        },
+        {
+          correct: false,
+          label:
+            "Hama padi di Bali hanya dapat dikendalikan dengan membiarkan sawah kering setelah setiap panen selesai.",
+        },
+        {
           correct: true,
           label:
-            "Rekonstruksi sejarah yang bertanggung jawab membandingkan sumber, menjelaskan sudut pandang, dan mempertahankan bahan asli untuk penilaian ulang.",
-        },
-        {
-          correct: false,
-          label:
-            "Upacara peresmian berlangsung beberapa bulan setelah sebagian kelas pindah.",
-        },
-        {
-          correct: false,
-          label:
-            "Dokumen tertulis membuktikan bahwa kesaksian lisan tidak memiliki nilai sejarah.",
-        },
-        {
-          correct: false,
-          label:
-            "Arsip harus memilih narasumber yang paling yakin dan menghapus rekaman yang tidak sesuai.",
-        },
-        {
-          correct: false,
-          label:
-            "Rekaman asli disimpan agar tafsir dapat dinilai ulang oleh peneliti berikutnya.",
+            "Keberhasilan setiap petak sawah subak bergantung pada pengaturan bersama atas air dan waktu tanam.",
         },
       ],
     },
