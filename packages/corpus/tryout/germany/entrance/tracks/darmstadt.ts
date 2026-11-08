@@ -4,11 +4,12 @@ import type { TrackSourceInput } from "#corpus/tryout/schema";
 /**
  * The mathematics test of the entrance examination at the Studienkolleg of TU
  * Darmstadt, taken by applicants for the T course: single choice with six
- * options, as the Kolleg's published sample shows.
+ * options, as the Kolleg's published sample shows. It sits in the Kolleg's
+ * group.
  */
 export const tuDarmstadtEntranceTrack = {
-  key: "tu-darmstadt-studienkolleg",
-  kind: "institution",
+  group: "tu-darmstadt",
+  key: "tu-darmstadt-mathematics",
   order: 1,
   profile: {
     names: {
@@ -37,9 +38,9 @@ export const tuDarmstadtEntranceTrack = {
     ],
   },
   routeSlugs: {
-    de: "studienkolleg-der-tu-darmstadt",
-    en: "tu-darmstadt-studienkolleg",
-    id: "studienkolleg-tu-darmstadt",
+    de: "mathematik",
+    en: "mathematics",
+    id: "matematika",
   },
   sets: Arr.map([1, 2, 3], (setNumber) => {
     const setKey = `set-${setNumber}`;
@@ -59,8 +60,8 @@ export const tuDarmstadtEntranceTrack = {
     };
   }),
   translations: {
-    de: { title: "Studienkolleg der TU Darmstadt" },
-    en: { title: "TU Darmstadt Studienkolleg" },
-    id: { title: "Studienkolleg TU Darmstadt" },
+    de: { title: "Mathematik" },
+    en: { title: "Mathematics" },
+    id: { title: "Matematika" },
   },
 } satisfies TrackSourceInput;

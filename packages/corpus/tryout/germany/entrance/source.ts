@@ -7,9 +7,9 @@ import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/vali
 import { defineExamSource } from "#corpus/tryout/schema";
 
 /**
- * The entrance examinations of the Studienkollegs, one institution track
- * each. Every Kolleg names its own procedure (Aufnahmeprüfung,
- * Aufnahmetest, Aufnahmeverfahren), so a track's profile carries that name.
+ * The entrance examinations of the Studienkollegs, grouped by Kolleg. Every
+ * Kolleg names its own procedure (Aufnahmeprüfung, Aufnahmetest,
+ * Aufnahmeverfahren), so a track's profile carries that name.
  */
 const entranceTryoutCatalog = defineExamSource({
   ...germanyTryoutCountry,
@@ -33,6 +33,25 @@ const entranceTryoutCatalog = defineExamSource({
       description: "Try out ujian masuk Studienkolleg di Jerman.",
       title: "Ujian Masuk",
     },
+  },
+  grouping: {
+    axis: "institution",
+    groups: [
+      {
+        key: "tu-darmstadt",
+        order: 1,
+        routeSlugs: {
+          de: "studienkolleg-der-tu-darmstadt",
+          en: "tu-darmstadt-studienkolleg",
+          id: "studienkolleg-tu-darmstadt",
+        },
+        translations: {
+          de: { title: "Studienkolleg der TU Darmstadt" },
+          en: { title: "TU Darmstadt Studienkolleg" },
+          id: { title: "Studienkolleg TU Darmstadt" },
+        },
+      },
+    ],
   },
   sourceRevision: "2026-11-08",
   tracks: [tuDarmstadtEntranceTrack],

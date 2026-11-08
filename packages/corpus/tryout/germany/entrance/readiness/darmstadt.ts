@@ -39,5 +39,5 @@ export const tuDarmstadtEntranceReadiness = defineAssessmentReadiness({
     },
   ],
   sourceRevision: "2026-11-08",
-  trackKey: "tu-darmstadt-studienkolleg",
+  trackKey: "tu-darmstadt-mathematics",
 });
