@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "main-idea",
+  },
+  stimulus: "slime-mould",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "The class tested how a blue-light filter affected leaf growth under different light colours, while controlling the listed factors but treating one short trial as proof of a universal effect.",
-        },
-        {
-          correct: false,
-          label:
-            "The class tested how a blue-light filter affected leaf growth under different light colours, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
-        },
-        {
-          correct: false,
-          label:
-            "The class tested how a blue-light filter affected leaf growth under different light colours, while treating the scientific term as the measured outcome that settles the investigation.",
-        },
-        {
           correct: true,
           label:
-            "The class observed greater new leaf area with a blue filter under mostly controlled conditions, but reduced light intensity prevented attributing the difference to colour alone.",
+            "A brainless slime mould builds efficient networks by following simple local rules.",
         },
         {
           correct: false,
           label:
-            "The class tested how a blue-light filter affected leaf growth under different light colours, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
+            "Slime moulds are intelligent animals that can plan railway networks for cities.",
+        },
+        {
+          correct: false,
+          label:
+            "The Tokyo railway system was originally designed by copying the growth of a slime mould.",
+        },
+        {
+          correct: false,
+          label:
+            "Slime moulds are fungi that grow fastest when food is placed in a maze.",
+        },
+        {
+          correct: false,
+          label:
+            "Engineers will probably replace computers with slime moulds in the future.",
         },
       ],
     },

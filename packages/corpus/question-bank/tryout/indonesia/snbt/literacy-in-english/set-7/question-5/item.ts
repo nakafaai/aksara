@@ -1,34 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "application",
+  },
+  stimulus: "slime-mould",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Measuring a confounding variable in one preliminary comparison",
-        },
-        {
-          correct: false,
-          label:
-            "Treating a confounding variable as the sole explanation for the observed result",
+          label: "It would grow thicker to attract more food towards it.",
         },
         {
           correct: true,
-          label: "Testing how filtered blue light affects leaf growth",
+          label: "It would shrink and eventually disappear from the network.",
+        },
+        {
+          correct: false,
+          label: "It would turn into a trail of slime that marks the route.",
         },
         {
           correct: false,
           label:
-            "A final rule derived from the first comparison of a confounding variable",
+            "It would stay the same size as the other tubes in the network.",
         },
         {
           correct: false,
-          label:
-            "A limitation that makes another test of a confounding variable unnecessary",
+          label: "It might split into several new tubes that search for food.",
         },
       ],
     },

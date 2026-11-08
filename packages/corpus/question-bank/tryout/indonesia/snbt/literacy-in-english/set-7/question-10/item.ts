@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "application",
+  },
+  stimulus: "classroom-points",
   versions: {
     en: {
       kind: "choice",
@@ -9,23 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Actionable information as the main measure in a service trial",
+            "A weekly ranking that shows each pupil's points on the classroom wall",
+        },
+        {
+          correct: false,
+          label:
+            "A badge for every pupil who completes ten worksheets in a row without a mistake",
+        },
+        {
+          correct: false,
+          label:
+            "A prize for the pupil who reads the most books by the end of term",
         },
         {
           correct: true,
-          label: "What a drill can show about a clearer flood alert",
+          label:
+            "A puzzle that gives instant hints and lets pupils retry until they solve it",
         },
         {
           correct: false,
-          label: "From a short comparison to a permanent service change",
-        },
-        {
-          correct: false,
-          label: "Consultation without comparable outcome measures",
-        },
-        {
-          correct: false,
-          label: "A local service trial with no follow-up decision",
+          label:
+            "A test that pupils may only attempt once, with no feedback until later",
         },
       ],
     },

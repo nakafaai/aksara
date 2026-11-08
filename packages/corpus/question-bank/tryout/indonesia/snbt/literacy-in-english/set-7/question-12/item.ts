@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "museum-visits",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["True", "False"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Priya wrote the warning in two sentences and tested it with a neighbour who had not attended the planning meeting. The choice resolves the whole conflict at once and makes any later review unnecessary.",
+            "Every visitor group came in larger numbers after the gallery opened.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Testing the two-sentence warning with someone who had not attended the planning meeting lets Priya verify clarity instead of assuming that the message works.",
+            "Families' average visit became longer by half after the gallery opened.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Priya wrote the warning in two sentences and tested it with a neighbour who had not attended the planning meeting. The action transfers responsibility for the unresolved task to another character.",
+            "In the first period, adults without children were the largest group.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Priya wrote the warning in two sentences and tested it with a neighbour who had not attended the planning meeting. The decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
-        },
-        {
-          correct: false,
-          label:
-            "Priya wrote the warning in two sentences and tested it with a neighbour who had not attended the planning meeting. The setting alone produces the change, so the character's decision has no role in the development.",
+            "School groups' average visit became longer after the gallery opened.",
         },
       ],
     },

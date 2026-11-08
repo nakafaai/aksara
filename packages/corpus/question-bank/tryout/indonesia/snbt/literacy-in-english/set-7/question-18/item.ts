@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
+  },
+  stimulus: "carnegie-libraries",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The recurring object gains meaning mainly from its physical description rather than its relation to the choice.",
-        },
-        {
-          correct: false,
-          label:
-            "The ending shows that the setting, rather than the character's action, resolves the conflict.",
+            "He wanted towns to repay the full cost of the buildings over time.",
         },
         {
           correct: true,
           label:
-            "The rain-spotted card gains meaning through its missing route, Asha's revision to add clear directions, and the message reaching the final house in time.",
+            "He thought a community that paid for its library would value it.",
         },
         {
           correct: false,
           label:
-            "The object's meaning remains fixed even though the character uses it differently.",
+            "He needed the taxes to keep his steel mills running at a profit.",
         },
         {
           correct: false,
           label:
-            "The final action matters because it confirms the interpretation established at the start.",
+            "He wanted to stop small towns from receiving library buildings.",
+        },
+        {
+          correct: false,
+          label:
+            "He may have planned to sell the buildings back to the towns later.",
         },
       ],
     },

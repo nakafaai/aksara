@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "museum-visits",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "The art museum's visitors were mostly school groups, who stayed longer.",
+        },
+        {
           correct: true,
           label:
-            "Priya's progress began when the difficulty was turned into a specific, reviewable action.",
+            "Some of the rise may come from people who would otherwise have gone there.",
         },
         {
           correct: false,
           label:
-            "Progress depends on completing the larger task before asking another person to review it.",
+            "It proves that the new gallery attracted no new visitors to the city museum.",
         },
         {
           correct: false,
           label:
-            "The object or setting shapes the outcome more strongly than the character's specific choice.",
+            "It means that the second period was shorter than the first period.",
         },
         {
           correct: false,
           label:
-            "The unresolved evidence should remain private until the character can offer a complete result.",
-        },
-        {
-          correct: false,
-          label:
-            "The small action matters mainly because it postpones the unresolved part of the conflict.",
+            "It suggests that the new gallery might have been built too quickly.",
         },
       ],
     },
