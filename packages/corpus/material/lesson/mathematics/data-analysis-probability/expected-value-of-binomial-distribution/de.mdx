@@ -1,87 +1,137 @@
 export const metadata = {
-    title: "Erwartungswert der Binomialverteilung",
-  description: "Berechne die erwartete Anzahl der Erfolge bei wiederholten Binomialversuchen.",
-    authors: [{ name: "Nabil Akbarazzima Fatih" }],
-    datePublished: "2026-08-22",
-    dateModified: "2026-09-24",
-    subject: "Datenanalyse und Wahrscheinlichkeit",
+  title: "Erwartungswert der Binomialverteilung",
+  description: "Der Erwartungswert der Binomialverteilung ist np. Verstehe Herleitung und Bedeutung der Formel und nutze sie beim Würfeln und beim Raten im Test.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Datenanalyse und Wahrscheinlichkeit",
 };
 
-## Die mittlere Trefferzahl über viele Versuchsreihen
+## Die erwartete Trefferzahl ist np
 
-Angenommen, jeder Freiwurf trifft unabhängig mit der Wahrscheinlichkeit <InlineMath math="p=0{,}8" />, und <InlineMath math="X" /> zählt die Treffer bei <InlineMath math="n=10" /> Versuchen. Dann gilt <InlineMath math="E(X)=8" />: Über viele Serien mit je zehn Würfen nähert sich die mittlere Trefferzahl dem Wert <InlineMath math="8" />.
-
-Der Erwartungswert ist der **mit Wahrscheinlichkeiten gewichtete Mittelwert** einer Zufallsvariablen. Er beschreibt einen langfristigen Durchschnitt, und eine einzelne Serie kann davon abweichen. Ein Erwartungswert kann außerdem nicht ganzzahlig sein, obwohl die Zufallsvariable selbst nur ganzzahlige Werte annimmt.
-
-## Erwartungswert einer Binomialverteilung
-
-Eine binomialverteilte Zufallsvariable zählt Erfolge in einer festen Anzahl unabhängiger Versuche mit gleicher Erfolgswahrscheinlichkeit. Ihr Erwartungswert gibt <Highlight>die langfristige mittlere Zahl der Erfolge</Highlight> an. Er muss nicht mit der wahrscheinlichsten Erfolgszahl übereinstimmen, denn diese wird durch den Modus beschrieben.
-
-Für die Binomialverteilung <InlineMath math="b_{n,p}(x)" /> gilt:
+Zählt <InlineMath math="X" /> die Treffer in <InlineMath math="n" /> unabhängigen Versuchen mit jeweils der Trefferwahrscheinlichkeit <InlineMath math="p" />, dann ist <InlineMath math="X" /> binomialverteilt, geschrieben <InlineMath math="X \sim B(n, p)" />, und ihr Erwartungswert ist:
 
 <BlockMath math="E(X) = np" />
 
-Dabei ist <InlineMath math="n" /> die Zahl der Versuche und <InlineMath math="p" /> die Erfolgswahrscheinlichkeit eines einzelnen Versuchs.
+Eine Spielerin verwandelt jeden Freiwurf mit der Wahrscheinlichkeit <InlineMath math="p = 0{,}8" /> und wirft <InlineMath math="n = 10" /> Mal. Der Erwartungswert ist <InlineMath math="E(X) = 10 \cdot 0{,}8 = 8" />. Das bedeutet: **Der Durchschnitt der Treffer über viele Serien von zehn Würfen nähert sich <InlineMath math="8" />**. In einer einzelnen Serie können es <InlineMath math="6" />, <InlineMath math="9" /> oder <InlineMath math="10" /> sein.
 
-## Den Erwartungswert herleiten
+Wie weit weicht eine Serie meist von <InlineMath math="8" /> ab? Das Maß ist die Varianz <InlineMath math="np(1 - p) = 10 \cdot 0{,}8 \cdot 0{,}2 = 1{,}6" />, die Standardabweichung beträgt also <InlineMath math="\sqrt{1{,}6} \approx 1{,}26" /> Treffer. Ein Erwartungswert darf auch ein Bruch sein, obwohl <InlineMath math="X" /> selbst nur ganze Zahlen annimmt.
 
-Die Formel folgt direkt daraus, dass jeder einzelne Versuch entweder null oder einen Erfolg beiträgt.
+## Bedingungen für eine Binomialverteilung
 
-Wir beschreiben den <InlineMath math="k" />-ten Versuch durch die Zufallsvariable <InlineMath math="I_k" />. Sie hat den Wert <InlineMath math="1" /> bei **Erfolg** und <InlineMath math="0" /> bei **Misserfolg**.
+Eine Größe <InlineMath math="X" /> ist binomialverteilt, wenn **vier Bedingungen zusammen gelten**. Jeder Versuch hat nur zwei Ergebnisse, Treffer oder Niete. Die Anzahl <InlineMath math="n" /> der Versuche steht vor dem Beginn fest. Das Ergebnis eines Versuchs beeinflusst keinen anderen, wie bei [unabhängigen Ereignissen](/de/faecher/mathematik/kombinatorik/unabhaengige-ereignisse). Die Trefferwahrscheinlichkeit <InlineMath math="p" /> ist in jedem Versuch gleich.
 
-Die Misserfolgswahrscheinlichkeit ist <InlineMath math="q=1-p" />. Für den gewichteten Mittelwert **multiplizierst du jeden Indikatorwert mit seiner Wahrscheinlichkeit** und addierst beide Beiträge.
+Gelten alle vier Bedingungen, dann liefert die Formel der [Binomialverteilung](/de/faecher/mathematik/datenanalyse-und-wahrscheinlichkeit/binomialverteilung) die Wahrscheinlichkeit für genau <InlineMath math="k" /> Treffer:
 
-| Ergebnis | Indikator | Wahrscheinlichkeit | Beitrag |
-| --- | --- | --- | --- |
-| Erfolg | 1 | <InlineMath math="p" /> | <InlineMath math="1p=p" /> |
-| Misserfolg | 0 | <InlineMath math="q=1-p" /> | <InlineMath math="0q=0" /> |
+<BlockMath math="P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}, \qquad k = 0, 1, \ldots, n" />
 
-Der erwartete Wert für einen einzelnen Versuch ist:
+Würfeln, bis eine Sechs fällt, ist kein solches Experiment, weil die Anzahl der Würfe nicht feststeht. Fragen zu beantworten, deren Chancen auf eine richtige Antwort verschieden sind, ist es ebenfalls nicht, weil <InlineMath math="p" /> nicht in jedem Versuch gleich ist.
 
-<BlockMath math="E(I_k) = 1 \cdot p + 0 \cdot q = p" />
+## Den Erwartungswert aus einer Wahrscheinlichkeitstabelle berechnen
 
-Die Gesamtzahl der Erfolge <InlineMath math="X" /> ist die Summe dieser einzelnen Variablen:
+Der Erwartungswert einer diskreten Größe ist die Summe aus jedem Wert mal seiner Wahrscheinlichkeit, genau wie bei jeder anderen [Wahrscheinlichkeitsverteilung](/de/faecher/mathematik/wahrscheinlichkeit/wahrscheinlichkeitsverteilung):
 
-<BlockMath math="X = I_1 + I_2 + ... + I_n" />
+<BlockMath math="E(X) = \sum_{k=0}^{n} k \cdot P(X = k)" />
 
-Erwartungswerte addieren sich. Daher gilt:
+Bei drei Würfen einer fairen Münze gilt <InlineMath math="n = 3" /> und <InlineMath math="p = \frac{1}{2}" />. Die Wahrscheinlichkeit jedes Werts ergibt sich aus <InlineMath math="\binom{3}{k}\left(\frac{1}{2}\right)^3" />, und dann wird jeder Wert **mit seiner Wahrscheinlichkeit multipliziert**:
 
-<MathContainer>
-<BlockMath math="E(X) = E(I_1) + E(I_2) + ... + E(I_n)" />
-<BlockMath math="E(X) = \underbrace{p + p + ... + p}_{n\text{-mal}} = np" />
-</MathContainer>
+| Anzahl Kopf <InlineMath math="k" /> | <InlineMath math="P(X = k)" /> | <InlineMath math="k \cdot P(X = k)" /> |
+| --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="\frac{1}{8}" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="\frac{3}{8}" /> | <InlineMath math="\frac{3}{8}" /> |
+| <InlineMath math="2" /> | <InlineMath math="\frac{3}{8}" /> | <InlineMath math="\frac{6}{8}" /> |
+| <InlineMath math="3" /> | <InlineMath math="\frac{1}{8}" /> | <InlineMath math="\frac{3}{8}" /> |
 
-Der Erwartungswert ist somit das Produkt aus Versuchszahl und Erfolgswahrscheinlichkeit.
+Die Summe der letzten Spalte ist der Erwartungswert:
 
-## Würfeln
+<BlockMath math="E(X) = 0 + \frac{3}{8} + \frac{6}{8} + \frac{3}{8} = \frac{12}{8} = 1{,}5" />
 
-**Aufgabe**:
+Probe mit der kurzen Formel: <InlineMath math="np = 3 \cdot \frac{1}{2} = 1{,}5" />. Beide Wege stimmen überein, aber für großes <InlineMath math="n" /> wird eine solche Tabelle zu lang, also übernimmt die Formel <InlineMath math="np" /> die Arbeit.
 
-Ein fairer Würfel wird <InlineMath math="7" />-mal geworfen. Wie oft ist dabei im Mittel eine Fünf zu erwarten?
+## Warum die Formel np lautet
 
-**Lösung**:
+Die Formel entsteht, wenn du **<InlineMath math="X" /> in einen Indikator pro Versuch zerlegst**. Der Indikator <InlineMath math="I_k" /> ist <InlineMath math="1" />, wenn Versuch <InlineMath math="k" /> ein Treffer ist, und <InlineMath math="0" /> bei einer Niete. Der Erwartungswert eines Indikators ist:
 
-Wir prüfen die Voraussetzungen:
+<BlockMath math="E(I_k) = 1 \cdot p + 0 \cdot (1 - p) = p" />
 
-- Es gibt nur zwei Möglichkeiten: **Erfolg** (Würfeln einer <InlineMath math="5" />) oder **Misserfolg** (Würfeln einer anderen Zahl als <InlineMath math="5" />)
-- Feste Anzahl von Versuchen: <InlineMath math="7" /> Würfe
-- Jeder Wurf ist unabhängig: Das Ergebnis vorheriger Würfe hat keinen Einfluss auf nachfolgende Würfe
-- Gleiche Erfolgswahrscheinlichkeit: <InlineMath math="p = \frac{1}{6}" /> bei jedem Wurf
-
-Jetzt identifizieren wir die Parameter:
+Die Trefferzahl ist die Summe aller Indikatoren, weil jeder Treffer genau eins beiträgt. Der Erwartungswert einer Summe ist die Summe der Erwartungswerte:
 
 <MathContainer>
-<BlockMath math="S = \{1, 2, 3, 4, 5, 6\}" />
-<BlockMath math="p = \frac{1}{6}" />
-<BlockMath math="n = 7" />
+  <BlockMath math="X = I_1 + I_2 + \cdots + I_n" />
+  <BlockMath math="E(X) = E(I_1) + E(I_2) + \cdots + E(I_n) = \underbrace{p + p + \cdots + p}_{n \text{ Mal}} = np" />
 </MathContainer>
 
-Jetzt können wir den Erwartungswert direkt mit der Formel berechnen:
+Probe mit drei Münzwürfen: Drei Indikatoren haben je den Erwartungswert <InlineMath math="\frac{1}{2}" />, ihre Summe ist <InlineMath math="1{,}5" />, wie in der Tabelle. Der Schritt, der Erwartungswerte addiert, braucht keine Unabhängigkeit. Die Unabhängigkeit ist für die Formel der Binomialwahrscheinlichkeiten nötig, während die Regel <InlineMath math="np" /> gilt, solange jeder Versuch die Trefferwahrscheinlichkeit <InlineMath math="p" /> hat. Bei einer stetigen Größe wird aus einer solchen Summe ein Integral, wie beim [Erwartungswert der Normalverteilung](/de/faecher/mathematik/datenanalyse-und-wahrscheinlichkeit/erwartungswert-der-normalverteilung).
 
-<BlockMath math="E(X) = np = 7 \times \frac{1}{6} = \frac{7}{6} \approx 1{,}167" />
+## Beispiel mit sieben Würfelwürfen
 
-Was bedeutet die Zahl <InlineMath math="1{,}167" />?
+Ein fairer Würfel wird <InlineMath math="7" /> Mal geworfen, und <InlineMath math="X" /> zählt, wie oft eine <InlineMath math="5" /> fällt. Jeder Wurf hat zwei Ergebnisse, die Anzahl der Würfe steht fest, die Würfe sind unabhängig, und die Trefferwahrscheinlichkeit ist immer <InlineMath math="p = \frac{1}{6}" />, also gilt <InlineMath math="X \sim B\left(7, \frac{1}{6}\right)" />:
 
-Der Erwartungswert <InlineMath math="1{,}167" /> bedeutet nicht, dass die Augenzahl <InlineMath math="5" /> in einer einzelnen Serie genau <InlineMath math="1{,}167" />-mal fallen kann. Wiederholt man jedoch sehr viele Serien mit jeweils <InlineMath math="7" /> Würfen, erscheint die <InlineMath math="5" /> langfristig im Mittel etwa <InlineMath math="1{,}167" />-mal pro Serie.
+<BlockMath math="E(X) = np = 7 \cdot \frac{1}{6} = \frac{7}{6} \approx 1{,}17" />
 
-In einer Serie ist die Anzahl der Fünfen eine ganze Zahl **zwischen null und sieben**. Der Erwartungswert beschreibt den Durchschnitt über viele Serien, kein vorgeschriebenes Ergebnis einer einzelnen Serie.
+Der Wert <InlineMath math="1{,}17" /> kann in einer Serie von sieben Würfen nicht vorkommen, weil die Anzahl der Fünfen immer eine ganze Zahl von <InlineMath math="0" /> bis <InlineMath math="7" /> ist. Wiederholst du die sieben Würfe hunderte Male, **nähert sich die durchschnittliche Anzahl der Fünfen pro Serie <InlineMath math="1{,}17" />**.
+
+Der Erwartungswert unterscheidet sich auch vom wahrscheinlichsten Ergebnis. Die Binomialformel liefert <InlineMath math="P(X = 0) \approx 0{,}279" />, <InlineMath math="P(X = 1) \approx 0{,}391" /> und <InlineMath math="P(X = 2) \approx 0{,}234" />. Am wahrscheinlichsten ist eine Fünf, während der Erwartungswert zwischen <InlineMath math="1" /> und <InlineMath math="2" /> liegt. Probe mit Indikatoren: Jeder Wurf trägt <InlineMath math="\frac{1}{6}" /> bei, sieben Würfe tragen <InlineMath math="\frac{7}{6}" /> bei.
+
+## Beispiel mit Raten bei einem Auswahltest
+
+Eine Schülerin rät alle <InlineMath math="20" /> Fragen eines Auswahltests mit je <InlineMath math="5" /> Antwortmöglichkeiten. Die Anzahl richtiger Antworten <InlineMath math="X" /> folgt der Verteilung <InlineMath math="B\left(20, \frac{1}{5}\right)" />, also gilt <InlineMath math="E(X) = 20 \cdot \frac{1}{5} = 4" />.
+
+Angenommen, eine richtige Antwort bringt <InlineMath math="4" /> Punkte und eine falsche kostet <InlineMath math="1" /> Punkt. Die Punktzahl ist <InlineMath math="S = 4X - (20 - X) = 5X - 20" />, und **die Linearität des Erwartungswerts** liefert:
+
+<BlockMath math="E(S) = 5 \cdot E(X) - 20 = 5 \cdot 4 - 20 = 0" />
+
+Probe pro Frage: Ein geratener Versuch hat den Erwartungswert <InlineMath math="4 \cdot \frac{1}{5} - 1 \cdot \frac{4}{5} = 0" /> Punkte, also haben auch zwanzig geratene Fragen den Erwartungswert <InlineMath math="0" />. Bei dieser Regel bringt Raten auf lange Sicht keine Punkte.
+
+## Häufige Fehler
+
+| Fehler | Warum er scheitert | So prüfst du |
+| --- | --- | --- |
+| Glauben, <InlineMath math="E(X)" /> müsse eintreten | <InlineMath math="E(X)" /> ist ein Durchschnitt über viele Wiederholungen | Beim Würfel kann <InlineMath math="\frac{7}{6}" /> in keiner Serie vorkommen |
+| <InlineMath math="np" /> runden und als Erwartungswert angeben | Runden ändert den Wert | Schreibe <InlineMath math="\frac{7}{6}" /> oder <InlineMath math="1{,}17" />, nicht <InlineMath math="1" /> |
+| Den Erwartungswert für das wahrscheinlichste Ergebnis halten | Das wahrscheinlichste Ergebnis kann von <InlineMath math="np" /> abweichen | Beim Würfel ist <InlineMath math="1" /> am wahrscheinlichsten, der Erwartungswert ist <InlineMath math="1{,}17" /> |
+| <InlineMath math="p" /> nutzen, obwohl Nieten gezählt werden | Die Anzahl der Nieten hat den Erwartungswert <InlineMath math="n(1 - p)" /> | Erwartete Treffer und Nieten ergeben zusammen <InlineMath math="n" /> |
+| <InlineMath math="np" /> nutzen, wenn jeder Versuch eine eigene Wahrscheinlichkeit hat | Indikator <InlineMath math="k" /> hat den Erwartungswert <InlineMath math="p_k" /> | Addiere <InlineMath math="p_1 + p_2 + \cdots + p_n" /> |
+
+Bevor du <InlineMath math="np" /> nutzt, **legst du fest, was als Treffer zählt** und wie groß seine Wahrscheinlichkeit ist. Dieser Schritt verhindert die letzten beiden Fehler, die in Textaufgaben am häufigsten auftreten.
+
+## Übungen
+
+Die ersten beiden Aufgaben nutzen die Formel direkt, die dritte kehrt sie um, und die vierte verbindet den Erwartungswert mit einer Punkteregel. **Bestimme zuerst <InlineMath math="n" /> und <InlineMath math="p" />** und prüfe deine Antwort, bevor du die Lösung liest.
+
+1. Eine faire Münze wird <InlineMath math="40" /> Mal geworfen. Bestimme den Erwartungswert für die Anzahl von Kopf.
+
+2. Eine Schülerin rät <InlineMath math="30" /> Fragen mit je <InlineMath math="4" /> Antwortmöglichkeiten. Bestimme den Erwartungswert der richtigen und der falschen Antworten.
+
+3. Eine Maschine liefert erwartungsgemäß <InlineMath math="6" /> fehlerhafte Teile unter <InlineMath math="150" />, und jedes Teil ist mit derselben Wahrscheinlichkeit fehlerhaft. Bestimme diese Wahrscheinlichkeit und dann den Erwartungswert der fehlerhaften Teile unter <InlineMath math="400" />.
+
+4. Ein Test hat <InlineMath math="25" /> Fragen mit je <InlineMath math="5" /> Antwortmöglichkeiten. Eine richtige Antwort bringt <InlineMath math="4" /> Punkte, eine falsche kostet <InlineMath math="0{,}5" /> Punkte. Bestimme den Erwartungswert der Punktzahl, wenn alle Fragen geraten werden.
+
+### Lösungen
+
+**Aufgabe 1**. Jeder Wurf zeigt Kopf mit der Wahrscheinlichkeit <InlineMath math="\frac{1}{2}" />, also <InlineMath math="n = 40" /> und <InlineMath math="p = \frac{1}{2}" />:
+
+<BlockMath math="E(X) = 40 \cdot \frac{1}{2} = 20" />
+
+Probe: Kopf und Zahl sind gleich wahrscheinlich, also sind **ihre erwarteten Anzahlen gleich**, jeweils die Hälfte von <InlineMath math="40" />.
+
+**Aufgabe 2**. Die Wahrscheinlichkeit, richtig zu raten, ist <InlineMath math="\frac{1}{4}" />, falsch zu raten <InlineMath math="\frac{3}{4}" />:
+
+<MathContainer>
+  <BlockMath math="E(\text{richtig}) = 30 \cdot \frac{1}{4} = 7{,}5" />
+  <BlockMath math="E(\text{falsch}) = 30 \cdot \frac{3}{4} = 22{,}5" />
+</MathContainer>
+
+Probe: <InlineMath math="7{,}5 + 22{,}5 = 30" />, also ergeben **die erwarteten richtigen und falschen Antworten zusammen die Anzahl der Fragen**.
+
+**Aufgabe 3**. Aus <InlineMath math="np = 6" /> und <InlineMath math="n = 150" /> folgt die Fehlerwahrscheinlichkeit <InlineMath math="p = \frac{6}{150} = 0{,}04" />. Für <InlineMath math="400" /> Teile:
+
+<BlockMath math="E(X) = 400 \cdot 0{,}04 = 16" />
+
+Probe: <InlineMath math="\frac{16}{400} = \frac{6}{150} = 0{,}04" />, also **bleibt der erwartete Fehleranteil gleich**.
+
+**Aufgabe 4**. Die Anzahl richtiger Antworten ist <InlineMath math="X \sim B\left(25, \frac{1}{5}\right)" />, also <InlineMath math="E(X) = 5" />. Die Punktzahl ist <InlineMath math="S = 4X - 0{,}5(25 - X) = 4{,}5X - 12{,}5" />:
+
+<BlockMath math="E(S) = 4{,}5 \cdot 5 - 12{,}5 = 22{,}5 - 12{,}5 = 10" />
+
+Probe pro Frage: Ein geratener Versuch hat den Erwartungswert <InlineMath math="4 \cdot 0{,}2 - 0{,}5 \cdot 0{,}8 = 0{,}4" /> Punkte, und <InlineMath math="25 \cdot 0{,}4 = 10" />. Bei einem kleinen Abzug **bringt Raten auf lange Sicht Punkte**.
