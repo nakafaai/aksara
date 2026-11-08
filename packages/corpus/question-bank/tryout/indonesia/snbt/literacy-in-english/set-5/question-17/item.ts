@@ -25,7 +25,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Some of the new sewers were built inside embankments that also carried roads.",
+            "Some of the new sewers were built inside embankments that also created new roads.",
         },
         {
           column: 2,

@@ -20,7 +20,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "The 2001 review found a large placebo effect for most conditions.",
+            "The 2001 review found a large placebo effect on outcomes measured objectively.",
         },
         {
           column: 2,

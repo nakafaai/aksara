@@ -24,8 +24,7 @@ const item: ItemSource = {
         },
         {
           column: 2,
-          label:
-            "Goro-goro biasanya berlangsung pada awal pertunjukan, sebelum tengah malam.",
+          label: "Goro-goro biasanya berlangsung pada awal pertunjukan.",
         },
         {
           column: 1,
