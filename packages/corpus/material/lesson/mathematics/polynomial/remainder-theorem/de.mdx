@@ -3,7 +3,7 @@ export const metadata = {
   description: "Nutze und begründe den Restsatz, um den Rest einer Polynomdivision ohne schriftliche Division zu bestimmen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Polynom",
 };
 
@@ -22,6 +22,31 @@ Um den **Rest** bei der Division von <InlineMath math="P(x)" /> durch <InlineMat
 Für <InlineMath math="P(x)=2x^2-3x+4" /> und den Divisor <InlineMath math="x-2" /> erhältst du:
 
 <BlockMath math="P(2)=2(2)^2-3(2)+4=8-6+4=6" />
+
+Der Satz sagt: Der Rest ist einfach eine Höhe auf dem Graphen. Für <InlineMath math="P(x) = 2x^2 - 3x + 4" /> geteilt durch <InlineMath math="x - 2" /> gehst du zu <InlineMath math="x = 2" /> auf der Kurve: Die Höhe dort ist <InlineMath math="P(2) = 6" />, und das ist der Rest.
+
+<MathVisual
+  title={<>Der Rest ist P(2)</>}
+  description={<>Die Parabel <InlineMath math="2x^2 - 3x + 4" /> mit dem Punkt <InlineMath math="(2, 6)" />: Seine Höhe ist der Rest bei der Division durch <InlineMath math="x - 2" />.</>}
+  labels={{
+    p: <InlineMath math="P(x)" />,
+    r: <InlineMath math="P(2) = 6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: 0, max: 9 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 4 }, domain: { min: -0.5, max: 2.5 }, appearance: "primary" },
+      { id: "drop", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "r", kind: "point", at: { x: 2, y: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: -0.5, y: 6 }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 2, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
 
 ### Warum der Restsatz gilt
 
@@ -59,6 +84,39 @@ Beim quadratischen Beispiel **wird das Produkt aus Divisor und Quotient für die
 
 Bei einem Divisor zweiten Grades kann der Rest linear sein. Ein einzelner Polynomwert reicht dann nicht aus, um den gesamten Rest zu bestimmen.
 
+Zerleg <InlineMath math="P" /> in seine zwei Teile. Die violette Kurve <InlineMath math="(x - 2)(2x + 1)" /> ist durch <InlineMath math="x - 2" /> teilbar und geht durch <InlineMath math="(2, 0)" />. Der Rest hebt sie überall um <InlineMath math="6" /> an und ergibt die orange Kurve <InlineMath math="P(x)" />. Darum bleibt bei <InlineMath math="x = 2" /> nur der Rest übrig.
+
+<MathVisual
+  title={<>Teilbarer Teil plus Rest</>}
+  description={<>Die Kurven <InlineMath math="(x - 2)(2x + 1)" /> und <InlineMath math="P(x) = (x - 2)(2x + 1) + 6" />, die immer 6 voneinander entfernt sind.</>}
+  labels={{
+    whole: <InlineMath math="P(x)" />,
+    part: <InlineMath math="(x - 2)(2x + 1)" />,
+    gap: <InlineMath math="6" />,
+    top: <InlineMath math="(2, 6)" />,
+    foot: <InlineMath math="(2, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.1, max: 3.4 }, y: { min: -3.6, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "whole", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 4 }, domain: { min: -0.75, max: 2.5 }, appearance: "primary" },
+      { id: "part", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: -2 }, domain: { min: -0.75, max: 2.5 }, appearance: "secondary" },
+      { id: "gap", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "top", kind: "point", at: { x: 2, y: 6 }, appearance: "primary" },
+      { id: "foot", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "whole", objectId: "whole", at: { x: 2.5, y: 9 }, placement: "right" },
+      { key: "part", objectId: "part", at: { x: 2.5, y: 3 }, placement: "right" },
+      { key: "gap", objectId: "gap", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "top", objectId: "top", at: { x: 2, y: 6 }, placement: "left" },
+      { key: "foot", objectId: "foot", at: { x: 2, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Rechnen mit dem Restsatz
 
 Mit dem Restsatz <Highlight>lässt sich ein Divisionsrest schnell bestimmen</Highlight>, ohne den gesamten Divisionsweg auszuschreiben.
@@ -86,6 +144,16 @@ Aus Horners Methode erhalten wir:
 
 - Quotient: <InlineMath math="H(x) = 2x^4 - 3x^3 + 2x^2 + x - 4" />
 - Rest: <InlineMath math="S = \boxed{6}" />
+
+Jede Zahl der unteren Zeile entsteht aus der vorigen: mit <InlineMath math="c = -4" /> multiplizieren und den nächsten Koeffizienten addieren. Die ersten fünf Balken sind die Koeffizienten des Quotienten <InlineMath math="2, -3, 2, 1, -4" />, und der letzte Balken ist der Rest <InlineMath math="6" />.
+
+<BarChart
+  title={<>Die untere Zeile des Horner-Schemas für <InlineMath math="c = -4" /></>}
+  description={<>Balken der unteren Zeile <InlineMath math="2, -3, 2, 1, -4" /> und des Rests <InlineMath math="6" />, jeweils der nächste Koeffizient plus <InlineMath math="-4" /> mal der vorige Balken.</>}
+  yAxisLabel="Wert"
+  data={[["Grad 4", 2], ["Grad 3", 5 - 4 * 2], ["Grad 2", -10 - 4 * -3], ["Grad 1", 9 - 4 * 2], ["Grad 0", 0 - 4 * 1], ["Rest", -10 - 4 * -4]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Verwendung des Restsatzes
 

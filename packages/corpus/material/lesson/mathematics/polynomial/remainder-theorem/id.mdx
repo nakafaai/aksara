@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan dan buktikan Teorema Sisa untuk mencari sisa pembagian polinomial tanpa pembagian bersusun.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Polinomial",
 };
 
@@ -22,6 +22,31 @@ Untuk mencari **sisa pembagian** <InlineMath math="P(x)" /> oleh <InlineMath mat
 Pada <InlineMath math="P(x) = 2x^2 - 3x + 4" /> yang dibagi <InlineMath math="x - 2" />, sisanya adalah <InlineMath math="P(2) = 6" />, jadi satu substitusi sudah menjawab soalnya.
 
 <BlockMath math="P(2)=2(2)^2-3(2)+4=8-6+4=6" />
+
+Teorema ini mengatakan bahwa sisa hanyalah sebuah ketinggian pada grafik. Untuk <InlineMath math="P(x) = 2x^2 - 3x + 4" /> dibagi <InlineMath math="x - 2" />, pergi ke <InlineMath math="x = 2" /> pada kurva: ketinggiannya <InlineMath math="P(2) = 6" />, dan itulah sisanya.
+
+<MathVisual
+  title={<>Sisanya adalah P(2)</>}
+  description={<>Parabola <InlineMath math="2x^2 - 3x + 4" /> dengan titik <InlineMath math="(2, 6)" />: ketinggiannya adalah sisa pembagian oleh <InlineMath math="x - 2" />.</>}
+  labels={{
+    p: <InlineMath math="P(x)" />,
+    r: <InlineMath math="P(2) = 6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: 0, max: 9 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 4 }, domain: { min: -0.5, max: 2.5 }, appearance: "primary" },
+      { id: "drop", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "r", kind: "point", at: { x: 2, y: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: -0.5, y: 6 }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 2, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
 
 ### Mengapa Teorema Sisa Berlaku
 
@@ -59,6 +84,39 @@ Untuk contoh kuadrat tadi, pembagi dan hasil bagi membentuk produk yang **menjad
 
 Jika pembaginya berderajat dua, sisa dapat berupa polinomial linear. Karena itu, satu nilai polinomial belum cukup untuk menentukan seluruh sisa pembagian tersebut.
 
+Pisahkan <InlineMath math="P" /> menjadi dua bagian. Kurva ungu <InlineMath math="(x - 2)(2x + 1)" /> habis dibagi <InlineMath math="x - 2" /> dan melewati <InlineMath math="(2, 0)" />. Menambahkan sisanya mengangkat kurva itu <InlineMath math="6" /> satuan di mana-mana dan menghasilkan kurva oranye <InlineMath math="P(x)" />. Karena itu, di <InlineMath math="x = 2" /> hanya sisanya yang tertinggal.
+
+<MathVisual
+  title={<>Bagian yang habis dibagi ditambah sisa</>}
+  description={<>Kurva <InlineMath math="(x - 2)(2x + 1)" /> dan <InlineMath math="P(x) = (x - 2)(2x + 1) + 6" />, yang selalu berjarak 6.</>}
+  labels={{
+    whole: <InlineMath math="P(x)" />,
+    part: <InlineMath math="(x - 2)(2x + 1)" />,
+    gap: <InlineMath math="6" />,
+    top: <InlineMath math="(2, 6)" />,
+    foot: <InlineMath math="(2, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.1, max: 3.4 }, y: { min: -3.6, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "whole", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 4 }, domain: { min: -0.75, max: 2.5 }, appearance: "primary" },
+      { id: "part", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: -2 }, domain: { min: -0.75, max: 2.5 }, appearance: "secondary" },
+      { id: "gap", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "top", kind: "point", at: { x: 2, y: 6 }, appearance: "primary" },
+      { id: "foot", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "whole", objectId: "whole", at: { x: 2.5, y: 9 }, placement: "right" },
+      { key: "part", objectId: "part", at: { x: 2.5, y: 3 }, placement: "right" },
+      { key: "gap", objectId: "gap", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "top", objectId: "top", at: { x: 2, y: 6 }, placement: "left" },
+      { key: "foot", objectId: "foot", at: { x: 2, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Menghitung Teorema Sisa
 
 Teorema ini <Highlight>menentukan sisa secara langsung</Highlight> sekaligus menjelaskan mengapa evaluasi polinomial muncul dalam soal pembagian. Substitusi nilai yang membuat pembaginya nol mengubah pembagian menjadi satu evaluasi, dan cara itu biasanya lebih singkat.
@@ -86,6 +144,16 @@ Dari metode Horner, kita dapatkan:
 
 - Hasil Bagi: <InlineMath math="H(x) = 2x^4 - 3x^3 + 2x^2 + x - 4" />
 - Sisa: <InlineMath math="S = \boxed{6}" />
+
+Setiap bilangan di baris bawah berasal dari bilangan sebelumnya: kalikan dengan <InlineMath math="c = -4" />, lalu tambahkan koefisien berikutnya. Lima batang pertama adalah koefisien hasil bagi <InlineMath math="2, -3, 2, 1, -4" />, dan batang terakhir adalah sisa <InlineMath math="6" />.
+
+<BarChart
+  title={<>Baris bawah skema Horner untuk <InlineMath math="c = -4" /></>}
+  description={<>Batang baris bawah <InlineMath math="2, -3, 2, 1, -4" /> dan sisa <InlineMath math="6" />, masing-masing didapat dari koefisien berikutnya ditambah <InlineMath math="-4" /> kali batang sebelumnya.</>}
+  yAxisLabel="Nilai"
+  data={[["derajat 4", 2], ["derajat 3", 5 - 4 * 2], ["derajat 2", -10 - 4 * -3], ["derajat 1", 9 - 4 * 2], ["derajat 0", 0 - 4 * 1], ["sisa", -10 - 4 * -4]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Menggunakan Teorema Sisa
 
