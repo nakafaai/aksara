@@ -80,6 +80,17 @@ Zähle zuerst die Elemente. Addierst du <InlineMath math="n(A)" /> und <InlineMa
 
 Teilst du jeden Term durch <InlineMath math="n(\Omega)" /> für einen Ergebnisraum mit gleichwahrscheinlichen Ergebnissen, erhältst du die Formel für Wahrscheinlichkeiten. Die Formel selbst gilt für jeden Ergebnisraum, nur das Teilen durch <InlineMath math="n(\Omega)" /> braucht gleichwahrscheinliche Ergebnisse. Beim Würfel sind es <InlineMath math="3 + 3 - 2 = 4" /> Elemente, wie in der Liste <InlineMath math="\{2, 4, 5, 6\}" />. Ohne den Abzug käme <InlineMath math="\frac{6}{6} = 1" /> heraus, als würde jeder Wurf in <InlineMath math="A" /> oder <InlineMath math="B" /> landen, obwohl 1 und 3 zu keinem der beiden gehören.
 
+<Mermaid
+  title="Die Formel für P(A oder B) wählen"
+  description="Der Inhalt der Schnittmenge entscheidet, ob ihre Wahrscheinlichkeit abgezogen werden muss."
+  chart={`flowchart TD
+  A["Schnittmenge von A und B aufschreiben"] --> B{"Ist die Schnittmenge leer?"}
+  B -->|"ja, unvereinbar"| C["P(A) + P(B)"]
+  B -->|"nein, vereinbar"| D["P(A) + P(B) - P(A und B)"]
+  C --> E["Durch Aufzählen der Vereinigung prüfen"]
+  D --> E`}
+/>
+
 ## Beispiel mit Herz oder König
 
 Aus 52 Spielkarten wird eine Karte gezogen. Wie groß ist die Wahrscheinlichkeit, eine Herzkarte oder einen König zu ziehen?

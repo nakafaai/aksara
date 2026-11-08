@@ -88,6 +88,46 @@ Kejadian <InlineMath math="A" /> dan komplemennya <InlineMath math="A^c" /> (buk
 
 Rumus komplemen ini menghemat hitungan saat kejadian yang ditanyakan punya banyak hasil. Peluang dadu tidak menghasilkan mata 6 adalah <InlineMath math="1 - \frac{1}{6} = \frac{5}{6}" />, tanpa perlu menjumlahkan lima peluang. Periksa dengan mendaftar: hasil selain 6 adalah <InlineMath math="\{1, 2, 3, 4, 5\}" />, yaitu 5 dari 6 hasil.
 
+<MathVisual
+  title="Kejadian A dan komplemennya"
+  description={<>Satu dadu dengan <InlineMath math="A = \{6\}" />. Lima hasil di luar lingkaran membentuk komplemen <InlineMath math="A^c = \{1, 2, 3, 4, 5\}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sample-space", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "six-event", kind: "circle", center: { x: 2, y: 0 }, radius: 1.1, appearance: "primary" },
+      { id: "six", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "one", kind: "point", at: { x: -3, y: 1.2 }, appearance: "secondary" },
+      { id: "two", kind: "point", at: { x: -1.5, y: 1.2 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: -3, y: -1.2 }, appearance: "secondary" },
+      { id: "four", kind: "point", at: { x: -1.5, y: -1.2 }, appearance: "secondary" },
+      { id: "five", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "six-event", objectId: "six-event", at: { x: 2, y: 1.1 }, placement: "above" },
+      { key: "sample-space", objectId: "sample-space", at: { x: -3.8, y: 2.4 }, placement: "below-right" },
+      { key: "six", objectId: "six", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: -3, y: 1.2 }, placement: "right" },
+      { key: "two", objectId: "two", at: { x: -1.5, y: 1.2 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: -3, y: -1.2 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: -1.5, y: -1.2 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 0, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "six-event": <InlineMath math="A" />,
+    "sample-space": <InlineMath math="S" />,
+    six: <InlineMath math="6" />,
+    one: <InlineMath math="1" />,
+    two: <InlineMath math="2" />,
+    three: <InlineMath math="3" />,
+    four: <InlineMath math="4" />,
+    five: <InlineMath math="5" />,
+  }}
+/>
+
 ## Contoh Jumlah Mata Dua Dadu
 
 Dua dadu dilempar bersamaan. Tentukan peluang jumlah mata kedua dadu 7 atau 11.

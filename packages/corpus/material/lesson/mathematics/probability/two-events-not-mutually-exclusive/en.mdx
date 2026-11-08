@@ -80,6 +80,17 @@ Count with the numbers of elements first. When you add <InlineMath math="n(A)" /
 
 Divide every term by <InlineMath math="n(S)" /> for a sample space whose outcomes are equally likely, and you get the probability formula. The probability formula itself holds for any sample space, and only the division by <InlineMath math="n(S)" /> needs equally likely outcomes. For the die, <InlineMath math="3 + 3 - 2 = 4" /> elements, the same as the list <InlineMath math="\{2, 4, 5, 6\}" />. Without the subtraction, the value is <InlineMath math="\frac{6}{6} = 1" />, as if every roll landed in <InlineMath math="A" /> or <InlineMath math="B" />, although the results 1 and 3 belong to neither.
 
+<Mermaid
+  title="Choosing the formula for P(A or B)"
+  description="The contents of the intersection decide whether its probability must be subtracted."
+  chart={`flowchart TD
+  A["Write out the intersection of A and B"] --> B{"Is the intersection empty?"}
+  B -->|"yes, mutually exclusive"| C["P(A) + P(B)"]
+  B -->|"no, overlapping"| D["P(A) + P(B) - P(A and B)"]
+  C --> E["Check by listing the union"]
+  D --> E`}
+/>
+
 ## Example with a Heart or a King
 
 One card is drawn from a deck of 52. What is the probability of drawing a heart or a king?

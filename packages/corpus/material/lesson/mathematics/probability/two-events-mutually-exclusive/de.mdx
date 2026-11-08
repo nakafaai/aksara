@@ -88,6 +88,46 @@ Ein Ereignis <InlineMath math="A" /> und sein Gegenereignis <InlineMath math="\o
 
 Die Regel für das Gegenereignis spart Arbeit, wenn das gesuchte Ereignis viele Ergebnisse hat. Die Wahrscheinlichkeit, dass ein Würfel keine 6 zeigt, ist <InlineMath math="1 - \frac{1}{6} = \frac{5}{6}" />, ohne fünf Wahrscheinlichkeiten zu addieren. Probe durch Aufzählen: Die Ergebnisse außer 6 sind <InlineMath math="\{1, 2, 3, 4, 5\}" />, also 5 von 6 Ergebnissen.
 
+<MathVisual
+  title="Ein Ereignis A und sein Gegenereignis"
+  description={<>Ein Würfel mit <InlineMath math="A = \{6\}" />. Die fünf Ergebnisse außerhalb des Kreises bilden das Gegenereignis <InlineMath math="\overline{A} = \{1, 2, 3, 4, 5\}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sample-space", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "six-event", kind: "circle", center: { x: 2, y: 0 }, radius: 1.1, appearance: "primary" },
+      { id: "six", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "one", kind: "point", at: { x: -3, y: 1.2 }, appearance: "secondary" },
+      { id: "two", kind: "point", at: { x: -1.5, y: 1.2 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: -3, y: -1.2 }, appearance: "secondary" },
+      { id: "four", kind: "point", at: { x: -1.5, y: -1.2 }, appearance: "secondary" },
+      { id: "five", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "six-event", objectId: "six-event", at: { x: 2, y: 1.1 }, placement: "above" },
+      { key: "sample-space", objectId: "sample-space", at: { x: -3.8, y: 2.4 }, placement: "below-right" },
+      { key: "six", objectId: "six", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: -3, y: 1.2 }, placement: "right" },
+      { key: "two", objectId: "two", at: { x: -1.5, y: 1.2 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: -3, y: -1.2 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: -1.5, y: -1.2 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 0, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "six-event": <InlineMath math="A" />,
+    "sample-space": <InlineMath math="\Omega" />,
+    six: <InlineMath math="6" />,
+    one: <InlineMath math="1" />,
+    two: <InlineMath math="2" />,
+    three: <InlineMath math="3" />,
+    four: <InlineMath math="4" />,
+    five: <InlineMath math="5" />,
+  }}
+/>
+
 ## Beispiel mit der Augensumme zweier Würfel
 
 Zwei Würfel werden zusammen geworfen. Bestimme die Wahrscheinlichkeit, dass die Augensumme 7 oder 11 ist.

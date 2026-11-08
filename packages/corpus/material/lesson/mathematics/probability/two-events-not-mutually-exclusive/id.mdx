@@ -80,6 +80,17 @@ Hitung dulu banyak anggotanya. Jika <InlineMath math="n(A)" /> dan <InlineMath m
 
 Bagi setiap suku dengan <InlineMath math="n(S)" /> untuk ruang sampel yang setiap hasilnya sama mungkin, maka diperoleh rumus peluangnya. Rumus peluang itu sendiri berlaku untuk ruang sampel apa pun, hanya pembagian dengan <InlineMath math="n(S)" /> yang memerlukan syarat sama mungkin. Untuk dadu, <InlineMath math="3 + 3 - 2 = 4" /> anggota, sama dengan daftar <InlineMath math="\{2, 4, 5, 6\}" />. Tanpa pengurangan, nilainya <InlineMath math="\frac{6}{6} = 1" />, seolah setiap lemparan pasti masuk <InlineMath math="A" /> atau <InlineMath math="B" />, padahal mata 1 dan 3 tidak masuk <InlineMath math="A" /> maupun <InlineMath math="B" />.
 
+<Mermaid
+  title="Memilih rumus peluang A atau B"
+  description="Isi irisan menentukan apakah peluang irisan perlu dikurangkan."
+  chart={`flowchart TD
+  A["Tulis isi irisan A dan B"] --> B{"Irisannya kosong?"}
+  B -->|"ya, saling lepas"| C["P(A) + P(B)"]
+  B -->|"tidak, beririsan"| D["P(A) + P(B) - P(A dan B)"]
+  C --> E["Periksa dengan mendaftar gabungan"]
+  D --> E`}
+/>
+
 ## Contoh Kartu Hati atau King
 
 Satu kartu diambil dari 52 kartu remi. Berapa peluang terambil kartu hati atau kartu king?
