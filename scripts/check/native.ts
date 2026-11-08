@@ -11,10 +11,10 @@ const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
  * only after the source check reports zero findings here at that commit. The
  * Effect cohort pins and the compiler rule block move with the pin, in the same
  * change, because `bun run native` compares them with nakafa.com. This pin names
- * the nakafa.com main commit that moves every typecheck to tsrs and decides the
- * rules of @effect/tsgo 0.67.5 (nakafa.com#2183).
+ * the nakafa.com main commit that gives every Schema class its brand and turns
+ * `schemaClassMissingBrand` into an error (nakafa.com#2290).
  */
-export const NAKAFA_COMMIT = "d89410e21547892fe6ebd574af1a537a14374ae5";
+export const NAKAFA_COMMIT = "3db290e84d630a1deae9985c02249d41a6b39eb0";
 
 /** The steps of the native check, in the order they run. */
 const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);
