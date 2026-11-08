@@ -6,30 +6,31 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
+  stimulus: "scooter-energy",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "Luas kertas A4 adalah $$\\frac{1}{16}\\text{ m}^2$$.",
-        },
-        {
-          correct: true,
-          label: "Sisi panjang kertas A3 sama dengan sisi pendek kertas A2.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Agar sebuah gambar yang tepat memenuhi selembar kertas A4 dapat diperbesar tanpa mengubah bentuknya sehingga tepat memenuhi selembar kertas A3, setiap ukuran panjang pada gambar itu dikalikan $$2$$.",
+            "Untuk jarak yang sama, biaya energi skuter listrik adalah $$20\\,\\%$$ dari biaya energi skuter bensin.",
         },
         {
-          correct: true,
-          label: "Keliling kertas A2 sama dengan dua kali keliling kertas A4.",
+          column: 2,
+          label:
+            "Jika harga bensin turun $$25\\,\\%$$, biaya energi skuter bensin untuk $$100\\text{ km}$$ menjadi $$\\text{Rp}24{.}000$$.",
         },
         {
-          correct: false,
-          label: "Sisi panjang kertas A1 adalah $$\\sqrt[4]{2}\\text{ m}$$.",
+          column: 2,
+          label:
+            "Dengan biaya energi $$\\text{Rp}90{.}000$$, skuter listrik dapat menempuh $$1{.}800\\text{ km}$$.",
+        },
+        {
+          column: 1,
+          label:
+            "Jika harga listrik naik $$50\\,\\%$$, biaya energi skuter listrik untuk jarak yang sama masih kurang dari sepertiga biaya energi skuter bensin.",
         },
       ],
     },

@@ -1,22 +1,15 @@
-Apply the **reflection before the dilation**, as the question specifies. Reflection in <InlineMath math="y=-x" /> swaps the coordinates and changes both signs. Call the reflected point R.
+Work through the two steps **in the given order**. Rotating by <InlineMath math="90^\circ" /> anticlockwise about the origin maps <InlineMath math="(x,y)" /> to <InlineMath math="(-y,x)" />. Reflecting in the <InlineMath math="x" />-axis changes only the sign of the <InlineMath math="y" />-coordinate.
 
-<BlockMath math="R=(-(-1),-3)=(1,-3)" />
+<BlockMath math="\begin{aligned}
+A(-2,5)&\xrightarrow{\ R_{90^\circ}\ }A'(-5,-2) \\
+A'(-5,-2)&\xrightarrow{\ x\text{-axis}\ }A''(-5,2)
+\end{aligned}" />
 
-Dilation about the origin multiplies both coordinates of R by 2.
+As a check, the rotation keeps the distance from the origin, <InlineMath math="(-2)^2+5^2=29=(-5)^2+(-2)^2" />.
 
-<BlockMath math="\begin{aligned}Q&=(2\cdot1,2\cdot(-3))=(2,-6) \\ x_Q+y_Q&=2+(-6)=-4\end{aligned}" />
+So the final image is <InlineMath math="(-5,2)" />.
 
-To check the reflection, the midpoint of P and R is (2,−2), on the mirror line. Segment PR has slope 1, perpendicular to the mirror line of slope −1. The final coordinate sum is −4.
-
-<LineEquation
-  title="Reflection followed by dilation"
-  description="Purple connects P to R across the mirror. Orange runs from the origin through R toward Q."
-  cameraPosition={[2, -3, 11]}
-  cameraTarget={[2, -3, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: -0.5, y: 0.5, z: 0 }, { x: 5.5, y: -5.5, z: 0 }], smooth: false, color: "#64748b", showPoints: false },
-    { points: [{ x: 3, y: -1, z: 0 }, { x: 1, y: -3, z: 0 }], smooth: false, color: "#9333ea", labels: [{ text: "P", at: 0, offset: [0.3, 0.4, 0] }, { text: "R", at: 1, offset: [-0.5, 0, 0] }] },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: -3, z: 0 }, { x: 2, y: -6, z: 0 }], color: "#d97706", smooth: false, labels: [{ text: "Q", at: 2, offset: [0.4, -0.3, 0] }] },
-  ]}
-/>
+- <InlineMath math="(-5,-2)" /> is only the result of the rotation. The reflection is missing.
+- <InlineMath math="(-2,-5)" /> is only the reflection of <InlineMath math="A" />. The rotation is missing.
+- <InlineMath math="(5,-2)" /> comes from the wrong order: reflect to <InlineMath math="(-2,-5)" /> first, then rotate.
+- <InlineMath math="(5,2)" /> rotates clockwise and forgets the reflection.

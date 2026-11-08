@@ -3,7 +3,7 @@ export const metadata = {
   description: "Perkirakan varian dan simpangan baku populasi dari frekuensi dan nilai tengah kelas data kelompok.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -33,6 +33,17 @@ Suku pertama adalah mean kuadrat nilai tengah yang dibobot frekuensi. Suku kedua
 Seperti pada data tunggal, simpangan baku adalah **akar kuadrat varian**:
 
 <BlockMath math="\sigma = \sqrt{\sigma^2}" />
+
+Setiap kelas menyumbang titik tengah kali frekuensinya ke total <InlineMath math="\sum f_i x_i = 1645" />. Kelas <InlineMath math="21\text{-}25" /> paling dominan dengan <InlineMath math="45 \cdot 23 = 1035" />, karena itu rata-rata <InlineMath math="\frac{1645}{80} \approx 20{,}56" /> dekat dengannya.
+
+<BarChart
+  title={<>Frekuensi kali titik tengah setiap kelas</>}
+  description={<>Batang untuk setiap kelas daya tahan baterai yang menunjukkan <InlineMath math="f_i x_i" />, yang jumlahnya 1645.</>}
+  yAxisLabel="Frekuensi kali titik tengah"
+  data={[["6-10", 2 * 8], ["11-15", 10 * 13], ["16-20", 18 * 18], ["21-25", 45 * 23], ["26-30", 5 * 28]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Frekuensi kali titik tengah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Menghitung Varian dan Simpangan Baku Durasi Baterai Ponsel
 
 Misalkan durasi baterai dicatat setelah dibulatkan ke **jam terdekat**, lalu dikelompokkan dalam interval berikut. Jadi, kelas pertama memuat catatan 6, 7, 8, 9, dan 10 jam.
@@ -46,6 +57,16 @@ Misalkan durasi baterai dicatat setelah dibulatkan ke **jam terdekat**, lalu dik
 | <InlineMath math="26\text{-}30" /> | <InlineMath math="5" />  |
 
 Kita akan memperkirakan varian dan simpangan baku populasi dari durasi tersebut.
+
+Daya tahan baterai dalam bentuk histogram: <InlineMath math="45" /> dari <InlineMath math="80" /> ponsel bertahan antara <InlineMath math="21" /> dan <InlineMath math="25" /> jam, jadi datanya condong ke ujung atas.
+
+<HistogramChart
+  title={<>Daya tahan baterai 80 ponsel</>}
+  description={<>Banyak ponsel di setiap kelas daya tahan baterai, dalam jam.</>}
+  yAxisLabel="Ponsel"
+  data={[{ name: "6-10", value: 2 }, { name: "11-15", value: 10 }, { name: "16-20", value: 18 }, { name: "21-25", value: 45 }, { name: "26-30", value: 5 }]}
+  chartConfig={{ value: { label: "Ponsel", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Buat Tabel Bantu
 
@@ -82,3 +103,31 @@ Ambil akar kuadrat dari varian:
 Perkiraan simpangan bakunya adalah <InlineMath math="4{,}4 \text{ jam}" />. Nilai tersebut adalah akar rata-rata kuadrat jarak setiap nilai tengah kelas dari perkiraan mean <InlineMath math="\frac{1645}{80} \approx 20{,}56 \text{ jam}" />.
 
 Untuk data dengan satuan dan skala yang sebanding, simpangan baku yang lebih kecil menunjukkan bahwa <Highlight>nilainya mengelompok lebih rapat di sekitar mean</Highlight>.
+
+Tandai rata-rata <InlineMath math="\bar{x} = 1645 / 80 \approx 20{,}56" /> pada poligon frekuensi, lalu melangkahlah satu simpangan baku <InlineMath math="\sigma \approx 4{,}4" /> ke setiap sisi. Pita dari sekitar <InlineMath math="16{,}2" /> sampai <InlineMath math="25{,}0" /> jam memuat puncak tinggi di <InlineMath math="23" /> jam, yaitu sebagian besar ponsel.
+
+<MathVisual
+  title={<>Satu simpangan baku di sekitar rata-rata</>}
+  description={<>Poligon frekuensi daya tahan baterai dengan rata-rata sekitar <InlineMath math="20{,}56" /> dan garis sejauh satu simpangan baku, sekitar <InlineMath math="4{,}4" /> jam, di kedua sisi.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x}" />,
+    lo: <InlineMath math="\bar{x} - \sigma" />,
+    hi: <InlineMath math="\bar{x} + \sigma" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 6, max: 30 }, y: { min: -0.5, max: 48 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "poly", kind: "polyline", vertices: [{ x: 8, y: 2 }, { x: 13, y: 10 }, { x: 18, y: 18 }, { x: 23, y: 45 }, { x: 28, y: 5 }], appearance: "secondary" },
+      { id: "mean", kind: "segment", from: { x: 1645 / 80, y: 0 }, to: { x: 1645 / 80, y: 47 }, appearance: "primary" },
+      { id: "lo", kind: "segment", from: { x: 1645 / 80 - Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 0 }, to: { x: 1645 / 80 - Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 47 }, appearance: "construction" },
+      { id: "hi", kind: "segment", from: { x: 1645 / 80 + Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 0 }, to: { x: 1645 / 80 + Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 47 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 1645 / 80, y: 47 }, placement: "above" },
+      { key: "lo", objectId: "lo", at: { x: 1645 / 80 - Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 47 }, placement: "above-left" },
+      { key: "hi", objectId: "hi", at: { x: 1645 / 80 + Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 47 }, placement: "above-right" },
+    ],
+  }}
+/>

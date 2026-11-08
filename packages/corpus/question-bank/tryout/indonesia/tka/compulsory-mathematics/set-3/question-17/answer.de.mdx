@@ -1,28 +1,15 @@
-Der Weg verkürzt jede Abmessung **an beiden Enden**. Die innere Rechteckfläche ist gleich der Summe aus Garten- und Teichfläche.
-
-<BlockMath math="744+12\cdot6=816" />
+Abgewickelt ist das Etikett ein Rechteck. Seine Breite ist die Höhe der Kerze, **seine Länge der Umfang der Grundfläche plus die Überlappung** von <InlineMath math="1\text{ cm}" />.
 
 <BlockMath math="\begin{aligned}
-(40-2x)(30-2x)&=816 \\
-1{.}200-140x+4x^2&=816 \\
-4x^2-140x+384&=0 \\
-x^2-35x+96&=0 \\
-(x-3)(x-32)&=0
+U&=2\pi r=2\cdot\frac{22}{7}\cdot3{,}5=22\text{ cm} \\
+A&=(22+1)\cdot12=23\cdot12=276\text{ cm}^2
 \end{aligned}" />
 
-Die möglichen Werte sind <InlineMath math="3" /> und <InlineMath math="32" />. Es muss <InlineMath math="0<x<15" /> gelten, damit die kürzere Innenseite positiv bleibt. Daher ist <InlineMath math="x=3\,\mathrm{m}" />.
+Zur Kontrolle: Der Mantel hat <InlineMath math="22\cdot12=264\text{ cm}^2" />, und die Überlappung fügt <InlineMath math="1\cdot12=12\text{ cm}^2" /> hinzu.
 
-Die Innenseiten sind <InlineMath math="40-2(3)=34" /> und <InlineMath math="30-2(3)=24" />. Die Gartenfläche stimmt: <InlineMath math="34\cdot24-12\cdot6=816-72=744" />.
+Ein Etikett hat also <InlineMath math="276\text{ cm}^2" />.
 
-<LineEquation
-  title="Hof, Weg und Teich"
-  description="Das orange Rechteck misst 34 m × 24 m. Der 3 m breite Weg umgibt es."
-  cameraPosition={[20,15,52]}
-  cameraTarget={[20,15,0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 40, y: 0, z: 0 }, { x: 40, y: 30, z: 0 }, { x: 0, y: 30, z: 0 }, { x: 0, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: false, labels: [{ text: "40 m", at: 0, offset: [20, -1.5, 0] }, { text: "30 m", at: 1, offset: [1.7, 15, 0] }] },
-    { points: [{ x: 3, y: 3, z: 0 }, { x: 37, y: 3, z: 0 }, { x: 37, y: 27, z: 0 }, { x: 3, y: 27, z: 0 }, { x: 3, y: 3, z: 0 }], color: "#d97706", smooth: false, showPoints: false },
-    { points: [{ x: 14, y: 12, z: 0 }, { x: 26, y: 12, z: 0 }, { x: 26, y: 18, z: 0 }, { x: 14, y: 18, z: 0 }, { x: 14, y: 12, z: 0 }], color: "#9333ea", smooth: false, showPoints: false, labels: [{ text: "12 m", at: 0, offset: [6, -1.1, 0] }, { text: "6 m", at: 1, offset: [1.5, 3, 0] }] },
-  ]}
-/>
+- <InlineMath math="264\text{ cm}^2" /> ist nur der Mantel und vergisst die Überlappung.
+- <InlineMath math="288\text{ cm}^2" /> rechnet an beiden Enden <InlineMath math="1\text{ cm}" /> Überlappung, obwohl beide Enden zusammen eine Überlappung bilden.
+- <InlineMath math="302{,}5\text{ cm}^2" /> deckt auch die Oberseite ab, <InlineMath math="264+38{,}5" />.
+- <InlineMath math="540\text{ cm}^2" /> nimmt den Durchmesser <InlineMath math="7\text{ cm}" /> als Radius, die Länge wird so <InlineMath math="44+1=45\text{ cm}" />.

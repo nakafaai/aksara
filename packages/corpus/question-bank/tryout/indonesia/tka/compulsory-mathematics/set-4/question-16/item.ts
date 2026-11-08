@@ -2,33 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "knowledge-understanding",
     contentDomain: "geometry-measurement",
-    topic: "geometry-objects",
+    topic: "measurement",
   },
+  stimulus: "milk-cans",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$5\\text{ m}$$",
+          label: "$$110\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$220\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$1{.}540\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$770\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "$$\\sqrt{41}\\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\sqrt{73}\\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\left(3+4\\sqrt{2}\\right)\\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\sqrt{137}\\text{ m}$$",
+          label: "$$385\\text{ cm}^3$$",
         },
       ],
     },

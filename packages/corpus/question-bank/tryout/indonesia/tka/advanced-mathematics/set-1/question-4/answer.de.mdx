@@ -1,0 +1,67 @@
+Es seien <InlineMath math="x" /> die Zahl der Salatregale und <InlineMath math="y" /> die Zahl der Pak-Choi-Regale. Nährlösung und Pflegestunden liefern **zwei Grenzen**, dazu kommt, dass die Zahl der Regale nicht negativ ist. Die Grenze für die Pflegestunden lässt sich durch <InlineMath math="2" /> teilen.
+
+<BlockMath math="\begin{aligned}
+3x+2y&\le120 \\
+2x+4y\le160\iff x+2y&\le80 \\
+x\ge0,\quad y&\ge0
+\end{aligned}" />
+
+Die Ecke, in der beide Grenzen gleichzeitig ausgeschöpft sind, erhältst du, indem du die beiden Gleichungen voneinander abziehst.
+
+<BlockMath math="\begin{aligned}
+(3x+2y)-(x+2y)&=120-80 \\
+2x&=40\ \Rightarrow\ x=20,\quad y=\frac{80-20}{2}=30
+\end{aligned}" />
+
+<MathVisual
+  title="Zulässiger Bereich"
+  description={<>Der zulässige Bereich ist das Viereck mit den Ecken <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" /> und <InlineMath math="(0,40)" />. Er liegt unter der Geraden <InlineMath math="3x+2y=120" /> und unter der Geraden <InlineMath math="x+2y=80" />.</>}
+  labels={{
+    optimum: <InlineMath math="(20,30)" />,
+    "corner-x": <InlineMath math="(40,0)" />,
+    "corner-y": <InlineMath math="(0,40)" />,
+    nutrient: <InlineMath math="3x+2y=120" />,
+    care: <InlineMath math="x+2y=80" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 85 },
+      y: { min: -5, max: 65 },
+    },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 20, y: 30 }, { x: 0, y: 40 }] },
+      { id: "nutrient-line", kind: "segment", appearance: "primary", from: { x: 0, y: 60 }, to: { x: 40, y: 0 } },
+      { id: "care-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 40 }, to: { x: 80, y: 0 } },
+      { id: "optimum-point", kind: "point", appearance: "answer", at: { x: 20, y: 30 } },
+      { id: "corner-x-point", kind: "point", appearance: "reference", at: { x: 40, y: 0 } },
+      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 40 } },
+    ],
+    labels: [
+      { key: "optimum", objectId: "optimum-point", at: { x: 20, y: 30 }, placement: "above-right" },
+      { key: "corner-x", objectId: "corner-x-point", at: { x: 40, y: 0 }, placement: "below" },
+      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "nutrient", objectId: "nutrient-line", at: { x: 10, y: 45 }, placement: "right" },
+      { key: "care", objectId: "care-line", at: { x: 60, y: 10 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Setze die Ecken in den Gewinn <InlineMath math="G=180{.}000x+200{.}000y" /> ein.
+
+<BlockMath math="\begin{aligned}
+G(40,0)&=7{.}200{.}000 \\
+G(0,40)&=8{.}000{.}000 \\
+G(20,30)&=3{.}600{.}000+6{.}000{.}000=9{.}600{.}000
+\end{aligned}" />
+
+Zur Kontrolle: Bei <InlineMath math="(20,30)" /> werden genau <InlineMath math="60+60=120" /> Liter Nährlösung und <InlineMath math="40+120=160" /> Pflegestunden gebraucht.
+
+Der höchste Gewinn beträgt also <InlineMath math="\text{Rp}9{.}600{.}000{,}00" />.
+
+- <InlineMath math="\text{Rp}7{.}200{.}000{,}00" /> gehört zur Ecke <InlineMath math="(40,0)" />, also nur Salat.
+- <InlineMath math="\text{Rp}8{.}000{.}000{,}00" /> gehört zur Ecke <InlineMath math="(0,40)" />, also nur Pak Choi.
+- <InlineMath math="\text{Rp}11{.}200{.}000{,}00" /> gehört zu <InlineMath math="(40,20)" />. Dafür wären <InlineMath math="120+40=160" /> Liter Nährlösung nötig, mehr als die <InlineMath math="120" /> vorhandenen Liter.
+- <InlineMath math="\text{Rp}12{.}000{.}000{,}00" /> gehört zu <InlineMath math="(0,60)" /> und beachtet nur die Nährlösung. Dafür wären <InlineMath math="240" /> Pflegestunden nötig.

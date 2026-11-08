@@ -8,27 +8,24 @@ const item: ItemSource = {
   },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$288$$",
+          column: 2,
+          label: "$$AC=8\\sqrt2\\text{ cm}$$",
         },
         {
-          correct: false,
-          label: "$$312$$",
+          column: 1,
+          label: "$$AD=16\\text{ cm}$$",
         },
         {
-          correct: false,
-          label: "$$360$$",
+          column: 1,
+          label: "Luas ubin itu $$96\\sqrt3\\text{ cm}^2$$.",
         },
         {
-          correct: false,
-          label: "$$384$$",
-        },
-        {
-          correct: true,
-          label: "$$336$$",
+          column: 2,
+          label: "Luas segitiga $$ACE$$ sama dengan sepertiga luas ubin.",
         },
       ],
     },

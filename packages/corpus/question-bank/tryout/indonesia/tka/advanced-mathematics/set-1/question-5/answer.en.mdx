@@ -1,0 +1,53 @@
+The limits stay the same, so the feasible region still has the corners <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" /> and <InlineMath math="(0,40)" />. Only the objective has changed, and with it **the best corner can move**.
+
+<BlockMath math="\begin{aligned}
+P&=180{,}000x+100{,}000y \\
+P(40,0)&=7{,}200{,}000 \\
+P(20,30)&=3{,}600{,}000+3{,}000{,}000=6{,}600{,}000 \\
+P(0,40)&=4{,}000{,}000
+\end{aligned}" />
+
+<MathVisual
+  title="Feasible region with the new optimum"
+  description={<>The feasible region is the quadrilateral with corners <InlineMath math="(0,0)" />, <InlineMath math="(40,0)" />, <InlineMath math="(20,30)" /> and <InlineMath math="(0,40)" />. It lies below the line <InlineMath math="3x+2y=120" /> and below the line <InlineMath math="x+2y=80" />.</>}
+  labels={{
+    optimum: <InlineMath math="(20,30)" />,
+    "corner-x": <InlineMath math="(40,0)" />,
+    "corner-y": <InlineMath math="(0,40)" />,
+    nutrient: <InlineMath math="3x+2y=120" />,
+    care: <InlineMath math="x+2y=80" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 85 },
+      y: { min: -5, max: 65 },
+    },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 20, y: 30 }, { x: 0, y: 40 }] },
+      { id: "nutrient-line", kind: "segment", appearance: "primary", from: { x: 0, y: 60 }, to: { x: 40, y: 0 } },
+      { id: "care-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 40 }, to: { x: 80, y: 0 } },
+      { id: "optimum-point", kind: "point", appearance: "reference", at: { x: 20, y: 30 } },
+      { id: "corner-x-point", kind: "point", appearance: "answer", at: { x: 40, y: 0 } },
+      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 40 } },
+    ],
+    labels: [
+      { key: "optimum", objectId: "optimum-point", at: { x: 20, y: 30 }, placement: "above-right" },
+      { key: "corner-x", objectId: "corner-x-point", at: { x: 40, y: 0 }, placement: "below" },
+      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "nutrient", objectId: "nutrient-line", at: { x: 10, y: 45 }, placement: "right" },
+      { key: "care", objectId: "care-line", at: { x: 60, y: 10 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Because the problem explicitly allows a single crop, the corner <InlineMath math="(40,0)" /> is a permitted plan. Comparing slopes gives the same result. The level lines <InlineMath math="180x+100y=k" /> have slope <InlineMath math="-1.8" />. They are steeper than the limit <InlineMath math="3x+2y=120" />, whose slope is <InlineMath math="-1.5" />. As a level line moves outward, it therefore leaves the region last at the corner <InlineMath math="(40,0)" />.
+
+So the most profitable choice is <InlineMath math="40" /> lettuce racks and <InlineMath math="0" /> pak choi racks.
+
+- <InlineMath math="20" /> lettuce racks and <InlineMath math="30" /> pak choi racks were optimal with the old profits and now bring only <InlineMath math="\text{Rp}6{,}600{,}000.00" />.
+- <InlineMath math="0" /> lettuce racks and <InlineMath math="40" /> pak choi racks bring only <InlineMath math="\text{Rp}4{,}000{,}000.00" />.
+- <InlineMath math="30" /> lettuce racks and <InlineMath math="20" /> pak choi racks need <InlineMath math="90+40=130" /> litres of nutrient solution and lie outside the region.
+- <InlineMath math="80" /> lettuce racks respect only the care hours. They would need <InlineMath math="240" /> litres of nutrient solution.
