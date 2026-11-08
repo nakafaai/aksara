@@ -43,6 +43,19 @@ Wir definieren die diagonale Wurzelmatrix wie folgt.
 
 Diese Matrix erfüllt <InlineMath math="D^{\frac{1}{2}} \cdot D^{\frac{1}{2}} = D" />.
 
+Diese Kette erklärt, warum sich eine positiv definite Matrix ohne Zeilentausch zerlegen lässt.
+
+<Mermaid
+  title="Warum Cholesky keine Zeilentausche braucht"
+  description="Positive Definitheit garantiert, dass jeder Pivot positiv ist."
+  chart={`
+    flowchart LR
+        A[A symmetrisch positiv definit] --> B[Jeder Pivot ist positiv]
+        B --> C[Kein Zeilentausch nötig]
+        C --> D[A = L L^T mit positiver Diagonale]
+  `}
+/>
+
 ## Ein eindeutiger Faktor mit positiver Diagonale
 
 Jede reelle symmetrische positiv definite Matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" /> besitzt einen eindeutigen Cholesky-Faktor mit positiven Diagonaleinträgen:
@@ -85,6 +98,21 @@ Nach dem Algorithmus erhalten wir den unteren Dreiecksfaktor von Cholesky:
 
 <BlockMath math="\tilde L=\begin{pmatrix}\tilde l_{11}&amp;0&amp;\cdots&amp;0\\\tilde l_{21}&amp;\tilde l_{22}&amp;\cdots&amp;0\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\\tilde l_{n1}&amp;\tilde l_{n2}&amp;\cdots&amp;\tilde l_{nn}\end{pmatrix}" />
 
+Dieses Diagramm fasst die Rechenreihenfolge für eine Spalte <InlineMath math="j" /> zusammen.
+
+<Mermaid
+  title="Eine Spalte des Cholesky-Algorithmus"
+  description="Zuerst die Diagonale, dann die Einträge darunter."
+  chart={`
+    flowchart TD
+        A[Spalte j] --> B[l_jj = Wurzel aus a_jj minus Summe der l_jk^2]
+        B --> C{Radikand positiv?}
+        C -->|Nein| X[A ist nicht positiv definit]
+        C -->|Ja| D[l_ij für i > j, geteilt durch l_jj]
+        D --> E[Nächste Spalte]
+  `}
+/>
+
 ## Eine positiv definite Matrix zweiter Ordnung faktorisieren
 
 Wir faktorisieren die Matrix
@@ -107,6 +135,55 @@ Damit gilt
 </MathContainer>
 
 Ist der Faktor bekannt, lösen wir <InlineMath math="Ax=b" /> mit **zwei Dreieckssystemen** statt mit einer Inversen: zuerst <InlineMath math="\tilde Ly=b" />, danach <InlineMath math="\tilde L^Tx=y" />.
+
+Der Faktor <InlineMath math="L" /> aus diesem Beispiel bildet den Einheitskreis auf die Ellipse <InlineMath math="x^TA^{-1}x=1" /> ab, denn <InlineMath math="(Lu)^TA^{-1}(Lu)=u^TL^T(LL^T)^{-1}Lu=u^Tu=1" />. Achte in der Szene auf die Dreiecksform: Die erste Spalte <InlineMath math="\ell_1=(2,1)^T" /> darf schief stehen, aber die zweite Spalte <InlineMath math="\ell_2=(0,2)^T" /> zeigt gerade nach oben, weil der Eintrag oben rechts in <InlineMath math="L" /> null ist. Die magentafarbene Ellipse trägt die ganze Information von <InlineMath math="A" />, und <InlineMath math="L" /> baut sie Spalte für Spalte auf.
+
+<LineEquation
+  title={<>Der Faktor <InlineMath math="L" /> macht aus dem Kreis eine Ellipse</>}
+  description={<>Der graue Kreis enthält die Einheitsvektoren <InlineMath math="u" />, die magentafarbene Ellipse enthält <InlineMath math="Lu" /> für <InlineMath math="L=\begin{pmatrix}2&0\\1&2\end{pmatrix}" />. Die Spalten <InlineMath math="\ell_1,\ell_2" /> sind als Pfeile gezeichnet.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0, 7]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: 1 * Math.cos(angle), y: 1 * Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        const u = Math.cos(angle);
+        const v = Math.sin(angle);
+        return { x: 2 * u, y: u + 2 * v, z: 0 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="Lu,\ \|u\|=1" />, at: 300, offset: [0.7, -0.2, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\ell_1=(2,1)^T" />, at: 1, offset: [0.6, -0.2, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 2, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\ell_2=(0,2)^T" />, at: 1, offset: [-0.7, 0.2, 0] }],
+    },
+  ]}
+/>
 
 ## Komplexität des Choleskyalgorithmus
 

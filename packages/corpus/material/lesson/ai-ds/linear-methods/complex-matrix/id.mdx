@@ -36,6 +36,19 @@ Sebagai contoh,
 
 Jadi, entri pada baris <InlineMath math="j" /> dan kolom <InlineMath math="i" /> dari <InlineMath math="A^H" /> adalah <InlineMath math="\overline{a_{ij}}" />.
 
+Dua langkah di diagram ini mengubah <InlineMath math="A" /> menjadi <InlineMath math="A^H" />.
+
+<Mermaid
+  title="Membentuk matriks adjoin"
+  description="Konjugasikan setiap entri, lalu transposkan."
+  chart={`
+    flowchart LR
+        A[A] --> B[Konjugasikan setiap entri]
+        B --> C[Transposkan]
+        C --> D[A^H]
+  `}
+/>
+
 ## Sifat Matriks Adjoint
 
 Adjoint **membalik urutan faktor dalam hasil kali** dan mengonjugasi skalar. Ukuran matriks pada penjumlahan dan perkalian berikut harus sesuai.
@@ -55,6 +68,19 @@ Untuk matriks satu entri <InlineMath math="A=(1+i)" />, bandingkan konjugat <Inl
 <BlockMath math="\overline i A^H=(-i)(1-i)=-1-i" />
 <BlockMath math="iA^H=i(1-i)=1+i\ne(iA)^H" />
 </MathContainer>
+
+Pegang tiga aturan di diagram ini saat menghitung dengan adjoin.
+
+<Mermaid
+  title="Aturan hitung adjoin"
+  description="Tiga aturan yang paling sering dipakai."
+  chart={`
+    flowchart TD
+        A[Adjoin] --> B["(AB)^H = B^H A^H"]
+        A --> C["(A^H)^H = A"]
+        A --> D["⟨Av, w⟩ = ⟨v, A^H w⟩"]
+  `}
+/>
 
 ## Norma Euclidean pada Ruang Kompleks
 
@@ -90,3 +116,61 @@ Inilah alasan <InlineMath math="v^Tv" /> keliru jika dipakai dalam ruang komplek
 **Ketidaksamaan segitiga**: <InlineMath math="\|v + w\|_2 \leq \|v\|_2 + \|w\|_2" />
 
 Sifat-sifat ini menunjukkan bahwa <InlineMath math="\|\cdot\|_2" /> memenuhi definisi norma. Penggunaan adjoint pada produk skalar Hermitian menjaga panjang, ortogonalitas, dan proyeksi kompleks tetap konsisten dengan padanannya pada ruang real.
+
+Gambar setiap entri <InlineMath math="v" /> sebagai titik di bidang kompleks, seperti di adegan ini. Konjugat <InlineMath math="\overline{v_i}" /> adalah cermin titik itu terhadap sumbu real, dan <InlineMath math="\overline{v_i}v_i=|v_i|^2" /> adalah kuadrat jari-jari lingkarannya. Jadi <InlineMath math="v^Hv=2+5=7" /> menjumlahkan dua kuadrat jari-jari, bukan entri kompleksnya. Tanpa konjugat, <InlineMath math="v^Tv=(1+i)^2+(2-i)^2=3-2i" /> bahkan bukan bilangan real.
+
+<LineEquation
+  title={<>Panjang vektor kompleks <InlineMath math="v=(1+i,2-i)^T" /></>}
+  description={<>Setiap entri digambar di bidang kompleks. Lingkaran ungu berjari-jari <InlineMath math="|v_1|=\sqrt2" />, lingkaran hijau toska berjari-jari <InlineMath math="|v_2|=\sqrt5" />, dan titik kecil adalah konjugatnya.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0, 7]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.SQRT2 * Math.cos(angle), y: Math.SQRT2 * Math.sin(angle), z: 0 };
+      }),
+      color: "#8242e5",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.sqrt(5) * Math.cos(angle), y: Math.sqrt(5) * Math.sin(angle), z: 0 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="v_1=1+i" />, at: 1, offset: [0.5, 0.2, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: -1, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="v_2=2-i" />, at: 1, offset: [0.55, -0.15, 0] }],
+    },
+    {
+      points: [{ x: 1, y: -1, z: 0 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="\overline{v_1}" />, at: 0, offset: [-0.3, -0.2, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 1, z: 0 }],
+      color: "#0d9488",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="\overline{v_2}" />, at: 0, offset: [0.35, 0.15, 0] }],
+    },
+  ]}
+/>

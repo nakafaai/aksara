@@ -19,6 +19,20 @@ In this model, <InlineMath math="X\in\mathbb{R}^{m\times p}" /> is a fixed desig
 
 The second assumption is that <InlineMath math="X" /> has full column rank. Under these two assumptions, the observation vector <InlineMath math="y" /> follows <InlineMath math="\mathcal N(X\beta,\sigma^2I_m)" />. Its mean is <InlineMath math="X\beta" />, and its covariance matrix is <InlineMath math="\sigma^2I_m" />.
 
+This flow shows how the statistical model leads to a confidence interval.
+
+<Mermaid
+  title="From model to confidence interval"
+  description="Each step uses the result of the one before it."
+  chart={`
+    flowchart LR
+        A[y = Xβ + ε] --> B[Estimate β]
+        B --> C[Estimator covariance]
+        C --> D[Standard errors]
+        D --> E[Confidence intervals]
+  `}
+/>
+
 ## Fisher Information and Estimator Covariance
 
 Up to a constant that does not depend on <InlineMath math="\beta" />, the log-likelihood is
@@ -99,6 +113,20 @@ For independent errors with variances <InlineMath math="\sigma_i^2" />, use <Inl
 
 Each observation <InlineMath math="i" /> receives **weight** <InlineMath math="1/\sigma_i^2" />. Whitening with <InlineMath math="W=\Omega^{-1/2}" /> converts the problem to ordinary least squares for <InlineMath math="\widetilde X=WX" /> and <InlineMath math="\widetilde y=Wy" />.
 
+This diagram shows why the weighted version can still be solved with ordinary least squares.
+
+<Mermaid
+  title="Weighted least squares as a transformation"
+  description="The weights turn the problem back into ordinary least squares."
+  chart={`
+    flowchart LR
+        A[Cov ε = σ^2 Ω] --> B[Multiply the data by Ω^-1/2]
+        B --> C[New errors with covariance σ^2 I]
+        C --> D[Ordinary least squares]
+        D --> E[β_GLS]
+  `}
+/>
+
 ## Fitting a Weighted Linear Model
 
 Consider three observations for an intercept and slope:
@@ -133,3 +161,37 @@ Solving the weighted normal equations gives
 </MathContainer>
 
 The weighting has a probabilistic meaning only if the variance model is defensible. Incorrect weights can produce misleading standard errors, and exact Gaussian confidence intervals also require the linear mean, covariance, and normal-error assumptions to be adequate.
+
+Compare the two lines for this example data. The gray bar at each point shows its standard deviation <InlineMath math="\sigma_i" />, which is <InlineMath math="1" />, <InlineMath math="1" />, and <InlineMath math="2" />. Ordinary least squares treats all three points equally and gives the amber line <InlineMath math="y=\tfrac23+2t" />. The weighted version gives the third point weight <InlineMath math="1/4" />, because its variance is four times larger, so the magenta line <InlineMath math="y=\tfrac79+\tfrac53t" /> is flatter and follows the first two points more closely.
+
+<LineEquation
+  title={<>Ordinary and weighted least-squares lines</>}
+  description={<>Violet points are the data <InlineMath math="(0,1),(1,2),(2,5)" /> with gray bars of length <InlineMath math="\pm\sigma_i" />. The amber line is ordinary least squares, the magenta line is the weighted fit.</>}
+  showZAxis={false}
+  cameraPosition={[1, 3.2, 9.5]}
+  cameraTarget={[1, 3.2, 0]}
+  data={[
+    ...[
+      { t: 0, y: 1, sigma: 1 },
+      { t: 1, y: 2, sigma: 1 },
+      { t: 2, y: 5, sigma: 2 },
+    ].flatMap(({ t, y, sigma }) => [
+      { points: [{ x: t, y: y - sigma, z: 0 }, { x: t, y: y + sigma, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+      { points: [{ x: t, y, z: 0 }], color: "#8242e5", showPoints: true },
+    ]),
+    {
+      points: [{ x: -0.5, y: 2 / 3 - 1, z: 0 }, { x: 2.5, y: 2 / 3 + 5, z: 0 }],
+      color: "#b98d00",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=\tfrac23+2t" />, at: 1, offset: [-1.1, 0.3, 0] }],
+    },
+    {
+      points: [{ x: -0.5, y: 7 / 9 - 5 / 6, z: 0 }, { x: 2.5, y: 7 / 9 + 25 / 6, z: 0 }],
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=\tfrac79+\tfrac53t" />, at: 1, offset: [0.9, -0.3, 0] }],
+    },
+  ]}
+/>

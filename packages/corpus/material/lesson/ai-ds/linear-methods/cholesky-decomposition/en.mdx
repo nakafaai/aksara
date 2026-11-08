@@ -43,6 +43,19 @@ Define the diagonal square-root matrix as follows.
 
 This matrix satisfies <InlineMath math="D^{\frac{1}{2}} \cdot D^{\frac{1}{2}} = D" />.
 
+This chain explains why a positive definite matrix factors without row swaps.
+
+<Mermaid
+  title="Why Cholesky needs no row swaps"
+  description="Positive definiteness guarantees every pivot is positive."
+  chart={`
+    flowchart LR
+        A[A symmetric positive definite] --> B[Every pivot is positive]
+        B --> C[No row swaps needed]
+        C --> D[A = L L^T with positive diagonal]
+  `}
+/>
+
 ## The Unique Lower Triangular Factor
 
 Every real symmetric positive definite matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" /> has a unique Cholesky factor with positive diagonal entries:
@@ -85,6 +98,21 @@ After running the algorithm, we obtain the lower triangular Cholesky factor:
 
 <BlockMath math="\tilde L=\begin{pmatrix}\tilde l_{11}&amp;0&amp;\cdots&amp;0\\\tilde l_{21}&amp;\tilde l_{22}&amp;\cdots&amp;0\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\\tilde l_{n1}&amp;\tilde l_{n2}&amp;\cdots&amp;\tilde l_{nn}\end{pmatrix}" />
 
+This diagram sums up the order of calculation for one column <InlineMath math="j" />.
+
+<Mermaid
+  title="One column of the Cholesky algorithm"
+  description="The diagonal first, then the entries below it."
+  chart={`
+    flowchart TD
+        A[Column j] --> B[l_jj = root of a_jj minus the sum of l_jk^2]
+        B --> C{Is the radicand positive?}
+        C -->|No| X[A is not positive definite]
+        C -->|Yes| D[l_ij for i > j, divided by l_jj]
+        D --> E[Next column]
+  `}
+/>
+
 ## Factoring a Two by Two Positive Definite Matrix
 
 Factor the matrix
@@ -107,6 +135,55 @@ Thus
 </MathContainer>
 
 Once the factor is known, solve <InlineMath math="Ax=b" /> through **two triangular systems**: first <InlineMath math="\tilde Ly=b" />, then <InlineMath math="\tilde L^Tx=y" />. This avoids computing a matrix inverse.
+
+The factor <InlineMath math="L" /> from this example maps the unit circle onto the ellipse <InlineMath math="x^TA^{-1}x=1" />, because <InlineMath math="(Lu)^TA^{-1}(Lu)=u^TL^T(LL^T)^{-1}Lu=u^Tu=1" />. Look for the triangular shape in the scene: the first column <InlineMath math="\ell_1=(2,1)^T" /> may tilt, but the second column <InlineMath math="\ell_2=(0,2)^T" /> points straight up, because the top right entry of <InlineMath math="L" /> is zero. The magenta ellipse holds all the information in <InlineMath math="A" />, and <InlineMath math="L" /> builds it one column at a time.
+
+<LineEquation
+  title={<>The factor <InlineMath math="L" /> turns the circle into an ellipse</>}
+  description={<>The gray circle holds the unit vectors <InlineMath math="u" />, the magenta ellipse holds <InlineMath math="Lu" /> for <InlineMath math="L=\begin{pmatrix}2&0\\1&2\end{pmatrix}" />. The columns <InlineMath math="\ell_1,\ell_2" /> are drawn as arrows.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0, 7]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: 1 * Math.cos(angle), y: 1 * Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        const u = Math.cos(angle);
+        const v = Math.sin(angle);
+        return { x: 2 * u, y: u + 2 * v, z: 0 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="Lu,\ \|u\|=1" />, at: 300, offset: [0.7, -0.2, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\ell_1=(2,1)^T" />, at: 1, offset: [0.6, -0.2, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 2, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\ell_2=(0,2)^T" />, at: 1, offset: [-0.7, 0.2, 0] }],
+    },
+  ]}
+/>
 
 ## Cholesky Algorithm Complexity
 

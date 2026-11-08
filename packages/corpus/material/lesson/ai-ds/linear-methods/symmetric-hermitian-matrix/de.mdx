@@ -83,6 +83,20 @@ Sei <InlineMath math="Hv=\lambda v" /> mit <InlineMath math="v\neq0" />. Aus der
 
 Da <InlineMath math="v^Hv>0" /> gilt, folgt <InlineMath math="\lambda=\overline{\lambda}" /> und damit <InlineMath math="\lambda\in\mathbb{R}" />. Für reelle symmetrische Matrizen gilt dieselbe Folgerung.
 
+Folg dieser Kette, um zu sehen, woher die Reellheit kommt.
+
+<Mermaid
+  title="Warum hermitesche Eigenwerte reell sind"
+  description="Eine kurze Kette von Hv = λv bis zu einem reellen λ."
+  chart={`
+    flowchart LR
+        A[Hv = λv, v ≠ 0] --> B[v^H H v = λ v^H v]
+        B --> C[v^H H v reell, weil H^H = H]
+        C --> D[v^H v > 0 reell]
+        D --> E[λ reell]
+  `}
+/>
+
 ## Warum verschiedene Eigenräume orthogonal sind
 
 Seien <InlineMath math="Hv=\lambda v" /> und <InlineMath math="Hw=\mu w" /> mit <InlineMath math="\lambda\neq\mu" />. Da **beide Eigenwerte reell** sind,
@@ -111,6 +125,48 @@ Die Spalten von <InlineMath math="Q" /> oder <InlineMath math="U" /> bilden eine
 
 Diese Formel zeigt unmittelbar, dass <InlineMath math="H" /> genau dann positiv definit ist, wenn alle Eigenwerte positiv sind.
 
+Nimm die reelle symmetrische Matrix <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> mit den Eigenwerten <InlineMath math="3" /> und <InlineMath math="1" /> und dreh die Schale <InlineMath math="q(x)=x^TAx" /> unten. Entlang des Einheitseigenvektors <InlineMath math="v_1=(1,1)^T/\sqrt2" /> ist der magentafarbene Schnitt <InlineMath math="3s^2" />. Entlang <InlineMath math="v_2=(1,-1)^T/\sqrt2" /> ist der türkise Schnitt <InlineMath math="s^2" />. Die Krümmung entlang jeder Hauptachse ist also ihr Eigenwert, und die beiden Achsen stehen senkrecht aufeinander.
+
+<LineEquation
+  title={<>Die Schale der quadratischen Form <InlineMath math="q(x)=x^TAx" /></>}
+  description={<>Für <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />: Die grauen Ellipsen sind die Niveaus <InlineMath math="q=0.5,1,2,3" />, die magentafarbene und die türkise Kurve sind Schnitte entlang der Eigenvektoren. Der Wert <InlineMath math="q" /> zeigt nach oben.</>}
+  cameraPosition={[4, 4.5, 4]}
+  cameraTarget={[0, 1.2, 0]}
+  data={[
+    ...[0.5, 1, 2, 3].map((level) => ({
+      points: Array.from({ length: 361 }, (_, index) => {
+        const t = (index / 360) * 2 * Math.PI;
+        const along = (Math.sqrt(level) * Math.cos(t)) / Math.sqrt(3);
+        const across = Math.sqrt(level) * Math.sin(t);
+        return { x: (along + across) / Math.SQRT2, y: level, z: (along - across) / Math.SQRT2 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    })),
+    {
+      points: Array.from({ length: 201 }, (_, index) => {
+        const s = -1 + index / 100;
+        return { x: s / Math.SQRT2, y: 3 * s ** 2, z: s / Math.SQRT2 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="3s^2" />, at: 200, offset: [0.3, 0.2, 0] }],
+    },
+    {
+      points: Array.from({ length: 201 }, (_, index) => {
+        const s = Math.sqrt(3) * (-1 + index / 100);
+        return { x: s / Math.SQRT2, y: s ** 2, z: -s / Math.SQRT2 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="s^2" />, at: 200, offset: [0.3, 0.2, 0] }],
+    },
+  ]}
+/>
+
 ## Vollständig gerechnete hermitesche Diagonalisierung
 
 Für die zuvor betrachtete Matrix
@@ -138,3 +194,17 @@ Prüfe die Orthogonalität und den ersten Eigenvektor direkt. Der Normierungsfak
 <BlockMath math="u_1^Hu_2=\frac{-(1-i)(1+i)+2}{\sqrt{18}}=\frac{-2+2}{\sqrt{18}}=0" />
 <BlockMath math="Hu_1=\frac1{\sqrt3}\begin{pmatrix}-2(1+i)+(1+i)\\-(1-i)(1+i)+3\end{pmatrix}=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}=u_1" />
 </MathContainer>
+
+Dieses Diagramm fasst die Schritte des Beispiels oben zusammen, vom Polynom bis zur Diagonalmatrix.
+
+<Mermaid
+  title="Schritte der hermiteschen Diagonalisierung"
+  description="Das Beispiel H mit den Eigenwerten 1 und 4."
+  chart={`
+    flowchart TD
+        A["det(H - λI) = (λ - 1)(λ - 4)"] --> B[Eigenvektoren u_1, u_2]
+        B --> C[Normieren und u_1^H u_2 = 0 prüfen]
+        C --> D[U = u_1, u_2 als Spalten]
+        D --> E[U^H H U = diag 1, 4]
+  `}
+/>

@@ -23,6 +23,18 @@ Matriks kompleks <InlineMath math="A \in \mathbb{C}^{n \times n}" /> disebut nor
 
 Kondisi aljabar ini membuat ruang eigen untuk nilai eigen yang berbeda saling ortogonal. Untuk matriks dengan entri bilangan kompleks, kondisi ini juga memungkinkan diagonalisasi uniter.
 
+Diagram ini menghubungkan syarat normal dengan diagonalisasi uniter.
+
+<Mermaid
+  title="Normal sama dengan diagonal secara uniter"
+  description="Satu syarat aljabar setara dengan basis eigen ortonormal."
+  chart={`
+    flowchart LR
+        A[A^H A = A A^H] ---|⇔| B[A = U D U^H]
+        B --> C[Kolom U: basis eigen ortonormal]
+  `}
+/>
+
 ## Sifat Khusus Ruang Eigen Matriks Normal
 
 Pada matriks normal, ruang nol matriks sama dengan ruang nol konjugat transposnya.
@@ -50,6 +62,19 @@ Identitas ini juga membuktikan ortogonalitas. Jika <InlineMath math="Av=\lambda 
 <BlockMath math="\overline{\lambda}v^Hw=(Av)^Hw=v^HA^Hw" />
 <BlockMath math="=\overline{\mu}v^Hw\qquad\Longrightarrow\qquad v^Hw=0" />
 </MathContainer>
+
+Ikuti alur ini untuk melihat bagaimana basis eigen ortonormal terbentuk.
+
+<Mermaid
+  title="Dari ruang eigen ke basis ortonormal"
+  description="Ruang eigen yang berbeda saling tegak lurus."
+  chart={`
+    flowchart TD
+        A[A normal] --> B[Ruang eigen untuk nilai eigen berbeda saling tegak lurus]
+        B --> C[Basis ortonormal di setiap ruang eigen]
+        C --> D[Gabungannya basis eigen ortonormal]
+  `}
+/>
 
 ## Matriks Hermitian dan Uniter sebagai Contoh Normal
 
@@ -94,3 +119,48 @@ Nilai eigen matriks uniter memiliki modulus <InlineMath math="1" />, sehingga te
 </MathContainer>
 
 Jadi setiap nilai eigen matriks uniter memiliki modulus <InlineMath math="1" />. Secara geometri, transformasi uniter mempertahankan panjang vektor dan semua nilai eigennya berada pada lingkaran satuan.
+
+Bidang kompleks di bawah menunjukkan di mana nilai eigen dua keluarga matriks normal berada. Matriks Hermitian <InlineMath math="H" /> di atas punya nilai eigen <InlineMath math="1" /> dan <InlineMath math="3" />, keduanya di sumbu real. Rotasi <InlineMath math="R(60^\circ)" /> adalah matriks uniter, dan nilai eigennya <InlineMath math="e^{\pm i\pi/3}" /> ada di lingkaran satuan karena <InlineMath math="|\lambda|=1" />. Perbesar adegannya dan cek: tidak ada titik ungu yang keluar dari sumbu real, dan tidak ada titik oranye yang keluar dari lingkaran.
+
+<LineEquation
+  title={<>Letak nilai eigen matriks Hermitian dan uniter</>}
+  description={<>Titik ungu adalah nilai eigen <InlineMath math="1" /> dan <InlineMath math="3" /> dari <InlineMath math="H" />. Titik oranye adalah nilai eigen <InlineMath math="e^{\pm i\pi/3}" /> dari rotasi <InlineMath math="R(60^\circ)" /> di lingkaran satuan abu-abu.</>}
+  showZAxis={false}
+  cameraPosition={[1.3, 0, 7.5]}
+  cameraTarget={[1.3, 0, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: 1 * Math.cos(angle), y: 1 * Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: [{ x: 1, y: 0, z: 0 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="1" />, at: 0, offset: [0.15, -0.3, 0] }],
+    },
+    {
+      points: [{ x: 3, y: 0, z: 0 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="3" />, at: 0, offset: [0, -0.3, 0] }],
+    },
+    {
+      points: [{ x: Math.cos(Math.PI / 3), y: Math.sin(Math.PI / 3), z: 0 }],
+      color: "#bb6800",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="e^{i\pi/3}" />, at: 0, offset: [0.35, 0.2, 0] }],
+    },
+    {
+      points: [{ x: Math.cos(Math.PI / 3), y: -Math.sin(Math.PI / 3), z: 0 }],
+      color: "#bb6800",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="e^{-i\pi/3}" />, at: 0, offset: [0.4, -0.2, 0] }],
+    },
+  ]}
+/>

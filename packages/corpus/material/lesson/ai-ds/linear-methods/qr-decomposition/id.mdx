@@ -44,6 +44,20 @@ Tambahkan <InlineMath math="m-n" /> baris nol pada <InlineMath math="R_1" /> seh
 
 Matriks yang sudah dilengkapi tetap memenuhi <InlineMath math="A=Q_1R_1=QR" />.
 
+Diagram ini menunjukkan satu putaran Gram-Schmidt untuk kolom ke-j.
+
+<Mermaid
+  title="Gram-Schmidt kolom demi kolom"
+  description="Setiap kolom dikurangi proyeksinya, lalu dinormalkan."
+  chart={`
+    flowchart LR
+        A[Kolom a_j] --> B[r_ij = q_i^T a_j untuk i < j]
+        B --> C[Kurangi semua r_ij q_i]
+        C --> D[Normalkan: r_jj dan q_j]
+        D --> E[Kolom berikutnya]
+  `}
+/>
+
 ## Dekomposisi QR Lengkap dan Tipis
 
 Untuk <InlineMath math="A\in\mathbb{R}^{m\times n}" /> dengan <InlineMath math="m\geq n" />, bentuk lengkap dan bentuk tipis menyatakan faktorisasi yang sama dengan **ukuran matriks berbeda**. Keduanya menghasilkan <InlineMath math="A" /> saat dikalikan kembali, sehingga pilihannya bergantung pada apakah kamu memerlukan basis ortonormal lengkap atau hanya kolom yang memuat datanya.
@@ -96,6 +110,65 @@ Dengan demikian,
 <BlockMath math="R_1=\begin{pmatrix}\sqrt2&1/\sqrt2\\0&\sqrt6/2\end{pmatrix}" />
 <BlockMath math="Q_1^TQ_1=I,\qquad Q_1R_1=A" />
 </MathContainer>
+
+Putar adegan tiga dimensi ini untuk melihat contoh tadi dari segala arah. Proyeksi kuning <InlineMath math="r_{12}q_1=(1/2,1/2,0)^T" /> adalah bagian <InlineMath math="a_2" /> yang searah <InlineMath math="q_1" />. Sisa oranye <InlineMath math="\widetilde q_2" /> dari ujung proyeksi ke ujung <InlineMath math="a_2" /> tegak lurus terhadap <InlineMath math="q_1" />, dan kalau dinormalkan kamu dapat <InlineMath math="q_2" />. Dari sudut mana pun, kedua panah magenta selalu membentuk sudut siku-siku.
+
+<LineEquation
+  title={<>Gram-Schmidt pada <InlineMath math="a_1,a_2" /></>}
+  description={<>Panah ungu dan hijau toska adalah kolom <InlineMath math="A" />, ruas kuning adalah proyeksi <InlineMath math="r_{12}q_1" />, panah oranye adalah sisa <InlineMath math="\widetilde q_2" />, dan panah magenta adalah <InlineMath math="q_1,q_2" />.</>}
+  cameraPosition={[2.6, 2.2, 3.2]}
+  cameraTarget={[0.4, 0.3, 0.4]}
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.1 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="a_1" />, at: 1, offset: [0.15, 0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 1 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.1 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="a_2" />, at: 1, offset: [0.15, 0.1, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1 / 2, y: 1 / 2, z: 0 }],
+      color: "#b98d00",
+      cone: { position: "end", size: 0.08 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="r_{12}q_1" />, at: 1, offset: [0.35, -0.15, 0] }],
+    },
+    {
+      points: [{ x: 1 / 2, y: 1 / 2, z: 0 }, { x: 1, y: 0, z: 1 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.08 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\widetilde q_2" />, at: 1, offset: [-0.25, 0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
+      color: "#c026d3",
+      cone: { position: "end", size: 0.08 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="q_1" />, at: 1, offset: [-0.2, 0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }],
+      color: "#c026d3",
+      cone: { position: "end", size: 0.08 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="q_2" />, at: 1, offset: [-0.2, 0.15, 0] }],
+    },
+  ]}
+/>
 
 ## Metode Householder untuk Dekomposisi QR
 
@@ -180,6 +253,22 @@ Karena setiap reflektor ortogonal dan simetris, hasil kalinya memberikan
 </MathContainer>
 
 Matriks <InlineMath math="Q" /> bersifat ortogonal karena merupakan hasil kali beberapa reflektor ortogonal.
+
+Ikuti langkah ini untuk setiap kolom sampai matriksnya menjadi segitiga atas.
+
+<Mermaid
+  title="Langkah Householder"
+  description="Setiap cermin menolkan satu kolom di bawah diagonal."
+  chart={`
+    flowchart TD
+        A[Kolom k] --> B[Pilih cermin H_k]
+        B --> C[Entri di bawah diagonal menjadi nol]
+        C --> D[Terapkan H_k ke kolom sisanya]
+        D --> E{Kolom terakhir?}
+        E -->|Tidak| A
+        E -->|Ya| F[R di atas, Q dari semua H_k]
+  `}
+/>
 
 ## Algoritma Householder
 

@@ -44,6 +44,20 @@ Durch Anhängen von <InlineMath math="m-n" /> Nullzeilen an <InlineMath math="R_
 
 Die ergänzten Matrizen erfüllen weiterhin <InlineMath math="A=Q_1R_1=QR" />.
 
+Dieses Diagramm zeigt eine Runde Gram-Schmidt für Spalte j.
+
+<Mermaid
+  title="Gram-Schmidt Spalte für Spalte"
+  description="Jede Spalte verliert ihre Projektionen und wird dann normiert."
+  chart={`
+    flowchart LR
+        A[Spalte a_j] --> B[r_ij = q_i^T a_j für i < j]
+        B --> C[Alle r_ij q_i abziehen]
+        C --> D[Normieren: r_jj und q_j]
+        D --> E[Nächste Spalte]
+  `}
+/>
+
 ## Vollständige und reduzierte Zerlegung mit QR
 
 Für <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> beschreiben die vollständige und die reduzierte Form dieselbe Faktorisierung mit **unterschiedlichen Matrixgrößen**. Beide ergeben beim Zurückmultiplizieren wieder <InlineMath math="A" />, sodass die Wahl davon abhängt, ob du die vollständige Orthonormalbasis brauchst oder nur die Spalten, die die Daten tragen.
@@ -96,6 +110,65 @@ Damit gilt
 <BlockMath math="R_1=\begin{pmatrix}\sqrt2&1/\sqrt2\\0&\sqrt6/2\end{pmatrix}" />
 <BlockMath math="Q_1^TQ_1=I,\qquad Q_1R_1=A" />
 </MathContainer>
+
+Dreh diese dreidimensionale Szene, um das Beispiel von allen Seiten zu sehen. Die gelbe Projektion <InlineMath math="r_{12}q_1=(1/2,1/2,0)^T" /> ist der Teil von <InlineMath math="a_2" />, der in Richtung <InlineMath math="q_1" /> zeigt. Der orange Rest <InlineMath math="\widetilde q_2" /> von der Spitze der Projektion zur Spitze von <InlineMath math="a_2" /> steht senkrecht auf <InlineMath math="q_1" />, und normiert ergibt er <InlineMath math="q_2" />. Aus jedem Blickwinkel bilden die beiden magentafarbenen Pfeile einen rechten Winkel.
+
+<LineEquation
+  title={<>Gram-Schmidt für <InlineMath math="a_1,a_2" /></>}
+  description={<>Violetter und türkiser Pfeil sind die Spalten von <InlineMath math="A" />, der gelbe Pfeil ist die Projektion <InlineMath math="r_{12}q_1" />, der orange Pfeil der Rest <InlineMath math="\widetilde q_2" />, und die magentafarbenen Pfeile sind <InlineMath math="q_1,q_2" />.</>}
+  cameraPosition={[2.6, 2.2, 3.2]}
+  cameraTarget={[0.4, 0.3, 0.4]}
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.1 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="a_1" />, at: 1, offset: [0.15, 0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 1 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.1 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="a_2" />, at: 1, offset: [0.15, 0.1, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1 / 2, y: 1 / 2, z: 0 }],
+      color: "#b98d00",
+      cone: { position: "end", size: 0.08 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="r_{12}q_1" />, at: 1, offset: [0.35, -0.15, 0] }],
+    },
+    {
+      points: [{ x: 1 / 2, y: 1 / 2, z: 0 }, { x: 1, y: 0, z: 1 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.08 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\widetilde q_2" />, at: 1, offset: [-0.25, 0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
+      color: "#c026d3",
+      cone: { position: "end", size: 0.08 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="q_1" />, at: 1, offset: [-0.2, 0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }],
+      color: "#c026d3",
+      cone: { position: "end", size: 0.08 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="q_2" />, at: 1, offset: [-0.2, 0.15, 0] }],
+    },
+  ]}
+/>
 
 ## Householderverfahren zur Zerlegung mit QR
 
@@ -180,6 +253,22 @@ Da jeder Reflektor orthogonal und symmetrisch ist, liefert ihr Produkt
 </MathContainer>
 
 Die Matrix <InlineMath math="Q" /> ist als Produkt orthogonaler Reflektoren ebenfalls orthogonal.
+
+Folg diesen Schritten für jede Spalte, bis die Matrix obere Dreiecksform hat.
+
+<Mermaid
+  title="Householder-Schritte"
+  description="Jeder Spiegel nullt eine Spalte unterhalb der Diagonale."
+  chart={`
+    flowchart TD
+        A[Spalte k] --> B[Spiegel H_k wählen]
+        B --> C[Einträge unter der Diagonale werden null]
+        C --> D[H_k auf die übrigen Spalten anwenden]
+        D --> E{Letzte Spalte?}
+        E -->|Nein| A
+        E -->|Ja| F[R oben, Q aus allen H_k]
+  `}
+/>
 
 ## Implementierungsalgorithmus
 

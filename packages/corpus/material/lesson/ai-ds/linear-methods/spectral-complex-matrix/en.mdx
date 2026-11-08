@@ -19,6 +19,18 @@ For <InlineMath math="A\in\mathbb{C}^{n\times n}" />, the following statements a
 
 The theorem is stronger than ordinary diagonalizability. A diagonalizable matrix can have a badly conditioned eigenvector basis, whereas <Highlight>a unitary basis preserves norms and angles</Highlight>.
 
+This diagram shows that each direction of the proof gives one half of the equivalence.
+
+<Mermaid
+  title="Characterizing unitary diagonalization"
+  description="Two proof directions that form one equivalence."
+  chart={`
+    flowchart LR
+        A[A unitarily diagonalizable] -->|First direction| B[A normal]
+        B -->|Second direction| A
+  `}
+/>
+
 ## Proof of the First Direction
 
 First, suppose an orthonormal basis of eigenvectors exists. We will show directly that the matrix is normal.
@@ -145,6 +157,20 @@ Substituting the matrix <InlineMath math="S" /> into the similarity transformati
 
 The columns of <InlineMath math="S" /> form an orthonormal basis of eigenvectors of matrix <InlineMath math="A" />.
 
+This flow sums up the inductive construction of the orthonormal basis.
+
+<Mermaid
+  title="Building the orthonormal basis inductively"
+  description="One eigenvector, then a smaller problem."
+  chart={`
+    flowchart TD
+        A[Eigenvector v_1, normalized] --> B[Extend to an orthonormal basis U_1]
+        B --> C[U_1^H A U_1 in block form]
+        C --> D[Normality makes the off block zero]
+        D --> E[Repeat on the smaller block]
+  `}
+/>
+
 ## Real Matrix Case
 
 For real matrices, the distinction is whether the required eigenvalues and eigenvectors remain real. A real matrix:
@@ -186,3 +212,32 @@ The matrix <InlineMath math="R" /> is real and orthogonal, hence normal. Its eig
 </MathContainer>
 
 <InlineMath math="R" /> is unitarily diagonalizable over <InlineMath math="\mathbb{C}" /> but cannot be diagonalized by a real orthogonal matrix. Over <InlineMath math="\mathbb{R}" />, the rotation itself is the required <InlineMath math="2\times2" /> block.
+
+The real normal matrix <InlineMath math="A=0.9R(30^\circ)" /> has no real eigenvector, because its eigenvalues <InlineMath math="0.9e^{\pm i\pi/6}" /> are complex. Follow the magenta points below: each multiplication by <InlineMath math="A" /> turns the point by <InlineMath math="30^\circ" />, the argument of the eigenvalue, and shrinks its distance to the origin by the factor <InlineMath math="0.9" />, its modulus. That is the geometric meaning of the real <InlineMath math="2\times2" /> block in the real normal form.
+
+<LineEquation
+  title={<>A real block with eigenvalues <InlineMath math="0.9e^{\pm i\pi/6}" /></>}
+  description={<>Magenta points are <InlineMath math="x_k=A^kx_0" /> for <InlineMath math="A=0.9R(30^\circ)" /> and <InlineMath math="x_0=(1.5,0)^T" />. The gray spiral passes through all of them.</>}
+  showZAxis={false}
+  cameraPosition={[0.2, 0.3, 5]}
+  cameraTarget={[0.2, 0.3, 0]}
+  data={[
+    {
+      points: Array.from({ length: 481 }, (_, index) => {
+        const t = (index / 480) * 12;
+        const radius = 1.5 * 0.9 ** t;
+        return { x: radius * Math.cos((Math.PI / 6) * t), y: radius * Math.sin((Math.PI / 6) * t), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    ...Array.from({ length: 13 }, (_, k) => ({
+      points: [{ x: 1.5 * 0.9 ** k * Math.cos((Math.PI / 6) * k), y: 1.5 * 0.9 ** k * Math.sin((Math.PI / 6) * k), z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      ...(k === 0 ? { labels: [{ text: <InlineMath math="x_0" />, at: 0, offset: [0.25, -0.15, 0] }] } : {}),
+      ...(k === 1 ? { labels: [{ text: <InlineMath math="x_1=Ax_0" />, at: 0, offset: [0.55, 0.1, 0] }] } : {}),
+    })),
+  ]}
+/>

@@ -42,6 +42,39 @@ For a concrete example, the two columns of the following matrix are identical. O
 
 <BlockMath math="A\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}" />
 
+Take <InlineMath math="A=\begin{pmatrix}1&2\\1&2\end{pmatrix}" /> and <InlineMath math="b=(2,2)^T" />. The second column is twice the first, so the data only fix the combination <InlineMath math="x_1+2x_2" />. Rotate this scene: the function <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" /> forms a valley whose floor is the magenta line <InlineMath math="x_1+2x_2=2" />, not a single point. Every point on that line fits equally well, so <InlineMath math="x" /> is not identifiable. The violet point <InlineMath math="x^+=(2/5,4/5)^T" /> is the minimum-norm choice on the valley floor.
+
+<LineEquation
+  title={<>A least-squares valley without a single lowest point</>}
+  description={<>Teal curves are slices of <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" />. The magenta line on the floor holds every minimizer, and the violet point is the minimum-norm solution <InlineMath math="x^+=(2/5,4/5)^T" />.</>}
+  cameraPosition={[5, 4, 6]}
+  cameraTarget={[1, 0.8, 0.5]}
+  data={[
+    ...[-0.5, 0, 0.5, 1, 1.5].map((x2) => ({
+      points: Array.from({ length: 201 }, (_, index) => {
+        const x1 = 1 - 2 * x2 + index / 100;
+        return { x: x1, y: 2 * (x1 + 2 * x2 - 2) ** 2, z: x2 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+    })),
+    {
+      points: [{ x: 3, y: 0, z: -0.5 }, { x: -1, y: 0, z: 1.5 }],
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x_1+2x_2=2" />, at: 1, offset: [-0.4, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 2 / 5, y: 0, z: 4 / 5 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="x^+" />, at: 0, offset: [0.3, 0.3, 0] }],
+    },
+  ]}
+/>
+
 ## Solution Uniqueness and Numerical Stability
 
 <Highlight>Full column rank guarantees a unique least-squares minimizer</Highlight>, but not a numerically reliable one. A very small nonzero singular value can make the estimate highly sensitive to small changes in the data.
@@ -53,6 +86,19 @@ For a concrete example, the two columns of the following matrix are identical. O
 | How sensitive is the problem? | <InlineMath math="\kappa_2(A)=\sigma_1/\sigma_n" /> | A large condition number signals strong sensitivity. |
 
 Structural identifiability is an exact algebraic property. Practical identifiability also depends on scale, noise, and the numerical tolerance used.
+
+Start from the rank of <InlineMath math="A" /> to know whether the solution is unique.
+
+<Mermaid
+  title="One solution or many"
+  description="The rank of A decides whether the least-squares solution is unique."
+  chart={`
+    flowchart TD
+        A{rank A = n?} -->|Yes| B[Unique least-squares solution]
+        A -->|No| C[Infinitely many solutions]
+        C --> D[Choose the minimum-norm solution x^+]
+  `}
+/>
 
 ## Factorizations for Determining Rank
 
@@ -97,6 +143,19 @@ Floating-point data rarely contain exact zeros. A numerical rank instead counts 
 The factor <InlineMath math="c" /> reflects the application and noise model, so there is no universal decimal cutoff. If <InlineMath math="A" /> is rank deficient, the least-squares minimum still exists, but the minimizing parameter vector is not unique. The Moore-Penrose pseudoinverse selects the minimum-norm solution:
 
 <BlockMath math="x^{\dagger}=V\Sigma^{\dagger}U^T b" />
+
+This diagram shows how to read the numerical rank from the singular values.
+
+<Mermaid
+  title="Numerical rank from singular values"
+  description="Count the singular values above a tolerance."
+  chart={`
+    flowchart LR
+        A[Singular values σ_1 ≥ ... ≥ σ_n] --> B[Choose a tolerance]
+        B --> C[Count σ_i above the tolerance]
+        C --> D[Numerical rank]
+  `}
+/>
 
 ## Estimating Matrix Rank with SVD or Rank Revealing QR
 

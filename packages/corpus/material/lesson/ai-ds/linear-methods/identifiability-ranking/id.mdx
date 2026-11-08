@@ -42,6 +42,39 @@ Sebagai contoh, kedua kolom matriks berikut sama. Hanya jumlah kedua parameter y
 
 <BlockMath math="A\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}" />
 
+Ambil <InlineMath math="A=\begin{pmatrix}1&2\\1&2\end{pmatrix}" /> dan <InlineMath math="b=(2,2)^T" />. Kolom kedua sama dengan dua kali kolom pertama, jadi data hanya menentukan kombinasi <InlineMath math="x_1+2x_2" />. Putar adegan ini: fungsi <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" /> membentuk lembah yang dasarnya garis magenta <InlineMath math="x_1+2x_2=2" />, bukan satu titik. Setiap titik di garis itu cocok sama baiknya, sehingga <InlineMath math="x" /> tidak teridentifikasi. Titik ungu <InlineMath math="x^+=(2/5,4/5)^T" /> adalah pilihan norma terkecil di dasar lembah.
+
+<LineEquation
+  title={<>Lembah kuadrat terkecil tanpa satu titik terendah</>}
+  description={<>Kurva hijau toska adalah irisan <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" />. Garis magenta di dasar memuat semua minimizer, dan titik ungu adalah solusi norma terkecil <InlineMath math="x^+=(2/5,4/5)^T" />.</>}
+  cameraPosition={[5, 4, 6]}
+  cameraTarget={[1, 0.8, 0.5]}
+  data={[
+    ...[-0.5, 0, 0.5, 1, 1.5].map((x2) => ({
+      points: Array.from({ length: 201 }, (_, index) => {
+        const x1 = 1 - 2 * x2 + index / 100;
+        return { x: x1, y: 2 * (x1 + 2 * x2 - 2) ** 2, z: x2 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+    })),
+    {
+      points: [{ x: 3, y: 0, z: -0.5 }, { x: -1, y: 0, z: 1.5 }],
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x_1+2x_2=2" />, at: 1, offset: [-0.4, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 2 / 5, y: 0, z: 4 / 5 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="x^+" />, at: 0, offset: [0.3, 0.3, 0] }],
+    },
+  ]}
+/>
+
 ## Keunikan Solusi dan Kestabilan Numerik
 
 Peringkat kolom penuh <Highlight>menjamin peminimum kuadrat terkecil yang unik</Highlight>, tetapi belum menjamin keandalan numerik. Nilai singular tak nol yang sangat kecil dapat membuat estimasi sangat sensitif terhadap perubahan kecil pada data.
@@ -53,6 +86,19 @@ Peringkat kolom penuh <Highlight>menjamin peminimum kuadrat terkecil yang unik</
 | Seberapa sensitif masalahnya? | <InlineMath math="\kappa_2(A)=\sigma_1/\sigma_n" /> | Bilangan kondisi besar menandakan sensitivitas tinggi. |
 
 Identifiabilitas struktural merupakan sifat aljabar eksak. Identifiabilitas praktis juga bergantung pada skala data, gangguan acak dalam pengukuran, dan toleransi numerik yang digunakan.
+
+Mulai dari rank <InlineMath math="A" /> untuk tahu apakah solusinya tunggal.
+
+<Mermaid
+  title="Satu solusi atau banyak"
+  description="Rank A menentukan apakah solusi kuadrat terkecil tunggal."
+  chart={`
+    flowchart TD
+        A{rank A = n?} -->|Ya| B[Solusi kuadrat terkecil tunggal]
+        A -->|Tidak| C[Tak hingga banyak solusi]
+        C --> D[Pilih solusi norma terkecil x^+]
+  `}
+/>
 
 ## Faktorisasi untuk Menentukan Peringkat
 
@@ -97,6 +143,19 @@ Data titik mengambang jarang memuat nol eksak. Peringkat numerik menghitung nila
 Faktor <InlineMath math="c" /> bergantung pada penerapan dan perkiraan besarnya gangguan acak dalam data, sehingga tidak ada satu batas desimal yang berlaku untuk semua masalah. Jika <InlineMath math="A" /> tidak berperingkat penuh, nilai minimum kuadrat terkecil tetap ada, tetapi ada lebih dari satu vektor parameter yang menghasilkan nilai minimum tersebut. Pseudoinvers Moore-Penrose memilih solusi dengan norma paling kecil:
 
 <BlockMath math="x^{\dagger}=V\Sigma^{\dagger}U^T b" />
+
+Diagram ini memperlihatkan langkah dari nilai singular sampai rank numerik.
+
+<Mermaid
+  title="Rank numerik dari nilai singular"
+  description="Hitung nilai singular yang melewati batas toleransi."
+  chart={`
+    flowchart LR
+        A[Nilai singular σ_1 ≥ ... ≥ σ_n] --> B[Pilih toleransi]
+        B --> C[Hitung σ_i di atas toleransi]
+        C --> D[Rank numerik]
+  `}
+/>
 
 ## Menentukan Peringkat Matriks dengan SVD atau QR
 

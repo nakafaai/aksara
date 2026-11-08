@@ -19,6 +19,18 @@ Untuk <InlineMath math="A\in\mathbb{C}^{n\times n}" />, pernyataan berikut ekuiv
 
 Teorema ini lebih kuat daripada diagonalisabilitas biasa. Matriks yang dapat didiagonalkan mungkin memiliki basis vektor eigen berkondisi buruk, sedangkan <Highlight>basis uniter mempertahankan norma dan sudut</Highlight>.
 
+Diagram ini memperlihatkan bahwa setiap arah bukti memberi satu sisi kesetaraan.
+
+<Mermaid
+  title="Karakterisasi diagonalisasi uniter"
+  description="Dua arah bukti yang membentuk satu kesetaraan."
+  chart={`
+    flowchart LR
+        A[A diagonal secara uniter] -->|Arah pertama| B[A normal]
+        B -->|Arah kedua| A
+  `}
+/>
+
 ## Pembuktian Arah Pertama
 
 Pertama, misalkan terdapat basis ortonormal yang terdiri dari vektor eigen. Kita akan menunjukkan secara langsung bahwa matriks tersebut normal.
@@ -145,6 +157,20 @@ Substitusi matriks <InlineMath math="S" /> ke transformasi kesebangunan memberik
 
 Kolom dari <InlineMath math="S" /> membentuk basis ortonormal dari vektor eigen matriks <InlineMath math="A" />.
 
+Alur ini meringkas konstruksi induktif basis ortonormal.
+
+<Mermaid
+  title="Membangun basis ortonormal secara induktif"
+  description="Satu vektor eigen, lalu masalah yang lebih kecil."
+  chart={`
+    flowchart TD
+        A[Vektor eigen v_1, dinormalkan] --> B[Lengkapi menjadi basis ortonormal U_1]
+        B --> C[U_1^H A U_1 berbentuk blok]
+        C --> D[Normalitas membuat blok luar nol]
+        D --> E[Ulangi pada blok yang lebih kecil]
+  `}
+/>
+
 ## Kasus Matriks Riil
 
 Untuk matriks real, perbedaannya terletak pada apakah nilai eigen dan vektor eigen yang diperlukan juga bernilai real.
@@ -186,3 +212,32 @@ Matriks <InlineMath math="R" /> bersifat real dan ortogonal, sehingga normal. Ni
 </MathContainer>
 
 Jadi, <InlineMath math="R" /> dapat didiagonalkan secara uniter pada <InlineMath math="\mathbb{C}" />, tetapi tidak dapat didiagonalkan dengan matriks ortogonal real. Pada <InlineMath math="\mathbb{R}" />, rotasi itu sendiri merupakan blok <InlineMath math="2\times2" /> yang diperlukan.
+
+Matriks real normal <InlineMath math="A=0.9R(30^\circ)" /> tidak punya vektor eigen real, karena nilai eigennya <InlineMath math="0.9e^{\pm i\pi/6}" /> kompleks. Ikuti titik magenta di bawah: setiap perkalian dengan <InlineMath math="A" /> memutar titik sejauh <InlineMath math="30^\circ" />, yaitu argumen nilai eigen, dan memperpendek jaraknya ke titik asal dengan faktor <InlineMath math="0.9" />, yaitu modulusnya. Inilah arti geometri blok real <InlineMath math="2\times2" /> yang muncul di bentuk normal real.
+
+<LineEquation
+  title={<>Blok real dengan nilai eigen <InlineMath math="0.9e^{\pm i\pi/6}" /></>}
+  description={<>Titik magenta adalah <InlineMath math="x_k=A^kx_0" /> untuk <InlineMath math="A=0.9R(30^\circ)" /> dan <InlineMath math="x_0=(1.5,0)^T" />. Spiral abu-abu melewati semua titik itu.</>}
+  showZAxis={false}
+  cameraPosition={[0.2, 0.3, 5]}
+  cameraTarget={[0.2, 0.3, 0]}
+  data={[
+    {
+      points: Array.from({ length: 481 }, (_, index) => {
+        const t = (index / 480) * 12;
+        const radius = 1.5 * 0.9 ** t;
+        return { x: radius * Math.cos((Math.PI / 6) * t), y: radius * Math.sin((Math.PI / 6) * t), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    ...Array.from({ length: 13 }, (_, k) => ({
+      points: [{ x: 1.5 * 0.9 ** k * Math.cos((Math.PI / 6) * k), y: 1.5 * 0.9 ** k * Math.sin((Math.PI / 6) * k), z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      ...(k === 0 ? { labels: [{ text: <InlineMath math="x_0" />, at: 0, offset: [0.25, -0.15, 0] }] } : {}),
+      ...(k === 1 ? { labels: [{ text: <InlineMath math="x_1=Ax_0" />, at: 0, offset: [0.55, 0.1, 0] }] } : {}),
+    })),
+  ]}
+/>

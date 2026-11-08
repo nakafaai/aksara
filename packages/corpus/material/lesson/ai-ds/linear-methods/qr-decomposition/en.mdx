@@ -44,6 +44,20 @@ Appending <InlineMath math="m-n" /> zero rows to <InlineMath math="R_1" /> gives
 
 The completed matrices still satisfy <InlineMath math="A=Q_1R_1=QR" />.
 
+This diagram shows one round of Gram-Schmidt for column j.
+
+<Mermaid
+  title="Gram-Schmidt column by column"
+  description="Each column loses its projections, then gets normalized."
+  chart={`
+    flowchart LR
+        A[Column a_j] --> B[r_ij = q_i^T a_j for i < j]
+        B --> C[Subtract every r_ij q_i]
+        C --> D[Normalize: r_jj and q_j]
+        D --> E[Next column]
+  `}
+/>
+
 ## Full and Reduced QR Decomposition
 
 For <InlineMath math="A\in\mathbb{R}^{m\times n}" /> with <InlineMath math="m\geq n" />, the full and reduced forms describe the same factorization with **different matrix sizes**. Both forms multiply back to <InlineMath math="A" />, so the choice depends on whether you need the complete orthonormal basis or only the columns that carry the data.
@@ -97,6 +111,65 @@ The calculation gives:
 <BlockMath math="R_1=\begin{pmatrix}\sqrt2&1/\sqrt2\\0&\sqrt6/2\end{pmatrix}" />
 <BlockMath math="Q_1^TQ_1=I,\qquad Q_1R_1=A" />
 </MathContainer>
+
+Rotate this three-dimensional scene to see the example from every side. The amber projection <InlineMath math="r_{12}q_1=(1/2,1/2,0)^T" /> is the part of <InlineMath math="a_2" /> that points along <InlineMath math="q_1" />. The orange remainder <InlineMath math="\widetilde q_2" />, from the tip of the projection to the tip of <InlineMath math="a_2" />, is perpendicular to <InlineMath math="q_1" />, and normalizing it gives <InlineMath math="q_2" />. From any angle, the two magenta arrows always meet at a right angle.
+
+<LineEquation
+  title={<>Gram-Schmidt on <InlineMath math="a_1,a_2" /></>}
+  description={<>Violet and teal arrows are the columns of <InlineMath math="A" />, the amber arrow is the projection <InlineMath math="r_{12}q_1" />, the orange arrow is the remainder <InlineMath math="\widetilde q_2" />, and the magenta arrows are <InlineMath math="q_1,q_2" />.</>}
+  cameraPosition={[2.6, 2.2, 3.2]}
+  cameraTarget={[0.4, 0.3, 0.4]}
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.1 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="a_1" />, at: 1, offset: [0.15, 0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 1 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.1 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="a_2" />, at: 1, offset: [0.15, 0.1, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1 / 2, y: 1 / 2, z: 0 }],
+      color: "#b98d00",
+      cone: { position: "end", size: 0.08 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="r_{12}q_1" />, at: 1, offset: [0.35, -0.15, 0] }],
+    },
+    {
+      points: [{ x: 1 / 2, y: 1 / 2, z: 0 }, { x: 1, y: 0, z: 1 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.08 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\widetilde q_2" />, at: 1, offset: [-0.25, 0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
+      color: "#c026d3",
+      cone: { position: "end", size: 0.08 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="q_1" />, at: 1, offset: [-0.2, 0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }],
+      color: "#c026d3",
+      cone: { position: "end", size: 0.08 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="q_2" />, at: 1, offset: [-0.2, 0.15, 0] }],
+    },
+  ]}
+/>
 
 ## Householder Method for QR Decomposition
 
@@ -181,6 +254,22 @@ Because each reflector is orthogonal and symmetric, their product gives
 </MathContainer>
 
 The matrix <InlineMath math="Q" /> is orthogonal because it is a product of orthogonal reflectors.
+
+Follow these steps for each column until the matrix is upper triangular.
+
+<Mermaid
+  title="Householder steps"
+  description="Each reflector zeros one column below the diagonal."
+  chart={`
+    flowchart TD
+        A[Column k] --> B[Choose reflector H_k]
+        B --> C[Entries below the diagonal become zero]
+        C --> D[Apply H_k to the remaining columns]
+        D --> E{Last column?}
+        E -->|No| A
+        E -->|Yes| F[R on top, Q from all H_k]
+  `}
+/>
 
 ## Householder Algorithm
 

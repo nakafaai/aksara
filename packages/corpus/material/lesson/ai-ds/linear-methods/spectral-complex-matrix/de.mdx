@@ -19,6 +19,18 @@ Für <InlineMath math="A\in\mathbb{C}^{n\times n}" /> sind die folgenden Aussage
 
 Der Satz ist stärker als gewöhnliche Diagonalisierbarkeit. Eine diagonalisierbare Matrix kann eine schlecht konditionierte Eigenvektorbasis besitzen, während <Highlight>eine unitäre Basis Normen und Winkel erhält</Highlight>.
 
+Dieses Diagramm zeigt, dass jede Beweisrichtung eine Hälfte der Äquivalenz liefert.
+
+<Mermaid
+  title="Charakterisierung der unitären Diagonalisierung"
+  description="Zwei Beweisrichtungen, die eine Äquivalenz bilden."
+  chart={`
+    flowchart LR
+        A[A unitär diagonalisierbar] -->|Erste Richtung| B[A normal]
+        B -->|Zweite Richtung| A
+  `}
+/>
+
 ## Beweis der ersten Richtung
 
 Nehmen wir zunächst an, dass eine Orthonormalbasis aus Eigenvektoren existiert. Daraus zeigen wir direkt, dass die Matrix normal ist.
@@ -145,6 +157,20 @@ Das Einsetzen der Matrix <InlineMath math="S" /> in die Ähnlichkeitstransformat
 
 Die Spalten von <InlineMath math="S" /> bilden eine Orthonormalbasis der Eigenvektoren der Matrix <InlineMath math="A" />.
 
+Dieser Ablauf fasst die induktive Konstruktion der Orthonormalbasis zusammen.
+
+<Mermaid
+  title="Die Orthonormalbasis induktiv aufbauen"
+  description="Ein Eigenvektor, dann ein kleineres Problem."
+  chart={`
+    flowchart TD
+        A[Eigenvektor v_1, normiert] --> B[Zu einer Orthonormalbasis U_1 ergänzen]
+        B --> C[U_1^H A U_1 in Blockform]
+        C --> D[Normalität macht den Nebenblock null]
+        D --> E[Am kleineren Block wiederholen]
+  `}
+/>
+
 ## Reeller Matrixfall
 
 Bei reellen Matrizen ist entscheidend, ob die benötigten Eigenwerte und Eigenvektoren reell bleiben. Eine reelle Matrix:
@@ -186,3 +212,32 @@ Die Matrix <InlineMath math="R" /> ist reell und orthogonal, also normal. Ihre E
 </MathContainer>
 
 Damit ist <InlineMath math="R" /> über <InlineMath math="\mathbb{C}" /> unitär diagonalisierbar, kann aber nicht durch eine reelle orthogonale Matrix diagonalisiert werden. Über <InlineMath math="\mathbb{R}" /> ist die Rotationsmatrix selbst der benötigte <InlineMath math="2\times2" />-Block.
+
+Die reelle normale Matrix <InlineMath math="A=0.9R(30^\circ)" /> hat keinen reellen Eigenvektor, weil ihre Eigenwerte <InlineMath math="0.9e^{\pm i\pi/6}" /> komplex sind. Folg den magentafarbenen Punkten unten: Jede Multiplikation mit <InlineMath math="A" /> dreht den Punkt um <InlineMath math="30^\circ" />, das Argument des Eigenwerts, und verkürzt seinen Abstand zum Ursprung um den Faktor <InlineMath math="0.9" />, seinen Betrag. Genau das bedeutet der reelle <InlineMath math="2\times2" />-Block in der reellen Normalform geometrisch.
+
+<LineEquation
+  title={<>Ein reeller Block mit den Eigenwerten <InlineMath math="0.9e^{\pm i\pi/6}" /></>}
+  description={<>Die magentafarbenen Punkte sind <InlineMath math="x_k=A^kx_0" /> für <InlineMath math="A=0.9R(30^\circ)" /> und <InlineMath math="x_0=(1.5,0)^T" />. Die graue Spirale geht durch alle.</>}
+  showZAxis={false}
+  cameraPosition={[0.2, 0.3, 5]}
+  cameraTarget={[0.2, 0.3, 0]}
+  data={[
+    {
+      points: Array.from({ length: 481 }, (_, index) => {
+        const t = (index / 480) * 12;
+        const radius = 1.5 * 0.9 ** t;
+        return { x: radius * Math.cos((Math.PI / 6) * t), y: radius * Math.sin((Math.PI / 6) * t), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    },
+    ...Array.from({ length: 13 }, (_, k) => ({
+      points: [{ x: 1.5 * 0.9 ** k * Math.cos((Math.PI / 6) * k), y: 1.5 * 0.9 ** k * Math.sin((Math.PI / 6) * k), z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      ...(k === 0 ? { labels: [{ text: <InlineMath math="x_0" />, at: 0, offset: [0.25, -0.15, 0] }] } : {}),
+      ...(k === 1 ? { labels: [{ text: <InlineMath math="x_1=Ax_0" />, at: 0, offset: [0.55, 0.1, 0] }] } : {}),
+    })),
+  ]}
+/>

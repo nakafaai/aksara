@@ -42,6 +42,39 @@ Bei der folgenden Matrix sind beide Spalten identisch. Nur die Summe der Paramet
 
 <BlockMath math="A\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}" />
 
+Nimm <InlineMath math="A=\begin{pmatrix}1&2\\1&2\end{pmatrix}" /> und <InlineMath math="b=(2,2)^T" />. Die zweite Spalte ist das Doppelte der ersten, also legen die Daten nur die Kombination <InlineMath math="x_1+2x_2" /> fest. Dreh diese Szene: Die Funktion <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" /> bildet ein Tal, dessen Boden die magentafarbene Gerade <InlineMath math="x_1+2x_2=2" /> ist, kein einzelner Punkt. Jeder Punkt auf dieser Geraden passt gleich gut, also ist <InlineMath math="x" /> nicht identifizierbar. Der violette Punkt <InlineMath math="x^+=(2/5,4/5)^T" /> ist die Wahl kleinster Norm am Talboden.
+
+<LineEquation
+  title={<>Ein Tal der kleinsten Quadrate ohne einzelnen tiefsten Punkt</>}
+  description={<>Die türkisen Kurven sind Schnitte von <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" />. Die magentafarbene Gerade am Boden enthält jeden Minimierer, und der violette Punkt ist die Lösung kleinster Norm <InlineMath math="x^+=(2/5,4/5)^T" />.</>}
+  cameraPosition={[5, 4, 6]}
+  cameraTarget={[1, 0.8, 0.5]}
+  data={[
+    ...[-0.5, 0, 0.5, 1, 1.5].map((x2) => ({
+      points: Array.from({ length: 201 }, (_, index) => {
+        const x1 = 1 - 2 * x2 + index / 100;
+        return { x: x1, y: 2 * (x1 + 2 * x2 - 2) ** 2, z: x2 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+    })),
+    {
+      points: [{ x: 3, y: 0, z: -0.5 }, { x: -1, y: 0, z: 1.5 }],
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x_1+2x_2=2" />, at: 1, offset: [-0.4, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 2 / 5, y: 0, z: 4 / 5 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="x^+" />, at: 0, offset: [0.3, 0.3, 0] }],
+    },
+  ]}
+/>
+
 ## Eindeutigkeit der Lösung und numerische Stabilität
 
 Voller Spaltenrang <Highlight>garantiert einen eindeutigen Ausgleichsminimierer</Highlight>, aber noch keine numerisch verlässliche. Ein sehr kleiner positiver Singulärwert kann die Schätzung gegenüber kleinen Datenänderungen äußerst empfindlich machen.
@@ -53,6 +86,19 @@ Voller Spaltenrang <Highlight>garantiert einen eindeutigen Ausgleichsminimierer<
 | Wie empfindlich ist das Problem? | <InlineMath math="\kappa_2(A)=\sigma_1/\sigma_n" /> | Eine große Konditionszahl weist auf hohe Empfindlichkeit hin. |
 
 Strukturelle Identifizierbarkeit ist eine exakte algebraische Eigenschaft. Praktische Identifizierbarkeit hängt zusätzlich von Skalierung, Rauschen und numerischer Toleranz ab.
+
+Fang beim Rang von <InlineMath math="A" /> an, um zu wissen, ob die Lösung eindeutig ist.
+
+<Mermaid
+  title="Eine Lösung oder viele"
+  description="Der Rang von A entscheidet, ob die Lösung der kleinsten Quadrate eindeutig ist."
+  chart={`
+    flowchart TD
+        A{rank A = n?} -->|Ja| B[Eindeutige Lösung der kleinsten Quadrate]
+        A -->|Nein| C[Unendlich viele Lösungen]
+        C --> D[Lösung kleinster Norm x^+ wählen]
+  `}
+/>
 
 ## Faktorisierungen zur Rangbestimmung
 
@@ -97,6 +143,19 @@ Gleitkommadaten enthalten nur selten exakte Nullen. Ein numerischer Rang zählt 
 Der Faktor <InlineMath math="c" /> richtet sich nach Anwendung und Rauschmodell. Deshalb gibt es keinen universellen Dezimalgrenzwert. Ist <InlineMath math="A" /> rangdefizient, existiert das Minimum des Ausgleichsproblems weiterhin, aber der minimierende Parametervektor ist nicht eindeutig. Die Moore-Penrose-Pseudoinverse wählt die Lösung mit minimaler Norm:
 
 <BlockMath math="x^{\dagger}=V\Sigma^{\dagger}U^T b" />
+
+Dieses Diagramm zeigt, wie du den numerischen Rang aus den Singulärwerten abliest.
+
+<Mermaid
+  title="Numerischer Rang aus Singulärwerten"
+  description="Zähl die Singulärwerte oberhalb einer Toleranz."
+  chart={`
+    flowchart LR
+        A[Singulärwerte σ_1 ≥ ... ≥ σ_n] --> B[Toleranz wählen]
+        B --> C[σ_i oberhalb der Toleranz zählen]
+        C --> D[Numerischer Rang]
+  `}
+/>
 
 ## Numerische Verfahren zur Bestimmung des Matrixrangs
 

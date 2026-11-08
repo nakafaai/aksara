@@ -83,6 +83,20 @@ Misalkan <InlineMath math="Hv=\lambda v" /> dengan <InlineMath math="v\neq0" />.
 
 Karena <InlineMath math="v^Hv>0" />, kita memperoleh <InlineMath math="\lambda=\overline{\lambda}" /> dan dengan demikian <InlineMath math="\lambda\in\mathbb{R}" />. Kesimpulan yang sama berlaku bagi matriks simetris real.
 
+Ikuti rantai ini untuk melihat dari mana sifat real itu berasal.
+
+<Mermaid
+  title="Mengapa nilai eigen Hermitian real"
+  description="Rantai singkat dari Hv = λv sampai λ real."
+  chart={`
+    flowchart LR
+        A[Hv = λv, v ≠ 0] --> B[v^H H v = λ v^H v]
+        B --> C[v^H H v real karena H^H = H]
+        C --> D[v^H v > 0 real]
+        D --> E[λ real]
+  `}
+/>
+
 ## Mengapa Ruang Eigen yang Berbeda Saling Ortogonal
 
 Misalkan <InlineMath math="Hv=\lambda v" /> dan <InlineMath math="Hw=\mu w" /> dengan <InlineMath math="\lambda\neq\mu" />. Karena **kedua nilai eigen itu real**,
@@ -111,6 +125,48 @@ Kolom-kolom <InlineMath math="Q" /> atau <InlineMath math="U" /> membentuk **bas
 
 Rumus ini langsung menunjukkan bahwa <InlineMath math="H" /> definit positif tepat ketika semua nilai eigennya positif.
 
+Ambil matriks simetris real <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> dengan nilai eigen <InlineMath math="3" /> dan <InlineMath math="1" />, lalu putar mangkuk <InlineMath math="q(x)=x^TAx" /> di bawah. Sepanjang vektor eigen satuan <InlineMath math="v_1=(1,1)^T/\sqrt2" />, irisan magenta adalah <InlineMath math="3s^2" />. Sepanjang <InlineMath math="v_2=(1,-1)^T/\sqrt2" />, irisan hijau toska adalah <InlineMath math="s^2" />. Jadi kelengkungan di setiap sumbu utama sama dengan nilai eigennya, dan kedua sumbu itu saling tegak lurus.
+
+<LineEquation
+  title={<>Mangkuk bentuk kuadrat <InlineMath math="q(x)=x^TAx" /></>}
+  description={<>Untuk <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />: elips abu-abu adalah kurva <InlineMath math="q=0.5,1,2,3" />, kurva magenta dan hijau toska adalah irisan sepanjang vektor eigen. Nilai <InlineMath math="q" /> mengarah ke atas.</>}
+  cameraPosition={[4, 4.5, 4]}
+  cameraTarget={[0, 1.2, 0]}
+  data={[
+    ...[0.5, 1, 2, 3].map((level) => ({
+      points: Array.from({ length: 361 }, (_, index) => {
+        const t = (index / 360) * 2 * Math.PI;
+        const along = (Math.sqrt(level) * Math.cos(t)) / Math.sqrt(3);
+        const across = Math.sqrt(level) * Math.sin(t);
+        return { x: (along + across) / Math.SQRT2, y: level, z: (along - across) / Math.SQRT2 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    })),
+    {
+      points: Array.from({ length: 201 }, (_, index) => {
+        const s = -1 + index / 100;
+        return { x: s / Math.SQRT2, y: 3 * s ** 2, z: s / Math.SQRT2 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="3s^2" />, at: 200, offset: [0.3, 0.2, 0] }],
+    },
+    {
+      points: Array.from({ length: 201 }, (_, index) => {
+        const s = Math.sqrt(3) * (-1 + index / 100);
+        return { x: s / Math.SQRT2, y: s ** 2, z: -s / Math.SQRT2 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="s^2" />, at: 200, offset: [0.3, 0.2, 0] }],
+    },
+  ]}
+/>
+
 ## Diagonalisasi Hermitian yang Dihitung Lengkap
 
 Untuk matriks sebelumnya,
@@ -138,3 +194,17 @@ Periksa ortogonalitas dan vektor eigen pertama secara langsung. Faktor normalisa
 <BlockMath math="u_1^Hu_2=\frac{-(1-i)(1+i)+2}{\sqrt{18}}=\frac{-2+2}{\sqrt{18}}=0" />
 <BlockMath math="Hu_1=\frac1{\sqrt3}\begin{pmatrix}-2(1+i)+(1+i)\\-(1-i)(1+i)+3\end{pmatrix}=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}=u_1" />
 </MathContainer>
+
+Diagram ini merangkum langkah contoh di atas dari polinom sampai matriks diagonal.
+
+<Mermaid
+  title="Langkah diagonalisasi Hermitian"
+  description="Contoh H dengan nilai eigen 1 dan 4."
+  chart={`
+    flowchart TD
+        A["det(H - λI) = (λ - 1)(λ - 4)"] --> B[Vektor eigen u_1, u_2]
+        B --> C[Normalkan dan cek u_1^H u_2 = 0]
+        C --> D[U = u_1, u_2 sebagai kolom]
+        D --> E[U^H H U = diag 1, 4]
+  `}
+/>

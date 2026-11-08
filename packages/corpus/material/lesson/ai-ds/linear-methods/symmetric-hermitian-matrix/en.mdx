@@ -83,6 +83,20 @@ Suppose <InlineMath math="Hv=\lambda v" /> with <InlineMath math="v\neq0" />. **
 
 Since <InlineMath math="v^Hv>0" />, it follows that <InlineMath math="\lambda=\overline{\lambda}" /> and therefore <InlineMath math="\lambda\in\mathbb{R}" />. Real symmetric matrices inherit the same conclusion.
 
+Follow this chain to see where the realness comes from.
+
+<Mermaid
+  title="Why Hermitian eigenvalues are real"
+  description="A short chain from Hv = λv to a real λ."
+  chart={`
+    flowchart LR
+        A[Hv = λv, v ≠ 0] --> B[v^H H v = λ v^H v]
+        B --> C[v^H H v is real because H^H = H]
+        C --> D[v^H v > 0 is real]
+        D --> E[λ is real]
+  `}
+/>
+
 ## Why Distinct Eigenspaces Are Orthogonal
 
 Let <InlineMath math="Hv=\lambda v" /> and <InlineMath math="Hw=\mu w" /> with <InlineMath math="\lambda\neq\mu" />. Because **both eigenvalues are real**,
@@ -111,6 +125,48 @@ The columns of <InlineMath math="Q" /> or <InlineMath math="U" /> form an **orth
 
 This formula shows immediately that <InlineMath math="H" /> is positive definite exactly when every eigenvalue is positive.
 
+Take the real symmetric matrix <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> with eigenvalues <InlineMath math="3" /> and <InlineMath math="1" />, and rotate the bowl <InlineMath math="q(x)=x^TAx" /> below. Along the unit eigenvector <InlineMath math="v_1=(1,1)^T/\sqrt2" />, the magenta slice is <InlineMath math="3s^2" />. Along <InlineMath math="v_2=(1,-1)^T/\sqrt2" />, the teal slice is <InlineMath math="s^2" />. So the curvature along each principal axis equals its eigenvalue, and the two axes are perpendicular.
+
+<LineEquation
+  title={<>The bowl of the quadratic form <InlineMath math="q(x)=x^TAx" /></>}
+  description={<>For <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />: gray ellipses are the levels <InlineMath math="q=0.5,1,2,3" />, the magenta and teal curves are slices along the eigenvectors. The value <InlineMath math="q" /> points up.</>}
+  cameraPosition={[4, 4.5, 4]}
+  cameraTarget={[0, 1.2, 0]}
+  data={[
+    ...[0.5, 1, 2, 3].map((level) => ({
+      points: Array.from({ length: 361 }, (_, index) => {
+        const t = (index / 360) * 2 * Math.PI;
+        const along = (Math.sqrt(level) * Math.cos(t)) / Math.sqrt(3);
+        const across = Math.sqrt(level) * Math.sin(t);
+        return { x: (along + across) / Math.SQRT2, y: level, z: (along - across) / Math.SQRT2 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+    })),
+    {
+      points: Array.from({ length: 201 }, (_, index) => {
+        const s = -1 + index / 100;
+        return { x: s / Math.SQRT2, y: 3 * s ** 2, z: s / Math.SQRT2 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="3s^2" />, at: 200, offset: [0.3, 0.2, 0] }],
+    },
+    {
+      points: Array.from({ length: 201 }, (_, index) => {
+        const s = Math.sqrt(3) * (-1 + index / 100);
+        return { x: s / Math.SQRT2, y: s ** 2, z: -s / Math.SQRT2 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="s^2" />, at: 200, offset: [0.3, 0.2, 0] }],
+    },
+  ]}
+/>
+
 ## Worked Hermitian Diagonalization
 
 For the earlier matrix
@@ -138,3 +194,17 @@ Check the orthogonality and the first eigenvector directly. The normalizing fact
 <BlockMath math="u_1^Hu_2=\frac{-(1-i)(1+i)+2}{\sqrt{18}}=\frac{-2+2}{\sqrt{18}}=0" />
 <BlockMath math="Hu_1=\frac1{\sqrt3}\begin{pmatrix}-2(1+i)+(1+i)\\-(1-i)(1+i)+3\end{pmatrix}=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}=u_1" />
 </MathContainer>
+
+This diagram sums up the steps of the example above, from the polynomial to the diagonal matrix.
+
+<Mermaid
+  title="Hermitian diagonalization steps"
+  description="The example H with eigenvalues 1 and 4."
+  chart={`
+    flowchart TD
+        A["det(H - λI) = (λ - 1)(λ - 4)"] --> B[Eigenvectors u_1, u_2]
+        B --> C[Normalize and check u_1^H u_2 = 0]
+        C --> D[U = u_1, u_2 as columns]
+        D --> E[U^H H U = diag 1, 4]
+  `}
+/>

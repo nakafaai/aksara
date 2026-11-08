@@ -36,6 +36,19 @@ For example,
 
 The entry in row <InlineMath math="j" /> and column <InlineMath math="i" /> of <InlineMath math="A^H" /> is therefore <InlineMath math="\overline{a_{ij}}" />.
 
+The two steps in this diagram turn <InlineMath math="A" /> into <InlineMath math="A^H" />.
+
+<Mermaid
+  title="Forming the adjoint matrix"
+  description="Conjugate every entry, then transpose."
+  chart={`
+    flowchart LR
+        A[A] --> B[Conjugate every entry]
+        B --> C[Transpose]
+        C --> D[A^H]
+  `}
+/>
+
 ## Properties of Adjoint Matrix
 
 The adjoint **reverses the order of a product** and conjugates scalars. For sums and products below, the matrix dimensions must be compatible.
@@ -55,6 +68,19 @@ For the one-entry matrix <InlineMath math="A=(1+i)" />, compare the conjugate of
 <BlockMath math="\overline i A^H=(-i)(1-i)=-1-i" />
 <BlockMath math="iA^H=i(1-i)=1+i\ne(iA)^H" />
 </MathContainer>
+
+Keep the three rules in this diagram at hand when you calculate with adjoints.
+
+<Mermaid
+  title="Rules for the adjoint"
+  description="The three rules you use most often."
+  chart={`
+    flowchart TD
+        A[Adjoint] --> B["(AB)^H = B^H A^H"]
+        A --> C["(A^H)^H = A"]
+        A --> D["⟨Av, w⟩ = ⟨v, A^H w⟩"]
+  `}
+/>
 
 ## Euclidean Norm on Complex Spaces
 
@@ -90,3 +116,61 @@ This is why using <InlineMath math="v^Tv" /> would be wrong in a complex space: 
 **Triangle inequality**: <InlineMath math="\|v + w\|_2 \leq \|v\|_2 + \|w\|_2" />
 
 These properties show that <InlineMath math="\|\cdot\|_2" /> satisfies the definition of a norm. Using the adjoint in the Hermitian inner product keeps complex lengths, orthogonality, and projections consistent with their real counterparts.
+
+Draw each entry of <InlineMath math="v" /> as a point in the complex plane, as in this scene. The conjugate <InlineMath math="\overline{v_i}" /> is that point mirrored across the real axis, and <InlineMath math="\overline{v_i}v_i=|v_i|^2" /> is the squared radius of its circle. So <InlineMath math="v^Hv=2+5=7" /> adds two squared radii, not the complex entries. Without the conjugate, <InlineMath math="v^Tv=(1+i)^2+(2-i)^2=3-2i" /> is not even a real number.
+
+<LineEquation
+  title={<>The length of the complex vector <InlineMath math="v=(1+i,2-i)^T" /></>}
+  description={<>Each entry is drawn in the complex plane. The violet circle has radius <InlineMath math="|v_1|=\sqrt2" />, the teal circle radius <InlineMath math="|v_2|=\sqrt5" />, and the small points are the conjugates.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0, 7]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.SQRT2 * Math.cos(angle), y: Math.SQRT2 * Math.sin(angle), z: 0 };
+      }),
+      color: "#8242e5",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.sqrt(5) * Math.cos(angle), y: Math.sqrt(5) * Math.sin(angle), z: 0 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="v_1=1+i" />, at: 1, offset: [0.5, 0.2, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: -1, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="v_2=2-i" />, at: 1, offset: [0.55, -0.15, 0] }],
+    },
+    {
+      points: [{ x: 1, y: -1, z: 0 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="\overline{v_1}" />, at: 0, offset: [-0.3, -0.2, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 1, z: 0 }],
+      color: "#0d9488",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="\overline{v_2}" />, at: 0, offset: [0.35, 0.15, 0] }],
+    },
+  ]}
+/>

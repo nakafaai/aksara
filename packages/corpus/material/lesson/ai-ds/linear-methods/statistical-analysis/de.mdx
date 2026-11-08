@@ -19,6 +19,20 @@ In diesem Modell ist <InlineMath math="X\in\mathbb{R}^{m\times p}" /> eine feste
 
 Die zweite Annahme ist, dass <InlineMath math="X" /> vollen Spaltenrang besitzt. Unter diesen beiden Annahmen ist der Beobachtungsvektor <InlineMath math="y" /> gemäß <InlineMath math="\mathcal N(X\beta,\sigma^2I_m)" /> verteilt. Sein Erwartungswert ist <InlineMath math="X\beta" />, und seine Kovarianzmatrix ist <InlineMath math="\sigma^2I_m" />.
 
+Dieser Ablauf zeigt, wie das statistische Modell zum Konfidenzintervall führt.
+
+<Mermaid
+  title="Vom Modell zum Konfidenzintervall"
+  description="Jeder Schritt nutzt das Ergebnis des vorherigen."
+  chart={`
+    flowchart LR
+        A[y = Xβ + ε] --> B[β schätzen]
+        B --> C[Kovarianz des Schätzers]
+        C --> D[Standardfehler]
+        D --> E[Konfidenzintervalle]
+  `}
+/>
+
 ## Information nach Fisher und Kovarianz des Schätzers
 
 Bis auf eine von <InlineMath math="\beta" /> unabhängige Konstante lautet die Log-Likelihood
@@ -99,6 +113,20 @@ Für unabhängige Fehler mit Varianzen <InlineMath math="\sigma_i^2" /> gilt <In
 
 Jede Beobachtung <InlineMath math="i" /> erhält das **Gewicht** <InlineMath math="1/\sigma_i^2" />. Das Whitening mit <InlineMath math="W=\Omega^{-1/2}" /> verwandelt die Aufgabe in gewöhnliche kleinste Quadrate für <InlineMath math="\widetilde X=WX" /> und <InlineMath math="\widetilde y=Wy" />.
 
+Dieses Diagramm zeigt, warum sich die gewichtete Version trotzdem mit gewöhnlichen kleinsten Quadraten lösen lässt.
+
+<Mermaid
+  title="Gewichtete kleinste Quadrate als Transformation"
+  description="Die Gewichte machen das Problem wieder zu gewöhnlichen kleinsten Quadraten."
+  chart={`
+    flowchart LR
+        A[Cov ε = σ^2 Ω] --> B[Daten mit Ω^-1/2 multiplizieren]
+        B --> C[Neue Fehler mit Kovarianz σ^2 I]
+        C --> D[Gewöhnliche kleinste Quadrate]
+        D --> E[β_GLS]
+  `}
+/>
+
 ## Ein gewichtetes lineares Modell anpassen
 
 Betrachten wir drei Beobachtungen für einen Achsenabschnitt und eine Steigung:
@@ -133,3 +161,37 @@ Das Lösen der gewichteten Normalgleichungen ergibt
 </MathContainer>
 
 Die Gewichtung hat nur dann eine probabilistische Bedeutung, wenn das Varianzmodell begründet ist. Falsche Gewichte können irreführende Standardfehler erzeugen. Exakte gaußsche Konfidenzintervalle setzen außerdem ein angemessenes lineares Mittelwertmodell, eine passende Kovarianz und normalverteilte Fehler voraus.
+
+Vergleich die beiden Geraden für diese Beispieldaten. Der graue Balken an jedem Punkt zeigt seine Standardabweichung <InlineMath math="\sigma_i" />, also <InlineMath math="1" />, <InlineMath math="1" /> und <InlineMath math="2" />. Die gewöhnliche Methode der kleinsten Quadrate behandelt alle drei Punkte gleich und liefert die gelbe Gerade <InlineMath math="y=\tfrac23+2t" />. Die gewichtete Version gibt dem dritten Punkt das Gewicht <InlineMath math="1/4" />, weil seine Varianz viermal größer ist, deshalb ist die magentafarbene Gerade <InlineMath math="y=\tfrac79+\tfrac53t" /> flacher und folgt den ersten beiden Punkten enger.
+
+<LineEquation
+  title={<>Gewöhnliche und gewichtete Ausgleichsgerade</>}
+  description={<>Violette Punkte sind die Daten <InlineMath math="(0,1),(1,2),(2,5)" /> mit grauen Balken der Länge <InlineMath math="\pm\sigma_i" />. Die gelbe Gerade ist die gewöhnliche, die magentafarbene die gewichtete Anpassung.</>}
+  showZAxis={false}
+  cameraPosition={[1, 3.2, 9.5]}
+  cameraTarget={[1, 3.2, 0]}
+  data={[
+    ...[
+      { t: 0, y: 1, sigma: 1 },
+      { t: 1, y: 2, sigma: 1 },
+      { t: 2, y: 5, sigma: 2 },
+    ].flatMap(({ t, y, sigma }) => [
+      { points: [{ x: t, y: y - sigma, z: 0 }, { x: t, y: y + sigma, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
+      { points: [{ x: t, y, z: 0 }], color: "#8242e5", showPoints: true },
+    ]),
+    {
+      points: [{ x: -0.5, y: 2 / 3 - 1, z: 0 }, { x: 2.5, y: 2 / 3 + 5, z: 0 }],
+      color: "#b98d00",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=\tfrac23+2t" />, at: 1, offset: [-1.1, 0.3, 0] }],
+    },
+    {
+      points: [{ x: -0.5, y: 7 / 9 - 5 / 6, z: 0 }, { x: 2.5, y: 7 / 9 + 25 / 6, z: 0 }],
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=\tfrac79+\tfrac53t" />, at: 1, offset: [0.9, -0.3, 0] }],
+    },
+  ]}
+/>
