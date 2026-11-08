@@ -1,21 +1,16 @@
-The rule applies to the **weekly increases**, rather than directly to the sales counts. Calculate the differences between consecutive weeks before extending the pattern.
+An implication <InlineMath math="p \Rightarrow q" /> is false only when <InlineMath math="p" /> is true and <InlineMath math="q" /> is false. So **the negation of an implication is "p and not q"**:
 
-# Calculate the next increases
+<BlockMath math="\neg(p \Rightarrow q) \equiv p \wedge \neg q" />
 
-| Style | Known increases | Next increase |
-| --- | --- | --- |
-| Square | <InlineMath math="15-12=3" />, <InlineMath math="21-15=6" />, <InlineMath math="30-21=9" /> | Rises by three, so <InlineMath math="9+3=12" /> |
-| Bergo | <InlineMath math="16-14=2" />, <InlineMath math="18-16=2" />, <InlineMath math="20-18=2" /> | Remains <InlineMath math="2" /> |
-| Pashmina | <InlineMath math="14-9=5" />, <InlineMath math="20-14=6" />, <InlineMath math="27-20=7" /> | Rises by one, so <InlineMath math="7+1=8" /> |
+Here <InlineMath math="p" /> is "today is a holiday" and <InlineMath math="q" /> is "all shops in the market are closed". The negation of <InlineMath math="q" /> is not "all shops are open" but **"some shop is not closed"**, because one shop staying open is enough to refute "all shops are closed".
 
-The three sequences of increases are **arithmetic sequences** with common differences of three, zero, and one. A zero common difference for bergo means its sales increase stays constant.
+The result: today is a holiday and some shop in the market is not closed.
 
-# Add to the counts for week four
+The other options are wrong:
 
-Add each calculated increase to the latest count, rather than the initial count:
+- "Today is not a holiday and all shops are open" wrongly negates both <InlineMath math="p" /> and <InlineMath math="q" />.
+- "If today is not a holiday, some shop is open" is still an implication, not a negation.
+- "Today is a holiday and all shops are open" is too strong. The negation needs only one shop that is not closed.
+- "Today is not a holiday or all shops are closed" is another form of the original statement, <InlineMath math="\neg p \vee q" />, so it is equivalent, not the negation.
 
-<BlockMath math="\begin{aligned}S_5&amp;=30+12=42\\B_5&amp;=20+2=22\\P_5&amp;=27+8=35\end{aligned}" />
-
-Here <InlineMath math="S" />, <InlineMath math="B" />, and <InlineMath math="P" /> denote square, bergo, and pashmina headscarves. The predicted counts satisfy <InlineMath math="42>35>22" />. Therefore, **square headscarves sell the most**, while bergo sells the least.
-
-The correct choice predicts <InlineMath math="42" /> square headscarves. Bergo is not predicted to reach <InlineMath math="24" />, pashmina is not the best seller, and pashmina still exceeds bergo.
+So the negation is "Today is a holiday and some shop in the market is not closed".

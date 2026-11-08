@@ -1,31 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "categorical-syllogism",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Ardian pasti mengikuti kedua ujian.",
+          column: 1,
+          label: "Toni tidak bekerja dari rumah.",
         },
         {
-          correct: true,
+          column: 1,
+          label: "Toni tidak mengikuti rapat daring pukul $$09.00$$.",
+        },
+        {
+          column: 2,
           label:
-            "Ardian pasti mengikuti Ujian Sekolah, tetapi keikutsertaannya dalam tes masuk bisa benar atau salah.",
+            "Semua pegawai bagian pemasaran melakukan kunjungan klien pada pagi hari.",
         },
         {
-          correct: false,
-          label: "Ardian pasti tidak mengikuti kedua ujian.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Ardian pasti mengikuti tes masuk, tetapi keikutsertaannya dalam Ujian Sekolah belum diketahui.",
+            "Sebagian pegawai bagian pemasaran tidak melakukan kunjungan klien pada pagi hari.",
         },
         {
-          correct: false,
-          label: "Simpulan tidak berkaitan dengan informasi tentang Ardian.",
+          column: 2,
+          label:
+            "Pegawai yang tidak bekerja dari rumah tidak mengikuti rapat daring pukul $$09.00$$.",
         },
       ],
     },

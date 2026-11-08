@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "average-speed",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$750$$",
+          label: "$$8{,}4$$ km/jam",
         },
         {
           correct: true,
-          label: "$$800$$",
+          label: "$$16{,}8$$ km/jam",
         },
         {
           correct: false,
-          label: "$$780$$",
+          label: "$$17{,}5$$ km/jam",
         },
         {
           correct: false,
-          label: "$$820$$",
+          label: "$$21$$ km/jam",
         },
         {
           correct: false,
-          label: "$$850$$",
+          label: "$$35$$ km/jam",
         },
       ],
     },

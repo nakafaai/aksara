@@ -1,29 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "inductive-reasoning",
+    topic: "inference",
+  },
+  stimulus: "pagar",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$-1$$",
+          column: 1,
+          label:
+            "Persentase selisih kadar PM2,5 antara trotoar berpagar tanaman dan trotoar tanpa pemisah lebih besar pada hari berangin lemah daripada pada hari berangin kencang.",
         },
         {
-          correct: false,
-          label: "$$0$$",
+          column: 1,
+          label:
+            "Pada hari berangin kencang, kadar PM2,5 di trotoar berpagar tanaman masih lebih rendah daripada di trotoar tanpa pemisah.",
         },
         {
-          correct: true,
-          label: "$$-3$$",
+          column: 2,
+          label:
+            "Pagar tanaman membuat udara di lajur kendaraan lebih bersih pada semua ruas berpagar.",
         },
         {
-          correct: false,
-          label: "$$1$$",
-        },
-        {
-          correct: false,
-          label: "$$3$$",
+          column: 2,
+          label:
+            "Penelitian menunjukkan bahwa pagar tanaman yang lebih tinggi dari $$1{,}5$$ meter memberikan hasil yang lebih baik.",
         },
       ],
     },

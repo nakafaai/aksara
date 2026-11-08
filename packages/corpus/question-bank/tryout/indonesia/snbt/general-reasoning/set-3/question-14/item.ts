@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "grouping",
+  },
+  stimulus: "rak",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "P berada di rak tengah.",
+        },
+        {
+          correct: false,
+          label: "Q berada di rak bawah.",
+        },
+        {
           correct: true,
-          label:
-            "Penjualan bawang putih pada bulan Januari $$2021$$ akan melebihi $$100$$ ton.",
+          label: "K tidak berada di rak yang sama dengan M.",
         },
         {
           correct: false,
-          label:
-            "Setiap jenis rempah mencapai penjualan tertinggi pada November $$2020$$.",
+          label: "N berada di rak bawah.",
         },
         {
           correct: false,
-          label:
-            "Penjualan bawang merah pada bulan Januari $$2021$$ diprediksi sebesar $$76$$ ton.",
-        },
-        {
-          correct: false,
-          label:
-            "Penjualan bawang merah lebih rendah daripada penjualan cabai merah pada setiap bulan.",
-        },
-        {
-          correct: false,
-          label:
-            "Bawang merah menjadi satu-satunya rempah dengan penjualan terendah pada setiap bulan.",
+          label: "M berada di rak atas.",
         },
       ],
     },

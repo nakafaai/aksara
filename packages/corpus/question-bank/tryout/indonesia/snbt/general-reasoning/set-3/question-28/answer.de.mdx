@@ -1,32 +1,20 @@
-# Genau einen Bericht an ein Ende stellen
+Ordne jede Aussage als Benar (richtig) oder Salah (falsch) ein. Der Weg liegt außerhalb des Gartens, also **bildet sein äußerer Rand ein größeres Rechteck**. Jede Seite wächst um die doppelte Wegbreite, einmal an jedem Ende.
 
-Wähle einen Bericht aus <InlineMath math="A" /> und <InlineMath math="B" />, dann das linke oder rechte Ende. Dafür gibt es <InlineMath math="2\times2=4" /> Möglichkeiten. Zu jeder Wahl lassen sich die übrigen sieben Berichte auf <InlineMath math="7!" /> Arten anordnen.
+<BlockMath math="\begin{aligned}
+\text{Außenmaß} &= (26+2\times1{,}5)\times(18+2\times1{,}5)=29\times21 \\
+\text{Wegfläche} &= 29\times21-26\times18=609-468=141\text{ m}^2
+\end{aligned}" />
 
-Die Bedingung lautet **genau einer**. Deshalb schließen wir die <InlineMath math="6!" /> Anordnungen aus, bei denen der andere Bericht des Paares am gegenüberliegenden Ende steht. Die übrigen sechs Berichte belegen dabei frei die sechs mittleren Plätze. Zunächst erhalten wir
+**Aussage 1** ist richtig, wie oben berechnet.
 
-<BlockMath math="4(7!-6!)=4(5040-720)=17\,280." />
+**Aussage 2** ist richtig. Der äußere Umfang beträgt <InlineMath math="2(29+21)=100\text{ m}" />.
 
-# Benachbarte Paare ausschließen
+**Aussage 3** ist falsch. Mit einer Breite von <InlineMath math="3\text{ m}" />:
 
-Um die verbotenen Anordnungen zu zählen, fassen wir <InlineMath math="E" /> und <InlineMath math="F" /> zu **einem Block** zusammen. Innerhalb des Blocks ist sowohl <InlineMath math="EF" /> als auch <InlineMath math="FE" /> möglich. Daher entsteht der Faktor <InlineMath math="2" />.
+<BlockMath math="32\times24-468=768-468=300\text{ m}^2" />
 
-| Bereits festgelegte Plätze | Noch anzuordnende Objekte | Anzahl der Anordnungen |
-| --- | --- | --- |
-| Ein Bericht des Paares an einem Ende | Der Block und fünf Berichte | <InlineMath math="2\times6!=1440" /> |
-| Beide Berichte an gegenüberliegenden Enden | Der Block und vier Berichte | <InlineMath math="2\times5!=240" /> |
+Das Doppelte der ursprünglichen Fläche sind <InlineMath math="282\text{ m}^2" />, nicht <InlineMath math="300\text{ m}^2" />. Die Wegfläche ist nicht proportional zur Breite, weil die vier Eckstücke schneller wachsen.
 
-Die zweite Zeile wurde im vorherigen Schritt bereits ausgeschlossen. Wir dürfen diese Anordnungen nicht zweimal abziehen. Für die vier Möglichkeiten, Bericht und Ende zu wählen, sind noch so viele verbotene Anordnungen enthalten:
+**Aussage 4** ist falsch. <InlineMath math="\frac{141}{468}\approx30{,}1\%" /> ist weniger als <InlineMath math="35\%" />.
 
-<BlockMath math="4(1440-240)=4800." />
-
-Es bleiben <InlineMath math="17\,280-4800=12\,480" /> Anordnungen, die beide bisherigen Bedingungen erfüllen.
-
-# Reihenfolge berücksichtigen und Wahrscheinlichkeit berechnen
-
-Wenn wir <InlineMath math="C" /> und <InlineMath math="D" /> vertauschen, bleiben die bisherigen Bedingungen erfüllt. Jede Anordnung erhält genau einen Partner mit umgekehrter Reihenfolge. Deshalb steht bei **der Hälfte der Anordnungen** <InlineMath math="C" /> vor <InlineMath math="D" />.
-
-<BlockMath math="N=\frac{12\,480}{2}=6240." />
-
-Alle <InlineMath math="8!" /> Anordnungen sind gleich wahrscheinlich. Damit gilt
-
-<BlockMath math="P=\frac{6240}{8!}=\frac{6240}{40\,320}=\frac{13}{84}." />
+Die Aussagen 1 und 2 sind also richtig, die Aussagen 3 und 4 falsch.
