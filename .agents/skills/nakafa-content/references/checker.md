@@ -85,11 +85,11 @@ authorship detector. Admit a new rule only when all of these conditions hold:
 - A lesson is teacher-led pedagogy. It explains a concept to a learner, uses
   concrete examples and checks, and may add a representation when that object
   makes the reasoning easier to inspect.
-- An article is professional scientific-journal writing for professional
-  readers. Keep the author's argument, claim-matched sources, citations, data,
-  charts, tables, and diagrams. Do not turn it into a lesson, remove useful
-  evidence during humanization, or replace sourced analysis with generic
-  teaching copy.
+- An article is evidence-led analysis in plain, warm prose with Nakafa's
+  informal address. Keep the author's argument, claim-matched sources,
+  citations, data, charts, tables, and diagrams. Do not turn it into a lesson,
+  remove useful evidence during humanization, or replace sourced analysis with
+  generic teaching copy.
 - An assessed question is a real-exam prompt. Preserve its delivery language,
   source meaning, stimulus, response format, and difficulty. Do not teach the
   answer inside the prompt or rewrite assessed wording to satisfy voice rules.
@@ -140,10 +140,10 @@ scores never become source gates.
 | `r-031 significance inflation` | Review candidates `inflated-utility-claim` and `significance-inflation` | The existing rule covers role inflation; the new rule covers only testimonial, shift, and legacy claims. Measured operations and mechanisms stay valid. |
 | `r-032 vague attribution` | Manual evidence review | Read the complete claim with its in-text citations and reference list. A phrase such as `studies show` alone cannot establish whether attribution is missing. |
 | `r-033 challenges-and-prospects arc` | Review candidate `cliche-challenges-outcome` | A specific challenge and specific outcome remain valid. |
-| `r-034 absence of voice` | Excluded from deterministic gate | Professional scientific articles may correctly use impersonal analysis. |
+| `r-034 absence of voice` | Manual review | Articles speak warmly to the reader, but an impersonal sentence that reports a method or a measured result can be exactly right. |
 | `r-035 generic upbeat conclusion` | Review candidate `generic-upbeat-conclusion` | A dated release, result, or next action remains valid. |
 | `r-036 synonym cycling` | Manual review | Different terms may denote different statistical units or mathematical objects. |
-| `r-037 uniform register` | Excluded from deterministic gate | Professional articles should remain consistent and evidence-led. |
+| `r-037 uniform register` | Excluded from deterministic gate | Articles keep one warm, evidence-led register from start to end. |
 | `r-038 both-sides wrap-up` | Review candidate `cliche-balanced-conclusion` | A real conditional result that names what it depends on remains valid. |
 
 ## Deterministic gate scope
@@ -153,11 +153,11 @@ question bank. Its document role comes from the contract-owned question body
 kind, so `question.en.mdx` and `answer.en.mdx` never become locale siblings.
 
 - Lessons and worked answers receive teaching emphasis checks. Articles receive
-  scientific-register, evidence, source, math, and phrase-emphasis checks.
+  address, evidence, source, math, and phrase-emphasis checks.
   Article emphasis is optional and contextual, so the lesson opening and
   section-body requirements do not apply.
-  Scientific section names, numbered headings, formal address, and reference
-  lists are valid. Lesson heading style, body-length, abbreviation, and repeated
+  Scientific section names, numbered headings, and reference lists are valid;
+  formal address is not. Lesson heading style, body-length, abbreviation, and repeated
   opener rules do not apply. Source support is reviewed against the complete
   claim and its cited evidence, never inferred from an attribution phrase alone.
 - Assessed questions receive forbidden-control-character, link, component,
@@ -317,8 +317,18 @@ rule's count, its fix, and every occurrence on each run and fails on none yet.
 The change that clears a rule's last occurrence adds it to the blocking set,
 with no allowlist.
 
-The address rules are authored-voice rules, not raw pronoun bans. Indonesian
-`Anda` and `saya` are blocked only in learner-visible authored prose. German
+The address rules are authored-voice rules, not raw pronoun bans. They run on
+lessons, worked answers, and articles, because Nakafa never writes formally on
+any of them; the owner's 8 November 2026 requirement is the recorded report.
+Indonesian `Anda`, `saya`, and `kalian` are blocked only in learner-visible
+authored prose, and `indonesian-formal-request` blocks `Silakan`, `Silahkan`,
+`Mohon`, and `Dimohon`, which the same requirement names. `Permohonan` and a
+quoted sign stay valid, and a stiff `tersebut` stays a manual read item because
+it also names an exact earlier noun. English has no formal pronoun, so the gate
+holds no English address rule: a corpus search of every English lesson,
+article, and worked answer found no recurring stiff address shape such as `one
+must`, `the reader should`, `kindly`, or `please note`, and the
+[final review](review.md#final-language-review) owns English register. German
 formal address is blocked in direct-address syntax such as a formal imperative
 or a capitalized formal pronoun in a local frame that requires a human actor.
 This includes standalone `Sie können ...` plus a learner action, an explicit

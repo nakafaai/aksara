@@ -58,10 +58,12 @@ export const LESSON_VOICE_RULES = [
 ] satisfies readonly LessonVoiceRule[];
 
 /**
- * Uses a professional article register. Lesson choreography and teacher-only
- * narrative heuristics stay out because an article is not a classroom script.
+ * Speaks to the reader with the same informal address as a lesson. Lesson
+ * choreography and teacher-only narrative heuristics stay out because an
+ * article is an evidence-led argument, not a classroom script.
  */
 export const ARTICLE_VOICE_RULES = [
+  ...ADDRESS_VOICE_RULES,
   ...AI_ARTIFACT_RULES,
   ...AI_STYLE_RULES,
   ...DEFECT_VOICE_RULES,
