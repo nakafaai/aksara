@@ -19,7 +19,7 @@ pass for an instance of one of them. Aksara's Schema classes, error classes,
 tagged classes, and Opaque classes take the brand, `ProvenanceVerificationError`
 in `scripts/provenance/schema.ts` included. That file is shared with nakafa.com
 and stays byte-identical to nakafa.com's copy, so its brand landed in nakafa.com
-first (nakafa.com#NAKAFA_PR) and this copy followed it.
+first (nakafa.com#2290) and this copy followed it.
 
 `packages/typescript-config/base.json` sets `schemaClassMissingBrand` to `error`,
 as nakafa.com does since that change. nakafa.com's own rule record,
