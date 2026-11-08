@@ -27,7 +27,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "menegur panitia dan menerima bendera yang sudah digulung",
+          label: "memprotes panitia atau menerima hasil lomba begitu saja",
         },
         {
           correct: false,

@@ -32,7 +32,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Warga di sekitar taman mungkin tidak memasak setiap hari.",
+          label: "Stasiun B dipasang sekitar dua kilometer dari jalan raya.",
         },
       ],
     },

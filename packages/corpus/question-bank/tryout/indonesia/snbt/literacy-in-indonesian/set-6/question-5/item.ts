@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Kerugian likuefaksi dapat dikurangi, terutama dengan memilih lahan yang tepat.",
+            "Kerugian likuefaksi dapat dikurangi, antara lain dengan memilih lahan yang tepat.",
         },
         {
           correct: false,

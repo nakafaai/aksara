@@ -19,12 +19,12 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "ia mendukung Ilham ikut lomba lagi dan telah menyiapkan layar yang kuat",
+            "ia mendukung Ilham ikut lomba lagi dan sedang menguatkan layarnya",
         },
         {
           correct: false,
           label:
-            "ia meramalkan cuaca tahun depan berdasarkan pengalamannya melaut",
+            "ia hanya meramalkan cuaca tahun depan dan tidak memikirkan lomba",
         },
         {
           correct: false,

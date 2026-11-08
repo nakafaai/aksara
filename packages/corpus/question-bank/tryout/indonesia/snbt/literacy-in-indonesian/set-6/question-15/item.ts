@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Pada pukul 14.00, angka di Stasiun B lebih rendah daripada angka pedoman WHO.",
+            "Angka Stasiun B pada pukul 14.00 lebih kecil daripada angka 15 µg/m³ dalam pedoman WHO.",
         },
       ],
     },
