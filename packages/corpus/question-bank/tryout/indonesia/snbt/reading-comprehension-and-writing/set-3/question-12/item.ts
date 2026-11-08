@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "word-choice",
+  },
+  stimulus: "suspension-bridge",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "pada Senin, tim menguji kartu urutan bahan di lokakarya kompos.",
-        },
-        {
-          correct: false,
-          label:
-            "Pada senin, tim menguji kartu urutan bahan di lokakarya kompos.",
-        },
-        {
-          correct: false,
-          label:
-            "Pada Senin, Tim menguji kartu urutan bahan di lokakarya kompos.",
-        },
-        {
-          correct: false,
-          label:
-            "Pada Senin tim menguji kartu urutan bahan di lokakarya kompos",
+          label: "_sedangkan_ diganti _sehingga_",
         },
         {
           correct: true,
-          label:
-            "Pada Senin, tim menguji kartu urutan bahan di lokakarya kompos.",
+          label: "_dari_ diganti _oleh_",
+        },
+        {
+          correct: false,
+          label: "_tenaga_ diganti _kekuatan_",
+        },
+        {
+          correct: false,
+          label: "_disediakan_ diganti _menyediakan_",
+        },
+        {
+          correct: false,
+          label: "_menyumbang_ diganti _disumbang_",
         },
       ],
     },

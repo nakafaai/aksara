@@ -1,31 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "explicit-information",
+  },
+  stimulus: "suspension-bridge",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "analisa efektivitas kartu urutan bahan di lokakarya kompos",
-        },
-        {
           correct: true,
-          label: "analisis efektivitas kartu urutan bahan di lokakarya kompos",
+          label: "dapat membawa hasil kebun ke pasar tanpa memutar sejauh sembilan kilometer",
         },
         {
           correct: false,
-          label: "analisis efektifitas kartu urutan bahan di lokakarya kompos",
+          label: "dapat menjual hasil kebun kepada dua ratus orang yang melintas setiap hari",
         },
         {
           correct: false,
-          label: "analisa efektifitas kartu urutan bahan di lokakarya kompos",
+          label: "mendapat kabel baja dari pemerintah kabupaten",
         },
         {
           correct: false,
-          label:
-            "analisis efektivitas kartu urutan bahan dalam kontek lokakarya kompos",
+          label: "dapat menyeberang dengan rakit bambu pada musim hujan",
+        },
+        {
+          correct: false,
+          label: "tidak perlu lagi membayar ongkos menyeberang dengan rakit",
         },
       ],
     },

@@ -1,35 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "night-watch",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Tim akan mengulang kembali uji kartu bergambar untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+          column: 2,
+          label: "Laporan pencurian terus turun setiap bulan dari Januari sampai Mei.",
         },
         {
-          correct: true,
-          label:
-            "Tim akan mengulang uji kartu bergambar untuk memperoleh bukti yang lebih kuat.",
+          column: 1,
+          label: "Banyak warga yang ikut ronda paling tinggi pada bulan Mei.",
         },
         {
-          correct: false,
-          label:
-            "Untuk memperoleh bukti lebih kuat, uji kartu bergambar akan diulang kembali oleh tim.",
+          column: 1,
+          label: "Kenaikan banyak warga yang ikut ronda paling besar terjadi dari Februari ke Maret.",
         },
         {
-          correct: false,
-          label:
-            "Tim akan melakukan pengulangan kembali atas uji kartu bergambar demi bukti yang lebih kuat.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan mengulang uji kartu bergambar yang sebelumnya sudah diuji untuk memperoleh bukti lebih kuat.",
+          column: 2,
+          label: "Pada bulan Januari, laporan pencurian lebih banyak daripada warga yang ikut ronda.",
         },
       ],
     },

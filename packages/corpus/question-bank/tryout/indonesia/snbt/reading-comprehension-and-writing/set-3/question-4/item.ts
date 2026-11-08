@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "punctuation",
+  },
+  stimulus: "salt-house",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "kalimat (1)",
+        },
+        {
+          correct: false,
+          label: "kalimat (4)",
+        },
+        {
           correct: true,
-          label:
-            "Simbol yang lebih kontras dipilih untuk mengatasi kesulitan peserta membedakan penanda.",
+          label: "kalimat (5)",
         },
         {
           correct: false,
-          label:
-            "Simbol yang lebih kontras menghapus kebutuhan untuk mengukur keberhasilan peserta.",
+          label: "kalimat (6)",
         },
         {
           correct: false,
-          label:
-            "Simbol yang lebih kontras memungkinkan tim mengubah banyak kondisi sekaligus.",
-        },
-        {
-          correct: false,
-          label:
-            "Simbol yang lebih kontras menjelaskan mengapa semua nilai pembanding sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Simbol yang lebih kontras dipilih hanya karena hasil akhirnya sudah dipastikan.",
+          label: "kalimat (8)",
         },
       ],
     },

@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "conjunction",
+  },
+  stimulus: "stingless-bees",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Meskipun demikian tim membatasi simpulan pada uji singkat tersebut.",
-        },
-        {
           correct: true,
-          label:
-            "Meskipun demikian, tim membatasi simpulan pada uji singkat tersebut.",
+          label: "karena",
         },
         {
           correct: false,
-          label:
-            "Meskipun demikian: tim membatasi simpulan pada uji singkat tersebut.",
+          label: "sehingga",
         },
         {
           correct: false,
-          label:
-            "Meskipun demikian; tim membatasi simpulan pada uji singkat tersebut.",
+          label: "agar",
         },
         {
           correct: false,
-          label:
-            "Meskipun demikian, tim membatasi simpulan pada uji singkat tersebut?",
+          label: "meskipun",
+        },
+        {
+          correct: false,
+          label: "bahkan",
         },
       ],
     },

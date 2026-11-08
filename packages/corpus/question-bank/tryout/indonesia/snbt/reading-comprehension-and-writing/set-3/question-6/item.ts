@@ -1,32 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "author-purpose",
+  },
+  stimulus: "stingless-bees",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Simbol baru terbukti menyebabkan rata-rata hasil uji yang lebih tinggi.",
-        },
-        {
-          correct: false,
-          label: "Setiap peserta mengalami peningkatan yang sama.",
-        },
-        {
-          correct: false,
-          label: "Uji singkat tersebut membuktikan hasil jangka panjang.",
-        },
-        {
-          correct: false,
-          label: "Rata-rata awal dan rata-rata pembanding sama.",
-        },
-        {
           correct: true,
-          label:
-            "Rata-rata hasil uji lebih tinggi daripada rata-rata awal dan pembanding.",
+          label: "memaparkan cara warga Dusun Sumberwangi beternak lebah klanceng beserta manfaatnya",
+        },
+        {
+          correct: false,
+          label: "membujuk pembaca agar membeli madu klanceng dari Dusun Sumberwangi",
+        },
+        {
+          correct: false,
+          label: "membandingkan rasa madu klanceng dengan rasa madu lebah biasa",
+        },
+        {
+          correct: false,
+          label: "mengkritik petani kopi yang tidak memelihara lebah di kebunnya",
+        },
+        {
+          correct: false,
+          label: "menjelaskan cara membuat kotak kayu untuk sarang lebah",
         },
       ],
     },

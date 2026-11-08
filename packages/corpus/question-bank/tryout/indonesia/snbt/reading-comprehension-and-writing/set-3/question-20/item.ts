@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "conclusion",
+  },
+  stimulus: "night-watch",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Karena 31 lebih tinggi daripada 23 dan 25, tim memastikan kartu efektif lalu menerapkannya secara permanen.",
+          label: "Ronda malam adalah satu-satunya penyebab turunnya laporan pencurian di RW 05.",
         },
         {
           correct: false,
-          label:
-            "Tim membandingkan 31, 23, dan 25 lalu merencanakan lebih banyak sesi tanpa membatasi klaim pada lokakarya tersebut.",
+          label: "Lampu jalan yang lebih terang adalah satu-satunya penyebab turunnya laporan pencurian di RW 05.",
         },
         {
           correct: false,
-          label:
-            "Tim membatasi klaim pada lokakarya tersebut dan merencanakan lebih banyak sesi tanpa melaporkan perbandingan.",
+          label: "Jadwal ronda yang dibagikan melalui grup pesan membuat laporan pencurian bertambah.",
         },
         {
           correct: true,
-          label:
-            "Tim membandingkan 31, 23, dan 25, membatasi klaim pada lokakarya tersebut, lalu merencanakan lebih banyak sesi dengan aturan ukur yang sama.",
+          label: "Laporan pencurian turun seiring bertambahnya warga yang ikut ronda, tetapi lampu jalan yang lebih terang juga mungkin ikut berpengaruh.",
         },
         {
           correct: false,
-          label:
-            "Nilai 31, 23, dan 25 tidak menunjukkan pola yang relevan sehingga tim akan mengubah aturan pengukuran.",
+          label: "Laporan pencurian di RW 05 akan habis sama sekali pada akhir tahun.",
         },
       ],
     },

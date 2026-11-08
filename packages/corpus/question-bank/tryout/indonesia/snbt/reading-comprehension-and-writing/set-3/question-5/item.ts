@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "inference",
+  },
+  stimulus: "salt-house",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Sebaliknya",
-        },
-        {
-          correct: false,
-          label: "Akibatnya",
-        },
-        {
-          correct: false,
-          label: "Meskipun demikian",
+          label: "garam mereka menjadi lebih putih karena tercuci air hujan",
         },
         {
           correct: true,
-          label: "Selain itu",
+          label: "garam yang belum dipanen larut kembali sehingga panen mereka tertunda",
         },
         {
           correct: false,
-          label: "Sebelum itu",
+          label: "air laut di petak mereka menguap lebih cepat daripada biasanya",
+        },
+        {
+          correct: false,
+          label: "biaya membangun petak tanah mereka menjadi lebih besar",
+        },
+        {
+          correct: false,
+          label: "hasil panen mereka naik hampir dua kali lipat",
         },
       ],
     },
