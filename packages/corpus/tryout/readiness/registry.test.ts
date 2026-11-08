@@ -15,6 +15,7 @@ import {
   readQuestionSets,
 } from "#corpus/question-bank/source";
 import { corpusRoot } from "#corpus/test/root";
+import { tuDarmstadtEntranceReadiness } from "#corpus/tryout/germany/entrance/readiness/darmstadt";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
 import { tkaAdvancedMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/advanced";
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
@@ -40,6 +41,7 @@ const loadReadinessRegistry = Effect.gen(function* () {
     tkaIndonesianReadiness,
     tkaEnglishReadiness,
     tkaAdvancedMathematicsReadiness,
+    tuDarmstadtEntranceReadiness,
   ]);
   return { readiness, sets, sources };
 });
