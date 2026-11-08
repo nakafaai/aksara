@@ -13,22 +13,23 @@ const item: ItemSource = {
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label: "Every street had more daily cyclists after the lanes opened.",
-        },
-        {
           column: 2,
           label:
             "The total number of cyclist injuries on the three streets fell after the lanes opened.",
         },
         {
+          column: 2,
+          label: "Cycling increased only on streets that received new lanes.",
+        },
+        {
+          column: 1,
+          label:
+            "Each of the three streets had more daily cyclists after the lanes opened.",
+        },
+        {
           column: 1,
           label:
             "Station Avenue had the highest injury rate per cyclist both before and after the lanes opened.",
-        },
-        {
-          column: 2,
-          label: "Cycling increased only on streets that received new lanes.",
         },
       ],
     },

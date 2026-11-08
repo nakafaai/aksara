@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Memberikan antibiotik dalam takaran rendah kepada semua hewan ternak.",
+            "Memberikan antibiotik dalam takaran rendah kepada semua hewan ternak agar tumbuh cepat.",
         },
         {
           correct: false,

@@ -22,13 +22,13 @@ const item: ItemSource = {
           label: "An adult giant tube worm has no mouth and no gut.",
         },
         {
-          column: 2,
-          label: "Once a vent forms, it keeps flowing for many centuries.",
+          column: 1,
+          label: "A single vent can stop flowing after only a few years.",
         },
         {
-          column: 1,
+          column: 2,
           label:
-            "Vent bacteria rely on oxygen that was produced at the ocean's surface.",
+            "Vent bacteria make their food from sunlight that filters down from the surface.",
         },
       ],
     },

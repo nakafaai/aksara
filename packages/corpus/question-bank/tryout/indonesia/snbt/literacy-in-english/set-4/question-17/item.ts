@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "They allowed scientists to clean the corrosion from the gears.",
-        },
-        {
-          correct: false,
-          label: "They proved the device had been made by a famous scholar.",
+            "They allowed researchers to separate the fused fragments without breaking them.",
         },
         {
           correct: false,
           label:
-            "They showed that the ship sank because of the mechanism's weight.",
+            "They proved that the device had been used to set the dates of the Olympics.",
+        },
+        {
+          correct: false,
+          label:
+            "They showed that the mechanism had been built shortly before the ship sank.",
         },
         {
           correct: true,
           label:
-            "They revealed gears and text hidden inside the fused fragments.",
+            "They let researchers count hidden gear teeth and read letters long unreadable.",
         },
         {
           correct: false,
-          label: "They were used to rebuild the device in its original bronze.",
+          label:
+            "They confirmed that corrosion had caused the lump to crack apart in the museum.",
         },
       ],
     },

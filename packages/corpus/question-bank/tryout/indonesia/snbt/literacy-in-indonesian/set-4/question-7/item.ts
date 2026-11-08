@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Membandingkan jumlah bus di kota Eropa itu dengan jumlah bus di kota-kota Indonesia.",
+            "Membandingkan jumlah bus gratis di kota Eropa itu dengan jumlah bus di kota-kota Indonesia.",
         },
         {
           correct: false,

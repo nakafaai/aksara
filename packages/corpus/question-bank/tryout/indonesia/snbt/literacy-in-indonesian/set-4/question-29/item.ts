@@ -32,7 +32,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tidak peduli pada kerusakan rumah setelah hujan akhirnya reda.",
+            "Tidak peduli pada kerusakan rumahnya setelah hujan semalaman akhirnya reda.",
         },
       ],
     },

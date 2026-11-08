@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Many similar devices have been found in other ancient shipwrecks.",
+            "Other ancient shipwrecks have yielded several devices built with similar gears.",
         },
         {
           correct: false,
           label:
-            "Ancient writers described hundreds of such machines in detail.",
+            "Ancient writers may have described such machines, though no account names one.",
         },
         {
           correct: false,
           label:
-            "The mechanism's manual mentions a factory that produced copies.",
+            "The device's manual mentions a workshop that produced copies for sale.",
         },
         {
           correct: true,
           label:
-            "Bronze was valuable and often melted down, so other examples may have been lost.",
+            "Bronze was often melted down for reuse, so similar devices may simply be lost.",
         },
         {
           correct: false,
           label:
-            "Medieval clocks were based on several ancient devices that survive today.",
+            "Medieval clocks were modelled on ancient devices that still survive today.",
         },
       ],
     },

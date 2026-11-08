@@ -14,22 +14,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "A small fee alone will not reduce crowds, so it should support a system that limits numbers.",
+            "A fee alone will not cut crowds, so it should support a cap on numbers.",
         },
         {
           correct: false,
           label:
-            "Cities should ban day visitors entirely in order to protect residents.",
+            "Cities should ban day visitors entirely to protect the daily lives of residents.",
         },
         {
           correct: false,
           label:
-            "Entry fees should be raised until crowds fall to a level the city can bear.",
+            "Entry fees should keep rising until crowds fall to a level the city can bear.",
         },
         {
           correct: false,
           label:
-            "Venice's fee has already solved its problem with overtourism.",
+            "Venice's fee has already solved its overtourism problem and should be copied.",
         },
         {
           correct: false,

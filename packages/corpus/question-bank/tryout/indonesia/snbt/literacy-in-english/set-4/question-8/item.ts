@@ -17,14 +17,14 @@ const item: ItemSource = {
           label: "Booking time slots can spread visits across the day.",
         },
         {
-          column: 2,
-          label:
-            "Cities that depend on tourism should close their gates to visitors.",
-        },
-        {
           column: 1,
           label:
             "Fee revenue should be reported openly and spent where residents can see the results.",
+        },
+        {
+          column: 2,
+          label:
+            "Cities that depend on tourism should close their gates to visitors.",
         },
         {
           column: 2,

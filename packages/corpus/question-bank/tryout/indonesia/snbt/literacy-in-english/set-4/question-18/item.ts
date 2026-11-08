@@ -22,14 +22,14 @@ const item: ItemSource = {
           label: "Fewer than ten gears have survived from the mechanism.",
         },
         {
-          column: 1,
-          label:
-            "One dial followed a four-year cycle that included the Olympics.",
-        },
-        {
           column: 2,
           label:
             "Medieval astronomical clocks were built before the Antikythera mechanism.",
+        },
+        {
+          column: 1,
+          label:
+            "One dial followed a four-year cycle that included the Olympics.",
         },
       ],
     },

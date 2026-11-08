@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Teks 1 ingin menyelamatkan bahasa daerah, sedangkan Teks 2 menganggap bahasa daerah tidak perlu diselamatkan.",
+            "Teks 1 ingin menyelamatkan bahasa daerah, sedangkan Teks 2 menganggap bahasa daerah tidak perlu lagi diselamatkan di sekolah.",
         },
         {
           correct: false,

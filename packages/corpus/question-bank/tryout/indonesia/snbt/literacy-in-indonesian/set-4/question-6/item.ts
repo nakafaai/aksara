@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Dana sebaiknya untuk layanan yang andal, dengan potongan tiket bagi yang membutuhkan.",
+            "Dana sebaiknya dipakai untuk layanan andal, dengan potongan tiket bagi yang membutuhkan.",
         },
         {
           correct: false,

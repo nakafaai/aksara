@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Perjanjian Breda adalah peristiwa terpenting dalam sejarah Kepulauan Banda.",
+            "Perjanjian Breda adalah peristiwa terpenting dalam seluruh sejarah Kepulauan Banda.",
         },
         {
           correct: false,

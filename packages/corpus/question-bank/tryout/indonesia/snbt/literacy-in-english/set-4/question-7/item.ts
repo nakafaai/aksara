@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "A fee low enough to accept deters few, while a higher one excludes poorer people.",
+            "A fee most visitors accept deters few, while a higher one excludes poorer people.",
         },
         {
           correct: false,

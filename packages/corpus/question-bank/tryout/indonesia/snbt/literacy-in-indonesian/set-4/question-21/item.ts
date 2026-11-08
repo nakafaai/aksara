@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sebagian besar murid di desa-desa provinsi itu berbahasa daerah yang sama di rumah.",
+            "Sebagian besar murid di desa-desa provinsi itu berbahasa daerah yang sama di rumah masing-masing.",
         },
         {
           correct: false,

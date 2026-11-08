@@ -13,14 +13,14 @@ const item: ItemSource = {
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label:
-            "Teks 1 menyebut kebiasaan orang tua sebagai penyebab berkurangnya penutur muda.",
-        },
-        {
           column: 2,
           label:
             "Teks 2 menolak semua bentuk pelajaran bahasa daerah di sekolah.",
+        },
+        {
+          column: 1,
+          label:
+            "Teks 1 menyebut kebiasaan orang tua sebagai penyebab berkurangnya penutur muda.",
         },
         {
           column: 1,

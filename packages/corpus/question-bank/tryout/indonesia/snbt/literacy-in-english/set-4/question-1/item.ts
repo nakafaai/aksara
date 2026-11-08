@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Hydrothermal vents were discovered by accident while scientists were searching for shipwrecks.",
+            "The vents were discovered by accident while scientists were searching for shipwrecks.",
         },
         {
           correct: false,
@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Hydrogen sulphide is harmless to animals that live near hydrothermal vents.",
+            "Hydrogen sulphide is harmless to animals that live near the vents.",
         },
         {
           correct: false,

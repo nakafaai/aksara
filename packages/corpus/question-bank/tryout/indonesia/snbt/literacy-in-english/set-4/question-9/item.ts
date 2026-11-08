@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The fee will encourage residents to leave the city for quieter places.",
+            "The fee may push residents to leave the city for quieter places.",
         },
         {
           correct: true,

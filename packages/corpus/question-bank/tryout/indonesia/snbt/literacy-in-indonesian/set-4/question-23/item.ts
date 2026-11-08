@@ -22,14 +22,14 @@ const item: ItemSource = {
           label: "Fuli adalah jenis pala yang tumbuh di Mauritius.",
         },
         {
-          column: 1,
-          label:
-            "Setelah 1621, kebun pala di Banda dikerjakan oleh orang-orang yang didatangkan sebagai budak.",
-        },
-        {
           column: 2,
           label:
             "Dalam Perjanjian Breda, Belanda menyerahkan Pulau Run kepada Inggris.",
+        },
+        {
+          column: 1,
+          label:
+            "Setelah 1621, kebun pala di Banda dikerjakan oleh orang-orang yang didatangkan sebagai budak.",
         },
       ],
     },

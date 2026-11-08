@@ -21,7 +21,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Menjelaskan bahwa kapal motor terbuat dari logam timah.",
+          label:
+            "Menjelaskan bahwa kapal motor di dermaga itu terbuat dari logam timah.",
         },
         {
           correct: false,

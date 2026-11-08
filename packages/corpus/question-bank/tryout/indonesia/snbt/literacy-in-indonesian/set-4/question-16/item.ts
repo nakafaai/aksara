@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Hasil turun, tetapi skor naik ke harga yang lebih tinggi sehingga pendapatan bertambah.",
+            "Hasil turun, tetapi harga per kilogram naik sehingga pendapatan bertambah.",
         },
         {
           correct: false,

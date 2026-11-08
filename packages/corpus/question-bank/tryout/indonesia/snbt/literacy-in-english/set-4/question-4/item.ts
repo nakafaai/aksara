@@ -32,7 +32,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Most vent bacteria need oxygen that exists because of surface photosynthesis.",
+            "Most vent bacteria need oxygen that photosynthesis in sunlight produced.",
         },
       ],
     },

@@ -18,14 +18,14 @@ const item: ItemSource = {
             "Waktu tempuh dan keandalan lebih menentukan pilihan orang daripada harga tiket.",
         },
         {
-          column: 2,
-          label:
-            "Kekhawatiran bahwa ongkos memberatkan sebagian warga tidak berdasar.",
-        },
-        {
           column: 1,
           label:
             "Pendapatan tiket ikut membiayai sopir, bahan bakar, dan perawatan bus.",
+        },
+        {
+          column: 2,
+          label:
+            "Kekhawatiran bahwa ongkos memberatkan sebagian warga tidak berdasar.",
         },
         {
           column: 2,

@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Belanda menyesal telah melepaskan New Amsterdam kepada Inggris.",
+            "Belanda menyesal telah melepaskan New Amsterdam kepada Inggris di Amerika Utara.",
         },
         {
           correct: false,

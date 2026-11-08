@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Bakteri belajar melawan antibiotik setelah beberapa kali terpapar obat.",
+            "Bakteri belajar melawan antibiotik setelah beberapa kali terpapar obat yang sama.",
         },
         {
           correct: false,

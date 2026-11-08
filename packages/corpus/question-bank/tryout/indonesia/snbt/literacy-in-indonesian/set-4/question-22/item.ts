@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pohon pala di Banda rusak sehingga VOC membutuhkan lahan baru di pulau lain.",
+            "Pohon pala di Banda rusak sehingga VOC membutuhkan lahan baru di pulau-pulau lain.",
         },
         {
           correct: true,

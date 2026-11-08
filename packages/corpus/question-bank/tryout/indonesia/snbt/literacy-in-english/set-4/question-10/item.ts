@@ -24,12 +24,12 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "A small fee with no limit on numbers and no report on its spending",
+            "A small fee with no cap on numbers and no public record of spending",
         },
         {
           correct: true,
           label:
-            "Timed bookings with a daily cap, plus an openly reported fee for residents",
+            "Timed bookings with a daily cap, plus a fee openly spent on residents' needs",
         },
         {
           correct: false,
