@@ -1,21 +1,25 @@
 export const metadata = {
     title: "Riemann Sum",
-    description: "Riemann sums divide an interval into subintervals and add signed rectangle contributions. For nonnegative functions, the result approximates the area under the curve.",
+    description: "Estimate an integral by adding rectangles f(x)Δx, compare left, right, and midpoint sums, and take the limit that turns the sum into the exact area.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Integrals",
 };
 
-## Estimating Area with Rectangular Strips
+## Adding Rectangles to Estimate an Integral
 
-Imagine a plot of land with one irregular curved edge. To estimate its area, we can divide the plot into rectangular strips of equal width. We then calculate the area of each strip and add the results.
+A **Riemann sum** estimates the integral of <InlineMath math="f" /> on <InlineMath math="[a,b]" /> by cutting the interval into <InlineMath math="n" /> strips of equal width, picking one sample point <InlineMath math="x_i^*" /> in each strip, and <Highlight>adding the rectangle terms</Highlight> <InlineMath math="f(x_i^*)\,\Delta x" />:
 
-A **Riemann sum** divides an interval into subintervals, chooses one sample point in each, and <Highlight>adds the signed rectangle contributions</Highlight>. For a Riemann-integrable function, these sums approach the definite integral as the widest subinterval approaches zero. When the function is nonnegative, the signed accumulation equals the area under the curve. With equal-width partitions, increasing the number of rectangles makes each one narrower, although one additional rectangle does not always move the sum closer to the definite integral.
+<BlockMath math="R_n = \sum_{i=1}^{n} f(x_i^*)\,\Delta x, \qquad \Delta x = \frac{b-a}{n}" />
 
-## Interval Partition and Width
+As the strips get thinner, the sum gets closer to the [definite integral](/en/subjects/mathematics/integral/definite-integral). For <InlineMath math="f(x)=x" /> on <InlineMath math="[0,7]" />, seven rectangles that take their height from the left edge add up to <InlineMath math="21" />, while the triangle under the line has area <InlineMath math="\frac{1}{2}\cdot7\cdot7=24.5" />. More strips shrink that gap.
 
-Four quantities define an **equal-width Riemann sum**:
+Picture a plot of land with one curved edge. No single formula gives its area, but you can cut it into equal strips, treat each strip as a rectangle, and add the rectangles. A Riemann sum does exactly that, with the function value as the height of each strip.
+
+## Width and Sample Points
+
+Four quantities fix an **equal-width Riemann sum**:
 
 | Symbol | Meaning |
 | :----- | :------ |
@@ -24,19 +28,19 @@ Four quantities define an **equal-width Riemann sum**:
 | <InlineMath math="\Delta x=\frac{b-a}{n}" /> | Width of each subinterval |
 | <InlineMath math="x_i^*" /> | Sample point in subinterval <InlineMath math="i" />, which gives the rectangle height <InlineMath math="f(x_i^*)" /> |
 
-The sample point can be the left endpoint, right endpoint, midpoint, or another point inside the subinterval.
+The three common sample points, for <InlineMath math="i = 1, 2, \ldots, n" />, are the left endpoint, the right endpoint, and the midpoint of each strip:
 
-## The Riemann Sum Formula
+<MathContainer>
+  <BlockMath math="\text{left: } x_i^* = a + (i-1)\Delta x" />
+  <BlockMath math="\text{right: } x_i^* = a + i\,\Delta x" />
+  <BlockMath math="\text{midpoint: } x_i^* = a + \left(i-\tfrac{1}{2}\right)\Delta x" />
+</MathContainer>
 
-If we combine all these components, we get the general formula for a Riemann Sum:
-
-<BlockMath math="R_n = \sum_{i=1}^{n} f(x_i^*) \Delta x" />
-
-Sigma notation adds **signed contributions**: each sampled function value multiplied by the subinterval width. A negative function value gives a negative term, although the geometric rectangle area remains nonnegative.
+**The choice of sample point changes the estimate** but not the limit. When the function rises across the interval, each left endpoint sits at the low side of its strip, so the left sum underestimates and the right sum overestimates. When the function falls, the roles swap.
 
 ## Left Endpoint Sum for a Linear Function
 
-**Problem**: Determine the Riemann Sum for the function <InlineMath math="f(x) = x" /> on the interval <InlineMath math="[0, 7]" /> by dividing it into <InlineMath math="7" /> subintervals of equal length and using the **left endpoint** as the sample point.
+**Problem**: Determine the Riemann sum for <InlineMath math="f(x) = x" /> on <InlineMath math="[0, 7]" /> with <InlineMath math="7" /> subintervals of equal width, using the **left endpoint** of each subinterval as the sample point.
 
 <LineEquation
   showZAxis={false}
@@ -72,43 +76,158 @@ Sigma notation adds **signed contributions**: each sampled function value multip
   cameraPosition={[3.5, 3.5, 10]}
 />
 
-**Step 1**: Determine the width and sample points.
-
-On <InlineMath math="[0,7]" /> with <InlineMath math="n=7" />, each subinterval has width:
+**Step 1**: Find the width and the sample points.
 
 <BlockMath math="\Delta x=\frac{7-0}{7}=1" />
 
-Using **left endpoints** gives sample points <InlineMath math="0,1,2,3,4,5,6" />. Each rectangle height equals its sampled coordinate because <InlineMath math="f(x)=x" />.
+The left endpoints are <InlineMath math="0,1,2,3,4,5,6" />. Because <InlineMath math="f(x)=x" />, each rectangle is exactly as tall as its sample point.
 
-| Subinterval | Sample point | Height | Contribution |
-| --- | --- | --- | --- |
-| <InlineMath math="[0,1]" /> | <InlineMath math="0" /> | <InlineMath math="f(0)=0" /> | <InlineMath math="0\cdot1=0" /> |
-| <InlineMath math="[1,2]" /> | <InlineMath math="1" /> | <InlineMath math="f(1)=1" /> | <InlineMath math="1\cdot1=1" /> |
-| <InlineMath math="[2,3]" /> | <InlineMath math="2" /> | <InlineMath math="f(2)=2" /> | <InlineMath math="2\cdot1=2" /> |
-| <InlineMath math="[3,4]" /> | <InlineMath math="3" /> | <InlineMath math="f(3)=3" /> | <InlineMath math="3\cdot1=3" /> |
-| <InlineMath math="[4,5]" /> | <InlineMath math="4" /> | <InlineMath math="f(4)=4" /> | <InlineMath math="4\cdot1=4" /> |
-| <InlineMath math="[5,6]" /> | <InlineMath math="5" /> | <InlineMath math="f(5)=5" /> | <InlineMath math="5\cdot1=5" /> |
-| <InlineMath math="[6,7]" /> | <InlineMath math="6" /> | <InlineMath math="f(6)=6" /> | <InlineMath math="6\cdot1=6" /> |
-
-**Step 2**: Add the seven contributions.
-
-Multiply each height by the width <InlineMath math="1" />, then add. The first rectangle contributes zero because its height at <InlineMath math="x=0" /> is zero.
+**Step 2**: Add the seven terms.
 
 <BlockMath math="\begin{aligned}R_7&=\sum_{i=1}^7f(x_i^*)\Delta x\\&=(0+1+2+3+4+5+6)\cdot1\\&=21\end{aligned}" />
 
-The left-endpoint area estimate is therefore <InlineMath math="21" /> square units.
+The first rectangle contributes zero, because its height at <InlineMath math="x=0" /> is zero. Check the result against the exact area. The right endpoints <InlineMath math="1" /> to <InlineMath math="7" /> give <InlineMath math="28" />, and the true area <InlineMath math="24.5" /> lies between <InlineMath math="21" /> and <InlineMath math="28" />, as it must for a rising function. The average <InlineMath math="\frac{21+28}{2}=24.5" /> even hits the area exactly here, because the graph is a straight line.
 
-> On <InlineMath math="[0,7]" />, the function <InlineMath math="f(x)=x" /> is nonnegative and strictly increasing. Therefore, rectangles built from left endpoints lie below the graph and underestimate the actual area, while rectangles built from right endpoints overestimate it.
+## Comparing Left Right and Midpoint Sums
+
+**Problem**: Estimate the area under <InlineMath math="f(x)=\frac{x^2}{4}" /> on <InlineMath math="[0,4]" /> with <InlineMath math="n=4" />, using left, right, and midpoint sums.
+
+The width is <InlineMath math="\Delta x=\frac{4-0}{4}=1" />, so each sum is simply the **sum of the four heights**:
+
+| Strip | Left height | Right height | Midpoint height |
+| --- | --- | --- | --- |
+| <InlineMath math="[0,1]" /> | <InlineMath math="f(0)=0" /> | <InlineMath math="f(1)=0.25" /> | <InlineMath math="f(0.5)=0.0625" /> |
+| <InlineMath math="[1,2]" /> | <InlineMath math="f(1)=0.25" /> | <InlineMath math="f(2)=1" /> | <InlineMath math="f(1.5)=0.5625" /> |
+| <InlineMath math="[2,3]" /> | <InlineMath math="f(2)=1" /> | <InlineMath math="f(3)=2.25" /> | <InlineMath math="f(2.5)=1.5625" /> |
+| <InlineMath math="[3,4]" /> | <InlineMath math="f(3)=2.25" /> | <InlineMath math="f(4)=4" /> | <InlineMath math="f(3.5)=3.0625" /> |
+
+<MathContainer>
+  <BlockMath math="L_4 = 0+0.25+1+2.25 = 3.5" />
+  <BlockMath math="R_4 = 0.25+1+2.25+4 = 7.5" />
+  <BlockMath math="M_4 = 0.0625+0.5625+1.5625+3.0625 = 5.25" />
+</MathContainer>
+
+The exact area comes from the [fundamental theorem of calculus](/en/subjects/mathematics/integral/fundamental-theorem-of-calculus): <InlineMath math="\int_0^4 \frac{x^2}{4}\,dx = \frac{4^3}{12} = \frac{16}{3} \approx 5.333" />. The left sum misses by about <InlineMath math="1.83" /> and the right sum by about <InlineMath math="2.17" />, but the midpoint sum misses by only <InlineMath math="0.083" />. In each strip, the midpoint rectangle cuts off a thin sliver above the curve and adds one under it, and the two nearly cancel.
+
+<LineEquation
+  showZAxis={false}
+  title="Midpoint rectangles under a parabola"
+  description={<>The curve <InlineMath math="f(x)=\frac{x^2}{4}" /> on <InlineMath math="[0,4]" /> with four rectangles whose heights come from the midpoints <InlineMath math="0.5, 1.5, 2.5, 3.5" />. Their total is <InlineMath math="5.25" />, close to the exact area <InlineMath math="\frac{16}{3}" />.</>}
+  cameraPosition={[2, 2, 10]}
+  cameraTarget={[2, 2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const x = (4 * index) / 400;
+        return { x, y: x ** 2 / 4, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="f(x)=\frac{x^2}{4}" />, at: 340, offset: [-1.4, 0.6, 0] }],
+    },
+    ...Array.from({ length: 4 }, (_, i) => {
+      const height = (i + 0.5) ** 2 / 4;
+      return {
+        points: [
+          { x: i, y: 0, z: 0 },
+          { x: i + 1, y: 0, z: 0 },
+          { x: i + 1, y: height, z: 0 },
+          { x: i, y: height, z: 0 },
+          { x: i, y: 0, z: 0 },
+        ],
+        color: "#7c3aed",
+        showPoints: false,
+        smooth: false,
+      };
+    }),
+  ]}
+/>
+
+Check the two endpoint sums against each other. They share three heights and differ only at the ends, so <InlineMath math="R_4 - L_4 = \big(f(4)-f(0)\big)\Delta x = 4" />, and indeed <InlineMath math="7.5 - 3.5 = 4" />.
+
+## From the Sum to the Definite Integral
+
+For an integrable function, the Riemann sums approach one number as the strips get thinner, whichever sample points you choose. **That limit is the definite integral**:
+
+<BlockMath math="\int_a^b f(x)\,dx = \lim_{n\to\infty} \sum_{i=1}^{n} f(x_i^*)\,\Delta x" />
+
+**Problem**: Find the right sum of <InlineMath math="f(x)=x" /> on <InlineMath math="[0,7]" /> for any <InlineMath math="n" />, then let <InlineMath math="n" /> grow.
+
+With <InlineMath math="\Delta x = \frac{7}{n}" /> and right endpoints <InlineMath math="x_i = \frac{7i}{n}" />, the sum <InlineMath math="1+2+\cdots+n=\frac{n(n+1)}{2}" /> closes the expression:
+
+<BlockMath math="\begin{aligned}R_n &= \sum_{i=1}^{n} \frac{7i}{n}\cdot\frac{7}{n} = \frac{49}{n^2}\cdot\frac{n(n+1)}{2} \\ &= \frac{49}{2}\cdot\frac{n+1}{n}\end{aligned}" />
+
+For <InlineMath math="n=7" /> this gives <InlineMath math="\frac{49}{2}\cdot\frac{8}{7}=28" />, the right sum from the first example. For <InlineMath math="n=70" /> it gives about <InlineMath math="24.85" />, and for <InlineMath math="n=700" /> about <InlineMath math="24.535" />. As <InlineMath math="n\to\infty" />, the factor <InlineMath math="\frac{n+1}{n}" /> tends to <InlineMath math="1" />, so the sums tend to <InlineMath math="\frac{49}{2}=24.5" />, the area of the triangle.
+
+Adding one more rectangle does not always move a sum closer to the integral, but the limit always arrives. The [properties of the definite integral](/en/subjects/mathematics/integral/properties-of-definite-integral) all follow from this limit of sums.
+
+## Negative Values in a Riemann Sum
+
+A Riemann sum adds **signed terms**. Where <InlineMath math="f(x_i^*)" /> is negative, the term <InlineMath math="f(x_i^*)\Delta x" /> is negative, even though the rectangle drawn under the x-axis still has a positive geometric area.
+
+**Problem**: Find the midpoint sum of <InlineMath math="f(x)=x-2" /> on <InlineMath math="[0,4]" /> with <InlineMath math="n=4" />, and compare it with the area between the graph and the x-axis.
+
+The midpoints are <InlineMath math="0.5, 1.5, 2.5, 3.5" /> and <InlineMath math="\Delta x = 1" />:
+
+<BlockMath math="M_4 = (-1.5) + (-0.5) + 0.5 + 1.5 = 0" />
+
+<MathVisual
+  title="Signed rectangles of a Riemann sum"
+  description={<>Midpoint rectangles of <InlineMath math="f(x)=x-2" /> on <InlineMath math="[0,4]" />. The two terms under the x-axis are negative and cancel the two terms over it, so the sum is <InlineMath math="0" /> while the shaded area is not.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.8 }, y: { min: -2.3, max: 2.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph", kind: "segment", from: { x: 0, y: 0 - 2 }, to: { x: 4, y: 4 - 2 }, appearance: "primary" },
+      { id: "first", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.5 - 2 }, { x: 0, y: 0.5 - 2 }], appearance: "warning" },
+      { id: "second", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1.5 - 2 }, { x: 1, y: 1.5 - 2 }], appearance: "warning" },
+      { id: "third", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2.5 - 2 }, { x: 2, y: 2.5 - 2 }], appearance: "secondary" },
+      { id: "fourth", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3.5 - 2 }, { x: 3, y: 3.5 - 2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "graph", objectId: "graph", at: { x: 4, y: 4 - 2 }, placement: "right" },
+      { key: "first", objectId: "first", at: { x: 0.5, y: 0.5 - 2 }, placement: "below" },
+      { key: "second", objectId: "second", at: { x: 1.5, y: 1.5 - 2 }, placement: "below" },
+      { key: "third", objectId: "third", at: { x: 2.5, y: 2.5 - 2 }, placement: "above" },
+      { key: "fourth", objectId: "fourth", at: { x: 3.5, y: 3.5 - 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    graph: <InlineMath math="f(x)=x-2" />,
+    first: <InlineMath math="-1.5" />,
+    second: <InlineMath math="-0.5" />,
+    third: <InlineMath math="0.5" />,
+    fourth: <InlineMath math="1.5" />,
+  }}
+/>
+
+The exact integral agrees: <InlineMath math="\int_0^4 (x-2)\,dx = \left[\frac{x^2}{2}-2x\right]_0^4 = 8-8 = 0" />. The region between the graph and the axis, however, is two triangles of area <InlineMath math="\frac{1}{2}\cdot2\cdot2=2" />, so its area is <InlineMath math="4" />. To get an area, split the interval at the zero <InlineMath math="x=2" /> and add the absolute values, as the lesson on the [area of a flat region](/en/subjects/mathematics/integral/area-of-a-flat-surface) does with integrals.
+
+## Common Mistakes
+
+Most wrong Riemann sums go wrong at **the width or the sample points**. The arithmetic itself is rarely the problem.
+
+| Mistake | Why it is wrong | Fix |
+| --- | --- | --- |
+| Adding the heights without multiplying by <InlineMath math="\Delta x" /> | Each term is a rectangle, height times width | Multiply the sum of heights by <InlineMath math="\Delta x" />, which only looks skipped when <InlineMath math="\Delta x = 1" /> |
+| Using <InlineMath math="n+1" /> sample points | Both ends of <InlineMath math="[a,b]" /> are counted, one rectangle too many | Use <InlineMath math="n" /> points: <InlineMath math="a" /> to <InlineMath math="b-\Delta x" /> on the left, <InlineMath math="a+\Delta x" /> to <InlineMath math="b" /> on the right |
+| Mixing left and right endpoints | The formulas differ by one strip | Write <InlineMath math="x_i^*" /> from its formula before you substitute |
+| Reading a negative or zero sum as an area | Terms under the x-axis count negative | Split at the zeros and add absolute values for area |
+| Expecting every extra rectangle to improve the estimate | Only the limit is guaranteed | Compare with the exact integral, or let <InlineMath math="n\to\infty" /> |
 
 ## Exercises
 
-Each problem asks for an area approximated by rectangles, so fix the number of subintervals and the sample point in each one before you add the terms.
+Each problem asks for rectangles under a curve, so fix the number of subintervals and the sample point in each one before you add the terms.
 
-1.  Calculate the Riemann Sum for the function <InlineMath math="f(x) = x^2 + 1" /> on the interval <InlineMath math="[0, 4]" /> using <InlineMath math="4" /> subintervals of equal width and the **right endpoint** as the sample point.
+1. Calculate the Riemann sum for <InlineMath math="f(x) = x^2 + 1" /> on <InlineMath math="[0, 4]" /> with <InlineMath math="4" /> subintervals of equal width and the **right endpoint** as the sample point.
+2. Calculate the left Riemann sum of <InlineMath math="f(x) = 2x + 1" /> on <InlineMath math="[1, 3]" /> with <InlineMath math="n = 4" />, and compare it with the exact integral.
+3. Write <InlineMath math="\lim_{n\to\infty} \sum_{i=1}^{n} \frac{2}{n}\left(\frac{2i}{n}\right)^3" /> as a definite integral and find its value.
 
 ### Worked Solution
 
-We will calculate the Riemann Sum for <InlineMath math="f(x) = x^2+1" /> on <InlineMath math="[0,4]" /> with <InlineMath math="n=4" />.
+1. The width is <InlineMath math="\Delta x = \frac{4-0}{4} = 1" />, and the **right endpoints** are <InlineMath math="1, 2, 3, 4" />.
 
 <LineEquation
   showZAxis={false}
@@ -148,43 +267,20 @@ data={[
 ]}
 />
 
-**Step 1**: Determine the main components.
-The function is <InlineMath math="f(x)=x^2+1" />, the interval is <InlineMath math="[0,4]" />, and the partition count is <InlineMath math="n=4" />. Use the **right endpoint** to determine each height.
+The heights are <InlineMath math="f(1)=2" />, <InlineMath math="f(2)=5" />, <InlineMath math="f(3)=10" />, and <InlineMath math="f(4)=17" />, so
 
-**Step 2**: Calculate the subinterval width.
+<BlockMath math="R_4 = (2 + 5 + 10 + 17)\cdot 1 = 34" />
 
-<BlockMath math="\Delta x = \frac{b-a}{n} = \frac{4-0}{4} = 1" />
+Check: the exact integral is <InlineMath math="\int_0^4 (x^2+1)\,dx = \frac{64}{3} + 4 = \frac{76}{3} \approx 25.33" />. The right sum is larger, as it should be for a function that rises on <InlineMath math="[0,4]" />.
 
-**Step 3**: Determine the right endpoint sample points.
+2. The width is <InlineMath math="\Delta x = \frac{3-1}{4} = 0.5" />, and the left endpoints are <InlineMath math="1, 1.5, 2, 2.5" /> with heights <InlineMath math="3, 4, 5, 6" />:
 
-The subintervals are:
+<BlockMath math="L_4 = (3+4+5+6)\cdot 0.5 = 9" />
 
-<BlockMath math="[0,1], [1,2], [2,3], [3,4]" />
+Check: <InlineMath math="\int_1^3 (2x+1)\,dx = \left[x^2+x\right]_1^3 = 12-2 = 10" />. The left sum is smaller, as expected for a rising function.
 
-For the right-endpoint method, we take the value of <InlineMath math="x" /> from the right side of each subinterval:
+3. The factor <InlineMath math="\frac{2}{n}" /> is <InlineMath math="\Delta x" /> for an interval of length <InlineMath math="2" />, and <InlineMath math="\frac{2i}{n}" /> runs over right endpoints starting from <InlineMath math="0" />, so the interval is <InlineMath math="[0,2]" /> and <InlineMath math="f(x)=x^3" />:
 
-<BlockMath math="x_1=1, x_2=2, x_3=3, x_4=4" />
+<BlockMath math="\lim_{n\to\infty} \sum_{i=1}^{n} \frac{2}{n}\left(\frac{2i}{n}\right)^3 = \int_0^2 x^3\,dx = \frac{2^4}{4} = 4" />
 
-**Step 4**: Calculate the height of each rectangle.
-
-The height of each rectangle is determined by the function's value <InlineMath math="f(x) = x^2 + 1" /> at the right endpoint sample points:
-
-<MathContainer>
-<BlockMath math="f(x_1) = f(1) = 1^2 + 1 = 2" />
-<BlockMath math="f(x_2) = f(2) = 2^2 + 1 = 5" />
-<BlockMath math="f(x_3) = f(3) = 3^2 + 1 = 10" />
-<BlockMath math="f(x_4) = f(4) = 4^2 + 1 = 17" />
-</MathContainer>
-
-**Step 5**: Calculate the total Riemann Sum.
-
-Now we sum the areas of all rectangles (<InlineMath math="\text{height} \times \text{width}" />):
-
-<MathContainer>
-<BlockMath math="R_4 = \sum_{i=1}^{4} f(x_i^*) \Delta x" />
-<BlockMath math="= [f(1) + f(2) + f(3) + f(4)] \cdot 1" />
-<BlockMath math="= (2 + 5 + 10 + 17) \cdot 1" />
-<BlockMath math="= 34" />
-</MathContainer>
-
-Thus, the Riemann Sum for the function is <InlineMath math="34" />.
+Check with the sum itself: <InlineMath math="1^3+2^3+\cdots+n^3=\frac{n^2(n+1)^2}{4}" /> gives <InlineMath math="R_n = \frac{16}{n^4}\cdot\frac{n^2(n+1)^2}{4} = 4\left(\frac{n+1}{n}\right)^2" />, which tends to <InlineMath math="4" />.

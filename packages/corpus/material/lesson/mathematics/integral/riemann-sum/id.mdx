@@ -1,42 +1,46 @@
 export const metadata = {
     title: "Jumlahan Riemann",
-    description: "Jumlahan Riemann membagi interval menjadi subinterval, memilih titik sampel, lalu menjumlahkan kontribusi persegi panjang bertanda. Jika fungsi tidak negatif, hasilnya mendekati luas di bawah kurva.",
+    description: "Hampiri integral dengan menjumlahkan persegi panjang f(x)Δx, bandingkan jumlahan kiri, kanan, dan titik tengah, lalu ambil limitnya menjadi luas eksak.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Integral",
 };
 
-## Memperkirakan Luas dengan Persegi Panjang
+## Menjumlahkan Persegi Panjang untuk Menghampiri Integral
 
-Bayangkan sebidang tanah dengan salah satu sisi yang melengkung tidak beraturan. Untuk memperkirakan luas tanah tersebut, kita dapat membagi bidang tanah menjadi beberapa bagian berbentuk persegi panjang dengan lebar yang sama. Setelah itu, kita hitung luas setiap bagian dan menjumlahkan seluruh luas bagian.
+**Jumlahan Riemann** menghampiri integral <InlineMath math="f" /> pada <InlineMath math="[a,b]" /> dengan memotong interval menjadi <InlineMath math="n" /> pita yang sama lebar, memilih satu titik sampel <InlineMath math="x_i^*" /> di setiap pita, lalu <Highlight>menjumlahkan suku persegi panjang</Highlight> <InlineMath math="f(x_i^*)\,\Delta x" />:
 
-**Jumlahan Riemann** menerapkan ide ini dengan membagi interval menjadi subinterval, <Highlight>memilih satu titik sampel pada setiap bagian</Highlight>, lalu menjumlahkan kontribusi persegi panjang bertanda. Untuk fungsi yang terintegralkan secara Riemann, hasil jumlahan mendekati integral tentu ketika lebar subinterval terbesar mendekati nol. Jika fungsi tidak negatif, akumulasi bertanda tersebut sama dengan luas di bawah kurva. Pada partisi sama lebar, semakin banyak persegi panjang yang digunakan, semakin sempit setiap persegi panjang. Namun, satu persegi panjang tambahan belum tentu membuat hasil jumlahan lebih dekat ke nilai integral tentu.
+<BlockMath math="R_n = \sum_{i=1}^{n} f(x_i^*)\,\Delta x, \qquad \Delta x = \frac{b-a}{n}" />
 
-## Partisi Interval dan Lebar Subinterval
+Makin tipis pitanya, makin dekat jumlahan itu ke [integral tentu](/id/materi/matematika/integral/integral-tentu). Untuk <InlineMath math="f(x)=x" /> pada <InlineMath math="[0,7]" />, tujuh persegi panjang yang tingginya diambil dari tepi kiri berjumlah <InlineMath math="21" />, sedangkan segitiga di bawah garis itu luasnya <InlineMath math="\frac{1}{2}\cdot7\cdot7=24{,}5" />. Menambah pita mengecilkan selisih itu.
 
-Empat besaran menentukan Jumlahan Riemann dengan **partisi sama lebar**:
+Bayangkan sebidang tanah dengan satu sisi melengkung. Tidak ada satu rumus yang langsung memberi luasnya, tetapi kamu bisa memotongnya menjadi pita-pita sama lebar, menganggap setiap pita sebagai persegi panjang, lalu menjumlahkan semuanya. Jumlahan Riemann melakukan hal yang sama, dengan nilai fungsi sebagai tinggi setiap pita.
+
+## Lebar Pita dan Titik Sampel
+
+Empat besaran menentukan **jumlahan Riemann dengan lebar sama**:
 
 | Simbol | Arti |
 | :----- | :--- |
-| <InlineMath math="[a,b]" /> | Interval yang dibagi menjadi beberapa subinterval |
-| <InlineMath math="n" /> | Jumlah subinterval |
+| <InlineMath math="[a,b]" /> | Interval yang dibagi menjadi subinterval |
+| <InlineMath math="n" /> | Banyak subinterval |
 | <InlineMath math="\Delta x=\frac{b-a}{n}" /> | Lebar setiap subinterval |
-| <InlineMath math="x_i^*" /> | Titik sampel pada subinterval ke-<InlineMath math="i" />, sehingga tinggi persegi panjangnya <InlineMath math="f(x_i^*)" /> |
+| <InlineMath math="x_i^*" /> | Titik sampel pada subinterval ke-<InlineMath math="i" />, yang memberi tinggi persegi panjang <InlineMath math="f(x_i^*)" /> |
 
-Titik sampel dapat dipilih pada ujung kiri, ujung kanan, titik tengah, atau titik lain di dalam subinterval.
+Tiga titik sampel yang paling sering dipakai, untuk <InlineMath math="i = 1, 2, \ldots, n" />, adalah titik ujung kiri, titik ujung kanan, dan titik tengah setiap pita:
 
-## Formula Jumlahan Riemann
+<MathContainer>
+  <BlockMath math="\text{kiri: } x_i^* = a + (i-1)\Delta x" />
+  <BlockMath math="\text{kanan: } x_i^* = a + i\,\Delta x" />
+  <BlockMath math="\text{tengah: } x_i^* = a + \left(i-\tfrac{1}{2}\right)\Delta x" />
+</MathContainer>
 
-Jika kita menggabungkan semua komponen tersebut, kita mendapatkan formula umum untuk Jumlahan Riemann:
-
-<BlockMath math="R_n = \sum_{i=1}^{n} f(x_i^*) \Delta x" />
-
-Notasi sigma menjumlahkan **kontribusi bertanda**: nilai fungsi di titik sampel dikalikan lebar subinterval. Jika nilai fungsi negatif, suku tersebut negatif. Luas geometris persegi panjang tetap tidak negatif.
+**Pilihan titik sampel mengubah hampiran** tetapi tidak mengubah limitnya. Jika fungsi naik sepanjang interval, titik ujung kiri selalu berada di sisi rendah pitanya, sehingga jumlahan kiri terlalu kecil dan jumlahan kanan terlalu besar. Jika fungsi turun, perannya tertukar.
 
 ## Jumlahan Titik Ujung Kiri pada Fungsi Linear
 
-**Soal**: Tentukan Jumlahan Riemann dari fungsi <InlineMath math="f(x) = x" /> pada interval <InlineMath math="[0, 7]" /> dengan membaginya menjadi <InlineMath math="7" /> subinterval sama panjang dan menggunakan **titik ujung kiri** sebagai titik sampel.
+**Soal**: Tentukan jumlahan Riemann untuk <InlineMath math="f(x) = x" /> pada <InlineMath math="[0, 7]" /> dengan <InlineMath math="7" /> subinterval sama lebar, memakai **titik ujung kiri** setiap subinterval sebagai titik sampel.
 
 <LineEquation
   showZAxis={false}
@@ -74,41 +78,156 @@ Notasi sigma menjumlahkan **kontribusi bertanda**: nilai fungsi di titik sampel 
 
 **Langkah 1**: Tentukan lebar dan titik sampel.
 
-Pada interval <InlineMath math="[0,7]" /> dengan <InlineMath math="n=7" />, setiap bagian memiliki lebar:
-
 <BlockMath math="\Delta x=\frac{7-0}{7}=1" />
 
-Karena memakai **ujung kiri**, titik sampelnya adalah <InlineMath math="0,1,2,3,4,5,6" />. Tinggi setiap persegi panjang sama dengan nilai sampel karena <InlineMath math="f(x)=x" />.
+Titik ujung kirinya <InlineMath math="0,1,2,3,4,5,6" />. Karena <InlineMath math="f(x)=x" />, tinggi setiap persegi panjang sama dengan titik sampelnya.
 
-| Subinterval | Titik sampel | Tinggi | Kontribusi |
-| --- | --- | --- | --- |
-| <InlineMath math="[0,1]" /> | <InlineMath math="0" /> | <InlineMath math="f(0)=0" /> | <InlineMath math="0\cdot1=0" /> |
-| <InlineMath math="[1,2]" /> | <InlineMath math="1" /> | <InlineMath math="f(1)=1" /> | <InlineMath math="1\cdot1=1" /> |
-| <InlineMath math="[2,3]" /> | <InlineMath math="2" /> | <InlineMath math="f(2)=2" /> | <InlineMath math="2\cdot1=2" /> |
-| <InlineMath math="[3,4]" /> | <InlineMath math="3" /> | <InlineMath math="f(3)=3" /> | <InlineMath math="3\cdot1=3" /> |
-| <InlineMath math="[4,5]" /> | <InlineMath math="4" /> | <InlineMath math="f(4)=4" /> | <InlineMath math="4\cdot1=4" /> |
-| <InlineMath math="[5,6]" /> | <InlineMath math="5" /> | <InlineMath math="f(5)=5" /> | <InlineMath math="5\cdot1=5" /> |
-| <InlineMath math="[6,7]" /> | <InlineMath math="6" /> | <InlineMath math="f(6)=6" /> | <InlineMath math="6\cdot1=6" /> |
-
-**Langkah 2**: Jumlahkan ketujuh kontribusi.
-
-Kalikan setiap tinggi dengan lebar <InlineMath math="1" />, kemudian jumlahkan. Persegi panjang pertama berkontribusi nol karena tinggi pada <InlineMath math="x=0" /> adalah nol.
+**Langkah 2**: Jumlahkan ketujuh suku.
 
 <BlockMath math="\begin{aligned}R_7&=\sum_{i=1}^7f(x_i^*)\Delta x\\&=(0+1+2+3+4+5+6)\cdot1\\&=21\end{aligned}" />
 
-Jadi, hampiran luas dari ujung kiri adalah <InlineMath math="21" /> satuan luas.
+Persegi panjang pertama menyumbang nol karena tingginya di <InlineMath math="x=0" /> nol. Periksa hasilnya dengan luas eksak. Titik ujung kanan <InlineMath math="1" /> sampai <InlineMath math="7" /> memberi <InlineMath math="28" />, dan luas sebenarnya <InlineMath math="24{,}5" /> berada di antara <InlineMath math="21" /> dan <InlineMath math="28" />, sesuai untuk fungsi yang naik. Rata-ratanya, <InlineMath math="\frac{21+28}{2}=24{,}5" />, bahkan tepat sama dengan luasnya karena grafiknya garis lurus.
 
-> Pada <InlineMath math="[0,7]" />, fungsi <InlineMath math="f(x)=x" /> tidak negatif dan monoton naik secara ketat. Karena itu, persegi panjang dengan titik ujung kiri berada di bawah grafik dan menghasilkan taksiran luas yang terlalu kecil, sedangkan titik ujung kanan menghasilkan taksiran yang terlalu besar.
+## Membandingkan Jumlahan Kiri Kanan dan Titik Tengah
+
+**Soal**: Hampiri luas di bawah <InlineMath math="f(x)=\frac{x^2}{4}" /> pada <InlineMath math="[0,4]" /> dengan <InlineMath math="n=4" />, memakai jumlahan kiri, kanan, dan titik tengah.
+
+Lebarnya <InlineMath math="\Delta x=\frac{4-0}{4}=1" />, jadi setiap jumlahan cukup berupa **jumlah keempat tinggi**:
+
+| Pita | Tinggi kiri | Tinggi kanan | Tinggi titik tengah |
+| --- | --- | --- | --- |
+| <InlineMath math="[0,1]" /> | <InlineMath math="f(0)=0" /> | <InlineMath math="f(1)=0{,}25" /> | <InlineMath math="f(0{,}5)=0{,}0625" /> |
+| <InlineMath math="[1,2]" /> | <InlineMath math="f(1)=0{,}25" /> | <InlineMath math="f(2)=1" /> | <InlineMath math="f(1{,}5)=0{,}5625" /> |
+| <InlineMath math="[2,3]" /> | <InlineMath math="f(2)=1" /> | <InlineMath math="f(3)=2{,}25" /> | <InlineMath math="f(2{,}5)=1{,}5625" /> |
+| <InlineMath math="[3,4]" /> | <InlineMath math="f(3)=2{,}25" /> | <InlineMath math="f(4)=4" /> | <InlineMath math="f(3{,}5)=3{,}0625" /> |
+
+<MathContainer>
+  <BlockMath math="L_4 = 0+0{,}25+1+2{,}25 = 3{,}5" />
+  <BlockMath math="R_4 = 0{,}25+1+2{,}25+4 = 7{,}5" />
+  <BlockMath math="M_4 = 0{,}0625+0{,}5625+1{,}5625+3{,}0625 = 5{,}25" />
+</MathContainer>
+
+Luas eksaknya diperoleh dari [teorema dasar kalkulus](/id/materi/matematika/integral/teorema-dasar-kalkulus): <InlineMath math="\int_0^4 \frac{x^2}{4}\,dx = \frac{4^3}{12} = \frac{16}{3} \approx 5{,}333" />. Jumlahan kiri meleset sekitar <InlineMath math="1{,}83" /> dan jumlahan kanan sekitar <InlineMath math="2{,}17" />, tetapi jumlahan titik tengah hanya meleset <InlineMath math="0{,}083" />. Di setiap pita, persegi panjang titik tengah menonjol melewati kurva di satu sisi dan menyisakan celah di sisi lain, dan keduanya hampir sama besar.
+
+<LineEquation
+  showZAxis={false}
+  title="Persegi panjang titik tengah di bawah parabola"
+  description={<>Kurva <InlineMath math="f(x)=\frac{x^2}{4}" /> pada <InlineMath math="[0,4]" /> dengan empat persegi panjang yang tingginya diambil dari titik tengah setiap pita. Totalnya <InlineMath math="5{,}25" />, dekat dengan luas eksak <InlineMath math="\frac{16}{3}" />.</>}
+  cameraPosition={[2, 2, 10]}
+  cameraTarget={[2, 2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const x = (4 * index) / 400;
+        return { x, y: x ** 2 / 4, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="f(x)=\frac{x^2}{4}" />, at: 340, offset: [-1.4, 0.6, 0] }],
+    },
+    ...Array.from({ length: 4 }, (_, i) => {
+      const height = (i + 0.5) ** 2 / 4;
+      return {
+        points: [
+          { x: i, y: 0, z: 0 },
+          { x: i + 1, y: 0, z: 0 },
+          { x: i + 1, y: height, z: 0 },
+          { x: i, y: height, z: 0 },
+          { x: i, y: 0, z: 0 },
+        ],
+        color: "#7c3aed",
+        showPoints: false,
+        smooth: false,
+      };
+    }),
+  ]}
+/>
+
+Periksa kedua jumlahan ujung satu sama lain. Keduanya berbagi tiga tinggi dan hanya berbeda di ujung, sehingga <InlineMath math="R_4 - L_4 = \big(f(4)-f(0)\big)\Delta x = 4" />, dan memang <InlineMath math="7{,}5 - 3{,}5 = 4" />.
+
+## Dari Jumlahan ke Integral Tentu
+
+Untuk fungsi yang terintegralkan, jumlahan Riemann menuju satu bilangan saat pitanya makin tipis, titik sampel mana pun yang kamu pilih. **Limit itulah integral tentu**:
+
+<BlockMath math="\int_a^b f(x)\,dx = \lim_{n\to\infty} \sum_{i=1}^{n} f(x_i^*)\,\Delta x" />
+
+**Soal**: Tentukan jumlahan kanan <InlineMath math="f(x)=x" /> pada <InlineMath math="[0,7]" /> untuk sembarang <InlineMath math="n" />, lalu perbesar <InlineMath math="n" />.
+
+Dengan <InlineMath math="\Delta x = \frac{7}{n}" /> dan titik ujung kanan <InlineMath math="x_i = \frac{7i}{n}" />, rumus <InlineMath math="1+2+\cdots+n=\frac{n(n+1)}{2}" /> menyederhanakan bentuknya:
+
+<BlockMath math="\begin{aligned}R_n &= \sum_{i=1}^{n} \frac{7i}{n}\cdot\frac{7}{n} = \frac{49}{n^2}\cdot\frac{n(n+1)}{2} \\ &= \frac{49}{2}\cdot\frac{n+1}{n}\end{aligned}" />
+
+Untuk <InlineMath math="n=7" /> hasilnya <InlineMath math="\frac{49}{2}\cdot\frac{8}{7}=28" />, sama dengan jumlahan kanan pada contoh pertama. Untuk <InlineMath math="n=70" /> hasilnya sekitar <InlineMath math="24{,}85" />, dan untuk <InlineMath math="n=700" /> sekitar <InlineMath math="24{,}535" />. Saat <InlineMath math="n\to\infty" />, faktor <InlineMath math="\frac{n+1}{n}" /> menuju <InlineMath math="1" />, jadi jumlahannya menuju <InlineMath math="\frac{49}{2}=24{,}5" />, luas segitiga tadi.
+
+Menambah satu persegi panjang tidak selalu membuat jumlahan lebih dekat ke integral, tetapi limitnya pasti tercapai. Semua [sifat-sifat integral tentu](/id/materi/matematika/integral/sifat-sifat-integral-tentu) berasal dari limit jumlahan ini.
+
+## Nilai Negatif dalam Jumlahan Riemann
+
+Jumlahan Riemann menjumlahkan **suku bertanda**. Jika <InlineMath math="f(x_i^*)" /> negatif, suku <InlineMath math="f(x_i^*)\Delta x" /> juga negatif, walaupun persegi panjang yang tergambar di bawah sumbu x tetap punya luas geometris positif.
+
+**Soal**: Tentukan jumlahan titik tengah <InlineMath math="f(x)=x-2" /> pada <InlineMath math="[0,4]" /> dengan <InlineMath math="n=4" />, lalu bandingkan dengan luas daerah antara grafik dan sumbu x.
+
+Titik tengahnya <InlineMath math="0{,}5" />, <InlineMath math="1{,}5" />, <InlineMath math="2{,}5" />, dan <InlineMath math="3{,}5" />, dengan <InlineMath math="\Delta x = 1" />:
+
+<BlockMath math="M_4 = (-1{,}5) + (-0{,}5) + 0{,}5 + 1{,}5 = 0" />
+
+<MathVisual
+  title="Persegi panjang bertanda pada jumlahan Riemann"
+  description={<>Persegi panjang titik tengah untuk <InlineMath math="f(x)=x-2" /> pada <InlineMath math="[0,4]" />. Dua suku di bawah sumbu x bernilai negatif dan menghapus dua suku di atasnya, sehingga jumlahannya <InlineMath math="0" /> padahal daerahnya punya luas.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.8 }, y: { min: -2.3, max: 2.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph", kind: "segment", from: { x: 0, y: 0 - 2 }, to: { x: 4, y: 4 - 2 }, appearance: "primary" },
+      { id: "first", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.5 - 2 }, { x: 0, y: 0.5 - 2 }], appearance: "warning" },
+      { id: "second", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1.5 - 2 }, { x: 1, y: 1.5 - 2 }], appearance: "warning" },
+      { id: "third", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2.5 - 2 }, { x: 2, y: 2.5 - 2 }], appearance: "secondary" },
+      { id: "fourth", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3.5 - 2 }, { x: 3, y: 3.5 - 2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "graph", objectId: "graph", at: { x: 4, y: 4 - 2 }, placement: "right" },
+      { key: "first", objectId: "first", at: { x: 0.5, y: 0.5 - 2 }, placement: "below" },
+      { key: "second", objectId: "second", at: { x: 1.5, y: 1.5 - 2 }, placement: "below" },
+      { key: "third", objectId: "third", at: { x: 2.5, y: 2.5 - 2 }, placement: "above" },
+      { key: "fourth", objectId: "fourth", at: { x: 3.5, y: 3.5 - 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    graph: <InlineMath math="f(x)=x-2" />,
+    first: <InlineMath math="-1{,}5" />,
+    second: <InlineMath math="-0{,}5" />,
+    third: <InlineMath math="0{,}5" />,
+    fourth: <InlineMath math="1{,}5" />,
+  }}
+/>
+
+Integral eksaknya sesuai: <InlineMath math="\int_0^4 (x-2)\,dx = \left[\frac{x^2}{2}-2x\right]_0^4 = 8-8 = 0" />. Namun daerah antara grafik dan sumbu terdiri atas dua segitiga yang masing-masing luasnya <InlineMath math="\frac{1}{2}\cdot2\cdot2=2" />, jadi luasnya <InlineMath math="4" />. Untuk mendapatkan luas, pisahkan interval di pembuat nol <InlineMath math="x=2" /> dan jumlahkan nilai mutlaknya, seperti pada [luas bidang datar](/id/materi/matematika/integral/luas-bidang-datar) dengan integral.
+
+## Kesalahan yang Sering Terjadi
+
+Sebagian besar jumlahan Riemann yang keliru salah di **lebar pita atau titik sampel**. Hitungannya sendiri jarang menjadi masalah.
+
+| Kesalahan | Mengapa keliru | Perbaikan |
+| --- | --- | --- |
+| Menjumlahkan tinggi tanpa mengalikan dengan <InlineMath math="\Delta x" /> | Setiap suku adalah persegi panjang, tinggi kali lebar | Kalikan jumlah tinggi dengan <InlineMath math="\Delta x" />, yang hanya tampak terlewat saat <InlineMath math="\Delta x = 1" /> |
+| Memakai <InlineMath math="n+1" /> titik sampel | Kedua ujung <InlineMath math="[a,b]" /> ikut dihitung, satu persegi panjang terlalu banyak | Pakai <InlineMath math="n" /> titik: <InlineMath math="a" /> sampai <InlineMath math="b-\Delta x" /> untuk kiri, <InlineMath math="a+\Delta x" /> sampai <InlineMath math="b" /> untuk kanan |
+| Tertukar antara titik ujung kiri dan kanan | Rumusnya berbeda satu pita | Tulis <InlineMath math="x_i^*" /> dari rumusnya sebelum menyubstitusi |
+| Membaca jumlahan negatif atau nol sebagai luas | Suku di bawah sumbu x bernilai negatif | Pisahkan di pembuat nol dan jumlahkan nilai mutlak untuk luas |
+| Mengira setiap tambahan persegi panjang pasti memperbaiki hampiran | Yang dijamin hanya limitnya | Bandingkan dengan integral eksak, atau ambil <InlineMath math="n\to\infty" /> |
 
 ## Latihan
 
-Setiap soal meminta luas yang dihampiri persegi panjang, jadi tetapkan banyak subinterval dan titik sampel pada setiap subinterval sebelum menjumlahkan sukunya. Pilihan titik sampel menentukan tinggi setiap persegi panjang, sehingga dua pilihan berbeda pada interval yang sama memberi hasil hampiran yang berbeda.
+Setiap soal meminta persegi panjang di bawah kurva, jadi tetapkan dulu banyak subinterval dan titik sampel di setiap subinterval sebelum menjumlahkan sukunya.
 
-1.  Hitung Jumlahan Riemann untuk fungsi <InlineMath math="f(x) = x^2 + 1" /> pada interval <InlineMath math="[0, 4]" /> menggunakan <InlineMath math="4" /> subinterval dengan lebar yang sama dan titik sampel berupa **titik ujung kanan**.
+1. Hitung jumlahan Riemann untuk <InlineMath math="f(x) = x^2 + 1" /> pada <InlineMath math="[0, 4]" /> dengan <InlineMath math="4" /> subinterval sama lebar dan **titik ujung kanan** sebagai titik sampel.
+2. Hitung jumlahan Riemann kiri untuk <InlineMath math="f(x) = 2x + 1" /> pada <InlineMath math="[1, 3]" /> dengan <InlineMath math="n = 4" />, lalu bandingkan dengan integral eksaknya.
+3. Tuliskan <InlineMath math="\lim_{n\to\infty} \sum_{i=1}^{n} \frac{2}{n}\left(\frac{2i}{n}\right)^3" /> sebagai integral tentu, lalu tentukan nilainya.
 
-### Pembahasan Terperinci
+### Pembahasan
 
-Kita akan menghitung Jumlahan Riemann untuk <InlineMath math="f(x) = x^2+1" /> pada <InlineMath math="[0,4]" /> dengan <InlineMath math="n=4" />.
+1. Lebarnya <InlineMath math="\Delta x = \frac{4-0}{4} = 1" />, dan **titik ujung kanannya** <InlineMath math="1, 2, 3, 4" />.
 
 <LineEquation
   showZAxis={false}
@@ -148,43 +267,20 @@ data={[
 ]}
 />
 
-**Langkah 1**: Tentukan komponen utama.
-Fungsi yang digunakan adalah <InlineMath math="f(x)=x^2+1" />, intervalnya <InlineMath math="[0,4]" />, dan jumlah partisinya <InlineMath math="n=4" />. Kita memilih **ujung kanan** untuk menentukan tinggi.
+Tingginya <InlineMath math="f(1)=2" />, <InlineMath math="f(2)=5" />, <InlineMath math="f(3)=10" />, dan <InlineMath math="f(4)=17" />, sehingga
 
-**Langkah 2**: Hitung lebar subinterval.
+<BlockMath math="R_4 = (2 + 5 + 10 + 17)\cdot 1 = 34" />
 
-<BlockMath math="\Delta x = \frac{b-a}{n} = \frac{4-0}{4} = 1" />
+Periksa: integral eksaknya <InlineMath math="\int_0^4 (x^2+1)\,dx = \frac{64}{3} + 4 = \frac{76}{3} \approx 25{,}33" />. Jumlahan kanan lebih besar, sesuai untuk fungsi yang naik pada <InlineMath math="[0,4]" />.
 
-**Langkah 3**: Tentukan titik sampel ujung kanan.
+2. Lebarnya <InlineMath math="\Delta x = \frac{3-1}{4} = 0{,}5" />, dan titik ujung kirinya <InlineMath math="1" />, <InlineMath math="1{,}5" />, <InlineMath math="2" />, dan <InlineMath math="2{,}5" /> dengan tinggi <InlineMath math="3, 4, 5, 6" />:
 
-Subintervalnya adalah:
+<BlockMath math="L_4 = (3+4+5+6)\cdot 0{,}5 = 9" />
 
-<BlockMath math="[0,1], [1,2], [2,3], [3,4]" />
+Periksa: <InlineMath math="\int_1^3 (2x+1)\,dx = \left[x^2+x\right]_1^3 = 12-2 = 10" />. Jumlahan kiri lebih kecil, sesuai untuk fungsi yang naik.
 
-Untuk metode ujung kanan, kita mengambil nilai <InlineMath math="x" /> di sisi kanan setiap subinterval:
+3. Faktor <InlineMath math="\frac{2}{n}" /> adalah <InlineMath math="\Delta x" /> untuk interval sepanjang <InlineMath math="2" />, dan <InlineMath math="\frac{2i}{n}" /> adalah titik ujung kanan yang dimulai dari <InlineMath math="0" />, jadi intervalnya <InlineMath math="[0,2]" /> dan <InlineMath math="f(x)=x^3" />:
 
-<BlockMath math="x_1=1, x_2=2, x_3=3, x_4=4" />
+<BlockMath math="\lim_{n\to\infty} \sum_{i=1}^{n} \frac{2}{n}\left(\frac{2i}{n}\right)^3 = \int_0^2 x^3\,dx = \frac{2^4}{4} = 4" />
 
-**Langkah 4**: Hitung tinggi setiap persegi panjang.
-
-Tinggi setiap persegi panjang ditentukan oleh nilai fungsi <InlineMath math="f(x) = x^2 + 1" /> di titik sampel ujung kanan:
-
-<MathContainer>
-<BlockMath math="f(x_1) = f(1) = 1^2 + 1 = 2" />
-<BlockMath math="f(x_2) = f(2) = 2^2 + 1 = 5" />
-<BlockMath math="f(x_3) = f(3) = 3^2 + 1 = 10" />
-<BlockMath math="f(x_4) = f(4) = 4^2 + 1 = 17" />
-</MathContainer>
-
-**Langkah 5**: Hitung total Jumlahan Riemann.
-
-Sekarang kita jumlahkan luas semua persegi panjang (<InlineMath math="\text{tinggi} \times \text{lebar}" />):
-
-<MathContainer>
-<BlockMath math="R_4 = \sum_{i=1}^{4} f(x_i^*) \Delta x" />
-<BlockMath math="= [f(1) + f(2) + f(3) + f(4)] \cdot 1" />
-<BlockMath math="= (2 + 5 + 10 + 17) \cdot 1" />
-<BlockMath math="= 34" />
-</MathContainer>
-
-Jadi, Jumlahan Riemann untuk fungsi tersebut adalah <InlineMath math="34" />.
+Periksa dengan jumlahannya sendiri: <InlineMath math="1^3+2^3+\cdots+n^3=\frac{n^2(n+1)^2}{4}" /> memberi <InlineMath math="R_n = \frac{16}{n^4}\cdot\frac{n^2(n+1)^2}{4} = 4\left(\frac{n+1}{n}\right)^2" />, yang menuju <InlineMath math="4" />.
