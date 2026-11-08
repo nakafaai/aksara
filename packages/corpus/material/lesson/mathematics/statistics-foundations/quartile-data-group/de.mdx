@@ -21,13 +21,14 @@ Wir bestimmen die Position des Quartils mit dieser Formel:
 
 Dabei bezeichnet <InlineMath math="n" /> die Gesamtzahl aller Werte.
 
-<Mermaid
-  title="Ein Quartil klassierter Daten schätzen"
-  description="Bilde die Summenhäufigkeiten, such die Klasse mit der Position i·n/4 und interpolier darin."
-  chart={`flowchart LR
-  A["Tabelle der Summenhäufigkeiten"] --> B["Position i · n / 4"]
-  B --> C["Quartilsklasse"]
-  C --> D["Qᵢ = Tb + (i·n/4 − F) / f · p"]`}
+Addier die Häufigkeiten Klasse für Klasse, dann erhältst du die Summenhäufigkeiten <InlineMath math="2, 13, 23, 28, 30" />. Der letzte Balken ist immer die Gesamtzahl <InlineMath math="30" />, und die Klasse, in der ein Balken eine Zielposition zuerst überschreitet, ist die Klasse zum Interpolieren.
+
+<BarChart
+  title={<>Summenhäufigkeit jeder Klasse</>}
+  description={<>Balken für jede Klasse mit der Anzahl der Werte bis zu ihrer oberen Klassengrenze, bis 30.</>}
+  yAxisLabel="Summenhäufigkeit"
+  data={[["37-39", 2], ["40-42", 2 + 11], ["43-45", 2 + 11 + 10], ["46-48", 2 + 11 + 10 + 5], ["49-51", 2 + 11 + 10 + 5 + 2]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Summenhäufigkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Vorgehen bei gruppierten Daten
@@ -57,8 +58,8 @@ Die Klassenbreite ist die obere Klassenschwelle minus die untere Klassenschwelle
 Hier ist die Tabelle der Schuhverkäufe als Histogramm. Die meisten der <InlineMath math="30" /> verkauften Paare stammen aus den Klassen <InlineMath math="40\text{-}42" /> und <InlineMath math="43\text{-}45" />, und genau dort landen die Quartile.
 
 <HistogramChart
-  title="Schuhverkäufe nach Größenklasse"
-  description="Die Anzahl verkaufter Paare in jeder Schuhgrößenklasse."
+  title={<>Schuhverkäufe nach Größenklasse</>}
+  description={<>Die Anzahl verkaufter Paare in jeder Schuhgrößenklasse.</>}
   yAxisLabel="Verkaufte Paare"
   data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 10 }, { name: "46-48", value: 5 }, { name: "49-51", value: 2 }]}
   chartConfig={{ value: { label: "Verkaufte Paare", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -129,34 +130,27 @@ Damit ergibt sich für <InlineMath math="Q_1" /> der Wert <InlineMath math="41" 
 
 Du kannst die Interpolationsformel an der Summenhäufigkeitslinie überprüfen. Auf der Höhe <InlineMath math="n/4 = 7{,}5" /> liegt die Linie in der Klasse <InlineMath math="40\text{-}42" />, über <InlineMath math="Q_1 = 41" />. Bei <InlineMath math="3n/4 = 22{,}5" /> liegt sie in <InlineMath math="43\text{-}45" />, über <InlineMath math="Q_3 = 45{,}35" />. Zwischen den Klassengrenzen ist die Linie gerade, genau das nimmt die Formel an.
 
-<LineEquation
-  title="Quartile auf der Summenhäufigkeitslinie"
+<MathVisual
+  title={<>Quartile auf der Summenhäufigkeitslinie</>}
   description={<>Die Summenhäufigkeitslinie der Schuhverkäufe, abgelesen bei 7,5 für <InlineMath math="Q_1 = 41" /> und bei 22,5 für <InlineMath math="Q_3 = 45{,}35" />.</>}
-  cameraPosition={[44, 15, 40]}
-  cameraTarget={[44, 15, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 6 }, (_, i) => ({ x: 36.5 + 3 * i, y: [2, 11, 10, 5, 2].slice(0, i).reduce((sum, value) => sum + value, 0), z: 0 })),
-      smooth: false,
-      showPoints: true,
-      color: "#8242e5",
-    },
-    {
-      points: [{ x: 36.5, y: 30 / 4, z: 0 }, { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 30 / 4, z: 0 }, { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 0, z: 0 }],
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="Q_1" />, at: 2, offset: [0, -1.2, 0] }],
-    },
-    {
-      points: [{ x: 36.5, y: (3 * 30) / 4, z: 0 }, { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: (3 * 30) / 4, z: 0 }, { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: 0, z: 0 }],
-      smooth: false,
-      showPoints: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="Q_3" />, at: 2, offset: [0, -1.2, 0] }],
-    }
-  ]}
+  labels={{
+    q1: <InlineMath math="Q_1" />,
+    q3: <InlineMath math="Q_3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 36, max: 52 }, y: { min: -2, max: 31 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ogive", kind: "polyline", vertices: [{ x: 36.5, y: 0 }, { x: 39.5, y: 2 }, { x: 42.5, y: 13 }, { x: 45.5, y: 23 }, { x: 48.5, y: 28 }, { x: 51.5, y: 30 }], appearance: "secondary" },
+      { id: "q1", kind: "polyline", vertices: [{ x: 36.5, y: 30 / 4 }, { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 30 / 4 }, { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 0 }], appearance: "primary" },
+      { id: "q3", kind: "polyline", vertices: [{ x: 36.5, y: (3 * 30) / 4 }, { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: (3 * 30) / 4 }, { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: 0 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 0 }, placement: "below" },
+      { key: "q3", objectId: "q3", at: { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Übung

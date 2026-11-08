@@ -18,14 +18,14 @@ Variance averages the **squared** distances from the mean. Standard deviation ta
 
 We treat these observations as the **complete population**. Variance uses squared units, whereas taking the square root restores the original unit. Standard deviation can therefore be compared directly with an observed value.
 
-<Mermaid
-  title="From deviations to the standard deviation"
-  description="Each value gives a deviation from the mean. Squaring removes the sign, the average of the squares is the variance, and its square root is the standard deviation."
-  chart={`flowchart LR
-  A["Mean x̄"] --> B["Deviations xᵢ − x̄"]
-  B --> C["Squares (xᵢ − x̄)²"]
-  C --> D["Variance σ² = average of the squares"]
-  D --> E["Standard deviation σ = √σ²"]`}
+Square each deviation of Group One from its mean <InlineMath math="16" />. The bars are <InlineMath math="9, 4, 1, 1, 0, 0, 1, 1, 1, 1, 1, 4" />, they add up to <InlineMath math="24" />, and their mean <InlineMath math="\frac{24}{12} = 2" /> is the variance.
+
+<BarChart
+  title={<>Squared deviations of Group One</>}
+  description={<>Bar <InlineMath math="i" /> shows <InlineMath math="(x_i - 16)^2" /> for the twelve ages of Group One.</>}
+  yAxisLabel="Squared deviation"
+  data={[["1", (13 - 16) ** 2], ["2", (14 - 16) ** 2], ["3", (15 - 16) ** 2], ["4", (15 - 16) ** 2], ["5", (16 - 16) ** 2], ["6", (16 - 16) ** 2], ["7", (17 - 16) ** 2], ["8", (17 - 16) ** 2], ["9", (17 - 16) ** 2], ["10", (17 - 16) ** 2], ["11", (17 - 16) ** 2], ["12", (18 - 16) ** 2]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Squared deviation", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ### Variance
@@ -65,7 +65,7 @@ We will calculate the population variance and standard deviation of each group.
 Each row below is one person of Group One, and each teal bar is that age's deviation from the mean <InlineMath math="16" />. The bars are short: the longest is <InlineMath math="3" />. Squaring and averaging them gives <InlineMath math="\sigma^2 = 24 / 12 = 2" />.
 
 <MathVisual
-  title="Group One stays close to its mean"
+  title={<>Group One stays close to its mean</>}
   description={<>The twelve ages of Group One, one per row, with a bar from the mean 16 to each age.</>}
   labels={{
     mean: <InlineMath math="\bar{x} = 16" />,
@@ -108,7 +108,7 @@ Each row below is one person of Group One, and each teal bar is that age's devia
 Group Two has the same mean <InlineMath math="16" />, but its deviation bars are long, up to <InlineMath math="20" />. Their squares add up to <InlineMath math="1910" />, so <InlineMath math="\sigma^2 = 1910 / 12 \approx 159.17" /> and <InlineMath math="\sigma \approx 12.62" />. The longer the bars, the larger the standard deviation.
 
 <MathVisual
-  title="Group Two spreads far from its mean"
+  title={<>Group Two spreads far from its mean</>}
   description={<>The twelve ages of Group Two, one per row, with a bar from the mean 16 to each age.</>}
   labels={{
     mean: <InlineMath math="\bar{x} = 16" />,

@@ -20,14 +20,14 @@ Varian merata-ratakan **kuadrat** jarak setiap data dari mean. Simpangan baku me
 
 Kita memperlakukan data sebagai **populasi lengkap**. Perhitungan varian mempertahankan satuan yang dikuadratkan, sedangkan akar kuadrat mengembalikan satuan awal. Karena itu, simpangan baku dapat dibandingkan langsung dengan nilai pengamatan.
 
-<Mermaid
-  title="Dari simpangan ke simpangan baku"
-  description="Setiap nilai memberi simpangan dari rata-rata. Mengkuadratkan menghapus tandanya, rata-rata kuadrat adalah ragam, dan akar kuadratnya adalah simpangan baku."
-  chart={`flowchart LR
-  A["Rata-rata x̄"] --> B["Simpangan xᵢ − x̄"]
-  B --> C["Kuadrat (xᵢ − x̄)²"]
-  C --> D["Ragam σ² = rata-rata kuadrat"]
-  D --> E["Simpangan baku σ = √σ²"]`}
+Kuadratkan setiap simpangan Kelompok Satu dari rata-ratanya, <InlineMath math="16" />. Batangnya <InlineMath math="9, 4, 1, 1, 0, 0, 1, 1, 1, 1, 1, 4" />, jumlahnya <InlineMath math="24" />, dan rata-ratanya, <InlineMath math="\frac{24}{12} = 2" />, adalah ragamnya.
+
+<BarChart
+  title={<>Kuadrat simpangan Kelompok Satu</>}
+  description={<>Batang <InlineMath math="i" /> menunjukkan <InlineMath math="(x_i - 16)^2" /> untuk kedua belas usia Kelompok Satu.</>}
+  yAxisLabel="Kuadrat simpangan"
+  data={[["1", (13 - 16) ** 2], ["2", (14 - 16) ** 2], ["3", (15 - 16) ** 2], ["4", (15 - 16) ** 2], ["5", (16 - 16) ** 2], ["6", (16 - 16) ** 2], ["7", (17 - 16) ** 2], ["8", (17 - 16) ** 2], ["9", (17 - 16) ** 2], ["10", (17 - 16) ** 2], ["11", (17 - 16) ** 2], ["12", (18 - 16) ** 2]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Kuadrat simpangan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ### Varian
@@ -67,7 +67,7 @@ Kita akan menghitung varian dan simpangan baku populasi setiap kelompok.
 Setiap baris di bawah adalah satu orang dari Kelompok Satu, dan setiap batang hijau toska adalah simpangan usianya dari rata-rata <InlineMath math="16" />. Batangnya pendek: yang terpanjang hanya <InlineMath math="3" />. Mengkuadratkan lalu merata-ratakannya memberi <InlineMath math="\sigma^2 = 24 / 12 = 2" />.
 
 <MathVisual
-  title="Kelompok Satu dekat dengan rata-ratanya"
+  title={<>Kelompok Satu dekat dengan rata-ratanya</>}
   description={<>Dua belas usia Kelompok Satu, satu per baris, dengan batang dari rata-rata 16 ke setiap usia.</>}
   labels={{
     mean: <InlineMath math="\bar{x} = 16" />,
@@ -110,7 +110,7 @@ Setiap baris di bawah adalah satu orang dari Kelompok Satu, dan setiap batang hi
 Kelompok Dua punya rata-rata yang sama, <InlineMath math="16" />, tetapi batang simpangannya panjang, sampai <InlineMath math="20" />. Kuadrat-kuadratnya berjumlah <InlineMath math="1910" />, jadi <InlineMath math="\sigma^2 = 1910 / 12 \approx 159{,}17" /> dan <InlineMath math="\sigma \approx 12{,}62" />. Makin panjang batangnya, makin besar simpangan bakunya.
 
 <MathVisual
-  title="Kelompok Dua menyebar jauh dari rata-ratanya"
+  title={<>Kelompok Dua menyebar jauh dari rata-ratanya</>}
   description={<>Dua belas usia Kelompok Dua, satu per baris, dengan batang dari rata-rata 16 ke setiap usia.</>}
   labels={{
     mean: <InlineMath math="\bar{x} = 16" />,

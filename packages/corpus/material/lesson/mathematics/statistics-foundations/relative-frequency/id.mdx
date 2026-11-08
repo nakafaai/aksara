@@ -45,13 +45,31 @@ Frekuensi Relatif biasanya dinyatakan dalam bentuk:
 - **Desimal**: Hasil pembagian pecahan.
 - **Persentase**: Bentuk desimal dikalikan <InlineMath math="100\%" />. Bentuk ini menyatakan banyaknya pengamatan untuk setiap seratus data.
 
-<Mermaid
-  title="Dari banyak data ke persentase"
-  description="Membagi banyak data dengan total memberi frekuensi relatif antara 0 dan 1, dan mengalikannya dengan 100 mengubahnya menjadi persentase."
-  chart={`flowchart LR
-  A["Banyak data f"] -->|"bagi dengan total n"| B["Frekuensi relatif f/n"]
-  B -->|"kalikan 100%"| C["Persentase"]
-  B --> D["Semua frekuensi relatif berjumlah 1"]`}
+Frekuensi relatif membagi satu keseluruhan. Jika dijajarkan pada pita sepanjang <InlineMath math="1" />, bagian <InlineMath math="\frac{12}{30}" />, <InlineMath math="\frac{10}{30}" />, dan <InlineMath math="\frac{8}{30}" /> mengisinya tepat, tanpa celah dan tanpa tumpang tindih.
+
+<MathVisual
+  title={<>Tiga bagian mengisi satu keseluruhan</>}
+  description={<>Pita sepanjang 1 yang dibagi menjadi bagian Apple, Samsung, dan Xiaomi.</>}
+  labels={{
+    apple: <>Apple</>,
+    samsung: <>Samsung</>,
+    xiaomi: <>Xiaomi</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 1.05 }, y: { min: -0.15, max: 0.35 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "apple", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 12 / 30, y: 0 }, { x: 12 / 30, y: 0.2 }, { x: 0, y: 0.2 }], appearance: "primary" },
+      { id: "samsung", kind: "polygon", vertices: [{ x: 12 / 30, y: 0 }, { x: 22 / 30, y: 0 }, { x: 22 / 30, y: 0.2 }, { x: 12 / 30, y: 0.2 }], appearance: "secondary" },
+      { id: "xiaomi", kind: "polygon", vertices: [{ x: 22 / 30, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.2 }, { x: 22 / 30, y: 0.2 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "apple", objectId: "apple", at: { x: (0 + 12 / 30) / 2, y: 0.2 }, placement: "above" },
+      { key: "samsung", objectId: "samsung", at: { x: (12 / 30 + 22 / 30) / 2, y: 0.2 }, placement: "above" },
+      { key: "xiaomi", objectId: "xiaomi", at: { x: (22 / 30 + 1) / 2, y: 0.2 }, placement: "above" },
+    ],
+  }}
 />
 
 ## Contoh Menghitung Frekuensi Relatif
@@ -89,8 +107,8 @@ Jumlah total frekuensi relatif (dalam desimal) harus selalu <InlineMath math="1"
 Pertama, banyak datanya. Apple punya batang tertinggi dengan <InlineMath math="12" /> dari <InlineMath math="30" /> siswa, lalu Samsung dengan <InlineMath math="10" /> dan Xiaomi dengan <InlineMath math="8" />. Banyak data menjawab "berapa banyak", tetapi nilainya berubah kalau ukuran kelompoknya berubah.
 
 <BarChart
-  title="Banyak siswa pengguna setiap merek"
-  description="Banyak siswa yang memakai setiap merek ponsel, dari 30 siswa."
+  title={<>Banyak siswa pengguna setiap merek</>}
+  description={<>Banyak siswa yang memakai setiap merek ponsel, dari 30 siswa.</>}
   yAxisLabel="Siswa"
   data={[["Apple", 12], ["Samsung", 10], ["Xiaomi", 8]].map(([name, count]) => ({ name, value: count }))}
   chartConfig={{ value: { label: "Siswa", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -111,7 +129,7 @@ Frekuensi relatif membagi setiap frekuensi absolut dengan jumlah seluruh data. P
 Bagi setiap banyak data dengan total <InlineMath math="30" />, maka kamu mendapat frekuensi relatif <InlineMath math="0{,}40" />, <InlineMath math="0{,}33" />, dan <InlineMath math="0{,}27" />, dibulatkan sampai dua desimal. Bentuk batangnya tetap sama persis, tetapi sekarang batang itu menunjukkan bagian dari keseluruhan dan jumlahnya <InlineMath math="1" />, jadi bisa dibandingkan dengan kelas berukuran berapa pun.
 
 <BarChart
-  title="Bagian siswa untuk setiap merek"
+  title={<>Bagian siswa untuk setiap merek</>}
   description={<>Setiap batang adalah banyak data dibagi 30: <InlineMath math="12/30" />, <InlineMath math="10/30" />, dan <InlineMath math="8/30" />, yang jumlahnya 1.</>}
   yAxisLabel="Frekuensi relatif"
   data={[["Apple", 12], ["Samsung", 10], ["Xiaomi", 8]].map(([name, count]) => ({ name, value: count / 30 }))}

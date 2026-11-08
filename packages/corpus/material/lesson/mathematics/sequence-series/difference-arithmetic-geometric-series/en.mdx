@@ -53,13 +53,14 @@ The table places the two sum formulas side by side, so the term being added and 
 | **Sum formula** <InlineMath math="S_n" /> | <InlineMath math="\frac{n}{2}(2a + (n-1)b)" />                                     | <InlineMath math="\frac{a(r^n - 1)}{r-1}" />                                |
 | **Pattern**                               | Constant addition/subtraction                                                      | Constant multiplication/division                                            |
 
-<Mermaid
-  title="Which sum formula applies"
-  description="A constant difference calls for the arithmetic formula, a constant ratio other than 1 for the geometric formula."
-  chart={`flowchart TD
-  A["Sum of the first n terms"] --> Q{"Pattern between terms"}
-  Q -->|"constant difference b"| AR["Sₙ = n/2 · (2a + (n − 1)b)"]
-  Q -->|"constant ratio r ≠ 1"| GE["Sₙ = a(rⁿ − 1)/(r − 1)"]`}
+Before adding, look at the geometric terms themselves: <InlineMath math="5, 10, 20, 40, 80" />. Each bar doubles the one before, which is why the geometric sums soon leave the arithmetic sums far behind.
+
+<BarChart
+  title={<>The terms of the geometric series</>}
+  description={<>Bar <InlineMath math="n" /> shows the term <InlineMath math="5 \cdot 2^{n-1}" /> for <InlineMath math="n = 1" /> to <InlineMath math="5" />.</>}
+  yAxisLabel="Term"
+  data={[["1", 5 * 2 ** 0], ["2", 5 * 2 ** 1], ["3", 5 * 2 ** 2], ["4", 5 * 2 ** 3], ["5", 5 * 2 ** 4]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Term", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Calculating Arithmetic and Geometric Sums
@@ -83,7 +84,7 @@ This series has the common ratio <InlineMath math="r=2" />. Its first five terms
 Watch the arithmetic sums grow. Each bar is the total after <InlineMath math="n" /> terms of <InlineMath math="5 + 8 + 11 + 14 + 17" />: <InlineMath math="5, 13, 24, 38, 55" />. Each new bar adds a term that is <InlineMath math="3" /> bigger than the last one added.
 
 <BarChart
-  title="Partial sums of an arithmetic series"
+  title={<>Partial sums of an arithmetic series</>}
   description={<>Bar <InlineMath math="n" /> shows <InlineMath math="S_n = \frac{n}{2}(2 \cdot 5 + (n-1)3)" /> for <InlineMath math="n = 1" /> to <InlineMath math="5" />.</>}
   yAxisLabel="Sum"
   data={Array.from({ length: 5 }, (_, i) => {
@@ -112,7 +113,7 @@ The name of a series comes from its sequence of terms. The partial sums <InlineM
 Now the geometric sums for <InlineMath math="5 + 10 + 20 + 40 + 80" />: <InlineMath math="5, 15, 35, 75, 155" />. Each new term is as large as all the earlier terms together plus <InlineMath math="5" />, so the total roughly doubles at every step. Compare the heights with the arithmetic chart: same first term, very different growth.
 
 <BarChart
-  title="Partial sums of a geometric series"
+  title={<>Partial sums of a geometric series</>}
   description={<>Bar <InlineMath math="n" /> shows <InlineMath math="S_n = 5(2^n - 1)" /> for <InlineMath math="n = 1" /> to <InlineMath math="5" />.</>}
   yAxisLabel="Sum"
   data={Array.from({ length: 5 }, (_, i) => {

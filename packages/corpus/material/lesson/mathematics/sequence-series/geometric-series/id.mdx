@@ -35,7 +35,7 @@ Deret geometrinya adalah jumlahan suku-suku barisan tersebut:
 Setiap bulan menyiapkan bibit tiga kali lebih banyak daripada bulan sebelumnya: <InlineMath math="U_n = 4 \cdot 3^{n-1}" />. Batangnya menunjukkan betapa cepat pertumbuhan itu, dari <InlineMath math="4" /> di bulan Januari sampai <InlineMath math="324" /> di bulan Mei.
 
 <BarChart
-  title="Bibit baru setiap bulan"
+  title={<>Bibit baru setiap bulan</>}
   description={<>Batang ke-<InlineMath math="n" /> menunjukkan <InlineMath math="4 \cdot 3^{n-1}" />, yaitu bibit yang disiapkan pada bulan ke-<InlineMath math="n" />.</>}
   yAxisLabel="Bibit baru"
   data={['Jan', 'Feb', 'Mar', 'Apr', 'Mei'].map((name, i) => ({ name, value: 4 * 3 ** i }))}
@@ -60,14 +60,14 @@ Hanya **suku pertama dan suku sesudah suku terakhir** yang tersisa. Karena <Inli
 
 <BlockMath math="\begin{aligned}S_n&amp;=\frac{U_{n+1}-U_1}{r-1}\\&amp;=\frac{a(r^n-1)}{r-1}\end{aligned}" />
 
-<Mermaid
-  title="Trik 3S dikurangi S untuk tiga bulan"
-  description="Mengalikan jumlah dengan rasio menggeser setiap suku satu tempat, jadi mengurangkan jumlah semula hanya menyisakan suku baru terakhir dikurangi suku pertama."
-  chart={`flowchart TD
-  A["S₃ = 4 + 12 + 36"] --> B["3S₃ = 12 + 36 + 108"]
-  B --> C["3S₃ − S₃ = 108 − 4"]
-  C --> D["2S₃ = 104"]
-  D --> E["S₃ = 52"]`}
+Cek rasionya dari bulan ke bulan: <InlineMath math="\frac{12}{4}" />, <InlineMath math="\frac{36}{12}" />, <InlineMath math="\frac{108}{36}" />, <InlineMath math="\frac{324}{108}" />. Setiap batang setinggi <InlineMath math="3" />, dan itulah yang membuat bibitnya barisan geometri dan totalnya deret geometri.
+
+<BarChart
+  title={<>Rasio antara bulan yang berurutan</>}
+  description={<>Rasio setiap bulan terhadap bulan sebelumnya, selalu 3.</>}
+  yAxisLabel="Rasio"
+  data={[["Feb", (4 * 3 ** 1) / (4 * 3 ** 0)], ["Mar", (4 * 3 ** 2) / (4 * 3 ** 1)], ["Apr", (4 * 3 ** 3) / (4 * 3 ** 2)], ["Mei", (4 * 3 ** 4) / (4 * 3 ** 3)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Rasio", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Rumus Deret Geometri
@@ -96,7 +96,7 @@ Pada rasio satu, pembagian dengan <InlineMath math="r-1" /> berarti **pembagian 
 Sekarang hitung semua bibit yang sudah disiapkan. Batang ke-<InlineMath math="n" /> adalah <InlineMath math="S_n = \frac{4(3^n - 1)}{3 - 1}" />: <InlineMath math="4, 16, 52, 160, 484" />. Bandingkan dengan diagram sebelumnya: total sampai bulan Mei, <InlineMath math="484" />, sedikit di bawah <InlineMath math="1{,}5" /> kali bibit bulan Mei saja, karena <InlineMath math="S_n = \frac{3U_n - 4}{2}" />.
 
 <BarChart
-  title="Total bibit sejauh ini"
+  title={<>Total bibit sejauh ini</>}
   description={<>Batang ke-<InlineMath math="n" /> menunjukkan total <InlineMath math="S_n = 2(3^n - 1)" /> setelah <InlineMath math="n" /> bulan.</>}
   yAxisLabel="Total bibit"
   data={['Jan', 'Feb', 'Mar', 'Apr', 'Mei'].map((name, i) => ({ name, value: (4 * (3 ** (i + 1) - 1)) / (3 - 1) }))}

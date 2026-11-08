@@ -34,14 +34,14 @@ Wie bei nicht gruppierten Daten ist die Standardabweichung die **Quadratwurzel d
 
 <BlockMath math="\sigma = \sqrt{\sigma^2}" />
 
-<Mermaid
-  title="Varianz klassierter Daten Schritt für Schritt"
-  description="Jede Klasse zählt ihre Mitte so oft wie ihre Häufigkeit, die Summen von f·x und f·x² liefern also Mittelwert und Varianz."
-  chart={`flowchart LR
-  A["Klassenmitten xᵢ und Häufigkeiten fᵢ"] --> B["Σ fᵢxᵢ und Σ fᵢxᵢ²"]
-  B --> C["x̄ = Σ fᵢxᵢ / Σ fᵢ"]
-  C --> D["σ² = Σ fᵢxᵢ² / Σ fᵢ − x̄²"]
-  D --> E["σ = √σ²"]`}
+Jede Klasse trägt ihre Klassenmitte mal ihre Häufigkeit zur Summe <InlineMath math="\sum f_i x_i = 1645" /> bei. Die Klasse <InlineMath math="21\text{-}25" /> dominiert mit <InlineMath math="45 \cdot 23 = 1035" />, darum liegt der Mittelwert <InlineMath math="\frac{1645}{80} \approx 20{,}56" /> nah bei ihr.
+
+<BarChart
+  title={<>Häufigkeit mal Klassenmitte für jede Klasse</>}
+  description={<>Balken für jede Klasse der Akkulaufzeit mit <InlineMath math="f_i x_i" />, zusammen 1645.</>}
+  yAxisLabel="Häufigkeit mal Klassenmitte"
+  data={[["6-10", 2 * 8], ["11-15", 10 * 13], ["16-20", 18 * 18], ["21-25", 45 * 23], ["26-30", 5 * 28]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Häufigkeit mal Klassenmitte", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Streuung der Akkulaufzeiten
@@ -61,8 +61,8 @@ Gesucht sind die geschätzte Varianz und Standardabweichung dieser Grundgesamthe
 Die Akkulaufzeiten als Histogramm: <InlineMath math="45" /> der <InlineMath math="80" /> Handys halten zwischen <InlineMath math="21" /> und <InlineMath math="25" /> Stunden, die Daten neigen sich also zum oberen Ende.
 
 <HistogramChart
-  title="Akkulaufzeit von 80 Handys"
-  description="Die Anzahl der Handys in jeder Klasse der Akkulaufzeit, in Stunden."
+  title={<>Akkulaufzeit von 80 Handys</>}
+  description={<>Die Anzahl der Handys in jeder Klasse der Akkulaufzeit, in Stunden.</>}
   yAxisLabel="Handys"
   data={[{ name: "6-10", value: 2 }, { name: "11-15", value: 10 }, { name: "16-20", value: 18 }, { name: "21-25", value: 45 }, { name: "26-30", value: 5 }]}
   chartConfig={{ value: { label: "Handys", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -106,39 +106,28 @@ Bei gleicher Einheit und vergleichbarer Skala bedeutet eine kleinere Standardabw
 
 Markier den Mittelwert <InlineMath math="\bar{x} = 1645 / 80 \approx 20{,}56" /> im Häufigkeitspolygon und geh eine Standardabweichung <InlineMath math="\sigma \approx 4{,}4" /> nach jeder Seite. Das Band von etwa <InlineMath math="16{,}2" /> bis <InlineMath math="25{,}0" /> Stunden enthält die hohe Spitze bei <InlineMath math="23" /> Stunden, den Großteil der Handys.
 
-<LineEquation
-  title="Eine Standardabweichung um den Mittelwert"
-  description={<>Das Häufigkeitspolygon der Akkulaufzeiten mit dem Mittelwert von etwa 20,56 und den Linien eine Standardabweichung, etwa 4,4 Stunden, zu beiden Seiten.</>}
-  cameraPosition={[18, 23, 62]}
-  cameraTarget={[18, 23, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].map(([x, f]) => ({ x, y: f, z: 0 })),
-      smooth: false,
-      showPoints: true,
-      color: "#8242e5",
-    },
-    {
-      points: [{ x: [[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + x * f, 0) / 80, y: 0, z: 0 }, { x: [[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + x * f, 0) / 80, y: 47, z: 0 }],
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="\bar{x}" />, at: 1, offset: [0, 1.5, 0] }],
-    },
-    {
-      points: [{ x: [[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + x * f, 0) / 80 - Math.sqrt([[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + f * x ** 2, 0) / 80 - (1645 / 80) ** 2), y: 0, z: 0 }, { x: [[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + x * f, 0) / 80 - Math.sqrt([[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + f * x ** 2, 0) / 80 - (1645 / 80) ** 2), y: 47, z: 0 }],
-      smooth: false,
-      showPoints: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="\bar{x} - \sigma" />, at: 1, offset: [0, 1.5, 0] }],
-    },
-    {
-      points: [{ x: [[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + x * f, 0) / 80 + Math.sqrt([[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + f * x ** 2, 0) / 80 - (1645 / 80) ** 2), y: 0, z: 0 }, { x: [[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + x * f, 0) / 80 + Math.sqrt([[8, 2], [13, 10], [18, 18], [23, 45], [28, 5]].reduce((sum, [x, f]) => sum + f * x ** 2, 0) / 80 - (1645 / 80) ** 2), y: 47, z: 0 }],
-      smooth: false,
-      showPoints: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="\bar{x} + \sigma" />, at: 1, offset: [0, 1.5, 0] }],
-    }
-  ]}
+<MathVisual
+  title={<>Eine Standardabweichung um den Mittelwert</>}
+  description={<>Das Häufigkeitspolygon der Akkulaufzeiten mit dem Mittelwert von etwa <InlineMath math="20{,}56" /> und den Linien eine Standardabweichung, etwa <InlineMath math="4{,}4" /> Stunden, zu beiden Seiten.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x}" />,
+    lo: <InlineMath math="\bar{x} - \sigma" />,
+    hi: <InlineMath math="\bar{x} + \sigma" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 6, max: 30 }, y: { min: -0.5, max: 48 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "poly", kind: "polyline", vertices: [{ x: 8, y: 2 }, { x: 13, y: 10 }, { x: 18, y: 18 }, { x: 23, y: 45 }, { x: 28, y: 5 }], appearance: "secondary" },
+      { id: "mean", kind: "segment", from: { x: 1645 / 80, y: 0 }, to: { x: 1645 / 80, y: 47 }, appearance: "primary" },
+      { id: "lo", kind: "segment", from: { x: 1645 / 80 - Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 0 }, to: { x: 1645 / 80 - Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 47 }, appearance: "construction" },
+      { id: "hi", kind: "segment", from: { x: 1645 / 80 + Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 0 }, to: { x: 1645 / 80 + Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 47 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 1645 / 80, y: 47 }, placement: "above" },
+      { key: "lo", objectId: "lo", at: { x: 1645 / 80 - Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 47 }, placement: "above-left" },
+      { key: "hi", objectId: "hi", at: { x: 1645 / 80 + Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 47 }, placement: "above-right" },
+    ],
+  }}
 />

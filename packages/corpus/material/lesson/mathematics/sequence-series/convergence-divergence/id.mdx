@@ -65,27 +65,65 @@ Sebuah deret disebut **divergen** jika jumlah parsialnya tidak mendekati nilai b
 
 Bandingkan tiga deret lewat jumlah parsialnya <InlineMath math="S_n" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="12" />. Jumlah <InlineMath math="1 + \frac12 + \frac14 + \cdots" /> menetap di <InlineMath math="2" />, jadi deret itu konvergen. Jumlah <InlineMath math="1 + \frac12 + \frac13 + \cdots" /> merayap naik tanpa batas atas, dan jumlah <InlineMath math="1 - 1 + 1 - \cdots" /> melompat antara <InlineMath math="1" /> dan <InlineMath math="0" />. Keduanya divergen, dengan dua cara yang berbeda.
 
-<LineEquation
-  title="Satu deret menetap, dua tidak"
+<MathVisual
+  title={<>Satu deret menetap, dua tidak</>}
   description={<>Jumlah parsial tiga deret: deret geometri yang mendekati 2, deret harmonik yang naik tanpa batas, dan deret berselang-seling yang melompat antara 1 dan 0.</>}
-  cameraPosition={[6.5, 1.5, 12]}
-  cameraTarget={[6.5, 1.5, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 2, z: 0 }, { x: 13, y: 2, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="2" />, at: 1, offset: [0.4, 0, 0] }] },
-    ...Array.from({ length: 12 }, (_, i) => {
-      const n = i + 1;
-      return { points: [{ x: n, y: 2 - 2 ** (1 - n), z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 12 ? [{ text: <InlineMath math="1 + \frac12 + \frac14 + \cdots" />, at: 0, offset: [0.6, 0.3, 0] }] : [] };
-    }),
-    ...Array.from({ length: 12 }, (_, i) => {
-      const n = i + 1;
-      return { points: [{ x: n, y: Array.from({ length: n }, (_, k) => 1 / (k + 1)).reduce((sum, term) => sum + term, 0), z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: n === 12 ? [{ text: <InlineMath math="1 + \frac12 + \frac13 + \cdots" />, at: 0, offset: [0.6, 0.3, 0] }] : [] };
-    }),
-    ...Array.from({ length: 12 }, (_, i) => {
-      const n = i + 1;
-      return { points: [{ x: n, y: (1 + (-1) ** (n + 1)) / 2, z: 0 }], smooth: false, showPoints: true, color: "#0d9488", labels: n === 12 ? [{ text: <InlineMath math="1 - 1 + 1 - \cdots" />, at: 0, offset: [0.6, -0.3, 0] }] : [] };
-    })
-  ]}
+  labels={{
+    two: <InlineMath math="2" />,
+    g12: <InlineMath math="1 + \tfrac12 + \tfrac14 + \cdots" />,
+    h12: <InlineMath math="1 + \tfrac12 + \tfrac13 + \cdots" />,
+    a12: <InlineMath math="1 - 1 + 1 - \cdots" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: -0.5, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "two", kind: "segment", from: { x: 0, y: 2 }, to: { x: 13, y: 2 }, appearance: "reference" },
+      { id: "g1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "g2", kind: "point", at: { x: 2, y: 3 / 2 }, appearance: "primary" },
+      { id: "g3", kind: "point", at: { x: 3, y: 7 / 4 }, appearance: "primary" },
+      { id: "g4", kind: "point", at: { x: 4, y: 15 / 8 }, appearance: "primary" },
+      { id: "g5", kind: "point", at: { x: 5, y: 31 / 16 }, appearance: "primary" },
+      { id: "g6", kind: "point", at: { x: 6, y: 63 / 32 }, appearance: "primary" },
+      { id: "g7", kind: "point", at: { x: 7, y: 127 / 64 }, appearance: "primary" },
+      { id: "g8", kind: "point", at: { x: 8, y: 255 / 128 }, appearance: "primary" },
+      { id: "g9", kind: "point", at: { x: 9, y: 511 / 256 }, appearance: "primary" },
+      { id: "g10", kind: "point", at: { x: 10, y: 1023 / 512 }, appearance: "primary" },
+      { id: "g11", kind: "point", at: { x: 11, y: 2047 / 1024 }, appearance: "primary" },
+      { id: "g12", kind: "point", at: { x: 12, y: 4095 / 2048 }, appearance: "primary" },
+      { id: "h1", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "h2", kind: "point", at: { x: 2, y: 3 / 2 }, appearance: "secondary" },
+      { id: "h3", kind: "point", at: { x: 3, y: 11 / 6 }, appearance: "secondary" },
+      { id: "h4", kind: "point", at: { x: 4, y: 25 / 12 }, appearance: "secondary" },
+      { id: "h5", kind: "point", at: { x: 5, y: 137 / 60 }, appearance: "secondary" },
+      { id: "h6", kind: "point", at: { x: 6, y: 49 / 20 }, appearance: "secondary" },
+      { id: "h7", kind: "point", at: { x: 7, y: 363 / 140 }, appearance: "secondary" },
+      { id: "h8", kind: "point", at: { x: 8, y: 761 / 280 }, appearance: "secondary" },
+      { id: "h9", kind: "point", at: { x: 9, y: 7129 / 2520 }, appearance: "secondary" },
+      { id: "h10", kind: "point", at: { x: 10, y: 7381 / 2520 }, appearance: "secondary" },
+      { id: "h11", kind: "point", at: { x: 11, y: 83711 / 27720 }, appearance: "secondary" },
+      { id: "h12", kind: "point", at: { x: 12, y: 86021 / 27720 }, appearance: "secondary" },
+      { id: "a1", kind: "point", at: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "a2", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "a3", kind: "point", at: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "a4", kind: "point", at: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "a5", kind: "point", at: { x: 5, y: 1 }, appearance: "construction" },
+      { id: "a6", kind: "point", at: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "a7", kind: "point", at: { x: 7, y: 1 }, appearance: "construction" },
+      { id: "a8", kind: "point", at: { x: 8, y: 0 }, appearance: "construction" },
+      { id: "a9", kind: "point", at: { x: 9, y: 1 }, appearance: "construction" },
+      { id: "a10", kind: "point", at: { x: 10, y: 0 }, appearance: "construction" },
+      { id: "a11", kind: "point", at: { x: 11, y: 1 }, appearance: "construction" },
+      { id: "a12", kind: "point", at: { x: 12, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "two", objectId: "two", at: { x: 13, y: 2 }, placement: "right" },
+      { key: "g12", objectId: "g12", at: { x: 12, y: 4095 / 2048 }, placement: "below-left" },
+      { key: "h12", objectId: "h12", at: { x: 12, y: 86021 / 27720 }, placement: "above-left" },
+      { key: "a12", objectId: "a12", at: { x: 12, y: 0 }, placement: "below-left" },
+    ],
+  }}
 />
 
 ### Jumlah Parsial Tidak Menetap
@@ -128,24 +166,50 @@ Jadi, deret divergen tidak selalu mempunyai nilai <InlineMath math="\infty" />. 
 
 Dua deret geometri konvergen dengan <InlineMath math="a = 1" /> menunjukkan bahwa rasio menentukan cara jumlahnya tiba. Dengan <InlineMath math="r = -\frac12" />, jumlahnya zig-zag di atas dan di bawah limitnya, <InlineMath math="\frac{1}{1 + \frac12} = \frac23" />. Dengan <InlineMath math="r = \frac35" />, jumlahnya naik terus menuju <InlineMath math="\frac{1}{1 - \frac35} = 2{,}5" />. Kedua limit berasal dari <InlineMath math="\frac{a}{1 - r}" />.
 
-<LineEquation
-  title="Dua cara menuju konvergen"
-  description={<>Jumlah parsial untuk <InlineMath math="r = -\frac12" /> zig-zag menuju <InlineMath math="\frac23" />, sedangkan untuk <InlineMath math="r = \frac35" /> naik menuju 2,5.</>}
-  cameraPosition={[5.5, 1.25, 10]}
-  cameraTarget={[5.5, 1.25, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 2 / 3, z: 0 }, { x: 11, y: 2 / 3, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="\frac23" />, at: 1, offset: [0.4, 0, 0] }] },
-    { points: [{ x: 0, y: 2.5, z: 0 }, { x: 11, y: 2.5, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="2{,}5" />, at: 1, offset: [0.4, 0, 0] }] },
-    ...Array.from({ length: 10 }, (_, i) => {
-      const n = i + 1;
-      return { points: [{ x: n, y: (1 - (-1 / 2) ** n) / (1 + 1 / 2), z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 10 ? [{ text: <InlineMath math="r = -\frac12" />, at: 0, offset: [0.6, -0.25, 0] }] : [] };
-    }),
-    ...Array.from({ length: 10 }, (_, i) => {
-      const n = i + 1;
-      return { points: [{ x: n, y: (1 - (3 / 5) ** n) / (1 - 3 / 5), z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: n === 10 ? [{ text: <InlineMath math="r = \frac35" />, at: 0, offset: [0.6, -0.25, 0] }] : [] };
-    })
-  ]}
+<MathVisual
+  title={<>Dua cara menuju konvergen</>}
+  description={<>Jumlah parsial untuk <InlineMath math="r = -\frac12" /> zig-zag menuju <InlineMath math="\frac23" />, sedangkan untuk <InlineMath math="r = \frac35" /> naik menuju <InlineMath math="2{,}5" />.</>}
+  labels={{
+    lim1: <InlineMath math="\tfrac23" />,
+    lim2: <InlineMath math="2{,}5" />,
+    p1: <InlineMath math="r = -\tfrac12" />,
+    q1: <InlineMath math="r = \tfrac35" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "lim1", kind: "segment", from: { x: 0, y: 2 / 3 }, to: { x: 11, y: 2 / 3 }, appearance: "reference" },
+      { id: "lim2", kind: "segment", from: { x: 0, y: 5 / 2 }, to: { x: 11, y: 5 / 2 }, appearance: "reference" },
+      { id: "p1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "p2", kind: "point", at: { x: 2, y: 1 / 2 }, appearance: "primary" },
+      { id: "p3", kind: "point", at: { x: 3, y: 3 / 4 }, appearance: "primary" },
+      { id: "p4", kind: "point", at: { x: 4, y: 5 / 8 }, appearance: "primary" },
+      { id: "p5", kind: "point", at: { x: 5, y: 11 / 16 }, appearance: "primary" },
+      { id: "p6", kind: "point", at: { x: 6, y: 21 / 32 }, appearance: "primary" },
+      { id: "p7", kind: "point", at: { x: 7, y: 43 / 64 }, appearance: "primary" },
+      { id: "p8", kind: "point", at: { x: 8, y: 85 / 128 }, appearance: "primary" },
+      { id: "p9", kind: "point", at: { x: 9, y: 171 / 256 }, appearance: "primary" },
+      { id: "p10", kind: "point", at: { x: 10, y: 341 / 512 }, appearance: "primary" },
+      { id: "q1", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "q2", kind: "point", at: { x: 2, y: 8 / 5 }, appearance: "secondary" },
+      { id: "q3", kind: "point", at: { x: 3, y: 49 / 25 }, appearance: "secondary" },
+      { id: "q4", kind: "point", at: { x: 4, y: 272 / 125 }, appearance: "secondary" },
+      { id: "q5", kind: "point", at: { x: 5, y: 1441 / 625 }, appearance: "secondary" },
+      { id: "q6", kind: "point", at: { x: 6, y: 7448 / 3125 }, appearance: "secondary" },
+      { id: "q7", kind: "point", at: { x: 7, y: 37969 / 15625 }, appearance: "secondary" },
+      { id: "q8", kind: "point", at: { x: 8, y: 192032 / 78125 }, appearance: "secondary" },
+      { id: "q9", kind: "point", at: { x: 9, y: 966721 / 390625 }, appearance: "secondary" },
+      { id: "q10", kind: "point", at: { x: 10, y: 4853288 / 1953125 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "lim1", objectId: "lim1", at: { x: 11, y: 2 / 3 }, placement: "right" },
+      { key: "lim2", objectId: "lim2", at: { x: 11, y: 5 / 2 }, placement: "right" },
+      { key: "p1", objectId: "p1", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "q1", objectId: "q1", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ## Barisan yang Bergerak Satu Arah dan Terbatas
@@ -166,15 +230,14 @@ Tabel mengumpulkan ketiga uji yang sudah dibahas, sehingga perilaku jumlah parsi
 | **Suku umum** | <InlineMath math="u_n\to0" /> merupakan syarat perlu | Jika <InlineMath math="u_n\not\to0" />, deret pasti divergen. Meskipun demikian, <InlineMath math="u_n\to0" /> juga dapat terjadi |
 | **Contoh**                          | Deret geometri <InlineMath math="\lvert r\rvert < 1" />                                                 | Deret aritmetika selain deret nol, geometri dengan suku pertama tidak nol dan <InlineMath math="\lvert r\rvert \geq 1" />, serta harmonik                                              |
 
-<Mermaid
-  title="Menentukan apakah deret konvergen"
-  description="Suku yang tidak mengecil ke nol pasti membuat deret divergen. Suku yang mengecil pun masih memerlukan jumlah parsial yang menetap di satu nilai berhingga."
-  chart={`flowchart TD
-  A["Deret u₁ + u₂ + u₃ + …"] --> T{"Apakah uₙ mendekati 0?"}
-  T -->|"Tidak"| D["Divergen"]
-  T -->|"Ya"| S{"Apakah jumlah parsial Sₙ menetap di satu nilai berhingga?"}
-  S -->|"Ya"| C["Konvergen ke nilai itu"]
-  S -->|"Tidak"| D`}
+Suku yang mengecil saja tidak cukup. Suku-suku <InlineMath math="\frac1n" /> dari deret harmonik turun menuju <InlineMath math="0" />, seperti terlihat pada batangnya, tetapi jumlah parsialnya tetap tumbuh tanpa batas. Suku yang menuju nol diperlukan agar deret konvergen, tetapi tidak menjaminnya.
+
+<BarChart
+  title={<>Suku-suku deret harmonik</>}
+  description={<>Batang <InlineMath math="n" /> menunjukkan suku <InlineMath math="\frac1n" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="12" />.</>}
+  yAxisLabel="Suku"
+  data={[["1", 1 / 1], ["2", 1 / 2], ["3", 1 / 3], ["4", 1 / 4], ["5", 1 / 5], ["6", 1 / 6], ["7", 1 / 7], ["8", 1 / 8], ["9", 1 / 9], ["10", 1 / 10], ["11", 1 / 11], ["12", 1 / 12]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Suku", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Latihan

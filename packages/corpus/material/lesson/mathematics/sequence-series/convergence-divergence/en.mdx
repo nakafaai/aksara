@@ -65,27 +65,65 @@ A series is **divergent** when its partial sums do not approach a finite value. 
 
 Compare three series by their partial sums <InlineMath math="S_n" /> for <InlineMath math="n = 1" /> to <InlineMath math="12" />. The sums of <InlineMath math="1 + \frac12 + \frac14 + \cdots" /> settle on <InlineMath math="2" />, so that series converges. The sums of <InlineMath math="1 + \frac12 + \frac13 + \cdots" /> creep upward with no ceiling, and the sums of <InlineMath math="1 - 1 + 1 - \cdots" /> jump between <InlineMath math="1" /> and <InlineMath math="0" />. Both of those diverge, in two different ways.
 
-<LineEquation
-  title="One series settles, two do not"
+<MathVisual
+  title={<>One series settles, two do not</>}
   description={<>Partial sums of three series: a geometric series approaching 2, the harmonic series rising without a bound, and an alternating series jumping between 1 and 0.</>}
-  cameraPosition={[6.5, 1.5, 12]}
-  cameraTarget={[6.5, 1.5, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 2, z: 0 }, { x: 13, y: 2, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="2" />, at: 1, offset: [0.4, 0, 0] }] },
-    ...Array.from({ length: 12 }, (_, i) => {
-      const n = i + 1;
-      return { points: [{ x: n, y: 2 - 2 ** (1 - n), z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 12 ? [{ text: <InlineMath math="1 + \frac12 + \frac14 + \cdots" />, at: 0, offset: [0.6, 0.3, 0] }] : [] };
-    }),
-    ...Array.from({ length: 12 }, (_, i) => {
-      const n = i + 1;
-      return { points: [{ x: n, y: Array.from({ length: n }, (_, k) => 1 / (k + 1)).reduce((sum, term) => sum + term, 0), z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: n === 12 ? [{ text: <InlineMath math="1 + \frac12 + \frac13 + \cdots" />, at: 0, offset: [0.6, 0.3, 0] }] : [] };
-    }),
-    ...Array.from({ length: 12 }, (_, i) => {
-      const n = i + 1;
-      return { points: [{ x: n, y: (1 + (-1) ** (n + 1)) / 2, z: 0 }], smooth: false, showPoints: true, color: "#0d9488", labels: n === 12 ? [{ text: <InlineMath math="1 - 1 + 1 - \cdots" />, at: 0, offset: [0.6, -0.3, 0] }] : [] };
-    })
-  ]}
+  labels={{
+    two: <InlineMath math="2" />,
+    g12: <InlineMath math="1 + \tfrac12 + \tfrac14 + \cdots" />,
+    h12: <InlineMath math="1 + \tfrac12 + \tfrac13 + \cdots" />,
+    a12: <InlineMath math="1 - 1 + 1 - \cdots" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: -0.5, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "two", kind: "segment", from: { x: 0, y: 2 }, to: { x: 13, y: 2 }, appearance: "reference" },
+      { id: "g1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "g2", kind: "point", at: { x: 2, y: 3 / 2 }, appearance: "primary" },
+      { id: "g3", kind: "point", at: { x: 3, y: 7 / 4 }, appearance: "primary" },
+      { id: "g4", kind: "point", at: { x: 4, y: 15 / 8 }, appearance: "primary" },
+      { id: "g5", kind: "point", at: { x: 5, y: 31 / 16 }, appearance: "primary" },
+      { id: "g6", kind: "point", at: { x: 6, y: 63 / 32 }, appearance: "primary" },
+      { id: "g7", kind: "point", at: { x: 7, y: 127 / 64 }, appearance: "primary" },
+      { id: "g8", kind: "point", at: { x: 8, y: 255 / 128 }, appearance: "primary" },
+      { id: "g9", kind: "point", at: { x: 9, y: 511 / 256 }, appearance: "primary" },
+      { id: "g10", kind: "point", at: { x: 10, y: 1023 / 512 }, appearance: "primary" },
+      { id: "g11", kind: "point", at: { x: 11, y: 2047 / 1024 }, appearance: "primary" },
+      { id: "g12", kind: "point", at: { x: 12, y: 4095 / 2048 }, appearance: "primary" },
+      { id: "h1", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "h2", kind: "point", at: { x: 2, y: 3 / 2 }, appearance: "secondary" },
+      { id: "h3", kind: "point", at: { x: 3, y: 11 / 6 }, appearance: "secondary" },
+      { id: "h4", kind: "point", at: { x: 4, y: 25 / 12 }, appearance: "secondary" },
+      { id: "h5", kind: "point", at: { x: 5, y: 137 / 60 }, appearance: "secondary" },
+      { id: "h6", kind: "point", at: { x: 6, y: 49 / 20 }, appearance: "secondary" },
+      { id: "h7", kind: "point", at: { x: 7, y: 363 / 140 }, appearance: "secondary" },
+      { id: "h8", kind: "point", at: { x: 8, y: 761 / 280 }, appearance: "secondary" },
+      { id: "h9", kind: "point", at: { x: 9, y: 7129 / 2520 }, appearance: "secondary" },
+      { id: "h10", kind: "point", at: { x: 10, y: 7381 / 2520 }, appearance: "secondary" },
+      { id: "h11", kind: "point", at: { x: 11, y: 83711 / 27720 }, appearance: "secondary" },
+      { id: "h12", kind: "point", at: { x: 12, y: 86021 / 27720 }, appearance: "secondary" },
+      { id: "a1", kind: "point", at: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "a2", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "a3", kind: "point", at: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "a4", kind: "point", at: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "a5", kind: "point", at: { x: 5, y: 1 }, appearance: "construction" },
+      { id: "a6", kind: "point", at: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "a7", kind: "point", at: { x: 7, y: 1 }, appearance: "construction" },
+      { id: "a8", kind: "point", at: { x: 8, y: 0 }, appearance: "construction" },
+      { id: "a9", kind: "point", at: { x: 9, y: 1 }, appearance: "construction" },
+      { id: "a10", kind: "point", at: { x: 10, y: 0 }, appearance: "construction" },
+      { id: "a11", kind: "point", at: { x: 11, y: 1 }, appearance: "construction" },
+      { id: "a12", kind: "point", at: { x: 12, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "two", objectId: "two", at: { x: 13, y: 2 }, placement: "right" },
+      { key: "g12", objectId: "g12", at: { x: 12, y: 4095 / 2048 }, placement: "below-left" },
+      { key: "h12", objectId: "h12", at: { x: 12, y: 86021 / 27720 }, placement: "above-left" },
+      { key: "a12", objectId: "a12", at: { x: 12, y: 0 }, placement: "below-left" },
+    ],
+  }}
 />
 
 ### Partial Sums Fail to Settle
@@ -128,24 +166,50 @@ A divergent series therefore does not always have the value <InlineMath math="\i
 
 Two convergent geometric series with <InlineMath math="a = 1" /> show that the ratio decides how the sums arrive. With <InlineMath math="r = -\frac12" /> the sums zigzag above and below their limit <InlineMath math="\frac{1}{1 + \frac12} = \frac23" />. With <InlineMath math="r = \frac35" /> they climb steadily toward <InlineMath math="\frac{1}{1 - \frac35} = 2.5" />. Both limits come from <InlineMath math="\frac{a}{1 - r}" />.
 
-<LineEquation
-  title="Two ways to converge"
-  description={<>Partial sums for <InlineMath math="r = -\frac12" /> zigzag toward <InlineMath math="\frac23" />, while those for <InlineMath math="r = \frac35" /> rise toward 2.5.</>}
-  cameraPosition={[5.5, 1.25, 10]}
-  cameraTarget={[5.5, 1.25, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 2 / 3, z: 0 }, { x: 11, y: 2 / 3, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="\frac23" />, at: 1, offset: [0.4, 0, 0] }] },
-    { points: [{ x: 0, y: 2.5, z: 0 }, { x: 11, y: 2.5, z: 0 }], smooth: false, showPoints: false, color: "#64748b", labels: [{ text: <InlineMath math="2.5" />, at: 1, offset: [0.4, 0, 0] }] },
-    ...Array.from({ length: 10 }, (_, i) => {
-      const n = i + 1;
-      return { points: [{ x: n, y: (1 - (-1 / 2) ** n) / (1 + 1 / 2), z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 10 ? [{ text: <InlineMath math="r = -\frac12" />, at: 0, offset: [0.6, -0.25, 0] }] : [] };
-    }),
-    ...Array.from({ length: 10 }, (_, i) => {
-      const n = i + 1;
-      return { points: [{ x: n, y: (1 - (3 / 5) ** n) / (1 - 3 / 5), z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: n === 10 ? [{ text: <InlineMath math="r = \frac35" />, at: 0, offset: [0.6, -0.25, 0] }] : [] };
-    })
-  ]}
+<MathVisual
+  title={<>Two ways to converge</>}
+  description={<>Partial sums for <InlineMath math="r = -\frac12" /> zigzag toward <InlineMath math="\frac23" />, while those for <InlineMath math="r = \frac35" /> rise toward <InlineMath math="2.5" />.</>}
+  labels={{
+    lim1: <InlineMath math="\tfrac23" />,
+    lim2: <InlineMath math="2.5" />,
+    p1: <InlineMath math="r = -\tfrac12" />,
+    q1: <InlineMath math="r = \tfrac35" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "lim1", kind: "segment", from: { x: 0, y: 2 / 3 }, to: { x: 11, y: 2 / 3 }, appearance: "reference" },
+      { id: "lim2", kind: "segment", from: { x: 0, y: 5 / 2 }, to: { x: 11, y: 5 / 2 }, appearance: "reference" },
+      { id: "p1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "p2", kind: "point", at: { x: 2, y: 1 / 2 }, appearance: "primary" },
+      { id: "p3", kind: "point", at: { x: 3, y: 3 / 4 }, appearance: "primary" },
+      { id: "p4", kind: "point", at: { x: 4, y: 5 / 8 }, appearance: "primary" },
+      { id: "p5", kind: "point", at: { x: 5, y: 11 / 16 }, appearance: "primary" },
+      { id: "p6", kind: "point", at: { x: 6, y: 21 / 32 }, appearance: "primary" },
+      { id: "p7", kind: "point", at: { x: 7, y: 43 / 64 }, appearance: "primary" },
+      { id: "p8", kind: "point", at: { x: 8, y: 85 / 128 }, appearance: "primary" },
+      { id: "p9", kind: "point", at: { x: 9, y: 171 / 256 }, appearance: "primary" },
+      { id: "p10", kind: "point", at: { x: 10, y: 341 / 512 }, appearance: "primary" },
+      { id: "q1", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "q2", kind: "point", at: { x: 2, y: 8 / 5 }, appearance: "secondary" },
+      { id: "q3", kind: "point", at: { x: 3, y: 49 / 25 }, appearance: "secondary" },
+      { id: "q4", kind: "point", at: { x: 4, y: 272 / 125 }, appearance: "secondary" },
+      { id: "q5", kind: "point", at: { x: 5, y: 1441 / 625 }, appearance: "secondary" },
+      { id: "q6", kind: "point", at: { x: 6, y: 7448 / 3125 }, appearance: "secondary" },
+      { id: "q7", kind: "point", at: { x: 7, y: 37969 / 15625 }, appearance: "secondary" },
+      { id: "q8", kind: "point", at: { x: 8, y: 192032 / 78125 }, appearance: "secondary" },
+      { id: "q9", kind: "point", at: { x: 9, y: 966721 / 390625 }, appearance: "secondary" },
+      { id: "q10", kind: "point", at: { x: 10, y: 4853288 / 1953125 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "lim1", objectId: "lim1", at: { x: 11, y: 2 / 3 }, placement: "right" },
+      { key: "lim2", objectId: "lim2", at: { x: 11, y: 5 / 2 }, placement: "right" },
+      { key: "p1", objectId: "p1", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "q1", objectId: "q1", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ## Sequences That Move One Way and Stay Limited
@@ -166,15 +230,14 @@ The table collects the three tests, so the partial-sum behavior, the term condit
 | **General term** | <InlineMath math="u_n\to0" /> is necessary | If <InlineMath math="u_n\not\to0" />, divergence is certain. However, <InlineMath math="u_n\to0" /> may also hold |
 | **Examples** | Geometric series <InlineMath math="\lvert r\rvert < 1" />                                          | Nonzero arithmetic series, geometric series with a nonzero first term and <InlineMath math="\lvert r\rvert \geq 1" />, harmonic series                               |
 
-<Mermaid
-  title="Deciding whether a series converges"
-  description="Terms that do not shrink to zero force divergence. Terms that do shrink still need partial sums that settle on one finite value."
-  chart={`flowchart TD
-  A["Series u₁ + u₂ + u₃ + …"] --> T{"Does uₙ approach 0?"}
-  T -->|"No"| D["Diverges"]
-  T -->|"Yes"| S{"Do the partial sums Sₙ settle on one finite value?"}
-  S -->|"Yes"| C["Converges to that value"]
-  S -->|"No"| D`}
+Shrinking terms are not enough. The terms <InlineMath math="\frac1n" /> of the harmonic series fall toward <InlineMath math="0" />, as the bars show, yet their partial sums still grow without a bound. A vanishing term is necessary for convergence, but it does not guarantee it.
+
+<BarChart
+  title={<>The terms of the harmonic series</>}
+  description={<>Bar <InlineMath math="n" /> shows the term <InlineMath math="\frac1n" /> for <InlineMath math="n = 1" /> to <InlineMath math="12" />.</>}
+  yAxisLabel="Term"
+  data={[["1", 1 / 1], ["2", 1 / 2], ["3", 1 / 3], ["4", 1 / 4], ["5", 1 / 5], ["6", 1 / 6], ["7", 1 / 7], ["8", 1 / 8], ["9", 1 / 9], ["10", 1 / 10], ["11", 1 / 11], ["12", 1 / 12]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Term", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Exercise

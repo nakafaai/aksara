@@ -26,14 +26,14 @@ The formula is:
 
 So, the <InlineMath math="\mathrm{IQR}" /> is the difference between the upper and lower quartiles.
 
-<Mermaid
-  title="Range against interquartile range"
-  description="The range uses only the two extreme values, so one unusual value can change it. The interquartile range uses the middle half and resists extreme values."
-  chart={`flowchart TD
-  A["Sorted data"] --> R["Range = maximum − minimum"]
-  A --> I["IQR = Q₃ − Q₁"]
-  R --> R2["Changes with one extreme value"]
-  I --> I2["Describes the middle half and resists extremes"]`}
+Compare both spreads for both groups. Group One has range <InlineMath math="5" /> and IQR <InlineMath math="2" />, Group Two has range <InlineMath math="35" /> and IQR <InlineMath math="24.5" />. The IQR ignores the extreme values, so it describes how tightly the middle half sits.
+
+<BarChart
+  title={<>Range and interquartile range of both groups</>}
+  description={<>The range and the interquartile range of Group One and Group Two.</>}
+  yAxisLabel="Spread"
+  data={[["range, one", 18 - 13], ["IQR, one", 17 - 15], ["range, two", 36 - 1], ["IQR, two", 28.75 - 4.25]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Spread", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Comparing Age Spreads
@@ -62,11 +62,11 @@ We will compare their means, quartiles, ranges, and interquartile ranges.
 The dots tell the same story value by value. Group One crowds around <InlineMath math="16" /> and <InlineMath math="17" />, while Group Two splits into a low cluster and a high cluster with a wide gap in the middle. The IQR measures only the middle half of each row of dots.
 
 <MathVisual
-  title="The ages of both groups as dots"
-  description="Twelve ages per group on one number line, Group One above and Group Two below."
+  title={<>The ages of both groups as dots</>}
+  description={<>Twelve ages per group on one number line, Group One above and Group Two below.</>}
   labels={{
-    g1: "Group One",
-    g2: "Group Two",
+    g1: <>Group One</>,
+    g2: <>Group Two</>,
   }}
   scene={{
     space: "plane",
@@ -180,11 +180,11 @@ Two datasets can have the same mean but different spreads. The <InlineMath math=
 Put the two groups side by side as box plots. Group One fits in a short box from <InlineMath math="15" /> to <InlineMath math="17" />, so its IQR is <InlineMath math="2" />. Group Two stretches from <InlineMath math="4.25" /> to <InlineMath math="28.75" />, an IQR of <InlineMath math="24.5" />. Both groups have the mean <InlineMath math="16" />, yet the boxes show at once how differently the ages spread.
 
 <MathVisual
-  title="Same mean, very different spread"
+  title={<>Same mean, very different spread</>}
   description={<>Box plots of both groups on one axis. Group One: 13, 15, 16.5, 17, 18. Group Two: 1, 4.25, 10, 28.75, 36.</>}
   labels={{
-    g1: "Group One",
-    g2: "Group Two",
+    g1: <>Group One</>,
+    g2: <>Group Two</>,
   }}
   scene={{
     space: "plane",

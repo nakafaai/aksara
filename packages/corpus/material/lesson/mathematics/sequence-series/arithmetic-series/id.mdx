@@ -31,22 +31,39 @@ Ada <InlineMath math="50" /> pasang bilangan, dan setiap pasangan berjumlah <Inl
 
 Ini cara memasangkan dalam bentuk gambar untuk <InlineMath math="1 + 2 + \cdots + 6" />. Tangga oranye berisi kolom setinggi 1 sampai 6. Salinan kedua yang dibalik mengisi sisanya, dengan kolom 6 turun sampai 1. Setiap pasangan kolom tingginya <InlineMath math="7" />, jadi dua salinan membentuk persegi panjang <InlineMath math="6 \times 7" /> dan satu salinan bernilai <InlineMath math="42 / 2 = 21" />.
 
-<LineEquation
-  title="Dua tangga mengisi persegi panjang"
+<MathVisual
+  title={<>Dua tangga mengisi persegi panjang</>}
   description={<>Tangga <InlineMath math="1 + 2 + \cdots + 6" /> dan salinannya yang dibalik bersama-sama mengisi persegi panjang 6 kali 7, jadi jumlahnya setengah dari 42.</>}
-  cameraPosition={[3, 3.5, 11]}
-  cameraTarget={[3, 3.5, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 0, z: 0 }, { x: 6, y: 7, z: 0 }, { x: 0, y: 7, z: 0 }, { x: 0, y: 0, z: 0 }], smooth: false, showPoints: false, color: "#8242e5", labels: [{ text: <InlineMath math="6 \times 7 = 42" />, at: 2, offset: [-3, 0.5, 0] }] },
-    {
-      points: Array.from({ length: 12 }, (_, i) => ({ x: Math.ceil(i / 2), y: 1 + Math.floor(i / 2), z: 0 })),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="1 + 2 + \cdots + 6" />, at: 1, offset: [3, 0.5, 0] }, { text: <InlineMath math="6 + 5 + \cdots + 1" />, at: 1, offset: [1, 4.5, 0] }],
-    }
-  ]}
+  labels={{
+    frame: <InlineMath math="6 \times 7 = 42" />,
+    lo6: <InlineMath math="1 + 2 + \cdots + 6" />,
+    hi1: <InlineMath math="6 + 5 + \cdots + 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "frame", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 7 }, { x: 0, y: 7 }], appearance: "reference" },
+      { id: "lo1", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "lo2", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "lo3", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 2, y: 3 }], appearance: "primary" },
+      { id: "lo4", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 3, y: 4 }], appearance: "primary" },
+      { id: "lo5", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 5 }, { x: 4, y: 5 }], appearance: "primary" },
+      { id: "lo6", kind: "polygon", vertices: [{ x: 5, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 6 }, { x: 5, y: 6 }], appearance: "primary" },
+      { id: "hi1", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 1, y: 7 }, { x: 0, y: 7 }], appearance: "secondary" },
+      { id: "hi2", kind: "polygon", vertices: [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 7 }, { x: 1, y: 7 }], appearance: "secondary" },
+      { id: "hi3", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 7 }, { x: 2, y: 7 }], appearance: "secondary" },
+      { id: "hi4", kind: "polygon", vertices: [{ x: 3, y: 4 }, { x: 4, y: 4 }, { x: 4, y: 7 }, { x: 3, y: 7 }], appearance: "secondary" },
+      { id: "hi5", kind: "polygon", vertices: [{ x: 4, y: 5 }, { x: 5, y: 5 }, { x: 5, y: 7 }, { x: 4, y: 7 }], appearance: "secondary" },
+      { id: "hi6", kind: "polygon", vertices: [{ x: 5, y: 6 }, { x: 6, y: 6 }, { x: 6, y: 7 }, { x: 5, y: 7 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "frame", objectId: "frame", at: { x: 3, y: 7 }, placement: "above" },
+      { key: "lo6", objectId: "lo6", at: { x: 5.5, y: 3 }, placement: "center" },
+      { key: "hi1", objectId: "hi1", at: { x: 0.5, y: 4 }, placement: "center" },
+    ],
+  }}
 />
 
 ## Menemukan Rumus Umum
@@ -115,13 +132,14 @@ Ada dua bentuk rumus yang paling sering digunakan untuk menghitung <InlineMath m
 - <InlineMath math="b" /> = Beda (selisih antar suku)
 - <InlineMath math="U_n" /> = Suku ke-<InlineMath math="n" />
 
-<Mermaid
-  title="Memilih rumus deret aritmetika"
-  description="Pakai suku pertama dan beda jika b diketahui, atau suku pertama dan suku terakhir jika suku terakhir diketahui."
-  chart={`flowchart TD
-  A["Kamu perlu Sₙ"] --> Q{"Apa yang diketahui?"}
-  Q -->|"a, b, dan n"| F1["Sₙ = n/2 · (2a + (n − 1)b)"]
-  Q -->|"a, Uₙ, dan n"| F2["Sₙ = n/2 · (a + Uₙ)"]`}
+Pasangkan bilangan <InlineMath math="1" /> sampai <InlineMath math="10" /> dari kedua ujung: <InlineMath math="1 + 10" />, <InlineMath math="2 + 9" />, dan seterusnya. Setiap pasangan setinggi <InlineMath math="11" />, dan ada <InlineMath math="5" /> pasangan, jadi <InlineMath math="1 + 2 + \cdots + 10 = 5 \cdot 11 = 55" />.
+
+<BarChart
+  title={<>Setiap pasangan dari kedua ujung berjumlah sama</>}
+  description={<>Lima pasangan bilangan 1 sampai 10 yang diambil dari kedua ujung, masing-masing berjumlah 11.</>}
+  yAxisLabel="Jumlah pasangan"
+  data={[["pasangan 1", 1 + (11 - 1)], ["pasangan 2", 2 + (11 - 2)], ["pasangan 3", 3 + (11 - 3)], ["pasangan 4", 4 + (11 - 4)], ["pasangan 5", 5 + (11 - 5)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Jumlah pasangan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Menghitung Dua Deret Aritmetika
@@ -186,7 +204,7 @@ Hasil pertama hanya menyatakan jumlah kursi pada baris ke-<InlineMath math="15" 
 Jalankan deretnya baris demi baris untuk gedung itu. Setiap batang adalah total <InlineMath math="S_n" /> setelah <InlineMath math="n" /> baris, dari <InlineMath math="S_1 = 20" /> sampai <InlineMath math="S_{15} = 720" />. Batangnya tumbuh makin cepat karena setiap baris baru punya 4 kursi lebih banyak daripada baris sebelumnya.
 
 <BarChart
-  title="Total kursi setelah setiap baris"
+  title={<>Total kursi setelah setiap baris</>}
   description={<>Batang ke-<InlineMath math="n" /> menunjukkan <InlineMath math="S_n = \frac{n}{2}(2 \cdot 20 + (n-1)4)" />, yaitu kursi di <InlineMath math="n" /> baris pertama.</>}
   yAxisLabel="Total kursi"
   data={Array.from({ length: 15 }, (_, i) => {

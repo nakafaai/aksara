@@ -31,22 +31,39 @@ Es gibt <InlineMath math="50" /> Zahlenpaare, die jeweils <InlineMath math="101"
 
 So sieht die Paarbildung für <InlineMath math="1 + 2 + \cdots + 6" /> als Bild aus. Die orange Treppe hat Säulen der Höhe 1 bis 6. Eine zweite, umgedrehte Kopie füllt den Rest, mit Säulen von 6 bis 1. Jedes Säulenpaar ist <InlineMath math="7" /> hoch, die beiden Kopien bilden also ein Rechteck <InlineMath math="6 \times 7" />, und eine Kopie ist <InlineMath math="42 / 2 = 21" />.
 
-<LineEquation
-  title="Zwei Treppen füllen ein Rechteck"
+<MathVisual
+  title={<>Zwei Treppen füllen ein Rechteck</>}
   description={<>Die Treppe von <InlineMath math="1 + 2 + \cdots + 6" /> und ihre umgedrehte Kopie füllen zusammen ein Rechteck 6 mal 7, die Summe ist also die Hälfte von 42.</>}
-  cameraPosition={[3, 3.5, 11]}
-  cameraTarget={[3, 3.5, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 0, z: 0 }, { x: 6, y: 7, z: 0 }, { x: 0, y: 7, z: 0 }, { x: 0, y: 0, z: 0 }], smooth: false, showPoints: false, color: "#8242e5", labels: [{ text: <InlineMath math="6 \times 7 = 42" />, at: 2, offset: [-3, 0.5, 0] }] },
-    {
-      points: Array.from({ length: 12 }, (_, i) => ({ x: Math.ceil(i / 2), y: 1 + Math.floor(i / 2), z: 0 })),
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="1 + 2 + \cdots + 6" />, at: 1, offset: [3, 0.5, 0] }, { text: <InlineMath math="6 + 5 + \cdots + 1" />, at: 1, offset: [1, 4.5, 0] }],
-    }
-  ]}
+  labels={{
+    frame: <InlineMath math="6 \times 7 = 42" />,
+    lo6: <InlineMath math="1 + 2 + \cdots + 6" />,
+    hi1: <InlineMath math="6 + 5 + \cdots + 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "frame", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 7 }, { x: 0, y: 7 }], appearance: "reference" },
+      { id: "lo1", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "lo2", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "lo3", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 2, y: 3 }], appearance: "primary" },
+      { id: "lo4", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 3, y: 4 }], appearance: "primary" },
+      { id: "lo5", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 5 }, { x: 4, y: 5 }], appearance: "primary" },
+      { id: "lo6", kind: "polygon", vertices: [{ x: 5, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 6 }, { x: 5, y: 6 }], appearance: "primary" },
+      { id: "hi1", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: 1, y: 1 }, { x: 1, y: 7 }, { x: 0, y: 7 }], appearance: "secondary" },
+      { id: "hi2", kind: "polygon", vertices: [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 7 }, { x: 1, y: 7 }], appearance: "secondary" },
+      { id: "hi3", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 7 }, { x: 2, y: 7 }], appearance: "secondary" },
+      { id: "hi4", kind: "polygon", vertices: [{ x: 3, y: 4 }, { x: 4, y: 4 }, { x: 4, y: 7 }, { x: 3, y: 7 }], appearance: "secondary" },
+      { id: "hi5", kind: "polygon", vertices: [{ x: 4, y: 5 }, { x: 5, y: 5 }, { x: 5, y: 7 }, { x: 4, y: 7 }], appearance: "secondary" },
+      { id: "hi6", kind: "polygon", vertices: [{ x: 5, y: 6 }, { x: 6, y: 6 }, { x: 6, y: 7 }, { x: 5, y: 7 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "frame", objectId: "frame", at: { x: 3, y: 7 }, placement: "above" },
+      { key: "lo6", objectId: "lo6", at: { x: 5.5, y: 3 }, placement: "center" },
+      { key: "hi1", objectId: "hi1", at: { x: 0.5, y: 4 }, placement: "center" },
+    ],
+  }}
 />
 
 ## Finden der allgemeinen Formel
@@ -115,13 +132,14 @@ Für <InlineMath math="S_n" /> sind zwei gleichwertige Formen besonders praktisc
 - <InlineMath math="b" /> = gemeinsame Differenz
 - <InlineMath math="U_n" /> = <InlineMath math="n" />-tes Glied
 
-<Mermaid
-  title="Eine Formel für die arithmetische Reihe wählen"
-  description="Nimm das erste Glied und die Differenz, wenn du b kennst, oder das erste und das letzte Glied, wenn du das letzte kennst."
-  chart={`flowchart TD
-  A["Du brauchst Sₙ"] --> Q{"Was kennst du?"}
-  Q -->|"a, b und n"| F1["Sₙ = n/2 · (2a + (n − 1)b)"]
-  Q -->|"a, Uₙ und n"| F2["Sₙ = n/2 · (a + Uₙ)"]`}
+Bilde Paare der Zahlen <InlineMath math="1" /> bis <InlineMath math="10" /> von beiden Enden: <InlineMath math="1 + 10" />, <InlineMath math="2 + 9" /> und so weiter. Jedes Paar hat dieselbe Höhe <InlineMath math="11" />, und es gibt <InlineMath math="5" /> Paare, also <InlineMath math="1 + 2 + \cdots + 10 = 5 \cdot 11 = 55" />.
+
+<BarChart
+  title={<>Jedes Paar von beiden Enden hat dieselbe Summe</>}
+  description={<>Die fünf Paare der Zahlen 1 bis 10 von beiden Enden, jedes mit der Summe 11.</>}
+  yAxisLabel="Paarsumme"
+  data={[["Paar 1", 1 + (11 - 1)], ["Paar 2", 2 + (11 - 2)], ["Paar 3", 3 + (11 - 3)], ["Paar 4", 4 + (11 - 4)], ["Paar 5", 5 + (11 - 5)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Paarsumme", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Zwei arithmetische Reihen berechnen
@@ -186,7 +204,7 @@ Das erste Ergebnis beschreibt nur die <InlineMath math="15" />. Sitzreihe. Das z
 Geh die Reihe für das Theater Zeile für Zeile durch. Jeder Balken ist die Summe <InlineMath math="S_n" /> nach <InlineMath math="n" /> Reihen, von <InlineMath math="S_1 = 20" /> bis <InlineMath math="S_{15} = 720" />. Die Balken wachsen immer schneller, weil jede neue Reihe 4 Plätze mehr hat als die vorige.
 
 <BarChart
-  title="Plätze insgesamt nach jeder Reihe"
+  title={<>Plätze insgesamt nach jeder Reihe</>}
   description={<>Balken <InlineMath math="n" /> zeigt <InlineMath math="S_n = \frac{n}{2}(2 \cdot 20 + (n-1)4)" />, die Plätze in den ersten <InlineMath math="n" /> Reihen.</>}
   yAxisLabel="Plätze insgesamt"
   data={Array.from({ length: 15 }, (_, i) => {

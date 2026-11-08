@@ -39,14 +39,14 @@ Pada rumus ini:
 - <InlineMath math="\sum (f_i \times x_i)" /> adalah jumlah hasil kali frekuensi dan nilai tengah setiap kelas.
 - <InlineMath math="\sum f_i" /> adalah jumlah seluruh frekuensi, sama dengan banyaknya data <InlineMath math="n" />.
 
-<Mermaid
-  title="Menaksir rata-rata data berkelompok"
-  description="Setiap kelas diwakili titik tengahnya, diberi bobot frekuensinya, lalu total berbobot dibagi banyak data."
-  chart={`flowchart LR
-  A["Interval kelas"] --> B["Titik tengah xᵢ"]
-  B --> C["fᵢ · xᵢ"]
-  C --> D["Σ fᵢxᵢ"]
-  D -->|"bagi dengan Σ fᵢ"| E["x̄ ≈ Σ fᵢxᵢ / Σ fᵢ"]`}
+Setiap kelas menyumbang titik tengah kali frekuensinya. Batangnya <InlineMath math="76, 451, 704, 47" />, jumlahnya <InlineMath math="1278" />, dan dibagi <InlineMath math="30" /> siswa memberi rata-rata data berkelompok <InlineMath math="42{,}6" />.
+
+<BarChart
+  title={<>Frekuensi kali titik tengah setiap kelas</>}
+  description={<>Batang untuk setiap kelas ukuran sepatu yang menunjukkan <InlineMath math="f_i x_i" />, yang jumlahnya 1278.</>}
+  yAxisLabel="Frekuensi kali titik tengah"
+  data={[["37-39", 2 * 38], ["40-42", 11 * 41], ["43-45", 16 * 44], ["46-48", 1 * 47]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Frekuensi kali titik tengah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Rata-rata Ukuran Sepatu
@@ -83,8 +83,8 @@ Hasil ini merupakan **perkiraan** karena <Highlight>nilai tengah mewakili semua 
 Histogram ini menunjukkan mengapa ukuran sepatu tidak bisa didaftar satu per satu: kita hanya tahu banyak data di setiap kelas. Sebagian besar dari <InlineMath math="30" /> siswa ada di kelas <InlineMath math="40\text{-}42" /> dan <InlineMath math="43\text{-}45" />.
 
 <HistogramChart
-  title="Ukuran sepatu 30 siswa"
-  description="Banyak siswa di setiap kelas ukuran sepatu."
+  title={<>Ukuran sepatu 30 siswa</>}
+  description={<>Banyak siswa di setiap kelas ukuran sepatu.</>}
   yAxisLabel="Siswa"
   data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 16 }, { name: "46-48", value: 1 }]}
   chartConfig={{ value: { label: "Siswa", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -92,25 +92,22 @@ Histogram ini menunjukkan mengapa ukuran sepatu tidak bisa didaftar satu per sat
 
 Sekarang setiap kelas berdiri di titik tengahnya dengan frekuensi sebagai tingginya. Rata-rata data berkelompok <InlineMath math="1278 / 30 = 42{,}6" /> adalah titik keseimbangan titik-titik tengah berbobot ini: titik berat di <InlineMath math="44" /> dengan frekuensi <InlineMath math="16" /> menariknya ke kanan dari <InlineMath math="41" />.
 
-<LineEquation
-  title="Titik tengah berbobot frekuensi"
+<MathVisual
+  title={<>Titik tengah berbobot frekuensi</>}
   description={<>Poligon frekuensi melalui titik tengah 38, 41, 44, dan 47, dengan rata-rata data berkelompok <InlineMath math="42{,}6" /> ditandai.</>}
-  cameraPosition={[42.5, 8.5, 24]}
-  cameraTarget={[42.5, 8.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [[38, 2], [41, 11], [44, 16], [47, 1]].map(([x, f]) => ({ x, y: f, z: 0 })),
-      smooth: false,
-      showPoints: true,
-      color: "#8242e5",
-    },
-    {
-      points: [{ x: [[38, 2], [41, 11], [44, 16], [47, 1]].reduce((sum, [x, f]) => sum + x * f, 0) / 30, y: 0, z: 0 }, { x: [[38, 2], [41, 11], [44, 16], [47, 1]].reduce((sum, [x, f]) => sum + x * f, 0) / 30, y: 17, z: 0 }],
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="\bar{x} = 42{,}6" />, at: 1, offset: [0, 1.5, 0] }],
-    }
-  ]}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 42{,}6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 36, max: 49 }, y: { min: -0.5, max: 18 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "poly", kind: "polyline", vertices: [{ x: 38, y: 2 }, { x: 41, y: 11 }, { x: 44, y: 16 }, { x: 47, y: 1 }], appearance: "secondary" },
+      { id: "mean", kind: "segment", from: { x: 1278 / 30, y: 0 }, to: { x: 1278 / 30, y: 17 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 1278 / 30, y: 17 }, placement: "above" },
+    ],
+  }}
 />

@@ -21,14 +21,14 @@ Es gibt drei Quartilgrenzen:
 
 Zusammen beschreiben <InlineMath math="Q_1" />, <InlineMath math="Q_2" /> und <InlineMath math="Q_3" /> das untere Viertel, die Mitte und das obere Viertel einer geordneten Verteilung.
 
-<Mermaid
-  title="Quartile von Einzeldaten finden"
-  description="Sortier die Daten, bestimm die Position jedes Quartils und lies den Wert dort ab oder interpolier ihn."
-  chart={`flowchart LR
-  A["Daten sortieren"] --> B["Position von Qᵢ: i(n + 1)/4"]
-  B --> C{"Ganzzahlige Position?"}
-  C -->|"Ja"| D["Wert dort ablesen"]
-  C -->|"Nein"| E["Zwischen den beiden Nachbarn interpolieren"]`}
+Von klein nach groß sortiert steigen die sieben Punktzahlen als Balken auf den Positionen 1 bis 7. Die Quartile liegen auf den Positionen <InlineMath math="2" />, <InlineMath math="4" /> und <InlineMath math="6" />: <InlineMath math="Q_1 = 6" />, <InlineMath math="Q_2 = 7" /> und <InlineMath math="Q_3 = 9" />.
+
+<BarChart
+  title={<>Die sortierten Punktzahlen nach Position</>}
+  description={<>Die sieben Punktzahlen in sortierter Reihenfolge, ein Balken pro Position.</>}
+  yAxisLabel="Punktzahl"
+  data={[["1", 5], ["2", 6], ["3", 7], ["4", 7], ["5", 8], ["6", 9], ["7", 10]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Punktzahl", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Position der Quartile bestimmen
@@ -140,7 +140,7 @@ Mit dem sortierten Datensatz aus Schritt 1:
 Hier sind die sieben sortierten Punktzahlen als Punkte. Die drei Quartilsschnitte liegen auf den Positionen 2, 4 und 6: <InlineMath math="Q_1 = 6" />, <InlineMath math="Q_2 = 7" /> und <InlineMath math="Q_3 = 9" />. Zwischen benachbarten Schnitten liegt genau eine Punktzahl, auf den Positionen 1, 3, 5 und 7. Die Schnitte teilen die sieben Punktzahlen also in vier gleiche Teile.
 
 <MathVisual
-  title="Drei Schnitte durch sieben Punktzahlen"
+  title={<>Drei Schnitte durch sieben Punktzahlen</>}
   description={<>Die Punktzahlen <InlineMath math="5, 6, 7, 7, 8, 9, 10" /> als Punkte mit Schnitten bei <InlineMath math="Q_1 = 6" />, <InlineMath math="Q_2 = 7" /> und <InlineMath math="Q_3 = 9" />.</>}
   labels={{
     q1: <InlineMath math="Q_1" />,
@@ -183,7 +183,7 @@ Man könnte dieses Maximum als <InlineMath math="Q_4" /> bezeichnen, der Ausdruc
 Ein Boxplot packt dieselben fünf Zahlen in ein Bild. Die Antennen reichen vom Minimum <InlineMath math="5" /> bis <InlineMath math="Q_1 = 6" /> und von <InlineMath math="Q_3 = 9" /> bis zum Maximum <InlineMath math="10" />. Die Box umfasst die mittlere Hälfte der Punktzahlen, und die Linie darin ist der Median <InlineMath math="7" />.
 
 <MathVisual
-  title="Der Boxplot der sieben Punktzahlen"
+  title={<>Der Boxplot der sieben Punktzahlen</>}
   description={<>Antennen von 5 bis 6 und von 9 bis 10, eine Box von <InlineMath math="Q_1 = 6" /> bis <InlineMath math="Q_3 = 9" /> und die Medianlinie bei 7.</>}
   labels={{
     min: <InlineMath math="5" />,

@@ -53,13 +53,14 @@ Tabel menempatkan kedua rumus jumlah berdampingan, sehingga suku yang dijumlahka
 | **Rumus jumlah** <InlineMath math="S_n" /> | <InlineMath math="\frac{n}{2}(2a + (n-1)b)" />                     | <InlineMath math="\frac{a(r^n - 1)}{r-1}" />                      |
 | **Pola**                                   | Pertambahan/pengurangan tetap                                      | Perkalian/pembagian tetap                                         |
 
-<Mermaid
-  title="Rumus jumlah yang berlaku"
-  description="Beda yang tetap memakai rumus aritmetika, rasio tetap selain 1 memakai rumus geometri."
-  chart={`flowchart TD
-  A["Jumlah n suku pertama"] --> Q{"Pola antarsuku"}
-  Q -->|"beda tetap b"| AR["Sₙ = n/2 · (2a + (n − 1)b)"]
-  Q -->|"rasio tetap r ≠ 1"| GE["Sₙ = a(rⁿ − 1)/(r − 1)"]`}
+Sebelum menjumlahkan, lihat suku-suku geometrinya: <InlineMath math="5, 10, 20, 40, 80" />. Setiap batang dua kali batang sebelumnya, karena itu jumlah geometri segera jauh meninggalkan jumlah aritmetika.
+
+<BarChart
+  title={<>Suku-suku deret geometri</>}
+  description={<>Batang <InlineMath math="n" /> menunjukkan suku <InlineMath math="5 \cdot 2^{n-1}" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="5" />.</>}
+  yAxisLabel="Suku"
+  data={[["1", 5 * 2 ** 0], ["2", 5 * 2 ** 1], ["3", 5 * 2 ** 2], ["4", 5 * 2 ** 3], ["5", 5 * 2 ** 4]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Suku", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Menghitung Jumlah Aritmetika dan Geometri
@@ -83,7 +84,7 @@ Deret tersebut memiliki rasio <InlineMath math="r=2" />. Jumlah lima suku pertam
 Perhatikan jumlah aritmetikanya tumbuh. Setiap batang adalah total setelah <InlineMath math="n" /> suku dari <InlineMath math="5 + 8 + 11 + 14 + 17" />: <InlineMath math="5, 13, 24, 38, 55" />. Setiap batang baru menambahkan suku yang <InlineMath math="3" /> lebih besar daripada suku yang ditambahkan sebelumnya.
 
 <BarChart
-  title="Jumlah parsial deret aritmetika"
+  title={<>Jumlah parsial deret aritmetika</>}
   description={<>Batang ke-<InlineMath math="n" /> menunjukkan <InlineMath math="S_n = \frac{n}{2}(2 \cdot 5 + (n-1)3)" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="5" />.</>}
   yAxisLabel="Jumlah"
   data={Array.from({ length: 5 }, (_, i) => {
@@ -112,7 +113,7 @@ Jadi, nama suatu deret berasal dari pola barisan sukunya. Jumlah parsial <Inline
 Sekarang jumlah geometri untuk <InlineMath math="5 + 10 + 20 + 40 + 80" />: <InlineMath math="5, 15, 35, 75, 155" />. Setiap suku baru sama besar dengan semua suku sebelumnya ditambah <InlineMath math="5" />, jadi totalnya kira-kira berlipat dua di setiap langkah. Bandingkan tingginya dengan diagram aritmetika: suku pertamanya sama, tetapi pertumbuhannya sangat berbeda.
 
 <BarChart
-  title="Jumlah parsial deret geometri"
+  title={<>Jumlah parsial deret geometri</>}
   description={<>Batang ke-<InlineMath math="n" /> menunjukkan <InlineMath math="S_n = 5(2^n - 1)" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="5" />.</>}
   yAxisLabel="Jumlah"
   data={Array.from({ length: 5 }, (_, i) => {

@@ -45,7 +45,7 @@ Tabel berikut menyandingkan kedua bentuk itu. Barisan menyimpan suku-sukunya sec
 Ini barisan <InlineMath math="a_n = n" /> dalam bentuk batang: <InlineMath math="1, 2, 3, \ldots, 8" />. Setiap batang adalah satu suku saja. Belum ada yang dijumlahkan, jadi batang ke-8 hanya bernilai <InlineMath math="8" />.
 
 <BarChart
-  title="Suku-suku sebuah barisan"
+  title={<>Suku-suku sebuah barisan</>}
   description={<>Batang ke-<InlineMath math="n" /> menunjukkan suku <InlineMath math="a_n = n" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="8" />.</>}
   yAxisLabel="Suku"
   data={Array.from({ length: 8 }, (_, i) => ({ name: `${i + 1}`, value: i + 1 }))}
@@ -70,7 +70,7 @@ Menjumlahkan suku-suku <InlineMath math="a_n=n" /> menghasilkan barisan baru, ya
 Sekarang jumlahkan suku-sukunya sambil berjalan. Batang ke-<InlineMath math="n" /> adalah jumlah parsial <InlineMath math="S_n = 1 + 2 + \cdots + n" />, jadi batangnya bernilai <InlineMath math="1, 3, 6, 10, \ldots, 36" />. Bandingkan batang ke-8 dengan diagram sebelumnya: sukunya <InlineMath math="8" />, tetapi jumlah delapan suku pertama adalah <InlineMath math="36" />.
 
 <BarChart
-  title="Jumlah parsial dari barisan yang sama"
+  title={<>Jumlah parsial dari barisan yang sama</>}
   description={<>Batang ke-<InlineMath math="n" /> menunjukkan <InlineMath math="S_n = \frac{n(n+1)}{2}" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="8" />.</>}
   yAxisLabel="Jumlah parsial"
   data={Array.from({ length: 8 }, (_, i) => {
@@ -86,13 +86,30 @@ Sekarang jumlahkan suku-sukunya sambil berjalan. Batang ke-<InlineMath math="n" 
 
 Jadi, deret tak hingga didefinisikan melalui **limit jumlah parsial**. Ketika jumlah parsial menuju satu nilai tetap, deret tak hingga konvergen. Topik [deret konvergen dan divergen](/id/materi/matematika/barisan-dan-deret/perbedaan-konvergen-dan-divergen) memakai limit ini untuk memisahkan deret yang menetap dari deret yang tidak.
 
-<Mermaid
-  title="Dari barisan ke derednya"
-  description="Menjumlahkan n suku pertama sebuah barisan memberi jumlah parsial. Jumlah parsial membentuk barisan baru, dan deret tak hingga adalah limit barisan itu jika limitnya ada."
-  chart={`flowchart LR
-  A["Barisan a₁, a₂, a₃, …"] -->|"jumlahkan n suku pertama"| B["Jumlah parsial Sₙ"]
-  B -->|"susun S₁, S₂, S₃, …"| C["Barisan jumlah parsial"]
-  C -->|"limit, jika ada"| D["Nilai deret tak hingga"]`}
+Jumlah parsial <InlineMath math="a_n = n" /> terletak pada sebuah parabola. Setiap titik <InlineMath math="(n, S_n)" /> berada pada <InlineMath math="y = \tfrac12 x^2 + \tfrac12 x" />, karena <InlineMath math="S_n = \frac{n(n+1)}{2}" />. Barisan yang tumbuh dengan langkah sama punya jumlah parsial yang tumbuh seperti kuadrat.
+
+<MathVisual
+  title={<>Jumlah parsial pada parabola</>}
+  description={<>Titik <InlineMath math="(n, S_n)" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="5" /> pada parabola <InlineMath math="y = \tfrac12 x^2 + \tfrac12 x" />.</>}
+  labels={{
+    s5: <InlineMath math="S_5 = 15" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 6 }, y: { min: -0.5, max: 16.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 0.5, b: 0.5, c: 0 }, domain: { min: 0, max: 5.2 }, appearance: "reference" },
+      { id: "s1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 3, y: 6 }, appearance: "primary" },
+      { id: "s4", kind: "point", at: { x: 4, y: 10 }, appearance: "primary" },
+      { id: "s5", kind: "point", at: { x: 5, y: 15 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "s5", objectId: "s5", at: { x: 5, y: 15 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Latihan

@@ -29,13 +29,14 @@ Percentiles describe a value's <Highlight>relative position in a distribution</H
 
 As with quartiles, grouped data require **interpolation** to estimate a percentile value <InlineMath math="P_i" /> within its class interval. The method has two stages: locate the class that holds the rank you want, then interpolate inside that class. The worked table below applies both stages to the same data set.
 
-<Mermaid
-  title="Estimating a percentile of grouped data"
-  description="Turn the percentage into a position, find the class that contains it, and interpolate inside that class."
-  chart={`flowchart LR
-  A["Pₖ"] --> B["Position k/100 · n"]
-  B --> C["Percentile class"]
-  C --> D["Pₖ = Tb + (k/100 · n − F) / f · p"]`}
+Add the frequencies class by class to get the cumulative frequencies <InlineMath math="4, 14, 30, 40" />. The last bar is always the total <InlineMath math="40" />, and the class where a bar first passes a target position is the class to interpolate in.
+
+<BarChart
+  title={<>Cumulative frequency of each class</>}
+  description={<>Bar for each class showing how many values lie at or below its upper boundary, up to 40.</>}
+  yAxisLabel="Cumulative frequency"
+  data={[["61-70", 4], ["71-80", 4 + 10], ["81-90", 4 + 10 + 16], ["91-100", 4 + 10 + 16 + 10]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Cumulative frequency", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ### Find the Percentile Class Position
@@ -115,8 +116,8 @@ The estimated <InlineMath math="85" />th percentile is <InlineMath math="94.5" /
 The math test scores as a histogram: the class <InlineMath math="81\text{-}90" /> holds the most students, <InlineMath math="16" /> of the <InlineMath math="40" />.
 
 <HistogramChart
-  title="Math test scores by class"
-  description="The number of students in each test score class."
+  title={<>Math test scores by class</>}
+  description={<>The number of students in each test score class.</>}
   yAxisLabel="Students"
   data={[{ name: "61-70", value: 4 }, { name: "71-80", value: 10 }, { name: "81-90", value: 16 }, { name: "91-100", value: 10 }]}
   chartConfig={{ value: { label: "Students", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -124,34 +125,27 @@ The math test scores as a histogram: the class <InlineMath math="81\text{-}90" /
 
 A percentile is a level on the cumulative frequency line. <InlineMath math="20\%" /> of <InlineMath math="40" /> students is the level <InlineMath math="8" />, which the line reaches above <InlineMath math="P_{20} = 74.5" />. <InlineMath math="85\%" /> is the level <InlineMath math="34" />, reached above <InlineMath math="P_{85} = 94.5" />.
 
-<LineEquation
-  title="Percentiles on the cumulative frequency line"
+<MathVisual
+  title={<>Percentiles on the cumulative frequency line</>}
   description={<>The cumulative frequency line of the test scores, read at 8 for <InlineMath math="P_{20} = 74.5" /> and at 34 for <InlineMath math="P_{85} = 94.5" />.</>}
-  cameraPosition={[80.5, 20, 50]}
-  cameraTarget={[80.5, 20, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 5 }, (_, i) => ({ x: 60.5 + 10 * i, y: [4, 10, 16, 10].slice(0, i).reduce((sum, value) => sum + value, 0), z: 0 })),
-      smooth: false,
-      showPoints: true,
-      color: "#8242e5",
-    },
-    {
-      points: [{ x: 60.5, y: (20 / 100) * 40, z: 0 }, { x: 70.5 + (((20 / 100) * 40 - 4) / 10) * 10, y: (20 / 100) * 40, z: 0 }, { x: 70.5 + (((20 / 100) * 40 - 4) / 10) * 10, y: 0, z: 0 }],
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="P_{20}" />, at: 2, offset: [0, -1.2, 0] }],
-    },
-    {
-      points: [{ x: 60.5, y: (85 / 100) * 40, z: 0 }, { x: 90.5 + (((85 / 100) * 40 - 30) / 10) * 10, y: (85 / 100) * 40, z: 0 }, { x: 90.5 + (((85 / 100) * 40 - 30) / 10) * 10, y: 0, z: 0 }],
-      smooth: false,
-      showPoints: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="P_{85}" />, at: 2, offset: [0, -1.2, 0] }],
-    }
-  ]}
+  labels={{
+    p20: <InlineMath math="P_{20}" />,
+    p85: <InlineMath math="P_{85}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 60, max: 101 }, y: { min: -2, max: 41 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ogive", kind: "polyline", vertices: [{ x: 60.5, y: 0 }, { x: 70.5, y: 4 }, { x: 80.5, y: 14 }, { x: 90.5, y: 30 }, { x: 100.5, y: 40 }], appearance: "secondary" },
+      { id: "p20", kind: "polyline", vertices: [{ x: 60.5, y: 8 }, { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 8 }, { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 0 }], appearance: "primary" },
+      { id: "p85", kind: "polyline", vertices: [{ x: 60.5, y: 34 }, { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 34 }, { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 0 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "p20", objectId: "p20", at: { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 0 }, placement: "below" },
+      { key: "p85", objectId: "p85", at: { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Exercise

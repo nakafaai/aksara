@@ -33,7 +33,7 @@ Die Größen in dieser Formel bedeuten:
 Stell dir die zehn Werte als Punkte auf einem Zahlenstrahl vor und den Mittelwert als die Stelle, an der der Strahl im Gleichgewicht ist. Die Punkte links von <InlineMath math="6" /> liegen zusammen <InlineMath math="3 + 3 + 2 + 1 + 1 = 10" /> Einheiten entfernt, die Punkte rechts <InlineMath math="1 + 2 + 3 + 4 = 10" /> Einheiten. Genau am Mittelwert heben sich die Abstände auf.
 
 <MathVisual
-  title="Der Mittelwert ist der Schwerpunkt"
+  title={<>Der Mittelwert ist der Schwerpunkt</>}
   description={<>Punkte für <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10" /> auf einem Zahlenstrahl, im Gleichgewicht auf einer Stütze beim Mittelwert <InlineMath math="6" />.</>}
   labels={{
     mean: <InlineMath math="\bar{x} = 6" />,
@@ -160,7 +160,7 @@ Der Median verschiebt sich ebenfalls, aber weniger stark. Der Modus bleibt unver
 Füg jetzt die beiden großen Werte <InlineMath math="20" /> und <InlineMath math="22" /> hinzu. Der Schwerpunkt muss nach rechts auf <InlineMath math="102 / 12 = 8{,}5" /> rutschen, damit die weit entfernten Punkte im Gleichgewicht bleiben. Der Median, die Mitte der sortierten Liste, wandert nur von <InlineMath math="5{,}5" /> auf <InlineMath math="6{,}5" />.
 
 <MathVisual
-  title="Zwei große Werte ziehen den Mittelwert"
+  title={<>Zwei große Werte ziehen den Mittelwert</>}
   description={<>Die zwölf Werte auf einem Zahlenstrahl mit dem Mittelwert <InlineMath math="8{,}5" /> als Stütze und dem Median <InlineMath math="6{,}5" /> extra markiert.</>}
   labels={{
     mean: <InlineMath math="\bar{x} = 8{,}5" />,
@@ -221,11 +221,12 @@ Der Datensatz lautet dann: <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 20, 
 
 Ein Extremwert kann nach einer ausdrücklich genannten statistischen Regel oder aufgrund fachlicher Beurteilung als **Ausreißer** gelten. In diesem Beispiel verändert das Ersetzen von <InlineMath math="22" /> durch <InlineMath math="100" /> die Summe. Die mittleren Positionen und die größten Häufigkeiten bleiben gleich. Deshalb steigt der Mittelwert, während Median und Modi unverändert bleiben. Wähle das Lagemaß passend zur Größe, die du beschreiben möchtest.
 
-<Mermaid
-  title="Wie jedes Lagemaß auf zwei große Werte reagiert"
-  description="Das Hinzufügen von 20 und 22 verschiebt den Mittelwert am stärksten, den Median ein wenig und lässt den Modus unverändert."
-  chart={`flowchart LR
-  A["20 und 22 hinzufügen"] --> B["Mittelwert: 6 → 8,5"]
-  A --> C["Median: 5,5 → 6,5"]
-  A --> D["Modus: 3 und 5, unverändert"]`}
+Hier ist die Anzahl jedes Mitglieds als Balken. Der höchste Balken ist <InlineMath math="10" />, die niedrigsten sind <InlineMath math="3" />. Gäben alle gleich viel, stünde jeder Balken beim Mittelwert <InlineMath math="6" />, weil die Summe <InlineMath math="60" /> Teile für <InlineMath math="10" /> Mitglieder ist.
+
+<BarChart
+  title={<>Gesammelte Teile pro Mitglied</>}
+  description={<>Die Anzahl der Teile, die jedes der zehn Mitglieder gesammelt hat, zusammen 60.</>}
+  yAxisLabel="Teile"
+  data={[["1", 3], ["2", 5], ["3", 7], ["4", 10], ["5", 5], ["6", 3], ["7", 4], ["8", 6], ["9", 9], ["10", 8]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Teile", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />

@@ -16,7 +16,7 @@ Pilih ukuran berdasarkan jenis data, bentuk distribusi, dan pertanyaan yang ingi
 Ini nilai <InlineMath math="7, 8, 8, 9, 10" /> dalam bentuk titik. Rata-rata <InlineMath math="8{,}4" /> adalah titik tumpu keseimbangan, median adalah titik tengah di <InlineMath math="8" />, dan modus <InlineMath math="8" /> adalah tumpukan tertinggi. Untuk data serata ini, ketiga ukuran berdekatan.
 
 <MathVisual
-  title="Tiga pusat dari nilai yang sama"
+  title={<>Tiga pusat dari nilai yang sama</>}
   description={<>Titik untuk kelima nilai dengan rata-rata 8,4 sebagai tumpuan serta median dan modus sama-sama di 8.</>}
   labels={{
     mean: <InlineMath math="\bar{x} = 8{,}4" />,
@@ -68,7 +68,7 @@ Jumlahkan semua nilai data, lalu bagi dengan banyaknya data. Karena setiap nilai
 Tambahkan nilai ekstrem <InlineMath math="1" />. Titik tumpunya bergeser ke kiri sampai <InlineMath math="43 / 6 \approx 7{,}17" /> karena titik yang jauh menariknya. Median dan modus tetap di <InlineMath math="8" />: tengahnya dan tumpukan tertingginya tidak berpindah.
 
 <MathVisual
-  title="Satu nilai ekstrem hanya menggeser rata-rata"
+  title={<>Satu nilai ekstrem hanya menggeser rata-rata</>}
   description={<>Enam nilai dengan tambahan nilai 1. Tumpuan rata-rata bergeser ke sekitar 7,17, sedangkan median dan modus tetap di 8.</>}
   labels={{
     mean: <InlineMath math="\bar{x} \approx 7{,}17" />,
@@ -123,12 +123,12 @@ Berikut panduan ringkas kapan menggunakan masing-masing ukuran:
 - **Menentukan ukuran sepatu paling laris di toko**: Kita ingin tahu ukuran yang paling sering dibeli, jadi **Modus** adalah pilihan yang tepat.
 - **Mengetahui warna favorit siswa**: Karena data berupa kategori (warna), satu-satunya ukuran yang bisa digunakan adalah **Modus**.
 
-<Mermaid
-  title="Memilih ukuran pemusatan"
-  description="Data kategori memakai modus. Data angka dengan nilai ekstrem atau menceng memakai median, dan data angka tanpa nilai seperti itu bisa memakai rata-rata."
-  chart={`flowchart TD
-  A["Jenis datanya?"] -->|"kategori"| MO["Modus"]
-  A -->|"angka"| B{"Ada nilai ekstrem atau menceng?"}
-  B -->|"Ya"| ME["Median"]
-  B -->|"Tidak"| MN["Rata-rata"]`}
+Hitung seberapa sering setiap nilai muncul di <InlineMath math="7, 8, 9, 8, 10" />. Batang tertinggi milik <InlineMath math="8" />, yang muncul dua kali, jadi modusnya <InlineMath math="8" />. Modus bisa langsung dibaca dari diagram ini, bahkan untuk kategori yang tidak berupa angka.
+
+<BarChart
+  title={<>Seberapa sering setiap nilai muncul</>}
+  description={<>Frekuensi setiap nilai di antara 7, 8, 9, 8, dan 10. Nilai 8 muncul dua kali.</>}
+  yAxisLabel="Frekuensi"
+  data={[["7", 1], ["8", 2], ["9", 1], ["10", 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Frekuensi", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />

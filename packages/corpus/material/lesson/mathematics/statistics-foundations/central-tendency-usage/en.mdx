@@ -16,7 +16,7 @@ Choose the measure from the data type, the distribution's shape, and the questio
 Here are the scores <InlineMath math="7, 8, 8, 9, 10" /> as dots. The mean <InlineMath math="8.4" /> is the balance point, the median is the middle dot at <InlineMath math="8" />, and the mode <InlineMath math="8" /> is the tallest stack. For data this even, the three measures sit close together.
 
 <MathVisual
-  title="Three centers of the same scores"
+  title={<>Three centers of the same scores</>}
   description={<>Dots for the five scores with the mean 8.4 as a support and the median and mode both at 8.</>}
   labels={{
     mean: <InlineMath math="\bar{x} = 8.4" />,
@@ -68,7 +68,7 @@ Add every value and divide the sum by how many values there are. Because every v
 Add the extreme score <InlineMath math="1" />. The balance point slides left to <InlineMath math="43 / 6 \approx 7.17" /> because the far dot pulls on it. The median and the mode stay at <InlineMath math="8" />: the middle and the tallest stack did not move.
 
 <MathVisual
-  title="One extreme score moves only the mean"
+  title={<>One extreme score moves only the mean</>}
   description={<>The six scores with the extra score 1. The mean support moves to about 7.17, while the median and mode stay at 8.</>}
   labels={{
     mean: <InlineMath math="\bar{x} \approx 7.17" />,
@@ -123,12 +123,12 @@ Here's a concise guide on when to use each measure:
 - **Determining the best-selling shoe size in a store**: We want to know the size most frequently purchased, so the **Mode** is the right choice.
 - **Finding the favorite color among students**: Since the data is categorical (colors), the only applicable measure is the **Mode**.
 
-<Mermaid
-  title="Choosing a measure of center"
-  description="Categories call for the mode. Numbers with extreme or skewed values call for the median, and numbers without them can use the mean."
-  chart={`flowchart TD
-  A["What kind of data?"] -->|"categories"| MO["Mode"]
-  A -->|"numbers"| B{"Extreme or skewed values?"}
-  B -->|"Yes"| ME["Median"]
-  B -->|"No"| MN["Mean"]`}
+Count how often each score appears in <InlineMath math="7, 8, 9, 8, 10" />. The tallest bar belongs to <InlineMath math="8" />, which appears twice, so the mode is <InlineMath math="8" />. The mode reads off this chart directly, even for categories that have no numbers.
+
+<BarChart
+  title={<>How often each score appears</>}
+  description={<>The frequency of each score among 7, 8, 9, 8 and 10. The score 8 appears twice.</>}
+  yAxisLabel="Frequency"
+  data={[["7", 1], ["8", 2], ["9", 1], ["10", 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Frequency", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />

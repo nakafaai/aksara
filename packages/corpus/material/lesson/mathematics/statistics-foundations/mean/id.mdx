@@ -33,7 +33,7 @@ Pada rumus ini:
 Bayangkan sepuluh data itu sebagai titik di garis bilangan, dan rata-ratanya sebagai titik tumpu tempat garis itu seimbang. Titik di kiri <InlineMath math="6" /> berjarak total <InlineMath math="3 + 3 + 2 + 1 + 1 = 10" /> satuan, dan titik di kanan berjarak total <InlineMath math="1 + 2 + 3 + 4 = 10" /> satuan. Jarak-jarak itu saling meniadakan tepat di rata-rata.
 
 <MathVisual
-  title="Rata-rata adalah titik keseimbangan"
+  title={<>Rata-rata adalah titik keseimbangan</>}
   description={<>Titik untuk <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10" /> di garis bilangan, seimbang di atas tumpuan pada rata-rata <InlineMath math="6" />.</>}
   labels={{
     mean: <InlineMath math="\bar{x} = 6" />,
@@ -160,7 +160,7 @@ Median juga berubah, tetapi tidak setajam mean. Modus sama sekali tidak berubah.
 Sekarang tambahkan dua nilai besar, <InlineMath math="20" /> dan <InlineMath math="22" />. Titik tumpunya harus bergeser ke kanan sampai <InlineMath math="102 / 12 = 8{,}5" /> supaya titik-titik yang jauh tetap seimbang. Median, yaitu nilai tengah data terurut, hanya bergeser dari <InlineMath math="5{,}5" /> ke <InlineMath math="6{,}5" />.
 
 <MathVisual
-  title="Dua nilai besar menarik rata-rata"
+  title={<>Dua nilai besar menarik rata-rata</>}
   description={<>Dua belas nilai di garis bilangan dengan rata-rata <InlineMath math="8{,}5" /> sebagai tumpuan dan median <InlineMath math="6{,}5" /> ditandai terpisah.</>}
   labels={{
     mean: <InlineMath math="\bar{x} = 8{,}5" />,
@@ -221,11 +221,12 @@ Data menjadi: <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 20, 100" /> (<Inl
 
 Mengganti <InlineMath math="22" /> dengan <InlineMath math="100" /> mengubah jumlah seluruh data, tetapi posisi tengah dan frekuensi tertinggi tetap sama. Karena itu, rata-rata naik sementara median dan modus tetap. Nilai ekstrem disebut **pencilan** jika memenuhi aturan statistik atau pertimbangan bidang yang digunakan. Pilih ukuran pemusatan sesuai besaran yang ingin kamu jelaskan.
 
-<Mermaid
-  title="Reaksi setiap ukuran terhadap dua nilai besar"
-  description="Menambahkan 20 dan 22 paling banyak menggeser rata-rata, sedikit menggeser median, dan tidak mengubah modus."
-  chart={`flowchart LR
-  A["Tambahkan 20 dan 22"] --> B["Rata-rata: 6 → 8,5"]
-  A --> C["Median: 5,5 → 6,5"]
-  A --> D["Modus: 3 dan 5, tetap"]`}
+Ini banyak barang setiap anggota dalam bentuk batang. Batang tertinggi <InlineMath math="10" /> dan yang terpendek <InlineMath math="3" />. Kalau semua menyumbang sama banyak, setiap batang akan setinggi rata-ratanya, <InlineMath math="6" />, karena totalnya <InlineMath math="60" /> barang untuk <InlineMath math="10" /> anggota.
+
+<BarChart
+  title={<>Barang yang dikumpulkan setiap anggota</>}
+  description={<>Banyak barang yang dikumpulkan kesepuluh anggota, yang jumlahnya 60.</>}
+  yAxisLabel="Barang"
+  data={[["1", 3], ["2", 5], ["3", 7], ["4", 10], ["5", 5], ["6", 3], ["7", 4], ["8", 6], ["9", 9], ["10", 8]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Barang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />

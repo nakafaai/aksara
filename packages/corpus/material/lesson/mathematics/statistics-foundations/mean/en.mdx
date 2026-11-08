@@ -33,7 +33,7 @@ The quantities in this formula are:
 Picture the ten counts as dots on a number line and the mean as the point where the line balances. The dots left of <InlineMath math="6" /> sit <InlineMath math="3 + 3 + 2 + 1 + 1 = 10" /> units away in total, and the dots on the right sit <InlineMath math="1 + 2 + 3 + 4 = 10" /> units away. The distances cancel exactly at the mean.
 
 <MathVisual
-  title="The mean is the balance point"
+  title={<>The mean is the balance point</>}
   description={<>Dots for <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10" /> on a number line, balanced on a support at the mean <InlineMath math="6" />.</>}
   labels={{
     mean: <InlineMath math="\bar{x} = 6" />,
@@ -160,7 +160,7 @@ The median also changes, but less sharply. The mode does not change at all.
 Now add the two large values <InlineMath math="20" /> and <InlineMath math="22" />. The balance point has to slide right to <InlineMath math="102 / 12 = 8.5" /> to keep the far dots in balance. The median, the middle of the sorted list, only moves from <InlineMath math="5.5" /> to <InlineMath math="6.5" />.
 
 <MathVisual
-  title="Two large values pull the mean"
+  title={<>Two large values pull the mean</>}
   description={<>The twelve values on a number line with the mean <InlineMath math="8.5" /> as the support and the median <InlineMath math="6.5" /> marked separately.</>}
   labels={{
     mean: <InlineMath math="\bar{x} = 8.5" />,
@@ -221,11 +221,12 @@ Data becomes: <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 20, 100" /> (<Inl
 
 An extreme value may be classified as an **outlier** under a stated statistical rule or through domain judgment. In this example, replacing <InlineMath math="22" /> with <InlineMath math="100" /> changes the sum but leaves the middle positions and highest frequencies unchanged. The mean therefore rises, while the median and modes stay the same. Choose a measure of center according to the quantity you want to describe.
 
-<Mermaid
-  title="How each measure reacts to two large values"
-  description="Adding 20 and 22 moves the mean the most, the median a little, and leaves the mode unchanged."
-  chart={`flowchart LR
-  A["Add 20 and 22"] --> B["Mean: 6 → 8.5"]
-  A --> C["Median: 5.5 → 6.5"]
-  A --> D["Mode: 3 and 5, unchanged"]`}
+Here is each member's count as a bar. The tallest bar is <InlineMath math="10" /> and the shortest are <InlineMath math="3" />. If everyone gave the same number, every bar would stand at the mean <InlineMath math="6" />, because the total is <InlineMath math="60" /> items for <InlineMath math="10" /> members.
+
+<BarChart
+  title={<>Items collected by each member</>}
+  description={<>The number of items each of the ten members collected, which add up to 60.</>}
+  yAxisLabel="Items"
+  data={[["1", 3], ["2", 5], ["3", 7], ["4", 10], ["5", 5], ["6", 3], ["7", 4], ["8", 6], ["9", 9], ["10", 8]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Items", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />

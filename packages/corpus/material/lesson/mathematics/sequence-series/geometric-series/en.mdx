@@ -35,7 +35,7 @@ The geometric series is the sum of the terms of this sequence:
 Each month prepares three times as many seedlings as the month before: <InlineMath math="U_n = 4 \cdot 3^{n-1}" />. The bars show how quickly that grows, from <InlineMath math="4" /> in January to <InlineMath math="324" /> in May.
 
 <BarChart
-  title="New seedlings each month"
+  title={<>New seedlings each month</>}
   description={<>Bar <InlineMath math="n" /> shows <InlineMath math="4 \cdot 3^{n-1}" />, the seedlings prepared in month <InlineMath math="n" />.</>}
   yAxisLabel="New seedlings"
   data={['Jan', 'Feb', 'Mar', 'Apr', 'May'].map((name, i) => ({ name, value: 4 * 3 ** i }))}
@@ -60,14 +60,14 @@ Only **the first term and the term after the last** remain. Since <InlineMath ma
 
 <BlockMath math="\begin{aligned}S_n&amp;=\frac{U_{n+1}-U_1}{r-1}\\&amp;=\frac{a(r^n-1)}{r-1}\end{aligned}" />
 
-<Mermaid
-  title="The 3S minus S trick for three months"
-  description="Multiplying the sum by the ratio shifts every term one place, so subtracting the original sum leaves only the last new term minus the first term."
-  chart={`flowchart TD
-  A["S₃ = 4 + 12 + 36"] --> B["3S₃ = 12 + 36 + 108"]
-  B --> C["3S₃ − S₃ = 108 − 4"]
-  C --> D["2S₃ = 104"]
-  D --> E["S₃ = 52"]`}
+Check the ratio month by month: <InlineMath math="\frac{12}{4}" />, <InlineMath math="\frac{36}{12}" />, <InlineMath math="\frac{108}{36}" />, <InlineMath math="\frac{324}{108}" />. Every bar has the same height <InlineMath math="3" />, which is exactly what makes the seedlings a geometric sequence and the totals a geometric series.
+
+<BarChart
+  title={<>The ratio between consecutive months</>}
+  description={<>The ratio of each month to the month before it, always 3.</>}
+  yAxisLabel="Ratio"
+  data={[["Feb", (4 * 3 ** 1) / (4 * 3 ** 0)], ["Mar", (4 * 3 ** 2) / (4 * 3 ** 1)], ["Apr", (4 * 3 ** 3) / (4 * 3 ** 2)], ["May", (4 * 3 ** 4) / (4 * 3 ** 3)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Ratio", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Geometric Series Formula
@@ -96,7 +96,7 @@ At ratio one, division by <InlineMath math="r-1" /> would be **division by zero*
 Now count everything prepared so far. Bar <InlineMath math="n" /> is <InlineMath math="S_n = \frac{4(3^n - 1)}{3 - 1}" />: <InlineMath math="4, 16, 52, 160, 484" />. Compare with the previous chart: the total through May, <InlineMath math="484" />, sits just under <InlineMath math="1.5" /> times the May seedlings alone, because <InlineMath math="S_n = \frac{3U_n - 4}{2}" />.
 
 <BarChart
-  title="Total seedlings so far"
+  title={<>Total seedlings so far</>}
   description={<>Bar <InlineMath math="n" /> shows the total <InlineMath math="S_n = 2(3^n - 1)" /> after <InlineMath math="n" /> months.</>}
   yAxisLabel="Total seedlings"
   data={['Jan', 'Feb', 'Mar', 'Apr', 'May'].map((name, i) => ({ name, value: (4 * (3 ** (i + 1) - 1)) / (3 - 1) }))}

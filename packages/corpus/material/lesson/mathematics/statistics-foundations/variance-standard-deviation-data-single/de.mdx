@@ -20,14 +20,14 @@ Die Varianz mittelt die **quadrierten** Abstände vom Mittelwert. Die Standardab
 
 Wir behandeln die Beobachtungen als **vollständige Grundgesamtheit**. Die Varianz hat quadrierte Einheiten. Die Quadratwurzel stellt die ursprüngliche Einheit wieder her, sodass du die Standardabweichung direkt mit einem Beobachtungswert vergleichen kannst.
 
-<Mermaid
-  title="Von den Abweichungen zur Standardabweichung"
-  description="Jeder Wert liefert eine Abweichung vom Mittelwert. Das Quadrieren entfernt das Vorzeichen, der Mittelwert der Quadrate ist die Varianz, und ihre Wurzel ist die Standardabweichung."
-  chart={`flowchart LR
-  A["Mittelwert x̄"] --> B["Abweichungen xᵢ − x̄"]
-  B --> C["Quadrate (xᵢ − x̄)²"]
-  C --> D["Varianz σ² = Mittelwert der Quadrate"]
-  D --> E["Standardabweichung σ = √σ²"]`}
+Quadrier jede Abweichung von Gruppe eins vom Mittelwert <InlineMath math="16" />. Die Balken sind <InlineMath math="9, 4, 1, 1, 0, 0, 1, 1, 1, 1, 1, 4" />, sie ergeben zusammen <InlineMath math="24" />, und ihr Mittelwert <InlineMath math="\frac{24}{12} = 2" /> ist die Varianz.
+
+<BarChart
+  title={<>Quadrierte Abweichungen von Gruppe eins</>}
+  description={<>Balken <InlineMath math="i" /> zeigt <InlineMath math="(x_i - 16)^2" /> für die zwölf Alter von Gruppe eins.</>}
+  yAxisLabel="Quadrierte Abweichung"
+  data={[["1", (13 - 16) ** 2], ["2", (14 - 16) ** 2], ["3", (15 - 16) ** 2], ["4", (15 - 16) ** 2], ["5", (16 - 16) ** 2], ["6", (16 - 16) ** 2], ["7", (17 - 16) ** 2], ["8", (17 - 16) ** 2], ["9", (17 - 16) ** 2], ["10", (17 - 16) ** 2], ["11", (17 - 16) ** 2], ["12", (18 - 16) ** 2]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Quadrierte Abweichung", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ### Varianz
@@ -67,7 +67,7 @@ Wir berechnen die Populationsvarianz und Standardabweichung jeder Gruppe.
 Jede Zeile unten ist eine Person aus Gruppe eins, und jeder türkise Balken ist die Abweichung ihres Alters vom Mittelwert <InlineMath math="16" />. Die Balken sind kurz: Der längste misst <InlineMath math="3" />. Quadrieren und Mitteln ergibt <InlineMath math="\sigma^2 = 24 / 12 = 2" />.
 
 <MathVisual
-  title="Gruppe eins bleibt nah am Mittelwert"
+  title={<>Gruppe eins bleibt nah am Mittelwert</>}
   description={<>Die zwölf Alter von Gruppe eins, eins pro Zeile, mit einem Balken vom Mittelwert 16 zu jedem Alter.</>}
   labels={{
     mean: <InlineMath math="\bar{x} = 16" />,
@@ -110,7 +110,7 @@ Jede Zeile unten ist eine Person aus Gruppe eins, und jeder türkise Balken ist 
 Gruppe zwei hat denselben Mittelwert <InlineMath math="16" />, aber ihre Abweichungsbalken sind lang, bis zu <InlineMath math="20" />. Ihre Quadrate ergeben zusammen <InlineMath math="1910" />, also <InlineMath math="\sigma^2 = 1910 / 12 \approx 159{,}17" /> und <InlineMath math="\sigma \approx 12{,}62" />. Je länger die Balken, desto größer die Standardabweichung.
 
 <MathVisual
-  title="Gruppe zwei streut weit um den Mittelwert"
+  title={<>Gruppe zwei streut weit um den Mittelwert</>}
   description={<>Die zwölf Alter von Gruppe zwei, eins pro Zeile, mit einem Balken vom Mittelwert 16 zu jedem Alter.</>}
   labels={{
     mean: <InlineMath math="\bar{x} = 16" />,

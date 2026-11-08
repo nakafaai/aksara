@@ -45,7 +45,7 @@ Die Tabelle stellt beide Formen nebeneinander. Eine Folge hält die Glieder in i
 Hier ist die Folge <InlineMath math="a_n = n" /> als Balken: <InlineMath math="1, 2, 3, \ldots, 8" />. Jeder Balken ist ein einzelnes Glied. Noch wird nichts addiert, Balken 8 ist also einfach <InlineMath math="8" />.
 
 <BarChart
-  title="Die Glieder einer Folge"
+  title={<>Die Glieder einer Folge</>}
   description={<>Balken <InlineMath math="n" /> zeigt das Glied <InlineMath math="a_n = n" /> für <InlineMath math="n = 1" /> bis <InlineMath math="8" />.</>}
   yAxisLabel="Glied"
   data={Array.from({ length: 8 }, (_, i) => ({ name: `${i + 1}`, value: i + 1 }))}
@@ -70,7 +70,7 @@ Die Summe der Glieder von <InlineMath math="a_n=n" /> ergibt eine neue Folge, n�
 Addiere die Glieder jetzt nach und nach. Balken <InlineMath math="n" /> ist die Partialsumme <InlineMath math="S_n = 1 + 2 + \cdots + n" />, die Balken zeigen also <InlineMath math="1, 3, 6, 10, \ldots, 36" />. Vergleich Balken 8 mit dem vorigen Diagramm: Das Glied ist <InlineMath math="8" />, die Summe der ersten acht Glieder aber <InlineMath math="36" />.
 
 <BarChart
-  title="Die Partialsummen derselben Folge"
+  title={<>Die Partialsummen derselben Folge</>}
   description={<>Balken <InlineMath math="n" /> zeigt <InlineMath math="S_n = \frac{n(n+1)}{2}" /> für <InlineMath math="n = 1" /> bis <InlineMath math="8" />.</>}
   yAxisLabel="Partialsumme"
   data={Array.from({ length: 8 }, (_, i) => {
@@ -86,13 +86,30 @@ Addiere die Glieder jetzt nach und nach. Balken <InlineMath math="n" /> ist die 
 
 Eine unendliche Reihe wird über den **Grenzwert ihrer Partialsummen** verstanden. Nähern sich die Partialsummen einem festen Wert, konvergiert die unendliche Reihe. Das Thema [konvergente und divergente Reihen](/de/faecher/mathematik/folgen-und-reihen/konvergenz-und-divergenz) nutzt diesen Grenzwert, um Reihen mit festem Wert von den übrigen zu trennen.
 
-<Mermaid
-  title="Von der Folge zu ihrer Reihe"
-  description="Die Summe der ersten n Glieder einer Folge ist eine Partialsumme. Die Partialsummen bilden eine neue Folge, und eine unendliche Reihe ist deren Grenzwert, falls er existiert."
-  chart={`flowchart LR
-  A["Folge a₁, a₂, a₃, …"] -->|"erste n Glieder addieren"| B["Partialsumme Sₙ"]
-  B -->|"S₁, S₂, S₃, … auflisten"| C["Folge der Partialsummen"]
-  C -->|"Grenzwert, falls er existiert"| D["Wert der unendlichen Reihe"]`}
+Die Partialsummen von <InlineMath math="a_n = n" /> liegen auf einer Parabel. Jeder Punkt <InlineMath math="(n, S_n)" /> liegt auf <InlineMath math="y = \tfrac12 x^2 + \tfrac12 x" />, weil <InlineMath math="S_n = \frac{n(n+1)}{2}" /> gilt. Eine Folge mit gleichen Schritten hat Partialsummen, die wie ein Quadrat wachsen.
+
+<MathVisual
+  title={<>Partialsummen auf einer Parabel</>}
+  description={<>Die Punkte <InlineMath math="(n, S_n)" /> für <InlineMath math="n = 1" /> bis <InlineMath math="5" /> auf der Parabel <InlineMath math="y = \tfrac12 x^2 + \tfrac12 x" />.</>}
+  labels={{
+    s5: <InlineMath math="S_5 = 15" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 6 }, y: { min: -0.5, max: 16.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 0.5, b: 0.5, c: 0 }, domain: { min: 0, max: 5.2 }, appearance: "reference" },
+      { id: "s1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 3, y: 6 }, appearance: "primary" },
+      { id: "s4", kind: "point", at: { x: 4, y: 10 }, appearance: "primary" },
+      { id: "s5", kind: "point", at: { x: 5, y: 15 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "s5", objectId: "s5", at: { x: 5, y: 15 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Übung

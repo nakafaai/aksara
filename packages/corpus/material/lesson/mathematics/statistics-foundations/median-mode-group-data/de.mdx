@@ -32,8 +32,8 @@ Dieses Intervall enthält die **meisten Verkäufe als gesamte Klasse**. Der häu
 Im Histogramm ist die Modalklasse einfach der höchste Balken: <InlineMath math="43\text{-}45" /> mit <InlineMath math="16" /> Lernenden. Keine andere Klasse kommt nah heran, die häufigsten Schuhgrößen liegen also in diesem Intervall.
 
 <HistogramChart
-  title="Die Modalklasse ist der höchste Balken"
-  description="Die Anzahl der Lernenden in jeder Schuhgrößenklasse. Die Klasse 43 bis 45 hat den höchsten Balken."
+  title={<>Die Modalklasse ist der höchste Balken</>}
+  description={<>Die Anzahl der Lernenden in jeder Schuhgrößenklasse. Die Klasse 43 bis 45 hat den höchsten Balken.</>}
   yAxisLabel="Lernende"
   data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 16 }, { name: "46-48", value: 1 }]}
   chartConfig={{ value: { label: "Lernende", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -43,13 +43,14 @@ Im Histogramm ist die Modalklasse einfach der höchste Balken: <InlineMath math=
 
 Der Median teilt geordnete Daten in zwei gleich große Hälften. Eine gruppierte Tabelle enthält Klassenintervalle und Häufigkeiten anstelle der einzelnen Beobachtungswerte. Deshalb bestimmen wir zuerst die Medianklasse und **schätzen dann die Position des Medians** innerhalb dieser Klasse.
 
-<Mermaid
-  title="Den Median klassierter Daten schätzen"
-  description="Bestimm die Position n/2, such die Klasse, deren Summenhäufigkeit sie zuerst überschreitet, und interpolier in dieser Klasse."
-  chart={`flowchart LR
-  A["Position n/2"] --> B["Medianklasse: Summenhäufigkeit überschreitet n/2 zuerst"]
-  B --> C["L, F, f und c ablesen"]
-  C --> D["Me = L + (n/2 − F) / f · c"]`}
+Addier die Häufigkeiten Klasse für Klasse, dann erhältst du die Summenhäufigkeiten <InlineMath math="2, 13, 29, 30" />. Der letzte Balken ist immer die Gesamtzahl <InlineMath math="30" />, und die Klasse, in der ein Balken eine Zielposition zuerst überschreitet, ist die Klasse zum Interpolieren.
+
+<BarChart
+  title={<>Summenhäufigkeit jeder Klasse</>}
+  description={<>Balken für jede Klasse mit der Anzahl der Werte bis zu ihrer oberen Klassengrenze, bis 30.</>}
+  yAxisLabel="Summenhäufigkeit"
+  data={[["37-39", 2], ["40-42", 2 + 11], ["43-45", 2 + 11 + 16], ["46-48", 2 + 11 + 16 + 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Summenhäufigkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ### Medianklasse und Medianposition bestimmen
@@ -111,25 +112,22 @@ Das Ergebnis ist eine **Schätzung**, die aus den gruppierten Intervallen stammt
 
 Du kannst den Median direkt an der Summenhäufigkeitslinie bei der Hälfte der Daten ablesen. Die Linie steigt über die Klassengrenzen <InlineMath math="36{,}5; 39{,}5; 42{,}5; 45{,}5; 48{,}5" />. Sie erreicht <InlineMath math="n/2 = 15" /> in der Klasse <InlineMath math="43\text{-}45" />, bei <InlineMath math="42{,}5 + \frac{15 - 13}{16} \cdot 3 = 42{,}875" />, genau wie die Formel.
 
-<LineEquation
-  title="Den Median aus der Summenhäufigkeit ablesen"
-  description={<>Die Summenhäufigkeitslinie der Schuhgrößen. Die Höhe 15 trifft sie über 42,875, dem geschätzten Median.</>}
-  cameraPosition={[42.5, 15, 40]}
-  cameraTarget={[42.5, 15, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 5 }, (_, i) => ({ x: 36.5 + 3 * i, y: [2, 11, 16, 1].slice(0, i).reduce((sum, value) => sum + value, 0), z: 0 })),
-      smooth: false,
-      showPoints: true,
-      color: "#8242e5",
-    },
-    {
-      points: [{ x: 36.5, y: 30 / 2, z: 0 }, { x: 42.5 + ((30 / 2 - 13) / 16) * 3, y: 30 / 2, z: 0 }, { x: 42.5 + ((30 / 2 - 13) / 16) * 3, y: 0, z: 0 }],
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="\operatorname{Me}" />, at: 2, offset: [0, -1.2, 0] }],
-    }
-  ]}
+<MathVisual
+  title={<>Den Median aus der Summenhäufigkeit ablesen</>}
+  description={<>Die Summenhäufigkeitslinie der Schuhgrößen. Die Höhe 15 trifft sie über <InlineMath math="42{,}875" />, dem geschätzten Median.</>}
+  labels={{
+    me: <InlineMath math="\operatorname{Me}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 36, max: 49 }, y: { min: -2, max: 31 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ogive", kind: "polyline", vertices: [{ x: 36.5, y: 0 }, { x: 39.5, y: 2 }, { x: 42.5, y: 13 }, { x: 45.5, y: 29 }, { x: 48.5, y: 30 }], appearance: "secondary" },
+      { id: "me", kind: "polyline", vertices: [{ x: 36.5, y: 15 }, { x: 42.5 + ((15 - 13) / 16) * 3, y: 15 }, { x: 42.5 + ((15 - 13) / 16) * 3, y: 0 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "me", objectId: "me", at: { x: 42.5 + ((15 - 13) / 16) * 3, y: 0 }, placement: "below" },
+    ],
+  }}
 />

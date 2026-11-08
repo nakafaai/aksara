@@ -31,13 +31,14 @@ Wie bei Quartilen verwenden wir bei gruppierten Daten eine **Interpolation**, um
 
 Das Verfahren besteht aus zwei Schritten.
 
-<Mermaid
-  title="Ein Perzentil klassierter Daten schätzen"
-  description="Mach aus dem Prozentsatz eine Position, such die Klasse, die sie enthält, und interpolier in dieser Klasse."
-  chart={`flowchart LR
-  A["Pₖ"] --> B["Position k/100 · n"]
-  B --> C["Perzentilklasse"]
-  C --> D["Pₖ = Tb + (k/100 · n − F) / f · p"]`}
+Addier die Häufigkeiten Klasse für Klasse, dann erhältst du die Summenhäufigkeiten <InlineMath math="4, 14, 30, 40" />. Der letzte Balken ist immer die Gesamtzahl <InlineMath math="40" />, und die Klasse, in der ein Balken eine Zielposition zuerst überschreitet, ist die Klasse zum Interpolieren.
+
+<BarChart
+  title={<>Summenhäufigkeit jeder Klasse</>}
+  description={<>Balken für jede Klasse mit der Anzahl der Werte bis zu ihrer oberen Klassengrenze, bis 40.</>}
+  yAxisLabel="Summenhäufigkeit"
+  data={[["61-70", 4], ["71-80", 4 + 10], ["81-90", 4 + 10 + 16], ["91-100", 4 + 10 + 16 + 10]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Summenhäufigkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ### Position der Perzentilklasse bestimmen
@@ -116,8 +117,8 @@ Das geschätzte <InlineMath math="85" />. Perzentil beträgt <InlineMath math="9
 Die Mathetestergebnisse als Histogramm: Die Klasse <InlineMath math="81\text{-}90" /> enthält die meisten Lernenden, <InlineMath math="16" /> von <InlineMath math="40" />.
 
 <HistogramChart
-  title="Mathetestergebnisse nach Klasse"
-  description="Die Anzahl der Lernenden in jeder Klasse der Testergebnisse."
+  title={<>Mathetestergebnisse nach Klasse</>}
+  description={<>Die Anzahl der Lernenden in jeder Klasse der Testergebnisse.</>}
   yAxisLabel="Lernende"
   data={[{ name: "61-70", value: 4 }, { name: "71-80", value: 10 }, { name: "81-90", value: 16 }, { name: "91-100", value: 10 }]}
   chartConfig={{ value: { label: "Lernende", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -125,34 +126,27 @@ Die Mathetestergebnisse als Histogramm: Die Klasse <InlineMath math="81\text{-}9
 
 Ein Perzentil ist eine Höhe auf der Summenhäufigkeitslinie. <InlineMath math="20\,\%" /> von <InlineMath math="40" /> Lernenden ist die Höhe <InlineMath math="8" />, die die Linie über <InlineMath math="P_{20} = 74{,}5" /> erreicht. <InlineMath math="85\,\%" /> ist die Höhe <InlineMath math="34" />, erreicht über <InlineMath math="P_{85} = 94{,}5" />.
 
-<LineEquation
-  title="Perzentile auf der Summenhäufigkeitslinie"
+<MathVisual
+  title={<>Perzentile auf der Summenhäufigkeitslinie</>}
   description={<>Die Summenhäufigkeitslinie der Testergebnisse, abgelesen bei 8 für <InlineMath math="P_{20} = 74{,}5" /> und bei 34 für <InlineMath math="P_{85} = 94{,}5" />.</>}
-  cameraPosition={[80.5, 20, 50]}
-  cameraTarget={[80.5, 20, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 5 }, (_, i) => ({ x: 60.5 + 10 * i, y: [4, 10, 16, 10].slice(0, i).reduce((sum, value) => sum + value, 0), z: 0 })),
-      smooth: false,
-      showPoints: true,
-      color: "#8242e5",
-    },
-    {
-      points: [{ x: 60.5, y: (20 / 100) * 40, z: 0 }, { x: 70.5 + (((20 / 100) * 40 - 4) / 10) * 10, y: (20 / 100) * 40, z: 0 }, { x: 70.5 + (((20 / 100) * 40 - 4) / 10) * 10, y: 0, z: 0 }],
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="P_{20}" />, at: 2, offset: [0, -1.2, 0] }],
-    },
-    {
-      points: [{ x: 60.5, y: (85 / 100) * 40, z: 0 }, { x: 90.5 + (((85 / 100) * 40 - 30) / 10) * 10, y: (85 / 100) * 40, z: 0 }, { x: 90.5 + (((85 / 100) * 40 - 30) / 10) * 10, y: 0, z: 0 }],
-      smooth: false,
-      showPoints: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="P_{85}" />, at: 2, offset: [0, -1.2, 0] }],
-    }
-  ]}
+  labels={{
+    p20: <InlineMath math="P_{20}" />,
+    p85: <InlineMath math="P_{85}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 60, max: 101 }, y: { min: -2, max: 41 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ogive", kind: "polyline", vertices: [{ x: 60.5, y: 0 }, { x: 70.5, y: 4 }, { x: 80.5, y: 14 }, { x: 90.5, y: 30 }, { x: 100.5, y: 40 }], appearance: "secondary" },
+      { id: "p20", kind: "polyline", vertices: [{ x: 60.5, y: 8 }, { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 8 }, { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 0 }], appearance: "primary" },
+      { id: "p85", kind: "polyline", vertices: [{ x: 60.5, y: 34 }, { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 34 }, { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 0 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "p20", objectId: "p20", at: { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 0 }, placement: "below" },
+      { key: "p85", objectId: "p85", at: { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Übung

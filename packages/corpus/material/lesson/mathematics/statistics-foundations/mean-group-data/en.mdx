@@ -39,14 +39,14 @@ The quantities in this formula are:
 - <InlineMath math="\sum (f_i \times x_i)" /> is the sum of each class frequency multiplied by its midpoint.
 - <InlineMath math="\sum f_i" /> is the sum of all frequencies, equal to the total number of values <InlineMath math="n" />.
 
-<Mermaid
-  title="Estimating the mean of grouped data"
-  description="Each class is represented by its midpoint, weighted by its frequency, and the weighted total is divided by the number of data."
-  chart={`flowchart LR
-  A["Class interval"] --> B["Midpoint xᵢ"]
-  B --> C["fᵢ · xᵢ"]
-  C --> D["Σ fᵢxᵢ"]
-  D -->|"divide by Σ fᵢ"| E["x̄ ≈ Σ fᵢxᵢ / Σ fᵢ"]`}
+Each class contributes its midpoint times its frequency. The bars are <InlineMath math="76, 451, 704, 47" />, they add up to <InlineMath math="1278" />, and dividing by the <InlineMath math="30" /> students gives the grouped mean <InlineMath math="42.6" />.
+
+<BarChart
+  title={<>Frequency times midpoint for each class</>}
+  description={<>Bar for each shoe size class showing <InlineMath math="f_i x_i" />, which add up to 1278.</>}
+  yAxisLabel="Frequency times midpoint"
+  data={[["37-39", 2 * 38], ["40-42", 11 * 41], ["43-45", 16 * 44], ["46-48", 1 * 47]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Frequency times midpoint", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Average Shoe Size from Grouped Data
@@ -83,8 +83,8 @@ This result is an **estimate** because <Highlight>the midpoint stands in for eve
 The histogram shows why the shoe sizes cannot be listed one by one: we only know how many fall in each class. Most of the <InlineMath math="30" /> students sit in the classes <InlineMath math="40\text{-}42" /> and <InlineMath math="43\text{-}45" />.
 
 <HistogramChart
-  title="Shoe sizes of 30 students"
-  description="The number of students in each shoe size class."
+  title={<>Shoe sizes of 30 students</>}
+  description={<>The number of students in each shoe size class.</>}
   yAxisLabel="Students"
   data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 16 }, { name: "46-48", value: 1 }]}
   chartConfig={{ value: { label: "Students", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -92,25 +92,22 @@ The histogram shows why the shoe sizes cannot be listed one by one: we only know
 
 Each class now stands at its midpoint with its frequency as the height. The grouped mean <InlineMath math="1278 / 30 = 42.6" /> is the balance point of these weighted midpoints: the heavy point at <InlineMath math="44" /> with frequency <InlineMath math="16" /> pulls it to the right of <InlineMath math="41" />.
 
-<LineEquation
-  title="Midpoints weighted by frequency"
+<MathVisual
+  title={<>Midpoints weighted by frequency</>}
   description={<>The frequency polygon through the midpoints 38, 41, 44 and 47, with the grouped mean <InlineMath math="42.6" /> marked.</>}
-  cameraPosition={[42.5, 8.5, 24]}
-  cameraTarget={[42.5, 8.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [[38, 2], [41, 11], [44, 16], [47, 1]].map(([x, f]) => ({ x, y: f, z: 0 })),
-      smooth: false,
-      showPoints: true,
-      color: "#8242e5",
-    },
-    {
-      points: [{ x: [[38, 2], [41, 11], [44, 16], [47, 1]].reduce((sum, [x, f]) => sum + x * f, 0) / 30, y: 0, z: 0 }, { x: [[38, 2], [41, 11], [44, 16], [47, 1]].reduce((sum, [x, f]) => sum + x * f, 0) / 30, y: 17, z: 0 }],
-      smooth: false,
-      showPoints: false,
-      color: "#bb6800",
-      labels: [{ text: <InlineMath math="\bar{x} = 42.6" />, at: 1, offset: [0, 1.5, 0] }],
-    }
-  ]}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 42.6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 36, max: 49 }, y: { min: -0.5, max: 18 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "poly", kind: "polyline", vertices: [{ x: 38, y: 2 }, { x: 41, y: 11 }, { x: 44, y: 16 }, { x: 47, y: 1 }], appearance: "secondary" },
+      { id: "mean", kind: "segment", from: { x: 1278 / 30, y: 0 }, to: { x: 1278 / 30, y: 17 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 1278 / 30, y: 17 }, placement: "above" },
+    ],
+  }}
 />

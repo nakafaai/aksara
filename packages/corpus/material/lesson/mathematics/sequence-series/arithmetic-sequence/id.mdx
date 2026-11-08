@@ -27,25 +27,37 @@ Karena selisih antara dua suku berurutan selalu sama yaitu <InlineMath math="2" 
 
 Setiap langkah pada <InlineMath math="4, 6, 8, 10, \ldots" /> naik dengan tinggi yang sama. Gambar suku <InlineMath math="U_n" /> di atas posisi <InlineMath math="n" />: setiap anak tangga tingginya tepat <InlineMath math="2" />, yaitu bedanya, dan setiap pijakan panjangnya satu posisi.
 
-<LineEquation
-  title="Langkah sama besar pada barisan aritmetika"
+<MathVisual
+  title={<>Langkah sama besar pada barisan aritmetika</>}
   description={<>Suku <InlineMath math="4, 6, 8, 10, 12" /> digambar di atas posisi 1 sampai 5, dihubungkan tangga yang setiap anak tangganya setinggi <InlineMath math="b = 2" />.</>}
-  cameraPosition={[3, 8, 14]}
-  cameraTarget={[3, 8, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 9 }, (_, i) => ({ x: 1 + Math.ceil(i / 2), y: 4 + 2 * Math.floor(i / 2), z: 0 })),
-      smooth: false,
-      showPoints: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="+2" />, at: 2, offset: [0.35, -1, 0] }],
-    },
-    ...Array.from({ length: 5 }, (_, i) => {
-      const n = i + 1;
-      return { points: [{ x: n, y: 2 + 2 * n, z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 5 ? [{ text: <InlineMath math="U_5 = 12" />, at: 0, offset: [0.6, 0.4, 0] }] : [] };
-    })
-  ]}
+  labels={{
+    u5: <InlineMath math="U_5 = 12" />,
+    r1: <InlineMath math="+2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 13.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "t1", kind: "segment", from: { x: 1, y: 4 }, to: { x: 2, y: 4 }, appearance: "construction" },
+      { id: "t2", kind: "segment", from: { x: 2, y: 6 }, to: { x: 3, y: 6 }, appearance: "construction" },
+      { id: "t3", kind: "segment", from: { x: 3, y: 8 }, to: { x: 4, y: 8 }, appearance: "construction" },
+      { id: "t4", kind: "segment", from: { x: 4, y: 10 }, to: { x: 5, y: 10 }, appearance: "construction" },
+      { id: "r1", kind: "segment", from: { x: 2, y: 4 }, to: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "r2", kind: "segment", from: { x: 3, y: 6 }, to: { x: 3, y: 8 }, appearance: "construction" },
+      { id: "r3", kind: "segment", from: { x: 4, y: 8 }, to: { x: 4, y: 10 }, appearance: "construction" },
+      { id: "r4", kind: "segment", from: { x: 5, y: 10 }, to: { x: 5, y: 12 }, appearance: "construction" },
+      { id: "u1", kind: "point", at: { x: 1, y: 4 }, appearance: "primary" },
+      { id: "u2", kind: "point", at: { x: 2, y: 6 }, appearance: "primary" },
+      { id: "u3", kind: "point", at: { x: 3, y: 8 }, appearance: "primary" },
+      { id: "u4", kind: "point", at: { x: 4, y: 10 }, appearance: "primary" },
+      { id: "u5", kind: "point", at: { x: 5, y: 12 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "u5", objectId: "u5", at: { x: 5, y: 12 }, placement: "above-left" },
+      { key: "r1", objectId: "r1", at: { x: 2, y: 5 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Beda pada Barisan Aritmetika
@@ -93,15 +105,6 @@ Dari suku pertama ke suku keempat ada **tiga perpindahan**, bukan empat. Setiap 
 Pola tersebut menghasilkan suku ke-<InlineMath math="n" /> berikut:
 
 <BlockMath math="U_n = a + (n-1)b" />
-
-<Mermaid
-  title="Mengapa rumusnya memakai n dikurangi 1"
-  description="Dari suku pertama ke suku ke-n ada n dikurangi 1 langkah, dan setiap langkah menambahkan b."
-  chart={`flowchart LR
-  U1["U₁ = a"] -->|"+ b"| U2["U₂ = a + b"]
-  U2 -->|"+ b"| U3["U₃ = a + 2b"]
-  U3 -->|"… total n − 1 langkah"| Un["Uₙ = a + (n − 1)b"]`}
-/>
 
 ### Bentuk Rekursif
 
@@ -156,6 +159,16 @@ Jadi, terdapat <InlineMath math="76" /> kursi pada baris ke-<InlineMath math="15
 
 Hasil ini hanya menyatakan **jumlah kursi pada satu baris**, yaitu baris ke-<InlineMath math="15" />. Untuk mencari jumlah seluruh kursi pada lima belas baris pertama, kita memerlukan deret aritmetika yang bersesuaian.
 
+Ini kelima belas baris gedung itu dalam bentuk batang, <InlineMath math="U_n = 20 + 4(n - 1)" />. Setiap batang tepat <InlineMath math="4" /> kursi lebih tinggi daripada batang sebelumnya, jadi puncaknya naik lurus sampai <InlineMath math="U_{15} = 76" />.
+
+<BarChart
+  title={<>Kursi di setiap baris gedung</>}
+  description={<>Batang <InlineMath math="n" /> menunjukkan kursi di baris ke-<InlineMath math="n" />, dari 20 di baris pertama sampai 76 di baris kelima belas.</>}
+  yAxisLabel="Kursi"
+  data={[["1", 20 + 4 * (1 - 1)], ["2", 20 + 4 * (2 - 1)], ["3", 20 + 4 * (3 - 1)], ["4", 20 + 4 * (4 - 1)], ["5", 20 + 4 * (5 - 1)], ["6", 20 + 4 * (6 - 1)], ["7", 20 + 4 * (7 - 1)], ["8", 20 + 4 * (8 - 1)], ["9", 20 + 4 * (9 - 1)], ["10", 20 + 4 * (10 - 1)], ["11", 20 + 4 * (11 - 1)], ["12", 20 + 4 * (12 - 1)], ["13", 20 + 4 * (13 - 1)], ["14", 20 + 4 * (14 - 1)], ["15", 20 + 4 * (15 - 1)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Kursi", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Barisan Naik Turun dan Konstan
 
 Barisan aritmetika naik jika <InlineMath math="b>0" />, turun jika <InlineMath math="b<0" />, dan konstan jika <InlineMath math="b=0" />. Contohnya:
@@ -166,26 +179,41 @@ Jadi, **tanda beda** menunjukkan arah perubahan barisan.
 
 Tanda <InlineMath math="b" /> menentukan arah barisannya. Setiap kumpulan titik di bawah adalah barisan aritmetika pada posisi 1 sampai 5: <InlineMath math="b = 2" /> naik, <InlineMath math="b = -3" /> turun dari <InlineMath math="12" /> lewat <InlineMath math="9, 6, 3" /> sampai <InlineMath math="0" />, dan <InlineMath math="b = 0" /> tetap datar di <InlineMath math="6" />.
 
-<LineEquation
-  title="Naik, turun, dan tetap"
+<MathVisual
+  title={<>Naik, turun, dan tetap</>}
   description={<>Tiga barisan aritmetika digambar terhadap posisinya: satu dengan <InlineMath math="b = 2" />, satu dengan <InlineMath math="b = -3" />, dan satu dengan <InlineMath math="b = 0" />.</>}
-  cameraPosition={[3, 6, 16]}
-  cameraTarget={[3, 6, 0]}
-  showZAxis={false}
-  data={[
-    ...Array.from({ length: 5 }, (_, i) => {
-      const n = i + 1;
-      return { points: [{ x: n, y: 2 + 2 * n, z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: n === 5 ? [{ text: <InlineMath math="b = 2" />, at: 0, offset: [0.7, 0, 0] }] : [] };
-    }),
-    ...Array.from({ length: 5 }, (_, i) => {
-      const n = i + 1;
-      return { points: [{ x: n, y: 15 - 3 * n, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: n === 5 ? [{ text: <InlineMath math="b = -3" />, at: 0, offset: [0.8, 0, 0] }] : [] };
-    }),
-    ...Array.from({ length: 5 }, (_, i) => {
-      const n = i + 1;
-      return { points: [{ x: n, y: 6, z: 0 }], smooth: false, showPoints: true, color: "#0d9488", labels: n === 5 ? [{ text: <InlineMath math="b = 0" />, at: 0, offset: [0.8, 0, 0] }] : [] };
-    })
-  ]}
+  labels={{
+    a5: <InlineMath math="b = 2" />,
+    b5: <InlineMath math="b = -3" />,
+    c5: <InlineMath math="b = 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: -0.8, max: 13 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a1", kind: "point", at: { x: 1, y: 4 }, appearance: "primary" },
+      { id: "a2", kind: "point", at: { x: 2, y: 6 }, appearance: "primary" },
+      { id: "a3", kind: "point", at: { x: 3, y: 8 }, appearance: "primary" },
+      { id: "a4", kind: "point", at: { x: 4, y: 10 }, appearance: "primary" },
+      { id: "a5", kind: "point", at: { x: 5, y: 12 }, appearance: "primary" },
+      { id: "b1", kind: "point", at: { x: 1, y: 12 }, appearance: "secondary" },
+      { id: "b2", kind: "point", at: { x: 2, y: 9 }, appearance: "secondary" },
+      { id: "b3", kind: "point", at: { x: 3, y: 6 }, appearance: "secondary" },
+      { id: "b4", kind: "point", at: { x: 4, y: 3 }, appearance: "secondary" },
+      { id: "b5", kind: "point", at: { x: 5, y: 0 }, appearance: "secondary" },
+      { id: "c1", kind: "point", at: { x: 1, y: 6 }, appearance: "construction" },
+      { id: "c2", kind: "point", at: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "c3", kind: "point", at: { x: 3, y: 6 }, appearance: "construction" },
+      { id: "c4", kind: "point", at: { x: 4, y: 6 }, appearance: "construction" },
+      { id: "c5", kind: "point", at: { x: 5, y: 6 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "a5", objectId: "a5", at: { x: 5, y: 12 }, placement: "right" },
+      { key: "b5", objectId: "b5", at: { x: 5, y: 0 }, placement: "right" },
+      { key: "c5", objectId: "c5", at: { x: 5, y: 6 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Latihan Pertama

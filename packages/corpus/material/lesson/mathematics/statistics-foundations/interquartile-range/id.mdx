@@ -24,14 +24,14 @@ Rumusnya adalah:
 
 Jadi, <InlineMath math="\mathrm{IQR}" /> itu selisih antara kuartil atas dan kuartil bawah.
 
-<Mermaid
-  title="Jangkauan dibanding jangkauan antarkuartil"
-  description="Jangkauan hanya memakai dua nilai ekstrem, jadi satu nilai tak biasa bisa mengubahnya. Jangkauan antarkuartil memakai separuh tengah dan tahan terhadap nilai ekstrem."
-  chart={`flowchart TD
-  A["Data terurut"] --> R["Jangkauan = maksimum − minimum"]
-  A --> I["Jangkauan antarkuartil = Q₃ − Q₁"]
-  R --> R2["Berubah karena satu nilai ekstrem"]
-  I --> I2["Menggambarkan separuh tengah dan tahan nilai ekstrem"]`}
+Bandingkan kedua ukuran sebaran untuk kedua kelompok. Kelompok Satu punya jangkauan <InlineMath math="5" /> dan jangkauan antarkuartil <InlineMath math="2" />, Kelompok Dua punya jangkauan <InlineMath math="35" /> dan jangkauan antarkuartil <InlineMath math="24{,}5" />. Jangkauan antarkuartil mengabaikan nilai ekstrem, jadi menggambarkan seberapa rapat separuh tengahnya.
+
+<BarChart
+  title={<>Jangkauan dan jangkauan antarkuartil kedua kelompok</>}
+  description={<>Jangkauan dan jangkauan antarkuartil Kelompok Satu dan Kelompok Dua.</>}
+  yAxisLabel="Sebaran"
+  data={[["jangkauan, satu", 18 - 13], ["antarkuartil, satu", 17 - 15], ["jangkauan, dua", 36 - 1], ["antarkuartil, dua", 28.75 - 4.25]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Sebaran", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Membandingkan Sebaran Umur
@@ -60,11 +60,11 @@ Kita akan membandingkan mean, kuartil, jangkauan, dan jangkauan interkuartilnya.
 Titik-titiknya menceritakan hal yang sama, nilai demi nilai. Kelompok Satu berkumpul di sekitar <InlineMath math="16" /> dan <InlineMath math="17" />, sedangkan Kelompok Dua terbelah menjadi kumpulan rendah dan kumpulan tinggi dengan celah lebar di tengah. Jangkauan antarkuartil hanya mengukur separuh tengah dari setiap baris titik.
 
 <MathVisual
-  title="Usia kedua kelompok sebagai titik"
-  description="Dua belas usia per kelompok pada satu garis bilangan, Kelompok Satu di atas dan Kelompok Dua di bawah."
+  title={<>Usia kedua kelompok sebagai titik</>}
+  description={<>Dua belas usia per kelompok pada satu garis bilangan, Kelompok Satu di atas dan Kelompok Dua di bawah.</>}
   labels={{
-    g1: "Kelompok Satu",
-    g2: "Kelompok Dua",
+    g1: <>Kelompok Satu</>,
+    g2: <>Kelompok Dua</>,
   }}
   scene={{
     space: "plane",
@@ -178,11 +178,11 @@ Dua kumpulan data dapat memiliki rata-rata yang sama, tetapi sebaran yang berbed
 Taruh kedua kelompok berdampingan sebagai diagram kotak garis. Kelompok Satu muat dalam kotak pendek dari <InlineMath math="15" /> sampai <InlineMath math="17" />, jadi jangkauan antarkuartilnya <InlineMath math="2" />. Kelompok Dua membentang dari <InlineMath math="4{,}25" /> sampai <InlineMath math="28{,}75" />, jangkauan antarkuartil <InlineMath math="24{,}5" />. Kedua kelompok punya rata-rata <InlineMath math="16" />, tetapi kotaknya langsung menunjukkan betapa berbedanya sebaran usia mereka.
 
 <MathVisual
-  title="Rata-rata sama, sebaran sangat berbeda"
+  title={<>Rata-rata sama, sebaran sangat berbeda</>}
   description={<>Diagram kotak garis kedua kelompok pada satu sumbu. Kelompok Satu: 13, 15, 16,5, 17, 18. Kelompok Dua: 1, 4,25, 10, 28,75, 36.</>}
   labels={{
-    g1: "Kelompok Satu",
-    g2: "Kelompok Dua",
+    g1: <>Kelompok Satu</>,
+    g2: <>Kelompok Dua</>,
   }}
   scene={{
     space: "plane",

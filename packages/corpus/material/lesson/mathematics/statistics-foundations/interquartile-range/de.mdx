@@ -24,14 +24,14 @@ Die Formel lautet:
 
 Der <InlineMath math="\mathrm{IQR}" /> ist somit die Differenz zwischen oberem und unterem Quartil.
 
-<Mermaid
-  title="Spannweite gegen Quartilsabstand"
-  description="Die Spannweite nutzt nur die beiden Extremwerte, ein einziger ungewöhnlicher Wert kann sie ändern. Der Quartilsabstand nutzt die mittlere Hälfte und bleibt bei Extremwerten stabil."
-  chart={`flowchart TD
-  A["Sortierte Daten"] --> R["Spannweite = Maximum − Minimum"]
-  A --> I["Quartilsabstand = Q₃ − Q₁"]
-  R --> R2["Ändert sich durch einen Extremwert"]
-  I --> I2["Beschreibt die mittlere Hälfte, stabil bei Extremwerten"]`}
+Vergleich beide Streuungsmaße für beide Gruppen. Gruppe eins hat die Spannweite <InlineMath math="5" /> und den Quartilsabstand <InlineMath math="2" />, Gruppe zwei die Spannweite <InlineMath math="35" /> und den Quartilsabstand <InlineMath math="24{,}5" />. Der Quartilsabstand ignoriert Extremwerte und beschreibt, wie eng die mittlere Hälfte liegt.
+
+<BarChart
+  title={<>Spannweite und Quartilsabstand beider Gruppen</>}
+  description={<>Die Spannweite und der Quartilsabstand von Gruppe eins und Gruppe zwei.</>}
+  yAxisLabel="Streuung"
+  data={[["Spannweite, eins", 18 - 13], ["Quartilsabstand, eins", 17 - 15], ["Spannweite, zwei", 36 - 1], ["Quartilsabstand, zwei", 28.75 - 4.25]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Streuung", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Altersverteilungen vergleichen
@@ -60,11 +60,11 @@ Wir vergleichen Mittelwert, Quartile, Spannweite und Interquartilsabstand.
 Die Punkte erzählen dieselbe Geschichte Wert für Wert. Gruppe eins drängt sich um <InlineMath math="16" /> und <InlineMath math="17" />, Gruppe zwei zerfällt in eine niedrige und eine hohe Gruppe mit einer breiten Lücke in der Mitte. Der Quartilsabstand misst nur die mittlere Hälfte jeder Punktreihe.
 
 <MathVisual
-  title="Das Alter beider Gruppen als Punkte"
-  description="Zwölf Alter pro Gruppe auf einem Zahlenstrahl, Gruppe eins oben und Gruppe zwei unten."
+  title={<>Das Alter beider Gruppen als Punkte</>}
+  description={<>Zwölf Alter pro Gruppe auf einem Zahlenstrahl, Gruppe eins oben und Gruppe zwei unten.</>}
   labels={{
-    g1: "Gruppe eins",
-    g2: "Gruppe zwei",
+    g1: <>Gruppe eins</>,
+    g2: <>Gruppe zwei</>,
   }}
   scene={{
     space: "plane",
@@ -178,11 +178,11 @@ Ein gleicher Mittelwert bedeutet also nicht, dass zwei Datensätze ähnlich vert
 Stell die beiden Gruppen als Boxplots nebeneinander. Gruppe eins passt in eine kurze Box von <InlineMath math="15" /> bis <InlineMath math="17" />, ihr Quartilsabstand ist also <InlineMath math="2" />. Gruppe zwei reicht von <InlineMath math="4{,}25" /> bis <InlineMath math="28{,}75" />, ein Quartilsabstand von <InlineMath math="24{,}5" />. Beide Gruppen haben den Mittelwert <InlineMath math="16" />, doch die Boxen zeigen sofort, wie verschieden die Alter streuen.
 
 <MathVisual
-  title="Gleicher Mittelwert, ganz andere Streuung"
+  title={<>Gleicher Mittelwert, ganz andere Streuung</>}
   description={<>Boxplots beider Gruppen auf einer Achse. Gruppe eins: 13, 15, 16,5, 17, 18. Gruppe zwei: 1, 4,25, 10, 28,75, 36.</>}
   labels={{
-    g1: "Gruppe eins",
-    g2: "Gruppe zwei",
+    g1: <>Gruppe eins</>,
+    g2: <>Gruppe zwei</>,
   }}
   scene={{
     space: "plane",

@@ -45,13 +45,31 @@ Die relative Häufigkeit wird normalerweise wie folgt ausgedrückt:
 - **Dezimalzahl**: Ergebnis der Division.
 - **Prozentsatz**: Dezimalzahl multipliziert mit <InlineMath math="100\%" />.
 
-<Mermaid
-  title="Von der Anzahl zum Prozentsatz"
-  description="Eine Anzahl geteilt durch die Gesamtzahl ergibt eine relative Häufigkeit zwischen 0 und 1, mal 100 wird daraus ein Prozentsatz."
-  chart={`flowchart LR
-  A["Anzahl f"] -->|"durch die Gesamtzahl n teilen"| B["Relative Häufigkeit f/n"]
-  B -->|"mal 100 %"| C["Prozentsatz"]
-  B --> D["Alle relativen Häufigkeiten ergeben zusammen 1"]`}
+Relative Häufigkeiten teilen ein Ganzes auf. Nebeneinander auf einen Streifen der Länge <InlineMath math="1" /> gelegt, füllen die Anteile <InlineMath math="\frac{12}{30}" />, <InlineMath math="\frac{10}{30}" /> und <InlineMath math="\frac{8}{30}" /> ihn genau, ohne Lücke und ohne Überlappung.
+
+<MathVisual
+  title={<>Drei Anteile füllen ein Ganzes</>}
+  description={<>Ein Streifen der Länge 1, aufgeteilt in die Anteile von Apple, Samsung und Xiaomi.</>}
+  labels={{
+    apple: <>Apple</>,
+    samsung: <>Samsung</>,
+    xiaomi: <>Xiaomi</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.05, max: 1.05 }, y: { min: -0.15, max: 0.35 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "apple", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 12 / 30, y: 0 }, { x: 12 / 30, y: 0.2 }, { x: 0, y: 0.2 }], appearance: "primary" },
+      { id: "samsung", kind: "polygon", vertices: [{ x: 12 / 30, y: 0 }, { x: 22 / 30, y: 0 }, { x: 22 / 30, y: 0.2 }, { x: 12 / 30, y: 0.2 }], appearance: "secondary" },
+      { id: "xiaomi", kind: "polygon", vertices: [{ x: 22 / 30, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.2 }, { x: 22 / 30, y: 0.2 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "apple", objectId: "apple", at: { x: (0 + 12 / 30) / 2, y: 0.2 }, placement: "above" },
+      { key: "samsung", objectId: "samsung", at: { x: (12 / 30 + 22 / 30) / 2, y: 0.2 }, placement: "above" },
+      { key: "xiaomi", objectId: "xiaomi", at: { x: (22 / 30 + 1) / 2, y: 0.2 }, placement: "above" },
+    ],
+  }}
 />
 
 ## Beispiel für die Berechnung der relativen Häufigkeit
@@ -89,8 +107,8 @@ Die Summe der relativen Häufigkeiten (in Dezimalform) sollte immer <InlineMath 
 Zuerst die reinen Anzahlen. Apple hat den höchsten Balken mit <InlineMath math="12" /> von <InlineMath math="30" /> Lernenden, dann Samsung mit <InlineMath math="10" /> und Xiaomi mit <InlineMath math="8" />. Anzahlen beantworten "wie viele", ändern sich aber, wenn die Gruppengröße sich ändert.
 
 <BarChart
-  title="Wie viele Lernende jede Marke nutzen"
-  description="Die Anzahl der Lernenden, die jede Handymarke nutzen, von 30 Lernenden."
+  title={<>Wie viele Lernende jede Marke nutzen</>}
+  description={<>Die Anzahl der Lernenden, die jede Handymarke nutzen, von 30 Lernenden.</>}
   yAxisLabel="Lernende"
   data={[["Apple", 12], ["Samsung", 10], ["Xiaomi", 8]].map(([name, count]) => ({ name, value: count }))}
   chartConfig={{ value: { label: "Lernende", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -111,7 +129,7 @@ Die relative Häufigkeit <Highlight>macht absolute Anzahlen vergleichbar</Highli
 Teil jede Anzahl durch die Gesamtzahl <InlineMath math="30" />, dann bekommst du die relativen Häufigkeiten <InlineMath math="0{,}40" />, <InlineMath math="0{,}33" /> und <InlineMath math="0{,}27" />, auf zwei Dezimalstellen gerundet. Die Balken behalten genau ihre Form, zeigen jetzt aber Anteile am Ganzen und ergeben zusammen <InlineMath math="1" />. So kannst du sie mit einer Klasse beliebiger Größe vergleichen.
 
 <BarChart
-  title="Der Anteil der Lernenden für jede Marke"
+  title={<>Der Anteil der Lernenden für jede Marke</>}
   description={<>Jeder Balken ist die Anzahl geteilt durch 30: <InlineMath math="12/30" />, <InlineMath math="10/30" /> und <InlineMath math="8/30" />, zusammen 1.</>}
   yAxisLabel="Relative Häufigkeit"
   data={[["Apple", 12], ["Samsung", 10], ["Xiaomi", 8]].map(([name, count]) => ({ name, value: count / 30 }))}
