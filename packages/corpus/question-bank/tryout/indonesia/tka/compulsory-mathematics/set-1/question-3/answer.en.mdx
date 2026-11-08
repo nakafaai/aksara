@@ -1,38 +1,22 @@
-# Square Identities
-
-Square the given equation using the **square-of-a-sum identity**. The cross term equals <InlineMath math="2" /> because <InlineMath math="x\cdot\frac1x=1" />.
+Start with **parity**. The only even prime is <InlineMath math="2" />. If one of the numbers were <InlineMath math="2" />, the other would be <InlineMath math="28" />, which is not prime. So <InlineMath math="p" /> and <InlineMath math="q" /> are both odd. Now try every odd prime below <InlineMath math="15" /> as the smaller number.
 
 <BlockMath math="\begin{aligned}
-\left(x+\frac1x\right)^2&=3^2 \\
-x^2+2+\frac1{x^2}&=9 \\
-x^2+\frac1{x^2}&=9-2=7 \\
-\left(x-\frac1x\right)^2&=x^2+\frac1{x^2}-2 \\
-&=7-2=5
+3+27&:\quad 27=3^3\text{ is not prime} \\
+5+25&:\quad 25=5^2\text{ is not prime} \\
+7+23,\ 11+19,\ 13+17&:\quad \text{all terms prime}
 \end{aligned}" />
 
-# Quadratic Equation and Root Type
-
-Since <InlineMath math="x\ne0" />, multiply the original equation by <InlineMath math="x" />. Move all terms to the left, then use the quadratic formula.
+So there are exactly three pairs. For each pair, compute the quantities in the statements.
 
 <BlockMath math="\begin{aligned}
-x\left(x+\frac1x\right)&=3x \\
-x^2+1&=3x \\
-x^2-3x+1&=0 \\
-x&=\frac{3\pm\sqrt{(-3)^2-4(1)(1)}}{2(1)} \\
-&=\frac{3\pm\sqrt5}{2}
+pq&:\quad 161,\ 209,\ 221 \\
+p^2+q^2&:\quad 578,\ 482,\ 458 \\
+|p-q|&:\quad 16,\ 8,\ 4
 \end{aligned}" />
 
-Both roots are **irrational** because <InlineMath math="\sqrt5" /> is irrational. Adding a rational number and dividing by two do not remove the irrational part.
+That every difference is divisible by <InlineMath math="4" /> is no accident. An odd number leaves remainder <InlineMath math="1" /> or <InlineMath math="3" /> when divided by <InlineMath math="4" />. Because <InlineMath math="30" /> leaves remainder <InlineMath math="2" />, <InlineMath math="p" /> and <InlineMath math="q" /> leave the same remainder, so their difference is a multiple of <InlineMath math="4" />.
 
-# Cube Identity
+So the true statements are that both numbers are odd, that <InlineMath math="221" /> is the largest product, and that the difference is always a multiple of <InlineMath math="4" />.
 
-Apply <InlineMath math="(a+b)^3=a^3+b^3+3ab(a+b)" /> with <InlineMath math="a=x" /> and <InlineMath math="b=\frac1x" />. Since <InlineMath math="ab=1" />, the **mixed terms** give <InlineMath math="3(x+\frac1x)" />.
-
-<BlockMath math="\begin{aligned}
-x^3+\frac1{x^3}
-&=\left(x+\frac1x\right)^3-3\left(x+\frac1x\right) \\
-&=3^3-3(3) \\
-&=27-9=18
-\end{aligned}" />
-
-Both square identities, the quadratic equation for <InlineMath math="x" />, and the cube identity are true. The claim that <InlineMath math="x" /> is rational is false.
+- Four pairs appear if <InlineMath math="1+29" /> is counted. The number <InlineMath math="1" /> is not prime, though, so three pairs remain.
+- <InlineMath math="p^2+q^2" /> is not always divisible by <InlineMath math="10" />. For example, <InlineMath math="49+529=578" />.

@@ -4,32 +4,31 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "algebra",
-    topic: "sequences-series",
+    topic: "functions",
   },
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "$$u_1=5$$",
+          correct: true,
+          label: "$$a+b+c=-4$$",
         },
         {
-          column: 1,
-          label: "Bedanya adalah $$6$$.",
+          correct: true,
+          label: "$$f(4)=5$$",
         },
         {
-          column: 1,
-          label: "$$u_{10}=59$$",
+          correct: true,
+          label: "Sumbu simetri grafik $$f$$ adalah garis $$x=1$$.",
         },
         {
-          column: 1,
-          label: "$$S_{10}=320$$",
+          correct: false,
+          label: "Nilai minimum $$f$$ adalah $$-3$$.",
         },
         {
-          column: 2,
-          label: "$$u_5=31$$",
+          correct: false,
+          label: "$$b>0$$",
         },
       ],
     },

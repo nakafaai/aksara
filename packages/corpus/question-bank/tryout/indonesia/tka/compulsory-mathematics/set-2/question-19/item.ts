@@ -8,28 +8,32 @@ const item: ItemSource = {
   },
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Luas minimum yang mungkin adalah $$78{,}21$$ cm².",
+          correct: false,
+          label:
+            "Pernyataan (1) SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan (2) SAJA tidak cukup.",
         },
         {
-          column: 1,
-          label: "Luas maksimum yang mungkin adalah $$81{,}81$$ cm².",
+          correct: false,
+          label:
+            "Pernyataan (2) SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan (1) SAJA tidak cukup.",
         },
         {
-          column: 1,
-          label: "Keliling berada di antara $$35{,}6$$ cm dan $$36{,}4$$ cm.",
+          correct: false,
+          label:
+            "DUA pernyataan BERSAMA-SAMA cukup untuk menjawab pertanyaan, tetapi SATU pernyataan SAJA tidak cukup.",
         },
         {
-          column: 2,
-          label: "Galat luas absolut terbesar adalah $$1{,}8$$ cm².",
+          correct: false,
+          label:
+            "Pernyataan (1) SAJA cukup untuk menjawab pertanyaan dan pernyataan (2) SAJA cukup.",
         },
         {
-          column: 1,
-          label: "Galat luas relatif terbesar melebihi $$2{,}2\\%$$.",
+          correct: true,
+          label:
+            "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
         },
       ],
     },

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Berechne inverse 2-mal-2- und 3-mal-3-Matrizen mit Determinanten und adjugierten Matrizen und löse damit lineare Gleichungssysteme.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -146,6 +146,84 @@ Dabei ist <InlineMath math="A" /> die Koeffizientenmatrix, <InlineMath math="X" 
 </MathContainer>
 
 Die Multiplikation beider Seiten von links mit <InlineMath math="A^{-1}" /> ergibt <InlineMath math="X=A^{-1}B" />. <Highlight>Die Reihenfolge muss erhalten bleiben</Highlight>, weil die Matrizenmultiplikation nicht kommutativ ist.
+
+So sieht <InlineMath math="X=A^{-1}B" /> als Bild aus. Nimm die Matrix <InlineMath math="P" /> aus dem Beispiel oben als <InlineMath math="A" /> und <InlineMath math="B = \begin{bmatrix} -4 \\ 1 \end{bmatrix}" />. Das System <InlineMath math="PX = B" /> besteht aus den Geraden <InlineMath math="3x - 7y = -4" /> und <InlineMath math="-x + 2y = 1" />. Die Multiplikation mit <InlineMath math="P^{-1}" /> ergibt <InlineMath math="X = \begin{bmatrix} -2 & -7 \\ -1 & -3 \end{bmatrix}\begin{bmatrix} -4 \\ 1 \end{bmatrix} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}" />, genau dort, wo sich die beiden Geraden schneiden. Wäre die Determinante <InlineMath math="0" />, lägen die Geraden parallel oder aufeinander, und keine Inverse könnte einen einzigen Schnittpunkt auswählen.
+
+<MathVisual
+  title={<><InlineMath math="X = P^{-1}B" /> ist der Schnittpunkt der beiden Geraden</>}
+  description={<>Die beiden Gleichungen von <InlineMath math="PX = B" /> als Geraden. Sie treffen sich in <InlineMath math="(1, 1)" />, der Lösung, die <InlineMath math="P^{-1}B" /> liefert.</>}
+  labels={{
+    first: <InlineMath math="3x - 7y = -4" />,
+    second: <InlineMath math="-x + 2y = 1" />,
+    solution: <InlineMath math="X = (1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: -6, y: -2 }, { x: 8, y: 4 }], appearance: "primary" },
+      { id: "second", kind: "line", through: [{ x: -1, y: 0 }, { x: 3, y: 2 }], appearance: "secondary" },
+      { id: "solution", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 4, y: 16 / 7 }, placement: "below-right" },
+      { key: "second", objectId: "second", at: { x: -2, y: -0.5 }, placement: "above-left" },
+      { key: "solution", objectId: "solution", at: { x: 1, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Probier jetzt die singuläre Matrix <InlineMath math="K = \begin{bmatrix} 2 & 4 \\ 1 & 2 \end{bmatrix}" /> mit der Determinante <InlineMath math="2(2) - 4(1) = 0" />. Ihr System <InlineMath math="2x + 4y = 6" /> und <InlineMath math="x + 2y = 1" /> liefert zwei parallele Geraden. Sie schneiden sich nie, kein Punkt löst beide Gleichungen, und <InlineMath math="K" /> hat keine Inverse, die einen finden könnte.
+
+<MathVisual
+  title={<>Eine singuläre Matrix liefert parallele Geraden</>}
+  description={<>Die Gleichungen von <InlineMath math="KX = \begin{bmatrix} 6 \\ 1 \end{bmatrix}" /> als Geraden. Sie sind parallel, das System hat also keine Lösung.</>}
+  labels={{
+    first: <InlineMath math="2x + 4y = 6" />,
+    second: <InlineMath math="x + 2y = 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 3, y: 0 }, { x: -1, y: 2 }], appearance: "primary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 0 }, { x: -1, y: 1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 1 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Eine Inverse macht ihre Matrix rückgängig. Mit <InlineMath math="X = \begin{bmatrix} 1 & -3 \\ -1 & 4 \end{bmatrix}" /> wandert der Punkt <InlineMath math="(1, 1)" /> nach <InlineMath math="(1 - 3, -1 + 4) = (-2, 3)" />. Dann schickt <InlineMath math="X^{-1} = \begin{bmatrix} 4 & 3 \\ 1 & 1 \end{bmatrix}" /> den Punkt <InlineMath math="(-2, 3)" /> nach <InlineMath math="(-8 + 9, -2 + 3) = (1, 1)" />, genau zurück zum Start.
+
+<MathVisual
+  title={<><InlineMath math="X^{-1}" /> macht <InlineMath math="X" /> rückgängig</>}
+  description={<>Der Punkt <InlineMath math="(1, 1)" />, sein Bild <InlineMath math="(-2, 3)" /> unter <InlineMath math="X" /> und der Rückweg unter <InlineMath math="X^{-1}" />.</>}
+  labels={{
+    v: <InlineMath math="(1, 1)" />,
+    w: <InlineMath math="(-2, 3)" />,
+    path: <InlineMath math="X, \ X^{-1}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 2 }, y: { min: -0.5, max: 3.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "path", kind: "segment", from: { x: 1, y: 1 }, to: { x: -2, y: 3 }, appearance: "construction" },
+      { id: "v", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "w", kind: "point", at: { x: -2, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "w", objectId: "w", at: { x: -2, y: 3 }, placement: "left" },
+      { key: "path", objectId: "path", at: { x: -0.5, y: 2 }, placement: "above-right" },
+    ],
+  }}
+/>
 
 ## Übungen
 

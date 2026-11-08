@@ -6,29 +6,30 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
+  stimulus: "streaming-plans",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "$$12$$",
+          label: "$$70\\,\\%$$",
         },
         {
           correct: false,
-          label: "$$8$$",
+          label: "$$42\\,\\%$$",
         },
         {
           correct: false,
-          label: "$$10$$",
+          label: "$$30\\,\\%$$",
         },
         {
           correct: false,
-          label: "$$14$$",
+          label: "$$25\\,\\%$$",
         },
         {
           correct: false,
-          label: "$$16$$",
+          label: "$$18\\,\\%$$",
         },
       ],
     },

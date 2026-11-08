@@ -1,32 +1,15 @@
-The region between the minor arc and chord is a **circular segment**. Its area is the sector area minus the triangle formed by the radii.
-
-<BlockMath math="A_1=\frac{120}{360}\pi(12)^2=48\pi" />
-
-For a triangle with two known sides and their included angle, use the sine of that angle to find its area.
+The cavity of the mould is **the large cylinder minus the cylinder of the hole**. Both have the same height, so the volume is <InlineMath math="\pi\,(R^2-r^2)\,h" />.
 
 <BlockMath math="\begin{aligned}
-A_2&=\frac12(12)(12)\sin120^\circ \\
-&=72\cdot\frac{\sqrt3}{2}=36\sqrt3
+R^2-r^2&=14^2-7^2=196-49=147 \\
+V&=\frac{22}{7}\cdot147\cdot5=22\cdot21\cdot5=2{,}310\text{ cm}^3
 \end{aligned}" />
 
-Subtract the triangle area from the sector area.
+As a check, the large cylinder holds <InlineMath math="\frac{22}{7}\cdot196\cdot5=3{,}080" /> and the hole <InlineMath math="\frac{22}{7}\cdot49\cdot5=770" />, and the difference is <InlineMath math="2{,}310" />.
 
-<BlockMath math="\begin{aligned}
-A&=A_1-A_2 \\
-&=(48\pi-36\sqrt3)\,\mathrm{cm}^2
-\end{aligned}" />
+So it takes <InlineMath math="2{,}310\text{ cm}^3" /> of batter.
 
-<LineEquation
-  title="Sector minus triangle"
-  description="Orange hatching lies between the chord and the minor arc. The two purple radii form a central angle of 120°."
-  cameraPosition={[0, 6, 33]}
-  cameraTarget={[0, 6, 0]}
-  showZAxis={false}
-  data={[
-    { points: Array.from({ length: 101 }, (_, i) => { const t = Math.PI / 6 + 2 * Math.PI * i / 300; return { x: 12 * Math.cos(t), y: 12 * Math.sin(t), z: 0 }; }), color: "#d97706", smooth: false, showPoints: false },
-    { points: [{ x: -6 * Math.sqrt(3), y: 6, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 6 * Math.sqrt(3), y: 6, z: 0 }], color: "#9333ea", smooth: false, showPoints: false, labels: [{ text: "12 cm", at: 2, offset: [-4.5, -3.5, 0] }] },
-    { points: [{ x: -6 * Math.sqrt(3), y: 6, z: 0 }, { x: 6 * Math.sqrt(3), y: 6, z: 0 }], smooth: false, color: "#64748b", showPoints: false },
-    ...Array.from({ length: 11 }, (_, i) => { const y = 6.5 + i * 0.5; const x = Math.sqrt(144 - y * y); return { points: [{ x: -x, y, z: 0 }, { x, y, z: 0 }], smooth: false, color: "#d97706", showPoints: false }; }),
-    { points: Array.from({ length: 41 }, (_, i) => { const t = Math.PI / 6 + 2 * Math.PI * i / 120; return { x: 2 * Math.cos(t), y: 2 * Math.sin(t), z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ text: "120°", at: 20, offset: [0, 1.1, 0] }] },
-  ]}
-/>
+- <InlineMath math="3{,}080\text{ cm}^3" /> is the large cylinder without taking away the hole.
+- <InlineMath math="3{,}850\text{ cm}^3" /> adds the hole instead of subtracting it.
+- <InlineMath math="4{,}620\text{ cm}^3" /> uses <InlineMath math="2\pi" /> as in the circumference formula.
+- <InlineMath math="9{,}240\text{ cm}^3" /> uses the diameters <InlineMath math="28" /> cm and <InlineMath math="14" /> cm as radii.
