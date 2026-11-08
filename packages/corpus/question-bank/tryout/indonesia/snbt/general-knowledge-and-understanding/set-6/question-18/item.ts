@@ -1,34 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "biopori",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung.",
+            "Lubang biopori diisi sampah plastik agar isinya tidak cepat membusuk.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Intervensi minimum dapat mempertahankan lebih banyak informasi sejarah selama bagian berbahaya tetap ditangani.",
+            "Satu lubang biopori sudah cukup untuk menampung air hujan dari seluruh halaman.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Bangunan hanya dapat disebut autentik jika seluruh permukaannya dikembalikan ke satu warna lama.",
+            "Selain membantu air meresap, lubang biopori juga dapat menghasilkan kompos.",
         },
         {
-          correct: false,
-          label: "Cat tertua hanya ditemukan di beberapa ruang.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Setiap bagian baru akan dicatat agar perubahan tetap terbaca.",
+            "Permukaan tanah yang tertutup aspal dan beton membuat genangan cepat terjadi saat hujan deras.",
         },
       ],
     },

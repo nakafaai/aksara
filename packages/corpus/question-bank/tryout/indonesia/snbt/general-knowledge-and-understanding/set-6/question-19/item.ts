@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
+  },
+  stimulus: "biopori",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pemugaran yang autentik menyeimbangkan keselamatan, bukti material, dan keterbacaan perubahan, bukan sekadar membuat bangunan tampak baru atau tua.",
+            "Genangan di kota hanya dapat diatasi dengan membongkar seluruh jalan beraspal dan halaman berlapis beton.",
         },
         {
           correct: false,
           label:
-            "Sebagian pihak menganggap tampilan baru yang bersih akan lebih menarik bagi pengunjung.",
+            "Cacing tanah adalah satu-satunya hewan yang dapat hidup di dalam lubang resapan biopori.",
         },
         {
           correct: false,
           label:
-            "Setiap bagian baru akan dicatat agar perubahan tetap terbaca.",
+            "Kompos dari lubang biopori lebih baik daripada pupuk buatan untuk semua jenis tanaman.",
         },
         {
           correct: true,
           label:
-            "Pemetaan dan sampel menunjukkan sebagian kayu perlu diganti, sedangkan banyak bagian lain dapat diperkuat.",
+            "Lubang biopori membantu air meresap dan menghasilkan kompos, asalkan dibuat banyak dan dirawat.",
         },
         {
           correct: false,
           label:
-            "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung.",
+            "Satu lubang biopori yang dirawat dengan baik cukup untuk mencegah genangan di seluruh kota.",
         },
       ],
     },

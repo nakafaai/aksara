@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "noken",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "menggantikan seluruh tas plastik di Indonesia dengan noken",
+        },
+        {
+          correct: false,
+          label: "menaikkan harga jual noken di pasar-pasar di Papua",
+        },
+        {
+          correct: false,
+          label: "mendaftarkan noken sebagai warisan budaya ke UNESCO",
+        },
+        {
+          correct: false,
+          label: "mengajarkan cara menggendong bayi dengan noken yang benar",
+        },
+        {
           correct: true,
-          label:
-            "Tampilan seragam dapat mengaburkan sejarah jika menutupi jejak perubahan yang dibuktikan oleh material bangunan.",
-        },
-        {
-          correct: false,
-          label:
-            "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung.",
-        },
-        {
-          correct: false,
-          label:
-            "Bangunan hanya dapat disebut autentik jika seluruh permukaannya dikembalikan ke satu warna lama.",
-        },
-        {
-          correct: false,
-          label: "Cat tertua hanya ditemukan di beberapa ruang.",
-        },
-        {
-          correct: false,
-          label:
-            "Setiap bagian baru akan dicatat agar perubahan tetap terbaca.",
+          label: "mewariskan keterampilan membuat noken kepada generasi muda",
         },
       ],
     },

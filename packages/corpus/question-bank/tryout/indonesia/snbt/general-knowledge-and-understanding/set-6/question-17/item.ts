@@ -1,34 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "cause",
+  },
+  stimulus: "biopori",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Cat tertua hanya ditemukan di beberapa ruang.",
+          label: "lubang dilapisi beton sehingga dindingnya tidak mudah runtuh",
         },
         {
           correct: false,
           label:
-            "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung.",
-        },
-        {
-          correct: false,
-          label:
-            "Bangunan hanya dapat disebut autentik jika seluruh permukaannya dikembalikan ke satu warna lama.",
+            "sampah organik di dalam lubang menyerap seluruh air hujan yang turun",
         },
         {
           correct: true,
           label:
-            "Pemugaran yang autentik menyeimbangkan keselamatan, bukti material, dan keterbacaan perubahan, bukan sekadar membuat bangunan tampak baru atau tua.",
+            "organisme yang memakan sampah membentuk pori-pori kecil di dinding lubang",
         },
         {
           correct: false,
           label:
-            "Setiap bagian baru akan dicatat agar perubahan tetap terbaca.",
+            "lubang dibuat lebih lebar daripada saluran air di pinggir jalan",
+        },
+        {
+          correct: false,
+          label:
+            "kompos yang terbentuk membuat tanah di sekitar lubang menjadi lebih keras",
         },
       ],
     },
