@@ -64,6 +64,7 @@ const CORPUS = join(process.cwd(), "packages/corpus");
 for (const [root, minimum] of [
   ["material/lesson", 1149],
   ["articles", 21],
+  ["pages", 18],
   ["question-bank", 7300],
 ] as const) {
   checkTest(
