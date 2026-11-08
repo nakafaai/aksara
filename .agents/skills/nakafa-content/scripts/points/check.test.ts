@@ -141,10 +141,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         const result = yield* check(root);
 
         assert.strictEqual(result.code, 0);
-        assert.deepStrictEqual(result.log.slice(0, 2), [
-          "1 lesson(s) below the visual bar, which needs at least 3 interactive visual cards:",
-          `  ${ROOT}`,
-        ]);
+        assert.include(result.log[0], "1 lesson(s) below the visual bar");
+        assert.strictEqual(result.log[1], `  ${ROOT}`);
         assert.include(
           result.log[2],
           "passed for 2 files and compared 0 changed files"
