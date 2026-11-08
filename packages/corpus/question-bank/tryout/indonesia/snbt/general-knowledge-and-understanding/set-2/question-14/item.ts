@@ -1,29 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "tabungan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "perubahan cepat.",
+          label:
+            "Kerajinan dan kompos tidak memerlukan pemilahan sampah sama sekali.",
+        },
+        {
+          correct: false,
+          label:
+            "Pemerintah membeli semua kerajinan dan kompos dengan harga tetap.",
+        },
+        {
+          correct: false,
+          label:
+            "Warga tidak perlu lagi menyetor sampah ke bank sampah tersebut.",
         },
         {
           correct: true,
-          label: "kicauan burung.",
+          label:
+            "Sebagian pendapatannya berasal dari produk yang harganya lebih stabil, sehingga tidak sepenuhnya bergantung pada harga barang bekas.",
         },
         {
           correct: false,
-          label: "perawatan cermat.",
-        },
-        {
-          correct: false,
-          label: "bernyanyi nyaring.",
-        },
-        {
-          correct: false,
-          label: "pencucian lembut.",
+          label:
+            "Harga barang bekas di bank sampah tersebut tidak pernah turun.",
         },
       ],
     },

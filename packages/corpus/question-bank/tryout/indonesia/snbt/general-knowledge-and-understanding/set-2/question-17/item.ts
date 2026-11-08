@@ -1,29 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "gerhana",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "$$6$$.",
+          label:
+            "Bidang orbit Bulan miring terhadap bidang orbit Bumi sehingga Bulan sering melintas di atas atau di bawah bayangan Bumi.",
         },
         {
           correct: false,
-          label: "$$3$$.",
+          label:
+            "Bulan tidak selalu memantulkan cahaya Matahari ketika purnama.",
         },
         {
           correct: false,
-          label: "$$4$$.",
+          label:
+            "Atmosfer Bumi menghamburkan seluruh cahaya Matahari pada sebagian besar bulan purnama.",
         },
         {
           correct: false,
-          label: "$$5$$.",
+          label:
+            "Bulan berada terlalu jauh dari Bumi pada sebagian besar bulan purnama.",
         },
         {
           correct: false,
-          label: "$$7$$.",
+          label:
+            "Umbra Bumi hanya terbentuk pada waktu tertentu dalam setahun.",
         },
       ],
     },
