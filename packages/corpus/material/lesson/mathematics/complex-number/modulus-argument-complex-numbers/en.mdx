@@ -137,6 +137,21 @@ The interactive graph shows four numbers with modulus <InlineMath math="2" />, o
 
 Points on an axis need no quotient <InlineMath math="\frac{y}{x}" />. Their direction reads off directly: the positive real axis is <InlineMath math="0^\circ" />, the positive imaginary axis <InlineMath math="90^\circ" />, the negative real axis <InlineMath math="180^\circ" />, and the negative imaginary axis <InlineMath math="-90^\circ" />.
 
+<Mermaid
+  title="Choosing the argument from the quadrant"
+  description="The same reference angle gives a different argument in each quadrant."
+  chart={`flowchart TD
+  A["Find r and the acute reference angle α"] --> B{"Signs of x and y?"}
+  B -->|"x positive, y positive"| C["θ = α"]
+  B -->|"x negative, y positive"| D["θ = 180° - α"]
+  B -->|"x negative, y negative"| E["θ = -180° + α"]
+  B -->|"x positive, y negative"| F["θ = -α"]
+  C --> G["Check: r cos θ = x and r sin θ = y"]
+  D --> G
+  E --> G
+  F --> G`}
+/>
+
 ## Examples of Finding the Modulus and Argument
 
 **Example 1**. For <InlineMath math="z = -\sqrt{3} + i" />, the point <InlineMath math="(-\sqrt{3}, 1)" /> lies in quadrant II, because <InlineMath math="x < 0" /> and <InlineMath math="y > 0" />:

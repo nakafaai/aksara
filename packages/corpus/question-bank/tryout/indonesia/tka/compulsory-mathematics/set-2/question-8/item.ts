@@ -2,34 +2,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "reasoning",
+    cognitiveLevel: "knowledge-understanding",
     contentDomain: "algebra",
-    topic: "functions",
+    topic: "sequences-series",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "Titik puncaknya adalah $$(2,-1)$$.",
-        },
-        {
-          correct: true,
-          label: "Range fungsi adalah $$[-1,\\infty)$$.",
-        },
-        {
-          correct: true,
-          label: "Fungsi menurun pada $$(-\\infty,2]$$.",
+          correct: false,
+          label: "$$1{.}400$$",
         },
         {
           correct: false,
-          label: "Fungsi satu-satu pada $$\\mathbb R$$.",
+          label: "$$3{.}600$$",
+        },
+        {
+          correct: false,
+          label: "$$48{.}600$$",
         },
         {
           correct: true,
-          label:
-            "Jika domain $$f$$ dibatasi menjadi $$[2,\\infty)$$, $$f^{-1}(y)=2+\\sqrt{y+1}$$.",
+          label: "$$145{.}800$$",
+        },
+        {
+          correct: false,
+          label: "$$437{.}400$$",
         },
       ],
     },

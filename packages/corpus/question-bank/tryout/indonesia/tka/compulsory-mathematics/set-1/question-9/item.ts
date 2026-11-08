@@ -4,28 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "algebra",
-    topic: "sequences-series",
+    topic: "functions",
   },
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "$$u_4=54$$",
+          correct: true,
+          label: "Daerah asal $$f$$ adalah semua bilangan real kecuali $$1$$.",
         },
         {
-          column: 1,
-          label: "$$S_4=80$$",
+          correct: true,
+          label: "Daerah hasil $$f$$ adalah semua bilangan real kecuali $$2$$.",
         },
         {
-          column: 2,
-          label: "$$u_6=243$$",
+          correct: false,
+          label:
+            "Grafik $$f$$ memotong sumbu $$x$$ di titik $$\\left(\\frac12,0\\right)$$.",
         },
         {
-          column: 1,
-          label: "$$\\frac{u_6}{u_3}=27$$",
+          correct: true,
+          label: "Grafik $$f$$ memotong sumbu $$y$$ di titik $$(0,-1)$$.",
+        },
+        {
+          correct: false,
+          label:
+            "Untuk $$x>1$$, nilai $$f(x)$$ makin besar ketika $$x$$ makin besar.",
         },
       ],
     },

@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "algebra",
-    topic: "sequences-series",
+    topic: "functions",
   },
   versions: {
     id: {
@@ -12,27 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Pada minggu ke-$$6$$ ia berenang $$15$$ bolak-balik.",
+          label: "$$f(x)\\ge-2$$ untuk setiap bilangan real $$x$$.",
         },
         {
           correct: true,
-          label:
-            "Dari minggu ke-$$4$$ ke minggu ke-$$5$$, banyak bolak-balik bertambah $$4$$.",
+          label: "Nilai minimum $$f$$ adalah $$-4$$, dicapai saat $$x=3$$.",
+        },
+        {
+          correct: true,
+          label: "$$f(x)=0$$ tepat untuk $$x=1$$ dan $$x=5$$.",
+        },
+        {
+          correct: true,
+          label: "$$f(-1)=f(7)$$",
         },
         {
           correct: false,
-          label:
-            "Untuk setiap bilangan asli $$n$$, banyak bolak-balik pada minggu ke-$$n$$ sama dengan $$2n$$.",
-        },
-        {
-          correct: true,
-          label:
-            "Untuk setiap bilangan asli $$n$$, banyak bolak-balik pada minggu ke-$$n$$ sama dengan $$\\frac{n^2-n+4}{2}$$.",
-        },
-        {
-          correct: true,
-          label:
-            "Mulai minggu ke-$$7$$, banyak bolak-balik dalam satu minggu lebih dari $$20$$.",
+          label: "Fungsi $$f$$ naik untuk setiap $$x<3$$.",
         },
       ],
     },

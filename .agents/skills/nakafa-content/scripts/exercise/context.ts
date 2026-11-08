@@ -6,12 +6,14 @@ const EXERCISE_HEADING_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
   de: /^(?:Verständnis prüfen|Überprüfe dein Verständnis|Übungen mit vollständigen Lösungen|Aufgaben zum Rationalisieren|Aufgaben|Übung|Übungen|Übungsaufgaben|Erste Übung|Zweite Übung)$/iu,
   en: /^(?:Check Your Understanding|Practice with Complete Solutions|Rationalization Exercises|Exercise|Exercises|Practice|Practice Problems|First Exercise|Second Exercise)$/iu,
   id: /^(?:Cek Pemahaman|Periksa Pemahamanmu|Latihan dengan Pembahasan Lengkap|Latihan Merasionalkan|Latihan|Latihan Mandiri|Latihan Soal|Latihan Pertama|Latihan Kedua)$/iu,
+  ms: /^(?:Semak Kefahaman|Uji Kefahaman Kamu|Latihan dengan Penyelesaian Lengkap|Latihan|Latihan Pengukuhan|Soalan Latihan|Latihan Pertama|Latihan Kedua)$/iu,
 };
 
 const SOLUTION_HEADING_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
   de: /^(?:Lösung(?:en)?|Ausführliche Lösung(?:en)?|Ausgearbeitete Lösungen|Lösungen zum Rationalisieren von Nennern|Lösung zur (?:ersten|zweiten) Übung)$/iu,
   en: /^(?:Solutions for Rationalizing Denominators|Answer Key|Worked Solutions?|Solutions?|Solution to (?:First|Second) Exercise)$/iu,
   id: /^(?:Penyelesaian|Pembahasan(?: Lengkap| Terperinci| Rasionalisasi Penyebut)?|Kunci Jawaban(?: Latihan (?:Pertama|Kedua))?)$/iu,
+  ms: /^(?:Penyelesaian(?: Lengkap| Terperinci)?|Jalan Kerja|Skema Jawapan(?: Latihan (?:Pertama|Kedua))?)$/iu,
 };
 
 /** Recognizes an explicit exercise title without matching conceptual headings. */

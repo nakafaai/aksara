@@ -1,111 +1,116 @@
 export const metadata = {
   title: "Komplexe Lösungen quadratischer Gleichungen",
-  description: "Quadratische Gleichungen auf komplexe Zahlen erweitern, bei negativer Diskriminante konjugierte Lösungen bestimmen und mit dem reellen Graphen verbinden.",
+  description: "Bei reellen Koeffizienten und negativer Diskriminante hat eine quadratische Gleichung komplexe Lösungen. Bestimme sie und deute sie am Graphen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Quadratische Funktionen",
 };
 
-## Über die reellen Zahlen hinaus
+## Komplexe Lösungen bei negativer Diskriminante
 
-Wir beginnen mit der Gleichung:
+Eine quadratische Gleichung <InlineMath math="ax^2 + bx + c = 0" /> mit reellen Koeffizienten hat **komplexe, nicht reelle Lösungen** genau dann, wenn ihre Diskriminante negativ ist, <InlineMath math="D = b^2 - 4ac < 0" />. Die beiden Lösungen lauten
 
-<BlockMath math="x^2+1=0" />
+<BlockMath math="x = \frac{-b \pm i\sqrt{|D|}}{2a}" />
 
-Damit diese Gleichung erfüllt ist, müsste <InlineMath math="x^2" /> gleich <InlineMath math="-1" /> sein. Das Quadrat einer reellen Zahl ist **niemals negativ**. Deshalb besitzt die Gleichung keine reelle Lösung. Wir erweitern den Zahlbereich um die imaginäre Einheit <InlineMath math="i" /> mit der folgenden Definition:
-
-<BlockMath math="i^2=-1" />
-
-Eine komplexe Zahl hat die Form
-
-<BlockMath math="z=a+bi\qquad(a,b\in\mathbb R)" />
-
-Die Zahl <InlineMath math="2+5i" /> ist komplex. Sie ist nicht rein imaginär, weil ihr Realteil nicht null ist. Eine Zahl wie <InlineMath math="3i" /> ist dagegen rein imaginär.
-
-## Eine negative Diskriminante
-
-Für eine quadratische Gleichung <InlineMath math="ax^2+bx+c=0" /> mit reellen Koeffizienten lautet die Diskriminante
-
-<BlockMath math="D=b^2-4ac" />
-
-Ist <InlineMath math="D<0" />, hat die Gleichung keine reellen Nullstellen. Sie besitzt zwei verschiedene nichtreelle komplexe Nullstellen, <Highlight>die ein konjugiertes Paar bilden</Highlight>.
-
-Wir beginnen weiterhin mit [der Lösungsformel](/de/faecher/mathematik/quadratische-funktionen/loesungsformel-fuer-quadratische-gleichungen):
-
-<BlockMath math="x=\frac{-b\pm\sqrt{D}}{2a}" />
-
-Wegen <InlineMath math="D<0" /> schreiben wir <InlineMath math="D=-|D|" />. Dann gilt
-
-<MathContainer>
-  <BlockMath math="\sqrt D=\sqrt{-|D|}=i\sqrt{|D|}" />
-  <BlockMath math="x=\frac{-b\pm i\sqrt{|D|}}{2a}" />
-</MathContainer>
-
-## Nichtreelle Nullstellen bestimmen und einordnen
-
-Bei einer negativen Diskriminante ziehst du zuerst die Quadratwurzel aus ihrem Betrag und ergänzt den Faktor <InlineMath math="i" />. Das Plus- und Minuszeichen liefern konjugierte Lösungen mit **demselben Realteil** und entgegengesetzten Imaginärteilen.
-
-### Zwei nichtreelle Nullstellen bestimmen
-
-Löse
-
-<BlockMath math="x^2+4x+5=0" />
-
-Die Koeffizienten sind <InlineMath math="a=1" />, <InlineMath math="b=4" /> und <InlineMath math="c=5" />. Zuerst berechnen wir die **Diskriminante**:
-
-<BlockMath math="D=4^2-4\cdot1\cdot5=16-20=-4" />
-
-Da <InlineMath math="D=-4<0" /> gilt, sind die Nullstellen nicht reell. Wir setzen die Werte in die Lösungsformel ein:
-
-<MathContainer>
-  <BlockMath math="x=\frac{-4\pm\sqrt{-4}}{2\cdot1}" />
-  <BlockMath math="x=\frac{-4\pm2i}{2}=-2\pm i" />
-</MathContainer>
-
-Damit erhalten wir
-
-<BlockMath math="\begin{aligned} &amp;x_1=-2+i \\ &amp;\text{und} \\ &amp;x_2=-2-i \end{aligned}" />
-
-Eine Nullstelle lässt sich direkt prüfen:
-
-<BlockMath math="\begin{aligned}(-2+i)^2+4(-2+i)+5&amp;=4-4i+i^2-8+4i+5\\&amp;=1+i^2\\&amp;=1-1=0\end{aligned}" />
-
-Die zweite Nullstelle entsteht durch den Vorzeichenwechsel im Imaginärteil.
-
-### Nullstellen vor dem Lösen einordnen
-
-Betrachten wir
-
-<BlockMath math="2x^2+x+3=0" />
-
-Hier sind <InlineMath math="a=2" />, <InlineMath math="b=1" /> und <InlineMath math="c=3" />. Die **Diskriminante** beträgt
-
-<BlockMath math="D=1^2-4\cdot2\cdot3=1-24=-23" />
-
-Die negative Diskriminante zeigt, dass die Gleichung zwei nichtreelle komplexe Nullstellen besitzt. Ihre exakten Werte sind
-
-<MathContainer>
-  <BlockMath math="x=\frac{-1\pm\sqrt{-23}}{2\cdot2}" />
-  <BlockMath math="x=\frac{-1\pm i\sqrt{23}}4" />
-</MathContainer>
-
-Also gilt
-
-<BlockMath math="\begin{aligned} &amp;x_1=\frac{-1+i\sqrt{23}}4 \\ &amp;\text{und} \\ &amp;x_2=\frac{-1-i\sqrt{23}}4 \end{aligned}" />
-
-## Was der reelle Graph zeigt
-
-Die Gleichung aus dem ersten Beispiel lässt sich umformen zu
-
-<BlockMath math="f(x)=x^2+4x+5=(x+2)^2+1" />
-
-Für jedes reelle <InlineMath math="x" /> ist <InlineMath math="(x+2)^2" /> **nichtnegativ**, also gilt <InlineMath math="f(x)\ge1" />. Der Graph liegt vollständig oberhalb der <InlineMath math="x" />-Achse und hat keine reellen Schnittpunkte mit ihr. Die komplexen Nullstellen sind keine zusätzlichen Punkte in diesem reellen Graphen. Sie gehören zum erweiterten Zahlbereich.
-
+Dabei ist <InlineMath math="i" /> die imaginäre Einheit mit <InlineMath math="i^2 = -1" />. Die Lösungen bilden immer **ein konjugiert komplexes Paar**: Sie haben denselben Realteil <InlineMath math="-\frac{b}{2a}" />, und ihre Imaginärteile haben entgegengesetzte Vorzeichen. Im Graphen schneidet die Parabel <InlineMath math="y = ax^2 + bx + c" /> die <InlineMath math="x" />-Achse nicht.
 
 <MathVisual
-  title="Eine Parabel ohne Schnitt mit der x Achse"
-  description="Der Scheitelpunkt liegt bei (-2,1). Verschiebe oder vergrößere die Ansicht. Der kleinste Funktionswert beträgt eins, nicht null."
+  title="Drei Parabeln mit verschiedenen Diskriminanten"
+  description={<>Die Graphen von <InlineMath math="y = x^2 + 4x + c" /> für <InlineMath math="c = 3" />, <InlineMath math="4" /> und <InlineMath math="5" />. Ihre Diskriminanten sind <InlineMath math="4" />, <InlineMath math="0" /> und <InlineMath math="-4" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 1.5 }, y: { min: -2, max: 11 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 3 }, domain: { min: -5, max: 1 }, appearance: "secondary" },
+      { id: "one", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 4 }, domain: { min: -5, max: 1 }, appearance: "highlight" },
+      { id: "none", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 5 }, domain: { min: -5, max: 1 }, appearance: "primary" },
+      { id: "left-root", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "right-root", kind: "point", at: { x: -1, y: 0 }, appearance: "secondary" },
+      { id: "double-root", kind: "point", at: { x: -2, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "two", objectId: "two", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: 1, y: 9 }, placement: "right" },
+      { key: "none", objectId: "none", at: { x: 1, y: 10 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    two: <InlineMath math="c = 3" />,
+    one: <InlineMath math="c = 4" />,
+    none: <InlineMath math="c = 5" />,
+  }}
+/>
+
+Für <InlineMath math="c = 3" /> schneidet die Parabel die <InlineMath math="x" />-Achse bei <InlineMath math="-3" /> und <InlineMath math="-1" />. Für <InlineMath math="c = 4" /> berührt sie die Achse nur bei <InlineMath math="-2" />. Für <InlineMath math="c = 5" /> liegt die Parabel über der <InlineMath math="x" />-Achse, und ihre beiden Lösungen sind <InlineMath math="-2 \pm i" />.
+
+## Die imaginäre Einheit i
+
+Die Gleichung <InlineMath math="x^2 + 1 = 0" /> verlangt <InlineMath math="x^2 = -1" />. Das Quadrat einer reellen Zahl ist **nie negativ**, also löst keine reelle Zahl diese Gleichung. Deshalb erweitert man die Zahlen um die imaginäre Einheit <InlineMath math="i" /> mit <InlineMath math="i^2 = -1" />.
+
+Mit <InlineMath math="i" /> kannst du die Wurzel aus einer negativen Zahl schreiben. Für <InlineMath math="k > 0" /> gilt <InlineMath math="\sqrt{-k} = i\sqrt{k}" />, zum Beispiel <InlineMath math="\sqrt{-4} = 2i" /> und <InlineMath math="\sqrt{-23} = i\sqrt{23}" />. Eine Zahl der Form <InlineMath math="z = p + qi" /> mit reellen <InlineMath math="p" /> und <InlineMath math="q" /> ist eine [komplexe Zahl](/de/faecher/mathematik/komplexe-zahlen/grundidee-komplexer-zahlen). Die Zahl <InlineMath math="2 + 5i" /> hat den Realteil <InlineMath math="2" />, während <InlineMath math="3i" /> rein imaginär ist.
+
+## Die Lösungsformel bei negativer Diskriminante
+
+Beginne mit der [Lösungsformel für quadratische Gleichungen](/de/faecher/mathematik/quadratische-funktionen/loesungsformel-fuer-quadratische-gleichungen):
+
+<BlockMath math="x = \frac{-b \pm \sqrt{D}}{2a}" />
+
+Ist <InlineMath math="D < 0" />, schreibst du <InlineMath math="D = -|D|" />. Die Wurzel wird dann imaginär, und die Formel lautet
+
+<MathContainer>
+  <BlockMath math="\sqrt{D} = \sqrt{-|D|} = i\sqrt{|D|}" />
+  <BlockMath math="x = \frac{-b \pm i\sqrt{|D|}}{2a} = -\frac{b}{2a} \pm \frac{\sqrt{|D|}}{2a}\,i" />
+</MathContainer>
+
+Die letzte Form trennt den **Realteil** <InlineMath math="-\frac{b}{2a}" /> vom **Imaginärteil** <InlineMath math="\pm\frac{\sqrt{|D|}}{2a}" />. Beide Teile kannst du direkt an den Koeffizienten ablesen, ohne die Gleichung umzuformen.
+
+## Beispiel mit führendem Koeffizienten eins
+
+Löse <InlineMath math="x^2 + 4x + 5 = 0" />.
+
+Die Koeffizienten sind <InlineMath math="a = 1" />, <InlineMath math="b = 4" /> und <InlineMath math="c = 5" />. Berechne zuerst die Diskriminante:
+
+<BlockMath math="D = 4^2 - 4 \cdot 1 \cdot 5 = 16 - 20 = -4" />
+
+Wegen <InlineMath math="D < 0" /> sind **beide Lösungen komplex**. Setze in die Formel ein:
+
+<MathContainer>
+  <BlockMath math="x = \frac{-4 \pm \sqrt{-4}}{2 \cdot 1} = \frac{-4 \pm 2i}{2}" />
+  <BlockMath math="x_1 = -2 + i, \qquad x_2 = -2 - i" />
+</MathContainer>
+
+Prüfe <InlineMath math="x_1" />, indem du es in die Gleichung einsetzt:
+
+<BlockMath math="\begin{aligned}(-2+i)^2+4(-2+i)+5&amp;=4-4i+i^2-8+4i+5\\&amp;=1+i^2=1-1=0\end{aligned}" />
+
+Auch <InlineMath math="x_2" /> erfüllt die Gleichung, denn die Konjugierte einer Lösung einer Gleichung mit reellen Koeffizienten ist immer ebenfalls eine Lösung.
+
+## Beispiel mit führendem Koeffizienten ungleich eins
+
+Löse <InlineMath math="2x^2 + x + 3 = 0" />.
+
+Hier ist <InlineMath math="a = 2" />, <InlineMath math="b = 1" /> und <InlineMath math="c = 3" />, also
+
+<MathContainer>
+  <BlockMath math="D = 1^2 - 4 \cdot 2 \cdot 3 = 1 - 24 = -23" />
+  <BlockMath math="x = \frac{-1 \pm i\sqrt{23}}{2 \cdot 2} = -\frac{1}{4} \pm \frac{\sqrt{23}}{4}\,i" />
+</MathContainer>
+
+Teile **Real- und Imaginärteil** durch <InlineMath math="2a = 4" />, nicht nur den Realteil. Prüfe mit Summe und Produkt der Lösungen. Die Summe ist <InlineMath math="-\frac14 - \frac14 = -\frac12" />, gleich <InlineMath math="-\frac{b}{a}" />. Das Produkt ist <InlineMath math="\left(-\frac14\right)^2 + \left(\frac{\sqrt{23}}{4}\right)^2 = \frac{1}{16} + \frac{23}{16} = \frac{3}{2}" />, gleich <InlineMath math="\frac{c}{a}" />.
+
+## Der Scheitelpunkt verrät die komplexen Lösungen
+
+Schreibe die Funktion in Scheitelpunktform, <InlineMath math="f(x) = a(x - h)^2 + k" />. Die Gleichung <InlineMath math="f(x) = 0" /> liefert <InlineMath math="(x - h)^2 = -\frac{k}{a}" />. Haben <InlineMath math="a" /> und <InlineMath math="k" /> dasselbe Vorzeichen, ist die rechte Seite negativ, die Parabel verfehlt die <InlineMath math="x" />-Achse, und
+
+<BlockMath math="x = h \pm i\sqrt{\frac{k}{a}}" />
+
+Also ist **der Realteil der Lösungen die x-Koordinate des Scheitelpunkts**, und der Imaginärteil hängt von <InlineMath math="\frac{k}{a}" /> ab, also von der Scheitelpunkthöhe geteilt durch <InlineMath math="a" />.
+
+<MathVisual
+  title="Eine Parabel ohne Schnittpunkt mit der x-Achse"
+  description={<>Der Graph von <InlineMath math="y = x^2 + 4x + 5 = (x + 2)^2 + 1" /> mit Scheitelpunkt <InlineMath math="(-2, 1)" />. Sein kleinster Wert ist <InlineMath math="1" />, nicht <InlineMath math="0" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5.5, max: 1.5 }, y: { min: -1, max: 11 } },
@@ -119,42 +124,92 @@ Für jedes reelle <InlineMath math="x" /> ist <InlineMath math="(x+2)^2" /> **ni
   labels={{ vertex: <InlineMath math="(-2,1)" /> }}
 />
 
-## Warum die Nullstellen konjugiert auftreten
+Für <InlineMath math="x^2 + 4x + 5 = (x + 2)^2 + 1" /> ist der Scheitelpunkt <InlineMath math="(-2, 1)" />, also sind die Lösungen <InlineMath math="-2 \pm i\sqrt{1} = -2 \pm i" />, wie bei der Lösungsformel. Komplexe Lösungen sind keine versteckten Schnittpunkte im reellen Graphen. Sie liegen in der komplexen Zahlenebene, außerhalb der <InlineMath math="xy" />-Ebene, in der die Parabel gezeichnet ist.
 
-Bei reellen Koeffizienten enthält die Lösungsformel den Ausdruck
+<MathVisual
+  title="Der Scheitelpunkt der Parabel 2x² + x + 3"
+  description={<>Der Graph von <InlineMath math="y = 2x^2 + x + 3" /> hat seinen Scheitelpunkt bei <InlineMath math="\left(-\frac14, \frac{23}{8}\right)" />. Der Realteil beider Lösungen ist die x-Koordinate des Scheitelpunkts.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 1, c: 3 }, domain: { min: -2.25, max: 1.75 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: -1 / 4, y: 23 / 8 }, appearance: "answer" },
+      { id: "axis", kind: "segment", from: { x: -1 / 4, y: 0 }, to: { x: -1 / 4, y: 23 / 8 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex", at: { x: -1 / 4, y: 23 / 8 }, placement: "below-right" },
+      { key: "axis", objectId: "axis", at: { x: -1 / 4, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    vertex: <InlineMath math="\left(-\frac14, \frac{23}{8}\right)" />,
+    axis: <InlineMath math="x = -\frac14" />,
+  }}
+/>
 
-<BlockMath math="-b\pm i\sqrt{|D|}" />
+Für <InlineMath math="2x^2 + x + 3" /> hat der Scheitelpunkt <InlineMath math="h = -\frac14" /> und <InlineMath math="k = \frac{23}{8}" />. Die Scheitelpunktregel liefert <InlineMath math="\sqrt{\frac{k}{a}} = \sqrt{\frac{23}{16}} = \frac{\sqrt{23}}{4}" />, also sind die Lösungen <InlineMath math="-\frac14 \pm \frac{\sqrt{23}}{4}\,i" />. Der Realteil <InlineMath math="-\frac14" /> ist die x-Koordinate des Scheitelpunkts, und <InlineMath math="\frac{\sqrt{23}}{4}" /> ist der Imaginärteil, wie bei der Lösungsformel.
 
-Die beiden Vorzeichen ändern nur den **Imaginärteil**. So entstehen <InlineMath math="u+vi" /> und <InlineMath math="u-vi" />, die komplex konjugiert heißen. Ist eine Zahl Nullstelle eines Polynoms mit reellen Koeffizienten, dann ist auch ihre konjugierte Zahl eine Nullstelle.
+## Warum die Lösungen immer konjugiert auftreten
 
-## Übungsaufgabe
+In der Formel <InlineMath math="x = -\frac{b}{2a} \pm \frac{\sqrt{|D|}}{2a}\,i" /> ändert das Vorzeichen <InlineMath math="\pm" /> nur **den Imaginärteil**. Die beiden Lösungen haben die Form <InlineMath math="u + vi" /> und <InlineMath math="u - vi" />, also sind sie [konjugiert komplexe Zahlen](/de/faecher/mathematik/komplexe-zahlen/konjugiert-komplexe-zahlen).
 
-Die Aufgabe verlangt die Lösungen über den **komplexen Zahlen**, deshalb darfst du die Wurzel aus einer negativen Zahl ziehen. Schreibe <InlineMath math="i" /> ausdrücklich hin und fasse am Ende Real- und Imaginärteil zusammen.
+Daher ist die Summe der Lösungen immer reell, <InlineMath math="2u = -\frac{b}{a}" />, und das Produkt ebenfalls, <InlineMath math="u^2 + v^2 = \frac{c}{a}" />. Eine weitere Folge: Eine quadratische Gleichung mit reellen Koeffizienten kann **nicht** genau eine komplexe Lösung haben. Ist <InlineMath math="3 + 2i" /> eine Lösung, dann auch <InlineMath math="3 - 2i" />.
 
-Löse <InlineMath math="2x^2+2x+5=0" /> über den komplexen Zahlen.
+## Typische Fehler
 
-### Ausführliche Lösung
+| Fehler | Warum er scheitert | So prüfst du |
+| --- | --- | --- |
+| <InlineMath math="\sqrt{-4} = -2" /> schreiben | <InlineMath math="(-2)^2 = 4" />, nicht <InlineMath math="-4" /> | <InlineMath math="(2i)^2 = 4i^2 = -4" />, also <InlineMath math="\sqrt{-4} = 2i" /> |
+| Nur den Realteil durch <InlineMath math="2a" /> teilen | Aus <InlineMath math="\frac{-4 \pm 2i}{2}" /> wird fälschlich <InlineMath math="-2 \pm 2i" /> | Teile jeden Summanden: <InlineMath math="-2 \pm i" /> |
+| <InlineMath math="i^2 = 1" /> annehmen | Die imaginäre Einheit ist durch <InlineMath math="i^2 = -1" /> festgelegt | Setze die Lösung ein, das Ergebnis muss <InlineMath math="0" /> sein |
+| Das Minus in <InlineMath math="-b" /> vergessen | Bei <InlineMath math="x^2 - 6x + 13 = 0" /> ist der Realteil <InlineMath math="3" />, nicht <InlineMath math="-3" /> | Der Realteil ist die x-Koordinate des Scheitelpunkts |
+| Glauben, der Graph schneide die Achse beim Realteil | Eine Parabel mit <InlineMath math="D < 0" /> berührt die <InlineMath math="x" />-Achse nie | Berechne den Funktionswert im Scheitelpunkt, er ist nicht null |
 
-Wir beginnen mit der Diskriminante:
+Die schnellste Probe nutzt **Summe und Produkt der Lösungen**: Die Summe muss <InlineMath math="-\frac{b}{a}" /> und das Produkt <InlineMath math="\frac{c}{a}" /> sein.
 
-<BlockMath math="D=2^2-4\cdot2\cdot5=4-40=-36" />
+## Übungsaufgaben
 
-Da <InlineMath math="D<0" /> gilt, setzen wir <InlineMath math="\sqrt{-36}=6i" /> in die Lösungsformel ein:
+Berechne zuerst die Diskriminante und schreibe die Lösungen dann als **Realteil plus oder minus Imaginärteil**.
+
+1. Löse <InlineMath math="x^2 - 6x + 13 = 0" />.
+
+2. Löse <InlineMath math="2x^2 + 2x + 5 = 0" /> in den komplexen Zahlen.
+
+3. Bestimme alle Werte von <InlineMath math="k" />, für die <InlineMath math="x^2 + kx + 9 = 0" /> komplexe, nicht reelle Lösungen hat.
+
+4. Stelle eine quadratische Gleichung mit ganzzahligen Koeffizienten auf, deren Lösungen <InlineMath math="1 + 2i" /> und <InlineMath math="1 - 2i" /> sind.
+
+### Lösungen
+
+**Aufgabe 1**. Berechne **zuerst die Diskriminante**. Sie ist <InlineMath math="D = (-6)^2 - 4 \cdot 1 \cdot 13 = 36 - 52 = -16" />, also <InlineMath math="\sqrt{D} = 4i" />:
+
+<BlockMath math="x = \frac{6 \pm 4i}{2} = 3 \pm 2i" />
+
+Probe: Die Summe ist <InlineMath math="6 = -\frac{b}{a}" />, und das Produkt ist <InlineMath math="3^2 + 2^2 = 13 = \frac{c}{a}" />. Der Scheitelpunkt von <InlineMath math="(x - 3)^2 + 4" /> ist <InlineMath math="(3, 4)" />, passend zur Scheitelpunktregel <InlineMath math="3 \pm i\sqrt{4}" />.
+
+**Aufgabe 2**. Die Diskriminante ist <InlineMath math="D = 2^2 - 4 \cdot 2 \cdot 5 = -36" />, also <InlineMath math="\sqrt{D} = 6i" />:
+
+<BlockMath math="x = \frac{-2 \pm 6i}{4} = -\frac12 \pm \frac32 i" />
+
+Probe: Die Summe ist <InlineMath math="-1 = -\frac{b}{a}" />, und das Produkt ist <InlineMath math="\frac14 + \frac94 = \frac52 = \frac{c}{a}" />.
+
+**Aufgabe 3**. Komplexe Lösungen entstehen genau dann, wenn die Diskriminante negativ ist:
 
 <MathContainer>
-  <BlockMath math="x=\frac{-2\pm\sqrt{-36}}{2\cdot2}" />
-  <BlockMath math="x=\frac{-2\pm6i}{4}=-\frac12\pm\frac32i" />
+  <BlockMath math="D = k^2 - 4 \cdot 1 \cdot 9 = k^2 - 36 < 0" />
+  <BlockMath math="k^2 < 36 \quad\Longrightarrow\quad -6 < k < 6" />
 </MathContainer>
 
-Das konjugierte Nullstellenpaar lautet somit
+Prüfe zwei Werte. Für <InlineMath math="k = 0" /> liefert <InlineMath math="x^2 + 9 = 0" /> die Lösungen <InlineMath math="x = \pm 3i" />. Für <InlineMath math="k = 6" /> ist <InlineMath math="D = 0" /> mit der reellen Doppellösung <InlineMath math="-3" />, also gehört <InlineMath math="6" /> nicht dazu.
 
-<BlockMath math="\begin{aligned} &amp;x_1=-\frac12+\frac32i \\ &amp;\text{und} \\ &amp;x_2=-\frac12-\frac32i \end{aligned}" />
-
-Ihre Summe ist <InlineMath math="-1=-\frac ba" /> und ihr Produkt <InlineMath math="\frac52=\frac ca" />. Beides stimmt mit den Formeln von Vieta überein und bestätigt das Ergebnis.
-
-Beim Addieren konjugierter Zahlen **heben sich die Imaginärteile auf**. Für das Produkt verwendest du die Differenz zweier Quadrate und <InlineMath math="i^2=-1" />:
+**Aufgabe 4**. Nutze Summe und Produkt der Lösungen:
 
 <MathContainer>
-  <BlockMath math="x_1+x_2=-\frac12-\frac12+\left(\frac32-\frac32\right)i=-1" />
-  <BlockMath math="\begin{aligned}x_1x_2&amp;=\left(-\frac12\right)^2-\left(\frac32i\right)^2\\&amp;=\frac14-\frac94(-1)=\frac52\end{aligned}" />
+  <BlockMath math="x_1 + x_2 = (1 + 2i) + (1 - 2i) = 2" />
+  <BlockMath math="x_1 x_2 = 1^2 - (2i)^2 = 1 + 4 = 5" />
+  <BlockMath math="x^2 - 2x + 5 = 0" />
 </MathContainer>
+
+Probe: Die Diskriminante ist <InlineMath math="4 - 20 = -16" />, und die Lösungsformel liefert <InlineMath math="\frac{2 \pm 4i}{2} = 1 \pm 2i" />. Jedes ganzzahlige Vielfache ungleich null dieser Gleichung passt ebenfalls, zum Beispiel <InlineMath math="2x^2 - 4x + 10 = 0" />.

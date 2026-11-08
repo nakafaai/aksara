@@ -1,14 +1,19 @@
-Ada <InlineMath math="6\cdot6=36" /> **hasil berurutan yang sama mungkin**. Untuk jumlah <InlineMath math="9,10,11,12" />, banyak hasilnya berturut-turut <InlineMath math="4,3,2,1" />, sehingga ada <InlineMath math="10" /> hasil dengan jumlah sekurang-kurangnya <InlineMath math="9" />.
+Ada <InlineMath math="99-10+1=90" /> bilangan yang sama peluangnya. Untuk kejadian dengan kata **atau**, hitung kedua himpunan lalu kurangkan bilangan yang termasuk keduanya, agar tidak terhitung dua kali.
 
-Untuk setiap pasangan, angka pertama berasal dari dadu pertama. Jadi, pasangan dengan urutan terbalik dihitung terpisah.
+<BlockMath math="\begin{aligned}
+\text{habis dibagi 4}&:\ 12,16,\dots,96\ \Rightarrow\ \frac{96-12}{4}+1=22 \\
+\text{habis dibagi 6}&:\ 12,18,\dots,96\ \Rightarrow\ \frac{96-12}{6}+1=15 \\
+\text{habis dibagi 12}&:\ 12,24,\dots,96\ \Rightarrow\ 8 \\
+P&=\frac{22+15-8}{90}=\frac{29}{90}
+\end{aligned}" />
 
-| Jumlah | Pasangan mata dadu | Banyak pasangan |
-| ---: | --- | ---: |
-| 9 | (3, 6), (4, 5), (5, 4), (6, 3) | 4 |
-| 10 | (4, 6), **(5, 5)**, (6, 4) | 3 |
-| 11 | (5, 6), (6, 5) | 2 |
-| 12 | **(6, 6)** | 1 |
+Sebuah bilangan habis dibagi <InlineMath math="4" /> dan <InlineMath math="6" /> sekaligus tepat ketika bilangan itu habis dibagi KPK-nya, yaitu <InlineMath math="12" />.
 
-Kedua dadu menunjukkan angka sama pada <InlineMath math="6" /> hasil. Dua di antaranya, <InlineMath math="(5,5)" /> dan <InlineMath math="(6,6)" />, juga memiliki jumlah sekurang-kurangnya <InlineMath math="9" />. Kurangi kedua hasil yang terhitung dua kali itu.
+Sebagai pemeriksaan, <InlineMath math="29" /> lebih kecil daripada <InlineMath math="22+15=37" />, karena delapan kelipatan <InlineMath math="12" /> hanya boleh dihitung sekali.
 
-<BlockMath math="P=\frac{10+6-2}{36}=\frac{14}{36}=\frac7{18}" />
+Jadi, peluangnya adalah <InlineMath math="\frac{29}{90}" />.
+
+- <InlineMath math="\frac{4}{45}=\frac{8}{90}" /> hanya menghitung bilangan yang habis dibagi keduanya, yaitu memakai dan, bukan atau.
+- <InlineMath math="\frac16=\frac{15}{90}" /> hanya menghitung kelipatan <InlineMath math="6" />.
+- <InlineMath math="\frac{11}{45}=\frac{22}{90}" /> hanya menghitung kelipatan <InlineMath math="4" />.
+- <InlineMath math="\frac{37}{90}" /> menjumlahkan kedua himpunan tanpa mengurangkan kelipatan <InlineMath math="12" /> satu kali.

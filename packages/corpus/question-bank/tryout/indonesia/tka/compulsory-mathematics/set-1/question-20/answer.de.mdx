@@ -1,41 +1,24 @@
-Nach der Verschiebung ist der Leiterfuß <InlineMath math="5+3=8\,\mathrm{m}" /> von der Wand entfernt. Die Leiter ist die **Hypotenuse** eines rechtwinkligen Dreiecks. Bestimme die neue Höhe <InlineMath math="h" /> mit dem Satz des Pythagoras.
+Zwei Sätze tragen die ganze Aufgabe. Ein **Umfangswinkel über einem Durchmesser** ist ein rechter Winkel (Satz des Thales). Und alle Umfangswinkel über demselben Bogen sind gleich groß, der Mittelpunktswinkel ist doppelt so groß.
+
+Weil <InlineMath math="AC" /> ein Durchmesser ist, gilt <InlineMath math="\angle ABC=\angle ADC=90^\circ" />. Mit der Winkelsumme im Dreieck folgt:
 
 <BlockMath math="\begin{aligned}
-h^2+8^2&=13^2 \\
-h&=\sqrt{169-64}=\sqrt{105}
+\angle ACB&=180^\circ-90^\circ-28^\circ=62^\circ \\
+\angle ACD&=180^\circ-90^\circ-46^\circ=44^\circ \\
+\angle BCD&=62^\circ+44^\circ=106^\circ
 \end{aligned}" />
 
-Der Sinus des Winkels zum Boden ist die Höhe geteilt durch die Leiterlänge.
+Über dem Bogen <InlineMath math="BC" /> stehen der Umfangswinkel <InlineMath math="\angle BAC" /> und der Mittelpunktswinkel <InlineMath math="\angle BOC" />. Über dem Bogen <InlineMath math="AB" /> stehen <InlineMath math="\angle ACB" /> und <InlineMath math="\angle ADB" />.
 
-<BlockMath math="\sin\theta=\frac{h}{13}=\frac{\sqrt{105}}{13}" />
+<BlockMath math="\begin{aligned}
+\angle BOC&=2\cdot28^\circ=56^\circ \\
+\angle BDC&=\angle BAC=28^\circ \\
+\angle ADB&=\angle ACB=62^\circ
+\end{aligned}" />
 
-<LineEquation
-  title="Die Leiter vor und nach dem Verschieben"
-  description="Die graue Leiter erreicht anfangs eine Höhe von 12 Metern. Die violette Leiter bleibt 13 Meter lang, ihr Fuß ist nun aber 8 Meter von der Wand entfernt."
-  cameraPosition={[4, 6, 18]}
-  cameraTarget={[4, 6, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [{ x: 0, y: 12, z: 0 }, { x: 5, y: 0, z: 0 }],
-      color: "#94a3b8", smooth: false, showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: Math.sqrt(105), z: 0 }, { x: 8, y: 0, z: 0 }, { x: 0, y: 0, z: 0 }],
-      color: "#9333ea", smooth: false,
-      labels: [
-        { text: <InlineMath math="h=\sqrt{105}" />, at: 0, offset: [-0.7, 5, 0] },
-        { text: <InlineMath math="13\text{ m}" />, at: 1, offset: [4.6, -4.6, 0] },
-        { text: <InlineMath math="8\text{ m}" />, at: 2, offset: [-4, -0.6, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 25 }, (_, i) => {
-        const angle = Math.PI - Math.atan(Math.sqrt(105) / 8) * i / 24;
-        return { x: 8 + 1.5 * Math.cos(angle), y: 1.5 * Math.sin(angle), z: 0 };
-      }),
-      color: "#d97706", smooth: false, showPoints: false,
-      labels: [{ text: <InlineMath math="\theta" />, at: 12, offset: [-0.5, 0.3, 0] }],
-    },
-  ]}
-/>
+Zur Kontrolle: Im Sehnenviereck ergänzen sich gegenüberliegende Winkel zu <InlineMath math="180^\circ" />, und tatsächlich ist <InlineMath math="\angle BAD+\angle BCD=74^\circ+106^\circ=180^\circ" />.
+
+- <InlineMath math="\angle BCD=106^\circ" /> ist richtig.
+- <InlineMath math="\angle BOC" /> ist als Mittelpunktswinkel doppelt so groß wie <InlineMath math="\angle BAC" />, also <InlineMath math="56^\circ" />. Die Aussage ist falsch.
+- <InlineMath math="\angle BDC" /> steht über demselben Bogen wie <InlineMath math="\angle BAC" /> und misst <InlineMath math="28^\circ" />. Der Wert <InlineMath math="46^\circ" /> gehört zu <InlineMath math="\angle CAD" />. Die Aussage ist falsch.
+- <InlineMath math="\angle ADB=62^\circ" /> ist richtig.

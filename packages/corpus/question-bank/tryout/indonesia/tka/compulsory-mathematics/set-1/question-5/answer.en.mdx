@@ -1,24 +1,66 @@
-Let <InlineMath math="b" /> be the price of one notebook and <InlineMath math="p" /> the price of one pencil, in rupiah. The two bundles give the following system.
+Let <InlineMath math="x" /> be the number of chilli trays and <InlineMath math="y" /> the number of tomato trays. The two limits are **working hours and the materials budget**. Divide the budget by <InlineMath math="10{,}000" /> to keep the numbers small.
 
 <BlockMath math="\begin{aligned}
-2b+3p&=15{,}750 \\
-3b+p&=15{,}750
+2x+3y&\le240 \\
+30{,}000x+20{,}000y\le3{,}000{,}000\iff 3x+2y&\le300 \\
+x\ge0,\quad y&\ge0
 \end{aligned}" />
 
-The two bundles have **the same price**. Subtracting the first equation from the second makes the right-hand side zero. Substitute the resulting relationship between unit prices into the second equation.
+The corner where both limits are used up at once comes from the system of equations.
 
 <BlockMath math="\begin{aligned}
-(3b+p)-(2b+3p)&=0 \\
-b-2p&=0 \\
-b&=2p \\
-3(2p)+p&=15{,}750 \\
-7p&=15{,}750 \\
-p&=\frac{15{,}750}{7}=2{,}250 \\
-b&=2(2{,}250)=4{,}500
+2\cdot(2x+3y)=4x+6y&=480 \\
+3\cdot(3x+2y)=9x+6y&=900 \\
+5x&=420\ \Rightarrow\ x=84,\quad y=\frac{240-168}{3}=24
 \end{aligned}" />
 
-The price difference between one notebook and one pencil is:
+<MathVisual
+  title="Feasible region"
+  description={<>The feasible region is the quadrilateral with corners <InlineMath math="(0,0)" />, <InlineMath math="(100,0)" />, <InlineMath math="(84,24)" /> and <InlineMath math="(0,80)" />. It lies below the line <InlineMath math="2x+3y=240" /> and below the line <InlineMath math="3x+2y=300" />.</>}
+  labels={{
+    optimum: <InlineMath math="(84,24)" />,
+    "corner-x": <InlineMath math="(100,0)" />,
+    "corner-y": <InlineMath math="(0,80)" />,
+    labour: <InlineMath math="2x+3y=240" />,
+    budget: <InlineMath math="3x+2y=300" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 130 },
+      y: { min: -10, max: 160 },
+    },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 100, y: 0 }, { x: 84, y: 24 }, { x: 0, y: 80 }] },
+      { id: "labour-line", kind: "segment", appearance: "primary", from: { x: 0, y: 80 }, to: { x: 120, y: 0 } },
+      { id: "budget-line", kind: "segment", appearance: "secondary", from: { x: 0, y: 150 }, to: { x: 100, y: 0 } },
+      { id: "optimum-point", kind: "point", appearance: "answer", at: { x: 84, y: 24 } },
+      { id: "corner-x-point", kind: "point", appearance: "reference", at: { x: 100, y: 0 } },
+      { id: "corner-y-point", kind: "point", appearance: "reference", at: { x: 0, y: 80 } },
+    ],
+    labels: [
+      { key: "optimum", objectId: "optimum-point", at: { x: 84, y: 24 }, placement: "above-right" },
+      { key: "corner-x", objectId: "corner-x-point", at: { x: 100, y: 0 }, placement: "below" },
+      { key: "corner-y", objectId: "corner-y-point", at: { x: 0, y: 80 }, placement: "left" },
+      { key: "labour", objectId: "labour-line", at: { x: 105, y: 10 }, placement: "above-right" },
+      { key: "budget", objectId: "budget-line", at: { x: 30, y: 105 }, placement: "right" },
+    ],
+  }}
+/>
 
-<BlockMath math="b-p=4{,}500-2{,}250=2{,}250" />
+Substitute the corners into the profit <InlineMath math="P=25{,}000x+30{,}000y" />.
 
-The difference is <InlineMath math="\text{Rp }2{,}250" />.
+<BlockMath math="\begin{aligned}
+P(100,0)&=2{,}500{,}000 \\
+P(0,80)&=2{,}400{,}000 \\
+P(84,24)&=2{,}100{,}000+720{,}000=2{,}820{,}000
+\end{aligned}" />
+
+The largest profit comes from <InlineMath math="84" /> chilli trays and <InlineMath math="24" /> tomato trays.
+
+- <InlineMath math="84" /> chilli trays and <InlineMath math="24" /> tomato trays give the largest profit. The statement is true.
+- At the optimum the materials cost <InlineMath math="30{,}000\cdot84+20{,}000\cdot24=3{,}000{,}000" />, so the budget is used up. The statement is false.
+- The largest profit is <InlineMath math="\text{Rp}2{,}820{,}000" />. The amount <InlineMath math="\text{Rp}2{,}500{,}000" /> belongs to the corner <InlineMath math="(100,0)" />. The statement is false.
+- With <InlineMath math="P=25{,}000x+45{,}000y" />, <InlineMath math="80" /> tomato trays and no chilli trays give <InlineMath math="P(0,80)=3{,}600{,}000" />, which beats <InlineMath math="P(84,24)=3{,}180{,}000" /> and <InlineMath math="P(100,0)=2{,}500{,}000" />. The statement is true.
