@@ -8,28 +8,27 @@ const item: ItemSource = {
   },
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Keliling alas dikalikan $$3$$.",
+          correct: false,
+          label: "$$480\\text{ mL}$$",
         },
         {
-          column: 1,
-          label: "Luas alas dikalikan $$9$$.",
+          correct: false,
+          label: "$$720\\text{ mL}$$",
         },
         {
-          column: 1,
-          label: "Volume dikalikan $$\\frac92$$.",
+          correct: true,
+          label: "$$1{.}080\\text{ mL}$$",
         },
         {
-          column: 2,
-          label: "Garis pelukis selalu dikalikan $$\\frac32$$.",
+          correct: false,
+          label: "$$1{.}400\\text{ mL}$$",
         },
         {
-          column: 2,
-          label: "Luas selimut selalu dikalikan $$\\frac92$$.",
+          correct: false,
+          label: "$$2{.}560\\text{ mL}$$",
         },
       ],
     },

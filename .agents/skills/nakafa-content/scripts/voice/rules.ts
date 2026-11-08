@@ -16,6 +16,7 @@ import {
   LANGUAGE_COPY_RULES,
   LANGUAGE_VOICE_RULES,
 } from "#nakafa-content/voice/language";
+import { MALAY_COPY_RULES } from "#nakafa-content/voice/malay";
 import { METAPHOR_VOICE_RULES } from "#nakafa-content/voice/metaphor";
 import { METHOD_VOICE_RULES } from "#nakafa-content/voice/method";
 import { NARRATION_VOICE_RULES } from "#nakafa-content/voice/narration";
@@ -44,6 +45,7 @@ export const LESSON_VOICE_RULES = [
   ...FLOW_STYLE_RULES,
   ...HEADING_VOICE_RULES,
   ...LANGUAGE_VOICE_RULES,
+  ...MALAY_COPY_RULES,
   ...LANGUAGE_CALQUE_RULES,
   ...NAVIGATION_VOICE_RULES,
   ...AMBIGUITY_VOICE_RULES,
@@ -56,14 +58,17 @@ export const LESSON_VOICE_RULES = [
 ] satisfies readonly LessonVoiceRule[];
 
 /**
- * Uses a professional article register. Lesson choreography and teacher-only
- * narrative heuristics stay out because an article is not a classroom script.
+ * Speaks to the reader with the same informal address as a lesson. Lesson
+ * choreography and teacher-only narrative heuristics stay out because an
+ * article is an evidence-led argument, not a classroom script.
  */
 export const ARTICLE_VOICE_RULES = [
+  ...ADDRESS_VOICE_RULES,
   ...AI_ARTIFACT_RULES,
   ...AI_STYLE_RULES,
   ...DEFECT_VOICE_RULES,
   ...LANGUAGE_COPY_RULES,
+  ...MALAY_COPY_RULES,
   ...NAVIGATION_VOICE_RULES,
 ] satisfies readonly LessonVoiceRule[];
 
@@ -77,5 +82,15 @@ export const ANSWER_VOICE_RULES = [
   ...DEFECT_VOICE_RULES,
   ...HEADING_VOICE_RULES,
   ...LANGUAGE_VOICE_RULES,
+  ...MALAY_COPY_RULES,
   ...NAVIGATION_VOICE_RULES,
+] satisfies readonly LessonVoiceRule[];
+
+/**
+ * Holds a public page, such as the terms or the privacy policy, to the one
+ * voice rule that applies to legal and product copy: it never addresses the
+ * reader formally. Pages keep their own acceptance path for everything else.
+ */
+export const PAGE_VOICE_RULES = [
+  ...ADDRESS_VOICE_RULES,
 ] satisfies readonly LessonVoiceRule[];

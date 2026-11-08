@@ -1,16 +1,22 @@
 import { Effect } from "effect";
 
 import { indonesiaTryoutCountry } from "#corpus/tryout/indonesia/country";
+import { tkaAdvancedMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/advanced";
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
 import { tkaEnglishReadiness } from "#corpus/tryout/indonesia/tka/readiness/english";
 import { tkaIndonesianReadiness } from "#corpus/tryout/indonesia/tka/readiness/indonesian";
+import { tkaAdvancedMathematicsTrack } from "#corpus/tryout/indonesia/tka/tracks/advanced";
 import { tkaCompulsoryMathematicsTrack } from "#corpus/tryout/indonesia/tka/tracks/compulsory";
 import { tkaEnglishTrack } from "#corpus/tryout/indonesia/tka/tracks/english";
 import { tkaIndonesianTrack } from "#corpus/tryout/indonesia/tka/tracks/indonesian";
 import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/validation";
 import { defineExamSource } from "#corpus/tryout/schema";
 
-/** Lazily validates the source-controlled TKA catalog and placements. */
+/**
+ * TKA, grouped by the school grade each test is set for. It has no year.
+ * Today it is the high school grade (SMA, MA, SMK); Pusmendik also sets TKA
+ * for SMP and SD, which join as their own groups.
+ */
 const tkaTryoutCatalog = defineExamSource({
   ...indonesiaTryoutCountry,
   examKey: "tka",
@@ -31,8 +37,32 @@ const tkaTryoutCatalog = defineExamSource({
       title: "TKA",
     },
   },
+  grouping: {
+    axis: "grade",
+    groups: [
+      {
+        key: "senior-high-school",
+        order: 1,
+        routeSlugs: {
+          de: "oberstufe",
+          en: "senior-high-school",
+          id: "sma-ma-smk",
+        },
+        translations: {
+          de: { title: "Oberstufe" },
+          en: { title: "Senior High School" },
+          id: { title: "SMA/MA/SMK" },
+        },
+      },
+    ],
+  },
   sourceRevision: "2026-09-27",
-  tracks: [tkaCompulsoryMathematicsTrack, tkaIndonesianTrack, tkaEnglishTrack],
+  tracks: [
+    tkaCompulsoryMathematicsTrack,
+    tkaIndonesianTrack,
+    tkaEnglishTrack,
+    tkaAdvancedMathematicsTrack,
+  ],
 });
 
 /** Validates the active TKA catalog against official and editorial readiness. */
@@ -42,6 +72,7 @@ export const tkaTryoutSource = Effect.gen(function* () {
     tkaCompulsoryMathematicsReadiness,
     tkaIndonesianReadiness,
     tkaEnglishReadiness,
+    tkaAdvancedMathematicsReadiness,
   ]);
   for (const readiness of readinessEntries) {
     yield* validateAssessmentSourceReadiness(source, readiness);

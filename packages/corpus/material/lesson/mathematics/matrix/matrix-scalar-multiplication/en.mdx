@@ -3,7 +3,7 @@ export const metadata = {
   description: "Multiply every matrix entry by a scalar and apply the distributive, identity, and zero rules in worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -74,6 +74,91 @@ Write each product with parentheses: <InlineMath math="4(a)" /> means <InlineMat
 </MathContainer>
 
 The matrix above is the result of <InlineMath math="4Q" />.
+
+Here is Example 1 as a picture. Read each row of <InlineMath math="P" /> as a point: <InlineMath math="(9, 7)" /> and <InlineMath math="(3, 1)" />. Multiplying by <InlineMath math="2" /> doubles both coordinates, so each point slides along its line through the origin to twice its distance, <InlineMath math="(18, 14)" /> and <InlineMath math="(6, 2)" />. The segment between them keeps its direction and becomes twice as long. One scalar changes every entry in the same way.
+
+<MathVisual
+  title={<><InlineMath math="2P" /> doubles every row of <InlineMath math="P" /></>}
+  description={<>The rows of <InlineMath math="P" /> and <InlineMath math="2P" /> as points. Each point of <InlineMath math="2P" /> lies on the line from the origin through the matching point of <InlineMath math="P" />, twice as far out.</>}
+  labels={{
+    p1: <InlineMath math="P: (9, 7)" />,
+    p2: <InlineMath math="P: (3, 1)" />,
+    d1: <InlineMath math="2P: (18, 14)" />,
+    d2: <InlineMath math="2P: (6, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 19 }, y: { min: -1, max: 15 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "ray1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 18, y: 14 }, appearance: "construction" },
+      { id: "ray2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 2 }, appearance: "construction" },
+      { id: "p", kind: "segment", from: { x: 9, y: 7 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "double", kind: "segment", from: { x: 18, y: 14 }, to: { x: 6, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p1", objectId: "p", at: { x: 9, y: 7 }, placement: "above-left" },
+      { key: "p2", objectId: "p", at: { x: 3, y: 1 }, placement: "below-right" },
+      { key: "d1", objectId: "double", at: { x: 18, y: 14 }, placement: "left" },
+      { key: "d2", objectId: "double", at: { x: 6, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Negative and zero scalars follow the same rule. <InlineMath math="(-1)P" /> sends each row to the opposite side of the origin: <InlineMath math="(9, 7)" /> becomes <InlineMath math="(-9, -7)" />. <InlineMath math="0P" /> squeezes every row onto <InlineMath math="(0, 0)" />, which is the zero matrix <InlineMath math="O" />.
+
+<MathVisual
+  title={<><InlineMath math="(-1)P" /> and <InlineMath math="0P" /></>}
+  description={<>The rows of <InlineMath math="P" />, their opposites in <InlineMath math="(-1)P" /> through the origin, and <InlineMath math="0P" /> at the origin.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    neg: <InlineMath math="(-1)P" />,
+    zero: <InlineMath math="0P = O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -8, max: 8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c1", kind: "segment", from: { x: 9, y: 7 }, to: { x: -9, y: -7 }, appearance: "construction" },
+      { id: "c2", kind: "segment", from: { x: 3, y: 1 }, to: { x: -3, y: -1 }, appearance: "construction" },
+      { id: "p", kind: "segment", from: { x: 9, y: 7 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: -9, y: -7 }, to: { x: -3, y: -1 }, appearance: "warning" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 9, y: 7 }, placement: "left" },
+      { key: "neg", objectId: "neg", at: { x: -9, y: -7 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Scaling a sum gives the sum of the scaled matrices. Take the rows <InlineMath math="a = (1, 2)" /> and <InlineMath math="b = (3, 1)" />: their sum is <InlineMath math="(4, 3)" />. Doubling every side of the small parallelogram gives the large one, whose far corner <InlineMath math="(8, 6)" /> is both <InlineMath math="2(a + b)" /> and <InlineMath math="2a + 2b" />.
+
+<MathVisual
+  title={<><InlineMath math="k(A + B) = kA + kB" /> as a scaled parallelogram</>}
+  description={<>The parallelogram of <InlineMath math="(1, 2)" /> and <InlineMath math="(3, 1)" /> and the same parallelogram doubled, with far corners <InlineMath math="(4, 3)" /> and <InlineMath math="(8, 6)" />.</>}
+  labels={{
+    small: <InlineMath math="a + b" />,
+    big: <InlineMath math="2(a + b)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "bigp", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 4 }, { x: 8, y: 6 }, { x: 6, y: 2 }], appearance: "secondary" },
+      { id: "smallp", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 2 }, { x: 4, y: 3 }, { x: 3, y: 1 }], appearance: "primary" },
+      { id: "small", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "big", kind: "point", at: { x: 8, y: 6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "small", objectId: "small", at: { x: 4, y: 3 }, placement: "below-right" },
+      { key: "big", objectId: "big", at: { x: 8, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Properties of Matrix Scalar Multiplication
 

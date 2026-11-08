@@ -3,7 +3,7 @@ export const metadata = {
   description: "Tentukan kesamaan dua matriks dengan membandingkan ordo dan elemen seletak, lalu selesaikan nilai entri yang belum diketahui.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -50,6 +50,98 @@ Diberikan dua matriks:
 <BlockMath math="S = \begin{bmatrix} 5 & 0 \\ -2 & 8 \end{bmatrix} \quad \text{dan} \quad T = \begin{bmatrix} 5 & 0 \\ 2 & 8 \end{bmatrix}" />
 
 Meskipun matriks <InlineMath math="S" /> dan <InlineMath math="T" /> sama-sama berordo <InlineMath math="2 \times 2" />, keduanya tidak sama (<InlineMath math="S \neq T" />). **Elemen seletak** pada baris ke-<InlineMath math="2" />, kolom ke-<InlineMath math="1" /> berbeda: <InlineMath math="s_{21} = -2" />, sedangkan <InlineMath math="t_{21} = 2" />.
+
+Bayangkan setiap baris sebagai titik <InlineMath math="(x, y)" />. Dua matriks yang sama menaruh setiap barisnya tepat di titik yang sama. <InlineMath math="S" /> dan <InlineMath math="T" /> punya baris 1 yang sama, yaitu titik <InlineMath math="(5, 0)" />, tetapi baris keduanya mendarat di <InlineMath math="(-2, 8)" /> dan <InlineMath math="(2, 8)" />. Satu entri saja, <InlineMath math="s_{21} = -2" /> lawan <InlineMath math="t_{21} = 2" />, sudah cukup memisahkan kedua gambar, jadi <InlineMath math="S \neq T" />.
+
+<MathVisual
+  title={<><InlineMath math="S" /> dan <InlineMath math="T" /> sama di satu baris, beda di baris lain</>}
+  description={<>Baris <InlineMath math="S" /> dan <InlineMath math="T" /> digambar sebagai ruas garis dari titik baris 1 ke titik baris 2. Baris 1 menjadi titik yang sama untuk kedua matriks, sedangkan baris 2 mendarat di dua titik berbeda.</>}
+  labels={{
+    shared: <>baris 1 keduanya <InlineMath math="(5, 0)" /></>,
+    s: <><InlineMath math="S" /> baris 2 <InlineMath math="(-2, 8)" /></>,
+    t: <><InlineMath math="T" /> baris 2 <InlineMath math="(2, 8)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 7 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "s", kind: "segment", from: { x: 5, y: 0 }, to: { x: -2, y: 8 }, appearance: "primary" },
+      { id: "t", kind: "segment", from: { x: 5, y: 0 }, to: { x: 2, y: 8 }, appearance: "secondary" },
+      { id: "shared", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "shared", objectId: "shared", at: { x: 5, y: 0 }, placement: "right" },
+      { key: "s", objectId: "s", at: { x: -2, y: 8 }, placement: "left" },
+      { key: "t", objectId: "t", at: { x: 2, y: 8 }, placement: "right" },
+    ],
+  }}
+/>
+
+Pasangan entri terakhir memberi <InlineMath math="z^2 = 9" />. Gambar kurva <InlineMath math="z^2" /> dan garis setinggi <InlineMath math="9" />: keduanya bertemu dua kali, di <InlineMath math="z = -3" /> dan <InlineMath math="z = 3" />. Kedua nilai membuat <InlineMath math="A" /> dan <InlineMath math="B" /> sama, jadi persamaan matriks bisa punya lebih dari satu solusi untuk satu variabel.
+
+<MathVisual
+  title={<>Menyelesaikan <InlineMath math="z^2 = 9" /> dari <InlineMath math="a_{22} = b_{22}" /></>}
+  description={<>Parabola <InlineMath math="z^2" /> bertemu garis setinggi 9 di <InlineMath math="z = -3" /> dan <InlineMath math="z = 3" />.</>}
+  labels={{
+    square: <InlineMath math="z^2" />,
+    level: <InlineMath math="9" />,
+    left: <InlineMath math="z = -3" />,
+    right: <InlineMath math="z = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 16 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -4, max: 4 }, appearance: "primary" },
+      { id: "level", kind: "line", through: [{ x: -4, y: 9 }, { x: 4, y: 9 }], appearance: "reference" },
+      { id: "left", kind: "point", at: { x: -3, y: 9 }, appearance: "answer" },
+      { id: "right", kind: "point", at: { x: 3, y: 9 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 3.5, y: 12.25 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 0, y: 9 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: -3, y: 9 }, placement: "below-left" },
+      { key: "right", objectId: "right", at: { x: 3, y: 9 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Ordo diperiksa sebelum entri mana pun. <InlineMath math="R" /> punya 2 baris dan <InlineMath math="C" /> punya 3 baris, jadi bentuk bloknya berbeda. Meskipun dua baris pertamanya sama, <InlineMath math="C" /> punya baris tambahan yang tidak punya pasangan, jadi <InlineMath math="R \neq C" />.
+
+<MathVisual
+  title={<>Matriks berordo berbeda tidak pernah sama</>}
+  description={<>Blok <InlineMath math="R" />, 2 baris kali 2 kolom, di samping blok <InlineMath math="C" />, 3 baris kali 2 kolom.</>}
+  labels={{
+    r: <InlineMath math="R" />,
+    c: <InlineMath math="C" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: -4, max: 0.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "r11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "r12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "r21", kind: "point", at: { x: 1, y: -2 }, appearance: "primary" },
+      { id: "r22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "c11", kind: "point", at: { x: 4, y: -1 }, appearance: "secondary" },
+      { id: "c12", kind: "point", at: { x: 5, y: -1 }, appearance: "secondary" },
+      { id: "c21", kind: "point", at: { x: 4, y: -2 }, appearance: "secondary" },
+      { id: "c22", kind: "point", at: { x: 5, y: -2 }, appearance: "secondary" },
+      { id: "c31", kind: "point", at: { x: 4, y: -3 }, appearance: "secondary" },
+      { id: "c32", kind: "point", at: { x: 5, y: -3 }, appearance: "secondary" },
+      { id: "rl", kind: "segment", from: { x: 1, y: -2.6 }, to: { x: 2, y: -2.6 }, appearance: "primary" },
+      { id: "cl", kind: "segment", from: { x: 4, y: -3.6 }, to: { x: 5, y: -3.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "r", objectId: "rl", at: { x: 1.5, y: -2.6 }, placement: "below" },
+      { key: "c", objectId: "cl", at: { x: 4.5, y: -3.6 }, placement: "below" },
+    ],
+  }}
+/>
+
 ### Menentukan Nilai Variabel dari Kesamaan Matriks
 
 Diketahui kedua matriks berikut:

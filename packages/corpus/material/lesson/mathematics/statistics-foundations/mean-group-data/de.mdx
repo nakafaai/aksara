@@ -3,7 +3,7 @@ export const metadata = {
   description: "Schätze das arithmetische Mittel gruppierter Daten aus Klassenmitten und Häufigkeiten anhand eines vollständig gerechneten Beispiels.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Statistik",
 };
 
@@ -38,6 +38,17 @@ Die Größen in dieser Formel bedeuten:
 - <InlineMath math="x_i" /> ist der Mittelpunkt der Klasse <InlineMath math="i" />.
 - <InlineMath math="\sum (f_i \times x_i)" /> ist die Summe aller Produkte aus Klassenhäufigkeit und Klassenmitte.
 - <InlineMath math="\sum f_i" /> ist die Summe aller Häufigkeiten, gleich der Gesamtzahl der Werte <InlineMath math="n" />.
+
+Jede Klasse trägt ihre Klassenmitte mal ihre Häufigkeit bei. Die Balken sind <InlineMath math="76, 451, 704, 47" />, sie ergeben zusammen <InlineMath math="1278" />, und geteilt durch die <InlineMath math="30" /> Lernenden ergibt sich der Mittelwert <InlineMath math="42{,}6" />.
+
+<BarChart
+  title={<>Häufigkeit mal Klassenmitte für jede Klasse</>}
+  description={<>Balken für jede Schuhgrößenklasse mit <InlineMath math="f_i x_i" />, zusammen 1278.</>}
+  yAxisLabel="Häufigkeit mal Klassenmitte"
+  data={[["37-39", 2 * 38], ["40-42", 11 * 41], ["43-45", 16 * 44], ["46-48", 1 * 47]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Häufigkeit mal Klassenmitte", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Durchschnittliche Schuhgröße aus gruppierten Daten
 
 Ein Geschäft hat seine verkauften Schuhgrößen in Klassen zusammengefasst:
@@ -68,3 +79,35 @@ Die Summe der Produkte schätzt die Summe aller Schuhgrößen. Teile sie durch d
 </MathContainer>
 
 Das Ergebnis ist eine **Schätzung**, weil <Highlight>die Klassenmitte alle Einzelwerte ihres Intervalls ersetzt</Highlight>. Genau dieses Verfahren verwenden wir, wenn nur gruppierte Häufigkeiten vorliegen.
+
+Das Histogramm zeigt, warum die Schuhgrößen nicht einzeln aufgelistet werden können: Wir wissen nur, wie viele in jede Klasse fallen. Die meisten der <InlineMath math="30" /> Lernenden liegen in den Klassen <InlineMath math="40\text{-}42" /> und <InlineMath math="43\text{-}45" />.
+
+<HistogramChart
+  title={<>Schuhgrößen von 30 Lernenden</>}
+  description={<>Die Anzahl der Lernenden in jeder Schuhgrößenklasse.</>}
+  yAxisLabel="Lernende"
+  data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 16 }, { name: "46-48", value: 1 }]}
+  chartConfig={{ value: { label: "Lernende", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Jede Klasse steht jetzt bei ihrer Klassenmitte, mit der Häufigkeit als Höhe. Der Mittelwert der klassierten Daten <InlineMath math="1278 / 30 = 42{,}6" /> ist der Schwerpunkt dieser gewichteten Klassenmitten: Der schwere Punkt bei <InlineMath math="44" /> mit Häufigkeit <InlineMath math="16" /> zieht ihn rechts über <InlineMath math="41" /> hinaus.
+
+<MathVisual
+  title={<>Klassenmitten, gewichtet mit der Häufigkeit</>}
+  description={<>Das Häufigkeitspolygon durch die Klassenmitten 38, 41, 44 und 47 mit dem Mittelwert <InlineMath math="42{,}6" />.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 42{,}6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 36, max: 49 }, y: { min: -0.5, max: 18 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "poly", kind: "polyline", vertices: [{ x: 38, y: 2 }, { x: 41, y: 11 }, { x: 44, y: 16 }, { x: 47, y: 1 }], appearance: "secondary" },
+      { id: "mean", kind: "segment", from: { x: 1278 / 30, y: 0 }, to: { x: 1278 / 30, y: 17 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 1278 / 30, y: 17 }, placement: "above" },
+    ],
+  }}
+/>

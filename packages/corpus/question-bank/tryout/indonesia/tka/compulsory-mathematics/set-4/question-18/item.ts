@@ -6,30 +6,29 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "culvert",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$3{,}465\\text{ kg}$$",
+          label: "$$5$$ lilitan",
         },
         {
           correct: false,
-          label: "$$38{,}5\\text{ kg}$$",
-        },
-        {
-          correct: false,
-          label: "$$138{,}6\\text{ kg}$$",
+          label: "$$25$$ lilitan",
         },
         {
           correct: true,
-          label: "$$346{,}5\\text{ kg}$$",
+          label: "$$50$$ lilitan",
         },
         {
           correct: false,
-          label: "$$962{,}5\\text{ kg}$$",
+          label: "$$100$$ lilitan",
+        },
+        {
+          correct: false,
+          label: "$$500$$ lilitan",
         },
       ],
     },

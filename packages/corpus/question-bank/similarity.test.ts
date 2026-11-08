@@ -31,6 +31,10 @@ const matrix: ItemSource = {
   },
 };
 
+const seedlings: ItemSource = {
+  versions: { id: { kind: "numericEntry", unit: "bibit", value: "48" } },
+};
+
 const QuestionSchema = Schema.Struct({
   item: Schema.optionalKey(ItemSourceSchema),
   prompt: Schema.String,
@@ -179,6 +183,11 @@ describe("scanQuestionSimilarity", () => {
             {
               item: matrix,
               prompt: "Tentukan benar atau salah setiap pernyataan.",
+              reading: otherPassage,
+            },
+            {
+              item: seedlings,
+              prompt: "Berapa bibit yang tumbuh setelah tiga bulan?",
               reading: otherPassage,
             },
           ],

@@ -10,7 +10,10 @@ import {
   readBase,
   resolveBase,
 } from "#nakafa-content/points/base";
-import { inspectDocument } from "#nakafa-content/points/document";
+import {
+  type DocumentParts,
+  inspectDocument,
+} from "#nakafa-content/points/document";
 import { PointsCheckError, unreadable } from "#nakafa-content/points/error";
 import { collectFiles } from "#nakafa-content/points/files";
 import type { PointsFinding } from "#nakafa-content/points/finding";
@@ -25,7 +28,7 @@ import {
   printReport,
   shortRevision,
 } from "#nakafa-content/points/report";
-import { findVisualLoss } from "#nakafa-content/points/visual";
+import { findVisualLoss, lessonsBelowBar } from "#nakafa-content/points/visual";
 
 /** Orders findings by their position in one document. */
 function byPosition(left: PointsFinding, right: PointsFinding): number {
@@ -73,9 +76,11 @@ const checkPoints = Effect.fn("PointsCheck.checkPoints")(function* (
     )
   );
   const findings: FileFinding[] = [];
+  const documents: [string, DocumentParts][] = [];
   let compared = 0;
   for (const file of files) {
     const { document, source } = yield* loadDocument(root, file);
+    documents.push([file, document]);
     const found = findLiteralPoints(source, document);
     const baseFile = changed.get(file);
     if (baseFile !== undefined) {
@@ -96,6 +101,7 @@ const checkPoints = Effect.fn("PointsCheck.checkPoints")(function* (
   }
   return {
     base,
+    belowBar: lessonsBelowBar(documents),
     compared,
     files: files.length,
     findings,

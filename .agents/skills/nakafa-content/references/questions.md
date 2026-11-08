@@ -79,8 +79,16 @@ New try-out sets also follow [try-out sets](sets.md).
 - Every localized route slug spells its localized title, with German letters
   written out (`ä` as `ae`, `ö` as `oe`, `ü` as `ue`, `ß` as `ss`), so
   `Matematika Wajib` is `matematika-wajib` and `Leseverständnis und Schreiben`
-  is `leseverstaendnis-und-schreiben`. A year track is the exception: its slug
+  is `leseverstaendnis-und-schreiben`. A year group is the exception: its slug
   is the year. The catalog schema rejects a slug that does not spell its title.
+- Each exam divides its tracks on one axis, and the URL carries the group:
+  `try-out/<country>/<exam>/<group>/<track>/<set>`. UTBK-SNBT is grouped by
+  the `year` of the sitting learners prepare for (2027, with its track
+  `UTBK`). TKA has no year: it is grouped by `grade` (`SMA/MA/SMK` today;
+  `SMP/MTs` and `SD/MI` join as their own groups). The German entrance and
+  assessment examinations are grouped by `institution`, one group per
+  Studienkolleg, never by year or grade. Every track names its group, every
+  group holds a track, and a track key stays unique within its exam.
 - Renaming a published key or slug changes identities. Attempts stay bound to
   the signed snapshot they started on, and Nakafa redirects every retired
   public URL permanently to its successor once the release is live.
@@ -135,6 +143,18 @@ to reduce line count.
   `statements`, each with its `label` and the one-based number of its correct
   `column`. Array position is the authoring order. Publication derives every
   option, column, and statement identifier once, so authors never write them.
+- A `numericEntry` is a short answer the learner types as a number. Its
+  `value` is the exact key as a canonical decimal string, the same in every
+  language: a dot separator, no plus sign, no leading or trailing zeros, such
+  as `"12"`, `"0.75"`, or `"-3"`. Choose a task whose answer is a whole number
+  or a terminating decimal; there is no tolerance. An optional `unit` is plain
+  text shown beside the field, written in each language, such as `"cm"`,
+  `"Rp"`, or `"hari"`, so the learner types the number only. Publication lets
+  a learner type a fraction such as `3/4` exactly when the value is not a whole
+  number, and reads a decimal comma as well as a dot. The prompt says what to
+  type, such as the unit or the rounding. A section allows a numeric entry only
+  where the official format asks short answers; the plan of a paper refuses an
+  item whose kind its section does not list.
 - A label is one non-empty rich Markdown string that becomes a document. Plain
   prose needs no wrapper. Use no-space `$$...$$` for inline math, such as
   `The result is $$x=4$$.`. Options, columns, and statements keep mathematics

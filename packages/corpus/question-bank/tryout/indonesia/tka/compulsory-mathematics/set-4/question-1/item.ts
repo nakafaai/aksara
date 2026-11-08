@@ -6,29 +6,30 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
+  stimulus: "scooter-energy",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$1{,}5\\times10^{-9}$$",
+          label: "$$\\text{Rp}375$$",
         },
         {
           correct: false,
-          label: "$$6\\times10^{-9}$$",
+          label: "$$\\text{Rp}1{.}500$$",
         },
         {
           correct: true,
-          label: "$$1{,}5\\times10^{3}$$",
+          label: "$$\\text{Rp}6{.}000$$",
         },
         {
           correct: false,
-          label: "$$1{,}5\\times10^{4}$$",
+          label: "$$\\text{Rp}30{.}000$$",
         },
         {
           correct: false,
-          label: "$$1{,}5\\times10^{6}$$",
+          label: "$$\\text{Rp}60{.}000$$",
         },
       ],
     },

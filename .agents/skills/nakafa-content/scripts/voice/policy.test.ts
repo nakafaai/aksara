@@ -33,6 +33,7 @@ const blockingRules = [
   "indonesian-floor-division-calque",
   "indonesian-formal-author-self-reference",
   "indonesian-formal-learner-address",
+  "indonesian-formal-request",
   "indonesian-heading-dehyphenated-reduplication",
   "indonesian-informal-slang",
   "indonesian-mechanical-input-constraint-calque",

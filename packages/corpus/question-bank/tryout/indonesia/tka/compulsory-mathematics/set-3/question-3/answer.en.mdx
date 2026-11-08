@@ -1,25 +1,16 @@
-Let <InlineMath math="u=\sqrt a" /> and <InlineMath math="v=\sqrt b" />. Their sum is <InlineMath math="7" /> and their **product** is <InlineMath math="10" />. They are therefore the roots of the following equation.
+To compare powers with different bases, rewrite them with **the same exponent**. Then the new base alone decides.
 
 <BlockMath math="\begin{aligned}
-(t-u)(t-v)&=t^2-(u+v)t+uv \\
-&=t^2-7t+10 \\
-t^2-7t+10&=0 \\
-(t-5)(t-2)&=0
+p&=2^{48}=\left(2^{3}\right)^{16}=8^{16}, & q&=3^{32}=\left(3^{2}\right)^{16}=9^{16} \\
+p&=2^{48}=\left(2^{12}\right)^{4}=4{,}096^{4}, & r&=5^{20}=\left(5^{5}\right)^{4}=3{,}125^{4}
 \end{aligned}" />
 
-Thus <InlineMath math="\{u,v\}=\{5,2\}" /> and <InlineMath math="\{a,b\}=\{25,4\}" />. Their order does not change the sum or the absolute difference.
+This gives <InlineMath math="r<p<q" />.
 
-<BlockMath math="\begin{aligned}
-a+b&=25+4=29 \\
-|a-b|&=25-4=21 \\
-(a-b)^2&=21^2=441
-\end{aligned}" />
+- Since <InlineMath math="9^{16}>8^{16}" />, <InlineMath math="q>p" />. The statement is true.
+- Since <InlineMath math="4{,}096^{4}>3{,}125^{4}" />, <InlineMath math="p>r" />. The statement is true.
+- From <InlineMath math="r<p<q" /> it follows that <InlineMath math="r<q" />. The statement is false.
+- Pair each factor <InlineMath math="2" /> with a factor <InlineMath math="5" /> to make <InlineMath math="10" />: <InlineMath math="p\cdot r=2^{28}\cdot10^{20}" />. With <InlineMath math="2^{28}=2^{20}\cdot2^{8}=1{,}048{,}576\cdot256=268{,}435{,}456" />, the number has <InlineMath math="9+20=29" /> digits. The statement is true.
+- <InlineMath math="q=9^{16}=81^{8}>80^{8}=8^{8}\cdot10^{8}=16{,}777{,}216\cdot10^{8}" />, which is greater than <InlineMath math="10^{15}" />. The statement is false.
 
-For the sum of the reciprocal roots, use a common denominator.
-
-<BlockMath math="\begin{aligned}
-\frac1{\sqrt a}+\frac1{\sqrt b}&=\frac{u+v}{uv} \\
-&=\frac7{10}
-\end{aligned}" />
-
-These four results are true. The statement <InlineMath math="\sqrt{a+b}=7" /> is false because <InlineMath math="\sqrt{a+b}=\sqrt{29}" />.
+So the true statements are <InlineMath math="q>p" />, <InlineMath math="p>r" /> and the statement about the <InlineMath math="29" /> digits.
