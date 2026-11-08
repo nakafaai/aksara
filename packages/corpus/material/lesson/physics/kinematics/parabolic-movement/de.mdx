@@ -61,6 +61,17 @@ Die Wurfweite <InlineMath math="R" /> ist der waagerechte Abstand vom Abwurfpunk
 
 Die Flugzeit ergibt sich allein aus der senkrechten Bewegung. Von zwei Bällen mit gleichem <InlineMath math="v_x" /> landet der weiter entfernt, der länger in der Luft bleibt. Von zwei Bällen mit gleicher Flugzeit landet der weiter entfernt, dessen <InlineMath math="v_x" /> größer ist.
 
+<Mermaid
+  title="Von der Anfangsgeschwindigkeit zur Wurfweite"
+  description="Waagerechte und senkrechte Bewegung werden getrennt berechnet und über die Flugzeit verbunden."
+  chart={`flowchart TD
+  A["Anfangsgeschwindigkeit v₀ und Winkel θ"] --> B["v_x = v₀ cos θ, konstant"]
+  A --> C["v₀y = v₀ sin θ, wird durch g kleiner"]
+  C --> D["Flugzeit T aus der senkrechten Bewegung"]
+  B --> E["Wurfweite R = v_x T"]
+  D --> E`}
+/>
+
 ## Ein Ball rollt vom Tisch
 
 Ein waagerecht geworfener Körper hat keine senkrechte Anfangsgeschwindigkeit, seine senkrechte Bewegung ist also ein **freier Fall**. Angenommen, ein Ball rollt mit <InlineMath math="v_x = 4\text{ m/s}" /> waagerecht über die Kante eines <InlineMath math="1{,}25\text{ m}" /> hohen Tisches. Mit <InlineMath math="g = 10\text{ m/s}^2" /> folgt die Fallzeit aus der senkrechten Bewegung:
@@ -95,6 +106,49 @@ Für den Wurf unter <InlineMath math="30^\circ" /> ergibt sich jede Größe aus 
 Probe mit dem Wurf unter <InlineMath math="60^\circ" />: <InlineMath math="v_x = 10\text{ m/s}" /> und <InlineMath math="T = 2\sqrt{3}\text{ s}" />, also <InlineMath math="R = 10 \times 2\sqrt{3} = 20\sqrt{3}\text{ m}" />, dieselbe Wurfweite.
 
 Jede Flugzeit ist doppelt so lang wie die Steigzeit <InlineMath math="\frac{v_0 \sin\theta}{g}" />. Der Wurf unter <InlineMath math="60^\circ" /> bleibt länger oben, bewegt sich aber langsamer seitwärts, deshalb ist seine Wurfweite so groß wie beim Wurf unter <InlineMath math="30^\circ" />. Alle drei Wurfweiten folgen auch direkt aus der Formel <InlineMath math="R = \frac{v_0^2 \sin 2\theta}{g}" />, die bei den [Formeln zum schiefen Wurf](/de/faecher/physik/kinematik/analyse-der-parabelfoermigen-bewegung) verwendet wird. Der größte Wert von <InlineMath math="\sin 2\theta" />, nämlich <InlineMath math="1" />, ergibt sich bei <InlineMath math="\theta = 45^\circ" />.
+
+<LineEquation
+  title="Bahnen für drei Abwurfwinkel mit v₀ = 20 m/s"
+  description="Ein Kästchen steht für 5 m. Die Würfe unter 30° und 60° landen am selben Punkt, etwa 34,6 m entfernt, der Wurf unter 45° landet am weitesten bei 40 m."
+  showZAxis={false}
+  cameraPosition={[4, 1.5, 12]}
+  cameraTarget={[4, 1.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const angle = (30 * Math.PI) / 180;
+        const t = (4 * Math.sin(angle) * index) / 400;
+        return { x: (20 * Math.cos(angle) * t) / 5, y: (20 * Math.sin(angle) * t - 5 * t ** 2) / 5, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="30^\circ" />, at: 200, offset: [0, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const angle = (45 * Math.PI) / 180;
+        const t = (4 * Math.sin(angle) * index) / 400;
+        return { x: (20 * Math.cos(angle) * t) / 5, y: (20 * Math.sin(angle) * t - 5 * t ** 2) / 5, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="45^\circ" />, at: 200, offset: [0, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const angle = (60 * Math.PI) / 180;
+        const t = (4 * Math.sin(angle) * index) / 400;
+        return { x: (20 * Math.cos(angle) * t) / 5, y: (20 * Math.sin(angle) * t - 5 * t ** 2) / 5, z: 0 };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="60^\circ" />, at: 200, offset: [0, 0.3, 0] }],
+    }
+  ]}
+/>
 
 ## Häufige Fehler
 

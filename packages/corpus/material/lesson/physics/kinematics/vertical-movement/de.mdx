@@ -58,6 +58,18 @@ Alle drei Arten senkrechter Bewegung nutzen dieselben Gleichungen. Es unterschei
 
 Bei allen dreien bleibt die Beschleunigung während der ganzen Bewegung <InlineMath math="-g" />, auch im höchsten Punkt. Das Minus kommt von der Wahl der positiven Richtung nach oben, nicht von einer Schwerkraft, die ihre Richtung wechselt.
 
+<Mermaid
+  title="Die Art der vertikalen Bewegung wählen"
+  description="Die Richtung der Anfangsgeschwindigkeit bestimmt die Bewegungsart, die Gleichungen bleiben dieselben."
+  chart={`flowchart TD
+  A{"Richtung der Anfangsgeschwindigkeit?"} -->|"nach oben"| B["Wurf nach oben, v₀ positiv"]
+  A -->|"null"| C["Freier Fall, v₀ = 0"]
+  A -->|"nach unten"| D["Wurf nach unten, v₀ negativ"]
+  B --> E["v = v₀ - gt und y = v₀t - ½gt²"]
+  C --> E
+  D --> E`}
+/>
+
 ## Senkrechter Wurf nach oben
 
 Beim Wurf nach oben ist die Geschwindigkeit zuerst positiv und **nimmt durch die Schwerkraft ständig ab**, bis sie im höchsten Punkt null ist. Aus <InlineMath math="v_y = 0" /> folgen Steigzeit und maximale Höhe über dem Abwurfpunkt:
@@ -117,6 +129,54 @@ Der Wert <InlineMath math="t = -3" /> läge drei Sekunden vor dem Abwurf, also e
 Ohne Luftwiderstand beschreiben dieselben Gleichungen den senkrechten Anteil eines schräg geworfenen Balls. Bei der [parabelförmigen Bewegung](/de/faecher/physik/kinematik/parabelfoermige-bewegung) bleibt **die waagerechte Geschwindigkeit konstant**, während sich die senkrechte Geschwindigkeit genau wie beim Wurf nach oben ändert.
 
 Deshalb ergibt sich die Flugzeit eines schräg geworfenen Körpers allein aus seiner senkrechten Bewegung. Ein schräg geschossener Ball mit einer senkrechten Anfangsgeschwindigkeit von <InlineMath math="20\text{ m/s}" /> steigt ebenfalls <InlineMath math="2\text{ s}" /> lang und landet nach <InlineMath math="4\text{ s}" /> auf ebenem Boden, genau wie ein Ball, der mit <InlineMath math="20\text{ m/s}" /> senkrecht hochgeworfen wird.
+
+<LineEquation
+  title="Zwei Bälle mit derselben vertikalen Anfangsgeschwindigkeit"
+  description="Ein Kästchen steht für 5 m. Der türkise Ball wird mit v_x = 10 m/s und v_0y = 20 m/s geschossen, der orange Ball mit 20 m/s senkrecht nach oben geworfen. Die grauen Linien verbinden ihre Orte zum selben Zeitpunkt, und die Höhen stimmen immer überein."
+  showZAxis={false}
+  cameraPosition={[4, 2, 12]}
+  cameraTarget={[4, 2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const t = (4 * index) / 400;
+        return { x: (10 * t) / 5, y: (20 * t - 5 * t ** 2) / 5, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="\text{schräg geschossen}" />, at: 400, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: Array.from({ length: 3 }, (_, t) => ({ x: 0, y: (20 * t - 5 * t ** 2) / 5, z: 0 })),
+      color: "#d97706",
+      showPoints: true,
+      smooth: false,
+      labels: [{ text: <InlineMath math="\text{senkrecht nach oben}" />, at: 2, offset: [-0.3, 0.4, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 1 - 5 * 1 ** 2) / 5, z: 0 }, { x: (10 * 1) / 5, y: (20 * 1 - 5 * 1 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 1\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 2 - 5 * 2 ** 2) / 5, z: 0 }, { x: (10 * 2) / 5, y: (20 * 2 - 5 * 2 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 2\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 3 - 5 * 3 ** 2) / 5, z: 0 }, { x: (10 * 3) / 5, y: (20 * 3 - 5 * 3 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 3\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    }
+  ]}
+/>
 
 ## Häufige Fehler
 

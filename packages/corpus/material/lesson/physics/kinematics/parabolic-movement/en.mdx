@@ -60,6 +60,17 @@ The range <InlineMath math="R" /> is the horizontal distance from the launch poi
 
 The time in the air comes from the vertical motion alone. Of two balls with the same <InlineMath math="v_x" />, the one that stays in the air longer lands farther away. Of two balls that stay in the air equally long, the one with the larger <InlineMath math="v_x" /> lands farther away.
 
+<Mermaid
+  title="From initial velocity to range"
+  description="The horizontal and vertical motions are worked out separately, then joined through the time in the air."
+  chart={`flowchart TD
+  A["Initial velocity v₀ and angle θ"] --> B["v_x = v₀ cos θ, constant"]
+  A --> C["v₀y = v₀ sin θ, reduced by g"]
+  C --> D["Time in the air T from the vertical motion"]
+  B --> E["Range R = v_x T"]
+  D --> E`}
+/>
+
 ## A Ball Rolling Off a Table
 
 An object launched horizontally has zero initial vertical velocity, so its vertical motion is **free fall**. Suppose a ball rolls horizontally off the edge of a table <InlineMath math="1.25\text{ m}" /> high with <InlineMath math="v_x = 4\text{ m/s}" />. With <InlineMath math="g = 10\text{ m/s}^2" />, the fall time comes from the vertical motion:
@@ -94,6 +105,49 @@ For the <InlineMath math="30^\circ" /> throw, every quantity comes from the two 
 Check with the <InlineMath math="60^\circ" /> throw: <InlineMath math="v_x = 10\text{ m/s}" /> and <InlineMath math="T = 2\sqrt{3}\text{ s}" />, so <InlineMath math="R = 10 \times 2\sqrt{3} = 20\sqrt{3}\text{ m}" />, the same range.
 
 Each time in the air is twice the rise time <InlineMath math="\frac{v_0 \sin\theta}{g}" />. The <InlineMath math="60^\circ" /> throw stays up longer but moves sideways more slowly, so its range equals that of the <InlineMath math="30^\circ" /> throw. All three ranges also come straight from the formula <InlineMath math="R = \frac{v_0^2 \sin 2\theta}{g}" /> used in [projectile motion formulas](/en/subjects/physics/kinematics/parabolic-movement-analysis). The largest value of <InlineMath math="\sin 2\theta" />, which is <InlineMath math="1" />, comes at <InlineMath math="\theta = 45^\circ" />.
+
+<LineEquation
+  title="Paths for three launch angles with v₀ = 20 m/s"
+  description="One grid square stands for 5 m. The 30° and 60° throws land at the same point, about 34.6 m away, while the 45° throw lands farthest at 40 m."
+  showZAxis={false}
+  cameraPosition={[4, 1.5, 12]}
+  cameraTarget={[4, 1.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const angle = (30 * Math.PI) / 180;
+        const t = (4 * Math.sin(angle) * index) / 400;
+        return { x: (20 * Math.cos(angle) * t) / 5, y: (20 * Math.sin(angle) * t - 5 * t ** 2) / 5, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="30^\circ" />, at: 200, offset: [0, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const angle = (45 * Math.PI) / 180;
+        const t = (4 * Math.sin(angle) * index) / 400;
+        return { x: (20 * Math.cos(angle) * t) / 5, y: (20 * Math.sin(angle) * t - 5 * t ** 2) / 5, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="45^\circ" />, at: 200, offset: [0, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const angle = (60 * Math.PI) / 180;
+        const t = (4 * Math.sin(angle) * index) / 400;
+        return { x: (20 * Math.cos(angle) * t) / 5, y: (20 * Math.sin(angle) * t - 5 * t ** 2) / 5, z: 0 };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="60^\circ" />, at: 200, offset: [0, 0.3, 0] }],
+    }
+  ]}
+/>
 
 ## Common Mistakes
 

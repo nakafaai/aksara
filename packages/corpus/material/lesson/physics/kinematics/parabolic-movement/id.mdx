@@ -61,6 +61,17 @@ Jangkauan <InlineMath math="R" /> adalah jarak mendatar dari titik lempar sampai
 
 Waktu di udara ditentukan oleh gerak vertikal saja. Dua bola dengan <InlineMath math="v_x" /> yang sama mendarat makin jauh jika makin lama di udara. Dua bola yang sama lamanya di udara mendarat makin jauh jika kecepatan mendatarnya lebih besar.
 
+<Mermaid
+  title="Dari kecepatan awal ke jangkauan"
+  description="Gerak mendatar dan vertikal dihitung terpisah, lalu digabung lewat waktu di udara."
+  chart={`flowchart TD
+  A["Kecepatan awal v₀ dan sudut θ"] --> B["v_x = v₀ cos θ, tetap"]
+  A --> C["v₀y = v₀ sin θ, berkurang karena g"]
+  C --> D["Waktu di udara T dari gerak vertikal"]
+  B --> E["Jangkauan R = v_x T"]
+  D --> E`}
+/>
+
 ## Bola Keluar Mendatar dari Meja
 
 Benda yang dilempar mendatar punya kecepatan vertikal awal nol, jadi gerak vertikalnya adalah **jatuh bebas**. Misalkan bola keluar mendatar dari tepi meja setinggi <InlineMath math="1{,}25\text{ m}" /> dengan <InlineMath math="v_x = 4\text{ m/s}" />. Dengan <InlineMath math="g = 10\text{ m/s}^2" />, waktu jatuhnya dari gerak vertikal:
@@ -95,6 +106,49 @@ Untuk lemparan <InlineMath math="30^\circ" />, setiap besaran dihitung dari kedu
 Periksa dengan lemparan <InlineMath math="60^\circ" />: <InlineMath math="v_x = 10\text{ m/s}" /> dan <InlineMath math="T = 2\sqrt{3}\text{ s}" />, sehingga <InlineMath math="R = 10 \times 2\sqrt{3} = 20\sqrt{3}\text{ m}" />, jangkauan yang sama.
 
 Setiap waktu di udara adalah dua kali waktu naik <InlineMath math="\frac{v_0 \sin\theta}{g}" />. Lemparan <InlineMath math="60^\circ" /> lebih lama di udara, tetapi bergerak mendatar lebih lambat, sehingga jangkauannya sama dengan lemparan <InlineMath math="30^\circ" />. Ketiga jangkauan itu juga keluar langsung dari rumus <InlineMath math="R = \frac{v_0^2 \sin 2\theta}{g}" /> yang dipakai dalam [analisis gerak parabola](/id/materi/fisika/kinematika/analisis-gerak-parabola). Nilai <InlineMath math="\sin 2\theta" /> paling besar, yaitu <InlineMath math="1" />, tercapai pada <InlineMath math="\theta = 45^\circ" />.
+
+<LineEquation
+  title="Lintasan tiga sudut lontar dengan v₀ = 20 m/s"
+  description="Satu kotak grafik mewakili 5 m. Lemparan 30° dan 60° mendarat di titik yang sama, sekitar 34,6 m, sedangkan lemparan 45° mendarat paling jauh di 40 m."
+  showZAxis={false}
+  cameraPosition={[4, 1.5, 12]}
+  cameraTarget={[4, 1.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const angle = (30 * Math.PI) / 180;
+        const t = (4 * Math.sin(angle) * index) / 400;
+        return { x: (20 * Math.cos(angle) * t) / 5, y: (20 * Math.sin(angle) * t - 5 * t ** 2) / 5, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="30^\circ" />, at: 200, offset: [0, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const angle = (45 * Math.PI) / 180;
+        const t = (4 * Math.sin(angle) * index) / 400;
+        return { x: (20 * Math.cos(angle) * t) / 5, y: (20 * Math.sin(angle) * t - 5 * t ** 2) / 5, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="45^\circ" />, at: 200, offset: [0, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const angle = (60 * Math.PI) / 180;
+        const t = (4 * Math.sin(angle) * index) / 400;
+        return { x: (20 * Math.cos(angle) * t) / 5, y: (20 * Math.sin(angle) * t - 5 * t ** 2) / 5, z: 0 };
+      }),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="60^\circ" />, at: 200, offset: [0, 0.3, 0] }],
+    }
+  ]}
+/>
 
 ## Kesalahan yang Sering Terjadi
 

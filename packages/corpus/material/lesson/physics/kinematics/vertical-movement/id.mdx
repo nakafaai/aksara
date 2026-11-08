@@ -58,6 +58,18 @@ Ketiga jenis gerak vertikal memakai persamaan yang sama. Yang membedakan hanya *
 
 Pada ketiganya, percepatan tetap <InlineMath math="-g" /> sepanjang gerak, termasuk di titik tertinggi. Tanda negatif berasal dari pilihan arah ke atas sebagai positif, bukan dari gravitasi yang berubah arah.
 
+<Mermaid
+  title="Memilih jenis gerak vertikal"
+  description="Arah kecepatan awal menentukan jenis gerak, tetapi persamaannya tetap sama."
+  chart={`flowchart TD
+  A{"Arah kecepatan awal?"} -->|"ke atas"| B["Dilempar ke atas, v₀ positif"]
+  A -->|"nol"| C["Jatuh bebas, v₀ = 0"]
+  A -->|"ke bawah"| D["Dilempar ke bawah, v₀ negatif"]
+  B --> E["v = v₀ - gt dan y = v₀t - ½gt²"]
+  C --> E
+  D --> E`}
+/>
+
 ## Benda Dilempar ke Atas
 
 Saat benda dilempar ke atas, kecepatannya positif lalu **berkurang terus karena gravitasi** sampai nol di titik tertinggi. Dari <InlineMath math="v_y = 0" />, waktu naik dan tinggi maksimum terhadap titik lempar adalah:
@@ -117,6 +129,54 @@ Nilai <InlineMath math="t = -3" /> berarti tiga detik sebelum batu dilempar, jad
 Tanpa hambatan udara, persamaan yang sama berlaku pada komponen vertikal bola yang dilempar miring. Pada [gerak parabola](/id/materi/fisika/kinematika/gerak-parabola), **kecepatan mendatarnya tetap**, sedangkan kecepatan vertikalnya berubah persis seperti benda yang dilempar ke atas.
 
 Karena itu, waktu benda di udara pada gerak parabola dihitung dari komponen vertikal saja. Bola yang ditendang miring dengan komponen vertikal awal <InlineMath math="20\text{ m/s}" /> tetap naik selama <InlineMath math="2\text{ s}" /> dan mendarat setelah <InlineMath math="4\text{ s}" /> di tanah datar, sama seperti bola yang dilempar tegak ke atas dengan <InlineMath math="20\text{ m/s}" />.
+
+<LineEquation
+  title="Dua bola dengan kecepatan vertikal awal yang sama"
+  description="Satu kotak grafik mewakili 5 m. Bola teal ditendang dengan v_x = 10 m/s dan v_0y = 20 m/s, bola jingga dilempar tegak ke atas dengan 20 m/s. Garis abu-abu menghubungkan posisi keduanya pada waktu yang sama, dan tingginya selalu sama."
+  showZAxis={false}
+  cameraPosition={[4, 2, 12]}
+  cameraTarget={[4, 2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const t = (4 * index) / 400;
+        return { x: (10 * t) / 5, y: (20 * t - 5 * t ** 2) / 5, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="\text{ditendang miring}" />, at: 400, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: Array.from({ length: 3 }, (_, t) => ({ x: 0, y: (20 * t - 5 * t ** 2) / 5, z: 0 })),
+      color: "#d97706",
+      showPoints: true,
+      smooth: false,
+      labels: [{ text: <InlineMath math="\text{tegak ke atas}" />, at: 2, offset: [-0.3, 0.4, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 1 - 5 * 1 ** 2) / 5, z: 0 }, { x: (10 * 1) / 5, y: (20 * 1 - 5 * 1 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 1\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 2 - 5 * 2 ** 2) / 5, z: 0 }, { x: (10 * 2) / 5, y: (20 * 2 - 5 * 2 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 2\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 3 - 5 * 3 ** 2) / 5, z: 0 }, { x: (10 * 3) / 5, y: (20 * 3 - 5 * 3 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 3\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    }
+  ]}
+/>
 
 ## Kesalahan yang Sering Terjadi
 

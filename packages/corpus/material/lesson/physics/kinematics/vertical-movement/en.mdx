@@ -57,6 +57,18 @@ All three kinds of vertical motion use the same equations. Only **the sign and s
 
 In all three, the acceleration stays <InlineMath math="-g" /> for the whole motion, including at the highest point. The minus sign comes from choosing up as positive, not from gravity changing direction.
 
+<Mermaid
+  title="Choosing the type of vertical motion"
+  description="The direction of the initial velocity sets the type of motion, but the equations stay the same."
+  chart={`flowchart TD
+  A{"Direction of the initial velocity?"} -->|"up"| B["Thrown up, v₀ positive"]
+  A -->|"zero"| C["Free fall, v₀ = 0"]
+  A -->|"down"| D["Thrown down, v₀ negative"]
+  B --> E["v = v₀ - gt and y = v₀t - ½gt²"]
+  C --> E
+  D --> E`}
+/>
+
 ## An Object Thrown Upward
 
 When an object is thrown upward, its velocity starts positive and **keeps decreasing because of gravity** until it reaches zero at the highest point. Setting <InlineMath math="v_y = 0" /> gives the rise time and the maximum height above the launch point:
@@ -116,6 +128,54 @@ The value <InlineMath math="t = -3" /> would mean three seconds before the stone
 Without air resistance, the same equations describe the vertical part of a ball thrown at an angle. In [projectile motion](/en/subjects/physics/kinematics/parabolic-movement), **the horizontal velocity stays constant**, while the vertical velocity changes exactly as for an object thrown upward.
 
 That is why the time a projectile spends in the air comes from its vertical motion alone. A ball kicked at an angle with an initial vertical velocity of <InlineMath math="20\text{ m/s}" /> still rises for <InlineMath math="2\text{ s}" /> and lands after <InlineMath math="4\text{ s}" /> on level ground, just like a ball thrown straight up at <InlineMath math="20\text{ m/s}" />.
+
+<LineEquation
+  title="Two balls with the same initial vertical velocity"
+  description="One grid square stands for 5 m. The teal ball is kicked with v_x = 10 m/s and v_0y = 20 m/s, and the orange ball is thrown straight up at 20 m/s. The gray lines join their positions at the same moment, and the heights always match."
+  showZAxis={false}
+  cameraPosition={[4, 2, 12]}
+  cameraTarget={[4, 2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const t = (4 * index) / 400;
+        return { x: (10 * t) / 5, y: (20 * t - 5 * t ** 2) / 5, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="\text{kicked at an angle}" />, at: 400, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: Array.from({ length: 3 }, (_, t) => ({ x: 0, y: (20 * t - 5 * t ** 2) / 5, z: 0 })),
+      color: "#d97706",
+      showPoints: true,
+      smooth: false,
+      labels: [{ text: <InlineMath math="\text{thrown straight up}" />, at: 2, offset: [-0.3, 0.4, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 1 - 5 * 1 ** 2) / 5, z: 0 }, { x: (10 * 1) / 5, y: (20 * 1 - 5 * 1 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 1\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 2 - 5 * 2 ** 2) / 5, z: 0 }, { x: (10 * 2) / 5, y: (20 * 2 - 5 * 2 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 2\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: (20 * 3 - 5 * 3 ** 2) / 5, z: 0 }, { x: (10 * 3) / 5, y: (20 * 3 - 5 * 3 ** 2) / 5, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="t = 3\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
+    }
+  ]}
+/>
 
 ## Common Mistakes
 

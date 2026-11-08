@@ -67,6 +67,18 @@ If the object lands at **the same height** it was launched from, the time down e
 
 The last step uses the identity <InlineMath math="2\sin\theta\cos\theta = \sin 2\theta" />. Because <InlineMath math="\sin 2\theta" /> is at most <InlineMath math="1" />, the longest range comes at <InlineMath math="\theta = 45^\circ" />. Two angles that add up to <InlineMath math="90^\circ" />, such as <InlineMath math="30^\circ" /> and <InlineMath math="60^\circ" />, give the same range because <InlineMath math="\sin 60^\circ = \sin 120^\circ" />. With <InlineMath math="v_0 = 20\text{ m/s}" />, both land <InlineMath math="20\sqrt{3} \approx 34.6\text{ m}" /> away, the same result that time of flight and horizontal velocity give in [projectile motion](/en/subjects/physics/kinematics/parabolic-movement). This formula does not hold when the landing point is higher or lower than the launch point.
 
+<Mermaid
+  title="The order of a projectile analysis"
+  description="Every quantity comes from the two components of the initial velocity."
+  chart={`flowchart TD
+  A["v₀ and θ"] --> B["v₀x = v₀ cos θ and v₀y = v₀ sin θ"]
+  B --> C["t_peak = v₀y / g"]
+  C --> D["h_max = v₀y² / 2g"]
+  C --> E["T = 2 t_peak"]
+  E --> F["R = v₀x T"]
+  B --> G["Velocity at time t: v_y = v₀y - gt"]`}
+/>
+
 ## Velocity Along the Path
 
 For the velocity at time <InlineMath math="t" />, find **both components at that time**, then combine them with the Pythagorean theorem:
@@ -102,6 +114,57 @@ The velocity at <InlineMath math="t = 2\text{ s}" /> uses the vertical component
 Check the speed: <InlineMath math="v^2 = 20^2 + 14.64^2 \approx 614.4" />, and <InlineMath math="\sqrt{614.4} \approx 24.8" />.
 
 At <InlineMath math="t = 2\text{ s}" /> the ball is still rising because <InlineMath math="v_y" /> is positive, and that time is indeed earlier than the time to the top, <InlineMath math="3.46\text{ s}" />.
+
+<LineEquation
+  title="The cannonball velocity along its path"
+  description="One grid square stands for 10 m. Each arrow shows the distance covered in one second at the velocity of that moment. Its horizontal part is always 20 m/s, while its vertical part drops by 10 m/s every second."
+  showZAxis={false}
+  cameraPosition={[8, 1.5, 23]}
+  cameraTarget={[8, 1.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const t = (4 * Math.sqrt(3) * index) / 400;
+        return { x: (20 * t) / 10, y: (20 * Math.sqrt(3) * t - 5 * t ** 2) / 10, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [{ x: (20 * (0)) / 10, y: (20 * Math.sqrt(3) * (0) - 5 * (0) ** 2) / 10, z: 0 }, { x: (20 * (0)) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (0) - 5 * (0) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (0)) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = 40\text{ m/s}" />, at: 1, offset: [-0.6, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (2)) / 10, y: (20 * Math.sqrt(3) * (2) - 5 * (2) ** 2) / 10, z: 0 }, { x: (20 * (2)) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (2) - 5 * (2) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (2)) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v \approx 24.8\text{ m/s}" />, at: 1, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (2 * Math.sqrt(3))) / 10, y: (20 * Math.sqrt(3) * (2 * Math.sqrt(3)) - 5 * (2 * Math.sqrt(3)) ** 2) / 10, z: 0 }, { x: (20 * (2 * Math.sqrt(3))) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (2 * Math.sqrt(3)) - 5 * (2 * Math.sqrt(3)) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (2 * Math.sqrt(3))) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = v_x = 20\text{ m/s}" />, at: 1, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (4 * Math.sqrt(3))) / 10, y: (20 * Math.sqrt(3) * (4 * Math.sqrt(3)) - 5 * (4 * Math.sqrt(3)) ** 2) / 10, z: 0 }, { x: (20 * (4 * Math.sqrt(3))) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (4 * Math.sqrt(3)) - 5 * (4 * Math.sqrt(3)) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (4 * Math.sqrt(3))) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = 40\text{ m/s}" />, at: 1, offset: [0.3, -0.3, 0] }],
+    }
+  ]}
+/>
 
 ## A Forty Five Degree Kick
 

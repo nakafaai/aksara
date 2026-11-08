@@ -68,6 +68,18 @@ Landet der Körper auf **derselben Höhe**, von der er abgeworfen wurde, dauert 
 
 Der letzte Schritt nutzt die Identität <InlineMath math="2\sin\theta\cos\theta = \sin 2\theta" />. Weil <InlineMath math="\sin 2\theta" /> höchstens <InlineMath math="1" /> ist, ergibt sich die größte Wurfweite bei <InlineMath math="\theta = 45^\circ" />. Zwei Winkel, die zusammen <InlineMath math="90^\circ" /> ergeben, etwa <InlineMath math="30^\circ" /> und <InlineMath math="60^\circ" />, liefern dieselbe Wurfweite, weil <InlineMath math="\sin 60^\circ = \sin 120^\circ" /> ist. Mit <InlineMath math="v_0 = 20\text{ m/s}" /> landen beide <InlineMath math="20\sqrt{3} \approx 34{,}6\text{ m}" /> entfernt, dasselbe Ergebnis, das Flugzeit und waagerechte Geschwindigkeit beim [schiefen und waagerechten Wurf](/de/faecher/physik/kinematik/parabelfoermige-bewegung) liefern. Liegt der Auftreffpunkt höher oder tiefer als der Abwurfpunkt, gilt diese Formel nicht.
 
+<Mermaid
+  title="Die Reihenfolge einer Wurfanalyse"
+  description="Jede Größe folgt aus den beiden Komponenten der Anfangsgeschwindigkeit."
+  chart={`flowchart TD
+  A["v₀ und θ"] --> B["v₀x = v₀ cos θ und v₀y = v₀ sin θ"]
+  B --> C["t_Scheitel = v₀y / g"]
+  C --> D["h_max = v₀y² / 2g"]
+  C --> E["T = 2 t_Scheitel"]
+  E --> F["R = v₀x T"]
+  B --> G["Geschwindigkeit zur Zeit t: v_y = v₀y - gt"]`}
+/>
+
 ## Die Geschwindigkeit entlang der Bahn
 
 Für die Geschwindigkeit zur Zeit <InlineMath math="t" /> bestimmst du **beide Komponenten zu diesem Zeitpunkt** und verbindest sie mit dem Satz des Pythagoras:
@@ -103,6 +115,57 @@ Die Geschwindigkeit bei <InlineMath math="t = 2\text{ s}" /> nutzt die senkrecht
 Probe der Schnelligkeit: <InlineMath math="v^2 = 20^2 + 14{,}64^2 \approx 614{,}4" />, und <InlineMath math="\sqrt{614{,}4} \approx 24{,}8" />.
 
 Bei <InlineMath math="t = 2\text{ s}" /> steigt die Kugel noch, weil <InlineMath math="v_y" /> positiv ist, und dieser Zeitpunkt liegt tatsächlich vor der Steigzeit von <InlineMath math="3{,}46\text{ s}" />.
+
+<LineEquation
+  title="Die Geschwindigkeit der Kanonenkugel entlang der Bahn"
+  description="Ein Kästchen steht für 10 m. Jeder Pfeil zeigt die Strecke, die in einer Sekunde mit der Geschwindigkeit dieses Moments zurückgelegt wird. Der waagerechte Anteil bleibt 20 m/s, der senkrechte nimmt jede Sekunde um 10 m/s ab."
+  showZAxis={false}
+  cameraPosition={[8, 1.5, 23]}
+  cameraTarget={[8, 1.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const t = (4 * Math.sqrt(3) * index) / 400;
+        return { x: (20 * t) / 10, y: (20 * Math.sqrt(3) * t - 5 * t ** 2) / 10, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [{ x: (20 * (0)) / 10, y: (20 * Math.sqrt(3) * (0) - 5 * (0) ** 2) / 10, z: 0 }, { x: (20 * (0)) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (0) - 5 * (0) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (0)) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = 40\text{ m/s}" />, at: 1, offset: [-0.6, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (2)) / 10, y: (20 * Math.sqrt(3) * (2) - 5 * (2) ** 2) / 10, z: 0 }, { x: (20 * (2)) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (2) - 5 * (2) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (2)) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v \approx 24{,}8\text{ m/s}" />, at: 1, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (2 * Math.sqrt(3))) / 10, y: (20 * Math.sqrt(3) * (2 * Math.sqrt(3)) - 5 * (2 * Math.sqrt(3)) ** 2) / 10, z: 0 }, { x: (20 * (2 * Math.sqrt(3))) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (2 * Math.sqrt(3)) - 5 * (2 * Math.sqrt(3)) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (2 * Math.sqrt(3))) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = v_x = 20\text{ m/s}" />, at: 1, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (4 * Math.sqrt(3))) / 10, y: (20 * Math.sqrt(3) * (4 * Math.sqrt(3)) - 5 * (4 * Math.sqrt(3)) ** 2) / 10, z: 0 }, { x: (20 * (4 * Math.sqrt(3))) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (4 * Math.sqrt(3)) - 5 * (4 * Math.sqrt(3)) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (4 * Math.sqrt(3))) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = 40\text{ m/s}" />, at: 1, offset: [0.3, -0.3, 0] }],
+    }
+  ]}
+/>
 
 ## Ein Schuss unter fünfundvierzig Grad
 
