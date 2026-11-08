@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "walkable-city",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Definisi *daya dukung* membuktikan bahwa hasil model selalu sama dengan keadaan populasi di lapangan.",
+            "Jumlah kendaraan pribadi di kota itu naik setiap tahun selama sepuluh tahun terakhir.",
+        },
+        {
+          correct: false,
+          label:
+            "Biaya membangun trotoar lebih murah daripada biaya melebarkan jalan.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebagian pengendara mobil mengeluh karena lajur jalan menjadi lebih sempit.",
+        },
+        {
+          correct: false,
+          label:
+            "Pedagang kaki lima mungkin lebih suka berjualan di trotoar yang lebar.",
         },
         {
           correct: true,
           label:
-            "Definisi *daya dukung* menjelaskan mengapa populasi berhenti pada dua batas sumber daya, sekaligus menegaskan bahwa batas lingkungan nyata dapat berubah dan bukan angka tetap.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi itu menjadikan *daya dukung* nama untuk seluruh alat, bukan proses tertentu yang disimulasikan.",
-        },
-        {
-          correct: false,
-          label:
-            "Istilah *daya dukung* menghapus keterbatasan representasi karena prosesnya dapat diulang di kelas.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi tersebut hanya menjelaskan bahan pembuat model dan tidak berhubungan dengan proses yang diamati.",
+            "Setelah trotoar sebuah jalan diperbaiki, perjalanan pendek naik ojek di sana turun.",
         },
       ],
     },

@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "rooftop-solar",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "39,5 persen",
+        },
+        {
           correct: true,
-          label:
-            "Definisi *alur layanan* menunjukkan bahwa ukuran tanpa kembali hanya menilai kelancaran urutan, bukan seluruh mutu layanan seperti waktu tunggu, ketepatan tindakan, dan aksesibilitas.",
+          label: "48,9 persen",
         },
         {
           correct: false,
-          label:
-            "Definisi *alur layanan* membuktikan bahwa penanda baru sudah memperbaiki setiap tahap layanan bagi seluruh pasien.",
+          label: "60,5 persen",
         },
         {
           correct: false,
-          label:
-            "Definisi *alur layanan* menjadikan jumlah pasien tanpa kembali sebagai ukuran lengkap ketepatan tindakan medis.",
+          label: "80,9 persen",
         },
         {
           correct: false,
-          label:
-            "Definisi *alur layanan* menghapus perlunya masukan aksesibilitas karena urutan kegiatan sudah dapat dihitung.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi *alur layanan* menjelaskan mengapa kebutuhan medis pasien pasti sama pada setiap giliran yang dipasangkan.",
+          label: "123,7 persen",
         },
       ],
     },

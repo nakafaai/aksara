@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "assumption",
+  },
+  stimulus: "walkable-city",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Mengulang simulasi populasi dengan keping dengan lebih banyak unit, tetapi tetap memakai penyederhanaan yang sama tanpa pengamatan lapangan.",
-        },
-        {
-          correct: false,
-          label:
-            "Mengubah seluruh faktor lapangan sekaligus, lalu membandingkan satu hasil akhir tanpa kondisi acuan.",
-        },
-        {
-          correct: false,
-          label:
-            "Mengambil satu kejadian nyata yang sesuai dengan model sebagai konfirmasi bahwa pola selalu berlaku.",
-        },
-        {
           correct: true,
           label:
-            "Mengikuti populasi dan sumber dayanya dari waktu ke waktu sambil mencatat migrasi, kelahiran, kematian, serta struktur umur.",
+            "kemudahan berkendara mendorong lebih banyak orang memakai kendaraan pribadi",
         },
         {
           correct: false,
           label:
-            "Mengganti pengukuran dengan survei tentang apakah peserta memahami definisi istilah pada model.",
+            "pemerintah kota tidak pernah sekali pun melebarkan jalan tanpa mengorbankan trotoar",
+        },
+        {
+          correct: false,
+          label:
+            "jumlah penduduk kota tidak bertambah dalam beberapa tahun terakhir",
+        },
+        {
+          correct: false,
+          label:
+            "pengendara ojek paling banyak memakai jalan yang sudah dilebarkan",
+        },
+        {
+          correct: false,
+          label:
+            "kemacetan mungkin hilang dengan sendirinya jika jalan dibiarkan saja",
         },
       ],
     },

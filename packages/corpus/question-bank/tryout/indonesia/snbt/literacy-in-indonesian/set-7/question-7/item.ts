@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "walkable-city",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Karena langkah simulasi dapat diulang, batas $$16$$ dan $$24$$ dapat langsung dipakai untuk memperkirakan daya dukung semua populasi nyata.",
+            "Menurut penulis, trotoar yang baik cukup lebar untuk dua orang berpapasan.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Perbedaan titik henti konsisten dengan gagasan daya dukung, tetapi karena batas itu dimasukkan melalui jumlah keping makanan, model tidak dapat menjadi bukti mandiri bahwa populasi nyata akan berhenti dengan pola yang sama.",
+            "Penulis berpendapat kota yang ramah pejalan kaki sebaiknya melarang kendaraan pribadi.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Karena model menyederhanakan banyak proses biologis, perbedaan antara simulasi A dan B tidak dapat digunakan untuk menjelaskan hubungan sumber daya dan populasi.",
+            "Menurut penulis, pelebaran jalan biasanya mengatasi kemacetan untuk waktu yang lama.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Titik henti yang berbeda membuktikan bahwa jumlah makanan selalu menjadi satu-satunya faktor yang menentukan daya dukung lingkungan.",
-        },
-        {
-          correct: false,
-          label:
-            "Ketepatan model ditentukan oleh kesamaan jumlah putaran, sehingga faktor yang tidak dimuat tidak memengaruhi penerapan hasilnya di lapangan.",
+            "Penulis menyebut bagian tersulit adalah menjaga trotoar tetap bebas dari parkir dan dagangan.",
         },
       ],
     },

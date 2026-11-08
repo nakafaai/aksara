@@ -1,35 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "gut-bacteria",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Simulasi membandingkan pengaruh air bersuhu $$35$$ derajat Celsius terhadap produksi gas pada campuran ragi, sambil mengendalikan faktor yang disebutkan tetapi menjadikan satu uji singkat sebagai bukti yang berlaku umum.",
-        },
-        {
-          correct: false,
-          label:
-            "Simulasi membandingkan pengaruh air bersuhu $$35$$ derajat Celsius terhadap produksi gas pada campuran ragi, sambil menyebut keterbatasan tetapi mengeluarkan kondisi pembanding dari penafsiran hasil.",
-        },
-        {
-          correct: false,
-          label:
-            "Simulasi membandingkan pengaruh air bersuhu $$35$$ derajat Celsius terhadap produksi gas pada campuran ragi, sambil menjadikan definisi istilah ilmiah sebagai hasil ukur yang menutup penelitian.",
-        },
-        {
-          correct: false,
-          label:
-            "Simulasi membandingkan pengaruh air bersuhu $$35$$ derajat Celsius terhadap produksi gas pada campuran ragi, sambil memakai pembanding hanya untuk mengukuhkan hipotesis awal dan menghapus ketidakpastian yang tersisa.",
-        },
-        {
           correct: true,
           label:
-            "Percobaan membandingkan keliling balon pada tiga suhu dengan faktor lain terkontrol, lalu membatasi simpulan karena keliling hanya menjadi petunjuk kasar jumlah gas.",
+            "Memfermentasinya menjadi asam lemak yang memberi energi bagi sel usus besar.",
+        },
+        {
+          correct: false,
+          label:
+            "Mengubah serat menjadi gula yang langsung diserap oleh lambung.",
+        },
+        {
+          correct: false,
+          label:
+            "Menghancurkan serat di usus halus sebelum serat itu sempat sampai ke usus besar.",
+        },
+        {
+          correct: false,
+          label: "Mengeluarkan serat dari tubuh tanpa mengubahnya sedikit pun.",
+        },
+        {
+          correct: false,
+          label:
+            "Menyimpan serat di dinding usus sebagai cadangan makanan tubuh.",
         },
       ],
     },

@@ -1,31 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "text-comparison",
+  },
+  stimulus: "recorded-lectures",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "rekaman kuliah sebaiknya ditonton belasan jam sekaligus sebelum ujian",
+        },
+        {
+          correct: false,
+          label:
+            "sambungan internet semua mahasiswa sudah cukup stabil untuk belajar daring",
+        },
+        {
           correct: true,
           label:
-            "Pesan Resmi dan Suara Pengunjung: Membaca Batas Arsip Pameran",
+            "mahasiswa perlu kesempatan bertanya dan berlatih bersama di kelas",
         },
         {
           correct: false,
-          label: "Buku Tamu sebagai Gambaran Lengkap Lima Kota",
+          label:
+            "dosen sebaiknya tidak lagi menyiapkan ceramah untuk mahasiswanya",
         },
         {
           correct: false,
-          label: "Poster Tahun $$1984$$ yang Membuktikan Pameran Inklusif",
-        },
-        {
-          correct: false,
-          label: "Menghitung Pendapat Pengunjung tanpa Memeriksa Asal Sumber",
-        },
-        {
-          correct: false,
-          label: "Keluhan Akses yang Membatalkan Seluruh Pesan Penyelenggara",
+          label:
+            "kuliah tatap muka mungkin tidak diperlukan lagi dalam beberapa tahun",
         },
       ],
     },

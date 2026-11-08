@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "character",
+  },
+  stimulus: "mobile-library",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Perbedaan $$56$$ dan $$42$$ tidak memberi informasi apa pun karena kebutuhan medis tiap pasien tidak sama.",
+            "kecewa karena merasa sudah dibohongi oleh Dimas selama berminggu-minggu",
         },
         {
           correct: true,
           label:
-            "Hasil $$56$$ dari $$60$$ dibandingkan $$42$$ dari $$60$$ mendukung uji lanjut, tetapi belum menunjukkan bahwa penanda saja menyebabkan perbedaan karena kebutuhan pasien antargiliran tidak disamakan.",
+            "menjaga perasaan Dimas sambil diam-diam membantunya belajar membaca",
+        },
+        {
+          correct: false,
+          label: "ingin melaporkan kemampuan membaca Dimas kepada kepala dusun",
         },
         {
           correct: false,
           label:
-            "Kesamaan jadwal dan jumlah petugas sudah cukup memastikan bahwa penanda baru menjadi satu-satunya penyebab perbedaan hasil.",
+            "lebih memperhatikan Dimas daripada anak-anak lain karena kasihan",
         },
         {
           correct: false,
-          label:
-            "Data pengamatan awal $$40$$ dari $$60$$ membuktikan bahwa penanda lama selalu membuat tepat sepertiga pasien salah mengikuti alur.",
-        },
-        {
-          correct: false,
-          label:
-            "Karena kedua kondisi masing-masing memuat $$60$$ pasien, hasilnya dapat digeneralisasi ke semua klinik tanpa uji tambahan.",
+          label: "mungkin akan berhenti membawa buku ikan paus ke dusun itu",
         },
       ],
     },

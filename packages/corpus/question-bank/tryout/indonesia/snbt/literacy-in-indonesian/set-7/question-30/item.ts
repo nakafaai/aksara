@@ -1,30 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "character",
+  },
+  stimulus: "waste-meeting",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Cara Lila Menenangkan Seluruh Aula Pameran",
-        },
-        {
-          correct: false,
-          label: "Jawaban Lila atas Percobaan Cahaya dan Bayangan",
-        },
-        {
-          correct: false,
-          label: "Bunyi Pameran yang Tidak Pernah Berubah",
-        },
-        {
-          correct: false,
-          label: "Kartu Kosong sebagai Tanda Gagal Bertanya",
+          label: "ingin segera menyerahkan urusan sampah kepada kelurahan",
         },
         {
           correct: true,
-          label: "Satu Pertanyaan di Tengah Riuh Pameran",
+          label:
+            "mengajak warga mencoba dulu dan menilai hasilnya bersama-sama",
+        },
+        {
+          correct: false,
+          label:
+            "tidak yakin pada hitungannya sendiri tentang isi kantong sampah",
+        },
+        {
+          correct: false,
+          label: "ingin memaksa semua warga memilah sampah tanpa pengecualian",
+        },
+        {
+          correct: false,
+          label:
+            "mungkin berniat menunda keputusan sampai Pak Hasan pindah rumah",
         },
       ],
     },
