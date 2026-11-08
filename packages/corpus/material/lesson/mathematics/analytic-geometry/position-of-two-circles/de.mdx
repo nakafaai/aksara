@@ -1,25 +1,35 @@
 export const metadata = {
-  title: "Position zweier Kreise",
-  description: "Lagebeziehungen zweier Kreise anhand von Mittelpunktabstand und Radien bestimmen: schneidend, berührend, getrennt oder konzentrisch.",
+  title: "Lagebeziehung zweier Kreise",
+  description: "Vergleiche den Mittelpunktsabstand mit Summe und Differenz der Radien und entscheide, ob sich zwei Kreise schneiden, berühren oder meiden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Analytische Geometrie",
 };
 
+## Sieben Lagen zweier Kreise
 
+Die Lage zweier Kreise hängt vom **Mittelpunktsabstand <InlineMath math="d" />** ab, den du mit der **Summe der Radien <InlineMath math="r_1 + r_2" />** und der **Differenz der Radien <InlineMath math="|r_1 - r_2|" />** vergleichst. Für die Mittelpunkte <InlineMath math="(x_1, y_1)" /> und <InlineMath math="(x_2, y_2)" /> ist der Abstand
 
-## Mittelpunktsabstand und Radien miteinander vergleichen
+<BlockMath math="d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}" />
 
-Zwei verschiedene Kreislinien können sich in zwei Punkten schneiden, sich in einem Punkt berühren oder keinen gemeinsamen Punkt haben. Sind Mittelpunkt und Radius gleich, fallen die Kreise zusammen. Dann sind alle Punkte der Kreislinie gemeinsam.
+Sobald du <InlineMath math="d" /> kennst, ordnest du es in diese Tabelle ein. Jedes Kreispaar mit positiven Radien passt in genau eine Zeile.
 
-In der analytischen Geometrie reichen die Mittelpunkte und Radien aus, um die Lage eindeutig zu bestimmen. Vergleiche den **Mittelpunktsabstand** mit der Summe und dem absoluten Unterschied der Radien.
+| Lage | Bedingung | Gemeinsame Punkte |
+| --- | --- | --- |
+| Getrennt, außerhalb voneinander | <InlineMath math="d > r_1 + r_2" /> | keiner |
+| Berührung von außen | <InlineMath math="d = r_1 + r_2" /> | einer |
+| Schneidend | <InlineMath math="\lvert r_1 - r_2 \rvert < d < r_1 + r_2" /> | zwei |
+| Berührung von innen | <InlineMath math="d = \lvert r_1 - r_2 \rvert > 0" /> | einer |
+| Ein Kreis im anderen | <InlineMath math="0 < d < \lvert r_1 - r_2 \rvert" /> | keiner |
+| Konzentrisch | <InlineMath math="d = 0" /> und <InlineMath math="r_1 \ne r_2" /> | keiner |
+| Deckungsgleich | <InlineMath math="d = 0" /> und <InlineMath math="r_1 = r_2" /> | alle Punkte |
 
-Mit demselben Vergleich lässt sich prüfen, ob sich zwei kreisförmige Bereiche überlappen, berühren oder einen Abstand voneinander haben, etwa in Abdeckungskarten oder geometrischen Entwürfen.
+Stell dir vor, du schiebst den zweiten Kreis geradlinig auf den ersten zu. Der Abstand <InlineMath math="d" /> wird kleiner, und die Lage wechselt **genau in der Reihenfolge der Tabellenzeilen**, von getrennt bis konzentrisch.
 
-## Sich schneidende Kreise
+## Zwei sich schneidende Kreise
 
-Zwei Kreise **schneiden sich**, wenn sie genau zwei gemeinsame Punkte haben. Anschaulich sieht das aus wie zwei Ringe, die sich überlappen.
+Zwei Kreise **schneiden sich**, wenn ihre Kreislinien genau zwei gemeinsame Punkte haben. Die beiden Kreisflächen überlappen sich zwischen diesen Punkten.
 
 <LineEquation
   title="Zwei sich schneidende Kreise"
@@ -108,19 +118,15 @@ Zwei Kreise **schneiden sich**, wenn sie genau zwei gemeinsame Punkte haben. Ans
   cameraPosition={[0, 0, 12]}
 />
 
-Für zwei Kreise mit den Radien <InlineMath math="r_1" /> und <InlineMath math="r_2" /> sowie dem Mittelpunktabstand <InlineMath math="d" /> gilt die Schnittbedingung:
+Die Bedingung lautet
 
 <BlockMath math="|r_1 - r_2| < d < r_1 + r_2" />
 
-Die beiden strengen Grenzen erklären diese Bedingung:
+Diese Bedingung stammt aus einem Dreieck. Ein Schnittpunkt <InlineMath math="A" />, der Mittelpunkt <InlineMath math="P_1" /> und der Mittelpunkt <InlineMath math="P_2" /> bilden ein Dreieck mit den Seiten <InlineMath math="r_1" />, <InlineMath math="r_2" /> und <InlineMath math="d" />. Jede Dreiecksseite ist kürzer als die Summe der beiden anderen, also gilt <InlineMath math="d < r_1 + r_2" /> und <InlineMath math="d > |r_1 - r_2|" />. Wird ein <InlineMath math="<" /> zu <InlineMath math="=" />, **klappt das Dreieck zu einer Strecke zusammen**, und die beiden Schnittpunkte verschmelzen zu einem Berührpunkt.
 
-- **Obergrenze**: Bei <InlineMath math="r_1 + r_2" /> berühren sich die Kreise von außen
-- **Untere Grenze**: Bei <InlineMath math="|r_1 - r_2|>0" /> berührt der kleinere Kreis den größeren von innen
-- **Zwischen den Grenzen**: Die Kreislinien schneiden sich in zwei Punkten
+## Berührung von außen und von innen
 
-## Sich berührende Kreise
-
-Zwei Kreise berühren sich tangential, wenn sie **genau einen gemeinsamen Punkt** haben.
+Zwei Kreise **berühren sich**, wenn ihre Kreislinien genau einen gemeinsamen Punkt <InlineMath math="T" /> haben. Dieser Berührpunkt liegt immer auf der Geraden durch die beiden Mittelpunkte.
 
 <LineEquation
   title="Von außen berührende Kreise"
@@ -204,13 +210,9 @@ Zwei Kreise berühren sich tangential, wenn sie **genau einen gemeinsamen Punkt*
   cameraPosition={[0, 0, 12]}
 />
 
-Für zwei nicht identische Kreise gibt es zwei Berührungsfälle:
+Eine **Berührung von außen** liegt vor, wenn <InlineMath math="d = r_1 + r_2" /> gilt. Die Kreise liegen auf verschiedenen Seiten von <InlineMath math="T" />. In diesem Fall fallen die beiden [inneren gemeinsamen Tangenten](/de/faecher/mathematik/kreisgeometrie/aeussere-und-innere-gemeinsame-tangente) zu einer Geraden durch <InlineMath math="T" /> zusammen, die senkrecht auf <InlineMath math="P_1P_2" /> steht.
 
-1. **Äußere Berührung** liegt vor, wenn <InlineMath math="d = r_1 + r_2" /> gilt. Die Kreise liegen außerhalb voneinander und berühren sich in einem Punkt.
-
-2. **Innere Berührung** liegt vor, wenn <InlineMath math="d = |r_1 - r_2| > 0" /> gilt. Der kleinere Kreis liegt im größeren und berührt ihn in einem Punkt.
-
-Das nächste Diagramm zeigt eine innere Berührung:
+Eine **Berührung von innen** liegt vor, wenn <InlineMath math="d = |r_1 - r_2| > 0" /> gilt. Der kleine Kreis liegt im großen und berührt ihn von innen.
 
 <LineEquation
   title="Von innen berührende Kreise"
@@ -294,9 +296,13 @@ Das nächste Diagramm zeigt eine innere Berührung:
   cameraPosition={[0, 0, 12]}
 />
 
-## Getrennte Kreise
+Bei beiden Arten der Berührung liegt der Berührpunkt im Abstand <InlineMath math="r_1" /> von <InlineMath math="P_1" /> in Richtung <InlineMath math="P_1P_2" />. Bei der Berührung von innen ist <InlineMath math="P_1" /> der Mittelpunkt des größeren Kreises:
 
-Zwei Kreise liegen außen getrennt, wenn sich weder ihre Kreislinien noch ihre Kreisflächen treffen.
+<BlockMath math="T = P_1 + \frac{r_1}{d}\,(P_2 - P_1)" />
+
+## Getrennt oder ein Kreis im anderen
+
+Zwei Kreise mit verschiedenen Mittelpunkten können auf zwei Arten keinen gemeinsamen Punkt haben. Sie liegen **getrennt außerhalb voneinander**, wenn <InlineMath math="d > r_1 + r_2" /> gilt.
 
 <LineEquation
   title="Zwei getrennte Kreise"
@@ -382,14 +388,9 @@ Zwei Kreise liegen außen getrennt, wenn sich weder ihre Kreislinien noch ihre K
   cameraPosition={[0, 0, 12]}
 />
 
-Der getrennte Zustand liegt vor, wenn der Abstand zwischen den Mittelpunkten größer ist als die Summe beider Radien:
+Die kürzeste Lücke zwischen den beiden Kreislinien liegt auf der Geraden durch die Mittelpunkte und hat die Länge <InlineMath math="d - (r_1 + r_2)" />. Kein Punkt gehört zu beiden Kreisflächen zugleich.
 
-<BlockMath math="d > r_1 + r_2" />
-
-In diesem Fall gehört kein Punkt zu beiden Kreisflächen.
-
-
-Ein Kreis kann **ohne Berührung innerhalb eines anderen** liegen, obwohl die Mittelpunkte verschieden sind. Im Diagramm beträgt der größere Radius <InlineMath math="4" />, der kleinere Radius <InlineMath math="1" /> und der Mittelpunktsabstand <InlineMath math="1" />.
+Die zweite Art ist **ein Kreis im anderen ohne Berührung**, wenn <InlineMath math="0 < d < |r_1 - r_2|" /> gilt. Im nächsten Diagramm hat der große Kreis den Radius <InlineMath math="4" />, der kleine den Radius <InlineMath math="1" />, und die Mittelpunkte liegen <InlineMath math="1" /> auseinander.
 
 <LineEquation
   title="Ineinanderliegende Kreise ohne Berührung"
@@ -426,11 +427,11 @@ Ein Kreis kann **ohne Berührung innerhalb eines anderen** liegen, obwohl die Mi
   ]}
 />
 
-Wegen <InlineMath math="0<1<4-1" /> liegt der kleine Kreis vollständig im großen. Ihre Mittelpunkte sind verschieden, deshalb sind die Kreise nicht konzentrisch.
+Wegen <InlineMath math="0 < 1 < 4 - 1" /> liegt der kleine Kreis vollständig im großen. Die kürzeste Lücke ist <InlineMath math="|r_1 - r_2| - d = 3 - 1 = 2" />. Die Mittelpunkte sind verschieden, also sind diese Kreise nicht konzentrisch.
 
-## Konzentrische und zusammenfallende Kreise
+## Konzentrische und deckungsgleiche Kreise
 
-**Konzentrische Kreise** haben denselben Mittelpunkt, aber unterschiedliche Radien, wie die Kreislinien auf einer Zielscheibe.
+**Konzentrische Kreise** haben denselben Mittelpunkt, aber verschiedene Radien, wie die Ringe einer Zielscheibe beim Bogenschießen.
 
 <LineEquation
   title="Konzentrische Kreise"
@@ -518,46 +519,20 @@ Wegen <InlineMath math="0<1<4-1" /> liegt der kleine Kreis vollständig im groß
   cameraPosition={[0, 0, 12]}
 />
 
-Bei konzentrischen Kreisen beträgt der Abstand zwischen den Mittelpunkten Null (<InlineMath math="d = 0" />), aber die Radien sind unterschiedlich (<InlineMath math="r_1 \ne r_2" />).
+Bei konzentrischen Kreisen gilt <InlineMath math="d = 0" /> und <InlineMath math="r_1 \ne r_2" />. Ihre Kreislinien treffen sich nie, und der Abstand zwischen ihnen ist in jeder Richtung gleich, nämlich <InlineMath math="|r_1 - r_2|" />.
 
-**Identische Kreise** sind ein Sonderfall: Beide Kreise haben denselben Mittelpunkt und denselben Radius. Deshalb liegen sie vollständig aufeinander und erscheinen als ein einziger Kreis.
-
-Zwei Kreise sind identisch, wenn:
+**Deckungsgleiche Kreise** haben denselben Mittelpunkt und denselben Radius. Die beiden Kreislinien decken sich genau, also liegt jeder Punkt des einen Kreises auch auf dem anderen:
 
 <MathContainer>
   <BlockMath math="d = 0" />
   <BlockMath math="r_1 = r_2" />
 </MathContainer>
 
-## Die Lage bestimmen
+## Beispiel zur Lage aus den Kreisgleichungen
 
-Um zwei Kreise einzuordnen, berechnen wir ihren Mittelpunktabstand und vergleichen ihn mit der Summe und dem absoluten Unterschied der Radien.
+Bestimme die Lage der Kreise <InlineMath math="x^2 + y^2 = 9" /> und <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />.
 
-Der erste Kreis habe den Mittelpunkt <InlineMath math="(x_1, y_1)" /> und den Radius <InlineMath math="r_1" />. Der zweite Kreis habe den Mittelpunkt <InlineMath math="(x_2, y_2)" /> und den Radius <InlineMath math="r_2" />.
-
-Der Abstand zwischen den Mittelpunkten wird nach folgender Formel berechnet:
-
-<BlockMath math="d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}" />
-
-Unter der Annahme positiver Radien erfassen die folgenden Bedingungen alle Möglichkeiten, ohne sich zu überschneiden:
-
-- **Identisch**: <InlineMath math="d = 0" /> und <InlineMath math="r_1 = r_2" /> (dieselbe Kreislinie)
-- **Konzentrisch, aber verschieden**: <InlineMath math="d = 0" /> und <InlineMath math="r_1 \ne r_2" /> (gleicher Mittelpunkt, unterschiedliche Radien)
-- **Ineinanderliegend, getrennt und mit verschiedenen Mittelpunkten**: <InlineMath math="0 < d < |r_1-r_2|" /> (ein Kreis liegt vollständig im anderen)
-- **Innerlich tangential**: <InlineMath math="d = |r_1-r_2| > 0" /> (ein innerer Berührpunkt)
-- **Sich schneidend**: <InlineMath math="|r_1-r_2| < d < r_1+r_2" /> (zwei gemeinsame Punkte)
-- **Äußerlich tangential**: <InlineMath math="d = r_1+r_2" /> (ein äußerer Berührpunkt)
-- **Äußerlich getrennt**: <InlineMath math="d > r_1+r_2" /> (die beiden Kreisscheiben treffen sich nicht)
-
-### Die Lage zweier Kreise aus ihren Gleichungen bestimmen
-
-Wir bestimmen die Lage der Kreise mit den Gleichungen <InlineMath math="x^2 + y^2 = 9" /> und <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />.
-
-**Schritt 1**: Mittelpunkt und Radius beider Kreise bestimmen.
-
-Erster Kreis: Mittelpunkt <InlineMath math="(0, 0)" />, Radius <InlineMath math="r_1 = 3" />
-
-Für den zweiten Kreis vervollständigen wir das Quadrat:
+Der erste Kreis hat den Mittelpunkt <InlineMath math="(0, 0)" /> und <InlineMath math="r_1 = 3" />. Beim zweiten Kreis hilft die quadratische Ergänzung wie bei der [Kreisgleichung](/de/faecher/mathematik/analytische-geometrie/kreisgleichung):
 
 <MathContainer>
   <BlockMath math="x^2 + y^2 - 6x - 8y = 0" />
@@ -565,17 +540,139 @@ Für den zweiten Kreis vervollständigen wir das Quadrat:
   <BlockMath math="(x - 3)^2 + (y - 4)^2 = 25" />
 </MathContainer>
 
-Zweiter Kreis: Mittelpunkt <InlineMath math="(3, 4)" />, Radius <InlineMath math="r_2 = 5" />
-
-**Schritt 2**: Abstand zwischen den Mittelpunkten berechnen.
-
-<BlockMath math="\begin{aligned} d &amp;= \sqrt{(3-0)^2 + (4-0)^2} \\ &amp;= \sqrt{9 + 16} \\ &amp;= \sqrt{25} \\ &amp;= 5 \end{aligned}" />
-
-**Schritt 3**: Mit Positionsbedingungen vergleichen.
+Der zweite Kreis hat den Mittelpunkt <InlineMath math="(3, 4)" /> und <InlineMath math="r_2 = 5" />. Berechne den Mittelpunktsabstand und vergleiche:
 
 <MathContainer>
-  <BlockMath math="r_1 + r_2 = 3 + 5 = 8" />
-  <BlockMath math="|r_1 - r_2| = |3 - 5| = 2" />
+  <BlockMath math="d = \sqrt{(3 - 0)^2 + (4 - 0)^2} = \sqrt{25} = 5" />
+  <BlockMath math="|r_1 - r_2| = |3 - 5| = 2, \qquad r_1 + r_2 = 3 + 5 = 8" />
 </MathContainer>
 
-Da <InlineMath math="2 < 5 < 8" /> gilt, **schneiden sich die beiden Kreise**.
+Wegen <InlineMath math="2 < 5 < 8" /> **schneiden sich die Kreise in zwei Punkten**.
+
+<MathVisual
+  title="Zwei sich schneidende Kreise und ihre gemeinsame Sehne"
+  description={<>Der Kreis <InlineMath math="L_1" /> hat den Mittelpunkt <InlineMath math="O" /> und den Radius <InlineMath math="3" />, der Kreis <InlineMath math="L_2" /> den Mittelpunkt <InlineMath math="P(3, 4)" /> und den Radius <InlineMath math="5" />. Die Gerade <InlineMath math="6x + 8y = 9" /> geht durch beide Schnittpunkte.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 9 }, y: { min: -4, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "second", kind: "circle", center: { x: 3, y: 4 }, radius: 5, appearance: "secondary" },
+      { id: "chord", kind: "line", through: [{ x: 3 / 2, y: 0 }, { x: -7 / 2, y: 15 / 4 }], appearance: "highlight" },
+      { id: "centers", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "upper", kind: "point", at: { x: (27 - 12 * Math.sqrt(91)) / 50, y: (9 - (6 * (27 - 12 * Math.sqrt(91))) / 50) / 8 }, appearance: "answer" },
+      { id: "lower", kind: "point", at: { x: (27 + 12 * Math.sqrt(91)) / 50, y: (9 - (6 * (27 + 12 * Math.sqrt(91))) / 50) / 8 }, appearance: "answer" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "center", kind: "point", at: { x: 3, y: 4 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: -3, y: 0 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 8, y: 4 }, placement: "right" },
+      { key: "chord", objectId: "chord", at: { x: -7 / 2, y: 15 / 4 }, placement: "above" },
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "center", objectId: "center", at: { x: 3, y: 4 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="L_1" />,
+    second: <InlineMath math="L_2" />,
+    chord: <InlineMath math="6x + 8y = 9" />,
+    origin: <InlineMath math="O" />,
+    center: <InlineMath math="P" />,
+  }}
+/>
+
+Prüfe auf einem zweiten Weg. Ziehe die zweite Gleichung von der ersten ab: <InlineMath math="(x^2 + y^2 - 9) - (x^2 + y^2 - 6x - 8y) = 6x + 8y - 9" />. Die Gerade <InlineMath math="6x + 8y = 9" /> enthält beide Schnittpunkte, denn jeder Punkt, der beide Gleichungen erfüllt, erfüllt auch ihre Differenz. Der Abstand von <InlineMath math="O" /> zu dieser Geraden ist <InlineMath math="\frac{9}{10}" />, kleiner als <InlineMath math="r_1 = 3" />, also schneidet die Gerade nach der [Lagebeziehung von Gerade und Kreis](/de/faecher/mathematik/analytische-geometrie/lage-einer-geraden-zum-kreis) den Kreis <InlineMath math="L_1" /> in zwei Punkten. Das Ergebnis stimmt überein.
+
+## Beispiel zum Radius für sich berührende Kreise
+
+Gegeben sind der Kreis <InlineMath math="L_1: x^2 + y^2 = 25" /> und ein Kreis <InlineMath math="L_2" /> mit Mittelpunkt <InlineMath math="P(6, 8)" /> und Radius <InlineMath math="r" />. Bestimme <InlineMath math="r" /> so, dass sich die Kreise berühren, und berechne den Berührpunkt.
+
+Der Mittelpunktsabstand ist <InlineMath math="d = \sqrt{6^2 + 8^2} = 10" />. Berührung von außen und von innen liefern zwei Gleichungen:
+
+<MathContainer>
+  <BlockMath math="\text{außen: } 5 + r = 10 \quad\Longrightarrow\quad r = 5" />
+  <BlockMath math="\text{innen: } |r - 5| = 10 \quad\Longrightarrow\quad r = 15" />
+</MathContainer>
+
+Der Wert <InlineMath math="r = -5" /> aus der Gleichung für innen fällt weg, weil **ein Radius positiv ist**. Für <InlineMath math="r = 5" /> liefert die Formel für den Berührpunkt <InlineMath math="T = (0, 0) + \frac{5}{10}(6, 8) = (3, 4)" />. Für <InlineMath math="r = 15" /> ist <InlineMath math="L_2" /> der größere Kreis, also <InlineMath math="T = (6, 8) + \frac{15}{10}(-6, -8) = (-3, -4)" />.
+
+<MathVisual
+  title="Zwei Radien, bei denen sich die Kreise berühren"
+  description={<>Ein Kreis mit Mittelpunkt <InlineMath math="O" /> und Radius <InlineMath math="5" />. Der Kreis mit Mittelpunkt <InlineMath math="P(6, 8)" /> berührt ihn für <InlineMath math="r = 5" /> von außen und umschließt ihn für <InlineMath math="r = 15" /> mit einer Berührung von innen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 22 }, y: { min: -8, max: 24 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base", kind: "circle", center: { x: 0, y: 0 }, radius: 5, appearance: "primary" },
+      { id: "outer", kind: "circle", center: { x: 6, y: 8 }, radius: 5, appearance: "secondary" },
+      { id: "inner", kind: "circle", center: { x: 6, y: 8 }, radius: 15, appearance: "highlight" },
+      { id: "centers", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "construction" },
+      { id: "outer-point", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "inner-point", kind: "point", at: { x: -3, y: -4 }, appearance: "answer" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "center", kind: "point", at: { x: 6, y: 8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "outer", objectId: "outer", at: { x: 11, y: 8 }, placement: "right" },
+      { key: "inner", objectId: "inner", at: { x: 6, y: 23 }, placement: "below" },
+      { key: "outer-point", objectId: "outer-point", at: { x: 3, y: 4 }, placement: "left" },
+      { key: "inner-point", objectId: "inner-point", at: { x: -3, y: -4 }, placement: "left" },
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "center", objectId: "center", at: { x: 6, y: 8 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    outer: <InlineMath math="r = 5" />,
+    inner: <InlineMath math="r = 15" />,
+    "outer-point": <InlineMath math="(3, 4)" />,
+    "inner-point": <InlineMath math="(-3, -4)" />,
+    origin: <InlineMath math="O" />,
+    center: <InlineMath math="P" />,
+  }}
+/>
+
+Prüfe jeden Berührpunkt an beiden Kreisen. Der Punkt <InlineMath math="(3, 4)" /> erfüllt <InlineMath math="3^2 + 4^2 = 25" /> und <InlineMath math="(3 - 6)^2 + (4 - 8)^2 = 25 = 5^2" />. Der Punkt <InlineMath math="(-3, -4)" /> erfüllt <InlineMath math="(-3)^2 + (-4)^2 = 25" /> und <InlineMath math="(-9)^2 + (-12)^2 = 225 = 15^2" />.
+
+## Typische Fehler
+
+| Fehler | Warum er scheitert | So prüfst du |
+| --- | --- | --- |
+| <InlineMath math="d" /> nur mit <InlineMath math="r_1 + r_2" /> vergleichen | <InlineMath math="x^2 + y^2 = 25" /> und <InlineMath math="(x - 1)^2 + y^2 = 1" /> haben <InlineMath math="d = 1 < 6" />, schneiden sich aber nicht | Berechne auch <InlineMath math="\lvert r_1 - r_2 \rvert = 4" /> |
+| <InlineMath math="r_1 - r_2" /> ohne Betrag schreiben | Für <InlineMath math="r_1 = 3" /> und <InlineMath math="r_2 = 5" /> kommt <InlineMath math="-2" /> heraus, und die untere Grenze fehlt | Nimm <InlineMath math="\lvert 3 - 5 \rvert = 2" /> |
+| <InlineMath math="r^2" /> als <InlineMath math="r" /> lesen | <InlineMath math="(x - 3)^2 + (y - 4)^2 = 25" /> hat den Radius <InlineMath math="5" />, nicht <InlineMath math="25" /> | Zieh die Wurzel aus der rechten Seite |
+| Quadratisch ergänzen, obwohl vor <InlineMath math="x^2" /> nicht <InlineMath math="1" /> steht | Der Mittelpunkt von <InlineMath math="2x^2 + 2y^2 - 8x = 0" /> wird falsch abgelesen | Teile zuerst durch <InlineMath math="2" />: <InlineMath math="x^2 + y^2 - 4x = 0" /> |
+| Konzentrisch und deckungsgleich verwechseln | Konzentrische Kreise haben verschiedene Radien und keinen gemeinsamen Punkt | Deckungsgleich braucht <InlineMath math="d = 0" /> und <InlineMath math="r_1 = r_2" /> |
+
+Bei zwei sich schneidenden Kreisen ist **das Subtrahieren der beiden Gleichungen** die stärkste Probe. Es liefert die Gerade, die beide Schnittpunkte enthält, und diese Gerade muss jeden Kreis in zwei Punkten schneiden.
+
+## Übungsaufgaben
+
+Bestimme zuerst Mittelpunkte, Radien und Mittelpunktsabstand und **ordne sie dann in die Tabelle der Lagen ein**.
+
+1. Bestimme die Lage der Kreise <InlineMath math="x^2 + y^2 = 4" /> und <InlineMath math="x^2 + y^2 - 10x + 16 = 0" />. Berechne den Berührpunkt, falls sie sich berühren.
+
+2. Bestimme die Lage der Kreise <InlineMath math="x^2 + y^2 - 2x - 4y - 4 = 0" /> und <InlineMath math="x^2 + y^2 - 14x - 20y + 140 = 0" /> und berechne die kürzeste Lücke zwischen ihren Kreislinien.
+
+3. Bestimme die Lage der Kreise <InlineMath math="x^2 + y^2 = 36" /> und <InlineMath math="x^2 + y^2 - 4x - 2y + 1 = 0" />.
+
+4. Die Kreise <InlineMath math="(x - a)^2 + y^2 = 16" /> und <InlineMath math="x^2 + y^2 = 1" /> berühren sich. Bestimme alle möglichen Werte von <InlineMath math="a" />.
+
+### Lösungen
+
+**Aufgabe 1**. Der erste Kreis hat den Mittelpunkt <InlineMath math="O" /> und <InlineMath math="r_1 = 2" />. Der zweite Kreis lässt sich als <InlineMath math="(x - 5)^2 + y^2 = 9" /> schreiben, hat also den Mittelpunkt <InlineMath math="(5, 0)" /> und <InlineMath math="r_2 = 3" />. Der Abstand ist <InlineMath math="d = 5 = 2 + 3" />, also **berühren sich die Kreise von außen**. Der Berührpunkt ist <InlineMath math="T = (0, 0) + \frac{2}{5}(5, 0) = (2, 0)" />. Probe: <InlineMath math="2^2 + 0^2 = 4" /> und <InlineMath math="(2 - 5)^2 + 0^2 = 9" />.
+
+**Aufgabe 2**. Ergänze in beiden Gleichungen quadratisch:
+
+<MathContainer>
+  <BlockMath math="(x - 1)^2 + (y - 2)^2 = 1 + 4 + 4 = 9" />
+  <BlockMath math="(x - 7)^2 + (y - 10)^2 = 49 + 100 - 140 = 9" />
+</MathContainer>
+
+Beide Kreise haben den Radius <InlineMath math="3" />, mit den Mittelpunkten <InlineMath math="(1, 2)" /> und <InlineMath math="(7, 10)" />. Der Abstand ist <InlineMath math="d = \sqrt{6^2 + 8^2} = 10" />, größer als <InlineMath math="3 + 3 = 6" />, also liegen die Kreise **getrennt außerhalb voneinander**. Die kürzeste Lücke ist <InlineMath math="10 - 6 = 4" />. Probe: Der Punkt <InlineMath math="(1, 2) + \frac{3}{10}(6, 8) = \left(\frac{14}{5}, \frac{22}{5}\right)" /> auf dem ersten Kreis und der Punkt <InlineMath math="(7, 10) - \frac{3}{10}(6, 8) = \left(\frac{26}{5}, \frac{38}{5}\right)" /> auf dem zweiten Kreis liegen <InlineMath math="\sqrt{\left(\frac{12}{5}\right)^2 + \left(\frac{16}{5}\right)^2} = 4" /> auseinander.
+
+**Aufgabe 3**. Der erste Kreis hat den Mittelpunkt <InlineMath math="O" /> und <InlineMath math="r_1 = 6" />. Der zweite Kreis lässt sich als <InlineMath math="(x - 2)^2 + (y - 1)^2 = 4" /> schreiben, hat also den Mittelpunkt <InlineMath math="(2, 1)" /> und <InlineMath math="r_2 = 2" />. Der Abstand ist <InlineMath math="d = \sqrt{5} \approx 2{,}24" />, und <InlineMath math="0 < \sqrt{5} < |6 - 2| = 4" />, also **liegt der kleine Kreis im großen, ohne ihn zu berühren**. Probe: Der Punkt des kleinen Kreises, der am weitesten von <InlineMath math="O" /> entfernt ist, hat den Abstand <InlineMath math="\sqrt{5} + 2 \approx 4{,}24" />, also weniger als <InlineMath math="6" />.
+
+**Aufgabe 4**. Der Mittelpunktsabstand ist <InlineMath math="d = |a|" />, die Radien sind <InlineMath math="4" /> und <InlineMath math="1" />. Berührung von außen liefert <InlineMath math="|a| = 4 + 1 = 5" />, Berührung von innen <InlineMath math="|a| = 4 - 1 = 3" />. Also ist <InlineMath math="a = 5" />, <InlineMath math="a = -5" />, <InlineMath math="a = 3" /> oder <InlineMath math="a = -3" />. Probe für <InlineMath math="a = 3" />: Der Punkt <InlineMath math="(-1, 0)" /> erfüllt <InlineMath math="(-1)^2 + 0^2 = 1" /> und <InlineMath math="(-1 - 3)^2 + 0^2 = 16" />, also treffen sich die Kreise dort, und der kleine Kreis liegt im großen.

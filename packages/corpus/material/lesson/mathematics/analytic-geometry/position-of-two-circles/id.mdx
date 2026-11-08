@@ -1,25 +1,35 @@
 export const metadata = {
   title: "Kedudukan Dua Lingkaran",
-  description: "Klasifikasikan dua lingkaran sebagai berpotongan, bersinggungan, terpisah, atau konsentris dari jarak pusat dan jari-jarinya.",
+  description: "Bandingkan jarak antarpusat dengan jumlah dan selisih jari-jari untuk tahu apakah dua lingkaran berpotongan, bersinggungan, atau saling lepas.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Geometri Analitik",
 };
 
+## Tujuh Kedudukan Dua Lingkaran
 
+Kedudukan dua lingkaran ditentukan oleh **jarak antarpusat <InlineMath math="d" />** yang dibandingkan dengan **jumlah jari-jari <InlineMath math="r_1 + r_2" />** dan **selisih jari-jari <InlineMath math="|r_1 - r_2|" />**. Untuk pusat <InlineMath math="(x_1, y_1)" /> dan <InlineMath math="(x_2, y_2)" />, jarak antarpusatnya adalah
 
-## Membandingkan Jarak Antarpusat dengan Jari-jari
+<BlockMath math="d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}" />
 
-Keliling dua lingkaran yang berbeda dapat berpotongan di dua titik, bersentuhan di satu titik, atau tidak memiliki titik bersama. Jika pusat dan jari-jarinya sama, kedua lingkaran berhimpit dan seluruh titik pada kelilingnya sama.
+Setelah <InlineMath math="d" /> diketahui, cocokkan dengan tabel berikut. Setiap pasangan lingkaran dengan jari-jari positif masuk ke tepat satu baris.
 
-Dalam geometri analitik, pusat dan jari-jari kedua lingkaran sudah cukup untuk menentukan kedudukannya secara tepat. Bandingkan **jarak antarpusat** dengan jumlah dan selisih mutlak kedua jari-jari.
+| Kedudukan | Syarat | Titik persekutuan |
+| --- | --- | --- |
+| Saling lepas di luar | <InlineMath math="d > r_1 + r_2" /> | tidak ada |
+| Bersinggungan luar | <InlineMath math="d = r_1 + r_2" /> | satu |
+| Berpotongan | <InlineMath math="\lvert r_1 - r_2 \rvert < d < r_1 + r_2" /> | dua |
+| Bersinggungan dalam | <InlineMath math="d = \lvert r_1 - r_2 \rvert > 0" /> | satu |
+| Satu lingkaran di dalam yang lain | <InlineMath math="0 < d < \lvert r_1 - r_2 \rvert" /> | tidak ada |
+| Konsentris | <InlineMath math="d = 0" /> dan <InlineMath math="r_1 \ne r_2" /> | tidak ada |
+| Berhimpit | <InlineMath math="d = 0" /> dan <InlineMath math="r_1 = r_2" /> | semua titik |
 
-Perbandingan yang sama digunakan untuk memeriksa apakah dua daerah berbentuk lingkaran saling tumpang tindih, bersentuhan, atau memiliki celah, misalnya pada peta jangkauan atau rancangan geometri.
+Bayangkan lingkaran kedua digeser lurus mendekati lingkaran pertama. Jarak <InlineMath math="d" /> mengecil, dan kedudukannya berganti **tepat menurut urutan baris tabel**, dari saling lepas sampai konsentris.
 
-## Lingkaran Berpotongan
+## Dua Lingkaran Berpotongan
 
-Dua lingkaran **berpotongan** jika memiliki tepat dua titik persekutuan. Daerah lingkarannya bertumpang tindih, sedangkan kelilingnya berpotongan di kedua titik tersebut.
+Dua lingkaran **berpotongan** jika kelilingnya bertemu di tepat dua titik. Daerah kedua lingkaran saling tumpang tindih di antara kedua titik itu.
 
 <LineEquation
   title="Dua Lingkaran Berpotongan"
@@ -108,19 +118,15 @@ Dua lingkaran **berpotongan** jika memiliki tepat dua titik persekutuan. Daerah 
   cameraPosition={[0, 0, 12]}
 />
 
-Untuk dua lingkaran dengan jari-jari <InlineMath math="r_1" /> dan <InlineMath math="r_2" /> serta jarak antar pusat <InlineMath math="d" />, kondisi berpotongan terjadi ketika:
+Syaratnya adalah
 
 <BlockMath math="|r_1 - r_2| < d < r_1 + r_2" />
 
-Kedua batas ketat pada pertidaksamaan menjelaskan syarat tersebut:
+Syarat ini lahir dari segitiga. Titik potong <InlineMath math="A" />, pusat <InlineMath math="P_1" />, dan pusat <InlineMath math="P_2" /> membentuk segitiga dengan sisi <InlineMath math="r_1" />, <InlineMath math="r_2" />, dan <InlineMath math="d" />. Setiap sisi segitiga lebih pendek dari jumlah dua sisi lainnya, jadi <InlineMath math="d < r_1 + r_2" /> dan <InlineMath math="d > |r_1 - r_2|" />. Saat salah satu tanda <InlineMath math="<" /> menjadi <InlineMath math="=" />, **segitiga itu gepeng menjadi satu garis**, dan kedua titik potong menyatu menjadi satu titik singgung.
 
-- **Batas atas**: Saat jarak pusat sama dengan <InlineMath math="r_1 + r_2" />, kedua lingkaran bersinggungan luar
-- **Batas bawah**: Saat jarak pusat sama dengan <InlineMath math="|r_1 - r_2|>0" />, lingkaran kecil bersinggungan dalam dengan lingkaran besar
-- **Di antara kedua batas**: Kedua keliling berpotongan di dua titik
+## Bersinggungan Luar dan Bersinggungan Dalam
 
-## Lingkaran Bersinggungan
-
-Dua lingkaran **bersinggungan** jika memiliki tepat satu titik persekutuan. Persinggungan dapat terjadi di luar kedua lingkaran atau di dalam lingkaran yang lebih besar.
+Dua lingkaran **bersinggungan** jika kelilingnya bertemu di tepat satu titik <InlineMath math="T" />. Titik singgung itu selalu terletak pada garis yang menghubungkan kedua pusat.
 
 <LineEquation
   title="Lingkaran Bersinggungan Luar"
@@ -204,13 +210,9 @@ Dua lingkaran **bersinggungan** jika memiliki tepat satu titik persekutuan. Pers
   cameraPosition={[0, 0, 12]}
 />
 
-Untuk dua lingkaran yang tidak berhimpit, ada dua kasus persinggungan:
+**Bersinggungan luar** terjadi ketika <InlineMath math="d = r_1 + r_2" />. Kedua lingkaran berada di sisi yang berlawanan dari <InlineMath math="T" />. Pada keadaan ini, kedua [garis singgung persekutuan dalam](/id/materi/matematika/lingkaran/garis-singgung-persekutuan-luar-dan-dalam) menyatu menjadi satu garis yang melalui <InlineMath math="T" /> dan tegak lurus <InlineMath math="P_1P_2" />.
 
-1. **Bersinggungan luar** terjadi ketika <InlineMath math="d = r_1 + r_2" />. Kedua lingkaran berada terpisah dan bersentuhan di satu titik.
-
-2. **Bersinggungan dalam** terjadi ketika <InlineMath math="d = |r_1 - r_2| > 0" />. Lingkaran yang lebih kecil berada di dalam lingkaran yang lebih besar dan keduanya bersentuhan di satu titik.
-
-Diagram berikut menunjukkan persinggungan dalam:
+**Bersinggungan dalam** terjadi ketika <InlineMath math="d = |r_1 - r_2| > 0" />. Lingkaran kecil berada di dalam lingkaran besar dan menyentuhnya dari dalam.
 
 <LineEquation
   title="Lingkaran Bersinggungan Dalam"
@@ -294,9 +296,13 @@ Diagram berikut menunjukkan persinggungan dalam:
   cameraPosition={[0, 0, 12]}
 />
 
-## Lingkaran Terpisah
+Pada kedua jenis persinggungan, titik singgungnya berjarak <InlineMath math="r_1" /> dari <InlineMath math="P_1" /> sepanjang arah <InlineMath math="P_1P_2" />. Pada persinggungan dalam, ambil <InlineMath math="P_1" /> sebagai pusat lingkaran yang lebih besar:
 
-Dua lingkaran saling lepas di bagian luar jika keliling maupun daerahnya tidak bertemu.
+<BlockMath math="T = P_1 + \frac{r_1}{d}\,(P_2 - P_1)" />
+
+## Saling Lepas atau Satu di Dalam yang Lain
+
+Dua lingkaran dengan pusat berbeda bisa tidak punya titik persekutuan dengan dua cara. Keduanya **saling lepas di luar** ketika <InlineMath math="d > r_1 + r_2" />.
 
 <LineEquation
   title="Dua Lingkaran Terpisah"
@@ -382,14 +388,9 @@ Dua lingkaran saling lepas di bagian luar jika keliling maupun daerahnya tidak b
   cameraPosition={[0, 0, 12]}
 />
 
-Kondisi terpisah terjadi ketika jarak antar pusat lebih besar dari jumlah kedua jari-jari:
+Celah terpendek di antara kedua keliling terletak pada garis pusat dan panjangnya <InlineMath math="d - (r_1 + r_2)" />. Tidak ada titik yang menjadi anggota kedua daerah lingkaran sekaligus.
 
-<BlockMath math="d > r_1 + r_2" />
-
-Dalam keadaan ini, tidak ada titik yang menjadi anggota kedua daerah lingkaran sekaligus.
-
-
-Satu lingkaran juga dapat berada **di dalam tanpa bersinggungan**, meskipun pusat kedua lingkaran berbeda. Pada diagram berikut, jari-jari lingkaran besar adalah <InlineMath math="4" />, jari-jari lingkaran kecil <InlineMath math="1" />, dan jarak antarpusat <InlineMath math="1" />.
+Cara kedua adalah **satu lingkaran di dalam yang lain tanpa bersinggungan**, ketika <InlineMath math="0 < d < |r_1 - r_2|" />. Pada diagram berikut, jari-jari lingkaran besar <InlineMath math="4" />, jari-jari lingkaran kecil <InlineMath math="1" />, dan jarak antarpusat <InlineMath math="1" />.
 
 <LineEquation
   title="Lingkaran di Dalam tanpa Bersinggungan"
@@ -426,11 +427,11 @@ Satu lingkaran juga dapat berada **di dalam tanpa bersinggungan**, meskipun pusa
   ]}
 />
 
-Karena <InlineMath math="0<1<4-1" />, lingkaran kecil berada sepenuhnya di dalam lingkaran besar. Pusatnya berbeda, jadi kedua lingkaran tidak konsentris.
+Karena <InlineMath math="0 < 1 < 4 - 1" />, lingkaran kecil berada sepenuhnya di dalam lingkaran besar. Celah terpendeknya <InlineMath math="|r_1 - r_2| - d = 3 - 1 = 2" />. Pusatnya berbeda, jadi kedua lingkaran ini tidak konsentris.
 
 ## Lingkaran Konsentris dan Berhimpit
 
-**Lingkaran konsentris** memiliki pusat yang sama tetapi jari-jari berbeda, seperti lingkaran-lingkaran pada papan sasaran panahan.
+**Lingkaran konsentris** memiliki pusat yang sama tetapi jari-jari berbeda, seperti cincin-cincin pada papan sasaran panahan.
 
 <LineEquation
   title="Lingkaran Konsentris"
@@ -518,46 +519,20 @@ Karena <InlineMath math="0<1<4-1" />, lingkaran kecil berada sepenuhnya di dalam
   cameraPosition={[0, 0, 12]}
 />
 
-Untuk lingkaran konsentris, jarak antar pusat adalah nol (<InlineMath math="d = 0" />) tapi jari-jari berbeda (<InlineMath math="r_1 \ne r_2" />).
+Untuk lingkaran konsentris, <InlineMath math="d = 0" /> dan <InlineMath math="r_1 \ne r_2" />. Kelilingnya tidak pernah bertemu, dan jarak antara kedua keliling sama di setiap arah, yaitu <InlineMath math="|r_1 - r_2|" />.
 
-**Lingkaran berhimpit** memiliki pusat dan jari-jari yang sama. Kedua keliling tepat saling menutupi sehingga tampak sebagai satu lingkaran.
-
-Kondisi berhimpit terjadi ketika:
+**Lingkaran berhimpit** memiliki pusat dan jari-jari yang sama. Kedua keliling tepat saling menutupi, sehingga setiap titik pada satu lingkaran juga terletak pada lingkaran lainnya:
 
 <MathContainer>
   <BlockMath math="d = 0" />
   <BlockMath math="r_1 = r_2" />
 </MathContainer>
 
-## Cara Menentukan Kedudukan
+## Contoh Kedudukan dari Persamaan Lingkaran
 
-Untuk mengelompokkan kedudukan dua lingkaran, hitung jarak antarpusat lalu bandingkan dengan jumlah dan selisih mutlak kedua jari-jari.
+Tentukan kedudukan lingkaran <InlineMath math="x^2 + y^2 = 9" /> dan <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />.
 
-Misalkan lingkaran pertama berpusat di <InlineMath math="(x_1, y_1)" /> dengan jari-jari <InlineMath math="r_1" />, dan lingkaran kedua berpusat di <InlineMath math="(x_2, y_2)" /> dengan jari-jari <InlineMath math="r_2" />.
-
-Jarak antar pusat dihitung dengan rumus:
-
-<BlockMath math="d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}" />
-
-Dengan asumsi kedua jari-jari positif, kondisi berikut mencakup semua kemungkinan dan tidak saling tumpang tindih:
-
-- **Berhimpit**: <InlineMath math="d = 0" /> dan <InlineMath math="r_1 = r_2" /> (kelilingnya sama)
-- **Konsentris tetapi berbeda**: <InlineMath math="d = 0" /> dan <InlineMath math="r_1 \ne r_2" /> (pusat sama, jari-jari berbeda)
-- **Berada di dalam tanpa bersinggungan dan tidak konsentris**: <InlineMath math="0 < d < |r_1-r_2|" /> (satu lingkaran sepenuhnya berada di dalam yang lain)
-- **Bersinggungan dalam**: <InlineMath math="d = |r_1-r_2| > 0" /> (satu titik singgung di bagian dalam)
-- **Berpotongan**: <InlineMath math="|r_1-r_2| < d < r_1+r_2" /> (dua titik persekutuan)
-- **Bersinggungan luar**: <InlineMath math="d = r_1+r_2" /> (satu titik singgung di bagian luar)
-- **Saling lepas di luar**: <InlineMath math="d > r_1+r_2" /> (kedua daerah lingkaran tidak bertemu)
-
-### Menentukan Kedudukan Dua Lingkaran dari Persamaannya
-
-Kelompokkan kedudukan lingkaran dengan persamaan <InlineMath math="x^2 + y^2 = 9" /> dan <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />.
-
-**Langkah 1**: Identifikasi pusat dan jari-jari masing-masing lingkaran.
-
-Lingkaran pertama: pusat <InlineMath math="(0, 0)" />, jari-jari <InlineMath math="r_1 = 3" />
-
-Untuk lingkaran kedua, kita lengkapkan kuadrat:
+Lingkaran pertama berpusat di <InlineMath math="(0, 0)" /> dengan <InlineMath math="r_1 = 3" />. Untuk lingkaran kedua, lengkapkan kuadrat seperti pada [persamaan lingkaran](/id/materi/matematika/geometri-analitik/persamaan-lingkaran):
 
 <MathContainer>
   <BlockMath math="x^2 + y^2 - 6x - 8y = 0" />
@@ -565,17 +540,139 @@ Untuk lingkaran kedua, kita lengkapkan kuadrat:
   <BlockMath math="(x - 3)^2 + (y - 4)^2 = 25" />
 </MathContainer>
 
-Lingkaran kedua: pusat <InlineMath math="(3, 4)" />, jari-jari <InlineMath math="r_2 = 5" />
-
-**Langkah 2**: Hitung jarak antar pusat.
-
-<BlockMath math="\begin{aligned} d &amp;= \sqrt{(3-0)^2 + (4-0)^2} \\ &amp;= \sqrt{9 + 16} \\ &amp;= \sqrt{25} \\ &amp;= 5 \end{aligned}" />
-
-**Langkah 3**: Bandingkan dengan kondisi kedudukan.
+Lingkaran kedua berpusat di <InlineMath math="(3, 4)" /> dengan <InlineMath math="r_2 = 5" />. Hitung jarak antarpusat lalu bandingkan:
 
 <MathContainer>
-  <BlockMath math="r_1 + r_2 = 3 + 5 = 8" />
-  <BlockMath math="|r_1 - r_2| = |3 - 5| = 2" />
+  <BlockMath math="d = \sqrt{(3 - 0)^2 + (4 - 0)^2} = \sqrt{25} = 5" />
+  <BlockMath math="|r_1 - r_2| = |3 - 5| = 2, \qquad r_1 + r_2 = 3 + 5 = 8" />
 </MathContainer>
 
-Karena <InlineMath math="2 < 5 < 8" />, maka kedua lingkaran **saling berpotongan**.
+Karena <InlineMath math="2 < 5 < 8" />, kedua lingkaran **berpotongan di dua titik**.
+
+<MathVisual
+  title="Dua lingkaran berpotongan dan tali busur persekutuannya"
+  description={<>Lingkaran <InlineMath math="L_1" /> berpusat di <InlineMath math="O" /> dengan jari-jari <InlineMath math="3" />, dan <InlineMath math="L_2" /> berpusat di <InlineMath math="P(3, 4)" /> dengan jari-jari <InlineMath math="5" />. Garis <InlineMath math="6x + 8y = 9" /> melalui kedua titik potong.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 9 }, y: { min: -4, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "second", kind: "circle", center: { x: 3, y: 4 }, radius: 5, appearance: "secondary" },
+      { id: "chord", kind: "line", through: [{ x: 3 / 2, y: 0 }, { x: -7 / 2, y: 15 / 4 }], appearance: "highlight" },
+      { id: "centers", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "upper", kind: "point", at: { x: (27 - 12 * Math.sqrt(91)) / 50, y: (9 - (6 * (27 - 12 * Math.sqrt(91))) / 50) / 8 }, appearance: "answer" },
+      { id: "lower", kind: "point", at: { x: (27 + 12 * Math.sqrt(91)) / 50, y: (9 - (6 * (27 + 12 * Math.sqrt(91))) / 50) / 8 }, appearance: "answer" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "center", kind: "point", at: { x: 3, y: 4 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: -3, y: 0 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 8, y: 4 }, placement: "right" },
+      { key: "chord", objectId: "chord", at: { x: -7 / 2, y: 15 / 4 }, placement: "above" },
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "center", objectId: "center", at: { x: 3, y: 4 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="L_1" />,
+    second: <InlineMath math="L_2" />,
+    chord: <InlineMath math="6x + 8y = 9" />,
+    origin: <InlineMath math="O" />,
+    center: <InlineMath math="P" />,
+  }}
+/>
+
+Periksa dengan cara lain. Kurangkan persamaan kedua dari persamaan pertama: <InlineMath math="(x^2 + y^2 - 9) - (x^2 + y^2 - 6x - 8y) = 6x + 8y - 9" />. Garis <InlineMath math="6x + 8y = 9" /> memuat kedua titik potong, karena setiap titik yang memenuhi kedua persamaan juga memenuhi selisihnya. Jarak <InlineMath math="O" /> ke garis itu <InlineMath math="\frac{9}{10}" />, lebih kecil dari <InlineMath math="r_1 = 3" />, jadi menurut [kedudukan garis terhadap lingkaran](/id/materi/matematika/geometri-analitik/kedudukan-garis-terhadap-lingkaran) garis itu memotong <InlineMath math="L_1" /> di dua titik. Hasilnya sama.
+
+## Contoh Jari-jari agar Dua Lingkaran Bersinggungan
+
+Lingkaran <InlineMath math="L_1: x^2 + y^2 = 25" /> dan lingkaran <InlineMath math="L_2" /> berpusat di <InlineMath math="P(6, 8)" /> dengan jari-jari <InlineMath math="r" />. Tentukan <InlineMath math="r" /> agar kedua lingkaran bersinggungan, lalu tentukan titik singgungnya.
+
+Jarak antarpusatnya <InlineMath math="d = \sqrt{6^2 + 8^2} = 10" />. Persinggungan luar dan persinggungan dalam memberi dua persamaan:
+
+<MathContainer>
+  <BlockMath math="\text{luar: } 5 + r = 10 \quad\Longrightarrow\quad r = 5" />
+  <BlockMath math="\text{dalam: } |r - 5| = 10 \quad\Longrightarrow\quad r = 15" />
+</MathContainer>
+
+Nilai <InlineMath math="r = -5" /> dari persamaan dalam ditolak karena **jari-jari harus positif**. Untuk <InlineMath math="r = 5" />, rumus titik singgung memberi <InlineMath math="T = (0, 0) + \frac{5}{10}(6, 8) = (3, 4)" />. Untuk <InlineMath math="r = 15" />, lingkaran <InlineMath math="L_2" /> yang lebih besar, jadi <InlineMath math="T = (6, 8) + \frac{15}{10}(-6, -8) = (-3, -4)" />.
+
+<MathVisual
+  title="Dua jari-jari yang membuat lingkaran bersinggungan"
+  description={<>Lingkaran berpusat di <InlineMath math="O" /> dengan jari-jari <InlineMath math="5" />. Lingkaran berpusat di <InlineMath math="P(6, 8)" /> menyinggung dari luar saat <InlineMath math="r = 5" /> dan dari dalam saat <InlineMath math="r = 15" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 22 }, y: { min: -8, max: 24 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base", kind: "circle", center: { x: 0, y: 0 }, radius: 5, appearance: "primary" },
+      { id: "outer", kind: "circle", center: { x: 6, y: 8 }, radius: 5, appearance: "secondary" },
+      { id: "inner", kind: "circle", center: { x: 6, y: 8 }, radius: 15, appearance: "highlight" },
+      { id: "centers", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "construction" },
+      { id: "outer-point", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "inner-point", kind: "point", at: { x: -3, y: -4 }, appearance: "answer" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "center", kind: "point", at: { x: 6, y: 8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "outer", objectId: "outer", at: { x: 11, y: 8 }, placement: "right" },
+      { key: "inner", objectId: "inner", at: { x: 6, y: 23 }, placement: "below" },
+      { key: "outer-point", objectId: "outer-point", at: { x: 3, y: 4 }, placement: "left" },
+      { key: "inner-point", objectId: "inner-point", at: { x: -3, y: -4 }, placement: "left" },
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "center", objectId: "center", at: { x: 6, y: 8 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    outer: <InlineMath math="r = 5" />,
+    inner: <InlineMath math="r = 15" />,
+    "outer-point": <InlineMath math="(3, 4)" />,
+    "inner-point": <InlineMath math="(-3, -4)" />,
+    origin: <InlineMath math="O" />,
+    center: <InlineMath math="P" />,
+  }}
+/>
+
+Periksa setiap titik singgung pada kedua lingkaran. Titik <InlineMath math="(3, 4)" /> memenuhi <InlineMath math="3^2 + 4^2 = 25" /> dan <InlineMath math="(3 - 6)^2 + (4 - 8)^2 = 25 = 5^2" />. Titik <InlineMath math="(-3, -4)" /> memenuhi <InlineMath math="(-3)^2 + (-4)^2 = 25" /> dan <InlineMath math="(-9)^2 + (-12)^2 = 225 = 15^2" />.
+
+## Kesalahan yang Sering Terjadi
+
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Hanya membandingkan <InlineMath math="d" /> dengan <InlineMath math="r_1 + r_2" /> | <InlineMath math="x^2 + y^2 = 25" /> dan <InlineMath math="(x - 1)^2 + y^2 = 1" /> punya <InlineMath math="d = 1 < 6" />, tetapi tidak berpotongan | Hitung juga <InlineMath math="\lvert r_1 - r_2 \rvert = 4" /> |
+| Menulis <InlineMath math="r_1 - r_2" /> tanpa nilai mutlak | Untuk <InlineMath math="r_1 = 3" /> dan <InlineMath math="r_2 = 5" />, hasilnya <InlineMath math="-2" /> dan batas bawahnya hilang | Pakai <InlineMath math="\lvert 3 - 5 \rvert = 2" /> |
+| Membaca <InlineMath math="r^2" /> sebagai <InlineMath math="r" /> | <InlineMath math="(x - 3)^2 + (y - 4)^2 = 25" /> berjari-jari <InlineMath math="5" />, bukan <InlineMath math="25" /> | Tarik akar ruas kanan |
+| Melengkapkan kuadrat saat koefisien <InlineMath math="x^2" /> bukan <InlineMath math="1" /> | Pusat <InlineMath math="2x^2 + 2y^2 - 8x = 0" /> terbaca salah | Bagi dulu dengan <InlineMath math="2" />, menjadi <InlineMath math="x^2 + y^2 - 4x = 0" /> |
+| Menyamakan konsentris dengan berhimpit | Lingkaran konsentris berjari-jari beda dan tidak punya titik persekutuan | Berhimpit butuh <InlineMath math="d = 0" /> dan <InlineMath math="r_1 = r_2" /> |
+
+Untuk dua lingkaran yang berpotongan, **mengurangkan kedua persamaan** adalah pemeriksaan yang paling kuat. Hasilnya garis yang memuat kedua titik potong, dan garis itu harus memotong setiap lingkaran di dua titik.
+
+## Latihan Soal
+
+Hitung pusat, jari-jari, dan jarak antarpusat dulu, lalu **cocokkan dengan tabel kedudukan**.
+
+1. Tentukan kedudukan lingkaran <InlineMath math="x^2 + y^2 = 4" /> dan <InlineMath math="x^2 + y^2 - 10x + 16 = 0" />. Jika bersinggungan, tentukan titik singgungnya.
+
+2. Tentukan kedudukan lingkaran <InlineMath math="x^2 + y^2 - 2x - 4y - 4 = 0" /> dan <InlineMath math="x^2 + y^2 - 14x - 20y + 140 = 0" />, lalu hitung celah terpendek di antara kelilingnya.
+
+3. Tentukan kedudukan lingkaran <InlineMath math="x^2 + y^2 = 36" /> dan <InlineMath math="x^2 + y^2 - 4x - 2y + 1 = 0" />.
+
+4. Lingkaran <InlineMath math="(x - a)^2 + y^2 = 16" /> dan <InlineMath math="x^2 + y^2 = 1" /> bersinggungan. Tentukan semua nilai <InlineMath math="a" /> yang mungkin.
+
+### Pembahasan
+
+**Soal 1**. Lingkaran pertama berpusat di <InlineMath math="O" /> dengan <InlineMath math="r_1 = 2" />. Lingkaran kedua dapat ditulis <InlineMath math="(x - 5)^2 + y^2 = 9" />, jadi berpusat di <InlineMath math="(5, 0)" /> dengan <InlineMath math="r_2 = 3" />. Jaraknya <InlineMath math="d = 5 = 2 + 3" />, jadi keduanya **bersinggungan luar**. Titik singgungnya <InlineMath math="T = (0, 0) + \frac{2}{5}(5, 0) = (2, 0)" />. Periksa: <InlineMath math="2^2 + 0^2 = 4" /> dan <InlineMath math="(2 - 5)^2 + 0^2 = 9" />.
+
+**Soal 2**. Lengkapkan kuadrat pada kedua persamaan:
+
+<MathContainer>
+  <BlockMath math="(x - 1)^2 + (y - 2)^2 = 1 + 4 + 4 = 9" />
+  <BlockMath math="(x - 7)^2 + (y - 10)^2 = 49 + 100 - 140 = 9" />
+</MathContainer>
+
+Kedua lingkaran berjari-jari <InlineMath math="3" />, dengan pusat <InlineMath math="(1, 2)" /> dan <InlineMath math="(7, 10)" />. Jaraknya <InlineMath math="d = \sqrt{6^2 + 8^2} = 10" />, lebih besar dari <InlineMath math="3 + 3 = 6" />, jadi keduanya **saling lepas di luar**. Celah terpendeknya <InlineMath math="10 - 6 = 4" />. Periksa: titik <InlineMath math="(1, 2) + \frac{3}{10}(6, 8) = \left(\frac{14}{5}, \frac{22}{5}\right)" /> pada lingkaran pertama dan titik <InlineMath math="(7, 10) - \frac{3}{10}(6, 8) = \left(\frac{26}{5}, \frac{38}{5}\right)" /> pada lingkaran kedua berjarak <InlineMath math="\sqrt{\left(\frac{12}{5}\right)^2 + \left(\frac{16}{5}\right)^2} = 4" />.
+
+**Soal 3**. Lingkaran pertama berpusat di <InlineMath math="O" /> dengan <InlineMath math="r_1 = 6" />. Lingkaran kedua dapat ditulis <InlineMath math="(x - 2)^2 + (y - 1)^2 = 4" />, jadi berpusat di <InlineMath math="(2, 1)" /> dengan <InlineMath math="r_2 = 2" />. Jaraknya <InlineMath math="d = \sqrt{5} \approx 2{,}24" />, dan <InlineMath math="0 < \sqrt{5} < |6 - 2| = 4" />, jadi lingkaran kecil **berada di dalam lingkaran besar tanpa bersinggungan**. Periksa: titik lingkaran kecil yang paling jauh dari <InlineMath math="O" /> berjarak <InlineMath math="\sqrt{5} + 2 \approx 4{,}24" />, masih kurang dari <InlineMath math="6" />.
+
+**Soal 4**. Jarak antarpusatnya <InlineMath math="d = |a|" />, dengan jari-jari <InlineMath math="4" /> dan <InlineMath math="1" />. Persinggungan luar memberi <InlineMath math="|a| = 4 + 1 = 5" />, dan persinggungan dalam memberi <InlineMath math="|a| = 4 - 1 = 3" />. Jadi <InlineMath math="a = 5" />, <InlineMath math="a = -5" />, <InlineMath math="a = 3" />, atau <InlineMath math="a = -3" />. Periksa untuk <InlineMath math="a = 3" />: titik <InlineMath math="(-1, 0)" /> memenuhi <InlineMath math="(-1)^2 + 0^2 = 1" /> dan <InlineMath math="(-1 - 3)^2 + 0^2 = 16" />, jadi kedua lingkaran bertemu di sana, dan lingkaran kecil berada di dalam lingkaran besar.
