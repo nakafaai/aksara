@@ -3,7 +3,7 @@ export const metadata = {
   description: "Perkirakan persentil data kelompok dari tabel frekuensi kumulatif, lalu jelaskan posisi persentil tersebut dalam distribusi data.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -28,6 +28,16 @@ Persentil menunjukkan <Highlight>posisi relatif suatu nilai dalam distribusi</Hi
 ## Cara Mencari Nilai Persentil Data Kelompok
 
 Seperti pada kuartil, data kelompok memerlukan **interpolasi** untuk memperkirakan nilai persentil <InlineMath math="P_i" /> di dalam kelasnya. Caranya terdiri dari dua tahap: temukan kelas yang memuat peringkat yang dicari, lalu lakukan interpolasi di dalam kelas tersebut. Tabel contoh di bawah menerapkan kedua tahap itu pada data yang sama.
+
+Jumlahkan frekuensinya kelas demi kelas untuk mendapat frekuensi kumulatif <InlineMath math="4, 14, 30, 40" />. Batang terakhir selalu total <InlineMath math="40" />, dan kelas tempat batang pertama kali melewati posisi target adalah kelas untuk interpolasi.
+
+<BarChart
+  title={<>Frekuensi kumulatif setiap kelas</>}
+  description={<>Batang untuk setiap kelas yang menunjukkan banyak data sampai tepi atasnya, sampai 40.</>}
+  yAxisLabel="Frekuensi kumulatif"
+  data={[["61-70", 4], ["71-80", 4 + 10], ["81-90", 4 + 10 + 16], ["91-100", 4 + 10 + 16 + 10]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Frekuensi kumulatif", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Cari Letak Kelas Persentil
 
@@ -101,6 +111,41 @@ Hitung <InlineMath math="P_{85}" />:
 </MathContainer>
 
 Perkiraan persentil ke-<InlineMath math="85" /> adalah <InlineMath math="94{,}5" />. Dalam model interpolasi data kelompok, sekitar <InlineMath math="85\%" /> nilai berada pada atau di bawah <InlineMath math="94{,}5" />, sedangkan sekitar <InlineMath math="15\%" /> berada di atasnya.
+
+Nilai ulangan matematika dalam bentuk histogram: kelas <InlineMath math="81\text{-}90" /> berisi siswa terbanyak, <InlineMath math="16" /> dari <InlineMath math="40" /> siswa.
+
+<HistogramChart
+  title={<>Nilai ulangan matematika per kelas</>}
+  description={<>Banyak siswa di setiap kelas nilai ulangan.</>}
+  yAxisLabel="Siswa"
+  data={[{ name: "61-70", value: 4 }, { name: "71-80", value: 10 }, { name: "81-90", value: 16 }, { name: "91-100", value: 10 }]}
+  chartConfig={{ value: { label: "Siswa", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Persentil adalah sebuah ketinggian pada garis frekuensi kumulatif. <InlineMath math="20\%" /> dari <InlineMath math="40" /> siswa adalah ketinggian <InlineMath math="8" />, yang dicapai garis di atas <InlineMath math="P_{20} = 74{,}5" />. <InlineMath math="85\%" /> adalah ketinggian <InlineMath math="34" />, yang dicapai di atas <InlineMath math="P_{85} = 94{,}5" />.
+
+<MathVisual
+  title={<>Persentil pada garis frekuensi kumulatif</>}
+  description={<>Garis frekuensi kumulatif nilai ulangan, dibaca di 8 untuk <InlineMath math="P_{20} = 74{,}5" /> dan di 34 untuk <InlineMath math="P_{85} = 94{,}5" />.</>}
+  labels={{
+    p20: <InlineMath math="P_{20}" />,
+    p85: <InlineMath math="P_{85}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 60, max: 101 }, y: { min: -2, max: 41 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ogive", kind: "polyline", vertices: [{ x: 60.5, y: 0 }, { x: 70.5, y: 4 }, { x: 80.5, y: 14 }, { x: 90.5, y: 30 }, { x: 100.5, y: 40 }], appearance: "secondary" },
+      { id: "p20", kind: "polyline", vertices: [{ x: 60.5, y: 8 }, { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 8 }, { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 0 }], appearance: "primary" },
+      { id: "p85", kind: "polyline", vertices: [{ x: 60.5, y: 34 }, { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 34 }, { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 0 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "p20", objectId: "p20", at: { x: 70.5 + ((0.2 * 40 - 4) / 10) * 10, y: 0 }, placement: "below" },
+      { key: "p85", objectId: "p85", at: { x: 90.5 + ((0.85 * 40 - 30) / 10) * 10, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Latihan
 

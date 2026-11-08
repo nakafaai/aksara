@@ -3,7 +3,7 @@ export const metadata = {
   description: "Estimate the mean of grouped data from class midpoints and frequencies through a complete worked example.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Statistics",
 };
 
@@ -38,6 +38,17 @@ The quantities in this formula are:
 - <InlineMath math="x_i" /> is the midpoint of class <InlineMath math="i" />.
 - <InlineMath math="\sum (f_i \times x_i)" /> is the sum of each class frequency multiplied by its midpoint.
 - <InlineMath math="\sum f_i" /> is the sum of all frequencies, equal to the total number of values <InlineMath math="n" />.
+
+Each class contributes its midpoint times its frequency. The bars are <InlineMath math="76, 451, 704, 47" />, they add up to <InlineMath math="1278" />, and dividing by the <InlineMath math="30" /> students gives the grouped mean <InlineMath math="42.6" />.
+
+<BarChart
+  title={<>Frequency times midpoint for each class</>}
+  description={<>Bar for each shoe size class showing <InlineMath math="f_i x_i" />, which add up to 1278.</>}
+  yAxisLabel="Frequency times midpoint"
+  data={[["37-39", 2 * 38], ["40-42", 11 * 41], ["43-45", 16 * 44], ["46-48", 1 * 47]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Frequency times midpoint", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Average Shoe Size from Grouped Data
 
 Consider the grouped data for shoe sales at Store A:
@@ -68,3 +79,35 @@ The sum of the products estimates the sum of all shoe sizes. Divide it by the **
 </MathContainer>
 
 This result is an **estimate** because <Highlight>the midpoint stands in for every value</Highlight> within its class. It is the standard estimate when only grouped frequencies are available.
+
+The histogram shows why the shoe sizes cannot be listed one by one: we only know how many fall in each class. Most of the <InlineMath math="30" /> students sit in the classes <InlineMath math="40\text{-}42" /> and <InlineMath math="43\text{-}45" />.
+
+<HistogramChart
+  title={<>Shoe sizes of 30 students</>}
+  description={<>The number of students in each shoe size class.</>}
+  yAxisLabel="Students"
+  data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 16 }, { name: "46-48", value: 1 }]}
+  chartConfig={{ value: { label: "Students", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Each class now stands at its midpoint with its frequency as the height. The grouped mean <InlineMath math="1278 / 30 = 42.6" /> is the balance point of these weighted midpoints: the heavy point at <InlineMath math="44" /> with frequency <InlineMath math="16" /> pulls it to the right of <InlineMath math="41" />.
+
+<MathVisual
+  title={<>Midpoints weighted by frequency</>}
+  description={<>The frequency polygon through the midpoints 38, 41, 44 and 47, with the grouped mean <InlineMath math="42.6" /> marked.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 42.6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 36, max: 49 }, y: { min: -0.5, max: 18 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "poly", kind: "polyline", vertices: [{ x: 38, y: 2 }, { x: 41, y: 11 }, { x: 44, y: 16 }, { x: 47, y: 1 }], appearance: "secondary" },
+      { id: "mean", kind: "segment", from: { x: 1278 / 30, y: 0 }, to: { x: 1278 / 30, y: 17 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 1278 / 30, y: 17 }, placement: "above" },
+    ],
+  }}
+/>

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Write column and row vectors, transpose them, and use Cartesian unit vectors in linear algebra calculations.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-04-12",
-   dateModified: "2026-09-19",
+   dateModified: "2026-11-08",
    subject: "Vector and Operations",
 };
 
@@ -25,6 +25,34 @@ In three dimensions, the row <InlineMath math="(2 \; 1 \; 3)" /> or <InlineMath 
 
 <BlockMath math="\begin{pmatrix} 2 \\ 1 \\ 3 \end{pmatrix} = \begin{bmatrix} 2 \\ 1 \\ 3 \end{bmatrix}" />
 
+Both notations describe the same arrow. <InlineMath math="(3 \; 4)" /> as a row and <InlineMath math="\begin{pmatrix} 3 \\ 4 \end{pmatrix}" /> as a column both mean: 3 to the right, then 4 up. The arrow from the origin to <InlineMath math="(3, 4)" /> has length <InlineMath math="\sqrt{3^2 + 4^2} = 5" />.
+
+<MathVisual
+  title={<>One vector, two notations</>}
+  description={<>The vector with components 3 and 4 as an arrow from the origin, with its horizontal and vertical components drawn.</>}
+  labels={{
+    v: <InlineMath math="(3 \; 4)" />,
+    cx: <InlineMath math="3" />,
+    cy: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "cx", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "cy", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "tip", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 1.5, y: 2 }, placement: "above-left" },
+      { key: "cx", objectId: "cx", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "cy", objectId: "cy", at: { x: 3, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Equivalent Component Representations
 
 The same component vector can be represented in several useful ways:
@@ -42,6 +70,32 @@ The same component vector can be represented in several useful ways:
    <BlockMath math="2\mathbf{i} + \mathbf{j} + 3\mathbf{k}" />
 
 All three expressions describe the **same vector**. The first two display its components as a column, while the third expresses those components along the Cartesian unit vectors. Symbols with vertical bars must be read from context: <InlineMath math="\det A" /> or <InlineMath math="|A|" /> may denote the determinant of a square matrix, <InlineMath math="|x|" /> denotes the absolute value of a scalar, and <InlineMath math="\lVert \vec{v} \rVert" /> denotes the magnitude, or norm, of a vector.
+
+A vector stores only a change, not a starting point. The arrow from <InlineMath math="(0, 0)" /> to <InlineMath math="(3, 4)" /> and the arrow from <InlineMath math="(2, -1)" /> to <InlineMath math="(5, 3)" /> both move 3 right and 4 up, so both are the vector <InlineMath math="(3 \; 4)" />, written as a row or as a column.
+
+<MathVisual
+  title={<>Equal vectors from different starting points</>}
+  description={<>Two arrows, from <InlineMath math="(0, 0)" /> and from <InlineMath math="(2, -1)" />, with the same components 3 and 4.</>}
+  labels={{
+    a: <InlineMath math="(3 \; 4)" />,
+    b: <InlineMath math="(3 \; 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.8 }, y: { min: -1.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 2, y: -1 }, to: { x: 5, y: 3 }, appearance: "secondary" },
+      { id: "a0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "b0", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3.5, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Unit Vectors in Cartesian Coordinate System
 
@@ -80,6 +134,28 @@ The same three unit vectors written as columns keep their components in the same
 
 The first matrix is the unit vector along the <InlineMath math="x" />-axis, the second is along the <InlineMath math="y" />-axis, and the third is along the <InlineMath math="z" />-axis.
 
+In space a vector has three components. <InlineMath math="(2 \; 1 \; 3)" /> means <InlineMath math="2\vec{i} + \vec{j} + 3\vec{k}" />: 2 along x, 1 along y, 3 along z. The path of the three steps ends at the tip of the arrow. Rotate the scene to see the steps from every side.
+
+<MathVisual
+  title={<>A vector in space and its unit-vector steps</>}
+  description={<>The vector <InlineMath math="(2 \; 1 \; 3)" /> from the origin, with the path of 2 along x, 1 along y and 3 along z.</>}
+  labels={{
+    v: <InlineMath math="(2 \; 1 \; 3)" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 2 }, z: { min: 0, max: 3.5 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "steps", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 2, y: 1, z: 3 }], appearance: "construction" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 1, z: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 2, y: 1, z: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Relationship Between Column and Row Vectors
 
 Column and row vectors are related through the transpose operation. **Transpose** is an operation that changes rows into columns or vice versa.
@@ -101,7 +177,6 @@ Its transpose is a row vector:
 Column and row vectors have different shapes in operations such as matrix multiplication. Keep the chosen form consistent so that matrix dimensions match.
 
 In computing, column and row vectors are used to represent data and variables in numerical programming, image processing, artificial intelligence, and many other fields.
-
 
 Row and column shapes determine the **product shape**. Take the two components already used above:
 

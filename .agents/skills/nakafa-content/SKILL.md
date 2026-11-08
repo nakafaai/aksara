@@ -96,12 +96,16 @@ Read only what the task needs. Each reference owns one concern.
   Name objects, actions, conditions, and results. Preserve technical meaning and
   necessary reasoning. Follow the locale's voice and terminology rules without
   imposing one lesson template or inventing anecdotes, settings, or metaphors.
+- Never write formally, in any locale or on any surface: Nakafa speaks to one
+  reader like a teacher to one learner, casual but never cringe, and the
+  [voice reference](references/voice.md) owns each locale's address. Only an
+  assessed prompt keeps the exam's own language.
 - Keep genre boundaries explicit. Lessons use teacher-led pedagogy. Articles
-  use a professional scientific-journal register for professional readers,
-  preserve claim-matched sources and author-written charts, tables, and other
-  evidence, and never receive lesson choreography. Assessed questions keep the
-  source-owned real-exam language and difficulty. Worked answers use complete
-  post-attempt pedagogy without rewriting the assessed prompt.
+  use plain, warm, evidence-led prose, preserve claim-matched sources and
+  author-written charts, tables, and other evidence, and never receive lesson
+  choreography. Assessed questions keep the source-owned real-exam language and
+  difficulty. Worked answers use complete post-attempt pedagogy without
+  rewriting the assessed prompt.
 - Keep facts and source attribution verified. Preserve claim-matched provenance
   when changing the page outline or removing a resource. A learner-visible
   external resource must satisfy the [link policy](references/links.md).

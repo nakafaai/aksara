@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$4\\pi+9$$",
-        },
-        {
-          correct: false,
-          label: "$$80-4\\pi$$",
-        },
-        {
-          correct: false,
-          label: "$$71+4\\pi$$",
+          label: "$$308$$ liter",
         },
         {
           correct: true,
-          label: "$$71-4\\pi$$",
+          label: "$$3{.}080$$ liter",
         },
         {
           correct: false,
-          label: "$$80-9\\pi$$",
+          label: "$$4{.}400$$ liter",
+        },
+        {
+          correct: false,
+          label: "$$12{.}320$$ liter",
+        },
+        {
+          correct: false,
+          label: "$$30{.}800$$ liter",
         },
       ],
     },

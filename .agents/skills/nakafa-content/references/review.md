@@ -10,6 +10,13 @@
   sentence stands on its own in the target language.
 - Ask whether a teacher could say every sentence to a student without first
   explaining the wording itself.
+- Read every sentence for register in every locale and genre, articles
+  included. Rewrite a sentence that sounds like a textbook, a government letter,
+  or a contract: stiff `tersebut`, `dapat dilihat bahwa`, `es ist zu beachten`,
+  `one must`, `the reader should`, `it should be noted that`, and `shall`. Then
+  read it once more for the opposite failure, and remove slang, forced jokes,
+  invented anecdotes, and decoration. The gate blocks formal address in
+  Indonesian and German; English register depends on this read.
 - Retell the lesson aloud from start to finish. Confirm that each paragraph
   follows from a named fact, question, example, or result and gives the learner
   enough context for the next step. Reject a transition that only announces the

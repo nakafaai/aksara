@@ -3,7 +3,7 @@ export const metadata = {
     description: "Use conditional probability correctly, distinguish dependence from independence, and solve sequential selection problems.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-24",
+    dateModified: "2026-11-08",
     subject: "Combinatorics",
 };
 
@@ -33,6 +33,32 @@ Rearranging the definition gives the general multiplication rule:
 If the events are independent, learning <InlineMath math="A" /> does not change the probability of <InlineMath math="B" />:
 
 <BlockMath math="P(B|A) = P(B)" />
+
+Dependence shows up in an area model too. The left strip, of width <InlineMath math="\frac{13}{52}" />, is a heart on the first draw. Inside it, only <InlineMath math="\frac{12}{51}" /> of the height is a second heart, so the shaded corner has area <InlineMath math="\frac{13}{52} \cdot \frac{12}{51} = \frac{1}{17}" />.
+
+<MathVisual
+  title={<>Two hearts in a row as an area</>}
+  description={<>A unit square: the strip of width <InlineMath math="\frac{13}{52}" /> for a first heart and, inside it, the part of height <InlineMath math="\frac{12}{51}" /> for a second heart.</>}
+  labels={{
+    first: <InlineMath math="\tfrac{13}{52}" />,
+    both: <InlineMath math="\tfrac{1}{17}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 1.1 }, y: { min: -0.15, max: 1.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "first", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 13 / 52, y: 0 }, { x: 13 / 52, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "both", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 13 / 52, y: 0 }, { x: 13 / 52, y: 12 / 51 }, { x: 0, y: 12 / 51 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 13 / 104, y: 1 }, placement: "above" },
+      { key: "both", objectId: "both", at: { x: 13 / 52, y: 6 / 51 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Application to Card Drawing
 
 Drawing without replacement changes the sample space after each card leaves the deck. Both examples below update the probabilities at the second draw. Because the first card is not returned, the **denominator of the second probability** is one smaller.
@@ -56,6 +82,45 @@ Probability calculation:
 
 After one Ace is drawn, <InlineMath math="51 \text{ cards}" /> remain. All <InlineMath math="4 \text{ Kings}" /> are still present, so the conditional probability of drawing a King is <InlineMath math="\frac{4}{51}" />.
 
+Without replacement, the second branch depends on the first. Draw an ace with probability <InlineMath math="\frac{4}{52}" />. Then 51 cards are left and all 4 kings are still there, so a king follows with <InlineMath math="\frac{4}{51}" />. Multiply along the path: <InlineMath math="\frac{4}{52} \cdot \frac{4}{51} = \frac{16}{2652} = \frac{4}{663}" />.
+
+<MathVisual
+  title={<>Ace then king without replacement</>}
+  description={<>A tree for two draws: ace or not first, then, after an ace, king or not, with the second probabilities taken from the 51 remaining cards.</>}
+  labels={{
+    b0: <InlineMath math="\text{ace}\ \tfrac{4}{52}" />,
+    b1: <InlineMath math="\text{no ace}\ \tfrac{48}{52}" />,
+    h0: <InlineMath math="\text{king}\ \tfrac{4}{51}" />,
+    h1: <InlineMath math="\text{no king}\ \tfrac{47}{51}" />,
+    p0: <InlineMath math="\tfrac{4}{663}" />,
+    p1: <InlineMath math="\tfrac{47}{663}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -2.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "root", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "b0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "n0", kind: "point", at: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "b1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1.8 }, appearance: "reference" },
+      { id: "n1", kind: "point", at: { x: 2, y: -1.8 }, appearance: "reference" },
+      { id: "l0", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "e0", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "l1", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 0.6 }, appearance: "secondary" },
+      { id: "e1", kind: "point", at: { x: 4, y: 0.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b0", objectId: "b0", at: { x: 1, y: 1.8 / 2 }, placement: "above" },
+      { key: "b1", objectId: "b1", at: { x: 1, y: -1.8 / 2 }, placement: "above" },
+      { key: "h0", objectId: "l0", at: { x: 3, y: (1.8 + 3) / 2 }, placement: "above" },
+      { key: "p0", objectId: "e0", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "h1", objectId: "l1", at: { x: 3, y: (1.8 + 0.6) / 2 }, placement: "above" },
+      { key: "p1", objectId: "e1", at: { x: 4, y: 0.6 }, placement: "right" },
+    ],
+  }}
+/>
+
 ### Probability of Drawing Two Hearts in Sequence
 
 To see how the **favorable count** can change, consider drawing two Hearts in a row:
@@ -66,6 +131,17 @@ To see how the **favorable count** can change, consider drawing two Hearts in a 
 The probability of drawing Hearts on both draws is therefore:
 
 <BlockMath math="\begin{aligned} P(A \cap B) &amp;= \frac{13}{52} \times \frac{12}{51} \\ &amp;= \frac{156}{2652} \\ &amp;= \frac{1}{17} \end{aligned}" />
+
+Compare the chance of a heart on the second draw. With replacement it stays <InlineMath math="\frac{13}{52} = 0.25" />. Without replacement, after a first heart only <InlineMath math="12" /> hearts remain among <InlineMath math="51" /> cards, so it drops to <InlineMath math="\frac{12}{51} \approx 0.235" />. The first draw changed the sample space.
+
+<BarChart
+  title={<>Second heart with and without replacement</>}
+  description={<>The probability of a heart on the second draw after a first heart, with replacement and without replacement.</>}
+  yAxisLabel="Probability"
+  data={[["with replacement", 13 / 52], ["without replacement", 12 / 51]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Application in Management Selection
 
 Suppose a company has the following manager data. The table distinguishes gender and job level, allowing us to restrict a calculation to the relevant group.
@@ -179,4 +255,4 @@ A standard deck has <InlineMath math="52 \text{ cards}" />, including <InlineMat
 <BlockMath math="\begin{aligned} P(A \cap K \cap Q) &amp;= \frac{4}{52} \times \frac{4}{51} \times \frac{4}{50} \\ &amp;= \frac{1}{13} \times \frac{4}{51} \times \frac{2}{25} \\ &amp;= \frac{8}{16575} \end{aligned}" />
 </MathContainer>
 
-Each draw **reduces the total number of cards** (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />). The next required rank still has all <InlineMath math="4" /> cards available: drawing an Ace does not remove a King, and drawing a King does not remove a Queen.
+Each draw **reduces the total number of cards** (<InlineMath math="52 \rightarrow 51 \rightarrow 50" />). The next required rank still has all <InlineMath math="4" /> cards available: drawing an Ace does not remove a King, and drawing a King does not remove a Queen.

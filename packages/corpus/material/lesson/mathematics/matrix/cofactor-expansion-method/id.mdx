@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung determinan matriks dengan ekspansi kofaktor melalui minor dan perhitungan bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -145,3 +145,102 @@ Setelah semua kofaktor didapatkan, kita masukkan kembali ke rumus determinan:
 Jadi, determinan dari matriks <InlineMath math="P" /> adalah <InlineMath math="-12" />.
 
 Perhatikan <InlineMath math="k_{12}=(-1)(-2)=2" />. Posisi dengan tanda minus dapat menghasilkan **kofaktor positif** jika minornya negatif. Jangan memberi tanda minus dua kali ketika memasukkan kofaktor ke jumlah akhir.
+
+Tiga kofaktor baris 1 juga punya bentuk. Baris 2 dan 3 matriks <InlineMath math="P" /> membentuk jajargenjang. Panah <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" /> tegak lurus terhadap jajargenjang itu, dan panjangnya <InlineMath math="\sqrt{184}" /> sama dengan luas jajargenjang tersebut. Ekspansi <InlineMath math="(1)(6) + (3)(2) + (2)(-12) = -12" /> sama dengan panjang panah itu dikali seberapa jauh baris 1 menjangkau searah panah itu. Putar adegannya: baris 1 mengarah ke sisi seberang jajargenjang, dan itulah sebabnya determinannya negatif.
+
+<MathVisual
+  title={<>Kofaktor baris 1 membentuk panah yang menembus dua baris lain</>}
+  description={<>Baris 2 dan 3 matriks <InlineMath math="P" /> membentuk jajargenjang. Panah kofaktor <InlineMath math="(6, 2, -12)" /> tegak lurus terhadapnya, dan baris 1 condong menjauhi panah itu.</>}
+  labels={{
+    base: <>baris 2 dan 3</>,
+    normal: <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" />,
+    row1: <>baris 1 <InlineMath math="(1, 3, 2)" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: 0, max: 16 }, z: { min: -13, max: 7 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "base", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 6, z: 2 }, { x: 7, y: 15, z: 6 }, { x: 5, y: 9, z: 4 }], appearance: "secondary" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 6, y: 2, z: -12 }, appearance: "answer" },
+      { id: "row1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 3, z: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "base", objectId: "base", at: { x: 7, y: 15, z: 6 }, placement: "above" },
+      { key: "normal", objectId: "normal", at: { x: 6, y: 2, z: -12 }, placement: "below" },
+      { key: "row1", objectId: "row1", at: { x: 1, y: 3, z: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Tanda <InlineMath math="(-1)^{i+j}" /> mengikuti pola papan catur. Mulai dengan <InlineMath math="+" /> di pojok kiri atas, lalu bergantian di sepanjang setiap baris dan kolom. Itulah sebabnya kofaktor baris 1 bertanda <InlineMath math="+, -, +" />, dan <InlineMath math="k_{12} = -M_{12}" />.
+
+<MathVisual
+  title={<>Pola tanda <InlineMath math="(-1)^{i+j}" /></>}
+  description={<>Setiap posisi matriks 3 kali 3 bertanda <InlineMath math="+" /> jika <InlineMath math="i+j" /> genap dan <InlineMath math="-" /> jika ganjil.</>}
+  labels={{
+    s11: <InlineMath math="+" />,
+    s12: <InlineMath math="-" />,
+    s13: <InlineMath math="+" />,
+    s21: <InlineMath math="-" />,
+    s22: <InlineMath math="+" />,
+    s23: <InlineMath math="-" />,
+    s31: <InlineMath math="+" />,
+    s32: <InlineMath math="-" />,
+    s33: <InlineMath math="+" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "s12", kind: "point", at: { x: 2, y: -1 }, appearance: "warning" },
+      { id: "s13", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+      { id: "s21", kind: "point", at: { x: 1, y: -2 }, appearance: "warning" },
+      { id: "s22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "s23", kind: "point", at: { x: 3, y: -2 }, appearance: "warning" },
+      { id: "s31", kind: "point", at: { x: 1, y: -3 }, appearance: "primary" },
+      { id: "s32", kind: "point", at: { x: 2, y: -3 }, appearance: "warning" },
+      { id: "s33", kind: "point", at: { x: 3, y: -3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "s11", objectId: "s11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "s12", objectId: "s12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "s13", objectId: "s13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "s21", objectId: "s21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "s22", objectId: "s22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "s23", objectId: "s23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "s31", objectId: "s31", at: { x: 1, y: -3 }, placement: "above-right" },
+      { key: "s32", objectId: "s32", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "s33", objectId: "s33", at: { x: 3, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Setiap minor adalah determinan kecil yang bisa digambar. Coret baris 1 dan kolom 1 matriks <InlineMath math="P" />, maka tersisa baris <InlineMath math="(6, 2)" /> dan <InlineMath math="(9, 4)" />. Keduanya membentuk jajargenjang seluas <InlineMath math="6 \cdot 4 - 2 \cdot 9 = 6" />, yaitu <InlineMath math="M_{11}" />, dan dengan tanda <InlineMath math="+" /> hasilnya <InlineMath math="k_{11} = 6" />.
+
+<MathVisual
+  title={<>Minor <InlineMath math="M_{11}" /> sebagai luas</>}
+  description={<>Jajargenjang yang dibentuk <InlineMath math="(6, 2)" /> dan <InlineMath math="(9, 4)" />, baris yang tersisa setelah baris 1 dan kolom 1 dicoret, seluas 6.</>}
+  labels={{
+    area: <InlineMath math="M_{11} = 6" />,
+    r1: <InlineMath math="(6, 2)" />,
+    r2: <InlineMath math="(9, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 16 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 6, y: 2 }, { x: 15, y: 6 }, { x: 9, y: 4 }], appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: 6, y: 2 }, appearance: "secondary" },
+      { id: "r2", kind: "point", at: { x: 9, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "area", objectId: "area", at: { x: 7.5, y: 3 }, placement: "above-left" },
+      { key: "r1", objectId: "r1", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "r2", objectId: "r2", at: { x: 9, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>

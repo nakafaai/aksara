@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$(4,-1)$$",
-        },
-        {
           correct: true,
-          label: "$$(-1,4)$$",
+          label: "$$B'(1,-4)$$ dan luasnya $$28$$ satuan luas",
         },
         {
           correct: false,
-          label: "$$(1,4)$$",
+          label: "$$B'(1,-4)$$ dan luasnya $$14$$ satuan luas",
         },
         {
           correct: false,
-          label: "$$(-1,-4)$$",
+          label: "$$B'(1,8)$$ dan luasnya $$28$$ satuan luas",
         },
         {
           correct: false,
-          label: "$$(1,-4)$$",
+          label: "$$B'(-2,-10)$$ dan luasnya $$28$$ satuan luas",
+        },
+        {
+          correct: false,
+          label: "$$B'(1,-4)$$ dan luasnya $$7$$ satuan luas",
         },
       ],
     },

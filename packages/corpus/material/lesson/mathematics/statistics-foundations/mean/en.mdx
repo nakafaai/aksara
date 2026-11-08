@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate the mean, see how an extreme value affects it, and compare it with the median and mode through a realistic example.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistics",
 };
 
@@ -29,6 +29,38 @@ The quantities in this formula are:
 - <InlineMath math="\bar{x}" />, read "x bar," represents the **mean**.
 - <InlineMath math="\sum x" />, read "sigma x," represents the **sum of all data values**.
 - <InlineMath math="n" /> is the **number of data values**.
+
+Picture the ten counts as dots on a number line and the mean as the point where the line balances. The dots left of <InlineMath math="6" /> sit <InlineMath math="3 + 3 + 2 + 1 + 1 = 10" /> units away in total, and the dots on the right sit <InlineMath math="1 + 2 + 3 + 4 = 10" /> units away. The distances cancel exactly at the mean.
+
+<MathVisual
+  title={<>The mean is the balance point</>}
+  description={<>Dots for <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10" /> on a number line, balanced on a support at the mean <InlineMath math="6" />.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 11 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 2, y: 0 }, to: { x: 11, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 3, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 3, y: 1.2 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 4, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 5, y: 0.6 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 5, y: 1.2 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 6, y: 0.6 }, appearance: "primary" },
+      { id: "d6", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d7", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d8", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d9", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "mean", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 6 - 0.5, y: -0.5 }, { x: 6 + 0.5, y: -0.5 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 6 - 0.5, y: -0.5 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Effect of Large Values on Mean Median and Mode
 
@@ -125,6 +157,43 @@ Adding <InlineMath math="20" /> and <InlineMath math="22" />, two values far abo
 
 The median also changes, but less sharply. The mode does not change at all.
 
+Now add the two large values <InlineMath math="20" /> and <InlineMath math="22" />. The balance point has to slide right to <InlineMath math="102 / 12 = 8.5" /> to keep the far dots in balance. The median, the middle of the sorted list, only moves from <InlineMath math="5.5" /> to <InlineMath math="6.5" />.
+
+<MathVisual
+  title={<>Two large values pull the mean</>}
+  description={<>The twelve values on a number line with the mean <InlineMath math="8.5" /> as the support and the median <InlineMath math="6.5" /> marked separately.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 8.5" />,
+    median: <InlineMath math="\operatorname{Me} = 6.5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 23 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 2, y: 0 }, to: { x: 23, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 3, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 3, y: 1.2 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 4, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 5, y: 0.6 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 5, y: 1.2 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 6, y: 0.6 }, appearance: "primary" },
+      { id: "d6", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d7", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d8", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d9", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "d10", kind: "point", at: { x: 20, y: 0.6 }, appearance: "primary" },
+      { id: "d11", kind: "point", at: { x: 22, y: 0.6 }, appearance: "primary" },
+      { id: "mean", kind: "polygon", vertices: [{ x: 102 / 12, y: 0 }, { x: 102 / 12 - 0.5, y: -0.5 }, { x: 102 / 12 + 0.5, y: -0.5 }], appearance: "answer" },
+      { id: "median", kind: "segment", from: { x: 6.5, y: 0 }, to: { x: 6.5, y: 1.4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 102 / 12 + 0.5, y: -0.5 }, placement: "right" },
+      { key: "median", objectId: "median", at: { x: 6.5, y: 1.4 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Impact of an Extreme Value
 
 Replace the <InlineMath math="12" />th student's donation with <InlineMath math="100 \text{ items}" />, then recalculate the mean to measure the effect of this unusually large value.
@@ -151,3 +220,13 @@ Data becomes: <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 20, 100" /> (<Inl
     Mode remains <InlineMath math="3" /> and <InlineMath math="5" />.
 
 An extreme value may be classified as an **outlier** under a stated statistical rule or through domain judgment. In this example, replacing <InlineMath math="22" /> with <InlineMath math="100" /> changes the sum but leaves the middle positions and highest frequencies unchanged. The mean therefore rises, while the median and modes stay the same. Choose a measure of center according to the quantity you want to describe.
+
+Here is each member's count as a bar. The tallest bar is <InlineMath math="10" /> and the shortest are <InlineMath math="3" />. If everyone gave the same number, every bar would stand at the mean <InlineMath math="6" />, because the total is <InlineMath math="60" /> items for <InlineMath math="10" /> members.
+
+<BarChart
+  title={<>Items collected by each member</>}
+  description={<>The number of items each of the ten members collected, which add up to 60.</>}
+  yAxisLabel="Items"
+  data={[["1", 3], ["2", 5], ["3", 7], ["4", 10], ["5", 5], ["6", 3], ["7", 4], ["8", 6], ["9", 9], ["10", 8]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Items", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
