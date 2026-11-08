@@ -1,41 +1,15 @@
-Fungsi <InlineMath math="f(x)=2+\frac7{x-1}" /> memiliki **asimtot** <InlineMath math="x=1" /> dan <InlineMath math="y=2" />, yang berpotongan di <InlineMath math="(1,2)" />. Pada <InlineMath math="x>1" />, pecahannya positif sehingga <InlineMath math="f(x)>2" />.
-
-Pada masing-masing interval <InlineMath math="(-\infty,1)" /> dan <InlineMath math="(1,\infty)" />, kebalikan <InlineMath math="\frac1{x-1}" /> turun ketika <InlineMath math="x" /> bertambah. Faktor positif <InlineMath math="7" /> dan penambahan <InlineMath math="2" /> mempertahankan sifat menurun itu. Untuk titik tetap, selesaikan <InlineMath math="f(x)=x" />.
+Banyak buku tiap bulan membentuk **barisan aritmetika** dengan <InlineMath math="a=14" /> dan <InlineMath math="b=6" />. Yang ditanyakan adalah jumlah <InlineMath math="12" /> suku pertamanya, <InlineMath math="S_{12}" />.
 
 <BlockMath math="\begin{aligned}
-x&=2+\frac7{x-1} \\
-x(x-1)&=2(x-1)+7 \\
-x^2-x&=2x-2+7 \\
-x^2-3x-5&=0
+U_{12}&=a+11b=14+66=80 \\
+S_{12}&=\frac{12}{2}\,(a+U_{12})=6\cdot(14+80)=564
 \end{aligned}" />
 
-Diskriminan <InlineMath math="9+20=29>0" /> memberikan dua akar real. Nilai <InlineMath math="x=1" /> tidak memenuhi persamaan kuadrat itu, sehingga keduanya berada dalam domain. Untuk invers, selesaikan persamaan terhadap variabel awal.
+Sebagai pemeriksaan dengan rumus lain, <InlineMath math="S_{12}=\frac{12}{2}\,(2\cdot14+11\cdot6)=6\cdot94=564" />.
 
-<BlockMath math="\begin{aligned}
-y-2&=\frac7{x-1} \\
-(y-2)(x-1)&=7 \\
-x-1&=\frac7{y-2} \\
-x&=1+\frac7{y-2} \\
-f^{-1}(y)&=\frac{y+5}{y-2}
-\end{aligned}" />
+Jadi, selama <InlineMath math="12" /> bulan perpustakaan itu menerima <InlineMath math="564" /> buku.
 
-Fungsi dan inversnya memiliki domain berbeda, masing-masing mengecualikan <InlineMath math="1" /> dan <InlineMath math="2" />. Jadi, pernyataan <InlineMath math="f^{-1}=f" /> salah. Empat pernyataan lainnya benar.
-
-Titik tetap merupakan perpotongan grafik dengan garis <InlineMath math="y=x" />. Akar persamaan kuadratnya adalah <InlineMath math="x=\frac{3\pm\sqrt{29}}2" />. Untuk melihat mengapa fungsi menurun pada masing-masing interval, ambil <InlineMath math="a<b" /> di sisi yang sama dari 1. Penyebut berikut positif, sedangkan pembilang negatif.
-
-<BlockMath math="f(b)-f(a)=\frac{7(a-b)}{(b-1)(a-1)}<0" />
-
-<LineEquation
-  title="Dua cabang dan dua titik tetap"
-  description="Ungu adalah grafik fungsi, jingga garis y = x. Garis abu-abu menunjukkan kedua asimtot."
-  cameraPosition={[1, 2, 20]}
-  cameraTarget={[1, 2, 0]}
-  showZAxis={false}
-  data={[
-    ...[[-6, 0], [2, 8]].map(([a,b]) => ({ points: Array.from({ length: 81 }, (_, i) => { const x = a + (b-a)*i/80; return { x, y: 2 + 7/(x-1), z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false })),
-    { points: [{ x: -5, y: -5, z: 0 }, { x: 7, y: 7, z: 0 }], color: "#d97706", smooth: false, showPoints: false },
-    { points: [{ x: 1, y: -5, z: 0 }, { x: 1, y: 9, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: -6, y: 2, z: 0 }, { x: 8, y: 2, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [-1, 1].map((sign) => { const x = (3 + sign*Math.sqrt(29))/2; return { x, y: x, z: 0 }; }), color: "#d97706", lineWidth: 0, smooth: false, showPoints: true },
-  ]}
-/>
+- <InlineMath math="80" /> buku adalah sumbangan pada bulan ke-<InlineMath math="12" /> saja, yaitu <InlineMath math="U_{12}" />.
+- <InlineMath math="234" /> buku menghitung <InlineMath math="12\cdot14+11\cdot6" />, yaitu menambahkan selisihnya hanya sekali untuk setiap bulan.
+- <InlineMath math="480" /> buku menghitung <InlineMath math="\frac{12}{2}\cdot80" /> dan melupakan suku pertama.
+- <InlineMath math="517" /> buku memakai <InlineMath math="\frac{11}{2}" /> sebagai pengali, bukan <InlineMath math="\frac{12}{2}" />.

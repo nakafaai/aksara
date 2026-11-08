@@ -6,29 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
+  stimulus: "ring-mold",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$48\\pi$$",
-        },
-        {
-          correct: false,
-          label: "$$36\\pi-48\\sqrt3$$",
-        },
-        {
           correct: true,
-          label: "$$48\\pi-36\\sqrt3$$",
+          label: "$$2{.}310\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$36\\pi-24\\sqrt3$$",
+          label: "$$3{.}080\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$24\\pi-36\\sqrt3$$",
+          label: "$$3{.}850\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$4{.}620\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$9{.}240\\text{ cm}^3$$",
         },
       ],
     },

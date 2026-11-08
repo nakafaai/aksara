@@ -2,34 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "data-probability",
     topic: "data",
   },
-  stimulus: "sensor-calibration",
+  stimulus: "travel-time",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$69{,}7$$",
+          column: 1,
+          label:
+            "Jika kelima siswa pada kelas $$25$$ sampai $$29$$ ternyata salah dicatat dan seharusnya masuk kelas $$5$$ sampai $$9$$, median tetap terletak pada kelas $$15$$ sampai $$19$$.",
         },
         {
-          correct: false,
-          label: "$$69{,}1$$",
+          column: 2,
+          label:
+            "Jika kelima siswa pada kelas $$25$$ sampai $$29$$ ternyata salah dicatat dan seharusnya masuk kelas $$5$$ sampai $$9$$, rata-rata yang dihitung dengan titik tengah kelas turun lebih dari $$3$$ menit.",
         },
         {
-          correct: false,
-          label: "$$69{,}4$$",
+          column: 2,
+          label:
+            "Jika kelima siswa pada kelas $$25$$ sampai $$29$$ tidak diikutkan, rata-rata yang dihitung dengan titik tengah kelas menjadi kurang dari $$16$$ menit (tanpa pembulatan).",
         },
         {
-          correct: false,
-          label: "$$70{,}0$$",
-        },
-        {
-          correct: false,
-          label: "$$70{,}3$$",
+          column: 1,
+          label:
+            "Banyak siswa yang lama perjalanan tercatatnya paling sedikit $$10$$ menit dan kurang dari $$25$$ menit adalah $$31$$.",
         },
       ],
     },

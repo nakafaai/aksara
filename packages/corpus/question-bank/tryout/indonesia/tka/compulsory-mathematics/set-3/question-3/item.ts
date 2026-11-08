@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$a+b=29$$",
+          label: "$$q>p$$",
         },
         {
           correct: true,
-          label: "$$|a-b|=21$$",
+          label: "$$p>r$$",
         },
         {
           correct: false,
-          label: "$$\\sqrt{a+b}=7$$",
+          label: "$$r>q$$",
         },
         {
           correct: true,
-          label: "$$(a-b)^2=441$$",
+          label: "Bilangan $$p\\cdot r$$ terdiri atas $$29$$ angka.",
         },
         {
-          correct: true,
-          label: "$$\\frac1{\\sqrt a}+\\frac1{\\sqrt b}=\\frac7{10}$$",
+          correct: false,
+          label: "$$q<10^{15}$$",
         },
       ],
     },

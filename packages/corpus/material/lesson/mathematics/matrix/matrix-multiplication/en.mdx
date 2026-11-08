@@ -3,7 +3,7 @@ export const metadata = {
   description: "Multiply matrices with the row by column rule, check compatible dimensions, and use the operation's main properties.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -95,6 +95,94 @@ Matrix <InlineMath math="B" /> has an order of <InlineMath math="3 \times 2" /> 
 The number of columns in matrix <InlineMath math="B" /> (which is <InlineMath math="2" />) is **not equal** to the number of rows in matrix <InlineMath math="A" /> (which is <InlineMath math="3" />).
 
 <InlineMath math="BA" /> is **undefined**. Whether a matrix product exists can change when the factors are reversed.
+
+A matrix product can move a whole shape at once. Write the corners of a triangle as the columns of <InlineMath math="T = \begin{bmatrix} 0 & 2 & 1 \\ 0 & 0 & 2 \end{bmatrix}" /> and multiply by <InlineMath math="M = \begin{bmatrix} 2 & -1 \\ 1 & 1 \end{bmatrix}" />. Every entry of <InlineMath math="MT" /> is still a row of <InlineMath math="M" /> times a column of <InlineMath math="T" />. Row 1 times column 2 gives <InlineMath math="2(2) + (-1)(0) = 4" />, and row 2 times column 2 gives <InlineMath math="1(2) + 1(0) = 2" />, so the corner <InlineMath math="(2, 0)" /> moves to <InlineMath math="(4, 2)" />. In the same way the corner <InlineMath math="(1, 2)" /> moves to <InlineMath math="(0, 3)" />.
+
+<MathVisual
+  title={<><InlineMath math="MT" /> moves every corner stored in <InlineMath math="T" /></>}
+  description={<>The columns of <InlineMath math="T" /> are the corners of a triangle. Each column of <InlineMath math="MT" /> is the matching corner after multiplication by <InlineMath math="M" />.</>}
+  labels={{
+    t2: <InlineMath math="T: (2, 0)" />,
+    t3: <InlineMath math="T: (1, 2)" />,
+    m2: <InlineMath math="MT: (4, 2)" />,
+    m3: <InlineMath math="MT: (0, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "t", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "mt", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 2 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "move2", kind: "segment", from: { x: 2, y: 0 }, to: { x: 4, y: 2 }, appearance: "construction" },
+      { id: "move3", kind: "segment", from: { x: 1, y: 2 }, to: { x: 0, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "t2", objectId: "t", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "t3", objectId: "t", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "m2", objectId: "mt", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "m3", objectId: "mt", at: { x: 0, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
+
+Order matters. Take <InlineMath math="N = \begin{bmatrix} 1 & 0 \\ 0 & 2 \end{bmatrix}" /> and the point <InlineMath math="(1, 1)" />. Both <InlineMath math="N" /> and <InlineMath math="M" /> happen to send it to <InlineMath math="(1, 2)" /> first. <InlineMath math="MN" /> applies <InlineMath math="N" /> and then <InlineMath math="M" />, so it lands on <InlineMath math="(0, 3)" />. <InlineMath math="NM" /> applies <InlineMath math="M" /> and then <InlineMath math="N" />, so it lands on <InlineMath math="(1, 4)" />. Different points, so <InlineMath math="MN \neq NM" />.
+
+<MathVisual
+  title={<><InlineMath math="MN" /> and <InlineMath math="NM" /> send <InlineMath math="(1, 1)" /> to different points</>}
+  description={<>From <InlineMath math="(1, 1)" /> both orders pass <InlineMath math="(1, 2)" />, then <InlineMath math="MN" /> ends at <InlineMath math="(0, 3)" /> and <InlineMath math="NM" /> at <InlineMath math="(1, 4)" />.</>}
+  labels={{
+    start: <InlineMath math="(1, 1)" />,
+    middle: <InlineMath math="(1, 2)" />,
+    mn: <InlineMath math="MN: (0, 3)" />,
+    nm: <InlineMath math="NM: (1, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "mn", kind: "segment", from: { x: 1, y: 2 }, to: { x: 0, y: 3 }, appearance: "secondary" },
+      { id: "nm", kind: "segment", from: { x: 1, y: 2 }, to: { x: 1, y: 4 }, appearance: "answer" },
+      { id: "start", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "middle", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "middle", objectId: "middle", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "mn", objectId: "mn", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "nm", objectId: "nm", at: { x: 1, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+The sizes decide whether a product exists. In the example, <InlineMath math="A" /> is <InlineMath math="3 \times 3" /> and <InlineMath math="B" /> is <InlineMath math="3 \times 2" />: the inner sizes, <InlineMath math="3" /> columns of <InlineMath math="A" /> and <InlineMath math="3" /> rows of <InlineMath math="B" />, match. The product keeps the outer sizes, so <InlineMath math="AB" /> is <InlineMath math="3 \times 2" />, one entry for every row of <InlineMath math="A" /> and column of <InlineMath math="B" />.
+
+<MathVisual
+  title={<>The inner sizes match, the outer sizes remain</>}
+  description={<>Blocks for <InlineMath math="A" />, 3 by 3, <InlineMath math="B" />, 3 by 2, and the product <InlineMath math="AB" />, 3 by 2.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    ab: <InlineMath math="AB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -0.8, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 3 }, { x: 4, y: 3 }], appearance: "secondary" },
+      { id: "ab", kind: "polygon", vertices: [{ x: 7.5, y: 0 }, { x: 9.5, y: 0 }, { x: 9.5, y: 3 }, { x: 7.5, y: 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 1.5 }, placement: "center" },
+      { key: "b", objectId: "b", at: { x: 5, y: 1.5 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 8.5, y: 1.5 }, placement: "center" },
+    ],
+  }}
+/>
 
 ## Properties of Matrix Multiplication
 
