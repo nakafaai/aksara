@@ -1,86 +1,177 @@
 export const metadata = {
-  title: "Mutually Exclusive Events A and B",
-  description: "Add probabilities for mutually exclusive events in coin, die, and card examples.",
+  title: "Mutually Exclusive Events",
+  description: "Two events are mutually exclusive when they cannot happen together, so P(A ∪ B) = P(A) + P(B). Learn the signs, a two-dice example, and practice.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-21",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Probability",
 };
 
-## Events with No Shared Outcome
+## Mutually Exclusive Events and Their Probability Rule
 
-Suppose one trial can produce either of two outcomes, but not both. In probability, events with this relationship are **mutually exclusive**, or _disjoint_.
-
-Events <InlineMath math="A" /> and <InlineMath math="B" /> are **mutually exclusive** when they **cannot occur together** in a single trial. If <InlineMath math="A" /> occurs, <InlineMath math="B" /> does not occur, and vice versa.
-
-## Characteristics of Mutually Exclusive Events
-
-Their defining property is an **empty intersection**: no outcome belongs to both event <InlineMath math="A" /> and event <InlineMath math="B" />. That property is what allows the two probabilities to be added directly, because no outcome would be counted twice.
-### Probability of Two Events Occurring Together
-
-Because events <InlineMath math="A" /> and <InlineMath math="B" /> cannot occur together, the probability of their intersection is **zero**.
-
-We can write the probability of event "<InlineMath math="A" /> **and** <InlineMath math="B" />" (both occurring) as:
-
-<BlockMath math="P(A \text{ and } B) = 0" />
-
-Or using the intersection symbol:
-
-<BlockMath math="P(A \cap B) = 0" />
-
-For mutually exclusive events, the intersection is empty, so its probability is zero.
-
-## Calculating the Combined Probability for Mutually Exclusive Events
-
-To calculate the probability that event <InlineMath math="A" /> **OR** event <InlineMath math="B" /> occurs, use the fact that the events have no shared outcomes.
-
-The two individual probabilities can therefore be **added** without double-counting.
-
-The formula is:
-
-<BlockMath math="P(A \text{ or } B) = P(A) + P(B)" />
-
-Or using the union symbol:
+Two events <InlineMath math="A" /> and <InlineMath math="B" /> are **mutually exclusive** when they cannot happen together in one trial. Their intersection is empty, <InlineMath math="A \cap B = \varnothing" />, so <InlineMath math="P(A \cap B) = 0" />. For mutually exclusive events, the probability of <InlineMath math="A" /> or <InlineMath math="B" /> is simply the sum:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B)" />
 
-This **special addition rule** <Highlight>applies only to mutually exclusive events</Highlight>. When events overlap, their intersection must also be included in the calculation.
+<MathVisual
+  title="A Venn diagram of two mutually exclusive events"
+  description={<>One roll of a die with <InlineMath math="A = \{1, 2\}" /> and <InlineMath math="B = \{5, 6\}" />. The circles do not touch, so no result belongs to both.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sample-space", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "a", kind: "circle", center: { x: -1.7, y: 0 }, radius: 1.2, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 1.7, y: 0 }, radius: 1.2, appearance: "secondary" },
+      { id: "one", kind: "point", at: { x: -2.2, y: 0.3 }, appearance: "primary" },
+      { id: "two", kind: "point", at: { x: -1.4, y: -0.3 }, appearance: "primary" },
+      { id: "five", kind: "point", at: { x: 1.4, y: 0.3 }, appearance: "secondary" },
+      { id: "six", kind: "point", at: { x: 2.2, y: -0.3 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: -0.3, y: 1.8 }, appearance: "reference" },
+      { id: "four", kind: "point", at: { x: 0.3, y: -1.8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1.7, y: 1.2 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 1.7, y: 1.2 }, placement: "above" },
+      { key: "sample-space", objectId: "sample-space", at: { x: -3.8, y: -2.4 }, placement: "above-right" },
+      { key: "one", objectId: "one", at: { x: -2.2, y: 0.3 }, placement: "right" },
+      { key: "two", objectId: "two", at: { x: -1.4, y: -0.3 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 1.4, y: 0.3 }, placement: "right" },
+      { key: "six", objectId: "six", at: { x: 2.2, y: -0.3 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: -0.3, y: 1.8 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: 0.3, y: -1.8 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    "sample-space": <InlineMath math="S" />,
+    one: <InlineMath math="1" />,
+    two: <InlineMath math="2" />,
+    five: <InlineMath math="5" />,
+    six: <InlineMath math="6" />,
+    three: <InlineMath math="3" />,
+    four: <InlineMath math="4" />,
+  }}
+/>
 
-## Examples of Mutually Exclusive Events
+For that die, <InlineMath math="P(A \cup B) = \frac{2}{6} + \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />. Check by listing: <InlineMath math="A \cup B = \{1, 2, 5, 6\}" /> holds 4 of the 6 results.
 
-For a fair coin, a fair die, and a uniformly random draw from a standard deck, elementary outcomes are **equally likely**. The table counts outcomes for each event. Each event pair has an empty intersection.
+## Recognizing Mutually Exclusive Events
+
+Ask one question: is there a single outcome that meets **both events at once**? If there is none, the events are mutually exclusive. In the examples below, every basic outcome is equally likely.
 
 | Experiment | Two events | Probability of the union |
 | --- | --- | --- |
 | Fair coin | Heads or tails | <InlineMath math="\frac12+\frac12=1" /> |
-| Fair die | Three or five | <InlineMath math="\frac16+\frac16=\frac13" /> |
+| Fair die | A three or a five | <InlineMath math="\frac16+\frac16=\frac13" /> |
 | Fair die | Even or odd | <InlineMath math="\frac36+\frac36=1" /> |
-| Standard deck | King or Queen | <InlineMath math="\frac4{52}+\frac4{52}=\frac2{13}" /> |
-| Standard deck | Red or club | <InlineMath math="\frac{26}{52}+\frac{13}{52}=\frac34" /> |
+| Playing cards | King or queen | <InlineMath math="\frac4{52}+\frac4{52}=\frac2{13}" /> |
+| Playing cards | Red or clubs | <InlineMath math="\frac{26}{52}+\frac{13}{52}=\frac34" /> |
 
-For the die, the even outcomes are <InlineMath math="\{2,4,6\}" /> and the odd outcomes are <InlineMath math="\{1,3,5\}" />. Together they cover every face. All clubs are black, so no club belongs to the red-card event. A standard deck has <InlineMath math="52" /> cards, including <InlineMath math="4" /> Kings, <InlineMath math="4" /> Queens, <InlineMath math="26" /> red cards, and <InlineMath math="13" /> clubs.
+The last row is mutually exclusive because every club is black. On the other hand, red cards and kings are **not** mutually exclusive, because the king of hearts and the king of diamonds belong to both. Such events use the rule for [events that are not mutually exclusive](/en/subjects/mathematics/probability/two-events-not-mutually-exclusive).
 
-## Exercise
+## Why the Probabilities Can Simply Be Added
 
-A **fair six-sided die** is rolled once. Let <InlineMath math="A=\{1,2\}" /> and <InlineMath math="B=\{5,6\}" />.
+If the intersection is empty, no outcome is counted twice. For a sample space with equally likely outcomes, the number of elements in the union is the sum of the numbers in the two events:
 
-1.  Show that <InlineMath math="A" /> and <InlineMath math="B" /> are mutually exclusive.
-2.  Find <InlineMath math="P(A \cup B)" />.
-3.  Find the probability that neither event occurs.
-### Worked Solution
+<BlockMath math="n(A \cup B) = n(A) + n(B) \quad\Longrightarrow\quad P(A \cup B) = \frac{n(A) + n(B)}{n(S)} = P(A) + P(B)" />
 
-**Problem 1**. The two events have an **empty intersection** and therefore no shared outcome:
+This rule is a special case of the general [addition rule](/en/subjects/mathematics/probability/addition-rule) <InlineMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" /> with <InlineMath math="P(A \cap B) = 0" />. The same rule works for more than two events, provided **every pair of them is mutually exclusive**: <InlineMath math="P(A_1 \cup A_2 \cup A_3) = P(A_1) + P(A_2) + P(A_3)" />.
 
-<BlockMath math="A \cap B=\varnothing" />
+## An Event and Its Complement
 
-They are therefore **mutually exclusive**.
+An event <InlineMath math="A" /> and its complement <InlineMath math="A^c" /> (not <InlineMath math="A" />) are always mutually exclusive, and **together they make up the whole sample space**. So <InlineMath math="P(A) + P(A^c) = P(S) = 1" />, or
 
-**Problem 2**. Each event contains <InlineMath math="2" /> of the <InlineMath math="6" /> equally likely die outcomes, so the special addition rule gives
+<BlockMath math="P(A^c) = 1 - P(A)" />
 
-<BlockMath math="\begin{aligned}P(A \cup B)&=P(A)+P(B) \\ &=\frac{2}{6}+\frac{2}{6} \\ &=\frac{4}{6}=\frac{2}{3}\end{aligned}" />
+The complement rule saves work when the event in question has many outcomes. The probability that a die does not show a 6 is <InlineMath math="1 - \frac{1}{6} = \frac{5}{6}" />, with no need to add five probabilities.
 
-**Problem 3**. The outcomes outside <InlineMath math="A \cup B=\{1,2,5,6\}" /> are <InlineMath math="\{3,4\}" />. Thus,
+## Example with the Sum of Two Dice
 
-<BlockMath math="P(\text{neither }A\text{ nor }B)=\frac{2}{6}=\frac{1}{3}" />
+Two dice are rolled together. Find the probability that the sum of the two dice is 7 or 11.
 
-As a check, the probability of the union and the probability of its complement add to <InlineMath math="2/3+1/3=1" />.
+The sample space has <InlineMath math="6 \times 6 = 36" /> equally likely pairs. A sum of 7 comes from <InlineMath math="6" /> pairs, and a sum of 11 from <InlineMath math="2" /> pairs. One roll cannot sum to both 7 and 11, so the events are **mutually exclusive**:
+
+<BlockMath math="P(7 \text{ or } 11) = \frac{6}{36} + \frac{2}{36} = \frac{8}{36} = \frac{2}{9}" />
+
+<MathVisual
+  title="Pairs of two dice that sum to 7 or 11"
+  description={<>Each point <InlineMath math="(a, b)" /> is the result of the first and second die. The points on the lines <InlineMath math="a + b = 7" /> and <InlineMath math="a + b = 11" /> never coincide.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "seven", kind: "segment", from: { x: 1, y: 6 }, to: { x: 6, y: 1 }, appearance: "primary" },
+      { id: "eleven", kind: "segment", from: { x: 5, y: 6 }, to: { x: 6, y: 5 }, appearance: "secondary" },
+      { id: "seven-1", kind: "point", at: { x: 1, y: 6 }, appearance: "primary" },
+      { id: "seven-2", kind: "point", at: { x: 2, y: 5 }, appearance: "primary" },
+      { id: "seven-3", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "seven-4", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "seven-5", kind: "point", at: { x: 5, y: 2 }, appearance: "primary" },
+      { id: "seven-6", kind: "point", at: { x: 6, y: 1 }, appearance: "primary" },
+      { id: "eleven-1", kind: "point", at: { x: 5, y: 6 }, appearance: "secondary" },
+      { id: "eleven-2", kind: "point", at: { x: 6, y: 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "seven", objectId: "seven", at: { x: 3, y: 4 }, placement: "below-left" },
+      { key: "eleven", objectId: "eleven", at: { x: 6, y: 5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    seven: <InlineMath math="a + b = 7" />,
+    eleven: <InlineMath math="a + b = 11" />,
+  }}
+/>
+
+Check by listing. A sum of 7 comes from (1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1), and a sum of 11 from (5, 6), (6, 5). No pair appears in both lists, and there are 8 pairs out of 36 in total.
+
+## Mutually Exclusive Is Not the Same as Independent
+
+The terms mutually exclusive and independent are often mixed up. **Mutually exclusive** means the two events cannot happen together. [Independent](/en/subjects/mathematics/combinatorics/probability-of-independent-events) means that one event happening does not change the probability of the other, that is <InlineMath math="P(A \cap B) = P(A)\,P(B)" />.
+
+If <InlineMath math="P(A) > 0" /> and <InlineMath math="P(B) > 0" />, mutually exclusive events **cannot** be independent. Their intersection has probability <InlineMath math="0" />, while <InlineMath math="P(A)\,P(B) > 0" />. For the die, knowing that the result is 1 lowers the probability of <InlineMath math="B = \{5, 6\}" /> from <InlineMath math="\frac{1}{3}" /> to <InlineMath math="0" />, so the events do affect each other.
+
+## Common Mistakes
+
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Adding the probabilities of overlapping events | Outcomes in the intersection are counted twice | Write out the intersection first, it must be empty |
+| Treating mutually exclusive as independent | Mutually exclusive gives <InlineMath math="P(A \cap B) = 0" />, independent gives <InlineMath math="P(A)P(B)" /> | Compare <InlineMath math="P(A \cap B)" /> with <InlineMath math="P(A)P(B)" /> |
+| Treating red cards and kings as mutually exclusive | The king of hearts and the king of diamonds belong to both | Look for one outcome that meets both conditions |
+| Adding three events that are only partly mutually exclusive | The sum rule needs every pair to be mutually exclusive | Check all pairs, not just one |
+| Getting a union probability above 1 | That is a sign the events overlap | Mutually exclusive events never give a sum above 1 |
+
+The quickest check is **listing every outcome of the union**. If their number equals the sum of the numbers in the two events, nothing is counted twice.
+
+## Practice Problems
+
+Make sure the intersection is empty first, then **check your answer by listing the outcomes**.
+
+1. A die is rolled once with <InlineMath math="A = \{1, 2\}" /> and <InlineMath math="B = \{5, 6\}" />. Find <InlineMath math="P(A \cup B)" /> and the probability that neither event happens.
+
+2. One card is drawn from a deck of 52. Find the probability of drawing a king or a queen.
+
+3. Two dice are rolled. Find the probability that the sum is 2 or 12.
+
+4. The events <InlineMath math="A" /> and <InlineMath math="B" /> are mutually exclusive with <InlineMath math="P(A) = 0.3" /> and <InlineMath math="P(B) = 0.5" />. Find <InlineMath math="P(A \cup B)" />, the probability that neither happens, and whether they are independent.
+
+### Solutions
+
+**Problem 1**. The intersection is empty, so <InlineMath math="P(A \cup B) = \frac{2}{6} + \frac{2}{6} = \frac{2}{3}" />. The results outside <InlineMath math="A \cup B" /> are <InlineMath math="\{3, 4\}" />, so the probability that neither event happens is <InlineMath math="\frac{2}{6} = \frac{1}{3}" />. Check with the complement: <InlineMath math="1 - \frac{2}{3} = \frac{1}{3}" />.
+
+**Problem 2**. One card cannot be a king and a queen at once, so
+
+<BlockMath math="P = \frac{4}{52} + \frac{4}{52} = \frac{8}{52} = \frac{2}{13}" />
+
+Check: 8 cards qualify, the 4 kings and the 4 queens.
+
+**Problem 3**. A sum of 2 comes only from (1, 1), and a sum of 12 only from (6, 6). The events are mutually exclusive:
+
+<BlockMath math="P = \frac{1}{36} + \frac{1}{36} = \frac{2}{36} = \frac{1}{18}" />
+
+Check: 2 of the 36 pairs qualify.
+
+**Problem 4**. Since they are mutually exclusive, <InlineMath math="P(A \cup B) = 0.3 + 0.5 = 0.8" />, and the probability that neither happens is <InlineMath math="1 - 0.8 = 0.2" />. They are **not independent**, because <InlineMath math="P(A \cap B) = 0" /> while <InlineMath math="P(A)\,P(B) = 0.15" />. Check: <InlineMath math="0.8 + 0.2 = 1" />.
