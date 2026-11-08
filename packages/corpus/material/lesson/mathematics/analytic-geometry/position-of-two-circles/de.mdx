@@ -25,11 +25,11 @@ Sobald du <InlineMath math="d" /> kennst, ordnest du es in diese Tabelle ein. Je
 | Konzentrisch | <InlineMath math="d = 0" /> und <InlineMath math="r_1 \ne r_2" /> | keiner |
 | Deckungsgleich | <InlineMath math="d = 0" /> und <InlineMath math="r_1 = r_2" /> | alle Punkte |
 
-Stell dir vor, du schiebst den zweiten Kreis geradlinig auf den ersten zu. Der Abstand <InlineMath math="d" /> wird kleiner, und die Lage wechselt **genau in der Reihenfolge der Tabellenzeilen**, von getrennt bis konzentrisch.
+Stell dir vor, du schiebst den zweiten Kreis geradlinig auf den ersten zu. Sind die Radien verschieden, wird <InlineMath math="d" /> kleiner, und die Lage wechselt **genau in der Reihenfolge der Tabellenzeilen**, von getrennt bis konzentrisch. Sind die Radien gleich, springt die Lage von schneidend direkt zu deckungsgleich.
 
 ## Zwei sich schneidende Kreise
 
-Zwei Kreise **schneiden sich**, wenn ihre Kreislinien genau zwei gemeinsame Punkte haben. Die beiden Kreisflächen überlappen sich zwischen diesen Punkten.
+Zwei Kreise **schneiden sich**, wenn ihre Kreislinien genau zwei gemeinsame Punkte haben. Ihre Überlappung ist eine Linse, die von den beiden Bögen zwischen diesen Punkten begrenzt wird.
 
 <LineEquation
   title="Zwei sich schneidende Kreise"
@@ -122,7 +122,7 @@ Die Bedingung lautet
 
 <BlockMath math="|r_1 - r_2| < d < r_1 + r_2" />
 
-Diese Bedingung stammt aus einem Dreieck. Ein Schnittpunkt <InlineMath math="A" />, der Mittelpunkt <InlineMath math="P_1" /> und der Mittelpunkt <InlineMath math="P_2" /> bilden ein Dreieck mit den Seiten <InlineMath math="r_1" />, <InlineMath math="r_2" /> und <InlineMath math="d" />. Jede Dreiecksseite ist kürzer als die Summe der beiden anderen, also gilt <InlineMath math="d < r_1 + r_2" /> und <InlineMath math="d > |r_1 - r_2|" />. Wird ein <InlineMath math="<" /> zu <InlineMath math="=" />, **klappt das Dreieck zu einer Strecke zusammen**, und die beiden Schnittpunkte verschmelzen zu einem Berührpunkt.
+Diese Bedingung stammt aus einem Dreieck. Ein Schnittpunkt <InlineMath math="A" />, der Mittelpunkt <InlineMath math="P_1" /> und der Mittelpunkt <InlineMath math="P_2" /> bilden ein Dreieck mit den Seiten <InlineMath math="r_1" />, <InlineMath math="r_2" /> und <InlineMath math="d" />. Jede Dreiecksseite ist kürzer als die Summe der beiden anderen, also gilt <InlineMath math="d < r_1 + r_2" /> und <InlineMath math="d > |r_1 - r_2|" />. Wird ein <InlineMath math="<" /> zu <InlineMath math="=" />, **klappt das Dreieck zu einer Strecke zusammen**, und die beiden Schnittpunkte verschmelzen zu einem Berührpunkt. Umgekehrt lässt sich, wenn die Ungleichung gilt, ein Dreieck mit den Seiten <InlineMath math="r_1" />, <InlineMath math="r_2" /> und <InlineMath math="d" /> auf beiden Seiten der Geraden <InlineMath math="P_1P_2" /> errichten, und seine beiden Spitzen sind die Schnittpunkte.
 
 ## Berührung von außen und von innen
 
@@ -296,7 +296,7 @@ Eine **Berührung von innen** liegt vor, wenn <InlineMath math="d = |r_1 - r_2| 
   cameraPosition={[0, 0, 12]}
 />
 
-Bei beiden Arten der Berührung liegt der Berührpunkt im Abstand <InlineMath math="r_1" /> von <InlineMath math="P_1" /> in Richtung <InlineMath math="P_1P_2" />. Bei der Berührung von innen ist <InlineMath math="P_1" /> der Mittelpunkt des größeren Kreises:
+Bei der Berührung von innen ist <InlineMath math="P_1" /> der Mittelpunkt des größeren Kreises. Mit dieser Wahl liegt der Berührpunkt bei beiden Arten der Berührung im Abstand <InlineMath math="r_1" /> von <InlineMath math="P_1" /> in Richtung <InlineMath math="P_1P_2" />:
 
 <BlockMath math="T = P_1 + \frac{r_1}{d}\,(P_2 - P_1)" />
 
@@ -390,7 +390,7 @@ Zwei Kreise mit verschiedenen Mittelpunkten können auf zwei Arten keinen gemein
 
 Die kürzeste Lücke zwischen den beiden Kreislinien liegt auf der Geraden durch die Mittelpunkte und hat die Länge <InlineMath math="d - (r_1 + r_2)" />. Kein Punkt gehört zu beiden Kreisflächen zugleich.
 
-Die zweite Art ist **ein Kreis im anderen ohne Berührung**, wenn <InlineMath math="0 < d < |r_1 - r_2|" /> gilt. Im nächsten Diagramm hat der große Kreis den Radius <InlineMath math="4" />, der kleine den Radius <InlineMath math="1" />, und die Mittelpunkte liegen <InlineMath math="1" /> auseinander.
+Die zweite Art ist **ein Kreis im anderen ohne Berührung**, wenn <InlineMath math="0 < d < |r_1 - r_2|" /> gilt. Nimm einen großen Kreis mit Radius <InlineMath math="4" />, einen kleinen mit Radius <InlineMath math="1" /> und Mittelpunkte im Abstand <InlineMath math="1" />.
 
 <LineEquation
   title="Ineinanderliegende Kreise ohne Berührung"
@@ -427,7 +427,7 @@ Die zweite Art ist **ein Kreis im anderen ohne Berührung**, wenn <InlineMath ma
   ]}
 />
 
-Wegen <InlineMath math="0 < 1 < 4 - 1" /> liegt der kleine Kreis vollständig im großen. Die kürzeste Lücke ist <InlineMath math="|r_1 - r_2| - d = 3 - 1 = 2" />. Die Mittelpunkte sind verschieden, also sind diese Kreise nicht konzentrisch.
+Wegen <InlineMath math="0 < 1 < 4 - 1" /> liegt der kleine Kreis vollständig im großen. Die kürzeste Lücke ist <InlineMath math="|r_1 - r_2| - d = 3 - 1 = 2" />.
 
 ## Konzentrische und deckungsgleiche Kreise
 
@@ -646,7 +646,7 @@ Prüfe jeden Berührpunkt an beiden Kreisen. Der Punkt <InlineMath math="(3, 4)"
 | Quadratisch ergänzen, obwohl vor <InlineMath math="x^2" /> nicht <InlineMath math="1" /> steht | Der Mittelpunkt von <InlineMath math="2x^2 + 2y^2 - 8x = 0" /> wird falsch abgelesen | Teile zuerst durch <InlineMath math="2" />: <InlineMath math="x^2 + y^2 - 4x = 0" /> |
 | Konzentrisch und deckungsgleich verwechseln | Konzentrische Kreise haben verschiedene Radien und keinen gemeinsamen Punkt | Deckungsgleich braucht <InlineMath math="d = 0" /> und <InlineMath math="r_1 = r_2" /> |
 
-Bei zwei sich schneidenden Kreisen ist **das Subtrahieren der beiden Gleichungen** die stärkste Probe. Es liefert die Gerade, die beide Schnittpunkte enthält, und diese Gerade muss jeden Kreis in zwei Punkten schneiden.
+Bei zwei sich schneidenden Kreisen ist **das Subtrahieren der beiden Gleichungen** eine nützliche Probe. Es liefert die Gerade, die beide Schnittpunkte enthält, und diese Gerade muss jeden Kreis in zwei Punkten schneiden.
 
 ## Übungsaufgaben
 
@@ -671,7 +671,7 @@ Bestimme zuerst Mittelpunkte, Radien und Mittelpunktsabstand und **ordne sie dan
   <BlockMath math="(x - 7)^2 + (y - 10)^2 = 49 + 100 - 140 = 9" />
 </MathContainer>
 
-Beide Kreise haben den Radius <InlineMath math="3" />, mit den Mittelpunkten <InlineMath math="(1, 2)" /> und <InlineMath math="(7, 10)" />. Der Abstand ist <InlineMath math="d = \sqrt{6^2 + 8^2} = 10" />, größer als <InlineMath math="3 + 3 = 6" />, also liegen die Kreise **getrennt außerhalb voneinander**. Die kürzeste Lücke ist <InlineMath math="10 - 6 = 4" />. Probe: Der Punkt <InlineMath math="(1, 2) + \frac{3}{10}(6, 8) = \left(\frac{14}{5}, \frac{22}{5}\right)" /> auf dem ersten Kreis und der Punkt <InlineMath math="(7, 10) - \frac{3}{10}(6, 8) = \left(\frac{26}{5}, \frac{38}{5}\right)" /> auf dem zweiten Kreis liegen <InlineMath math="\sqrt{\left(\frac{12}{5}\right)^2 + \left(\frac{16}{5}\right)^2} = 4" /> auseinander.
+Beide Kreise haben den Radius <InlineMath math="3" />, mit den Mittelpunkten <InlineMath math="(1, 2)" /> und <InlineMath math="(7, 10)" />. Der Abstand ist <InlineMath math="d = \sqrt{6^2 + 8^2} = 10" />, größer als <InlineMath math="3 + 3 = 6" />, also liegen die Kreise **getrennt außerhalb voneinander**. Die kürzeste Lücke ist <InlineMath math="10 - 6 = 4" />. Probe: Der Punkt <InlineMath math="(1, 2) + \frac{3}{10}(6, 8) = \left(\frac{14}{5}, \frac{22}{5}\right)" /> auf dem ersten Kreis und der Punkt <InlineMath math="(7, 10) - \frac{3}{10}(6, 8) = \left(\frac{26}{5}, \frac{38}{5}\right)" /> auf dem zweiten Kreis liegen <InlineMath math="\sqrt{\left(\frac{12}{5}\right)^2 + \left(\frac{16}{5}\right)^2} = 4" /> auseinander. Beide Punkte liegen tatsächlich auf ihren Kreisen, denn <InlineMath math="\left(\frac{9}{5}\right)^2 + \left(\frac{12}{5}\right)^2 = 9" /> und <InlineMath math="\left(-\frac{9}{5}\right)^2 + \left(-\frac{12}{5}\right)^2 = 9" />.
 
 **Aufgabe 3**. Der erste Kreis hat den Mittelpunkt <InlineMath math="O" /> und <InlineMath math="r_1 = 6" />. Der zweite Kreis lässt sich als <InlineMath math="(x - 2)^2 + (y - 1)^2 = 4" /> schreiben, hat also den Mittelpunkt <InlineMath math="(2, 1)" /> und <InlineMath math="r_2 = 2" />. Der Abstand ist <InlineMath math="d = \sqrt{5} \approx 2{,}24" />, und <InlineMath math="0 < \sqrt{5} < |6 - 2| = 4" />, also **liegt der kleine Kreis im großen, ohne ihn zu berühren**. Probe: Der Punkt des kleinen Kreises, der am weitesten von <InlineMath math="O" /> entfernt ist, hat den Abstand <InlineMath math="\sqrt{5} + 2 \approx 4{,}24" />, also weniger als <InlineMath math="6" />.
 
