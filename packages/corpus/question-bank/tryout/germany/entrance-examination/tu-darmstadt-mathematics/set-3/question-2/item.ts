@@ -19,7 +19,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$L=\\{-4;\\,\\tfrac52\\}$$",
+          label: "$$L=\\{\\tfrac52;\\,-4\\}$$",
         },
         {
           correct: true,
