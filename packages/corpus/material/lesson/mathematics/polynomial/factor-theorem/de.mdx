@@ -3,11 +3,13 @@ export const metadata = {
   description: "Verbinde Nullstellen mit ihren linearen Faktoren und nutze den Faktorsatz zur Faktorisierung von Polynomen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Polynom",
 };
 
 ## Nullstellen und Linearfaktoren eines Polynoms verbinden
+
+**Der Faktorsatz** besagt, dass <InlineMath math="(x - c)" /> genau dann ein Faktor von <InlineMath math="P(x)" /> ist, wenn <InlineMath math="P(c) = 0" /> gilt. Jede Nullstelle <InlineMath math="c" /> liefert also einen Linearfaktor, und der Graph von <InlineMath math="y = P(x)" /> schneidet die <InlineMath math="x" />-Achse genau an dieser Nullstelle.
 
 Wenn wir ein Polynom <InlineMath math="P(x)" /> durch <InlineMath math="(x - c)" /> dividieren, ist der Rest manchmal Null. Aus dem Restsatz wissen wir, dass <InlineMath math="P(c) = 0" /> gilt, wenn der Rest Null ist. Was bedeutet es also, wenn <InlineMath math="P(c) = 0" />?
 
@@ -98,9 +100,65 @@ Fasse alle Faktoren zusammen.
 
 <BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
 
+Prüfe die Faktorisierung am Graphen und durch Einsetzen. Der Graph von <InlineMath math="y = P(x)" /> schneidet die <InlineMath math="x" />-Achse genau bei <InlineMath math="-5" />, <InlineMath math="1" /> und <InlineMath math="2" />, und Einsetzen liefert <InlineMath math="P(-5) = -125 + 50 + 65 + 10 = 0" /> sowie <InlineMath math="P(2) = 8 + 8 - 26 + 10 = 0" />. Ein Polynom vom Grad drei hat höchstens drei Nullstellen, also ist die Faktorisierung vollständig.
+
+<LineEquation
+  title={<>Graph von <InlineMath math="y = x^3 + 2x^2 - 13x + 10" /></>}
+  description={<>Der Graph schneidet die x-Achse bei <InlineMath math="-5" />, <InlineMath math="1" /> und <InlineMath math="2" />, den Nullstellen seiner drei Linearfaktoren.</>}
+  cameraPosition={[-1.5, 13, 70]}
+  cameraTarget={[-1.5, 13, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 761 }, (_, i) => {
+        const x = -5.3 + i / 100;
+        return { x, y: x ** 3 + 2 * x ** 2 - 13 * x + 10, z: 0 };
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [{ x: -5, y: 0, z: 0 }],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="-5" />, at: 0, offset: [-0.8, 2.5, 0] }],
+    },
+    {
+      points: [{ x: 1, y: 0, z: 0 }],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="1" />, at: 0, offset: [-0.6, 2.5, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 0, z: 0 }],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="2" />, at: 0, offset: [0.6, 2.5, 0] }],
+    },
+  ]}
+/>
+
+## Typische Fehler
+
+| Fehler | Warum er scheitert | So prüfst du |
+| --- | --- | --- |
+| Für die Nullstelle <InlineMath math="1" /> den Faktor <InlineMath math="(x + 1)" /> schreiben | Die Nullstelle <InlineMath math="c" /> liefert den Faktor <InlineMath math="(x - c)" /> | Setze <InlineMath math="c" /> in den Faktor ein, das Ergebnis muss null sein |
+| Nach dem ersten Faktor aufhören | Der Quotient lässt sich vielleicht weiter zerlegen | Die Grade aller Faktoren müssen zusammen den Grad des Polynoms ergeben |
+| Einen Rest ungleich null für einen Faktor halten | Ein Rest <InlineMath math="P(c) \ne 0" /> bedeutet, dass <InlineMath math="(x - c)" /> kein Faktor ist | Berechne <InlineMath math="P(c)" />, bevor du dividierst |
+| Den Leitkoeffizienten weglassen | <InlineMath math="2x^3 - 2x^2 + 2x - 2 = 2(x - 1)(x^2 + 1)" />, nicht ohne die <InlineMath math="2" /> | Multipliziere die Zerlegung aus und vergleiche mit dem Polynom |
+
+Die stärkste Probe ist, **die Faktorisierung wieder auszumultiplizieren**. Das Ergebnis muss genau das ursprüngliche Polynom sein.
+
 ## Übung
 
 Sei <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" />. Zeige, dass <InlineMath math="P(-1) = 0" /> gilt, und verwende dieses Ergebnis, um <InlineMath math="P(x)" /> **vollständig zu faktorisieren**. Schon die Division dieses kubischen Polynoms durch den ersten Linearfaktor liefert einen quadratischen Quotienten. Suche zwei Zahlen, deren Summe und Produkt zu den entsprechenden Koeffizienten passen.
+
+Bearbeite auch diese Aufgaben und **prüfe durch Ausmultiplizieren deiner Zerlegung**.
+
+2. Zeige, dass <InlineMath math="(x - 2)" /> ein Faktor von <InlineMath math="x^3 - 3x^2 + 4" /> ist, und zerlege das Polynom vollständig.
+
+3. Bestimme <InlineMath math="k" /> so, dass <InlineMath math="(x + 2)" /> ein Faktor von <InlineMath math="x^3 + kx^2 - 4x - 12" /> ist, und zerlege das Polynom.
 
 ### Ausführliche Lösung
 
@@ -147,3 +205,15 @@ Für diesen Quotienten gilt <InlineMath math="-6+3=-3" /> und <InlineMath math="
 **Schritt 5**. Vollständige Faktorisierung
 
 <BlockMath math="P(x) = (x + 1)(x - 6)(x + 3)" />
+
+**Aufgabe 2**. <InlineMath math="P(2) = 8 - 12 + 4 = 0" />, also ist <InlineMath math="(x - 2)" /> ein Faktor. Das Hornerschema mit <InlineMath math="c = 2" /> und den Koeffizienten <InlineMath math="1, -3, 0, 4" /> liefert <InlineMath math="1, -1, -2, 0" />, also
+
+<BlockMath math="x^3 - 3x^2 + 4 = (x - 2)(x^2 - x - 2) = (x - 2)^2(x + 1)" />
+
+Der Faktor <InlineMath math="(x - 2)" /> kommt zweimal vor, also ist <InlineMath math="2" /> eine doppelte Nullstelle. Probe: <InlineMath math="(x^2 - 4x + 4)(x + 1) = x^3 - 3x^2 + 4" />.
+
+**Aufgabe 3**. Der Faktor <InlineMath math="(x + 2)" /> bedeutet <InlineMath math="P(-2) = 0" />:
+
+<BlockMath math="-8 + 4k + 8 - 12 = 4k - 12 = 0 \quad\Longrightarrow\quad k = 3" />
+
+Für <InlineMath math="k = 3" /> liefert das Hornerschema mit <InlineMath math="c = -2" /> den Quotienten <InlineMath math="x^2 + x - 6 = (x + 3)(x - 2)" />, also <InlineMath math="x^3 + 3x^2 - 4x - 12 = (x + 2)(x + 3)(x - 2)" />. Probe: <InlineMath math="P(2) = 8 + 12 - 8 - 12 = 0" />.
