@@ -15,12 +15,12 @@ const item: ItemSource = {
           label: "$$x^2+y^2+6x-4y-3=0$$",
         },
         {
-          correct: false,
-          label: "$$x^2+y^2-6x+4y+9=0$$",
-        },
-        {
           correct: true,
           label: "$$x^2+y^2-6x+4y-3=0$$",
+        },
+        {
+          correct: false,
+          label: "$$x^2+y^2-6x+4y+9=0$$",
         },
         {
           correct: false,

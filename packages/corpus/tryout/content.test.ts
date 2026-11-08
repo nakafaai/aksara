@@ -21,10 +21,10 @@ describe("loadTryoutContent", () => {
           "snbt",
           "tka",
         ]);
-        expect(sets).toHaveLength(81);
-        expect(questions).toHaveLength(1875);
-        expect(Arr.flatMap(sets, ({ stimuli }) => stimuli)).toHaveLength(159);
-        expect(papers).toHaveLength(21);
+        expect(sets).toHaveLength(82);
+        expect(questions).toHaveLength(1900);
+        expect(Arr.flatMap(sets, ({ stimuli }) => stimuli)).toHaveLength(160);
+        expect(papers).toHaveLength(22);
         expect(
           Arr.reduce(papers, 0, (total, { sections }) =>
             Arr.reduce(
@@ -33,7 +33,7 @@ describe("loadTryoutContent", () => {
               (sum, { set }) => sum + set.questions.length
             )
           )
-        ).toBe(1875);
+        ).toBe(1900);
       }),
     120_000
   );
