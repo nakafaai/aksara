@@ -80,51 +80,33 @@ Die oben angegebene lineare Hülle enthält alle skalaren Vielfachen des dargest
 
 Versuch, in dieser Szene eine zweite Richtung zu finden, die bleibt. Das graue Einheitsquadrat wird seitlich zum magentafarbenen Parallelogramm geschoben: Seine untere Kante entlang <InlineMath math="e_1" /> bleibt an Ort und Stelle, aber jeder andere Vektor kippt zur <InlineMath math="x" />-Achse, so wie <InlineMath math="e_2" />, das zu <InlineMath math="Ae_2=(2,1)^T" /> wird. Die einzige Eigenrichtung ist <InlineMath math="E_A(1)=\operatorname{span}\{e_1\}" />, und das reicht nicht für eine Basis der Ebene.
 
-<LineEquation
+<MathVisual
   title={<>Die Scherung <InlineMath math="A=\begin{pmatrix}1&2\\0&1\end{pmatrix}" /> lässt nur eine Eigenrichtung übrig</>}
   description={<>Das graue Einheitsquadrat wird auf das magentafarbene Parallelogramm abgebildet. Der Vektor <InlineMath math="e_1" /> bleibt, während <InlineMath math="e_2" /> zu <InlineMath math="Ae_2=(2,1)^T" /> kippt.</>}
-  showZAxis={false}
-  cameraPosition={[1.2, 0.8, 6.5]}
-  cameraTarget={[1.2, 0.8, 0]}
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 0, y: 1, z: 0 }, { x: 0, y: 0, z: 0 }],
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 0, y: 0, z: 0 }],
-      color: "#c026d3",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="A\cdot\text{square}" />, at: 2, offset: [0.6, 0.3, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.15 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="e_2" />, at: 1, offset: [-0.3, 0.1, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
-      color: "#bb6800",
-      cone: { position: "end", size: 0.15 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="Ae_2" />, at: 1, offset: [-0.1, 0.35, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
-      color: "#8242e5",
-      cone: { position: "end", size: 0.15 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="e_1=Ae_1" />, at: 1, offset: [0.2, -0.35, 0] }],
-    },
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }], appearance: "answer" },
+      { id: "e2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "construction" },
+      { id: "ae2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "e1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "image", objectId: "image", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "e2", objectId: "e2", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "ae2", objectId: "ae2", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "e1", objectId: "e1", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "image": <InlineMath math="A\cdot\text{square}" />,
+    "e2": <InlineMath math="e_2" />,
+    "ae2": <InlineMath math="Ae_2" />,
+    "e1": <InlineMath math="e_1=Ae_1" />,
+  }}
 />
 
 ## Voraussetzungen für die Matrixdiagonalisierung

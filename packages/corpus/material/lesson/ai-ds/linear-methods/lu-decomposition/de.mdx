@@ -121,42 +121,32 @@ Direktes Einsetzen bestätigt <InlineMath math="Ax=b" />.
 
 Dreh die drei Ebenen des oberen Dreieckssystems <InlineMath math="Ux=y" /> unten. Die letzte Gleichung enthält nur <InlineMath math="x_3" />, deshalb liegt ihre violette Ebene flach auf der Höhe <InlineMath math="x_3=3" />. Die zweite Gleichung hat kein <InlineMath math="x_1" />, also verläuft ihre türkise Ebene parallel zur <InlineMath math="x_1" />-Achse. Das Rückwärtseinsetzen folgt genau dieser Reihenfolge: zuerst die Höhe, dann <InlineMath math="x_2=2" />, dann <InlineMath math="x_1=1" /> aus der gelben Ebene. Alle drei treffen sich genau im magentafarbenen Punkt <InlineMath math="x=(1,2,3)^T" />.
 
-<LineEquation
+<MathVisual
   title={<>Die drei Ebenen von <InlineMath math="Ux=y" /> treffen sich in <InlineMath math="x=(1,2,3)^T" /></>}
   description={<>Violette Ebene <InlineMath math="x_3=3" />, türkise Ebene <InlineMath math="2x_2+x_3=7" /> und gelbe Ebene <InlineMath math="2x_1+x_2+x_3=7" />. Die <InlineMath math="x_3" />-Achse zeigt nach oben.</>}
-  cameraPosition={[7, 6, 8]}
-  cameraTarget={[1, 3, 2]}
-  data={[
-    ...[
-      { first: [1, 0, 0], second: [0, 1, 0], color: "#8242e5", label: <InlineMath math="x_3=3" /> },
-      { first: [1, 0, 0], second: [0, 1 / Math.sqrt(5), -2 / Math.sqrt(5)], color: "#0d9488", label: <InlineMath math="2x_2+x_3=7" /> },
-      { first: [1 / Math.sqrt(5), -2 / Math.sqrt(5), 0], second: [2 / Math.sqrt(30), 1 / Math.sqrt(30), -5 / Math.sqrt(30)], color: "#b98d00", label: <InlineMath math="2x_1+x_2+x_3=7" /> },
-    ].flatMap(({ first, second, color, label }) => {
-      const point = (s, t) => {
-        const x1 = 1 + s * first[0] + t * second[0];
-        const x2 = 2 + s * first[1] + t * second[1];
-        const x3 = 3 + s * first[2] + t * second[2];
-        return { x: x1, y: x3, z: x2 };
-      };
-      const steps = [-1.5, -0.75, 0, 0.75, 1.5];
-      return [
-        ...steps.map((s, index) => ({
-          points: [point(s, -1.5), point(s, 1.5)],
-          color,
-          smooth: false,
-          showPoints: false,
-          ...(index === 4 ? { labels: [{ text: label, at: 1, offset: [0.4, 0.3, 0] }] } : {}),
-        })),
-        ...steps.map((t) => ({ points: [point(-1.5, t), point(1.5, t)], color, smooth: false, showPoints: false })),
-      ];
-    }),
-    {
-      points: [{ x: 1, y: 3, z: 2 }],
-      color: "#c026d3",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="x=(1,2,3)^T" />, at: 0, offset: [0.5, 0.4, 0] }],
-    },
-  ]}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: 0.5, max: 5.5 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "isometric", target: { x: 1, y: 3, z: 2 } },
+    objects: [
+      { id: "flat", kind: "polygon", vertices: [{ x: 1 + (-1.5) * (1) + (-1.5) * (0), y: 3 + (-1.5) * (0) + (-1.5) * (0), z: 2 + (-1.5) * (0) + (-1.5) * (1) }, { x: 1 + (1.5) * (1) + (-1.5) * (0), y: 3 + (1.5) * (0) + (-1.5) * (0), z: 2 + (1.5) * (0) + (-1.5) * (1) }, { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (0), z: 2 + (1.5) * (0) + (1.5) * (1) }, { x: 1 + (-1.5) * (1) + (1.5) * (0), y: 3 + (-1.5) * (0) + (1.5) * (0), z: 2 + (-1.5) * (0) + (1.5) * (1) }], appearance: "secondary" },
+      { id: "middle", kind: "polygon", vertices: [{ x: 1 + (-1.5) * (1) + (-1.5) * (0), y: 3 + (-1.5) * (0) + (-1.5) * (-2 / Math.sqrt(5)), z: 2 + (-1.5) * (0) + (-1.5) * (1 / Math.sqrt(5)) }, { x: 1 + (1.5) * (1) + (-1.5) * (0), y: 3 + (1.5) * (0) + (-1.5) * (-2 / Math.sqrt(5)), z: 2 + (1.5) * (0) + (-1.5) * (1 / Math.sqrt(5)) }, { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (-2 / Math.sqrt(5)), z: 2 + (1.5) * (0) + (1.5) * (1 / Math.sqrt(5)) }, { x: 1 + (-1.5) * (1) + (1.5) * (0), y: 3 + (-1.5) * (0) + (1.5) * (-2 / Math.sqrt(5)), z: 2 + (-1.5) * (0) + (1.5) * (1 / Math.sqrt(5)) }], appearance: "construction" },
+      { id: "steep", kind: "polygon", vertices: [{ x: 1 + (-1.5) * (1 / Math.sqrt(5)) + (-1.5) * (2 / Math.sqrt(30)), y: 3 + (-1.5) * (0) + (-1.5) * (-5 / Math.sqrt(30)), z: 2 + (-1.5) * (-2 / Math.sqrt(5)) + (-1.5) * (1 / Math.sqrt(30)) }, { x: 1 + (1.5) * (1 / Math.sqrt(5)) + (-1.5) * (2 / Math.sqrt(30)), y: 3 + (1.5) * (0) + (-1.5) * (-5 / Math.sqrt(30)), z: 2 + (1.5) * (-2 / Math.sqrt(5)) + (-1.5) * (1 / Math.sqrt(30)) }, { x: 1 + (1.5) * (1 / Math.sqrt(5)) + (1.5) * (2 / Math.sqrt(30)), y: 3 + (1.5) * (0) + (1.5) * (-5 / Math.sqrt(30)), z: 2 + (1.5) * (-2 / Math.sqrt(5)) + (1.5) * (1 / Math.sqrt(30)) }, { x: 1 + (-1.5) * (1 / Math.sqrt(5)) + (1.5) * (2 / Math.sqrt(30)), y: 3 + (-1.5) * (0) + (1.5) * (-5 / Math.sqrt(30)), z: 2 + (-1.5) * (-2 / Math.sqrt(5)) + (1.5) * (1 / Math.sqrt(30)) }], appearance: "highlight" },
+      { id: "solution", kind: "point", at: { x: 1, y: 3, z: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "flat", objectId: "flat", at: { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (0), z: 2 + (1.5) * (0) + (1.5) * (1) }, placement: "right" },
+      { key: "middle", objectId: "middle", at: { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (-2 / Math.sqrt(5)), z: 2 + (1.5) * (0) + (1.5) * (1 / Math.sqrt(5)) }, placement: "right" },
+      { key: "steep", objectId: "steep", at: { x: 1 + (1.5) * (1 / Math.sqrt(5)) + (1.5) * (2 / Math.sqrt(30)), y: 3 + (1.5) * (0) + (1.5) * (-5 / Math.sqrt(30)), z: 2 + (1.5) * (-2 / Math.sqrt(5)) + (1.5) * (1 / Math.sqrt(30)) }, placement: "right" },
+      { key: "solution", objectId: "solution", at: { x: 1, y: 3, z: 2 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "flat": <InlineMath math="x_3=3" />,
+    "middle": <InlineMath math="2x_2+x_3=7" />,
+    "steep": <InlineMath math="2x_1+x_2+x_3=7" />,
+    "solution": <InlineMath math="x=(1,2,3)^T" />,
+  }}
 />
 
 Dieses Diagramm fasst die beiden Einsetzschritte zusammen, die du gerade gemacht hast.

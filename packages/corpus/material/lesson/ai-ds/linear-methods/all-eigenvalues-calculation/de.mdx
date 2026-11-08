@@ -110,41 +110,37 @@ Der **Betrag der Nebendiagonaleinträge** ist bereits von <InlineMath math="1" /
 
 Die Grenzdiagonale enthält die Eigenwerte <InlineMath math="3" /> und <InlineMath math="1" />. Da jede Iterierte zu <InlineMath math="A_0" /> ähnlich ist, sind dies die Eigenwerte der ursprünglichen Matrix und keine durch eine veränderte Aufgabe erzeugten Näherungen.
 
-Jeder Schritt <InlineMath math="A_{k+1}=Q_k^TA_kQ_k" /> dreht die Ellipse <InlineMath math="x^TA_kx=1" /> nur, weil <InlineMath math="Q_k" /> orthogonal ist. Zoom in die Szene unten: Jede Ellipse hat dieselben Halbachsen <InlineMath math="1/\sqrt3" /> und <InlineMath math="1" />, also bleiben die Eigenwerte <InlineMath math="3" /> und <InlineMath math="1" />. Nur die Richtung ändert sich. Die Ellipse von <InlineMath math="A_0" /> ist um <InlineMath math="45^\circ" /> geneigt, dann richten sich <InlineMath math="A_1" /> und <InlineMath math="A_2" /> immer näher an den Achsen aus, bis der Grenzwert <InlineMath math="\operatorname{diag}(3,1)" /> auf den Achsen liegt und du seine Eigenwerte auf der Diagonale ablesen kannst.
+Für diese Matrix zeigt der Eigenvektor von <InlineMath math="A_k" /> zum Eigenwert <InlineMath math="3" /> in Richtung <InlineMath math="(3^k,1)^T" />, und der zum Eigenwert <InlineMath math="1" /> steht senkrecht darauf. Zoom in die Szene unten: Die Eigenrichtungen von <InlineMath math="A_0" /> sind um <InlineMath math="45^\circ" /> geneigt, dann drehen <InlineMath math="A_1" /> und <InlineMath math="A_2" /> sie näher an die Achsen, bis der Grenzwert <InlineMath math="\operatorname{diag}(3,1)" /> sie genau auf die Achsen legt. Die Eigenwerte ändern sich nie, weil jeder Schritt eine Ähnlichkeit <InlineMath math="A_{k+1}=Q_k^TA_kQ_k" /> ist. Nur die Richtungen drehen sich, und der Eintrag neben der Diagonale <InlineMath math="2\cdot3^k/(9^k+1)" /> schrumpft von <InlineMath math="1" /> auf <InlineMath math="3/5" /> und dann auf <InlineMath math="9/41" />.
 
-<LineEquation
-  title={<>Die <InlineMath math="\mathrm{QR}" />-Iteration dreht die Ellipse, ohne ihre Form zu ändern</>}
-  description={<>Jede Kurve ist <InlineMath math="x^TA_kx=1" />. Grau ist <InlineMath math="A_0" />, gelb <InlineMath math="A_1" />, orange <InlineMath math="A_2" /> und magenta der Grenzwert <InlineMath math="\operatorname{diag}(3,1)" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0, 3.8]}
-  cameraTarget={[0, 0, 0]}
-  data={(() => {
-    const step = ([[a, b], [c, d]]) => {
-      const n = Math.hypot(a, c);
-      const q1 = [a / n, c / n];
-      const r12 = q1[0] * b + q1[1] * d;
-      const u = [b - r12 * q1[0], d - r12 * q1[1]];
-      const r22 = Math.hypot(u[0], u[1]);
-      const q2 = [u[0] / r22, u[1] / r22];
-      return [
-        [n * q1[0] + r12 * q1[1], n * q2[0] + r12 * q2[1]],
-        [r22 * q1[1], r22 * q2[1]],
-      ];
-    };
-    const a0 = [[2, 1], [1, 2]];
-    const a1 = step(a0);
-    const a2 = step(a1);
-    const ellipse = ([[a, b], [, d]]) =>
-      Array.from({ length: 361 }, (_, index) => {
-        const phi = (index / 360) * 2 * Math.PI;
-        const radius = 1 / Math.sqrt(a * Math.cos(phi) ** 2 + 2 * b * Math.cos(phi) * Math.sin(phi) + d * Math.sin(phi) ** 2);
-        return { x: radius * Math.cos(phi), y: radius * Math.sin(phi), z: 0 };
-      });
-    return [
-      { points: ellipse(a0), color: "#64748b", smooth: false, showPoints: false, labels: [{ text: <InlineMath math="A_0" />, at: 135, offset: [-0.25, 0.2, 0] }] },
-      { points: ellipse(a1), color: "#b98d00", smooth: false, showPoints: false, labels: [{ text: <InlineMath math="A_1" />, at: 288, offset: [0.15, -0.25, 0] }] },
-      { points: ellipse(a2), color: "#bb6800", smooth: false, showPoints: false, labels: [{ text: <InlineMath math="A_2" />, at: 276, offset: [-0.3, -0.3, 0] }] },
-      { points: ellipse([[3, 0], [0, 1]]), color: "#c026d3", smooth: false, showPoints: false, labels: [{ text: <InlineMath math="A_\infty" />, at: 90, offset: [0.3, 0.2, 0] }] },
-    ];
-  })()}
+<MathVisual
+  title={<>Die <InlineMath math="\mathrm{QR}" />-Iteration dreht die Eigenrichtungen auf die Achsen</>}
+  description={<>Jedes Paar senkrechter Strecken zeigt die Eigenrichtungen einer Iterierten <InlineMath math="A_k" />: violett <InlineMath math="A_0" />, gelb <InlineMath math="A_1" />, orange <InlineMath math="A_2" /> und magenta der Grenzwert <InlineMath math="\operatorname{diag}(3,1)" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 1.3 }, y: { min: -1.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "a0", kind: "segment", from: { x: -(3 ** 0 / Math.sqrt(9 ** 0 + 1)), y: -(1 / Math.sqrt(9 ** 0 + 1)) }, to: { x: 3 ** 0 / Math.sqrt(9 ** 0 + 1), y: 1 / Math.sqrt(9 ** 0 + 1) }, appearance: "secondary" },
+      { id: "a1", kind: "segment", from: { x: -(3 ** 1 / Math.sqrt(9 ** 1 + 1)), y: -(1 / Math.sqrt(9 ** 1 + 1)) }, to: { x: 3 ** 1 / Math.sqrt(9 ** 1 + 1), y: 1 / Math.sqrt(9 ** 1 + 1) }, appearance: "highlight" },
+      { id: "a2", kind: "segment", from: { x: -(3 ** 2 / Math.sqrt(9 ** 2 + 1)), y: -(1 / Math.sqrt(9 ** 2 + 1)) }, to: { x: 3 ** 2 / Math.sqrt(9 ** 2 + 1), y: 1 / Math.sqrt(9 ** 2 + 1) }, appearance: "primary" },
+      { id: "a0-small", kind: "segment", from: { x: 1 / Math.sqrt(9 ** 0 + 1), y: -(3 ** 0 / Math.sqrt(9 ** 0 + 1)) }, to: { x: -(1 / Math.sqrt(9 ** 0 + 1)), y: 3 ** 0 / Math.sqrt(9 ** 0 + 1) }, appearance: "secondary" },
+      { id: "a1-small", kind: "segment", from: { x: 1 / Math.sqrt(9 ** 1 + 1), y: -(3 ** 1 / Math.sqrt(9 ** 1 + 1)) }, to: { x: -(1 / Math.sqrt(9 ** 1 + 1)), y: 3 ** 1 / Math.sqrt(9 ** 1 + 1) }, appearance: "highlight" },
+      { id: "a2-small", kind: "segment", from: { x: 1 / Math.sqrt(9 ** 2 + 1), y: -(3 ** 2 / Math.sqrt(9 ** 2 + 1)) }, to: { x: -(1 / Math.sqrt(9 ** 2 + 1)), y: 3 ** 2 / Math.sqrt(9 ** 2 + 1) }, appearance: "primary" },
+      { id: "limit", kind: "segment", from: { x: -1, y: 0 }, to: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "limit-small", kind: "segment", from: { x: 0, y: -1 }, to: { x: 0, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a0", objectId: "a0", at: { x: 3 ** 0 / Math.sqrt(9 ** 0 + 1), y: 1 / Math.sqrt(9 ** 0 + 1) }, placement: "above-right" },
+      { key: "a1", objectId: "a1", at: { x: 3 ** 1 / Math.sqrt(9 ** 1 + 1), y: 1 / Math.sqrt(9 ** 1 + 1) }, placement: "right" },
+      { key: "a2", objectId: "a2", at: { x: 3 ** 2 / Math.sqrt(9 ** 2 + 1), y: 1 / Math.sqrt(9 ** 2 + 1) }, placement: "right" },
+      { key: "limit", objectId: "limit-small", at: { x: 0, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "a0": <InlineMath math="A_0" />,
+    "a1": <InlineMath math="A_1" />,
+    "a2": <InlineMath math="A_2" />,
+    "limit": <InlineMath math="A_\infty" />,
+  }}
 />

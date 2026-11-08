@@ -137,30 +137,47 @@ Jordan form is primarily an exact algebraic classification. It is highly sensiti
 
 Follow the magenta points below from <InlineMath math="x_0=e_2" />. With <InlineMath math="J_2(0.8)^m=\begin{pmatrix}0.8^m&m\cdot0.8^{m-1}\\0&0.8^m\end{pmatrix}" />, both eigenvalues equal <InlineMath math="0.8<1" />, so everything eventually decays to zero. Still, the first component first grows to <InlineMath math="2.048" /> at <InlineMath math="m=4" /> and <InlineMath math="m=5" />, because of the factor <InlineMath math="m" /> from the Jordan block. The diagonal matrix <InlineMath math="0.8I" /> only shrinks <InlineMath math="e_2" /> straight down, like the gray points.
 
-<LineEquation
+<MathVisual
   title={<>The iterates <InlineMath math="x_m=J_2(0.8)^me_2" /> grow before they decay</>}
   description={<>Magenta points are <InlineMath math="x_m=(m\cdot0.8^{m-1},0.8^m)^T" /> for <InlineMath math="m=0,\ldots,20" />. Gray points are <InlineMath math="(0.8I)^me_2" />.</>}
-  showZAxis={false}
-  cameraPosition={[1, 0.5, 4.2]}
-  cameraTarget={[1, 0.5, 0]}
-  data={[
-    {
-      points: Array.from({ length: 21 }, (_, m) => ({ x: m * 0.8 ** (m - 1), y: 0.8 ** m, z: 0 })),
-      color: "#c026d3",
-      smooth: false,
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="x_0=e_2" />, at: 0, offset: [0.4, 0.1, 0] },
-        { text: <InlineMath math="x_4" />, at: 4, offset: [0.15, 0.2, 0] },
-        { text: <InlineMath math="x_5" />, at: 5, offset: [0.25, -0.05, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 21 }, (_, m) => ({ x: 0, y: 0.8 ** m, z: 0 })),
-      color: "#64748b",
-      smooth: false,
-      showPoints: true,
-      labels: [{ text: <InlineMath math="(0.8I)^me_2" />, at: 6, offset: [-0.55, 0, 0] }],
-    },
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 2.4 }, y: { min: -0.1, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "step-0", kind: "point", at: { x: 0, y: 0.8 ** 0 }, appearance: "answer" },
+      { id: "step-1", kind: "point", at: { x: 1 * 0.8 ** 0, y: 0.8 ** 1 }, appearance: "answer" },
+      { id: "step-2", kind: "point", at: { x: 2 * 0.8 ** 1, y: 0.8 ** 2 }, appearance: "answer" },
+      { id: "step-3", kind: "point", at: { x: 3 * 0.8 ** 2, y: 0.8 ** 3 }, appearance: "answer" },
+      { id: "step-4", kind: "point", at: { x: 4 * 0.8 ** 3, y: 0.8 ** 4 }, appearance: "answer" },
+      { id: "step-5", kind: "point", at: { x: 5 * 0.8 ** 4, y: 0.8 ** 5 }, appearance: "answer" },
+      { id: "step-6", kind: "point", at: { x: 6 * 0.8 ** 5, y: 0.8 ** 6 }, appearance: "answer" },
+      { id: "step-7", kind: "point", at: { x: 7 * 0.8 ** 6, y: 0.8 ** 7 }, appearance: "answer" },
+      { id: "step-8", kind: "point", at: { x: 8 * 0.8 ** 7, y: 0.8 ** 8 }, appearance: "answer" },
+      { id: "step-9", kind: "point", at: { x: 9 * 0.8 ** 8, y: 0.8 ** 9 }, appearance: "answer" },
+      { id: "step-10", kind: "point", at: { x: 10 * 0.8 ** 9, y: 0.8 ** 10 }, appearance: "answer" },
+      { id: "step-11", kind: "point", at: { x: 11 * 0.8 ** 10, y: 0.8 ** 11 }, appearance: "answer" },
+      { id: "step-12", kind: "point", at: { x: 12 * 0.8 ** 11, y: 0.8 ** 12 }, appearance: "answer" },
+      { id: "plain-1", kind: "point", at: { x: 0, y: 0.8 ** 1 }, appearance: "reference" },
+      { id: "plain-2", kind: "point", at: { x: 0, y: 0.8 ** 2 }, appearance: "reference" },
+      { id: "plain-3", kind: "point", at: { x: 0, y: 0.8 ** 3 }, appearance: "reference" },
+      { id: "plain-4", kind: "point", at: { x: 0, y: 0.8 ** 4 }, appearance: "reference" },
+      { id: "plain-5", kind: "point", at: { x: 0, y: 0.8 ** 5 }, appearance: "reference" },
+      { id: "plain-6", kind: "point", at: { x: 0, y: 0.8 ** 6 }, appearance: "reference" },
+      { id: "plain-7", kind: "point", at: { x: 0, y: 0.8 ** 7 }, appearance: "reference" },
+      { id: "plain-8", kind: "point", at: { x: 0, y: 0.8 ** 8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "step-0", objectId: "step-0", at: { x: 0, y: 1 }, placement: "right" },
+      { key: "step-4", objectId: "step-4", at: { x: 4 * 0.8 ** 3, y: 0.8 ** 4 }, placement: "above" },
+      { key: "step-5", objectId: "step-5", at: { x: 5 * 0.8 ** 4, y: 0.8 ** 5 }, placement: "right" },
+      { key: "plain-6", objectId: "plain-6", at: { x: 0, y: 0.8 ** 6 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "step-0": <InlineMath math="x_0=e_2" />,
+    "step-4": <InlineMath math="x_4" />,
+    "step-5": <InlineMath math="x_5" />,
+    "plain-6": <InlineMath math="(0.8I)^me_2" />,
+  }}
 />

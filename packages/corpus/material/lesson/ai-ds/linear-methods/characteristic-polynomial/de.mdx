@@ -209,46 +209,41 @@ Der Eigenwert ist <InlineMath math="\lambda = 1" /> mit <InlineMath math="\mu_A(
 
 Vergleich die fünf Parabeln unten, eine für jeden Drehwinkel. Der tiefste Punkt jeder Parabel liegt bei <InlineMath math="t=\cos\alpha" /> mit dem Wert <InlineMath math="1-\cos^2\alpha=\sin^2\alpha" />. Nur für <InlineMath math="\alpha=0" /> und <InlineMath math="\alpha=\pi" /> ist dieser Wert null, und die Parabel berührt die <InlineMath math="t" />-Achse bei <InlineMath math="t=1" /> oder <InlineMath math="t=-1" />. Für jeden anderen Winkel schwebt die Parabel über der Achse, ihre Nullstellen sind komplex, und die Drehung erhält keine einzige Richtung.
 
-<LineEquation
+<MathVisual
   title={<>Charakteristisches Polynom einer Drehung <InlineMath math="t^2-2t\cos\alpha+1" /></>}
   description={<>Eine Parabel für jeden Winkel <InlineMath math="\alpha" />. Ihr tiefster Punkt liegt bei <InlineMath math="t=\cos\alpha" /> mit dem Wert <InlineMath math="\sin^2\alpha" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 2, 9]}
-  cameraTarget={[0, 2, 0]}
-  data={[
-    ...[
-      { angle: 0, color: "#8242e5", label: <InlineMath math="\alpha=0" />, end: 400, offset: [0.5, 0.3, 0] },
-      { angle: Math.PI / 3, color: "#0d9488", label: <InlineMath math="\alpha=\tfrac\pi3" />, end: 0, offset: [-0.5, 0.35, 0] },
-      { angle: Math.PI / 2, color: "#b98d00", label: <InlineMath math="\alpha=\tfrac\pi2" />, end: 400, offset: [0.35, 0.35, 0] },
-      { angle: (2 * Math.PI) / 3, color: "#bb6800", label: <InlineMath math="\alpha=\tfrac{2\pi}3" />, end: 0, offset: [-0.55, 0.35, 0] },
-      { angle: Math.PI, color: "#c026d3", label: <InlineMath math="\alpha=\pi" />, end: 400, offset: [0.3, 0.35, 0] },
-    ].map(({ angle, color, label, end, offset }) => {
-      const c = Math.cos(angle);
-      const reach = Math.sqrt(c ** 2 + 3);
-      return {
-        points: Array.from({ length: 401 }, (_, index) => {
-          const t = c - reach + (index / 400) * 2 * reach;
-          return { x: t, y: t ** 2 - 2 * c * t + 1, z: 0 };
-        }),
-        color,
-        smooth: false,
-        showPoints: false,
-        labels: [{ text: label, at: end, offset }],
-      };
-    }),
-    {
-      points: [{ x: 1, y: 0, z: 0 }],
-      color: "#8242e5",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="t=1" />, at: 0, offset: [0.35, -0.35, 0] }],
-    },
-    {
-      points: [{ x: -1, y: 0, z: 0 }],
-      color: "#c026d3",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="t=-1" />, at: 0, offset: [-0.4, -0.35, 0] }],
-    },
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.3, max: 3.3 }, y: { min: -0.6, max: 5.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "zero", kind: "quadratic", coefficients: { a: 1, b: -2 * (1), c: 1 }, domain: { min: -1, max: 3 }, inputAxis: "x", appearance: "secondary" },
+      { id: "third", kind: "quadratic", coefficients: { a: 1, b: -2 * (1 / 2), c: 1 }, domain: { min: -3 / 2, max: 5 / 2 }, inputAxis: "x", appearance: "construction" },
+      { id: "half", kind: "quadratic", coefficients: { a: 1, b: -2 * (0), c: 1 }, domain: { min: -7 / 4, max: 7 / 4 }, inputAxis: "x", appearance: "highlight" },
+      { id: "twothirds", kind: "quadratic", coefficients: { a: 1, b: -2 * (-1 / 2), c: 1 }, domain: { min: -5 / 2, max: 3 / 2 }, inputAxis: "x", appearance: "primary" },
+      { id: "full", kind: "quadratic", coefficients: { a: 1, b: -2 * (-1), c: 1 }, domain: { min: -3, max: 1 }, inputAxis: "x", appearance: "answer" },
+      { id: "root-plus", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "root-minus", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "zero", objectId: "zero", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "third", objectId: "third", at: { x: -3 / 2, y: 19 / 4 }, placement: "above-left" },
+      { key: "half", objectId: "half", at: { x: 7 / 4, y: 65 / 16 }, placement: "above-right" },
+      { key: "twothirds", objectId: "twothirds", at: { x: -5 / 2, y: 19 / 4 }, placement: "above-left" },
+      { key: "full", objectId: "full", at: { x: 1, y: 4 }, placement: "above-right" },
+      { key: "root-plus", objectId: "root-plus", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "root-minus", objectId: "root-minus", at: { x: -1, y: 0 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "zero": <InlineMath math="\alpha=0" />,
+    "third": <InlineMath math="\alpha=\tfrac\pi3" />,
+    "half": <InlineMath math="\alpha=\tfrac\pi2" />,
+    "twothirds": <InlineMath math="\alpha=\tfrac{2\pi}3" />,
+    "full": <InlineMath math="\alpha=\pi" />,
+    "root-plus": <InlineMath math="t=1" />,
+    "root-minus": <InlineMath math="t=-1" />,
+  }}
 />
 
 ## Eigenschaften ähnlicher Matrizen

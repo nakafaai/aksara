@@ -117,63 +117,38 @@ Prüfe auch das erste Residuum: Die Schätzung verbessert sich, ist aber noch ni
 
 <BlockMath math="r_1=\frac1{17\sqrt{17}}\begin{pmatrix}-12\\48\end{pmatrix},\qquad \|r_1\|_2=\frac{12}{17}" />
 
-Beide Verfahren unten starten beim selben violetten Vektor <InlineMath math="q_0" />. Die inverse Iteration mit Shift <InlineMath math="\mu=1" /> multipliziert die zweite Komponente in jedem Schritt mit <InlineMath math="1/4" />, also kippen die türkisen Pfeile <InlineMath math="q_k\propto(1,4^{-k})^T" /> auf die erste Achse, den Eigenvektor zu <InlineMath math="2" />. Die einfache Potenzmethode benutzt <InlineMath math="A" /> selbst, deshalb steigen die orangen Pfeile <InlineMath math="p_k\propto(2^k,5^k)^T" /> zum Eigenvektor zu <InlineMath math="5" />. Der Shift entscheidet, welchen Eigenwert du bekommst.
+Beide Verfahren unten starten beim selben violetten Vektor <InlineMath math="q_0" />. Die inverse Iteration mit Shift <InlineMath math="\mu=1" /> multipliziert die zweite Komponente in jedem Schritt mit <InlineMath math="1/4" />, also kippen die türkisen Strecken <InlineMath math="q_k\propto(1,4^{-k})^T" /> auf die erste Achse, den Eigenvektor zu <InlineMath math="2" />. Die einfache Potenzmethode benutzt <InlineMath math="A" /> selbst, deshalb steigen die orangen Strecken <InlineMath math="p_k\propto(2^k,5^k)^T" /> zum Eigenvektor zu <InlineMath math="5" />. Der Shift entscheidet, welchen Eigenwert du bekommst.
 
-<LineEquation
+<MathVisual
   title={<>Verschobene inverse Iteration und Potenzmethode laufen in verschiedene Richtungen</>}
-  description={<>Für <InlineMath math="A=\operatorname{diag}(2,5)" /> und <InlineMath math="q_0=(1,1)^T/\sqrt2" />: Türkise Pfeile sind <InlineMath math="q_k" /> mit Shift <InlineMath math="\mu=1" />, orange Pfeile die Iterierten <InlineMath math="p_k" /> der Potenzmethode.</>}
-  showZAxis={false}
-  cameraPosition={[0.5, 0.5, 3.4]}
-  cameraTarget={[0.5, 0.5, 0]}
-  data={[
-    {
-      points: Array.from({ length: 91 }, (_, index) => {
-        const angle = (index / 90) * (Math.PI / 2);
-        return { x: Math.cos(angle), y: Math.sin(angle), z: 0 };
-      }),
-      color: "#64748b",
-      smooth: false,
-      showPoints: false,
-    },
-    ...Array.from({ length: 3 }, (_, index) => {
-      const k = index + 1;
-      const x = 1;
-      const y = 1 / 4 ** k;
-      const length = Math.hypot(x, y);
-      return {
-        points: [{ x: 0, y: 0, z: 0 }, { x: x / length, y: y / length, z: 0 }],
-        color: "#0d9488",
-        cone: { position: "end", size: 0.08 },
-        smooth: false,
-        showPoints: false,
-        ...(k === 1 ? { labels: [{ text: <InlineMath math="q_1" />, at: 1, offset: [0.2, 0.05, 0] }] } : {}),
-        ...(k === 3 ? { labels: [{ text: <InlineMath math="q_3" />, at: 1, offset: [0.2, -0.1, 0] }] } : {}),
-      };
-    }),
-    ...Array.from({ length: 3 }, (_, index) => {
-      const k = index + 1;
-      const x = 2 ** k;
-      const y = 5 ** k;
-      const length = Math.hypot(x, y);
-      return {
-        points: [{ x: 0, y: 0, z: 0 }, { x: x / length, y: y / length, z: 0 }],
-        color: "#bb6800",
-        cone: { position: "end", size: 0.08 },
-        smooth: false,
-        showPoints: false,
-        ...(k === 1 ? { labels: [{ text: <InlineMath math="p_1" />, at: 1, offset: [0.15, 0.15, 0] }] } : {}),
-        ...(k === 3 ? { labels: [{ text: <InlineMath math="p_3" />, at: 1, offset: [-0.2, 0.15, 0] }] } : {}),
-      };
-    }),
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
-      color: "#8242e5",
-      cone: { position: "end", size: 0.08 },
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="q_0" />, at: 1, offset: [0.15, 0.15, 0] }],
-    },
-  ]}
+  description={<>Für <InlineMath math="A=\operatorname{diag}(2,5)" /> und <InlineMath math="q_0=(1,1)^T/\sqrt2" />: Türkise Strecken sind <InlineMath math="q_k" /> mit Shift <InlineMath math="\mu=1" />, orange Strecken die Iterierten <InlineMath math="p_k" /> der Potenzmethode.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.3 }, y: { min: -0.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "quarter", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 90, appearance: "reference" },
+      { id: "q0", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "q1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 / Math.hypot(4, 1), y: 1 / Math.hypot(4, 1) }, appearance: "construction" },
+      { id: "q2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 16 / Math.hypot(16, 1), y: 1 / Math.hypot(16, 1) }, appearance: "construction" },
+      { id: "p1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 / Math.hypot(2, 5), y: 5 / Math.hypot(2, 5) }, appearance: "primary" },
+      { id: "p2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 / Math.hypot(4, 25), y: 25 / Math.hypot(4, 25) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "q0", objectId: "q0", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "above-right" },
+      { key: "q1", objectId: "q1", at: { x: 4 / Math.hypot(4, 1), y: 1 / Math.hypot(4, 1) }, placement: "right" },
+      { key: "q2", objectId: "q2", at: { x: 16 / Math.hypot(16, 1), y: 1 / Math.hypot(16, 1) }, placement: "below-right" },
+      { key: "p1", objectId: "p1", at: { x: 2 / Math.hypot(2, 5), y: 5 / Math.hypot(2, 5) }, placement: "above-right" },
+      { key: "p2", objectId: "p2", at: { x: 4 / Math.hypot(4, 25), y: 25 / Math.hypot(4, 25) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "q0": <InlineMath math="q_0" />,
+    "q1": <InlineMath math="q_1" />,
+    "q2": <InlineMath math="q_2" />,
+    "p1": <InlineMath math="p_1" />,
+    "p2": <InlineMath math="p_2" />,
+  }}
 />
 
 ## Praktische Prüfungen

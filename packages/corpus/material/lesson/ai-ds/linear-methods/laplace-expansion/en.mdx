@@ -157,39 +157,35 @@ By choosing rows or columns that have many zeros, we can save calculations.
 
 Expanding the same matrix along the first column gives the cofactors <InlineMath math="C_{11}=2" />, <InlineMath math="C_{21}=-3" />, and <InlineMath math="C_{31}=-6" />, so <InlineMath math="\det A=0\cdot2+2\cdot(-3)+1\cdot(-6)=-12" />. In the scene, each line shows the determinant when you replace one first-column entry by a value <InlineMath math="v" /> and keep the rest. All three lines pass through a magenta point at <InlineMath math="\det A=-12" />, and each slope equals that entry's cofactor. The gray points at <InlineMath math="v=6" />, <InlineMath math="v=-2" />, and <InlineMath math="v=-1" /> mark the values that make the matrix singular.
 
-<LineEquation
+<MathVisual
   title={<>The determinant is linear in each entry of the first column</>}
   description={<>Each line shows <InlineMath math="\det A" /> when one first-column entry is replaced by <InlineMath math="v" />. Its slope is that entry's cofactor.</>}
-  showZAxis={false}
-  cameraPosition={[2, -8, 30]}
-  cameraTarget={[2, -8, 0]}
-  data={[
-    ...[
-      { entry: 0, cofactor: 2, color: "#8242e5", label: <InlineMath math="a_{11}:\ C_{11}=2" />, at: 1, offset: [0.3, 1.2, 0] },
-      { entry: 2, cofactor: -3, color: "#0d9488", label: <InlineMath math="a_{21}:\ C_{21}=-3" />, at: 0, offset: [-0.6, 1.2, 0] },
-      { entry: 1, cofactor: -6, color: "#bb6800", label: <InlineMath math="a_{31}:\ C_{31}=-6" />, at: 1, offset: [1.6, -1, 0] },
-    ].map(({ entry, cofactor, color, label, at, offset }) => {
-      const det = (value) => -12 + cofactor * (value - entry);
-      const ends = [entry + (4 + 12) / cofactor, entry + (-20 + 12) / cofactor].sort((left, right) => left - right);
-      return {
-        points: ends.map((value) => ({ x: value, y: det(value), z: 0 })),
-        color,
-        smooth: false,
-        showPoints: false,
-        labels: [{ text: label, at, offset }],
-      };
-    }),
-    ...[0, 2, 1].map((entry) => ({
-      points: [{ x: entry, y: -12, z: 0 }],
-      color: "#c026d3",
-      showPoints: true,
-    })),
-    ...[6, -2, -1].map((value) => ({
-      points: [{ x: value, y: 0, z: 0 }],
-      color: "#64748b",
-      showPoints: true,
-    })),
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 8.5 }, y: { min: -21, max: 5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "c11", kind: "segment", from: { x: -4, y: -20 }, to: { x: 8, y: 4 }, appearance: "secondary" },
+      { id: "c21", kind: "segment", from: { x: -10 / 3, y: 4 }, to: { x: 14 / 3, y: -20 }, appearance: "construction" },
+      { id: "c31", kind: "segment", from: { x: -5 / 3, y: 4 }, to: { x: 7 / 3, y: -20 }, appearance: "primary" },
+      { id: "now-a", kind: "point", at: { x: 0, y: -12 }, appearance: "answer" },
+      { id: "now-b", kind: "point", at: { x: 2, y: -12 }, appearance: "answer" },
+      { id: "now-c", kind: "point", at: { x: 1, y: -12 }, appearance: "answer" },
+      { id: "zero-a", kind: "point", at: { x: 6, y: 0 }, appearance: "reference" },
+      { id: "zero-b", kind: "point", at: { x: -2, y: 0 }, appearance: "reference" },
+      { id: "zero-c", kind: "point", at: { x: -1, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "c11", objectId: "c11", at: { x: 8, y: 4 }, placement: "above-left" },
+      { key: "c21", objectId: "c21", at: { x: -10 / 3, y: 4 }, placement: "above-right" },
+      { key: "c31", objectId: "c31", at: { x: 7 / 3, y: -20 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "c11": <InlineMath math="a_{11}:\ C_{11}=2" />,
+    "c21": <InlineMath math="a_{21}:\ C_{21}=-3" />,
+    "c31": <InlineMath math="a_{31}:\ C_{31}=-6" />,
+  }}
 />
 
 ## Determinant of the Transpose
