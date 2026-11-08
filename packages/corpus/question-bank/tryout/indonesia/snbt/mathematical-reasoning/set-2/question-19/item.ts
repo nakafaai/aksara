@@ -9,22 +9,22 @@ const item: ItemSource = {
       statements: [
         {
           column: 2,
-          label: "Banyak obat di dalam tubuh berkurang 50 mg setiap jam.",
+          label: "Banyak obat di dalam tubuh berkurang 45 mg setiap jam.",
         },
         {
           column: 1,
           label:
-            "Jika pasien hanya minum satu dosis, banyak obat pada pukul 00.00 keesokan harinya adalah 50 mg.",
+            "Jika pasien hanya minum satu dosis, banyak obat pada pukul 06.00 keesokan harinya adalah 45 mg.",
         },
         {
           column: 2,
           label:
-            "Tiga jam setelah dosis pertama diminum, banyak obat di dalam tubuh adalah 300 mg.",
+            "Empat jam setelah dosis pertama diminum, banyak obat di dalam tubuh adalah 270 mg.",
         },
         {
           column: 1,
           label:
-            "Jika pasien hanya minum satu dosis, banyak obat 30 jam setelah diminum adalah $$12{,}5$$ mg.",
+            "Jika pasien hanya minum satu dosis, banyak obat 40 jam setelah diminum adalah $$11{,}25$$ mg.",
         },
       ],
     },

@@ -7,9 +7,9 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         { correct: false, label: "4 jam" },
-        { correct: false, label: "6 jam" },
         { correct: false, label: "8 jam" },
-        { correct: true, label: "12 jam" },
+        { correct: false, label: "12 jam" },
+        { correct: true, label: "16 jam" },
         { correct: false, label: "24 jam" },
       ],
     },

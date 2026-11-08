@@ -6,11 +6,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "200 mg" },
-        { correct: true, label: "300 mg" },
-        { correct: false, label: "400 mg" },
-        { correct: false, label: "500 mg" },
-        { correct: false, label: "600 mg" },
+        { correct: false, label: "180 mg" },
+        { correct: true, label: "270 mg" },
+        { correct: false, label: "360 mg" },
+        { correct: false, label: "450 mg" },
+        { correct: false, label: "540 mg" },
       ],
     },
   },

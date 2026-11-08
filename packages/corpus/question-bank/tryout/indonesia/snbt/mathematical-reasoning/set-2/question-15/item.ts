@@ -20,7 +20,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Dengan uang $$\\text{Rp}1{.}700{.}000{,}00$$, pelanggan dapat membeli paling banyak 490 ringgit dalam satu transaksi.",
+            "Dengan uang $$\\text{Rp}1{.}700{.}000{,}00$$, pelanggan dapat membeli 490 ringgit dalam satu transaksi.",
         },
         {
           column: 2,
