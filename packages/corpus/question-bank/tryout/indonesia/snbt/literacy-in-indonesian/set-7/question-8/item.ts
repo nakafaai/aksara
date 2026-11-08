@@ -12,14 +12,14 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Trotoar yang dikorbankan untuk pelebaran jalan selalu dipakai untuk parkir motor.",
-        },
-        {
           correct: true,
           label:
             "Berkendara di jalan yang lebih lebar terasa mudah, sehingga makin banyak orang berkendara.",
+        },
+        {
+          correct: false,
+          label:
+            "Trotoar yang dikorbankan untuk pelebaran jalan selalu dipakai untuk parkir motor.",
         },
         {
           correct: false,
