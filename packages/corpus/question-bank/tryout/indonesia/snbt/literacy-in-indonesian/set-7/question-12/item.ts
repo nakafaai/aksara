@@ -28,7 +28,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "lebih memperhatikan Dimas daripada anak-anak lain karena kasihan",
+            "mengabaikan anak-anak lain agar dapat mengajari Dimas sepanjang hari",
         },
         {
           correct: false,

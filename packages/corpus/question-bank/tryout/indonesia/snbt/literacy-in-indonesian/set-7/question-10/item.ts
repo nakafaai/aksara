@@ -14,7 +14,7 @@ const item: ItemSource = {
       statements: [
         {
           column: 2,
-          label: "Dimas meminjam buku ikan paus karena disuruh gurunya.",
+          label: "Dimas selalu datang paling awal ke balai dusun.",
         },
         {
           column: 1,

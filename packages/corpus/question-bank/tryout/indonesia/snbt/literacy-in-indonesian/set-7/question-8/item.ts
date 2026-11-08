@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "assumption",
+    topic: "cause-effect",
   },
   stimulus: "walkable-city",
   versions: {
@@ -12,29 +12,29 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Trotoar yang dikorbankan untuk pelebaran jalan selalu dipakai untuk parkir motor.",
+        },
+        {
           correct: true,
           label:
-            "kemudahan berkendara mendorong lebih banyak orang memakai kendaraan pribadi",
+            "Berkendara di jalan yang lebih lebar terasa mudah, sehingga makin banyak orang berkendara.",
         },
         {
           correct: false,
           label:
-            "pemerintah kota tidak pernah sekali pun melebarkan jalan tanpa mengorbankan trotoar",
+            "Jumlah penduduk kota bertambah lebih cepat daripada panjang jalan yang dibangun.",
         },
         {
           correct: false,
           label:
-            "jumlah penduduk kota tidak bertambah dalam beberapa tahun terakhir",
+            "Pengendara ojek paling banyak memakai jalan yang sudah dilebarkan pemerintah.",
         },
         {
           correct: false,
           label:
-            "pengendara ojek paling banyak memakai jalan yang sudah dilebarkan",
-        },
-        {
-          correct: false,
-          label:
-            "kemacetan mungkin hilang dengan sendirinya jika jalan dibiarkan saja",
+            "Kemacetan mungkin hilang dengan sendirinya jika jalan dibiarkan tanpa perubahan.",
         },
       ],
     },

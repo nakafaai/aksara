@@ -13,7 +13,8 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Dimas sudah bosan dengan buku ikan paus yang sampulnya rusak",
+          label:
+            "Dimas kehilangan minat pada hewan laut dan beralih ke hewan darat",
         },
         {
           correct: false,

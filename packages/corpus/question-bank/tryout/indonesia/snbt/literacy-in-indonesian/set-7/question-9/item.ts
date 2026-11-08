@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Setelah trotoar sebuah jalan diperbaiki, perjalanan pendek naik ojek di sana turun.",
+            "Setelah trotoar diperbaiki, pejalan kaki bertambah dan perjalanan pendek naik ojek turun.",
         },
       ],
     },

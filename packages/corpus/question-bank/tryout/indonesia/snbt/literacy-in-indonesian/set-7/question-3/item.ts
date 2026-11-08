@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Tikus itu menguji apakah bakteri sendiri mengubah tubuh, bukan sekadar menyertai.",
+            "Tikus itu dipakai untuk menguji apakah bakteri sendiri mengubah tubuh.",
         },
         {
           correct: false,
