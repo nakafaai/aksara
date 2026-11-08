@@ -42,6 +42,20 @@ Vectors <InlineMath math="v_1,\ldots,v_s" /> form a Jordan chain for <InlineMath
 
 The **first vector** is an ordinary eigenvector. We require <InlineMath math="v_1\neq0" />. The recurrence then forces the chain vectors to be linearly independent. Each following vector maps to the previous one after applying <InlineMath math="A-\lambda I" />. In the ordered basis <InlineMath math="(v_1,\ldots,v_s)" />, the restriction of <InlineMath math="A" /> to this chain is represented by <InlineMath math="J_s(\lambda)" />.
 
+This diagram shows how <InlineMath math="A-\lambda I" /> maps each chain vector to the one before it.
+
+<Mermaid
+  title="A Jordan chain"
+  description="A - λI moves each chain vector one step down."
+  chart={`
+    flowchart LR
+        A[v_s] -->|A - λI| B[v_s-1]
+        B -->|A - λI| C[...]
+        C -->|A - λI| D[v_1]
+        D -->|A - λI| E[0]
+  `}
+/>
+
 ## The complete Jordan form
 
 Suppose the characteristic polynomial of <InlineMath math="A" /> has the following form.
@@ -90,6 +104,20 @@ The eigenvalue <InlineMath math="1" /> has algebraic multiplicity <InlineMath ma
 <BlockMath math="v_1=\begin{pmatrix}1\\0\\0\end{pmatrix},\qquad v_2=\begin{pmatrix}0\\1\\0\end{pmatrix}" />
 
 The two vectors form a Jordan chain because <InlineMath math="(A-I)v_1=0" /> and <InlineMath math="(A-I)v_2=v_1" />. The eigenvalue <InlineMath math="2" /> contributes the separate block <InlineMath math="J_1(2)" />.
+
+The two numbers in this diagram already tell you a lot about the Jordan blocks of one eigenvalue.
+
+<Mermaid
+  title="Reading blocks from two multiplicities"
+  description="The multiplicities give the number of blocks and their total size."
+  chart={`
+    flowchart TD
+        A[Eigenvalue λ] --> B["dim ker(A - λI)"]
+        A --> C["Algebraic multiplicity μ_A(λ)"]
+        B --> D[Number of Jordan blocks for λ]
+        C --> E[Total size of all blocks for λ]
+  `}
+/>
 
 ## Matrix Powers from Jordan Blocks
 

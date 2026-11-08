@@ -33,6 +33,21 @@ Untuk uji deflasi berikut, terlebih dahulu ubah matriks melalui keserupaan unite
 
 Di sini <InlineMath math="\tau" /> adalah toleransi yang disesuaikan dengan presisi numerik dan skala masalah. Perubahan kecil pada diagonal saja belum cukup sebagai kriteria berhenti karena elemen di bawah diagonal mungkin masih bernilai signifikan.
 
+Diagram ini menunjukkan satu putaran iterasi yang diulang sampai entri di luar diagonal hampir nol.
+
+<Mermaid
+  title="Satu putaran iterasi"
+  description="Faktorkan, kalikan terbalik, lalu ulangi."
+  chart={`
+    flowchart TD
+        A[A_k] --> B[Faktorkan A_k = Q_k R_k]
+        B --> C[A_k+1 = R_k Q_k]
+        C --> D{Entri luar diagonal cukup kecil?}
+        D -->|Tidak| A
+        D -->|Ya| E[Baca nilai eigen di diagonal]
+  `}
+/>
+
 ## Mengapa Nilai Eigen Tidak Berubah
 
 Karena <InlineMath math="Q_k" /> bersifat uniter, <InlineMath math="Q_k^{*}Q_k=I" />. Dengan menyubstitusikan <InlineMath math="R_k=Q_k^{*}A_k" /> ke dalam perkalian terbalik, kita memperoleh
@@ -43,6 +58,20 @@ Karena <InlineMath math="Q_k" /> bersifat uniter, <InlineMath math="Q_k^{*}Q_k=I
 </MathContainer>
 
 Jadi, <InlineMath math="A_{k+1}" /> serupa secara uniter dengan <InlineMath math="A_k" />. <Highlight>Matriks serupa memiliki polinom karakteristik</Highlight> dan nilai eigen yang sama. Setiap langkah <InlineMath math="\mathrm{QR}" /> menuliskan transformasi linear yang sama dalam koordinat baru.
+
+Rantai di bawah menjelaskan mengapa nilai eigen bertahan di setiap langkah.
+
+<Mermaid
+  title="Mengapa nilai eigen tidak berubah"
+  description="Setiap langkah adalah transformasi kesamaan."
+  chart={`
+    flowchart LR
+        A[A_k+1 = R_k Q_k] --> B[= Q_k^T A_k Q_k]
+        B --> C[A_k+1 serupa dengan A_k]
+        C --> D[Polinom karakteristik sama]
+        D --> E[Nilai eigen sama]
+  `}
+/>
 
 ## Bentuk Hasil Konvergensi
 

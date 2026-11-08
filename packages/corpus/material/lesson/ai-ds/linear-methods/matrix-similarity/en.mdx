@@ -37,6 +37,20 @@ A vector <InlineMath math="x \in \mathbb{K}^n" /> can be expressed in the canoni
 
 The matrix <InlineMath math="S^{-1}" /> represents the **coordinate transformation**.
 
+This diagram shows two paths that always end at the same vector, which is why <InlineMath math="B=S^{-1}AS" />.
+
+<Mermaid
+  title="Two paths to the same result"
+  description="Working in the new basis and coming back equals working directly."
+  chart={`
+    flowchart LR
+        A[New coordinates ξ] -->|S| B[x]
+        B -->|A| C[Ax]
+        A -->|B| D[Bξ]
+        D -->|S| C
+  `}
+/>
+
 ## Linear Transformation in Different Bases
 
 For the linear transformation <InlineMath math="y = A \cdot x" />, the canonical basis expresses <InlineMath math="y" /> with coordinates <InlineMath math="y_k" />. The basis <InlineMath math="v_1, \ldots, v_n" /> expresses the same vector with coordinates <InlineMath math="\eta_k" />:
@@ -192,3 +206,17 @@ If <InlineMath math="v \in \mathbb{K}^n" /> is an eigenvector of <InlineMath mat
 </MathContainer>
 
 Matrix similarity preserves the spectrum. When the basis changes, the eigenvector coordinates change from <InlineMath math="v" /> to <InlineMath math="S^{-1}v" />, but both coordinate vectors represent the same geometric direction.
+
+Every quantity in this diagram is the same for <InlineMath math="A" /> and <InlineMath math="B=S^{-1}AS" />.
+
+<Mermaid
+  title="What similarity keeps"
+  description="Similar matrices share all of these quantities."
+  chart={`
+    flowchart TD
+        A[B = S^-1 A S] --> B[Same characteristic polynomial]
+        B --> C[Same eigenvalues]
+        B --> D[Same trace]
+        B --> E[Same determinant]
+  `}
+/>

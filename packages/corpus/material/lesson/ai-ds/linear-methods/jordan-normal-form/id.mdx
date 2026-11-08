@@ -42,6 +42,20 @@ Vektor <InlineMath math="v_1,\ldots,v_s" /> membentuk rantai Jordan untuk <Inlin
 
 **Vektor pertama** adalah vektor eigen biasa. Kita mensyaratkan <InlineMath math="v_1\neq0" />. Relasi rantai kemudian menjamin bahwa semua vektor rantai bebas linear. Setelah dikenai <InlineMath math="A-\lambda I" />, setiap vektor berikutnya dipetakan ke vektor sebelumnya. Dalam basis terurut <InlineMath math="(v_1,\ldots,v_s)" />, pembatasan <InlineMath math="A" /> pada rantai ini direpresentasikan oleh <InlineMath math="J_s(\lambda)" />.
 
+Diagram ini menunjukkan bagaimana <InlineMath math="A-\lambda I" /> memetakan setiap vektor rantai ke vektor sebelumnya.
+
+<Mermaid
+  title="Rantai Jordan"
+  description="A - λI menggeser setiap vektor rantai satu langkah ke bawah."
+  chart={`
+    flowchart LR
+        A[v_s] -->|A - λI| B[v_s-1]
+        B -->|A - λI| C[...]
+        C -->|A - λI| D[v_1]
+        D -->|A - λI| E[0]
+  `}
+/>
+
 ## Bentuk Jordan lengkap
 
 Misalkan polinomial karakteristik <InlineMath math="A" /> memiliki bentuk berikut.
@@ -90,6 +104,20 @@ Nilai eigen <InlineMath math="1" /> memiliki multiplisitas aljabar <InlineMath m
 <BlockMath math="v_1=\begin{pmatrix}1\\0\\0\end{pmatrix},\qquad v_2=\begin{pmatrix}0\\1\\0\end{pmatrix}" />
 
 Kedua vektor membentuk rantai Jordan karena <InlineMath math="(A-I)v_1=0" /> dan <InlineMath math="(A-I)v_2=v_1" />. Nilai eigen <InlineMath math="2" /> menghasilkan blok terpisah <InlineMath math="J_1(2)" />.
+
+Dua angka di diagram ini sudah memberi tahu banyak hal tentang blok Jordan untuk satu nilai eigen.
+
+<Mermaid
+  title="Membaca blok dari dua kelipatan"
+  description="Kelipatan menentukan banyak blok dan ukuran totalnya."
+  chart={`
+    flowchart TD
+        A[Nilai eigen λ] --> B["dim ker(A - λI)"]
+        A --> C["Kelipatan aljabar μ_A(λ)"]
+        B --> D[Banyak blok Jordan untuk λ]
+        C --> E[Jumlah ukuran semua blok untuk λ]
+  `}
+/>
 
 ## Pangkat Matriks dari Blok Jordan
 

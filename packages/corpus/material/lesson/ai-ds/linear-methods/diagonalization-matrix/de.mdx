@@ -27,6 +27,20 @@ Für jede nichtnegative ganze Zahl <InlineMath math="m" />:
 
 Da <InlineMath math="\Lambda^m" /> entsteht, indem jeder Diagonaleintrag mit <InlineMath math="m" /> potenziert wird, führt die Diagonalisierung ein Matrixpotenzproblem auf Skalarrechnung zurück.
 
+Dieses Diagramm zeigt, woher die Spalten von <InlineMath math="S" /> und die Einträge von <InlineMath math="D" /> kommen.
+
+<Mermaid
+  title="A = S D S^-1 aufbauen"
+  description="Eigenvektoren füllen S, Eigenwerte füllen D."
+  chart={`
+    flowchart LR
+        A[Eigenwerte λ_i] --> D[D = diag λ_1, ..., λ_n]
+        B[Eigenvektoren v_i] --> S[S = v_1, ..., v_n als Spalten]
+        D --> E[A = S D S^-1]
+        S --> E
+  `}
+/>
+
 ## Bedingungen für die Diagonalisierung
 
 Eine Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> ist genau dann diagonalisierbar, wenn sich eine Basis von <InlineMath math="\mathbb{K}^n" /> aus Eigenvektoren <InlineMath math="v_1, \ldots, v_n \in \mathbb{K}^n" /> von <InlineMath math="A" /> mit zugehörigen Eigenwerten <InlineMath math="\lambda_1, \ldots, \lambda_n \in \mathbb{K}" /> finden lässt.
@@ -160,3 +174,18 @@ Für jedes <InlineMath math="i = 1, \ldots, k" /> sei <InlineMath math="v_1^{(i)
 <BlockMath math="\begin{aligned} &amp;v_1^{(1)},\ldots,v_{d_1}^{(1)}, \\ &amp;v_1^{(2)},\ldots,v_{d_2}^{(2)},\ldots, \\ &amp;v_1^{(k)},\ldots,v_{d_k}^{(k)} \end{aligned}" />
 
 Diese Vektoren bilden eine Basis von <InlineMath math="\mathbb{K}^n" /> aus Eigenvektoren von <InlineMath math="A" />. Daher ist <InlineMath math="A" /> diagonalisierbar.
+
+Nutz die zwei Fragen in diesem Diagramm, um über Diagonalisierbarkeit zu entscheiden, bevor du versuchst, <InlineMath math="S" /> zu bauen.
+
+<Mermaid
+  title="Auf Diagonalisierbarkeit prüfen"
+  description="Zwei Fragen entscheiden, ob A diagonalisierbar ist."
+  chart={`
+    flowchart TD
+        A[Matrix A] --> B{Zerfällt χ_A in Linearfaktoren?}
+        B -->|Nein| X[Nicht diagonalisierbar]
+        B -->|Ja| C{Geometrisch = algebraisch für jedes λ?}
+        C -->|Nein| X
+        C -->|Ja| D[Diagonalisierbar]
+  `}
+/>

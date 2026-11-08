@@ -36,6 +36,22 @@ For an eigenpair satisfying <InlineMath math="Av_i=\lambda_i v_i" />, the shifte
 
 This relation shows that the eigenvalue closest to <InlineMath math="\mu" /> produces the largest transformed magnitude. In implementation, we solve the linear system without forming <InlineMath math="(A-\mu I)^{-1}" /> explicitly.
 
+Follow the loop in this diagram, repeated until the residual is small enough.
+
+<Mermaid
+  title="One step of shifted inverse iteration"
+  description="Solve a system, normalize, then check the residual."
+  chart={`
+    flowchart TD
+        A[q_k] --> B["Solve (A - μI)y = q_k"]
+        B --> C["q_k+1 = y / ‖y‖"]
+        C --> D[ρ = q^T A q]
+        D --> E{Residual small?}
+        E -->|No| A
+        E -->|Yes| F[Eigenvalue ≈ ρ]
+  `}
+/>
+
 ## Power Iteration
 
 Power iteration targets the eigenvalue of **largest magnitude**. Starting from a unit vector <InlineMath math="q_0" />, repeat:
@@ -65,6 +81,18 @@ The word “smallest” is ambiguous, so the target should always be stated prec
 | Inverse iteration on a positive-definite matrix | Smallest algebraic eigenvalue, which is also smallest in absolute value |
 
 For an indefinite matrix, the eigenvalue with **smallest absolute value need not** be the most negative eigenvalue. This distinction prevents a common interpretation error.
+
+This diagram pairs each method with the eigenvalue it reaches.
+
+<Mermaid
+  title="Which method finds which eigenvalue"
+  description="The choice of method decides the eigenvalue you get."
+  chart={`
+    flowchart LR
+        A[Power iteration] --> B[Eigenvalue of largest modulus]
+        C[Inverse iteration with shift μ] --> D[Eigenvalue closest to μ]
+  `}
+/>
 
 ## Worked Shifted Inverse Example
 

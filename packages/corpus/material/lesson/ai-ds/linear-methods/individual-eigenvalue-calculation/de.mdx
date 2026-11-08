@@ -36,6 +36,22 @@ Für ein Eigenpaar mit <InlineMath math="Av_i=\lambda_i v_i" /> wirkt die versch
 
 Diese Beziehung zeigt, dass der Eigenwert nahe <InlineMath math="\mu" /> den größten transformierten Betrag erzeugt. In der Implementierung lösen wir das lineare Gleichungssystem, ohne <InlineMath math="(A-\mu I)^{-1}" /> explizit zu bilden.
 
+Folg der Schleife in diesem Diagramm, die du wiederholst, bis das Residuum klein genug ist.
+
+<Mermaid
+  title="Ein Schritt der verschobenen inversen Iteration"
+  description="System lösen, normieren, dann das Residuum prüfen."
+  chart={`
+    flowchart TD
+        A[q_k] --> B["Löse (A - μI)y = q_k"]
+        B --> C["q_k+1 = y / ‖y‖"]
+        C --> D[ρ = q^T A q]
+        D --> E{Residuum klein?}
+        E -->|Nein| A
+        E -->|Ja| F[Eigenwert ≈ ρ]
+  `}
+/>
+
 ## Potenziteration
 
 Die Potenziteration zielt auf den Eigenwert mit dem **größten Betrag**. Ausgehend von einem normierten Vektor <InlineMath math="q_0" /> wiederholen wir:
@@ -65,6 +81,18 @@ Das Wort „kleinster“ ist mehrdeutig. Deshalb muss das Ziel immer genau benan
 | Inverse Iteration auf einer positiv definiten Matrix | Kleinster algebraischer Eigenwert, der zugleich den kleinsten Betrag hat |
 
 Bei einer indefiniten Matrix muss der Eigenwert mit dem **kleinsten Betrag nicht** der negativste Eigenwert sein. Diese Unterscheidung verhindert einen häufigen Interpretationsfehler.
+
+Dieses Diagramm ordnet jeder Methode den Eigenwert zu, den sie erreicht.
+
+<Mermaid
+  title="Welche Methode welchen Eigenwert findet"
+  description="Die Wahl der Methode entscheidet, welchen Eigenwert du bekommst."
+  chart={`
+    flowchart LR
+        A[Potenzmethode] --> B[Eigenwert mit dem größten Betrag]
+        C[Inverse Iteration mit Shift μ] --> D[Eigenwert am nächsten bei μ]
+  `}
+/>
 
 ## Beispiel zur verschobenen inversen Iteration
 

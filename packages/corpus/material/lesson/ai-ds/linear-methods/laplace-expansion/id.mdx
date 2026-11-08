@@ -13,6 +13,20 @@ Pengembangan Laplace menuliskan determinan sebagai jumlah hasil kali elemen deng
 
 Pilih baris atau kolom yang memiliki banyak elemen nol. Suku yang dikalikan nol akan hilang, sehingga jumlah determinan kecil yang harus dihitung berkurang.
 
+Diagram ini menunjukkan bagaimana satu entri <InlineMath math="a_{ij}" /> berubah menjadi satu suku ekspansi.
+
+<Mermaid
+  title="Satu suku ekspansi Laplace"
+  description="Setiap entri baris pilihan menyumbang satu suku."
+  chart={`
+    flowchart LR
+        A[Pilih baris i] --> B[Untuk setiap j: hapus baris i dan kolom j]
+        B --> C[Minor det A_ij]
+        C --> D["Kofaktor C_ij = (-1)^(i+j) det A_ij"]
+        D --> E[det A = jumlah a_ij C_ij]
+  `}
+/>
+
 ## Mengembangkan Determinan Sepanjang Baris atau Kolom
 
 Untuk matriks <InlineMath math="A \in \mathbb{R}^{n \times n}" />, determinan dapat dihitung dengan dua cara:
@@ -102,6 +116,20 @@ Untuk matriks padat berukuran <InlineMath math="n \times n" />, implementasi rek
 </MathContainer>
 
 **Pertumbuhan faktorial** membuat pengembangan Laplace rekursif tidak praktis untuk matriks padat berukuran besar. Eliminasi Gauss atau faktorisasi <InlineMath math="\mathrm{LU}" /> menghitung determinan dalam <InlineMath math="O(n^3)" /> operasi aritmetika.
+
+Ikuti percabangan di diagram ini untuk melihat dari mana pertumbuhan faktorial berasal.
+
+<Mermaid
+  title="Mengapa ekspansi Laplace cepat membengkak"
+  description="Setiap tingkat memanggil determinan yang lebih kecil sebanyak n kali."
+  chart={`
+    flowchart TD
+        A[1 determinan n × n] --> B[n determinan ukuran n-1]
+        B --> C["n(n-1) determinan ukuran n-2"]
+        C --> D[... sampai n! hasil kali]
+        E[Eliminasi Gauss] --> F[sekitar n^3 operasi]
+  `}
+/>
 
 ## Menggunakan Entri Nol
 

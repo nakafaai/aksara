@@ -27,6 +27,20 @@ For every nonnegative integer <InlineMath math="m" />:
 
 Because <InlineMath math="\Lambda^m" /> is obtained by raising each diagonal entry to the power <InlineMath math="m" />, diagonalization turns a matrix-power problem into scalar arithmetic.
 
+This diagram shows where the columns of <InlineMath math="S" /> and the entries of <InlineMath math="D" /> come from.
+
+<Mermaid
+  title="Building A = S D S^-1"
+  description="Eigenvectors fill S, eigenvalues fill D."
+  chart={`
+    flowchart LR
+        A[Eigenvalues λ_i] --> D[D = diag λ_1, ..., λ_n]
+        B[Eigenvectors v_i] --> S[S = v_1, ..., v_n as columns]
+        D --> E[A = S D S^-1]
+        S --> E
+  `}
+/>
+
 ## Basic Conditions for Diagonalization
 
 When can a matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> be diagonalized? The answer is when we can find a basis of <InlineMath math="\mathbb{K}^n" /> that consists entirely of eigenvectors <InlineMath math="v_1, \ldots, v_n \in \mathbb{K}^n" /> of <InlineMath math="A" /> with corresponding eigenvalues <InlineMath math="\lambda_1, \ldots, \lambda_n \in \mathbb{K}" />.
@@ -160,3 +174,18 @@ For each <InlineMath math="i = 1, \ldots, k" />, let <InlineMath math="v_1^{(i)}
 <BlockMath math="\begin{aligned} &amp;v_1^{(1)},\ldots,v_{d_1}^{(1)}, \\ &amp;v_1^{(2)},\ldots,v_{d_2}^{(2)},\ldots, \\ &amp;v_1^{(k)},\ldots,v_{d_k}^{(k)} \end{aligned}" />
 
 These vectors form a basis of <InlineMath math="\mathbb{K}^n" /> consisting of eigenvectors of <InlineMath math="A" />. Therefore, <InlineMath math="A" /> is diagonalizable.
+
+Use the two questions in this diagram to decide diagonalizability before you try to build <InlineMath math="S" />.
+
+<Mermaid
+  title="Testing for diagonalizability"
+  description="Two questions decide whether A can be diagonalized."
+  chart={`
+    flowchart TD
+        A[Matrix A] --> B{Does χ_A split into linear factors?}
+        B -->|No| X[Not diagonalizable]
+        B -->|Yes| C{Geometric = algebraic for every λ?}
+        C -->|No| X
+        C -->|Yes| D[Diagonalizable]
+  `}
+/>

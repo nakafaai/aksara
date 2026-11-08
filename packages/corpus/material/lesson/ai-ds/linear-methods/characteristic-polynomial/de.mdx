@@ -24,6 +24,20 @@ Sei <InlineMath math="A \in \mathbb{K}^{n \times n}" />. Wir können eine spezie
 
 Dieses Polynom vom Grad <InlineMath math="n" /> in <InlineMath math="t" /> mit Koeffizienten <InlineMath math="a_0,\ldots,a_n\in\mathbb{K}" /> heißt **charakteristisches Polynom** von <InlineMath math="A" />. Wir verwenden hier die Konvention <InlineMath math="\det(A-tI)" />. Die ebenfalls verbreitete Konvention <InlineMath math="\det(tI-A)" /> unterscheidet sich nur um den Faktor <InlineMath math="(-1)^n" /> und hat daher dieselben Nullstellen.
 
+Dieses Diagramm fasst den Weg von der Eigenwertgleichung zum charakteristischen Polynom zusammen.
+
+<Mermaid
+  title="Von der Eigenwertgleichung zum Polynom"
+  description="Die Determinante macht aus einer Frage über Vektoren eine Gleichung in t."
+  chart={`
+    flowchart LR
+        A["Av = tv, v ≠ 0"] --> B["(A - tI)v = 0"]
+        B --> C["det(A - tI) = 0"]
+        C --> D["χ_A(t), Grad n"]
+        D --> E[Nullstellen = Eigenwerte]
+  `}
+/>
+
 ## Matrixspur und Polynomkoeffizienten
 
 Sei <InlineMath math="A \in \mathbb{K}^{n \times n}" /> eine quadratische Matrix. Die **Spur** von <InlineMath math="A" /> ist die Summe der Diagonalelemente:
@@ -76,6 +90,20 @@ Für einen Eigenwert <InlineMath math="\lambda" /> von <InlineMath math="A \in \
 > Die geometrische Vielfachheit jedes Eigenwerts ist immer kleiner oder gleich seiner algebraischen Vielfachheit.
 
 Die geometrische Vielfachheit **zählt die unabhängigen Eigenvektoren** im Eigenraum. Die algebraische Vielfachheit zählt dagegen, wie oft die Nullstelle im charakteristischen Polynom vorkommt. Die Jordanform zeigt, dass jeder unabhängige Eigenvektor mindestens einen Jordanblock benötigt. Deshalb kann die geometrische Anzahl die algebraische nicht übersteigen.
+
+Vergleich die beiden Vielfachheiten in diesem Diagramm für jeden Eigenwert, den du findest.
+
+<Mermaid
+  title="Zwei Vielfachheiten für einen Eigenwert"
+  description="Die geometrische Vielfachheit ist nie größer als die algebraische."
+  chart={`
+    flowchart TD
+        A[Eigenwert λ] --> B["Algebraische Vielfachheit μ_A(λ)"]
+        A --> C["Geometrische Vielfachheit dim ker(A - λI)"]
+        B --> D["1 ≤ geometrisch ≤ algebraisch"]
+        C --> D
+  `}
+/>
 
 ## Charakteristische Polynome berechnen
 

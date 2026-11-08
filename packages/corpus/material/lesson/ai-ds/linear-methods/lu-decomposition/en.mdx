@@ -35,6 +35,22 @@ Then apply the following row update.
 
 The multipliers are stored below the diagonal of <InlineMath math="L" />. If two rows are swapped after earlier elimination steps, the **already-filled columns** of <InlineMath math="L" /> must be swapped as well. Otherwise <InlineMath math="PA=LU" /> will no longer hold.
 
+This diagram shows where each result of an elimination step is stored.
+
+<Mermaid
+  title="Elimination fills three factors"
+  description="Multipliers go into L, the remaining rows become U, row swaps are recorded in P."
+  chart={`
+    flowchart TD
+        A[Elimination step] --> B[Multiplier ℓ_ij]
+        A --> C[Remaining rows]
+        A --> D[Row swap]
+        B --> L[L]
+        C --> U[U]
+        D --> P[P]
+  `}
+/>
+
 ## Factoring a Matrix with Partial Pivoting
 
 We will track **both row swaps** so the final permutation agrees with the factors.
@@ -141,6 +157,20 @@ Rotate the three planes of the upper triangular system <InlineMath math="Ux=y" /
       labels: [{ text: <InlineMath math="x=(1,2,3)^T" />, at: 0, offset: [0.5, 0.4, 0] }],
     },
   ]}
+/>
+
+This diagram sums up the two substitutions you just did.
+
+<Mermaid
+  title="Two solving stages"
+  description="The factorization splits Ax = b into two triangular systems."
+  chart={`
+    flowchart LR
+        A[Ax = b] --> B[LUx = Pb]
+        B --> C["Ly = Pb, forward"]
+        C --> D["Ux = y, backward"]
+        D --> E["x = (1, 2, 3)^T"]
+  `}
 />
 
 ## Cost and reuse

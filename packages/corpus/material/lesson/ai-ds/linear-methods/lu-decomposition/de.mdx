@@ -35,6 +35,22 @@ Anschließend wenden wir die folgende Zeilenaktualisierung an.
 
 Diese Aktualisierung eliminiert den Eintrag unterhalb des Pivots. Die Multiplikatoren werden unterhalb der Diagonalen von <InlineMath math="L" /> gespeichert. Werden nach früheren Eliminationsschritten zwei Zeilen vertauscht, müssen auch die **bereits gefüllten Spalten** von <InlineMath math="L" /> vertauscht werden. Andernfalls gilt <InlineMath math="PA=LU" /> nicht mehr.
 
+Dieses Diagramm zeigt, wo jedes Ergebnis eines Eliminationsschritts gespeichert wird.
+
+<Mermaid
+  title="Die Elimination füllt drei Faktoren"
+  description="Multiplikatoren gehen in L, die übrigen Zeilen werden U, Zeilentausche landen in P."
+  chart={`
+    flowchart TD
+        A[Eliminationsschritt] --> B[Multiplikator ℓ_ij]
+        A --> C[Übrige Zeilen]
+        A --> D[Zeilentausch]
+        B --> L[L]
+        C --> U[U]
+        D --> P[P]
+  `}
+/>
+
 ## Eine Matrix mit partieller Pivotisierung faktorisieren
 
 Wir verfolgen **beide Zeilenvertauschungen**, damit die endgültige Permutation zu den Faktoren passt.
@@ -141,6 +157,20 @@ Dreh die drei Ebenen des oberen Dreieckssystems <InlineMath math="Ux=y" /> unten
       labels: [{ text: <InlineMath math="x=(1,2,3)^T" />, at: 0, offset: [0.5, 0.4, 0] }],
     },
   ]}
+/>
+
+Dieses Diagramm fasst die beiden Einsetzschritte zusammen, die du gerade gemacht hast.
+
+<Mermaid
+  title="Zwei Lösungsstufen"
+  description="Die Zerlegung teilt Ax = b in zwei Dreieckssysteme."
+  chart={`
+    flowchart LR
+        A[Ax = b] --> B[LUx = Pb]
+        B --> C["Ly = Pb, vorwärts"]
+        C --> D["Ux = y, rückwärts"]
+        D --> E["x = (1, 2, 3)^T"]
+  `}
 />
 
 ## Aufwand und Wiederverwendung

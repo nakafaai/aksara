@@ -13,6 +13,20 @@ Die Laplace-Entwicklung schreibt eine Determinante als Summe von Einträgen mult
 
 Wähle eine Zeile oder Spalte mit vielen Nulleinträgen. Die entsprechenden Terme entfallen, sodass weniger kleinere Determinanten berechnet werden müssen.
 
+Dieses Diagramm zeigt, wie aus einem Eintrag <InlineMath math="a_{ij}" /> ein Term der Entwicklung wird.
+
+<Mermaid
+  title="Ein Term der Laplace-Entwicklung"
+  description="Jeder Eintrag der gewählten Zeile liefert einen Term."
+  chart={`
+    flowchart LR
+        A[Zeile i wählen] --> B[Für jedes j: Zeile i und Spalte j streichen]
+        B --> C[Minor det A_ij]
+        C --> D["Kofaktor C_ij = (-1)^(i+j) det A_ij"]
+        D --> E[det A = Summe der a_ij C_ij]
+  `}
+/>
+
 ## Determinante entlang einer Zeile oder Spalte entwickeln
 
 Für die Matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" /> kann die Determinante auf zwei Arten berechnet werden:
@@ -102,6 +116,20 @@ Bei einer dichten <InlineMath math="n \times n" />-Matrix berechnet eine direkte
 </MathContainer>
 
 Das **faktorielle Wachstum** macht die rekursive Laplace-Entwicklung für große dichte Matrizen unpraktisch. Mit dem Gauß-Verfahren oder einer <InlineMath math="\mathrm{LU}" />-Zerlegung lässt sich eine Determinante in <InlineMath math="O(n^3)" /> Rechenoperationen bestimmen.
+
+Folg der Verzweigung in diesem Diagramm, um zu sehen, woher das faktorielle Wachstum kommt.
+
+<Mermaid
+  title="Warum die Laplace-Entwicklung explodiert"
+  description="Jede Ebene ruft n kleinere Determinanten auf."
+  chart={`
+    flowchart TD
+        A[1 Determinante der Größe n × n] --> B[n Determinanten der Größe n-1]
+        B --> C["n(n-1) Determinanten der Größe n-2"]
+        C --> D[... bis zu n! Produkten]
+        E[Gauß-Elimination] --> F[etwa n^3 Operationen]
+  `}
+/>
 
 ## Nulleinträge nutzen
 

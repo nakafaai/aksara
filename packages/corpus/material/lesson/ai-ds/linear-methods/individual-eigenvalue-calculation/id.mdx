@@ -36,6 +36,22 @@ Untuk pasangan eigen yang memenuhi <InlineMath math="Av_i=\lambda_i v_i" />, inv
 
 Hubungan ini menunjukkan bahwa nilai eigen yang paling dekat dengan <InlineMath math="\mu" /> menghasilkan magnitudo transformasi terbesar. Dalam implementasi, kita menyelesaikan sistem linear tanpa membentuk <InlineMath math="(A-\mu I)^{-1}" /> secara eksplisit.
 
+Ikuti putaran di diagram ini, yang diulang sampai residualnya cukup kecil.
+
+<Mermaid
+  title="Satu langkah iterasi invers bergeser"
+  description="Selesaikan sistem, normalkan, lalu cek residual."
+  chart={`
+    flowchart TD
+        A[q_k] --> B["Selesaikan (A - μI)y = q_k"]
+        B --> C["q_k+1 = y / ‖y‖"]
+        C --> D[ρ = q^T A q]
+        D --> E{Residual kecil?}
+        E -->|Tidak| A
+        E -->|Ya| F[Nilai eigen ≈ ρ]
+  `}
+/>
+
 ## Iterasi Pangkat
 
 Iterasi pangkat menargetkan nilai eigen dengan **nilai absolut terbesar**. Mulai dari vektor satuan <InlineMath math="q_0" />, ulangi:
@@ -65,6 +81,18 @@ Kata “terkecil” bersifat ambigu, sehingga target harus selalu dinyatakan sec
 | Iterasi invers pada matriks definit positif | Nilai eigen aljabar terkecil, yang juga terkecil secara absolut |
 
 Pada matriks tak definit, nilai eigen dengan **nilai absolut terkecil belum tentu** merupakan nilai eigen paling negatif. Bedakan kedua nilai ini agar tidak memilih nilai eigen yang keliru.
+
+Diagram ini memasangkan setiap metode dengan nilai eigen yang dicapainya.
+
+<Mermaid
+  title="Metode mana menemukan nilai eigen mana"
+  description="Pilihan metode menentukan nilai eigen yang kamu dapat."
+  chart={`
+    flowchart LR
+        A[Iterasi pangkat] --> B[Nilai eigen dengan modulus terbesar]
+        C[Iterasi invers dengan geseran μ] --> D[Nilai eigen terdekat ke μ]
+  `}
+/>
 
 ## Contoh Iterasi Invers Bergeser
 

@@ -37,6 +37,20 @@ Sebuah vektor <InlineMath math="x \in \mathbb{K}^n" /> dapat dinyatakan dalam ba
 
 Matriks <InlineMath math="S^{-1}" /> menggambarkan **transformasi koordinat**.
 
+Diagram ini menunjukkan dua jalan yang selalu berakhir di vektor yang sama, sehingga <InlineMath math="B=S^{-1}AS" />.
+
+<Mermaid
+  title="Dua jalan menuju hasil yang sama"
+  description="Bekerja di basis baru lalu kembali sama dengan bekerja langsung."
+  chart={`
+    flowchart LR
+        A[Koordinat baru ξ] -->|S| B[x]
+        B -->|A| C[Ax]
+        A -->|B| D[Bξ]
+        D -->|S| C
+  `}
+/>
+
 ## Transformasi Linear dalam Basis Berbeda
 
 Sekarang pertimbangkan transformasi linear <InlineMath math="y = A \cdot x" />. Dalam basis kanonik, <InlineMath math="y" /> dinyatakan melalui koordinat <InlineMath math="y_k" />, sedangkan dalam basis <InlineMath math="v_1, \ldots, v_n" /> melalui koordinat <InlineMath math="\eta_k" />:
@@ -192,3 +206,17 @@ Jika <InlineMath math="v \in \mathbb{K}^n" /> adalah vektor eigen dari <InlineMa
 </MathContainer>
 
 Keserupaan matriks mempertahankan spektrum. Ketika basis berubah, koordinat vektor eigen berubah dari <InlineMath math="v" /> menjadi <InlineMath math="S^{-1}v" />, tetapi keduanya mewakili arah geometris yang sama.
+
+Setiap besaran di diagram ini sama untuk <InlineMath math="A" /> dan <InlineMath math="B=S^{-1}AS" />.
+
+<Mermaid
+  title="Apa yang dijaga kesamaan"
+  description="Matriks serupa berbagi semua besaran ini."
+  chart={`
+    flowchart TD
+        A[B = S^-1 A S] --> B[Polinom karakteristik sama]
+        B --> C[Nilai eigen sama]
+        B --> D[Trace sama]
+        B --> E[Determinan sama]
+  `}
+/>

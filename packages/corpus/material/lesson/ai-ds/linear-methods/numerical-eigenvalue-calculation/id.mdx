@@ -56,6 +56,22 @@ Syarat yang memperhitungkan skala adalah
 
 Pada syarat ini, <InlineMath math="\tau" /> adalah toleransi yang diminta. Residual kecil memastikan <Highlight>pasangan hasil hitung hampir memenuhi persamaan eigen</Highlight>, tetapi tidak dengan sendirinya menunjukkan nilai eigen terdekat mana yang ditemukan.
 
+Putaran di diagram ini adalah seluruh iterasi pangkat.
+
+<Mermaid
+  title="Putaran iterasi pangkat"
+  description="Kalikan, normalkan, lalu taksir nilai eigen."
+  chart={`
+    flowchart TD
+        A[q_k] --> B[z = A q_k]
+        B --> C["q_k+1 = z / ‖z‖"]
+        C --> D[μ_k+1 = q^T A q]
+        D --> E{Berhenti?}
+        E -->|Tidak| A
+        E -->|Ya| F[λ ≈ μ, vektor ≈ q]
+  `}
+/>
+
 ## Contoh Iterasi Pangkat
 
 Perhatikan
@@ -173,3 +189,16 @@ Setiap langkah merupakan **transformasi kesebangunan ortogonal**, sehingga nilai
 | Spektrum lengkap matriks padat | <InlineMath math="\mathrm{QR}" /> bergeser menuju bentuk Schur | blok diagonal atau kuasidiagonal yang telah konvergen |
 
 Uji penerimaan akhir selalu mengikuti pasangan eigen yang diminta: **periksa residual**, pertahankan pasangan konjugat kompleks untuk matriks real, dan jangan menyatakan vektor eigen sudah akurat hanya karena perkiraan nilai eigennya telah stabil.
+
+Mulai dari pertanyaan di diagram ini sebelum memilih metode.
+
+<Mermaid
+  title="Memilih metode nilai eigen"
+  description="Apa yang kamu butuhkan menentukan metodenya."
+  chart={`
+    flowchart TD
+        A{Apa yang kamu butuhkan?} -->|Nilai eigen dominan| B[Iterasi pangkat]
+        A -->|Nilai eigen dekat target μ| C[Iterasi invers bergeser]
+        A -->|Semua nilai eigen| D[Algoritma QR]
+  `}
+/>

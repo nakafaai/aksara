@@ -56,6 +56,22 @@ A scale-aware condition is
 
 Here, <InlineMath math="\tau" /> is the requested tolerance. A small residual certifies that <Highlight>the computed pair nearly satisfies the eigenvalue equation</Highlight>, although it does not by itself identify which nearby eigenvalue was found.
 
+The loop in this diagram is the whole power iteration.
+
+<Mermaid
+  title="The power iteration loop"
+  description="Multiply, normalize, then estimate the eigenvalue."
+  chart={`
+    flowchart TD
+        A[q_k] --> B[z = A q_k]
+        B --> C["q_k+1 = z / ‖z‖"]
+        C --> D[μ_k+1 = q^T A q]
+        D --> E{Stop?}
+        E -->|No| A
+        E -->|Yes| F[λ ≈ μ, vector ≈ q]
+  `}
+/>
+
 ## Worked Power Iteration Example
 
 Consider
@@ -173,3 +189,16 @@ Every step is an **orthogonal similarity transformation**, so it preserves the e
 | Complete spectrum of a dense matrix | Shifted <InlineMath math="\mathrm{QR}" /> to Schur form | converged diagonal or quasi-diagonal blocks |
 
 The final acceptance test is always tied to the requested eigenpairs: **verify residuals**, preserve complex conjugate pairs for real matrices, and avoid claiming an eigenvector is accurate merely because an eigenvalue estimate has stabilized.
+
+Start from the question in this diagram before you pick a method.
+
+<Mermaid
+  title="Choosing an eigenvalue method"
+  description="What you need decides the method."
+  chart={`
+    flowchart TD
+        A{What do you need?} -->|The dominant eigenvalue| B[Power iteration]
+        A -->|An eigenvalue near a target μ| C[Shifted inverse iteration]
+        A -->|All eigenvalues| D[QR algorithm]
+  `}
+/>

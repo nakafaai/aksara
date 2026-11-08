@@ -24,6 +24,20 @@ Let <InlineMath math="A \in \mathbb{K}^{n \times n}" />. We can form a special f
 
 This degree-<InlineMath math="n" /> polynomial in <InlineMath math="t" />, with coefficients <InlineMath math="a_0,\ldots,a_n\in\mathbb{K}" />, is the **characteristic polynomial** of <InlineMath math="A" />. Here, <InlineMath math="\chi_A(t)" /> uses the convention <InlineMath math="\det(A-tI)" />. The equally common convention <InlineMath math="\det(tI-A)" /> differs by the factor <InlineMath math="(-1)^n" /> but has the same roots.
 
+This diagram sums up the route from the eigen equation to the characteristic polynomial.
+
+<Mermaid
+  title="From the eigen equation to a polynomial"
+  description="The determinant turns a question about vectors into an equation in t."
+  chart={`
+    flowchart LR
+        A["Av = tv, v ≠ 0"] --> B["(A - tI)v = 0"]
+        B --> C["det(A - tI) = 0"]
+        C --> D["χ_A(t), degree n"]
+        D --> E[Roots = eigenvalues]
+  `}
+/>
+
 ## Matrix Trace and Polynomial Coefficients
 
 Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> be a square matrix. The **trace** of <InlineMath math="A" /> is the sum of the diagonal elements:
@@ -76,6 +90,20 @@ For an eigenvalue <InlineMath math="\lambda" /> of <InlineMath math="A \in \math
 > The geometric multiplicity of every eigenvalue is always less than or equal to its algebraic multiplicity.
 
 The geometric multiplicity **counts independent eigenvectors** in the eigenspace, whereas the algebraic multiplicity counts how many times the root occurs in the characteristic polynomial. Jordan form shows that every independent eigenvector requires at least one Jordan block, so the geometric count cannot exceed the algebraic count.
+
+Compare the two multiplicities in this diagram for every eigenvalue you find.
+
+<Mermaid
+  title="Two multiplicities for one eigenvalue"
+  description="The geometric multiplicity never exceeds the algebraic one."
+  chart={`
+    flowchart TD
+        A[Eigenvalue λ] --> B["Algebraic multiplicity μ_A(λ)"]
+        A --> C["Geometric multiplicity dim ker(A - λI)"]
+        B --> D["1 ≤ geometric ≤ algebraic"]
+        C --> D
+  `}
+/>
 
 ## Computing Characteristic Polynomials
 

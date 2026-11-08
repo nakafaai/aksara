@@ -24,6 +24,20 @@ Misalkan <InlineMath math="A \in \mathbb{K}^{n \times n}" />. Kita dapat membent
 
 Polinom berderajat <InlineMath math="n" /> dalam <InlineMath math="t" /> dengan koefisien <InlineMath math="a_0,\ldots,a_n\in\mathbb{K}" /> ini disebut **polinom karakteristik** dari <InlineMath math="A" />. Polinom karakteristik ditulis dengan konvensi <InlineMath math="\det(A-tI)" />. Konvensi <InlineMath math="\det(tI-A)" /> juga sering digunakan. Kedua polinom hanya berbeda dengan faktor <InlineMath math="(-1)^n" />, sehingga akar kedua polinom tetap sama.
 
+Diagram ini meringkas jalan dari persamaan eigen sampai ke polinom karakteristik.
+
+<Mermaid
+  title="Dari persamaan eigen ke polinom"
+  description="Determinan mengubah pertanyaan tentang vektor menjadi persamaan dalam t."
+  chart={`
+    flowchart LR
+        A["Av = tv, v ≠ 0"] --> B["(A - tI)v = 0"]
+        B --> C["det(A - tI) = 0"]
+        C --> D["χ_A(t), derajat n"]
+        D --> E[Akar = nilai eigen]
+  `}
+/>
+
 ## Jejak Matriks dan Koefisien Polinomial
 
 Misalkan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> adalah matriks persegi. **Jejak** dari <InlineMath math="A" /> adalah jumlah dari elemen-elemen diagonal:
@@ -76,6 +90,20 @@ Untuk nilai eigen <InlineMath math="\lambda" /> dari <InlineMath math="A \in \ma
 > Multiplisitas geometrik setiap nilai eigen selalu lebih kecil atau sama dengan multiplisitas aljabarnya.
 
 Multiplisitas geometrik **menghitung banyaknya vektor eigen bebas** dalam ruang eigen, sedangkan multiplisitas aljabar menghitung berapa kali akar tersebut muncul dalam polinom karakteristik. Bentuk Jordan menunjukkan bahwa setiap vektor eigen bebas memerlukan setidaknya satu blok Jordan, sehingga jumlah geometrik tidak dapat melebihi jumlah aljabar.
+
+Bandingkan dua kelipatan di diagram ini untuk setiap nilai eigen yang kamu temukan.
+
+<Mermaid
+  title="Dua kelipatan untuk satu nilai eigen"
+  description="Kelipatan geometri tidak pernah melebihi kelipatan aljabar."
+  chart={`
+    flowchart TD
+        A[Nilai eigen λ] --> B["Kelipatan aljabar μ_A(λ)"]
+        A --> C["Kelipatan geometri dim ker(A - λI)"]
+        B --> D["1 ≤ geometri ≤ aljabar"]
+        C --> D
+  `}
+/>
 
 ## Menghitung Polinomial Karakteristik
 

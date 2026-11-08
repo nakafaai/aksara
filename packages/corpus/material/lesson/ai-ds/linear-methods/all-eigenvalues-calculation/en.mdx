@@ -33,6 +33,21 @@ For the deflation test below, first reduce the matrix by unitary similarity to *
 
 Here <InlineMath math="\tau" /> is a tolerance chosen for the numerical precision and scale of the problem. Merely observing small changes in the diagonal is not a sufficient stopping test because the matrix can still have significant entries below the diagonal.
 
+This diagram shows one round of the iteration, repeated until the off-diagonal entries are nearly zero.
+
+<Mermaid
+  title="One round of the iteration"
+  description="Factor, multiply in reverse, then repeat."
+  chart={`
+    flowchart TD
+        A[A_k] --> B[Factor A_k = Q_k R_k]
+        B --> C[A_k+1 = R_k Q_k]
+        C --> D{Off-diagonal entries small enough?}
+        D -->|No| A
+        D -->|Yes| E[Read the eigenvalues on the diagonal]
+  `}
+/>
+
 ## Why the Eigenvalues Stay the Same
 
 Because <InlineMath math="Q_k" /> is unitary, <InlineMath math="Q_k^{*}Q_k=I" />. Substituting <InlineMath math="R_k=Q_k^{*}A_k" /> into the reverse product gives
@@ -43,6 +58,20 @@ Because <InlineMath math="Q_k" /> is unitary, <InlineMath math="Q_k^{*}Q_k=I" />
 </MathContainer>
 
 <InlineMath math="A_{k+1}" /> is unitarily similar to <InlineMath math="A_k" />. <Highlight>Similar matrices have the same characteristic polynomial</Highlight> and therefore the same eigenvalues. Each <InlineMath math="\mathrm{QR}" /> step expresses the same linear transformation in new coordinates.
+
+The chain below explains why the eigenvalues survive every step.
+
+<Mermaid
+  title="Why the eigenvalues do not change"
+  description="Every step is a similarity transformation."
+  chart={`
+    flowchart LR
+        A[A_k+1 = R_k Q_k] --> B[= Q_k^T A_k Q_k]
+        B --> C[A_k+1 is similar to A_k]
+        C --> D[Same characteristic polynomial]
+        D --> E[Same eigenvalues]
+  `}
+/>
 
 ## What the Iteration Converges To
 

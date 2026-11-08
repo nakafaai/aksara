@@ -56,6 +56,22 @@ Eine skalierungsbewusste Bedingung lautet
 
 Dabei ist <InlineMath math="\tau" /> die geforderte Toleranz. Ein kleines Residuum bestätigt, dass <Highlight>das berechnete Paar die Eigenwertgleichung annähernd erfüllt</Highlight>. Welcher benachbarte Eigenwert gefunden wurde, muss getrennt geprüft werden.
 
+Die Schleife in diesem Diagramm ist die ganze Potenzmethode.
+
+<Mermaid
+  title="Die Schleife der Potenzmethode"
+  description="Multiplizieren, normieren, dann den Eigenwert schätzen."
+  chart={`
+    flowchart TD
+        A[q_k] --> B[z = A q_k]
+        B --> C["q_k+1 = z / ‖z‖"]
+        C --> D[μ_k+1 = q^T A q]
+        D --> E{Aufhören?}
+        E -->|Nein| A
+        E -->|Ja| F[λ ≈ μ, Vektor ≈ q]
+  `}
+/>
+
 ## Beispiel zur Potenziteration
 
 Betrachte
@@ -173,3 +189,16 @@ Jeder Schritt ist eine **orthogonale Ähnlichkeitstransformation** und erhält d
 | Vollständiges Spektrum einer dichten Matrix | Verschobenes <InlineMath math="\mathrm{QR}" />-Verfahren zur Schur-Form | konvergierte diagonale oder quasidiagonale Blöcke |
 
 Die abschließende Prüfung richtet sich immer nach den gesuchten Eigenpaaren: **Kontrolliere die Residuen**, erhalte komplex konjugierte Paare reeller Matrizen und prüfe die Genauigkeit eines Eigenvektors getrennt von einer stabilen Eigenwertschätzung.
+
+Fang mit der Frage in diesem Diagramm an, bevor du eine Methode wählst.
+
+<Mermaid
+  title="Eine Eigenwertmethode wählen"
+  description="Was du brauchst, entscheidet über die Methode."
+  chart={`
+    flowchart TD
+        A{Was brauchst du?} -->|Den dominanten Eigenwert| B[Potenzmethode]
+        A -->|Einen Eigenwert nahe einem Ziel μ| C[Verschobene inverse Iteration]
+        A -->|Alle Eigenwerte| D[QR-Algorithmus]
+  `}
+/>

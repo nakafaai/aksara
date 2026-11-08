@@ -13,6 +13,20 @@ Laplace expansion writes a determinant as a sum of entries multiplied by their c
 
 Choose a row or column with many zero entries. Its zero terms vanish, so fewer smaller determinants need to be calculated.
 
+This diagram shows how one entry <InlineMath math="a_{ij}" /> becomes one term of the expansion.
+
+<Mermaid
+  title="One term of the Laplace expansion"
+  description="Each entry of the chosen row contributes one term."
+  chart={`
+    flowchart LR
+        A[Choose row i] --> B[For each j: delete row i and column j]
+        B --> C[Minor det A_ij]
+        C --> D["Cofactor C_ij = (-1)^(i+j) det A_ij"]
+        D --> E[det A = sum of a_ij C_ij]
+  `}
+/>
+
 ## Expanding a Determinant Along a Row or Column
 
 For matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />, the determinant can be calculated in two ways:
@@ -102,6 +116,20 @@ For a dense <InlineMath math="n \times n" /> matrix, a direct recursive implemen
 </MathContainer>
 
 The **factorial growth** makes recursive Laplace expansion impractical for large dense matrices. Gaussian elimination or an <InlineMath math="\mathrm{LU}" /> factorization computes a determinant in <InlineMath math="O(n^3)" /> arithmetic operations.
+
+Follow the branching in this diagram to see where the factorial growth comes from.
+
+<Mermaid
+  title="Why the Laplace expansion blows up"
+  description="Each level calls n smaller determinants."
+  chart={`
+    flowchart TD
+        A[1 determinant of size n × n] --> B[n determinants of size n-1]
+        B --> C["n(n-1) determinants of size n-2"]
+        C --> D[... down to n! products]
+        E[Gaussian elimination] --> F[about n^3 operations]
+  `}
+/>
 
 ## Using Zero Entries
 

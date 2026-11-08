@@ -27,6 +27,20 @@ Untuk setiap bilangan bulat taknegatif <InlineMath math="m" />:
 
 Karena <InlineMath math="\Lambda^m" /> diperoleh dengan memangkatkan setiap elemen diagonal dengan <InlineMath math="m" />, diagonalisasi mengubah persoalan perpangkatan matriks menjadi perhitungan skalar.
 
+Diagram ini menunjukkan dari mana kolom <InlineMath math="S" /> dan entri <InlineMath math="D" /> berasal.
+
+<Mermaid
+  title="Menyusun A = S D S^-1"
+  description="Vektor eigen mengisi S, nilai eigen mengisi D."
+  chart={`
+    flowchart LR
+        A[Nilai eigen λ_i] --> D[D = diag λ_1, ..., λ_n]
+        B[Vektor eigen v_i] --> S[S = v_1, ..., v_n sebagai kolom]
+        D --> E[A = S D S^-1]
+        S --> E
+  `}
+/>
+
 ## Kondisi Dasar Diagonalisasi
 
 Kapan sebuah matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" /> bisa didiagonalisasi? Jawabannya adalah ketika kita bisa menemukan basis dari <InlineMath math="\mathbb{K}^n" /> yang seluruhnya terdiri dari vektor eigen <InlineMath math="v_1, \ldots, v_n \in \mathbb{K}^n" /> dari <InlineMath math="A" /> dengan nilai eigen yang berkaitan <InlineMath math="\lambda_1, \ldots, \lambda_n \in \mathbb{K}" />.
@@ -160,3 +174,18 @@ Untuk setiap <InlineMath math="i = 1, \ldots, k" />, misalkan <InlineMath math="
 <BlockMath math="\begin{aligned} &amp;v_1^{(1)},\ldots,v_{d_1}^{(1)}, \\ &amp;v_1^{(2)},\ldots,v_{d_2}^{(2)},\ldots, \\ &amp;v_1^{(k)},\ldots,v_{d_k}^{(k)} \end{aligned}" />
 
 Vektor-vektor tersebut membentuk basis <InlineMath math="\mathbb{K}^n" /> yang terdiri dari vektor eigen <InlineMath math="A" />. Oleh karena itu, <InlineMath math="A" /> dapat didiagonalisasi.
+
+Pakai dua pertanyaan di diagram ini untuk memutuskan diagonalisasi tanpa mencoba membangun <InlineMath math="S" /> dulu.
+
+<Mermaid
+  title="Uji diagonalisasi"
+  description="Dua pertanyaan memutuskan apakah A bisa didiagonalkan."
+  chart={`
+    flowchart TD
+        A[Matriks A] --> B{χ_A terurai menjadi faktor linear?}
+        B -->|Tidak| X[Tidak bisa didiagonalkan]
+        B -->|Ya| C{Geometri = aljabar untuk setiap λ?}
+        C -->|Tidak| X
+        C -->|Ya| D[Bisa didiagonalkan]
+  `}
+/>

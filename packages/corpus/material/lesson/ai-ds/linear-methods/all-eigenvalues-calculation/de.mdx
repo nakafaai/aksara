@@ -33,6 +33,21 @@ Reduziere die Matrix für den folgenden Deflationstest zunächst durch unitäre 
 
 Dabei ist <InlineMath math="\tau" /> eine Toleranz, die zur numerischen Genauigkeit und zur Skalierung des Problems passt. Kleine Änderungen der Diagonale allein sind kein ausreichendes Abbruchkriterium, denn unterhalb der Diagonale können noch wesentliche Einträge stehen.
 
+Dieses Diagramm zeigt eine Runde der Iteration, die du wiederholst, bis die Einträge neben der Diagonale fast null sind.
+
+<Mermaid
+  title="Eine Runde der Iteration"
+  description="Zerlegen, in umgekehrter Reihenfolge multiplizieren, wiederholen."
+  chart={`
+    flowchart TD
+        A[A_k] --> B[Zerlege A_k = Q_k R_k]
+        B --> C[A_k+1 = R_k Q_k]
+        C --> D{Einträge neben der Diagonale klein genug?}
+        D -->|Nein| A
+        D -->|Ja| E[Eigenwerte auf der Diagonale ablesen]
+  `}
+/>
+
 ## Warum die Eigenwerte gleich bleiben
 
 Da <InlineMath math="Q_k" /> unitär ist, gilt <InlineMath math="Q_k^{*}Q_k=I" />. Setzen wir <InlineMath math="R_k=Q_k^{*}A_k" /> in das umgekehrte Produkt ein, erhalten wir
@@ -43,6 +58,20 @@ Da <InlineMath math="Q_k" /> unitär ist, gilt <InlineMath math="Q_k^{*}Q_k=I" /
 </MathContainer>
 
 Damit ist <InlineMath math="A_{k+1}" /> unitär ähnlich zu <InlineMath math="A_k" />. <Highlight>Ähnliche Matrizen besitzen dasselbe charakteristische Polynom</Highlight> und somit dieselben Eigenwerte. Jeder <InlineMath math="\mathrm{QR}" />-Schritt stellt dieselbe lineare Abbildung in neuen Koordinaten dar.
+
+Die Kette unten erklärt, warum die Eigenwerte jeden Schritt überstehen.
+
+<Mermaid
+  title="Warum sich die Eigenwerte nicht ändern"
+  description="Jeder Schritt ist eine Ähnlichkeitstransformation."
+  chart={`
+    flowchart LR
+        A[A_k+1 = R_k Q_k] --> B[= Q_k^T A_k Q_k]
+        B --> C[A_k+1 ist ähnlich zu A_k]
+        C --> D[Gleiches charakteristisches Polynom]
+        D --> E[Gleiche Eigenwerte]
+  `}
+/>
 
 ## Die entstehende Form
 
