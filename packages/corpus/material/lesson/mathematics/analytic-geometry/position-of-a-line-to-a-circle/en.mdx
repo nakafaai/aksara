@@ -150,13 +150,13 @@ The coefficients use capital letters so they are not confused with the line's co
   <BlockMath math="C = c^2 + Ec + F" />
 </MathContainer>
 
-Each real root <InlineMath math="x" /> gives exactly one intersection point, because the line's equation gives its matching <InlineMath math="y" /> at once. So the number of intersection points equals the number of real roots, and the **discriminant** tells you that number:
+Each real root <InlineMath math="x" /> gives exactly one intersection point, because the line's equation gives its matching <InlineMath math="y" /> at once. So the number of intersection points equals the number of distinct real roots, and the **discriminant** tells you that number:
 
 <BlockMath math="\Delta = B^2 - 4AC" />
 
 The coefficient <InlineMath math="A = 1 + m^2" /> is never zero, so the substitution always gives a quadratic equation. Its sign rule is the rule for the [types of roots of a quadratic equation](/en/subjects/mathematics/quadratic-function/quadratic-equation-types-of-root): two different real roots, one repeated root, or no real root.
 
-A vertical line <InlineMath math="x = k" /> cannot be written as <InlineMath math="y = mx + c" />. For such a line, substitute <InlineMath math="x = k" /> and solve the quadratic equation in <InlineMath math="y" />. For example, <InlineMath math="x = 3" /> in <InlineMath math="x^2 + y^2 = 9" /> gives <InlineMath math="9 + y^2 = 9" />, so <InlineMath math="y = 0" /> is a repeated root. The line <InlineMath math="x = 3" /> touches the circle at <InlineMath math="(3, 0)" />.
+A vertical line <InlineMath math="x = k" /> cannot be written as <InlineMath math="y = mx + c" />. For such a line, substitute <InlineMath math="x = k" /> and solve the quadratic equation in <InlineMath math="y" />. For example, <InlineMath math="x = 3" /> in <InlineMath math="x^2 + y^2 = 9" /> gives <InlineMath math="9 + y^2 = 9" />, so <InlineMath math="y = 0" /> is a repeated root. The line <InlineMath math="x = 3" /> touches the circle at <InlineMath math="(3, 0)" />. Check: the distance from the center <InlineMath math="(0, 0)" /> to the line <InlineMath math="x = 3" /> is <InlineMath math="3 = r" />.
 
 ## Comparing the Distance from the Center with the Radius
 
@@ -166,7 +166,7 @@ For a circle with center <InlineMath math="(a, b)" /> and the line <InlineMath m
 
 <BlockMath math="d = \frac{|pa + qb + s|}{\sqrt{p^2 + q^2}}" />
 
-Compare <InlineMath math="d" /> with the radius <InlineMath math="r" /> using the table at the start. This way needs no substitution, so it suits a question that only asks for the position. The same idea decides the [position of a point relative to a circle](/en/subjects/mathematics/analytic-geometry/position-of-a-point-to-a-circle), where the distance from one point to the center is compared with <InlineMath math="r" />.
+Compare <InlineMath math="d" /> with the radius <InlineMath math="r" />: <InlineMath math="d < r" /> means two intersection points, <InlineMath math="d = r" /> means one point of contact, and <InlineMath math="d > r" /> means no common point. This way needs no substitution, so it suits a question that only asks for the position. The same idea decides the [position of a point relative to a circle](/en/subjects/mathematics/analytic-geometry/position-of-a-point-to-a-circle), where the distance from one point to the center is compared with <InlineMath math="r" />.
 
 <MathVisual
   title="Three parallel lines and one perpendicular radius"
@@ -261,7 +261,7 @@ The upper signs go together. So the intersection points are <InlineMath math="A\
 
 Check with the distance method. Completing the square gives <InlineMath math="(x - 2)^2 + (y + 1)^2 = 9" />, so the center is <InlineMath math="C(2, -1)" /> and <InlineMath math="r = 3" />, as in the [equation of a circle](/en/subjects/mathematics/analytic-geometry/equation-of-circle). Write the line as <InlineMath math="2x - y - 1 = 0" />, then compute <InlineMath math="d = \frac{|2 \cdot 2 - (-1) - 1|}{\sqrt{5}} = \frac{4}{\sqrt{5}} \approx 1.79" />. Since <InlineMath math="1.79 < 3" />, the distance method also says the line cuts the circle.
 
-The foot of the segment <InlineMath math="d" /> lands at <InlineMath math="\left(\frac{2}{5}, -\frac{1}{5}\right)" />. That point is also the midpoint of <InlineMath math="AB" />, because the <InlineMath math="\pm" /> signs cancel when you average the two coordinates. The chord has length <InlineMath math="AB = 2\sqrt{r^2 - d^2} = 2\sqrt{9 - \frac{16}{5}} \approx 4.82" />.
+The foot of the segment <InlineMath math="d" /> lands at <InlineMath math="\left(\frac{2}{5}, -\frac{1}{5}\right)" />. That point is also the midpoint of <InlineMath math="AB" />, because <InlineMath math="CA = CB = r" />, so the perpendicular from <InlineMath math="C" /> splits the chord into two equal parts. The arithmetic agrees: the <InlineMath math="\pm" /> signs cancel when you average the two coordinates. The chord has length <InlineMath math="AB = 2\sqrt{r^2 - d^2} = 2\sqrt{9 - \frac{16}{5}} \approx 4.82" />.
 
 ## Example of the Condition for a Tangent
 
@@ -319,11 +319,11 @@ For <InlineMath math="k = 6" />, the equation becomes <InlineMath math="2x^2 + 1
   }}
 />
 
-Check with the distance. The line <InlineMath math="x - y + k = 0" /> lies at distance <InlineMath math="\frac{|k|}{\sqrt{2}}" /> from <InlineMath math="O" />. The condition <InlineMath math="d = r" /> gives <InlineMath math="\frac{|k|}{\sqrt{2}} = 3\sqrt{2}" />, so <InlineMath math="|k| = 6" />, the same as the discriminant gave. The point <InlineMath math="(-3, 3)" /> also satisfies <InlineMath math="(-3)^2 + 3^2 = 18" />, and the radius to it has slope <InlineMath math="-1" />, so its product with the line's slope is <InlineMath math="-1" />.
+Check with the distance. The line <InlineMath math="x - y + k = 0" /> lies at distance <InlineMath math="\frac{|k|}{\sqrt{2}}" /> from <InlineMath math="O" />. The condition <InlineMath math="d = r" /> gives <InlineMath math="\frac{|k|}{\sqrt{2}} = 3\sqrt{2}" />, so <InlineMath math="|k| = 6" />, the same as the discriminant gave. The point <InlineMath math="(-3, 3)" /> also satisfies <InlineMath math="(-3)^2 + 3^2 = 18" />, and the radius to it is perpendicular to the line, because their slopes <InlineMath math="-1" /> and <InlineMath math="1" /> multiply to <InlineMath math="-1" />.
 
 ## A Shortcut for Circles Centered at O
 
-For the circle <InlineMath math="x^2 + y^2 = r^2" />, the coefficients <InlineMath math="D" /> and <InlineMath math="E" /> are zero and <InlineMath math="F = -r^2" />. Substituting <InlineMath math="y = mx + c" /> becomes shorter:
+For the circle <InlineMath math="x^2 + y^2 = r^2" />, the coefficients <InlineMath math="D" /> and <InlineMath math="E" /> are zero and <InlineMath math="F = -r^2" />. For a line that is not vertical, substituting <InlineMath math="y = mx + c" /> becomes shorter:
 
 <MathContainer>
   <BlockMath math="x^2 + (mx + c)^2 = r^2" />
@@ -343,7 +343,7 @@ The same condition gives the tangent with slope <InlineMath math="m" />, namely 
 | Comparing <InlineMath math="d" /> with <InlineMath math="r^2" /> | <InlineMath math="d" /> is a length, <InlineMath math="r^2" /> is a squared length | For <InlineMath math="x^2 + y^2 = 9" />, compare <InlineMath math="d" /> with <InlineMath math="3" /> |
 | Reading the center with flipped signs | <InlineMath math="x^2 + y^2 - 4x + 2y - 4 = 0" /> has center <InlineMath math="(2, -1)" />, not <InlineMath math="(-2, 1)" /> | The center is <InlineMath math="\left(-\frac{D}{2}, -\frac{E}{2}\right)" /> |
 | Using the distance formula on <InlineMath math="y = 2x - 1" /> | The formula needs the form <InlineMath math="px + qy + s = 0" /> | Move every term to one side: <InlineMath math="2x - y - 1 = 0" /> |
-| Reading the size of <InlineMath math="\Delta" /> as a distance | Multiplying the equation by <InlineMath math="2" /> changes <InlineMath math="\Delta" /> but not the line | Only the sign of <InlineMath math="\Delta" /> matters |
+| Reading the size of <InlineMath math="\Delta" /> as a distance | Multiplying the quadratic from the substitution by <InlineMath math="2" /> makes <InlineMath math="\Delta" /> four times larger but does not move the line | Only the sign of <InlineMath math="\Delta" /> matters |
 
 The fastest check is the other method. If the discriminant and the distance test give different positions, **one calculation is wrong**, usually the center of the circle or the expansion of a square.
 
