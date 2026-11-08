@@ -2,34 +2,30 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "trigonometry",
-    topic: "trigonometric-ratios",
+    cognitiveLevel: "reasoning",
+    contentDomain: "geometry-measurement",
+    topic: "geometry-objects",
   },
-  stimulus: "playground",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$1{,}8\\text{ m}$$",
+          column: 1,
+          label: "$$\\angle BCD=106^\\circ$$",
         },
         {
-          correct: false,
-          label: "$$3\\text{ m}$$",
+          column: 2,
+          label: "$$\\angle BOC=28^\\circ$$",
         },
         {
-          correct: false,
-          label: "$$3{,}2\\text{ m}$$",
+          column: 2,
+          label: "$$\\angle BDC=46^\\circ$$",
         },
         {
-          correct: true,
-          label: "$$4\\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$5{,}6\\text{ m}$$",
+          column: 1,
+          label: "$$\\angle ADB=62^\\circ$$",
         },
       ],
     },

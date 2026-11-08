@@ -25,7 +25,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$30$$",
+          label: "$$8$$",
         },
         {
           correct: true,

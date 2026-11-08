@@ -1,18 +1,19 @@
-Two dice give <InlineMath math="6\cdot6=36" /> **equally likely ordered pairs**. The possible totals <InlineMath math="2" /> to <InlineMath math="12" />, however, are not equally likely. So count the pairs for each prime total.
+There are <InlineMath math="99-10+1=90" /> equally likely numbers. For an **or** between two events, count both sets and subtract the numbers that lie in both, otherwise they are counted twice.
 
 <BlockMath math="\begin{aligned}
-\text{total }2&:\ 1 \qquad \text{total }3:\ 2 \qquad \text{total }5:\ 4 \\
-\text{total }7&:\ 6 \qquad \text{total }11:\ 2 \\
-1+2+4+6+2&=15
+\text{divisible by 4}&:\ 12,16,\dots,96\ \Rightarrow\ \frac{96-12}{4}+1=22 \\
+\text{divisible by 6}&:\ 12,18,\dots,96\ \Rightarrow\ \frac{96-12}{6}+1=15 \\
+\text{divisible by 12}&:\ 12,24,\dots,96\ \Rightarrow\ 8 \\
+P&=\frac{22+15-8}{90}=\frac{29}{90}
 \end{aligned}" />
 
-<BlockMath math="P=\frac{15}{36}=\frac{5}{12}" />
+A number is divisible by both <InlineMath math="4" /> and <InlineMath math="6" /> exactly when it is divisible by their least common multiple <InlineMath math="12" />.
 
-As a check, the total <InlineMath math="7" /> has the most pairs, <InlineMath math="(1,6),(2,5),\dots,(6,1)" />, which is <InlineMath math="6" />.
+As a check, <InlineMath math="29" /> is less than <InlineMath math="22+15=37" />, because the eight multiples of <InlineMath math="12" /> may count only once.
 
-So the probability is <InlineMath math="\frac{5}{12}" />.
+So the probability is <InlineMath math="\frac{29}{90}" />.
 
-- <InlineMath math="\frac{13}{36}" /> forgets the total <InlineMath math="11" /> and its <InlineMath math="2" /> pairs.
-- <InlineMath math="\frac{7}{18}=\frac{14}{36}" /> forgets the total <InlineMath math="2" />, the pair <InlineMath math="(1,1)" />.
-- <InlineMath math="\frac{5}{11}" /> counts <InlineMath math="5" /> prime totals among <InlineMath math="11" /> possible totals and treats the totals as equally likely.
-- <InlineMath math="\frac12" /> would need <InlineMath math="18" /> favourable pairs, but there are only <InlineMath math="15" />.
+- <InlineMath math="\frac{4}{45}=\frac{8}{90}" /> counts only the numbers divisible by both, an and instead of an or.
+- <InlineMath math="\frac16=\frac{15}{90}" /> counts only the multiples of <InlineMath math="6" />.
+- <InlineMath math="\frac{11}{45}=\frac{22}{90}" /> counts only the multiples of <InlineMath math="4" />.
+- <InlineMath math="\frac{37}{90}" /> adds both sets without subtracting the multiples of <InlineMath math="12" /> once.

@@ -13,7 +13,7 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Keuntungan maksimum diperoleh dengan menyiapkan $$84$$ nampan cabai.",
+          label: "Keuntungan maksimum diperoleh dengan menyiapkan $$84$$ nampan cabai dan $$24$$ nampan tomat.",
         },
         {
           column: 2,
