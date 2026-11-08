@@ -93,13 +93,13 @@ Jarak totalnya <InlineMath math="9 \text{ m}" />, tetapi perpindahannya hanya <I
 
 Perhatikan bahwa kedua perhitungan memakai waktu yang sama. Perbedaannya muncul karena pembilangnya berbeda: kelajuan rata-rata memakai **seluruh lintasan**, sedangkan kecepatan rata-rata memakai perubahan posisi.
 
-Inilah kedua perjalanan sebagai posisi terhadap waktu, dengan kedua benda bergerak tetap <InlineMath math="3\text{ m/s}" />. Kecepatan rata-rata adalah kemiringan garis lurus dari titik pertama ke titik terakhir. Untuk A, garis itu adalah lintasannya sendiri, <InlineMath math="2\text{ m/s}" />. Untuk B, tali busur fuchsia melompati belokannya dan hanya memberi <InlineMath math="1\text{ m/s}" />, walaupun B menempuh <InlineMath math="9\text{ m}" />.
+Inilah kedua perjalanan sebagai posisi terhadap waktu, dengan A bergerak tetap <InlineMath math="2\text{ m/s}" /> dan B <InlineMath math="3\text{ m/s}" />. Kecepatan rata-rata adalah kemiringan garis lurus dari titik pertama ke titik terakhir. Untuk A, garis itu adalah lintasannya sendiri, <InlineMath math="2\text{ m/s}" />. Untuk B, tali busur fuchsia melompati belokannya dan hanya memberi <InlineMath math="1\text{ m/s}" />, walaupun B menempuh <InlineMath math="9\text{ m}" />.
 
 <LineEquation
   title="Kecepatan Rata-rata adalah Kemiringan dari Awal ke Akhir"
   description="Perjalanan A bergerak 6 m ke kanan, perjalanan B 6 m ke kanan lalu 3 m kembali, masing-masing dalam 3 s. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 2 m."
   data={(() => {
-    // Two 3 s trips at a constant 3 m/s pace. Horizontal: time in s. Vertical: position in m / 2.
+    // Two 3 s trips at constant speed: A at 2 m/s, B at 3 m/s. Horizontal: time in s. Vertical: position in m / 2.
     const straight = [[0, 0], [3, 6]];
     const back = [[0, 0], [2, 6], [3, 3]];
     const path = (corners) => corners.map(([t, x]) => ({ x: t, y: x / 2, z: 0 }));

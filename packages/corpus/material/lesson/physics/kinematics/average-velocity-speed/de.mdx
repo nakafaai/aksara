@@ -93,13 +93,13 @@ Die Gesamtstrecke beträgt <InlineMath math="9 \text{ m}" />, aber die Verschieb
 
 Beide Rechnungen verwenden dasselbe Zeitintervall. Der **Unterschied steckt im Zähler**: Die mittlere Schnelligkeit nutzt den gesamten Weg, die mittlere Geschwindigkeit dagegen die Positionsänderung.
 
-Hier sind beide Fahrten als Position über der Zeit, beide Objekte bewegen sich gleichmäßig mit <InlineMath math="3\text{ m/s}" />. Die Durchschnittsgeschwindigkeit ist die Steigung der Geraden vom ersten zum letzten Punkt. Bei A ist diese Gerade der Weg selbst, <InlineMath math="2\text{ m/s}" />. Bei B überspringt die fuchsiafarbene Sehne die Wende und ergibt nur <InlineMath math="1\text{ m/s}" />, obwohl B <InlineMath math="9\text{ m}" /> zurückgelegt hat.
+Hier sind beide Fahrten als Position über der Zeit, A bewegt sich gleichmäßig mit <InlineMath math="2\text{ m/s}" />, B mit <InlineMath math="3\text{ m/s}" />. Die Durchschnittsgeschwindigkeit ist die Steigung der Geraden vom ersten zum letzten Punkt. Bei A ist diese Gerade der Weg selbst, <InlineMath math="2\text{ m/s}" />. Bei B überspringt die fuchsiafarbene Sehne die Wende und ergibt nur <InlineMath math="1\text{ m/s}" />, obwohl B <InlineMath math="9\text{ m}" /> zurückgelegt hat.
 
 <LineEquation
   title="Durchschnittsgeschwindigkeit ist die Steigung vom Start zum Ziel"
   description="Fahrt A geht 6 m nach rechts, Fahrt B 6 m nach rechts und 3 m zurück, jeweils in 3 s. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 2 m."
   data={(() => {
-    // Two 3 s trips at a constant 3 m/s pace. Horizontal: time in s. Vertical: position in m / 2.
+    // Two 3 s trips at constant speed: A at 2 m/s, B at 3 m/s. Horizontal: time in s. Vertical: position in m / 2.
     const straight = [[0, 0], [3, 6]];
     const back = [[0, 0], [2, 6], [3, 3]];
     const path = (corners) => corners.map(([t, x]) => ({ x: t, y: x / 2, z: 0 }));
