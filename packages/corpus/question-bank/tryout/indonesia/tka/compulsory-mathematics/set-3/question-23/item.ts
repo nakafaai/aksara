@@ -22,11 +22,11 @@ const item: ItemSource = {
         },
         {
           column: 2,
-          label: "Jika kelima siswa pada kelas $$25$$ sampai $$29$$ tidak diikutkan, rata-rata yang dihitung dengan titik tengah kelas menjadi kurang dari $$16$$ menit.",
+          label: "Jika kelima siswa pada kelas $$25$$ sampai $$29$$ tidak diikutkan, rata-rata yang dihitung dengan titik tengah kelas menjadi kurang dari $$16$$ menit (tanpa pembulatan).",
         },
         {
           column: 1,
-          label: "Banyak siswa yang lama perjalanannya paling sedikit $$10$$ menit dan kurang dari $$25$$ menit adalah $$31$$.",
+          label: "Banyak siswa yang lama perjalanan tercatatnya paling sedikit $$10$$ menit dan kurang dari $$25$$ menit adalah $$31$$.",
         },
       ],
     },

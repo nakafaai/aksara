@@ -24,7 +24,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$1{.}440\\text{ mL}$$",
+          label: "$$1{.}400\\text{ mL}$$",
         },
         {
           correct: false,

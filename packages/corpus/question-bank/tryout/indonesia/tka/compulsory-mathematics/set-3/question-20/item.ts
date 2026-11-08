@@ -12,7 +12,15 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
+          label: "$$65\\text{ m}$$",
+        },
+        {
+          correct: false,
           label: "$$600\\text{ m}$$",
+        },
+        {
+          correct: false,
+          label: "$$624\\text{ m}$$",
         },
         {
           correct: true,
@@ -21,14 +29,6 @@ const item: ItemSource = {
         {
           correct: false,
           label: "$$1{.}440\\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$1{.}690\\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$3{.}744\\text{ m}$$",
         },
       ],
     },

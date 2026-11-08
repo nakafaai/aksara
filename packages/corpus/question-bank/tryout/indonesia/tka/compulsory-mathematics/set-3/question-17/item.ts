@@ -13,23 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$12$$",
+          label: "$$264\\text{ cm}^2$$",
         },
         {
           correct: true,
-          label: "$$36$$",
+          label: "$$276\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$108$$",
+          label: "$$288\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$144$$",
+          label: "$$302{,}5\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$216$$",
+          label: "$$540\\text{ cm}^2$$",
         },
       ],
     },
