@@ -56,6 +56,50 @@ Vergleiche zwei Geräte, die jeweils eine Stunde lang konstant <InlineMath math=
 | Beide laufen von 18:00 bis 19:00 Uhr | <InlineMath math="1+1=2 \text{ kW}" /> | <InlineMath math="2 \times 1=2 \text{ kWh}" /> |
 | Erstes Gerät von 18:00 bis 19:00 Uhr, zweites von 19:00 bis 20:00 Uhr | <InlineMath math="1 \text{ kW}" /> | <InlineMath math="1 \times 1+1 \times 1=2 \text{ kWh}" /> |
 
+Hier sind beide Zeitpläne als Leistung über den Abend. Der orange Plan lässt beide Geräte gleichzeitig laufen und springt auf eine Spitze von <InlineMath math="2\text{ kW}" />. Der violette Plan verteilt dieselbe Arbeit auf zwei Stunden und kommt nie über <InlineMath math="1\text{ kW}" />. Zähl die Fläche unter jeder Linie, also Leistung mal Zeit: Beide enthalten <InlineMath math="2\text{ kWh}" />. Die Energie bleibt gleich, nur die Spitze, die das Netz liefern muss, ändert sich.
+
+<LineEquation
+  title="Gleiche Energie, andere Spitze"
+  description="Leistung zweier 1-kW-Geräte von 17:00 bis 21:00 Uhr. Waagrecht: Uhrzeit in Stunden. Senkrecht: Leistung in kW."
+  data={(() => {
+    // Two 1 kW devices, one hour each. Horizontal: clock time from 17:00 in hours. Vertical: kW.
+    const scale = 1;
+    const load = (runs) => (t) => runs.filter(([start, end]) => t >= start && t < end).length;
+    const together = load([[18, 19], [18, 19]]);
+    const staggered = load([[18, 19], [19, 20]]);
+    const corners = [17, 18, 19, 20, 21];
+    const steps = (power) =>
+      corners.slice(0, -1).flatMap((t, i) => [
+        { x: t - 17, y: power(t) * scale, z: 0 },
+        { x: corners.at(i + 1) - 17, y: power(t) * scale, z: 0 },
+      ]);
+    return [
+      {
+        points: steps(together),
+        color: "#bb6800",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: <InlineMath math="2\text{ kW}" />, at: 2, offset: [0.5, 0.4, 0], anchorX: "center" }],
+      },
+      {
+        points: steps(staggered),
+        color: "#8242e5",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: <InlineMath math="1\text{ kW}" />, at: 4, offset: [0.5, 0.4, 0], anchorX: "center" }],
+      },
+      ...[18, 19, 20].map((hour) => ({
+        points: [{ x: hour - 17, y: 0, z: 0 }],
+        showPoints: false,
+        labels: [{ text: `${hour}:00`, at: 0, offset: [0, -0.35, 0], anchorX: "center" }],
+      })),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 1.1, 6]}
+  cameraTarget={[2, 1.1, 0]}
+/>
+
 ## Landesweite Quoten und örtliche Versorgungslücken
 
 Die **Elektrifizierungsquote** gibt den Anteil der Haushalte mit Stromzugang an. Die **Quote elektrifizierter Dörfer** bezeichnet den Anteil der Dörfer und städtischen Ortsteile, die bereits mit Strom versorgt werden.

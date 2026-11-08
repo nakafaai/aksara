@@ -18,6 +18,47 @@ Untuk biomassa, bandingkan **laju pemanenan dengan laju pertumbuhan kembali**. H
 
 Istilah terbarukan menjelaskan cara sumber <Highlight>tersedia kembali melalui proses alam</Highlight>. Besar daya yang dihasilkan tetap ditentukan oleh lokasi, waktu, dan kondisi sumber.
 
+Begini wujud "bergantung pada waktu" untuk panel surya. Dalam model sederhana, sistem panel berdaya puncak <InlineMath math="3\text{ kW}" /> mengikuti setengah gelombang sinus dari matahari terbit pukul 06.00 sampai terbenam pukul 18.00, lalu tidak menghasilkan apa-apa di malam hari. Energi satu hari adalah luas di bawah kurva, <InlineMath math="E=P_{\text{peak}}\cdot\frac{24}{\pi}\text{ jam}" />, jadi hari cerah memberi sekitar <InlineMath math="22{,}9\text{ kWh}" />. Pada hari berawan dengan puncak separuhnya, kurva ungu hanya berisi separuh energi itu. Sumbernya memang pulih setiap pagi, tetapi dayanya tidak selalu ada saat kamu butuhkan.
+
+<LineEquation
+  title="Daya Surya dalam Satu Hari"
+  description="Model sederhana sistem panel 3 kW pada hari cerah dan hari berawan dengan puncak separuhnya. Mendatar: jam dalam satuan 2 jam. Tegak: daya dalam kW."
+  data={(() => {
+    // Simple clear-sky model: P(t) = P_peak sin(pi (t - 6) / 12) from 06:00 to 18:00, zero at night.
+    // Horizontal: clock time / 2 h, so x = t / 2 and the phase is pi x / 6 - pi / 2. Vertical: power in kW.
+    const day = (peak, color, text) => ({
+      curve: {
+        kind: "sin",
+        amplitude: peak,
+        frequency: Math.PI / 6,
+        phase: -Math.PI / 2,
+        shift: 0,
+        domain: [3, 9],
+        samples: 201,
+      },
+      color,
+      showPoints: false,
+      labels: [{ text, at: 100, offset: [0, 0.45, 0], anchorX: "center" }],
+    });
+    const night = (from, to) => ({
+      points: [from, to].map((x) => ({ x, y: 0, z: 0 })),
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+    });
+    const energy = (peak) => ((peak * 24) / Math.PI).toFixed(1).replace(".", "{,}");
+    return [
+      night(0, 3),
+      night(9, 12),
+      day(3, "#bb6800", <InlineMath math={`P_{\\text{peak}}=3\\text{ kW},\\ E\\approx${energy(3)}\\text{ kWh}`} />),
+      day(1.5, "#8242e5", <InlineMath math={`P_{\\text{peak}}=1{,}5\\text{ kW},\\ E\\approx${energy(1.5)}\\text{ kWh}`} />),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[6, 1.6, 8]}
+  cameraTarget={[6, 1.6, 0]}
+/>
+
 Karena itu, periksa apakah sumber tersebut dapat tersedia kembali dan apakah jumlahnya cukup di lokasi serta waktu yang dibutuhkan. Untuk biomassa dan air yang dikelola, periksa juga berapa banyak bahan atau air yang dapat dipakai tanpa mengganggu pemulihan sumber dan ekosistem setempat.
 
 ## Cocokkan Setiap Sumber dengan Kondisi Lokasi

@@ -62,6 +62,42 @@ E_k &= \frac{1}{2}mv^2 \\
 &= 9 \text{ J}
 \end{aligned}" />
 
+The graph below runs the same formula for every speed from <InlineMath math="0" /> to <InlineMath math="6\text{ m/s}" />. Compare the two marked points. Doubling the speed from <InlineMath math="3\text{ m/s}" /> to <InlineMath math="6\text{ m/s}" /> doesn't double the energy: it goes from <InlineMath math="9\text{ J}" /> to <InlineMath math="36\text{ J}" />, four times as much, because the speed is squared. That's why a small rise in wind speed matters so much for a turbine.
+
+<LineEquation
+  title="Kinetic Energy Grows with the Square of Speed"
+  description="Kinetic energy of 2 kg of air at speeds from 0 to 6 m/s. Horizontal: speed in m/s. Vertical: energy in units of 6 J."
+  data={(() => {
+    // E_k = (1/2) m v^2 for m = 2 kg of air. Horizontal: v in m/s. Vertical: E_k / 6 J.
+    const m = 2;
+    const kinetic = (v) => 0.5 * m * v ** 2;
+    const samples = 241;
+    const named = (v, color, offset) => ({
+      points: [{ x: v, y: kinetic(v) / 6, z: 0 }],
+      color,
+      showPoints: true,
+      labels: [{ text: <InlineMath math={`v=${v}\\text{ m/s}:\\ E_k=${kinetic(v)}\\text{ J}`} />, at: 0, offset, anchorX: "center" }],
+    });
+    return [
+      {
+        points: Array.from({ length: samples }, (_, i) => {
+          const v = (6 * i) / (samples - 1);
+          return { x: v, y: kinetic(v) / 6, z: 0 };
+        }),
+        color: "#0d9488",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: <InlineMath math="E_k=\tfrac{1}{2}mv^2" />, at: 200, offset: [-1.4, 0.6, 0], anchorX: "center" }],
+      },
+      named(3, "#bb6800", [1.6, -0.2, 0]),
+      named(6, "#c026d3", [-2, 0, 0]),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[3, 3, 9]}
+  cameraTarget={[3, 3, 0]}
+/>
+
 The work-energy theorem relates net work to the change in kinetic energy.
 
 Gravitational potential energy is energy related to an object's position in a gravitational field. For objects near Earth's surface, the common model is:

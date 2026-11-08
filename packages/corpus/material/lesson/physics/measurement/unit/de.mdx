@@ -74,6 +74,47 @@ Eine abgeleitete Einheit entsteht zusammen mit einer Größe, die aus Grundgrö�
 
 Die Arbeitsformel setzt eine konstante Kraft in Verschiebungsrichtung voraus. Die Formeln für Geschwindigkeit, Beschleunigung und Leistung in der Tabelle liefern Mittelwerte im betrachteten Zeitintervall.
 
+Dreh den Würfel unten. An jeder Kante zählst du <InlineMath math="10" /> kleine Würfel mit <InlineMath math="1\text{ dm}" />, also ist der große Würfel an jeder Seite <InlineMath math="1\text{ m}" /> lang. Sein Volumen ist <InlineMath math="(10\text{ dm})^3=1000\text{ dm}^3" />, also gilt <InlineMath math="1\text{ m}^3=1000\text{ dm}^3" />, und ein kleiner Würfel fasst genau <InlineMath math="1" /> Liter. Achte darauf, dass der Vorsatz zusammen mit der Einheit hoch drei genommen wird: <InlineMath math="1\text{ dm}=10^{-1}\text{ m}" />, also <InlineMath math="1\text{ dm}^3=10^{-3}\text{ m}^3" />.
+
+<LineEquation
+  title="Ein Kubikmeter aus Kubikdezimetern"
+  description="Ein Gitterschritt ist 1 dm. Die kleinen Würfel liegen an drei Kanten eines Würfels mit 1 m Kantenlänge. Dreh ihn, um sie zu zählen."
+  data={(() => {
+    // One grid step is 1 dm. The big cube is 1 m = 10 dm on each edge.
+    const edge = 10;
+    const cube = (x, y, z) => ({
+      kind: "cuboid",
+      center: { x: x + 0.5, y: y + 0.5, z: z + 0.5 },
+      length: 1,
+      width: 1,
+      height: 1,
+      color: "#0d9488",
+    });
+    const tag = (point, text) => ({
+      points: [point],
+      showPoints: false,
+      labels: [{ text, at: 0, offset: [0, 0, 0], anchorX: "center" }],
+    });
+    return [
+      {
+        kind: "cuboid",
+        center: { x: edge / 2, y: edge / 2, z: edge / 2 },
+        length: edge,
+        width: edge,
+        height: edge,
+        color: "#bb6800",
+      },
+      ...Array.from({ length: edge }, (_, i) => cube(i, 0, edge - 1)),
+      ...Array.from({ length: edge - 1 }, (_, i) => cube(0, i + 1, edge - 1)),
+      ...Array.from({ length: edge - 1 }, (_, i) => cube(0, 0, edge - 2 - i)),
+      tag({ x: edge / 2, y: -0.9, z: edge }, <InlineMath math="10\times1\text{ dm}=1\text{ m}" />),
+      tag({ x: edge / 2, y: edge + 1, z: edge / 2 }, <InlineMath math="(10\text{ dm})^3=1000\text{ dm}^3=1\text{ m}^3" />),
+    ];
+  })()}
+  cameraPosition={[19, 14, 24]}
+  cameraTarget={[5, 4.5, 5]}
+/>
+
 Die Zerlegung einer abgeleiteten Einheit zeigt ihren Ursprung. Kraft wird in Newton angegeben, doch ein Newton setzt sich aus Kilogramm, Meter und Sekunde zusammen.
 
 <BlockMath math="\begin{aligned}

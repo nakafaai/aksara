@@ -109,6 +109,40 @@ E &= P t \\
 
 Kalau lampu yang sama menyala lebih lama, energinya bertambah. Kalau dayanya lebih besar, energinya juga bertambah untuk durasi yang sama.
 
+Grafik di bawah menunjukkan kedua pernyataan itu sekaligus. Telusuri garis oranye untuk lampu <InlineMath math="10\text{ W}" />: makin lama lampu menyala, makin besar energinya, dan pada <InlineMath math="5\text{ jam}" /> energinya mencapai <InlineMath math="50\text{ Wh}" />. Garis ungu untuk lampu <InlineMath math="20\text{ W}" /> naik dua kali lebih curam, karena daya menunjukkan seberapa cepat energi terkumpul.
+
+<LineEquation
+  title="Pemakaian Energi Bertambah seiring Waktu"
+  description="E = Pt untuk lampu 10 W dan 20 W. Mendatar: waktu dalam jam. Tegak: energi dalam satuan 20 Wh."
+  data={(() => {
+    // E = P t. Horizontal: time in hours. Vertical: energy / 20 Wh.
+    const hours = 6;
+    const lamp = (power, color, text, offset) => ({
+      points: [0, hours].map((t) => ({ x: t, y: (power * t) / 20, z: 0 })),
+      color,
+      showPoints: false,
+      smooth: false,
+      labels: [{ text, at: 1, offset, anchorX: "center" }],
+    });
+    const used = 10 * 5;
+    return [
+      lamp(10, "#bb6800", <InlineMath math="P=10\text{ W}" />, [0.9, 0, 0]),
+      lamp(20, "#8242e5", <InlineMath math="P=20\text{ W}" />, [0.9, 0, 0]),
+      {
+        points: [{ x: 5, y: 0, z: 0 }, { x: 5, y: used / 20, z: 0 }],
+        color: "#c026d3",
+        showPoints: true,
+        pointIndices: [1],
+        smooth: false,
+        labels: [{ text: <InlineMath math={`E=${used}\\text{ Wh}`} />, at: 1, offset: [0, -0.5, 0], anchorX: "center" }],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[3.2, 3, 9]}
+  cameraTarget={[3.2, 3, 0]}
+/>
+
 ## Analisis Energi pada Sumber Terbarukan
 
 Untuk menganalisis sistem energi terbarukan, tentukan sumber energinya, ikuti setiap perubahan bentuk energi, lalu bandingkan energi keluaran yang berguna dengan energi masukan.

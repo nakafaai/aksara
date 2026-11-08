@@ -22,6 +22,44 @@ Artinya, listrik bukan sumber energi primer. Listrik adalah energi yang sudah di
 
 Sumber energi terbarukan tersedia kembali melalui proses alam dalam skala waktu manusia. Sumber tersebut **belum tentu tersedia setiap saat**. Cahaya Matahari bergantung pada siang dan cuaca, angin bergantung pada kondisi udara, dan aliran air bergantung pada musim serta banyaknya air yang mengalir.
 
+Angin memperlihatkan betapa besarnya ayunan "tersedia saat ini". Daya yang dibawa angin melewati rotor seluas <InlineMath math="A" /> adalah <InlineMath math="P=\tfrac12\rho Av^3" />, karena udara yang lebih cepat membawa lebih banyak kilogram setiap detik dan setiap kilogram membawa energi lebih besar. Pada grafik di bawah, jari-jari rotornya <InlineMath math="1\text{ m}" /> dan massa jenis udara <InlineMath math="\rho=1{,}2\text{ kg/m}^3" />. Bandingkan dua titiknya: menggandakan kelajuan angin dari <InlineMath math="4" /> menjadi <InlineMath math="8\text{ m/s}" /> membuat dayanya <InlineMath math="2^3=8" /> kali lebih besar.
+
+<LineEquation
+  title="Daya Angin Bergantung pada Kelajuan Angin"
+  description="Daya angin yang melewati rotor berjari-jari 1 m dengan massa jenis udara 1,2 kg/m³. Mendatar: kelajuan angin dalam satuan 2 m/s. Tegak: daya dalam satuan 500 W."
+  data={(() => {
+    // Power in the wind through a rotor of radius 1 m: P = (1/2) rho A v^3, rho = 1.2 kg/m^3.
+    // Horizontal: v / 2 m/s. Vertical: P / 500 W.
+    const rho = 1.2;
+    const area = Math.PI * 1 ** 2;
+    const power = (v) => 0.5 * rho * area * v ** 3;
+    const samples = 241;
+    const marked = (v, color, offset) => ({
+      points: [{ x: v / 2, y: power(v) / 500, z: 0 }],
+      color,
+      showPoints: true,
+      labels: [{ text: <InlineMath math={`v=${v}\\text{ m/s}:\\ P\\approx${Math.round(power(v))}\\text{ W}`} />, at: 0, offset, anchorX: "center" }],
+    });
+    return [
+      {
+        points: Array.from({ length: samples }, (_, i) => {
+          const v = (10 * i) / (samples - 1);
+          return { x: v / 2, y: power(v) / 500, z: 0 };
+        }),
+        color: "#0d9488",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: <InlineMath math="P=\tfrac12\rho Av^3" />, at: 216, offset: [-1.5, 0.4, 0], anchorX: "center" }],
+      },
+      marked(4, "#bb6800", [1.6, 0.2, 0]),
+      marked(8, "#c026d3", [-1.9, 0.2, 0]),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 1.9, 7.5]}
+  cameraTarget={[2.5, 1.9, 0]}
+/>
+
 <Mermaid
   title="Kondisi yang Menentukan Ketersediaan Energi"
   description="Bedakan sumber yang tersedia kembali melalui proses alam dari kondisi tempat, cuaca, dan teknologi yang diperlukan untuk memakainya."

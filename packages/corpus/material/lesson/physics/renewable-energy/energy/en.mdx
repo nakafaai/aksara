@@ -109,6 +109,40 @@ E &= P t \\
 
 If the same lamp stays on longer, its energy use increases. If the power is higher, the energy use also increases for the same duration.
 
+The graph below shows both statements at once. Walk along the orange line for the <InlineMath math="10\text{ W}" /> lamp: the longer it stays on, the higher the energy, and at <InlineMath math="5\text{ h}" /> it reaches <InlineMath math="50\text{ Wh}" />. The violet line for a <InlineMath math="20\text{ W}" /> lamp climbs twice as steeply, because power is how fast the energy piles up.
+
+<LineEquation
+  title="Energy Use Grows with Time"
+  description="E = Pt for a 10 W and a 20 W lamp. Horizontal: time in hours. Vertical: energy in units of 20 Wh."
+  data={(() => {
+    // E = P t. Horizontal: time in hours. Vertical: energy / 20 Wh.
+    const hours = 6;
+    const lamp = (power, color, text, offset) => ({
+      points: [0, hours].map((t) => ({ x: t, y: (power * t) / 20, z: 0 })),
+      color,
+      showPoints: false,
+      smooth: false,
+      labels: [{ text, at: 1, offset, anchorX: "center" }],
+    });
+    const used = 10 * 5;
+    return [
+      lamp(10, "#bb6800", <InlineMath math="P=10\text{ W}" />, [0.9, 0, 0]),
+      lamp(20, "#8242e5", <InlineMath math="P=20\text{ W}" />, [0.9, 0, 0]),
+      {
+        points: [{ x: 5, y: 0, z: 0 }, { x: 5, y: used / 20, z: 0 }],
+        color: "#c026d3",
+        showPoints: true,
+        pointIndices: [1],
+        smooth: false,
+        labels: [{ text: <InlineMath math={`E=${used}\\text{ Wh}`} />, at: 1, offset: [0, -0.5, 0], anchorX: "center" }],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[3.2, 3, 9]}
+  cameraTarget={[3.2, 3, 0]}
+/>
+
 ## Energy Analysis for Renewable Sources
 
 To analyze a renewable-energy system, identify the energy source, track each conversion, and compare the useful output energy with the input energy.

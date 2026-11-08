@@ -62,6 +62,42 @@ E_k &= \frac{1}{2}mv^2 \\
 &= 9 \text{ J}
 \end{aligned}" />
 
+Das Diagramm unten setzt jede Geschwindigkeit von <InlineMath math="0" /> bis <InlineMath math="6\text{ m/s}" /> in dieselbe Formel ein. Vergleich die beiden markierten Punkte. Wenn sich die Geschwindigkeit von <InlineMath math="3\text{ m/s}" /> auf <InlineMath math="6\text{ m/s}" /> verdoppelt, verdoppelt sich die Energie nicht: Sie steigt von <InlineMath math="9\text{ J}" /> auf <InlineMath math="36\text{ J}" />, also auf das Vierfache, weil die Geschwindigkeit quadriert wird. Deshalb macht schon etwas mehr Wind für eine Turbine so viel aus.
+
+<LineEquation
+  title="Kinetische Energie wächst mit dem Quadrat der Geschwindigkeit"
+  description="Kinetische Energie von 2 kg Luft bei 0 bis 6 m/s. Waagrecht: Geschwindigkeit in m/s. Senkrecht: Energie in Einheiten von 6 J."
+  data={(() => {
+    // E_k = (1/2) m v^2 for m = 2 kg of air. Horizontal: v in m/s. Vertical: E_k / 6 J.
+    const m = 2;
+    const kinetic = (v) => 0.5 * m * v ** 2;
+    const samples = 241;
+    const named = (v, color, offset) => ({
+      points: [{ x: v, y: kinetic(v) / 6, z: 0 }],
+      color,
+      showPoints: true,
+      labels: [{ text: <InlineMath math={`v=${v}\\text{ m/s}:\\ E_k=${kinetic(v)}\\text{ J}`} />, at: 0, offset, anchorX: "center" }],
+    });
+    return [
+      {
+        points: Array.from({ length: samples }, (_, i) => {
+          const v = (6 * i) / (samples - 1);
+          return { x: v, y: kinetic(v) / 6, z: 0 };
+        }),
+        color: "#0d9488",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: <InlineMath math="E_k=\tfrac{1}{2}mv^2" />, at: 200, offset: [-1.4, 0.6, 0], anchorX: "center" }],
+      },
+      named(3, "#bb6800", [1.6, -0.2, 0]),
+      named(6, "#c026d3", [-2, 0, 0]),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[3, 3, 9]}
+  cameraTarget={[3, 3, 0]}
+/>
+
 Der Arbeit-Energie-Satz verbindet die Gesamtarbeit mit der Änderung der kinetischen Energie.
 
 Die potenzielle Gravitationsenergie ist Energie, die mit der Position eines Objekts in einem Gravitationsfeld zusammenhängt. Für Objekte in der Nähe der Erdoberfläche lautet das gängige Modell:

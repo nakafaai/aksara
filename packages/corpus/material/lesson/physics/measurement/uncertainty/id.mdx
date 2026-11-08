@@ -94,6 +94,47 @@ Untuk pembacaan yang independen dengan sebaran yang sama, **ketidakpastian baku 
 
 <BlockMath math="u(\bar d)=\frac{\sqrt{0{,}00027}}{\sqrt 5}\text{ cm}\approx0{,}00735\text{ cm}" />
 
+Adegan di bawah menjajarkan kelima bacaan. Setiap batang hijau toska adalah jarak satu bacaan dari rata-rata, digambar <InlineMath math="100" /> kali lebih besar. Garis oranye di <InlineMath math="\pm s_d" /> menunjukkan seberapa jauh bacaan tunggal menyebar, sedangkan garis ungu yang lebih rapat di <InlineMath math="\pm u(\bar d)" /> menunjukkan seberapa baik rata-ratanya diketahui. Coba jumlahkan batang di atas garis abu-abu dan batang di bawahnya: hasilnya saling menghapus, karena simpangan dari rata-rata selalu berjumlah nol.
+
+<LineEquation
+  title="Lima Bacaan di Sekitar Rata-ratanya"
+  description="Setiap batang adalah bacaan dikurangi rata-rata, dalam satuan 0,01 cm. Garis oranye menandai sebaran s, garis ungu ketidakpastian rata-rata u."
+  data={(() => {
+    // Measured diameters in cm. The vertical axis shows d_i - mean in units of 0.01 cm.
+    const readings = [3.12, 3.14, 3.15, 3.11, 3.14];
+    const count = readings.length;
+    const mean = readings.reduce((sum, d) => sum + d, 0) / count;
+    const spread = Math.sqrt(readings.reduce((sum, d) => sum + (d - mean) ** 2, 0) / (count - 1));
+    const meanUncertainty = spread / Math.sqrt(count);
+    const scale = 100;
+    const level = (value, color, text) => ({
+      points: [{ x: 0.5, y: value * scale, z: 0 }, { x: count + 0.5, y: value * scale, z: 0 }],
+      color,
+      showPoints: false,
+      smooth: false,
+      labels: [{ text, at: 1, offset: [0.8, 0, 0], anchorX: "center" }],
+    });
+    return [
+      level(0, "#64748b", <InlineMath math="\bar d" />),
+      level(spread, "#bb6800", <InlineMath math="+s_d" />),
+      level(-spread, "#bb6800", <InlineMath math="-s_d" />),
+      level(meanUncertainty, "#8242e5", <InlineMath math="+u(\bar d)" />),
+      level(-meanUncertainty, "#8242e5", <InlineMath math="-u(\bar d)" />),
+      ...readings.map((d, i) => ({
+        points: [{ x: i + 1, y: 0, z: 0 }, { x: i + 1, y: (d - mean) * scale, z: 0 }],
+        color: "#0d9488",
+        showPoints: true,
+        pointIndices: [1],
+        smooth: false,
+        labels: [{ text: <InlineMath math={`d_${i + 1}`} />, at: 1, offset: [0, d > mean ? 0.4 : -0.4, 0], anchorX: "center" }],
+      })),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[3.3, 0, 7.5]}
+  cameraTarget={[3.3, 0, 0]}
+/>
+
 Ikuti notasi yang ditetapkan pada soal pengukuran. Jika <InlineMath math="\Delta x" /> menyatakan rumus ringkas di atas, maka <InlineMath math="\Delta x" /> adalah simpangan baku sampel dari setiap hasil ukur. Jangan samakan sebaran ini dengan ketidakpastian baku nilai rata-rata <InlineMath math="u(\bar x)=s_x/\sqrt N" />.
 
 ## Luas dari Data Diameter

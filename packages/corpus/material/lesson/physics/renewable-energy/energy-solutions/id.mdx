@@ -49,6 +49,44 @@ Untuk **contoh hitung rekaan**, ambil massa jenis air <InlineMath math="1\,000 \
 
 <BlockMath math="\begin{aligned} P &\approx \rho g Q h \eta \\ &= (1\,000)(10)(0{,}02)(10)(0{,}7) \text{ W} \\ &= 1\,400 \text{ W} \end{aligned}" />
 
+Putar permukaan di bawah. Setiap titik di permukaan itu adalah rumus tadi dengan satu debit ke kanan dan satu beda tinggi ke arah dalam layar, sedangkan tingginya adalah daya dalam kilowatt. Titik merah muda adalah contoh hipotetis di atas, <InlineMath math="1\,400\text{ W}" />. Telusuri garis oranye mana saja, dayanya naik teratur bersama beda tinggi. Telusuri garis hijau toska, dayanya naik bersama debit. Sudut terjauh, tempat air paling banyak jatuh paling tinggi, adalah bagian permukaan yang paling tinggi.
+
+<LineEquation
+  title="Daya Mikrohidro dari Debit dan Beda Tinggi"
+  description="P = ρgQhη dengan ρ = 1000 kg/m³, g = 10 m/s², dan η = 0,7. Ke kanan: debit dalam satuan 0,01 m³/s. Ke dalam layar: beda tinggi dalam satuan 5 m. Ke atas: daya dalam kW."
+  data={(() => {
+    // P = rho g Q h eta with rho = 1000 kg/m^3, g = 10 m/s^2, eta = 0.7.
+    // x: flow Q in units of 0.01 m^3/s. z: head h in units of 5 m. y: power in kW.
+    const power = (Q, h) => 1000 * 10 * Q * h * 0.7;
+    const flows = [0, 0.01, 0.02, 0.03, 0.04];
+    const heads = [0, 5, 10, 15, 20];
+    const at = (Q, h) => ({ x: Q * 100, y: power(Q, h) / 1000, z: h / 5 });
+    const mesh = (points, color) => ({ points, color, showPoints: false, smooth: false });
+    return [
+      ...heads.map((h) => mesh([at(0, h), at(0.04, h)], "#0d9488")),
+      ...flows.map((Q) => mesh([at(Q, 0), at(Q, 20)], "#bb6800")),
+      {
+        points: [at(0.02, 10)],
+        color: "#c026d3",
+        showPoints: true,
+        labels: [{ text: <InlineMath math="1\,400\text{ W}" />, at: 0, offset: [0, 0.7, 0], anchorX: "center" }],
+      },
+      {
+        points: [at(0.04, 0)],
+        showPoints: false,
+        labels: [{ text: <InlineMath math="Q" />, at: 0, offset: [0.6, 0, 0], anchorX: "center" }],
+      },
+      {
+        points: [at(0, 20)],
+        showPoints: false,
+        labels: [{ text: <InlineMath math="h" />, at: 0, offset: [0, 0, 0.6], anchorX: "center" }],
+      },
+    ];
+  })()}
+  cameraPosition={[9, 7, 9]}
+  cameraTarget={[2, 1.5, 2]}
+/>
+
 [Pengelola proyek PLTMH di sekitar Air Terjun Kali Pedati](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) melaporkan kapasitas terpasang sebesar <InlineMath math="7 \text{ kW}" />. Proyek ini dikelola oleh kelompok yang terdiri atas <InlineMath math="14" /> rumah tangga, dan pengelola yang sama menyebut sekitar <InlineMath math="500 \text{ W}" /> per rumah tangga. Coba cek apakah kedua angka itu cocok: <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />, atau <InlineMath math="7 \text{ kW}" />. Angka tersebut berasal dari pengelola proyek. Pengukuran jangka panjang oleh pihak independen masih diperlukan untuk menilai kinerja pembangkit dari waktu ke waktu.
 
 Ketersediaan air belum menjamin pembangkit dapat bekerja. Periksa apakah debit air cukup stabil, beda tinggi cukup besar, turbin terlindungi dari banjir, dan warga punya cara merawat turbin serta generator.

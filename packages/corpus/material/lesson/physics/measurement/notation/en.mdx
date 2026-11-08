@@ -43,6 +43,67 @@ If <Highlight>the decimal point moves left</Highlight>, the exponent is positive
 0.000764 &= 7.64 \times 10^{-4}
 \end{aligned}" />
 
+Here every value sits at its exponent <InlineMath math="n" /> across and its coefficient <InlineMath math="a" /> up. Values in standard form land between the two gray lines, because <InlineMath math="1 \le a < 10" />. Now find the pink arrow: <InlineMath math="10.0\times10^{-13}" /> from the multiplication at the end of this lesson sits on the top line, outside the band, and one decimal move takes it inside as <InlineMath math="1.0\times10^{-12}" />.
+
+<LineEquation
+  title="Every Value in Standard Form"
+  description="Each point is a value written as a x 10^n, placed at its exponent n across and its coefficient a up. The gray lines mark a = 1 and a = 10."
+  data={(() => {
+    // Horizontal: exponent n. Vertical: coefficient a of a x 10^n.
+    const standard = (value) => {
+      const n = Math.floor(Math.log10(value));
+      return { a: value / 10 ** n, n };
+    };
+    const write = (a, n, digits) =>
+      `${a.toFixed(digits).replace(".", ".")}\\times10^{${n}}`;
+    const values = [
+      { value: 7640000, digits: 2, color: "#bb6800", offset: [0, 0.8, 0] },
+      { value: 0.000764, digits: 2, color: "#8242e5", offset: [0, -0.8, 0] },
+      { value: 0.000000911, digits: 2, color: "#0d9488", offset: [0, 0.8, 0] },
+    ];
+    // (2.5 x 10^-6)(4.0 x 10^-7): multiply the coefficients, add the exponents.
+    const product = { a: 2.5 * 4.0, n: -6 + -7 };
+    const fixed = standard(product.a * 10 ** product.n);
+    const band = (a) => ({
+      points: [{ x: -14, y: a, z: 0 }, { x: 7, y: a, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math={`a=${a}`} />, at: 1, offset: [0.9, 0, 0] }],
+    });
+    return [
+      band(1),
+      band(10),
+      ...values.map(({ value, digits, color, offset }) => {
+        const { a, n } = standard(value);
+        return {
+          points: [{ x: n, y: a, z: 0 }],
+          color,
+          showPoints: true,
+          labels: [{ text: <InlineMath math={write(a, n, digits)} />, at: 0, offset, anchorX: "center" }],
+        };
+      }),
+      {
+        points: [
+          { x: product.n, y: product.a, z: 0 },
+          { x: fixed.n, y: fixed.a, z: 0 },
+        ],
+        color: "#c026d3",
+        cone: { position: "end", size: 0.3 },
+        showPoints: false,
+        smooth: false,
+        labels: [
+          { text: <InlineMath math={write(product.a, product.n, 1)} />, at: 0, offset: [0, 0.8, 0], anchorX: "center" },
+          { text: <InlineMath math={write(fixed.a, fixed.n, 1)} />, at: 1, offset: [0, -0.8, 0], anchorX: "center" },
+        ],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[-3.5, 5, 22]}
+  cameraTarget={[-3.5, 5, 0]}
+/>
+
 ## Significant Figures in the Coefficient
 
 In scientific notation, read the **significant figures from the coefficient**. The power of <InlineMath math="10" /> sets the scale.

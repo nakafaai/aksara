@@ -18,6 +18,49 @@ Misalkan <InlineMath math="r_{\mathrm{use}}" /> adalah laju penggunaan manusia d
 
 Tanda <InlineMath math="\gg" /> dibaca "jauh lebih besar daripada". Untuk menilai persediaan bahan bakar, periksa jumlah yang tersedia dan kecepatan pemakaiannya.
 
+Coba uji tanda itu dengan angka bulat buatan. Persediaan <InlineMath math="S_0=100" /> satuan dipakai <InlineMath math="r_{\mathrm{use}}=2" /> satuan per tahun, jadi berkurang <InlineMath math="r_{\mathrm{use}}-r_{\mathrm{form}}" /> setiap tahun. Seandainya alam mengganti separuh dari yang kita pakai, garis ungu akan bertahan sampai <InlineMath math="100" /> tahun, dua kali lebih lama. Saat <InlineMath math="r_{\mathrm{use}}\gg r_{\mathrm{form}}" />, garis oranye sudah habis setelah sekitar <InlineMath math="50" /> tahun saja, hampir sama seperti kalau tidak ada yang terbentuk sama sekali.
+
+<LineEquation
+  title="Persediaan yang Terbentuk Terlalu Lambat"
+  description="Persediaan rekaan 100 satuan yang dipakai 2 satuan per tahun dengan dua laju pembentukan. Mendatar: waktu dalam satuan 20 tahun. Tegak: persediaan dalam satuan 20."
+  data={(() => {
+    // Illustrative stock model: S(t) = S0 - (r_use - r_form) t, cut at zero.
+    // Horizontal: years / 20. Vertical: stock / 20 units.
+    const start = 100;
+    const use = 2;
+    const stock = (form) => {
+      const empty = start / (use - form);
+      const end = Math.min(empty, 100);
+      return [0, end].map((t) => ({ x: t / 20, y: (start - (use - form) * t) / 20, z: 0 }));
+    };
+    const fast = use / 1000;
+    const slow = use / 2;
+    return [
+      {
+        points: stock(slow),
+        color: "#8242e5",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: <InlineMath math="r_{\mathrm{form}}=\tfrac12 r_{\mathrm{use}}" />, at: 1, offset: [0, 0.5, 0], anchorX: "center" }],
+      },
+      {
+        points: stock(fast),
+        color: "#bb6800",
+        showPoints: true,
+        pointIndices: [1],
+        smooth: false,
+        labels: [
+          { text: <InlineMath math="r_{\mathrm{form}}=\tfrac{1}{1000} r_{\mathrm{use}}" />, at: 0, offset: [1.9, -0.5, 0], anchorX: "center" },
+          { text: <InlineMath math={`t=\\frac{S_0}{r_{\\mathrm{use}}-r_{\\mathrm{form}}}\\approx${Math.round(start / (use - fast))}\\text{ tahun}`} />, at: 1, offset: [0, 0.8, 0], anchorX: "center" },
+        ],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 2.5, 8]}
+  cameraTarget={[2.5, 2.5, 0]}
+/>
+
 ## Bahan Bakar Fosil dan Bahan Bakar Nuklir
 
 Dua kelompok utama sumber tak terbarukan adalah bahan bakar fosil dan bahan bakar nuklir. [**Bahan bakar fosil**](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php) terbentuk dari sisa makhluk hidup purba yang tertimbun, lalu berubah akibat tekanan dan panas selama jutaan tahun.

@@ -56,6 +56,50 @@ Compare two devices, each drawing a constant <InlineMath math="1 \text{ kW}" /> 
 | Both run from 18:00 to 19:00 | <InlineMath math="1+1=2 \text{ kW}" /> | <InlineMath math="2 \times 1=2 \text{ kWh}" /> |
 | First device runs from 18:00 to 19:00, second from 19:00 to 20:00 | <InlineMath math="1 \text{ kW}" /> | <InlineMath math="1 \times 1+1 \times 1=2 \text{ kWh}" /> |
 
+Here are both schedules as power over the evening. The orange schedule runs both devices together and jumps to a <InlineMath math="2\text{ kW}" /> peak. The violet schedule spreads the same work over two hours and never goes above <InlineMath math="1\text{ kW}" />. Count the area under each line, power times time: both hold <InlineMath math="2\text{ kWh}" />. The energy is the same, and only the peak the grid must supply changes.
+
+<LineEquation
+  title="Same Energy, Different Peak"
+  description="Power drawn by two 1 kW devices from 17:00 to 21:00. Horizontal: clock time in hours. Vertical: power in kW."
+  data={(() => {
+    // Two 1 kW devices, one hour each. Horizontal: clock time from 17:00 in hours. Vertical: kW.
+    const scale = 1;
+    const load = (runs) => (t) => runs.filter(([start, end]) => t >= start && t < end).length;
+    const together = load([[18, 19], [18, 19]]);
+    const staggered = load([[18, 19], [19, 20]]);
+    const corners = [17, 18, 19, 20, 21];
+    const steps = (power) =>
+      corners.slice(0, -1).flatMap((t, i) => [
+        { x: t - 17, y: power(t) * scale, z: 0 },
+        { x: corners.at(i + 1) - 17, y: power(t) * scale, z: 0 },
+      ]);
+    return [
+      {
+        points: steps(together),
+        color: "#bb6800",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: <InlineMath math="2\text{ kW}" />, at: 2, offset: [0.5, 0.4, 0], anchorX: "center" }],
+      },
+      {
+        points: steps(staggered),
+        color: "#8242e5",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: <InlineMath math="1\text{ kW}" />, at: 4, offset: [0.5, 0.4, 0], anchorX: "center" }],
+      },
+      ...[18, 19, 20].map((hour) => ({
+        points: [{ x: hour - 17, y: 0, z: 0 }],
+        showPoints: false,
+        labels: [{ text: `${hour}:00`, at: 0, offset: [0, -0.35, 0], anchorX: "center" }],
+      })),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 1.1, 6]}
+  cameraTarget={[2, 1.1, 0]}
+/>
+
 ## National Rates and Local Access Gaps
 
 **Electrification Ratio** is the percentage of households with access to electricity. **Electrified Village Ratio** is the percentage of villages or urban villages that already have electricity.

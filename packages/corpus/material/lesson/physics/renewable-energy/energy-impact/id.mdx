@@ -38,6 +38,51 @@ Hampir semua bagian [sistem listrik](https://www.epa.gov/energy/about-us-electri
 
 Pada setiap tahap, bandingkan besar dampak, lamanya dampak, wilayah yang terkena, dan bukti yang tersedia. Sebagian dampak terlihat langsung, sedangkan dampak lain baru terlihat setelah berlangsung lama atau menyebar ke wilayah yang luas.
 
+Kehilangan energi adalah salah satu dampak yang bisa kamu ukur tahap demi tahap. Ambil efisiensi bulat sebagai ilustrasi: pembangkit mengubah <InlineMath math="35\%" /> energi bahan bakar menjadi listrik, lalu jaringan menyalurkan <InlineMath math="95\%" /> dari listrik itu. Pada adegan di bawah, setiap kolom tetap setinggi <InlineMath math="100\text{ J}" />, karena energi kekal. Yang berubah hanya pembagiannya: bagian hijau toska adalah energi yang masih berguna, bagian abu-abu adalah kalor yang sudah lepas ke lingkungan. Putar adegannya dan bandingkan seberapa banyak bagian abu-abu muncul pada tahap konversi.
+
+<LineEquation
+  title="Sisa 100 J di Sepanjang Rantai"
+  description="Rantai energi ilustrasi dengan efisiensi konversi 0,35 dan efisiensi jaringan 0,95. Satu kotak grid ke atas sama dengan 20 J."
+  data={(() => {
+    // Illustrative chain per 100 J of fuel energy: conversion efficiency 0.35, grid efficiency 0.95.
+    // Each column stacks the energy still useful (teal) under the energy already lost as heat (slate).
+    // One grid step up is 20 J, so every column is 100 J tall.
+    const input = 100;
+    const stages = [
+      { x: 0, useful: input },
+      { x: 2.5, useful: input * 0.35 },
+      { x: 5, useful: input * 0.35 * 0.95 },
+    ];
+    const block = (x, bottom, energy, color) => ({
+      kind: "cuboid",
+      center: { x, y: (bottom + energy / 2) / 20, z: 0 },
+      length: 1.2,
+      width: 1.2,
+      height: energy / 20,
+      color,
+    });
+    const write = (value) => `${Number(value.toFixed(2))}`.replace(".", "{,}");
+    return [
+      ...stages.flatMap(({ x, useful }) => [
+        block(x, 0, useful, "#0d9488"),
+        ...(useful < input ? [block(x, useful, input - useful, "#64748b")] : []),
+      ]),
+      ...stages.map(({ x, useful }) => ({
+        points: [{ x, y: -0.5, z: 0.6 }],
+        showPoints: false,
+        labels: [{ text: <InlineMath math={`${write(useful)}\\text{ J}`} />, at: 0, offset: [0, 0, 0], anchorX: "center" }],
+      })),
+      ...["Bahan bakar", "Pembangkit", "Rumah"].map((name, i) => ({
+        points: [{ x: i * 2.5, y: input / 20 + 0.5, z: 0.6 }],
+        showPoints: false,
+        labels: [{ text: name, at: 0, offset: [0, 0, 0], anchorX: "center" }],
+      })),
+    ];
+  })()}
+  cameraPosition={[3.5, 3.5, 10]}
+  cameraTarget={[2.5, 2.3, 0]}
+/>
+
 ## Dampak Berbeda menurut Sumber dan Tahap
 
 Pada bahan bakar fosil, dampak besar muncul dari penambangan atau pengeboran cadangan geologis dan dari pembakaran bahan bakar. Cadangan geologis adalah bahan yang terbentuk di bawah permukaan Bumi dalam waktu sangat lama, seperti batu bara atau minyak bumi. [Pembakaran bahan bakar fosil melepaskan karbon dioksida](https://www.eia.gov/energyexplained/energy-and-the-environment/where-greenhouse-gases-come-from.php), yaitu <InlineMath math="\text{CO}_2" />.

@@ -49,6 +49,44 @@ Für ein **fiktives Rechenbeispiel** wählen wir die Wasserdichte <InlineMath ma
 
 <BlockMath math="\begin{aligned} P &\approx \rho g Q h \eta \\ &= (1\,000)(10)(0{,}02)(10)(0{,}7) \text{ W} \\ &= 1\,400 \text{ W} \end{aligned}" />
 
+Dreh die Fläche unten. Jeder Punkt darauf ist die Formel mit einem Volumenstrom nach rechts und einer Fallhöhe in den Bildschirm hinein, und seine Höhe ist die Leistung in Kilowatt. Der pinke Punkt ist das hypothetische Beispiel oben, <InlineMath math="1\,400\text{ W}" />. Folgst du einer orangen Linie, steigt die Leistung gleichmäßig mit der Fallhöhe, entlang einer türkisen Linie steigt sie mit dem Volumenstrom. In der hinteren Ecke, wo das meiste Wasser am tiefsten fällt, liegt die Fläche am höchsten.
+
+<LineEquation
+  title="Mikrowasserkraft aus Volumenstrom und Fallhöhe"
+  description="P = ρgQhη mit ρ = 1000 kg/m³, g = 10 m/s² und η = 0,7. Nach rechts: Volumenstrom in Einheiten von 0,01 m³/s. In den Bildschirm: Fallhöhe in Einheiten von 5 m. Nach oben: Leistung in kW."
+  data={(() => {
+    // P = rho g Q h eta with rho = 1000 kg/m^3, g = 10 m/s^2, eta = 0.7.
+    // x: flow Q in units of 0.01 m^3/s. z: head h in units of 5 m. y: power in kW.
+    const power = (Q, h) => 1000 * 10 * Q * h * 0.7;
+    const flows = [0, 0.01, 0.02, 0.03, 0.04];
+    const heads = [0, 5, 10, 15, 20];
+    const at = (Q, h) => ({ x: Q * 100, y: power(Q, h) / 1000, z: h / 5 });
+    const mesh = (points, color) => ({ points, color, showPoints: false, smooth: false });
+    return [
+      ...heads.map((h) => mesh([at(0, h), at(0.04, h)], "#0d9488")),
+      ...flows.map((Q) => mesh([at(Q, 0), at(Q, 20)], "#bb6800")),
+      {
+        points: [at(0.02, 10)],
+        color: "#c026d3",
+        showPoints: true,
+        labels: [{ text: <InlineMath math="1\,400\text{ W}" />, at: 0, offset: [0, 0.7, 0], anchorX: "center" }],
+      },
+      {
+        points: [at(0.04, 0)],
+        showPoints: false,
+        labels: [{ text: <InlineMath math="Q" />, at: 0, offset: [0.6, 0, 0], anchorX: "center" }],
+      },
+      {
+        points: [at(0, 20)],
+        showPoints: false,
+        labels: [{ text: <InlineMath math="h" />, at: 0, offset: [0, 0, 0.6], anchorX: "center" }],
+      },
+    ];
+  })()}
+  cameraPosition={[9, 7, 9]}
+  cameraTarget={[2, 1.5, 2]}
+/>
+
 Der [Betreiber des Mikro-Wasserkraftprojekts am Kali-Pedati-Wasserfall](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) gibt eine installierte Leistung von <InlineMath math="7 \text{ kW}" /> an. Eine Gruppe aus <InlineMath math="14" /> Haushalten verwaltet die Anlage, und derselbe Betreiber nennt etwa <InlineMath math="500 \text{ W}" /> pro Haushalt. Prüfe, ob beide Angaben zusammenpassen: <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />, also <InlineMath math="7 \text{ kW}" />. Diese Zahlen stammen vom Betreiber und nicht aus unabhängigen Langzeitmessungen. Solche Stromproduktionsdaten wären nötig, um die Leistung der Anlage über längere Zeit zu beurteilen.
 
 Für eine verlässliche Stromversorgung müssen der Durchfluss dauerhaft ausreichen, die Fallhöhe groß genug sein, die Turbine Hochwasser überstehen und die Gemeinde die Anlage warten können.
