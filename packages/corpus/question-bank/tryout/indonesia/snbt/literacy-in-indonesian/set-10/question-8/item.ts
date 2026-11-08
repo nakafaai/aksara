@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "front-labels",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$35$$ mililiter, karena $$150$$ dikurangi $$24$$ dan $$91$$.",
-        },
-        {
-          correct: false,
-          label:
-            "$$43$$ mililiter, karena $$150$$ dikurangi $$16$$ dan $$91$$.",
-        },
-        {
-          correct: false,
-          label:
-            "$$59$$ mililiter, karena seluruh air yang belum keluar dianggap sudah tersimpan.",
-        },
-        {
-          correct: false,
-          label:
-            "$$67$$ mililiter, karena $$8$$ mililiter air permukaan ditambahkan ke selisih $$150$$ dan $$91$$ mililiter.",
+            "Pembelian minuman bertanda di Chili turun setelah aturan itu berlaku.",
         },
         {
           correct: true,
           label:
-            "$$51$$ mililiter, karena $$150$$ mililiter dikurangi $$8$$ mililiter di permukaan dan $$91$$ mililiter yang keluar.",
+            "Pembeli umumnya menganggap produk tanpa logo kurang sehat dan menghindarinya.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebagian besar pembeli tidak sempat membaca tabel nilai gizi di toko.",
+        },
+        {
+          correct: false,
+          label:
+            "Tanda segi delapan hitam di Chili dicetak dengan warna yang sangat mencolok mata.",
+        },
+        {
+          correct: false,
+          label:
+            "Produsen lebih suka memasang logo daripada tanda peringatan di kemasannya.",
         },
       ],
     },

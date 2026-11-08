@@ -1,35 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "cause-effect",
+  },
+  stimulus: "coral-bleaching",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Suhu putaran ketiga membuktikan reflektor $$45$$ derajat menghasilkan suhu $$66$$ derajat Celsius pada semua tingkat iradiansi.",
-        },
-        {
-          correct: false,
-          label:
-            "Kenaikan suhu antarputaran terutama menunjukkan bahwa pemutaran posisi oven membuat reflektor semakin efektif.",
-        },
-        {
           correct: true,
           label:
-            "Reflektor $$45$$ derajat menghasilkan suhu tertinggi pada setiap putaran uji, tetapi sudut, bentuk oven, dan kondisi cuaca yang terbatas belum menetapkan sudut terbaik secara umum.",
+            "Karang melepaskan alga, sehingga kerangka kapur yang putih terlihat.",
+        },
+        {
+          correct: false,
+          label: "Suhu air yang panas melarutkan warna kerangka kapur karang.",
         },
         {
           correct: false,
           label:
-            "Data menunjukkan iradiansi menentukan suhu akhir sepenuhnya sehingga perbedaan sudut reflektor tidak perlu ditafsirkan.",
+            "Alga lain tumbuh menutupi permukaan karang yang sedang sakit.",
         },
         {
           correct: false,
           label:
-            "Tujuan utama percobaan adalah membuktikan semua reflektor lebih baik daripada tanpa reflektor, bukan membandingkan sudutnya.",
+            "Karang mengeluarkan lendir putih yang tebal untuk melindungi diri dari panas.",
+        },
+        {
+          correct: false,
+          label:
+            "Jaringan karang menebal dan menutupi alga yang memberi warna.",
         },
       ],
     },

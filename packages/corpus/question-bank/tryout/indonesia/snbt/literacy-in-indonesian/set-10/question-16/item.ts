@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
+  },
+  stimulus: "bike-share",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Siswa memakai peta sebagai bukti bahwa seluruh lampu berfungsi dan buku harian sebagai bukti bahwa semua warga mengalami perubahan yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Siswa menolak peta karena dibuat kantor desa dan hanya menerima buku harian sebagai sumber pengalaman yang benar.",
-        },
-        {
-          correct: false,
-          label:
-            "Siswa menggabungkan tiga pengalaman menjadi gambaran seluruh kampung karena lokasinya dapat ditempelkan pada peta.",
+            "Jumlah perjalanan pada April ternyata lebih sedikit daripada pada Maret.",
         },
         {
           correct: true,
           label:
-            "Siswa menghubungkan lokasi administratif dengan pengalaman malam yang terikat rute dan waktu, lalu membatasi kesimpulan pada bagian kampung yang benar-benar tercakup.",
+            "Perjalanan per sepeda turun pada April, jadi kenaikannya karena sepeda bertambah.",
         },
         {
           correct: false,
           label:
-            "Siswa memperlakukan catatan ‘pemeriksaan selesai’ sebagai bukti kinerja karena dibuat lebih dekat dengan waktu pemasangan.",
+            "Kenaikan jumlah perjalanan dari Maret ke April lebih dari dua kali lipat.",
+        },
+        {
+          correct: false,
+          label:
+            "Tabel tidak mencatat jumlah sepeda yang tersedia pada setiap bulan.",
+        },
+        {
+          correct: false,
+          label:
+            "Musim hujan justru baru dimulai pada April, sehingga perjalanan seharusnya turun.",
         },
       ],
     },
