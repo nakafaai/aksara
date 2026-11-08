@@ -1,21 +1,15 @@
 export const metadata = {
-  title: "Wurfbewegung",
-  description:
-    "Die Wurfbewegung verbindet eine gleichförmige horizontale Bewegung mit einer durch die Schwerkraft beschleunigten vertikalen Bewegung.",
+  title: "Schiefer und waagerechter Wurf",
+  description: "Beim Wurf überlagern sich eine gleichförmige waagerechte und eine beschleunigte senkrechte Bewegung. Verstehe Bahn, Flugzeit und Wurfweite.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Kinematik",
 };
 
+## Zwei Bewegungen auf einer Bahn
 
-## Ein Ball mit zwei Bewegungen gleichzeitig
-
-Bei einer Wurfbewegung folgt ein Objekt <Highlight>einer gekrümmten Bahn</Highlight>, weil es sich gleichzeitig horizontal und vertikal bewegt. Dieses Modell vernachlässigt den Luftwiderstand. Die einzige Beschleunigung ist daher die nach unten gerichtete Erdbeschleunigung.
-
-Wir untersuchen die Bewegung getrennt in horizontaler und vertikaler Richtung. Horizontal liegt eine gleichförmige geradlinige Bewegung vor, weil die Geschwindigkeit dort konstant bleibt. Vertikal handelt es sich um eine gleichmäßig beschleunigte Bewegung, weil die Schwerkraft die vertikale Geschwindigkeit fortlaufend verändert.
-
-Wir wählen die horizontale Abwurfrichtung als positive <InlineMath math="x" />-Richtung und **nach oben** als positive <InlineMath math="y" />-Richtung.
+Beim schiefen oder waagerechten Wurf fliegt ein Körper auf einer gekrümmten Bahn, der Wurfparabel. Die Krümmung entsteht aus **zwei Bewegungen zur selben Zeit**: einer waagerechten Bewegung mit konstanter Geschwindigkeit und einer senkrechten Bewegung, die die Schwerkraft nach unten beschleunigt. Ohne Luftwiderstand gelten für beide Bewegungen diese Gleichungen:
 
 <MathContainer>
   <BlockMath math="x(t)=x_0+v_0\cos\theta\ t" />
@@ -23,9 +17,7 @@ Wir wählen die horizontale Abwurfrichtung als positive <InlineMath math="x" />-
   <BlockMath math="v_x=v_0\cos\theta,\qquad v_y=v_0\sin\theta-gt" />
 </MathContainer>
 
-Dabei ist <InlineMath math="v_0" /> der Anfangsgeschwindigkeitsbetrag, <InlineMath math="\theta" /> der Abwurfwinkel zur Horizontalen, <InlineMath math="g" /> der Betrag der Gravitationsbeschleunigung und <InlineMath math="t" /> die Zeit seit dem Abwurf. Die Koordinaten <InlineMath math="x_0" /> und <InlineMath math="y_0" /> bezeichnen die Abwurfposition. Setzt man beide null, entstehen die häufig verwendeten kürzeren Formeln.
-
-In der Abbildung bleiben Ball und Anfangsgeschwindigkeit gleich. So lässt sich vergleichen, wie der Abwurfwinkel den Scheitelpunkt und die Wurfweite verändert.
+Dabei ist <InlineMath math="v_0" /> die Anfangsgeschwindigkeit, <InlineMath math="\theta" /> der Abwurfwinkel gegen die Waagerechte, <InlineMath math="g" /> die Fallbeschleunigung und <InlineMath math="t" /> die Zeit seit dem Abwurf. Die waagerechte Wurfrichtung und nach oben sind positiv. Die Simulation der Wurfbahn behält für mehrere Winkel dieselbe Anfangsgeschwindigkeit, sodass du Wurfweite und Flugzeit vergleichen kannst.
 
 <ParabolicMovementLab
   decimalSeparator="comma"
@@ -48,41 +40,102 @@ In der Abbildung bleiben Ball und Anfangsgeschwindigkeit gleich. So lässt sich 
   }}
 />
 
-## Die Schwerkraft verändert nur den vertikalen Anteil
+## Die Schwerkraft ändert nur die senkrechte Bewegung
 
-Stelle dir einen Ball vor, der eine Rampe schräg verlässt. Seine horizontale Bewegung läuft mit gleichbleibender Geschwindigkeit weiter. Vertikal wird er beim Aufsteigen langsamer und beim Fallen schneller.
+Die Schwerkraft zieht nach unten, also ändert sich nur die senkrechte Geschwindigkeit. Die waagerechte Geschwindigkeit <InlineMath math="v_x" /> **bleibt auf der ganzen Bahn gleich**, weil es keine waagerechte Beschleunigung gibt.
 
-> Bei einer Projektilbewegung ohne Luftwiderstand bleibt <InlineMath math="v_x" /> konstant, aber <InlineMath math="v_y" /> ändert sich jeden Moment.
-
-Das Objekt verliert oben nicht seine horizontale Bewegung. Nur <Highlight>die Vertikalgeschwindigkeit wird dort Null</Highlight>.
-
-| Bewegungsanteil | Was geschieht? | Bewegungsart |
+| Teil der Bewegung | Was passiert | Beschleunigung |
 | --- | --- | --- |
-| Horizontal | <InlineMath math="v_x" /> bleibt konstant | Horizontale Beschleunigung ist null |
-| Vertikal beim Aufsteigen | Positives <InlineMath math="v_y" /> sinkt bis auf null | Konstante Beschleunigung <InlineMath math="-g" /> |
-| Vertikal beim Fallen | <InlineMath math="v_y" /> ist negativ und sein Betrag wächst | Konstante Beschleunigung <InlineMath math="-g" /> |
+| Waagerecht | <InlineMath math="v_x" /> bleibt konstant | Null |
+| Senkrecht beim Steigen | <InlineMath math="v_y" /> positiv und kleiner werdend | <InlineMath math="-g" /> |
+| Im Scheitelpunkt | <InlineMath math="v_y = 0" />, <InlineMath math="v_x" /> unverändert | <InlineMath math="-g" /> |
+| Senkrecht beim Fallen | <InlineMath math="v_y" /> negativ und betragsmäßig wachsend | <InlineMath math="-g" /> |
 
-## Die Wurfweite folgt aus der Flugzeit
+Im Scheitelpunkt bleibt der Körper nicht stehen. Sein senkrechter Anteil ist null, aber er bewegt sich weiter mit <InlineMath math="v_x" /> waagerecht. Dieser senkrechte Anteil verhält sich genau wie ein Körper beim [senkrechten Wurf](/de/faecher/physik/kinematik/vertikale-bewegung) nach oben, der waagerechte Anteil wie eine [gleichförmige geradlinige Bewegung](/de/faecher/physik/kinematik/gleichfoermige-geradlinige-bewegung).
 
-Die horizontale Wurfweite, meist mit <InlineMath math="R" /> bezeichnet, ist die horizontale Entfernung vom Start- bis zum Landepunkt. Weil die horizontale Geschwindigkeit konstant ist, ergibt sich die Wurfweite aus **horizontaler Geschwindigkeit mal Flugzeit**.
+## Die Wurfweite hängt von der Flugzeit ab
 
-<BlockMath math="R=v_x t_{\text{Luft}}" />
+Die Wurfweite <InlineMath math="R" /> ist der waagerechte Abstand vom Abwurfpunkt bis zum Auftreffpunkt. Weil die waagerechte Bewegung gleichförmig ist, gilt **Wurfweite gleich waagerechte Geschwindigkeit mal Flugzeit**:
 
-Haben zwei Bälle dasselbe <InlineMath math="v_x" />, landet der Ball mit der längeren Flugzeit weiter entfernt. Bei gleicher Flugzeit erreicht der Ball mit dem größeren <InlineMath math="v_x" /> die größere Wurfweite.
+<BlockMath math="R = v_x \, t_{\text{Flug}}" />
 
-## Ein Ball verlässt einen Tisch waagerecht
+Die Flugzeit ergibt sich allein aus der senkrechten Bewegung. Von zwei Bällen mit gleichem <InlineMath math="v_x" /> landet der weiter entfernt, der länger in der Luft bleibt. Von zwei Bällen mit gleicher Flugzeit landet der weiter entfernt, dessen <InlineMath math="v_x" /> größer ist.
 
-Ein Ball verlässt eine Tischkante waagerecht mit <InlineMath math="v_x=4\text{ m/s}" />. Der Tisch ist <InlineMath math="1{,}25\text{ m}" /> hoch. Mit <InlineMath math="g=10\text{ m/s}^2" /> folgt die **Fallzeit aus der vertikalen Bewegung**:
+## Ein Ball rollt vom Tisch
 
-<BlockMath math="\begin{aligned}
-h&=\frac{1}{2}gt^2\\
-1{,}25&=\frac{1}{2}(10)t^2\\
-t^2&=0{,}25\\
-t&=0{,}5\text{ s}
-\end{aligned}" />
+Ein waagerecht geworfener Körper hat keine senkrechte Anfangsgeschwindigkeit, seine senkrechte Bewegung ist also ein **freier Fall**. Angenommen, ein Ball rollt mit <InlineMath math="v_x = 4\text{ m/s}" /> waagerecht über die Kante eines <InlineMath math="1{,}25\text{ m}" /> hohen Tisches. Mit <InlineMath math="g = 10\text{ m/s}^2" /> folgt die Fallzeit aus der senkrechten Bewegung:
 
-Die horizontale Wurfweite beträgt:
+<BlockMath math="1{,}25 = \frac{1}{2}(10)t^2 \quad\Longrightarrow\quad t^2 = 0{,}25 \quad\Longrightarrow\quad t = 0{,}5\text{ s}" />
 
-<BlockMath math="R=v_x t=4(0{,}5)=2\text{ m}" />
+Die Wurfweite folgt aus der waagerechten Bewegung in derselben Zeit:
 
-Der Ball landet also <InlineMath math="2\text{ m}" /> vom Fußpunkt der Tischkante entfernt. Die Fallzeit wird durch die vertikale Bewegung bestimmt. Die horizontale Bewegung legt fest, welche Strecke der Ball während genau dieser Zeit nach vorn zurücklegt.
+<BlockMath math="R = v_x t = 4(0{,}5) = 2\text{ m}" />
+
+Probe mit der senkrechten Gleichung: <InlineMath math="\frac{1}{2}(10)(0{,}5)^2 = 1{,}25\text{ m}" />, genau die Tischhöhe. Ein Ball, der an derselben Tischkante aus der Ruhe fallen gelassen wird, erreicht den Boden ebenfalls nach <InlineMath math="0{,}5\text{ s}" />, denn die waagerechte Geschwindigkeit ändert die Fallzeit nicht.
+
+## Abwurfwinkel und Wurfweite
+
+Wird ein Körper vom Boden abgeworfen und landet wieder auf dem Boden, teilt der Abwurfwinkel die Anfangsgeschwindigkeit in einen waagerechten und einen senkrechten Anteil. Ein kleiner Winkel gibt ein großes <InlineMath math="v_x" />, aber eine kurze Flugzeit. Ein großer Winkel gibt eine lange Flugzeit, aber ein kleines <InlineMath math="v_x" />. Die größte Wurfweite erreichst du **beim Winkel** <InlineMath math="45^\circ" />, wenn beide Anteile im Gleichgewicht sind.
+
+Mit <InlineMath math="v_0 = 20\text{ m/s}" /> landen Würfe unter <InlineMath math="30^\circ" /> und <InlineMath math="60^\circ" /> an derselben Stelle, ein Wurf unter <InlineMath math="45^\circ" /> fliegt weiter:
+
+| Winkel | <InlineMath math="v_x" /> | Flugzeit | Wurfweite |
+| --- | --- | --- | --- |
+| <InlineMath math="30^\circ" /> | <InlineMath math="10\sqrt{3}\text{ m/s}" /> | <InlineMath math="2\text{ s}" /> | <InlineMath math="20\sqrt{3} \approx 34{,}6\text{ m}" /> |
+| <InlineMath math="45^\circ" /> | <InlineMath math="10\sqrt{2}\text{ m/s}" /> | <InlineMath math="2\sqrt{2}\text{ s}" /> | <InlineMath math="40\text{ m}" /> |
+| <InlineMath math="60^\circ" /> | <InlineMath math="10\text{ m/s}" /> | <InlineMath math="2\sqrt{3}\text{ s}" /> | <InlineMath math="20\sqrt{3} \approx 34{,}6\text{ m}" /> |
+
+Jede Flugzeit ist doppelt so lang wie die Steigzeit <InlineMath math="\frac{v_0 \sin\theta}{g}" />. Der Wurf unter <InlineMath math="60^\circ" /> bleibt länger oben, bewegt sich aber langsamer seitwärts, deshalb ist seine Wurfweite so groß wie beim Wurf unter <InlineMath math="30^\circ" />. Alle drei Wurfweiten folgen auch direkt aus der Formel <InlineMath math="R = \frac{v_0^2 \sin 2\theta}{g}" />, die bei der [Analyse der parabelförmigen Bewegung](/de/faecher/physik/kinematik/analyse-der-parabelfoermigen-bewegung) verwendet wird. Der größte Wert von <InlineMath math="\sin 2\theta" />, nämlich <InlineMath math="1" />, ergibt sich bei <InlineMath math="\theta = 45^\circ" />.
+
+## Häufige Fehler
+
+Bevor du rechnest, **trennst du waagerechte und senkrechte Bewegung** und verbindest sie nur über die Zeit.
+
+| Fehler | Warum er falsch ist | So prüfst du |
+| --- | --- | --- |
+| Die Geschwindigkeit im Scheitelpunkt für null halten | Nur <InlineMath math="v_y" /> ist null, <InlineMath math="v_x" /> bleibt | Das Tempo im Scheitelpunkt ist gleich <InlineMath math="v_x" /> |
+| Die Schwerkraft in die waagerechte Bewegung einrechnen | Die Schwerkraft wirkt nur nach unten | Die waagerechte Beschleunigung muss null sein |
+| Die Flugzeit aus der waagerechten Bewegung bestimmen | Die Flugzeit ergibt sich aus der senkrechten Bewegung | Die Zeit muss zur Gleichung für <InlineMath math="y" /> passen |
+| Glauben, ein waagerecht geworfener Ball falle langsamer | Die waagerechte Geschwindigkeit ändert die senkrechte Bewegung nicht | Vergleiche mit einem Ball, der aus derselben Höhe fallen gelassen wird |
+
+Den ersten Fehler erkennst du, wenn du im Scheitelpunkt das Tempo null aufschreibst. Der Körper bewegt sich dort weiter seitwärts, sein Tempo ist also gleich <InlineMath math="v_x" />.
+
+## Übungen zum Wurf
+
+Nutze <InlineMath math="g = 10\text{ m/s}^2" />. Bestimme bei jeder Aufgabe zuerst **die Flugzeit aus der senkrechten Bewegung**.
+
+1. Ein Ball rollt mit einer waagerechten Geschwindigkeit von <InlineMath math="3\text{ m/s}" /> von einem <InlineMath math="0{,}8\text{ m}" /> hohen Tisch. Bestimme die Fallzeit und wie weit vom Tischfuß entfernt er aufkommt.
+
+2. Ein Stein wird mit <InlineMath math="15\text{ m/s}" /> waagerecht von einer <InlineMath math="20\text{ m}" /> hohen Klippe geworfen. Bestimme die waagerechte Strecke bis zum Aufprall unten und sein Tempo in diesem Moment.
+
+3. Zwei Bälle werden mit <InlineMath math="20\text{ m/s}" /> vom Boden abgeworfen, einer unter <InlineMath math="30^\circ" /> und einer unter <InlineMath math="60^\circ" />. Welcher Ball bleibt länger in der Luft, und welcher landet weiter entfernt?
+
+### Lösungen
+
+**Aufgabe 1**. Die senkrechte Bewegung ist ein **freier Fall** aus <InlineMath math="0{,}8\text{ m}" /> Höhe:
+
+<MathContainer>
+  <BlockMath math="0{,}8 = \frac{1}{2}(10)t^2 \quad\Longrightarrow\quad t^2 = 0{,}16 \quad\Longrightarrow\quad t = 0{,}4\text{ s}" />
+  <BlockMath math="R = 3(0{,}4) = 1{,}2\text{ m}" />
+</MathContainer>
+
+Probe: <InlineMath math="5(0{,}4)^2 = 0{,}8\text{ m}" />, genau die Tischhöhe.
+
+**Aufgabe 2**. Die Fallzeit aus <InlineMath math="20\text{ m}" /> Höhe ist <InlineMath math="\sqrt{\frac{2 \times 20}{10}} = 2\text{ s}" />. Waagerechte Strecke und **beide Geschwindigkeitskomponenten** unten:
+
+<MathContainer>
+  <BlockMath math="R = 15(2) = 30\text{ m}" />
+  <BlockMath math="v_x = 15\text{ m/s},\qquad v_y = -10(2) = -20\text{ m/s}" />
+  <BlockMath math="v = \sqrt{15^2 + 20^2} = 25\text{ m/s}" />
+</MathContainer>
+
+Probe mit der dritten Gleichung der senkrechten Bewegung: <InlineMath math="v_y^2 = 2(10)(20) = 400" />, also <InlineMath math="\lvert v_y \rvert = 20\text{ m/s}" />.
+
+**Aufgabe 3**. Die Flugzeit ist **doppelt so lang wie die Steigzeit**, <InlineMath math="T = \frac{2 v_0 \sin\theta}{g}" />:
+
+<MathContainer>
+  <BlockMath math="T_{30^\circ} = \frac{2(20)(0{,}5)}{10} = 2\text{ s}" />
+  <BlockMath math="T_{60^\circ} = \frac{2(20)\left(\frac{\sqrt{3}}{2}\right)}{10} = 2\sqrt{3} \approx 3{,}46\text{ s}" />
+</MathContainer>
+
+Der Ball unter <InlineMath math="60^\circ" /> bleibt länger in der Luft. Seine Wurfweite ist <InlineMath math="10 \times 2\sqrt{3} = 20\sqrt{3}\text{ m}" />, genauso groß wie die des Balls unter <InlineMath math="30^\circ" /> mit <InlineMath math="10\sqrt{3} \times 2 = 20\sqrt{3}\text{ m}" />. Beide Bälle landen also an derselben Stelle.
