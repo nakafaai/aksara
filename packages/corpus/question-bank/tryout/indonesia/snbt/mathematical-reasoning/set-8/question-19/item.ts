@@ -16,7 +16,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Pada peta berskala 1 : 500.000, jalan dari P ke Q digambar setengah panjang gambarnya pada peta itu.",
+            "Pada peta lain berskala 1 : 500.000, panjang gambar jalan dari P ke Q adalah setengah dari 6,4 cm.",
         },
         {
           column: 2,

@@ -10,7 +10,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Jika sisi yang tegak lurus tembok panjangnya 15 m, sisi yang sejajar tembok panjangnya 14 m.",
+            "Kebun berbentuk persegi dapat dibuat dengan seluruh kawat itu.",
         },
         {
           column: 1,
