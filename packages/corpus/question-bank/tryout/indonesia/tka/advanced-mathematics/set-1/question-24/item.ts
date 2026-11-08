@@ -16,7 +16,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$\frac32$$",
+          label: "$$\\frac32$$",
         },
         {
           correct: true,

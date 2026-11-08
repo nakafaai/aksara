@@ -20,11 +20,11 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "rotasi $$90^\circ$$ searah jarum jam dengan pusat $$O$$",
+          label: "rotasi $$90^\\circ$$ searah jarum jam dengan pusat $$O$$",
         },
         {
           correct: false,
-          label: "rotasi $$180^\circ$$ dengan pusat $$O$$",
+          label: "rotasi $$180^\\circ$$ dengan pusat $$O$$",
         },
         {
           correct: false,

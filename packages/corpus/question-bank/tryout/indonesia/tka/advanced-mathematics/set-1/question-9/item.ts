@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Nilai minimum $$-3$$ saat $$x=110^\circ$$",
+          label: "Nilai minimum $$-3$$ saat $$x=110^\\circ$$",
         },
         {
           correct: false,
-          label: "Nilai minimum $$-3$$ saat $$x=20^\circ$$",
+          label: "Nilai minimum $$-3$$ saat $$x=20^\\circ$$",
         },
         {
           correct: false,
-          label: "Nilai minimum $$-3$$ saat $$x=70^\circ$$",
+          label: "Nilai minimum $$-3$$ saat $$x=70^\\circ$$",
         },
         {
           correct: false,
-          label: "Nilai minimum $$-4$$ saat $$x=110^\circ$$",
+          label: "Nilai minimum $$-4$$ saat $$x=110^\\circ$$",
         },
         {
           correct: false,
-          label: "Nilai minimum $$5$$ saat $$x=20^\circ$$",
+          label: "Nilai minimum $$5$$ saat $$x=20^\\circ$$",
         },
       ],
     },

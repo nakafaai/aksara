@@ -20,7 +20,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$\frac52$$",
+          label: "$$\\frac52$$",
         },
         {
           correct: true,
