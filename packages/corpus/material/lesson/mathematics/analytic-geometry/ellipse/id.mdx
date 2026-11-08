@@ -3,7 +3,7 @@ export const metadata = {
   description: "Tentukan fokus elips dan turunkan persamaan bakunya melalui diagram serta contoh bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Geometri Analitik",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 ## Elips sebagai Kurva dengan Dua Fokus
 
-Bentuk **elips** dapat muncul pada orbit planet atau pada bayangan lingkaran yang disinari dari arah miring. Definisi geometri elips memakai jarak ke dua titik tetap.
+**Elips** adalah himpunan titik yang jumlah jaraknya ke dua titik tetap, yaitu **fokus**, selalu sama dengan <InlineMath math="2a" />. Elips berpusat di <InlineMath math="O" /> dengan sumbu mayor mendatar punya persamaan <InlineMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" /> dengan <InlineMath math="a > b > 0" />, fokus di <InlineMath math="(\pm c, 0)" />, dan <InlineMath math="c^2 = a^2 - b^2" />. Lingkaran adalah kasus khusus <InlineMath math="a = b" />, seperti pada [persamaan lingkaran](/id/materi/matematika/geometri-analitik/persamaan-lingkaran).
 
 Elips adalah himpunan semua titik yang <Highlight>jumlah jaraknya ke dua titik tetap selalu konstan</Highlight>. Kedua titik tetap itu disebut **fokus**. Definisi ini dapat diperagakan dengan dua paku, seutas tali berbentuk lingkaran tertutup, dan sebuah pensil. Ikat tali pada kedua paku, tarik hingga tegang dengan pensil, lalu gerakkan pensil satu putaran penuh. Kurva yang terbentuk adalah elips.
 
@@ -573,6 +573,45 @@ Pada rumus ini, <InlineMath math="c" /> adalah jarak dari pusat ke fokus.
 <BlockMath math="e = \frac{c}{a}" />
 
 Untuk elips yang bukan lingkaran, <InlineMath math="0 < e < 1" />. Ketika <InlineMath math="e" /> mendekati <InlineMath math="0" />, bentuk elips makin mendekati lingkaran. Ketika <InlineMath math="e" /> mendekati <InlineMath math="1" />, bentuknya makin memanjang. Lingkaran sebagai kasus batas memiliki <InlineMath math="e = 0" />.
+
+## Contoh Menentukan Unsur Elips dari Persamaan
+
+Tentukan pusat, puncak, fokus, dan eksentrisitas elips <InlineMath math="9x^2 + 25y^2 = 225" />.
+
+**Bagi kedua ruas dengan <InlineMath math="225" />** agar ruas kanan bernilai <InlineMath math="1" />:
+
+<BlockMath math="\frac{x^2}{25} + \frac{y^2}{9} = 1" />
+
+Penyebut yang lebih besar ada di bawah <InlineMath math="x^2" />, jadi sumbu mayornya mendatar dengan <InlineMath math="a = 5" /> dan <InlineMath math="b = 3" />. Maka <InlineMath math="c = \sqrt{25 - 9} = 4" />, fokusnya <InlineMath math="(\pm 4, 0)" />, puncak mayornya <InlineMath math="(\pm 5, 0)" />, puncak minornya <InlineMath math="(0, \pm 3)" />, dan <InlineMath math="e = \frac{4}{5}" />.
+
+Periksa dengan definisi. Titik <InlineMath math="(5, 0)" /> berjarak <InlineMath math="9" /> dan <InlineMath math="1" /> dari kedua fokus, jumlahnya <InlineMath math="10 = 2a" />. Titik <InlineMath math="(0, 3)" /> berjarak <InlineMath math="\sqrt{16 + 9} = 5" /> dari setiap fokus, jumlahnya juga <InlineMath math="10" />.
+
+## Contoh Elips dari Bentuk Umum
+
+Tentukan pusat dan fokus elips <InlineMath math="4x^2 + 9y^2 - 16x + 18y - 11 = 0" />.
+
+Kelompokkan suku <InlineMath math="x" /> dan suku <InlineMath math="y" />, lalu **lengkapkan kuadrat** pada setiap kelompok:
+
+<MathContainer>
+  <BlockMath math="4(x^2 - 4x) + 9(y^2 + 2y) = 11" />
+  <BlockMath math="4(x - 2)^2 - 16 + 9(y + 1)^2 - 9 = 11" />
+  <BlockMath math="4(x - 2)^2 + 9(y + 1)^2 = 36" />
+  <BlockMath math="\frac{(x - 2)^2}{9} + \frac{(y + 1)^2}{4} = 1" />
+</MathContainer>
+
+Pusatnya <InlineMath math="(2, -1)" />, dengan <InlineMath math="a = 3" />, <InlineMath math="b = 2" />, dan sumbu mayor mendatar. Karena <InlineMath math="c = \sqrt{9 - 4} = \sqrt{5}" />, fokusnya <InlineMath math="(2 \pm \sqrt{5}, -1)" />. Periksa dengan puncak <InlineMath math="(5, -1)" />: substitusi ke bentuk umum memberi <InlineMath math="100 + 9 - 80 - 18 - 11 = 0" />.
+
+## Kesalahan yang Sering Terjadi
+
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Memakai panjang sumbu sebagai <InlineMath math="a" /> | Sumbu mayor sepanjang <InlineMath math="12" /> berarti <InlineMath math="a = 6" /> | <InlineMath math="a" /> adalah jarak pusat ke puncak |
+| Menulis <InlineMath math="c^2 = a^2 + b^2" /> | Rumus itu milik [hiperbola](/id/materi/matematika/geometri-analitik/hiperbola) | Pada elips, fokus berada di dalam kurva, jadi <InlineMath math="c < a" /> |
+| Menentukan arah sumbu dari urutan suku | Arah ditentukan oleh penyebut yang lebih besar | Bandingkan kedua penyebut setelah ruas kanan bernilai <InlineMath math="1" /> |
+| Membaca pusat <InlineMath math="(x - 2)^2" /> sebagai <InlineMath math="h = -2" /> | Bentuk <InlineMath math="(x - h)^2" /> memberi <InlineMath math="h = 2" /> | Pusat membuat setiap kuadrat bernilai nol |
+| Lupa membagi agar ruas kanan bernilai 1 | <InlineMath math="9x^2 + 25y^2 = 225" /> belum bentuk baku | Bagi kedua ruas dengan konstanta di ruas kanan |
+
+Pemeriksaan paling sederhana adalah **definisi elips**: untuk setiap puncak, jumlah jarak ke kedua fokus harus <InlineMath math="2a" />.
 
 ## Latihan
 

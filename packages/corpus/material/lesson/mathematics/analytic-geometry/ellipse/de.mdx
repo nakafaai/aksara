@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bestimme Brennpunkte und Achsen einer Ellipse und leite ihre Standardgleichungen in Rechenbeispielen her.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Analytische Geometrie",
 };
 
@@ -11,7 +11,7 @@ export const metadata = {
 
 ## Eine Ellipse mit zwei Brennpunkten zeichnen
 
-Eine **Ellipse** kann in einer Planetenbahn oder im Schatten eines schräg beleuchteten Kreises auftreten. Ihre geometrische Definition verwendet die Abstände zu zwei festen Punkten.
+Eine **Ellipse** ist die Menge aller Punkte, deren Abstände zu zwei festen Punkten, den **Brennpunkten**, zusammen immer <InlineMath math="2a" /> ergeben. Eine Ellipse mit Mittelpunkt <InlineMath math="O" /> und waagerechter Hauptachse hat die Gleichung <InlineMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" /> mit <InlineMath math="a > b > 0" />, Brennpunkten bei <InlineMath math="(\pm c, 0)" /> und <InlineMath math="c^2 = a^2 - b^2" />. Der Kreis ist der Sonderfall <InlineMath math="a = b" />, wie bei der [Kreisgleichung](/de/faecher/mathematik/analytische-geometrie/kreisgleichung).
 
 Eine Ellipse besteht aus allen Punkten, für die <Highlight>die Summe der Abstände zu zwei festen Punkten</Highlight> konstant ist. Diese beiden festen Punkte heißen **Brennpunkte**. Das lässt sich mit zwei Nägeln, einer geschlossenen Schnur und einem Stift nachvollziehen: Die Schnur wird an den Nägeln befestigt und mit dem Stift gespannt. Fährt der Stift einmal herum, zeichnet er eine Ellipse.
 
@@ -573,6 +573,45 @@ Die **Exzentrizität** einer Ellipse ist definiert als:
 <BlockMath math="e = \frac{c}{a}" />
 
 Für eine nicht kreisförmige Ellipse gilt <InlineMath math="0 < e < 1" />. Je näher <InlineMath math="e" /> an <InlineMath math="0" /> liegt, desto stärker nähert sich die Form einem Kreis. Je näher <InlineMath math="e" /> an <InlineMath math="1" /> liegt, desto gestreckter ist sie. Der Kreis als Grenzfall hat <InlineMath math="e = 0" />.
+
+## Beispiel zu den Bestandteilen einer Ellipse aus ihrer Gleichung
+
+Bestimme Mittelpunkt, Scheitelpunkte, Brennpunkte und numerische Exzentrizität der Ellipse <InlineMath math="9x^2 + 25y^2 = 225" />.
+
+**Teile beide Seiten durch <InlineMath math="225" />**, damit rechts <InlineMath math="1" /> steht:
+
+<BlockMath math="\frac{x^2}{25} + \frac{y^2}{9} = 1" />
+
+Der größere Nenner steht unter <InlineMath math="x^2" />, also ist die Hauptachse waagerecht mit <InlineMath math="a = 5" /> und <InlineMath math="b = 3" />. Dann ist <InlineMath math="c = \sqrt{25 - 9} = 4" />, die Brennpunkte sind <InlineMath math="(\pm 4, 0)" />, die Hauptscheitel <InlineMath math="(\pm 5, 0)" />, die Nebenscheitel <InlineMath math="(0, \pm 3)" />, und <InlineMath math="e = \frac{4}{5}" />.
+
+Prüfe mit der Definition. Der Punkt <InlineMath math="(5, 0)" /> ist <InlineMath math="9" /> und <InlineMath math="1" /> von den beiden Brennpunkten entfernt, zusammen <InlineMath math="10 = 2a" />. Der Punkt <InlineMath math="(0, 3)" /> ist von jedem Brennpunkt <InlineMath math="\sqrt{16 + 9} = 5" /> entfernt, zusammen ebenfalls <InlineMath math="10" />.
+
+## Beispiel einer Ellipse in allgemeiner Form
+
+Bestimme Mittelpunkt und Brennpunkte der Ellipse <InlineMath math="4x^2 + 9y^2 - 16x + 18y - 11 = 0" />.
+
+Fasse die Glieder mit <InlineMath math="x" /> und mit <InlineMath math="y" /> zusammen und **ergänze in jeder Gruppe quadratisch**:
+
+<MathContainer>
+  <BlockMath math="4(x^2 - 4x) + 9(y^2 + 2y) = 11" />
+  <BlockMath math="4(x - 2)^2 - 16 + 9(y + 1)^2 - 9 = 11" />
+  <BlockMath math="4(x - 2)^2 + 9(y + 1)^2 = 36" />
+  <BlockMath math="\frac{(x - 2)^2}{9} + \frac{(y + 1)^2}{4} = 1" />
+</MathContainer>
+
+Der Mittelpunkt ist <InlineMath math="(2, -1)" />, mit <InlineMath math="a = 3" />, <InlineMath math="b = 2" /> und waagerechter Hauptachse. Wegen <InlineMath math="c = \sqrt{9 - 4} = \sqrt{5}" /> liegen die Brennpunkte bei <InlineMath math="(2 \pm \sqrt{5}, -1)" />. Probe mit dem Scheitel <InlineMath math="(5, -1)" />: Einsetzen in die allgemeine Form liefert <InlineMath math="100 + 9 - 80 - 18 - 11 = 0" />.
+
+## Typische Fehler
+
+| Fehler | Warum er scheitert | So prüfst du |
+| --- | --- | --- |
+| Die Achsenlänge als <InlineMath math="a" /> nehmen | Eine Hauptachse der Länge <InlineMath math="12" /> bedeutet <InlineMath math="a = 6" /> | <InlineMath math="a" /> ist der Abstand vom Mittelpunkt zum Scheitel |
+| <InlineMath math="c^2 = a^2 + b^2" /> schreiben | Diese Formel gehört zur [Hyperbel](/de/faecher/mathematik/analytische-geometrie/hyperbel) | Bei der Ellipse liegen die Brennpunkte innen, also <InlineMath math="c < a" /> |
+| Die Achsenrichtung aus der Reihenfolge der Glieder ablesen | Die Richtung bestimmt der größere Nenner | Vergleiche die Nenner, sobald rechts <InlineMath math="1" /> steht |
+| Bei <InlineMath math="(x - 2)^2" /> den Mittelpunkt <InlineMath math="h = -2" /> ablesen | Die Form <InlineMath math="(x - h)^2" /> liefert <InlineMath math="h = 2" /> | Der Mittelpunkt macht jedes Quadrat zu null |
+| Vergessen, durch die rechte Seite zu teilen | <InlineMath math="9x^2 + 25y^2 = 225" /> ist noch keine Normalform | Teile beide Seiten durch die Konstante rechts |
+
+Die einfachste Probe ist **die Definition der Ellipse**: Für jeden Scheitel müssen die Abstände zu den beiden Brennpunkten zusammen <InlineMath math="2a" /> ergeben.
 
 ## Übungen
 
