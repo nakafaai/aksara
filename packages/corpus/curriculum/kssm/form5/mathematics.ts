@@ -22,6 +22,24 @@ export const kssmForm5MathematicsTopicNodes = [
       }),
     ],
     key: "form-5-mathematics-matrices",
+    materialCard: {
+      de: {
+        description: "Addiere, multipliziere und nutze Matrizen für Systeme.",
+        title: "Matrizen",
+      },
+      en: {
+        description: "Add, multiply and use matrices to solve systems.",
+        title: "Matrices",
+      },
+      id: {
+        description: "Jumlahkan, kalikan, dan pakai matriks untuk sistem.",
+        title: "Matriks",
+      },
+      ms: {
+        description: "Tambah, darab dan guna matriks untuk sistem persamaan.",
+        title: "Matriks",
+      },
+    },
     order: 20,
     translations: {
       de: { routeSlug: "matrizen", title: "Matrizen" },
@@ -84,6 +102,24 @@ export const kssmForm5MathematicsTopicNodes = [
       }),
     ],
     key: "form-5-mathematics-congruency-enlargement-and-combined-transformations",
+    materialCard: {
+      de: {
+        description: "Verschiebe, vergrößere und kombiniere Figuren.",
+        title: "Kongruenz, Streckung und verkettete Abbildungen",
+      },
+      en: {
+        description: "Move, enlarge and combine shapes on the plane.",
+        title: "Congruency, Enlargement and Combined Transformations",
+      },
+      id: {
+        description: "Geser, perbesar, dan gabungkan bangun pada bidang.",
+        title: "Kekongruenan, Dilatasi, dan Komposisi Transformasi",
+      },
+      ms: {
+        description: "Gerak, besarkan dan gabungkan bentuk pada satah.",
+        title: "Kekongruenan, Pembesaran dan Gabungan Transformasi",
+      },
+    },
     order: 50,
     translations: {
       de: {
@@ -114,6 +150,24 @@ export const kssmForm5MathematicsTopicNodes = [
       }),
     ],
     key: "form-5-mathematics-ratios-and-graphs-of-trigonometric-functions",
+    materialCard: {
+      de: {
+        description: "Nutze Winkelfunktionen und zeichne ihre Graphen.",
+        title: "Verhältnisse und Graphen trigonometrischer Funktionen",
+      },
+      en: {
+        description: "Use trigonometric ratios and sketch their graphs.",
+        title: "Ratios and Graphs of Trigonometric Functions",
+      },
+      id: {
+        description: "Pakai perbandingan trigonometri dan gambar grafiknya.",
+        title: "Perbandingan dan Grafik Fungsi Trigonometri",
+      },
+      ms: {
+        description: "Guna nisbah trigonometri dan lakar grafnya.",
+        title: "Nisbah dan Graf Fungsi Trigonometri",
+      },
+    },
     order: 60,
     translations: {
       de: {
@@ -144,6 +198,24 @@ export const kssmForm5MathematicsTopicNodes = [
       }),
     ],
     key: "form-5-mathematics-measures-of-dispersion-for-grouped-data",
+    materialCard: {
+      de: {
+        description: "Miss, wie weit gruppierte Daten streuen.",
+        title: "Streuungsmaße für klassierte Daten",
+      },
+      en: {
+        description: "Measure how widely grouped data spread out.",
+        title: "Measures of Dispersion for Grouped Data",
+      },
+      id: {
+        description: "Ukur seberapa menyebar data berkelompok.",
+        title: "Ukuran Penyebaran Data Berkelompok",
+      },
+      ms: {
+        description: "Ukur sejauh mana data terkumpul tersebar.",
+        title: "Sukatan Serakan Data Terkumpul",
+      },
+    },
     order: 70,
     translations: {
       de: {

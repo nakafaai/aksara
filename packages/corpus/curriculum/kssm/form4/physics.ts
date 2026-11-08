@@ -12,6 +12,24 @@ export const kssmForm4PhysicsTopicNodes = [
       }),
     ],
     key: "form-4-physics-measurement",
+    materialCard: {
+      de: {
+        description: "Miss Größen sorgfältig und mit passenden Einheiten.",
+        title: "Messen",
+      },
+      en: {
+        description: "Measure quantities with the right units and care.",
+        title: "Measurement",
+      },
+      id: {
+        description: "Ukur besaran dengan satuan yang tepat dan teliti.",
+        title: "Pengukuran",
+      },
+      ms: {
+        description: "Ukur kuantiti dengan unit yang betul dan teliti.",
+        title: "Pengukuran",
+      },
+    },
     order: 10,
     translations: {
       de: { routeSlug: "messen", title: "Messen" },
@@ -30,6 +48,24 @@ export const kssmForm4PhysicsTopicNodes = [
       }),
     ],
     key: "form-4-physics-force-and-motion-i",
+    materialCard: {
+      de: {
+        description: "Beschreibe Bewegung mit Weg, Geschwindigkeit und Zeit.",
+        title: "Kraft und Bewegung I",
+      },
+      en: {
+        description: "Describe motion with displacement, velocity and time.",
+        title: "Force and Motion I",
+      },
+      id: {
+        description: "Jelaskan gerak lewat perpindahan, kecepatan, dan waktu.",
+        title: "Gaya dan Gerak I",
+      },
+      ms: {
+        description: "Huraikan gerakan dengan sesaran, halaju dan masa.",
+        title: "Daya dan Gerakan I",
+      },
+    },
     order: 20,
     translations: {
       de: { routeSlug: "kraft-und-bewegung-i", title: "Kraft und Bewegung I" },
