@@ -26,6 +26,40 @@ Jika kedua vektor disusun **pangkal ke ujung**, sudut dalam segitiga adalah pelu
 
 <BlockMath math="\begin{aligned}R^2 &= A^2+B^2-2AB\cos(180^\circ-\theta) \\ &= A^2+B^2-2AB(-\cos\theta) \\ &= A^2+B^2+2AB\cos\theta\end{aligned}" />
 
+<MathVisual
+  title="Sudut apit dan sudut dalam segitiga"
+  description={<>Sudut apit <InlineMath math="\theta" /> diukur saat pangkal kedua vektor berimpit. Setelah <InlineMath math="\vec{B}" /> digeser ke ujung <InlineMath math="\vec{A}" />, sudut dalam segitiga menjadi <InlineMath math="180^\circ-\theta" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) }, appearance: "secondary" },
+      { id: "moved", kind: "segment", from: { x: 5, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) }, appearance: "construction" },
+      { id: "r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) }, appearance: "answer" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "inner", kind: "arc", center: { x: 5, y: 0 }, radius: 0.8, startDegrees: 60, sweepDegrees: 120, appearance: "warning" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 1, y: Math.sqrt(3) }, placement: "left" },
+      { key: "moved", objectId: "moved", at: { x: 6, y: Math.sqrt(3) }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 7, y: 2 * Math.sqrt(3) }, placement: "above" },
+      { key: "theta", objectId: "theta", at: { x: Math.sqrt(3) / 2, y: 0.5 }, placement: "right" },
+      { key: "inner", objectId: "inner", at: { x: 4.6, y: 0.4 * Math.sqrt(3) }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="\vec{A}=10\text{ N}" />,
+    b: <InlineMath math="\vec{B}=8\text{ N}" />,
+    moved: <InlineMath math="\vec{B}\text{ digeser}" />,
+    r: <InlineMath math="R\approx15{,}6\text{ N}" />,
+    theta: <InlineMath math="\theta=60^\circ" />,
+    inner: <InlineMath math="180^\circ-\theta" />,
+  }}
+/>
+
 Tabel berikut menunjukkan hubungan antara sudut <InlineMath math="\theta" /> dan nilai <InlineMath math="\cos\theta" />:
 
 | Sudut apit | Nilai <InlineMath math="\cos\theta" /> | Makna fisika |
@@ -136,6 +170,16 @@ Pakai rumus kosinus ketika:
 - yang ditanya adalah besar resultan
 
 Jika vektornya lebih dari dua, uraikan setiap vektor menjadi komponen koordinat, lalu jumlahkan semua komponen <InlineMath math="x" /> dan <InlineMath math="y" />. Cara ini adalah [metode analitis](/id/materi/fisika/vektor/penjumlahan-dan-pengurangan-vektor-dengan-metode-analitis). Rumus kosinus dapat langsung dipakai jika besar dua vektor dan sudut apitnya diketahui.
+
+<Mermaid
+  title="Memilih cara menghitung resultan"
+  description="Data yang diketahui menentukan rumus yang dipakai lebih dulu."
+  chart={`flowchart TD
+  A{"Apa yang diketahui dan ditanya?"} -->|"dua vektor dan sudut apit, cari besar"| B["Rumus kosinus"]
+  A -->|"besar resultan sudah ada, cari arah"| C["Rumus sinus"]
+  A -->|"lebih dari dua vektor"| D["Uraikan ke komponen x dan y"]
+  B -->|"arah juga ditanya"| C`}
+/>
 
 ## Kesalahan yang Sering Terjadi
 

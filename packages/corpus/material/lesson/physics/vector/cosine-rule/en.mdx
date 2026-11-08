@@ -26,6 +26,40 @@ When the vectors are arranged **head to tail**, the interior triangle angle is s
 
 <BlockMath math="\begin{aligned}R^2 &= A^2+B^2-2AB\cos(180^\circ-\theta) \\ &= A^2+B^2-2AB(-\cos\theta) \\ &= A^2+B^2+2AB\cos\theta\end{aligned}" />
 
+<MathVisual
+  title="The angle between the vectors and the angle inside the triangle"
+  description={<>The angle <InlineMath math="\theta" /> is measured with both tails together. After <InlineMath math="\vec{B}" /> moves to the tip of <InlineMath math="\vec{A}" />, the angle inside the triangle is <InlineMath math="180^\circ-\theta" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) }, appearance: "secondary" },
+      { id: "moved", kind: "segment", from: { x: 5, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) }, appearance: "construction" },
+      { id: "r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) }, appearance: "answer" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "inner", kind: "arc", center: { x: 5, y: 0 }, radius: 0.8, startDegrees: 60, sweepDegrees: 120, appearance: "warning" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 1, y: Math.sqrt(3) }, placement: "left" },
+      { key: "moved", objectId: "moved", at: { x: 6, y: Math.sqrt(3) }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 7, y: 2 * Math.sqrt(3) }, placement: "above" },
+      { key: "theta", objectId: "theta", at: { x: Math.sqrt(3) / 2, y: 0.5 }, placement: "right" },
+      { key: "inner", objectId: "inner", at: { x: 4.6, y: 0.4 * Math.sqrt(3) }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="\vec{A}=10\text{ N}" />,
+    b: <InlineMath math="\vec{B}=8\text{ N}" />,
+    moved: <InlineMath math="\vec{B}\text{ moved}" />,
+    r: <InlineMath math="R\approx15.6\text{ N}" />,
+    theta: <InlineMath math="\theta=60^\circ" />,
+    inner: <InlineMath math="180^\circ-\theta" />,
+  }}
+/>
+
 The table below shows how <InlineMath math="\cos\theta" /> changes with the angle <InlineMath math="\theta" />:
 
 | Included angle | Value of <InlineMath math="\cos\theta" /> | Physical meaning |
@@ -136,6 +170,16 @@ All of the following must hold:
 - the question asks for resultant magnitude.
 
 For more than two vectors, resolve every vector into coordinate components and add all <InlineMath math="x" /> and <InlineMath math="y" /> components. This is the [analytical method](/en/subjects/physics/vector/analytical-addition-subtraction). The cosine rule applies directly when exactly two vector magnitudes and their included angle are known.
+
+<Mermaid
+  title="Choosing how to find the resultant"
+  description="The given data decides which formula comes first."
+  chart={`flowchart TD
+  A{"What is given and what is asked?"} -->|"two vectors and the angle, find the size"| B["Cosine rule"]
+  A -->|"size of the resultant known, find the direction"| C["Sine rule"]
+  A -->|"more than two vectors"| D["Split into x and y components"]
+  B -->|"direction asked too"| C`}
+/>
 
 ## Common Mistakes
 

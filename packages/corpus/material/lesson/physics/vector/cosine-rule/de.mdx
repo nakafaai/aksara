@@ -26,6 +26,40 @@ Legst du die Vektoren **Spitze an Anfangspunkt**, ist der Innenwinkel des Dreiec
 
 <BlockMath math="\begin{aligned}R^2 &= A^2+B^2-2AB\cos(180^\circ-\theta) \\ &= A^2+B^2-2AB(-\cos\theta) \\ &= A^2+B^2+2AB\cos\theta\end{aligned}" />
 
+<MathVisual
+  title="Eingeschlossener Winkel und Innenwinkel im Dreieck"
+  description={<>Der Winkel <InlineMath math="\theta" /> wird gemessen, wenn beide Anfangspunkte zusammenliegen. Nachdem <InlineMath math="\vec{B}" /> an die Spitze von <InlineMath math="\vec{A}" /> verschoben ist, beträgt der Innenwinkel im Dreieck <InlineMath math="180^\circ-\theta" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) }, appearance: "secondary" },
+      { id: "moved", kind: "segment", from: { x: 5, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) }, appearance: "construction" },
+      { id: "r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) }, appearance: "answer" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "inner", kind: "arc", center: { x: 5, y: 0 }, radius: 0.8, startDegrees: 60, sweepDegrees: 120, appearance: "warning" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 1, y: Math.sqrt(3) }, placement: "left" },
+      { key: "moved", objectId: "moved", at: { x: 6, y: Math.sqrt(3) }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 7, y: 2 * Math.sqrt(3) }, placement: "above" },
+      { key: "theta", objectId: "theta", at: { x: Math.sqrt(3) / 2, y: 0.5 }, placement: "right" },
+      { key: "inner", objectId: "inner", at: { x: 4.6, y: 0.4 * Math.sqrt(3) }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="\vec{A}=10\text{ N}" />,
+    b: <InlineMath math="\vec{B}=8\text{ N}" />,
+    moved: <InlineMath math="\vec{B}\text{ verschoben}" />,
+    r: <InlineMath math="R\approx15{,}6\text{ N}" />,
+    theta: <InlineMath math="\theta=60^\circ" />,
+    inner: <InlineMath math="180^\circ-\theta" />,
+  }}
+/>
+
 Die folgende Tabelle zeigt, wie sich <InlineMath math="\cos\theta" /> mit dem Winkel <InlineMath math="\theta" /> ändert:
 
 | Zwischenwinkel | Wert von <InlineMath math="\cos\theta" /> | Physikalische Bedeutung |
@@ -136,6 +170,16 @@ Der Kosinussatz ist geeignet, wenn:
 - der Betrag der Resultierenden gesucht ist.
 
 Bei mehr als zwei Vektoren werden alle Vektoren in Koordinatenkomponenten zerlegt und die <InlineMath math="x" />- sowie <InlineMath math="y" />-Komponenten jeweils addiert. Das ist die [analytische Addition](/de/faecher/physik/vektoren/analytische-addition-und-subtraktion). Der Kosinussatz lässt sich direkt anwenden, wenn genau zwei Vektorbeträge und ihr Zwischenwinkel bekannt sind.
+
+<Mermaid
+  title="Den Weg zur Resultierenden wählen"
+  description="Die gegebenen Größen bestimmen, welche Formel zuerst kommt."
+  chart={`flowchart TD
+  A{"Was ist gegeben, was ist gesucht?"} -->|"zwei Vektoren und Winkel, Betrag gesucht"| B["Kosinussatz"]
+  A -->|"Betrag der Resultierenden bekannt, Richtung gesucht"| C["Sinussatz"]
+  A -->|"mehr als zwei Vektoren"| D["In x- und y-Komponenten zerlegen"]
+  B -->|"Richtung auch gesucht"| C`}
+/>
 
 ## Typische Fehler
 
