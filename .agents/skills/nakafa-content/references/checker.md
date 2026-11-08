@@ -148,8 +148,8 @@ scores never become source gates.
 
 ## Deterministic gate scope
 
-The checker discovers locale-qualified files across lessons, articles, and the
-question bank. Its document role comes from the contract-owned question body
+The checker discovers locale-qualified files across lessons, articles, pages,
+and the question bank. Its document role comes from the contract-owned question body
 kind, so `question.en.mdx` and `answer.en.mdx` never become locale siblings.
 
 - Lessons and worked answers receive teaching emphasis checks. Articles receive
@@ -160,6 +160,10 @@ kind, so `question.en.mdx` and `answer.en.mdx` never become locale siblings.
   lists are valid. Lesson heading style, body-length, abbreviation, and repeated
   opener rules do not apply. Source support is reviewed against the complete
   claim and its cited evidence, never inferred from an attribution phrase alone.
+- Pages, the legal notice, the terms, the privacy and security policies, and
+  the developer resources, receive the address rules alone. A contract still
+  speaks to its reader with `du` and `kamu`, and the rest of a page follows its
+  own legal and product acceptance path.
 - Assessed questions receive forbidden-control-character, link, component,
   emphasis-syntax, and math checks.
   The checker preserves their language register, punctuation, titles, and quoted

@@ -134,9 +134,11 @@ Read only what the task needs. Each reference owns one concern.
   invokes the relation. The [link policy](references/links.md) owns
   the link rules.
 - Run the deterministic gate on lessons (`packages/corpus/material/lesson`),
-  articles (`packages/corpus/articles`), and the question bank
-  (`packages/corpus/question-bank`). The question bank uses separate profiles
-  for assessed prompts and authored solutions. All roots must reach zero
+  articles (`packages/corpus/articles`), the question bank
+  (`packages/corpus/question-bank`), and public pages
+  (`packages/corpus/pages`). The question bank uses separate profiles for
+  assessed prompts and authored solutions, and a page receives the address
+  rules alone. All roots must reach zero
   findings at every tier. The commands live in
   [verification](references/verification.md#lesson-voice-gate). Scope and rule
   admission live in

@@ -59,12 +59,13 @@ const temporaryRoot = (
   );
 
 checkTest(
-  "checks every current lesson, article, question and worked answer",
+  "checks every current lesson, article, page, question and worked answer",
   Effect.gen(function* () {
     const corpusRoot = join(process.cwd(), "packages/corpus");
     for (const [root, minimum] of [
       ["material/lesson", 1149],
       ["articles", 21],
+      ["pages", 18],
       ["question-bank", 7300],
     ] as const) {
       const report = yield* checkLessonRoot(join(corpusRoot, root));

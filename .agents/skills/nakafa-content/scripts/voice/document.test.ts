@@ -105,6 +105,43 @@ it("retains lesson opening requirements and contract-owned body roles", () => {
   assert.equal(documentProfile("/corpus/en.mdx"), "lesson");
   assert.equal(documentProfile("/corpus/notes.en.mdx"), "lesson");
   assert.equal(documentProfile("/corpus/articles/topic/en.mdx"), "article");
+  assert.equal(documentProfile("/corpus/pages/terms/de.mdx"), "page");
+});
+
+it("holds a public page to the address rules alone", () => {
+  const formal = [
+    [
+      "de",
+      `${METADATA}## Konto\n\nWenn eine Schule Ihr Konto angelegt hat, verwaltet die Schule dieses Konto.`,
+      "german-formal-address",
+    ],
+    [
+      "id",
+      `${METADATA}## Akun\n\nAnda bertanggung jawab atas akun yang Anda gunakan.`,
+      "indonesian-formal-learner-address",
+    ],
+  ] as const;
+  for (const [locale, source, rule] of formal) {
+    assert.deepEqual(
+      findDocumentIssues(
+        `/corpus/pages/terms/${locale}.mdx`,
+        locale,
+        source,
+        parseLessonMdx(source)
+      ).map((issue) => issue.rule),
+      [rule]
+    );
+  }
+  const casual = `${METADATA}## Wichtige Begriffe\n\nDiese Bedingungen gelten für dich. Sie regeln deinen Zugriff auf die Dienste.\n\n- Dienste sind unsere Websites.\n\n## Datenschutz\n\n## Kontakt\n\nSchreib uns.`;
+  assert.deepEqual(
+    findDocumentIssues(
+      "/corpus/pages/terms/de.mdx",
+      "de",
+      casual,
+      parseLessonMdx(casual)
+    ),
+    []
+  );
 });
 
 it("keeps article evidence and journal style outside lesson pedagogy", () => {

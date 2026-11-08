@@ -79,3 +79,12 @@ export const ANSWER_VOICE_RULES = [
   ...LANGUAGE_VOICE_RULES,
   ...NAVIGATION_VOICE_RULES,
 ] satisfies readonly LessonVoiceRule[];
+
+/**
+ * Holds a public page, such as the terms or the privacy policy, to the one
+ * voice rule that applies to legal and product copy: it never addresses the
+ * reader formally. Pages keep their own acceptance path for everything else.
+ */
+export const PAGE_VOICE_RULES = [
+  ...ADDRESS_VOICE_RULES,
+] satisfies readonly LessonVoiceRule[];
