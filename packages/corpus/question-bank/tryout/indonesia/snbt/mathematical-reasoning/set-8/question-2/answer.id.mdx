@@ -1,11 +1,19 @@
-Misalkan <InlineMath math="C(n)" /> adalah biaya untuk <InlineMath math="n" /> tiket, dalam ribu rupiah. Banyak **kelompok lengkap berisi lima tiket** adalah <InlineMath math="\lfloor n/5\rfloor" />, sehingga
+Luas kebun adalah <InlineMath math="L=x(44-2x)" />. Puncak fungsi ini belum tentu boleh dipakai, karena **sisi sejajar tembok paling panjang 20 m**.
 
-<BlockMath math="C(n)=12n+18-10\left\lfloor\frac n5\right\rfloor" />
+# Batas untuk x
 
-Untuk dua jumlah tiket yang berdekatan dengan batas anggaran:
+<BlockMath math="\begin{aligned}
+44-2x&\le20\\
+2x&\ge24\\
+x&\ge12
+\end{aligned}" />
 
-<BlockMath math="C(13)=156+18-20=154" />
+# Puncak yang tidak boleh dipakai
 
-<BlockMath math="C(14)=168+18-20=166" />
+Fungsi <InlineMath math="L=44x-2x^2" /> mencapai puncak di <InlineMath math="x=\tfrac{44}{4}=11" />. Saat itu sisi sejajar tembok <InlineMath math="44-22=22" /> m, **lebih panjang daripada tembok**, jadi ukuran itu tidak mungkin.
 
-Setiap tambahan tiket menaikkan biaya sebesar <InlineMath math="12" /> ribu rupiah, atau <InlineMath math="12-10=2" /> ribu rupiah saat terbentuk kelompok lengkap baru. **Biaya selalu bertambah**, sehingga semua jumlah di atas <InlineMath math="14" /> juga melampaui anggaran. Jadi, jumlah maksimum adalah <InlineMath math="13" /> tiket.
+Di kanan puncak, luas makin kecil ketika <InlineMath math="x" /> makin besar. Karena <InlineMath math="x" /> paling kecil 12, luas terbesar dicapai tepat di <InlineMath math="x=12" />.
+
+<BlockMath math="L=12\cdot(44-24)=12\cdot20=240\text{ m}^2" />
+
+Jadi, luas terbesar kebun itu adalah **240 m²**, dengan sisi sejajar memakai seluruh tembok.

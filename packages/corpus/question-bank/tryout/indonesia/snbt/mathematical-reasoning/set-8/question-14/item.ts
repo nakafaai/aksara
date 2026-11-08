@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "school-vaccination",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$\\frac{9\\sqrt{5}}{5}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{7\\sqrt{5}}{5}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{8\\sqrt{5}}{5}$$",
-        },
-        {
-          correct: false,
-          label: "$$2\\sqrt{5}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{11\\sqrt{5}}{5}$$",
-        },
+        { correct: false, label: "$$\\dfrac16$$" },
+        { correct: false, label: "$$\\dfrac{4}{15}$$" },
+        { correct: true, label: "$$\\dfrac25$$" },
+        { correct: false, label: "$$\\dfrac{5}{12}$$" },
+        { correct: false, label: "$$\\dfrac58$$" },
       ],
     },
   },

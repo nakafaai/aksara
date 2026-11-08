@@ -1,11 +1,19 @@
-Let <InlineMath math="C(n)" /> be the cost of <InlineMath math="n" /> tickets, in thousand rupiah. The number of **complete groups of five** is <InlineMath math="\lfloor n/5\rfloor" />, so
+The area of the garden is <InlineMath math="L=x(44-2x)" />. The peak of this function may not be allowed, because **the side parallel to the wall is at most 20 m**.
 
-<BlockMath math="C(n)=12n+18-10\left\lfloor\frac n5\right\rfloor" />
+# Limit on x
 
-For the two ticket counts near the budget limit:
+<BlockMath math="\begin{aligned}
+44-2x&\le20\\
+2x&\ge24\\
+x&\ge12
+\end{aligned}" />
 
-<BlockMath math="C(13)=156+18-20=154" />
+# A peak that is not allowed
 
-<BlockMath math="C(14)=168+18-20=166" />
+The function <InlineMath math="L=44x-2x^2" /> peaks at <InlineMath math="x=\tfrac{44}{4}=11" />. Then the parallel side is <InlineMath math="44-22=22" /> m, **longer than the wall**, so that size is impossible.
 
-Each additional ticket raises the cost by <InlineMath math="12" /> thousand rupiah, or by <InlineMath math="12-10=2" /> thousand rupiah when it completes another group of five. The **cost always increases**, so every count above <InlineMath math="14" /> also exceeds the budget. The maximum is therefore <InlineMath math="13" /> tickets.
+To the right of the peak the area shrinks as <InlineMath math="x" /> grows. Since <InlineMath math="x" /> is at least 12, the largest area occurs exactly at <InlineMath math="x=12" />.
+
+<BlockMath math="L=12\cdot(44-24)=12\cdot20=240\text{ m}^2" />
+
+So the largest possible garden is **240 m²**, with the parallel side using the whole wall.
