@@ -6,7 +6,7 @@ const EXERCISE_HEADING_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
   de: /^(?:Verständnis prüfen|Überprüfe dein Verständnis|Übungen mit vollständigen Lösungen|Aufgaben zum Rationalisieren|Aufgaben|Übung|Übungen|Übungsaufgaben|Erste Übung|Zweite Übung)$/iu,
   en: /^(?:Check Your Understanding|Practice with Complete Solutions|Rationalization Exercises|Exercise|Exercises|Practice|Practice Problems|First Exercise|Second Exercise)$/iu,
   id: /^(?:Cek Pemahaman|Periksa Pemahamanmu|Latihan dengan Pembahasan Lengkap|Latihan Merasionalkan|Latihan|Latihan Mandiri|Latihan Soal|Latihan Pertama|Latihan Kedua)$/iu,
-  ms: /^(?:Semak Kefahaman|Uji Kefahaman Anda|Latihan dengan Penyelesaian Lengkap|Latihan|Latihan Pengukuhan|Soalan Latihan|Latihan Pertama|Latihan Kedua)$/iu,
+  ms: /^(?:Semak Kefahaman|Uji Kefahaman Kamu|Latihan dengan Penyelesaian Lengkap|Latihan|Latihan Pengukuhan|Soalan Latihan|Latihan Pertama|Latihan Kedua)$/iu,
 };
 
 const SOLUTION_HEADING_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
