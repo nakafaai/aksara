@@ -1,30 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "application",
+  },
+  stimulus: "pollinators",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Benang Merah sebagai Hiasan yang Tidak Mengubah Cerita",
+          label:
+            "Mendatangkan lebah madu ke setiap kebun agar semua bunga terserbuki.",
         },
         {
           correct: false,
-          label: "Menghapus Seluruh Bekas pada Blus Warisan",
-        },
-        {
-          correct: false,
-          label: "Konflik sebagai Istilah Tanpa Peran dalam Cerita",
-        },
-        {
-          correct: false,
-          label: "Pilihan Ayu yang Mengabaikan Keinginan Pelanggan",
+          label:
+            "Membakar seluruh daun gugur agar kebun tampak bersih dan tertata.",
         },
         {
           correct: true,
-          label: "Jahitan Merah yang Tidak Disembunyikan",
+          label:
+            "Mencari tahu penyerbuk tanaman sebelum menentukan cara membersihkan kebun.",
+        },
+        {
+          correct: false,
+          label:
+            "Menyerbuki semua bunga dengan tangan agar tidak bergantung pada hewan.",
+        },
+        {
+          correct: false,
+          label:
+            "Menjauhkan kebun dari gua karena kelelawar mungkin merusak bunga durian.",
         },
       ],
     },

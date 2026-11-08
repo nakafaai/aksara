@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "main-idea",
+  },
+  stimulus: "wayang-school",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Wayang kulit ditetapkan UNESCO sebagai warisan budaya karena lakonnya berasal dari India.",
+        },
+        {
+          correct: false,
+          label:
+            "Punakawan adalah tokoh paling bijak dalam wayang karena Semar sebenarnya seorang dewa.",
+        },
+        {
+          correct: false,
+          label:
+            "Pertunjukan wayang semalam suntuk sebaiknya diganti dengan pertunjukan yang singkat.",
+        },
+        {
           correct: true,
           label:
-            "Dengan membagi pemeriksaan dan menahan dua kotak yang meragukan, Bima beralih dari mengejar hasil lengkap menuju koordinasi yang dapat dipertanggungjawabkan.",
+            "Wayang menjadi sarana pendidikan yang lentur, terutama melalui bagian yang diisi punakawan.",
         },
         {
           correct: false,
           label:
-            "Bima membagi pekerjaan mencocokkan nomor kotak dan mencetak ulang label sambil mencatat alasan setiap perubahan. Tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
-        },
-        {
-          correct: false,
-          label:
-            "Bima membagi pekerjaan mencocokkan nomor kotak dan mencetak ulang label sambil mencatat alasan setiap perubahan. Perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
-        },
-        {
-          correct: false,
-          label:
-            "Bima membagi pekerjaan mencocokkan nomor kotak dan mencetak ulang label sambil mencatat alasan setiap perubahan. Latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
-        },
-        {
-          correct: false,
-          label:
-            "Bima membagi pekerjaan mencocokkan nomor kotak dan mencetak ulang label sambil mencatat alasan setiap perubahan. Definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
+            "Sunan Kalijaga mungkin satu-satunya tokoh yang memakai wayang untuk tujuan pendidikan.",
         },
       ],
     },

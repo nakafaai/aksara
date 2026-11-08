@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "character",
+  },
+  stimulus: "radio-repair",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pengelola pengiriman buku antarpulau menilai label tujuan berukuran besar pada setiap kotak melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
+            "menyembunyikan kegagalannya dengan memutar rekaman seolah-olah siaran asli",
         },
         {
           correct: false,
           label:
-            "Pengelola pengiriman buku antarpulau menilai label tujuan berukuran besar pada setiap kotak melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengelola pengiriman buku antarpulau menilai label tujuan berukuran besar pada setiap kotak melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
+            "acuh tak acuh karena pelanggan kiosnya makin sedikit dari hari ke hari",
         },
         {
           correct: true,
           label:
-            "Pengelola menilai label tujuan besar melalui data pembanding dan masukan pihak terdampak, lalu melanjutkan uji secara terbatas karena pengaruh cuaca belum diperiksa.",
+            "jujur tentang apa yang tak bisa ia pulihkan, tetapi tetap memenuhi maksud gadis itu",
         },
         {
           correct: false,
           label:
-            "Pengelola pengiriman buku antarpulau menilai label tujuan berukuran besar pada setiap kotak terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
+            "mudah menyerah ketika mengetahui bahwa stasiun radio itu sudah lama berhenti bersiaran",
+        },
+        {
+          correct: false,
+          label:
+            "mungkin ingin membeli radio itu karena mengenali merek dan tahun pembuatannya",
         },
       ],
     },

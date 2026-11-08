@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "wayang-school",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Kemajuan bergantung pada penyelesaian tugas besar sebelum meminta orang lain meninjaunya.",
+            "Mahabharata dan Ramayana adalah epos yang berasal dari India.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Benda atau latar membentuk hasil lebih kuat daripada pilihan khusus yang dibuat tokoh.",
+            "Punakawan sudah menjadi tokoh dalam kisah Mahabharata versi India.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Dengan menahan dua kotak yang belum cocok dan mencatat perubahan tugas, Bima menunjukkan bahwa akuntabilitas dapat menuntut hasil yang lebih sedikit tetapi dapat diperiksa.",
+            "Goro-goro biasanya berlangsung pada awal pertunjukan, sebelum tengah malam.",
         },
         {
-          correct: false,
-          label:
-            "Bukti yang belum pasti sebaiknya disimpan sampai tokoh dapat menawarkan hasil lengkap.",
-        },
-        {
-          correct: false,
-          label:
-            "Tindakan kecil terutama berguna karena menunda bagian konflik yang belum selesai.",
+          column: 1,
+          label: "Bagian goro-goro tidak terikat pada alur pokok lakon.",
         },
       ],
     },

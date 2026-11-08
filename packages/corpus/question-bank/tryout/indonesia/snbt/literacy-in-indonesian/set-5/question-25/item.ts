@@ -1,31 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-purpose",
+  },
+  stimulus: "wayang-school",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Mengirim Semua Kotak agar Target Terlihat Selesai",
-        },
-        {
-          correct: false,
-          label: "Menyembunyikan Ketidakcocokan Label Setelah Kapal Berangkat",
-        },
-        {
           correct: true,
-          label: "Menahan Dua Kotak: Akuntabilitas Bima di Gudang Pelabuhan",
+          label:
+            "menandai bahwa kisah itu bersumber dari tradisi lisan, bukan catatan pasti",
         },
         {
           correct: false,
           label:
-            "Akuntabilitas sebagai Definisi Tanpa Tindakan yang Dapat Diperiksa",
+            "membuktikan bahwa Sunan Kalijaga menciptakan tokoh-tokoh punakawan",
         },
         {
           correct: false,
-          label: "Delapan Belas Kotak sebagai Satu-satunya Ukuran Kepemimpinan",
+          label:
+            "menunjukkan bahwa kisah Sunan Kalijaga sudah dicatat oleh UNESCO",
+        },
+        {
+          correct: false,
+          label:
+            "meyakinkan pembaca bahwa ajaran baru selalu masuk melalui wayang",
+        },
+        {
+          correct: false,
+          label:
+            "menyindir para dalang muda yang mungkin tidak lagi mengenal sejarah wayang",
         },
       ],
     },
