@@ -26,7 +26,7 @@ const item: ItemSource = {
         },
         {
           column: 1,
-          label: "Jika harga listrik naik $$50\\,\\%$$, biaya energi skuter listrik masih kurang dari sepertiga biaya energi skuter bensin.",
+          label: "Jika harga listrik naik $$50\\,\\%$$, biaya energi skuter listrik untuk jarak yang sama masih kurang dari sepertiga biaya energi skuter bensin.",
         },
       ],
     },
