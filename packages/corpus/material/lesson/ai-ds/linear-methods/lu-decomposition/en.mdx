@@ -39,7 +39,7 @@ This diagram shows where each result of an elimination step is stored.
 
 <Mermaid
   title="Elimination fills three factors"
-  description="Multipliers go into L, the remaining rows become U, row swaps are recorded in P."
+  description="Multipliers go into the lower factor, the remaining rows become the upper factor, and row swaps go into the permutation matrix."
   chart={`
     flowchart TD
         A[Elimination step] --> B[Multiplier ℓ_ij]
@@ -153,7 +153,7 @@ This diagram sums up the two substitutions you just did.
 
 <Mermaid
   title="Two solving stages"
-  description="The factorization splits Ax = b into two triangular systems."
+  description="The factorization splits the system into two triangular systems."
   chart={`
     flowchart LR
         A[Ax = b] --> B[LUx = Pb]
