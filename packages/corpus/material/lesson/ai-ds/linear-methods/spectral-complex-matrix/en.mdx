@@ -19,18 +19,6 @@ For <InlineMath math="A\in\mathbb{C}^{n\times n}" />, the following statements a
 
 The theorem is stronger than ordinary diagonalizability. A diagonalizable matrix can have a badly conditioned eigenvector basis, whereas <Highlight>a unitary basis preserves norms and angles</Highlight>.
 
-This diagram shows that each direction of the proof gives one half of the equivalence.
-
-<Mermaid
-  title="Characterizing unitary diagonalization"
-  description="Two proof directions that form one equivalence."
-  chart={`
-    flowchart LR
-        A[A unitarily diagonalizable] -->|First direction| B[A normal]
-        B -->|Second direction| A
-  `}
-/>
-
 ## Proof of the First Direction
 
 First, suppose an orthonormal basis of eigenvectors exists. We will show directly that the matrix is normal.
@@ -131,6 +119,40 @@ Since unitary similarity transformations **preserve normality**, we can show tha
 
 The block diagonal matrix is also normal, which means <InlineMath math="A'" /> is also normal.
 
+This proof uses <InlineMath math="\|Ax\|_2=\|A^Hx\|_2" /> for a normal matrix, because <InlineMath math="\|Ax\|_2^2=x^HA^HAx=x^HAA^Hx=\|A^Hx\|_2^2" />. Take <InlineMath math="x=(2,1)" />. The normal matrix <InlineMath math="N=\begin{pmatrix}1&-1\\1&1\end{pmatrix}" /> gives <InlineMath math="Nx=(1,3)" /> and <InlineMath math="N^Tx=(3,-1)" />, both of length <InlineMath math="\sqrt{10}" />. The shear <InlineMath math="J=\begin{pmatrix}1&1\\0&1\end{pmatrix}" /> is not normal, and <InlineMath math="Jx=(3,1)" /> is shorter than <InlineMath math="J^Tx=(2,3)" />.
+
+<MathVisual
+  title={<><InlineMath math="\|Nx\|_2=\|N^Tx\|_2" /> for a normal matrix <InlineMath math="N" /></>}
+  description={<>From the violet vector <InlineMath math="x=(2,1)" />, both teal segments <InlineMath math="Nx" /> and <InlineMath math="N^Tx" /> end on the gray circle of radius <InlineMath math="\sqrt{10}" />. For the shear <InlineMath math="J" />, the orange segment <InlineMath math="Jx" /> reaches the circle, but the magenta segment <InlineMath math="J^Tx" /> of length <InlineMath math="\sqrt{13}" /> leaves it.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 4 }, y: { min: -3.5, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "radius", kind: "circle", center: { x: 0, y: 0 }, radius: Math.sqrt(10), appearance: "reference" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "normal-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "construction" },
+      { id: "normal-adjoint", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -1 }, appearance: "construction" },
+      { id: "shear-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "shear-adjoint", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "vector", objectId: "vector", at: { x: 2, y: 1 }, placement: "below" },
+      { key: "normal-image", objectId: "normal-image", at: { x: 1, y: 3 }, placement: "above-left" },
+      { key: "normal-adjoint", objectId: "normal-adjoint", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "shear-image", objectId: "shear-image", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "shear-adjoint", objectId: "shear-adjoint", at: { x: 2, y: 3 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "vector": <InlineMath math="x" />,
+    "normal-image": <InlineMath math="Nx" />,
+    "normal-adjoint": <InlineMath math="N^Tx" />,
+    "shear-image": <InlineMath math="Jx" />,
+    "shear-adjoint": <InlineMath math="J^Tx" />,
+  }}
+/>
+
 ## Construction of Complete Orthonormal Basis
 
 By the **induction hypothesis**, there exists an orthonormal basis <InlineMath math="v'_2, \ldots, v'_n" /> of eigenvectors for <InlineMath math="A'" />. Let <InlineMath math="S'" /> be a unitary matrix with those columns, where:
@@ -157,18 +179,32 @@ Substituting the matrix <InlineMath math="S" /> into the similarity transformati
 
 The columns of <InlineMath math="S" /> form an orthonormal basis of eigenvectors of matrix <InlineMath math="A" />.
 
-This flow sums up the inductive construction of the orthonormal basis.
+Take <InlineMath math="A=\begin{pmatrix}2&1&0\\1&2&0\\0&0&5\end{pmatrix}" />. The first step picks the eigenvector <InlineMath math="u_1=e_3" /> for <InlineMath math="\lambda=5" />. Because <InlineMath math="A" /> is normal, it maps the plane <InlineMath math="u_1^\perp" /> into itself, so the construction continues inside that plane and finds <InlineMath math="u_2=\tfrac1{\sqrt2}(1,1,0)" /> for <InlineMath math="\lambda=3" /> and <InlineMath math="u_3=\tfrac1{\sqrt2}(-1,1,0)" /> for <InlineMath math="\lambda=1" />.
 
-<Mermaid
-  title="Building the orthonormal basis inductively"
-  description="One eigenvector, then a smaller problem."
-  chart={`
-    flowchart TD
-        A[Eigenvector v_1, normalized] --> B[Extend to an orthonormal basis U_1]
-        B --> C[U_1^H A U_1 in block form]
-        C --> D[Normality makes the off block zero]
-        D --> E[Repeat on the smaller block]
-  `}
+<MathVisual
+  title={<>An orthonormal basis built one eigenvector at a time</>}
+  description={<>The orange segment <InlineMath math="u_1" /> is perpendicular to the violet square, the plane <InlineMath math="u_1^\perp" />. Inside that plane, the teal segment <InlineMath math="u_2" /> and the magenta segment <InlineMath math="u_3" /> are perpendicular and complete the basis.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -1.2, max: 1.2 }, z: { min: -0.3, max: 1.3 } },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0.4 } },
+    objects: [
+      { id: "complement", kind: "polygon", vertices: [{ x: -1, y: -1, z: 0 }, { x: 1, y: -1, z: 0 }, { x: 1, y: 1, z: 0 }, { x: -1, y: 1, z: 0 }], appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 1 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }, appearance: "construction" },
+      { id: "third", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: -Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 0, y: 0, z: 1 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }, placement: "right" },
+      { key: "third", objectId: "third", at: { x: -Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="u_1" />,
+    "second": <InlineMath math="u_2" />,
+    "third": <InlineMath math="u_3" />,
+  }}
 />
 
 ## Real Matrix Case

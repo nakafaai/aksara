@@ -82,19 +82,6 @@ Take <InlineMath math="A=\begin{pmatrix}1&2\\1&2\end{pmatrix}" /> and <InlineMat
 
 Structural identifiability is an exact algebraic property. Practical identifiability also depends on scale, noise, and the numerical tolerance used.
 
-Start from the rank of <InlineMath math="A" /> to know whether the solution is unique.
-
-<Mermaid
-  title="One solution or many"
-  description="The rank of the design matrix decides whether the least-squares solution is unique."
-  chart={`
-    flowchart TD
-        A{rank A = n?} -->|Yes| B[Unique least-squares solution]
-        A -->|No| C[Infinitely many solutions]
-        C --> D[Choose the minimum-norm solution x^+]
-  `}
-/>
-
 ## Factorizations for Determining Rank
 
 Two common **factorizations can determine rank** without relying on determinant calculations that are sensitive to numerical error:
@@ -122,6 +109,36 @@ The exact rank is the **number of positive singular values**:
 
 For <InlineMath math="m \geq n" />, full column rank is therefore equivalent to <InlineMath math="\sigma_n>0" />. Parameter directions that the data cannot identify are spanned by the right singular vectors associated with zero singular values, which form a basis for <InlineMath math="\ker(A)" />.
 
+For <InlineMath math="A=\begin{pmatrix}2&2\\1&1\end{pmatrix}" />, the right singular vector <InlineMath math="v_1=\tfrac1{\sqrt2}(1,1)" /> goes to <InlineMath math="Av_1=(2\sqrt2,\sqrt2)" /> of length <InlineMath math="\sigma_1=\sqrt{10}" />, while <InlineMath math="v_2=\tfrac1{\sqrt2}(1,-1)" /> goes to <InlineMath math="0" />, so <InlineMath math="\sigma_2=0" />. Only one singular value is positive, so <InlineMath math="\operatorname{rank}A=1" />.
+
+<MathVisual
+  title={<>One positive singular value means rank <InlineMath math="1" /></>}
+  description={<>The teal segment <InlineMath math="v_1" /> and the orange segment <InlineMath math="v_2" /> lie on the gray unit circle. <InlineMath math="A" /> sends <InlineMath math="v_1" /> to the violet segment of length <InlineMath math="\sqrt{10}" /> and <InlineMath math="v_2" /> to the magenta point <InlineMath math="0" />. The whole plane lands on the gray line through <InlineMath math="(2,1)" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "range", kind: "line", through: [{ x: 0, y: 0 }, { x: 2, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.SQRT2, y: Math.SQRT2 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: -Math.SQRT1_2 }, appearance: "primary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "above-left" },
+      { key: "second", objectId: "second", at: { x: Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-right" },
+      { key: "image", objectId: "image", at: { x: 2 * Math.SQRT2, y: Math.SQRT2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="v_1" />,
+    "second": <InlineMath math="v_2" />,
+    "image": <InlineMath math="Av_1=\sqrt{10}\,u_1" />,
+  }}
+/>
+
 ## Exact Rank and Numerical Rank
 
 If the exact rank is <InlineMath math="r" /> with <InlineMath math="0<r<q" />, then
@@ -139,17 +156,17 @@ The factor <InlineMath math="c" /> reflects the application and noise model, so 
 
 <BlockMath math="x^{\dagger}=V\Sigma^{\dagger}U^T b" />
 
-This diagram shows how to read the numerical rank from the singular values.
+Change one entry to get <InlineMath math="A_\varepsilon=\begin{pmatrix}2&2\\1&1+\varepsilon\end{pmatrix}" /> with <InlineMath math="\varepsilon=10^{-6}" />. Exactly, <InlineMath math="\det A_\varepsilon=2\varepsilon\neq0" />, so the rank is <InlineMath math="2" />, but <InlineMath math="\sigma_2=2\varepsilon/\sigma_1\approx6\cdot10^{-7}" />. With a measurement tolerance of <InlineMath math="10^{-4}" />, only <InlineMath math="\sigma_1" /> counts, so the numerical rank is <InlineMath math="1" />.
 
-<Mermaid
-  title="Numerical rank from singular values"
-  description="Count the singular values above a tolerance."
-  chart={`
-    flowchart LR
-        A[Singular values σ_1 ≥ ... ≥ σ_n] --> B[Choose a tolerance]
-        B --> C[Count σ_i above the tolerance]
-        C --> D[Numerical rank]
-  `}
+<BarChart
+  title={<>Singular values of <InlineMath math="A_\varepsilon" /> for <InlineMath math="\varepsilon=10^{-6}" /></>}
+  description={<>The first bar is <InlineMath math="\sigma_1\approx\sqrt{10}" />, the second is <InlineMath math="\sigma_2=2\varepsilon/\sigma_1" />, too small to see. Both come from <InlineMath math="\sigma_1^2+\sigma_2^2=\|A_\varepsilon\|_F^2" /> and <InlineMath math="\sigma_1\sigma_2=|\det A_\varepsilon|" />.</>}
+  yAxisLabel="Singular value"
+  data={[
+    { name: "1", value: Math.sqrt((10 + 2e-6 + 1e-12 + Math.sqrt((10 + 2e-6 + 1e-12) ** 2 - 4 * (2e-6) ** 2)) / 2) },
+    { name: "2", value: 2e-6 / Math.sqrt((10 + 2e-6 + 1e-12 + Math.sqrt((10 + 2e-6 + 1e-12) ** 2 - 4 * (2e-6) ** 2)) / 2) },
+  ]}
+  chartConfig={{ value: { label: "Singular value", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
 />
 
 ## Estimating Matrix Rank with SVD or Rank Revealing QR

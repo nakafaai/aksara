@@ -83,20 +83,6 @@ Misalkan <InlineMath math="Hv=\lambda v" /> dengan <InlineMath math="v\neq0" />.
 
 Karena <InlineMath math="v^Hv>0" />, kita memperoleh <InlineMath math="\lambda=\overline{\lambda}" /> dan dengan demikian <InlineMath math="\lambda\in\mathbb{R}" />. Kesimpulan yang sama berlaku bagi matriks simetris real.
 
-Ikuti rantai ini untuk melihat dari mana sifat real itu berasal.
-
-<Mermaid
-  title="Mengapa nilai eigen Hermitian real"
-  description="Rantai singkat dari persamaan eigen sampai nilai eigen real."
-  chart={`
-    flowchart LR
-        A[Hv = λv, v ≠ 0] --> B[v^H H v = λ v^H v]
-        B --> C[v^H H v real karena H^H = H]
-        C --> D[v^H v > 0 real]
-        D --> E[λ real]
-  `}
-/>
-
 ## Mengapa Ruang Eigen yang Berbeda Saling Ortogonal
 
 Misalkan <InlineMath math="Hv=\lambda v" /> dan <InlineMath math="Hw=\mu w" /> dengan <InlineMath math="\lambda\neq\mu" />. Karena **kedua nilai eigen itu real**,
@@ -107,6 +93,34 @@ Misalkan <InlineMath math="Hv=\lambda v" /> dan <InlineMath math="Hw=\mu w" /> d
 </MathContainer>
 
 Jadi <InlineMath math="(\lambda-\mu)w^Hv=0" />, sehingga <InlineMath math="w^Hv=0" />. Untuk nilai eigen yang berulang, vektor eigen sembarang di dalam ruang eigen yang sama belum tentu ortogonal. Namun, Gram-Schmidt dapat memilih basis ortonormal di dalam ruang tersebut.
+
+Untuk matriks simetris <InlineMath math="A=\begin{pmatrix}1&2\\2&1\end{pmatrix}" />, nilai eigen <InlineMath math="3" /> dan <InlineMath math="-1" /> punya vektor eigen <InlineMath math="v_1=(1,1)" /> dan <InlineMath math="v_2=(1,-1)" />. Hasil kali dalamnya <InlineMath math="1-1=0" />, persis seperti yang dijamin oleh <InlineMath math="\lambda_1\langle v_1,v_2\rangle=\langle Av_1,v_2\rangle=\langle v_1,Av_2\rangle=\lambda_2\langle v_1,v_2\rangle" /> dengan <InlineMath math="\lambda_1\neq\lambda_2" />.
+
+<MathVisual
+  title={<>Vektor eigen untuk <InlineMath math="3" /> dan <InlineMath math="-1" /> saling tegak lurus</>}
+  description={<>Ruas hijau toska <InlineMath math="v_1" /> teregang menjadi ruas ungu <InlineMath math="3v_1" />. Ruas oranye <InlineMath math="v_2" /> berbalik menjadi ruas magenta <InlineMath math="-v_2" />. Kedua garis tetap membentuk sudut siku-siku.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "second-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first-image", objectId: "first-image", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1, y: -1 }, placement: "right" },
+      { key: "second-image", objectId: "second-image", at: { x: -1, y: 1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first-image": <InlineMath math="Av_1=3v_1" />,
+    "second": <InlineMath math="v_2" />,
+    "second-image": <InlineMath math="Av_2=-v_2" />,
+  }}
+/>
 
 ## Dekomposisi Spektral dan Geometri Bentuk Kuadrat
 
@@ -177,16 +191,15 @@ Periksa ortogonalitas dan vektor eigen pertama secara langsung. Faktor normalisa
 <BlockMath math="Hu_1=\frac1{\sqrt3}\begin{pmatrix}-2(1+i)+(1+i)\\-(1-i)(1+i)+3\end{pmatrix}=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}=u_1" />
 </MathContainer>
 
-Diagram ini merangkum langkah contoh di atas dari polinom sampai matriks diagonal.
+Periksa <InlineMath math="u_1^Hu_2" /> suku demi suku. Entri pertama memberi <InlineMath math="\overline{-(1+i)}\,(1+i)/\sqrt{18}=-(1-i)(1+i)/\sqrt{18}=-2/\sqrt{18}" />, dan entri kedua memberi <InlineMath math="1\cdot2/\sqrt{18}=2/\sqrt{18}" />. Kedua suku saling menghapus, jadi <InlineMath math="u_1^Hu_2=0" />.
 
-<Mermaid
-  title="Langkah diagonalisasi Hermitian"
-  description="Contoh matriks Hermitian di atas, langkah demi langkah."
-  chart={`
-    flowchart TD
-        A["det(H - λI) = (λ - 1)(λ - 4)"] --> B[Vektor eigen u_1, u_2]
-        B --> C[Normalkan dan cek u_1^H u_2 = 0]
-        C --> D[U = u_1, u_2 sebagai kolom]
-        D --> E[U^H H U = diag 1, 4]
-  `}
+<BarChart
+  title={<>Dua suku <InlineMath math="u_1^Hu_2" /> saling menghapus</>}
+  description={<>Batang pertama adalah <InlineMath math="\bar u_{11}u_{21}=-2/\sqrt{18}" />, batang kedua adalah <InlineMath math="\bar u_{12}u_{22}=2/\sqrt{18}" />. Tingginya sama dengan tanda berlawanan, sehingga jumlahnya <InlineMath math="0" />.</>}
+  yAxisLabel="Suku hasil kali dalam"
+  data={[
+    { name: "entri pertama", value: -2 / Math.sqrt(18) },
+    { name: "entri kedua", value: 2 / Math.sqrt(18) },
+  ]}
+  chartConfig={{ value: { label: "Suku hasil kali dalam", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />

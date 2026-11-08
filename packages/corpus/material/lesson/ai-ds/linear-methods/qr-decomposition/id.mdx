@@ -44,20 +44,6 @@ Tambahkan <InlineMath math="m-n" /> baris nol pada <InlineMath math="R_1" /> seh
 
 Matriks yang sudah dilengkapi tetap memenuhi <InlineMath math="A=Q_1R_1=QR" />.
 
-Diagram ini menunjukkan satu putaran Gram-Schmidt untuk kolom ke-j.
-
-<Mermaid
-  title="Gram-Schmidt kolom demi kolom"
-  description="Setiap kolom dikurangi proyeksinya, lalu dinormalkan."
-  chart={`
-    flowchart LR
-        A[Kolom a_j] --> B[r_ij = q_i^T a_j untuk i < j]
-        B --> C[Kurangi semua r_ij q_i]
-        C --> D[Normalkan: r_jj dan q_j]
-        D --> E[Kolom berikutnya]
-  `}
-/>
-
 ## Dekomposisi QR Lengkap dan Tipis
 
 Untuk <InlineMath math="A\in\mathbb{R}^{m\times n}" /> dengan <InlineMath math="m\geq n" />, bentuk lengkap dan bentuk tipis menyatakan faktorisasi yang sama dengan **ukuran matriks berbeda**. Keduanya menghasilkan <InlineMath math="A" /> saat dikalikan kembali, sehingga pilihannya bergantung pada apakah kamu memerlukan basis ortonormal lengkap atau hanya kolom yang memuat datanya.
@@ -87,6 +73,34 @@ Ruang nol <InlineMath math="A^T" /> berisi semua vektor <InlineMath math="x" /> 
 ### Sifat Keunikan
 
 Untuk matriks dengan peringkat kolom penuh, faktorisasi tipis <InlineMath math="A=Q_1R_1" /> bersifat unik jika semua **elemen diagonal** <InlineMath math="R_1" /> **positif**. Syarat tanda itu menghapus kebebasan yang tersisa, karena mengalikan satu kolom <InlineMath math="Q_1" /> dan baris <InlineMath math="R_1" /> yang bersesuaian dengan <InlineMath math="-1" /> tidak mengubah hasil kalinya.
+
+Untuk kolom <InlineMath math="a_1=(1,1,0)" /> dan <InlineMath math="a_2=(1,0,1)" />, Gram-Schmidt memberi <InlineMath math="q_1=\tfrac1{\sqrt2}(1,1,0)" /> dan <InlineMath math="q_2=\tfrac1{\sqrt6}(1,-1,2)" />. Dekomposisi tipis berhenti di sini. Dekomposisi lengkap menambahkan <InlineMath math="q_3=\tfrac1{\sqrt3}(1,-1,-1)" />, yang tegak lurus dengan bidang kolom, dan sebaris nol di bawah <InlineMath math="R" />.
+
+<MathVisual
+  title={<><InlineMath math="Q" /> tipis dan <InlineMath math="Q" /> lengkap untuk dua kolom di <InlineMath math="\mathbb R^3" /></>}
+  description={<>Jajar genjang abu-abu adalah bidang yang direntang <InlineMath math="a_1" /> dan <InlineMath math="a_2" />. Ruas ungu <InlineMath math="q_1" /> dan ruas hijau toska <InlineMath math="q_2" /> terletak di bidang itu dan membentuk <InlineMath math="Q" /> tipis. Ruas oranye <InlineMath math="q_3" /> tegak lurus dengan bidang dan melengkapi <InlineMath math="Q" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 2.2 }, y: { min: -1.2, max: 1.2 }, z: { min: -1, max: 1.2 } },
+    view: { kind: "isometric", target: { x: 0.6, y: 0, z: 0.3 } },
+    objects: [
+      { id: "span", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 2, y: 1, z: 1 }, { x: 1, y: 0, z: 1 }], appearance: "reference" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(2), y: 1 / Math.sqrt(2), z: 0 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }, appearance: "construction" },
+      { id: "third", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(3), y: -1 / Math.sqrt(3), z: -1 / Math.sqrt(3) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1 / Math.sqrt(2), y: 1 / Math.sqrt(2), z: 0 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }, placement: "above" },
+      { key: "third", objectId: "third", at: { x: 1 / Math.sqrt(3), y: -1 / Math.sqrt(3), z: -1 / Math.sqrt(3) }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="q_1" />,
+    "second": <InlineMath math="q_2" />,
+    "third": <InlineMath math="q_3" />,
+  }}
+/>
 
 ## Contoh Dekomposisi QR Tipis
 
@@ -171,6 +185,35 @@ Untuk <InlineMath math="S=I-2vv^T" /> dan <InlineMath math="\|v\|_2=1" />, berla
 
 4. <InlineMath math="\text{cond}_2(S) = 1" />
 
+Untuk <InlineMath math="x=(3,4)" /> dengan <InlineMath math="\|x\|_2=5" />, pilih <InlineMath math="v=\tfrac{x-5e_1}{\|x-5e_1\|_2}=\tfrac1{\sqrt5}(-1,2)" />. Maka <InlineMath math="S=I-2vv^T" /> mencerminkan <InlineMath math="x" /> terhadap garis yang tegak lurus dengan <InlineMath math="v" /> dan mengirimnya ke <InlineMath math="(5,0)" />. Satu refleksi saja sudah membuat entri kedua nol tanpa mengubah panjang.
+
+<MathVisual
+  title={<>Refleksi Householder mengirim <InlineMath math="(3,4)" /> ke <InlineMath math="(5,0)" /></>}
+  description={<>Garis cermin abu-abu tegak lurus dengan vektor satuan hijau toska <InlineMath math="v" />. Vektor ungu <InlineMath math="x" /> dan bayangan magentanya <InlineMath math="Sx" /> sama panjang, dan ruas oranye di antara keduanya sejajar dengan <InlineMath math="v" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 5.5 }, y: { min: -1.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 2, y: 1 }], appearance: "reference" },
+      { id: "jump", kind: "segment", from: { x: 3, y: 4 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1 / Math.sqrt(5), y: 2 / Math.sqrt(5) }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "vector", objectId: "vector", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "normal", objectId: "normal", at: { x: -1 / Math.sqrt(5), y: 2 / Math.sqrt(5) }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "vector": <InlineMath math="x=(3,4)" />,
+    "image": <InlineMath math="Sx=(5,0)" />,
+    "normal": <InlineMath math="v" />,
+  }}
+/>
+
 ## Prosedur Householder
 
 Misalkan <InlineMath math="A\in\mathbb{R}^{m\times n}" /> memenuhi <InlineMath math="m\geq n" /> dan <InlineMath math="\operatorname{rank}(A)=n" />. **Setiap langkah Householder** membuat elemen di bawah satu posisi diagonal menjadi nol tanpa mengubah nol yang sudah terbentuk pada langkah sebelumnya.
@@ -230,22 +273,6 @@ Karena setiap reflektor ortogonal dan simetris, hasil kalinya memberikan
 </MathContainer>
 
 Matriks <InlineMath math="Q" /> bersifat ortogonal karena merupakan hasil kali beberapa reflektor ortogonal.
-
-Ikuti langkah ini untuk setiap kolom sampai matriksnya menjadi segitiga atas.
-
-<Mermaid
-  title="Langkah Householder"
-  description="Setiap cermin menolkan satu kolom di bawah diagonal."
-  chart={`
-    flowchart TD
-        A[Kolom k] --> B[Pilih cermin H_k]
-        B --> C[Entri di bawah diagonal menjadi nol]
-        C --> D[Terapkan H_k ke kolom sisanya]
-        D --> E{Kolom terakhir?}
-        E -->|Tidak| A
-        E -->|Ya| F[R di atas, Q dari semua H_k]
-  `}
-/>
 
 ## Algoritma Householder
 

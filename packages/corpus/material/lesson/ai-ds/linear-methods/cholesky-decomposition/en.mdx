@@ -43,17 +43,29 @@ Define the diagonal square-root matrix as follows.
 
 This matrix satisfies <InlineMath math="D^{\frac{1}{2}} \cdot D^{\frac{1}{2}} = D" />.
 
-This chain explains why a positive definite matrix factors without row swaps.
+For <InlineMath math="A=\begin{pmatrix}4&2\\2&5\end{pmatrix}" />, look at <InlineMath math="q(t)=(t,1)\,A\,(t,1)^T=4t^2+4t+5" />. Because <InlineMath math="A" /> is positive definite, <InlineMath math="q(t)>0" /> for every <InlineMath math="t" />. Its minimum, <InlineMath math="5-\tfrac{2^2}4=4" />, is the second pivot, so that pivot is positive and no row swap is ever needed.
 
-<Mermaid
-  title="Why Cholesky needs no row swaps"
-  description="Positive definiteness guarantees every pivot is positive."
-  chart={`
-    flowchart LR
-        A[A symmetric positive definite] --> B[Every pivot is positive]
-        B --> C[No row swaps needed]
-        C --> D[A = L L^T with positive diagonal]
-  `}
+<MathVisual
+  title={<>The second pivot is the minimum of <InlineMath math="q(t)=4t^2+4t+5" /></>}
+  description={<>The violet parabola never touches the axis. Its magenta lowest point sits at <InlineMath math="t=-\tfrac12" /> with value <InlineMath math="4" />, the second pivot <InlineMath math="a_{22}-a_{21}^2/a_{11}" />. The amber point is <InlineMath math="q(0)=a_{22}=5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 1 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "form", kind: "quadratic", coefficients: { a: 4, b: 4, c: 5 }, domain: { min: -1.5, max: 0.5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "pivot", kind: "point", at: { x: -1 / 2, y: 4 }, appearance: "answer" },
+      { id: "corner", kind: "point", at: { x: 0, y: 5 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "pivot", objectId: "pivot", at: { x: -1 / 2, y: 4 }, placement: "below" },
+      { key: "corner", objectId: "corner", at: { x: 0, y: 5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "pivot": <InlineMath math="q(-\tfrac12)=4" />,
+    "corner": <InlineMath math="a_{22}=5" />,
+  }}
 />
 
 ## The Unique Lower Triangular Factor
@@ -97,21 +109,6 @@ The **expression under each square root** must remain positive. A zero or negati
 After running the algorithm, we obtain the lower triangular Cholesky factor:
 
 <BlockMath math="\tilde L=\begin{pmatrix}\tilde l_{11}&amp;0&amp;\cdots&amp;0\\\tilde l_{21}&amp;\tilde l_{22}&amp;\cdots&amp;0\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\\tilde l_{n1}&amp;\tilde l_{n2}&amp;\cdots&amp;\tilde l_{nn}\end{pmatrix}" />
-
-This diagram sums up the order of calculation for one column <InlineMath math="j" />.
-
-<Mermaid
-  title="One column of the Cholesky algorithm"
-  description="The diagonal first, then the entries below it."
-  chart={`
-    flowchart TD
-        A[Column j] --> B[l_jj = root of a_jj minus the sum of l_jk^2]
-        B --> C{Is the radicand positive?}
-        C -->|No| X[A is not positive definite]
-        C -->|Yes| D[l_ij for i > j, divided by l_jj]
-        D --> E[Next column]
-  `}
-/>
 
 ## Factoring a Two by Two Positive Definite Matrix
 
@@ -173,3 +170,38 @@ The Cholesky algorithm for computing the Cholesky factor <InlineMath math="\tild
 This expression gives the number of arithmetic operations.
 
 The leading count contains about <InlineMath math="n^3/6" /> multiplications and <InlineMath math="n^3/6" /> additions. Together they give about <InlineMath math="n^3/3" /> floating-point operations, roughly half the <InlineMath math="2n^3/3" /> leading cost of <InlineMath math="\mathrm{LU}" /> factorization for a general dense matrix. Cholesky saves work by **using symmetry** and storing only one triangular half of the factorization.
+
+Both costs grow like <InlineMath math="n^3" />, so doubling <InlineMath math="n" /> multiplies the cost by eight. At every size, Cholesky still needs half the operations of <InlineMath math="\mathrm{LU}" />, because it uses the symmetry and computes only one triangular factor.
+
+<ScatterDiagram
+  title={<><InlineMath math="\tfrac13n^3" /> for Cholesky against <InlineMath math="\tfrac23n^3" /> for <InlineMath math="\mathrm{LU}" /></>}
+  description={<>For <InlineMath math="n=100" /> to <InlineMath math="600" />, the first series is <InlineMath math="n^3/3" /> and the second is <InlineMath math="2n^3/3" /> floating-point operations. At <InlineMath math="n=600" />, that is <InlineMath math="72" /> million against <InlineMath math="144" /> million.</>}
+  xAxisLabel="Matrix size"
+  yAxisLabel="Floating-point operations"
+  datasets={[
+    {
+      name: "Cholesky",
+      color: "var(--chart-1)",
+      points: [
+        { x: 100, y: 100 ** 3 / 3 },
+        { x: 200, y: 200 ** 3 / 3 },
+        { x: 300, y: 300 ** 3 / 3 },
+        { x: 400, y: 400 ** 3 / 3 },
+        { x: 500, y: 500 ** 3 / 3 },
+        { x: 600, y: 600 ** 3 / 3 },
+      ],
+    },
+    {
+      name: "LU",
+      color: "var(--chart-2)",
+      points: [
+        { x: 100, y: 2 * 100 ** 3 / 3 },
+        { x: 200, y: 2 * 200 ** 3 / 3 },
+        { x: 300, y: 2 * 300 ** 3 / 3 },
+        { x: 400, y: 2 * 400 ** 3 / 3 },
+        { x: 500, y: 2 * 500 ** 3 / 3 },
+        { x: 600, y: 2 * 600 ** 3 / 3 },
+      ],
+    },
+  ]}
+/>

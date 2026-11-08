@@ -83,20 +83,6 @@ Sei <InlineMath math="Hv=\lambda v" /> mit <InlineMath math="v\neq0" />. Aus der
 
 Da <InlineMath math="v^Hv>0" /> gilt, folgt <InlineMath math="\lambda=\overline{\lambda}" /> und damit <InlineMath math="\lambda\in\mathbb{R}" />. Für reelle symmetrische Matrizen gilt dieselbe Folgerung.
 
-Folg dieser Kette, um zu sehen, woher die Reellheit kommt.
-
-<Mermaid
-  title="Warum hermitesche Eigenwerte reell sind"
-  description="Eine kurze Kette von der Eigenwertgleichung bis zu einem reellen Eigenwert."
-  chart={`
-    flowchart LR
-        A[Hv = λv, v ≠ 0] --> B[v^H H v = λ v^H v]
-        B --> C[v^H H v reell, weil H^H = H]
-        C --> D[v^H v > 0 reell]
-        D --> E[λ reell]
-  `}
-/>
-
 ## Warum verschiedene Eigenräume orthogonal sind
 
 Seien <InlineMath math="Hv=\lambda v" /> und <InlineMath math="Hw=\mu w" /> mit <InlineMath math="\lambda\neq\mu" />. Da **beide Eigenwerte reell** sind,
@@ -107,6 +93,34 @@ Seien <InlineMath math="Hv=\lambda v" /> und <InlineMath math="Hw=\mu w" /> mit 
 </MathContainer>
 
 Daher gilt <InlineMath math="(\lambda-\mu)w^Hv=0" /> und somit <InlineMath math="w^Hv=0" />. Bei einem mehrfachen Eigenwert müssen beliebige Eigenvektoren innerhalb desselben Eigenraums nicht orthogonal sein. Mit Gram-Schmidt lässt sich dort jedoch eine Orthonormalbasis wählen.
+
+Für die symmetrische Matrix <InlineMath math="A=\begin{pmatrix}1&2\\2&1\end{pmatrix}" /> haben die Eigenwerte <InlineMath math="3" /> und <InlineMath math="-1" /> die Eigenvektoren <InlineMath math="v_1=(1,1)" /> und <InlineMath math="v_2=(1,-1)" />. Ihr Skalarprodukt ist <InlineMath math="1-1=0" />, genau das garantiert <InlineMath math="\lambda_1\langle v_1,v_2\rangle=\langle Av_1,v_2\rangle=\langle v_1,Av_2\rangle=\lambda_2\langle v_1,v_2\rangle" /> mit <InlineMath math="\lambda_1\neq\lambda_2" />.
+
+<MathVisual
+  title={<>Die Eigenvektoren zu <InlineMath math="3" /> und <InlineMath math="-1" /> stehen senkrecht aufeinander</>}
+  description={<>Die türkise Strecke <InlineMath math="v_1" /> wird zur violetten Strecke <InlineMath math="3v_1" /> gestreckt. Die orange Strecke <InlineMath math="v_2" /> klappt zur magentafarbenen Strecke <InlineMath math="-v_2" /> um. Beide Geraden bilden weiter einen rechten Winkel.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "second-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first-image", objectId: "first-image", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1, y: -1 }, placement: "right" },
+      { key: "second-image", objectId: "second-image", at: { x: -1, y: 1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first-image": <InlineMath math="Av_1=3v_1" />,
+    "second": <InlineMath math="v_2" />,
+    "second-image": <InlineMath math="Av_2=-v_2" />,
+  }}
+/>
 
 ## Spektralzerlegung und Geometrie quadratischer Formen
 
@@ -177,16 +191,15 @@ Prüfe die Orthogonalität und den ersten Eigenvektor direkt. Der Normierungsfak
 <BlockMath math="Hu_1=\frac1{\sqrt3}\begin{pmatrix}-2(1+i)+(1+i)\\-(1-i)(1+i)+3\end{pmatrix}=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}=u_1" />
 </MathContainer>
 
-Dieses Diagramm fasst die Schritte des Beispiels oben zusammen, vom Polynom bis zur Diagonalmatrix.
+Prüfe <InlineMath math="u_1^Hu_2" /> Summand für Summand. Die ersten Einträge liefern <InlineMath math="\overline{-(1+i)}\,(1+i)/\sqrt{18}=-(1-i)(1+i)/\sqrt{18}=-2/\sqrt{18}" />, die zweiten Einträge <InlineMath math="1\cdot2/\sqrt{18}=2/\sqrt{18}" />. Beide Summanden heben sich auf, also gilt <InlineMath math="u_1^Hu_2=0" />.
 
-<Mermaid
-  title="Schritte der hermiteschen Diagonalisierung"
-  description="Das hermitesche Beispiel oben, Schritt für Schritt."
-  chart={`
-    flowchart TD
-        A["det(H - λI) = (λ - 1)(λ - 4)"] --> B[Eigenvektoren u_1, u_2]
-        B --> C[Normieren und u_1^H u_2 = 0 prüfen]
-        C --> D[U = u_1, u_2 als Spalten]
-        D --> E[U^H H U = diag 1, 4]
-  `}
+<BarChart
+  title={<>Die beiden Summanden von <InlineMath math="u_1^Hu_2" /> heben sich auf</>}
+  description={<>Der erste Balken ist <InlineMath math="\bar u_{11}u_{21}=-2/\sqrt{18}" />, der zweite ist <InlineMath math="\bar u_{12}u_{22}=2/\sqrt{18}" />. Sie sind gleich hoch mit entgegengesetztem Vorzeichen, also ist die Summe <InlineMath math="0" />.</>}
+  yAxisLabel="Summand des Skalarprodukts"
+  data={[
+    { name: "erste Einträge", value: -2 / Math.sqrt(18) },
+    { name: "zweite Einträge", value: 2 / Math.sqrt(18) },
+  ]}
+  chartConfig={{ value: { label: "Summand des Skalarprodukts", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />

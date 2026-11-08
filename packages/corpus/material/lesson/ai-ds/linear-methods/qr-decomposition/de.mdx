@@ -44,20 +44,6 @@ Durch Anhängen von <InlineMath math="m-n" /> Nullzeilen an <InlineMath math="R_
 
 Die ergänzten Matrizen erfüllen weiterhin <InlineMath math="A=Q_1R_1=QR" />.
 
-Dieses Diagramm zeigt eine Runde Gram-Schmidt für Spalte j.
-
-<Mermaid
-  title="Gram-Schmidt Spalte für Spalte"
-  description="Jede Spalte verliert ihre Projektionen und wird dann normiert."
-  chart={`
-    flowchart LR
-        A[Spalte a_j] --> B[r_ij = q_i^T a_j für i < j]
-        B --> C[Alle r_ij q_i abziehen]
-        C --> D[Normieren: r_jj und q_j]
-        D --> E[Nächste Spalte]
-  `}
-/>
-
 ## Vollständige und reduzierte Zerlegung mit QR
 
 Für <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> beschreiben die vollständige und die reduzierte Form dieselbe Faktorisierung mit **unterschiedlichen Matrixgrößen**. Beide ergeben beim Zurückmultiplizieren wieder <InlineMath math="A" />, sodass die Wahl davon abhängt, ob du die vollständige Orthonormalbasis brauchst oder nur die Spalten, die die Daten tragen.
@@ -87,6 +73,34 @@ Der Kern von <InlineMath math="A^T" /> enthält genau die Vektoren <InlineMath m
 ### Eindeutigkeit
 
 Für eine Matrix mit vollem Spaltenrang ist die reduzierte Faktorisierung <InlineMath math="A=Q_1R_1" /> eindeutig, wenn alle **Diagonaleinträge** von <InlineMath math="R_1" /> **positiv** sind. Diese Vorzeichenbedingung beseitigt die verbleibende Freiheit, denn multiplizierst du eine Spalte von <InlineMath math="Q_1" /> und die zugehörige Zeile von <InlineMath math="R_1" /> mit <InlineMath math="-1" />, bleibt das Produkt unverändert.
+
+Für die Spalten <InlineMath math="a_1=(1,1,0)" /> und <InlineMath math="a_2=(1,0,1)" /> liefert Gram-Schmidt <InlineMath math="q_1=\tfrac1{\sqrt2}(1,1,0)" /> und <InlineMath math="q_2=\tfrac1{\sqrt6}(1,-1,2)" />. Die reduzierte Zerlegung endet hier. Die vollständige ergänzt <InlineMath math="q_3=\tfrac1{\sqrt3}(1,-1,-1)" />, senkrecht zur Spaltenebene, und eine Nullzeile unter <InlineMath math="R" />.
+
+<MathVisual
+  title={<>Reduziertes und vollständiges <InlineMath math="Q" /> für zwei Spalten in <InlineMath math="\mathbb R^3" /></>}
+  description={<>Das graue Parallelogramm ist die von <InlineMath math="a_1" /> und <InlineMath math="a_2" /> aufgespannte Ebene. Die violette Strecke <InlineMath math="q_1" /> und die türkise Strecke <InlineMath math="q_2" /> liegen in dieser Ebene und bilden das reduzierte <InlineMath math="Q" />. Die orange Strecke <InlineMath math="q_3" /> steht senkrecht auf der Ebene und vervollständigt <InlineMath math="Q" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 2.2 }, y: { min: -1.2, max: 1.2 }, z: { min: -1, max: 1.2 } },
+    view: { kind: "isometric", target: { x: 0.6, y: 0, z: 0.3 } },
+    objects: [
+      { id: "span", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 2, y: 1, z: 1 }, { x: 1, y: 0, z: 1 }], appearance: "reference" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(2), y: 1 / Math.sqrt(2), z: 0 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }, appearance: "construction" },
+      { id: "third", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(3), y: -1 / Math.sqrt(3), z: -1 / Math.sqrt(3) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1 / Math.sqrt(2), y: 1 / Math.sqrt(2), z: 0 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }, placement: "above" },
+      { key: "third", objectId: "third", at: { x: 1 / Math.sqrt(3), y: -1 / Math.sqrt(3), z: -1 / Math.sqrt(3) }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="q_1" />,
+    "second": <InlineMath math="q_2" />,
+    "third": <InlineMath math="q_3" />,
+  }}
+/>
 
 ## Beispiel einer dünnen Zerlegung mit QR
 
@@ -171,6 +185,35 @@ Für <InlineMath math="S=I-2vv^T" /> und <InlineMath math="\|v\|_2=1" /> gelten 
 
 4. <InlineMath math="\text{cond}_2(S) = 1" />
 
+Für <InlineMath math="x=(3,4)" /> mit <InlineMath math="\|x\|_2=5" /> wähle <InlineMath math="v=\tfrac{x-5e_1}{\|x-5e_1\|_2}=\tfrac1{\sqrt5}(-1,2)" />. Dann spiegelt <InlineMath math="S=I-2vv^T" /> den Vektor <InlineMath math="x" /> an der Geraden senkrecht zu <InlineMath math="v" /> und schickt ihn nach <InlineMath math="(5,0)" />. Eine einzige Spiegelung macht den zweiten Eintrag zu null, ohne die Länge zu ändern.
+
+<MathVisual
+  title={<>Eine Householder-Spiegelung schickt <InlineMath math="(3,4)" /> nach <InlineMath math="(5,0)" /></>}
+  description={<>Die graue Spiegelachse steht senkrecht auf dem türkisen Einheitsvektor <InlineMath math="v" />. Der violette Vektor <InlineMath math="x" /> und sein magentafarbenes Bild <InlineMath math="Sx" /> sind gleich lang, und die orange Strecke zwischen ihnen ist parallel zu <InlineMath math="v" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 5.5 }, y: { min: -1.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 2, y: 1 }], appearance: "reference" },
+      { id: "jump", kind: "segment", from: { x: 3, y: 4 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1 / Math.sqrt(5), y: 2 / Math.sqrt(5) }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "vector", objectId: "vector", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "normal", objectId: "normal", at: { x: -1 / Math.sqrt(5), y: 2 / Math.sqrt(5) }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "vector": <InlineMath math="x=(3,4)" />,
+    "image": <InlineMath math="Sx=(5,0)" />,
+    "normal": <InlineMath math="v" />,
+  }}
+/>
+
 ## Householderverfahren
 
 Sei <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq n" /> und <InlineMath math="\operatorname{rang}(A)=n" />. **In jedem Householder-Schritt** werden die Einträge unter einer Diagonalposition null, während die bereits erzeugten Nullen erhalten bleiben.
@@ -230,22 +273,6 @@ Da jeder Reflektor orthogonal und symmetrisch ist, liefert ihr Produkt
 </MathContainer>
 
 Die Matrix <InlineMath math="Q" /> ist als Produkt orthogonaler Reflektoren ebenfalls orthogonal.
-
-Folg diesen Schritten für jede Spalte, bis die Matrix obere Dreiecksform hat.
-
-<Mermaid
-  title="Householder-Schritte"
-  description="Jeder Spiegel nullt eine Spalte unterhalb der Diagonale."
-  chart={`
-    flowchart TD
-        A[Spalte k] --> B[Spiegel H_k wählen]
-        B --> C[Einträge unter der Diagonale werden null]
-        C --> D[H_k auf die übrigen Spalten anwenden]
-        D --> E{Letzte Spalte?}
-        E -->|Nein| A
-        E -->|Ja| F[R oben, Q aus allen H_k]
-  `}
-/>
 
 ## Implementierungsalgorithmus
 

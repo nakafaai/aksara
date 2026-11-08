@@ -19,18 +19,27 @@ Dalam model ini, <InlineMath math="X\in\mathbb{R}^{m\times p}" /> adalah matriks
 
 Asumsi kedua adalah <InlineMath math="X" /> memiliki rank kolom penuh. Dengan kedua asumsi tersebut, vektor observasi <InlineMath math="y" /> mengikuti <InlineMath math="\mathcal N(X\beta,\sigma^2I_m)" />. Rataan vektor <InlineMath math="y" /> adalah <InlineMath math="X\beta" />, sedangkan matriks kovariansnya adalah <InlineMath math="\sigma^2I_m" />.
 
-Alur ini menunjukkan bagaimana model statistik mengarah ke interval kepercayaan.
+Ambil tiga pengamatan dari contoh berbobot di akhir pelajaran ini, <InlineMath math="(0,1)" />, <InlineMath math="(1,2)" />, dan <InlineMath math="(2,5)" />, dengan bobot sama. Kuadrat terkecil biasa memberi <InlineMath math="\hat\beta=(X^TX)^{-1}X^Ty=(\tfrac23,2)" /> dengan residu <InlineMath math="\tfrac13" />, <InlineMath math="-\tfrac23" />, dan <InlineMath math="\tfrac13" />. Dalam model <InlineMath math="y=X\beta+\varepsilon" />, residu ini menaksir galat <InlineMath math="\varepsilon" />, dan jumlah kuadratnya <InlineMath math="\tfrac23" />.
 
-<Mermaid
-  title="Dari model ke interval kepercayaan"
-  description="Setiap langkah memakai hasil langkah sebelumnya."
-  chart={`
-    flowchart LR
-        A[y = Xβ + ε] --> B[Estimasi β]
-        B --> C[Kovarians estimator]
-        C --> D[Galat baku]
-        D --> E[Interval kepercayaan]
-  `}
+<ScatterDiagram
+  title={<>Garis kuadrat terkecil <InlineMath math="y=\tfrac23+2t" /> dan residunya</>}
+  description={<>Tiga titik <InlineMath math="(0,1)" />, <InlineMath math="(1,2)" />, dan <InlineMath math="(2,5)" /> dengan garis yang dicocokkan. Ruas residunya punya panjang <InlineMath math="\tfrac13" />, <InlineMath math="\tfrac23" />, dan <InlineMath math="\tfrac13" />, jadi jumlah kuadrat residunya <InlineMath math="\tfrac23" />.</>}
+  xAxisLabel="Nilai masukan"
+  yAxisLabel="Respons"
+  datasets={[
+    {
+      name: "Pengamatan",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 1 },
+        { x: 1, y: 2 },
+        { x: 2, y: 5 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+  showResiduals
 />
 
 ## Informasi Fisher dan Kovarians Penduga
@@ -65,6 +74,29 @@ Kovariansnya <Highlight>tepat sama dengan invers informasi Fisher</Highlight> pa
 Elemen diagonal <InlineMath math="c_{jj}" /> adalah varians <InlineMath math="\hat\beta_j" />. Elemen di luar diagonal <InlineMath math="c_{jk}" /> mengukur bagaimana dua penduga koefisien berubah bersama, sedangkan korelasinya ialah
 
 <BlockMath math="\rho_{jk}=\frac{c_{jk}}{\sqrt{c_{jj}c_{kk}}}" />
+
+Untuk data yang sama, <InlineMath math="(X^TX)^{-1}=\tfrac16\begin{pmatrix}5&-3\\-3&3\end{pmatrix}" /> dan <InlineMath math="\hat\sigma^2=\tfrac{2/3}{3-2}=\tfrac23" />. Kovarians penduga <InlineMath math="\hat\sigma^2(X^TX)^{-1}" /> memberi galat baku <InlineMath math="\sqrt{5/9}\approx0.75" /> untuk intersep dan <InlineMath math="\sqrt{1/3}\approx0.58" /> untuk kemiringan.
+
+<MathVisual
+  title={<>Galat baku dari <InlineMath math="\hat\sigma^2(X^TX)^{-1}" /></>}
+  description={<>Titik magenta adalah <InlineMath math="\hat\beta" /> di bidang parameter, dengan intersep mendatar dan kemiringan tegak. Ruas ungu memanjang satu galat baku intersep ke tiap sisi, dan ruas hijau toska satu galat baku kemiringan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.8 }, y: { min: 1.2, max: 2.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "intercept", kind: "segment", from: { x: 2 / 3 - Math.sqrt(5 / 9), y: 2 }, to: { x: 2 / 3 + Math.sqrt(5 / 9), y: 2 }, appearance: "secondary" },
+      { id: "slope", kind: "segment", from: { x: 2 / 3, y: 2 - Math.sqrt(1 / 3) }, to: { x: 2 / 3, y: 2 + Math.sqrt(1 / 3) }, appearance: "construction" },
+      { id: "estimate", kind: "point", at: { x: 2 / 3, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "estimate", objectId: "estimate", at: { x: 2 / 3, y: 2 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "estimate": <InlineMath math="\hat\beta=(\tfrac23,2)" />,
+  }}
+/>
 
 ## Interval Kepercayaan Saat Varians Belum Diketahui
 
@@ -112,20 +144,6 @@ Untuk galat independen dengan varians <InlineMath math="\sigma_i^2" />, gunakan 
 <BlockMath math="\sum_{i=1}^m\frac{(y_i-x_i^T\beta)^2}{\sigma_i^2}" />
 
 Setiap observasi <InlineMath math="i" /> memperoleh **bobot** <InlineMath math="1/\sigma_i^2" />. Whitening dengan <InlineMath math="W=\Omega^{-1/2}" /> mengubah masalah ini menjadi kuadrat terkecil biasa untuk <InlineMath math="\widetilde X=WX" /> dan <InlineMath math="\widetilde y=Wy" />.
-
-Diagram ini menunjukkan mengapa versi berbobot tetap bisa diselesaikan dengan kuadrat terkecil biasa.
-
-<Mermaid
-  title="Kuadrat terkecil berbobot sebagai transformasi"
-  description="Bobot mengubah masalah kembali menjadi kuadrat terkecil biasa."
-  chart={`
-    flowchart LR
-        A[Cov ε = σ^2 Ω] --> B[Kalikan data dengan Ω^-1/2]
-        B --> C[Galat baru berkovarians σ^2 I]
-        C --> D[Kuadrat terkecil biasa]
-        D --> E[β_GLS]
-  `}
-/>
 
 ## Mencocokkan Model Linear Berbobot
 

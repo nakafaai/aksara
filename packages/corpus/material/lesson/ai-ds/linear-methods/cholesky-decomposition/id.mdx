@@ -43,17 +43,29 @@ Definisikan matriks akar diagonal sebagai berikut.
 
 Matriks tersebut memenuhi <InlineMath math="D^{\frac{1}{2}} \cdot D^{\frac{1}{2}} = D" />.
 
-Rantai ini menjelaskan mengapa matriks definit positif bisa difaktorkan tanpa tukar baris.
+Untuk <InlineMath math="A=\begin{pmatrix}4&2\\2&5\end{pmatrix}" />, lihat <InlineMath math="q(t)=(t,1)\,A\,(t,1)^T=4t^2+4t+5" />. Karena <InlineMath math="A" /> positif definit, <InlineMath math="q(t)>0" /> untuk setiap <InlineMath math="t" />. Nilai minimumnya, <InlineMath math="5-\tfrac{2^2}4=4" />, adalah pivot kedua, jadi pivot itu pasti positif dan tidak ada baris yang perlu ditukar.
 
-<Mermaid
-  title="Mengapa Cholesky tidak perlu tukar baris"
-  description="Definit positif menjamin setiap pivot positif."
-  chart={`
-    flowchart LR
-        A[A simetris definit positif] --> B[Setiap pivot positif]
-        B --> C[Tidak perlu tukar baris]
-        C --> D[A = L L^T dengan diagonal positif]
-  `}
+<MathVisual
+  title={<>Pivot kedua adalah minimum <InlineMath math="q(t)=4t^2+4t+5" /></>}
+  description={<>Parabola ungu tidak pernah menyentuh sumbu. Titik terendahnya yang magenta ada di <InlineMath math="t=-\tfrac12" /> dengan nilai <InlineMath math="4" />, sama dengan pivot kedua <InlineMath math="a_{22}-a_{21}^2/a_{11}" />. Titik kuning <InlineMath math="q(0)=a_{22}=5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 1 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "form", kind: "quadratic", coefficients: { a: 4, b: 4, c: 5 }, domain: { min: -1.5, max: 0.5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "pivot", kind: "point", at: { x: -1 / 2, y: 4 }, appearance: "answer" },
+      { id: "corner", kind: "point", at: { x: 0, y: 5 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "pivot", objectId: "pivot", at: { x: -1 / 2, y: 4 }, placement: "below" },
+      { key: "corner", objectId: "corner", at: { x: 0, y: 5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "pivot": <InlineMath math="q(-\tfrac12)=4" />,
+    "corner": <InlineMath math="a_{22}=5" />,
+  }}
 />
 
 ## Faktor Segitiga Bawah dengan Diagonal Positif
@@ -97,21 +109,6 @@ Rumus kedua berlaku untuk <InlineMath math="j = i + 1, \ldots, n" />.
 Setelah algoritma selesai, kita memperoleh faktor Cholesky segitiga bawah:
 
 <BlockMath math="\tilde L=\begin{pmatrix}\tilde l_{11}&amp;0&amp;\cdots&amp;0\\\tilde l_{21}&amp;\tilde l_{22}&amp;\cdots&amp;0\\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\\tilde l_{n1}&amp;\tilde l_{n2}&amp;\cdots&amp;\tilde l_{nn}\end{pmatrix}" />
-
-Diagram ini meringkas urutan perhitungan untuk satu kolom <InlineMath math="j" />.
-
-<Mermaid
-  title="Satu kolom algoritma Cholesky"
-  description="Diagonal dulu, lalu entri di bawahnya."
-  chart={`
-    flowchart TD
-        A[Kolom j] --> B[l_jj = akar dari a_jj dikurangi jumlah l_jk^2]
-        B --> C{Isi akar positif?}
-        C -->|Tidak| X[A tidak definit positif]
-        C -->|Ya| D[l_ij untuk i > j, dibagi l_jj]
-        D --> E[Kolom berikutnya]
-  `}
-/>
 
 ## Memfaktorkan Matriks Positif Definit Ordo Dua
 
@@ -173,3 +170,38 @@ Algoritma Cholesky untuk menghitung faktor Cholesky <InlineMath math="\tilde{L}"
 Rumus tersebut menyatakan jumlah operasi aritmetika.
 
 Biaya utama faktorisasi Cholesky terdiri atas sekitar <InlineMath math="n^3/6" /> perkalian dan <InlineMath math="n^3/6" /> penjumlahan. Jika digabungkan, totalnya sekitar <InlineMath math="n^3/3" /> operasi titik mengambang, kira-kira separuh biaya utama <InlineMath math="2n^3/3" /> untuk faktorisasi <InlineMath math="\mathrm{LU}" /> matriks rapat umum. Cholesky menghemat kerja dengan **memanfaatkan kesimetrian** dan hanya menyimpan satu bagian segitiga dari faktorisasi.
+
+Kedua biaya tumbuh seperti <InlineMath math="n^3" />, jadi menggandakan <InlineMath math="n" /> melipatkan biaya delapan kali. Pada setiap ukuran, Cholesky tetap butuh separuh operasi <InlineMath math="\mathrm{LU}" />, karena ia memanfaatkan simetri dan hanya menghitung satu faktor segitiga.
+
+<ScatterDiagram
+  title={<><InlineMath math="\tfrac13n^3" /> untuk Cholesky melawan <InlineMath math="\tfrac23n^3" /> untuk <InlineMath math="\mathrm{LU}" /></>}
+  description={<>Untuk <InlineMath math="n=100" /> sampai <InlineMath math="600" />, titik pertama adalah <InlineMath math="n^3/3" /> dan titik kedua <InlineMath math="2n^3/3" /> operasi titik mengambang. Pada <InlineMath math="n=600" />, nilainya <InlineMath math="72" /> juta melawan <InlineMath math="144" /> juta.</>}
+  xAxisLabel="Ukuran matriks"
+  yAxisLabel="Operasi titik mengambang"
+  datasets={[
+    {
+      name: "Cholesky",
+      color: "var(--chart-1)",
+      points: [
+        { x: 100, y: 100 ** 3 / 3 },
+        { x: 200, y: 200 ** 3 / 3 },
+        { x: 300, y: 300 ** 3 / 3 },
+        { x: 400, y: 400 ** 3 / 3 },
+        { x: 500, y: 500 ** 3 / 3 },
+        { x: 600, y: 600 ** 3 / 3 },
+      ],
+    },
+    {
+      name: "LU",
+      color: "var(--chart-2)",
+      points: [
+        { x: 100, y: 2 * 100 ** 3 / 3 },
+        { x: 200, y: 2 * 200 ** 3 / 3 },
+        { x: 300, y: 2 * 300 ** 3 / 3 },
+        { x: 400, y: 2 * 400 ** 3 / 3 },
+        { x: 500, y: 2 * 500 ** 3 / 3 },
+        { x: 600, y: 2 * 600 ** 3 / 3 },
+      ],
+    },
+  ]}
+/>

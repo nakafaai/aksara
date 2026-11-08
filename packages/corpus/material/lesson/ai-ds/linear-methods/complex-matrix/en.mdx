@@ -36,17 +36,42 @@ For example,
 
 The entry in row <InlineMath math="j" /> and column <InlineMath math="i" /> of <InlineMath math="A^H" /> is therefore <InlineMath math="\overline{a_{ij}}" />.
 
-The two steps in this diagram turn <InlineMath math="A" /> into <InlineMath math="A^H" />.
+Take <InlineMath math="A=\begin{pmatrix}1+2i&3-i\\-2+i&2i\end{pmatrix}" />. Conjugation mirrors every entry across the real axis, then the transpose swaps the places of <InlineMath math="a_{12}" /> and <InlineMath math="a_{21}" />, so <InlineMath math="A^H=\begin{pmatrix}1-2i&-2-i\\3+i&-2i\end{pmatrix}" />.
 
-<Mermaid
-  title="Forming the adjoint matrix"
-  description="Conjugate every entry, then transpose."
-  chart={`
-    flowchart LR
-        A[A] --> B[Conjugate every entry]
-        B --> C[Transpose]
-        C --> D[A^H]
-  `}
+<MathVisual
+  title={<>Conjugation mirrors every entry of <InlineMath math="A" /></>}
+  description={<>The violet points are the four entries of <InlineMath math="A" /> in the complex plane. The magenta points are their conjugates, and each gray segment is perpendicular to the real axis and cut in half by it.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 4 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pair-one", kind: "segment", from: { x: 1, y: 2 }, to: { x: 1, y: -2 }, appearance: "reference" },
+      { id: "pair-two", kind: "segment", from: { x: 3, y: -1 }, to: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "pair-three", kind: "segment", from: { x: -2, y: 1 }, to: { x: -2, y: -1 }, appearance: "reference" },
+      { id: "pair-four", kind: "segment", from: { x: 0, y: 2 }, to: { x: 0, y: -2 }, appearance: "reference" },
+      { id: "a11", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "a12", kind: "point", at: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "a21", kind: "point", at: { x: -2, y: 1 }, appearance: "secondary" },
+      { id: "a22", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+      { id: "c11", kind: "point", at: { x: 1, y: -2 }, appearance: "answer" },
+      { id: "c12", kind: "point", at: { x: 3, y: 1 }, appearance: "answer" },
+      { id: "c21", kind: "point", at: { x: -2, y: -1 }, appearance: "answer" },
+      { id: "c22", kind: "point", at: { x: 0, y: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a11", objectId: "a11", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "a12", objectId: "a12", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "a21", objectId: "a21", at: { x: -2, y: 1 }, placement: "left" },
+      { key: "a22", objectId: "a22", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "a11": <InlineMath math="1+2i" />,
+    "a12": <InlineMath math="3-i" />,
+    "a21": <InlineMath math="-2+i" />,
+    "a22": <InlineMath math="2i" />,
+  }}
 />
 
 ## Properties of Adjoint Matrix
@@ -69,17 +94,31 @@ For the one-entry matrix <InlineMath math="A=(1+i)" />, compare the conjugate of
 <BlockMath math="iA^H=i(1-i)=1+i\ne(iA)^H" />
 </MathContainer>
 
-Keep the three rules in this diagram at hand when you calculate with adjoints.
+The <InlineMath math="1\times1" /> matrix <InlineMath math="A=(z)" /> has <InlineMath math="A^HA=(\bar zz)=(|z|^2)" />. For <InlineMath math="z=1+2i" />, the angle of <InlineMath math="\bar z" /> is minus the angle of <InlineMath math="z" />, so the product lands on the positive real axis: <InlineMath math="\bar zz=(1-2i)(1+2i)=1+4=5" />. That is why the diagonal of <InlineMath math="A^HA" /> is always real and nonnegative.
 
-<Mermaid
-  title="Rules for the adjoint"
-  description="The three rules you use most often."
-  chart={`
-    flowchart TD
-        A[Adjoint] --> B["(AB)^H = B^H A^H"]
-        A --> C["(A^H)^H = A"]
-        A --> D["⟨Av, w⟩ = ⟨v, A^H w⟩"]
-  `}
+<MathVisual
+  title={<><InlineMath math="\bar zz=|z|^2" /> for <InlineMath math="z=1+2i" /></>}
+  description={<>The violet segment <InlineMath math="z" /> and the teal segment <InlineMath math="\bar z" /> make opposite angles with the real axis. Their product is the magenta segment <InlineMath math="\bar zz=5" /> on the positive real axis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "number", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "conjugate", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -2 }, appearance: "construction" },
+      { id: "product", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "number", objectId: "number", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "conjugate", objectId: "conjugate", at: { x: 1, y: -2 }, placement: "right" },
+      { key: "product", objectId: "product", at: { x: 5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "number": <InlineMath math="z=1+2i" />,
+    "conjugate": <InlineMath math="\bar z=1-2i" />,
+    "product": <InlineMath math="\bar zz=5" />,
+  }}
 />
 
 ## Euclidean Norm on Complex Spaces

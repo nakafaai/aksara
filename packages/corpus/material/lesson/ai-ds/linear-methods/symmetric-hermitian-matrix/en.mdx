@@ -83,20 +83,6 @@ Suppose <InlineMath math="Hv=\lambda v" /> with <InlineMath math="v\neq0" />. **
 
 Since <InlineMath math="v^Hv>0" />, it follows that <InlineMath math="\lambda=\overline{\lambda}" /> and therefore <InlineMath math="\lambda\in\mathbb{R}" />. Real symmetric matrices inherit the same conclusion.
 
-Follow this chain to see where the realness comes from.
-
-<Mermaid
-  title="Why Hermitian eigenvalues are real"
-  description="A short chain from the eigen equation to a real eigenvalue."
-  chart={`
-    flowchart LR
-        A[Hv = λv, v ≠ 0] --> B[v^H H v = λ v^H v]
-        B --> C[v^H H v is real because H^H = H]
-        C --> D[v^H v > 0 is real]
-        D --> E[λ is real]
-  `}
-/>
-
 ## Why Distinct Eigenspaces Are Orthogonal
 
 Let <InlineMath math="Hv=\lambda v" /> and <InlineMath math="Hw=\mu w" /> with <InlineMath math="\lambda\neq\mu" />. Because **both eigenvalues are real**,
@@ -107,6 +93,34 @@ Let <InlineMath math="Hv=\lambda v" /> and <InlineMath math="Hw=\mu w" /> with <
 </MathContainer>
 
 Hence <InlineMath math="(\lambda-\mu)w^Hv=0" />, so <InlineMath math="w^Hv=0" />. With a repeated eigenvalue, arbitrary eigenvectors inside the same eigenspace may fail to be orthogonal. Gram-Schmidt can produce an orthonormal basis within that eigenspace.
+
+For the symmetric matrix <InlineMath math="A=\begin{pmatrix}1&2\\2&1\end{pmatrix}" />, the eigenvalues <InlineMath math="3" /> and <InlineMath math="-1" /> have the eigenvectors <InlineMath math="v_1=(1,1)" /> and <InlineMath math="v_2=(1,-1)" />. Their inner product is <InlineMath math="1-1=0" />, exactly what <InlineMath math="\lambda_1\langle v_1,v_2\rangle=\langle Av_1,v_2\rangle=\langle v_1,Av_2\rangle=\lambda_2\langle v_1,v_2\rangle" /> with <InlineMath math="\lambda_1\neq\lambda_2" /> guarantees.
+
+<MathVisual
+  title={<>The eigenvectors for <InlineMath math="3" /> and <InlineMath math="-1" /> are perpendicular</>}
+  description={<>The teal segment <InlineMath math="v_1" /> stretches to the violet segment <InlineMath math="3v_1" />. The orange segment <InlineMath math="v_2" /> flips to the magenta segment <InlineMath math="-v_2" />. The two lines still meet at a right angle.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "second-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first-image", objectId: "first-image", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1, y: -1 }, placement: "right" },
+      { key: "second-image", objectId: "second-image", at: { x: -1, y: 1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first-image": <InlineMath math="Av_1=3v_1" />,
+    "second": <InlineMath math="v_2" />,
+    "second-image": <InlineMath math="Av_2=-v_2" />,
+  }}
+/>
 
 ## Spectral Decomposition and Quadratic Geometry
 
@@ -177,16 +191,15 @@ Check the orthogonality and the first eigenvector directly. The normalizing fact
 <BlockMath math="Hu_1=\frac1{\sqrt3}\begin{pmatrix}-2(1+i)+(1+i)\\-(1-i)(1+i)+3\end{pmatrix}=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}=u_1" />
 </MathContainer>
 
-This diagram sums up the steps of the example above, from the polynomial to the diagonal matrix.
+Check <InlineMath math="u_1^Hu_2" /> term by term. The first entries give <InlineMath math="\overline{-(1+i)}\,(1+i)/\sqrt{18}=-(1-i)(1+i)/\sqrt{18}=-2/\sqrt{18}" />, and the second entries give <InlineMath math="1\cdot2/\sqrt{18}=2/\sqrt{18}" />. The two terms cancel, so <InlineMath math="u_1^Hu_2=0" />.
 
-<Mermaid
-  title="Hermitian diagonalization steps"
-  description="The Hermitian example above, step by step."
-  chart={`
-    flowchart TD
-        A["det(H - λI) = (λ - 1)(λ - 4)"] --> B[Eigenvectors u_1, u_2]
-        B --> C[Normalize and check u_1^H u_2 = 0]
-        C --> D[U = u_1, u_2 as columns]
-        D --> E[U^H H U = diag 1, 4]
-  `}
+<BarChart
+  title={<>The two terms of <InlineMath math="u_1^Hu_2" /> cancel</>}
+  description={<>The first bar is <InlineMath math="\bar u_{11}u_{21}=-2/\sqrt{18}" />, the second is <InlineMath math="\bar u_{12}u_{22}=2/\sqrt{18}" />. They have the same height with opposite signs, so the sum is <InlineMath math="0" />.</>}
+  yAxisLabel="Inner product term"
+  data={[
+    { name: "first entries", value: -2 / Math.sqrt(18) },
+    { name: "second entries", value: 2 / Math.sqrt(18) },
+  ]}
+  chartConfig={{ value: { label: "Inner product term", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />

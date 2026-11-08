@@ -23,16 +23,18 @@ A complex matrix <InlineMath math="A \in \mathbb{C}^{n \times n}" /> is called n
 
 This algebraic condition makes eigenspaces for distinct eigenvalues orthogonal. Over <InlineMath math="\mathbb{C}" />, it also allows a unitary diagonalization.
 
-This diagram links the normal condition with unitary diagonalization.
+Test normality by computing <InlineMath math="\|A^HA-AA^H\|_F" />. The symmetric matrix <InlineMath math="\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> and the rotation <InlineMath math="\begin{pmatrix}0&-1\\1&0\end{pmatrix}" /> give <InlineMath math="0" />. The shear <InlineMath math="\begin{pmatrix}1&1\\0&1\end{pmatrix}" /> gives <InlineMath math="A^TA-AA^T=\begin{pmatrix}-1&0\\0&1\end{pmatrix}" />, so the gap is <InlineMath math="\sqrt2" /> and that matrix is not normal.
 
-<Mermaid
-  title="Normal means unitarily diagonalizable"
-  description="One algebraic condition matches an orthonormal eigenbasis."
-  chart={`
-    flowchart LR
-        A[A^H A = A A^H] ---|⇔| B[A = U D U^H]
-        B --> C[Columns of U: orthonormal eigenbasis]
-  `}
+<BarChart
+  title={<>How far <InlineMath math="A^HA" /> is from <InlineMath math="AA^H" /></>}
+  description={<>Each bar is <InlineMath math="\|A^HA-AA^H\|_F" /> for the matrix named below it. Only the shear has a bar, of height <InlineMath math="\sqrt2" />.</>}
+  yAxisLabel="Frobenius norm gap"
+  data={[
+    { name: "symmetric", value: 0 },
+    { name: "rotation", value: 0 },
+    { name: "shear", value: Math.sqrt(2) },
+  ]}
+  chartConfig={{ value: { label: "Frobenius norm gap", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
 />
 
 ## Special Properties of Eigenspaces of Normal Matrices
@@ -63,17 +65,31 @@ This identity also proves orthogonality. If <InlineMath math="Av=\lambda v" /> a
 <BlockMath math="=\overline{\mu}v^Hw\qquad\Longrightarrow\qquad v^Hw=0" />
 </MathContainer>
 
-Follow this flow to see how an orthonormal eigenbasis is built.
+The symmetric matrix <InlineMath math="A=\begin{pmatrix}3&1\\1&3\end{pmatrix}" /> is normal. The eigenvalues <InlineMath math="4" /> and <InlineMath math="2" /> differ, so the eigenspaces must be perpendicular: <InlineMath math="u_1=\tfrac1{\sqrt2}(1,1)" /> and <InlineMath math="u_2=\tfrac1{\sqrt2}(-1,1)" /> satisfy <InlineMath math="u_1^Tu_2=0" />. Once normalized, they are already an orthonormal basis.
 
-<Mermaid
-  title="From eigenspaces to an orthonormal basis"
-  description="Different eigenspaces are perpendicular."
-  chart={`
-    flowchart TD
-        A[A normal] --> B[Eigenspaces of different eigenvalues are perpendicular]
-        B --> C[Orthonormal basis in each eigenspace]
-        C --> D[Together an orthonormal eigenbasis]
-  `}
+<MathVisual
+  title={<>The eigenspaces for <InlineMath math="4" /> and <InlineMath math="2" /> are perpendicular</>}
+  description={<>The teal unit vector <InlineMath math="u_1" /> stretches to the violet segment <InlineMath math="4u_1" />, and the orange unit vector <InlineMath math="u_2" /> becomes the magenta segment <InlineMath math="2u_2" />. The small gray square marks the right angle between the two directions.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 3.5 }, y: { min: -2, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "corner", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0.3 * Math.SQRT1_2, y: 0.3 * Math.SQRT1_2 }, { x: 0, y: 0.6 * Math.SQRT1_2 }, { x: -0.3 * Math.SQRT1_2, y: 0.3 * Math.SQRT1_2 }], appearance: "reference" },
+      { id: "first-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 * Math.SQRT1_2, y: 4 * Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "construction" },
+      { id: "second-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2 * Math.SQRT1_2, y: 2 * Math.SQRT1_2 }, appearance: "answer" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-image", objectId: "first-image", at: { x: 4 * Math.SQRT1_2, y: 4 * Math.SQRT1_2 }, placement: "right" },
+      { key: "second-image", objectId: "second-image", at: { x: -2 * Math.SQRT1_2, y: 2 * Math.SQRT1_2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first-image": <InlineMath math="Au_1=4u_1" />,
+    "second-image": <InlineMath math="Au_2=2u_2" />,
+  }}
 />
 
 ## Hermitian and Unitary Matrices as Examples of Normal Matrices

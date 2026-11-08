@@ -36,17 +36,42 @@ Sebagai contoh,
 
 Jadi, entri pada baris <InlineMath math="j" /> dan kolom <InlineMath math="i" /> dari <InlineMath math="A^H" /> adalah <InlineMath math="\overline{a_{ij}}" />.
 
-Dua langkah di diagram ini mengubah <InlineMath math="A" /> menjadi <InlineMath math="A^H" />.
+Ambil <InlineMath math="A=\begin{pmatrix}1+2i&3-i\\-2+i&2i\end{pmatrix}" />. Konjugasi mencerminkan setiap entri terhadap sumbu real, lalu transposisi menukar letak <InlineMath math="a_{12}" /> dan <InlineMath math="a_{21}" />, jadi <InlineMath math="A^H=\begin{pmatrix}1-2i&-2-i\\3+i&-2i\end{pmatrix}" />.
 
-<Mermaid
-  title="Membentuk matriks adjoin"
-  description="Konjugasikan setiap entri, lalu transposkan."
-  chart={`
-    flowchart LR
-        A[A] --> B[Konjugasikan setiap entri]
-        B --> C[Transposkan]
-        C --> D[A^H]
-  `}
+<MathVisual
+  title={<>Konjugasi mencerminkan setiap entri <InlineMath math="A" /></>}
+  description={<>Titik ungu adalah keempat entri <InlineMath math="A" /> di bidang kompleks. Titik magenta adalah konjugatnya, dan setiap ruas abu-abu tegak lurus dengan sumbu real dan terbagi dua sama panjang olehnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 4 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pair-one", kind: "segment", from: { x: 1, y: 2 }, to: { x: 1, y: -2 }, appearance: "reference" },
+      { id: "pair-two", kind: "segment", from: { x: 3, y: -1 }, to: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "pair-three", kind: "segment", from: { x: -2, y: 1 }, to: { x: -2, y: -1 }, appearance: "reference" },
+      { id: "pair-four", kind: "segment", from: { x: 0, y: 2 }, to: { x: 0, y: -2 }, appearance: "reference" },
+      { id: "a11", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "a12", kind: "point", at: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "a21", kind: "point", at: { x: -2, y: 1 }, appearance: "secondary" },
+      { id: "a22", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+      { id: "c11", kind: "point", at: { x: 1, y: -2 }, appearance: "answer" },
+      { id: "c12", kind: "point", at: { x: 3, y: 1 }, appearance: "answer" },
+      { id: "c21", kind: "point", at: { x: -2, y: -1 }, appearance: "answer" },
+      { id: "c22", kind: "point", at: { x: 0, y: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a11", objectId: "a11", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "a12", objectId: "a12", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "a21", objectId: "a21", at: { x: -2, y: 1 }, placement: "left" },
+      { key: "a22", objectId: "a22", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "a11": <InlineMath math="1+2i" />,
+    "a12": <InlineMath math="3-i" />,
+    "a21": <InlineMath math="-2+i" />,
+    "a22": <InlineMath math="2i" />,
+  }}
 />
 
 ## Sifat Matriks Adjoint
@@ -69,17 +94,31 @@ Untuk matriks satu entri <InlineMath math="A=(1+i)" />, bandingkan konjugat <Inl
 <BlockMath math="iA^H=i(1-i)=1+i\ne(iA)^H" />
 </MathContainer>
 
-Pegang tiga aturan di diagram ini saat menghitung dengan adjoin.
+Matriks <InlineMath math="1\times1" /> <InlineMath math="A=(z)" /> punya <InlineMath math="A^HA=(\bar zz)=(|z|^2)" />. Untuk <InlineMath math="z=1+2i" />, sudut <InlineMath math="\bar z" /> adalah lawan sudut <InlineMath math="z" />, jadi hasil kalinya jatuh di sumbu real positif: <InlineMath math="\bar zz=(1-2i)(1+2i)=1+4=5" />. Itulah sebabnya diagonal <InlineMath math="A^HA" /> selalu real dan tidak negatif.
 
-<Mermaid
-  title="Aturan hitung adjoin"
-  description="Tiga aturan yang paling sering dipakai."
-  chart={`
-    flowchart TD
-        A[Adjoin] --> B["(AB)^H = B^H A^H"]
-        A --> C["(A^H)^H = A"]
-        A --> D["⟨Av, w⟩ = ⟨v, A^H w⟩"]
-  `}
+<MathVisual
+  title={<><InlineMath math="\bar zz=|z|^2" /> untuk <InlineMath math="z=1+2i" /></>}
+  description={<>Ruas ungu <InlineMath math="z" /> dan ruas hijau toska <InlineMath math="\bar z" /> membentuk sudut yang berlawanan dengan sumbu real. Hasil kalinya adalah ruas magenta <InlineMath math="\bar zz=5" /> di sumbu real positif.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "number", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "conjugate", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -2 }, appearance: "construction" },
+      { id: "product", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "number", objectId: "number", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "conjugate", objectId: "conjugate", at: { x: 1, y: -2 }, placement: "right" },
+      { key: "product", objectId: "product", at: { x: 5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "number": <InlineMath math="z=1+2i" />,
+    "conjugate": <InlineMath math="\bar z=1-2i" />,
+    "product": <InlineMath math="\bar zz=5" />,
+  }}
 />
 
 ## Norma Euclidean pada Ruang Kompleks
