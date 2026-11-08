@@ -58,9 +58,9 @@ const temporaryRoot = (
     (root) => Effect.sync(() => rmSync(root, { force: true, recursive: true }))
   );
 
-// One test per corpus root, so a finding or a slow scan names its root. The
-// question bank alone holds more than 7,300 documents, so each root gets five
-// minutes on a busy machine.
+/** The corpus whose every root must pass the gate, one test per root. */
+const CORPUS = join(process.cwd(), "packages/corpus");
+
 for (const [root, minimum] of [
   ["material/lesson", 1149],
   ["articles", 21],
@@ -70,9 +70,7 @@ for (const [root, minimum] of [
   checkTest(
     `checks every current document in ${root}`,
     Effect.gen(function* () {
-      const report = yield* checkLessonRoot(
-        join(process.cwd(), "packages/corpus", root)
-      );
+      const report = yield* checkLessonRoot(join(CORPUS, root));
       assert.ok(report.fileCount >= minimum);
       assert.deepEqual(report.issues, []);
     }),
