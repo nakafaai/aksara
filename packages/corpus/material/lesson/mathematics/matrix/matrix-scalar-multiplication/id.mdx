@@ -13,17 +13,6 @@ Matriks dapat dioperasikan dengan matriks lain atau dikalikan dengan satu bilang
 
 Misalnya, jika setiap elemen dalam matriks pengukuran dinyatakan dalam meter, mengubah seluruh tabel ke sentimeter berarti mengalikan setiap elemen dengan <InlineMath math="100" />. Perkalian skalar menyatakan satu perubahan yang konsisten tanpa menulis ulang setiap perhitungan secara terpisah.
 
-<Mermaid
-  title="Pengaruh skalar pada setiap entri"
-  description="Nilai k menentukan apakah setiap entri tak nol menjauhi nol, mendekati nol, tetap, hilang, atau berganti tanda."
-  chart={`flowchart TD
-  K{"Nilai skalarnya"} -->|"lebih dari satu"| A["Setiap entri tak nol menjauhi nol"]
-  K -->|"antara nol dan satu"| B["Setiap entri tak nol mendekati nol"]
-  K -->|"satu"| C["Matriksnya tetap"]
-  K -->|"nol"| D["Matriks nol"]
-  K -->|"minus satu"| E["Matriks lawan"]`}
-/>
-
 ## Cara Mengalikan Matriks dengan Skalar
 
 Perkalian matriks dengan skalar adalah <Highlight>operasi mengalikan setiap elemen dalam matriks</Highlight> dengan sebuah bilangan skalar.
@@ -141,6 +130,32 @@ Skalar negatif dan nol mengikuti aturan yang sama. <InlineMath math="(-1)P" /> m
       { key: "p", objectId: "p", at: { x: 9, y: 7 }, placement: "left" },
       { key: "neg", objectId: "neg", at: { x: -9, y: -7 }, placement: "right" },
       { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Menskalakan jumlah sama dengan menjumlahkan matriks yang sudah diskalakan. Ambil baris <InlineMath math="a = (1, 2)" /> dan <InlineMath math="b = (3, 1)" />: jumlahnya <InlineMath math="(4, 3)" />. Menggandakan setiap sisi jajargenjang kecil memberi jajargenjang besar, yang pojok jauhnya <InlineMath math="(8, 6)" /> adalah <InlineMath math="2(a + b)" /> sekaligus <InlineMath math="2a + 2b" />.
+
+<MathVisual
+  title={<><InlineMath math="k(A + B) = kA + kB" /> sebagai jajargenjang yang diskalakan</>}
+  description={<>Jajargenjang dari <InlineMath math="(1, 2)" /> dan <InlineMath math="(3, 1)" /> serta jajargenjang yang sama dua kali lebih besar, dengan pojok jauh <InlineMath math="(4, 3)" /> dan <InlineMath math="(8, 6)" />.</>}
+  labels={{
+    small: <InlineMath math="a + b" />,
+    big: <InlineMath math="2(a + b)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "bigp", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 4 }, { x: 8, y: 6 }, { x: 6, y: 2 }], appearance: "secondary" },
+      { id: "smallp", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 2 }, { x: 4, y: 3 }, { x: 3, y: 1 }], appearance: "primary" },
+      { id: "small", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "big", kind: "point", at: { x: 8, y: 6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "small", objectId: "small", at: { x: 4, y: 3 }, placement: "below-right" },
+      { key: "big", objectId: "big", at: { x: 8, y: 6 }, placement: "right" },
     ],
   }}
 />

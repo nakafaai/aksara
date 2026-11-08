@@ -13,17 +13,6 @@ Matrices can be combined with other matrices, but they can also be scaled by one
 
 For example, if every entry in a measurement matrix is recorded in meters, converting the whole table to centimeters multiplies every entry by <InlineMath math="100" />. Scalar multiplication expresses that one consistent change without rewriting each calculation separately.
 
-<Mermaid
-  title="What the scalar does to every entry"
-  description="The value of k decides whether each nonzero entry moves away from zero, toward zero, stays, vanishes or changes sign."
-  chart={`flowchart TD
-  K{"Value of the scalar"} -->|"greater than one"| A["Each nonzero entry moves away from zero"]
-  K -->|"between zero and one"| B["Each nonzero entry moves toward zero"]
-  K -->|"one"| C["The matrix stays the same"]
-  K -->|"zero"| D["The zero matrix"]
-  K -->|"minus one"| E["The opposite matrix"]`}
-/>
-
 ## Writing Scalar Multiplication Entry by Entry
 
 Matrix scalar multiplication is the operation of <Highlight>multiplying every element in a matrix</Highlight> by a scalar number.
@@ -141,6 +130,32 @@ Negative and zero scalars follow the same rule. <InlineMath math="(-1)P" /> send
       { key: "p", objectId: "p", at: { x: 9, y: 7 }, placement: "left" },
       { key: "neg", objectId: "neg", at: { x: -9, y: -7 }, placement: "right" },
       { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Scaling a sum gives the sum of the scaled matrices. Take the rows <InlineMath math="a = (1, 2)" /> and <InlineMath math="b = (3, 1)" />: their sum is <InlineMath math="(4, 3)" />. Doubling every side of the small parallelogram gives the large one, whose far corner <InlineMath math="(8, 6)" /> is both <InlineMath math="2(a + b)" /> and <InlineMath math="2a + 2b" />.
+
+<MathVisual
+  title={<><InlineMath math="k(A + B) = kA + kB" /> as a scaled parallelogram</>}
+  description={<>The parallelogram of <InlineMath math="(1, 2)" /> and <InlineMath math="(3, 1)" /> and the same parallelogram doubled, with far corners <InlineMath math="(4, 3)" /> and <InlineMath math="(8, 6)" />.</>}
+  labels={{
+    small: <InlineMath math="a + b" />,
+    big: <InlineMath math="2(a + b)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "bigp", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 4 }, { x: 8, y: 6 }, { x: 6, y: 2 }], appearance: "secondary" },
+      { id: "smallp", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 2 }, { x: 4, y: 3 }, { x: 3, y: 1 }], appearance: "primary" },
+      { id: "small", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "big", kind: "point", at: { x: 8, y: 6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "small", objectId: "small", at: { x: 4, y: 3 }, placement: "below-right" },
+      { key: "big", objectId: "big", at: { x: 8, y: 6 }, placement: "right" },
     ],
   }}
 />

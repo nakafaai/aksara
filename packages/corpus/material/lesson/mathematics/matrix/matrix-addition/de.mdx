@@ -13,16 +13,6 @@ Bei der Matrixaddition werden <Highlight>die Einträge mehrerer Matrizen positio
 
 Das Ergebnis ist eine neue Matrix desselben Formats. Jeder ihrer Einträge ist die Summe der Einträge an derselben Position in den Ausgangsmatrizen.
 
-<Mermaid
-  title="Wann sich zwei Matrizen addieren lassen"
-  description="Matrizen mit gleichem Format werden Eintrag für Eintrag addiert und ergeben eine Matrix desselben Formats. Bei verschiedenen Formaten ist die Summe nicht definiert."
-  chart={`flowchart TD
-  A["Zwei Matrizen"] --> Q{"Gleich viele Zeilen und Spalten?"}
-  Q -->|"Ja"| S["Einträge an gleicher Position addieren"]
-  S --> R["Die Summe hat dieselbe Größe"]
-  Q -->|"Nein"| U["Die Summe ist nicht definiert"]`}
-/>
-
 ## Formale Definition der Matrixaddition
 
 Zwei Matrizen <InlineMath math="A" /> und <InlineMath math="B" /> können genau dann addiert werden, wenn sie **dasselbe Format** haben.
@@ -123,6 +113,34 @@ Die Reihenfolge der beiden Matrizen spielt keine Rolle. Geh vom Ursprung aus um 
       { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "left" },
       { key: "q", objectId: "q", at: { x: 6, y: -3 }, placement: "below" },
       { key: "sum", objectId: "sum", at: { x: 7, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Zwei besondere Matrizen machen das Bild vollständig. Die Nullmatrix <InlineMath math="O" /> verschiebt keinen Punkt, also <InlineMath math="P + O = P" />. Die Gegenmatrix <InlineMath math="-P" /> schickt jede Zeile in den Ursprung: Zeile 1, <InlineMath math="(1, 5)" />, plus <InlineMath math="(-1, -5)" /> ergibt <InlineMath math="(0, 0)" />, also <InlineMath math="P + (-P) = O" />.
+
+<MathVisual
+  title={<>Nullmatrix und Gegenmatrix</>}
+  description={<>Zeile 1 von <InlineMath math="P" /> bei <InlineMath math="(1, 5)" />, ihr Gegenpunkt bei <InlineMath math="(-1, -5)" /> und ihre Summe im Ursprung.</>}
+  labels={{
+    p: <InlineMath math="(1, 5)" />,
+    n: <InlineMath math="(-1, -5)" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "link", kind: "segment", from: { x: 1, y: 5 }, to: { x: -1, y: -5 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "n", kind: "point", at: { x: -1, y: -5 }, appearance: "secondary" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "n", objectId: "n", at: { x: -1, y: -5 }, placement: "left" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "right" },
     ],
   }}
 />

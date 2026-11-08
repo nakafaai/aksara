@@ -91,16 +91,6 @@ Expanding along any row or column gives the same determinant.
 
 <Highlight>Choose a row or column with many zeros</Highlight> when one is available. Every zero eliminates its product, so fewer terms remain to calculate.
 
-<Mermaid
-  title="Cofactor expansion step by step"
-  description="Choose a row, turn each entry into a cofactor through its minor and sign, then add the entries times their cofactors."
-  chart={`flowchart LR
-  A["Choose one row"] --> B["Cross out the row and column of each entry"]
-  B --> C["Minor: the determinant of what is left"]
-  C --> D["Cofactor: the minor with its checkerboard sign"]
-  D --> E["Add each entry times its cofactor"]`}
-/>
-
 ## Example of Determinant Calculation
 
 Calculate the determinant of the following matrix <InlineMath math="P" /> using the cofactor expansion method:
@@ -159,10 +149,10 @@ Notice <InlineMath math="k_{12}=(-1)(-2)=2" />. A minus-sign position can produc
 The three cofactors of row 1 have a shape too. Rows 2 and 3 of <InlineMath math="P" /> span a parallelogram. The arrow <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" /> stands at a right angle to it, and its length <InlineMath math="\sqrt{184}" /> equals the area of that parallelogram. The expansion <InlineMath math="(1)(6) + (3)(2) + (2)(-12) = -12" /> is the length of that arrow times how far row 1 reaches along it. Turn the scene: row 1 points to the other side of the parallelogram, which is why the determinant comes out negative.
 
 <MathVisual
-  title="The cofactors of row 1 form an arrow across the other two rows"
+  title={<>The cofactors of row 1 form an arrow across the other two rows</>}
   description={<>Rows 2 and 3 of <InlineMath math="P" /> span a parallelogram. The cofactor arrow <InlineMath math="(6, 2, -12)" /> is perpendicular to it, and row 1 leans away from that arrow.</>}
   labels={{
-    base: "rows 2 and 3",
+    base: <>rows 2 and 3</>,
     normal: <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" />,
     row1: <>row 1 <InlineMath math="(1, 3, 2)" /></>,
   }}
@@ -224,6 +214,33 @@ The sign <InlineMath math="(-1)^{i+j}" /> follows a checkerboard. Start with <In
       { key: "s31", objectId: "s31", at: { x: 1, y: -3 }, placement: "above-right" },
       { key: "s32", objectId: "s32", at: { x: 2, y: -3 }, placement: "above-right" },
       { key: "s33", objectId: "s33", at: { x: 3, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Each minor is itself a small determinant you can draw. Cross out row 1 and column 1 of <InlineMath math="P" /> and the rows <InlineMath math="(6, 2)" /> and <InlineMath math="(9, 4)" /> remain. They span a parallelogram of area <InlineMath math="6 \cdot 4 - 2 \cdot 9 = 6" />, which is <InlineMath math="M_{11}" />, and with the sign <InlineMath math="+" /> it gives <InlineMath math="k_{11} = 6" />.
+
+<MathVisual
+  title={<>The minor <InlineMath math="M_{11}" /> as an area</>}
+  description={<>The parallelogram spanned by <InlineMath math="(6, 2)" /> and <InlineMath math="(9, 4)" />, the rows left after crossing out row 1 and column 1, with area 6.</>}
+  labels={{
+    area: <InlineMath math="M_{11} = 6" />,
+    r1: <InlineMath math="(6, 2)" />,
+    r2: <InlineMath math="(9, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 16 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 6, y: 2 }, { x: 15, y: 6 }, { x: 9, y: 4 }], appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: 6, y: 2 }, appearance: "secondary" },
+      { id: "r2", kind: "point", at: { x: 9, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "area", objectId: "area", at: { x: 7.5, y: 3 }, placement: "above-left" },
+      { key: "r1", objectId: "r1", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "r2", objectId: "r2", at: { x: 9, y: 4 }, placement: "above-left" },
     ],
   }}
 />

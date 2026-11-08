@@ -13,16 +13,6 @@ Matrix addition <Highlight>combines entries in the same positions</Highlight>. I
 
 The result of the addition is a new matrix of the same order, where each element is the sum of the corresponding elements (elements in the same position) from the original matrices.
 
-<Mermaid
-  title="When two matrices can be added"
-  description="Matrices of the same order are added entry by entry and give a matrix of that order. Different orders leave the sum undefined."
-  chart={`flowchart TD
-  A["Two matrices"] --> Q{"Same number of rows and columns?"}
-  Q -->|"Yes"| S["Add the entries in matching positions"]
-  S --> R["The sum has the same size"]
-  Q -->|"No"| U["The sum is not defined"]`}
-/>
-
 ## Formal Definition of Matrix Addition
 
 Two matrices, say matrix <InlineMath math="A" /> and matrix <InlineMath math="B" />, can be added if and only if both matrices have the **same order**.
@@ -123,6 +113,34 @@ The order of the two matrices does not matter. Start at the origin and step by r
       { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "left" },
       { key: "q", objectId: "q", at: { x: 6, y: -3 }, placement: "below" },
       { key: "sum", objectId: "sum", at: { x: 7, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Two special matrices finish the picture. Adding the zero matrix <InlineMath math="O" /> moves no point, so <InlineMath math="P + O = P" />. Adding <InlineMath math="-P" /> sends every row to the origin: row 1, <InlineMath math="(1, 5)" />, plus <InlineMath math="(-1, -5)" /> is <InlineMath math="(0, 0)" />, so <InlineMath math="P + (-P) = O" />.
+
+<MathVisual
+  title={<>The zero matrix and the opposite matrix</>}
+  description={<>Row 1 of <InlineMath math="P" /> at <InlineMath math="(1, 5)" />, its opposite at <InlineMath math="(-1, -5)" />, and their sum at the origin.</>}
+  labels={{
+    p: <InlineMath math="(1, 5)" />,
+    n: <InlineMath math="(-1, -5)" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "link", kind: "segment", from: { x: 1, y: 5 }, to: { x: -1, y: -5 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "n", kind: "point", at: { x: -1, y: -5 }, appearance: "secondary" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "n", objectId: "n", at: { x: -1, y: -5 }, placement: "left" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "right" },
     ],
   }}
 />

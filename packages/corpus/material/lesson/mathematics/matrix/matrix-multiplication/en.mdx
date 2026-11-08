@@ -23,15 +23,6 @@ The result of the multiplication, call it matrix <InlineMath math="C = AB" />, w
 
 The dimension check fits in one line: <InlineMath math="A\in\mathbb{R}^{m\times n}" /> and <InlineMath math="B\in\mathbb{R}^{n\times p}" /> imply <InlineMath math="AB\in\mathbb{R}^{m\times p}" />. The shared inner dimension <InlineMath math="n" /> is consumed by each dot product, while the outer dimensions <InlineMath math="m" /> and <InlineMath math="p" /> determine the result.
 
-<Mermaid
-  title="When a matrix product exists"
-  description="AB exists only when the number of columns of A equals the number of rows of B, and the product takes the rows of A and the columns of B."
-  chart={`flowchart TD
-  A["Columns of the first matrix, rows of the second"] --> Q{"Equal counts?"}
-  Q -->|"Yes"| R["The product exists: rows of the first, columns of the second"]
-  Q -->|"No"| U["The product is not defined"]`}
-/>
-
 ### How to Calculate the Elements of the Resultant Matrix
 
 The element <InlineMath math="c_{ij}" /> in matrix <InlineMath math="C" /> (i.e., the element in the <InlineMath math="i" />-th row and <InlineMath math="j" />-th column) is calculated by multiplying each element in the <InlineMath math="i" />-th row of matrix <InlineMath math="A" /> by the corresponding element in the <InlineMath math="j" />-th column of matrix <InlineMath math="B" />, and then **summing all these products**.
@@ -162,6 +153,33 @@ Order matters. Take <InlineMath math="N = \begin{bmatrix} 1 & 0 \\ 0 & 2 \end{bm
       { key: "middle", objectId: "middle", at: { x: 1, y: 2 }, placement: "right" },
       { key: "mn", objectId: "mn", at: { x: 0, y: 3 }, placement: "left" },
       { key: "nm", objectId: "nm", at: { x: 1, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+The sizes decide whether a product exists. In the example, <InlineMath math="A" /> is <InlineMath math="3 \times 3" /> and <InlineMath math="B" /> is <InlineMath math="3 \times 2" />: the inner sizes, <InlineMath math="3" /> columns of <InlineMath math="A" /> and <InlineMath math="3" /> rows of <InlineMath math="B" />, match. The product keeps the outer sizes, so <InlineMath math="AB" /> is <InlineMath math="3 \times 2" />, one entry for every row of <InlineMath math="A" /> and column of <InlineMath math="B" />.
+
+<MathVisual
+  title={<>The inner sizes match, the outer sizes remain</>}
+  description={<>Blocks for <InlineMath math="A" />, 3 by 3, <InlineMath math="B" />, 3 by 2, and the product <InlineMath math="AB" />, 3 by 2.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    ab: <InlineMath math="AB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -0.8, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 3 }, { x: 4, y: 3 }], appearance: "secondary" },
+      { id: "ab", kind: "polygon", vertices: [{ x: 7.5, y: 0 }, { x: 9.5, y: 0 }, { x: 9.5, y: 3 }, { x: 7.5, y: 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 1.5 }, placement: "center" },
+      { key: "b", objectId: "b", at: { x: 5, y: 1.5 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 8.5, y: 1.5 }, placement: "center" },
     ],
   }}
 />

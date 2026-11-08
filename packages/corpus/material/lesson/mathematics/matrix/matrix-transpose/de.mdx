@@ -17,14 +17,6 @@ Hat die Matrix <InlineMath math="A" /> das Format <InlineMath math="m \times n" 
 
 Dies bedeutet, dass das Element in der <InlineMath math="j" />-ten Zeile und <InlineMath math="i" />-ten Spalte von <InlineMath math="A^T" /> das gleiche ist wie das Element in der <InlineMath math="i" />-ten Zeile und <InlineMath math="j" />-ten Spalte von <InlineMath math="A" />.
 
-<Mermaid
-  title="Zweimal transponieren ergibt die Matrix zurück"
-  description="Transponieren tauscht das Format von m mal n zu n mal m, und erneutes Transponieren liefert die ursprüngliche Matrix."
-  chart={`flowchart LR
-  A["Eine Matrix"] -->|"Zeilen werden Spalten"| T["Ihre Transponierte: so viele Zeilen, wie die Matrix Spalten hatte"]
-  T -->|"erneut transponieren"| B["Die ursprüngliche Matrix"]`}
-/>
-
 ## So wird eine Matrix transponiert
 
 So entsteht die transponierte Matrix:
@@ -68,7 +60,7 @@ Setz jeden Eintrag dorthin, wo er auf dem Papier steht: die Spaltennummer nach r
   title={<>Transponieren spiegelt <InlineMath math="B" /> an der Hauptdiagonale</>}
   description={<>Die Einträge von <InlineMath math="B" /> stehen rechts oberhalb ihrer Position, die verschobenen Einträge von <InlineMath math="B^T" /> links unterhalb. Jede Strecke verbindet die alte Position eines Eintrags mit der neuen.</>}
   labels={{
-    diagonal: "Hauptdiagonale",
+    diagonal: <>Hauptdiagonale</>,
     b11: <InlineMath math="1" />,
     b12: <InlineMath math="2" />,
     b13: <InlineMath math="3" />,
@@ -135,6 +127,52 @@ Auch der ganze Block klappt um. <InlineMath math="B" /> füllt 2 Zeilen und 3 Sp
     labels: [
       { key: "b", objectId: "b", at: { x: 3, y: -2 }, placement: "below-right" },
       { key: "bt", objectId: "bt", at: { x: 2, y: -3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Manche Matrizen ändern sich beim Transponieren überhaupt nicht. In <InlineMath math="S = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 5 \\ 3 & 5 & 6 \end{bmatrix}" /> hat jeder Eintrag einen gleichen Partner jenseits der Hauptdiagonale: die beiden <InlineMath math="2" />, die beiden <InlineMath math="3" /> und die beiden <InlineMath math="5" />. Das Spiegeln tauscht gleiche Werte, also <InlineMath math="S^T = S" />, und <InlineMath math="S" /> ist symmetrisch.
+
+<MathVisual
+  title={<>Eine symmetrische Matrix ist ihre eigene Transponierte</>}
+  description={<>Die Einträge von <InlineMath math="S" /> nach Spalte und Zeile angeordnet, an der Hauptdiagonale auf gleiche Werte gespiegelt.</>}
+  labels={{
+    s11: <InlineMath math="1" />,
+    s12: <InlineMath math="2" />,
+    s13: <InlineMath math="3" />,
+    s21: <InlineMath math="2" />,
+    s22: <InlineMath math="4" />,
+    s23: <InlineMath math="5" />,
+    s31: <InlineMath math="3" />,
+    s32: <InlineMath math="5" />,
+    s33: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diag", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "s11", kind: "point", at: { x: 1, y: -1 }, appearance: "answer" },
+      { id: "s12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "s13", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+      { id: "s21", kind: "point", at: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "s22", kind: "point", at: { x: 2, y: -2 }, appearance: "answer" },
+      { id: "s23", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "s31", kind: "point", at: { x: 1, y: -3 }, appearance: "secondary" },
+      { id: "s32", kind: "point", at: { x: 2, y: -3 }, appearance: "secondary" },
+      { id: "s33", kind: "point", at: { x: 3, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s11", objectId: "s11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "s12", objectId: "s12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "s13", objectId: "s13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "s21", objectId: "s21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "s22", objectId: "s22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "s23", objectId: "s23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "s31", objectId: "s31", at: { x: 1, y: -3 }, placement: "above-right" },
+      { key: "s32", objectId: "s32", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "s33", objectId: "s33", at: { x: 3, y: -3 }, placement: "above-right" },
     ],
   }}
 />

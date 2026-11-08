@@ -13,15 +13,6 @@ Pengurangan matriks menghitung **selisih elemen yang seletak** dari dua matriks.
 
 Hasil pengurangan memiliki ordo yang sama dengan kedua matriks awal. Setiap elemennya diperoleh dengan mengurangkan elemen-elemen yang letaknya sama.
 
-<Mermaid
-  title="Dua rute menuju selisih yang sama"
-  description="Untuk matriks berordo sama, mengurangkan entri yang seletak dan menambahkan matriks lawan memberi hasil yang sama."
-  chart={`flowchart LR
-  A["Dua matriks berordo sama"] -->|"kurangkan entri seletak"| R["Selisihnya"]
-  A -->|"ambil lawan matriks kedua"| B["Tambahkan lawannya"]
-  B -->|"jumlahkan entri seletak"| R`}
-/>
-
 ## Definisi Formal Pengurangan Matriks
 
 Ada dua cara umum untuk mendefinisikan pengurangan matriks, yang keduanya mengarah pada hasil yang sama.
@@ -151,6 +142,30 @@ Mengurangkan <InlineMath math="Q" /> sama dengan menambahkan <InlineMath math="-
       { key: "p", objectId: "p", at: { x: 8, y: 5 }, placement: "right" },
       { key: "negq", objectId: "negq", at: { x: -2, y: -1 }, placement: "below" },
       { key: "diff", objectId: "diff", at: { x: 6, y: 4 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Tukar urutannya, maka langkahnya berbalik. Baris 1 <InlineMath math="P - Q" /> adalah <InlineMath math="(6, 4)" />, dan baris 1 <InlineMath math="Q - P" /> adalah <InlineMath math="(-6, -4)" />: sama panjang, tetapi berlawanan arah. Karena itu <InlineMath math="P - Q = -(Q - P)" />, bukan <InlineMath math="Q - P" />.
+
+<MathVisual
+  title={<><InlineMath math="P - Q" /> dan <InlineMath math="Q - P" /> berlawanan arah</>}
+  description={<>Baris <InlineMath math="(6, 4)" /> dari <InlineMath math="P - Q" /> dan <InlineMath math="(-6, -4)" /> dari <InlineMath math="Q - P" /> digambar dari titik asal.</>}
+  labels={{
+    pq: <InlineMath math="P - Q" />,
+    qp: <InlineMath math="Q - P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "pq", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 4 }, appearance: "primary" },
+      { id: "qp", kind: "segment", from: { x: 0, y: 0 }, to: { x: -6, y: -4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "pq", objectId: "pq", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "qp", objectId: "qp", at: { x: -6, y: -4 }, placement: "left" },
     ],
   }}
 />

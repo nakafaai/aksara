@@ -95,16 +95,6 @@ Welche Zeile oder Spalte wir wählen, ändert das Ergebnis nicht.
 
 Wähle nach Möglichkeit <Highlight>eine Zeile oder Spalte mit vielen Nullen</Highlight>. Jedes Nullelement lässt sein Produkt entfallen, sodass weniger Terme berechnet werden müssen.
 
-<Mermaid
-  title="Kofaktorentwicklung Schritt für Schritt"
-  description="Wähle eine Zeile, mach aus jedem Eintrag über seinen Minor und sein Vorzeichen einen Kofaktor und addiere die Einträge mal ihre Kofaktoren."
-  chart={`flowchart LR
-  A["Eine Zeile wählen"] --> B["Zeile und Spalte jedes Eintrags streichen"]
-  B --> C["Minor: Determinante des Rests"]
-  C --> D["Kofaktor: Minor mit seinem Schachbrettvorzeichen"]
-  D --> E["Jeden Eintrag mal seinen Kofaktor addieren"]`}
-/>
-
 ## Beispiel für die Determinantenberechnung
 
 Berechnen wir die Determinante der folgenden Matrix <InlineMath math="P" /> mit der Kofaktorentwicklung:
@@ -163,10 +153,10 @@ Beachte <InlineMath math="k_{12}=(-1)(-2)=2" />. Eine Position mit Minuszeichen 
 Die drei Kofaktoren von Zeile 1 haben auch eine Form. Die Zeilen 2 und 3 von <InlineMath math="P" /> spannen ein Parallelogramm auf. Der Pfeil <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" /> steht senkrecht darauf, und seine Länge <InlineMath math="\sqrt{184}" /> ist genau der Flächeninhalt dieses Parallelogramms. Die Entwicklung <InlineMath math="(1)(6) + (3)(2) + (2)(-12) = -12" /> ist die Länge dieses Pfeils mal der Strecke, die Zeile 1 in seiner Richtung zurücklegt. Dreh die Szene: Zeile 1 zeigt auf die andere Seite des Parallelogramms, deshalb ist die Determinante negativ.
 
 <MathVisual
-  title="Die Kofaktoren von Zeile 1 bilden einen Pfeil quer zu den anderen Zeilen"
+  title={<>Die Kofaktoren von Zeile 1 bilden einen Pfeil quer zu den anderen Zeilen</>}
   description={<>Die Zeilen 2 und 3 von <InlineMath math="P" /> spannen ein Parallelogramm auf. Der Kofaktorpfeil <InlineMath math="(6, 2, -12)" /> steht senkrecht darauf, und Zeile 1 neigt sich von ihm weg.</>}
   labels={{
-    base: "Zeilen 2 und 3",
+    base: <>Zeilen 2 und 3</>,
     normal: <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" />,
     row1: <>Zeile 1 <InlineMath math="(1, 3, 2)" /></>,
   }}
@@ -228,6 +218,33 @@ Das Vorzeichen <InlineMath math="(-1)^{i+j}" /> folgt einem Schachbrettmuster. B
       { key: "s31", objectId: "s31", at: { x: 1, y: -3 }, placement: "above-right" },
       { key: "s32", objectId: "s32", at: { x: 2, y: -3 }, placement: "above-right" },
       { key: "s33", objectId: "s33", at: { x: 3, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Jeder Minor ist selbst eine kleine Determinante, die du zeichnen kannst. Streich Zeile 1 und Spalte 1 von <InlineMath math="P" />, dann bleiben die Zeilen <InlineMath math="(6, 2)" /> und <InlineMath math="(9, 4)" />. Sie spannen ein Parallelogramm mit Fläche <InlineMath math="6 \cdot 4 - 2 \cdot 9 = 6" /> auf, das ist <InlineMath math="M_{11}" />, und mit dem Vorzeichen <InlineMath math="+" /> ergibt sich <InlineMath math="k_{11} = 6" />.
+
+<MathVisual
+  title={<>Der Minor <InlineMath math="M_{11}" /> als Fläche</>}
+  description={<>Das Parallelogramm aus <InlineMath math="(6, 2)" /> und <InlineMath math="(9, 4)" />, den Zeilen nach dem Streichen von Zeile 1 und Spalte 1, mit Fläche 6.</>}
+  labels={{
+    area: <InlineMath math="M_{11} = 6" />,
+    r1: <InlineMath math="(6, 2)" />,
+    r2: <InlineMath math="(9, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 16 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 6, y: 2 }, { x: 15, y: 6 }, { x: 9, y: 4 }], appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: 6, y: 2 }, appearance: "secondary" },
+      { id: "r2", kind: "point", at: { x: 9, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "area", objectId: "area", at: { x: 7.5, y: 3 }, placement: "above-left" },
+      { key: "r1", objectId: "r1", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "r2", objectId: "r2", at: { x: 9, y: 4 }, placement: "above-left" },
     ],
   }}
 />

@@ -13,14 +13,6 @@ A matrix transpose <Highlight>is formed by swapping rows and columns</Highlight>
 
 The transpose of <InlineMath math="A" /> is written as <InlineMath math="A^T" /> or <InlineMath math="A'" />. If <InlineMath math="A" /> has dimensions <InlineMath math="m \times n" />, then <InlineMath math="A^T" /> has dimensions <InlineMath math="n \times m" /> and satisfies <InlineMath math="(A^T)_{ji} = a_{ij}" />.
 
-<Mermaid
-  title="Transposing twice returns the matrix"
-  description="Transposing swaps the order from m by n to n by m, and transposing again returns the original matrix."
-  chart={`flowchart LR
-  A["A matrix"] -->|"rows become columns"| T["Its transpose: as many rows as the matrix had columns"]
-  T -->|"transpose again"| B["The original matrix"]`}
-/>
-
 ## How to Determine the Matrix Transpose
 
 To obtain the matrix transpose, follow these steps:
@@ -64,7 +56,7 @@ Place every entry where it sits on the page: its column number across and its ro
   title={<>Transposing <InlineMath math="B" /> reflects it across the main diagonal</>}
   description={<>Entries of <InlineMath math="B" /> sit above and to the right of their positions. Entries of <InlineMath math="B^T" /> that moved sit below and to the left. Each segment joins the old position of an entry to its new one.</>}
   labels={{
-    diagonal: "main diagonal",
+    diagonal: <>main diagonal</>,
     b11: <InlineMath math="1" />,
     b12: <InlineMath math="2" />,
     b13: <InlineMath math="3" />,
@@ -131,6 +123,52 @@ The whole block flips too. <InlineMath math="B" /> fills 2 rows and 3 columns. R
     labels: [
       { key: "b", objectId: "b", at: { x: 3, y: -2 }, placement: "below-right" },
       { key: "bt", objectId: "bt", at: { x: 2, y: -3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Some matrices do not change at all when you transpose them. In <InlineMath math="S = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 5 \\ 3 & 5 & 6 \end{bmatrix}" /> every entry has an equal partner across the main diagonal: the two <InlineMath math="2" />s, the two <InlineMath math="3" />s and the two <InlineMath math="5" />s. Reflecting swaps equal values, so <InlineMath math="S^T = S" />, and <InlineMath math="S" /> is symmetric.
+
+<MathVisual
+  title={<>A symmetric matrix is its own transpose</>}
+  description={<>The entries of <InlineMath math="S" /> placed by column and row, mirrored in the main diagonal onto equal values.</>}
+  labels={{
+    s11: <InlineMath math="1" />,
+    s12: <InlineMath math="2" />,
+    s13: <InlineMath math="3" />,
+    s21: <InlineMath math="2" />,
+    s22: <InlineMath math="4" />,
+    s23: <InlineMath math="5" />,
+    s31: <InlineMath math="3" />,
+    s32: <InlineMath math="5" />,
+    s33: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diag", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "s11", kind: "point", at: { x: 1, y: -1 }, appearance: "answer" },
+      { id: "s12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "s13", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+      { id: "s21", kind: "point", at: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "s22", kind: "point", at: { x: 2, y: -2 }, appearance: "answer" },
+      { id: "s23", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "s31", kind: "point", at: { x: 1, y: -3 }, appearance: "secondary" },
+      { id: "s32", kind: "point", at: { x: 2, y: -3 }, appearance: "secondary" },
+      { id: "s33", kind: "point", at: { x: 3, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s11", objectId: "s11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "s12", objectId: "s12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "s13", objectId: "s13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "s21", objectId: "s21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "s22", objectId: "s22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "s23", objectId: "s23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "s31", objectId: "s31", at: { x: 1, y: -3 }, placement: "above-right" },
+      { key: "s32", objectId: "s32", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "s33", objectId: "s33", at: { x: 3, y: -3 }, placement: "above-right" },
     ],
   }}
 />

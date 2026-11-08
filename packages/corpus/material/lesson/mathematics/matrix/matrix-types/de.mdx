@@ -72,17 +72,6 @@ Beispiel:
 
 Die Matrix <InlineMath math="M" /> ist eine quadratische Matrix im Format <InlineMath math="3 \times 3" />. Ihre Hauptdiagonale enthält <InlineMath math="1, 5, 9" />, ihre Gegendiagonale enthält <InlineMath math="3, 5, 7" />.
 
-<Mermaid
-  title="Besondere Arten quadratischer Matrizen"
-  description="Jede Diagonalmatrix ist eine Dreiecksmatrix, die Einheitsmatrix ist eine Diagonalmatrix, und eine Diagonalmatrix ist auch symmetrisch."
-  chart={`flowchart TD
-  S["Quadratische Matrix"] --> T["Dreiecksmatrix: Nullen auf einer Seite der Hauptdiagonale"]
-  T --> D["Diagonalmatrix: Nullen überall außerhalb der Hauptdiagonale"]
-  D --> I["Einheitsmatrix: Einsen auf der Hauptdiagonale"]
-  S --> Y["Symmetrisch: gleich ihrer Transponierten"]
-  D -.->|"auch"| Y`}
-/>
-
 ## Rechteckige Matrix
 
 Eine rechteckige Matrix ist eine Matrix, bei der **die Anzahl der Zeilen und Spalten nicht gleich ist** (<InlineMath math="m \neq n" />).
@@ -176,7 +165,7 @@ Beispiel:
 Die besonderen quadratischen Typen verhalten sich auch unterschiedlich, wenn sie auf Punkte wirken. Schreib jede Ecke <InlineMath math="(x, y)" /> des Einheitsquadrats als Spalte und multipliziere sie mit einer <InlineMath math="2 \times 2" />-Matrix. Die Einheitsmatrix <InlineMath math="I_2" /> schickt jede Ecke auf sich selbst, das Quadrat bleibt also liegen. Die Diagonalmatrix mit <InlineMath math="3" /> und <InlineMath math="2" /> auf der Diagonale streckt <InlineMath math="x" /> um den Faktor <InlineMath math="3" /> und <InlineMath math="y" /> um den Faktor <InlineMath math="2" />: Die Ecke <InlineMath math="(1, 1)" /> landet bei <InlineMath math="(3, 2)" />, und aus dem Quadrat wird ein Rechteck mit den Seiten <InlineMath math="3" /> und <InlineMath math="2" />. Die Nullmatrix <InlineMath math="O" /> schickt jede Ecke nach <InlineMath math="(0, 0)" />.
 
 <MathVisual
-  title="Was drei quadratische Matrizen mit dem Einheitsquadrat machen"
+  title={<>Was drei quadratische Matrizen mit dem Einheitsquadrat machen</>}
   description={<>Unter <InlineMath math="I_2" /> bleibt das Einheitsquadrat liegen, eine Diagonalmatrix streckt es zu einem Rechteck mit den Seiten 3 und 2, und <InlineMath math="O" /> zieht es im Ursprung zusammen.</>}
   labels={{
     square: <InlineMath math="I_2" />,
@@ -203,8 +192,8 @@ Die besonderen quadratischen Typen verhalten sich auch unterschiedlich, wenn sie
 Dreiecksmatrizen verschieben das Quadrat schräg, statt es zu strecken. Die obere Dreiecksmatrix <InlineMath math="\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}" /> lässt die untere Kante liegen und schiebt die obere Kante um 2 nach rechts. Die untere Dreiecksmatrix <InlineMath math="\begin{bmatrix} 1 & 0 \\ 2 & 1 \end{bmatrix}" /> lässt die linke Kante liegen und hebt die rechte Kante um 2 an. Beide behalten den Flächeninhalt 1, das Produkt der Diagonaleinträge.
 
 <MathVisual
-  title="Zwei Dreiecksmatrizen verschieben das Einheitsquadrat"
-  description="Die obere Dreiecksmatrix schiebt das Quadrat seitlich, die untere schiebt es nach oben, und beide behalten seinen Flächeninhalt."
+  title={<>Zwei Dreiecksmatrizen verschieben das Einheitsquadrat</>}
+  description={<>Die obere Dreiecksmatrix schiebt das Quadrat seitlich, die untere schiebt es nach oben, und beide behalten seinen Flächeninhalt.</>}
   labels={{
     upper: <InlineMath math="\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}" />,
     lower: <InlineMath math="\begin{bmatrix} 1 & 0 \\ 2 & 1 \end{bmatrix}" />,
@@ -221,6 +210,31 @@ Dreiecksmatrizen verschieben das Quadrat schräg, statt es zu strecken. Die ober
     labels: [
       { key: "upper", objectId: "upper", at: { x: 3, y: 1 }, placement: "right" },
       { key: "lower", objectId: "lower", at: { x: 1, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+Eine Skalarmatrix hat eine einzige Zahl auf der ganzen Diagonale. <InlineMath math="2I" /> verdoppelt jeden Abstand vom Ursprung, aus dem Einheitsquadrat wird ein Quadrat mit Seite <InlineMath math="2" />. <InlineMath math="-I" /> schickt jede Ecke auf die andere Seite des Ursprungs, eine halbe Drehung des Quadrats.
+
+<MathVisual
+  title={<>Die Skalarmatrizen <InlineMath math="2I" /> und <InlineMath math="-I" /></>}
+  description={<>Das Einheitsquadrat, sein Bild unter <InlineMath math="2I" /> mit Seite 2 und sein Bild unter <InlineMath math="-I" /> auf der anderen Seite des Ursprungs.</>}
+  labels={{
+    two: <InlineMath math="2I" />,
+    neg: <InlineMath math="-I" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2.5 }, y: { min: -1.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "two", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "neg", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -1, y: 0 }, { x: -1, y: -1 }, { x: 0, y: -1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "two", objectId: "two", at: { x: 2, y: 2 }, placement: "above-right" },
+      { key: "neg", objectId: "neg", at: { x: -1, y: -1 }, placement: "below-left" },
     ],
   }}
 />

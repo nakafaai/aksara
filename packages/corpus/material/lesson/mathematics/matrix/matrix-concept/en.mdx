@@ -31,16 +31,6 @@ The same matrix can also be written with parentheses:
 
 <InlineMath math="80, 75, 70, 95, 95, 75" /> are the elements of matrix <InlineMath math="A" />.
 
-<Mermaid
-  title="From a table to the order of a matrix"
-  description="The score table keeps only its numbers, which form matrix A with 3 rows and 2 columns, so its order is 3 by 2."
-  chart={`flowchart LR
-  A["Score table"] --> B["Keep only the numbers"]
-  B --> C["The matrix"]
-  C --> D["3 rows and 2 columns"]
-  D --> E["Order: 3 by 2"]`}
-/>
-
 ## Rows Columns and Elements
 
 Three terms describe a matrix's structure:
@@ -85,7 +75,7 @@ For the matrix above:
 Now read each row of <InlineMath math="A" /> as a point <InlineMath math="(x, y)" />. Column 1 gives <InlineMath math="x" />, the Mathematics score, and column 2 gives <InlineMath math="y" />, the English score, so every student becomes one point. Look at Aisyah: her guide lines show <InlineMath math="a_{11} = 80" /> across and <InlineMath math="a_{12} = 75" /> up. Swap the two entries of her row and the point jumps to <InlineMath math="(75, 80)" />, which is exactly why an entry's position decides its meaning.
 
 <MathVisual
-  title="Three students as three points"
+  title={<>Three students as three points</>}
   description={<>Row <InlineMath math="i" /> of <InlineMath math="A" /> becomes the point (column 1, column 2): the Mathematics score across and the English score up.</>}
   labels={{
     aisyah: <>Aisyah <InlineMath math="(80, 75)" /></>,
@@ -188,6 +178,42 @@ Here is matrix <InlineMath math="B" /> with every entry placed where it sits: co
       { key: "b31", objectId: "b31", at: { x: 1, y: -3 }, placement: "above-right" },
       { key: "b32", objectId: "b32", at: { x: 2, y: -3 }, placement: "above-right" },
       { key: "b33", objectId: "b33", at: { x: 3, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+The order always names the rows first. The left block has <InlineMath math="3" /> rows of <InlineMath math="2" /> entries, so it is <InlineMath math="3 \times 2" />, like the score matrix. The right block has the same six entries arranged in <InlineMath math="2" /> rows of <InlineMath math="3" />, so it is a different order, <InlineMath math="2 \times 3" />.
+
+<MathVisual
+  title={<>Same six entries, two different orders</>}
+  description={<>Six entries as a block of <InlineMath math="3" /> rows and <InlineMath math="2" /> columns, and as a block of <InlineMath math="2" /> rows and <InlineMath math="3" /> columns.</>}
+  labels={{
+    t32: <InlineMath math="3 \times 2" />,
+    t23: <InlineMath math="2 \times 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: -4, max: 0.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "a12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "a21", kind: "point", at: { x: 1, y: -2 }, appearance: "primary" },
+      { id: "a22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "a31", kind: "point", at: { x: 1, y: -3 }, appearance: "primary" },
+      { id: "a32", kind: "point", at: { x: 2, y: -3 }, appearance: "primary" },
+      { id: "b11", kind: "point", at: { x: 5, y: -1 }, appearance: "secondary" },
+      { id: "b12", kind: "point", at: { x: 6, y: -1 }, appearance: "secondary" },
+      { id: "b13", kind: "point", at: { x: 7, y: -1 }, appearance: "secondary" },
+      { id: "b21", kind: "point", at: { x: 5, y: -2 }, appearance: "secondary" },
+      { id: "b22", kind: "point", at: { x: 6, y: -2 }, appearance: "secondary" },
+      { id: "b23", kind: "point", at: { x: 7, y: -2 }, appearance: "secondary" },
+      { id: "t32", kind: "segment", from: { x: 1, y: -3.6 }, to: { x: 2, y: -3.6 }, appearance: "primary" },
+      { id: "t23", kind: "segment", from: { x: 5, y: -2.6 }, to: { x: 7, y: -2.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "t32", objectId: "t32", at: { x: 1.5, y: -3.6 }, placement: "below" },
+      { key: "t23", objectId: "t23", at: { x: 6, y: -2.6 }, placement: "below" },
     ],
   }}
 />

@@ -161,6 +161,31 @@ Swapping the two rows of <InlineMath math="A=\begin{bmatrix}1&2\\3&4\end{bmatrix
   }}
 />
 
+For simple matrices the product rule is plain to see. <InlineMath math="B = \begin{bmatrix} 1 & 0 \\ 0 & 3 \end{bmatrix}" /> stretches the unit square to a <InlineMath math="1" /> by <InlineMath math="3" /> rectangle, area <InlineMath math="3" />. <InlineMath math="A = \begin{bmatrix} 2 & 0 \\ 0 & 1 \end{bmatrix}" /> then doubles the width, area <InlineMath math="6" />. So <InlineMath math="\det(AB) = 6 = 2 \cdot 3 = \det(A)\det(B)" />.
+
+<MathVisual
+  title={<>Areas multiply when matrices multiply</>}
+  description={<>The unit square, its image under <InlineMath math="B" /> with area 3, and its image under <InlineMath math="AB" /> with area 6.</>}
+  labels={{
+    bb: <InlineMath math="B" />,
+    ab: <InlineMath math="AB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 2.5 }, y: { min: -0.3, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "ab", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "bb", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "bb", objectId: "bb", at: { x: 0.5, y: 2 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 1.5, y: 2 }, placement: "center" },
+    ],
+  }}
+/>
+
 ## Other Determinant Properties
 
 The product and whole-matrix scaling laws are part of a larger set of useful rules. In the table, <InlineMath math="A" /> is square and every row operation produces a new matrix <InlineMath math="B" />.
@@ -176,17 +201,6 @@ The product and whole-matrix scaling laws are part of a larger set of useful rul
 | Two equal rows, or one zero row | <InlineMath math="\det(A)=0" /> |
 
 Do not confuse **scaling one row** with scaling the whole matrix. In an <InlineMath math="n\times n" /> matrix, <InlineMath math="kA" /> scales all <InlineMath math="n" /> rows by <InlineMath math="k" />, so the factor <InlineMath math="k" /> appears <InlineMath math="n" /> times and gives <InlineMath math="k^n" />.
-
-<Mermaid
-  title="How each change of A changes its determinant"
-  description="Each operation on A changes the determinant in a fixed way, so the new determinant follows without expanding again."
-  chart={`flowchart LR
-  A["The determinant"] -->|"multiply by another matrix"| P["product of both determinants"]
-  A -->|"multiply every entry by one number"| K["that number to the power of the size, times the determinant"]
-  A -->|"swap two rows"| S["opposite sign"]
-  A -->|"multiply one row by a number"| C["that number times the determinant"]
-  A -->|"add a multiple of one row to another"| U["unchanged"]`}
-/>
 
 ## Check Your Understanding
 

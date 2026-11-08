@@ -18,17 +18,6 @@ Die Matrizen <InlineMath math="A" /> und <InlineMath math="B" /> sind genau dann
 
 Wenn eine dieser beiden Bedingungen nicht erfüllt ist, ist die Matrix <InlineMath math="A" /> nicht gleich der Matrix <InlineMath math="B" /> (geschrieben als <InlineMath math="A \neq B" />).
 
-<Mermaid
-  title="Prüfen, ob zwei Matrizen gleich sind"
-  description="Zwei Matrizen sind nur gleich, wenn sie dasselbe Format haben und jedes Paar passender Einträge gleich ist."
-  chart={`flowchart TD
-  A["Zwei Matrizen"] --> O{"Gleiches Format?"}
-  O -->|"Nein"| N["Nicht gleich"]
-  O -->|"Ja"| E{"Jedes Paar passender Einträge gleich?"}
-  E -->|"Ja"| Y["Gleich"]
-  E -->|"Nein"| N`}
-/>
-
 ## Beispiele für Matrixgleichheit
 
 Über die Gleichheit zweier Matrizen entscheiden zwei Prüfungen. Beide Matrizen müssen dasselbe Format haben, danach muss jedes Element an derselben Position übereinstimmen. Die Beispiele zeigen ein Paar, das beide Prüfungen besteht, und zwei Paare, die <Highlight>genau eine Prüfung nicht bestehen</Highlight>, danach folgt ein Fall mit unbekannten Variablen.
@@ -115,6 +104,40 @@ Das letzte Paar von Einträgen liefert <InlineMath math="z^2 = 9" />. Zeichne di
       { key: "level", objectId: "level", at: { x: 0, y: 9 }, placement: "above" },
       { key: "left", objectId: "left", at: { x: -3, y: 9 }, placement: "below-left" },
       { key: "right", objectId: "right", at: { x: 3, y: 9 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Das Format kommt vor jedem Eintrag. <InlineMath math="R" /> hat 2 Zeilen, <InlineMath math="C" /> hat 3 Zeilen, ihre Blöcke haben also verschiedene Formen. Auch wenn die ersten beiden Zeilen übereinstimmen, hat <InlineMath math="C" /> eine zusätzliche Zeile ohne Gegenstück, also <InlineMath math="R \neq C" />.
+
+<MathVisual
+  title={<>Matrizen verschiedener Formate sind nie gleich</>}
+  description={<>Der Block von <InlineMath math="R" /> mit 2 Zeilen und 2 Spalten neben dem Block von <InlineMath math="C" /> mit 3 Zeilen und 2 Spalten.</>}
+  labels={{
+    r: <InlineMath math="R" />,
+    c: <InlineMath math="C" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: -4, max: 0.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "r11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "r12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "r21", kind: "point", at: { x: 1, y: -2 }, appearance: "primary" },
+      { id: "r22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "c11", kind: "point", at: { x: 4, y: -1 }, appearance: "secondary" },
+      { id: "c12", kind: "point", at: { x: 5, y: -1 }, appearance: "secondary" },
+      { id: "c21", kind: "point", at: { x: 4, y: -2 }, appearance: "secondary" },
+      { id: "c22", kind: "point", at: { x: 5, y: -2 }, appearance: "secondary" },
+      { id: "c31", kind: "point", at: { x: 4, y: -3 }, appearance: "secondary" },
+      { id: "c32", kind: "point", at: { x: 5, y: -3 }, appearance: "secondary" },
+      { id: "rl", kind: "segment", from: { x: 1, y: -2.6 }, to: { x: 2, y: -2.6 }, appearance: "primary" },
+      { id: "cl", kind: "segment", from: { x: 4, y: -3.6 }, to: { x: 5, y: -3.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "r", objectId: "rl", at: { x: 1.5, y: -2.6 }, placement: "below" },
+      { key: "c", objectId: "cl", at: { x: 4.5, y: -3.6 }, placement: "below" },
     ],
   }}
 />

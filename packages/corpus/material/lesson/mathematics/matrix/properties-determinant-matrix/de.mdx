@@ -161,6 +161,31 @@ Vertauschst du die beiden Zeilen von <InlineMath math="A=\begin{bmatrix}1&2\\3&4
   }}
 />
 
+Bei einfachen Matrizen siehst du die Produktregel sofort. <InlineMath math="B = \begin{bmatrix} 1 & 0 \\ 0 & 3 \end{bmatrix}" /> streckt das Einheitsquadrat zu einem Rechteck <InlineMath math="1" /> mal <InlineMath math="3" /> mit Fläche <InlineMath math="3" />. <InlineMath math="A = \begin{bmatrix} 2 & 0 \\ 0 & 1 \end{bmatrix}" /> verdoppelt dann die Breite, Fläche <InlineMath math="6" />. Also <InlineMath math="\det(AB) = 6 = 2 \cdot 3 = \det(A)\det(B)" />.
+
+<MathVisual
+  title={<>Flächen multiplizieren sich, wenn Matrizen sich multiplizieren</>}
+  description={<>Das Einheitsquadrat, sein Bild unter <InlineMath math="B" /> mit Fläche 3 und sein Bild unter <InlineMath math="AB" /> mit Fläche 6.</>}
+  labels={{
+    bb: <InlineMath math="B" />,
+    ab: <InlineMath math="AB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 2.5 }, y: { min: -0.3, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "ab", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "bb", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "bb", objectId: "bb", at: { x: 0.5, y: 2 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 1.5, y: 2 }, placement: "center" },
+    ],
+  }}
+/>
+
 ## Weitere Determinanteneigenschaften
 
 Die Produktregel und die Skalierung der gesamten Matrix gehören zu einer größeren Gruppe nützlicher Regeln. In der Tabelle ist <InlineMath math="A" /> quadratisch, und jede Zeilenoperation erzeugt eine neue Matrix <InlineMath math="B" />.
@@ -176,17 +201,6 @@ Die Produktregel und die Skalierung der gesamten Matrix gehören zu einer größ
 | Zwei gleiche Zeilen oder eine Nullzeile | <InlineMath math="\det(A)=0" /> |
 
 Die **Skalierung einer Zeile** darf nicht mit der Skalierung der gesamten Matrix verwechselt werden. Bei einer <InlineMath math="n\times n" />-Matrix skaliert <InlineMath math="kA" /> alle <InlineMath math="n" /> Zeilen mit <InlineMath math="k" />. Deshalb tritt der Faktor <InlineMath math="k" /> genau <InlineMath math="n" />-mal auf und ergibt <InlineMath math="k^n" />.
-
-<Mermaid
-  title="Wie jede Änderung von A die Determinante ändert"
-  description="Jede Operation an A ändert die Determinante auf feste Weise, sodass die neue Determinante ohne erneute Entwicklung folgt."
-  chart={`flowchart LR
-  A["Die Determinante"] -->|"mit einer anderen Matrix multiplizieren"| P["Produkt beider Determinanten"]
-  A -->|"jeden Eintrag mit derselben Zahl multiplizieren"| K["diese Zahl hoch die Größe, mal die Determinante"]
-  A -->|"zwei Zeilen tauschen"| S["umgekehrtes Vorzeichen"]
-  A -->|"eine Zeile mit einer Zahl multiplizieren"| C["diese Zahl mal die Determinante"]
-  A -->|"Vielfaches einer Zeile zu einer anderen addieren"| U["unverändert"]`}
-/>
 
 ## Verständnis prüfen
 

@@ -23,15 +23,6 @@ Die Ergebnismatrix <InlineMath math="C = AB" /> hat das Format <InlineMath math=
 
 Die Formatprüfung passt in eine Zeile: Aus <InlineMath math="A\in\mathbb{R}^{m\times n}" /> und <InlineMath math="B\in\mathbb{R}^{n\times p}" /> folgt <InlineMath math="AB\in\mathbb{R}^{m\times p}" />. Die gemeinsame innere Dimension <InlineMath math="n" /> geht in jedes Skalarprodukt ein, während die äußeren Dimensionen <InlineMath math="m" /> und <InlineMath math="p" /> das Ergebnisformat festlegen.
 
-<Mermaid
-  title="Wann ein Matrixprodukt existiert"
-  description="AB existiert nur, wenn A so viele Spalten hat wie B Zeilen, und das Produkt übernimmt die Zeilenzahl von A und die Spaltenzahl von B."
-  chart={`flowchart TD
-  A["Spalten der ersten Matrix, Zeilen der zweiten"] --> Q{"Gleich viele?"}
-  Q -->|"Ja"| R["Das Produkt existiert: Zeilen der ersten, Spalten der zweiten"]
-  Q -->|"Nein"| U["Das Produkt ist nicht definiert"]`}
-/>
-
 ### Einträge der Ergebnismatrix berechnen
 
 Für den Eintrag <InlineMath math="c_{ij}" /> der Matrix <InlineMath math="C" />, also den Eintrag in Zeile <InlineMath math="i" /> und Spalte <InlineMath math="j" />, multipliziert man die Einträge der <InlineMath math="i" />-ten Zeile von <InlineMath math="A" /> mit den zugehörigen Einträgen der <InlineMath math="j" />-ten Spalte von <InlineMath math="B" /> und **addiert die Produkte**.
@@ -162,6 +153,33 @@ Die Reihenfolge zählt. Nimm <InlineMath math="N = \begin{bmatrix} 1 & 0 \\ 0 & 
       { key: "middle", objectId: "middle", at: { x: 1, y: 2 }, placement: "right" },
       { key: "mn", objectId: "mn", at: { x: 0, y: 3 }, placement: "left" },
       { key: "nm", objectId: "nm", at: { x: 1, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+Die Größen entscheiden, ob ein Produkt existiert. Im Beispiel ist <InlineMath math="A" /> eine <InlineMath math="3 \times 3" />- und <InlineMath math="B" /> eine <InlineMath math="3 \times 2" />-Matrix: Die inneren Größen, <InlineMath math="3" /> Spalten von <InlineMath math="A" /> und <InlineMath math="3" /> Zeilen von <InlineMath math="B" />, passen. Das Produkt behält die äußeren Größen, <InlineMath math="AB" /> ist also <InlineMath math="3 \times 2" />, ein Eintrag für jede Zeile von <InlineMath math="A" /> und jede Spalte von <InlineMath math="B" />.
+
+<MathVisual
+  title={<>Die inneren Größen passen, die äußeren bleiben</>}
+  description={<>Blöcke für <InlineMath math="A" />, 3 mal 3, <InlineMath math="B" />, 3 mal 2, und das Produkt <InlineMath math="AB" />, 3 mal 2.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    ab: <InlineMath math="AB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -0.8, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 3 }, { x: 4, y: 3 }], appearance: "secondary" },
+      { id: "ab", kind: "polygon", vertices: [{ x: 7.5, y: 0 }, { x: 9.5, y: 0 }, { x: 9.5, y: 3 }, { x: 7.5, y: 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 1.5 }, placement: "center" },
+      { key: "b", objectId: "b", at: { x: 5, y: 1.5 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 8.5, y: 1.5 }, placement: "center" },
     ],
   }}
 />

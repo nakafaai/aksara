@@ -72,17 +72,6 @@ Contoh:
 
 Matriks <InlineMath math="M" /> adalah matriks persegi berordo <InlineMath math="3 \times 3" />. Elemen diagonal utamanya adalah <InlineMath math="1, 5, 9" />. Elemen diagonal sampingnya adalah <InlineMath math="3, 5, 7" />.
 
-<Mermaid
-  title="Jenis khusus matriks persegi"
-  description="Setiap matriks diagonal adalah matriks segitiga, identitas adalah matriks diagonal, dan matriks diagonal juga simetris."
-  chart={`flowchart TD
-  S["Matriks persegi"] --> T["Segitiga: nol di satu sisi diagonal utama"]
-  T --> D["Diagonal: nol di semua posisi di luar diagonal utama"]
-  D --> I["Identitas: angka satu di diagonal utama"]
-  S --> Y["Simetris: sama dengan transposenya"]
-  D -.->|"juga"| Y`}
-/>
-
 ## Matriks Persegi Panjang
 
 Matriks persegi panjang adalah matriks yang **jumlah baris dan jumlah kolomnya tidak sama** (<InlineMath math="m \neq n" />).
@@ -176,7 +165,7 @@ Contoh:
 Jenis-jenis matriks persegi khusus juga berperilaku berbeda saat dikalikan dengan titik. Tulis setiap titik sudut <InlineMath math="(x, y)" /> dari persegi satuan sebagai kolom, lalu kalikan dengan matriks <InlineMath math="2 \times 2" />. Matriks identitas <InlineMath math="I_2" /> mengirim setiap titik sudut ke dirinya sendiri, jadi perseginya tetap di tempat. Matriks diagonal dengan <InlineMath math="3" /> dan <InlineMath math="2" /> di diagonalnya meregangkan <InlineMath math="x" /> tiga kali dan <InlineMath math="y" /> dua kali: titik <InlineMath math="(1, 1)" /> pindah ke <InlineMath math="(3, 2)" />, dan perseginya menjadi persegi panjang <InlineMath math="3" /> kali <InlineMath math="2" />. Matriks nol <InlineMath math="O" /> mengirim setiap titik sudut ke <InlineMath math="(0, 0)" />.
 
 <MathVisual
-  title="Efek tiga matriks persegi pada persegi satuan"
+  title={<>Efek tiga matriks persegi pada persegi satuan</>}
   description={<>Persegi satuan tetap di tempat oleh <InlineMath math="I_2" />, meregang menjadi persegi panjang 3 kali 2 oleh matriks diagonal, dan menyusut ke titik asal oleh <InlineMath math="O" />.</>}
   labels={{
     square: <InlineMath math="I_2" />,
@@ -203,8 +192,8 @@ Jenis-jenis matriks persegi khusus juga berperilaku berbeda saat dikalikan denga
 Matriks segitiga menggeser persegi alih-alih meregangkannya. Matriks segitiga atas <InlineMath math="\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}" /> mempertahankan sisi bawah dan mendorong sisi atas 2 satuan ke kanan. Matriks segitiga bawah <InlineMath math="\begin{bmatrix} 1 & 0 \\ 2 & 1 \end{bmatrix}" /> mempertahankan sisi kiri dan mengangkat sisi kanan 2 satuan. Keduanya mempertahankan luas 1, yaitu hasil kali entri diagonalnya.
 
 <MathVisual
-  title="Dua matriks segitiga menggeser persegi satuan"
-  description="Matriks segitiga atas menggeser persegi ke samping, matriks segitiga bawah menggesernya ke atas, dan keduanya mempertahankan luasnya."
+  title={<>Dua matriks segitiga menggeser persegi satuan</>}
+  description={<>Matriks segitiga atas menggeser persegi ke samping, matriks segitiga bawah menggesernya ke atas, dan keduanya mempertahankan luasnya.</>}
   labels={{
     upper: <InlineMath math="\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}" />,
     lower: <InlineMath math="\begin{bmatrix} 1 & 0 \\ 2 & 1 \end{bmatrix}" />,
@@ -221,6 +210,31 @@ Matriks segitiga menggeser persegi alih-alih meregangkannya. Matriks segitiga at
     labels: [
       { key: "upper", objectId: "upper", at: { x: 3, y: 1 }, placement: "right" },
       { key: "lower", objectId: "lower", at: { x: 1, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+Matriks skalar punya satu bilangan yang berulang di diagonal. <InlineMath math="2I" /> menggandakan setiap jarak dari titik asal, jadi persegi satuan menjadi persegi <InlineMath math="2" /> kali <InlineMath math="2" />. <InlineMath math="-I" /> mengirim setiap pojok ke sisi seberang titik asal, yaitu setengah putaran persegi.
+
+<MathVisual
+  title={<>Matriks skalar <InlineMath math="2I" /> dan <InlineMath math="-I" /></>}
+  description={<>Persegi satuan, bayangannya oleh <InlineMath math="2I" /> bersisi 2, dan bayangannya oleh <InlineMath math="-I" /> di sisi seberang titik asal.</>}
+  labels={{
+    two: <InlineMath math="2I" />,
+    neg: <InlineMath math="-I" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2.5 }, y: { min: -1.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "two", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "neg", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -1, y: 0 }, { x: -1, y: -1 }, { x: 0, y: -1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "two", objectId: "two", at: { x: 2, y: 2 }, placement: "above-right" },
+      { key: "neg", objectId: "neg", at: { x: -1, y: -1 }, placement: "below-left" },
     ],
   }}
 />

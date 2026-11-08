@@ -91,16 +91,6 @@ Ekspansi pada baris atau kolom mana pun menghasilkan determinan yang sama.
 
 Jika tersedia, <Highlight>pilih baris atau kolom yang memuat banyak nol</Highlight>. Setiap nol menghilangkan satu hasil kali, sehingga jumlah suku yang perlu dihitung berkurang.
 
-<Mermaid
-  title="Ekspansi kofaktor langkah demi langkah"
-  description="Pilih satu baris, ubah setiap entri menjadi kofaktor lewat minor dan tandanya, lalu jumlahkan entri kali kofaktornya."
-  chart={`flowchart LR
-  A["Pilih satu baris"] --> B["Coret baris dan kolom setiap entri"]
-  B --> C["Minor: determinan sisanya"]
-  C --> D["Kofaktor: minor dengan tanda papan caturnya"]
-  D --> E["Jumlahkan setiap entri kali kofaktornya"]`}
-/>
-
 ## Contoh Perhitungan Determinan
 
 Hitung determinan dari matriks <InlineMath math="P" /> berikut menggunakan metode ekspansi kofaktor:
@@ -159,10 +149,10 @@ Perhatikan <InlineMath math="k_{12}=(-1)(-2)=2" />. Posisi dengan tanda minus da
 Tiga kofaktor baris 1 juga punya bentuk. Baris 2 dan 3 matriks <InlineMath math="P" /> membentuk jajargenjang. Panah <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" /> tegak lurus terhadap jajargenjang itu, dan panjangnya <InlineMath math="\sqrt{184}" /> sama dengan luas jajargenjang tersebut. Ekspansi <InlineMath math="(1)(6) + (3)(2) + (2)(-12) = -12" /> sama dengan panjang panah itu dikali seberapa jauh baris 1 menjangkau searah panah itu. Putar adegannya: baris 1 mengarah ke sisi seberang jajargenjang, dan itulah sebabnya determinannya negatif.
 
 <MathVisual
-  title="Kofaktor baris 1 membentuk panah yang menembus dua baris lain"
+  title={<>Kofaktor baris 1 membentuk panah yang menembus dua baris lain</>}
   description={<>Baris 2 dan 3 matriks <InlineMath math="P" /> membentuk jajargenjang. Panah kofaktor <InlineMath math="(6, 2, -12)" /> tegak lurus terhadapnya, dan baris 1 condong menjauhi panah itu.</>}
   labels={{
-    base: "baris 2 dan 3",
+    base: <>baris 2 dan 3</>,
     normal: <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" />,
     row1: <>baris 1 <InlineMath math="(1, 3, 2)" /></>,
   }}
@@ -224,6 +214,33 @@ Tanda <InlineMath math="(-1)^{i+j}" /> mengikuti pola papan catur. Mulai dengan 
       { key: "s31", objectId: "s31", at: { x: 1, y: -3 }, placement: "above-right" },
       { key: "s32", objectId: "s32", at: { x: 2, y: -3 }, placement: "above-right" },
       { key: "s33", objectId: "s33", at: { x: 3, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Setiap minor adalah determinan kecil yang bisa digambar. Coret baris 1 dan kolom 1 matriks <InlineMath math="P" />, maka tersisa baris <InlineMath math="(6, 2)" /> dan <InlineMath math="(9, 4)" />. Keduanya membentuk jajargenjang seluas <InlineMath math="6 \cdot 4 - 2 \cdot 9 = 6" />, yaitu <InlineMath math="M_{11}" />, dan dengan tanda <InlineMath math="+" /> hasilnya <InlineMath math="k_{11} = 6" />.
+
+<MathVisual
+  title={<>Minor <InlineMath math="M_{11}" /> sebagai luas</>}
+  description={<>Jajargenjang yang dibentuk <InlineMath math="(6, 2)" /> dan <InlineMath math="(9, 4)" />, baris yang tersisa setelah baris 1 dan kolom 1 dicoret, seluas 6.</>}
+  labels={{
+    area: <InlineMath math="M_{11} = 6" />,
+    r1: <InlineMath math="(6, 2)" />,
+    r2: <InlineMath math="(9, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 16 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 6, y: 2 }, { x: 15, y: 6 }, { x: 9, y: 4 }], appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: 6, y: 2 }, appearance: "secondary" },
+      { id: "r2", kind: "point", at: { x: 9, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "area", objectId: "area", at: { x: 7.5, y: 3 }, placement: "above-left" },
+      { key: "r1", objectId: "r1", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "r2", objectId: "r2", at: { x: 9, y: 4 }, placement: "above-left" },
     ],
   }}
 />

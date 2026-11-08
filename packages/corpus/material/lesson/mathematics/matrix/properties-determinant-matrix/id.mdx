@@ -161,6 +161,31 @@ Menukar dua baris <InlineMath math="A=\begin{bmatrix}1&2\\3&4\end{bmatrix}" /> m
   }}
 />
 
+Untuk matriks sederhana, aturan perkalian terlihat jelas. <InlineMath math="B = \begin{bmatrix} 1 & 0 \\ 0 & 3 \end{bmatrix}" /> meregangkan persegi satuan menjadi persegi panjang <InlineMath math="1" /> kali <InlineMath math="3" />, luasnya <InlineMath math="3" />. <InlineMath math="A = \begin{bmatrix} 2 & 0 \\ 0 & 1 \end{bmatrix}" /> lalu menggandakan lebarnya, luasnya <InlineMath math="6" />. Jadi <InlineMath math="\det(AB) = 6 = 2 \cdot 3 = \det(A)\det(B)" />.
+
+<MathVisual
+  title={<>Luas dikalikan saat matriks dikalikan</>}
+  description={<>Persegi satuan, bayangannya oleh <InlineMath math="B" /> seluas 3, dan bayangannya oleh <InlineMath math="AB" /> seluas 6.</>}
+  labels={{
+    bb: <InlineMath math="B" />,
+    ab: <InlineMath math="AB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 2.5 }, y: { min: -0.3, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "ab", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "bb", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "bb", objectId: "bb", at: { x: 0.5, y: 2 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 1.5, y: 2 }, placement: "center" },
+    ],
+  }}
+/>
+
 ## Sifat Determinan Lainnya
 
 Sifat hasil kali dan penskalaan seluruh matriks merupakan bagian dari aturan determinan yang lebih luas. Pada tabel berikut, <InlineMath math="A" /> adalah matriks persegi dan setiap operasi baris menghasilkan matriks baru <InlineMath math="B" />.
@@ -176,17 +201,6 @@ Sifat hasil kali dan penskalaan seluruh matriks merupakan bagian dari aturan det
 | Dua baris sama, atau satu baris nol | <InlineMath math="\det(A)=0" /> |
 
 Jangan mencampuradukkan **penskalaan satu baris** dengan penskalaan seluruh matriks. Pada matriks <InlineMath math="n\times n" />, <InlineMath math="kA" /> mengalikan semua <InlineMath math="n" /> baris dengan <InlineMath math="k" />. Karena itu, faktor <InlineMath math="k" /> muncul sebanyak <InlineMath math="n" /> kali dan menghasilkan <InlineMath math="k^n" />.
-
-<Mermaid
-  title="Bagaimana setiap perubahan A mengubah determinannya"
-  description="Setiap operasi pada A mengubah determinan dengan cara tetap, jadi determinan baru bisa diperoleh tanpa ekspansi ulang."
-  chart={`flowchart LR
-  A["Determinannya"] -->|"kalikan dengan matriks lain"| P["hasil kali kedua determinan"]
-  A -->|"kalikan setiap entri dengan satu bilangan"| K["bilangan itu pangkat ukurannya, kali determinan"]
-  A -->|"tukar dua baris"| S["tanda berlawanan"]
-  A -->|"kalikan satu baris dengan sebuah bilangan"| C["bilangan itu kali determinan"]
-  A -->|"tambahkan kelipatan satu baris ke baris lain"| U["tidak berubah"]`}
-/>
 
 ## Uji Pemahaman
 

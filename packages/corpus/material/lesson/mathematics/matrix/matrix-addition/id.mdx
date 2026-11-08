@@ -13,16 +13,6 @@ Penjumlahan matriks menggabungkan dua matriks atau lebih menjadi matriks baru. O
 
 Penjumlahan menghasilkan matriks baru dengan ordo yang sama. Setiap elemen diperoleh dengan <Highlight>menjumlahkan elemen yang letaknya sama</Highlight> pada matriks awal.
 
-<Mermaid
-  title="Kapan dua matriks bisa dijumlahkan"
-  description="Matriks berordo sama dijumlahkan entri demi entri dan menghasilkan matriks berordo sama. Ordo berbeda membuat jumlahnya tidak terdefinisi."
-  chart={`flowchart TD
-  A["Dua matriks"] --> Q{"Banyak baris dan kolomnya sama?"}
-  Q -->|"Ya"| S["Jumlahkan entri yang seletak"]
-  S --> R["Jumlahnya berukuran sama"]
-  Q -->|"Tidak"| U["Jumlahnya tidak terdefinisi"]`}
-/>
-
 ## Definisi Formal Penjumlahan Matriks
 
 Dua matriks, katakanlah matriks <InlineMath math="A" /> dan matriks <InlineMath math="B" />, dapat dijumlahkan jika dan hanya jika kedua matriks tersebut memiliki **ordo yang sama**.
@@ -123,6 +113,34 @@ Urutan kedua matriks tidak berpengaruh. Mulai dari titik asal, melangkah sejauh 
       { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "left" },
       { key: "q", objectId: "q", at: { x: 6, y: -3 }, placement: "below" },
       { key: "sum", objectId: "sum", at: { x: 7, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Dua matriks khusus melengkapi gambarnya. Menambahkan matriks nol <InlineMath math="O" /> tidak menggeser titik mana pun, jadi <InlineMath math="P + O = P" />. Menambahkan <InlineMath math="-P" /> mengirim setiap baris ke titik asal: baris 1, <InlineMath math="(1, 5)" />, ditambah <InlineMath math="(-1, -5)" /> sama dengan <InlineMath math="(0, 0)" />, jadi <InlineMath math="P + (-P) = O" />.
+
+<MathVisual
+  title={<>Matriks nol dan matriks lawan</>}
+  description={<>Baris 1 <InlineMath math="P" /> di <InlineMath math="(1, 5)" />, lawannya di <InlineMath math="(-1, -5)" />, dan jumlahnya di titik asal.</>}
+  labels={{
+    p: <InlineMath math="(1, 5)" />,
+    n: <InlineMath math="(-1, -5)" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "link", kind: "segment", from: { x: 1, y: 5 }, to: { x: -1, y: -5 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "n", kind: "point", at: { x: -1, y: -5 }, appearance: "secondary" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "n", objectId: "n", at: { x: -1, y: -5 }, placement: "left" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "right" },
     ],
   }}
 />

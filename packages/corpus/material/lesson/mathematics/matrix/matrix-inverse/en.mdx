@@ -26,16 +26,6 @@ Not all square matrices have an inverse. A matrix <InlineMath math="A" /> has an
 - Matrix <InlineMath math="A" /> is called a **nonsingular matrix** if <InlineMath math="\det(A) \neq 0" />. A nonsingular matrix always has an inverse.
 - Matrix <InlineMath math="A" /> is called a **singular matrix** if <InlineMath math="\det(A) = 0" />. A singular matrix does not have an inverse.
 
-<Mermaid
-  title="Does a matrix have an inverse"
-  description="A square matrix has an inverse exactly when its determinant is not zero, and the inverse is checked by multiplying back to the identity."
-  chart={`flowchart TD
-  A["Square matrix"] --> D{"Is its determinant zero?"}
-  D -->|"Yes"| S["Singular: no inverse"]
-  D -->|"No"| N["Nonsingular: divide the adjoint by the determinant"]
-  N --> C["Check: matrix times inverse gives the identity"]`}
-/>
-
 ## Inverse of a Two by Two Matrix
 
 For a <InlineMath math="2 \times 2" /> matrix <InlineMath math="A" />, let:
@@ -204,6 +194,33 @@ Now try the singular matrix <InlineMath math="K = \begin{bmatrix} 2 & 4 \\ 1 & 2
     labels: [
       { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-right" },
       { key: "second", objectId: "second", at: { x: -1, y: 1 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+An inverse undoes its matrix. With <InlineMath math="X = \begin{bmatrix} 1 & -3 \\ -1 & 4 \end{bmatrix}" /> the point <InlineMath math="(1, 1)" /> moves to <InlineMath math="(1 - 3, -1 + 4) = (-2, 3)" />. Then <InlineMath math="X^{-1} = \begin{bmatrix} 4 & 3 \\ 1 & 1 \end{bmatrix}" /> sends <InlineMath math="(-2, 3)" /> to <InlineMath math="(-8 + 9, -2 + 3) = (1, 1)" />, right back where it started.
+
+<MathVisual
+  title={<><InlineMath math="X^{-1}" /> undoes <InlineMath math="X" /></>}
+  description={<>The point <InlineMath math="(1, 1)" />, its image <InlineMath math="(-2, 3)" /> under <InlineMath math="X" />, and the return trip under <InlineMath math="X^{-1}" />.</>}
+  labels={{
+    v: <InlineMath math="(1, 1)" />,
+    w: <InlineMath math="(-2, 3)" />,
+    path: <InlineMath math="X, \ X^{-1}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 2 }, y: { min: -0.5, max: 3.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "path", kind: "segment", from: { x: 1, y: 1 }, to: { x: -2, y: 3 }, appearance: "construction" },
+      { id: "v", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "w", kind: "point", at: { x: -2, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "w", objectId: "w", at: { x: -2, y: 3 }, placement: "left" },
+      { key: "path", objectId: "path", at: { x: -0.5, y: 2 }, placement: "above-right" },
     ],
   }}
 />

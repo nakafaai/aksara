@@ -13,14 +13,6 @@ Transpos matriks <Highlight>diperoleh dengan menukar baris dan kolom</Highlight>
 
 Transpos matriks <InlineMath math="A" /> ditulis sebagai <InlineMath math="A^T" /> atau <InlineMath math="A'" />. Jika <InlineMath math="A" /> berordo <InlineMath math="m \times n" />, maka <InlineMath math="A^T" /> berordo <InlineMath math="n \times m" />.
 
-<Mermaid
-  title="Transpose dua kali kembali ke matriks semula"
-  description="Transpose menukar ordo dari m kali n menjadi n kali m, dan transpose sekali lagi mengembalikan matriks semula."
-  chart={`flowchart LR
-  A["Sebuah matriks"] -->|"baris menjadi kolom"| T["Transposenya: banyak baris sama dengan banyak kolom matriks semula"]
-  T -->|"transpose lagi"| B["Matriks semula"]`}
-/>
-
 ## Cara Menentukan Matriks Transpos
 
 Untuk mendapatkan matriks transpos, ikuti langkah berikut:
@@ -64,7 +56,7 @@ Taruh setiap entri di tempatnya pada kertas: nomor kolom ke kanan dan nomor bari
   title={<>Transpose <InlineMath math="B" /> mencerminkannya terhadap diagonal utama</>}
   description={<>Entri <InlineMath math="B" /> ditulis di kanan atas posisinya, sedangkan entri <InlineMath math="B^T" /> yang berpindah ditulis di kiri bawah. Setiap ruas garis menghubungkan posisi lama sebuah entri dengan posisi barunya.</>}
   labels={{
-    diagonal: "diagonal utama",
+    diagonal: <>diagonal utama</>,
     b11: <InlineMath math="1" />,
     b12: <InlineMath math="2" />,
     b13: <InlineMath math="3" />,
@@ -131,6 +123,52 @@ Seluruh bloknya juga ikut terbalik. <InlineMath math="B" /> mengisi 2 baris dan 
     labels: [
       { key: "b", objectId: "b", at: { x: 3, y: -2 }, placement: "below-right" },
       { key: "bt", objectId: "bt", at: { x: 2, y: -3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Ada matriks yang sama sekali tidak berubah saat ditranspose. Pada <InlineMath math="S = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 5 \\ 3 & 5 & 6 \end{bmatrix}" />, setiap entri punya pasangan yang sama di seberang diagonal utama: dua angka <InlineMath math="2" />, dua angka <InlineMath math="3" />, dan dua angka <InlineMath math="5" />. Pencerminan menukar nilai yang sama, jadi <InlineMath math="S^T = S" />, dan <InlineMath math="S" /> simetris.
+
+<MathVisual
+  title={<>Matriks simetris sama dengan transposenya</>}
+  description={<>Entri <InlineMath math="S" /> diletakkan menurut kolom dan baris, dicerminkan terhadap diagonal utama ke nilai yang sama.</>}
+  labels={{
+    s11: <InlineMath math="1" />,
+    s12: <InlineMath math="2" />,
+    s13: <InlineMath math="3" />,
+    s21: <InlineMath math="2" />,
+    s22: <InlineMath math="4" />,
+    s23: <InlineMath math="5" />,
+    s31: <InlineMath math="3" />,
+    s32: <InlineMath math="5" />,
+    s33: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diag", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "s11", kind: "point", at: { x: 1, y: -1 }, appearance: "answer" },
+      { id: "s12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "s13", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+      { id: "s21", kind: "point", at: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "s22", kind: "point", at: { x: 2, y: -2 }, appearance: "answer" },
+      { id: "s23", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "s31", kind: "point", at: { x: 1, y: -3 }, appearance: "secondary" },
+      { id: "s32", kind: "point", at: { x: 2, y: -3 }, appearance: "secondary" },
+      { id: "s33", kind: "point", at: { x: 3, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s11", objectId: "s11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "s12", objectId: "s12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "s13", objectId: "s13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "s21", objectId: "s21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "s22", objectId: "s22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "s23", objectId: "s23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "s31", objectId: "s31", at: { x: 1, y: -3 }, placement: "above-right" },
+      { key: "s32", objectId: "s32", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "s33", objectId: "s33", at: { x: 3, y: -3 }, placement: "above-right" },
     ],
   }}
 />

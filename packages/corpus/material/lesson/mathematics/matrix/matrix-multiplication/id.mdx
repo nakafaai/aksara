@@ -23,15 +23,6 @@ Hasil perkaliannya, sebut saja matriks <InlineMath math="C = AB" />, akan memili
 
 Pemeriksaan ordo dapat diringkas dalam satu baris: <InlineMath math="A\in\mathbb{R}^{m\times n}" /> dan <InlineMath math="B\in\mathbb{R}^{n\times p}" /> menghasilkan <InlineMath math="AB\in\mathbb{R}^{m\times p}" />. Ordo dalam <InlineMath math="n" /> dipakai pada setiap hasil kali titik, sedangkan ordo luar <InlineMath math="m" /> dan <InlineMath math="p" /> menentukan bentuk hasil.
 
-<Mermaid
-  title="Kapan hasil kali matriks ada"
-  description="AB ada hanya jika banyak kolom A sama dengan banyak baris B, dan hasilnya mengambil banyak baris A dan banyak kolom B."
-  chart={`flowchart TD
-  A["Kolom matriks pertama, baris matriks kedua"] --> Q{"Banyaknya sama?"}
-  Q -->|"Ya"| R["Hasil kali ada: baris matriks pertama, kolom matriks kedua"]
-  Q -->|"Tidak"| U["Hasil kali tidak terdefinisi"]`}
-/>
-
 ### Cara Menghitung Elemen Hasil Perkalian
 
 Elemen <InlineMath math="c_{ij}" /> pada matriks <InlineMath math="C" /> (yaitu elemen pada baris ke-<InlineMath math="i" /> dan kolom ke-<InlineMath math="j" />) dihitung dengan mengalikan setiap elemen pada baris ke-<InlineMath math="i" /> dari matriks <InlineMath math="A" /> dengan elemen yang bersesuaian pada kolom ke-<InlineMath math="j" /> dari matriks <InlineMath math="B" />, kemudian **menjumlahkan semua hasil perkalian** tersebut.
@@ -162,6 +153,33 @@ Urutan itu penting. Ambil <InlineMath math="N = \begin{bmatrix} 1 & 0 \\ 0 & 2 \
       { key: "middle", objectId: "middle", at: { x: 1, y: 2 }, placement: "right" },
       { key: "mn", objectId: "mn", at: { x: 0, y: 3 }, placement: "left" },
       { key: "nm", objectId: "nm", at: { x: 1, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+Ukuran menentukan apakah hasil kali ada. Pada contoh, <InlineMath math="A" /> berordo <InlineMath math="3 \times 3" /> dan <InlineMath math="B" /> berordo <InlineMath math="3 \times 2" />: ukuran dalamnya, <InlineMath math="3" /> kolom <InlineMath math="A" /> dan <InlineMath math="3" /> baris <InlineMath math="B" />, sama. Hasil kalinya mempertahankan ukuran luar, jadi <InlineMath math="AB" /> berordo <InlineMath math="3 \times 2" />, satu entri untuk setiap baris <InlineMath math="A" /> dan kolom <InlineMath math="B" />.
+
+<MathVisual
+  title={<>Ukuran dalam sama, ukuran luar tersisa</>}
+  description={<>Blok untuk <InlineMath math="A" />, 3 kali 3, <InlineMath math="B" />, 3 kali 2, dan hasil kali <InlineMath math="AB" />, 3 kali 2.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    ab: <InlineMath math="AB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -0.8, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 3 }, { x: 4, y: 3 }], appearance: "secondary" },
+      { id: "ab", kind: "polygon", vertices: [{ x: 7.5, y: 0 }, { x: 9.5, y: 0 }, { x: 9.5, y: 3 }, { x: 7.5, y: 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 1.5 }, placement: "center" },
+      { key: "b", objectId: "b", at: { x: 5, y: 1.5 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 8.5, y: 1.5 }, placement: "center" },
     ],
   }}
 />

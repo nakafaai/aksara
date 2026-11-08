@@ -13,17 +13,6 @@ Matrizen lassen sich miteinander verknüpfen oder mit einer einzigen Zahl skalie
 
 Sind beispielsweise alle Einträge einer Messmatrix in Metern angegeben, werden beim Umrechnen der gesamten Tabelle in Zentimeter alle Einträge mit <InlineMath math="100" /> multipliziert. Die Skalarmultiplikation beschreibt diese einheitliche Änderung, ohne jede Rechnung einzeln neu anzusetzen.
 
-<Mermaid
-  title="Was der Skalar mit jedem Eintrag macht"
-  description="Der Wert von k entscheidet, ob sich jeder Eintrag ungleich null von null entfernt, sich null nähert, bleibt, verschwindet oder sein Vorzeichen wechselt."
-  chart={`flowchart TD
-  K{"Wert des Skalars"} -->|"größer als eins"| A["Jeder Eintrag ungleich null entfernt sich von null"]
-  K -->|"zwischen null und eins"| B["Jeder Eintrag ungleich null nähert sich null"]
-  K -->|"eins"| C["Die Matrix bleibt gleich"]
-  K -->|"null"| D["Die Nullmatrix"]
-  K -->|"minus eins"| E["Die Gegenmatrix"]`}
-/>
-
 ## Die Ergebnismatrix elementweise aufschreiben
 
 Bei der Skalarmultiplikation wird <Highlight>jeder Eintrag einer Matrix mit einem Skalar multipliziert</Highlight>.
@@ -141,6 +130,32 @@ Negative Skalare und die Null folgen derselben Regel. <InlineMath math="(-1)P" /
       { key: "p", objectId: "p", at: { x: 9, y: 7 }, placement: "left" },
       { key: "neg", objectId: "neg", at: { x: -9, y: -7 }, placement: "right" },
       { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Eine skalierte Summe ist die Summe der skalierten Matrizen. Nimm die Zeilen <InlineMath math="a = (1, 2)" /> und <InlineMath math="b = (3, 1)" />: Ihre Summe ist <InlineMath math="(4, 3)" />. Verdoppelst du jede Seite des kleinen Parallelogramms, entsteht das große, dessen gegenüberliegende Ecke <InlineMath math="(8, 6)" /> sowohl <InlineMath math="2(a + b)" /> als auch <InlineMath math="2a + 2b" /> ist.
+
+<MathVisual
+  title={<><InlineMath math="k(A + B) = kA + kB" /> als skaliertes Parallelogramm</>}
+  description={<>Das Parallelogramm aus <InlineMath math="(1, 2)" /> und <InlineMath math="(3, 1)" /> und dasselbe Parallelogramm verdoppelt, mit den Ecken <InlineMath math="(4, 3)" /> und <InlineMath math="(8, 6)" />.</>}
+  labels={{
+    small: <InlineMath math="a + b" />,
+    big: <InlineMath math="2(a + b)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "bigp", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 4 }, { x: 8, y: 6 }, { x: 6, y: 2 }], appearance: "secondary" },
+      { id: "smallp", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 2 }, { x: 4, y: 3 }, { x: 3, y: 1 }], appearance: "primary" },
+      { id: "small", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "big", kind: "point", at: { x: 8, y: 6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "small", objectId: "small", at: { x: 4, y: 3 }, placement: "below-right" },
+      { key: "big", objectId: "big", at: { x: 8, y: 6 }, placement: "right" },
     ],
   }}
 />

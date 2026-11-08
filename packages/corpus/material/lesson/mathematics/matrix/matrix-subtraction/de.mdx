@@ -13,15 +13,6 @@ Bei der Matrixsubtraktion berechnen wir die **Differenzen entsprechender Einträ
 
 Das Ergebnis ist eine Matrix desselben Formats. Jeder ihrer Einträge entsteht aus der Differenz der Einträge an derselben Position.
 
-<Mermaid
-  title="Zwei Wege zur selben Differenz"
-  description="Bei Matrizen gleichen Formats liefern das Abziehen passender Einträge und das Addieren der Gegenmatrix dasselbe Ergebnis."
-  chart={`flowchart LR
-  A["Zwei Matrizen gleichen Formats"] -->|"passende Einträge abziehen"| R["Die Differenz"]
-  A -->|"Gegenmatrix der zweiten bilden"| B["Die Gegenmatrix addieren"]
-  B -->|"passende Einträge addieren"| R`}
-/>
-
 ## Formale Definition der Matrixsubtraktion
 
 Die Matrixsubtraktion lässt sich auf zwei gleichwertige Arten beschreiben.
@@ -151,6 +142,30 @@ Lies jede Zeile als Punkt, dann siehst du, was die Differenz misst. Zeile 1 von 
       { key: "p", objectId: "p", at: { x: 8, y: 5 }, placement: "right" },
       { key: "negq", objectId: "negq", at: { x: -2, y: -1 }, placement: "below" },
       { key: "diff", objectId: "diff", at: { x: 6, y: 4 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Vertauschst du die Reihenfolge, kehrt sich der Schritt um. Zeile 1 von <InlineMath math="P - Q" /> ist <InlineMath math="(6, 4)" />, Zeile 1 von <InlineMath math="Q - P" /> ist <InlineMath math="(-6, -4)" />: gleich lang, aber entgegengesetzt. Darum gilt <InlineMath math="P - Q = -(Q - P)" /> und nicht <InlineMath math="Q - P" />.
+
+<MathVisual
+  title={<><InlineMath math="P - Q" /> und <InlineMath math="Q - P" /> zeigen in entgegengesetzte Richtungen</>}
+  description={<>Die Zeilen <InlineMath math="(6, 4)" /> von <InlineMath math="P - Q" /> und <InlineMath math="(-6, -4)" /> von <InlineMath math="Q - P" />, vom Ursprung aus gezeichnet.</>}
+  labels={{
+    pq: <InlineMath math="P - Q" />,
+    qp: <InlineMath math="Q - P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "pq", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 4 }, appearance: "primary" },
+      { id: "qp", kind: "segment", from: { x: 0, y: 0 }, to: { x: -6, y: -4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "pq", objectId: "pq", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "qp", objectId: "qp", at: { x: -6, y: -4 }, placement: "left" },
     ],
   }}
 />
