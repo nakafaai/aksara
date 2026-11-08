@@ -3,7 +3,7 @@ import {
   GitCommitShaSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import { ActiveAppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import type { ContentReleaseManifest } from "@nakafa/aksara-contracts/release";
 import { ActiveContentReleaseSchema } from "@nakafa/aksara-contracts/release/current/evidence";
 import { inheritContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
@@ -42,7 +42,7 @@ const active = Schema.decodeSync(ActiveContentReleaseSchema)(
 );
 const current = activeState(active);
 const otherHash = Sha256HashSchema.make(`sha256:${"b".repeat(64)}`);
-const appLocale = AppLocaleSchema.make;
+const appLocale = ActiveAppLocaleSchema.make;
 
 /** Models a different complete active catalog at the parity comparison seam. */
 function changedManifest(overrides: Partial<ContentReleaseManifest>) {
@@ -147,7 +147,7 @@ describe("complete publication parity", () => {
     ],
     [
       "locales",
-      changedManifest({ activeAppLocales: [AppLocaleSchema.make("en")] }),
+      changedManifest({ activeAppLocales: [ActiveAppLocaleSchema.make("en")] }),
     ],
     ["catalog", changedManifest({ resultCount: 1 })],
     ["catalog", changedManifest({ resultDigest: otherHash })],

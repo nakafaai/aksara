@@ -1,43 +1,23 @@
 export const metadata = {
-  title: "Lage eines Punktes relativ zu einem Kreis",
-  description: "Bestimme mit der Punktpotenz, ob ein Punkt innerhalb, auf oder außerhalb eines Kreises liegt, und übe das Verfahren an vollständigen Beispielen.",
+  title: "Lage eines Punktes zum Kreis",
+  description: "Ein Punkt liegt innerhalb, auf oder außerhalb eines Kreises. Entscheide es mit dem Abstand zum Mittelpunkt oder dem Vorzeichen der Punktpotenz.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Analytische Geometrie",
 };
 
+## Drei Lagen eines Punktes zum Kreis
 
+Ein Punkt liegt immer **innerhalb des Kreises**, **genau auf dem Kreis** oder **außerhalb des Kreises**. Um das zu entscheiden, vergleichst du den Abstand des Punktes zum Mittelpunkt <InlineMath math="d" /> mit dem Radius <InlineMath math="r" /> oder berechnest die **Potenz des Punktes** <InlineMath math="K" />. Für den Punkt <InlineMath math="A(x_0, y_0)" /> und einen Kreis mit Mittelpunkt <InlineMath math="(a, b)" /> gilt:
 
-## Die Reichweite mit einem Kreismodell prüfen
+<BlockMath math="K_A = (x_0 - a)^2 + (y_0 - b)^2 - r^2" />
 
-Für einen Kreis und einen Punkt gibt es genau drei Möglichkeiten: Der Punkt liegt **innerhalb**, **auf der Kreislinie** oder **außerhalb** des Kreises.
-
-Der gleiche Vergleich tritt in vereinfachten Reichweitenmodellen auf, etwa wenn geprüft wird, ob ein Ort innerhalb eines kreisförmig modellierten Funk- oder Radarbereichs liegt. Kreisgleichung und Punktkoordinaten ordnen den Ort dann eindeutig ein.
-
-## Potenz eines Punktes
-
-Zur Einordnung verwenden wir die <Highlight>Potenz eines Punktes bezüglich des Kreises</Highlight>. Sie ist eine vorzeichenbehaftete algebraische Größe und kein gewöhnlicher Abstand. Für einen Kreis mit Mittelpunkt <InlineMath math="(a,b)" /> und Radius <InlineMath math="r" /> gilt:
-
-<BlockMath math="K_A = (x_0-a)^2 + (y_0-b)^2 - r^2" />
-
-Für den Punkt <InlineMath math="A(x_0, y_0)" /> und den allgemeinen Kreis <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> ist die Potenz von <InlineMath math="A" />:
-
-<BlockMath math="K_A = x_0^2 + y_0^2 + Dx_0 + Ey_0 + F" />
-
-Durch Einsetzen der Koordinaten erhältst du <InlineMath math="K_A" />. Das **Vorzeichen der Punktpotenz** bestimmt die Lage relativ zum Kreis.
-
-## Drei mögliche Lagen
-
-Der Wert der Punktpotenz unterscheidet drei mögliche Lagen:
-
-| Punktpotenz | Lage |
-| --- | --- |
-| <InlineMath math="K_A<0" /> | **Innerhalb** |
-| <InlineMath math="K_A=0" /> | **Auf dem Kreis** |
-| <InlineMath math="K_A>0" /> | **Außerhalb** |
-
-Die drei Fälle sind in der folgenden Grafik dargestellt:
+| Potenz des Punktes | Abstand zum Mittelpunkt | Lage |
+| --- | --- | --- |
+| <InlineMath math="K_A < 0" /> | <InlineMath math="d < r" /> | Innerhalb des Kreises |
+| <InlineMath math="K_A = 0" /> | <InlineMath math="d = r" /> | Auf dem Kreis |
+| <InlineMath math="K_A > 0" /> | <InlineMath math="d > r" /> | Außerhalb des Kreises |
 
 <LineEquation
   title="Lage eines Punktes relativ zum Kreis"
@@ -148,99 +128,172 @@ Die drei Fälle sind in der folgenden Grafik dargestellt:
   cameraTarget={[0.7, 0, 0]}
 />
 
-Im Diagramm liegt der Mittelpunkt bei <InlineMath math="(0,0)" /> und der Radius beträgt <InlineMath math="3" />. Prüfe die drei Punkte, indem du **neun vom Abstandsquadrat abziehst**:
+Im Graphen liegt der Mittelpunkt bei <InlineMath math="(0, 0)" /> und der Radius ist <InlineMath math="3" />, also ist die Potenz jedes Punktes sein Abstandsquadrat zum Mittelpunkt minus neun:
 
-| Punkt | Punktpotenz | Lage |
+| Punkt | Potenz des Punktes | Lage |
 | --- | --- | --- |
 | <InlineMath math="A(\frac32,1)" /> | <InlineMath math="K_A=\frac94+1-9=-\frac{23}{4}" /> | Innerhalb |
 | <InlineMath math="B(\frac{3\sqrt3}2,\frac32)" /> | <InlineMath math="K_B=\frac{27}4+\frac94-9=0" /> | Auf dem Kreis |
 | <InlineMath math="C(\frac92,2)" /> | <InlineMath math="K_C=\frac{81}4+4-9=\frac{61}4" /> | Außerhalb |
 
-## So wird die Lage bestimmt
+## Punktpotenz und Abstand zum Mittelpunkt
 
-Wir bestimmen Kreisgleichung und Punktkoordinaten und setzen die Koordinaten dann in die Formel für die Punktpotenz ein.
+Die Potenz eines Punktes ist **das Abstandsquadrat zum Mittelpunkt minus das Radiusquadrat**, <InlineMath math="K_A = d^2 - r^2" />. Faktorisiert ergibt das <InlineMath math="K_A = (d - r)(d + r)" />. Der Faktor <InlineMath math="d + r" /> ist wegen <InlineMath math="d \ge 0" /> und <InlineMath math="r > 0" /> immer positiv, also hat <InlineMath math="K_A" /> dasselbe Vorzeichen wie <InlineMath math="d - r" />. Deshalb brauchst du keine Wurzel: Das Vorzeichen der Potenz genügt.
 
-Für den Punkt <InlineMath math="A(1, -2)" /> und den Kreis <InlineMath math="x^2 + y^2 = 25" /> berechnen wir zuerst das **Abstandsquadrat zum Mittelpunkt**. Anschließend ziehen wir <InlineMath math="r^2" /> ab:
+Für einen Kreis in allgemeiner Form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> ist die linke Seite die ausmultiplizierte Form von <InlineMath math="(x - a)^2 + (y - b)^2 - r^2" /> mit <InlineMath math="a = -\frac{D}{2}" />, <InlineMath math="b = -\frac{E}{2}" /> und <InlineMath math="r^2 = a^2 + b^2 - F" />. Die Potenz erhältst du also, indem du **die Koordinaten des Punktes direkt einsetzt**:
 
-<MathContainer>
-  <BlockMath math="d_A^2 = 1^2 + (-2)^2 = 1 + 4 = 5" />
-  <BlockMath math="K_A = d_A^2-r^2 = 5-25 = -20" />
-</MathContainer>
+<BlockMath math="K_A = x_0^2 + y_0^2 + Dx_0 + Ey_0 + F" />
 
-Wegen <InlineMath math="K_A = -20 < 0" /> liegt <InlineMath math="A(1, -2)" /> innerhalb des Kreises.
+Diese Formel gilt nur, wenn vor <InlineMath math="x^2" /> und <InlineMath math="y^2" /> jeweils <InlineMath math="1" /> steht. Mittelpunkt und Radius der allgemeinen Form liest du mit quadratischer Ergänzung ab, wie bei der [Kreisgleichung](/de/faecher/mathematik/analytische-geometrie/kreisgleichung).
 
-> Für <InlineMath math="x^2 + y^2 = r^2" /> ist der Vergleich von <InlineMath math="d_A^2" /> mit <InlineMath math="r^2" /> gleichbedeutend mit der Vorzeichenprüfung von <InlineMath math="K_A=d_A^2-r^2" />.
+## Was die Potenz für einen Punkt außerhalb bedeutet
 
-## Anwendung auf die allgemeine Form
+Für einen Punkt außerhalb des Kreises ist die Potenz das Quadrat einer Länge. Zeichne von <InlineMath math="C" /> eine Tangente an den Kreis und nenne den Berührpunkt <InlineMath math="T" />. Der Radius <InlineMath math="OT" /> steht senkrecht auf der Tangente, also ist das Dreieck <InlineMath math="OTC" /> bei <InlineMath math="T" /> rechtwinklig, und der Satz des Pythagoras liefert
 
-Für einen Kreis in der allgemeinen Form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" /> berechnen wir <InlineMath math="K_A=x_0^2+y_0^2+Dx_0+Ey_0+F" />. Das **Vorzeichen** von <InlineMath math="K_A" /> bestimmt, ob der Punkt innerhalb, auf oder außerhalb des Kreises liegt.
+<BlockMath math="CT^2 = OC^2 - OT^2 = d^2 - r^2 = K_C" />
 
-Zum Beispiel für Punkt <InlineMath math="A(1, -2)" /> und Kreis <InlineMath math="x^2 + y^2 - 8x - 2y - 8 = 0" />:
+Also ist **die Potenz eines Punktes das Quadrat der Tangentenlänge** von diesem Punkt aus.
+
+<MathVisual
+  title="Die Tangentenlänge von einem Punkt außerhalb des Kreises"
+  description={<>Der Kreis <InlineMath math="x^2 + y^2 = 9" /> und der Punkt <InlineMath math="C(5, 0)" />. Das Dreieck <InlineMath math="OTC" /> ist beim Berührpunkt <InlineMath math="T" /> rechtwinklig.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "tangent", kind: "segment", from: { x: 5, y: 0 }, to: { x: 9 / 5, y: 12 / 5 }, appearance: "highlight" },
+      { id: "radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: 9 / 5, y: 12 / 5 }, appearance: "secondary" },
+      { id: "distance", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "construction" },
+      { id: "point", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "touch", kind: "point", at: { x: 9 / 5, y: 12 / 5 }, appearance: "highlight" },
+      { id: "center", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "point", objectId: "point", at: { x: 5, y: 0 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 9 / 5, y: 12 / 5 }, placement: "above" },
+      { key: "center", objectId: "center", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "tangent", objectId: "tangent", at: { x: 17 / 5, y: 6 / 5 }, placement: "above-right" },
+      { key: "radius", objectId: "radius", at: { x: 9 / 10, y: 6 / 5 }, placement: "left" },
+      { key: "distance", objectId: "distance", at: { x: 5 / 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    point: <InlineMath math="C" />,
+    touch: <InlineMath math="T" />,
+    center: <InlineMath math="O" />,
+    tangent: <InlineMath math="CT = 4" />,
+    radius: <InlineMath math="r = 3" />,
+    distance: <InlineMath math="d = 5" />,
+  }}
+/>
+
+Für <InlineMath math="C(5, 0)" /> ist die Potenz <InlineMath math="K_C = 5^2 + 0^2 - 9 = 16" />, also ist die Tangentenlänge <InlineMath math="CT = \sqrt{16} = 4" />. Probe mit dem Berührpunkt <InlineMath math="T\left(\frac95, \frac{12}5\right)" />. Er liegt auf dem Kreis, weil <InlineMath math="\frac{81}{25} + \frac{144}{25} = 9" />, und <InlineMath math="OT" /> steht senkrecht auf <InlineMath math="TC" />, weil das Skalarprodukt <InlineMath math="\left(\frac95, \frac{12}5\right) \cdot \left(\frac{16}5, -\frac{12}5\right) = \frac{144}{25} - \frac{144}{25} = 0" /> ist. Die Länge ist <InlineMath math="CT^2 = \left(\frac{16}5\right)^2 + \left(\frac{12}5\right)^2 = 16" />. Von einem Punkt außerhalb gibt es immer zwei gleich lange [Tangenten an den Kreis](/de/faecher/mathematik/analytische-geometrie/tangentengleichung-am-kreis), weil beide rechtwinkligen Dreiecke die Hypotenuse <InlineMath math="OC" /> und die Kathete <InlineMath math="r" /> gemeinsam haben. Vergleichst du statt des Punktabstands den Abstand des Mittelpunkts zu einer Geraden mit dem Radius, entscheidet das die [Lagebeziehung von Gerade und Kreis](/de/faecher/mathematik/analytische-geometrie/lage-einer-geraden-zum-kreis).
+
+## Beispiel mit einem Kreis in allgemeiner Form
+
+Bestimme die Lage des Punktes <InlineMath math="A(1, -2)" /> zum Kreis <InlineMath math="x^2 + y^2 - 8x - 2y - 8 = 0" />.
+
+Setze die Koordinaten von <InlineMath math="A" /> direkt in die linke Seite ein:
 
 <MathContainer>
   <BlockMath math="K_A = 1^2 + (-2)^2 - 8(1) - 2(-2) - 8" />
   <BlockMath math="K_A = 1 + 4 - 8 + 4 - 8 = -7" />
 </MathContainer>
 
-Da <InlineMath math="K_A = -7 < 0" />, liegt der Punkt <InlineMath math="A(1, -2)" /> innerhalb des Kreises.
+Wegen <InlineMath math="K_A = -7 < 0" /> liegt der Punkt <InlineMath math="A" /> **innerhalb des Kreises**.
+
+<MathVisual
+  title="Der Punkt A im Kreis mit Mittelpunkt (4, 1)"
+  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="P(4, 1)" /> und den Radius <InlineMath math="5" />. Der Abstand <InlineMath math="PA = 3\sqrt{2}" /> ist kürzer als der Radius.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 10 }, y: { min: -5, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 4, y: 1 }, radius: 5, appearance: "primary" },
+      { id: "distance", kind: "segment", from: { x: 4, y: 1 }, to: { x: 1, y: -2 }, appearance: "highlight" },
+      { id: "radius", kind: "segment", from: { x: 4, y: 1 }, to: { x: 9, y: 1 }, appearance: "construction" },
+      { id: "point", kind: "point", at: { x: 1, y: -2 }, appearance: "answer" },
+      { id: "center", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "point", objectId: "point", at: { x: 1, y: -2 }, placement: "below-left" },
+      { key: "center", objectId: "center", at: { x: 4, y: 1 }, placement: "above" },
+      { key: "distance", objectId: "distance", at: { x: 5 / 2, y: -1 / 2 }, placement: "below-right" },
+      { key: "radius", objectId: "radius", at: { x: 13 / 2, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    point: <InlineMath math="A" />,
+    center: <InlineMath math="P" />,
+    distance: <InlineMath math="3\sqrt{2}" />,
+    radius: <InlineMath math="r = 5" />,
+  }}
+/>
+
+Prüfe mit dem Abstand zum Mittelpunkt. Quadratische Ergänzung liefert <InlineMath math="(x - 4)^2 + (y - 1)^2 = 25" />, also ist der Mittelpunkt <InlineMath math="P(4, 1)" /> und <InlineMath math="r = 5" />. Das Abstandsquadrat ist <InlineMath math="PA^2 = (1 - 4)^2 + (-2 - 1)^2 = 18" />, also <InlineMath math="K_A = 18 - 25 = -7" />, wie beim direkten Einsetzen.
+
+## Beispiel zu einer Koordinate für einen Punkt auf dem Kreis
+
+Gegeben sind der Punkt <InlineMath math="Q(k, 3)" /> und der Kreis <InlineMath math="x^2 + y^2 - 4x + 2y - 20 = 0" />. Bestimme die Werte von <InlineMath math="k" />, für die <InlineMath math="Q" /> auf dem Kreis liegt, und gib an, wann <InlineMath math="Q" /> innerhalb liegt.
+
+Ein Punkt auf dem Kreis hat **die Potenz null**:
+
+<MathContainer>
+  <BlockMath math="K_Q = k^2 + 9 - 4k + 6 - 20 = k^2 - 4k - 5" />
+  <BlockMath math="k^2 - 4k - 5 = (k - 5)(k + 1) = 0" />
+  <BlockMath math="k = 5 \quad \text{oder} \quad k = -1" />
+</MathContainer>
+
+Der Punkt <InlineMath math="Q" /> liegt innerhalb, wenn <InlineMath math="K_Q < 0" /> gilt, also <InlineMath math="(k - 5)(k + 1) < 0" />. Das Produkt ist zwischen den beiden Nullstellen negativ, also <InlineMath math="-1 < k < 5" />. Probe: Der Kreis hat den Mittelpunkt <InlineMath math="(2, -1)" /> und <InlineMath math="r = 5" />, und für <InlineMath math="k = 5" /> ist der Abstand <InlineMath math="\sqrt{3^2 + 4^2} = 5" />. Für <InlineMath math="k = 2" /> ist die Potenz <InlineMath math="-9" />, und <InlineMath math="2" /> liegt tatsächlich zwischen <InlineMath math="-1" /> und <InlineMath math="5" />.
+
+## Typische Fehler
+
+| Fehler | Warum er scheitert | So prüfst du |
+| --- | --- | --- |
+| <InlineMath math="d^2" /> mit <InlineMath math="r" /> vergleichen | Ein Abstandsquadrat gehört zum Radiusquadrat | Bei <InlineMath math="x^2 + y^2 = 16" /> vergleichst du <InlineMath math="d^2" /> mit <InlineMath math="16" /> |
+| Den Mittelpunkt mit vertauschten Vorzeichen ablesen | <InlineMath math="(x - 3)^2 + (y + 2)^2 = 25" /> hat den Mittelpunkt <InlineMath math="(3, -2)" /> | Der Mittelpunkt macht jede Klammer zu null |
+| In <InlineMath math="2x^2 + 2y^2 - 8x = 0" /> einsetzen, ohne zu teilen | Das Ergebnis ist die doppelte Potenz, also stimmt die Tangentenlänge nicht | Teile zuerst, bis vor <InlineMath math="x^2" /> eine <InlineMath math="1" /> steht |
+| Die Potenz mit einem Abstand verwechseln | <InlineMath math="K" /> kann negativ sein, ein Abstand nie | Denk an <InlineMath math="K = d^2 - r^2" /> |
+| Einen Punkt auf dem Kreis mit einem Punkt im Kreis verwechseln | Auf dem Kreis heißt genau auf der Kreislinie, <InlineMath math="K = 0" /> | Prüfe, ob die Potenz genau null ist |
+
+Die schnellste Probe ist, **beide Wege zu nutzen**: Die Potenz aus dem direkten Einsetzen muss gleich <InlineMath math="d^2 - r^2" /> aus Mittelpunkt und Radius sein.
 
 ## Übungsaufgaben
 
-In jeder Aufgabe sind ein Punkt und ein Kreis gegeben, und die Antwort ist, ob der Punkt innerhalb, auf oder außerhalb des Kreises liegt. **Vergleiche den Abstand zum Mittelpunkt** mit dem Radius.
+Berechne die Potenz jedes Punktes und **prüfe sie mit dem Abstand zum Mittelpunkt**.
 
-1. Bestimme die Lage des Punktes <InlineMath math="A(3, 4)" /> relativ zum Kreis <InlineMath math="x^2 + y^2 = 16" />.
+1. Bestimme die Lage des Punktes <InlineMath math="A(3, 4)" /> zum Kreis <InlineMath math="x^2 + y^2 = 16" /> und berechne die Tangentenlänge von <InlineMath math="A" /> aus.
 
 2. Untersuche, ob der Punkt <InlineMath math="B(6, -8)" /> auf dem Kreis <InlineMath math="x^2 + y^2 = 100" /> liegt.
 
-3. Bestimme die Lage des Punktes <InlineMath math="C(2, 1)" /> relativ zum Kreis <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" />.
+3. Bestimme die Lage des Punktes <InlineMath math="C(2, 1)" /> zum Kreis <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" />.
 
-4. Ein Kreis hat die Gleichung <InlineMath math="(x-3)^2 + (y+2)^2 = 25" />. Bestimme die Lage von <InlineMath math="D(7, 2)" /> relativ zu diesem Kreis.
+4. Bestimme alle Werte von <InlineMath math="p" />, für die der Punkt <InlineMath math="D(p, 2)" /> innerhalb des Kreises <InlineMath math="(x - 3)^2 + (y + 2)^2 = 25" /> liegt.
 
-### Ausführliche Lösungen
+### Lösungen
 
-**Lösung 1**:
+**Aufgabe 1**. Die Potenz ist <InlineMath math="K_A = 3^2 + 4^2 - 16 = 9" />. Wegen <InlineMath math="K_A > 0" /> liegt der Punkt <InlineMath math="A" /> **außerhalb des Kreises**, und die Tangentenlänge ist <InlineMath math="\sqrt{9} = 3" />. Probe: Der Abstand zum Mittelpunkt <InlineMath math="d = 5" /> ist größer als <InlineMath math="r = 4" />, und <InlineMath math="3^2 + 4^2 = 5^2" /> passt zum rechtwinkligen Dreieck <InlineMath math="OTA" />.
 
-Setze die Koordinaten des Punktes <InlineMath math="A(3, 4)" /> in die Kreisgleichung <InlineMath math="x^2 + y^2 = 16" /> ein:
+**Aufgabe 2**. Die Potenz ist <InlineMath math="K_B = 6^2 + (-8)^2 - 100 = 36 + 64 - 100 = 0" />. Der Punkt <InlineMath math="B" /> liegt also **genau auf dem Kreis**. Probe: Sein Abstand zum Mittelpunkt ist <InlineMath math="\sqrt{100} = 10" />, gleich dem Radius.
 
-<MathContainer>
-  <BlockMath math="d_A^2 = 3^2 + 4^2 = 9 + 16 = 25" />
-  <BlockMath math="K_A = d_A^2-r^2 = 25-16 = 9" />
-</MathContainer>
-
-Da <InlineMath math="K_A = 9 > 0" />, liegt <InlineMath math="A(3, 4)" /> **außerhalb des Kreises**.
-
-**Lösung 2**:
-
-Setze die Koordinaten des Punktes <InlineMath math="B(6, -8)" /> in die Kreisgleichung <InlineMath math="x^2 + y^2 = 100" /> ein:
-
-<MathContainer>
-  <BlockMath math="d_B^2 = 6^2 + (-8)^2 = 36 + 64 = 100" />
-  <BlockMath math="K_B = d_B^2-r^2 = 100-100 = 0" />
-</MathContainer>
-
-Da <InlineMath math="K_B = 0" />, liegt <InlineMath math="B(6, -8)" /> **genau auf dem Kreis**.
-
-**Lösung 3**:
-
-Setze die Koordinaten des Punktes <InlineMath math="C(2, 1)" /> in die Kreisgleichung <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" /> ein:
+**Aufgabe 3**. Setze direkt ein:
 
 <MathContainer>
   <BlockMath math="K_C = 2^2 + 1^2 - 4(2) + 6(1) - 12" />
   <BlockMath math="K_C = 4 + 1 - 8 + 6 - 12 = -9" />
 </MathContainer>
 
-Da <InlineMath math="K_C = -9 < 0" />, liegt der Punkt <InlineMath math="C(2, 1)" /> **innerhalb des Kreises**.
+Wegen <InlineMath math="K_C < 0" /> liegt der Punkt <InlineMath math="C" /> **innerhalb des Kreises**. Probe: Der Kreis hat den Mittelpunkt <InlineMath math="(2, -3)" /> und <InlineMath math="r^2 = 4 + 9 + 12 = 25" />, und <InlineMath math="d^2 = 0^2 + 4^2 = 16" />, also <InlineMath math="d^2 - r^2 = -9" />.
 
-**Lösung 4**:
-
-Der Kreis <InlineMath math="(x-3)^2 + (y+2)^2 = 25" /> hat den Mittelpunkt <InlineMath math="(3, -2)" /> und den Radius <InlineMath math="r = 5" />.
-
-Wir setzen <InlineMath math="D(7, 2)" /> ein:
+**Aufgabe 4**. Ein Punkt innerhalb des Kreises hat eine negative Potenz:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} d_D^2 &amp;= (7-3)^2 + (2-(-2))^2 \\ &amp;= 4^2 + 4^2 \end{aligned}" />
-  <BlockMath math="d_D^2 = 16 + 16 = 32" />
-  <BlockMath math="K_D = d_D^2-r^2 = 32-25 = 7" />
+  <BlockMath math="(p - 3)^2 + (2 + 2)^2 - 25 < 0" />
+  <BlockMath math="(p - 3)^2 < 9" />
+  <BlockMath math="-3 < p - 3 < 3 \quad\Longrightarrow\quad 0 < p < 6" />
 </MathContainer>
 
-Da <InlineMath math="K_D = 7 > 0" />, liegt <InlineMath math="D(7, 2)" /> **außerhalb des Kreises**.
+Probe: Für <InlineMath math="p = 3" /> ist die Potenz <InlineMath math="0 + 16 - 25 = -9 < 0" />. Für <InlineMath math="p = 6" /> ist die Potenz <InlineMath math="9 + 16 - 25 = 0" />, dieser Punkt liegt also genau auf dem Kreis und gehört nicht dazu.

@@ -56,6 +56,84 @@ not replace the full lesson context.
   router to that same workflow, not a second review. Keep the selected register
   consistent and judge every linter candidate in the full lesson context.
 
+## Malaysian Malay
+
+- [Pusat Rujukan Persuratan Melayu](https://prpm.dbp.gov.my/) of Dewan Bahasa
+  dan Pustaka (DBP) holds Kamus Dewan and the spelling and term references for
+  standard Malaysian Malay. Check every word you are unsure of there, not in an
+  Indonesian dictionary.
+- Subject terms follow the Kementerian Pendidikan Malaysia DSKP for KSSM of the
+  subject, because Form 4 and Form 5 learners meet those words in their
+  textbooks and in SPM.
+- No global Malay humanizer exists. Apply the complete global Humanizer skill
+  for AI-writing patterns, read as review prompts, then read the Malay text
+  aloud by itself as a Malaysian learner would.
+- Malay is not Indonesian with a few words changed. Write each sentence in
+  Malaysian Malay from the verified meaning, never by editing the Indonesian
+  sibling. `bun run test:lesson-voice` refuses the forms below that the
+  deterministic rules can see; the rest is the reviewer's work.
+
+### Register
+
+- Write as a warm teacher talking to one Form 4 or Form 5 student: casual,
+  close and clear, never formal. Address the learner as `kamu`, the word a
+  Malaysian teacher uses with a student in class, and write `buku kamu` for
+  their things. Never `anda`, `awak`, `kau`, `engkau` or `kalian`.
+- Carry the reasoning like a story: each step follows from the last, with the
+  reason said in plain words. Use everyday Malaysian wording and short
+  sentences. Drop stiff openers and connectors such as `Sila`, `hendaklah`,
+  `dengan ini` and `adalah merupakan`.
+- Casual is not cringe: no slang pile-up (`best gila`, `takde`, `korang`),
+  no forced jokes and no invented anecdotes. Facts, numbers and terms stay
+  exact, and an assessed question stem keeps the official exam's language.
+- Use standard Malaysian spelling: `kerana`, `sahaja`, `mahu`, `boleh`.
+- Numbers use a decimal point and a thousands comma: `1,234.5`. Dates put the
+  day first with Malay month names (`Mac`, `Ogos`, `Disember`), and the time
+  reads `8:15 pagi`, `2:30 petang`.
+
+### Words that differ
+
+| Indonesian | Malaysian Malay | Indonesian | Malaysian Malay |
+| --- | --- | --- | --- |
+| soal | soalan | pengaturan | tetapan |
+| jawaban | jawapan | masuk, keluar | log masuk, log keluar |
+| nilai ujian | markah | hapus | padam |
+| ujian | peperiksaan | kata sandi | kata laluan |
+| uji coba, try out | percubaan | tautan | pautan |
+| kelas 10 | Tingkatan 4 | bagikan | kongsi |
+| pembahasan | penyelesaian, jalan kerja | kesalahan | ralat |
+| persentase | peratus | berhasil | berjaya |
+| unduh, unggah | muat turun, muat naik | daring, luring | dalam talian, luar talian |
+| materi | bahan, nota | gratis | percuma |
+| jurusan | aliran | beasiswa | biasiswa |
+| karena | kerana | bisa | boleh |
+| saja | sahaja | mau | mahu |
+| kualitas, aktivitas | kualiti, aktiviti | universitas | universiti |
+| matematika, fisika | matematik, fizik | genetika | genetik |
+| kuadrat | kuasa dua | akar kuadrat | punca kuasa dua |
+| gradien | kecerunan | garis singgung | tangen |
+| turunan (kalkulus) | pembezaan, terbitan | limit | had |
+| pertidaksamaan | ketaksamaan | peluang (statistika) | kebarangkalian |
+| himpunan (matematika) | set | pangkat | kuasa, indeks |
+| energi | tenaga | listrik | elektrik |
+| gaya (fisika) | daya | massa | jisim |
+| kalor | haba | lensa (optik) | kanta |
+| percepatan (fisika) | pecutan | kecepatan (vektor) | halaju |
+| senyawa | sebatian | asam | asid |
+| reaksi kimia | tindak balas kimia | laju reaksi | kadar tindak balas |
+| jaringan (biologi) | tisu | pernapasan | pernafasan, respirasi |
+
+### Words that look the same but mean something else
+
+- `bisa` is venom in Malaysia; write `boleh` for "can".
+- `butuh` is vulgar in Malaysia; write `perlu`.
+- `percuma` means "free of charge" in Malaysia, not "in vain".
+- `harus` means "may" or "should"; for an obligation in a step, write `mesti`
+  or `perlu`.
+- `jaringan`, `hambatan`, `peluang` and `himpunan` are ordinary Malay words for
+  network, obstacle, opportunity and gathering, so they never stand for tissue,
+  resistance, probability or a mathematical set.
+
 ## Cross-locale acceptance check
 
 - Facts, definitions, examples, equations, lists, tables, diagrams, exercises,
