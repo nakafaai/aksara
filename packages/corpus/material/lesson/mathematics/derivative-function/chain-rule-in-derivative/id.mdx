@@ -3,7 +3,7 @@ export const metadata = {
     description: "Turunkan fungsi komposisi dengan aturan rantai melalui contoh fungsi pangkat dan trigonometri.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-23",
+    dateModified: "2026-11-08",
     subject: "Turunan Fungsi",
 };
 
@@ -24,6 +24,36 @@ Secara formal, jika kita memisalkan <InlineMath math="u = g(x)" />, maka <Inline
 <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}" />
 
 Inilah **aturan rantai**. <Highlight>Kerjakan dari lapisan terluar ke dalam</Highlight>, pertahankan setiap ekspresi dalam sampai gilirannya diturunkan, lalu kalikan semua turunan.
+
+Laju yang berurutan saling dikalikan. Ambil fungsi dalam <InlineMath math="u = 2x" /> dan fungsi luar <InlineMath math="y = 3u" />, jadi <InlineMath math="y = 6x" />. Satu langkah pada <InlineMath math="x" /> menaikkan <InlineMath math="u" /> sebesar <InlineMath math="\frac{du}{dx} = 2" />, dan setiap satuan <InlineMath math="u" /> menaikkan <InlineMath math="y" /> sebesar <InlineMath math="\frac{dy}{du} = 3" />, jadi <InlineMath math="y" /> naik <InlineMath math="3 \cdot 2 = 6" />. Bandingkan kedua titik di atas <InlineMath math="x = 1" />.
+
+<MathVisual
+  title={<>Dua laju berurutan saling dikalikan</>}
+  description={<>Garis dalam <InlineMath math="u = 2x" /> melalui <InlineMath math="(1, 2)" /> dan garis komposisi <InlineMath math="y = 3u = 6x" /> melalui <InlineMath math="(1, 6)" />, yang kemiringannya <InlineMath math="3 \cdot 2 = 6" />.</>}
+  labels={{
+    inner: <InlineMath math="u = 2x" />,
+    outer: <InlineMath math="y = 3u = 6x" />,
+    "u-one": <InlineMath math="(1, 2)" />,
+    "y-one": <InlineMath math="(1, 6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.9 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "inner", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.5, y: 3 }, appearance: "secondary" },
+      { id: "outer", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.1, y: 6.6 }, appearance: "primary" },
+      { id: "u-one", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "y-one", kind: "point", at: { x: 1, y: 6 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "inner", objectId: "inner", at: { x: 1.5, y: 3 }, placement: "right" },
+      { key: "outer", objectId: "outer", at: { x: 1.1, y: 6.6 }, placement: "right" },
+      { key: "u-one", objectId: "u-one", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "y-one", objectId: "y-one", at: { x: 1, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Penerapan Aturan Rantai
 
@@ -59,6 +89,33 @@ Terakhir, kita substitusikan kembali <InlineMath math="u" /> dan sederhanakan ek
     <BlockMath math="\frac{dy}{dx} = (16x - 32)(x^2 - 4x - 2)^7" />
 </MathContainer>
 
+Untuk <InlineMath math="y = (x^2 - 4x - 2)^8" />, lihat fungsi dalamnya saja, <InlineMath math="u = x^2 - 4x - 2" />. Garis singgungnya datar di <InlineMath math="x = 2" />, tempat <InlineMath math="\frac{du}{dx} = 2x - 4 = 0" />. Jadi <InlineMath math="\frac{dy}{dx} = 8u^7 (2x - 4)" /> juga <InlineMath math="0" /> di situ, berapa pun faktor luarnya, <InlineMath math="8u^7" />.
+
+<MathVisual
+  title={<>Fungsi dalam yang datar membuat seluruh turunan nol</>}
+  description={<>Fungsi dalam <InlineMath math="u = x^2 - 4x - 2" /> dengan garis singgung datar di <InlineMath math="(2, -6)" />.</>}
+  labels={{
+    inner: <InlineMath math="u = x^2 - 4x - 2" />,
+    flat: <InlineMath math="\frac{du}{dx} = 0" />,
+    vertex: <InlineMath math="(2, -6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -7, max: -1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "inner", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -4, c: -2 }, domain: { min: 0, max: 4 }, appearance: "primary" },
+      { id: "flat", kind: "segment", from: { x: 1.2, y: -6 }, to: { x: 2.8, y: -6 }, appearance: "construction" },
+      { id: "vertex", kind: "point", at: { x: 2, y: -6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "inner", objectId: "inner", at: { x: 4, y: -2 }, placement: "right" },
+      { key: "flat", objectId: "flat", at: { x: 2.8, y: -6 }, placement: "right" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -6 }, placement: "below" },
+    ],
+  }}
+/>
+
 ### Fungsi Trigonometri
 
 Sudut pada fungsi trigonometri dinyatakan dalam **radian**, sehingga turunan sinus dan kosinus berlaku tanpa faktor konversi sudut.
@@ -93,6 +150,16 @@ Sekarang, substitusikan kembali <InlineMath math="u" /> dan <InlineMath math="v"
     <BlockMath math="\frac{dy}{dx} = 16\cos^3(v)\sin(v)" />
     <BlockMath math="\frac{dy}{dx} = 16\cos^3(3 - 4x)\sin(3 - 4x)" />
 </MathContainer>
+
+Fungsi dalam menentukan kecepatannya. Pada <InlineMath math="y = \sin 2x" />, fungsi luarnya <InlineMath math="\sin u" /> dan fungsi dalamnya <InlineMath math="u = 2x" />, jadi <InlineMath math="\frac{dy}{dx} = \cos(2x) \cdot 2" />. Faktor dalam <InlineMath math="2" /> menggandakan setiap kemiringan sinus biasa: di <InlineMath math="x = 0" /> kemiringan <InlineMath math="\sin x" /> adalah <InlineMath math="1" />, sedangkan kemiringan <InlineMath math="\sin 2x" /> adalah <InlineMath math="2" />. Batang-batangnya menunjukkan <InlineMath math="2\cos 2x" /> di lima nilai <InlineMath math="x" />, dengan <InlineMath math="x" /> dalam radian.
+
+<BarChart
+  title={<>Kemiringan <InlineMath math="y = \sin 2x" /> di lima nilai</>}
+  description={<>Batang <InlineMath math="\frac{{dy}}{{dx}} = 2\cos 2x" /> untuk <InlineMath math="x = 0;\ 0{,}25;\ 0{,}5;\ 0{,}75;\ 1" />, mulai dari 2 lalu turun di bawah nol setelah <InlineMath math="2x" /> melewati <InlineMath math="\frac{\pi}{2}" />.</>}
+  yAxisLabel="Kemiringan"
+  data={[0, 0.25, 0.5, 0.75, 1].map((x) => ({ name: String(x), value: 2 * Math.cos(2 * x) }))}
+  chartConfig={{ value: { label: "Kemiringan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Latihan
 
