@@ -134,6 +134,19 @@ print(fac(5))  # Output: 120
   ]}
 />
 
+Each import style in this diagram decides the name you write when you call the function.
+
+<Mermaid
+  title="Three ways to import"
+  description="The import style decides the name you write when you call."
+  chart={`
+    flowchart LR
+        A[import math] --> B["math.sqrt(16)"]
+        C[from math import sqrt] --> D["sqrt(16)"]
+        E[import math as m] --> F["m.sqrt(16)"]
+  `}
+/>
+
 ## Built In Functions vs Module Functions
 
 Python provides numeric built-ins such as `abs()` and `round()` **without an import**. They work across types through Python's numeric protocols. Each type can define the operations it supports.
@@ -183,6 +196,19 @@ print(round(1234.4321, -2))         # Output: 1200.0`
 />
 
 `round(4.5)` produces <InlineMath math="4" />, while `round(3.5)` produces <InlineMath math="4" />. Decimal-looking float values are stored in binary, so a value that appears to be an exact tie may not be one internally. Use decimal arithmetic when a domain requires decimal rounding rules.
+
+Ask this one question before you call a math function.
+
+<Mermaid
+  title="Built in or from the module"
+  description="Built-in functions are called directly, module functions need an import."
+  chart={`
+    flowchart TD
+        A[Function you need] --> B{Built in?}
+        B -->|Yes, like abs and round| C[Call it directly]
+        B -->|No, like sqrt| D[import math first]
+  `}
+/>
 
 ## Functions and Constants in the math Module
 
@@ -302,6 +328,56 @@ circle_radius = 5
 circle_area = math.pi * circle_radius ** 2
 print(f"Circle area with radius {circle_radius}: {circle_area}")`
     }
+  ]}
+/>
+
+Follow both curves from the `math` module. The curve `math.sqrt(x)` starts at <InlineMath math="0" /> and grows more and more slowly, so `math.sqrt(4)` gives `2.0`. The curve `math.log(x)` only exists for <InlineMath math="x>0" />, crosses the axis at `math.log(1) = 0.0`, and reaches `1.0` exactly at `math.e`. Zoom in near <InlineMath math="x=0" />: the logarithm keeps falling without limit, which is why `math.log(0)` raises an error.
+
+<LineEquation
+  title="math.sqrt and math.log"
+  description="The violet curve is math.sqrt(x) for 0 ≤ x ≤ 9, the teal curve is math.log(x). Magenta points are three calls whose results you can check."
+  showZAxis={false}
+  cameraPosition={[4.5, 0.5, 10]}
+  cameraTarget={[4.5, 0.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const t = index / 400;
+        return { x: 9 * t ** 2, y: 3 * t, z: 0 };
+      }),
+      color: "#8242e5",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "math.sqrt(x)", at: 400, offset: [0.4, 0.35, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const u = -2 + (index / 400) * (Math.log(9) + 2);
+        return { x: Math.exp(u), y: u, z: 0 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "math.log(x)", at: 400, offset: [0.4, -0.35, 0] }],
+    },
+    {
+      points: [{ x: 4, y: 2, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "math.sqrt(4) = 2.0", at: 0, offset: [-0.3, 0.45, 0] }],
+    },
+    {
+      points: [{ x: 1, y: 0, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "math.log(1) = 0.0", at: 0, offset: [0.4, -0.45, 0] }],
+    },
+    {
+      points: [{ x: Math.E, y: 1, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "math.log(math.e) = 1.0", at: 0, offset: [1.3, -0.3, 0] }],
+    },
   ]}
 />
 

@@ -13,6 +13,36 @@ Arithmetische Operatoren legen fest, welche Rechnung Python ausführt. `+` addie
 
 Python besitzt sieben grundlegende arithmetische Operatoren. Ihre Priorität bestimmt <Highlight>die Gruppierung der Operationen</Highlight>, wenn keine Klammern diese Gruppierung vorgeben.
 
+Zoom in diesen Graphen und folg beiden Linien von links nach rechts. Die violette Linie `x // 3` steigt um eine Stufe, sobald <InlineMath math="x" /> ein Vielfaches von <InlineMath math="3" /> überschreitet, und bei negativen Zahlen rundet sie trotzdem ab, also ergibt `-5 // 3` den Wert `-2`. Die türkise Linie `x % 3` steigt von <InlineMath math="0" /> an und fällt bei jedem Vielfachen von <InlineMath math="3" /> zurück, deshalb liegt der Rest immer zwischen <InlineMath math="0" /> und <InlineMath math="3" />. An jeder Stelle gilt `x == 3 * (x // 3) + x % 3`.
+
+<LineEquation
+  title="Ganzzahlige Division // und Rest %"
+  description="Die violette Linie ist x // 3, die türkise Linie x % 3 für −6 ≤ x < 6. Volle Kreise markieren enthaltene Werte, leere Kreise ausgeschlossene."
+  showZAxis={false}
+  cameraPosition={[0, 0.5, 10]}
+  cameraTarget={[0, 0.5, 0]}
+  data={[
+    ...[-2, -1, 0, 1].flatMap((k) => [
+      {
+        points: [{ x: 3 * k, y: k, z: 0 }, { x: 3 * k + 3, y: k, z: 0 }],
+        color: "#8242e5",
+        endpoints: { start: "closed", end: "open" },
+        smooth: false,
+        showPoints: false,
+        ...(k === 1 ? { labels: [{ text: "x // 3", at: 1, offset: [0.7, 0.3, 0] }] } : {}),
+      },
+      {
+        points: [{ x: 3 * k, y: 0, z: 0 }, { x: 3 * k + 3, y: 3, z: 0 }],
+        color: "#0d9488",
+        endpoints: { start: "closed", end: "open" },
+        smooth: false,
+        showPoints: false,
+        ...(k === 1 ? { labels: [{ text: "x % 3", at: 1, offset: [0.7, 0, 0] }] } : {}),
+      },
+    ]),
+  ]}
+/>
+
 ## Rangfolge der Operatoren
 
 Enthält ein Ausdruck mehrere arithmetische Operatoren, braucht Python eine feste Reihenfolge, um zu entscheiden, welche Rechnung zuerst läuft. Diese Reihenfolge <Highlight>ergibt sich aus drei Prioritätsstufen</Highlight>. Die Priorität bestimmt die Gruppierung der Operationen. Klammern können diese Gruppierung ändern.
@@ -135,6 +165,20 @@ Auch bei negativen ganzen Zahlen bleibt diese Gleichung gültig. Daher ist `5 % 
 
 **Addition und Subtraktion** besitzen eine niedrigere Priorität als die anderen fünf Operatoren. Klammern können die Gruppierung weiterhin ändern. In `2 + 3 * 4` multipliziert Python zuerst und addiert danach, das Ergebnis ist `14`. Damit die Addition früher stattfindet, setzt du sie in Klammern und schreibst `(2 + 3) * 4`.
 
+Lies diese Leiter von oben nach unten: Ein höherer Operator wird immer zuerst ausgewertet.
+
+<Mermaid
+  title="Die Rangfolge der Operatoren"
+  description="Weiter oben stehende Operatoren werden zuerst ausgewertet."
+  chart={`
+    flowchart TD
+        A["Klammern ( )"] --> B["Potenz **"]
+        B --> C["Negation -x"]
+        C --> D["* / // %"]
+        D --> E["+ -"]
+  `}
+/>
+
 ## Vorrangregeln und Assoziativität
 
 **Priorität und Assoziativität** bestimmen die Gruppierung der Operationen. Python wertet die Operanden von links nach rechts aus. Die Priorität gruppiert Operatoren verschiedener Stufen. Die Assoziativität gruppiert Operatoren derselben Stufe. Beide Regeln greifen auf die Operatoren zu, die du geschrieben hast, sodass `2 ** 3 ** 2` und `8 - 3 - 2` jeweils genau eine Lesart haben.
@@ -213,6 +257,18 @@ Unter diesen sieben Operatoren wird der Potenzierungsoperator `**` von rechts na
 />
 
 Python gruppiert aufeinanderfolgende Potenzen von rechts nach links: `2 ** 3 ** 2 = 2 ** (3 ** 2) = 2 ** 9 = 512`.
+
+Vergleich diese zwei Beispiele: Potenzen werden von rechts ausgewertet, Divisionen von links.
+
+<Mermaid
+  title="Links- und Rechtsassoziativität"
+  description="Zwei Beispiele, die in verschiedene Richtungen ausgewertet werden."
+  chart={`
+    flowchart LR
+        A["2 ** 3 ** 2"] --> B["2 ** 9"] --> C[512]
+        D["100 / 10 / 5"] --> E["10.0 / 5"] --> F[2.0]
+  `}
+/>
 
 ## Python Shell als Rechner
 

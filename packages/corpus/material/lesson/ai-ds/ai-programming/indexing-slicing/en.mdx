@@ -51,6 +51,21 @@ except IndexError:
 
 An index outside the valid range raises `IndexError`. This bounds check prevents Python sequences from returning an unrelated value.
 
+This diagram decides what s[i] returns for every value of i.
+
+<Mermaid
+  title="The rule for one index"
+  description="Negative indices count from the back."
+  chart={`
+    flowchart TD
+        A["s[i]"] --> B{0 ≤ i < len?}
+        B -->|Yes| C[Element i from the left]
+        B -->|No| D{-len ≤ i < 0?}
+        D -->|Yes| E["Element at len + i"]
+        D -->|No| F[IndexError]
+  `}
+/>
+
 ## Selecting Several Elements
 
 A slice selects several elements from a string or list. You set a start index, a stop index, and, when needed, the **distance between selected elements**.
@@ -149,6 +164,46 @@ print(repr(s[10:]))    # Output: ''`
 
 Python clips slice bounds to the valid range of the string or list. Therefore, `s[3:10]` remains valid even when the stop index is greater than the length of `s`.
 
+Every character of `s = "Python"` has two addresses: a positive index from the left and a negative index from the right, so `s[0]` and `s[-6]` are both `P`. The amber segment shows the half-open rule: `s[1:4]` starts at index <InlineMath math="1" />, which is included, and stops before index <InlineMath math="4" />. The result is the three magenta characters `"yth"`, and its length is always <InlineMath math="4-1=3" />.
+
+<LineEquation
+  title="Positive indices, negative indices, and s[1:4]"
+  description="For s = 'Python': violet numbers are positive indices, teal numbers are negative indices, and the magenta characters are the result of s[1:4]."
+  showZAxis={false}
+  cameraPosition={[2.5, -0.4, 7]}
+  cameraTarget={[2.5, -0.4, 0]}
+  data={[
+    ...Array.from("Python").flatMap((char, index) => [
+      {
+        points: [{ x: index, y: 0, z: 0 }],
+        color: index >= 1 && index < 4 ? "#c026d3" : "#64748b",
+        showPoints: true,
+        labels: [{ text: char, at: 0, offset: [0, 0.35, 0] }],
+      },
+      {
+        points: [{ x: index, y: -0.7, z: 0 }],
+        color: "#8242e5",
+        showPoints: false,
+        labels: [{ text: String(index), at: 0, offset: [0, 0, 0] }],
+      },
+      {
+        points: [{ x: index, y: -1.3, z: 0 }],
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: String(index - 6), at: 0, offset: [0, 0, 0] }],
+      },
+    ]),
+    {
+      points: [{ x: 1, y: 0.9, z: 0 }, { x: 4, y: 0.9, z: 0 }],
+      color: "#b98d00",
+      endpoints: { start: "closed", end: "open" },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "s[1:4]", at: 1, offset: [0.7, 0, 0] }],
+    },
+  ]}
+/>
+
 ## Indices Selected by a Slice
 
 The loop below rebuilds the slice with `range(start, stop, step)`, **one index at a time**.
@@ -231,6 +286,19 @@ print(f"Middle part: {middle}")`
 />
 
 These forms select a specific region or regularly spaced items from a larger dataset without a separate loop.
+
+This diagram translates three slice shorthands for s = 'Python'.
+
+<Mermaid
+  title="Slice shorthand"
+  description="An empty part uses its default value."
+  chart={`
+    flowchart LR
+        A["s[:3]"] --> B["'Pyt'"]
+        C["s[3:]"] --> D["'hon'"]
+        E["s[::-1]"] --> F["'nohtyP'"]
+  `}
+/>
 
 ## Working with Parts of Strings and Lists
 

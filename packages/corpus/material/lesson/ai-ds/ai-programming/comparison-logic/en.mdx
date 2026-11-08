@@ -118,6 +118,44 @@ True`
 
 The `and` and `or` operators use <Highlight>short-circuit evaluation</Highlight>, meaning evaluation stops when the result can be determined without evaluating all operands. Both return the last evaluated argument, while the `not` operator always creates a new boolean value.
 
+Each comparison is `True` on one region of the number line. In this picture, the violet row marks every <InlineMath math="x" /> with `x > 2`, and the teal row every <InlineMath math="x" /> with `x < 5`. The operator `and` only gives `True` where both rows overlap, which is the magenta row between <InlineMath math="2" /> and <InlineMath math="5" />. The ends at <InlineMath math="2" /> and <InlineMath math="5" /> are open, because `2 > 2` and `5 < 5` are both `False`.
+
+<LineEquation
+  title="Comparisons as regions on the number line"
+  description="The violet row is x > 2, the teal row is x < 5, and the magenta row is x > 2 and x < 5. An open circle means the value is not included."
+  showZAxis={false}
+  cameraPosition={[3.5, 2, 9]}
+  cameraTarget={[3.5, 2, 0]}
+  data={[
+    {
+      points: [{ x: 2, y: 3, z: 0 }, { x: 8, y: 3, z: 0 }],
+      color: "#8242e5",
+      endpoints: { start: "open" },
+      cone: { position: "end", size: 0.25 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "x > 2", at: 0, offset: [-0.9, 0, 0] }],
+    },
+    {
+      points: [{ x: -1, y: 2, z: 0 }, { x: 5, y: 2, z: 0 }],
+      color: "#0d9488",
+      endpoints: { end: "open" },
+      cone: { position: "start", size: 0.25 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "x < 5", at: 1, offset: [0.9, 0, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 1, z: 0 }, { x: 5, y: 1, z: 0 }],
+      color: "#c026d3",
+      endpoints: { start: "open", end: "open" },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "x > 2 and x < 5", at: 1, offset: [1.8, 0, 0] }],
+    },
+  ]}
+/>
+
 ## Values in Boolean Context
 
 Any Python object can undergo **truth testing**, including objects that are not the values `True` and `False`. Python then decides for itself which values count as false. Under that rule an empty list, the number zero, and the empty string all behave like `False` inside an `if`, while a non-empty container behaves like `True`.

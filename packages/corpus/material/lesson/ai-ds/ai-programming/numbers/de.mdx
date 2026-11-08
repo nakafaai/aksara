@@ -93,6 +93,21 @@ Komplexe Zahlen besitzen einen **Real- und einen Imaginärteil**. In einem Pytho
 
 Eine komplexe Zahl lässt sich in einer Koordinatenebene darstellen. Ihr Realteil bestimmt die waagerechte und ihr Imaginärteil die senkrechte Koordinate.
 
+Folg den Fragen in diesem Diagramm, um den Typ eines Literals vorherzusagen, bevor du den Code ausführst.
+
+<Mermaid
+  title="Den Typ am Literal ablesen"
+  description="Die Form des Literals bestimmt den Zahlentyp."
+  chart={`
+    flowchart TD
+        A[Zahlenliteral] --> B{Endet auf j?}
+        B -->|Ja| C[complex]
+        B -->|Nein| D{Dezimalpunkt oder e?}
+        D -->|Ja| E[float]
+        D -->|Nein| F[int]
+  `}
+/>
+
 ## Die Typfunktion zum Überprüfen von Datentypen
 
 Die Funktion `type()` zeigt die **genaue Klasse** eines Objekts an. Das ist beim Erkunden von Werten in der Python-Shell oder bei der Fehlersuche hilfreich.
@@ -115,6 +130,19 @@ Die Funktion `type()` zeigt die **genaue Klasse** eines Objekts an. Das ist beim
 />
 
 Für eine strikte Typgleichheit kannst du `type(value)` mit einer Klasse vergleichen. In Anwendungscode ist `isinstance(value, SomeType)` häufig flexibler, weil es auch Unterklassen erkennt.
+
+Dieses Diagramm ordnet drei Literalen zu, was type() jeweils zurückgibt.
+
+<Mermaid
+  title="Drei Ergebnisse von type()"
+  description="Eine Funktion verrät dir die Klasse jeder Zahl."
+  chart={`
+    flowchart LR
+        A["type(42)"] --> B[int]
+        C["type(3.14)"] --> D[float]
+        E["type(2+3j)"] --> F[complex]
+  `}
+/>
 
 ## Konstruktoren zum Erstellen von Zahlenobjekten
 
@@ -182,6 +210,53 @@ Der Konstruktor `complex()` erzeugt komplexe Zahlen aus **einer oder zwei reelle
 />
 
 `complex(2.)` erzeugt eine komplexe Zahl mit Realteil <InlineMath math="2" /> und Imaginärteil <InlineMath math="0" />. Unterdessen erzeugt `complex(0., 2.)` eine rein imaginäre Zahl <InlineMath math="2j" />.
+
+Vergleich die violette Treppe mit der grauen Linie <InlineMath math="y=x" />. Bei positiven Zahlen wirft `int()` den Nachkommateil weg, also liegt das Ergebnis unter der Linie, zum Beispiel wird `int(2.9)` zu `2`. Bei negativen Zahlen liegt das Ergebnis über der Linie, denn `int(-2.9)` wird zu `-2`, nicht zu `-3`. `int()` schneidet also immer Richtung null ab, und die Stufe um null ist breiter als die anderen.
+
+<LineEquation
+  title="int() schneidet Richtung null ab"
+  description="Die violette Treppe ist int(x), die graue Linie y = x. Magentafarbene Punkte markieren int(2.9) und int(-2.9)."
+  showZAxis={false}
+  cameraPosition={[0, 0, 10]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    {
+      points: [{ x: -3.5, y: -3.5, z: 0 }, { x: 3.5, y: 3.5, z: 0 }],
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "y = x", at: 1, offset: [0.5, 0.2, 0] }],
+    },
+    ...[
+      { from: -1, to: 1, value: 0, endpoints: { start: "open", end: "open" } },
+      { from: 1, to: 2, value: 1, endpoints: { start: "closed", end: "open" } },
+      { from: 2, to: 3, value: 2, endpoints: { start: "closed", end: "open" } },
+      { from: 3, to: 3.5, value: 3, endpoints: { start: "closed" } },
+      { from: -2, to: -1, value: -1, endpoints: { start: "open", end: "closed" } },
+      { from: -3, to: -2, value: -2, endpoints: { start: "open", end: "closed" } },
+      { from: -3.5, to: -3, value: -3, endpoints: { end: "closed" } },
+    ].map(({ from, to, value, endpoints }) => ({
+      points: [{ x: from, y: value, z: 0 }, { x: to, y: value, z: 0 }],
+      color: "#8242e5",
+      endpoints,
+      smooth: false,
+      showPoints: false,
+      ...(value === 3 ? { labels: [{ text: "int(x)", at: 1, offset: [0.6, 0, 0] }] } : {}),
+    })),
+    {
+      points: [{ x: 2.9, y: 2, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "int(2.9) = 2", at: 0, offset: [0.9, -0.45, 0] }],
+    },
+    {
+      points: [{ x: -2.9, y: -2, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "int(-2.9) = -2", at: 0, offset: [-0.9, 0.45, 0] }],
+    },
+  ]}
+/>
 
 ## Zusammenfassungstabelle für Zahlendatentypen
 

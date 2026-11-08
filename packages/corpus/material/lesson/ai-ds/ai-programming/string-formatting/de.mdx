@@ -228,6 +228,33 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Ausgabe: Tiny number g:      
   ]}
 />
 
+Die Angabe `.1f` zeigt jede Zahl mit einer Nachkommastelle, also erscheint jedes <InlineMath math="x" /> auf einer Stufe als dieselbe Zahl. Zoom in die violette Treppe: Jede Stufe ist <InlineMath math="0.1" /> breit und um den angezeigten Wert zentriert, also erscheint jeder Wert zwischen <InlineMath math="0.35" /> und <InlineMath math="0.45" /> als `0.4`. Genau an einer Grenze wie <InlineMath math="0.25" /> hängt das Ergebnis vom gespeicherten Binärwert ab, deshalb sind die Stufenenden offen gezeichnet. Der ursprüngliche Wert ändert sich nie, nur seine Anzeige.
+
+<LineEquation
+  title="Die Genauigkeit .1f als Rundungstreppe"
+  description="Die violette Treppe ist der mit .1f angezeigte Wert für 0 ≤ x ≤ 1, die graue Linie ist y = x."
+  showZAxis={false}
+  cameraPosition={[0.5, 0.5, 2.4]}
+  cameraTarget={[0.5, 0.5, 0]}
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }],
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "y = x", at: 1, offset: [0.12, 0.05, 0] }],
+    },
+    ...Array.from({ length: 11 }, (_, k) => ({
+      points: [{ x: Math.max(0, k / 10 - 0.05), y: k / 10, z: 0 }, { x: Math.min(1, k / 10 + 0.05), y: k / 10, z: 0 }],
+      color: "#8242e5",
+      endpoints: k === 0 ? { end: "open" } : k === 10 ? { start: "open" } : { start: "open", end: "open" },
+      smooth: false,
+      showPoints: false,
+      ...(k === 4 ? { labels: [{ text: 'float(f"{x:.1f}")', at: 1, offset: [0.25, -0.05, 0] }] } : {}),
+    })),
+  ]}
+/>
+
 ## Formatierte Strings und dynamische Vorlagen
 
 F-Strings gibt es seit Python 3.6. Sie werten **Ausdrücke innerhalb der Ersetzungsfelder** aus, sobald die Codezeile ausgeführt wird. Bei `f"Alter im nächsten Jahr: {age + 1}"` berechnet Python zuerst `age + 1` und setzt dann die Summe in den Text ein.

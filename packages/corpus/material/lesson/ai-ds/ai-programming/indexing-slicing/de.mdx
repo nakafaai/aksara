@@ -51,6 +51,21 @@ except IndexError:
 
 Ein Index außerhalb des gültigen Bereichs löst einen `IndexError` aus. Python-Sequenzen prüfen diese Grenze und liefern keinen beliebigen Wert zurück.
 
+Dieses Diagramm entscheidet, was s[i] für jeden Wert von i zurückgibt.
+
+<Mermaid
+  title="Die Regel für einen Index"
+  description="Negative Indizes zählen von hinten."
+  chart={`
+    flowchart TD
+        A["s[i]"] --> B{0 ≤ i < len?}
+        B -->|Ja| C[Element i von links]
+        B -->|Nein| D{-len ≤ i < 0?}
+        D -->|Ja| E["Element bei len + i"]
+        D -->|Nein| F[IndexError]
+  `}
+/>
+
 ## Mehrere Elemente auswählen
 
 Beim Slicing werden mehrere Elemente einer Zeichenfolge oder Liste ausgewählt. Dazu legst du einen Startindex, einen Endindex und bei Bedarf den **Abstand zwischen den ausgewählten Elementen** fest.
@@ -149,6 +164,46 @@ print(repr(s[10:]))    # Ausgabe: ''`
 
 Python begrenzt Indizes beim Slicing auf den gültigen Bereich der Zeichenfolge oder Liste. Deshalb bleibt `s[3:10]` gültig, auch wenn der Endindex größer als die Länge von `s` ist.
 
+Jedes Zeichen von `s = "Python"` hat zwei Adressen: einen positiven Index von links und einen negativen Index von rechts, also sind `s[0]` und `s[-6]` beide `P`. Die gelbe Strecke zeigt die halboffene Regel: `s[1:4]` beginnt bei Index <InlineMath math="1" />, der dazugehört, und hört vor Index <InlineMath math="4" /> auf. Das Ergebnis sind die drei magentafarbenen Zeichen `"yth"`, und die Länge ist immer <InlineMath math="4-1=3" />.
+
+<LineEquation
+  title="Positive Indizes, negative Indizes und s[1:4]"
+  description="Für s = 'Python': Violette Zahlen sind positive Indizes, türkise Zahlen negative Indizes, und die magentafarbenen Zeichen sind das Ergebnis von s[1:4]."
+  showZAxis={false}
+  cameraPosition={[2.5, -0.4, 7]}
+  cameraTarget={[2.5, -0.4, 0]}
+  data={[
+    ...Array.from("Python").flatMap((char, index) => [
+      {
+        points: [{ x: index, y: 0, z: 0 }],
+        color: index >= 1 && index < 4 ? "#c026d3" : "#64748b",
+        showPoints: true,
+        labels: [{ text: char, at: 0, offset: [0, 0.35, 0] }],
+      },
+      {
+        points: [{ x: index, y: -0.7, z: 0 }],
+        color: "#8242e5",
+        showPoints: false,
+        labels: [{ text: String(index), at: 0, offset: [0, 0, 0] }],
+      },
+      {
+        points: [{ x: index, y: -1.3, z: 0 }],
+        color: "#0d9488",
+        showPoints: false,
+        labels: [{ text: String(index - 6), at: 0, offset: [0, 0, 0] }],
+      },
+    ]),
+    {
+      points: [{ x: 1, y: 0.9, z: 0 }, { x: 4, y: 0.9, z: 0 }],
+      color: "#b98d00",
+      endpoints: { start: "closed", end: "open" },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "s[1:4]", at: 1, offset: [0.7, 0, 0] }],
+    },
+  ]}
+/>
+
 ## Ausgewählte Indizes
 
 Mit `range()` kannst du zeigen, **welche Indizes ein Slice auswählt**. Dieses Modell erklärt das Ergebnis, ohne Annahmen über die interne Umsetzung des jeweiligen Python-Typs zu treffen.
@@ -231,6 +286,19 @@ print(f"Mittelteil: {middle}")`
 />
 
 Mit diesen Formen wählst du einen bestimmten Bereich oder regelmäßig verteilte Elemente aus einem größeren Datensatz aus, ohne eine eigene Schleife zu schreiben.
+
+Dieses Diagramm übersetzt drei Kurzschreibweisen für s = 'Python'.
+
+<Mermaid
+  title="Kurzschreibweisen für Slices"
+  description="Ein leerer Teil nimmt seinen Standardwert."
+  chart={`
+    flowchart LR
+        A["s[:3]"] --> B["'Pyt'"]
+        C["s[3:]"] --> D["'hon'"]
+        E["s[::-1]"] --> F["'nohtyP'"]
+  `}
+/>
 
 ## Teile von Strings und Listen verarbeiten
 

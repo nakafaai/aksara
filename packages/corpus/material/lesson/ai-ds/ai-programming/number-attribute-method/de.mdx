@@ -41,6 +41,19 @@ print(c.conjugate())  # Ausgabe: (2-3j)`
   ]}
 />
 
+Dieses Diagramm trennt die zwei Wege, über einen Punkt auf etwas zuzugreifen.
+
+<Mermaid
+  title="Attribut oder Methode"
+  description="Klammern trennen das Lesen eines Werts vom Aufruf einer Aktion."
+  chart={`
+    flowchart LR
+        A[objekt.name] --> B{Mit Klammern?}
+        B -->|Nein| C[Attribut, etwa z.real]
+        B -->|Ja| D["Methode, etwa z.conjugate()"]
+  `}
+/>
+
 ## Den numerischen Typ bestimmen
 
 Python wählt den numerischen Typ aus dem Literal, das du schreibst, und dieser Typ entscheidet, welche Attribute und Methoden der Wert mitbringt. Wenn du Python vor einem typspezifischen Aufruf nach der Klasse fragst, musst du nicht raten, ob diese Operation auf dem Wert überhaupt existiert.
@@ -196,6 +209,57 @@ print(f"Eingebautes abs(z): {abs(z)}")
 
 Die Multiplikation von <InlineMath math="z" /> mit seinem Konjugat löscht den Imaginärteil und lässt die reelle Zahl <InlineMath math="25" /> übrig. Die Wurzel aus dieser reellen Zahl ergibt <InlineMath math="5.0" />, und das eingebaute `abs(z)` meldet in einem Aufruf denselben Wert.
 
+Zeichne `z = 3+4j` als Punkt in der komplexen Ebene und achte darauf, was jedes Attribut liest. `z.real` ist der waagerechte Abstand `3.0`, `z.imag` die Höhe `4.0`. Die Methode `z.conjugate()` spiegelt den Punkt unter die reelle Achse zu `3-4j`, und `abs(z)` ist der gemeinsame Radius `5.0`. Ein Attribut liest du ohne Klammern, eine Methode rufst du mit Klammern auf.
+
+<LineEquation
+  title="Attribute und Methoden von z = 3+4j"
+  description="Der violette Pfeil ist z, der türkise Pfeil z.conjugate(). Die gelbe Strecke und der gelbe Punkt zeigen z.imag und z.real, und der graue Kreis hat den Radius abs(z)."
+  showZAxis={false}
+  cameraPosition={[0, 0, 15]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: 5 * Math.cos(angle), y: 5 * Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "abs(z) = 5.0", at: 135, offset: [-0.9, 0.4, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.35 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "z = 3+4j", at: 1, offset: [0.6, 0.4, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: -4, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.35 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "z.conjugate() = 3-4j", at: 1, offset: [1.2, -0.4, 0] }],
+    },
+    {
+      points: [{ x: 3, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
+      color: "#b98d00",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "z.imag = 4.0", at: 0, offset: [1.1, 1.6, 0] }],
+    },
+    {
+      points: [{ x: 3, y: 0, z: 0 }],
+      color: "#b98d00",
+      showPoints: true,
+      labels: [{ text: "z.real = 3.0", at: 0, offset: [1, -0.4, 0] }],
+    },
+  ]}
+/>
+
 ## Methoden für ganze Zahlen und Floats
 
 Ganze Zahlen und Floats bringen Methoden mit, die **zu ihrer eigenen Darstellung** passen, und diese Methoden sind nicht gegen die Methoden komplexer Zahlen austauschbar. `bit_length()` zählt die Bits des absoluten Werts, `to_bytes()` schreibt diese Bits in eine Bytefolge, `is_integer()` prüft, ob ein Float einen Bruchteil hat, und `as_integer_ratio()` meldet den Bruch, den ein Float tatsächlich speichert.
@@ -262,6 +326,19 @@ print(f"Verhaeltnis von {f}: {ratio}")
 />
 
 `is_integer()` prüft, ob ein endlicher Float keinen Bruchteil hat, deshalb fällt <InlineMath math="3.14159" /> durch diese Prüfung, während <InlineMath math="4.0" /> sie besteht. `as_integer_ratio()` liefert <Highlight>den genauen Bruch aus der Binärdarstellung</Highlight>, und das erklärt, warum das Verhältnis für <InlineMath math="3.14159" /> so große Zahlen trägt statt des erwarteten Dezimalbruchs.
+
+Prüf die Ergebnisse dieser drei Methoden in der Python-Shell, nachdem du das Diagramm gelesen hast.
+
+<Mermaid
+  title="Methoden von int und float mit Ergebnis"
+  description="Drei Aufrufe und die Werte, die sie zurückgeben."
+  chart={`
+    flowchart LR
+        A["(255).bit_length()"] --> B[8]
+        C["(2.5).is_integer()"] --> D[False]
+        E["(0.75).as_integer_ratio()"] --> F["(3, 4)"]
+  `}
+/>
 
 ## Numerische Objekte prüfen und berechnen
 

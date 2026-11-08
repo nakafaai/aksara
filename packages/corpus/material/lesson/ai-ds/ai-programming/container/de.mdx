@@ -139,6 +139,48 @@ print('x[::-1] =', x[::-1])                  # Ausgabe: x[::-1] = [5, 4, 3, 2, 1
 
 Beim Slicing wählt man einen zusammenhängenden oder regelmäßig übersprungenen Teil einer Liste aus. Für `x = [0, 1, 2, 3, 4, 5]` liefert `x[1:4]` die Elemente an den Indizes <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" />. Der Endindex <InlineMath math="4" /> gehört nicht mehr zum Ergebnis. Der Ausdruck `x[1:4:2]` verwendet die Schrittweite <InlineMath math="2" /> und wählt deshalb die Indizes <InlineMath math="1" /> und <InlineMath math="3" /> aus.
 
+Die obere Zeile nimmt `x[1:4:2]`: Sie beginnt bei Index <InlineMath math="1" />, springt zwei Schritte und hört vor Index <InlineMath math="4" /> auf, also ist das Ergebnis `[1, 3]`. Die untere Zeile ist `x[::-1]`. Die Schrittweite <InlineMath math="-1" /> liest von hinten, und die türkisen Linien zeigen, wie jedes Element von Position <InlineMath math="i" /> zu Position <InlineMath math="5-i" /> wandert. Alle Linien kreuzen sich in der Mitte, genau zwischen den Elementen <InlineMath math="2" /> und <InlineMath math="3" />.
+
+<LineEquation
+  title="Slicing mit Schrittweite auf x = [0, 1, 2, 3, 4, 5]"
+  description="Die mittlere Zeile ist x. Die magentafarbene obere Zeile ist x[1:4:2], die türkise untere Zeile x[::-1], mit Linien, die zeigen, wohin jedes Element wandert."
+  showZAxis={false}
+  cameraPosition={[2.5, 0, 7]}
+  cameraTarget={[2.5, 0, 0]}
+  data={[
+    ...[0, 1, 2, 3, 4, 5].flatMap((value) => [
+      {
+        points: [{ x: value, y: 0, z: 0 }],
+        color: "#64748b",
+        showPoints: true,
+        labels: [{ text: String(value), at: 0, offset: [0, 0.3, 0] }],
+      },
+      {
+        points: [{ x: value, y: 0, z: 0 }, { x: 5 - value, y: -1.2, z: 0 }],
+        color: "#0d9488",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [{ x: 5 - value, y: -1.2, z: 0 }],
+        color: "#0d9488",
+        showPoints: true,
+        labels: [{ text: String(value), at: 0, offset: [0, -0.35, 0] }],
+      },
+    ]),
+    ...[1, 3].map((index) => ({
+      points: [{ x: index, y: 0, z: 0 }, { x: index, y: 1.2, z: 0 }],
+      color: "#c026d3",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: String(index), at: 1, offset: [0, 0.3, 0] }],
+    })),
+    { points: [{ x: -0.8, y: 1.2, z: 0 }], color: "#c026d3", showPoints: false, labels: [{ text: "x[1:4:2]", at: 0, offset: [-0.4, 0, 0] }] },
+    { points: [{ x: -0.8, y: 0, z: 0 }], color: "#64748b", showPoints: false, labels: [{ text: "x", at: 0, offset: [0, 0, 0] }] },
+    { points: [{ x: -0.8, y: -1.2, z: 0 }], color: "#0d9488", showPoints: false, labels: [{ text: "x[::-1]", at: 0, offset: [-0.3, 0, 0] }] },
+  ]}
+/>
+
 ## Listen und Strings
 
 Listen stellen Operationen zum Lesen und Verändern von Daten bereit. Für den Elementzugriff verwenden sie **dieselbe Indizierungs- und Slicing-Syntax** wie Strings.
@@ -444,3 +486,19 @@ Die vier eingebauten Sammlungstypen unterscheiden sich in **Reihenfolge, Veränd
 | **Set** | `{1, 2, 3}` | Nein | Ja | Nein | Eindeutige Elemente, Mengenoperationen |
 
 > Seit Python `3.7` folgt die Iteration eines Dictionaries garantiert der Einfügereihenfolge der Schlüssel. Das Aktualisieren eines Schlüssels ändert seine Position nicht. Wird ein Schlüssel gelöscht und erneut eingefügt, steht er anschließend am Ende.
+
+Beantworte die Fragen in diesem Diagramm von oben, um einen passenden Container zu wählen.
+
+<Mermaid
+  title="Einen Container wählen"
+  description="Drei Fragen entscheiden zwischen list, tuple, set und dict."
+  chart={`
+    flowchart TD
+        A{Nach Schlüssel suchen?} -->|Ja| B[dict]
+        A -->|Nein| C{Nur eindeutige Werte?}
+        C -->|Ja| D[set]
+        C -->|Nein| E{Ändert sich der Inhalt?}
+        E -->|Ja| F[list]
+        E -->|Nein| G[tuple]
+  `}
+/>

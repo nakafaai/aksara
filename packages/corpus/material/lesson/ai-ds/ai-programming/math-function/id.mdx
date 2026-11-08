@@ -134,6 +134,19 @@ print(fac(5))  # Output: 120
   ]}
 />
 
+Setiap cara impor di diagram ini menentukan nama yang kamu tulis saat memanggil fungsi.
+
+<Mermaid
+  title="Tiga cara mengimpor"
+  description="Cara impor menentukan nama yang kamu tulis saat memanggil."
+  chart={`
+    flowchart LR
+        A[import math] --> B["math.sqrt(16)"]
+        C[from math import sqrt] --> D["sqrt(16)"]
+        E[import math as m] --> F["m.sqrt(16)"]
+  `}
+/>
+
 ## Built In dan Fungsi Modul
 
 Python menyediakan built-in numerik seperti `abs()` dan `round()` **tanpa import**. Keduanya bekerja pada berbagai tipe melalui protokol numerik Python. Setiap tipe dapat menentukan operasi yang didukungnya.
@@ -183,6 +196,19 @@ print(round(1234.4321, -2))         # Output: 1200.0`
 />
 
 Karena itu, `round(4.5)` menghasilkan <InlineMath math="4" />, sedangkan `round(3.5)` juga menghasilkan <InlineMath math="4" />. Nilai float yang tampak desimal disimpan dalam biner, sehingga nilai yang terlihat tepat di tengah belum tentu demikian secara internal. Gunakan aritmetika desimal ketika domain memerlukan aturan pembulatan desimal.
+
+Tanyakan satu hal ini sebelum memanggil fungsi matematika.
+
+<Mermaid
+  title="Bawaan atau dari modul"
+  description="Fungsi bawaan langsung dipanggil, fungsi modul perlu impor."
+  chart={`
+    flowchart TD
+        A[Fungsi yang kamu butuhkan] --> B{Fungsi bawaan?}
+        B -->|Ya, misalnya abs dan round| C[Panggil langsung]
+        B -->|Tidak, misalnya sqrt| D[import math dulu]
+  `}
+/>
 
 ## Fungsi dan Konstanta dalam Modul math
 
@@ -302,6 +328,56 @@ lingkaran_radius = 5
 luas_lingkaran = math.pi * lingkaran_radius ** 2
 print(f"Luas lingkaran dengan radius {lingkaran_radius}: {luas_lingkaran}")`
     }
+  ]}
+/>
+
+Ikuti kedua kurva dari modul `math` ini. Kurva `math.sqrt(x)` mulai di <InlineMath math="0" /> dan tumbuh makin pelan, jadi `math.sqrt(4)` memberi `2.0`. Kurva `math.log(x)` hanya ada untuk <InlineMath math="x>0" />, memotong sumbu di `math.log(1) = 0.0`, dan mencapai `1.0` tepat di `math.e`. Coba perbesar dekat <InlineMath math="x=0" />: logaritma terus turun tanpa batas, dan itu sebabnya `math.log(0)` menimbulkan error.
+
+<LineEquation
+  title="math.sqrt dan math.log"
+  description="Kurva ungu adalah math.sqrt(x) untuk 0 ≤ x ≤ 9, kurva hijau toska adalah math.log(x). Titik magenta adalah tiga panggilan yang hasilnya kamu bisa cek."
+  showZAxis={false}
+  cameraPosition={[4.5, 0.5, 10]}
+  cameraTarget={[4.5, 0.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const t = index / 400;
+        return { x: 9 * t ** 2, y: 3 * t, z: 0 };
+      }),
+      color: "#8242e5",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "math.sqrt(x)", at: 400, offset: [0.4, 0.35, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const u = -2 + (index / 400) * (Math.log(9) + 2);
+        return { x: Math.exp(u), y: u, z: 0 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "math.log(x)", at: 400, offset: [0.4, -0.35, 0] }],
+    },
+    {
+      points: [{ x: 4, y: 2, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "math.sqrt(4) = 2.0", at: 0, offset: [-0.3, 0.45, 0] }],
+    },
+    {
+      points: [{ x: 1, y: 0, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "math.log(1) = 0.0", at: 0, offset: [0.4, -0.45, 0] }],
+    },
+    {
+      points: [{ x: Math.E, y: 1, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "math.log(math.e) = 1.0", at: 0, offset: [1.3, -0.3, 0] }],
+    },
   ]}
 />
 

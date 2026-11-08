@@ -41,6 +41,20 @@ print("Additionsergebnis", x, "+", y, "=", x + y)`
 
 Die Schreibweise `*objects` bedeutet, dass `print()` null oder mehr positionale Objekte annimmt. Zwischen zwei benachbarten Objekten schreibt die Funktion das mit `sep` festgelegte Trennzeichen.
 
+Dieses Diagramm zeigt, in welcher Reihenfolge print bei jedem Aufruf arbeitet.
+
+<Mermaid
+  title="Was print macht"
+  description="Vier Schritte von den Argumenten bis zum Text auf dem Bildschirm."
+  chart={`
+    flowchart LR
+        A[Argumente] --> B["Mit str() umwandeln"]
+        B --> C[Mit sep verbinden]
+        C --> D[end anhängen]
+        D --> E[Auf den Bildschirm schreiben]
+  `}
+/>
+
 ## Der Parameter Sep
 
 Der Parameter `sep` bestimmt, welche Zeichenfolge mehrere Objekte in einem Aufruf voneinander trennt. <Highlight>Der Standardwert ist ein einzelnes Leerzeichen</Highlight>.
@@ -76,6 +90,19 @@ print("Erste", "Zeile", "Zweite", "Zeile", sep="\\n")    # Zeilenumbruch`
 />
 
 Wähle das Trennzeichen passend zum Ausgabeformat, etwa ein Komma für eine einfache Aufzählung oder einen Tabulator für grob ausgerichtete Terminaldaten.
+
+Vergleich diese drei Ausgaben für die Argumente 1, 2 und 3.
+
+<Mermaid
+  title="Drei Werte für sep bei denselben Argumenten"
+  description="Der Trenner ändert sich, die Argumente bleiben."
+  chart={`
+    flowchart LR
+        A["print(1, 2, 3)"] --> B["1 2 3"]
+        C["print(1, 2, 3, sep='')"] --> D[123]
+        E["print(1, 2, 3, sep=' | ')"] --> F["1 | 2 | 3"]
+  `}
+/>
 
 ## Der Parameter End
 
@@ -122,6 +149,53 @@ print("D", "E", "F", sep="-", end="\\n")`
 />
 
 Mit einem anderen `end` können mehrere Aufrufe in derselben Zeile fortfahren. Soll die Ausgabe sofort sichtbar werden, statt zunächst in einem Puffer zu warten, verwendest du zusätzlich `flush=True`.
+
+Dieses Bild führt `print("A", "B", "C", sep="-")`, dann `print("x", end=" ")` und dann `print("y")` aus und setzt jedes Zeichen dorthin, wo es erscheint. `sep` wird nur zwischen Argumenten eingefügt, also erscheint der türkise Bindestrich bei drei Argumenten zweimal. `end` kommt einmal ans Ende jedes Aufrufs: Der Zeilenumbruch ↵ setzt den Cursor in die nächste Zeile, während `end=" "` das `y` in derselben Zeile wie `x` hält.
+
+<LineEquation
+  title="Drei print-Aufrufe im Ausgabestrom"
+  description="Violette Zeichen stammen aus den Argumenten, türkise aus sep und orange aus end. Das Symbol ↵ ist ein Zeilenumbruch und ␣ ein Leerzeichen."
+  showZAxis={false}
+  cameraPosition={[2.5, -0.5, 6]}
+  cameraTarget={[2.5, -0.5, 0]}
+  data={[
+    ...(() => {
+      const calls = [
+        { args: ["A", "B", "C"], sep: "-", end: "\n" },
+        { args: ["x"], sep: " ", end: " " },
+        { args: ["y"], sep: " ", end: "\n" },
+      ];
+      const cells = [];
+      let column = 0;
+      let row = 0;
+      const put = (char, color) => {
+        const shown = char === "\n" ? "↵" : char === " " ? "␣" : char;
+        cells.push({ x: column, y: -row, shown, color });
+        if (char === "\n") {
+          row += 1;
+          column = 0;
+          return;
+        }
+        column += 1;
+      };
+      for (const { args, sep, end } of calls) {
+        args.forEach((arg, index) => {
+          if (index > 0) {
+            Array.from(sep).forEach((char) => put(char, "#0d9488"));
+          }
+          Array.from(arg).forEach((char) => put(char, "#8242e5"));
+        });
+        Array.from(end).forEach((char) => put(char, "#bb6800"));
+      }
+      return cells.map(({ x, y, shown, color }) => ({
+        points: [{ x, y, z: 0 }],
+        color,
+        showPoints: true,
+        labels: [{ text: shown, at: 0, offset: [0, 0.35, 0] }],
+      }));
+    })(),
+  ]}
+/>
 
 ## Anzeige verschiedener Datentypen
 

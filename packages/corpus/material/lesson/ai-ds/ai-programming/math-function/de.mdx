@@ -134,6 +134,19 @@ print(fac(5))  # Ausgabe: 120
   ]}
 />
 
+Jede Importart in diesem Diagramm bestimmt den Namen, den du beim Aufruf der Funktion schreibst.
+
+<Mermaid
+  title="Drei Arten zu importieren"
+  description="Die Importart bestimmt den Namen, den du beim Aufruf schreibst."
+  chart={`
+    flowchart LR
+        A[import math] --> B["math.sqrt(16)"]
+        C[from math import sqrt] --> D["sqrt(16)"]
+        E[import math as m] --> F["m.sqrt(16)"]
+  `}
+/>
+
 ## Eingebaute Funktionen und Modulfunktionen
 
 Python stellt numerische Built-ins wie `abs()` und `round()` **ohne Import** bereit. Sie arbeiten über Pythons numerische Protokolle mit verschiedenen Typen: Ein Typ kann die unterstützte Operation definieren. Python wählt dabei nicht zwischen mehreren statisch überladenen Funktionsdeklarationen.
@@ -183,6 +196,19 @@ print(round(1234.4321, -2))         # Ausgabe: 1200.0`
 />
 
 Deshalb ergibt `round(4.5)` den Wert <InlineMath math="4" />, während auch `round(3.5)` den Wert <InlineMath math="4" /> liefert. Dezimal aussehende Float-Werte werden binär gespeichert. Ein scheinbar exakter Gleichstand muss intern also keiner sein. Verwende Dezimalarithmetik, wenn ein Fachgebiet dezimale Rundungsregeln verlangt.
+
+Stell dir diese eine Frage, bevor du eine mathematische Funktion aufrufst.
+
+<Mermaid
+  title="Eingebaut oder aus dem Modul"
+  description="Eingebaute Funktionen rufst du direkt auf, Modulfunktionen brauchen einen Import."
+  chart={`
+    flowchart TD
+        A[Benötigte Funktion] --> B{Eingebaut?}
+        B -->|Ja, etwa abs und round| C[Direkt aufrufen]
+        B -->|Nein, etwa sqrt| D[Zuerst import math]
+  `}
+/>
 
 ## Funktionen und Konstanten im Mathematikmodul
 
@@ -302,6 +328,56 @@ circle_radius = 5
 circle_area = math.pi * circle_radius ** 2
 print(f"Kreisfläche mit Radius {circle_radius}: {circle_area}")`
     }
+  ]}
+/>
+
+Folg beiden Kurven aus dem Modul `math`. Die Kurve `math.sqrt(x)` beginnt bei <InlineMath math="0" /> und wächst immer langsamer, also liefert `math.sqrt(4)` den Wert `2.0`. Die Kurve `math.log(x)` gibt es nur für <InlineMath math="x>0" />, sie schneidet die Achse bei `math.log(1) = 0.0` und erreicht `1.0` genau bei `math.e`. Zoom nahe <InlineMath math="x=0" /> heran: Der Logarithmus fällt ohne Grenze weiter, deshalb löst `math.log(0)` einen Fehler aus.
+
+<LineEquation
+  title="math.sqrt und math.log"
+  description="Die violette Kurve ist math.sqrt(x) für 0 ≤ x ≤ 9, die türkise Kurve math.log(x). Magentafarbene Punkte sind drei Aufrufe, deren Ergebnis du prüfen kannst."
+  showZAxis={false}
+  cameraPosition={[4.5, 0.5, 10]}
+  cameraTarget={[4.5, 0.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const t = index / 400;
+        return { x: 9 * t ** 2, y: 3 * t, z: 0 };
+      }),
+      color: "#8242e5",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "math.sqrt(x)", at: 400, offset: [0.4, 0.35, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const u = -2 + (index / 400) * (Math.log(9) + 2);
+        return { x: Math.exp(u), y: u, z: 0 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "math.log(x)", at: 400, offset: [0.4, -0.35, 0] }],
+    },
+    {
+      points: [{ x: 4, y: 2, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "math.sqrt(4) = 2.0", at: 0, offset: [-0.3, 0.45, 0] }],
+    },
+    {
+      points: [{ x: 1, y: 0, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "math.log(1) = 0.0", at: 0, offset: [0.4, -0.45, 0] }],
+    },
+    {
+      points: [{ x: Math.E, y: 1, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "math.log(math.e) = 1.0", at: 0, offset: [1.3, -0.3, 0] }],
+    },
   ]}
 />
 

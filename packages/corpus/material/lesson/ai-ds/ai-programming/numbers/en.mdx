@@ -93,6 +93,21 @@ Complex numbers have **real and imaginary parts**. In a Python literal, the suff
 
 A complex number can be plotted on a coordinate plane. Its real part sets the horizontal coordinate, and its imaginary part sets the vertical coordinate.
 
+Follow the questions in this diagram to predict the type of a literal before you run the code.
+
+<Mermaid
+  title="Reading the type from a literal"
+  description="The form of the literal decides its numeric type."
+  chart={`
+    flowchart TD
+        A[Number literal] --> B{Ends with j?}
+        B -->|Yes| C[complex]
+        B -->|No| D{Has a decimal point or e?}
+        D -->|Yes| E[float]
+        D -->|No| F[int]
+  `}
+/>
+
 ## The type Function for Checking Data Types
 
 The `type()` function reports the **exact class** of an object. It is useful when exploring values in the Python shell or diagnosing unexpected data.
@@ -115,6 +130,19 @@ The `type()` function reports the **exact class** of an object. It is useful whe
 />
 
 For a strict equality check you can compare `type(value)` with a class. In ordinary application code, `isinstance(value, SomeType)` is often more flexible because it also recognizes subclasses.
+
+This diagram pairs three literals with what type() returns for each.
+
+<Mermaid
+  title="Three results of type()"
+  description="One function tells you the class of each number."
+  chart={`
+    flowchart LR
+        A["type(42)"] --> B[int]
+        C["type(3.14)"] --> D[float]
+        E["type(2+3j)"] --> F[complex]
+  `}
+/>
 
 ## Constructors for Creating Number Objects
 
@@ -182,6 +210,53 @@ The `complex()` constructor creates complex numbers from **one or two real numbe
 />
 
 `complex(2.)` creates a complex number with real part <InlineMath math="2" /> and imaginary part <InlineMath math="0" />. Meanwhile, `complex(0., 2.)` creates a pure imaginary number <InlineMath math="2j" />.
+
+Compare the violet staircase with the gray line <InlineMath math="y=x" />. For positive numbers, `int()` drops the decimal part, so the result sits below the line, for example `int(2.9)` becomes `2`. For negative numbers, the result sits above the line, because `int(-2.9)` becomes `-2`, not `-3`. So `int()` always cuts toward zero, and the step around zero is wider than the others.
+
+<LineEquation
+  title="int() truncates toward zero"
+  description="The violet staircase is int(x), the gray line is y = x. Magenta points mark int(2.9) and int(-2.9)."
+  showZAxis={false}
+  cameraPosition={[0, 0, 10]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    {
+      points: [{ x: -3.5, y: -3.5, z: 0 }, { x: 3.5, y: 3.5, z: 0 }],
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "y = x", at: 1, offset: [0.5, 0.2, 0] }],
+    },
+    ...[
+      { from: -1, to: 1, value: 0, endpoints: { start: "open", end: "open" } },
+      { from: 1, to: 2, value: 1, endpoints: { start: "closed", end: "open" } },
+      { from: 2, to: 3, value: 2, endpoints: { start: "closed", end: "open" } },
+      { from: 3, to: 3.5, value: 3, endpoints: { start: "closed" } },
+      { from: -2, to: -1, value: -1, endpoints: { start: "open", end: "closed" } },
+      { from: -3, to: -2, value: -2, endpoints: { start: "open", end: "closed" } },
+      { from: -3.5, to: -3, value: -3, endpoints: { end: "closed" } },
+    ].map(({ from, to, value, endpoints }) => ({
+      points: [{ x: from, y: value, z: 0 }, { x: to, y: value, z: 0 }],
+      color: "#8242e5",
+      endpoints,
+      smooth: false,
+      showPoints: false,
+      ...(value === 3 ? { labels: [{ text: "int(x)", at: 1, offset: [0.6, 0, 0] }] } : {}),
+    })),
+    {
+      points: [{ x: 2.9, y: 2, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "int(2.9) = 2", at: 0, offset: [0.9, -0.45, 0] }],
+    },
+    {
+      points: [{ x: -2.9, y: -2, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "int(-2.9) = -2", at: 0, offset: [-0.9, 0.45, 0] }],
+    },
+  ]}
+/>
 
 ## Number Data Types Summary Table
 

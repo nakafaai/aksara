@@ -13,6 +13,20 @@ Syntactic sugar is <Highlight>concise notation</Highlight> for behavior that cou
 
 Python offers several compact forms for common patterns. They do not automatically make a program run faster, and they are not interchangeable in every detail. Choose the form that makes your intent easiest to understand.
 
+Compare the two paths in this diagram: both produce the same list.
+
+<Mermaid
+  title="A plain loop and a list comprehension"
+  description="Two ways of writing the same result."
+  chart={`
+    flowchart LR
+        A["result = []"] --> B["for x in data"]
+        B --> C["result.append(x * 2)"]
+        C --> E[Same list]
+        D["[x * 2 for x in data]"] --> E
+  `}
+/>
+
 ## List Comprehension
 
 A list comprehension creates a **new list from an iterable**. It can transform values, filter them, or combine both operations in one expression.
@@ -96,6 +110,34 @@ List comprehensions can express a simple transformation or filter compactly. The
 
 For example, `[i**2 for i in range(4)]` produces `[0, 1, 4, 9]`. This list of squares relates to the mathematical notation <InlineMath math="\{i^2 : i \in \{0,1,2,3\}\}" />.
 
+Run the list comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` with your eyes on this picture. The `for` part takes every <InlineMath math="x" /> from <InlineMath math="-3" /> to <InlineMath math="3" />, the `if` part lets only even numbers through, and the expression in front computes `x**2`. The result is the three magenta points on the curve, `[4, 0, 4]`. The teal points for odd <InlineMath math="x" /> are still on the curve, but they never enter the list.
+
+<LineEquation
+  title="What [x**2 for x in range(-3, 4) if x % 2 == 0] picks"
+  description="The gray curve is x**2. Magenta points are the elements that pass the if condition, teal points are skipped."
+  showZAxis={false}
+  cameraPosition={[0, 4.5, 11]}
+  cameraTarget={[0, 4.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const x = -3 + (index / 400) * 6;
+        return { x, y: x ** 2, z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "x**2", at: 400, offset: [0.5, 0, 0] }],
+    },
+    ...Array.from({ length: 7 }, (_, index) => index - 3).map((x) => ({
+      points: [{ x, y: x ** 2, z: 0 }],
+      color: x % 2 === 0 ? "#c026d3" : "#0d9488",
+      showPoints: true,
+      labels: [{ text: String(x), at: 0, offset: [0, -0.5, 0] }],
+    })),
+  ]}
+/>
+
 ## Lambda Functions
 
 A lambda expression creates a **function object** without a `def` statement. It is most useful for a small function passed directly as an argument.
@@ -156,6 +198,19 @@ sorted_by_grade = sorted(students, key=lambda student: student[1])
 print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
     }
   ]}
+/>
+
+This diagram shows that lambda and def produce the same function.
+
+<Mermaid
+  title="A lambda as a small function"
+  description="A lambda equals a one-line def and often serves as a key."
+  chart={`
+    flowchart LR
+        A["lambda x: x * 2"] --> C[Same function]
+        B["def f(x): return x * 2"] --> C
+        C --> D["sorted(data, key=...)"]
+  `}
 />
 
 ## Other Syntactic Sugar Features

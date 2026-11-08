@@ -84,6 +84,22 @@ print(list(numbers))   # Output: [1, 2, 3]`
   ]}
 />
 
+Dieses Diagramm zeigt die versteckten Schritte, die jede for-Schleife ausführt.
+
+<Mermaid
+  title="Wie for ein Iterable liest"
+  description="iter und next arbeiten hinter jeder for-Schleife."
+  chart={`
+    flowchart TD
+        A[Iterable] --> B["iter(obj)"]
+        B --> C["next(iterator)"]
+        C --> D{Noch ein Element?}
+        D -->|Ja| E[Schleifenrumpf ausführen]
+        E --> C
+        D -->|Nein, StopIteration| F[Schleife endet]
+  `}
+/>
+
 ## Mitgliedschaftsoperatoren
 
 Die Operatoren `in` und `not in` fragen, ob ein Container **einen bestimmten Wert enthält**. Jeder Container-Typ legt fest, wie die Mitgliedschaft geprüft wird: Eine Liste durchsucht ihre Elemente, ein Dictionary sucht unter den Schlüsseln, und ein String sucht nach einem Teilstring.
@@ -237,6 +253,31 @@ print(all([]))  # Output: True`
   ]}
 />
 
+Prüf die Liste `[3, 8, 1, 6]` gegen die Bedingung `v > 5`. Die zwei magentafarbenen Punkte, <InlineMath math="8" /> und <InlineMath math="6" />, liegen über der Linie, also ist `any(v > 5 for v in values)` gleich `True`. Die türkisen Punkte <InlineMath math="3" /> und <InlineMath math="1" /> liegen darunter, also ist `all(v > 5 for v in values)` gleich `False`. Mit der Bedingung `v > 0` besteht jeder Punkt, und `all` wird `True`.
+
+<LineEquation
+  title="any und all auf [3, 8, 1, 6]"
+  description="Jeder Punkt ist ein Wert an seiner Position. Magentafarbene Punkte erfüllen v > 5, türkise nicht, und die graue Linie ist die Grenze 5."
+  showZAxis={false}
+  cameraPosition={[1.5, 4, 11]}
+  cameraTarget={[1.5, 4, 0]}
+  data={[
+    {
+      points: [{ x: -0.5, y: 5, z: 0 }, { x: 3.5, y: 5, z: 0 }],
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "v > 5", at: 1, offset: [0.6, 0, 0] }],
+    },
+    ...[3, 8, 1, 6].map((value, index) => ({
+      points: [{ x: index, y: value, z: 0 }],
+      color: value > 5 ? "#c026d3" : "#0d9488",
+      showPoints: true,
+      labels: [{ text: String(value), at: 0, offset: [0.35, 0, 0] }],
+    })),
+  ]}
+/>
+
 ## Entpackoperator
 
 In einem Funktionsaufruf erweitert ein vorangestelltes Sternchen (`*`) ein Iterable zu **Positionsargumenten**. Die Anzahl der entstandenen Argumente muss weiterhin zur aufgerufenen Funktion passen.
@@ -353,4 +394,16 @@ print(formatted)
 # Ausgabe: Name: Alice, Alter: 25, Stadt: Jakarta`
     }
   ]}
+/>
+
+Dieses Diagramm entpackt die Liste [1, 2, 3, 4] in zwei Namen.
+
+<Mermaid
+  title="Entpacken mit Stern"
+  description="Ein Name nimmt ein Element, der Name mit Stern den Rest."
+  chart={`
+    flowchart LR
+        A["a, *rest = [1, 2, 3, 4]"] --> B[a = 1]
+        A --> C["rest = [2, 3, 4]"]
+  `}
 />

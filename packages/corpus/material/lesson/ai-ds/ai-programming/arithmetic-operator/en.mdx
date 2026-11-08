@@ -13,6 +13,36 @@ Arithmetic operators tell Python which calculation to perform. For example, `+` 
 
 Python provides seven main arithmetic operators. Their precedence determines <Highlight>how an expression is grouped</Highlight> when parentheses do not specify the grouping.
 
+Zoom into this graph and follow both lines from left to right. The violet line `x // 3` steps up by one each time <InlineMath math="x" /> passes a multiple of <InlineMath math="3" />, and for negative numbers it still rounds down, so `-5 // 3` gives `-2`. The teal line `x % 3` climbs from <InlineMath math="0" /> and drops back at every multiple of <InlineMath math="3" />, so the remainder always stays between <InlineMath math="0" /> and <InlineMath math="3" />. At every point, `x == 3 * (x // 3) + x % 3` holds.
+
+<LineEquation
+  title="Floor division // and remainder %"
+  description="The violet line is x // 3, the teal line is x % 3 for −6 ≤ x < 6. Filled circles mark included values, open circles excluded ones."
+  showZAxis={false}
+  cameraPosition={[0, 0.5, 10]}
+  cameraTarget={[0, 0.5, 0]}
+  data={[
+    ...[-2, -1, 0, 1].flatMap((k) => [
+      {
+        points: [{ x: 3 * k, y: k, z: 0 }, { x: 3 * k + 3, y: k, z: 0 }],
+        color: "#8242e5",
+        endpoints: { start: "closed", end: "open" },
+        smooth: false,
+        showPoints: false,
+        ...(k === 1 ? { labels: [{ text: "x // 3", at: 1, offset: [0.7, 0.3, 0] }] } : {}),
+      },
+      {
+        points: [{ x: 3 * k, y: 0, z: 0 }, { x: 3 * k + 3, y: 3, z: 0 }],
+        color: "#0d9488",
+        endpoints: { start: "closed", end: "open" },
+        smooth: false,
+        showPoints: false,
+        ...(k === 1 ? { labels: [{ text: "x % 3", at: 1, offset: [0.7, 0, 0] }] } : {}),
+      },
+    ]),
+  ]}
+/>
+
 ## Operator Precedence Order
 
 When one expression mixes several arithmetic operators, Python needs a fixed order to decide which calculation happens first. These seven binary operators fall into **three precedence levels**. Precedence determines how operations are grouped. Parentheses can change that grouping.
@@ -135,6 +165,20 @@ For negative integers, Python still satisfies the identity above. That is why `5
 
 **Addition and subtraction** have lower precedence than the other five operators. Parentheses can still change the grouping of operations. In `2 + 3 * 4`, Python multiplies first and adds afterwards, so the result is `14`. To make the addition happen earlier, wrap it in parentheses and write `(2 + 3) * 4`.
 
+Read this ladder from top to bottom: a higher operator is always evaluated first.
+
+<Mermaid
+  title="The operator priority ladder"
+  description="Operators higher up are evaluated first."
+  chart={`
+    flowchart TD
+        A["Parentheses ( )"] --> B["Power **"]
+        B --> C["Negation -x"]
+        C --> D["* / // %"]
+        D --> E["+ -"]
+  `}
+/>
+
 ## Precedence Rules and Associativity
 
 **Precedence and associativity** determine how operations are grouped, while Python evaluates operands from left to right. Precedence groups operators from different levels, and associativity groups operators that sit on the same level. Both rules act on the operators you actually wrote, so `2 ** 3 ** 2` and `8 - 3 - 2` each have exactly one reading.
@@ -213,6 +257,18 @@ Among these seven operators, exponentiation `**` is grouped from right to left.
 />
 
 Python groups repeated exponentiation from right to left: `2 ** 3 ** 2 = 2 ** (3 ** 2) = 2 ** 9 = 512`.
+
+Compare these two examples: powers are evaluated from the right, division from the left.
+
+<Mermaid
+  title="Left and right associativity"
+  description="Two examples evaluated in different directions."
+  chart={`
+    flowchart LR
+        A["2 ** 3 ** 2"] --> B["2 ** 9"] --> C[512]
+        D["100 / 10 / 5"] --> E["10.0 / 5"] --> F[2.0]
+  `}
+/>
 
 ## Python Shell as Calculator
 

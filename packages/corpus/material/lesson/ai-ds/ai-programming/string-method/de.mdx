@@ -40,6 +40,20 @@ print(f"Ursprünglicher String: {s}")`
 
 Mit Slicing und Verkettung kannst du aus einem vorhandenen String einen neuen aufbauen. Der Operator `+` hängt nichts an das ursprüngliche Objekt an.
 
+Dieses Diagramm zeigt, warum s nach s.upper() gleich bleibt, außer du speicherst das Ergebnis.
+
+<Mermaid
+  title="Methoden liefern einen neuen String"
+  description="Der ursprüngliche String bleibt, bis du ihn überschreibst."
+  chart={`
+    flowchart LR
+        A["s = 'hallo'"] --> B["s.upper()"]
+        B --> C["Neuer String 'HALLO'"]
+        A --> D["s bleibt 'hallo'"]
+        C --> E["s = s.upper() speichert das Ergebnis"]
+  `}
+/>
+
 ## Stringlänge messen
 
 Bei einem Python-String zählt `len()` die **Unicode-Codepoints**. Ein gewöhnlicher lateinischer Buchstabe, ein Leerzeichen oder ein Satzzeichen zählt meist eins. Ein einziges sichtbares Graphem kann jedoch aus mehreren Codepoints bestehen, etwa bei manchen Emojis oder kombinierenden Zeichen.
@@ -265,6 +279,56 @@ for username in usernames:
 />
 
 Methoden wie `isdigit()` und `isalnum()` berücksichtigen Unicode, und für den leeren String liefern sie `False`. Telefonnummern, Postleitzahlen und Benutzernamen brauchen trotzdem eindeutige Regeln für Alphabet, Länge, Trennzeichen, Präfixe und weitere fachliche Grenzen.
+
+Such mit diesem Bild nach `"an"` in `"banana"`. Zwei türkise Strecken markieren die Vorkommen bei Index <InlineMath math="1" /> und <InlineMath math="3" />, also liefert `"banana".count("an")` den Wert `2`. `find` gibt den Index des ersten Vorkommens von links zurück, also `1`, und `rfind` den Index des letzten Vorkommens, also `3`. Kommt der Teilstring gar nicht vor, geben beide `-1` zurück.
+
+<LineEquation
+  title="find, rfind und count auf 'banana'"
+  description="Türkise Strecken markieren jedes Vorkommen von 'an'. Der violette Pfeil zeigt auf das Ergebnis von find, der orange Pfeil auf das von rfind."
+  showZAxis={false}
+  cameraPosition={[2.5, 0.2, 7]}
+  cameraTarget={[2.5, 0.2, 0]}
+  data={[
+    ...(() => {
+      const text = "banana";
+      const part = "an";
+      const hits = [];
+      let at = text.indexOf(part);
+      while (at !== -1) {
+        hits.push(at);
+        at = text.indexOf(part, at + part.length);
+      }
+      return [
+        ...Array.from(text).flatMap((char, index) => [
+          { points: [{ x: index, y: 0, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: char, at: 0, offset: [0, 0.35, 0] }] },
+          { points: [{ x: index, y: -0.8, z: 0 }], color: "#64748b", showPoints: false, labels: [{ text: String(index), at: 0, offset: [0, 0, 0] }] },
+        ]),
+        ...hits.map((start) => ({
+          points: [{ x: start, y: -0.4, z: 0 }, { x: start + part.length - 1, y: -0.4, z: 0 }],
+          color: "#0d9488",
+          smooth: false,
+          showPoints: true,
+        })),
+        {
+          points: [{ x: hits[0], y: 1.5, z: 0 }, { x: hits[0], y: 0.7, z: 0 }],
+          color: "#8242e5",
+          cone: { position: "end", size: 0.2 },
+          smooth: false,
+          showPoints: false,
+          labels: [{ text: 'find("an") = 1', at: 0, offset: [-0.6, 0.3, 0] }],
+        },
+        {
+          points: [{ x: text.lastIndexOf(part), y: 1.5, z: 0 }, { x: text.lastIndexOf(part), y: 0.7, z: 0 }],
+          color: "#bb6800",
+          cone: { position: "end", size: 0.2 },
+          smooth: false,
+          showPoints: false,
+          labels: [{ text: 'rfind("an") = 3', at: 0, offset: [0.7, 0.3, 0] }],
+        },
+      ];
+    })(),
+  ]}
+/>
 
 ## Suchmethoden für Präfixe und Suffixe
 
@@ -492,6 +556,19 @@ for email in emails:
 />
 
 Methodenverkettung passt zu einer kurzen, linearen Bereinigung. Sie ist nicht automatisch klarer als benannte Schritte.
+
+Folg diesem String von links nach rechts durch die Methodenkette.
+
+<Mermaid
+  title="Eine Kette, drei Schritte"
+  description="Jede Methode arbeitet mit dem Ergebnis der vorherigen."
+  chart={`
+    flowchart LR
+        A["'  Hello World  '"] -->|".strip()"| B["'Hello World'"]
+        B -->|".lower()"| C["'hello world'"]
+        C -->|".replace(' ', '_')"| D["'hello_world'"]
+  `}
+/>
 
 ## Praktische Anwendungen von Methoden für Strings
 

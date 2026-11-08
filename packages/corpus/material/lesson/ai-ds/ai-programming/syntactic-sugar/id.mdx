@@ -13,6 +13,20 @@ Syntactic sugar adalah <Highlight>notasi ringkas</Highlight> untuk perilaku yang
 
 Python menyediakan beberapa bentuk ringkas untuk pola yang umum. Bentuk tersebut tidak otomatis membuat program berjalan lebih cepat dan tidak selalu identik dalam setiap detail. Gunakan bentuk ringkas ketika maksud kode menjadi lebih jelas.
 
+Bandingkan dua jalan di diagram ini: keduanya menghasilkan daftar yang sama.
+
+<Mermaid
+  title="Loop biasa dan list comprehension"
+  description="Dua tulisan untuk hasil yang sama."
+  chart={`
+    flowchart LR
+        A["hasil = []"] --> B["for x in data"]
+        B --> C["hasil.append(x * 2)"]
+        C --> E[Daftar yang sama]
+        D["[x * 2 for x in data]"] --> E
+  `}
+/>
+
 ## List Comprehension
 
 List comprehension membuat **list baru dari iterable**. Bentuk ini dapat mentransformasi nilai, memfilternya, atau menggabungkan kedua operasi dalam satu ekspresi.
@@ -96,6 +110,34 @@ List comprehension dapat menyatakan transformasi atau filter sederhana secara ri
 
 Sebagai contoh, `[i**2 for i in range(4)]` menghasilkan `[0, 1, 4, 9]`. Daftar kuadrat ini berhubungan dengan notasi matematika <InlineMath math="\{i^2 : i \in \{0,1,2,3\}\}" />.
 
+Jalankan list comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` dengan mata di gambar ini. Bagian `for` mengambil setiap <InlineMath math="x" /> dari <InlineMath math="-3" /> sampai <InlineMath math="3" />, bagian `if` hanya meloloskan bilangan genap, dan ekspresi di depan menghitung `x**2`. Hasilnya tiga titik magenta di kurva, yaitu `[4, 0, 4]`. Titik hijau toska untuk <InlineMath math="x" /> ganjil tetap ada di kurva, tapi tidak masuk ke daftar.
+
+<LineEquation
+  title="Apa yang dipilih [x**2 for x in range(-3, 4) if x % 2 == 0]"
+  description="Kurva abu-abu adalah x**2. Titik magenta adalah elemen yang lolos syarat if, titik hijau toska adalah yang dilewati."
+  showZAxis={false}
+  cameraPosition={[0, 4.5, 11]}
+  cameraTarget={[0, 4.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const x = -3 + (index / 400) * 6;
+        return { x, y: x ** 2, z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "x**2", at: 400, offset: [0.5, 0, 0] }],
+    },
+    ...Array.from({ length: 7 }, (_, index) => index - 3).map((x) => ({
+      points: [{ x, y: x ** 2, z: 0 }],
+      color: x % 2 === 0 ? "#c026d3" : "#0d9488",
+      showPoints: true,
+      labels: [{ text: String(x), at: 0, offset: [0, -0.5, 0] }],
+    })),
+  ]}
+/>
+
 ## Lambda Functions
 
 Ekspresi lambda membuat **objek fungsi** tanpa statement `def`. Gunakan lambda untuk fungsi kecil yang langsung diberikan sebagai argumen.
@@ -156,6 +198,19 @@ sorted_by_grade = sorted(students, key=lambda student: student[1])
 print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
     }
   ]}
+/>
+
+Diagram ini menunjukkan bahwa lambda dan def menghasilkan fungsi yang sama.
+
+<Mermaid
+  title="Lambda sebagai fungsi kecil"
+  description="Lambda setara dengan def satu baris dan sering dipakai sebagai key."
+  chart={`
+    flowchart LR
+        A["lambda x: x * 2"] --> C[Fungsi yang sama]
+        B["def f(x): return x * 2"] --> C
+        C --> D["sorted(data, key=...)"]
+  `}
 />
 
 ## Fitur Syntactic Sugar Lainnya

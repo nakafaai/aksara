@@ -139,6 +139,48 @@ print('x[::-1] =', x[::-1])                  # Output: x[::-1] = [5, 4, 3, 2, 1,
 
 Slicing selects a contiguous or regularly spaced part of a list. For `x = [0, 1, 2, 3, 4, 5]`, `x[1:4]` returns the elements at indices <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="3" />. The end index <InlineMath math="4" /> is excluded. The expression `x[1:4:2]` uses a step of <InlineMath math="2" />, so it selects indices <InlineMath math="1" /> and <InlineMath math="3" />.
 
+The top row takes `x[1:4:2]`: it starts at index <InlineMath math="1" />, jumps two steps, and stops before index <InlineMath math="4" />, so the result is `[1, 3]`. The bottom row is `x[::-1]`. The step <InlineMath math="-1" /> reads from the back, and the teal lines show each element moving from position <InlineMath math="i" /> to position <InlineMath math="5-i" />. All the lines cross in the middle, right between elements <InlineMath math="2" /> and <InlineMath math="3" />.
+
+<LineEquation
+  title="Slicing with a step on x = [0, 1, 2, 3, 4, 5]"
+  description="The middle row is x. The magenta top row is x[1:4:2], and the teal bottom row is x[::-1], with lines that show where each element moves."
+  showZAxis={false}
+  cameraPosition={[2.5, 0, 7]}
+  cameraTarget={[2.5, 0, 0]}
+  data={[
+    ...[0, 1, 2, 3, 4, 5].flatMap((value) => [
+      {
+        points: [{ x: value, y: 0, z: 0 }],
+        color: "#64748b",
+        showPoints: true,
+        labels: [{ text: String(value), at: 0, offset: [0, 0.3, 0] }],
+      },
+      {
+        points: [{ x: value, y: 0, z: 0 }, { x: 5 - value, y: -1.2, z: 0 }],
+        color: "#0d9488",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [{ x: 5 - value, y: -1.2, z: 0 }],
+        color: "#0d9488",
+        showPoints: true,
+        labels: [{ text: String(value), at: 0, offset: [0, -0.35, 0] }],
+      },
+    ]),
+    ...[1, 3].map((index) => ({
+      points: [{ x: index, y: 0, z: 0 }, { x: index, y: 1.2, z: 0 }],
+      color: "#c026d3",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: String(index), at: 1, offset: [0, 0.3, 0] }],
+    })),
+    { points: [{ x: -0.8, y: 1.2, z: 0 }], color: "#c026d3", showPoints: false, labels: [{ text: "x[1:4:2]", at: 0, offset: [-0.4, 0, 0] }] },
+    { points: [{ x: -0.8, y: 0, z: 0 }], color: "#64748b", showPoints: false, labels: [{ text: "x", at: 0, offset: [0, 0, 0] }] },
+    { points: [{ x: -0.8, y: -1.2, z: 0 }], color: "#0d9488", showPoints: false, labels: [{ text: "x[::-1]", at: 0, offset: [-0.3, 0, 0] }] },
+  ]}
+/>
+
 ## Lists and Strings
 
 Lists provide operations for reading and changing data. Their **indexing and slicing syntax** matches the syntax used for strings.
@@ -443,3 +485,19 @@ The four built-in collections differ in **order, mutability, and duplicate handl
 | **Set** | `{1, 2, 3}` | No | Yes | No | Unique elements, set operations |
 
 > Dictionary iteration preserves insertion order as a language guarantee since Python `3.7`. Updating an existing key keeps its position. Deleting and reinserting it places it at the end.
+
+Answer the questions in this diagram from the top to pick a fitting container.
+
+<Mermaid
+  title="Choosing a container"
+  description="Three questions decide between list, tuple, set, and dict."
+  chart={`
+    flowchart TD
+        A{Look things up by key?} -->|Yes| B[dict]
+        A -->|No| C{Only unique values?}
+        C -->|Yes| D[set]
+        C -->|No| E{Will the contents change?}
+        E -->|Yes| F[list]
+        E -->|No| G[tuple]
+  `}
+/>

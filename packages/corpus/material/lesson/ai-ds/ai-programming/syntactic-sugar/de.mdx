@@ -13,6 +13,20 @@ Syntaktischer Zucker ist eine <Highlight>knappe Schreibweise</Highlight> für Ve
 
 Python bietet mehrere kompakte Formen für häufige Muster. Sie machen ein Programm nicht automatisch schneller und sind nicht in jedem Detail austauschbar. Wähle die Form, in der deine Absicht am leichtesten zu verstehen ist.
 
+Vergleich die zwei Wege in diesem Diagramm: Beide erzeugen dieselbe Liste.
+
+<Mermaid
+  title="Normale Schleife und List Comprehension"
+  description="Zwei Schreibweisen für dasselbe Ergebnis."
+  chart={`
+    flowchart LR
+        A["ergebnis = []"] --> B["for x in data"]
+        B --> C["ergebnis.append(x * 2)"]
+        C --> E[Dieselbe Liste]
+        D["[x * 2 for x in data]"] --> E
+  `}
+/>
+
 ## Listenkomprehension
 
 Eine Listenkomprehension erzeugt eine **neue Liste aus einem Iterable**. Sie kann Werte transformieren, filtern oder beides in einem Ausdruck verbinden.
@@ -96,6 +110,34 @@ Listenkomprehensionen können eine einfache Transformation oder einen Filter kom
 
 Beispielsweise kann `[i**2 for i in range(4)]` die Liste `[0, 1, 4, 9]` erzeugen. Diese Quadratliste steht mit der mathematischen Notation <InlineMath math="\{i^2 : i \in \{0,1,2,3\}\}" /> in Beziehung.
 
+Führ die List Comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` mit Blick auf dieses Bild aus. Der `for`-Teil nimmt jedes <InlineMath math="x" /> von <InlineMath math="-3" /> bis <InlineMath math="3" />, der `if`-Teil lässt nur gerade Zahlen durch, und der Ausdruck vorne berechnet `x**2`. Das Ergebnis sind die drei magentafarbenen Punkte auf der Kurve, also `[4, 0, 4]`. Die türkisen Punkte für ungerade <InlineMath math="x" /> liegen zwar auf der Kurve, kommen aber nie in die Liste.
+
+<LineEquation
+  title="Was [x**2 for x in range(-3, 4) if x % 2 == 0] auswählt"
+  description="Die graue Kurve ist x**2. Magentafarbene Punkte sind die Elemente, die die if-Bedingung erfüllen, türkise werden übersprungen."
+  showZAxis={false}
+  cameraPosition={[0, 4.5, 11]}
+  cameraTarget={[0, 4.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const x = -3 + (index / 400) * 6;
+        return { x, y: x ** 2, z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "x**2", at: 400, offset: [0.5, 0, 0] }],
+    },
+    ...Array.from({ length: 7 }, (_, index) => index - 3).map((x) => ({
+      points: [{ x, y: x ** 2, z: 0 }],
+      color: x % 2 === 0 ? "#c026d3" : "#0d9488",
+      showPoints: true,
+      labels: [{ text: String(x), at: 0, offset: [0, -0.5, 0] }],
+    })),
+  ]}
+/>
+
 ## Lambdafunktionen
 
 Ein Lambda-Ausdruck erzeugt ein **Funktionsobjekt** ohne `def`-Anweisung. Er eignet sich besonders für eine kleine Funktion, die direkt als Argument übergeben wird.
@@ -156,6 +198,19 @@ sorted_by_grade = sorted(students, key=lambda student: student[1])
 print(sorted_by_grade)  # Ausgabe: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
     }
   ]}
+/>
+
+Dieses Diagramm zeigt, dass lambda und def dieselbe Funktion erzeugen.
+
+<Mermaid
+  title="Ein Lambda als kleine Funktion"
+  description="Ein Lambda entspricht einem einzeiligen def und dient oft als key."
+  chart={`
+    flowchart LR
+        A["lambda x: x * 2"] --> C[Dieselbe Funktion]
+        B["def f(x): return x * 2"] --> C
+        C --> D["sorted(data, key=...)"]
+  `}
 />
 
 ## Andere syntaktische Zuckerfunktionen

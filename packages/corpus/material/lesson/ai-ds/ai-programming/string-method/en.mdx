@@ -40,6 +40,20 @@ print(f"Original string still: {s}")`
 
 Slicing and concatenation are two ways to build a new string from an existing one. The `+` operator does not append to the original object.
 
+This diagram shows why s stays the same after s.upper() unless you store the result.
+
+<Mermaid
+  title="Methods return a new string"
+  description="The original string stays the same until you overwrite it."
+  chart={`
+    flowchart LR
+        A["s = 'hello'"] --> B["s.upper()"]
+        B --> C["New string 'HELLO'"]
+        A --> D["s is still 'hello'"]
+        C --> E["s = s.upper() stores the result"]
+  `}
+/>
+
 ## Measuring String Length
 
 For a Python string, `len()` counts **Unicode code points**. An ordinary Latin letter, space, or punctuation mark usually contributes one, but a single visible grapheme can contain several code points, as happens with some emoji and combining marks.
@@ -265,6 +279,56 @@ for username in usernames:
 />
 
 Methods such as `isdigit()` and `isalnum()` are Unicode-aware, and the empty string makes them return `False`. A phone number, postal code, or username still needs explicit rules for alphabet, length, separators, prefixes, and any other domain constraints.
+
+Search for `"an"` inside `"banana"` with this picture. Two teal segments mark the occurrences at index <InlineMath math="1" /> and <InlineMath math="3" />, so `"banana".count("an")` gives `2`. `find` returns the index of the first occurrence from the left, which is `1`, while `rfind` returns the index of the last occurrence, which is `3`. If the substring is not there at all, both return `-1`.
+
+<LineEquation
+  title="find, rfind, and count on 'banana'"
+  description="Teal segments mark each occurrence of 'an'. The violet arrow points to the result of find, the orange arrow to the result of rfind."
+  showZAxis={false}
+  cameraPosition={[2.5, 0.2, 7]}
+  cameraTarget={[2.5, 0.2, 0]}
+  data={[
+    ...(() => {
+      const text = "banana";
+      const part = "an";
+      const hits = [];
+      let at = text.indexOf(part);
+      while (at !== -1) {
+        hits.push(at);
+        at = text.indexOf(part, at + part.length);
+      }
+      return [
+        ...Array.from(text).flatMap((char, index) => [
+          { points: [{ x: index, y: 0, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: char, at: 0, offset: [0, 0.35, 0] }] },
+          { points: [{ x: index, y: -0.8, z: 0 }], color: "#64748b", showPoints: false, labels: [{ text: String(index), at: 0, offset: [0, 0, 0] }] },
+        ]),
+        ...hits.map((start) => ({
+          points: [{ x: start, y: -0.4, z: 0 }, { x: start + part.length - 1, y: -0.4, z: 0 }],
+          color: "#0d9488",
+          smooth: false,
+          showPoints: true,
+        })),
+        {
+          points: [{ x: hits[0], y: 1.5, z: 0 }, { x: hits[0], y: 0.7, z: 0 }],
+          color: "#8242e5",
+          cone: { position: "end", size: 0.2 },
+          smooth: false,
+          showPoints: false,
+          labels: [{ text: 'find("an") = 1', at: 0, offset: [-0.6, 0.3, 0] }],
+        },
+        {
+          points: [{ x: text.lastIndexOf(part), y: 1.5, z: 0 }, { x: text.lastIndexOf(part), y: 0.7, z: 0 }],
+          color: "#bb6800",
+          cone: { position: "end", size: 0.2 },
+          smooth: false,
+          showPoints: false,
+          labels: [{ text: 'rfind("an") = 3', at: 0, offset: [0.7, 0.3, 0] }],
+        },
+      ];
+    })(),
+  ]}
+/>
 
 ## Prefix and Suffix Search Methods
 
@@ -492,6 +556,19 @@ for email in emails:
 />
 
 Method chaining works well for a short linear cleanup. It is not automatically clearer than named steps.
+
+Follow this string through the method chain from left to right.
+
+<Mermaid
+  title="One chain, three steps"
+  description="Each method works on the result of the one before it."
+  chart={`
+    flowchart LR
+        A["'  Hello World  '"] -->|".strip()"| B["'Hello World'"]
+        B -->|".lower()"| C["'hello world'"]
+        C -->|".replace(' ', '_')"| D["'hello_world'"]
+  `}
+/>
 
 ## Practical String Method Applications
 

@@ -118,6 +118,44 @@ True`
 
 Die Operatoren `and` und `or` verwenden <Highlight>eine Kurzschlussauswertung</Highlight>, was bedeutet, dass die Auswertung stoppt, wenn das Ergebnis ermittelt werden kann, ohne dass alle Operanden ausgewertet werden müssen. Beide geben das zuletzt ausgewertete Argument zurück, während der `not`-Operator immer einen neuen booleschen Wert erstellt.
 
+Jeder Vergleich ist auf einem Bereich des Zahlenstrahls `True`. In diesem Bild markiert die violette Zeile jedes <InlineMath math="x" /> mit `x > 2` und die türkise Zeile jedes <InlineMath math="x" /> mit `x < 5`. Der Operator `and` liefert nur dort `True`, wo sich beide Zeilen überlappen, also in der magentafarbenen Zeile zwischen <InlineMath math="2" /> und <InlineMath math="5" />. Die Enden bei <InlineMath math="2" /> und <InlineMath math="5" /> sind offen, weil `2 > 2` und `5 < 5` beide `False` sind.
+
+<LineEquation
+  title="Vergleiche als Bereiche auf dem Zahlenstrahl"
+  description="Die violette Zeile ist x > 2, die türkise Zeile x < 5 und die magentafarbene Zeile x > 2 and x < 5. Ein leerer Kreis bedeutet, dass der Wert nicht dazugehört."
+  showZAxis={false}
+  cameraPosition={[3.5, 2, 9]}
+  cameraTarget={[3.5, 2, 0]}
+  data={[
+    {
+      points: [{ x: 2, y: 3, z: 0 }, { x: 8, y: 3, z: 0 }],
+      color: "#8242e5",
+      endpoints: { start: "open" },
+      cone: { position: "end", size: 0.25 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "x > 2", at: 0, offset: [-0.9, 0, 0] }],
+    },
+    {
+      points: [{ x: -1, y: 2, z: 0 }, { x: 5, y: 2, z: 0 }],
+      color: "#0d9488",
+      endpoints: { end: "open" },
+      cone: { position: "start", size: 0.25 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "x < 5", at: 1, offset: [0.9, 0, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 1, z: 0 }, { x: 5, y: 1, z: 0 }],
+      color: "#c026d3",
+      endpoints: { start: "open", end: "open" },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "x > 2 and x < 5", at: 1, offset: [1.8, 0, 0] }],
+    },
+  ]}
+/>
+
 ## Werte im booleschen Kontext
 
 Jedes Python-Objekt kann einer **Wahrheitsprüfung** unterzogen werden, auch wenn es nicht die Werte `True` und `False` sind. Python entscheidet dann selbst, welche Werte als falsch gelten. Nach dieser Regel verhalten sich eine leere Liste, die Zahl null und die leere Zeichenkette in einem `if` wie `False`, während ein nicht leeres Behältnis wie `True` wirkt.

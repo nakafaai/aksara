@@ -40,6 +40,20 @@ print(f"String asli masih: {s}")`
 
 Slicing dan concatenation dapat membentuk string baru dari string lama. Operator `+` tidak menambahkan isi ke objek asal.
 
+Diagram ini menunjukkan mengapa s tetap sama setelah s.upper() kecuali kamu menyimpan hasilnya.
+
+<Mermaid
+  title="Metode mengembalikan string baru"
+  description="String asli tidak berubah sampai kamu menimpanya."
+  chart={`
+    flowchart LR
+        A["s = 'halo'"] --> B["s.upper()"]
+        B --> C["String baru 'HALO'"]
+        A --> D["s tetap 'halo'"]
+        C --> E["s = s.upper() menyimpan hasilnya"]
+  `}
+/>
+
 ## Mengukur Panjang String
 
 Pada string Python, `len()` menghitung **jumlah Unicode code point**. Huruf Latin biasa, spasi, atau tanda baca umumnya menyumbang satu, tetapi satu grafem yang terlihat dapat terdiri dari beberapa code point, seperti pada sebagian emoji dan tanda gabung.
@@ -265,6 +279,56 @@ for username in usernames:
 />
 
 Method seperti `isdigit()` dan `isalnum()` mengikuti Unicode, sedangkan string kosong membuat keduanya mengembalikan `False`. Nomor telepon, kode pos, atau username tetap memerlukan aturan eksplisit tentang alfabet, panjang, pemisah, prefix, dan batasan domain lainnya.
+
+Cari `"an"` di dalam `"banana"` lewat gambar ini. Dua ruas hijau toska menandai kemunculan di indeks <InlineMath math="1" /> dan <InlineMath math="3" />, jadi `"banana".count("an")` hasilnya `2`. `find` mengembalikan indeks kemunculan pertama dari kiri, yaitu `1`, sedangkan `rfind` mengembalikan indeks kemunculan terakhir, yaitu `3`. Kalau substring tidak ada sama sekali, keduanya mengembalikan `-1`.
+
+<LineEquation
+  title="find, rfind, dan count pada 'banana'"
+  description="Ruas hijau toska menandai setiap kemunculan 'an'. Panah ungu menunjuk hasil find, panah oranye hasil rfind."
+  showZAxis={false}
+  cameraPosition={[2.5, 0.2, 7]}
+  cameraTarget={[2.5, 0.2, 0]}
+  data={[
+    ...(() => {
+      const text = "banana";
+      const part = "an";
+      const hits = [];
+      let at = text.indexOf(part);
+      while (at !== -1) {
+        hits.push(at);
+        at = text.indexOf(part, at + part.length);
+      }
+      return [
+        ...Array.from(text).flatMap((char, index) => [
+          { points: [{ x: index, y: 0, z: 0 }], color: "#64748b", showPoints: true, labels: [{ text: char, at: 0, offset: [0, 0.35, 0] }] },
+          { points: [{ x: index, y: -0.8, z: 0 }], color: "#64748b", showPoints: false, labels: [{ text: String(index), at: 0, offset: [0, 0, 0] }] },
+        ]),
+        ...hits.map((start) => ({
+          points: [{ x: start, y: -0.4, z: 0 }, { x: start + part.length - 1, y: -0.4, z: 0 }],
+          color: "#0d9488",
+          smooth: false,
+          showPoints: true,
+        })),
+        {
+          points: [{ x: hits[0], y: 1.5, z: 0 }, { x: hits[0], y: 0.7, z: 0 }],
+          color: "#8242e5",
+          cone: { position: "end", size: 0.2 },
+          smooth: false,
+          showPoints: false,
+          labels: [{ text: 'find("an") = 1', at: 0, offset: [-0.6, 0.3, 0] }],
+        },
+        {
+          points: [{ x: text.lastIndexOf(part), y: 1.5, z: 0 }, { x: text.lastIndexOf(part), y: 0.7, z: 0 }],
+          color: "#bb6800",
+          cone: { position: "end", size: 0.2 },
+          smooth: false,
+          showPoints: false,
+          labels: [{ text: 'rfind("an") = 3', at: 0, offset: [0.7, 0.3, 0] }],
+        },
+      ];
+    })(),
+  ]}
+/>
 
 ## Method Pencarian Prefix dan Suffix
 
@@ -492,6 +556,19 @@ for email in emails:
 />
 
 Method chaining cocok untuk pembersihan teks yang singkat dan berurutan. Jika chain terlalu panjang, pisahkan menjadi beberapa langkah dengan nama yang menjelaskan hasil tiap langkah.
+
+Ikuti string ini melewati rantai metode dari kiri ke kanan.
+
+<Mermaid
+  title="Satu rantai, tiga langkah"
+  description="Setiap metode bekerja pada hasil metode sebelumnya."
+  chart={`
+    flowchart LR
+        A["'  Hello World  '"] -->|".strip()"| B["'Hello World'"]
+        B -->|".lower()"| C["'hello world'"]
+        C -->|".replace(' ', '_')"| D["'hello_world'"]
+  `}
+/>
 
 ## Contoh Penggunaan String Methods
 

@@ -139,6 +139,48 @@ print('x[::-1] =', x[::-1])                  # Hasil: x[::-1] = [5, 4, 3, 2, 1, 
 
 Slicing dapat memilih elemen berurutan atau elemen dengan jarak tetap. Untuk `x = [0, 1, 2, 3, 4, 5]`, `x[1:4]` mengambil elemen pada indeks <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" />. Indeks akhir <InlineMath math="4" /> tidak ikut diambil. Bentuk `x[1:4:2]` memakai `step` <InlineMath math="2" />, sehingga Python mengambil indeks <InlineMath math="1" /> dan <InlineMath math="3" />.
 
+Baris atas mengambil `x[1:4:2]`: mulai di indeks <InlineMath math="1" />, melompat dua langkah, dan berhenti sebelum indeks <InlineMath math="4" />, jadi hasilnya `[1, 3]`. Baris bawah adalah `x[::-1]`. Langkah <InlineMath math="-1" /> membaca dari belakang, dan garis hijau toska menunjukkan setiap elemen pindah dari posisi <InlineMath math="i" /> ke posisi <InlineMath math="5-i" />. Semua garis bersilang di tengah, tepat di antara elemen <InlineMath math="2" /> dan <InlineMath math="3" />.
+
+<LineEquation
+  title="Slicing dengan langkah pada x = [0, 1, 2, 3, 4, 5]"
+  description="Baris tengah adalah x. Baris atas magenta adalah x[1:4:2], dan baris bawah hijau toska adalah x[::-1] dengan garis yang menunjukkan ke mana setiap elemen pindah."
+  showZAxis={false}
+  cameraPosition={[2.5, 0, 7]}
+  cameraTarget={[2.5, 0, 0]}
+  data={[
+    ...[0, 1, 2, 3, 4, 5].flatMap((value) => [
+      {
+        points: [{ x: value, y: 0, z: 0 }],
+        color: "#64748b",
+        showPoints: true,
+        labels: [{ text: String(value), at: 0, offset: [0, 0.3, 0] }],
+      },
+      {
+        points: [{ x: value, y: 0, z: 0 }, { x: 5 - value, y: -1.2, z: 0 }],
+        color: "#0d9488",
+        smooth: false,
+        showPoints: false,
+      },
+      {
+        points: [{ x: 5 - value, y: -1.2, z: 0 }],
+        color: "#0d9488",
+        showPoints: true,
+        labels: [{ text: String(value), at: 0, offset: [0, -0.35, 0] }],
+      },
+    ]),
+    ...[1, 3].map((index) => ({
+      points: [{ x: index, y: 0, z: 0 }, { x: index, y: 1.2, z: 0 }],
+      color: "#c026d3",
+      smooth: false,
+      showPoints: true,
+      labels: [{ text: String(index), at: 1, offset: [0, 0.3, 0] }],
+    })),
+    { points: [{ x: -0.8, y: 1.2, z: 0 }], color: "#c026d3", showPoints: false, labels: [{ text: "x[1:4:2]", at: 0, offset: [-0.4, 0, 0] }] },
+    { points: [{ x: -0.8, y: 0, z: 0 }], color: "#64748b", showPoints: false, labels: [{ text: "x", at: 0, offset: [0, 0, 0] }] },
+    { points: [{ x: -0.8, y: -1.2, z: 0 }], color: "#0d9488", showPoints: false, labels: [{ text: "x[::-1]", at: 0, offset: [-0.3, 0, 0] }] },
+  ]}
+/>
+
 ## Operasi dan Kesamaan dengan String
 
 Tipe `list` menyediakan operasi untuk membaca dan mengubah data. Cara mengakses elemennya mirip dengan string.
@@ -443,3 +485,19 @@ Keempat tipe koleksi bawaan berbeda pada **urutan, sifat yang dapat diubah, dan 
 | **Set** | `{1, 2, 3}` | Tidak | Ya | Tidak | Anggota unik dan operasi himpunan |
 
 > Sejak Python `3.7`, iterasi `dict` mengikuti urutan penyisipan kunci. Memperbarui kunci tidak mengubah posisinya. Jika kunci dihapus lalu dimasukkan kembali, posisinya berpindah ke akhir.
+
+Jawab pertanyaan di diagram ini dari atas untuk memilih wadah yang cocok.
+
+<Mermaid
+  title="Memilih wadah"
+  description="Tiga pertanyaan menentukan list, tuple, set, atau dict."
+  chart={`
+    flowchart TD
+        A{Perlu mencari lewat kunci?} -->|Ya| B[dict]
+        A -->|Tidak| C{Hanya nilai unik?}
+        C -->|Ya| D[set]
+        C -->|Tidak| E{Isinya akan diubah?}
+        E -->|Ya| F[list]
+        E -->|Tidak| G[tuple]
+  `}
+/>

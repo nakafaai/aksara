@@ -41,6 +41,20 @@ print("Addition result", x, "+", y, "=", x + y)`
 
 The `*objects` notation means that `print()` accepts zero or more positional objects. It writes the separator specified by `sep` between adjacent objects.
 
+This diagram shows the order in which print works for every call.
+
+<Mermaid
+  title="What print does"
+  description="Four steps from arguments to text on the screen."
+  chart={`
+    flowchart LR
+        A[Arguments] --> B["Convert with str()"]
+        B --> C[Join with sep]
+        C --> D[Append end]
+        D --> E[Write to the screen]
+  `}
+/>
+
 ## The Sep Parameter
 
 The `sep` parameter determines the character or string used to separate multiple objects in a single print call. The default value of `sep` is **a single space**.
@@ -76,6 +90,19 @@ print("First", "Line", "Second", "Line", sep="\\n")     # newline`
 />
 
 The `sep` value determines the exact characters written between adjacent objects, such as a space, comma, tab, or line break.
+
+Compare these three outputs for the arguments 1, 2, and 3.
+
+<Mermaid
+  title="Three sep values for the same arguments"
+  description="The separator changes, the arguments stay."
+  chart={`
+    flowchart LR
+        A["print(1, 2, 3)"] --> B["1 2 3"]
+        C["print(1, 2, 3, sep='')"] --> D[123]
+        E["print(1, 2, 3, sep=' | ')"] --> F["1 | 2 | 3"]
+  `}
+/>
 
 ## End Parameter
 
@@ -122,6 +149,53 @@ print("D", "E", "F", sep="-", end="\\n")`
 />
 
 Changing `end` lets several calls continue on one line. Pass `flush=True` when the output must appear immediately, because this writes any buffered text at once.
+
+This picture runs `print("A", "B", "C", sep="-")`, then `print("x", end=" ")`, then `print("y")`, and puts every character where it appears. `sep` is only inserted between arguments, so the teal dash appears twice for three arguments. `end` is added once at the end of each call: the newline ↵ moves the cursor to the next line, while `end=" "` keeps `y` on the same line as `x`.
+
+<LineEquation
+  title="Three print calls in the output stream"
+  description="Violet characters come from the arguments, teal ones from sep, and orange ones from end. The symbol ↵ is a newline and ␣ is a space."
+  showZAxis={false}
+  cameraPosition={[2.5, -0.5, 6]}
+  cameraTarget={[2.5, -0.5, 0]}
+  data={[
+    ...(() => {
+      const calls = [
+        { args: ["A", "B", "C"], sep: "-", end: "\n" },
+        { args: ["x"], sep: " ", end: " " },
+        { args: ["y"], sep: " ", end: "\n" },
+      ];
+      const cells = [];
+      let column = 0;
+      let row = 0;
+      const put = (char, color) => {
+        const shown = char === "\n" ? "↵" : char === " " ? "␣" : char;
+        cells.push({ x: column, y: -row, shown, color });
+        if (char === "\n") {
+          row += 1;
+          column = 0;
+          return;
+        }
+        column += 1;
+      };
+      for (const { args, sep, end } of calls) {
+        args.forEach((arg, index) => {
+          if (index > 0) {
+            Array.from(sep).forEach((char) => put(char, "#0d9488"));
+          }
+          Array.from(arg).forEach((char) => put(char, "#8242e5"));
+        });
+        Array.from(end).forEach((char) => put(char, "#bb6800"));
+      }
+      return cells.map(({ x, y, shown, color }) => ({
+        points: [{ x, y, z: 0 }],
+        color,
+        showPoints: true,
+        labels: [{ text: shown, at: 0, offset: [0, 0.35, 0] }],
+      }));
+    })(),
+  ]}
+/>
 
 ## Displaying Various Data Types
 

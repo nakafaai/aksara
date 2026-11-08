@@ -90,6 +90,21 @@ Escape sequence untuk baris baru adalah \\n.`
 
 Prefix raw string seperti `r` mempertahankan sebagian besar backslash tanpa menafsirkannya sebagai notasi khusus. Tanda kutip tetap harus mengikuti aturan pembatas literal, dan raw string tidak dapat diakhiri dengan jumlah backslash yang ganjil.
 
+Saat kutip di dalam string memutus string-nya, pilih salah satu jalan di diagram ini.
+
+<Mermaid
+  title="Tanda kutip di dalam string"
+  description="Dua cara memperbaiki SyntaxError karena kutip."
+  chart={`
+    flowchart TD
+        A[Kutip di dalam string] --> B[SyntaxError]
+        B --> C[Escape dengan backslash]
+        B --> D[Pakai jenis kutip lain di luar]
+        C --> E[String utuh]
+        D --> E
+  `}
+/>
+
 ## Daftar Escape Sequence
 
 Tabel berikut memuat **notasi escape** yang sering dipakai dalam Python.
@@ -132,6 +147,20 @@ Dalam `str.format()` dan f-string, kurung kurawal menandai **bagian yang akan di
 
 Tulis `{{` untuk menghasilkan `{` dan `}}` untuk menghasilkan `}`. Pada `'{{{}}}'`, pasangan kurung terluar menjadi teks biasa, sedangkan `{}` di tengah tetap menjadi tempat untuk memasukkan nilai.
 
+Diagram ini memasangkan escape sequence yang paling sering dipakai dengan karakter yang dihasilkannya.
+
+<Mermaid
+  title="Backslash dan satu karakter khusus"
+  description="Setiap escape sequence menjadi tepat satu karakter."
+  chart={`
+    flowchart LR
+        A[Backslash + huruf] --> B["\\n: baris baru"]
+        A --> C["\\t: tab"]
+        A --> D["\\\\: backslash"]
+        A --> E["\\': kutip tunggal"]
+  `}
+/>
+
 ## Menggabungkan Escape Sequence
 
 Contoh berikut menggabungkan **tab dan baris baru** bersama tanda kutip dan backslash literal dalam satu output.
@@ -161,3 +190,57 @@ print("Baris pertama\\nBaris kedua\\t(dengan tab)\\nBaris ketiga")`
 Dalam contoh ini, `\t` membuat kolom yang rapi, `\n` memisahkan baris, dan `\\` menampilkan path file Windows dengan benar.
 
 Bedakan notasi di dalam kode sumber dari string yang dihasilkan. `\n`, misalnya, ditulis dengan dua karakter dalam kode sumber tetapi mewakili satu karakter baris baru di dalam string.
+
+Gambar ini mencetak `"Name\tAge\nBob\t25"` di terminal dengan tab setiap delapan kolom. Panah kuning menunjukkan `\t` melompat ke kelipatan delapan berikutnya, jadi `Age` dan `25` mulai di kolom yang sama walaupun `Name` dan `Bob` beda panjang. Panah oranye menunjukkan `\n` membawa kursor ke awal baris berikutnya. Walaupun kelihatan lebar, setiap escape sequence tetap satu karakter, sehingga `len()` string ini <InlineMath math="15" />.
+
+<LineEquation
+  title="Ke mana kursor pergi untuk \t dan \n"
+  description="Karakter ungu adalah teks biasa, panah kuning adalah lompatan tab, dan panah oranye adalah baris baru, untuk terminal dengan tab setiap delapan kolom."
+  showZAxis={false}
+  cameraPosition={[5, -0.5, 10]}
+  cameraTarget={[5, -0.5, 0]}
+  data={[
+    ...(() => {
+      const text = "Name\tAge\nBob\t25";
+      const series = [];
+      let column = 0;
+      let row = 0;
+      Array.from(text).forEach((char) => {
+        if (char === "\t") {
+          const stop = (Math.floor(column / 8) + 1) * 8;
+          series.push({
+            points: [{ x: column, y: -row, z: 0 }, { x: stop, y: -row, z: 0 }],
+            color: "#b98d00",
+            cone: { position: "end", size: 0.3 },
+            smooth: false,
+            showPoints: false,
+            labels: [{ text: "\\t", at: 0, offset: [0.7, 0.35, 0] }],
+          });
+          column = stop;
+          return;
+        }
+        if (char === "\n") {
+          series.push({
+            points: [{ x: column, y: -row, z: 0 }, { x: 0, y: -row - 1, z: 0 }],
+            color: "#bb6800",
+            cone: { position: "end", size: 0.3 },
+            smooth: false,
+            showPoints: false,
+            labels: [{ text: "\\n", at: 0, offset: [0.5, 0.35, 0] }],
+          });
+          row += 1;
+          column = 0;
+          return;
+        }
+        series.push({
+          points: [{ x: column, y: -row, z: 0 }],
+          color: "#8242e5",
+          showPoints: true,
+          labels: [{ text: char, at: 0, offset: [0, 0.35, 0] }],
+        });
+        column += 1;
+      });
+      return series;
+    })(),
+  ]}
+/>

@@ -228,6 +228,33 @@ print('Tiny number g: {0:12g}'.format(1.1e-10))  # Output: Tiny number g:      1
   ]}
 />
 
+The specifier `.1f` shows every number with one decimal place, so every <InlineMath math="x" /> on one step shows as the same number. Zoom into the violet staircase: each step is <InlineMath math="0.1" /> wide and centered on the value it shows, so every value between <InlineMath math="0.35" /> and <InlineMath math="0.45" /> shows as `0.4`. Right at a boundary such as <InlineMath math="0.25" />, the result depends on the stored binary value, so the ends of each step are drawn open. The original value never changes, only how it is shown.
+
+<LineEquation
+  title="The precision .1f as a rounding staircase"
+  description="The violet staircase is the value shown with .1f for 0 ≤ x ≤ 1, the gray line is y = x."
+  showZAxis={false}
+  cameraPosition={[0.5, 0.5, 2.4]}
+  cameraTarget={[0.5, 0.5, 0]}
+  data={[
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }],
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "y = x", at: 1, offset: [0.12, 0.05, 0] }],
+    },
+    ...Array.from({ length: 11 }, (_, k) => ({
+      points: [{ x: Math.max(0, k / 10 - 0.05), y: k / 10, z: 0 }, { x: Math.min(1, k / 10 + 0.05), y: k / 10, z: 0 }],
+      color: "#8242e5",
+      endpoints: k === 0 ? { end: "open" } : k === 10 ? { start: "open" } : { start: "open", end: "open" },
+      smooth: false,
+      showPoints: false,
+      ...(k === 4 ? { labels: [{ text: 'float(f"{x:.1f}")', at: 1, offset: [0.25, -0.05, 0] }] } : {}),
+    })),
+  ]}
+/>
+
 ## F Strings and Dynamic Templates
 
 F-strings have been available since Python 3.6. They evaluate **expressions inside replacement fields** when the line runs. In `f"Age next year: {age + 1}"`, Python first calculates `age + 1`, then inserts the sum into the text.

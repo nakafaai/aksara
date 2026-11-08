@@ -84,6 +84,22 @@ print(list(numbers))   # Output: [1, 2, 3]`
   ]}
 />
 
+Diagram ini menunjukkan langkah tersembunyi yang dijalankan setiap loop for.
+
+<Mermaid
+  title="Bagaimana for membaca iterable"
+  description="iter dan next bekerja di balik setiap loop for."
+  chart={`
+    flowchart TD
+        A[Iterable] --> B["iter(obj)"]
+        B --> C["next(iterator)"]
+        C --> D{Masih ada item?}
+        D -->|Ya| E[Jalankan badan loop]
+        E --> C
+        D -->|Tidak, StopIteration| F[Loop selesai]
+  `}
+/>
+
 ## Operator Keanggotaan
 
 Operator `in` dan `not in` memeriksa apakah suatu objek **memuat nilai tertentu**. Cara pemeriksaannya bergantung pada tipe objek tersebut: list menelusuri elemennya, dictionary mencari pada daftar kunci, dan string mencari potongan teks.
@@ -237,6 +253,31 @@ print(all([]))  # Output: True`
   ]}
 />
 
+Periksa daftar `[3, 8, 1, 6]` terhadap syarat `v > 5`. Dua titik magenta, <InlineMath math="8" /> dan <InlineMath math="6" />, berada di atas garis, jadi `any(v > 5 for v in values)` bernilai `True`. Titik hijau toska <InlineMath math="3" /> dan <InlineMath math="1" /> ada di bawah garis, jadi `all(v > 5 for v in values)` bernilai `False`. Dengan syarat `v > 0`, semua titik lolos dan `all` menjadi `True`.
+
+<LineEquation
+  title="any dan all pada [3, 8, 1, 6]"
+  description="Setiap titik adalah satu nilai di posisinya. Titik magenta memenuhi v > 5, titik hijau toska tidak, dan garis abu-abu adalah batas 5."
+  showZAxis={false}
+  cameraPosition={[1.5, 4, 11]}
+  cameraTarget={[1.5, 4, 0]}
+  data={[
+    {
+      points: [{ x: -0.5, y: 5, z: 0 }, { x: 3.5, y: 5, z: 0 }],
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "v > 5", at: 1, offset: [0.6, 0, 0] }],
+    },
+    ...[3, 8, 1, 6].map((value, index) => ({
+      points: [{ x: index, y: value, z: 0 }],
+      color: value > 5 ? "#c026d3" : "#0d9488",
+      showPoints: true,
+      labels: [{ text: String(value), at: 0, offset: [0.35, 0, 0] }],
+    })),
+  ]}
+/>
+
 ## Positional Unpacking
 
 Dalam pemanggilan fungsi, asterisk di depan iterable (`*`) mengembangkannya menjadi **argumen posisi**. Jumlah argumen yang dihasilkan tetap harus sesuai dengan yang diterima fungsi.
@@ -353,4 +394,16 @@ print(formatted)
 # Output: Nama: Alice, Umur: 25, Kota: Jakarta`
     }
   ]}
+/>
+
+Diagram ini membongkar daftar [1, 2, 3, 4] ke dua nama.
+
+<Mermaid
+  title="Membongkar dengan bintang"
+  description="Satu nama mengambil satu item, nama berbintang mengambil sisanya."
+  chart={`
+    flowchart LR
+        A["a, *rest = [1, 2, 3, 4]"] --> B[a = 1]
+        A --> C["rest = [2, 3, 4]"]
+  `}
 />

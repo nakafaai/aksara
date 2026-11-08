@@ -88,6 +88,19 @@ Die Funktion `str()` liefert eine **gut lesbare Stringdarstellung** eines Werts.
   ]}
 />
 
+Dieses Diagramm zeigt, was str() zurückgibt und was die Länge null bedeutet.
+
+<Mermaid
+  title="str() und der leere String"
+  description="Jeder Wert kann ein String werden, und ein leerer String ist trotzdem ein String."
+  chart={`
+    flowchart LR
+        A["str(42)"] --> B["'42'"]
+        C["str(3.5)"] --> D["'3.5'"]
+        E["''"] --> F["len('') = 0"]
+  `}
+/>
+
 ## Mehrzeilige Zeichenfolgen
 
 Python unterscheidet zwischen Quellcode, der über mehrere Zeilen verteilt ist, und **tatsächlichen Zeilenumbrüchen** in einem String. Eine Zeile lässt sich im Quellcode umbrechen, ohne dass ein Umbruch im Wert landet, während ein String mit dreifachen Anführungszeichen jeden Umbruch speichert.
@@ -164,6 +177,19 @@ zzz`
 />
 
 Drei doppelte Anführungszeichen funktionieren genauso. Wähle die Begrenzung, mit der sich der enthaltene Text am klarsten und mit möglichst wenigen Escape-Zeichen schreiben lässt.
+
+Folg diesem Ablauf, um zu sehen, wohin ein Zeilenumbruch in dreifachen Anführungszeichen geht.
+
+<Mermaid
+  title="Dreifache Anführungszeichen behalten Zeilenumbrüche"
+  description="Ein Zeilenumbruch in dreifachen Anführungszeichen wird Teil des Strings."
+  chart={`
+    flowchart LR
+        A[Text in dreifachen Anführungszeichen] --> B[Zeilenumbruch im Quelltext]
+        B --> C["Zeichen \\n im String"]
+        C --> D[Auf getrennten Zeilen ausgegeben]
+  `}
+/>
 
 ## Verknüpfung von Stringliteralen
 
@@ -279,5 +305,45 @@ SyntaxError ...
 >>> text1 text2
 SyntaxError ...`
     }
+  ]}
+/>
+
+Schau in diesem Bild, wie drei Strings zu einem werden. Jedes Stück behält die Reihenfolge seiner Zeichen und wird direkt hinter das vorherige gehängt, also beginnt `W` bei Index <InlineMath math="6" />, direkt nach den <InlineMath math="5" /> Zeichen von `Hello` und einem Leerzeichen. Die Länge des Ergebnisses ist die Summe der Stücklängen, <InlineMath math="5+1+5=11" />. Die drei ursprünglichen Strings ändern sich nicht, weil der Operator `+` einen neuen String erzeugt.
+
+<LineEquation
+  title="'Hello' + ' ' + 'World' verbinden"
+  description="Jedes Stück hat seine eigene Farbe, und die Strecke darunter markiert seine Länge. Das Symbol ␣ ist ein Leerzeichen."
+  showZAxis={false}
+  cameraPosition={[5, -0.2, 8]}
+  cameraTarget={[5, -0.2, 0]}
+  data={[
+    ...(() => {
+      const pieces = [
+        { text: "Hello", color: "#8242e5", label: 'len("Hello") = 5', drop: 0.6 },
+        { text: " ", color: "#0d9488", label: 'len(" ") = 1', drop: 1.2 },
+        { text: "World", color: "#c026d3", label: 'len("World") = 5', drop: 0.6 },
+      ];
+      const series = [];
+      let start = 0;
+      for (const { text, color, label, drop } of pieces) {
+        Array.from(text).forEach((char, index) => {
+          series.push({
+            points: [{ x: start + index, y: 0, z: 0 }],
+            color,
+            showPoints: true,
+            labels: [{ text: char === " " ? "␣" : char, at: 0, offset: [0, 0.35, 0] }],
+          });
+        });
+        series.push({
+          points: [{ x: start, y: -0.4, z: 0 }, { x: start + text.length - 1, y: -0.4, z: 0 }],
+          color,
+          smooth: false,
+          showPoints: true,
+          labels: [{ text: label, at: 0, offset: [(text.length - 1) / 2, -drop + 0.1, 0] }],
+        });
+        start += text.length;
+      }
+      return series;
+    })(),
   ]}
 />

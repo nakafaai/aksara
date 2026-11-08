@@ -88,6 +88,19 @@ The `str()` function returns a **readable string representation** of a value. Us
   ]}
 />
 
+This diagram shows what str() returns and what a length of zero means.
+
+<Mermaid
+  title="str() and the empty string"
+  description="Every value can become a string, and an empty string is still a string."
+  chart={`
+    flowchart LR
+        A["str(42)"] --> B["'42'"]
+        C["str(3.5)"] --> D["'3.5'"]
+        E["''"] --> F["len('') = 0"]
+  `}
+/>
+
 ## Multiline Strings
 
 Python distinguishes between splitting source code across lines and storing **actual newline characters** inside a string. A line can wrap in the source without adding a newline to the value, while a triple-quoted string keeps every line break.
@@ -164,6 +177,19 @@ zzz`
 />
 
 Triple double quotes behave the same way. Choose the delimiter that makes the text easiest to read and escape.
+
+Follow this flow to see where a line break inside triple quotes goes.
+
+<Mermaid
+  title="Triple quotes keep line breaks"
+  description="A line break inside triple quotes becomes part of the string."
+  chart={`
+    flowchart LR
+        A[Text in triple quotes] --> B[Line break in the source]
+        B --> C["Character \\n in the string"]
+        C --> D[Printed on separate lines]
+  `}
+/>
 
 ## String Literal Concatenation
 
@@ -279,5 +305,45 @@ SyntaxError ...
 >>> text1 text2
 SyntaxError ...`
     }
+  ]}
+/>
+
+See how three strings join into one in this picture. Each piece keeps the order of its characters and is attached right after the previous piece, so `W` starts at index <InlineMath math="6" />, just after the <InlineMath math="5" /> characters of `Hello` and one space. The length of the result is the sum of the piece lengths, <InlineMath math="5+1+5=11" />. The three original strings stay the same, because the `+` operator creates a new string.
+
+<LineEquation
+  title="Joining 'Hello' + ' ' + 'World'"
+  description="Each piece has its own color, and the segment below it marks its length. The symbol ␣ is a space."
+  showZAxis={false}
+  cameraPosition={[5, -0.2, 8]}
+  cameraTarget={[5, -0.2, 0]}
+  data={[
+    ...(() => {
+      const pieces = [
+        { text: "Hello", color: "#8242e5", label: 'len("Hello") = 5', drop: 0.6 },
+        { text: " ", color: "#0d9488", label: 'len(" ") = 1', drop: 1.2 },
+        { text: "World", color: "#c026d3", label: 'len("World") = 5', drop: 0.6 },
+      ];
+      const series = [];
+      let start = 0;
+      for (const { text, color, label, drop } of pieces) {
+        Array.from(text).forEach((char, index) => {
+          series.push({
+            points: [{ x: start + index, y: 0, z: 0 }],
+            color,
+            showPoints: true,
+            labels: [{ text: char === " " ? "␣" : char, at: 0, offset: [0, 0.35, 0] }],
+          });
+        });
+        series.push({
+          points: [{ x: start, y: -0.4, z: 0 }, { x: start + text.length - 1, y: -0.4, z: 0 }],
+          color,
+          smooth: false,
+          showPoints: true,
+          labels: [{ text: label, at: 0, offset: [(text.length - 1) / 2, -drop + 0.1, 0] }],
+        });
+        start += text.length;
+      }
+      return series;
+    })(),
   ]}
 />

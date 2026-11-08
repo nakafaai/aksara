@@ -88,6 +88,19 @@ Fungsi `str()` menghasilkan **representasi string yang mudah dibaca** dari suatu
   ]}
 />
 
+Diagram ini menunjukkan apa yang dikembalikan str() dan apa artinya panjang nol.
+
+<Mermaid
+  title="str() dan string kosong"
+  description="Setiap nilai bisa menjadi string, dan string kosong tetap string."
+  chart={`
+    flowchart LR
+        A["str(42)"] --> B["'42'"]
+        C["str(3.5)"] --> D["'3.5'"]
+        E["''"] --> F["len('') = 0"]
+  `}
+/>
+
 ## String Multibaris
 
 Python membedakan pemecahan kode sumber ke beberapa baris dari **penyimpanan karakter baris baru** di dalam string. Baris kode bisa dilipat tanpa menambah baris baru pada nilainya, sedangkan string dengan tiga tanda kutip menyimpan setiap baris baru.
@@ -164,6 +177,19 @@ zzz`
 />
 
 Tiga kutip ganda bekerja dengan cara yang sama. Pilih pembatas yang membuat teks paling mudah dibaca dan tidak perlu banyak escape.
+
+Ikuti alur ini untuk melihat ke mana baris baru di dalam kutip tiga pergi.
+
+<Mermaid
+  title="Kutip tiga menyimpan baris baru"
+  description="Baris baru di dalam kutip tiga menjadi bagian string."
+  chart={`
+    flowchart LR
+        A[Teks dalam kutip tiga] --> B[Baris baru di sumber]
+        B --> C["Karakter \\n di string"]
+        C --> D[Tercetak di baris terpisah]
+  `}
+/>
 
 ## Penggabungan String Literal
 
@@ -279,5 +305,45 @@ SyntaxError ...
 >>> text1 text2
 SyntaxError ...`
     }
+  ]}
+/>
+
+Lihat bagaimana tiga string disambung menjadi satu di gambar ini. Setiap potongan mempertahankan urutan karakternya dan langsung ditempel di belakang potongan sebelumnya, jadi `W` mulai di indeks <InlineMath math="6" />, tepat setelah <InlineMath math="5" /> karakter `Hello` dan satu spasi. Panjang hasilnya adalah jumlah panjang potongan, <InlineMath math="5+1+5=11" />. Ketiga string asli tidak berubah, karena operator `+` membuat string baru.
+
+<LineEquation
+  title="Menyambung 'Hello' + ' ' + 'World'"
+  description="Setiap potongan punya warna sendiri, dan ruas di bawahnya menandai panjangnya. Simbol ␣ adalah spasi."
+  showZAxis={false}
+  cameraPosition={[5, -0.2, 8]}
+  cameraTarget={[5, -0.2, 0]}
+  data={[
+    ...(() => {
+      const pieces = [
+        { text: "Hello", color: "#8242e5", label: 'len("Hello") = 5', drop: 0.6 },
+        { text: " ", color: "#0d9488", label: 'len(" ") = 1', drop: 1.2 },
+        { text: "World", color: "#c026d3", label: 'len("World") = 5', drop: 0.6 },
+      ];
+      const series = [];
+      let start = 0;
+      for (const { text, color, label, drop } of pieces) {
+        Array.from(text).forEach((char, index) => {
+          series.push({
+            points: [{ x: start + index, y: 0, z: 0 }],
+            color,
+            showPoints: true,
+            labels: [{ text: char === " " ? "␣" : char, at: 0, offset: [0, 0.35, 0] }],
+          });
+        });
+        series.push({
+          points: [{ x: start, y: -0.4, z: 0 }, { x: start + text.length - 1, y: -0.4, z: 0 }],
+          color,
+          smooth: false,
+          showPoints: true,
+          labels: [{ text: label, at: 0, offset: [(text.length - 1) / 2, -drop + 0.1, 0] }],
+        });
+        start += text.length;
+      }
+      return series;
+    })(),
   ]}
 />

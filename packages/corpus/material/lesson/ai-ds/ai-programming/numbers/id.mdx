@@ -93,6 +93,21 @@ Bilangan kompleks memiliki **bagian real dan imajiner**. Dalam literal Python, s
 
 Bilangan kompleks dapat digambar pada bidang koordinat. Bagian real menentukan koordinat horizontal, sedangkan bagian imajiner menentukan koordinat vertikal.
 
+Ikuti pertanyaan di diagram ini untuk menebak tipe sebuah literal sebelum menjalankan kode.
+
+<Mermaid
+  title="Membaca tipe dari literal"
+  description="Bentuk literal menentukan tipe bilangannya."
+  chart={`
+    flowchart TD
+        A[Literal bilangan] --> B{Ada akhiran j?}
+        B -->|Ya| C[complex]
+        B -->|Tidak| D{Ada titik desimal atau e?}
+        D -->|Ya| E[float]
+        D -->|Tidak| F[int]
+  `}
+/>
+
 ## Memeriksa Tipe dengan Fungsi Type
 
 Fungsi `type()` menunjukkan **class sebenarnya** dari sebuah objek. Fungsi ini berguna ketika mencoba nilai di Python shell atau melacak data yang tidak sesuai dugaan.
@@ -115,6 +130,19 @@ Fungsi `type()` menunjukkan **class sebenarnya** dari sebuah objek. Fungsi ini b
 />
 
 Untuk memeriksa class sebenarnya, bandingkan `type(value)` dengan class yang diharapkan. Dalam kode aplikasi, `isinstance(value, SomeType)` biasanya lebih sesuai karena juga mengenali subclass.
+
+Diagram ini memasangkan tiga literal dengan hasil type() masing-masing.
+
+<Mermaid
+  title="Tiga hasil type()"
+  description="Satu fungsi memberi tahu kelas setiap bilangan."
+  chart={`
+    flowchart LR
+        A["type(42)"] --> B[int]
+        C["type(3.14)"] --> D[float]
+        E["type(2+3j)"] --> F[complex]
+  `}
+/>
 
 ## Constructor untuk Membuat Bilangan
 
@@ -182,6 +210,53 @@ Constructor `complex()` membuat bilangan kompleks dari **satu atau dua bilangan 
 />
 
 `complex(2.)` membuat bilangan kompleks dengan bagian real <InlineMath math="2" /> dan bagian imajiner <InlineMath math="0" />. Sedangkan `complex(0., 2.)` membuat bilangan imajiner murni <InlineMath math="2j" />.
+
+Bandingkan tangga ungu dengan garis abu-abu <InlineMath math="y=x" />. Untuk bilangan positif, `int()` membuang bagian desimal sehingga hasilnya berada di bawah garis, misalnya `int(2.9)` menjadi `2`. Untuk bilangan negatif, hasilnya berada di atas garis, karena `int(-2.9)` menjadi `-2`, bukan `-3`. Jadi `int()` selalu memotong ke arah nol, dan anak tangga di sekitar nol lebih lebar dari yang lain.
+
+<LineEquation
+  title="int() memotong ke arah nol"
+  description="Tangga ungu adalah int(x), garis abu-abu adalah y = x. Titik magenta menandai int(2.9) dan int(-2.9)."
+  showZAxis={false}
+  cameraPosition={[0, 0, 10]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    {
+      points: [{ x: -3.5, y: -3.5, z: 0 }, { x: 3.5, y: 3.5, z: 0 }],
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: "y = x", at: 1, offset: [0.5, 0.2, 0] }],
+    },
+    ...[
+      { from: -1, to: 1, value: 0, endpoints: { start: "open", end: "open" } },
+      { from: 1, to: 2, value: 1, endpoints: { start: "closed", end: "open" } },
+      { from: 2, to: 3, value: 2, endpoints: { start: "closed", end: "open" } },
+      { from: 3, to: 3.5, value: 3, endpoints: { start: "closed" } },
+      { from: -2, to: -1, value: -1, endpoints: { start: "open", end: "closed" } },
+      { from: -3, to: -2, value: -2, endpoints: { start: "open", end: "closed" } },
+      { from: -3.5, to: -3, value: -3, endpoints: { end: "closed" } },
+    ].map(({ from, to, value, endpoints }) => ({
+      points: [{ x: from, y: value, z: 0 }, { x: to, y: value, z: 0 }],
+      color: "#8242e5",
+      endpoints,
+      smooth: false,
+      showPoints: false,
+      ...(value === 3 ? { labels: [{ text: "int(x)", at: 1, offset: [0.6, 0, 0] }] } : {}),
+    })),
+    {
+      points: [{ x: 2.9, y: 2, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "int(2.9) = 2", at: 0, offset: [0.9, -0.45, 0] }],
+    },
+    {
+      points: [{ x: -2.9, y: -2, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: "int(-2.9) = -2", at: 0, offset: [-0.9, 0.45, 0] }],
+    },
+  ]}
+/>
 
 ## Tabel Ringkasan Tipe Data Angka
 

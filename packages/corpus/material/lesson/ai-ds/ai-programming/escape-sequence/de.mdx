@@ -90,6 +90,21 @@ Die Escape-Sequenz für einen Zeilenumbruch ist \\n.`
 
 Ein Raw-String mit einem Präfix wie `r` bewahrt die meisten Backslashes, statt sie als Escape-Sequenzen auszuwerten. Anführungszeichen müssen trotzdem zu den Begrenzern des Literals passen. Außerdem kann ein Raw-String nicht mit einer ungeraden Anzahl von Backslashes enden.
 
+Wenn ein Anführungszeichen im String den String zu früh beendet, nimm einen der Wege in diesem Diagramm.
+
+<Mermaid
+  title="Anführungszeichen im String"
+  description="Zwei Wege, einen SyntaxError durch Anführungszeichen zu beheben."
+  chart={`
+    flowchart TD
+        A[Anführungszeichen im String] --> B[SyntaxError]
+        B --> C[Mit Backslash maskieren]
+        B --> D[Außen die andere Sorte nehmen]
+        C --> E[Vollständiger String]
+        D --> E
+  `}
+/>
+
 ## Übersicht der Escapesequenzen
 
 Diese **Escape-Sequenzen** stellen Zeichen in Python-Stringliteralen dar:
@@ -132,6 +147,20 @@ In `str.format()` und f-Strings begrenzen geschweifte Klammern die **Ersetzungsf
 
 `{{` ergibt eine öffnende und `}}` eine schließende geschweifte Klammer. In `'{{{}}}'` werden die äußeren Klammerpaare zu wörtlichen Zeichen, während das mittlere `{}` ein Ersetzungsfeld bleibt.
 
+Dieses Diagramm ordnet den häufigsten Escape-Sequenzen das Zeichen zu, das sie erzeugen.
+
+<Mermaid
+  title="Ein Backslash und ein Sonderzeichen"
+  description="Jede Escape-Sequenz wird genau ein Zeichen."
+  chart={`
+    flowchart LR
+        A[Backslash + Buchstabe] --> B["\\n: Zeilenumbruch"]
+        A --> C["\\t: Tabulator"]
+        A --> D["\\\\: Backslash"]
+        A --> E["\\': einfaches Anführungszeichen"]
+  `}
+/>
+
 ## Mehrere Escapes in einer Ausgabe verwenden
 
 Im folgenden Beispiel steuern Escape-Sequenzen **Tabulatoren und Zeilenumbrüche** sowie Anführungszeichen und wörtliche Backslashes in einer Ausgabe.
@@ -161,3 +190,57 @@ print("Erste Zeile\\nZweite Zeile\\t(mit Tabulator)\\nDritte Zeile")`
 In diesem Beispiel erstellt `\t` übersichtliche Spalten, `\n` trennt Zeilen und `\\` zeigt Windows-Dateipfade korrekt an.
 
 Entscheidend ist der Unterschied zwischen der Schreibweise im Quellcode und dem fertigen String. `\n` besteht im Quellcode beispielsweise aus zwei Zeichen, steht im String aber für genau einen Zeilenumbruch.
+
+Dieses Bild gibt `"Name\tAge\nBob\t25"` in einem Terminal mit einem Tabstopp alle acht Spalten aus. Die gelben Pfeile zeigen, wie `\t` zum nächsten Vielfachen von acht springt, deshalb beginnen `Age` und `25` in derselben Spalte, obwohl `Name` und `Bob` verschieden lang sind. Der orange Pfeil zeigt, wie `\n` den Cursor an den Anfang der nächsten Zeile bringt. Egal wie breit es aussieht, jede Escape-Sequenz bleibt ein Zeichen, also ist `len()` dieses Strings <InlineMath math="15" />.
+
+<LineEquation
+  title="Wohin der Cursor bei \t und \n springt"
+  description="Violette Zeichen sind normaler Text, gelbe Pfeile Tabsprünge und orange Pfeile Zeilenumbrüche, für ein Terminal mit einem Tabstopp alle acht Spalten."
+  showZAxis={false}
+  cameraPosition={[5, -0.5, 10]}
+  cameraTarget={[5, -0.5, 0]}
+  data={[
+    ...(() => {
+      const text = "Name\tAge\nBob\t25";
+      const series = [];
+      let column = 0;
+      let row = 0;
+      Array.from(text).forEach((char) => {
+        if (char === "\t") {
+          const stop = (Math.floor(column / 8) + 1) * 8;
+          series.push({
+            points: [{ x: column, y: -row, z: 0 }, { x: stop, y: -row, z: 0 }],
+            color: "#b98d00",
+            cone: { position: "end", size: 0.3 },
+            smooth: false,
+            showPoints: false,
+            labels: [{ text: "\\t", at: 0, offset: [0.7, 0.35, 0] }],
+          });
+          column = stop;
+          return;
+        }
+        if (char === "\n") {
+          series.push({
+            points: [{ x: column, y: -row, z: 0 }, { x: 0, y: -row - 1, z: 0 }],
+            color: "#bb6800",
+            cone: { position: "end", size: 0.3 },
+            smooth: false,
+            showPoints: false,
+            labels: [{ text: "\\n", at: 0, offset: [0.5, 0.35, 0] }],
+          });
+          row += 1;
+          column = 0;
+          return;
+        }
+        series.push({
+          points: [{ x: column, y: -row, z: 0 }],
+          color: "#8242e5",
+          showPoints: true,
+          labels: [{ text: char, at: 0, offset: [0, 0.35, 0] }],
+        });
+        column += 1;
+      });
+      return series;
+    })(),
+  ]}
+/>
