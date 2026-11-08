@@ -3,11 +3,11 @@ import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { inspectDocument } from "#nakafa-content/points/document";
 import { lesson } from "#nakafa-content/points/test/lesson";
 import {
-  bareLessons,
   countVisuals,
   findVisualLoss,
   isInteractiveVisual,
   lessonFolder,
+  lessonsBelowBar,
 } from "#nakafa-content/points/visual";
 
 /** Parses and inspects one lesson that holds the given teaching blocks. */
@@ -163,18 +163,19 @@ describe("lessons without a visual", () => {
     assert.isUndefined(lessonFolder(`${ROOT}/matrix/readme.md`));
   });
 
-  it("lists a lesson once when any locale misses a visual", () => {
-    const mermaid = parse('<Mermaid chart="graph TD; A-->B" />');
-    const drawn = parse(LINE);
-    const bare = bareLessons([
-      [`${ROOT}/b/en.mdx`, mermaid],
-      [`${ROOT}/b/id.mdx`, mermaid],
-      [`${ROOT}/a/en.mdx`, drawn],
-      [`${ROOT}/a/id.mdx`, parse()],
-      [`${ROOT}/c/en.mdx`, drawn],
+  it("lists a lesson once when any locale falls below the visual bar", () => {
+    const MERMAID = '<Mermaid chart="graph TD; A-->B" />';
+    const bar = parse(LINE, LINE, MERMAID);
+    const bare = lessonsBelowBar([
+      [`${ROOT}/b/en.mdx`, parse(MERMAID)],
+      [`${ROOT}/a/en.mdx`, bar],
+      [`${ROOT}/a/id.mdx`, parse(LINE)],
+      [`${ROOT}/c/en.mdx`, bar],
+      [`${ROOT}/c/id.mdx`, parse(LINE, LINE, LINE)],
+      [`${ROOT}/d/en.mdx`, parse(MERMAID, MERMAID, MERMAID)],
       ["packages/corpus/articles/politics/x/en.mdx", parse()],
     ]);
 
-    assert.deepStrictEqual(bare, [`${ROOT}/a`, `${ROOT}/b`]);
+    assert.deepStrictEqual(bare, [`${ROOT}/a`, `${ROOT}/b`, `${ROOT}/d`]);
   });
 });

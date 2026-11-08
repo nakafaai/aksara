@@ -10,8 +10,8 @@ export interface FileFinding extends PointsFinding {
 
 /** Everything one run learned: what it read, compared, and found. */
 export interface PointsReport {
-  readonly bare: readonly string[];
   readonly base: string;
+  readonly belowBar: readonly string[];
   readonly compared: number;
   readonly files: number;
   readonly findings: readonly FileFinding[];
@@ -23,20 +23,20 @@ export function shortRevision(revision: string): string {
 }
 
 /**
- * Lists the lessons that still miss an interactive visual, with their count.
- * The list reports and does not fail, until the change that adds the last
- * missing visual turns it into a finding.
+ * Lists the lessons below the visual bar, with their count. The list reports
+ * and does not fail, until the change that lifts the last lesson over the bar
+ * turns it into a finding.
  */
-const printBare = Effect.fn("PointsCheck.printBare")(function* (
-  bare: readonly string[]
+const printBelowBar = Effect.fn("PointsCheck.printBelowBar")(function* (
+  belowBar: readonly string[]
 ) {
-  if (bare.length === 0) {
+  if (belowBar.length === 0) {
     return;
   }
   yield* Console.log(
-    `${bare.length} lesson(s) without an interactive visual, which every lesson needs:`
+    `${belowBar.length} lesson(s) below the visual bar, which needs at least 3 visual cards and 1 interactive:`
   );
-  for (const folder of bare) {
+  for (const folder of belowBar) {
     yield* Console.log(`  ${folder}`);
   }
 });
@@ -48,7 +48,7 @@ export const printReport = Effect.fn("PointsCheck.printReport")(function* (
   for (const { column, file, line, message, rule } of report.findings) {
     yield* Console.error(`${file}:${line}:${column} [${rule}] ${message}`);
   }
-  yield* printBare(report.bare);
+  yield* printBelowBar(report.belowBar);
   const revision = shortRevision(report.base);
   if (report.findings.length === 0) {
     yield* Console.log(

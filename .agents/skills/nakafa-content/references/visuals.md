@@ -230,11 +230,11 @@ graph teaches the wrong mathematics on an education platform.
   constant that code turns into a coordinate, such as
   `parameters.push(1.9700042649107503)`, and the density of a computed series
   stay review items. The gate also lists every lesson folder with a locale
-  file that holds no interactive visual, with their count, under the
-  [every-lesson rule](#interactive-visual-in-every-lesson). The list reports
-  without failing until the change that adds the last missing visual, which
-  turns it into a finding in the same change; no allowlist or baseline file
-  holds lessons back. The local verification runs the gate on both corpus
+  file below the [visual bar](#interactive-visual-in-every-lesson), fewer
+  than three visual cards or no interactive card among them, with their
+  count. The list reports without failing until the change that lifts the
+  last lesson over the bar, which turns it into a finding in the same change;
+  no allowlist or baseline file holds lessons back. The local verification runs the gate on both corpus
   roots against `origin/main`, its default base, before a pull request merges.
 
 When removing an external visual or interactive resource, inspect the existing
@@ -258,14 +258,15 @@ and remember a concept they can see and change, and they skim long text. The
 research in the [evidence basis](research.md) governs how the visual is
 designed: it carries a teaching job and never decorates.
 
-- Every lesson in every subject carries at least one interactive visual that
-  models its concept, in every locale: a 3D scene, a p5 animation, an
-  interactive chart, or a formula-driven `MathVisual`, inside its
-  renderer-owned card. A learner never meets a lesson of only text and
-  formulas. A Mermaid diagram, a table, a code block, or a video alone does
-  not meet this rule, because none of them lets the learner change, step
-  through, rotate, or run the idea. The [points gate](#computed-and-exact-visuals)
-  lists every lesson that still misses one.
+- Every lesson in every subject carries at least three visual cards in every
+  locale, and at least one of them is an interactive visual that models its
+  concept: a 3D scene, a p5 animation, an interactive chart, or a
+  formula-driven `MathVisual`, inside its renderer-owned card. A Mermaid
+  diagram counts as a card but never as the interactive one, and a table, a
+  code block, or a video is no card, because none of them lets the learner
+  change, step through, rotate, or run the idea. A learner never meets a
+  lesson of only text and formulas. The [points gate](#computed-and-exact-visuals)
+  lists every lesson below this bar.
 
 - The interaction answers a question the lesson asks: change a parameter and
   watch the result, step through a process, rotate a structure, or run a

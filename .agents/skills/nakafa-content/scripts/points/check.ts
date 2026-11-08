@@ -28,7 +28,7 @@ import {
   printReport,
   shortRevision,
 } from "#nakafa-content/points/report";
-import { bareLessons, findVisualLoss } from "#nakafa-content/points/visual";
+import { findVisualLoss, lessonsBelowBar } from "#nakafa-content/points/visual";
 
 /** Orders findings by their position in one document. */
 function byPosition(left: PointsFinding, right: PointsFinding): number {
@@ -100,8 +100,8 @@ const checkPoints = Effect.fn("PointsCheck.checkPoints")(function* (
     );
   }
   return {
-    bare: bareLessons(documents),
     base,
+    belowBar: lessonsBelowBar(documents),
     compared,
     files: files.length,
     findings,

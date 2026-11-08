@@ -114,7 +114,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
 
         assert.strictEqual(result.code, 0);
         assert.deepStrictEqual(result.error, []);
-        assert.match(result.log[0] ?? "", PASSED_SUMMARY);
+        assert.match(result.log.at(-1) ?? "", PASSED_SUMMARY);
       })
     );
 
@@ -142,7 +142,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
 
         assert.strictEqual(result.code, 0);
         assert.deepStrictEqual(result.log.slice(0, 2), [
-          "1 lesson(s) without an interactive visual, which every lesson needs:",
+          "1 lesson(s) below the visual bar, which needs at least 3 visual cards and 1 interactive:",
           `  ${ROOT}`,
         ]);
         assert.include(
@@ -175,7 +175,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
 
         assert.strictEqual(result.code, 0);
         assert.include(
-          result.log[0],
+          result.log.at(-1),
           "passed for 1 files and compared 1 changed files"
         );
       })
@@ -194,7 +194,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         const result = yield* capture(runMain([ROOT, "--base", "main"], root));
 
         assert.strictEqual(result.code, 0);
-        assert.include(result.log[0], "compared 0 changed files");
+        assert.include(result.log.at(-1), "compared 0 changed files");
       })
     );
 
