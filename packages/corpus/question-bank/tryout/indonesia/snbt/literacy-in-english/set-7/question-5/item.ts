@@ -30,7 +30,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "It might split into several new tubes that search for food.",
+          label: "It would split into several new tubes that search for food.",
         },
       ],
     },

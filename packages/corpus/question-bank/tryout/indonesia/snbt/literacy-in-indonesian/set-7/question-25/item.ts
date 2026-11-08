@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Bunyi kata itu mungkin terdengar sedih bagi sebagian besar penutur bahasa Indonesia.",
+            "Bunyi kata itu terdengar sedih bagi sebagian besar penutur bahasa Indonesia.",
         },
       ],
     },

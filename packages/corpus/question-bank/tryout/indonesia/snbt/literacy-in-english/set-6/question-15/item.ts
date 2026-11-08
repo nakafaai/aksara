@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Residents of Areas C and D probably wasted more water than residents of A and B.",
+            "Residents of Areas C and D wasted more water than residents of A and B.",
         },
       ],
     },

@@ -28,7 +28,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Participants in pilots probably do not know when their payments will end.",
+            "Participants in pilots do not know when their payments will end.",
         },
         {
           correct: true,

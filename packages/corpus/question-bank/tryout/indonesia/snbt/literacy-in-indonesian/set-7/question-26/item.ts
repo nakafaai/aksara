@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Padanan dari kosakata sendiri mungkin selalu lebih baik daripada kata serapan.",
+            "Padanan dari kosakata sendiri selalu lebih baik daripada kata serapan.",
         },
       ],
     },

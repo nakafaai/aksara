@@ -32,8 +32,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "menyarankan agar pembaca mungkin membaca karya sastra Jawa kuno",
+          label: "menyarankan agar pembaca membaca karya sastra Jawa tersebut",
         },
       ],
     },

@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pembangkit batu bara di negara itu mungkin ditutup dalam beberapa tahun ke depan.",
+            "Pembangkit batu bara di negara itu ditutup dalam beberapa tahun ke depan.",
         },
       ],
     },

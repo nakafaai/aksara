@@ -31,7 +31,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "tambang nikel mungkin tidak memerlukan pembukaan hutan sama sekali di daerah itu",
+            "tambang nikel tidak memerlukan pembukaan hutan sama sekali di daerah itu",
         },
       ],
     },

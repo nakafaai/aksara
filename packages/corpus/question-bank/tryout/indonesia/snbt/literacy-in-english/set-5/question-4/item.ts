@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Expectation probably has little or no effect on what happens in the brain.",
+            "Expectation has little or no effect on what happens in the brain.",
         },
       ],
     },

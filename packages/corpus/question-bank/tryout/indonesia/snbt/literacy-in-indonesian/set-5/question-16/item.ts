@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Cabai dari kabupaten lain mungkin membanjiri pasar induk pada bulan Juni.",
+            "Cabai dari kabupaten lain membanjiri pasar induk pada bulan Juni.",
         },
       ],
     },

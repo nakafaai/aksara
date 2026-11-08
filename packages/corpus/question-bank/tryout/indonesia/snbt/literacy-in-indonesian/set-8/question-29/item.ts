@@ -31,8 +31,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "teman-teman aku lirik mungkin juga belum makan sepanjang hari",
+          label: "teman-teman aku lirik juga belum makan sepanjang hari",
         },
       ],
     },

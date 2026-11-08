@@ -32,8 +32,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "Prasasti itu mungkin ditulis dalam bahasa Indonesia yang sudah baku.",
+          label: "Prasasti itu ditulis dalam bahasa Indonesia yang sudah baku.",
         },
       ],
     },

@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "The museum will probably keep growing by 12 percent every six months.",
+          label: "The museum will keep growing by 12 percent every six months.",
         },
       ],
     },

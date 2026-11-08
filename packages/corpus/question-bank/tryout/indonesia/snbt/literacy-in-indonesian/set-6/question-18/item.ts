@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "mesin modern mungkin tidak cocok dipakai oleh para petani kecil",
+          label: "mesin modern tidak cocok dipakai oleh para petani kecil",
         },
       ],
     },

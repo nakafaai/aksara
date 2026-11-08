@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pupils might learn more if teachers gave certificates for every task.",
+            "Pupils would learn more if teachers gave certificates for every task.",
         },
       ],
     },

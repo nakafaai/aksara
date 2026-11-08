@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "pembeli mungkin lebih suka menawar kepada timbangan daripada pedagang",
+            "pembeli lebih suka menawar kepada timbangan daripada pedagang",
         },
       ],
     },

@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "The 2001 review may have included far more patients than he did.",
+          label: "The 2001 review included far more patients than he did.",
         },
       ],
     },

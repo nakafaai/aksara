@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Nektar bunga durian mungkin terlalu sedikit untuk menarik lebah madu.",
+            "Nektar bunga durian terlalu sedikit untuk menarik lebah madu.",
         },
       ],
     },

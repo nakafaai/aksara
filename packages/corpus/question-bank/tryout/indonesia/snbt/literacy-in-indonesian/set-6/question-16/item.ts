@@ -27,8 +27,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "Angin malam mungkin membawa partikel dari laut menuju permukiman.",
+          label: "Angin malam membawa partikel dari laut menuju permukiman.",
         },
         {
           correct: true,

@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "Ia mungkin ingin membaca buku itu bersama ibunya pada sore hari.",
+          label: "Ia ingin membaca buku itu bersama ibunya pada sore hari.",
         },
       ],
     },

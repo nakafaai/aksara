@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "kritik bahwa orang-orang di pasar subuh mungkin malas dan pulang terlalu cepat",
+            "kritik bahwa orang-orang di pasar subuh malas dan pulang terlalu cepat",
         },
       ],
     },

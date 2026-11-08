@@ -32,7 +32,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "menunjukkan bahwa museum itu mungkin jarang dikunjungi orang",
+          label: "menunjukkan bahwa museum itu jarang dikunjungi orang",
         },
       ],
     },

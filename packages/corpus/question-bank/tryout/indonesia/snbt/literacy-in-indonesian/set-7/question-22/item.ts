@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kata pinjaman dari bahasa Belanda mungkin lebih banyak daripada dari Portugis.",
+            "Kata pinjaman dari bahasa Belanda lebih banyak daripada dari Portugis.",
         },
         {
           correct: true,

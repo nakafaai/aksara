@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "The volunteers were probably the heaviest screen users in the survey.",
+          label: "The volunteers were the heaviest screen users in the survey.",
         },
       ],
     },

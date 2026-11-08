@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Evening screen time probably has no connection with how long students sleep.",
+            "Evening screen time has no connection with how long students sleep.",
         },
       ],
     },

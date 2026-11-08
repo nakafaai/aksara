@@ -32,7 +32,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Mereka mungkin ingin membagi wilayah Afrika di antara negara-negara Asia yang hadir.",
+            "Mereka ingin membagi wilayah Afrika di antara negara-negara Asia yang hadir.",
         },
       ],
     },

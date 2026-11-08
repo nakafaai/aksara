@@ -31,7 +31,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "marah dan getir karena para pedagang mungkin merasa diperas oleh pembeli",
+            "marah dan getir karena para pedagang merasa diperas oleh pembeli",
         },
       ],
     },

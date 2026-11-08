@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Private companies might always choose better standards than governments do.",
+            "Private companies always choose better standards than governments do.",
         },
       ],
     },

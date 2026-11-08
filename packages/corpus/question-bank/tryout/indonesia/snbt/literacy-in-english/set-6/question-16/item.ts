@@ -33,7 +33,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Towns in the west might have refused to let trains from London stop at their stations.",
+            "Towns in the west refused to let trains from London stop at their stations.",
         },
       ],
     },

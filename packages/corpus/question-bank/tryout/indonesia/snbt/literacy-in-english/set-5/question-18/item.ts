@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "It probably made the smell worse in the eastern parts of the city.",
+          label: "It made the smell worse in the eastern parts of the city.",
         },
       ],
     },

@@ -29,8 +29,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "daerah penghasil nikel mungkin tidak memerlukan bagian manfaat",
+          label: "daerah penghasil nikel tidak memerlukan bagian manfaat",
         },
       ],
     },

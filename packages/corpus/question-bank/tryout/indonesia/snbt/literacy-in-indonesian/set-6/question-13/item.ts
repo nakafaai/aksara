@@ -31,7 +31,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "tetap menjadi nelayan dan mungkin belajar menjahit layar",
+          label: "tetap menjadi nelayan dan belajar menjahit layar",
         },
       ],
     },

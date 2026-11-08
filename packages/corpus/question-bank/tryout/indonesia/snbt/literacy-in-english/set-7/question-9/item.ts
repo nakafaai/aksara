@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Some pupils might prefer badges to certificates as a type of reward.",
+            "Some pupils prefer badges to certificates as a type of reward.",
         },
       ],
     },

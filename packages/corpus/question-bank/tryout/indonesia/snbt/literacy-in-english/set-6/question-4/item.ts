@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "It suggests that ducks in the middle might never sleep at all.",
+          label: "It shows that ducks in the middle never sleep at all.",
         },
       ],
     },

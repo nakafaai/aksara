@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pedagang kaki lima mungkin lebih suka berjualan di trotoar yang lebar.",
+            "Pedagang kaki lima lebih suka berjualan di trotoar yang lebar.",
         },
         {
           correct: true,

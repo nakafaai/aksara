@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sebagian dosen mungkin lebih suka merekam kuliah daripada mengajar langsung di kelas.",
+            "Sebagian dosen lebih suka merekam kuliah daripada mengajar langsung di kelas.",
         },
       ],
     },

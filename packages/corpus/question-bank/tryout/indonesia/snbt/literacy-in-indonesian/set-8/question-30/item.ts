@@ -30,7 +30,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "menyesal karena mungkin salah memilih pekerjaan di kota",
+          label: "menyesal karena salah memilih pekerjaan di kota",
         },
       ],
     },

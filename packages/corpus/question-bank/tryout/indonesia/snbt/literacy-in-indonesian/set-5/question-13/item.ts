@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kejujuran mungkin merugikan pedagang kecil yang sedang kehilangan pelanggan.",
+            "Kejujuran merugikan pedagang kecil yang sedang kehilangan pelanggan.",
         },
         {
           correct: true,

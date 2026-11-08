@@ -33,7 +33,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "kemungkinan bahwa listrik bersih mungkin tidak pernah tersedia di negara itu",
+            "kemungkinan bahwa listrik bersih tidak pernah tersedia di negara itu",
         },
       ],
     },

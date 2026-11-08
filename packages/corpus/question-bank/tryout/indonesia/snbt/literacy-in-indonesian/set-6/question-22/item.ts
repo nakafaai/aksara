@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pusat Sriwijaya mungkin berada di Jambi, bukan di Palembang seperti dugaan banyak ahli.",
+            "Pusat Sriwijaya berada di Jambi, bukan di Palembang seperti dugaan banyak ahli.",
         },
         {
           correct: true,

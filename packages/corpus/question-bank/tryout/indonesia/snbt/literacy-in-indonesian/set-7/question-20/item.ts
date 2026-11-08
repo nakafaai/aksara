@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "kuliah tatap muka mungkin tidak diperlukan lagi dalam beberapa tahun",
+          label: "kuliah tatap muka tidak diperlukan lagi dalam beberapa tahun",
         },
       ],
     },

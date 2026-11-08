@@ -27,7 +27,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "aku lirik mungkin sakit dada karena udara kota yang kotor",
+          label: "aku lirik sakit dada karena udara kota yang kotor",
         },
         {
           correct: true,

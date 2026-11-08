@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pekerjaan rumah mungkin paling bermanfaat jika dikerjakan bersama orang tua di rumah.",
+            "Pekerjaan rumah paling bermanfaat jika dikerjakan bersama orang tua di rumah.",
         },
       ],
     },

@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "A universal scheme might work better if charities paid for it instead of taxes.",
+            "A universal scheme would work better if charities paid for it instead of taxes.",
         },
       ],
     },

@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "It suggests that leaks might be more common in Areas C and D.",
+          label: "It shows that leaks are more common in Areas C and D.",
         },
       ],
     },

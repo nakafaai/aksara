@@ -31,7 +31,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "dari kasihan menjadi mungkin ingin menjual jamu di kota",
+          label: "dari kasihan menjadi ingin menjual jamu di kota",
         },
       ],
     },

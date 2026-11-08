@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menjauhkan kebun dari gua karena kelelawar mungkin merusak bunga durian.",
+            "Menjauhkan kebun dari gua karena kelelawar merusak bunga durian.",
         },
       ],
     },

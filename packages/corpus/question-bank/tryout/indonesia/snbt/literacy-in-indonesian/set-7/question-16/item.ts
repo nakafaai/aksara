@@ -33,7 +33,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Listrik dari panel surya mungkin lebih mahal daripada listrik yang dibeli dari jaringan.",
+            "Listrik dari panel surya lebih mahal daripada listrik yang dibeli dari jaringan.",
         },
       ],
     },

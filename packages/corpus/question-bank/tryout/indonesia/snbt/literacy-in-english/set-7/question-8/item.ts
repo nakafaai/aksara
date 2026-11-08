@@ -28,8 +28,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "To suggest that children may dislike drawing more than reading",
+          label: "To show that children dislike drawing more than reading",
         },
         {
           correct: true,

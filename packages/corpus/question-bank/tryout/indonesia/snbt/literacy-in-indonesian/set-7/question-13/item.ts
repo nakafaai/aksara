@@ -32,8 +32,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "Dimas mungkin masih berpura-pura membaca dengan buku yang baru",
+          label: "Dimas masih berpura-pura membaca dengan buku yang baru",
         },
       ],
     },

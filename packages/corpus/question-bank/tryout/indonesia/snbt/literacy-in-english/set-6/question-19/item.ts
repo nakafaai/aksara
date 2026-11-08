@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "To suggest that the sun might have appeared twice over some American towns",
+          label: "To show that the sun appeared twice over some American towns",
         },
       ],
     },

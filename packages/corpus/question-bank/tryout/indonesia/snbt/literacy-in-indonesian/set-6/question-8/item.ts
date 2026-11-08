@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sebagian guru mungkin merasa pekerjaan rumah membantu murid berlatih di rumah.",
+            "Sebagian guru merasa pekerjaan rumah membantu murid berlatih di rumah.",
         },
         {
           correct: true,

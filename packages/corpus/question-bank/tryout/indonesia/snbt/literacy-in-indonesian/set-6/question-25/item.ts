@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "taman di Talang Tuo mungkin dibangun untuk menyambut kedatangan I-Tsing",
+            "taman di Talang Tuo dibangun untuk menyambut kedatangan I-Tsing",
         },
       ],
     },

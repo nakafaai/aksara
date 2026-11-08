@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Teman sekolah mungkin tidak perlu mengetahui pekerjaan orang tua kita.",
+            "Teman sekolah tidak perlu mengetahui pekerjaan orang tua kita.",
         },
       ],
     },

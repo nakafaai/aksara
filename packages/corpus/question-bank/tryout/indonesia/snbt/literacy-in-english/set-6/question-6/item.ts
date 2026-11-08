@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Study groups might be more useful than grades for judging what students know.",
+            "Study groups are more useful than grades for judging what students know.",
         },
       ],
     },

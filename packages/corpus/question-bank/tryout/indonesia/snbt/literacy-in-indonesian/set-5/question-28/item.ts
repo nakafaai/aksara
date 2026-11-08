@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "panen durian mungkin turun karena bunga mekar pada waktu yang salah",
+          label: "panen durian turun karena bunga mekar pada waktu yang salah",
         },
       ],
     },

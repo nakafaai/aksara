@@ -33,7 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Ia mungkin ingin menjadi nelayan yang mencari ikan paus.",
+          label: "Ia ingin menjadi nelayan yang mencari ikan paus.",
         },
       ],
     },

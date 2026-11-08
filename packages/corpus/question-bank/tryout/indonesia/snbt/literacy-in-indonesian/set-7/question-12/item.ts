@@ -32,7 +32,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "mungkin akan berhenti membawa buku ikan paus ke dusun itu",
+          label: "akan berhenti membawa buku ikan paus ke dusun itu",
         },
       ],
     },

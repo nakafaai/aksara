@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Engineers will probably replace computers with slime moulds in the future.",
+            "Engineers will replace computers with slime moulds in the future.",
         },
       ],
     },

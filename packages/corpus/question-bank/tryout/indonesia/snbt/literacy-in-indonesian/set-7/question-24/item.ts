@@ -32,8 +32,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "Penutur mungkin tidak tertarik pada sejarah bahasa sama sekali.",
+          label: "Penutur tidak tertarik pada sejarah bahasa sama sekali.",
         },
       ],
     },

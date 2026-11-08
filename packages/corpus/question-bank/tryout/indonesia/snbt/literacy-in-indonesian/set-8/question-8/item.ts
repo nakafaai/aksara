@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "anak-anak di kecamatan itu mungkin lebih suka bersekolah di luar kota",
+            "anak-anak di kecamatan itu lebih suka bersekolah di luar kota",
         },
       ],
     },

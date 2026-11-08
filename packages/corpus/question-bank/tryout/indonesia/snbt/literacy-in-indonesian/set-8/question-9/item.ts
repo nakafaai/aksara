@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pemeriksaan alamat mungkin memerlukan waktu yang lebih lama daripada biasanya.",
+            "Pemeriksaan alamat memerlukan waktu yang lebih lama daripada biasanya.",
         },
         {
           correct: true,

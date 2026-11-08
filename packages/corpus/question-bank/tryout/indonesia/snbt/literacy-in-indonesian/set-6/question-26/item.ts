@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "raja Sriwijaya mungkin tidak pandai menulis sehingga prasastinya singkat",
+            "raja Sriwijaya tidak pandai menulis sehingga prasastinya singkat",
         },
       ],
     },

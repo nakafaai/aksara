@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "Sebagian warga kota mungkin lebih menyukai nasi daripada sagu.",
+          label: "Sebagian warga kota lebih menyukai nasi daripada sagu.",
         },
       ],
     },

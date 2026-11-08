@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kemacetan mungkin hilang dengan sendirinya jika jalan dibiarkan tanpa perubahan.",
+            "Kemacetan hilang dengan sendirinya jika jalan dibiarkan tanpa perubahan.",
         },
       ],
     },

@@ -26,7 +26,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Ducks may prefer to look at other ducks while they sleep.",
+          label: "Ducks prefer to look at other ducks while they sleep.",
         },
         {
           correct: true,

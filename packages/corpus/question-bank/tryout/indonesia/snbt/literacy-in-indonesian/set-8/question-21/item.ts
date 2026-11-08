@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "Sebagian smelter mungkin akan memakai listrik tenaga surya kelak.",
+          label: "Sebagian smelter akan memakai listrik tenaga surya kelak.",
         },
       ],
     },

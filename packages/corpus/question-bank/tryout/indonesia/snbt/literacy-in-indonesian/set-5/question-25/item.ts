@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "menyindir para dalang muda yang mungkin tidak lagi mengenal sejarah wayang",
+            "menyindir para dalang muda yang tidak lagi mengenal sejarah wayang",
         },
       ],
     },

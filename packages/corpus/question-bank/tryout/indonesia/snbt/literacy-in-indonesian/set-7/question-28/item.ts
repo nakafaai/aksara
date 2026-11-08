@@ -29,8 +29,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "Bu Ning mungkin ingin pindah dari kampung itu bersama anaknya",
+          label: "Bu Ning ingin pindah dari kampung itu bersama anaknya",
         },
       ],
     },

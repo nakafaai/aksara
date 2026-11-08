@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Aturan jarak mungkin lebih adil jika setiap keluarga boleh memilih alamatnya sendiri.",
+            "Aturan jarak lebih adil jika setiap keluarga boleh memilih alamatnya sendiri.",
         },
       ],
     },

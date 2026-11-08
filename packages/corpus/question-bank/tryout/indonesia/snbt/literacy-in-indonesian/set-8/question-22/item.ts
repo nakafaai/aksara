@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Konferensi Asia Afrika diprakarsai oleh lima negara yang bersiap di Kolombo dan Bogor.",
+            "Konferensi Asia Afrika diprakarsai oleh lima negara yang lebih dulu bertemu di Kolombo dan Bogor.",
         },
         {
           correct: false,
@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Konferensi Asia Afrika mungkin diadakan agar Indonesia memimpin Gerakan Non-Blok.",
+            "Konferensi Asia Afrika diadakan agar Indonesia memimpin Gerakan Non-Blok.",
         },
         {
           correct: true,

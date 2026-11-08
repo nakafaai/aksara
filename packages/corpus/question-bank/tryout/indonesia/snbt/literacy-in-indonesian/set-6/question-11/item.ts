@@ -31,8 +31,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "mungkin menyesal karena telah meminjamkan perahunya kepada Ilham",
+          label: "menyesal karena telah meminjamkan perahunya kepada Ilham",
         },
       ],
     },

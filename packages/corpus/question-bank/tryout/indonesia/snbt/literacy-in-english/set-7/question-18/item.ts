@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "He may have planned to sell the buildings back to the towns later.",
+          label: "He planned to sell the buildings back to the towns later.",
         },
       ],
     },

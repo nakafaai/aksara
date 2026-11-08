@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Some students might prefer curves because they learn their exact rank at once.",
+            "Some students prefer curves because they learn their exact rank at once.",
         },
         {
           correct: true,

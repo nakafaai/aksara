@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "It suggests that the new gallery might have been built too quickly.",
+          label: "It shows that the new gallery was built too quickly.",
         },
       ],
     },

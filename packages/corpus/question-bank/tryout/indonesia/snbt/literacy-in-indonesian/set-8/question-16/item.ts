@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kuis matematika itu mungkin terlalu sulit bagi seluruh siswa kelas X.",
+            "Kuis matematika itu terlalu sulit bagi seluruh siswa kelas X.",
         },
         {
           correct: true,

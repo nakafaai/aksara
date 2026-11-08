@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sleep may matter less for birds than for mammals, since birds can fly while resting.",
+            "Sleep matters less for birds than for mammals, since birds can fly while resting.",
         },
       ],
     },

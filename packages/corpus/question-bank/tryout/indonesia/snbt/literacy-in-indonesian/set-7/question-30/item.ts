@@ -31,8 +31,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "mungkin berniat menunda keputusan sampai Pak Hasan pindah rumah",
+          label: "berniat menunda keputusan sampai Pak Hasan pindah rumah",
         },
       ],
     },

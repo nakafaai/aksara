@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tumpukan kulit buah mungkin terlalu mahal untuk dipakai oleh semua petani.",
+            "Tumpukan kulit buah terlalu mahal untuk dipakai oleh semua petani.",
         },
       ],
     },

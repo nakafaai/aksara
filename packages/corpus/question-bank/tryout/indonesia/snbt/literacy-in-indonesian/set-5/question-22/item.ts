@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sunan Kalijaga mungkin satu-satunya tokoh yang memakai wayang untuk tujuan pendidikan.",
+            "Sunan Kalijaga satu-satunya tokoh yang memakai wayang untuk tujuan pendidikan.",
         },
       ],
     },

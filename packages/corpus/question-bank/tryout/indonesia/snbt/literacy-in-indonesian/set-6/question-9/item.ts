@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "menyimpulkan bahwa pekerjaan rumah mungkin perlu dihapus di semua jenjang",
+            "menyimpulkan bahwa pekerjaan rumah perlu dihapus di semua jenjang",
         },
       ],
     },

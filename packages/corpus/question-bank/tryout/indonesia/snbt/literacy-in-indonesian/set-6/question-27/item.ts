@@ -33,8 +33,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            'metonimia, karena kata "pasar" mungkin menggantikan nama pemiliknya',
+          label: 'metonimia, karena kata "pasar" menggantikan nama pemiliknya',
         },
       ],
     },

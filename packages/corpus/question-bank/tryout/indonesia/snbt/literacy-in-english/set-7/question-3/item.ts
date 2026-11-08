@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The trail might allow the slime mould to remember food from years ago.",
+            "The trail allows the slime mould to remember food from years ago.",
         },
         {
           correct: true,

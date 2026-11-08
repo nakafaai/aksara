@@ -32,7 +32,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "aku lirik mungkin lupa menuliskan jumlah uang dengan benar",
+          label: "aku lirik lupa menuliskan jumlah uang dengan benar",
         },
       ],
     },

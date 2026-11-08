@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "negara-negara Afrika mungkin tidak diizinkan berbicara sama sekali dalam konferensi itu",
+            "negara-negara Afrika tidak diizinkan berbicara sama sekali dalam konferensi itu",
         },
       ],
     },

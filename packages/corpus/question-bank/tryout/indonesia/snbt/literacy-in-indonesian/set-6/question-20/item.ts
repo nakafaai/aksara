@@ -30,8 +30,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "impor beras mungkin selalu lebih murah daripada menanam sendiri",
+          label: "impor beras selalu lebih murah daripada menanam sendiri",
         },
       ],
     },

@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Naloxone may be the most effective treatment for pain after dental surgery.",
+            "Naloxone is the most effective treatment for pain after dental surgery.",
         },
       ],
     },

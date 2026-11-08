@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "ia mungkin akan menutup kiosnya karena tidak ada lagi pemilik radio yang kembali",
+            "ia akan menutup kiosnya karena tidak ada lagi pemilik radio yang kembali",
         },
       ],
     },
