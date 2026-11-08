@@ -31,35 +31,6 @@ Die Koeffizienten <InlineMath math="2:1:2" /> bedeuten, dass <InlineMath math="2
 
 Werden alle Gase bei **gleicher Temperatur und gleichem Druck** gemessen, reagieren also <InlineMath math="200\ \mathrm{mL}" /> Wasserstoff mit <InlineMath math="100\ \mathrm{mL}" /> Sauerstoff zu <InlineMath math="200\ \mathrm{mL}" /> Wasserdampf. Sobald das Wasser kondensiert, lässt sich sein Flüssigkeitsvolumen nicht mehr aus diesem Gasverhältnis ablesen.
 
-Jeder Block unten ist ein Teil Gas bei gleicher Temperatur und gleichem Druck. Zwei Teile Wasserstoff und ein Teil Sauerstoff ergeben zwei Teile Wasserdampf, also ist das Volumenverhältnis <InlineMath math="2:1:2" /> einfach das der Koeffizienten. Achte darauf, dass sich die Volumen nicht einfach addieren: Aus drei Teilen werden zwei.
-
-<MathVisual
-  title="Wasserdampf nach Volumen"
-  description="2H₂(g) + O₂(g) → 2H₂O(g) als gleich große Gasteile bei gleicher Temperatur und gleichem Druck."
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 3, y: 2, z: 0 } },
-    objects: [
-      { id: "hydrogen-1", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
-      { id: "hydrogen-2", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (2) / 2 + 2, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
-      { id: "oxygen-1", kind: "cuboid", appearance: "primary", center: { x: 3, y: (2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
-      { id: "water-1", kind: "cuboid", appearance: "construction", center: { x: 6, y: (2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
-      { id: "water-2", kind: "cuboid", appearance: "construction", center: { x: 6, y: (2) / 2 + 2, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
-    ],
-    labels: [
-      { key: "hydrogen", objectId: "hydrogen-2", at: { x: 0, y: 4.5, z: 0 }, placement: "above" },
-      { key: "oxygen", objectId: "oxygen-1", at: { x: 3, y: 2.5, z: 0 }, placement: "above" },
-      { key: "water", objectId: "water-2", at: { x: 6, y: 4.5, z: 0 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    hydrogen: <InlineMath math="2\,\mathrm{H_2}" />,
-    oxygen: <InlineMath math="\mathrm{O_2}" />,
-    water: <InlineMath math="2\,\mathrm{H_2O(g)}" />,
-  }}
-/>
-
 ## Gasvolumina mit Röhren vergleichen
 
 Wähle im Modell eine Reaktion aus. Jedes Rohr stellt **eine Volumeneinheit (VE) Gas** bei gleicher Temperatur und gleichem Druck dar.
@@ -191,17 +162,3 @@ Die Koeffizienten dürfen nur dann als Gasvolumenverhältnisse verwendet werden,
 - Wenn ein Produkt flüssig oder fest wird, wird das Produktvolumen nicht direkt aus den Gaskoeffizienten abgelesen.
 
 Sind alle Bedingungen erfüllt, geben die Koeffizienten sowohl das Stoffmengenverhältnis als auch das Gasvolumenverhältnis an.
-
-Prüf alle drei Bedingungen, bevor du Volumen aus Koeffizienten abliest.
-
-<Mermaid
-  title="Wann Volumenverhältnisse gelten"
-  description="Eine ausgeglichene Gleichung, nur Gase und dieselbe Temperatur und derselbe Druck für jedes Volumen."
-  chart={`flowchart TD
-    A["Gleichung ausgeglichen?"] -->|Ja| B["Ist jeder verglichene Stoff ein Gas?"]
-    B -->|Ja| C["Gleiche Temperatur und gleicher Druck?"]
-    C -->|Ja| D["Volumenverhältnis = Koeffizientenverhältnis"]
-    A -->|Nein| E["Zuerst ausgleichen"]
-    B -->|Nein| F["Flüssigkeiten und Feststoffe weglassen"]
-    C -->|Nein| G["Volumen nicht direkt vergleichbar"]`}
-/>

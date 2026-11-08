@@ -124,20 +124,6 @@ Das Symbol <InlineMath math="q" /> steht für die Teilchenladung in Coulomb, <In
 
 Ein elektrisches Feld übt eine Kraft auf geladene Teilchen aus. Ein Proton wird in Feldrichtung abgelenkt, ein Elektron in die Gegenrichtung und ein Neutron in diesem einfachen Modell gar nicht.
 
-Das Vorzeichen der Ladung entscheidet, in welche Richtung jeder Strahl zwischen den Platten abbiegt.
-
-<Mermaid
-  title="Die Ladung bestimmt die Ablenkung"
-  description="Mit F = qE biegt ein negatives Teilchen zur positiven Platte, ein positives zur negativen, und ein neutrales fliegt geradeaus."
-  chart={`flowchart TD
-    A["Strahl zwischen geladenen Platten"] --> B["Elektron, q < 0"]
-    A --> C["Proton, q > 0"]
-    A --> D["Neutron, q = 0"]
-    B --> E["Biegt zur positiven Platte"]
-    C --> F["Biegt zur negativen Platte"]
-    D --> G["Fliegt geradeaus"]`}
-/>
-
 ## Masse und Beschleunigung
 
 Subatomare Teilchenmassen sind winzig, daher verwenden wir oft die **einheitliche Atommasseneinheit**, geschrieben als <InlineMath math="\text{u}" />. Ein <InlineMath math="\mathrm u" /> ist <InlineMath math="\frac{1}{12}" /> der Masse eines neutralen <InlineMath math="{}^{12}_{6}\mathrm{C}" />-Atoms im Grundzustand.
@@ -157,33 +143,6 @@ Ein einfacher Vergleich ist:
 Ein Proton hat also ungefähr die gleiche Masse wie <InlineMath math="1836" /> Elektronen. Protonen und Neutronen im Kern liefern deshalb fast die gesamte Atommasse.
 
 Wirkt dieselbe Kraft gleich lange auf einen Tennisball und eine Bowlingkugel, erfährt der leichtere Tennisball eine größere Beschleunigung und Geschwindigkeitsänderung. Die Bälle stehen in diesem Vergleich nur für den Massenunterschied. Ihre Form bildet keine Teilchenform ab. Ein Elektron reagiert stärker als ein Proton auf dieselbe elektrische Kraft, weil seine Masse wesentlich kleiner ist.
-
-Hier sind die drei Massen in u im selben Maßstab, ein Gitterschritt für <InlineMath math="0{,}5\ \text{u}" />. Proton und Neutron sind fast gleich hoch. Die Säule des Elektrons ist auch da, aber mit etwa <InlineMath math="1/1836" /> der Protonenmasse siehst du sie kaum. Deshalb sitzt die Masse eines Atoms im Kern.
-
-<MathVisual
-  title="Massen der drei Teilchen"
-  description="Proton 1,0073 u, Neutron 1,0087 u und Elektron 0,00055 u in einem Maßstab. Ein Gitterschritt nach oben sind 0,5 u."
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 1, z: 0 } },
-    objects: [
-      { id: "proton", kind: "cuboid", appearance: "primary", center: { x: 0, y: (1.0073 * 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1.0073 * 2, width: 1.2 } },
-      { id: "neutron", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: (1.0087 * 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1.0087 * 2, width: 1.2 } },
-      { id: "electron", kind: "cuboid", appearance: "secondary", center: { x: 5, y: (0.00055 * 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 0.00055 * 2, width: 1.2 } },
-    ],
-    labels: [
-      { key: "proton", objectId: "proton", at: { x: 0, y: 2.5, z: 0 }, placement: "above" },
-      { key: "neutron", objectId: "neutron", at: { x: 2.5, y: 2.5, z: 0 }, placement: "above" },
-      { key: "electron", objectId: "electron", at: { x: 5, y: 0.5, z: 0 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    proton: <InlineMath math="1{,}0073\ \text{u}" />,
-    neutron: <InlineMath math="1{,}0087\ \text{u}" />,
-    electron: <InlineMath math="0{,}00055\ \text{u}" />,
-  }}
-/>
 
 ## Aufenthaltsbereich und chemische Rolle
 

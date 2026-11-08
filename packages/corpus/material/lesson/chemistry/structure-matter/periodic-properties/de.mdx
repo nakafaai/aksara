@@ -73,45 +73,6 @@ Diese Trends hängen von der **Anziehung des Kerns auf die Valenzelektronen** ab
   }}
 />
 
-Natrium zeigt, warum die Position das Verhalten vorhersagt. Sein einziges äußeres Elektron in Fuchsia sitzt allein in Schale M, weit vom Kern und von zehn inneren Elektronen abgeschirmt, also lässt es sich leicht entfernen.
-
-<MathVisual
-  title="Das einsame Außenelektron von Natrium"
-  description="Die 11 Elektronen von Natrium in den Schalen K, L und M, das äußere in Fuchsia."
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
-    view: { kind: "fit", padding: 0.06 },
-    objects: [
-      { id: "nucleus", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
-      { id: "shell-k", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 1 },
-      { id: "electron-k-1", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (0 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (0 + 0.125)) / 2) } },
-      { id: "electron-k-2", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (1 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (1 + 0.125)) / 2) } },
-      { id: "shell-l", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 2 },
-      { id: "electron-l-1", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (0 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (0 + 0.125)) / 8) } },
-      { id: "electron-l-2", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (1 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (1 + 0.125)) / 8) } },
-      { id: "electron-l-3", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (2 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (2 + 0.125)) / 8) } },
-      { id: "electron-l-4", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (3 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (3 + 0.125)) / 8) } },
-      { id: "electron-l-5", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (4 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (4 + 0.125)) / 8) } },
-      { id: "electron-l-6", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (5 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (5 + 0.125)) / 8) } },
-      { id: "electron-l-7", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (6 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (6 + 0.125)) / 8) } },
-      { id: "electron-l-8", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (7 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (7 + 0.125)) / 8) } },
-      { id: "shell-m", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
-      { id: "electron-m-1", kind: "point", appearance: "answer", at: { x: 3 * Math.cos((2 * Math.PI * (0 + 0.125)) / 1), y: 3 * Math.sin((2 * Math.PI * (0 + 0.125)) / 1) } },
-    ],
-    labels: [
-      { key: "k", objectId: "shell-k", at: { x: 1, y: 0 }, placement: "right" },
-      { key: "l", objectId: "shell-l", at: { x: 2, y: 0 }, placement: "right" },
-      { key: "m", objectId: "shell-m", at: { x: 3, y: 0 }, placement: "right" },
-    ],
-  }}
-  labels={{
-    k: <InlineMath math="\mathrm{K}:\ 2" />,
-    l: <InlineMath math="\mathrm{L}:\ 8" />,
-    m: <InlineMath math="\mathrm{M}:\ 1" />,
-  }}
-/>
-
 ## Vier periodische Eigenschaften
 
 Jede Eigenschaft beschreibt einen anderen Aspekt eines Atoms. Die Trendpfeile zeigen Änderungen der Atomgröße, der Energie zum Entfernen eines Elektrons, der Energieänderung beim Hinzufügen eines Elektrons und der Anziehung gemeinsamer Elektronen in einer Bindung.
@@ -136,18 +97,6 @@ Bei einem Chloratom setzt die Aufnahme eines Elektrons Energie frei. Seine Elekt
 <BlockMath math="\mathrm{Cl(g)}+e^- \rightarrow \mathrm{Cl^-(g)}" />
 
 Edelgase wie <InlineMath math="\mathrm{Ar}" /> haben bereits stabile Valenzschalen, sodass sie zusätzliche Elektronen nur schwer aufnehmen können. Aus diesem Grund ist die Elektronenaffinität weniger eindeutig als der Atomradius oder die Ionisierungsenergie.
-
-Hier stehen beide Trends nebeneinander, jeweils mit dem Grund.
-
-<Mermaid
-  title="Entlang einer Periode, eine Gruppe hinunter"
-  description="Entlang einer Periode wird die Kernanziehung auf dieselbe Schale stärker. Eine Gruppe hinunter bringt eine neue Schale mehr Abstand und Abschirmung."
-  chart={`flowchart TD
-    A["Entlang der Periode, Na bis Cl"] --> B["Mehr Protonen, gleiche Außenschale"]
-    B --> C["Radius schrumpft, Ionisierungsenergie steigt"]
-    D["Gruppe hinunter, Li bis Na"] --> E["Eine innere Schale mehr"]
-    E --> F["Radius wächst, Ionisierungsenergie sinkt"]`}
-/>
 
 ## Zwei Elementpaare vergleichen
 

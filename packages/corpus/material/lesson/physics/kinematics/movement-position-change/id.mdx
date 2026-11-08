@@ -36,6 +36,40 @@ Bandingkan dua keadaan berikut. Benda A tetap diam selama pengamatan, sedangkan 
 
 Keduanya memiliki perpindahan <InlineMath math="20-20=0\text{ m}" />. Namun, A tidak menempuh jarak, sedangkan jarak B adalah <InlineMath math="(50-20)+(50-20)=60\text{ m}" />. Posisi di tengah pengamatan memperlihatkan perbedaan kedua keadaan.
 
+Coba gambar kedua keadaan itu sebagai grafik posisi terhadap waktu, lalu ikuti setiap garis dari kiri ke kanan. Garis A tetap datar di <InlineMath math="20\text{ m}" />, sedangkan B naik sampai <InlineMath math="50\text{ m}" /> pada <InlineMath math="3\text{ s}" /> lalu kembali. Kedua garis mulai dan berakhir di titik yang sama, makanya perpindahan keduanya sama-sama nol.
+
+<LineEquation
+  title="Titik Ujung Sama, Gerak Berbeda"
+  description="Waktu dalam sekon bergerak ke kanan. Posisi naik dalam satuan 10 m, jadi 5 berarti 50 m. Bandingkan posisi A dan B pada 3 s."
+  data={(() => {
+    // Position x(t) in meters; the vertical axis shows x / 10.
+    const positionA = () => 20;
+    const positionB = (t) => (t <= 3 ? 20 + 10 * t : 50 - 10 * (t - 3));
+    return [
+      {
+        points: [0, 3, 6].map((t) => ({ x: t, y: positionA(t) / 10, z: 0 })),
+        color: "#0d9488",
+        showPoints: true,
+        smooth: false,
+        labels: [{ text: <InlineMath math="A" />, at: 2, offset: [0.35, -0.35, 0] }],
+      },
+      {
+        points: [0, 3, 6].map((t) => ({ x: t, y: positionB(t) / 10, z: 0 })),
+        color: "#bb6800",
+        showPoints: true,
+        smooth: false,
+        labels: [
+          { text: <InlineMath math="B" />, at: 1, offset: [0, 0.45, 0] },
+          { text: <InlineMath math="50\text{ m}" />, at: 1, offset: [1.6, 0, 0] },
+        ],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[3, 3.2, 9]}
+  cameraTarget={[3, 3.2, 0]}
+/>
+
 ## Patokan Harus Konsisten
 
 Saat menghitung perubahan posisi, posisi awal dan posisi akhir harus dibaca dari **patokan yang sama**. Jangan mengambil posisi awal dari toko, lalu posisi akhir dari rumah lain, karena hasilnya tidak lagi menjelaskan gerak benda yang sama dalam satu kerangka acuan.
@@ -58,6 +92,17 @@ Pada jalan lurus, kita bebas memilih arah positif. Di contoh ini, **timur dipili
 
 Tanda negatif tidak berarti geraknya "lebih kecil" atau "salah". Tanda itu hanya memberi tahu arah perubahan posisi.
 
+Setiap soal perpindahan melewati empat langkah yang sama.
+
+<Mermaid
+  title="Empat Langkah Menuju Perpindahan"
+  description="Baca kedua posisi dari satu patokan, kurangkan posisi akhir dengan posisi awal, lalu ubah tandanya menjadi arah."
+  chart={`flowchart LR
+    A["Posisi awal dan akhir dari satu patokan"] --> B["Delta x = x_akhir - x_awal"]
+    B --> C["Baca tandanya"]
+    C --> D["Positif: timur. Negatif: barat. Nol: tempat sama"]`}
+/>
+
 ## Menghitung Selisih Akhir dan Awal
 
 Seorang siswa mula-mula berada <InlineMath math="10 \text{ m}" /> di timur gerbang. Setelah beberapa detik, ia berada <InlineMath math="40 \text{ m}" /> di timur gerbang. Perubahan posisinya adalah:
@@ -72,3 +117,39 @@ Seorang siswa mula-mula berada <InlineMath math="10 \text{ m}" /> di timur gerba
 Jadi, **perpindahan siswa** adalah <InlineMath math="30 \text{ m}" /> ke timur. Dua posisi tersebut belum menentukan jarak tempuh. Jika siswa sempat berbalik arah, jarak tempuhnya lebih dari <InlineMath math="30 \text{ m}" />.
 
 Perhatikan urutan pengurangannya. Kita selalu membaca <Highlight>posisi akhir dikurangi posisi awal</Highlight>, lalu tanda hasilnya dipakai untuk menentukan arah perubahan posisi.
+
+Panah di bawah berawal di posisi awal dan berakhir di posisi akhir. Panjangnya adalah besar perpindahan, dan karena menunjuk ke timur, tandanya positif.
+
+<LineEquation
+  title="Perpindahan Siswa"
+  description="Posisi di sebelah timur gerbang, satu kotak grid untuk setiap 10 m. Panahnya berjalan dari 10 m ke 40 m."
+  data={(() => {
+    // Positions east of the gate in meters; one grid step is 10 m.
+    const initial = 10;
+    const final = 40;
+    const change = final - initial;
+    return [
+      {
+        points: [0, 5].map((x) => ({ x, y: 0, z: 0 })),
+        color: "#64748b",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: "Gerbang", at: 0, offset: [0, -0.4, 0], anchorX: "center" }],
+      },
+      {
+        points: [initial, final].map((x) => ({ x: x / 10, y: 0.6, z: 0 })),
+        color: "#bb6800",
+        cone: { position: "end", size: 0.22 },
+        showPoints: true,
+        pointIndices: [0],
+        smooth: false,
+        labels: [
+          { text: <InlineMath math={`\\Delta x=${final}-${initial}=+${change}\\text{ m}`} />, at: 0, offset: [change / 20, 0.45, 0], anchorX: "center" },
+        ],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 0.4, 6]}
+  cameraTarget={[2.5, 0.4, 0]}
+/>

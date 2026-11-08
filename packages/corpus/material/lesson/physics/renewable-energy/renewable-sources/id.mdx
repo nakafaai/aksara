@@ -18,7 +18,74 @@ Untuk biomassa, bandingkan **laju pemanenan dengan laju pertumbuhan kembali**. H
 
 Istilah terbarukan menjelaskan cara sumber <Highlight>tersedia kembali melalui proses alam</Highlight>. Besar daya yang dihasilkan tetap ditentukan oleh lokasi, waktu, dan kondisi sumber.
 
+Begini wujud "bergantung pada waktu" untuk panel surya. Dalam model sederhana, sistem panel berdaya puncak <InlineMath math="3\text{ kW}" /> mengikuti setengah gelombang sinus dari matahari terbit pukul 06.00 sampai terbenam pukul 18.00, lalu tidak menghasilkan apa-apa di malam hari. Energi satu hari adalah luas di bawah kurva, <InlineMath math="E=P_{\text{peak}}\cdot\frac{24}{\pi}\text{ jam}" />, jadi hari cerah memberi sekitar <InlineMath math="22{,}9\text{ kWh}" />. Pada hari berawan dengan puncak separuhnya, kurva ungu hanya berisi separuh energi itu. Sumbernya memang pulih setiap pagi, tetapi dayanya tidak selalu ada saat kamu butuhkan.
+
+<LineEquation
+  title="Daya Surya dalam Satu Hari"
+  description="Model sederhana sistem panel 3 kW pada hari cerah dan hari berawan dengan puncak separuhnya. Mendatar: jam dalam satuan 2 jam. Tegak: daya dalam kW."
+  data={(() => {
+    // Simple clear-sky model: P(t) = P_peak sin(pi (t - 6) / 12) from 06:00 to 18:00, zero at night.
+    // Horizontal: clock time / 2 h, so x = t / 2 and the phase is pi x / 6 - pi / 2. Vertical: power in kW.
+    const day = (peak, color, text) => ({
+      curve: {
+        kind: "sin",
+        amplitude: peak,
+        frequency: Math.PI / 6,
+        phase: -Math.PI / 2,
+        shift: 0,
+        domain: [3, 9],
+        samples: 201,
+      },
+      color,
+      showPoints: false,
+      labels: [{ text, at: 100, offset: [0, 0.45, 0], anchorX: "center" }],
+    });
+    const night = (from, to) => ({
+      points: [from, to].map((x) => ({ x, y: 0, z: 0 })),
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+    });
+    const energy = (peak) => ((peak * 24) / Math.PI).toFixed(1).replace(".", "{,}");
+    return [
+      night(0, 3),
+      night(9, 12),
+      day(3, "#bb6800", <InlineMath math={`P_{\\text{peak}}=3\\text{ kW},\\ E\\approx${energy(3)}\\text{ kWh}`} />),
+      day(1.5, "#8242e5", <InlineMath math={`P_{\\text{peak}}=1{,}5\\text{ kW},\\ E\\approx${energy(1.5)}\\text{ kWh}`} />),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[6, 1.6, 8]}
+  cameraTarget={[6, 1.6, 0]}
+/>
+
 Karena itu, periksa apakah sumber tersebut dapat tersedia kembali dan apakah jumlahnya cukup di lokasi serta waktu yang dibutuhkan. Untuk biomassa dan air yang dikelola, periksa juga berapa banyak bahan atau air yang dapat dipakai tanpa mengganggu pemulihan sumber dan ekosistem setempat.
+
+Coba dengan angka buatan: sebuah hutan menyimpan <InlineMath math="100" /> satuan kayu dan tumbuh kembali <InlineMath math="2" /> satuan per tahun. Tiga garis di bawah memanen <InlineMath math="h=1" />, <InlineMath math="2" />, dan <InlineMath math="3" /> satuan per tahun. Hanya garis merah muda, yang memanen lebih cepat daripada pertumbuhan hutannya, yang kehilangan kayu, walaupun sumbernya terbarukan.
+
+<LineEquation
+  title="Laju Panen dan Laju Tumbuh Kembali"
+  description="Persediaan ilustrasi 100 satuan yang tumbuh kembali 2 satuan per tahun dengan tiga laju panen h. Mendatar: tahun dalam satuan 5. Tegak: persediaan dalam satuan 25."
+  data={(() => {
+    // Illustrative wood stock S(t) = 100 + (g - h) t with regrowth g = 2 per year. Horizontal: years / 5. Vertical: stock / 25.
+    const regrowth = 2;
+    const stock = (harvest, color, text) => ({
+      points: [0, 20].map((t) => ({ x: t / 5, y: (100 + (regrowth - harvest) * t) / 25, z: 0 })),
+      color,
+      showPoints: false,
+      smooth: false,
+      labels: [{ text, at: 1, offset: [1, 0, 0], anchorX: "center" }],
+    });
+    return [
+      stock(1, "#0d9488", <InlineMath math="h=1" />),
+      stock(2, "#64748b", <InlineMath math="h=2" />),
+      stock(3, "#e03b8a", <InlineMath math="h=3" />),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.4, 4.2, 7]}
+  cameraTarget={[2.4, 4.2, 0]}
+/>
 
 ## Cocokkan Setiap Sumber dengan Kondisi Lokasi
 
@@ -47,6 +114,21 @@ Sebutkan sumber dan bentuk energi awalnya, lalu kenali alat yang mengubah energi
 Pada [turbin angin](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work), angin memutar bilah turbin, rotor memutar generator, lalu generator menghasilkan listrik.
 
 Pada [tenaga air](https://www.energy.gov/cmei/water/how-hydropower-works), energi yang tersedia dipengaruhi oleh debit air dan beda ketinggian. Air mengalir melalui penstock untuk memutar turbin, lalu turbin memutar generator. Generator tersebut menghasilkan listrik.
+
+Inilah jalur untuk cahaya matahari, angin, dan air secara berdampingan.
+
+<Mermaid
+  title="Tiga Jalur Konversi"
+  description="Cahaya matahari, angin, dan air masing-masing sampai ke listrik lewat alatnya sendiri."
+  chart={`flowchart LR
+    S["Cahaya matahari"] --> P["Sel fotovoltaik"]
+    W["Angin"] --> B["Bilah dan rotor"]
+    H["Air yang jatuh"] --> T["Pipa pesat dan turbin"]
+    B --> G["Generator"]
+    T --> G
+    P --> E["Listrik"]
+    G --> E`}
+/>
 
 ## Kondisi untuk Panas Bumi Biogas dan Energi Laut
 

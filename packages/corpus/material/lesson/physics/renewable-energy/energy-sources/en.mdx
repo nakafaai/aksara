@@ -20,6 +20,44 @@ Trace the energy from its source through a [conversion device](/en/subjects/phys
 
 A renewable energy source is replenished by natural processes on a human time scale. It is **not necessarily available at every moment**. Solar output depends on the time of day and weather, wind output on wind speed, and hydropower output on season and water flow rate.
 
+Wind shows how strongly "available right now" can swing. The power the wind carries through a rotor of area <InlineMath math="A" /> is <InlineMath math="P=\tfrac12\rho Av^3" />, because faster air brings more kilograms each second and each kilogram carries more energy. In the graph below, the rotor has a radius of <InlineMath math="1\text{ m}" /> and air has <InlineMath math="\rho=1.2\text{ kg/m}^3" />. Compare the two points: doubling the wind speed from <InlineMath math="4" /> to <InlineMath math="8\text{ m/s}" /> makes the power <InlineMath math="2^3=8" /> times larger.
+
+<LineEquation
+  title="Wind Power Depends on Wind Speed"
+  description="Power in the wind through a rotor of radius 1 m with air density 1.2 kg/m³. Horizontal: wind speed in units of 2 m/s. Vertical: power in units of 500 W."
+  data={(() => {
+    // Power in the wind through a rotor of radius 1 m: P = (1/2) rho A v^3, rho = 1.2 kg/m^3.
+    // Horizontal: v / 2 m/s. Vertical: P / 500 W.
+    const rho = 1.2;
+    const area = Math.PI * 1 ** 2;
+    const power = (v) => 0.5 * rho * area * v ** 3;
+    const samples = 241;
+    const marked = (v, color, offset) => ({
+      points: [{ x: v / 2, y: power(v) / 500, z: 0 }],
+      color,
+      showPoints: true,
+      labels: [{ text: <InlineMath math={`v=${v}\\text{ m/s}:\\ P\\approx${Math.round(power(v))}\\text{ W}`} />, at: 0, offset, anchorX: "center" }],
+    });
+    return [
+      {
+        points: Array.from({ length: samples }, (_, i) => {
+          const v = (10 * i) / (samples - 1);
+          return { x: v / 2, y: power(v) / 500, z: 0 };
+        }),
+        color: "#0d9488",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: <InlineMath math="P=\tfrac12\rho Av^3" />, at: 216, offset: [-1.5, 0.4, 0], anchorX: "center" }],
+      },
+      marked(4, "#bb6800", [1.6, 0.2, 0]),
+      marked(8, "#c026d3", [-1.9, 0.2, 0]),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 1.9, 7.5]}
+  cameraTarget={[2.5, 1.9, 0]}
+/>
+
 <Mermaid
   title="Conditions That Determine Energy Availability"
   description="Separate naturally renewing sources from the location, weather, and technology conditions that make them usable."
@@ -70,3 +108,15 @@ For a steam, wind, solar, hydroelectric, or geothermal power plant, compare the 
 Identify the source and its initial energy form, then the conversion device that produces electrical energy.
 
 Once the conversion path is clear, compare the source's physical conditions, cost, emissions, land or water needs, and maintenance requirements.
+
+Here is the complete conversion path of a steam power plant, the shape you compare for every source.
+
+<Mermaid
+  title="Inside a Steam Power Plant"
+  description="Heat from fuel or geothermal fluid makes steam, the steam spins a turbine, and the generator delivers electricity."
+  chart={`flowchart LR
+    A["Heat source: fuel or geothermal fluid"] --> B["Steam"]
+    B --> C["Turbine"]
+    C --> D["Generator"]
+    D --> E["Electrical energy"]`}
+/>

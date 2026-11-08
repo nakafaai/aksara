@@ -46,17 +46,6 @@ Kulit diberi nama <InlineMath math="\mathrm K" /> sampai <InlineMath math="\math
 
 **Maksimum** menyatakan kapasitas kulit. Kulit <InlineMath math="\mathrm{M}" /> memang dapat menampung sampai <InlineMath math="18" /> elektron, tetapi urutan pengisian elektron mengikuti tingkat energinya, sehingga atom tidak selalu mengisi <InlineMath math="\mathrm{M}" /> sampai penuh sebelum memakai kulit berikutnya. Untuk contoh sampai kalsium, kita memakai pola sederhana pada model interaktif.
 
-Aturan kapasitas memberi setiap kulit batasnya.
-
-<Mermaid
-  title="Kapasitas Kulit 2n²"
-  description="Kulit ke-n paling banyak berisi 2n² elektron."
-  chart={`flowchart LR
-    A["K, n = 1: 2"] --> B["L, n = 2: 8"]
-    B --> C["M, n = 3: 18"]
-    C --> D["N, n = 4: 32"]`}
-/>
-
 ## Model Kulit Unsur Ringan
 
 Pilih atom netral. Perhatikan bahwa **jumlah elektron sama dengan nomor atom**, lalu lihat pembagian elektronnya pada kulit <InlineMath math="\mathrm{K}" />, <InlineMath math="\mathrm{L}" />, <InlineMath math="\mathrm{M}" />, dan <InlineMath math="\mathrm{N}" />.
@@ -136,57 +125,6 @@ Pertanyaan yang sering muncul: mengapa bukan <InlineMath math="2, 8, 10" />?
 Pada keadaan dasar kalsium, elektron mengisi subkulit <InlineMath math="4s" /> sebelum <InlineMath math="3d" />. Angka di depan huruf menunjukkan kulit utama: <InlineMath math="4s" /> termasuk kulit <InlineMath math="\mathrm N" />, sedangkan <InlineMath math="3d" /> termasuk kulit <InlineMath math="\mathrm M" />. Jadi, kulit M belum penuh ketika kulit N mulai terisi.
 
 Sesudah kulit K dan L, masih ada <InlineMath math="20-2-8=10" /> elektron. Delapan menempati bagian kulit M yang sudah terisi pada argon, dan dua elektron berikutnya menempati 4s. Hasilnya **konfigurasi keadaan dasar** <InlineMath math="2,8,8,2" />.
-
-Inilah kalsium dalam model kulit sederhana: <InlineMath math="2, 8, 8, 2" /> elektron dari kulit K ke luar. Hitung setiap cincin, dan perhatikan dua elektron fuchsia di kulit N, walaupun kulit M sebenarnya masih bisa menampung lebih banyak.
-
-<MathVisual
-  title="Kalsium dalam Model Kulit"
-  description="20 elektron kalsium di kulit K, L, M, dan N, dengan elektron terluar berwarna fuchsia."
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -4.8, max: 4.8 }, y: { min: -4.8, max: 4.8 } },
-    view: { kind: "fit", padding: 0.06 },
-    objects: [
-      { id: "nucleus", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
-      { id: "shell-k", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 1 },
-      { id: "electron-k-1", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (0 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (0 + 0.125)) / 2) } },
-      { id: "electron-k-2", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (1 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (1 + 0.125)) / 2) } },
-      { id: "shell-l", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 2 },
-      { id: "electron-l-1", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (0 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (0 + 0.125)) / 8) } },
-      { id: "electron-l-2", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (1 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (1 + 0.125)) / 8) } },
-      { id: "electron-l-3", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (2 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (2 + 0.125)) / 8) } },
-      { id: "electron-l-4", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (3 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (3 + 0.125)) / 8) } },
-      { id: "electron-l-5", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (4 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (4 + 0.125)) / 8) } },
-      { id: "electron-l-6", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (5 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (5 + 0.125)) / 8) } },
-      { id: "electron-l-7", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (6 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (6 + 0.125)) / 8) } },
-      { id: "electron-l-8", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (7 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (7 + 0.125)) / 8) } },
-      { id: "shell-m", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
-      { id: "electron-m-1", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (0 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (0 + 0.125)) / 8) } },
-      { id: "electron-m-2", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (1 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (1 + 0.125)) / 8) } },
-      { id: "electron-m-3", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (2 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (2 + 0.125)) / 8) } },
-      { id: "electron-m-4", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (3 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (3 + 0.125)) / 8) } },
-      { id: "electron-m-5", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (4 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (4 + 0.125)) / 8) } },
-      { id: "electron-m-6", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (5 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (5 + 0.125)) / 8) } },
-      { id: "electron-m-7", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (6 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (6 + 0.125)) / 8) } },
-      { id: "electron-m-8", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (7 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (7 + 0.125)) / 8) } },
-      { id: "shell-n", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 4 },
-      { id: "electron-n-1", kind: "point", appearance: "answer", at: { x: 4 * Math.cos((2 * Math.PI * (0 + 0.125)) / 2), y: 4 * Math.sin((2 * Math.PI * (0 + 0.125)) / 2) } },
-      { id: "electron-n-2", kind: "point", appearance: "answer", at: { x: 4 * Math.cos((2 * Math.PI * (1 + 0.125)) / 2), y: 4 * Math.sin((2 * Math.PI * (1 + 0.125)) / 2) } },
-    ],
-    labels: [
-      { key: "k", objectId: "shell-k", at: { x: 1, y: 0 }, placement: "right" },
-      { key: "l", objectId: "shell-l", at: { x: 2, y: 0 }, placement: "right" },
-      { key: "m", objectId: "shell-m", at: { x: 3, y: 0 }, placement: "right" },
-      { key: "n", objectId: "shell-n", at: { x: 4, y: 0 }, placement: "right" },
-    ],
-  }}
-  labels={{
-    k: <InlineMath math="\mathrm{K}:\ 2" />,
-    l: <InlineMath math="\mathrm{L}:\ 8" />,
-    m: <InlineMath math="\mathrm{M}:\ 8" />,
-    n: <InlineMath math="\mathrm{N}:\ 2" />,
-  }}
-/>
 
 ## Keterbatasan Model Kulit Atom
 

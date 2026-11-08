@@ -28,6 +28,57 @@ Take one object at coordinate <InlineMath math="30 \text{ m}" /> when the store 
 
 The **object does not move** when the origin changes. Only its coordinate changes. Shifting the origin to the right can turn a large positive coordinate into a smaller positive coordinate, zero, or a negative coordinate.
 
+Look at the scene below. The gray line is the object, and it never moves. Each arrow starts at a different origin and ends at the object, so its label is the object's coordinate measured from that origin. Count the grid steps yourself: one step is <InlineMath math="10\text{ m}" />, and an arrow pointing west gets a negative sign.
+
+<LineEquation
+  title="One Object, Three Origins"
+  description="Each row measures the same object from a different origin, with east to the right. One grid step is 10 m."
+  data={(() => {
+    // Street coordinates in meters, east positive; one grid unit is 10 m.
+    const object = 30;
+    const origins = [
+      { name: "Store", at: 0, row: 2, color: "#bb6800" },
+      { name: "Rani's house", at: 20, row: 1, color: "#8242e5" },
+      { name: "Naya's house", at: 50, row: 0, color: "#c026d3" },
+    ];
+    return [
+      {
+        points: [{ x: object / 10, y: -0.5, z: 0 }, { x: object / 10, y: 2.5, z: 0 }],
+        color: "#64748b",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: "Object", at: 1, offset: [0, 0.35, 0], anchorX: "center" }],
+      },
+      ...origins.map((origin) => {
+        const coordinate = object - origin.at;
+        const sign = coordinate > 0 ? "+" : "";
+        return {
+          points: [
+            { x: origin.at / 10, y: origin.row, z: 0 },
+            { x: object / 10, y: origin.row, z: 0 },
+          ],
+          color: origin.color,
+          cone: { position: "end", size: 0.22 },
+          showPoints: false,
+          smooth: false,
+          labels: [
+            { text: origin.name, at: 0, offset: [0, -0.35, 0], anchorX: "center" },
+            {
+              text: <InlineMath math={`x'=${sign}${coordinate}\\text{ m}`} />,
+              at: 0,
+              offset: [(object - origin.at) / 20, 0.35, 0],
+              anchorX: "center",
+            },
+          ],
+        };
+      }),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 1, 8]}
+  cameraTarget={[2.5, 1, 0]}
+/>
+
 ## Reading Sign and Direction
 
 The sign of a position tells us <Highlight>which side of the reference point</Highlight> the object is on. In the street example, east is chosen as positive. So a positive value means the object is east of the reference point, while a negative value means the object is west of it.
@@ -69,3 +120,41 @@ x'
 \end{aligned}" />
 
 So, the marker is <InlineMath math="10 \text{ m}" /> east of Dimas's house. With the store as origin, its coordinate is <InlineMath math="40 \text{ m}" />. With Dimas's house as origin, its coordinate is <InlineMath math="+10 \text{ m}" />. Both statements are correct because they use different origins in a clearly defined reference frame.
+
+Both arrows below end at the same marker. Only their starting point, the origin, changes, and with it the number in the position sentence.
+
+<LineEquation
+  title="One Marker, Two Origins"
+  description="The marker at 40 m from the store, measured from the store and from Dimas's house at 30 m. One grid step is 10 m."
+  data={(() => {
+    // Street coordinates from the store in meters; one grid step is 10 m.
+    const marker = 40;
+    const origins = [
+      { name: "Store", at: 0, row: 1, color: "#bb6800" },
+      { name: "Dimas's house", at: 30, row: 0, color: "#8242e5" },
+    ];
+    return [
+      {
+        points: [{ x: marker / 10, y: -0.5, z: 0 }, { x: marker / 10, y: 1.5, z: 0 }],
+        color: "#64748b",
+        showPoints: false,
+        smooth: false,
+        labels: [{ text: "Marker", at: 1, offset: [0, 0.35, 0], anchorX: "center" }],
+      },
+      ...origins.map((origin) => ({
+        points: [{ x: origin.at / 10, y: origin.row, z: 0 }, { x: marker / 10, y: origin.row, z: 0 }],
+        color: origin.color,
+        cone: { position: "end", size: 0.22 },
+        showPoints: false,
+        smooth: false,
+        labels: [
+          { text: origin.name, at: 0, offset: [0, -0.35, 0], anchorX: "center" },
+          { text: <InlineMath math={`+${marker - origin.at}\\text{ m}`} />, at: 0, offset: [(marker - origin.at) / 20, 0.35, 0], anchorX: "center" },
+        ],
+      })),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 0.5, 6]}
+  cameraTarget={[2, 0.5, 0]}
+/>

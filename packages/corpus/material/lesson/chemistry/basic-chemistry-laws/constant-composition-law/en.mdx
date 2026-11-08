@@ -30,32 +30,6 @@ Even when different amounts of water form, the **mass ratio of hydrogen to oxyge
 
 <BlockMath math="\begin{aligned} M(\mathrm{H_2O}) &amp;=2(1.0080)+15.999 \\ &amp;=18.015\ \mathrm{g\,mol^{-1}} \end{aligned}" />
 
-Compare two samples of water, with hydrogen in violet and oxygen in orange and one grid step for <InlineMath math="4\ \mathrm{g}" />. The large sample is twice as heavy, but both split the same way, about <InlineMath math="1:8" /> by mass. That fixed split is what constant composition means.
-
-<MathVisual
-  title="Two Samples, One Mass Ratio"
-  description="9 g and 18 g of water split into hydrogen (violet) and oxygen (orange) at about 1:8. One grid step up is 4 g."
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 6, y: 5, z: 9 }, target: { x: 1.5, y: 2, z: 0 } },
-    objects: [
-      { id: "small-h", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (1 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1 / 4, width: 1.2 } },
-      { id: "small-o", kind: "cuboid", appearance: "primary", center: { x: 0, y: (8 / 4) / 2 + 1 / 4, z: 0 }, size: { length: 1.2, height: 8 / 4, width: 1.2 } },
-      { id: "large-h", kind: "cuboid", appearance: "secondary", center: { x: 3, y: (2 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2 / 4, width: 1.2 } },
-      { id: "large-o", kind: "cuboid", appearance: "primary", center: { x: 3, y: (16 / 4) / 2 + 2 / 4, z: 0 }, size: { length: 1.2, height: 16 / 4, width: 1.2 } },
-    ],
-    labels: [
-      { key: "small", objectId: "small-o", at: { x: 0, y: 2.75, z: 0 }, placement: "above" },
-      { key: "large", objectId: "large-o", at: { x: 3, y: 5.0, z: 0 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    small: <InlineMath math="9\ \mathrm{g}:\ 1+8" />,
-    large: <InlineMath math="18\ \mathrm{g}:\ 2+16" />,
-  }}
-/>
-
 ## Extra Reactant Stays Extra
 
 Change the starting masses in the model. A different starting mixture may **leave hydrogen or oxygen behind**. The hydrogen and oxygen that form water always react in a <InlineMath math="1:8" /> mass ratio.
@@ -158,17 +132,6 @@ This model counts the mass of each element. The next equation shows how the mole
 In the excess-hydrogen case, <InlineMath math="16 \mathrm{g}" /> of oxygen requires hydrogen in the mass ratio <InlineMath math="1:8" />. Calculate the reacting amount before finding what remains:
 
 <BlockMath math="\begin{aligned} m_{\mathrm{H,reacting}} &= \frac{1}{8}\times16=2\ \mathrm{g} \\ m_{\mathrm{H,remaining}} &=3-2=1\ \mathrm{g} \end{aligned}" />
-
-Here is the extra-reactant example as one flow.
-
-<Mermaid
-  title="The Extra Hydrogen Stays Extra"
-  description="16 g of oxygen can use only 2 g of hydrogen, so 1 g of the 3 g remains."
-  chart={`flowchart LR
-    A["3 g H + 16 g O"] --> B["Ratio 1:8 uses 2 g H with 16 g O"]
-    B --> C["18 g water"]
-    B --> D["1 g hydrogen left over"]`}
-/>
 
 ## Testing Calcium Oxide Data
 

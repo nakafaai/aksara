@@ -89,17 +89,6 @@ Once the mass number and atomic number are known, the neutron count is just thei
 
 <BlockMath math="n^0 = A - Z" />
 
-Every particle count comes from the two numbers in the symbol.
-
-<Mermaid
-  title="From A and Z to Particle Counts"
-  description="Z gives the protons, a neutral atom has as many electrons, and A minus Z gives the neutrons."
-  chart={`flowchart LR
-    A["Symbol: A over Z"] --> B["Protons = Z"]
-    B --> C["Electrons = Z for a neutral atom"]
-    A --> D["Neutrons = A - Z"]`}
-/>
-
 ## Carbon Example
 
 For a carbon atom with mass number <InlineMath math="12" />, the symbol is written:
@@ -115,33 +104,6 @@ n^0 &= 12 - 6 = 6
 \end{aligned}" />
 
 If that <InlineMath math="{}^{12}_{6}\mathrm{C}" /> **atom is neutral**, it also has <InlineMath math="6" /> electrons.
-
-Here are the three counts for carbon-12 as columns, one grid step for <InlineMath math="2" /> particles. All three are <InlineMath math="6" />, but for different reasons: <InlineMath math="Z=6" />, the atom is neutral, and <InlineMath math="12-6=6" />.
-
-<MathVisual
-  title="Particles in Carbon-12"
-  description="Protons, neutrons and electrons of a neutral carbon-12 atom. One grid step up is 2 particles."
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 1.5, z: 0 } },
-    objects: [
-      { id: "protons", kind: "cuboid", appearance: "primary", center: { x: 0, y: (6 / 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 6 / 2, width: 1.2 } },
-      { id: "neutrons", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: ((12 - 6) / 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: (12 - 6) / 2, width: 1.2 } },
-      { id: "electrons", kind: "cuboid", appearance: "secondary", center: { x: 5, y: (6 / 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 6 / 2, width: 1.2 } },
-    ],
-    labels: [
-      { key: "protons", objectId: "protons", at: { x: 0, y: 3.5, z: 0 }, placement: "above" },
-      { key: "neutrons", objectId: "neutrons", at: { x: 2.5, y: 3.5, z: 0 }, placement: "above" },
-      { key: "electrons", objectId: "electrons", at: { x: 5, y: 3.5, z: 0 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    protons: <InlineMath math="p^+=Z=6" />,
-    neutrons: <InlineMath math="n^0=12-6=6" />,
-    electrons: <InlineMath math="e^-=6" />,
-  }}
-/>
 
 ## Mass Number and Relative Atomic Mass
 

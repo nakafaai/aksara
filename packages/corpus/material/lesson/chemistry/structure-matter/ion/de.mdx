@@ -71,19 +71,6 @@ Ein [Ion](https://goldbook.iupac.org/terms/view/I03158) ist ein atomares oder mo
   }}
 />
 
-Das Vorzeichen von q verrät dir, welche Art von Ion du hast.
-
-<Mermaid
-  title="Kation oder Anion aus der Ladung"
-  description="q = p⁺ − e⁻: weniger Elektronen ergeben ein Kation, zusätzliche Elektronen ein Anion."
-  chart={`flowchart TD
-    A["q = Protonen - Elektronen"] --> B["q > 0: Elektronen abgegeben"]
-    A --> C["q < 0: Elektronen aufgenommen"]
-    A --> D["q = 0: neutrales Atom"]
-    B --> E["Kation"]
-    C --> F["Anion"]`}
-/>
-
 ## Ionenladung aus der Differenz von Protonen und Elektronen
 
 Die Ionenladung ergibt sich aus der Protonenzahl minus der Elektronenzahl:
@@ -113,32 +100,6 @@ e^- &= 9 - (-1) \\
 \end{aligned}" />
 
 Das negative Vorzeichen in <InlineMath math="\mathrm{F}^{-}" /> bedeutet, dass es mehr Elektronen als Protonen gibt. Deshalb wird <InlineMath math="9 - (-1)" /> zu <InlineMath math="10" />.
-
-Vergleich ein Lithiumatom mit einem Lithiumion, Protonen orange hinten, Elektronen violett vorn. Ein verlorenes Elektron lässt <InlineMath math="3" /> Protonen gegen <InlineMath math="2" /> Elektronen zurück, also <InlineMath math="q=3-2=+1" />.
-
-<MathVisual
-  title="Lithiumatom und Lithiumion"
-  description="Protonen (orange, hinten) und Elektronen (violett, vorn) in Li und Li⁺. Ein Gitterschritt nach oben sind 2 Teilchen."
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 3 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 6, y: 5, z: 8 }, target: { x: 1.5, y: 1, z: 0 } },
-    objects: [
-      { id: "atom-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (3 / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
-      { id: "atom-e", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (3 / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
-      { id: "ion-p", kind: "cuboid", appearance: "primary", center: { x: 3, y: (3 / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
-      { id: "ion-e", kind: "cuboid", appearance: "secondary", center: { x: 3, y: (2 / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 2 / 2, width: 1.2 } },
-    ],
-    labels: [
-      { key: "atom", objectId: "atom-e", at: { x: 0, y: 2, z: 0.75 }, placement: "above" },
-      { key: "ion", objectId: "ion-e", at: { x: 3, y: 1.5, z: 0.75 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    atom: <InlineMath math="\mathrm{Li}:\ 3-3=0" />,
-    ion: <InlineMath math="\mathrm{Li^+}:\ 3-2=+1" />,
-  }}
-/>
 
 ## Zusammensetzung eines Ions
 

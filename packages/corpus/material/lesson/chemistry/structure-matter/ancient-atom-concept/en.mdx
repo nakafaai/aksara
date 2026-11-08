@@ -30,18 +30,6 @@ The early debate offered two opposite answers: matter can be divided without lim
 
 Democritus called the smallest part *atomos*, a Greek term meaning uncuttable.
 
-The two answers split like this.
-
-<Mermaid
-  title="Two Answers to One Question"
-  description="Either matter can be divided without end, or it stops at the smallest uncuttable unit, the atomos."
-  chart={`flowchart TD
-    A["Can matter be divided forever?"] --> B["Yes: no smallest part"]
-    A --> C["No: smallest uncuttable unit"]
-    C --> D["Democritus: atomos"]
-    D --> E["Tested much later by chemistry"]`}
-/>
-
 ## Following the Reasoning of Democritus
 
 This visual presents a **thought experiment** about dividing matter. Imagine cutting an object repeatedly, then compare two positions: Aristotle held that division could continue, while Democritus proposed a smallest part. The visual does not display an atom's actual shape.
@@ -82,33 +70,6 @@ This visual presents a **thought experiment** about dividing matter. Imagine cut
         tab: "Tiny",
       },
     },
-  }}
-/>
-
-Follow the thought experiment as numbers. Each cut halves the piece, so after <InlineMath math="n" /> cuts it is <InlineMath math="1/2^n" /> of the start. The columns below show only four cuts, and the last piece is already one sixteenth of the first. Democritus's question was whether this can go on forever or must stop at an uncuttable unit.
-
-<MathVisual
-  title="Halving a Piece Again and Again"
-  description="A piece 8 units tall cut in half four times. Each column is half the one before."
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 10, y: 8, z: 14 }, target: { x: 5, y: 3, z: 0 } },
-    objects: [
-      { id: "piece-0", kind: "cuboid", appearance: "primary", center: { x: 0.0, y: (8 / 2 ** 0) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 0, width: 1.2 } },
-      { id: "piece-1", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: (8 / 2 ** 1) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 1, width: 1.2 } },
-      { id: "piece-2", kind: "cuboid", appearance: "primary", center: { x: 5.0, y: (8 / 2 ** 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 2, width: 1.2 } },
-      { id: "piece-3", kind: "cuboid", appearance: "primary", center: { x: 7.5, y: (8 / 2 ** 3) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 3, width: 1.2 } },
-      { id: "piece-4", kind: "cuboid", appearance: "answer", center: { x: 10.0, y: (8 / 2 ** 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 4, width: 1.2 } },
-    ],
-    labels: [
-      { key: "first", objectId: "piece-0", at: { x: 0, y: 8.5, z: 0 }, placement: "above" },
-      { key: "last", objectId: "piece-4", at: { x: 10, y: 1, z: 0 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    first: <InlineMath math="8" />,
-    last: <InlineMath math="8/2^4=0{.}5" />,
   }}
 />
 

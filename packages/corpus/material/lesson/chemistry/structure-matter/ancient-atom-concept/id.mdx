@@ -30,18 +30,6 @@ Perdebatan awal menawarkan dua jawaban yang berlawanan: materi dapat terus dibag
 
 Demokritos menyebut bagian terkecil itu *atomos*, istilah Yunani yang berarti tidak dapat dipotong.
 
-Kedua jawaban itu bercabang seperti ini.
-
-<Mermaid
-  title="Dua Jawaban untuk Satu Pertanyaan"
-  description="Materi bisa dibagi tanpa akhir, atau berhenti di satuan terkecil yang tidak bisa dipotong, yaitu atomos."
-  chart={`flowchart TD
-    A["Bisakah materi dibagi terus selamanya?"] --> B["Bisa: tidak ada bagian terkecil"]
-    A --> C["Tidak: ada satuan terkecil yang tak bisa dipotong"]
-    C --> D["Demokritus: atomos"]
-    D --> E["Diuji jauh kemudian oleh kimia"]`}
-/>
-
 ## Mencoba Cara Pikir Demokritos
 
 Visual ini menggambarkan **percobaan pikiran** tentang pembagian materi. Bayangkan sebuah benda dipotong berulang kali, lalu bandingkan dua pendapat: Aristoteles menganggap pembagian dapat terus berlanjut, sedangkan Demokritos menganggap ada bagian terkecil. Bentuk atom sebenarnya tidak ditampilkan.
@@ -82,33 +70,6 @@ Visual ini menggambarkan **percobaan pikiran** tentang pembagian materi. Bayangk
         tab: "Kecil",
       },
     },
-  }}
-/>
-
-Ikuti percobaan pikiran itu dengan angka. Setiap potongan membagi dua kepingannya, jadi setelah <InlineMath math="n" /> potongan ukurannya <InlineMath math="1/2^n" /> dari semula. Kolom di bawah hanya menunjukkan empat potongan, dan keping terakhir sudah seperenam belas keping pertama. Pertanyaan Demokritus adalah apakah ini bisa berlanjut selamanya atau harus berhenti di satuan yang tidak bisa dipotong.
-
-<MathVisual
-  title="Membagi Dua Keping Berkali-kali"
-  description="Keping setinggi 8 satuan dipotong dua sebanyak empat kali. Setiap kolom separuh dari kolom sebelumnya."
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 11.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 10, y: 8, z: 14 }, target: { x: 5, y: 3, z: 0 } },
-    objects: [
-      { id: "piece-0", kind: "cuboid", appearance: "primary", center: { x: 0.0, y: (8 / 2 ** 0) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 0, width: 1.2 } },
-      { id: "piece-1", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: (8 / 2 ** 1) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 1, width: 1.2 } },
-      { id: "piece-2", kind: "cuboid", appearance: "primary", center: { x: 5.0, y: (8 / 2 ** 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 2, width: 1.2 } },
-      { id: "piece-3", kind: "cuboid", appearance: "primary", center: { x: 7.5, y: (8 / 2 ** 3) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 3, width: 1.2 } },
-      { id: "piece-4", kind: "cuboid", appearance: "answer", center: { x: 10.0, y: (8 / 2 ** 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 2 ** 4, width: 1.2 } },
-    ],
-    labels: [
-      { key: "first", objectId: "piece-0", at: { x: 0, y: 8.5, z: 0 }, placement: "above" },
-      { key: "last", objectId: "piece-4", at: { x: 10, y: 1, z: 0 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    first: <InlineMath math="8" />,
-    last: <InlineMath math="8/2^4=0{,}5" />,
   }}
 />
 

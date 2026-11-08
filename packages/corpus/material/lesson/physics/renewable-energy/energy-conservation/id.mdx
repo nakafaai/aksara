@@ -68,6 +68,43 @@ E_p &= mgh \\
 
 Jika tidak ada energi yang berpindah ke lingkungan, energi sebesar <InlineMath math="120 \text{ J}" /> berubah menjadi energi kinetik air. Pada perangkat sebenarnya, sebagian energi berpindah ke lingkungan sebagai kalor, bunyi, dan getaran.
 
+Ikuti air yang jatuh pada grafik di bawah, dari <InlineMath math="h=12\text{ m}" /> di kanan sampai ke tanah di kiri. Energi potensial yang oranye berkurang tepat sebanyak energi kinetik hijau toska bertambah, jadi garis ungu untuk jumlah keduanya tidak pernah bergeser dari <InlineMath math="120\text{ J}" />. Di tengah jalan, pada <InlineMath math="6\text{ m}" />, kedua bentuk energi itu membagi energinya sama besar.
+
+<LineEquation
+  title="Energi Potensial Berubah Menjadi Energi Kinetik"
+  description="Air bermassa 1 kg jatuh dari 12 m dengan g = 10 m/s² tanpa energi yang hilang. Mendatar: ketinggian dalam satuan 2 m. Tegak: energi dalam satuan 20 J."
+  data={(() => {
+    // Water of mass 1 kg falls from 12 m with g = 10 m/s^2 and no energy leaving the system.
+    // Horizontal: height h / 2 m. Vertical: energy / 20 J.
+    const m = 1;
+    const g = 10;
+    const top = 12;
+    const heights = Array.from({ length: 13 }, (_, i) => i);
+    const line = (energy, color, text, at, offset) => ({
+      points: heights.map((h) => ({ x: h / 2, y: energy(h) / 20, z: 0 })),
+      color,
+      showPoints: false,
+      smooth: false,
+      labels: [{ text, at, offset, anchorX: "center" }],
+    });
+    const half = top / 2;
+    return [
+      line((h) => m * g * h, "#bb6800", <InlineMath math="E_p=mgh" />, 10, [0.9, 0.2, 0]),
+      line((h) => m * g * (top - h), "#0d9488", <InlineMath math="E_k=mg(12\text{ m}-h)" />, 2, [0.4, 0.8, 0]),
+      line((h) => m * g * h + m * g * (top - h), "#8242e5", <InlineMath math="E_m=120\text{ J}" />, 6, [0, 0.45, 0]),
+      {
+        points: [{ x: half / 2, y: (m * g * half) / 20, z: 0 }],
+        color: "#c026d3",
+        showPoints: true,
+        labels: [{ text: <InlineMath math="h=6\text{ m}:\ E_p=E_k=60\text{ J}" />, at: 0, offset: [0, -0.5, 0], anchorX: "center" }],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[3, 3.2, 9]}
+  cameraTarget={[3, 3.2, 0]}
+/>
+
 ## Energi Berguna Bergantung pada Tujuan Alat
 
 Pada teknologi energi terbarukan, yang biasanya kita inginkan adalah **energi berguna**, misalnya energi listrik. Hukum kekekalan energi tetap berlaku, tetapi energi masuk tidak seluruhnya menjadi energi listrik.
@@ -86,6 +123,17 @@ E_{\text{lingkungan}}
 Jadi, energi <InlineMath math="30 \text{ J}" /> tidak hilang. Energi itu berpindah ke lingkungan, misalnya sebagai panas pada poros, suara putaran, atau getaran struktur.
 
 [Pembangkit listrik tenaga air](https://www.energy.gov/cmei/water/how-hydropower-works) memanfaatkan perbedaan ketinggian air untuk menggerakkan turbin dan generator.
+
+Inilah neraca energi turbin itu. Kedua keluarannya selalu berjumlah sama dengan masukannya.
+
+<Mermaid
+  title="Neraca Energi Turbin"
+  description="120 J dari air yang mengalir menjadi 90 J energi listrik dan 30 J yang berpindah ke lingkungan."
+  chart={`flowchart LR
+    A["Masukan: 120 J"] --> B["Turbin dan generator"]
+    B --> C["Energi listrik berguna: 90 J"]
+    B --> D["Ke lingkungan: 30 J kalor, bunyi, getaran"]`}
+/>
 
 ## Periksa Klaim dengan Neraca Energi
 

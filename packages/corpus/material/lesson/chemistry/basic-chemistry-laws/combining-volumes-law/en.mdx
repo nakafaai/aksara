@@ -31,35 +31,6 @@ The coefficients <InlineMath math="2:1:2" /> mean <InlineMath math="2" /> volume
 
 So, if every gas is measured at the **same temperature and pressure**, <InlineMath math="200\ \mathrm{mL}" /> of hydrogen reacts with <InlineMath math="100\ \mathrm{mL}" /> of oxygen to produce <InlineMath math="200\ \mathrm{mL}" /> of water vapor. If the water has condensed into liquid, the liquid volume is no longer read directly from this gas ratio.
 
-Each block below is one part of gas at the same temperature and pressure. Two parts of hydrogen and one part of oxygen give two parts of water vapor, so the volume ratio <InlineMath math="2:1:2" /> is just the coefficients. Notice that the volumes do not add up: three parts become two.
-
-<MathVisual
-  title="Water Vapor by Volume"
-  description="2H₂(g) + O₂(g) → 2H₂O(g) drawn as equal gas parts at the same temperature and pressure."
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 3, y: 2, z: 0 } },
-    objects: [
-      { id: "hydrogen-1", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
-      { id: "hydrogen-2", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (2) / 2 + 2, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
-      { id: "oxygen-1", kind: "cuboid", appearance: "primary", center: { x: 3, y: (2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
-      { id: "water-1", kind: "cuboid", appearance: "construction", center: { x: 6, y: (2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
-      { id: "water-2", kind: "cuboid", appearance: "construction", center: { x: 6, y: (2) / 2 + 2, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
-    ],
-    labels: [
-      { key: "hydrogen", objectId: "hydrogen-2", at: { x: 0, y: 4.5, z: 0 }, placement: "above" },
-      { key: "oxygen", objectId: "oxygen-1", at: { x: 3, y: 2.5, z: 0 }, placement: "above" },
-      { key: "water", objectId: "water-2", at: { x: 6, y: 4.5, z: 0 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    hydrogen: <InlineMath math="2\,\mathrm{H_2}" />,
-    oxygen: <InlineMath math="\mathrm{O_2}" />,
-    water: <InlineMath math="2\,\mathrm{H_2O(g)}" />,
-  }}
-/>
-
 ## Comparing Gas Volumes by Tube
 
 Choose a reaction below. Each tube represents **one volume part of gas** at the same temperature and pressure.
@@ -189,17 +160,3 @@ So decomposing <InlineMath math="600\ \mathrm{mL}" /> of ammonia gas produces <I
 - If a product turns into a liquid or solid, that product volume is not read directly from the gas coefficients.
 
 If any of these conditions is missing, compute the mole amounts first and convert them to volumes.
-
-Check all three conditions before you read volumes from coefficients.
-
-<Mermaid
-  title="When Volume Ratios Apply"
-  description="A balanced equation, gases only, and one temperature and pressure for every volume."
-  chart={`flowchart TD
-    A["Balanced equation?"] -->|Yes| B["Every compared substance a gas?"]
-    B -->|Yes| C["Same temperature and pressure?"]
-    C -->|Yes| D["Volume ratio = coefficient ratio"]
-    A -->|No| E["Balance it first"]
-    B -->|No| F["Leave liquids and solids out"]
-    C -->|No| G["Volumes cannot be compared directly"]`}
-/>

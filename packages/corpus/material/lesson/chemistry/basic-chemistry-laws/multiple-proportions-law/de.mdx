@@ -142,50 +142,8 @@ Da die Sauerstoffmasse nun gleich ist, folgt der Vergleich der Stickstoffmassen:
 
 Wenn <InlineMath math="\mathrm{N_2O}" /> für den Vergleich als <InlineMath math="2\mathrm{N_2O}" /> geschrieben wird, bringt das lediglich die Sauerstoffmasse auf dieselbe Basis. Die Formel der Verbindung bleibt <InlineMath math="\mathrm{N_2O}" />. Es entsteht dadurch keine neue Verbindung.
 
-Die Szene unten stellt beide Vergleiche nebeneinander, ein Gitterschritt für <InlineMath math="8\ \mathrm{g}" />. Bei festen <InlineMath math="2\ \mathrm{g}" /> Wasserstoff stehen die Sauerstoffsäulen <InlineMath math="16:32=1:2" />. Bei festen <InlineMath math="32\ \mathrm{g}" /> Sauerstoff stehen die Stickstoffsäulen <InlineMath math="56:14=4:1" />. Jedes Paar ergibt nur deshalb ein einfaches ganzzahliges Verhältnis, weil zuerst ein Element festgehalten wurde.
-
-<MathVisual
-  title="Ein Element festhalten, das andere vergleichen"
-  description="Orange: Sauerstoff zu 2 g Wasserstoff in H₂O und H₂O₂. Violett: Stickstoff zu 32 g Sauerstoff in 2N₂O und NO₂. Ein Gitterschritt nach oben sind 8 g."
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 8.5 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 3.5, y: 3, z: 0 } },
-    objects: [
-      { id: "water-o", kind: "cuboid", appearance: "primary", center: { x: 0, y: (16 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 16 / 8, width: 1.2 } },
-      { id: "peroxide-o", kind: "cuboid", appearance: "primary", center: { x: 2, y: (32 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 32 / 8, width: 1.2 } },
-      { id: "dinitrogen-n", kind: "cuboid", appearance: "secondary", center: { x: 5, y: (56 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 56 / 8, width: 1.2 } },
-      { id: "dioxide-n", kind: "cuboid", appearance: "secondary", center: { x: 7, y: (14 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 14 / 8, width: 1.2 } },
-    ],
-    labels: [
-      { key: "water", objectId: "water-o", at: { x: 0, y: 2.5, z: 0 }, placement: "above" },
-      { key: "peroxide", objectId: "peroxide-o", at: { x: 2, y: 4.5, z: 0 }, placement: "above" },
-      { key: "dinitrogen", objectId: "dinitrogen-n", at: { x: 5, y: 7.5, z: 0 }, placement: "above" },
-      { key: "dioxide", objectId: "dioxide-n", at: { x: 7, y: 2.25, z: 0 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    water: <InlineMath math="\mathrm{H_2O}:\ 16" />,
-    peroxide: <InlineMath math="\mathrm{H_2O_2}:\ 32" />,
-    dinitrogen: <InlineMath math="2\mathrm{N_2O}:\ 56" />,
-    dioxide: <InlineMath math="\mathrm{NO_2}:\ 14" />,
-  }}
-/>
-
 ## Zu vermeidende Fehler
 
 Vergleiche nicht die Gesamtmassen von Wasser und Wasserstoffperoxid, denn beide enthalten Wasserstoff und Sauerstoff. Vergleiche nur die Sauerstoffmassen, **nachdem die Wasserstoffmasse angeglichen wurde**. Wasser und Kohlendioxid sind ebenfalls kein geeignetes Paar, weil sich ihre anderen Elemente unterscheiden.
 
 Beim Gesetz der konstanten Zusammensetzung vergleichen wir das Massenverhältnis der Elemente in einer Verbindung. Beim Gesetz der multiplen Proportionen vergleichen wir diese Verhältnisse in mehreren Verbindungen aus demselben Elementpaar. Die dabei auftretenden kleinen ganzzahligen Verhältnisse stützten Daltons Annahme, dass sich Atome in ganzzahligen Verhältnissen verbinden.
-
-Lass jeden Vergleich durch diese Schritte laufen, damit dich die Gesamtmassen nicht täuschen.
-
-<Mermaid
-  title="Zwei Verbindungen richtig vergleichen"
-  description="Halt die Masse eines Elements fest und vergleich dann die Massen des anderen."
-  chart={`flowchart LR
-    A["Zwei Verbindungen aus denselben zwei Elementen"] --> B["Masse eines Elements festhalten"]
-    B --> C["Das andere Element vergleichen"]
-    C --> D["Einfaches ganzzahliges Verhältnis"]
-    A -.-> E["Nie die Gesamtmassen vergleichen"]`}
-/>

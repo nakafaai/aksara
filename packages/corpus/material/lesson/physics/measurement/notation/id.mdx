@@ -43,6 +43,67 @@ Jika <Highlight>koma bergerak ke kiri</Highlight>, pangkatnya positif. Jika koma
 0{,}000764 &= 7{,}64 \times 10^{-4}
 \end{aligned}" />
 
+Di sini setiap nilai diletakkan menurut pangkat <InlineMath math="n" /> ke kanan dan koefisien <InlineMath math="a" /> ke atas. Nilai dalam bentuk baku selalu jatuh di antara dua garis abu-abu, karena <InlineMath math="1 \le a < 10" />. Sekarang cari panah fuchsia: <InlineMath math="10{,}0\times10^{-13}" /> dari perkalian di akhir pelajaran ini berada tepat di garis atas, di luar pita. Satu geseran koma membawanya masuk menjadi <InlineMath math="1{,}0\times10^{-12}" />.
+
+<LineEquation
+  title="Setiap Nilai dalam Bentuk Baku"
+  description="Setiap titik adalah nilai yang ditulis sebagai a x 10^n, diletakkan menurut pangkat n ke kanan dan koefisien a ke atas. Garis abu-abu menandai a = 1 dan a = 10."
+  data={(() => {
+    // Horizontal: exponent n. Vertical: coefficient a of a x 10^n.
+    const standard = (value) => {
+      const n = Math.floor(Math.log10(value));
+      return { a: value / 10 ** n, n };
+    };
+    const write = (a, n, digits) =>
+      `${a.toFixed(digits).replace(".", "{,}")}\\times10^{${n}}`;
+    const values = [
+      { value: 7640000, digits: 2, color: "#bb6800", offset: [0, 0.8, 0] },
+      { value: 0.000764, digits: 2, color: "#8242e5", offset: [0, -0.8, 0] },
+      { value: 0.000000911, digits: 2, color: "#0d9488", offset: [0, 0.8, 0] },
+    ];
+    // (2.5 x 10^-6)(4.0 x 10^-7): multiply the coefficients, add the exponents.
+    const product = { a: 2.5 * 4.0, n: -6 + -7 };
+    const fixed = standard(product.a * 10 ** product.n);
+    const band = (a) => ({
+      points: [{ x: -14, y: a, z: 0 }, { x: 7, y: a, z: 0 }],
+      color: "#64748b",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math={`a=${a}`} />, at: 1, offset: [0.9, 0, 0] }],
+    });
+    return [
+      band(1),
+      band(10),
+      ...values.map(({ value, digits, color, offset }) => {
+        const { a, n } = standard(value);
+        return {
+          points: [{ x: n, y: a, z: 0 }],
+          color,
+          showPoints: true,
+          labels: [{ text: <InlineMath math={write(a, n, digits)} />, at: 0, offset, anchorX: "center" }],
+        };
+      }),
+      {
+        points: [
+          { x: product.n, y: product.a, z: 0 },
+          { x: fixed.n, y: fixed.a, z: 0 },
+        ],
+        color: "#c026d3",
+        cone: { position: "end", size: 0.3 },
+        showPoints: false,
+        smooth: false,
+        labels: [
+          { text: <InlineMath math={write(product.a, product.n, 1)} />, at: 0, offset: [0, 0.8, 0], anchorX: "center" },
+          { text: <InlineMath math={write(fixed.a, fixed.n, 1)} />, at: 1, offset: [0, -0.8, 0], anchorX: "center" },
+        ],
+      },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[-3.5, 5, 22]}
+  cameraTarget={[-3.5, 5, 0]}
+/>
+
 ## Angka Penting pada Koefisien
 
 Dalam notasi ilmiah, baca jumlah **angka penting dari koefisien**. Pangkat <InlineMath math="10" /> menentukan besar faktor pengali.
@@ -76,6 +137,17 @@ Diameter <InlineMath math="3{,}12 \text{ cm}" /> memiliki tiga angka penting. Ka
 
 > Hati-hati dengan satuan berpangkat. Faktor konversinya ikut berpangkat juga. Dari <InlineMath math="\text{cm}" /> ke <InlineMath math="\text{m}" /> faktornya <InlineMath math="10^{-2}" />, tetapi dari <InlineMath math="\text{cm}^2" /> ke <InlineMath math="\text{m}^2" /> faktornya <InlineMath math="10^{-4}" />.
 
+Satuan berpangkat juga membutuhkan faktor konversi yang dipangkatkan. Ikuti rantainya untuk luas tutup botol.
+
+<Mermaid
+  title="Mengonversi Satuan Berpangkat"
+  description="Faktor dari cm ke m dikuadratkan untuk luas, jadi cm² ke m² memakai 10^-4."
+  chart={`flowchart LR
+    A["1 cm = 10^-2 m"] --> B["1 cm^2 = (10^-2 m)^2 = 10^-4 m^2"]
+    B --> C["7,645... cm^2 = 7,645... x 10^-4 m^2"]
+    C --> D["Bulatkan sekali: 7,65 x 10^-4 m^2"]`}
+/>
+
 ## Perhitungan dengan Notasi Ilmiah
 
 Dalam notasi ilmiah, **kalikan koefisien dan jumlahkan pangkat** <InlineMath math="10" /> secara terpisah.
@@ -92,3 +164,15 @@ A &= (2{,}5 \times 10^{-6})(4{,}0 \times 10^{-7}) \text{ m}^2 \\
 Koefisien <InlineMath math="10{,}0" /> belum berbentuk baku karena nilainya tidak kurang dari <InlineMath math="10" />. Kedua hasil pengukuran, yaitu panjang dan lebar, memiliki dua angka penting. Karena itu, hasilnya ditulis sebagai <InlineMath math="1{,}0 \times 10^{-12}" />.
 
 Kamu dapat memeriksa aturan resmi penulisan nilai dalam [NIST SP 811 Bab 7](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values) dan faktor konversinya dalam [NIST SP 811 Lampiran B](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors).
+
+Ini seluruh perkalian itu sebagai jalur yang bisa kamu pakai lagi.
+
+<Mermaid
+  title="Perkalian dalam Notasi Ilmiah"
+  description="Kalikan koefisiennya, jumlahkan pangkatnya, geser koma kembali ke bentuk baku, lalu bulatkan sekali."
+  chart={`flowchart LR
+    A["2,5 x 4,0 = 10,0"] --> C["10,0 x 10^-13"]
+    B["-6 + -7 = -13"] --> C
+    C --> D["Bentuk baku: 1,00 x 10^-12"]
+    D --> E["Bulatkan ke 2 angka penting: 1,0 x 10^-12"]`}
+/>
