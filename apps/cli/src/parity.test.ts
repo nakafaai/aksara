@@ -3,9 +3,7 @@ import {
   GitCommitShaSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import {
-  ActiveAppLocaleSchema,
-} from "@nakafa/aksara-contracts/locale";
+import { ActiveAppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import type { ContentReleaseManifest } from "@nakafa/aksara-contracts/release";
 import { ActiveContentReleaseSchema } from "@nakafa/aksara-contracts/release/current/evidence";
 import { inheritContentSnapshot } from "@nakafa/aksara-contracts/release/snapshot/spec";
