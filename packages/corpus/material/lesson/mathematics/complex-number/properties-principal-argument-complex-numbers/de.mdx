@@ -1,138 +1,107 @@
 export const metadata = {
   title: "Eigenschaften des Hauptarguments komplexer Zahlen",
-  description: "Passe das Hauptargument nach der Multiplikation oder Division komplexer Zahlen in Polarform an den festgelegten Wertebereich an.",
+  description: "Das Argument eines Produkts ist die Summe der Argumente, das eines Quotienten ihre Differenz. Bringe das Ergebnis ins Hauptintervall, auch bei Potenzen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Komplexe Zahl",
 };
 
-## Argumente bei Produkten und Quotienten
+## Das Argument von Produkt und Quotient
 
-Bei der Multiplikation <Highlight>werden Richtungen durch die Summe ihrer Winkel verknüpft</Highlight>. Bei der Division werden die Winkel voneinander abgezogen. Seien <InlineMath math="z_1" /> und <InlineMath math="z_2" /> zwei komplexe Zahlen ungleich null in Polarform:
+Werden zwei komplexe Zahlen ungleich null multipliziert, **addieren sich ihre Argumente**, beim Dividieren subtrahieren sie sich. Beim Hauptwert kann diese Summe oder Differenz das Intervall <InlineMath math="(-180^\circ, 180^\circ]" /> verlassen, also addierst oder subtrahierst du bei Bedarf eine volle Umdrehung:
 
 <MathContainer>
-  <BlockMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)" />
-  <BlockMath math="z_2 = r_2(\cos \theta_2 + i\sin \theta_2)" />
+  <BlockMath math="\operatorname{Arg}(z_1 z_2) = \operatorname{Arg} z_1 + \operatorname{Arg} z_2 + 360^\circ k" />
+  <BlockMath math="\operatorname{Arg}\left(\frac{z_1}{z_2}\right) = \operatorname{Arg} z_1 - \operatorname{Arg} z_2 + 360^\circ k" />
 </MathContainer>
 
-Dabei ist <InlineMath math="\theta_1" /> ein Argument von <InlineMath math="z_1" /> und <InlineMath math="\theta_2" /> ein Argument von <InlineMath math="z_2" />.
+Die ganze Zahl <InlineMath math="k" /> ist immer <InlineMath math="-1" />, <InlineMath math="0" /> oder <InlineMath math="1" />, weil Summe oder Differenz zweier Winkel aus dem Hauptintervall zwischen <InlineMath math="-360^\circ" /> und <InlineMath math="360^\circ" /> liegt. Zum Beispiel ergeben <InlineMath math="\operatorname{Arg}(i) = 90^\circ" /> und <InlineMath math="\operatorname{Arg}(1 + i) = 45^\circ" /> den Wert <InlineMath math="\operatorname{Arg}\big(i(1 + i)\big) = 135^\circ" />, und tatsächlich ist <InlineMath math="i(1 + i) = -1 + i" />.
 
-### Argument des Produkts
+Die Beträge werden ebenfalls multipliziert oder dividiert, aber ein positiver Betrag ändert keine Richtung. Deshalb hängt das Argument eines Produkts nur von den Argumenten seiner beiden Faktoren ab.
 
-Das Argument des Produkts zweier komplexer Zahlen (<InlineMath math="z_1 \times z_2" />) ist die **Summe** der Argumente der einzelnen komplexen Zahlen.
+## Warum sich die Winkel addieren
 
-Die folgende Gleichheit ist modulo einer vollen Umdrehung zu verstehen:
-
-<BlockMath math="\begin{aligned} &amp;\arg(z_1 z_2) \\ &amp;\equiv \arg(z_1) + \arg(z_2) \pmod{2\pi} \end{aligned}" />
-
-Das heißt, wenn <InlineMath math="\theta_1" /> ein Argument von <InlineMath math="z_1" /> und <InlineMath math="\theta_2" /> ein Argument von <InlineMath math="z_2" /> ist,
-
-dann ist <InlineMath math="\theta_1 + \theta_2" /> eines der Argumente von <InlineMath math="z_1 z_2" />.
-
-Um das Hauptargument <InlineMath math="\text{Arg}(z_1 z_2)" />zu finden:
-
-1.  Berechne <InlineMath math="\text{Arg}(z_1) + \text{Arg}(z_2)" />.
-2.  Liegt das Ergebnis bereits in <InlineMath math="(-180^\circ, 180^\circ]" /> beziehungsweise <InlineMath math="(-\pi, \pi]" />, ist es das Hauptargument.
-3.  Andernfalls addiere oder subtrahiere volle Umdrehungen, bis das Ergebnis in diesem Intervall liegt.
-
-Die Additionstheoreme erklären die Produktregel. Multipliziere die Polarformen und fasse Realteil und Imaginärteil zusammen:
+Schreibe beide Zahlen in Polarform, <InlineMath math="z_1 = r_1(\cos\theta_1 + i\sin\theta_1)" /> und <InlineMath math="z_2 = r_2(\cos\theta_2 + i\sin\theta_2)" />. Multiplizierst du sie und ordnest Real- und Imaginärteil, erscheinen **die Additionstheoreme** für Kosinus und Sinus:
 
 <BlockMath math="\begin{aligned}\frac{z_1z_2}{r_1r_2}&amp;=(\cos\theta_1\cos\theta_2-\sin\theta_1\sin\theta_2)\\&amp;\quad+i(\sin\theta_1\cos\theta_2+\cos\theta_1\sin\theta_2)\\&amp;=\cos(\theta_1+\theta_2)+i\sin(\theta_1+\theta_2)\end{aligned}" />
 
-### Argument des Quotienten
+Das Produkt hat den Betrag <InlineMath math="r_1 r_2" /> und das Argument <InlineMath math="\theta_1 + \theta_2" />, passend zur [Multiplikation komplexer Zahlen](/de/faecher/mathematik/komplexe-zahlen/multiplikation-komplexer-zahlen) in Polarform. Die Division macht die Multiplikation rückgängig: Ist <InlineMath math="w = \frac{z_1}{z_2}" />, dann gilt <InlineMath math="w z_2 = z_1" />, also <InlineMath math="\arg w + \arg z_2 = \arg z_1" />, und das Argument von <InlineMath math="w" /> ist die Differenz der beiden Argumente.
 
-Das Argument des Quotienten zweier komplexer Zahlen (<InlineMath math="\frac{z_1}{z_2}" />, mit <InlineMath math="z_2 \neq 0" />) ist die **Differenz** zwischen dem Argument der komplexen Zahl des Zählers (<InlineMath math="z_1" />) und dem Argument der komplexen Zahl des Nenners (<InlineMath math="z_2" />).
+## Wenn die Winkelsumme das Hauptintervall verlässt
 
-Auch hier ist die Gleichheit modulo einer vollen Umdrehung zu verstehen:
+**Beispiel 1**. Sei <InlineMath math="z_1 = -1 + i" /> mit <InlineMath math="\operatorname{Arg} z_1 = 135^\circ" /> und <InlineMath math="z_2 = -1 + \sqrt{3}i" /> mit <InlineMath math="\operatorname{Arg} z_2 = 120^\circ" />. Die Summe der Argumente überschreitet <InlineMath math="180^\circ" />, also subtrahierst du eine Umdrehung:
 
-<BlockMath math="\begin{aligned} &amp;\arg\left(\frac{z_1}{z_2}\right) \\ &amp;\equiv \arg(z_1) - \arg(z_2) \pmod{2\pi} \end{aligned}" />
+<BlockMath math="\operatorname{Arg}(z_1 z_2) = 135^\circ + 120^\circ - 360^\circ = -105^\circ" />
 
-Das heißt, wenn <InlineMath math="\theta_1" /> ein Argument von <InlineMath math="z_1" /> und <InlineMath math="\theta_2" /> ein Argument von <InlineMath math="z_2" /> ist,
+Probe durch direktes Multiplizieren:
 
-dann ist <InlineMath math="\theta_1 - \theta_2" /> eines der Argumente von <InlineMath math="\frac{z_1}{z_2}" />.
+<BlockMath math="(-1 + i)(-1 + \sqrt{3}i) = (1 - \sqrt{3}) - (1 + \sqrt{3})i \approx -0{,}73 - 2{,}73i" />
 
-So bestimmst du das Hauptargument <InlineMath math="\text{Arg}\left(\frac{z_1}{z_2}\right)" />:
+Beide Komponenten sind negativ, also **liegt das Produkt im III. Quadranten**, wo der Hauptwert negativ ist. Der Bezugswinkel ist <InlineMath math="\arctan\frac{2{,}73}{0{,}73} \approx 75^\circ" />, und <InlineMath math="-180^\circ + 75^\circ = -105^\circ" />, passend zur Formel. Auch der Betrag passt: <InlineMath math="\sqrt{2} \cdot 2 = 2\sqrt{2} \approx 2{,}83" />.
 
-1.  Berechne <InlineMath math="\text{Arg}(z_1) - \text{Arg}(z_2)" />.
-2.  Liegt das Ergebnis bereits in <InlineMath math="(-180^\circ, 180^\circ]" /> beziehungsweise <InlineMath math="(-\pi, \pi]" />, ist es das Hauptargument.
-3.  Andernfalls bringe das Ergebnis mit demselben Schritt wie beim Produkt in dieses Intervall.
+**Beispiel 2**. Beim Quotienten <InlineMath math="\frac{-1 - i}{i}" /> hat der Zähler das Argument <InlineMath math="-135^\circ" /> und der Nenner <InlineMath math="90^\circ" />. Ihre Differenz liegt unter <InlineMath math="-180^\circ" />, also addierst du eine Umdrehung:
 
-### Einen Winkel ins Hauptintervall zurückführen
+<BlockMath math="\operatorname{Arg}\left(\frac{-1 - i}{i}\right) = -135^\circ - 90^\circ + 360^\circ = 135^\circ" />
 
-Eine Winkelsumme oder Winkeldifferenz ist nicht immer das Hauptargument. **Subtrahiere oder addiere eine volle Umdrehung**, um den Winkel im festgelegten Intervall zu wählen. Die linke Grenze ist dabei ausgeschlossen.
+Probe: Erweitere Zähler und Nenner mit <InlineMath math="-i" />, dann gilt <InlineMath math="\frac{-1 - i}{i} = (-1 - i)(-i) = i + i^2 = -1 + i" />. Die Zahl <InlineMath math="-1 + i" /> hat tatsächlich den Hauptwert <InlineMath math="135^\circ" />.
 
-| Operation | Winkel vor der Anpassung | Hauptargument |
+## Das Argument von Potenz und Konjugierter
+
+Eine Potenz ist wiederholte Multiplikation, also ist **das Argument der <InlineMath math="n" />-ten Potenz das <InlineMath math="n" />-Fache des Arguments**, zurückgebracht ins Hauptintervall:
+
+<BlockMath math="\operatorname{Arg}(z^n) = n \operatorname{Arg} z + 360^\circ k" />
+
+Für <InlineMath math="(-1 + i)^3" /> ergibt <InlineMath math="3 \cdot 135^\circ = 405^\circ" /> minus eine Umdrehung den Wert <InlineMath math="45^\circ" />. Probe: <InlineMath math="(-1 + i)^2 = -2i" />, dann <InlineMath math="-2i(-1 + i) = 2 + 2i" />, eine Zahl im I. Quadranten mit dem Argument <InlineMath math="45^\circ" />.
+
+Die [konjugiert komplexe Zahl](/de/faecher/mathematik/komplexe-zahlen/konjugiert-komplexe-zahlen) <InlineMath math="\bar{z} = x - iy" /> ist das Spiegelbild von <InlineMath math="z" /> an der reellen Achse, also wechselt ihr Argument das Vorzeichen: <InlineMath math="\operatorname{Arg}\bar{z} = -\operatorname{Arg} z" />. Die einzige Ausnahme ist die negative reelle Achse. Die Zahl <InlineMath math="-4" /> ist ihre eigene Konjugierte, und beide haben den Hauptwert <InlineMath math="180^\circ" />, weil <InlineMath math="-180^\circ" /> außerhalb des Intervalls liegt.
+
+## Häufige Fehler
+
+| Fehler | Warum er scheitert | So prüfst du |
 | --- | --- | --- |
-| Produkt | <InlineMath math="120^\circ+120^\circ=240^\circ" /> | <InlineMath math="240^\circ-360^\circ=-120^\circ" /> |
-| Quotient | <InlineMath math="-150^\circ-60^\circ=-210^\circ" /> | <InlineMath math="-210^\circ+360^\circ=150^\circ" /> |
-| Intervallgrenze | <InlineMath math="-180^\circ" /> | <InlineMath math="-180^\circ+360^\circ=180^\circ" /> |
+| Die Summe der Argumente ohne Anpassung angeben | <InlineMath math="135^\circ + 120^\circ = 255^\circ" /> liegt außerhalb des Hauptintervalls | Das Ergebnis muss zwischen <InlineMath math="-180^\circ" /> und <InlineMath math="180^\circ" /> liegen |
+| Beim Dividieren der Zahlen die Argumente dividieren | Ein Quotient subtrahiert die Argumente, er teilt sie nicht | Multipliziere das Ergebnis mit dem Nenner und prüfe das Argument |
+| In falscher Reihenfolge subtrahieren | <InlineMath math="\operatorname{Arg}\frac{z_1}{z_2}" /> nutzt das Argument des Zählers minus das des Nenners | Für <InlineMath math="\frac{1}{i} = -i" /> ist das Argument <InlineMath math="-90^\circ" />, nicht <InlineMath math="90^\circ" /> |
+| Glauben, der Betrag beeinflusse die Richtung | Ein positiver Betrag ändert nur die Länge des Pfeils | Das Argument von <InlineMath math="2z" /> ist gleich dem von <InlineMath math="z" /> |
+| <InlineMath math="\operatorname{Arg}\bar{z} = -180^\circ" /> für eine negative reelle Zahl schreiben | Das linke Intervallende gehört nicht dazu | Eine negative reelle Zahl ist ihre eigene Konjugierte |
 
-## Argumenteigenschaften verwenden
+Die verlässlichste Probe ist, **die Ergebniszahl direkt auszurechnen** und ihren Quadranten abzulesen. Der Quadrant bestätigt die Richtung des Arguments. Prüfe danach, ob der Wert in <InlineMath math="(-180^\circ, 180^\circ]" /> liegt, denn <InlineMath math="225^\circ" /> und <InlineMath math="-135^\circ" /> zeigen beide in den III. Quadranten.
 
-Verwende die **Summe der Winkel** für das Produkt und ihre Differenz für den Quotienten. Die **positiven Beträge** verändern nur die Vektorlängen. Gegeben sind:
+## Übungen
 
-<MathContainer>
-  <BlockMath math="z_1 = 2(\cos 45^\circ + i\sin 45^\circ)" />
-  <BlockMath math="z_2 = 3(\cos 95^\circ + i\sin 95^\circ)" />
-</MathContainer>
+Die ersten beiden Aufgaben üben die Anpassung nach Produkt und Quotient, die dritte nutzt eine Potenz und die vierte eine Konjugierte. **Berechne zuerst Summe, Differenz oder Vielfaches** und bringe es dann ins Intervall <InlineMath math="(-180^\circ, 180^\circ]" />.
 
-Bestimme das Hauptargument von <InlineMath math="z_1 \times z_2" /> und <InlineMath math="\frac{z_1}{z_2}" />.
+1. Gegeben sind <InlineMath math="\operatorname{Arg} z_1 = 150^\circ" /> und <InlineMath math="\operatorname{Arg} z_2 = 100^\circ" />. Bestimme <InlineMath math="\operatorname{Arg}(z_1 z_2)" />.
 
-**Lösung**:
+2. Gegeben sind <InlineMath math="\operatorname{Arg} z_1 = -170^\circ" /> und <InlineMath math="\operatorname{Arg} z_2 = 40^\circ" />. Bestimme <InlineMath math="\operatorname{Arg}\left(\frac{z_1}{z_2}\right)" />.
 
-Die beiden Hauptargumente lauten:
+3. Bestimme <InlineMath math="\operatorname{Arg}\big((1 + i)^6\big)" /> und prüfe es, indem du die Potenz ausrechnest.
 
-<MathContainer>
-  <BlockMath math="\text{Arg}(z_1) = 45^\circ" />
-  <BlockMath math="\text{Arg}(z_2) = 95^\circ" />
-</MathContainer>
+4. Bestimme den Hauptwert des Arguments der Konjugierten von <InlineMath math="z = -\sqrt{3} + i" />.
 
-1.  **Argument des Produkts (<InlineMath math="z_1 \times z_2" />)**:
+### Lösungen
 
-    Summe der Hauptargumente:
+**Aufgabe 1**. Die Summe der Argumente überschreitet <InlineMath math="180^\circ" />, also subtrahierst du eine Umdrehung:
 
-    <BlockMath math="\begin{aligned} \text{Arg}(z_1) + \text{Arg}(z_2) &amp;= 45^\circ + 95^\circ \\ &amp;= 140^\circ \end{aligned}" />
+<BlockMath math="\operatorname{Arg}(z_1 z_2) = 150^\circ + 100^\circ - 360^\circ = -110^\circ" />
 
-    Da <InlineMath math="140^\circ" /> bereits in <InlineMath math="(-180^\circ, 180^\circ]" /> liegt, gilt:
+Probe: <InlineMath math="-110^\circ" /> und <InlineMath math="250^\circ" /> zeigen in dieselbe Richtung, denn <InlineMath math="\cos(-110^\circ) = \cos 250^\circ \approx -0{,}342" /> und <InlineMath math="\sin(-110^\circ) = \sin 250^\circ \approx -0{,}940" />. **Nur <InlineMath math="-110^\circ" /> liegt im Hauptintervall**.
 
-    <BlockMath math="\text{Arg}(z_1 \times z_2) = 140^\circ" />
+**Aufgabe 2**. Die Differenz der Argumente liegt unter <InlineMath math="-180^\circ" />, also addierst du eine Umdrehung:
 
-    Die Menge aller Argumente ist <InlineMath math="\{140^\circ + k \cdot 360^\circ : k \in \mathbb{Z}\}" />
+<BlockMath math="\operatorname{Arg}\left(\frac{z_1}{z_2}\right) = -170^\circ - 40^\circ + 360^\circ = 150^\circ" />
 
-2.  **Quotientenargument (<InlineMath math="\frac{z_1}{z_2}" />)**:
+Probe: <InlineMath math="150^\circ + 40^\circ = 190^\circ" /> und <InlineMath math="190^\circ - 360^\circ = -170^\circ" />, also **führt der Quotient mal Nenner zur Richtung von <InlineMath math="z_1" /> zurück**.
 
-    Differenz der Hauptargumente:
+**Aufgabe 3**. Das Argument von <InlineMath math="1 + i" /> ist <InlineMath math="45^\circ" />, also <InlineMath math="6 \cdot 45^\circ = 270^\circ" />, dann subtrahierst du eine Umdrehung:
 
-    <BlockMath math="\begin{aligned} \text{Arg}(z_1) - \text{Arg}(z_2) &amp;= 45^\circ - 95^\circ \\ &amp;= -50^\circ \end{aligned}" />
+<BlockMath math="\operatorname{Arg}\big((1 + i)^6\big) = 270^\circ - 360^\circ = -90^\circ" />
 
-    Da <InlineMath math="-50^\circ" /> bereits in <InlineMath math="(-180^\circ, 180^\circ]" /> liegt, gilt:
+Probe: <InlineMath math="(1 + i)^2 = 2i" />, also <InlineMath math="(1 + i)^6 = (2i)^3 = 8i^3 = -8i" />. Die Zahl <InlineMath math="-8i" /> liegt auf der negativen imaginären Achse, also **ist ihr Argument tatsächlich <InlineMath math="-90^\circ" />**.
 
-    <BlockMath math="\text{Arg}\left(\frac{z_1}{z_2}\right) = -50^\circ" />
+**Aufgabe 4**. Der Punkt <InlineMath math="(-\sqrt{3}, 1)" /> liegt im II. Quadranten mit <InlineMath math="\operatorname{Arg} z = 150^\circ" />. Die Konjugierte spiegelt den Punkt an der reellen Achse:
 
-    Die Menge aller Argumente ist <InlineMath math="\{-50^\circ + k \cdot 360^\circ : k \in \mathbb{Z}\}" />.
+<BlockMath math="\operatorname{Arg}\bar{z} = -150^\circ" />
 
-## Übung
-
-Beide Zahlen stehen bereits in Polarform, sodass sich die beiden Argumente direkt verbinden, und der **Hauptbereich** entscheidet, ob das Ergebnis eine weitere volle Umdrehung braucht. Gegeben seien <InlineMath math="z_a = 4(\cos 120^\circ + i\sin 120^\circ)" /> und <InlineMath math="z_b = 2(\cos 50^\circ + i\sin 50^\circ)" />. Bestimme:
-
-1.  <InlineMath math="\text{Arg}(z_a \times z_b)" />
-2.  <InlineMath math="\text{Arg}\left(\frac{z_a}{z_b}\right)" />
-
-### Ausführliche Lösung
-
-Gegeben seien <InlineMath math="\text{Arg}(z_a) = 120^\circ" /> und <InlineMath math="\text{Arg}(z_b) = 50^\circ" />.
-
-Die **positiven Beträge** ändern die Richtung der beiden komplexen Zahlen nicht. Für die Rechnung werden deshalb nur die beiden Argumente benötigt.
-
-1.  **Produktargument**:
-
-    <BlockMath math="\begin{aligned} \text{Arg}(z_a) + \text{Arg}(z_b) &amp;= 120^\circ + 50^\circ \\ &amp;= 170^\circ \end{aligned}" />
-
-    Aus <InlineMath math="170^\circ \in (-180^\circ, 180^\circ]" /> folgt <InlineMath math="\text{Arg}(z_a z_b) = 170^\circ" />.
-
-2.  **Quotientenargument**:
-
-    <BlockMath math="\begin{aligned} \text{Arg}(z_a) - \text{Arg}(z_b) &amp;= 120^\circ - 50^\circ \\ &amp;= 70^\circ \end{aligned}" />
-
-    Aus <InlineMath math="70^\circ \in (-180^\circ, 180^\circ]" /> folgt <InlineMath math="\text{Arg}\left(\frac{z_a}{z_b}\right) = 70^\circ" />.
+Probe: <InlineMath math="\bar{z} = -\sqrt{3} - i" /> liegt im III. Quadranten mit dem Bezugswinkel <InlineMath math="30^\circ" /> und dem Argument <InlineMath math="-180^\circ + 30^\circ = -150^\circ" />, also **kehrt die Spiegelung das Vorzeichen des Arguments um**.

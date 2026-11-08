@@ -3,8 +3,8 @@ import type { TrackSourceInput } from "#corpus/tryout/schema";
 
 /** Active official-format TKA Bahasa Indonesia sets. */
 export const tkaIndonesianTrack = {
+  group: "senior-high-school",
   key: "indonesian-language",
-  kind: "subject",
   order: 2,
   profile: {
     names: {

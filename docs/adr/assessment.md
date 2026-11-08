@@ -368,7 +368,7 @@ returns unchanged, branded as a content language. It accepts `ar`, `id`, `de-CH`
 `zh-Hant-TW`, and `sr-Latn`. It refuses `AR` and `iw`, which name the canonical
 tags `ar` and `he`, and it refuses `en_US`, the empty string, and `x`, which Intl
 rejects. An item version and a stimulus version take it. The try-out contract
-keeps `DeliveryLanguageSchema`, which still holds the three app locales.
+keeps `DeliveryLanguageSchema`, which holds the declared app locales.
 
 The direction of a text is not stored: the renderer follows the script of each
 text. Every reader of the language was traced. `hasFamilyVersions` keeps one

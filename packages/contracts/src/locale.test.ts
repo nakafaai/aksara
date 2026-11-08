@@ -1,8 +1,11 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
 import {
+  ACTIVE_APP_LOCALE_CODES,
+  ActiveAppLocaleCodeSchema,
   ActiveAppLocaleListSchema,
   ActiveAppLocaleSchema,
+  AppLocaleCodeSchema,
   AppLocaleSchema,
   ArtifactLocaleSchema,
   activeAppLocaleCode,
@@ -17,6 +20,15 @@ describe("locale", () => {
     expect(Schema.decodeSync(DeliveryLanguageSchema)("de")).toBe("de");
     expect(activeAppLocaleCode(ActiveAppLocaleSchema.make("en"))).toBe("en");
     expect(artifactLocaleCode(ArtifactLocaleSchema.make("de"))).toBe("de");
+  });
+
+  it("declares Malay while only English, Indonesian, and German are active", () => {
+    expect(Schema.is(AppLocaleCodeSchema)("ms")).toBe(true);
+    expect(Schema.is(ActiveAppLocaleCodeSchema)("ms")).toBe(false);
+    expect(ACTIVE_APP_LOCALE_CODES).toEqual(["en", "id", "de"]);
+    expect(
+      Exit.isFailure(Schema.decodeUnknownExit(ActiveAppLocaleSchema)("ms"))
+    ).toBe(true);
   });
 
   it("accepts a well-formed canonical tag of any language as a content language", () => {
@@ -66,12 +78,13 @@ describe("locale", () => {
     }
   });
 
-  it("rejects empty, duplicate, and unordered active locale lists", () => {
+  it("rejects empty, duplicate, unordered, and not yet active locale lists", () => {
     for (const locales of [
       [],
       ["en", "en"],
       ["id", "en"],
       ["de", "id"],
+      ["en", "id", "de", "ms"],
     ] as const) {
       const result = Schema.decodeUnknownExit(ActiveAppLocaleListSchema)(
         locales
