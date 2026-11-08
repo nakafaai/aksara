@@ -1,61 +1,29 @@
+
 export const metadata = {
-  title: "Circle Sector",
-  description: "Calculate sector areas using proportional formulas. Understand central angle relationships and solve practical sector area problems.",
+  title: "Area of a Sector",
+  description: "The area of a sector is its central angle over 360 degrees times the area of the circle. Work out minor sectors, major sectors, and sector perimeters.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Circle Arcs and Sectors",
 };
 
+## Sector Area Formula
 
+A sector of a circle is the region bounded by **two radii and the arc** between them. Its area is a share of the circle's area, and the central angle <InlineMath math="\alpha" /> decides that share:
 
-## A Region Bounded by Two Radii and an Arc
+<BlockMath math="A_{\text{sector}} = \frac{\alpha}{360^\circ} \times \pi r^2" />
 
-A circle sector is the <Highlight>region of a disk bounded by two radii</Highlight> and the arc between them. A slice cut radially from a round cake or an orange wedge has roughly the same shape.
-
-The two radii form a central angle at the center of the circle. For a fixed radius, this angle determines what fraction of the disk the sector occupies.
-
-## Relationship Between Central Angle and Sector Area
-
-For a **fixed radius**, sector area is proportional to the central angle. Dividing a full turn into equal angles also divides the circle area into equal parts. Doubling the angle doubles the area of the corresponding sector.
-
-The relationship between central angle and sector area can be expressed as a ratio. If the central angle is <InlineMath math="\alpha" /> degrees, then the sector area is <InlineMath math="\frac{\alpha}{360^\circ}" /> part of the total circle area.
-
-<MathContainer>
-<BlockMath math="\text{Sector Area} = \frac{\alpha}{360^\circ} \times \pi r^2" />
-</MathContainer>
-
-For a fixed radius, sector area is proportional to the central angle. An angle of <InlineMath math="90^\circ" /> covers one-quarter of the circle, while <InlineMath math="180^\circ" /> covers one-half.
-
-## Calculating Sector Area
-
-A 60-degree angle takes **one sixth of the circle area**. Calculate the full area from the radius, then multiply by this angle fraction. Keep pi symbolic until the final rounding step.
-
-Consider a circle with radius <InlineMath math="14 \text{ cm}" /> and a sector with central angle <InlineMath math="60^\circ" />. Substitution gives:
-
-<MathContainer>
-<BlockMath math="\text{Sector Area} = \frac{60^\circ}{360^\circ} \times \pi \times 14^2" />
-<BlockMath math="= \frac{1}{6} \times \pi \times 196" />
-<BlockMath math="= \frac{196\pi}{6}" />
-<BlockMath math="= \frac{98\pi}{3} \text{ cm}^2" />
-<BlockMath math="\approx 102.63 \text{ cm}^2" />
-</MathContainer>
-
-The exact sector area is <InlineMath math="\frac{98\pi}{3} \text{ cm}^2" />, approximately <InlineMath math="102.63 \text{ cm}^2" />.
-
-## Comparison of Central Angle with Sector Area
-
-All diagrams use the **same radius**, so you can compare areas through their central angles. The 120-degree sector has twice the area of the 60-degree sector. The 270-degree sector covers three quarters of the circle and leaves one quarter.
-
-<ContentStack>
+If the central angle is in radians, the formula becomes <InlineMath math="A = \frac{1}{2}\theta r^2" />. The <InlineMath math="60^\circ" /> sector diagram shows a sector of a circle with radius <InlineMath math="3" />, which is one sixth of the circle.
 
 <LineEquation
-  title={<>Sector <InlineMath math="60^\circ" /> (<InlineMath math="\frac{1}{6}" /> of circle)</>}
-  description={<>Central angle <InlineMath math="60^\circ" /> produces a sector with area <InlineMath math="\frac{1}{6}" /> of the total circle area.</>}
+  title={<>Sector of <InlineMath math="60^\circ" /> (<InlineMath math="\frac{1}{6}" /> of the circle)</>}
+  description={<>With radius <InlineMath math="3" />, the <InlineMath math="60^\circ" /> sector takes <InlineMath math="\frac{1}{6}" /> of the area <InlineMath math="9\pi" />, which is <InlineMath math="\frac{3\pi}{2}" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -89,8 +57,8 @@ All diagrams use the **same radius**, so you can compare areas through their cen
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
+      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+        const i = sampleIndex / 10;
         const angle = (i * Math.PI / 3) / 20;
         return {
           x: 3 * Math.cos(angle),
@@ -105,7 +73,7 @@ All diagrams use the **same radius**, so you can compare areas through their cen
       labels: [
         {
           text: <InlineMath math="60^\circ" />,
-          at: 50,
+          at: 100,
           offset: [0.8, 0.5, 0],
 
         },
@@ -114,13 +82,22 @@ All diagrams use the **same radius**, so you can compare areas through their cen
   ]}
 />
 
+For that sector, <InlineMath math="A = \frac{60}{360} \times \pi \times 3^2 = \frac{1}{6} \times 9\pi = \frac{3\pi}{2}" />. Finding the central angle from other data is covered in [the central angle of a sector](/en/subjects/mathematics/circle-arc-sector/central-angle-on-sector).
+
+## The Share of the Circle in Each Sector
+
+With the same radius, a sector's area is **proportional to its central angle**. The next four diagrams use the same radius <InlineMath math="3" /> with growing angles, so you can compare the shares of the circle directly.
+
+<ContentStack>
+
 <LineEquation
-  title={<>Sector <InlineMath math="90^\circ" /> (<InlineMath math="\frac{1}{4}" /> of circle)</>}
-  description={<>Central angle <InlineMath math="90^\circ" /> produces a sector with area <InlineMath math="\frac{1}{4}" /> of the total circle area.</>}
+  title={<>Sector of <InlineMath math="90^\circ" /> (<InlineMath math="\frac{1}{4}" /> of the circle)</>}
+  description={<>With radius <InlineMath math="3" />, the <InlineMath math="90^\circ" /> sector takes <InlineMath math="\frac{1}{4}" /> of the area <InlineMath math="9\pi" />, which is <InlineMath math="\frac{9\pi}{4}" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -154,7 +131,8 @@ All diagrams use the **same radius**, so you can compare areas through their cen
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 31 }, (_, i) => {
+      points: Array.from({ length: 211 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (i * Math.PI / 2) / 30;
         return {
           x: 3 * Math.cos(angle),
@@ -169,7 +147,7 @@ All diagrams use the **same radius**, so you can compare areas through their cen
       labels: [
         {
           text: <InlineMath math="90^\circ" />,
-          at: 15,
+          at: 105,
           offset: [0.5, 0.8, 0],
 
         },
@@ -179,12 +157,13 @@ All diagrams use the **same radius**, so you can compare areas through their cen
 />
 
 <LineEquation
-  title={<>Sector <InlineMath math="120^\circ" /> (<InlineMath math="\frac{1}{3}" /> of circle)</>}
-  description={<>Central angle <InlineMath math="120^\circ" /> produces a sector with area <InlineMath math="\frac{1}{3}" /> of the total circle area.</>}
+  title={<>Sector of <InlineMath math="120^\circ" /> (<InlineMath math="\frac{1}{3}" /> of the circle)</>}
+  description={<>With radius <InlineMath math="3" />, the <InlineMath math="120^\circ" /> sector takes <InlineMath math="\frac{1}{3}" /> of the area <InlineMath math="9\pi" />, which is <InlineMath math="3\pi" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -218,7 +197,8 @@ All diagrams use the **same radius**, so you can compare areas through their cen
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 41 }, (_, i) => {
+      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * 2 * Math.PI / 3) / 40;
         return {
           x: 3 * Math.cos(angle),
@@ -233,7 +213,7 @@ All diagrams use the **same radius**, so you can compare areas through their cen
       labels: [
         {
           text: <InlineMath math="120^\circ" />,
-          at: 20,
+          at: 100,
           offset: [-0.5, 1, 0],
 
         },
@@ -243,12 +223,13 @@ All diagrams use the **same radius**, so you can compare areas through their cen
 />
 
 <LineEquation
-  title={<>Sector <InlineMath math="180^\circ" /> (<InlineMath math="\frac{1}{2}" /> of circle)</>}
-  description={<>Central angle <InlineMath math="180^\circ" /> produces a sector with area <InlineMath math="\frac{1}{2}" /> of the total circle area.</>}
+  title={<>Sector of <InlineMath math="180^\circ" /> (<InlineMath math="\frac{1}{2}" /> of the circle)</>}
+  description={<>With radius <InlineMath math="3" />, the <InlineMath math="180^\circ" /> sector takes <InlineMath math="\frac{1}{2}" /> of the area <InlineMath math="9\pi" />, which is <InlineMath math="\frac{9\pi}{2}" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -272,7 +253,8 @@ All diagrams use the **same radius**, so you can compare areas through their cen
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 31 }, (_, i) => {
+      points: Array.from({ length: 211 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (i * Math.PI) / 30;
         return {
           x: 3 * Math.cos(angle),
@@ -287,7 +269,7 @@ All diagrams use the **same radius**, so you can compare areas through their cen
       labels: [
         {
           text: <InlineMath math="180^\circ" />,
-          at: 15,
+          at: 105,
           offset: [0, 0.5, 0],
 
         },
@@ -297,12 +279,13 @@ All diagrams use the **same radius**, so you can compare areas through their cen
 />
 
 <LineEquation
-  title={<>Sector <InlineMath math="270^\circ" /> (<InlineMath math="\frac{3}{4}" /> of circle)</>}
-  description={<>Central angle <InlineMath math="270^\circ" /> produces a sector with area <InlineMath math="\frac{3}{4}" /> of the total circle area.</>}
+  title={<>Sector of <InlineMath math="270^\circ" /> (<InlineMath math="\frac{3}{4}" /> of the circle)</>}
+  description={<>With radius <InlineMath math="3" />, the <InlineMath math="270^\circ" /> sector takes <InlineMath math="\frac{3}{4}" /> of the area <InlineMath math="9\pi" />, which is <InlineMath math="\frac{27\pi}{4}" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -336,7 +319,8 @@ All diagrams use the **same radius**, so you can compare areas through their cen
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 82 }, (_, i) => {
+      points: Array.from({ length: 244 }, (_, sampleIndex) => {
+        const i = sampleIndex / 3;
         const startAngle = 0;
         const endAngle = (3 * Math.PI) / 2;
         const angle = startAngle + (i * endAngle) / 81;
@@ -353,7 +337,7 @@ All diagrams use the **same radius**, so you can compare areas through their cen
       labels: [
         {
           text: <InlineMath math="270^\circ" />,
-          at: 40,
+          at: 120,
           offset: [1, -0.5, 0],
 
         },
@@ -364,56 +348,118 @@ All diagrams use the **same radius**, so you can compare areas through their cen
 
 </ContentStack>
 
-## Practice Problems
+The table works out each sector in the diagrams with <InlineMath math="r = 3" />, so the circle's area is <InlineMath math="9\pi" />.
 
-Problems one and three ask for **sector area**, while problem two asks for the central angle. The angles are already in degrees, so use their fraction of 360 degrees without converting to radians.
+| Central angle | Share of the circle | Sector area |
+| --- | --- | --- |
+| <InlineMath math="60^\circ" /> | <InlineMath math="\frac{1}{6}" /> | <InlineMath math="\frac{3\pi}{2}" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{9\pi}{4}" /> |
+| <InlineMath math="120^\circ" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="3\pi" /> |
+| <InlineMath math="180^\circ" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="\frac{9\pi}{2}" /> |
+| <InlineMath math="270^\circ" /> | <InlineMath math="\frac{3}{4}" /> | <InlineMath math="\frac{27\pi}{4}" /> |
 
-1. A circle has a radius of <InlineMath math="21 \text{ cm}" />. Determine the sector area formed by a central angle of <InlineMath math="120^\circ" />.
+The <InlineMath math="120^\circ" /> sector is twice the <InlineMath math="60^\circ" /> sector, and the <InlineMath math="180^\circ" /> sector is a semicircle.
 
-2. A sector has area <InlineMath math="49\pi \text{ cm}^2" /> in a circle of radius <InlineMath math="14 \text{ cm}" />. What is its central angle?
+## Finding a Sector Area Step by Step
 
-3. A round flatbread with diameter <InlineMath math="28 \text{ cm}" /> is cut radially through its center into <InlineMath math="8" /> equal sectors. Determine the area of each piece.
+There are three steps: find **the share of the circle** from the central angle, find the circle's area from the radius, then multiply. Keep <InlineMath math="\pi" /> as a symbol until the last step so you do not round halfway through.
 
-### Worked Solutions
-
-Compare the **area fraction and angle fraction**. In problem two, divide the sector area by the full circle area first. In problem three, convert the diameter to a radius before squaring.
-
-**Solution 1**
-
-Given: <InlineMath math="r = 21 \text{ cm}" />, <InlineMath math="\alpha = 120^\circ" />
-
-<MathContainer>
-<BlockMath math="\text{Sector Area} = \frac{\alpha}{360^\circ} \times \pi r^2" />
-<BlockMath math="= \frac{120^\circ}{360^\circ} \times \pi \times 21^2" />
-<BlockMath math="= \frac{1}{3} \times \pi \times 441" />
-<BlockMath math="= \frac{441\pi}{3}" />
-<BlockMath math="= 147\pi \text{ cm}^2" />
-<BlockMath math="\approx 461.81 \text{ cm}^2" />
-</MathContainer>
-
-**Solution 2**
-
-Given: sector area = <InlineMath math="49\pi \text{ cm}^2" />, <InlineMath math="r = 14 \text{ cm}" />
+**Example**. A circle with radius <InlineMath math="14\text{ cm}" /> has a sector with central angle <InlineMath math="60^\circ" />. Find the sector's area.
 
 <MathContainer>
-<BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times \pi \times 14^2" />
-<BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times 196\pi" />
-<BlockMath math="49 = \frac{\alpha}{360^\circ} \times 196" />
-<BlockMath math="\frac{\alpha}{360^\circ} = \frac{49}{196}" />
-<BlockMath math="\frac{\alpha}{360^\circ} = \frac{1}{4}" />
-<BlockMath math="\alpha = \frac{1}{4} \times 360^\circ" />
-<BlockMath math="\alpha = 90^\circ" />
+  <BlockMath math="\frac{60^\circ}{360^\circ} = \frac{1}{6}" />
+  <BlockMath math="\pi r^2 = \pi \times 14^2 = 196\pi" />
+  <BlockMath math="A = \frac{1}{6} \times 196\pi = \frac{98\pi}{3} \approx 102.63\text{ cm}^2" />
 </MathContainer>
 
-**Solution 3**
+If a problem asks for <InlineMath math="\pi = \frac{22}{7}" />, the result changes slightly: <InlineMath math="A = \frac{1}{6} \times \frac{22}{7} \times 196 = \frac{308}{3} \approx 102.67\text{ cm}^2" />. The small gap between the two results comes from rounding <InlineMath math="\pi" />, not from a calculation error.
 
-Given: diameter = <InlineMath math="28 \text{ cm}" />, so <InlineMath math="r = 14 \text{ cm}" />
-The flatbread is cut radially into <InlineMath math="8" /> equal sectors, so the central angle of each piece is <InlineMath math="\frac{360^\circ}{8} = 45^\circ" />
+## Minor and Major Sectors
+
+Two radii split a circle into **two sectors at once**. The minor sector has a central angle below <InlineMath math="180^\circ" />, and the major sector takes the rest, <InlineMath math="360^\circ - \alpha" />. Their areas add up to the circle's area:
+
+<BlockMath math="A_{\text{major}} = \pi r^2 - A_{\text{minor}}" />
+
+The <InlineMath math="270^\circ" /> sector in the last diagram is a major sector whose partner is the <InlineMath math="90^\circ" /> sector. Check with the table: <InlineMath math="9\pi - \frac{9\pi}{4} = \frac{27\pi}{4}" />, the area of the <InlineMath math="270^\circ" /> sector.
+
+## Perimeter of a Sector
+
+The perimeter of a sector is the length of its whole boundary, **two radii plus the arc**. Its unit is a length, not an area, so keep it apart from the sector area:
+
+<BlockMath math="P_{\text{sector}} = 2r + \frac{\alpha}{360^\circ} \times 2\pi r" />
+
+**Example**. A sector has radius <InlineMath math="14\text{ cm}" /> and central angle <InlineMath math="90^\circ" />, with <InlineMath math="\pi = \frac{22}{7}" />. Its arc is <InlineMath math="\frac{1}{4} \times 2 \times \frac{22}{7} \times 14 = 22\text{ cm}" /> long, so its perimeter is <InlineMath math="2 \times 14 + 22 = 50\text{ cm}" />. The arc length and the sector area are also linked directly, as shown in [the relationship between arc length and sector area](/en/subjects/mathematics/circle-arc-sector/relationship-between-arc-length-and-sector-area).
+
+## Worked Examples on Sector Area
+
+Every example starts by **finding the share of the circle**. The last one runs backward, from the area to the angle.
+
+**Example 1**. A circle with radius <InlineMath math="21\text{ cm}" /> has a sector with central angle <InlineMath math="120^\circ" />. Find its area.
+
+<BlockMath math="A = \frac{120}{360} \times \pi \times 21^2 = \frac{1}{3} \times 441\pi = 147\pi \approx 461.81\text{ cm}^2" />
+
+With <InlineMath math="\pi = \frac{22}{7}" />, the result is <InlineMath math="147 \times \frac{22}{7} = 462\text{ cm}^2" />.
+
+**Example 2**. A round flatbread with diameter <InlineMath math="28\text{ cm}" /> is cut through its center into <InlineMath math="8" /> equal slices. Find the area of each slice.
+
+The radius is half the diameter, <InlineMath math="14\text{ cm}" />, and each slice takes <InlineMath math="\frac{1}{8}" /> of the circle:
+
+<BlockMath math="A = \frac{1}{8} \times \pi \times 14^2 = \frac{49\pi}{2} \approx 76.97\text{ cm}^2" />
+
+Check: eight slices add up to <InlineMath math="8 \times \frac{49\pi}{2} = 196\pi" />, the area of the whole flatbread.
+
+**Example 3**. A sector of a circle with radius <InlineMath math="14\text{ cm}" /> has area <InlineMath math="49\pi\text{ cm}^2" />. Find its central angle.
+
+<BlockMath math="\frac{\alpha}{360^\circ} = \frac{49\pi}{196\pi} = \frac{1}{4} \quad\Longrightarrow\quad \alpha = 90^\circ" />
+
+## Common Mistakes
+
+Before you calculate, check whether the problem gives **the radius or the diameter**. The table pairs common mistakes with a way to check for each one.
+
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Using the diameter as <InlineMath math="r" /> | The area uses <InlineMath math="r^2" />, so the result is four times too large | A sector cannot be larger than the whole circle |
+| Using the circumference formula <InlineMath math="2\pi r" /> for area | Area uses <InlineMath math="\pi r^2" /> and square units | A sector area is in <InlineMath math="\text{cm}^2" />, not cm |
+| Treating the perimeter as the arc length | The perimeter adds the two radii | A sector's perimeter is always more than <InlineMath math="2r" /> |
+| Treating a sector as a segment | A sector is bounded by two radii, a [segment](/en/subjects/mathematics/circle-arc-sector/segment) by a chord | Check whether the region reaches the center |
+
+The diameter mistake shows when your sector comes out larger than the circle. A sector is only part of the circle, so such a result is always wrong.
+
+## Practice on Sector Area
+
+For each problem, first find **the share of the circle** from the central angle. Use <InlineMath math="\pi = \frac{22}{7}" /> when the radius is a multiple of <InlineMath math="7" />.
+
+1. Find the area of a <InlineMath math="45^\circ" /> sector of a circle with radius <InlineMath math="7\text{ cm}" />.
+
+2. On a circle with radius <InlineMath math="10\text{ cm}" />, the minor sector has a central angle of <InlineMath math="72^\circ" />. Find the area of the major sector in terms of <InlineMath math="\pi" />.
+
+3. Find the perimeter of a <InlineMath math="60^\circ" /> sector of a circle with radius <InlineMath math="21\text{ cm}" />.
+
+4. A <InlineMath math="90^\circ" /> sector has area <InlineMath math="154\text{ cm}^2" />. Find the radius of the circle.
+
+### Answers
+
+**Problem 1**. An angle of <InlineMath math="45^\circ" /> takes **one eighth of the circle**, and the circle's area is <InlineMath math="\frac{22}{7} \times 7^2 = 154\text{ cm}^2" />:
+
+<BlockMath math="A = \frac{1}{8} \times 154 = 19.25\text{ cm}^2" />
+
+Check: eight such sectors add up to <InlineMath math="8 \times 19.25 = 154" />.
+
+**Problem 2**. The major sector uses **the remaining angle** <InlineMath math="360^\circ - 72^\circ = 288^\circ" />:
+
+<BlockMath math="A_{\text{major}} = \frac{288}{360} \times \pi \times 10^2 = \frac{4}{5} \times 100\pi = 80\pi\text{ cm}^2" />
+
+Check with the minor sector: <InlineMath math="\frac{72}{360} \times 100\pi = 20\pi" />, and <InlineMath math="20\pi + 80\pi = 100\pi" />.
+
+**Problem 3**. The perimeter is **two radii plus the arc**. The arc is <InlineMath math="\frac{1}{6} \times 2 \times \frac{22}{7} \times 21 = 22\text{ cm}" />:
+
+<BlockMath math="P = 2 \times 21 + 22 = 64\text{ cm}" />
+
+**Problem 4**. A <InlineMath math="90^\circ" /> sector is one quarter of the circle, so **the circle's area is four times** <InlineMath math="154" />:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\text{Area of each piece} \\ &amp;= \frac{45^\circ}{360^\circ} \times \pi \times 14^2 \end{aligned}" />
-<BlockMath math="= \frac{1}{8} \times \pi \times 196" />
-<BlockMath math="= \frac{196\pi}{8}" />
-<BlockMath math="= \frac{49\pi}{2} \text{ cm}^2" />
-<BlockMath math="\approx 76.97 \text{ cm}^2" />
+  <BlockMath math="\frac{22}{7} r^2 = 4 \times 154 = 616" />
+  <BlockMath math="r^2 = 616 \times \frac{7}{22} = 196 \quad\Longrightarrow\quad r = 14\text{ cm}" />
 </MathContainer>
+
+Check: <InlineMath math="\frac{1}{4} \times \frac{22}{7} \times 14^2 = 154" />.

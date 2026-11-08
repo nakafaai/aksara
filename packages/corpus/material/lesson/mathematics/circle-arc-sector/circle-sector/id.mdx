@@ -1,61 +1,29 @@
+
 export const metadata = {
-  title: "Juring Lingkaran",
-  description: "Hitung luas juring dengan rumus proporsional. Pahami hubungan sudut pusat dan selesaikan masalah luas juring praktis dengan metode bertahap.",
+  title: "Rumus Luas Juring Lingkaran",
+  description: "Luas juring sama dengan sudut pusat per 360 derajat dikali luas lingkaran. Hitung juring kecil, juring besar, dan keliling juring lewat contoh soal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Busur dan Juring Lingkaran",
 };
 
+## Rumus Luas Juring
 
+Juring lingkaran adalah daerah yang dibatasi **dua jari-jari dan busur** di antara keduanya. Luasnya adalah bagian dari luas lingkaran, dan bagian itu ditentukan oleh sudut pusat <InlineMath math="\alpha" />:
 
-## Daerah di antara Dua Jari-jari dan Busur Lingkaran
+<BlockMath math="L_{\text{juring}} = \frac{\alpha}{360^\circ} \times \pi r^2" />
 
-Juring lingkaran adalah <Highlight>daerah pada cakram yang dibatasi oleh dua jari-jari</Highlight> dan busur di antara keduanya. Irisan yang dipotong dari pusat kue bundar atau satu siung jeruk memiliki bentuk yang kurang lebih serupa.
-
-Kedua jari-jari membentuk sudut pusat di pusat lingkaran. Pada jari-jari yang tetap, sudut ini menentukan bagian cakram yang ditempati juring.
-
-## Hubungan Sudut Pusat dengan Luas Juring
-
-Pada **jari-jari yang tetap**, luas juring berbanding lurus dengan sudut pusat. Membagi satu putaran menjadi beberapa sudut sama besar juga membagi luas lingkaran menjadi bagian sama besar. Jika sudutnya menjadi dua kali lipat, luas juring yang bersesuaian juga menjadi dua kali lipat.
-
-Hubungan antara sudut pusat dan luas juring dapat dinyatakan dalam bentuk perbandingan. Jika sudut pusat adalah <InlineMath math="\alpha" /> derajat, maka luas juring merupakan <InlineMath math="\frac{\alpha}{360^\circ}" /> bagian dari luas keseluruhan lingkaran.
-
-<MathContainer>
-<BlockMath math="\text{Luas Juring} = \frac{\alpha}{360^\circ} \times \pi r^2" />
-</MathContainer>
-
-Rumus ini menunjukkan bahwa luas juring sebanding dengan sudut pusatnya. Ketika sudut pusat adalah <InlineMath math="90^\circ" />, maka luas juring akan menjadi seperempat dari luas lingkaran. Begitu pula ketika sudut pusat <InlineMath math="180^\circ" />, luas juring akan menjadi setengah dari luas lingkaran.
-
-## Menghitung Luas Juring
-
-Sudut 60 derajat mengambil **seperenam luas lingkaran**. Hitung luas lingkaran dari jari-jari terlebih dahulu, lalu kalikan dengan bagian sudut tersebut. Biarkan pi tetap dalam bentuk simbol sampai pembulatan terakhir.
-
-Lihat contoh perhitungan. Misalkan terdapat lingkaran dengan jari-jari <InlineMath math="14 \text{ cm}" /> dan sudut pusat <InlineMath math="60^\circ" />. Luas juring dapat dihitung sebagai berikut:
-
-<MathContainer>
-<BlockMath math="\text{Luas Juring} = \frac{60^\circ}{360^\circ} \times \pi \times 14^2" />
-<BlockMath math="= \frac{1}{6} \times \pi \times 196" />
-<BlockMath math="= \frac{196\pi}{6}" />
-<BlockMath math="= \frac{98\pi}{3} \text{ cm}^2" />
-<BlockMath math="\approx 102{,}63 \text{ cm}^2" />
-</MathContainer>
-
-Luas juring tepatnya <InlineMath math="\frac{98\pi}{3} \text{ cm}^2" />, atau sekitar <InlineMath math="102{,}63 \text{ cm}^2" />.
-
-## Perbandingan Sudut Pusat dengan Luas Juring
-
-Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas melalui sudut pusat. Juring 120 derajat memiliki dua kali luas juring 60 derajat. Juring 270 derajat mencakup tiga perempat lingkaran dan menyisakan seperempat.
-
-<ContentStack>
+Kalau sudut pusatnya dalam radian, rumusnya menjadi <InlineMath math="L = \frac{1}{2}\theta r^2" />. Diagram juring <InlineMath math="60^\circ" /> memperlihatkan juring pada lingkaran berjari-jari <InlineMath math="3" />, yaitu seperenam lingkaran.
 
 <LineEquation
-  title={<>Juring <InlineMath math="60^\circ" /> (<InlineMath math="\frac{1}{6}" /> bagian lingkaran)</>}
-  description={<>Sudut pusat <InlineMath math="60^\circ" /> menghasilkan juring dengan luas <InlineMath math="\frac{1}{6}" /> dari luas total lingkaran.</>}
+  title={<>Juring <InlineMath math="60^\circ" /> (<InlineMath math="\frac{1}{6}" /> lingkaran)</>}
+  description={<>Pada jari-jari <InlineMath math="3" />, juring <InlineMath math="60^\circ" /> mengambil <InlineMath math="\frac{1}{6}" /> dari luas <InlineMath math="9\pi" />, yaitu <InlineMath math="\frac{3\pi}{2}" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -89,8 +57,8 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
+      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+        const i = sampleIndex / 10;
         const angle = (i * Math.PI / 3) / 20;
         return {
           x: 3 * Math.cos(angle),
@@ -105,7 +73,7 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
       labels: [
         {
           text: <InlineMath math="60^\circ" />,
-          at: 50,
+          at: 100,
           offset: [0.8, 0.5, 0],
 
         },
@@ -114,13 +82,22 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
   ]}
 />
 
+Untuk juring itu, <InlineMath math="L = \frac{60}{360} \times \pi \times 3^2 = \frac{1}{6} \times 9\pi = \frac{3\pi}{2}" />. Cara mendapatkan sudut pusatnya dari data lain dibahas pada [sudut pusat pada juring](/id/materi/matematika/busur-dan-juring-lingkaran/sudut-pusat-pada-juring).
+
+## Bagian Lingkaran pada Setiap Juring
+
+Pada jari-jari yang sama, luas juring **sebanding dengan sudut pusat**. Empat diagram berikutnya memakai jari-jari <InlineMath math="3" /> yang sama dan sudut yang makin besar, jadi kamu bisa membandingkan bagian lingkarannya langsung.
+
+<ContentStack>
+
 <LineEquation
-  title={<>Juring <InlineMath math="90^\circ" /> (<InlineMath math="\frac{1}{4}" /> bagian lingkaran)</>}
-  description={<>Sudut pusat <InlineMath math="90^\circ" /> menghasilkan juring dengan luas <InlineMath math="\frac{1}{4}" /> dari luas total lingkaran.</>}
+  title={<>Juring <InlineMath math="90^\circ" /> (<InlineMath math="\frac{1}{4}" /> lingkaran)</>}
+  description={<>Pada jari-jari <InlineMath math="3" />, juring <InlineMath math="90^\circ" /> mengambil <InlineMath math="\frac{1}{4}" /> dari luas <InlineMath math="9\pi" />, yaitu <InlineMath math="\frac{9\pi}{4}" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -154,7 +131,8 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 31 }, (_, i) => {
+      points: Array.from({ length: 211 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (i * Math.PI / 2) / 30;
         return {
           x: 3 * Math.cos(angle),
@@ -169,7 +147,7 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
       labels: [
         {
           text: <InlineMath math="90^\circ" />,
-          at: 15,
+          at: 105,
           offset: [0.5, 0.8, 0],
 
         },
@@ -179,12 +157,13 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
 />
 
 <LineEquation
-  title={<>Juring <InlineMath math="120^\circ" /> (<InlineMath math="\frac{1}{3}" /> bagian lingkaran)</>}
-  description={<>Sudut pusat <InlineMath math="120^\circ" /> menghasilkan juring dengan luas <InlineMath math="\frac{1}{3}" /> dari luas total lingkaran.</>}
+  title={<>Juring <InlineMath math="120^\circ" /> (<InlineMath math="\frac{1}{3}" /> lingkaran)</>}
+  description={<>Pada jari-jari <InlineMath math="3" />, juring <InlineMath math="120^\circ" /> mengambil <InlineMath math="\frac{1}{3}" /> dari luas <InlineMath math="9\pi" />, yaitu <InlineMath math="3\pi" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -218,7 +197,8 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 41 }, (_, i) => {
+      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * 2 * Math.PI / 3) / 40;
         return {
           x: 3 * Math.cos(angle),
@@ -233,7 +213,7 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
       labels: [
         {
           text: <InlineMath math="120^\circ" />,
-          at: 20,
+          at: 100,
           offset: [-0.5, 1, 0],
 
         },
@@ -243,12 +223,13 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
 />
 
 <LineEquation
-  title={<>Juring <InlineMath math="180^\circ" /> (<InlineMath math="\frac{1}{2}" /> bagian lingkaran)</>}
-  description={<>Sudut pusat <InlineMath math="180^\circ" /> menghasilkan juring dengan luas <InlineMath math="\frac{1}{2}" /> dari luas total lingkaran.</>}
+  title={<>Juring <InlineMath math="180^\circ" /> (<InlineMath math="\frac{1}{2}" /> lingkaran)</>}
+  description={<>Pada jari-jari <InlineMath math="3" />, juring <InlineMath math="180^\circ" /> mengambil <InlineMath math="\frac{1}{2}" /> dari luas <InlineMath math="9\pi" />, yaitu <InlineMath math="\frac{9\pi}{2}" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -272,7 +253,8 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 31 }, (_, i) => {
+      points: Array.from({ length: 211 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (i * Math.PI) / 30;
         return {
           x: 3 * Math.cos(angle),
@@ -287,7 +269,7 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
       labels: [
         {
           text: <InlineMath math="180^\circ" />,
-          at: 15,
+          at: 105,
           offset: [0, 0.5, 0],
 
         },
@@ -297,12 +279,13 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
 />
 
 <LineEquation
-  title={<>Juring <InlineMath math="270^\circ" /> (<InlineMath math="\frac{3}{4}" /> bagian lingkaran)</>}
-  description={<>Sudut pusat <InlineMath math="270^\circ" /> menghasilkan juring dengan luas <InlineMath math="\frac{3}{4}" /> dari luas total lingkaran.</>}
+  title={<>Juring <InlineMath math="270^\circ" /> (<InlineMath math="\frac{3}{4}" /> lingkaran)</>}
+  description={<>Pada jari-jari <InlineMath math="3" />, juring <InlineMath math="270^\circ" /> mengambil <InlineMath math="\frac{3}{4}" /> dari luas <InlineMath math="9\pi" />, yaitu <InlineMath math="\frac{27\pi}{4}" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -336,7 +319,8 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 82 }, (_, i) => {
+      points: Array.from({ length: 244 }, (_, sampleIndex) => {
+        const i = sampleIndex / 3;
         const startAngle = 0;
         const endAngle = (3 * Math.PI) / 2;
         const angle = startAngle + (i * endAngle) / 81;
@@ -353,7 +337,7 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
       labels: [
         {
           text: <InlineMath math="270^\circ" />,
-          at: 40,
+          at: 120,
           offset: [1, -0.5, 0],
 
         },
@@ -364,56 +348,118 @@ Semua gambar memakai **jari-jari yang sama**, jadi kamu bisa membandingkan luas 
 
 </ContentStack>
 
-## Latihan
+Tabel ini menghitung luas setiap juring pada diagram dengan <InlineMath math="r = 3" />, sehingga luas lingkarannya <InlineMath math="9\pi" />.
 
-Soal pertama dan ketiga meminta **luas juring**, sedangkan soal kedua meminta sudut pusat. Sudut sudah dalam derajat, jadi gunakan bagian sudut terhadap 360 derajat tanpa mengubahnya ke radian.
+| Sudut pusat | Bagian lingkaran | Luas juring |
+| --- | --- | --- |
+| <InlineMath math="60^\circ" /> | <InlineMath math="\frac{1}{6}" /> | <InlineMath math="\frac{3\pi}{2}" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{9\pi}{4}" /> |
+| <InlineMath math="120^\circ" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="3\pi" /> |
+| <InlineMath math="180^\circ" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="\frac{9\pi}{2}" /> |
+| <InlineMath math="270^\circ" /> | <InlineMath math="\frac{3}{4}" /> | <InlineMath math="\frac{27\pi}{4}" /> |
 
-1. Sebuah lingkaran memiliki jari-jari <InlineMath math="21 \text{ cm}" />. Tentukan luas juring yang dibentuk oleh sudut pusat <InlineMath math="120^\circ" />.
+Juring <InlineMath math="120^\circ" /> luasnya dua kali juring <InlineMath math="60^\circ" />, dan juring <InlineMath math="180^\circ" /> adalah setengah lingkaran.
 
-2. Sebuah juring memiliki luas <InlineMath math="49\pi \text{ cm}^2" /> pada lingkaran berjari-jari <InlineMath math="14 \text{ cm}" />. Berapakah sudut pusatnya?
+## Menghitung Luas Juring Langkah demi Langkah
 
-3. Sebuah roti pipih bundar berdiameter <InlineMath math="28 \text{ cm}" /> dipotong secara radial melalui pusatnya menjadi <InlineMath math="8" /> juring sama besar. Tentukan luas setiap potongan.
+Ada tiga langkah: tentukan **bagian lingkaran** dari sudut pusat, hitung luas lingkaran dari jari-jari, lalu kalikan keduanya. Biarkan <InlineMath math="\pi" /> sebagai simbol sampai langkah terakhir agar tidak ada pembulatan di tengah jalan.
+
+**Contoh**. Lingkaran berjari-jari <InlineMath math="14\text{ cm}" /> memuat juring dengan sudut pusat <InlineMath math="60^\circ" />. Tentukan luas juringnya.
+
+<MathContainer>
+  <BlockMath math="\frac{60^\circ}{360^\circ} = \frac{1}{6}" />
+  <BlockMath math="\pi r^2 = \pi \times 14^2 = 196\pi" />
+  <BlockMath math="L = \frac{1}{6} \times 196\pi = \frac{98\pi}{3} \approx 102{,}63\text{ cm}^2" />
+</MathContainer>
+
+Jika soal meminta <InlineMath math="\pi = \frac{22}{7}" />, hasilnya sedikit berbeda: <InlineMath math="L = \frac{1}{6} \times \frac{22}{7} \times 196 = \frac{308}{3} \approx 102{,}67\text{ cm}^2" />. Selisih kecil kedua hasil berasal dari pembulatan <InlineMath math="\pi" />, bukan dari kesalahan hitung.
+
+## Juring Kecil dan Juring Besar
+
+Dua jari-jari membagi lingkaran menjadi **dua juring sekaligus**. Juring kecil punya sudut pusat kurang dari <InlineMath math="180^\circ" />, dan juring besar memakai sisanya, <InlineMath math="360^\circ - \alpha" />. Luas keduanya berjumlah luas lingkaran:
+
+<BlockMath math="L_{\text{besar}} = \pi r^2 - L_{\text{kecil}}" />
+
+Juring <InlineMath math="270^\circ" /> pada diagram terakhir adalah juring besar yang pasangannya juring <InlineMath math="90^\circ" />. Periksa dengan tabel: <InlineMath math="9\pi - \frac{9\pi}{4} = \frac{27\pi}{4}" />, sama dengan luas juring <InlineMath math="270^\circ" />.
+
+## Keliling Juring
+
+Keliling juring adalah panjang seluruh batasnya, yaitu **dua jari-jari ditambah busur**. Satuannya panjang, bukan luas, jadi jangan tertukar dengan luas juring:
+
+<BlockMath math="K_{\text{juring}} = 2r + \frac{\alpha}{360^\circ} \times 2\pi r" />
+
+**Contoh**. Juring berjari-jari <InlineMath math="14\text{ cm}" /> dengan sudut pusat <InlineMath math="90^\circ" />, dengan <InlineMath math="\pi = \frac{22}{7}" />. Panjang busurnya <InlineMath math="\frac{1}{4} \times 2 \times \frac{22}{7} \times 14 = 22\text{ cm}" />, jadi kelilingnya <InlineMath math="2 \times 14 + 22 = 50\text{ cm}" />. Panjang busur dan luas juring juga saling terhubung langsung, seperti dibahas pada [hubungan panjang busur dan luas juring](/id/materi/matematika/busur-dan-juring-lingkaran/hubungan-panjang-busur-dan-luas-juring).
+
+## Contoh Soal Luas Juring
+
+Setiap contoh dimulai dengan **mencari bagian lingkaran**. Contoh terakhir berjalan terbalik, dari luas ke sudut.
+
+**Contoh 1**. Lingkaran berjari-jari <InlineMath math="21\text{ cm}" /> memuat juring dengan sudut pusat <InlineMath math="120^\circ" />. Tentukan luasnya.
+
+<BlockMath math="L = \frac{120}{360} \times \pi \times 21^2 = \frac{1}{3} \times 441\pi = 147\pi \approx 461{,}81\text{ cm}^2" />
+
+Dengan <InlineMath math="\pi = \frac{22}{7}" />, hasilnya <InlineMath math="147 \times \frac{22}{7} = 462\text{ cm}^2" />.
+
+**Contoh 2**. Roti bundar berdiameter <InlineMath math="28\text{ cm}" /> dipotong melalui pusatnya menjadi <InlineMath math="8" /> potong sama besar. Tentukan luas setiap potong.
+
+Jari-jarinya setengah diameter, <InlineMath math="14\text{ cm}" />, dan setiap potong mengambil <InlineMath math="\frac{1}{8}" /> lingkaran:
+
+<BlockMath math="L = \frac{1}{8} \times \pi \times 14^2 = \frac{49\pi}{2} \approx 76{,}97\text{ cm}^2" />
+
+Periksa: delapan potong berjumlah <InlineMath math="8 \times \frac{49\pi}{2} = 196\pi" />, yaitu luas roti utuh.
+
+**Contoh 3**. Juring pada lingkaran berjari-jari <InlineMath math="14\text{ cm}" /> luasnya <InlineMath math="49\pi\text{ cm}^2" />. Tentukan sudut pusatnya.
+
+<BlockMath math="\frac{\alpha}{360^\circ} = \frac{49\pi}{196\pi} = \frac{1}{4} \quad\Longrightarrow\quad \alpha = 90^\circ" />
+
+## Kesalahan yang Sering Terjadi
+
+Sebelum menghitung, periksa dulu apakah soal memberi **jari-jari atau diameter**. Tabel ini memasangkan kesalahan yang umum dengan cara memeriksanya.
+
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Memakai diameter sebagai <InlineMath math="r" /> | Luas memakai <InlineMath math="r^2" />, jadi hasilnya empat kali lipat | Luas juring tidak boleh melebihi luas lingkaran |
+| Memakai rumus keliling <InlineMath math="2\pi r" /> untuk luas | Luas memakai <InlineMath math="\pi r^2" /> dengan satuan persegi | Luas juring bersatuan <InlineMath math="\text{cm}^2" />, bukan cm |
+| Menyamakan keliling juring dengan panjang busur | Keliling juring masih ditambah dua jari-jari | Keliling juring selalu lebih dari <InlineMath math="2r" /> |
+| Menyamakan juring dengan tembereng | Juring dibatasi dua jari-jari, [tembereng](/id/materi/matematika/busur-dan-juring-lingkaran/tembereng) dibatasi tali busur | Lihat apakah daerahnya menyentuh pusat lingkaran |
+
+Kesalahan diameter terlihat jika luas juring yang kamu peroleh lebih besar daripada luas lingkaran. Juring hanya bagian dari lingkaran, jadi hasil seperti itu pasti salah.
+
+## Latihan Soal Luas Juring
+
+Untuk setiap soal, tentukan dulu **bagian lingkaran** dari sudut pusat. Pakai <InlineMath math="\pi = \frac{22}{7}" /> jika jari-jarinya kelipatan <InlineMath math="7" />.
+
+1. Tentukan luas juring bersudut pusat <InlineMath math="45^\circ" /> pada lingkaran berjari-jari <InlineMath math="7\text{ cm}" />.
+
+2. Pada lingkaran berjari-jari <InlineMath math="10\text{ cm}" />, juring kecil punya sudut pusat <InlineMath math="72^\circ" />. Tentukan luas juring besarnya dalam <InlineMath math="\pi" />.
+
+3. Tentukan keliling juring bersudut pusat <InlineMath math="60^\circ" /> pada lingkaran berjari-jari <InlineMath math="21\text{ cm}" />.
+
+4. Juring bersudut pusat <InlineMath math="90^\circ" /> luasnya <InlineMath math="154\text{ cm}^2" />. Tentukan jari-jari lingkarannya.
 
 ### Pembahasan
 
-Bandingkan **bagian luas dan bagian sudut**. Pada soal kedua, bagi luas juring dengan luas lingkaran penuh terlebih dahulu. Pada soal ketiga, ubah diameter menjadi jari-jari sebelum menguadratkan.
+**Soal 1**. Sudut <InlineMath math="45^\circ" /> mengambil **seperdelapan lingkaran**, dan luas lingkaran <InlineMath math="\frac{22}{7} \times 7^2 = 154\text{ cm}^2" />:
 
-**Pembahasan 1**
+<BlockMath math="L = \frac{1}{8} \times 154 = 19{,}25\text{ cm}^2" />
 
-Diketahui: <InlineMath math="r = 21 \text{ cm}" />, <InlineMath math="\alpha = 120^\circ" />
+Periksa: delapan juring sebesar itu berjumlah <InlineMath math="8 \times 19{,}25 = 154" />.
 
-<MathContainer>
-<BlockMath math="\text{Luas Juring} = \frac{\alpha}{360^\circ} \times \pi r^2" />
-<BlockMath math="= \frac{120^\circ}{360^\circ} \times \pi \times 21^2" />
-<BlockMath math="= \frac{1}{3} \times \pi \times 441" />
-<BlockMath math="= \frac{441\pi}{3}" />
-<BlockMath math="= 147\pi \text{ cm}^2" />
-<BlockMath math="\approx 461{,}81 \text{ cm}^2" />
-</MathContainer>
+**Soal 2**. Juring besar memakai **sisa sudut** <InlineMath math="360^\circ - 72^\circ = 288^\circ" />:
 
-**Pembahasan 2**
+<BlockMath math="L_{\text{besar}} = \frac{288}{360} \times \pi \times 10^2 = \frac{4}{5} \times 100\pi = 80\pi\text{ cm}^2" />
 
-Diketahui: luas juring = <InlineMath math="49\pi \text{ cm}^2" />, <InlineMath math="r = 14 \text{ cm}" />
+Periksa dengan juring kecil: <InlineMath math="\frac{72}{360} \times 100\pi = 20\pi" />, dan <InlineMath math="20\pi + 80\pi = 100\pi" />.
 
-<MathContainer>
-<BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times \pi \times 14^2" />
-<BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times 196\pi" />
-<BlockMath math="49 = \frac{\alpha}{360^\circ} \times 196" />
-<BlockMath math="\frac{\alpha}{360^\circ} = \frac{49}{196}" />
-<BlockMath math="\frac{\alpha}{360^\circ} = \frac{1}{4}" />
-<BlockMath math="\alpha = \frac{1}{4} \times 360^\circ" />
-<BlockMath math="\alpha = 90^\circ" />
-</MathContainer>
+**Soal 3**. Keliling juring adalah **dua jari-jari ditambah busur**. Busurnya <InlineMath math="\frac{1}{6} \times 2 \times \frac{22}{7} \times 21 = 22\text{ cm}" />:
 
-**Pembahasan 3**
+<BlockMath math="K = 2 \times 21 + 22 = 64\text{ cm}" />
 
-Diketahui: diameter = <InlineMath math="28 \text{ cm}" />, maka <InlineMath math="r = 14 \text{ cm}" />
-Roti dipotong secara radial menjadi <InlineMath math="8" /> juring sama besar, maka sudut pusat setiap potongan adalah <InlineMath math="\frac{360^\circ}{8} = 45^\circ" />
+**Soal 4**. Juring <InlineMath math="90^\circ" /> adalah seperempat lingkaran, jadi **luas lingkarannya empat kali** <InlineMath math="154" />:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\text{Luas setiap potongan} \\ &amp;= \frac{45^\circ}{360^\circ} \times \pi \times 14^2 \end{aligned}" />
-<BlockMath math="= \frac{1}{8} \times \pi \times 196" />
-<BlockMath math="= \frac{196\pi}{8}" />
-<BlockMath math="= \frac{49\pi}{2} \text{ cm}^2" />
-<BlockMath math="\approx 76{,}97 \text{ cm}^2" />
+  <BlockMath math="\frac{22}{7} r^2 = 4 \times 154 = 616" />
+  <BlockMath math="r^2 = 616 \times \frac{7}{22} = 196 \quad\Longrightarrow\quad r = 14\text{ cm}" />
 </MathContainer>
+
+Periksa: <InlineMath math="\frac{1}{4} \times \frac{22}{7} \times 14^2 = 154" />.
