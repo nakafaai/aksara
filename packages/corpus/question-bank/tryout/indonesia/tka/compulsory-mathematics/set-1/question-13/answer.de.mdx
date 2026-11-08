@@ -1,33 +1,15 @@
-Addiere die beiden Verschiebungsvektoren und ziehe die **Summe** vom Bildpunkt ab, um den Ausgangspunkt zu bestimmen.
+Bei einer Verkettung zählt die **Reihenfolge**: zuerst spiegeln, dann verschieben. Bei der Spiegelung an der waagerechten Geraden <InlineMath math="y=3" /> bleibt die <InlineMath math="x" />-Koordinate gleich, und die <InlineMath math="y" />-Koordinate wird zu <InlineMath math="2\cdot3-y" />.
 
 <BlockMath math="\begin{aligned}
-v&=(4+(-2),1+3)=(2,4) \\
-P&=Q-v=(7-2,8-4)=(5,4)
+P(5,-2)&\xrightarrow{\ y=3\ }P'(5,\ 6-(-2))=P'(5,8) \\
+P'(5,8)&\xrightarrow{\ T\ }P''(5-4,\ 8+1)=P''(1,9)
 \end{aligned}" />
 
-Das Produkt der Ausgangskoordinaten beträgt:
+Zur Kontrolle: <InlineMath math="P" /> und <InlineMath math="P'" /> liegen beide <InlineMath math="5" /> Einheiten von der Geraden <InlineMath math="y=3" /> entfernt, der eine darunter, der andere darüber.
 
-<BlockMath math="5\cdot4=20" />
+Der Endbildpunkt ist also <InlineMath math="(1,9)" />.
 
-<LineEquation
-  title="Zwei aufeinanderfolgende Verschiebungen"
-  description="Der erste Vektor führt von P nach R, der zweite von R nach Q. Lies den Weg rückwärts, um den Ausgangspunkt zu finden."
-  cameraPosition={[7, 6, 7]}
-  cameraTarget={[7, 6, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [{ x: 5, y: 4, z: 0 }, { x: 9, y: 5, z: 0 }],
-      color: "#9333ea", smooth: false, cone: { position: "end" },
-      labels: [
-        { text: <InlineMath math="P(5,4)" />, at: 0, offset: [-0.2, -0.5, 0] },
-        { text: <InlineMath math="R(9,5)" />, at: 1, offset: [0, -0.5, 0] },
-      ],
-    },
-    {
-      points: [{ x: 9, y: 5, z: 0 }, { x: 7, y: 8, z: 0 }],
-      color: "#d97706", smooth: false, cone: { position: "end" },
-      labels: [{ text: <InlineMath math="Q(7,8)" />, at: 1, offset: [0, 0.5, 0] }],
-    },
-  ]}
-/>
+- <InlineMath math="(5,8)" /> ist nur das Spiegelbild. Die Verschiebung fehlt.
+- <InlineMath math="(1,7)" /> entsteht mit der falschen Reihenfolge: erst verschieben zu <InlineMath math="(1,-1)" />, dann spiegeln.
+- <InlineMath math="(1,3)" /> spiegelt an der <InlineMath math="x" />-Achse statt an <InlineMath math="y=3" /> und verschiebt dann.
+- <InlineMath math="(-3,-1)" /> spiegelt an der senkrechten Geraden <InlineMath math="x=3" /> und verschiebt dann.

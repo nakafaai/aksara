@@ -6,30 +6,29 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "water-tank",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$231\\text{ cm}^2$$",
+        },
+        {
+          correct: false,
+          label: "$$924\\text{ cm}^2$$",
+        },
+        {
           correct: true,
-          label: "$$70$$",
+          label: "$$1{.}848\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$60$$",
+          label: "$$2{.}079\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$64$$",
-        },
-        {
-          correct: false,
-          label: "$$68$$",
-        },
-        {
-          correct: false,
-          label: "$$72$$",
+          label: "$$3{.}696\\text{ cm}^2$$",
         },
       ],
     },

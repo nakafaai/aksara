@@ -92,8 +92,14 @@ function paragraphs(rawMdx: string) {
   return Arr.filter(parts, (part) => part.length > 0);
 }
 
-/** Lists every option, column, and statement a learner reads with the prompt. */
+/**
+ * Lists every option, column, and statement a learner reads with the prompt. A
+ * numeric entry shows only its unit, which is no wording of its own.
+ */
 function labels(interaction: InteractionSource): readonly string[] {
+  if (interaction.kind === "numericEntry") {
+    return [];
+  }
   if (interaction.kind === "matrix") {
     return [
       ...interaction.columns,

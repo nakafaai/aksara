@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate the interquartile range, compare it with the full range, and interpret how the middle half of a data set is distributed.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistics",
 };
 
@@ -25,6 +25,16 @@ The formula is:
   of the data).
 
 So, the <InlineMath math="\mathrm{IQR}" /> is the difference between the upper and lower quartiles.
+
+Compare both spreads for both groups. Group One has range <InlineMath math="5" /> and IQR <InlineMath math="2" />, Group Two has range <InlineMath math="35" /> and IQR <InlineMath math="24.5" />. The IQR ignores the extreme values, so it describes how tightly the middle half sits.
+
+<BarChart
+  title={<>Range and interquartile range of both groups</>}
+  description={<>The range and the interquartile range of Group One and Group Two.</>}
+  yAxisLabel="Spread"
+  data={[["range, one", 18 - 13], ["IQR, one", 17 - 15], ["range, two", 36 - 1], ["IQR, two", 28.75 - 4.25]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Spread", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Comparing Age Spreads
 
@@ -48,6 +58,54 @@ The table lists <InlineMath math="12 \text{ people}" /> in each group:
 | <InlineMath math="12" /> | <InlineMath math="18" /> | <InlineMath math="36" /> |
 
 We will compare their means, quartiles, ranges, and interquartile ranges.
+
+The dots tell the same story value by value. Group One crowds around <InlineMath math="16" /> and <InlineMath math="17" />, while Group Two splits into a low cluster and a high cluster with a wide gap in the middle. The IQR measures only the middle half of each row of dots.
+
+<MathVisual
+  title={<>The ages of both groups as dots</>}
+  description={<>Twelve ages per group on one number line, Group One above and Group Two below.</>}
+  labels={{
+    g1: <>Group One</>,
+    g2: <>Group Two</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 37 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 0, y: 0 }, to: { x: 37, y: 0 }, appearance: "reference" },
+      { id: "a0", kind: "point", at: { x: 13, y: 0.6 }, appearance: "primary" },
+      { id: "a1", kind: "point", at: { x: 14, y: 0.6 }, appearance: "primary" },
+      { id: "a2", kind: "point", at: { x: 15, y: 0.6 }, appearance: "primary" },
+      { id: "a3", kind: "point", at: { x: 15, y: 1.2 }, appearance: "primary" },
+      { id: "a4", kind: "point", at: { x: 16, y: 0.6 }, appearance: "primary" },
+      { id: "a5", kind: "point", at: { x: 16, y: 1.2 }, appearance: "primary" },
+      { id: "a6", kind: "point", at: { x: 17, y: 0.6 }, appearance: "primary" },
+      { id: "a7", kind: "point", at: { x: 17, y: 1.2 }, appearance: "primary" },
+      { id: "a8", kind: "point", at: { x: 17, y: 1.8 }, appearance: "primary" },
+      { id: "a9", kind: "point", at: { x: 17, y: 2.4 }, appearance: "primary" },
+      { id: "a10", kind: "point", at: { x: 17, y: 3 }, appearance: "primary" },
+      { id: "a11", kind: "point", at: { x: 18, y: 0.6 }, appearance: "primary" },
+      { id: "b0", kind: "point", at: { x: 1, y: -2.8 }, appearance: "secondary" },
+      { id: "b1", kind: "point", at: { x: 3, y: -2.8 }, appearance: "secondary" },
+      { id: "b2", kind: "point", at: { x: 4, y: -2.8 }, appearance: "secondary" },
+      { id: "b3", kind: "point", at: { x: 5, y: -2.8 }, appearance: "secondary" },
+      { id: "b4", kind: "point", at: { x: 7, y: -2.8 }, appearance: "secondary" },
+      { id: "b5", kind: "point", at: { x: 8, y: -2.8 }, appearance: "secondary" },
+      { id: "b6", kind: "point", at: { x: 12, y: -2.8 }, appearance: "secondary" },
+      { id: "b7", kind: "point", at: { x: 27, y: -2.8 }, appearance: "secondary" },
+      { id: "b8", kind: "point", at: { x: 28, y: -2.8 }, appearance: "secondary" },
+      { id: "b9", kind: "point", at: { x: 29, y: -2.8 }, appearance: "secondary" },
+      { id: "b10", kind: "point", at: { x: 32, y: -2.8 }, appearance: "secondary" },
+      { id: "b11", kind: "point", at: { x: 36, y: -2.8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "g1", objectId: "a0", at: { x: 13, y: 0.6 }, placement: "left" },
+      { key: "g2", objectId: "b0", at: { x: 1, y: -2.8 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 ### Calculating the Mean
 
 If you calculate the average age for both groups, the result is **exactly the same**, <InlineMath math="16 \text{ years}" /> old.
@@ -118,3 +176,33 @@ The results can now be compared in one table:
 - Group Two has a range of <InlineMath math="35" /> and an <InlineMath math="\mathrm{IQR}" /> of <InlineMath math="24.5" />. Its middle <InlineMath math="50\%" /> lies between <InlineMath math="Q_1=4.25" /> and <InlineMath math="Q_3=28.75" />, a span of <InlineMath math="24.5\text{ years}" />.
 
 Two datasets can have the same mean but different spreads. The <InlineMath math="\mathrm{IQR}" /> measures the width of <Highlight>the middle half of the data</Highlight> and is resistant to extreme values because it does not use the outer quarters.
+
+Put the two groups side by side as box plots. Group One fits in a short box from <InlineMath math="15" /> to <InlineMath math="17" />, so its IQR is <InlineMath math="2" />. Group Two stretches from <InlineMath math="4.25" /> to <InlineMath math="28.75" />, an IQR of <InlineMath math="24.5" />. Both groups have the mean <InlineMath math="16" />, yet the boxes show at once how differently the ages spread.
+
+<MathVisual
+  title={<>Same mean, very different spread</>}
+  description={<>Box plots of both groups on one axis. Group One: 13, 15, 16.5, 17, 18. Group Two: 1, 4.25, 10, 28.75, 36.</>}
+  labels={{
+    g1: <>Group One</>,
+    g2: <>Group Two</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 37 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "alo", kind: "segment", from: { x: 13, y: 1.5 }, to: { x: 15, y: 1.5 }, appearance: "primary" },
+      { id: "ahi", kind: "segment", from: { x: 17, y: 1.5 }, to: { x: 18, y: 1.5 }, appearance: "primary" },
+      { id: "abox", kind: "polygon", vertices: [{ x: 15, y: 1.5 - 0.6 }, { x: 17, y: 1.5 - 0.6 }, { x: 17, y: 1.5 + 0.6 }, { x: 15, y: 1.5 + 0.6 }], appearance: "primary" },
+      { id: "amid", kind: "segment", from: { x: 16.5, y: 1.5 - 0.6 }, to: { x: 16.5, y: 1.5 + 0.6 }, appearance: "answer" },
+      { id: "blo", kind: "segment", from: { x: 1, y: -1.5 }, to: { x: 4.25, y: -1.5 }, appearance: "secondary" },
+      { id: "bhi", kind: "segment", from: { x: 28.75, y: -1.5 }, to: { x: 36, y: -1.5 }, appearance: "secondary" },
+      { id: "bbox", kind: "polygon", vertices: [{ x: 4.25, y: -1.5 - 0.6 }, { x: 28.75, y: -1.5 - 0.6 }, { x: 28.75, y: -1.5 + 0.6 }, { x: 4.25, y: -1.5 + 0.6 }], appearance: "secondary" },
+      { id: "bmid", kind: "segment", from: { x: 10, y: -1.5 - 0.6 }, to: { x: 10, y: -1.5 + 0.6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "g1", objectId: "abox", at: { x: 15, y: 2.1 }, placement: "above-left" },
+      { key: "g2", objectId: "bbox", at: { x: 4.25, y: -0.9 }, placement: "above-left" },
+    ],
+  }}
+/>

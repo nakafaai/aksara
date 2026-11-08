@@ -8,11 +8,16 @@ import {
   Order,
   Schema,
 } from "effect";
+import { entranceTryoutSource } from "#corpus/tryout/germany/entrance/source";
 import { snbtTryoutSource } from "#corpus/tryout/indonesia/snbt/source";
 import { tkaTryoutSource } from "#corpus/tryout/indonesia/tka/source";
 import { type ExamSource, ExamSourceSchema } from "#corpus/tryout/schema";
 
-const tryoutPrograms = [snbtTryoutSource, tkaTryoutSource];
+const tryoutPrograms = [
+  snbtTryoutSource,
+  tkaTryoutSource,
+  entranceTryoutSource,
+];
 
 /** An injected try-out registry failed strict source-contract decoding. */
 export class TryoutRegistryDecodeError extends Schema.TaggedError<
