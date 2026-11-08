@@ -8,31 +8,27 @@ const item: ItemSource = {
   },
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Peluang jumlah kedua dadu $$9$$ adalah $$\\frac19$$.",
+          correct: false,
+          label: "$$\\frac{20}{81}$$",
         },
         {
-          column: 1,
-          label: "Peluang dadu merah lebih besar adalah $$\\frac5{12}$$.",
+          correct: true,
+          label: "$$\\frac14$$",
         },
         {
-          column: 1,
-          label:
-            "Jika jumlahnya genap, peluang kedua dadu menunjukkan angka ganjil adalah $$\\frac12$$.",
+          correct: false,
+          label: "$$\\frac{5}{18}$$",
         },
         {
-          column: 1,
-          label:
-            "Kejadian dadu merah genap dan jumlah kedua dadu genap saling bebas.",
+          correct: false,
+          label: "$$\\frac49$$",
         },
         {
-          column: 2,
-          label:
-            "Peluang sedikitnya satu dadu menunjukkan angka enam adalah $$\\frac13$$.",
+          correct: false,
+          label: "$$\\frac59$$",
         },
       ],
     },

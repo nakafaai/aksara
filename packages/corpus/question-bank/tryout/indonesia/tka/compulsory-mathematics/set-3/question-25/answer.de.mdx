@@ -1,32 +1,18 @@
-Es gibt <InlineMath math="6\cdot6=36" /> gleich wahrscheinliche **geordnete Ergebnisse**. Die Summe <InlineMath math="9" /> tritt bei <InlineMath math="(3,6),(4,5),(5,4),(6,3)" /> auf. Ihre Wahrscheinlichkeit beträgt <InlineMath math="\frac4{36}=\frac19" />.
-
-Damit der rote Würfel größer ist, erlauben seine sechs Werte jeweils <InlineMath math="0,1,2,3,4,5" /> blaue Werte.
+Es gibt insgesamt <InlineMath math="9\cdot8\cdot7=504" /> Codes. Bei einem passenden Code ist die Hunderterziffer <InlineMath math="5" /> bis <InlineMath math="9" /> und die Einerziffer gerade. **Beide Bedingungen können dieselben Ziffern benutzen**, etwa <InlineMath math="6" /> und <InlineMath math="8" />, also zähle getrennt nach der Hunderterziffer.
 
 <BlockMath math="\begin{aligned}
-P&=\frac{0+1+2+3+4+5}{36} \\
-&=\frac{15}{36}=\frac5{12}
+\text{Hunderter }5,7,9&:\ 3\cdot4\cdot7=84 \\
+\text{Hunderter }6,8&:\ 2\cdot3\cdot7=42 \\
+P&=\frac{84+42}{504}=\frac{126}{504}=\frac14
 \end{aligned}" />
 
-| Roter Würfel | Blauer Würfel | Anzahl der Ergebnisse | Summe |
-| --- | --- | ---: | --- |
-| Ungerade | Ungerade | 9 | Gerade |
-| Gerade | Gerade | 9 | Gerade |
-| Ungerade | Gerade | 9 | Ungerade |
-| Gerade | Ungerade | 9 | Ungerade |
+In jeder Zeile wird die Zehnerziffer zuletzt aus den <InlineMath math="7" /> übrigen Ziffern gewählt. Ist die Hunderterziffer gerade, bleiben für die Einerziffer nur <InlineMath math="3" /> Möglichkeiten, weil eine gerade Ziffer schon vergeben ist.
 
-Eine gerade Summe entsteht aus zwei ungeraden oder zwei geraden Werten. Beide Fälle umfassen jeweils <InlineMath math="3\cdot3=9" /> Ergebnisse. Bei **gegebener gerader Summe** beträgt die Wahrscheinlichkeit für zwei ungerade Werte daher <InlineMath math="\frac9{18}=\frac12" />.
+Zur Kontrolle: <InlineMath math="126=504:4" />.
 
-Sei <InlineMath math="A" /> das Ereignis eines geraden roten Werts und <InlineMath math="B" /> das Ereignis einer geraden Summe. Ihr Schnitt besteht aus zwei geraden Würfelwerten.
+Die Wahrscheinlichkeit ist also <InlineMath math="\frac14" />.
 
-<BlockMath math="\begin{aligned}
-P(A)&=\frac12 \\
-P(B)&=\frac12 \\
-P(A\cap B)&=\frac9{36}=\frac14 \\
-P(A)P(B)&=\frac14
-\end{aligned}" />
-
-Diese Gleichheit beweist die **Unabhängigkeit** von <InlineMath math="A" /> und <InlineMath math="B" />. Berechne mindestens eine Sechs über das **Gegenereignis, dass kein Würfel eine Sechs zeigt**.
-
-<BlockMath math="P=1-\frac{5\cdot5}{36}=\frac{11}{36}" />
-
-Die ersten vier Aussagen stimmen. Die behauptete Wahrscheinlichkeit <InlineMath math="\frac13" /> für mindestens eine Sechs ist falsch.
+- <InlineMath math="\frac{20}{81}" /> multipliziert <InlineMath math="\frac59\cdot\frac49" />, als dürften sich Ziffern wiederholen und als beeinflussten sich die Bedingungen nicht.
+- <InlineMath math="\frac{5}{18}" /> multipliziert <InlineMath math="\frac59" /> mit <InlineMath math="\frac12" />, als wäre die Hälfte der Ziffern <InlineMath math="1" /> bis <InlineMath math="9" /> gerade.
+- <InlineMath math="\frac49" /> nutzt nur die Bedingung gerade.
+- <InlineMath math="\frac59" /> nutzt nur die Bedingung größer als <InlineMath math="500" />.

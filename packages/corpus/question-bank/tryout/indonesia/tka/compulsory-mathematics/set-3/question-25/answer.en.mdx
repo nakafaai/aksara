@@ -1,32 +1,18 @@
-There are <InlineMath math="6\cdot6=36" /> equally likely **ordered outcomes**. The sum <InlineMath math="9" /> occurs for <InlineMath math="(3,6),(4,5),(5,4),(6,3)" />, giving probability <InlineMath math="\frac4{36}=\frac19" />.
-
-For the red die to be larger, its six possible values allow <InlineMath math="0,1,2,3,4,5" /> blue values respectively.
+There are <InlineMath math="9\cdot8\cdot7=504" /> codes in all. For a code that qualifies, the hundreds digit must be <InlineMath math="5" /> to <InlineMath math="9" /> and the units digit must be even. **The two conditions can use the same digits**, such as <InlineMath math="6" /> and <InlineMath math="8" />, so count separately by the hundreds digit.
 
 <BlockMath math="\begin{aligned}
-P&=\frac{0+1+2+3+4+5}{36} \\
-&=\frac{15}{36}=\frac5{12}
+\text{hundreds }5,7,9&:\ 3\cdot4\cdot7=84 \\
+\text{hundreds }6,8&:\ 2\cdot3\cdot7=42 \\
+P&=\frac{84+42}{504}=\frac{126}{504}=\frac14
 \end{aligned}" />
 
-| Red die | Blue die | Number of outcomes | Sum |
-| --- | --- | ---: | --- |
-| Odd | Odd | 9 | Even |
-| Even | Even | 9 | Even |
-| Odd | Even | 9 | Odd |
-| Even | Odd | 9 | Odd |
+In each row the tens digit is chosen last from the <InlineMath math="7" /> digits left. With an even hundreds digit, the units digit has only <InlineMath math="3" /> choices, because one even digit is already used.
 
-An even sum comes from two odd values or two even values, each giving <InlineMath math="3\cdot3=9" /> outcomes. The probability of two odd values **given an even sum** is therefore <InlineMath math="\frac9{18}=\frac12" />.
+As a check, <InlineMath math="126=504\div4" />.
 
-Let <InlineMath math="A" /> be the event that the red die is even and <InlineMath math="B" /> the event that the sum is even. Their intersection consists of two even dice.
+So the probability is <InlineMath math="\frac14" />.
 
-<BlockMath math="\begin{aligned}
-P(A)&=\frac12 \\
-P(B)&=\frac12 \\
-P(A\cap B)&=\frac9{36}=\frac14 \\
-P(A)P(B)&=\frac14
-\end{aligned}" />
-
-This equality proves that <InlineMath math="A" /> and <InlineMath math="B" /> are **independent**. For at least one six, use the **complement of neither die showing six**.
-
-<BlockMath math="P=1-\frac{5\cdot5}{36}=\frac{11}{36}" />
-
-The first four statements are true. The claim that at least one six has probability <InlineMath math="\frac13" /> is false.
+- <InlineMath math="\frac{20}{81}" /> multiplies <InlineMath math="\frac59\cdot\frac49" />, as if digits could repeat and the two conditions did not affect each other.
+- <InlineMath math="\frac{5}{18}" /> multiplies <InlineMath math="\frac59" /> by <InlineMath math="\frac12" />, as if half of the digits <InlineMath math="1" /> to <InlineMath math="9" /> were even.
+- <InlineMath math="\frac49" /> uses only the even condition.
+- <InlineMath math="\frac59" /> uses only the condition of being more than <InlineMath math="500" />.

@@ -1,28 +1,16 @@
-The path reduces **both ends of each dimension**. The inner rectangle’s area equals the garden area plus the pool area.
-
-<BlockMath math="744+12\cdot6=816" />
+The volume of wax does not change, so **the number of small candles is the volume of six large candles divided by the volume of one small candle**. A small candle is a cone, <InlineMath math="V=\frac13\pi r^2h" />.
 
 <BlockMath math="\begin{aligned}
-(40-2x)(30-2x)&=816 \\
-1{,}200-140x+4x^2&=816 \\
-4x^2-140x+384&=0 \\
-x^2-35x+96&=0 \\
-(x-3)(x-32)&=0
+V_{\text{large}}&=\frac{22}{7}\cdot12.25\cdot12=462\text{ cm}^3 \\
+V_{\text{small}}&=\frac13\cdot\frac{22}{7}\cdot12.25\cdot6=77\text{ cm}^3 \\
+n&=\frac{6\cdot462}{77}=\frac{2{,}772}{77}=36
 \end{aligned}" />
 
-The candidate widths are <InlineMath math="3" /> and <InlineMath math="32" />. The width must satisfy <InlineMath math="0<x<15" /> so the shorter inner side remains positive. Thus <InlineMath math="x=3\,\mathrm{m}" />.
+As a check, both candles have the same base, so one large candle of height <InlineMath math="12\text{ cm}" /> equals <InlineMath math="3\cdot2=6" /> cones of height <InlineMath math="6\text{ cm}" />, and <InlineMath math="6\cdot6=36" />.
 
-The inner sides are <InlineMath math="40-2(3)=34" /> and <InlineMath math="30-2(3)=24" />. Check the garden area: <InlineMath math="34\cdot24-12\cdot6=816-72=744" />.
+So <InlineMath math="36" /> small candles can be made.
 
-<LineEquation
-  title="Courtyard, path, and pool"
-  description="The orange rectangle measures 34 m × 24 m. The 3 m path surrounds it."
-  cameraPosition={[20,15,52]}
-  cameraTarget={[20,15,0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 40, y: 0, z: 0 }, { x: 40, y: 30, z: 0 }, { x: 0, y: 30, z: 0 }, { x: 0, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: false, labels: [{ text: "40 m", at: 0, offset: [20, -1.5, 0] }, { text: "30 m", at: 1, offset: [1.7, 15, 0] }] },
-    { points: [{ x: 3, y: 3, z: 0 }, { x: 37, y: 3, z: 0 }, { x: 37, y: 27, z: 0 }, { x: 3, y: 27, z: 0 }, { x: 3, y: 3, z: 0 }], color: "#d97706", smooth: false, showPoints: false },
-    { points: [{ x: 14, y: 12, z: 0 }, { x: 26, y: 12, z: 0 }, { x: 26, y: 18, z: 0 }, { x: 14, y: 18, z: 0 }, { x: 14, y: 12, z: 0 }], color: "#9333ea", smooth: false, showPoints: false, labels: [{ text: "12 m", at: 0, offset: [6, -1.1, 0] }, { text: "6 m", at: 1, offset: [1.5, 3, 0] }] },
-  ]}
-/>
+- <InlineMath math="12" /> treats the small candle as a cylinder, without the factor <InlineMath math="\frac13" />.
+- <InlineMath math="108" /> applies the factor <InlineMath math="\frac13" /> twice to the cone.
+- <InlineMath math="144" /> uses the diameter <InlineMath math="7\text{ cm}" /> as the radius of the large candle but not of the small one.
+- <InlineMath math="216" /> multiplies the correct result by <InlineMath math="6" /> once more.

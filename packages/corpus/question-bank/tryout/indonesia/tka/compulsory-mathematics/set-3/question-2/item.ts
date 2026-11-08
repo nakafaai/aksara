@@ -3,32 +3,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "application",
-    contentDomain: "numbers",
-    topic: "real-numbers",
+    contentDomain: "algebra",
+    topic: "linear-equations-inequalities",
   },
+  stimulus: "streaming-plans",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$5{,}5$$",
-        },
-        {
-          correct: false,
-          label: "$$9{,}9$$",
+          label: "$$2{.}880$$",
         },
         {
           correct: true,
-          label: "$$11{,}1$$",
+          label: "$$3{.}920$$",
         },
         {
           correct: false,
-          label: "$$10$$",
+          label: "$$4{.}000$$",
         },
         {
           correct: false,
-          label: "$$16{,}6$$",
+          label: "$$4{.}080$$",
+        },
+        {
+          correct: false,
+          label: "$$6{.}000$$",
         },
       ],
     },

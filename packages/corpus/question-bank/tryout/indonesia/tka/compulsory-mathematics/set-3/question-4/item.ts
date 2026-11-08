@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
-    contentDomain: "algebra",
-    topic: "functions",
+    cognitiveLevel: "application",
+    contentDomain: "numbers",
+    topic: "real-numbers",
   },
   versions: {
     id: {
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$-2$$",
+          label: "$$144\\text{ km}$$",
         },
         {
           correct: false,
-          label: "$$-1$$",
+          label: "$$324\\text{ km}$$",
         },
         {
           correct: true,
-          label: "$$-\\frac32$$",
+          label: "$$396\\text{ km}$$",
         },
         {
           correct: false,
-          label: "$$\\frac12$$",
+          label: "$$540\\text{ km}$$",
         },
         {
           correct: false,
-          label: "$$\\frac32$$",
+          label: "$$576\\text{ km}$$",
         },
       ],
     },

@@ -1,33 +1,15 @@
-Der Grundumfang ist proportional zum Radius, die Grundfläche zum Radiusquadrat und das Volumen zum **Produkt aus Radiusquadrat und Höhe**.
+Bei zwei ähnlichen Körpern stehen alle Längen im selben Verhältnis, hier <InlineMath math="12:8=3:2" />. **Volumina stehen im Verhältnis der dritten Potenz des Längenverhältnisses**, denn das Zylindervolumen enthält zweimal den Radius und einmal die Höhe.
 
 <BlockMath math="\begin{aligned}
-k_U&=\frac{2\pi(3r)}{2\pi r}=3 \\
-k_A&=\frac{\pi(3r)^2}{\pi r^2}=3^2=9 \\
-k_V&=\frac{\frac13\pi(3r)^2(h/2)}{\frac13\pi r^2h}=3^2\cdot\frac12=\frac92
+\frac{V_{\text{groß}}}{V_{\text{klein}}}&=\left(\frac32\right)^3=\frac{27}{8} \\
+V_{\text{groß}}&=320\cdot\frac{27}{8}=40\cdot27=1{.}080\text{ mL}
 \end{aligned}" />
 
-Für die Mantellinie gilt <InlineMath math="s^2=r^2+h^2" />. Prüfe den behaupteten festen Faktor an einem Kegel mit <InlineMath math="r=h=1" />. Nach der Skalierung beträgt der Radius <InlineMath math="3" /> und die Höhe <InlineMath math="\frac12" />.
+Zur Kontrolle: Radius und Höhe werden beide mit <InlineMath math="\frac32" /> multipliziert, also <InlineMath math="\pi r^2h" /> mit <InlineMath math="\frac32\cdot\frac32\cdot\frac32=\frac{27}{8}" />.
 
-<BlockMath math="\begin{aligned}
-s^2&=2 \\
-(s')^2&=9+\frac14=\frac{37}{4} \\
-\left(\frac{s'}{s}\right)^2&=\frac{37}{8}\ne\left(\frac32\right)^2
-\end{aligned}" />
+Das große Glas fasst also <InlineMath math="1{.}080\text{ mL}" />.
 
-Die Mantellinie hat nicht immer den Faktor <InlineMath math="\frac32" />. Wegen der Mantelfläche <InlineMath math="\pi rs" /> ist deren Flächenfaktor <InlineMath math="3\frac{s'}{s}" />. Er wäre nur dann <InlineMath math="\frac92" />, wenn die Mantellinie den Faktor <InlineMath math="\frac32" /> hätte. Das Gegenbeispiel widerlegt diese Behauptung.
-
-Die Aussagen zu Grundumfang, Grundfläche und Volumen stimmen. Die letzten beiden Aussagen sind falsch.
-
-<LineEquation
-  title="Ungleichmäßige Skalierung eines Kegels"
-  description="Beide Kegel haben denselben Grundkreismittelpunkt. Grau: r = h = 1. Violett: r = 3 und h = 1/2. Der Kegel wird breiter und flacher."
-  cameraPosition={[5,3,6]}
-  cameraTarget={[0,0.4,0]}
-  showZAxis={false}
-  data={[
-    ...[{ r: 1, h: 1, color: "#64748b" }, { r: 3, h: 0.5, color: "#9333ea" }].flatMap(({r,h,color}) => [
-      { points: Array.from({ length: 101 }, (_, i) => { const t = 2*Math.PI*i/100; return { x: r*Math.cos(t), y: 0, z: r*Math.sin(t) }; }), color, smooth: false, showPoints: false },
-      ...[0,Math.PI/2,Math.PI,3*Math.PI/2].map((t) => ({ points: [{ x: r*Math.cos(t), y: 0, z: r*Math.sin(t) }, { x: 0, y: h, z: 0 }], color, smooth: false, showPoints: false })),
-    ]),
-  ]}
-/>
+- <InlineMath math="480\text{ mL}" /> multipliziert das Volumen nur mit dem Längenverhältnis <InlineMath math="\frac32" />.
+- <InlineMath math="720\text{ mL}" /> nimmt das Flächenverhältnis <InlineMath math="\frac94" />, als änderte sich nur der Radius.
+- <InlineMath math="1{.}440\text{ mL}" /> multipliziert das Verhältnis <InlineMath math="\frac32" /> mit <InlineMath math="3" />, statt es hoch drei zu nehmen.
+- <InlineMath math="2{.}560\text{ mL}" /> multipliziert mit <InlineMath math="2^3=8" /> und nimmt damit die falsche Zahl aus dem Verhältnis <InlineMath math="3:2" />.
