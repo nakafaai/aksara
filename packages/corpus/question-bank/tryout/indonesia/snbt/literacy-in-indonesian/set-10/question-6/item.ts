@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Chili berhasil menghapus semua minuman manis dari pasaran sejak 2016.",
+            "Cile berhasil menghapus semua minuman manis dari pasaran sejak 2016.",
         },
         {
           correct: false,

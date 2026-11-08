@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "menunjukkan bahwa tanda di Chili berhasil menurunkan pembelian",
+            "menunjukkan bahwa tanda di Cile berhasil menurunkan pembelian",
         },
         {
           correct: false,

@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Karang itu pasti mati karena warnanya sudah berubah menjadi putih seluruhnya.",
+            "Karang itu akan mati karena warnanya sudah berubah menjadi putih seluruhnya.",
         },
         {
           correct: false,
@@ -32,7 +32,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Alga dapat kembali menghuni jaringan karang, dan karang perlahan pulih.",
+            "Alga kembali menghuni jaringan karang, dan karang itu perlahan pulih.",
         },
       ],
     },

@@ -20,12 +20,12 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Di Chili, tanda segi delapan hitam wajib bagi produk yang melewati batas tertentu.",
+            "Di Cile, tanda segi delapan hitam wajib bagi produk yang melewati batas tertentu.",
         },
         {
           column: 1,
           label:
-            "Sebagian produsen di Chili mengubah resep agar produknya tidak diberi tanda.",
+            "Sebagian produsen di Cile mengubah resep agar produknya tidak diberi tanda.",
         },
         {
           column: 2,

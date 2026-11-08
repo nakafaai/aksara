@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Perjalanan per sepeda turun pada April, jadi kenaikannya karena sepeda bertambah.",
+            "Perjalanan per sepeda turun pada April, jadi warga tidak terbukti makin rajin.",
         },
         {
           correct: false,

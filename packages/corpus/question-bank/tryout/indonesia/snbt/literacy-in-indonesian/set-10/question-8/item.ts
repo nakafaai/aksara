@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pembelian minuman bertanda di Chili turun setelah aturan itu berlaku.",
+            "Pembelian minuman bertanda di Cile turun setelah aturan itu berlaku.",
         },
         {
           correct: true,
@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tanda segi delapan hitam di Chili dicetak dengan warna yang sangat mencolok mata.",
+            "Tanda segi delapan hitam di Cile dicetak dengan warna yang sangat mencolok mata.",
         },
         {
           correct: false,
