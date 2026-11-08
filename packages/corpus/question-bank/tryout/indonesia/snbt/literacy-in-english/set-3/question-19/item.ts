@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
+  },
+  stimulus: "rosetta-stone",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The term *irony* confirms one final outcome and therefore removes the need to interpret the ending.",
+            "It allowed him to read the Greek section of the stone for the first time.",
         },
         {
           correct: false,
           label:
-            "The definition treats *irony* as the physical object itself rather than as a feature of the narrative ending.",
+            "It showed him which temples contained the oldest royal cartouches.",
         },
         {
           correct: false,
           label:
-            "The term *irony* makes the reader's personal impression sufficient even when it conflicts with story details.",
+            "It proved that hieroglyphs were symbols expressing mystical ideas.",
+        },
+        {
+          correct: false,
+          label:
+            "It let him translate the Demotic script directly without any comparison.",
         },
         {
           correct: true,
           label:
-            "The definition of *irony* clarifies the contrast between an accurate board that misdirects passengers and the same information becoming useful after a simple rotation.",
-        },
-        {
-          correct: false,
-          label:
-            "The definition explains only the setting, so the recurring object and the character's action are irrelevant.",
+            "It let him guess how Egyptian words had sounded and test his readings.",
         },
       ],
     },

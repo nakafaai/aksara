@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
+  },
+  stimulus: "four-day-week",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "The comparison condition produced $$30$$, the reference used to judge the bus-stop walking-time map rather than evidence that the map suits every mobility need.",
+            "Firms that expected to benefit may have joined, so results may not fit others.",
         },
         {
           correct: false,
           label:
-            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
+            "Volunteer companies paid their staff less than other companies did.",
         },
         {
           correct: false,
           label:
-            "The comparison condition produced a mean value of $$30$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "Voluntary trials are illegal in sectors such as healthcare and transport.",
         },
         {
           correct: false,
           label:
-            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
+            "Companies that volunteer always report false results to look successful.",
         },
         {
           correct: false,
           label:
-            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+            "Volunteering meant the trials lasted longer than planned trials would.",
         },
       ],
     },

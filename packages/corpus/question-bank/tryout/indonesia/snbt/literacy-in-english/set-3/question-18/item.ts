@@ -1,35 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "rosetta-stone",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["True", "False"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "The recurring object gains meaning mainly from its physical description rather than its relation to the choice.",
+          column: 1,
+          label: "The Rosetta Stone was discovered by French soldiers.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The ending shows that the setting, rather than the character's action, resolves the conflict.",
+            "The decree on the stone was written in four different scripts.",
         },
         {
-          correct: true,
-          label:
-            "The folded map gains meaning through its connection to the misleading orientation, Nora's rotation, and the child's response.",
+          column: 1,
+          label: "Coptic is described as a late form of the Egyptian language.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The object's meaning remains fixed even though the character uses it differently.",
-        },
-        {
-          correct: false,
-          label:
-            "The final action matters because it confirms the interpretation established at the start.",
+            "Hieroglyphs were deciphered within a few months of the stone's discovery.",
         },
       ],
     },

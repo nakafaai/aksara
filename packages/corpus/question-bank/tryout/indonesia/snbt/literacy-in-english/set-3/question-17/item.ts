@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "text-comparison",
+  },
+  stimulus: "rosetta-stone",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Nora turned the map upside down and traced the route from the passenger's point of view. The recurring object's physical appearance fixes its complete meaning from the first mention.",
-        },
-        {
-          correct: false,
-          label:
-            "Nora turned the map upside down and traced the route from the passenger's point of view. The ending states the object's meaning directly, making the earlier actions irrelevant.",
-        },
-        {
           correct: true,
           label:
-            "Rotating the recurring map and retracing the route changes it from a staff-facing reference into a passenger-facing guide, a shift confirmed when the child finds the platform.",
+            "Young thought sound signs spelled only foreign names, while Champollion showed they spelled Egyptian names too.",
         },
         {
           correct: false,
           label:
-            "Nora turned the map upside down and traced the route from the passenger's point of view. The setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+            "Young read the Greek text, while Champollion read only the Demotic text.",
         },
         {
           correct: false,
           label:
-            "Nora turned the map upside down and traced the route from the passenger's point of view. The object keeps one fixed meaning even as the character's action and the final response change.",
+            "Young believed hieroglyphs were purely mystical, while Champollion believed they were only sounds.",
+        },
+        {
+          correct: false,
+          label:
+            "Young studied temples in Egypt, while Champollion studied only the stone in London.",
+        },
+        {
+          correct: false,
+          label:
+            "Young identified Ramesses and Thutmose, while Champollion identified Ptolemy.",
         },
       ],
     },

@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "bird-compass",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while controlling the listed factors but treating one short trial as proof of a universal effect.",
-        },
-        {
-          correct: false,
-          label:
-            "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
-        },
-        {
-          correct: false,
-          label:
-            "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while treating the scientific term as the measured outcome that settles the investigation.",
-        },
-        {
-          correct: false,
-          label:
-            "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
+            "Birds kept in cages tried to fly south even though they could not see the sky.",
         },
         {
           correct: true,
           label:
-            "The class tested whether turning the seed opening toward the side of a clear container affected early root direction, while controlling other factors and reporting a limitation.",
+            "Robins turned around when only the vertical part of the field was reversed.",
+        },
+        {
+          correct: false,
+          label:
+            "Magnetic field lines run almost parallel to the ground near the equator.",
+        },
+        {
+          correct: false,
+          label:
+            "Songbirds migrating to Africa usually travel alone and at night.",
+        },
+        {
+          correct: false,
+          label:
+            "Iron-containing cells in the beak were found to be immune cells.",
         },
       ],
     },
