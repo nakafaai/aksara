@@ -61,10 +61,15 @@ const ResponseMinimumSchema = Schema.Struct({
   editorialMinimum: PositiveCountSchema,
   kind: ResponseFormatSchema,
 });
+/**
+ * One topic a section may ask, with the levels and domains it belongs to. A
+ * topic with a minimum of zero is allowed in every set without being required,
+ * because a section such as a reading test varies its topics from set to set.
+ */
 const TopicMinimumSchema = Schema.Struct({
   cognitiveLevels: Schema.NonEmptyArray(KebabKeySchema),
   contentDomains: Schema.NonEmptyArray(KebabKeySchema),
-  editorialMinimum: PositiveCountSchema,
+  editorialMinimum: NonNegativeCountSchema,
   key: KebabKeySchema,
 });
 
