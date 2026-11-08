@@ -1,15 +1,13 @@
-The top area shrinks by **a factor of <InlineMath math="\tfrac12" /> with every fold**, so after <InlineMath math="n" /> folds it is <InlineMath math="\tfrac{600}{2^n}" />.
+After <InlineMath math="n" /> folds the thickness is <InlineMath math="0.1\cdot2^n" /> mm. The ratio of two thicknesses **depends only on the difference in folds**, because the factor 0.1 cancels.
 
-# Setting up the condition
+# Comparing two thicknesses
 
-<BlockMath math="\frac{600}{2^n}<10\;\Longleftrightarrow\;2^n>60" />
+<BlockMath math="\frac{0.1\cdot2^{12}}{0.1\cdot2^{8}}=2^{12-8}=2^4=16" />
 
-# Finding the smallest n
+# What the result means
 
-<BlockMath math="2^5=32,\qquad 2^6=64" />
+Four extra folds double the thickness four times: <InlineMath math="2\cdot2\cdot2\cdot2=16" />. **Each fold multiplies, it does not add**, so a difference of 4 folds means 16 times as thick.
 
-Five folds give an area of <InlineMath math="\tfrac{600}{32}=18.75" /> square centimetres, **still more than 10**. Six folds give <InlineMath math="\tfrac{600}{64}=9.375" /> square centimetres, already less than 10.
+The value 1.5 is the ratio of the numbers of folds, <InlineMath math="\tfrac{12}{8}" />. The value 4 is the difference in folds, and 32 uses <InlineMath math="2^5" />.
 
-The value 60 divides 600 by 10, as if each fold removed a fixed amount of area. The value 5 stops one fold too early.
-
-So at least **6 folds** are needed.
+So the stack after 12 folds is **16 times** as thick as after 8 folds.

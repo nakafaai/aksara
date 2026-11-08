@@ -6,11 +6,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
+        { correct: false, label: "$$1{,}5$$" },
         { correct: false, label: "$$4$$" },
-        { correct: false, label: "$$5$$" },
-        { correct: true, label: "$$6$$" },
-        { correct: false, label: "$$7$$" },
-        { correct: false, label: "$$60$$" },
+        { correct: true, label: "$$16$$" },
+        { correct: false, label: "$$32$$" },
+        { correct: false, label: "$$64$$" },
       ],
     },
   },
