@@ -11,7 +11,7 @@ const PATH_SEPARATOR = /[\\/]/u;
 const MDX_SUFFIX = /\.mdx$/u;
 
 /** The authored contract that controls which checks inspect one document. */
-type DocumentProfile = "article" | "lesson" | "question" | "answer";
+type DocumentProfile = "article" | "lesson" | "page" | "question" | "answer";
 
 /** Reads the question-bank role of a locale-qualified file. */
 function questionBodyKind(file: string): "question" | "answer" | undefined {
@@ -29,13 +29,18 @@ function questionBodyKind(file: string): "question" | "answer" | undefined {
 
 /**
  * Derives one stable content profile from the source path and question body
- * contract. Articles use journal checks, lessons and answers use teaching
- * checks, and assessed prompts keep their source wording untouched.
+ * contract. Articles use evidence checks, lessons and answers use teaching
+ * checks, pages use the address rules alone, and assessed prompts keep their
+ * source wording untouched.
  */
 export function documentProfile(file: string): DocumentProfile {
   const questionKind = questionBodyKind(file);
   if (questionKind) {
     return questionKind;
   }
-  return file.split(PATH_SEPARATOR).includes("articles") ? "article" : "lesson";
+  const segments = file.split(PATH_SEPARATOR);
+  if (segments.includes("articles")) {
+    return "article";
+  }
+  return segments.includes("pages") ? "page" : "lesson";
 }

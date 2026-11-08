@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate grouped data quartiles by locating their cumulative frequencies and interpolating within the class boundaries.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistics",
 };
 
@@ -20,6 +20,16 @@ We determine the position of the quartile using this formula:
 - The position of <InlineMath math="Q_3" /> is the <InlineMath math="\frac{3}{4}n" />-th data point
 
 Where <InlineMath math="n" /> is the total number of data points.
+
+Add the frequencies class by class to get the cumulative frequencies <InlineMath math="2, 13, 23, 28, 30" />. The last bar is always the total <InlineMath math="30" />, and the class where a bar first passes a target position is the class to interpolate in.
+
+<BarChart
+  title={<>Cumulative frequency of each class</>}
+  description={<>Bar for each class showing how many values lie at or below its upper boundary, up to 30.</>}
+  yAxisLabel="Cumulative frequency"
+  data={[["37-39", 2], ["40-42", 2 + 11], ["43-45", 2 + 11 + 10], ["46-48", 2 + 11 + 10 + 5], ["49-51", 2 + 11 + 10 + 5 + 2]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Cumulative frequency", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Steps to Find the Value of Quartiles for Grouped Data
 
@@ -44,6 +54,16 @@ The lower boundary is the lower class limit minus <InlineMath math="0.5" />.
 The upper boundary is the upper class limit plus <InlineMath math="0.5" />.
 
 The class width is the upper boundary minus the lower boundary.
+
+Here is the shoe sales table as a histogram. Most of the <InlineMath math="30" /> pairs sold come from the classes <InlineMath math="40\text{-}42" /> and <InlineMath math="43\text{-}45" />, which is where the quartiles will land.
+
+<HistogramChart
+  title={<>Shoe sales by size class</>}
+  description={<>The number of pairs sold in each shoe size class.</>}
+  yAxisLabel="Pairs sold"
+  data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 10 }, { name: "46-48", value: 5 }, { name: "49-51", value: 2 }]}
+  chartConfig={{ value: { label: "Pairs sold", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Determine the Quartile Class Position
 
@@ -108,6 +128,31 @@ Plug into the formula:
 </MathContainer>
 
 So, the value of <InlineMath math="Q_1" /> is <InlineMath math="41" />. This means about <InlineMath math="25\%" /> of the shoes sold are size <InlineMath math="41" /> or smaller.
+
+You can check the interpolation formula on the cumulative frequency line. At the level <InlineMath math="n/4 = 7.5" /> the line is inside the class <InlineMath math="40\text{-}42" />, above <InlineMath math="Q_1 = 41" />. At <InlineMath math="3n/4 = 22.5" /> it is inside <InlineMath math="43\text{-}45" />, above <InlineMath math="Q_3 = 45.35" />. Between the class boundaries the line is straight, which is exactly what the formula assumes.
+
+<MathVisual
+  title={<>Quartiles on the cumulative frequency line</>}
+  description={<>The cumulative frequency line of the shoe sales, read at 7.5 for <InlineMath math="Q_1 = 41" /> and at 22.5 for <InlineMath math="Q_3 = 45.35" />.</>}
+  labels={{
+    q1: <InlineMath math="Q_1" />,
+    q3: <InlineMath math="Q_3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 36, max: 52 }, y: { min: -2, max: 31 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ogive", kind: "polyline", vertices: [{ x: 36.5, y: 0 }, { x: 39.5, y: 2 }, { x: 42.5, y: 13 }, { x: 45.5, y: 23 }, { x: 48.5, y: 28 }, { x: 51.5, y: 30 }], appearance: "secondary" },
+      { id: "q1", kind: "polyline", vertices: [{ x: 36.5, y: 30 / 4 }, { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 30 / 4 }, { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 0 }], appearance: "primary" },
+      { id: "q3", kind: "polyline", vertices: [{ x: 36.5, y: (3 * 30) / 4 }, { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: (3 * 30) / 4 }, { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: 0 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 0 }, placement: "below" },
+      { key: "q3", objectId: "q3", at: { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Exercise
 

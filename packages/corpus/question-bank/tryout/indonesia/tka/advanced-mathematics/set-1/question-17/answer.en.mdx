@@ -1,0 +1,50 @@
+The relative position of two circles depends on **the distance between their centers** compared with their radii. So first rewrite <InlineMath math="L_2" /> in standard form by completing the squares.
+
+<BlockMath math="\begin{aligned}
+x^2-8x+y^2-6y+21&=0 \\
+(x-4)^2-16+(y-3)^2-9+21&=0 \\
+(x-4)^2+(y-3)^2&=4
+\end{aligned}" />
+
+The circle <InlineMath math="L_1" /> has center <InlineMath math="O(0,0)" /> and radius <InlineMath math="r_1=3" />, while <InlineMath math="L_2" /> has center <InlineMath math="P(4,3)" /> and radius <InlineMath math="r_2=2" />. The distance between the centers is <InlineMath math="OP=\sqrt{4^2+3^2}=5" />, exactly <InlineMath math="r_1+r_2=3+2" />. So the circles **touch externally** and share exactly one point.
+
+<MathVisual
+  title="Two circles that touch"
+  description={<>The circle <InlineMath math="L_1" /> has center <InlineMath math="(0,0)" /> and radius <InlineMath math="3" />, and <InlineMath math="L_2" /> has center <InlineMath math="(4,3)" /> and radius <InlineMath math="2" />. They touch at <InlineMath math="\left(\frac{12}{5},\frac95\right)" />, and the line <InlineMath math="4x+3y=15" /> touches both at that point. The point <InlineMath math="(0,3)" /> lies on <InlineMath math="L_1" /> and outside <InlineMath math="L_2" />.</>}
+  labels={{
+    "first-circle": <InlineMath math="L_1" />,
+    "second-circle": <InlineMath math="L_2" />,
+    tangent: <InlineMath math="4x+3y=15" />,
+    test: <InlineMath math="(0,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 7 },
+      y: { min: -4, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "second", kind: "circle", appearance: "secondary", center: { x: 4, y: 3 }, radius: 2 },
+      { id: "centers", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "tangent-line", kind: "segment", appearance: "answer", from: { x: -1.5, y: 7 }, to: { x: 6, y: -3 } },
+      { id: "contact-point", kind: "point", appearance: "answer", at: { x: 12 / 5, y: 9 / 5 } },
+      { id: "test-point", kind: "point", appearance: "warning", at: { x: 0, y: 3 } },
+    ],
+    labels: [
+      { key: "first-circle", objectId: "first", at: { x: -3, y: 0 }, placement: "left" },
+      { key: "second-circle", objectId: "second", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "tangent", objectId: "tangent-line", at: { x: 4.5, y: -1 }, placement: "right" },
+      { key: "test", objectId: "test-point", at: { x: 0, y: 3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+1. The statement that <InlineMath math="L_1" /> and <InlineMath math="L_2" /> meet at two points is false. Two intersection points need a center distance smaller than <InlineMath math="r_1+r_2" />, and here the distance is exactly <InlineMath math="r_1+r_2" />.
+2. The statement about the point of tangency <InlineMath math="\left(\frac{12}{5},\frac95\right)" /> is true. The point of tangency lies on the segment <InlineMath math="OP" /> at distance <InlineMath math="r_1=3" /> from <InlineMath math="O" />, that is, at <InlineMath math="\frac35(4,3)=\left(\frac{12}{5},\frac95\right)" />. It satisfies both equations: <InlineMath math="\frac{144}{25}+\frac{81}{25}=9" /> and <InlineMath math="\left(-\frac85\right)^2+\left(-\frac65\right)^2=\frac{100}{25}=4" />.
+3. The statement about the line <InlineMath math="4x+3y=15" /> is true. The distance from <InlineMath math="O" /> to the line is <InlineMath math="\frac{|0+0-15|}{5}=3=r_1" />, and the distance from <InlineMath math="P" /> to the line is <InlineMath math="\frac{|16+9-15|}{5}=2=r_2" />. Each distance equals the radius, so the line touches both circles.
+4. The statement that <InlineMath math="(0,3)" /> lies inside <InlineMath math="L_2" /> is false. Its distance from <InlineMath math="P(4,3)" /> is <InlineMath math="4" />, larger than <InlineMath math="r_2=2" />. Substituting into the equation of <InlineMath math="L_2" /> also gives <InlineMath math="0+9-0-18+21=12>0" />, which signals a point outside the circle.
+
+So the statements about the point of tangency and about the line <InlineMath math="4x+3y=15" /> are true, while the statements about two intersection points and about the point <InlineMath math="(0,3)" /> are false.

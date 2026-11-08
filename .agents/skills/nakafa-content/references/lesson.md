@@ -16,9 +16,11 @@ misses an element below is not finished.
    objects and actions, and the next likely question answered in the next
    sentence. [Voice](voice.md) owns the register for each locale.
 3. **Rich interactive visuals model the concept.** Learners skim long text, so
-   3D scenes and animations carry Nakafa's lessons: every main idea a learner
-   can see gets its own interactive visual, usually one in each teaching
-   section, and the lesson never has fewer than it had before a revision.
+   3D scenes and animations carry Nakafa's lessons. Every lesson in every
+   subject has at least three interactive visual cards. A Mermaid diagram, a
+   table, or a video never counts toward the three. Every main idea a learner can see
+   gets its own interactive visual, usually one in each teaching section, and
+   the lesson never has fewer than it had before a revision.
    Changing a parameter, stepping through a process, rotating a structure, or
    running an experiment answers a question the lesson asks. Every plotted
    point is computed from its formula. [Visuals](visuals.md) owns the choice,
@@ -89,6 +91,8 @@ count toward it.
 - A long paragraph describing what a table, diagram, or interactive visual
   would show faster.
 - A formula stated without its conditions, its symbols, or a worked use.
+- A lesson with fewer than three interactive visual cards, or a Mermaid
+  diagram added to reach the count.
 - A visual that only draws a static line or shape when the lesson's question is
   about how a parameter, step, or structure changes the result.
 - A revision that removes or merges interactive visuals, so the lesson ends

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Explain why complex numbers extend the real numbers, use the imaginary unit, and identify real and imaginary parts.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Complex Number",
 };
 
@@ -38,6 +38,37 @@ The **principal square root** is one value, but a quadratic equation may have tw
 
 <BlockMath math="i^2+1=-1+1=0,\qquad(-i)^2+1=i^2+1=0" />
 
+Multiplying by <InlineMath math="i" /> turns a number a quarter turn around the origin. Start at <InlineMath math="1" />: one turn gives <InlineMath math="i" />, a second gives <InlineMath math="i^2 = -1" />, a third gives <InlineMath math="-i" />, and a fourth brings you back to <InlineMath math="1" />. That is why <InlineMath math="i^2 = -1" /> is no contradiction: two quarter turns point the opposite way.
+
+<MathVisual
+  title={<>Powers of <InlineMath math="i" /> as quarter turns</>}
+  description={<>The numbers <InlineMath math="1" />, <InlineMath math="i" />, <InlineMath math="-1" /> and <InlineMath math="-i" /> on the unit circle, one quarter turn apart.</>}
+  labels={{
+    one: <InlineMath math="1" />,
+    i: <InlineMath math="i" />,
+    minus: <InlineMath math="-1" />,
+    minusi: <InlineMath math="-i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "one", kind: "point", at: { x: 1, y: 0 }, appearance: "primary" },
+      { id: "i", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "minus", kind: "point", at: { x: -1, y: 0 }, appearance: "primary" },
+      { id: "minusi", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "i", objectId: "i", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "minus", objectId: "minus", at: { x: -1, y: 0 }, placement: "left" },
+      { key: "minusi", objectId: "minusi", at: { x: 0, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
 ## General Form
 
 Complex numbers are generally written in the form <InlineMath math="z = a + bi" />, where:
@@ -49,6 +80,39 @@ Complex numbers are generally written in the form <InlineMath math="z = a + bi" 
 
 Both <InlineMath math="a" /> and <InlineMath math="b" /> are real numbers. The expression <InlineMath math="bi" /> is the imaginary term, while its coefficient <InlineMath math="b" /> is the imaginary part.
 
+Every complex number <InlineMath math="a + bi" /> is a point in the plane: the real part <InlineMath math="a" /> across and the imaginary part <InlineMath math="b" /> up. Real numbers such as <InlineMath math="4" /> sit on the horizontal axis, and pure imaginary numbers such as <InlineMath math="2i" /> sit on the vertical axis.
+
+<MathVisual
+  title={<>Complex numbers as points</>}
+  description={<>Five complex numbers placed by real part across and imaginary part up, including a real number and a pure imaginary number.</>}
+  labels={{
+    z1: <InlineMath math="3 + 2i" />,
+    z2: <InlineMath math="-1 + i" />,
+    z3: <InlineMath math="-2 - 3i" />,
+    z4: <InlineMath math="4" />,
+    z5: <InlineMath math="2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -4, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "point", at: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z2", kind: "point", at: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "z3", kind: "point", at: { x: -2, y: -3 }, appearance: "primary" },
+      { id: "z4", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "z5", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 3, y: 2 }, placement: "above-right" },
+      { key: "z2", objectId: "z2", at: { x: -1, y: 1 }, placement: "above-left" },
+      { key: "z3", objectId: "z3", at: { x: -2, y: -3 }, placement: "below-left" },
+      { key: "z4", objectId: "z4", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "z5", objectId: "z5", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 ### Identifying Real and Imaginary Parts
 
 Read the **coefficient of the imaginary unit**, not the entire imaginary term. Thus the imaginary part of five minus four times the imaginary unit is minus four, not minus four times the imaginary unit.
@@ -59,6 +123,34 @@ Read the **coefficient of the imaginary unit**, not the entire imaginary term. T
 | <InlineMath math="5-4i" /> | <InlineMath math="5+(-4)i" /> | <InlineMath math="5" /> | <InlineMath math="-4" /> |
 | <InlineMath math="\sqrt2" /> | <InlineMath math="\sqrt2+0i" /> | <InlineMath math="\sqrt2" /> | <InlineMath math="0" /> |
 | <InlineMath math="-7i" /> | <InlineMath math="0+(-7)i" /> | <InlineMath math="0" /> | <InlineMath math="-7" /> |
+
+Read the parts of <InlineMath math="z = 3 + 2i" /> as two steps: <InlineMath math="3" /> along the real axis, then <InlineMath math="2" /> up. <InlineMath math="\operatorname{Re}(z) = 3" /> is the horizontal step, <InlineMath math="\operatorname{Im}(z) = 2" /> is the vertical step. The imaginary part is the number <InlineMath math="2" />, not <InlineMath math="2i" />.
+
+<MathVisual
+  title={<>Real part and imaginary part of 3 + 2i</>}
+  description={<>The point <InlineMath math="3 + 2i" /> reached by a horizontal step 3 and a vertical step 2.</>}
+  labels={{
+    re: <InlineMath math="\operatorname{Re}(z) = 3" />,
+    im: <InlineMath math="\operatorname{Im}(z) = 2" />,
+    z: <InlineMath math="z = 3 + 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "re", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "im", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "zline", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z", kind: "point", at: { x: 3, y: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "re", objectId: "re", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "im", objectId: "im", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "z", objectId: "z", at: { x: 3, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
 
 ## Exercise
 

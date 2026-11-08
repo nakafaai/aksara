@@ -3,7 +3,7 @@ export const metadata = {
   description: "Kalikan setiap elemen matriks dengan skalar, lalu buktikan hukum distributifnya dalam contoh.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -74,6 +74,91 @@ Tuliskan setiap perkalian dengan tanda kurung: <InlineMath math="4(a)" /> berart
 </MathContainer>
 
 Matriks di atas adalah hasil <InlineMath math="4Q" />.
+
+Ini Contoh 1 dalam bentuk gambar. Baca setiap baris <InlineMath math="P" /> sebagai titik: <InlineMath math="(9, 7)" /> dan <InlineMath math="(3, 1)" />. Mengalikan dengan <InlineMath math="2" /> menggandakan kedua koordinat, jadi setiap titik bergeser di sepanjang garis yang melalui titik asal sampai jaraknya dua kali lipat, yaitu <InlineMath math="(18, 14)" /> dan <InlineMath math="(6, 2)" />. Ruas garis di antara keduanya tetap searah dan panjangnya jadi dua kali. Satu skalar mengubah semua entri dengan cara yang sama.
+
+<MathVisual
+  title={<><InlineMath math="2P" /> menggandakan setiap baris <InlineMath math="P" /></>}
+  description={<>Baris <InlineMath math="P" /> dan <InlineMath math="2P" /> sebagai titik. Setiap titik <InlineMath math="2P" /> terletak pada garis dari titik asal melalui titik <InlineMath math="P" /> yang seletak, dua kali lebih jauh.</>}
+  labels={{
+    p1: <InlineMath math="P: (9, 7)" />,
+    p2: <InlineMath math="P: (3, 1)" />,
+    d1: <InlineMath math="2P: (18, 14)" />,
+    d2: <InlineMath math="2P: (6, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 19 }, y: { min: -1, max: 15 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "ray1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 18, y: 14 }, appearance: "construction" },
+      { id: "ray2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 2 }, appearance: "construction" },
+      { id: "p", kind: "segment", from: { x: 9, y: 7 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "double", kind: "segment", from: { x: 18, y: 14 }, to: { x: 6, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p1", objectId: "p", at: { x: 9, y: 7 }, placement: "above-left" },
+      { key: "p2", objectId: "p", at: { x: 3, y: 1 }, placement: "below-right" },
+      { key: "d1", objectId: "double", at: { x: 18, y: 14 }, placement: "left" },
+      { key: "d2", objectId: "double", at: { x: 6, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Skalar negatif dan nol mengikuti aturan yang sama. <InlineMath math="(-1)P" /> mengirim setiap baris ke sisi seberang titik asal: <InlineMath math="(9, 7)" /> menjadi <InlineMath math="(-9, -7)" />. <InlineMath math="0P" /> memampatkan setiap baris ke <InlineMath math="(0, 0)" />, yaitu matriks nol <InlineMath math="O" />.
+
+<MathVisual
+  title={<><InlineMath math="(-1)P" /> dan <InlineMath math="0P" /></>}
+  description={<>Baris-baris <InlineMath math="P" />, lawannya di <InlineMath math="(-1)P" /> melalui titik asal, dan <InlineMath math="0P" /> di titik asal.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    neg: <InlineMath math="(-1)P" />,
+    zero: <InlineMath math="0P = O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -8, max: 8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c1", kind: "segment", from: { x: 9, y: 7 }, to: { x: -9, y: -7 }, appearance: "construction" },
+      { id: "c2", kind: "segment", from: { x: 3, y: 1 }, to: { x: -3, y: -1 }, appearance: "construction" },
+      { id: "p", kind: "segment", from: { x: 9, y: 7 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: -9, y: -7 }, to: { x: -3, y: -1 }, appearance: "warning" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 9, y: 7 }, placement: "left" },
+      { key: "neg", objectId: "neg", at: { x: -9, y: -7 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Menskalakan jumlah sama dengan menjumlahkan matriks yang sudah diskalakan. Ambil baris <InlineMath math="a = (1, 2)" /> dan <InlineMath math="b = (3, 1)" />: jumlahnya <InlineMath math="(4, 3)" />. Menggandakan setiap sisi jajargenjang kecil memberi jajargenjang besar, yang pojok jauhnya <InlineMath math="(8, 6)" /> adalah <InlineMath math="2(a + b)" /> sekaligus <InlineMath math="2a + 2b" />.
+
+<MathVisual
+  title={<><InlineMath math="k(A + B) = kA + kB" /> sebagai jajargenjang yang diskalakan</>}
+  description={<>Jajargenjang dari <InlineMath math="(1, 2)" /> dan <InlineMath math="(3, 1)" /> serta jajargenjang yang sama dua kali lebih besar, dengan pojok jauh <InlineMath math="(4, 3)" /> dan <InlineMath math="(8, 6)" />.</>}
+  labels={{
+    small: <InlineMath math="a + b" />,
+    big: <InlineMath math="2(a + b)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "bigp", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 4 }, { x: 8, y: 6 }, { x: 6, y: 2 }], appearance: "secondary" },
+      { id: "smallp", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 2 }, { x: 4, y: 3 }, { x: 3, y: 1 }], appearance: "primary" },
+      { id: "small", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "big", kind: "point", at: { x: 8, y: 6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "small", objectId: "small", at: { x: 4, y: 3 }, placement: "below-right" },
+      { key: "big", objectId: "big", at: { x: 8, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Sifat Perkalian Matriks dengan Skalar
 

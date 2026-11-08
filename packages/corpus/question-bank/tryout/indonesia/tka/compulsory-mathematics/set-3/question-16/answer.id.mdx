@@ -1,42 +1,12 @@
-Dua setengah lingkaran pada batas luar memiliki luas gabungan satu lingkaran berjari-jari <InlineMath math="6\,\mathrm{m}" />. Misalkan <InlineMath math="A_o" /> adalah luas seluruh daerah di dalam batas luar.
+Lilin besar berbentuk tabung, jadi volumenya **luas alas dikali tinggi**, <InlineMath math="V=\pi r^2t" />. Jari-jarinya setengah diameter, <InlineMath math="r=3{,}5\text{ cm}" />.
 
-<BlockMath math="\begin{aligned}
-A_o&=20(12)+\pi(6)^2 \\
-&=240+36\pi
-\end{aligned}" />
+<BlockMath math="V=\frac{22}{7}\cdot3{,}5^2\cdot12=\frac{22}{7}\cdot12{,}25\cdot12=38{,}5\cdot12=462\text{ cm}^3" />
 
-Batas dalam berjarak <InlineMath math="2\,\mathrm{m}" /> dari batas luar. Radiusnya menjadi <InlineMath math="4\,\mathrm{m}" /> dan lebarnya <InlineMath math="8\,\mathrm{m}" />. Pusat setengah lingkaran tetap, sehingga **panjang bagian lurus tetap** <InlineMath math="20\,\mathrm{m}" />.
+Sebagai pemeriksaan, luas alasnya <InlineMath math="38{,}5\text{ cm}^2" />, dan <InlineMath math="38{,}5\cdot12=462" />.
 
-<BlockMath math="\begin{aligned}
-A_i&=20(8)+\pi(4)^2 \\
-&=160+16\pi
-\end{aligned}" />
+Jadi, volume satu lilin besar <InlineMath math="462\text{ cm}^3" />.
 
-Kurangi luas bagian dalam dari luas seluruh daerah.
-
-<BlockMath math="\begin{aligned}
-A&=A_o-A_i \\
-&=240+36\pi-160-16\pi \\
-&=(240-160)+(36-16)\pi \\
-&=80+20\pi
-\end{aligned}" />
-
-Luas lintasan adalah <InlineMath math="(80+20\pi)\,\mathrm{m}^2" />.
-
-<LineEquation
-  title="Dua batas lintasan stadium"
-  description="Pusat kedua busur tetap berjarak 20 m. Radius luar 6 m dan radius dalam 4 m."
-  cameraPosition={[10,0,43]}
-  cameraTarget={[10,0,0]}
-  showZAxis={false}
-  data={[
-    ...[6,4].flatMap((r) => [
-      { points: Array.from({ length: 81 }, (_, i) => { const t = Math.PI/2 + Math.PI*i/80; return { x: r*Math.cos(t), y: r*Math.sin(t), z: 0 }; }), color: r===6 ? "#9333ea" : "#d97706", smooth: false, showPoints: false },
-      { points: Array.from({ length: 81 }, (_, i) => { const t = -Math.PI/2 + Math.PI*i/80; return { x: 20+r*Math.cos(t), y: r*Math.sin(t), z: 0 }; }), color: r===6 ? "#9333ea" : "#d97706", smooth: false, showPoints: false },
-      ...[-r,r].map((y) => ({ points: [{ x: 0, y, z: 0 }, { x: 20, y, z: 0 }], color: r===6 ? "#9333ea" : "#d97706", smooth: false, showPoints: false })),
-    ]),
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 20, y: 0, z: 0 }], color: "#64748b", smooth: false, labels: [{ text: "20 m", at: 0, offset: [10, -0.8, 0] }] },
-    { points: [{ x: 10, y: 4, z: 0 }, { x: 10, y: 6, z: 0 }], color: "#d97706", smooth: false, labels: [{ text: "2 m", at: 0, offset: [1.2, 1, 0] }] },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 6, z: 0 }], color: "#9333ea", smooth: false, showPoints: false, labels: [{ text: "6 m", at: 0, offset: [-1.3, 3, 0] }] },
-  ]}
-/>
+- <InlineMath math="132\text{ cm}^3" /> menghitung <InlineMath math="\pi rt" />, jari-jarinya tidak dikuadratkan.
+- <InlineMath math="154\text{ cm}^3" /> memakai rumus kerucut, <InlineMath math="\frac13\pi r^2t" />.
+- <InlineMath math="264\text{ cm}^3" /> menghitung luas selimut <InlineMath math="2\pi rt" />, bukan volume.
+- <InlineMath math="1{.}848\text{ cm}^3" /> memakai diameter <InlineMath math="7\text{ cm}" /> sebagai jari-jari.

@@ -1,0 +1,55 @@
+Der Mittelpunkt ist bekannt, es fehlt nur **der Radius**. Eine Tangente berührt den Kreis in genau einem Punkt, und der Radius zu diesem Punkt steht senkrecht auf der Tangente. Der Radius ist also **der Abstand des Mittelpunkts von der Tangente**.
+
+Der Abstand eines Punktes <InlineMath math="(x_0,y_0)" /> von der Geraden <InlineMath math="ax+by+c=0" /> ist <InlineMath math="\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}" />. Für den Mittelpunkt <InlineMath math="(3,-2)" /> und die Gerade <InlineMath math="4x-3y+2=0" /> achtest du auf das Vorzeichen des Terms <InlineMath math="-3y" /> bei <InlineMath math="y=-2" />.
+
+<BlockMath math="r=\frac{|4\cdot3-3\cdot(-2)+2|}{\sqrt{4^2+(-3)^2}}=\frac{|12+6+2|}{\sqrt{25}}=\frac{20}{5}=4" />
+
+Ein Kreis mit Mittelpunkt <InlineMath math="(a,b)" /> und Radius <InlineMath math="r" /> hat die Gleichung <InlineMath math="(x-a)^2+(y-b)^2=r^2" />. Setze Mittelpunkt und Radius ein und multipliziere zur allgemeinen Form aus.
+
+<BlockMath math="\begin{aligned}
+(x-3)^2+(y+2)^2&=16 \\
+x^2-6x+9+y^2+4y+4&=16 \\
+x^2+y^2-6x+4y-3&=0
+\end{aligned}" />
+
+Zur Kontrolle: Der Berührpunkt ist <InlineMath math="\left(-\frac15,\frac25\right)" />. Er liegt auf der Geraden, denn <InlineMath math="4\left(-\frac15\right)-3\cdot\frac25+2=-\frac45-\frac65+2=0" />, und sein Abstand vom Mittelpunkt ist <InlineMath math="\sqrt{\left(\frac{16}{5}\right)^2+\left(\frac{12}{5}\right)^2}=\sqrt{\frac{400}{25}}=4" />.
+
+<MathVisual
+  title="Kreis, der eine Gerade berührt"
+  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="(3,-2)" /> und den Radius <InlineMath math="4" />. Die Gerade <InlineMath math="4x-3y+2=0" /> berührt ihn in <InlineMath math="\left(-\frac15,\frac25\right)" />, und die Strecke vom Mittelpunkt zu diesem Punkt steht senkrecht auf der Geraden.</>}
+  labels={{
+    center: <InlineMath math="(3,-2)" />,
+    contact: <InlineMath math="\left(-\frac15,\frac25\right)" />,
+    radius: <InlineMath math="r=4" />,
+    tangent: <InlineMath math="4x-3y+2=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 8 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 3, y: -2 }, radius: 4 },
+      { id: "line", kind: "segment", appearance: "secondary", from: { x: -2, y: -2 }, to: { x: 4, y: 6 } },
+      { id: "radius-segment", kind: "segment", appearance: "construction", from: { x: 3, y: -2 }, to: { x: -1 / 5, y: 2 / 5 } },
+      { id: "center-point", kind: "point", appearance: "reference", at: { x: 3, y: -2 } },
+      { id: "contact-point", kind: "point", appearance: "answer", at: { x: -1 / 5, y: 2 / 5 } },
+    ],
+    labels: [
+      { key: "center", objectId: "center-point", at: { x: 3, y: -2 }, placement: "below-right" },
+      { key: "contact", objectId: "contact-point", at: { x: -1 / 5, y: 2 / 5 }, placement: "left" },
+      { key: "radius", objectId: "radius-segment", at: { x: 1.4, y: -0.8 }, placement: "below-left" },
+      { key: "tangent", objectId: "line", at: { x: 2.5, y: 4 }, placement: "left" },
+    ],
+  }}
+/>
+
+Die Kreisgleichung lautet also <InlineMath math="x^2+y^2-6x+4y-3=0" />.
+
+- <InlineMath math="x^2+y^2+6x-4y-3=0" /> ist der Kreis mit Mittelpunkt <InlineMath math="(-3,2)" />. Beim Aufstellen von <InlineMath math="(x-a)^2+(y-b)^2" /> wurden die Vorzeichen der Mittelpunktskoordinaten vertauscht.
+- <InlineMath math="x^2+y^2-6x+4y+9=0" /> stammt aus <InlineMath math="(x-3)^2+(y+2)^2=4" />, also wurde der Radius <InlineMath math="4" /> rechts nicht quadriert.
+- <InlineMath math="x^2+y^2-6x+4y-7=0" /> stammt aus <InlineMath math="r^2=20" />. Der Zähler der Abstandsformel, <InlineMath math="20" />, wurde als <InlineMath math="r^2" /> genommen, ohne durch <InlineMath math="\sqrt{25}=5" /> zu teilen.
+- <InlineMath math="x^2+y^2-6x+4y-12=0" /> stammt aus <InlineMath math="r=5" />. Hier wurde die Länge <InlineMath math="\sqrt{4^2+(-3)^2}" /> im Nenner der Abstandsformel für den Radius gehalten.

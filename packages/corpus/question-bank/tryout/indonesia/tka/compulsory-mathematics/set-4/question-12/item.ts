@@ -2,33 +2,32 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "geometry-measurement",
-    topic: "geometry-transformations",
+    topic: "geometry-objects",
   },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$y=x^2$$",
+          column: 1,
+          label:
+            "Jarak titik $$O$$ ke tali busur $$AB$$ adalah $$12\\text{ cm}$$.",
         },
         {
-          correct: false,
-          label: "$$y=x^2-6$$",
+          column: 2,
+          label:
+            "Tali busur lain yang panjangnya $$24\\text{ cm}$$ berjarak $$34\\text{ cm}$$ dari $$O$$.",
         },
         {
-          correct: false,
-          label: "$$y=x^2+8$$",
+          column: 2,
+          label: "Luas segitiga $$OAB$$ adalah $$1{.}295\\text{ cm}^2$$.",
         },
         {
-          correct: false,
-          label: "$$y=x^2-8x+10$$",
-        },
-        {
-          correct: false,
-          label: "$$y=x^2-8x+16$$",
+          column: 1,
+          label: "Besar $$\\angle AOB$$ lebih dari $$120^\\circ$$.",
         },
       ],
     },

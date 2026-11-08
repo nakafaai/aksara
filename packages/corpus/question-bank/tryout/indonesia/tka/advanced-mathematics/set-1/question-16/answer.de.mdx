@@ -1,0 +1,55 @@
+Jeder Punkt des Wischergummis bewegt sich auf einem Kreis um <InlineMath math="O" />. Der nächste Punkt beschreibt einen Bogen mit Radius <InlineMath math="15\text{ cm}" />, der äußerste einen Bogen mit Radius <InlineMath math="60\text{ cm}" />. Die überstrichene Fläche ist ein **Kreisringausschnitt**: ein großer Kreisausschnitt mit Radius <InlineMath math="60\text{ cm}" /> minus ein kleiner mit Radius <InlineMath math="15\text{ cm}" />, beide mit dem Mittelpunktswinkel <InlineMath math="120^\circ" />.
+
+<MathVisual
+  title="Vom Wischer überstrichene Fläche"
+  description={<>Die überstrichene Fläche wird von einem Bogen mit Radius <InlineMath math="15\text{ cm}" />, einem Bogen mit Radius <InlineMath math="60\text{ cm}" /> und zwei Strecken in der Anfangs- und Endlage des Wischerarms begrenzt. Der Mittelpunktswinkel beträgt <InlineMath math="120^\circ" />.</>}
+  labels={{
+    pivot: <InlineMath math="O" />,
+    inner: <InlineMath math="15\text{ cm}" />,
+    outer: <InlineMath math="60\text{ cm}" />,
+    turn: <InlineMath math="120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -55, max: 55 },
+      y: { min: -8, max: 65 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "outer-arc", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 60, startDegrees: 30, sweepDegrees: 120 },
+      { id: "inner-arc", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 15, startDegrees: 30, sweepDegrees: 120 },
+      { id: "start-edge", kind: "segment", appearance: "primary", from: { x: 7.5 * Math.sqrt(3), y: 7.5 }, to: { x: 30 * Math.sqrt(3), y: 30 } },
+      { id: "end-edge", kind: "segment", appearance: "primary", from: { x: -7.5 * Math.sqrt(3), y: 7.5 }, to: { x: -30 * Math.sqrt(3), y: 30 } },
+      { id: "inner-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 7.5 * Math.sqrt(3), y: 7.5 } },
+      { id: "outer-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -30 * Math.sqrt(3), y: 30 } },
+      { id: "turn-arc", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 6, startDegrees: 30, sweepDegrees: 120 },
+      { id: "pivot-point", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "pivot", objectId: "pivot-point", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "inner", objectId: "inner-radius", at: { x: 3.75 * Math.sqrt(3), y: 3.75 }, placement: "below-right" },
+      { key: "outer", objectId: "outer-radius", at: { x: -15 * Math.sqrt(3), y: 15 }, placement: "below-left" },
+      { key: "turn", objectId: "turn-arc", at: { x: 0, y: 6 }, placement: "above" },
+    ],
+  }}
+/>
+
+Ein Kreisausschnitt mit Mittelpunktswinkel <InlineMath math="\alpha" /> und Radius <InlineMath math="r" /> hat den Flächeninhalt <InlineMath math="\frac{\alpha}{360^\circ}\pi r^2" />. Beide Ausschnitte haben denselben Winkel, also kannst du den Faktor <InlineMath math="\frac{120^\circ}{360^\circ}=\frac13" /> ausklammern.
+
+<BlockMath math="\begin{aligned}
+A&=\frac{120^\circ}{360^\circ}\pi\cdot60^2-\frac{120^\circ}{360^\circ}\pi\cdot15^2 \\
+&=\frac13\pi\left(60^2-15^2\right) \\
+&=\frac13\pi(3{.}600-225) \\
+&=\frac13\pi\cdot3{.}375=1{.}125\pi\text{ cm}^2
+\end{aligned}" />
+
+Das Ergebnis ist plausibel: Es ist kleiner als der große Ausschnitt, <InlineMath math="\frac13\pi\cdot3{.}600=1{.}200\pi\text{ cm}^2" />, und die Differenz <InlineMath math="75\pi\text{ cm}^2" /> ist genau der kleine Ausschnitt <InlineMath math="\frac13\pi\cdot225" />.
+
+Die Glasfläche, die das Wischergummi bei einem Wischvorgang überstreicht, beträgt also <InlineMath math="1{.}125\pi\text{ cm}^2" />.
+
+- <InlineMath math="675\pi\text{ cm}^2" /> entsteht, wenn zuerst die Radien subtrahiert und dann quadriert werden: <InlineMath math="\frac13\pi(60-15)^2" />. Subtrahiert werden müssen aber die Quadrate der Radien.
+- <InlineMath math="1{.}200\pi\text{ cm}^2" /> ist nur der große Ausschnitt. Er enthält auch den Bereich nahe der Achse, den das Gummi nie berührt.
+- <InlineMath math="2{.}250\pi\text{ cm}^2" /> entsteht, wenn der Winkelanteil als <InlineMath math="\frac{120^\circ}{180^\circ}" /> geschrieben wird, obwohl eine volle Drehung <InlineMath math="360^\circ" /> beträgt.
+- <InlineMath math="3{.}375\pi\text{ cm}^2" /> ist der Flächeninhalt eines vollen Kreisrings. Der Faktor <InlineMath math="\frac13" /> für den Winkel <InlineMath math="120^\circ" /> fehlt.

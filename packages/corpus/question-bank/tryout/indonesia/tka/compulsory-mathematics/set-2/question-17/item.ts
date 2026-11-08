@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "water-tank",
+  stimulus: "ring-mold",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$0{,}88$$",
+          label: "$$440\\text{ cm}^2$$",
         },
         {
           correct: true,
-          label: "$$0{,}96$$",
+          label: "$$902\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$0{,}92$$",
+          label: "$$1{.}056\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$1{,}00$$",
+          label: "$$1{.}122\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$1{,}04$$",
+          label: "$$1{.}364\\text{ cm}^2$$",
         },
       ],
     },

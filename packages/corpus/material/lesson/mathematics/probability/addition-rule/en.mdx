@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use the probability addition rule for mutually exclusive and overlapping events through clear examples, formulas, and worked solutions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-21",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Probability",
 };
 
@@ -85,6 +85,92 @@ For the "sum is <InlineMath math="8" /> OR doubles" example:
 
 Direct addition gives <InlineMath math="5/36 + 6/36 = 11/36" />, but the pair <InlineMath math="(4,4)" /> appears in both groups. Subtracting its probability once removes the duplicate count.
 
+On the grid of two dice, the doubles run along one diagonal and the sums of <InlineMath math="8" /> along another. They cross at <InlineMath math="(4, 4)" />, a double whose sum is 8. Counting both lists would count that dot twice, so <InlineMath math="P = \frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.
+
+<MathVisual
+  title={<>Doubles and sums of eight share one outcome</>}
+  description={<>The 36 outcomes of two dice with the six doubles, the five sums of 8, and their shared outcome <InlineMath math="(4, 4)" />.</>}
+  labels={{
+    d44: <InlineMath math="(4, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "d11", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "d12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "d13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "d14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "d15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "d16", kind: "point", at: { x: 1, y: 6 }, appearance: "reference" },
+      { id: "d21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "d22", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "d23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "d24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "d25", kind: "point", at: { x: 2, y: 5 }, appearance: "reference" },
+      { id: "d26", kind: "point", at: { x: 2, y: 6 }, appearance: "secondary" },
+      { id: "d31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "d32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "d33", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "d34", kind: "point", at: { x: 3, y: 4 }, appearance: "reference" },
+      { id: "d35", kind: "point", at: { x: 3, y: 5 }, appearance: "secondary" },
+      { id: "d36", kind: "point", at: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "d41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "d42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "d43", kind: "point", at: { x: 4, y: 3 }, appearance: "reference" },
+      { id: "d44", kind: "point", at: { x: 4, y: 4 }, appearance: "answer" },
+      { id: "d45", kind: "point", at: { x: 4, y: 5 }, appearance: "reference" },
+      { id: "d46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "d51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "d52", kind: "point", at: { x: 5, y: 2 }, appearance: "reference" },
+      { id: "d53", kind: "point", at: { x: 5, y: 3 }, appearance: "secondary" },
+      { id: "d54", kind: "point", at: { x: 5, y: 4 }, appearance: "reference" },
+      { id: "d55", kind: "point", at: { x: 5, y: 5 }, appearance: "primary" },
+      { id: "d56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "d61", kind: "point", at: { x: 6, y: 1 }, appearance: "reference" },
+      { id: "d62", kind: "point", at: { x: 6, y: 2 }, appearance: "secondary" },
+      { id: "d63", kind: "point", at: { x: 6, y: 3 }, appearance: "reference" },
+      { id: "d64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "d65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "d66", kind: "point", at: { x: 6, y: 6 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "d44", objectId: "d44", at: { x: 4, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+The same count as a diagram: <InlineMath math="5" /> doubles that are not sums of 8, <InlineMath math="4" /> sums of 8 that are not doubles, and <InlineMath math="1" /> outcome in both. The union holds <InlineMath math="5 + 1 + 4 = 10" /> outcomes, exactly what the formula gives.
+
+<MathVisual
+  title={<>The overlap counted once</>}
+  description={<>Two overlapping circles for doubles and sums of 8, with 5, 1 and 4 outcomes in the three regions.</>}
+  labels={{
+    a: <>doubles</>,
+    b: <InlineMath math="x + y = 8" />,
+    onlya: <InlineMath math="5" />,
+    onlyb: <InlineMath math="4" />,
+    both: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "circle", center: { x: -0.6, y: 0 }, radius: 1.2, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 0.6, y: 0 }, radius: 1.2, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1.8, y: 0 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 1.8, y: 0 }, placement: "right" },
+      { key: "onlya", objectId: "a", at: { x: -1.1, y: 0 }, placement: "center" },
+      { key: "onlyb", objectId: "b", at: { x: 1.1, y: 0 }, placement: "center" },
+      { key: "both", objectId: "a", at: { x: 0, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
 ### Formula for Not Mutually Exclusive Events
 
 For events <InlineMath math="A" /> and <InlineMath math="B" /> that are not mutually exclusive, the way to calculate the probability of "A OR B" is:
@@ -119,6 +205,17 @@ The two formulas differ in one question, whether the events can happen in the **
 | Yes, the events overlap | <InlineMath math="P(A \text{ or } B) = P(A) + P(B) - P(A \text{ and } B)" /> |
 
 The second formula subtracts the overlap because the outcomes that belong to both events were counted twice, once for <InlineMath math="A" /> and once for <InlineMath math="B" />.
+
+With an overlap the bars no longer stack. Doubles have <InlineMath math="\frac{6}{36}" /> and sums of 8 have <InlineMath math="\frac{5}{36}" />, but <InlineMath math="(4, 4)" /> belongs to both, so either one has <InlineMath math="\frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.
+
+<BarChart
+  title={<>Adding two overlapping events</>}
+  description={<>Bars for doubles, sums of 8, both and either, with <InlineMath math="\frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.</>}
+  yAxisLabel="Probability"
+  data={[["doubles", 6 / 36], ["sum 8", 5 / 36], ["both", 1 / 36], ["either", 10 / 36]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Exercise
 
 In a class of <InlineMath math="30" /> students, <InlineMath math="18" /> belong to the mathematics club, <InlineMath math="14" /> belong to the science club, and <InlineMath math="8" /> belong to both clubs. One student is selected at random.
