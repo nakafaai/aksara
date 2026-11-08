@@ -54,11 +54,11 @@ Für den Wurzelausdruck eignet sich die Substitution <InlineMath math="u = t + 1
 
 Das kontinuierliche Modell liefert für die ersten <InlineMath math="3 \text{ Monate}" /> den Wert <InlineMath math="S = \frac{35200}{3} \approx 11733{,}33" />. Als ganze Geräte sind das ungefähr <InlineMath math="11733" /> Smartphones.
 
-Ein Integral summiert eine Rate auf. Bei der Verkaufsrate <InlineMath math="2000\sqrt{t + 1} + 800" /> Einheiten pro Jahr zeigen die Balken die Gesamtverkäufe nach <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" /> Jahren, jeweils berechnet als <InlineMath math="\int_0^t (2000\sqrt{u + 1} + 800)\,du" />. Der letzte Balken liegt bei etwa <InlineMath math="11.733" /> Einheiten, dem Ergebnis oben.
+Ein Integral summiert eine Rate auf. Bei der Verkaufsrate <InlineMath math="2000\sqrt{t + 1} + 800" /> Einheiten pro Monat zeigen die Balken die Gesamtverkäufe nach <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" /> Monaten, jeweils berechnet als <InlineMath math="\int_0^t (2000\sqrt{u + 1} + 800)\,du" />. Der letzte Balken liegt bei etwa <InlineMath math="11.733" /> Einheiten, dem Ergebnis oben.
 
 <BarChart
   title="Gesamtverkäufe aus einer Rate"
-  description={<>Gesamtverkäufe nach 1, 2 und 3 Jahren, jeweils das Integral der Verkaufsrate von 0 bis zu diesem Jahr.</>}
+  description={<>Gesamtverkäufe nach 1, 2 und 3 Monaten, jeweils das Integral der Verkaufsrate von 0 bis zu diesem Monat.</>}
   yAxisLabel="Verkaufte Einheiten"
   data={[1, 2, 3].map((t) => ({ name: `${t}`, value: (4000 / 3) * ((t + 1) ** 1.5 - 1) + 800 * t }))}
   chartConfig={{ value: { label: "Verkaufte Einheiten", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

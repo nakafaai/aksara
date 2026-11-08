@@ -54,11 +54,11 @@ For integrals containing square roots, we can use substitution. Let <InlineMath 
 
 The continuous model predicts <InlineMath math="S = \frac{35200}{3} \approx 11733.33" /> smartphone units in the first <InlineMath math="3 \text{ months}" />. Interpreted as whole devices, that is approximately <InlineMath math="11733" /> smartphones.
 
-An integral adds up a rate. With the sales rate <InlineMath math="2000\sqrt{t + 1} + 800" /> units per year, the bars show the total sold after <InlineMath math="1" />, <InlineMath math="2" /> and <InlineMath math="3" /> years, each computed as <InlineMath math="\int_0^t (2000\sqrt{u + 1} + 800)\,du" />. The last bar is about <InlineMath math="11733" /> units, the result above.
+An integral adds up a rate. With the sales rate <InlineMath math="2000\sqrt{t + 1} + 800" /> units per month, the bars show the total sold after <InlineMath math="1" />, <InlineMath math="2" /> and <InlineMath math="3" /> months, each computed as <InlineMath math="\int_0^t (2000\sqrt{u + 1} + 800)\,du" />. The last bar is about <InlineMath math="11733" /> units, the result above.
 
 <BarChart
   title="Total sales accumulated from a rate"
-  description={<>Total sales after 1, 2 and 3 years, each the integral of the sales rate from 0 to that year.</>}
+  description={<>Total sales after 1, 2 and 3 months, each the integral of the sales rate from 0 to that month.</>}
   yAxisLabel="Units sold"
   data={[1, 2, 3].map((t) => ({ name: `${t}`, value: (4000 / 3) * ((t + 1) ** 1.5 - 1) + 800 * t }))}
   chartConfig={{ value: { label: "Units sold", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

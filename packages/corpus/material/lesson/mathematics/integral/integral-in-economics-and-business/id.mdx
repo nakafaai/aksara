@@ -54,11 +54,11 @@ Untuk integral yang mengandung akar, kita bisa gunakan substitusi. Misalkan <Inl
 
 Model kontinu tersebut memprediksi <InlineMath math="S = \frac{35200}{3} \approx 11733{,}33" /> unit smartphone dalam <InlineMath math="3 \text{ bulan}" /> pertama. Jika dinyatakan sebagai jumlah perangkat utuh, hasilnya sekitar <InlineMath math="11733" /> smartphone.
 
-Integral menjumlahkan sebuah laju. Dengan laju penjualan <InlineMath math="2000\sqrt{t + 1} + 800" /> unit per tahun, batangnya menunjukkan total terjual setelah <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" /> tahun, masing-masing dihitung sebagai <InlineMath math="\int_0^t (2000\sqrt{u + 1} + 800)\,du" />. Batang terakhir sekitar <InlineMath math="11.733" /> unit, sama dengan hasil di atas.
+Integral menjumlahkan sebuah laju. Dengan laju penjualan <InlineMath math="2000\sqrt{t + 1} + 800" /> unit per bulan, batangnya menunjukkan total terjual setelah <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" /> bulan, masing-masing dihitung sebagai <InlineMath math="\int_0^t (2000\sqrt{u + 1} + 800)\,du" />. Batang terakhir sekitar <InlineMath math="11.733" /> unit, sama dengan hasil di atas.
 
 <BarChart
   title="Total penjualan yang terkumpul dari laju"
-  description={<>Total penjualan setelah 1, 2, dan 3 tahun, masing-masing integral laju penjualan dari 0 sampai tahun itu.</>}
+  description={<>Total penjualan setelah 1, 2, dan 3 bulan, masing-masing integral laju penjualan dari 0 sampai bulan itu.</>}
   yAxisLabel="Unit terjual"
   data={[1, 2, 3].map((t) => ({ name: `${t}`, value: (4000 / 3) * ((t + 1) ** 1.5 - 1) + 800 * t }))}
   chartConfig={{ value: { label: "Unit terjual", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
