@@ -32,7 +32,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Kalimat (8) memberikan contoh penggunaan lain yang arahnya berlawanan dengan contoh pada kalimat (7).",
+            "Kalimat (8) memberikan contoh penggunaan lain yang tujuannya berkebalikan dengan contoh pada kalimat (7).",
         },
       ],
     },
