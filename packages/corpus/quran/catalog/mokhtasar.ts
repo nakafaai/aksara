@@ -1,5 +1,5 @@
 import {
-  APP_LOCALE_CODES,
+  ACTIVE_APP_LOCALE_CODES,
   AppLocaleCodeSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
@@ -16,15 +16,15 @@ const MokhtasarEditionSchema = Schema.Struct({
   version: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
 });
 
-/** Checks that the official catalog covers every application locale once. */
+/** Checks that the official catalog covers every active application locale once. */
 function hasCompleteLocaleCoverage(
   editions: readonly (typeof MokhtasarEditionSchema.Type)[]
 ) {
   return (
-    editions.length === APP_LOCALE_CODES.length &&
+    editions.length === ACTIVE_APP_LOCALE_CODES.length &&
     Arr.every(
       editions,
-      ({ appLocale }, index) => appLocale === APP_LOCALE_CODES[index]
+      ({ appLocale }, index) => appLocale === ACTIVE_APP_LOCALE_CODES[index]
     )
   );
 }
@@ -34,7 +34,7 @@ const MokhtasarCatalogSchema = Schema.Struct({
     Schema.check(
       Schema.makeFilter(hasCompleteLocaleCoverage, {
         message:
-          "Expected one official Mokhtasar edition for every app locale.",
+          "Expected one official Mokhtasar edition for every active app locale.",
       })
     )
   ),

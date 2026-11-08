@@ -2,14 +2,20 @@ import { Array as Arr, Option, Schema } from "effect";
 
 import { hasCanonicalOrder } from "#contracts/canonical";
 
-/** Stable locale codes supported by the current Aksara contract. */
-export const AppLocaleCodeSchema = Schema.Literals(["en", "id", "de"]);
+/**
+ * Every locale code the contract declares, in canonical order: the active
+ * locales first, then a declared locale whose corpus is still being written.
+ * Malay (`ms`) is declared so its copy and content can be written completely
+ * before one release makes it active; an active locale never falls back.
+ */
+export const AppLocaleCodeSchema = Schema.Literals(["en", "id", "de", "ms"]);
 export type AppLocaleCode = typeof AppLocaleCodeSchema.Type;
 
 export const [
   ENGLISH_APP_LOCALE_CODE,
   INDONESIAN_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
+  MALAY_APP_LOCALE_CODE,
 ] = AppLocaleCodeSchema.literals;
 
 const APP_LOCALE_BRAND = "@NakafaAI/AksaraAppLocale";
@@ -80,8 +86,15 @@ export type ArtifactLocale = typeof ArtifactLocaleSchema.Type;
 /** Canonical locale order used by every active-locale subset. */
 export const APP_LOCALE_CODES = AppLocaleCodeSchema.literals;
 
-/** Source-controlled application locale codes included by this corpus. */
-export const ActiveAppLocaleCodeSchema = AppLocaleCodeSchema;
+/**
+ * Source-controlled application locale codes included by this corpus: every
+ * scope authors each of them, and the product serves each of them.
+ */
+export const ActiveAppLocaleCodeSchema = AppLocaleCodeSchema.pick([
+  ENGLISH_APP_LOCALE_CODE,
+  INDONESIAN_APP_LOCALE_CODE,
+  GERMAN_APP_LOCALE_CODE,
+]);
 export type ActiveAppLocaleCode = typeof ActiveAppLocaleCodeSchema.Type;
 
 /** Source-controlled codes used to index the currently complete corpus. */
@@ -114,7 +127,7 @@ export const ActiveAppLocaleListSchema = Schema.NonEmptyArray(
 ).pipe(
   Schema.check(
     Schema.makeFilter(hasCanonicalActiveAppLocales, {
-      message: "Active app locales must be unique and follow en, id, de order.",
+      message: `Active app locales must be unique and follow ${Arr.join(APP_LOCALE_CODES, ", ")} order.`,
     })
   )
 );

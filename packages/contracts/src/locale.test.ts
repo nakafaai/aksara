@@ -1,8 +1,11 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
 import {
+  ACTIVE_APP_LOCALE_CODES,
+  ActiveAppLocaleCodeSchema,
   ActiveAppLocaleListSchema,
   ActiveAppLocaleSchema,
+  AppLocaleCodeSchema,
   AppLocaleSchema,
   ArtifactLocaleSchema,
   activeAppLocaleCode,
@@ -17,6 +20,15 @@ describe("locale", () => {
     expect(Schema.decodeSync(DeliveryLanguageSchema)("de")).toBe("de");
     expect(activeAppLocaleCode(ActiveAppLocaleSchema.make("en"))).toBe("en");
     expect(artifactLocaleCode(ArtifactLocaleSchema.make("de"))).toBe("de");
+  });
+
+  it("declares Malay while only English, Indonesian, and German are active", () => {
+    expect(Schema.is(AppLocaleCodeSchema)("ms")).toBe(true);
+    expect(Schema.is(ActiveAppLocaleCodeSchema)("ms")).toBe(false);
+    expect(ACTIVE_APP_LOCALE_CODES).toEqual(["en", "id", "de"]);
+    expect(
+      Exit.isFailure(Schema.decodeUnknownExit(ActiveAppLocaleSchema)("ms"))
+    ).toBe(true);
   });
 
   it("accepts a well-formed canonical tag of any language as a content language", () => {
@@ -59,6 +71,7 @@ describe("locale", () => {
       ["en", "de"],
       ["id", "de"],
       ["en", "id", "de"],
+      ["en", "id", "de", "ms"],
     ] as const) {
       expect(Schema.decodeSync(ActiveAppLocaleListSchema)(locales)).toEqual(
         locales
@@ -72,6 +85,7 @@ describe("locale", () => {
       ["en", "en"],
       ["id", "en"],
       ["de", "id"],
+      ["ms", "en"],
     ] as const) {
       const result = Schema.decodeUnknownExit(ActiveAppLocaleListSchema)(
         locales
@@ -81,7 +95,7 @@ describe("locale", () => {
     expect(
       String(Schema.decodeExit(ActiveAppLocaleListSchema)(["en", "en"]))
     ).toContain(
-      "Active app locales must be unique and follow en, id, de order."
+      "Active app locales must be unique and follow en, id, de, ms order."
     );
   });
 });
