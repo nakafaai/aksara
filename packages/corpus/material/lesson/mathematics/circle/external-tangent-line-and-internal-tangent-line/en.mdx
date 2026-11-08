@@ -1,27 +1,27 @@
 
 export const metadata = {
   title: "Common External and Internal Tangents",
-  description: "Derive the lengths and existence conditions of common external and internal tangents, then test them in fully worked problems.",
+  description: "Find the length of a common external tangent with the difference of the radii and an internal tangent with their sum, with conditions and examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Circle",
 };
 
-## Definition of Common Tangent Lines
+## Common Tangent Formulas
 
-A common tangent line is a line that <Highlight>touches two circles simultaneously</Highlight>. There are two types of common tangent lines:
+A common tangent is a line that **touches two circles at once**. A common external tangent touches both circles from the same side, while a common internal tangent passes between the two circles. If the centers are a distance <InlineMath math="d" /> apart and the radii are <InlineMath math="r_1" /> and <InlineMath math="r_2" />, the length of the tangent segment is:
 
-1. **External Common Tangent Line**: A line that touches both circles from the same side
-2. **Internal Common Tangent Line**: A line that touches both circles from opposite sides
+<MathContainer>
+  <BlockMath math="l_{\text{ext}} = \sqrt{d^2 - (r_2 - r_1)^2}" />
+  <BlockMath math="l_{\text{int}} = \sqrt{d^2 - (r_1 + r_2)^2}" />
+</MathContainer>
 
-## Concept of External Common Tangent Line
-
-An external common tangent line touches both circles **without crossing the segment between their centers**.
+The external tangent uses the **difference of the radii**, and the internal tangent uses the **sum of the radii**. The external tangent diagram shows two circles whose centers are <InlineMath math="8" /> apart, with radii <InlineMath math="2" /> and <InlineMath math="3" />. Look at the right triangle <InlineMath math="AHB" />, which is where the first formula comes from.
 
 <LineEquation
-  title="External Common Tangent Line"
-  description="Two external common tangent lines on two circles."
+  title="Common External Tangents"
+  description={<>Lines <InlineMath math="g_1" /> and <InlineMath math="g_2" /> touch both circles from the same side, and the helper segment <InlineMath math="AH" /> runs parallel to the tangent.</>}
   data={[
     {
       smooth: false,
@@ -187,26 +187,23 @@ cameraPosition={[0.5, 0, 16.5]}
   cameraTarget={[0.5, 0, 0]}
 />
 
-### Formula for External Common Tangent Line Length
+For that pair of circles, <InlineMath math="l_{\text{ext}} = \sqrt{8^2 - 1^2} = \sqrt{63} = 3\sqrt{7}" />. The formula gives the length of the segment between the two points of tangency. Finding the equation of the line is a different task, covered in [the equation of a tangent line to a circle](/en/subjects/mathematics/analytic-geometry/equation-of-a-tangent-line-to-a-circle).
 
-In the first diagram, draw auxiliary segment <InlineMath math="AH" /> parallel to the tangent. Taking <InlineMath math="r_2\ge r_1" />, perpendicular side <InlineMath math="BH" /> is the **difference of the radii**, while <InlineMath math="AB=d" /> and <InlineMath math="AH=l" />. The angle at <InlineMath math="H" /> is a right angle, so:
+## Length of a Common External Tangent
 
-<BlockMath math="l^2+(r_2-r_1)^2=d^2\quad\Longrightarrow\quad l=\sqrt{d^2-(r_2-r_1)^2}" />
+The external tangent formula rests on one fact: a [tangent line to a circle](/en/subjects/mathematics/circle/circle-and-tangent-line) is always **perpendicular to the radius** at the point of tangency. So the two radii to the points of tangency are parallel, and the shape between them is a right trapezoid.
 
-If <InlineMath math="r_1>r_2" />, exchange the circle names. A positive segment requires <InlineMath math="d>|r_2-r_1|" />. If <InlineMath math="d=|r_2-r_1|>0" />, the circles touch internally. If <InlineMath math="d=0" /> and the radii are equal, the circles coincide.
+In the external tangent diagram, draw the helper segment <InlineMath math="AH" /> from center <InlineMath math="A" /> parallel to the tangent. Segment <InlineMath math="AH" /> is as long as the tangent segment, so <InlineMath math="AH = l" />. Segment <InlineMath math="BH" /> is what remains of the larger radius after you take away the smaller one, so <InlineMath math="BH = r_2 - r_1" />. The angle at <InlineMath math="H" /> is a right angle, and the Pythagorean theorem gives:
 
-### Finding the Length of External Common Tangent Line
+<BlockMath math="l^2 + (r_2 - r_1)^2 = d^2 \quad\Longrightarrow\quad l = \sqrt{d^2 - (r_2 - r_1)^2}" />
 
-Two circles are centered at <InlineMath math="A(-3, 0)" /> with radius <InlineMath math="1.5" /> and <InlineMath math="B(3, 0)" /> with radius <InlineMath math="2.5" />. Find the length of the external common tangent line!
+Call the larger radius <InlineMath math="r_2" /> so the difference is positive. The square of the difference is the same either way, but consistent names make the work easier to check. The external tangent segment has a positive length as long as <InlineMath math="d > r_2 - r_1" />, which means the smaller circle is not inside the larger one.
+
+**Example**. The first circle has center <InlineMath math="A(-3, 0)" /> and radius <InlineMath math="1.5" />, and the second has center <InlineMath math="B(3, 0)" /> and radius <InlineMath math="2.5" />. Find the length of their common external tangent.
 
 <LineEquation
-  title={
-    <>
-      Circles with <InlineMath math="r_1 = 1.5" /> and{" "}
-      <InlineMath math="r_2 = 2.5" />
-    </>
-  }
-  description="Visualization of external common tangent line."
+  title={<>Circles with <InlineMath math="r_1 = 1.5" /> and <InlineMath math="r_2 = 2.5" /></>}
+  description={<>Centers <InlineMath math="A" /> and <InlineMath math="B" /> are <InlineMath math="6" /> apart, so the external tangent segment <InlineMath math="PQ" /> has length <InlineMath math="\sqrt{35}" />.</>}
   data={[
     {
       smooth: false,
@@ -345,25 +342,22 @@ cameraPosition={[0.5, 0, 13]}
   cameraTarget={[0.5, 0, 0]}
 />
 
-**Solution**:
+Read the distance between the centers from the coordinates, then use the external tangent formula:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} d &amp;= \sqrt{(3-(-3))^2 + (0-0)^2} \\ &amp;= \sqrt{36} \\ &amp;= 6 \end{aligned}" />
-  <BlockMath math="l = \sqrt{d^2 - (r_2 - r_1)^2}" />
-  <BlockMath math="l = \sqrt{6^2 - (2.5 - 1.5)^2}" />
-  <BlockMath math="l = \sqrt{36 - 1}" />
-  <BlockMath math="l = \sqrt{35}" />
+  <BlockMath math="d = \sqrt{(3 - (-3))^2 + (0 - 0)^2} = \sqrt{36} = 6" />
+  <BlockMath math="l = \sqrt{6^2 - (2.5 - 1.5)^2} = \sqrt{36 - 1} = \sqrt{35}" />
 </MathContainer>
 
-The length of the external common tangent line is <InlineMath math="\sqrt{35} \text{ units}" />.
+The length is <InlineMath math="\sqrt{35} \approx 5.92" /> units. Check it with the Pythagorean theorem: <InlineMath math="35 + 1^2 = 36 = 6^2" />.
 
-## Concept of Internal Common Tangent Line
+## Length of a Common Internal Tangent
 
-An internal common tangent line is a line that touches both circles from opposite sides and crosses the **segment connecting the two centers**.
+An internal tangent **crosses the segment joining the two centers**, so the circles lie on opposite sides of the line. The radii to the points of tangency now point in opposite directions, and that is why the two radii are added.
 
 <LineEquation
-  title="Internal Common Tangent Line"
-  description="Two internal common tangent lines on two circles."
+  title="Common Internal Tangents"
+  description={<>Lines <InlineMath math="h_1" /> and <InlineMath math="h_2" /> pass between the circles, and <InlineMath math="BH" /> equals the sum of the radii.</>}
   data={[
     {
       smooth: false,
@@ -494,30 +488,20 @@ An internal common tangent line is a line that touches both circles from opposit
 cameraPosition={[0, 0, 15]}
 />
 
-### Formula for Internal Common Tangent Line Length
-
-For an internal tangent, extend the radius from <InlineMath math="B" /> to auxiliary point <InlineMath math="H" />. Triangle <InlineMath math="AHB" /> in the diagram has a perpendicular side equal to the **sum of the radii**. With <InlineMath math="AH=l" /> and <InlineMath math="AB=d" />:
+In the internal tangent diagram, extend the radius from center <InlineMath math="B" /> past the point of tangency to the helper point <InlineMath math="H" />, with <InlineMath math="AH" /> parallel to the tangent. The extension is as long as the radius of circle <InlineMath math="A" />, so <InlineMath math="BH = r_1 + r_2" />. Triangle <InlineMath math="AHB" /> has a right angle at <InlineMath math="H" />:
 
 <MathContainer>
-<BlockMath math="l^2+(r_1+r_2)^2=d^2" />
-
-<BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
+  <BlockMath math="l^2 + (r_1 + r_2)^2 = d^2" />
+  <BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
 </MathContainer>
 
-**Condition**: A positive-length internal tangent segment exists when <InlineMath math="d > r_1 + r_2" />. At equality, the circles are externally tangent: the two points of tangency coincide, the segment length is zero, and only one internal common tangent remains.
+In that diagram, <InlineMath math="d = 8" /> and both radii are <InlineMath math="2" />, so <InlineMath math="l = \sqrt{64 - 16} = \sqrt{48} = 4\sqrt{3}" />. An internal tangent exists only when <InlineMath math="d \ge r_1 + r_2" />. When <InlineMath math="d = r_1 + r_2" />, the circles touch externally, the two points of tangency coincide, and the segment has length zero.
 
-### Finding the Length of Internal Common Tangent Line
-
-Two circles are centered at <InlineMath math="P(-5, 0)" /> with radius <InlineMath math="2" /> and <InlineMath math="Q(5, 0)" /> with radius <InlineMath math="3" />. Find the length of the internal common tangent line!
+**Example**. The first circle has center <InlineMath math="P(-5, 0)" /> and radius <InlineMath math="2" />, and the second has center <InlineMath math="Q(5, 0)" /> and radius <InlineMath math="3" />. Find the length of their common internal tangent.
 
 <LineEquation
-  title={
-    <>
-      Circles with <InlineMath math="r_1 = 2" /> and{" "}
-      <InlineMath math="r_2 = 3" />
-    </>
-  }
-  description="Visualization of internal common tangent line."
+  title={<>Circles with <InlineMath math="r_1 = 2" /> and <InlineMath math="r_2 = 3" /></>}
+  description={<>Centers <InlineMath math="P" /> and <InlineMath math="Q" /> are <InlineMath math="10" /> apart, so the internal tangent segment has length <InlineMath math="5\sqrt{3}" />.</>}
   data={[
     {
       smooth: false,
@@ -623,37 +607,22 @@ Two circles are centered at <InlineMath math="P(-5, 0)" /> with radius <InlineMa
 cameraPosition={[0, 0, 18]}
 />
 
-**Solution**:
-
-First, check if internal common tangent lines exist:
+Check the condition first. The distance between the centers, <InlineMath math="d = 10" />, is larger than <InlineMath math="r_1 + r_2 = 5" />, so an internal tangent exists:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} d &amp;= \sqrt{(5-(-5))^2 + (0-0)^2} \\ &amp;= \sqrt{100} \\ &amp;= 10 \end{aligned}" />
-  <BlockMath math="r_1 + r_2 = 2 + 3 = 5" />
-  <BlockMath math="d = 10 > 5 = r_1 + r_2 \space \checkmark" />
+  <BlockMath math="l = \sqrt{10^2 - (2 + 3)^2} = \sqrt{100 - 25}" />
+  <BlockMath math="l = \sqrt{75} = 5\sqrt{3}" />
 </MathContainer>
 
-Since the condition is satisfied, then:
+The length is <InlineMath math="5\sqrt{3} \approx 8.66" /> units. Check: <InlineMath math="75 + 5^2 = 100 = 10^2" />.
 
-<MathContainer>
-  <BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
-  <BlockMath math="l = \sqrt{10^2 - 5^2}" />
-  <BlockMath math="l = \sqrt{100 - 25}" />
-  <BlockMath math="l = \sqrt{75}" />
-  <BlockMath math="l = 5\sqrt{3}" />
-</MathContainer>
+## Two Circles with Equal Radii
 
-The length of the internal common tangent line is <InlineMath math="5\sqrt{3} \text{ units}" />.
-
-## Circles with Equal Radii
-
-For two distinct circles with <InlineMath math="r_1=r_2=r" />, the external tangents are **parallel to the center line**. If <InlineMath math="d>2r" />, the two internal tangents meet at the **midpoint between the centers**, but are generally oblique to the center line. Only when <InlineMath math="d=2r" /> is the single remaining internal tangent perpendicular to the center line.
-
-### External Common Tangent Line
+When <InlineMath math="r_1 = r_2 = r" />, the difference of the radii is zero. The external tangent formula becomes <InlineMath math="l = \sqrt{d^2 - 0} = d" />, so the external tangent is **as long as the distance between the centers** and parallel to the line through them.
 
 <LineEquation
-  title="External Common Tangent Line for Equal Radii"
-  description="Two equal circles with both external common tangents drawn above and below the line through their centers."
+  title="External Tangents for Equal Radii"
+  description={<>Both external tangents are parallel to the line of centers <InlineMath math="O_1O_2" /> and as long as the center distance <InlineMath math="6" />.</>}
   data={[
     {
       smooth: false,
@@ -716,22 +685,17 @@ For two distinct circles with <InlineMath math="r_1=r_2=r" />, the external tang
   cameraPosition={[0, 0, 12]}
 />
 
-For <InlineMath math="r_1 = r_2" />:
+In the equal radii diagram, the centers are <InlineMath math="6" /> apart and both radii are <InlineMath math="2" />. The two external tangents run <InlineMath math="2" /> units above and below the line of centers, and each one is <InlineMath math="6" /> long. The internal tangents are not drawn here. By symmetry they cross exactly at the midpoint between <InlineMath math="O_1" /> and <InlineMath math="O_2" />, and each has length <InlineMath math="\sqrt{36 - 16} = \sqrt{20} = 2\sqrt{5}" />.
 
-- External common tangent lines are **parallel** to the line connecting the two centers
-- Length of external common tangent line is <InlineMath math="d" /> (distance between centers)
+## Comparing the Two Tangents
 
-## Cases of Various Circle Positions
+For the same pair of circles, **the internal tangent is always shorter** than the external tangent. The sum of the radii is larger than their difference, so more is subtracted from <InlineMath math="d^2" />. The far apart and close together cases show how big that gap can be.
 
-Determine the length of the external and the internal common tangent line for the following circles. Record <Highlight>the distance between the centres and both radii</Highlight> first: the external tangent uses <InlineMath math="l = \sqrt{d^2 - (r_2 - r_1)^2}" />, the internal one uses <InlineMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />.
-
-### Distant Circles
-
-The first circle is centered at <InlineMath math="(-6, 0)" /> with radius <InlineMath math="1" />, the second circle is centered at <InlineMath math="(6, 0)" /> with radius <InlineMath math="2" />.
+**Circles far apart**. The first circle has center <InlineMath math="(-6, 0)" /> and radius <InlineMath math="1" />, and the second has center <InlineMath math="(6, 0)" /> and radius <InlineMath math="2" />.
 
 <LineEquation
-  title="Case: Distant Circles"
-  description="Both types of common tangent lines exist."
+  title="Circles Far Apart"
+  description={<>The center distance <InlineMath math="12" /> exceeds the sum of the radii <InlineMath math="3" />, so all four common tangents are drawn.</>}
   data={[
     {
       smooth: false,
@@ -961,21 +925,20 @@ cameraPosition={[0.5, 0, 19]}
   cameraTarget={[0.5, 0, 0]}
 />
 
-**Solution**:
+The centers are <InlineMath math="d = 12" /> apart, far more than the sum of the radii, <InlineMath math="3" />, so all four common tangents exist:
 
 <MathContainer>
-  <BlockMath math="d = \sqrt{(6-(-6))^2 + (0-0)^2} = 12" />
-  <BlockMath math="\begin{aligned} l_{\mathrm{ext}} &amp;= \sqrt{12^2 - (2-1)^2} \\ &amp;= \sqrt{144 - 1} \\ &amp;= \sqrt{143} \end{aligned}" />
-  <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{12^2 - (1+2)^2} \\ &amp;= \sqrt{144 - 9} \\ &amp;= \sqrt{135} \\ &amp;= 3\sqrt{15} \end{aligned}" />
+  <BlockMath math="l_{\text{ext}} = \sqrt{12^2 - (2 - 1)^2} = \sqrt{143} \approx 11.96" />
+  <BlockMath math="l_{\text{int}} = \sqrt{12^2 - (1 + 2)^2} = \sqrt{135} = 3\sqrt{15} \approx 11.62" />
 </MathContainer>
 
-### Close Circles
+The two lengths are almost equal because the radii are small compared with the distance between the centers.
 
-The first circle is centered at <InlineMath math="(-2, 0)" /> with radius <InlineMath math="1.5" />, the second circle is centered at <InlineMath math="(2, 0)" /> with radius <InlineMath math="1.5" />.
+**Circles close together**. Both circles have radius <InlineMath math="1.5" />, with centers at <InlineMath math="(-2, 0)" /> and <InlineMath math="(2, 0)" />.
 
 <LineEquation
-  title="Case: Close Circles with Equal Radii"
-  description="External common tangent lines are parallel, internal ones intersect at the midpoint between the centers."
+  title="Circles Close Together with Equal Radii"
+  description={<>The external tangents are parallel to the line of centers, while the two internal tangents cross at the midpoint between the centers.</>}
   data={[
     {
       smooth: false,
@@ -1130,81 +1093,87 @@ The first circle is centered at <InlineMath math="(-2, 0)" /> with radius <Inlin
 cameraPosition={[0, 0, 10]}
 />
 
-**Solution**:
+The centers are <InlineMath math="d = 4" /> apart and the radii are equal, so the external tangent equals <InlineMath math="d" /> right away:
 
 <MathContainer>
-  <BlockMath math="d = \sqrt{(2-(-2))^2 + (0-0)^2} = 4" />
-  <BlockMath math="r_1 = r_2 = 1.5" />
-  <BlockMath math="l_{\mathrm{ext}} = d = 4" />
-  <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{4^2 - (1.5+1.5)^2} \\ &amp;= \sqrt{16 - 9} \\ &amp;= \sqrt{7} \end{aligned}" />
+  <BlockMath math="l_{\text{ext}} = d = 4" />
+  <BlockMath math="l_{\text{int}} = \sqrt{4^2 - (1.5 + 1.5)^2} = \sqrt{16 - 9} = \sqrt{7} \approx 2.65" />
 </MathContainer>
 
-## Practice Problems
+Here the gap between the two lengths is much larger, because the sum of the radii, <InlineMath math="3" />, comes close to the distance between the centers.
 
-The first two problems ask for segment lengths, the third for center distance, the fourth for a radius, and the last for tangent counts. Choose the **difference or sum of radii** according to the tangent type before building an equation.
+## How Many Common Tangents Two Circles Have
 
-1. Two circles are centered at <InlineMath math="A(-4, 0)" /> with radius <InlineMath math="2" /> and <InlineMath math="B(4, 0)" /> with radius <InlineMath math="3" />. Determine the lengths of the external and internal common tangent segments.
+The number of common tangents depends on **the distance between the centers compared with the radii**. The same comparison decides the [position of two circles](/en/subjects/mathematics/analytic-geometry/position-of-two-circles), so the table also tells you how the circles sit.
 
-2. The first circle has center <InlineMath math="(0, 0)" /> with radius <InlineMath math="4" />, the second circle has center <InlineMath math="(10, 0)" /> with radius <InlineMath math="2" />. Calculate the lengths of both types of common tangent segments!
+| Condition on the center distance | Common tangents | Position of the circles |
+| --- | ---: | --- |
+| <InlineMath math="d > r_1 + r_2" /> | <InlineMath math="4" /> | separate |
+| <InlineMath math="d = r_1 + r_2" /> | <InlineMath math="3" /> | touching externally |
+| <InlineMath math="\lvert r_1 - r_2 \rvert < d < r_1 + r_2" /> | <InlineMath math="2" /> | intersecting at two points |
+| <InlineMath math="d = \lvert r_1 - r_2 \rvert" /> | <InlineMath math="1" /> | touching internally |
+| <InlineMath math="d < \lvert r_1 - r_2 \rvert" /> | <InlineMath math="0" /> | one circle inside the other |
 
-3. Two circles with equal radii each have radius <InlineMath math="3 \text{ cm}" />. If the length of the internal common tangent segment is <InlineMath math="8 \text{ cm}" />, determine the distance between the two circle centers!
+The table holds for two circles that do not coincide. As the circles move closer, the two internal tangents disappear first, because an internal tangent needs a gap between the circles.
 
-4. Circle <InlineMath math="A" /> is centered at <InlineMath math="(-5, 0)" /> with radius <InlineMath math="r" />, and circle <InlineMath math="B" /> is centered at <InlineMath math="(7, 0)" /> with radius <InlineMath math="2r" />. If the length of the external common tangent segment is <InlineMath math="4\sqrt{8}" />, determine the value of <InlineMath math="r" />!
+## Common Mistakes
 
-5. Determine the conditions for two circles to have exactly two, three, or four common tangent lines. Explain each case separately.
+Before you substitute any numbers, decide **which kind of tangent** the problem asks for. The table pairs common mistakes with a way to check for each one.
 
-### Worked Solutions
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Using the sum of the radii for an external tangent | The vertical side of the helper triangle for an external tangent is the difference of the radii | The external tangent must be longer than the internal one |
+| Writing <InlineMath math="l = d - (r_2 - r_1)" /> | The formula comes from the Pythagorean theorem, so squares are subtracted | Check that <InlineMath math="l^2 + (r_2 - r_1)^2 = d^2" /> |
+| Using a diameter as the radius | The formula uses the distance from a center to its point of tangency | Reread whether the problem gives radii or diameters |
+| Computing an internal tangent for intersecting circles | An internal tangent exists only when <InlineMath math="d \ge r_1 + r_2" /> | Compare <InlineMath math="d" /> with <InlineMath math="r_1 + r_2" /> first |
 
-**Solution 1**: Calculating common tangent line lengths
+The last mistake shows up in the numbers. If <InlineMath math="d < r_1 + r_2" />, the number under the square root is negative, which tells you the internal tangent does not exist.
+
+## Practice on Common Tangents
+
+For each problem, choose **the difference or the sum of the radii** to match the kind of tangent before you set up an equation. Problems 3 and 4 also need the table of common tangents.
+
+1. The first circle has center <InlineMath math="(0, 0)" /> and radius <InlineMath math="4" />, and the second has center <InlineMath math="(10, 0)" /> and radius <InlineMath math="2" />. Find the lengths of their common external and internal tangents.
+
+2. Two circles each have radius <InlineMath math="3 \text{ cm}" />. Their common internal tangent is <InlineMath math="8 \text{ cm}" /> long. Find the distance between their centers.
+
+3. Circle <InlineMath math="A" /> has center <InlineMath math="(-5, 0)" /> and radius <InlineMath math="r" />, and circle <InlineMath math="B" /> has center <InlineMath math="(7, 0)" /> and radius <InlineMath math="2r" />. Their common external tangent is <InlineMath math="4\sqrt{8}" /> long. Find <InlineMath math="r" /> and the number of common tangents of the two circles.
+
+4. One circle is <InlineMath math="x^2 + y^2 = 4" />, and another has center <InlineMath math="(5, 0)" /> and radius <InlineMath math="3" />. How many common tangents do they have, and how long is their common external tangent?
+
+### Answers
+
+**Problem 1**. The centers are <InlineMath math="d = 10" /> apart. The external tangent uses the **difference** <InlineMath math="4 - 2 = 2" />, and the internal tangent uses the **sum** <InlineMath math="4 + 2 = 6" />:
 
 <MathContainer>
-  <BlockMath math="d = \sqrt{(4-(-4))^2 + (0-0)^2} = 8" />
-  <BlockMath math="\begin{aligned} l_{\mathrm{ext}} &amp;= \sqrt{8^2 - (3-2)^2} \\ &amp;= \sqrt{64 - 1} \\ &amp;= \sqrt{63} \\ &amp;= 3\sqrt{7} \end{aligned}" />
-  <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{8^2 - (2+3)^2} \\ &amp;= \sqrt{64 - 25} \\ &amp;= \sqrt{39} \end{aligned}" />
+  <BlockMath math="l_{\text{ext}} = \sqrt{10^2 - 2^2} = \sqrt{96} = 4\sqrt{6}" />
+  <BlockMath math="l_{\text{int}} = \sqrt{10^2 - 6^2} = \sqrt{64} = 8" />
 </MathContainer>
 
-**Solution 2**: Circles with different centers
+The order is what you expect, because <InlineMath math="4\sqrt{6} \approx 9.80" /> is longer than <InlineMath math="8" />.
+
+**Problem 2**. The given length belongs to an internal tangent, so the formula uses the **sum of the radii**, <InlineMath math="3 + 3 = 6" />, and you solve for <InlineMath math="d" />:
 
 <MathContainer>
-  <BlockMath math="d = \sqrt{(10-0)^2 + (0-0)^2} = 10" />
-  <BlockMath math="\begin{aligned} l_{\mathrm{ext}} &amp;= \sqrt{10^2 - (4-2)^2} \\ &amp;= \sqrt{100 - 4} \\ &amp;= \sqrt{96} \\ &amp;= 4\sqrt{6} \end{aligned}" />
-  <BlockMath math="\begin{aligned} l_{\mathrm{int}} &amp;= \sqrt{10^2 - (4+2)^2} \\ &amp;= \sqrt{100 - 36} \\ &amp;= \sqrt{64} \\ &amp;= 8 \end{aligned}" />
-</MathContainer>
-
-**Solution 3**: Finding center distance from internal tangent length
-
-Given: <InlineMath math="r_1 = r_2 = 3" />, <InlineMath math="l_{\mathrm{int}} = 8" />
-
-<MathContainer>
-  <BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
   <BlockMath math="8 = \sqrt{d^2 - 6^2}" />
   <BlockMath math="64 = d^2 - 36" />
-  <BlockMath math="d^2 = 100" />
-  <BlockMath math="d = 10 \text{ cm}" />
+  <BlockMath math="d^2 = 100 \quad\Longrightarrow\quad d = 10 \text{ cm}" />
 </MathContainer>
 
-4. **Finding the value of** <InlineMath math="r" />
+A distance is positive, so the value <InlineMath math="-10" /> is rejected. Check: <InlineMath math="\sqrt{100 - 36} = \sqrt{64} = 8" />.
 
-Given: <InlineMath math="d = 12" />, <InlineMath math="r_1 = r" />, <InlineMath math="r_2 = 2r" />, <InlineMath math="l_{\mathrm{ext}} = 4\sqrt{8}" />
+**Problem 3**. The centers are <InlineMath math="d = 7 - (-5) = 12" /> apart, and the difference of the radii is <InlineMath math="2r - r = r" />. Square both sides to remove the square root:
 
 <MathContainer>
-  <BlockMath math="4\sqrt{8} = \sqrt{12^2 - (2r - r)^2}" />
-  <BlockMath math="16 \cdot 8 = 144 - r^2" />
+  <BlockMath math="4\sqrt{8} = \sqrt{12^2 - r^2}" />
   <BlockMath math="128 = 144 - r^2" />
-  <BlockMath math="r^2 = 16" />
-  <BlockMath math="r = 4" />
+  <BlockMath math="r^2 = 16 \quad\Longrightarrow\quad r = 4" />
 </MathContainer>
 
-**Solution 5**: Conditions for number of common tangent lines
+The radii are <InlineMath math="4" /> and <InlineMath math="8" />. Their sum is <InlineMath math="12" />, equal to the distance between the centers, so the circles **touch externally** and have <InlineMath math="3" /> common tangents.
 
-Let <InlineMath math="d" /> be the distance between centers. The complete classification for two distinct, noncoincident circles is:
+**Problem 4**. The circle <InlineMath math="x^2 + y^2 = 4" /> has center <InlineMath math="(0, 0)" /> and radius <InlineMath math="2" />. The centers are <InlineMath math="d = 5" /> apart, which equals <InlineMath math="2 + 3" />, so the circles touch externally and have <InlineMath math="3" /> common tangents. The external tangent length is:
 
-| Center-distance condition | Common tangents | Circle position |
-| --- | ---: | --- |
-| <InlineMath math="d>r_1+r_2" /> | <InlineMath math="4" /> | externally disjoint |
-| <InlineMath math="d=r_1+r_2" /> | <InlineMath math="3" /> | externally tangent |
-| <InlineMath math="\lvert r_1-r_2\rvert\lt d\lt r_1+r_2" /> | <InlineMath math="2" /> | intersecting at two points |
-| <InlineMath math="d=\lvert r_1-r_2\rvert" /> | <InlineMath math="1" /> | internally tangent |
-| <InlineMath math="d\lt \lvert r_1-r_2\rvert" /> | <InlineMath math="0" /> | one circle strictly inside the other |
+<BlockMath math="l_{\text{ext}} = \sqrt{5^2 - (3 - 2)^2} = \sqrt{24} = 2\sqrt{6}" />
 
-Therefore, the requested conditions are the first three rows. Coincident circles, with <InlineMath math="d=0" /> and <InlineMath math="r_1=r_2" />, are a separate case with infinitely many common tangents.
+The remaining internal tangent passes through the point where the circles touch, so its segment has length zero. The formula agrees: <InlineMath math="\sqrt{25 - 25} = 0" />.
