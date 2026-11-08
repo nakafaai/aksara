@@ -1,20 +1,22 @@
-Wir suchen **alle ganzzahligen Paare**, nicht nur ein pythagoreisches Tripel. Beim Quadrieren verschwindet das Vorzeichen. Setzen wir deshalb <InlineMath math="u=\min(|x|,|y|)" /> und <InlineMath math="v=\max(|x|,|y|)" />. Dann gilt <InlineMath math="2u^2\le169" />. Es genügt also, <InlineMath math="u=0,1,\ldots,9" /> zu prüfen. Der Wert <InlineMath math="169-u^2" /> muss eine **Quadratzahl** sein.
+Bestimme zuerst das erste Glied und die Differenz aus den beiden gegebenen Gliedern. **Zähle dann die Glieder sorgfältig**: Vom fünften bis zum zwölften Glied sind es <InlineMath math="12-5+1=8" /> Glieder.
 
-| <InlineMath math="u" /> | <InlineMath math="169-u^2" /> | <InlineMath math="v" /> |
-| --- | --- | --- |
-| 0 | 169 | 13 |
-| 1 | 168 | Keine ganze Zahl |
-| 2 | 165 | Keine ganze Zahl |
-| 3 | 160 | Keine ganze Zahl |
-| 4 | 153 | Keine ganze Zahl |
-| 5 | 144 | 12 |
-| 6 | 133 | Keine ganze Zahl |
-| 7 | 120 | Keine ganze Zahl |
-| 8 | 105 | Keine ganze Zahl |
-| 9 | 88 | Keine ganze Zahl |
+# Erstes Glied und Differenz
 
-Die Beträge sind also nur <InlineMath math="(0,13)" /> oder <InlineMath math="(5,12)" />, auch mit vertauschten Koordinaten. Das erste Paar ergibt die Summen <InlineMath math="\pm13" />. Beim zweiten Paar prüfen wir beide Vorzeichen:
+<BlockMath math="\begin{aligned}
+u_8-u_3&=5b=31-11=20\quad\Rightarrow\quad b=4\\
+a&=u_3-2b=11-8=3
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}5+12&=17\\5-12&=-7\\-5+12&=7\\-5-12&=-17\end{aligned}" />
+**Die Gliedformel** lautet <InlineMath math="u_n=3+4(n-1)=4n-1" />, also <InlineMath math="u_5=19" /> und <InlineMath math="u_{12}=47" />.
 
-Alle möglichen Summen sind <InlineMath math="\{-17,-13,-7,7,13,17\}" />. Weder <InlineMath math="\pm10" /> noch <InlineMath math="\pm14" /> kommt vor. Deshalb sind nur **Aussage 1 und 3** richtig.
+# Summe von acht Gliedern
+
+Das fünfte bis zwölfte Glied bilden wieder eine arithmetische Folge, ihre Summe ist also **Anzahl der Glieder mal Mittelwert aus erstem und letztem**.
+
+<BlockMath math="S=\frac{8}{2}\left(19+47\right)=4\cdot66=264" />
+
+Probe mit einer Differenz von Summen: <InlineMath math="S_{12}-S_4=300-36=264" />.
+
+Der Wert 300 ist die Summe der ersten zwölf Glieder ohne Abzug. Der Wert 245 ist <InlineMath math="S_{12}-S_5" /> und entfernt dabei auch das fünfte Glied. Der Wert 297 zählt neun Glieder, der Wert 330 zehn.
+
+Die Summe vom fünften bis zum zwölften Glied ist also **264**.

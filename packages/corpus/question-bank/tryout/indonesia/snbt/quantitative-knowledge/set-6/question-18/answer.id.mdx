@@ -1,46 +1,22 @@
-Kita gunakan **jumlah seluruh peserta survei** sebagai batas gabungan kedua kelompok:
+Hitung dulu bilangan yang habis dibagi 4 atau 6, lalu buang yang juga habis dibagi 9. Langkah pertama memakai **prinsip inklusi-eksklusi**, karena bilangan kelipatan 12 terhitung dua kali.
 
-- Himpunan semesta <InlineMath math="S" /> memuat <InlineMath math="300" /> remaja.
-- Himpunan peserta olahraga <InlineMath math="O" /> memuat <InlineMath math="135" /> remaja.
-- Himpunan peserta kegiatan alam <InlineMath math="C" /> memuat <InlineMath math="255" /> remaja.
+# Habis dibagi 4 atau 6
 
-Kita diminta mencari selisih antara nilai maksimum (<InlineMath math="B" />) dan minimum (<InlineMath math="A" />) dari irisan kedua himpunan tersebut (<InlineMath math="O \cap C" />).
+Kelipatan 4 dan 6 yang sama adalah **kelipatan KPK keduanya**, yaitu 12.
 
-# Irisan minimum
+<BlockMath math="\begin{aligned}
+\left\lfloor\tfrac{300}{4}\right\rfloor+\left\lfloor\tfrac{300}{6}\right\rfloor-\left\lfloor\tfrac{300}{12}\right\rfloor&=75+50-25\\
+&=100
+\end{aligned}" />
 
-Irisan menjadi sekecil mungkin ketika **gabungan kedua himpunan sebesar mungkin**. Gabungan itu tidak dapat melebihi <InlineMath math="300" /> remaja yang disurvei, dan batas tersebut tercapai ketika setiap orang mengikuti sedikitnya satu kegiatan.
+# Yang juga habis dibagi 9
 
-<BlockMath math="\begin{aligned}n(O\cup C)&=n(O)+n(C)\\&\quad{}-n(O\cap C)\end{aligned}" />
+Bilangan dari kelompok tadi yang habis dibagi 9 adalah kelipatan <InlineMath math="\text{KPK}(4,9)=36" /> atau kelipatan <InlineMath math="\text{KPK}(6,9)=18" />. Setiap kelipatan 36 juga kelipatan 18, jadi **cukup menghitung kelipatan 18**.
 
-<BlockMath math="300 = 135 + 255 - A" />
+<BlockMath math="\left\lfloor\tfrac{300}{18}\right\rfloor=16" />
 
-<BlockMath math="300 = 390 - A" />
+Bilangan yang tersisa ada <InlineMath math="100-16=84" />.
 
-<BlockMath math="A = 390 - 300" />
+Nilai 100 lupa membuang kelipatan 9. Nilai 92 hanya membuang 8 kelipatan 36. Nilai 76 membuang 8 kelipatan 36 dan 16 kelipatan 18 sekaligus, padahal kelipatan 36 sudah termasuk kelipatan 18. Nilai 67 membuang semua 33 kelipatan 9 dari 1 sampai 300, termasuk yang tidak pernah masuk kelompok pertama.
 
-<BlockMath math="A = 90" />
-
-# Irisan maksimum
-
-Irisan maksimum terjadi ketika himpunan yang lebih kecil merupakan himpunan bagian dari himpunan yang lebih besar. Dalam kasus ini, **semua peserta olahraga** juga mengikuti kegiatan alam.
-
-<BlockMath math="B = \min(n(O), n(C))" />
-
-<BlockMath math="B = \min(135, 255)" />
-
-<BlockMath math="B = 135" />
-
-# Menghitung Selisih
-
-Kedua batas dapat dicapai melalui **pembagian peserta** berikut. Setiap baris tetap berjumlah 300.
-
-| Batas | Olahraga saja | Keduanya | Alam saja | Tidak keduanya |
-| --- | --- | --- | --- | --- |
-| A | 45 | 90 | 165 | 0 |
-| B | 0 | 135 | 120 | 45 |
-
-<BlockMath math="B - A = 135 - 90" />
-
-<BlockMath math="B - A = 45" />
-
-Jadi, selisih <InlineMath math="B" /> dan <InlineMath math="A" /> adalah <InlineMath math="45\text{ orang}" />.
+Jadi, banyak bilangan tersebut adalah **84**.

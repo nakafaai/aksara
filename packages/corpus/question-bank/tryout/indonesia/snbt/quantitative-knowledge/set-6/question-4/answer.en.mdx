@@ -1,41 +1,25 @@
-Sort the data **from smallest to largest**:
+By **the remainder theorem**, the remainder of <InlineMath math="p(x)" /> divided by <InlineMath math="x-c" /> is <InlineMath math="p(c)" />. So the two known remainders give two equations for <InlineMath math="a" /> and <InlineMath math="b" />.
 
-<BlockMath math="1, 2, 3, 4, 5, 5, 6" />
+# Finding a and b
 
-Number of data points <InlineMath math="n = 7" />.
+<BlockMath math="\begin{aligned}
+p(1)&=1-2+a+b=4 &&\Rightarrow\quad a+b=5\\
+p(-1)&=-1-2-a+b=-8 &&\Rightarrow\quad -a+b=-5
+\end{aligned}" />
 
-# Statement One Analysis
+Adding the two equations gives <InlineMath math="2b=0" />, so <InlineMath math="b=0" /> and <InlineMath math="a=5" />. The polynomial is <InlineMath math="p(x)=x^3-2x^2+5x" />. The first statement is **true**. Because <InlineMath math="b=0" />, every term contains <InlineMath math="x" />, so <InlineMath math="x" /> is a factor. The third statement is true.
 
-The **median** is the <InlineMath math="\frac{n+1}{2} = \frac{8}{2} = 4" />-th value.
-The <InlineMath math="4" />-th value is <InlineMath math="4" />.
+# A value at another point and a linear remainder
 
-<BlockMath math="\operatorname{Me} = 4" />
+<BlockMath math="p(2)=8-8+10=10" />
 
-Statement 1 is correct.
+The value is 10, not 12, so the second statement is false. The divisor <InlineMath math="x^2-1" /> has degree two, so **the remainder has the form <InlineMath math="rx+s" />**. Substitute <InlineMath math="x=1" /> and <InlineMath math="x=-1" />, which make the divisor zero.
 
-# Statement Two Analysis
+<BlockMath math="\begin{aligned}
+r+s&=p(1)=4\\
+-r+s&=p(-1)=-8
+\end{aligned}" />
 
-The range is the **difference between the maximum and minimum values**.
+This gives <InlineMath math="s=-2" /> and <InlineMath math="r=6" />, so the remainder is <InlineMath math="6x-2" />, not <InlineMath math="6x+2" />. The fourth statement is false.
 
-<BlockMath math="\begin{aligned}\text{Range}&=x_{\max}-x_{\min}\\&=6-1\\&=5\end{aligned}" />
-
-Statement 2 is incorrect because the calculation gives <InlineMath math="5" />. The statement gives <InlineMath math="6" />.
-
-# Statement Three Analysis
-
-Compute the **range minus the median**:
-
-<BlockMath math="\text{Range} - \operatorname{Me} = 5 - 4 = 1" />
-
-Statement 3 is correct.
-
-# Statement Four Analysis
-
-The mean (<InlineMath math="\bar{x}" />) is the **sum divided by the number of data points**.
-
-<BlockMath math="\begin{aligned}\bar{x}&=\frac{1+2+3+4+5+5+6}{7}\\&=\frac{26}{7}\\&=3\frac57\end{aligned}" />
-
-The value <InlineMath math="3\frac{5}{7}" /> is not equal to <InlineMath math="4.5" />.
-Statement 4 is incorrect.
-
-The correct statements are **(1) and (3)**.
+So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.

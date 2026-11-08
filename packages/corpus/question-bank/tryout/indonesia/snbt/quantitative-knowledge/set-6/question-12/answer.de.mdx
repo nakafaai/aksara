@@ -1,78 +1,14 @@
-<LineEquation
-  title="Dreieck"
-  description="Geometrische Illustration mit beschrifteten Winkeln."
-  cameraPosition={[0, 0, 15]}
-  data={[
-    {
-      points: [
-        { x: 0, y: 6.3425636392, z: 0 },
-        { x: -2, y: -5, z: 0 },
-        { x: 2, y: -5, z: 0 },
-        { x: 0, y: 6.3425636392, z: 0 },
-      ],
-      color: "#4f46e5",
-      showPoints: true,
-      smooth: false,
-      labels: [
-        {
-          text: <InlineMath math="a^\circ" />,
-          at: 0,
-          offset: [0, -1.5, 0],
-        },
-        {
-          text: <InlineMath math="x^\circ" />,
-          at: 1,
-          offset: [0.8, 1.2, 0],
-        },
-        {
-          text: <InlineMath math="y^\circ" />,
-          at: 1,
-          offset: [1, 0.3, 0],
-        },
-        {
-          text: <InlineMath math="y^\circ" />,
-          at: 2,
-          offset: [-0.8, 1.2, 0],
-        },
-        {
-          text: <InlineMath math="x^\circ" />,
-          at: 2,
-          offset: [-1, 0.3, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: -2, y: -5, z: 0 },
-        { x: 0, y: -3.3218007376, z: 0 },
-        { x: 2, y: -5, z: 0 },
-      ],
-      color: "#0d9488",
-      showPoints: true,
-      smooth: false,
-      labels: [
-        {
-          text: <InlineMath math="100^\circ" />,
-          at: 1,
-          offset: [0, -0.8, 0],
-        },
-      ],
-    },
-  ]}
-/>
+Die Anzahl der positiven Teiler von <InlineMath math="p_1^{e_1}p_2^{e_2}" /> ist <InlineMath math="(e_1+1)(e_2+1)" />, denn **jeder Exponent wird unabhängig** von 0 bis zu seinem Höchstwert gewählt.
 
-Im **kleinen unteren Dreieck** beträgt die Winkelsumme <InlineMath math="180^\circ" />. Der Scheitelwinkel ist <InlineMath math="100^\circ" /> groß. Daher gilt für die beiden Basiswinkel:
+# Beide Größen berechnen
 
-<BlockMath math="\begin{aligned}x+y&=180^\circ-100^\circ\\&=80^\circ\end{aligned}" />
+<BlockMath math="\begin{aligned}
+P&=(4+1)(2+1)=5\cdot3=15\\
+Q&=(3+1)(3+1)=4\cdot4=16
+\end{aligned}" />
 
-Die Basiswinkel des großen Dreiecks sind <InlineMath math="(x+y)" /> und <InlineMath math="(y+x)" />. Da <InlineMath math="x+y=80^\circ" /> gilt, sind beide <InlineMath math="80^\circ" /> groß. Mit der Winkelsumme <InlineMath math="180^\circ" /> folgt:
+# Vergleichen
 
-<BlockMath math="a + (x+y) + (y+x) = 180^\circ" />
+Wegen <InlineMath math="16>15" /> **ist <InlineMath math="Q" /> größer als <InlineMath math="P" />**, und dieser Vergleich hängt nicht von der Größe der Zahlen <InlineMath math="M=144" /> und <InlineMath math="N=216" /> ab. Bei beiden Zahlen ergeben die Exponenten zusammen 6, das Produkt <InlineMath math="(e_1+1)(e_2+1)" /> ist aber größer, wenn die Exponenten gleichmäßiger verteilt sind.
 
-<BlockMath math="a + 80^\circ + 80^\circ = 180^\circ" />
-
-<BlockMath math="a + 160^\circ = 180^\circ" />
-
-<BlockMath math="a = 20^\circ" />
-
-Somit ist <InlineMath math="a" /> gleich <InlineMath math="20^\circ" />.
+Die Wahl <InlineMath math="P=Q" /> entsteht, wenn man annimmt, die Teileranzahl hänge nur von der Summe der Exponenten ab. Die richtige Beziehung ist also <InlineMath math="Q>P" />.

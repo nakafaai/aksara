@@ -3,27 +3,15 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "$$a=5$$" },
+        { column: 2, label: "$$p(2)=12$$" },
+        { column: 1, label: "$$x$$ merupakan faktor dari $$p(x)$$." },
         {
-          correct: false,
-          label: "Hanya (1), (2), dan (3) yang benar.",
-        },
-        {
-          correct: false,
-          label: "Hanya (2) dan (4) yang benar.",
-        },
-        {
-          correct: false,
-          label: "Hanya (4) yang benar.",
-        },
-        {
-          correct: false,
-          label: "Semua pernyataan benar.",
-        },
-        {
-          correct: true,
-          label: "Hanya (1) dan (3) yang benar.",
+          column: 2,
+          label: "Sisa pembagian $$p(x)$$ oleh $$x^2-1$$ adalah $$6x+2$$.",
         },
       ],
     },
