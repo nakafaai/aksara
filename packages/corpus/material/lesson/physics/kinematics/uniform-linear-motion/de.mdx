@@ -79,6 +79,25 @@ x_t &= x_0+\Delta x \\
 
 Diese Berechnung funktioniert, weil sich die **Geschwindigkeit nicht ändert**. Wenn sich die Geschwindigkeit ändert, können wir nicht einen festen Wert von <InlineMath math="v" /> für die gesamte Bewegung verwenden.
 
+Die Punkte unten sind die Positionsmarken, eine pro Sekunde. Sie steigen jede Sekunde um dieselben <InlineMath math="2\text{ m}" />, liegen also auf einer Geraden, und deren Steigung ist die Geschwindigkeit.
+
+<LineEquation
+  title="Gleiche Schritte ergeben eine Gerade"
+  description="x = 1 m + (2 m/s) t für 5 s. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 2 m."
+  data={(() => {
+    // x(t) = x0 + v t with x0 = 1 m and v = 2 m/s for 5 s. Horizontal: time in s. Vertical: position in m / 2.
+    const x0 = 1;
+    const v = 2;
+    const position = (t) => x0 + v * t;
+    return [
+      { points: [0, 1, 2, 3, 4, 5].map((t) => ({ x: t, y: position(t) / 2, z: 0 })), color: "#bb6800", showPoints: true, smooth: false, labels: [{ text: <InlineMath math={`x(5\\text{ s})=${position(5)}\\text{ m}`} />, at: 5, offset: [-1.4, 0.4, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 2.8, 8]}
+  cameraTarget={[2.5, 2.8, 0]}
+/>
+
 ## Gleichförmige Bewegung in Diagrammen erkennen
 
 Eine gleichförmige geradlinige Bewegung lässt sich in zwei grundlegenden Diagrammen erkennen. Das **Geschwindigkeits-Zeit-Diagramm** zeigt, ob sich die Geschwindigkeit ändert. Das Positions-Zeit-Diagramm zeigt, wie sich die Position mit der Zeit entwickelt.
@@ -91,6 +110,24 @@ Eine gleichförmige geradlinige Bewegung lässt sich in zwei grundlegenden Diagr
 Die vorzeichenbehaftete Fläche zwischen dem Geschwindigkeits-Zeit-Diagramm und der Zeitachse entspricht der Verschiebung. Bei konstanter Geschwindigkeit ist diese Fläche ein Rechteck, also <InlineMath math="\Delta x=v\Delta t" />. Eine Fläche unterhalb der Zeitachse trägt eine negative Verschiebung bei.
 
 In einem Positions-Zeit-Diagramm entspricht die Steigung der Geschwindigkeit. Ihr Vorzeichen gibt die Richtung an, während eine größere absolute Steilheit einen größeren Geschwindigkeitsbetrag bedeutet. Bei gleichförmiger geradliniger Bewegung bleibt die Linie gerade, weil sich ihre Steigung vom Anfang bis zum Ende nicht ändert.
+
+Im Geschwindigkeit-Zeit-Diagramm ist dieselbe Bewegung eine flache Linie bei <InlineMath math="2\text{ m/s}" />. Die Fläche darunter ist die Verschiebung, <InlineMath math="10\text{ m}" />, und mit <InlineMath math="x_0=1\text{ m}" /> ergibt sich die Endposition <InlineMath math="11\text{ m}" />.
+
+<LineEquation
+  title="Konstante Geschwindigkeit und ihre Fläche"
+  description="v = 2 m/s für 5 s. Waagrecht: Zeit in s. Senkrecht: Geschwindigkeit in m/s."
+  data={(() => {
+    // v(t) = 2 m/s for 5 s; the rectangle under it is the displacement. Horizontal: time in s. Vertical: velocity in m/s.
+    const v = 2;
+    const duration = 5;
+    return [
+      { points: [[0, 0], [0, v], [duration, v], [duration, 0]].map(([t, u]) => ({ x: t, y: u, z: 0 })), color: "#0d9488", showPoints: false, smooth: false, labels: [{ text: <InlineMath math={`\\Delta x=${v}\\times${duration}=${v * duration}\\text{ m}`} />, at: 1, offset: [2.5, -1, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 1, 7]}
+  cameraTarget={[2.5, 1, 0]}
+/>
 
 ## Die Richtung unterscheidet konstante Schnelligkeit von konstanter Geschwindigkeit
 

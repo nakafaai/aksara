@@ -65,6 +65,38 @@ At every point on a circular path, <Highlight>velocity points tangent to the cir
 
 Imagine a small object on the right side of the circle moving counterclockwise. Its velocity points upward along the path, while its acceleration points left toward the center. This direction pair is what makes circular motion different from ordinary straight-line motion.
 
+Here is the small car from the example at four moments, one quarter turn apart. Every teal velocity arrow is tangent to the track and has the same length, so the speed never changes. Every pink acceleration arrow points to the center, which is what keeps turning the velocity.
+
+<LineEquation
+  title="Velocity and Acceleration around the Track"
+  description="Radius 4 m and period 6 s. Teal arrows are velocity at half scale, pink arrows centripetal acceleration at half scale."
+  data={(() => {
+    // Radius 4 m, period 6 s. Velocity arrows (teal) are tangent, acceleration arrows (pink) point to the center.
+    const r = 4;
+    const T = 6;
+    const omega = (2 * Math.PI) / T;
+    const v = omega * r;
+    const a = v ** 2 / r;
+    const ring = { points: Array.from({ length: 241 }, (_, i) => { const th = (2 * Math.PI * i) / 240; return { x: r * Math.cos(th), y: r * Math.sin(th), z: 0 }; }), color: "#64748b", showPoints: false, smooth: false };
+    const times = [0, 1.5, 3, 4.5];
+    return [
+      ring,
+      ...times.flatMap((t) => {
+        const th = omega * t;
+        const at = { x: r * Math.cos(th), y: r * Math.sin(th), z: 0 };
+        return [
+          { points: [at, { x: at.x - (v / 2) * Math.sin(th), y: at.y + (v / 2) * Math.cos(th), z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.25 }, showPoints: true, pointIndices: [0], smooth: false },
+          { points: [at, { x: at.x - (a / 2) * Math.cos(th), y: at.y - (a / 2) * Math.sin(th), z: 0 }], color: "#e03b8a", cone: { position: "end", size: 0.25 }, showPoints: false, smooth: false },
+        ];
+      }),
+      { points: [{ x: 0, y: 0, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: <InlineMath math="v\approx4.19\text{ m/s},\ a_c\approx4.39\text{ m/s}^2" />, at: 0, offset: [0, -0.6, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[0, 0, 13]}
+  cameraTarget={[0, 0, 0]}
+/>
+
 ## Tangential Speed Connects to Angular Speed
 
 Tangential speed is the magnitude of the object's velocity **along the circular path**. If the radius is <InlineMath math="r" />, one full circumference is <InlineMath math="2\pi r" />. Because one revolution takes time <InlineMath math="T" />, the tangential speed is:
@@ -104,3 +136,14 @@ Its centripetal acceleration is:
 <BlockMath math="a_c=\frac{v^2}{r}=\frac{(4\pi/3)^2}{4}=\frac{16\pi^2}{36}=\frac{4\pi^2}{9}\text{ m/s}^2\approx4.39\text{ m/s}^2" />
 
 So the car moves with **constant speed** of about <InlineMath math="4.19\text{ m/s}" />, but it still has acceleration of about <InlineMath math="4.39\text{ m/s}^2" /> because the direction of its velocity keeps changing.
+
+The worked example is one chain of formulas, each step feeding the next.
+
+<Mermaid
+  title="From Period to Centripetal Acceleration"
+  description="Start with the period and radius, then find angular speed, tangential speed and centripetal acceleration."
+  chart={`flowchart LR
+    A["T = 6 s, r = 4 m"] --> B["omega = 2 pi / T = pi/3 rad/s"]
+    B --> C["v = omega r = 4 pi / 3 m/s"]
+    C --> D["a_c = v^2 / r = 4 pi^2 / 9 m/s^2"]`}
+/>

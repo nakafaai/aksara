@@ -79,6 +79,25 @@ x_t &= x_0+\Delta x \\
 
 Perhitungan ini bekerja karena **kecepatan tidak berubah**. Jika kecepatannya berubah, kita tidak boleh langsung memakai satu nilai <InlineMath math="v" /> tetap untuk seluruh gerak.
 
+Titik-titik di bawah adalah tanda posisi, satu setiap sekon. Titik itu naik <InlineMath math="2\text{ m}" /> yang sama setiap sekon, jadi semuanya jatuh pada satu garis lurus, dan kemiringannya adalah kecepatan.
+
+<LineEquation
+  title="Langkah Sama Membentuk Garis Lurus"
+  description="x = 1 m + (2 m/s) t selama 5 s. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 2 m."
+  data={(() => {
+    // x(t) = x0 + v t with x0 = 1 m and v = 2 m/s for 5 s. Horizontal: time in s. Vertical: position in m / 2.
+    const x0 = 1;
+    const v = 2;
+    const position = (t) => x0 + v * t;
+    return [
+      { points: [0, 1, 2, 3, 4, 5].map((t) => ({ x: t, y: position(t) / 2, z: 0 })), color: "#bb6800", showPoints: true, smooth: false, labels: [{ text: <InlineMath math={`x(5\\text{ s})=${position(5)}\\text{ m}`} />, at: 5, offset: [-1.4, 0.4, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 2.8, 8]}
+  cameraTarget={[2.5, 2.8, 0]}
+/>
+
 ## Membaca GLB dari Grafik
 
 Dua grafik menandai GLB. Grafik kecepatan terhadap waktu harus mendatar, sedangkan grafik posisi terhadap waktu harus berupa garis lurus dengan **gradien tetap**.
@@ -91,6 +110,24 @@ Dua grafik menandai GLB. Grafik kecepatan terhadap waktu harus mendatar, sedangk
 Luas bertanda antara grafik kecepatan-waktu dan sumbu waktu sama dengan perpindahan. Untuk kecepatan tetap, luasnya berbentuk persegi panjang, sehingga <InlineMath math="\Delta x=v\Delta t" />. Daerah di bawah sumbu waktu menyumbang perpindahan negatif.
 
 Pada grafik posisi-waktu, kemiringan garis menyatakan kecepatan. Tanda kemiringan memberi arah, sedangkan nilai mutlak kemiringan yang lebih besar berarti kelajuan yang lebih besar. Untuk GLB, garisnya tetap lurus karena kemiringannya tidak berubah dari awal sampai akhir.
+
+Pada grafik kecepatan terhadap waktu, gerak yang sama menjadi garis datar di <InlineMath math="2\text{ m/s}" />. Luas di bawahnya adalah perpindahan, <InlineMath math="10\text{ m}" />, yang ditambah <InlineMath math="x_0=1\text{ m}" /> memberi posisi akhir <InlineMath math="11\text{ m}" />.
+
+<LineEquation
+  title="Kecepatan Tetap dan Luasnya"
+  description="v = 2 m/s selama 5 s. Mendatar: waktu dalam s. Tegak: kecepatan dalam m/s."
+  data={(() => {
+    // v(t) = 2 m/s for 5 s; the rectangle under it is the displacement. Horizontal: time in s. Vertical: velocity in m/s.
+    const v = 2;
+    const duration = 5;
+    return [
+      { points: [[0, 0], [0, v], [duration, v], [duration, 0]].map(([t, u]) => ({ x: t, y: u, z: 0 })), color: "#0d9488", showPoints: false, smooth: false, labels: [{ text: <InlineMath math={`\\Delta x=${v}\\times${duration}=${v * duration}\\text{ m}`} />, at: 1, offset: [2.5, -1, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 1, 7]}
+  cameraTarget={[2.5, 1, 0]}
+/>
 
 ## Arah Membedakan Kelajuan Tetap dan Kecepatan Tetap
 

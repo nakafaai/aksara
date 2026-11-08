@@ -46,6 +46,17 @@ Die Schalen heißen <InlineMath math="\mathrm K" /> bis <InlineMath math="\mathr
 
 Das Wort **maximal** ist entscheidend. Die Schale <InlineMath math="\mathrm{M}" /> kann bis zu <InlineMath math="18" /> Elektronen aufnehmen. Daraus folgt aber nicht, dass jedes Atom die Schale <InlineMath math="\mathrm{M}" /> erst vollständig mit <InlineMath math="18" /> Elektronen füllt, bevor die nächste beginnt. Für die Beispiele bis Calcium verwenden wir das vereinfachte Schalenmuster im interaktiven Modell.
 
+Die Kapazitätsregel gibt jeder Schale ihre Grenze.
+
+<Mermaid
+  title="Schalenkapazität 2n²"
+  description="Schale n fasst höchstens 2n² Elektronen."
+  chart={`flowchart LR
+    A["K, n = 1: 2"] --> B["L, n = 2: 8"]
+    B --> C["M, n = 3: 18"]
+    C --> D["N, n = 4: 32"]`}
+/>
+
 ## Schalenmodell für leichte Elemente
 
 Wähle ein neutrales Atom. Bei einem neutralen Atom entspricht die **Elektronenzahl der Ordnungszahl**. Lies anschließend ab, wie sich die Elektronen auf die Schalen <InlineMath math="\mathrm{K}" />, <InlineMath math="\mathrm{L}" />, <InlineMath math="\mathrm{M}" /> und <InlineMath math="\mathrm{N}" /> verteilen.
@@ -125,6 +136,57 @@ Eine häufige Frage ist: Warum nicht <InlineMath math="2, 8, 10" />?
 Im Grundzustand von Calcium besetzen die Elektronen die Unterschale <InlineMath math="4s" /> vor <InlineMath math="3d" />. Die Zahl vor dem Buchstaben bezeichnet die Hauptschale: <InlineMath math="4s" /> gehört zur Schale <InlineMath math="\mathrm N" />, <InlineMath math="3d" /> zur Schale <InlineMath math="\mathrm M" />. Die Schale N wird also besetzt, bevor die Schale M ihre Höchstbelegung erreicht.
 
 Nach den Schalen K und L bleiben <InlineMath math="20-2-8=10" /> Elektronen. Acht besetzen die bereits bei Argon belegten Bereiche der Schale M, die nächsten zwei die Unterschale 4s. Daraus folgt die **Grundzustandskonfiguration** <InlineMath math="2,8,8,2" />.
+
+Hier ist Calcium im einfachen Schalenmodell: <InlineMath math="2, 8, 8, 2" /> Elektronen von der K-Schale nach außen. Zähl jeden Ring nach und achte auf die zwei fuchsiafarbenen Elektronen in Schale N, obwohl Schale M mehr aufnehmen könnte.
+
+<MathVisual
+  title="Calcium im Schalenmodell"
+  description="Die 20 Elektronen von Calcium in den Schalen K, L, M und N, die äußersten in Fuchsia."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.8, max: 4.8 }, y: { min: -4.8, max: 4.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "nucleus", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "shell-k", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "electron-k-1", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (0 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (0 + 0.125)) / 2) } },
+      { id: "electron-k-2", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (1 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (1 + 0.125)) / 2) } },
+      { id: "shell-l", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 2 },
+      { id: "electron-l-1", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (0 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (0 + 0.125)) / 8) } },
+      { id: "electron-l-2", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (1 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (1 + 0.125)) / 8) } },
+      { id: "electron-l-3", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (2 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (2 + 0.125)) / 8) } },
+      { id: "electron-l-4", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (3 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (3 + 0.125)) / 8) } },
+      { id: "electron-l-5", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (4 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (4 + 0.125)) / 8) } },
+      { id: "electron-l-6", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (5 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (5 + 0.125)) / 8) } },
+      { id: "electron-l-7", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (6 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (6 + 0.125)) / 8) } },
+      { id: "electron-l-8", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (7 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (7 + 0.125)) / 8) } },
+      { id: "shell-m", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "electron-m-1", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (0 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (0 + 0.125)) / 8) } },
+      { id: "electron-m-2", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (1 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (1 + 0.125)) / 8) } },
+      { id: "electron-m-3", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (2 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (2 + 0.125)) / 8) } },
+      { id: "electron-m-4", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (3 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (3 + 0.125)) / 8) } },
+      { id: "electron-m-5", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (4 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (4 + 0.125)) / 8) } },
+      { id: "electron-m-6", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (5 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (5 + 0.125)) / 8) } },
+      { id: "electron-m-7", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (6 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (6 + 0.125)) / 8) } },
+      { id: "electron-m-8", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (7 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (7 + 0.125)) / 8) } },
+      { id: "shell-n", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "electron-n-1", kind: "point", appearance: "answer", at: { x: 4 * Math.cos((2 * Math.PI * (0 + 0.125)) / 2), y: 4 * Math.sin((2 * Math.PI * (0 + 0.125)) / 2) } },
+      { id: "electron-n-2", kind: "point", appearance: "answer", at: { x: 4 * Math.cos((2 * Math.PI * (1 + 0.125)) / 2), y: 4 * Math.sin((2 * Math.PI * (1 + 0.125)) / 2) } },
+    ],
+    labels: [
+      { key: "k", objectId: "shell-k", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "l", objectId: "shell-l", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "m", objectId: "shell-m", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "n", objectId: "shell-n", at: { x: 4, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    k: <InlineMath math="\mathrm{K}:\ 2" />,
+    l: <InlineMath math="\mathrm{L}:\ 8" />,
+    m: <InlineMath math="\mathrm{M}:\ 8" />,
+    n: <InlineMath math="\mathrm{N}:\ 2" />,
+  }}
+/>
 
 ## Grenzen des Modells
 

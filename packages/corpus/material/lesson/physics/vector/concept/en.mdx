@@ -61,6 +61,18 @@ Not every quantity needs direction. A **scalar** is described well enough by a v
 
 A quick way to decide is this: if the question "which way?" matters for understanding the quantity, you are probably looking at a vector.
 
+Sort a quantity with one question: does it need a direction?
+
+<Mermaid
+  title="Scalar or Vector"
+  description="Quantities that are complete with a number and unit are scalars. Quantities that also need a direction are vectors."
+  chart={`flowchart TD
+    A["Does the quantity need a direction?"] --> B["No: scalar"]
+    A --> C["Yes: vector"]
+    B --> D["Distance, speed, mass, temperature"]
+    C --> E["Displacement, velocity, force"]`}
+/>
+
 ## Reading a Vector Arrow
 
 Vectors are often drawn as arrows. The **tail** shows where the vector starts, the **head** shows the direction, and the **length** represents the vector magnitude.
@@ -99,3 +111,30 @@ For direction, measure the angle from east toward north. The ratio of opposite t
 <BlockMath math="\begin{aligned}\tan\theta &= \frac34 \\ \theta &= \arctan\left(\frac34\right) \\ &\approx 36.9^\circ\end{aligned}" />
 
 The distance is <InlineMath math="7 \text{ m}" />. The displacement has magnitude <InlineMath math="5 \text{ m}" /> and points about <InlineMath math="36.9^\circ" /> north of east.
+
+The path below is <InlineMath math="7\text{ m}" /> of walking, but the fuchsia arrow, the displacement, is only <InlineMath math="5\text{ m}" /> long and points about <InlineMath math="36.9^\circ" /> north of east.
+
+<LineEquation
+  title="Walking 7 m, Moving 5 m"
+  description="4 m east, then 3 m north. One grid step is 1 m."
+  data={(() => {
+    const arrow = (from, to, color, text, offset) => ({
+      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
+      color,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
+    });
+    // 4 m east along x, then 3 m north along y. One grid step is 1 m.
+    const d = [4, 3];
+    return [
+      arrow([0, 0], [d[0], 0], "#0d9488", <InlineMath math="4\text{ m}" />, [-2, -0.4, 0]),
+      arrow([d[0], 0], d, "#8242e5", <InlineMath math="3\text{ m}" />, [0.6, -1.5, 0]),
+      arrow([0, 0], d, "#c026d3", <InlineMath math={`${Math.hypot(d[0], d[1])}\\text{ m}`} />, [-2, 0.2, 0]),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 1.5, 6.5]}
+  cameraTarget={[2, 1.5, 0]}
+/>

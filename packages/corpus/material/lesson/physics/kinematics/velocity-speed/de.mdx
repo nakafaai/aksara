@@ -95,6 +95,26 @@ Das **positive Vorzeichen** bedeutet, dass die Geschwindigkeit nach rechts geric
 
 Bei der Geschwindigkeit erhält das Vorzeichen seine Bedeutung durch die festgelegte positive Richtung und die daraus bestimmte Verschiebung.
 
+Beide Fahrten unten dauern <InlineMath math="4\text{ s}" /> und erreichen <InlineMath math="8\text{ m}" />. Die orange kehrt bis <InlineMath math="4\text{ m}" /> zurück: Tempo <InlineMath math="12/4=3\text{ m/s}" />, Geschwindigkeit <InlineMath math="+4/4=+1\text{ m/s}" />. Die violette kommt ganz zurück: Tempo <InlineMath math="4\text{ m/s}" />, Geschwindigkeit <InlineMath math="0" />. Zähl Anstieg und Abstieg jeder Linie für die Strecke und vergleich nur die Endpunkte für die Verschiebung.
+
+<LineEquation
+  title="Zwei Fahrten, zwei Tempi, zwei Geschwindigkeiten"
+  description="Bis 8 m und zurück auf 4 m oder 0 m, jeweils in 4 s mit konstantem Tempo. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 2 m."
+  data={(() => {
+    // Both trips take 4 s at constant speed. Horizontal: time in s. Vertical: position in m / 2.
+    const path = (corners) => corners.map(([t, x]) => ({ x: t, y: x / 2, z: 0 }));
+    const toFour = [[0, 0], [(4 * 8) / 12, 8], [4, 4]];
+    const toZero = [[0, 0], [2, 8], [4, 0]];
+    return [
+      { points: path(toFour), color: "#bb6800", showPoints: true, smooth: false, labels: [{ text: <InlineMath math="12\text{ m},\ \Delta x=+4\text{ m}" />, at: 2, offset: [0.4, 0.5, 0], anchorX: "center" }] },
+      { points: path(toZero), color: "#8242e5", showPoints: true, smooth: false, labels: [{ text: <InlineMath math="16\text{ m},\ \Delta x=0" />, at: 1, offset: [0.9, 0.4, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 2, 6.5]}
+  cameraTarget={[2, 2, 0]}
+/>
+
 ## Wenn Schnelligkeit und Geschwindigkeit verschieden sind
 
 Stell dir nun vor, das Objekt bewegt sich von <InlineMath math="0 \text{ m}" /> nach <InlineMath math="8 \text{ m}" /> und kehrt dann zu <InlineMath math="0 \text{ m}" /> zurück. Die gesamte Bewegung dauert <InlineMath math="4 \text{ s}" />.
@@ -117,3 +137,15 @@ Die mittlere Schnelligkeit kann also ungleich null sein, obwohl die mittlere Ges
 | Mittlere Geschwindigkeit | Verschiebung | Ja | <InlineMath math="\text{m/s}" /> nach rechts |
 
 Geht es darum, wie schnell ein Weg zurückgelegt wird, verwenden wir **Weglänge und Schnelligkeit**. Geht es um die gerichtete Ortsänderung, verwenden wir Verschiebung und Geschwindigkeit.
+
+Lass die Frage durch diese Verzweigung laufen, bevor du eine Formel wählst.
+
+<Mermaid
+  title="Strecke gibt Tempo, Verschiebung gibt Geschwindigkeit"
+  description="Das Tempo teilt die Weglänge durch die Zeit, die Geschwindigkeit teilt die Verschiebung durch die Zeit und behält eine Richtung."
+  chart={`flowchart TD
+    A["Bewegungsdaten"] --> B["Gesamter Weg"]
+    A --> C["Änderung der Position"]
+    B --> D["Durchschnittstempo: ohne Richtung"]
+    C --> E["Durchschnittsgeschwindigkeit: mit Richtung"]`}
+/>

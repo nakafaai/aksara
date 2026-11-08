@@ -96,6 +96,20 @@ Wenn ein Objekt eine Runde zurücklegt und zum Startpunkt zurückkehrt, ist die 
 
 Die Wegstrecke gibt somit die Länge des tatsächlich zurückgelegten Weges an, während die Verschiebung die gesamte Positionsänderung beschreibt.
 
+Die drei Fahrten aus der Tabelle verzweigen sich so.
+
+<Mermaid
+  title="Drei Fahrten, ein Start"
+  description="Ein Umweg verlängert nur die Strecke, und eine Runde lässt Strecke, aber keine Verschiebung übrig."
+  chart={`flowchart TD
+    A["Gleicher Start"] --> B["Gerade zum Ziel"]
+    A --> C["Umweg zum Ziel"]
+    A --> D["Runde zurück zum Start"]
+    B --> E["Strecke gleich dem Betrag der Verschiebung"]
+    C --> F["Strecke länger, gleiche Verschiebung"]
+    D --> G["Strecke über null, Verschiebung null"]`}
+/>
+
 ## Wegstrecke und Verschiebung auf einer abgewinkelten Route
 
 Ein Schüler geht <InlineMath math="8 \text{ m}" /> nach Osten und dann <InlineMath math="6 \text{ m}" /> nach Norden. Die zurückgelegte Strecke beträgt:
@@ -111,3 +125,24 @@ Der Verschiebungsbetrag beträgt:
 \end{aligned}" />
 
 Die Wegstrecke beträgt <InlineMath math="14 \text{ m}" />, der Betrag der Verschiebung dagegen <InlineMath math="10 \text{ m}" />. Die Werte unterscheiden sich, weil der tatsächlich zurückgelegte Weg nicht mit der **geraden Verbindung vom Start zum Ziel** übereinstimmt.
+
+Dreh den Weg unten. Der orange und der violette Pfeil sind die Strecke, <InlineMath math="8+6=14\text{ m}" /> Weg. Der fuchsiafarbene Pfeil verbindet Start und Ziel direkt, seine Länge ist also die Verschiebung, <InlineMath math="10\text{ m}" />, aus dem rechtwinkligen Dreieck.
+
+<LineEquation
+  title="Strecke und Verschiebung mit Abbiegen"
+  description="8 m nach Osten, dann 6 m nach Norden, von oben gesehen. Ein Gitterschritt sind 2 m."
+  data={(() => {
+    // 8 m east along x, then 6 m north along -z, drawn flat on the ground. One grid step is 2 m.
+    const east = 8;
+    const north = 6;
+    const at = (x, z) => ({ x: x / 2, y: 0, z: -z / 2 });
+    const arrow = (from, to, color, text, offset) => ({ points: [from, to], color, cone: { position: "end", size: 0.25 }, showPoints: false, smooth: false, labels: [{ text, at: 1, offset, anchorX: "center" }] });
+    return [
+      arrow(at(0, 0), at(east, 0), "#bb6800", <InlineMath math={`${east}\\text{ m}`} />, [-2, 0.4, 0]),
+      arrow(at(east, 0), at(east, north), "#8242e5", <InlineMath math={`${north}\\text{ m}`} />, [0.6, 0.4, 1.5]),
+      arrow(at(0, 0), at(east, north), "#c026d3", <InlineMath math={`\\sqrt{${east}^2+${north}^2}=${Math.hypot(east, north)}\\text{ m}`} />, [-2.2, 0.5, 1.5]),
+    ];
+  })()}
+  cameraPosition={[2, 7, 5]}
+  cameraTarget={[2, 0, -1.5]}
+/>

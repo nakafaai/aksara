@@ -54,6 +54,29 @@ Jika gaya konstan yang sama melawan perpindahan, sudutnya <InlineMath math="180^
 
 <BlockMath math="W=40(5)\cos180^\circ=200(-1)=-200\text{ J}" />
 
+Grafik di bawah menjalankan tarikan <InlineMath math="40\text{ N}" /> sejauh <InlineMath math="5\text{ m}" /> yang sama untuk setiap sudut dari <InlineMath math="0^\circ" /> sampai <InlineMath math="180^\circ" />. Usahanya mulai dari <InlineMath math="200\text{ J}" />, turun ke nol saat gaya tegak lurus, lalu berakhir di <InlineMath math="-200\text{ J}" /> saat gaya berlawanan dengan gerak.
+
+<LineEquation
+  title="Usaha Mengikuti Kosinus Sudut"
+  description="W = Fs cos θ untuk F = 40 N dan s = 5 m. Mendatar: sudut dalam satuan 30°. Tegak: usaha dalam satuan 50 J."
+  data={[
+    {
+      // W = F s cos(theta) for F = 40 N and s = 5 m, theta in degrees / 30. Vertical: W / 50 J.
+      curve: { kind: "cos", amplitude: (40 * 5) / 50, frequency: (30 * Math.PI) / 180, phase: 0, shift: 0, domain: [0, 6], samples: 241 },
+      color: "#bb6800",
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="0^\circ:\ W=200\text{ J}" />, at: 0, offset: [1.2, 0.3, 0], anchorX: "center" },
+        { text: <InlineMath math="90^\circ:\ W=0" />, at: 120, offset: [0.9, 0.3, 0], anchorX: "center" },
+        { text: <InlineMath math="180^\circ:\ W=-200\text{ J}" />, at: 240, offset: [-1.4, -0.3, 0], anchorX: "center" },
+      ],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[3, 0, 9]}
+  cameraTarget={[3, 0, 0]}
+/>
+
 ## Perkalian Silang Mengukur Efek Memutar
 
 Perkalian silang antara <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" /> memiliki besar:
@@ -164,3 +187,28 @@ Bandingkan hasil kedua operasi dengan **besar kedua vektor tetap dan bukan nol**
 | <InlineMath math="180^\circ" /> | bernilai negatif | nol |
 
 Jadi, perkalian titik cocok untuk menanyakan kesearahan, sedangkan perkalian silang cocok untuk menanyakan efek tegak lurus seperti putaran.
+
+Tetapkan kedua besar vektornya lalu putar sudutnya. Hasil kali titik yang oranye paling besar saat kedua vektor segaris, sedangkan besar hasil kali silang yang ungu memuncak di <InlineMath math="90^\circ" />. Pada <InlineMath math="0^\circ" /> dan <InlineMath math="180^\circ" /> hasil kali silangnya nol, karena vektor sejajar tidak memberi efek putar.
+
+<LineEquation
+  title="Hasil Kali Titik dan Silang terhadap Sudut"
+  description="AB cos θ dan AB sin θ dengan AB = 200 untuk sudut 0° sampai 180°. Mendatar: sudut dalam satuan 30°. Tegak: nilai dalam satuan 50."
+  data={[
+    {
+      // A B cos(theta) and A B sin(theta) with A B = 200, theta in degrees / 30. Vertical: value / 50.
+      curve: { kind: "cos", amplitude: 200 / 50, frequency: (30 * Math.PI) / 180, phase: 0, shift: 0, domain: [0, 6], samples: 241 },
+      color: "#bb6800",
+      showPoints: false,
+      labels: [{ text: "A·B", at: 40, offset: [0.6, 0.4, 0], anchorX: "center" }],
+    },
+    {
+      curve: { kind: "sin", amplitude: 200 / 50, frequency: (30 * Math.PI) / 180, phase: 0, shift: 0, domain: [0, 6], samples: 241 },
+      color: "#8242e5",
+      showPoints: false,
+      labels: [{ text: "|A×B|", at: 120, offset: [0, 0.45, 0], anchorX: "center" }],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[3, 0, 9]}
+  cameraTarget={[3, 0, 0]}
+/>

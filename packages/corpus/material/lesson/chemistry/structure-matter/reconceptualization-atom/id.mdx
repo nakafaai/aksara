@@ -107,6 +107,30 @@ Jika massa karbon dibuat sama, massa oksigen pada <InlineMath math="\mathrm{CO}"
 
 Rasio <InlineMath math="1:2" /> adalah bilangan bulat sederhana. Pola seperti ini mendukung hukum perbandingan berganda: jika dua unsur membentuk beberapa senyawa, massa salah satu unsur yang bergabung dengan massa tetap unsur lain memiliki rasio bilangan bulat sederhana.
 
+Dengan karbon tetap <InlineMath math="12\ \mathrm{g}" />, karbon monoksida mengandung <InlineMath math="16\ \mathrm{g}" /> oksigen dan karbon dioksida <InlineMath math="32\ \mathrm{g}" />, dengan satu kotak grid untuk <InlineMath math="8\ \mathrm{g}" />. Batang kedua tepat dua kali batang pertama, dan Dalton membacanya sebagai satu atom oksigen melawan dua.
+
+<MathVisual
+  title="Oksigen per 12 g Karbon"
+  description="Oksigen yang bergabung dengan 12 g karbon dalam CO dan CO₂. Satu kotak grid ke atas sama dengan 8 g."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 5, z: 8 }, target: { x: 1.5, y: 2, z: 0 } },
+    objects: [
+      { id: "monoxide", kind: "cuboid", appearance: "primary", center: { x: 0, y: (16 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 16 / 8, width: 1.2 } },
+      { id: "dioxide", kind: "cuboid", appearance: "primary", center: { x: 3, y: (32 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 32 / 8, width: 1.2 } },
+    ],
+    labels: [
+      { key: "monoxide", objectId: "monoxide", at: { x: 0, y: 2.5, z: 0 }, placement: "above" },
+      { key: "dioxide", objectId: "dioxide", at: { x: 3, y: 4.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    monoxide: <InlineMath math="\mathrm{CO}:\ 16\ \mathrm{g}" />,
+    dioxide: <InlineMath math="\mathrm{CO_2}:\ 32\ \mathrm{g}" />,
+  }}
+/>
+
 ## Keterbatasan Teori Atom Dalton
 
 Model Dalton menjelaskan pola massa dalam reaksi kimia, tetapi belum dapat menjelaskan semua gejala. Jika atom benar-benar berupa bola pejal tanpa bagian dalam, mengapa logam dapat menghantarkan listrik? Mengapa medan listrik dan medan magnet dapat membelokkan sinar katode?

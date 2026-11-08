@@ -32,6 +32,34 @@ Misalnya, <InlineMath math="\vec{A}=6\hat{i}+8\hat{j}" /> berarti vektor memilik
 
 Panjang vektor didapat dari **teorema Pythagoras** karena komponen <InlineMath math="x" /> dan <InlineMath math="y" /> saling tegak lurus.
 
+Kedua panah komponen di bawah dan vektornya membentuk segitiga siku-siku, jadi panjangnya adalah sisi miringnya: <InlineMath math="\sqrt{6^2+8^2}=10" />.
+
+<LineEquation
+  title="Vektor dan Dua Komponennya"
+  description="A = 6î + 8ĵ dengan komponen x dan y-nya. Satu kotak grid sama dengan 2 satuan."
+  data={(() => {
+    const arrow = (from, to, color, text, offset) => ({
+      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
+      color,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
+    });
+    // A = 6 i + 8 j, drawn with its two components. One grid step is 2 units.
+    const A = [6, 8];
+    const s = (p) => p.map((v) => v / 2);
+    return [
+      arrow(s([0, 0]), s([A[0], 0]), "#0d9488", <InlineMath math="A_x=6" />, [-1.4, -0.4, 0]),
+      arrow(s([A[0], 0]), s(A), "#8242e5", <InlineMath math="A_y=8" />, [0.6, -2, 0]),
+      arrow(s([0, 0]), s(A), "#bb6800", <InlineMath math={`\\lvert\\vec A\\rvert=${Math.hypot(A[0], A[1])}`} />, [-1.2, -0.6, 0]),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[1.6, 2, 7]}
+  cameraTarget={[1.6, 2, 0]}
+/>
+
 ## Komponen pada Ruang Tiga Dimensi
 
 Dalam ruang tiga dimensi, vektor memerlukan tiga komponen. Bentuk umumnya adalah:
@@ -166,3 +194,31 @@ Arah perpindahan diukur dari timur menuju utara. Karena kedua komponen positif, 
 <BlockMath math="\begin{aligned}\tan\theta &= \frac{4}{3} \\ \theta &= \arctan\left(\frac{4}{3}\right) \\ &\approx 53{,}1^\circ\end{aligned}" />
 
 Jadi, perpindahan berarah sekitar <InlineMath math="53{,}1^\circ" /> ke utara dari timur.
+
+Inilah perjalanan itu sebagai komponen. Bagian ke timur dan ke utara adalah komponennya, dan panah oranye adalah perpindahan yang ditulis dari keduanya, <InlineMath math="3\hat{i}+4\hat{j}" /> meter, sekitar <InlineMath math="53{,}1^\circ" /> dari timur.
+
+<LineEquation
+  title="Perjalanan Ditulis sebagai Komponen"
+  description="3 m ke timur, lalu 4 m ke utara. Satu kotak grid sama dengan 1 m."
+  data={(() => {
+    const arrow = (from, to, color, text, offset) => ({
+      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
+      color,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
+    });
+    // 3 m east along x, then 4 m north along y. One grid step is 1 m.
+    const d = [3, 4];
+    const angle = (Math.atan2(d[1], d[0]) * 180) / Math.PI;
+    return [
+      arrow([0, 0], [d[0], 0], "#0d9488", <InlineMath math="3\text{ m}" />, [-1.5, -0.4, 0]),
+      arrow([d[0], 0], d, "#8242e5", <InlineMath math="4\text{ m}" />, [0.6, -2, 0]),
+      arrow([0, 0], d, "#bb6800", <InlineMath math={`5\\text{ m},\\ ${angle.toFixed(1).replace(".", "{,}")}^\\circ`} />, [-1.4, -0.4, 0]),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[1.5, 2, 7]}
+  cameraTarget={[1.5, 2, 0]}
+/>

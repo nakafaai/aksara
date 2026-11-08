@@ -30,6 +30,34 @@ The order of the letters matters. <InlineMath math="\overrightarrow{AB}" /> and 
 
 <Highlight>The arrow above the letters</Highlight> tells us that the quantity is a vector. Absolute-value bars tell us that only the magnitude is being discussed.
 
+Both arrows below have the same length, but the order of the letters flips the direction: <InlineMath math="\overrightarrow{AB}" /> starts at <InlineMath math="A" /> and <InlineMath math="\overrightarrow{BA}" /> starts at <InlineMath math="B" />. So <InlineMath math="\overrightarrow{BA}=-\overrightarrow{AB}" />.
+
+<LineEquation
+  title="The Order of the Points Sets the Direction"
+  description="Vectors AB and BA between the points A(1, 1) and B(4, 3), the second shifted down to sit beside the first."
+  data={(() => {
+    const arrow = (from, to, color, text, offset) => ({
+      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
+      color,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
+    });
+    // Points A(1, 1) and B(4, 3): AB and BA have the same length and opposite directions.
+    const A = [1, 1];
+    const B = [4, 3];
+    return [
+      arrow(A, B, "#bb6800", <InlineMath math="\overrightarrow{AB}" />, [-1.4, 0.2, 0]),
+      arrow([B[0], B[1] - 1.5], [A[0], A[1] - 1.5], "#8242e5", <InlineMath math="\overrightarrow{BA}" />, [1.4, -0.2, 0]),
+      { points: [A, B].map(([x, y]) => ({ x, y, z: 0 })), color: "#64748b", showPoints: true, smooth: false, lineWidth: 0.5, labels: [{ text: "A", at: 0, offset: [-0.35, 0, 0] }, { text: "B", at: 1, offset: [0.35, 0, 0] }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 1.2, 7]}
+  cameraTarget={[2.5, 1.2, 0]}
+/>
+
 ## Single Letter Notation
 
 In calculations, vectors are often named with **one letter carrying an arrow** such as <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" />, or <InlineMath math="\vec{F}" />. The letter helps identify the physical quantity.
@@ -118,6 +146,34 @@ A **unit vector** has magnitude <InlineMath math="1" /> and only shows direction
 All three arrows have **the same actual length**. Rotating the view changes their projection on the screen, but not the magnitude of a unit vector.
 
 Later, when a vector is written as <InlineMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />, <InlineMath math="\hat{i}" /> and <InlineMath math="\hat{j}" /> give the positive axis directions, while the signed scalars <InlineMath math="A_x" /> and <InlineMath math="A_y" /> give the components along those axes.
+
+Place the two forces head to tail. The second arrow ends exactly where the first began, so the sum is the zero vector: no length and no direction.
+
+<LineEquation
+  title="Two Forces That Cancel"
+  description="F₁ = 20î N and F₂ = −20î N placed head to tail. One grid step is 5 N."
+  data={(() => {
+    const arrow = (from, to, color, text, offset) => ({
+      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
+      color,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
+    });
+    // F1 = 20 i N and F2 = -20 i N, drawn head to tail: the sum returns to the start. One grid step is 5 N.
+    const F1 = 20;
+    const F2 = -20;
+    return [
+      arrow([0, 0.6], [F1 / 5, 0.6], "#bb6800", <InlineMath math="\vec F_1=20\hat i\text{ N}" />, [-2, 0.4, 0]),
+      arrow([F1 / 5, 0], [(F1 + F2) / 5, 0], "#8242e5", <InlineMath math="\vec F_2=-20\hat i\text{ N}" />, [2, -0.4, 0]),
+      { points: [{ x: (F1 + F2) / 5, y: 0, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />, at: 0, offset: [-0.2, -0.6, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 0.2, 6]}
+  cameraTarget={[2, 0.2, 0]}
+/>
 
 ## Common Reading Mistakes
 

@@ -30,6 +30,32 @@ Meskipun massa air yang terbentuk berbeda, perbandingan **massa hidrogen dan oks
 
 <BlockMath math="\begin{aligned} M(\mathrm{H_2O}) &amp;=2(1{,}0080)+15{,}999 \\ &amp;=18{,}015\ \mathrm{g\,mol^{-1}} \end{aligned}" />
 
+Bandingkan dua sampel air, dengan hidrogen berwarna ungu, oksigen berwarna oranye, dan satu kotak grid untuk <InlineMath math="4\ \mathrm{g}" />. Sampel besar dua kali lebih berat, tetapi keduanya terbagi dengan cara yang sama, sekitar <InlineMath math="1:8" /> menurut massa. Pembagian tetap itulah arti perbandingan tetap.
+
+<MathVisual
+  title="Dua Sampel, Satu Perbandingan Massa"
+  description="9 g dan 18 g air yang terbagi menjadi hidrogen (ungu) dan oksigen (oranye) sekitar 1:8. Satu kotak grid ke atas sama dengan 4 g."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 5, z: 9 }, target: { x: 1.5, y: 2, z: 0 } },
+    objects: [
+      { id: "small-h", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (1 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1 / 4, width: 1.2 } },
+      { id: "small-o", kind: "cuboid", appearance: "primary", center: { x: 0, y: (8 / 4) / 2 + 1 / 4, z: 0 }, size: { length: 1.2, height: 8 / 4, width: 1.2 } },
+      { id: "large-h", kind: "cuboid", appearance: "secondary", center: { x: 3, y: (2 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2 / 4, width: 1.2 } },
+      { id: "large-o", kind: "cuboid", appearance: "primary", center: { x: 3, y: (16 / 4) / 2 + 2 / 4, z: 0 }, size: { length: 1.2, height: 16 / 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "small", objectId: "small-o", at: { x: 0, y: 2.75, z: 0 }, placement: "above" },
+      { key: "large", objectId: "large-o", at: { x: 3, y: 5.0, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    small: <InlineMath math="9\ \mathrm{g}:\ 1+8" />,
+    large: <InlineMath math="18\ \mathrm{g}:\ 2+16" />,
+  }}
+/>
+
 ## Reaktan Berlebih Tetap Tersisa
 
 Ubah massa awal pada model berikut. Perubahan massa awal dapat **menyisakan hidrogen atau oksigen**. Hidrogen dan oksigen yang membentuk air selalu bereaksi dengan perbandingan massa <InlineMath math="1:8" />.
@@ -133,6 +159,17 @@ Model ini dipakai untuk menghitung massa unsur. Label <InlineMath math="\mathrm{
 Pada pilihan hidrogen berlebih, <InlineMath math="16 \mathrm{g}" /> oksigen memerlukan hidrogen sesuai rasio massa <InlineMath math="1:8" />. Hitung bagian yang bereaksi sebelum menentukan sisa:
 
 <BlockMath math="\begin{aligned} m_{\mathrm{H,bereaksi}} &= \frac{1}{8}\times16=2\ \mathrm{g} \\ m_{\mathrm{H,tersisa}} &=3-2=1\ \mathrm{g} \end{aligned}" />
+
+Inilah contoh pereaksi berlebih sebagai satu alur.
+
+<Mermaid
+  title="Hidrogen Berlebih Tetap Tersisa"
+  description="16 g oksigen hanya bisa memakai 2 g hidrogen, jadi 1 g dari 3 g itu tersisa."
+  chart={`flowchart LR
+    A["3 g H + 16 g O"] --> B["Perbandingan 1:8 memakai 2 g H dengan 16 g O"]
+    B --> C["18 g air"]
+    B --> D["1 g hidrogen tersisa"]`}
+/>
 
 ## Menguji Data Kalsium Oksida
 

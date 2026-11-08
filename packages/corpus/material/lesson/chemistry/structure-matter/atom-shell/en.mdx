@@ -46,6 +46,17 @@ Shells are named <InlineMath math="\mathrm K" /> through <InlineMath math="\math
 
 The word **maximum** matters. Shell <InlineMath math="\mathrm{M}" /> can hold up to <InlineMath math="18" /> electrons, but that does not mean every atom fills <InlineMath math="\mathrm{M}" /> to <InlineMath math="18" /> before using the next shell. For the examples up to calcium, we use the simpler pattern in the interactive model.
 
+The capacity rule gives each shell its limit.
+
+<Mermaid
+  title="Shell Capacity 2n²"
+  description="Shell n can hold at most 2n² electrons."
+  chart={`flowchart LR
+    A["K, n = 1: 2"] --> B["L, n = 2: 8"]
+    B --> C["M, n = 3: 18"]
+    C --> D["N, n = 4: 32"]`}
+/>
+
 ## Shell Model for Light Elements
 
 Choose a neutral atom. Notice that the **electron count equals the atomic number**, then read how the electrons are distributed across shells <InlineMath math="\mathrm{K}" />, <InlineMath math="\mathrm{L}" />, <InlineMath math="\mathrm{M}" />, and <InlineMath math="\mathrm{N}" />.
@@ -125,6 +136,57 @@ A common question is: why not <InlineMath math="2, 8, 10" />?
 In calcium's ground state, electrons occupy the <InlineMath math="4s" /> subshell before <InlineMath math="3d" />. The number before the letter identifies the main shell: <InlineMath math="4s" /> belongs to shell <InlineMath math="\mathrm N" />, while <InlineMath math="3d" /> belongs to shell <InlineMath math="\mathrm M" />. Shell N therefore begins filling before shell M reaches capacity.
 
 After shells K and L, <InlineMath math="20-2-8=10" /> electrons remain. Eight occupy the parts of shell M already occupied in argon, and the next two enter 4s. This gives the **ground-state configuration** <InlineMath math="2,8,8,2" />.
+
+Here is calcium in the simple shell model: <InlineMath math="2, 8, 8, 2" /> electrons from the K shell outward. Count each ring, and notice the two fuchsia electrons in shell N, even though shell M could hold more.
+
+<MathVisual
+  title="Calcium in the Shell Model"
+  description="Calcium's 20 electrons in shells K, L, M and N, with the outermost electrons in fuchsia."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.8, max: 4.8 }, y: { min: -4.8, max: 4.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "nucleus", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "shell-k", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "electron-k-1", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (0 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (0 + 0.125)) / 2) } },
+      { id: "electron-k-2", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (1 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (1 + 0.125)) / 2) } },
+      { id: "shell-l", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 2 },
+      { id: "electron-l-1", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (0 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (0 + 0.125)) / 8) } },
+      { id: "electron-l-2", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (1 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (1 + 0.125)) / 8) } },
+      { id: "electron-l-3", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (2 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (2 + 0.125)) / 8) } },
+      { id: "electron-l-4", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (3 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (3 + 0.125)) / 8) } },
+      { id: "electron-l-5", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (4 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (4 + 0.125)) / 8) } },
+      { id: "electron-l-6", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (5 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (5 + 0.125)) / 8) } },
+      { id: "electron-l-7", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (6 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (6 + 0.125)) / 8) } },
+      { id: "electron-l-8", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (7 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (7 + 0.125)) / 8) } },
+      { id: "shell-m", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "electron-m-1", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (0 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (0 + 0.125)) / 8) } },
+      { id: "electron-m-2", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (1 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (1 + 0.125)) / 8) } },
+      { id: "electron-m-3", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (2 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (2 + 0.125)) / 8) } },
+      { id: "electron-m-4", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (3 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (3 + 0.125)) / 8) } },
+      { id: "electron-m-5", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (4 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (4 + 0.125)) / 8) } },
+      { id: "electron-m-6", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (5 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (5 + 0.125)) / 8) } },
+      { id: "electron-m-7", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (6 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (6 + 0.125)) / 8) } },
+      { id: "electron-m-8", kind: "point", appearance: "secondary", at: { x: 3 * Math.cos((2 * Math.PI * (7 + 0.125)) / 8), y: 3 * Math.sin((2 * Math.PI * (7 + 0.125)) / 8) } },
+      { id: "shell-n", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "electron-n-1", kind: "point", appearance: "answer", at: { x: 4 * Math.cos((2 * Math.PI * (0 + 0.125)) / 2), y: 4 * Math.sin((2 * Math.PI * (0 + 0.125)) / 2) } },
+      { id: "electron-n-2", kind: "point", appearance: "answer", at: { x: 4 * Math.cos((2 * Math.PI * (1 + 0.125)) / 2), y: 4 * Math.sin((2 * Math.PI * (1 + 0.125)) / 2) } },
+    ],
+    labels: [
+      { key: "k", objectId: "shell-k", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "l", objectId: "shell-l", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "m", objectId: "shell-m", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "n", objectId: "shell-n", at: { x: 4, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    k: <InlineMath math="\mathrm{K}:\ 2" />,
+    l: <InlineMath math="\mathrm{L}:\ 8" />,
+    m: <InlineMath math="\mathrm{M}:\ 8" />,
+    n: <InlineMath math="\mathrm{N}:\ 2" />,
+  }}
+/>
 
 ## Limits of the Model
 

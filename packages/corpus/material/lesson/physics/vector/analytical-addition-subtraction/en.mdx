@@ -21,6 +21,17 @@ The method is to resolve every vector into [vector components](/en/subjects/phys
 
 > In the analytical method, add the vector components on each axis. The arrow lengths alone do not give the sum.
 
+The component method is the same four steps for any number of vectors.
+
+<Mermaid
+  title="The Component Method in Four Steps"
+  description="Split, add each axis, then rebuild the magnitude and the direction."
+  chart={`flowchart LR
+    A["Split every vector into x and y"] --> B["R_x = sum of x parts, R_y = sum of y parts"]
+    B --> C["R = sqrt(R_x^2 + R_y^2)"]
+    C --> D["theta = atan2(R_y, R_x)"]`}
+/>
+
 ## Steps for Vector Addition
 
 Suppose several forces <InlineMath math="\vec{F}_1" />, <InlineMath math="\vec{F}_2" />, and <InlineMath math="\vec{F}_3" /> act on an object. Each force is first split into **horizontal and vertical components**.
@@ -75,6 +86,36 @@ The resultant direction is:
 <BlockMath math="\tan\theta=\frac{150}{200}=0.75\quad\Rightarrow\quad\theta=\tan^{-1}(0.75)\approx36.9^\circ" />
 
 The total displacement is <InlineMath math="250\text{ m}" /> at <InlineMath math="36.9^\circ" /> north of east.
+
+Add the stages component by component and the resultant drops out: <InlineMath math="R_x=80+120=200\text{ m}" /> and <InlineMath math="R_y=60+90=150\text{ m}" />. The fuchsia arrow is that sum, <InlineMath math="250\text{ m}" /> at about <InlineMath math="36.9^\circ" /> north of east.
+
+<LineEquation
+  title="Two Stages Added by Components"
+  description="Stage displacements (80, 60) m and (120, 90) m placed head to tail. One grid step is 50 m."
+  data={(() => {
+    const arrow = (from, to, color, text, offset) => ({
+      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
+      color,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
+    });
+    // Stage 1 (80, 60) m and stage 2 (120, 90) m, east along x and north along y. One grid step is 50 m.
+    const s1 = [80, 60];
+    const s2 = [120, 90];
+    const R = [s1[0] + s2[0], s1[1] + s2[1]];
+    const at = ([x, y]) => [x / 50, y / 50];
+    return [
+      arrow(at([0, 0]), at(s1), "#bb6800", <InlineMath math="(80,60)" />, [0.4, -0.4, 0]),
+      arrow(at(s1), at(R), "#8242e5", <InlineMath math="(120,90)" />, [0.6, -0.4, 0]),
+      arrow(at([0, 0]), at(R), "#c026d3", <InlineMath math={`R=\\sqrt{${R[0]}^2+${R[1]}^2}=${Math.hypot(R[0], R[1])}\\text{ m}`} />, [-1.8, 0.4, 0]),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 1.6, 7]}
+  cameraTarget={[2, 1.6, 0]}
+/>
 
 ## Subtraction with Components
 

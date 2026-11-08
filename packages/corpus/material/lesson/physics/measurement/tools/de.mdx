@@ -159,3 +159,23 @@ Die Bleistiftlänge beträgt also <InlineMath math="13 \text{ cm}" />.
 Das Bleistiftbeispiel enthält drei Teile: Die Länge ist die gesuchte Größe, das Lineal ist das Messgerät und <InlineMath math="13\text{ cm}" /> ist das Ergebnis mit Einheit. Diese Angaben benennen den Messgegenstand und ermöglichen den Vergleich mit Längen, die in derselben Einheit angegeben sind.
 
 Die Definitionen von [Messung](https://jcgm.bipm.org/vim/en/2.1.html) und [Größenwert](https://jcgm.bipm.org/vim/en/1.19.html) folgen zwei Einträgen im International Vocabulary of Metrology.
+
+Der Bleistift unten beginnt nicht bei null, also lies beide Enden ab. Sein Ende liegt bei <InlineMath math="1\text{ cm}" />, seine Spitze bei <InlineMath math="8\text{ cm}" />, und die Länge ist die Differenz, <InlineMath math="7\text{ cm}" />.
+
+<LineEquation
+  title="Eine Länge aus zwei Marken ablesen"
+  description="Ein Bleistift von der 1-cm-Marke bis zur 8-cm-Marke auf einem Lineal. Ein Gitterschritt ist 1 cm."
+  data={(() => {
+    // Ruler marks every 0.1 cm from 0 to 9 cm; the pencil lies from 1 cm to 8 cm. One grid step is 1 cm.
+    const start = 1;
+    const end = 8;
+    const marks = Array.from({ length: 91 }, (_, i) => ({ x: i / 10, height: i % 10 === 0 ? 0.4 : i % 5 === 0 ? 0.28 : 0.16 }));
+    return [
+      { points: marks.flatMap(({ x, height }) => [{ x, y: 0, z: 0 }, { x, y: height, z: 0 }, { x, y: 0, z: 0 }]), color: "#64748b", showPoints: false, smooth: false, labels: [0, 1, 8].map((cm) => ({ text: `${cm}`, at: 30 * cm + 1, offset: [0, 0.3, 0], anchorX: "center" })) },
+      { points: [start, end].map((x) => ({ x, y: 1, z: 0 })), color: "#bb6800", cone: { position: "end", size: 0.3 }, showPoints: true, pointIndices: [0], smooth: false, labels: [{ text: <InlineMath math={`L=${end}-${start}=${end - start}\\text{ cm}`} />, at: 0, offset: [(end - start) / 2, 0.45, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[4.5, 0.8, 8]}
+  cameraTarget={[4.5, 0.8, 0]}
+/>

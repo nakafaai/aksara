@@ -59,6 +59,39 @@ The calculation gives:
 
 So the resultant force is about <InlineMath math="15.6\text{ N}" /> at <InlineMath math="26.3^\circ" /> from <InlineMath math="\vec{A}" /> toward <InlineMath math="\vec{B}" />.
 
+Here are the two forces with their parallelogram. The fuchsia resultant leans toward the larger force, and the angle it makes with <InlineMath math="\vec A" /> is the <InlineMath math="\phi\approx26.3^\circ" /> from the sine rule.
+
+<LineEquation
+  title="Direction of the Resultant"
+  description="A = 10 N and B = 8 N at 60° with the parallelogram that gives R. One grid step is 2 N."
+  data={(() => {
+    const arrow = (from, to, color, text, offset) => ({
+      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
+      color,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
+    });
+    // A = 10 N along x and B = 8 N at 60 degrees; R = A + B. One grid step is 2 N.
+    const A = [10, 0];
+    const t = (60 * Math.PI) / 180;
+    const B = [8 * Math.cos(t), 8 * Math.sin(t)];
+    const R = [A[0] + B[0], A[1] + B[1]];
+    const s = (p) => p.map((v) => v / 2);
+    const phi = (Math.atan2(R[1], R[0]) * 180) / Math.PI;
+    return [
+      arrow(s([0, 0]), s(A), "#bb6800", <InlineMath math="A=10\text{ N}" />, [-2.5, -0.4, 0]),
+      arrow(s([0, 0]), s(B), "#8242e5", <InlineMath math="B=8\text{ N}" />, [-1.2, 0.2, 0]),
+      { points: [s(B), s(R), s(A)].map(([x, y]) => ({ x, y, z: 0 })), color: "#64748b", showPoints: false, smooth: false },
+      arrow(s([0, 0]), s(R), "#c026d3", <InlineMath math={`R\\approx${Math.hypot(R[0], R[1]).toFixed(2).replace(".", ".")}\\text{ N},\\ \\phi\\approx${phi.toFixed(1).replace(".", ".")}^\\circ`} />, [0.4, 0.6, 0]),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[4, 1.8, 9]}
+  cameraTarget={[4, 1.8, 0]}
+/>
+
 ## Checking with Components
 
 The same direction can be checked using **resultant components**. If <InlineMath math="\vec{A}" /> is placed on the positive <InlineMath math="x" /> axis, then:
@@ -145,6 +178,17 @@ The horizontal component is **negative** and the vertical component is **positiv
 </ContentStack>
 
 Inverse sine returns <InlineMath math="60^\circ" />, but the resultant direction is <InlineMath math="180^\circ-60^\circ=120^\circ" />. The component signs distinguish the two candidate angles.
+
+The two rules and the check work as one sequence.
+
+<Mermaid
+  title="Magnitude, Direction, Check"
+  description="The cosine rule gives the size of R, the sine rule its direction, and the components confirm both."
+  chart={`flowchart LR
+    A["Cosine rule: R"] --> B["Sine rule: sin phi = B sin theta / R"]
+    B --> C["Components: tan phi = B sin theta / (A + B cos theta)"]
+    C --> D["Same phi: answer checked"]`}
+/>
 
 ## Component Methods for More than Two Vectors
 

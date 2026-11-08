@@ -90,6 +90,27 @@ The total distance is <InlineMath math="9 \text{ m}" />, but the displacement is
 
 Average speed uses the **entire path** in the numerator, while average velocity uses the change in position.
 
+Here are both trips as position against time, with both objects moving at a steady <InlineMath math="3\text{ m/s}" />. Average velocity is the slope of the straight line from the first point to the last. For A that line is the path itself, <InlineMath math="2\text{ m/s}" />. For B, the fuchsia chord skips the turn and gives only <InlineMath math="1\text{ m/s}" />, even though B covered <InlineMath math="9\text{ m}" />.
+
+<LineEquation
+  title="Average Velocity Is the Slope from Start to End"
+  description="Trip A goes 6 m right, trip B goes 6 m right and 3 m back, each in 3 s. Horizontal: time in s. Vertical: position in units of 2 m."
+  data={(() => {
+    // Two 3 s trips at a constant 3 m/s pace. Horizontal: time in s. Vertical: position in m / 2.
+    const straight = [[0, 0], [3, 6]];
+    const back = [[0, 0], [2, 6], [3, 3]];
+    const path = (corners) => corners.map(([t, x]) => ({ x: t, y: x / 2, z: 0 }));
+    return [
+      { points: path(straight), color: "#0d9488", showPoints: true, smooth: false, labels: [{ text: "A", at: 1, offset: [0.3, 0.2, 0] }] },
+      { points: path(back), color: "#bb6800", showPoints: true, smooth: false, labels: [{ text: "B", at: 1, offset: [0, 0.4, 0] }] },
+      { points: path([[0, 0], [3, 3]]), color: "#c026d3", showPoints: false, smooth: false, labels: [{ text: <InlineMath math="\bar v_B=\frac{3\text{ m}}{3\text{ s}}=1\text{ m/s}" />, at: 1, offset: [0.4, -0.6, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[1.6, 1.6, 6]}
+  cameraTarget={[1.6, 1.6, 0]}
+/>
+
 ## The Sign of Average Velocity Shows Direction
 
 If we choose the **rightward direction as positive**, displacement to the right is positive and displacement to the left is negative. That sign carries into average velocity.
@@ -115,3 +136,15 @@ For a loop trip, the path still has length. But the start-to-finish change in po
 | How much does position change each second? | Displacement | Average velocity |
 
 Before using a formula, check whether the question <Highlight>asks for distance or displacement</Highlight>. This choice determines whether to calculate average speed or average velocity.
+
+Pick the quantity from the question before you divide.
+
+<Mermaid
+  title="Speed or Velocity from the Question"
+  description="Path per second needs total distance, position change per second needs displacement."
+  chart={`flowchart TD
+    A["What does the question ask?"] --> B["How much path is covered each second?"]
+    A --> C["How much does position change each second?"]
+    B --> D["Total distance / time = average speed"]
+    C --> E["Displacement / time = average velocity"]`}
+/>

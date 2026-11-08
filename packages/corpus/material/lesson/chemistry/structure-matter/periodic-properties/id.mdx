@@ -73,6 +73,45 @@ Tren tersebut bergantung pada **tarikan inti terhadap elektron valensi**. Elektr
   }}
 />
 
+Natrium memperlihatkan mengapa letak bisa meramalkan sifat. Satu-satunya elektron terluarnya, yang berwarna fuchsia, sendirian di kulit M, jauh dari inti dan terlindung oleh sepuluh elektron di dalam, jadi mudah dilepas.
+
+<MathVisual
+  title="Elektron Terluar Natrium yang Sendirian"
+  description="11 elektron natrium di kulit K, L, dan M, dengan elektron terluar berwarna fuchsia."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "nucleus", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "shell-k", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "electron-k-1", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (0 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (0 + 0.125)) / 2) } },
+      { id: "electron-k-2", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (1 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (1 + 0.125)) / 2) } },
+      { id: "shell-l", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 2 },
+      { id: "electron-l-1", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (0 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (0 + 0.125)) / 8) } },
+      { id: "electron-l-2", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (1 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (1 + 0.125)) / 8) } },
+      { id: "electron-l-3", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (2 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (2 + 0.125)) / 8) } },
+      { id: "electron-l-4", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (3 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (3 + 0.125)) / 8) } },
+      { id: "electron-l-5", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (4 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (4 + 0.125)) / 8) } },
+      { id: "electron-l-6", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (5 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (5 + 0.125)) / 8) } },
+      { id: "electron-l-7", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (6 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (6 + 0.125)) / 8) } },
+      { id: "electron-l-8", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (7 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (7 + 0.125)) / 8) } },
+      { id: "shell-m", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "electron-m-1", kind: "point", appearance: "answer", at: { x: 3 * Math.cos((2 * Math.PI * (0 + 0.125)) / 1), y: 3 * Math.sin((2 * Math.PI * (0 + 0.125)) / 1) } },
+    ],
+    labels: [
+      { key: "k", objectId: "shell-k", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "l", objectId: "shell-l", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "m", objectId: "shell-m", at: { x: 3, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    k: <InlineMath math="\mathrm{K}:\ 2" />,
+    l: <InlineMath math="\mathrm{L}:\ 8" />,
+    m: <InlineMath math="\mathrm{M}:\ 1" />,
+  }}
+/>
+
 ## Empat Sifat Periodik
 
 Setiap sifat menjelaskan aspek atom yang berbeda. Panah tren menunjukkan perubahan ukuran atom, energi untuk melepas elektron, perubahan energi saat elektron ditambahkan, dan tarikan terhadap elektron yang dipakai bersama dalam ikatan.
@@ -97,6 +136,18 @@ Pada atom klorin, penambahan elektron melepaskan energi. Afinitas elektronnya po
 <BlockMath math="\mathrm{Cl(g)}+e^- \rightarrow \mathrm{Cl^-(g)}" />
 
 Gas mulia seperti <InlineMath math="\mathrm{Ar}" /> sudah memiliki kulit valensi stabil, sehingga tidak mudah menerima elektron tambahan. Karena itu, afinitas elektron memiliki lebih banyak pengecualian daripada tren jari-jari atom dan energi ionisasi.
+
+Inilah kedua kecenderungan itu berdampingan, beserta alasannya.
+
+<Mermaid
+  title="Sepanjang Periode, ke Bawah Golongan"
+  description="Sepanjang periode tarikan inti pada kulit yang sama makin kuat. Ke bawah golongan, kulit baru menambah jarak dan perisai."
+  chart={`flowchart TD
+    A["Sepanjang periode, Na ke Cl"] --> B["Proton bertambah, kulit terluar sama"]
+    B --> C["Jari-jari mengecil, energi ionisasi naik"]
+    D["Ke bawah golongan, Li ke Na"] --> E["Satu kulit dalam bertambah"]
+    E --> F["Jari-jari membesar, energi ionisasi turun"]`}
+/>
 
 ## Membandingkan Dua Pasangan Unsur
 

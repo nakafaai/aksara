@@ -95,6 +95,26 @@ Tanda positif berarti kecepatan rata-rata mengarah ke kanan. Tanda negatif berar
 
 Jadi, kecepatan rata-rata perlu dibaca bersama **arah positif yang dipilih** di awal. Tanpa arah acuan, tanda positif atau negatif tidak punya makna yang jelas.
 
+Kedua perjalanan di bawah sama-sama berlangsung <InlineMath math="4\text{ s}" /> dan sama-sama mencapai <InlineMath math="8\text{ m}" />. Yang oranye kembali ke <InlineMath math="4\text{ m}" />: kelajuannya <InlineMath math="12/4=3\text{ m/s}" />, kecepatannya <InlineMath math="+4/4=+1\text{ m/s}" />. Yang ungu kembali sampai awal: kelajuannya <InlineMath math="4\text{ m/s}" />, kecepatannya <InlineMath math="0" />. Hitung naik dan turunnya setiap garis untuk mendapat jarak, lalu bandingkan titik ujungnya saja untuk mendapat perpindahan.
+
+<LineEquation
+  title="Dua Perjalanan, Dua Kelajuan, Dua Kecepatan"
+  description="Pergi ke 8 m lalu kembali ke 4 m atau ke 0 m, masing-masing dalam 4 s dengan kelajuan tetap. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 2 m."
+  data={(() => {
+    // Both trips take 4 s at constant speed. Horizontal: time in s. Vertical: position in m / 2.
+    const path = (corners) => corners.map(([t, x]) => ({ x: t, y: x / 2, z: 0 }));
+    const toFour = [[0, 0], [(4 * 8) / 12, 8], [4, 4]];
+    const toZero = [[0, 0], [2, 8], [4, 0]];
+    return [
+      { points: path(toFour), color: "#bb6800", showPoints: true, smooth: false, labels: [{ text: <InlineMath math="12\text{ m},\ \Delta x=+4\text{ m}" />, at: 2, offset: [0.4, 0.5, 0], anchorX: "center" }] },
+      { points: path(toZero), color: "#8242e5", showPoints: true, smooth: false, labels: [{ text: <InlineMath math="16\text{ m},\ \Delta x=0" />, at: 1, offset: [0.9, 0.4, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 2, 6.5]}
+  cameraTarget={[2, 2, 0]}
+/>
+
 ## Saat Kelajuan dan Kecepatan Bernilai Berbeda
 
 Misalkan benda bergerak dari <InlineMath math="0 \text{ m}" /> ke <InlineMath math="8 \text{ m}" />, lalu kembali lagi ke <InlineMath math="0 \text{ m}" /> dalam <InlineMath math="4 \text{ s}" />.
@@ -117,3 +137,15 @@ Jadi, kelajuan rata-rata dapat tidak nol sementara kecepatan rata-ratanya nol. <
 | Kecepatan rata-rata | Perpindahan | Ya | <InlineMath math="\text{m/s}" /> ke kanan |
 
 Kalau soal bertanya "seberapa cepat benda menempuh lintasan", pakai **jarak dan kelajuan**. Kalau soal bertanya "seberapa cepat posisi berubah ke arah tertentu", pakai perpindahan dan kecepatan.
+
+Lewatkan pertanyaannya melalui percabangan ini sebelum kamu memilih rumus.
+
+<Mermaid
+  title="Jarak Memberi Kelajuan, Perpindahan Memberi Kecepatan"
+  description="Kelajuan membagi panjang lintasan dengan waktu, kecepatan membagi perpindahan dengan waktu dan tetap punya arah."
+  chart={`flowchart TD
+    A["Data gerak"] --> B["Panjang lintasan total"]
+    A --> C["Perubahan posisi"]
+    B --> D["Kelajuan rata-rata: tanpa arah"]
+    C --> E["Kecepatan rata-rata: dengan arah"]`}
+/>

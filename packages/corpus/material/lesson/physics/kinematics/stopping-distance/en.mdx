@@ -45,6 +45,19 @@ So stopping distance has two stages. The first stage happens when the driver not
   }}
 />
 
+The two parts happen one after the other.
+
+<Mermaid
+  title="Two Phases of Stopping"
+  description="During the reaction time the speed stays constant, then the brakes slow the vehicle to rest."
+  chart={`flowchart LR
+    A["Hazard seen"] --> B["Reaction time: same speed"]
+    B --> C["Brakes act: constant deceleration"]
+    C --> D["Stopped"]
+    B -.-> E["Reaction distance = v t"]
+    C -.-> F["Braking distance = v^2 / 2b"]`}
+/>
+
 ## Braking Distance Uses Constant Deceleration
 
 While the brakes act, the vehicle slows down. If deceleration is **treated as constant** and the final velocity is zero, a uniformly accelerated motion equation can be used to find the braking distance.
@@ -74,6 +87,29 @@ Suppose the reaction time is <InlineMath math="1\text{ s}" /> and the braking de
 | <InlineMath math="30\text{ m/s}" /> | <InlineMath math="30\text{ m}" /> | <InlineMath math="90\text{ m}" /> | <InlineMath math="120\text{ m}" /> |
 
 When speed doubles, reaction distance doubles from <InlineMath math="10\text{ m}" /> to <InlineMath math="20\text{ m}" />, while braking distance quadruples from <InlineMath math="10\text{ m}" /> to <InlineMath math="40\text{ m}" />. Their sum therefore rises from <InlineMath math="20\text{ m}" /> to <InlineMath math="60\text{ m}" />.
+
+The graph below adds the two parts for every speed up to <InlineMath math="30\text{ m/s}" />. The teal reaction distance grows in a straight line. The orange total bends upward because the braking part grows with <InlineMath math="v^2" />. At <InlineMath math="20\text{ m/s}" /> the total is <InlineMath math="20+40=60\text{ m}" />.
+
+<LineEquation
+  title="Stopping Distance against Speed"
+  description="Reaction time 1 s and braking deceleration 5 m/s². Horizontal: speed in units of 5 m/s. Vertical: distance in units of 20 m."
+  data={(() => {
+    // Reaction time 1 s, braking deceleration 5 m/s^2. Horizontal: speed / 5 m/s. Vertical: distance / 20 m.
+    const reaction = 1;
+    const b = 5;
+    const samples = 241;
+    const total = (v) => v * reaction + v ** 2 / (2 * b);
+    const curve = (f, color, text, at, offset) => ({ points: Array.from({ length: samples }, (_, i) => { const v = (30 * i) / (samples - 1); return { x: v / 5, y: f(v) / 20, z: 0 }; }), color, showPoints: false, smooth: false, labels: [{ text, at, offset, anchorX: "center" }] });
+    return [
+      curve((v) => v * reaction, "#0d9488", "reaction", 240, [0.8, 0, 0]),
+      curve(total, "#bb6800", "total", 200, [-1.4, 0.4, 0]),
+      { points: [{ x: 20 / 5, y: total(20) / 20, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: <InlineMath math={`v=20\\text{ m/s}:\\ ${total(20)}\\text{ m}`} />, at: 0, offset: [1.4, -0.3, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[3, 3.4, 9]}
+  cameraTarget={[3, 3.4, 0]}
+/>
 
 ## Calculating Total Stopping Distance
 

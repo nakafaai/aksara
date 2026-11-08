@@ -93,6 +93,27 @@ Die Gesamtstrecke beträgt <InlineMath math="9 \text{ m}" />, aber die Verschieb
 
 Beide Rechnungen verwenden dasselbe Zeitintervall. Der **Unterschied steckt im Zähler**: Die mittlere Schnelligkeit nutzt den gesamten Weg, die mittlere Geschwindigkeit dagegen die Positionsänderung.
 
+Hier sind beide Fahrten als Position über der Zeit, beide Objekte bewegen sich gleichmäßig mit <InlineMath math="3\text{ m/s}" />. Die Durchschnittsgeschwindigkeit ist die Steigung der Geraden vom ersten zum letzten Punkt. Bei A ist diese Gerade der Weg selbst, <InlineMath math="2\text{ m/s}" />. Bei B überspringt die fuchsiafarbene Sehne die Wende und ergibt nur <InlineMath math="1\text{ m/s}" />, obwohl B <InlineMath math="9\text{ m}" /> zurückgelegt hat.
+
+<LineEquation
+  title="Durchschnittsgeschwindigkeit ist die Steigung vom Start zum Ziel"
+  description="Fahrt A geht 6 m nach rechts, Fahrt B 6 m nach rechts und 3 m zurück, jeweils in 3 s. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 2 m."
+  data={(() => {
+    // Two 3 s trips at a constant 3 m/s pace. Horizontal: time in s. Vertical: position in m / 2.
+    const straight = [[0, 0], [3, 6]];
+    const back = [[0, 0], [2, 6], [3, 3]];
+    const path = (corners) => corners.map(([t, x]) => ({ x: t, y: x / 2, z: 0 }));
+    return [
+      { points: path(straight), color: "#0d9488", showPoints: true, smooth: false, labels: [{ text: "A", at: 1, offset: [0.3, 0.2, 0] }] },
+      { points: path(back), color: "#bb6800", showPoints: true, smooth: false, labels: [{ text: "B", at: 1, offset: [0, 0.4, 0] }] },
+      { points: path([[0, 0], [3, 3]]), color: "#c026d3", showPoints: false, smooth: false, labels: [{ text: <InlineMath math="\bar v_B=\frac{3\text{ m}}{3\text{ s}}=1\text{ m/s}" />, at: 1, offset: [0.4, -0.6, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[1.6, 1.6, 6]}
+  cameraTarget={[1.6, 1.6, 0]}
+/>
+
 ## Das Vorzeichen zeigt die Richtung der mittleren Geschwindigkeit
 
 Wenn wir die **Rechtsrichtung als positiv** wählen, ist die Verschiebung nach rechts positiv und die Verschiebung nach links negativ. Dieses Vorzeichen überträgt sich auf die Durchschnittsgeschwindigkeit.
@@ -118,3 +139,15 @@ Für eine Rundtour hat der Weg dennoch Länge. Aber die Positionsänderung von A
 | Wie stark ändert sich die Position pro Sekunde? | Verschiebung | Mittlere Geschwindigkeit |
 
 Prüfe daher vor jeder Rechnung, ob nach Wegstrecke oder Verschiebung gefragt ist. So lassen sich mittlere Schnelligkeit und mittlere Geschwindigkeit zuverlässig auseinanderhalten.
+
+Wähl die Größe nach der Frage aus, bevor du teilst.
+
+<Mermaid
+  title="Tempo oder Geschwindigkeit nach der Frage"
+  description="Weg pro Sekunde braucht die Gesamtstrecke, Ortsänderung pro Sekunde braucht die Verschiebung."
+  chart={`flowchart TD
+    A["Was fragt die Aufgabe?"] --> B["Wie viel Weg pro Sekunde?"]
+    A --> C["Wie stark ändert sich die Position pro Sekunde?"]
+    B --> D["Gesamtstrecke / Zeit = Durchschnittstempo"]
+    C --> E["Verschiebung / Zeit = Durchschnittsgeschwindigkeit"]`}
+/>

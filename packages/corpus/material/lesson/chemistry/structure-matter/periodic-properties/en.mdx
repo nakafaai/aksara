@@ -73,6 +73,45 @@ These trends depend on **nuclear attraction toward valence electrons**. Valence 
   }}
 />
 
+Sodium shows why position predicts behavior. Its single outer electron, in fuchsia, sits alone in shell M, far from the nucleus and shielded by ten inner electrons, so it is easy to remove.
+
+<MathVisual
+  title="Sodium's Lone Outer Electron"
+  description="Sodium's 11 electrons in shells K, L and M, with the outer electron in fuchsia."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "nucleus", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "shell-k", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "electron-k-1", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (0 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (0 + 0.125)) / 2) } },
+      { id: "electron-k-2", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (1 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (1 + 0.125)) / 2) } },
+      { id: "shell-l", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 2 },
+      { id: "electron-l-1", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (0 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (0 + 0.125)) / 8) } },
+      { id: "electron-l-2", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (1 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (1 + 0.125)) / 8) } },
+      { id: "electron-l-3", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (2 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (2 + 0.125)) / 8) } },
+      { id: "electron-l-4", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (3 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (3 + 0.125)) / 8) } },
+      { id: "electron-l-5", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (4 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (4 + 0.125)) / 8) } },
+      { id: "electron-l-6", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (5 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (5 + 0.125)) / 8) } },
+      { id: "electron-l-7", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (6 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (6 + 0.125)) / 8) } },
+      { id: "electron-l-8", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (7 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (7 + 0.125)) / 8) } },
+      { id: "shell-m", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "electron-m-1", kind: "point", appearance: "answer", at: { x: 3 * Math.cos((2 * Math.PI * (0 + 0.125)) / 1), y: 3 * Math.sin((2 * Math.PI * (0 + 0.125)) / 1) } },
+    ],
+    labels: [
+      { key: "k", objectId: "shell-k", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "l", objectId: "shell-l", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "m", objectId: "shell-m", at: { x: 3, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    k: <InlineMath math="\mathrm{K}:\ 2" />,
+    l: <InlineMath math="\mathrm{L}:\ 8" />,
+    m: <InlineMath math="\mathrm{M}:\ 1" />,
+  }}
+/>
+
 ## Four Periodic Properties
 
 Each property describes a different aspect of an atom. The trend arrows describe changes in atomic size, the energy needed to remove an electron, the energy change when an electron is added, and the attraction of shared electrons in a bond.
@@ -97,6 +136,18 @@ For chlorine, attaching an electron releases energy. We write <InlineMath math="
 <BlockMath math="\mathrm{Cl(g)}+e^- \rightarrow \mathrm{Cl^-(g)}" />
 
 Noble gases such as <InlineMath math="\mathrm{Ar}" /> have stable valence-electron configurations, so they do not easily accept extra electrons. Electron affinity has more exceptions to a simple left-to-right trend than atomic radius or first ionization energy.
+
+Here are both trends side by side, with the reason for each.
+
+<Mermaid
+  title="Across a Period, Down a Group"
+  description="Across a period the nuclear pull on the same shell grows, and down a group a new shell adds distance and shielding."
+  chart={`flowchart TD
+    A["Across a period, Na to Cl"] --> B["More protons, same outer shell"]
+    B --> C["Radius shrinks, ionization energy rises"]
+    D["Down a group, Li to Na"] --> E["One more inner shell"]
+    E --> F["Radius grows, ionization energy falls"]`}
+/>
 
 ## Comparing Two Pairs of Elements
 

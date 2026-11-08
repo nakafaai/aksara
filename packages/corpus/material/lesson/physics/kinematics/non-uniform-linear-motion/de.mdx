@@ -56,6 +56,26 @@ Betrachte den Fall „Aus der Ruhe“. Im ersten Augenblick steht das Auto noch.
   }}
 />
 
+Beim Spielzeugauto, das aus dem Stand startet, liegen die Marken jede Sekunde bei <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="9" />, <InlineMath math="16" /> und <InlineMath math="25\text{ m}" />. Die Abstände wachsen jede Sekunde um <InlineMath math="2\text{ m}" />, deshalb biegt sich das Positionsdiagramm zu einer Parabel statt zu einer Geraden.
+
+<LineEquation
+  title="Positionsmarken rücken auseinander"
+  description="x = ½at² mit a = 2 m/s² für 5 s. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 5 m."
+  data={(() => {
+    // Starting from rest with a = 2 m/s^2: x(t) = (1/2) a t^2. Horizontal: time in s. Vertical: position / 5 m.
+    const a = 2;
+    const position = (t) => 0.5 * a * t ** 2;
+    const samples = 201;
+    return [
+      { points: Array.from({ length: samples }, (_, i) => { const t = (5 * i) / (samples - 1); return { x: t, y: position(t) / 5, z: 0 }; }), color: "#bb6800", showPoints: false, smooth: false },
+      { points: [1, 2, 3, 4, 5].map((t) => ({ x: t, y: position(t) / 5, z: 0 })), color: "#c026d3", showPoints: true, smooth: false, labels: [{ text: <InlineMath math="1,\ 4,\ 9,\ 16,\ 25\text{ m}" />, at: 4, offset: [-1.6, 0.4, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 2.5, 8]}
+  cameraTarget={[2.5, 2.5, 0]}
+/>
+
 ## Verschiebung aus der Diagrammfläche berechnen
 
 Ein Geschwindigkeits-Zeit-Diagramm zeigt die Geschwindigkeit. Die **vorzeichenbehaftete Fläche** zwischen dem Diagramm und der Zeitachse stellt zusätzlich die Verschiebung dar. Oberhalb der Zeitachse kann diese Fläche bei gleichmäßig beschleunigter Bewegung ein Dreieck oder ein Trapez sein. Eine Fläche unterhalb der Achse trägt eine negative Verschiebung bei.

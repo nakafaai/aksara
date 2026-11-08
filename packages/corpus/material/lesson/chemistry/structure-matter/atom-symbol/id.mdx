@@ -89,6 +89,17 @@ Kalau nomor massa dan nomor atom sudah diketahui, jumlah neutron tinggal dicari 
 
 <BlockMath math="n^0 = A - Z" />
 
+Setiap jumlah partikel berasal dari dua angka dalam lambang.
+
+<Mermaid
+  title="Dari A dan Z ke Jumlah Partikel"
+  description="Z memberi jumlah proton, atom netral punya elektron sebanyak itu, dan A dikurangi Z memberi jumlah neutron."
+  chart={`flowchart LR
+    A["Lambang: A di atas Z"] --> B["Proton = Z"]
+    B --> C["Elektron = Z untuk atom netral"]
+    A --> D["Neutron = A - Z"]`}
+/>
+
 ## Contoh Karbon
 
 Untuk atom karbon dengan nomor massa <InlineMath math="12" />, lambangnya ditulis:
@@ -104,6 +115,33 @@ n^0 &= 12 - 6 = 6
 \end{aligned}" />
 
 Jika atom <InlineMath math="{}^{12}_{6}\mathrm{C}" /> itu **netral**, jumlah elektronnya juga <InlineMath math="6" />.
+
+Inilah tiga jumlah partikel untuk karbon-12 sebagai kolom, dengan satu kotak grid untuk <InlineMath math="2" /> partikel. Ketiganya <InlineMath math="6" />, tetapi alasannya berbeda: <InlineMath math="Z=6" />, atomnya netral, dan <InlineMath math="12-6=6" />.
+
+<MathVisual
+  title="Partikel dalam Karbon-12"
+  description="Proton, neutron, dan elektron atom karbon-12 yang netral. Satu kotak grid ke atas sama dengan 2 partikel."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 1.5, z: 0 } },
+    objects: [
+      { id: "protons", kind: "cuboid", appearance: "primary", center: { x: 0, y: (6 / 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 6 / 2, width: 1.2 } },
+      { id: "neutrons", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: ((12 - 6) / 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: (12 - 6) / 2, width: 1.2 } },
+      { id: "electrons", kind: "cuboid", appearance: "secondary", center: { x: 5, y: (6 / 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 6 / 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "protons", objectId: "protons", at: { x: 0, y: 3.5, z: 0 }, placement: "above" },
+      { key: "neutrons", objectId: "neutrons", at: { x: 2.5, y: 3.5, z: 0 }, placement: "above" },
+      { key: "electrons", objectId: "electrons", at: { x: 5, y: 3.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    protons: <InlineMath math="p^+=Z=6" />,
+    neutrons: <InlineMath math="n^0=12-6=6" />,
+    electrons: <InlineMath math="e^-=6" />,
+  }}
+/>
 
 ## Nomor Massa dan Massa Atom Relatif
 

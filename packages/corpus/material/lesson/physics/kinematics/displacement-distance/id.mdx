@@ -96,6 +96,20 @@ Jika benda bergerak berkeliling lalu kembali ke titik awal, jaraknya tidak nol k
 
 Jadi, jarak menyatakan panjang seluruh jalur yang dilalui, sedangkan perpindahan menyatakan selisih antara posisi akhir dan posisi awal.
 
+Tiga perjalanan dalam tabel bercabang seperti ini.
+
+<Mermaid
+  title="Tiga Perjalanan, Satu Titik Awal"
+  description="Jalan memutar hanya menambah jarak, dan lintasan melingkar menyisakan jarak tanpa perpindahan."
+  chart={`flowchart TD
+    A["Titik awal sama"] --> B["Lurus ke titik akhir"]
+    A --> C["Memutar ke titik akhir"]
+    A --> D["Berputar kembali ke awal"]
+    B --> E["Jarak sama dengan besar perpindahan"]
+    C --> F["Jarak lebih panjang, perpindahan sama"]
+    D --> G["Jarak di atas nol, perpindahan nol"]`}
+/>
+
 ## Jarak dan Perpindahan pada Lintasan Berbelok
 
 Seorang siswa berjalan <InlineMath math="8 \text{ m}" /> ke timur, lalu <InlineMath math="6 \text{ m}" /> ke utara. Jarak tempuhnya adalah:
@@ -111,3 +125,24 @@ Besar perpindahannya adalah:
 \end{aligned}" />
 
 Jaraknya <InlineMath math="14 \text{ m}" />, tetapi besar perpindahannya <InlineMath math="10 \text{ m}" />. Nilai keduanya berbeda karena lintasan yang ditempuh tidak sama dengan **garis lurus dari awal ke akhir**.
+
+Putar perjalanan di bawah. Panah oranye dan ungu adalah lintasannya, jaraknya <InlineMath math="8+6=14\text{ m}" />. Panah fuchsia menghubungkan awal dan akhir secara langsung, jadi panjangnya adalah perpindahan, <InlineMath math="10\text{ m}" />, dari segitiga siku-siku.
+
+<LineEquation
+  title="Jarak dan Perpindahan pada Belokan"
+  description="8 m ke timur, lalu 6 m ke utara, dilihat dari atas. Satu kotak grid sama dengan 2 m."
+  data={(() => {
+    // 8 m east along x, then 6 m north along -z, drawn flat on the ground. One grid step is 2 m.
+    const east = 8;
+    const north = 6;
+    const at = (x, z) => ({ x: x / 2, y: 0, z: -z / 2 });
+    const arrow = (from, to, color, text, offset) => ({ points: [from, to], color, cone: { position: "end", size: 0.25 }, showPoints: false, smooth: false, labels: [{ text, at: 1, offset, anchorX: "center" }] });
+    return [
+      arrow(at(0, 0), at(east, 0), "#bb6800", <InlineMath math={`${east}\\text{ m}`} />, [-2, 0.4, 0]),
+      arrow(at(east, 0), at(east, north), "#8242e5", <InlineMath math={`${north}\\text{ m}`} />, [0.6, 0.4, 1.5]),
+      arrow(at(0, 0), at(east, north), "#c026d3", <InlineMath math={`\\sqrt{${east}^2+${north}^2}=${Math.hypot(east, north)}\\text{ m}`} />, [-2.2, 0.5, 1.5]),
+    ];
+  })()}
+  cameraPosition={[2, 7, 5]}
+  cameraTarget={[2, 0, -1.5]}
+/>

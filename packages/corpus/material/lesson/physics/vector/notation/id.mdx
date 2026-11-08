@@ -30,6 +30,34 @@ Urutan huruf tidak boleh ditukar sembarangan. <InlineMath math="\overrightarrow{
 
 <Highlight>Tanda panah di atas huruf</Highlight> memberi tahu bahwa yang dibahas adalah vektor. Tanda mutlak memberi tahu bahwa yang dibahas hanya besarnya.
 
+Kedua panah di bawah sama panjang, tetapi urutan hurufnya membalik arahnya: <InlineMath math="\overrightarrow{AB}" /> berawal di <InlineMath math="A" /> dan <InlineMath math="\overrightarrow{BA}" /> berawal di <InlineMath math="B" />. Jadi, <InlineMath math="\overrightarrow{BA}=-\overrightarrow{AB}" />.
+
+<LineEquation
+  title="Urutan Titik Menentukan Arah"
+  description="Vektor AB dan BA di antara titik A(1, 1) dan B(4, 3), yang kedua digeser ke bawah supaya berdampingan dengan yang pertama."
+  data={(() => {
+    const arrow = (from, to, color, text, offset) => ({
+      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
+      color,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
+    });
+    // Points A(1, 1) and B(4, 3): AB and BA have the same length and opposite directions.
+    const A = [1, 1];
+    const B = [4, 3];
+    return [
+      arrow(A, B, "#bb6800", <InlineMath math="\overrightarrow{AB}" />, [-1.4, 0.2, 0]),
+      arrow([B[0], B[1] - 1.5], [A[0], A[1] - 1.5], "#8242e5", <InlineMath math="\overrightarrow{BA}" />, [1.4, -0.2, 0]),
+      { points: [A, B].map(([x, y]) => ({ x, y, z: 0 })), color: "#64748b", showPoints: true, smooth: false, lineWidth: 0.5, labels: [{ text: "A", at: 0, offset: [-0.35, 0, 0] }, { text: "B", at: 1, offset: [0.35, 0, 0] }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 1.2, 7]}
+  cameraTarget={[2.5, 1.2, 0]}
+/>
+
 ## Notasi dengan Satu Huruf
 
 Dalam perhitungan, vektor sering diberi nama **satu huruf dengan tanda panah** seperti <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" />, atau <InlineMath math="\vec{F}" />. Pilih huruf sesuai besarannya, misalnya <InlineMath math="\vec{v}" /> untuk kecepatan dan <InlineMath math="\vec{F}" /> untuk gaya.
@@ -118,6 +146,34 @@ Misalnya, tetapkan kanan sebagai arah positif. Gaya ke kanan dan ke kiri yang ma
 Dalam model, **panjang sebenarnya sama** untuk ketiga panah. Memutar pandangan mengubah proyeksi pada layar, tetapi tidak mengubah besar vektor satuan.
 
 Nanti, saat vektor ditulis sebagai <InlineMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />, notasi <InlineMath math="\hat{i}" /> dan <InlineMath math="\hat{j}" /> memberi arah positif kedua sumbu, sedangkan skalar bertanda <InlineMath math="A_x" /> dan <InlineMath math="A_y" /> memberi komponen sepanjang sumbu tersebut.
+
+Letakkan kedua gaya ujung ke pangkal. Panah kedua berakhir tepat di tempat panah pertama berawal, jadi jumlahnya adalah vektor nol: tanpa panjang dan tanpa arah.
+
+<LineEquation
+  title="Dua Gaya yang Saling Meniadakan"
+  description="F₁ = 20î N dan F₂ = −20î N disusun ujung ke pangkal. Satu kotak grid sama dengan 5 N."
+  data={(() => {
+    const arrow = (from, to, color, text, offset) => ({
+      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
+      color,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
+    });
+    // F1 = 20 i N and F2 = -20 i N, drawn head to tail: the sum returns to the start. One grid step is 5 N.
+    const F1 = 20;
+    const F2 = -20;
+    return [
+      arrow([0, 0.6], [F1 / 5, 0.6], "#bb6800", <InlineMath math="\vec F_1=20\hat i\text{ N}" />, [-2, 0.4, 0]),
+      arrow([F1 / 5, 0], [(F1 + F2) / 5, 0], "#8242e5", <InlineMath math="\vec F_2=-20\hat i\text{ N}" />, [2, -0.4, 0]),
+      { points: [{ x: (F1 + F2) / 5, y: 0, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />, at: 0, offset: [-0.2, -0.6, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 0.2, 6]}
+  cameraTarget={[2, 0.2, 0]}
+/>
 
 ## Kesalahan Membaca yang Sering Terjadi
 

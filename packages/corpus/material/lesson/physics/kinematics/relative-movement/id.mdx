@@ -84,6 +84,25 @@ Nilai <InlineMath math="+20 \text{ m/s}" /> berarti posisi mobil relatif terhada
 
 Pengamat yang berbeda mengukur kecepatan relatif yang berbeda untuk peristiwa gerak yang sama.
 
+Inilah mobil, taksi, dan truk yang berangkat dari tempat yang sama. Jarak antara dua garis adalah posisi satu kendaraan menurut kendaraan lainnya. Mobil dan taksi menjauh pelan, <InlineMath math="2\text{ m}" /> setiap sekon, sedangkan mobil dan truk berpisah <InlineMath math="20\text{ m}" /> setiap sekon.
+
+<LineEquation
+  title="Jarak Bertambah sebesar Kecepatan Relatif"
+  description="Posisi tiga kendaraan dengan kecepatan dalam m/s terhadap tanah, berangkat bersamaan. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 10 m."
+  data={(() => {
+    // Ground velocities: car +12, taxi +14, truck -8 m/s, all from x = 0. Horizontal: time in s. Vertical: position / 10 m.
+    const runner = (v, color, text) => ({ points: [0, 3].map((t) => ({ x: t, y: (v * t) / 10, z: 0 })), color, showPoints: false, smooth: false, labels: [{ text, at: 1, offset: [0.9, 0, 0], anchorX: "center" }] });
+    return [
+      runner(12, "#bb6800", "mobil +12"),
+      runner(14, "#8242e5", "taksi +14"),
+      runner(-8, "#0d9488", "truk -8"),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[1.8, 0.8, 9]}
+  cameraTarget={[1.8, 0.8, 0]}
+/>
+
 ## Kecepatan Relatif adalah Selisih
 
 | Situasi | Cara menghitung | Arti gerak relatif |
@@ -93,3 +112,14 @@ Pengamat yang berbeda mengukur kecepatan relatif yang berbeda untuk peristiwa ge
 | Pengamat berlawanan arah | <InlineMath math="12-(-8)=+20 \text{ m/s}" /> | Benda tampak bergerak ke arah positif |
 
 Jadi, sebelum menyebut suatu benda cepat, lambat, diam, atau bergerak mundur, selalu periksa **kerangka acuan yang dipakai**.
+
+Mobil, taksi, dan truk tadi semuanya kembali ke pengurangan yang sama dengan pengamat yang berbeda.
+
+<Mermaid
+  title="Satu Pengurangan untuk Setiap Pengamat"
+  description="Kecepatan relatif adalah kecepatan benda terhadap tanah dikurangi kecepatan pengamat terhadap tanah."
+  chart={`flowchart TD
+    A["v_benda/pengamat = v_benda - v_pengamat"] --> B["Pengamat diam: 12 - 0 = 12 m/s"]
+    A --> C["Searah: 12 - 14 = -2 m/s"]
+    A --> D["Berlawanan arah: 12 - (-8) = +20 m/s"]`}
+/>

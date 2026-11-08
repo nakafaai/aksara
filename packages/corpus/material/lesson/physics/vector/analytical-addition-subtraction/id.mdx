@@ -21,6 +21,17 @@ Caranya adalah menguraikan setiap vektor menjadi [komponen vektor](/id/materi/fi
 
 > Pada metode analitis, jumlahkan komponen vektor pada setiap sumbu. Panjang panah saja belum memberikan hasil penjumlahannya.
 
+Metode komponen selalu empat langkah yang sama, berapa pun banyak vektornya.
+
+<Mermaid
+  title="Metode Komponen dalam Empat Langkah"
+  description="Uraikan, jumlahkan tiap sumbu, lalu bangun kembali besar dan arahnya."
+  chart={`flowchart LR
+    A["Uraikan setiap vektor ke x dan y"] --> B["R_x = jumlah bagian x, R_y = jumlah bagian y"]
+    B --> C["R = akar(R_x^2 + R_y^2)"]
+    C --> D["theta = atan2(R_y, R_x)"]`}
+/>
+
 ## Langkah Penjumlahan Vektor
 
 Misalnya ada beberapa gaya <InlineMath math="\vec{F}_1" />, <InlineMath math="\vec{F}_2" />, dan <InlineMath math="\vec{F}_3" />. Setiap gaya dipecah menjadi **komponen horizontal dan vertikal**.
@@ -75,6 +86,36 @@ Arah resultan:
 <BlockMath math="\tan\theta=\frac{150}{200}=0{,}75\quad\Rightarrow\quad\theta=\tan^{-1}(0{,}75)\approx36{,}9^\circ" />
 
 Perpindahan totalnya <InlineMath math="250\text{ m}" /> dengan arah <InlineMath math="36{,}9^\circ" /> ke utara dari timur.
+
+Jumlahkan kedua tahap komponen demi komponen dan resultannya langsung muncul: <InlineMath math="R_x=80+120=200\text{ m}" /> dan <InlineMath math="R_y=60+90=150\text{ m}" />. Panah fuchsia adalah jumlah itu, <InlineMath math="250\text{ m}" /> dengan sudut sekitar <InlineMath math="36{,}9^\circ" /> ke utara dari timur.
+
+<LineEquation
+  title="Dua Tahap Dijumlahkan per Komponen"
+  description="Perpindahan tahap (80, 60) m dan (120, 90) m disusun ujung ke pangkal. Satu kotak grid sama dengan 50 m."
+  data={(() => {
+    const arrow = (from, to, color, text, offset) => ({
+      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
+      color,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
+    });
+    // Stage 1 (80, 60) m and stage 2 (120, 90) m, east along x and north along y. One grid step is 50 m.
+    const s1 = [80, 60];
+    const s2 = [120, 90];
+    const R = [s1[0] + s2[0], s1[1] + s2[1]];
+    const at = ([x, y]) => [x / 50, y / 50];
+    return [
+      arrow(at([0, 0]), at(s1), "#bb6800", <InlineMath math="(80,60)" />, [0.4, -0.4, 0]),
+      arrow(at(s1), at(R), "#8242e5", <InlineMath math="(120,90)" />, [0.6, -0.4, 0]),
+      arrow(at([0, 0]), at(R), "#c026d3", <InlineMath math={`R=\\sqrt{${R[0]}^2+${R[1]}^2}=${Math.hypot(R[0], R[1])}\\text{ m}`} />, [-1.8, 0.4, 0]),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 1.6, 7]}
+  cameraTarget={[2, 1.6, 0]}
+/>
 
 ## Pengurangan dengan Komponen
 

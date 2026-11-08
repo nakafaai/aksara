@@ -46,6 +46,35 @@ Alat ukur nyata menaksir nilai ini dalam selang pencuplikan yang singkat tetapi 
   }}
 />
 
+Lihat limit itu terjadi pada gerak ilustrasi, <InlineMath math="x=t^2" />. Setiap garis berwarna adalah kecepatan rata-rata yang dimulai di <InlineMath math="t=3\text{ s}" />, selama <InlineMath math="2" />, <InlineMath math="1" />, dan <InlineMath math="0{,}5\text{ s}" />. Saat selangnya mengecil, kemiringannya turun dari <InlineMath math="8" /> ke <InlineMath math="7" /> lalu ke <InlineMath math="6{,}5\text{ m/s}" />, makin dekat ke kecepatan sesaat <InlineMath math="6\text{ m/s}" />.
+
+<LineEquation
+  title="Memperkecil Selang Waktu"
+  description="Garis potong x = t² dari t = 3 s selama 2 s, 1 s, dan 0,5 s. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 4 m."
+  data={(() => {
+    // Illustrative motion x(t) = t^2 in m. The secant from t = 3 s over shrinking steps approaches dx/dt = 2t = 6 m/s.
+    const position = (t) => t ** 2;
+    const samples = 201;
+    const secant = (step, color) => ({
+      points: [3, 3 + step].map((t) => ({ x: t, y: position(t) / 4, z: 0 })),
+      color,
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math={`\\frac{\\Delta x}{\\Delta t}=${String((position(3 + step) - position(3)) / step).replace(".", "{,}")}\\text{ m/s}`} />, at: 1, offset: [0.9, 0, 0], anchorX: "center" }],
+    });
+    return [
+      { points: Array.from({ length: samples }, (_, i) => { const t = (5 * i) / (samples - 1); return { x: t, y: position(t) / 4, z: 0 }; }), color: "#64748b", showPoints: false, smooth: false },
+      secant(2, "#e03b8a"),
+      secant(1, "#bb6800"),
+      secant(0.5, "#8242e5"),
+      { points: [{ x: 3, y: position(3) / 4, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: <InlineMath math="t=3\text{ s}:\ v=6\text{ m/s}" />, at: 0, offset: [-1.4, 0.3, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.8, 3.2, 9]}
+  cameraTarget={[2.8, 3.2, 0]}
+/>
+
 ## Arah Menentukan Tanda Kecepatan Sesaat
 
 Titik ukur pada simulasi mencatat gerak mobil pada satu saat. Kelajuan menyatakan besar gerak mobil, sedangkan **arah mobil** saat melewati titik ukur menentukan tanda kecepatannya.
@@ -60,6 +89,18 @@ Pada <InlineMath math="t=9 \text{ s}" />, mobil bergerak ke kiri dengan kelajuan
 | <InlineMath math="9 \text{ s}" /> | <InlineMath math="8 \text{ m/s}" /> | ke kiri | <InlineMath math="-8 \text{ m/s}" /> |
 
 Kelajuan sesaat tidak memiliki tanda arah. Kecepatan sesaat memakai tanda positif atau negatif untuk menunjukkan arah pada sumbu yang dipilih.
+
+Ubah setiap bacaan kelajuan menjadi kecepatan dalam dua langkah.
+
+<Mermaid
+  title="Dari Bacaan Kelajuan ke Kecepatan"
+  description="Bacaannya memberi besar, arahnya memberi tanda, dengan kanan sebagai positif."
+  chart={`flowchart LR
+    A["6 s: 20 m/s"] --> B["Ke kanan"]
+    B --> C["+20 m/s"]
+    D["9 s: 8 m/s"] --> E["Ke kiri"]
+    E --> F["-8 m/s"]`}
+/>
 
 ## Membandingkan Kelajuan Sesaat dan Kelajuan Rata-rata
 

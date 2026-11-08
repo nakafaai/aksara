@@ -67,6 +67,38 @@ An jedem Punkt der Kreisbahn zeigt die Geschwindigkeit tangential zum Kreis. Die
 
 Stell dir ein kleines Objekt auf der rechten Seite des Kreises vor, das sich gegen den Uhrzeigersinn bewegt. Seine Geschwindigkeit zeigt entlang der Bahn nach oben, während seine Beschleunigung nach links zum Mittelpunkt zeigt. Dieses Richtungspaar unterscheidet eine Kreisbewegung von einer gewöhnlichen geradlinigen Bewegung.
 
+Hier ist das kleine Auto aus dem Beispiel zu vier Zeitpunkten, jeweils eine Vierteldrehung auseinander. Jeder türkise Geschwindigkeitspfeil berührt die Bahn tangential und ist gleich lang, also bleibt das Tempo gleich. Jeder pinke Beschleunigungspfeil zeigt zur Mitte, und genau das lenkt die Geschwindigkeit ständig um.
+
+<LineEquation
+  title="Geschwindigkeit und Beschleunigung auf der Bahn"
+  description="Radius 4 m und Periode 6 s. Türkise Pfeile sind die Geschwindigkeit in halbem Maßstab, pinke die Zentripetalbeschleunigung in halbem Maßstab."
+  data={(() => {
+    // Radius 4 m, period 6 s. Velocity arrows (teal) are tangent, acceleration arrows (pink) point to the center.
+    const r = 4;
+    const T = 6;
+    const omega = (2 * Math.PI) / T;
+    const v = omega * r;
+    const a = v ** 2 / r;
+    const ring = { points: Array.from({ length: 241 }, (_, i) => { const th = (2 * Math.PI * i) / 240; return { x: r * Math.cos(th), y: r * Math.sin(th), z: 0 }; }), color: "#64748b", showPoints: false, smooth: false };
+    const times = [0, 1.5, 3, 4.5];
+    return [
+      ring,
+      ...times.flatMap((t) => {
+        const th = omega * t;
+        const at = { x: r * Math.cos(th), y: r * Math.sin(th), z: 0 };
+        return [
+          { points: [at, { x: at.x - (v / 2) * Math.sin(th), y: at.y + (v / 2) * Math.cos(th), z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.25 }, showPoints: true, pointIndices: [0], smooth: false },
+          { points: [at, { x: at.x - (a / 2) * Math.cos(th), y: at.y - (a / 2) * Math.sin(th), z: 0 }], color: "#e03b8a", cone: { position: "end", size: 0.25 }, showPoints: false, smooth: false },
+        ];
+      }),
+      { points: [{ x: 0, y: 0, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: <InlineMath math="v\approx4{,}19\text{ m/s},\ a_c\approx4{,}39\text{ m/s}^2" />, at: 0, offset: [0, -0.6, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[0, 0, 13]}
+  cameraTarget={[0, 0, 0]}
+/>
+
 ## Tangentialer Geschwindigkeitsbetrag und Winkelgeschwindigkeit gehören zusammen
 
 Der tangentiale Geschwindigkeitsbetrag beschreibt, wie schnell sich das Objekt **entlang der Kreisbahn** bewegt. Bei einem Radius <InlineMath math="r" /> hat eine volle Runde die Länge <InlineMath math="2\pi r" />. Da eine Umdrehung die Zeit <InlineMath math="T" /> benötigt, gilt:
@@ -106,3 +138,14 @@ Seine Zentripetalbeschleunigung beträgt:
 <BlockMath math="a_c=\frac{v^2}{r}=\frac{(4\pi/3)^2}{4}=\frac{16\pi^2}{36}=\frac{4\pi^2}{9}\text{ m/s}^2\approx4{,}39\text{ m/s}^2" />
 
 Das Auto bewegt sich also mit einem **konstanten Geschwindigkeitsbetrag** von etwa <InlineMath math="4{,}19\text{ m/s}" />. Trotzdem beträgt seine Beschleunigung ungefähr <InlineMath math="4{,}39\text{ m/s}^2" />, weil sich die Richtung seiner Geschwindigkeit fortlaufend ändert.
+
+Das Rechenbeispiel ist eine Kette von Formeln, jeder Schritt speist den nächsten.
+
+<Mermaid
+  title="Von der Periode zur Zentripetalbeschleunigung"
+  description="Starte mit Periode und Radius und bestimme dann Winkelgeschwindigkeit, Bahngeschwindigkeit und Zentripetalbeschleunigung."
+  chart={`flowchart LR
+    A["T = 6 s, r = 4 m"] --> B["omega = 2 pi / T = pi/3 rad/s"]
+    B --> C["v = omega r = 4 pi / 3 m/s"]
+    C --> D["a_c = v^2 / r = 4 pi^2 / 9 m/s^2"]`}
+/>

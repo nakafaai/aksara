@@ -125,6 +125,20 @@ The symbol <InlineMath math="q" /> is the particle charge in coulombs, and <Inli
 
 An electric field exerts a force on charged particles. A proton is pushed along the field, an electron in the opposite direction, and a neutron is not deflected in this simple model.
 
+The sign of the charge decides which way each beam bends between the plates.
+
+<Mermaid
+  title="Charge Decides the Bend"
+  description="With F = qE, a negative particle bends toward the positive plate, a positive one toward the negative plate, and a neutral one goes straight."
+  chart={`flowchart TD
+    A["Beam between charged plates"] --> B["Electron, q < 0"]
+    A --> C["Proton, q > 0"]
+    A --> D["Neutron, q = 0"]
+    B --> E["Bends toward the positive plate"]
+    C --> F["Bends toward the negative plate"]
+    D --> G["Goes straight"]`}
+/>
+
 ## Mass and Acceleration
 
 Subatomic particle masses are tiny, so we often use the **unified atomic mass unit**, written <InlineMath math="\text{u}" />. One <InlineMath math="\mathrm u" /> is <InlineMath math="\frac{1}{12}" /> of the mass of a neutral <InlineMath math="{}^{12}_{6}\mathrm{C}" /> atom in its ground state.
@@ -144,6 +158,33 @@ A simple comparison is:
 So one proton has about the same mass as <InlineMath math="1836" /> electrons. Protons and neutrons in the nucleus therefore provide almost all of an atom's mass.
 
 Suppose the same force acts on a tennis ball and a bowling ball for the same amount of time. The tennis ball has less mass, so it undergoes a greater acceleration and a greater change in velocity. The balls represent only the difference in mass. Their shapes do not represent particle shapes. An electron responds more strongly than a proton to the same electric force because its mass is much smaller.
+
+Here are the three masses in u at the same scale, one grid step for <InlineMath math="0.5\ \text{u}" />. Proton and neutron stand almost equally tall. The electron's column is there too, but at about <InlineMath math="1/1836" /> of a proton you can hardly see it, which is why the mass of an atom sits in its nucleus.
+
+<MathVisual
+  title="Masses of the Three Particles"
+  description="Proton 1.0073 u, neutron 1.0087 u and electron 0.00055 u at one scale. One grid step up is 0.5 u."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 1, z: 0 } },
+    objects: [
+      { id: "proton", kind: "cuboid", appearance: "primary", center: { x: 0, y: (1.0073 * 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1.0073 * 2, width: 1.2 } },
+      { id: "neutron", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: (1.0087 * 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1.0087 * 2, width: 1.2 } },
+      { id: "electron", kind: "cuboid", appearance: "secondary", center: { x: 5, y: (0.00055 * 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 0.00055 * 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "proton", objectId: "proton", at: { x: 0, y: 2.5, z: 0 }, placement: "above" },
+      { key: "neutron", objectId: "neutron", at: { x: 2.5, y: 2.5, z: 0 }, placement: "above" },
+      { key: "electron", objectId: "electron", at: { x: 5, y: 0.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    proton: <InlineMath math="1.0073\ \text{u}" />,
+    neutron: <InlineMath math="1.0087\ \text{u}" />,
+    electron: <InlineMath math="0.00055\ \text{u}" />,
+  }}
+/>
 
 ## Particle Location and Chemical Role
 

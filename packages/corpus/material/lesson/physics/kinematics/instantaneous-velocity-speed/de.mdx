@@ -47,6 +47,35 @@ Reale Messgeräte schätzen diesen Wert über ein kurzes, aber endliches Abtasti
   }}
 />
 
+Sieh dir den Grenzwert an einer Beispielbewegung an, <InlineMath math="x=t^2" />. Jede farbige Linie ist eine Durchschnittsgeschwindigkeit ab <InlineMath math="t=3\text{ s}" />, über <InlineMath math="2" />, <InlineMath math="1" /> und <InlineMath math="0{,}5\text{ s}" />. Wird das Intervall kleiner, fallen die Steigungen von <InlineMath math="8" /> auf <InlineMath math="7" /> und <InlineMath math="6{,}5\text{ m/s}" /> und nähern sich der Momentangeschwindigkeit <InlineMath math="6\text{ m/s}" />.
+
+<LineEquation
+  title="Das Zeitintervall verkleinern"
+  description="Sekanten von x = t² ab t = 3 s über 2 s, 1 s und 0,5 s. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 4 m."
+  data={(() => {
+    // Illustrative motion x(t) = t^2 in m. The secant from t = 3 s over shrinking steps approaches dx/dt = 2t = 6 m/s.
+    const position = (t) => t ** 2;
+    const samples = 201;
+    const secant = (step, color) => ({
+      points: [3, 3 + step].map((t) => ({ x: t, y: position(t) / 4, z: 0 })),
+      color,
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math={`\\frac{\\Delta x}{\\Delta t}=${String((position(3 + step) - position(3)) / step).replace(".", "{,}")}\\text{ m/s}`} />, at: 1, offset: [0.9, 0, 0], anchorX: "center" }],
+    });
+    return [
+      { points: Array.from({ length: samples }, (_, i) => { const t = (5 * i) / (samples - 1); return { x: t, y: position(t) / 4, z: 0 }; }), color: "#64748b", showPoints: false, smooth: false },
+      secant(2, "#e03b8a"),
+      secant(1, "#bb6800"),
+      secant(0.5, "#8242e5"),
+      { points: [{ x: 3, y: position(3) / 4, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: <InlineMath math="t=3\text{ s}:\ v=6\text{ m/s}" />, at: 0, offset: [-1.4, 0.3, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.8, 3.2, 9]}
+  cameraTarget={[2.8, 3.2, 0]}
+/>
+
 ## Die Richtung bestimmt das Vorzeichen der Geschwindigkeit
 
 Der Messpunkt in der Simulation erfasst das Auto zu einem bestimmten Zeitpunkt. Die Schnelligkeit gibt den Betrag der Bewegung an. Die **Fahrtrichtung** beim Passieren des Messpunkts bestimmt das Vorzeichen der Geschwindigkeit.
@@ -61,6 +90,18 @@ Bei <InlineMath math="t=9 \text{ s}" /> fährt das Auto mit einer momentanen Sch
 | <InlineMath math="9 \text{ s}" /> | <InlineMath math="8 \text{ m/s}" /> | nach links | <InlineMath math="-8 \text{ m/s}" /> |
 
 Die momentane Schnelligkeit hat kein Richtungszeichen. Die momentane Geschwindigkeit verwendet ein positives oder negatives Vorzeichen für die Richtung auf der gewählten Achse.
+
+Mach aus jeder Tempoanzeige in zwei Schritten eine Geschwindigkeit.
+
+<Mermaid
+  title="Von der Tempoanzeige zur Geschwindigkeit"
+  description="Die Anzeige liefert den Betrag, die Richtung das Vorzeichen, mit rechts als positiv."
+  chart={`flowchart LR
+    A["6 s: 20 m/s"] --> B["Nach rechts"]
+    B --> C["+20 m/s"]
+    D["9 s: 8 m/s"] --> E["Nach links"]
+    E --> F["-8 m/s"]`}
+/>
 
 ## Unterschied zur mittleren Schnelligkeit
 

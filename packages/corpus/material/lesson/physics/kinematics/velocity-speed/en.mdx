@@ -95,6 +95,26 @@ The positive sign means the net velocity points right. If the result is negative
 
 Average velocity must therefore be read together with the **positive direction chosen** at the start. Without that reference direction, a positive or negative sign has no clear meaning.
 
+Both trips below take <InlineMath math="4\text{ s}" /> and both reach <InlineMath math="8\text{ m}" />. The orange one returns to <InlineMath math="4\text{ m}" />: speed <InlineMath math="12/4=3\text{ m/s}" />, velocity <InlineMath math="+4/4=+1\text{ m/s}" />. The violet one comes all the way back: speed <InlineMath math="4\text{ m/s}" />, velocity <InlineMath math="0" />. Count the climb and the fall of each line to get the distance, and compare only the end points to get the displacement.
+
+<LineEquation
+  title="Two Trips, Two Speeds, Two Velocities"
+  description="Out to 8 m and back to 4 m or to 0 m, each in 4 s at constant speed. Horizontal: time in s. Vertical: position in units of 2 m."
+  data={(() => {
+    // Both trips take 4 s at constant speed. Horizontal: time in s. Vertical: position in m / 2.
+    const path = (corners) => corners.map(([t, x]) => ({ x: t, y: x / 2, z: 0 }));
+    const toFour = [[0, 0], [(4 * 8) / 12, 8], [4, 4]];
+    const toZero = [[0, 0], [2, 8], [4, 0]];
+    return [
+      { points: path(toFour), color: "#bb6800", showPoints: true, smooth: false, labels: [{ text: <InlineMath math="12\text{ m},\ \Delta x=+4\text{ m}" />, at: 2, offset: [0.4, 0.5, 0], anchorX: "center" }] },
+      { points: path(toZero), color: "#8242e5", showPoints: true, smooth: false, labels: [{ text: <InlineMath math="16\text{ m},\ \Delta x=0" />, at: 1, offset: [0.9, 0.4, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 2, 6.5]}
+  cameraTarget={[2, 2, 0]}
+/>
+
 ## When Speed and Velocity Have Different Values
 
 Now imagine the object moves from <InlineMath math="0 \text{ m}" /> to <InlineMath math="8 \text{ m}" />, then returns to <InlineMath math="0 \text{ m}" /> in <InlineMath math="4 \text{ s}" />.
@@ -117,3 +137,15 @@ So average speed can be nonzero while average velocity over the trip is zero. <H
 | Average velocity | Displacement | Yes | <InlineMath math="\text{m/s}" /> to the right |
 
 If the question asks how fast the path is traveled, use distance and speed. If the question asks how fast position changes in a direction, use **displacement** and velocity.
+
+Run the question through this split before you pick a formula.
+
+<Mermaid
+  title="Distance Gives Speed, Displacement Gives Velocity"
+  description="Speed divides path length by time, and velocity divides displacement by time and keeps a direction."
+  chart={`flowchart TD
+    A["Motion data"] --> B["Total path traveled"]
+    A --> C["Change in position"]
+    B --> D["Average speed: no direction"]
+    C --> E["Average velocity: with direction"]`}
+/>

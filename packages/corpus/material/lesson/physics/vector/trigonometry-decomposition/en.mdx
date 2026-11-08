@@ -113,6 +113,37 @@ With this rounding, the components of the <InlineMath math="50\text{ N}" /> forc
 
 Without early rounding, the values are about <InlineMath math="39.93\text{ N}" /> and <InlineMath math="30.09\text{ N}" />. The model uses the angle <InlineMath math="37^\circ" /> directly, so its coordinates are not exactly <InlineMath math="4" /> and <InlineMath math="3" />.
 
+Here is the rope force split onto the axes. The cosine gives the horizontal part and the sine the vertical part, about <InlineMath math="40\text{ N}" /> and <InlineMath math="30\text{ N}" />, and the two parts rebuild the <InlineMath math="50\text{ N}" /> force.
+
+<LineEquation
+  title="Splitting the Pulling Force"
+  description="F = 50 N at 37° above the horizontal with its components. One grid step is 10 N."
+  data={(() => {
+    const arrow = (from, to, color, text, offset) => ({
+      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
+      color,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
+    });
+    // F = 50 N at 37 degrees above the horizontal. One grid step is 10 N.
+    const F = 50;
+    const t = (37 * Math.PI) / 180;
+    const Fx = F * Math.cos(t);
+    const Fy = F * Math.sin(t);
+    const s = (p) => p.map((v) => v / 10);
+    return [
+      arrow(s([0, 0]), s([Fx, 0]), "#0d9488", <InlineMath math="F_x=F\cos37^\circ\approx40\text{ N}" />, [-2, -0.4, 0]),
+      arrow(s([Fx, 0]), s([Fx, Fy]), "#8242e5", <InlineMath math="F_y=F\sin37^\circ\approx30\text{ N}" />, [1.8, -1.5, 0]),
+      arrow(s([0, 0]), s([Fx, Fy]), "#bb6800", <InlineMath math="F=50\text{ N}" />, [-2.2, -0.8, 0]),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.2, 1.4, 7]}
+  cameraTarget={[2.2, 1.4, 0]}
+/>
+
 ## Angle from Vertical Axis
 
 Keep the force in quadrant I, but measure the **angle from the positive vertical axis** toward the force. The component adjacent to <InlineMath math="\theta" /> is now <InlineMath math="F_y" />, while <InlineMath math="F_x" /> is opposite the angle.
@@ -136,3 +167,15 @@ If <InlineMath math="\theta" /> is the **full standard-position angle** measured
 | down and right | positive | negative |
 
 If a force points up and to the left, its horizontal component is negative because it opposes the positive <InlineMath math="x" /> axis, while its vertical component remains positive.
+
+With the full standard-position angle, the signs take care of themselves.
+
+<Mermaid
+  title="Component Signs by Quadrant"
+  description="cos θ and sin θ already carry the signs of F_x and F_y in every quadrant."
+  chart={`flowchart TD
+    A["Angle from positive x, counterclockwise"] --> B["Quadrant I: F_x +, F_y +"]
+    A --> C["Quadrant II: F_x -, F_y +"]
+    A --> D["Quadrant III: F_x -, F_y -"]
+    A --> E["Quadrant IV: F_x +, F_y -"]`}
+/>

@@ -79,6 +79,17 @@ Auf dieselbe Weise lassen sich Kraft, Arbeit und Leistung als Dimensionsstruktur
 [P] &= \frac{[W]}{[t]} = [\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-3}
 \end{aligned}" />
 
+Die Dimensionsanalyse folgt jedes Mal denselben drei Schritten.
+
+<Mermaid
+  title="Drei Schritte der Dimensionsanalyse"
+  description="Schreib die Formel auf, ersetz jede Größe durch ihre Basisdimensionen und fass die Exponenten zusammen."
+  chart={`flowchart LR
+    A["Formel aufschreiben"] --> B["Jede Größe durch L, M, T ersetzen"]
+    B --> C["Exponenten addieren oder subtrahieren"]
+    C --> D["Dimension des Ergebnisses"]`}
+/>
+
 ## Die Dimensionskonsistenz einer Formel prüfen
 
 Mit Dimensionen lässt sich prüfen, ob eine Formel überhaupt stimmen kann. Größen, die addiert werden, <Highlight>müssen dieselbe Dimension besitzen</Highlight>.
@@ -97,6 +108,17 @@ Ersetze nun jeden Term durch seine Dimension:
 Beide Terme auf der rechten Seite haben die Dimension <InlineMath math="[\mathrm{L}]" />. Die Formel besteht damit die Dimensionsprüfung. Das beweist noch nicht, dass sie vollständig korrekt ist, schließt aber viele unmögliche Formeln sofort aus.
 
 <InlineMath math="s+t" /> ist hier ungültig, weil die Dimensionen verschieden sind: <InlineMath math="[\mathrm L]\ne[\mathrm T]" />.
+
+Prüf die Formel Term für Term, und jeder Term muss dasselbe ergeben.
+
+<Mermaid
+  title="Jeder Term braucht dieselbe Dimension"
+  description="Ersetz jede Größe in s = v0 t + ½at² durch ihre Dimension und vereinfach jeden Term."
+  chart={`flowchart LR
+    A["s: L"] --> D["Alle Terme L: konsistent"]
+    B["v0 t: (L T^-1)(T) = L"] --> D
+    C["½ a t^2: (L T^-2)(T^2) = L"] --> D`}
+/>
 
 ## An einem Objekt lassen sich mehrere Größen messen
 

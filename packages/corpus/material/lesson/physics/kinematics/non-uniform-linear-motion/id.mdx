@@ -56,6 +56,26 @@ Pada gerak "Dari Diam", mobil belum melaju pada detik awal. Jarak antartanda pos
   }}
 />
 
+Untuk mobil mainan yang mulai dari diam, tanda setiap sekon jatuh di <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="9" />, <InlineMath math="16" />, dan <InlineMath math="25\text{ m}" />. Jaraknya bertambah <InlineMath math="2\text{ m}" /> setiap sekon, jadi grafik posisinya melengkung menjadi parabola, bukan garis lurus.
+
+<LineEquation
+  title="Tanda Posisi Makin Renggang"
+  description="x = ½at² dengan a = 2 m/s² selama 5 s. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 5 m."
+  data={(() => {
+    // Starting from rest with a = 2 m/s^2: x(t) = (1/2) a t^2. Horizontal: time in s. Vertical: position / 5 m.
+    const a = 2;
+    const position = (t) => 0.5 * a * t ** 2;
+    const samples = 201;
+    return [
+      { points: Array.from({ length: samples }, (_, i) => { const t = (5 * i) / (samples - 1); return { x: t, y: position(t) / 5, z: 0 }; }), color: "#bb6800", showPoints: false, smooth: false },
+      { points: [1, 2, 3, 4, 5].map((t) => ({ x: t, y: position(t) / 5, z: 0 })), color: "#c026d3", showPoints: true, smooth: false, labels: [{ text: <InlineMath math="1,\ 4,\ 9,\ 16,\ 25\text{ m}" />, at: 4, offset: [-1.6, 0.4, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 2.5, 8]}
+  cameraTarget={[2.5, 2.5, 0]}
+/>
+
 ## Menghitung Perpindahan dari Luas Grafik
 
 Grafik kecepatan-waktu menunjukkan kecepatan dan perpindahan. **Luas bertanda** antara grafik dan sumbu waktu menyatakan perpindahan. Pada GLBB di atas sumbu waktu, daerah itu dapat berupa segitiga atau trapesium. Daerah di bawah sumbu menyumbang perpindahan negatif.

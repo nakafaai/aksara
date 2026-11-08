@@ -70,6 +70,19 @@ Ion bermuatan negatif disebut **anion**. Anion terbentuk saat atom menerima elek
   }}
 />
 
+Tanda q memberi tahu jenis ion yang kamu punya.
+
+<Mermaid
+  title="Kation atau Anion dari Muatannya"
+  description="q = p⁺ − e⁻: elektron yang lebih sedikit menghasilkan kation, elektron berlebih menghasilkan anion."
+  chart={`flowchart TD
+    A["q = proton - elektron"] --> B["q > 0: kehilangan elektron"]
+    A --> C["q < 0: menerima elektron"]
+    A --> D["q = 0: atom netral"]
+    B --> E["Kation"]
+    C --> F["Anion"]`}
+/>
+
 ## Muatan Ion dari Selisih Jumlah Proton dan Elektron
 
 <BlockMath math="q = p^+ - e^-" />
@@ -97,6 +110,32 @@ e^- &= 9 - (-1) \\
 \end{aligned}" />
 
 Tanda negatif pada <InlineMath math="\mathrm{F}^{-}" /> berarti jumlah elektron lebih banyak daripada jumlah proton. Karena itu, <InlineMath math="9 - (-1)" /> menjadi <InlineMath math="10" />.
+
+Bandingkan atom litium dengan ion litium, proton berwarna oranye di belakang dan elektron berwarna ungu di depan. Kehilangan satu elektron menyisakan <InlineMath math="3" /> proton melawan <InlineMath math="2" /> elektron, jadi <InlineMath math="q=3-2=+1" />.
+
+<MathVisual
+  title="Atom Litium dan Ion Litium"
+  description="Proton (oranye, belakang) dan elektron (ungu, depan) pada Li dan Li⁺. Satu kotak grid ke atas sama dengan 2 partikel."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 3 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 5, z: 8 }, target: { x: 1.5, y: 1, z: 0 } },
+    objects: [
+      { id: "atom-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (3 / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "atom-e", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (3 / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "ion-p", kind: "cuboid", appearance: "primary", center: { x: 3, y: (3 / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "ion-e", kind: "cuboid", appearance: "secondary", center: { x: 3, y: (2 / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 2 / 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "atom", objectId: "atom-e", at: { x: 0, y: 2, z: 0.75 }, placement: "above" },
+      { key: "ion", objectId: "ion-e", at: { x: 3, y: 1.5, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    atom: <InlineMath math="\mathrm{Li}:\ 3-3=0" />,
+    ion: <InlineMath math="\mathrm{Li^+}:\ 3-2=+1" />,
+  }}
+/>
 
 ## Komposisi Ion
 

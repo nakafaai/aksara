@@ -79,6 +79,17 @@ Force, work, and power can also be read as dimension structures.
 [P] &= \frac{[W]}{[t]} = [\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-3}
 \end{aligned}" />
 
+Dimensional analysis follows the same three steps every time.
+
+<Mermaid
+  title="Three Steps of Dimensional Analysis"
+  description="Write the formula, replace each quantity with its base dimensions, then combine the powers."
+  chart={`flowchart LR
+    A["Write the formula"] --> B["Replace each quantity with L, M, T"]
+    B --> C["Add or subtract the powers"]
+    C --> D["Dimension of the result"]`}
+/>
+
 ## Checking Dimensional Consistency in a Formula
 
 Dimensions can help check whether a formula form could be correct. Every term being added <Highlight>must have the same dimension</Highlight>.
@@ -97,6 +108,17 @@ Check the dimensions:
 Both terms on the right have dimension <InlineMath math="[\mathrm{L}]" />, so the formula passes the dimensional check. Passing this check cannot prove that a formula is correct. The check can still catch impossible formulas quickly.
 
 <InlineMath math="s+t" /> is invalid here because the dimensions differ: <InlineMath math="[\mathrm L]\ne[\mathrm T]" />.
+
+Check the formula term by term, and every term must come out the same.
+
+<Mermaid
+  title="Every Term Must Have the Same Dimension"
+  description="Replace each quantity in s = v0 t + ½at² with its dimension and simplify each term."
+  chart={`flowchart LR
+    A["s: L"] --> D["All terms L: consistent"]
+    B["v0 t: (L T^-1)(T) = L"] --> D
+    C["½ a t^2: (L T^-2)(T^2) = L"] --> D`}
+/>
 
 ## One Object Can Have Many Quantities
 

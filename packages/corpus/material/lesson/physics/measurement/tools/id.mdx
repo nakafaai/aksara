@@ -159,3 +159,23 @@ Jadi, panjang pensil adalah <InlineMath math="13 \text{ cm}" />.
 Contoh pensil tadi memuat tiga bagian, yaitu panjang sebagai besaran yang dicari, penggaris sebagai alat ukur, dan <InlineMath math="13\text{ cm}" /> sebagai hasil beserta satuannya. Informasi itu menjelaskan apa yang diukur. Hasil <InlineMath math="13\text{ cm}" /> kemudian dapat dibandingkan dengan panjang lain yang memakai satuan sama.
 
 Definisi [pengukuran](https://jcgm.bipm.org/vim/en/2.1.html) dan [nilai besaran](https://jcgm.bipm.org/vim/en/1.19.html) mengikuti dua entri dalam International Vocabulary of Metrology.
+
+Pensil di bawah tidak mulai dari nol, jadi baca kedua ujungnya. Pangkalnya di <InlineMath math="1\text{ cm}" /> dan ujungnya di <InlineMath math="8\text{ cm}" />, dan panjangnya adalah selisihnya, <InlineMath math="7\text{ cm}" />.
+
+<LineEquation
+  title="Membaca Panjang dari Dua Tanda"
+  description="Pensil dari tanda 1 cm sampai tanda 8 cm pada mistar. Satu kotak grid sama dengan 1 cm."
+  data={(() => {
+    // Ruler marks every 0.1 cm from 0 to 9 cm; the pencil lies from 1 cm to 8 cm. One grid step is 1 cm.
+    const start = 1;
+    const end = 8;
+    const marks = Array.from({ length: 91 }, (_, i) => ({ x: i / 10, height: i % 10 === 0 ? 0.4 : i % 5 === 0 ? 0.28 : 0.16 }));
+    return [
+      { points: marks.flatMap(({ x, height }) => [{ x, y: 0, z: 0 }, { x, y: height, z: 0 }, { x, y: 0, z: 0 }]), color: "#64748b", showPoints: false, smooth: false, labels: [0, 1, 8].map((cm) => ({ text: `${cm}`, at: 30 * cm + 1, offset: [0, 0.3, 0], anchorX: "center" })) },
+      { points: [start, end].map((x) => ({ x, y: 1, z: 0 })), color: "#bb6800", cone: { position: "end", size: 0.3 }, showPoints: true, pointIndices: [0], smooth: false, labels: [{ text: <InlineMath math={`L=${end}-${start}=${end - start}\\text{ cm}`} />, at: 0, offset: [(end - start) / 2, 0.45, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[4.5, 0.8, 8]}
+  cameraTarget={[4.5, 0.8, 0]}
+/>

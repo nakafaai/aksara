@@ -46,6 +46,35 @@ Real instruments estimate this value over a short but finite sampling interval. 
   }}
 />
 
+Watch the limit happen on an illustrative motion, <InlineMath math="x=t^2" />. Each colored line is an average velocity starting at <InlineMath math="t=3\text{ s}" />, over <InlineMath math="2" />, <InlineMath math="1" /> and <InlineMath math="0.5\text{ s}" />. As the interval shrinks, the slopes fall from <InlineMath math="8" /> to <InlineMath math="7" /> to <InlineMath math="6.5\text{ m/s}" />, closing in on the instantaneous velocity <InlineMath math="6\text{ m/s}" />.
+
+<LineEquation
+  title="Shrinking the Time Interval"
+  description="Secant lines of x = t² from t = 3 s over 2 s, 1 s and 0.5 s. Horizontal: time in s. Vertical: position in units of 4 m."
+  data={(() => {
+    // Illustrative motion x(t) = t^2 in m. The secant from t = 3 s over shrinking steps approaches dx/dt = 2t = 6 m/s.
+    const position = (t) => t ** 2;
+    const samples = 201;
+    const secant = (step, color) => ({
+      points: [3, 3 + step].map((t) => ({ x: t, y: position(t) / 4, z: 0 })),
+      color,
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math={`\\frac{\\Delta x}{\\Delta t}=${String((position(3 + step) - position(3)) / step).replace(".", ".")}\\text{ m/s}`} />, at: 1, offset: [0.9, 0, 0], anchorX: "center" }],
+    });
+    return [
+      { points: Array.from({ length: samples }, (_, i) => { const t = (5 * i) / (samples - 1); return { x: t, y: position(t) / 4, z: 0 }; }), color: "#64748b", showPoints: false, smooth: false },
+      secant(2, "#e03b8a"),
+      secant(1, "#bb6800"),
+      secant(0.5, "#8242e5"),
+      { points: [{ x: 3, y: position(3) / 4, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: <InlineMath math="t=3\text{ s}:\ v=6\text{ m/s}" />, at: 0, offset: [-1.4, 0.3, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.8, 3.2, 9]}
+  cameraTarget={[2.8, 3.2, 0]}
+/>
+
 ## Direction Sets the Sign of Instantaneous Velocity
 
 The measuring point in the simulation records the car at one instant. Speed gives the magnitude of its motion. The **direction of travel** sets the sign of its velocity.
@@ -60,6 +89,18 @@ At <InlineMath math="t=9 \text{ s}" />, the car moves leftward with an instantan
 | <InlineMath math="9 \text{ s}" /> | <InlineMath math="8 \text{ m/s}" /> | leftward | <InlineMath math="-8 \text{ m/s}" /> |
 
 Instantaneous speed has no direction sign. Instantaneous velocity uses a positive or negative sign to show direction along the chosen axis.
+
+Turn each speed reading into a velocity in two steps.
+
+<Mermaid
+  title="From Speed Reading to Velocity"
+  description="The reading gives the magnitude and the direction gives the sign, with right as positive."
+  chart={`flowchart LR
+    A["6 s: 20 m/s"] --> B["Rightward"]
+    B --> C["+20 m/s"]
+    D["9 s: 8 m/s"] --> E["Leftward"]
+    E --> F["-8 m/s"]`}
+/>
 
 ## Difference from Average Speed
 

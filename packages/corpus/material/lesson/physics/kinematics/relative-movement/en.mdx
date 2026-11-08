@@ -84,6 +84,25 @@ The value <InlineMath math="+20 \text{ m/s}" /> means the car's position relativ
 
 Different observers assign different relative velocities to the same physical motion.
 
+Here are the car, the taxi and the truck leaving the same spot. The gap between two lines is the position of one vehicle as the other sees it. The car and the taxi drift apart slowly, <InlineMath math="2\text{ m}" /> each second, while the car and the truck separate by <InlineMath math="20\text{ m}" /> each second.
+
+<LineEquation
+  title="Gaps Grow at the Relative Velocity"
+  description="Positions of three vehicles in m/s relative to the ground, starting together. Horizontal: time in s. Vertical: position in units of 10 m."
+  data={(() => {
+    // Ground velocities: car +12, taxi +14, truck -8 m/s, all from x = 0. Horizontal: time in s. Vertical: position / 10 m.
+    const runner = (v, color, text) => ({ points: [0, 3].map((t) => ({ x: t, y: (v * t) / 10, z: 0 })), color, showPoints: false, smooth: false, labels: [{ text, at: 1, offset: [0.9, 0, 0], anchorX: "center" }] });
+    return [
+      runner(12, "#bb6800", "car +12"),
+      runner(14, "#8242e5", "taxi +14"),
+      runner(-8, "#0d9488", "truck -8"),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[1.8, 0.8, 9]}
+  cameraTarget={[1.8, 0.8, 0]}
+/>
+
 ## Relative Velocity Is a Difference
 
 | Situation | Calculation | Meaning of the **relative motion** |
@@ -93,3 +112,14 @@ Different observers assign different relative velocities to the same physical mo
 | Observer moves in the opposite direction | <InlineMath math="12-(-8)=+20 \text{ m/s}" /> | The object appears to move in the positive direction |
 
 So, before saying an object is fast, slow, still, or moving backward, always check the frame of reference.
+
+The car, the taxi and the truck all come down to the same subtraction with a different observer.
+
+<Mermaid
+  title="One Subtraction for Every Observer"
+  description="Relative velocity is the object's ground velocity minus the observer's ground velocity."
+  chart={`flowchart TD
+    A["v_object/observer = v_object - v_observer"] --> B["Observer still: 12 - 0 = 12 m/s"]
+    A --> C["Same direction: 12 - 14 = -2 m/s"]
+    A --> D["Opposite direction: 12 - (-8) = +20 m/s"]`}
+/>

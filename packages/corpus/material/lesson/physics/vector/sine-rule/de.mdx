@@ -59,6 +59,39 @@ Damit folgt:
 
 Die resultierende Kraft hat also einen Betrag von etwa <InlineMath math="15{,}6\text{ N}" /> und liegt um <InlineMath math="26{,}3^\circ" /> von <InlineMath math="\vec{A}" /> in Richtung <InlineMath math="\vec{B}" /> gedreht.
 
+Hier sind die beiden Kräfte mit ihrem Parallelogramm. Die fuchsiafarbene Resultierende neigt sich zur größeren Kraft, und ihr Winkel zu <InlineMath math="\vec A" /> ist das <InlineMath math="\phi\approx26{,}3^\circ" /> aus dem Sinussatz.
+
+<LineEquation
+  title="Richtung der Resultierenden"
+  description="A = 10 N und B = 8 N unter 60° mit dem Parallelogramm, das R liefert. Ein Gitterschritt sind 2 N."
+  data={(() => {
+    const arrow = (from, to, color, text, offset) => ({
+      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
+      color,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
+    });
+    // A = 10 N along x and B = 8 N at 60 degrees; R = A + B. One grid step is 2 N.
+    const A = [10, 0];
+    const t = (60 * Math.PI) / 180;
+    const B = [8 * Math.cos(t), 8 * Math.sin(t)];
+    const R = [A[0] + B[0], A[1] + B[1]];
+    const s = (p) => p.map((v) => v / 2);
+    const phi = (Math.atan2(R[1], R[0]) * 180) / Math.PI;
+    return [
+      arrow(s([0, 0]), s(A), "#bb6800", <InlineMath math="A=10\text{ N}" />, [-2.5, -0.4, 0]),
+      arrow(s([0, 0]), s(B), "#8242e5", <InlineMath math="B=8\text{ N}" />, [-1.2, 0.2, 0]),
+      { points: [s(B), s(R), s(A)].map(([x, y]) => ({ x, y, z: 0 })), color: "#64748b", showPoints: false, smooth: false },
+      arrow(s([0, 0]), s(R), "#c026d3", <InlineMath math={`R\\approx${Math.hypot(R[0], R[1]).toFixed(2).replace(".", "{,}")}\\text{ N},\\ \\phi\\approx${phi.toFixed(1).replace(".", "{,}")}^\\circ`} />, [0.4, 0.6, 0]),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[4, 1.8, 9]}
+  cameraTarget={[4, 1.8, 0]}
+/>
+
 ## Überprüfung mit Komponenten
 
 Dasselbe Ergebnis lässt sich mit den **Komponenten der Resultierenden** prüfen. Liegt <InlineMath math="\vec{A}" /> auf der positiven <InlineMath math="x" />-Achse, gilt:
@@ -145,6 +178,17 @@ Die horizontale Komponente ist **negativ**, die vertikale **positiv**. Die Resul
 </ContentStack>
 
 Die Sinusumkehrung liefert <InlineMath math="60^\circ" />. Die Resultierende zeigt jedoch in die Richtung <InlineMath math="180^\circ-60^\circ=120^\circ" />. Die Vorzeichen der Komponenten unterscheiden die beiden möglichen Winkel.
+
+Die beiden Sätze und die Kontrolle bilden eine Abfolge.
+
+<Mermaid
+  title="Betrag, Richtung, Kontrolle"
+  description="Der Kosinussatz liefert den Betrag von R, der Sinussatz die Richtung, und die Komponenten bestätigen beides."
+  chart={`flowchart LR
+    A["Kosinussatz: R"] --> B["Sinussatz: sin phi = B sin theta / R"]
+    B --> C["Komponenten: tan phi = B sin theta / (A + B cos theta)"]
+    C --> D["Gleiches phi: Ergebnis geprüft"]`}
+/>
 
 ## Komponentenverfahren für mehr als zwei Vektoren
 

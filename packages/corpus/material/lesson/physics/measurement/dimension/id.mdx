@@ -79,6 +79,17 @@ Gaya, usaha, dan daya juga bisa dibaca sebagai susunan dimensi.
 [P] &= \frac{[W]}{[t]} = [\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-3}
 \end{aligned}" />
 
+Analisis dimensi selalu mengikuti tiga langkah yang sama.
+
+<Mermaid
+  title="Tiga Langkah Analisis Dimensi"
+  description="Tulis rumusnya, ganti setiap besaran dengan dimensi pokoknya, lalu gabungkan pangkatnya."
+  chart={`flowchart LR
+    A["Tulis rumusnya"] --> B["Ganti setiap besaran dengan L, M, T"]
+    B --> C["Jumlahkan atau kurangkan pangkatnya"]
+    C --> D["Dimensi hasilnya"]`}
+/>
+
 ## Memeriksa Konsistensi Dimensi Rumus
 
 Dimensi bisa dipakai untuk mengecek apakah bentuk rumus mungkin benar. Setiap suku yang dijumlahkan <Highlight>harus punya dimensi yang sama</Highlight>.
@@ -97,6 +108,17 @@ Cek dimensinya:
 Kedua suku di kanan sama-sama berdimensi <InlineMath math="[\mathrm{L}]" />, sehingga rumus itu lolos pemeriksaan dimensi. Pemeriksaan ini belum membuktikan rumus pasti benar, tetapi bisa cepat menemukan rumus yang mustahil.
 
 <InlineMath math="s+t" /> tidak valid di sini karena dimensinya berbeda: <InlineMath math="[\mathrm L]\ne[\mathrm T]" />.
+
+Periksa rumus s = v0 t + ½at² suku demi suku, dan setiap suku harus menghasilkan dimensi yang sama.
+
+<Mermaid
+  title="Setiap Suku Harus Berdimensi Sama"
+  description="Ganti setiap besaran dalam s = v0 t + ½at² dengan dimensinya, lalu sederhanakan tiap suku."
+  chart={`flowchart LR
+    A["s: L"] --> D["Semua suku L: konsisten"]
+    B["v0 t: (L T^-1)(T) = L"] --> D
+    C["½ a t^2: (L T^-2)(T^2) = L"] --> D`}
+/>
 
 ## Satu Benda Dapat Memiliki Banyak Besaran
 

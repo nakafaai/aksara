@@ -164,6 +164,36 @@ Sekarang jumlah atom setiap unsur sudah sama di kedua sisi persamaan.
 
 Untuk menyetarakan persamaan, pertahankan setiap rumus kimia, <Highlight>ubah hanya koefisiennya</Highlight>, lalu pastikan kedua sisi memuat jumlah atom yang sama untuk setiap unsur.
 
+Inilah persamaan fotosintesis yang setara dihitung atom demi atom, dengan reaktan di belakang, produk di depan, dan satu kotak grid untuk <InlineMath math="4" /> atom. Enam karbon, dua belas hidrogen, dan delapan belas oksigen di setiap sisi: cahaya menata ulang atom-atom itu, bukan membuat yang baru.
+
+<MathVisual
+  title="Atom dalam Fotosintesis yang Setara"
+  description="6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ dengan karbon (abu-abu), hidrogen (ungu), dan oksigen (oranye). Satu kotak grid ke atas sama dengan 4 atom."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "carbon-left", kind: "cuboid", appearance: "reference", center: { x: 0, y: (6 / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 6 / 4, width: 1.2 } },
+      { id: "carbon-right", kind: "cuboid", appearance: "reference", center: { x: 0, y: (6 / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 6 / 4, width: 1.2 } },
+      { id: "hydrogen-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: ((6 * 2) / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: (6 * 2) / 4, width: 1.2 } },
+      { id: "hydrogen-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: (12 / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 12 / 4, width: 1.2 } },
+      { id: "oxygen-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: ((6 * 2 + 6 * 1) / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: (6 * 2 + 6 * 1) / 4, width: 1.2 } },
+      { id: "oxygen-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: ((6 + 6 * 2) / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: (6 + 6 * 2) / 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "carbon", objectId: "carbon-right", at: { x: 0, y: 2, z: 0.75 }, placement: "above" },
+      { key: "hydrogen", objectId: "hydrogen-right", at: { x: 2.5, y: 3.5, z: 0.75 }, placement: "above" },
+      { key: "oxygen", objectId: "oxygen-right", at: { x: 5, y: 5, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    carbon: <InlineMath math="\mathrm{C}:\ 6=6" />,
+    hydrogen: <InlineMath math="\mathrm{H}:\ 12=12" />,
+    oxygen: <InlineMath math="\mathrm{O}:\ 18=18" />,
+  }}
+/>
+
 ## Menilai Proses dengan Prinsip Kimia Hijau
 
 Setelah zat awal, produk, dan jumlah relatifnya dalam persamaan sudah jelas, kita dapat menilai reaksi pada persamaan itu dengan prinsip kimia hijau. Sebuah reaksi bisa tampak berguna, tetapi tetap tidak hijau jika **menghasilkan polutan**, memakai bahan berbahaya tanpa perlu, atau membutuhkan energi terlalu besar.
@@ -192,3 +222,17 @@ Misalkan ada tiga cara mengatasi sisa daun kering di halaman.
 Di antara tiga pilihan pengelolaan sampah tadi, jawaban terbaik adalah **dikomposkan dengan benar**. Pengomposan menghindari pembakaran, mengurangi bahan yang dibuang, dan mengembalikan bahan organik agar berguna. Pilihan ini menangani sampah organik dengan lebih bertanggung jawab. Sebutan kimia hijau membutuhkan rancangan produk atau proses kimia yang memang mengurangi bahaya. Penguraian saja belum memenuhi syarat tersebut.
 
 Untuk menganalisis proses kimia sehari-hari, tentukan zat yang masuk, perubahan yang terjadi, zat yang keluar, dan bahaya yang dapat dicegah sejak awal proses.
+
+Nilai setiap cara menangani daun dari apa yang dilepaskannya.
+
+<Mermaid
+  title="Tiga Cara Menangani Daun Kering"
+  description="Setiap pilihan menghasilkan zat yang berbeda, jadi penilaian kimia hijaunya juga berbeda."
+  chart={`flowchart TD
+    A["Daun kering"] --> B["Dibakar terbuka"]
+    A --> C["Dikomposkan"]
+    A --> D["Sampah campur"]
+    B --> E["Asap dan polusi"]
+    C --> F["Kompos: mengolah limbah yang sudah ada"]
+    D --> G["Sampah yang harus ditangani bertambah"]`}
+/>

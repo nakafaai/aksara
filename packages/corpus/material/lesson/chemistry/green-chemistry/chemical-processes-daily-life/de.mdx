@@ -163,6 +163,36 @@ Die Anzahl der Atome jedes Elements ist nun auf beiden Seiten der Gleichung glei
 
 Beim Ausgleichen bleiben die chemischen Formeln unverändert. <Highlight>Passe nur die Koeffizienten an</Highlight> und prüfe anschließend, ob auf beiden Seiten gleich viele Atome jedes Elements stehen.
 
+Hier ist die ausgeglichene Fotosynthesegleichung Atom für Atom gezählt, Edukte hinten, Produkte vorn, ein Gitterschritt für <InlineMath math="4" /> Atome. Sechs Kohlenstoff-, zwölf Wasserstoff- und achtzehn Sauerstoffatome auf jeder Seite: Licht ordnet sie neu, es erzeugt keine.
+
+<MathVisual
+  title="Atome in der ausgeglichenen Fotosynthese"
+  description="6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂ mit Kohlenstoff (grau), Wasserstoff (violett) und Sauerstoff (orange). Ein Gitterschritt nach oben sind 4 Atome."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "carbon-left", kind: "cuboid", appearance: "reference", center: { x: 0, y: (6 / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 6 / 4, width: 1.2 } },
+      { id: "carbon-right", kind: "cuboid", appearance: "reference", center: { x: 0, y: (6 / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 6 / 4, width: 1.2 } },
+      { id: "hydrogen-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: ((6 * 2) / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: (6 * 2) / 4, width: 1.2 } },
+      { id: "hydrogen-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: (12 / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 12 / 4, width: 1.2 } },
+      { id: "oxygen-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: ((6 * 2 + 6 * 1) / 4) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: (6 * 2 + 6 * 1) / 4, width: 1.2 } },
+      { id: "oxygen-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: ((6 + 6 * 2) / 4) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: (6 + 6 * 2) / 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "carbon", objectId: "carbon-right", at: { x: 0, y: 2, z: 0.75 }, placement: "above" },
+      { key: "hydrogen", objectId: "hydrogen-right", at: { x: 2.5, y: 3.5, z: 0.75 }, placement: "above" },
+      { key: "oxygen", objectId: "oxygen-right", at: { x: 5, y: 5, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    carbon: <InlineMath math="\mathrm{C}:\ 6=6" />,
+    hydrogen: <InlineMath math="\mathrm{H}:\ 12=12" />,
+    oxygen: <InlineMath math="\mathrm{O}:\ 18=18" />,
+  }}
+/>
+
 ## Den Prozess nach grüner Chemie beurteilen
 
 Nachdem wir eine Reaktion ablesen können, können wir beurteilen, ob der Prozess den Prinzipien der grünen Chemie entspricht. Ein Prozess kann nützlich, aber dennoch nicht umweltfreundlich sein, wenn er **Schadstoffe erzeugt**, unnötig gefährliche Stoffe verwendet oder zu viel Energie benötigt.
@@ -191,3 +221,17 @@ Vergleichen wir drei Möglichkeiten, mit trockenem Laub im Garten umzugehen.
 Unter diesen drei Möglichkeiten der Abfallbehandlung ist **richtiges Kompostieren** die beste Wahl. Dieser Weg vermeidet die Verbrennung, verringert den Restmüll und nutzt vorhandene organische Stoffe weiter. Das ist verantwortungsvolle Abfallwirtschaft. Grüne Chemie beginnt hier erst, wenn zusätzlich ein chemisches Produkt oder Verfahren gezielt neu gestaltet wird.
 
 Bestimme bei einem alltäglichen chemischen Prozess die Stoffe am Anfang, die Veränderungen, die Stoffe am Ende und die Gefahren, die sich bereits an der Quelle vermeiden lassen.
+
+Beurteil jede Art, mit dem Laub umzugehen, danach, was sie freisetzt.
+
+<Mermaid
+  title="Drei Wege mit trockenem Laub"
+  description="Jede Wahl führt zu anderen Stoffen, also fällt auch das Urteil der grünen Chemie anders aus."
+  chart={`flowchart TD
+    A["Trockenes Laub"] --> B["Offen verbrennen"]
+    A --> C["Kompostieren"]
+    A --> D["Restmüll"]
+    B --> E["Rauch und Verschmutzung"]
+    C --> F["Kompost: behandelt vorhandenen Abfall"]
+    D --> G["Mehr Abfall zu behandeln"]`}
+/>

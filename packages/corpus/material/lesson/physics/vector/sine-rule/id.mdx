@@ -59,6 +59,39 @@ Maka:
 
 Jadi, resultan gaya besarnya sekitar <InlineMath math="15{,}6\text{ N}" /> dengan arah <InlineMath math="26{,}3^\circ" /> dari <InlineMath math="\vec{A}" /> menuju <InlineMath math="\vec{B}" />.
 
+Inilah kedua gaya dengan jajargenjangnya. Resultan fuchsia condong ke gaya yang lebih besar, dan sudutnya terhadap <InlineMath math="\vec A" /> adalah <InlineMath math="\phi\approx26{,}3^\circ" /> dari aturan sinus.
+
+<LineEquation
+  title="Arah Resultan"
+  description="A = 10 N dan B = 8 N dengan sudut 60° beserta jajargenjang yang menghasilkan R. Satu kotak grid sama dengan 2 N."
+  data={(() => {
+    const arrow = (from, to, color, text, offset) => ({
+      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
+      color,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
+    });
+    // A = 10 N along x and B = 8 N at 60 degrees; R = A + B. One grid step is 2 N.
+    const A = [10, 0];
+    const t = (60 * Math.PI) / 180;
+    const B = [8 * Math.cos(t), 8 * Math.sin(t)];
+    const R = [A[0] + B[0], A[1] + B[1]];
+    const s = (p) => p.map((v) => v / 2);
+    const phi = (Math.atan2(R[1], R[0]) * 180) / Math.PI;
+    return [
+      arrow(s([0, 0]), s(A), "#bb6800", <InlineMath math="A=10\text{ N}" />, [-2.5, -0.4, 0]),
+      arrow(s([0, 0]), s(B), "#8242e5", <InlineMath math="B=8\text{ N}" />, [-1.2, 0.2, 0]),
+      { points: [s(B), s(R), s(A)].map(([x, y]) => ({ x, y, z: 0 })), color: "#64748b", showPoints: false, smooth: false },
+      arrow(s([0, 0]), s(R), "#c026d3", <InlineMath math={`R\\approx${Math.hypot(R[0], R[1]).toFixed(2).replace(".", "{,}")}\\text{ N},\\ \\phi\\approx${phi.toFixed(1).replace(".", "{,}")}^\\circ`} />, [0.4, 0.6, 0]),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[4, 1.8, 9]}
+  cameraTarget={[4, 1.8, 0]}
+/>
+
 ## Mengecek dengan Metode Komponen
 
 Arah yang sama dapat dicek memakai **komponen resultan**. Jika <InlineMath math="\vec{A}" /> diletakkan pada sumbu <InlineMath math="x" /> positif, maka:
@@ -145,6 +178,17 @@ Komponen horizontal **negatif**, sedangkan komponen vertikal **positif**. Result
 </ContentStack>
 
 Invers sinus memberi <InlineMath math="60^\circ" />, tetapi arah resultan adalah <InlineMath math="180^\circ-60^\circ=120^\circ" />. Tanda komponenlah yang membedakan kedua calon sudut.
+
+Kedua aturan dan pemeriksaannya bekerja sebagai satu urutan.
+
+<Mermaid
+  title="Besar, Arah, Periksa"
+  description="Aturan kosinus memberi besar R, aturan sinus memberi arahnya, dan komponen memastikan keduanya."
+  chart={`flowchart LR
+    A["Aturan kosinus: R"] --> B["Aturan sinus: sin phi = B sin theta / R"]
+    B --> C["Komponen: tan phi = B sin theta / (A + B cos theta)"]
+    C --> D["phi sama: jawaban terperiksa"]`}
+/>
 
 ## Metode Komponen untuk Lebih dari Dua Vektor
 

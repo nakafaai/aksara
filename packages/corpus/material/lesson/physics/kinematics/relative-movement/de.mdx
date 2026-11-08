@@ -84,6 +84,25 @@ Der Wert <InlineMath math="+20 \text{ m/s}" /> bedeutet, dass sich die Position 
 
 Eine relative Beschreibung verändert die tatsächliche Bewegung nicht. Sie ändert nur, **wie verschiedene Beobachter dieselbe Bewegung wahrnehmen**.
 
+Hier fahren Auto, Taxi und Lastwagen vom selben Punkt los. Der Abstand zwischen zwei Linien ist die Position des einen Fahrzeugs aus Sicht des anderen. Auto und Taxi entfernen sich langsam, <InlineMath math="2\text{ m}" /> pro Sekunde, Auto und Lastwagen dagegen um <InlineMath math="20\text{ m}" /> pro Sekunde.
+
+<LineEquation
+  title="Abstände wachsen mit der Relativgeschwindigkeit"
+  description="Positionen dreier Fahrzeuge mit Geschwindigkeiten in m/s gegenüber dem Boden, gemeinsamer Start. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 10 m."
+  data={(() => {
+    // Ground velocities: car +12, taxi +14, truck -8 m/s, all from x = 0. Horizontal: time in s. Vertical: position / 10 m.
+    const runner = (v, color, text) => ({ points: [0, 3].map((t) => ({ x: t, y: (v * t) / 10, z: 0 })), color, showPoints: false, smooth: false, labels: [{ text, at: 1, offset: [0.9, 0, 0], anchorX: "center" }] });
+    return [
+      runner(12, "#bb6800", "Auto +12"),
+      runner(14, "#8242e5", "Taxi +14"),
+      runner(-8, "#0d9488", "Lkw -8"),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[1.8, 0.8, 9]}
+  cameraTarget={[1.8, 0.8, 0]}
+/>
+
 ## Relativgeschwindigkeit ist eine Differenz
 
 | Situation | Berechnung | Bedeutung der Relativbewegung |
@@ -93,3 +112,14 @@ Eine relative Beschreibung verändert die tatsächliche Bewegung nicht. Sie änd
 | Beobachter bewegt sich in die entgegengesetzte Richtung | <InlineMath math="12-(-8)=+20 \text{ m/s}" /> | Das Objekt scheint sich in die positive Richtung zu bewegen |
 
 Bevor eine Bewegung als schnell, langsam, stillstehend oder rückwärts beschrieben wird, muss deshalb immer das Bezugssystem geklärt sein.
+
+Auto, Taxi und Lastwagen laufen alle auf dieselbe Subtraktion mit einem anderen Beobachter hinaus.
+
+<Mermaid
+  title="Eine Subtraktion für jeden Beobachter"
+  description="Die Relativgeschwindigkeit ist die Geschwindigkeit des Objekts gegenüber dem Boden minus die des Beobachters."
+  chart={`flowchart TD
+    A["v_Objekt/Beobachter = v_Objekt - v_Beobachter"] --> B["Beobachter steht: 12 - 0 = 12 m/s"]
+    A --> C["Gleiche Richtung: 12 - 14 = -2 m/s"]
+    A --> D["Gegenrichtung: 12 - (-8) = +20 m/s"]`}
+/>

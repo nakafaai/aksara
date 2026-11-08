@@ -31,6 +31,35 @@ Koefisien <InlineMath math="2:1:2" /> berarti <InlineMath math="2" /> bagian vol
 
 Jadi, jika semua gas diukur pada **suhu dan tekanan yang sama**, <InlineMath math="200\ \mathrm{mL}" /> hidrogen bereaksi dengan <InlineMath math="100\ \mathrm{mL}" /> oksigen menghasilkan <InlineMath math="200\ \mathrm{mL}" /> uap air. Jika airnya sudah mengembun menjadi cair, volume cairan tidak lagi dibaca langsung dari rasio gas ini.
 
+Setiap balok di bawah adalah satu bagian gas pada suhu dan tekanan yang sama. Dua bagian hidrogen dan satu bagian oksigen menghasilkan dua bagian uap air, jadi perbandingan volume <InlineMath math="2:1:2" /> sama dengan koefisiennya. Perhatikan bahwa volumenya tidak dijumlahkan begitu saja: tiga bagian menjadi dua.
+
+<MathVisual
+  title="Uap Air dalam Volume"
+  description="2H₂(g) + O₂(g) → 2H₂O(g) digambar sebagai bagian gas yang sama besar pada suhu dan tekanan yang sama."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 3, y: 2, z: 0 } },
+    objects: [
+      { id: "hydrogen-1", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "hydrogen-2", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (2) / 2 + 2, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "oxygen-1", kind: "cuboid", appearance: "primary", center: { x: 3, y: (2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "water-1", kind: "cuboid", appearance: "construction", center: { x: 6, y: (2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "water-2", kind: "cuboid", appearance: "construction", center: { x: 6, y: (2) / 2 + 2, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "hydrogen", objectId: "hydrogen-2", at: { x: 0, y: 4.5, z: 0 }, placement: "above" },
+      { key: "oxygen", objectId: "oxygen-1", at: { x: 3, y: 2.5, z: 0 }, placement: "above" },
+      { key: "water", objectId: "water-2", at: { x: 6, y: 4.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    hydrogen: <InlineMath math="2\,\mathrm{H_2}" />,
+    oxygen: <InlineMath math="\mathrm{O_2}" />,
+    water: <InlineMath math="2\,\mathrm{H_2O(g)}" />,
+  }}
+/>
+
 ## Membandingkan Volume Gas dengan Tabung
 
 Pilih reaksi berikut. Setiap tabung menunjukkan **satu bagian volume gas** pada suhu dan tekanan yang sama.
@@ -160,3 +189,17 @@ Jadi, penguraian <InlineMath math="600\ \mathrm{mL}" /> gas amonia menghasilkan 
 - Jika produk berubah menjadi cair atau padat, volume produk itu tidak lagi dibaca langsung dari koefisien gas.
 
 Jika salah satu syarat tidak terpenuhi, hitung dulu jumlah molnya, lalu ubah ke volume.
+
+Periksa ketiga syarat ini sebelum kamu membaca volume dari koefisien.
+
+<Mermaid
+  title="Kapan Perbandingan Volume Berlaku"
+  description="Persamaan setara, hanya gas, serta satu suhu dan tekanan untuk setiap volume."
+  chart={`flowchart TD
+    A["Persamaan sudah setara?"] -->|Ya| B["Semua zat yang dibandingkan berupa gas?"]
+    B -->|Ya| C["Suhu dan tekanannya sama?"]
+    C -->|Ya| D["Perbandingan volume = perbandingan koefisien"]
+    A -->|Tidak| E["Setarakan dulu"]
+    B -->|Tidak| F["Keluarkan cairan dan padatan"]
+    C -->|Tidak| G["Volume tidak bisa langsung dibandingkan"]`}
+/>

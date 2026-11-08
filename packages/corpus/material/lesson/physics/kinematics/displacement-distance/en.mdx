@@ -96,6 +96,20 @@ If an object travels around and returns to the starting point, the distance is n
 
 So, distance tells the length of the actual path traveled, while displacement tells the net change in position.
 
+The three trips in the table split like this.
+
+<Mermaid
+  title="Three Trips, One Start"
+  description="A detour lengthens the distance only, and a loop leaves distance but no displacement."
+  chart={`flowchart TD
+    A["Same start"] --> B["Straight to the finish"]
+    A --> C["Detour to the finish"]
+    A --> D["Loop back to the start"]
+    B --> E["Distance equals the displacement size"]
+    C --> F["Distance longer, same displacement"]
+    D --> G["Distance above zero, displacement zero"]`}
+/>
+
 ## Distance and Displacement on a Turning Path
 
 A student walks <InlineMath math="8 \text{ m}" /> east, then <InlineMath math="6 \text{ m}" /> north. The distance traveled is:
@@ -111,3 +125,24 @@ The displacement magnitude is:
 \end{aligned}" />
 
 The distance is <InlineMath math="14 \text{ m}" />, but the displacement magnitude is <InlineMath math="10 \text{ m}" />. The values are different because the path traveled is not the same as the **straight line from start to finish**.
+
+Rotate the walk below. The orange and violet arrows are the path, <InlineMath math="8+6=14\text{ m}" /> of distance. The fuchsia arrow joins start and finish directly, so its length is the displacement, <InlineMath math="10\text{ m}" />, from the right triangle.
+
+<LineEquation
+  title="Distance and Displacement on a Turn"
+  description="8 m east, then 6 m north, seen from above. One grid step is 2 m."
+  data={(() => {
+    // 8 m east along x, then 6 m north along -z, drawn flat on the ground. One grid step is 2 m.
+    const east = 8;
+    const north = 6;
+    const at = (x, z) => ({ x: x / 2, y: 0, z: -z / 2 });
+    const arrow = (from, to, color, text, offset) => ({ points: [from, to], color, cone: { position: "end", size: 0.25 }, showPoints: false, smooth: false, labels: [{ text, at: 1, offset, anchorX: "center" }] });
+    return [
+      arrow(at(0, 0), at(east, 0), "#bb6800", <InlineMath math={`${east}\\text{ m}`} />, [-2, 0.4, 0]),
+      arrow(at(east, 0), at(east, north), "#8242e5", <InlineMath math={`${north}\\text{ m}`} />, [0.6, 0.4, 1.5]),
+      arrow(at(0, 0), at(east, north), "#c026d3", <InlineMath math={`\\sqrt{${east}^2+${north}^2}=${Math.hypot(east, north)}\\text{ m}`} />, [-2.2, 0.5, 1.5]),
+    ];
+  })()}
+  cameraPosition={[2, 7, 5]}
+  cameraTarget={[2, 0, -1.5]}
+/>

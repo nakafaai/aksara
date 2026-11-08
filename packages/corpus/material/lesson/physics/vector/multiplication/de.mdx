@@ -54,6 +54,29 @@ Wirkt dieselbe konstante Kraft entgegen der Verschiebung, beträgt der Winkel <I
 
 <BlockMath math="W=40(5)\cos180^\circ=200(-1)=-200\text{ J}" />
 
+Das Diagramm unten nimmt denselben Zug von <InlineMath math="40\text{ N}" /> über <InlineMath math="5\text{ m}" /> für jeden Winkel von <InlineMath math="0^\circ" /> bis <InlineMath math="180^\circ" />. Die Arbeit beginnt bei <InlineMath math="200\text{ J}" />, fällt auf null, wenn die Kraft senkrecht steht, und endet bei <InlineMath math="-200\text{ J}" />, wenn die Kraft gegen die Bewegung zeigt.
+
+<LineEquation
+  title="Arbeit folgt dem Kosinus des Winkels"
+  description="W = Fs cos θ für F = 40 N und s = 5 m. Waagrecht: Winkel in Einheiten von 30°. Senkrecht: Arbeit in Einheiten von 50 J."
+  data={[
+    {
+      // W = F s cos(theta) for F = 40 N and s = 5 m, theta in degrees / 30. Vertical: W / 50 J.
+      curve: { kind: "cos", amplitude: (40 * 5) / 50, frequency: (30 * Math.PI) / 180, phase: 0, shift: 0, domain: [0, 6], samples: 241 },
+      color: "#bb6800",
+      showPoints: false,
+      labels: [
+        { text: <InlineMath math="0^\circ:\ W=200\text{ J}" />, at: 0, offset: [1.2, 0.3, 0], anchorX: "center" },
+        { text: <InlineMath math="90^\circ:\ W=0" />, at: 120, offset: [0.9, 0.3, 0], anchorX: "center" },
+        { text: <InlineMath math="180^\circ:\ W=-200\text{ J}" />, at: 240, offset: [-1.4, -0.3, 0], anchorX: "center" },
+      ],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[3, 0, 9]}
+  cameraTarget={[3, 0, 0]}
+/>
+
 ## Das Kreuzprodukt misst die Drehwirkung
 
 Das Kreuzprodukt von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> hat den Betrag:
@@ -164,3 +187,28 @@ Vergleiche die Operationen bei **festen Vektorbeträgen ungleich null**. Das Ska
 | <InlineMath math="180^\circ" /> | negativ | null |
 
 Das Skalarprodukt beschreibt damit die gegenseitige Ausrichtung zweier Vektoren. Das Kreuzprodukt erfasst dagegen senkrechte Wirkungen, etwa eine Drehung.
+
+Halt beide Beträge fest und dreh den Winkel. Das orange Skalarprodukt ist am größten, wenn die Vektoren in einer Linie liegen, der Betrag des violetten Kreuzprodukts erreicht bei <InlineMath math="90^\circ" /> sein Maximum. Bei <InlineMath math="0^\circ" /> und <InlineMath math="180^\circ" /> verschwindet das Kreuzprodukt, weil parallele Vektoren keine Drehwirkung haben.
+
+<LineEquation
+  title="Skalar- und Kreuzprodukt gegen den Winkel"
+  description="AB cos θ und AB sin θ mit AB = 200 für Winkel von 0° bis 180°. Waagrecht: Winkel in Einheiten von 30°. Senkrecht: Wert in Einheiten von 50."
+  data={[
+    {
+      // A B cos(theta) and A B sin(theta) with A B = 200, theta in degrees / 30. Vertical: value / 50.
+      curve: { kind: "cos", amplitude: 200 / 50, frequency: (30 * Math.PI) / 180, phase: 0, shift: 0, domain: [0, 6], samples: 241 },
+      color: "#bb6800",
+      showPoints: false,
+      labels: [{ text: "A·B", at: 40, offset: [0.6, 0.4, 0], anchorX: "center" }],
+    },
+    {
+      curve: { kind: "sin", amplitude: 200 / 50, frequency: (30 * Math.PI) / 180, phase: 0, shift: 0, domain: [0, 6], samples: 241 },
+      color: "#8242e5",
+      showPoints: false,
+      labels: [{ text: "|A×B|", at: 120, offset: [0, 0.45, 0], anchorX: "center" }],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[3, 0, 9]}
+  cameraTarget={[3, 0, 0]}
+/>

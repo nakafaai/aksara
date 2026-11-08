@@ -61,6 +61,18 @@ Nicht jede Größe braucht eine Richtung. Ein **Skalar** ist mit Zahlenwert und 
 
 Eine schnelle Entscheidungshilfe lautet: Ist die Frage „In welche Richtung?“ für die vollständige Beschreibung nötig, handelt es sich wahrscheinlich um einen Vektor.
 
+Sortier eine Größe mit einer Frage: Braucht sie eine Richtung?
+
+<Mermaid
+  title="Skalar oder Vektor"
+  description="Größen, die mit Zahl und Einheit vollständig sind, sind Skalare. Größen, die zusätzlich eine Richtung brauchen, sind Vektoren."
+  chart={`flowchart TD
+    A["Braucht die Größe eine Richtung?"] --> B["Nein: Skalar"]
+    A --> C["Ja: Vektor"]
+    B --> D["Strecke, Tempo, Masse, Temperatur"]
+    C --> E["Verschiebung, Geschwindigkeit, Kraft"]`}
+/>
+
 ## Lesen eines Vektorpfeils
 
 Vektoren werden oft als Pfeile gezeichnet. Der **Fußpunkt** markiert den Anfang, die **Spitze** zeigt die Richtung und die **Pfeillänge** stellt den Betrag dar.
@@ -99,3 +111,30 @@ Miss den Richtungswinkel von Osten nach Norden. Das Verhältnis von Gegenkathete
 <BlockMath math="\begin{aligned}\tan\theta &= \frac34 \\ \theta &= \arctan\left(\frac34\right) \\ &\approx 36{,}9^\circ\end{aligned}" />
 
 Die zurückgelegte Strecke beträgt <InlineMath math="7 \text{ m}" />. Der Betrag der Verschiebung ist <InlineMath math="5 \text{ m}" />. Ihre Richtung liegt etwa <InlineMath math="36{,}9^\circ" /> nördlich von Osten.
+
+Der Weg unten sind <InlineMath math="7\text{ m}" /> Gehen, aber der fuchsiafarbene Pfeil, die Verschiebung, ist nur <InlineMath math="5\text{ m}" /> lang und zeigt etwa <InlineMath math="36{,}9^\circ" /> nördlich von Osten.
+
+<LineEquation
+  title="7 m gehen, 5 m verschoben"
+  description="4 m nach Osten, dann 3 m nach Norden. Ein Gitterschritt ist 1 m."
+  data={(() => {
+    const arrow = (from, to, color, text, offset) => ({
+      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
+      color,
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
+    });
+    // 4 m east along x, then 3 m north along y. One grid step is 1 m.
+    const d = [4, 3];
+    return [
+      arrow([0, 0], [d[0], 0], "#0d9488", <InlineMath math="4\text{ m}" />, [-2, -0.4, 0]),
+      arrow([d[0], 0], d, "#8242e5", <InlineMath math="3\text{ m}" />, [0.6, -1.5, 0]),
+      arrow([0, 0], d, "#c026d3", <InlineMath math={`${Math.hypot(d[0], d[1])}\\text{ m}`} />, [-2, 0.2, 0]),
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2, 1.5, 6.5]}
+  cameraTarget={[2, 1.5, 0]}
+/>

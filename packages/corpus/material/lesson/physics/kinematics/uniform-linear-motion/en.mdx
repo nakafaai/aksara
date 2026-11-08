@@ -79,6 +79,25 @@ x_t &= x_0+\Delta x \\
 
 This calculation works because the **velocity does not change**. If the velocity changes, we cannot use one fixed value of <InlineMath math="v" /> for the whole motion.
 
+The dots below are the position marks, one per second. They climb by the same <InlineMath math="2\text{ m}" /> every second, so they fall on one straight line, and its slope is the velocity.
+
+<LineEquation
+  title="Equal Steps Make a Straight Line"
+  description="x = 1 m + (2 m/s) t for 5 s. Horizontal: time in s. Vertical: position in units of 2 m."
+  data={(() => {
+    // x(t) = x0 + v t with x0 = 1 m and v = 2 m/s for 5 s. Horizontal: time in s. Vertical: position in m / 2.
+    const x0 = 1;
+    const v = 2;
+    const position = (t) => x0 + v * t;
+    return [
+      { points: [0, 1, 2, 3, 4, 5].map((t) => ({ x: t, y: position(t) / 2, z: 0 })), color: "#bb6800", showPoints: true, smooth: false, labels: [{ text: <InlineMath math={`x(5\\text{ s})=${position(5)}\\text{ m}`} />, at: 5, offset: [-1.4, 0.4, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 2.8, 8]}
+  cameraTarget={[2.5, 2.8, 0]}
+/>
+
 ## Recognizing Uniform Motion on Graphs
 
 Two graphs identify uniform linear motion. The velocity-time graph must be horizontal, while the position-time graph must be a straight line with **constant slope**.
@@ -91,6 +110,24 @@ Two graphs identify uniform linear motion. The velocity-time graph must be horiz
 The signed area between a velocity-time graph and the time axis equals displacement. For constant velocity, that area is a rectangle, so <InlineMath math="\Delta x=v\Delta t" />. An area below the time axis contributes negative displacement.
 
 On a position-time graph, the slope of the line represents velocity. The sign of the slope gives direction, while a larger absolute steepness means a larger speed. For uniform linear motion, the line stays straight because the slope does not change from start to finish.
+
+On a velocity-time graph the same motion is a flat line at <InlineMath math="2\text{ m/s}" />. The area under it is the displacement, <InlineMath math="10\text{ m}" />, which added to <InlineMath math="x_0=1\text{ m}" /> gives the final position <InlineMath math="11\text{ m}" />.
+
+<LineEquation
+  title="Constant Velocity and Its Area"
+  description="v = 2 m/s for 5 s. Horizontal: time in s. Vertical: velocity in m/s."
+  data={(() => {
+    // v(t) = 2 m/s for 5 s; the rectangle under it is the displacement. Horizontal: time in s. Vertical: velocity in m/s.
+    const v = 2;
+    const duration = 5;
+    return [
+      { points: [[0, 0], [0, v], [duration, v], [duration, 0]].map(([t, u]) => ({ x: t, y: u, z: 0 })), color: "#0d9488", showPoints: false, smooth: false, labels: [{ text: <InlineMath math={`\\Delta x=${v}\\times${duration}=${v * duration}\\text{ m}`} />, at: 1, offset: [2.5, -1, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[2.5, 1, 7]}
+  cameraTarget={[2.5, 1, 0]}
+/>
 
 ## Direction Distinguishes Constant Speed from Constant Velocity
 

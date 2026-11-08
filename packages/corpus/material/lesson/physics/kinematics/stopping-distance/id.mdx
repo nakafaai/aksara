@@ -45,6 +45,19 @@ Jadi, jarak henti terdiri dari dua tahap. Tahap pertama terjadi ketika pengemudi
   }}
 />
 
+Kedua bagian itu terjadi berurutan.
+
+<Mermaid
+  title="Dua Tahap Berhenti"
+  description="Selama waktu reaksi kelajuannya tetap, lalu rem memperlambat kendaraan sampai diam."
+  chart={`flowchart LR
+    A["Bahaya terlihat"] --> B["Waktu reaksi: kelajuan sama"]
+    B --> C["Rem bekerja: perlambatan tetap"]
+    C --> D["Berhenti"]
+    B -.-> E["Jarak reaksi = v t"]
+    C -.-> F["Jarak pengereman = v^2 / 2b"]`}
+/>
+
 ## Jarak Rem Menggunakan Perlambatan Tetap
 
 Saat rem bekerja, kendaraan mengalami perlambatan. Jika perlambatan **dianggap tetap** dan kecepatan akhirnya nol, persamaan GLBB dapat dipakai untuk mencari jarak pengereman.
@@ -74,6 +87,29 @@ Misalkan waktu reaksi <InlineMath math="1\text{ s}" /> dan besar perlambatan rem
 | <InlineMath math="30\text{ m/s}" /> | <InlineMath math="30\text{ m}" /> | <InlineMath math="90\text{ m}" /> | <InlineMath math="120\text{ m}" /> |
 
 Saat kecepatan naik dari <InlineMath math="10\text{ m/s}" /> ke <InlineMath math="20\text{ m/s}" />, jarak henti naik dari <InlineMath math="20\text{ m}" /> ke <InlineMath math="60\text{ m}" />. Kenaikannya menjadi tiga kali karena bagian pengereman mengikuti kuadrat kecepatan.
+
+Grafik di bawah menjumlahkan kedua bagian untuk setiap kelajuan sampai <InlineMath math="30\text{ m/s}" />. Jarak reaksi hijau toska tumbuh sebagai garis lurus. Total yang oranye melengkung ke atas karena bagian pengeremannya tumbuh bersama <InlineMath math="v^2" />. Pada <InlineMath math="20\text{ m/s}" /> totalnya <InlineMath math="20+40=60\text{ m}" />.
+
+<LineEquation
+  title="Jarak Henti terhadap Kelajuan"
+  description="Waktu reaksi 1 s dan perlambatan pengereman 5 m/s². Mendatar: kelajuan dalam satuan 5 m/s. Tegak: jarak dalam satuan 20 m."
+  data={(() => {
+    // Reaction time 1 s, braking deceleration 5 m/s^2. Horizontal: speed / 5 m/s. Vertical: distance / 20 m.
+    const reaction = 1;
+    const b = 5;
+    const samples = 241;
+    const total = (v) => v * reaction + v ** 2 / (2 * b);
+    const curve = (f, color, text, at, offset) => ({ points: Array.from({ length: samples }, (_, i) => { const v = (30 * i) / (samples - 1); return { x: v / 5, y: f(v) / 20, z: 0 }; }), color, showPoints: false, smooth: false, labels: [{ text, at, offset, anchorX: "center" }] });
+    return [
+      curve((v) => v * reaction, "#0d9488", "reaksi", 240, [0.8, 0, 0]),
+      curve(total, "#bb6800", "total", 200, [-1.4, 0.4, 0]),
+      { points: [{ x: 20 / 5, y: total(20) / 20, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: <InlineMath math={`v=20\\text{ m/s}:\\ ${total(20)}\\text{ m}`} />, at: 0, offset: [1.4, -0.3, 0], anchorX: "center" }] },
+    ];
+  })()}
+  showZAxis={false}
+  cameraPosition={[3, 3.4, 9]}
+  cameraTarget={[3, 3.4, 0]}
+/>
 
 ## Menghitung Jarak Reaksi dan Jarak Rem
 
