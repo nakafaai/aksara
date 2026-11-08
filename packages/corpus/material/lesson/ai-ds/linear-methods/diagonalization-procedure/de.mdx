@@ -13,6 +13,19 @@ Die Diagonalisierung verändert nicht die <Highlight>lineare Transformation selb
 
 Zur Diagonalisierung einer Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> bestimmen wir ihre Eigenwerte und Eigenräume. Gibt es <InlineMath math="n" /> linear unabhängige Eigenvektoren, bilden diese Vektoren die Spalten einer Basiswechselmatrix.
 
+Dieses Diagramm zeigt den Umweg, der dasselbe ergibt wie die direkte Multiplikation mit A.
+
+<Mermaid
+  title="Ax über die Eigenbasis berechnen"
+  description="Koordinaten wechseln, skalieren, zurückkehren."
+  chart={`
+    flowchart LR
+        A[x] -->|S^-1| B[Eigenkoordinaten]
+        B -->|D| C[Jede Koordinate mal λ_i]
+        C -->|S| D[Ax]
+  `}
+/>
+
 ## Diagonalisierungsschritte
 
 Das Verfahren besteht aus drei aufeinander aufbauenden Schritten:
@@ -39,6 +52,22 @@ Das Verfahren besteht aus drei aufeinander aufbauenden Schritten:
    Diese Bedingung stellt sicher, dass wir <Highlight>genügend unabhängige Eigenvektoren</Highlight> haben, um eine vollständige Basis zu bilden. Wenn erfüllt, bilden die Basisvektoren aller Eigenräume die Spalten der Transformationsmatrix <InlineMath math="S" /> und ergeben:
 
    <BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
+
+Folg diesen Schritten der Reihe nach, wann immer du eine Matrix diagonalisierst.
+
+<Mermaid
+  title="Schritte der Diagonalisierung"
+  description="Vom charakteristischen Polynom bis zur Probe AS = SD."
+  chart={`
+    flowchart TD
+        A[χ_A berechnen] --> B[Eigenwerte]
+        B --> C[Basis jedes Eigenraums]
+        C --> D{Insgesamt n Vektoren?}
+        D -->|Nein| X[Nicht diagonalisierbar]
+        D -->|Ja| E[S und D aufstellen]
+        E --> F[Probe AS = SD]
+  `}
+/>
 
 ## Beispielanwendung des Verfahrens
 

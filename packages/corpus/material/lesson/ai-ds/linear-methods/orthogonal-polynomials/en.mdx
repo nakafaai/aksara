@@ -60,6 +60,20 @@ The three-term recurrence and <InlineMath math="\beta_k" /> apply for <InlineMat
 
 Multiplication by <InlineMath math="x" /> raises the degree by one. Orthogonality removes every component below <InlineMath math="\pi_{k-1}" />, so the recurrence needs only **three terms**.
 
+This diagram shows the order in which orthogonal polynomials are built one at a time.
+
+<Mermaid
+  title="Gram-Schmidt on the monomials"
+  description="Each new power loses its projection onto the earlier polynomials."
+  chart={`
+    flowchart LR
+        A[1, x, x^2, ...] --> B[p_0 = 1]
+        B --> C[p_1: x minus its projection onto p_0]
+        C --> D[p_2: x^2 minus projections onto p_0 and p_1]
+        D --> E[Orthogonal sequence]
+  `}
+/>
+
 ## Chebyshev Polynomials of the First Kind
 
 On <InlineMath math="[-1,1]" />, choose
@@ -130,6 +144,20 @@ For example,
 </MathContainer>
 
 The second identity gives the **exact orthogonal expansion**.
+
+This diagram pairs two weight choices on the interval from -1 to 1 with their polynomial families.
+
+<Mermaid
+  title="The weight decides the polynomial family"
+  description="The interval and the weight function pick the orthogonal family."
+  chart={`
+    flowchart TD
+        A["Interval [-1, 1]"] --> B[Weight 1]
+        A --> C["Weight 1 / root(1 - x^2)"]
+        B --> D[Legendre]
+        C --> E[Chebyshev of the first kind]
+  `}
+/>
 
 ## Changing the Interval of Orthogonal Polynomials
 

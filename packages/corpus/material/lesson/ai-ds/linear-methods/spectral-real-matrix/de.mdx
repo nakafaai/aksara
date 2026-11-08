@@ -27,6 +27,20 @@ Der Beweis verbindet die vier Aussagen direkt. Eine orthonormale Eigenbasis lief
 | Reell und symmetrisch | <InlineMath math="\mathbb{R}" /> | Orthogonale Diagonalisierung mit reellen Eigenwerten |
 | Reell und orthogonal | <InlineMath math="\mathbb{R}" /> | Im Allgemeinen entstehen reelle Rotationsblöcke. Eine reelle Diagonalform entsteht nur, wenn alle Eigenwerte reell sind |
 
+Dieses Diagramm trennt die zwei Arten von Blöcken bei einer reellen normalen Matrix.
+
+<Mermaid
+  title="Eine reelle normale Matrix und ihre Blöcke"
+  description="Reelle Eigenwerte liefern 1 × 1-Blöcke, komplexe Paare 2 × 2-Blöcke."
+  chart={`
+    flowchart TD
+        A[Reelle normale Matrix] --> B[Reelle Eigenwerte]
+        A --> C[Komplexe Paare a ± bi]
+        B --> D[1 × 1-Blöcke]
+        C --> E[2 × 2-Blöcke aus Drehung und Streckung]
+  `}
+/>
+
 ## Normale Matrix ohne reelle Eigenbasis
 
 Betrachte die Drehung um einen Winkel <InlineMath math="\alpha" />, der kein ganzzahliges Vielfaches von <InlineMath math="\pi" /> ist:
@@ -82,3 +96,17 @@ Direktes Multiplizieren zeigt außerdem, dass <InlineMath math="A" /> nicht norm
 </MathContainer>
 
 Dieses Beispiel trennt die beiden Begriffe. Bei einer gewöhnlichen Diagonalisierung darf die Eigenvektormatrix <InlineMath math="S" /> beliebig invertierbar sein. Eine orthogonale Diagonalisierung <Highlight>verlangt dagegen eine orthonormale Eigenbasis</Highlight> und damit eine reelle symmetrische Matrix.
+
+Vergleich die zwei Beispiele in diesem Diagramm mit der Bedingung für reelle orthogonale Diagonalisierung.
+
+<Mermaid
+  title="Zwei Beispiele außerhalb des reellen Satzes"
+  description="Normal ohne reelle Eigenwerte oder diagonalisierbar ohne Orthonormalbasis."
+  chart={`
+    flowchart TD
+        A[Reelle orthogonale Diagonalisierung] --> B{Symmetrisch?}
+        B -->|Ja| C[Möglich]
+        B -->|Nein, aber normal| D[Drehung: kein reeller Eigenvektor]
+        B -->|Weder noch| E[Vielleicht diagonalisierbar, aber ohne Orthonormalbasis]
+  `}
+/>

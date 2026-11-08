@@ -104,6 +104,19 @@ Sei <InlineMath math="A_k" /> der linke obere <InlineMath math="k\times k" />-Bl
 
 Dieser Test der führenden Hauptminoren lässt sich nicht durch bloßes Ersetzen von <InlineMath math=">" /> durch <InlineMath math="\ge" /> erweitern. Bei positiver Semidefinitheit müssen **alle Hauptminoren** nichtnegativ sein. Die führenden Hauptminoren allein reichen dafür nicht aus.
 
+Nimm den Test, der für deine Matrix am leichtesten ist, denn alle sind gleichwertig.
+
+<Mermaid
+  title="Gleichwertige Tests auf positive Definitheit"
+  description="Für eine symmetrische Matrix liefert jeder Test dieselbe Antwort."
+  chart={`
+    flowchart LR
+        A[x^T A x > 0 für x ≠ 0] <--> B[Alle Eigenwerte positiv]
+        B <--> C[Alle führenden Hauptminoren positiv]
+        C <--> D[Cholesky-Zerlegung existiert]
+  `}
+/>
+
 ## Prüfungen für Matrizen der Größe zwei mal zwei
 
 Betrachte
@@ -179,6 +192,19 @@ Der numerische Aufwand hängt außerdem von der Konditionszahl ab. Sie ist das V
 <BlockMath math="\kappa_2(A)=\frac{\lambda_{\max}(A)}{\lambda_{\min}(A)}" />
 
 Eine große Konditionszahl führt zu langgestreckten Konturen. Numerische Algorithmen können dann langsam oder empfindlich gegenüber Rundungsfehlern werden.
+
+Diese Kette zeigt, warum eine quadratische Funktion mit positiv definiter Matrix genau ein Minimum hat.
+
+<Mermaid
+  title="Das eindeutige Minimum einer quadratischen Funktion"
+  description="Positive Definitheit garantiert einen tiefsten Punkt."
+  chart={`
+    flowchart LR
+        A["f(x) = ½ x^T A x - b^T x"] --> B[Gradient Ax - b = 0]
+        B --> C[A positiv definit]
+        C --> D["Eindeutiges Minimum x = A^-1 b"]
+  `}
+/>
 
 ## Spektralverschiebungen und Inversen
 

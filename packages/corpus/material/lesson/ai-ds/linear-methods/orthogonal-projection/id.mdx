@@ -55,6 +55,19 @@ Untuk matriks real <InlineMath math="Q\in\mathbb{R}^{m\times n}" /> dengan kolom
 
 Matriks <InlineMath math="P" /> memproyeksikan vektor di <InlineMath math="\mathbb{R}^m" /> pada <InlineMath math="\operatorname{col}(Q)" />.
 
+Diagram ini merangkum rumus proyeksi saat basisnya ortonormal.
+
+<Mermaid
+  title="Proyeksi dengan basis ortonormal"
+  description="Setiap vektor basis menyumbang satu suku."
+  chart={`
+    flowchart LR
+        A[x] --> B["Koefisien ⟨u_i, x⟩"]
+        B --> C["Jumlah ⟨u_i, x⟩ u_i"]
+        C --> D[Px]
+  `}
+/>
+
 ## Memproyeksikan Vektor pada Subruang Satu Dimensi
 
 Dua vektor yang akan dipakai adalah
@@ -162,3 +175,16 @@ Suku linear hilang karena <InlineMath math="x^3" /> merupakan **fungsi ganjil pa
 | <InlineMath math="\ker(P)=S^\perp" /> | komponen tegak lurus dihilangkan |
 
 Proyektor miring juga dapat memenuhi <InlineMath math="P^2=P" />. Karena proyektor itu belum tentu simetris, syarat <InlineMath math="P^T=P" /> <Highlight>membedakan proyektor ortogonal Euklides</Highlight>.
+
+Cek tiga sifat di diagram ini untuk memastikan sebuah matriks adalah proyeksi ortogonal.
+
+<Mermaid
+  title="Sifat proyeksi ortogonal"
+  description="Tiga sifat yang bisa kamu cek pada matriks P."
+  chart={`
+    flowchart TD
+        A[Proyeksi ortogonal P] --> B["P^2 = P"]
+        A --> C["P^T = P"]
+        A --> D[x - Px tegak lurus ruang hasil]
+  `}
+/>

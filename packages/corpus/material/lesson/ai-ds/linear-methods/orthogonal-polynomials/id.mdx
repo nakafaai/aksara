@@ -60,6 +60,20 @@ Rekurensi tiga suku dan <InlineMath math="\beta_k" /> berlaku untuk <InlineMath 
 
 Perkalian dengan <InlineMath math="x" /> menaikkan derajat sebesar satu. Sifat ortogonal menghilangkan semua komponen di bawah <InlineMath math="\pi_{k-1}" />, sehingga rumus rekurensi di atas hanya memuat **tiga suku**.
 
+Diagram ini menunjukkan urutan membangun polinom ortogonal satu per satu.
+
+<Mermaid
+  title="Gram-Schmidt pada monomial"
+  description="Setiap pangkat baru dikurangi proyeksinya ke polinom sebelumnya."
+  chart={`
+    flowchart LR
+        A[1, x, x^2, ...] --> B[p_0 = 1]
+        B --> C[p_1: x dikurangi proyeksi ke p_0]
+        C --> D[p_2: x^2 dikurangi proyeksi ke p_0 dan p_1]
+        D --> E[Barisan ortogonal]
+  `}
+/>
+
 ## Polinomial Chebyshev Jenis Pertama
 
 Pada <InlineMath math="[-1,1]" />, pilih
@@ -130,6 +144,20 @@ Sebagai contoh,
 </MathContainer>
 
 Identitas kedua memberikan **ekspansi ortogonal yang eksak**.
+
+Diagram ini memasangkan dua pilihan bobot di interval -1 sampai 1 dengan keluarga polinomnya.
+
+<Mermaid
+  title="Bobot menentukan keluarga polinom"
+  description="Interval dan fungsi bobot memilih keluarga ortogonalnya."
+  chart={`
+    flowchart TD
+        A["Interval [-1, 1]"] --> B[Bobot 1]
+        A --> C["Bobot 1 / akar(1 - x^2)"]
+        B --> D[Legendre]
+        C --> E[Chebyshev jenis pertama]
+  `}
+/>
 
 ## Mengubah Interval Polinomial Ortogonal
 

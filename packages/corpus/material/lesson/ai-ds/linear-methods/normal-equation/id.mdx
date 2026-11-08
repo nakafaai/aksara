@@ -45,6 +45,20 @@ Karena kesamaan ini berlaku untuk setiap vektor <InlineMath math="x" />, vektor 
 
 Dengan memindahkan suku, kita memperoleh <InlineMath math="A^TA\hat{x}=A^Tb" />, yaitu persamaan normal.
 
+Diagram ini merangkum hubungan antara b, proyeksinya, dan residual.
+
+<Mermaid
+  title="Proyeksi b ke ruang kolom"
+  description="Ax* adalah titik terdekat, residualnya tegak lurus."
+  chart={`
+    flowchart LR
+        A[b] --> B[Proyeksi ke ruang kolom A]
+        B --> C[Ax* titik terdekat]
+        A --> D[r = b - Ax*]
+        D --> E[r tegak lurus setiap kolom A]
+  `}
+/>
+
 ## Pembuktian Menggunakan Teorema Pythagoras
 
 Kita juga bisa memverifikasi hasil ini dengan cara yang berbeda. Misalkan <InlineMath math="\hat{x}" /> adalah solusi sistem persamaan normal dan <InlineMath math="x" /> adalah sembarang vektor di <InlineMath math="\mathbb{R}^n" />.
@@ -82,6 +96,20 @@ Jika <InlineMath math="A" /> tidak berperingkat penuh, persamaan normal tetap me
 <BlockMath math="\hat{x}+\ker(A)" />
 
 Semua vektor parameter tersebut menghasilkan vektor hasil pencocokan <InlineMath math="A\hat{x}" /> yang sama.
+
+Pakai diagram ini untuk memutuskan apakah solusi kuadrat terkecil tunggal.
+
+<Mermaid
+  title="Ada dan tunggal"
+  description="Solusi selalu ada, tunggal hanya dengan rank penuh."
+  chart={`
+    flowchart TD
+        A[Persamaan normal] --> B[Selalu punya solusi]
+        B --> C{rank A = n?}
+        C -->|Ya| D[Solusi tunggal]
+        C -->|Tidak| E[Tak hingga banyak solusi]
+  `}
+/>
 
 ## Pembuktian Ruang Nol dan Sifat Definit
 

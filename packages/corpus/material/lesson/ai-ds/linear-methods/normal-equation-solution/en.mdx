@@ -78,6 +78,20 @@ The second term does not depend on <InlineMath math="x" />. Therefore, the minim
 
 This route solves the original least-squares problem directly. It does not form <InlineMath math="A^TA" /> and then solve the normal equation.
 
+This diagram shows the three steps of solving through a <InlineMath math="\mathrm{QR}" /> factorization.
+
+<Mermaid
+  title="Solving least squares through a triangular system"
+  description="The factorization turns the problem into a triangular system."
+  chart={`
+    flowchart LR
+        A[A = QR] --> B[Compute Q^T b]
+        B --> C[Rx = Q^T b]
+        C --> D[Backward substitution]
+        D --> E[x]
+  `}
+/>
+
 ## Worked Polynomial Fit Example
 
 The numerical factors and coefficients below are **rounded to five decimal places**. The exact matrix equalities hold before rounding.
@@ -171,3 +185,17 @@ The calculation gives:
 | <InlineMath math="\mathrm{SVD}" /> | more work than <InlineMath math="\mathrm{QR}" /> | determines rank and gives the **minimum-norm solution** | highest cost of the three |
 
 Use <InlineMath math="\mathrm{QR}" /> as the usual choice for dense, full-rank problems. Use <InlineMath math="\mathrm{SVD}" /> when the matrix is rank deficient, severely ill conditioned, or requires a minimum-norm solution. Form the normal matrix only when the speed gain is worth the loss of numerical stability. Do not compute an inverse explicitly in production code.
+
+Start from the question in this diagram before you pick a method.
+
+<Mermaid
+  title="Choosing a numerical method"
+  description="Rank and conditioning decide the method."
+  chart={`
+    flowchart TD
+        A{Full rank?} -->|No| B[SVD and pseudoinverse]
+        A -->|Yes| C{Well conditioned?}
+        C -->|Yes| D[Normal equations with Cholesky]
+        C -->|Not sure| E[QR factorization]
+  `}
+/>

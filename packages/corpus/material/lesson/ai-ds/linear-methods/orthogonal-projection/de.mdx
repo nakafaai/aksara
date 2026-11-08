@@ -55,6 +55,19 @@ Für eine reelle Matrix <InlineMath math="Q\in\mathbb{R}^{m\times n}" /> mit ort
 
 Die Matrix <InlineMath math="P" /> projiziert Vektoren aus <InlineMath math="\mathbb{R}^m" /> auf <InlineMath math="\operatorname{col}(Q)" />.
 
+Dieses Diagramm fasst die Projektionsformel bei einer Orthonormalbasis zusammen.
+
+<Mermaid
+  title="Projektion mit einer Orthonormalbasis"
+  description="Jeder Basisvektor liefert einen Term."
+  chart={`
+    flowchart LR
+        A[x] --> B["Koeffizienten ⟨u_i, x⟩"]
+        B --> C["Summe der ⟨u_i, x⟩ u_i"]
+        C --> D[Px]
+  `}
+/>
+
 ## Einen Vektor auf einen eindimensionalen Unterraum projizieren
 
 Die beiden Vektoren sind
@@ -162,3 +175,16 @@ Der lineare Term verschwindet, weil <InlineMath math="x^3" /> auf dem symmetrisc
 | <InlineMath math="\ker(P)=S^\perp" /> | senkrechte Komponenten werden entfernt |
 
 Auch ein schiefer Projektor kann <InlineMath math="P^2=P" /> erfüllen. Da er nicht symmetrisch sein muss, kennzeichnet die Bedingung <InlineMath math="P^T=P" /> <Highlight>den euklidischen orthogonalen Projektor</Highlight>.
+
+Prüf die drei Eigenschaften in diesem Diagramm, um zu bestätigen, dass eine Matrix eine Orthogonalprojektion ist.
+
+<Mermaid
+  title="Eigenschaften einer Orthogonalprojektion"
+  description="Drei Eigenschaften, die du an der Matrix P prüfen kannst."
+  chart={`
+    flowchart TD
+        A[Orthogonalprojektion P] --> B["P^2 = P"]
+        A --> C["P^T = P"]
+        A --> D[x - Px steht senkrecht auf dem Bildraum]
+  `}
+/>

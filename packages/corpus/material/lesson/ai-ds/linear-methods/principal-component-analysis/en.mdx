@@ -26,6 +26,21 @@ It is symmetric positive semidefinite. It may be singular when features are line
 
 Centering is mandatory. <Highlight>Standardizing each feature to unit variance</Highlight> is a <Highlight>separate modeling choice</Highlight> that is often appropriate when features use incomparable units. It changes the question from directions of largest absolute variance to directions of largest standardized variance.
 
+Follow this flow from the raw data to data with fewer dimensions.
+
+<Mermaid
+  title="The principal component workflow"
+  description="From raw data to a projection onto k main directions."
+  chart={`
+    flowchart LR
+        A[Data] --> B[Subtract the mean]
+        B --> C[Covariance matrix]
+        C --> D[Eigenvalues and eigenvectors]
+        D --> E[Sort from largest]
+        E --> F[Project onto the top k vectors]
+  `}
+/>
+
 ## Principal Directions
 
 By the spectral theorem,
@@ -82,6 +97,19 @@ The **right singular vectors** give the principal directions, while the eigenval
 <BlockMath math="\lambda_j=\frac{\sigma_j^2}{m-1}" />
 
 Using <InlineMath math="\mathrm{SVD}" /> avoids forming <InlineMath math="X_c^TX_c" />, which would square the condition number. <InlineMath math="\mathrm{SVD}" /> also works well when <InlineMath math="X_c" /> is rectangular or rank deficient.
+
+This diagram shows how the <InlineMath math="\mathrm{SVD}" /> of the centered data gives the principal directions without forming the covariance.
+
+<Mermaid
+  title="The route through the singular value decomposition"
+  description="The singular value decomposition gives the same principal directions."
+  chart={`
+    flowchart LR
+        A[Centered data X] --> B["X = U Σ V^T"]
+        B --> C[Columns of V: principal directions]
+        B --> D[σ_i^2 proportional to the variance]
+  `}
+/>
 
 ## Worked Two Dimensional Covariance
 

@@ -93,6 +93,19 @@ Die zweite Gleichung heißt **[Normalgleichung](/de/faecher/ki-und-data-science/
 
 Das Diagramm beschriftet den Zielvektor <InlineMath math="b" />, den Projektionspunkt <InlineMath math="A\hat{x}" /> und das Residuum <InlineMath math="A\hat{x}-b" /> zwischen beiden. Der blaue Vektor <InlineMath math="A\hat{x}" /> liegt im Spaltenraum. Die Orthogonalitätsbedingung oben beweist, dass dieser Punkt im Spaltenraum den kleinsten Abstand zu <InlineMath math="b" /> besitzt.
 
+Diese Kette macht aus der geometrischen Bedingung ein lösbares System.
+
+<Mermaid
+  title="Von der geometrischen Bedingung zu den Normalgleichungen"
+  description="Das Residuum muss senkrecht auf dem Spaltenraum stehen."
+  chart={`
+    flowchart LR
+        A[Residuum b - Ax] --> B[Senkrecht auf dem Spaltenraum von A]
+        B --> C["A^T(b - Ax) = 0"]
+        C --> D[A^T A x = A^T b]
+  `}
+/>
+
 ## Eine Konstante an drei Beobachtungen anpassen
 
 Eine Konstante <InlineMath math="x" /> soll die drei Beobachtungen <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="6" /> möglichst gut darstellen. Dazu verwenden wir die folgende Matrix und den folgenden Vektor.
@@ -138,6 +151,22 @@ Bei denselben Beobachtungen 1, 2 und 6 verändert die Norm die angepasste Konsta
 | <InlineMath math="\ell_2^2" /> | <InlineMath math="(1+2+6)/3=3" /> | <InlineMath math="2^2+1^2+(-3)^2=14" /> |
 | <InlineMath math="\ell_1" /> | <InlineMath math="2" /> | <InlineMath math="1+0+4=5" /> |
 | <InlineMath math="\ell_\infty" /> | <InlineMath math="(1+6)/2=7/2" /> | <InlineMath math="\max(5/2,3/2,5/2)=5/2" /> |
+
+Dieses Diagramm ordnet jeder Residuennorm die beste Konstante zu, die sie liefert.
+
+<Mermaid
+  title="Die Residuennorm bestimmt die beste Konstante"
+  description="Für eine Konstante liefert jede Norm ein anderes Zentrum der Daten."
+  chart={`
+    flowchart TD
+        A[Eine Konstante c anpassen] --> B[2-Norm]
+        A --> C[1-Norm]
+        A --> D[Maximumsnorm]
+        B --> E[c = Mittelwert]
+        C --> F[c = Median]
+        D --> G[c = Mitte zwischen kleinstem und größtem Wert]
+  `}
+/>
 
 ## Ein stabiles numerisches Verfahren wählen
 

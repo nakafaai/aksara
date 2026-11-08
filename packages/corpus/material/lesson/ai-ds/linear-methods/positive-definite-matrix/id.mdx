@@ -104,6 +104,19 @@ Matriks <InlineMath math="A" /> definit positif jika dan hanya jika setiap deter
 
 Uji minor utama terdepan ini tidak dapat diperluas hanya dengan mengganti <InlineMath math=">" /> menjadi <InlineMath math="\ge" />. Positif semidefinit mengharuskan **semua minor utama** bernilai tak negatif. Memeriksa minor utama terdepan saja belum cukup.
 
+Pilih uji yang paling mudah untuk matriksmu, karena semuanya setara.
+
+<Mermaid
+  title="Uji definit positif yang setara"
+  description="Untuk matriks simetris, setiap uji memberi jawaban yang sama."
+  chart={`
+    flowchart LR
+        A[x^T A x > 0 untuk x ≠ 0] <--> B[Semua nilai eigen positif]
+        B <--> C[Semua minor utama awal positif]
+        C <--> D[Faktorisasi Cholesky ada]
+  `}
+/>
+
 ## Pemeriksaan Matriks Dua Kali Dua
 
 Perhatikan
@@ -179,6 +192,19 @@ Kesulitan komputasi juga bergantung pada bilangan kondisi, yaitu rasio nilai eig
 <BlockMath math="\kappa_2(A)=\frac{\lambda_{\max}(A)}{\lambda_{\min}(A)}" />
 
 Bilangan kondisi yang besar menghasilkan kontur fungsi objektif yang memanjang. Algoritma numerik kemudian dapat berjalan lambat atau peka terhadap galat pembulatan.
+
+Rantai ini menunjukkan mengapa fungsi kuadrat dengan matriks definit positif punya tepat satu minimum.
+
+<Mermaid
+  title="Minimum tunggal fungsi kuadrat"
+  description="Definit positif menjamin satu titik terendah."
+  chart={`
+    flowchart LR
+        A["f(x) = ½ x^T A x - b^T x"] --> B[Gradien Ax - b = 0]
+        B --> C[A definit positif]
+        C --> D["Minimum tunggal x = A^-1 b"]
+  `}
+/>
 
 ## Pergeseran Spektral dan Invers
 

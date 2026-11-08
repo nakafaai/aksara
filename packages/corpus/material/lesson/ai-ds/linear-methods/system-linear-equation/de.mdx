@@ -56,6 +56,19 @@ Nach dem Auswerten der Potenzen von <InlineMath math="t_i" /> ergibt sich:
 <BlockMath math="9a_2 + 3a_1 + a_0 = 15{,}8" />
 </MathContainer>
 
+Dieses Diagramm zeigt, wie sieben Beobachtungen ein System mit drei Parametern bilden.
+
+<Mermaid
+  title="Von sieben Beobachtungen zu einem 7 × 3-System"
+  description="Jede Beobachtung wird eine Zeile."
+  chart={`
+    flowchart LR
+        A["7 Beobachtungen (t_i, y_i)"] --> B["Zeilen (1, t_i, t_i^2)"]
+        B --> C[7 × 3 Matrix A]
+        C --> D[Ax = b]
+  `}
+/>
+
 ## Matrixform
 
 Das obige Gleichungssystem kann in der **Matrixform** <InlineMath math="A \cdot x = b" /> geschrieben werden.
@@ -81,6 +94,19 @@ Durch das Anfügen von <InlineMath math="b" /> entsteht die erweiterte Matrix <I
 Dieser von null verschiedene Minor zeigt, dass <InlineMath math="\operatorname{rank}(A\mid b)=4" /> gilt.
 
 Da <InlineMath math="\operatorname{rank}(A) \ne \operatorname{rank}(A\mid b)" /> gilt, **hat das System keine exakte Lösung**. Kein einziges quadratisches Polynom verläuft durch alle <InlineMath math="7" /> Beobachtungen.
+
+Diese Kette erklärt den Weg von einem unlösbaren System zu den Normalgleichungen.
+
+<Mermaid
+  title="Von unlösbar zu kleinsten Quadraten"
+  description="Gibt es keine exakte Lösung, mach das Residuum klein."
+  chart={`
+    flowchart LR
+        A[Mehr Gleichungen als Unbekannte] --> B[Meist unlösbar]
+        B --> C["‖Ax - b‖ minimieren"]
+        C --> D[A^T A x = A^T b]
+  `}
+/>
 
 ## Lösung mit kleinsten Quadraten
 

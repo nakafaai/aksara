@@ -34,6 +34,20 @@ Der türkisfarbene Einheitswürfel wird durch die folgende Matrix zum orangefarb
 
 Die Grundkantenlänge wird 2, beide senkrechten Höhen bleiben 1. Das Volumen wächst deshalb von 1 auf 2. Die Länge einer schrägen Kante ist keine senkrechte Höhe.
 
+Dieses Diagramm zeigt, was Betrag, Vorzeichen und der Wert null einer Determinante bedeuten.
+
+<Mermaid
+  title="Was det A dir sagt"
+  description="Betrag, Vorzeichen und null haben je eine Bedeutung."
+  chart={`
+    flowchart TD
+        A[det A] --> B["|det A|: Volumenfaktor"]
+        A --> C[Vorzeichen: Orientierung bleibt oder kehrt sich um]
+        A --> D[det A = 0: eine Dimension fällt weg]
+        D --> E[A ist nicht invertierbar]
+  `}
+/>
+
 
 ## Drei bestimmende Eigenschaften der Determinante
 
@@ -132,6 +146,19 @@ Verwendet die Gauß-Elimination nur Zeilenadditionen und <InlineMath math="p" />
 <BlockMath math="\det R = (-1)^p \cdot \det A" />
 
 Wird eine Zeile zusätzlich skaliert, muss dieser Faktor gesondert berücksichtigt werden. Mit klar angegebenen Operationen liefert die Dreiecksform ein praktisches Verfahren zur Determinantenberechnung.
+
+Nutz die drei Regeln in diesem Diagramm, bevor du die Determinante eines Produkts berechnest.
+
+<Mermaid
+  title="Produktregeln für Determinanten"
+  description="Drei Regeln, die dir viel Rechnen sparen."
+  chart={`
+    flowchart TD
+        A[Regeln] --> B["det(AB) = det A · det B"]
+        A --> C["det(A^-1) = 1 / det A"]
+        A --> D["det(A^T) = det A"]
+  `}
+/>
 
 ## Häufige Fehler bei der Determinante
 

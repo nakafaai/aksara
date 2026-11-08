@@ -104,6 +104,19 @@ Let <InlineMath math="A_k" /> denote the upper-left <InlineMath math="k\times k"
 
 This leading-principal-minor test does not extend by replacing <InlineMath math=">" /> with <InlineMath math="\ge" />. Positive semidefiniteness requires **every principal minor** to be nonnegative. Checking the leading ones alone is insufficient.
 
+Pick the test that is easiest for your matrix, because they are all equivalent.
+
+<Mermaid
+  title="Equivalent positive definite tests"
+  description="For a symmetric matrix, every test gives the same answer."
+  chart={`
+    flowchart LR
+        A[x^T A x > 0 for x ≠ 0] <--> B[All eigenvalues positive]
+        B <--> C[All leading principal minors positive]
+        C <--> D[Cholesky factorization exists]
+  `}
+/>
+
 ## Worked Two by Two Checks
 
 Consider
@@ -179,6 +192,19 @@ The numerical difficulty also depends on the condition number, defined as the ra
 <BlockMath math="\kappa_2(A)=\frac{\lambda_{\max}(A)}{\lambda_{\min}(A)}" />
 
 A large condition number gives elongated contours. Numerical algorithms may then run slowly or become sensitive to rounding error.
+
+This chain shows why a quadratic with a positive definite matrix has exactly one minimum.
+
+<Mermaid
+  title="The unique minimizer of a quadratic"
+  description="Positive definiteness guarantees one lowest point."
+  chart={`
+    flowchart LR
+        A["f(x) = ½ x^T A x - b^T x"] --> B[Gradient Ax - b = 0]
+        B --> C[A positive definite]
+        C --> D["Unique minimizer x = A^-1 b"]
+  `}
+/>
 
 ## Spectral Shifts and Inverses
 

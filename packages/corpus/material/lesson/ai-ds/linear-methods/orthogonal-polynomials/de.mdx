@@ -60,6 +60,20 @@ Die Dreitermrekursion und <InlineMath math="\beta_k" /> gelten für <InlineMath 
 
 Die Multiplikation mit <InlineMath math="x" /> erhöht den Grad um eins. Die Orthogonalität entfernt alle Komponenten unterhalb von <InlineMath math="\pi_{k-1}" />, deshalb enthält die Rekursionsformel nur **drei Terme**.
 
+Dieses Diagramm zeigt die Reihenfolge, in der orthogonale Polynome eins nach dem anderen entstehen.
+
+<Mermaid
+  title="Gram-Schmidt auf den Monomen"
+  description="Jede neue Potenz verliert ihre Projektion auf die früheren Polynome."
+  chart={`
+    flowchart LR
+        A[1, x, x^2, ...] --> B[p_0 = 1]
+        B --> C[p_1: x minus Projektion auf p_0]
+        C --> D[p_2: x^2 minus Projektionen auf p_0 und p_1]
+        D --> E[Orthogonale Folge]
+  `}
+/>
+
 ## Polynome nach Tschebyschow erster Art
 
 Wähle auf <InlineMath math="[-1,1]" />
@@ -130,6 +144,20 @@ Zum Beispiel gilt
 </MathContainer>
 
 Die zweite Identität ist eine **exakte orthogonale Entwicklung** und keine Näherung.
+
+Dieses Diagramm ordnet zwei Gewichten auf dem Intervall von -1 bis 1 ihre Polynomfamilien zu.
+
+<Mermaid
+  title="Das Gewicht bestimmt die Polynomfamilie"
+  description="Intervall und Gewichtsfunktion wählen die orthogonale Familie."
+  chart={`
+    flowchart TD
+        A["Intervall [-1, 1]"] --> B[Gewicht 1]
+        A --> C["Gewicht 1 / Wurzel(1 - x^2)"]
+        B --> D[Legendre]
+        C --> E[Tschebyschow erster Art]
+  `}
+/>
 
 ## Das Intervall orthogonaler Polynome ändern
 

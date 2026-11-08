@@ -26,6 +26,21 @@ Matriks <InlineMath math="C" /> simetris positif semidefinit. Matriks <InlineMat
 
 Data harus dipusatkan sebelum <InlineMath math="\mathrm{PCA}" />. <Highlight>Standardisasi setiap fitur agar variansnya satu</Highlight> adalah <Highlight>pilihan model</Highlight>, dan biasanya berguna ketika fitur memakai satuan yang tidak sebanding. Standardisasi mengubah pertanyaan dari arah dengan varians absolut terbesar menjadi arah dengan varians terstandardisasi terbesar.
 
+Ikuti alur ini dari data mentah sampai data berdimensi lebih kecil.
+
+<Mermaid
+  title="Alur analisis komponen utama"
+  description="Dari data mentah sampai proyeksi ke k arah utama."
+  chart={`
+    flowchart LR
+        A[Data] --> B[Kurangi rata-rata]
+        B --> C[Matriks kovarians]
+        C --> D[Nilai dan vektor eigen]
+        D --> E[Urutkan dari terbesar]
+        E --> F[Proyeksikan ke k vektor teratas]
+  `}
+/>
+
 ## Arah Komponen Utama
 
 Berdasarkan teorema spektral,
@@ -82,6 +97,19 @@ Di antara semua rekonstruksi linear dengan rank paling tinggi <InlineMath math="
 <BlockMath math="\lambda_j=\frac{\sigma_j^2}{m-1}" />
 
 Menggunakan <InlineMath math="\mathrm{SVD}" /> menghindari pembentukan <InlineMath math="X_c^TX_c" />, yang akan menguadratkan bilangan kondisi. <InlineMath math="\mathrm{SVD}" /> juga cocok ketika <InlineMath math="X_c" /> berbentuk persegi panjang atau memiliki rank yang tidak penuh.
+
+Diagram ini menunjukkan bagaimana <InlineMath math="\mathrm{SVD}" /> dari data terpusat memberi arah utama tanpa membentuk kovarians.
+
+<Mermaid
+  title="Jalan lewat dekomposisi nilai singular"
+  description="Dekomposisi nilai singular memberi arah utama yang sama."
+  chart={`
+    flowchart LR
+        A[Data terpusat X] --> B["X = U Σ V^T"]
+        B --> C[Kolom V: arah utama]
+        B --> D[σ_i^2 sebanding dengan variansi]
+  `}
+/>
 
 ## Contoh Kovarians Dua Dimensi
 

@@ -45,6 +45,20 @@ Da diese Gleichheit für jeden Vektor <InlineMath math="x" /> gilt, muss der Vek
 
 Nach dem Umstellen folgt <InlineMath math="A^TA\hat{x}=A^Tb" />, die Normalgleichung.
 
+Dieses Diagramm fasst zusammen, wie b, seine Projektion und das Residuum zusammenhängen.
+
+<Mermaid
+  title="b auf den Spaltenraum projizieren"
+  description="Ax* ist der nächste Punkt, das Residuum steht senkrecht."
+  chart={`
+    flowchart LR
+        A[b] --> B[Projektion auf den Spaltenraum von A]
+        B --> C[Ax* ist der nächste Punkt]
+        A --> D[r = b - Ax*]
+        D --> E[r steht senkrecht auf jeder Spalte von A]
+  `}
+/>
+
 ## Beweis mit dem Satz des Pythagoras
 
 Wir können dieses Ergebnis auch auf andere Weise überprüfen. Sei <InlineMath math="\hat{x}" /> die Lösung des Normalgleichungssystems und <InlineMath math="x" /> ein beliebiger Vektor in <InlineMath math="\mathbb{R}^n" />.
@@ -82,6 +96,20 @@ Ist <InlineMath math="A" /> rangdefizient, besitzt die Normalgleichung weiterhin
 <BlockMath math="\hat{x}+\ker(A)" />
 
 Alle diese Parametervektoren erzeugen denselben angepassten Vektor <InlineMath math="A\hat{x}" />.
+
+Nutz dieses Diagramm, um zu entscheiden, ob die Lösung der kleinsten Quadrate eindeutig ist.
+
+<Mermaid
+  title="Existenz und Eindeutigkeit"
+  description="Eine Lösung gibt es immer, eindeutig ist sie nur bei vollem Rang."
+  chart={`
+    flowchart TD
+        A[Normalgleichungen] --> B[Haben immer eine Lösung]
+        B --> C{rank A = n?}
+        C -->|Ja| D[Eindeutige Lösung]
+        C -->|Nein| E[Unendlich viele Lösungen]
+  `}
+/>
 
 ## Beweis über Nullraum und Definitheit
 

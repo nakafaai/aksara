@@ -34,6 +34,20 @@ Kubus satuan berwarna hijau kebiruan berubah menjadi bangun jingga melalui matri
 
 Panjang alas berubah menjadi 2, sedangkan kedua tinggi tetap 1. Jadi, volumenya berubah dari 1 menjadi 2. Panjang sisi miring bukan tinggi tegak lurus.
 
+Diagram ini memperlihatkan arti besar, tanda, dan nilai nol sebuah determinan.
+
+<Mermaid
+  title="Apa yang dikatakan det A"
+  description="Besar, tanda, dan nol masing-masing punya arti."
+  chart={`
+    flowchart TD
+        A[det A] --> B["|det A|: faktor skala volume"]
+        A --> C[Tanda: orientasi tetap atau terbalik]
+        A --> D[det A = 0: dimensi runtuh]
+        D --> E[A tidak invertibel]
+  `}
+/>
+
 
 ## Tiga Sifat Penentu Determinan
 
@@ -132,6 +146,19 @@ Jika eliminasi Gauss hanya memakai penambahan baris dan <InlineMath math="p" /> 
 <BlockMath math="\det R = (-1)^p \cdot \det A" />
 
 Jika suatu baris juga diskalakan, faktor skalanya harus dicatat terpisah. Dengan jenis operasi yang dinyatakan secara jelas, proses membentuk matriks segitiga memberikan algoritma determinan yang praktis.
+
+Pakai tiga aturan di diagram ini sebelum menghitung determinan hasil kali.
+
+<Mermaid
+  title="Aturan perkalian determinan"
+  description="Tiga aturan yang menghemat banyak hitungan."
+  chart={`
+    flowchart TD
+        A[Aturan] --> B["det(AB) = det A · det B"]
+        A --> C["det(A^-1) = 1 / det A"]
+        A --> D["det(A^T) = det A"]
+  `}
+/>
 
 ## Kesalahan Umum tentang Determinan
 

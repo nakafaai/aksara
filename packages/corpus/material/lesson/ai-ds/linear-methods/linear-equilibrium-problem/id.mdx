@@ -93,6 +93,19 @@ Persamaan kedua disebut **[persamaan normal](/id/materi/ai-ds/metode-linear-ai/s
 
 Diagram memberi label pada vektor target <InlineMath math="b" />, titik proyeksi <InlineMath math="A\hat{x}" />, dan residual <InlineMath math="A\hat{x}-b" /> di antara keduanya. Vektor biru <InlineMath math="A\hat{x}" /> berada di dalam ruang kolom. Syarat ortogonal di atas membuktikan bahwa titik proyeksi <InlineMath math="A\hat{x}" /> itu paling dekat dengan <InlineMath math="b" />.
 
+Rantai ini mengubah syarat geometri menjadi sistem yang bisa diselesaikan.
+
+<Mermaid
+  title="Dari syarat geometri ke persamaan normal"
+  description="Residual harus tegak lurus ruang kolom."
+  chart={`
+    flowchart LR
+        A[Residual b - Ax] --> B[Tegak lurus ruang kolom A]
+        B --> C["A^T(b - Ax) = 0"]
+        C --> D[A^T A x = A^T b]
+  `}
+/>
+
 ## Mencocokkan Satu Konstanta dengan Tiga Observasi
 
 Misalkan satu konstanta <InlineMath math="x" /> harus mencocokkan tiga pengamatan <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="6" />. Gunakan matriks dan vektor berikut.
@@ -138,6 +151,22 @@ Untuk data yang sama, yaitu 1, 2, dan 6, pilihan norma menghasilkan konstanta ya
 | <InlineMath math="\ell_2^2" /> | <InlineMath math="(1+2+6)/3=3" /> | <InlineMath math="2^2+1^2+(-3)^2=14" /> |
 | <InlineMath math="\ell_1" /> | <InlineMath math="2" /> | <InlineMath math="1+0+4=5" /> |
 | <InlineMath math="\ell_\infty" /> | <InlineMath math="(1+6)/2=7/2" /> | <InlineMath math="\max(5/2,3/2,5/2)=5/2" /> |
+
+Diagram ini memasangkan setiap norma residual dengan konstanta terbaik yang dihasilkannya.
+
+<Mermaid
+  title="Norma residual menentukan konstanta terbaik"
+  description="Untuk satu konstanta, setiap norma memberi pusat data yang berbeda."
+  chart={`
+    flowchart TD
+        A[Cocokkan satu konstanta c] --> B[Norma 2]
+        A --> C[Norma 1]
+        A --> D[Norma maksimum]
+        B --> E[c = rata-rata]
+        C --> F[c = median]
+        D --> G[c = tengah nilai terkecil dan terbesar]
+  `}
+/>
 
 ## Memilih Metode Numerik yang Stabil
 

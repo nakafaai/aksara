@@ -44,6 +44,20 @@ Ist <InlineMath math="\{\phi_0,\ldots,\phi_n\}" /> eine Basis von <InlineMath ma
 
 <BlockMath math="\begin{aligned} &amp;\sum_{j=0}^n\langle\phi_j,\phi_i\rangle c_j=\langle f,\phi_i\rangle, \\ &amp;i=0,\ldots,n \end{aligned}" />
 
+Dieses Diagramm fasst die Schritte zur besten Approximation zusammen.
+
+<Mermaid
+  title="Beste Approximation als Projektion"
+  description="Ein Raum, ein Skalarprodukt, dann eine Projektion."
+  chart={`
+    flowchart LR
+        A[Funktion f] --> B[Raum S und Skalarprodukt wählen]
+        B --> C[f auf S projizieren]
+        C --> D[Beste Approximation p]
+        D --> E[Fehler f - p steht senkrecht auf S]
+  `}
+/>
+
 ## Eine quadratische Funktion durch eine Gerade approximieren
 
 Wir approximieren <InlineMath math="f(x)=x^2" /> auf <InlineMath math="[-1,1]" /> durch eine Funktion aus <InlineMath math="S=\operatorname{span}\{1,x\}" />. Setze <InlineMath math="g(x)=c_0+c_1x" />. Die Orthogonalität zu den beiden Basisfunktionen liefert
@@ -101,6 +115,20 @@ Für algebraische Polynome vom Grad höchstens <InlineMath math="n" /> verwenden
 <BlockMath math="P_n([a,b])=\operatorname{span}\{1,x,x^2,\ldots,x^n\}" />
 
 Ein größeres <InlineMath math="n" /> erweitert den Approximationsraum. Der kleinstmögliche <InlineMath math="L^2" />-Fehler kann deshalb **nicht wachsen**. In numerischen Rechnungen sind orthogonale Polynombasen häufig günstiger als einfache Potenzen, weil sie besser konditionierte Systeme ergeben.
+
+Folg dieser Kette, um zu sehen, warum ein höherer Grad den kleinsten Fehler nie vergrößert.
+
+<Mermaid
+  title="Ein größerer Raum erhöht den Fehler nie"
+  description="Jeder Grad fügt eine Basisfunktion hinzu."
+  chart={`
+    flowchart LR
+        A[P_0] --> B[P_1]
+        B --> C[P_2]
+        C --> D[...]
+        D --> E[Kleinster L2-Fehler wächst nicht]
+  `}
+/>
 
 ## Trigonometrische Approximationsräume
 

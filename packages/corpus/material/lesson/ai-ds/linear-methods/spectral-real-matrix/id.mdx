@@ -27,6 +27,20 @@ Buktinya menghubungkan keempat pernyataan secara langsung. Basis eigen ortonorma
 | Simetris real | <InlineMath math="\mathbb{R}" /> | Diagonalisasi ortogonal dengan nilai eigen real |
 | Ortogonal real | <InlineMath math="\mathbb{R}" /> | Umumnya berbentuk blok rotasi real. Bentuk diagonal real hanya jika semua nilai eigen real |
 
+Diagram ini memisahkan dua jenis blok yang muncul pada matriks real normal.
+
+<Mermaid
+  title="Matriks real normal dan blok-bloknya"
+  description="Nilai eigen real memberi blok 1 × 1, pasangan kompleks memberi blok 2 × 2."
+  chart={`
+    flowchart TD
+        A[Matriks real normal] --> B[Nilai eigen real]
+        A --> C[Pasangan kompleks a ± bi]
+        B --> D[Blok 1 × 1]
+        C --> E[Blok 2 × 2 rotasi dan skala]
+  `}
+/>
+
 ## Matriks Normal tanpa Basis Eigen Real
 
 Perhatikan rotasi sebesar sudut <InlineMath math="\alpha" /> yang bukan kelipatan bulat dari <InlineMath math="\pi" />:
@@ -82,3 +96,17 @@ Perkalian langsung juga menunjukkan bahwa <InlineMath math="A" /> tidak normal:
 </MathContainer>
 
 Contoh ini memisahkan kedua gagasan tersebut. Diagonalisasi biasa mengizinkan sembarang matriks vektor eigen <InlineMath math="S" /> yang invertibel, sedangkan <Highlight>diagonalisasi ortogonal memerlukan basis eigen ortonormal</Highlight> dan karena itu memerlukan matriks simetris real.
+
+Bandingkan dua contoh di diagram ini dengan syarat diagonalisasi ortogonal real.
+
+<Mermaid
+  title="Dua contoh yang tidak memenuhi teorema real"
+  description="Normal tanpa nilai eigen real, atau terdiagonalkan tanpa basis ortonormal."
+  chart={`
+    flowchart TD
+        A[Diagonalisasi ortogonal real] --> B{Simetris?}
+        B -->|Ya| C[Bisa]
+        B -->|Tidak, tapi normal| D[Rotasi: tanpa vektor eigen real]
+        B -->|Tidak dan tidak normal| E[Mungkin terdiagonalkan, tapi tanpa basis ortonormal]
+  `}
+/>

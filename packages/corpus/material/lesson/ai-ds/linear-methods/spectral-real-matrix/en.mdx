@@ -27,6 +27,20 @@ The proof links the four statements directly. An orthonormal eigenbasis gives th
 | Real symmetric | <InlineMath math="\mathbb{R}" /> | Orthogonal diagonalization with real eigenvalues |
 | Real orthogonal | <InlineMath math="\mathbb{R}" /> | In general, the spectral form contains real rotation blocks. A real diagonal form exists only when all eigenvalues are real |
 
+This diagram separates the two kinds of blocks that appear for a real normal matrix.
+
+<Mermaid
+  title="A real normal matrix and its blocks"
+  description="Real eigenvalues give 1 × 1 blocks, complex pairs give 2 × 2 blocks."
+  chart={`
+    flowchart TD
+        A[Real normal matrix] --> B[Real eigenvalues]
+        A --> C[Complex pairs a ± bi]
+        B --> D[1 × 1 blocks]
+        C --> E[2 × 2 rotation and scaling blocks]
+  `}
+/>
+
 ## A Normal Matrix without a Real Eigenbasis
 
 Consider the rotation through an angle <InlineMath math="\alpha" /> that is not an integer multiple of <InlineMath math="\pi" />:
@@ -82,3 +96,17 @@ Direct multiplication also shows that <InlineMath math="A" /> is not normal:
 </MathContainer>
 
 This example separates the two ideas: ordinary diagonalization permits any invertible eigenvector matrix <InlineMath math="S" />, while <Highlight>orthogonal diagonalization requires an orthonormal eigenbasis</Highlight> and therefore a real symmetric matrix.
+
+Compare the two examples in this diagram with the condition for real orthogonal diagonalization.
+
+<Mermaid
+  title="Two examples outside the real theorem"
+  description="Normal without real eigenvalues, or diagonalizable without an orthonormal basis."
+  chart={`
+    flowchart TD
+        A[Real orthogonal diagonalization] --> B{Symmetric?}
+        B -->|Yes| C[Possible]
+        B -->|No, but normal| D[Rotation: no real eigenvector]
+        B -->|Neither| E[Maybe diagonalizable, but no orthonormal basis]
+  `}
+/>

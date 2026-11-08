@@ -56,6 +56,19 @@ Evaluating the powers of each <InlineMath math="t_i" /> turns the system into:
 <BlockMath math="9a_2 + 3a_1 + a_0 = 15.8" />
 </MathContainer>
 
+This diagram shows how seven observations form a system with three parameters.
+
+<Mermaid
+  title="From seven observations to a 7 × 3 system"
+  description="Each observation becomes one row."
+  chart={`
+    flowchart LR
+        A["7 observations (t_i, y_i)"] --> B["Rows (1, t_i, t_i^2)"]
+        B --> C[7 × 3 matrix A]
+        C --> D[Ax = b]
+  `}
+/>
+
 ## Matrix Form
 
 The system of equations above can be written in **matrix form** <InlineMath math="A \cdot x = b" />.
@@ -81,6 +94,19 @@ Appending <InlineMath math="b" /> forms the augmented matrix <InlineMath math="(
 This nonzero minor shows that <InlineMath math="\operatorname{rank}(A\mid b)=4" />.
 
 Because <InlineMath math="\operatorname{rank}(A) \ne \operatorname{rank}(A\mid b)" />, the system **has no exact solution**. No single quadratic polynomial passes through all <InlineMath math="7" /> observations.
+
+This chain explains the route from an inconsistent system to the normal equations.
+
+<Mermaid
+  title="From inconsistent to least squares"
+  description="When no exact solution exists, make the residual small."
+  chart={`
+    flowchart LR
+        A[More equations than unknowns] --> B[Usually inconsistent]
+        B --> C["Minimize ‖Ax - b‖"]
+        C --> D[A^T A x = A^T b]
+  `}
+/>
 
 ## Solution with Least Squares
 

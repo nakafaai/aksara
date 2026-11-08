@@ -56,6 +56,19 @@ Setelah menghitung pangkat setiap <InlineMath math="t_i" />, sistemnya menjadi:
 <BlockMath math="9a_2 + 3a_1 + a_0 = 15{,}8" />
 </MathContainer>
 
+Diagram ini menunjukkan bagaimana tujuh pengamatan membentuk sistem dengan tiga parameter.
+
+<Mermaid
+  title="Dari tujuh pengamatan ke sistem 7 × 3"
+  description="Setiap pengamatan menjadi satu baris."
+  chart={`
+    flowchart LR
+        A["7 pengamatan (t_i, y_i)"] --> B["Baris (1, t_i, t_i^2)"]
+        B --> C[Matriks A berukuran 7 × 3]
+        C --> D[Ax = b]
+  `}
+/>
+
 ## Bentuk Matriks
 
 Sistem persamaan di atas bisa ditulis dalam **bentuk matriks** <InlineMath math="A \cdot x = b" />.
@@ -81,6 +94,19 @@ Setelah vektor <InlineMath math="b" /> ditambahkan, terbentuk matriks diperluas 
 Minor tak nol ini menunjukkan bahwa <InlineMath math="\operatorname{rank}(A\mid b)=4" />.
 
 Karena <InlineMath math="\operatorname{rank}(A) \ne \operatorname{rank}(A\mid b)" />, sistem ini **tidak memiliki solusi eksak**. Tidak ada satu polinom kuadrat yang melewati seluruh <InlineMath math="7" /> pengamatan.
+
+Rantai ini menjelaskan jalan dari sistem yang tidak konsisten ke persamaan normal.
+
+<Mermaid
+  title="Dari tak konsisten ke kuadrat terkecil"
+  description="Kalau tidak ada solusi tepat, kecilkan residualnya."
+  chart={`
+    flowchart LR
+        A[Lebih banyak persamaan daripada variabel] --> B[Umumnya tidak konsisten]
+        B --> C["Minimalkan ‖Ax - b‖"]
+        C --> D[A^T A x = A^T b]
+  `}
+/>
 
 ## Solusi dengan Kuadrat Terkecil
 

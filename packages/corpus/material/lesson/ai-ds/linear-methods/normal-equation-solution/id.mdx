@@ -78,6 +78,20 @@ Suku kedua tidak bergantung pada <InlineMath math="x" />. Karena itu, peminimum 
 
 Jalur ini menyelesaikan masalah kuadrat terkecil semula secara langsung. Kita tidak membentuk <InlineMath math="A^TA" /> lalu menyelesaikan persamaan normal.
 
+Diagram ini menunjukkan tiga langkah penyelesaian lewat faktorisasi <InlineMath math="\mathrm{QR}" />.
+
+<Mermaid
+  title="Menyelesaikan kuadrat terkecil lewat sistem segitiga"
+  description="Faktorisasi mengubah masalah menjadi sistem segitiga."
+  chart={`
+    flowchart LR
+        A[A = QR] --> B[Hitung Q^T b]
+        B --> C[Rx = Q^T b]
+        C --> D[Substitusi mundur]
+        D --> E[x]
+  `}
+/>
+
 ## Contoh Fitting Polinomial
 
 Faktor numerik dan koefisien berikut **dibulatkan menjadi lima angka di belakang koma**. Kesamaan matriks eksak berlaku sebelum pembulatan.
@@ -171,3 +185,17 @@ Dengan demikian,
 | <InlineMath math="\mathrm{SVD}" /> | lebih mahal daripada <InlineMath math="\mathrm{QR}" /> | memperlihatkan rank dan memberikan **solusi bernorma minimum** | biaya tertinggi di antara ketiganya |
 
 Gunakan <InlineMath math="\mathrm{QR}" /> sebagai pilihan umum untuk masalah padat ber-rank penuh. Gunakan <InlineMath math="\mathrm{SVD}" /> ketika matriks kekurangan rank, kondisinya sangat buruk, atau solusi bernorma minimum dibutuhkan. Bentuk matriks normal hanya jika peningkatan kecepatannya sepadan dengan penurunan stabilitas numerik. Jangan menghitung invers secara eksplisit dalam kode produksi.
+
+Mulai dari pertanyaan di diagram ini sebelum memilih metode.
+
+<Mermaid
+  title="Memilih metode numerik"
+  description="Rank dan kondisi menentukan metodenya."
+  chart={`
+    flowchart TD
+        A{Rank penuh?} -->|Tidak| B[SVD dan pseudoinvers]
+        A -->|Ya| C{Kondisi baik?}
+        C -->|Ya| D[Persamaan normal dengan Cholesky]
+        C -->|Tidak yakin| E[Faktorisasi QR]
+  `}
+/>

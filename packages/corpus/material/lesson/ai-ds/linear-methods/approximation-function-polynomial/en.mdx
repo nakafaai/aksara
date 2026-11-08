@@ -44,6 +44,20 @@ If <InlineMath math="\{\phi_0,\ldots,\phi_n\}" /> is a basis of <InlineMath math
 
 <BlockMath math="\begin{aligned} &amp;\sum_{j=0}^n\langle\phi_j,\phi_i\rangle c_j=\langle f,\phi_i\rangle, \\ &amp;i=0,\ldots,n \end{aligned}" />
 
+This diagram sums up the steps to the best approximation.
+
+<Mermaid
+  title="Best approximation as a projection"
+  description="A space, an inner product, then a projection."
+  chart={`
+    flowchart LR
+        A[Function f] --> B[Choose a space S and an inner product]
+        B --> C[Project f onto S]
+        C --> D[Best approximation p]
+        D --> E[Error f - p is orthogonal to S]
+  `}
+/>
+
 ## Approximating a Quadratic by a Line
 
 Approximate <InlineMath math="f(x)=x^2" /> on <InlineMath math="[-1,1]" /> by a function in <InlineMath math="S=\operatorname{span}\{1,x\}" />. Write <InlineMath math="g(x)=c_0+c_1x" />. Orthogonality to the two basis functions gives
@@ -101,6 +115,20 @@ For algebraic polynomials of degree at most <InlineMath math="n" />, use
 <BlockMath math="P_n([a,b])=\operatorname{span}\{1,x,x^2,\ldots,x^n\}" />
 
 Increasing <InlineMath math="n" /> enlarges the approximation space, so the smallest possible <InlineMath math="L^2" /> error **cannot increase**. In computation, orthogonal polynomial bases are often preferable to raw powers because they produce better-conditioned systems.
+
+Follow this chain to see why raising the degree never increases the smallest error.
+
+<Mermaid
+  title="A larger space never raises the error"
+  description="Each degree adds one basis function."
+  chart={`
+    flowchart LR
+        A[P_0] --> B[P_1]
+        B --> C[P_2]
+        C --> D[...]
+        D --> E[Smallest L2 error does not grow]
+  `}
+/>
 
 ## Trigonometric Approximation Spaces
 

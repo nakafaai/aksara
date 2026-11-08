@@ -13,6 +13,19 @@ Diagonalisasi tidak mengubah <Highlight>transformasi linear</Highlight>nya. Basi
 
 Untuk mendiagonalisasi matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" />, hitung nilai eigen dan ruang eigennya. Jika tersedia <InlineMath math="n" /> vektor eigen yang bebas linear, susun vektor tersebut menjadi matriks perubahan basis.
 
+Diagram ini menunjukkan jalan memutar yang sama dengan mengalikan langsung dengan A.
+
+<Mermaid
+  title="Menghitung Ax lewat basis eigen"
+  description="Pindah koordinat, skalakan, lalu kembali."
+  chart={`
+    flowchart LR
+        A[x] -->|S^-1| B[Koordinat eigen]
+        B -->|D| C[Setiap koordinat dikali λ_i]
+        C -->|S| D[Ax]
+  `}
+/>
+
 ## Langkah Diagonalisasi
 
 Prosedur diagonalisasi terdiri dari tiga langkah berurutan:
@@ -39,6 +52,22 @@ Prosedur diagonalisasi terdiri dari tiga langkah berurutan:
    Kondisi ini memastikan kita memiliki <Highlight>cukup vektor eigen independen untuk membentuk basis lengkap</Highlight>. Jika terpenuhi, vektor basis dari semua ruang eigen membentuk kolom matriks transformasi <InlineMath math="S" />, menghasilkan:
 
    <BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
+
+Ikuti langkah-langkah ini secara berurutan setiap kali kamu mendiagonalkan matriks.
+
+<Mermaid
+  title="Langkah diagonalisasi"
+  description="Dari polinom karakteristik sampai cek AS = SD."
+  chart={`
+    flowchart TD
+        A[Hitung χ_A] --> B[Nilai eigen]
+        B --> C[Basis setiap ruang eigen]
+        C --> D{Total n vektor?}
+        D -->|Tidak| X[Tidak bisa didiagonalkan]
+        D -->|Ya| E[Susun S dan D]
+        E --> F[Cek AS = SD]
+  `}
+/>
 
 ## Contoh Aplikasi Prosedur
 

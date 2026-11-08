@@ -45,6 +45,20 @@ Because this equality holds for every vector <InlineMath math="x" />, the vector
 
 Rearranging this equation gives <InlineMath math="A^TA\hat{x}=A^Tb" />, the normal equation.
 
+This diagram sums up how b, its projection, and the residual relate.
+
+<Mermaid
+  title="Projecting b onto the column space"
+  description="Ax* is the closest point, the residual is orthogonal."
+  chart={`
+    flowchart LR
+        A[b] --> B[Projection onto the column space of A]
+        B --> C[Ax* is the closest point]
+        A --> D[r = b - Ax*]
+        D --> E[r is orthogonal to every column of A]
+  `}
+/>
+
 ## Proof Using Pythagorean Theorem
 
 We can also verify this result in a different way. Let <InlineMath math="\hat{x}" /> be the solution of the normal equation system and <InlineMath math="x" /> be any vector in <InlineMath math="\mathbb{R}^n" />.
@@ -82,6 +96,20 @@ If <InlineMath math="A" /> is rank deficient, the normal equation still has solu
 <BlockMath math="\hat{x}+\ker(A)" />
 
 All these parameter vectors produce the same fitted vector <InlineMath math="A\hat{x}" />.
+
+Use this diagram to decide whether the least-squares solution is unique.
+
+<Mermaid
+  title="Existence and uniqueness"
+  description="A solution always exists, it is unique only with full rank."
+  chart={`
+    flowchart TD
+        A[Normal equations] --> B[Always have a solution]
+        B --> C{rank A = n?}
+        C -->|Yes| D[Unique solution]
+        C -->|No| E[Infinitely many solutions]
+  `}
+/>
 
 ## Null Space and definiteness proof
 

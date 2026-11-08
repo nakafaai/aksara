@@ -93,6 +93,19 @@ The second equation is called the **[normal equation](/en/subjects/ai-ds/linear-
 
 The diagram labels the target vector <InlineMath math="b" />, the projected point <InlineMath math="A\hat{x}" />, and the residual <InlineMath math="A\hat{x}-b" /> between them. The blue vector <InlineMath math="A\hat{x}" /> lies in the column space. The orthogonality condition above proves that it is the nearest point in that space to <InlineMath math="b" />.
 
+This chain turns the geometric condition into a system you can solve.
+
+<Mermaid
+  title="From the geometric condition to the normal equations"
+  description="The residual must be orthogonal to the column space."
+  chart={`
+    flowchart LR
+        A[Residual b - Ax] --> B[Orthogonal to the column space of A]
+        B --> C["A^T(b - Ax) = 0"]
+        C --> D[A^T A x = A^T b]
+  `}
+/>
+
 ## Fitting One Constant to Three Observations
 
 Suppose one constant <InlineMath math="x" /> must fit the three observations <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="6" />. Use the following matrix and vector.
@@ -138,6 +151,22 @@ For the same observations 1, 2, and 6, the norm changes the fitted constant. Lea
 | <InlineMath math="\ell_2^2" /> | <InlineMath math="(1+2+6)/3=3" /> | <InlineMath math="2^2+1^2+(-3)^2=14" /> |
 | <InlineMath math="\ell_1" /> | <InlineMath math="2" /> | <InlineMath math="1+0+4=5" /> |
 | <InlineMath math="\ell_\infty" /> | <InlineMath math="(1+6)/2=7/2" /> | <InlineMath math="\max(5/2,3/2,5/2)=5/2" /> |
+
+This diagram pairs each residual norm with the best constant it produces.
+
+<Mermaid
+  title="The residual norm decides the best constant"
+  description="For one constant, each norm gives a different center of the data."
+  chart={`
+    flowchart TD
+        A[Fit one constant c] --> B[2-norm]
+        A --> C[1-norm]
+        A --> D[Maximum norm]
+        B --> E[c = mean]
+        C --> F[c = median]
+        D --> G[c = midpoint of smallest and largest value]
+  `}
+/>
 
 ## Choosing a Stable Numerical Method
 

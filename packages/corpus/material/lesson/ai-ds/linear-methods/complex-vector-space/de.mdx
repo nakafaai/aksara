@@ -45,6 +45,21 @@ Für <InlineMath math="z=3+4i" /> ändert die Konjugation das Vorzeichen der ima
   ]}
 />
 
+Dieses Diagramm zeigt alles, was du an einer komplexen Zahl ablesen kannst.
+
+<Mermaid
+  title="Die Teile einer komplexen Zahl"
+  description="Von z = a + bi zu Betrag und Konjugierter."
+  chart={`
+    flowchart LR
+        A[z = a + bi] --> B[Realteil a]
+        A --> C[Imaginärteil b]
+        B --> D[Betrag Wurzel aus a^2 + b^2]
+        C --> D
+        A --> E[Konjugierte a - bi]
+  `}
+/>
+
 ## Fundamentalsatz der Algebra
 
 Der Fundamentalsatz der Algebra besagt, dass jedes nichtkonstante Polynom mit komplexen Koeffizienten eine komplexe Nullstelle besitzt.
@@ -123,3 +138,17 @@ Die Menge <InlineMath math="V=\mathbb C^2" /> ist mit komponentenweisen Operatio
 Rein algebraische Ergebnisse aus den Vektorraumaxiomen gelten sowohl über <InlineMath math="\mathbb R" /> als auch über <InlineMath math="\mathbb C" />. Ergebnisse, die eine Ordnung oder ein rein reelles Skalarprodukt verwenden, benötigen angepasste Voraussetzungen. Komplexe Skalarprodukte verwenden beispielsweise die Konjugation, und die komplexen Zahlen besitzen keine mit ihrer Arithmetik verträgliche Körperordnung.
 
 Der **Skalarkörper** entscheidet außerdem, welche Abbildungen linear sind. Die komplexe Konjugation ist über <InlineMath math="\mathbb R" /> linear, über <InlineMath math="\mathbb C" /> jedoch nicht, denn <InlineMath math="\overline{iz}=-i\overline z" /> statt <InlineMath math="i\overline z" />. Vor Aussagen über Basis, Dimension oder lineare Abbildungen muss der Skalarkörper deshalb immer feststehen.
+
+Vergleich die zwei Blicke auf denselben Raum in diesem Diagramm.
+
+<Mermaid
+  title="C^n als komplexer und als reeller Raum"
+  description="Die erlaubten Skalare bestimmen die Dimension."
+  chart={`
+    flowchart TD
+        A[C^n] --> B[Komplexe Skalare]
+        A --> C[Reelle Skalare]
+        B --> D[Dimension n]
+        C --> E[Dimension 2n]
+  `}
+/>

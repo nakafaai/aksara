@@ -34,6 +34,20 @@ The teal unit cube becomes the orange parallelepiped under the following matrix.
 
 The base length becomes 2, while both perpendicular heights remain 1. The volume therefore changes from 1 to 2. The sloping edge length is not a perpendicular height.
 
+This diagram shows what the size, the sign, and a zero value of a determinant mean.
+
+<Mermaid
+  title="What det A tells you"
+  description="Size, sign, and zero each carry a meaning."
+  chart={`
+    flowchart TD
+        A[det A] --> B["|det A|: volume scale factor"]
+        A --> C[Sign: orientation kept or flipped]
+        A --> D[det A = 0: a dimension collapses]
+        D --> E[A is not invertible]
+  `}
+/>
+
 
 ## Three Determining Properties of Determinant
 
@@ -132,6 +146,19 @@ If Gaussian elimination uses only row additions and <InlineMath math="p" /> row 
 <BlockMath math="\det R = (-1)^p \cdot \det A" />
 
 If a row is also scaled, that scale factor must be tracked separately. With the allowed operations stated explicitly, triangularization provides a practical determinant algorithm.
+
+Use the three rules in this diagram before you compute the determinant of a product.
+
+<Mermaid
+  title="Product rules for determinants"
+  description="Three rules that save a lot of work."
+  chart={`
+    flowchart TD
+        A[Rules] --> B["det(AB) = det A · det B"]
+        A --> C["det(A^-1) = 1 / det A"]
+        A --> D["det(A^T) = det A"]
+  `}
+/>
 
 ## Common Mistakes About Determinant
 

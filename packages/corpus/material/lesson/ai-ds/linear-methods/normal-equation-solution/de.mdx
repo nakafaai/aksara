@@ -78,6 +78,20 @@ Der zweite Term hängt nicht von <InlineMath math="x" /> ab. Daher erhält man d
 
 Dieser Weg löst das ursprüngliche Ausgleichsproblem direkt. Man bildet nicht zuerst <InlineMath math="A^TA" />, um anschließend die Normalgleichung zu lösen.
 
+Dieses Diagramm zeigt die drei Schritte der Lösung über eine <InlineMath math="\mathrm{QR}" />-Zerlegung.
+
+<Mermaid
+  title="Kleinste Quadrate über ein Dreieckssystem lösen"
+  description="Die Zerlegung macht aus dem Problem ein Dreieckssystem."
+  chart={`
+    flowchart LR
+        A[A = QR] --> B[Q^T b berechnen]
+        B --> C[Rx = Q^T b]
+        C --> D[Rückwärtseinsetzen]
+        D --> E[x]
+  `}
+/>
+
 ## Beispiel einer Polynomanpassung
 
 Die folgenden numerischen Faktoren und Koeffizienten sind **auf fünf Nachkommastellen gerundet**. Die exakten Matrixgleichungen gelten vor dem Runden.
@@ -171,3 +185,17 @@ Damit gilt
 | <InlineMath math="\mathrm{SVD}" /> | aufwendiger als <InlineMath math="\mathrm{QR}" /> | gibt den Rang an und liefert die **Lösung kleinster Norm** | höchste Kosten der drei Verfahren |
 
 Verwende <InlineMath math="\mathrm{QR}" /> als übliche Wahl für dichte Probleme mit vollem Rang. Verwende die <InlineMath math="\mathrm{SVD}" />, wenn die Matrix rangdefizient oder stark fehlkonditioniert ist oder eine Lösung kleinster Norm benötigt wird. Bilde die Normalmatrix nur, wenn der Geschwindigkeitsgewinn den Verlust an numerischer Stabilität rechtfertigt. Berechne in Produktionscode keine Inverse explizit.
+
+Fang mit der Frage in diesem Diagramm an, bevor du eine Methode wählst.
+
+<Mermaid
+  title="Eine numerische Methode wählen"
+  description="Rang und Kondition bestimmen die Methode."
+  chart={`
+    flowchart TD
+        A{Voller Rang?} -->|Nein| B[SVD und Pseudoinverse]
+        A -->|Ja| C{Gut konditioniert?}
+        C -->|Ja| D[Normalgleichungen mit Cholesky]
+        C -->|Unsicher| E[QR-Zerlegung]
+  `}
+/>

@@ -55,6 +55,19 @@ For a real matrix <InlineMath math="Q\in\mathbb{R}^{m\times n}" /> with orthonor
 
 The matrix <InlineMath math="P" /> projects vectors in <InlineMath math="\mathbb{R}^m" /> onto <InlineMath math="\operatorname{col}(Q)" />.
 
+This diagram sums up the projection formula when the basis is orthonormal.
+
+<Mermaid
+  title="Projection with an orthonormal basis"
+  description="Each basis vector contributes one term."
+  chart={`
+    flowchart LR
+        A[x] --> B["Coefficients ⟨u_i, x⟩"]
+        B --> C["Sum of ⟨u_i, x⟩ u_i"]
+        C --> D[Px]
+  `}
+/>
+
 ## Projecting a Vector onto a One Dimensional Subspace
 
 The two vectors are
@@ -162,3 +175,16 @@ The linear term vanishes because <InlineMath math="x^3" /> is **odd on the symme
 | <InlineMath math="\ker(P)=S^\perp" /> | perpendicular components are removed |
 
 Idempotence alone is not enough. An oblique projector also satisfies <InlineMath math="P^2=P" /> and may be asymmetric. <Highlight>Symmetry distinguishes the Euclidean orthogonal projector</Highlight>.
+
+Check the three properties in this diagram to confirm that a matrix is an orthogonal projection.
+
+<Mermaid
+  title="Properties of an orthogonal projection"
+  description="Three properties you can check on the matrix P."
+  chart={`
+    flowchart TD
+        A[Orthogonal projection P] --> B["P^2 = P"]
+        A --> C["P^T = P"]
+        A --> D[x - Px is orthogonal to the range]
+  `}
+/>

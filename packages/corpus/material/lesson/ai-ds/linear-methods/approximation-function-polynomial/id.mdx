@@ -44,6 +44,20 @@ Jika <InlineMath math="\{\phi_0,\ldots,\phi_n\}" /> adalah basis <InlineMath mat
 
 <BlockMath math="\begin{aligned} &amp;\sum_{j=0}^n\langle\phi_j,\phi_i\rangle c_j=\langle f,\phi_i\rangle, \\ &amp;i=0,\ldots,n \end{aligned}" />
 
+Diagram ini meringkas langkah mencari aproksimasi terbaik.
+
+<Mermaid
+  title="Aproksimasi terbaik sebagai proyeksi"
+  description="Ruang, produk dalam, lalu proyeksi."
+  chart={`
+    flowchart LR
+        A[Fungsi f] --> B[Pilih ruang S dan produk dalam]
+        B --> C[Proyeksikan f ke S]
+        C --> D[Aproksimasi terbaik p]
+        D --> E[Galat f - p tegak lurus S]
+  `}
+/>
+
 ## Mengaproksimasi Fungsi Kuadrat dengan Garis
 
 Aproksimasikan <InlineMath math="f(x)=x^2" /> pada <InlineMath math="[-1,1]" /> dengan fungsi di dalam <InlineMath math="S=\operatorname{span}\{1,x\}" />. Tulis <InlineMath math="g(x)=c_0+c_1x" />. Ortogonalitas terhadap kedua fungsi basis menghasilkan
@@ -101,6 +115,20 @@ Untuk polinom aljabar berderajat paling tinggi <InlineMath math="n" />, gunakan
 <BlockMath math="P_n([a,b])=\operatorname{span}\{1,x,x^2,\ldots,x^n\}" />
 
 Peningkatan <InlineMath math="n" /> memperbesar ruang aproksimasi, sehingga galat <InlineMath math="L^2" /> terkecil **tidak mungkin bertambah**. Dalam komputasi, basis polinom ortogonal sering lebih baik daripada pangkat biasa karena menghasilkan sistem dengan kondisi numerik yang lebih baik.
+
+Ikuti rantai ini untuk melihat mengapa menaikkan derajat tidak pernah memperbesar galat terkecil.
+
+<Mermaid
+  title="Ruang lebih besar, galat tidak naik"
+  description="Setiap derajat menambah satu fungsi basis."
+  chart={`
+    flowchart LR
+        A[P_0] --> B[P_1]
+        B --> C[P_2]
+        C --> D[...]
+        D --> E[Galat L2 terkecil tidak bertambah]
+  `}
+/>
 
 ## Ruang Aproksimasi Trigonometri
 
