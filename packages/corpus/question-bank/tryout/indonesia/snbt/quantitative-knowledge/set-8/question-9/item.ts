@@ -8,23 +8,22 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label:
-            "Harga tas setelah diskon adalah $$\\text{Rp}150{.}000{,}00$$.",
+          label: "Waktu tempuh seluruh perjalanan adalah $$3{,}5$$ jam.",
         },
         {
           column: 2,
           label:
-            "Besar potongan harga total terhadap harga awal adalah $$15\\%$$.",
+            "Kecepatan rata-rata mobil selama seluruh perjalanan adalah $$50\\text{ km/jam}$$.",
         },
         {
           column: 1,
           label:
-            "Harga yang dibayar pembeli adalah $$\\text{Rp}165{.}000{,}00$$.",
+            "Jika sisa perjalanan juga ditempuh dengan kecepatan $$60\\text{ km/jam}$$, mobil tiba 30 menit lebih cepat.",
         },
         {
           column: 2,
           label:
-            "Jika pajak $$10\\%$$ dikenakan lebih dulu, lalu diskon $$25\\%$$ diberikan pada harga setelah pajak, harga yang dibayar menjadi lebih mahal.",
+            "Mobil membutuhkan 2 jam 30 menit untuk menempuh $$120\\text{ km}$$ pertama.",
         },
       ],
     },

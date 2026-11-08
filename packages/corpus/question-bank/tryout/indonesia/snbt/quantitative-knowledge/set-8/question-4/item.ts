@@ -6,13 +6,19 @@ const item: ItemSource = {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
-        { column: 1, label: "$$f(4)=9$$" },
-        { column: 2, label: "$$f(0)=\\dfrac13$$" },
-        { column: 2, label: "$$f^{-1}(5)=2$$" },
         {
           column: 1,
-          label: "Tidak ada bilangan real $$x$$ yang memenuhi $$f(x)=2$$.",
+          label: "Grafik $$f$$ memotong sumbu $$x$$ di titik $$(3,0)$$.",
         },
+        {
+          column: 2,
+          label: "Grafik $$f$$ memotong sumbu $$y$$ di titik $$(0,-3)$$.",
+        },
+        {
+          column: 2,
+          label: "Terdapat bilangan real $$x$$ yang memenuhi $$f(x)=-4$$.",
+        },
+        { column: 1, label: "$$f(5)=12$$" },
       ],
     },
   },
