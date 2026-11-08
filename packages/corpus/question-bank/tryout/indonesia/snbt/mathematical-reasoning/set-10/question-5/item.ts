@@ -6,7 +6,7 @@ const item: ItemSource = {
     id: {
       kind: "numericEntry",
       unit: "kali",
-      value: "35",
+      value: "26",
     },
   },
 };

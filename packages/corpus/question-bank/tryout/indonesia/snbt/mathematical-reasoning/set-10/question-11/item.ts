@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Jika hanya 3 dari 5 siswa itu yang berfoto berjajar, banyak susunannya adalah 10.",
+            "Jika hanya 3 dari 5 siswa itu yang berfoto berjajar dan urutan dari kiri ke kanan diperhatikan, banyak susunannya adalah 10.",
         },
         {
           column: 2,

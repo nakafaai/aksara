@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Waktu mengisi kolam kosong dengan kedua pompa bersamaan sama dengan setengah rata-rata waktu kedua pompa jika bekerja sendiri.",
+            "Dengan saluran pembuangan tertutup, waktu mengisi kolam kosong dengan kedua pompa bersamaan sama dengan setengah rata-rata waktu kedua pompa jika bekerja sendiri.",
         },
       ],
     },

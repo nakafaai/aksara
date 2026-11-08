@@ -10,7 +10,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Dari pukul 06.00 sampai sebelum pukul 07.00, kereta jurusan A berangkat 5 kali.",
+            "Dari pukul 06.00 sampai sebelum pukul 07.00, kereta jurusan A berangkat 4 kali.",
         },
         {
           column: 2,
@@ -22,7 +22,7 @@ const item: ItemSource = {
         },
         {
           column: 1,
-          label: "Ada kereta jurusan A yang berangkat pukul 22.00.",
+          label: "Ada kereta jurusan A yang berangkat pukul 21.00.",
         },
       ],
     },

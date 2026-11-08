@@ -6,11 +6,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: true, label: "6 kali" },
-        { correct: false, label: "7 kali" },
-        { correct: false, label: "12 kali" },
-        { correct: false, label: "17 kali" },
-        { correct: false, label: "18 kali" },
+        { correct: true, label: "5 kali" },
+        { correct: false, label: "6 kali" },
+        { correct: false, label: "9 kali" },
+        { correct: false, label: "13 kali" },
+        { correct: false, label: "22 kali" },
       ],
     },
   },

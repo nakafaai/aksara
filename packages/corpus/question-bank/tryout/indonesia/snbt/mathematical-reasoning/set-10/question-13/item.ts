@@ -5,8 +5,8 @@ const item: ItemSource = {
   versions: {
     id: {
       kind: "numericEntry",
-      unit: "%",
-      value: "15",
+      unit: "rupiah",
+      value: "120",
     },
   },
 };
