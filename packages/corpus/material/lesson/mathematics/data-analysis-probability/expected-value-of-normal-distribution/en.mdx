@@ -1,61 +1,118 @@
 export const metadata = {
-   title: "Expected Value of Normal Distribution",
-  description: "Interpret the mean of a normal distribution as its expected value in statistics problems.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
-   subject: "Data Analysis and Probability",
+  title: "Expected Value of a Normal Distribution",
+  description: "The expected value of a normal distribution is its mean, μ. Prove it with symmetry and an integral, then use it for scaling, sums, and word problems.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Data Analysis and Probability",
 };
 
-## The Normal Mean Lies at the Center of Symmetry
+## The Expected Value Sits at the Center of the Curve
 
-The **expected value** is the probability-weighted average of a random variable, or the long-run average approached across many independent observations. It is not generally the same as the most frequent value. For a normal distribution, however, the mean, median, mode, and expected value <Highlight>all meet at the same center</Highlight>.
-
-This symmetry gives the normal distribution a simple expected-value rule.
-
-> If <InlineMath math="X \sim N(\mu, \sigma^2)" /> with <InlineMath math="\sigma>0" />, its expected value equals the mean parameter <InlineMath math="\mu" />.
-
-Mathematically, we can write:
+If <InlineMath math="X" /> is normally distributed with mean <InlineMath math="\mu" /> and standard deviation <InlineMath math="\sigma > 0" />, written <InlineMath math="X \sim N(\mu, \sigma^2)" />, its expected value equals the parameter <InlineMath math="\mu" />:
 
 <BlockMath math="E(X) = \mu" />
 
-In this notation, <InlineMath math="X" /> is a normally distributed random variable and <InlineMath math="\mu" /> is the distribution's mean parameter.
+The expected value is the **probability-weighted average** of all values of <InlineMath math="X" />. If you take a very large number of observations from the distribution, their average gets closer and closer to <InlineMath math="\mu" />. The standard deviation <InlineMath math="\sigma" /> only sets the width of the curve, so **the width of the curve does not change the expected value**.
 
-The following calculation shows why.
+Exam scores distributed as <InlineMath math="N(75, 10^2)" /> have an expected value of <InlineMath math="75" />. On a normal curve, the mean, median, mode, and expected value all meet at the axis of symmetry. The interactive graph marks that center together with two pairs of equally tall values on its left and right.
 
-## Deriving the Expected Value from the Integral
+<LineEquation
+  title={<>Pairs of equally tall values around <InlineMath math="\mu = 2" /></>}
+  description={<>The density curve of <InlineMath math="N(2, 1)" />. The vertical segments at <InlineMath math="x = 1" /> and <InlineMath math="x = 3" /> are equally tall, and so are the segments at <InlineMath math="x = 0.5" /> and <InlineMath math="x = 3.5" />, because they lie the same distance from the center.</>}
+  showZAxis={false}
+  cameraPosition={[2, 0.2, 5.5]}
+  cameraTarget={[2, 0.2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 701 }, (_, index) => {
+        const x = -1.5 + index / 100;
+        return { x, y: Math.exp(-0.5 * (x - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#9333ea",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 2, y: 0, z: 0 },
+        { x: 2, y: 1 / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\mu = 2" />, at: 1, offset: [0, 0.12, 0] }],
+    },
+    {
+      points: [
+        { x: 1, y: 0, z: 0 },
+        { x: 1, y: Math.exp(-0.5 * (1 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="1" />, at: 0, offset: [0, -0.15, 0] }],
+    },
+    {
+      points: [
+        { x: 3, y: 0, z: 0 },
+        { x: 3, y: Math.exp(-0.5 * (3 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="3" />, at: 0, offset: [0, -0.15, 0] }],
+    },
+    {
+      points: [
+        { x: 0.5, y: 0, z: 0 },
+        { x: 0.5, y: Math.exp(-0.5 * (0.5 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#2563eb",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="0.5" />, at: 0, offset: [0, -0.15, 0] }],
+    },
+    {
+      points: [
+        { x: 3.5, y: 0, z: 0 },
+        { x: 3.5, y: Math.exp(-0.5 * (3.5 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#2563eb",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="3.5" />, at: 0, offset: [0, -0.15, 0] }],
+    },
+  ]}
+/>
 
-The expected value of a continuous random variable is defined as:
+## Pairs of Values That Balance Each Other
 
-<BlockMath math="E(X) = \int_{-\infty}^{\infty} x \cdot f(x) \, dx" />
+Why is the expected value exactly <InlineMath math="\mu" />? The normal curve is symmetric about the line <InlineMath math="x = \mu" />. Every value <InlineMath math="\mu + d" /> has a partner <InlineMath math="\mu - d" /> with the same density, because the density formula contains only the square <InlineMath math="(x - \mu)^2" />, and <InlineMath math="(+d)^2 = (-d)^2" />.
 
-For a normal distribution with <InlineMath math="\sigma>0" />, the probability density function is:
+The deviations of these two values from the center are <InlineMath math="+d" /> and <InlineMath math="-d" />. With equal weights, their contributions cancel. Every value can be paired this way, so **the average deviation from the center is zero**:
 
-<BlockMath math="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
+<BlockMath math="E(X - \mu) = 0 \quad\Longrightarrow\quad E(X) = \mu" />
 
-Substitute this function into the expected value formula:
+On the curve of <InlineMath math="N(2, 1)" />, the segments at <InlineMath math="x = 1" /> and <InlineMath math="x = 3" /> both reach <InlineMath math="\frac{1}{\sqrt{2\pi}}e^{-1/2} \approx 0.242" />. The segments at <InlineMath math="x = 0.5" /> and <InlineMath math="x = 3.5" /> both reach about <InlineMath math="0.130" />. This symmetry argument still needs one condition, namely that the integral for the expected value exists, and the proof with an integral confirms that it does.
 
-<BlockMath math="E(X) = \int_{-\infty}^{\infty} x \cdot \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} \, dx" />
+## Proving the Formula with an Integral
 
-Use the substitution <InlineMath math="t = \frac{x-\mu}{\sigma}" />. Then <InlineMath math="x = \sigma t + \mu" /> and <InlineMath math="dx = \sigma \, dt" />.
-
-Write the original density after substituting <InlineMath math="x=\sigma t+\mu" /> as <InlineMath math="h(t)" />, and keep <InlineMath math="dx=\sigma\,dt" /> separate:
+For a continuous random variable, the expected value is the integral of <InlineMath math="x" /> times its density over the whole number line. Areas under a curve like this come from a [definite integral](/en/subjects/mathematics/integral/definite-integral), here with infinite bounds. For a discrete variable, such as the number of successes in a [binomial distribution](/en/subjects/mathematics/data-analysis-probability/expected-value-of-binomial-distribution), the integral becomes a sum.
 
 <MathContainer>
-  <BlockMath math="h(t)=\frac1{\sigma\sqrt{2\pi}}e^{-\frac12t^2}" />
+  <BlockMath math="E(X) = \int_{-\infty}^{\infty} x f(x)\,dx" />
+  <BlockMath math="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
+</MathContainer>
 
-  <BlockMath math="E(X)=\int_{-\infty}^{\infty}(\sigma t+\mu)h(t)\sigma\,dt" />
-  <BlockMath math="E(X) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma t + \mu) e^{-\frac{1}{2}t^2} \, dt" />
+The substitution <InlineMath math="t = \frac{x-\mu}{\sigma}" /> **moves the center to zero** and measures distance in standard deviations. It gives <InlineMath math="x = \sigma t + \mu" /> and <InlineMath math="dx = \sigma\,dt" />, so the factor <InlineMath math="\sigma" /> in the denominator cancels:
+
+<MathContainer>
+  <BlockMath math="E(X) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma t + \mu)\, e^{-\frac{1}{2}t^2}\,dt" />
   <BlockMath math="\begin{aligned} E(X) &amp;= \frac{\sigma}{\sqrt{2\pi}} \int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt \\ &amp;\quad{}+ \frac{\mu}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt \end{aligned}" />
 </MathContainer>
 
-Evaluate the two integrals separately:
-
-- **First integral** <InlineMath math="\int_{-\infty}^{\infty} t e^{-\frac{1}{2}t^2} \, dt = 0" /> because <InlineMath math="g(t)=t e^{-\frac{1}{2}t^2}" /> is odd. Thus <InlineMath math="g(-t) = -g(t)" />, and the signed areas over the symmetric interval <InlineMath math="(-\infty, \infty)" /> cancel.
-
-- **Second integral** <InlineMath math="\int_{-\infty}^{\infty} e^{-\frac{1}{2}t^2} \, dt = \sqrt{2\pi}" /> is the Gaussian integral. After multiplication by the normalizing factor <InlineMath math="1/\sqrt{2\pi}" />, it gives total probability <InlineMath math="1" /> for the standard normal density.
-
-Both halves of the first integral **converge separately**. The antiderivative <InlineMath math="-e^{-t^2/2}" /> gives each contribution, so the zero is not obtained by subtracting two infinite values.
+The first integral is zero because <InlineMath math="g(t) = t e^{-t^2/2}" /> is an **odd function**, meaning <InlineMath math="g(-t) = -g(t)" />. The signed areas to the left and right of the vertical axis are equal in size and opposite in sign, just as for the [integral of an odd function over a symmetric interval](/en/subjects/mathematics/integral/properties-of-definite-integral). Both halves are finite, so this zero does not come from subtracting two infinite values:
 
 <MathContainer>
   <BlockMath math="\int_0^\infty te^{-t^2/2}\,dt=\left[-e^{-t^2/2}\right]_0^\infty=0-(-1)=1" />
@@ -64,13 +121,13 @@ Both halves of the first integral **converge separately**. The antiderivative <I
 
 <LineEquation
   title="Opposite Contributions Cancel"
-  description={<>The graph of <InlineMath math="g(t) = t e^{-t^2/2}" /> from -3 to 3. The heights at t and -t have equal magnitude and opposite signs. The tails beyond the view are symmetric too.</>}
+  description={<>The graph of <InlineMath math="g(t) = t e^{-t^2/2}" /> for <InlineMath math="-3 \le t \le 3" />. At <InlineMath math="t" /> and <InlineMath math="-t" /> the heights have equal size and opposite signs, and the tails beyond the view are symmetric too.</>}
   cameraPosition={[0, 0, 8]}
   showZAxis={false}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, index) => {
-        const t = (index - 30) / 10;
+      points: Array.from({ length: 601 }, (_, index) => {
+        const t = (index - 300) / 100;
         return { x: t, y: t * Math.exp(-t * t / 2), z: 0 };
       }),
       color: "#0d9488",
@@ -80,90 +137,103 @@ Both halves of the first integral **converge separately**. The antiderivative <I
   ]}
 />
 
-The calculation gives:
+The second integral is the Gaussian integral, with value <InlineMath math="\sqrt{2\pi}" />. The result is:
+
+<BlockMath math="E(X) = \frac{\sigma}{\sqrt{2\pi}} \cdot 0 + \frac{\mu}{\sqrt{2\pi}} \cdot \sqrt{2\pi} = \mu" />
+
+Check against the symmetry argument: both give <InlineMath math="\mu" />, and <InlineMath math="\sigma" /> drops out of the result, exactly like the equally tall pairs around the center.
+
+## Expected Value of the Standard Normal Distribution
+
+The standard normal distribution is the normal distribution with <InlineMath math="\mu = 0" /> and <InlineMath math="\sigma = 1" />, written <InlineMath math="Z \sim N(0, 1)" />. The rule <InlineMath math="E(X) = \mu" /> gives the **standard normal expected value <InlineMath math="E(Z) = 0" />** at once.
+
+Every normal variable can be written from the standard normal as <InlineMath math="X = \mu + \sigma Z" />. Linearity of expectation, <InlineMath math="E(aZ + b) = aE(Z) + b" />, gives a second route without an integral:
+
+<BlockMath math="E(X) = E(\mu + \sigma Z) = \mu + \sigma E(Z) = \mu + \sigma \cdot 0 = \mu" />
+
+The same relation explains the z-score <InlineMath math="z = \frac{x - \mu}{\sigma}" />. It measures the distance from the center in standard deviations, and the average signed distance is zero. That is why one table for <InlineMath math="Z" /> is enough to find probabilities for every [normal distribution](/en/subjects/mathematics/data-analysis-probability/normal-distribution-function).
+
+## Linearity of Expected Value
+
+Two rules settle most problems. For fixed numbers <InlineMath math="a" /> and <InlineMath math="b" />, **the expected value shifts and scales with the variable**, and the expected value of a sum is the sum of the expected values:
 
 <MathContainer>
-<BlockMath math="E(X) = \frac{\sigma}{\sqrt{2\pi}} \cdot 0 + \frac{\mu}{\sqrt{2\pi}} \cdot \sqrt{2\pi}" />
-<BlockMath math="E(X) = 0 + \mu = \mu" />
+  <BlockMath math="E(aX + b) = a\mu + b" />
+  <BlockMath math="E(X + Y) = E(X) + E(Y)" />
 </MathContainer>
 
-The expected value of a normal random variable equals its **mean parameter**.
+**Example 1**. Midday temperature in Jakarta in June is normally distributed with <InlineMath math="\mu = 28^\circ\text{C}" /> and <InlineMath math="\sigma = 3^\circ\text{C}" />. The conversion to Fahrenheit is <InlineMath math="F = 1.8C + 32" />, the form <InlineMath math="aC + b" /> with <InlineMath math="a = 1.8" /> and <InlineMath math="b = 32" />:
 
-> For every normal distribution <InlineMath math="X \sim N(\mu, \sigma^2)" />, we have <InlineMath math="E(X) = \mu" />. This means we don't need to perform integration every time we calculate the expected value of a normal distribution. We simply use the parameter value <InlineMath math="\mu" />.
+<BlockMath math="E(F) = 1.8 \cdot 28 + 32 = 82.4^\circ\text{F}" />
 
-## Practical Interpretation
+Check with a symmetric pair of temperatures. The temperatures <InlineMath math="25^\circ\text{C}" /> and <InlineMath math="31^\circ\text{C}" /> lie <InlineMath math="3" /> degrees from the center and become <InlineMath math="77^\circ\text{F}" /> and <InlineMath math="87.8^\circ\text{F}" />. Their midpoint is <InlineMath math="\frac{77 + 87.8}{2} = 82.4" />, the same as the formula.
 
-For a normal distribution, the expected value and mean parameter are related as follows.
+**Example 2**. The weight of one bag of rice is normally distributed with <InlineMath math="\mu = 1{,}000\text{ g}" /> and <InlineMath math="\sigma = 15\text{ g}" />. The expected total weight of <InlineMath math="20" /> bags is the sum of the expected weights of the bags:
 
-For a normal random variable with mean <InlineMath math="\mu" /> and standard deviation <InlineMath math="\sigma" />, the **expected value** is exactly <InlineMath math="\mu" />. Across many independent observations from this distribution, the sample average approaches <InlineMath math="\mu" /> under the law of large numbers.
+<BlockMath math="E(X_1 + X_2 + \cdots + X_{20}) = 20 \cdot 1{,}000 = 20{,}000\text{ g}" />
 
-**Example**:
+Check by dividing back: <InlineMath math="\frac{20{,}000}{20} = 1{,}000\text{ g}" /> per bag. The standard deviation of <InlineMath math="15\text{ g}" /> plays no part, because it affects only the spread of the total weight, not its center.
 
-If the heights of a group of students are normally distributed with mean <InlineMath math="165 \text{ cm}" />, then the expected height of a randomly selected student is <InlineMath math="165 \text{ cm}" />.
+## Finding the Center from Given Probabilities
 
-## Expected Values for Exam Scores and Birth Weights
+Sometimes a problem does not state <InlineMath math="\mu" /> directly but gives symmetric probabilities instead. On a normal curve, **two tails with equal areas lie the same distance from the center**.
 
-**Example 1**
+**Example 3**. A variable <InlineMath math="X" /> is normally distributed with <InlineMath math="P(X < 40) = P(X > 60)" />. The two tails have equal areas, so <InlineMath math="40" /> and <InlineMath math="60" /> lie the same distance from the center, and the center is their midpoint:
 
-Suppose the math exam scores in a class are normally distributed with mean <InlineMath math="\mu = 75" /> and standard deviation <InlineMath math="\sigma = 10" />. What is the expected value of a student's exam score?
+<BlockMath math="E(X) = \mu = \frac{40 + 60}{2} = 50" />
 
-**Solution**:
+Check: <InlineMath math="40 = 50 - 10" /> and <InlineMath math="60 = 50 + 10" />. Equal distances from the center give equal tail areas, whatever the value of <InlineMath math="\sigma" />.
 
-Since normal distribution has the property <InlineMath math="E(X) = \mu" />, the expected value of the exam score is:
+**Example 4**. Half of a bus's trips finish in less than <InlineMath math="42" /> minutes, and the travel time is normally distributed. That statement means <InlineMath math="P(X < 42) = 0.5" />, so <InlineMath math="42" /> minutes is the median. For a normal distribution the median equals the mean, so <InlineMath math="E(X) = 42" /> minutes.
 
-<BlockMath math="E(X) = 75" />
+Check: a normal curve splits its area into two equal halves at <InlineMath math="x = \mu" />, so <InlineMath math="P(X < \mu) = 0.5" /> holds for every normal distribution.
 
-The expected value of a student's exam score is <InlineMath math="75" />.
+## Common Mistakes
 
-**Example 2**
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Giving <InlineMath math="\sigma" /> as the expected value | <InlineMath math="\sigma" /> measures the width of the spread, not the center | The expected value always lies on the axis of symmetry |
+| Thinking <InlineMath math="X" /> must equal <InlineMath math="\mu" /> | For a continuous variable, <InlineMath math="P(X = \mu) = 0" /> | The expected value is a long-run average, not the result of one observation |
+| Writing <InlineMath math="E(X^2) = \mu^2" /> | Squaring is not linear, so <InlineMath math="E(X^2) = \mu^2 + \sigma^2" /> | For <InlineMath math="Z \sim N(0, 1)" />, <InlineMath math="E(Z^2) = 1" />, not <InlineMath math="0" /> |
+| Forgetting to add <InlineMath math="b" /> in <InlineMath math="E(aX + b)" /> | The shift <InlineMath math="b" /> moves the center of the curve | Transform a symmetric pair of values and check their midpoint |
+| Thinking a sum needs independence | <InlineMath math="E(X + Y) = E(X) + E(Y)" /> holds without it | Independence matters only for the variance of a sum |
 
-Suppose newborn weights at a hospital are modeled by a normal distribution with mean <InlineMath math="3{,}200 \text{ grams}" /> and standard deviation <InlineMath math="400 \text{ grams}" />. Determine the expected weight of one randomly selected newborn.
-
-**Solution**:
-
-Given <InlineMath math="\mu = 3{,}200 \text{ grams}" /> and <InlineMath math="\sigma = 400 \text{ grams}" />.
-
-The expected weight is the mean parameter:
-
-<BlockMath math="E(X) = \mu = 3{,}200 \text{ grams}" />
+One question catches most of these mistakes: **does your answer still lie on the axis of symmetry of the curve**? An answer that is a width, the square of the center, or a center without its shift fails that check at once.
 
 ## Exercises
 
-All three problems give the **mean and the standard deviation** of a normal distribution and ask for the expected value. Read the mean directly from the description, because the expected value of a normal distribution equals its center.
+The first two problems use the rule directly, the third needs its link to the variance, and the fourth combines symmetry with a shift. **Find the value of <InlineMath math="\mu" /> first**, then check your answer before you read the solution.
 
-1. Travel time from home to school is modeled by a normal distribution with mean <InlineMath math="25 \text{ minutes}" /> and standard deviation <InlineMath math="5 \text{ minutes}" />. Determine the expected travel time.
+1. Travel time from home to school is normally distributed with mean <InlineMath math="25" /> minutes and standard deviation <InlineMath math="5" /> minutes. The trip home has the same distribution. Find the expected time for one trip and for the round trip.
 
-2. Daily air temperature in Jakarta during June is modeled by a normal distribution with mean <InlineMath math="28^\circ\text{C}" /> and standard deviation <InlineMath math="3^\circ\text{C}" />. What is the expected temperature on a randomly selected day?
+2. A variable <InlineMath math="Z" /> has the standard normal distribution. Find <InlineMath math="E(3Z + 2)" />.
 
-3. Physics exam scores of grade <InlineMath math="12" /> students are modeled by a normal distribution with mean <InlineMath math="78" /> and standard deviation <InlineMath math="12" />. What is the expected score of a randomly selected student?
-### Answer Key
+3. A variable <InlineMath math="X" /> has the distribution <InlineMath math="N(10, 2^2)" />. Find <InlineMath math="E(X^2)" /> using <InlineMath math="\operatorname{Var}(X) = E(X^2) - [E(X)]^2" />.
 
-1. **Solution to Problem 1**:
+4. A variable <InlineMath math="X" /> is normally distributed with <InlineMath math="P(X < 35) = P(X > 65)" />. Find <InlineMath math="E(2X - 10)" />.
 
-   Given: <InlineMath math="\mu = 25 \text{ minutes}" />, <InlineMath math="\sigma = 5 \text{ minutes}" />
+### Worked Solutions
 
-   Since normal distribution has the property <InlineMath math="E(X) = \mu" />, then:
+**Problem 1**. The mean of the distribution is <InlineMath math="25" />, so **the expected time for one trip is <InlineMath math="25" /> minutes**. The round trip is the sum of two travel times:
 
-   <BlockMath math="E(X) = 25 \text{ minutes}" />
+<BlockMath math="E(X_1 + X_2) = 25 + 25 = 50 \text{ minutes}" />
 
-   **Answer**: The expected value of travel time is <InlineMath math="25 \text{ minutes}" />.
+Check: the result is twice the mean of one trip, and the standard deviation of <InlineMath math="5" /> minutes does not affect the center.
 
-2. **Solution to Problem 2**:
+**Problem 2**. The standard normal has <InlineMath math="E(Z) = 0" />. By linearity:
 
-   Given: <InlineMath math="\mu = 28^\circ\text{C}" />, <InlineMath math="\sigma = 3^\circ\text{C}" />
+<BlockMath math="E(3Z + 2) = 3 \cdot 0 + 2 = 2" />
 
-   Using the basic property of normal distribution:
+Check: <InlineMath math="3Z + 2" /> has the distribution <InlineMath math="N(2, 3^2)" />, a normal curve **centered at <InlineMath math="2" />**.
 
-   <BlockMath math="E(X) = \mu = 28^\circ\text{C}" />
+**Problem 3**. From <InlineMath math="N(10, 2^2)" />, the expected value is <InlineMath math="10" /> and the variance is <InlineMath math="4" />. Rearrange the variance formula for <InlineMath math="E(X^2)" />:
 
-   **Answer**: The expected value of air temperature is <InlineMath math="28^\circ\text{C}" />.
+<BlockMath math="E(X^2) = \operatorname{Var}(X) + [E(X)]^2 = 4 + 10^2 = 104" />
 
-3. **Solution to Problem 3**:
+Check: <InlineMath math="104 > 100 = [E(X)]^2" />, which matches a positive variance. Writing <InlineMath math="E(X^2) = 100" /> is **the mistake of treating squaring as linear**.
 
-   Given: <InlineMath math="\mu = 78" />, <InlineMath math="\sigma = 12" />
+**Problem 4**. The two tails have equal areas, so the center is the midpoint of <InlineMath math="35" /> and <InlineMath math="65" />, which is <InlineMath math="\mu = 50" />. By linearity:
 
-   A normally distributed variable satisfies <InlineMath math="E(X)=\mu" />. Therefore:
+<BlockMath math="E(2X - 10) = 2 \cdot 50 - 10 = 90" />
 
-   <BlockMath math="E(X) = \mu = 78" />
-
-   **Answer**: The expected exam score is <InlineMath math="78" />.
+Check with a symmetric pair: <InlineMath math="35" /> becomes <InlineMath math="60" /> and <InlineMath math="65" /> becomes <InlineMath math="120" />. Their midpoint is <InlineMath math="90" />, so **the new center still lies in the middle of the pair**.
