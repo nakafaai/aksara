@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Phone makers agree on one charging connector so that any charger works with any phone.",
+            "Phone makers agree on one connector so any charger fits any phone.",
         },
         {
           correct: false,

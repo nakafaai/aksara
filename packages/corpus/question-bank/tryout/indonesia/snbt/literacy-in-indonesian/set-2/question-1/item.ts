@@ -14,21 +14,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Lumut kerak membutuhkan lebih banyak cahaya matahari daripada pohon.",
+            "Lumut kerak membutuhkan lebih banyak cahaya matahari daripada pohon untuk bertahan hidup.",
         },
         {
           correct: false,
-          label: "Jamur dalam lumut kerak tidak dapat menahan air hujan.",
+          label:
+            "Jamur dalam lumut kerak tidak dapat menahan air hujan sehingga zat pencemar mudah masuk.",
         },
         {
           correct: true,
           label:
-            "Lumut kerak menyerap zat dari udara dan hujan langsung melalui seluruh permukaan tubuhnya tanpa lapisan pelindung dan tidak dapat membuang zat pencemar dengan menggugurkan daun.",
+            "Lumut kerak menyerap zat langsung lewat seluruh permukaan tubuh dan tidak dapat menggugurkan daun.",
         },
         {
           correct: false,
           label:
-            "Lumut kerak hanya dapat tumbuh di batang pohon yang kulit kayunya asam.",
+            "Lumut kerak hanya dapat tumbuh di batang pohon yang kulit kayunya asam dan lembap.",
         },
         {
           correct: false,

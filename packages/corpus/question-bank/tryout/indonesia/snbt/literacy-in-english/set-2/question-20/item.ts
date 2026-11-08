@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "A claim that something was the first of its kind depends on the evidence that has survived and may change if new evidence appears.",
+            "A claim to be first depends on surviving evidence and may change with new finds.",
         },
         {
           correct: false,

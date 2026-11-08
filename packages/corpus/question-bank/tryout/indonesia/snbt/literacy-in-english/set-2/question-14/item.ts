@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The number of books borrowed during evening hours in the pilot",
+            "The number of books borrowed during evening hours throughout the pilot",
         },
         {
           correct: false,
@@ -24,15 +24,17 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "The average number of daytime visitors per weekday in June to August of the previous year, when the library closed at 6 p.m.",
+            "Daytime visits last June to August, when the library still closed at 6 p.m.",
         },
         {
           correct: false,
-          label: "The total cost of running the library for the whole year",
+          label:
+            "The total cost of running the library for the whole of the previous year",
         },
         {
           correct: false,
-          label: "The number of residents who work until five or six",
+          label:
+            "The number of residents who work until five or six on weekdays",
         },
       ],
     },

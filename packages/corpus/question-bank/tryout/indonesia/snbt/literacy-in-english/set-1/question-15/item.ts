@@ -23,7 +23,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Lateness rates tend to rise with trip length, but trip length alone does not explain why bus users are late more often than train users.",
+            "Lateness tends to rise with trip length, yet trip length alone cannot explain the bus-train gap.",
         },
         {
           correct: false,

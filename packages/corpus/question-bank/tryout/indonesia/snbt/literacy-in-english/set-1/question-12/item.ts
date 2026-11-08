@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Train users have the longest trips and a high lateness rate, and they blame the walk from the station, which a shuttle would replace.",
+            "Train users have long trips and high lateness caused by the station walk that a shuttle would replace.",
         },
         {
           correct: false,

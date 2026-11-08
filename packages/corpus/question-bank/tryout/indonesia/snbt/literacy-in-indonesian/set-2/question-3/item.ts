@@ -15,7 +15,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Ketika pencemaran sulfur dioksida meningkat, lumut kerak berbentuk semak berumbai umumnya hilang lebih dulu daripada lumut kerak berbentuk kerak tipis.",
+            "Ketika udara memburuk, lumut kerak berbentuk semak berumbai umumnya hilang lebih dulu daripada lumut kerak berbentuk kerak tipis.",
         },
         {
           column: 2,

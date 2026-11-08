@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Kerja yang bergantung pada alam menuntut kesabaran, meskipun hasilnya belum tentu sebanding dengan jerih payah.",
+            "Kerja yang bergantung pada alam menuntut kesabaran walau hasilnya belum tentu sepadan.",
         },
         {
           correct: false,
@@ -24,11 +24,12 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Hujan merupakan berkah bagi semua orang yang bekerja di ladang.",
+            "Hujan merupakan berkah bagi semua orang yang bekerja di ladang dan di laut.",
         },
         {
           correct: false,
-          label: "Anak-anak wajib membantu orang tua bekerja sejak kecil.",
+          label:
+            "Anak-anak wajib membantu orang tua bekerja di ladang sejak kecil.",
         },
         {
           correct: false,

@@ -14,24 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "argue that Bi Sheng, not the Korean monks, deserves credit for *Jikji*.",
+            "argue that Bi Sheng, not the Korean monks, deserves the credit for printing *Jikji*.",
         },
         {
           correct: false,
-          label: "explain how woodblocks were carved in Korea.",
+          label:
+            "explain how woodblocks were carved and inked in Korean temples.",
         },
         {
           correct: false,
-          label: "prove that clay type produced clearer pages than metal type.",
+          label:
+            "prove that clay type produced clearer pages than metal type did.",
         },
         {
           correct: false,
-          label: "describe the life of the scholar Shen Kuo.",
+          label:
+            "describe the life and other writings of the scholar Shen Kuo.",
         },
         {
           correct: true,
           label:
-            "show that the idea of movable type is older than both *Jikji* and Gutenberg, while noting why it did not replace woodblock printing in China.",
+            "trace movable type back before *Jikji* and explain why woodblocks still prevailed in China.",
         },
       ],
     },

@@ -15,7 +15,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Mbah Darsih awalnya meragukan pembeli yang memesan kebaya hanya dengan melihat foto.",
+            "Mbah Darsih meragukan pembeli yang memesan kebaya hanya dengan melihat foto.",
         },
         {
           column: 1,
@@ -29,7 +29,7 @@ const item: ItemSource = {
         },
         {
           column: 2,
-          label: "Mesin jahit itu dibeli oleh ibu Sekar.",
+          label: "Sekar menyelesaikan kebaya hijau itu sebelum tengah malam.",
         },
       ],
     },

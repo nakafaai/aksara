@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Aksara turunan Kawi kembali dipelajari meskipun tidak lagi menjadi alat tulis utama sehari-hari karena masyarakat menganggapnya bagian dari jati diri.",
+            "Aksara turunan Kawi dipelajari kembali karena dianggap bagian dari jati diri walau bukan lagi alat tulis utama.",
         },
       ],
     },

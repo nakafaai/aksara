@@ -13,7 +13,8 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Subak di hilir lebih penting daripada subak di hulu.",
+          label:
+            "Subak di hilir lebih penting daripada subak di hulu karena menerima air terakhir.",
         },
         {
           correct: false,
@@ -23,7 +24,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Keberlangsungan subak bergantung pada keterlibatan seluruh jaringan sehingga gangguan di satu subak dapat merembet ke subak lain.",
+            "Gangguan di satu subak dapat merembet ke subak lain karena semuanya satu jaringan.",
         },
         {
           correct: false,
@@ -31,7 +32,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Anak-anak petani wajib kembali bekerja di sawah.",
+          label:
+            "Anak-anak petani wajib kembali bekerja di sawah agar subak tetap hidup.",
         },
       ],
     },

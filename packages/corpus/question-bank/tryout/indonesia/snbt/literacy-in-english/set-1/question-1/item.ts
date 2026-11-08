@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "explaining how control of movement in an octopus is shared between its brain and its arms.",
+            "explaining how an octopus shares control of movement between brain and arms.",
         },
         {
           correct: false,

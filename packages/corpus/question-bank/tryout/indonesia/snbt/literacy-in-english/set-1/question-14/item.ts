@@ -29,8 +29,7 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label:
-            "how many students who do not cycle live close enough to ride to campus.",
+          label: "how many non-cyclists live close enough to ride to campus.",
         },
       ],
     },

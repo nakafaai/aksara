@@ -19,22 +19,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The DNA-protecting protein allows human cells to survive drying.",
+            "The DNA-protecting protein also allows human cells to survive being dried out.",
         },
         {
           correct: false,
           label:
-            "All tardigrade species produce the same DNA-protecting protein.",
+            "All tardigrade species produce the same DNA-protecting protein in their cells.",
         },
         {
           correct: true,
           label:
-            "At least part of the tardigrade's protection against radiation comes from a single protein that can still work in another species' cells.",
+            "One protein supplies part of the tardigrade's radiation protection, even inside human cells.",
         },
         {
           correct: false,
           label:
-            "X-rays cause no damage to cells that contain the tardigrade gene.",
+            "X-rays cause no damage at all to human cells that contain the tardigrade gene.",
         },
       ],
     },

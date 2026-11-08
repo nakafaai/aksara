@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pengairan berselang mengurangi kebutuhan tenaga kerja petani.",
+            "Pengairan berselang mengurangi kebutuhan tenaga kerja petani selama musim tanam.",
         },
         {
           correct: false,
@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Pada musim kemarau di desa itu, pengairan berselang menghemat air tanpa menurunkan hasil, tetapi menambah kebutuhan tenaga penyiangan.",
+            "Di desa itu pada musim kemarau, cara berselang menghemat air tanpa menurunkan hasil, tetapi menambah penyiangan.",
         },
         {
           correct: false,

@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Bunyi dan susunan kata bahasa Jawa Kuno berbeda dari bahasa Sanskerta sehingga tanda-tandanya perlu disesuaikan.",
+            "Bunyi dan susunan kata bahasa Jawa Kuno berbeda dari bahasa Sanskerta.",
         },
         {
           correct: false,

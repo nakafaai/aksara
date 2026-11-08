@@ -13,21 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Membuktikan bahwa semua skor yang diberikan mesin keliru.",
+          label:
+            "Membuktikan bahwa semua skor yang diberikan mesin kepada siswa itu keliru.",
         },
         {
           correct: true,
           label:
-            "Menunjukkan bahwa kecocokan rata-rata yang tinggi dapat menyembunyikan kesalahan besar pada esai yang tidak biasa.",
-        },
-        {
-          correct: false,
-          label: "Menunjukkan bahwa siswa di kelas penulis malas menulis esai.",
+            "Menunjukkan bahwa rata-rata yang tinggi dapat menutupi kesalahan pada esai tak biasa.",
         },
         {
           correct: false,
           label:
-            "Menegaskan bahwa kosakata yang canggih tidak penting dalam menulis.",
+            "Menunjukkan bahwa siswa di kelas penulis malas menulis esai yang panjang.",
+        },
+        {
+          correct: false,
+          label:
+            "Menegaskan bahwa kosakata yang canggih tidak penting dalam menulis esai.",
         },
         {
           correct: false,

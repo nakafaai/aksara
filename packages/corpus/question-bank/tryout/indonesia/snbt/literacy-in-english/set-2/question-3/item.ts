@@ -15,7 +15,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "An active tardigrade can easily survive conditions that kill most other small invertebrates.",
+            "An active tardigrade can easily survive conditions that would kill many other small invertebrates.",
         },
         {
           column: 1,

@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "A phone shows a warning and disables a feature after its screen is replaced with a genuine screen taken from an identical phone.",
+            "A phone disables a feature after getting a screen taken from an identical phone.",
         },
         {
           correct: false,

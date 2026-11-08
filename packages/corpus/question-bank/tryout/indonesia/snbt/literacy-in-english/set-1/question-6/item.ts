@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "To argue that most parking requirements should be removed so that parking follows local demand",
+            "To argue that most parking requirements should go, letting parking follow local demand",
         },
       ],
     },

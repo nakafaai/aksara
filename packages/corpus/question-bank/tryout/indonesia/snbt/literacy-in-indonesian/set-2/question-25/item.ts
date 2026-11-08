@@ -32,7 +32,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Menjelaskan secara ilmiah mengapa jadwal pura berhasil sehingga mendukung kembalinya pengaturan oleh subak.",
+            "Menjelaskan secara ilmiah mengapa jadwal pura berhasil menyeimbangkan air dan hama.",
         },
       ],
     },

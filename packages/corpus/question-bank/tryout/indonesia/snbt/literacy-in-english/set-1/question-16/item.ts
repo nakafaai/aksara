@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Metal boxes could protect goods from theft better than wooden crates.",
+            "Metal boxes could protect goods from theft and damage better than wooden crates.",
         },
         {
           correct: true,
           label:
-            "The container, not the goods inside it, should be the unit that every part of the transport chain was built to handle.",
+            "The box, not the goods inside it, should be the unit every part of transport was built to handle.",
         },
         {
           correct: false,
           label:
-            "Converted tankers could carry more cargo than purpose-built cargo ships.",
+            "Converted tankers could carry more cargo than purpose-built cargo ships of the time.",
         },
         {
           correct: false,
           label:
-            "Trucks could replace ships on routes between Newark and Houston.",
+            "Trucks could replace ships on long routes such as the one between Newark and Houston.",
         },
         {
           correct: false,
-          label: "Ports should hire more dockworkers to load ships faster.",
+          label:
+            "Ports should hire more dockworkers so that ships could be loaded faster.",
         },
       ],
     },

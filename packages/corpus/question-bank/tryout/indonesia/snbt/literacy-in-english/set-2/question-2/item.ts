@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "survive by becoming inactive until conditions improve rather than by withstanding the conditions while active.",
-        },
-        {
-          correct: false,
-          label: "move away from harsh conditions as soon as they detect them.",
+            "survive by going inactive until conditions improve, not by withstanding them.",
         },
         {
           correct: false,
           label:
-            "become stronger the longer they are exposed to harsh conditions.",
-        },
-        {
-          correct: false,
-          label: "avoid harsh conditions by living only in water.",
+            "move away from harsh conditions as soon as they detect a change in moisture.",
         },
         {
           correct: false,
           label:
-            "fight harsh conditions by producing large amounts of trehalose.",
+            "become stronger the longer they are exposed to harsh conditions in the wild.",
+        },
+        {
+          correct: false,
+          label:
+            "avoid harsh conditions by living only in deep lakes and oceans.",
+        },
+        {
+          correct: false,
+          label:
+            "fight harsh conditions by producing large amounts of trehalose in their cells.",
         },
       ],
     },

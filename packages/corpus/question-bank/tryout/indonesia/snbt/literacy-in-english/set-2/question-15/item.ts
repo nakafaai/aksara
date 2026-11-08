@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "The evening hours drew some people who had not used the library recently, but the data cannot show how many evening visits were simply moved from earlier in the day.",
+            "Evening hours drew some recent non-users, but the data cannot show how many visits merely moved.",
         },
         {
           correct: false,
@@ -23,7 +23,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "The pilot reduced the total number of weekday visits.",
+          label:
+            "The pilot reduced the total number of weekday visits to the library.",
         },
         {
           correct: false,
@@ -32,7 +33,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "The council paid the full 9,000 dollars for the pilot.",
+          label:
+            "The council paid the full 9,000 dollars for the pilot from its budget.",
         },
       ],
     },

@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Rencana itu sejalan dengan data karena nasi menyumbang sisa yang dapat dihindari paling banyak, tetapi tidak menyentuh sisa sayur yang terbuang karena layu.",
+            "Rencana itu didukung data untuk nasi, tetapi tidak menyentuh sisa sayur yang terbuang karena layu.",
         },
         {
           correct: false,

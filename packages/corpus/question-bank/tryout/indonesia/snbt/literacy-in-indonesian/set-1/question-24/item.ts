@@ -18,12 +18,13 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Aksara Bali lebih tua daripada aksara Kawi.",
+          label:
+            "Aksara Bali lebih tua daripada aksara Kawi sehingga naskahnya lebih lengkap.",
         },
         {
           correct: true,
           label:
-            "Teks-teks itu dapat bertahan karena terus disalin, sementara naskah aslinya kemungkinan sudah rusak.",
+            "Teks-teks itu bertahan berkat penyalinan, sedangkan naskah aslinya mungkin sudah rusak.",
         },
         {
           correct: false,
@@ -32,7 +33,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Daun lontar lebih awet di Bali daripada di Jawa.",
+          label:
+            "Daun lontar lebih awet di Bali karena orang Bali lebih pandai merawatnya.",
         },
       ],
     },

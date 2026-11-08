@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Tardigrades survive extremes mainly by drying into an inactive state, and researchers are uncovering the proteins that make this possible.",
+            "Tardigrades survive extremes mainly by drying into an inactive state, aided by proteins still being studied.",
         },
         {
           correct: false,
@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tardigrades are the only animals that can survive without water.",
+            "Tardigrades are the only animals that can survive for years without any water at all.",
         },
       ],
     },

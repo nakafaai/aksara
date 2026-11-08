@@ -13,25 +13,28 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Ia tidak menyukai kebiasaan cucunya memotret kebaya.",
+          label:
+            "Ia tidak menyukai kebiasaan cucunya memotret kebaya di depan dinding putih.",
         },
         {
           correct: false,
           label:
-            "Ia ingin kebaya buatannya dijual dengan harga yang lebih mahal.",
+            "Ia ingin kebaya buatannya dijual dengan harga yang lebih mahal di toko daring.",
         },
         {
           correct: true,
           label:
-            "Ia menganggap mutu jahitan harus dijaga demi pemakainya, meskipun bagian itu tidak terlihat dalam foto.",
+            "Ia menganggap mutu jahitan harus dijaga demi pemakai walau tidak tampak di foto.",
         },
         {
           correct: false,
-          label: "Ia tersinggung karena tidak pernah diajak ikut berfoto.",
+          label:
+            "Ia tersinggung karena tidak pernah diajak ikut berfoto bersama kebayanya.",
         },
         {
           correct: false,
-          label: "Ia menolak gagasan menjual kebaya melalui toko daring.",
+          label:
+            "Ia menolak gagasan menjual kebaya melalui toko daring milik cucunya.",
         },
       ],
     },

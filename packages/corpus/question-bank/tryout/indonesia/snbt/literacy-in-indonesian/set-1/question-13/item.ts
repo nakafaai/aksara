@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Menunjukkan bahwa melepas Laila berarti menghadapi ketakutan lama Pak Rasyid akan kehilangan orang yang ia antar pergi.",
+            "Menunjukkan bahwa melepas Laila memaksanya menghadapi ketakutan lama akan kehilangan.",
         },
         {
           correct: false,

@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Apakah nilai tambahan hasil gabah ditambah manfaat air yang dihemat sebanding dengan biaya delapan hari kerja penyiangan tambahan per hektare.",
+            "Apakah tambahan gabah dan air yang dihemat sepadan dengan upah delapan hari penyiangan tambahan.",
         },
         {
           correct: false,

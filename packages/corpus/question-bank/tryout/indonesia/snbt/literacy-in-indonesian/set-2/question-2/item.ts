@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Simpulan itu lemah karena jenis lumut kerak jingga tertentu justru tumbuh subur di tempat yang kaya senyawa nitrogen, seperti sekitar peternakan.",
+            "Simpulan itu lemah karena sebagian lumut kerak jingga justru subur di tempat kaya nitrogen.",
         },
         {
           correct: false,

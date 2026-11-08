@@ -14,17 +14,17 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Ia menolak anggapan bahwa beasiswa memerlukan proses seleksi.",
+            "Ia menolak anggapan bahwa beasiswa memerlukan proses seleksi berdasarkan prestasi.",
         },
         {
           correct: false,
           label:
-            "Ia menyarankan agar beasiswa dibagikan secara merata kepada semua siswa.",
+            "Ia menyarankan agar beasiswa dibagikan secara merata kepada semua siswa yang membutuhkan.",
         },
         {
           correct: true,
           label:
-            "Ia mengakui kebutuhan seleksi itu, tetapi menunjukkan bahwa sekolah dapat memenuhinya tanpa mencantumkan peringkat di rapor setiap siswa.",
+            "Ia mengakui seleksi itu perlu, tetapi menyebut daftarnya dapat disusun tanpa dicantumkan di rapor setiap siswa.",
         },
         {
           correct: false,

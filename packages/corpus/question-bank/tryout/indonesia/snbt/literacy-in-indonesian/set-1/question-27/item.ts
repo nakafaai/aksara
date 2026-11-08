@@ -25,7 +25,7 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Air laut yang menguap sehingga yang tersisa hanyalah garam.",
+          label: "Air laut yang menguap dan meninggalkan garam.",
         },
         {
           correct: false,

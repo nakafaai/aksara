@@ -14,22 +14,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "A soft robot with controllers spread along its body completed grasping tasks faster, and with less computing power, than an identical robot run by one central processor.",
+            "A soft robot with control spread along its body outperformed an identical robot with one central processor.",
         },
         {
           correct: false,
           label:
-            "Octopuses learned to open jars faster than any other invertebrate tested.",
+            "Octopuses learned to open jars faster than any other invertebrate tested in the same laboratory.",
         },
         {
           correct: false,
           label:
-            "Prosthetic human arms with more joints were harder for users to control.",
+            "Prosthetic human arms with more joints were harder for users to control than simpler designs.",
         },
         {
           correct: false,
           label:
-            "Severed octopus arms stopped responding to touch after about an hour.",
+            "Severed octopus arms stopped responding to touch after about an hour, even when kept in seawater.",
         },
         {
           correct: false,

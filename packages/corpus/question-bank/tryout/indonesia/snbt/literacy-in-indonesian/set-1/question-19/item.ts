@@ -18,17 +18,18 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Kadar karbon monoksida di Jalan Merdeka pada hari kerja.",
+          label:
+            "Kadar karbon monoksida di Jalan Merdeka pada hari kerja selama program berlangsung.",
         },
         {
           correct: true,
           label:
-            "Kualitas udara di Jalan Kenanga dan Jalan Cempaka pada Minggu pagi sebelum dan selama program berlangsung.",
+            "Kualitas udara di Jalan Kenanga dan Jalan Cempaka sebelum dan selama program.",
         },
         {
           correct: false,
           label:
-            "Pendapatan pedagang kaki lima yang mendapat lapak di Jalan Merdeka.",
+            "Pendapatan pedagang kaki lima yang mendapat lapak di Jalan Merdeka setiap Minggu.",
         },
         {
           correct: false,

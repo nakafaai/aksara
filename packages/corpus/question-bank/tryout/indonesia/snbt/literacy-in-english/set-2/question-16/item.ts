@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Because *Jikji* was nearly destroyed while it was kept in Paris",
+            "Because *Jikji* was nearly destroyed by damp while it was kept in Paris",
         },
         {
           correct: false,
           label:
-            "Because only books that UNESCO lists can be called the oldest",
+            "Because only books that UNESCO lists can officially be called the oldest",
         },
         {
           correct: false,
-          label: "Because Gutenberg's Bible has not survived in complete form",
+          label:
+            "Because Gutenberg's Bible has not survived in complete form anywhere",
         },
         {
           correct: true,
           label:
-            "Because earlier books printed with metal type may have existed, but no copy of them is known today",
+            "Because earlier metal-type books may have existed, but none is known to survive",
         },
         {
           correct: false,
           label:
-            "Because the first volume of *Jikji* was printed with wooden type",
+            "Because the first volume of *Jikji* was printed with carved wooden blocks",
         },
       ],
     },

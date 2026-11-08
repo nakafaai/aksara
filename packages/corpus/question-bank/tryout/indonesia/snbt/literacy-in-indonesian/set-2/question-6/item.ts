@@ -14,17 +14,17 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Semua bentuk magang bagi mahasiswa sebaiknya dihapus karena merugikan.",
+            "Semua bentuk magang bagi mahasiswa sebaiknya dihapus karena lebih banyak merugikan daripada menguntungkan.",
         },
         {
           correct: true,
           label:
-            "Magang tanpa upah yang berisi pekerjaan nyata perlu dibatasi karena mempersempit kesempatan mahasiswa yang kurang mampu dan menggeser pekerja bergaji.",
+            "Magang tanpa upah perlu dibatasi karena mempersempit kesempatan mahasiswa kurang mampu dan menggeser pekerja.",
         },
         {
           correct: false,
           label:
-            "Mahasiswa magang seharusnya dibayar setara dengan karyawan tetap.",
+            "Mahasiswa magang seharusnya dibayar setara dengan karyawan tetap sejak hari pertama bekerja.",
         },
         {
           correct: false,

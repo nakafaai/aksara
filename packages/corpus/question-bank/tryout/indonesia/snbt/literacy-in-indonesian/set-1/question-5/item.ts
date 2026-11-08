@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Ingatan Dina tentang materi sejarah cenderung lebih bertahan daripada jika ia terjaga semalaman, sedangkan tidurnya tidak membantu penguasaan materi geografi.",
+            "Ingatan sejarahnya cenderung lebih bertahan daripada jika ia begadang, tetapi tidur tidak membantunya menguasai geografi.",
         },
       ],
     },

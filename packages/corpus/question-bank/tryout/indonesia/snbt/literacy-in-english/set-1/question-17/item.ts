@@ -13,16 +13,18 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "They made containers cheaper to paint and repair.",
-        },
-        {
-          correct: false,
-          label: "They required every ship to carry only twenty-foot boxes.",
+          label:
+            "They made containers cheaper to paint, repair, and store between voyages.",
         },
         {
           correct: false,
           label:
-            "They prevented dockworkers from stealing goods from containers.",
+            "They required every ship to carry only twenty-foot boxes on each voyage.",
+        },
+        {
+          correct: false,
+          label:
+            "They prevented dockworkers from stealing goods from sealed containers.",
         },
         {
           correct: false,
@@ -32,7 +34,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Without common sizes and fittings, equipment built for one company's boxes could not handle another's.",
+            "Otherwise one company's cranes could not lift another company's boxes.",
         },
       ],
     },

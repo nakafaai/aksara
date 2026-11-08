@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Agar kedua kelompok mempelajari daftar pasangan kata dengan jumlah yang sama.",
+            "Agar kedua kelompok mempelajari daftar pasangan kata yang sama banyak dan sama sulitnya.",
         },
         {
           correct: false,
@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Untuk menyingkirkan kemungkinan bahwa perbedaan skor disebabkan oleh kondisi peserta pada jam tes, bukan oleh tidur.",
+            "Untuk memastikan perbedaan skor tidak disebabkan oleh kondisi peserta pada jam tes.",
         },
         {
           correct: false,

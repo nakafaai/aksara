@@ -13,12 +13,13 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Membujuk Bayu agar ikut kuliah pertanian.",
+          label:
+            "Membujuk Bayu agar meninggalkan bengkel dan ikut kuliah pertanian.",
         },
         {
           correct: false,
           label:
-            "Mendukung penjualan sawah dengan cara yang lebih menguntungkan.",
+            "Mendukung penjualan sawah kepada pembeli dari kota dengan cara yang lebih menguntungkan.",
         },
         {
           correct: false,
@@ -28,11 +29,12 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Menyelesaikan masalah tanpa menjual sawah dengan menggabungkan keahlian Bayu dan pengetahuan pertanian Ningsih.",
+            "Menyelamatkan sawah dengan menggabungkan keahlian Bayu dan ilmu pertanian Ningsih.",
         },
         {
           correct: false,
-          label: "Meminta dosennya membeli sawah keluarga.",
+          label:
+            "Meminta dosennya membeli sawah keluarga untuk lahan percobaan kampus.",
         },
       ],
     },

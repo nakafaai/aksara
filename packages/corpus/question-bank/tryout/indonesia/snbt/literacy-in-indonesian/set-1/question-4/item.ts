@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Tikus yang pemutaran ulangnya di hipokampus dihentikan secara khusus selama tidur tetap mengingat jalur labirin sama baiknya dengan tikus yang tidak diganggu.",
+            "Tikus yang pemutaran ulangnya dihentikan selama tidur tetap mengingat jalur labirin sama baiknya.",
         },
         {
           correct: false,

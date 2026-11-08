@@ -23,12 +23,13 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "A ban on selling any device that contains a glued battery",
+          label:
+            "A ban on selling any phone or appliance that contains a glued battery",
         },
         {
           correct: true,
           label:
-            "A requirement that phone makers publish repair manuals and sell spare parts to anyone at a fair price",
+            "A rule that phone makers publish repair manuals and sell parts to anyone",
         },
         {
           correct: false,

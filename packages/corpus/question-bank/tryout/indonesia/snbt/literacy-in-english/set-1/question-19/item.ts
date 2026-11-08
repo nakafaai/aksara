@@ -13,16 +13,18 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "criticise historians for ignoring McLean's contribution.",
+          label:
+            "criticise historians for ignoring McLean's contribution to shipping.",
         },
         {
           correct: false,
-          label: "suggest that the first containers were poorly designed.",
+          label:
+            "suggest that the first containers were poorly designed and built.",
         },
         {
           correct: true,
           label:
-            "sum up the contrast between the plain container and the complex arrangements its impact depended on.",
+            "sum up the contrast between a simple box and the complex system around it.",
         },
         {
           correct: false,
@@ -31,7 +33,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "praise McLean as the single inventor of modern shipping.",
+          label:
+            "praise McLean as the single inventor of modern container shipping.",
         },
       ],
     },

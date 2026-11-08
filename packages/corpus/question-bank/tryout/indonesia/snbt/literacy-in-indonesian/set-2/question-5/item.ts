@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Lumut kerak mencerminkan keadaan udara selama bertahun-tahun dan dipengaruhi faktor lain sehingga tidak menunjukkan kadar zat pencemar pada waktu tertentu.",
+            "Lumut kerak mencerminkan udara selama bertahun-tahun dan dipengaruhi faktor lain.",
         },
       ],
     },

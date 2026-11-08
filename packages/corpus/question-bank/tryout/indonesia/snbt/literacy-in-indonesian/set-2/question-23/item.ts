@@ -25,7 +25,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Mengosongkan atau menggenangi sawah yang luas secara serentak setelah panen membantu menekan populasi hama.",
+            "Mengosongkan atau menggenangi sawah-sawah yang berdekatan secara serentak setelah panen membantu menekan populasi hama.",
         },
         {
           column: 2,

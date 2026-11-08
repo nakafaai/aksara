@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Subak juga merupakan organisasi petani yang mengatur jadwal tanam dan upacara, bukan hanya jaringan saluran air.",
+            "Subak juga mengatur jadwal tanam dan upacara, bukan hanya saluran air.",
         },
         {
           correct: false,
@@ -28,7 +28,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Subak lebih tua daripada sistem irigasi modern.",
+          label:
+            "Subak jauh lebih tua daripada sistem irigasi modern mana pun.",
         },
         {
           correct: false,

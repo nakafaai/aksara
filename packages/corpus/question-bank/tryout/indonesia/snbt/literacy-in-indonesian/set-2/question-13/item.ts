@@ -18,7 +18,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Perebutan mesin jahit tua antara Mbah Darsih dan Sekar.",
+          label:
+            "Perebutan mesin jahit tua antara Mbah Darsih dan Sekar setelah pesanan menumpuk.",
         },
         {
           correct: false,
@@ -27,11 +28,12 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Pertentangan antara dorongan memenuhi pesanan dengan cepat dan keteguhan menjaga mutu kerja tangan.",
+            "Pertentangan antara memenuhi pesanan dengan cepat dan menjaga mutu jahitan.",
         },
         {
           correct: false,
-          label: "Kesulitan Sekar mendapatkan pembeli bagi kebaya neneknya.",
+          label:
+            "Kesulitan Sekar mendapatkan pembeli bagi kebaya neneknya di kota besar.",
         },
       ],
     },

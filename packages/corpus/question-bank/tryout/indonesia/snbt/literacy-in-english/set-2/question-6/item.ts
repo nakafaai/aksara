@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Laws should make parts, information, and repairs accessible to owners and independent shops, while safety and security can be protected in less restrictive ways.",
+            "Laws should open up parts, manuals, and repair, protecting safety in less restrictive ways.",
         },
         {
           correct: false,

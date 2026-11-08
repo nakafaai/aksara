@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Mahasiswa dari keluarga berpenghasilan rendah mengikuti magang tanpa upah sama seringnya dengan mahasiswa dari keluarga berpenghasilan tinggi.",
+            "Mahasiswa dari keluarga miskin dan kaya sama seringnya mengikuti magang tanpa upah.",
         },
         {
           correct: false,

@@ -29,11 +29,12 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Petani menanam sepanjang tahun tanpa jadwal serentak sehingga hama tidak lagi kehilangan sumber makanan di wilayah yang luas.",
+            "Tanpa jadwal serentak, hama tidak lagi kehilangan makanan di wilayah yang luas.",
         },
         {
           correct: false,
-          label: "Subak di hilir menanam lebih dulu daripada subak di hulu.",
+          label:
+            "Subak di hilir mulai menanam lebih dulu daripada subak di hulu.",
         },
       ],
     },

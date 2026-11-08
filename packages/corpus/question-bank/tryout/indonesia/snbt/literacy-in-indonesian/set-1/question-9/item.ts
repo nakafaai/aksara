@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Di antara sekolah dengan latar belakang serupa, siswa di sekolah yang mencantumkan peringkat lebih jarang menjelaskan materi kepada teman daripada siswa di sekolah tanpa peringkat.",
+            "Dibandingkan sekolah tanpa peringkat yang serupa, siswa di sekolah berperingkat lebih jarang menjelaskan materi kepada teman.",
         },
         {
           correct: false,

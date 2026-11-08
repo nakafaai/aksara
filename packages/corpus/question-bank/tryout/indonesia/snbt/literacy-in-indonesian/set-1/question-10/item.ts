@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Tanda bahwa ia dengan sadar merelakan kepergian Laila meskipun keputusan itu berat baginya.",
+            "Tanda bahwa ia dengan sadar merelakan Laila pergi meskipun berat.",
         },
         {
           correct: false,
