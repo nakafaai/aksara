@@ -66,11 +66,11 @@ print(z == x)   # Ausgabe: True
 
 Die Zuweisung `y = x` garantiert, dass beide Namen in diesem Moment auf dasselbe Objekt verweisen. Ein neu erstellter gleicher Wert besteht den Gleichheitsvergleich, kann aber in einem eigenen Objekt liegen. Manche Python-Implementierungen verwenden unveränderliche Objekte wieder, doch korrekter Code hängt nicht von dieser Optimierung ab.
 
-Führ `x = 5`, dann `y = x`, dann `x = 7` aus und folg den Streckenn. `y = x` kopiert keine Zahl, sondern lässt `y` auf dasselbe Objekt `5` zeigen wie `x`. Wenn `x = 7` läuft, wandert nur die Strecke von `x` zu einem neuen Objekt, vom grauen zum violetten Strecke. Die Strecke von `y` bleibt, wo er war, also zeigt `print(y)` weiterhin `5`.
+Führ `x = 5`, dann `y = x`, dann `x = 7` aus und folg den Strecken. `y = x` kopiert keine Zahl, sondern lässt `y` auf dasselbe Objekt `5` zeigen wie `x`. Wenn `x = 7` läuft, wandert nur die Strecke von `x` zu einem neuen Objekt, von der grauen zur violetten Strecke. Die Strecke von `y` bleibt, wo er war, also zeigt `print(y)` weiterhin `5`.
 
 <MathVisual
   title="Neues Binden von x ändert y nicht"
-  description="Nach x = 5, y = x und x = 7: Die graue Strecke ist die alte Bindung von x, der violette die neue, und die türkise Strecke zeigt weiter auf 5."
+  description="Nach x = 5, y = x und x = 7: Die graue Strecke ist die alte Bindung von x, die violette die neue, und die türkise Strecke zeigt weiter auf 5."
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1.2, max: 1.8 } },
