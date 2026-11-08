@@ -42,6 +42,33 @@ Only part of the chemical energy at one trophic level becomes **new biomass** av
 
 An energy pyramid therefore narrows toward the top. Its width represents available energy, so it does not measure the importance or number of organisms. A pyramid of numbers can have a different shape.
 
+The scene below builds this pyramid from numbers. Suppose the grass layer holds <InlineMath math="10\,000\ \text{kJ}" /> and, as an illustration, each level passes on one tenth as new biomass. The top area of each layer is proportional to its energy, so every level up is <InlineMath math="\sqrt{10}" /> times narrower on each side. Rotate it and look down from above: the bird layer covers only one hundredth of the grass layer, and the missing energy left the system as heat along the way.
+
+<MathVisual
+  title="An Energy Pyramid with One Tenth per Level"
+  description="Each layer's top area is proportional to the energy available at that trophic level, starting from an illustrative 10 000 kJ in the grass."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: 0, max: 2.5 }, z: { min: -4, max: 4 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 9 }, target: { x: 0, y: 0.5, z: 0 } },
+    objects: [
+      { id: "grass", kind: "cuboid", appearance: "construction", center: { x: 0, y: 0.25, z: 0 }, size: { length: 6 * Math.sqrt(1), height: 0.5, width: 6 * Math.sqrt(1) } },
+      { id: "grasshopper", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 0.75, z: 0 }, size: { length: 6 * Math.sqrt(1 / 10), height: 0.5, width: 6 * Math.sqrt(1 / 10) } },
+      { id: "bird", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1.25, z: 0 }, size: { length: 6 * Math.sqrt(1 / 100), height: 0.5, width: 6 * Math.sqrt(1 / 100) } },
+    ],
+    labels: [
+      { key: "grass", objectId: "grass", at: { x: 3.25, y: 0.25, z: 0 }, placement: "right" },
+      { key: "grasshopper", objectId: "grasshopper", at: { x: 1.25, y: 0.75, z: 0 }, placement: "right" },
+      { key: "bird", objectId: "bird", at: { x: 0, y: 1.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    grass: <InlineMath math="\text{Grass: }10\,000\ \text{kJ}" />,
+    grasshopper: <InlineMath math="\text{Grasshopper: }1\,000\ \text{kJ}" />,
+    bird: <InlineMath math="\text{Bird: }100\ \text{kJ}" />,
+  }}
+/>
+
 | What to follow | Direction | Example |
 | --- | --- | --- |
 | Energy | Flows from producers to consumers and eventually leaves as heat | Grass supplies energy to a grasshopper, then part of that energy reaches a bird |

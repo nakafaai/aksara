@@ -32,6 +32,36 @@ Kelompokkan tindakan berdasarkan hasil utama: mengurangi gas rumah kaca, mengura
 
 > Mitigasi mengurangi penyebab pemanasan. Adaptasi mengurangi kerugian akibat dampak perubahan iklim. Sebagian tindakan dapat melakukan keduanya, tetapi tujuan utama tindakan tetap harus dinyatakan dengan jelas.
 
+Risiko iklim muncul saat tiga hal bertemu: **bahaya** seperti gelombang panas atau gelombang badai, **keterpaparan** orang dan tempat yang dilaluinya, serta **kerentanan** mereka, yaitu seberapa mudah mereka dirugikan. Adegan di bawah memakai indeks ilustrasi sederhana yang mengalikan ketiganya, digambar sebagai balok dengan bahaya sebagai tingginya. Mitigasi bekerja pada penyebab, jadi baloknya makin rendah. Adaptasi bekerja pada kerugian, jadi baloknya makin tipis dari depan ke belakang. Putar adegannya: keduanya sama-sama membagi dua volume, tetapi ke arah yang berbeda, dan bersama-sama menurunkannya menjadi seperempat.
+
+<MathVisual
+  title="Dua Cara Mengecilkan Risiko Iklim"
+  description="Indeks risiko ilustrasi bahaya × keterpaparan × kerentanan. Tinggi adalah bahaya, lebar adalah keterpaparan, kedalaman adalah kerentanan."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 12 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 5.25, y: 1, z: 0 } },
+    objects: [
+      { id: "baseline", kind: "cuboid", appearance: "warning", center: { x: 0, y: 2 / 2, z: 0 }, size: { length: 2, height: 2, width: 2 } },
+      { id: "mitigation", kind: "cuboid", appearance: "primary", center: { x: 3.5, y: 1 / 2, z: 0 }, size: { length: 2, height: 1, width: 2 } },
+      { id: "adaptation", kind: "cuboid", appearance: "construction", center: { x: 7, y: 2 / 2, z: 0 }, size: { length: 2, height: 2, width: 1 } },
+      { id: "both", kind: "cuboid", appearance: "secondary", center: { x: 10.5, y: 1 / 2, z: 0 }, size: { length: 2, height: 1, width: 1 } },
+    ],
+    labels: [
+      { key: "baseline", objectId: "baseline", at: { x: 0, y: 2 + 0.5, z: 0 }, placement: "above" },
+      { key: "mitigation", objectId: "mitigation", at: { x: 3.5, y: 1 + 0.5, z: 0 }, placement: "above" },
+      { key: "adaptation", objectId: "adaptation", at: { x: 7, y: 2 + 0.5, z: 0 }, placement: "above" },
+      { key: "both", objectId: "both", at: { x: 10.5, y: 1 + 0.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    baseline: <InlineMath math="\text{Awal}:\ 2\times2\times2=8" />,
+    mitigation: <InlineMath math="\text{Mitigasi}:\ 2\times1\times2=4" />,
+    adaptation: <InlineMath math="\text{Adaptasi}:\ 2\times2\times1=4" />,
+    both: <InlineMath math="\text{Keduanya}:\ 2\times1\times1=2" />,
+  }}
+/>
+
 ## Mitigasi Mengurangi Emisi atau Melindungi Penyerap Karbon
 
 Mitigasi menurunkan emisi gas rumah kaca atau menjaga kemampuan hutan, tanah, dan laut dalam menyerap karbon. Keberhasilan mitigasi diukur dari **perubahan emisi bersih** dan jumlah karbon yang tersimpan.

@@ -43,6 +43,36 @@ Coral reefs may look like rocks, but they are built by coral animals living with
 
 Coral bleaching is a sign of severe stress and can happen before a coral dies. If seawater stays too warm, corals can weaken and die. Fish lose habitat, while coastal communities may lose reef fisheries and protection from waves.
 
+Heat stress on a reef adds up week by week. NOAA Coral Reef Watch measures it in **degree heating weeks**: each week, take how many degrees the water sits above the coral's bleaching threshold, then add the weeks together. In the illustrative case below, the amber line is that weekly excess, and the pink line is its running sum. Follow the pink line upward: it crosses <InlineMath math="4\ ^\circ\text{C-weeks}" />, where significant bleaching becomes likely, and then <InlineMath math="8" />, where severe bleaching and coral deaths become likely. Notice that the pink line keeps its height once the water cools, because the stress already happened.
+
+<MathVisual
+  title="Heat Stress Adds Up on a Reef"
+  description="An illustrative six-week marine heatwave. Horizontal: week. Vertical: degrees above the bleaching threshold (amber) and their running sum in °C-weeks (pink)."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.5, max: 10 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "hotspot", kind: "polyline", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 1.5 }, { x: 3, y: 2 }, { x: 4, y: 2 }, { x: 5, y: 1.5 }, { x: 6, y: 1 }, { x: 7, y: 0 }] },
+      { id: "stress", kind: "polyline", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 1 + 1.5 }, { x: 3, y: 1 + 1.5 + 2 }, { x: 4, y: 1 + 1.5 + 2 + 2 }, { x: 5, y: 1 + 1.5 + 2 + 2 + 1.5 }, { x: 6, y: 1 + 1.5 + 2 + 2 + 1.5 + 1 }, { x: 7, y: 1 + 1.5 + 2 + 2 + 1.5 + 1 }] },
+      { id: "alert-one", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 8, y: 4 } },
+      { id: "alert-two", kind: "segment", appearance: "reference", from: { x: 0, y: 8 }, to: { x: 8, y: 8 } },
+    ],
+    labels: [
+      { key: "hotspot", objectId: "hotspot", at: { x: 3.5, y: 2 }, placement: "above" },
+      { key: "stress", objectId: "stress", at: { x: 7, y: 1 + 1.5 + 2 + 2 + 1.5 + 1 }, placement: "above" },
+      { key: "one", objectId: "alert-one", at: { x: 8, y: 4 }, placement: "above-left" },
+      { key: "two", objectId: "alert-two", at: { x: 0, y: 8 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    hotspot: "weekly excess heat",
+    stress: <InlineMath math="9\ ^\circ\text{C-weeks}" />,
+    one: "4: bleaching likely",
+    two: "8: severe bleaching, deaths likely",
+  }}
+/>
+
 ### Pale Color Is a Stress Signal
 
 [Coral bleaching](https://oceanservice.noaa.gov/facts/coral_bleach.html) is a stress response in which coral expels the algae living in its tissue. Unusually warm water can disrupt this relationship. Without enough algae, coral loses one of its main energy sources and can turn pale.

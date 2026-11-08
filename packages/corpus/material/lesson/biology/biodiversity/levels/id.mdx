@@ -63,6 +63,34 @@ Bandingkan contoh pengamatan rekaan berikut. Luas petak dan cara menghitung dibu
 
 Kedua petak memiliki 10 individu dan 3 spesies. Namun, **kelimpahan lebih merata** di petak 2. Menghitung jumlah spesies saja akan melewatkan perbedaan ini.
 
+Adegan di bawah mengubah kedua petak menjadi batang, oranye untuk spesies A, ungu untuk B, dan hijau toska untuk C, dengan satu kotak grid untuk <InlineMath math="2" /> individu. Putar adegannya sampai kedua baris terlihat berdampingan. Petak 1 punya satu batang tinggi dan dua batang pendek, sedangkan petak 2 punya tiga batang yang tingginya mirip. Salah satu cara umum untuk memberi angka pada perbedaan ini adalah indeks Simpson, <InlineMath math="1-\sum p_i^2" />, dengan <InlineMath math="p_i" /> sebagai bagian setiap spesies dari seluruh individu. Nilainya <InlineMath math="0{,}34" /> untuk petak 1 dan <InlineMath math="0{,}66" /> untuk petak 2, jadi petak yang lebih merata nilainya hampir dua kali lipat walaupun jumlah spesiesnya sama.
+
+<MathVisual
+  title="Kekayaan Sama, Kemerataan Berbeda"
+  description="Individu spesies A (oranye), B (ungu), dan C (hijau toska) pada dua petak hipotetis yang sama luas. Satu kotak grid ke atas sama dengan 2 individu."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 6.5 }, y: { min: 0, max: 5 }, z: { min: -2.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 9, y: 6, z: 9 }, target: { x: 2, y: 1.2, z: 0 } },
+    objects: [
+      { id: "plot-1-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 8 / 4, z: -1.5 }, size: { length: 1.2, height: 8 / 2, width: 1.2 } },
+      { id: "plot-1-b", kind: "cuboid", appearance: "secondary", center: { x: 2, y: 1 / 4, z: -1.5 }, size: { length: 1.2, height: 1 / 2, width: 1.2 } },
+      { id: "plot-1-c", kind: "cuboid", appearance: "construction", center: { x: 4, y: 1 / 4, z: -1.5 }, size: { length: 1.2, height: 1 / 2, width: 1.2 } },
+      { id: "plot-2-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 4 / 4, z: 1.5 }, size: { length: 1.2, height: 4 / 2, width: 1.2 } },
+      { id: "plot-2-b", kind: "cuboid", appearance: "secondary", center: { x: 2, y: 3 / 4, z: 1.5 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "plot-2-c", kind: "cuboid", appearance: "construction", center: { x: 4, y: 3 / 4, z: 1.5 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "first", objectId: "plot-1-a", at: { x: 0, y: 8 / 2 + 0.4, z: -1.5 }, placement: "above" },
+      { key: "second", objectId: "plot-2-a", at: { x: 0, y: 4 / 2 + 0.4, z: 1.5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="\text{Petak 1}:\ 1-\left(0{,}8^2+0{,}1^2+0{,}1^2\right)=0{,}34" />,
+    second: <InlineMath math="\text{Petak 2}:\ 1-\left(0{,}4^2+0{,}3^2+0{,}3^2\right)=0{,}66" />,
+  }}
+/>
+
 ### Keanekaragaman Ekosistem Membandingkan Habitat dan Interaksi Ekologis
 
 Keanekaragaman ekosistem lebih luas lagi. Sawah, sungai, hutan hujan, mangrove, savana, dan terumbu karang memiliki kondisi berbeda. **Cahaya, air, salinitas, tanah, suhu, dan interaksi organisme** membuat jenis yang hidup di sana tidak sama.

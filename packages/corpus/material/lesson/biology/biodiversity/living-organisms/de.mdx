@@ -42,6 +42,33 @@ Nur ein Teil der chemischen Energie einer trophischen Ebene wird zu **neuer Biom
 
 Darum wird eine Energiepyramide nach oben hin immer schmaler. Ihre Breite steht für die verfügbare Energie und misst weder die Bedeutung noch die Anzahl der Organismen. Zahlenpyramiden können andere Formen haben.
 
+Die Szene unten baut diese Pyramide aus Zahlen. Nimm an, die Grasschicht enthält <InlineMath math="10\,000\ \text{kJ}" />, und jede Ebene gibt als Beispiel ein Zehntel als neue Biomasse weiter. Die obere Fläche jeder Schicht ist proportional zu ihrer Energie, also ist jede Ebene darüber an jeder Seite <InlineMath math="\sqrt{10}" />-mal schmaler. Dreh die Szene und schau von oben: Die Vogelschicht bedeckt nur ein Hundertstel der Grasschicht, und die fehlende Energie hat das System unterwegs als Wärme verlassen.
+
+<MathVisual
+  title="Eine Energiepyramide mit einem Zehntel pro Ebene"
+  description="Die obere Fläche jeder Schicht ist proportional zur verfügbaren Energie dieser trophischen Ebene, ausgehend von beispielhaften 10 000 kJ im Gras."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: 0, max: 2.5 }, z: { min: -4, max: 4 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 9 }, target: { x: 0, y: 0.5, z: 0 } },
+    objects: [
+      { id: "grass", kind: "cuboid", appearance: "construction", center: { x: 0, y: 0.25, z: 0 }, size: { length: 6 * Math.sqrt(1), height: 0.5, width: 6 * Math.sqrt(1) } },
+      { id: "grasshopper", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 0.75, z: 0 }, size: { length: 6 * Math.sqrt(1 / 10), height: 0.5, width: 6 * Math.sqrt(1 / 10) } },
+      { id: "bird", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1.25, z: 0 }, size: { length: 6 * Math.sqrt(1 / 100), height: 0.5, width: 6 * Math.sqrt(1 / 100) } },
+    ],
+    labels: [
+      { key: "grass", objectId: "grass", at: { x: 3.25, y: 0.25, z: 0 }, placement: "right" },
+      { key: "grasshopper", objectId: "grasshopper", at: { x: 1.25, y: 0.75, z: 0 }, placement: "right" },
+      { key: "bird", objectId: "bird", at: { x: 0, y: 1.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    grass: <InlineMath math="\text{Gras: }10\,000\ \text{kJ}" />,
+    grasshopper: <InlineMath math="\text{Heuschrecke: }1\,000\ \text{kJ}" />,
+    bird: <InlineMath math="\text{Vogel: }100\ \text{kJ}" />,
+  }}
+/>
+
 | Was wird verfolgt? | Richtung | So liest du das Beispiel |
 | --- | --- | --- |
 | Energie | Fließt vom Produzenten zu den Konsumenten und verlässt das System schließlich als Wärme | Gras liefert einer Heuschrecke Energie, ein Teil davon gelangt anschließend zu einem Vogel |

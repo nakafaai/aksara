@@ -30,6 +30,30 @@ Internationale Klimaabkommen nutzen Temperaturziele, um gemeinsames Handeln ausz
 
 [Klimarisiken und Verluste](https://www.ipcc.ch/report/ar6/syr/resources/spm-headline-statements/) steigen mit jedem zusätzlichen Maß an Erwärmung. Die Ziele von <InlineMath math="1{,}5\,^\circ\text{C}" /> und <InlineMath math="2\,^\circ\text{C}" /> geben einen gemeinsamen Maßstab vor, um Tempo und Umfang notwendiger Emissionssenkungen einzuschätzen.
 
+Ein Temperaturziel lässt sich in ein gemeinsames Budget an Kohlendioxid übersetzen. Der IPCC schätzte, dass ab Anfang 2020 noch etwa <InlineMath math="500" /> Milliarden Tonnen CO₂ ausgestoßen werden konnten, um mit einer Chance von fünfzig Prozent unter <InlineMath math="1{,}5\,^\circ\text{C}" /> zu bleiben. Die Szene unten verbraucht dieses Budget auf zwei Arten, ausgehend von runden <InlineMath math="40" /> Milliarden Tonnen pro Jahr. Beide Flächen sind gleich groß, nämlich <InlineMath math="500" />. Bei gleichbleibenden Emissionen endet das pinke Rechteck nach <InlineMath math="12{,}5" /> Jahren. Sinken die Emissionen gleichmäßig auf null, reicht das türkise Dreieck bis <InlineMath math="25" /> Jahre. Deshalb sagt das Ziel auch, wie schnell die Emissionen fallen müssen, nicht nur wie weit.
+
+<MathVisual
+  title="Zwei Arten, ein CO₂-Budget zu verbrauchen"
+  description="Ein Budget von 500 GtCO₂, verbraucht ab 40 GtCO₂ pro Jahr. Waagrecht: Jahre nach 2020 in Einheiten von 5. Senkrecht: jährliche Emissionen in Einheiten von 10 GtCO₂."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "constant", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 500 / 40 / 5, y: 0 }, { x: 500 / 40 / 5, y: 40 / 10 }, { x: 0, y: 40 / 10 }] },
+      { id: "decline", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: (2 * 500) / 40 / 5, y: 0 }, { x: 0, y: 40 / 10 }] },
+    ],
+    labels: [
+      { key: "constant", objectId: "constant", at: { x: 500 / 40 / 5, y: 40 / 10 }, placement: "above-right" },
+      { key: "decline", objectId: "decline", at: { x: (2 * 500) / 40 / 5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    constant: <InlineMath math="\frac{500}{40}=12{,}5\ \text{Jahre}" />,
+    decline: <InlineMath math="\frac{2\times500}{40}=25\ \text{Jahre}" />,
+  }}
+/>
+
 ## Aufgabenteilung in der internationalen Klimapolitik
 
 An globaler Klimazusammenarbeit sind unterschiedliche Institutionen beteiligt, weil eine einzige Gruppe nicht alle Aufgaben erfüllen kann. Manche **bewerten wissenschaftliche Erkenntnisse**, andere verhandeln Vereinbarungen, setzen Programme um oder verfolgen den Fortschritt.

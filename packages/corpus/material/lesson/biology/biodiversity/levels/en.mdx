@@ -63,6 +63,34 @@ Compare these hypothetical observations, using the same plot area and counting m
 
 Both plots contain 10 individuals and 3 species. However, **abundance is more even** in plot 2. Counting species alone misses this difference.
 
+The scene below turns the two plots into bars, orange for species A, violet for B and teal for C, with one grid step for <InlineMath math="2" /> individuals. Rotate it so you see both rows side by side. Plot 1 has one tall bar and two stubs, while plot 2 has three bars of similar height. One common way to put a number on this is Simpson's index, <InlineMath math="1-\sum p_i^2" />, where <InlineMath math="p_i" /> is each species' share of the individuals. It reaches <InlineMath math="0.34" /> for plot 1 and <InlineMath math="0.66" /> for plot 2, so the more even plot scores almost twice as high with the same species count.
+
+<MathVisual
+  title="Same Richness, Different Evenness"
+  description="Individuals of species A (orange), B (violet) and C (teal) in two hypothetical plots of equal area. One grid step up is 2 individuals."
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 6.5 }, y: { min: 0, max: 5 }, z: { min: -2.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 9, y: 6, z: 9 }, target: { x: 2, y: 1.2, z: 0 } },
+    objects: [
+      { id: "plot-1-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 8 / 4, z: -1.5 }, size: { length: 1.2, height: 8 / 2, width: 1.2 } },
+      { id: "plot-1-b", kind: "cuboid", appearance: "secondary", center: { x: 2, y: 1 / 4, z: -1.5 }, size: { length: 1.2, height: 1 / 2, width: 1.2 } },
+      { id: "plot-1-c", kind: "cuboid", appearance: "construction", center: { x: 4, y: 1 / 4, z: -1.5 }, size: { length: 1.2, height: 1 / 2, width: 1.2 } },
+      { id: "plot-2-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 4 / 4, z: 1.5 }, size: { length: 1.2, height: 4 / 2, width: 1.2 } },
+      { id: "plot-2-b", kind: "cuboid", appearance: "secondary", center: { x: 2, y: 3 / 4, z: 1.5 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "plot-2-c", kind: "cuboid", appearance: "construction", center: { x: 4, y: 3 / 4, z: 1.5 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "first", objectId: "plot-1-a", at: { x: 0, y: 8 / 2 + 0.4, z: -1.5 }, placement: "above" },
+      { key: "second", objectId: "plot-2-a", at: { x: 0, y: 4 / 2 + 0.4, z: 1.5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="\text{Plot 1}:\ 1-\left(0.8^2+0.1^2+0.1^2\right)=0.34" />,
+    second: <InlineMath math="\text{Plot 2}:\ 1-\left(0.4^2+0.3^2+0.3^2\right)=0.66" />,
+  }}
+/>
+
 ### Ecosystem Diversity Compares Habitats and Relationships
 
 Rice fields, rivers, tropical rainforests, mangroves, savannas, and coral reefs have different conditions. **Light, water, salinity, soil, temperature, and organism interactions** shape which living things can survive there.
