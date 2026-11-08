@@ -13,8 +13,8 @@ function malayRules(source: string) {
 it("rejects Indonesian function words and vocabulary in Malay prose", () => {
   const source = [
     "Jawapan ini betul karena kedua-dua sisi sama.",
-    "Anda bisa muat turun nota ini.",
-    "Semak jawaban anda sekali lagi.",
+    "Kamu bisa muat turun nota ini.",
+    "Semak jawaban kamu sekali lagi.",
     "Buka tautan di bawah.",
   ].join("\n");
 
@@ -40,16 +40,24 @@ it("rejects the Indonesian -itas suffix and Indonesian science terms", () => {
   ]);
 });
 
-it("keeps Nakafa's Malay learner address", () => {
-  assert.deepEqual(malayRules("Sekarang kamu cuba soalan kedua."), [
-    { line: 1, rule: "malay-learner-address" },
-  ]);
+it("talks to the Malay learner as kamu, never as anda or awak", () => {
+  assert.deepEqual(
+    malayRules(
+      ["Sekarang anda cuba soalan kedua.", "Awak semak jawapan tadi."].join(
+        "\n"
+      )
+    ),
+    [
+      { line: 1, rule: "malay-learner-address" },
+      { line: 2, rule: "malay-learner-address" },
+    ]
+  );
 });
 
 it("accepts standard Malaysian Malay", () => {
   const source = [
     "Jawapan ini betul kerana kedua-dua sisi sama.",
-    "Anda boleh muat turun nota ini sahaja.",
+    "Kamu boleh muat turun nota ini sahaja.",
     "Kualiti data menentukan keputusan, dan tenaga kinetik bergantung pada laju.",
     "Selesaikan ketaksamaan kuadratik ini dengan kuasa dua sempurna.",
   ].join("\n");
@@ -59,7 +67,10 @@ it("accepts standard Malaysian Malay", () => {
 
 it("leaves the Indonesian sibling to its own rules", () => {
   assert.deepEqual(
-    findLessonVoiceIssues("id", "Jawaban ini benar karena kualitas datanya baik.")
+    findLessonVoiceIssues(
+      "id",
+      "Jawaban ini benar karena kualitas datanya baik."
+    )
       .map(({ rule }) => rule)
       .filter((rule) => rule.startsWith("malay-")),
     []

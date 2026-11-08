@@ -75,10 +75,18 @@ not replace the full lesson context.
 
 ### Register
 
-- Address the learner as `anda`, lowercase inside a sentence. Never `kamu`,
-  `kau`, `engkau`, `awak` or `kalian`.
-- Use standard Malaysian spelling: `kerana`, `sahaja`, `mahu`, `boleh`,
-  `baharu` for "new" in formal headings and copy.
+- Write as a warm teacher talking to one Form 4 or Form 5 student: casual,
+  close and clear, never formal. Address the learner as `kamu`, the word a
+  Malaysian teacher uses with a student in class, and write `buku kamu` for
+  their things. Never `anda`, `awak`, `kau`, `engkau` or `kalian`.
+- Carry the reasoning like a story: each step follows from the last, with the
+  reason said in plain words. Use everyday Malaysian wording and short
+  sentences. Drop stiff openers and connectors such as `Sila`, `hendaklah`,
+  `dengan ini` and `adalah merupakan`.
+- Casual is not cringe: no slang pile-up (`best gila`, `takde`, `korang`),
+  no forced jokes and no invented anecdotes. Facts, numbers and terms stay
+  exact, and an assessed question stem keeps the official exam's language.
+- Use standard Malaysian spelling: `kerana`, `sahaja`, `mahu`, `boleh`.
 - Numbers use a decimal point and a thousands comma: `1,234.5`. Dates put the
   day first with Malay month names (`Mac`, `Ogos`, `Disember`), and the time
   reads `8:15 pagi`, `2:30 petang`.

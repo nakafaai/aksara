@@ -4,7 +4,8 @@ import type { LessonVoiceRule } from "#nakafa-content/voice/types";
  * Checks Malaysian Malay prose for the Indonesian forms that read as foreign or
  * mean something else in Malaysia, and for Nakafa's Malay learner address.
  * Each pattern names a form that standard Malaysian Malay (Dewan Bahasa dan
- * Pustaka) writes differently, so a match is never a matter of taste.
+ * Pustaka) writes differently, so a match is never a matter of taste. Malay
+ * prose talks to the learner as `kamu`, the way a teacher talks to a student.
  */
 export const MALAY_COPY_RULES = [
   {
@@ -36,7 +37,7 @@ export const MALAY_COPY_RULES = [
   {
     id: "malay-learner-address",
     inspectLinkLabels: true,
-    patterns: { ms: /\b(?:kamu|kau|engkau|awak)\b/iu },
+    patterns: { ms: /\b(?:anda|awak|kau|engkau)\b/iu },
     protectInlineQuotations: true,
   },
 ] satisfies readonly LessonVoiceRule[];
