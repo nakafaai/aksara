@@ -55,7 +55,7 @@ export interface LineContext {
   isProtectedRegion: boolean;
 }
 
-/** Narrows a file or caller locale to the three lesson locales. */
+/** Narrows a file or caller locale to the declared lesson locales. */
 export function isLessonVoiceLocale(
   locale: string
 ): locale is LessonVoiceLocale {

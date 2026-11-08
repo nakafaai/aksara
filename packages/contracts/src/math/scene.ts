@@ -126,7 +126,10 @@ function cuboidCoordinates(
   ];
 }
 
-/** Projects every finite or frame-clipped coordinate of one scene object. */
+/**
+ * Projects every finite or frame-clipped coordinate of one scene object. A
+ * formula object authors no coordinate: its samples come from its formula.
+ */
 function objectCoordinates(
   frame: SceneFrame,
   object: PlaneMathObject | SpaceMathObject,
@@ -182,7 +185,15 @@ function objectCoordinates(
   if (object.kind === "quadratic") {
     return quadraticCoordinates(object, root, threshold);
   }
-  return cuboidCoordinates(object, root);
+  if (object.kind === "prism" || object.kind === "pyramid") {
+    return Arr.flatMap(object.base, (point, pointIndex) =>
+      pointCoordinates(point, [...root, "base", pointIndex])
+    );
+  }
+  if (object.kind === "cuboid") {
+    return cuboidCoordinates(object, root);
+  }
+  return [];
 }
 
 /** Projects all label anchors after the objects they annotate. */

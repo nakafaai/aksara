@@ -67,7 +67,7 @@ const invalidOwnershipCases = [
 
 describe("curriculum node projection", () => {
   it.effect(
-    "flattens all four real trees and validates every material reference",
+    "flattens all five real trees and validates every material reference",
     () =>
       Effect.gen(function* () {
         const [curricula, materials] = yield* Effect.all([
@@ -80,8 +80,8 @@ describe("curriculum node projection", () => {
           ({ materialKeys }) => materialKeys.length > 0
         );
 
-        expect(nodes).toHaveLength(191);
-        expect(materialNodes).toHaveLength(96);
+        expect(nodes).toHaveLength(289);
+        expect(materialNodes).toHaveLength(112);
         expect(
           Arr.every(
             nodes,

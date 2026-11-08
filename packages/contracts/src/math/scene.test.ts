@@ -5,7 +5,14 @@ import {
   PlaneMathFrameSchema,
   PlaneMathObjectSchema,
 } from "#contracts/math/plane";
-import { planeResolutionIssues } from "#contracts/math/resolution";
+import {
+  planeResolutionIssues,
+  spaceResolutionIssues,
+} from "#contracts/math/resolution";
+import {
+  SpaceMathFrameSchema,
+  SpaceMathObjectSchema,
+} from "#contracts/math/space";
 import { hasAuthoredIssue } from "#contracts/test/issue";
 
 const RESOLUTION = 2 ** -23;
@@ -172,6 +179,49 @@ describe("ordered mathematical scene coordinates", () => {
     assert.deepStrictEqual(
       paths(planeResolutionIssues(planeFrame, [arc], [], { kind: "fit" })),
       [["objects", 0]]
+    );
+  });
+});
+
+describe("formula and solid scene coordinates", () => {
+  it("resolves solids by their corners and formula objects by their frame", () => {
+    const spaceFrame = Schema.decodeSync(SpaceMathFrameSchema)({
+      kind: "cartesian",
+      x: { max: 4, min: -4 },
+      y: { max: 4, min: -4 },
+      z: { max: 4, min: -4 },
+    });
+    const base = [
+      { x: 0, y: 0, z: 0 },
+      { x: 2, y: 0, z: 0 },
+      { x: 0, y: 2, z: 0 },
+    ];
+    /** Decodes one space object of a kind. */
+    const solid = (kind: string, fields: Record<string, unknown>) =>
+      Schema.decodeUnknownSync(SpaceMathObjectSchema)({
+        appearance: "primary",
+        id: `${kind}-fixture`,
+        kind,
+        ...fields,
+      });
+    const objects = [
+      solid("prism", { base, offset: { x: 0, y: 0, z: 2 } }),
+      solid("pyramid", { apex: { x: 0, y: 0, z: 3 }, base }),
+      solid("function", { formula: "x y / 8" }),
+    ];
+
+    assert.deepStrictEqual(
+      spaceResolutionIssues(spaceFrame, objects, [], { kind: "fit" }),
+      []
+    );
+    assert.deepStrictEqual(
+      planeResolutionIssues(
+        planeFrame,
+        [planeObject("function", { formula: "x^2" })],
+        [],
+        { kind: "fit" }
+      ),
+      []
     );
   });
 });
