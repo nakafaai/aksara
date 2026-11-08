@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "effective-sentence",
+  },
+  stimulus: "medicine-delivery",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "setelah kalimat $$4$$.",
+          label: "lagi",
         },
         {
           correct: false,
-          label: "sebelum kalimat $$1$$.",
+          label: "relawan",
         },
         {
           correct: false,
-          label: "setelah kalimat $$1$$.",
+          label: "secara",
         },
         {
           correct: false,
-          label: "setelah kalimat $$2$$.",
+          label: "singkat",
         },
         {
           correct: false,
-          label: "setelah kalimat $$3$$.",
+          label: "aturan",
         },
       ],
     },

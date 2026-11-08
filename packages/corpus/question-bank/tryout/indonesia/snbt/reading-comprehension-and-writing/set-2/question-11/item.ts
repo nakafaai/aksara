@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "explicit-information",
+  },
+  stimulus: "medicine-delivery",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "relawan mengambil obat, dokter menulis resep, relawan menjelaskan aturan minum obat",
+        },
+        {
+          correct: false,
+          label: "dokter memeriksa catatan, relawan menjelaskan aturan minum obat, relawan mengambil obat",
+        },
+        {
+          correct: false,
+          label: "relawan dilatih, relawan mengantarkan obat, dokter memeriksa catatan",
+        },
+        {
           correct: true,
-          label: "Potret dari Sensus Pertanian Indonesia 2023",
+          label: "dokter memeriksa catatan dan menulis resep, relawan mengambil obat, relawan menjelaskan aturan minum obat",
         },
         {
           correct: false,
-          label: "Perkembangan Pertanian Indonesia",
-        },
-        {
-          correct: false,
-          label: "Penurunan Usaha Pertanian Perorangan",
-        },
-        {
-          correct: false,
-          label: "Mengapa Indonesia Memerlukan Modernisasi Pertanian?",
-        },
-        {
-          correct: false,
-          label: "Sensus Pertanian 2023 Dilaksanakan di Seluruh Indonesia",
+          label: "relawan menjelaskan aturan minum obat, dokter menulis resep, relawan mengambil obat",
         },
       ],
     },

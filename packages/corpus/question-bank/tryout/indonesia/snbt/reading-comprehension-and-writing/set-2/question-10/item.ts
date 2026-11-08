@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "conclusion",
+  },
+  stimulus: "plastic-free-market",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "($$2$$)-($$4$$)-($$3$$)-($$5$$)-($$1$$).",
+          label: "Semua pedagang di Pasar Pagi Sukamaju menolak larangan kantong plastik.",
+        },
+        {
+          correct: false,
+          label: "Pembeli wajib membeli tas kain setiap kali berbelanja di pasar itu.",
+        },
+        {
+          correct: false,
+          label: "Larangan kantong plastik membuat pembeli berpenghasilan rendah berhenti berbelanja di pasar itu.",
+        },
+        {
+          correct: false,
+          label: "Pengelola pasar lain sudah meniru kebijakan Pasar Pagi Sukamaju.",
         },
         {
           correct: true,
-          label: "($$3$$)-($$5$$)-($$2$$)-($$4$$)-($$1$$).",
-        },
-        {
-          correct: false,
-          label: "($$3$$)-($$1$$)-($$5$$)-($$2$$)-($$4$$).",
-        },
-        {
-          correct: false,
-          label: "($$1$$)-($$3$$)-($$2$$)-($$4$$)-($$5$$).",
-        },
-        {
-          correct: false,
-          label: "($$5$$)-($$2$$)-($$3$$)-($$1$$)-($$4$$).",
+          label: "Kekhawatiran pedagang sayur tentang berkurangnya pembeli tidak terjadi di Pasar Pagi Sukamaju.",
         },
       ],
     },
