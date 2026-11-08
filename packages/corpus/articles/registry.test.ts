@@ -4,7 +4,7 @@ import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
-  AppLocaleSchema,
+  ActiveAppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import {
   Array as Arr,
@@ -24,8 +24,8 @@ const resolveCorpusRoot = Effect.map(Path.Path, (path) =>
   path.resolve(import.meta.dirname, "..", "..", "..")
 );
 const englishIndonesianLocales = ActiveAppLocaleListSchema.make([
-  AppLocaleSchema.make("en"),
-  AppLocaleSchema.make("id"),
+  ActiveAppLocaleSchema.make("en"),
+  ActiveAppLocaleSchema.make("id"),
 ]);
 
 /** Decodes injected sources for one explicit publication locale subset. */
@@ -143,7 +143,7 @@ layer(NodeServices.layer)("article registry", (it) => {
       Effect.gen(function* () {
         const entries = yield* decodeArticleRegistry(
           [articleSource()],
-          ActiveAppLocaleListSchema.make([AppLocaleSchema.make("de")])
+          ActiveAppLocaleListSchema.make([ActiveAppLocaleSchema.make("de")])
         );
 
         expect(entries).toHaveLength(1);

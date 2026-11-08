@@ -1,6 +1,6 @@
 import { Schema } from "effect";
 import {
-  AppLocaleCodeSchema,
+  ActiveAppLocaleCodeSchema,
   ENGLISH_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
   INDONESIAN_APP_LOCALE_CODE,
@@ -35,9 +35,9 @@ export const QuranSurahNumberSchema = Schema.Int.pipe(
   Schema.check(Schema.isBetween({ maximum: QURAN_SURAH_COUNT, minimum: 1 }))
 );
 
-/** Complete reviewed surah-name meaning map in canonical app-locale keys. */
+/** Complete reviewed surah-name meaning map, one meaning for every active app locale. */
 export const QuranSurahNameMeaningSchema = Schema.Record(
-  AppLocaleCodeSchema,
+  ActiveAppLocaleCodeSchema,
   QuranMeaningfulTextSchema
 );
 

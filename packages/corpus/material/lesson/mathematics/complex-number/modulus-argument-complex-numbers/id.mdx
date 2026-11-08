@@ -137,6 +137,21 @@ Grafik interaktif menunjukkan empat bilangan dengan modulus <InlineMath math="2"
 
 Titik pada sumbu tidak memerlukan pembagian <InlineMath math="\frac{y}{x}" />. Arahnya langsung terbaca: sumbu nyata positif <InlineMath math="0^\circ" />, sumbu imajiner positif <InlineMath math="90^\circ" />, sumbu nyata negatif <InlineMath math="180^\circ" />, dan sumbu imajiner negatif <InlineMath math="-90^\circ" />.
 
+<Mermaid
+  title="Memilih argumen dari kuadran"
+  description="Sudut acuan yang sama memberi argumen berbeda di setiap kuadran."
+  chart={`flowchart TD
+  A["Hitung r dan sudut acuan lancip α"] --> B{"Tanda x dan y?"}
+  B -->|"x positif, y positif"| C["θ = α"]
+  B -->|"x negatif, y positif"| D["θ = 180° - α"]
+  B -->|"x negatif, y negatif"| E["θ = -180° + α"]
+  B -->|"x positif, y negatif"| F["θ = -α"]
+  C --> G["Periksa: r cos θ = x dan r sin θ = y"]
+  D --> G
+  E --> G
+  F --> G`}
+/>
+
 ## Contoh Menentukan Modulus dan Argumen
 
 **Contoh 1**. Untuk <InlineMath math="z = -\sqrt{3} + i" />, titik <InlineMath math="(-\sqrt{3}, 1)" /> ada di kuadran II, karena <InlineMath math="x < 0" /> dan <InlineMath math="y > 0" />:

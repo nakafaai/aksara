@@ -1,61 +1,29 @@
+
 export const metadata = {
-  title: "Kreissektor",
-  description: "Kreissektoren erkennen und ihre Fläche aus Radius und Mittelpunktswinkel berechnen.",
+  title: "Fläche eines Kreissektors",
+  description: "Die Sektorfläche ist der Mittelpunktswinkel geteilt durch 360 Grad mal die Kreisfläche. Berechne kleine und große Sektoren sowie den Sektorumfang.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Kreisbögen und Sektoren",
 };
 
+## Formel für die Sektorfläche
 
+Ein Kreissektor ist die Fläche, die von **zwei Radien und dem Bogen** dazwischen begrenzt wird. Seine Fläche ist ein Anteil der Kreisfläche, und diesen Anteil bestimmt der Mittelpunktswinkel <InlineMath math="\alpha" />:
 
-## Ein Teil der Kreisscheibe zwischen zwei Radien
+<BlockMath math="A_{\text{Sektor}} = \frac{\alpha}{360^\circ} \times \pi r^2" />
 
-Ein Kreissektor ist <Highlight>der Teil einer Kreisscheibe</Highlight>, der von zwei Radien und dem dazwischenliegenden Kreisbogen begrenzt wird. Ein radial aus einer runden Torte geschnittenes Stück oder eine Orangenspalte hat annähernd diese Form.
-
-Die beiden Radien bilden im Kreismittelpunkt einen Mittelpunktswinkel. Bei festem Radius bestimmt dieser Winkel, welchen Anteil der Kreisscheibe der Sektor einnimmt.
-
-## Zusammenhang zwischen Mittelpunktswinkel und Sektorfläche
-
-Bei **festem Radius** wächst die Sektorfläche proportional zum Mittelpunktswinkel. Teilt man eine volle Umdrehung in gleiche Winkel, wird auch die Kreisfläche in gleich große Teile zerlegt. Ein doppelt so großer Winkel gehört also zu einer doppelt so großen Sektorfläche.
-
-Misst der Mittelpunktswinkel <InlineMath math="\alpha" /> Grad, dann beträgt der Flächenanteil des Sektors <InlineMath math="\frac{\alpha}{360^\circ}" /> der gesamten Kreisfläche.
-
-<MathContainer>
-<BlockMath math="\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \pi r^2" />
-</MathContainer>
-
-Bei <InlineMath math="90^\circ" /> umfasst der Sektor ein Viertel der Kreisfläche, bei <InlineMath math="180^\circ" /> genau die Hälfte.
-
-## Berechnung der Sektorfläche
-
-Ein Winkel von 60 Grad erfasst **ein Sechstel der Kreisfläche**. Berechne zuerst die gesamte Fläche aus dem Radius und multipliziere dann mit dem Winkelanteil. Lass Pi bis zum letzten Rechenschritt als Symbol stehen.
-
-Ein Kreis habe den Radius <InlineMath math="14 \text{ cm}" /> und der Sektor den Mittelpunktswinkel <InlineMath math="60^\circ" />. Einsetzen liefert:
-
-<MathContainer>
-<BlockMath math="\text{Sektorfläche} = \frac{60^\circ}{360^\circ} \times \pi \times 14^2" />
-<BlockMath math="= \frac{1}{6} \times \pi \times 196" />
-<BlockMath math="= \frac{196\pi}{6}" />
-<BlockMath math="= \frac{98\pi}{3} \text{ cm}^2" />
-<BlockMath math="\approx 102{,}63 \text{ cm}^2" />
-</MathContainer>
-
-Die Sektorfläche beträgt exakt <InlineMath math="\frac{98\pi}{3} \text{ cm}^2" />, also ungefähr <InlineMath math="102{,}63 \text{ cm}^2" />.
-
-## Winkel und Flächenanteil vergleichen
-
-Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen über die Mittelpunktswinkel vergleichen. Der Sektor mit 120 Grad hat die doppelte Fläche des Sektors mit 60 Grad. Der Sektor mit 270 Grad erfasst drei Viertel des Kreises und lässt ein Viertel übrig.
-
-<ContentStack>
+Ist der Mittelpunktswinkel im Bogenmaß gegeben, lautet die Formel <InlineMath math="A = \frac{1}{2}\theta r^2" />. Das Diagramm zum Sektor mit <InlineMath math="60^\circ" /> zeigt einen Sektor eines Kreises mit dem Radius <InlineMath math="3" />, also ein Sechstel des Kreises.
 
 <LineEquation
-  title={<>Sektor <InlineMath math="60^\circ" /> (<InlineMath math="\frac{1}{6}" /> des Kreises)</>}
-  description={<>Ein Mittelpunktswinkel von <InlineMath math="60^\circ" /> erfasst <InlineMath math="\frac{1}{6}" /> der Kreisfläche.</>}
+  title={<>Sektor mit <InlineMath math="60^\circ" /> (<InlineMath math="\frac{1}{6}" /> des Kreises)</>}
+  description={<>Beim Radius <InlineMath math="3" /> nimmt der Sektor mit <InlineMath math="60^\circ" /> <InlineMath math="\frac{1}{6}" /> der Fläche <InlineMath math="9\pi" /> ein, also <InlineMath math="\frac{3\pi}{2}" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -89,8 +57,8 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
+      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+        const i = sampleIndex / 10;
         const angle = (i * Math.PI / 3) / 20;
         return {
           x: 3 * Math.cos(angle),
@@ -105,7 +73,7 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
       labels: [
         {
           text: <InlineMath math="60^\circ" />,
-          at: 50,
+          at: 100,
           offset: [0.8, 0.5, 0],
 
         },
@@ -114,13 +82,22 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
   ]}
 />
 
+Für diesen Sektor gilt <InlineMath math="A = \frac{60}{360} \times \pi \times 3^2 = \frac{1}{6} \times 9\pi = \frac{3\pi}{2}" />. Umgekehrt bestimmst du den [Mittelpunktswinkel im Kreissektor](/de/faecher/mathematik/kreisboegen-und-kreissektoren/mittelpunktswinkel-im-kreissektor) aus der Fläche mit <InlineMath math="\alpha = \frac{A}{\pi r^2} \times 360^\circ" />.
+
+## Der Anteil am Kreis in jedem Sektor
+
+Bei gleichem Radius ist die Sektorfläche **proportional zum Mittelpunktswinkel**. Die nächsten vier Diagramme nutzen denselben Radius <InlineMath math="3" /> mit wachsenden Winkeln, sodass du die Anteile am Kreis direkt vergleichen kannst.
+
+<ContentStack>
+
 <LineEquation
-  title={<>Sektor <InlineMath math="90^\circ" /> (<InlineMath math="\frac{1}{4}" /> des Kreises)</>}
-  description={<>Ein Mittelpunktswinkel von <InlineMath math="90^\circ" /> erfasst <InlineMath math="\frac{1}{4}" /> der Kreisfläche.</>}
+  title={<>Sektor mit <InlineMath math="90^\circ" /> (<InlineMath math="\frac{1}{4}" /> des Kreises)</>}
+  description={<>Beim Radius <InlineMath math="3" /> nimmt der Sektor mit <InlineMath math="90^\circ" /> <InlineMath math="\frac{1}{4}" /> der Fläche <InlineMath math="9\pi" /> ein, also <InlineMath math="\frac{9\pi}{4}" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -154,7 +131,8 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 31 }, (_, i) => {
+      points: Array.from({ length: 211 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (i * Math.PI / 2) / 30;
         return {
           x: 3 * Math.cos(angle),
@@ -169,7 +147,7 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
       labels: [
         {
           text: <InlineMath math="90^\circ" />,
-          at: 15,
+          at: 105,
           offset: [0.5, 0.8, 0],
 
         },
@@ -179,12 +157,13 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
 />
 
 <LineEquation
-  title={<>Sektor <InlineMath math="120^\circ" /> (<InlineMath math="\frac{1}{3}" /> des Kreises)</>}
-  description={<>Ein Mittelpunktswinkel von <InlineMath math="120^\circ" /> erfasst <InlineMath math="\frac{1}{3}" /> der Kreisfläche.</>}
+  title={<>Sektor mit <InlineMath math="120^\circ" /> (<InlineMath math="\frac{1}{3}" /> des Kreises)</>}
+  description={<>Beim Radius <InlineMath math="3" /> nimmt der Sektor mit <InlineMath math="120^\circ" /> <InlineMath math="\frac{1}{3}" /> der Fläche <InlineMath math="9\pi" /> ein, also <InlineMath math="3\pi" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -218,7 +197,8 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 41 }, (_, i) => {
+      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * 2 * Math.PI / 3) / 40;
         return {
           x: 3 * Math.cos(angle),
@@ -233,7 +213,7 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
       labels: [
         {
           text: <InlineMath math="120^\circ" />,
-          at: 20,
+          at: 100,
           offset: [-0.5, 1, 0],
 
         },
@@ -243,12 +223,13 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
 />
 
 <LineEquation
-  title={<>Sektor <InlineMath math="180^\circ" /> (<InlineMath math="\frac{1}{2}" /> des Kreises)</>}
-  description={<>Ein Mittelpunktswinkel von <InlineMath math="180^\circ" /> erfasst <InlineMath math="\frac{1}{2}" /> der Kreisfläche.</>}
+  title={<>Sektor mit <InlineMath math="180^\circ" /> (<InlineMath math="\frac{1}{2}" /> des Kreises)</>}
+  description={<>Beim Radius <InlineMath math="3" /> nimmt der Sektor mit <InlineMath math="180^\circ" /> <InlineMath math="\frac{1}{2}" /> der Fläche <InlineMath math="9\pi" /> ein, also <InlineMath math="\frac{9\pi}{2}" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -272,7 +253,8 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 31 }, (_, i) => {
+      points: Array.from({ length: 211 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (i * Math.PI) / 30;
         return {
           x: 3 * Math.cos(angle),
@@ -287,7 +269,7 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
       labels: [
         {
           text: <InlineMath math="180^\circ" />,
-          at: 15,
+          at: 105,
           offset: [0, 0.5, 0],
 
         },
@@ -297,12 +279,13 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
 />
 
 <LineEquation
-  title={<>Sektor <InlineMath math="270^\circ" /> (<InlineMath math="\frac{3}{4}" /> des Kreises)</>}
-  description={<>Ein Mittelpunktswinkel von <InlineMath math="270^\circ" /> erfasst <InlineMath math="\frac{3}{4}" /> der Kreisfläche.</>}
+  title={<>Sektor mit <InlineMath math="270^\circ" /> (<InlineMath math="\frac{3}{4}" /> des Kreises)</>}
+  description={<>Beim Radius <InlineMath math="3" /> nimmt der Sektor mit <InlineMath math="270^\circ" /> <InlineMath math="\frac{3}{4}" /> der Fläche <InlineMath math="9\pi" /> ein, also <InlineMath math="\frac{27\pi}{4}" />.</>}
   cameraPosition={[0, 0, 9.5]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 3 * Math.cos(angle),
@@ -336,7 +319,8 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 82 }, (_, i) => {
+      points: Array.from({ length: 244 }, (_, sampleIndex) => {
+        const i = sampleIndex / 3;
         const startAngle = 0;
         const endAngle = (3 * Math.PI) / 2;
         const angle = startAngle + (i * endAngle) / 81;
@@ -353,7 +337,7 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
       labels: [
         {
           text: <InlineMath math="270^\circ" />,
-          at: 40,
+          at: 120,
           offset: [1, -0.5, 0],
 
         },
@@ -364,56 +348,122 @@ Alle Zeichnungen verwenden **denselben Radius**. Deshalb kannst du die Flächen 
 
 </ContentStack>
 
-## Übungsaufgaben
+Mit <InlineMath math="r = 3" /> hat der Kreis in jedem Diagramm die Fläche <InlineMath math="9\pi" />, und jeder Sektor nimmt seinen Anteil davon ein.
 
-Aufgabe eins und drei fragen nach der **Sektorfläche**, Aufgabe zwei nach dem Mittelpunktswinkel. Die Winkel stehen bereits in Grad. Verwende deshalb ihren Anteil an 360 Grad, ohne sie ins Bogenmaß umzuwandeln.
+| Mittelpunktswinkel | Anteil am Kreis | Sektorfläche |
+| --- | --- | --- |
+| <InlineMath math="60^\circ" /> | <InlineMath math="\frac{1}{6}" /> | <InlineMath math="\frac{3\pi}{2}" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{9\pi}{4}" /> |
+| <InlineMath math="120^\circ" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="3\pi" /> |
+| <InlineMath math="180^\circ" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="\frac{9\pi}{2}" /> |
+| <InlineMath math="270^\circ" /> | <InlineMath math="\frac{3}{4}" /> | <InlineMath math="\frac{27\pi}{4}" /> |
 
-1. Ein Kreis hat den Radius <InlineMath math="21 \text{ cm}" />. Bestimme die Fläche des Sektors mit <InlineMath math="120^\circ" />.
+Der Sektor mit <InlineMath math="120^\circ" /> ist doppelt so groß wie der mit <InlineMath math="60^\circ" />, und der Sektor mit <InlineMath math="180^\circ" /> ist ein Halbkreis.
 
-2. Ein Sektor hat in einem Kreis mit dem Radius <InlineMath math="14 \text{ cm}" /> die Fläche <InlineMath math="49\pi \text{ cm}^2" />. Wie groß ist sein Mittelpunktswinkel?
+## Sektorfläche Schritt für Schritt berechnen
 
-3. Ein rundes Fladenbrot mit Durchmesser <InlineMath math="28 \text{ cm}" /> wird radial durch seinen Mittelpunkt in <InlineMath math="8" /> gleich große Sektoren geschnitten. Bestimme die Fläche eines Stücks.
+Es gibt drei Schritte: Bestimme **den Anteil am Kreis** aus dem Mittelpunktswinkel, berechne die Kreisfläche aus dem Radius und multipliziere beides. Lass <InlineMath math="\pi" /> bis zum letzten Schritt als Symbol stehen, damit du nicht zwischendurch rundest.
 
-### Ausführliche Lösungen
-
-Vergleiche **Flächenanteil und Winkelanteil**. Dividiere in Aufgabe zwei zuerst die Sektorfläche durch die gesamte Kreisfläche. Wandle bei Aufgabe drei den Durchmesser vor dem Quadrieren in den Radius um.
-
-**Lösung 1**
-
-Gegeben: <InlineMath math="r = 21 \text{ cm}" />, <InlineMath math="\alpha = 120^\circ" />
-
-<MathContainer>
-<BlockMath math="\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \pi r^2" />
-<BlockMath math="= \frac{120^\circ}{360^\circ} \times \pi \times 21^2" />
-<BlockMath math="= \frac{1}{3} \times \pi \times 441" />
-<BlockMath math="= \frac{441\pi}{3}" />
-<BlockMath math="= 147\pi \text{ cm}^2" />
-<BlockMath math="\approx 461{,}81 \text{ cm}^2" />
-</MathContainer>
-
-**Lösung 2**
-
-Gegeben: Sektorfläche = <InlineMath math="49\pi \text{ cm}^2" />, <InlineMath math="r = 14 \text{ cm}" />
+**Beispiel**. Ein Kreis mit dem Radius <InlineMath math="14\text{ cm}" /> hat einen Sektor mit dem Mittelpunktswinkel <InlineMath math="60^\circ" />. Bestimme die Sektorfläche.
 
 <MathContainer>
-<BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times \pi \times 14^2" />
-<BlockMath math="49\pi = \frac{\alpha}{360^\circ} \times 196\pi" />
-<BlockMath math="49 = \frac{\alpha}{360^\circ} \times 196" />
-<BlockMath math="\frac{\alpha}{360^\circ} = \frac{49}{196}" />
-<BlockMath math="\frac{\alpha}{360^\circ} = \frac{1}{4}" />
-<BlockMath math="\alpha = \frac{1}{4} \times 360^\circ" />
-<BlockMath math="\alpha = 90^\circ" />
+  <BlockMath math="\frac{60^\circ}{360^\circ} = \frac{1}{6}" />
+  <BlockMath math="\pi r^2 = \pi \times 14^2 = 196\pi" />
+  <BlockMath math="A = \frac{1}{6} \times 196\pi = \frac{98\pi}{3} \approx 102{,}63\text{ cm}^2" />
 </MathContainer>
 
-**Lösung 3**
+Verlangt eine Aufgabe <InlineMath math="\pi = \frac{22}{7}" />, ändert sich das Ergebnis leicht: <InlineMath math="A = \frac{1}{6} \times \frac{22}{7} \times 196 = \frac{308}{3} \approx 102{,}67\text{ cm}^2" />. Der kleine Unterschied kommt vom Runden von <InlineMath math="\pi" />, nicht von einem Rechenfehler.
 
-Gegeben ist der Durchmesser <InlineMath math="28 \text{ cm}" />, also <InlineMath math="r = 14 \text{ cm}" />.
-Bei <InlineMath math="8" /> gleich großen radialen Sektoren beträgt der Mittelpunktswinkel jedes Stücks <InlineMath math="\frac{360^\circ}{8} = 45^\circ" />.
+## Kleiner und großer Sektor
+
+Zwei Radien teilen einen Kreis in **zwei Sektoren zugleich**. Der kleine Sektor hat einen Mittelpunktswinkel unter <InlineMath math="180^\circ" />, der große Sektor nimmt den Rest, <InlineMath math="360^\circ - \alpha" />. Beide Flächen ergeben zusammen die Kreisfläche:
+
+<BlockMath math="A_{\text{groß}} = \pi r^2 - A_{\text{klein}}" />
+
+Der Sektor mit <InlineMath math="270^\circ" /> im letzten Diagramm ist ein großer Sektor, dessen Partner der Sektor mit <InlineMath math="90^\circ" /> ist. Probe mit der Tabelle: <InlineMath math="9\pi - \frac{9\pi}{4} = \frac{27\pi}{4}" />, genau die Fläche des Sektors mit <InlineMath math="270^\circ" />.
+
+## Umfang eines Sektors
+
+Der Umfang eines Sektors ist die Länge seines ganzen Randes, **zwei Radien plus der Bogen**. Er hat eine Längeneinheit und keine Flächeneinheit, verwechsle ihn also nicht mit der Sektorfläche:
+
+<BlockMath math="U_{\text{Sektor}} = 2r + \frac{\alpha}{360^\circ} \times 2\pi r" />
+
+**Beispiel**. Ein Sektor hat den Radius <InlineMath math="14\text{ cm}" /> und den Mittelpunktswinkel <InlineMath math="90^\circ" />, mit <InlineMath math="\pi = \frac{22}{7}" />. Sein Bogen ist <InlineMath math="\frac{1}{4} \times 2 \times \frac{22}{7} \times 14 = 22\text{ cm}" /> lang, sein Umfang also <InlineMath math="2 \times 14 + 22 = 50\text{ cm}" />. Bogenlänge und Sektorfläche hängen auch direkt zusammen, über den Zusammenhang von [Bogenlänge und Sektorfläche](/de/faecher/mathematik/kreisboegen-und-kreissektoren/bogenlaenge-und-sektorflaeche): Für diesen Sektor gilt <InlineMath math="A = \frac{1}{2} \times 22 \times 14 = 154\text{ cm}^2" />.
+
+## Beispiele zur Sektorfläche
+
+Jedes Beispiel beginnt damit, **den Anteil am Kreis** zu bestimmen. Das letzte Beispiel läuft rückwärts, von der Fläche zum Winkel.
+
+**Beispiel 1**. Ein Kreis mit dem Radius <InlineMath math="21\text{ cm}" /> hat einen Sektor mit dem Mittelpunktswinkel <InlineMath math="120^\circ" />. Bestimme seine Fläche.
+
+<BlockMath math="A = \frac{120}{360} \times \pi \times 21^2 = \frac{1}{3} \times 441\pi = 147\pi \approx 461{,}81\text{ cm}^2" />
+
+Mit <InlineMath math="\pi = \frac{22}{7}" /> erhältst du <InlineMath math="147 \times \frac{22}{7} = 462\text{ cm}^2" />.
+
+**Beispiel 2**. Ein rundes Fladenbrot mit dem Durchmesser <InlineMath math="28\text{ cm}" /> wird durch den Mittelpunkt in <InlineMath math="8" /> gleiche Stücke geschnitten. Bestimme die Fläche jedes Stücks.
+
+Der Radius ist der halbe Durchmesser, <InlineMath math="14\text{ cm}" />, und jedes Stück nimmt <InlineMath math="\frac{1}{8}" /> des Kreises ein:
+
+<BlockMath math="A = \frac{1}{8} \times \pi \times 14^2 = \frac{49\pi}{2} \approx 76{,}97\text{ cm}^2" />
+
+Probe: Acht Stücke ergeben <InlineMath math="8 \times \frac{49\pi}{2} = 196\pi" />, die Fläche des ganzen Brotes.
+
+**Beispiel 3**. Ein Sektor eines Kreises mit dem Radius <InlineMath math="14\text{ cm}" /> hat die Fläche <InlineMath math="49\pi\text{ cm}^2" />. Bestimme seinen Mittelpunktswinkel.
+
+<BlockMath math="\frac{\alpha}{360^\circ} = \frac{49\pi}{196\pi} = \frac{1}{4} \quad\Longrightarrow\quad \alpha = 90^\circ" />
+
+Probe: <InlineMath math="\frac{1}{4} \times 196\pi = 49\pi" />.
+
+## Häufige Fehler
+
+Bevor du rechnest, prüfst du, ob die Aufgabe **Radius oder Durchmesser** angibt.
+
+| Fehler | Warum er falsch ist | So prüfst du |
+| --- | --- | --- |
+| Den Durchmesser als <InlineMath math="r" /> einsetzen | Die Fläche wird mit <InlineMath math="r^2" /> berechnet, das Ergebnis wird viermal zu groß | Halbiere den Durchmesser vor dem Einsetzen |
+| Für die Fläche die Umfangsformel <InlineMath math="2\pi r" /> nehmen | Die Fläche braucht <InlineMath math="\pi r^2" /> und Flächeneinheiten | Eine Sektorfläche hat die Einheit <InlineMath math="\text{cm}^2" />, nicht cm |
+| Den Umfang mit der Bogenlänge gleichsetzen | Zum Umfang gehören noch die beiden Radien | Der Umfang eines Sektors ist immer größer als <InlineMath math="2r" /> |
+| Sektor und Segment verwechseln | Ein Sektor wird von zwei Radien begrenzt, ein [Kreissegment](/de/faecher/mathematik/kreisboegen-und-kreissektoren/kreissegment) von einer Sehne | Prüfe, ob die Fläche bis zum Mittelpunkt reicht |
+
+Der Fehler mit dem Durchmesser macht die Sektorfläche viermal zu groß, aber das Ergebnis liegt nicht immer über der Kreisfläche. Schreibe deshalb als ersten Schritt <InlineMath math="r = \frac{d}{2}" />, sobald eine Aufgabe einen Durchmesser nennt.
+
+## Übungen zur Sektorfläche
+
+Bestimme bei jeder Aufgabe zuerst **den Anteil am Kreis** aus dem Mittelpunktswinkel. Nimm <InlineMath math="\pi = \frac{22}{7}" />, wenn der Radius ein Vielfaches von <InlineMath math="7" /> ist.
+
+1. Bestimme die Fläche eines Sektors mit <InlineMath math="45^\circ" /> in einem Kreis mit dem Radius <InlineMath math="7\text{ cm}" />.
+
+2. In einem Kreis mit dem Radius <InlineMath math="10\text{ cm}" /> hat der kleine Sektor den Mittelpunktswinkel <InlineMath math="72^\circ" />. Bestimme die Fläche des großen Sektors als Vielfaches von <InlineMath math="\pi" />.
+
+3. Bestimme den Umfang eines Sektors mit <InlineMath math="60^\circ" /> in einem Kreis mit dem Radius <InlineMath math="21\text{ cm}" />.
+
+4. Ein Sektor mit <InlineMath math="90^\circ" /> hat die Fläche <InlineMath math="154\text{ cm}^2" />. Bestimme den Radius des Kreises.
+
+### Lösungen
+
+**Aufgabe 1**. Ein Winkel von <InlineMath math="45^\circ" /> nimmt **ein Achtel des Kreises** ein, und die Kreisfläche beträgt <InlineMath math="\frac{22}{7} \times 7^2 = 154\text{ cm}^2" />:
+
+<BlockMath math="A = \frac{1}{8} \times 154 = 19{,}25\text{ cm}^2" />
+
+Probe: Acht solche Sektoren ergeben <InlineMath math="8 \times 19{,}25 = 154" />.
+
+**Aufgabe 2**. Der große Sektor nutzt **den restlichen Winkel** <InlineMath math="360^\circ - 72^\circ = 288^\circ" />:
+
+<BlockMath math="A_{\text{groß}} = \frac{288}{360} \times \pi \times 10^2 = \frac{4}{5} \times 100\pi = 80\pi\text{ cm}^2" />
+
+Probe mit dem kleinen Sektor: <InlineMath math="\frac{72}{360} \times 100\pi = 20\pi" />, und <InlineMath math="20\pi + 80\pi = 100\pi" />.
+
+**Aufgabe 3**. Der Umfang besteht aus **zwei Radien plus dem Bogen**. Der Bogen ist <InlineMath math="\frac{1}{6} \times 2 \times \frac{22}{7} \times 21 = 22\text{ cm}" /> lang:
+
+<BlockMath math="U = 2 \times 21 + 22 = 64\text{ cm}" />
+
+Probe: Der Bogen von <InlineMath math="22\text{ cm}" /> ist ein Sechstel des Umfangs <InlineMath math="2 \times \frac{22}{7} \times 21 = 132\text{ cm}" />.
+
+**Aufgabe 4**. Ein Sektor mit <InlineMath math="90^\circ" /> ist ein Viertelkreis, **die Kreisfläche ist also viermal** <InlineMath math="154" />:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\text{Fläche jedes Stücks} \\ &amp;= \frac{45^\circ}{360^\circ} \times \pi \times 14^2 \end{aligned}" />
-<BlockMath math="= \frac{1}{8} \times \pi \times 196" />
-<BlockMath math="= \frac{196\pi}{8}" />
-<BlockMath math="= \frac{49\pi}{2} \text{ cm}^2" />
-<BlockMath math="\approx 76{,}97 \text{ cm}^2" />
+  <BlockMath math="\frac{22}{7} r^2 = 4 \times 154 = 616" />
+  <BlockMath math="r^2 = 616 \times \frac{7}{22} = 196 \quad\Longrightarrow\quad r = 14\text{ cm}" />
 </MathContainer>
+
+Probe: <InlineMath math="\frac{1}{4} \times \frac{22}{7} \times 14^2 = 154" />.

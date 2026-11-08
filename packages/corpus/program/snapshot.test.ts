@@ -15,12 +15,12 @@ describe("program snapshot preparation", () => {
 
       expect(prepared.manifest).toMatchObject({
         activeAppLocales: ["en", "id", "de"],
-        curriculumRowCount: 585,
+        curriculumRowCount: 882,
         format: "localized-program-snapshot",
-        programRowCount: 6,
-        rowCount: 591,
-        sitemapCount: 78,
-        slugCount: 18,
+        programRowCount: 7,
+        rowCount: 889,
+        sitemapCount: 105,
+        slugCount: 21,
       });
       const programRows = Arr.filter(rows, (row) => row.kind === "program");
       const curriculumRows = Arr.filter(
@@ -70,10 +70,11 @@ describe("program snapshot preparation", () => {
           id: "amerika-serikat",
           key: "united-states",
         },
+        { de: "kssm", en: "kssm", id: "kssm", key: "kssm" },
         { de: "tka", en: "tka", id: "tka", key: "tka" },
         { de: "snbt", en: "snbt", id: "snbt", key: "snbt" },
       ]);
-      expect(curriculumRows).toHaveLength(585);
+      expect(curriculumRows).toHaveLength(882);
       expect(Option.getOrThrow(Arr.head(curriculumRows)).row).toMatchObject({
         appLocale: "de",
         programKey: "cambridge-international",
@@ -136,11 +137,11 @@ describe("program snapshot preparation", () => {
       });
 
       expect(expanded.manifest).toMatchObject({
-        curriculumRowCount: 585,
-        programRowCount: 7,
-        rowCount: 592,
-        sitemapCount: 78,
-        slugCount: 21,
+        curriculumRowCount: 882,
+        programRowCount: 8,
+        rowCount: 890,
+        sitemapCount: 105,
+        slugCount: 24,
       });
     })
   );
