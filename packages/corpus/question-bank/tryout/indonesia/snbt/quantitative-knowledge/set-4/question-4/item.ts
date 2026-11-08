@@ -8,7 +8,8 @@ const item: ItemSource = {
       statements: [
         {
           column: 2,
-          label: "Persamaan $$f(x)=2$$ mempunyai dua penyelesaian real.",
+          label:
+            "Persamaan $$f(x)=2$$ mempunyai dua penyelesaian real yang berbeda.",
         },
         { column: 1, label: "$$f(x)\\ge2$$ untuk setiap bilangan real $$x$$." },
         { column: 1, label: "$$f(2)=\\bigl(f(1)\\bigr)^2-2$$" },
