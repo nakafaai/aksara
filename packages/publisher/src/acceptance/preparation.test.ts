@@ -72,7 +72,7 @@ layer(NodeServices.layer)("acceptance release preparation", (it) => {
         expect(assessment).toMatchObject({
           manifest: {
             counts: {
-              catalog: 5 * ACTIVE_APP_LOCALES.length,
+              catalog: 6 * ACTIVE_APP_LOCALES.length,
               explanation: 25 * ACTIVE_APP_LOCALES.length,
               family: 25,
               item: 25,
