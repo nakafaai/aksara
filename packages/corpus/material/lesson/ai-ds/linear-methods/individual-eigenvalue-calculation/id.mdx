@@ -36,22 +36,6 @@ Untuk pasangan eigen yang memenuhi <InlineMath math="Av_i=\lambda_i v_i" />, inv
 
 Hubungan ini menunjukkan bahwa nilai eigen yang paling dekat dengan <InlineMath math="\mu" /> menghasilkan magnitudo transformasi terbesar. Dalam implementasi, kita menyelesaikan sistem linear tanpa membentuk <InlineMath math="(A-\mu I)^{-1}" /> secara eksplisit.
 
-Ikuti putaran di diagram ini, yang diulang sampai residualnya cukup kecil.
-
-<Mermaid
-  title="Satu langkah iterasi invers bergeser"
-  description="Selesaikan sistem, normalkan, lalu cek residual."
-  chart={`
-    flowchart TD
-        A[q_k] --> B["Selesaikan (A - μI)y = q_k"]
-        B --> C["q_k+1 = y / ‖y‖"]
-        C --> D[ρ = q^T A q]
-        D --> E{Residual kecil?}
-        E -->|Tidak| A
-        E -->|Ya| F[Nilai eigen ≈ ρ]
-  `}
-/>
-
 ## Iterasi Pangkat
 
 Iterasi pangkat menargetkan nilai eigen dengan **nilai absolut terbesar**. Mulai dari vektor satuan <InlineMath math="q_0" />, ulangi:
@@ -82,16 +66,31 @@ Kata “terkecil” bersifat ambigu, sehingga target harus selalu dinyatakan sec
 
 Pada matriks tak definit, nilai eigen dengan **nilai absolut terkecil belum tentu** merupakan nilai eigen paling negatif. Bedakan kedua nilai ini agar tidak memilih nilai eigen yang keliru.
 
-Diagram ini memasangkan setiap metode dengan nilai eigen yang dicapainya.
+Untuk <InlineMath math="A=\operatorname{diag}(2,5)" /> dari contoh di bawah, iterasi pangkat mengalikan komponen ke arah <InlineMath math="\lambda_i" /> dengan <InlineMath math="\lambda_i" />, sedangkan iterasi invers dengan pergeseran <InlineMath math="\mu=1" /> mengalikannya dengan <InlineMath math="1/(\lambda_i-1)" />. Faktor terbesar menang, jadi metode pertama menuju <InlineMath math="5" /> dan metode kedua menuju <InlineMath math="2" />.
 
-<Mermaid
-  title="Metode mana menemukan nilai eigen mana"
-  description="Pilihan metode menentukan nilai eigen yang kamu dapat."
-  chart={`
-    flowchart LR
-        A[Iterasi pangkat] --> B[Nilai eigen dengan modulus terbesar]
-        C[Iterasi invers dengan geseran μ] --> D[Nilai eigen terdekat ke μ]
-  `}
+<ScatterDiagram
+  title={<>Faktor per langkah untuk setiap nilai eigen</>}
+  description={<>Mendatar ada nilai eigen <InlineMath math="2" /> dan <InlineMath math="5" />. Titik iterasi pangkat ada di <InlineMath math="\lambda_i" />, titik iterasi invers bergeser ada di <InlineMath math="1/(\lambda_i-1)" />, yaitu <InlineMath math="1" /> dan <InlineMath math="1/4" />.</>}
+  xAxisLabel="Nilai eigen"
+  yAxisLabel="Faktor per langkah"
+  datasets={[
+    {
+      name: "Iterasi pangkat",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: 2 },
+        { x: 5, y: 5 },
+      ],
+    },
+    {
+      name: "Iterasi invers bergeser",
+      color: "var(--chart-2)",
+      points: [
+        { x: 2, y: 1 / (2 - 1) },
+        { x: 5, y: 1 / (5 - 1) },
+      ],
+    },
+  ]}
 />
 
 ## Contoh Iterasi Invers Bergeser
@@ -159,3 +158,19 @@ Pemeriksaan berikut memutuskan apakah pasangan nilai eigen dan vektor eigen hasi
 2. Hentikan berdasarkan **norma residu**. Perubahan kecil antara dua estimasi nilai eigen belum membuktikan bahwa pasangan eigennya akurat.
 3. Tanda vektor eigen bebas dipilih: <InlineMath math="q" /> dan <InlineMath math="-q" /> mewakili arah eigen yang sama.
 4. Untuk nilai eigen berkelompok atau matriks nonnormal umum, gunakan algoritma multivektor atau bentuk Schur, dengan Lanczos untuk masalah simetris serta Arnoldi atau <InlineMath math="\mathrm{QR}" />.
+
+Dalam contoh tadi, <InlineMath math="q_k\propto(4^k,1)" /> memberi <InlineMath math="\rho_k=\tfrac{2\cdot16^k+5}{16^k+1}" /> dan residu <InlineMath math="\|r_k\|_2=\tfrac{3\cdot4^k}{16^k+1}" />. Untuk <InlineMath math="k=1" /> hasilnya <InlineMath math="12/17" />, sama dengan perhitungan di atas, lalu setiap langkah membaginya kira-kira dengan <InlineMath math="4" />.
+
+<BarChart
+  title={<>Norma residu <InlineMath math="\|r_k\|_2" /> menyusut sekitar <InlineMath math="4" /> kali per langkah</>}
+  description={<>Setiap batang adalah <InlineMath math="\tfrac{3\cdot4^k}{16^k+1}" /> untuk iterasi <InlineMath math="k" /> yang tertulis di bawahnya. Hentikan iterasi saat residu ini cukup kecil.</>}
+  yAxisLabel="Norma residu"
+  data={[
+    { name: "1", value: 3 * 4 ** 1 / (16 ** 1 + 1) },
+    { name: "2", value: 3 * 4 ** 2 / (16 ** 2 + 1) },
+    { name: "3", value: 3 * 4 ** 3 / (16 ** 3 + 1) },
+    { name: "4", value: 3 * 4 ** 4 / (16 ** 4 + 1) },
+    { name: "5", value: 3 * 4 ** 5 / (16 ** 5 + 1) },
+  ]}
+  chartConfig={{ value: { label: "Norma residu", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>

@@ -37,20 +37,6 @@ Ein Vektor <InlineMath math="x \in \mathbb{K}^n" /> kann in der kanonischen Basi
 
 Die Matrix <InlineMath math="S^{-1}" /> repräsentiert die **Koordinatentransformation**.
 
-Dieses Diagramm zeigt zwei Wege, die immer beim selben Vektor enden, und deshalb gilt <InlineMath math="B=S^{-1}AS" />.
-
-<Mermaid
-  title="Zwei Wege zum selben Ergebnis"
-  description="In der neuen Basis rechnen und zurückgehen ist dasselbe wie direkt rechnen."
-  chart={`
-    flowchart LR
-        A[Neue Koordinaten ξ] -->|S| B[x]
-        B -->|A| C[Ax]
-        A -->|B| D[Bξ]
-        D -->|S| C
-  `}
-/>
-
 ## Lineare Transformation in verschiedenen Basen
 
 Betrachte nun die lineare Transformation <InlineMath math="y = A \cdot x" />. In der kanonischen Basis wird <InlineMath math="y" /> durch die Koordinaten <InlineMath math="y_k" /> ausgedrückt, während in der Basis <InlineMath math="v_1, \ldots, v_n" /> durch die Koordinaten <InlineMath math="\eta_k" /> ausgedrückt wird:
@@ -77,6 +63,32 @@ In der Basis <InlineMath math="v_1, \ldots, v_n" /> wird die lineare Transformat
 <BlockMath math="B = S^{-1} \cdot A \cdot S" />
 
 Somit beschreiben ähnliche Matrizen ein und dieselbe lineare Transformation bezüglich verschiedener Basen von <InlineMath math="\mathbb{K}^n" />.
+
+Mit <InlineMath math="A=\operatorname{diag}(2,3)" /> und den Spalten <InlineMath math="s_1=(1,0)" />, <InlineMath math="s_2=(1,1)" /> bekommst du <InlineMath math="As_1=(2,0)=2s_1" /> und <InlineMath math="As_2=(2,3)=-s_1+3s_2" />. Die Koordinaten dieser beiden Bilder in der Basis <InlineMath math="s_1,s_2" /> sind die Spalten von <InlineMath math="B=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" />.
+
+<MathVisual
+  title={<>Die Spalten von <InlineMath math="B" /> aus den Bildern von <InlineMath math="s_1" /> und <InlineMath math="s_2" /> ablesen</>}
+  description={<>Das graue Parallelogramm ist die Basiszelle von <InlineMath math="s_1,s_2" />. <InlineMath math="A" /> schickt sie auf das violette Parallelogramm mit der türkisen Seite <InlineMath math="As_1=2s_1" /> und der magentafarbenen Seite <InlineMath math="As_2=-s_1+3s_2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cell", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 1 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 4, y: 3 }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "second", objectId: "second", at: { x: 2, y: 3 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="As_1=2s_1" />,
+    "second": <InlineMath math="As_2=-s_1+3s_2" />,
+  }}
+/>
 
 ## Durchgerechnetes Basiswechselbeispiel
 
@@ -190,16 +202,26 @@ Wenn <InlineMath math="v \in \mathbb{K}^n" /> ein Eigenvektor von <InlineMath ma
 
 Matrixähnlichkeit erhält das Spektrum. Bei einem Basiswechsel ändern sich die Eigenvektorkoordinaten von <InlineMath math="v" /> zu <InlineMath math="S^{-1}v" />, aber beide Koordinatenvektoren stellen dieselbe geometrische Richtung dar.
 
-Jede Größe in diesem Diagramm ist für <InlineMath math="A" /> und <InlineMath math="B=S^{-1}AS" /> gleich.
+<InlineMath math="A=\operatorname{diag}(2,3)" /> und <InlineMath math="B=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" /> haben dasselbe charakteristische Polynom <InlineMath math="t^2-5t+6=(t-2)(t-3)" />. Diese eine Kurve trägt alle Invarianten zugleich: Ihre Nullstellen sind die Eigenwerte, der Koeffizient <InlineMath math="-5" /> ist die negative Spur, und das konstante Glied <InlineMath math="6" /> ist die Determinante.
 
-<Mermaid
-  title="Was Ähnlichkeit erhält"
-  description="Ähnliche Matrizen teilen alle diese Größen."
-  chart={`
-    flowchart TD
-        A[B = S^-1 A S] --> B[Gleiches charakteristisches Polynom]
-        B --> C[Gleiche Eigenwerte]
-        B --> D[Gleiche Spur]
-        B --> E[Gleiche Determinante]
-  `}
+<MathVisual
+  title={<>Ein Polynom für <InlineMath math="A" /> und <InlineMath math="B" /></>}
+  description={<>Die violette Parabel <InlineMath math="t^2-5t+6" /> schneidet die Achse in den magentafarbenen Punkten <InlineMath math="2" /> und <InlineMath math="3" />. Der gelbe Punkt <InlineMath math="6" /> ist <InlineMath math="\det A=\det B" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "polynomial", kind: "quadratic", coefficients: { a: 1, b: -5, c: 6 }, domain: { min: 0, max: 5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "small", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "large", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: 6 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: 6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "intercept": <InlineMath math="\det A=\det B=6" />,
+  }}
 />

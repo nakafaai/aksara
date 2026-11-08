@@ -31,6 +31,37 @@ Ein Jordan-Block der Größe <InlineMath math="s" /> zum Eigenwert <InlineMath m
 
 Die **nilpotente Matrix** <InlineMath math="N_s" /> besitzt Einsen auf der Superdiagonalen und sonst nur Nullen. Ein Block der Größe <InlineMath math="1" /> ist einfach <InlineMath math="(\lambda)" />. Ein größerer Block zeigt, dass ein Eigenvektor durch verallgemeinerte Eigenvektoren ergänzt werden muss.
 
+Der Block <InlineMath math="J=\begin{pmatrix}2&1\\0&2\end{pmatrix}" /> hat den einzigen Eigenwert <InlineMath math="2" />, aber nur eine Eigenrichtung. Der Vektor <InlineMath math="e_2" /> geht nicht nach <InlineMath math="2e_2" />, sondern nach <InlineMath math="2e_2+e_1" />, also gilt <InlineMath math="(J-2I)e_2=e_1" /> und <InlineMath math="e_2" /> ist ein verallgemeinerter Eigenvektor.
+
+<MathVisual
+  title={<>Ein Jordanblock <InlineMath math="J_2(2)" /> addiert <InlineMath math="e_1" /></>}
+  description={<>Der violette Vektor <InlineMath math="e_1" /> wird zum orangen Vektor <InlineMath math="Je_1=2e_1" />. Der türkise Vektor <InlineMath math="e_2" /> wird zum magentafarbenen Vektor <InlineMath math="Je_2=(1,2)" />. Die graue Strecke von <InlineMath math="2e_2" /> nach <InlineMath math="Je_2" /> ist der zusätzliche Schritt <InlineMath math="e_1" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "second-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "construction" },
+      { id: "shift", kind: "segment", from: { x: 0, y: 2 }, to: { x: 1, y: 2 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "first-image", objectId: "first-image", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "second", objectId: "second", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "second-image", objectId: "second-image", at: { x: 1, y: 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="e_1" />,
+    "first-image": <InlineMath math="Je_1=2e_1" />,
+    "second": <InlineMath math="e_2" />,
+    "second-image": <InlineMath math="Je_2=2e_2+e_1" />,
+  }}
+/>
+
 ## Verallgemeinerte Eigenvektorketten
 
 Die Vektoren <InlineMath math="v_1,\ldots,v_s" /> bilden eine Jordan-Kette zu <InlineMath math="\lambda" />, wenn
@@ -41,20 +72,6 @@ Die Vektoren <InlineMath math="v_1,\ldots,v_s" /> bilden eine Jordan-Kette zu <I
 </MathContainer>
 
 Der **erste Vektor** ist ein gewöhnlicher Eigenvektor. Dabei gilt <InlineMath math="v_1\neq0" />. Die Rekursion garantiert dann die lineare Unabhängigkeit der Kettenvektoren. Jeder folgende Vektor wird durch <InlineMath math="A-\lambda I" /> auf seinen Vorgänger abgebildet. In der geordneten Basis <InlineMath math="(v_1,\ldots,v_s)" /> wird die Einschränkung von <InlineMath math="A" /> auf diese Kette durch <InlineMath math="J_s(\lambda)" /> dargestellt.
-
-Dieses Diagramm zeigt, wie <InlineMath math="A-\lambda I" /> jeden Kettenvektor auf den vorherigen abbildet.
-
-<Mermaid
-  title="Eine Jordan-Kette"
-  description="Die um den Eigenwert verschobene Matrix schiebt jeden Kettenvektor eine Stufe nach unten."
-  chart={`
-    flowchart LR
-        A[v_s] -->|A - λI| B[v_s-1]
-        B -->|A - λI| C[...]
-        C -->|A - λI| D[v_1]
-        D -->|A - λI| E[0]
-  `}
-/>
 
 ## Die vollständige Jordanform
 
@@ -105,18 +122,19 @@ Der Eigenwert <InlineMath math="1" /> hat die algebraische Vielfachheit <InlineM
 
 Die beiden Vektoren bilden eine Jordankette, denn <InlineMath math="(A-I)v_1=0" /> und <InlineMath math="(A-I)v_2=v_1" />. Der Eigenwert <InlineMath math="2" /> liefert den separaten Block <InlineMath math="J_1(2)" />.
 
-Die zwei Zahlen in diesem Diagramm verraten dir schon viel über die Jordan-Blöcke eines Eigenwerts.
+Angenommen, der Eigenwert <InlineMath math="\lambda" /> hat Jordanblöcke der Größen <InlineMath math="3" /> und <InlineMath math="1" />. Jeder Block der Größe <InlineMath math="s" /> trägt <InlineMath math="\min(k,s)" /> zu <InlineMath math="\dim\ker(A-\lambda I)^k" /> bei, also lauten die Dimensionen <InlineMath math="2,3,4,4" />. Der erste Wert zählt die Blöcke, und die Folge wächst nicht mehr ab <InlineMath math="4=\mu_A(\lambda)" />.
 
-<Mermaid
-  title="Blöcke aus zwei Vielfachheiten ablesen"
-  description="Die Vielfachheiten liefern die Anzahl der Blöcke und ihre Gesamtgröße."
-  chart={`
-    flowchart TD
-        A[Eigenwert λ] --> B["dim ker(A - λI)"]
-        A --> C["Algebraische Vielfachheit μ_A(λ)"]
-        B --> D[Anzahl der Jordan-Blöcke zu λ]
-        C --> E[Gesamtgröße aller Blöcke zu λ]
-  `}
+<BarChart
+  title={<><InlineMath math="\dim\ker(A-\lambda I)^k" /> für Blöcke der Größen <InlineMath math="3" /> und <InlineMath math="1" /></>}
+  description={<>Jeder Balken ist <InlineMath math="\min(k,3)+\min(k,1)" /> für die darunter stehende Potenz <InlineMath math="k" />. Der erste Balken zählt die Blöcke, und die Balken wachsen nicht weiter, sobald der größte Block aufgebraucht ist.</>}
+  yAxisLabel="Kerndimension"
+  data={[
+    { name: "1", value: Math.min(1, 3) + Math.min(1, 1) },
+    { name: "2", value: Math.min(2, 3) + Math.min(2, 1) },
+    { name: "3", value: Math.min(3, 3) + Math.min(3, 1) },
+    { name: "4", value: Math.min(4, 3) + Math.min(4, 1) },
+  ]}
+  chartConfig={{ value: { label: "Kerndimension", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
 
 ## Matrixpotenzen aus Jordanblöcken

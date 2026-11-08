@@ -27,18 +27,33 @@ For every nonnegative integer <InlineMath math="m" />:
 
 Because <InlineMath math="\Lambda^m" /> is obtained by raising each diagonal entry to the power <InlineMath math="m" />, diagonalization turns a matrix-power problem into scalar arithmetic.
 
-This diagram shows where the columns of <InlineMath math="S" /> and the entries of <InlineMath math="D" /> come from.
+For <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />, the eigenvectors <InlineMath math="v_1=(1,1)" /> and <InlineMath math="v_2=(-1,1)" /> become the columns of <InlineMath math="S=\begin{pmatrix}1&-1\\1&1\end{pmatrix}" />, and the eigenvalues fill <InlineMath math="D=\operatorname{diag}(3,1)" />. In the basis <InlineMath math="v_1,v_2" />, the matrix only stretches the direction <InlineMath math="v_1" /> by three, which is exactly <InlineMath math="A=SDS^{-1}" />.
 
-<Mermaid
-  title="Building the diagonalization factors"
-  description="Eigenvectors become the columns of the basis matrix, eigenvalues fill the diagonal matrix."
-  chart={`
-    flowchart LR
-        A[Eigenvalues λ_i] --> D[D = diag λ_1, ..., λ_n]
-        B[Eigenvectors v_i] --> S[S = v_1, ..., v_n as columns]
-        D --> E[A = S D S^-1]
-        S --> E
-  `}
+<MathVisual
+  title={<><InlineMath math="A=SDS^{-1}" /> stretches the eigenbasis cell</>}
+  description={<>The gray parallelogram is the cell of the teal <InlineMath math="v_1" /> and the orange <InlineMath math="v_2" />. <InlineMath math="A" /> sends it to the violet parallelogram: <InlineMath math="v_1" /> becomes the magenta <InlineMath math="Av_1=3v_1" />, while <InlineMath math="v_2" /> stays.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cell", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 2 }, { x: -1, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 }, { x: 2, y: 4 }, { x: -1, y: 1 }], appearance: "secondary" },
+      { id: "stretched", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "answer" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "stretched", objectId: "stretched", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="v_1" />,
+    "stretched": <InlineMath math="Av_1=3v_1" />,
+    "second": <InlineMath math="v_2=Av_2" />,
+  }}
 />
 
 ## Basic Conditions for Diagonalization
@@ -157,17 +172,30 @@ For each <InlineMath math="i = 1, \ldots, k" />, let <InlineMath math="v_1^{(i)}
 
 These vectors form a basis of <InlineMath math="\mathbb{K}^n" /> consisting of eigenvectors of <InlineMath math="A" />. Therefore, <InlineMath math="A" /> is diagonalizable.
 
-Use the two questions in this diagram to decide diagonalizability before you try to build <InlineMath math="S" />.
+Take <InlineMath math="A=\begin{pmatrix}2&0&-1\\0&2&-1\\0&0&1\end{pmatrix}" /> with <InlineMath math="\chi_A(t)=(2-t)^2(1-t)" />. The eigenspace <InlineMath math="E_A(2)" /> is the plane <InlineMath math="z=0" /> of dimension <InlineMath math="2" />, equal to its algebraic multiplicity, and <InlineMath math="E_A(1)" /> is the line through <InlineMath math="(1,1,1)" />. The dimensions <InlineMath math="2+1=3" /> fill the whole space, so <InlineMath math="A" /> is diagonalizable.
 
-<Mermaid
-  title="Testing for diagonalizability"
-  description="Two questions decide whether the matrix can be diagonalized."
-  chart={`
-    flowchart TD
-        A[Matrix A] --> B{Does χ_A split into linear factors?}
-        B -->|No| X[Not diagonalizable]
-        B -->|Yes| C{Geometric = algebraic for every λ?}
-        C -->|No| X
-        C -->|Yes| D[Diagonalizable]
-  `}
+<MathVisual
+  title={<>Eigenspaces that fill <InlineMath math="\mathbb R^3" /></>}
+  description={<>The violet plane is <InlineMath math="E_A(2)" /> and the teal segment spans <InlineMath math="E_A(1)" />. The magenta vector <InlineMath math="w=(2,1,1)=(1,0,0)+(1,1,1)" /> goes to the orange vector <InlineMath math="Aw=2\,(1,0,0)+(1,1,1)=(3,1,1)" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 2 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 1.2, y: 0.8, z: 0.5 } },
+    objects: [
+      { id: "plane", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }, { x: 3, y: 2, z: 0 }, { x: 0, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "line", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: 1 }, appearance: "construction" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 1, z: 1 }, appearance: "answer" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 1, z: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 1, y: 1, z: 1 }, placement: "above" },
+      { key: "vector", objectId: "vector", at: { x: 2, y: 1, z: 1 }, placement: "above-left" },
+      { key: "image", objectId: "image", at: { x: 3, y: 1, z: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "line": <InlineMath math="(1,1,1)" />,
+    "vector": <InlineMath math="w" />,
+    "image": <InlineMath math="Aw" />,
+  }}
 />

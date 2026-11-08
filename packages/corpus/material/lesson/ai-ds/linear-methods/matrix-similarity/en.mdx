@@ -37,20 +37,6 @@ A vector <InlineMath math="x \in \mathbb{K}^n" /> can be expressed in the canoni
 
 The matrix <InlineMath math="S^{-1}" /> represents the **coordinate transformation**.
 
-This diagram shows two paths that always end at the same vector, which is why <InlineMath math="B=S^{-1}AS" />.
-
-<Mermaid
-  title="Two paths to the same result"
-  description="Working in the new basis and coming back equals working directly."
-  chart={`
-    flowchart LR
-        A[New coordinates ξ] -->|S| B[x]
-        B -->|A| C[Ax]
-        A -->|B| D[Bξ]
-        D -->|S| C
-  `}
-/>
-
 ## Linear Transformation in Different Bases
 
 For the linear transformation <InlineMath math="y = A \cdot x" />, the canonical basis expresses <InlineMath math="y" /> with coordinates <InlineMath math="y_k" />. The basis <InlineMath math="v_1, \ldots, v_n" /> expresses the same vector with coordinates <InlineMath math="\eta_k" />:
@@ -77,6 +63,32 @@ In the basis <InlineMath math="v_1, \ldots, v_n" />, the linear transformation <
 <BlockMath math="B = S^{-1} \cdot A \cdot S" />
 
 Similar matrices represent one linear transformation with respect to different bases of <InlineMath math="\mathbb{K}^n" />.
+
+With <InlineMath math="A=\operatorname{diag}(2,3)" /> and the columns <InlineMath math="s_1=(1,0)" />, <InlineMath math="s_2=(1,1)" />, you get <InlineMath math="As_1=(2,0)=2s_1" /> and <InlineMath math="As_2=(2,3)=-s_1+3s_2" />. The coordinates of these two images in the basis <InlineMath math="s_1,s_2" /> are the columns of <InlineMath math="B=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" />.
+
+<MathVisual
+  title={<>Reading the columns of <InlineMath math="B" /> from the images of <InlineMath math="s_1" /> and <InlineMath math="s_2" /></>}
+  description={<>The gray parallelogram is the basis cell of <InlineMath math="s_1,s_2" />. <InlineMath math="A" /> sends it to the violet parallelogram with the teal side <InlineMath math="As_1=2s_1" /> and the magenta side <InlineMath math="As_2=-s_1+3s_2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cell", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 1 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 4, y: 3 }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "second", objectId: "second", at: { x: 2, y: 3 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="As_1=2s_1" />,
+    "second": <InlineMath math="As_2=-s_1+3s_2" />,
+  }}
+/>
 
 ## Worked Basis Change Example
 
@@ -190,16 +202,26 @@ If <InlineMath math="v \in \mathbb{K}^n" /> is an eigenvector of <InlineMath mat
 
 Matrix similarity preserves the spectrum. When the basis changes, the eigenvector coordinates change from <InlineMath math="v" /> to <InlineMath math="S^{-1}v" />, but both coordinate vectors represent the same geometric direction.
 
-Every quantity in this diagram is the same for <InlineMath math="A" /> and <InlineMath math="B=S^{-1}AS" />.
+<InlineMath math="A=\operatorname{diag}(2,3)" /> and <InlineMath math="B=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" /> share the characteristic polynomial <InlineMath math="t^2-5t+6=(t-2)(t-3)" />. This one curve carries all the invariants at once: its roots are the eigenvalues, the coefficient <InlineMath math="-5" /> is minus the trace, and the constant term <InlineMath math="6" /> is the determinant.
 
-<Mermaid
-  title="What similarity keeps"
-  description="Similar matrices share all of these quantities."
-  chart={`
-    flowchart TD
-        A[B = S^-1 A S] --> B[Same characteristic polynomial]
-        B --> C[Same eigenvalues]
-        B --> D[Same trace]
-        B --> E[Same determinant]
-  `}
+<MathVisual
+  title={<>One polynomial for <InlineMath math="A" /> and <InlineMath math="B" /></>}
+  description={<>The violet parabola <InlineMath math="t^2-5t+6" /> crosses the axis at the magenta points <InlineMath math="2" /> and <InlineMath math="3" />. The amber point <InlineMath math="6" /> is <InlineMath math="\det A=\det B" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "polynomial", kind: "quadratic", coefficients: { a: 1, b: -5, c: 6 }, domain: { min: 0, max: 5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "small", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "large", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: 6 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: 6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "intercept": <InlineMath math="\det A=\det B=6" />,
+  }}
 />

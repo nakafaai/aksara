@@ -56,20 +56,20 @@ Syarat yang memperhitungkan skala adalah
 
 Pada syarat ini, <InlineMath math="\tau" /> adalah toleransi yang diminta. Residual kecil memastikan <Highlight>pasangan hasil hitung hampir memenuhi persamaan eigen</Highlight>, tetapi tidak dengan sendirinya menunjukkan nilai eigen terdekat mana yang ditemukan.
 
-Putaran di diagram ini adalah seluruh iterasi pangkat.
+Pada contoh di bawah, estimasi <InlineMath math="\mu_k" /> untuk <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> memenuhi <InlineMath math="3-\mu_k=\tfrac2{9^k+1}" />. Galatnya dibagi kira-kira dengan <InlineMath math="9=(\lambda_1/\lambda_2)^2" /> di setiap langkah, karena hasil bagi Rayleigh dari matriks simetris menggandakan laju konvergensi vektornya.
 
-<Mermaid
-  title="Putaran iterasi pangkat"
-  description="Kalikan, normalkan, lalu taksir nilai eigen."
-  chart={`
-    flowchart TD
-        A[q_k] --> B[z = A q_k]
-        B --> C["q_k+1 = z / ‖z‖"]
-        C --> D[μ_k+1 = q^T A q]
-        D --> E{Berhenti?}
-        E -->|Tidak| A
-        E -->|Ya| F[λ ≈ μ, vektor ≈ q]
-  `}
+<BarChart
+  title={<>Galat <InlineMath math="3-\mu_k" /> turun sekitar <InlineMath math="9" /> kali per langkah</>}
+  description={<>Setiap batang adalah <InlineMath math="\tfrac2{9^k+1}" /> untuk iterasi <InlineMath math="k" /> yang tertulis di bawahnya: <InlineMath math="1" />, lalu <InlineMath math="0.2" />, lalu sekitar <InlineMath math="0.024" />.</>}
+  yAxisLabel="Galat estimasi"
+  data={[
+    { name: "0", value: 2 / (9 ** 0 + 1) },
+    { name: "1", value: 2 / (9 ** 1 + 1) },
+    { name: "2", value: 2 / (9 ** 2 + 1) },
+    { name: "3", value: 2 / (9 ** 3 + 1) },
+    { name: "4", value: 2 / (9 ** 4 + 1) },
+  ]}
+  chartConfig={{ value: { label: "Galat estimasi", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Contoh Iterasi Pangkat
@@ -153,6 +153,19 @@ Nilai eigen <InlineMath math="(A-\sigma I)^{-1}" /> adalah <InlineMath math="1/(
 
 Jika <InlineMath math="\sigma" /> sangat dekat dengan suatu nilai eigen, sistem bergeser tersebut berkondisi buruk. Karena itu, selesaikan sistem linearnya dengan akurat dan **periksa residual pasangan eigen**.
 
+Untuk matriks yang sama dengan nilai eigen <InlineMath math="3" /> dan <InlineMath math="1" />, ambil pergeseran <InlineMath math="\sigma=0.9" />. Matriks <InlineMath math="(A-\sigma I)^{-1}" /> punya nilai eigen <InlineMath math="1/(1-0.9)=10" /> dan <InlineMath math="1/(3-0.9)\approx0.48" />, jadi iterasi invers memperbesar arah eigen untuk <InlineMath math="1" /> sekitar <InlineMath math="21" /> kali lebih kuat daripada arah untuk <InlineMath math="3" />.
+
+<BarChart
+  title={<>Pergeseran <InlineMath math="\sigma=0.9" /> menguatkan nilai eigen <InlineMath math="1" /></>}
+  description={<>Batang menunjukkan <InlineMath math="1/|\lambda_i-\sigma|" /> untuk nilai eigen <InlineMath math="\lambda_i" /> yang tertulis di bawahnya. Nilai eigen terdekat dengan <InlineMath math="\sigma" /> mendapat batang tertinggi.</>}
+  yAxisLabel="Faktor penguatan"
+  data={[
+    { name: "1", value: 1 / Math.abs(1 - 0.9) },
+    { name: "3", value: 1 / Math.abs(3 - 0.9) },
+  ]}
+  chartConfig={{ value: { label: "Faktor penguatan", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
 ## Algoritma QR untuk Spektrum Lengkap
 
 Mulai dengan <InlineMath math="A_0=A" />. Pada iterasi <InlineMath math="k" />, hitung
@@ -175,16 +188,3 @@ Setiap langkah merupakan **transformasi kesebangunan ortogonal**, sehingga nilai
 | Spektrum lengkap matriks padat | <InlineMath math="\mathrm{QR}" /> bergeser menuju bentuk Schur | blok diagonal atau kuasidiagonal yang telah konvergen |
 
 Uji penerimaan akhir selalu mengikuti pasangan eigen yang diminta: **periksa residual**, pertahankan pasangan konjugat kompleks untuk matriks real, dan jangan menyatakan vektor eigen sudah akurat hanya karena perkiraan nilai eigennya telah stabil.
-
-Mulai dari pertanyaan di diagram ini sebelum memilih metode.
-
-<Mermaid
-  title="Memilih metode nilai eigen"
-  description="Apa yang kamu butuhkan menentukan metodenya."
-  chart={`
-    flowchart TD
-        A{Apa yang kamu butuhkan?} -->|Nilai eigen dominan| B[Iterasi pangkat]
-        A -->|Nilai eigen dekat target μ| C[Iterasi invers bergeser]
-        A -->|Semua nilai eigen| D[Algoritma QR]
-  `}
-/>

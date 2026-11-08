@@ -27,18 +27,33 @@ Untuk setiap bilangan bulat taknegatif <InlineMath math="m" />:
 
 Karena <InlineMath math="\Lambda^m" /> diperoleh dengan memangkatkan setiap elemen diagonal dengan <InlineMath math="m" />, diagonalisasi mengubah persoalan perpangkatan matriks menjadi perhitungan skalar.
 
-Diagram ini menunjukkan dari mana kolom <InlineMath math="S" /> dan entri <InlineMath math="D" /> berasal.
+Untuk <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />, vektor eigen <InlineMath math="v_1=(1,1)" /> dan <InlineMath math="v_2=(-1,1)" /> menjadi kolom <InlineMath math="S=\begin{pmatrix}1&-1\\1&1\end{pmatrix}" />, dan nilai eigennya mengisi <InlineMath math="D=\operatorname{diag}(3,1)" />. Dalam basis <InlineMath math="v_1,v_2" />, matriks <InlineMath math="A" /> hanya meregangkan arah <InlineMath math="v_1" /> tiga kali, sehingga <InlineMath math="A=SDS^{-1}" />.
 
-<Mermaid
-  title="Menyusun faktor diagonalisasi"
-  description="Vektor eigen menjadi kolom matriks basis, nilai eigen mengisi matriks diagonal."
-  chart={`
-    flowchart LR
-        A[Nilai eigen λ_i] --> D[D = diag λ_1, ..., λ_n]
-        B[Vektor eigen v_i] --> S[S = v_1, ..., v_n sebagai kolom]
-        D --> E[A = S D S^-1]
-        S --> E
-  `}
+<MathVisual
+  title={<><InlineMath math="A=SDS^{-1}" /> meregangkan sel basis eigen</>}
+  description={<>Jajar genjang abu-abu adalah sel dari <InlineMath math="v_1" /> hijau toska dan <InlineMath math="v_2" /> oranye. <InlineMath math="A" /> mengirimnya ke jajar genjang ungu: <InlineMath math="v_1" /> menjadi <InlineMath math="Av_1=3v_1" /> magenta, sedangkan <InlineMath math="v_2" /> tetap.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cell", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 2 }, { x: -1, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 }, { x: 2, y: 4 }, { x: -1, y: 1 }], appearance: "secondary" },
+      { id: "stretched", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "answer" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "stretched", objectId: "stretched", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="v_1" />,
+    "stretched": <InlineMath math="Av_1=3v_1" />,
+    "second": <InlineMath math="v_2=Av_2" />,
+  }}
 />
 
 ## Kondisi Dasar Diagonalisasi
@@ -157,17 +172,30 @@ Untuk setiap <InlineMath math="i = 1, \ldots, k" />, misalkan <InlineMath math="
 
 Vektor-vektor tersebut membentuk basis <InlineMath math="\mathbb{K}^n" /> yang terdiri dari vektor eigen <InlineMath math="A" />. Oleh karena itu, <InlineMath math="A" /> dapat didiagonalisasi.
 
-Pakai dua pertanyaan di diagram ini untuk memutuskan diagonalisasi tanpa mencoba membangun <InlineMath math="S" /> dulu.
+Ambil <InlineMath math="A=\begin{pmatrix}2&0&-1\\0&2&-1\\0&0&1\end{pmatrix}" /> dengan <InlineMath math="\chi_A(t)=(2-t)^2(1-t)" />. Ruang eigen <InlineMath math="E_A(2)" /> adalah bidang <InlineMath math="z=0" /> dengan dimensi <InlineMath math="2" />, sama dengan multiplisitas aljabarnya, dan <InlineMath math="E_A(1)" /> adalah garis yang memuat <InlineMath math="(1,1,1)" />. Dimensi <InlineMath math="2+1=3" /> mengisi seluruh ruang, jadi <InlineMath math="A" /> dapat didiagonalisasi.
 
-<Mermaid
-  title="Uji diagonalisasi"
-  description="Dua pertanyaan memutuskan apakah matriksnya bisa didiagonalkan."
-  chart={`
-    flowchart TD
-        A[Matriks A] --> B{χ_A terurai menjadi faktor linear?}
-        B -->|Tidak| X[Tidak bisa didiagonalkan]
-        B -->|Ya| C{Geometri = aljabar untuk setiap λ?}
-        C -->|Tidak| X
-        C -->|Ya| D[Bisa didiagonalkan]
-  `}
+<MathVisual
+  title={<>Ruang eigen yang mengisi <InlineMath math="\mathbb R^3" /></>}
+  description={<>Bidang ungu adalah <InlineMath math="E_A(2)" /> dan ruas hijau toska merentang <InlineMath math="E_A(1)" />. Vektor magenta <InlineMath math="w=(2,1,1)=(1,0,0)+(1,1,1)" /> menjadi vektor oranye <InlineMath math="Aw=2\,(1,0,0)+(1,1,1)=(3,1,1)" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 2 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 1.2, y: 0.8, z: 0.5 } },
+    objects: [
+      { id: "plane", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }, { x: 3, y: 2, z: 0 }, { x: 0, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "line", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: 1 }, appearance: "construction" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 1, z: 1 }, appearance: "answer" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 1, z: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 1, y: 1, z: 1 }, placement: "above" },
+      { key: "vector", objectId: "vector", at: { x: 2, y: 1, z: 1 }, placement: "above-left" },
+      { key: "image", objectId: "image", at: { x: 3, y: 1, z: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "line": <InlineMath math="(1,1,1)" />,
+    "vector": <InlineMath math="w" />,
+    "image": <InlineMath math="Aw" />,
+  }}
 />

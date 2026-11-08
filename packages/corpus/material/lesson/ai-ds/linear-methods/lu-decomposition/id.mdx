@@ -35,20 +35,28 @@ Kemudian terapkan pembaruan baris berikut.
 
 Pengali disimpan di bawah diagonal <InlineMath math="L" />. Jika dua baris ditukar setelah beberapa langkah eliminasi, **kolom <InlineMath math="L" /> yang sudah terisi** juga harus ditukar. Jika tidak, kesamaan <InlineMath math="PA=LU" /> tidak lagi terpenuhi.
 
-Diagram ini menunjukkan ke mana setiap hasil langkah eliminasi disimpan.
+Ambil sistem <InlineMath math="2x+y=3" /> dan <InlineMath math="4x+5y=9" />. Langkah <InlineMath math="R_2\leftarrow R_2-2R_1" /> menyimpan pengali <InlineMath math="\ell_{21}=2" /> di <InlineMath math="L" /> dan menyisakan <InlineMath math="3y=3" /> untuk <InlineMath math="U" />, jadi <InlineMath math="L=\begin{pmatrix}1&0\\2&1\end{pmatrix}" /> dan <InlineMath math="U=\begin{pmatrix}2&1\\0&3\end{pmatrix}" />. Garis kedua berputar menjadi garis mendatar, tetapi tetap melewati solusi yang sama.
 
-<Mermaid
-  title="Eliminasi mengisi tiga faktor"
-  description="Pengali masuk ke faktor bawah, sisa baris menjadi faktor atas, dan tukar baris dicatat di matriks permutasi."
-  chart={`
-    flowchart TD
-        A[Langkah eliminasi] --> B[Pengali ℓ_ij]
-        A --> C[Baris yang tersisa]
-        A --> D[Tukar baris]
-        B --> L[L]
-        C --> U[U]
-        D --> P[P]
-  `}
+<MathVisual
+  title={<>Eliminasi memutar garis kedua di sekitar solusi</>}
+  description={<>Garis ungu <InlineMath math="2x+y=3" /> dan garis hijau toska <InlineMath math="4x+5y=9" /> bertemu di titik magenta <InlineMath math="(1,1)" />. Setelah eliminasi, baris kedua menjadi garis oranye <InlineMath math="3y=3" />, yang melewati titik yang sama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 0, y: 3 }, { x: 3 / 2, y: 0 }], appearance: "secondary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 1 }, { x: 9 / 4, y: 0 }], appearance: "construction" },
+      { id: "eliminated", kind: "line", through: [{ x: 0, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "solution", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "solution", objectId: "solution", at: { x: 1, y: 1 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "solution": <InlineMath math="(1,1)" />,
+  }}
 />
 
 ## Memfaktorkan Matriks dengan Pivoting Parsial
@@ -149,20 +157,6 @@ Putar ketiga bidang dari sistem segitiga atas <InlineMath math="Ux=y" /> di bawa
   }}
 />
 
-Diagram ini merangkum dua substitusi yang baru kamu lakukan.
-
-<Mermaid
-  title="Dua tahap penyelesaian"
-  description="Faktorisasi ini membagi sistemnya menjadi dua sistem segitiga."
-  chart={`
-    flowchart LR
-        A[Ax = b] --> B[LUx = Pb]
-        B --> C["Ly = Pb, maju"]
-        C --> D["Ux = y, mundur"]
-        D --> E["x = (1, 2, 3)^T"]
-  `}
-/>
-
 ## Biaya dan penggunaan ulang
 
 Faktorisasi <InlineMath math="\mathrm{LU}" /> padat membutuhkan sekitar
@@ -174,6 +168,41 @@ Jumlah tersebut menyatakan operasi titik mengambang ketika perkalian dan pengura
 Determinan juga dapat diperoleh dari faktor:
 
 <BlockMath math="\det(A)=\det(P)\prod_{i=1}^{n}u_{ii}" />
+
+Untuk <InlineMath math="n=100" />, faktorisasi butuh sekitar <InlineMath math="\tfrac23n^3\approx666667" /> operasi, sedangkan dua substitusi untuk satu ruas kanan butuh sekitar <InlineMath math="2n^2=20000" />. Menyimpan faktor <InlineMath math="\mathrm{LU}" /> membuat setiap ruas kanan tambahan hanya menambah biaya substitusi.
+
+<ScatterDiagram
+  title={<>Biaya untuk <InlineMath math="m" /> ruas kanan dengan <InlineMath math="n=100" /></>}
+  description={<>Titik pertama adalah <InlineMath math="\tfrac23n^3+2n^2m" /> saat faktor dipakai ulang, titik kedua adalah <InlineMath math="m\bigl(\tfrac23n^3+2n^2\bigr)" /> saat faktorisasi diulang, untuk <InlineMath math="m=1" /> sampai <InlineMath math="6" />.</>}
+  xAxisLabel="Banyak ruas kanan"
+  yAxisLabel="Operasi titik mengambang"
+  datasets={[
+    {
+      name: "Faktorkan sekali",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 2 / 3 * 100 ** 3 + 1 * 2 * 100 ** 2 },
+        { x: 2, y: 2 / 3 * 100 ** 3 + 2 * 2 * 100 ** 2 },
+        { x: 3, y: 2 / 3 * 100 ** 3 + 3 * 2 * 100 ** 2 },
+        { x: 4, y: 2 / 3 * 100 ** 3 + 4 * 2 * 100 ** 2 },
+        { x: 5, y: 2 / 3 * 100 ** 3 + 5 * 2 * 100 ** 2 },
+        { x: 6, y: 2 / 3 * 100 ** 3 + 6 * 2 * 100 ** 2 },
+      ],
+    },
+    {
+      name: "Faktorkan setiap kali",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 1 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 2, y: 2 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 3, y: 3 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 4, y: 4 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 5, y: 5 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 6, y: 6 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+      ],
+    },
+  ]}
+/>
 
 ## Implementasi NumPy dengan Pemeriksaan Pivot
 

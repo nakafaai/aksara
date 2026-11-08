@@ -35,20 +35,28 @@ Then apply the following row update.
 
 The multipliers are stored below the diagonal of <InlineMath math="L" />. If two rows are swapped after earlier elimination steps, the **already-filled columns** of <InlineMath math="L" /> must be swapped as well. Otherwise <InlineMath math="PA=LU" /> will no longer hold.
 
-This diagram shows where each result of an elimination step is stored.
+Take the system <InlineMath math="2x+y=3" /> and <InlineMath math="4x+5y=9" />. The step <InlineMath math="R_2\leftarrow R_2-2R_1" /> stores the multiplier <InlineMath math="\ell_{21}=2" /> in <InlineMath math="L" /> and leaves <InlineMath math="3y=3" /> for <InlineMath math="U" />, so <InlineMath math="L=\begin{pmatrix}1&0\\2&1\end{pmatrix}" /> and <InlineMath math="U=\begin{pmatrix}2&1\\0&3\end{pmatrix}" />. The second line turns into a horizontal line, yet it still passes through the same solution.
 
-<Mermaid
-  title="Elimination fills three factors"
-  description="Multipliers go into the lower factor, the remaining rows become the upper factor, and row swaps go into the permutation matrix."
-  chart={`
-    flowchart TD
-        A[Elimination step] --> B[Multiplier ℓ_ij]
-        A --> C[Remaining rows]
-        A --> D[Row swap]
-        B --> L[L]
-        C --> U[U]
-        D --> P[P]
-  `}
+<MathVisual
+  title={<>Elimination turns the second line about the solution</>}
+  description={<>The violet line <InlineMath math="2x+y=3" /> and the teal line <InlineMath math="4x+5y=9" /> meet at the magenta point <InlineMath math="(1,1)" />. After elimination, the second row becomes the orange line <InlineMath math="3y=3" />, which passes through the same point.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 0, y: 3 }, { x: 3 / 2, y: 0 }], appearance: "secondary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 1 }, { x: 9 / 4, y: 0 }], appearance: "construction" },
+      { id: "eliminated", kind: "line", through: [{ x: 0, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "solution", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "solution", objectId: "solution", at: { x: 1, y: 1 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "solution": <InlineMath math="(1,1)" />,
+  }}
 />
 
 ## Factoring a Matrix with Partial Pivoting
@@ -149,20 +157,6 @@ Rotate the three planes of the upper triangular system <InlineMath math="Ux=y" /
   }}
 />
 
-This diagram sums up the two substitutions you just did.
-
-<Mermaid
-  title="Two solving stages"
-  description="The factorization splits the system into two triangular systems."
-  chart={`
-    flowchart LR
-        A[Ax = b] --> B[LUx = Pb]
-        B --> C["Ly = Pb, forward"]
-        C --> D["Ux = y, backward"]
-        D --> E["x = (1, 2, 3)^T"]
-  `}
-/>
-
 ## Cost and reuse
 
 Dense <InlineMath math="\mathrm{LU}" /> factorization requires approximately
@@ -174,6 +168,41 @@ This count gives the number of floating-point operations when multiplications an
 The determinant also follows from the factors:
 
 <BlockMath math="\det(A)=\det(P)\prod_{i=1}^{n}u_{ii}" />
+
+For <InlineMath math="n=100" />, the factorization takes about <InlineMath math="\tfrac23n^3\approx666667" /> operations, while the two substitutions for one right-hand side take about <InlineMath math="2n^2=20000" />. Keeping the <InlineMath math="\mathrm{LU}" /> factors means every further right-hand side only adds the substitution cost.
+
+<ScatterDiagram
+  title={<>Cost for <InlineMath math="m" /> right-hand sides with <InlineMath math="n=100" /></>}
+  description={<>The first series is <InlineMath math="\tfrac23n^3+2n^2m" /> when the factors are reused, the second is <InlineMath math="m\bigl(\tfrac23n^3+2n^2\bigr)" /> when the factorization is repeated, for <InlineMath math="m=1" /> to <InlineMath math="6" />.</>}
+  xAxisLabel="Right-hand sides"
+  yAxisLabel="Floating-point operations"
+  datasets={[
+    {
+      name: "Factor once",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 2 / 3 * 100 ** 3 + 1 * 2 * 100 ** 2 },
+        { x: 2, y: 2 / 3 * 100 ** 3 + 2 * 2 * 100 ** 2 },
+        { x: 3, y: 2 / 3 * 100 ** 3 + 3 * 2 * 100 ** 2 },
+        { x: 4, y: 2 / 3 * 100 ** 3 + 4 * 2 * 100 ** 2 },
+        { x: 5, y: 2 / 3 * 100 ** 3 + 5 * 2 * 100 ** 2 },
+        { x: 6, y: 2 / 3 * 100 ** 3 + 6 * 2 * 100 ** 2 },
+      ],
+    },
+    {
+      name: "Factor every time",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 1 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 2, y: 2 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 3, y: 3 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 4, y: 4 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 5, y: 5 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 6, y: 6 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+      ],
+    },
+  ]}
+/>
 
 ## NumPy Implementation with Pivot Checks
 

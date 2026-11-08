@@ -27,18 +27,33 @@ Für jede nichtnegative ganze Zahl <InlineMath math="m" />:
 
 Da <InlineMath math="\Lambda^m" /> entsteht, indem jeder Diagonaleintrag mit <InlineMath math="m" /> potenziert wird, führt die Diagonalisierung ein Matrixpotenzproblem auf Skalarrechnung zurück.
 
-Dieses Diagramm zeigt, woher die Spalten von <InlineMath math="S" /> und die Einträge von <InlineMath math="D" /> kommen.
+Für <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> werden die Eigenvektoren <InlineMath math="v_1=(1,1)" /> und <InlineMath math="v_2=(-1,1)" /> zu den Spalten von <InlineMath math="S=\begin{pmatrix}1&-1\\1&1\end{pmatrix}" />, und die Eigenwerte füllen <InlineMath math="D=\operatorname{diag}(3,1)" />. In der Basis <InlineMath math="v_1,v_2" /> streckt die Matrix nur die Richtung <InlineMath math="v_1" /> um das Dreifache, genau das sagt <InlineMath math="A=SDS^{-1}" />.
 
-<Mermaid
-  title="Die Faktoren der Diagonalisierung aufbauen"
-  description="Eigenvektoren werden die Spalten der Basismatrix, Eigenwerte füllen die Diagonalmatrix."
-  chart={`
-    flowchart LR
-        A[Eigenwerte λ_i] --> D[D = diag λ_1, ..., λ_n]
-        B[Eigenvektoren v_i] --> S[S = v_1, ..., v_n als Spalten]
-        D --> E[A = S D S^-1]
-        S --> E
-  `}
+<MathVisual
+  title={<><InlineMath math="A=SDS^{-1}" /> streckt die Zelle der Eigenbasis</>}
+  description={<>Das graue Parallelogramm ist die Zelle aus dem türkisen <InlineMath math="v_1" /> und dem orangen <InlineMath math="v_2" />. <InlineMath math="A" /> schickt es auf das violette Parallelogramm: <InlineMath math="v_1" /> wird zum magentafarbenen <InlineMath math="Av_1=3v_1" />, während <InlineMath math="v_2" /> bleibt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cell", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 2 }, { x: -1, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 }, { x: 2, y: 4 }, { x: -1, y: 1 }], appearance: "secondary" },
+      { id: "stretched", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "answer" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "stretched", objectId: "stretched", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="v_1" />,
+    "stretched": <InlineMath math="Av_1=3v_1" />,
+    "second": <InlineMath math="v_2=Av_2" />,
+  }}
 />
 
 ## Bedingungen für die Diagonalisierung
@@ -157,17 +172,30 @@ Für jedes <InlineMath math="i = 1, \ldots, k" /> sei <InlineMath math="v_1^{(i)
 
 Diese Vektoren bilden eine Basis von <InlineMath math="\mathbb{K}^n" /> aus Eigenvektoren von <InlineMath math="A" />. Daher ist <InlineMath math="A" /> diagonalisierbar.
 
-Nutz die zwei Fragen in diesem Diagramm, um über Diagonalisierbarkeit zu entscheiden, bevor du versuchst, <InlineMath math="S" /> zu bauen.
+Nimm <InlineMath math="A=\begin{pmatrix}2&0&-1\\0&2&-1\\0&0&1\end{pmatrix}" /> mit <InlineMath math="\chi_A(t)=(2-t)^2(1-t)" />. Der Eigenraum <InlineMath math="E_A(2)" /> ist die Ebene <InlineMath math="z=0" /> der Dimension <InlineMath math="2" />, gleich seiner algebraischen Vielfachheit, und <InlineMath math="E_A(1)" /> ist die Gerade durch <InlineMath math="(1,1,1)" />. Die Dimensionen <InlineMath math="2+1=3" /> füllen den ganzen Raum, also ist <InlineMath math="A" /> diagonalisierbar.
 
-<Mermaid
-  title="Auf Diagonalisierbarkeit prüfen"
-  description="Zwei Fragen entscheiden, ob die Matrix diagonalisierbar ist."
-  chart={`
-    flowchart TD
-        A[Matrix A] --> B{Zerfällt χ_A in Linearfaktoren?}
-        B -->|Nein| X[Nicht diagonalisierbar]
-        B -->|Ja| C{Geometrisch = algebraisch für jedes λ?}
-        C -->|Nein| X
-        C -->|Ja| D[Diagonalisierbar]
-  `}
+<MathVisual
+  title={<>Eigenräume, die <InlineMath math="\mathbb R^3" /> füllen</>}
+  description={<>Die violette Ebene ist <InlineMath math="E_A(2)" />, und die türkise Strecke spannt <InlineMath math="E_A(1)" /> auf. Der magentafarbene Vektor <InlineMath math="w=(2,1,1)=(1,0,0)+(1,1,1)" /> wird zum orangen Vektor <InlineMath math="Aw=2\,(1,0,0)+(1,1,1)=(3,1,1)" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 2 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 1.2, y: 0.8, z: 0.5 } },
+    objects: [
+      { id: "plane", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }, { x: 3, y: 2, z: 0 }, { x: 0, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "line", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: 1 }, appearance: "construction" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 1, z: 1 }, appearance: "answer" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 1, z: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 1, y: 1, z: 1 }, placement: "above" },
+      { key: "vector", objectId: "vector", at: { x: 2, y: 1, z: 1 }, placement: "above-left" },
+      { key: "image", objectId: "image", at: { x: 3, y: 1, z: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "line": <InlineMath math="(1,1,1)" />,
+    "vector": <InlineMath math="w" />,
+    "image": <InlineMath math="Aw" />,
+  }}
 />

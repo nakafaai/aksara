@@ -15,7 +15,7 @@ Versi di bawah adalah iterasi <InlineMath math="\mathrm{QR}" /> tanpa geseran. A
 
 ## Satu Iterasi QR
 
-Untuk uji deflasi berikut, terlebih dahulu ubah matriks melalui keserupaan uniter ke **bentuk Hessenberg atas**, yaitu semua entri di bawah subdiagonal pertama nol. Mulai iterasi dari matriks tersebut. Contoh 2×2 di bawah sudah memenuhi syarat ini.
+Untuk uji deflasi berikut, terlebih dahulu ubah matriks melalui keserupaan uniter ke **bentuk Hessenberg atas**, yaitu semua entri di bawah subdiagonal pertama nol. Mulai iterasi dari matriks tersebut. Contoh <InlineMath math="2\times2" /> di bawah sudah memenuhi syarat ini.
 
 1. Mulai dengan <InlineMath math="A_0=A" />.
 
@@ -33,21 +33,6 @@ Untuk uji deflasi berikut, terlebih dahulu ubah matriks melalui keserupaan unite
 
 Di sini <InlineMath math="\tau" /> adalah toleransi yang disesuaikan dengan presisi numerik dan skala masalah. Perubahan kecil pada diagonal saja belum cukup sebagai kriteria berhenti karena elemen di bawah diagonal mungkin masih bernilai signifikan.
 
-Diagram ini menunjukkan satu putaran iterasi yang diulang sampai entri di luar diagonal hampir nol.
-
-<Mermaid
-  title="Satu putaran iterasi"
-  description="Faktorkan, kalikan terbalik, lalu ulangi."
-  chart={`
-    flowchart TD
-        A[A_k] --> B[Faktorkan A_k = Q_k R_k]
-        B --> C[A_k+1 = R_k Q_k]
-        C --> D{Entri luar diagonal cukup kecil?}
-        D -->|Tidak| A
-        D -->|Ya| E[Baca nilai eigen di diagonal]
-  `}
-/>
-
 ## Mengapa Nilai Eigen Tidak Berubah
 
 Karena <InlineMath math="Q_k" /> bersifat uniter, <InlineMath math="Q_k^{*}Q_k=I" />. Dengan menyubstitusikan <InlineMath math="R_k=Q_k^{*}A_k" /> ke dalam perkalian terbalik, kita memperoleh
@@ -59,18 +44,41 @@ Karena <InlineMath math="Q_k" /> bersifat uniter, <InlineMath math="Q_k^{*}Q_k=I
 
 Jadi, <InlineMath math="A_{k+1}" /> serupa secara uniter dengan <InlineMath math="A_k" />. <Highlight>Matriks serupa memiliki polinom karakteristik</Highlight> dan nilai eigen yang sama. Setiap langkah <InlineMath math="\mathrm{QR}" /> menuliskan transformasi linear yang sama dalam koordinat baru.
 
-Rantai di bawah menjelaskan mengapa nilai eigen bertahan di setiap langkah.
+Untuk matriks simetris <InlineMath math="A_0=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> dari contoh kerja di bawah, entri diagonal <InlineMath math="A_k" /> adalah <InlineMath math="3-\tfrac2{9^k+1}" /> dan <InlineMath math="1+\tfrac2{9^k+1}" />. Keduanya bergerak di setiap langkah, tetapi jumlahnya tetap <InlineMath math="\operatorname{tr}A_k=4" />, karena setiap <InlineMath math="A_k" /> serupa dengan <InlineMath math="A_0" />.
 
-<Mermaid
-  title="Mengapa nilai eigen tidak berubah"
-  description="Setiap langkah adalah transformasi kesamaan."
-  chart={`
-    flowchart LR
-        A[A_k+1 = R_k Q_k] --> B[= Q_k^T A_k Q_k]
-        B --> C[A_k+1 serupa dengan A_k]
-        C --> D[Polinom karakteristik sama]
-        D --> E[Nilai eigen sama]
-  `}
+<ScatterDiagram
+  title={<>Entri diagonal <InlineMath math="A_k" /> menuju <InlineMath math="3" /> dan <InlineMath math="1" /></>}
+  description={<>Untuk iterasi <InlineMath math="k=0" /> sampai <InlineMath math="6" />, titik pertama menunjukkan <InlineMath math="3-\tfrac2{9^k+1}" /> dan titik kedua <InlineMath math="1+\tfrac2{9^k+1}" />. Pada setiap <InlineMath math="k" />, jumlah kedua titik sama dengan <InlineMath math="4" />.</>}
+  xAxisLabel="Iterasi"
+  yAxisLabel="Entri diagonal"
+  datasets={[
+    {
+      name: "Entri diagonal pertama",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 3 - 2 / (9 ** 0 + 1) },
+        { x: 1, y: 3 - 2 / (9 ** 1 + 1) },
+        { x: 2, y: 3 - 2 / (9 ** 2 + 1) },
+        { x: 3, y: 3 - 2 / (9 ** 3 + 1) },
+        { x: 4, y: 3 - 2 / (9 ** 4 + 1) },
+        { x: 5, y: 3 - 2 / (9 ** 5 + 1) },
+        { x: 6, y: 3 - 2 / (9 ** 6 + 1) },
+      ],
+    },
+    {
+      name: "Entri diagonal kedua",
+      color: "var(--chart-2)",
+      points: [
+        { x: 0, y: 1 + 2 / (9 ** 0 + 1) },
+        { x: 1, y: 1 + 2 / (9 ** 1 + 1) },
+        { x: 2, y: 1 + 2 / (9 ** 2 + 1) },
+        { x: 3, y: 1 + 2 / (9 ** 3 + 1) },
+        { x: 4, y: 1 + 2 / (9 ** 4 + 1) },
+        { x: 5, y: 1 + 2 / (9 ** 5 + 1) },
+        { x: 6, y: 1 + 2 / (9 ** 6 + 1) },
+      ],
+    },
+  ]}
 />
 
 ## Bentuk Hasil Konvergensi
@@ -89,7 +97,25 @@ Iterasi tanpa geseran **tidak selalu berkonvergensi ke bentuk tersebut**. Sebaga
 
 <BlockMath math="C=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad C=CI,\qquad RQ=IC=C" />
 
-Nilai eigennya 1 dan −1. Magnitudo yang sama menjelaskan kebutuhan geseran yang sesuai serta pemeriksaan konvergensi dalam algoritma numerik.
+Nilai eigennya <InlineMath math="1" /> dan <InlineMath math="-1" />. Magnitudo yang sama menjelaskan kebutuhan geseran yang sesuai serta pemeriksaan konvergensi dalam algoritma numerik.
+
+Pada contoh kerja di bawah, entri luar diagonal <InlineMath math="A_k" /> punya besar <InlineMath math="\tfrac{2\cdot3^k}{9^k+1}" />. Setiap iterasi mengalikannya kira-kira dengan <InlineMath math="\lambda_2/\lambda_1=1/3" />, jadi kecepatan konvergensi bergantung pada seberapa jauh besar nilai eigennya berbeda.
+
+<BarChart
+  title={<>Entri luar diagonal menyusut sekitar <InlineMath math="1/3" /> per langkah</>}
+  description={<>Setiap batang adalah <InlineMath math="\tfrac{2\cdot3^k}{9^k+1}" /> untuk iterasi <InlineMath math="k" /> yang tertulis di bawahnya, dari <InlineMath math="1" /> pada <InlineMath math="k=0" /> dan <InlineMath math="3/5" /> pada <InlineMath math="k=1" />.</>}
+  yAxisLabel="Besar entri luar diagonal"
+  data={[
+    { name: "0", value: 2 * 3 ** 0 / (9 ** 0 + 1) },
+    { name: "1", value: 2 * 3 ** 1 / (9 ** 1 + 1) },
+    { name: "2", value: 2 * 3 ** 2 / (9 ** 2 + 1) },
+    { name: "3", value: 2 * 3 ** 3 / (9 ** 3 + 1) },
+    { name: "4", value: 2 * 3 ** 4 / (9 ** 4 + 1) },
+    { name: "5", value: 2 * 3 ** 5 / (9 ** 5 + 1) },
+    { name: "6", value: 2 * 3 ** 6 / (9 ** 6 + 1) },
+  ]}
+  chartConfig={{ value: { label: "Besar entri luar diagonal", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
 
 ## Contoh Kerja Matriks Simetris
 

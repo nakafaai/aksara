@@ -13,20 +13,6 @@ Die Laplace-Entwicklung schreibt eine Determinante als Summe von Einträgen mult
 
 Wähle eine Zeile oder Spalte mit vielen Nulleinträgen. Die entsprechenden Terme entfallen, sodass weniger kleinere Determinanten berechnet werden müssen.
 
-Dieses Diagramm zeigt, wie aus einem Eintrag <InlineMath math="a_{ij}" /> ein Term der Entwicklung wird.
-
-<Mermaid
-  title="Ein Term der Laplace-Entwicklung"
-  description="Jeder Eintrag der gewählten Zeile liefert einen Term."
-  chart={`
-    flowchart LR
-        A[Zeile i wählen] --> B[Für jedes j: Zeile i und Spalte j streichen]
-        B --> C[Minor det A_ij]
-        C --> D["Kofaktor C_ij = (-1)^(i+j) det A_ij"]
-        D --> E[det A = Summe der a_ij C_ij]
-  `}
-/>
-
 ## Determinante entlang einer Zeile oder Spalte entwickeln
 
 Für die Matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" /> kann die Determinante auf zwei Arten berechnet werden:
@@ -37,11 +23,11 @@ Dabei bezeichnet <InlineMath math="A_{ij}" /> die <InlineMath math="(n-1) \times
 
 Dieses Vorzeichenmuster für drei Zeilen und Spalten zeigt: Jeder Schritt nach rechts oder unten kehrt das Vorzeichen um.
 
-| | j = 1 | j = 2 | j = 3 |
+| | <InlineMath math="j=1" /> | <InlineMath math="j=2" /> | <InlineMath math="j=3" /> |
 |---|---|---|---|
-| i = 1 | + | − | + |
-| i = 2 | − | + | − |
-| i = 3 | + | − | + |
+| <InlineMath math="i=1" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="+" /> |
+| <InlineMath math="i=2" /> | <InlineMath math="-" /> | <InlineMath math="+" /> | <InlineMath math="-" /> |
+| <InlineMath math="i=3" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="+" /> |
 
 Die Entwicklung nach einer beliebigen Spalte <InlineMath math="j" /> ergibt
 
@@ -106,6 +92,36 @@ Die Sarrus-Regel verwendet diagonale Muster, um zu bestimmen, welche Terme addie
 
 Die Regel von Sarrus gilt ausschließlich für <InlineMath math="3 \times 3" />-Matrizen. Bei größeren Matrizen verwendet man die Kofaktorentwicklung oder ein faktorisierungsbasiertes Verfahren, weil das Diagonalmuster dort nicht mehr greift.
 
+Für <InlineMath math="A=\begin{pmatrix}2&1&0\\0&2&1\\1&0&2\end{pmatrix}" /> liefert die Regel von Sarrus <InlineMath math="2\cdot2\cdot2+1\cdot1\cdot1+0\cdot0\cdot0-(0\cdot2\cdot1+2\cdot1\cdot0+1\cdot0\cdot2)=9" />. Dieser Wert ist das Volumen des Parallelepipeds, das die Spalten <InlineMath math="a=(2,0,1)" />, <InlineMath math="b=(1,2,0)" /> und <InlineMath math="c=(0,1,2)" /> aufspannen.
+
+<MathVisual
+  title={<>Ein Parallelepiped mit dem Volumen <InlineMath math="\det A=9" /></>}
+  description={<>Das Parallelepiped wird von den Spalten <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" /> von <InlineMath math="A" /> aufgespannt. Je zwei parallele Seitenflächen haben dieselbe Farbe: violett, türkis und orange.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -0.5, max: 3.5 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 1.5, z: 1.5 } },
+    objects: [
+      { id: "bottom", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 1 }, { x: 3, y: 2, z: 1 }, { x: 1, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "top", kind: "polygon", vertices: [{ x: 0, y: 1, z: 2 }, { x: 2, y: 1, z: 3 }, { x: 3, y: 3, z: 3 }, { x: 1, y: 3, z: 2 }], appearance: "secondary" },
+      { id: "left", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 2, z: 0 }, { x: 1, y: 3, z: 2 }, { x: 0, y: 1, z: 2 }], appearance: "construction" },
+      { id: "right", kind: "polygon", vertices: [{ x: 2, y: 0, z: 1 }, { x: 3, y: 2, z: 1 }, { x: 3, y: 3, z: 3 }, { x: 2, y: 1, z: 3 }], appearance: "construction" },
+      { id: "front", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 2 }, { x: 2, y: 1, z: 3 }, { x: 2, y: 0, z: 1 }], appearance: "primary" },
+      { id: "back", kind: "polygon", vertices: [{ x: 1, y: 2, z: 0 }, { x: 1, y: 3, z: 2 }, { x: 3, y: 3, z: 3 }, { x: 3, y: 2, z: 1 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "bottom", objectId: "bottom", at: { x: 2, y: 0, z: 1 }, placement: "below" },
+      { key: "left", objectId: "left", at: { x: 1, y: 2, z: 0 }, placement: "right" },
+      { key: "front", objectId: "front", at: { x: 0, y: 1, z: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "bottom": <InlineMath math="a" />,
+    "left": <InlineMath math="b" />,
+    "front": <InlineMath math="c" />,
+  }}
+/>
+
 ## Rechenaufwand
 
 Bei einer dichten <InlineMath math="n \times n" />-Matrix berechnet eine direkte rekursive Implementierung auf jeder Stufe <InlineMath math="n" /> Determinanten der Größe <InlineMath math="n-1" />. Der Aufwand erfüllt daher die Rekursion
@@ -117,18 +133,41 @@ Bei einer dichten <InlineMath math="n \times n" />-Matrix berechnet eine direkte
 
 Das **faktorielle Wachstum** macht die rekursive Laplace-Entwicklung für große dichte Matrizen unpraktisch. Mit dem Gauß-Verfahren oder einer <InlineMath math="\mathrm{LU}" />-Zerlegung lässt sich eine Determinante in <InlineMath math="O(n^3)" /> Rechenoperationen bestimmen.
 
-Folg der Verzweigung in diesem Diagramm, um zu sehen, woher das faktorielle Wachstum kommt.
+Die vollständige Entwicklung erzeugt <InlineMath math="n!" /> Produkte, die Elimination braucht dagegen etwa <InlineMath math="\tfrac23n^3" /> Operationen. Selbst wenn jedes Produkt nur als ein Schritt zählt, überholt <InlineMath math="n!" /> ab <InlineMath math="n=5" /> den Wert <InlineMath math="\tfrac23n^3" />, mit <InlineMath math="120" /> gegen etwa <InlineMath math="83" />.
 
-<Mermaid
-  title="Warum die Laplace-Entwicklung explodiert"
-  description="Jede Ebene ruft so viele kleinere Determinanten auf, wie die Matrix Zeilen hat."
-  chart={`
-    flowchart TD
-        A[1 Determinante der Größe n × n] --> B[n Determinanten der Größe n-1]
-        B --> C["n(n-1) Determinanten der Größe n-2"]
-        C --> D[... bis zu n! Produkten]
-        E[Gauß-Elimination] --> F[etwa n^3 Operationen]
-  `}
+<ScatterDiagram
+  title={<><InlineMath math="n!" /> gegen <InlineMath math="\tfrac23n^3" /></>}
+  description={<>Für die Größen <InlineMath math="n=1" /> bis <InlineMath math="7" /> zeigt die erste Reihe die <InlineMath math="n!" /> Produkte der Laplace-Entwicklung und die zweite die <InlineMath math="\tfrac23n^3" /> Operationen der Elimination. Bei <InlineMath math="n=7" /> steht <InlineMath math="5040" /> gegen etwa <InlineMath math="229" />.</>}
+  xAxisLabel="Matrixgröße"
+  yAxisLabel="Anzahl der Schritte"
+  datasets={[
+    {
+      name: "Laplace-Entwicklung",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 1 },
+        { x: 2, y: 1 * 2 },
+        { x: 3, y: 1 * 2 * 3 },
+        { x: 4, y: 1 * 2 * 3 * 4 },
+        { x: 5, y: 1 * 2 * 3 * 4 * 5 },
+        { x: 6, y: 1 * 2 * 3 * 4 * 5 * 6 },
+        { x: 7, y: 1 * 2 * 3 * 4 * 5 * 6 * 7 },
+      ],
+    },
+    {
+      name: "Elimination",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 2 / 3 * 1 ** 3 },
+        { x: 2, y: 2 / 3 * 2 ** 3 },
+        { x: 3, y: 2 / 3 * 3 ** 3 },
+        { x: 4, y: 2 / 3 * 4 ** 3 },
+        { x: 5, y: 2 / 3 * 5 ** 3 },
+        { x: 6, y: 2 / 3 * 6 ** 3 },
+        { x: 7, y: 2 / 3 * 7 ** 3 },
+      ],
+    },
+  ]}
 />
 
 ## Nulleinträge nutzen

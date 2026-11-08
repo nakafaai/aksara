@@ -36,22 +36,6 @@ Für ein Eigenpaar mit <InlineMath math="Av_i=\lambda_i v_i" /> wirkt die versch
 
 Diese Beziehung zeigt, dass der Eigenwert nahe <InlineMath math="\mu" /> den größten transformierten Betrag erzeugt. In der Implementierung lösen wir das lineare Gleichungssystem, ohne <InlineMath math="(A-\mu I)^{-1}" /> explizit zu bilden.
 
-Folg der Schleife in diesem Diagramm, die du wiederholst, bis das Residuum klein genug ist.
-
-<Mermaid
-  title="Ein Schritt der verschobenen inversen Iteration"
-  description="System lösen, normieren, dann das Residuum prüfen."
-  chart={`
-    flowchart TD
-        A[q_k] --> B["Löse (A - μI)y = q_k"]
-        B --> C["q_k+1 = y / ‖y‖"]
-        C --> D[ρ = q^T A q]
-        D --> E{Residuum klein?}
-        E -->|Nein| A
-        E -->|Ja| F[Eigenwert ≈ ρ]
-  `}
-/>
-
 ## Potenziteration
 
 Die Potenziteration zielt auf den Eigenwert mit dem **größten Betrag**. Ausgehend von einem normierten Vektor <InlineMath math="q_0" /> wiederholen wir:
@@ -82,16 +66,31 @@ Das Wort „kleinster“ ist mehrdeutig. Deshalb muss das Ziel immer genau benan
 
 Bei einer indefiniten Matrix muss der Eigenwert mit dem **kleinsten Betrag nicht** der negativste Eigenwert sein. Diese Unterscheidung verhindert einen häufigen Interpretationsfehler.
 
-Dieses Diagramm ordnet jeder Methode den Eigenwert zu, den sie erreicht.
+Für <InlineMath math="A=\operatorname{diag}(2,5)" /> aus dem Beispiel weiter unten multipliziert die Potenziteration die Komponente zu <InlineMath math="\lambda_i" /> mit <InlineMath math="\lambda_i" />, die inverse Iteration mit Verschiebung <InlineMath math="\mu=1" /> dagegen mit <InlineMath math="1/(\lambda_i-1)" />. Der größte Faktor gewinnt, also läuft die erste Methode zu <InlineMath math="5" /> und die zweite zu <InlineMath math="2" />.
 
-<Mermaid
-  title="Welche Methode welchen Eigenwert findet"
-  description="Die Wahl der Methode entscheidet, welchen Eigenwert du bekommst."
-  chart={`
-    flowchart LR
-        A[Potenzmethode] --> B[Eigenwert mit dem größten Betrag]
-        C[Inverse Iteration mit Shift μ] --> D[Eigenwert am nächsten bei μ]
-  `}
+<ScatterDiagram
+  title={<>Der Faktor pro Schritt für jeden Eigenwert</>}
+  description={<>Nach rechts stehen die Eigenwerte <InlineMath math="2" /> und <InlineMath math="5" />. Die Punkte der Potenziteration liegen bei <InlineMath math="\lambda_i" />, die der verschobenen inversen Iteration bei <InlineMath math="1/(\lambda_i-1)" />, also <InlineMath math="1" /> und <InlineMath math="1/4" />.</>}
+  xAxisLabel="Eigenwert"
+  yAxisLabel="Faktor pro Schritt"
+  datasets={[
+    {
+      name: "Potenziteration",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: 2 },
+        { x: 5, y: 5 },
+      ],
+    },
+    {
+      name: "Verschobene inverse Iteration",
+      color: "var(--chart-2)",
+      points: [
+        { x: 2, y: 1 / (2 - 1) },
+        { x: 5, y: 1 / (5 - 1) },
+      ],
+    },
+  ]}
 />
 
 ## Beispiel zur verschobenen inversen Iteration
@@ -159,3 +158,19 @@ Mit diesen Prüfungen entscheidest du, ob ein berechnetes Paar aus Eigenwert und
 2. Verwende die **Residuumsnorm** als Abbruchkriterium. Eine kleine Änderung zwischen zwei Eigenwertschätzungen beweist noch kein genaues Eigenpaar.
 3. Das Vorzeichen eines Eigenvektors ist frei: <InlineMath math="q" /> und <InlineMath math="-q" /> beschreiben dieselbe Eigenrichtung.
 4. Für Eigenwertcluster oder allgemeine nichtnormale Matrizen eignen sich Mehrvektorverfahren oder die Schur-Form, mit Lanczos bei symmetrischen Problemen und Arnoldi- oder <InlineMath math="\mathrm{QR}" />-basierte Eigenwertlöser.
+
+Im Beispiel oben liefert <InlineMath math="q_k\propto(4^k,1)" /> den Wert <InlineMath math="\rho_k=\tfrac{2\cdot16^k+5}{16^k+1}" /> und das Residuum <InlineMath math="\|r_k\|_2=\tfrac{3\cdot4^k}{16^k+1}" />. Für <InlineMath math="k=1" /> ist das <InlineMath math="12/17" />, der oben berechnete Wert, und jeder Schritt teilt es ungefähr durch <InlineMath math="4" />.
+
+<BarChart
+  title={<>Die Residuennorm <InlineMath math="\|r_k\|_2" /> schrumpft pro Schritt etwa um den Faktor <InlineMath math="4" /></>}
+  description={<>Jeder Balken ist <InlineMath math="\tfrac{3\cdot4^k}{16^k+1}" /> für die darunter stehende Iteration <InlineMath math="k" />. Brich die Iteration ab, sobald dieses Residuum klein genug ist.</>}
+  yAxisLabel="Residuennorm"
+  data={[
+    { name: "1", value: 3 * 4 ** 1 / (16 ** 1 + 1) },
+    { name: "2", value: 3 * 4 ** 2 / (16 ** 2 + 1) },
+    { name: "3", value: 3 * 4 ** 3 / (16 ** 3 + 1) },
+    { name: "4", value: 3 * 4 ** 4 / (16 ** 4 + 1) },
+    { name: "5", value: 3 * 4 ** 5 / (16 ** 5 + 1) },
+  ]}
+  chartConfig={{ value: { label: "Residuennorm", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>

@@ -13,20 +13,6 @@ Laplace expansion writes a determinant as a sum of entries multiplied by their c
 
 Choose a row or column with many zero entries. Its zero terms vanish, so fewer smaller determinants need to be calculated.
 
-This diagram shows how one entry <InlineMath math="a_{ij}" /> becomes one term of the expansion.
-
-<Mermaid
-  title="One term of the Laplace expansion"
-  description="Each entry of the chosen row contributes one term."
-  chart={`
-    flowchart LR
-        A[Choose row i] --> B[For each j: delete row i and column j]
-        B --> C[Minor det A_ij]
-        C --> D["Cofactor C_ij = (-1)^(i+j) det A_ij"]
-        D --> E[det A = sum of a_ij C_ij]
-  `}
-/>
-
 ## Expanding a Determinant Along a Row or Column
 
 For matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" />, the determinant can be calculated in two ways:
@@ -37,11 +23,11 @@ Let <InlineMath math="A_{ij}" /> be the <InlineMath math="(n-1) \times (n-1)" />
 
 This sign pattern for three rows and columns shows that each step right or down reverses the sign.
 
-| | j = 1 | j = 2 | j = 3 |
+| | <InlineMath math="j=1" /> | <InlineMath math="j=2" /> | <InlineMath math="j=3" /> |
 |---|---|---|---|
-| i = 1 | + | − | + |
-| i = 2 | − | + | − |
-| i = 3 | + | − | + |
+| <InlineMath math="i=1" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="+" /> |
+| <InlineMath math="i=2" /> | <InlineMath math="-" /> | <InlineMath math="+" /> | <InlineMath math="-" /> |
+| <InlineMath math="i=3" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="+" /> |
 
 Expanding along any chosen column <InlineMath math="j" /> gives
 
@@ -106,6 +92,36 @@ Sarrus rule uses diagonal patterns to determine which terms are added and which 
 
 Sarrus rule applies only to <InlineMath math="3 \times 3" /> matrices. For larger matrices, use cofactor expansion or a factorization-based method. Extending the diagonal pattern gives an invalid rule.
 
+For <InlineMath math="A=\begin{pmatrix}2&1&0\\0&2&1\\1&0&2\end{pmatrix}" />, Sarrus' rule gives <InlineMath math="2\cdot2\cdot2+1\cdot1\cdot1+0\cdot0\cdot0-(0\cdot2\cdot1+2\cdot1\cdot0+1\cdot0\cdot2)=9" />. That value is the volume of the parallelepiped spanned by the columns <InlineMath math="a=(2,0,1)" />, <InlineMath math="b=(1,2,0)" />, and <InlineMath math="c=(0,1,2)" />.
+
+<MathVisual
+  title={<>A parallelepiped of volume <InlineMath math="\det A=9" /></>}
+  description={<>The parallelepiped is spanned by the columns <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" /> of <InlineMath math="A" />. Each pair of parallel faces shares one color: violet, teal, and orange.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -0.5, max: 3.5 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 1.5, z: 1.5 } },
+    objects: [
+      { id: "bottom", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 1 }, { x: 3, y: 2, z: 1 }, { x: 1, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "top", kind: "polygon", vertices: [{ x: 0, y: 1, z: 2 }, { x: 2, y: 1, z: 3 }, { x: 3, y: 3, z: 3 }, { x: 1, y: 3, z: 2 }], appearance: "secondary" },
+      { id: "left", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 2, z: 0 }, { x: 1, y: 3, z: 2 }, { x: 0, y: 1, z: 2 }], appearance: "construction" },
+      { id: "right", kind: "polygon", vertices: [{ x: 2, y: 0, z: 1 }, { x: 3, y: 2, z: 1 }, { x: 3, y: 3, z: 3 }, { x: 2, y: 1, z: 3 }], appearance: "construction" },
+      { id: "front", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 2 }, { x: 2, y: 1, z: 3 }, { x: 2, y: 0, z: 1 }], appearance: "primary" },
+      { id: "back", kind: "polygon", vertices: [{ x: 1, y: 2, z: 0 }, { x: 1, y: 3, z: 2 }, { x: 3, y: 3, z: 3 }, { x: 3, y: 2, z: 1 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "bottom", objectId: "bottom", at: { x: 2, y: 0, z: 1 }, placement: "below" },
+      { key: "left", objectId: "left", at: { x: 1, y: 2, z: 0 }, placement: "right" },
+      { key: "front", objectId: "front", at: { x: 0, y: 1, z: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "bottom": <InlineMath math="a" />,
+    "left": <InlineMath math="b" />,
+    "front": <InlineMath math="c" />,
+  }}
+/>
+
 ## Computational Complexity
 
 For a dense <InlineMath math="n \times n" /> matrix, a direct recursive implementation evaluates <InlineMath math="n" /> determinants of size <InlineMath math="n-1" /> at each level. Its work therefore follows the recurrence
@@ -117,18 +133,41 @@ For a dense <InlineMath math="n \times n" /> matrix, a direct recursive implemen
 
 The **factorial growth** makes recursive Laplace expansion impractical for large dense matrices. Gaussian elimination or an <InlineMath math="\mathrm{LU}" /> factorization computes a determinant in <InlineMath math="O(n^3)" /> arithmetic operations.
 
-Follow the branching in this diagram to see where the factorial growth comes from.
+The full expansion produces <InlineMath math="n!" /> products, while elimination needs about <InlineMath math="\tfrac23n^3" /> operations. Even if each product counts as a single step, <InlineMath math="n!" /> passes <InlineMath math="\tfrac23n^3" /> from <InlineMath math="n=5" /> on, with <InlineMath math="120" /> against about <InlineMath math="83" />.
 
-<Mermaid
-  title="Why the Laplace expansion blows up"
-  description="Each level calls as many smaller determinants as the matrix has rows."
-  chart={`
-    flowchart TD
-        A[1 determinant of size n × n] --> B[n determinants of size n-1]
-        B --> C["n(n-1) determinants of size n-2"]
-        C --> D[... down to n! products]
-        E[Gaussian elimination] --> F[about n^3 operations]
-  `}
+<ScatterDiagram
+  title={<><InlineMath math="n!" /> against <InlineMath math="\tfrac23n^3" /></>}
+  description={<>For the sizes <InlineMath math="n=1" /> to <InlineMath math="7" />, the first series is the <InlineMath math="n!" /> products of the Laplace expansion and the second is the <InlineMath math="\tfrac23n^3" /> operations of elimination. At <InlineMath math="n=7" />, that is <InlineMath math="5040" /> against about <InlineMath math="229" />.</>}
+  xAxisLabel="Matrix size"
+  yAxisLabel="Number of steps"
+  datasets={[
+    {
+      name: "Laplace expansion",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 1 },
+        { x: 2, y: 1 * 2 },
+        { x: 3, y: 1 * 2 * 3 },
+        { x: 4, y: 1 * 2 * 3 * 4 },
+        { x: 5, y: 1 * 2 * 3 * 4 * 5 },
+        { x: 6, y: 1 * 2 * 3 * 4 * 5 * 6 },
+        { x: 7, y: 1 * 2 * 3 * 4 * 5 * 6 * 7 },
+      ],
+    },
+    {
+      name: "Elimination",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 2 / 3 * 1 ** 3 },
+        { x: 2, y: 2 / 3 * 2 ** 3 },
+        { x: 3, y: 2 / 3 * 3 ** 3 },
+        { x: 4, y: 2 / 3 * 4 ** 3 },
+        { x: 5, y: 2 / 3 * 5 ** 3 },
+        { x: 6, y: 2 / 3 * 6 ** 3 },
+        { x: 7, y: 2 / 3 * 7 ** 3 },
+      ],
+    },
+  ]}
 />
 
 ## Using Zero Entries

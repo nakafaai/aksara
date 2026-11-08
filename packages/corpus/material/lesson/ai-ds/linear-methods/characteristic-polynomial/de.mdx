@@ -24,20 +24,6 @@ Sei <InlineMath math="A \in \mathbb{K}^{n \times n}" />. Wir können eine spezie
 
 Dieses Polynom vom Grad <InlineMath math="n" /> in <InlineMath math="t" /> mit Koeffizienten <InlineMath math="a_0,\ldots,a_n\in\mathbb{K}" /> heißt **charakteristisches Polynom** von <InlineMath math="A" />. Wir verwenden hier die Konvention <InlineMath math="\det(A-tI)" />. Die ebenfalls verbreitete Konvention <InlineMath math="\det(tI-A)" /> unterscheidet sich nur um den Faktor <InlineMath math="(-1)^n" /> und hat daher dieselben Nullstellen.
 
-Dieses Diagramm fasst den Weg von der Eigenwertgleichung zum charakteristischen Polynom zusammen.
-
-<Mermaid
-  title="Von der Eigenwertgleichung zum Polynom"
-  description="Die Determinante macht aus einer Frage über Vektoren eine Gleichung in t."
-  chart={`
-    flowchart LR
-        A["Av = tv, v ≠ 0"] --> B["(A - tI)v = 0"]
-        B --> C["det(A - tI) = 0"]
-        C --> D["χ_A(t), Grad n"]
-        D --> E[Nullstellen = Eigenwerte]
-  `}
-/>
-
 ## Matrixspur und Polynomkoeffizienten
 
 Sei <InlineMath math="A \in \mathbb{K}^{n \times n}" /> eine quadratische Matrix. Die **Spur** von <InlineMath math="A" /> ist die Summe der Diagonalelemente:
@@ -56,6 +42,33 @@ Das bedeutet:
 - Der höchste Koeffizient ist immer <InlineMath math="(-1)^n" />
 - Der zweithöchste Koeffizient bezieht sich auf die Matrixspur
 - Der **konstante Term** ist die Determinante der Matrix
+
+Für eine <InlineMath math="2\times2" />-Matrix gilt <InlineMath math="\chi_A(t)=t^2-(\operatorname{tr}A)\,t+\det A" />. Mit <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> ist die Spur <InlineMath math="4" /> und die Determinante <InlineMath math="3" />, also <InlineMath math="\chi_A(t)=t^2-4t+3=(t-1)(t-3)" />.
+
+<MathVisual
+  title={<>Die Parabel <InlineMath math="\chi_A(t)=t^2-4t+3" /></>}
+  description={<>Die magentafarbenen Punkte sind die Nullstellen <InlineMath math="1" /> und <InlineMath math="3" />, die Eigenwerte von <InlineMath math="A" />. Der gelbe Punkt ist <InlineMath math="\chi_A(0)=\det A=3" />, und der graue Scheitel liegt bei <InlineMath math="t=\operatorname{tr}A/2=2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "polynomial", kind: "quadratic", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: -0.5, max: 4.5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "small", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "large", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: 3 }, appearance: "highlight" },
+      { id: "vertex", kind: "point", at: { x: 2, y: -1 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "intercept": <InlineMath math="\det A=3" />,
+    "vertex": <InlineMath math="t=\tfrac{\operatorname{tr}A}2" />,
+  }}
+/>
 
 ## Eigenwerte als Polynomwurzeln
 
@@ -79,6 +92,30 @@ Für jeden Eigenwert <InlineMath math="\lambda" /> gilt für seine **algebraisch
 
 <BlockMath math="1 \leq \mu_A(\lambda) \leq n" />
 
+Drei <InlineMath math="2\times2" />-Matrizen mit Spur <InlineMath math="4" />, aber den Determinanten <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="5" /> ergeben drei Arten von Nullstellen. <InlineMath math="\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> hat zwei einfache Nullstellen, <InlineMath math="\begin{pmatrix}2&1\\0&2\end{pmatrix}" /> hat die Nullstelle <InlineMath math="2" /> mit algebraischer Vielfachheit <InlineMath math="2" />, und <InlineMath math="\begin{pmatrix}2&-1\\1&2\end{pmatrix}" /> hat die komplexen Nullstellen <InlineMath math="2\pm i" />.
+
+<MathVisual
+  title={<>Einfache Nullstellen, eine doppelte Nullstelle und keine reelle</>}
+  description={<>Die graue Parabel <InlineMath math="t^2-4t+3" /> schneidet die Achse zweimal. Die türkise Parabel <InlineMath math="(t-2)^2" /> berührt die Achse nur im magentafarbenen Punkt <InlineMath math="t=2" />, also zählt diese Nullstelle doppelt. Die orange Parabel <InlineMath math="t^2-4t+5" /> erreicht die Achse nie.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two-roots", kind: "quadratic", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "reference" },
+      { id: "double-root", kind: "quadratic", coefficients: { a: 1, b: -4, c: 4 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "construction" },
+      { id: "no-root", kind: "quadratic", coefficients: { a: 1, b: -4, c: 5 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "primary" },
+      { id: "touch", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "touch", objectId: "touch", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "touch": <InlineMath math="t=2" />,
+  }}
+/>
+
 ## Beziehung zwischen geometrischer und algebraischer Vielfachheit
 
 Geometrische und algebraische Multiplizität erfüllen die folgende Beziehung.
@@ -90,20 +127,6 @@ Für einen Eigenwert <InlineMath math="\lambda" /> von <InlineMath math="A \in \
 > Die geometrische Vielfachheit jedes Eigenwerts ist immer kleiner oder gleich seiner algebraischen Vielfachheit.
 
 Die geometrische Vielfachheit **zählt die unabhängigen Eigenvektoren** im Eigenraum. Die algebraische Vielfachheit zählt dagegen, wie oft die Nullstelle im charakteristischen Polynom vorkommt. Die Jordanform zeigt, dass jeder unabhängige Eigenvektor mindestens einen Jordanblock benötigt. Deshalb kann die geometrische Anzahl die algebraische nicht übersteigen.
-
-Vergleich die beiden Vielfachheiten in diesem Diagramm für jeden Eigenwert, den du findest.
-
-<Mermaid
-  title="Zwei Vielfachheiten für einen Eigenwert"
-  description="Die geometrische Vielfachheit ist nie größer als die algebraische."
-  chart={`
-    flowchart TD
-        A[Eigenwert λ] --> B["Algebraische Vielfachheit μ_A(λ)"]
-        A --> C["Geometrische Vielfachheit dim ker(A - λI)"]
-        B --> D["1 ≤ geometrisch ≤ algebraisch"]
-        C --> D
-  `}
-/>
 
 ## Charakteristische Polynome berechnen
 

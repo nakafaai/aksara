@@ -37,20 +37,6 @@ Sebuah vektor <InlineMath math="x \in \mathbb{K}^n" /> dapat dinyatakan dalam ba
 
 Matriks <InlineMath math="S^{-1}" /> menggambarkan **transformasi koordinat**.
 
-Diagram ini menunjukkan dua jalan yang selalu berakhir di vektor yang sama, sehingga <InlineMath math="B=S^{-1}AS" />.
-
-<Mermaid
-  title="Dua jalan menuju hasil yang sama"
-  description="Bekerja di basis baru lalu kembali sama dengan bekerja langsung."
-  chart={`
-    flowchart LR
-        A[Koordinat baru ξ] -->|S| B[x]
-        B -->|A| C[Ax]
-        A -->|B| D[Bξ]
-        D -->|S| C
-  `}
-/>
-
 ## Transformasi Linear dalam Basis Berbeda
 
 Sekarang pertimbangkan transformasi linear <InlineMath math="y = A \cdot x" />. Dalam basis kanonik, <InlineMath math="y" /> dinyatakan melalui koordinat <InlineMath math="y_k" />, sedangkan dalam basis <InlineMath math="v_1, \ldots, v_n" /> melalui koordinat <InlineMath math="\eta_k" />:
@@ -77,6 +63,32 @@ Dalam basis <InlineMath math="v_1, \ldots, v_n" />, transformasi linear <InlineM
 <BlockMath math="B = S^{-1} \cdot A \cdot S" />
 
 Jadi, matriks serupa merepresentasikan satu transformasi linear terhadap basis yang berbeda dari <InlineMath math="\mathbb{K}^n" />.
+
+Dengan <InlineMath math="A=\operatorname{diag}(2,3)" /> dan kolom <InlineMath math="s_1=(1,0)" />, <InlineMath math="s_2=(1,1)" />, kamu dapat <InlineMath math="As_1=(2,0)=2s_1" /> dan <InlineMath math="As_2=(2,3)=-s_1+3s_2" />. Koordinat kedua bayangan ini dalam basis <InlineMath math="s_1,s_2" /> adalah kolom <InlineMath math="B=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" />.
+
+<MathVisual
+  title={<>Kolom <InlineMath math="B" /> dibaca dari bayangan <InlineMath math="s_1" /> dan <InlineMath math="s_2" /></>}
+  description={<>Jajar genjang abu-abu adalah sel basis <InlineMath math="s_1,s_2" />. <InlineMath math="A" /> mengirimnya ke jajar genjang ungu dengan sisi hijau toska <InlineMath math="As_1=2s_1" /> dan sisi magenta <InlineMath math="As_2=-s_1+3s_2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cell", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 1 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 4, y: 3 }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "second", objectId: "second", at: { x: 2, y: 3 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="As_1=2s_1" />,
+    "second": <InlineMath math="As_2=-s_1+3s_2" />,
+  }}
+/>
 
 ## Contoh Perubahan Basis Terurai
 
@@ -190,16 +202,26 @@ Jika <InlineMath math="v \in \mathbb{K}^n" /> adalah vektor eigen dari <InlineMa
 
 Keserupaan matriks mempertahankan spektrum. Ketika basis berubah, koordinat vektor eigen berubah dari <InlineMath math="v" /> menjadi <InlineMath math="S^{-1}v" />, tetapi keduanya mewakili arah geometris yang sama.
 
-Setiap besaran di diagram ini sama untuk <InlineMath math="A" /> dan <InlineMath math="B=S^{-1}AS" />.
+<InlineMath math="A=\operatorname{diag}(2,3)" /> dan <InlineMath math="B=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" /> punya polinomial karakteristik yang sama, <InlineMath math="t^2-5t+6=(t-2)(t-3)" />. Satu kurva ini membawa semua invarian sekaligus: akarnya adalah nilai eigen, koefisien <InlineMath math="-5" /> adalah lawan jejaknya, dan suku tetap <InlineMath math="6" /> adalah determinannya.
 
-<Mermaid
-  title="Apa yang dijaga kesamaan"
-  description="Matriks serupa berbagi semua besaran ini."
-  chart={`
-    flowchart TD
-        A[B = S^-1 A S] --> B[Polinom karakteristik sama]
-        B --> C[Nilai eigen sama]
-        B --> D[Trace sama]
-        B --> E[Determinan sama]
-  `}
+<MathVisual
+  title={<>Satu polinomial untuk <InlineMath math="A" /> dan <InlineMath math="B" /></>}
+  description={<>Parabola ungu <InlineMath math="t^2-5t+6" /> memotong sumbu di titik magenta <InlineMath math="2" /> dan <InlineMath math="3" />. Titik kuning <InlineMath math="6" /> adalah <InlineMath math="\det A=\det B" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "polynomial", kind: "quadratic", coefficients: { a: 1, b: -5, c: 6 }, domain: { min: 0, max: 5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "small", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "large", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: 6 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: 6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "intercept": <InlineMath math="\det A=\det B=6" />,
+  }}
 />

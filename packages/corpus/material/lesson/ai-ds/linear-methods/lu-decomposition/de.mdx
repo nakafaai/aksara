@@ -35,20 +35,28 @@ Anschließend wenden wir die folgende Zeilenaktualisierung an.
 
 Diese Aktualisierung eliminiert den Eintrag unterhalb des Pivots. Die Multiplikatoren werden unterhalb der Diagonalen von <InlineMath math="L" /> gespeichert. Werden nach früheren Eliminationsschritten zwei Zeilen vertauscht, müssen auch die **bereits gefüllten Spalten** von <InlineMath math="L" /> vertauscht werden. Andernfalls gilt <InlineMath math="PA=LU" /> nicht mehr.
 
-Dieses Diagramm zeigt, wo jedes Ergebnis eines Eliminationsschritts gespeichert wird.
+Nimm das System <InlineMath math="2x+y=3" /> und <InlineMath math="4x+5y=9" />. Der Schritt <InlineMath math="R_2\leftarrow R_2-2R_1" /> speichert den Faktor <InlineMath math="\ell_{21}=2" /> in <InlineMath math="L" /> und lässt <InlineMath math="3y=3" /> für <InlineMath math="U" /> übrig, also <InlineMath math="L=\begin{pmatrix}1&0\\2&1\end{pmatrix}" /> und <InlineMath math="U=\begin{pmatrix}2&1\\0&3\end{pmatrix}" />. Die zweite Gerade dreht sich zu einer waagerechten Geraden, geht aber weiter durch dieselbe Lösung.
 
-<Mermaid
-  title="Die Elimination füllt drei Faktoren"
-  description="Multiplikatoren gehen in den unteren Faktor, die übrigen Zeilen werden der obere Faktor, und Zeilentausche landen in der Permutationsmatrix."
-  chart={`
-    flowchart TD
-        A[Eliminationsschritt] --> B[Multiplikator ℓ_ij]
-        A --> C[Übrige Zeilen]
-        A --> D[Zeilentausch]
-        B --> L[L]
-        C --> U[U]
-        D --> P[P]
-  `}
+<MathVisual
+  title={<>Die Elimination dreht die zweite Gerade um die Lösung</>}
+  description={<>Die violette Gerade <InlineMath math="2x+y=3" /> und die türkise Gerade <InlineMath math="4x+5y=9" /> treffen sich im magentafarbenen Punkt <InlineMath math="(1,1)" />. Nach der Elimination wird die zweite Zeile zur orangen Geraden <InlineMath math="3y=3" />, die durch denselben Punkt geht.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 0, y: 3 }, { x: 3 / 2, y: 0 }], appearance: "secondary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 1 }, { x: 9 / 4, y: 0 }], appearance: "construction" },
+      { id: "eliminated", kind: "line", through: [{ x: 0, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "solution", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "solution", objectId: "solution", at: { x: 1, y: 1 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "solution": <InlineMath math="(1,1)" />,
+  }}
 />
 
 ## Eine Matrix mit partieller Pivotisierung faktorisieren
@@ -149,20 +157,6 @@ Dreh die drei Ebenen des oberen Dreieckssystems <InlineMath math="Ux=y" /> unten
   }}
 />
 
-Dieses Diagramm fasst die beiden Einsetzschritte zusammen, die du gerade gemacht hast.
-
-<Mermaid
-  title="Zwei Lösungsstufen"
-  description="Die Zerlegung teilt das System in zwei Dreieckssysteme."
-  chart={`
-    flowchart LR
-        A[Ax = b] --> B[LUx = Pb]
-        B --> C["Ly = Pb, vorwärts"]
-        C --> D["Ux = y, rückwärts"]
-        D --> E["x = (1, 2, 3)^T"]
-  `}
-/>
-
 ## Aufwand und Wiederverwendung
 
 Eine dichte <InlineMath math="\mathrm{LU}" />-Faktorisierung benötigt ungefähr
@@ -174,6 +168,41 @@ Gleitkommaoperationen, wenn Multiplikationen und Subtraktionen getrennt gezählt
 Auch die Determinante folgt aus den Faktoren:
 
 <BlockMath math="\det(A)=\det(P)\prod_{i=1}^{n}u_{ii}" />
+
+Für <InlineMath math="n=100" /> kostet die Zerlegung etwa <InlineMath math="\tfrac23n^3\approx666667" /> Operationen, die beiden Substitutionen für eine rechte Seite dagegen etwa <InlineMath math="2n^2=20000" />. Behältst du die <InlineMath math="\mathrm{LU}" />-Faktoren, kostet jede weitere rechte Seite nur die Substitutionen.
+
+<ScatterDiagram
+  title={<>Kosten für <InlineMath math="m" /> rechte Seiten bei <InlineMath math="n=100" /></>}
+  description={<>Die erste Reihe ist <InlineMath math="\tfrac23n^3+2n^2m" />, wenn die Faktoren wiederverwendet werden, die zweite ist <InlineMath math="m\bigl(\tfrac23n^3+2n^2\bigr)" />, wenn die Zerlegung wiederholt wird, für <InlineMath math="m=1" /> bis <InlineMath math="6" />.</>}
+  xAxisLabel="Rechte Seiten"
+  yAxisLabel="Gleitkommaoperationen"
+  datasets={[
+    {
+      name: "Einmal zerlegen",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 2 / 3 * 100 ** 3 + 1 * 2 * 100 ** 2 },
+        { x: 2, y: 2 / 3 * 100 ** 3 + 2 * 2 * 100 ** 2 },
+        { x: 3, y: 2 / 3 * 100 ** 3 + 3 * 2 * 100 ** 2 },
+        { x: 4, y: 2 / 3 * 100 ** 3 + 4 * 2 * 100 ** 2 },
+        { x: 5, y: 2 / 3 * 100 ** 3 + 5 * 2 * 100 ** 2 },
+        { x: 6, y: 2 / 3 * 100 ** 3 + 6 * 2 * 100 ** 2 },
+      ],
+    },
+    {
+      name: "Jedes Mal zerlegen",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 1 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 2, y: 2 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 3, y: 3 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 4, y: 4 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 5, y: 5 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 6, y: 6 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+      ],
+    },
+  ]}
+/>
 
 ## Implementierung mit NumPy und Pivotprüfung
 

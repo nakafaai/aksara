@@ -24,20 +24,6 @@ Let <InlineMath math="A \in \mathbb{K}^{n \times n}" />. We can form a special f
 
 This degree-<InlineMath math="n" /> polynomial in <InlineMath math="t" />, with coefficients <InlineMath math="a_0,\ldots,a_n\in\mathbb{K}" />, is the **characteristic polynomial** of <InlineMath math="A" />. Here, <InlineMath math="\chi_A(t)" /> uses the convention <InlineMath math="\det(A-tI)" />. The equally common convention <InlineMath math="\det(tI-A)" /> differs by the factor <InlineMath math="(-1)^n" /> but has the same roots.
 
-This diagram sums up the route from the eigen equation to the characteristic polynomial.
-
-<Mermaid
-  title="From the eigen equation to a polynomial"
-  description="The determinant turns a question about vectors into an equation in t."
-  chart={`
-    flowchart LR
-        A["Av = tv, v ≠ 0"] --> B["(A - tI)v = 0"]
-        B --> C["det(A - tI) = 0"]
-        C --> D["χ_A(t), degree n"]
-        D --> E[Roots = eigenvalues]
-  `}
-/>
-
 ## Matrix Trace and Polynomial Coefficients
 
 Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> be a square matrix. The **trace** of <InlineMath math="A" /> is the sum of the diagonal elements:
@@ -56,6 +42,33 @@ This means:
 - The highest coefficient is always <InlineMath math="(-1)^n" />
 - The second highest coefficient is related to the matrix trace
 - The **constant term** is the determinant of the matrix
+
+For a <InlineMath math="2\times2" /> matrix, <InlineMath math="\chi_A(t)=t^2-(\operatorname{tr}A)\,t+\det A" />. With <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />, the trace is <InlineMath math="4" /> and the determinant is <InlineMath math="3" />, so <InlineMath math="\chi_A(t)=t^2-4t+3=(t-1)(t-3)" />.
+
+<MathVisual
+  title={<>The parabola <InlineMath math="\chi_A(t)=t^2-4t+3" /></>}
+  description={<>The magenta points are the roots <InlineMath math="1" /> and <InlineMath math="3" />, the eigenvalues of <InlineMath math="A" />. The amber point is <InlineMath math="\chi_A(0)=\det A=3" />, and the gray vertex sits at <InlineMath math="t=\operatorname{tr}A/2=2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "polynomial", kind: "quadratic", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: -0.5, max: 4.5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "small", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "large", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: 3 }, appearance: "highlight" },
+      { id: "vertex", kind: "point", at: { x: 2, y: -1 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "intercept": <InlineMath math="\det A=3" />,
+    "vertex": <InlineMath math="t=\tfrac{\operatorname{tr}A}2" />,
+  }}
+/>
 
 ## Eigenvalues as Polynomial Roots
 
@@ -79,6 +92,30 @@ For every eigenvalue <InlineMath math="\lambda" />, its **algebraic multiplicity
 
 <BlockMath math="1 \leq \mu_A(\lambda) \leq n" />
 
+Three <InlineMath math="2\times2" /> matrices with trace <InlineMath math="4" /> but determinants <InlineMath math="3" />, <InlineMath math="4" />, and <InlineMath math="5" /> give three kinds of roots. <InlineMath math="\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> has two simple roots, <InlineMath math="\begin{pmatrix}2&1\\0&2\end{pmatrix}" /> has the root <InlineMath math="2" /> with algebraic multiplicity <InlineMath math="2" />, and <InlineMath math="\begin{pmatrix}2&-1\\1&2\end{pmatrix}" /> has the complex roots <InlineMath math="2\pm i" />.
+
+<MathVisual
+  title={<>Simple roots, a double root, and no real root</>}
+  description={<>The gray parabola <InlineMath math="t^2-4t+3" /> crosses the axis twice. The teal parabola <InlineMath math="(t-2)^2" /> only touches the axis at the magenta point <InlineMath math="t=2" />, so that root counts twice. The orange parabola <InlineMath math="t^2-4t+5" /> never reaches the axis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two-roots", kind: "quadratic", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "reference" },
+      { id: "double-root", kind: "quadratic", coefficients: { a: 1, b: -4, c: 4 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "construction" },
+      { id: "no-root", kind: "quadratic", coefficients: { a: 1, b: -4, c: 5 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "primary" },
+      { id: "touch", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "touch", objectId: "touch", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "touch": <InlineMath math="t=2" />,
+  }}
+/>
+
 ## Relationship between Geometric and Algebraic Multiplicity
 
 Geometric and algebraic multiplicity satisfy the following bound.
@@ -90,20 +127,6 @@ For an eigenvalue <InlineMath math="\lambda" /> of <InlineMath math="A \in \math
 > The geometric multiplicity of every eigenvalue is always less than or equal to its algebraic multiplicity.
 
 The geometric multiplicity **counts independent eigenvectors** in the eigenspace, whereas the algebraic multiplicity counts how many times the root occurs in the characteristic polynomial. Jordan form shows that every independent eigenvector requires at least one Jordan block, so the geometric count cannot exceed the algebraic count.
-
-Compare the two multiplicities in this diagram for every eigenvalue you find.
-
-<Mermaid
-  title="Two multiplicities for one eigenvalue"
-  description="The geometric multiplicity never exceeds the algebraic one."
-  chart={`
-    flowchart TD
-        A[Eigenvalue λ] --> B["Algebraic multiplicity μ_A(λ)"]
-        A --> C["Geometric multiplicity dim ker(A - λI)"]
-        B --> D["1 ≤ geometric ≤ algebraic"]
-        C --> D
-  `}
-/>
 
 ## Computing Characteristic Polynomials
 

@@ -36,22 +36,6 @@ For an eigenpair satisfying <InlineMath math="Av_i=\lambda_i v_i" />, the shifte
 
 This relation shows that the eigenvalue closest to <InlineMath math="\mu" /> produces the largest transformed magnitude. In implementation, we solve the linear system without forming <InlineMath math="(A-\mu I)^{-1}" /> explicitly.
 
-Follow the loop in this diagram, repeated until the residual is small enough.
-
-<Mermaid
-  title="One step of shifted inverse iteration"
-  description="Solve a system, normalize, then check the residual."
-  chart={`
-    flowchart TD
-        A[q_k] --> B["Solve (A - μI)y = q_k"]
-        B --> C["q_k+1 = y / ‖y‖"]
-        C --> D[ρ = q^T A q]
-        D --> E{Residual small?}
-        E -->|No| A
-        E -->|Yes| F[Eigenvalue ≈ ρ]
-  `}
-/>
-
 ## Power Iteration
 
 Power iteration targets the eigenvalue of **largest magnitude**. Starting from a unit vector <InlineMath math="q_0" />, repeat:
@@ -82,16 +66,31 @@ The word “smallest” is ambiguous, so the target should always be stated prec
 
 For an indefinite matrix, the eigenvalue with **smallest absolute value need not** be the most negative eigenvalue. This distinction prevents a common interpretation error.
 
-This diagram pairs each method with the eigenvalue it reaches.
+For <InlineMath math="A=\operatorname{diag}(2,5)" /> from the example below, power iteration multiplies the component along <InlineMath math="\lambda_i" /> by <InlineMath math="\lambda_i" />, while inverse iteration with shift <InlineMath math="\mu=1" /> multiplies it by <InlineMath math="1/(\lambda_i-1)" />. The largest factor wins, so the first method heads to <InlineMath math="5" /> and the second to <InlineMath math="2" />.
 
-<Mermaid
-  title="Which method finds which eigenvalue"
-  description="The choice of method decides the eigenvalue you get."
-  chart={`
-    flowchart LR
-        A[Power iteration] --> B[Eigenvalue of largest modulus]
-        C[Inverse iteration with shift μ] --> D[Eigenvalue closest to μ]
-  `}
+<ScatterDiagram
+  title={<>The factor per step for each eigenvalue</>}
+  description={<>Across are the eigenvalues <InlineMath math="2" /> and <InlineMath math="5" />. The power iteration points sit at <InlineMath math="\lambda_i" />, the shifted inverse points at <InlineMath math="1/(\lambda_i-1)" />, which is <InlineMath math="1" /> and <InlineMath math="1/4" />.</>}
+  xAxisLabel="Eigenvalue"
+  yAxisLabel="Factor per step"
+  datasets={[
+    {
+      name: "Power iteration",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: 2 },
+        { x: 5, y: 5 },
+      ],
+    },
+    {
+      name: "Shifted inverse iteration",
+      color: "var(--chart-2)",
+      points: [
+        { x: 2, y: 1 / (2 - 1) },
+        { x: 5, y: 1 / (5 - 1) },
+      ],
+    },
+  ]}
 />
 
 ## Worked Shifted Inverse Example
@@ -159,3 +158,19 @@ These checks decide whether a computed eigenvalue and eigenvector pair is correc
 2. Stop using a **residual norm**. A small change in consecutive eigenvalue estimates alone does not prove that the eigenpair is accurate.
 3. Eigenvector sign is arbitrary: <InlineMath math="q" /> and <InlineMath math="-q" /> represent the same eigendirection.
 4. For clustered eigenvalues or general nonnormal matrices, use algorithms designed for multiple vectors or Schur form, using Lanczos for symmetric problems and Arnoldi or <InlineMath math="\mathrm{QR}" />-based eigensolvers.
+
+In the example above, <InlineMath math="q_k\propto(4^k,1)" /> gives <InlineMath math="\rho_k=\tfrac{2\cdot16^k+5}{16^k+1}" /> and the residual <InlineMath math="\|r_k\|_2=\tfrac{3\cdot4^k}{16^k+1}" />. For <InlineMath math="k=1" /> that is <InlineMath math="12/17" />, the value computed above, and every step divides it by about <InlineMath math="4" />.
+
+<BarChart
+  title={<>The residual norm <InlineMath math="\|r_k\|_2" /> shrinks about fourfold per step</>}
+  description={<>Each bar is <InlineMath math="\tfrac{3\cdot4^k}{16^k+1}" /> for the iteration <InlineMath math="k" /> written below it. Stop the iteration once this residual is small enough.</>}
+  yAxisLabel="Residual norm"
+  data={[
+    { name: "1", value: 3 * 4 ** 1 / (16 ** 1 + 1) },
+    { name: "2", value: 3 * 4 ** 2 / (16 ** 2 + 1) },
+    { name: "3", value: 3 * 4 ** 3 / (16 ** 3 + 1) },
+    { name: "4", value: 3 * 4 ** 4 / (16 ** 4 + 1) },
+    { name: "5", value: 3 * 4 ** 5 / (16 ** 5 + 1) },
+  ]}
+  chartConfig={{ value: { label: "Residual norm", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
