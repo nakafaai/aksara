@@ -1,28 +1,23 @@
 export const metadata = {
-  title: "Analyse einer Wurfbewegung",
-  description:
-    "Die horizontalen und vertikalen Geschwindigkeitskomponenten bestimmen die Zeit bis zum höchsten Punkt, die Wurfweite und die momentane Geschwindigkeit.",
+  title: "Formeln zum schiefen Wurf",
+  description: "Zerlege die Anfangsgeschwindigkeit in zwei Komponenten und berechne Steigzeit, Wurfhöhe, Wurfweite und die Geschwindigkeit zu jedem Zeitpunkt.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Kinematik",
 };
 
+## Formeln für den schiefen Wurf aus zwei Komponenten
 
-## Zuerst wird die Anfangsgeschwindigkeit zerlegt
-
-Der Winkel wird zur Horizontalen gemessen. Nach rechts und nach oben zählen positiv.
-
-Die Analyse einer Wurfbewegung beginnt fast immer mit einer einfachen Frage: Welcher Anteil der Geschwindigkeit ist horizontal und welcher vertikal? Für den Anfangsgeschwindigkeitsbetrag <InlineMath math="v_0" /> und den Abwurfwinkel <InlineMath math="\theta" /> lauten die beiden Komponenten:
+Die Analyse des schiefen Wurfs beginnt damit, **die Anfangsgeschwindigkeit zu zerlegen**: <InlineMath math="v_0" /> mit dem Abwurfwinkel <InlineMath math="\theta" /> gegen die Waagerechte wird in zwei Komponenten aufgeteilt. Wird ein Körper vom Boden abgeworfen und landet wieder auf dem Boden, folgen alle wichtigen Größen aus diesen Komponenten:
 
 <MathContainer>
-  <BlockMath math="v_{0x}=v_0\cos\theta" />
-  <BlockMath math="v_{0y}=v_0\sin\theta" />
+  <BlockMath math="v_{0x}=v_0\cos\theta,\qquad v_{0y}=v_0\sin\theta" />
+  <BlockMath math="t_{\text{Steig}}=\frac{v_{0y}}{g},\qquad h_{\text{max}}=\frac{v_{0y}^2}{2g}" />
+  <BlockMath math="T=2t_{\text{Steig}},\qquad R=v_{0x}T=\frac{v_0^2\sin 2\theta}{g}" />
 </MathContainer>
 
-Anschließend werden die horizontale und die vertikale Bewegung getrennt berechnet. Das Modell vernachlässigt den Luftwiderstand und verwendet eine konstante Gravitationsbeschleunigung. Horizontal liegt eine gleichförmige Bewegung vor, weil <Highlight>keine horizontale Beschleunigung wirkt</Highlight>. Vertikal liegt eine gleichmäßig beschleunigte Bewegung vor, weil die Gravitation nach unten wirkt.
-
-> Die Gleichungen für die horizontale und vertikale Richtung verwenden dieselbe Zeitvariable.
+Der Luftwiderstand wird vernachlässigt, und die Schwerkraft ist konstant. Rechts und oben sind positiv, und die Beispiele auf dieser Seite nutzen <InlineMath math="g = 10\text{ m/s}^2" />. Die Simulation der Kanonenkugel zeigt für mehrere Schüsse die konstante waagerechte und die sich ändernde senkrechte Komponente.
 
 <ParabolicMovementAnalysisLab
   decimalSeparator="comma"
@@ -52,90 +47,195 @@ Anschließend werden die horizontale und die vertikale Bewegung getrennt berechn
   }}
 />
 
-Die Flugbahn und die halbtransparenten Kugeln zeigen eine Bewegung in gleichen Zeitabständen. Die Werte unter der Szene zerlegen diese Bewegung in Komponenten: <InlineMath math="v_{0x}" /> bleibt konstant, während sich <InlineMath math="v_y=v_{0y}-gt" /> durch die nach unten gerichtete Erdbeschleunigung ändert.
+Der Schatten der Kugel auf dem Wasser bewegt sich mit konstanter Schnelligkeit wie bei einer [gleichförmigen geradlinigen Bewegung](/de/faecher/physik/kinematik/gleichfoermige-geradlinige-bewegung), weil er nur der waagerechten Komponente folgt. Die Kugel selbst steigt und fällt, weil ihre senkrechte Komponente <InlineMath math="v_y = v_{0y} - gt" /> ständig abnimmt.
 
-Alle dargestellten Würfe starten und landen auf derselben Höhe. Unter dieser Bedingung lässt sich die Rechnung als zusammenhängende Formelfolge lesen:
+## Steigzeit und Wurfhöhe
 
-<BlockMath math="\begin{aligned} &amp;v_{0x}=v_0\cos\theta \\ &amp;v_{0y}=v_0\sin\theta \\ &amp;t_{\text{Höhepunkt}}=\frac{v_{0y}}{g} \\ &amp;T=2t_{\text{Höhepunkt}} \\ &amp;R=v_{0x}T \\ &amp;\vec{v}(2)=\langle v_{0x},v_{0y}-g(2)\rangle, \\ &amp;g=10\text{ m/s}^2 \end{aligned}" />
-
-## Am höchsten Punkt ist die Vertikalgeschwindigkeit null
-
-Am höchsten Punkt bewegt sich das Objekt **weiterhin horizontal**, doch seine vertikale Bewegung hält für einen Moment inne. Deshalb gilt dort <InlineMath math="v_y=0" />.
-
-<BlockMath math="v_y=v_{0y}-gt" />
-
-Bei <InlineMath math="v_y=0" /> beträgt die Zeit bis zum Höhepunkt:
-
-<BlockMath math="t_{\text{Höhepunkt}}=\frac{v_{0y}}{g}" />
-
-Bei einem Anfangsgeschwindigkeitsbetrag von <InlineMath math="40\text{ m/s}" /> und einem Winkel von <InlineMath math="60^\circ" /> beträgt die anfängliche vertikale Komponente <InlineMath math="20\sqrt{3}\text{ m/s}" />. Vor dem höchsten Punkt ist sie positiv, dort wird sie null und danach ist sie negativ, weil sich das Objekt nach unten bewegt.
-
-## Die Wurfweite nutzt die gesamte Flugzeit
-
-Wenn das Objekt vom Boden startet und auf **derselben Höhe** zum Boden zurückkehrt, beträgt die Gesamtzeit das Doppelte der Zeit bis zum Höhepunkt.
+Im Scheitelpunkt bewegt sich der Körper noch waagerecht, aber **seine senkrechte Geschwindigkeit ist null**. Aus <InlineMath math="v_y = v_{0y} - gt = 0" /> folgt die Steigzeit, aus der dritten Gleichung der senkrechten Bewegung die Wurfhöhe:
 
 <MathContainer>
-  <BlockMath math="t_{\text{gesamt}}=2t_{\text{Höhepunkt}}" />
-  <BlockMath math="R=v_{0x}t_{\text{gesamt}}" />
+  <BlockMath math="t_{\text{Steig}}=\frac{v_{0y}}{g}" />
+  <BlockMath math="0 = v_{0y}^2 - 2g\,h_{\text{max}} \quad\Longrightarrow\quad h_{\text{max}}=\frac{v_{0y}^2}{2g}" />
 </MathContainer>
 
-Diese Formel zeigt, dass die Wurfweite vom Winkel, von der horizontalen Geschwindigkeit und von der Flugzeit abhängt.
+Beide Formeln nutzen nur die senkrechte Komponente. Diese Komponente bewegt sich wie ein Körper beim [senkrechten Wurf](/de/faecher/physik/kinematik/vertikale-bewegung) nach oben mit <InlineMath math="v_{0y}" />.
 
-## Die momentane Geschwindigkeit hat eine horizontale und eine vertikale Komponente
+## Flugzeit und Wurfweite
 
-Um die Geschwindigkeit zu einem bestimmten Zeitpunkt zu bestimmen, werden zuerst <InlineMath math="v_x" /> und <InlineMath math="v_y" /> für diesen Zeitpunkt berechnet. Die horizontale Komponente bleibt konstant, die vertikale Komponente ändert sich.
+Landet der Körper auf **derselben Höhe**, von der er abgeworfen wurde, dauert der Abstieg so lange wie der Aufstieg, die gesamte Flugzeit ist also <InlineMath math="T = 2t_{\text{Steig}}" />. Die Wurfweite ist die waagerechte Komponente mal die Flugzeit:
+
+<BlockMath math="R = v_0\cos\theta \cdot \frac{2v_0\sin\theta}{g} = \frac{v_0^2 \cdot 2\sin\theta\cos\theta}{g} = \frac{v_0^2\sin 2\theta}{g}" />
+
+Der letzte Schritt nutzt die Identität <InlineMath math="2\sin\theta\cos\theta = \sin 2\theta" />. Weil <InlineMath math="\sin 2\theta" /> höchstens <InlineMath math="1" /> ist, ergibt sich die größte Wurfweite bei <InlineMath math="\theta = 45^\circ" />. Zwei Winkel, die zusammen <InlineMath math="90^\circ" /> ergeben, etwa <InlineMath math="30^\circ" /> und <InlineMath math="60^\circ" />, liefern dieselbe Wurfweite, weil <InlineMath math="\sin 60^\circ = \sin 120^\circ" /> ist. Mit <InlineMath math="v_0 = 20\text{ m/s}" /> landen beide <InlineMath math="20\sqrt{3} \approx 34{,}6\text{ m}" /> entfernt, dasselbe Ergebnis, das Flugzeit und waagerechte Geschwindigkeit beim [schiefen und waagerechten Wurf](/de/faecher/physik/kinematik/parabelfoermige-bewegung) liefern. Liegt der Auftreffpunkt höher oder tiefer als der Abwurfpunkt, gilt diese Formel nicht.
+
+<Mermaid
+  title="Die Reihenfolge einer Wurfanalyse"
+  description="Jede Größe folgt aus den beiden Komponenten der Anfangsgeschwindigkeit."
+  chart={`flowchart TD
+  A["v₀ und θ"] --> B["v₀x = v₀ cos θ und v₀y = v₀ sin θ"]
+  B --> C["t_Scheitel = v₀y / g"]
+  C --> D["h_max = v₀y² / 2g"]
+  C --> E["T = 2 t_Scheitel"]
+  E --> F["R = v₀x T"]
+  B --> G["Geschwindigkeit zur Zeit t: v_y = v₀y - gt"]`}
+/>
+
+## Die Geschwindigkeit entlang der Bahn
+
+Für die Geschwindigkeit zur Zeit <InlineMath math="t" /> bestimmst du **beide Komponenten zu diesem Zeitpunkt** und verbindest sie mit dem Satz des Pythagoras:
 
 <MathContainer>
-  <BlockMath math="v_x=v_{0x}" />
-  <BlockMath math="v_y=v_{0y}-gt" />
-  <BlockMath math="v=\sqrt{v_x^2+v_y^2}" />
+  <BlockMath math="v_x = v_{0x},\qquad v_y = v_{0y} - gt" />
+  <BlockMath math="v = \sqrt{v_x^2 + v_y^2}" />
 </MathContainer>
 
-Die Geschwindigkeitsrichtung muss **beide Komponenten und den richtigen Quadranten** berücksichtigen:
+Die Richtung der Geschwindigkeit gegen die Waagerechte ist <InlineMath math="\alpha = \operatorname{atan2}(v_y, v_x)" />. Für <InlineMath math="v_x > 0" /> ist das gleichbedeutend mit <InlineMath math="\tan\alpha = \frac{v_y}{v_x}" />. Ein positives <InlineMath math="v_y" /> bedeutet, dass sich der Körper schräg nach oben bewegt, ein negatives, dass er schräg nach unten fliegt.
 
-<BlockMath math="\alpha=\operatorname{atan2}(v_y,v_x)" />
+## Eine Kanonenkugel unter sechzig Grad
 
-Für <InlineMath math="v_x>0" /> ist das gleichbedeutend mit <InlineMath math="\tan\alpha=v_y/v_x" /> und <InlineMath math="-90^\circ<\alpha<90^\circ" />. Ein positives <InlineMath math="v_y" /> zeigt oberhalb der Horizontalen, ein negatives darunter.
-
-## Ein Abwurf bei sechzig Grad verbindet beide Komponenten
-
-Ein Ball wird mit dem Anfangsgeschwindigkeitsbetrag <InlineMath math="40\text{ m/s}" /> unter einem Winkel von <InlineMath math="60^\circ" /> geworfen. Für die Rechnung gilt <InlineMath math="g=10\text{ m/s}^2" />.
-
-Für <InlineMath math="60^\circ" /> lassen sich **Sinus und Kosinus exakt angeben**. Deshalb können wir die Anfangsgeschwindigkeit exakt zerlegen, die Zeit aus der vertikalen Bewegung bestimmen und mit derselben Zeit Wurfweite und momentane Geschwindigkeit berechnen.
-
-Die Anfangskomponenten sind:
+Eine Kugel wird mit <InlineMath math="40\text{ m/s}" /> unter einem Winkel von <InlineMath math="60^\circ" /> abgefeuert. Weil <InlineMath math="\sin 60^\circ" /> und <InlineMath math="\cos 60^\circ" /> **exakte Werte** haben, lässt sich jedes Ergebnis bis zum letzten Schritt ohne Runden schreiben.
 
 <MathContainer>
-  <BlockMath math="v_{0x}=40\cos60^\circ=40\left(\frac{1}{2}\right)=20\text{ m/s}" />
-  <BlockMath math="v_{0y}=40\sin60^\circ=40\left(\frac{\sqrt{3}}{2}\right)=20\sqrt{3}\text{ m/s}" />
+  <BlockMath math="v_{0x}=40\cos60^\circ=20\text{ m/s},\qquad v_{0y}=40\sin60^\circ=20\sqrt{3}\text{ m/s}" />
+  <BlockMath math="t_{\text{Steig}}=\frac{20\sqrt{3}}{10}=2\sqrt{3}\approx 3{,}46\text{ s}" />
+  <BlockMath math="h_{\text{max}}=\frac{(20\sqrt{3})^2}{2 \times 10}=\frac{1200}{20}=60\text{ m}" />
+  <BlockMath math="R=20 \times 4\sqrt{3}=80\sqrt{3}\approx 138{,}6\text{ m}" />
 </MathContainer>
 
-Die Zeit bis zum höchsten Punkt beträgt:
+Probe der Wurfweite mit der direkten Formel: <InlineMath math="\frac{40^2\sin 120^\circ}{10} = \frac{1600 \times \frac{\sqrt{3}}{2}}{10} = 80\sqrt{3}" />.
 
-<BlockMath math="t_{\text{Höhepunkt}}=\frac{20\sqrt{3}}{10}=2\sqrt{3}\text{ s}" />
-
-Gesamte Flugzeit und Wurfweite betragen:
+Die Geschwindigkeit bei <InlineMath math="t = 2\text{ s}" /> nutzt die senkrechte Komponente zu diesem Zeitpunkt:
 
 <MathContainer>
-  <BlockMath math="t_{\text{gesamt}}=4\sqrt{3}\text{ s}" />
-  <BlockMath math="R=20(4\sqrt{3})=80\sqrt{3}\text{ m}" />
+  <BlockMath math="v_y = 20\sqrt{3} - 10(2) = 20\sqrt{3} - 20 \approx 14{,}64\text{ m/s}" />
+  <BlockMath math="v = \sqrt{20^2 + (20\sqrt{3} - 20)^2} = \sqrt{2000 - 800\sqrt{3}} \approx 24{,}8\text{ m/s}" />
+  <BlockMath math="\alpha = \operatorname{atan2}(20\sqrt{3} - 20, 20) \approx 36{,}2^\circ" />
 </MathContainer>
 
-Angenommen, wir wollen die Geschwindigkeit bei <InlineMath math="t=2\text{ s}" />. Die vertikale Komponente ist:
+Probe der Schnelligkeit: <InlineMath math="v^2 = 20^2 + 14{,}64^2 \approx 614{,}4" />, und <InlineMath math="\sqrt{614{,}4} \approx 24{,}8" />.
 
-<BlockMath math="\begin{aligned} v_y &amp;=20\sqrt{3}-10(2) \\ &amp;=20\sqrt{3}-20\text{ m/s} \end{aligned}" />
+Bei <InlineMath math="t = 2\text{ s}" /> steigt die Kugel noch, weil <InlineMath math="v_y" /> positiv ist, und dieser Zeitpunkt liegt tatsächlich vor der Steigzeit von <InlineMath math="3{,}46\text{ s}" />.
 
-Währenddessen bleibt <InlineMath math="v_x=20\text{ m/s}" /> konstant. Der Geschwindigkeitsbetrag ist:
+<LineEquation
+  title="Die Geschwindigkeit der Kanonenkugel entlang der Bahn"
+  description="Ein Kästchen steht für 10 m. Jeder Pfeil zeigt die Strecke, die in einer Sekunde mit der Geschwindigkeit dieses Moments zurückgelegt wird. Der waagerechte Anteil bleibt 20 m/s, der senkrechte nimmt jede Sekunde um 10 m/s ab."
+  showZAxis={false}
+  cameraPosition={[8, 1.5, 23]}
+  cameraTarget={[8, 1.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const t = (4 * Math.sqrt(3) * index) / 400;
+        return { x: (20 * t) / 10, y: (20 * Math.sqrt(3) * t - 5 * t ** 2) / 10, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [{ x: (20 * (0)) / 10, y: (20 * Math.sqrt(3) * (0) - 5 * (0) ** 2) / 10, z: 0 }, { x: (20 * (0)) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (0) - 5 * (0) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (0)) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = 40\text{ m/s}" />, at: 1, offset: [-0.6, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (2)) / 10, y: (20 * Math.sqrt(3) * (2) - 5 * (2) ** 2) / 10, z: 0 }, { x: (20 * (2)) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (2) - 5 * (2) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (2)) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v \approx 24{,}8\text{ m/s}" />, at: 1, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (2 * Math.sqrt(3))) / 10, y: (20 * Math.sqrt(3) * (2 * Math.sqrt(3)) - 5 * (2 * Math.sqrt(3)) ** 2) / 10, z: 0 }, { x: (20 * (2 * Math.sqrt(3))) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (2 * Math.sqrt(3)) - 5 * (2 * Math.sqrt(3)) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (2 * Math.sqrt(3))) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = v_x = 20\text{ m/s}" />, at: 1, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (4 * Math.sqrt(3))) / 10, y: (20 * Math.sqrt(3) * (4 * Math.sqrt(3)) - 5 * (4 * Math.sqrt(3)) ** 2) / 10, z: 0 }, { x: (20 * (4 * Math.sqrt(3))) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (4 * Math.sqrt(3)) - 5 * (4 * Math.sqrt(3)) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (4 * Math.sqrt(3))) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = 40\text{ m/s}" />, at: 1, offset: [0.3, -0.3, 0] }],
+    }
+  ]}
+/>
 
-<BlockMath math="\begin{aligned}
-v&=\sqrt{20^2+(20\sqrt{3}-20)^2}\\
-&=\sqrt{400+400(3-2\sqrt{3}+1)}\\
-&=\sqrt{2000-800\sqrt{3}}\\
-&\approx 24{,}8\text{ m/s}
-\end{aligned}" />
+## Ein Schuss unter fünfundvierzig Grad
 
-Die Richtung der Geschwindigkeit relativ zur Horizontalen ist:
+Ein Ball wird mit <InlineMath math="20\text{ m/s}" /> unter einem Winkel von <InlineMath math="45^\circ" /> vom Boden geschossen. Bei diesem Winkel sind **beide Komponenten gleich groß**, weil <InlineMath math="\sin 45^\circ = \cos 45^\circ" />.
 
-<BlockMath math="\alpha=\operatorname{atan2}(20\sqrt{3}-20,20)\approx 36{,}2^\circ" />
+<MathContainer>
+  <BlockMath math="v_{0x} = v_{0y} = 20 \times \frac{\sqrt{2}}{2} = 10\sqrt{2}\text{ m/s}" />
+  <BlockMath math="t_{\text{Steig}} = \frac{10\sqrt{2}}{10} = \sqrt{2} \approx 1{,}41\text{ s},\qquad h_{\text{max}} = \frac{(10\sqrt{2})^2}{20} = 10\text{ m}" />
+  <BlockMath math="R = 10\sqrt{2} \times 2\sqrt{2} = 40\text{ m}" />
+</MathContainer>
 
-Bei <InlineMath math="t=2\text{ s}" /> bewegt sich die Kugel also immer noch schräg nach oben, da <InlineMath math="v_y" /> immer noch positiv ist.
+Probe mit der direkten Formel: <InlineMath math="\frac{20^2 \sin 90^\circ}{10} = 40\text{ m}" />. Diese Wurfweite ist größer als bei einem Wurf unter <InlineMath math="30^\circ" /> oder <InlineMath math="60^\circ" /> mit derselben Anfangsgeschwindigkeit, die beide bei <InlineMath math="20\sqrt{3} \approx 34{,}6\text{ m}" /> landen.
+
+## Häufige Fehler
+
+Bevor du die kurzen Formeln nutzt, prüfst du, **ob der Auftreffpunkt so hoch liegt wie der Abwurfpunkt**.
+
+| Fehler | Warum er falsch ist | So prüfst du |
+| --- | --- | --- |
+| Für die Steigzeit das ganze <InlineMath math="v_0" /> nehmen | Die Steigzeit hängt nur von <InlineMath math="v_{0y}" /> ab | Die Formel für die Zeit muss <InlineMath math="\sin\theta" /> enthalten |
+| Sinus und Kosinus vertauschen | Die waagerechte Komponente nutzt den Kosinus, die senkrechte den Sinus | Bei kleinem Winkel muss <InlineMath math="v_{0x}" /> größer sein |
+| <InlineMath math="R = \frac{v_0^2\sin 2\theta}{g}" /> für eine Klippe oder ein Dach nutzen | Die Formel gilt nur, wenn der Auftreffpunkt so hoch liegt wie der Abwurfpunkt | Vergleiche Anfangs- und Endhöhe |
+| Die Richtung mit <InlineMath math="\tan^{-1}" /> bestimmen und das Vorzeichen übersehen | Eine Richtung nach unten ergibt einen negativen Winkel | Das Vorzeichen des Winkels muss zu dem von <InlineMath math="v_y" /> passen |
+
+Den Fehler mit Sinus und Kosinus erkennst du am leichtesten bei <InlineMath math="30^\circ" />. Ein flacher Wurf muss eine größere waagerechte als senkrechte Komponente haben.
+
+## Übungen zu den Wurfformeln
+
+Nutze <InlineMath math="g = 10\text{ m/s}^2" />. Schreibe bei jeder Aufgabe zuerst **beide Komponenten der Anfangsgeschwindigkeit** auf.
+
+1. Ein Ball wird mit <InlineMath math="20\text{ m/s}" /> unter <InlineMath math="30^\circ" /> vom Boden abgeworfen. Bestimme Steigzeit, Wurfhöhe, Flugzeit und Wurfweite.
+
+2. Ein Geschoss wird mit <InlineMath math="30\text{ m/s}" /> unter einem Winkel abgefeuert, dessen Sinus <InlineMath math="0{,}8" /> und dessen Kosinus <InlineMath math="0{,}6" /> ist. Bestimme Wurfhöhe und Wurfweite.
+
+3. Bestimme für das Geschoss aus Aufgabe 2 Schnelligkeit und Richtung seiner Geschwindigkeit bei <InlineMath math="t = 1\text{ s}" />.
+
+4. Ein Ball wird unter <InlineMath math="45^\circ" /> geschossen und landet auf ebenem Boden <InlineMath math="40\text{ m}" /> entfernt. Bestimme seine Anfangsgeschwindigkeit.
+
+### Lösungen
+
+**Aufgabe 1**. Die Komponenten sind <InlineMath math="v_{0x} = 20\cos30^\circ = 10\sqrt{3}\text{ m/s}" /> und **die senkrechte Komponente** <InlineMath math="v_{0y} = 20\sin30^\circ = 10\text{ m/s}" />:
+
+<MathContainer>
+  <BlockMath math="t_{\text{Steig}} = \frac{10}{10} = 1\text{ s},\qquad h_{\text{max}} = \frac{10^2}{20} = 5\text{ m}" />
+  <BlockMath math="T = 2\text{ s},\qquad R = 10\sqrt{3} \times 2 = 20\sqrt{3} \approx 34{,}6\text{ m}" />
+</MathContainer>
+
+Probe: <InlineMath math="\frac{20^2 \sin 60^\circ}{10} = 20\sqrt{3}" />.
+
+**Aufgabe 2**. Die Komponenten sind <InlineMath math="v_{0x} = 30(0{,}6) = 18\text{ m/s}" /> und <InlineMath math="v_{0y} = 30(0{,}8) = 24\text{ m/s}" />. Die Steigzeit beträgt <InlineMath math="2{,}4\text{ s}" />, **die Flugzeit** also <InlineMath math="4{,}8\text{ s}" />:
+
+<MathContainer>
+  <BlockMath math="h_{\text{max}} = \frac{24^2}{20} = 28{,}8\text{ m}" />
+  <BlockMath math="R = 18 \times 4{,}8 = 86{,}4\text{ m}" />
+</MathContainer>
+
+Probe mit der direkten Formel: <InlineMath math="\sin 2\theta = 2(0{,}8)(0{,}6) = 0{,}96" />, und <InlineMath math="\frac{30^2 \times 0{,}96}{10} = 86{,}4\text{ m}" />.
+
+**Aufgabe 3**. Bei <InlineMath math="t = 1\text{ s}" /> ist die waagerechte Komponente unverändert, und **die senkrechte Komponente sinkt** um <InlineMath math="10\text{ m/s}" />:
+
+<MathContainer>
+  <BlockMath math="v_x = 18\text{ m/s},\qquad v_y = 24 - 10(1) = 14\text{ m/s}" />
+  <BlockMath math="v = \sqrt{18^2 + 14^2} = \sqrt{520} \approx 22{,}8\text{ m/s}" />
+  <BlockMath math="\alpha = \tan^{-1}\frac{14}{18} \approx 37{,}9^\circ" />
+</MathContainer>
+
+Der Winkel ist positiv und kleiner als der Abwurfwinkel, weil das Geschoss noch steigt, aber <InlineMath math="v_y" /> kleiner wird, während <InlineMath math="v_x" /> gleich bleibt, sodass seine Bahn immer flacher wird.
+
+**Aufgabe 4**. Bei <InlineMath math="45^\circ" /> ist <InlineMath math="\sin 90^\circ = 1" />, die Formel für die Wurfweite wird also **sehr einfach**:
+
+<BlockMath math="40 = \frac{v_0^2 \times 1}{10} \quad\Longrightarrow\quad v_0^2 = 400 \quad\Longrightarrow\quad v_0 = 20\text{ m/s}" />
+
+Eine Schnelligkeit kann nicht negativ sein, also entfällt <InlineMath math="v_0 = -20" />. Probe: <InlineMath math="\frac{20^2}{10} = 40\text{ m}" />.

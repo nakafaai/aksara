@@ -1,43 +1,23 @@
 export const metadata = {
-  title: "Position of a Point to a Circle",
-  description: "Use point power to determine whether a point lies inside, on, or outside a circle in the coordinate plane.",
+  title: "Position of a Point Relative to a Circle",
+  description: "A point lies inside, on, or outside a circle. Decide which with its distance to the center or the sign of its power, with examples and practice.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Analytic Geometry",
 };
 
+## Three Positions of a Point Relative to a Circle
 
+A point always lies **inside the circle**, **exactly on the circle**, or **outside the circle**. To find out which, compare the point's distance to the center <InlineMath math="d" /> with the radius <InlineMath math="r" />, or compute the **power of the point** <InlineMath math="K" />. For the point <InlineMath math="A(x_0, y_0)" /> and a circle with center <InlineMath math="(a, b)" />:
 
-## Testing Whether a Point Lies Within a Circle
+<BlockMath math="K_A = (x_0 - a)^2 + (y_0 - b)^2 - r^2" />
 
-Given a circle and a point, exactly one of three cases applies: the point lies inside the circle, on its circumference, or outside it.
-
-The same comparison appears in <Highlight>simplified coverage models</Highlight>, such as deciding whether a location lies inside an idealized circular signal or radar range. The circle equation and point coordinates then classify the location exactly.
-
-## Power of a Point Concept
-
-To classify the point, we use its <Highlight>power with respect to the circle</Highlight>. This algebraic quantity can be positive, zero, or negative. An ordinary distance is always zero or positive. For a circle with center <InlineMath math="(a,b)" /> and radius <InlineMath math="r" />:
-
-<BlockMath math="K_A = (x_0-a)^2 + (y_0-b)^2 - r^2" />
-
-For point <InlineMath math="A(x_0, y_0)" /> and the general circle <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, the power of <InlineMath math="A" /> is:
-
-<BlockMath math="K_A = x_0^2 + y_0^2 + Dx_0 + Ey_0 + F" />
-
-Substituting the coordinates gives <InlineMath math="K_A" />. The **sign of the point power** determines the position relative to the circle.
-
-## Three Possible Point Positions
-
-Based on the power of a point value, there are three possible positions:
-
-| Point power | Position |
-| --- | --- |
-| <InlineMath math="K_A<0" /> | **Inside** |
-| <InlineMath math="K_A=0" /> | **On the circle** |
-| <InlineMath math="K_A>0" /> | **Outside** |
-
-The three cases are shown in the graph below:
+| Power of the point | Distance to the center | Position |
+| --- | --- | --- |
+| <InlineMath math="K_A < 0" /> | <InlineMath math="d < r" /> | Inside the circle |
+| <InlineMath math="K_A = 0" /> | <InlineMath math="d = r" /> | On the circle |
+| <InlineMath math="K_A > 0" /> | <InlineMath math="d > r" /> | Outside the circle |
 
 <LineEquation
   title="Point Position Relative to Circle"
@@ -148,100 +128,172 @@ The three cases are shown in the graph below:
   cameraTarget={[0.7, 0, 0]}
 />
 
-In the diagram, the center is <InlineMath math="(0,0)" /> and the radius is <InlineMath math="3" />. Check the three points by **subtracting nine from the squared distance**:
+In the graph, the center is <InlineMath math="(0, 0)" /> and the radius is <InlineMath math="3" />, so the power of each point is its squared distance to the center minus nine:
 
-| Point | Point power | Position |
+| Point | Power of the point | Position |
 | --- | --- | --- |
 | <InlineMath math="A(\frac32,1)" /> | <InlineMath math="K_A=\frac94+1-9=-\frac{23}{4}" /> | Inside |
 | <InlineMath math="B(\frac{3\sqrt3}2,\frac32)" /> | <InlineMath math="K_B=\frac{27}4+\frac94-9=0" /> | On the circle |
 | <InlineMath math="C(\frac92,2)" /> | <InlineMath math="K_C=\frac{81}4+4-9=\frac{61}4" /> | Outside |
 
-## How to Determine Point Position
+## The Power of a Point and the Distance to the Center
 
-Identify the circle equation and the point coordinates, then substitute the coordinates into the power-of-a-point formula to obtain <InlineMath math="K_A" />.
+The power of a point is **the squared distance to the center minus the squared radius**, <InlineMath math="K_A = d^2 - r^2" />. Factor it as <InlineMath math="K_A = (d - r)(d + r)" />. The factor <InlineMath math="d + r" /> is always positive because <InlineMath math="d \ge 0" /> and <InlineMath math="r > 0" />, so <InlineMath math="K_A" /> has the same sign as <InlineMath math="d - r" />. That is why you never need a square root: the sign of the power is enough.
 
-For point <InlineMath math="A(1, -2)" /> and circle <InlineMath math="x^2 + y^2 = 25" />, first compute the **squared distance to the center**.
-Then subtract <InlineMath math="r^2" />:
+For a circle in general form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, the left side is the expansion of <InlineMath math="(x - a)^2 + (y - b)^2 - r^2" /> with <InlineMath math="a = -\frac{D}{2}" />, <InlineMath math="b = -\frac{E}{2}" />, and <InlineMath math="r^2 = a^2 + b^2 - F" />. So you get the power by **substituting the point's coordinates directly** into the left side:
 
-<MathContainer>
-  <BlockMath math="d_A^2 = 1^2 + (-2)^2 = 1 + 4 = 5" />
-  <BlockMath math="K_A = d_A^2-r^2 = 5-25 = -20" />
-</MathContainer>
+<BlockMath math="K_A = x_0^2 + y_0^2 + Dx_0 + Ey_0 + F" />
 
-Because <InlineMath math="K_A = -20 < 0" />, point <InlineMath math="A(1, -2)" /> lies inside the circle.
+This formula works only when the coefficients of <InlineMath math="x^2" /> and <InlineMath math="y^2" /> equal <InlineMath math="1" />. You read the center and radius of the general form by completing the square, as in the [equation of a circle](/en/subjects/mathematics/analytic-geometry/equation-of-circle).
 
-> For <InlineMath math="x^2 + y^2 = r^2" />, comparing <InlineMath math="d_A^2" /> with <InlineMath math="r^2" /> is equivalent to checking the sign of <InlineMath math="K_A=d_A^2-r^2" />.
+## What the Power Means for a Point Outside
 
-## Application for General Form
+For a point outside the circle, the power is the square of a length. Draw a tangent from the point <InlineMath math="C" /> to the circle and call the point of contact <InlineMath math="T" />. The radius <InlineMath math="OT" /> is perpendicular to the tangent, so the triangle <InlineMath math="OTC" /> has a right angle at <InlineMath math="T" />, and the Pythagorean theorem gives
 
-For a circle in general form <InlineMath math="x^2 + y^2 + Dx + Ey + F = 0" />, calculate <InlineMath math="K_A=x_0^2+y_0^2+Dx_0+Ey_0+F" />. The **sign** of <InlineMath math="K_A" /> determines whether the point is inside, on, or outside the circle.
+<BlockMath math="CT^2 = OC^2 - OT^2 = d^2 - r^2 = K_C" />
 
-For example, for point <InlineMath math="A(1, -2)" /> and circle <InlineMath math="x^2 + y^2 - 8x - 2y - 8 = 0" />:
+So **the power of a point equals the square of the tangent length** from that point.
+
+<MathVisual
+  title="The tangent length from a point outside the circle"
+  description={<>The circle <InlineMath math="x^2 + y^2 = 9" /> and the point <InlineMath math="C(5, 0)" />. The triangle <InlineMath math="OTC" /> has a right angle at the point of contact <InlineMath math="T" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "tangent", kind: "segment", from: { x: 5, y: 0 }, to: { x: 9 / 5, y: 12 / 5 }, appearance: "highlight" },
+      { id: "radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: 9 / 5, y: 12 / 5 }, appearance: "secondary" },
+      { id: "distance", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "construction" },
+      { id: "point", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "touch", kind: "point", at: { x: 9 / 5, y: 12 / 5 }, appearance: "highlight" },
+      { id: "center", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "point", objectId: "point", at: { x: 5, y: 0 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 9 / 5, y: 12 / 5 }, placement: "above" },
+      { key: "center", objectId: "center", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "tangent", objectId: "tangent", at: { x: 17 / 5, y: 6 / 5 }, placement: "above-right" },
+      { key: "radius", objectId: "radius", at: { x: 9 / 10, y: 6 / 5 }, placement: "left" },
+      { key: "distance", objectId: "distance", at: { x: 5 / 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    point: <InlineMath math="C" />,
+    touch: <InlineMath math="T" />,
+    center: <InlineMath math="O" />,
+    tangent: <InlineMath math="CT = 4" />,
+    radius: <InlineMath math="r = 3" />,
+    distance: <InlineMath math="d = 5" />,
+  }}
+/>
+
+For <InlineMath math="C(5, 0)" />, the power is <InlineMath math="K_C = 5^2 + 0^2 - 9 = 16" />, so the tangent length is <InlineMath math="CT = \sqrt{16} = 4" />. Check with the point of contact <InlineMath math="T\left(\frac95, \frac{12}5\right)" />. It lies on the circle because <InlineMath math="\frac{81}{25} + \frac{144}{25} = 9" />, and <InlineMath math="OT" /> is perpendicular to <InlineMath math="TC" /> because the dot product <InlineMath math="\left(\frac95, \frac{12}5\right) \cdot \left(\frac{16}5, -\frac{12}5\right) = \frac{144}{25} - \frac{144}{25} = 0" />. The length is <InlineMath math="CT^2 = \left(\frac{16}5\right)^2 + \left(\frac{12}5\right)^2 = 16" />. From a point outside the circle there are always two [tangent lines to the circle](/en/subjects/mathematics/analytic-geometry/equation-of-a-tangent-line-to-a-circle) of equal length, because both right triangles share the hypotenuse <InlineMath math="OC" /> and the leg <InlineMath math="r" />. When the distance compared with the radius is the distance from the center to a line, the result decides [line and circle intersection](/en/subjects/mathematics/analytic-geometry/position-of-a-line-to-a-circle).
+
+## Example of a Point and a Circle in General Form
+
+Find the position of the point <InlineMath math="A(1, -2)" /> relative to the circle <InlineMath math="x^2 + y^2 - 8x - 2y - 8 = 0" />.
+
+Substitute the coordinates of <InlineMath math="A" /> directly into the left side:
 
 <MathContainer>
   <BlockMath math="K_A = 1^2 + (-2)^2 - 8(1) - 2(-2) - 8" />
   <BlockMath math="K_A = 1 + 4 - 8 + 4 - 8 = -7" />
 </MathContainer>
 
-Since <InlineMath math="K_A = -7 < 0" />, then point <InlineMath math="A(1, -2)" /> is located inside the circle.
+Since <InlineMath math="K_A = -7 < 0" />, the point <InlineMath math="A" /> lies **inside the circle**.
+
+<MathVisual
+  title="The point A inside the circle with center (4, 1)"
+  description={<>The circle has center <InlineMath math="P(4, 1)" /> and radius <InlineMath math="5" />. The distance <InlineMath math="PA = 3\sqrt{2}" /> is shorter than the radius.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 10 }, y: { min: -5, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 4, y: 1 }, radius: 5, appearance: "primary" },
+      { id: "distance", kind: "segment", from: { x: 4, y: 1 }, to: { x: 1, y: -2 }, appearance: "highlight" },
+      { id: "radius", kind: "segment", from: { x: 4, y: 1 }, to: { x: 9, y: 1 }, appearance: "construction" },
+      { id: "point", kind: "point", at: { x: 1, y: -2 }, appearance: "answer" },
+      { id: "center", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "point", objectId: "point", at: { x: 1, y: -2 }, placement: "below-left" },
+      { key: "center", objectId: "center", at: { x: 4, y: 1 }, placement: "above" },
+      { key: "distance", objectId: "distance", at: { x: 5 / 2, y: -1 / 2 }, placement: "below-right" },
+      { key: "radius", objectId: "radius", at: { x: 13 / 2, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    point: <InlineMath math="A" />,
+    center: <InlineMath math="P" />,
+    distance: <InlineMath math="3\sqrt{2}" />,
+    radius: <InlineMath math="r = 5" />,
+  }}
+/>
+
+Check with the distance to the center. Completing the square gives <InlineMath math="(x - 4)^2 + (y - 1)^2 = 25" />, so the center is <InlineMath math="P(4, 1)" /> and <InlineMath math="r = 5" />. The squared distance is <InlineMath math="PA^2 = (1 - 4)^2 + (-2 - 1)^2 = 18" />, so <InlineMath math="K_A = 18 - 25 = -7" />, the same as the direct substitution.
+
+## Example of a Coordinate That Puts a Point on the Circle
+
+The point <InlineMath math="Q(k, 3)" /> and the circle <InlineMath math="x^2 + y^2 - 4x + 2y - 20 = 0" /> are given. Find the values of <InlineMath math="k" /> for which <InlineMath math="Q" /> lies on the circle, then find when <InlineMath math="Q" /> lies inside it.
+
+A point on the circle means **its power is zero**:
+
+<MathContainer>
+  <BlockMath math="K_Q = k^2 + 9 - 4k + 6 - 20 = k^2 - 4k - 5" />
+  <BlockMath math="k^2 - 4k - 5 = (k - 5)(k + 1) = 0" />
+  <BlockMath math="k = 5 \quad \text{or} \quad k = -1" />
+</MathContainer>
+
+The point <InlineMath math="Q" /> lies inside the circle when <InlineMath math="K_Q < 0" />, that is <InlineMath math="(k - 5)(k + 1) < 0" />. The product is negative between its two roots, so <InlineMath math="-1 < k < 5" />. Check: the circle has center <InlineMath math="(2, -1)" /> and <InlineMath math="r = 5" />, and for <InlineMath math="k = 5" /> the distance is <InlineMath math="\sqrt{3^2 + 4^2} = 5" />. For <InlineMath math="k = 2" />, the power is <InlineMath math="-9" />, and <InlineMath math="2" /> does lie between <InlineMath math="-1" /> and <InlineMath math="5" />.
+
+## Common Mistakes
+
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Comparing <InlineMath math="d^2" /> with <InlineMath math="r" /> | A squared distance must be compared with the squared radius | For <InlineMath math="x^2 + y^2 = 16" />, compare <InlineMath math="d^2" /> with <InlineMath math="16" /> |
+| Reading the center with flipped signs | <InlineMath math="(x - 3)^2 + (y + 2)^2 = 25" /> has center <InlineMath math="(3, -2)" /> | The center is the point that makes each bracket zero |
+| Substituting into <InlineMath math="2x^2 + 2y^2 - 8x = 0" /> without dividing | The result is twice the power, so the tangent length comes out wrong | Divide first until the coefficient of <InlineMath math="x^2" /> is <InlineMath math="1" /> |
+| Treating the power as a distance | <InlineMath math="K" /> can be negative, but a distance never is | Remember <InlineMath math="K = d^2 - r^2" /> |
+| Treating a point on the circle as a point inside the circle | On the circle means exactly on the circumference, <InlineMath math="K = 0" /> | Check whether the power is exactly zero |
+
+The fastest check is **to use both methods**: the power from direct substitution must equal <InlineMath math="d^2 - r^2" /> computed from the center and radius.
 
 ## Practice Problems
 
-Each problem gives a point and a circle, and the answer is whether the point lies inside, on, or outside the circle. **Compare the distance from the centre** with the radius.
+Compute the power of each point, then **check it with the point's distance to the center**.
 
-1. Determine the position of point <InlineMath math="A(3, 4)" /> relative to circle <InlineMath math="x^2 + y^2 = 16" />.
+1. Find the position of the point <InlineMath math="A(3, 4)" /> relative to the circle <InlineMath math="x^2 + y^2 = 16" />, then find the tangent length from <InlineMath math="A" />.
 
-2. Investigate whether point <InlineMath math="B(6, -8)" /> lies on circle <InlineMath math="x^2 + y^2 = 100" />.
+2. Decide whether the point <InlineMath math="B(6, -8)" /> lies on the circle <InlineMath math="x^2 + y^2 = 100" />.
 
-3. Determine the position of point <InlineMath math="C(2, 1)" /> relative to circle <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" />.
+3. Find the position of the point <InlineMath math="C(2, 1)" /> relative to the circle <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" />.
 
-4. A circle has equation <InlineMath math="(x-3)^2 + (y+2)^2 = 25" />. Determine the position of point <InlineMath math="D(7, 2)" /> relative to that circle.
+4. Find every value of <InlineMath math="p" /> for which the point <InlineMath math="D(p, 2)" /> lies inside the circle <InlineMath math="(x - 3)^2 + (y + 2)^2 = 25" />.
 
-### Worked Solutions
+### Solutions
 
-**Solution 1**:
+**Problem 1**. The power is <InlineMath math="K_A = 3^2 + 4^2 - 16 = 9" />. Since <InlineMath math="K_A > 0" />, the point <InlineMath math="A" /> lies **outside the circle**, and the tangent length is <InlineMath math="\sqrt{9} = 3" />. Check: the distance to the center <InlineMath math="d = 5" /> is greater than <InlineMath math="r = 4" />, and <InlineMath math="3^2 + 4^2 = 5^2" /> fits the right triangle <InlineMath math="OTA" />.
 
-Substitute coordinates of point <InlineMath math="A(3, 4)" /> into circle equation <InlineMath math="x^2 + y^2 = 16" />:
+**Problem 2**. The power is <InlineMath math="K_B = 6^2 + (-8)^2 - 100 = 36 + 64 - 100 = 0" />. So the point <InlineMath math="B" /> lies **exactly on the circle**. Check: its distance to the center is <InlineMath math="\sqrt{100} = 10" />, equal to the radius.
 
-<MathContainer>
-  <BlockMath math="d_A^2 = 3^2 + 4^2 = 9 + 16 = 25" />
-  <BlockMath math="K_A = d_A^2-r^2 = 25-16 = 9" />
-</MathContainer>
-
-Since <InlineMath math="K_A = 9 > 0" />, point <InlineMath math="A(3, 4)" /> lies **outside the circle**.
-
-**Solution 2**:
-
-Substitute coordinates of point <InlineMath math="B(6, -8)" /> into circle equation <InlineMath math="x^2 + y^2 = 100" />:
-
-<MathContainer>
-  <BlockMath math="d_B^2 = 6^2 + (-8)^2 = 36 + 64 = 100" />
-  <BlockMath math="K_B = d_B^2-r^2 = 100-100 = 0" />
-</MathContainer>
-
-Since <InlineMath math="K_B = 0" />, point <InlineMath math="B(6, -8)" /> lies **exactly on the circle**.
-
-**Solution 3**:
-
-Substitute coordinates of point <InlineMath math="C(2, 1)" /> into circle equation <InlineMath math="x^2 + y^2 - 4x + 6y - 12 = 0" />:
+**Problem 3**. Substitute directly:
 
 <MathContainer>
   <BlockMath math="K_C = 2^2 + 1^2 - 4(2) + 6(1) - 12" />
   <BlockMath math="K_C = 4 + 1 - 8 + 6 - 12 = -9" />
 </MathContainer>
 
-Since <InlineMath math="K_C = -9 < 0" />, then point <InlineMath math="C(2, 1)" /> is located **inside the circle**.
+Since <InlineMath math="K_C < 0" />, the point <InlineMath math="C" /> lies **inside the circle**. Check: the circle has center <InlineMath math="(2, -3)" /> and <InlineMath math="r^2 = 4 + 9 + 12 = 25" />, and <InlineMath math="d^2 = 0^2 + 4^2 = 16" />, so <InlineMath math="d^2 - r^2 = -9" />.
 
-**Solution 4**:
-
-For circle <InlineMath math="(x-3)^2 + (y+2)^2 = 25" /> with center <InlineMath math="(3, -2)" /> and radius <InlineMath math="r = 5" />.
-
-Substitute point <InlineMath math="D(7, 2)" />:
+**Problem 4**. A point inside the circle has a negative power:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} d_D^2 &amp;= (7-3)^2 + (2-(-2))^2 \\ &amp;= 4^2 + 4^2 \end{aligned}" />
-  <BlockMath math="d_D^2 = 16 + 16 = 32" />
-  <BlockMath math="K_D = d_D^2-r^2 = 32-25 = 7" />
+  <BlockMath math="(p - 3)^2 + (2 + 2)^2 - 25 < 0" />
+  <BlockMath math="(p - 3)^2 < 9" />
+  <BlockMath math="-3 < p - 3 < 3 \quad\Longrightarrow\quad 0 < p < 6" />
 </MathContainer>
 
-Since <InlineMath math="K_D = 7 > 0" />, point <InlineMath math="D(7, 2)" /> lies **outside the circle**.
+Check: for <InlineMath math="p = 3" />, the power is <InlineMath math="0 + 16 - 25 = -9 < 0" />. For <InlineMath math="p = 6" />, the power is <InlineMath math="9 + 16 - 25 = 0" />, so that point lies exactly on the circle and is not included.

@@ -20,6 +20,37 @@ The integer <InlineMath math="k" /> is always <InlineMath math="-1" />, <InlineM
 
 The moduli are multiplied or divided as well, but a positive modulus does not change a direction. That is why the argument of a product depends only on the arguments of its two factors.
 
+<MathVisual
+  title="Arguments add when you multiply"
+  description={<>Multiplying by <InlineMath math="i" /> turns <InlineMath math="1 + i" /> through <InlineMath math="90^\circ" />, from <InlineMath math="45^\circ" /> to <InlineMath math="135^\circ" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 1.6 }, y: { min: -0.4, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "product", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "answer" },
+      { id: "first-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.4, startDegrees: 0, sweepDegrees: 45, appearance: "primary" },
+      { id: "turn", kind: "arc", center: { x: 0, y: 0 }, radius: 0.75, startDegrees: 45, sweepDegrees: 90, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "product", objectId: "product", at: { x: -1, y: 1 }, placement: "left" },
+      { key: "first-angle", objectId: "first-angle", at: { x: 0.4 * Math.cos((22.5 * Math.PI) / 180), y: 0.4 * Math.sin((22.5 * Math.PI) / 180) }, placement: "right" },
+      { key: "turn", objectId: "turn", at: { x: 0.75 * Math.cos((112.5 * Math.PI) / 180), y: 0.75 * Math.sin((112.5 * Math.PI) / 180) }, placement: "left" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="1+i" />,
+    second: <InlineMath math="i" />,
+    product: <InlineMath math="i(1+i)=-1+i" />,
+    "first-angle": <InlineMath math="45^\circ" />,
+    turn: <InlineMath math="+90^\circ" />,
+  }}
+/>
+
 ## Why the Angles Add
 
 Write both numbers in polar form, <InlineMath math="z_1 = r_1(\cos\theta_1 + i\sin\theta_1)" /> and <InlineMath math="z_2 = r_2(\cos\theta_2 + i\sin\theta_2)" />. When you multiply them and group the real and imaginary terms, **the angle sum identities** for cosine and sine appear:
@@ -46,6 +77,37 @@ Both components are negative, so **the product lies in quadrant III**, where the
 
 Check: multiply the numerator and denominator by <InlineMath math="-i" />, so <InlineMath math="\frac{-1 - i}{i} = (-1 - i)(-i) = i + i^2 = -1 + i" />. The number <InlineMath math="-1 + i" /> does have principal argument <InlineMath math="135^\circ" />.
 
+<MathVisual
+  title="A sum of arguments that leaves the principal interval"
+  description={<>The arc <InlineMath math="135^\circ + 120^\circ = 255^\circ" /> passes <InlineMath math="180^\circ" />. The same direction is written as the principal argument <InlineMath math="-105^\circ" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 1.6 }, y: { min: -3.1, max: 2.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: Math.sqrt(3) }, appearance: "secondary" },
+      { id: "product", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 - Math.sqrt(3), y: -1 - Math.sqrt(3) }, appearance: "answer" },
+      { id: "sum", kind: "arc", center: { x: 0, y: 0 }, radius: 0.6, startDegrees: 0, sweepDegrees: 255, appearance: "construction" },
+      { id: "principal", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: -105, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: -1, y: 1 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: -1, y: Math.sqrt(3) }, placement: "above" },
+      { key: "product", objectId: "product", at: { x: 1 - Math.sqrt(3), y: -1 - Math.sqrt(3) }, placement: "left" },
+      { key: "sum", objectId: "sum", at: { x: 0.6 * Math.cos((200 * Math.PI) / 180), y: 0.6 * Math.sin((200 * Math.PI) / 180) }, placement: "left" },
+      { key: "principal", objectId: "principal", at: { x: 1 * Math.cos((-52.5 * Math.PI) / 180), y: 1 * Math.sin((-52.5 * Math.PI) / 180) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="z_1=-1+i" />,
+    second: <InlineMath math="z_2=-1+\sqrt{3}i" />,
+    product: <InlineMath math="z_1z_2" />,
+    sum: <InlineMath math="255^\circ" />,
+    principal: <InlineMath math="-105^\circ" />,
+  }}
+/>
+
 ## The Argument of a Power and a Conjugate
 
 A power is repeated multiplication, so **the argument of the <InlineMath math="n" />th power is <InlineMath math="n" /> times the argument**, brought back into the principal range:
@@ -55,6 +117,21 @@ A power is repeated multiplication, so **the argument of the <InlineMath math="n
 For <InlineMath math="(-1 + i)^3" />, the value <InlineMath math="3 \cdot 135^\circ = 405^\circ" /> minus one turn gives <InlineMath math="45^\circ" />. Check: <InlineMath math="(-1 + i)^2 = -2i" />, then <InlineMath math="-2i(-1 + i) = 2 + 2i" />, a number in quadrant I with argument <InlineMath math="45^\circ" />.
 
 The [conjugate](/en/subjects/mathematics/complex-number/conjugate-complex-numbers) <InlineMath math="\bar{z} = x - iy" /> is the mirror image of <InlineMath math="z" /> in the real axis, so its argument changes sign: <InlineMath math="\operatorname{Arg}\bar{z} = -\operatorname{Arg} z" />. The one exception is the negative real axis. The number <InlineMath math="-4" /> equals its own conjugate, and both have principal argument <InlineMath math="180^\circ" />, because <InlineMath math="-180^\circ" /> is outside the range.
+
+<Mermaid
+  title="The argument after one operation"
+  description="Each operation changes the argument in its own way, then the result goes back into the principal interval."
+  chart={`flowchart TD
+  A{"Which operation?"} -->|"product"| B["Add the arguments"]
+  A -->|"quotient"| C["Subtract the arguments"]
+  A -->|"power n"| D["Multiply the argument by n"]
+  A -->|"conjugate"| E["Change the sign of the argument"]
+  B --> F["Shift by a multiple of 360° into (-180°, 180°]"]
+  C --> F
+  D --> F
+  E --> F
+  F --> G["Check with the Cartesian form"]`}
+/>
 
 ## Common Mistakes
 
