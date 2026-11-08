@@ -2,33 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "reasoning",
-    contentDomain: "geometry-measurement",
-    topic: "geometry-objects",
+    cognitiveLevel: "application",
+    contentDomain: "trigonometry",
+    topic: "trigonometric-ratios",
   },
+  stimulus: "playground",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$12$$",
+          label: "$$4{,}8\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$14$$",
+          label: "$$3\\text{ m}$$",
+        },
+        {
+          correct: false,
+          label: "$$3{,}2\\text{ m}$$",
         },
         {
           correct: true,
-          label: "$$15$$",
+          label: "$$4\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$16$$",
-        },
-        {
-          correct: false,
-          label: "$$18$$",
+          label: "$$5{,}6\\text{ m}$$",
         },
       ],
     },

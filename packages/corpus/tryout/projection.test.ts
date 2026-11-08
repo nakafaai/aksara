@@ -96,7 +96,7 @@ describe("planTryoutPapers", () => {
   );
 
   it.effect(
-    "refuses a missing set, a wrong item count, and a missing language",
+    "refuses a missing set, a wrong item count, a missing language, and a kind its section does not allow",
     () =>
       Effect.gen(function* () {
         const sets = yield* readSets(testExamFiles);
@@ -122,11 +122,25 @@ describe("planTryoutPapers", () => {
           )
         ).pipe(Effect.flip);
 
+        const interaction = yield* plan(
+          yield* readSets(
+            withSubject([
+              ...questionFiles(1, TEST_ITEM, "Satu.", subjectSet),
+              ...questionFiles(
+                2,
+                { versions: { id: { kind: "numericEntry", value: "2" } } },
+                "Dua.",
+                subjectSet
+              ),
+            ])
+          )
+        ).pipe(Effect.flip);
+
         expect(
-          Arr.map([missing, items, language], (error) =>
+          Arr.map([missing, items, language, interaction], (error) =>
             "reason" in error ? error.reason : error._tag
           )
-        ).toEqual(["missing", "items", "language"]);
+        ).toEqual(["missing", "items", "language", "interaction"]);
       })
   );
 

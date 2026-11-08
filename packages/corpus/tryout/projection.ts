@@ -46,7 +46,7 @@ export class PaperPlanError extends Schema.TaggedError<
   PaperPlanError,
   { readonly brand: unique symbol }
 >()("PaperPlanError", {
-  reason: Schema.Literals(["items", "language", "missing"]),
+  reason: Schema.Literals(["interaction", "items", "language", "missing"]),
   set: SetPathSchema,
 }) {}
 
@@ -122,7 +122,10 @@ const requireStimulusGroups = Effect.fn("AksaraCorpus.requireStimulusGroups")(
   }
 );
 
-/** Plans one section: its bank set, with exactly its items, each asked in its language. */
+/**
+ * Plans one section: its bank set, with exactly its items, each asked in its
+ * language with an interaction its section allows.
+ */
 const planSection = Effect.fn("AksaraCorpus.planSection")(function* (
   exam: ExamSource,
   section: SectionSource,
@@ -147,6 +150,15 @@ const planSection = Effect.fn("AksaraCorpus.planSection")(function* (
     )
   ) {
     return yield* new PaperPlanError({ reason: "language", set: path });
+  }
+  if (
+    !Arr.every(questions, ({ item }) =>
+      Arr.every(itemVersions(item.versions), ({ interaction }) =>
+        Arr.contains(section.interactions, interaction.kind)
+      )
+    )
+  ) {
+    return yield* new PaperPlanError({ reason: "interaction", set: path });
   }
   yield* requireStimulusGroups(found.value);
   return { key: section.key, language: section.language, set: found.value };

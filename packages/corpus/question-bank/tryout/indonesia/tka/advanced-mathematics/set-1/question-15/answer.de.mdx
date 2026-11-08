@@ -1,0 +1,62 @@
+Eine Gerade berührt einen Kreis genau dann, wenn **ihr Abstand vom Mittelpunkt gleich dem Radius** ist. Bestimme deshalb zuerst Mittelpunkt und Radius durch quadratische Ergänzung.
+
+<BlockMath math="\begin{aligned}
+(x^2+6x+9)+(y^2-8y+16)&=9+16 \\
+(x+3)^2+(y-4)^2&=25
+\end{aligned}" />
+
+Der Mittelpunkt ist <InlineMath math="(-3,4)" />, der Radius ist <InlineMath math="5" />. Die gegebene Gerade hat die Steigung <InlineMath math="\frac34" />, eine Senkrechte dazu also die Steigung <InlineMath math="-\frac43" />. Solche Geraden haben die Form <InlineMath math="4x+3y+c=0" />.
+
+<BlockMath math="\begin{aligned}
+\frac{|4\cdot(-3)+3\cdot4+c|}{\sqrt{4^2+3^2}}&=5 \\
+|c|&=25 \\
+c=25\ \text{oder}\ c&=-25
+\end{aligned}" />
+
+<MathVisual
+  title="Zwei Tangenten senkrecht zur gegebenen Geraden"
+  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="(-3,4)" /> und den Radius <InlineMath math="5" />. Die Geraden <InlineMath math="4x+3y-25=0" /> und <InlineMath math="4x+3y+25=0" /> berühren ihn in <InlineMath math="(1,7)" /> und <InlineMath math="(-7,1)" /> und stehen senkrecht auf der Geraden <InlineMath math="3x-4y+6=0" />.</>}
+  labels={{
+    tangent: <InlineMath math="4x+3y-25=0" />,
+    other: <InlineMath math="4x+3y+25=0" />,
+    given: <InlineMath math="3x-4y+6=0" />,
+    "touch-a": <InlineMath math="(1,7)" />,
+    "touch-b": <InlineMath math="(-7,1)" />,
+    centre: <InlineMath math="(-3,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -11, max: 6 },
+      y: { min: -3, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: -3, y: 4 }, radius: 5 },
+      { id: "tangent-line", kind: "segment", appearance: "answer", from: { x: -2, y: 11 }, to: { x: 4, y: 3 } },
+      { id: "other-line", kind: "segment", appearance: "secondary", from: { x: -10, y: 5 }, to: { x: -4, y: -3 } },
+      { id: "given-line", kind: "segment", appearance: "reference", from: { x: -6, y: (3 * -6 + 6) / 4 }, to: { x: 5, y: (3 * 5 + 6) / 4 } },
+      { id: "touch-a-point", kind: "point", appearance: "answer", at: { x: 1, y: 7 } },
+      { id: "touch-b-point", kind: "point", appearance: "reference", at: { x: -7, y: 1 } },
+      { id: "centre-point", kind: "point", appearance: "reference", at: { x: -3, y: 4 } },
+    ],
+    labels: [
+      { key: "tangent", objectId: "tangent-line", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "other", objectId: "other-line", at: { x: -4, y: -3 }, placement: "right" },
+      { key: "given", objectId: "given-line", at: { x: 5, y: (3 * 5 + 6) / 4 }, placement: "above" },
+      { key: "touch-a", objectId: "touch-a-point", at: { x: 1, y: 7 }, placement: "above-right" },
+      { key: "touch-b", objectId: "touch-b-point", at: { x: -7, y: 1 }, placement: "left" },
+      { key: "centre", objectId: "centre-point", at: { x: -3, y: 4 }, placement: "below" },
+    ],
+  }}
+/>
+
+Zur Kontrolle: Der Berührpunkt <InlineMath math="(1,7)" /> liegt auf dem Kreis, denn <InlineMath math="(1+3)^2+(7-4)^2=16+9=25" />, und auf der Tangente, denn <InlineMath math="4+21-25=0" />.
+
+Unter den Auswahlmöglichkeiten ist also <InlineMath math="4x+3y-25=0" /> eine gesuchte Tangente.
+
+- <InlineMath math="3x-4y=0" /> berührt den Kreis zwar im Ursprung, verläuft aber parallel zur gegebenen Geraden statt senkrecht dazu.
+- <InlineMath math="4x+3y=0" /> geht durch den Mittelpunkt, denn <InlineMath math="-12+12=0" />, und schneidet den Kreis deshalb in zwei Punkten.
+- <InlineMath math="4x+3y-5=0" /> entsteht aus <InlineMath math="|c|=5" />, wenn der Radius nicht mit <InlineMath math="\sqrt{4^2+3^2}=5" /> multipliziert wird. Ihr Abstand vom Mittelpunkt ist nur <InlineMath math="1" />.
+- <InlineMath math="4x-3y-25=0" /> hat die Steigung <InlineMath math="\frac43" /> statt <InlineMath math="-\frac43" />. Sie steht nicht senkrecht auf der gegebenen Geraden, und ihr Abstand vom Mittelpunkt ist <InlineMath math="\frac{49}{5}" />.

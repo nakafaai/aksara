@@ -1,3 +1,4 @@
+import { DecimalSchema } from "@nakafa/aksara-contracts/assessment/answer";
 import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
 import { ItemBlueprintSchema } from "@nakafa/aksara-contracts/assessment/item";
 import {
@@ -70,10 +71,23 @@ const MatrixSourceSchema = Schema.Struct({
     )
   );
 
+/**
+ * A typed number: its exact value as a canonical decimal, such as `12`,
+ * `0.75`, or `-3`, and the unit shown beside the field, so the learner types
+ * the number only. The value is the same in every language; the unit is
+ * written in each.
+ */
+const NumericEntrySourceSchema = Schema.Struct({
+  kind: Schema.Literal("numericEntry"),
+  unit: Schema.optionalKey(LabelSchema),
+  value: DecimalSchema,
+}).mapFields(Struct.map(Schema.mutableKey));
+
 /** The one interaction of an authored item, in one language. */
 export const InteractionSourceSchema = Schema.Union([
   ChoiceSourceSchema,
   MatrixSourceSchema,
+  NumericEntrySourceSchema,
 ]);
 export type InteractionSource = typeof InteractionSourceSchema.Type;
 
@@ -91,6 +105,10 @@ const StructureSchema = Schema.Union([
     kind: Schema.Literal("matrix"),
     statements: Schema.Array(Schema.Int),
   }),
+  Schema.Struct({
+    kind: Schema.Literal("numericEntry"),
+    value: DecimalSchema,
+  }),
 ]);
 const sameStructure = Schema.toEquivalence(StructureSchema);
 
@@ -103,6 +121,9 @@ function structureOf(
       correct: Arr.map(interaction.options, ({ correct }) => correct),
       kind: interaction.kind,
     };
+  }
+  if (interaction.kind === "numericEntry") {
+    return { kind: interaction.kind, value: interaction.value };
   }
   return {
     columns: interaction.columns.length,

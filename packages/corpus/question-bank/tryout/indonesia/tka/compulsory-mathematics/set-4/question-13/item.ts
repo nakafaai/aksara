@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "knowledge-understanding",
     contentDomain: "geometry-measurement",
     topic: "geometry-transformations",
   },
@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$(-1,0)$$",
-        },
-        {
-          correct: false,
-          label: "$$(0,0)$$",
-        },
-        {
-          correct: false,
-          label: "$$\\left(\\frac12,-\\frac12\\right)$$",
-        },
-        {
-          correct: false,
-          label: "$$(2,1)$$",
-        },
-        {
           correct: true,
-          label: "$$(2,-1)$$",
+          label: "$$(-4,6)$$",
+        },
+        {
+          correct: false,
+          label: "$$(4,-6)$$",
+        },
+        {
+          correct: false,
+          label: "$$(-6,9)$$",
+        },
+        {
+          correct: false,
+          label: "$$(-12,18)$$",
+        },
+        {
+          correct: false,
+          label: "$$(-4,-6)$$",
         },
       ],
     },
