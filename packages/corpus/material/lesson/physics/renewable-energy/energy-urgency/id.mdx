@@ -20,18 +20,6 @@ Energi berasal dari sumbernya dan dikonversi menjadi listrik. Jaringan kemudian 
 
 Pembangkit harus mampu menghasilkan daya yang cukup, dan jaringan listrik harus mampu menyalurkannya ketika permintaan meningkat.
 
-Inilah tahap-tahap yang terhubung itu, dari sumber sampai pengguna.
-
-<Mermaid
-  title="Dari Sumber ke Pengguna"
-  description="Energi diubah menjadi listrik, dibawa jaringan, lalu dipakai alat. Gangguan di tahap mana pun menghentikan layanannya."
-  chart={`flowchart LR
-    A["Sumber energi"] --> B["Pembangkit"]
-    B --> C["Jaringan transmisi"]
-    C --> D["Jaringan distribusi"]
-    D --> E["Rumah, sekolah, klinik"]`}
-/>
-
 ## Kebutuhan Bertambah dari Banyak Alat
 
 Satu lampu memakai sedikit energi, tetapi kebutuhan total menjadi besar ketika banyak alat dipakai bersamaan.
@@ -68,50 +56,6 @@ Bandingkan dua alat, masing-masing berdaya tetap <InlineMath math="1 \text{ kW}"
 | Keduanya menyala pukul 18.00 sampai 19.00 | <InlineMath math="1+1=2 \text{ kW}" /> | <InlineMath math="2 \times 1=2 \text{ kWh}" /> |
 | Alat pertama pukul 18.00 sampai 19.00, alat kedua pukul 19.00 sampai 20.00 | <InlineMath math="1 \text{ kW}" /> | <InlineMath math="1 \times 1+1 \times 1=2 \text{ kWh}" /> |
 
-Inilah kedua jadwal sebagai daya sepanjang malam. Jadwal oranye menyalakan kedua alat bersamaan, jadi dayanya melompat ke puncak <InlineMath math="2\text{ kW}" />. Jadwal ungu menyebar pekerjaan yang sama ke dua jam dan tidak pernah lebih dari <InlineMath math="1\text{ kW}" />. Coba hitung luas di bawah setiap garis, yaitu daya kali waktu: keduanya sama-sama <InlineMath math="2\text{ kWh}" />. Energinya sama, yang berubah hanya puncak daya yang harus disediakan jaringan.
-
-<LineEquation
-  title="Energi Sama, Puncak Berbeda"
-  description="Daya yang dipakai dua alat 1 kW dari pukul 17.00 sampai 21.00. Mendatar: jam dalam satuan jam. Tegak: daya dalam kW."
-  data={(() => {
-    // Two 1 kW devices, one hour each. Horizontal: clock time from 17:00 in hours. Vertical: kW.
-    const scale = 1;
-    const load = (runs) => (t) => runs.filter(([start, end]) => t >= start && t < end).length;
-    const together = load([[18, 19], [18, 19]]);
-    const staggered = load([[18, 19], [19, 20]]);
-    const corners = [17, 18, 19, 20, 21];
-    const steps = (power) =>
-      corners.slice(0, -1).flatMap((t, i) => [
-        { x: t - 17, y: power(t) * scale, z: 0 },
-        { x: corners.at(i + 1) - 17, y: power(t) * scale, z: 0 },
-      ]);
-    return [
-      {
-        points: steps(together),
-        color: "#bb6800",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: <InlineMath math="2\text{ kW}" />, at: 2, offset: [0.5, 0.4, 0], anchorX: "center" }],
-      },
-      {
-        points: steps(staggered),
-        color: "#8242e5",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: <InlineMath math="1\text{ kW}" />, at: 4, offset: [0.5, 0.4, 0], anchorX: "center" }],
-      },
-      ...[18, 19, 20].map((hour) => ({
-        points: [{ x: hour - 17, y: 0, z: 0 }],
-        showPoints: false,
-        labels: [{ text: `${hour}.00`, at: 0, offset: [0, -0.35, 0], anchorX: "center" }],
-      })),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2, 1.1, 6]}
-  cameraTarget={[2, 1.1, 0]}
-/>
-
 ## Rasio Nasional dan Kesenjangan Akses Lokal
 
 **Rasio Elektrifikasi** adalah persentase rumah tangga yang memiliki akses listrik. **Rasio Desa Berlistrik** adalah persentase desa atau kelurahan yang sudah memiliki listrik.
@@ -136,34 +80,6 @@ Rasio nasional perlu dilengkapi dengan kondisi setempat. Wilayah yang belum terl
 Permintaan listrik dapat naik ketika lebih banyak orang memakai listrik untuk belajar, layanan kesehatan, produksi makanan, transportasi, atau usaha kecil. Jika pembangkit dan jaringan tidak mampu memenuhi kenaikan tersebut, listrik dapat padam, biaya dapat naik, atau sumber energi yang lebih mencemari dapat dipakai.
 
 Jumlah energi harian dan kapasitas daya menjawab dua kebutuhan yang berbeda. Sistem dapat memiliki energi yang cukup sepanjang hari tetapi tetap gagal memasok semua alat yang menyala bersamaan. Karena itu, energi total harus cukup dan daya juga harus <Highlight>mampu memenuhi beban puncak</Highlight>. Batas kapasitas dapat berasal dari sumber energi, pembangkit, jaringan, atau penyimpanan.
-
-Pertumbuhan <InlineMath math="3{,}6\%" /> per tahun itu berlipat. Kurva di bawah mengalikan dengan <InlineMath math="1{,}036" /> setiap tahun sejak 2026, jadi pada 2030 permintaan sekitar <InlineMath math="15{,}2\%" /> lebih tinggi, sedikit lebih dari empat kali <InlineMath math="3{,}6\%" />.
-
-<LineEquation
-  title="Pertumbuhan Permintaan Berlipat"
-  description="Pertumbuhan permintaan listrik 3,6% per tahun dari 2026 sampai 2030. Mendatar: tahun sesudah 2026. Tegak: pertumbuhan dalam satuan 4%."
-  data={(() => {
-    // Demand index D(t) = 1.036^t from 2026, 3.6% average yearly growth. Horizontal: years after 2026. Vertical: growth in % / 4.
-    const rate = 0.036;
-    const samples = 201;
-    const growth = (t) => (Math.pow(1 + rate, t) - 1) * 100;
-    return [
-      {
-        points: Array.from({ length: samples }, (_, i) => {
-          const t = (4 * i) / (samples - 1);
-          return { x: t, y: growth(t) / 4, z: 0 };
-        }),
-        color: "#bb6800",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: <InlineMath math={`2030:\\ +${growth(4).toFixed(1).replace(".", "{,}")}\\%`} />, at: samples - 1, offset: [0, 0.5, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2, 2, 6.5]}
-  cameraTarget={[2, 2, 0]}
-/>
 
 ## Enam Pertanyaan untuk Menilai Kebutuhan Energi
 

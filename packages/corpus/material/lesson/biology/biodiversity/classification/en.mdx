@@ -42,54 +42,6 @@ For example, flight groups these animals together, but other traits separate the
 | Bat | Hair and mammary glands | Mammals |
 | Insect | Three pairs of legs and an exoskeleton | Insects |
 
-The scene below sorts six animals twice. The fuchsia circle uses one criterion, flight, and it catches the sparrow, the bat and the butterfly. The three class circles use shared body traits instead, so the penguin joins the sparrow, the cat joins the bat, and the ant joins the butterfly. The three flyers sit inside two groups at once. Neither grouping is wrong: they answer different questions, and only the class circles follow relatedness.
-
-<MathVisual
-  title="Same Animals, Two Criteria"
-  description="Six animals grouped by flight (fuchsia circle) and by class from shared body traits (orange, violet and teal circles)."
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -2.5, max: 7.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    objects: [
-      { id: "birds", kind: "circle", appearance: "primary", center: { x: -3.5, y: 0 }, radius: 2 },
-      { id: "mammals", kind: "circle", appearance: "secondary", center: { x: 3.5, y: 0 }, radius: 2 },
-      { id: "insects", kind: "circle", appearance: "construction", center: { x: 0, y: 5 }, radius: 2 },
-      { id: "flight", kind: "circle", appearance: "answer", center: { x: 0, y: 1.6 }, radius: 2.7 },
-      { id: "sparrow", kind: "point", appearance: "primary", at: { x: -2.2, y: 0.6 } },
-      { id: "penguin", kind: "point", appearance: "primary", at: { x: -4.6, y: -0.6 } },
-      { id: "bat", kind: "point", appearance: "secondary", at: { x: 2.2, y: 0.6 } },
-      { id: "cat", kind: "point", appearance: "secondary", at: { x: 4.6, y: -0.6 } },
-      { id: "butterfly", kind: "point", appearance: "construction", at: { x: 0, y: 3.6 } },
-      { id: "ant", kind: "point", appearance: "construction", at: { x: 0, y: 6.2 } },
-    ],
-    labels: [
-      { key: "birds", objectId: "birds", at: { x: -3.5, y: -2 }, placement: "below" },
-      { key: "mammals", objectId: "mammals", at: { x: 3.5, y: -2 }, placement: "below" },
-      { key: "insects", objectId: "insects", at: { x: 0, y: 7 }, placement: "above" },
-      { key: "flight", objectId: "flight", at: { x: 0, y: -1.1 }, placement: "below" },
-      { key: "sparrow", objectId: "sparrow", at: { x: -2.2, y: 0.6 }, placement: "above" },
-      { key: "penguin", objectId: "penguin", at: { x: -4.6, y: -0.6 }, placement: "above" },
-      { key: "bat", objectId: "bat", at: { x: 2.2, y: 0.6 }, placement: "above" },
-      { key: "cat", objectId: "cat", at: { x: 4.6, y: -0.6 }, placement: "above" },
-      { key: "butterfly", objectId: "butterfly", at: { x: 0, y: 3.6 }, placement: "right" },
-      { key: "ant", objectId: "ant", at: { x: 0, y: 6.2 }, placement: "right" },
-    ],
-  }}
-  labels={{
-    birds: "Birds",
-    mammals: "Mammals",
-    insects: "Insects",
-    flight: "Can fly",
-    sparrow: "Sparrow",
-    penguin: "Penguin",
-    bat: "Bat",
-    cat: "Cat",
-    butterfly: "Butterfly",
-    ant: "Ant",
-  }}
-/>
-
 ### Natural Classification Compares Many Traits
 
 The historical five-kingdom system used broad trait combinations to place organisms in Monera, Protista, Fungi, Plantae, and Animalia. Modern evidence no longer keeps all prokaryotes together as Monera. Comparisons of ribosomal RNA and other evidence distinguish the **domains Bacteria and Archaea** alongside Eukarya.
@@ -121,21 +73,6 @@ In biology, "family" is the name of a rank, while *Hominidae* is the name of a t
 But the hierarchy alone is not enough. An everyday label such as "animals that fly" is not automatically a formal taxon. When you see a group name, check whether it describes practical use, shared traits, or a hypothesis of evolutionary relatedness.
 
 In genome research, group names must stay consistent so data from many laboratories can be analyzed together. Public sequence databases use a [shared classification and nomenclature](https://www.ncbi.nlm.nih.gov/taxonomy) to connect organism names with genetic evidence.
-
-Here is one complete path through the ranks, for humans. Each step down is a narrower taxon that holds fewer organisms than the one above it.
-
-<Mermaid
-  title="From Domain to Species for Humans"
-  description="Each box names a taxon and its rank, from the broadest group at the top to one species at the bottom."
-  chart={`flowchart TD
-    A["Domain: Eukarya"] --> B["Kingdom: Animalia"]
-    B --> C["Phylum: Chordata"]
-    C --> D["Class: Mammalia"]
-    D --> E["Order: Primates"]
-    E --> F["Family: Hominidae"]
-    F --> G["Genus: Homo"]
-    G --> H["Species: Homo sapiens"]`}
-/>
 
 ## Criterion and Purpose of a Group Name
 

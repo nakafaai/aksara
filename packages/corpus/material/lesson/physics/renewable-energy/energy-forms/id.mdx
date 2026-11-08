@@ -62,42 +62,6 @@ E_k &= \frac{1}{2}mv^2 \\
 &= 9 \text{ J}
 \end{aligned}" />
 
-Grafik di bawah menjalankan rumus yang sama untuk setiap kelajuan dari <InlineMath math="0" /> sampai <InlineMath math="6\text{ m/s}" />. Bandingkan dua titik yang ditandai. Menggandakan kelajuan dari <InlineMath math="3\text{ m/s}" /> menjadi <InlineMath math="6\text{ m/s}" /> tidak menggandakan energinya: energinya naik dari <InlineMath math="9\text{ J}" /> menjadi <InlineMath math="36\text{ J}" />, empat kali lipat, karena kelajuannya dikuadratkan. Itulah sebabnya kenaikan kecil kelajuan angin sangat berpengaruh bagi turbin.
-
-<LineEquation
-  title="Energi Kinetik Tumbuh Sebanding Kuadrat Kelajuan"
-  description="Energi kinetik 2 kg udara pada kelajuan 0 sampai 6 m/s. Mendatar: kelajuan dalam m/s. Tegak: energi dalam satuan 6 J."
-  data={(() => {
-    // E_k = (1/2) m v^2 for m = 2 kg of air. Horizontal: v in m/s. Vertical: E_k / 6 J.
-    const m = 2;
-    const kinetic = (v) => 0.5 * m * v ** 2;
-    const samples = 241;
-    const named = (v, color, offset) => ({
-      points: [{ x: v, y: kinetic(v) / 6, z: 0 }],
-      color,
-      showPoints: true,
-      labels: [{ text: <InlineMath math={`v=${v}\\text{ m/s}:\\ E_k=${kinetic(v)}\\text{ J}`} />, at: 0, offset, anchorX: "center" }],
-    });
-    return [
-      {
-        points: Array.from({ length: samples }, (_, i) => {
-          const v = (6 * i) / (samples - 1);
-          return { x: v, y: kinetic(v) / 6, z: 0 };
-        }),
-        color: "#0d9488",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: <InlineMath math="E_k=\tfrac{1}{2}mv^2" />, at: 200, offset: [-1.4, 0.6, 0], anchorX: "center" }],
-      },
-      named(3, "#bb6800", [1.6, -0.2, 0]),
-      named(6, "#c026d3", [-2, 0, 0]),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[3, 3, 9]}
-  cameraTarget={[3, 3, 0]}
-/>
-
 Teorema usaha-energi menghubungkan usaha total dengan perubahan energi kinetik.
 
 Energi potensial gravitasi adalah energi yang terkait dengan posisi benda dalam medan gravitasi. Untuk benda dekat permukaan Bumi, model yang umum dipakai adalah:
@@ -159,32 +123,6 @@ Di sini <InlineMath math="E" /> menyatakan energi listrik. Huruf <InlineMath mat
 Sebuah alat bekerja pada tegangan tetap <InlineMath math="12 \text{ V}" /> dan arus tetap <InlineMath math="0{,}5 \text{ A}" /> selama <InlineMath math="60 \text{ s}" />. Hitung daya lebih dahulu, lalu energi:
 
 <BlockMath math="\begin{aligned} P &= VI = (12 \text{ V})(0{,}5 \text{ A})=6 \text{ W} \\ E &= Pt = (6 \text{ W})(60 \text{ s})=360 \text{ J} \end{aligned}" />
-
-Bandingkan garis lurus ini dengan kurva energi kinetik di atas. Energi potensial tumbuh sebanding dengan ketinggian, jadi setiap tambahan satu meter menambah <InlineMath math="mg=20\text{ J}" /> yang sama.
-
-<LineEquation
-  title="Energi Potensial Tumbuh Rata seiring Ketinggian"
-  description="E_p = mgh untuk 2 kg dengan g = 10 m/s². Mendatar: ketinggian dalam m. Tegak: energi dalam satuan 20 J."
-  data={(() => {
-    // E_p = m g h for m = 2 kg and g = 10 m/s^2. Horizontal: h in m. Vertical: E_p / 20 J.
-    const m = 2;
-    const g = 10;
-    const potential = (h) => m * g * h;
-    return [
-      {
-        points: [0, 5].map((h) => ({ x: h, y: potential(h) / 20, z: 0 })),
-        color: "#bb6800",
-        showPoints: true,
-        pointIndices: [1],
-        smooth: false,
-        labels: [{ text: <InlineMath math={`h=5\\text{ m}:\\ E_p=${potential(5)}\\text{ J}`} />, at: 1, offset: [-1.6, 0.4, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.5, 2.5, 7]}
-  cameraTarget={[2.5, 2.5, 0]}
-/>
 
 ## Satu Pembangkit Mengubah Beberapa Bentuk Energi
 

@@ -57,35 +57,6 @@ Ambil sintesis metanol sebagai contoh, dengan **metanol sebagai produk yang diin
 
 Sisa massa rumus <InlineMath math="50-32=18" /> masuk ke air sebagai produk samping. Nilai <InlineMath math="64\%" /> ini adalah batas berdasarkan persamaan, bukan hasil pengukuran keberhasilan reaksi.
 
-Adegan di bawah membandingkan jalur ini dengan jalur kedua yang juga menghasilkan metanol, <InlineMath math="\mathrm{CO}+2\mathrm{H_2}\rightarrow\mathrm{CH_3OH}" />. Setiap balok adalah massa rumus, dengan satu kotak grid untuk <InlineMath math="8" /> satuan. Pada kedua jalur, kolom reaktan dan kolom produk sama tinggi, karena massa kekal. Lihat puncak kolom produk pertama: balok merah muda adalah air, yaitu <InlineMath math="18" /> satuan yang tidak masuk ke produk yang diinginkan. Jalur kedua tidak punya produk samping, jadi ekonomi atomnya <InlineMath math="100\%" />. Putar adegannya dan bandingkan kedua kolom produk.
-
-<MathVisual
-  title="Ekonomi Atom Dua Jalur Menuju Metanol"
-  description="Massa rumus dengan Ar(H) = 1, Ar(C) = 12, dan Ar(O) = 16, satu kotak grid ke atas untuk 8. Abu-abu dan ungu adalah reaktan, fuchsia adalah metanol, merah muda adalah air."
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 10.5 }, y: { min: 0, max: 7.5 }, z: { min: -1, max: 1 } },
-    view: { kind: "camera", position: { x: 11, y: 8, z: 13 }, target: { x: 4.5, y: 2.5, z: 0 } },
-    objects: [
-      { id: "carbon-dioxide", kind: "cuboid", appearance: "reference", center: { x: 0, y: (12 + 2 * 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 2 * 16) / 8, width: 1.4 } },
-      { id: "hydrogen-three", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (12 + 2 * 16) / 8 + (3 * 2 * 1) / 16, z: 0 }, size: { length: 1.4, height: (3 * 2 * 1) / 8, width: 1.4 } },
-      { id: "methanol-one", kind: "cuboid", appearance: "answer", center: { x: 2.5, y: (12 + 4 * 1 + 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 4 * 1 + 16) / 8, width: 1.4 } },
-      { id: "water", kind: "cuboid", appearance: "warning", center: { x: 2.5, y: (12 + 4 * 1 + 16) / 8 + (2 * 1 + 16) / 16, z: 0 }, size: { length: 1.4, height: (2 * 1 + 16) / 8, width: 1.4 } },
-      { id: "carbon-monoxide", kind: "cuboid", appearance: "reference", center: { x: 6.5, y: (12 + 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 16) / 8, width: 1.4 } },
-      { id: "hydrogen-two", kind: "cuboid", appearance: "secondary", center: { x: 6.5, y: (12 + 16) / 8 + (2 * 2 * 1) / 16, z: 0 }, size: { length: 1.4, height: (2 * 2 * 1) / 8, width: 1.4 } },
-      { id: "methanol-two", kind: "cuboid", appearance: "answer", center: { x: 9, y: (12 + 4 * 1 + 16) / 16, z: 0 }, size: { length: 1.4, height: (12 + 4 * 1 + 16) / 8, width: 1.4 } },
-    ],
-    labels: [
-      { key: "first", objectId: "water", at: { x: 2.5, y: (12 + 2 * 16 + 3 * 2 * 1) / 8 + 0.5, z: 0 }, placement: "above" },
-      { key: "second", objectId: "methanol-two", at: { x: 9, y: (12 + 4 * 1 + 16) / 8 + 0.5, z: 0 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    first: <InlineMath math="\frac{32}{50}\times100\%=64\%" />,
-    second: <InlineMath math="\frac{32}{32}\times100\%=100\%" />,
-  }}
-/>
-
 Ekonomi atom menunjukkan berapa banyak atom dari reaktan yang masuk ke produk yang diinginkan. Penilaian lengkap juga mencakup bahaya pelarut, energi yang dipakai untuk mencapai suhu dan tekanan operasi, serta keadaan produk setelah dipakai.
 
 | Yang terlihat | Prinsip yang sedang dicek |
@@ -103,18 +74,6 @@ Bioplastik dari kulit buah memakai limbah organik sebagai bahan baku. Penggunaan
 
 Menggunakan botol bekas sebagai pot tetap membantu mengurangi sampah. Kegiatan ini termasuk penggunaan ulang, sedangkan kimia hijau merancang bahan atau reaksi agar bahaya berkurang sejak awal.
 
-Risiko membutuhkan bahaya dan paparan sekaligus, jadi jalur di bawah menunjukkan dua tempat sebuah rancangan bisa menurunkannya.
-
-<Mermaid
-  title="Dua Tempat untuk Menurunkan Risiko Kimia"
-  description="Risiko datang dari bahan berbahaya dan dari kontak dengannya. Bahan yang lebih aman atau paparan yang lebih kecil sama-sama menurunkan risiko."
-  chart={`flowchart LR
-    A["Bahaya bahan"] --> C["Risiko"]
-    B["Paparan: dosis dan kontak"] --> C
-    D["Pilih bahan yang lebih aman"] -.-> A
-    E["Kurangi kontak dan jumlah"] -.-> B`}
-/>
-
 ## Menilai Reaksi dan Bahan Baku
 
 Sebagian proses kimia memakai lebih sedikit energi jika reaksinya dapat berjalan pada suhu ruang atau tekanan biasa. Katalis dapat menyediakan jalur reaksi dengan **energi aktivasi lebih rendah**, sehingga proses tertentu dapat berjalan pada suhu yang lebih rendah atau tekanan yang tidak terlalu tinggi. Katalis yang selektif juga dapat mengurangi pembentukan produk samping. Dampak katalis bergantung pada mekanisme reaksi, selektivitas, umur pakai, dan kebutuhan pemisahan.
@@ -122,19 +81,6 @@ Sebagian proses kimia memakai lebih sedikit energi jika reaksinya dapat berjalan
 [Katalis](https://goldbook.iupac.org/terms/view/C00876) meningkatkan laju reaksi tanpa mengubah perubahan energi Gibbs standar keseluruhan reaksi. Katalis ikut bereaksi, lalu terbentuk kembali pada akhir rangkaian reaksi. Dalam proses nyata, katalis tetap dapat mengalami deaktivasi atau hilang. Perubahan kebutuhan energi dan jumlah limbah bergantung pada suhu dan tekanan operasi, selektivitas, toksisitas, kelangkaan, kemudahan pemulihan, serta umur pakai katalis.
 
 Bahan baku terbarukan juga perlu dinilai dengan teliti. Kulit buah, pati, dan minyak nabati dapat dihasilkan kembali dalam waktu yang relatif singkat, tetapi proses menanam, mengangkut, mengekstrak, dan mengolahnya tetap memakai lahan, air, dan energi. Masukkan seluruh tahap tersebut ke dalam penilaian.
-
-Pakai pemeriksaan ini secara berurutan saat kamu menilai satu reaksi dan bahan bakunya.
-
-<Mermaid
-  title="Memeriksa Reaksi dan Bahan Bakunya"
-  description="Mulai dari persamaan setara, lalu lanjutkan ke ekonomi atom, kondisi, katalis, dan bahan baku."
-  chart={`flowchart TD
-    A["Persamaan setara"] --> B["Ekonomi atom dari massa rumus"]
-    B --> C["Suhu, tekanan, dan energi"]
-    C --> D["Katalis untuk kondisi lebih ringan, produk samping lebih sedikit"]
-    D --> E["Bahan baku terbarukan atau dari limbah"]
-    E --> F["Produk lebih aman dan akhir pemakaian"]`}
-/>
 
 ## Cek Klaim Hijau
 

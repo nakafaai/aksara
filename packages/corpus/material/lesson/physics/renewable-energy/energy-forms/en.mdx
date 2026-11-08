@@ -62,42 +62,6 @@ E_k &= \frac{1}{2}mv^2 \\
 &= 9 \text{ J}
 \end{aligned}" />
 
-The graph below runs the same formula for every speed from <InlineMath math="0" /> to <InlineMath math="6\text{ m/s}" />. Compare the two marked points. Doubling the speed from <InlineMath math="3\text{ m/s}" /> to <InlineMath math="6\text{ m/s}" /> doesn't double the energy: it goes from <InlineMath math="9\text{ J}" /> to <InlineMath math="36\text{ J}" />, four times as much, because the speed is squared. That's why a small rise in wind speed matters so much for a turbine.
-
-<LineEquation
-  title="Kinetic Energy Grows with the Square of Speed"
-  description="Kinetic energy of 2 kg of air at speeds from 0 to 6 m/s. Horizontal: speed in m/s. Vertical: energy in units of 6 J."
-  data={(() => {
-    // E_k = (1/2) m v^2 for m = 2 kg of air. Horizontal: v in m/s. Vertical: E_k / 6 J.
-    const m = 2;
-    const kinetic = (v) => 0.5 * m * v ** 2;
-    const samples = 241;
-    const named = (v, color, offset) => ({
-      points: [{ x: v, y: kinetic(v) / 6, z: 0 }],
-      color,
-      showPoints: true,
-      labels: [{ text: <InlineMath math={`v=${v}\\text{ m/s}:\\ E_k=${kinetic(v)}\\text{ J}`} />, at: 0, offset, anchorX: "center" }],
-    });
-    return [
-      {
-        points: Array.from({ length: samples }, (_, i) => {
-          const v = (6 * i) / (samples - 1);
-          return { x: v, y: kinetic(v) / 6, z: 0 };
-        }),
-        color: "#0d9488",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: <InlineMath math="E_k=\tfrac{1}{2}mv^2" />, at: 200, offset: [-1.4, 0.6, 0], anchorX: "center" }],
-      },
-      named(3, "#bb6800", [1.6, -0.2, 0]),
-      named(6, "#c026d3", [-2, 0, 0]),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[3, 3, 9]}
-  cameraTarget={[3, 3, 0]}
-/>
-
 The work-energy theorem relates net work to the change in kinetic energy.
 
 Gravitational potential energy is energy related to an object's position in a gravitational field. For objects near Earth's surface, the common model is:
@@ -159,32 +123,6 @@ Here <InlineMath math="E" /> denotes electrical energy. Upright <InlineMath math
 A device operates at a constant voltage of <InlineMath math="12 \text{ V}" /> and current of <InlineMath math="0.5 \text{ A}" /> for <InlineMath math="60 \text{ s}" />. First calculate power, then energy:
 
 <BlockMath math="\begin{aligned} P &= VI = (12 \text{ V})(0.5 \text{ A})=6 \text{ W} \\ E &= Pt = (6 \text{ W})(60 \text{ s})=360 \text{ J} \end{aligned}" />
-
-Compare this straight line with the kinetic energy curve above. Potential energy grows in proportion to height, so every extra meter adds the same <InlineMath math="mg=20\text{ J}" />.
-
-<LineEquation
-  title="Potential Energy Grows Evenly with Height"
-  description="E_p = mgh for 2 kg with g = 10 m/s². Horizontal: height in m. Vertical: energy in units of 20 J."
-  data={(() => {
-    // E_p = m g h for m = 2 kg and g = 10 m/s^2. Horizontal: h in m. Vertical: E_p / 20 J.
-    const m = 2;
-    const g = 10;
-    const potential = (h) => m * g * h;
-    return [
-      {
-        points: [0, 5].map((h) => ({ x: h, y: potential(h) / 20, z: 0 })),
-        color: "#bb6800",
-        showPoints: true,
-        pointIndices: [1],
-        smooth: false,
-        labels: [{ text: <InlineMath math={`h=5\\text{ m}:\\ E_p=${potential(5)}\\text{ J}`} />, at: 1, offset: [-1.6, 0.4, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.5, 2.5, 7]}
-  cameraTarget={[2.5, 2.5, 0]}
-/>
 
 ## One Power Plant Converts Several Forms of Energy
 

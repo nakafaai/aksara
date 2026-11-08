@@ -42,34 +42,6 @@ Jadi, kotak menerima energi sebesar <InlineMath math="30 \text{ J}" /> melalui d
 
 > Kalau gaya diberikan tetapi benda tidak berpindah, usaha mekanik pada benda bernilai <InlineMath math="0 \text{ J}" />. Orang yang mendorong tetap memakai energi metabolik dan dapat merasa lelah, tetapi benda yang diam tidak menerima energi melalui perpindahan.
 
-Gambar dorongan itu sebagai gaya terhadap perpindahan, maka usahanya menjadi luas. Persegi panjang di bawah tingginya <InlineMath math="15\text{ N}" /> dan lebarnya <InlineMath math="2\text{ m}" />, jadi isinya tepat <InlineMath math="30\text{ J}" /> yang diterima kotak.
-
-<LineEquation
-  title="Usaha sebagai Luas"
-  description="Gaya tetap 15 N sepanjang 2 m. Mendatar: perpindahan dalam m. Tegak: gaya dalam satuan 5 N."
-  data={(() => {
-    // Constant force F = 15 N over 2 m. Horizontal: displacement in m. Vertical: force / 5 N.
-    const force = 15;
-    const distance = 2;
-    const at = (s, F) => ({ x: s, y: F / 5, z: 0 });
-    return [
-      {
-        points: [at(0, 0), at(0, force), at(distance, force), at(distance, 0)],
-        color: "#0d9488",
-        showPoints: false,
-        smooth: false,
-        labels: [
-          { text: <InlineMath math={`F=${force}\\text{ N}`} />, at: 1, offset: [1, 0.4, 0], anchorX: "center" },
-          { text: <InlineMath math={`W=${force}\\times${distance}=${force * distance}\\text{ J}`} />, at: 0, offset: [1, 1.5, 0], anchorX: "center" },
-        ],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[1, 1.6, 6]}
-  cameraTarget={[1, 1.6, 0]}
-/>
-
 ## Joule adalah Satuan Energi
 
 Dalam SI, satuan untuk energi adalah joule, dengan simbol <InlineMath math="\text{J}" />. Karena energi dapat dihitung dari **gaya dikali perpindahan**, satuan joule dapat dibaca sebagai:
@@ -136,40 +108,6 @@ E &= P t \\
 \end{aligned}" />
 
 Kalau lampu yang sama menyala lebih lama, energinya bertambah. Kalau dayanya lebih besar, energinya juga bertambah untuk durasi yang sama.
-
-Grafik di bawah menunjukkan kedua pernyataan itu sekaligus. Telusuri garis oranye untuk lampu <InlineMath math="10\text{ W}" />: makin lama lampu menyala, makin besar energinya, dan pada <InlineMath math="5\text{ jam}" /> energinya mencapai <InlineMath math="50\text{ Wh}" />. Garis ungu untuk lampu <InlineMath math="20\text{ W}" /> naik dua kali lebih curam, karena daya menunjukkan seberapa cepat energi terkumpul.
-
-<LineEquation
-  title="Pemakaian Energi Bertambah seiring Waktu"
-  description="E = Pt untuk lampu 10 W dan 20 W. Mendatar: waktu dalam jam. Tegak: energi dalam satuan 20 Wh."
-  data={(() => {
-    // E = P t. Horizontal: time in hours. Vertical: energy / 20 Wh.
-    const hours = 6;
-    const lamp = (power, color, text, offset) => ({
-      points: [0, hours].map((t) => ({ x: t, y: (power * t) / 20, z: 0 })),
-      color,
-      showPoints: false,
-      smooth: false,
-      labels: [{ text, at: 1, offset, anchorX: "center" }],
-    });
-    const used = 10 * 5;
-    return [
-      lamp(10, "#bb6800", <InlineMath math="P=10\text{ W}" />, [0.9, 0, 0]),
-      lamp(20, "#8242e5", <InlineMath math="P=20\text{ W}" />, [0.9, 0, 0]),
-      {
-        points: [{ x: 5, y: 0, z: 0 }, { x: 5, y: used / 20, z: 0 }],
-        color: "#c026d3",
-        showPoints: true,
-        pointIndices: [1],
-        smooth: false,
-        labels: [{ text: <InlineMath math={`E=${used}\\text{ Wh}`} />, at: 1, offset: [0, -0.5, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[3.2, 3, 9]}
-  cameraTarget={[3.2, 3, 0]}
-/>
 
 ## Analisis Energi pada Sumber Terbarukan
 

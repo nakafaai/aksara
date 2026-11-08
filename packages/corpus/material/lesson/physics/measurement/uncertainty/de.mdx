@@ -68,18 +68,6 @@ Mit der gerundeten Streuung lässt sich der Durchmesser so angeben:
 
 Der Wert <InlineMath math="3{,}13 \text{ cm}" /> beschreibt die Lage der Daten. Die Abweichung von <InlineMath math="0{,}02 \text{ cm}" /> zeigt, dass die einzelnen Ablesungen nicht genau übereinstimmten.
 
-Hier ist die ganze Rechnung von den Messwerten bis zu den beiden Streumaßen.
-
-<Mermaid
-  title="Von Messwerten zur Streuung"
-  description="Zuerst kommt der Mittelwert, dann die Abweichungen, dann die Stichprobenstreuung und die Unsicherheit des Mittelwerts."
-  chart={`flowchart LR
-    A["Fünf Messwerte"] --> B["Mittelwert: 3,132 cm"]
-    B --> C["Abweichungen vom Mittelwert"]
-    C --> D["s_d = 0,0164 cm"]
-    D --> E["u = s_d / Wurzel 5 = 0,00735 cm"]`}
-/>
-
 ## Datenstreuung und Unsicherheit des Mittelwerts
 
 In manchen Aufgaben zu wiederholten Messungen wird die folgende kompakte algebraische Form verwendet.
@@ -106,78 +94,7 @@ Bei unabhängigen Ablesungen mit derselben Streuung ist die **Standardunsicherhe
 
 <BlockMath math="u(\bar d)=\frac{\sqrt{0{,}00027}}{\sqrt 5}\text{ cm}\approx0{,}00735\text{ cm}" />
 
-Die Szene unten stellt die fünf Messwerte nebeneinander. Jeder türkise Stab ist der Abstand eines Messwerts vom Mittelwert, <InlineMath math="100" />-fach vergrößert. Die orangen Linien bei <InlineMath math="\pm s_d" /> zeigen, wie weit einzelne Messwerte streuen, die engeren violetten Linien bei <InlineMath math="\pm u(\bar d)" /> zeigen, wie genau der Mittelwert selbst bekannt ist. Addier mal die Stäbe über der grauen Linie und die darunter: Sie heben sich auf, weil die Abweichungen vom Mittelwert immer null ergeben.
-
-<LineEquation
-  title="Fünf Messwerte um ihren Mittelwert"
-  description="Jeder Stab ist ein Messwert minus Mittelwert, in Einheiten von 0,01 cm. Orange Linien markieren die Streuung s, violette die Unsicherheit des Mittelwerts u."
-  data={(() => {
-    // Measured diameters in cm. The vertical axis shows d_i - mean in units of 0.01 cm.
-    const readings = [3.12, 3.14, 3.15, 3.11, 3.14];
-    const count = readings.length;
-    const mean = readings.reduce((sum, d) => sum + d, 0) / count;
-    const spread = Math.sqrt(readings.reduce((sum, d) => sum + (d - mean) ** 2, 0) / (count - 1));
-    const meanUncertainty = spread / Math.sqrt(count);
-    const scale = 100;
-    const level = (value, color, text) => ({
-      points: [{ x: 0.5, y: value * scale, z: 0 }, { x: count + 0.5, y: value * scale, z: 0 }],
-      color,
-      showPoints: false,
-      smooth: false,
-      labels: [{ text, at: 1, offset: [0.8, 0, 0], anchorX: "center" }],
-    });
-    return [
-      level(0, "#64748b", <InlineMath math="\bar d" />),
-      level(spread, "#bb6800", <InlineMath math="+s_d" />),
-      level(-spread, "#bb6800", <InlineMath math="-s_d" />),
-      level(meanUncertainty, "#8242e5", <InlineMath math="+u(\bar d)" />),
-      level(-meanUncertainty, "#8242e5", <InlineMath math="-u(\bar d)" />),
-      ...readings.map((d, i) => ({
-        points: [{ x: i + 1, y: 0, z: 0 }, { x: i + 1, y: (d - mean) * scale, z: 0 }],
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [1],
-        smooth: false,
-        labels: [{ text: <InlineMath math={`d_${i + 1}`} />, at: 1, offset: [0, d > mean ? 0.4 : -0.4, 0], anchorX: "center" }],
-      })),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[3.3, 0, 7.5]}
-  cameraTarget={[3.3, 0, 0]}
-/>
-
 Bei einfachen Messaufgaben gilt die Konvention im Aufgabentext. Wenn dort <InlineMath math="\Delta x" /> für die kompakte Formel steht, bezeichnet <InlineMath math="\Delta x" /> die Stichprobenstandardabweichung der einzelnen Messwerte. Diese Streuung darf nicht mit der Standardunsicherheit des Mittelwerts <InlineMath math="u(\bar x)=s_x/\sqrt N" /> verwechselt werden.
-
-Das Diagramm unten behält dieselbe Streuung <InlineMath math="s_d" /> und fragt, was mit mehr Messwerten passiert. Die Unsicherheit des Mittelwerts fällt anfangs schnell und dann langsamer, weil sie mit <InlineMath math="\sqrt N" /> schrumpft: Viermal so viele Messwerte halbieren sie nur.
-
-<LineEquation
-  title="Mehr Messwerte, schärferer Mittelwert"
-  description="u = s/√N für N = 1 bis 20 Messwerte mit der Streuung s_d des Deckels. Waagrecht: N in Einheiten von 4. Senkrecht: u in Einheiten von 0,004 cm."
-  data={(() => {
-    // u(N) = s / sqrt(N) with the cap's s_d. Horizontal: N / 4. Vertical: u in units of 0.004 cm.
-    const s = Math.sqrt(0.00108 / 4);
-    const counts = Array.from({ length: 20 }, (_, i) => i + 1);
-    return [
-      {
-        points: counts.map((N) => ({ x: N / 4, y: s / Math.sqrt(N) / 0.004, z: 0 })),
-        color: "#8242e5",
-        showPoints: true,
-        smooth: false,
-        labels: [{ text: <InlineMath math="u=\frac{s_d}{\sqrt N}" />, at: 15, offset: [0, 0.6, 0], anchorX: "center" }],
-      },
-      {
-        points: [{ x: 5 / 4, y: s / Math.sqrt(5) / 0.004, z: 0 }],
-        color: "#c026d3",
-        showPoints: true,
-        labels: [{ text: <InlineMath math="N=5:\ u\approx0{,}00735\text{ cm}" />, at: 0, offset: [1.8, 0.3, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.6, 2, 7]}
-  cameraTarget={[2.6, 2, 0]}
-/>
 
 ## Fläche aus Durchmesserdaten berechnen
 

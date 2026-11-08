@@ -63,34 +63,6 @@ Vergleiche diese erfundenen Beobachtungen bei gleicher Flächengröße und Zähl
 
 Beide Flächen enthalten 10 Individuen und 3 Arten. Auf Fläche 2 sind die **Häufigkeiten gleichmäßiger verteilt**. Die bloße Artenzahl bildet diesen Unterschied nicht ab.
 
-Die Szene unten macht aus den beiden Flächen Säulen, orange für Art A, violett für B und türkis für C, ein Gitterschritt steht für <InlineMath math="2" /> Individuen. Dreh sie, bis du beide Reihen nebeneinander siehst. Fläche 1 hat eine hohe Säule und zwei Stummel, Fläche 2 drei ähnlich hohe Säulen. Eine verbreitete Art, das in eine Zahl zu fassen, ist der Simpson-Index, <InlineMath math="1-\sum p_i^2" />, wobei <InlineMath math="p_i" /> der Anteil jeder Art an allen Individuen ist. Er erreicht <InlineMath math="0{,}34" /> für Fläche 1 und <InlineMath math="0{,}66" /> für Fläche 2, die gleichmäßigere Fläche kommt also bei gleicher Artenzahl auf fast den doppelten Wert.
-
-<MathVisual
-  title="Gleicher Artenreichtum, andere Gleichmäßigkeit"
-  description="Individuen der Arten A (orange), B (violett) und C (türkis) auf zwei hypothetischen, gleich großen Flächen. Ein Gitterschritt nach oben sind 2 Individuen."
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1, max: 6.5 }, y: { min: 0, max: 5 }, z: { min: -2.5, max: 2.5 } },
-    view: { kind: "camera", position: { x: 9, y: 6, z: 9 }, target: { x: 2, y: 1.2, z: 0 } },
-    objects: [
-      { id: "plot-1-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 8 / 4, z: -1.5 }, size: { length: 1.2, height: 8 / 2, width: 1.2 } },
-      { id: "plot-1-b", kind: "cuboid", appearance: "secondary", center: { x: 2, y: 1 / 4, z: -1.5 }, size: { length: 1.2, height: 1 / 2, width: 1.2 } },
-      { id: "plot-1-c", kind: "cuboid", appearance: "construction", center: { x: 4, y: 1 / 4, z: -1.5 }, size: { length: 1.2, height: 1 / 2, width: 1.2 } },
-      { id: "plot-2-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 4 / 4, z: 1.5 }, size: { length: 1.2, height: 4 / 2, width: 1.2 } },
-      { id: "plot-2-b", kind: "cuboid", appearance: "secondary", center: { x: 2, y: 3 / 4, z: 1.5 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
-      { id: "plot-2-c", kind: "cuboid", appearance: "construction", center: { x: 4, y: 3 / 4, z: 1.5 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
-    ],
-    labels: [
-      { key: "first", objectId: "plot-1-a", at: { x: 0, y: 8 / 2 + 0.4, z: -1.5 }, placement: "above" },
-      { key: "second", objectId: "plot-2-a", at: { x: 0, y: 4 / 2 + 0.4, z: 1.5 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    first: <InlineMath math="\text{Fläche 1}:\ 1-\left(0{,}8^2+0{,}1^2+0{,}1^2\right)=0{,}34" />,
-    second: <InlineMath math="\text{Fläche 2}:\ 1-\left(0{,}4^2+0{,}3^2+0{,}3^2\right)=0{,}66" />,
-  }}
-/>
-
 ### Ökosystemvielfalt vergleicht Lebensräume und Beziehungen
 
 Die Ökosystemvielfalt betrachtet eine noch größere Ebene. Reisfelder, Flüsse, tropische Regenwälder, Mangroven, Savannen und Korallenriffe bieten unterschiedliche Bedingungen. **Licht, Wasser, Salzgehalt, Boden, Temperatur** und die Beziehungen zwischen Organismen bestimmen, welche Lebewesen dort überleben können.
@@ -116,17 +88,3 @@ Primäre Biodiversitätsdaten können aus Museen, wissenschaftlichen Sammlungen,
 Bestimme bei einer Naturbeobachtung zuerst, was verglichen wird. Unterschiede zwischen Mitgliedern einer Art betreffen die genetische Vielfalt, **wenn sie auf vererbten genetischen Varianten beruhen**. Unterschiede zwischen den vorkommenden Arten gehören zur Artenvielfalt. Unterschiede zwischen Lebensräumen und ökologischen Beziehungen gehören zur Ökosystemvielfalt.
 
 Ein Reisfeldrand, ein Garten oder ein Wald kann alle drei Ebenen zugleich enthalten. Der Ort bleibt gleich, doch die Fragestellung bestimmt, welche Ebene der Biodiversität untersucht wird.
-
-Nutz diesen Entscheidungsweg immer dann, wenn eine Frage einen Unterschied bei Lebewesen nennt.
-
-<Mermaid
-  title="Die Ebene aus dem Vergleich ablesen"
-  description="Starte bei dem, was verglichen wird, und folge dem Zweig bis zur Ebene der Biodiversität."
-  chart={`flowchart TD
-    A["Was wird verglichen?"] --> B["Mitglieder einer Art"]
-    A --> C["Arten, die zusammenleben"]
-    A --> D["Lebensräume und ihre Beziehungen"]
-    B --> E["Genetische Vielfalt"]
-    C --> F["Artenvielfalt: Reichtum und Gleichmäßigkeit"]
-    D --> G["Ökosystemvielfalt"]`}
-/>

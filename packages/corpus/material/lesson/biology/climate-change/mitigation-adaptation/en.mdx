@@ -32,36 +32,6 @@ Classify an action by its main result: reducing greenhouse gases, **reducing har
 
 > Mitigation reduces the cause of warming. Adaptation reduces harm from climate impacts. Some actions do both, but their main goal must still be stated clearly.
 
-Climate risk comes from three things meeting: a **hazard** such as a heatwave or storm surge, the **exposure** of people and places in its path, and their **vulnerability**, how easily they are harmed. The scene below uses a simple illustrative index that multiplies the three, drawn as a box with the hazard as its height. Mitigation works on the cause, so it lowers the box. Adaptation works on the harm, so it makes the box thinner from front to back. Rotate the scene: both halve the volume, but in different directions, and together they bring it down to a quarter.
-
-<MathVisual
-  title="Two Ways to Shrink Climate Risk"
-  description="An illustrative risk index of hazard × exposure × vulnerability. Height is hazard, width is exposure, depth is vulnerability."
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 12 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 5.25, y: 1, z: 0 } },
-    objects: [
-      { id: "baseline", kind: "cuboid", appearance: "warning", center: { x: 0, y: 2 / 2, z: 0 }, size: { length: 2, height: 2, width: 2 } },
-      { id: "mitigation", kind: "cuboid", appearance: "primary", center: { x: 3.5, y: 1 / 2, z: 0 }, size: { length: 2, height: 1, width: 2 } },
-      { id: "adaptation", kind: "cuboid", appearance: "construction", center: { x: 7, y: 2 / 2, z: 0 }, size: { length: 2, height: 2, width: 1 } },
-      { id: "both", kind: "cuboid", appearance: "secondary", center: { x: 10.5, y: 1 / 2, z: 0 }, size: { length: 2, height: 1, width: 1 } },
-    ],
-    labels: [
-      { key: "baseline", objectId: "baseline", at: { x: 0, y: 2 + 0.5, z: 0 }, placement: "above" },
-      { key: "mitigation", objectId: "mitigation", at: { x: 3.5, y: 1 + 0.5, z: 0 }, placement: "above" },
-      { key: "adaptation", objectId: "adaptation", at: { x: 7, y: 2 + 0.5, z: 0 }, placement: "above" },
-      { key: "both", objectId: "both", at: { x: 10.5, y: 1 + 0.5, z: 0 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    baseline: <InlineMath math="\text{Start}:\ 2\times2\times2=8" />,
-    mitigation: <InlineMath math="\text{Mitigation}:\ 2\times1\times2=4" />,
-    adaptation: <InlineMath math="\text{Adaptation}:\ 2\times2\times1=4" />,
-    both: <InlineMath math="\text{Both}:\ 2\times1\times1=2" />,
-  }}
-/>
-
 ## Mitigation Reduces Emissions or Protects Carbon Sinks
 
 Mitigation reduces greenhouse gas emissions or maintains the ability of forests, soils, and oceans to absorb carbon. Its success is measured by changes in **net emissions** and the amount of carbon stored.
@@ -111,21 +81,6 @@ A verb alone is insufficient. **Protecting** can describe either goal:
     B --> E["Mitigation"]
     C --> F["Adaptation"]
     D --> G["Can support both"]`}
-/>
-
-Run any action through these two questions, in this order, before you name its group.
-
-<Mermaid
-  title="Classify an Action in Two Questions"
-  description="Ask whether the action cuts greenhouse gases and whether it cuts harm from impacts. The answers give its group."
-  chart={`flowchart TD
-    A["Action"] --> B{"Does it cut greenhouse gases or protect carbon sinks?"}
-    B -->|Yes| C{"Does it also cut harm from impacts?"}
-    B -->|No| D{"Does it cut harm from impacts?"}
-    C -->|Yes| E["Dual benefit"]
-    C -->|No| F["Mitigation"]
-    D -->|Yes| G["Adaptation"]
-    D -->|No| H["Neither: check the claim again"]`}
 />
 
 ## One Action Can Serve Two Purposes

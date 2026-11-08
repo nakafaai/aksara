@@ -32,36 +32,6 @@ Ordne eine Maßnahme nach ihrem wichtigsten Ergebnis ein: Sie begrenzt Treibhaus
 
 > Minderung begrenzt die Ursache der Erwärmung. Anpassung verringert Schäden durch Klimafolgen. Manche Maßnahmen erfüllen beide Zwecke, doch ihr Hauptziel muss weiterhin klar benannt werden.
 
-Klimarisiko entsteht, wenn drei Dinge zusammenkommen: eine **Gefahr** wie eine Hitzewelle oder Sturmflut, die **Exposition** der Menschen und Orte in ihrem Weg und ihre **Verwundbarkeit**, also wie leicht sie Schaden nehmen. Die Szene unten nutzt einen einfachen Beispielindex, der die drei multipliziert, gezeichnet als Quader mit der Gefahr als Höhe. Minderung wirkt auf die Ursache und macht den Quader niedriger. Anpassung wirkt auf den Schaden und macht ihn von vorn nach hinten dünner. Dreh die Szene: Beides halbiert das Volumen, aber in verschiedene Richtungen, und zusammen sinkt es auf ein Viertel.
-
-<MathVisual
-  title="Zwei Wege, Klimarisiko zu verkleinern"
-  description="Ein beispielhafter Risikoindex aus Gefahr × Exposition × Verwundbarkeit. Die Höhe ist die Gefahr, die Breite die Exposition, die Tiefe die Verwundbarkeit."
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 12 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
-    view: { kind: "camera", position: { x: 9, y: 7, z: 12 }, target: { x: 5.25, y: 1, z: 0 } },
-    objects: [
-      { id: "baseline", kind: "cuboid", appearance: "warning", center: { x: 0, y: 2 / 2, z: 0 }, size: { length: 2, height: 2, width: 2 } },
-      { id: "mitigation", kind: "cuboid", appearance: "primary", center: { x: 3.5, y: 1 / 2, z: 0 }, size: { length: 2, height: 1, width: 2 } },
-      { id: "adaptation", kind: "cuboid", appearance: "construction", center: { x: 7, y: 2 / 2, z: 0 }, size: { length: 2, height: 2, width: 1 } },
-      { id: "both", kind: "cuboid", appearance: "secondary", center: { x: 10.5, y: 1 / 2, z: 0 }, size: { length: 2, height: 1, width: 1 } },
-    ],
-    labels: [
-      { key: "baseline", objectId: "baseline", at: { x: 0, y: 2 + 0.5, z: 0 }, placement: "above" },
-      { key: "mitigation", objectId: "mitigation", at: { x: 3.5, y: 1 + 0.5, z: 0 }, placement: "above" },
-      { key: "adaptation", objectId: "adaptation", at: { x: 7, y: 2 + 0.5, z: 0 }, placement: "above" },
-      { key: "both", objectId: "both", at: { x: 10.5, y: 1 + 0.5, z: 0 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    baseline: <InlineMath math="\text{Start}:\ 2\times2\times2=8" />,
-    mitigation: <InlineMath math="\text{Minderung}:\ 2\times1\times2=4" />,
-    adaptation: <InlineMath math="\text{Anpassung}:\ 2\times2\times1=4" />,
-    both: <InlineMath math="\text{Beides}:\ 2\times1\times1=2" />,
-  }}
-/>
-
 ## Minderung senkt Emissionen oder schützt Kohlenstoffsenken
 
 <Highlight>Minderung senkt Treibhausgasemissionen</Highlight> oder erhält die Fähigkeit von Wäldern, Böden und Meeren, Kohlenstoff aufzunehmen. Ihr Erfolg wird an Veränderungen der Nettoemissionen und der gespeicherten Kohlenstoffmenge gemessen.
@@ -111,21 +81,6 @@ Ein Verb allein reicht nicht aus. **Schützen** kann beide Ziele beschreiben:
     B --> E["Minderung"]
     C --> F["Anpassung"]
     D --> G["Kann beides leisten"]`}
-/>
-
-Prüf jede Maßnahme mit diesen zwei Fragen, in dieser Reihenfolge, bevor du ihre Gruppe nennst.
-
-<Mermaid
-  title="Eine Maßnahme mit zwei Fragen einordnen"
-  description="Frag, ob die Maßnahme Treibhausgase senkt und ob sie Schäden durch Folgen senkt. Die Antworten ergeben ihre Gruppe."
-  chart={`flowchart TD
-    A["Maßnahme"] --> B{"Senkt sie Treibhausgase oder schützt sie Kohlenstoffsenken?"}
-    B -->|Ja| C{"Senkt sie auch Schäden durch Folgen?"}
-    B -->|Nein| D{"Senkt sie Schäden durch Folgen?"}
-    C -->|Ja| E["Doppelter Nutzen"]
-    C -->|Nein| F["Minderung"]
-    D -->|Ja| G["Anpassung"]
-    D -->|Nein| H["Keins von beiden: Behauptung neu prüfen"]`}
 />
 
 ## Eine Maßnahme kann zwei Wirkungen haben

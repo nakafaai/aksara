@@ -36,40 +36,6 @@ Vergleiche diese beiden Fälle. Objekt A bleibt während der gesamten Beobachtun
 
 Beide haben die Verschiebung <InlineMath math="20-20=0\text{ m}" />. A legt keinen Weg zurück, B dagegen <InlineMath math="(50-20)+(50-20)=60\text{ m}" />. Die Zwischenposition zeigt den Unterschied zwischen den beiden Fällen.
 
-Zeichne beide Fälle als Position über der Zeit und folge jeder Linie von links nach rechts. A bleibt flach bei <InlineMath math="20\text{ m}" />, B steigt bis <InlineMath math="50\text{ m}" /> bei <InlineMath math="3\text{ s}" /> und kommt wieder zurück. Beide Linien beginnen und enden im selben Punkt, genau deshalb ist die Verschiebung bei beiden null.
-
-<LineEquation
-  title="Gleiche Endpunkte, andere Bewegung"
-  description="Die Zeit in Sekunden läuft nach rechts. Die Position steigt in Einheiten von 10 m, also bedeutet 5 genau 50 m. Vergleiche, wo A und B bei 3 s sind."
-  data={(() => {
-    // Position x(t) in meters; the vertical axis shows x / 10.
-    const positionA = () => 20;
-    const positionB = (t) => (t <= 3 ? 20 + 10 * t : 50 - 10 * (t - 3));
-    return [
-      {
-        points: [0, 3, 6].map((t) => ({ x: t, y: positionA(t) / 10, z: 0 })),
-        color: "#0d9488",
-        showPoints: true,
-        smooth: false,
-        labels: [{ text: <InlineMath math="A" />, at: 2, offset: [0.35, -0.35, 0] }],
-      },
-      {
-        points: [0, 3, 6].map((t) => ({ x: t, y: positionB(t) / 10, z: 0 })),
-        color: "#bb6800",
-        showPoints: true,
-        smooth: false,
-        labels: [
-          { text: <InlineMath math="B" />, at: 1, offset: [0, 0.45, 0] },
-          { text: <InlineMath math="50\text{ m}" />, at: 1, offset: [1.6, 0, 0] },
-        ],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[3, 3.2, 9]}
-  cameraTarget={[3, 3.2, 0]}
-/>
-
 ## Der Bezugspunkt muss derselbe bleiben
 
 Für eine Positionsänderung müssen Anfangs- und Endposition **vom selben Bezugspunkt** aus gemessen werden. Eine Anfangsposition relativ zum Geschäft darf nicht mit einer Endposition relativ zu einem anderen Haus verrechnet werden. Sonst stammen beide Werte aus verschiedenen Bezugssystemen.
@@ -92,17 +58,6 @@ Auf einer Geraden können wir eine Richtung als positiv wählen. In diesem Beisp
 
 Ein negatives Vorzeichen bedeutet nicht, dass die Bewegung kleiner oder falsch ist. Es gibt nur die Richtung der Positionsänderung an.
 
-Jede Frage zur Verschiebung läuft über dieselben vier Schritte.
-
-<Mermaid
-  title="Vier Schritte zur Verschiebung"
-  description="Lies beide Positionen vom selben Bezugspunkt ab, rechne Endposition minus Anfangsposition und mach aus dem Vorzeichen eine Richtung."
-  chart={`flowchart LR
-    A["Anfangs- und Endposition vom selben Bezugspunkt"] --> B["Delta x = x_Ende - x_Anfang"]
-    B --> C["Vorzeichen lesen"]
-    C --> D["Positiv: Osten. Negativ: Westen. Null: gleicher Ort"]`}
-/>
-
 ## Endposition minus Anfangsposition
 
 Eine Person beginnt <InlineMath math="10 \text{ m}" /> östlich eines Tores. Einige Sekunden später befindet sie sich <InlineMath math="40 \text{ m}" /> östlich des Tores. Die Positionsänderung beträgt:
@@ -117,39 +72,3 @@ Eine Person beginnt <InlineMath math="10 \text{ m}" /> östlich eines Tores. Ein
 Die **Verschiebung der Person** beträgt also <InlineMath math="30 \text{ m}" /> nach Osten. Diese zwei Positionen bestimmen die zurückgelegte Wegstrecke noch nicht. Hat die Person unterwegs die Richtung gewechselt, ist die Wegstrecke länger als <InlineMath math="30 \text{ m}" />.
 
 Die Reihenfolge der Subtraktion ist entscheidend: Immer wird <Highlight>die Anfangsposition von der Endposition abgezogen</Highlight>. Das Vorzeichen des Ergebnisses zeigt anschließend die Richtung der Positionsänderung.
-
-Der Pfeil unten beginnt bei der Anfangsposition und endet bei der Endposition. Seine Länge ist der Betrag der Verschiebung, und weil er nach Osten zeigt, ist das Vorzeichen positiv.
-
-<LineEquation
-  title="Die Verschiebung der Schülerin"
-  description="Positionen östlich des Tors, ein Gitterschritt pro 10 m. Der Pfeil läuft von 10 m bis 40 m."
-  data={(() => {
-    // Positions east of the gate in meters; one grid step is 10 m.
-    const initial = 10;
-    const final = 40;
-    const change = final - initial;
-    return [
-      {
-        points: [0, 5].map((x) => ({ x, y: 0, z: 0 })),
-        color: "#64748b",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: "Tor", at: 0, offset: [0, -0.4, 0], anchorX: "center" }],
-      },
-      {
-        points: [initial, final].map((x) => ({ x: x / 10, y: 0.6, z: 0 })),
-        color: "#bb6800",
-        cone: { position: "end", size: 0.22 },
-        showPoints: true,
-        pointIndices: [0],
-        smooth: false,
-        labels: [
-          { text: <InlineMath math={`\\Delta x=${final}-${initial}=+${change}\\text{ m}`} />, at: 0, offset: [change / 20, 0.45, 0], anchorX: "center" },
-        ],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.5, 0.4, 6]}
-  cameraTarget={[2.5, 0.4, 0]}
-/>
