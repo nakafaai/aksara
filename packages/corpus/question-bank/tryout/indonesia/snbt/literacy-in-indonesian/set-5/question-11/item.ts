@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "jujur tentang apa yang tak bisa ia pulihkan, tetapi tetap memenuhi maksud gadis itu",
+            "jujur tentang apa yang tidak bisa ia pulihkan, tetapi tetap memenuhi maksud gadis itu",
         },
         {
           correct: false,

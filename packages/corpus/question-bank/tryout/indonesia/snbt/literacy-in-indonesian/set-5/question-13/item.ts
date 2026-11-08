@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Masa lalu tak bisa diputar ulang, tetapi sisa-sisanya masih dapat dirawat.",
+            "Masa lalu tidak bisa diputar ulang, tetapi sisa-sisanya masih dapat dirawat.",
         },
       ],
     },
