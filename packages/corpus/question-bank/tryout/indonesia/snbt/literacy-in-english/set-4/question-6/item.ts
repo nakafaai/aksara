@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "main-idea",
+  },
+  stimulus: "visitor-fee",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "The organisers of a local history display evaluated revised captions that separated observation from interpretation through consultation alone, without comparing the measured outcome across conditions.",
-        },
-        {
           correct: true,
           label:
-            "The organisers of a local history display evaluated revised captions that separated observation from interpretation through a comparison and consultation with affected groups.",
+            "A small fee alone will not reduce crowds, so it should support a system that limits numbers.",
         },
         {
           correct: false,
           label:
-            "The organisers of a local history display evaluated revised captions that separated observation from interpretation through the measured comparison alone, while excluding the affected groups' experience from the decision.",
+            "Cities should ban day visitors entirely in order to protect residents.",
         },
         {
           correct: false,
           label:
-            "The organisers of a local history display evaluated revised captions that separated observation from interpretation through a comparison and consultation, then treated the short trial as sufficient for permanent adoption.",
+            "Entry fees should be raised until crowds fall to a level the city can bear.",
         },
         {
           correct: false,
           label:
-            "The organisers of a local history display evaluated revised captions that separated observation from interpretation mainly by defining a technical term, with the proposed change serving only as background information.",
+            "Venice's fee has already solved its problem with overtourism.",
+        },
+        {
+          correct: false,
+          label:
+            "Tourism brings so little money that fees are the only way to fund city services.",
         },
       ],
     },

@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
+  },
+  stimulus: "visitor-fee",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The comparison condition produced a mean value of $$18$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
-        },
-        {
-          correct: false,
-          label:
-            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
-        },
-        {
-          correct: false,
-          label:
-            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+            "Most visitors do not know that the fee exists until after they arrive.",
         },
         {
           correct: true,
           label:
-            "The comparison condition produced $$18$$, the reference for the caption trial. Visitors using screen readers were not represented in that comparison.",
+            "A fee low enough to accept deters few, while a higher one excludes poorer people.",
         },
         {
           correct: false,
           label:
-            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
+            "Fees are usually collected only from residents, not from day visitors.",
+        },
+        {
+          correct: false,
+          label:
+            "Visitors can easily avoid paying by arriving late in the evening instead.",
+        },
+        {
+          correct: false,
+          label:
+            "The fee money is spent on souvenirs rather than on managing the crowds.",
         },
       ],
     },
