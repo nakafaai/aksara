@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "street-lamp",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$3\\sqrt{2}$$",
-        },
-        {
-          correct: false,
-          label: "$$2\\sqrt{2}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\sqrt{2}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1}{2}\\sqrt{2}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1}{3}\\sqrt{2}$$",
-        },
+        { correct: false, label: "$$\\dfrac13\\text{ m/detik}$$" },
+        { correct: false, label: "$$1\\text{ m/detik}$$" },
+        { correct: true, label: "$$\\dfrac43\\text{ m/detik}$$" },
+        { correct: false, label: "$$\\dfrac32\\text{ m/detik}$$" },
+        { correct: false, label: "$$4\\text{ m/detik}$$" },
       ],
     },
   },

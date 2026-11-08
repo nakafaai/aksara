@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "medicine-level",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$5$$",
-        },
-        {
-          correct: false,
-          label: "$$7$$",
-        },
-        {
-          correct: false,
-          label: "$$8$$",
-        },
-        {
-          correct: false,
-          label: "$$9$$",
-        },
-        {
-          correct: true,
-          label: "$$6$$",
-        },
+        { correct: false, label: "4 jam" },
+        { correct: false, label: "6 jam" },
+        { correct: false, label: "8 jam" },
+        { correct: true, label: "12 jam" },
+        { correct: false, label: "24 jam" },
       ],
     },
   },

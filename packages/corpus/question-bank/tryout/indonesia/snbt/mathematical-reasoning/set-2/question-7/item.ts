@@ -1,29 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "street-lamp",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\text{Rp}24{.}750{.}000{,}00$$",
+          column: 1,
+          label:
+            "Panjang bayangan anak selalu sepertiga jarak anak ke kaki tiang.",
         },
         {
-          correct: false,
-          label: "$$\\text{Rp}25{.}000{.}000{,}00$$",
+          column: 1,
+          label:
+            "Setelah berjalan selama 12 detik, ujung bayangan anak berjarak 16 m dari kaki tiang.",
         },
         {
-          correct: true,
-          label: "$$\\text{Rp}26{.}250{.}000{,}00$$",
+          column: 2,
+          label: "Panjang bayangan anak bertambah 1 m setiap detik.",
         },
         {
-          correct: false,
-          label: "$$\\text{Rp}28{.}000{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}32{.}750{.}000{,}00$$",
+          column: 2,
+          label:
+            "Jika tinggi anak itu 2 m, panjang bayangannya pada saat ia berada 8 m dari kaki tiang adalah 3 m.",
         },
       ],
     },

@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "money-changer",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$\\text{Rp}70{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}60{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}65{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}67{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}75{.}000{,}00$$",
-        },
+        { correct: true, label: "657 ringgit" },
+        { correct: false, label: "665 ringgit" },
+        { correct: false, label: "669 ringgit" },
+        { correct: false, label: "672 ringgit" },
+        { correct: false, label: "677 ringgit" },
       ],
     },
   },

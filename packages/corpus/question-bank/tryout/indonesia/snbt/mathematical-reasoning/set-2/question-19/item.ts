@@ -1,29 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "medicine-level",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$150\\sqrt{3} \\text{ m/s}$$",
+          column: 2,
+          label: "Banyak obat di dalam tubuh berkurang 50 mg setiap jam.",
         },
         {
-          correct: false,
-          label: "$$300\\sqrt{3} \\text{ m/s}$$",
+          column: 1,
+          label:
+            "Jika pasien hanya minum satu dosis, banyak obat pada pukul 00.00 keesokan harinya adalah 50 mg.",
         },
         {
-          correct: false,
-          label: "$$450\\sqrt{3} \\text{ m/s}$$",
+          column: 2,
+          label:
+            "Tiga jam setelah dosis pertama diminum, banyak obat di dalam tubuh adalah 300 mg.",
         },
         {
-          correct: false,
-          label: "$$250\\sqrt{3} \\text{ m/s}$$",
-        },
-        {
-          correct: true,
-          label: "$$100(\\sqrt{3}-1) \\text{ m/s}$$",
+          column: 1,
+          label:
+            "Jika pasien hanya minum satu dosis, banyak obat 30 jam setelah diminum adalah $$12{,}5$$ mg.",
         },
       ],
     },

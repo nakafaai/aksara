@@ -1,30 +1,17 @@
-# Analisis Jadwal Pengiriman
+Banyak obat paling rendah terjadi **tepat sebelum dosis berikutnya diminum**. Jadi periksa titik-titik itu untuk setiap nilai <InlineMath math="T" />.
 
-Kita perlu mencari interval waktu agar ketiga pemasok mengirim barang secara bersamaan. Konsep yang digunakan adalah **kelipatan persekutuan terkecil** (KPK).
+# Titik terendah pertama
 
-Diketahui jadwal pengiriman:
-*   Minyak <InlineMath math="A" />: setiap <InlineMath math="3\text{ hari}" />.
-*   Minyak <InlineMath math="B" />: setiap <InlineMath math="4\text{ hari}" />.
-*   Minyak <InlineMath math="C" />: setiap <InlineMath math="x\text{ hari}" />.
+Tepat sebelum dosis kedua, tubuh hanya berisi sisa dosis pertama, yaitu <InlineMath math="400\cdot\left(\tfrac12\right)^{T/6}" />. **Batas 100 mg harus terpenuhi di titik ini**, jadi
 
-Pengiriman bersamaan pertama terjadi pada <InlineMath math="1" /> April <InlineMath math="2023" />. Pengiriman bersamaan ke-<InlineMath math="11" /> terjadi <InlineMath math="120\text{ hari}" /> kemudian.
+<BlockMath math="400\cdot\left(\tfrac12\right)^{T/6}\ge100\;\Longleftrightarrow\;\left(\tfrac12\right)^{T/6}\ge\tfrac14\;\Longleftrightarrow\;\tfrac{T}{6}\le2\;\Longleftrightarrow\;T\le12" />
 
-# Menghitung Interval Pengiriman bersamaan
+# Memeriksa T sama dengan 12 dan 24
 
-Karena **pengiriman bersamaan pertama sudah terjadi**, pengiriman bersamaan ke-<InlineMath math="11" /> berarti ada selisih <InlineMath math="11 - 1 = 10\text{ kali}" /> interval pengiriman bersamaan. Total waktu yang berlalu adalah <InlineMath math="120\text{ hari}" />.
+Untuk <InlineMath math="T=12" />, banyak obat pukul 18.00 tepat 100 mg, lalu naik menjadi 500 mg setelah dosis kedua. Tepat sebelum dosis ketiga, 12 jam kemudian, banyaknya <InlineMath math="\tfrac{500}{4}=125" /> mg. **Titik terendah berikutnya lebih tinggi**, karena sisa obat menumpuk.
 
-<BlockMath math="\frac{120}{10}=12\text{ hari}" />
+Untuk <InlineMath math="T=24" />, tidak ada dosis kedua dalam 24 jam pertama, dan pada jam ke-18 obat tinggal 50 mg. Nilai ini tidak memenuhi.
 
-Artinya, ketiga pemasok mengirim barang bersamaan setiap <InlineMath math="12\text{ hari}" /> sekali. Ini adalah nilai KPK dari jadwal pengiriman mereka.
+Nilai 4, 6, dan 8 jam juga memenuhi, tetapi semuanya lebih kecil dari 12. Nilai 6 jam sering dipilih karena sama dengan waktu paruh, padahal syaratnya hanya batas 100 mg.
 
-<BlockMath math="\text{KPK}(3, 4, x) = 12" />
-
-# Menentukan Nilai yang Dicari
-
-Kita tahu bahwa <InlineMath math="\text{KPK}(3, 4) = 12" />. Agar <InlineMath math="\text{KPK}(12, x) = 12" />, maka <InlineMath math="x" /> haruslah **faktor** dari <InlineMath math="12" /> (bilangan yang dapat membagi habis <InlineMath math="12" />).
-
-Dari pilihan jawaban yang tersedia:
-*   <InlineMath math="5, 7, 8, 9" /> bukan faktor dari <InlineMath math="12" />.
-*   <InlineMath math="6" /> adalah faktor dari <InlineMath math="12" />.
-
-Dari pilihan yang tersedia, nilai yang mungkin adalah <InlineMath math="x=6" />. Faktor positif lain dari <InlineMath math="12" /> juga memenuhi persamaan, tetapi tidak tercantum dalam pilihan.
+Jadi, nilai <InlineMath math="T" /> terbesar yang memenuhi adalah **12 jam**.
