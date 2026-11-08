@@ -88,7 +88,7 @@ describe("structured snapshot verification", () => {
           }),
         });
 
-        expect(result.stagedRows).toBe(2154);
+        expect(result.stagedRows).toBe(2157);
         expect(
           Arr.map(Rec.values(result.snapshots), ({ mode }) => mode)
         ).toEqual(["replace", "replace", "replace"]);
@@ -260,16 +260,16 @@ describe("structured snapshot verification", () => {
           rows: snapshotData.rows,
         });
 
-        expect(result.stagedRows).toBe(2154);
+        expect(result.stagedRows).toBe(2157);
         expect(result.snapshots).toEqual({
           assessment: {
             baseSnapshotId: null,
             mode: "replace",
             resultSnapshotId:
-              "sha256:654825a7b1f720ffe2af8942a31af439ad985746c0aab416cab2eb4ec1c2646d",
-            rowCount: 24,
+              "sha256:2cd8c4aaacd2a355485bc97d748e3cc69ef3b8e6c63c50f49a4bfad34af967b4",
+            rowCount: 27,
             rowDigest:
-              "sha256:556a7889b3703a5c6d1aa6c428944a9d8debb8d477b3f6b255edad463e41dcbe",
+              "sha256:52ab722ecb0f07bc05aba520cdaceab68a64dade3f34e755875bffaaa71d1e51",
           },
           program: {
             baseSnapshotId: null,
