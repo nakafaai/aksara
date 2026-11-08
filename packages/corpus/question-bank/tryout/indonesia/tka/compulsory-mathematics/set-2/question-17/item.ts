@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "swimming-pool",
+  stimulus: "ring-mold",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$3$$ jam $$20$$ menit",
+          label: "$$462\\text{ cm}^2$$",
         },
         {
           correct: true,
-          label: "$$5$$ jam",
+          label: "$$770\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$8$$ jam $$20$$ menit",
+          label: "$$808{,}5\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$50$$ jam",
+          label: "$$924\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$300$$ jam",
+          label: "$$1{.}078\\text{ cm}^2$$",
         },
       ],
     },
