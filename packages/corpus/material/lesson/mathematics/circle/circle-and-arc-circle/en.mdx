@@ -1,30 +1,22 @@
+
 export const metadata = {
-  title: "Circles and Circular Arcs",
-  description:
-    "Build circles from their defining distance, then connect arcs, central and inscribed angles, arc length, and sector area through diagrams and worked problems.",
+  title: "Parts of a Circle and Arcs",
+  description: "Name the center, radius, diameter, chord, and arc of a circle, tell minor and major arcs apart, and find arc length and sector area step by step.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Circle",
 };
 
+## A Circle and Its Parts
 
+A circle is the set of all points in a plane that are **the same distance from one point**. That point is the center, and the shared distance is the radius. An arc is the part of the circle between two points on it, and its length is proportional to its central angle.
 
-## Circle
-
-A circle is the set of all points in a plane that are a fixed distance from one point. That point is the **center**, and the fixed distance is the **radius**.
-
-If the center is <InlineMath math="O(a,b)" /> and the radius is <InlineMath math="r > 0" />, the distance formula gives the standard equation:
-
-<BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
-
-### Parts of a Circle
-
-The diagram turns that definition into the parts we use in calculations:
+The parts of a circle diagram labels the four parts you need in almost every problem: the center <InlineMath math="O" />, the radius <InlineMath math="r" />, a diameter, and a chord. Match each label with its definition below the diagram.
 
 <LineEquation
   title="Parts of a Circle"
-  description="The center, radius, diameter, and a chord in one circle."
+  description={<>The radius <InlineMath math="r = 3" /> starts at the center <InlineMath math="O" />, a diameter of length <InlineMath math="6" /> passes through the center, and the chord does not.</>}
   data={[
     {
       smooth: false,
@@ -74,25 +66,21 @@ The diagram turns that definition into the parts we use in calculations:
   cameraPosition={[0, 0, 10]}
 />
 
-The four parts to recognize first:
+The center <InlineMath math="O" /> is the reference point for every radius. A radius is a segment from the center to a point on the circle, and in the diagram it has length <InlineMath math="r = 3" />. A [chord](/en/subjects/mathematics/circle/circle-and-chord) is a segment joining two points on the circle. A diameter is the longest chord, the one that passes through the center, so <InlineMath math="d = 2r = 6" />.
 
-- **Center** (<InlineMath math="O" />): the fixed point from which every radius is measured
-- **Radius** (<InlineMath math="r" />): a segment from the center to a point on the circle
-- **Diameter** (<InlineMath math="d" />): a chord through the center, so <InlineMath math="d = 2r" />
-- **Chord**: a segment joining two points on the circle
+The same equal distance definition also gives the equation of a circle. For center <InlineMath math="(a, b)" /> and radius <InlineMath math="r > 0" />, the distance formula gives:
 
-## Circular Arcs
+<BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
 
-A circular arc is <Highlight>the part of a circle between two points</Highlight> on its circumference. We write an arc with a curved mark over its endpoints, for example <InlineMath math="\overset{\frown}{AB}" />.
+On the coordinate plane, this is the standard form of [the equation of a circle](/en/subjects/mathematics/analytic-geometry/equation-of-circle), and you can read <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="r" /> straight from it.
 
+## Minor Arcs and Major Arcs
 
-Arc length depends on both the **radius and central angle**. An arc has an angular measure in degrees and a length measured in units of distance.
-
-### Types of Arc
+Two points on a circle split it into **two arcs at once**. The shorter one is the minor arc and the longer one is the major arc. If the two points are the ends of a diameter, the two arcs are equal and each one is a semicircle.
 
 <LineEquation
   title="Minor Arc and Major Arc"
-  description="Visualization of the difference between minor arc and major arc."
+  description={<>The minor arc covers <InlineMath math="90^\circ" /> and the major arc covers <InlineMath math="270^\circ" /> of the same circle.</>}
   data={[
     {
       smooth: false,
@@ -133,27 +121,23 @@ Arc length depends on both the **radius and central angle**. An arc has an angul
   cameraPosition={[0, 0, 10]}
 />
 
-| Arc type | Fraction of circumference | Example angular measure |
-|---|---|---|
-| **Minor arc** | Less than half | <InlineMath math="90^\circ/360^\circ=1/4" /> |
-| **Major arc** | More than half | <InlineMath math="270^\circ/360^\circ=3/4" /> |
-| **Semicircle** | Exactly half | <InlineMath math="180^\circ/360^\circ=1/2" /> |
+In the minor and major arc diagram, the minor arc covers <InlineMath math="90^\circ" /> and the major arc covers the rest, <InlineMath math="270^\circ" />. The measures of the two arcs always add up to <InlineMath math="360^\circ" />.
 
-## Central Angle and Inscribed Angle
+| Kind of arc | Arc measure | Share of the circle |
+| --- | --- | --- |
+| Minor arc | Less than <InlineMath math="180^\circ" /> | Less than half |
+| Semicircle | Exactly <InlineMath math="180^\circ" /> | Exactly half |
+| Major arc | More than <InlineMath math="180^\circ" /> | More than half |
 
-A central angle opens at the centre of the circle, and an inscribed angle opens on the circle itself. If they intercept the **same arc**, the central angle is twice the inscribed angle.
+A minor arc is named with two letters, such as <InlineMath math="\overset{\frown}{AB}" />. A major arc is named with three letters, such as <InlineMath math="\overset{\frown}{ACB}" />, because the middle point <InlineMath math="C" /> shows which arc is meant. Without a third letter, <InlineMath math="\overset{\frown}{AB}" /> always means the minor arc.
 
-### Central Angle
+## Arc Measure Equals the Central Angle
 
-A central angle has its vertex at the center of the circle, with two radii as its sides.
+Every arc has two different sizes. Its arc measure is given in degrees and is **equal to the central angle** that intercepts it. Its arc length is given in units of length and depends on the radius.
 
 <LineEquation
-  title={
-    <>
-      Central Angle <InlineMath math="\angle AOB" />
-    </>
-  }
-  description="Angle formed by two radii with vertex at the center of the circle."
+  title={<>Central Angle <InlineMath math="\angle AOB" /></>}
+  description={<>The central angle <InlineMath math="\alpha = 45^\circ" /> intercepts arc <InlineMath math="\overset{\frown}{AB}" />, so that arc also measures <InlineMath math="45^\circ" />.</>}
   data={[
     {
       smooth: false,
@@ -223,24 +207,22 @@ A central angle has its vertex at the center of the circle, with two radii as it
   cameraPosition={[0, 0, 10]}
 />
 
-A central angle and its intercepted arc have the **same angular measure**. That measure alone does not determine length without the radius. These two circles have the same angle but different arc lengths.
+In the central angle diagram, <InlineMath math="\angle AOB = \alpha = 45^\circ" />, so arc <InlineMath math="\overset{\frown}{AB}" /> also measures <InlineMath math="45^\circ" />. Arcs with the same measure can have different lengths. The table compares a <InlineMath math="60^\circ" /> arc on two circles:
 
-| Radius | Central angle | Arc length |
-|---|---|---|
+| Radius | Arc measure | Arc length |
+| --- | --- | --- |
 | <InlineMath math="3\text{ cm}" /> | <InlineMath math="60^\circ" /> | <InlineMath math="\frac{60}{360}(2\pi)(3)=\pi\text{ cm}" /> |
 | <InlineMath math="6\text{ cm}" /> | <InlineMath math="60^\circ" /> | <InlineMath math="\frac{60}{360}(2\pi)(6)=2\pi\text{ cm}" /> |
 
-### Inscribed Angle
+Doubling the radius doubles the arc length, while the arc measure stays at <InlineMath math="60^\circ" />.
 
-An inscribed angle has its **vertex on the circle**, with two chords as its sides.
+## An Inscribed Angle Is Half Its Arc
+
+An inscribed angle has its vertex on the circle, and its arms are chords. An inscribed angle measures **half the arc it intercepts**. This is the same rule as the relationship between [central and inscribed angles](/en/subjects/mathematics/circle/central-angle-and-inscribed-angle), read from the arc instead.
 
 <LineEquation
-  title={
-    <>
-      Inscribed Angle <InlineMath math="\angle ACB" />
-    </>
-  }
-  description="Angle whose vertex is on the circle and subtends the same arc."
+  title={<>Inscribed Angle <InlineMath math="\angle ACB" /></>}
+  description={<>Point <InlineMath math="C" /> intercepts arc <InlineMath math="\overset{\frown}{AB}" /> of <InlineMath math="45^\circ" />, so <InlineMath math="\angle ACB = 22.5^\circ" />.</>}
   data={[
     {
       smooth: false,
@@ -315,25 +297,11 @@ An inscribed angle has its **vertex on the circle**, with two chords as its side
   cameraPosition={[0, 0, 10]}
 />
 
-## Relationship Between Central Angle and Inscribed Angle
-
-<MathContainer>
-  <BlockMath math="\begin{aligned} &amp;\text{Inscribed angle} \\ &amp;= \frac{1}{2} \times \text{Central angle} \end{aligned}" />
-  <BlockMath math="\angle ACB = \frac{1}{2} \times \angle AOB" />
-</MathContainer>
-
-When a [central angle and an inscribed angle](/en/subjects/mathematics/circle/central-angle-and-inscribed-angle) intercept the same arc, the inscribed angle is half the central angle.
-
-**Example application**:
+In the inscribed angle diagram, point <InlineMath math="C" /> intercepts arc <InlineMath math="\overset{\frown}{AB}" />, which measures <InlineMath math="45^\circ" />, so <InlineMath math="\angle ACB = 22.5^\circ" />. The second diagram uses a larger arc, with central angle <InlineMath math="80^\circ" />.
 
 <LineEquation
-  title="Relationship Between Central Angle and Inscribed Angle"
-  description={
-    <>
-      If <InlineMath math="\angle AOB = 80^\circ" />, then{" "}
-      <InlineMath math="\angle ACB = 40^\circ" />.
-    </>
-  }
+  title="Inscribed Angle on a Larger Arc"
+  description={<>Arc <InlineMath math="\overset{\frown}{AB}" /> measures <InlineMath math="80^\circ" />, so the inscribed angle <InlineMath math="\angle ACB = 40^\circ" />.</>}
   data={[
     {
       smooth: false,
@@ -422,39 +390,26 @@ When a [central angle and an inscribed angle](/en/subjects/mathematics/circle/ce
   cameraPosition={[0, 0, 10]}
 />
 
+In the second diagram, arc <InlineMath math="\overset{\frown}{AB}" /> measures <InlineMath math="80^\circ" />, so:
+
+<BlockMath math="\angle ACB = \frac{1}{2} \times 80^\circ = 40^\circ" />
+
+Reading from the arc helps when a problem gives an arc measure instead of a central angle. You do not need to draw the radii first to find the inscribed angle.
+
 ## Arc Length and Sector Area
 
-An arc and its sector both take the **same fraction** of the whole circle. That fraction is the central angle divided by <InlineMath math="360^\circ" />, so one ratio fixes both the arc length and the sector area.
-
-### Arc Length
-
-An arc occupies the **same fraction of the circumference** as its central angle occupies of a full turn. For a central angle of <InlineMath math="\alpha" /> degrees:
+A sector is the region bounded by two radii and the arc between them. An arc and its sector take **the same share of a full turn**, which is the central angle divided by <InlineMath math="360^\circ" />. Multiply that share by the circumference for the arc length, and by the area of the circle for the sector area.
 
 <MathContainer>
-  <BlockMath math="\text{Arc length} = \frac{\alpha}{360^\circ} \times 2\pi r" />
   <BlockMath math="l = \frac{\alpha}{360^\circ} \times 2\pi r" />
+  <BlockMath math="A = \frac{\alpha}{360^\circ} \times \pi r^2" />
 </MathContainer>
 
-Where:
-
-- <InlineMath math="l" /> = arc length
-- <InlineMath math="\alpha" /> = measure of central angle (in degrees)
-- <InlineMath math="r" /> = radius of circle
-
-### Sector Area
-
-A sector is the region bounded by **two radii and the arc** between them. It occupies the same fraction of the circle's area as its central angle occupies of a full turn.
-
-<MathContainer>
-  <BlockMath math="\text{Sector area} = \frac{\alpha}{360^\circ} \times \pi r^2" />
-  <BlockMath math="L = \frac{\alpha}{360^\circ} \times \pi r^2" />
-</MathContainer>
-
-The diagram shows the two radii, the intercepted arc, and the sector they enclose.
+In both formulas, <InlineMath math="l" /> is the arc length, <InlineMath math="A" /> is the sector area, <InlineMath math="\alpha" /> is the central angle in degrees, and <InlineMath math="r" /> is the radius.
 
 <LineEquation
-  title="Circle Sector"
-  description="Region bounded by two radii and an arc."
+  title="Sector of a Circle"
+  description={<>A <InlineMath math="60^\circ" /> sector of radius <InlineMath math="3" /> has arc length <InlineMath math="\pi" /> and area <InlineMath math="1.5\pi" />.</>}
   data={[
     {
       smooth: false,
@@ -505,66 +460,87 @@ The diagram shows the two radii, the intercepted arc, and the sector they enclos
   cameraPosition={[0, 0, 10]}
 />
 
-## Calculating Arc Length and Sector Area
+The sector in the diagram has radius <InlineMath math="3" /> and central angle <InlineMath math="60^\circ" />, so its share is <InlineMath math="\frac{60}{360} = \frac{1}{6}" />. Its arc length is <InlineMath math="\frac{1}{6} \times 6\pi = \pi" /> and its area is <InlineMath math="\frac{1}{6} \times 9\pi = 1.5\pi" />. The two quantities are also linked without the angle, as shown in [the relationship between arc length and sector area](/en/subjects/mathematics/circle-arc-sector/relationship-between-arc-length-and-sector-area).
 
-A circle has a radius of <InlineMath math="14 \text{ cm}" />. If the central angle that subtends an arc is <InlineMath math="90^\circ" />, determine:
+## Worked Examples on Arcs and Sectors
 
-1. Arc length
-2. Sector area
+Every example starts by **finding the share of a full turn** the arc takes. Once you know the share, the arc length and sector area follow.
 
-**Solution**:
+**Example 1**. A circle has radius <InlineMath math="14\text{ cm}" />. An arc has a central angle of <InlineMath math="90^\circ" />. Find the arc length and the sector area.
 
-Given: <InlineMath math="r = 14 \text{ cm}" />, <InlineMath math="\alpha = 90^\circ" />
-
-1. Arc length:
-
-   <MathContainer>
-     <BlockMath math="l = \frac{\alpha}{360^\circ} \times 2\pi r" />
-     <BlockMath math="l = \frac{90^\circ}{360^\circ} \times 2\pi \times 14" />
-     <BlockMath math="l = \frac{1}{4} \times 28\pi" />
-     <BlockMath math="l = 7\pi \text{ cm} \approx 21.99 \text{ cm}" />
-   </MathContainer>
-
-2. Sector area:
-
-   <MathContainer>
-     <BlockMath math="L = \frac{\alpha}{360^\circ} \times \pi r^2" />
-     <BlockMath math="L = \frac{90^\circ}{360^\circ} \times \pi \times 14^2" />
-     <BlockMath math="L = \frac{1}{4} \times 196\pi" />
-     <BlockMath math="L = 49\pi \text{ cm}^2 \approx 153.94 \text{ cm}^2" />
-   </MathContainer>
-
-## Practice Problems
-
-The problems combine central angles, inscribed angles, and arc measurements. Decide **which relation** connects them before substituting numbers.
-
-1. A circle has a diameter of <InlineMath math="20 \text{ cm}" />. If an inscribed angle that subtends an arc is <InlineMath math="30^\circ" />, determine the measure of central angle that subtends the same arc!
-
-2. In a circle with center <InlineMath math="O" /> and radius <InlineMath math="21 \text{ cm}" />, there is an arc <InlineMath math="AB" /> with central angle <InlineMath math="120^\circ" />. Calculate the length of arc <InlineMath math="AB" /> and the area of sector <InlineMath math="AOB" />.
-
-3. Two inscribed angles subtend the same arc. If one inscribed angle measures <InlineMath math="45^\circ" />, determine the measure of the other inscribed angle!
-
-### Worked Solutions
-
-**Solution 1**
-
-The diameter is not needed here. What matters is that both angles intercept the **same arc**. The central angle is twice the inscribed angle:
-
-<BlockMath math="\begin{aligned} \text{central angle} &amp;=2(30^\circ) \\ &amp;=60^\circ \end{aligned}" />
-
-So the central angle measures <InlineMath math="60^\circ" />.
-
-**Solution 2**
-
-The angle <InlineMath math="120^\circ" /> is one third of a full turn because <InlineMath math="\frac{120^\circ}{360^\circ}=\frac{1}{3}" />. Apply that fraction first to the circumference, then to the area of the circle.
+The share of a full turn is <InlineMath math="\frac{90}{360} = \frac{1}{4}" />:
 
 <MathContainer>
-  <BlockMath math="\begin{aligned} l &amp;=\frac{120^\circ}{360^\circ}(2\pi)(21) \\ &amp;=14\pi\text{ cm} \\ &amp;\approx43.98\text{ cm} \end{aligned}" />
-  <BlockMath math="\begin{aligned} L &amp;=\frac{120^\circ}{360^\circ}\pi(21)^2 \\ &amp;=147\pi\text{ cm}^2 \\ &amp;\approx461.81\text{ cm}^2 \end{aligned}" />
+  <BlockMath math="l = \frac{1}{4} \times 2\pi \times 14 = 7\pi \approx 21.99\text{ cm}" />
+  <BlockMath math="A = \frac{1}{4} \times \pi \times 14^2 = 49\pi \approx 153.94\text{ cm}^2" />
 </MathContainer>
 
-Therefore, the arc length is <InlineMath math="14\pi\text{ cm}" /> and the sector area is <InlineMath math="147\pi\text{ cm}^2" />.
+Check with the relationship <InlineMath math="A = \frac{1}{2} l r" />. It gives <InlineMath math="\frac{1}{2} \times 7\pi \times 14 = 49\pi" />, which matches the sector area.
 
-**Solution 3**
+**Example 2**. An arc of length <InlineMath math="7\pi\text{ cm}" /> lies on a circle of radius <InlineMath math="21\text{ cm}" />. Find its central angle.
 
-Inscribed angles that intercept the same arc are equal. Since the first angle is <InlineMath math="45^\circ" />, the second angle is also <InlineMath math="45^\circ" />.
+The share of a full turn is the arc length divided by the circumference:
+
+<MathContainer>
+  <BlockMath math="\frac{\alpha}{360^\circ} = \frac{7\pi}{2\pi \times 21} = \frac{7\pi}{42\pi} = \frac{1}{6}" />
+  <BlockMath math="\alpha = \frac{1}{6} \times 360^\circ = 60^\circ" />
+</MathContainer>
+
+Check it in the other direction. A <InlineMath math="60^\circ" /> arc on a radius of <InlineMath math="21" /> has length <InlineMath math="\frac{60}{360} \times 42\pi = 7\pi" />.
+
+## Common Mistakes
+
+Before you calculate, separate **arc measure from arc length**. The table pairs common arc mistakes with a way to check for each one.
+
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Giving an arc length in degrees | Degrees measure the arc, while length uses a unit of length | Check the unit of the answer, such as cm |
+| Using the diameter as <InlineMath math="r" /> | The circumference formula <InlineMath math="2\pi r" /> already contains the factor <InlineMath math="2" /> | Halve the diameter before you substitute |
+| Using the minor arc angle for a major arc | A major arc covers <InlineMath math="360^\circ" /> minus the minor arc | A major arc must be longer than half the circumference |
+| Treating a sector as a segment | A sector is bounded by two radii, a [segment](/en/subjects/mathematics/circle-arc-sector/segment) by a chord | Look at whether the region's edges are radii or a chord |
+
+The diameter mistake shows up in the answer. An arc longer than the circumference is always wrong, because an arc is only part of the circle.
+
+## Practice on Arcs of a Circle
+
+For each problem, first find **the share of a full turn** the arc or sector takes. Problem 4 needs two steps.
+
+1. A circle has diameter <InlineMath math="20\text{ cm}" />. The inscribed angle that intercepts arc <InlineMath math="\overset{\frown}{AB}" /> measures <InlineMath math="30^\circ" />. Find the measure of arc <InlineMath math="\overset{\frown}{AB}" /> and its length.
+
+2. On a circle of radius <InlineMath math="21\text{ cm}" />, arc <InlineMath math="\overset{\frown}{AB}" /> has a central angle of <InlineMath math="120^\circ" />. Find the length of arc <InlineMath math="\overset{\frown}{AB}" /> and the area of sector <InlineMath math="AOB" />.
+
+3. On a circle of radius <InlineMath math="10\text{ cm}" />, the minor arc <InlineMath math="\overset{\frown}{AB}" /> has a central angle of <InlineMath math="72^\circ" />. Find the length of the major arc <InlineMath math="\overset{\frown}{ACB}" />.
+
+4. A sector of a circle with radius <InlineMath math="12\text{ cm}" /> has area <InlineMath math="24\pi\text{ cm}^2" />. Find the length of its arc.
+
+### Answers
+
+**Problem 1**. An arc measures twice the inscribed angle that intercepts it, so arc <InlineMath math="\overset{\frown}{AB}" /> measures <InlineMath math="60^\circ" />. The radius is **half the diameter**, <InlineMath math="10\text{ cm}" />:
+
+<BlockMath math="l = \frac{60}{360} \times 2\pi \times 10 = \frac{10\pi}{3} \approx 10.47\text{ cm}" />
+
+Check the size. The circumference is <InlineMath math="20\pi \approx 62.83\text{ cm}" />, and a <InlineMath math="60^\circ" /> arc is one sixth of it.
+
+**Problem 2**. An angle of <InlineMath math="120^\circ" /> takes **one third of a turn**, because <InlineMath math="\frac{120}{360} = \frac{1}{3}" />:
+
+<MathContainer>
+  <BlockMath math="l = \frac{1}{3} \times 2\pi \times 21 = 14\pi \approx 43.98\text{ cm}" />
+  <BlockMath math="A = \frac{1}{3} \times \pi \times 21^2 = 147\pi \approx 461.81\text{ cm}^2" />
+</MathContainer>
+
+Check with <InlineMath math="A = \frac{1}{2} l r = \frac{1}{2} \times 14\pi \times 21 = 147\pi" />.
+
+**Problem 3**. The major arc covers **the rest of the turn**, <InlineMath math="360^\circ - 72^\circ = 288^\circ" />:
+
+<BlockMath math="l = \frac{288}{360} \times 2\pi \times 10 = 16\pi \approx 50.27\text{ cm}" />
+
+Check with the minor arc. The minor arc has length <InlineMath math="\frac{72}{360} \times 20\pi = 4\pi" />, and <InlineMath math="4\pi + 16\pi = 20\pi" /> is the circumference.
+
+**Problem 4**. First find the share of a full turn from the area, then use the same share for **the arc length**:
+
+<MathContainer>
+  <BlockMath math="\frac{\alpha}{360^\circ} = \frac{24\pi}{\pi \times 12^2} = \frac{24\pi}{144\pi} = \frac{1}{6}" />
+  <BlockMath math="l = \frac{1}{6} \times 2\pi \times 12 = 4\pi \approx 12.57\text{ cm}" />
+</MathContainer>
+
+The central angle is <InlineMath math="60^\circ" />. Check with <InlineMath math="A = \frac{1}{2} l r = \frac{1}{2} \times 4\pi \times 12 = 24\pi" />.
