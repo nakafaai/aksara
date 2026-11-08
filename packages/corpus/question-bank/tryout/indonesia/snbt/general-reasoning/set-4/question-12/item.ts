@@ -1,31 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "categorical-syllogism",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Spesies ini hanya berasal dari Papua",
-        },
-        {
-          correct: false,
-          label:
-            "Spesies ini merupakan tumbuhan introduksi di semua wilayah di luar Pulau Papua",
-        },
-        {
           correct: true,
           label:
-            "Daerah asal spesies ini membentang jauh melampaui Pulau Papua",
+            "Tidak ada kamus di perpustakaan itu yang boleh dipinjam pulang.",
         },
         {
           correct: false,
-          label: "Spesies ini terutama hidup di bioma kering beriklim sedang",
+          label:
+            "Semua buku sejarah di perpustakaan itu boleh dipinjam pulang.",
         },
         {
           correct: false,
-          label: "Spesies ini merupakan herba, bukan pohon",
+          label: "Sebagian kamus di perpustakaan itu adalah buku sejarah.",
+        },
+        {
+          correct: false,
+          label: "Semua buku yang tidak boleh dipinjam pulang adalah kamus.",
+        },
+        {
+          correct: false,
+          label: "Tidak ada buku sejarah yang merupakan buku referensi.",
         },
       ],
     },

@@ -1,29 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "data-inference",
+  },
+  stimulus: "cabai",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$52{,}3\\text{ g}$$ dan $$10{,}85\\text{ g}$$",
+          label: "Harga cabai hanya ditentukan oleh banyaknya pasokan.",
         },
         {
           correct: false,
-          label: "$$52{,}3\\text{ g}$$ dan $$10{,}58\\text{ g}$$",
+          label: "Pasokan cabai naik karena harganya turun.",
         },
         {
           correct: true,
-          label: "$$53{,}2\\text{ g}$$ dan $$10{,}85\\text{ g}$$",
+          label:
+            "Harga cabai cenderung turun ketika pasokan naik, kecuali pada minggu menjelang hari raya.",
         },
         {
           correct: false,
-          label: "$$53{,}2\\text{ g}$$ dan $$10{,}58\\text{ g}$$",
+          label: "Pasokan cabai selalu naik dari minggu ke minggu.",
         },
         {
           correct: false,
-          label: "$$52{,}3\\text{ g}$$ dan $$10{,}50\\text{ g}$$",
+          label:
+            "Harga cabai pada minggu menjelang hari raya turun karena pasokan dari petani melimpah.",
         },
       ],
     },

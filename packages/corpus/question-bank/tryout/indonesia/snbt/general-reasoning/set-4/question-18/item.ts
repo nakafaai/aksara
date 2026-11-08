@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "deductive-reasoning",
+    topic: "rule-application",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$2$$ buku fiksi",
+          label: "$$\\text{Rp}58{.}500$$",
         },
         {
           correct: true,
-          label: "$$2$$ buku sains",
+          label: "$$\\text{Rp}66{.}000$$",
         },
         {
           correct: false,
-          label: "$$1$$ buku fiksi dan $$1$$ buku sains",
+          label: "$$\\text{Rp}72{.}000$$",
         },
         {
           correct: false,
-          label: "$$1$$ buku sains dan $$1$$ buku sejarah",
+          label: "$$\\text{Rp}76{.}000$$",
         },
         {
           correct: false,
-          label: "$$2$$ buku sejarah",
+          label: "$$\\text{Rp}82{.}000$$",
         },
       ],
     },

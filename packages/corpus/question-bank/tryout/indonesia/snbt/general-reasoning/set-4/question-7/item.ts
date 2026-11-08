@@ -1,29 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "assumption",
+  },
+  stimulus: "kantor",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Semua karyawan menyukai tanaman hias.",
+        },
+        {
           correct: true,
-          label: "$$A = B$$ atau $$E \\neq F$$",
+          label:
+            "Turunnya izin sakit tidak terutama disebabkan oleh perubahan musim antara kedua periode.",
         },
         {
           correct: false,
-          label: "Jika $$A = B$$, maka $$E = F$$",
+          label: "Tanaman hias di setiap meja memiliki jenis yang sama.",
         },
         {
           correct: false,
-          label: "$$A = B$$ atau $$E = F$$",
+          label: "Survei kenyamanan diisi oleh seluruh karyawan.",
         },
         {
           correct: false,
-          label: "$$A \\neq B$$ dan $$E = F$$",
-        },
-        {
-          correct: false,
-          label: "$$E \\neq F$$ atau $$A \\neq B$$",
+          label:
+            "Perusahaan berencana menambah jumlah tanaman hias di ruang rapat dan lobi pada tahun berikutnya.",
         },
       ],
     },
