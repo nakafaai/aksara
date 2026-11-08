@@ -106,6 +106,14 @@ For assessed content, also apply the
   a visual. Longer localized text must not clip, overlap, obscure data, or
   detach from the representation it explains.
 
+## Math in visual text
+
+A visual's title, description, labels, facts, and legends write every
+mathematical or chemical expression as `$...$`, with mhchem `\ce{}` for
+chemistry, never as Unicode subscripts, arrows, or symbols in plain text. The
+[mathematics rules](math.md) own the full list, and the voice gate reports each
+plain-text expression as `plain-math-text`.
+
 ## Computed and exact visuals
 
 These rules cover every value a formula draws, because a single wrong or jagged

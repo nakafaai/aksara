@@ -6,6 +6,7 @@ import { NodeFileSystem, NodeRuntime } from "@effect/platform-node";
 import { Console, Effect, FileSystem, Schema } from "effect";
 import { reviewTeachingSections } from "#nakafa-content/body/review";
 import { findLessonHighlightIssues } from "#nakafa-content/highlight/presence";
+import { findPlainMathText, printPlainMath } from "#nakafa-content/math/plain";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { findDocumentIssues } from "#nakafa-content/voice/document";
 import { LessonVoiceCheckError } from "#nakafa-content/voice/error";
@@ -159,9 +160,18 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
         )
       )
     );
+    const plainMath = documents.flatMap(
+      ({ locale, repositoryPath, source, tree }) =>
+        findPlainMathText(source, tree).map((issue) => ({
+          file: repositoryPath,
+          locale,
+          ...issue,
+        }))
+    );
     const report: LessonVoiceReport = {
       fileCount: files.length,
       issues,
+      ...(plainMath.length > 0 ? { plainMath } : {}),
       ...(pedagogyReview
         ? {
             pedagogy: documents
@@ -223,7 +233,8 @@ const printReport = Effect.fn("LessonVoiceCheck.printReport")(function* (
       yield* Console.error(line);
     }
   }
-  const { pedagogy } = report;
+  const { pedagogy, plainMath } = report;
+  yield* printPlainMath(options.format, plainMath);
   if (options.format === "text" && pedagogy) {
     for (const section of pedagogy) {
       if (section.signals.length > 0) {

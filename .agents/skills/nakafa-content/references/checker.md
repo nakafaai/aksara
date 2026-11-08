@@ -304,6 +304,16 @@ know, so it is not the full id list.
 Widen one of these only after the corpus-wide search and the positive,
 negative, and boundary tests described above.
 
+`plain-math-text` carries the owner's requirement that mathematics and
+chemistry are never plain text (D37, [mathematics rules](math.md)). It reads
+the text a learner sees, headings included, and every text prop of a
+component, and finds Unicode sub- and superscripts, math symbols and arrows,
+Greek letters, element formulas with a count that does not start with 0, the
+diatomic gases, and simple equations between numbers and one-letter variables.
+Math components, code, links, and metadata stay out. The gate prints the count
+and every occurrence on each run and does not fail on them yet; the change
+that clears the last one adds the rule to the blocking set, with no allowlist.
+
 The address rules are authored-voice rules, not raw pronoun bans. Indonesian
 `Anda` and `saya` are blocked only in learner-visible authored prose. German
 formal address is blocked in direct-address syntax such as a formal imperative

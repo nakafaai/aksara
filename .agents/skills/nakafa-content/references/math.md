@@ -3,6 +3,16 @@
 These rules apply to MDX and renderer props. Response labels are Markdown
 strings with their own [math syntax](questions.md#response-items).
 
+- Mathematics and chemistry are never plain text, anywhere a learner reads
+  them: prose, headings, table cells, and every visual's title, description,
+  labels, facts, and legends. Prose writes `<InlineMath />` and a visual's text
+  prop writes `$...$`; chemistry uses mhchem `\ce{}` in either, so
+  `title="2H₂(g) + O₂(g) → 2H₂O(g)"` becomes
+  `title="$\ce{2H2(g) + O2(g) -> 2H2O(g)}$"`. Unicode sub- and superscripts,
+  math arrows, `×`, `÷`, `−`, `≤`, `≥`, `√`, `π` and other Greek letters,
+  chemical formulas such as `H2O`, and simple equations such as `x = 2` never
+  stand outside math. The [voice gate](verification.md#lesson-voice-gate)
+  reports each one as `plain-math-text`.
 - Use `<InlineMath />` for mathematical expressions, variables, quantities,
   units, coordinates, and calculated values in prose. Keep instructional
   ordinals and references such as `Step 1`, `Example 2`, and `equation (3)` as
