@@ -2,33 +2,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "reasoning",
+    cognitiveLevel: "application",
     contentDomain: "algebra",
-    topic: "functions",
+    topic: "sequences-series",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "Titik potong kedua asimtot adalah $$(1,2)$$.",
-        },
-        {
-          correct: true,
-          label: "$$f$$ menurun ketat pada setiap interval domainnya.",
-        },
-        {
-          correct: true,
-          label: "Jika $$x>1$$, maka $$f(x)>2$$.",
-        },
-        {
-          correct: true,
-          label: "$$f^{-1}(x)=\\frac{x+3}{x-2}$$.",
+          correct: false,
+          label: "$$20\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$f(1)=0$$.",
+          label: "$$96\\text{ m}$$",
+        },
+        {
+          correct: true,
+          label: "$$100\\text{ m}$$",
+        },
+        {
+          correct: false,
+          label: "$$104\\text{ m}$$",
+        },
+        {
+          correct: false,
+          label: "$$124\\text{ m}$$",
         },
       ],
     },

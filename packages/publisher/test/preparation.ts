@@ -7,7 +7,7 @@ import {
 import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
-  AppLocaleSchema,
+  ActiveAppLocaleSchema,
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
@@ -41,7 +41,7 @@ export const emptySnapshots = {
 
 /** Prior locale policy used to exercise complete replacement requirements. */
 export const priorAppLocales = ActiveAppLocaleListSchema.make([
-  AppLocaleSchema.make("en"),
+  ActiveAppLocaleSchema.make("en"),
 ]);
 
 /** Canonical material-only scope used by preparation assertions. */

@@ -53,6 +53,40 @@ const readinessInput = {
 } as const;
 
 describe("assessment readiness schema", () => {
+  it("allows a topic that a set may leave out, but no negative minimum", () => {
+    /** The readiness input with one topic minimum replaced. */
+    const withTopicMinimum = (editorialMinimum: number) => ({
+      ...readinessInput,
+      sections: [
+        {
+          ...readinessInput.sections[0],
+          blueprint: {
+            ...readinessInput.sections[0].blueprint,
+            topics: [
+              {
+                ...readinessInput.sections[0].blueprint.topics[0],
+                editorialMinimum,
+              },
+            ],
+          },
+        },
+      ],
+    });
+
+    expect(
+      Exit.isSuccess(
+        Schema.decodeUnknownExit(AssessmentReadinessSchema)(withTopicMinimum(0))
+      )
+    ).toBe(true);
+    expect(
+      Exit.isFailure(
+        Schema.decodeUnknownExit(AssessmentReadinessSchema)(
+          withTopicMinimum(-1)
+        )
+      )
+    ).toBe(true);
+  });
+
   it.effect("decodes one evidence-complete readiness contract", () =>
     Effect.gen(function* () {
       const readiness = yield* defineAssessmentReadiness(readinessInput);

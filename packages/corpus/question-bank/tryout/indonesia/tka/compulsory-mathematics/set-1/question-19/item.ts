@@ -8,28 +8,32 @@ const item: ItemSource = {
   },
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Luas sisi $$pl$$ dikalikan $$6$$.",
+          correct: false,
+          label:
+            "Pernyataan (1) SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan (2) SAJA tidak cukup.",
         },
         {
-          column: 1,
-          label: "Luas sisi $$lt$$ dikalikan $$\\frac32$$.",
+          correct: true,
+          label:
+            "Pernyataan (2) SAJA cukup untuk menjawab pertanyaan, tetapi pernyataan (1) SAJA tidak cukup.",
         },
         {
-          column: 1,
-          label: "Volume dikalikan $$3$$.",
+          correct: false,
+          label:
+            "DUA pernyataan BERSAMA-SAMA cukup untuk menjawab pertanyaan, tetapi SATU pernyataan SAJA tidak cukup.",
         },
         {
-          column: 2,
-          label: "Setiap diagonal ruang dikalikan $$2$$.",
+          correct: false,
+          label:
+            "Pernyataan (1) SAJA cukup untuk menjawab pertanyaan dan pernyataan (2) SAJA cukup.",
         },
         {
-          column: 2,
-          label: "Luas permukaan total selalu dikalikan $$3$$.",
+          correct: false,
+          label:
+            "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
         },
       ],
     },

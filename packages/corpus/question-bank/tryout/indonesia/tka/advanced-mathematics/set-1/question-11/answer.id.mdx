@@ -1,0 +1,53 @@
+Persamaan <InlineMath math="\vec{w}=a\vec{u}+b\vec{v}" /> menyatakan bahwa <InlineMath math="\vec{w}" /> adalah **kombinasi linear** <InlineMath math="\vec{u}" /> dan <InlineMath math="\vec{v}" />. Dua vektor sama tepat ketika komponen-komponennya sama, jadi persamaan vektor ini menjadi dua persamaan biasa dalam <InlineMath math="a" /> dan <InlineMath math="b" />.
+
+<BlockMath math="a\begin{pmatrix} 2 \\ -1 \end{pmatrix}+b\begin{pmatrix} 1 \\ 3 \end{pmatrix}=\begin{pmatrix} 2a+b \\ -a+3b \end{pmatrix}=\begin{pmatrix} 8 \\ 17 \end{pmatrix}" />
+
+Dari komponen pertama diperoleh <InlineMath math="b=8-2a" />. Substitusikan ke persamaan komponen kedua.
+
+<BlockMath math="\begin{aligned}
+-a+3(8-2a)&=17 \\
+-a+24-6a&=17 \\
+-7a&=-7 \\
+a&=1 \\
+b&=8-2\cdot1=6
+\end{aligned}" />
+
+Periksa dengan menyusun kembali <InlineMath math="\vec{w}" />: <InlineMath math="1\cdot\vec{u}+6\vec{v}" /> memiliki komponen <InlineMath math="2+6=8" /> dan <InlineMath math="-1+18=17" />, tepat sama dengan <InlineMath math="\vec{w}" />. Gambar berikut menunjukkan susunan ujung ke pangkal: <InlineMath math="\vec{u}" /> dari titik asal, lalu <InlineMath math="6\vec{v}" /> dari ujung <InlineMath math="\vec{u}" />, berakhir di ujung <InlineMath math="\vec{w}" />.
+
+<MathVisual
+  title={<>Menyusun <InlineMath math="\vec{w}" /> dari <InlineMath math="\vec{u}" /> dan <InlineMath math="6\vec{v}" /></>}
+  description={<>Ruas dari <InlineMath math="(0,0)" /> ke <InlineMath math="(2,-1)" /> mewakili <InlineMath math="\vec{u}" />. Ruas dari <InlineMath math="(2,-1)" /> ke <InlineMath math="(8,17)" /> mewakili <InlineMath math="6\vec{v}" />. Ruas dari <InlineMath math="(0,0)" /> ke <InlineMath math="(8,17)" /> mewakili <InlineMath math="\vec{w}" />.</>}
+  labels={{
+    "vector-u": <InlineMath math="\vec{u}" />,
+    "vector-six-v": <InlineMath math="6\vec{v}" />,
+    "vector-w": <InlineMath math="\vec{w}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 10 },
+      y: { min: -3, max: 19 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "u", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: -1 } },
+      { id: "six-v", kind: "segment", appearance: "secondary", from: { x: 2, y: -1 }, to: { x: 8, y: 17 } },
+      { id: "w", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 8, y: 17 } },
+      { id: "tip-u", kind: "point", appearance: "reference", at: { x: 2, y: -1 } },
+      { id: "tip-w", kind: "point", appearance: "reference", at: { x: 8, y: 17 } },
+    ],
+    labels: [
+      { key: "vector-u", objectId: "u", at: { x: 1, y: -0.5 }, placement: "below" },
+      { key: "vector-six-v", objectId: "six-v", at: { x: 5, y: 8 }, placement: "right" },
+      { key: "vector-w", objectId: "w", at: { x: 4, y: 8.5 }, placement: "left" },
+    ],
+  }}
+/>
+
+Jadi, nilai <InlineMath math="a+b" /> adalah <InlineMath math="1+6=7" />.
+
+- <InlineMath math="1" /> hanyalah nilai <InlineMath math="a" />. Soal menanyakan jumlah kedua koefisien.
+- <InlineMath math="5" /> adalah selisih <InlineMath math="b-a" />, bukan jumlahnya.
+- <InlineMath math="6" /> adalah nilai <InlineMath math="b" /> saja, dan juga sama dengan hasil kali <InlineMath math="ab=6" />.
+- <InlineMath math="8" /> adalah komponen pertama <InlineMath math="\vec{w}" />, yaitu nilai <InlineMath math="2a+b" />. Persamaan komponen pertama itu bukan <InlineMath math="a+b" />.

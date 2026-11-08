@@ -2,34 +2,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "knowledge-understanding",
     contentDomain: "algebra",
-    topic: "linear-equations-inequalities",
+    topic: "functions",
   },
-  stimulus: "courier-prices",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$\\text{Rp }125{.}000$$",
+          label: "$$-37$$",
+        },
+        {
+          correct: false,
+          label: "$$-21$$",
+        },
+        {
+          correct: false,
+          label: "$$-5$$",
         },
         {
           correct: true,
-          label: "$$\\text{Rp }145{.}000$$",
+          label: "$$-3$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp }135{.}000$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp }155{.}000$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp }165{.}000$$",
+          label: "$$5$$",
         },
       ],
     },
