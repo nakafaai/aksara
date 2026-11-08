@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "scheduling",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "higrometer : kelembapan",
+          label: "Kegiatan D",
         },
         {
           correct: false,
-          label: "suhu : termometer",
+          label: "Kegiatan A",
         },
         {
           correct: false,
-          label: "jarak : odometer",
+          label: "Kegiatan B",
         },
         {
           correct: false,
-          label: "timbangan : kecepatan",
+          label: "Kegiatan C",
         },
         {
           correct: false,
-          label: "mikroskop : intensitas bunyi",
+          label: "Tidak dapat ditentukan",
         },
       ],
     },

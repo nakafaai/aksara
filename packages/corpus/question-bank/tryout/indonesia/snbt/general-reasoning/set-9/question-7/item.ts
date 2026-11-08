@@ -1,33 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "weakening",
+  },
+  stimulus: "kolam",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Kolam renang umum di kota-kota itu menyelenggarakan kelas renang gratis untuk anak-anak setiap minggu.",
+        },
+        {
+          correct: false,
+          label:
+            "Biaya membangun satu kolam renang umum cukup tinggi bagi anggaran kota.",
+        },
+        {
+          correct: false,
+          label:
+            "Kota Tepian memiliki lebih sedikit kolam renang umum daripada kota-kota tetangganya.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebagian besar kasus tenggelam di kota-kota itu terjadi pada musim hujan.",
+        },
+        {
           correct: true,
-          label: "Setiap banjir musiman selalu memperbaiki setiap tanah",
-        },
-        {
-          correct: false,
           label:
-            "Pengendapan bersih dapat menahan sedimen dan unsur hara di dataran banjir",
-        },
-        {
-          correct: false,
-          label:
-            "Erosi dapat membawa sedimen dan unsur hara keluar dari dataran banjir",
-        },
-        {
-          correct: false,
-          label:
-            "Dampak genangan antara lain bergantung pada keseimbangan pengendapan dan erosi",
-        },
-        {
-          correct: false,
-          label:
-            "Unsur hara yang tertahan dapat mendukung pertumbuhan tanaman jika pengendapan melebihi erosi",
+            "Kota-kota yang memiliki banyak kolam renang umum pada umumnya tidak dilalui sungai besar.",
         },
       ],
     },

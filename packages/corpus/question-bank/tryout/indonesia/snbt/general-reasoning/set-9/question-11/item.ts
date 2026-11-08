@@ -1,29 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "disjunctive-syllogism",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$118$$",
+          column: 1,
+          label: "Lina mengikuti kategori cerpen.",
         },
         {
-          correct: false,
-          label: "$$177$$",
+          column: 2,
+          label: "Lina tampil pada hari Jumat.",
         },
         {
-          correct: true,
-          label: "$$236$$",
+          column: 2,
+          label:
+            "Semua peserta yang tampil pada hari Jumat adalah peserta kategori puisi.",
         },
         {
-          correct: false,
-          label: "$$241$$",
-        },
-        {
-          correct: false,
-          label: "$$295$$",
+          column: 1,
+          label: "Lina mengirim naskah sebelum hari Kamis.",
         },
       ],
     },
