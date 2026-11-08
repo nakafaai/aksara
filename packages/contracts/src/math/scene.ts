@@ -18,6 +18,7 @@ import {
   quadraticExtrema,
   radialOffsets,
 } from "#contracts/math/extent";
+import { isPlaneFormulaPoint } from "#contracts/math/formula/field";
 import type {
   PlaneLabelAnchor,
   PlaneMathFrame,
@@ -196,12 +197,15 @@ function objectCoordinates(
   return [];
 }
 
-/** Projects all label anchors after the objects they annotate. */
+/**
+ * Projects all exact label anchors after the objects they annotate. An anchor
+ * placed by formulas moves with the sliders, so it holds no exact coordinate.
+ */
 function labelCoordinates(
   labels: readonly (PlaneLabelAnchor | SpaceLabelAnchor)[]
 ) {
-  return Arr.flatMap(labels, (label, index) =>
-    pointCoordinates(label.at, ["labels", index, "at"])
+  return Arr.flatMap(labels, ({ at }, index) =>
+    isPlaneFormulaPoint(at) ? [] : pointCoordinates(at, ["labels", index, "at"])
   );
 }
 
