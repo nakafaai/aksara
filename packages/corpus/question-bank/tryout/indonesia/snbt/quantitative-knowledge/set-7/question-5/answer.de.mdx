@@ -1,24 +1,32 @@
-Bei drei geometrischen Gliedern schreibst du das mittlere Glied als <InlineMath math="a" /> und die beiden anderen als <InlineMath math="\tfrac{a}{r}" /> und <InlineMath math="ar" />. So **fällt der Quotient im Produkt weg**, und das mittlere Glied steht sofort fest.
+Schreibe die drei Glieder als <InlineMath math="\tfrac{a}{r}" />, <InlineMath math="a" /> und <InlineMath math="ar" />. Der Schlüssel ist, **die Quadratsumme durch die Summe der Glieder zu teilen**, denn der Quotient ist ein Term, der der Summe sehr ähnlich ist.
 
-# Das mittlere Glied aus dem Produkt
+# Die Identität für die Quadratsumme
 
-<BlockMath math="\frac{a}{r}\cdot a\cdot ar=a^3=216\;\Longrightarrow\; a=6" />
+Für drei geometrische Glieder gilt
 
-# Der Quotient aus der Summe
+<BlockMath math="\frac{a^2}{r^2}+a^2+a^2r^2=\left(\frac ar+a+ar\right)\left(\frac ar-a+ar\right)" />
 
-Setze <InlineMath math="a=6" /> in die Summe ein und multipliziere beide Seiten mit <InlineMath math="r" />. So entsteht **eine quadratische Gleichung in <InlineMath math="r" />**.
+Die rechte Seite kannst du durch Ausmultiplizieren prüfen: Die gemischten Glieder heben sich auf. Also ist **die Quadratsumme geteilt durch die Summe** gleich <InlineMath math="\tfrac ar-a+ar" />.
 
 <BlockMath math="\begin{aligned}
-\frac6r+6+6r&=26\\
-6r^2-20r+6&=0\\
-3r^2-10r+3&=0\\
-(3r-1)(r-3)&=0
+\frac ar+a+ar&=38\\
+\frac ar-a+ar&=\frac{532}{38}=14
 \end{aligned}" />
 
-Der Wert <InlineMath math="r=3" /> liefert die Folge 2, 6, 18, und <InlineMath math="r=\tfrac13" /> liefert dieselben Zahlen rückwärts, 18, 6, 2. Beide enthalten dieselben Zahlen, die Antwort ist also eindeutig.
+# Die Glieder bestimmen
 
-Kontrolle: <InlineMath math="2+6+18=26" /> und <InlineMath math="2\cdot6\cdot18=216" />. Die Differenz zwischen größter und kleinster Zahl ist <InlineMath math="18-2=16" />.
+Ziehe die beiden Gleichungen voneinander ab: <InlineMath math="2a=24" />, also <InlineMath math="a=12" />, und **die Summe der beiden äußeren Glieder** ist <InlineMath math="\tfrac{12}{r}+12r=26" />.
 
-Der Wert 18 ist die größte Zahl selbst. Der Wert 20 ist die Summe der beiden äußeren Glieder, und 26 ist die Summe aller drei Glieder.
+<BlockMath math="\begin{aligned}
+12r^2-26r+12&=0\\
+6r^2-13r+6&=0\\
+(3r-2)(2r-3)&=0
+\end{aligned}" />
 
-Die Differenz zwischen größter und kleinster Zahl ist also **16**.
+Der Wert <InlineMath math="r=\tfrac32" /> liefert 8, 12, 18, und <InlineMath math="r=\tfrac23" /> dieselben Zahlen rückwärts. Kontrolle: <InlineMath math="8+12+18=38" /> und <InlineMath math="64+144+324=532" />.
+
+Die Differenz zwischen größter und kleinster Zahl ist <InlineMath math="18-8=10" />.
+
+Der Wert 12 ist das mittlere Glied, 14 der Quotient <InlineMath math="532:38" />, 18 das größte Glied und 26 die Summe der beiden äußeren Glieder.
+
+Die Differenz zwischen größter und kleinster Zahl ist also **10**.

@@ -1,24 +1,32 @@
-For three geometric terms, write the middle term as <InlineMath math="a" /> and the other two as <InlineMath math="\tfrac{a}{r}" /> and <InlineMath math="ar" />. With this choice **the ratio cancels in the product**, so the middle term is found at once.
+Write the three terms as <InlineMath math="\tfrac{a}{r}" />, <InlineMath math="a" /> and <InlineMath math="ar" />. The key is **dividing the sum of squares by the sum of the terms**, because the quotient is an expression very close to the sum of the terms.
 
-# The middle term from the product
+# The sum of squares identity
 
-<BlockMath math="\frac{a}{r}\cdot a\cdot ar=a^3=216\;\Longrightarrow\; a=6" />
+For three geometric terms,
 
-# The ratio from the sum
+<BlockMath math="\frac{a^2}{r^2}+a^2+a^2r^2=\left(\frac ar+a+ar\right)\left(\frac ar-a+ar\right)" />
 
-Put <InlineMath math="a=6" /> into the sum, then multiply both sides by <InlineMath math="r" /> to get **a quadratic equation in <InlineMath math="r" />**.
+You can check the right side by multiplying out: the cross terms cancel. So **the sum of squares divided by the sum** equals <InlineMath math="\tfrac ar-a+ar" />.
 
 <BlockMath math="\begin{aligned}
-\frac6r+6+6r&=26\\
-6r^2-20r+6&=0\\
-3r^2-10r+3&=0\\
-(3r-1)(r-3)&=0
+\frac ar+a+ar&=38\\
+\frac ar-a+ar&=\frac{532}{38}=14
 \end{aligned}" />
 
-The value <InlineMath math="r=3" /> gives the sequence 2, 6, 18, and <InlineMath math="r=\tfrac13" /> gives the same numbers in reverse order, 18, 6, 2. Both contain the same numbers, so the answer is unique.
+# Finding the terms
 
-Check: <InlineMath math="2+6+18=26" /> and <InlineMath math="2\cdot6\cdot18=216" />. The difference between the largest and the smallest number is <InlineMath math="18-2=16" />.
+Subtract the two equations: <InlineMath math="2a=24" />, so <InlineMath math="a=12" /> and **the sum of the two outer terms** is <InlineMath math="\tfrac{12}{r}+12r=26" />.
 
-The value 18 is the largest number itself. The value 20 is the sum of the two outer terms, and 26 is the sum of all three terms.
+<BlockMath math="\begin{aligned}
+12r^2-26r+12&=0\\
+6r^2-13r+6&=0\\
+(3r-2)(2r-3)&=0
+\end{aligned}" />
 
-So the difference between the largest and the smallest number is **16**.
+The value <InlineMath math="r=\tfrac32" /> gives 8, 12, 18, and <InlineMath math="r=\tfrac23" /> gives the same numbers in reverse order. Check: <InlineMath math="8+12+18=38" /> and <InlineMath math="64+144+324=532" />.
+
+The difference between the largest and the smallest number is <InlineMath math="18-8=10" />.
+
+The value 12 is the middle term, 14 is the quotient <InlineMath math="532:38" />, 18 is the largest term, and 26 is the sum of the two outer terms.
+
+So the difference between the largest and the smallest number is **10**.
