@@ -13,17 +13,6 @@ Addition und Skalarmultiplikation komplexer Zahlen folgen <Highlight>denselben v
 
 Seien <InlineMath math="z_1" />, <InlineMath math="z_2" /> und <InlineMath math="z_3" /> beliebige komplexe Zahlen und seien <InlineMath math="c" /> und <InlineMath math="d" /> beliebige Skalare (reelle Zahlen).
 
-<Mermaid
-  title="Eigenschaften der komplexen Addition"
-  description="Die komplexe Addition ist abgeschlossen, kommutativ und assoziativ, hat das neutrale Element 0 und gibt jeder Zahl eine additive Inverse."
-  chart={`flowchart TD
-  A["Komplexe Zahlen addieren"] --> C1["Abgeschlossen: die Summe ist komplex"]
-  A --> C2["Kommutativ: die Reihenfolge spielt keine Rolle"]
-  A --> C3["Assoziativ: die Klammerung spielt keine Rolle"]
-  A --> C4["Neutrales Element: null addieren ändert nichts"]
-  A --> C5["Inverse: jede Zahl hat eine Gegenzahl mit Summe null"]`}
-/>
-
 ## Additionseigenschaften
 
 Die komplexe Addition erfolgt **getrennt für Real- und Imaginärteil**. Bei reellen Summen darfst du die Reihenfolge und die Klammerung ändern. Deshalb gelten beide Regeln auch für jede komplexe Komponente. Die Vertauschung lässt sich zum Beispiel direkt nachrechnen:
@@ -40,7 +29,7 @@ Die komplexe Addition erfolgt **getrennt für Real- und Imaginärteil**. Bei ree
 Komplexe Zahlen zu addieren heißt, ihre Pfeile aneinanderzuhängen. Nimm <InlineMath math="z_1 = 2 + i" /> und <InlineMath math="z_2 = 1 + 3i" />. Geh erst <InlineMath math="z_1" /> und dann <InlineMath math="z_2" /> entlang oder andersherum: Beide Wege enden bei <InlineMath math="z_1 + z_2 = 3 + 4i" />, der gegenüberliegenden Ecke des Parallelogramms. Das ist das Kommutativgesetz als Bild.
 
 <MathVisual
-  title="Das Parallelogramm einer komplexen Summe"
+  title={<>Das Parallelogramm einer komplexen Summe</>}
   description={<>Die Pfeile <InlineMath math="2 + i" /> und <InlineMath math="1 + 3i" /> und ihre Summe <InlineMath math="3 + 4i" /> an der gegenüberliegenden Ecke des Parallelogramms.</>}
   labels={{
     z1: <InlineMath math="z_1 = 2 + i" />,
@@ -78,6 +67,37 @@ Skalarmultiplikation bedeutet, **beide Komponenten mit demselben Faktor zu multi
 | Neutrales Element | <InlineMath math="1z=z" /> | <InlineMath math="1(1+i)=1+i" /> |
 | Nullskalar | <InlineMath math="0z=0" /> | <InlineMath math="0(1+i)=0+0i=0" /> |
 
+Auch die Klammerung ändert eine Summe nicht. Geh <InlineMath math="z_1 = 2 + i" />, dann <InlineMath math="z_2 = 1 + 3i" />, dann <InlineMath math="z_3 = -2 + i" />: Der Weg endet bei <InlineMath math="1 + 5i" />. Rechnest du zuerst <InlineMath math="z_2 + z_3" />, kürzt du nur den zweiten und dritten Schritt ab, der Endpunkt bleibt gleich.
+
+<MathVisual
+  title={<>Drei komplexe Zahlen aneinandergehängt</>}
+  description={<>Der Weg <InlineMath math="2 + i" />, dann <InlineMath math="1 + 3i" />, dann <InlineMath math="-2 + i" />, mit Ende bei <InlineMath math="1 + 5i" />.</>}
+  labels={{
+    z1: <InlineMath math="z_1" />,
+    z2: <InlineMath math="z_2" />,
+    z3: <InlineMath math="z_3" />,
+    end: <InlineMath math="1 + 5i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 2, y: 1 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "z3", kind: "segment", from: { x: 3, y: 4 }, to: { x: 1, y: 5 }, appearance: "construction" },
+      { id: "short", kind: "segment", from: { x: 2, y: 1 }, to: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "end", kind: "point", at: { x: 1, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1, y: 0.5 }, placement: "below-right" },
+      { key: "z2", objectId: "z2", at: { x: 2.5, y: 2.5 }, placement: "right" },
+      { key: "z3", objectId: "z3", at: { x: 2, y: 4.5 }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 1, y: 5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 ## Ausdrücke mit Additionseigenschaften vereinfachen
 
 Mit dem **Distributivgesetz** kannst du einen Skalar Glied für Glied in eine Summe hineinmultiplizieren, und gleich große Koeffizienten mit entgegengesetztem Vorzeichen heben sich anschließend auf. Beide Schritte lassen Real- und Imaginärteil unverändert, sodass jede daraus gebildete Identität für alle komplexen Zahlen gilt.
@@ -91,7 +111,7 @@ Das **Distributivgesetz** fasst zwei Terme mit derselben komplexen Zahl zusammen
 Die additive Inverse zeigt in die Gegenrichtung. <InlineMath math="z = 3 + 2i" /> und <InlineMath math="-z = -3 - 2i" /> liegen auf einer Geraden durch den Ursprung im gleichen Abstand. Gehst du den einen und dann den anderen Pfeil entlang, bist du wieder bei <InlineMath math="0" />: <InlineMath math="z + (-z) = 0" />.
 
 <MathVisual
-  title="Eine Zahl und ihre additive Inverse"
+  title={<>Eine Zahl und ihre additive Inverse</>}
   description={<>Die Pfeile <InlineMath math="3 + 2i" /> und <InlineMath math="-3 - 2i" />, gleich lang und entgegengesetzt, mit der Summe 0.</>}
   labels={{
     z: <InlineMath math="z = 3 + 2i" />,

@@ -54,12 +54,12 @@ The counterexample proves that <InlineMath math="g\circ f\neq f\circ g" /> as fu
 Send <InlineMath math="x = 1" /> through both orders. Through <InlineMath math="g" /> first: <InlineMath math="g(1) = 5" />, then <InlineMath math="f(5) = 11" />. Through <InlineMath math="f" /> first: <InlineMath math="f(1) = 3" />, then <InlineMath math="g(3) = 13" />. The two paths start together and end apart, so <InlineMath math="f \circ g \ne g \circ f" />.
 
 <MathVisual
-  title="Two orders, two different outputs"
+  title={<>Two orders, two different outputs</>}
   description={<>The input 1 sent through <InlineMath math="g" /> then <InlineMath math="f" /> (ending at 11) and through <InlineMath math="f" /> then <InlineMath math="g" /> (ending at 13).</>}
   labels={{
     x: <InlineMath math="x = 1" />,
-    mid: "after the first function",
-    out: "after the second function",
+    mid: <>after the first function</>,
+    out: <>after the second function</>,
   }}
   scene={{
     space: "plane",
@@ -134,22 +134,49 @@ This associative property also applies to other combinations of function order, 
 At <InlineMath math="x=0" />, both groupings follow the **same calculation path**. Grouping two rules does not change their order of application:
 
 <Mermaid
-  title="The Fixed Order in Associative Composition"
-  description="Input zero passes through h, then g, then f, producing eleven."
+  title={<>The Fixed Order in Associative Composition</>}
+  description={<>Input zero passes through h, then g, then f, producing eleven.</>}
   chart={`flowchart LR
     X["0"] -->|"h"| H["1"]
     H -->|"g"| G["5"]
     G -->|"f"| F["11"]`}
 />
 
-<Mermaid
-  title="Composition is associative"
-  description="Grouping does not matter: both groupings apply the same three functions in the same order."
-  chart={`flowchart LR
-  X["Input"] -->|"first function"| A["First output"]
-  A -->|"second function"| B["Second output"]
-  B -->|"third function"| C["Final output"]
-  C --> D["Either grouping applies the three functions in this order"]`}
+Follow <InlineMath math="x = 1" /> through <InlineMath math="h(x) = \frac{1}{x + 1}" />, then <InlineMath math="g(x) = x^2 + 4" />, then <InlineMath math="f(x) = 2x + 1" />: <InlineMath math="1 \to \frac12 \to \frac{17}{4} \to \frac{19}{2}" />. Whether you group <InlineMath math="(f \circ g) \circ h" /> or <InlineMath math="f \circ (g \circ h)" />, the input walks the same three steps, so both give <InlineMath math="\frac{19}{2}" />.
+
+<MathVisual
+  title={<>One input through three functions</>}
+  description={<>Four vertical axes for <InlineMath math="x" />, <InlineMath math="h(x)" />, <InlineMath math="g(h(x))" /> and <InlineMath math="f(g(h(x)))" />, with the path of the input 1.</>}
+  labels={{
+    v0: <InlineMath math="1" />,
+    v1: <InlineMath math="\tfrac12" />,
+    v2: <InlineMath math="\tfrac{17}{4}" />,
+    v3: <InlineMath math="\tfrac{19}{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 10 }, y: { min: -0.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ax0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 10 }, appearance: "reference" },
+      { id: "ax1", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 10 }, appearance: "reference" },
+      { id: "ax2", kind: "segment", from: { x: 6, y: 0 }, to: { x: 6, y: 10 }, appearance: "reference" },
+      { id: "ax3", kind: "segment", from: { x: 9, y: 0 }, to: { x: 9, y: 10 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: 1 / 2 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 3, y: 1 / 2 }, to: { x: 6, y: 17 / 4 }, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 6, y: 17 / 4 }, to: { x: 9, y: 19 / 2 }, appearance: "primary" },
+      { id: "v0", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "v1", kind: "point", at: { x: 3, y: 1 / 2 }, appearance: "primary" },
+      { id: "v2", kind: "point", at: { x: 6, y: 17 / 4 }, appearance: "primary" },
+      { id: "v3", kind: "point", at: { x: 9, y: 19 / 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "v1", objectId: "v1", at: { x: 3, y: 1 / 2 }, placement: "below-right" },
+      { key: "v2", objectId: "v2", at: { x: 6, y: 17 / 4 }, placement: "right" },
+      { key: "v3", objectId: "v3", at: { x: 9, y: 19 / 2 }, placement: "right" },
+    ],
+  }}
 />
 
 ### Identity Element
@@ -175,7 +202,7 @@ Both result in the function <InlineMath math="f(x)" /> again.
 The identity function <InlineMath math="I(x) = x" /> changes nothing, so composing with it leaves <InlineMath math="f" /> alone. The line <InlineMath math="f(x) = 2x + 1" /> and the line of <InlineMath math="(f \circ I)(x) = f(x)" /> are the same line, while <InlineMath math="I" /> itself is the diagonal <InlineMath math="y = x" />.
 
 <MathVisual
-  title="Composing with the identity changes nothing"
+  title={<>Composing with the identity changes nothing</>}
   description={<>The line <InlineMath math="y = x" /> of the identity and the line <InlineMath math="y = 2x + 1" />, which is both <InlineMath math="f" /> and <InlineMath math="f \circ I" />.</>}
   labels={{
     i: <InlineMath math="I(x) = x" />,

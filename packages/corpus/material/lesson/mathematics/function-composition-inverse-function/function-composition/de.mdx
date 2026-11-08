@@ -35,8 +35,8 @@ Die Zusammensetzung ist nur für Eingaben <InlineMath math="x" /> aus der Defini
 Verfolg jede Eingabe durch die Maschinen: zuerst <InlineMath math="g(x) = x^2 - 3" />, dann <InlineMath math="f(u) = 2u + 1" />. Die Eingabe <InlineMath math="2" /> geht zu <InlineMath math="1" /> und dann zu <InlineMath math="3" />. Die Eingaben <InlineMath math="-1" /> und <InlineMath math="1" /> landen nach <InlineMath math="g" /> beide bei <InlineMath math="-2" />, also enden sie bei derselben Ausgabe <InlineMath math="-3" />.
 
 <MathVisual
-  title="Eingaben durch g und dann f verfolgen"
-  description={<>Drei senkrechte Achsen für <InlineMath math="x" />, <InlineMath math="g(x)" /> und <InlineMath math="f(g(x))" /> mit den Wegen der Eingaben −1, 0, 1 und 2.</>}
+  title={<>Eingaben durch g und dann f verfolgen</>}
+  description={<>Drei senkrechte Achsen für <InlineMath math="x" />, <InlineMath math="g(x)" /> und <InlineMath math="f(g(x))" /> mit den Wegen der Eingaben <InlineMath math="-1, 0, 1" /> und <InlineMath math="2" />.</>}
   labels={{
     x: <InlineMath math="x" />,
     g: <InlineMath math="g(x)" />,
@@ -115,13 +115,23 @@ Bei diesem Artikel ergibt Aktion A (<InlineMath math="p \circ d" />) den Endprei
 Verfolge den **Zwischenpreis** nach dem ersten Schritt. Bei Aktion B verkleinert der prozentuale Rabatt auch den festen Abzug. Dessen wirksamer Preisnachlass fällt dadurch geringer aus.
 
 <Mermaid
-  title="Zwei Reihenfolgen für den Preisnachlass"
-  description="Beide Wege beginnen bei zweihunderttausend Rupiah. Die Reihenfolge von Rabatt und festem Abzug verändert den Endpreis."
+  title={<>Zwei Reihenfolgen für den Preisnachlass</>}
+  description={<>Beide Wege beginnen bei zweihunderttausend Rupiah. Die Reihenfolge von Rabatt und festem Abzug verändert den Endpreis.</>}
   chart={`flowchart LR
   A["Rp200000"] -->|"20% Rabatt"| A1["Rp160000"]
   A1 -->|"Rp25.000 abziehen"| A2["Rp135000"]
   B["Rp200000"] -->|"Rp25.000 abziehen"| B1["Rp175000"]
   B1 -->|"20% Rabatt"| B2["Rp140000"]`}
+/>
+
+Hier stehen die beiden Endpreise nebeneinander. Zuerst <InlineMath math="20\,\%" /> Rabatt und dann den festen Betrag abziehen endet bei <InlineMath math="\text{Rp}\,135.000" />, die andere Reihenfolge bei <InlineMath math="\text{Rp}\,140.000" />. Dieselben zwei Funktionen in anderer Reihenfolge liefern ein anderes Ergebnis.
+
+<BarChart
+  title={<>Endpreis für jede Reihenfolge der Aktionen</>}
+  description={<>Der Endpreis, wenn der Prozentrabatt zuerst kommt und wenn der feste Abzug zuerst kommt.</>}
+  yAxisLabel="Endpreis (Rp)"
+  data={[["Rabatt zuerst", 200000 * 0.8 - 25000], ["Abzug zuerst", (200000 - 25000) * 0.8]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Endpreis (Rp)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Beide Reihenfolgen der Funktionskomposition vergleichen
@@ -162,7 +172,7 @@ Die beiden Ergebnisse sind im Allgemeinen verschieden. Damit ist die Funktionsko
 Beide Reihenfolgen als Graphen: <InlineMath math="(f \circ g)(x) = 2(x^2 - 3) + 1 = 2x^2 - 5" /> und <InlineMath math="(g \circ f)(x) = (2x + 1)^2 - 3 = 4x^2 + 4x - 2" />. Das sind zwei verschiedene Parabeln. Bei <InlineMath math="x = 1" /> liefert die erste <InlineMath math="-3" /> und die zweite <InlineMath math="6" />, die Reihenfolge zu tauschen ändert also die Funktion.
 
 <MathVisual
-  title="Die beiden Verkettungsreihenfolgen ergeben verschiedene Parabeln"
+  title={<>Die beiden Verkettungsreihenfolgen ergeben verschiedene Parabeln</>}
   description={<>Die Parabeln <InlineMath math="2x^2 - 5" /> und <InlineMath math="4x^2 + 4x - 2" /> mit ihren Werten bei <InlineMath math="x = 1" />: <InlineMath math="-3" /> und <InlineMath math="6" />.</>}
   labels={{
     fg: <InlineMath math="f \circ g" />,

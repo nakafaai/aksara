@@ -28,7 +28,7 @@ Dalam tiga dimensi, baris <InlineMath math="(2 \; 1 \; 3)" /> atau <InlineMath m
 Kedua notasi menggambarkan panah yang sama. <InlineMath math="(3 \; 4)" /> sebagai baris dan <InlineMath math="\begin{pmatrix} 3 \\ 4 \end{pmatrix}" /> sebagai kolom sama-sama berarti: 3 ke kanan, lalu 4 ke atas. Panah dari titik asal ke <InlineMath math="(3, 4)" /> panjangnya <InlineMath math="\sqrt{3^2 + 4^2} = 5" />.
 
 <MathVisual
-  title="Satu vektor, dua notasi"
+  title={<>Satu vektor, dua notasi</>}
   description={<>Vektor dengan komponen 3 dan 4 sebagai panah dari titik asal, dengan komponen mendatar dan tegaknya digambar.</>}
   labels={{
     v: <InlineMath math="(3 \; 4)" />,
@@ -71,6 +71,32 @@ Vektor dengan komponen yang sama dapat dinyatakan dalam beberapa bentuk yang ber
 
 Ketiga bentuk tersebut menyatakan **vektor yang sama**. Dua bentuk pertama menampilkan komponennya sebagai kolom, sedangkan bentuk ketiga menyatakan komponen-komponen itu terhadap vektor satuan Kartesius. Arti garis tegak harus dibaca dari konteks: <InlineMath math="\det A" /> atau <InlineMath math="|A|" /> dapat menyatakan determinan matriks persegi, <InlineMath math="|x|" /> menyatakan nilai mutlak skalar, dan <InlineMath math="\lVert \vec{v} \rVert" /> menyatakan besar, atau norma, suatu vektor.
 
+Vektor hanya menyimpan perubahan, bukan titik awal. Panah dari <InlineMath math="(0, 0)" /> ke <InlineMath math="(3, 4)" /> dan panah dari <InlineMath math="(2, -1)" /> ke <InlineMath math="(5, 3)" /> sama-sama bergerak 3 ke kanan dan 4 ke atas, jadi keduanya vektor <InlineMath math="(3 \; 4)" />, baik ditulis sebagai baris maupun kolom.
+
+<MathVisual
+  title={<>Vektor sama dari titik awal berbeda</>}
+  description={<>Dua panah, dari <InlineMath math="(0, 0)" /> dan dari <InlineMath math="(2, -1)" />, dengan komponen yang sama, 3 dan 4.</>}
+  labels={{
+    a: <InlineMath math="(3 \; 4)" />,
+    b: <InlineMath math="(3 \; 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.8 }, y: { min: -1.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 2, y: -1 }, to: { x: 5, y: 3 }, appearance: "secondary" },
+      { id: "a0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "b0", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3.5, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 ## Vektor Satuan dalam Sistem Koordinat Kartesius
 
 Untuk basis Kartesius standar, kita memilih satu vektor satuan pada **arah positif setiap sumbu**. Vektor satuan dengan arah negatif juga ada, tetapi merupakan lawan dari vektor basis yang dipilih.
@@ -111,7 +137,7 @@ Matriks pertama adalah vektor satuan sepanjang sumbu <InlineMath math="x" />, ma
 Di ruang, vektor punya tiga komponen. <InlineMath math="(2 \; 1 \; 3)" /> berarti <InlineMath math="2\vec{i} + \vec{j} + 3\vec{k}" />: 2 searah x, 1 searah y, 3 searah z. Jalur ketiga langkah itu berakhir di ujung panah. Putar adegannya untuk melihat langkah-langkahnya dari segala sisi.
 
 <MathVisual
-  title="Vektor di ruang dan langkah vektor satuannya"
+  title={<>Vektor di ruang dan langkah vektor satuannya</>}
   description={<>Vektor <InlineMath math="(2 \; 1 \; 3)" /> dari titik asal, dengan jalur 2 searah x, 1 searah y, dan 3 searah z.</>}
   labels={{
     v: <InlineMath math="(2 \; 1 \; 3)" />,
@@ -146,20 +172,11 @@ Transposnya adalah vektor baris:
 
 <BlockMath math="\vec{b}^T = (b_1 \; b_2 \; \ldots \; b_m)" />
 
-<Mermaid
-  title="Vektor kolom dan vektor baris saling transpose"
-  description="Transpose mengubah vektor kolom menjadi vektor baris dengan komponen yang sama dan urutan yang sama, dan sebaliknya."
-  chart={`flowchart LR
-  C["Vektor kolom: komponen dari atas ke bawah"] -->|"transpose"| R["Vektor baris: komponen yang sama dari kiri ke kanan"]
-  R -->|"transpose"| C`}
-/>
-
 ## Aplikasi Vektor Kolom dan Vektor Baris
 
 Vektor kolom dan vektor baris memiliki bentuk yang berbeda dalam operasi seperti perkalian matriks. Gunakan bentuk yang konsisten agar dimensi matriksnya cocok.
 
 Dalam komputasi, vektor kolom dan vektor baris digunakan untuk merepresentasikan data dan variabel dalam pemrograman numerik, pemrosesan gambar, kecerdasan buatan, dan banyak bidang lainnya.
-
 
 Bentuk baris dan kolom menentukan **bentuk hasil kali**. Ambil dua komponen yang sudah kita gunakan:
 

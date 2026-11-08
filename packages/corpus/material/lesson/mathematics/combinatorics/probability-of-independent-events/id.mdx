@@ -64,7 +64,7 @@ Rumus ini menunjukkan bahwa probabilitas kedua kejadian <InlineMath math="A" /> 
 Bayangkan semua hasil sebagai persegi satuan peluang. Kejadian <InlineMath math="A" />, dadu pertama genap, mengambil separuh kiri, lebarnya <InlineMath math="\tfrac12" />. Kejadian <InlineMath math="B" />, dadu kedua 1 atau 2, mengambil sepertiga bawah, tingginya <InlineMath math="\tfrac13" />. Karena kedua dadu tidak saling memengaruhi, irisannya adalah persegi panjang seluas <InlineMath math="\tfrac12 \cdot \tfrac13 = \tfrac16" />, yaitu <InlineMath math="P(A \cap B)" />.
 
 <MathVisual
-  title="Kebebasan sebagai persegi panjang seluas P(A)P(B)"
+  title={<>Kebebasan sebagai persegi panjang seluas P(A)P(B)</>}
   description={<>Persegi satuan dengan jalur <InlineMath math="A" /> selebar setengah, jalur <InlineMath math="B" /> setinggi sepertiga, dan irisannya seluas seperenam.</>}
   labels={{
     a: <InlineMath math="A" />,
@@ -143,11 +143,11 @@ Kedua kejadian **saling bebas** karena hasil dadu tidak memengaruhi hasil koin.
 Lempar dadu dan koin: ada <InlineMath math="6 \cdot 2 = 12" /> pasangan yang sama mungkin. Tiga yang disorot adalah bilangan genap dengan angka, jadi <InlineMath math="P = \frac{3}{12} = \frac12 \cdot \frac12" />. Setiap kolom kisi punya bagian angka yang sama, dan itulah wujud kebebasan.
 
 <MathVisual
-  title="Dua belas hasil dadu dan koin"
-  description="Hasil dadu ke kanan dan koin ke atas, dengan tiga hasil genap dan angka disorot."
+  title={<>Dua belas hasil dadu dan koin</>}
+  description={<>Hasil dadu ke kanan dan koin ke atas, dengan tiga hasil genap dan angka disorot.</>}
   labels={{
-    c12: "angka",
-    c11: "gambar",
+    c12: <>angka</>,
+    c11: <>gambar</>,
   }}
   scene={{
     space: "plane",
@@ -210,13 +210,14 @@ Untuk menyelesaikan soal probabilitas kejadian saling bebas, ikuti langkah berik
 4. **Terapkan rumus** <InlineMath math="P(A \cap B) = P(A) \times P(B)" />
 5. **Periksa hasil** apakah masuk akal dalam konteks masalah
 
-<Mermaid
-  title="Mengecek kebebasan sebelum mengalikan"
-  description="Kalikan peluangnya hanya setelah kamu mengecek bahwa mengetahui satu kejadian tidak mengubah peluang kejadian lainnya."
-  chart={`flowchart TD
-  A["Dua kejadian"] --> Q{"Apakah mengetahui satu tidak mengubah peluang yang lain?"}
-  Q -->|"Ya, saling bebas"| M1["Kalikan kedua peluang"]
-  Q -->|"Tidak, bergantung"| M2["Kalikan dengan peluang bersyarat"]`}
+Untuk kejadian saling bebas, batang ketiga adalah hasil kali dua batang pertama. Dadu pertama genap berpeluang <InlineMath math="\frac12" />, dadu kedua 1 atau 2 berpeluang <InlineMath math="\frac13" />, dan keduanya bersama-sama berpeluang <InlineMath math="\frac12 \cdot \frac13 = \frac16" />.
+
+<BarChart
+  title={<>Aturan perkalian untuk kejadian saling bebas</>}
+  description={<>Batang untuk <InlineMath math="P(A) = \frac12" />, <InlineMath math="P(B) = \frac13" />, dan <InlineMath math="P(A \cap B) = \frac16" />.</>}
+  yAxisLabel="Peluang"
+  data={[["A", 1 / 2], ["B", 1 / 3], ["A dan B", 1 / 6]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Peluang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ### Pemeriksaan Hasil Akhir

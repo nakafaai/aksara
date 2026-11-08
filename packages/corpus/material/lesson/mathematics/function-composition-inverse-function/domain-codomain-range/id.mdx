@@ -40,6 +40,37 @@ Pada bilangan real, akar kuadrat memerlukan bilangan di dalam akar yang tidak ne
 
 Jadi, domain fungsi <InlineMath math="g(x) = \sqrt{x}" /> adalah semua bilangan nyata yang lebih besar dari atau sama dengan <InlineMath math="0" /> (<InlineMath math="x \ge 0" />).
 
+Domain menentukan titik mana saja yang ada di grafik. Dengan <InlineMath math="f(x) = x^2" /> dan domain <InlineMath math="\{0, 1, 2, 3\}" />, grafiknya hanya empat titik <InlineMath math="(0, 0)" />, <InlineMath math="(1, 1)" />, <InlineMath math="(2, 4)" />, dan <InlineMath math="(3, 9)" /> pada parabola yang digambar samar. Ubah domainnya, maka kumpulan titiknya ikut berubah.
+
+<MathVisual
+  title={<>Grafik yang terdiri atas empat titik</>}
+  description={<>Titik-titik <InlineMath math="y = x^2" /> untuk masukan 0, 1, 2, dan 3, pada parabola yang digambar samar di belakangnya.</>}
+  labels={{
+    d0: <InlineMath math="(0, 0)" />,
+    d1: <InlineMath math="(1, 1)" />,
+    d2: <InlineMath math="(2, 4)" />,
+    d3: <InlineMath math="(3, 9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.8 }, y: { min: -0.5, max: 9.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "faint", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 3.1 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 3, y: 9 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "d0", objectId: "d0", at: { x: 0, y: 0 }, placement: "above-left" },
+      { key: "d1", objectId: "d1", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "d2", objectId: "d2", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "d3", objectId: "d3", at: { x: 3, y: 9 }, placement: "left" },
+    ],
+  }}
+/>
+
 ## Kodomain
 
 **Kodomain** adalah himpunan sasaran yang ditetapkan sebagai bagian dari definisi fungsi. Setiap output harus menjadi anggota himpunan ini, tetapi fungsi tidak harus mencapai setiap anggotanya.
@@ -97,7 +128,7 @@ Tidak semua anggota kodomain menjadi bagian dari range.
 Di sini <InlineMath math="f(x) = x^2" /> memetakan domain <InlineMath math="\{-2, -1, 0, 1, 2\}" /> ke kodomain <InlineMath math="\{0, 1, 2, 3, 4\}" />. Setiap masukan punya tepat satu panah, tetapi hanya <InlineMath math="0" />, <InlineMath math="1" />, dan <InlineMath math="4" /> yang menerima panah. Nilai-nilai itu membentuk daerah hasil, sedangkan <InlineMath math="2" /> dan <InlineMath math="3" /> tetap di kodomain tanpa tercapai.
 
 <MathVisual
-  title="Domain, kodomain, dan daerah hasil x kuadrat"
+  title={<>Domain, kodomain, dan daerah hasil x kuadrat</>}
   description={<>Panah dari setiap masukan ke kuadratnya. Keluaran yang disorot, 0, 1, dan 4, membentuk daerah hasil di dalam kodomain.</>}
   labels={{
     a0: <InlineMath math="-2" />,
@@ -154,8 +185,8 @@ Domain mencegah masukan tidak sah seperti pembagian dengan nol. Kodomain menetap
 Untuk melihat perbedaannya, batasi contoh kuadrat pada <InlineMath math="D=\{-2,-1,0,1,2\}" /> dan pilih <InlineMath math="K=\{0,1,2,3,4\}" />. **Setiap masukan memiliki satu panah**, tetapi beberapa anggota kodomain tidak menerima panah.
 
 <Mermaid
-  title="Domain Kodomain dan Keluaran yang Tercapai"
-  description="Panah menunjukkan pemetaan kuadrat dari lima masukan. Range berada di dalam kodomain. Dua anggota kodomain tidak dicapai."
+  title={<>Domain Kodomain dan Keluaran yang Tercapai</>}
+  description={<>Panah menunjukkan pemetaan kuadrat dari lima masukan. Range berada di dalam kodomain. Dua anggota kodomain tidak dicapai.</>}
   chart={`flowchart LR
   subgraph D["Domain D"]
     d1["-2"]
@@ -185,11 +216,11 @@ Panah mencapai <InlineMath math="0,1,4" />, sehingga <InlineMath math="R=\{0,1,4
 Pada grafik, gagasan yang sama menjadi selang. Dengan domain <InlineMath math="-2 \le x \le 2" />, parabola <InlineMath math="y = x^2" /> mencakup ketinggian dari <InlineMath math="0" /> sampai <InlineMath math="4" />. Selang di sumbu y itu adalah daerah hasilnya, sedangkan kodomain seperti seluruh bilangan real bisa lebih besar.
 
 <MathVisual
-  title="Domain dan daerah hasil pada grafik"
-  description={<>Parabola <InlineMath math="y = x^2" /> pada domain dari −2 sampai 2, dengan daerah hasil dari 0 sampai 4 ditandai di sumbu y.</>}
+  title={<>Domain dan daerah hasil pada grafik</>}
+  description={<>Parabola <InlineMath math="y = x^2" /> pada domain dari <InlineMath math="-2" /> sampai <InlineMath math="2" />, dengan daerah hasil dari 0 sampai 4 ditandai di sumbu y.</>}
   labels={{
-    dom: "domain",
-    rng: "daerah hasil",
+    dom: <>domain</>,
+    rng: <>daerah hasil</>,
   }}
   scene={{
     space: "plane",

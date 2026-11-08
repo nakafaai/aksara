@@ -34,7 +34,7 @@ A table lists all possible combinations:
 Each package is one pair (platform, subject), so you can lay them out as a grid: 3 rows for the platforms and 4 columns for the subjects. Every dot is one package, and the grid holds <InlineMath math="3 \times 4 = 12" /> dots. That is the multiplication rule in one picture.
 
 <MathVisual
-  title="Twelve packages as a 3 by 4 grid"
+  title={<>Twelve packages as a 3 by 4 grid</>}
   description={<>Three rows of platforms times four columns of subjects give twelve dots, one for each package.</>}
   labels={{
     g34: <InlineMath math="3 \times 4 = 12" />,
@@ -69,7 +69,7 @@ In a **tree diagram**, each branch records one choice. A complete path from the 
 
 For the same package selection, the first branches choose a platform and the next branches choose a subject.
 
-<Mermaid title="Two levels of package choices" description="Each of three platform choices branches into four subject choices." chart={`flowchart LR
+<Mermaid title={<>Two levels of package choices</>} description={<>Each of three platform choices branches into four subject choices.</>} chart={`flowchart LR
   S["Start"]
   S --> A["Platform A"]
   A --> A0["Mathematics"]
@@ -88,7 +88,7 @@ For the same package selection, the first branches choose a platform and the nex
   C --> C3["Biology"]
 `} />
 
-Each platform opens four subject branches. Thus **each complete path** chooses exactly one platform and one subject. For example, Start → Platform A → Physics means Platform A for Physics.
+Each platform opens four subject branches. Thus **each complete path** chooses exactly one platform and one subject. For example, the path from Start to Platform A to Physics means Platform A for Physics.
 
 <BlockMath math="3 \times 4 = 12" />
 
@@ -117,6 +117,17 @@ Multiply the choices for the three slots:
 <BlockMath math="k_3 = 2 \text{ (symbol choices)}" />
 <BlockMath math="\begin{aligned} &amp;\text{Total different codes} \\ &amp;= 3 \times 5 \times 2 \\ &amp;= 30 \text{ codes} \end{aligned}" />
 </MathContainer>
+
+Each slot of the code has its own number of choices: <InlineMath math="3" /> letters, <InlineMath math="5" /> digits and <InlineMath math="2" /> colors. The bars show the three slots side by side, and the number of codes is their product, <InlineMath math="3 \times 5 \times 2 = 30" />.
+
+<BarChart
+  title={<>Choices in each slot of the code</>}
+  description={<>The number of choices in the letter, digit and color slots, whose product is 30.</>}
+  yAxisLabel="Choices"
+  data={[["letter", 3], ["digit", 5], ["color", 2]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Choices", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Cases with Restrictions
 
 Restrictions can change the number of choices from one slot to the next. Decide for each slot whether an **earlier choice** removes an option, because that is what decides whether the factors stay equal. The examples below work through both cases.
@@ -144,8 +155,8 @@ For the same case with repetition allowed:
 Compare the two cases for three-digit numbers made from the digits <InlineMath math="1" /> to <InlineMath math="5" />. Without repetition the slots offer <InlineMath math="5 \times 4 \times 3 = 60" /> numbers, and with repetition <InlineMath math="5 \times 5 \times 5 = 125" />. Allowing repeats keeps every slot at 5 choices, so the count more than doubles.
 
 <BarChart
-  title="With and without repetition"
-  description="The number of three-digit numbers from the digits 1 to 5, without and with repetition."
+  title={<>With and without repetition</>}
+  description={<>The number of three-digit numbers from the digits 1 to 5, without and with repetition.</>}
   yAxisLabel="Numbers"
   data={[["no repetition", 5 * 4 * 3], ["repetition", 5 * 5 * 5]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Numbers", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

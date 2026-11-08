@@ -35,8 +35,8 @@ The composite is defined only for inputs <InlineMath math="x" /> in the domain o
 Follow each input through the machines: first <InlineMath math="g(x) = x^2 - 3" />, then <InlineMath math="f(u) = 2u + 1" />. The input <InlineMath math="2" /> goes to <InlineMath math="1" /> and then to <InlineMath math="3" />. The inputs <InlineMath math="-1" /> and <InlineMath math="1" /> both reach <InlineMath math="-2" /> after <InlineMath math="g" />, so they end at the same output <InlineMath math="-3" />.
 
 <MathVisual
-  title="Tracing inputs through g and then f"
-  description={<>Three vertical axes for <InlineMath math="x" />, <InlineMath math="g(x)" /> and <InlineMath math="f(g(x))" />, with the paths of the inputs −1, 0, 1 and 2.</>}
+  title={<>Tracing inputs through g and then f</>}
+  description={<>Three vertical axes for <InlineMath math="x" />, <InlineMath math="g(x)" /> and <InlineMath math="f(g(x))" />, with the paths of the inputs <InlineMath math="-1, 0, 1" /> and <InlineMath math="2" />.</>}
   labels={{
     x: <InlineMath math="x" />,
     g: <InlineMath math="g(x)" />,
@@ -115,13 +115,23 @@ For this item, Promo A (<InlineMath math="p \circ d" />) gives a final price of 
 Follow the **intermediate price** after the first operation. In Promo B, the percentage discount also scales the fixed reduction, making its effective deduction smaller.
 
 <Mermaid
-  title="Two Promotion Orders"
-  description="Both paths start at two hundred thousand rupiah. Reversing the percentage discount and fixed deduction changes the final price."
+  title={<>Two Promotion Orders</>}
+  description={<>Both paths start at two hundred thousand rupiah. Reversing the percentage discount and fixed deduction changes the final price.</>}
   chart={`flowchart LR
   A["Rp200000"] -->|"20% discount"| A1["Rp160000"]
   A1 -->|"Subtract Rp25,000"| A2["Rp135000"]
   B["Rp200000"] -->|"Subtract Rp25,000"| B1["Rp175000"]
   B1 -->|"20% discount"| B2["Rp140000"]`}
+/>
+
+Here are the two final prices side by side. Taking the <InlineMath math="20\%" /> discount first and then subtracting the fixed amount ends at <InlineMath math="\text{Rp}135{,}000" />, while the other order ends at <InlineMath math="\text{Rp}140{,}000" />. The same two functions in a different order give a different result.
+
+<BarChart
+  title={<>Final price for each order of the promotions</>}
+  description={<>The final price when the percentage discount comes first and when the fixed deduction comes first.</>}
+  yAxisLabel="Final price (Rp)"
+  data={[["discount first", 200000 * 0.8 - 25000], ["deduction first", (200000 - 25000) * 0.8]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Final price (Rp)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Comparing Both Orders of Composition
@@ -162,7 +172,7 @@ Because <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" />, function compo
 Both orders as graphs: <InlineMath math="(f \circ g)(x) = 2(x^2 - 3) + 1 = 2x^2 - 5" /> and <InlineMath math="(g \circ f)(x) = (2x + 1)^2 - 3 = 4x^2 + 4x - 2" />. They are two different parabolas. At <InlineMath math="x = 1" /> the first gives <InlineMath math="-3" /> and the second gives <InlineMath math="6" />, so swapping the order changes the function.
 
 <MathVisual
-  title="The two orders of composition give different parabolas"
+  title={<>The two orders of composition give different parabolas</>}
   description={<>The parabolas <InlineMath math="2x^2 - 5" /> and <InlineMath math="4x^2 + 4x - 2" /> with their values at <InlineMath math="x = 1" />: <InlineMath math="-3" /> and <InlineMath math="6" />.</>}
   labels={{
     fg: <InlineMath math="f \circ g" />,

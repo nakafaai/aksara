@@ -64,7 +64,7 @@ This formula shows that the probability of both events <InlineMath math="A" /> a
 Picture all outcomes as a unit square of probability. Event <InlineMath math="A" />, an even first die, takes the left half, width <InlineMath math="\tfrac12" />. Event <InlineMath math="B" />, a second die of 1 or 2, takes the bottom third, height <InlineMath math="\tfrac13" />. Because the dice do not affect each other, the overlap is a rectangle of area <InlineMath math="\tfrac12 \cdot \tfrac13 = \tfrac16" />, which is <InlineMath math="P(A \cap B)" />.
 
 <MathVisual
-  title="Independence as a rectangle of area P(A)P(B)"
+  title={<>Independence as a rectangle of area P(A)P(B)</>}
   description={<>A unit square with the strip <InlineMath math="A" /> of width one half, the strip <InlineMath math="B" /> of height one third, and their overlap of area one sixth.</>}
   labels={{
     a: <InlineMath math="A" />,
@@ -143,11 +143,11 @@ Both events are **independent** because the result of the die does not affect th
 Roll a die and toss a coin: there are <InlineMath math="6 \cdot 2 = 12" /> equally likely pairs. The highlighted three are an even number with heads, so <InlineMath math="P = \frac{3}{12} = \frac12 \cdot \frac12" />. Each column of the grid has the same share of heads, which is what independence looks like.
 
 <MathVisual
-  title="Twelve outcomes of a die and a coin"
-  description="Die results across and the coin up, with the three outcomes even and heads highlighted."
+  title={<>Twelve outcomes of a die and a coin</>}
+  description={<>Die results across and the coin up, with the three outcomes even and heads highlighted.</>}
   labels={{
-    c12: "heads",
-    c11: "tails",
+    c12: <>heads</>,
+    c11: <>tails</>,
   }}
   scene={{
     space: "plane",
@@ -210,13 +210,14 @@ To solve probability problems involving independent events, follow these steps:
 4. **Apply the formula** <InlineMath math="P(A \cap B) = P(A) \times P(B)" />
 5. **Check the result** to see if it makes sense in the problem context
 
-<Mermaid
-  title="Checking independence before multiplying"
-  description="Multiply the probabilities only after you have checked that knowing one event leaves the other probability unchanged."
-  chart={`flowchart TD
-  A["Two events"] --> Q{"Does knowing one leave the chance of the other unchanged?"}
-  Q -->|"Yes, independent"| M1["Multiply the two probabilities"]
-  Q -->|"No, dependent"| M2["Multiply by the conditional probability"]`}
+For independent events the third bar is the product of the first two. An even first die has <InlineMath math="\frac12" />, a second die of 1 or 2 has <InlineMath math="\frac13" />, and both together have <InlineMath math="\frac12 \cdot \frac13 = \frac16" />.
+
+<BarChart
+  title={<>The product rule for independent events</>}
+  description={<>Bars for <InlineMath math="P(A) = \frac12" />, <InlineMath math="P(B) = \frac13" /> and <InlineMath math="P(A \cap B) = \frac16" />.</>}
+  yAxisLabel="Probability"
+  data={[["A", 1 / 2], ["B", 1 / 3], ["A and B", 1 / 6]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ### Checks for the Final Answer

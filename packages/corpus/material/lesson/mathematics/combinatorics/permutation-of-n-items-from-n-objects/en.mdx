@@ -42,16 +42,6 @@ For three distinct objects A, B, and C, the first position determines two orders
 
 <BlockMath math="3!=3\times2\times1=6" />
 
-<Mermaid
-  title="Filling every place in turn"
-  description="Each place has one fewer object left than the place before, so the counts multiply to n factorial."
-  chart={`flowchart LR
-  A["First place: every object can go"] --> B["Second place: one object fewer"]
-  B --> C["Each next place: one fewer again"]
-  C --> D["Last place: one object left"]
-  D --> E["Multiply all the counts: the factorial"]`}
-/>
-
 ## Factorial Definition
 
 The factorial <InlineMath math="n!" /> is the product of the positive integers from <InlineMath math="n" /> down to <InlineMath math="1" />:
@@ -67,7 +57,7 @@ The factorial <InlineMath math="n!" /> is the product of the positive integers f
 Factorials grow fast. The bars show <InlineMath math="n!" /> for <InlineMath math="n = 1" /> to <InlineMath math="7" />: <InlineMath math="1, 2, 6, 24, 120, 720, 5040" />. Each bar is the previous one multiplied by the next whole number, because one more object adds one more choice for the first place.
 
 <BarChart
-  title="How fast the factorial grows"
+  title={<>How fast the factorial grows</>}
   description={<>Bar <InlineMath math="n" /> shows <InlineMath math="n!" /> for <InlineMath math="n = 1" /> to <InlineMath math="7" />.</>}
   yAxisLabel="Orders"
   data={Array.from({ length: 7 }, (_, i) => {
@@ -100,7 +90,7 @@ A family consisting of <InlineMath math="6" /> members will **sit in a row** on 
 Here are all the orders of three objects <InlineMath math="A" />, <InlineMath math="B" /> and <InlineMath math="C" />, one order per row. The first place has 3 choices, the second 2 and the last 1, so there are exactly <InlineMath math="3! = 6" /> rows and no order appears twice.
 
 <MathVisual
-  title="All six orders of A, B and C"
+  title={<>All six orders of A, B and C</>}
   description={<>Six rows, each a different order of A, B and C: <InlineMath math="3! = 3 \cdot 2 \cdot 1 = 6" />.</>}
   labels={{
     o00: <InlineMath math="A" />,
@@ -197,6 +187,16 @@ Expand <InlineMath math="5!" /> **one factor at a time**:
 <BlockMath math="\begin{aligned}5P_3 &amp;=\frac{5!}{(5-3)!}=\frac{5!}{2!}\\ &amp;=\frac{5\times4\times3\times2\times1}{2\times1}\\ &amp;=\frac{120}{2}=60\text{ ways}\end{aligned}" />
 
 In permutation of <InlineMath math="n" /> items from <InlineMath math="n" /> objects, **no objects are left over** and **all positions must be filled**.
+
+Arranging only <InlineMath math="r" /> of <InlineMath math="5" /> objects stops the product early: <InlineMath math="5, 20, 60, 120, 120" /> for <InlineMath math="r = 1" /> to <InlineMath math="5" />. The last two bars are equal because the final place has only one object left, so <InlineMath math="{}_5P_4 = {}_5P_5 = 5!" />.
+
+<BarChart
+  title={<>Partial and complete permutations of five objects</>}
+  description={<>Bar <InlineMath math="r" /> shows the number of ordered arrangements of <InlineMath math="r" /> of 5 objects.</>}
+  yAxisLabel="Arrangements"
+  data={[["1", 5], ["2", 5 * 4], ["3", 5 * 4 * 3], ["4", 5 * 4 * 3 * 2], ["5", 5 * 4 * 3 * 2 * 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Arrangements", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Exercises
 

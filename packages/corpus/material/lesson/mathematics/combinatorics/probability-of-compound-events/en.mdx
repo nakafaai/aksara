@@ -19,17 +19,6 @@ Suppose you toss a die and a coin. One event might focus only on the die or only
 
 Two events either share outcomes or exclude each other, and that difference decides which formula applies. One shared outcome proves that an overlap exists. To prove mutual exclusivity, you must show there are **no shared outcomes**. Independence answers a different question: whether information about one event changes the probability of the other.
 
-<Mermaid
-  title="Which rule for a compound event"
-  description="For or, add and subtract any overlap. For and, multiply, using the conditional probability when the events are dependent."
-  chart={`flowchart TD
-  A["Compound event"] --> Q{"Or, or and?"}
-  Q -->|"or"| U["Add the probabilities and subtract the overlap"]
-  Q -->|"and"| I{"Independent?"}
-  I -->|"Yes"| M1["Multiply the probabilities"]
-  I -->|"No"| M2["Multiply by the conditional probability"]`}
-/>
-
 ### Mutually Exclusive Events
 
 Two events are **mutually exclusive** when they cannot occur in the same trial. If event <InlineMath math="A" /> occurs, event <InlineMath math="B" /> cannot occur, and vice versa.
@@ -92,7 +81,6 @@ Intersection (red and face cards): <InlineMath math="6 \text{ cards}" /> (Jack, 
 | Black | 6 | 20 | 26 |
 | Total | 12 | 40 | 52 |
 
-
 <MathContainer>
 <BlockMath math="P(A) = \frac{26}{52} = \frac{1}{2}" />
 <BlockMath math="P(B) = \frac{12}{52} = \frac{3}{13}" />
@@ -103,7 +91,7 @@ Intersection (red and face cards): <InlineMath math="6 \text{ cards}" /> (Jack, 
 With one die let <InlineMath math="A = \{2, 4, 6\}" /> and <InlineMath math="B = \{4, 5, 6\}" />. The circles overlap in <InlineMath math="\{4, 6\}" />, so adding <InlineMath math="P(A) + P(B) = \frac36 + \frac36" /> would count <InlineMath math="4" /> and <InlineMath math="6" /> twice. Subtract the overlap once: <InlineMath math="P(A \cup B) = \frac36 + \frac36 - \frac26 = \frac46" />.
 
 <MathVisual
-  title="Overlapping events count the overlap once"
+  title={<>Overlapping events count the overlap once</>}
   description={<>Two overlapping circles: only <InlineMath math="A" /> holds 2, only <InlineMath math="B" /> holds 5, and the overlap holds 4 and 6.</>}
   labels={{
     a: <InlineMath math="A" />,
@@ -160,8 +148,8 @@ Since the result of the first die does not affect the second die, both events ar
 Independent events multiply, and a tree shows why. First the die: even or odd, each <InlineMath math="\frac12" />. Then the coin: heads or tails, each <InlineMath math="\frac12" />, whatever the die showed. Each path multiplies its branches, so <InlineMath math="P(\text{even and heads}) = \frac12 \cdot \frac12 = \frac14" />, and the four paths add to <InlineMath math="1" />.
 
 <MathVisual
-  title="A probability tree for a die and a coin"
-  description="A tree with the die result first and the coin second, each branch labelled one half, and the product one quarter at each end."
+  title={<>A probability tree for a die and a coin</>}
+  description={<>A tree with the die result first and the coin second, each branch labelled one half, and the product one quarter at each end.</>}
   labels={{
     b0: <InlineMath math="\text{even}\ \tfrac12" />,
     b1: <InlineMath math="\text{odd}\ \tfrac12" />,
@@ -258,6 +246,16 @@ In a standard deck, red even-numbered cards have values <InlineMath math="2,4,6,
 
 <BlockMath math="P(A\cap B)=\frac{10}{52}=\frac{5}{26}" />
 
+Compare the four probabilities for <InlineMath math="A = \{2, 4, 6\}" /> and <InlineMath math="B = \{4, 5, 6\}" /> on one die. The union bar is shorter than the two event bars stacked, by exactly the intersection: <InlineMath math="\frac36 + \frac36 - \frac26 = \frac46" />.
+
+<BarChart
+  title={<>Union and intersection on one die</>}
+  description={<>Bars for <InlineMath math="P(A)" />, <InlineMath math="P(B)" />, the intersection and the union of the events.</>}
+  yAxisLabel="Probability"
+  data={[["A", 3 / 6], ["B", 3 / 6], ["A and B", 2 / 6], ["A or B", 4 / 6]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Problem Solving Strategy
 
 Start a compound-event problem by **identifying the relationship between the events**. Keywords help, but the probability mechanism is the final test:
@@ -320,8 +318,8 @@ Since drawing is **without replacement**, conditions change after the first draw
 
 Total possibilities is <InlineMath math="6 \times 6 = 36" />
 
-- Event <InlineMath math="A" /> (sum is <InlineMath math="7" />): <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> → <InlineMath math="6 \text{ ways}" />
-- Event <InlineMath math="B" /> (sum is <InlineMath math="11" />): <InlineMath math="(5,6)" />, <InlineMath math="(6,5)" /> → <InlineMath math="2 \text{ ways}" />
+- Event <InlineMath math="A" /> (sum is <InlineMath math="7" />): <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> <InlineMath math="\rightarrow 6 \text{ ways}" />
+- Event <InlineMath math="B" /> (sum is <InlineMath math="11" />): <InlineMath math="(5,6)" />, <InlineMath math="(6,5)" /> <InlineMath math="\rightarrow 2 \text{ ways}" />
 
 Both events are mutually exclusive because it's impossible for the dice sum to be both <InlineMath math="7" /> and <InlineMath math="11" />.
 

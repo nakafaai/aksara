@@ -18,8 +18,8 @@ Any object can therefore serve as the reference point. Linear orders that differ
 Turn the left table one seat clockwise and you get the right table. Every person still has the same neighbors in the same order, so the two pictures are one circular arrangement, not two. Each arrangement of <InlineMath math="4" /> people appears <InlineMath math="4" /> times among the <InlineMath math="4! = 24" /> lines, which leaves <InlineMath math="24 / 4 = 3! = 6" />.
 
 <MathVisual
-  title="A rotation does not make a new arrangement"
-  description="Four people around two round tables. The right table is the left one turned by one seat, with the same neighbors."
+  title={<>A rotation does not make a new arrangement</>}
+  description={<>Four people around two round tables. The right table is the left one turned by one seat, with the same neighbors.</>}
   labels={{
     la: <InlineMath math="A" />,
     lb: <InlineMath math="B" />,
@@ -93,13 +93,14 @@ For <InlineMath math="3" /> children: <InlineMath math="P_3 = (3-1)! = 2! = 2 \t
 
 The formula <InlineMath math="(n-1)!" /> identifies rotations but still treats mirror images as different. Treating mirror images as different is appropriate for people facing the center of a table because reversing the order swaps left and right neighbors. A bracelet can also be flipped. For <InlineMath math="n\geq3" /> distinct beads, every circular order pairs with a different mirror image, so the bracelet has <InlineMath math="\frac{(n-1)!}{2}" /> arrangements.
 
-<Mermaid
-  title="Why a round table removes the rotations"
-  description="Fixing one person removes the rotations, and the remaining people fill the other seats in a row."
-  chart={`flowchart LR
-  A["People around a round table"] --> B["Fix one person in a seat"]
-  B --> C["Arrange everyone else as in a row"]
-  C --> D["Factorial of one fewer than the number of people"]`}
+Five people can stand in a row in <InlineMath math="5! = 120" /> ways, but around a table only <InlineMath math="4! = 24" /> arrangements are different. Every circular arrangement appears <InlineMath math="5" /> times among the rows, once for each rotation, and <InlineMath math="120 / 5 = 24" />.
+
+<BarChart
+  title={<>Five people in a row and around a table</>}
+  description={<>The number of arrangements of five people in a row and around a round table.</>}
+  yAxisLabel="Arrangements"
+  data={[["in a row", 5 * 4 * 3 * 2 * 1], ["around a table", 4 * 3 * 2 * 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Arrangements", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Counting Circular Arrangements
@@ -115,7 +116,7 @@ Five students will sit **around a round table** for discussion. The number of wa
 The bars show <InlineMath math="(n-1)!" /> for <InlineMath math="n = 3" /> to <InlineMath math="7" /> people around a table: <InlineMath math="2, 6, 24, 120, 720" />. Each value is <InlineMath math="n" /> times smaller than the <InlineMath math="n!" /> ways to line the same people up in a row.
 
 <BarChart
-  title="Circular arrangements of 3 to 7 people"
+  title={<>Circular arrangements of 3 to 7 people</>}
   description={<>Bar <InlineMath math="n" /> shows <InlineMath math="(n-1)!" />, the circular arrangements of <InlineMath math="n" /> people.</>}
   yAxisLabel="Arrangements"
   data={Array.from({ length: 5 }, (_, i) => {
@@ -137,7 +138,7 @@ When there are **additional conditions** such as certain objects must be adjacen
 Example: <InlineMath math="4" /> married couples sit in a circle, each couple must be adjacent.
 
 **Solution strategy**:
-1. **Group** each couple as one unit → <InlineMath math="4 \text{ units}" />
+1. **Group** each couple as one unit <InlineMath math="\rightarrow 4 \text{ units}" />
 2. **Arrange these units** in a circle: <InlineMath math="(4-1)! = 3! = 6 \text{ ways}" />
 3. **Arrange positions** within each couple: <InlineMath math="2! \text{ ways}" /> per couple
 4. **Total calculation**: <InlineMath math="3! \times (2!)^4 = 6 \times 2^4 = 6 \times 16 = 96 \text{ ways}" />
@@ -189,7 +190,7 @@ The bracelet can be made in <InlineMath math="2\,520" /> different arrangements.
 Solution steps:
 
 Given: <InlineMath math="5" /> married couples (<InlineMath math="10 \text{ people}" />), each couple must be adjacent
-**Grouping technique**: Consider each couple as one unit → <InlineMath math="5 \text{ units}" />
+**Grouping technique**: Consider each couple as one unit <InlineMath math="\rightarrow 5 \text{ units}" />
 
 Circular permutation of <InlineMath math="5 \text{ units}" />: <InlineMath math="(5-1)! = 4! = 4 \times 3 \times 2 \times 1 = 24" />
 Each couple can exchange positions: <InlineMath math="2! = 2 \text{ ways}" /> per couple

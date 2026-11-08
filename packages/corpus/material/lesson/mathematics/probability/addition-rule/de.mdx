@@ -88,7 +88,7 @@ Direktes Addieren ergibt <InlineMath math="5/36 + 6/36 = 11/36" />. Das Paar <In
 Im Raster zweier Würfel liegen die Pasche auf einer Diagonale und die Summen <InlineMath math="8" /> auf einer anderen. Sie kreuzen sich bei <InlineMath math="(4, 4)" />, einem Pasch mit Summe 8. Zählst du beide Listen, zählst du diesen Punkt doppelt, also <InlineMath math="P = \frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.
 
 <MathVisual
-  title="Pasche und Summe acht teilen ein Ergebnis"
+  title={<>Pasche und Summe acht teilen ein Ergebnis</>}
   description={<>Die 36 Ergebnisse zweier Würfel mit den sechs Paschen, den fünf Summen 8 und ihrem gemeinsamen Ergebnis <InlineMath math="(4, 4)" />.</>}
   labels={{
     d44: <InlineMath math="(4, 4)" />,
@@ -144,10 +144,10 @@ Im Raster zweier Würfel liegen die Pasche auf einer Diagonale und die Summen <I
 Dieselbe Zählung als Diagramm: <InlineMath math="5" /> Pasche, die keine Summe 8 haben, <InlineMath math="4" /> Summen 8, die keine Pasche sind, und <InlineMath math="1" /> Ergebnis in beiden. Die Vereinigung enthält <InlineMath math="5 + 1 + 4 = 10" /> Ergebnisse, genau wie die Formel.
 
 <MathVisual
-  title="Die Schnittmenge einmal gezählt"
-  description="Zwei sich überschneidende Kreise für Pasche und Summen 8 mit 5, 1 und 4 Ergebnissen in den drei Bereichen."
+  title={<>Die Schnittmenge einmal gezählt</>}
+  description={<>Zwei sich überschneidende Kreise für Pasche und Summen 8 mit 5, 1 und 4 Ergebnissen in den drei Bereichen.</>}
   labels={{
-    a: "Pasche",
+    a: <>Pasche</>,
     b: <InlineMath math="x + y = 8" />,
     onlya: <InlineMath math="5" />,
     onlyb: <InlineMath math="4" />,
@@ -206,13 +206,14 @@ Die beiden Formeln unterscheiden sich in einer Frage, nämlich ob die Ereignisse
 
 Die zweite Formel zieht die Überschneidung ab, weil die Ergebnisse, die zu beiden Ereignissen gehören, doppelt gezählt wurden, einmal für <InlineMath math="A" /> und einmal für <InlineMath math="B" />.
 
-<Mermaid
-  title="Welche Additionsformel gilt"
-  description="Nimm die einfache Summe nur, wenn die Ereignisse kein Ergebnis teilen. Überschneiden sie sich, zieh die gemeinsame Wahrscheinlichkeit einmal ab."
-  chart={`flowchart TD
-  A["Wahrscheinlichkeit des einen oder des anderen Ereignisses"] --> Q{"Können beide zusammen eintreten?"}
-  Q -->|"Nein"| E["Beide Wahrscheinlichkeiten addieren"]
-  Q -->|"Ja"| N["Addieren, dann die Chance für beide einmal abziehen"]`}
+Mit einer Überschneidung stapeln sich die Balken nicht mehr. Pasche haben <InlineMath math="\frac{6}{36}" />, Summen 8 haben <InlineMath math="\frac{5}{36}" />, aber <InlineMath math="(4, 4)" /> gehört zu beiden, also hat eines von beiden <InlineMath math="\frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.
+
+<BarChart
+  title={<>Zwei sich überschneidende Ereignisse addieren</>}
+  description={<>Balken für Pasch, Summe 8, beides und eines von beiden, mit <InlineMath math="\frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.</>}
+  yAxisLabel="Wahrscheinlichkeit"
+  data={[["Pasch", 6 / 36], ["Summe 8", 5 / 36], ["beides", 1 / 36], ["eines von beiden", 10 / 36]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Übung

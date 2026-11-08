@@ -42,16 +42,6 @@ Bei drei verschiedenen Objekten A, B und C gibt es zu jeder Wahl der ersten Posi
 
 <BlockMath math="3!=3\times2\times1=6" />
 
-<Mermaid
-  title="Jeden Platz der Reihe nach füllen"
-  description="Für jeden Platz bleibt ein Objekt weniger als für den vorigen, also multiplizieren sich die Anzahlen zu n Fakultät."
-  chart={`flowchart LR
-  A["Erster Platz: jedes Objekt möglich"] --> B["Zweiter Platz: ein Objekt weniger"]
-  B --> C["Jeder weitere Platz: wieder eins weniger"]
-  C --> D["Letzter Platz: ein Objekt übrig"]
-  D --> E["Alle Anzahlen multiplizieren: die Fakultät"]`}
-/>
-
 ## Definition der Fakultät
 
 Die Fakultät <InlineMath math="n!" /> ist das Produkt der positiven ganzen Zahlen von <InlineMath math="n" /> bis <InlineMath math="1" />:
@@ -67,7 +57,7 @@ Die Fakultät <InlineMath math="n!" /> ist das Produkt der positiven ganzen Zahl
 Fakultäten wachsen schnell. Die Balken zeigen <InlineMath math="n!" /> für <InlineMath math="n = 1" /> bis <InlineMath math="7" />: <InlineMath math="1, 2, 6, 24, 120, 720, 5040" />. Jeder Balken ist der vorige mal die nächste ganze Zahl, weil ein weiteres Objekt eine weitere Wahl für den ersten Platz bringt.
 
 <BarChart
-  title="Wie schnell die Fakultät wächst"
+  title={<>Wie schnell die Fakultät wächst</>}
   description={<>Balken <InlineMath math="n" /> zeigt <InlineMath math="n!" /> für <InlineMath math="n = 1" /> bis <InlineMath math="7" />.</>}
   yAxisLabel="Reihenfolgen"
   data={Array.from({ length: 7 }, (_, i) => {
@@ -100,7 +90,7 @@ Für ein Familienfoto sitzen <InlineMath math="6" /> Familienmitglieder **in ein
 Hier sind alle Reihenfolgen der drei Objekte <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />, eine Reihenfolge pro Zeile. Der erste Platz hat 3 Möglichkeiten, der zweite 2 und der letzte 1, also gibt es genau <InlineMath math="3! = 6" /> Zeilen, und keine Reihenfolge kommt doppelt vor.
 
 <MathVisual
-  title="Alle sechs Reihenfolgen von A, B und C"
+  title={<>Alle sechs Reihenfolgen von A, B und C</>}
   description={<>Sechs Zeilen, jede eine andere Reihenfolge von A, B und C: <InlineMath math="3! = 3 \cdot 2 \cdot 1 = 6" />.</>}
   labels={{
     o00: <InlineMath math="A" />,
@@ -197,6 +187,16 @@ Multipliziere bei <InlineMath math="5!" /> in jedem Schritt **einen weiteren Fak
 <BlockMath math="\begin{aligned}5P_3 &amp;=\frac{5!}{(5-3)!}=\frac{5!}{2!}\\ &amp;=\frac{5\times4\times3\times2\times1}{2\times1}\\ &amp;=\frac{120}{2}=60\text{ Wege}\end{aligned}" />
 
 Bei der Permutation von <InlineMath math="n" /> Elementen aus <InlineMath math="n" /> Objekten bleiben **keine Objekte übrig** und **alle Positionen müssen besetzt sein**.
+
+Ordnest du nur <InlineMath math="r" /> von <InlineMath math="5" /> Objekten an, bricht das Produkt früher ab: <InlineMath math="5, 20, 60, 120, 120" /> für <InlineMath math="r = 1" /> bis <InlineMath math="5" />. Die letzten beiden Balken sind gleich, weil für den letzten Platz nur noch ein Objekt bleibt, also <InlineMath math="{}_5P_4 = {}_5P_5 = 5!" />.
+
+<BarChart
+  title={<>Teilweise und vollständige Permutationen von fünf Objekten</>}
+  description={<>Balken <InlineMath math="r" /> zeigt die Anzahl geordneter Anordnungen von <InlineMath math="r" /> der 5 Objekte.</>}
+  yAxisLabel="Anordnungen"
+  data={[["1", 5], ["2", 5 * 4], ["3", 5 * 4 * 3], ["4", 5 * 4 * 3 * 2], ["5", 5 * 4 * 3 * 2 * 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Anordnungen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Übungen
 

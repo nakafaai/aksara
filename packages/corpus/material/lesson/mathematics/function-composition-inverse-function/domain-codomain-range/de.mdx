@@ -39,6 +39,37 @@ Im Bereich der reellen Zahlen ist die Quadratwurzel einer negativen Zahl nicht d
 
 Die Definitionsmenge von <InlineMath math="g(x) = \sqrt{x}" /> besteht also aus allen reellen Zahlen größer oder gleich <InlineMath math="0" />, das heißt mit <InlineMath math="x \ge 0" />.
 
+Die Definitionsmenge bestimmt, welche Punkte der Graph hat. Mit <InlineMath math="f(x) = x^2" /> und der Definitionsmenge <InlineMath math="\{0, 1, 2, 3\}" /> besteht der Graph nur aus den vier Punkten <InlineMath math="(0, 0)" />, <InlineMath math="(1, 1)" />, <InlineMath math="(2, 4)" /> und <InlineMath math="(3, 9)" /> auf der blass gezeichneten Parabel. Änderst du die Definitionsmenge, ändern sich die Punkte mit.
+
+<MathVisual
+  title={<>Ein Graph aus vier Punkten</>}
+  description={<>Die Punkte von <InlineMath math="y = x^2" /> für die Eingaben 0, 1, 2 und 3 auf der blass dahinter gezeichneten Parabel.</>}
+  labels={{
+    d0: <InlineMath math="(0, 0)" />,
+    d1: <InlineMath math="(1, 1)" />,
+    d2: <InlineMath math="(2, 4)" />,
+    d3: <InlineMath math="(3, 9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.8 }, y: { min: -0.5, max: 9.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "faint", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 3.1 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 3, y: 9 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "d0", objectId: "d0", at: { x: 0, y: 0 }, placement: "above-left" },
+      { key: "d1", objectId: "d1", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "d2", objectId: "d2", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "d3", objectId: "d3", at: { x: 3, y: 9 }, placement: "left" },
+    ],
+  }}
+/>
+
 ## Zielmenge
 
 Die **Zielmenge** wird bei der Definition einer Funktion festgelegt. Sie enthält die Werte, in denen die Ausgaben der Funktion liegen sollen.
@@ -96,7 +127,7 @@ Nicht jedes Element der Zielmenge gehört zur Bildmenge.
 Hier bildet <InlineMath math="f(x) = x^2" /> die Definitionsmenge <InlineMath math="\{-2, -1, 0, 1, 2\}" /> in die Zielmenge <InlineMath math="\{0, 1, 2, 3, 4\}" /> ab. Jede Eingabe hat genau einen Pfeil, aber nur <InlineMath math="0" />, <InlineMath math="1" /> und <InlineMath math="4" /> werden getroffen. Diese Werte bilden die Wertemenge, <InlineMath math="2" /> und <InlineMath math="3" /> bleiben in der Zielmenge, ohne getroffen zu werden.
 
 <MathVisual
-  title="Definitions-, Ziel- und Wertemenge von x Quadrat"
+  title={<>Definitions-, Ziel- und Wertemenge von x Quadrat</>}
   description={<>Pfeile von jeder Eingabe zu ihrem Quadrat. Die hervorgehobenen Ausgaben 0, 1 und 4 bilden die Wertemenge in der Zielmenge.</>}
   labels={{
     a0: <InlineMath math="-2" />,
@@ -153,8 +184,8 @@ Die Definitionsmenge schließt ungültige Eingaben wie eine Division durch null 
 Beschränken wir das Quadratbeispiel auf <InlineMath math="D=\{-2,-1,0,1,2\}" /> und wählen <InlineMath math="K=\{0,1,2,3,4\}" />. **Von jeder Eingabe geht ein Pfeil aus**, aber manche Elemente der Zielmenge werden nicht erreicht.
 
 <Mermaid
-  title="Definitionsmenge Zielmenge und erreichte Ausgaben"
-  description="Pfeile ordnen fünf Eingaben ihre Quadrate zu. Die Bildmenge liegt innerhalb der Zielmenge. Zwei Elemente der Zielmenge werden nicht erreicht."
+  title={<>Definitionsmenge Zielmenge und erreichte Ausgaben</>}
+  description={<>Pfeile ordnen fünf Eingaben ihre Quadrate zu. Die Bildmenge liegt innerhalb der Zielmenge. Zwei Elemente der Zielmenge werden nicht erreicht.</>}
   chart={`flowchart LR
   subgraph D["Definitionsmenge D"]
     d1["-2"]
@@ -184,11 +215,11 @@ Die Pfeile erreichen <InlineMath math="0,1,4" />, also gilt <InlineMath math="R=
 Im Graphen werden dieselben Ideen zu Intervallen. Mit der Definitionsmenge <InlineMath math="-2 \le x \le 2" /> überdeckt die Parabel <InlineMath math="y = x^2" /> die Höhen von <InlineMath math="0" /> bis <InlineMath math="4" />. Dieses Intervall auf der y-Achse ist die Wertemenge, eine Zielmenge wie alle reellen Zahlen kann größer sein.
 
 <MathVisual
-  title="Definitions- und Wertemenge im Graphen"
-  description={<>Die Parabel <InlineMath math="y = x^2" /> über der Definitionsmenge von −2 bis 2, mit der Wertemenge von 0 bis 4 auf der y-Achse markiert.</>}
+  title={<>Definitions- und Wertemenge im Graphen</>}
+  description={<>Die Parabel <InlineMath math="y = x^2" /> über der Definitionsmenge von <InlineMath math="-2" /> bis <InlineMath math="2" />, mit der Wertemenge von 0 bis 4 auf der y-Achse markiert.</>}
   labels={{
-    dom: "Definitionsmenge",
-    rng: "Wertemenge",
+    dom: <>Definitionsmenge</>,
+    rng: <>Wertemenge</>,
   }}
   scene={{
     space: "plane",

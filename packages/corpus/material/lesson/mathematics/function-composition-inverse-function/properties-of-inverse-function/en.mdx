@@ -37,7 +37,7 @@ Both compositions return the original input <InlineMath math="x" />.
 Follow inputs through <InlineMath math="f^{-1}(x) = \tfrac{x - 3}{2}" /> and then <InlineMath math="f(x) = 2x + 3" />. The input <InlineMath math="5" /> goes to <InlineMath math="1" /> and comes back to <InlineMath math="5" />, and every other path returns to where it started. That is <InlineMath math="(f \circ f^{-1})(x) = x" />.
 
 <MathVisual
-  title="f undoes its inverse"
+  title={<>f undoes its inverse</>}
   description={<>Three axes for <InlineMath math="x" />, <InlineMath math="f^{-1}(x)" /> and <InlineMath math="f(f^{-1}(x))" />, where every path returns to its starting value.</>}
   labels={{
     x: <InlineMath math="x" />,
@@ -99,7 +99,7 @@ The input and output undergo **two exchanges**. For the function above, follow t
 The graph of <InlineMath math="f^{-1}" /> is the mirror image of <InlineMath math="f" /> in the line <InlineMath math="y = x" />. For <InlineMath math="f(x) = 2x + 3" /> the point <InlineMath math="(1, 5)" /> on <InlineMath math="f" /> mirrors to <InlineMath math="(5, 1)" /> on <InlineMath math="f^{-1}(x) = \tfrac{x - 3}{2}" />. Mirror once more and you are back on <InlineMath math="f" />, which is why <InlineMath math="(f^{-1})^{-1} = f" />.
 
 <MathVisual
-  title="f and its inverse mirror each other"
+  title={<>f and its inverse mirror each other</>}
   description={<>The lines <InlineMath math="f(x) = 2x + 3" /> and <InlineMath math="f^{-1}(x) = \tfrac{x-3}{2}" />, mirror images in <InlineMath math="y = x" />, with the mirrored points <InlineMath math="(1, 5)" /> and <InlineMath math="(5, 1)" />.</>}
   labels={{
     f: <InlineMath math="f" />,
@@ -164,8 +164,8 @@ So, <InlineMath math="(f \circ g)^{-1}(x) = \frac{x - 1}{3}" />.
 Since the results from steps 2 and 3 are the same, it is proven that <InlineMath math="(f \circ g)^{-1}(x) = (g^{-1} \circ f^{-1})(x)" />.
 
 <Mermaid
-  title="Reversing the operations"
-  description="Multiplication by three comes before adding one. To go back, subtract one before dividing by three."
+  title={<>Reversing the operations</>}
+  description={<>Multiplication by three comes before adding one. To go back, subtract one before dividing by three.</>}
   chart={`flowchart LR
     A["2"] -->|"times 3"| B["6"] -->|"add 1"| C["7"]
     D["7"] -->|"subtract 1"| E["6"] -->|"divide by 3"| F["2"]
@@ -199,3 +199,38 @@ The square root returns the original input because the quadratic function has a 
   <BlockMath math="q^{-1}(q(x))=\sqrt{x^2}=x,\quad x\geq0" />
   <BlockMath math="q(q^{-1}(y))=(\sqrt{y-1})^2+1=y,\quad y\geq1" />
 </MathContainer>
+
+The inverse swaps inputs and outputs. The points of <InlineMath math="f(x) = 2x + 3" /> for <InlineMath math="x = 0, 1, 2, 3" /> are <InlineMath math="(0, 3)" /> to <InlineMath math="(3, 9)" />, and the points of <InlineMath math="f^{-1}" /> are the same pairs reversed, <InlineMath math="(3, 0)" /> to <InlineMath math="(9, 3)" />. So the domain of <InlineMath math="f^{-1}" /> is the range of <InlineMath math="f" />, and its range is the domain of <InlineMath math="f" />.
+
+<MathVisual
+  title={<>Inputs and outputs trade places</>}
+  description={<>Four points of <InlineMath math="f" /> and their mirror images in <InlineMath math="y = x" />, the points of <InlineMath math="f^{-1}" />.</>}
+  labels={{
+    f3: <InlineMath math="(3, 9)" />,
+    g3: <InlineMath math="(9, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -0.5, max: 10 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "m0", kind: "segment", from: { x: 0, y: 3 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "m1", kind: "segment", from: { x: 1, y: 5 }, to: { x: 5, y: 1 }, appearance: "construction" },
+      { id: "m2", kind: "segment", from: { x: 2, y: 7 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "m3", kind: "segment", from: { x: 3, y: 9 }, to: { x: 9, y: 3 }, appearance: "construction" },
+      { id: "f0", kind: "point", at: { x: 0, y: 3 }, appearance: "primary" },
+      { id: "f1", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "f2", kind: "point", at: { x: 2, y: 7 }, appearance: "primary" },
+      { id: "f3", kind: "point", at: { x: 3, y: 9 }, appearance: "primary" },
+      { id: "g0", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "g1", kind: "point", at: { x: 5, y: 1 }, appearance: "secondary" },
+      { id: "g2", kind: "point", at: { x: 7, y: 2 }, appearance: "secondary" },
+      { id: "g3", kind: "point", at: { x: 9, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f3", objectId: "f3", at: { x: 3, y: 9 }, placement: "left" },
+      { key: "g3", objectId: "g3", at: { x: 9, y: 3 }, placement: "below" },
+    ],
+  }}
+/>

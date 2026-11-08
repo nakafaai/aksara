@@ -13,17 +13,6 @@ Addition and scalar multiplication of complex numbers obey <Highlight>the same f
 
 Let <InlineMath math="z_1" />, <InlineMath math="z_2" />, and <InlineMath math="z_3" /> be any complex numbers, and let <InlineMath math="c" /> and <InlineMath math="d" /> be any scalars (real numbers).
 
-<Mermaid
-  title="Properties of complex addition"
-  description="Complex addition is closed, commutative and associative, has the identity 0, and gives every number an additive inverse."
-  chart={`flowchart TD
-  A["Adding complex numbers"] --> C1["Closed: the sum is complex"]
-  A --> C2["Commutative: the order does not matter"]
-  A --> C3["Associative: the grouping does not matter"]
-  A --> C4["Identity: adding zero changes nothing"]
-  A --> C5["Inverse: every number has an opposite that adds to zero"]`}
-/>
-
 ## Addition Properties
 
 Complex addition works **separately on the real and imaginary parts**. Real-number addition allows reordering and regrouping, so both rules apply to each complex component. For example, changing the order can be checked directly:
@@ -40,7 +29,7 @@ Complex addition works **separately on the real and imaginary parts**. Real-numb
 Adding complex numbers adds their arrows. Take <InlineMath math="z_1 = 2 + i" /> and <InlineMath math="z_2 = 1 + 3i" />. Go along <InlineMath math="z_1" /> and then <InlineMath math="z_2" />, or the other way round: both routes end at <InlineMath math="z_1 + z_2 = 3 + 4i" />, the far corner of the parallelogram. That is commutativity as a picture.
 
 <MathVisual
-  title="The parallelogram of a complex sum"
+  title={<>The parallelogram of a complex sum</>}
   description={<>The arrows <InlineMath math="2 + i" /> and <InlineMath math="1 + 3i" /> and their sum <InlineMath math="3 + 4i" /> at the far corner of the parallelogram.</>}
   labels={{
     z1: <InlineMath math="z_1 = 2 + i" />,
@@ -78,6 +67,37 @@ Scalar multiplication means **multiplying both components by the same factor**. 
 | Identity | <InlineMath math="1z=z" /> | <InlineMath math="1(1+i)=1+i" /> |
 | Zero scalar | <InlineMath math="0z=0" /> | <InlineMath math="0(1+i)=0+0i=0" /> |
 
+Grouping does not change a sum either. Walk <InlineMath math="z_1 = 2 + i" />, then <InlineMath math="z_2 = 1 + 3i" />, then <InlineMath math="z_3 = -2 + i" />: the path ends at <InlineMath math="1 + 5i" />. Adding <InlineMath math="z_2 + z_3" /> first only shortcuts the second and third steps, and the end point stays the same.
+
+<MathVisual
+  title={<>Three complex numbers added tip to tail</>}
+  description={<>The path <InlineMath math="2 + i" />, then <InlineMath math="1 + 3i" />, then <InlineMath math="-2 + i" />, ending at <InlineMath math="1 + 5i" />.</>}
+  labels={{
+    z1: <InlineMath math="z_1" />,
+    z2: <InlineMath math="z_2" />,
+    z3: <InlineMath math="z_3" />,
+    end: <InlineMath math="1 + 5i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 2, y: 1 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "z3", kind: "segment", from: { x: 3, y: 4 }, to: { x: 1, y: 5 }, appearance: "construction" },
+      { id: "short", kind: "segment", from: { x: 2, y: 1 }, to: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "end", kind: "point", at: { x: 1, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1, y: 0.5 }, placement: "below-right" },
+      { key: "z2", objectId: "z2", at: { x: 2.5, y: 2.5 }, placement: "right" },
+      { key: "z3", objectId: "z3", at: { x: 2, y: 4.5 }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 1, y: 5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 ## Simplifying Expressions with Addition Properties
 
 **Distributivity** carries a scalar into a sum term by term, and equal coefficients with opposite signs then cancel. Both moves keep the real part and the imaginary part unchanged, so any identity built from them holds for every complex number.
@@ -91,7 +111,7 @@ The **distributive property** combines two terms containing the same complex num
 The additive inverse points the opposite way. <InlineMath math="z = 3 + 2i" /> and <InlineMath math="-z = -3 - 2i" /> sit on one line through the origin at the same distance, so walking along one and then the other brings you back to <InlineMath math="0" />: <InlineMath math="z + (-z) = 0" />.
 
 <MathVisual
-  title="A number and its additive inverse"
+  title={<>A number and its additive inverse</>}
   description={<>The arrows <InlineMath math="3 + 2i" /> and <InlineMath math="-3 - 2i" />, equally long and opposite, which add up to 0.</>}
   labels={{
     z: <InlineMath math="z = 3 + 2i" />,

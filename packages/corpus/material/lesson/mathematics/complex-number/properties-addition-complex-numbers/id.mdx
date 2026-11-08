@@ -13,17 +13,6 @@ Penjumlahan dan perkalian skalar pada bilangan kompleks <Highlight>mengikuti atu
 
 Misalkan <InlineMath math="z_1" />, <InlineMath math="z_2" />, dan <InlineMath math="z_3" /> adalah bilangan kompleks sembarang, serta <InlineMath math="c" /> dan <InlineMath math="d" /> adalah skalar (bilangan real) sembarang.
 
-<Mermaid
-  title="Sifat penjumlahan bilangan kompleks"
-  description="Penjumlahan bilangan kompleks bersifat tertutup, komutatif, dan asosiatif, punya identitas 0, dan memberi setiap bilangan invers penjumlahan."
-  chart={`flowchart TD
-  A["Menjumlahkan bilangan kompleks"] --> C1["Tertutup: jumlahnya kompleks"]
-  A --> C2["Komutatif: urutan tidak berpengaruh"]
-  A --> C3["Asosiatif: pengelompokan tidak berpengaruh"]
-  A --> C4["Identitas: menambah nol tidak mengubah apa pun"]
-  A --> C5["Invers: setiap bilangan punya lawan yang jumlahnya nol"]`}
-/>
-
 ## Penjumlahan
 
 Penjumlahan kompleks dihitung **secara terpisah pada bagian real dan imajiner**. Karena penjumlahan bilangan real boleh ditukar dan dikelompokkan ulang, kedua aturan itu berlaku pada setiap komponen bilangan kompleks. Misalnya, pertukaran urutan dapat diperiksa langsung:
@@ -40,7 +29,7 @@ Penjumlahan kompleks dihitung **secara terpisah pada bagian real dan imajiner**.
 Menjumlahkan bilangan kompleks menjumlahkan panahnya. Ambil <InlineMath math="z_1 = 2 + i" /> dan <InlineMath math="z_2 = 1 + 3i" />. Ikuti <InlineMath math="z_1" /> lalu <InlineMath math="z_2" />, atau sebaliknya: kedua rute berakhir di <InlineMath math="z_1 + z_2 = 3 + 4i" />, pojok jauh jajargenjang. Itulah sifat komutatif dalam gambar.
 
 <MathVisual
-  title="Jajargenjang jumlah dua bilangan kompleks"
+  title={<>Jajargenjang jumlah dua bilangan kompleks</>}
   description={<>Panah <InlineMath math="2 + i" /> dan <InlineMath math="1 + 3i" /> serta jumlahnya <InlineMath math="3 + 4i" /> di pojok jauh jajargenjang.</>}
   labels={{
     z1: <InlineMath math="z_1 = 2 + i" />,
@@ -78,6 +67,37 @@ Perkalian skalar berarti **mengalikan kedua komponen dengan faktor yang sama**. 
 | Identitas | <InlineMath math="1z=z" /> | <InlineMath math="1(1+i)=1+i" /> |
 | Skalar nol | <InlineMath math="0z=0" /> | <InlineMath math="0(1+i)=0+0i=0" /> |
 
+Pengelompokan juga tidak mengubah jumlah. Ikuti <InlineMath math="z_1 = 2 + i" />, lalu <InlineMath math="z_2 = 1 + 3i" />, lalu <InlineMath math="z_3 = -2 + i" />: jalurnya berakhir di <InlineMath math="1 + 5i" />. Menjumlahkan <InlineMath math="z_2 + z_3" /> lebih dulu hanya memotong langkah kedua dan ketiga, dan titik akhirnya tetap sama.
+
+<MathVisual
+  title={<>Tiga bilangan kompleks dijumlahkan ujung ke pangkal</>}
+  description={<>Jalur <InlineMath math="2 + i" />, lalu <InlineMath math="1 + 3i" />, lalu <InlineMath math="-2 + i" />, berakhir di <InlineMath math="1 + 5i" />.</>}
+  labels={{
+    z1: <InlineMath math="z_1" />,
+    z2: <InlineMath math="z_2" />,
+    z3: <InlineMath math="z_3" />,
+    end: <InlineMath math="1 + 5i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 2, y: 1 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "z3", kind: "segment", from: { x: 3, y: 4 }, to: { x: 1, y: 5 }, appearance: "construction" },
+      { id: "short", kind: "segment", from: { x: 2, y: 1 }, to: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "end", kind: "point", at: { x: 1, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1, y: 0.5 }, placement: "below-right" },
+      { key: "z2", objectId: "z2", at: { x: 2.5, y: 2.5 }, placement: "right" },
+      { key: "z3", objectId: "z3", at: { x: 2, y: 4.5 }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 1, y: 5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 ## Menyederhanakan Ekspresi dengan Sifat Penjumlahan
 
 **Sifat distributif** memungkinkanmu mengalikan skalar ke dalam penjumlahan suku demi suku, dan koefisien yang sama dengan tanda berlawanan lalu saling menghapus. Kedua langkah itu tidak mengubah bagian real maupun bagian imajiner, sehingga identitas yang dibangun dari keduanya berlaku untuk setiap bilangan kompleks.
@@ -91,7 +111,7 @@ Perkalian skalar berarti **mengalikan kedua komponen dengan faktor yang sama**. 
 Invers penjumlahan menunjuk ke arah sebaliknya. <InlineMath math="z = 3 + 2i" /> dan <InlineMath math="-z = -3 - 2i" /> terletak pada satu garis melalui titik asal dengan jarak yang sama, jadi berjalan mengikuti yang satu lalu yang lain membawamu kembali ke <InlineMath math="0" />: <InlineMath math="z + (-z) = 0" />.
 
 <MathVisual
-  title="Sebuah bilangan dan invers penjumlahannya"
+  title={<>Sebuah bilangan dan invers penjumlahannya</>}
   description={<>Panah <InlineMath math="3 + 2i" /> dan <InlineMath math="-3 - 2i" />, sama panjang dan berlawanan arah, yang jumlahnya 0.</>}
   labels={{
     z: <InlineMath math="z = 3 + 2i" />,

@@ -18,8 +18,8 @@ Jedes Objekt kann daher als Bezugspunkt dienen. Lineare Reihenfolgen, die sich n
 Dreh den linken Tisch um einen Platz im Uhrzeigersinn, dann erhältst du den rechten Tisch. Jede Person hat dieselben Nachbarn in derselben Reihenfolge, die beiden Bilder sind also eine Kreisanordnung, nicht zwei. Jede Anordnung von <InlineMath math="4" /> Personen kommt unter den <InlineMath math="4! = 24" /> Reihen <InlineMath math="4" />-mal vor, es bleiben also <InlineMath math="24 / 4 = 3! = 6" />.
 
 <MathVisual
-  title="Eine Drehung ergibt keine neue Anordnung"
-  description="Vier Personen an zwei runden Tischen. Der rechte Tisch ist der linke, um einen Platz gedreht, mit denselben Nachbarn."
+  title={<>Eine Drehung ergibt keine neue Anordnung</>}
+  description={<>Vier Personen an zwei runden Tischen. Der rechte Tisch ist der linke, um einen Platz gedreht, mit denselben Nachbarn.</>}
   labels={{
     la: <InlineMath math="A" />,
     lb: <InlineMath math="B" />,
@@ -93,13 +93,14 @@ Für <InlineMath math="3" /> Kinder ergibt sich <InlineMath math="P_3 = (3-1)! =
 
 Die Formel <InlineMath math="(n-1)!" /> fasst gedrehte Anordnungen zusammen, zählt Spiegelbilder aber weiterhin getrennt. Das passt zu Personen, die zur Tischmitte schauen, denn eine gespiegelte Reihenfolge vertauscht die linken und rechten Nachbarn. Ein Armband lässt sich dagegen umdrehen. Bei <InlineMath math="n\geq3" /> verschiedenen Perlen bildet jede Kreisreihenfolge mit einem anderen Spiegelbild ein Paar. Daher bleiben <InlineMath math="\frac{(n-1)!}{2}" /> Anordnungen.
 
-<Mermaid
-  title="Warum ein runder Tisch die Drehungen entfernt"
-  description="Hältst du eine Person fest, verschwinden die Drehungen, und die übrigen Personen füllen die anderen Plätze wie in einer Reihe."
-  chart={`flowchart LR
-  A["Personen an einem runden Tisch"] --> B["Eine Person auf einem Platz festhalten"]
-  B --> C["Alle anderen wie in einer Reihe anordnen"]
-  C --> D["Fakultät von eins weniger als die Anzahl der Personen"]`}
+Fünf Personen können sich auf <InlineMath math="5! = 120" /> Arten in einer Reihe aufstellen, um einen Tisch gibt es aber nur <InlineMath math="4! = 24" /> verschiedene Anordnungen. Jede Kreisanordnung kommt unter den Reihen <InlineMath math="5" />-mal vor, einmal für jede Drehung, und <InlineMath math="120 / 5 = 24" />.
+
+<BarChart
+  title={<>Fünf Personen in einer Reihe und um einen Tisch</>}
+  description={<>Die Anzahl der Anordnungen von fünf Personen in einer Reihe und um einen runden Tisch.</>}
+  yAxisLabel="Anordnungen"
+  data={[["in einer Reihe", 5 * 4 * 3 * 2 * 1], ["um einen Tisch", 4 * 3 * 2 * 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Anordnungen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Kreisförmige Anordnungen zählen
@@ -115,7 +116,7 @@ Fünf Lernende sitzen für eine Diskussion **an einem runden Tisch**. Die Anzahl
 Die Balken zeigen <InlineMath math="(n-1)!" /> für <InlineMath math="n = 3" /> bis <InlineMath math="7" /> Personen an einem Tisch: <InlineMath math="2, 6, 24, 120, 720" />. Jeder Wert ist <InlineMath math="n" />-mal kleiner als die <InlineMath math="n!" /> Möglichkeiten, dieselben Personen in einer Reihe aufzustellen.
 
 <BarChart
-  title="Kreisanordnungen von 3 bis 7 Personen"
+  title={<>Kreisanordnungen von 3 bis 7 Personen</>}
   description={<>Balken <InlineMath math="n" /> zeigt <InlineMath math="(n-1)!" />, die Kreisanordnungen von <InlineMath math="n" /> Personen.</>}
   yAxisLabel="Anordnungen"
   data={Array.from({ length: 5 }, (_, i) => {

@@ -18,8 +18,8 @@ Setiap objek dapat dijadikan titik acuan. Urutan linear yang hanya berbeda karen
 Putar meja kiri satu kursi searah jarum jam, maka kamu mendapat meja kanan. Setiap orang tetap punya tetangga yang sama dengan urutan yang sama, jadi kedua gambar adalah satu susunan melingkar, bukan dua. Setiap susunan <InlineMath math="4" /> orang muncul <InlineMath math="4" /> kali di antara <InlineMath math="4! = 24" /> baris, sehingga tersisa <InlineMath math="24 / 4 = 3! = 6" />.
 
 <MathVisual
-  title="Rotasi tidak menghasilkan susunan baru"
-  description="Empat orang di sekeliling dua meja bundar. Meja kanan adalah meja kiri yang diputar satu kursi, dengan tetangga yang sama."
+  title={<>Rotasi tidak menghasilkan susunan baru</>}
+  description={<>Empat orang di sekeliling dua meja bundar. Meja kanan adalah meja kiri yang diputar satu kursi, dengan tetangga yang sama.</>}
   labels={{
     la: <InlineMath math="A" />,
     lb: <InlineMath math="B" />,
@@ -93,13 +93,14 @@ Untuk <InlineMath math="3" /> anak: <InlineMath math="P_3 = (3-1)! = 2! = 2 \tim
 
 Rumus <InlineMath math="(n-1)!" /> menyamakan rotasi, tetapi masih menganggap bayangan cermin sebagai susunan berbeda. Perhitungan ini sesuai untuk orang yang menghadap ke tengah meja karena pembalikan urutan menukar tetangga kiri dan kanan. Gelang juga dapat dibalik. Untuk <InlineMath math="n\geq3" /> manik-manik yang semuanya berbeda, setiap urutan melingkar berpasangan dengan bayangan cermin yang berbeda, sehingga gelang memiliki <InlineMath math="\frac{(n-1)!}{2}" /> susunan.
 
-<Mermaid
-  title="Mengapa meja bundar menghapus rotasi"
-  description="Menetapkan satu orang menghapus rotasi, dan orang lainnya mengisi kursi sisanya seperti dalam satu baris."
-  chart={`flowchart LR
-  A["Orang di sekeliling meja bundar"] --> B["Tetapkan satu orang di satu kursi"]
-  B --> C["Susun yang lain seperti dalam satu baris"]
-  C --> D["Faktorial dari satu kurangnya banyak orang"]`}
+Lima orang bisa berdiri berjajar dalam <InlineMath math="5! = 120" /> cara, tetapi di sekeliling meja hanya ada <InlineMath math="4! = 24" /> susunan yang berbeda. Setiap susunan melingkar muncul <InlineMath math="5" /> kali di antara barisan itu, sekali untuk setiap rotasi, dan <InlineMath math="120 / 5 = 24" />.
+
+<BarChart
+  title={<>Lima orang berjajar dan di sekeliling meja</>}
+  description={<>Banyak susunan lima orang dalam satu baris dan di sekeliling meja bundar.</>}
+  yAxisLabel="Susunan"
+  data={[["berjajar", 5 * 4 * 3 * 2 * 1], ["melingkar", 4 * 3 * 2 * 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Susunan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Menghitung Susunan Melingkar
@@ -115,7 +116,7 @@ Lima siswa akan duduk **mengelilingi meja bundar** untuk berdiskusi. Banyaknya c
 Batangnya menunjukkan <InlineMath math="(n-1)!" /> untuk <InlineMath math="n = 3" /> sampai <InlineMath math="7" /> orang di sekeliling meja: <InlineMath math="2, 6, 24, 120, 720" />. Setiap nilai <InlineMath math="n" /> kali lebih kecil daripada <InlineMath math="n!" /> cara menjajarkan orang yang sama dalam satu baris.
 
 <BarChart
-  title="Susunan melingkar 3 sampai 7 orang"
+  title={<>Susunan melingkar 3 sampai 7 orang</>}
   description={<>Batang ke-<InlineMath math="n" /> menunjukkan <InlineMath math="(n-1)!" />, yaitu susunan melingkar <InlineMath math="n" /> orang.</>}
   yAxisLabel="Susunan"
   data={Array.from({ length: 5 }, (_, i) => {
@@ -137,7 +138,7 @@ Ketika ada **syarat tambahan** seperti objek tertentu harus berdampingan, kita m
 Contoh: <InlineMath math="4" /> pasang suami istri duduk melingkar, setiap pasangan harus berdampingan.
 
 **Strategi penyelesaian**:
-1. **Kelompokkan** setiap pasangan sebagai satu unit → <InlineMath math="4 \text{ unit}" />
+1. **Kelompokkan** setiap pasangan sebagai satu unit <InlineMath math="\rightarrow 4 \text{ unit}" />
 2. **Susun unit-unit** ini melingkar: <InlineMath math="(4-1)! = 3! = 6 \text{ cara}" />
 3. **Atur posisi** dalam setiap pasangan: <InlineMath math="2! \text{ cara}" /> per pasangan
 4. **Total perhitungan**: <InlineMath math="3! \times (2!)^4 = 6 \times 2^4 = 6 \times 16 = 96 \text{ cara}" />
@@ -189,7 +190,7 @@ Gelang dapat dibuat dalam <InlineMath math="2\,520" /> susunan berbeda.
 Langkah penyelesaian:
 
 Diketahui: <InlineMath math="5" /> pasangan suami istri (<InlineMath math="10 \text{ orang}" />), setiap pasangan harus berdampingan
-**Teknik pengelompokan**: Anggap setiap pasangan sebagai satu unit → <InlineMath math="5 \text{ unit}" />
+**Teknik pengelompokan**: Anggap setiap pasangan sebagai satu unit <InlineMath math="\rightarrow 5 \text{ unit}" />
 
 Permutasi siklis <InlineMath math="5 \text{ unit}" />: <InlineMath math="(5-1)! = 4! = 4 \times 3 \times 2 \times 1 = 24" />
 Setiap pasangan dapat bertukar posisi: <InlineMath math="2! = 2 \text{ cara}" /> per pasangan

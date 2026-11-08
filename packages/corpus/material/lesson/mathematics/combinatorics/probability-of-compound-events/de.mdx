@@ -19,17 +19,6 @@ Angenommen, du wirfst einen Würfel und eine Münze. Ein einzelnes Ereignis betr
 
 Zwei Ereignisse teilen entweder Ergebnisse oder schließen einander aus, und dieser Unterschied entscheidet über die Formel. Ein gemeinsames Ergebnis beweist eine Überschneidung. Um gegenseitigen Ausschluss zu beweisen, musst du zeigen, dass es **kein gemeinsames Ergebnis** gibt. Unabhängigkeit beantwortet eine andere Frage: Ändert die Information über ein Ereignis die Wahrscheinlichkeit des anderen?
 
-<Mermaid
-  title="Welche Regel für ein zusammengesetztes Ereignis"
-  description="Bei oder addierst du und ziehst eine Überschneidung ab. Bei und multiplizierst du, bei abhängigen Ereignissen mit der bedingten Wahrscheinlichkeit."
-  chart={`flowchart TD
-  A["Zusammengesetztes Ereignis"] --> Q{"Oder, oder und?"}
-  Q -->|"oder"| U["Wahrscheinlichkeiten addieren, Überschneidung abziehen"]
-  Q -->|"und"| I{"Unabhängig?"}
-  I -->|"Ja"| M1["Wahrscheinlichkeiten multiplizieren"]
-  I -->|"Nein"| M2["Mit der bedingten Wahrscheinlichkeit multiplizieren"]`}
-/>
-
 ### Sich ausschließende Ereignisse
 
 Zwei Ereignisse **schließen sich gegenseitig aus**, wenn sie im selben Versuch nicht gemeinsam eintreten können. Tritt <InlineMath math="A" /> ein, kann <InlineMath math="B" /> nicht eintreten, und umgekehrt.
@@ -92,7 +81,6 @@ Schnittmenge (rote Bildkarten): <InlineMath math="6 \text{ Karten}" /> (Bube, Da
 | Schwarz | 6 | 20 | 26 |
 | Gesamt | 12 | 40 | 52 |
 
-
 <MathContainer>
 <BlockMath math="P(A) = \frac{26}{52} = \frac{1}{2}" />
 <BlockMath math="P(B) = \frac{12}{52} = \frac{3}{13}" />
@@ -103,7 +91,7 @@ Schnittmenge (rote Bildkarten): <InlineMath math="6 \text{ Karten}" /> (Bube, Da
 Mit einem Würfel sei <InlineMath math="A = \{2, 4, 6\}" /> und <InlineMath math="B = \{4, 5, 6\}" />. Die Kreise überschneiden sich in <InlineMath math="\{4, 6\}" />, also würde <InlineMath math="P(A) + P(B) = \frac36 + \frac36" /> die <InlineMath math="4" /> und die <InlineMath math="6" /> doppelt zählen. Zieh die Überschneidung einmal ab: <InlineMath math="P(A \cup B) = \frac36 + \frac36 - \frac26 = \frac46" />.
 
 <MathVisual
-  title="Bei sich überschneidenden Ereignissen zählt die Schnittmenge einmal"
+  title={<>Bei sich überschneidenden Ereignissen zählt die Schnittmenge einmal</>}
   description={<>Zwei sich überschneidende Kreise: nur in <InlineMath math="A" /> liegt 2, nur in <InlineMath math="B" /> liegt 5, und in der Schnittmenge liegen 4 und 6.</>}
   labels={{
     a: <InlineMath math="A" />,
@@ -160,8 +148,8 @@ Da das Ergebnis des ersten Würfels keinen Einfluss auf den zweiten Würfel hat,
 Unabhängige Ereignisse werden multipliziert, und ein Baum zeigt warum. Zuerst der Würfel: gerade oder ungerade, je <InlineMath math="\frac12" />. Dann die Münze: Kopf oder Zahl, je <InlineMath math="\frac12" />, egal was der Würfel zeigte. Jeder Pfad multipliziert seine Äste, also <InlineMath math="P(\text{gerade und Kopf}) = \frac12 \cdot \frac12 = \frac14" />, und die vier Pfade ergeben zusammen <InlineMath math="1" />.
 
 <MathVisual
-  title="Ein Wahrscheinlichkeitsbaum für Würfel und Münze"
-  description="Ein Baum mit dem Würfel zuerst und der Münze danach, jeder Ast mit einhalb beschriftet und am Ende jeweils das Produkt ein Viertel."
+  title={<>Ein Wahrscheinlichkeitsbaum für Würfel und Münze</>}
+  description={<>Ein Baum mit dem Würfel zuerst und der Münze danach, jeder Ast mit einhalb beschriftet und am Ende jeweils das Produkt ein Viertel.</>}
   labels={{
     b0: <InlineMath math="\text{gerade}\ \tfrac12" />,
     b1: <InlineMath math="\text{ungerade}\ \tfrac12" />,
@@ -258,6 +246,16 @@ In einem Standardkartenspiel tragen rote Karten mit geradem Zahlenwert die Werte
 
 <BlockMath math="P(A\cap B)=\frac{10}{52}=\frac{5}{26}" />
 
+Vergleich die vier Wahrscheinlichkeiten für <InlineMath math="A = \{2, 4, 6\}" /> und <InlineMath math="B = \{4, 5, 6\}" /> bei einem Würfel. Der Balken der Vereinigung ist kürzer als die beiden Ereignisbalken übereinander, genau um die Schnittmenge: <InlineMath math="\frac36 + \frac36 - \frac26 = \frac46" />.
+
+<BarChart
+  title={<>Vereinigung und Schnittmenge bei einem Würfel</>}
+  description={<>Balken für <InlineMath math="P(A)" />, <InlineMath math="P(B)" />, die Schnittmenge und die Vereinigung der Ereignisse.</>}
+  yAxisLabel="Wahrscheinlichkeit"
+  data={[["A", 3 / 6], ["B", 3 / 6], ["A und B", 2 / 6], ["A oder B", 4 / 6]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Problemlösungsstrategie
 
 Beginne ein Problem mit zusammengesetzten Ereignissen, indem du **die Beziehung zwischen den Ereignissen bestimmst**. Schlüsselwörter helfen, entscheidend ist aber der zugrunde liegende Zufallsmechanismus:
@@ -320,8 +318,8 @@ Da **ohne Zurücklegen** gezogen wird, ändern sich die Bedingungen nach der ers
 
 Es gibt insgesamt <InlineMath math="6 \times 6 = 36" /> geordnete Würfelpaare.
 
-- Ereignis <InlineMath math="A" /> (Summe ist <InlineMath math="7" />): <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> → <InlineMath math="6 \text{ Wege}" />
-- Ereignis <InlineMath math="B" /> (Summe ist <InlineMath math="11" />): <InlineMath math="(5,6)" />, <InlineMath math="(6,5)" /> → <InlineMath math="2 \text{ Wege}" />
+- Ereignis <InlineMath math="A" /> (Summe ist <InlineMath math="7" />): <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> <InlineMath math="\rightarrow 6 \text{ Wege}" />
+- Ereignis <InlineMath math="B" /> (Summe ist <InlineMath math="11" />): <InlineMath math="(5,6)" />, <InlineMath math="(6,5)" /> <InlineMath math="\rightarrow 2 \text{ Wege}" />
 
 Beide Ereignisse schließen sich gegenseitig aus, da die Würfelsumme nicht gleichzeitig <InlineMath math="7" /> und <InlineMath math="11" /> sein kann.
 

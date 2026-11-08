@@ -34,13 +34,29 @@ Sind die Ereignisse unabhängig, ändert die Information über <InlineMath math=
 
 <BlockMath math="P(B|A) = P(B)" />
 
-<Mermaid
-  title="Die Ergebnismenge aktualisieren"
-  description="Nimm nach jedem Zug ohne Zurücklegen die gezogene Karte aus der Anzahl der günstigen Karten und aus der Gesamtzahl, bevor du die nächste Wahrscheinlichkeit berechnest."
-  chart={`flowchart LR
-  A["Erster Zug: 13 Herzen unter 52 Karten"] --> B["Das gezogene Herz herausnehmen"]
-  B --> C["Zweiter Zug: 12 Herzen unter 51 Karten"]
-  C --> D["Beide Chancen multiplizieren: 1 zu 17"]`}
+Abhängigkeit zeigt sich auch im Flächenmodell. Der linke Streifen mit Breite <InlineMath math="\frac{13}{52}" /> ist ein Herz beim ersten Zug. Darin ist nur <InlineMath math="\frac{12}{51}" /> der Höhe ein zweites Herz, die markierte Ecke hat also die Fläche <InlineMath math="\frac{13}{52} \cdot \frac{12}{51} = \frac{1}{17}" />.
+
+<MathVisual
+  title={<>Zwei Herzen hintereinander als Fläche</>}
+  description={<>Ein Einheitsquadrat: der Streifen der Breite <InlineMath math="\frac{13}{52}" /> für ein erstes Herz und darin der Teil der Höhe <InlineMath math="\frac{12}{51}" /> für ein zweites Herz.</>}
+  labels={{
+    first: <InlineMath math="\tfrac{13}{52}" />,
+    both: <InlineMath math="\tfrac{1}{17}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 1.1 }, y: { min: -0.15, max: 1.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "first", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 13 / 52, y: 0 }, { x: 13 / 52, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "both", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 13 / 52, y: 0 }, { x: 13 / 52, y: 12 / 51 }, { x: 0, y: 12 / 51 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 13 / 104, y: 1 }, placement: "above" },
+      { key: "both", objectId: "both", at: { x: 13 / 52, y: 6 / 51 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Anwendung beim Kartenziehen
@@ -69,8 +85,8 @@ Nachdem ein Ass gezogen wurde, bleiben <InlineMath math="51 \text{ Karten}" /> �
 Ohne Zurücklegen hängt der zweite Ast vom ersten ab. Ein Ass ziehst du mit Wahrscheinlichkeit <InlineMath math="\frac{4}{52}" />. Danach bleiben 51 Karten, und alle 4 Könige sind noch da, also folgt ein König mit <InlineMath math="\frac{4}{51}" />. Multiplizier entlang des Pfads: <InlineMath math="\frac{4}{52} \cdot \frac{4}{51} = \frac{16}{2652} = \frac{4}{663}" />.
 
 <MathVisual
-  title="Erst Ass, dann König, ohne Zurücklegen"
-  description="Ein Baum für zwei Züge: zuerst Ass oder nicht, dann, nach einem Ass, König oder nicht, die zweiten Wahrscheinlichkeiten aus den 51 übrigen Karten."
+  title={<>Erst Ass, dann König, ohne Zurücklegen</>}
+  description={<>Ein Baum für zwei Züge: zuerst Ass oder nicht, dann, nach einem Ass, König oder nicht, die zweiten Wahrscheinlichkeiten aus den 51 übrigen Karten.</>}
   labels={{
     b0: <InlineMath math="\text{Ass}\ \tfrac{4}{52}" />,
     b1: <InlineMath math="\text{kein Ass}\ \tfrac{48}{52}" />,
@@ -119,8 +135,8 @@ Die Wahrscheinlichkeit, bei beiden Ziehungen ein Herz zu ziehen, beträgt daher:
 Vergleich die Chance auf ein Herz beim zweiten Zug. Mit Zurücklegen bleibt sie <InlineMath math="\frac{13}{52} = 0{,}25" />. Ohne Zurücklegen sind nach einem ersten Herz nur noch <InlineMath math="12" /> Herzen unter <InlineMath math="51" /> Karten, sie sinkt also auf <InlineMath math="\frac{12}{51} \approx 0{,}235" />. Der erste Zug hat die Ergebnismenge verändert.
 
 <BarChart
-  title="Zweites Herz mit und ohne Zurücklegen"
-  description="Die Wahrscheinlichkeit eines Herzens beim zweiten Zug nach einem ersten Herz, mit und ohne Zurücklegen."
+  title={<>Zweites Herz mit und ohne Zurücklegen</>}
+  description={<>Die Wahrscheinlichkeit eines Herzens beim zweiten Zug nach einem ersten Herz, mit und ohne Zurücklegen.</>}
   yAxisLabel="Wahrscheinlichkeit"
   data={[["mit Zurücklegen", 13 / 52], ["ohne Zurücklegen", 12 / 51]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -239,4 +255,4 @@ Das Kartenspiel enthält <InlineMath math="52 \text{ Karten}" />: <InlineMath ma
 <BlockMath math="\begin{aligned} P(A \cap K \cap Q) &amp;= \frac{4}{52} \times \frac{4}{51} \times \frac{4}{50} \\ &amp;= \frac{1}{13} \times \frac{4}{51} \times \frac{2}{25} \\ &amp;= \frac{8}{16575} \end{aligned}" />
 </MathContainer>
 
-Bei jedem Ziehen **sinkt die Gesamtzahl der Karten** (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />). Vom jeweils als Nächstes gesuchten Rang sind noch alle <InlineMath math="4" /> Karten vorhanden: Ein gezogenes Ass entfernt keinen König, und ein gezogener König entfernt keine Dame.
+Bei jedem Ziehen **sinkt die Gesamtzahl der Karten** (<InlineMath math="52 \rightarrow 51 \rightarrow 50" />). Vom jeweils als Nächstes gesuchten Rang sind noch alle <InlineMath math="4" /> Karten vorhanden: Ein gezogenes Ass entfernt keinen König, und ein gezogener König entfernt keine Dame.

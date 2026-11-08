@@ -19,17 +19,6 @@ Bayangkan kamu melempar sebuah dadu dan sebuah koin. Satu kejadian dapat berfoku
 
 Dua kejadian bisa berbagi hasil atau saling meniadakan, dan perbedaan itu menentukan rumus yang dipakai. Satu hasil bersama membuktikan adanya irisan. Untuk membuktikan kejadian saling lepas, kamu harus menunjukkan bahwa **tidak ada hasil bersama**. Kebebasan kejadian menjawab pertanyaan berbeda, yaitu apakah informasi tentang satu kejadian mengubah peluang kejadian lain.
 
-<Mermaid
-  title="Aturan untuk kejadian majemuk"
-  description="Untuk atau, jumlahkan lalu kurangkan irisan jika ada. Untuk dan, kalikan, dengan peluang bersyarat jika kejadiannya bergantung."
-  chart={`flowchart TD
-  A["Kejadian majemuk"] --> Q{"Atau, atau dan?"}
-  Q -->|"atau"| U["Jumlahkan peluangnya lalu kurangkan irisannya"]
-  Q -->|"dan"| I{"Saling bebas?"}
-  I -->|"Ya"| M1["Kalikan peluangnya"]
-  I -->|"Tidak"| M2["Kalikan dengan peluang bersyarat"]`}
-/>
-
 ### Kejadian Saling Lepas
 
 Dua kejadian **saling lepas** jika keduanya tidak dapat terjadi dalam percobaan yang sama. Jika kejadian <InlineMath math="A" /> terjadi, kejadian <InlineMath math="B" /> tidak dapat terjadi, begitu pula sebaliknya.
@@ -92,7 +81,6 @@ Irisan (kartu merah dan bergambar): <InlineMath math="6 \text{ kartu}" /> (Jack,
 | Hitam | 6 | 20 | 26 |
 | Total | 12 | 40 | 52 |
 
-
 <MathContainer>
 <BlockMath math="P(A) = \frac{26}{52} = \frac{1}{2}" />
 <BlockMath math="P(B) = \frac{12}{52} = \frac{3}{13}" />
@@ -103,7 +91,7 @@ Irisan (kartu merah dan bergambar): <InlineMath math="6 \text{ kartu}" /> (Jack,
 Dengan satu dadu, misalkan <InlineMath math="A = \{2, 4, 6\}" /> dan <InlineMath math="B = \{4, 5, 6\}" />. Kedua lingkaran beririsan di <InlineMath math="\{4, 6\}" />, jadi menjumlahkan <InlineMath math="P(A) + P(B) = \frac36 + \frac36" /> akan menghitung <InlineMath math="4" /> dan <InlineMath math="6" /> dua kali. Kurangkan irisannya sekali: <InlineMath math="P(A \cup B) = \frac36 + \frac36 - \frac26 = \frac46" />.
 
 <MathVisual
-  title="Kejadian beririsan menghitung irisannya sekali"
+  title={<>Kejadian beririsan menghitung irisannya sekali</>}
   description={<>Dua lingkaran beririsan: hanya <InlineMath math="A" /> berisi 2, hanya <InlineMath math="B" /> berisi 5, dan irisannya berisi 4 dan 6.</>}
   labels={{
     a: <InlineMath math="A" />,
@@ -160,8 +148,8 @@ Karena hasil dadu pertama tidak memengaruhi hasil dadu kedua, kedua kejadian ter
 Kejadian saling bebas dikalikan, dan diagram pohon menunjukkan alasannya. Pertama dadu: genap atau ganjil, masing-masing <InlineMath math="\frac12" />. Lalu koin: angka atau gambar, masing-masing <InlineMath math="\frac12" />, apa pun hasil dadunya. Setiap jalur mengalikan cabangnya, jadi <InlineMath math="P(\text{genap dan angka}) = \frac12 \cdot \frac12 = \frac14" />, dan keempat jalur berjumlah <InlineMath math="1" />.
 
 <MathVisual
-  title="Diagram pohon peluang untuk dadu dan koin"
-  description="Diagram pohon dengan hasil dadu lebih dulu dan koin kedua, setiap cabang berlabel setengah, dan hasil kali seperempat di setiap ujung."
+  title={<>Diagram pohon peluang untuk dadu dan koin</>}
+  description={<>Diagram pohon dengan hasil dadu lebih dulu dan koin kedua, setiap cabang berlabel setengah, dan hasil kali seperempat di setiap ujung.</>}
   labels={{
     b0: <InlineMath math="\text{genap}\ \tfrac12" />,
     b1: <InlineMath math="\text{ganjil}\ \tfrac12" />,
@@ -258,6 +246,16 @@ Dalam set kartu standar, kartu merah bernomor genap memiliki nilai <InlineMath m
 
 <BlockMath math="P(A\cap B)=\frac{10}{52}=\frac{5}{26}" />
 
+Bandingkan keempat peluang untuk <InlineMath math="A = \{2, 4, 6\}" /> dan <InlineMath math="B = \{4, 5, 6\}" /> pada satu dadu. Batang gabungan lebih pendek daripada dua batang kejadian yang ditumpuk, tepat sebesar irisannya: <InlineMath math="\frac36 + \frac36 - \frac26 = \frac46" />.
+
+<BarChart
+  title={<>Gabungan dan irisan pada satu dadu</>}
+  description={<>Batang untuk <InlineMath math="P(A)" />, <InlineMath math="P(B)" />, irisan, dan gabungan kedua kejadian.</>}
+  yAxisLabel="Peluang"
+  data={[["A", 3 / 6], ["B", 3 / 6], ["A dan B", 2 / 6], ["A atau B", 4 / 6]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Peluang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Strategi Penyelesaian Masalah
 
 Awali soal peluang majemuk dengan **mengidentifikasi hubungan antarkejadian**. Kata kunci membantu, tetapi mekanisme peluang tetap menjadi penentu:
@@ -320,8 +318,8 @@ Karena pengambilan **tanpa pengembalian**, kondisi berubah setelah pengambilan p
 
 Total kemungkinan adalah <InlineMath math="6 \times 6 = 36" />
 
-- Kejadian <InlineMath math="A" /> (jumlah adalah <InlineMath math="7" />): <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> → <InlineMath math="6 \text{ cara}" />
-- Kejadian <InlineMath math="B" /> (jumlah adalah <InlineMath math="11" />): <InlineMath math="(5,6)" />, <InlineMath math="(6,5)" /> → <InlineMath math="2 \text{ cara}" />
+- Kejadian <InlineMath math="A" /> (jumlah adalah <InlineMath math="7" />): <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> <InlineMath math="\rightarrow 6 \text{ cara}" />
+- Kejadian <InlineMath math="B" /> (jumlah adalah <InlineMath math="11" />): <InlineMath math="(5,6)" />, <InlineMath math="(6,5)" /> <InlineMath math="\rightarrow 2 \text{ cara}" />
 
 Kedua kejadian saling lepas karena tidak mungkin jumlah dadu sekaligus <InlineMath math="7" /> dan <InlineMath math="11" />.
 

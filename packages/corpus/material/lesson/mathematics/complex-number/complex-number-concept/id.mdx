@@ -15,16 +15,6 @@ Persamaan <InlineMath math="x^2 + 1 = 0" /> berbeda. Persamaan itu mengharuskan 
 
 Bilangan kompleks <Highlight>memperluas sistem bilangan real</Highlight> agar persamaan seperti ini dapat diselesaikan.
 
-<Mermaid
-  title="Cara himpunan bilangan bersarang"
-  description="Setiap himpunan bilangan memperluas himpunan sebelumnya, dan bilangan kompleks menambahkan satuan imajiner, yang kuadratnya minus satu, agar setiap persamaan kuadrat punya penyelesaian."
-  chart={`flowchart LR
-  N["Bilangan asli"] --> Z["Bilangan bulat"]
-  Z --> Q["Bilangan rasional"]
-  Q --> R["Bilangan real"]
-  R -->|"tambahkan satuan imajiner"| C["Bilangan kompleks"]`}
-/>
-
 ## Bilangan Imajiner
 
 **Satuan imajiner**, yang dilambangkan dengan <InlineMath math="i" />, didefinisikan melalui persamaan
@@ -48,6 +38,37 @@ Bilangan seperti <InlineMath math="2i" /> dan <InlineMath math="3i" /> disebut *
 
 <BlockMath math="i^2+1=-1+1=0,\qquad(-i)^2+1=i^2+1=0" />
 
+Mengalikan dengan <InlineMath math="i" /> memutar bilangan seperempat putaran mengelilingi titik asal. Mulai dari <InlineMath math="1" />: satu putaran memberi <InlineMath math="i" />, putaran kedua memberi <InlineMath math="i^2 = -1" />, putaran ketiga memberi <InlineMath math="-i" />, dan putaran keempat kembali ke <InlineMath math="1" />. Karena itu <InlineMath math="i^2 = -1" /> tidak bertentangan: dua seperempat putaran menunjuk ke arah sebaliknya.
+
+<MathVisual
+  title={<>Perpangkatan <InlineMath math="i" /> sebagai seperempat putaran</>}
+  description={<>Bilangan <InlineMath math="1" />, <InlineMath math="i" />, <InlineMath math="-1" />, dan <InlineMath math="-i" /> pada lingkaran satuan, berjarak seperempat putaran.</>}
+  labels={{
+    one: <InlineMath math="1" />,
+    i: <InlineMath math="i" />,
+    minus: <InlineMath math="-1" />,
+    minusi: <InlineMath math="-i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "one", kind: "point", at: { x: 1, y: 0 }, appearance: "primary" },
+      { id: "i", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "minus", kind: "point", at: { x: -1, y: 0 }, appearance: "primary" },
+      { id: "minusi", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "i", objectId: "i", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "minus", objectId: "minus", at: { x: -1, y: 0 }, placement: "left" },
+      { key: "minusi", objectId: "minusi", at: { x: 0, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
 ## Bentuk Umum
 
 Bilangan kompleks secara umum ditulis sebagai <InlineMath math="z = a + bi" /> dengan keterangan berikut:
@@ -62,8 +83,8 @@ Nilai <InlineMath math="a" /> dan <InlineMath math="b" /> keduanya bilangan real
 Setiap bilangan kompleks <InlineMath math="a + bi" /> adalah titik di bidang: bagian real <InlineMath math="a" /> ke kanan dan bagian imajiner <InlineMath math="b" /> ke atas. Bilangan real seperti <InlineMath math="4" /> terletak di sumbu mendatar, dan bilangan imajiner murni seperti <InlineMath math="2i" /> terletak di sumbu tegak.
 
 <MathVisual
-  title="Bilangan kompleks sebagai titik"
-  description="Lima bilangan kompleks diletakkan menurut bagian real ke kanan dan bagian imajiner ke atas, termasuk satu bilangan real dan satu bilangan imajiner murni."
+  title={<>Bilangan kompleks sebagai titik</>}
+  description={<>Lima bilangan kompleks diletakkan menurut bagian real ke kanan dan bagian imajiner ke atas, termasuk satu bilangan real dan satu bilangan imajiner murni.</>}
   labels={{
     z1: <InlineMath math="3 + 2i" />,
     z2: <InlineMath math="-1 + i" />,
@@ -106,7 +127,7 @@ Bandingkan **koefisien dari satuan imajiner**, bukan seluruh suku imajinernya. J
 Baca bagian-bagian <InlineMath math="z = 3 + 2i" /> sebagai dua langkah: <InlineMath math="3" /> di sepanjang sumbu real, lalu <InlineMath math="2" /> ke atas. <InlineMath math="\operatorname{Re}(z) = 3" /> adalah langkah mendatar, <InlineMath math="\operatorname{Im}(z) = 2" /> adalah langkah tegak. Bagian imajinernya adalah bilangan <InlineMath math="2" />, bukan <InlineMath math="2i" />.
 
 <MathVisual
-  title="Bagian real dan bagian imajiner 3 + 2i"
+  title={<>Bagian real dan bagian imajiner 3 + 2i</>}
   description={<>Titik <InlineMath math="3 + 2i" /> dicapai dengan langkah mendatar 3 dan langkah tegak 2.</>}
   labels={{
     re: <InlineMath math="\operatorname{Re}(z) = 3" />,

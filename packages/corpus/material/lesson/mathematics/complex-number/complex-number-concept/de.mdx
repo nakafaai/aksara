@@ -15,16 +15,6 @@ Bei <InlineMath math="x^2 + 1 = 0" /> ist das anders. Die Gleichung verlangt <In
 
 Die komplexen Zahlen <Highlight>erweitern das reelle Zahlensystem</Highlight>, sodass auch solche Gleichungen lösbar werden.
 
-<Mermaid
-  title="Wie die Zahlbereiche ineinanderliegen"
-  description="Jeder Zahlbereich erweitert den vorigen, und die komplexen Zahlen fügen die imaginäre Einheit hinzu, deren Quadrat minus eins ist, damit jede quadratische Gleichung Lösungen hat."
-  chart={`flowchart LR
-  N["Natürliche Zahlen"] --> Z["Ganze Zahlen"]
-  Z --> Q["Rationale Zahlen"]
-  Q --> R["Reelle Zahlen"]
-  R -->|"imaginäre Einheit hinzufügen"| C["Komplexe Zahlen"]`}
-/>
-
 ## Imaginäre Zahlen
 
 Die **imaginäre Einheit** wird mit <InlineMath math="i" /> bezeichnet. Ihre Definition lautet:
@@ -48,6 +38,37 @@ Die **Hauptwurzel** ist ein einzelner Wert. Eine quadratische Gleichung kann dag
 
 <BlockMath math="i^2+1=-1+1=0,\qquad(-i)^2+1=i^2+1=0" />
 
+Die Multiplikation mit <InlineMath math="i" /> dreht eine Zahl um eine Vierteldrehung um den Ursprung. Start bei <InlineMath math="1" />: Eine Drehung ergibt <InlineMath math="i" />, eine zweite <InlineMath math="i^2 = -1" />, eine dritte <InlineMath math="-i" />, und die vierte bringt dich zurück zu <InlineMath math="1" />. Darum ist <InlineMath math="i^2 = -1" /> kein Widerspruch: Zwei Vierteldrehungen zeigen in die Gegenrichtung.
+
+<MathVisual
+  title={<>Potenzen von <InlineMath math="i" /> als Vierteldrehungen</>}
+  description={<>Die Zahlen <InlineMath math="1" />, <InlineMath math="i" />, <InlineMath math="-1" /> und <InlineMath math="-i" /> auf dem Einheitskreis, je eine Vierteldrehung entfernt.</>}
+  labels={{
+    one: <InlineMath math="1" />,
+    i: <InlineMath math="i" />,
+    minus: <InlineMath math="-1" />,
+    minusi: <InlineMath math="-i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "one", kind: "point", at: { x: 1, y: 0 }, appearance: "primary" },
+      { id: "i", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "minus", kind: "point", at: { x: -1, y: 0 }, appearance: "primary" },
+      { id: "minusi", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "i", objectId: "i", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "minus", objectId: "minus", at: { x: -1, y: 0 }, placement: "left" },
+      { key: "minusi", objectId: "minusi", at: { x: 0, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
 ## Allgemeine Form
 
 Komplexe Zahlen werden im Allgemeinen in der Form <InlineMath math="z = a + bi" /> geschrieben, wobei:
@@ -62,8 +83,8 @@ Sowohl <InlineMath math="a" /> als auch <InlineMath math="b" /> sind reelle Zahl
 Jede komplexe Zahl <InlineMath math="a + bi" /> ist ein Punkt in der Ebene: der Realteil <InlineMath math="a" /> nach rechts und der Imaginärteil <InlineMath math="b" /> nach oben. Reelle Zahlen wie <InlineMath math="4" /> liegen auf der waagerechten Achse, rein imaginäre Zahlen wie <InlineMath math="2i" /> auf der senkrechten.
 
 <MathVisual
-  title="Komplexe Zahlen als Punkte"
-  description="Fünf komplexe Zahlen, nach Realteil (rechts) und Imaginärteil (oben) eingetragen, darunter eine reelle und eine rein imaginäre Zahl."
+  title={<>Komplexe Zahlen als Punkte</>}
+  description={<>Fünf komplexe Zahlen, nach Realteil (rechts) und Imaginärteil (oben) eingetragen, darunter eine reelle und eine rein imaginäre Zahl.</>}
   labels={{
     z1: <InlineMath math="3 + 2i" />,
     z2: <InlineMath math="-1 + i" />,
@@ -106,7 +127,7 @@ Lies den **Koeffizienten der imaginären Einheit** ab, nicht den gesamten imagin
 Lies die Teile von <InlineMath math="z = 3 + 2i" /> als zwei Schritte: <InlineMath math="3" /> entlang der reellen Achse, dann <InlineMath math="2" /> nach oben. <InlineMath math="\operatorname{Re}(z) = 3" /> ist der waagerechte Schritt, <InlineMath math="\operatorname{Im}(z) = 2" /> der senkrechte. Der Imaginärteil ist die Zahl <InlineMath math="2" />, nicht <InlineMath math="2i" />.
 
 <MathVisual
-  title="Realteil und Imaginärteil von 3 + 2i"
+  title={<>Realteil und Imaginärteil von 3 + 2i</>}
   description={<>Der Punkt <InlineMath math="3 + 2i" />, erreicht durch einen waagerechten Schritt 3 und einen senkrechten Schritt 2.</>}
   labels={{
     re: <InlineMath math="\operatorname{Re}(z) = 3" />,

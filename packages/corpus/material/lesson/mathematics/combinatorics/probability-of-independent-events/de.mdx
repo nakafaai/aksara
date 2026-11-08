@@ -64,7 +64,7 @@ Die Wahrscheinlichkeit dafür, dass <InlineMath math="A" /> und <InlineMath math
 Stell dir alle Ergebnisse als Einheitsquadrat der Wahrscheinlichkeit vor. Das Ereignis <InlineMath math="A" />, ein gerader erster Würfel, nimmt die linke Hälfte ein, Breite <InlineMath math="\tfrac12" />. Das Ereignis <InlineMath math="B" />, eine 1 oder 2 beim zweiten Würfel, nimmt das untere Drittel ein, Höhe <InlineMath math="\tfrac13" />. Weil sich die Würfel nicht beeinflussen, ist die Überschneidung ein Rechteck mit Fläche <InlineMath math="\tfrac12 \cdot \tfrac13 = \tfrac16" />, also <InlineMath math="P(A \cap B)" />.
 
 <MathVisual
-  title="Unabhängigkeit als Rechteck der Fläche P(A)P(B)"
+  title={<>Unabhängigkeit als Rechteck der Fläche P(A)P(B)</>}
   description={<>Ein Einheitsquadrat mit dem Streifen <InlineMath math="A" /> der Breite einhalb, dem Streifen <InlineMath math="B" /> der Höhe ein Drittel und ihrer Überschneidung mit Fläche ein Sechstel.</>}
   labels={{
     a: <InlineMath math="A" />,
@@ -143,11 +143,11 @@ Beide Ereignisse sind **unabhängig**, da das Ergebnis des Würfels keinen Einfl
 Wirf einen Würfel und eine Münze: Es gibt <InlineMath math="6 \cdot 2 = 12" /> gleich wahrscheinliche Paare. Die drei hervorgehobenen sind eine gerade Zahl mit Kopf, also <InlineMath math="P = \frac{3}{12} = \frac12 \cdot \frac12" />. Jede Spalte des Rasters hat denselben Anteil Kopf, genau so sieht Unabhängigkeit aus.
 
 <MathVisual
-  title="Zwölf Ergebnisse von Würfel und Münze"
-  description="Würfelergebnisse nach rechts, die Münze nach oben, die drei Ergebnisse gerade und Kopf hervorgehoben."
+  title={<>Zwölf Ergebnisse von Würfel und Münze</>}
+  description={<>Würfelergebnisse nach rechts, die Münze nach oben, die drei Ergebnisse gerade und Kopf hervorgehoben.</>}
   labels={{
-    c12: "Kopf",
-    c11: "Zahl",
+    c12: <>Kopf</>,
+    c11: <>Zahl</>,
   }}
   scene={{
     space: "plane",
@@ -210,13 +210,14 @@ Bei Aufgaben mit unabhängigen Ereignissen gehst du so vor:
 4. **Wende die Formel an** <InlineMath math="P(A \cap B) = P(A) \times P(B)" />
 5. **Prüfe das Ergebnis** im Kontext der Aufgabe
 
-<Mermaid
-  title="Unabhängigkeit prüfen, bevor du multiplizierst"
-  description="Multiplizier die Wahrscheinlichkeiten erst, wenn du geprüft hast, dass das Wissen über ein Ereignis die andere Wahrscheinlichkeit nicht ändert."
-  chart={`flowchart TD
-  A["Zwei Ereignisse"] --> Q{"Lässt das Wissen über eines die Chance des anderen unverändert?"}
-  Q -->|"Ja, unabhängig"| M1["Beide Wahrscheinlichkeiten multiplizieren"]
-  Q -->|"Nein, abhängig"| M2["Mit der bedingten Wahrscheinlichkeit multiplizieren"]`}
+Bei unabhängigen Ereignissen ist der dritte Balken das Produkt der ersten beiden. Ein gerader erster Würfel hat <InlineMath math="\frac12" />, eine 1 oder 2 beim zweiten Würfel hat <InlineMath math="\frac13" />, und beides zusammen hat <InlineMath math="\frac12 \cdot \frac13 = \frac16" />.
+
+<BarChart
+  title={<>Die Produktregel für unabhängige Ereignisse</>}
+  description={<>Balken für <InlineMath math="P(A) = \frac12" />, <InlineMath math="P(B) = \frac13" /> und <InlineMath math="P(A \cap B) = \frac16" />.</>}
+  yAxisLabel="Wahrscheinlichkeit"
+  data={[["A", 1 / 2], ["B", 1 / 3], ["A und B", 1 / 6]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ### Kontrollen für das Endergebnis

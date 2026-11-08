@@ -29,16 +29,6 @@ Vektor nol memiliki beberapa sifat khusus yang membedakannya dari vektor lainnya
 
 6. Perkalian dengan sebarang skalar real tetap menghasilkan vektor nol: <InlineMath math="k \cdot \vec{0} = \vec{0}" />
 
-<Mermaid
-  title="Perilaku vektor nol"
-  description="Vektor nol panjangnya 0 dan tidak berarah, tidak mengubah vektor apa pun dalam penjumlahan, dan merupakan hasil vektor dikurangi dirinya sendiri atau nol kali sebuah vektor."
-  chart={`flowchart TD
-  Z["Vektor nol"] --> L["Panjang nol dan tanpa arah"]
-  Z --> A["Menambahkannya tidak mengubah vektor apa pun"]
-  Z --> S["Vektor dikurangi dirinya sendiri menghasilkannya"]
-  Z --> K["Nol kali vektor apa pun menghasilkannya"]`}
-/>
-
 ## Representasi Vektor Nol
 
 **Setiap komponen Kartesius** vektor nol bernilai nol, sehingga panjang vektor nol adalah nol dan arahnya tidak ditentukan. Daftar berikut menampilkan koordinat vektor nol di ruang dimensi satu, dua, dan tiga.
@@ -66,7 +56,7 @@ Ambil arah timur sebagai arah positif dan posisi awal sebagai <InlineMath math="
 Berjalanlah dari <InlineMath math="A" /> ke <InlineMath math="B" />, lalu ke <InlineMath math="C" />, lalu kembali ke <InlineMath math="A" />. Ketiga perpindahan <InlineMath math="\overrightarrow{AB} + \overrightarrow{BC} + \overrightarrow{CA}" /> membawamu ke titik awal, jadi jumlahnya adalah vektor nol <InlineMath math="\vec 0" />: posisimu sama sekali tidak berubah.
 
 <MathVisual
-  title="Jalur tertutup berjumlah vektor nol"
+  title={<>Jalur tertutup berjumlah vektor nol</>}
   description={<>Jalur segitiga dari A ke B ke C dan kembali ke A, yang ketiga vektor perpindahannya berjumlah <InlineMath math="\vec 0" />.</>}
   labels={{
     pa: <InlineMath math="A" />,
@@ -119,7 +109,7 @@ Untuk sebarang vektor <InlineMath math="\vec{a}" />:
 Vektor dikurangi dirinya sendiri tidak menyisakan apa-apa. <InlineMath math="\vec a = (3, 1)" /> dan <InlineMath math="-\vec a = (-3, -1)" /> sama panjang dan berlawanan arah, jadi <InlineMath math="\vec a - \vec a = \vec a + (-\vec a) = \vec 0" />, yaitu vektor sepanjang <InlineMath math="0" /> yang berada di titik asal.
 
 <MathVisual
-  title="Vektor dan lawannya saling meniadakan"
+  title={<>Vektor dan lawannya saling meniadakan</>}
   description={<>Vektor <InlineMath math="(3, 1)" /> dan <InlineMath math="(-3, -1)" /> dari titik asal, yang jumlahnya vektor nol di titik asal.</>}
   labels={{
     a: <InlineMath math="\vec a" />,
@@ -150,6 +140,37 @@ Semua komponen vektor nol tetap nol setelah dikalikan, sehingga hasilnya **tetap
 Untuk sebarang skalar <InlineMath math="k" />:
 
 <BlockMath math="k \cdot \vec{0} = \vec{0}" />
+
+Kecilkan sebuah vektor dengan skalar yang makin kecil, maka ujungnya bergeser ke titik asal: <InlineMath math="2\vec a" />, <InlineMath math="\vec a" />, <InlineMath math="\tfrac12 \vec a" />. Pada skalar <InlineMath math="0" />, ujungnya mendarat di titik awal, jadi <InlineMath math="0\vec a = \vec 0" /> untuk setiap vektor.
+
+<MathVisual
+  title={<>Kelipatan skalar yang menyusut menjadi vektor nol</>}
+  description={<>Ujung <InlineMath math="2\vec a" />, <InlineMath math="\vec a" />, <InlineMath math="\tfrac12 \vec a" />, dan <InlineMath math="0\vec a" /> untuk <InlineMath math="\vec a = (2, 1)" />.</>}
+  labels={{
+    two: <InlineMath math="2\vec a" />,
+    one: <InlineMath math="\vec a" />,
+    half: <InlineMath math="\tfrac12 \vec a" />,
+    zero: <InlineMath math="0\vec a = \vec 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.8 }, y: { min: -0.8, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ray", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "two", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "one", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "half", kind: "point", at: { x: 1, y: 0.5 }, appearance: "primary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "two", objectId: "two", at: { x: 4, y: 2 }, placement: "above-left" },
+      { key: "one", objectId: "one", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "half", objectId: "half", at: { x: 1, y: 0.5 }, placement: "above-left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Penerapan Konsep Vektor Nol
 

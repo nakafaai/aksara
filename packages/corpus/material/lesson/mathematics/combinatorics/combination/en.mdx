@@ -24,8 +24,8 @@ For a permutation, <InlineMath math="ABC" /> and <InlineMath math="BAC" /> are d
 Choosing 2 of 4 friends ignores order, so each choice is one segment between two dots. Count the segments: 4 sides and 2 diagonals, <InlineMath math="6" /> in all. That matches <InlineMath math="\binom{4}{2} = \frac{4!}{2! \cdot 2!} = 6" />, while ordered pairs would count every segment twice, <InlineMath math="12" />.
 
 <MathVisual
-  title="Six ways to choose 2 of 4"
-  description="Four friends A, B, C and D as dots. Each of the six segments is one way to choose two of them."
+  title={<>Six ways to choose 2 of 4</>}
+  description={<>Four friends A, B, C and D as dots. Each of the six segments is one way to choose two of them.</>}
   labels={{
     a: <InlineMath math="A" />,
     b: <InlineMath math="B" />,
@@ -90,7 +90,7 @@ Choosing two of three students A, B, and C shows why we divide by <InlineMath ma
 The bars show <InlineMath math="\binom{6}{k}" /> for <InlineMath math="k = 0" /> to <InlineMath math="6" />: <InlineMath math="1, 6, 15, 20, 15, 6, 1" />. The row is symmetric, because choosing <InlineMath math="k" /> objects to take is the same as choosing <InlineMath math="6 - k" /> objects to leave.
 
 <BarChart
-  title="Choosing from six objects"
+  title={<>Choosing from six objects</>}
   description={<>Bar <InlineMath math="k" /> shows <InlineMath math="\binom{6}{k}" />, which is symmetric about <InlineMath math="k = 3" />.</>}
   yAxisLabel="Combinations"
   data={Array.from({ length: 7 }, (_, k) => {
@@ -153,14 +153,32 @@ Some selections include **additional conditions**. For example, from <InlineMath
 
 **Total**: <InlineMath math="210 + 70 + 5 = 285" /> ways
 
-<Mermaid
-  title="Permutation or combination"
-  description="If the order of the chosen objects matters, count permutations. If it does not, count combinations, which are the permutations divided by the number of orders of each selection."
-  chart={`flowchart TD
-  A["Choose some of the objects"] --> Q{"Does the order matter?"}
-  Q -->|"Yes"| P["Permutation"]
-  Q -->|"No"| C["Combination"]
-  P -->|"divide by the orders of each selection"| C`}
+Choosing <InlineMath math="3" /> of <InlineMath math="4" /> friends is the same as choosing the <InlineMath math="1" /> friend to leave out. Each triangle below leaves out a different corner, so there are exactly <InlineMath math="4" /> triangles: <InlineMath math="\binom{4}{3} = \binom{4}{1} = 4" />.
+
+<MathVisual
+  title={<>Choosing three of four is leaving one out</>}
+  description={<>Four triangles, each made of three of the four friends, with the friend left out drawn as a gray dot.</>}
+  labels={{
+    t0: <InlineMath math="\binom{4}{3} = 4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 6.2 }, y: { min: -0.6, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "t0", kind: "polygon", vertices: [{ x: 1.0, y: 1 }, { x: 1.0, y: 0 }, { x: 0.0, y: 0 }], appearance: "primary" },
+      { id: "m0", kind: "point", at: { x: 0.0, y: 1 }, appearance: "reference" },
+      { id: "t1", kind: "polygon", vertices: [{ x: 1.6, y: 1 }, { x: 2.6, y: 0 }, { x: 1.6, y: 0 }], appearance: "primary" },
+      { id: "m1", kind: "point", at: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "t2", kind: "polygon", vertices: [{ x: 3.2, y: 1 }, { x: 4.2, y: 1 }, { x: 3.2, y: 0 }], appearance: "primary" },
+      { id: "m2", kind: "point", at: { x: 4.2, y: 0 }, appearance: "reference" },
+      { id: "t3", kind: "polygon", vertices: [{ x: 4.8, y: 1 }, { x: 5.8, y: 1 }, { x: 5.8, y: 0 }], appearance: "primary" },
+      { id: "m3", kind: "point", at: { x: 4.8, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "t0", objectId: "t0", at: { x: 0.5, y: 0 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ## Practice Problems

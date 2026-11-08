@@ -22,8 +22,8 @@ Disjunkte Ereignisse haben **kein gemeinsames Ergebnis**, ihr Schnitt trägt als
 Im Diagramm sind unvereinbare Ereignisse zwei Kreise ohne Überschneidung. Mit einem Würfel ist <InlineMath math="A" /> = eine gerade Zahl <InlineMath math="\{2, 4, 6\}" /> und <InlineMath math="B" /> = die Zahl <InlineMath math="1" />: Kein Ergebnis liegt in beiden, also wird nichts doppelt gezählt.
 
 <MathVisual
-  title="Zwei Ereignisse ohne Überschneidung"
-  description="Zwei getrennte Kreise für die Ereignisse A und B, die kein Ergebnis teilen."
+  title={<>Zwei Ereignisse ohne Überschneidung</>}
+  description={<>Zwei getrennte Kreise für die Ereignisse A und B, die kein Ergebnis teilen.</>}
   labels={{
     a: <InlineMath math="A = \{2, 4, 6\}" />,
     b: <InlineMath math="B = \{1\}" />,
@@ -199,10 +199,10 @@ Um <InlineMath math="\frac{1}{9} + \frac{1}{6}" /> zu addieren, benötigen wir d
 Im Raster zweier Würfel liegen die Pasche auf einer Diagonale und die Summen <InlineMath math="7" /> auf der anderen. Die beiden Diagonalen teilen keinen Punkt, weil ein Pasch <InlineMath math="(k, k)" /> eine gerade Summe hat. Die Ereignisse sind also unvereinbar und <InlineMath math="P = \frac{6}{36} + \frac{6}{36} = \frac13" />.
 
 <MathVisual
-  title="Pasche und Summe sieben treffen sich nie"
-  description="Die 36 Ergebnisse zweier Würfel. Die sechs Pasche und die sechs Ergebnisse mit Summe 7 teilen keinen Punkt."
+  title={<>Pasche und Summe sieben treffen sich nie</>}
+  description={<>Die 36 Ergebnisse zweier Würfel. Die sechs Pasche und die sechs Ergebnisse mit Summe 7 teilen keinen Punkt.</>}
   labels={{
-    d11: "Pasch",
+    d11: <>Pasch</>,
     d16: <InlineMath math="x + y = 7" />,
   }}
   scene={{
@@ -268,13 +268,14 @@ Bei Aufgaben zu disjunkten Ereignissen gehst du so vor:
 4. **Berechne die Einzelwahrscheinlichkeiten**
 5. **Wende die Formel an** <InlineMath math="P(A \cup B) = P(A) + P(B)" />
 
-<Mermaid
-  title="Erst die Schnittmenge prüfen, dann addieren"
-  description="Addier die Wahrscheinlichkeiten nur, wenn die Ereignisse nicht zusammen eintreten können. Sonst zieh die Überschneidung einmal ab."
-  chart={`flowchart TD
-  A["Zwei Ereignisse"] --> Q{"Können sie zusammen eintreten?"}
-  Q -->|"Nein"| E["Beide Wahrscheinlichkeiten addieren"]
-  Q -->|"Ja"| N["Addieren, dann die Überschneidung einmal abziehen"]`}
+Können zwei Ereignisse nicht zusammen eintreten, stapeln sich ihre Balken einfach. Pasche haben <InlineMath math="\frac{6}{36}" />, Summen 7 haben <InlineMath math="\frac{6}{36}" />, und eines von beiden hat <InlineMath math="\frac{12}{36}" />, ohne dass etwas abzuziehen ist.
+
+<BarChart
+  title={<>Zwei unvereinbare Ereignisse addieren</>}
+  description={<>Balken für Pasch, Summe 7 und eines von beiden, mit <InlineMath math="\frac{6}{36} + \frac{6}{36} = \frac{12}{36}" />.</>}
+  yAxisLabel="Wahrscheinlichkeit"
+  data={[["Pasch", 6 / 36], ["Summe 7", 6 / 36], ["eines von beiden", 12 / 36]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ### Kontrollen für das Endergebnis

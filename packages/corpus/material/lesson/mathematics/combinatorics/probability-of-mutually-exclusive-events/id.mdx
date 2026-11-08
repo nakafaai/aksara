@@ -22,8 +22,8 @@ Kejadian saling lepas **tidak berbagi hasil**, sehingga irisannya tidak menyumba
 Dalam diagram, kejadian saling lepas adalah dua lingkaran yang tidak beririsan. Dengan satu dadu, <InlineMath math="A" /> = bilangan genap <InlineMath math="\{2, 4, 6\}" /> dan <InlineMath math="B" /> = bilangan <InlineMath math="1" />: tidak ada hasil yang masuk keduanya, jadi tidak ada yang terhitung dua kali.
 
 <MathVisual
-  title="Dua kejadian tanpa irisan"
-  description="Dua lingkaran terpisah untuk kejadian A dan B, yang tidak berbagi hasil."
+  title={<>Dua kejadian tanpa irisan</>}
+  description={<>Dua lingkaran terpisah untuk kejadian A dan B, yang tidak berbagi hasil.</>}
   labels={{
     a: <InlineMath math="A = \{2, 4, 6\}" />,
     b: <InlineMath math="B = \{1\}" />,
@@ -199,10 +199,10 @@ Untuk menjumlahkan <InlineMath math="\frac{1}{9} + \frac{1}{6}" />, kita memerlu
 Pada kisi dua dadu, hasil kembar terletak di satu diagonal dan jumlah <InlineMath math="7" /> di diagonal lainnya. Kedua diagonal tidak pernah berbagi titik, karena hasil kembar <InlineMath math="(k, k)" /> jumlahnya genap. Jadi kedua kejadian saling lepas dan <InlineMath math="P = \frac{6}{36} + \frac{6}{36} = \frac13" />.
 
 <MathVisual
-  title="Hasil kembar dan jumlah tujuh tidak pernah bertemu"
-  description="Ke-36 hasil dua dadu. Enam hasil kembar dan enam hasil berjumlah 7 tidak berbagi titik."
+  title={<>Hasil kembar dan jumlah tujuh tidak pernah bertemu</>}
+  description={<>Ke-36 hasil dua dadu. Enam hasil kembar dan enam hasil berjumlah 7 tidak berbagi titik.</>}
   labels={{
-    d11: "kembar",
+    d11: <>kembar</>,
     d16: <InlineMath math="x + y = 7" />,
   }}
   scene={{
@@ -268,13 +268,14 @@ Untuk menyelesaikan soal peluang kejadian saling lepas, ikuti langkah berikut:
 4. **Hitung peluang masing-masing** kejadian secara terpisah
 5. **Terapkan rumus** <InlineMath math="P(A \cup B) = P(A) + P(B)" />
 
-<Mermaid
-  title="Cek irisannya sebelum menjumlahkan"
-  description="Jumlahkan peluangnya hanya jika kedua kejadian tidak bisa terjadi bersamaan. Jika bisa, kurangkan irisannya sekali."
-  chart={`flowchart TD
-  A["Dua kejadian"] --> Q{"Bisakah terjadi bersamaan?"}
-  Q -->|"Tidak"| E["Jumlahkan kedua peluang"]
-  Q -->|"Ya"| N["Jumlahkan, lalu kurangkan irisannya sekali"]`}
+Jika dua kejadian tidak bisa terjadi bersamaan, batangnya tinggal ditumpuk. Hasil kembar berpeluang <InlineMath math="\frac{6}{36}" />, jumlah 7 berpeluang <InlineMath math="\frac{6}{36}" />, dan salah satunya berpeluang <InlineMath math="\frac{12}{36}" />, tanpa ada yang perlu dikurangkan.
+
+<BarChart
+  title={<>Menjumlahkan dua kejadian saling lepas</>}
+  description={<>Batang untuk hasil kembar, jumlah 7, dan salah satunya, dengan <InlineMath math="\frac{6}{36} + \frac{6}{36} = \frac{12}{36}" />.</>}
+  yAxisLabel="Peluang"
+  data={[["kembar", 6 / 36], ["jumlah 7", 6 / 36], ["salah satunya", 12 / 36]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Peluang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ### Pemeriksaan Hasil Akhir

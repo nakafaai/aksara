@@ -47,13 +47,14 @@ Die Größen in dieser Formel bedeuten:
 
 **Gegenereignis**: Das Gegenereignis zu <InlineMath math="A" /> enthält jedes Ergebnis des Ergebnisraums, das **nicht** zu <InlineMath math="A" /> gehört. Bedeutet <InlineMath math="A" /> etwa „eine gerade Zahl würfeln“, so steht <InlineMath math="A'" /> für „eine ungerade Zahl würfeln“.
 
-<Mermaid
-  title="Die Wahrscheinlichkeit eines Ereignisses berechnen"
-  description="Liste die gleich wahrscheinlichen Ergebnisse auf, zähl die im Ereignis, teil, und nutz das Gegenereignis, wenn es leichter zu zählen ist."
-  chart={`flowchart LR
-  S["Gleich wahrscheinliche Ergebnisse auflisten"] --> A["Ergebnisse im Ereignis zählen"]
-  A --> P["Durch die Anzahl aller Ergebnisse teilen"]
-  P --> C["Gegenereignis: eins minus diese Wahrscheinlichkeit"]`}
+Ein Ereignis und sein Gegenereignis teilen sich die ganze Wahrscheinlichkeit. Bei zwei Würfeln ist <InlineMath math="P(\text{Summe} = 9) = \frac{4}{36}" /> und <InlineMath math="P(\text{Summe} \neq 9) = \frac{32}{36}" />. Die beiden Balken ergeben zusammen immer <InlineMath math="1" />, darum ist es oft schneller, die kleinere Seite zu zählen.
+
+<BarChart
+  title={<>Ein Ereignis und sein Gegenereignis</>}
+  description={<>Die Wahrscheinlichkeiten, dass zwei Würfel die Summe 9 ergeben und dass sie es nicht tun, zusammen 1.</>}
+  yAxisLabel="Wahrscheinlichkeit"
+  data={[["Summe 9", 4 / 36], ["Summe nicht 9", 32 / 36]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Wahrscheinlichkeit für die Summe Neun bei zwei Würfeln
@@ -78,7 +79,7 @@ Vier Paare erfüllen die Bedingung, also gilt <InlineMath math="n(A)=4" />.
 Jeder Punkt ist ein Ergebnis zweier Würfel: der erste Würfel nach rechts, der zweite nach oben, insgesamt <InlineMath math="36" /> Punkte. Die vier hervorgehobenen Punkte liegen auf der Geraden <InlineMath math="x + y = 9" />: <InlineMath math="(3, 6)" />, <InlineMath math="(4, 5)" />, <InlineMath math="(5, 4)" /> und <InlineMath math="(6, 3)" />. Also <InlineMath math="P(\text{Summe} = 9) = \frac{4}{36} = \frac19" />.
 
 <MathVisual
-  title="Vier von 36 Ergebnissen ergeben neun"
+  title={<>Vier von 36 Ergebnissen ergeben neun</>}
   description={<>Die 36 Ergebnisse zweier Würfel als Raster 6 mal 6, die vier Ergebnisse auf <InlineMath math="x + y = 9" /> hervorgehoben.</>}
   labels={{
     nine: <InlineMath math="x + y = 9" />,
@@ -155,7 +156,7 @@ Das ist die größte Wahrscheinlichkeit unter allen möglichen Summen. Trotzdem 
 Zähl die Ergebnisse für jede Summe, dann zeigt sich das Muster: <InlineMath math="1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1" /> von <InlineMath math="36" /> für die Summen <InlineMath math="2" /> bis <InlineMath math="12" />. Die Summe <InlineMath math="7" /> ist mit <InlineMath math="\frac{6}{36}" /> am wahrscheinlichsten, die Summe <InlineMath math="9" /> hat <InlineMath math="\frac{4}{36}" />.
 
 <BarChart
-  title="Wahrscheinlichkeit jeder Augensumme zweier Würfel"
+  title={<>Wahrscheinlichkeit jeder Augensumme zweier Würfel</>}
   description={<>Balken <InlineMath math="s" /> zeigt die Wahrscheinlichkeit <InlineMath math="\frac{6 - |s - 7|}{36}" />, dass zwei Würfel die Summe <InlineMath math="s" /> ergeben.</>}
   yAxisLabel="Wahrscheinlichkeit"
   data={Array.from({ length: 11 }, (_, i) => {
@@ -187,12 +188,12 @@ Versuche jede Aufgabe selbst, bevor du die ausführliche Lösung liest. Notiere 
 Der Ergebnisraum beim Werfen zweier Würfel hat <InlineMath math="n(S) = 36" /> Ergebnisse.
 
 **Identifiziere alle geraden Summen und Möglichkeiten, sie zu erhalten**:
-- Summe <InlineMath math="2" />: <InlineMath math="(1,1)" /> → <InlineMath math="1" /> Weg
-- Summe <InlineMath math="4" />: <InlineMath math="(1,3), (2,2), (3,1)" /> → <InlineMath math="3 \text{ Wege}" />
-- Summe <InlineMath math="6" />: <InlineMath math="(1,5), (2,4), (3,3), (4,2), (5,1)" /> → <InlineMath math="5 \text{ Wege}" />
-- Summe <InlineMath math="8" />: <InlineMath math="(2,6), (3,5), (4,4), (5,3), (6,2)" /> → <InlineMath math="5 \text{ Wege}" />
-- Summe <InlineMath math="10" />: <InlineMath math="(4,6), (5,5), (6,4)" /> → <InlineMath math="3 \text{ Wege}" />
-- Summe <InlineMath math="12" />: <InlineMath math="(6,6)" /> → <InlineMath math="1" /> Weg
+- Summe <InlineMath math="2" />: <InlineMath math="(1,1)" /> <InlineMath math="\rightarrow 1" /> Weg
+- Summe <InlineMath math="4" />: <InlineMath math="(1,3), (2,2), (3,1)" /> <InlineMath math="\rightarrow 3 \text{ Wege}" />
+- Summe <InlineMath math="6" />: <InlineMath math="(1,5), (2,4), (3,3), (4,2), (5,1)" /> <InlineMath math="\rightarrow 5 \text{ Wege}" />
+- Summe <InlineMath math="8" />: <InlineMath math="(2,6), (3,5), (4,4), (5,3), (6,2)" /> <InlineMath math="\rightarrow 5 \text{ Wege}" />
+- Summe <InlineMath math="10" />: <InlineMath math="(4,6), (5,5), (6,4)" /> <InlineMath math="\rightarrow 3 \text{ Wege}" />
+- Summe <InlineMath math="12" />: <InlineMath math="(6,6)" /> <InlineMath math="\rightarrow 1" /> Weg
 
 **Günstige Ergebnisse insgesamt**: <InlineMath math="n(A) = 1 + 3 + 5 + 5 + 3 + 1 = 18" />
 

@@ -88,7 +88,7 @@ Direct addition gives <InlineMath math="5/36 + 6/36 = 11/36" />, but the pair <I
 On the grid of two dice, the doubles run along one diagonal and the sums of <InlineMath math="8" /> along another. They cross at <InlineMath math="(4, 4)" />, a double whose sum is 8. Counting both lists would count that dot twice, so <InlineMath math="P = \frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.
 
 <MathVisual
-  title="Doubles and sums of eight share one outcome"
+  title={<>Doubles and sums of eight share one outcome</>}
   description={<>The 36 outcomes of two dice with the six doubles, the five sums of 8, and their shared outcome <InlineMath math="(4, 4)" />.</>}
   labels={{
     d44: <InlineMath math="(4, 4)" />,
@@ -144,10 +144,10 @@ On the grid of two dice, the doubles run along one diagonal and the sums of <Inl
 The same count as a diagram: <InlineMath math="5" /> doubles that are not sums of 8, <InlineMath math="4" /> sums of 8 that are not doubles, and <InlineMath math="1" /> outcome in both. The union holds <InlineMath math="5 + 1 + 4 = 10" /> outcomes, exactly what the formula gives.
 
 <MathVisual
-  title="The overlap counted once"
-  description="Two overlapping circles for doubles and sums of 8, with 5, 1 and 4 outcomes in the three regions."
+  title={<>The overlap counted once</>}
+  description={<>Two overlapping circles for doubles and sums of 8, with 5, 1 and 4 outcomes in the three regions.</>}
   labels={{
-    a: "doubles",
+    a: <>doubles</>,
     b: <InlineMath math="x + y = 8" />,
     onlya: <InlineMath math="5" />,
     onlyb: <InlineMath math="4" />,
@@ -206,13 +206,14 @@ The two formulas differ in one question, whether the events can happen in the **
 
 The second formula subtracts the overlap because the outcomes that belong to both events were counted twice, once for <InlineMath math="A" /> and once for <InlineMath math="B" />.
 
-<Mermaid
-  title="Which addition formula to use"
-  description="Use the simple sum only when the events share no outcome. When they overlap, subtract the shared probability once."
-  chart={`flowchart TD
-  A["Probability of one event or the other"] --> Q{"Can both happen together?"}
-  Q -->|"No"| E["Add the two probabilities"]
-  Q -->|"Yes"| N["Add them, then subtract the chance of both once"]`}
+With an overlap the bars no longer stack. Doubles have <InlineMath math="\frac{6}{36}" /> and sums of 8 have <InlineMath math="\frac{5}{36}" />, but <InlineMath math="(4, 4)" /> belongs to both, so either one has <InlineMath math="\frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.
+
+<BarChart
+  title={<>Adding two overlapping events</>}
+  description={<>Bars for doubles, sums of 8, both and either, with <InlineMath math="\frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.</>}
+  yAxisLabel="Probability"
+  data={[["doubles", 6 / 36], ["sum 8", 5 / 36], ["both", 1 / 36], ["either", 10 / 36]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Exercise

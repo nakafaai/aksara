@@ -31,7 +31,7 @@ Kedua hasil kali bernilai <InlineMath math="5+5i" />, sehingga sifat komutatif t
 Hasil kali juga punya gambar. Untuk <InlineMath math="z_1 = 1 + i" /> dan <InlineMath math="z_2 = 2 + i" />, hasil kalinya <InlineMath math="z_1z_2 = 2 + i + 2i + i^2 = 1 + 3i" />. Panjangnya <InlineMath math="\sqrt{10} = \sqrt 2 \cdot \sqrt 5" />, hasil kali kedua panjang, dan menukar faktornya memberi titik yang sama.
 
 <MathVisual
-  title="Hasil kali 1 + i dan 2 + i"
+  title={<>Hasil kali 1 + i dan 2 + i</>}
   description={<>Panah <InlineMath math="1 + i" />, <InlineMath math="2 + i" />, dan hasil kalinya <InlineMath math="1 + 3i" />, yang panjangnya <InlineMath math="\sqrt{10}" /> sama dengan <InlineMath math="\sqrt2 \cdot \sqrt5" />.</>}
   labels={{
     z1: <InlineMath math="1 + i" />,
@@ -71,6 +71,30 @@ Misal <InlineMath math="z_1 = i" />, <InlineMath math="z_2 = 2" />, dan <InlineM
 </MathContainer>
 
 Kedua pengelompokan bernilai <InlineMath math="2+6i" />, sehingga sifat asosiatif terverifikasi pada contoh ini.
+
+Faktor seperti <InlineMath math="2i" /> melakukan dua hal sekaligus: menggandakan panjang dan memutar seperempat putaran. Untuk <InlineMath math="z = 2 + i" />, <InlineMath math="2iz = 4i + 2i^2 = -2 + 4i" />, dua kali lebih jauh dari titik asal dan tegak lurus terhadap <InlineMath math="z" />. Mengalikan dengan <InlineMath math="2" /> dan dengan <InlineMath math="i" /> dalam urutan mana pun memberi titik yang sama.
+
+<MathVisual
+  title={<>Mengalikan dengan <InlineMath math="2i" /> menggandakan dan memutar</>}
+  description={<>Titik <InlineMath math="z = 2 + i" /> dan titik <InlineMath math="2iz = -2 + 4i" />, dua kali lebih jauh dan seperempat putaran lebih jauh.</>}
+  labels={{
+    z: <InlineMath math="z = 2 + i" />,
+    w: <InlineMath math="2iz = -2 + 4i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.5, max: 4.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "w", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "w", objectId: "w", at: { x: -2, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
 
 ### Identitas Perkalian
 
@@ -116,7 +140,7 @@ Gunakan **distributif** untuk menghasilkan empat suku, lalu **komutatif** untuk 
 Mengalikan dengan <InlineMath math="i" /> memutar bilangan seperempat putaran mengelilingi titik asal. Mulai dari <InlineMath math="z = 3 + i" />: <InlineMath math="iz = 3i + i^2 = -1 + 3i" />. Tiga perkalian lagi memberi <InlineMath math="-3 - i" />, <InlineMath math="1 - 3i" />, dan kembali ke <InlineMath math="3 + i" />, yaitu pojok-pojok sebuah persegi, karena <InlineMath math="i^4 = 1" />.
 
 <MathVisual
-  title="Mengalikan dengan i memutar 90 derajat"
+  title={<>Mengalikan dengan i memutar 90 derajat</>}
   description={<>Titik <InlineMath math="z" />, <InlineMath math="iz" />, <InlineMath math="i^2z" />, dan <InlineMath math="i^3z" /> untuk <InlineMath math="z = 3 + i" />, keempat pojok persegi di sekeliling titik asal.</>}
   labels={{
     w0: <InlineMath math="z = 3 + i" />,
@@ -193,14 +217,3 @@ Jadi, invers perkalian dari <InlineMath math="z = x+iy" /> adalah:
 Perhatikan bahwa <InlineMath math="x^2+y^2 = |z|^2" /> dan <InlineMath math="x-iy = \bar{z}" />. Maka rumus invers bisa juga ditulis sebagai:
 
 <BlockMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />
-
-<Mermaid
-  title="Sifat perkalian bilangan kompleks"
-  description="Perkalian bilangan kompleks bersifat komutatif dan asosiatif, punya identitas 1, distributif terhadap penjumlahan, dan memberi setiap bilangan tak nol sebuah invers."
-  chart={`flowchart TD
-  A["Mengalikan bilangan kompleks"] --> C1["Komutatif: urutan tidak berpengaruh"]
-  A --> C2["Asosiatif: pengelompokan tidak berpengaruh"]
-  A --> C3["Identitas: mengalikan dengan satu tidak mengubah apa pun"]
-  A --> C4["Distributif: mengalikan jumlah sama dengan mengalikan setiap suku"]
-  A --> C5["Invers: setiap bilangan tak nol punya kebalikan"]`}
-/>

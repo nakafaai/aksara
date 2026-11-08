@@ -40,6 +40,37 @@ Over the real numbers, a square root requires a nonnegative radicand. Therefore,
 
 So, the domain of the function <InlineMath math="g(x) = \sqrt{x}" /> is all real numbers greater than or equal to <InlineMath math="0" /> (<InlineMath math="x \ge 0" />).
 
+The domain decides which points the graph has. With <InlineMath math="f(x) = x^2" /> and the domain <InlineMath math="\{0, 1, 2, 3\}" />, the graph is only the four dots <InlineMath math="(0, 0)" />, <InlineMath math="(1, 1)" />, <InlineMath math="(2, 4)" /> and <InlineMath math="(3, 9)" /> on the faint parabola. Change the domain and the set of dots changes with it.
+
+<MathVisual
+  title={<>A graph made of four points</>}
+  description={<>The points of <InlineMath math="y = x^2" /> for the inputs 0, 1, 2 and 3, on the parabola drawn faintly behind them.</>}
+  labels={{
+    d0: <InlineMath math="(0, 0)" />,
+    d1: <InlineMath math="(1, 1)" />,
+    d2: <InlineMath math="(2, 4)" />,
+    d3: <InlineMath math="(3, 9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.8 }, y: { min: -0.5, max: 9.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "faint", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 3.1 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 3, y: 9 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "d0", objectId: "d0", at: { x: 0, y: 0 }, placement: "above-left" },
+      { key: "d1", objectId: "d1", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "d2", objectId: "d2", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "d3", objectId: "d3", at: { x: 3, y: 9 }, placement: "left" },
+    ],
+  }}
+/>
+
 ## Codomain
 
 The **codomain** is the target set declared as part of a function's definition. Every output must belong to this set, but the function does not have to reach every member of it.
@@ -97,7 +128,7 @@ Not all members of the codomain are part of the range.
 Here <InlineMath math="f(x) = x^2" /> maps the domain <InlineMath math="\{-2, -1, 0, 1, 2\}" /> into the codomain <InlineMath math="\{0, 1, 2, 3, 4\}" />. Every input has exactly one arrow, but only <InlineMath math="0" />, <InlineMath math="1" /> and <InlineMath math="4" /> receive any. Those values form the range, and <InlineMath math="2" /> and <InlineMath math="3" /> stay in the codomain without being reached.
 
 <MathVisual
-  title="Domain, codomain and range of x squared"
+  title={<>Domain, codomain and range of x squared</>}
   description={<>Arrows from each input to its square. The highlighted outputs 0, 1 and 4 form the range inside the codomain.</>}
   labels={{
     a0: <InlineMath math="-2" />,
@@ -154,8 +185,8 @@ The domain keeps invalid inputs, such as division by zero, out of the function. 
 To see the difference, restrict the square example to <InlineMath math="D=\{-2,-1,0,1,2\}" /> and choose <InlineMath math="K=\{0,1,2,3,4\}" />. **Each input has one arrow**, but some codomain members receive none.
 
 <Mermaid
-  title="Domain Codomain and Attained Outputs"
-  description="Arrows map five inputs to their squares. The range sits inside the codomain. Two codomain members are not reached."
+  title={<>Domain Codomain and Attained Outputs</>}
+  description={<>Arrows map five inputs to their squares. The range sits inside the codomain. Two codomain members are not reached.</>}
   chart={`flowchart LR
   subgraph D["Domain D"]
     d1["-2"]
@@ -185,11 +216,11 @@ The arrows reach <InlineMath math="0,1,4" />, so <InlineMath math="R=\{0,1,4\}" 
 On a graph the same ideas become intervals. With the domain <InlineMath math="-2 \le x \le 2" />, the parabola <InlineMath math="y = x^2" /> covers the heights from <InlineMath math="0" /> to <InlineMath math="4" />. That interval on the y-axis is the range, while a codomain such as all real numbers can be larger.
 
 <MathVisual
-  title="Domain and range on the graph"
-  description={<>The parabola <InlineMath math="y = x^2" /> over the domain from −2 to 2, with the range from 0 to 4 marked on the y-axis.</>}
+  title={<>Domain and range on the graph</>}
+  description={<>The parabola <InlineMath math="y = x^2" /> over the domain from <InlineMath math="-2" /> to <InlineMath math="2" />, with the range from 0 to 4 marked on the y-axis.</>}
   labels={{
-    dom: "domain",
-    rng: "range",
+    dom: <>domain</>,
+    rng: <>range</>,
   }}
   scene={{
     space: "plane",

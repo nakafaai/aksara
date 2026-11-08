@@ -24,8 +24,8 @@ Dalam permutasi, <InlineMath math="ABC" /> dan <InlineMath math="BAC" /> merupak
 Memilih 2 dari 4 teman tidak memedulikan urutan, jadi setiap pilihan adalah satu ruas garis di antara dua titik. Hitung ruas garisnya: 4 sisi dan 2 diagonal, semuanya <InlineMath math="6" />. Itu sesuai dengan <InlineMath math="\binom{4}{2} = \frac{4!}{2! \cdot 2!} = 6" />, sedangkan pasangan berurutan akan menghitung setiap ruas garis dua kali, <InlineMath math="12" />.
 
 <MathVisual
-  title="Enam cara memilih 2 dari 4"
-  description="Empat teman A, B, C, dan D sebagai titik. Setiap ruas garis dari enam ruas adalah satu cara memilih dua di antaranya."
+  title={<>Enam cara memilih 2 dari 4</>}
+  description={<>Empat teman A, B, C, dan D sebagai titik. Setiap ruas garis dari enam ruas adalah satu cara memilih dua di antaranya.</>}
   labels={{
     a: <InlineMath math="A" />,
     b: <InlineMath math="B" />,
@@ -90,7 +90,7 @@ Pemilihan dua dari tiga siswa A, B, dan C memperlihatkan pembagian dengan <Inlin
 Batangnya menunjukkan <InlineMath math="\binom{6}{k}" /> untuk <InlineMath math="k = 0" /> sampai <InlineMath math="6" />: <InlineMath math="1, 6, 15, 20, 15, 6, 1" />. Barisnya simetris, karena memilih <InlineMath math="k" /> objek untuk diambil sama dengan memilih <InlineMath math="6 - k" /> objek untuk ditinggal.
 
 <BarChart
-  title="Memilih dari enam objek"
+  title={<>Memilih dari enam objek</>}
   description={<>Batang ke-<InlineMath math="k" /> menunjukkan <InlineMath math="\binom{6}{k}" />, yang simetris terhadap <InlineMath math="k = 3" />.</>}
   yAxisLabel="Kombinasi"
   data={Array.from({ length: 7 }, (_, k) => {
@@ -153,14 +153,32 @@ Beberapa pemilihan memiliki **syarat tambahan**. Misalnya, dari <InlineMath math
 
 **Total**: <InlineMath math="210 + 70 + 5 = 285" /> cara
 
-<Mermaid
-  title="Permutasi atau kombinasi"
-  description="Jika urutan objek yang dipilih penting, hitung permutasi. Jika tidak, hitung kombinasi, yaitu permutasi dibagi banyak urutan dari setiap pilihan."
-  chart={`flowchart TD
-  A["Pilih sebagian objek"] --> Q{"Apakah urutan penting?"}
-  Q -->|"Ya"| P["Permutasi"]
-  Q -->|"Tidak"| C["Kombinasi"]
-  P -->|"bagi dengan banyak urutan setiap pilihan"| C`}
+Memilih <InlineMath math="3" /> dari <InlineMath math="4" /> teman sama dengan memilih <InlineMath math="1" /> teman yang ditinggal. Setiap segitiga di bawah meninggalkan pojok yang berbeda, jadi ada tepat <InlineMath math="4" /> segitiga: <InlineMath math="\binom{4}{3} = \binom{4}{1} = 4" />.
+
+<MathVisual
+  title={<>Memilih tiga dari empat berarti meninggalkan satu</>}
+  description={<>Empat segitiga, masing-masing dari tiga di antara empat teman, dengan teman yang ditinggal digambar sebagai titik abu-abu.</>}
+  labels={{
+    t0: <InlineMath math="\binom{4}{3} = 4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 6.2 }, y: { min: -0.6, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "t0", kind: "polygon", vertices: [{ x: 1.0, y: 1 }, { x: 1.0, y: 0 }, { x: 0.0, y: 0 }], appearance: "primary" },
+      { id: "m0", kind: "point", at: { x: 0.0, y: 1 }, appearance: "reference" },
+      { id: "t1", kind: "polygon", vertices: [{ x: 1.6, y: 1 }, { x: 2.6, y: 0 }, { x: 1.6, y: 0 }], appearance: "primary" },
+      { id: "m1", kind: "point", at: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "t2", kind: "polygon", vertices: [{ x: 3.2, y: 1 }, { x: 4.2, y: 1 }, { x: 3.2, y: 0 }], appearance: "primary" },
+      { id: "m2", kind: "point", at: { x: 4.2, y: 0 }, appearance: "reference" },
+      { id: "t3", kind: "polygon", vertices: [{ x: 4.8, y: 1 }, { x: 5.8, y: 1 }, { x: 5.8, y: 0 }], appearance: "primary" },
+      { id: "m3", kind: "point", at: { x: 4.8, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "t0", objectId: "t0", at: { x: 0.5, y: 0 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ## Latihan

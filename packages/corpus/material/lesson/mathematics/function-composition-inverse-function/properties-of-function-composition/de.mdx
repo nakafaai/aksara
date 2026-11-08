@@ -54,12 +54,12 @@ Damit gilt <InlineMath math="g\circ f\neq f\circ g" /> als Aussage über die Fun
 Schick <InlineMath math="x = 1" /> durch beide Reihenfolgen. Erst durch <InlineMath math="g" />: <InlineMath math="g(1) = 5" />, dann <InlineMath math="f(5) = 11" />. Erst durch <InlineMath math="f" />: <InlineMath math="f(1) = 3" />, dann <InlineMath math="g(3) = 13" />. Die beiden Wege beginnen gemeinsam und enden getrennt, also <InlineMath math="f \circ g \ne g \circ f" />.
 
 <MathVisual
-  title="Zwei Reihenfolgen, zwei verschiedene Ausgaben"
+  title={<>Zwei Reihenfolgen, zwei verschiedene Ausgaben</>}
   description={<>Die Eingabe 1 durch <InlineMath math="g" /> und dann <InlineMath math="f" /> (Ende bei 11) und durch <InlineMath math="f" /> und dann <InlineMath math="g" /> (Ende bei 13).</>}
   labels={{
     x: <InlineMath math="x = 1" />,
-    mid: "nach der ersten Funktion",
-    out: "nach der zweiten Funktion",
+    mid: <>nach der ersten Funktion</>,
+    out: <>nach der zweiten Funktion</>,
   }}
   scene={{
     space: "plane",
@@ -134,22 +134,49 @@ Diese assoziative Eigenschaft gilt auch für andere Kombinationen der Funktionsr
 Für <InlineMath math="x=0" /> folgen beide Klammerungen **demselben Rechenweg**. Die Zusammenfassung zweier Regeln verändert ihre Anwendungsreihenfolge nicht:
 
 <Mermaid
-  title="Feste Reihenfolge bei assoziativer Komposition"
-  description="Die Eingabe null wird von h, dann g und dann f verarbeitet. Das Ergebnis ist elf."
+  title={<>Feste Reihenfolge bei assoziativer Komposition</>}
+  description={<>Die Eingabe null wird von h, dann g und dann f verarbeitet. Das Ergebnis ist elf.</>}
   chart={`flowchart LR
     X["0"] -->|"h"| H["1"]
     H -->|"g"| G["5"]
     G -->|"f"| F["11"]`}
 />
 
-<Mermaid
-  title="Die Verkettung ist assoziativ"
-  description="Die Klammerung spielt keine Rolle: Beide Klammerungen wenden dieselben drei Funktionen in derselben Reihenfolge an."
-  chart={`flowchart LR
-  X["Eingabe"] -->|"erste Funktion"| A["Erste Ausgabe"]
-  A -->|"zweite Funktion"| B["Zweite Ausgabe"]
-  B -->|"dritte Funktion"| C["Endausgabe"]
-  C --> D["Beide Klammerungen wenden die drei Funktionen in dieser Reihenfolge an"]`}
+Verfolg <InlineMath math="x = 1" /> durch <InlineMath math="h(x) = \frac{1}{x + 1}" />, dann <InlineMath math="g(x) = x^2 + 4" />, dann <InlineMath math="f(x) = 2x + 1" />: <InlineMath math="1 \to \frac12 \to \frac{17}{4} \to \frac{19}{2}" />. Ob du <InlineMath math="(f \circ g) \circ h" /> oder <InlineMath math="f \circ (g \circ h)" /> klammerst, die Eingabe geht dieselben drei Schritte, beide ergeben <InlineMath math="\frac{19}{2}" />.
+
+<MathVisual
+  title={<>Eine Eingabe durch drei Funktionen</>}
+  description={<>Vier senkrechte Achsen für <InlineMath math="x" />, <InlineMath math="h(x)" />, <InlineMath math="g(h(x))" /> und <InlineMath math="f(g(h(x)))" /> mit dem Weg der Eingabe 1.</>}
+  labels={{
+    v0: <InlineMath math="1" />,
+    v1: <InlineMath math="\tfrac12" />,
+    v2: <InlineMath math="\tfrac{17}{4}" />,
+    v3: <InlineMath math="\tfrac{19}{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 10 }, y: { min: -0.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ax0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 10 }, appearance: "reference" },
+      { id: "ax1", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 10 }, appearance: "reference" },
+      { id: "ax2", kind: "segment", from: { x: 6, y: 0 }, to: { x: 6, y: 10 }, appearance: "reference" },
+      { id: "ax3", kind: "segment", from: { x: 9, y: 0 }, to: { x: 9, y: 10 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: 1 / 2 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 3, y: 1 / 2 }, to: { x: 6, y: 17 / 4 }, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 6, y: 17 / 4 }, to: { x: 9, y: 19 / 2 }, appearance: "primary" },
+      { id: "v0", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "v1", kind: "point", at: { x: 3, y: 1 / 2 }, appearance: "primary" },
+      { id: "v2", kind: "point", at: { x: 6, y: 17 / 4 }, appearance: "primary" },
+      { id: "v3", kind: "point", at: { x: 9, y: 19 / 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "v1", objectId: "v1", at: { x: 3, y: 1 / 2 }, placement: "below-right" },
+      { key: "v2", objectId: "v2", at: { x: 6, y: 17 / 4 }, placement: "right" },
+      { key: "v3", objectId: "v3", at: { x: 9, y: 19 / 2 }, placement: "right" },
+    ],
+  }}
 />
 
 ### Identitätselement
@@ -175,7 +202,7 @@ Beides ergibt wieder die Funktion <InlineMath math="f(x)" />.
 Die identische Funktion <InlineMath math="I(x) = x" /> ändert nichts, eine Verkettung mit ihr lässt <InlineMath math="f" /> also unverändert. Die Gerade <InlineMath math="f(x) = 2x + 1" /> und die Gerade von <InlineMath math="(f \circ I)(x) = f(x)" /> sind dieselbe Gerade, während <InlineMath math="I" /> selbst die Diagonale <InlineMath math="y = x" /> ist.
 
 <MathVisual
-  title="Die Verkettung mit der Identität ändert nichts"
+  title={<>Die Verkettung mit der Identität ändert nichts</>}
   description={<>Die Gerade <InlineMath math="y = x" /> der Identität und die Gerade <InlineMath math="y = 2x + 1" />, die zugleich <InlineMath math="f" /> und <InlineMath math="f \circ I" /> ist.</>}
   labels={{
     i: <InlineMath math="I(x) = x" />,

@@ -31,7 +31,7 @@ Both products equal <InlineMath math="5+5i" />, which verifies commutativity in 
 A product also has a picture. For <InlineMath math="z_1 = 1 + i" /> and <InlineMath math="z_2 = 2 + i" />, the product is <InlineMath math="z_1z_2 = 2 + i + 2i + i^2 = 1 + 3i" />. Its length is <InlineMath math="\sqrt{10} = \sqrt 2 \cdot \sqrt 5" />, the product of the two lengths, and swapping the factors gives the same point.
 
 <MathVisual
-  title="The product of 1 + i and 2 + i"
+  title={<>The product of 1 + i and 2 + i</>}
   description={<>The arrows <InlineMath math="1 + i" />, <InlineMath math="2 + i" /> and their product <InlineMath math="1 + 3i" />, whose length <InlineMath math="\sqrt{10}" /> is <InlineMath math="\sqrt2 \cdot \sqrt5" />.</>}
   labels={{
     z1: <InlineMath math="1 + i" />,
@@ -71,6 +71,30 @@ Let <InlineMath math="z_1 = i" />, <InlineMath math="z_2 = 2" />, and <InlineMat
 </MathContainer>
 
 Both groupings equal <InlineMath math="2+6i" />, which verifies associativity in this example.
+
+A factor like <InlineMath math="2i" /> does two things at once: it doubles the length and turns a quarter turn. For <InlineMath math="z = 2 + i" />, <InlineMath math="2iz = 4i + 2i^2 = -2 + 4i" />, twice as far from the origin and at a right angle to <InlineMath math="z" />. Multiplying by <InlineMath math="2" /> and by <InlineMath math="i" /> in either order gives the same point.
+
+<MathVisual
+  title={<>Multiplying by <InlineMath math="2i" /> doubles and turns</>}
+  description={<>The point <InlineMath math="z = 2 + i" /> and the point <InlineMath math="2iz = -2 + 4i" />, twice as far out and a quarter turn further.</>}
+  labels={{
+    z: <InlineMath math="z = 2 + i" />,
+    w: <InlineMath math="2iz = -2 + 4i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.5, max: 4.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "w", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "w", objectId: "w", at: { x: -2, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
 
 ### Multiplicative Identity
 
@@ -116,7 +140,7 @@ Use **distributivity** to obtain four terms, then **commutativity** to match the
 Multiplying by <InlineMath math="i" /> turns a number a quarter turn around the origin. Start at <InlineMath math="z = 3 + i" />: <InlineMath math="iz = 3i + i^2 = -1 + 3i" />. Three more products give <InlineMath math="-3 - i" />, <InlineMath math="1 - 3i" /> and back to <InlineMath math="3 + i" />, the corners of a square, because <InlineMath math="i^4 = 1" />.
 
 <MathVisual
-  title="Multiplying by i rotates by 90 degrees"
+  title={<>Multiplying by i rotates by 90 degrees</>}
   description={<>The points <InlineMath math="z" />, <InlineMath math="iz" />, <InlineMath math="i^2z" /> and <InlineMath math="i^3z" /> for <InlineMath math="z = 3 + i" />, the four corners of a square around the origin.</>}
   labels={{
     w0: <InlineMath math="z = 3 + i" />,
@@ -193,14 +217,3 @@ So, the multiplicative inverse of <InlineMath math="z = x+iy" /> is:
 Because <InlineMath math="x^2+y^2 = |z|^2" /> and <InlineMath math="x-iy = \bar{z}" />, the inverse formula can also be written as:
 
 <BlockMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />
-
-<Mermaid
-  title="Properties of complex multiplication"
-  description="Complex multiplication is commutative and associative, has the identity 1, distributes over addition, and gives every nonzero number an inverse."
-  chart={`flowchart TD
-  A["Multiplying complex numbers"] --> C1["Commutative: the order does not matter"]
-  A --> C2["Associative: the grouping does not matter"]
-  A --> C3["Identity: multiplying by one changes nothing"]
-  A --> C4["Distributive: multiplying a sum multiplies each term"]
-  A --> C5["Inverse: every nonzero number has a reciprocal"]`}
-/>

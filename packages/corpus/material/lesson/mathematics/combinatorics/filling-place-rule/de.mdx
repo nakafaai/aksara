@@ -34,7 +34,7 @@ Die Tabelle enthält alle möglichen Kombinationen:
 Jedes Paket ist ein Paar (Plattform, Fach), also kannst du sie als Raster anordnen: 3 Zeilen für die Plattformen und 4 Spalten für die Fächer. Jeder Punkt ist ein Paket, und das Raster enthält <InlineMath math="3 \times 4 = 12" /> Punkte. Das ist die Multiplikationsregel in einem Bild.
 
 <MathVisual
-  title="Zwölf Pakete als Raster 3 mal 4"
+  title={<>Zwölf Pakete als Raster 3 mal 4</>}
   description={<>Drei Zeilen Plattformen mal vier Spalten Fächer ergeben zwölf Punkte, einen für jedes Paket.</>}
   labels={{
     g34: <InlineMath math="3 \times 4 = 12" />,
@@ -69,7 +69,7 @@ In einem **Baumdiagramm** steht jeder Zweig für eine Auswahl. Ein vollständige
 
 Für dasselbe Lernpaket wählen die ersten Zweige die Plattform und die nächsten Zweige das Fach.
 
-<Mermaid title="Zwei Auswahlstufen für das Lernpaket" description="Jede der drei Plattformen verzweigt sich in vier Fächer." chart={`flowchart LR
+<Mermaid title={<>Zwei Auswahlstufen für das Lernpaket</>} description={<>Jede der drei Plattformen verzweigt sich in vier Fächer.</>} chart={`flowchart LR
   S["Start"]
   S --> A["Plattform A"]
   A --> A0["Mathematik"]
@@ -88,7 +88,7 @@ Für dasselbe Lernpaket wählen die ersten Zweige die Plattform und die nächste
   C --> C3["Biologie"]
 `} />
 
-Von jeder Plattform gehen vier Fachzweige aus. Damit wählt **jeder vollständige Pfad** genau eine Plattform und ein Fach. Der Pfad Start → Plattform A → Physik bedeutet zum Beispiel Plattform A für Physik.
+Von jeder Plattform gehen vier Fachzweige aus. Damit wählt **jeder vollständige Pfad** genau eine Plattform und ein Fach. Der Pfad von Start über Plattform A zu Physik bedeutet zum Beispiel Plattform A für Physik.
 
 <BlockMath math="3 \times 4 = 12" />
 
@@ -117,6 +117,17 @@ Wir multiplizieren die Möglichkeiten der drei Stellen:
 <BlockMath math="k_3 = 2 \text{(Symbolauswahl)}" />
 <BlockMath math="\begin{aligned} &amp;\text{Insgesamt unterschiedliche Codes} \\ &amp;= 3 \times 5 \times 2 \\ &amp;= 30 \text{ Codes} \end{aligned}" />
 </MathContainer>
+
+Jeder Platz des Codes hat seine eigene Anzahl an Möglichkeiten: <InlineMath math="3" /> Buchstaben, <InlineMath math="5" /> Ziffern und <InlineMath math="2" /> Farben. Die Balken zeigen die drei Plätze nebeneinander, und die Anzahl der Codes ist ihr Produkt, <InlineMath math="3 \times 5 \times 2 = 30" />.
+
+<BarChart
+  title={<>Möglichkeiten an jedem Platz des Codes</>}
+  description={<>Die Anzahl der Möglichkeiten für Buchstabe, Ziffer und Farbe, deren Produkt 30 ist.</>}
+  yAxisLabel="Möglichkeiten"
+  data={[["Buchstabe", 3], ["Ziffer", 5], ["Farbe", 2]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Möglichkeiten", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Fälle mit Einschränkungen
 
 Einschränkungen können die Zahl der Möglichkeiten von einer Stelle zur nächsten verändern. Prüfe für jede Stelle, ob eine **frühere Wahl** eine Option entfernt, denn davon hängt ab, ob die Faktoren gleich bleiben. Die Beispiele unten rechnen beide Fälle durch.
@@ -144,8 +155,8 @@ Für den gleichen Fall mit erlaubter Wiederholung:
 Vergleich die beiden Fälle für dreistellige Zahlen aus den Ziffern <InlineMath math="1" /> bis <InlineMath math="5" />. Ohne Wiederholung bieten die Plätze <InlineMath math="5 \times 4 \times 3 = 60" /> Zahlen, mit Wiederholung <InlineMath math="5 \times 5 \times 5 = 125" />. Mit Wiederholung behält jeder Platz 5 Möglichkeiten, die Anzahl wird also mehr als doppelt so groß.
 
 <BarChart
-  title="Mit und ohne Wiederholung"
-  description="Die Anzahl dreistelliger Zahlen aus den Ziffern 1 bis 5, ohne und mit Wiederholung."
+  title={<>Mit und ohne Wiederholung</>}
+  description={<>Die Anzahl dreistelliger Zahlen aus den Ziffern 1 bis 5, ohne und mit Wiederholung.</>}
   yAxisLabel="Zahlen"
   data={[["ohne Wiederholung", 5 * 4 * 3], ["mit Wiederholung", 5 * 5 * 5]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Zahlen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

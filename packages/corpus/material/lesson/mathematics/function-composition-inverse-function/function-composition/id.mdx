@@ -35,8 +35,8 @@ Komposisi hanya terdefinisi untuk input <InlineMath math="x" /> dalam domain <In
 Ikuti setiap masukan melewati mesinnya: pertama <InlineMath math="g(x) = x^2 - 3" />, lalu <InlineMath math="f(u) = 2u + 1" />. Masukan <InlineMath math="2" /> menuju <InlineMath math="1" /> lalu ke <InlineMath math="3" />. Masukan <InlineMath math="-1" /> dan <InlineMath math="1" /> sama-sama mencapai <InlineMath math="-2" /> setelah <InlineMath math="g" />, jadi keduanya berakhir di keluaran yang sama, <InlineMath math="-3" />.
 
 <MathVisual
-  title="Menelusuri masukan melewati g lalu f"
-  description={<>Tiga sumbu tegak untuk <InlineMath math="x" />, <InlineMath math="g(x)" />, dan <InlineMath math="f(g(x))" />, dengan jalur masukan −1, 0, 1, dan 2.</>}
+  title={<>Menelusuri masukan melewati g lalu f</>}
+  description={<>Tiga sumbu tegak untuk <InlineMath math="x" />, <InlineMath math="g(x)" />, dan <InlineMath math="f(g(x))" />, dengan jalur masukan <InlineMath math="-1, 0, 1" />, dan <InlineMath math="2" />.</>}
   labels={{
     x: <InlineMath math="x" />,
     g: <InlineMath math="g(x)" />,
@@ -115,13 +115,23 @@ Untuk barang ini, Promo A (<InlineMath math="p \circ d" />) menghasilkan harga a
 Ikuti **harga antara** setelah operasi pertama. Pada Promo B, diskon juga mengurangi nilai potongan tetap, sehingga potongan efektifnya lebih kecil.
 
 <Mermaid
-  title="Dua Urutan Promo"
-  description="Kedua jalur dimulai dari dua ratus ribu rupiah. Urutan diskon dan potongan menghasilkan harga akhir berbeda."
+  title={<>Dua Urutan Promo</>}
+  description={<>Kedua jalur dimulai dari dua ratus ribu rupiah. Urutan diskon dan potongan menghasilkan harga akhir berbeda.</>}
   chart={`flowchart LR
   A["Rp200000"] -->|"Diskon 20%"| A1["Rp160000"]
   A1 -->|"Potong Rp25.000"| A2["Rp135000"]
   B["Rp200000"] -->|"Potong Rp25.000"| B1["Rp175000"]
   B1 -->|"Diskon 20%"| B2["Rp140000"]`}
+/>
+
+Ini kedua harga akhir berdampingan. Mengambil diskon <InlineMath math="20\%" /> lebih dulu lalu mengurangkan potongan tetap berakhir di <InlineMath math="\text{Rp}135.000" />, sedangkan urutan lainnya berakhir di <InlineMath math="\text{Rp}140.000" />. Dua fungsi yang sama dengan urutan berbeda memberi hasil yang berbeda.
+
+<BarChart
+  title={<>Harga akhir untuk setiap urutan promo</>}
+  description={<>Harga akhir saat diskon persentase lebih dulu dan saat potongan tetap lebih dulu.</>}
+  yAxisLabel="Harga akhir (Rp)"
+  data={[["diskon dulu", 200000 * 0.8 - 25000], ["potongan dulu", (200000 - 25000) * 0.8]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Harga akhir (Rp)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Membandingkan Dua Urutan Komposisi
@@ -162,7 +172,7 @@ Perhatikan bahwa <InlineMath math="(f \circ g)(x) \neq (g \circ f)(x)" />, sesua
 Kedua urutan dalam bentuk grafik: <InlineMath math="(f \circ g)(x) = 2(x^2 - 3) + 1 = 2x^2 - 5" /> dan <InlineMath math="(g \circ f)(x) = (2x + 1)^2 - 3 = 4x^2 + 4x - 2" />. Keduanya parabola yang berbeda. Di <InlineMath math="x = 1" />, yang pertama memberi <InlineMath math="-3" /> dan yang kedua memberi <InlineMath math="6" />, jadi menukar urutan mengubah fungsinya.
 
 <MathVisual
-  title="Kedua urutan komposisi memberi parabola yang berbeda"
+  title={<>Kedua urutan komposisi memberi parabola yang berbeda</>}
   description={<>Parabola <InlineMath math="2x^2 - 5" /> dan <InlineMath math="4x^2 + 4x - 2" /> dengan nilainya di <InlineMath math="x = 1" />: <InlineMath math="-3" /> dan <InlineMath math="6" />.</>}
   labels={{
     fg: <InlineMath math="f \circ g" />,

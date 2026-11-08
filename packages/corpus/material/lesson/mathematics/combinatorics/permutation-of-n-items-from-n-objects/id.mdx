@@ -42,16 +42,6 @@ Untuk tiga objek berbeda, A, B, dan C, pilihan posisi pertama menentukan dua sus
 
 <BlockMath math="3!=3\times2\times1=6" />
 
-<Mermaid
-  title="Mengisi setiap tempat bergiliran"
-  description="Setiap tempat punya satu objek lebih sedikit daripada tempat sebelumnya, jadi banyak pilihannya dikalikan menjadi n faktorial."
-  chart={`flowchart LR
-  A["Tempat pertama: semua objek bisa"] --> B["Tempat kedua: kurang satu objek"]
-  B --> C["Setiap tempat berikutnya: kurang satu lagi"]
-  C --> D["Tempat terakhir: tersisa satu objek"]
-  D --> E["Kalikan semua banyaknya: faktorial"]`}
-/>
-
 ## Definisi Faktorial
 
 Faktorial <InlineMath math="n!" /> adalah hasil kali bilangan bulat positif dari <InlineMath math="n" /> turun sampai <InlineMath math="1" />:
@@ -67,7 +57,7 @@ Faktorial <InlineMath math="n!" /> adalah hasil kali bilangan bulat positif dari
 Faktorial tumbuh cepat. Batangnya menunjukkan <InlineMath math="n!" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="7" />: <InlineMath math="1, 2, 6, 24, 120, 720, 5040" />. Setiap batang adalah batang sebelumnya dikali bilangan bulat berikutnya, karena satu objek tambahan memberi satu pilihan lagi untuk tempat pertama.
 
 <BarChart
-  title="Secepat apa faktorial tumbuh"
+  title={<>Secepat apa faktorial tumbuh</>}
   description={<>Batang ke-<InlineMath math="n" /> menunjukkan <InlineMath math="n!" /> untuk <InlineMath math="n = 1" /> sampai <InlineMath math="7" />.</>}
   yAxisLabel="Urutan"
   data={Array.from({ length: 7 }, (_, i) => {
@@ -100,7 +90,7 @@ Sebuah keluarga yang terdiri dari <InlineMath math="6" /> anggota akan **duduk b
 Ini semua urutan tiga objek <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" />, satu urutan per baris. Tempat pertama punya 3 pilihan, tempat kedua 2, dan tempat terakhir 1, jadi ada tepat <InlineMath math="3! = 6" /> baris dan tidak ada urutan yang muncul dua kali.
 
 <MathVisual
-  title="Keenam urutan A, B, dan C"
+  title={<>Keenam urutan A, B, dan C</>}
   description={<>Enam baris, masing-masing urutan A, B, dan C yang berbeda: <InlineMath math="3! = 3 \cdot 2 \cdot 1 = 6" />.</>}
   labels={{
     o00: <InlineMath math="A" />,
@@ -197,6 +187,16 @@ Uraikan <InlineMath math="5!" /> **satu faktor setiap langkah**:
 <BlockMath math="\begin{aligned}5P_3 &amp;=\frac{5!}{(5-3)!}=\frac{5!}{2!}\\ &amp;=\frac{5\times4\times3\times2\times1}{2\times1}\\ &amp;=\frac{120}{2}=60\text{ cara}\end{aligned}" />
 
 Dalam permutasi <InlineMath math="n" /> item dari <InlineMath math="n" /> objek, **tidak ada objek yang tersisa** dan **semua posisi harus diisi**.
+
+Menyusun hanya <InlineMath math="r" /> dari <InlineMath math="5" /> objek menghentikan perkaliannya lebih awal: <InlineMath math="5, 20, 60, 120, 120" /> untuk <InlineMath math="r = 1" /> sampai <InlineMath math="5" />. Dua batang terakhir sama karena tempat terakhir hanya menyisakan satu objek, jadi <InlineMath math="{}_5P_4 = {}_5P_5 = 5!" />.
+
+<BarChart
+  title={<>Permutasi sebagian dan lengkap dari lima objek</>}
+  description={<>Batang <InlineMath math="r" /> menunjukkan banyak susunan berurutan dari <InlineMath math="r" /> di antara 5 objek.</>}
+  yAxisLabel="Susunan"
+  data={[["1", 5], ["2", 5 * 4], ["3", 5 * 4 * 3], ["4", 5 * 4 * 3 * 2], ["5", 5 * 4 * 3 * 2 * 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Susunan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Latihan
 

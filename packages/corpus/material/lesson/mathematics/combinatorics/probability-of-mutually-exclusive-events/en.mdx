@@ -22,8 +22,8 @@ Mutually exclusive events **share no outcome**, so their overlap contributes not
 In a diagram, mutually exclusive events are two circles that do not overlap. With one die, <InlineMath math="A" /> = an even number <InlineMath math="\{2, 4, 6\}" /> and <InlineMath math="B" /> = the number <InlineMath math="1" />: no outcome lies in both, so nothing is counted twice.
 
 <MathVisual
-  title="Two events with no overlap"
-  description="Two separate circles for the events A and B, which share no outcome."
+  title={<>Two events with no overlap</>}
+  description={<>Two separate circles for the events A and B, which share no outcome.</>}
   labels={{
     a: <InlineMath math="A = \{2, 4, 6\}" />,
     b: <InlineMath math="B = \{1\}" />,
@@ -199,10 +199,10 @@ To add <InlineMath math="\frac{1}{9} + \frac{1}{6}" />, we need the least common
 On the grid of two dice, the doubles lie on one diagonal and the sums of <InlineMath math="7" /> on the other. The two diagonals never share a dot, because a double <InlineMath math="(k, k)" /> has an even sum. So the events are mutually exclusive and <InlineMath math="P = \frac{6}{36} + \frac{6}{36} = \frac13" />.
 
 <MathVisual
-  title="Doubles and sums of seven never meet"
-  description="The 36 outcomes of two dice. The six doubles and the six outcomes with sum 7 share no dot."
+  title={<>Doubles and sums of seven never meet</>}
+  description={<>The 36 outcomes of two dice. The six doubles and the six outcomes with sum 7 share no dot.</>}
   labels={{
-    d11: "doubles",
+    d11: <>doubles</>,
     d16: <InlineMath math="x + y = 7" />,
   }}
   scene={{
@@ -268,13 +268,14 @@ To solve probability problems for mutually exclusive events, follow these steps:
 4. **Calculate the probability of each** event separately
 5. **Apply the formula** <InlineMath math="P(A \cup B) = P(A) + P(B)" />
 
-<Mermaid
-  title="Check the intersection before adding"
-  description="Add the probabilities only when the events cannot happen together. Otherwise subtract the overlap once."
-  chart={`flowchart TD
-  A["Two events"] --> Q{"Can they happen together?"}
-  Q -->|"No"| E["Add the two probabilities"]
-  Q -->|"Yes"| N["Add them, then subtract the overlap once"]`}
+When two events cannot happen together, their bars simply stack. Doubles have <InlineMath math="\frac{6}{36}" />, sums of 7 have <InlineMath math="\frac{6}{36}" />, and either one has <InlineMath math="\frac{12}{36}" />, with nothing to subtract.
+
+<BarChart
+  title={<>Adding two mutually exclusive events</>}
+  description={<>Bars for doubles, sums of 7 and either event, with <InlineMath math="\frac{6}{36} + \frac{6}{36} = \frac{12}{36}" />.</>}
+  yAxisLabel="Probability"
+  data={[["doubles", 6 / 36], ["sum 7", 6 / 36], ["either", 12 / 36]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ### Checks for the Final Answer

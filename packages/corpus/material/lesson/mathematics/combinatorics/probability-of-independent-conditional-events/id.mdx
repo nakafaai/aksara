@@ -34,13 +34,29 @@ Jika kedua kejadian saling bebas, informasi tentang <InlineMath math="A" /> tida
 
 <BlockMath math="P(B|A) = P(B)" />
 
-<Mermaid
-  title="Memperbarui ruang sampel"
-  description="Setelah setiap pengambilan tanpa pengembalian, keluarkan kartu yang terambil dari banyak kartu yang diinginkan dan dari totalnya sebelum menghitung peluang berikutnya."
-  chart={`flowchart LR
-  A["Pengambilan pertama: 13 hati di antara 52 kartu"] --> B["Keluarkan hati yang terambil"]
-  B --> C["Pengambilan kedua: 12 hati di antara 51 kartu"]
-  C --> D["Kalikan kedua peluang: 1 dari 17"]`}
+Ketergantungan juga tampak pada model luas. Jalur kiri selebar <InlineMath math="\frac{13}{52}" /> adalah hati pada pengambilan pertama. Di dalamnya, hanya <InlineMath math="\frac{12}{51}" /> dari tingginya yang merupakan hati kedua, jadi pojok yang diarsir luasnya <InlineMath math="\frac{13}{52} \cdot \frac{12}{51} = \frac{1}{17}" />.
+
+<MathVisual
+  title={<>Dua hati berturut-turut sebagai luas</>}
+  description={<>Persegi satuan: jalur selebar <InlineMath math="\frac{13}{52}" /> untuk hati pertama dan, di dalamnya, bagian setinggi <InlineMath math="\frac{12}{51}" /> untuk hati kedua.</>}
+  labels={{
+    first: <InlineMath math="\tfrac{13}{52}" />,
+    both: <InlineMath math="\tfrac{1}{17}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 1.1 }, y: { min: -0.15, max: 1.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "first", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 13 / 52, y: 0 }, { x: 13 / 52, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "both", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 13 / 52, y: 0 }, { x: 13 / 52, y: 12 / 51 }, { x: 0, y: 12 / 51 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 13 / 104, y: 1 }, placement: "above" },
+      { key: "both", objectId: "both", at: { x: 13 / 52, y: 6 / 51 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Penerapan pada Pengambilan Kartu
@@ -69,8 +85,8 @@ Setelah satu As diambil, tersisa <InlineMath math="51 \text{ kartu}" />. Seluruh
 Tanpa pengembalian, cabang kedua bergantung pada cabang pertama. Ambil as dengan peluang <InlineMath math="\frac{4}{52}" />. Lalu tersisa 51 kartu dan keempat raja masih ada, jadi raja menyusul dengan peluang <InlineMath math="\frac{4}{51}" />. Kalikan di sepanjang jalurnya: <InlineMath math="\frac{4}{52} \cdot \frac{4}{51} = \frac{16}{2652} = \frac{4}{663}" />.
 
 <MathVisual
-  title="As lalu raja tanpa pengembalian"
-  description="Diagram pohon untuk dua pengambilan: as atau bukan lebih dulu, lalu, setelah as, raja atau bukan, dengan peluang kedua dari 51 kartu yang tersisa."
+  title={<>As lalu raja tanpa pengembalian</>}
+  description={<>Diagram pohon untuk dua pengambilan: as atau bukan lebih dulu, lalu, setelah as, raja atau bukan, dengan peluang kedua dari 51 kartu yang tersisa.</>}
   labels={{
     b0: <InlineMath math="\text{as}\ \tfrac{4}{52}" />,
     b1: <InlineMath math="\text{bukan as}\ \tfrac{48}{52}" />,
@@ -119,8 +135,8 @@ Jadi, peluang kedua kartu yang terambil sama-sama Hati adalah:
 Bandingkan peluang hati pada pengambilan kedua. Dengan pengembalian, peluangnya tetap <InlineMath math="\frac{13}{52} = 0{,}25" />. Tanpa pengembalian, setelah hati pertama hanya tersisa <InlineMath math="12" /> hati di antara <InlineMath math="51" /> kartu, jadi peluangnya turun menjadi <InlineMath math="\frac{12}{51} \approx 0{,}235" />. Pengambilan pertama mengubah ruang sampelnya.
 
 <BarChart
-  title="Hati kedua dengan dan tanpa pengembalian"
-  description="Peluang hati pada pengambilan kedua setelah hati pertama, dengan pengembalian dan tanpa pengembalian."
+  title={<>Hati kedua dengan dan tanpa pengembalian</>}
+  description={<>Peluang hati pada pengambilan kedua setelah hati pertama, dengan pengembalian dan tanpa pengembalian.</>}
   yAxisLabel="Peluang"
   data={[["dengan pengembalian", 13 / 52], ["tanpa pengembalian", 12 / 51]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Peluang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -239,4 +255,4 @@ Satu set kartu standar memiliki <InlineMath math="52 \text{ kartu}" />, termasuk
 <BlockMath math="\begin{aligned} P(A \cap K \cap Q) &amp;= \frac{4}{52} \times \frac{4}{51} \times \frac{4}{50} \\ &amp;= \frac{1}{13} \times \frac{4}{51} \times \frac{2}{25} \\ &amp;= \frac{8}{16575} \end{aligned}" />
 </MathContainer>
 
-Setiap pengambilan **mengurangi jumlah total kartu** (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />). Peringkat kartu yang dibutuhkan berikutnya masih tersedia lengkap sebanyak <InlineMath math="4" /> kartu: mengambil As tidak mengurangi King, dan mengambil King tidak mengurangi Queen.
+Setiap pengambilan **mengurangi jumlah total kartu** (<InlineMath math="52 \rightarrow 51 \rightarrow 50" />). Peringkat kartu yang dibutuhkan berikutnya masih tersedia lengkap sebanyak <InlineMath math="4" /> kartu: mengambil As tidak mengurangi King, dan mengambil King tidak mengurangi Queen.
