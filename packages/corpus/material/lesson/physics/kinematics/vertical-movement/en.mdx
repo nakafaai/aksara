@@ -1,19 +1,15 @@
 export const metadata = {
-  title: "Vertical Motion",
-  description:
-    "Vertical motion is one-dimensional uniformly accelerated motion with gravitational acceleration directed downward.",
+  title: "Vertical Motion and Free Fall",
+  description: "Vertical motion is up or down motion with constant gravitational acceleration. Find the time, maximum height, and velocity of thrown and dropped objects.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Kinematics",
 };
 
+## Vertical Motion and Gravitational Acceleration
 
-## A Vertical Axis Needs a Positive Direction
-
-Vertical motion is upward or downward motion along <Highlight>one vertical line</Highlight>. To keep the signs clear, we choose upward as positive and downward as negative.
-
-In the near-Earth free-fall model, gravitational acceleration is written as <InlineMath math="-g" /> because it points downward with this sign convention.
+Vertical motion is the motion of an object moving up or down along **a single vertical line**, with gravity as the only thing changing its velocity. Its acceleration is constant, with size <InlineMath math="g" /> and direction always downward. If up is chosen as positive, the position <InlineMath math="y" /> and velocity <InlineMath math="v_y" /> at time <InlineMath math="t" /> follow three equations:
 
 <MathContainer>
   <BlockMath math="y=y_0+v_0t-\frac{1}{2}gt^2" />
@@ -21,7 +17,11 @@ In the near-Earth free-fall model, gravitational acceleration is written as <Inl
   <BlockMath math="v_y^2=v_0^2-2g(y-y_0)" />
 </MathContainer>
 
-> These equations model motion near Earth's surface with constant <InlineMath math="g" /> and no air resistance. The [standard value](https://physics.nist.gov/cuu/pdf/sp811.pdf) is <InlineMath math="g_n=9.80665\text{ m/s}^2" />. The calculations below use <InlineMath math="g=10\text{ m/s}^2" /> to make the arithmetic easier to do by hand.
+Here <InlineMath math="y_0" /> is the starting position and <InlineMath math="v_0" /> the initial velocity. Vertical motion is [motion with constant acceleration](/en/subjects/physics/kinematics/non-uniform-linear-motion) where the acceleration is <InlineMath math="-g" />, so these are the same equations.
+
+> These equations hold near Earth's surface with constant <InlineMath math="g" /> and no air resistance. The [standard value of gravitational acceleration](https://physics.nist.gov/cuu/pdf/sp811.pdf) is <InlineMath math="g_n=9.80665\text{ m/s}^2" />. The calculations on this page use <InlineMath math="g=10\text{ m/s}^2" /> so the numbers come out round.
+
+The ball simulation shows both ways the ball can start moving. Choose thrown upward or dropped, then watch how its height and velocity change.
 
 <VerticalMovementLab
   title={<>Ball in Vertical Motion</>}
@@ -45,71 +45,139 @@ In the near-Earth free-fall model, gravitational acceleration is written as <Inl
   }}
 />
 
-## Gravity Still Acts While the Object Rises
+## Three Ways an Object Moves Vertically
 
-When an object is thrown upward, its initial velocity is positive. After that, gravity reduces its vertical velocity little by little until the object <Highlight>stops for an instant at the highest point</Highlight>.
+All three kinds of vertical motion use the same equations. Only **the sign and size of the initial velocity** <InlineMath math="v_0" /> differ.
 
-> At the highest point, the vertical velocity is momentarily zero, but gravitational acceleration still points downward.
+| Kind of motion | Initial velocity | Example |
+| --- | --- | --- |
+| Thrown upward | <InlineMath math="v_0 > 0" /> | A ball thrown straight up |
+| Free fall | <InlineMath math="v_0 = 0" /> | A fruit falling from its stem |
+| Thrown downward | <InlineMath math="v_0 < 0" /> | A stone thrown down from a bridge |
 
-Gravity does not disappear at the top. At that instant, the vertical velocity is zero while the acceleration remains <InlineMath math="-g" />.
+In all three, the acceleration stays <InlineMath math="-g" /> for the whole motion, including at the highest point. The minus sign comes from choosing up as positive, not from gravity changing direction.
 
-## An Upward Throw Stops for an Instant
+## An Object Thrown Upward
 
-Suppose a ball is thrown upward with initial velocity <InlineMath math="20\text{ m/s}" /> from position <InlineMath math="y_0=0" />. Use <InlineMath math="g=10\text{ m/s}^2" />. At the highest point, its vertical velocity is <InlineMath math="v_y=0" />.
+When an object is thrown upward, its velocity starts positive and **keeps decreasing because of gravity** until it reaches zero at the highest point. Setting <InlineMath math="v_y = 0" /> gives the rise time and the maximum height above the launch point:
 
 <MathContainer>
-  <BlockMath math="v_y=v_0-gt" />
-  <BlockMath math="0=20-10t" />
-  <BlockMath math="t=2\text{ s}" />
+  <BlockMath math="t_{\text{rise}} = \frac{v_0}{g}" />
+  <BlockMath math="h_{\text{max}} = \frac{v_0^2}{2g}" />
 </MathContainer>
 
-The **maximum height above the launch point** can be found from the position equation.
+Suppose a ball is thrown upward with <InlineMath math="v_0 = 20\text{ m/s}" />. Its rise time is <InlineMath math="\frac{20}{10} = 2\text{ s}" />, and its maximum height is <InlineMath math="\frac{20^2}{2 \times 10} = 20\text{ m}" />. The position equation gives the same result:
 
-<BlockMath math="\begin{aligned}
-y-y_0&=v_0t-\frac{1}{2}gt^2\\
-&=20(2)-\frac{1}{2}(10)(2^2)\\
-&=20\text{ m}
-\end{aligned}" />
+<BlockMath math="y = 20(2) - \frac{1}{2}(10)(2^2) = 40 - 20 = 20\text{ m}" />
 
-So the ball takes <InlineMath math="2\text{ s}" /> to reach the top and rises <InlineMath math="20\text{ m}" /> above its starting point.
+At the highest point the ball's velocity is momentarily zero, but its acceleration is still <InlineMath math="-g" />. Put a few times into <InlineMath math="y = 20t - 5t^2" /> and <InlineMath math="v_y = 20 - 10t" /> to follow the way up and down:
 
-## Reading the Sign of Velocity
-
-The sign of <InlineMath math="v_y" /> tells the **direction of motion at that moment**. A positive value means the object is moving upward, a negative value means it is moving downward, and zero means it is momentarily stopped.
-
-Notice that height <InlineMath math="y" /> does not automatically tell the motion direction. An object can be at the same height while moving upward and while moving downward, but the velocity signs are different.
-
-For the same upward throw, substitute each time into <InlineMath math="y=20t-5t^2" /> and <InlineMath math="v_y=20-10t" />. At <InlineMath math="t=1\text{ s}" />, for example, <InlineMath math="y=20-5=15\text{ m}" /> and <InlineMath math="v_y=20-10=10\text{ m/s}" />.
-
-| Time | Height | Vertical velocity | Motion |
+| Time | Height | Velocity | Direction |
 | --- | --- | --- | --- |
 | <InlineMath math="0\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="20\text{ m/s}" /> | Rising |
 | <InlineMath math="1\text{ s}" /> | <InlineMath math="15\text{ m}" /> | <InlineMath math="10\text{ m/s}" /> | Rising |
-| <InlineMath math="2\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="0\text{ m/s}" /> | Momentarily stopped |
+| <InlineMath math="2\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="0\text{ m/s}" /> | Stopped for an instant |
 | <InlineMath math="3\text{ s}" /> | <InlineMath math="15\text{ m}" /> | <InlineMath math="-10\text{ m/s}" /> | Falling |
-| <InlineMath math="4\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="-20\text{ m/s}" /> | Just before returning to launch height |
+| <InlineMath math="4\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="-20\text{ m/s}" /> | Back at the launch point |
 
-## A Ball Dropped From a Height
+The motion is symmetric. The ball is at a height of <InlineMath math="15\text{ m}" /> at 1 s and at 3 s, with the same speed but opposite directions, and it returns to the launch point with its starting speed.
 
-Suppose a ball is dropped from a height of <InlineMath math="20\text{ m}" /> with **no initial velocity**. With <InlineMath math="g=10\text{ m/s}^2" />, the time to reach the ground is:
+## An Object in Free Fall
 
-<BlockMath math="\begin{aligned}
-0&=20-\frac{1}{2}(10)t^2\\
-5t^2&=20\\
-t^2&=4\\
-t&=\sqrt{4}=2\text{ s}
-\end{aligned}" />
+Free fall is the motion of an object released **with no initial velocity**, so <InlineMath math="v_0 = 0" />. For an object falling through a height <InlineMath math="h" />, the fall time and the speed on reaching the ground are:
 
-The velocity just before reaching the ground is:
+<MathContainer>
+  <BlockMath math="t = \sqrt{\frac{2h}{g}}" />
+  <BlockMath math="v = \sqrt{2gh}" />
+</MathContainer>
 
-<BlockMath math="v_y=0-10(2)=-20\text{ m/s}" />
+A ball dropped from a height of <InlineMath math="20\text{ m}" /> reaches the ground after <InlineMath math="t = \sqrt{\frac{2 \times 20}{10}} = 2\text{ s}" />. Its velocity at that moment is:
 
-The negative sign shows the downward direction. So the speed is <InlineMath math="20\text{ m/s}" />, but the motion direction is downward.
+<BlockMath math="v_y = 0 - 10(2) = -20\text{ m/s}" />
 
-This example shows why the sign in vertical motion cannot be ignored. The speed tells how fast the ball is moving, while the sign tells the direction of its motion.
+The minus sign means the ball is moving downward. Check its speed with the second formula: <InlineMath math="v = \sqrt{2 \times 10 \times 20} = 20\text{ m/s}" />. This is the same speed a ball thrown up at <InlineMath math="20\text{ m/s}" /> has when it gets back to its launch point, because both fall <InlineMath math="20\text{ m}" /> from a moment of rest.
 
-## From Vertical Motion to Projectile Motion
+## An Object Thrown Downward
 
-Vertical motion is also one component of [projectile motion](/en/subjects/physics/kinematics/parabolic-movement). When an object is launched at an angle, its **horizontal velocity remains constant**, while its vertical velocity changes according to the gravity equations used above.
+An object thrown downward already has a downward initial velocity, so **its initial velocity is negative**. Gravity adds to its speed from the start, and it reaches the ground sooner than an object dropped from the same height.
 
-The same free-fall equations describe the vertical component of a thrown ball, a projectile, or water leaving a hose because gravity supplies the vertical acceleration.
+Suppose a stone is thrown downward at <InlineMath math="5\text{ m/s}" /> from a height of <InlineMath math="30\text{ m}" />. With <InlineMath math="y_0 = 30" /> and <InlineMath math="v_0 = -5" />, the stone reaches the ground when <InlineMath math="y = 0" />:
+
+<MathContainer>
+  <BlockMath math="0 = 30 - 5t - 5t^2" />
+  <BlockMath math="t^2 + t - 6 = 0 \quad\Longrightarrow\quad (t + 3)(t - 2) = 0" />
+  <BlockMath math="v_y = -5 - 10(2) = -25\text{ m/s}" />
+</MathContainer>
+
+A time cannot be negative, so <InlineMath math="t = -3" /> is rejected and the stone lands after <InlineMath math="2\text{ s}" />. Check with the third equation: <InlineMath math="v_y^2 = (-5)^2 + 2(10)(30) = 625" />, so the speed is <InlineMath math="25\text{ m/s}" />.
+
+## Vertical Motion Inside Projectile Motion
+
+The same equations describe the vertical part of a ball thrown at an angle, a projectile, or water from a hose. In [projectile motion](/en/subjects/physics/kinematics/parabolic-movement), **the horizontal velocity stays constant**, while the vertical velocity changes exactly as for an object thrown upward.
+
+That is why the time a projectile spends in the air comes from its vertical motion alone. A ball kicked at an angle with an initial vertical velocity of <InlineMath math="20\text{ m/s}" /> still rises for <InlineMath math="2\text{ s}" />, just like a ball thrown straight up at <InlineMath math="20\text{ m/s}" />.
+
+## Common Mistakes
+
+Before you calculate, fix **the positive direction** and use it throughout.
+
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Thinking the acceleration is zero at the highest point | Only the velocity is zero, gravity still acts | The acceleration is <InlineMath math="-g" /> throughout |
+| Using <InlineMath math="h = \frac{1}{2}gt^2" /> for an object thrown upward | That formula holds only for free fall with <InlineMath math="v_0 = 0" /> | Check whether there is an initial velocity |
+| Writing a positive initial velocity for a downward throw | Down is negative when up is chosen as positive | The sign of <InlineMath math="v_0" /> must match the direction of the throw |
+| Mixing up velocity and speed | Velocity has a sign, speed is always positive | The velocity while falling must be negative |
+
+Sign mistakes are easiest to catch at the end. An object moving down must have a negative <InlineMath math="v_y" />, and a negative time is always rejected.
+
+## Practice on Vertical Motion
+
+Use <InlineMath math="g = 10\text{ m/s}^2" /> and take up as positive. For each problem, first decide **the sign of the initial velocity** and the starting position.
+
+1. A ball is thrown straight up at <InlineMath math="15\text{ m/s}" />. Find its rise time and maximum height.
+
+2. A coconut falls from a tree <InlineMath math="45\text{ m}" /> high. Find the fall time and its speed when it hits the ground.
+
+3. A ball is thrown upward at <InlineMath math="20\text{ m/s}" /> from the roof of a building <InlineMath math="25\text{ m}" /> high. When does it hit the ground, and what is its velocity then?
+
+4. A stone is thrown downward at <InlineMath math="10\text{ m/s}" /> from a bridge <InlineMath math="15\text{ m}" /> high. Find the time to reach the water and its speed.
+
+### Answers
+
+**Problem 1**. At the highest point **the velocity is zero**, so:
+
+<MathContainer>
+  <BlockMath math="t_{\text{rise}} = \frac{15}{10} = 1.5\text{ s}" />
+  <BlockMath math="h_{\text{max}} = \frac{15^2}{2 \times 10} = 11.25\text{ m}" />
+</MathContainer>
+
+Check with the position equation: <InlineMath math="15(1.5) - 5(1.5)^2 = 22.5 - 11.25 = 11.25\text{ m}" />.
+
+**Problem 2**. The coconut falls **with no initial velocity**:
+
+<MathContainer>
+  <BlockMath math="t = \sqrt{\frac{2 \times 45}{10}} = 3\text{ s}" />
+  <BlockMath math="v = \sqrt{2 \times 10 \times 45} = 30\text{ m/s}" />
+</MathContainer>
+
+Check: <InlineMath math="v_y = 0 - 10(3) = -30\text{ m/s}" />, so the speed is <InlineMath math="30\text{ m/s}" />.
+
+**Problem 3**. Take the roof as <InlineMath math="y_0 = 25" />, so the ground is <InlineMath math="y = 0" />. The position equation gives **a quadratic in** <InlineMath math="t" />:
+
+<MathContainer>
+  <BlockMath math="0 = 25 + 20t - 5t^2" />
+  <BlockMath math="t^2 - 4t - 5 = 0 \quad\Longrightarrow\quad (t - 5)(t + 1) = 0" />
+  <BlockMath math="v_y = 20 - 10(5) = -30\text{ m/s}" />
+</MathContainer>
+
+The negative time is rejected, so the ball hits the ground after <InlineMath math="5\text{ s}" /> at <InlineMath math="30\text{ m/s}" /> downward. Check: <InlineMath math="v_y^2 = 20^2 + 2(10)(25) = 900" />.
+
+**Problem 4**. The initial velocity is **negative**, <InlineMath math="v_0 = -10" />, and <InlineMath math="y_0 = 15" />:
+
+<MathContainer>
+  <BlockMath math="0 = 15 - 10t - 5t^2" />
+  <BlockMath math="t^2 + 2t - 3 = 0 \quad\Longrightarrow\quad (t + 3)(t - 1) = 0" />
+  <BlockMath math="v_y = -10 - 10(1) = -20\text{ m/s}" />
+</MathContainer>
+
+The stone reaches the water after <InlineMath math="1\text{ s}" /> at a speed of <InlineMath math="20\text{ m/s}" />. Check: <InlineMath math="(-10)^2 + 2(10)(15) = 400 = 20^2" />.
