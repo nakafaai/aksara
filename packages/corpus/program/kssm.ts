@@ -6,7 +6,7 @@ import { LEARNING_PROGRAM_KEYS } from "#corpus/program/keys";
  */
 export const kssmProgramSource = {
   defaultCoverageStatus: "partial",
-  displayOrder: 50,
+  displayOrder: 45,
   iconKey: "school",
   key: LEARNING_PROGRAM_KEYS.kssm,
   kind: "school-curriculum",
@@ -72,11 +72,6 @@ export const kssmProgramSource = {
       appLocale: "de",
       publicSlug: "kssm",
       title: "KSSM Malaysia",
-    },
-    {
-      appLocale: "ms",
-      publicSlug: "kssm",
-      title: "Kurikulum Standard Sekolah Menengah",
     },
   ],
   version: { label: "Malaysia" },
