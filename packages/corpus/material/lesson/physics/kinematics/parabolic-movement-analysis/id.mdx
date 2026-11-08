@@ -1,28 +1,23 @@
 export const metadata = {
   title: "Analisis Gerak Parabola",
-  description:
-    "Komponen kecepatan mendatar dan vertikal menentukan waktu ke titik tertinggi, jangkauan, dan kecepatan sesaat pada gerak parabola.",
+  description: "Uraikan kecepatan awal menjadi dua komponen, lalu hitung waktu puncak, tinggi maksimum, jangkauan, dan kecepatan sesaat pada gerak parabola.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Kinematika",
 };
 
+## Rumus Gerak Parabola dari Dua Komponen
 
-## Mulai dari Kecepatan Awal yang Dipecah
-
-Sudut diukur dari horizontal. Arah ke kanan dan ke atas dipilih positif.
-
-Analisis gerak parabola dimulai dengan membagi kecepatan awal menjadi komponen mendatar dan vertikal. Jika kelajuan awalnya <InlineMath math="v_0" /> dan sudutnya <InlineMath math="\theta" />, kedua komponennya adalah:
+Analisis gerak parabola dimulai dengan **menguraikan kecepatan awal** <InlineMath math="v_0" /> yang membentuk sudut <InlineMath math="\theta" /> terhadap arah mendatar. Untuk benda yang dilempar dari tanah dan mendarat di tanah, semua besaran penting mengikuti dari dua komponen itu:
 
 <MathContainer>
-  <BlockMath math="v_{0x}=v_0\cos\theta" />
-  <BlockMath math="v_{0y}=v_0\sin\theta" />
+  <BlockMath math="v_{0x}=v_0\cos\theta,\qquad v_{0y}=v_0\sin\theta" />
+  <BlockMath math="t_{\text{puncak}}=\frac{v_{0y}}{g},\qquad h_{\text{maks}}=\frac{v_{0y}^2}{2g}" />
+  <BlockMath math="T=2t_{\text{puncak}},\qquad R=v_{0x}T=\frac{v_0^2\sin 2\theta}{g}" />
 </MathContainer>
 
-Setelah kecepatan awal dibagi menjadi dua komponen, gerak mendatar dan gerak vertikal dihitung secara terpisah. Model ini mengabaikan hambatan udara dan memakai percepatan gravitasi tetap. Komponen mendatar mengikuti GLB karena <Highlight>percepatan mendatarnya nol</Highlight>. Komponen vertikal mengikuti GLBB karena gravitasi memberi percepatan ke bawah.
-
-> Persamaan arah mendatar dan vertikal memakai variabel waktu yang sama.
+Hambatan udara diabaikan dan gravitasi dianggap tetap. Arah ke kanan dan ke atas dipilih positif, dan contoh di halaman ini memakai <InlineMath math="g = 10\text{ m/s}^2" />. Simulasi bola meriam memperlihatkan komponen mendatar yang tetap dan komponen vertikal yang berubah pada beberapa tembakan.
 
 <ParabolicMovementAnalysisLab
   decimalSeparator="comma"
@@ -52,90 +47,195 @@ Setelah kecepatan awal dibagi menjadi dua komponen, gerak mendatar dan gerak ver
   }}
 />
 
-Lintasan dan posisi bola menunjukkan gerak pada beberapa waktu. Nilai di bawah visual menjelaskan komponen geraknya. Komponen horizontal <InlineMath math="v_{0x}" /> tetap, sedangkan komponen vertikal <InlineMath math="v_y=v_{0y}-gt" /> berubah karena gravitasi menarik bola ke bawah.
+Bayangan bola di permukaan air bergerak dengan kelajuan tetap seperti benda pada [gerak lurus beraturan](/id/materi/fisika/kinematika/gerak-lurus-beraturan), karena hanya mengikuti komponen mendatar. Bola sendiri naik lalu turun, karena komponen vertikalnya <InlineMath math="v_y = v_{0y} - gt" /> terus berkurang.
 
-Semua contoh memakai ketinggian awal dan akhir yang sama. Dengan syarat ini, setiap nilai dihitung melalui urutan berikut:
+## Waktu Puncak dan Tinggi Maksimum
 
-<BlockMath math="\begin{aligned} &amp;v_{0x}=v_0\cos\theta \\ &amp;v_{0y}=v_0\sin\theta \\ &amp;t_{\text{puncak}}=\frac{v_{0y}}{g} \\ &amp;T=2t_{\text{puncak}} \\ &amp;R=v_{0x}T \\ &amp;\vec{v}(2)=\langle v_{0x},v_{0y}-g(2)\rangle, \\ &amp;g=10\text{ m/s}^2 \end{aligned}" />
-
-## Puncak Ditemukan Saat Kecepatan Vertikal Nol
-
-Di puncak lintasan, benda **masih bergerak mendatar**, tetapi gerak naik-turunnya berhenti sesaat. Karena itu, syarat puncak adalah <InlineMath math="v_y=0" />.
-
-<BlockMath math="v_y=v_{0y}-gt" />
-
-Jika <InlineMath math="v_y=0" />, waktu menuju puncak menjadi:
-
-<BlockMath math="t_{\text{puncak}}=\frac{v_{0y}}{g}" />
-
-Untuk kelajuan awal <InlineMath math="40\text{ m/s}" /> dengan sudut <InlineMath math="60^\circ" />, komponen vertikal awalnya <InlineMath math="20\sqrt{3}\text{ m/s}" />. Sebelum puncak nilainya positif, di puncak menjadi nol, lalu setelah puncak bernilai negatif karena benda mulai turun.
-
-## Jangkauan Dihitung dari Waktu Terbang Total
-
-Jika benda berangkat dari tanah dan kembali ke tanah pada **ketinggian yang sama**, waktu totalnya dua kali waktu menuju puncak.
+Di titik puncak, benda masih bergerak mendatar, tetapi **kecepatan vertikalnya nol**. Dari <InlineMath math="v_y = v_{0y} - gt = 0" /> diperoleh waktu puncak, lalu tinggi maksimum dari persamaan ketiga gerak vertikal:
 
 <MathContainer>
-  <BlockMath math="t_{\text{total}}=2t_{\text{puncak}}" />
-  <BlockMath math="R=v_{0x}t_{\text{total}}" />
+  <BlockMath math="t_{\text{puncak}}=\frac{v_{0y}}{g}" />
+  <BlockMath math="0 = v_{0y}^2 - 2g\,h_{\text{maks}} \quad\Longrightarrow\quad h_{\text{maks}}=\frac{v_{0y}^2}{2g}" />
 </MathContainer>
 
-Rumus ini menunjukkan bahwa jangkauan ditentukan oleh sudut, kecepatan mendatar, dan lama benda berada di udara.
+Kedua rumus hanya memakai komponen vertikal. Komponen vertikal ini bergerak seperti benda pada [gerak vertikal](/id/materi/fisika/kinematika/gerak-vertikal) yang dilempar ke atas dengan kecepatan <InlineMath math="v_{0y}" />.
 
-## Kecepatan Sesaat Memiliki Komponen Horizontal dan Vertikal
+## Waktu Terbang dan Jangkauan
 
-Untuk mencari kecepatan pada waktu tertentu, hitung dulu <InlineMath math="v_x" /> dan <InlineMath math="v_y" /> pada waktu itu. Komponen mendatar tetap, sedangkan komponen vertikal berubah.
+Jika benda mendarat pada **ketinggian yang sama** dengan titik lemparnya, waktu turunnya sama dengan waktu naiknya, sehingga waktu terbang total <InlineMath math="T = 2t_{\text{puncak}}" />. Jangkauan adalah komponen mendatar dikali waktu terbang:
+
+<BlockMath math="R = v_0\cos\theta \cdot \frac{2v_0\sin\theta}{g} = \frac{v_0^2 \cdot 2\sin\theta\cos\theta}{g} = \frac{v_0^2\sin 2\theta}{g}" />
+
+Langkah terakhir memakai identitas <InlineMath math="2\sin\theta\cos\theta = \sin 2\theta" />. Karena nilai <InlineMath math="\sin 2\theta" /> paling besar <InlineMath math="1" />, jangkauan terjauh tercapai pada <InlineMath math="\theta = 45^\circ" />. Dua sudut yang berjumlah <InlineMath math="90^\circ" />, misalnya <InlineMath math="30^\circ" /> dan <InlineMath math="60^\circ" />, memberi jangkauan yang sama karena <InlineMath math="\sin 60^\circ = \sin 120^\circ" />. Dengan <InlineMath math="v_0 = 20\text{ m/s}" />, keduanya mendarat sejauh <InlineMath math="20\sqrt{3} \approx 34{,}6\text{ m}" />, sama dengan hasil dari waktu terbang dan kecepatan mendatar pada [gerak parabola](/id/materi/fisika/kinematika/gerak-parabola). Rumus ini tidak berlaku jika titik jatuhnya lebih tinggi atau lebih rendah daripada titik lempar.
+
+<Mermaid
+  title="Urutan analisis gerak parabola"
+  description="Semua besaran berasal dari dua komponen kecepatan awal."
+  chart={`flowchart TD
+  A["v₀ dan θ"] --> B["v₀x = v₀ cos θ dan v₀y = v₀ sin θ"]
+  B --> C["t_puncak = v₀y / g"]
+  C --> D["h_maks = v₀y² / 2g"]
+  C --> E["T = 2 t_puncak"]
+  E --> F["R = v₀x T"]
+  B --> G["Kecepatan pada waktu t: v_y = v₀y - gt"]`}
+/>
+
+## Kecepatan Sesaat di Sepanjang Lintasan
+
+Untuk kecepatan pada waktu <InlineMath math="t" />, hitung **kedua komponen pada waktu itu**, lalu gabungkan dengan teorema Pythagoras:
 
 <MathContainer>
-  <BlockMath math="v_x=v_{0x}" />
-  <BlockMath math="v_y=v_{0y}-gt" />
-  <BlockMath math="v=\sqrt{v_x^2+v_y^2}" />
+  <BlockMath math="v_x = v_{0x},\qquad v_y = v_{0y} - gt" />
+  <BlockMath math="v = \sqrt{v_x^2 + v_y^2}" />
 </MathContainer>
 
-Arah kecepatan harus memakai **kedua komponen dan kuadran yang benar**:
+Arah kecepatan terhadap arah mendatar adalah <InlineMath math="\alpha = \operatorname{atan2}(v_y, v_x)" />. Untuk <InlineMath math="v_x > 0" />, ini sama dengan <InlineMath math="\tan\alpha = \frac{v_y}{v_x}" />. Nilai <InlineMath math="v_y" /> positif berarti benda bergerak miring ke atas, dan nilai negatif berarti miring ke bawah.
 
-<BlockMath math="\alpha=\operatorname{atan2}(v_y,v_x)" />
+## Contoh Bola Meriam Enam Puluh Derajat
 
-Jika <InlineMath math="v_x>0" />, rumus ini setara dengan <InlineMath math="\tan\alpha=v_y/v_x" /> untuk <InlineMath math="-90^\circ<\alpha<90^\circ" />. Nilai <InlineMath math="v_y" /> positif mengarah di atas arah horizontal, sedangkan nilai negatif mengarah di bawah arah horizontal.
-
-## Sudut Enam Puluh Derajat Menentukan Dua Komponen
-
-Sebuah bola ditembakkan dengan kelajuan awal <InlineMath math="40\text{ m/s}" /> dan sudut <InlineMath math="60^\circ" />. Gunakan <InlineMath math="g=10\text{ m/s}^2" />.
-
-Pada sudut <InlineMath math="60^\circ" />, **nilai sinus dan kosinus** dapat ditulis secara eksak. Karena itu, kita dapat menguraikan kecepatan awal secara eksak, mencari waktu dari gerak vertikal, lalu memakai waktu yang sama untuk menghitung jangkauan dan kecepatan sesaat.
-
-Komponen awalnya:
+Sebuah bola ditembakkan dengan kelajuan awal <InlineMath math="40\text{ m/s}" /> pada sudut <InlineMath math="60^\circ" />. Karena <InlineMath math="\sin 60^\circ" /> dan <InlineMath math="\cos 60^\circ" /> punya **nilai eksak**, semua hasil bisa ditulis tanpa pembulatan sampai langkah terakhir.
 
 <MathContainer>
-  <BlockMath math="v_{0x}=40\cos60^\circ=40\left(\frac{1}{2}\right)=20\text{ m/s}" />
-  <BlockMath math="v_{0y}=40\sin60^\circ=40\left(\frac{\sqrt{3}}{2}\right)=20\sqrt{3}\text{ m/s}" />
+  <BlockMath math="v_{0x}=40\cos60^\circ=20\text{ m/s},\qquad v_{0y}=40\sin60^\circ=20\sqrt{3}\text{ m/s}" />
+  <BlockMath math="t_{\text{puncak}}=\frac{20\sqrt{3}}{10}=2\sqrt{3}\approx 3{,}46\text{ s}" />
+  <BlockMath math="h_{\text{maks}}=\frac{(20\sqrt{3})^2}{2 \times 10}=\frac{1200}{20}=60\text{ m}" />
+  <BlockMath math="R=20 \times 4\sqrt{3}=80\sqrt{3}\approx 138{,}6\text{ m}" />
 </MathContainer>
 
-Waktu menuju puncak:
+Periksa jangkauan dengan rumus langsung: <InlineMath math="\frac{40^2\sin 120^\circ}{10} = \frac{1600 \times \frac{\sqrt{3}}{2}}{10} = 80\sqrt{3}" />.
 
-<BlockMath math="t_{\text{puncak}}=\frac{20\sqrt{3}}{10}=2\sqrt{3}\text{ s}" />
-
-Waktu total dan jangkauan:
+Kecepatan pada <InlineMath math="t = 2\text{ s}" /> memakai komponen vertikal pada waktu itu:
 
 <MathContainer>
-  <BlockMath math="t_{\text{total}}=4\sqrt{3}\text{ s}" />
-  <BlockMath math="R=20(4\sqrt{3})=80\sqrt{3}\text{ m}" />
+  <BlockMath math="v_y = 20\sqrt{3} - 10(2) = 20\sqrt{3} - 20 \approx 14{,}64\text{ m/s}" />
+  <BlockMath math="v = \sqrt{20^2 + (20\sqrt{3} - 20)^2} = \sqrt{2000 - 800\sqrt{3}} \approx 24{,}8\text{ m/s}" />
+  <BlockMath math="\alpha = \operatorname{atan2}(20\sqrt{3} - 20, 20) \approx 36{,}2^\circ" />
 </MathContainer>
 
-Misalkan kita ingin kecepatan pada <InlineMath math="t=2\text{ s}" />. Komponen vertikalnya:
+Periksa kelajuannya: <InlineMath math="v^2 = 20^2 + 14{,}64^2 \approx 614{,}4" />, dan <InlineMath math="\sqrt{614{,}4} \approx 24{,}8" />.
 
-<BlockMath math="\begin{aligned} v_y &amp;=20\sqrt{3}-10(2) \\ &amp;=20\sqrt{3}-20\text{ m/s} \end{aligned}" />
+Pada <InlineMath math="t = 2\text{ s}" />, bola masih naik karena <InlineMath math="v_y" /> positif, dan waktu itu memang lebih awal daripada waktu puncak <InlineMath math="3{,}46\text{ s}" />.
 
-Sementara itu, <InlineMath math="v_x=20\text{ m/s}" /> tetap. Kelajuannya:
+<LineEquation
+  title="Kecepatan bola meriam di sepanjang lintasan"
+  description="Satu kotak grafik mewakili 10 m. Setiap panah menunjukkan jarak yang ditempuh dalam satu detik dengan kecepatan saat itu. Komponen mendatarnya selalu 20 m/s, sedangkan komponen vertikalnya berkurang 10 m/s setiap detik."
+  showZAxis={false}
+  cameraPosition={[8, 1.5, 23]}
+  cameraTarget={[8, 1.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const t = (4 * Math.sqrt(3) * index) / 400;
+        return { x: (20 * t) / 10, y: (20 * Math.sqrt(3) * t - 5 * t ** 2) / 10, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [{ x: (20 * (0)) / 10, y: (20 * Math.sqrt(3) * (0) - 5 * (0) ** 2) / 10, z: 0 }, { x: (20 * (0)) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (0) - 5 * (0) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (0)) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = 40\text{ m/s}" />, at: 1, offset: [-0.6, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (2)) / 10, y: (20 * Math.sqrt(3) * (2) - 5 * (2) ** 2) / 10, z: 0 }, { x: (20 * (2)) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (2) - 5 * (2) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (2)) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v \approx 24{,}8\text{ m/s}" />, at: 1, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (2 * Math.sqrt(3))) / 10, y: (20 * Math.sqrt(3) * (2 * Math.sqrt(3)) - 5 * (2 * Math.sqrt(3)) ** 2) / 10, z: 0 }, { x: (20 * (2 * Math.sqrt(3))) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (2 * Math.sqrt(3)) - 5 * (2 * Math.sqrt(3)) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (2 * Math.sqrt(3))) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = v_x = 20\text{ m/s}" />, at: 1, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (4 * Math.sqrt(3))) / 10, y: (20 * Math.sqrt(3) * (4 * Math.sqrt(3)) - 5 * (4 * Math.sqrt(3)) ** 2) / 10, z: 0 }, { x: (20 * (4 * Math.sqrt(3))) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (4 * Math.sqrt(3)) - 5 * (4 * Math.sqrt(3)) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (4 * Math.sqrt(3))) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = 40\text{ m/s}" />, at: 1, offset: [0.3, -0.3, 0] }],
+    }
+  ]}
+/>
 
-<BlockMath math="\begin{aligned}
-v&=\sqrt{20^2+(20\sqrt{3}-20)^2}\\
-&=\sqrt{400+400(3-2\sqrt{3}+1)}\\
-&=\sqrt{2000-800\sqrt{3}}\\
-&\approx 24{,}8\text{ m/s}
-\end{aligned}" />
+## Contoh Tendangan Empat Puluh Lima Derajat
 
-Arah kecepatannya terhadap horizontal:
+Sebuah bola ditendang dari tanah dengan kelajuan <InlineMath math="20\text{ m/s}" /> pada sudut <InlineMath math="45^\circ" />. Pada sudut ini **kedua komponen sama besar**, karena <InlineMath math="\sin 45^\circ = \cos 45^\circ" />.
 
-<BlockMath math="\alpha=\operatorname{atan2}(20\sqrt{3}-20,20)\approx 36{,}2^\circ" />
+<MathContainer>
+  <BlockMath math="v_{0x} = v_{0y} = 20 \times \frac{\sqrt{2}}{2} = 10\sqrt{2}\text{ m/s}" />
+  <BlockMath math="t_{\text{puncak}} = \frac{10\sqrt{2}}{10} = \sqrt{2} \approx 1{,}41\text{ s},\qquad h_{\text{maks}} = \frac{(10\sqrt{2})^2}{20} = 10\text{ m}" />
+  <BlockMath math="R = 10\sqrt{2} \times 2\sqrt{2} = 40\text{ m}" />
+</MathContainer>
 
-Jadi, pada <InlineMath math="t=2\text{ s}" />, bola masih bergerak miring ke atas karena <InlineMath math="v_y" /> masih positif.
+Periksa dengan rumus langsung: <InlineMath math="\frac{20^2 \sin 90^\circ}{10} = 40\text{ m}" />. Jangkauan ini lebih jauh daripada lemparan <InlineMath math="30^\circ" /> atau <InlineMath math="60^\circ" /> dengan kelajuan yang sama, yang sama-sama mendarat di <InlineMath math="20\sqrt{3} \approx 34{,}6\text{ m}" />.
+
+## Kesalahan yang Sering Terjadi
+
+Sebelum memakai rumus pendek, periksa dulu **apakah titik jatuh setinggi titik lempar**.
+
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Memakai <InlineMath math="v_0" /> utuh untuk waktu puncak | Waktu puncak hanya bergantung pada <InlineMath math="v_{0y}" /> | Rumus waktu harus memuat <InlineMath math="\sin\theta" /> |
+| Menukar sinus dan kosinus | Komponen mendatar memakai kosinus, vertikal memakai sinus | Pada sudut kecil, <InlineMath math="v_{0x}" /> harus lebih besar |
+| Memakai <InlineMath math="R = \frac{v_0^2\sin 2\theta}{g}" /> untuk tebing atau atap | Rumus itu hanya untuk titik jatuh setinggi titik lempar | Bandingkan ketinggian awal dan akhir |
+| Menghitung arah dengan <InlineMath math="\tan^{-1}" /> tanpa melihat tanda | Arah ke bawah memberi sudut negatif | Tanda sudut harus sama dengan tanda <InlineMath math="v_y" /> |
+
+Kesalahan sinus dan kosinus paling mudah dicek dengan sudut <InlineMath math="30^\circ" />. Benda yang dilempar landai harus punya komponen mendatar lebih besar daripada komponen vertikalnya.
+
+## Latihan Soal Analisis Gerak Parabola
+
+Pakai <InlineMath math="g = 10\text{ m/s}^2" />. Untuk setiap soal, tulis dulu **kedua komponen kecepatan awal**.
+
+1. Bola dilempar dari tanah dengan kelajuan <InlineMath math="20\text{ m/s}" /> pada sudut <InlineMath math="30^\circ" />. Tentukan waktu puncak, tinggi maksimum, waktu terbang, dan jangkauannya.
+
+2. Peluru ditembakkan dari tanah dengan kelajuan <InlineMath math="30\text{ m/s}" /> pada sudut yang sinusnya <InlineMath math="0{,}8" /> dan kosinusnya <InlineMath math="0{,}6" />. Tentukan tinggi maksimum dan jangkauannya.
+
+3. Untuk peluru pada soal 2, tentukan kelajuan dan arah kecepatannya pada <InlineMath math="t = 1\text{ s}" />.
+
+4. Bola ditendang pada sudut <InlineMath math="45^\circ" /> dan mendarat <InlineMath math="40\text{ m}" /> jauhnya di tanah yang datar. Tentukan kelajuan awalnya.
+
+### Pembahasan
+
+**Soal 1**. Komponennya <InlineMath math="v_{0x} = 20\cos30^\circ = 10\sqrt{3}\text{ m/s}" /> dan **komponen vertikal** <InlineMath math="v_{0y} = 20\sin30^\circ = 10\text{ m/s}" />:
+
+<MathContainer>
+  <BlockMath math="t_{\text{puncak}} = \frac{10}{10} = 1\text{ s},\qquad h_{\text{maks}} = \frac{10^2}{20} = 5\text{ m}" />
+  <BlockMath math="T = 2\text{ s},\qquad R = 10\sqrt{3} \times 2 = 20\sqrt{3} \approx 34{,}6\text{ m}" />
+</MathContainer>
+
+Periksa: <InlineMath math="\frac{20^2 \sin 60^\circ}{10} = 20\sqrt{3}" />.
+
+**Soal 2**. Komponennya <InlineMath math="v_{0x} = 30(0{,}6) = 18\text{ m/s}" /> dan <InlineMath math="v_{0y} = 30(0{,}8) = 24\text{ m/s}" />. Waktu puncaknya <InlineMath math="2{,}4\text{ s}" />, jadi **waktu terbangnya** <InlineMath math="4{,}8\text{ s}" />:
+
+<MathContainer>
+  <BlockMath math="h_{\text{maks}} = \frac{24^2}{20} = 28{,}8\text{ m}" />
+  <BlockMath math="R = 18 \times 4{,}8 = 86{,}4\text{ m}" />
+</MathContainer>
+
+Periksa dengan rumus langsung: <InlineMath math="\sin 2\theta = 2(0{,}8)(0{,}6) = 0{,}96" />, dan <InlineMath math="\frac{30^2 \times 0{,}96}{10} = 86{,}4\text{ m}" />.
+
+**Soal 3**. Pada <InlineMath math="t = 1\text{ s}" />, komponen mendatar tetap dan **komponen vertikal berkurang** <InlineMath math="10\text{ m/s}" />:
+
+<MathContainer>
+  <BlockMath math="v_x = 18\text{ m/s},\qquad v_y = 24 - 10(1) = 14\text{ m/s}" />
+  <BlockMath math="v = \sqrt{18^2 + 14^2} = \sqrt{520} \approx 22{,}8\text{ m/s}" />
+  <BlockMath math="\alpha = \tan^{-1}\frac{14}{18} \approx 37{,}9^\circ" />
+</MathContainer>
+
+Sudutnya positif dan lebih kecil daripada sudut awal, karena peluru masih naik, tetapi <InlineMath math="v_y" /> mengecil sementara <InlineMath math="v_x" /> tetap, sehingga lintasannya makin landai.
+
+**Soal 4**. Pada <InlineMath math="45^\circ" />, <InlineMath math="\sin 90^\circ = 1" />, jadi rumus jangkauan menjadi **sangat sederhana**:
+
+<BlockMath math="40 = \frac{v_0^2 \times 1}{10} \quad\Longrightarrow\quad v_0^2 = 400 \quad\Longrightarrow\quad v_0 = 20\text{ m/s}" />
+
+Kelajuan tidak mungkin negatif, jadi <InlineMath math="v_0 = -20" /> dibuang. Periksa: <InlineMath math="\frac{20^2}{10} = 40\text{ m}" />.

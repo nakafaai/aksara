@@ -120,7 +120,38 @@ it("keeps article evidence and journal style outside lesson pedagogy", () => {
   );
 });
 
-it("allows scientific sections, citations, formal address and unmarked prose", () => {
+it("refuses formal address in an article in every locale that has one", () => {
+  const sources = [
+    [
+      "id",
+      `${METADATA}## Pendahuluan\n\nSaya menggunakan hasil penelitian yang menunjukkan kenaikan empat persen (Lee et al., 2025).`,
+      "indonesian-formal-author-self-reference",
+    ],
+    [
+      "id",
+      `${METADATA}## Pendahuluan\n\nAnda dapat membaca metodenya di Lee et al. (2025).`,
+      "indonesian-formal-learner-address",
+    ],
+    [
+      "de",
+      `${METADATA}## Einführung\n\nSie finden die Messmethode in Lee et al. (2025).`,
+      "german-formal-address",
+    ],
+  ] as const;
+  for (const [locale, source, rule] of sources) {
+    assert.deepEqual(
+      findDocumentIssues(
+        `/corpus/articles/topic/${locale}.mdx`,
+        locale,
+        source,
+        parseLessonMdx(source)
+      ).map((issue) => issue.rule),
+      [rule]
+    );
+  }
+});
+
+it("allows scientific sections, citations, informal address and unmarked prose", () => {
   const sources = [
     [
       "en",
@@ -128,11 +159,11 @@ it("allows scientific sections, citations, formal address and unmarked prose", (
     ],
     [
       "id",
-      `${METADATA}## Pendahuluan\n\nSaya menggunakan hasil penelitian yang menunjukkan kenaikan empat persen (Lee et al., 2025).\n\n## Daftar Pustaka\n\nLee et al. (2025).`,
+      `${METADATA}## Pendahuluan\n\nAku memakai hasil penelitian yang menunjukkan kenaikan empat persen (Lee et al., 2025).\n\n## Daftar Pustaka\n\nLee et al. (2025).`,
     ],
     [
       "de",
-      `${METADATA}## Einführung\n\nSie finden die Messmethode in Lee et al. (2025). Die Studie zeigt einen Anstieg von vier Prozent.\n\n## Literaturverzeichnis\n\nLee et al. (2025).`,
+      `${METADATA}## Einführung\n\nDu findest die Messmethode in Lee et al. (2025). Die Studie zeigt einen Anstieg von vier Prozent. Sie stützt sich auf zwei Messreihen.\n\n## Literaturverzeichnis\n\nLee et al. (2025).`,
     ],
   ] as const;
   for (const [locale, source] of sources) {

@@ -1,34 +1,15 @@
-Jarak kaki tangga dari dinding berubah dari <InlineMath math="7\,\mathrm{m}" /> menjadi <InlineMath math="15\,\mathrm{m}" />. Panjang tangga tetap, jadi Pythagoras memberi dua tinggi berikut.
+Jarak mendatar, selisih ketinggian, dan lintasan membentuk segitiga siku-siku. **Tangen sudut adalah sisi depan dibagi sisi samping**: sisi depan sudut <InlineMath math="\alpha" /> adalah selisih ketinggian, dan sisi sampingnya jarak mendatar <InlineMath math="1{.}640\text{ m}" />.
 
 <BlockMath math="\begin{aligned}
-h_0&=\sqrt{25^2-7^2}=\sqrt{625-49}=\sqrt{576}=24 \\
-h_1&=\sqrt{25^2-15^2}=\sqrt{625-225}=\sqrt{400}=20
+\tan\alpha&=\frac{h}{1{.}640} \\
+h&=1{.}640\cdot\frac{9}{40}=369\text{ m}
 \end{aligned}" />
 
-Sinus sudut terhadap lantai adalah **tinggi dibagi panjang tangga**.
+Sebagai pemeriksaan, segitiganya sebangun dengan segitiga <InlineMath math="9" />-<InlineMath math="40" />-<InlineMath math="41" /> berfaktor <InlineMath math="41" />: <InlineMath math="h=369" />, jarak mendatar <InlineMath math="1{.}640" />, dan panjang lintasan <InlineMath math="1{.}681" />.
 
-<BlockMath math="\begin{aligned}
-\sin\alpha&=\frac{24}{25} \\
-\sin\beta&=\frac{20}{25} \\
-\sin\alpha-\sin\beta&=\frac4{25}
-\end{aligned}" />
+Jadi, selisih ketinggiannya <InlineMath math="369\text{ m}" />.
 
-Bagi penurunan itu dengan nilai sinus awal.
-
-<BlockMath math="\begin{aligned}
-\frac{\sin\alpha-\sin\beta}{\sin\alpha}&=\frac4{25}\div\frac{24}{25} \\
-&=\frac4{25}\cdot\frac{25}{24}=\frac4{24}=\frac16
-\end{aligned}" />
-
-<LineEquation
-  title="Tangga sebelum dan sesudah digeser"
-  description="Abu-abu menunjukkan posisi awal dengan tinggi 24 m. Ungu menunjukkan posisi akhir dengan tinggi 20 m. Kedua ruas tangga panjangnya 25 m."
-  cameraPosition={[7.5,12,38]}
-  cameraTarget={[7.5,12,0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 7, y: 0, z: 0 }, { x: 0, y: 24, z: 0 }], color: "#64748b", smooth: false, showPoints: false, labels: [{ text: "24 m", at: 1, offset: [-1.2,-0.5,0] }, { text: "7 m", at: 0, offset: [0,-1,0] }] },
-    { points: [{ x: 15, y: 0, z: 0 }, { x: 0, y: 20, z: 0 }], color: "#9333ea", smooth: false, showPoints: false, labels: [{ text: "20 m", at: 1, offset: [-1.2,0,0] }, { text: "15 m", at: 0, offset: [0.3,-1,0] }] },
-    ...[{x:7,y:24,text:"α",color:"#64748b"},{x:15,y:20,text:"β",color:"#9333ea"}].map(({x,y,text,color}) => { const angle = Math.atan2(y,x); return { points: Array.from({length:31},(_,i)=>{const t=Math.PI-angle*i/30;return {x:x+2*Math.cos(t),y:2*Math.sin(t),z:0};}), color, smooth: false, showPoints: false, labels:[{text,at:15,offset:[-0.6,0.7,0]}] }; }),
-  ]}
-/>
+- <InlineMath math="36{,}9\text{ m}" /> mengubah <InlineMath math="0{,}369\text{ km}" /> menjadi meter dengan mengalikan <InlineMath math="100" />, padahal <InlineMath math="1\text{ km}=1{.}000\text{ m}" />.
+- <InlineMath math="328\text{ m}" /> membulatkan <InlineMath math="\frac{9}{40}=0{,}225" /> menjadi <InlineMath math="0{,}2" /> sebelum mengalikan.
+- <InlineMath math="360\text{ m}" /> memakai <InlineMath math="\sin\alpha=\frac{9}{41}" /> terhadap jarak mendatar, padahal sinus berpasangan dengan sisi miring.
+- <InlineMath math="1{.}600\text{ m}" /> memakai <InlineMath math="\cos\alpha=\frac{40}{41}" />.

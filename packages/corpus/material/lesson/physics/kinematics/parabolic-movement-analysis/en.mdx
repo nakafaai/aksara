@@ -1,28 +1,23 @@
 export const metadata = {
-  title: "Projectile Motion Analysis",
-  description:
-    "The horizontal and vertical velocity components determine the time to the highest point, the range, and the instantaneous velocity of projectile motion.",
+  title: "Projectile Motion Formulas",
+  description: "Split the initial velocity into two components, then find the time to the top, maximum height, range, and velocity at any moment of a projectile.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Kinematics",
 };
 
+## Projectile Formulas from Two Components
 
-## Start by Splitting the Initial Velocity
-
-Measure the angle from the horizontal. Choose rightward and upward as positive.
-
-Projectile analysis almost always starts with one simple question: how much of the velocity is horizontal, and how much is vertical? If the initial speed is <InlineMath math="v_0" /> and the launch angle is <InlineMath math="\theta" />, the initial components are:
+Analyzing projectile motion starts by **splitting the initial velocity** <InlineMath math="v_0" />, launched at an angle <InlineMath math="\theta" /> above the horizontal, into two components. For an object launched from the ground that lands on the ground, every important quantity follows from those components:
 
 <MathContainer>
-  <BlockMath math="v_{0x}=v_0\cos\theta" />
-  <BlockMath math="v_{0y}=v_0\sin\theta" />
+  <BlockMath math="v_{0x}=v_0\cos\theta,\qquad v_{0y}=v_0\sin\theta" />
+  <BlockMath math="t_{\text{top}}=\frac{v_{0y}}{g},\qquad h_{\text{max}}=\frac{v_{0y}^2}{2g}" />
+  <BlockMath math="T=2t_{\text{top}},\qquad R=v_{0x}T=\frac{v_0^2\sin 2\theta}{g}" />
 </MathContainer>
 
-After that, the horizontal and vertical directions are calculated with different rules. In the model used here, air resistance is ignored and gravitational acceleration is constant. The horizontal direction uses uniform motion because <Highlight>there is no horizontal acceleration</Highlight>. The vertical direction uses uniformly accelerated motion because gravity keeps acting downward.
-
-> The horizontal and vertical equations use the same time variable.
+Air resistance is ignored and gravity is constant. Right and up are positive, and the examples on this page use <InlineMath math="g = 10\text{ m/s}^2" />. The cannonball simulation shows the constant horizontal component and the changing vertical component for several shots.
 
 <ParabolicMovementAnalysisLab
   title={<>Cannonball Component Analysis</>}
@@ -51,90 +46,195 @@ After that, the horizontal and vertical directions are calculated with different
   }}
 />
 
-The arc and faded balls show one motion at equal time intervals. The values below split that motion into components: <InlineMath math="v_{0x}" /> stays constant, while <InlineMath math="v_y=v_{0y}-gt" /> changes because gravity acts downward.
+The ball's shadow on the water moves at a constant speed, like an object in [uniform linear motion](/en/subjects/physics/kinematics/uniform-linear-motion), because it follows only the horizontal component. The ball itself rises and falls, because its vertical component <InlineMath math="v_y = v_{0y} - gt" /> keeps decreasing.
 
-The scenes launch and land at the same height. Under that condition, time of flight, range, and velocity can be calculated in one sequence:
+## Time to the Top and Maximum Height
 
-<BlockMath math="\begin{aligned} &amp;v_{0x}=v_0\cos\theta \\ &amp;v_{0y}=v_0\sin\theta \\ &amp;t_{\text{peak}}=\frac{v_{0y}}{g} \\ &amp;T=2t_{\text{peak}} \\ &amp;R=v_{0x}T \\ &amp;\vec{v}(2)=\langle v_{0x},v_{0y}-g(2)\rangle, \\ &amp;g=10\text{ m/s}^2 \end{aligned}" />
-
-## The Peak Happens When Vertical Velocity Is Zero
-
-At the peak, the object is **still moving horizontally**, but its up-and-down motion pauses for an instant. So the peak condition is <InlineMath math="v_y=0" />.
-
-<BlockMath math="v_y=v_{0y}-gt" />
-
-When <InlineMath math="v_y=0" />, the time to the peak is:
-
-<BlockMath math="t_{\text{peak}}=\frac{v_{0y}}{g}" />
-
-For an initial speed of <InlineMath math="40\text{ m/s}" /> at an angle of <InlineMath math="60^\circ" />, the initial vertical component is <InlineMath math="20\sqrt{3}\text{ m/s}" />. Before the peak it is positive, at the peak it becomes zero, and after the peak it is negative because the object is moving downward.
-
-## Range Uses Total Flight Time
-
-If the object launches from the ground and returns to the ground at the **same height**, the total time is twice the time to the peak.
+At the top, the object is still moving horizontally, but **its vertical velocity is zero**. Setting <InlineMath math="v_y = v_{0y} - gt = 0" /> gives the time to the top, and the third vertical equation gives the maximum height:
 
 <MathContainer>
-  <BlockMath math="t_{\text{total}}=2t_{\text{peak}}" />
-  <BlockMath math="R=v_{0x}t_{\text{total}}" />
+  <BlockMath math="t_{\text{top}}=\frac{v_{0y}}{g}" />
+  <BlockMath math="0 = v_{0y}^2 - 2g\,h_{\text{max}} \quad\Longrightarrow\quad h_{\text{max}}=\frac{v_{0y}^2}{2g}" />
 </MathContainer>
 
-This formula shows why range is not determined by angle alone. Range also depends on horizontal velocity and how long the object stays in the air.
+Both formulas use only the vertical component. That component moves like an object thrown upward at <InlineMath math="v_{0y}" /> in [vertical motion](/en/subjects/physics/kinematics/vertical-movement).
 
-## Instantaneous Velocity Has Horizontal and Vertical Components
+## Time of Flight and Range
 
-To find velocity at a specific time, calculate <InlineMath math="v_x" /> and <InlineMath math="v_y" /> at that time first. The horizontal component stays constant, while the vertical component changes.
+If the object lands at **the same height** it was launched from, the time down equals the time up, so the total time of flight is <InlineMath math="T = 2t_{\text{top}}" />. The range is the horizontal component times the time of flight:
+
+<BlockMath math="R = v_0\cos\theta \cdot \frac{2v_0\sin\theta}{g} = \frac{v_0^2 \cdot 2\sin\theta\cos\theta}{g} = \frac{v_0^2\sin 2\theta}{g}" />
+
+The last step uses the identity <InlineMath math="2\sin\theta\cos\theta = \sin 2\theta" />. Because <InlineMath math="\sin 2\theta" /> is at most <InlineMath math="1" />, the longest range comes at <InlineMath math="\theta = 45^\circ" />. Two angles that add up to <InlineMath math="90^\circ" />, such as <InlineMath math="30^\circ" /> and <InlineMath math="60^\circ" />, give the same range because <InlineMath math="\sin 60^\circ = \sin 120^\circ" />. With <InlineMath math="v_0 = 20\text{ m/s}" />, both land <InlineMath math="20\sqrt{3} \approx 34.6\text{ m}" /> away, the same result that time of flight and horizontal velocity give in [projectile motion](/en/subjects/physics/kinematics/parabolic-movement). This formula does not hold when the landing point is higher or lower than the launch point.
+
+<Mermaid
+  title="The order of a projectile analysis"
+  description="Every quantity comes from the two components of the initial velocity."
+  chart={`flowchart TD
+  A["v₀ and θ"] --> B["v₀x = v₀ cos θ and v₀y = v₀ sin θ"]
+  B --> C["t_peak = v₀y / g"]
+  C --> D["h_max = v₀y² / 2g"]
+  C --> E["T = 2 t_peak"]
+  E --> F["R = v₀x T"]
+  B --> G["Velocity at time t: v_y = v₀y - gt"]`}
+/>
+
+## Velocity Along the Path
+
+For the velocity at time <InlineMath math="t" />, find **both components at that time**, then combine them with the Pythagorean theorem:
 
 <MathContainer>
-  <BlockMath math="v_x=v_{0x}" />
-  <BlockMath math="v_y=v_{0y}-gt" />
-  <BlockMath math="v=\sqrt{v_x^2+v_y^2}" />
+  <BlockMath math="v_x = v_{0x},\qquad v_y = v_{0y} - gt" />
+  <BlockMath math="v = \sqrt{v_x^2 + v_y^2}" />
 </MathContainer>
 
-The direction of velocity must use **both components and the correct quadrant**:
+The direction of the velocity above the horizontal is <InlineMath math="\alpha = \operatorname{atan2}(v_y, v_x)" />. For <InlineMath math="v_x > 0" />, this is the same as <InlineMath math="\tan\alpha = \frac{v_y}{v_x}" />. A positive <InlineMath math="v_y" /> means the object is moving up at a slant, and a negative one means it is moving down.
 
-<BlockMath math="\alpha=\operatorname{atan2}(v_y,v_x)" />
+## A Sixty Degree Cannonball
 
-If <InlineMath math="v_x>0" />, this is equivalent to <InlineMath math="\tan\alpha=v_y/v_x" /> with <InlineMath math="-90^\circ<\alpha<90^\circ" />. A positive <InlineMath math="v_y" /> points above the horizontal, while a negative value points below it.
-
-## Launch at Sixty Degrees
-
-A ball is launched with an initial speed of <InlineMath math="40\text{ m/s}" /> and an angle of <InlineMath math="60^\circ" />. Use <InlineMath math="g=10\text{ m/s}^2" />.
-
-At <InlineMath math="60^\circ" />, the **sine and cosine have exact values**. We can therefore split the initial velocity exactly, find the time from the vertical motion, and use that same time to calculate the range and instantaneous velocity.
-
-The initial components are:
+A ball is fired at <InlineMath math="40\text{ m/s}" /> at an angle of <InlineMath math="60^\circ" />. Because <InlineMath math="\sin 60^\circ" /> and <InlineMath math="\cos 60^\circ" /> have **exact values**, every result can be written without rounding until the last step.
 
 <MathContainer>
-  <BlockMath math="v_{0x}=40\cos60^\circ=40\left(\frac{1}{2}\right)=20\text{ m/s}" />
-  <BlockMath math="v_{0y}=40\sin60^\circ=40\left(\frac{\sqrt{3}}{2}\right)=20\sqrt{3}\text{ m/s}" />
+  <BlockMath math="v_{0x}=40\cos60^\circ=20\text{ m/s},\qquad v_{0y}=40\sin60^\circ=20\sqrt{3}\text{ m/s}" />
+  <BlockMath math="t_{\text{top}}=\frac{20\sqrt{3}}{10}=2\sqrt{3}\approx 3.46\text{ s}" />
+  <BlockMath math="h_{\text{max}}=\frac{(20\sqrt{3})^2}{2 \times 10}=\frac{1200}{20}=60\text{ m}" />
+  <BlockMath math="R=20 \times 4\sqrt{3}=80\sqrt{3}\approx 138.6\text{ m}" />
 </MathContainer>
 
-The time to the peak is:
+Check the range with the direct formula: <InlineMath math="\frac{40^2\sin 120^\circ}{10} = \frac{1600 \times \frac{\sqrt{3}}{2}}{10} = 80\sqrt{3}" />.
 
-<BlockMath math="t_{\text{peak}}=\frac{20\sqrt{3}}{10}=2\sqrt{3}\text{ s}" />
-
-The total time and range are:
+The velocity at <InlineMath math="t = 2\text{ s}" /> uses the vertical component at that time:
 
 <MathContainer>
-  <BlockMath math="t_{\text{total}}=4\sqrt{3}\text{ s}" />
-  <BlockMath math="R=20(4\sqrt{3})=80\sqrt{3}\text{ m}" />
+  <BlockMath math="v_y = 20\sqrt{3} - 10(2) = 20\sqrt{3} - 20 \approx 14.64\text{ m/s}" />
+  <BlockMath math="v = \sqrt{20^2 + (20\sqrt{3} - 20)^2} = \sqrt{2000 - 800\sqrt{3}} \approx 24.8\text{ m/s}" />
+  <BlockMath math="\alpha = \operatorname{atan2}(20\sqrt{3} - 20, 20) \approx 36.2^\circ" />
 </MathContainer>
 
-Suppose we want the velocity at <InlineMath math="t=2\text{ s}" />. The vertical component is:
+Check the speed: <InlineMath math="v^2 = 20^2 + 14.64^2 \approx 614.4" />, and <InlineMath math="\sqrt{614.4} \approx 24.8" />.
 
-<BlockMath math="\begin{aligned} v_y &amp;=20\sqrt{3}-10(2) \\ &amp;=20\sqrt{3}-20\text{ m/s} \end{aligned}" />
+At <InlineMath math="t = 2\text{ s}" /> the ball is still rising because <InlineMath math="v_y" /> is positive, and that time is indeed earlier than the time to the top, <InlineMath math="3.46\text{ s}" />.
 
-Meanwhile, <InlineMath math="v_x=20\text{ m/s}" /> stays constant. The speed is:
+<LineEquation
+  title="The cannonball velocity along its path"
+  description="One grid square stands for 10 m. Each arrow shows the distance covered in one second at the velocity of that moment. Its horizontal part is always 20 m/s, while its vertical part drops by 10 m/s every second."
+  showZAxis={false}
+  cameraPosition={[8, 1.5, 23]}
+  cameraTarget={[8, 1.5, 0]}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const t = (4 * Math.sqrt(3) * index) / 400;
+        return { x: (20 * t) / 10, y: (20 * Math.sqrt(3) * t - 5 * t ** 2) / 10, z: 0 };
+      }),
+      color: "#0d9488",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [{ x: (20 * (0)) / 10, y: (20 * Math.sqrt(3) * (0) - 5 * (0) ** 2) / 10, z: 0 }, { x: (20 * (0)) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (0) - 5 * (0) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (0)) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = 40\text{ m/s}" />, at: 1, offset: [-0.6, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (2)) / 10, y: (20 * Math.sqrt(3) * (2) - 5 * (2) ** 2) / 10, z: 0 }, { x: (20 * (2)) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (2) - 5 * (2) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (2)) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v \approx 24.8\text{ m/s}" />, at: 1, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (2 * Math.sqrt(3))) / 10, y: (20 * Math.sqrt(3) * (2 * Math.sqrt(3)) - 5 * (2 * Math.sqrt(3)) ** 2) / 10, z: 0 }, { x: (20 * (2 * Math.sqrt(3))) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (2 * Math.sqrt(3)) - 5 * (2 * Math.sqrt(3)) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (2 * Math.sqrt(3))) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = v_x = 20\text{ m/s}" />, at: 1, offset: [0, 0.4, 0] }],
+    },
+    {
+      points: [{ x: (20 * (4 * Math.sqrt(3))) / 10, y: (20 * Math.sqrt(3) * (4 * Math.sqrt(3)) - 5 * (4 * Math.sqrt(3)) ** 2) / 10, z: 0 }, { x: (20 * (4 * Math.sqrt(3))) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (4 * Math.sqrt(3)) - 5 * (4 * Math.sqrt(3)) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (4 * Math.sqrt(3))) / 10, z: 0 }],
+      color: "#7c3aed",
+      cone: { position: "end", size: 0.25 },
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="v = 40\text{ m/s}" />, at: 1, offset: [0.3, -0.3, 0] }],
+    }
+  ]}
+/>
 
-<BlockMath math="\begin{aligned}
-v&=\sqrt{20^2+(20\sqrt{3}-20)^2}\\
-&=\sqrt{400+400(3-2\sqrt{3}+1)}\\
-&=\sqrt{2000-800\sqrt{3}}\\
-&\approx 24.8\text{ m/s}
-\end{aligned}" />
+## A Forty Five Degree Kick
 
-The direction of the velocity from the horizontal is:
+A ball is kicked from the ground at <InlineMath math="20\text{ m/s}" /> at an angle of <InlineMath math="45^\circ" />. At this angle **the two components are equal**, because <InlineMath math="\sin 45^\circ = \cos 45^\circ" />.
 
-<BlockMath math="\alpha=\operatorname{atan2}(20\sqrt{3}-20,20)\approx 36.2^\circ" />
+<MathContainer>
+  <BlockMath math="v_{0x} = v_{0y} = 20 \times \frac{\sqrt{2}}{2} = 10\sqrt{2}\text{ m/s}" />
+  <BlockMath math="t_{\text{top}} = \frac{10\sqrt{2}}{10} = \sqrt{2} \approx 1.41\text{ s},\qquad h_{\text{max}} = \frac{(10\sqrt{2})^2}{20} = 10\text{ m}" />
+  <BlockMath math="R = 10\sqrt{2} \times 2\sqrt{2} = 40\text{ m}" />
+</MathContainer>
 
-So at <InlineMath math="t=2\text{ s}" />, the ball is still moving upward at an angle because <InlineMath math="v_y" /> is still positive.
+Check with the direct formula: <InlineMath math="\frac{20^2 \sin 90^\circ}{10} = 40\text{ m}" />. This range is longer than a <InlineMath math="30^\circ" /> or <InlineMath math="60^\circ" /> throw at the same speed, which both land at <InlineMath math="20\sqrt{3} \approx 34.6\text{ m}" />.
+
+## Common Mistakes
+
+Before using the short formulas, check **whether the landing point is as high as the launch point**.
+
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Using the whole <InlineMath math="v_0" /> for the time to the top | The time to the top depends only on <InlineMath math="v_{0y}" /> | The time formula must contain <InlineMath math="\sin\theta" /> |
+| Swapping sine and cosine | The horizontal component uses cosine, the vertical uses sine | At a small angle, <InlineMath math="v_{0x}" /> must be larger |
+| Using <InlineMath math="R = \frac{v_0^2\sin 2\theta}{g}" /> for a cliff or a roof | That formula holds only when the landing point is as high as the launch point | Compare the starting and ending heights |
+| Finding the direction with <InlineMath math="\tan^{-1}" /> while ignoring the sign | A downward direction gives a negative angle | The sign of the angle must match the sign of <InlineMath math="v_y" /> |
+
+The sine and cosine mistake is easiest to catch with a <InlineMath math="30^\circ" /> angle. A low throw must have a larger horizontal component than vertical component.
+
+## Practice on Projectile Formulas
+
+Use <InlineMath math="g = 10\text{ m/s}^2" />. For each problem, first write **both components of the initial velocity**.
+
+1. A ball is launched from the ground at <InlineMath math="20\text{ m/s}" /> at an angle of <InlineMath math="30^\circ" />. Find the time to the top, the maximum height, the time of flight, and the range.
+
+2. A projectile is fired from the ground at <InlineMath math="30\text{ m/s}" /> at an angle whose sine is <InlineMath math="0.8" /> and whose cosine is <InlineMath math="0.6" />. Find its maximum height and range.
+
+3. For the projectile in Problem 2, find its speed and the direction of its velocity at <InlineMath math="t = 1\text{ s}" />.
+
+4. A ball is kicked at <InlineMath math="45^\circ" /> and lands <InlineMath math="40\text{ m}" /> away on level ground. Find its initial speed.
+
+### Answers
+
+**Problem 1**. The components are <InlineMath math="v_{0x} = 20\cos30^\circ = 10\sqrt{3}\text{ m/s}" /> and **the vertical component** <InlineMath math="v_{0y} = 20\sin30^\circ = 10\text{ m/s}" />:
+
+<MathContainer>
+  <BlockMath math="t_{\text{top}} = \frac{10}{10} = 1\text{ s},\qquad h_{\text{max}} = \frac{10^2}{20} = 5\text{ m}" />
+  <BlockMath math="T = 2\text{ s},\qquad R = 10\sqrt{3} \times 2 = 20\sqrt{3} \approx 34.6\text{ m}" />
+</MathContainer>
+
+Check: <InlineMath math="\frac{20^2 \sin 60^\circ}{10} = 20\sqrt{3}" />.
+
+**Problem 2**. The components are <InlineMath math="v_{0x} = 30(0.6) = 18\text{ m/s}" /> and <InlineMath math="v_{0y} = 30(0.8) = 24\text{ m/s}" />. The time to the top is <InlineMath math="2.4\text{ s}" />, so **the time of flight** is <InlineMath math="4.8\text{ s}" />:
+
+<MathContainer>
+  <BlockMath math="h_{\text{max}} = \frac{24^2}{20} = 28.8\text{ m}" />
+  <BlockMath math="R = 18 \times 4.8 = 86.4\text{ m}" />
+</MathContainer>
+
+Check with the direct formula: <InlineMath math="\sin 2\theta = 2(0.8)(0.6) = 0.96" />, and <InlineMath math="\frac{30^2 \times 0.96}{10} = 86.4\text{ m}" />.
+
+**Problem 3**. At <InlineMath math="t = 1\text{ s}" />, the horizontal component is unchanged and **the vertical component drops** by <InlineMath math="10\text{ m/s}" />:
+
+<MathContainer>
+  <BlockMath math="v_x = 18\text{ m/s},\qquad v_y = 24 - 10(1) = 14\text{ m/s}" />
+  <BlockMath math="v = \sqrt{18^2 + 14^2} = \sqrt{520} \approx 22.8\text{ m/s}" />
+  <BlockMath math="\alpha = \tan^{-1}\frac{14}{18} \approx 37.9^\circ" />
+</MathContainer>
+
+The angle is positive and smaller than the launch angle, because the projectile is still rising, but <InlineMath math="v_y" /> is shrinking while <InlineMath math="v_x" /> stays the same, so its path keeps flattening.
+
+**Problem 4**. At <InlineMath math="45^\circ" />, <InlineMath math="\sin 90^\circ = 1" />, so the range formula becomes **very simple**:
+
+<BlockMath math="40 = \frac{v_0^2 \times 1}{10} \quad\Longrightarrow\quad v_0^2 = 400 \quad\Longrightarrow\quad v_0 = 20\text{ m/s}" />
+
+A speed cannot be negative, so <InlineMath math="v_0 = -20" /> is rejected. Check: <InlineMath math="\frac{20^2}{10} = 40\text{ m}" />.

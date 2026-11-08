@@ -1,0 +1,50 @@
+Kedudukan dua lingkaran ditentukan oleh **jarak kedua pusat** dibandingkan dengan jari-jarinya. Jadi, ubah dulu <InlineMath math="L_2" /> ke bentuk baku dengan melengkapkan kuadrat.
+
+<BlockMath math="\begin{aligned}
+x^2-8x+y^2-6y+21&=0 \\
+(x-4)^2-16+(y-3)^2-9+21&=0 \\
+(x-4)^2+(y-3)^2&=4
+\end{aligned}" />
+
+Lingkaran <InlineMath math="L_1" /> berpusat di <InlineMath math="O(0,0)" /> dengan jari-jari <InlineMath math="r_1=3" />, sedangkan <InlineMath math="L_2" /> berpusat di <InlineMath math="P(4,3)" /> dengan jari-jari <InlineMath math="r_2=2" />. Jarak kedua pusat adalah <InlineMath math="OP=\sqrt{4^2+3^2}=5" />, tepat sama dengan <InlineMath math="r_1+r_2=3+2" />. Artinya, kedua lingkaran **bersinggungan di luar** dan hanya memiliki satu titik persekutuan.
+
+<MathVisual
+  title="Dua lingkaran yang bersinggungan"
+  description={<>Lingkaran <InlineMath math="L_1" /> berpusat di <InlineMath math="(0,0)" /> dengan jari-jari <InlineMath math="3" />, dan <InlineMath math="L_2" /> berpusat di <InlineMath math="(4,3)" /> dengan jari-jari <InlineMath math="2" />. Keduanya bersentuhan di <InlineMath math="\left(\frac{12}{5},\frac95\right)" />, dan garis <InlineMath math="4x+3y=15" /> menyentuh keduanya di titik itu. Titik <InlineMath math="(0,3)" /> berada pada <InlineMath math="L_1" /> dan di luar <InlineMath math="L_2" />.</>}
+  labels={{
+    "first-circle": <InlineMath math="L_1" />,
+    "second-circle": <InlineMath math="L_2" />,
+    tangent: <InlineMath math="4x+3y=15" />,
+    test: <InlineMath math="(0,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 7 },
+      y: { min: -4, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "second", kind: "circle", appearance: "secondary", center: { x: 4, y: 3 }, radius: 2 },
+      { id: "centers", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "tangent-line", kind: "segment", appearance: "answer", from: { x: -1.5, y: 7 }, to: { x: 6, y: -3 } },
+      { id: "contact-point", kind: "point", appearance: "answer", at: { x: 12 / 5, y: 9 / 5 } },
+      { id: "test-point", kind: "point", appearance: "warning", at: { x: 0, y: 3 } },
+    ],
+    labels: [
+      { key: "first-circle", objectId: "first", at: { x: -3, y: 0 }, placement: "left" },
+      { key: "second-circle", objectId: "second", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "tangent", objectId: "tangent-line", at: { x: 4.5, y: -1 }, placement: "right" },
+      { key: "test", objectId: "test-point", at: { x: 0, y: 3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+1. Pernyataan bahwa <InlineMath math="L_1" /> dan <InlineMath math="L_2" /> berpotongan di dua titik salah. Dua titik potong hanya terjadi jika jarak pusat kurang dari <InlineMath math="r_1+r_2" />, sedangkan di sini jaraknya tepat <InlineMath math="r_1+r_2" />.
+2. Pernyataan tentang titik singgung <InlineMath math="\left(\frac{12}{5},\frac95\right)" /> benar. Titik singgung terletak pada ruas <InlineMath math="OP" /> sejauh <InlineMath math="r_1=3" /> dari <InlineMath math="O" />, yaitu <InlineMath math="\frac35(4,3)=\left(\frac{12}{5},\frac95\right)" />. Titik itu memenuhi kedua persamaan: <InlineMath math="\frac{144}{25}+\frac{81}{25}=9" /> dan <InlineMath math="\left(-\frac85\right)^2+\left(-\frac65\right)^2=\frac{100}{25}=4" />.
+3. Pernyataan tentang garis <InlineMath math="4x+3y=15" /> benar. Jarak <InlineMath math="O" /> ke garis itu adalah <InlineMath math="\frac{|0+0-15|}{5}=3=r_1" />, dan jarak <InlineMath math="P" /> ke garis itu adalah <InlineMath math="\frac{|16+9-15|}{5}=2=r_2" />. Jarak dari pusat ke garis sama dengan jari-jari, jadi garis itu menyinggung kedua lingkaran.
+4. Pernyataan bahwa <InlineMath math="(0,3)" /> terletak di dalam <InlineMath math="L_2" /> salah. Jaraknya ke <InlineMath math="P(4,3)" /> adalah <InlineMath math="4" />, lebih besar dari <InlineMath math="r_2=2" />. Substitusi ke persamaan <InlineMath math="L_2" /> juga memberi <InlineMath math="0+9-0-18+21=12>0" />, tanda bahwa titik itu di luar lingkaran.
+
+Jadi, pernyataan tentang titik singgung dan tentang garis <InlineMath math="4x+3y=15" /> benar, sedangkan pernyataan tentang dua titik potong dan tentang titik <InlineMath math="(0,3)" /> salah.

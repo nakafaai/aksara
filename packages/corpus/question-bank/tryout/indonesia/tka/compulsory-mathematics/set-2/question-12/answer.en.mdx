@@ -1,21 +1,13 @@
-Unroll the cylinder’s **lateral surface** into a rectangle. Diametrically opposite points are half a circumference apart horizontally, giving <InlineMath math="\pi r=3\pi\,\mathrm{cm}" />. Their vertical separation remains <InlineMath math="8\,\mathrm{cm}" />.
+Two tools settle all four statements. The **triangle inequality** requires each side to be shorter than the sum of the other two. And whether the angle opposite the longest side is obtuse is decided by comparing its square with the sum of the other two squares.
 
-The shortest path becomes a straight segment on the unrolled surface. Pythagoras gives its squared length.
+<BlockMath math="\begin{aligned}
+10-7<x<10+7\ &\Rightarrow\ 3<x<17 \\
+7^2+10^2&=149
+\end{aligned}" />
 
-<BlockMath math="L^2=8^2+(3\pi)^2=64+9\pi^2" />
+- The integers from <InlineMath math="4" /> to <InlineMath math="16" /> are <InlineMath math="16-4+1=13" /> values. The statement is true.
+- For <InlineMath math="x=12" />, <InlineMath math="12" /> is the longest side and <InlineMath math="144<149" />. The largest angle is acute, so the triangle is acute. The statement is false.
+- For <InlineMath math="x=13" />, <InlineMath math="169>149" />. The angle opposite the side <InlineMath math="13" /> is obtuse. The statement is true.
+- For <InlineMath math="x=17" />, <InlineMath math="7+10=17" />, so the three segments lie on one line and form no triangle. The statement is false.
 
-Either direction around the cylinder gives the same distance. Extra turns increase the horizontal travel. The minimum squared length is therefore <InlineMath math="(64+9\pi^2)\,\mathrm{cm}^2" />.
-
-<LineEquation
-  title="Half of the cylinder unrolled"
-  description="This rectangle is only half the lateral surface. Its width is half the circumference and its height is the cylinder height."
-  cameraPosition={[4.7, 4, 16]}
-  cameraTarget={[4.7, 4, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 3 * Math.PI, y: 0, z: 0 }, { x: 3 * Math.PI, y: 8, z: 0 }, { x: 0, y: 8, z: 0 }, { x: 0, y: 0, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 3 * Math.PI, y: 8, z: 0 }], color: "#9333ea", smooth: false, showPoints: true, labels: [{ text: "P", at: 0, offset: [-0.4, -0.4, 0] }, { text: "Q", at: 1, offset: [0.4, 0.4, 0] }] },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 3 * Math.PI, y: 0, z: 0 }], smooth: false, color: "#d97706", showPoints: false, labels: [{ text: <InlineMath math="3\pi\,\mathrm{cm}" />, at: 0, offset: [4.7, -0.6, 0] }] },
-    { points: [{ x: 3 * Math.PI, y: 0, z: 0 }, { x: 3 * Math.PI, y: 8, z: 0 }], smooth: false, color: "#d97706", showPoints: false, labels: [{ text: "8 cm", at: 0, offset: [0.8, 4, 0] }] },
-  ]}
-/>
+So the statements about the <InlineMath math="13" /> possible values and about <InlineMath math="x=13" /> are true.

@@ -1,88 +1,198 @@
 export const metadata = {
-  title: "Overlapping Events A and B",
-  description: "Calculate probabilities for overlapping events and avoid double counting through intersection examples and worked solutions.",
+  title: "Probability of Events That Are Not Mutually Exclusive",
+  description: "If A and B can happen together, P(A ∪ B) = P(A) + P(B) − P(A ∩ B). See why the overlap is subtracted with Venn diagrams, examples, and practice.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-21",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Probability",
 };
 
-## Two Events That Share an Outcome
+## The Probability of A or B When Both Can Happen Together
 
-Two events are **not mutually exclusive** when they can occur in the same trial. In set language, at least one outcome belongs to both events.
+Two events are **not mutually exclusive** when both can happen on the same outcome, that is, their intersection is not empty, <InlineMath math="A \cap B \ne \varnothing" />. For two events <InlineMath math="A" /> and <InlineMath math="B" />, the probability of <InlineMath math="A" /> or <InlineMath math="B" /> comes from the [addition rule](/en/subjects/mathematics/probability/addition-rule):
 
-Their outcome sets therefore have a nonempty intersection.
+<BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
 
-For one card draw and one die roll, find the intersection by listing **outcomes that satisfy both conditions**.
+The intersection is subtracted **once** because its outcomes are already counted in <InlineMath math="P(A)" /> and counted again in <InlineMath math="P(B)" />.
+
+<MathVisual
+  title="A Venn diagram for one roll of a die"
+  description={<>The event <InlineMath math="A" /> = an even result and <InlineMath math="B" /> = a result greater than 3. The results 4 and 6 lie in the overlap of the two circles.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sample-space", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "a", kind: "circle", center: { x: -0.9, y: 0 }, radius: 1.7, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 0.9, y: 0 }, radius: 1.7, appearance: "secondary" },
+      { id: "two", kind: "point", at: { x: -1.8, y: 0 }, appearance: "primary" },
+      { id: "four", kind: "point", at: { x: 0, y: 0.5 }, appearance: "highlight" },
+      { id: "six", kind: "point", at: { x: 0, y: -0.5 }, appearance: "highlight" },
+      { id: "five", kind: "point", at: { x: 1.8, y: 0 }, appearance: "secondary" },
+      { id: "one", kind: "point", at: { x: -3.2, y: 1.8 }, appearance: "reference" },
+      { id: "three", kind: "point", at: { x: 3.2, y: 1.8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -0.9, y: 1.7 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 0.9, y: 1.7 }, placement: "above" },
+      { key: "sample-space", objectId: "sample-space", at: { x: -3.8, y: -2.4 }, placement: "above-right" },
+      { key: "two", objectId: "two", at: { x: -1.8, y: 0 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: 0, y: 0.5 }, placement: "right" },
+      { key: "six", objectId: "six", at: { x: 0, y: -0.5 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 1.8, y: 0 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: -3.2, y: 1.8 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: 3.2, y: 1.8 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    "sample-space": <InlineMath math="S" />,
+    two: <InlineMath math="2" />,
+    four: <InlineMath math="4" />,
+    six: <InlineMath math="6" />,
+    five: <InlineMath math="5" />,
+    one: <InlineMath math="1" />,
+    three: <InlineMath math="3" />,
+  }}
+/>
+
+For the die, <InlineMath math="A = \{2, 4, 6\}" /> and <InlineMath math="B = \{4, 5, 6\}" />, so <InlineMath math="A \cap B = \{4, 6\}" />. The formula gives <InlineMath math="\frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />. Check by listing: <InlineMath math="A \cup B = \{2, 4, 5, 6\}" /> holds 4 of the 6 results.
+
+## Recognizing Events That Overlap
+
+You can check for an overlap by writing down **the outcomes that meet both conditions at once**. If there is at least one such outcome, the events are not mutually exclusive.
 
 | Experiment | Event <InlineMath math="A" /> | Event <InlineMath math="B" /> | Intersection |
 | --- | --- | --- | --- |
-| Draw one card | Hearts | Kings | King of Hearts <InlineMath math="K\heartsuit" /> |
+| Draw one playing card | A heart | A king | The king of hearts |
 | Roll one die | <InlineMath math="\{2,4,6\}" /> | <InlineMath math="\{4,5,6\}" /> | <InlineMath math="\{4,6\}" /> |
+| Pick one student | Likes mathematics | Likes physics | Likes both |
 
-## Intersection of Overlapping Events
+The opposite case is [mutually exclusive events](/en/subjects/mathematics/probability/two-events-mutually-exclusive), whose intersection is empty, so <InlineMath math="P(A \cap B) = 0" />. The formula <InlineMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" /> still holds for mutually exclusive events, because the intersection term is zero.
 
-For non-mutually exclusive events, some outcomes may belong to both <InlineMath math="A" /> and <InlineMath math="B" />. These shared outcomes form the **intersection** <InlineMath math="A \cap B" />.
+## Why the Intersection Is Subtracted Once
 
-The definition is about the outcome sets themselves: the two events are not mutually exclusive when their intersection is nonempty.
+Count with the numbers of elements first. When you add <InlineMath math="n(A)" /> and <InlineMath math="n(B)" />, every element of the intersection enters both counts, so it is counted **twice**. Subtract the intersection once so that every element is recorded exactly once:
 
-<BlockMath math="A \cap B \ne \varnothing" />
+<BlockMath math="n(A \cup B) = n(A) + n(B) - n(A \cap B)" />
 
-In a finite sample space where every elementary outcome has positive probability, a nonempty intersection also has positive probability:
+Divide every term by <InlineMath math="n(S)" /> for a sample space whose outcomes are equally likely, and you get the probability formula. The probability formula itself holds for any sample space, and only the division by <InlineMath math="n(S)" /> needs equally likely outcomes. For the die, <InlineMath math="3 + 3 - 2 = 4" /> elements, the same as the list <InlineMath math="\{2, 4, 5, 6\}" />. Without the subtraction, the value is <InlineMath math="\frac{6}{6} = 1" />, as if every roll landed in <InlineMath math="A" /> or <InlineMath math="B" />, although the results 1 and 3 belong to neither.
 
-<BlockMath math="P(A \cap B) > 0" />
+<Mermaid
+  title="Choosing the formula for P(A or B)"
+  description="The contents of the intersection decide whether its probability must be subtracted."
+  chart={`flowchart TD
+  A["Write out the intersection of A and B"] --> B{"Is the intersection empty?"}
+  B -->|"yes, mutually exclusive"| C["P(A) + P(B)"]
+  B -->|"no, overlapping"| D["P(A) + P(B) - P(A and B)"]
+  C --> E["Check by listing the union"]
+  D --> E`}
+/>
 
-For mutually exclusive events, the intersection has probability <InlineMath math="P(A \cap B) = 0" />.
+## Example with a Heart or a King
 
-## Calculating the Probability of a Union
+One card is drawn from a deck of 52. What is the probability of drawing a heart or a king?
 
-That sum would **count the intersection** <InlineMath math="A \cap B" /> **twice**, once in <InlineMath math="P(A)" /> and once in <InlineMath math="P(B)" />.
+There are <InlineMath math="13" /> hearts, <InlineMath math="4" /> kings, and **<InlineMath math="1" /> card that belongs to both**, the king of hearts:
 
-We therefore <Highlight>subtract the probability of the intersection once</Highlight>. This gives the **general addition rule**:
+<BlockMath math="P(A \cup B) = \frac{13}{52} + \frac{4}{52} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13}" />
 
-<BlockMath math="\begin{aligned} P(A \text{ or } B) &amp;= P(A) + P(B) \\ &amp;\quad{}- P(A \cap B) \end{aligned}" />
+<MathVisual
+  title="The number of cards in each region of the Venn diagram"
+  description={<>The circle <InlineMath math="A" /> holds the 13 hearts and the circle <InlineMath math="B" /> holds the 4 kings. The king of hearts lies in the overlap.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "deck", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "hearts", kind: "circle", center: { x: -0.9, y: 0 }, radius: 1.7, appearance: "primary" },
+      { id: "kings", kind: "circle", center: { x: 0.9, y: 0 }, radius: 1.7, appearance: "secondary" },
+      { id: "hearts-only", kind: "point", at: { x: -1.6, y: 0 }, appearance: "primary" },
+      { id: "both", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "kings-only", kind: "point", at: { x: 1.6, y: 0 }, appearance: "secondary" },
+      { id: "neither", kind: "point", at: { x: 3, y: -1.8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "hearts", objectId: "hearts", at: { x: -0.9, y: 1.7 }, placement: "above" },
+      { key: "kings", objectId: "kings", at: { x: 0.9, y: 1.7 }, placement: "above" },
+      { key: "hearts-only", objectId: "hearts-only", at: { x: -1.6, y: 0 }, placement: "below" },
+      { key: "both", objectId: "both", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "kings-only", objectId: "kings-only", at: { x: 1.6, y: 0 }, placement: "below" },
+      { key: "neither", objectId: "neither", at: { x: 3, y: -1.8 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    hearts: <InlineMath math="A" />,
+    kings: <InlineMath math="B" />,
+    "hearts-only": <InlineMath math="12" />,
+    both: <InlineMath math="1" />,
+    "kings-only": <InlineMath math="3" />,
+    neither: <InlineMath math="36" />,
+  }}
+/>
 
-Using union and intersection symbols:
+Check by counting each region: 12 hearts other than the king, 1 king of hearts, and 3 other kings, so <InlineMath math="12 + 1 + 3 = 16" /> cards. The other <InlineMath math="52 - 16 = 36" /> cards belong to neither event.
 
-<BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;\quad{}- P(A \cap B) \end{aligned}" />
+## Example with Survey Data
 
-This formula applies to both cases. For mutually exclusive events, <InlineMath math="P(A \cap B)=0" />, so it simplifies to <InlineMath math="P(A \cup B) = P(A) + P(B)" />.
+Of 40 students, 25 like mathematics, 18 like physics, and 10 like both. One student is picked at random. Let <InlineMath math="M" /> be the event that the student likes mathematics and <InlineMath math="F" /> the event that the student likes physics. Find the probability that the student likes mathematics or physics, and the probability that the student likes neither.
 
-## Probability of Drawing a Heart or a King
+<MathContainer>
+  <BlockMath math="P(M \cup F) = \frac{25}{40} + \frac{18}{40} - \frac{10}{40} = \frac{33}{40}" />
+  <BlockMath math="P(\text{neither}) = 1 - \frac{33}{40} = \frac{7}{40}" />
+</MathContainer>
 
-Use the card example:
+The second probability uses the **complement**: a student who likes neither is every student outside <InlineMath math="M \cup F" />. Check with the Venn regions: <InlineMath math="25 - 10 = 15" /> like only mathematics, <InlineMath math="18 - 10 = 8" /> like only physics, and <InlineMath math="10" /> like both. That makes <InlineMath math="33" />, and <InlineMath math="40 - 33 = 7" /> students like neither.
 
-- Event <InlineMath math="A" />: Getting a Heart (<InlineMath math="\heartsuit" />). There are <InlineMath math="13" /> Hearts among the <InlineMath math="52" /> cards. <InlineMath math="P(A) = 13/52" />.
-- Event <InlineMath math="B" />: Getting a King. There are <InlineMath math="4" /> Kings among the <InlineMath math="52" /> cards. <InlineMath math="P(B) = 4/52" />.
-- Event <InlineMath math="A" /> **and** B: Getting the King of Hearts (<InlineMath math="K\heartsuit" />). There is only <InlineMath math="1" /> King of Hearts. <InlineMath math="P(A \cap B) = 1/52" />.
+## Common Mistakes
 
-So, the probability of getting a Heart OR a King is:
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Adding <InlineMath math="P(A) + P(B)" /> without subtracting the intersection | Outcomes in the intersection are counted twice | For the die, the value is <InlineMath math="1" />, although 1 and 3 belong to neither event |
+| Subtracting the intersection twice | The intersection is only counted once too often | Count the elements of the union by listing them |
+| Treating not mutually exclusive as independent | Not mutually exclusive is about the intersection, independence is about <InlineMath math="P(A \cap B) = P(A)P(B)" /> | Check the two conditions separately |
+| Forgetting a card that belongs to both events | The king of hearts is both a heart and a king | Write out the intersection before you compute |
+| Getting a probability above 1 | Adding without subtracting can pass 1 | The probability of a union is never more than 1 |
 
-<BlockMath math="\begin{aligned}P(A \cup B) &= P(A) + P(B) \\ &\quad{}- P(A \cap B)  \\ &= \frac{13}{52} + \frac{4}{52} - \frac{1}{52} \\ &= \frac{16}{52} = \frac{4}{13}\end{aligned}" />
+The simplest check is **counting each region of the Venn diagram** and adding them. The total must match the formula.
 
-We subtract <InlineMath math="1/52" /> so the King of Hearts isn't counted twice.
+## Practice Problems
 
-## Exercise
+Write out the intersection first, then **check your answer by listing or by counting the Venn regions**.
 
-A **fair six-sided die** is rolled once. Let <InlineMath math="A=\{2,4,6\}" /> be the event “the result is even” and <InlineMath math="B=\{5,6\}" /> the event “the result is greater than <InlineMath math="4" />.”
+1. A die is rolled once. <InlineMath math="A" /> is the event of a prime number and <InlineMath math="B" /> the event of an odd number. Find <InlineMath math="P(A \cup B)" />.
 
-1.  Explain why <InlineMath math="A" /> and <InlineMath math="B" /> are not mutually exclusive.
-2.  Find <InlineMath math="P(A \cup B)" /> using the general addition rule.
-3.  Verify the value of <InlineMath math="P(A \cup B)" /> by listing the outcomes in the union.
-### Worked Solution
+2. One card is drawn from a deck of 52. Find the probability of drawing a red card or an ace.
 
-**Problem 1**. The intersection contains **one shared outcome**, namely <InlineMath math="6" />:
+3. Given <InlineMath math="P(A) = 0.5" />, <InlineMath math="P(B) = 0.4" />, and <InlineMath math="P(A \cup B) = 0.7" />, find <InlineMath math="P(A \cap B)" />, then decide whether <InlineMath math="A" /> and <InlineMath math="B" /> are mutually exclusive.
 
-<BlockMath math="A \cap B=\{6\}" />
+4. One number is picked at random from 1 to 30. Find the probability that it is divisible by 3 or by 5.
 
-The events are therefore **not mutually exclusive**.
+### Solutions
 
-**Problem 2**. Their probabilities and the intersection probability are
+**Problem 1**. <InlineMath math="A = \{2, 3, 5\}" />, <InlineMath math="B = \{1, 3, 5\}" />, and <InlineMath math="A \cap B = \{3, 5\}" />:
 
-<BlockMath math="\begin{aligned} &amp;P(A)=\frac{3}{6}, \\ &amp;P(B)=\frac{2}{6}, \\ &amp;P(A \cap B)=\frac{1}{6} \end{aligned}" />
+<BlockMath math="P(A \cup B) = \frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />
 
-Apply the general addition rule:
+Check: <InlineMath math="A \cup B = \{1, 2, 3, 5\}" /> holds 4 of the 6 results.
 
-<BlockMath math="\begin{aligned}P(A \cup B) &=P(A)+P(B) \\ &\quad{}-P(A \cap B)  \\ &=\frac{3}{6}+\frac{2}{6}-\frac{1}{6}=\frac{4}{6}=\frac{2}{3}\end{aligned}" />
+**Problem 2**. There are <InlineMath math="26" /> red cards, <InlineMath math="4" /> aces, and <InlineMath math="2" /> red aces (hearts and diamonds):
 
-**Problem 3**. Directly listing the union gives <InlineMath math="A \cup B=\{2,4,5,6\}" />, which also contains <InlineMath math="4" /> of the <InlineMath math="6" /> possible outcomes. Both methods therefore give <InlineMath math="2/3" />.
+<BlockMath math="P = \frac{26}{52} + \frac{4}{52} - \frac{2}{52} = \frac{28}{52} = \frac{7}{13}" />
+
+Check: 26 red cards plus the 2 black aces make 28 cards.
+
+**Problem 3**. Rearrange the formula:
+
+<BlockMath math="P(A \cap B) = P(A) + P(B) - P(A \cup B) = 0.5 + 0.4 - 0.7 = 0.2" />
+
+Since <InlineMath math="P(A \cap B) = 0.2 \ne 0" />, the events are **not mutually exclusive**. Check: <InlineMath math="0.5 + 0.4 - 0.2 = 0.7" />, the given probability of the union.
+
+**Problem 4**. There are <InlineMath math="10" /> multiples of 3, <InlineMath math="6" /> multiples of 5, and <InlineMath math="2" /> multiples of both, that is of 15 (15 and 30):
+
+<BlockMath math="P = \frac{10}{30} + \frac{6}{30} - \frac{2}{30} = \frac{14}{30} = \frac{7}{15}" />
+
+Check by listing: 3, 5, 6, 9, 10, 12, 15, 18, 20, 21, 24, 25, 27, 30, which is 14 numbers.

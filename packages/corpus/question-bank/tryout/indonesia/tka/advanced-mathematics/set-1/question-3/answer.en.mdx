@@ -1,0 +1,20 @@
+The four statements test **rules for <InlineMath math="2\times2" /> matrices**: the determinant of a multiple, a difference, the inverse and the determinant of a product. Compute the two determinants first, because they are used more than once.
+
+<BlockMath math="\begin{aligned}
+\det A&=3\cdot(-4)-(-2)\cdot5=-12+10=-2 \\
+\det B&=1\cdot0-4\cdot(-3)=12
+\end{aligned}" />
+
+1. The statement <InlineMath math="\det(3A)=-6" /> is false. Multiplying by <InlineMath math="3" /> only once gives <InlineMath math="3\det A=-6" />. The factor <InlineMath math="3" /> sits in both rows, though, so <InlineMath math="\det(3A)=3^2\det A=9\cdot(-2)=-18" />.
+2. The statement about <InlineMath math="A-B" /> is true, because matrices are subtracted entry by entry.
+3. The statement about <InlineMath math="A^{-1}" /> is false. For the inverse, you swap the entries on the main diagonal, change the sign of the entries on the other diagonal, and divide by <InlineMath math="\det A=-2" />. The statement divides by <InlineMath math="2" /> instead of <InlineMath math="-2" />, so the sign of the determinant is missing.
+4. The statement <InlineMath math="\det(AB)=-24" /> is true, because <InlineMath math="\det(AB)=\det A\cdot\det B=(-2)\cdot12=-24" />.
+
+The inverse and the product as a check:
+
+<BlockMath math="\begin{aligned}
+A^{-1}&=\frac{1}{-2}\begin{pmatrix} -4 & 2 \\ -5 & 3 \end{pmatrix}=\begin{pmatrix} 2 & -1 \\ \frac52 & -\frac32 \end{pmatrix} \\
+AB&=\begin{pmatrix} 3\cdot1+(-2)\cdot(-3) & 3\cdot4+(-2)\cdot0 \\ 5\cdot1+(-4)\cdot(-3) & 5\cdot4+(-4)\cdot0 \end{pmatrix}=\begin{pmatrix} 9 & 12 \\ 17 & 20 \end{pmatrix},\qquad \det(AB)=180-204=-24
+\end{aligned}" />
+
+So the statements about <InlineMath math="A-B" /> and <InlineMath math="\det(AB)" /> are true, and the statements about <InlineMath math="\det(3A)" /> and <InlineMath math="A^{-1}" /> are false.
