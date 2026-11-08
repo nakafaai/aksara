@@ -4,7 +4,7 @@ export const metadata = {
     "Determine the magnitude of the resultant of two vectors that form an angle using the cosine rule.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-06-06",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Vector",
 };
 
@@ -25,6 +25,40 @@ The cosine rule appears because the resultant of two vectors forms a triangle wi
 When the vectors are arranged **head to tail**, the interior triangle angle is supplementary to the included vector angle. This changes the minus sign in the triangle cosine rule into the plus sign in the resultant formula.
 
 <BlockMath math="\begin{aligned}R^2 &= A^2+B^2-2AB\cos(180^\circ-\theta) \\ &= A^2+B^2-2AB(-\cos\theta) \\ &= A^2+B^2+2AB\cos\theta\end{aligned}" />
+
+<MathVisual
+  title="The angle between the vectors and the angle inside the triangle"
+  description={<>The angle <InlineMath math="\theta" /> is measured with both tails together. After <InlineMath math="\vec{B}" /> moves to the tip of <InlineMath math="\vec{A}" />, the angle inside the triangle is <InlineMath math="180^\circ-\theta" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) }, appearance: "secondary" },
+      { id: "moved", kind: "segment", from: { x: 5, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) }, appearance: "construction" },
+      { id: "r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) }, appearance: "answer" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "inner", kind: "arc", center: { x: 5, y: 0 }, radius: 0.8, startDegrees: 60, sweepDegrees: 120, appearance: "warning" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 1, y: Math.sqrt(3) }, placement: "left" },
+      { key: "moved", objectId: "moved", at: { x: 6, y: Math.sqrt(3) }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 7, y: 2 * Math.sqrt(3) }, placement: "above" },
+      { key: "theta", objectId: "theta", at: { x: Math.sqrt(3) / 2, y: 0.5 }, placement: "right" },
+      { key: "inner", objectId: "inner", at: { x: 4.6, y: 0.4 * Math.sqrt(3) }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="\vec{A}=10\text{ N}" />,
+    b: <InlineMath math="\vec{B}=8\text{ N}" />,
+    moved: <InlineMath math="\vec{B}\text{ moved}" />,
+    r: <InlineMath math="R\approx15.6\text{ N}" />,
+    theta: <InlineMath math="\theta=60^\circ" />,
+    inner: <InlineMath math="180^\circ-\theta" />,
+  }}
+/>
 
 The table below shows how <InlineMath math="\cos\theta" /> changes with the angle <InlineMath math="\theta" />:
 
@@ -98,7 +132,21 @@ R&=\sqrt{A^2+B^2+2AB\cos\theta} \\
 &\approx15.6\text{ N}
 \end{aligned}" />
 
-The angle between the two forces makes the resultant less than <InlineMath math="18\text{ N}" />. Since the forces still point in fairly similar directions, the resultant is greater than either force on its own.
+The angle between the two forces makes the resultant less than <InlineMath math="18\text{ N}" />. Since the forces still point in fairly similar directions, the resultant is greater than either force on its own. Check the bounds: <InlineMath math="15.6" /> lies between <InlineMath math="10 - 8 = 2" /> and <InlineMath math="10 + 8 = 18" />. The direction of the resultant relative to the first force comes from the [sine rule](/en/subjects/physics/vector/sine-rule): <InlineMath math="\sin\varphi = \frac{8\sin 60^\circ}{\sqrt{244}}" />, so <InlineMath math="\varphi \approx 26.3^\circ" />.
+
+## Example of Finding the Included Angle from the Resultant
+
+Two forces of <InlineMath math="5\text{ N}" /> and <InlineMath math="3\text{ N}" /> give a resultant of <InlineMath math="7\text{ N}" />. Find the angle between the two forces.
+
+The cosine rule also works backwards to find the angle. **Square the resultant**, then solve for <InlineMath math="\cos\theta" />:
+
+<MathContainer>
+  <BlockMath math="7^2 = 5^2 + 3^2 + 2(5)(3)\cos\theta" />
+  <BlockMath math="49 = 34 + 30\cos\theta" />
+  <BlockMath math="\cos\theta = \frac{15}{30} = \frac12 \quad\Longrightarrow\quad \theta = 60^\circ" />
+</MathContainer>
+
+Check by putting the angle back in: <InlineMath math="\sqrt{25 + 9 + 30 \cdot \frac12} = \sqrt{49} = 7\text{ N}" />. The resultant also makes sense, because it lies between <InlineMath math="5 - 3 = 2" /> and <InlineMath math="5 + 3 = 8" />.
 
 ## Checking with Boundary Cases
 
@@ -121,4 +169,49 @@ All of the following must hold:
 - the **included angle** is known.
 - the question asks for resultant magnitude.
 
-For more than two vectors, resolve every vector into coordinate components and add all <InlineMath math="x" /> and <InlineMath math="y" /> components. The cosine rule applies directly when exactly two vector magnitudes and their included angle are known.
+For more than two vectors, resolve every vector into coordinate components and add all <InlineMath math="x" /> and <InlineMath math="y" /> components. This is the [analytical method](/en/subjects/physics/vector/analytical-addition-subtraction). The cosine rule applies directly when exactly two vector magnitudes and their included angle are known.
+
+<Mermaid
+  title="Choosing how to find the resultant"
+  description="The given data decides which formula comes first."
+  chart={`flowchart TD
+  A{"What is given and what is asked?"} -->|"two vectors and the angle, find the size"| B["Cosine rule"]
+  A -->|"size of the resultant known, find the direction"| C["Sine rule"]
+  A -->|"more than two vectors"| D["Split into x and y components"]
+  B -->|"direction asked too"| C`}
+/>
+
+## Common Mistakes
+
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Using the interior angle of the tip-to-tail triangle as <InlineMath math="\theta" /> | The resultant formula uses **the angle between the vectors placed tail to tail** | For vectors in the same direction, <InlineMath math="\theta = 0^\circ" /> must give <InlineMath math="A + B" /> |
+| Using the minus sign of the triangle cosine rule | The interior angle is the supplement of <InlineMath math="\theta" />, so the sign changes | For <InlineMath math="\theta = 60^\circ" />, the result must exceed each single vector |
+| Forgetting the square root | The formula gives <InlineMath math="R^2" />, not <InlineMath math="R" /> | The resultant must lie between <InlineMath math="\lvert A - B \rvert" /> and <InlineMath math="A + B" /> |
+| Calculator in radian mode | <InlineMath math="\cos 60" /> in radians is about <InlineMath math="-0.95" /> | Check that <InlineMath math="\cos 60^\circ = 0.5" /> |
+
+## Practice Problems
+
+Compute with the cosine rule, then **check that the resultant lies between <InlineMath math="\lvert A - B \rvert" /> and <InlineMath math="A + B" />**.
+
+1. Two forces of <InlineMath math="6\text{ N}" /> and <InlineMath math="8\text{ N}" /> are perpendicular. Find the magnitude of the resultant.
+
+2. Two vectors of magnitude <InlineMath math="12" /> and <InlineMath math="5" /> units form an angle of <InlineMath math="120^\circ" />. Find the magnitude of the resultant.
+
+3. Two equal forces of <InlineMath math="4\text{ N}" /> each give a resultant of <InlineMath math="4\text{ N}" />. Find the included angle.
+
+### Solutions
+
+**Problem 1**. **Perpendicular means** <InlineMath math="\theta = 90^\circ" /> and <InlineMath math="\cos\theta = 0" />, so <InlineMath math="R = \sqrt{36 + 64} = 10\text{ N}" />. Check: <InlineMath math="10" /> lies between <InlineMath math="2" /> and <InlineMath math="14" />.
+
+**Problem 2**. With <InlineMath math="\cos 120^\circ = -\frac12" />:
+
+<BlockMath math="R = \sqrt{144 + 25 + 2(12)(5)\left(-\frac12\right)} = \sqrt{109} \approx 10.4" />
+
+Check: <InlineMath math="10.4" /> lies between <InlineMath math="12 - 5 = 7" /> and <InlineMath math="17" />, and it is smaller than the same magnitudes give at <InlineMath math="90^\circ" />, namely <InlineMath math="\sqrt{144 + 25} = 13" />, because the vectors point further apart.
+
+**Problem 3**. Reverse the formula:
+
+<BlockMath math="R^2 = 16 = 16 + 16 + 32\cos\theta \quad\Longrightarrow\quad \cos\theta = -\frac12 \quad\Longrightarrow\quad \theta = 120^\circ" />
+
+Check: <InlineMath math="\sqrt{16 + 16 + 32 \cdot \left(-\frac12\right)} = \sqrt{16} = 4\text{ N}" />.

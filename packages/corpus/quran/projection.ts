@@ -5,9 +5,10 @@ import {
 import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   ACTIVE_APP_LOCALES,
+  type ActiveAppLocale,
   type ActiveAppLocaleList,
-  type AppLocale,
   AppLocaleSchema,
+  activeAppLocaleCode,
 } from "@nakafa/aksara-contracts/locale";
 import {
   QuranChunkRowSchema,
@@ -21,7 +22,6 @@ import {
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Array as Arr, Effect, MutableList, Stream } from "effect";
 import {
-  appLocaleCode,
   requireSourceLocale,
   type SourceLocaleUnavailableError,
 } from "#corpus/locale/source";
@@ -106,7 +106,7 @@ const projectChunks = Effect.fn("AksaraCorpus.projectQuranChunks")(function* (
 /** Builds one search row only from exact source-owned text. */
 const projectSearch = Effect.fn("AksaraCorpus.projectQuranSearch")(function* (
   surah: QuranSurah,
-  appLocale: AppLocale
+  appLocale: ActiveAppLocale
 ) {
   const title = `${surah.number}. ${surah.name.transliteration}`;
   const verseText = Arr.join(
@@ -157,7 +157,7 @@ const projectSearch = Effect.fn("AksaraCorpus.projectQuranSearch")(function* (
       [
         title,
         surah.name.arabic,
-        surah.name.meaning[appLocaleCode(appLocale)],
+        surah.name.meaning[activeAppLocaleCode(appLocale)],
         surah.revelation.place,
         verseText,
       ],
