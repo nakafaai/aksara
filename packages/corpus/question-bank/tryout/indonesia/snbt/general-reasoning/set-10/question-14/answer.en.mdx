@@ -1,11 +1,11 @@
-An order must satisfy **all conditions at once**. Before does not mean immediately before, but sessions E and B must be consecutive, with no session between them.
+First find which class **can take booth 6**, then cross out those that break a rule.
 
-| Order | A before D | B immediately after E | C not adjacent to A | F before E |
-| --- | --- | --- | --- | --- |
-| <InlineMath math="A,F,B,E,D,C" /> | Yes | No | Yes | Yes |
-| <InlineMath math="E,B,F,A,C,D" /> | Yes | Yes | No | No |
-| <InlineMath math="F,E,B,D,C,A" /> | No | Yes | No | Yes |
-| <InlineMath math="A,C,D,F,E,B" /> | Yes | Yes | No | Yes |
-| <InlineMath math="F,A,D,E,B,C" /> | Yes | Yes | Yes | Yes |
+- X-C cannot, since XI-A must be directly to its right (rule 5).
+- X-A cannot, since XI-C must have a higher number than X-A (rule 6).
+- XI-C cannot, since it may not be at an end (rule 4).
+- XI-A cannot. If XI-A is at 6, X-C is at 5, but X-B must have a higher number than X-C (rule 3).
+- XI-B cannot. If XI-B is at 6, X-A is at 5 (rule 2), but XI-C must have a higher number than X-A (rule 6).
 
-Only the last choice, <InlineMath math="F,A,D,E,B,C" />, passes all four checks.
+Only X-B is left. The other options hold in some arrangements only. For example, X-C, XI-A, X-A, XI-B, XI-C, X-B meets every rule but puts X-A at 3 and XI-B at 4.
+
+So the statement that must be true is that X-B is at booth 6.

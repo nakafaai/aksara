@@ -1,25 +1,17 @@
-# Combine consecutive pairs
+Mark each statement Benar (true) or Salah (false). Work out the discounts **step by step**, since the second one is taken from the already reduced price.
 
-Blocks <InlineMath math="\text{AB}" /> and <InlineMath math="\text{CD}" /> have **fixed internal order**. Together with reports <InlineMath math="E,F,G,H" />, they form six movable units. The number of arrangements of these units is:
+<BlockMath math="\begin{aligned}
+\text{after }20\% &: 150{,}000\times0.8=120{,}000 \\
+10\%\text{ off} &: 10\%\times120{,}000=12{,}000 \\
+\text{final price} &: 120{,}000-12{,}000=108{,}000
+\end{aligned}" />
 
-<BlockMath math="6!=720" />
+**Statement 1** is true, as computed above.
 
-# Remove arrangements with adjacent blocks
+**Statement 2** is false. The total saving is <InlineMath math="150{,}000-108{,}000=42{,}000" />, which is <InlineMath math="28\%" /> of the original price, not <InlineMath math="30\%" />.
 
-When the two blocks are adjacent, treat them as **one combined unit**. There are then five units to arrange, with two internal orders for the combined unit: <InlineMath math="\text{ABCD}" /> or <InlineMath math="\text{CDAB}" />.
+**Statement 3** is true. Both orders multiply the price by <InlineMath math="0.8\times0.9=0.72" />, so the order does not change the result.
 
-<BlockMath math="2\times5!=240" />
+**Statement 4** is false. The extra discount is taken from <InlineMath math="120{,}000" />, so it is <InlineMath math="12{,}000" />, not <InlineMath math="15{,}000" />.
 
-Subtract those arrangements from the total for six units. The remaining arrangements have at least one report between the two blocks.
-
-<BlockMath math="720-240=480" />
-
-# Apply the order of E and F
-
-**Swapping the positions** of <InlineMath math="E" /> and <InlineMath math="F" /> preserves both blocks and their separation. Each arrangement with <InlineMath math="E" /> before <InlineMath math="F" /> pairs with one having the reverse order. Exactly half of the remaining arrangements therefore meet the last condition.
-
-<BlockMath math="480\div2=240" />
-
-The random choice comes from all unrestricted arrangements of eight reports, rather than only the six-unit arrangements. The sample space has size <InlineMath math="8!=40320" />. The required probability is:
-
-<BlockMath math="P=\frac{240}{40320}=\frac1{168}" />
+So statements 1 and 3 are true, while statements 2 and 4 are false.

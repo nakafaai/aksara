@@ -1,29 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "pattern-interpretation",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$23$$ siswa",
+          label:
+            "Waktu mencair es selalu berkurang dengan selisih yang sama setiap kali suhu naik 5°C.",
         },
         {
           correct: false,
-          label: "$$24$$ siswa",
+          label:
+            "Pada suhu 45°C, es dengan ukuran yang sama pasti mencair tepat dalam 28 menit.",
         },
         {
           correct: false,
-          label: "$$25$$ siswa",
+          label:
+            "Es pada suhu 40°C mencair dalam waktu tepat setengah dari waktu pada suhu 20°C.",
+        },
+        {
+          correct: false,
+          label:
+            "Kenaikan suhu ruang sama sekali tidak memengaruhi lamanya waktu yang dibutuhkan es untuk mencair.",
         },
         {
           correct: true,
-          label: "$$22$$ siswa",
-        },
-        {
-          correct: false,
-          label: "$$26$$ siswa",
+          label:
+            "Makin tinggi suhu, makin cepat es mencair, tetapi pengaruh tiap kenaikan 5°C makin kecil.",
         },
       ],
     },

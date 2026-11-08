@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "inductive-reasoning",
+    topic: "inference",
+  },
+  stimulus: "sepeda",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Memperkuat pernyataan A",
+          column: 1,
+          label: "Jumlah pesepeda di kedua jalan bersama-sama naik 120 orang.",
         },
         {
-          correct: true,
-          label: "Memperkuat pernyataan B",
+          column: 2,
+          label:
+            "Jumlah pesepeda di Jalan Cempaka naik setelah jalur dibangun.",
         },
         {
-          correct: false,
-          label: "Memperlemah pernyataan A",
+          column: 2,
+          label:
+            "Jumlah pesepeda di Jalan Merdeka naik lebih dari tiga kali lipat.",
         },
         {
-          correct: false,
-          label: "Memperlemah pernyataan B",
-        },
-        {
-          correct: false,
-          label: "Tidak relevan dengan pernyataan A dan B",
+          column: 1,
+          label: "Jumlah pesepeda di Jalan Cempaka turun 40%.",
         },
       ],
     },

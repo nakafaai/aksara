@@ -1,6 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "data-inference",
+  },
+  stimulus: "perpustakaan",
   versions: {
     id: {
       kind: "choice",
@@ -8,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Simpulan pasti benar karena hujan yang sama selalu menghasilkan vegetasi yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Simpulan pasti salah karena vegetasi tidak mungkin tumbuh di gurun.",
-        },
-        {
-          correct: false,
-          label:
-            "Simpulan tidak relevan karena tidak ada hubungan antara hujan dan vegetasi dalam bacaan.",
+            "Jumlah buku yang dipinjam pada bulan Juni naik di keempat desa tanpa kecuali.",
         },
         {
           correct: true,
           label:
-            "Simpulan masuk akal berdasarkan pengamatan sebelumnya, tetapi hasilnya belum pasti.",
+            "Pengunjung bertambah, tetapi rata-rata buku yang dipinjam setiap pengunjung berkurang.",
         },
         {
           correct: false,
           label:
-            "Tidak ada bukti yang relevan karena bacaan tidak melaporkan vegetasi setelah hujan sebelumnya.",
+            "Desa dengan pengunjung terbanyak pada Juni juga meminjam buku paling banyak pada Juni.",
+        },
+        {
+          correct: false,
+          label:
+            "Kenaikan jumlah pengunjung dari Januari ke Juni paling besar terjadi di Desa Cibeber.",
+        },
+        {
+          correct: false,
+          label:
+            "Jumlah buku yang dipinjam di keempat desa naik lebih dari 25% dari Januari ke Juni.",
         },
       ],
     },

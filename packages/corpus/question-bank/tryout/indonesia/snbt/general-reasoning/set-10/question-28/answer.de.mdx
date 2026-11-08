@@ -1,25 +1,17 @@
-# Aufeinanderfolgende Paare zusammenfassen
+Ordne jede Aussage als Benar (richtig) oder Salah (falsch) ein. Rechne die Rabatte **schrittweise**, denn der zweite gilt für den schon reduzierten Preis.
 
-Die Blöcke <InlineMath math="\text{AB}" /> und <InlineMath math="\text{CD}" /> haben eine **feste innere Reihenfolge**. Zusammen mit den Berichten <InlineMath math="E,F,G,H" /> bilden sie sechs verschiebbare Einheiten. Für diese gibt es:
+<BlockMath math="\begin{aligned}
+\text{nach }20\% &: 150.000\times0{,}8=120.000 \\
+10\%\text{ Rabatt} &: 10\%\times120.000=12.000 \\
+\text{Endpreis} &: 120.000-12.000=108.000
+\end{aligned}" />
 
-<BlockMath math="6!=720" />
+**Aussage 1** ist richtig, wie oben berechnet.
 
-# Anordnungen mit benachbarten Blöcken abziehen
+**Aussage 2** ist falsch. Die gesamte Ersparnis beträgt <InlineMath math="150.000-108.000=42.000" />, also <InlineMath math="28\%" /> des Ausgangspreises, nicht <InlineMath math="30\%" />.
 
-Liegen die beiden Blöcke nebeneinander, betrachten wir sie als **eine gemeinsame Einheit**. Dann werden fünf Einheiten angeordnet. Innerhalb der gemeinsamen Einheit sind zwei Reihenfolgen möglich: <InlineMath math="\text{ABCD}" /> oder <InlineMath math="\text{CDAB}" />.
+**Aussage 3** ist richtig. Beide Reihenfolgen multiplizieren den Preis mit <InlineMath math="0{,}8\times0{,}9=0{,}72" />, die Reihenfolge ändert also nichts.
 
-<BlockMath math="2\times5!=240" />
+**Aussage 4** ist falsch. Der Zusatzrabatt gilt für <InlineMath math="120.000" />, beträgt also <InlineMath math="12.000" />, nicht <InlineMath math="15.000" />.
 
-Wir ziehen diese Anordnungen von allen Anordnungen der sechs Einheiten ab. In den übrigen Fällen liegt mindestens ein Bericht zwischen den beiden Blöcken.
-
-<BlockMath math="720-240=480" />
-
-# Reihenfolge von E und F berücksichtigen
-
-Das **Vertauschen der Positionen** von <InlineMath math="E" /> und <InlineMath math="F" /> verändert weder die Blöcke noch ihren Abstand. Zu jeder Anordnung mit <InlineMath math="E" /> vor <InlineMath math="F" /> gehört genau eine mit umgekehrter Reihenfolge. Deshalb erfüllt genau die Hälfte der verbleibenden Anordnungen die letzte Bedingung.
-
-<BlockMath math="480\div2=240" />
-
-Die zufällige Auswahl erfolgt aus allen uneingeschränkten Anordnungen der acht Berichte, nicht nur aus den Anordnungen der sechs Einheiten. Der Ergebnisraum umfasst <InlineMath math="8!=40320" /> Anordnungen. Die gesuchte Wahrscheinlichkeit beträgt:
-
-<BlockMath math="P=\frac{240}{40320}=\frac1{168}" />
+Die Aussagen 1 und 3 sind also richtig, die Aussagen 2 und 4 falsch.
