@@ -16,6 +16,7 @@ import { findDisplayedMathCompositionIssues } from "#nakafa-content/math/compose
 import { findPlainMathLabelIssues } from "#nakafa-content/math/label";
 import { findMathStackIssues } from "#nakafa-content/math/stack";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { findDroppedSpaceIssues } from "#nakafa-content/space/check";
 import { findMathBlockFragmentIssues } from "#nakafa-content/voice/fragment";
 import { findForbiddenControlCharacterIssue } from "#nakafa-content/voice/heading";
 import { documentProfile } from "#nakafa-content/voice/profile";
@@ -44,6 +45,7 @@ export function findDocumentIssues(
     ...findHighlightNestingIssues(source, tree),
     ...findHighlightVariantIssues(source, tree),
     ...findExactLineSmoothingIssues(source, tree),
+    ...findDroppedSpaceIssues(source, tree),
   ];
   if (profile === "question") {
     return [

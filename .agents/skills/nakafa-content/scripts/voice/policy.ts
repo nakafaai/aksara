@@ -63,6 +63,7 @@ const BLOCKING_RULES = new Set([
   "indonesian-unexplained-regularization-calque",
   "indonesian-water-ratio-gateway",
   "internal-link-generic-label",
+  "jsx-dropped-space",
   "internal-link-navigation-heading",
   "internal-link-only-block",
   "irrelevant-fiction-label",
