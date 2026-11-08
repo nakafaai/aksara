@@ -77,7 +77,7 @@ Ist <InlineMath math="z = x + iy" /> in kartesischer Form gegeben, ergibt sich d
 
 <BlockMath math="\operatorname{Arg} z = \begin{cases} \arctan\frac{y}{x}, &amp; x > 0 \\ \arctan\frac{y}{x} + 180^\circ, &amp; x < 0,\ y \ge 0 \\ \arctan\frac{y}{x} - 180^\circ, &amp; x < 0,\ y < 0 \\ 90^\circ, &amp; x = 0,\ y > 0 \\ -90^\circ, &amp; x = 0,\ y < 0 \end{cases}" />
 
-Die Funktion <InlineMath math="\operatorname{atan2}(y, x)" /> auf wissenschaftlichen Taschenrechnern und in Programmiersprachen folgt derselben Regel und liefert immer einen Winkel in <InlineMath math="(-\pi, \pi]" />.
+Die Funktion <InlineMath math="\operatorname{atan2}(y, x)" /> in Programmiersprachen folgt derselben Regel und liefert für jedes <InlineMath math="z \ne 0" /> einen Winkel in <InlineMath math="(-\pi, \pi]" />. Viele wissenschaftliche Taschenrechner haben keine atan2-Taste, ihre Funktion Pol oder R→P liefert aber denselben Winkel.
 
 **Beispiel 1**. Für <InlineMath math="z = -1 + i" /> ist <InlineMath math="\arctan\frac{1}{-1} = -45^\circ" />. Der Punkt liegt links der imaginären Achse mit <InlineMath math="y \ge 0" />, also addierst du eine halbe Umdrehung:
 
@@ -155,7 +155,7 @@ Probe: <InlineMath math="\cos(-90^\circ) = 0" /> und <InlineMath math="\sin(-90^
   <BlockMath math="-510^\circ + 360^\circ = -150^\circ" />
 </MathContainer>
 
-Probe: Beide Ergebnisse liegen in <InlineMath math="(-180^\circ, 180^\circ]" />. Für <InlineMath math="-510^\circ" /> ergeben zwei Umdrehungen <InlineMath math="210^\circ" />, was **schon über das rechte Intervallende hinausgeht**.
+Probe: <InlineMath math="30^\circ + 2 \cdot 360^\circ = 750^\circ" /> und <InlineMath math="-150^\circ - 360^\circ = -510^\circ" />, also führt jedes Ergebnis zu seinem gegebenen Winkel zurück, und beide liegen in <InlineMath math="(-180^\circ, 180^\circ]" />. Für <InlineMath math="-510^\circ" /> ergeben zwei Umdrehungen <InlineMath math="210^\circ" />, was **schon über das rechte Intervallende hinausgeht**.
 
 **Aufgabe 4**. Der Punkt <InlineMath math="(-2, -2)" /> liegt links der imaginären Achse mit <InlineMath math="y < 0" />:
 

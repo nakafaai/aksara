@@ -77,7 +77,7 @@ If <InlineMath math="z = x + iy" /> is given in Cartesian form, the principal ar
 
 <BlockMath math="\operatorname{Arg} z = \begin{cases} \arctan\frac{y}{x}, &amp; x > 0 \\ \arctan\frac{y}{x} + 180^\circ, &amp; x < 0,\ y \ge 0 \\ \arctan\frac{y}{x} - 180^\circ, &amp; x < 0,\ y < 0 \\ 90^\circ, &amp; x = 0,\ y > 0 \\ -90^\circ, &amp; x = 0,\ y < 0 \end{cases}" />
 
-The function <InlineMath math="\operatorname{atan2}(y, x)" /> on scientific calculators and in programming languages follows the same rule and always returns an angle in <InlineMath math="(-\pi, \pi]" />.
+The function <InlineMath math="\operatorname{atan2}(y, x)" /> in programming languages follows the same rule and returns an angle in <InlineMath math="(-\pi, \pi]" /> for every <InlineMath math="z \ne 0" />. Many scientific calculators have no atan2 key, but their Pol or R→P function gives the same angle.
 
 **Example 1**. For <InlineMath math="z = -1 + i" />, the value is <InlineMath math="\arctan\frac{1}{-1} = -45^\circ" />. The point lies left of the imaginary axis with <InlineMath math="y \ge 0" />, so add half a turn:
 
@@ -155,7 +155,7 @@ Check: <InlineMath math="\cos(-90^\circ) = 0" /> and <InlineMath math="\sin(-90^
   <BlockMath math="-510^\circ + 360^\circ = -150^\circ" />
 </MathContainer>
 
-Check: both results lie in <InlineMath math="(-180^\circ, 180^\circ]" />. For <InlineMath math="-510^\circ" />, adding two turns gives <InlineMath math="210^\circ" />, which **already passes the right end of the range**.
+Check: <InlineMath math="30^\circ + 2 \cdot 360^\circ = 750^\circ" /> and <InlineMath math="-150^\circ - 360^\circ = -510^\circ" />, so each result returns to its given angle, and both lie in <InlineMath math="(-180^\circ, 180^\circ]" />. For <InlineMath math="-510^\circ" />, adding two turns gives <InlineMath math="210^\circ" />, which **already passes the right end of the range**.
 
 **Problem 4**. The point <InlineMath math="(-2, -2)" /> lies left of the imaginary axis with <InlineMath math="y < 0" />:
 
