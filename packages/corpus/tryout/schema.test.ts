@@ -163,7 +163,7 @@ describe("exam source", () => {
     Effect.gen(function* () {
       const files = yield* importCorpusModules("tryout/**/source.ts");
 
-      expect(files).toHaveLength(2);
+      expect(files).toHaveLength(3);
     }).pipe(Effect.provide(NodeServices.layer))
   );
 });

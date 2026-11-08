@@ -14,12 +14,12 @@ const item: ItemSource = {
           label: "$$27{,}5\\,\\%$$",
         },
         {
-          correct: true,
-          label: "$$30\\,\\%$$",
-        },
-        {
           correct: false,
           label: "$$50\\,\\%$$",
+        },
+        {
+          correct: true,
+          label: "$$30\\,\\%$$",
         },
         {
           correct: false,

@@ -12,12 +12,12 @@ import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
 import type { ExamSource } from "#corpus/tryout/schema";
 
 const readinessPrograms = [
-  tuDarmstadtEntranceReadiness,
   snbtReadiness,
   tkaCompulsoryMathematicsReadiness,
   tkaIndonesianReadiness,
   tkaEnglishReadiness,
   tkaAdvancedMathematicsReadiness,
+  tuDarmstadtEntranceReadiness,
 ];
 
 /** Returns the country and exam identity owned by one readiness gate. */

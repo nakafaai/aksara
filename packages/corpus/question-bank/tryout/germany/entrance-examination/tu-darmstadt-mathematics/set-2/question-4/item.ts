@@ -14,16 +14,16 @@ const item: ItemSource = {
           label: "$$87{,}5\\text{ cm}^2$$",
         },
         {
-          correct: true,
-          label: "$$168\\text{ cm}^2$$",
+          correct: false,
+          label: "$$336\\text{ cm}^2$$",
         },
         {
           correct: false,
           label: "$$175\\text{ cm}^2$$",
         },
         {
-          correct: false,
-          label: "$$336\\text{ cm}^2$$",
+          correct: true,
+          label: "$$168\\text{ cm}^2$$",
         },
         {
           correct: false,
