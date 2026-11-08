@@ -53,12 +53,16 @@ export const trackedFiles = Effect.fn("AksaraPolicy.trackedFiles")(
   }
 );
 
+/** Whether a path lies in a directory a tool writes, such as a build output or generated bindings. */
+export function isGenerated(file: string): boolean {
+  return GENERATED_PATH_PATTERN.test(file);
+}
+
 /** Lists authored TypeScript files while excluding generated directories. */
 export function typescriptFiles(files: readonly string[]): readonly string[] {
   return Arr.filter(
     files,
-    (file) =>
-      TYPESCRIPT_PATTERN.test(file) && !GENERATED_PATH_PATTERN.test(file)
+    (file) => TYPESCRIPT_PATTERN.test(file) && !isGenerated(file)
   );
 }
 

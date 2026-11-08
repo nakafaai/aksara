@@ -1,157 +1,266 @@
 export const metadata = {
-  title: "Dichtefunktion der Normalverteilung",
-  description: "Lies eine Normaldichtekurve, standardisiere Werte mit z-Werten und berechne eine Intervallwahrscheinlichkeit.",
+  title: "Normalverteilung und Standardisierung",
+  description: "Die Normalverteilung ist eine Glockenkurve um den Mittelwert mit der Standardabweichung als Breite. Standardisiere Werte und berechne Wahrscheinlichkeiten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Datenanalyse und Wahrscheinlichkeit",
 };
 
+## Eine Glockenkurve mit Mitte und Streuung
 
+Die Normalverteilung ist ein Wahrscheinlichkeitsmodell für eine stetige Größe, deren Werte sich **um einen mittleren Wert sammeln und nach beiden Seiten symmetrisch seltener werden**. Ist <InlineMath math="X" /> normalverteilt mit Mittelwert <InlineMath math="\mu" /> und Standardabweichung <InlineMath math="\sigma > 0" />, geschrieben <InlineMath math="X \sim N(\mu, \sigma^2)" />, dann ist ihre Kurve glockenförmig und symmetrisch zur Geraden <InlineMath math="x = \mu" />. Die Wahrscheinlichkeit, dass <InlineMath math="X" /> in ein Intervall fällt, ist die Fläche unter der Kurve über diesem Intervall, und die Gesamtfläche beträgt <InlineMath math="1" />.
 
-## Normalverteilung
-
-Messwerte wie die Körpergröße von Menschen oder wiederholte Laborergebnisse häufen sich oft um einen Mittelwert. Für manche Populationen und unter passenden Bedingungen kann eine **Normalverteilung** dieses Muster annähern. Ob das Modell geeignet ist, muss dennoch anhand der Daten geprüft werden.
-
-Im Jahr <InlineMath math="1733" /> leitete Abraham de Moivre eine Normalapproximation der Binomialverteilung für große <InlineMath math="n" /> her. Pierre-Simon Laplace erweiterte das Ergebnis später. Heute ist es mit dem Satz von de Moivre-Laplace und der Entwicklung des zentralen Grenzwertsatzes verbunden.
-
-> Die Normalverteilung ist ein Modell, das nur für einen Teil der Datensätze angemessen ist. Sie ist geeignet, wenn die Beobachtungen ungefähr symmetrisch um einen Mittelwert liegen und das Modell die Daten für die untersuchte Frage ausreichend gut beschreibt.
-
-## Eigenschaften der Normalkurve
-
-Die Dichtefunktion der Normalverteilung bildet eine symmetrische Glockenkurve. Die folgende Visualisierung zeigt die Standardnormalverteilung mit <InlineMath math="\mu = 0" /> und <InlineMath math="\sigma = 1" />:
+In der interaktiven Grafik hat die Kurve der Standardnormalverteilung mit <InlineMath math="\mu = 0" /> und <InlineMath math="\sigma = 1" /> ihr Maximum in der Mitte. Zwei senkrechte Strecken markieren die Wendepunkte bei <InlineMath math="\mu - \sigma" /> und <InlineMath math="\mu + \sigma" />, an denen die Krümmung wechselt: Zwischen den beiden Punkten ist die Kurve rechtsgekrümmt, außerhalb linksgekrümmt.
 
 <LineEquation
-  title="Standardnormalverteilungskurve"
-  description={
-    <>
-      Die Standardnormaldichte ist bei <InlineMath math="\mu=0" /> zentriert. Die senkrechten Strecken markieren ihre Wendepunkte <InlineMath math="\mu\pm\sigma" />.
-    </>
-  }
+  title="Kurve der Standardnormalverteilung"
+  description={<>Die Dichte der Standardnormalverteilung hat ihre Mitte bei <InlineMath math="\mu = 0" />. Die senkrechten Strecken markieren ihre Wendepunkte bei <InlineMath math="\mu \pm \sigma" />.</>}
   showZAxis={false}
   cameraPosition={[0, 0, 5]}
   data={[
     {
-      points: Array.from({ length: 71 }, (_, index) => {
-        const x = (index - 35) / 10;
+      points: Array.from({ length: 701 }, (_, index) => {
+        const x = (index - 350) / 100;
         const y = Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
         return { x, y, z: 0 };
       }),
       color: "#9333ea",
       smooth: false,
       showPoints: false,
-      labels: [
-        { text: <InlineMath math="\mu=0" />, at: 35, offset: [0, 0.5, 0] }
-      ]
+      labels: [{ text: <InlineMath math="\mu = 0" />, at: 350, offset: [0, 0.5, 0] }],
     },
     {
       points: [
         { x: -1, y: 0, z: 0 },
-        { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 }
+        { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 },
       ],
       color: "#ea580c",
       smooth: false,
       showPoints: false,
-      labels: [
-        { text: <InlineMath math="\mu-\sigma" />, at: 0, offset: [0, -0.3, 0] }
-      ]
+      labels: [{ text: <InlineMath math="\mu - \sigma" />, at: 0, offset: [0, -0.3, 0] }],
     },
     {
       points: [
         { x: 1, y: 0, z: 0 },
-        { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 }
+        { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 },
       ],
       color: "#ea580c",
       smooth: false,
       showPoints: false,
-      labels: [
-        { text: <InlineMath math="\mu+\sigma" />, at: 0, offset: [0, -0.3, 0] }
-      ]
+      labels: [{ text: <InlineMath math="\mu + \sigma" />, at: 0, offset: [0, -0.3, 0] }],
     },
   ]}
 />
 
-Die Kurve besitzt vier kennzeichnende Eigenschaften:
+Mittelwert, Median und Modus fallen bei <InlineMath math="\mu" /> zusammen, weil die Kurve symmetrisch ist und nur ein Maximum hat. Die Kurve berührt die <InlineMath math="x" />-Achse nie: Ihre Dichte ist für jedes <InlineMath math="x" /> positiv und fällt weit von der Mitte entfernt gegen null. Abraham de Moivre leitete diese Kurve im Jahr <InlineMath math="1733" /> als Näherung der [Binomialverteilung](/de/faecher/mathematik/datenanalyse-und-wahrscheinlichkeit/binomialverteilung) mit <InlineMath math="p = \frac{1}{2}" /> für eine große Zahl von Versuchen her, und Pierre-Simon Laplace erweiterte sie später auf andere Trefferwahrscheinlichkeiten.
 
-1. **Form und Symmetrie**
+## Die Formel der Dichtefunktion
 
-    Die Kurve ist glockenförmig und symmetrisch zur vertikalen Linie, die durch den Mittelwert (<InlineMath math="\mu" />) verläuft. Das bedeutet, dass der linke und der rechte Teil der Kurve perfekte Spiegelbilder voneinander sind.
+Die Höhe der Kurve an jeder Stelle <InlineMath math="x" /> gibt die Dichtefunktion an:
 
-2. **Zentraler Punkt**
+<BlockMath math="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}, \qquad -\infty < x < \infty" />
 
-    Die Normaldichte ist symmetrisch und besitzt genau einen Gipfel. Daher fallen Mittelwert, Median und Modus bei <InlineMath math="\mu" /> zusammen.
+Dabei sind <InlineMath math="\pi \approx 3{,}1416" /> und <InlineMath math="e \approx 2{,}7183" /> Konstanten, während <InlineMath math="\mu" /> und <InlineMath math="\sigma > 0" /> die Parameter der Verteilung sind. Der Bruch <InlineMath math="\frac{x - \mu}{\sigma}" /> misst **den Abstand von der Mitte in Standardabweichungen**. Dieser Abstand wird quadriert, also erhalten zwei Werte <InlineMath math="x" />, die gleich weit links und rechts von <InlineMath math="\mu" /> liegen, dieselbe Dichte. Der Faktor <InlineMath math="\frac{1}{\sigma\sqrt{2\pi}}" /> sorgt dafür, dass die Gesamtfläche unter der Kurve genau <InlineMath math="1" /> ist.
 
-3. **Wendepunkte**
+Eine Dichte ist keine Wahrscheinlichkeit. Im Maximum der Standardnormalverteilung gilt <InlineMath math="f(0) = \frac{1}{\sqrt{2\pi}} \approx 0{,}399" />. Für <InlineMath math="\sigma = 0{,}25" /> ist das Maximum <InlineMath math="\frac{1}{0{,}25\sqrt{2\pi}} \approx 1{,}596" /> hoch, also größer als <InlineMath math="1" />, obwohl eine Wahrscheinlichkeit nie über <InlineMath math="1" /> liegt. Die Wahrscheinlichkeit für einen exakten Wert ist ebenfalls null, <InlineMath math="P(X = a) = 0" />, weil die Fläche über einem einzelnen Punkt null ist. Wahrscheinlichkeiten gehören immer zu Intervallen und ergeben sich als [bestimmtes Integral](/de/faecher/mathematik/integralrechnung/bestimmtes-integral) der Dichte.
 
-    Die Kurve hat Wendepunkte bei <InlineMath math="x = \mu \pm \sigma" />, was bedeutet, dass sich die Kurve in einem Abstand von einer Standardabweichung vom Mittelwert von konkav zu konvex (oder umgekehrt) ändert.
+## Mitte und Breite einer Normalverteilungskurve
 
-4. **Horizontale Asymptote**
+Der Parameter <InlineMath math="\mu" /> **verschiebt die Kurve, ohne ihre Form zu ändern**, während <InlineMath math="\sigma" /> ihre Breite festlegt. Die Fläche unter der Kurve bleibt immer <InlineMath math="1" />, also ist eine breitere Kurve auch niedriger, mit der Maximalhöhe <InlineMath math="\frac{1}{\sigma\sqrt{2\pi}}" />. Die interaktive Grafik zeichnet drei Kurven aus derselben Formel.
 
-    Die Dichte bleibt für jedes endliche <InlineMath math="x" /> positiv und nähert sich <InlineMath math="0" />, wenn <InlineMath math="x" /> gegen eine der beiden Unendlichkeiten strebt.
+<LineEquation
+  title={<>Die Kurven <InlineMath math="N(0, 1)" />, <InlineMath math="N(2, 1)" /> und <InlineMath math="N(0, 4)" /></>}
+  description={<>Wenn <InlineMath math="\mu" /> von <InlineMath math="0" /> auf <InlineMath math="2" /> wächst, verschiebt sich die Kurve nach rechts. Wenn <InlineMath math="\sigma" /> von <InlineMath math="1" /> auf <InlineMath math="2" /> wächst, wird die Kurve breiter und ihr Maximum halb so hoch.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0.2, 9]}
+  cameraTarget={[0, 0.2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 801 }, (_, index) => {
+        const x = -4 + index / 100;
+        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#9333ea",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="N(0, 1)" />, at: 400, offset: [-1, 0.1, 0] }],
+    },
+    {
+      points: Array.from({ length: 801 }, (_, index) => {
+        const x = -2 + index / 100;
+        return { x, y: Math.exp(-0.5 * (x - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="N(2, 1)" />, at: 400, offset: [1, 0.1, 0] }],
+    },
+    {
+      points: Array.from({ length: 1201 }, (_, index) => {
+        const x = -6 + index / 100;
+        return { x, y: Math.exp(-0.5 * (x / 2) ** 2) / (2 * Math.sqrt(2 * Math.PI)), z: 0 };
+      }),
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="N(0, 4)" />, at: 300, offset: [-0.5, 0.2, 0] }],
+    },
+  ]}
+/>
 
-## Wahrscheinlichkeitsdichtefunktion
+Die Kurven <InlineMath math="N(0, 1)" /> und <InlineMath math="N(2, 1)" /> haben dieselbe Form, nur ihre Mitte liegt um <InlineMath math="2" /> Einheiten weiter rechts. Die Kurve <InlineMath math="N(0, 4)" /> hat dieselbe Mitte wie <InlineMath math="N(0, 1)" />, ist aber doppelt so breit, und ihr Maximum sinkt von <InlineMath math="0{,}399" /> auf <InlineMath math="0{,}199" />. Der zweite Parameter in <InlineMath math="N(\mu, \sigma^2)" /> ist die Varianz, also bedeutet <InlineMath math="N(0, 4)" /> eine Standardabweichung <InlineMath math="\sigma = 2" />.
 
-Die folgende Formel gibt die **Wahrscheinlichkeitsdichte** an jeder Stelle <InlineMath math="x" /> an.
+Die Standardabweichung <InlineMath math="\sigma" /> spielt dieselbe Rolle wie die [Standardabweichung einer Datenreihe](/de/faecher/mathematik/grundlagen-der-statistik/varianz-und-standardabweichung-einzelner-daten): Je größer sie ist, desto weiter streuen die Werte um den Mittelwert. Die Mitte der Kurve liegt immer bei <InlineMath math="\mu" />, deshalb ist auch der [Erwartungswert der Normalverteilung](/de/faecher/mathematik/datenanalyse-und-wahrscheinlichkeit/erwartungswert-der-normalverteilung) gleich <InlineMath math="\mu" />.
 
-Ist <InlineMath math="X" /> normalverteilt mit Mittelwert <InlineMath math="\mu" />, Varianz <InlineMath math="\sigma^2" /> und <InlineMath math="\sigma>0" />, lautet die Dichtefunktion:
+## Die Fläche um die Mitte der Kurve
 
-<BlockMath math="f_{\mu,\sigma}(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
+Jede Normalverteilung teilt ihre Fläche gleich auf, wenn Abstände in Standardabweichungen gemessen werden. Diese Anteile sind als **Regel von <InlineMath math="68" />, <InlineMath math="95" /> und <InlineMath math="99{,}7" /> Prozent** bekannt:
 
-Diese Formel gilt für jedes <InlineMath math="x" /> mit <InlineMath math="-\infty < x < \infty" />.
-
-Die Konstanten und Parameter bedeuten:
-
-- <InlineMath math="\pi \approx 3{,}1416" /> ist die Kreiszahl
-- <InlineMath math="e \approx 2{,}7183" /> ist die Eulersche Zahl
-- <InlineMath math="\mu" /> ist der Mittelwert der Verteilung
-- <InlineMath math="\sigma>0" /> ist die Standardabweichung
-
-> Der Parameter <InlineMath math="\mu" /> verschiebt das Zentrum der Kurve, während <InlineMath math="\sigma" /> ihre Streuung bestimmt. Wahrscheinlichkeiten entsprechen Flächen unter der Dichtekurve. Die Höhe <InlineMath math="f(x)" /> an einem einzelnen Punkt ist ein Dichtewert.
-## Transformation zur Standardnormalverteilung
-
-In der Praxis verwenden wir häufig die **Standardnormalverteilung** mit Mittelwert <InlineMath math="\mu = 0" /> und Standardabweichung <InlineMath math="\sigma = 1" />. Um eine reguläre Normalverteilung in eine Standardnormalverteilung umzuwandeln, verwenden wir die Transformation:
-
-<BlockMath math="Z = \frac{X - \mu}{\sigma}" />
-
-Die Variable <InlineMath math="Z" /> heißt **Standardwert** oder **z-Wert**. Sie gibt an, <Highlight>wie viele Standardabweichungen</Highlight> <InlineMath math="x" /> über oder unter dem Mittelwert liegt. Dadurch kann dieselbe Standardnormalverteilungstabelle für jede Normalverteilung verwendet werden.
-
-Warum z-Werte verwenden?
-
-Mit dieser Transformation lassen sich Werte aus verschiedenen Verteilungen vergleichen. So können etwa Mathematik- und Physikergebnisse trotz unterschiedlicher Mittelwerte und Standardabweichungen auf derselben Skala eingeordnet werden.
-
-Für einen beobachteten Wert <InlineMath math="x" /> schreiben wir den standardisierten Wert als <InlineMath math="z" />. Angenommen, ein Mathematikergebnis von 80 gehört zu einer Verteilung mit Mittelwert 70 und Standardabweichung 5. Ein Physikergebnis von 90 gehört zu einer Verteilung mit Mittelwert 80 und Standardabweichung 10.
-
-| Fach | Standardisierter Wert |
+| Intervall | Fläche unter der Kurve |
 | --- | --- |
-| Mathematik | <InlineMath math="z=\frac{80-70}{5}=2" /> |
-| Physik | <InlineMath math="z=\frac{90-80}{10}=1" /> |
+| <InlineMath math="\mu - \sigma" /> bis <InlineMath math="\mu + \sigma" /> | <InlineMath math="68{,}27\%" /> |
+| <InlineMath math="\mu - 2\sigma" /> bis <InlineMath math="\mu + 2\sigma" /> | <InlineMath math="95{,}45\%" /> |
+| <InlineMath math="\mu - 3\sigma" /> bis <InlineMath math="\mu + 3\sigma" /> | <InlineMath math="99{,}73\%" /> |
 
-Das Mathematikergebnis liegt **höher relativ zur eigenen Gruppe**, obwohl 80 kleiner als 90 ist. Verglichen wird die Position innerhalb der jeweiligen Verteilung, nicht die Schwierigkeit beider Prüfungen.
+Angenommen, die Körpergrößen einer Gruppe Jugendlicher folgen <InlineMath math="N(165, 6^2)" /> in Zentimetern. Etwa <InlineMath math="68\%" /> der Größen liegen zwischen <InlineMath math="159" /> und <InlineMath math="171" /> cm, und etwa <InlineMath math="95\%" /> zwischen <InlineMath math="153" /> und <InlineMath math="177" /> cm. Nur etwa <InlineMath math="0{,}27\%" /> liegen mehr als <InlineMath math="18" /> cm vom Mittelwert entfernt.
 
-## Eine Normalverteilungswahrscheinlichkeit zwischen zwei Grenzen berechnen
+## Standardisierung macht jede Normalverteilung vergleichbar
 
-Angenommen, <InlineMath math="X" /> ist normalverteilt mit <InlineMath math="\mu = 50" /> und <InlineMath math="\sigma = 10" />. Gesucht ist die Wahrscheinlichkeit, dass <InlineMath math="X" /> zwischen <InlineMath math="45" /> und <InlineMath math="62" /> liegt.
+Der z-Wert macht aus einem Wert <InlineMath math="x" /> seinen Abstand vom Mittelwert in Standardabweichungen:
 
-**Schritt 1**: In z-Werte umwandeln
+<BlockMath math="z = \frac{x - \mu}{\sigma}" />
+
+Ist <InlineMath math="X \sim N(\mu, \sigma^2)" />, dann ist <InlineMath math="Z = \frac{X - \mu}{\sigma}" /> **standardnormalverteilt mit <InlineMath math="N(0, 1)" />**. Deshalb genügt eine einzige Tabelle der Verteilungsfunktion <InlineMath math="\Phi(z) = P(Z < z)" /> für jede Normalverteilung. Tabellen enthalten meist nur positive <InlineMath math="z" />, und die Symmetrie der Kurve liefert den Rest: <InlineMath math="\Phi(-z) = 1 - \Phi(z)" />.
+
+Mit z-Werten vergleichst du auch Werte aus verschiedenen Gruppen. Ein Mathematikergebnis von <InlineMath math="80" /> Punkten stammt aus einer Verteilung mit Mittelwert <InlineMath math="70" /> und Standardabweichung <InlineMath math="5" />, ein Physikergebnis von <InlineMath math="90" /> Punkten aus einer Verteilung mit Mittelwert <InlineMath math="80" /> und Standardabweichung <InlineMath math="10" />.
+
+| Fach | z-Wert |
+| --- | --- |
+| Mathematik | <InlineMath math="z = \frac{80 - 70}{5} = 2" /> |
+| Physik | <InlineMath math="z = \frac{90 - 80}{10} = 1" /> |
+
+Das Mathematikergebnis ist **relativ zur eigenen Gruppe höher**, obwohl <InlineMath math="80" /> Punkte weniger sind als <InlineMath math="90" />. Der Vergleich misst die Lage in der jeweiligen Verteilung, sagt aber nichts darüber, wie schwer die beiden Prüfungen waren.
+
+## Wahrscheinlichkeiten aus der Tabelle berechnen
+
+Eine Wahrscheinlichkeit der Normalverteilung braucht drei Schritte: Grenzen standardisieren, <InlineMath math="\Phi" /> aus der Tabelle ablesen und dann **die kumulierte Fläche der unteren Grenze von der kumulierten Fläche der oberen Grenze abziehen**.
+
+**Beispiel 1**. Angenommen, <InlineMath math="X" /> ist normalverteilt mit <InlineMath math="\mu = 50" /> und <InlineMath math="\sigma = 10" />. Die Wahrscheinlichkeit für <InlineMath math="45 < X < 62" /> ergibt sich aus den z-Werten beider Grenzen:
 
 <MathContainer>
-<BlockMath math="z_1 = \frac{45 - 50}{10} = \frac{-5}{10} = -0{,}5" />
-<BlockMath math="z_2 = \frac{62 - 50}{10} = \frac{12}{10} = 1{,}2" />
+  <BlockMath math="z_1 = \frac{45 - 50}{10} = -0{,}5, \qquad z_2 = \frac{62 - 50}{10} = 1{,}2" />
+  <BlockMath math="P(45 < X < 62) = \Phi(1{,}2) - \Phi(-0{,}5) \approx 0{,}8849 - 0{,}3085 = 0{,}5764" />
 </MathContainer>
 
-**Schritt 2**: Standardnormalverteilungstabelle verwenden
+Die Wahrscheinlichkeit beträgt etwa <InlineMath math="0{,}5764" />, also <InlineMath math="57{,}64\%" />. Die interaktive Grafik zeigt diese Fläche unter der Standardnormalverteilung zwischen <InlineMath math="z = -0{,}5" /> und <InlineMath math="z = 1{,}2" />.
 
-Das standardisierte Intervall lautet <InlineMath math="P(-0{,}5 < Z < 1{,}2)" />. Von der **kumulierten Wahrscheinlichkeit an der oberen Grenze** wird die **kumulierte Wahrscheinlichkeit an der unteren Grenze** abgezogen:
+<LineEquation
+  title={<>Die Fläche zwischen <InlineMath math="z = -0{,}5" /> und <InlineMath math="z = 1{,}2" /></>}
+  description={<>Der dicke Bogen ist der Teil der Standardnormalverteilungskurve über dem standardisierten Intervall. Die Fläche unter diesem Bogen ist <InlineMath math="P(45 < X < 62) \approx 0{,}5764" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0.2, 5.5]}
+  cameraTarget={[0, 0.2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 701 }, (_, index) => {
+        const x = -3.5 + index / 100;
+        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#9333ea",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 341 }, (_, index) => {
+        const x = -0.5 + index / 200;
+        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#0d9488",
+      lineWidth: 4,
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -0.5, y: 0, z: 0 },
+        { x: -0.5, y: Math.exp(-0.5 * 0.5 ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="-0{,}5" />, at: 0, offset: [0, -0.2, 0] }],
+    },
+    {
+      points: [
+        { x: 1.2, y: 0, z: 0 },
+        { x: 1.2, y: Math.exp(-0.5 * 1.2 ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="1{,}2" />, at: 0, offset: [0, -0.2, 0] }],
+    },
+  ]}
+/>
 
-<BlockMath math="\begin{aligned} P(a &lt; Z &lt; b) &amp;= P(Z &lt; b) \\ &amp;\quad{}- P(Z &lt; a) \end{aligned}" />
+Probe durch Teilen des Intervalls in der Mitte. Der linke Teil ist <InlineMath math="P(-0{,}5 < Z < 0) = 0{,}5 - 0{,}3085 = 0{,}1915" />, der rechte Teil <InlineMath math="P(0 < Z < 1{,}2) = 0{,}8849 - 0{,}5 = 0{,}3849" />. Ihre Summe ist <InlineMath math="0{,}1915 + 0{,}3849 = 0{,}5764" />, genau wie zuerst berechnet.
 
-Aus der Standardnormalverteilungstabelle:
+**Beispiel 2**. Bei Körpergrößen mit <InlineMath math="N(165, 6^2)" /> ist die Wahrscheinlichkeit, dass ein Jugendlicher größer als <InlineMath math="177" /> cm ist, die Fläche des rechten Randes:
 
-- <InlineMath math="P(Z < -0{,}5) \approx 0{,}3085" />
-- <InlineMath math="P(Z < 1{,}2) \approx 0{,}8849" />
+<MathContainer>
+  <BlockMath math="z = \frac{177 - 165}{6} = 2" />
+  <BlockMath math="P(X > 177) = 1 - \Phi(2) \approx 1 - 0{,}9772 = 0{,}0228" />
+</MathContainer>
 
-**Schritt 3**: Endgültige Wahrscheinlichkeit berechnen
+Probe mit der <InlineMath math="95\%" />-Regel: Eine Fläche von <InlineMath math="95{,}45\%" /> liegt innerhalb von zwei Standardabweichungen, also teilen sich die übrigen <InlineMath math="4{,}55\%" /> gleichmäßig auf beide Ränder auf. Ein Rand enthält etwa <InlineMath math="2{,}28\%" />, passend zu <InlineMath math="0{,}0228" />.
 
-<BlockMath math="\begin{aligned} &amp;P(45 &lt; X &lt; 62) \\ &amp;= P(-0{,}5 &lt; Z &lt; 1{,}2) \\ &amp;\approx 0{,}8849 - 0{,}3085 \\ &amp;= 0{,}5764 \end{aligned}" />
+## Häufige Fehler
 
-Die Wahrscheinlichkeit, dass <InlineMath math="X" /> zwischen <InlineMath math="45" /> und <InlineMath math="62" /> liegt, beträgt also <InlineMath math="0{,}5764" /> oder ungefähr <InlineMath math="57{,}64\%" />.
+| Fehler | Warum er scheitert | So prüfst du |
+| --- | --- | --- |
+| <InlineMath math="f(x)" /> als Wahrscheinlichkeit lesen | <InlineMath math="f(x)" /> ist eine Dichtehöhe und kann größer als <InlineMath math="1" /> sein | Eine Wahrscheinlichkeit ist eine Fläche und liegt immer zwischen <InlineMath math="0" /> und <InlineMath math="1" /> |
+| Mit der Varianz standardisieren | Der z-Wert nutzt die Standardabweichung <InlineMath math="\sigma" />, nicht <InlineMath math="\sigma^2" /> | Bei <InlineMath math="N(50, 100)" /> ist die Standardabweichung <InlineMath math="10" /> |
+| <InlineMath math="P(X > a)" /> direkt aus der Tabelle ablesen | Die z-Tabelle gibt die Fläche links an, <InlineMath math="P(Z < z)" /> | Der rechte Rand ist <InlineMath math="1 - \Phi(z)" /> |
+| In falscher Reihenfolge subtrahieren | <InlineMath math="P(a < Z < b) = \Phi(b) - \Phi(a)" /> für <InlineMath math="a < b" /> | Die Wahrscheinlichkeit muss positiv sein |
+| Ein Normalmodell für stark schiefe Daten nutzen | Das Normalmodell setzt eine symmetrische Streuung voraus | Vergleiche zuerst Mittelwert und Median der Daten |
+
+Bevor du rechnest, **skizzierst du die Kurve und schraffierst die gefragte Fläche**. Die Skizze zeigt sofort, ob deine Antwort unter <InlineMath math="0{,}5" />, über <InlineMath math="0{,}5" /> oder nahe einem der Werte <InlineMath math="68" />, <InlineMath math="95" /> und <InlineMath math="99{,}7" /> Prozent liegen muss.
+
+## Übungen
+
+Die erste Aufgabe übt den z-Wert, die zweite und dritte berechnen Flächen, und die vierte kehrt die Richtung um, von einer Wahrscheinlichkeit zu einer Grenze. Nutze eine z-Tabelle mit vier Nachkommastellen und **prüfe deine Antwort mit einer Skizze der Kurve**, bevor du die Lösung liest.
+
+1. Klausurpunkte folgen <InlineMath math="N(70, 8^2)" />. Bestimme den z-Wert für <InlineMath math="82" /> Punkte und erkläre, was er bedeutet.
+
+2. Bestimme bei derselben Verteilung die Wahrscheinlichkeit, dass jemand weniger als <InlineMath math="58" /> Punkte erreicht.
+
+3. Das Gewicht einer Zuckerpackung ist normalverteilt mit Mittelwert <InlineMath math="250" /> g und Standardabweichung <InlineMath math="5" /> g. Bestimme die Wahrscheinlichkeit, dass eine Packung zwischen <InlineMath math="240" /> g und <InlineMath math="260" /> g wiegt.
+
+4. Die Bearbeitungszeit eines Tests ist normalverteilt mit Mittelwert <InlineMath math="60" /> Minuten und Standardabweichung <InlineMath math="12" /> Minuten. Bestimme die Zeitgrenze, die nur die langsamsten <InlineMath math="10\%" /> überschreiten.
+
+### Lösungen
+
+**Aufgabe 1**. Der z-Wert vergleicht den Abstand vom Mittelwert mit der Standardabweichung:
+
+<BlockMath math="z = \frac{82 - 70}{8} = \frac{12}{8} = 1{,}5" />
+
+<InlineMath math="82" /> Punkte liegen **anderthalb Standardabweichungen über dem Mittelwert**. Die Tabelle liefert <InlineMath math="\Phi(1{,}5) \approx 0{,}9332" />, also liegt dieses Ergebnis über etwa <InlineMath math="93\%" /> der Klausurergebnisse.
+
+**Aufgabe 2**. Der z-Wert von <InlineMath math="58" /> ist <InlineMath math="\frac{58 - 70}{8} = -1{,}5" />. Die Tabelle enthält nur positive z, also nutzt du die Symmetrie:
+
+<BlockMath math="P(X < 58) = \Phi(-1{,}5) = 1 - \Phi(1{,}5) \approx 1 - 0{,}9332 = 0{,}0668" />
+
+Probe: <InlineMath math="58" /> und <InlineMath math="82" /> liegen gleich weit von <InlineMath math="70" /> entfernt, also haben **beide Ränder dieselbe Fläche**, und <InlineMath math="P(X > 82) = 1 - 0{,}9332" /> ist ebenfalls <InlineMath math="0{,}0668" />.
+
+**Aufgabe 3**. Beide Grenzen liegen <InlineMath math="10" /> g vom Mittelwert entfernt, also gilt <InlineMath math="z = \pm 2" />:
+
+<BlockMath math="P(240 < X < 260) = \Phi(2) - \Phi(-2) \approx 0{,}9772 - 0{,}0228 = 0{,}9544" />
+
+Probe mit der <InlineMath math="95\%" />-Regel: Das Intervall reicht genau **zwei Standardabweichungen zu jeder Seite des Mittelwerts**, und der exakte Wert ist <InlineMath math="0{,}9545" />. Der Unterschied von <InlineMath math="0{,}0001" /> stammt aus der Rundung der Tabelle.
+
+**Aufgabe 4**. Die Grenze <InlineMath math="c" /> erfüllt <InlineMath math="P(X > c) = 0{,}10" />, also ist die Fläche links davon <InlineMath math="0{,}90" />. Die Tabelle liefert <InlineMath math="\Phi(1{,}28) \approx 0{,}8997" />, den nächsten Wert zu <InlineMath math="0{,}90" />, also <InlineMath math="z \approx 1{,}28" />. Zurück in Minuten:
+
+<BlockMath math="c = \mu + z\sigma \approx 60 + 1{,}28 \cdot 12 = 75{,}36" />
+
+Die Grenze liegt bei etwa <InlineMath math="75{,}4" /> Minuten. Probe: <InlineMath math="\frac{75{,}36 - 60}{12} = 1{,}28" />, und die Fläche rechts davon ist <InlineMath math="1 - 0{,}8997 \approx 0{,}10" />, also **überschreitet nur ein Zehntel die Grenze**.
