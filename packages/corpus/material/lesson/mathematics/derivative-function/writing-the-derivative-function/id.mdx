@@ -3,7 +3,7 @@ export const metadata = {
     description: "Baca dan pilih notasi Leibniz atau notasi aksen Lagrange untuk turunan berdasarkan makna dan kegunaannya.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Turunan Fungsi",
 };
 
@@ -33,6 +33,16 @@ Notasi aksen Lagrange menandai turunan dengan **tanda aksen**. Jika <InlineMath 
 
 Kita membacanya sebagai "<InlineMath math="y" /> aksen" dan "<InlineMath math="f" /> aksen dari <InlineMath math="x" />." Notasi ini ringkas dan praktis ketika variabel bebasnya sudah jelas. Turunan kedua ditulis sebagai <InlineMath math="f''(x)" />, sehingga diferensiasi berulang mudah dikenali.
 
+<Mermaid
+  title="Dua notasi, satu turunan"
+  description="Notasi Leibniz dan notasi Lagrange menulis turunan yang sama dari y = f(x) dengan dua cara."
+  chart={`flowchart LR
+  F["y = f(x) = x³ − 2x"] --> L["Leibniz: dy/dx"]
+  F --> G["Lagrange: f′(x)"]
+  L --> D["3x² − 2"]
+  G --> D`}
+/>
+
 ## Memilih Notasi yang Tepat
 
 Gunakan **notasi aksen Lagrange**, seperti <InlineMath math="f'(x)" />, ketika fungsi dan variabel bebasnya sudah jelas. Bentuk ini membuat perhitungan rutin tetap singkat dan mudah dibaca.
@@ -58,3 +68,74 @@ Garis vertikal pada notasi Leibniz berarti nilai turunan dihitung pada <InlineMa
 | Turunan kedua | <InlineMath math="f''(x)=6x" /> | <InlineMath math="\frac{d^2y}{dx^2}=6x" /> |
 
 Pada baris terakhir, kita menurunkan <InlineMath math="3x^2-2" /> sekali lagi. Pangkat pada notasi Leibniz menandai **dua kali diferensiasi**. Notasi itu tidak berarti menguadratkan turunan pertama.
+
+Kedua notasi menamai fungsi kemiringan yang sama. Kurva oranye adalah <InlineMath math="f(x) = x^3 - 2x" /> dengan garis singgungnya di <InlineMath math="x = 1" />, yang naik 1 untuk setiap 1 ke kanan. Kurva ungu adalah <InlineMath math="f'(x) = \frac{dy}{dx} = 3x^2 - 2" />, dan tingginya di <InlineMath math="x = 1" /> adalah kemiringan yang sama, <InlineMath math="1" />.
+
+<LineEquation
+  title="Turunan memberi kemiringan setiap garis singgung"
+  description={<>Kurva <InlineMath math="x^3 - 2x" /> dengan garis singgung di <InlineMath math="x = 1" />, serta turunan <InlineMath math="3x^2 - 2" /> dengan titik <InlineMath math="(1, 1)" />.</>}
+  cameraPosition={[0, 1.2, 9]}
+  cameraTarget={[0, 1.2, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -1.5 + (i / 400) * ((1.5) - (-1.5));
+        return { x, y: x ** 3 - 2 * x, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="f" />, at: 400, offset: [0.25, 0, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -1.5 + (i / 400) * ((1.5) - (-1.5));
+        return { x, y: 3 * x ** 2 - 2, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#8242e5",
+      labels: [{ text: <InlineMath math="f'" />, at: 400, offset: [0.25, 0, 0] }],
+    },
+    { points: [{ x: 0, y: -2, z: 0 }, { x: 1.5, y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="y = x - 2" />, at: 1, offset: [0.2, -0.3, 0] }] },
+    { points: [{ x: 1, y: -1, z: 0 }], smooth: false, showPoints: true, color: "#bb6800" },
+    { points: [{ x: 1, y: 1, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="(1, 1)" />, at: 0, offset: [0.25, 0.2, 0] }] }
+  ]}
+/>
+
+Di tempat turunannya nol, garis singgungnya datar. <InlineMath math="3x^2 - 2 = 0" /> di <InlineMath math="x = \pm\sqrt{2/3}" />, dan tepat di atas dan di bawah titik-titik itu kurva oranye berbalik arah. Membaca <InlineMath math="f'" /> memberitahumu di mana <InlineMath math="f" /> berhenti naik dan mulai turun.
+
+<LineEquation
+  title="Garis singgung datar saat turunannya nol"
+  description={<>Kurva <InlineMath math="x^3 - 2x" /> dengan garis singgung mendatar di <InlineMath math="x = \pm\sqrt{2/3}" />, tempat <InlineMath math="3x^2 - 2" /> memotong nol.</>}
+  cameraPosition={[0, 1.2, 9]}
+  cameraTarget={[0, 1.2, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -1.5 + (i / 400) * ((1.5) - (-1.5));
+        return { x, y: x ** 3 - 2 * x, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="f" />, at: 400, offset: [0.25, 0, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -1.5 + (i / 400) * ((1.5) - (-1.5));
+        return { x, y: 3 * x ** 2 - 2, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#8242e5",
+      labels: [{ text: <InlineMath math="f'" />, at: 400, offset: [0.25, 0, 0] }],
+    },
+    { points: [{ x: -Math.sqrt(2 / 3) - 0.4, y: (4 / 3) * Math.sqrt(2 / 3), z: 0 }, { x: -Math.sqrt(2 / 3) + 0.4, y: (4 / 3) * Math.sqrt(2 / 3), z: 0 }], smooth: false, showPoints: false, color: "#0d9488" },
+    { points: [{ x: Math.sqrt(2 / 3) - 0.4, y: -(4 / 3) * Math.sqrt(2 / 3), z: 0 }, { x: Math.sqrt(2 / 3) + 0.4, y: -(4 / 3) * Math.sqrt(2 / 3), z: 0 }], smooth: false, showPoints: false, color: "#0d9488" },
+    { points: [{ x: -Math.sqrt(2 / 3), y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" },
+    { points: [{ x: Math.sqrt(2 / 3), y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" }
+  ]}
+/>

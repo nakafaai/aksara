@@ -3,7 +3,7 @@ export const metadata = {
   description: "Differentiate composite functions with the chain rule in power and trigonometric examples.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-23",
+    dateModified: "2026-11-08",
     subject: "Derivative Functions",
 };
 
@@ -24,6 +24,15 @@ Formally, if we let <InlineMath math="u = g(x)" />, then <InlineMath math="y = f
 <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}" />
 
 This is the **chain rule**. <Highlight>Work from the outermost layer inward</Highlight>, keep each inner expression in place until its turn, and multiply the derivatives.
+
+<Mermaid
+  title="How the chain rule links two rates"
+  description="When y depends on u and u depends on x, the rate of y with respect to x is the product of the two rates."
+  chart={`flowchart LR
+  X["x"] -->|"du/dx"| U["u = g(x)"]
+  U -->|"dy/du"| Y["y = f(u)"]
+  Y --> R["dy/dx = dy/du · du/dx"]`}
+/>
 
 ## Applying the Chain Rule
 
@@ -59,6 +68,30 @@ Finally, we substitute <InlineMath math="u" /> back in and simplify the expressi
     <BlockMath math="\frac{dy}{dx} = (16x - 32)(x^2 - 4x - 2)^7" />
 </MathContainer>
 
+For <InlineMath math="y = (x^2 - 4x - 2)^8" /> look at the inner function <InlineMath math="u = x^2 - 4x - 2" /> alone. Its tangent is flat at <InlineMath math="x = 2" />, where <InlineMath math="\frac{du}{dx} = 2x - 4 = 0" />. So <InlineMath math="\frac{dy}{dx} = 8u^7 (2x - 4)" /> is also <InlineMath math="0" /> there, whatever the outer factor <InlineMath math="8u^7" /> is.
+
+<LineEquation
+  title="A flat inner function makes the whole derivative zero"
+  description={<>The inner function <InlineMath math="u = x^2 - 4x - 2" /> with its flat tangent at <InlineMath math="(2, -6)" />.</>}
+  cameraPosition={[2, -4, 7]}
+  cameraTarget={[2, -4, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = 0 + (i / 400) * ((4) - (0));
+        return { x, y: x ** 2 - 4 * x - 2, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="u = x^2 - 4x - 2" />, at: 380, offset: [0.3, 0, 0] }],
+    },
+    { points: [{ x: 1.2, y: -6, z: 0 }, { x: 2.8, y: -6, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="\frac{du}{dx} = 0" />, at: 1, offset: [0.2, -0.3, 0] }] },
+    { points: [{ x: 2, y: -6, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" }
+  ]}
+/>
+
 ### Trigonometric Functions
 
 Angles in the trigonometric functions are measured in **radians**, so the sine and cosine derivative rules apply without an angle-conversion factor.
@@ -93,6 +126,32 @@ Now, substitute <InlineMath math="u" /> and <InlineMath math="v" /> back in step
     <BlockMath math="\frac{dy}{dx} = 16\cos^3(v)\sin(v)" />
     <BlockMath math="\frac{dy}{dx} = 16\cos^3(3 - 4x)\sin(3 - 4x)" />
 </MathContainer>
+
+The inner function sets the speed. <InlineMath math="\sin x" /> and <InlineMath math="\sin 2x" /> have the same outer function, but the inner function <InlineMath math="u = 2x" /> runs twice as fast. At <InlineMath math="x = 0" /> the tangent of <InlineMath math="\sin x" /> has slope <InlineMath math="\cos 0 = 1" />, and the tangent of <InlineMath math="\sin 2x" /> has slope <InlineMath math="\cos 0 \cdot 2 = 2" />. The extra factor 2 is the derivative of the inner function.
+
+<LineEquation
+  title="The inner derivative doubles the slope"
+  description={<>The curves <InlineMath math="\sin x" /> and <InlineMath math="\sin 2x" /> for <InlineMath math="-\pi \le x \le \pi" /> with their tangents at the origin, of slopes 1 and 2.</>}
+  cameraPosition={[0, 0, 8]}
+  cameraTarget={[0, 0, 0]}
+  showZAxis={false}
+  data={[
+    {
+      curve: { kind: "sin", amplitude: 1, frequency: 1, phase: 0, shift: 0, domain: [-Math.PI, Math.PI] },
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+    },
+    {
+      curve: { kind: "sin", amplitude: 1, frequency: 2, phase: 0, shift: 0, domain: [-Math.PI, Math.PI] },
+      smooth: false,
+      showPoints: false,
+      color: "#8242e5",
+    },
+    { points: [{ x: -0.8, y: -0.8, z: 0 }, { x: 0.8, y: 0.8, z: 0 }], smooth: false, showPoints: false, color: "#bb6800", labels: [{ text: <InlineMath math="\sin x" />, at: 1, offset: [0.2, 0, 0] }] },
+    { points: [{ x: -0.6, y: -1.2, z: 0 }, { x: 0.6, y: 1.2, z: 0 }], smooth: false, showPoints: false, color: "#8242e5", labels: [{ text: <InlineMath math="\sin 2x" />, at: 1, offset: [0.2, 0, 0] }] }
+  ]}
+/>
 
 ## Exercises
 

@@ -3,13 +3,25 @@ export const metadata = {
   description: "Turunkan polinomial, bentuk akar, dan fungsi rasional dengan aturan pangkat, hasil kali, dan hasil bagi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Turunan Fungsi",
 };
 
 ## Menerapkan Aturan Turunan
 
 Berbagai [aturan turunan](/id/materi/matematika/turunan-fungsi/sifat-turunan-fungsi) dapat diterapkan pada banyak bentuk aljabar. Untuk polinomial, fungsi rasional, atau ekspresi yang memuat akar, kenali dahulu <Highlight>bentuk fungsinya</Highlight> lalu pilih <Highlight>aturan yang sesuai</Highlight>. Contoh berikut menunjukkan alasan di balik setiap pilihan.
+
+<Mermaid
+  title="Menurunkan 4x² + x + 2 suku demi suku"
+  description="Turunan jumlah adalah jumlah turunan, jadi setiap suku diturunkan dengan aturan pangkat, kelipatan konstanta, dan konstanta."
+  chart={`flowchart LR
+  A["4x²"] -->|"pangkat dan kelipatan konstanta"| A1["8x"]
+  B["x"] -->|"aturan pangkat"| B1["1"]
+  C["2"] -->|"aturan konstanta"| C1["0"]
+  A1 --> S["y′ = 8x + 1"]
+  B1 --> S
+  C1 --> S`}
+/>
 
 ## Penggunaan Sifat Turunan
 
@@ -26,6 +38,55 @@ Kita bisa menurunkan setiap suku satu per satu menggunakan aturan pangkat dan at
 <BlockMath math="\begin{aligned}y'&=4(2x)+1+0\\&=8x+1\end{aligned}" />
 
 Turunan suku linear <InlineMath math="x" /> adalah <InlineMath math="1" />, dan turunan konstanta <InlineMath math="2" /> adalah <InlineMath math="0" />. Hasil <InlineMath math="8x+1" /> berlaku untuk semua bilangan real, termasuk <InlineMath math="x=0" />.
+
+Turunan <InlineMath math="y' = 8x + 1" /> memberi kemiringan di setiap titik <InlineMath math="y = 4x^2 + x + 2" />. Di <InlineMath math="x = 0" /> nilainya <InlineMath math="1" />, jadi garis singgungnya <InlineMath math="y = x + 2" />. Putar adegannya dan bandingkan kecuraman kurva dengan garis singgungnya.
+
+<LineEquation
+  title="Garis singgung parabola di x = 0"
+  description={<>Parabola <InlineMath math="4x^2 + x + 2" /> dengan garis singgung <InlineMath math="y = x + 2" /> di titik <InlineMath math="(0, 2)" />.</>}
+  cameraPosition={[-0.1, 3.4, 6]}
+  cameraTarget={[-0.1, 3.4, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -1 + (i / 400) * ((0.75) - (-1));
+        return { x, y: 4 * x ** 2 + x + 2, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="y = 4x^2 + x + 2" />, at: 30, offset: [0.3, 0, 0] }],
+    },
+    { points: [{ x: -0.6, y: 1.4, z: 0 }, { x: 0.6, y: 2.6, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="y = x + 2" />, at: 1, offset: [0.2, -0.2, 0] }] },
+    { points: [{ x: 0, y: 2, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="(0, 2)" />, at: 0, offset: [-0.5, 0.2, 0] }] }
+  ]}
+/>
+
+Turunan yang sama menemukan titik baliknya. <InlineMath math="8x + 1 = 0" /> di <InlineMath math="x = -\tfrac18" />, tempat garis singgungnya datar dan parabola mencapai nilai terendah <InlineMath math="\tfrac{31}{16}" />. Di <InlineMath math="x = 0{,}5" /> kemiringannya <InlineMath math="8(0{,}5) + 1 = 5" />, jauh lebih curam.
+
+<LineEquation
+  title="Kemiringan 0 dan 5 pada parabola yang sama"
+  description={<>Parabola <InlineMath math="4x^2 + x + 2" /> dengan garis singgung datar di puncaknya <InlineMath math="(-\tfrac18, \tfrac{31}{16})" /> dan garis singgung berkemiringan 5 di <InlineMath math="(0{,}5;\ 3{,}5)" />.</>}
+  cameraPosition={[-0.1, 3.4, 6]}
+  cameraTarget={[-0.1, 3.4, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -1 + (i / 400) * ((0.75) - (-1));
+        return { x, y: 4 * x ** 2 + x + 2, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+    },
+    { points: [{ x: -1 / 8 - 0.35, y: 31 / 16, z: 0 }, { x: -1 / 8 + 0.35, y: 31 / 16, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="0" />, at: 1, offset: [0.15, 0.1, 0] }] },
+    { points: [{ x: 0.25, y: 2.25, z: 0 }, { x: 0.75, y: 4.75, z: 0 }], smooth: false, showPoints: false, color: "#8242e5", labels: [{ text: <InlineMath math="5" />, at: 1, offset: [0.15, 0, 0] }] },
+    { points: [{ x: -1 / 8, y: 31 / 16, z: 0 }], smooth: false, showPoints: true, color: "#0d9488" },
+    { points: [{ x: 0.5, y: 3.5, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" }
+  ]}
+/>
 
 ### Menurunkan Ekspresi Berbentuk Akar
 

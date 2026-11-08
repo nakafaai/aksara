@@ -3,7 +3,7 @@ export const metadata = {
     description: "Turunkan fungsi komposisi dengan aturan rantai melalui contoh fungsi pangkat dan trigonometri.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-23",
+    dateModified: "2026-11-08",
     subject: "Turunan Fungsi",
 };
 
@@ -24,6 +24,15 @@ Secara formal, jika kita memisalkan <InlineMath math="u = g(x)" />, maka <Inline
 <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}" />
 
 Inilah **aturan rantai**. <Highlight>Kerjakan dari lapisan terluar ke dalam</Highlight>, pertahankan setiap ekspresi dalam sampai gilirannya diturunkan, lalu kalikan semua turunan.
+
+<Mermaid
+  title="Cara aturan rantai menghubungkan dua laju"
+  description="Saat y bergantung pada u dan u bergantung pada x, laju y terhadap x adalah hasil kali kedua laju itu."
+  chart={`flowchart LR
+  X["x"] -->|"du/dx"| U["u = g(x)"]
+  U -->|"dy/du"| Y["y = f(u)"]
+  Y --> R["dy/dx = dy/du · du/dx"]`}
+/>
 
 ## Penerapan Aturan Rantai
 
@@ -59,6 +68,30 @@ Terakhir, kita substitusikan kembali <InlineMath math="u" /> dan sederhanakan ek
     <BlockMath math="\frac{dy}{dx} = (16x - 32)(x^2 - 4x - 2)^7" />
 </MathContainer>
 
+Untuk <InlineMath math="y = (x^2 - 4x - 2)^8" />, lihat fungsi dalamnya saja, <InlineMath math="u = x^2 - 4x - 2" />. Garis singgungnya datar di <InlineMath math="x = 2" />, tempat <InlineMath math="\frac{du}{dx} = 2x - 4 = 0" />. Jadi <InlineMath math="\frac{dy}{dx} = 8u^7 (2x - 4)" /> juga <InlineMath math="0" /> di situ, berapa pun faktor luarnya, <InlineMath math="8u^7" />.
+
+<LineEquation
+  title="Fungsi dalam yang datar membuat seluruh turunan nol"
+  description={<>Fungsi dalam <InlineMath math="u = x^2 - 4x - 2" /> dengan garis singgung datar di <InlineMath math="(2, -6)" />.</>}
+  cameraPosition={[2, -4, 7]}
+  cameraTarget={[2, -4, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = 0 + (i / 400) * ((4) - (0));
+        return { x, y: x ** 2 - 4 * x - 2, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="u = x^2 - 4x - 2" />, at: 380, offset: [0.3, 0, 0] }],
+    },
+    { points: [{ x: 1.2, y: -6, z: 0 }, { x: 2.8, y: -6, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="\frac{du}{dx} = 0" />, at: 1, offset: [0.2, -0.3, 0] }] },
+    { points: [{ x: 2, y: -6, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" }
+  ]}
+/>
+
 ### Fungsi Trigonometri
 
 Sudut pada fungsi trigonometri dinyatakan dalam **radian**, sehingga turunan sinus dan kosinus berlaku tanpa faktor konversi sudut.
@@ -93,6 +126,32 @@ Sekarang, substitusikan kembali <InlineMath math="u" /> dan <InlineMath math="v"
     <BlockMath math="\frac{dy}{dx} = 16\cos^3(v)\sin(v)" />
     <BlockMath math="\frac{dy}{dx} = 16\cos^3(3 - 4x)\sin(3 - 4x)" />
 </MathContainer>
+
+Fungsi dalam menentukan kecepatannya. <InlineMath math="\sin x" /> dan <InlineMath math="\sin 2x" /> punya fungsi luar yang sama, tetapi fungsi dalam <InlineMath math="u = 2x" /> berjalan dua kali lebih cepat. Di <InlineMath math="x = 0" />, garis singgung <InlineMath math="\sin x" /> berkemiringan <InlineMath math="\cos 0 = 1" />, dan garis singgung <InlineMath math="\sin 2x" /> berkemiringan <InlineMath math="\cos 0 \cdot 2 = 2" />. Faktor tambahan 2 itu adalah turunan fungsi dalam.
+
+<LineEquation
+  title="Turunan fungsi dalam menggandakan kemiringan"
+  description={<>Kurva <InlineMath math="\sin x" /> dan <InlineMath math="\sin 2x" /> untuk <InlineMath math="-\pi \le x \le \pi" /> dengan garis singgungnya di titik asal, berkemiringan 1 dan 2.</>}
+  cameraPosition={[0, 0, 8]}
+  cameraTarget={[0, 0, 0]}
+  showZAxis={false}
+  data={[
+    {
+      curve: { kind: "sin", amplitude: 1, frequency: 1, phase: 0, shift: 0, domain: [-Math.PI, Math.PI] },
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+    },
+    {
+      curve: { kind: "sin", amplitude: 1, frequency: 2, phase: 0, shift: 0, domain: [-Math.PI, Math.PI] },
+      smooth: false,
+      showPoints: false,
+      color: "#8242e5",
+    },
+    { points: [{ x: -0.8, y: -0.8, z: 0 }, { x: 0.8, y: 0.8, z: 0 }], smooth: false, showPoints: false, color: "#bb6800", labels: [{ text: <InlineMath math="\sin x" />, at: 1, offset: [0.2, 0, 0] }] },
+    { points: [{ x: -0.6, y: -1.2, z: 0 }, { x: 0.6, y: 1.2, z: 0 }], smooth: false, showPoints: false, color: "#8242e5", labels: [{ text: <InlineMath math="\sin 2x" />, at: 1, offset: [0.2, 0, 0] }] }
+  ]}
+/>
 
 ## Latihan
 

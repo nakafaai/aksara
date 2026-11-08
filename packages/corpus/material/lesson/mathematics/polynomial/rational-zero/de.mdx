@@ -3,7 +3,7 @@ export const metadata = {
   description: "Mit dem Satz über rationale Nullstellen mögliche Polynomwurzeln bestimmen und Polynome höheren Grades faktorisieren.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Polynom",
 };
 
@@ -23,6 +23,17 @@ Wenn das Polynom <InlineMath math="P(x)" /> eine rationale Nullstelle (Wurzel) d
 - <InlineMath math="q" /> muss ein Faktor des führenden Koeffizienten <InlineMath math="a_n" /> sein.
 
 Der Satz liefert nur **mögliche** rationale Nullstellen. Jeder Kandidat <InlineMath math="\frac{p}{q}" /> muss anschließend geprüft werden.
+
+<Mermaid
+  title="Rationale Nullstellen suchen"
+  description="Bilde p/q aus den Teilern des Absolutglieds und des Leitkoeffizienten, test jeden Kandidaten und spalte jede gefundene Nullstelle ab."
+  chart={`flowchart TD
+  A["Teiler p von a₀ und q von aₙ"] --> B["Kandidaten ± p/q"]
+  B --> C["Testen durch Einsetzen oder Horner"]
+  C -->|"P(c) = 0"| D["(x − c) abspalten"]
+  D --> E["Mit dem kleineren Quotienten wiederholen"]
+  C -->|"P(c) ≠ 0"| F["c verwerfen"]`}
+/>
 
 ## Den Satz über rationale Nullstellen anwenden
 
@@ -94,6 +105,67 @@ Faktorisiere <InlineMath math="x^2 + 5x + 6" />.
 **Schritt 8**. Vollständige Faktorisierung
 
 <BlockMath math="P(x) = (x-3)(x+2)(x+3)" />
+
+Der Satz macht aus einer endlosen Suche eine kurze Liste. Für <InlineMath math="x^3 + 2x^2 - 9x - 18" /> muss jede rationale Nullstelle einer der zwölf Kandidaten <InlineMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" /> sein. Nach dem Testen bleiben genau drei Nullstellen übrig, <InlineMath math="-3" />, <InlineMath math="-2" /> und <InlineMath math="3" />, hervorgehoben auf dem Zahlenstrahl.
+
+<MathVisual
+  title="Zwölf Kandidaten, drei Nullstellen"
+  description={<>Die zwölf rationalen Kandidaten auf einem Zahlenstrahl, die drei echten Nullstellen <InlineMath math="-3" />, <InlineMath math="-2" /> und <InlineMath math="3" /> hervorgehoben.</>}
+  labels={{
+    m3: <InlineMath math="-3" />,
+    m2: <InlineMath math="-2" />,
+    p3: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -19, max: 19 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -19, y: 0 }, to: { x: 19, y: 0 }, appearance: "reference" },
+      { id: "m18", kind: "point", at: { x: -18, y: 0 }, appearance: "reference" },
+      { id: "m9", kind: "point", at: { x: -9, y: 0 }, appearance: "reference" },
+      { id: "m6", kind: "point", at: { x: -6, y: 0 }, appearance: "reference" },
+      { id: "m3", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "m2", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "m1", kind: "point", at: { x: -1, y: 0 }, appearance: "reference" },
+      { id: "p1", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "p2", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "p3", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "p6", kind: "point", at: { x: 6, y: 0 }, appearance: "reference" },
+      { id: "p9", kind: "point", at: { x: 9, y: 0 }, appearance: "reference" },
+      { id: "p18", kind: "point", at: { x: 18, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "m3", objectId: "m3", at: { x: -3, y: 0 }, placement: "above" },
+      { key: "m2", objectId: "m2", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "p3", objectId: "p3", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+Vergrößer den linken Teil der kubischen Funktion: Sie kreuzt die x-Achse bei <InlineMath math="-3" /> und <InlineMath math="-2" />, mit einem kleinen Buckel dazwischen, den man ohne Kandidatenliste leicht übersieht. Der dritte Schnittpunkt liegt bei <InlineMath math="3" />, also <InlineMath math="P(x) = (x - 3)(x + 2)(x + 3)" />.
+
+<LineEquation
+  title="Die kubische Funktion kreuzt bei ihren drei rationalen Nullstellen"
+  description={<>Der Graph von <InlineMath math="x^3 + 2x^2 - 9x - 18" /> für <InlineMath math="-3{,}4 \le x \le -1{,}6" />, mit Schnittpunkten bei <InlineMath math="-3" /> und <InlineMath math="-2" />.</>}
+  cameraPosition={[-2.5, -1, 6]}
+  cameraTarget={[-2.5, -1, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -3.4 + (i / 400) * ((-1.6) - (-3.4));
+        return { x, y: x ** 3 + 2 * x ** 2 - 9 * x - 18, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="P(x)" />, at: 300, offset: [0.3, 0, 0] }],
+    },
+    { points: [{ x: -3, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="-3" />, at: 0, offset: [-0.15, -0.3, 0] }] },
+    { points: [{ x: -2, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="-2" />, at: 0, offset: [0.1, -0.3, 0] }] }
+  ]}
+/>
 
 ## Übung
 

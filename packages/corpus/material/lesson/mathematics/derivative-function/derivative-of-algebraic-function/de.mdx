@@ -3,13 +3,25 @@ export const metadata = {
   description: "Algebraische Funktionen mit Potenz-, Produkt- und Quotientenregel ableiten und die passende Methode für Polynome, Wurzeln und rationale Funktionen auswählen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Ableitungsfunktionen",
 };
 
 ## Anwendung der Ableitungsregeln
 
 Die [Ableitungsregeln](/de/faecher/mathematik/ableitungen/ableitungsregeln) gelten für viele algebraische Formen. Bestimme bei einem Polynom, einer rationalen Funktion oder einem Wurzelausdruck <Highlight>zuerst die Struktur</Highlight> und wähle dann <Highlight>die passende Regel</Highlight>. Die folgenden Beispiele begründen jede Auswahl.
+
+<Mermaid
+  title="4x² + x + 2 gliedweise ableiten"
+  description="Die Ableitung einer Summe ist die Summe der Ableitungen, also wird jedes Glied mit Potenz-, Faktor- und Konstantenregel abgeleitet."
+  chart={`flowchart LR
+  A["4x²"] -->|"Potenz- und Faktorregel"| A1["8x"]
+  B["x"] -->|"Potenzregel"| B1["1"]
+  C["2"] -->|"Konstantenregel"| C1["0"]
+  A1 --> S["y′ = 8x + 1"]
+  B1 --> S
+  C1 --> S`}
+/>
 
 ## Ableitungsregeln auf algebraische Funktionen anwenden
 
@@ -26,6 +38,55 @@ Wir können jeden Term einzeln differenzieren, indem wir die Potenzregel und die
 <BlockMath math="\begin{aligned}y'&=4(2x)+1+0\\&=8x+1\end{aligned}" />
 
 Die Ableitung des linearen Terms <InlineMath math="x" /> ist <InlineMath math="1" />, die Ableitung der Konstanten <InlineMath math="2" /> ist <InlineMath math="0" />. Das Ergebnis <InlineMath math="8x+1" /> gilt für alle reellen Zahlen, auch für <InlineMath math="x=0" />.
+
+Die Ableitung <InlineMath math="y' = 8x + 1" /> liefert die Steigung in jedem Punkt von <InlineMath math="y = 4x^2 + x + 2" />. Bei <InlineMath math="x = 0" /> ist sie <InlineMath math="1" />, die Tangente dort ist also <InlineMath math="y = x + 2" />. Dreh die Szene und vergleich die Steilheit der Kurve mit der Tangente.
+
+<LineEquation
+  title="Tangente der Parabel bei x = 0"
+  description={<>Die Parabel <InlineMath math="4x^2 + x + 2" /> mit ihrer Tangente <InlineMath math="y = x + 2" /> im Punkt <InlineMath math="(0, 2)" />.</>}
+  cameraPosition={[-0.1, 3.4, 6]}
+  cameraTarget={[-0.1, 3.4, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -1 + (i / 400) * ((0.75) - (-1));
+        return { x, y: 4 * x ** 2 + x + 2, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="y = 4x^2 + x + 2" />, at: 30, offset: [0.3, 0, 0] }],
+    },
+    { points: [{ x: -0.6, y: 1.4, z: 0 }, { x: 0.6, y: 2.6, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="y = x + 2" />, at: 1, offset: [0.2, -0.2, 0] }] },
+    { points: [{ x: 0, y: 2, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="(0, 2)" />, at: 0, offset: [-0.5, 0.2, 0] }] }
+  ]}
+/>
+
+Dieselbe Ableitung findet den Tiefpunkt. <InlineMath math="8x + 1 = 0" /> gilt bei <InlineMath math="x = -\tfrac18" />, dort ist die Tangente waagerecht, und die Parabel erreicht ihren kleinsten Wert <InlineMath math="\tfrac{31}{16}" />. Bei <InlineMath math="x = 0{,}5" /> ist die Steigung <InlineMath math="8 \cdot 0{,}5 + 1 = 5" />, viel steiler.
+
+<LineEquation
+  title="Steigung 0 und 5 an derselben Parabel"
+  description={<>Die Parabel <InlineMath math="4x^2 + x + 2" /> mit waagerechter Tangente im Scheitel <InlineMath math="(-\tfrac18 \mid \tfrac{31}{16})" /> und einer Tangente mit Steigung 5 bei <InlineMath math="(0{,}5 \mid 3{,}5)" />.</>}
+  cameraPosition={[-0.1, 3.4, 6]}
+  cameraTarget={[-0.1, 3.4, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -1 + (i / 400) * ((0.75) - (-1));
+        return { x, y: 4 * x ** 2 + x + 2, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+    },
+    { points: [{ x: -1 / 8 - 0.35, y: 31 / 16, z: 0 }, { x: -1 / 8 + 0.35, y: 31 / 16, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="0" />, at: 1, offset: [0.15, 0.1, 0] }] },
+    { points: [{ x: 0.25, y: 2.25, z: 0 }, { x: 0.75, y: 4.75, z: 0 }], smooth: false, showPoints: false, color: "#8242e5", labels: [{ text: <InlineMath math="5" />, at: 1, offset: [0.15, 0, 0] }] },
+    { points: [{ x: -1 / 8, y: 31 / 16, z: 0 }], smooth: false, showPoints: true, color: "#0d9488" },
+    { points: [{ x: 0.5, y: 3.5, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" }
+  ]}
+/>
 
 ### Funktionen mit Wurzeln ableiten
 

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Konstanten-, Potenz-, Summen-, Produkt-, Quotienten- und Kettenregel verstehen und in vollständigen Ableitungen verbinden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Ableitungsfunktionen",
 };
 
@@ -41,6 +41,51 @@ Seien <InlineMath math="u(x)" /> und <InlineMath math="v(x)" /> differenzierbare
 
    <BlockMath math="\begin{aligned} f(x) &amp;=u(x)\pm v(x) \\ f'(x)&amp;=u'(x)\pm v'(x) \end{aligned}" />
 
+Steigungen addieren sich wie die Funktionen. Bei <InlineMath math="x = 1" /> hat die Tangente an <InlineMath math="x^2" /> die Steigung <InlineMath math="2" /> und die Tangente an <InlineMath math="x" /> die Steigung <InlineMath math="1" />. Die Tangente an ihre Summe <InlineMath math="x^2 + x" /> hat die Steigung <InlineMath math="2 + 1 = 3" />. Genau so arbeitet die Regel für Linearkombinationen.
+
+<LineEquation
+  title="Die Steigung einer Summe ist die Summe der Steigungen"
+  description={<>Die Kurven <InlineMath math="x^2" />, <InlineMath math="x" /> und <InlineMath math="x^2 + x" /> mit ihren Tangenten bei <InlineMath math="x = 1" />, mit den Steigungen 2, 1 und 3.</>}
+  cameraPosition={[0.8, 2.5, 9]}
+  cameraTarget={[0.8, 2.5, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -0.5 + (i / 400) * ((2) - (-0.5));
+        return { x, y: x ** 2, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="x^2" />, at: 400, offset: [0.25, 0, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -0.5 + (i / 400) * ((2) - (-0.5));
+        return { x, y: x, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#8242e5",
+      labels: [{ text: <InlineMath math="x" />, at: 400, offset: [0.25, 0, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -0.5 + (i / 400) * ((2) - (-0.5));
+        return { x, y: x ** 2 + x, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="x^2 + x" />, at: 400, offset: [0.25, 0, 0] }],
+    },
+    { points: [{ x: 0.5, y: 0, z: 0 }, { x: 1.5, y: 2, z: 0 }], smooth: false, showPoints: false, color: "#bb6800", labels: [{ text: <InlineMath math="2" />, at: 1, offset: [0.15, 0, 0] }] },
+    { points: [{ x: 0.5, y: 0.5, z: 0 }, { x: 1.5, y: 1.5, z: 0 }], smooth: false, showPoints: false, color: "#8242e5" },
+    { points: [{ x: 0.5, y: 0.5, z: 0 }, { x: 1.5, y: 3.5, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="3" />, at: 1, offset: [0.15, 0, 0] }] }
+  ]}
+/>
+
 ## Produktregel Quotientenregel und Kettenregel
 
 Manche Terme lassen sich nicht gliedweise ableiten. Diese Regeln sind nötig, weil die Ableitung einer Verknüpfung nicht die Verknüpfung der Ableitungen ist. Beim Produkt leitest du **jeweils einen Faktor** ab, während der andere stehen bleibt, und addierst beide Ergebnisse. Beim Quotienten tritt ein Nenner auf, und bei einer Verkettung multipliziert die innere Ableitung die äußere.
@@ -56,6 +101,36 @@ Setze <InlineMath math="u(x)=x^2" /> und <InlineMath math="v(x)=x+1" />. Wir bra
 <BlockMath math="\begin{aligned}f'(x)&=(2x)(x+1)+x^2(1)\\&=2x^2+2x+x^2\\&=3x^2+2x\end{aligned}" />
 
 Zur Kontrolle kannst du die ursprüngliche Funktion zu <InlineMath math="x^3+x^2" /> ausmultiplizieren. Wenn du beide Terme ableitest, erhältst du wieder <InlineMath math="3x^2+2x" />.
+
+Hier kommt die Produktregel her. Ein Rechteck mit den Seiten <InlineMath math="u = 2" /> und <InlineMath math="v = 3" /> hat den Flächeninhalt <InlineMath math="uv" />. Lass beide Seiten ein wenig wachsen, um <InlineMath math="\Delta u" /> und <InlineMath math="\Delta v" />: Die neue Fläche ist die alte plus zwei Streifen, <InlineMath math="\Delta u \cdot v" /> und <InlineMath math="u \cdot \Delta v" />, plus eine winzige Ecke <InlineMath math="\Delta u \Delta v" />. Teil durch <InlineMath math="\Delta x" /> und lass es schrumpfen: Die Ecke verschwindet, und <InlineMath math="(uv)' = u'v + uv'" /> bleibt.
+
+<MathVisual
+  title="Die Produktregel als wachsendes Rechteck"
+  description={<>Ein Rechteck mit Flächeninhalt <InlineMath math="uv" /> wächst um die Streifen <InlineMath math="\Delta u \cdot v" /> und <InlineMath math="u \cdot \Delta v" /> und eine kleine Ecke <InlineMath math="\Delta u \Delta v" />.</>}
+  labels={{
+    uv: <InlineMath math="uv" />,
+    du: <InlineMath math="\Delta u \cdot v" />,
+    dv: <InlineMath math="u \cdot \Delta v" />,
+    corner: <InlineMath math="\Delta u \Delta v" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3 }, y: { min: -0.5, max: 4.25 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "uv", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "du", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 2.5, y: 0 }, { x: 2.5, y: 3 }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "dv", kind: "polygon", vertices: [{ x: 0, y: 3 }, { x: 2, y: 3 }, { x: 2, y: 3.75 }, { x: 0, y: 3.75 }], appearance: "construction" },
+      { id: "corner", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: 2.5, y: 3 }, { x: 2.5, y: 3.75 }, { x: 2, y: 3.75 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "uv", objectId: "uv", at: { x: 1, y: 1.5 }, placement: "center" },
+      { key: "du", objectId: "du", at: { x: 2.5, y: 1.5 }, placement: "right" },
+      { key: "dv", objectId: "dv", at: { x: 1, y: 3.75 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 2.5, y: 3.75 }, placement: "above-right" },
+    ],
+  }}
+/>
 
 ### Quotientenregel
 
@@ -91,6 +166,18 @@ Die äußere Funktion erhebt ihren Eingang zur dritten Potenz. Die innere Funkti
 </MathContainer>
 
 Der Faktor <InlineMath math="2x" /> ist unverzichtbar. Ohne ihn hätten wir nur die äußere Funktion abgeleitet und die Kettenregel nicht vollständig angewendet.
+
+<Mermaid
+  title="Die Kettenregel für (x² + 1)³"
+  description="Die äußere Potenz wird mit unveränderter innerer Funktion abgeleitet und dann mit der Ableitung der inneren Funktion multipliziert."
+  chart={`flowchart LR
+  X["x"] -->|"u = x² + 1"| U["u"]
+  U -->|"f = u³"| F["f"]
+  F --> D1["df/du = 3u²"]
+  U --> D2["du/dx = 2x"]
+  D1 --> R["f′(x) = 3(x² + 1)² · 2x = 6x(x² + 1)²"]
+  D2 --> R`}
+/>
 
 ## Übung
 

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan Teorema Pembuat Nol Rasional untuk menyusun kandidat akar polinomial dan mengujinya secara bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Polinomial",
 };
 
@@ -23,6 +23,17 @@ Jika polinomial <InlineMath math="P(x)" /> memiliki akar rasional <InlineMath ma
 - <InlineMath math="q" /> pasti merupakan faktor dari koefisien utama <InlineMath math="a_n" />.
 
 Teorema ini hanya memberikan daftar **kemungkinan** akar rasional. Belum tentu semua nilai <InlineMath math="\frac{p}{q}" /> dari daftar tersebut benar-benar akar dari polinomialnya. Kita masih perlu mengujinya.
+
+<Mermaid
+  title="Mencari akar rasional"
+  description="Susun p/q dari faktor konstanta dan koefisien utama, uji setiap calon, lalu faktorkan setiap akar yang ditemukan."
+  chart={`flowchart TD
+  A["Faktor p dari a₀ dan q dari aₙ"] --> B["Calon ± p/q"]
+  B --> C["Uji dengan substitusi atau Horner"]
+  C -->|"P(c) = 0"| D["Faktorkan (x − c)"]
+  D --> E["Ulangi pada hasil bagi yang lebih kecil"]
+  C -->|"P(c) ≠ 0"| F["Buang c"]`}
+/>
 
 ## Langkah Teorema Pembuat Nol Rasional
 
@@ -94,6 +105,67 @@ Faktorkan <InlineMath math="x^2 + 5x + 6" />.
 **Langkah 8**. Faktorisasi Lengkap
 
 <BlockMath math="P(x) = (x-3)(x+2)(x+3)" />
+
+Teorema ini mengubah pencarian tanpa ujung menjadi daftar pendek. Untuk <InlineMath math="x^3 + 2x^2 - 9x - 18" />, setiap akar rasional pasti salah satu dari dua belas calon <InlineMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />. Setelah diuji, tersisa tepat tiga akar, <InlineMath math="-3" />, <InlineMath math="-2" />, dan <InlineMath math="3" />, yang disorot pada garis.
+
+<MathVisual
+  title="Dua belas calon, tiga akar"
+  description={<>Dua belas calon akar rasional pada garis bilangan, dengan tiga akar sebenarnya <InlineMath math="-3" />, <InlineMath math="-2" />, dan <InlineMath math="3" /> disorot.</>}
+  labels={{
+    m3: <InlineMath math="-3" />,
+    m2: <InlineMath math="-2" />,
+    p3: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -19, max: 19 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -19, y: 0 }, to: { x: 19, y: 0 }, appearance: "reference" },
+      { id: "m18", kind: "point", at: { x: -18, y: 0 }, appearance: "reference" },
+      { id: "m9", kind: "point", at: { x: -9, y: 0 }, appearance: "reference" },
+      { id: "m6", kind: "point", at: { x: -6, y: 0 }, appearance: "reference" },
+      { id: "m3", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "m2", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "m1", kind: "point", at: { x: -1, y: 0 }, appearance: "reference" },
+      { id: "p1", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "p2", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "p3", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "p6", kind: "point", at: { x: 6, y: 0 }, appearance: "reference" },
+      { id: "p9", kind: "point", at: { x: 9, y: 0 }, appearance: "reference" },
+      { id: "p18", kind: "point", at: { x: 18, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "m3", objectId: "m3", at: { x: -3, y: 0 }, placement: "above" },
+      { key: "m2", objectId: "m2", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "p3", objectId: "p3", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+Perbesar bagian kiri kubik ini: ia memotong sumbu x di <InlineMath math="-3" /> dan <InlineMath math="-2" />, dengan punuk pendek di antaranya yang mudah terlewat tanpa daftar calon. Perpotongan ketiga ada di <InlineMath math="3" />, jadi <InlineMath math="P(x) = (x - 3)(x + 2)(x + 3)" />.
+
+<LineEquation
+  title="Kubik memotong di tiga akar rasionalnya"
+  description={<>Grafik <InlineMath math="x^3 + 2x^2 - 9x - 18" /> untuk <InlineMath math="-3{,}4 \le x \le -1{,}6" />, memotong di <InlineMath math="-3" /> dan <InlineMath math="-2" />.</>}
+  cameraPosition={[-2.5, -1, 6]}
+  cameraTarget={[-2.5, -1, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -3.4 + (i / 400) * ((-1.6) - (-3.4));
+        return { x, y: x ** 3 + 2 * x ** 2 - 9 * x - 18, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="P(x)" />, at: 300, offset: [0.3, 0, 0] }],
+    },
+    { points: [{ x: -3, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="-3" />, at: 0, offset: [-0.15, -0.3, 0] }] },
+    { points: [{ x: -2, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="-2" />, at: 0, offset: [0.1, -0.3, 0] }] }
+  ]}
+/>
 
 ## Latihan
 

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Leite zusammengesetzte Potenz- und trigonometrische Funktionen mit der Kettenregel ab.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-23",
+    dateModified: "2026-11-08",
     subject: "Ableitungsfunktionen",
 };
 
@@ -24,6 +24,15 @@ Setzen wir <InlineMath math="u = g(x)" />, so wird daraus <InlineMath math="y = 
 <BlockMath math="\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}" />
 
 Das ist die **Kettenregel**: <Highlight>Wir arbeiten von außen nach innen</Highlight>, lassen jeden inneren Ausdruck stehen, bis er an der Reihe ist, und multiplizieren die Ableitungen.
+
+<Mermaid
+  title="Wie die Kettenregel zwei Änderungsraten verbindet"
+  description="Hängt y von u ab und u von x, dann ist die Änderungsrate von y nach x das Produkt der beiden Raten."
+  chart={`flowchart LR
+  X["x"] -->|"du/dx"| U["u = g(x)"]
+  U -->|"dy/du"| Y["y = f(u)"]
+  Y --> R["dy/dx = dy/du · du/dx"]`}
+/>
 
 ## Anwenden der Kettenregel
 
@@ -59,6 +68,30 @@ Zum Schluss setzen wir <InlineMath math="u" /> wieder ein und vereinfachen den A
     <BlockMath math="\frac{dy}{dx} = (16x - 32)(x^2 - 4x - 2)^7" />
 </MathContainer>
 
+Bei <InlineMath math="y = (x^2 - 4x - 2)^8" /> schau dir nur die innere Funktion <InlineMath math="u = x^2 - 4x - 2" /> an. Ihre Tangente ist bei <InlineMath math="x = 2" /> waagerecht, dort gilt <InlineMath math="\frac{du}{dx} = 2x - 4 = 0" />. Also ist auch <InlineMath math="\frac{dy}{dx} = 8u^7 (2x - 4)" /> dort <InlineMath math="0" />, egal wie groß der äußere Faktor <InlineMath math="8u^7" /> ist.
+
+<LineEquation
+  title="Eine flache innere Funktion macht die ganze Ableitung null"
+  description={<>Die innere Funktion <InlineMath math="u = x^2 - 4x - 2" /> mit ihrer waagerechten Tangente bei <InlineMath math="(2 \mid -6)" />.</>}
+  cameraPosition={[2, -4, 7]}
+  cameraTarget={[2, -4, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = 0 + (i / 400) * ((4) - (0));
+        return { x, y: x ** 2 - 4 * x - 2, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="u = x^2 - 4x - 2" />, at: 380, offset: [0.3, 0, 0] }],
+    },
+    { points: [{ x: 1.2, y: -6, z: 0 }, { x: 2.8, y: -6, z: 0 }], smooth: false, showPoints: false, color: "#0d9488", labels: [{ text: <InlineMath math="\frac{du}{dx} = 0" />, at: 1, offset: [0.2, -0.3, 0] }] },
+    { points: [{ x: 2, y: -6, z: 0 }], smooth: false, showPoints: true, color: "#8242e5" }
+  ]}
+/>
+
 ### Trigonometrische Funktionen
 
 Die Winkel der trigonometrischen Funktionen werden im **Bogenmaß** angegeben. Deshalb gelten die Ableitungsregeln für Sinus und Kosinus ohne einen zusätzlichen Umrechnungsfaktor.
@@ -93,6 +126,32 @@ Setze nun schrittweise wieder die Ausdrücke für <InlineMath math="u" /> und <I
     <BlockMath math="\frac{dy}{dx} = 16\cos^3(v)\sin(v)" />
     <BlockMath math="\frac{dy}{dx} = 16\cos^3(3 - 4x)\sin(3 - 4x)" />
 </MathContainer>
+
+Die innere Funktion bestimmt das Tempo. <InlineMath math="\sin x" /> und <InlineMath math="\sin 2x" /> haben dieselbe äußere Funktion, aber die innere Funktion <InlineMath math="u = 2x" /> läuft doppelt so schnell. Bei <InlineMath math="x = 0" /> hat die Tangente an <InlineMath math="\sin x" /> die Steigung <InlineMath math="\cos 0 = 1" />, die Tangente an <InlineMath math="\sin 2x" /> die Steigung <InlineMath math="\cos 0 \cdot 2 = 2" />. Der zusätzliche Faktor 2 ist die Ableitung der inneren Funktion.
+
+<LineEquation
+  title="Die innere Ableitung verdoppelt die Steigung"
+  description={<>Die Kurven <InlineMath math="\sin x" /> und <InlineMath math="\sin 2x" /> für <InlineMath math="-\pi \le x \le \pi" /> mit ihren Tangenten im Ursprung, mit den Steigungen 1 und 2.</>}
+  cameraPosition={[0, 0, 8]}
+  cameraTarget={[0, 0, 0]}
+  showZAxis={false}
+  data={[
+    {
+      curve: { kind: "sin", amplitude: 1, frequency: 1, phase: 0, shift: 0, domain: [-Math.PI, Math.PI] },
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+    },
+    {
+      curve: { kind: "sin", amplitude: 1, frequency: 2, phase: 0, shift: 0, domain: [-Math.PI, Math.PI] },
+      smooth: false,
+      showPoints: false,
+      color: "#8242e5",
+    },
+    { points: [{ x: -0.8, y: -0.8, z: 0 }, { x: 0.8, y: 0.8, z: 0 }], smooth: false, showPoints: false, color: "#bb6800", labels: [{ text: <InlineMath math="\sin x" />, at: 1, offset: [0.2, 0, 0] }] },
+    { points: [{ x: -0.6, y: -1.2, z: 0 }, { x: 0.6, y: 1.2, z: 0 }], smooth: false, showPoints: false, color: "#8242e5", labels: [{ text: <InlineMath math="\sin 2x" />, at: 1, offset: [0.2, 0, 0] }] }
+  ]}
+/>
 
 ## Übungen
 

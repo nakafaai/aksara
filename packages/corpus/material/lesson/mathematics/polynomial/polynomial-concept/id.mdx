@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gabungkan monomial menjadi polinomial dan tentukan ekspresi aljabar yang memenuhi definisi polinomial.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Polinomial",
 };
 
@@ -32,6 +32,49 @@ Pada <InlineMath math="2x^2y" />, **koefisiennya** adalah <InlineMath math="2" /
 | <InlineMath math="x+2\sqrt{x}" /> | Pangkat pada suku akar adalah <InlineMath math="1/2" />. | Bukan polinomial |
 | <InlineMath math="2x^3-5x^{-2}+1" /> | Pangkat negatif muncul pada suku <InlineMath math="-5x^{-2}" />. | Bukan polinomial |
 
+Polinomial dibangun dengan menjumlahkan monomial, dan kamu bisa melihat penjumlahannya. Kurva oranye adalah <InlineMath math="\tfrac14 x^3" />, garis ungu adalah <InlineMath math="-x" />, dan kurva hijau toska adalah jumlahnya, <InlineMath math="P(x) = \tfrac14 x^3 - x" />. Di <InlineMath math="x = 2" />, kedua suku bernilai <InlineMath math="2" /> dan <InlineMath math="-2" />, jadi <InlineMath math="P(2) = 0" />.
+
+<LineEquation
+  title="Polinomial sebagai jumlah monomial"
+  description={<>Monomial <InlineMath math="\tfrac14 x^3" /> dan <InlineMath math="-x" /> serta jumlahnya <InlineMath math="P(x)" />, yang memotong sumbu x di 2 karena kedua suku saling meniadakan.</>}
+  cameraPosition={[0, 0, 9]}
+  cameraTarget={[0, 0, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -2.5 + (i / 400) * ((2.5) - (-2.5));
+        return { x, y: x ** 3 / 4, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="\tfrac14 x^3" />, at: 380, offset: [0.2, 0, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -2.5 + (i / 400) * ((2.5) - (-2.5));
+        return { x, y: -x, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#8242e5",
+      labels: [{ text: <InlineMath math="-x" />, at: 20, offset: [-0.2, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -2.5 + (i / 400) * ((2.5) - (-2.5));
+        return { x, y: x ** 3 / 4 - x, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="P(x)" />, at: 330, offset: [0.3, -0.3, 0] }],
+    },
+    { points: [{ x: 2, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#0d9488", labels: [{ text: <InlineMath math="P(2) = 0" />, at: 0, offset: [0.3, -0.4, 0] }] }
+  ]}
+/>
+
 ### Pengurangan sebagai Penjumlahan
 
 Tanda minus tidak menghalangi suatu bentuk menjadi polinomial. Pengurangan sama dengan <Highlight>menambahkan suku berkoefisien negatif</Highlight>. Variabel dan pangkat pada suku tersebut tetap sama:
@@ -39,6 +82,41 @@ Tanda minus tidak menghalangi suatu bentuk menjadi polinomial. Pengurangan sama 
 <BlockMath math="4x^3y-3x^2=4x^3y+(-3x^2)" />
 
 Coba <InlineMath math="x=1" /> dan <InlineMath math="y=2" />. Kedua cara menulis menghasilkan <InlineMath math="8-3=8+(-3)=5" />. Yang berubah hanya cara menulis operasinya, bukan nilai atau pangkat variabel.
+
+Setiap bagian polinomial tampak di grafiknya. Untuk <InlineMath math="P(x) = x^2 - 2x - 3" />, suku tetap <InlineMath math="-3" /> adalah titik potong kurva dengan sumbu y, dan koefisien utama <InlineMath math="1" /> yang positif membuatnya terbuka ke atas.
+
+<MathVisual
+  title="Membaca polinomial dari grafiknya"
+  description={<>Parabola <InlineMath math="x^2 - 2x - 3" /> dengan titik potong sumbu y di suku tetap <InlineMath math="-3" />.</>}
+  labels={{
+    p: <InlineMath math="P(x) = x^2 - 2x - 3" />,
+    c: <InlineMath math="P(0) = -3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: -4.5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -2, c: -3 }, domain: { min: -2, max: 4 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 0, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 3.5, y: 2.25 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 0, y: -3 }, placement: "left" },
+    ],
+  }}
+/>
+
+<Mermaid
+  title="Bagian-bagian polinomial"
+  description="Polinomial adalah jumlah suku-suku monomial. Setiap suku punya koefisien dan variabel berpangkat bilangan cacah, dan pengurangan dihitung sebagai menambahkan suku negatif."
+  chart={`flowchart TD
+  P["Polinomial"] --> T["Suku: monomial yang dijumlahkan"]
+  T --> C["Koefisien"]
+  T --> V["Variabel"]
+  T --> E["Pangkat: bilangan cacah"]
+  P --> S["Pengurangan: tambahkan suku negatif"]`}
+/>
 
 ## Latihan
 

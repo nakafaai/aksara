@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bagi polinomial secara bersusun untuk memperoleh hasil bagi dan sisa, lalu periksa keduanya melalui contoh dan latihan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Polinomial",
 };
 
@@ -32,6 +32,16 @@ Sebelum memulai pembagian, ada beberapa hal yang perlu dipersiapkan:
 3.  **Susun Pembagian**:
 
     Tulis pembagian dalam format bersusun, dengan <InlineMath math="P(x)" /> (yang sudah dilengkapi) di dalam simbol bagi dan <InlineMath math="Q(x)" /> di luar.
+
+Sebelum membagi, yang dibagi perlu tempat untuk setiap pangkat. <InlineMath math="4x^4 + 17x^3 - 3x + 1" /> tidak punya suku <InlineMath math="x^2" />, jadi ditulis <InlineMath math="4x^4 + 17x^3 + 0x^2 - 3x + 1" />. Diagram ini menunjukkan koefisien di setiap tempat, termasuk nol yang menjaga kolom tetap sejajar.
+
+<BarChart
+  title="Koefisien yang dibagi, termasuk nol"
+  description="Koefisien setiap pangkat x pada yang dibagi, dengan 0 untuk suku x kuadrat yang tidak ada."
+  yAxisLabel="Koefisien"
+  data={[["x⁴", 4], ["x³", 17], ["x²", 0], ["x", -3], ["1", 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Koefisien", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Langkah Pembagian Bersusun
 
@@ -114,6 +124,26 @@ Bentuk Perkalian:
 Pembagian bersusun mencatat setiap langkah pembagian, perkalian, dan pengurangan. Susunan yang eksplisit ini berlaku untuk pembagi berderajat positif berapa pun dan memudahkan pemeriksaan kembali melalui <InlineMath math="P(x)=Q(x)H(x)+S(x)" />.
 
 Bentuk pecahan hanya berlaku untuk input dengan <InlineMath math="Q(x)\ne0" />. Identitas perkalian tetap berlaku untuk semua input.
+
+Setiap langkah pembagian bersusun menurunkan derajat sisanya. Yang dibagi, <InlineMath math="4x^4 + 17x^3 - 3x + 1" />, berderajat 4. Setelah dikurangi <InlineMath math="4x^2(x^2 + 4x - 1)" />, sisanya berderajat 3, dan setelah dikurangi <InlineMath math="x(x^2 + 4x - 1)" />, tinggal <InlineMath math="-2x + 1" /> yang berderajat 1. Derajat itu di bawah derajat pembagi, yaitu 2, jadi pembagian berhenti.
+
+<BarChart
+  title="Derajat turun di setiap langkah"
+  description="Derajat yang dibagi dan setiap sisa selama pembagian bersusun oleh x kuadrat ditambah 4x dikurangi 1."
+  yAxisLabel="Derajat"
+  data={[["awal", 4], ["langkah 1", 3], ["langkah 2", 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Derajat", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+<Mermaid
+  title="Aturan berhenti pembagian bersusun"
+  description="Pembagian berlanjut selama derajat sisa paling tidak sama dengan derajat pembagi dan berhenti begitu lebih kecil."
+  chart={`flowchart TD
+  A["P(x) = 4x⁴ + 17x³ − 3x + 1"] -->|"− 4x²(x² + 4x − 1)"| B["x³ + 4x² − 3x + 1, derajat 3"]
+  B -->|"− x(x² + 4x − 1)"| C["−2x + 1, derajat 1"]
+  C --> D{"derajat 1 < derajat 2"}
+  D --> E["H(x) = 4x² + x, S(x) = −2x + 1"]`}
+/>
 
 ## Latihan
 

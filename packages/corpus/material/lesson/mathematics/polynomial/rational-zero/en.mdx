@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use the Rational Zero Theorem to list possible roots and factor high-degree polynomials.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Polynomial",
 };
 
@@ -23,6 +23,17 @@ If the polynomial <InlineMath math="P(x)" /> has a rational zero (root) of the f
 - <InlineMath math="q" /> must be a factor of the leading coefficient <InlineMath math="a_n" />.
 
 This theorem only provides a list of **possible** rational roots. Not all values of <InlineMath math="\frac{p}{q}" /> from the list are necessarily actual roots of the polynomial. We still need to test them.
+
+<Mermaid
+  title="Searching for rational roots"
+  description="List p/q from the factors of the constant and leading coefficients, test each candidate, and factor out every root you find."
+  chart={`flowchart TD
+  A["Factors p of a₀ and q of aₙ"] --> B["Candidates ± p/q"]
+  B --> C["Test with substitution or Horner"]
+  C -->|"P(c) = 0"| D["Factor out (x − c)"]
+  D --> E["Repeat on the smaller quotient"]
+  C -->|"P(c) ≠ 0"| F["Discard c"]`}
+/>
 
 ## Steps for Using the Rational Zero Theorem
 
@@ -94,6 +105,67 @@ Factor <InlineMath math="x^2 + 5x + 6" />.
 **Step 8**. Complete Factorization
 
 <BlockMath math="P(x) = (x-3)(x+2)(x+3)" />
+
+The theorem turns an endless search into a short list. For <InlineMath math="x^3 + 2x^2 - 9x - 18" /> every rational root must be one of the twelve candidates <InlineMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />. Testing them leaves exactly three roots, <InlineMath math="-3" />, <InlineMath math="-2" /> and <InlineMath math="3" />, highlighted on the line.
+
+<MathVisual
+  title="Twelve candidates, three roots"
+  description={<>The twelve rational candidates on a number line, with the three actual roots <InlineMath math="-3" />, <InlineMath math="-2" /> and <InlineMath math="3" /> highlighted.</>}
+  labels={{
+    m3: <InlineMath math="-3" />,
+    m2: <InlineMath math="-2" />,
+    p3: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -19, max: 19 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -19, y: 0 }, to: { x: 19, y: 0 }, appearance: "reference" },
+      { id: "m18", kind: "point", at: { x: -18, y: 0 }, appearance: "reference" },
+      { id: "m9", kind: "point", at: { x: -9, y: 0 }, appearance: "reference" },
+      { id: "m6", kind: "point", at: { x: -6, y: 0 }, appearance: "reference" },
+      { id: "m3", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "m2", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "m1", kind: "point", at: { x: -1, y: 0 }, appearance: "reference" },
+      { id: "p1", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "p2", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "p3", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "p6", kind: "point", at: { x: 6, y: 0 }, appearance: "reference" },
+      { id: "p9", kind: "point", at: { x: 9, y: 0 }, appearance: "reference" },
+      { id: "p18", kind: "point", at: { x: 18, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "m3", objectId: "m3", at: { x: -3, y: 0 }, placement: "above" },
+      { key: "m2", objectId: "m2", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "p3", objectId: "p3", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+Zoom in on the left part of the cubic: it crosses the x-axis at <InlineMath math="-3" /> and <InlineMath math="-2" />, with a short hump between them that is easy to miss without the candidate list. The third crossing is at <InlineMath math="3" />, so <InlineMath math="P(x) = (x - 3)(x + 2)(x + 3)" />.
+
+<LineEquation
+  title="The cubic crosses at its three rational roots"
+  description={<>The graph of <InlineMath math="x^3 + 2x^2 - 9x - 18" /> for <InlineMath math="-3.4 \le x \le -1.6" />, crossing at <InlineMath math="-3" /> and <InlineMath math="-2" />.</>}
+  cameraPosition={[-2.5, -1, 6]}
+  cameraTarget={[-2.5, -1, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = -3.4 + (i / 400) * ((-1.6) - (-3.4));
+        return { x, y: x ** 3 + 2 * x ** 2 - 9 * x - 18, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="P(x)" />, at: 300, offset: [0.3, 0, 0] }],
+    },
+    { points: [{ x: -3, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="-3" />, at: 0, offset: [-0.15, -0.3, 0] }] },
+    { points: [{ x: -2, y: 0, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="-2" />, at: 0, offset: [0.1, -0.3, 0] }] }
+  ]}
+/>
 
 ## Exercise
 

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Führe die schriftliche Polynomdivision aus und bestimme Quotient sowie Rest in Rechenbeispielen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Polynom",
 };
 
@@ -32,6 +32,16 @@ Vor der Division sind einige Vorbereitungen nötig:
 3.  **Divisionsschema aufbauen**:
 
     Schreibe die Division als schriftliches Schema. Das vervollständigte <InlineMath math="P(x)" /> steht unter dem Divisionsstrich, <InlineMath math="Q(x)" /> als Divisor davor.
+
+Vor dem Teilen braucht der Dividend einen Platz für jede Potenz. <InlineMath math="4x^4 + 17x^3 - 3x + 1" /> hat kein Glied mit <InlineMath math="x^2" />, also schreibst du <InlineMath math="4x^4 + 17x^3 + 0x^2 - 3x + 1" />. Das Diagramm zeigt den Koeffizienten an jedem Platz, auch die Null, die die Spalten ausgerichtet hält.
+
+<BarChart
+  title="Koeffizienten des Dividenden, Null eingeschlossen"
+  description="Der Koeffizient jeder Potenz von x im Dividenden, mit 0 für das fehlende Glied mit x Quadrat."
+  yAxisLabel="Koeffizient"
+  data={[["x⁴", 4], ["x³", 17], ["x²", 0], ["x", -3], ["1", 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Koeffizient", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Schritte der Polynomdivision
 
@@ -114,6 +124,26 @@ Multiplikationsform:
 Die Polynomdivision hält jeden Divisions-, Multiplikations- und Subtraktionsschritt fest. Diese Anordnung funktioniert für Divisoren beliebigen positiven Grades und erleichtert die Kontrolle mit <InlineMath math="P(x)=Q(x)H(x)+S(x)" />.
 
 Die Bruchform gilt nur für Eingaben mit <InlineMath math="Q(x)\ne0" />. Die Produktidentität gilt weiterhin für alle Eingaben.
+
+Jeder Schritt der Polynomdivision senkt den Grad des Rests. Der Dividend <InlineMath math="4x^4 + 17x^3 - 3x + 1" /> hat Grad 4. Nach Abziehen von <InlineMath math="4x^2(x^2 + 4x - 1)" /> hat der Rest Grad 3, und nach Abziehen von <InlineMath math="x(x^2 + 4x - 1)" /> bleibt nur <InlineMath math="-2x + 1" /> mit Grad 1. Das liegt unter dem Grad 2 des Divisors, die Division hört auf.
+
+<BarChart
+  title="Der Grad sinkt bei jedem Schritt"
+  description="Der Grad des Dividenden und jedes Rests während der Division durch x Quadrat plus 4x minus 1."
+  yAxisLabel="Grad"
+  data={[["Start", 4], ["Schritt 1", 3], ["Schritt 2", 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Grad", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+<Mermaid
+  title="Abbruchregel der Polynomdivision"
+  description="Die Division läuft weiter, solange der Rest mindestens den Grad des Divisors hat, und hört auf, sobald er kleiner ist."
+  chart={`flowchart TD
+  A["P(x) = 4x⁴ + 17x³ − 3x + 1"] -->|"− 4x²(x² + 4x − 1)"| B["x³ + 4x² − 3x + 1, Grad 3"]
+  B -->|"− x(x² + 4x − 1)"| C["−2x + 1, Grad 1"]
+  C --> D{"Grad 1 < Grad 2"}
+  D --> E["H(x) = 4x² + x, S(x) = −2x + 1"]`}
+/>
 
 ## Übung
 

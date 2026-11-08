@@ -3,7 +3,7 @@ export const metadata = {
    description: "Uraikan perhitungan limit yang kompleks menjadi langkah teratur dengan aturan jumlah, hasil kali, hasil bagi, pangkat, dan akar.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-23",
+   dateModified: "2026-11-08",
    subject: "Limit",
 };
 
@@ -59,6 +59,51 @@ Misalnya, ketika <InlineMath math="x\to2" />, limit <InlineMath math="x" /> adal
 
 <BlockMath math="\begin{aligned}\lim_{x\to2}[x+(x+1)]&=2+3=5\\\lim_{x\to2}[x-(x+1)]&=2-3=-1\end{aligned}" />
 
+Lihat aturan jumlah pada dua garis. Saat <InlineMath math="x \to 2" />, <InlineMath math="f(x) = \tfrac{x}{2} + 1" /> menuju <InlineMath math="2" /> dan <InlineMath math="g(x) = 3 - x" /> menuju <InlineMath math="1" />. Jumlahnya, <InlineMath math="f(x) + g(x) = 4 - \tfrac{x}{2}" />, menuju <InlineMath math="3 = 2 + 1" />, tepat jumlah kedua limit.
+
+<LineEquation
+  title="Limit jumlah adalah jumlah limit"
+  description={<>Garis <InlineMath math="f" />, <InlineMath math="g" />, dan <InlineMath math="f + g" /> dengan nilainya di <InlineMath math="x = 2" />: 2, 1, dan 3.</>}
+  cameraPosition={[2, 1.5, 8]}
+  cameraTarget={[2, 1.5, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = 0 + (i / 400) * ((4) - (0));
+        return { x, y: x / 2 + 1, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="f" />, at: 400, offset: [0.25, 0, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = 0 + (i / 400) * ((4) - (0));
+        return { x, y: 3 - x, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#8242e5",
+      labels: [{ text: <InlineMath math="g" />, at: 400, offset: [0.25, 0, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = 0 + (i / 400) * ((4) - (0));
+        return { x, y: 4 - x / 2, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="f + g" />, at: 400, offset: [0.25, 0, 0] }],
+    },
+    { points: [{ x: 2, y: 2, z: 0 }], smooth: false, showPoints: true, color: "#bb6800", labels: [{ text: <InlineMath math="2" />, at: 0, offset: [-0.3, 0.25, 0] }] },
+    { points: [{ x: 2, y: 1, z: 0 }], smooth: false, showPoints: true, color: "#8242e5", labels: [{ text: <InlineMath math="1" />, at: 0, offset: [-0.3, -0.3, 0] }] },
+    { points: [{ x: 2, y: 3, z: 0 }], smooth: false, showPoints: true, color: "#0d9488", labels: [{ text: <InlineMath math="3" />, at: 0, offset: [-0.3, 0.25, 0] }] }
+  ]}
+/>
+
 ### Sifat Perkalian
 
 Limit dari **hasil kali** dua fungsi sama dengan hasil kali **limit masing-masing fungsi**:
@@ -68,6 +113,49 @@ Limit dari **hasil kali** dua fungsi sama dengan hasil kali **limit masing-masin
 Misalnya, ketika <InlineMath math="x\to2" />, limit <InlineMath math="x" /> adalah <InlineMath math="2" /> dan limit <InlineMath math="x+1" /> adalah <InlineMath math="3" />. Aturan ini memberikan:
 
 <BlockMath math="\lim_{x\to2}x(x+1)=2\cdot3=6" />
+
+Aturan perkalian bekerja dengan cara yang sama. Kurva <InlineMath math="f(x)g(x) = (\tfrac{x}{2} + 1)(3 - x)" /> melewati <InlineMath math="(2, 2)" />, karena limitnya dikalikan: <InlineMath math="2 \cdot 1 = 2" />. Kurva hasil kalinya bukan garis lagi, tetapi limitnya tetap langsung berasal dari kedua faktornya.
+
+<LineEquation
+  title="Limit hasil kali adalah hasil kali limit"
+  description={<>Garis <InlineMath math="f" /> dan <InlineMath math="g" /> serta parabola <InlineMath math="fg" />, yang bernilai <InlineMath math="2 \cdot 1 = 2" /> di <InlineMath math="x = 2" />.</>}
+  cameraPosition={[2, 0, 9]}
+  cameraTarget={[2, 0, 0]}
+  showZAxis={false}
+  data={[
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = 0 + (i / 400) * ((4) - (0));
+        return { x, y: x / 2 + 1, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#bb6800",
+      labels: [{ text: <InlineMath math="f" />, at: 400, offset: [0.25, 0, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = 0 + (i / 400) * ((4) - (0));
+        return { x, y: 3 - x, z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#8242e5",
+      labels: [{ text: <InlineMath math="g" />, at: 400, offset: [0.25, 0, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, i) => {
+        const x = 0 + (i / 400) * ((4) - (0));
+        return { x, y: (x / 2 + 1) * (3 - x), z: 0 };
+      }),
+      smooth: false,
+      showPoints: false,
+      color: "#0d9488",
+      labels: [{ text: <InlineMath math="fg" />, at: 400, offset: [0.25, 0, 0] }],
+    },
+    { points: [{ x: 2, y: 2, z: 0 }], smooth: false, showPoints: true, color: "#0d9488", labels: [{ text: <InlineMath math="(2, 2)" />, at: 0, offset: [0.25, 0.3, 0] }] }
+  ]}
+/>
 
 ### Sifat Perkalian dengan Konstanta
 
@@ -138,6 +226,15 @@ Menggunakan sifat-sifat limit:
 <BlockMath math="= 3 \lim_{x \to 2} x^2 + 5 \lim_{x \to 2} x - 1" />
 <BlockMath math="\begin{aligned}  &amp;= 3(2)^2 + 5(2) - 1 \\ &amp;= 12 + 10 - 1 \\ &amp;= 21 \end{aligned}" />
 </MathContainer>
+
+<Mermaid
+  title="Menghitung limit polinomial dengan sifat-sifatnya"
+  description="Sifat jumlah, kelipatan konstanta, dan pangkat memecah limit menjadi bagian-bagian yang limitnya sudah diketahui, sama saja dengan menyubstitusikan x = 2."
+  chart={`flowchart LR
+  A["lim (3x² + 5x − 1) untuk x → 2"] -->|"jumlah dan selisih"| B["lim 3x² + lim 5x − lim 1"]
+  B -->|"kelipatan konstanta dan pangkat"| C["3·2² + 5·2 − 1"]
+  C --> D["21"]`}
+/>
 
 ### Limit Fungsi Rasional
 
