@@ -1,9 +1,27 @@
-Wer an **beiden Aktivitäten teilnimmt, wird doppelt gezählt**, wenn wir die Zahlen für Pfadfindergruppe und Futsal einfach addieren. Ziehe die Schnittmenge einmal ab. Mit <InlineMath math="P" /> für die Pfadfindergruppe und <InlineMath math="F" /> für Futsal erhalten wir:
+Ob die Summe zweier Zahlen durch 3 teilbar ist, hängt vom **Rest jeder Zahl bei Division durch 3** ab. Ordne die Zahlen 1 bis 20 nach ihrem Rest.
 
-<BlockMath math="\begin{aligned}n(P\cup F)&=n(P)+n(F)\\&\quad{}-n(P\cap F)\\&=12+15-7\\&=20\end{aligned}" />
+# Drei Restklassen
 
-Alle übrigen nehmen an keiner der beiden Aktivitäten teil:
+| Rest | Zahlen | Anzahl |
+| :---: | :---: | :---: |
+| 0 | 3, 6, 9, 12, 15, 18 | 6 |
+| 1 | 1, 4, 7, 10, 13, 16, 19 | 7 |
+| 2 | 2, 5, 8, 11, 14, 17, 20 | 7 |
 
-<BlockMath math="\begin{aligned}n\left((P\cup F)^c\right)&=30-20\\&=10\end{aligned}" />
+Die Klassen sind **nicht gleich groß**, weil 20 kein Vielfaches von 3 ist.
 
-Damit nehmen <InlineMath math="10" /> Schülerinnen und Schüler an keiner der beiden Aktivitäten teil.
+# Paare mit durch 3 teilbarer Summe
+
+Die Summe ist durch 3 teilbar, wenn **beide Zahlen den Rest 0 haben** oder **eine den Rest 1 und die andere den Rest 2 hat**.
+
+<BlockMath math="\begin{aligned}
+\text{Reste 0 und 0}&:\quad \binom62=15\\
+\text{Reste 1 und 2}&:\quad 7\cdot7=49\\
+n(A)&=15+49=64,\qquad n(S)=\binom{20}{2}=190
+\end{aligned}" />
+
+<BlockMath math="P(A)=\frac{64}{190}=\frac{32}{95}" />
+
+Der Wert <InlineMath math="\tfrac13" /> nimmt gleich große Klassen an. Der Wert <InlineMath math="\tfrac{3}{38}=\tfrac{15}{190}" /> zählt nur die Paare aus Vielfachen von 3, und <InlineMath math="\tfrac{49}{190}" /> nur die Paare mit den Resten 1 und 2.
+
+Die Wahrscheinlichkeit, dass die Summe durch 3 teilbar ist, beträgt also **<InlineMath math="\tfrac{32}{95}" />**.

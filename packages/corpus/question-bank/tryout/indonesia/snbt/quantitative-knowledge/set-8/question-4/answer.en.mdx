@@ -1,21 +1,26 @@
-Each value is **halved and then increased** as follows:
+Two statements can be checked by substitution. The other two need **the inverse formula** or a look at the value that <InlineMath math="f" /> never reaches.
 
-<BlockMath math="\begin{gathered}y_1=\frac{x_1}{2}+3,\\y_2=\frac{x_2}{2}+5,\\y_3=\frac{x_3}{2}+7,\dots\end{gathered}" />
+# Direct substitution
 
-Write the original sum as <InlineMath math="S=x_1+x_2+\dots+x_{10}" /> and the sum of the added terms <InlineMath math="3+5+\dots+21" /> as <InlineMath math="T" />. The new mean is:
+<BlockMath math="\begin{aligned}
+f(4)&=\frac{2\cdot4+1}{4-3}=\frac91=9\\
+f(0)&=\frac{0+1}{0-3}=-\frac13
+\end{aligned}" />
 
-<BlockMath math="\bar{y}=\frac{S/2+T}{10}" />
+The first statement is true. The second is false because **the denominator is negative**.
 
-First find the sum of the arithmetic sequence <InlineMath math="3, 5, 7, \dots" />. Its first term is <InlineMath math="a_1 = 3" /> and its common difference is <InlineMath math="d = 2" />. The tenth term is:
+# The inverse formula
 
-<BlockMath math="a_{10} = 3 + 9(2) = 21" />
+Write <InlineMath math="y=f(x)" /> and express <InlineMath math="x" /> in terms of <InlineMath math="y" />.
 
-The sum of the first <InlineMath math="10" /> terms is:
+<BlockMath math="\begin{aligned}
+y(x-3)&=2x+1\\
+xy-2x&=3y+1\\
+x&=\frac{3y+1}{y-2}
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}T=S_{10}&=\frac{10}{2}(3+21)\\&=5(24)\\&=120\end{aligned}" />
+So <InlineMath math="f^{-1}(x)=\dfrac{3x+1}{x-2}" /> and <InlineMath math="f^{-1}(5)=\dfrac{16}{3}" />, not 2. Check: <InlineMath math="f\left(\tfrac{16}{3}\right)=\dfrac{35/3}{7/3}=5" />. The third statement is false.
 
-The new average can be written as:
+The inverse formula **is undefined at <InlineMath math="y=2" />**. This means no <InlineMath math="x" /> gives <InlineMath math="f(x)=2" />. Trying it, <InlineMath math="2x+1=2x-6" /> gives <InlineMath math="1=-6" />, which is impossible. The fourth statement is true.
 
-<BlockMath math="\begin{aligned}\bar{y}&=\frac{S/2+120}{10}\\&=\frac12\cdot\frac{S}{10}+12\\&=\frac12x_0+12\end{aligned}" />
-
-Thus, the new average is <InlineMath math="\frac{1}{2}x_0 + 12" />.
+So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.

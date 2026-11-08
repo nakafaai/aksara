@@ -1,21 +1,26 @@
-Jeder Wert wird **halbiert und anschließend erhöht**:
+Zwei Aussagen lassen sich durch Einsetzen prüfen. Die anderen beiden brauchen **die Umkehrfunktion** oder einen Blick auf den Wert, den <InlineMath math="f" /> nie annimmt.
 
-<BlockMath math="\begin{gathered}y_1=\frac{x_1}{2}+3,\\y_2=\frac{x_2}{2}+5,\\y_3=\frac{x_3}{2}+7,\dots\end{gathered}" />
+# Direktes Einsetzen
 
-Mit <InlineMath math="S=x_1+x_2+\dots+x_{10}" /> bezeichnen wir die ursprüngliche Summe und mit <InlineMath math="T" /> die Summe der Ergänzungen <InlineMath math="3+5+\dots+21" />. Der neue Mittelwert lautet:
+<BlockMath math="\begin{aligned}
+f(4)&=\frac{2\cdot4+1}{4-3}=\frac91=9\\
+f(0)&=\frac{0+1}{0-3}=-\frac13
+\end{aligned}" />
 
-<BlockMath math="\bar{y}=\frac{S/2+T}{10}" />
+Die erste Aussage ist wahr. Die zweite ist falsch, weil **der Nenner negativ ist**.
 
-Zuerst bestimmen wir die Summe der arithmetischen Folge <InlineMath math="3, 5, 7, \dots" />. Ihr erstes Glied ist <InlineMath math="a_1 = 3" />, ihre Differenz <InlineMath math="d = 2" />. Das zehnte Glied lautet:
+# Die Umkehrfunktion
 
-<BlockMath math="a_{10} = 3 + 9(2) = 21" />
+Schreibe <InlineMath math="y=f(x)" /> und löse nach <InlineMath math="x" /> auf.
 
-Die Summe der ersten <InlineMath math="10" /> Glieder ist:
+<BlockMath math="\begin{aligned}
+y(x-3)&=2x+1\\
+xy-2x&=3y+1\\
+x&=\frac{3y+1}{y-2}
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}T=S_{10}&=\frac{10}{2}(3+21)\\&=5(24)\\&=120\end{aligned}" />
+Also ist <InlineMath math="f^{-1}(x)=\dfrac{3x+1}{x-2}" /> und <InlineMath math="f^{-1}(5)=\dfrac{16}{3}" />, nicht 2. Kontrolle: <InlineMath math="f\left(\tfrac{16}{3}\right)=\dfrac{35/3}{7/3}=5" />. Die dritte Aussage ist falsch.
 
-Damit ergibt sich für den neuen Mittelwert:
+Die Umkehrformel ist **für <InlineMath math="y=2" /> nicht definiert**. Es gibt also kein <InlineMath math="x" /> mit <InlineMath math="f(x)=2" />. Der Versuch <InlineMath math="2x+1=2x-6" /> führt auf <InlineMath math="1=-6" />, und das ist unmöglich. Die vierte Aussage ist wahr.
 
-<BlockMath math="\begin{aligned}\bar{y}&=\frac{S/2+120}{10}\\&=\frac12\cdot\frac{S}{10}+12\\&=\frac12x_0+12\end{aligned}" />
-
-Der neue Mittelwert ist also <InlineMath math="\frac{1}{2}x_0 + 12" />.
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.

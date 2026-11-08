@@ -1,21 +1,26 @@
-Setiap data mengalami **pembagian dua dan penambahan** berikut:
+Dua pernyataan cukup diperiksa dengan substitusi. Dua lainnya memerlukan **rumus invers** atau pengamatan tentang nilai yang tidak pernah dicapai <InlineMath math="f" />.
 
-<BlockMath math="\begin{gathered}y_1=\frac{x_1}{2}+3,\\y_2=\frac{x_2}{2}+5,\\y_3=\frac{x_3}{2}+7,\dots\end{gathered}" />
+# Substitusi langsung
 
-Tuliskan jumlah data awal sebagai <InlineMath math="S=x_1+x_2+\dots+x_{10}" />. Jumlah tambahan <InlineMath math="3+5+\dots+21" /> kita tuliskan sebagai <InlineMath math="T" />. Rata-rata data baru adalah:
+<BlockMath math="\begin{aligned}
+f(4)&=\frac{2\cdot4+1}{4-3}=\frac91=9\\
+f(0)&=\frac{0+1}{0-3}=-\frac13
+\end{aligned}" />
 
-<BlockMath math="\bar{y}=\frac{S/2+T}{10}" />
+Pernyataan pertama benar. Pernyataan kedua salah karena **tanda penyebutnya negatif**.
 
-Pertama, kita cari jumlah barisan aritmetika <InlineMath math="3, 5, 7, \dots" />. Suku pertamanya <InlineMath math="a_1 = 3" /> dan bedanya <InlineMath math="d = 2" />. Suku kesepuluh adalah:
+# Rumus invers
 
-<BlockMath math="a_{10} = 3 + 9(2) = 21" />
+Tulis <InlineMath math="y=f(x)" />, lalu nyatakan <InlineMath math="x" /> dalam <InlineMath math="y" />.
 
-Jumlah <InlineMath math="10" /> suku pertama adalah:
+<BlockMath math="\begin{aligned}
+y(x-3)&=2x+1\\
+xy-2x&=3y+1\\
+x&=\frac{3y+1}{y-2}
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}T=S_{10}&=\frac{10}{2}(3+21)\\&=5(24)\\&=120\end{aligned}" />
+Jadi <InlineMath math="f^{-1}(x)=\dfrac{3x+1}{x-2}" /> dan <InlineMath math="f^{-1}(5)=\dfrac{16}{3}" />, bukan 2. Pemeriksaan: <InlineMath math="f\left(\tfrac{16}{3}\right)=\dfrac{35/3}{7/3}=5" />. Pernyataan ketiga salah.
 
-Rata-rata data baru dapat ditulis sebagai berikut:
+Rumus invers **tidak terdefinisi saat <InlineMath math="y=2" />**. Artinya tidak ada <InlineMath math="x" /> dengan <InlineMath math="f(x)=2" />. Jika dicoba, <InlineMath math="2x+1=2x-6" /> memberi <InlineMath math="1=-6" />, yang mustahil. Pernyataan keempat benar.
 
-<BlockMath math="\begin{aligned}\bar{y}&=\frac{S/2+120}{10}\\&=\frac12\cdot\frac{S}{10}+12\\&=\frac12x_0+12\end{aligned}" />
-
-Jadi, rata-rata barunya adalah <InlineMath math="\frac{1}{2}x_0 + 12" />.
+Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.

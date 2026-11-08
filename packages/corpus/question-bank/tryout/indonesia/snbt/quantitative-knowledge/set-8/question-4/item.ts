@@ -3,27 +3,15 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "$$f(4)=9$$" },
+        { column: 2, label: "$$f(0)=\\dfrac13$$" },
+        { column: 2, label: "$$f^{-1}(5)=2$$" },
         {
-          correct: false,
-          label: "$$x_0 + 11$$",
-        },
-        {
-          correct: false,
-          label: "$$x_0 + 12$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1}{2}x_0 + 11$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1}{2}x_0 + 21$$",
-        },
-        {
-          correct: true,
-          label: "$$\\frac{1}{2}x_0 + 12$$",
+          column: 1,
+          label: "Tidak ada bilangan real $$x$$ yang memenuhi $$f(x)=2$$.",
         },
       ],
     },

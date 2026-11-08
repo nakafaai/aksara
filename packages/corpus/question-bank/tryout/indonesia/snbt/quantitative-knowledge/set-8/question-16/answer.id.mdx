@@ -1,33 +1,18 @@
-Kita gunakan **selisih dua suku berurutan** untuk mengikuti aturan barisan berikut:
+Jangkauan antarkuartil adalah **selisih kuartil atas dan kuartil bawah**, <InlineMath math="Q_3-Q_1" />. Kuartil hanya dapat dibaca setelah data diurutkan.
 
-<BlockMath math="\begin{gathered}0{,}5\quad3\quad8\quad18\\38\quad78\quad\dots\quad318\end{gathered}" />
+# Mengurutkan dan mencari kuartil
 
-Analisis selisih antara setiap suku yang berurutan:
+<BlockMath math="4,\;7,\;9,\;10,\;13,\;15,\;20" />
 
-<BlockMath math="3 - 0{,}5 = 2{,}5" />
+Ada 7 data, jadi letak kuartil ke-<InlineMath math="i" /> adalah data ke-<InlineMath math="\tfrac{i(7+1)}{4}=2i" />. **Kuartil bawah adalah data ke-2** dan kuartil atas adalah data ke-6.
 
-<BlockMath math="8 - 3 = 5" />
+<BlockMath math="\begin{aligned}
+Q_1&=7,\quad Q_2=10,\quad Q_3=15\\
+Q_3-Q_1&=15-7=8
+\end{aligned}" />
 
-<BlockMath math="18 - 8 = 10" />
+Hasil yang sama didapat dengan mengambil median dari tiga data terbawah (4, 7, 9) dan median dari tiga data teratas (13, 15, 20).
 
-<BlockMath math="38 - 18 = 20" />
+Nilai 4 adalah simpangan kuartil, yaitu setengah dari jangkauan antarkuartil. Nilai 16 adalah jangkauan seluruh data, <InlineMath math="20-4" />. Nilai 3 adalah selisih median dan kuartil bawah, dan nilai 7 adalah kuartil bawah itu sendiri.
 
-<BlockMath math="78 - 38 = 40" />
-
-Selisih <InlineMath math="2{,}5\quad5\quad10\quad20\quad40" /> membentuk barisan geometri dengan rasio <InlineMath math="2" />. Setiap selisih adalah dua kali selisih sebelumnya.
-
-Oleh karena itu, selisih berikutnya setelah <InlineMath math="40" /> adalah:
-
-<BlockMath math="40 \times 2 = 80" />
-
-Maka, bilangan yang mengisi titik-titik tersebut adalah:
-
-<BlockMath math="78 + 80 = 158" />
-
-Untuk memverifikasi kebenaran pola ini, kita akan menghitung suku selanjutnya dan mencocokkannya dengan suku terakhir yang diketahui (<InlineMath math="318" />). Selisih berikutnya setelah <InlineMath math="80" /> adalah <InlineMath math="80 \times 2 = 160" />.
-
-<BlockMath math="158 + 160 = 318" />
-
-Hasil perhitungan sesuai dengan suku terakhir pada soal.
-
-Jadi, bilangan yang tepat untuk melengkapi pola tersebut adalah <InlineMath math="158" />.
+Jadi, jangkauan antarkuartil data tersebut adalah **8**.

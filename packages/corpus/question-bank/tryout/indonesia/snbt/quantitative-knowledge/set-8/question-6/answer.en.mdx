@@ -1,32 +1,25 @@
-The **order of members does not matter** in a set, so we use the concept of combinations.
+Square both sides to remove the root. This step can create false roots, so **every result must be checked in the original equation**.
 
-The total number of subsets of a set with <InlineMath math="n" /> members is <InlineMath math="2^n" />. Given <InlineMath math="n = 10" />, the total number of subsets is:
+# Squaring both sides
 
-<BlockMath math="2^{10} = 1024" />
+<BlockMath math="\begin{aligned}
+x+10&=(x-2)^2\\
+x+10&=x^2-4x+4\\
+x^2-5x-6&=0\\
+(x-6)(x+1)&=0
+\end{aligned}" />
 
-We are asked to find the number of subsets with **more than <InlineMath math="3" />** members. This means we are looking for the sum of subsets with <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="6" />, ..., <InlineMath math="10" /> members.
+# Checking both candidates
 
-An easier way is to use the complement principle: Total subsets minus subsets with **<InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, or <InlineMath math="3" />** members.
+The left side is a square root, so it is never negative. Therefore **the right side must also be non-negative**, which means <InlineMath math="x\ge2" />.
 
-The combination formula is:
+<BlockMath math="\begin{aligned}
+x=6&:\quad \sqrt{16}=4=6-2\\
+x=-1&:\quad \sqrt{9}=3\ne-1-2
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}C(n, r)&=\binom{n}{r}\\&=\frac{n!}{r!(n-r)!}\end{aligned}" />
+Only <InlineMath math="x=6" /> works. The candidate <InlineMath math="x=-1" /> appears because <InlineMath math="3^2" /> and <InlineMath math="(-3)^2" /> are both 9.
 
-| Members selected | Calculation | Number of subsets |
-| --- | --- | --- |
-| 0 | <InlineMath math="\frac{10!}{0!10!}=1" /> | 1 |
-| 1 | <InlineMath math="\frac{10!}{1!9!}=10" /> | 10 |
-| 2 | <InlineMath math="\frac{10\times9}{2\times1}=45" /> | 45 |
-| 3 | <InlineMath math="\frac{10\times9\times8}{3\times2\times1}=120" /> | 120 |
+The value 5 adds both candidates without checking. The value <InlineMath math="-1" /> is the false root, 4 is the value of <InlineMath math="\sqrt{x+10}" />, and 1 comes from a sign error in the factorisation.
 
-The one subset with zero members is the **empty set**, which must still be counted.
-
-The number of subsets with <InlineMath math="\leq 3" /> members is:
-
-<BlockMath math="1 + 10 + 45 + 120 = 176" />
-
-Thus, the number of subsets with **more than <InlineMath math="3" />** members is:
-
-<BlockMath math="1024-176=848" />
-
-So, the number of subsets of <InlineMath math="A" /> that have more than <InlineMath math="3" /> members is <InlineMath math="848" />.
+So the sum of all solutions is **6**.

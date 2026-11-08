@@ -3,27 +3,28 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$m < -2 \\lor m > 6$$",
+          column: 1,
+          label:
+            "Harga tas setelah diskon adalah $$\\text{Rp}150{.}000{,}00$$.",
         },
         {
-          correct: false,
-          label: "$$m > 6$$",
+          column: 2,
+          label:
+            "Besar potongan harga total terhadap harga awal adalah $$15\\%$$.",
         },
         {
-          correct: false,
-          label: "$$-2 < m < 6$$",
+          column: 1,
+          label:
+            "Harga yang dibayar pembeli adalah $$\\text{Rp}165{.}000{,}00$$.",
         },
         {
-          correct: false,
-          label: "$$-6 < m < 2$$",
-        },
-        {
-          correct: false,
-          label: "$$m \\leq -2 \\lor m \\geq 6$$",
+          column: 2,
+          label:
+            "Jika pajak $$10\\%$$ dikenakan lebih dulu, lalu diskon $$25\\%$$ diberikan pada harga setelah pajak, harga yang dibayar menjadi lebih mahal.",
         },
       ],
     },
