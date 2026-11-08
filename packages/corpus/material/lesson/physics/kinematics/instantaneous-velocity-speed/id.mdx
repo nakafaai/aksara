@@ -48,31 +48,33 @@ Alat ukur nyata menaksir nilai ini dalam selang pencuplikan yang singkat tetapi 
 
 Lihat limit itu terjadi pada gerak ilustrasi, <InlineMath math="x=t^2" />. Setiap garis berwarna adalah kecepatan rata-rata yang dimulai di <InlineMath math="t=3\text{ s}" />, selama <InlineMath math="2" />, <InlineMath math="1" />, dan <InlineMath math="0{,}5\text{ s}" />. Saat selangnya mengecil, kemiringannya turun dari <InlineMath math="8" /> ke <InlineMath math="7" /> lalu ke <InlineMath math="6{,}5\text{ m/s}" />, makin dekat ke kecepatan sesaat <InlineMath math="6\text{ m/s}" />.
 
-<LineEquation
-  title="Memperkecil Selang Waktu"
-  description="Garis potong x = t² dari t = 3 s selama 2 s, 1 s, dan 0,5 s. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 4 m."
-  data={(() => {
-    // Illustrative motion x(t) = t^2 in m. The secant from t = 3 s over shrinking steps approaches dx/dt = 2t = 6 m/s.
-    const position = (t) => t ** 2;
-    const samples = 201;
-    const secant = (step, color) => ({
-      points: [3, 3 + step].map((t) => ({ x: t, y: position(t) / 4, z: 0 })),
-      color,
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math={`\\frac{\\Delta x}{\\Delta t}=${String((position(3 + step) - position(3)) / step).replace(".", "{,}")}\\text{ m/s}`} />, at: 1, offset: [0.9, 0, 0], anchorX: "center" }],
-    });
-    return [
-      { points: Array.from({ length: samples }, (_, i) => { const t = (5 * i) / (samples - 1); return { x: t, y: position(t) / 4, z: 0 }; }), color: "#64748b", showPoints: false, smooth: false },
-      secant(2, "#e03b8a"),
-      secant(1, "#bb6800"),
-      secant(0.5, "#8242e5"),
-      { points: [{ x: 3, y: position(3) / 4, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: <InlineMath math="t=3\text{ s}:\ v=6\text{ m/s}" />, at: 0, offset: [-1.4, 0.3, 0], anchorX: "center" }] },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.8, 3.2, 9]}
-  cameraTarget={[2.8, 3.2, 0]}
+<MathVisual
+  title={<>Memperkecil Selang Waktu</>}
+  description={<>Garis potong <InlineMath math="x=t^2" /> dari <InlineMath math="t=3\text{ s}" /> selama 2 s, 1 s, dan 0,5 s. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 4 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "position", kind: "quadratic", appearance: "reference", coefficients: { a: 0.25, b: 0, c: 0 }, domain: { min: 0, max: 5 }, inputAxis: "x" },
+      { id: "step-2", kind: "segment", appearance: "warning", from: { x: 3, y: 2.25 }, to: { x: 5, y: 6.25 } },
+      { id: "step-1", kind: "segment", appearance: "primary", from: { x: 3, y: 2.25 }, to: { x: 4, y: 4 } },
+      { id: "step-half", kind: "segment", appearance: "secondary", from: { x: 3, y: 2.25 }, to: { x: 3.5, y: 3.5 ** 2 / 4 } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 3, y: 2.25 } },
+    ],
+    labels: [
+      { key: "s2", objectId: "step-2", at: { x: 5, y: 6.25 }, placement: "right" },
+      { key: "s1", objectId: "step-1", at: { x: 4, y: 4 }, placement: "right" },
+      { key: "sh", objectId: "step-half", at: { x: 3.5, y: 3.5 ** 2 / 4 }, placement: "right" },
+      { key: "now", objectId: "now", at: { x: 3, y: 2.25 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    s2: <InlineMath math="\frac{\Delta x}{\Delta t}=8\text{ m/s}" />,
+    s1: <InlineMath math="\frac{\Delta x}{\Delta t}=7\text{ m/s}" />,
+    sh: <InlineMath math="\frac{\Delta x}{\Delta t}=6{,}5\text{ m/s}" />,
+    now: <InlineMath math="t=3\text{ s}:\ v=6\text{ m/s}" />,
+  }}
 />
 
 ## Arah Menentukan Tanda Kecepatan Sesaat
@@ -90,16 +92,31 @@ Pada <InlineMath math="t=9 \text{ s}" />, mobil bergerak ke kiri dengan kelajuan
 
 Kelajuan sesaat tidak memiliki tanda arah. Kecepatan sesaat memakai tanda positif atau negatif untuk menunjukkan arah pada sumbu yang dipilih.
 
-Ubah setiap bacaan kelajuan menjadi kecepatan dalam dua langkah.
+Spidometer hanya memberi besarnya. Tambahkan arahnya sebagai tanda: ke kanan positif dan ke kiri negatif, jadi bacaan yang sejenis menjadi dua kecepatan yang berbeda. Perbesar kedua bacaannya.
 
-<Mermaid
-  title="Dari Bacaan Kelajuan ke Kecepatan"
-  description="Bacaannya memberi besar, arahnya memberi tanda, dengan kanan sebagai positif."
-  chart={`flowchart LR
-    A["6 s: 20 m/s"] --> B["Ke kanan"]
-    B --> C["+20 m/s"]
-    D["9 s: 8 m/s"] --> E["Ke kiri"]
-    E --> F["-8 m/s"]`}
+<MathVisual
+  title={<>Dari Bacaan Kelajuan ke Kecepatan</>}
+  description={<>Kecepatan pada 6 s (teal, ke kanan) dan pada 9 s (ungu, ke kiri). Tegak: satu kotak grid berarti 5 m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -2.5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "six", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
+      { id: "nine", kind: "segment", appearance: "secondary", from: { x: 9, y: 0 }, to: { x: 9, y: -1.6 } },
+      { id: "six-top", kind: "point", appearance: "construction", at: { x: 6, y: 4 } },
+      { id: "nine-end", kind: "point", appearance: "secondary", at: { x: 9, y: -1.6 } },
+    ],
+    labels: [
+      { key: "six", objectId: "six-top", at: { x: 6, y: 4 }, placement: "above" },
+      { key: "nine", objectId: "nine-end", at: { x: 9, y: -1.6 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    six: <InlineMath math="6\text{ s}:\ +20\text{ m/s}" />,
+    nine: <InlineMath math="9\text{ s}:\ -8\text{ m/s}" />,
+  }}
 />
 
 ## Membandingkan Kelajuan Sesaat dan Kelajuan Rata-rata

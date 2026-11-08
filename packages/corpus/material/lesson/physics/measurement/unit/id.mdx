@@ -76,43 +76,53 @@ Pada baris usaha, gaya dianggap tetap dan searah perpindahan. Rumus kelajuan, pe
 
 Putar kubus di bawah. Di setiap rusuk kamu bisa menghitung <InlineMath math="10" /> kubus kecil berukuran <InlineMath math="1\text{ dm}" />, jadi kubus besar panjang rusuknya <InlineMath math="1\text{ m}" />. Volumenya <InlineMath math="(10\text{ dm})^3=1000\text{ dm}^3" />, jadi <InlineMath math="1\text{ m}^3=1000\text{ dm}^3" />, dan satu kubus kecil tepat berisi <InlineMath math="1" /> liter. Perhatikan bahwa awalannya ikut dipangkatkan tiga bersama satuannya: <InlineMath math="1\text{ dm}=10^{-1}\text{ m}" />, jadi <InlineMath math="1\text{ dm}^3=10^{-3}\text{ m}^3" />.
 
-<LineEquation
-  title="Satu Meter Kubik dari Desimeter Kubik"
-  description="Satu kotak grid sama dengan 1 dm. Kubus kecil berjajar di tiga rusuk kubus yang panjang rusuknya 1 m. Putar untuk menghitungnya."
-  data={(() => {
-    // One grid step is 1 dm. The big cube is 1 m = 10 dm on each edge.
-    const edge = 10;
-    const cube = (x, y, z) => ({
-      kind: "cuboid",
-      center: { x: x + 0.5, y: y + 0.5, z: z + 0.5 },
-      length: 1,
-      width: 1,
-      height: 1,
-      color: "#0d9488",
-    });
-    const tag = (point, text) => ({
-      points: [point],
-      showPoints: false,
-      labels: [{ text, at: 0, offset: [0, 0, 0], anchorX: "center" }],
-    });
-    return [
-      {
-        kind: "cuboid",
-        center: { x: edge / 2, y: edge / 2, z: edge / 2 },
-        length: edge,
-        width: edge,
-        height: edge,
-        color: "#bb6800",
-      },
-      ...Array.from({ length: edge }, (_, i) => cube(i, 0, edge - 1)),
-      ...Array.from({ length: edge - 1 }, (_, i) => cube(0, i + 1, edge - 1)),
-      ...Array.from({ length: edge - 1 }, (_, i) => cube(0, 0, edge - 2 - i)),
-      tag({ x: edge / 2, y: -0.9, z: edge }, <InlineMath math="10\times1\text{ dm}=1\text{ m}" />),
-      tag({ x: edge / 2, y: edge + 1, z: edge / 2 }, <InlineMath math="(10\text{ dm})^3=1000\text{ dm}^3=1\text{ m}^3" />),
-    ];
-  })()}
-  cameraPosition={[19, 14, 24]}
-  cameraTarget={[5, 4.5, 5]}
+<MathVisual
+  title={<>Satu Meter Kubik dari Desimeter Kubik</>}
+  description={<>Satu kotak grid sama dengan 1 dm. Kubus kecil berjajar di tiga rusuk kubus yang panjang rusuknya 1 m. Putar untuk menghitungnya.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1.5, max: 12 }, z: { min: -1, max: 11 } },
+    view: { kind: "camera", position: { x: 19, y: 14, z: 24 }, target: { x: 5, y: 4.5, z: 5 } },
+    objects: [
+      { id: "meter", kind: "cuboid", appearance: "primary", center: { x: 5, y: 5, z: 5 }, size: { length: 10, height: 10, width: 10 } },
+      { id: "x-0", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-1", kind: "cuboid", appearance: "construction", center: { x: 1.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-2", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-3", kind: "cuboid", appearance: "construction", center: { x: 3.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-4", kind: "cuboid", appearance: "construction", center: { x: 4.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-5", kind: "cuboid", appearance: "construction", center: { x: 5.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-6", kind: "cuboid", appearance: "construction", center: { x: 6.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-7", kind: "cuboid", appearance: "construction", center: { x: 7.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-8", kind: "cuboid", appearance: "construction", center: { x: 8.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-9", kind: "cuboid", appearance: "construction", center: { x: 9.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-0", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 1.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-1", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 2.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-2", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 3.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-3", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 4.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-4", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 5.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-5", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 6.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-6", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 7.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-7", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 8.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-8", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 9.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-0", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 8.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-1", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 7.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-2", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 6.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-3", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 5.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-4", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 4.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-5", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 3.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-6", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 2.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-7", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 1.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-8", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 0.5 }, size: { length: 1, height: 1, width: 1 } },
+    ],
+    labels: [
+      { key: "edge", objectId: "x-4", at: { x: 5, y: -0.9, z: 10 }, placement: "below" },
+      { key: "volume", objectId: "meter", at: { x: 5, y: 11, z: 5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    edge: <InlineMath math="10\times1\text{ dm}=1\text{ m}" />,
+    volume: <InlineMath math="(10\text{ dm})^3=1000\text{ dm}^3=1\text{ m}^3" />,
+  }}
 />
 
 Satuan turunan dapat diuraikan menjadi satuan dasarnya. Contohnya, gaya memakai satuan newton, sedangkan newton tersusun dari kilogram, meter, dan sekon.
@@ -132,15 +142,37 @@ Kalau satuan gaya sudah jelas, satuan usaha dan daya bisa dibaca bertahap.
 = 1 \text{ kg m}^2\text{ s}^{-3}
 \end{aligned}" />
 
-Setiap satuan turunan di bawah dibangun dari satuan sebelumnya, jadi kamu selalu bisa membongkarnya menjadi satuan pokok.
+Setiap satuan turunan adalah hasil kali pangkat kg, m, dan s. Putar batangnya: joule adalah newton kali meter, jadi hanya pangkat m yang bertambah, dan watt adalah joule per sekon, jadi pangkat s turun ke <InlineMath math="-3" />.
 
-<Mermaid
-  title="Dari Newton ke Joule ke Watt"
-  description="Setiap langkah mengalikan atau membagi dengan satu satuan pokok."
-  chart={`flowchart LR
-    A["kg, m, s"] --> B["1 N = 1 kg m s^-2"]
-    B --> C["1 J = 1 N m = 1 kg m^2 s^-2"]
-    C --> D["1 W = 1 J / s = 1 kg m^2 s^-3"]`}
+<MathVisual
+  title={<>Dari Newton ke Joule ke Watt</>}
+  description={<>Pangkat kg (ungu), m (oranye), dan s (teal) pada newton, joule, dan watt. Batang di bawah lantai adalah pangkat negatif.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: -3.5, max: 3 }, z: { min: -1, max: 1 } },
+    view: { kind: "camera", position: { x: 8, y: 5, z: 11 }, target: { x: 3, y: 0, z: 0 } },
+    objects: [
+      { id: "n-0", kind: "cuboid", appearance: "secondary", center: { x: -0.9, y: 0.5, z: 0 }, size: { length: 0.7, height: 1, width: 0.7 } },
+      { id: "n-1", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 0.7, height: 1, width: 0.7 } },
+      { id: "n-2", kind: "cuboid", appearance: "construction", center: { x: 0.9, y: -1, z: 0 }, size: { length: 0.7, height: 2, width: 0.7 } },
+      { id: "j-0", kind: "cuboid", appearance: "secondary", center: { x: 2.1, y: 0.5, z: 0 }, size: { length: 0.7, height: 1, width: 0.7 } },
+      { id: "j-1", kind: "cuboid", appearance: "primary", center: { x: 3, y: 1, z: 0 }, size: { length: 0.7, height: 2, width: 0.7 } },
+      { id: "j-2", kind: "cuboid", appearance: "construction", center: { x: 3.9, y: -1, z: 0 }, size: { length: 0.7, height: 2, width: 0.7 } },
+      { id: "w-0", kind: "cuboid", appearance: "secondary", center: { x: 5.1, y: 0.5, z: 0 }, size: { length: 0.7, height: 1, width: 0.7 } },
+      { id: "w-1", kind: "cuboid", appearance: "primary", center: { x: 6, y: 1, z: 0 }, size: { length: 0.7, height: 2, width: 0.7 } },
+      { id: "w-2", kind: "cuboid", appearance: "construction", center: { x: 6.9, y: -1.5, z: 0 }, size: { length: 0.7, height: 3, width: 0.7 } },
+    ],
+    labels: [
+      { key: "n", objectId: "n-1", at: { x: 0, y: 1, z: 0 }, placement: "above" },
+      { key: "j", objectId: "j-1", at: { x: 3, y: 2, z: 0 }, placement: "above" },
+      { key: "w", objectId: "w-1", at: { x: 6, y: 2, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    n: <InlineMath math="\mathrm{N}=\mathrm{kg\,m\,s^{-2}}" />,
+    j: <InlineMath math="\mathrm{J}=\mathrm{kg\,m^2\,s^{-2}}" />,
+    w: <InlineMath math="\mathrm{W}=\mathrm{kg\,m^2\,s^{-3}}" />,
+  }}
 />
 
 ## Menulis Nilai Besar dan Kecil dengan Ringkas
@@ -194,3 +226,40 @@ Massa elektron dapat ditulis dalam notasi ilmiah sebagai koefisien yang dikalika
 <BlockMath math="9{,}11 \times 10^{-31} \text{ kg}" />
 
 Saat melihat satuan seperti <InlineMath math="\text{cm}" />, <InlineMath math="\text{mg}" />, atau <InlineMath math="\mu\text{m}" />, pisahkan dulu awalan dari satuan dasarnya. Setelah itu, ganti awalan dengan faktor pangkat <InlineMath math="10" /> yang sesuai, lalu selesaikan konversi ke satuan dasar.
+
+Setiap awalan adalah pangkat sepuluh, jadi berpindah antarawalan berarti melangkah di satu garis pangkat. Dari kilometer ke milimeter ada <InlineMath math="3-(-3)=6" /> langkah, jadi <InlineMath math="1\text{ km}=10^{6}\text{ mm}" />. Telusuri garisnya dan hitung langkahnya.
+
+<MathVisual
+  title={<>Awalan adalah Pangkat Sepuluh</>}
+  description={<>Awalan SI yang umum untuk meter, diletakkan pada pangkat sepuluhnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -11, max: 5 }, y: { min: -1.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -10, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "km", kind: "point", appearance: "secondary", at: { x: 3, y: 0 } },
+      { id: "m", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "cm", kind: "point", appearance: "secondary", at: { x: -2, y: 0 } },
+      { id: "mm", kind: "point", appearance: "secondary", at: { x: -3, y: 0 } },
+      { id: "um", kind: "point", appearance: "secondary", at: { x: -6, y: 0 } },
+      { id: "nm", kind: "point", appearance: "secondary", at: { x: -9, y: 0 } },
+    ],
+    labels: [
+      { key: "km", objectId: "km", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "m", objectId: "m", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "cm", objectId: "cm", at: { x: -2, y: 0 }, placement: "above" },
+      { key: "mm", objectId: "mm", at: { x: -3, y: 0 }, placement: "below" },
+      { key: "um", objectId: "um", at: { x: -6, y: 0 }, placement: "above" },
+      { key: "nm", objectId: "nm", at: { x: -9, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    km: <InlineMath math="\text{k}:\ 10^{3}" />,
+    m: <InlineMath math="\text{tanpa awalan}:\ 10^{0}" />,
+    cm: <InlineMath math="\text{c}:\ 10^{-2}" />,
+    mm: <InlineMath math="\text{m}:\ 10^{-3}" />,
+    um: <InlineMath math="\mu:\ 10^{-6}" />,
+    nm: <InlineMath math="\text{n}:\ 10^{-9}" />,
+  }}
+/>

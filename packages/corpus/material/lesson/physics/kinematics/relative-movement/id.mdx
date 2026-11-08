@@ -86,21 +86,32 @@ Pengamat yang berbeda mengukur kecepatan relatif yang berbeda untuk peristiwa ge
 
 Inilah mobil, taksi, dan truk yang berangkat dari tempat yang sama. Jarak antara dua garis adalah posisi satu kendaraan menurut kendaraan lainnya. Mobil dan taksi menjauh pelan, <InlineMath math="2\text{ m}" /> setiap sekon, sedangkan mobil dan truk berpisah <InlineMath math="20\text{ m}" /> setiap sekon.
 
-<LineEquation
-  title="Jarak Bertambah sebesar Kecepatan Relatif"
-  description="Posisi tiga kendaraan terhadap tanah, berangkat bersamaan. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 10 m."
-  data={(() => {
-    // Ground velocities: car +12, taxi +14, truck -8 m/s, all from x = 0. Horizontal: time in s. Vertical: position / 10 m.
-    const runner = (v, color, text) => ({ points: [0, 3].map((t) => ({ x: t, y: (v * t) / 10, z: 0 })), color, showPoints: false, smooth: false, labels: [{ text, at: 1, offset: [0.9, 0, 0], anchorX: "center" }] });
-    return [
-      runner(12, "#bb6800", "mobil +12"),
-      runner(14, "#8242e5", "taksi +14"),
-      runner(-8, "#0d9488", "truk -8"),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[1.8, 0.8, 9]}
-  cameraTarget={[1.8, 0.8, 0]}
+<MathVisual
+  title={<>Jarak Bertambah sebesar Kecepatan Relatif</>}
+  description={<>Posisi tiga kendaraan terhadap tanah, berangkat bersamaan. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -3, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "car", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: (12 * 3) / 10 } },
+      { id: "taxi", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: (14 * 3) / 10 } },
+      { id: "truck", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: (-8 * 3) / 10 } },
+      { id: "car-end", kind: "point", appearance: "primary", at: { x: 3, y: (12 * 3) / 10 } },
+      { id: "taxi-end", kind: "point", appearance: "secondary", at: { x: 3, y: (14 * 3) / 10 } },
+      { id: "truck-end", kind: "point", appearance: "construction", at: { x: 3, y: (-8 * 3) / 10 } },
+    ],
+    labels: [
+      { key: "car", objectId: "car-end", at: { x: 3, y: (12 * 3) / 10 }, placement: "right" },
+      { key: "taxi", objectId: "taxi-end", at: { x: 3, y: (14 * 3) / 10 }, placement: "right" },
+      { key: "truck", objectId: "truck-end", at: { x: 3, y: (-8 * 3) / 10 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    car: <>mobil +12</>,
+    taxi: <>taksi +14</>,
+    truck: <>truk -8</>,
+  }}
 />
 
 ## Kecepatan Relatif adalah Selisih
@@ -113,13 +124,30 @@ Inilah mobil, taksi, dan truk yang berangkat dari tempat yang sama. Jarak antara
 
 Jadi, sebelum menyebut suatu benda cepat, lambat, diam, atau bergerak mundur, selalu periksa **kerangka acuan yang dipakai**.
 
-Mobil, taksi, dan truk tadi semuanya kembali ke pengurangan yang sama dengan pengamat yang berbeda.
+Setiap pengamat memakai pengurangan yang sama, <InlineMath math="v_\text{rel}=v_\text{mobil}-v_\text{pengamat}" />. Dari pinggir jalan kamu melihat <InlineMath math="12\text{ m/s}" />, taksi yang lebih cepat melihat mobil itu mundur, dan truk dari arah berlawanan melihatnya datang dengan <InlineMath math="20\text{ m/s}" />. Perbesar tiap batang.
 
-<Mermaid
-  title="Satu Pengurangan untuk Setiap Pengamat"
-  description="Kecepatan relatif adalah kecepatan benda terhadap tanah dikurangi kecepatan pengamat terhadap tanah."
-  chart={`flowchart TD
-    A["v_benda/pengamat = v_benda - v_pengamat"] --> B["Pengamat diam: 12 - 0 = 12 m/s"]
-    A --> C["Searah: 12 - 14 = -2 m/s"]
-    A --> D["Berlawanan arah: 12 - (-8) = +20 m/s"]`}
+<MathVisual
+  title={<>Satu Pengurangan untuk Setiap Pengamat</>}
+  description={<>Kecepatan mobil dalam m/s dilihat dari pinggir jalan (abu-abu), taksi (ungu), dan truk (teal). Satu kotak grid berarti 4 m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -1.5, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "still", kind: "polygon", appearance: "reference", vertices: [{ x: 0.5, y: 0 }, { x: 1.5, y: 0 }, { x: 1.5, y: 3 }, { x: 0.5, y: 3 }] },
+      { id: "taxi", kind: "polygon", appearance: "secondary", vertices: [{ x: 2.5, y: 0 }, { x: 3.5, y: 0 }, { x: 3.5, y: -0.5 }, { x: 2.5, y: -0.5 }] },
+      { id: "truck", kind: "polygon", appearance: "construction", vertices: [{ x: 4.5, y: 0 }, { x: 5.5, y: 0 }, { x: 5.5, y: 5 }, { x: 4.5, y: 5 }] },
+    ],
+    labels: [
+      { key: "still", objectId: "still", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "taxi", objectId: "taxi", at: { x: 3, y: -0.5 }, placement: "below" },
+      { key: "truck", objectId: "truck", at: { x: 5, y: 5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    still: <InlineMath math="12-0=12" />,
+    taxi: <InlineMath math="12-14=-2" />,
+    truck: <InlineMath math="12-(-8)=+20" />,
+  }}
 />

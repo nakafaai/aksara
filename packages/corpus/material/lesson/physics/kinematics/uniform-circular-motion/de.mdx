@@ -69,34 +69,44 @@ Stell dir ein kleines Objekt auf der rechten Seite des Kreises vor, das sich geg
 
 Hier ist das kleine Auto aus dem Beispiel zu vier Zeitpunkten, jeweils eine Vierteldrehung auseinander. Jeder türkise Geschwindigkeitspfeil berührt die Bahn tangential und ist gleich lang, also bleibt das Tempo gleich. Jeder pinke Beschleunigungspfeil zeigt zur Mitte, und genau das lenkt die Geschwindigkeit ständig um.
 
-<LineEquation
-  title="Geschwindigkeit und Beschleunigung auf der Bahn"
-  description="Radius 4 m und Periode 6 s. Türkise Pfeile sind die Geschwindigkeit in halbem Maßstab, pinke die Zentripetalbeschleunigung in halbem Maßstab."
-  data={(() => {
-    // Radius 4 m, period 6 s. Velocity arrows (teal) are tangent, acceleration arrows (pink) point to the center.
-    const r = 4;
-    const T = 6;
-    const omega = (2 * Math.PI) / T;
-    const v = omega * r;
-    const a = v ** 2 / r;
-    const ring = { points: Array.from({ length: 241 }, (_, i) => { const th = (2 * Math.PI * i) / 240; return { x: r * Math.cos(th), y: r * Math.sin(th), z: 0 }; }), color: "#64748b", showPoints: false, smooth: false };
-    const times = [0, 1.5, 3, 4.5];
-    return [
-      ring,
-      ...times.flatMap((t) => {
-        const th = omega * t;
-        const at = { x: r * Math.cos(th), y: r * Math.sin(th), z: 0 };
-        return [
-          { points: [at, { x: at.x - (v / 2) * Math.sin(th), y: at.y + (v / 2) * Math.cos(th), z: 0 }], color: "#0d9488", cone: { position: "end", size: 0.25 }, showPoints: true, pointIndices: [0], smooth: false },
-          { points: [at, { x: at.x - (a / 2) * Math.cos(th), y: at.y - (a / 2) * Math.sin(th), z: 0 }], color: "#e03b8a", cone: { position: "end", size: 0.25 }, showPoints: false, smooth: false },
-        ];
-      }),
-      { points: [{ x: 0, y: 0, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: <InlineMath math="v\approx4{,}19\text{ m/s},\ a_c\approx4{,}39\text{ m/s}^2" />, at: 0, offset: [0, -0.6, 0], anchorX: "center" }] },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[0, 0, 13]}
-  cameraTarget={[0, 0, 0]}
+<MathVisual
+  title={<>Geschwindigkeit und Beschleunigung auf der Bahn</>}
+  description={<>Radius 4 m und Periode 6 s. Türkise Pfeile sind die Geschwindigkeit in halbem Maßstab, pinke die Zentripetalbeschleunigung in halbem Maßstab.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ring", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "center", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "spot-0", kind: "point", appearance: "construction", at: { x: 4, y: 0 } },
+      { id: "velocity-0", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: (2 * Math.PI) / 3 } },
+      { id: "velocity-0-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: (2 * Math.PI) / 3 }, { x: 4.125, y: (2 * Math.PI) / 3 + -0.25 }, { x: 3.875, y: (2 * Math.PI) / 3 + -0.25 }] },
+      { id: "accel-0", kind: "segment", appearance: "warning", from: { x: 4, y: 0 }, to: { x: 4 - (2 * Math.PI ** 2) / 9, y: 0 } },
+      { id: "accel-0-head", kind: "polygon", appearance: "warning", vertices: [{ x: 4 - (2 * Math.PI ** 2) / 9, y: 0 }, { x: 4 - (2 * Math.PI ** 2) / 9 + 0.25, y: 0.125 }, { x: 4 - (2 * Math.PI ** 2) / 9 + 0.25, y: -0.125 }] },
+      { id: "spot-1", kind: "point", appearance: "construction", at: { x: 0, y: 4 } },
+      { id: "velocity-1", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: -((2 * Math.PI) / 3), y: 4 } },
+      { id: "velocity-1-head", kind: "polygon", appearance: "construction", vertices: [{ x: -((2 * Math.PI) / 3), y: 4 }, { x: -((2 * Math.PI) / 3) + 0.25, y: 4.125 }, { x: -((2 * Math.PI) / 3) + 0.25, y: 3.875 }] },
+      { id: "accel-1", kind: "segment", appearance: "warning", from: { x: 0, y: 4 }, to: { x: 0, y: 4 - (2 * Math.PI ** 2) / 9 } },
+      { id: "accel-1-head", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 4 - (2 * Math.PI ** 2) / 9 }, { x: 0.125, y: 4 - (2 * Math.PI ** 2) / 9 + 0.25 }, { x: -0.125, y: 4 - (2 * Math.PI ** 2) / 9 + 0.25 }] },
+      { id: "spot-2", kind: "point", appearance: "construction", at: { x: -4, y: 0 } },
+      { id: "velocity-2", kind: "segment", appearance: "construction", from: { x: -4, y: 0 }, to: { x: -4, y: -((2 * Math.PI) / 3) } },
+      { id: "velocity-2-head", kind: "polygon", appearance: "construction", vertices: [{ x: -4, y: -((2 * Math.PI) / 3) }, { x: -3.875, y: -((2 * Math.PI) / 3) + 0.25 }, { x: -4.125, y: -((2 * Math.PI) / 3) + 0.25 }] },
+      { id: "accel-2", kind: "segment", appearance: "warning", from: { x: -4, y: 0 }, to: { x: -4 + (2 * Math.PI ** 2) / 9, y: 0 } },
+      { id: "accel-2-head", kind: "polygon", appearance: "warning", vertices: [{ x: -4 + (2 * Math.PI ** 2) / 9, y: 0 }, { x: -4 + (2 * Math.PI ** 2) / 9 + -0.25, y: 0.125 }, { x: -4 + (2 * Math.PI ** 2) / 9 + -0.25, y: -0.125 }] },
+      { id: "spot-3", kind: "point", appearance: "construction", at: { x: 0, y: -4 } },
+      { id: "velocity-3", kind: "segment", appearance: "construction", from: { x: 0, y: -4 }, to: { x: (2 * Math.PI) / 3, y: -4 } },
+      { id: "velocity-3-head", kind: "polygon", appearance: "construction", vertices: [{ x: (2 * Math.PI) / 3, y: -4 }, { x: (2 * Math.PI) / 3 + -0.25, y: -3.875 }, { x: (2 * Math.PI) / 3 + -0.25, y: -4.125 }] },
+      { id: "accel-3", kind: "segment", appearance: "warning", from: { x: 0, y: -4 }, to: { x: 0, y: -4 + (2 * Math.PI ** 2) / 9 } },
+      { id: "accel-3-head", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: -4 + (2 * Math.PI ** 2) / 9 }, { x: 0.125, y: -4 + (2 * Math.PI ** 2) / 9 + -0.25 }, { x: -0.125, y: -4 + (2 * Math.PI ** 2) / 9 + -0.25 }] },
+    ],
+    labels: [
+      { key: "values", objectId: "center", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    values: <InlineMath math="v\approx4{,}19\text{ m/s},\ a_c\approx4{,}39\text{ m/s}^2" />,
+  }}
 />
 
 ## Tangentialer Geschwindigkeitsbetrag und Winkelgeschwindigkeit gehören zusammen
@@ -139,13 +149,29 @@ Seine Zentripetalbeschleunigung beträgt:
 
 Das Auto bewegt sich also mit einem **konstanten Geschwindigkeitsbetrag** von etwa <InlineMath math="4{,}19\text{ m/s}" />. Trotzdem beträgt seine Beschleunigung ungefähr <InlineMath math="4{,}39\text{ m/s}^2" />, weil sich die Richtung seiner Geschwindigkeit fortlaufend ändert.
 
-Das Rechenbeispiel ist eine Kette von Formeln, jeder Schritt speist den nächsten.
+Folge der Kette ab der Periode. In einer Sekunde dreht sich der Radius um <InlineMath math="\omega=2\pi/T" />, der Punkt legt den Bogen <InlineMath math="v=\omega r" /> zurück, und dann gilt <InlineMath math="a_c=v^2/r=4\pi^2/9\text{ m/s}^2" />. Zoom auf den orangen Bogen dieser Sekunde.
 
-<Mermaid
-  title="Von der Periode zur Zentripetalbeschleunigung"
-  description="Starte mit Periode und Radius und bestimme dann Winkelgeschwindigkeit, Bahngeschwindigkeit und Zentripetalbeschleunigung."
-  chart={`flowchart LR
-    A["T = 6 s, r = 4 m"] --> B["omega = 2 pi / T = pi/3 rad/s"]
-    B --> C["v = omega r = 4 pi / 3 m/s"]
-    C --> D["a_c = v^2 / r = 4 pi^2 / 9 m/s^2"]`}
+<MathVisual
+  title={<>Von der Periode zur Zentripetalbeschleunigung</>}
+  description={<>Der Winkel (violette Radien) und der Bogen (orange) in 1 s auf einem Kreis mit Radius 4 m und Periode 6 s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ring", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "arc", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 4, startDegrees: 0, sweepDegrees: 60 },
+      { id: "r0", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "r1", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4 * Math.cos(Math.PI / 3), y: 4 * Math.sin(Math.PI / 3) } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 4 * Math.cos(Math.PI / 3), y: 4 * Math.sin(Math.PI / 3) } },
+    ],
+    labels: [
+      { key: "omega", objectId: "r1", at: { x: 2 * Math.cos(Math.PI / 3), y: 2 * Math.sin(Math.PI / 3) }, placement: "left" },
+      { key: "arc", objectId: "arc", at: { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    omega: <InlineMath math="\omega=\frac{2\pi}{6}=\frac{\pi}{3}\text{ rad/s}" />,
+    arc: <InlineMath math="v=\omega r=\frac{4\pi}{3}\text{ m/s}" />,
+  }}
 />

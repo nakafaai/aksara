@@ -48,16 +48,30 @@ v &= \frac{s}{t} \\
 \dim v &= \frac{\mathrm{L}}{\mathrm{T}} = \mathrm{L}\mathrm{T}^{-1}
 \end{aligned}" />
 
-Speed follows the same pattern as area, built from two base quantities.
+Speed is built from two base quantities, <InlineMath math="v=s/t" />, so its unit is <InlineMath math="\text{m/s}=\text{m s}^{-1}" /> and its dimension is <InlineMath math="\mathrm{LT^{-1}}" />. On a distance-time graph it is the slope. Zoom in on each small triangle.
 
-<Mermaid
-  title="Speed Built from Base Quantities"
-  description="Distance and time combine into speed, its SI unit and its dimension."
-  chart={`flowchart TD
-    A["Distance s"] --> C["Speed v = s / t"]
-    B["Time t"] --> C
-    C --> D["Unit: m / s = m s^-1"]
-    C --> E["Dimension: L T^-1"]`}
+<MathVisual
+  title={<>Speed Built from Base Quantities</>}
+  description={<>Distance against time at 2 m/s (violet) and 5 m/s (orange). Horizontal: seconds. Vertical: one grid step is 2 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "slow", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "fast", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: 5 } },
+      { id: "slow-step", kind: "polyline", appearance: "secondary", vertices: [{ x: 2, y: 2 }, { x: 3, y: 2 }, { x: 3, y: 3 }] },
+      { id: "fast-step", kind: "polyline", appearance: "primary", vertices: [{ x: 1, y: 2.5 }, { x: 1.4, y: 2.5 }, { x: 1.4, y: 3.5 }] },
+    ],
+    labels: [
+      { key: "slow", objectId: "slow-step", at: { x: 3, y: 2.5 }, placement: "right" },
+      { key: "fast", objectId: "fast-step", at: { x: 1.4, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    slow: <InlineMath math="v=\frac{2\text{ m}}{1\text{ s}}=2\text{ m/s}" />,
+    fast: <InlineMath math="v=\frac{2\text{ m}}{0.4\text{ s}}=5\text{ m/s}" />,
+  }}
 />
 
 ## Dimensions and Formula Checks
@@ -76,6 +90,36 @@ For example, the area of a desk and the area of a sheet of paper can have differ
 
 On the other hand, length, width, height, diameter, radius, distance, and displacement can all use length units. They all have dimension <InlineMath math="\mathrm{L}" />.
 
+A derived quantity is built from base quantities. Volume multiplies three lengths, <InlineMath math="V=lwh" />, so its dimension is <InlineMath math="\mathrm{L^3}" />. The box holds six cubes of <InlineMath math="0.10\text{ m}" /> on each edge, three along, two across and one up, like the teal row of three laid on top. Rotate the box.
+
+<MathVisual
+  title={<>A Volume from Three Lengths</>}
+  description={<>A 0.30 m by 0.20 m by 0.10 m box (orange) and one row of 0.10 m cubes on top (teal).</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: 0, max: 2.5 }, z: { min: -0.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 6, y: 4, z: 6 }, target: { x: 1.5, y: 0.8, z: 1 } },
+    objects: [
+      { id: "box", kind: "cuboid", appearance: "primary", center: { x: 1.5, y: 0.5, z: 1 }, size: { length: 3, height: 1, width: 2 } },
+      { id: "cube-0", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 1.5, z: 0.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "cube-1", kind: "cuboid", appearance: "construction", center: { x: 1.5, y: 1.5, z: 0.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "cube-2", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: 1.5, z: 0.5 }, size: { length: 1, height: 1, width: 1 } },
+    ],
+    labels: [
+      { key: "l", objectId: "box", at: { x: 1.5, y: 0, z: 2 }, placement: "below" },
+      { key: "w", objectId: "box", at: { x: 3, y: 0, z: 1 }, placement: "right" },
+      { key: "h", objectId: "box", at: { x: 3, y: 0.5, z: 2 }, placement: "right" },
+      { key: "v", objectId: "cube-1", at: { x: 1.5, y: 2, z: 0.5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    l: <InlineMath math="l=0.30\text{ m}" />,
+    w: <InlineMath math="w=0.20\text{ m}" />,
+    h: <InlineMath math="h=0.10\text{ m}" />,
+    v: <InlineMath math="V=lwh=0.006\text{ m}^3:\ \mathrm{L^3}" />,
+  }}
+/>
+
 ## Calculating the Area of a Sheet of Paper
 
 A sheet of paper has length <InlineMath math="0.30 \text{ m}" /> and width <InlineMath math="0.20 \text{ m}" />. Its area is:
@@ -88,41 +132,30 @@ A &= l \times w \\
 
 The scene below draws the sheet at one grid step per <InlineMath math="0.10\text{ m}" />. Count the small squares: <InlineMath math="3" /> along the length and <InlineMath math="2" /> along the width make <InlineMath math="6" /> squares. Each square is <InlineMath math="0.10\text{ m}\times0.10\text{ m}=0.010\text{ m}^2" />, so six of them give <InlineMath math="0.060\text{ m}^2" />, the same area the formula gave. That's why area is a quantity built from two lengths.
 
-<LineEquation
-  title="Area Counted in Squares"
-  description="The sheet of paper drawn at one grid step per 0.10 m. Each small square has an area of 0.010 m²."
-  data={(() => {
-    // One grid step is 0.10 m. The sheet is l = 0.30 m by w = 0.20 m.
-    const step = 0.1;
-    const length = 0.3;
-    const width = 0.2;
-    const columns = Math.round(length / step);
-    const rows = Math.round(width / step);
-    const tile = (from, to) => ({
-      points: [from, to].map(([x, y]) => ({ x: x / step, y: y / step, z: 0 })),
-      color: "#64748b",
-      showPoints: false,
-      smooth: false,
-    });
-    return [
-      ...Array.from({ length: columns - 1 }, (_, i) => tile([(i + 1) * step, 0], [(i + 1) * step, width])),
-      ...Array.from({ length: rows - 1 }, (_, i) => tile([0, (i + 1) * step], [length, (i + 1) * step])),
-      {
-        points: [[0, 0], [length, 0], [length, width], [0, width], [0, 0]].map(([x, y]) => ({ x: x / step, y: y / step, z: 0 })),
-        color: "#bb6800",
-        showPoints: false,
-        smooth: false,
-        labels: [
-          { text: <InlineMath math="l=0.30\text{ m}" />, at: 0, offset: [length / step / 2, -0.4, 0], anchorX: "center" },
-          { text: <InlineMath math="w=0.20\text{ m}" />, at: 1, offset: [0.9, width / step / 2, 0], anchorX: "center" },
-          { text: <InlineMath math={`${columns}\\times${rows}=${columns * rows}\\text{ squares}`} />, at: 3, offset: [length / step / 2, 0.45, 0], anchorX: "center" },
-        ],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[1.5, 1, 6]}
-  cameraTarget={[1.5, 1, 0]}
+<MathVisual
+  title={<>Area Counted in Squares</>}
+  description={<>The sheet of paper drawn at one grid step per 0.10 m. Each small square has an area of <InlineMath math="0.010\text{ m}^2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 2.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "sheet", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 0, y: 2 }] },
+      { id: "col-1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 2 } },
+      { id: "col-2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 2 } },
+      { id: "row-1", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "length", objectId: "sheet", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "width", objectId: "sheet", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "count", objectId: "sheet", at: { x: 1.5, y: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    length: <InlineMath math="l=0.30\text{ m}" />,
+    width: <InlineMath math="w=0.20\text{ m}" />,
+    count: <InlineMath math="3\times2=6\text{ squares}" />,
+  }}
 />
 
 The value <InlineMath math="0.060 \text{ m}^2" /> is the quantity value for area. Since area is built from <InlineMath math="2" /> length quantities, area is a **derived quantity**.

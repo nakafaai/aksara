@@ -115,33 +115,32 @@ Ohne vorzeitiges Runden erhältst du etwa <InlineMath math="39{,}93\text{ N}" />
 
 Hier ist die Seilkraft auf die Achsen zerlegt. Der Kosinus liefert den waagrechten, der Sinus den senkrechten Teil, etwa <InlineMath math="40\text{ N}" /> und <InlineMath math="30\text{ N}" />, und beide Teile setzen die Kraft von <InlineMath math="50\text{ N}" /> wieder zusammen.
 
-<LineEquation
-  title="Die Zugkraft zerlegen"
-  description="F = 50 N unter 37° über der Waagrechten mit ihren Komponenten. Ein Gitterschritt sind 10 N."
-  data={(() => {
-    const arrow = (from, to, color, text, offset) => ({
-      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
-      color,
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
-    });
-    // F = 50 N at 37 degrees above the horizontal. One grid step is 10 N.
-    const F = 50;
-    const t = (37 * Math.PI) / 180;
-    const Fx = F * Math.cos(t);
-    const Fy = F * Math.sin(t);
-    const s = (p) => p.map((v) => v / 10);
-    return [
-      arrow(s([0, 0]), s([Fx, 0]), "#0d9488", <InlineMath math="F_x=F\cos37^\circ\approx40\text{ N}" />, [-2, -0.4, 0]),
-      arrow(s([Fx, 0]), s([Fx, Fy]), "#8242e5", <InlineMath math="F_y=F\sin37^\circ\approx30\text{ N}" />, [1.8, -1.5, 0]),
-      arrow(s([0, 0]), s([Fx, Fy]), "#bb6800", <InlineMath math="F=50\text{ N}" />, [-2.2, -0.8, 0]),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.2, 1.4, 7]}
-  cameraTarget={[2.2, 1.4, 0]}
+<MathVisual
+  title={<>Die Zugkraft zerlegen</>}
+  description={<><InlineMath math="F=50\text{ N}" /> unter 37° über der Waagrechten mit ihren Komponenten. Ein Gitterschritt entspricht 10 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "fx", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 } },
+      { id: "fx-head", kind: "polygon", appearance: "construction", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.25, y: 0.125 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.25, y: -0.125 }] },
+      { id: "fy", kind: "segment", appearance: "secondary", from: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) } },
+      { id: "fy-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) }, { x: 5 * Math.cos((37 * Math.PI) / 180) + 0.125, y: 5 * Math.sin((37 * Math.PI) / 180) + -0.25 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.125, y: 5 * Math.sin((37 * Math.PI) / 180) + -0.25 }] },
+      { id: "f", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) } },
+      { id: "f-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) }, { x: 5 * Math.cos((37 * Math.PI) / 180) - (0.25 * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) + ((0.25 / 2) * -3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416), y: 5 * Math.sin((37 * Math.PI) / 180) - (0.25 * 3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416) + ((0.25 / 2) * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) }, { x: 5 * Math.cos((37 * Math.PI) / 180) - (0.25 * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) - ((0.25 / 2) * -3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416), y: 5 * Math.sin((37 * Math.PI) / 180) - (0.25 * 3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416) - ((0.25 / 2) * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) }] },
+    ],
+    labels: [
+      { key: "fx", objectId: "fx", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "fy", objectId: "fy", at: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 1.5 }, placement: "right" },
+      { key: "f", objectId: "f", at: { x: 2, y: 1.5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    fx: <InlineMath math="F_x=F\cos37^\circ\approx40\text{ N}" />,
+    fy: <InlineMath math="F_y=F\sin37^\circ\approx30\text{ N}" />,
+    f: <InlineMath math="F=50\text{ N}" />,
+  }}
 />
 
 ## Wenn der Winkel von der vertikalen Achse gemessen wird
@@ -168,14 +167,38 @@ Ist <InlineMath math="\theta" /> der **vollständige Standardwinkel**, der von d
 
 Zeigt eine Kraft nach links oben, ist ihre horizontale Komponente negativ, weil sie der positiven <InlineMath math="x" />-Richtung entgegenwirkt. Die vertikale Komponente bleibt dagegen positiv.
 
-Mit dem vollen Winkel in Standardlage kümmern sich die Vorzeichen von selbst.
+Miss den Winkel von der positiven x-Achse gegen den Uhrzeigersinn, und der Quadrant gibt die Vorzeichen. Jeder Pfeil ist gleich groß, aber seine Komponenten bekommen die Vorzeichen des Quadranten, in den er zeigt. Zoom auf jede Pfeilspitze.
 
-<Mermaid
-  title="Vorzeichen der Komponenten nach Quadrant"
-  description="cos θ und sin θ tragen in jedem Quadranten schon die Vorzeichen von F_x und F_y."
-  chart={`flowchart TD
-    A["Winkel ab positiver x-Achse, gegen den Uhrzeigersinn"] --> B["Quadrant I: F_x +, F_y +"]
-    A --> C["Quadrant II: F_x -, F_y +"]
-    A --> D["Quadrant III: F_x -, F_y -"]
-    A --> E["Quadrant IV: F_x +, F_y -"]`}
+<MathVisual
+  title={<>Vorzeichen der Komponenten nach Quadrant</>}
+  description={<>Vier gleich große Kräfte bei 30, 150, 210 und 330 Grad.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 3 } },
+      { id: "q30", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 } },
+      { id: "q30-head", kind: "polygon", appearance: "primary", vertices: [{ x: (3 * Math.sqrt(3)) / 2, y: 1.5 }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) + ((0.25 / 2) * -1.5) / Math.hypot(2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(2.598076211353316, 1.5) + ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) - ((0.25 / 2) * -1.5) / Math.hypot(2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(2.598076211353316, 1.5) - ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) }] },
+      { id: "q150", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: 1.5 } },
+      { id: "q150-head", kind: "polygon", appearance: "secondary", vertices: [{ x: -(3 * Math.sqrt(3)) / 2, y: 1.5 }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) + ((0.25 / 2) * -1.5) / Math.hypot(-2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(-2.598076211353316, 1.5) + ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) - ((0.25 / 2) * -1.5) / Math.hypot(-2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(-2.598076211353316, 1.5) - ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) }] },
+      { id: "q210", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: -1.5 } },
+      { id: "q210-head", kind: "polygon", appearance: "construction", vertices: [{ x: -(3 * Math.sqrt(3)) / 2, y: -1.5 }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) + ((0.25 / 2) * 1.5) / Math.hypot(-2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(-2.598076211353316, -1.5) + ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) - ((0.25 / 2) * 1.5) / Math.hypot(-2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(-2.598076211353316, -1.5) - ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) }] },
+      { id: "q330", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: -1.5 } },
+      { id: "q330-head", kind: "polygon", appearance: "answer", vertices: [{ x: (3 * Math.sqrt(3)) / 2, y: -1.5 }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) + ((0.25 / 2) * 1.5) / Math.hypot(2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(2.598076211353316, -1.5) + ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) - ((0.25 / 2) * 1.5) / Math.hypot(2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(2.598076211353316, -1.5) - ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) }] },
+    ],
+    labels: [
+      { key: "q30", objectId: "q30", at: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 }, placement: "above" },
+      { key: "q150", objectId: "q150", at: { x: -(3 * Math.sqrt(3)) / 2, y: 1.5 }, placement: "above" },
+      { key: "q210", objectId: "q210", at: { x: -(3 * Math.sqrt(3)) / 2, y: -1.5 }, placement: "below" },
+      { key: "q330", objectId: "q330", at: { x: (3 * Math.sqrt(3)) / 2, y: -1.5 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    q30: <InlineMath math="F_x>0,\ F_y>0" />,
+    q150: <InlineMath math="F_x<0,\ F_y>0" />,
+    q210: <InlineMath math="F_x<0,\ F_y<0" />,
+    q330: <InlineMath math="F_x>0,\ F_y<0" />,
+  }}
 />

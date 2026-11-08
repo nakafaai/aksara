@@ -20,45 +20,56 @@ The symbol <InlineMath math="\gg" /> means "much greater than". To judge a fuel 
 
 Try the inequality with round, made-up numbers. A stock of <InlineMath math="S_0=100" /> units is used at <InlineMath math="r_{\mathrm{use}}=2" /> units per year, so it shrinks by <InlineMath math="r_{\mathrm{use}}-r_{\mathrm{form}}" /> each year. If nature replaced half of what we use, the violet line would last a full <InlineMath math="100" /> years, twice as long. When <InlineMath math="r_{\mathrm{use}}\gg r_{\mathrm{form}}" />, the orange line hits zero after only about <InlineMath math="50" /> years, almost as if nothing formed at all.
 
-<LineEquation
-  title="A Stock That Forms Too Slowly"
-  description="An illustrative stock of 100 units used at 2 units per year with two formation rates. Horizontal: time in units of 20 years. Vertical: stock in units of 20."
-  data={(() => {
-    // Illustrative stock model: S(t) = S0 - (r_use - r_form) t, cut at zero.
-    // Horizontal: years / 20. Vertical: stock / 20 units.
-    const start = 100;
-    const use = 2;
-    const stock = (form) => {
-      const empty = start / (use - form);
-      const end = Math.min(empty, 100);
-      return [0, end].map((t) => ({ x: t / 20, y: (start - (use - form) * t) / 20, z: 0 }));
-    };
-    const fast = use / 1000;
-    const slow = use / 2;
-    return [
-      {
-        points: stock(slow),
-        color: "#8242e5",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: <InlineMath math="r_{\mathrm{form}}=\tfrac12 r_{\mathrm{use}}" />, at: 1, offset: [0, 0.5, 0], anchorX: "center" }],
-      },
-      {
-        points: stock(fast),
-        color: "#bb6800",
-        showPoints: true,
-        pointIndices: [1],
-        smooth: false,
-        labels: [
-          { text: <InlineMath math="r_{\mathrm{form}}=\tfrac{1}{1000} r_{\mathrm{use}}" />, at: 0, offset: [1.9, -0.5, 0], anchorX: "center" },
-          { text: <InlineMath math={`t=\\frac{S_0}{r_{\\mathrm{use}}-r_{\\mathrm{form}}}\\approx${Math.round(start / (use - fast))}\\text{ years}`} />, at: 1, offset: [0, 0.8, 0], anchorX: "center" },
-        ],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.5, 2.5, 8]}
-  cameraTarget={[2.5, 2.5, 0]}
+<MathVisual
+  title={<>A Stock That Forms Too Slowly</>}
+  description={<>An illustrative stock of 100 units used at 2 units per year with two formation rates. Horizontal: time in units of 20 years. Vertical: stock in units of 20.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.8, max: 5.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "slow", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 5, y: 0 } },
+      { id: "fast", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: 100 / (2 - 2 / 1000) / 20, y: 0 } },
+      { id: "fast-empty", kind: "point", appearance: "primary", at: { x: 100 / (2 - 2 / 1000) / 20, y: 0 } },
+    ],
+    labels: [
+      { key: "slow", objectId: "slow", at: { x: 2.5, y: 2.5 }, placement: "above-right" },
+      { key: "fast", objectId: "fast", at: { x: 1.25, y: (100 - (2 - 2 / 1000) * 25) / 20 }, placement: "below-left" },
+      { key: "time", objectId: "fast-empty", at: { x: 100 / (2 - 2 / 1000) / 20, y: 0 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    slow: <InlineMath math="r_{\mathrm{form}}=\tfrac12 r_{\mathrm{use}}" />,
+    fast: <InlineMath math="r_{\mathrm{form}}=\tfrac{1}{1000} r_{\mathrm{use}}" />,
+    time: <InlineMath math="t=\frac{S_0}{r_{\mathrm{use}}-r_{\mathrm{form}}}\approx50\text{ years}" />,
+  }}
+/>
+
+A finite reserve <InlineMath math="R" /> used at a steady rate <InlineMath math="P" /> lasts <InlineMath math="t=R/P" />. With an illustrative reserve of <InlineMath math="1000" /> units, doubling the yearly use halves the time left. Rotate the bars: <InlineMath math="10" />, <InlineMath math="20" /> and <InlineMath math="40" /> units a year.
+
+<MathVisual
+  title={<>A Finite Reserve Runs Out</>}
+  description={<>Years an illustrative reserve of 1000 units lasts at three steady rates of use. One grid step up is 20 years.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 2.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "p10", kind: "cuboid", appearance: "construction", center: { x: 0, y: (1000 / 10 / 20) / 2, z: 0 }, size: { length: 1.2, height: 1000 / 10 / 20, width: 1.2 } },
+      { id: "p20", kind: "cuboid", appearance: "highlight", center: { x: 2.5, y: (1000 / 20 / 20) / 2, z: 0 }, size: { length: 1.2, height: 1000 / 20 / 20, width: 1.2 } },
+      { id: "p40", kind: "cuboid", appearance: "warning", center: { x: 5, y: (1000 / 40 / 20) / 2, z: 0 }, size: { length: 1.2, height: 1000 / 40 / 20, width: 1.2 } },
+    ],
+    labels: [
+      { key: "p10", objectId: "p10", at: { x: 0, y: 1000 / 10 / 20, z: 0 }, placement: "above" },
+      { key: "p20", objectId: "p20", at: { x: 2.5, y: 1000 / 20 / 20, z: 0 }, placement: "above" },
+      { key: "p40", objectId: "p40", at: { x: 5, y: 1000 / 40 / 20, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    p10: <InlineMath math="\tfrac{1000}{10}=100\text{ years}" />,
+    p20: <InlineMath math="\tfrac{1000}{20}=50\text{ years}" />,
+    p40: <InlineMath math="\tfrac{1000}{40}=25\text{ years}" />,
+  }}
 />
 
 ## Fossil Fuels and Nuclear Fuel
@@ -105,31 +116,27 @@ This operating pattern determines whether a plant supplies steady base load, fol
 
 In this illustrative day, the gray line is the steady base load that a plant running at constant output can carry. The orange demand rises and falls above it, and the evening peak near 19:00 is what fast-responding plants have to cover.
 
-<LineEquation
-  title="Base Load and Peak in One Day"
-  description="An illustrative demand curve over one day above a steady base load. Horizontal: clock time in units of 2 h. Vertical: power in arbitrary units."
-  data={(() => {
-    // Illustrative daily demand peaking near 19:00 above a steady base load. Horizontal: clock time / 2 h. Vertical: power in arbitrary units.
-    const base = 2;
-    return [
-      {
-        points: [0, 12].map((x) => ({ x, y: base, z: 0 })),
-        color: "#64748b",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: "Base load", at: 0, offset: [1.4, -0.35, 0], anchorX: "center" }],
-      },
-      {
-        curve: { kind: "sin", amplitude: 1.2, frequency: Math.PI / 6, phase: Math.PI / 2 - (9.5 * Math.PI) / 6, shift: 3.5, domain: [0, 12], samples: 241 },
-        color: "#bb6800",
-        showPoints: false,
-        labels: [{ text: "Evening peak", at: 190, offset: [0, 0.5, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[6, 2.6, 9]}
-  cameraTarget={[6, 2.6, 0]}
+<MathVisual
+  title={<>Base Load and Peak in One Day</>}
+  description={<>An illustrative demand curve over one day above a steady base load. Horizontal: clock time in units of 2 h. Vertical: power in arbitrary units.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: 0, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 12, y: 2 } },
+      { id: "demand", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.5) / 6) }, { x: 0.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.75) / 6) }, { x: 0.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 3) / 6) }, { x: 0.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 3.25) / 6) }, { x: 1, y: 3.5 + 1.2 * Math.cos((Math.PI * 3.5) / 6) }, { x: 1.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 3.75) / 6) }, { x: 1.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 4) / 6) }, { x: 1.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 4.25) / 6) }, { x: 2, y: 3.5 + 1.2 * Math.cos((Math.PI * 4.5) / 6) }, { x: 2.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 4.75) / 6) }, { x: 2.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 5) / 6) }, { x: 2.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 5.25) / 6) }, { x: 3, y: 3.5 + 1.2 * Math.cos((Math.PI * 5.5) / 6) }, { x: 3.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 5.75) / 6) }, { x: 3.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -6) / 6) }, { x: 3.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -5.75) / 6) }, { x: 4, y: 3.5 + 1.2 * Math.cos((Math.PI * -5.5) / 6) }, { x: 4.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -5.25) / 6) }, { x: 4.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -5) / 6) }, { x: 4.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -4.75) / 6) }, { x: 5, y: 3.5 + 1.2 * Math.cos((Math.PI * -4.5) / 6) }, { x: 5.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -4.25) / 6) }, { x: 5.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -4) / 6) }, { x: 5.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -3.75) / 6) }, { x: 6, y: 3.5 + 1.2 * Math.cos((Math.PI * -3.5) / 6) }, { x: 6.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -3.25) / 6) }, { x: 6.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -3) / 6) }, { x: 6.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -2.75) / 6) }, { x: 7, y: 3.5 + 1.2 * Math.cos((Math.PI * -2.5) / 6) }, { x: 7.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -2.25) / 6) }, { x: 7.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -2) / 6) }, { x: 7.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -1.75) / 6) }, { x: 8, y: 3.5 + 1.2 * Math.cos((Math.PI * -1.5) / 6) }, { x: 8.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -1.25) / 6) }, { x: 8.5, y: 3.5 + 1.2 * Math.cos((Math.PI * -1) / 6) }, { x: 8.75, y: 3.5 + 1.2 * Math.cos((Math.PI * -0.75) / 6) }, { x: 9, y: 3.5 + 1.2 * Math.cos((Math.PI * -0.5) / 6) }, { x: 9.25, y: 3.5 + 1.2 * Math.cos((Math.PI * -0.25) / 6) }, { x: 9.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 0) / 6) }, { x: 9.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 0.25) / 6) }, { x: 10, y: 3.5 + 1.2 * Math.cos((Math.PI * 0.5) / 6) }, { x: 10.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 0.75) / 6) }, { x: 10.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 1) / 6) }, { x: 10.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 1.25) / 6) }, { x: 11, y: 3.5 + 1.2 * Math.cos((Math.PI * 1.5) / 6) }, { x: 11.25, y: 3.5 + 1.2 * Math.cos((Math.PI * 1.75) / 6) }, { x: 11.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 2) / 6) }, { x: 11.75, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.25) / 6) }, { x: 12, y: 3.5 + 1.2 * Math.cos((Math.PI * 2.5) / 6) }] },
+      { id: "top", kind: "point", appearance: "primary", at: { x: 9.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 0) / 6) } },
+    ],
+    labels: [
+      { key: "base", objectId: "base", at: { x: 1, y: 2 }, placement: "below" },
+      { key: "peak", objectId: "top", at: { x: 9.5, y: 3.5 + 1.2 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    base: <>Base load</>,
+    peak: <>Evening peak</>,
+  }}
 />
 
 ## Risks Across the Full Energy Chain

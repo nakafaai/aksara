@@ -44,30 +44,25 @@ Jadi, kotak menerima energi sebesar <InlineMath math="30 \text{ J}" /> melalui d
 
 Gambar dorongan itu sebagai gaya terhadap perpindahan, maka usahanya menjadi luas. Persegi panjang di bawah tingginya <InlineMath math="15\text{ N}" /> dan lebarnya <InlineMath math="2\text{ m}" />, jadi isinya tepat <InlineMath math="30\text{ J}" /> yang diterima kotak.
 
-<LineEquation
-  title="Usaha sebagai Luas"
-  description="Gaya tetap 15 N sepanjang 2 m. Mendatar: perpindahan dalam m. Tegak: gaya dalam satuan 5 N."
-  data={(() => {
-    // Constant force F = 15 N over 2 m. Horizontal: displacement in m. Vertical: force / 5 N.
-    const force = 15;
-    const distance = 2;
-    const at = (s, F) => ({ x: s, y: F / 5, z: 0 });
-    return [
-      {
-        points: [at(0, 0), at(0, force), at(distance, force), at(distance, 0)],
-        color: "#0d9488",
-        showPoints: false,
-        smooth: false,
-        labels: [
-          { text: <InlineMath math={`F=${force}\\text{ N}`} />, at: 1, offset: [1, 0.4, 0], anchorX: "center" },
-          { text: <InlineMath math={`W=${force}\\times${distance}=${force * distance}\\text{ J}`} />, at: 0, offset: [1, 1.5, 0], anchorX: "center" },
-        ],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[1, 1.6, 6]}
-  cameraTarget={[1, 1.6, 0]}
+<MathVisual
+  title={<>Usaha sebagai Luas</>}
+  description={<>Gaya tetap 15 N sepanjang 2 m. Mendatar: perpindahan dalam m. Tegak: gaya dalam satuan 5 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "work", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }] },
+    ],
+    labels: [
+      { key: "force", objectId: "work", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "area", objectId: "work", at: { x: 1, y: 1.5 }, placement: "center" },
+    ],
+  }}
+  labels={{
+    force: <InlineMath math="F=15\text{ N}" />,
+    area: <InlineMath math="W=15\times2=30\text{ J}" />,
+  }}
 />
 
 ## Joule adalah Satuan Energi
@@ -98,6 +93,35 @@ Energi berpindah dari sumber menuju alat, lalu berubah menjadi bentuk yang kita 
     E --> F["Otot bergerak"]`}/>
 
 Pada panel surya, **energi cahaya berubah menjadi energi listrik**. Pada pembangkit listrik tenaga air, energi potensial gravitasi air berubah menjadi energi gerak turbin, lalu menjadi energi listrik. Pada tubuh, energi kimia dari makanan membantu otot melakukan kerja.
+
+Energi tidak pernah hilang dalam perubahan bentuk, hanya terbagi. Pada lampu ilustratif ini, setiap <InlineMath math="100\text{ J}" /> terbagi menjadi <InlineMath math="20\text{ J}" /> cahaya dan <InlineMath math="80\text{ J}" /> panas, jadi efisiensinya <InlineMath math="\eta=\tfrac{20}{100}=20\%" />. Perbesar kedua cabangnya.
+
+<MathVisual
+  title={<>Efisiensi adalah Bagian yang Berguna</>}
+  description={<>Aliran energi ilustratif lewat sebuah lampu, dengan lebar pita sesuai skala. Satu kotak grid berarti 10 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -1.5, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "in", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 10 }, { x: 0, y: 10 }] },
+      { id: "to-light", kind: "polygon", appearance: "highlight", vertices: [{ x: 3, y: 8 }, { x: 5, y: 8 }, { x: 5, y: 10 }, { x: 3, y: 10 }] },
+      { id: "to-heat", kind: "polygon", appearance: "warning", vertices: [{ x: 3, y: 0 }, { x: 5, y: -1 }, { x: 5, y: 7 }, { x: 3, y: 8 }] },
+      { id: "light", kind: "polygon", appearance: "highlight", vertices: [{ x: 5, y: 8 }, { x: 8, y: 8 }, { x: 8, y: 10 }, { x: 5, y: 10 }] },
+      { id: "heat", kind: "polygon", appearance: "warning", vertices: [{ x: 5, y: -1 }, { x: 8, y: -1 }, { x: 8, y: 7 }, { x: 5, y: 7 }] },
+    ],
+    labels: [
+      { key: "in", objectId: "in", at: { x: 1.5, y: 10 }, placement: "above" },
+      { key: "light", objectId: "light", at: { x: 8, y: 9 }, placement: "right" },
+      { key: "heat", objectId: "heat", at: { x: 8, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    in: <InlineMath math="100\text{ J masuk}" />,
+    light: <InlineMath math="\text{cahaya }20\text{ J},\ \eta=20\%" />,
+    heat: <InlineMath math="\text{panas }80\text{ J}" />,
+  }}
+/>
 
 ## Daya Mengukur Laju Perpindahan Energi
 
@@ -139,36 +163,30 @@ Kalau lampu yang sama menyala lebih lama, energinya bertambah. Kalau dayanya leb
 
 Grafik di bawah menunjukkan kedua pernyataan itu sekaligus. Telusuri garis oranye untuk lampu <InlineMath math="10\text{ W}" />: makin lama lampu menyala, makin besar energinya, dan pada <InlineMath math="5\text{ jam}" /> energinya mencapai <InlineMath math="50\text{ Wh}" />. Garis ungu untuk lampu <InlineMath math="20\text{ W}" /> naik dua kali lebih curam, karena daya menunjukkan seberapa cepat energi terkumpul.
 
-<LineEquation
-  title="Pemakaian Energi Bertambah seiring Waktu"
-  description="E = Pt untuk lampu 10 W dan 20 W. Mendatar: waktu dalam jam. Tegak: energi dalam satuan 20 Wh."
-  data={(() => {
-    // E = P t. Horizontal: time in hours. Vertical: energy / 20 Wh.
-    const hours = 6;
-    const lamp = (power, color, text, offset) => ({
-      points: [0, hours].map((t) => ({ x: t, y: (power * t) / 20, z: 0 })),
-      color,
-      showPoints: false,
-      smooth: false,
-      labels: [{ text, at: 1, offset, anchorX: "center" }],
-    });
-    const used = 10 * 5;
-    return [
-      lamp(10, "#bb6800", <InlineMath math="P=10\text{ W}" />, [0.9, 0, 0]),
-      lamp(20, "#8242e5", <InlineMath math="P=20\text{ W}" />, [0.9, 0, 0]),
-      {
-        points: [{ x: 5, y: 0, z: 0 }, { x: 5, y: used / 20, z: 0 }],
-        color: "#c026d3",
-        showPoints: true,
-        pointIndices: [1],
-        smooth: false,
-        labels: [{ text: <InlineMath math={`E=${used}\\text{ Wh}`} />, at: 1, offset: [0, -0.5, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[3.2, 3, 9]}
-  cameraTarget={[3.2, 3, 0]}
+<MathVisual
+  title={<>Pemakaian Energi Bertambah seiring Waktu</>}
+  description={<>E = Pt untuk lampu 10 W dan 20 W. Mendatar: waktu dalam jam. Tegak: energi dalam satuan 20 Wh.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ten", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 3 } },
+      { id: "twenty", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
+      { id: "used", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 5, y: 2.5 } },
+      { id: "used-top", kind: "point", appearance: "answer", at: { x: 5, y: 2.5 } },
+    ],
+    labels: [
+      { key: "ten", objectId: "ten", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "twenty", objectId: "twenty", at: { x: 6, y: 6 }, placement: "right" },
+      { key: "used", objectId: "used-top", at: { x: 5, y: 2.5 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    ten: <InlineMath math="P=10\text{ W}" />,
+    twenty: <InlineMath math="P=20\text{ W}" />,
+    used: <InlineMath math="E=50\text{ Wh}" />,
+  }}
 />
 
 ## Analisis Energi pada Sumber Terbarukan

@@ -56,25 +56,30 @@ Jika gaya konstan yang sama melawan perpindahan, sudutnya <InlineMath math="180^
 
 Grafik di bawah menjalankan tarikan <InlineMath math="40\text{ N}" /> sejauh <InlineMath math="5\text{ m}" /> yang sama untuk setiap sudut dari <InlineMath math="0^\circ" /> sampai <InlineMath math="180^\circ" />. Usahanya mulai dari <InlineMath math="200\text{ J}" />, turun ke nol saat gaya tegak lurus, lalu berakhir di <InlineMath math="-200\text{ J}" /> saat gaya berlawanan dengan gerak.
 
-<LineEquation
-  title="Usaha Mengikuti Kosinus Sudut"
-  description="W = Fs cos θ untuk F = 40 N dan s = 5 m. Mendatar: sudut dalam satuan 30°. Tegak: usaha dalam satuan 50 J."
-  data={[
-    {
-      // W = F s cos(theta) for F = 40 N and s = 5 m, theta in degrees / 30. Vertical: W / 50 J.
-      curve: { kind: "cos", amplitude: (40 * 5) / 50, frequency: (30 * Math.PI) / 180, phase: 0, shift: 0, domain: [0, 6], samples: 241 },
-      color: "#bb6800",
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="0^\circ:\ W=200\text{ J}" />, at: 0, offset: [1.2, 0.3, 0], anchorX: "center" },
-        { text: <InlineMath math="90^\circ:\ W=0" />, at: 120, offset: [0.9, 0.3, 0], anchorX: "center" },
-        { text: <InlineMath math="180^\circ:\ W=-200\text{ J}" />, at: 240, offset: [-1.4, -0.3, 0], anchorX: "center" },
-      ],
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[3, 0, 9]}
-  cameraTarget={[3, 0, 0]}
+<MathVisual
+  title={<>Usaha Mengikuti Kosinus Sudut</>}
+  description={<><InlineMath math="W=Fs\cos\theta" /> untuk <InlineMath math="F=40\text{ N}" /> dan <InlineMath math="s=5\text{ m}" />. Mendatar: sudut dalam satuan 30°. Tegak: usaha dalam satuan 50 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "work", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 0.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 3, y: 0 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 3.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 3.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 3.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 4) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 4.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 4.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 4.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 5) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 5.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 5.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 5.75) / 6) }, { x: 6, y: -4 }] },
+      { id: "zero", kind: "point", appearance: "primary", at: { x: 0, y: 4 } },
+      { id: "right", kind: "point", appearance: "primary", at: { x: 3, y: 0 } },
+      { id: "back", kind: "point", appearance: "primary", at: { x: 6, y: -4 } },
+    ],
+    labels: [
+      { key: "zero", objectId: "zero", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "right", objectId: "right", at: { x: 3, y: 0 }, placement: "above-right" },
+      { key: "back", objectId: "back", at: { x: 6, y: -4 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    zero: <InlineMath math="0^\circ:\ W=200\text{ J}" />,
+    right: <InlineMath math="90^\circ:\ W=0" />,
+    back: <InlineMath math="180^\circ:\ W=-200\text{ J}" />,
+  }}
 />
 
 ## Perkalian Silang Mengukur Efek Memutar
@@ -190,25 +195,24 @@ Jadi, perkalian titik cocok untuk menanyakan kesearahan, sedangkan perkalian sil
 
 Tetapkan kedua besar vektornya lalu putar sudutnya. Hasil kali titik yang oranye paling besar saat kedua vektor segaris, sedangkan besar hasil kali silang yang ungu memuncak di <InlineMath math="90^\circ" />. Pada <InlineMath math="0^\circ" /> dan <InlineMath math="180^\circ" /> hasil kali silangnya nol, karena vektor sejajar tidak memberi efek putar.
 
-<LineEquation
-  title="Hasil Kali Titik dan Silang terhadap Sudut"
-  description="AB cos θ dan AB sin θ dengan AB = 200 untuk sudut 0° sampai 180°. Mendatar: sudut dalam satuan 30°. Tegak: nilai dalam satuan 50."
-  data={[
-    {
-      // A B cos(theta) and A B sin(theta) with A B = 200, theta in degrees / 30. Vertical: value / 50.
-      curve: { kind: "cos", amplitude: 200 / 50, frequency: (30 * Math.PI) / 180, phase: 0, shift: 0, domain: [0, 6], samples: 241 },
-      color: "#bb6800",
-      showPoints: false,
-      labels: [{ text: "A·B", at: 40, offset: [0.6, 0.4, 0], anchorX: "center" }],
-    },
-    {
-      curve: { kind: "sin", amplitude: 200 / 50, frequency: (30 * Math.PI) / 180, phase: 0, shift: 0, domain: [0, 6], samples: 241 },
-      color: "#8242e5",
-      showPoints: false,
-      labels: [{ text: "|A×B|", at: 120, offset: [0, 0.45, 0], anchorX: "center" }],
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[3, 0, 9]}
-  cameraTarget={[3, 0, 0]}
+<MathVisual
+  title={<>Hasil Kali Titik dan Silang terhadap Sudut</>}
+  description={<><InlineMath math="AB\cos\theta" /> dan <InlineMath math="AB\sin\theta" /> dengan <InlineMath math="AB=200" /> untuk sudut 0° sampai 180°. Mendatar: sudut dalam satuan 30°. Tegak: nilai dalam satuan 50.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "dot", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 0.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 3, y: 0 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 3.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 3.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 3.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 4) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 4.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 4.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 4.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 5) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 5.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 5.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 5.75) / 6) }, { x: 6, y: -4 }] },
+      { id: "cross", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.25, y: 4 * Math.cos((Math.PI * -2.75) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * -2.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * -2.25) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * -2) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * -1.75) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * -1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * -1.25) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * -1) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * -0.75) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * -0.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * -0.25) / 6) }, { x: 3, y: 4 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 6, y: 0 }] },
+    ],
+    labels: [
+      { key: "dot", objectId: "dot", at: { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, placement: "above-right" },
+      { key: "cross", objectId: "cross", at: { x: 3, y: 4 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    dot: <InlineMath math="\vec A\cdot\vec B" />,
+    cross: <InlineMath math="\lvert\vec A\times\vec B\rvert" />,
+  }}
 />

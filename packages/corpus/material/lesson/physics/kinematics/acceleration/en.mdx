@@ -95,18 +95,34 @@ The table assumes **constant acceleration throughout the observed interval**.
 
 The last row is where many students trip up. Negative acceleration does not automatically mean the object is moving left. It means <Highlight>the velocity change points toward the negative side</Highlight> of the chosen axis.
 
-Compare the two signs, never the acceleration alone.
+Read the signs together. With <InlineMath math="v>0" />, an acceleration of the same sign makes the speed grow, the opposite sign makes it shrink, and <InlineMath math="a=0" /> keeps it the same. Zoom in on the three lines and compare their slopes.
 
-<Mermaid
-  title="Speeding Up or Slowing Down"
-  description="When velocity and acceleration share a sign the object speeds up. Opposite signs mean it slows down."
-  chart={`flowchart TD
-    A["Signs of v and a"] --> B["Same sign"]
-    A --> C["Opposite signs"]
-    A --> D["a = 0"]
-    B --> E["Speeding up"]
-    C --> F["Slowing down"]
-    D --> G["Velocity stays the same"]`}
+<MathVisual
+  title={<>Speeding Up or Slowing Down</>}
+  description={<>Velocity against time for <InlineMath math="a=+1" /> (teal), <InlineMath math="a=-1" /> (pink) and <InlineMath math="a=0" /> (gray), all with positive velocity. Horizontal: seconds. Vertical: m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "faster", kind: "segment", appearance: "construction", from: { x: 0, y: 2 }, to: { x: 4, y: 6 } },
+      { id: "slower", kind: "segment", appearance: "warning", from: { x: 0, y: 6 }, to: { x: 4, y: 2 } },
+      { id: "steady", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 4, y: 3 } },
+      { id: "faster-end", kind: "point", appearance: "construction", at: { x: 4, y: 6 } },
+      { id: "slower-end", kind: "point", appearance: "warning", at: { x: 4, y: 2 } },
+      { id: "steady-end", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "faster", objectId: "faster-end", at: { x: 4, y: 6 }, placement: "right" },
+      { key: "slower", objectId: "slower-end", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "steady", objectId: "steady-end", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    faster: <InlineMath math="a>0:\ \text{faster}" />,
+    slower: <InlineMath math="a<0:\ \text{slower}" />,
+    steady: <InlineMath math="a=0" />,
+  }}
 />
 
 ## Calculating Velocity Change Each Second

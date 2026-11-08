@@ -76,43 +76,53 @@ Die Arbeitsformel setzt eine konstante Kraft in Verschiebungsrichtung voraus. Di
 
 Dreh den Würfel unten. An jeder Kante zählst du <InlineMath math="10" /> kleine Würfel mit <InlineMath math="1\text{ dm}" />, also ist der große Würfel an jeder Seite <InlineMath math="1\text{ m}" /> lang. Sein Volumen ist <InlineMath math="(10\text{ dm})^3=1000\text{ dm}^3" />, also gilt <InlineMath math="1\text{ m}^3=1000\text{ dm}^3" />, und ein kleiner Würfel fasst genau <InlineMath math="1" /> Liter. Achte darauf, dass der Vorsatz zusammen mit der Einheit hoch drei genommen wird: <InlineMath math="1\text{ dm}=10^{-1}\text{ m}" />, also <InlineMath math="1\text{ dm}^3=10^{-3}\text{ m}^3" />.
 
-<LineEquation
-  title="Ein Kubikmeter aus Kubikdezimetern"
-  description="Ein Gitterschritt ist 1 dm. Die kleinen Würfel liegen an drei Kanten eines Würfels mit 1 m Kantenlänge. Dreh ihn, um sie zu zählen."
-  data={(() => {
-    // One grid step is 1 dm. The big cube is 1 m = 10 dm on each edge.
-    const edge = 10;
-    const cube = (x, y, z) => ({
-      kind: "cuboid",
-      center: { x: x + 0.5, y: y + 0.5, z: z + 0.5 },
-      length: 1,
-      width: 1,
-      height: 1,
-      color: "#0d9488",
-    });
-    const tag = (point, text) => ({
-      points: [point],
-      showPoints: false,
-      labels: [{ text, at: 0, offset: [0, 0, 0], anchorX: "center" }],
-    });
-    return [
-      {
-        kind: "cuboid",
-        center: { x: edge / 2, y: edge / 2, z: edge / 2 },
-        length: edge,
-        width: edge,
-        height: edge,
-        color: "#bb6800",
-      },
-      ...Array.from({ length: edge }, (_, i) => cube(i, 0, edge - 1)),
-      ...Array.from({ length: edge - 1 }, (_, i) => cube(0, i + 1, edge - 1)),
-      ...Array.from({ length: edge - 1 }, (_, i) => cube(0, 0, edge - 2 - i)),
-      tag({ x: edge / 2, y: -0.9, z: edge }, <InlineMath math="10\times1\text{ dm}=1\text{ m}" />),
-      tag({ x: edge / 2, y: edge + 1, z: edge / 2 }, <InlineMath math="(10\text{ dm})^3=1000\text{ dm}^3=1\text{ m}^3" />),
-    ];
-  })()}
-  cameraPosition={[19, 14, 24]}
-  cameraTarget={[5, 4.5, 5]}
+<MathVisual
+  title={<>Ein Kubikmeter aus Kubikdezimetern</>}
+  description={<>Ein Gitterschritt ist 1 dm. Die kleinen Würfel liegen an drei Kanten eines Würfels mit 1 m Kantenlänge. Dreh ihn, um sie zu zählen.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1.5, max: 12 }, z: { min: -1, max: 11 } },
+    view: { kind: "camera", position: { x: 19, y: 14, z: 24 }, target: { x: 5, y: 4.5, z: 5 } },
+    objects: [
+      { id: "meter", kind: "cuboid", appearance: "primary", center: { x: 5, y: 5, z: 5 }, size: { length: 10, height: 10, width: 10 } },
+      { id: "x-0", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-1", kind: "cuboid", appearance: "construction", center: { x: 1.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-2", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-3", kind: "cuboid", appearance: "construction", center: { x: 3.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-4", kind: "cuboid", appearance: "construction", center: { x: 4.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-5", kind: "cuboid", appearance: "construction", center: { x: 5.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-6", kind: "cuboid", appearance: "construction", center: { x: 6.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-7", kind: "cuboid", appearance: "construction", center: { x: 7.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-8", kind: "cuboid", appearance: "construction", center: { x: 8.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "x-9", kind: "cuboid", appearance: "construction", center: { x: 9.5, y: 0.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-0", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 1.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-1", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 2.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-2", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 3.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-3", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 4.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-4", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 5.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-5", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 6.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-6", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 7.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-7", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 8.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "y-8", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 9.5, z: 9.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-0", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 8.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-1", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 7.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-2", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 6.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-3", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 5.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-4", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 4.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-5", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 3.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-6", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 2.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-7", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 1.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "z-8", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 0.5, z: 0.5 }, size: { length: 1, height: 1, width: 1 } },
+    ],
+    labels: [
+      { key: "edge", objectId: "x-4", at: { x: 5, y: -0.9, z: 10 }, placement: "below" },
+      { key: "volume", objectId: "meter", at: { x: 5, y: 11, z: 5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    edge: <InlineMath math="10\times1\text{ dm}=1\text{ m}" />,
+    volume: <InlineMath math="(10\text{ dm})^3=1000\text{ dm}^3=1\text{ m}^3" />,
+  }}
 />
 
 Die Zerlegung einer abgeleiteten Einheit zeigt ihren Ursprung. Kraft wird in Newton angegeben, doch ein Newton setzt sich aus Kilogramm, Meter und Sekunde zusammen.
@@ -132,15 +142,37 @@ Darauf aufbauend lassen sich Joule und Watt Schritt für Schritt zerlegen.
 = 1 \text{ kg m}^2\text{ s}^{-3}
 \end{aligned}" />
 
-Jede abgeleitete Einheit unten baut auf der vorigen auf, also kannst du sie immer in Basiseinheiten zerlegen.
+Jede abgeleitete Einheit ist ein Produkt aus Potenzen von kg, m und s. Dreh die Balken: Das Joule ist ein Newton mal Meter, also wächst nur die Potenz von m, und das Watt ist ein Joule pro Sekunde, also sinkt die Potenz von s auf <InlineMath math="-3" />.
 
-<Mermaid
-  title="Vom Newton zum Joule zum Watt"
-  description="Jeder Schritt multipliziert oder dividiert mit einer Basiseinheit."
-  chart={`flowchart LR
-    A["kg, m, s"] --> B["1 N = 1 kg m s^-2"]
-    B --> C["1 J = 1 N m = 1 kg m^2 s^-2"]
-    C --> D["1 W = 1 J / s = 1 kg m^2 s^-3"]`}
+<MathVisual
+  title={<>Vom Newton über das Joule zum Watt</>}
+  description={<>Potenzen von kg (violett), m (orange) und s (türkis) im Newton, im Joule und im Watt. Balken unter dem Boden sind negative Potenzen.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: -3.5, max: 3 }, z: { min: -1, max: 1 } },
+    view: { kind: "camera", position: { x: 8, y: 5, z: 11 }, target: { x: 3, y: 0, z: 0 } },
+    objects: [
+      { id: "n-0", kind: "cuboid", appearance: "secondary", center: { x: -0.9, y: 0.5, z: 0 }, size: { length: 0.7, height: 1, width: 0.7 } },
+      { id: "n-1", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 0.7, height: 1, width: 0.7 } },
+      { id: "n-2", kind: "cuboid", appearance: "construction", center: { x: 0.9, y: -1, z: 0 }, size: { length: 0.7, height: 2, width: 0.7 } },
+      { id: "j-0", kind: "cuboid", appearance: "secondary", center: { x: 2.1, y: 0.5, z: 0 }, size: { length: 0.7, height: 1, width: 0.7 } },
+      { id: "j-1", kind: "cuboid", appearance: "primary", center: { x: 3, y: 1, z: 0 }, size: { length: 0.7, height: 2, width: 0.7 } },
+      { id: "j-2", kind: "cuboid", appearance: "construction", center: { x: 3.9, y: -1, z: 0 }, size: { length: 0.7, height: 2, width: 0.7 } },
+      { id: "w-0", kind: "cuboid", appearance: "secondary", center: { x: 5.1, y: 0.5, z: 0 }, size: { length: 0.7, height: 1, width: 0.7 } },
+      { id: "w-1", kind: "cuboid", appearance: "primary", center: { x: 6, y: 1, z: 0 }, size: { length: 0.7, height: 2, width: 0.7 } },
+      { id: "w-2", kind: "cuboid", appearance: "construction", center: { x: 6.9, y: -1.5, z: 0 }, size: { length: 0.7, height: 3, width: 0.7 } },
+    ],
+    labels: [
+      { key: "n", objectId: "n-1", at: { x: 0, y: 1, z: 0 }, placement: "above" },
+      { key: "j", objectId: "j-1", at: { x: 3, y: 2, z: 0 }, placement: "above" },
+      { key: "w", objectId: "w-1", at: { x: 6, y: 2, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    n: <InlineMath math="\mathrm{N}=\mathrm{kg\,m\,s^{-2}}" />,
+    j: <InlineMath math="\mathrm{J}=\mathrm{kg\,m^2\,s^{-2}}" />,
+    w: <InlineMath math="\mathrm{W}=\mathrm{kg\,m^2\,s^{-3}}" />,
+  }}
 />
 
 ## Große und kleine Werte kompakt schreiben
@@ -194,3 +226,40 @@ Die wissenschaftliche Schreibweise trennt die Elektronenmasse in Koeffizient und
 <BlockMath math="9{,}11 \times 10^{-31} \text{ kg}" />
 
 Zerlege eine Einheit wie <InlineMath math="\text{cm}" />, <InlineMath math="\text{mg}" /> oder <InlineMath math="\mu\text{m}" /> zuerst in Präfix und Grundeinheit. Ersetze anschließend das Präfix durch die passende Potenz von <InlineMath math="10" /> und rechne damit weiter.
+
+Jeder Vorsatz ist eine Zehnerpotenz, also ist ein Wechsel zwischen Vorsätzen ein Schritt auf einer Exponentenlinie. Von Kilometern zu Millimetern sind es <InlineMath math="3-(-3)=6" /> Schritte, also <InlineMath math="1\text{ km}=10^{6}\text{ mm}" />. Zoom die Linie entlang und zähl die Schritte.
+
+<MathVisual
+  title={<>Vorsätze sind Zehnerpotenzen</>}
+  description={<>Gängige SI-Vorsätze für das Meter an ihrem Zehnerexponenten.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -11, max: 5 }, y: { min: -1.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -10, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "km", kind: "point", appearance: "secondary", at: { x: 3, y: 0 } },
+      { id: "m", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "cm", kind: "point", appearance: "secondary", at: { x: -2, y: 0 } },
+      { id: "mm", kind: "point", appearance: "secondary", at: { x: -3, y: 0 } },
+      { id: "um", kind: "point", appearance: "secondary", at: { x: -6, y: 0 } },
+      { id: "nm", kind: "point", appearance: "secondary", at: { x: -9, y: 0 } },
+    ],
+    labels: [
+      { key: "km", objectId: "km", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "m", objectId: "m", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "cm", objectId: "cm", at: { x: -2, y: 0 }, placement: "above" },
+      { key: "mm", objectId: "mm", at: { x: -3, y: 0 }, placement: "below" },
+      { key: "um", objectId: "um", at: { x: -6, y: 0 }, placement: "above" },
+      { key: "nm", objectId: "nm", at: { x: -9, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    km: <InlineMath math="\text{k}:\ 10^{3}" />,
+    m: <InlineMath math="\text{ohne Vorsatz}:\ 10^{0}" />,
+    cm: <InlineMath math="\text{c}:\ 10^{-2}" />,
+    mm: <InlineMath math="\text{m}:\ 10^{-3}" />,
+    um: <InlineMath math="\mu:\ 10^{-6}" />,
+    nm: <InlineMath math="\text{n}:\ 10^{-9}" />,
+  }}
+/>

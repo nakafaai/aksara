@@ -70,39 +70,57 @@ Wenn keine Energie an die Umgebung gelangt, werden die <InlineMath math="120 \te
 
 Verfolge das fallende Wasser im Diagramm unten, von <InlineMath math="h=12\text{ m}" /> rechts bis zum Boden links. Die orange potenzielle Energie nimmt genau so stark ab, wie die türkise kinetische Energie zunimmt, deshalb bleibt die violette Linie ihrer Summe immer bei <InlineMath math="120\text{ J}" />. Auf halber Höhe, bei <InlineMath math="6\text{ m}" />, teilen sich beide Formen die Energie gleich auf.
 
-<LineEquation
-  title="Potenzielle Energie wird zu kinetischer Energie"
-  description="Wasser mit 1 kg fällt aus 12 m mit g = 10 m/s² ohne Verluste. Waagrecht: Höhe in Einheiten von 2 m. Senkrecht: Energie in Einheiten von 20 J."
-  data={(() => {
-    // Water of mass 1 kg falls from 12 m with g = 10 m/s^2 and no energy leaving the system.
-    // Horizontal: height h / 2 m. Vertical: energy / 20 J.
-    const m = 1;
-    const g = 10;
-    const top = 12;
-    const heights = Array.from({ length: 13 }, (_, i) => i);
-    const line = (energy, color, text, at, offset) => ({
-      points: heights.map((h) => ({ x: h / 2, y: energy(h) / 20, z: 0 })),
-      color,
-      showPoints: false,
-      smooth: false,
-      labels: [{ text, at, offset, anchorX: "center" }],
-    });
-    const half = top / 2;
-    return [
-      line((h) => m * g * h, "#bb6800", <InlineMath math="E_p=mgh" />, 10, [0.9, 0.2, 0]),
-      line((h) => m * g * (top - h), "#0d9488", <InlineMath math="E_k=mg(12\text{ m}-h)" />, 2, [0.4, 0.8, 0]),
-      line((h) => m * g * h + m * g * (top - h), "#8242e5", <InlineMath math="E_m=120\text{ J}" />, 6, [0, 0.45, 0]),
-      {
-        points: [{ x: half / 2, y: (m * g * half) / 20, z: 0 }],
-        color: "#c026d3",
-        showPoints: true,
-        labels: [{ text: <InlineMath math="h=6\text{ m}:\ E_p=E_k=60\text{ J}" />, at: 0, offset: [0, -0.5, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[3, 3.2, 9]}
-  cameraTarget={[3, 3.2, 0]}
+<MathVisual
+  title={<>Potenzielle Energie wird zu kinetischer Energie</>}
+  description={<>Wasser mit 1 kg fällt aus 12 m mit <InlineMath math="g=10\text{ m/s}^2" /> ohne Verluste. Waagrecht: Höhe in Einheiten von 2 m. Senkrecht: Energie in Einheiten von 20 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.8, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
+      { id: "kinetic", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 6, y: 0 } },
+      { id: "mechanical", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 6, y: 6 } },
+      { id: "half", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "ep", objectId: "potential", at: { x: 5, y: 5 }, placement: "below-right" },
+      { key: "ek", objectId: "kinetic", at: { x: 1, y: 5 }, placement: "above-right" },
+      { key: "em", objectId: "mechanical", at: { x: 3, y: 6 }, placement: "above" },
+      { key: "half", objectId: "half", at: { x: 3, y: 3 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    ep: <InlineMath math="E_p=mgh" />,
+    ek: <InlineMath math="E_k=mg(12\text{ m}-h)" />,
+    em: <InlineMath math="E_m=120\text{ J}" />,
+    half: <InlineMath math="h=6\text{ m}:\ E_p=E_k=60\text{ J}" />,
+  }}
+/>
+
+Ohne Reibung wird jedes Joule Lageenergie zu Bewegungsenergie: <InlineMath math="mgh=\tfrac12mv^2" />, also <InlineMath math="v=\sqrt{2gh}" />, und die Masse kürzt sich weg. Die vierfache Höhe ergibt nur das doppelte Tempo. Folge der Kurve von <InlineMath math="5\text{ m}" /> bis <InlineMath math="20\text{ m}" />.
+
+<MathVisual
+  title={<>Höhe wird zu Tempo</>}
+  description={<>Tempo unten über der Fallhöhe mit <InlineMath math="g=10\text{ m/s}^2" />. Waagerecht: Ein Gitterschritt entspricht 2 m. Senkrecht: Ein Gitterschritt entspricht 4 m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -0.5, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "speed", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: Math.sqrt(2 * 10 * 1) / 4 }, { x: 1, y: Math.sqrt(2 * 10 * 2) / 4 }, { x: 1.5, y: Math.sqrt(2 * 10 * 3) / 4 }, { x: 2, y: Math.sqrt(2 * 10 * 4) / 4 }, { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, { x: 3, y: Math.sqrt(2 * 10 * 6) / 4 }, { x: 3.5, y: Math.sqrt(2 * 10 * 7) / 4 }, { x: 4, y: Math.sqrt(2 * 10 * 8) / 4 }, { x: 4.5, y: Math.sqrt(2 * 10 * 9) / 4 }, { x: 5, y: Math.sqrt(2 * 10 * 10) / 4 }, { x: 5.5, y: Math.sqrt(2 * 10 * 11) / 4 }, { x: 6, y: Math.sqrt(2 * 10 * 12) / 4 }, { x: 6.5, y: Math.sqrt(2 * 10 * 13) / 4 }, { x: 7, y: Math.sqrt(2 * 10 * 14) / 4 }, { x: 7.5, y: Math.sqrt(2 * 10 * 15) / 4 }, { x: 8, y: Math.sqrt(2 * 10 * 16) / 4 }, { x: 8.5, y: Math.sqrt(2 * 10 * 17) / 4 }, { x: 9, y: Math.sqrt(2 * 10 * 18) / 4 }, { x: 9.5, y: Math.sqrt(2 * 10 * 19) / 4 }, { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }] },
+      { id: "five", kind: "point", appearance: "secondary", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 } },
+      { id: "twenty", kind: "point", appearance: "answer", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 } },
+    ],
+    labels: [
+      { key: "five", objectId: "five", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, placement: "below-right" },
+      { key: "twenty", objectId: "twenty", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    five: <InlineMath math="h=5\text{ m}:\ v=10\text{ m/s}" />,
+    twenty: <InlineMath math="h=20\text{ m}:\ v=20\text{ m/s}" />,
+  }}
 />
 
 ## Nutzenergie hängt vom Zweck des Geräts ab
@@ -124,15 +142,31 @@ Die <InlineMath math="30 \text{ J}" /> sind also nicht verschwunden. Sie wurden 
 
 [Wasserkraftwerke](https://www.energy.gov/cmei/water/how-hydropower-works) nutzen einen Höhenunterschied des Wassers, um Turbinen und Generatoren anzutreiben.
 
-Hier ist die Energiebilanz der Turbine. Die beiden Ausgänge ergeben zusammen immer den Eingang.
+Dreh die Säulen: Die Energie, die in die Turbine geht, kommt vollständig wieder heraus. Nutzbare elektrische Energie und der Anteil, der als Wärme, Schall und Vibration verloren geht, ergeben zusammen wieder den Eingang.
 
-<Mermaid
-  title="Die Energiebilanz der Turbine"
-  description="120 J aus strömendem Wasser werden zu 90 J elektrischer Energie und 30 J, die an die Umgebung gehen."
-  chart={`flowchart LR
-    A["Eingang: 120 J"] --> B["Turbine und Generator"]
-    B --> C["Nutzbare elektrische Energie: 90 J"]
-    B --> D["An die Umgebung: 30 J Wärme, Schall, Vibration"]`}
+<MathVisual
+  title={<>Die Energiebilanz der Turbine</>}
+  description={<>Energie in Turbine und Generator (grau) und heraus als Strom (türkis) und an die Umgebung (rosa). Ein Gitterschritt nach oben entspricht 20 J.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 7 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 5, z: 10 }, target: { x: 1.5, y: 3, z: 0 } },
+    objects: [
+      { id: "input", kind: "cuboid", appearance: "reference", center: { x: 0, y: 3, z: 0 }, size: { length: 1.6, height: 6, width: 1.6 } },
+      { id: "useful", kind: "cuboid", appearance: "construction", center: { x: 3, y: 2.25, z: 0 }, size: { length: 1.6, height: 4.5, width: 1.6 } },
+      { id: "lost", kind: "cuboid", appearance: "warning", center: { x: 3, y: 5.25, z: 0 }, size: { length: 1.6, height: 1.5, width: 1.6 } },
+    ],
+    labels: [
+      { key: "input", objectId: "input", at: { x: 0, y: 6, z: 0 }, placement: "above" },
+      { key: "useful", objectId: "useful", at: { x: 3, y: 2.25, z: 0.85 }, placement: "right" },
+      { key: "lost", objectId: "lost", at: { x: 3, y: 6, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    input: <InlineMath math="120\text{ J}" />,
+    useful: <InlineMath math="90\text{ J},\ \eta=\tfrac{90}{120}=75\%" />,
+    lost: <InlineMath math="120-90=30\text{ J}" />,
+  }}
 />
 
 ## Energieaussagen mit dem Erhaltungsgesetz prüfen

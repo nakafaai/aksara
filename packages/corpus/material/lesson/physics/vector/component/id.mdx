@@ -34,30 +34,32 @@ Panjang vektor didapat dari **teorema Pythagoras** karena komponen <InlineMath m
 
 Kedua panah komponen di bawah dan vektornya membentuk segitiga siku-siku, jadi panjangnya adalah sisi miringnya: <InlineMath math="\sqrt{6^2+8^2}=10" />.
 
-<LineEquation
-  title="Vektor dan Dua Komponennya"
-  description="A = 6î + 8ĵ dengan komponen x dan y-nya. Satu kotak grid sama dengan 2 satuan."
-  data={(() => {
-    const arrow = (from, to, color, text, offset) => ({
-      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
-      color,
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
-    });
-    // A = 6 i + 8 j, drawn with its two components. One grid step is 2 units.
-    const A = [6, 8];
-    const s = (p) => p.map((v) => v / 2);
-    return [
-      arrow(s([0, 0]), s([A[0], 0]), "#0d9488", <InlineMath math="A_x=6" />, [-1.4, -0.4, 0]),
-      arrow(s([A[0], 0]), s(A), "#8242e5", <InlineMath math="A_y=8" />, [0.6, -2, 0]),
-      arrow(s([0, 0]), s(A), "#bb6800", <InlineMath math={`\\lvert\\vec A\\rvert=${Math.hypot(A[0], A[1])}`} />, [-1.2, -0.6, 0]),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[1.6, 2, 7]}
-  cameraTarget={[1.6, 2, 0]}
+<MathVisual
+  title={<>Vektor dan Dua Komponennya</>}
+  description={<><InlineMath math="\vec A=6\hat i+8\hat j" /> dengan komponen x dan y-nya. Satu kotak grid sama dengan 2 satuan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ax", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "ax-head", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 0 }, { x: 2.75, y: 0.125 }, { x: 2.75, y: -0.125 }] },
+      { id: "ay", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "ay-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 4 }, { x: 3.125, y: 3.75 }, { x: 2.875, y: 3.75 }] },
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 4 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) + ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) + ((0.25 / 2) * 3) / Math.hypot(3, 4) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) - ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) - ((0.25 / 2) * 3) / Math.hypot(3, 4) }] },
+    ],
+    labels: [
+      { key: "ax", objectId: "ax", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "ay", objectId: "ay", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 1.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    ax: <InlineMath math="A_x=6" />,
+    ay: <InlineMath math="A_y=8" />,
+    a: <InlineMath math="\lvert\vec A\rvert=10" />,
+  }}
 />
 
 ## Komponen pada Ruang Tiga Dimensi
@@ -197,28 +199,30 @@ Jadi, perpindahan berarah sekitar <InlineMath math="53{,}1^\circ" /> ke utara da
 
 Inilah perjalanan itu sebagai komponen. Bagian ke timur dan ke utara adalah komponennya, dan panah oranye adalah perpindahan yang ditulis dari keduanya, <InlineMath math="3\hat{i}+4\hat{j}" /> meter, sekitar <InlineMath math="53{,}1^\circ" /> dari timur.
 
-<LineEquation
-  title="Perjalanan Ditulis sebagai Komponen"
-  description="3 m ke timur, lalu 4 m ke utara. Satu kotak grid sama dengan 1 m."
-  data={(() => {
-    const arrow = (from, to, color, text, offset) => ({
-      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
-      color,
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
-    });
-    // 3 m east along x, then 4 m north along y. One grid step is 1 m.
-    const d = [3, 4];
-    const angle = (Math.atan2(d[1], d[0]) * 180) / Math.PI;
-    return [
-      arrow([0, 0], [d[0], 0], "#0d9488", <InlineMath math="3\text{ m}" />, [-1.5, -0.4, 0]),
-      arrow([d[0], 0], d, "#8242e5", <InlineMath math="4\text{ m}" />, [0.6, -2, 0]),
-      arrow([0, 0], d, "#bb6800", <InlineMath math={`5\\text{ m},\\ ${angle.toFixed(1).replace(".", "{,}")}^\\circ`} />, [-1.4, -0.4, 0]),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[1.5, 2, 7]}
-  cameraTarget={[1.5, 2, 0]}
+<MathVisual
+  title={<>Perjalanan Ditulis sebagai Komponen</>}
+  description={<>3 m ke timur, lalu 4 m ke utara. Satu kotak grid sama dengan 1 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "east", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "east-head", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 0 }, { x: 2.75, y: 0.125 }, { x: 2.75, y: -0.125 }] },
+      { id: "north", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "north-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 4 }, { x: 3.125, y: 3.75 }, { x: 2.875, y: 3.75 }] },
+      { id: "walk", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "walk-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 4 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) + ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) + ((0.25 / 2) * 3) / Math.hypot(3, 4) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) - ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) - ((0.25 / 2) * 3) / Math.hypot(3, 4) }] },
+    ],
+    labels: [
+      { key: "east", objectId: "east", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "north", objectId: "north", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "walk", objectId: "walk", at: { x: 1.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    east: <InlineMath math="3\text{ m}" />,
+    north: <InlineMath math="4\text{ m}" />,
+    walk: <InlineMath math="5\text{ m},\ 53{,}1^\circ" />,
+  }}
 />

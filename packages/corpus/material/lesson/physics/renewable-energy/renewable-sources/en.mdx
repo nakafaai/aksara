@@ -20,71 +20,59 @@ The term renewable describes how a source <Highlight>becomes available again thr
 
 Here's what "depends on time" looks like for a solar panel. In a simple model, a panel system rated <InlineMath math="3\text{ kW}" /> at its peak follows half a sine wave from sunrise at 06:00 to sunset at 18:00 and gives nothing at night. The energy of a day is the area under the curve, <InlineMath math="E=P_{\text{peak}}\cdot\frac{24}{\pi}\text{ h}" />, so a clear day gives about <InlineMath math="22.9\text{ kWh}" />. On a cloudy day with half the peak, the violet curve holds only half as much. The source renews itself every morning, but the power isn't there whenever you want it.
 
-<LineEquation
-  title="Solar Power over One Day"
-  description="A simple model of a 3 kW panel system on a clear day and a cloudy day with half the peak. Horizontal: clock time in units of 2 h. Vertical: power in kW."
-  data={(() => {
-    // Simple clear-sky model: P(t) = P_peak sin(pi (t - 6) / 12) from 06:00 to 18:00, zero at night.
-    // Horizontal: clock time / 2 h, so x = t / 2 and the phase is pi x / 6 - pi / 2. Vertical: power in kW.
-    const day = (peak, color, text) => ({
-      curve: {
-        kind: "sin",
-        amplitude: peak,
-        frequency: Math.PI / 6,
-        phase: -Math.PI / 2,
-        shift: 0,
-        domain: [3, 9],
-        samples: 201,
-      },
-      color,
-      showPoints: false,
-      labels: [{ text, at: 100, offset: [0, 0.45, 0], anchorX: "center" }],
-    });
-    const night = (from, to) => ({
-      points: [from, to].map((x) => ({ x, y: 0, z: 0 })),
-      color: "#64748b",
-      showPoints: false,
-      smooth: false,
-    });
-    const energy = (peak) => ((peak * 24) / Math.PI).toFixed(1).replace(".", ".");
-    return [
-      night(0, 3),
-      night(9, 12),
-      day(3, "#bb6800", <InlineMath math={`P_{\\text{peak}}=3\\text{ kW},\\ E\\approx${energy(3)}\\text{ kWh}`} />),
-      day(1.5, "#8242e5", <InlineMath math={`P_{\\text{peak}}=1.5\\text{ kW},\\ E\\approx${energy(1.5)}\\text{ kWh}`} />),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[6, 1.6, 8]}
-  cameraTarget={[6, 1.6, 0]}
+<MathVisual
+  title={<>Solar Power over One Day</>}
+  description={<>A simple model of a 3 kW panel system on a clear day and a cloudy day with half the peak. Horizontal: clock time in units of 2 h. Vertical: power in kW.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "night-1", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "night-2", kind: "segment", appearance: "reference", from: { x: 9, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "big", kind: "polyline", appearance: "primary", vertices: [{ x: 3, y: 0 }, { x: 25 / 8, y: 3 * Math.cos((Math.PI * -2.875) / 6) }, { x: 27 / 8, y: 3 * Math.cos((Math.PI * -2.625) / 6) }, { x: 29 / 8, y: 3 * Math.cos((Math.PI * -2.375) / 6) }, { x: 31 / 8, y: 3 * Math.cos((Math.PI * -2.125) / 6) }, { x: 33 / 8, y: 3 * Math.cos((Math.PI * -1.875) / 6) }, { x: 35 / 8, y: 3 * Math.cos((Math.PI * -1.625) / 6) }, { x: 37 / 8, y: 3 * Math.cos((Math.PI * -1.375) / 6) }, { x: 39 / 8, y: 3 * Math.cos((Math.PI * -1.125) / 6) }, { x: 41 / 8, y: 3 * Math.cos((Math.PI * -0.875) / 6) }, { x: 43 / 8, y: 3 * Math.cos((Math.PI * -0.625) / 6) }, { x: 45 / 8, y: 3 * Math.cos((Math.PI * -0.375) / 6) }, { x: 47 / 8, y: 3 * Math.cos((Math.PI * -0.125) / 6) }, { x: 49 / 8, y: 3 * Math.cos((Math.PI * 0.125) / 6) }, { x: 51 / 8, y: 3 * Math.cos((Math.PI * 0.375) / 6) }, { x: 53 / 8, y: 3 * Math.cos((Math.PI * 0.625) / 6) }, { x: 55 / 8, y: 3 * Math.cos((Math.PI * 0.875) / 6) }, { x: 57 / 8, y: 3 * Math.cos((Math.PI * 1.125) / 6) }, { x: 59 / 8, y: 3 * Math.cos((Math.PI * 1.375) / 6) }, { x: 61 / 8, y: 3 * Math.cos((Math.PI * 1.625) / 6) }, { x: 63 / 8, y: 3 * Math.cos((Math.PI * 1.875) / 6) }, { x: 65 / 8, y: 3 * Math.cos((Math.PI * 2.125) / 6) }, { x: 67 / 8, y: 3 * Math.cos((Math.PI * 2.375) / 6) }, { x: 69 / 8, y: 3 * Math.cos((Math.PI * 2.625) / 6) }, { x: 71 / 8, y: 3 * Math.cos((Math.PI * 2.875) / 6) }, { x: 9, y: 0 }] },
+      { id: "small", kind: "polyline", appearance: "secondary", vertices: [{ x: 3, y: 0 }, { x: 26 / 8, y: 1.5 * Math.cos((Math.PI * -2.75) / 6) }, { x: 28 / 8, y: 1.5 * Math.cos((Math.PI * -2.5) / 6) }, { x: 30 / 8, y: 1.5 * Math.cos((Math.PI * -2.25) / 6) }, { x: 32 / 8, y: 1.5 * Math.cos((Math.PI * -2) / 6) }, { x: 34 / 8, y: 1.5 * Math.cos((Math.PI * -1.75) / 6) }, { x: 36 / 8, y: 1.5 * Math.cos((Math.PI * -1.5) / 6) }, { x: 38 / 8, y: 1.5 * Math.cos((Math.PI * -1.25) / 6) }, { x: 40 / 8, y: 1.5 * Math.cos((Math.PI * -1) / 6) }, { x: 42 / 8, y: 1.5 * Math.cos((Math.PI * -0.75) / 6) }, { x: 44 / 8, y: 1.5 * Math.cos((Math.PI * -0.5) / 6) }, { x: 46 / 8, y: 1.5 * Math.cos((Math.PI * -0.25) / 6) }, { x: 48 / 8, y: 1.5 * Math.cos((Math.PI * 0) / 6) }, { x: 50 / 8, y: 1.5 * Math.cos((Math.PI * 0.25) / 6) }, { x: 52 / 8, y: 1.5 * Math.cos((Math.PI * 0.5) / 6) }, { x: 54 / 8, y: 1.5 * Math.cos((Math.PI * 0.75) / 6) }, { x: 56 / 8, y: 1.5 * Math.cos((Math.PI * 1) / 6) }, { x: 58 / 8, y: 1.5 * Math.cos((Math.PI * 1.25) / 6) }, { x: 60 / 8, y: 1.5 * Math.cos((Math.PI * 1.5) / 6) }, { x: 62 / 8, y: 1.5 * Math.cos((Math.PI * 1.75) / 6) }, { x: 64 / 8, y: 1.5 * Math.cos((Math.PI * 2) / 6) }, { x: 66 / 8, y: 1.5 * Math.cos((Math.PI * 2.25) / 6) }, { x: 68 / 8, y: 1.5 * Math.cos((Math.PI * 2.5) / 6) }, { x: 70 / 8, y: 1.5 * Math.cos((Math.PI * 2.75) / 6) }, { x: 9, y: 0 }] },
+      { id: "big-top", kind: "point", appearance: "primary", at: { x: 6, y: 3 * Math.cos((Math.PI * 0) / 6) } },
+      { id: "small-top", kind: "point", appearance: "secondary", at: { x: 6, y: 1.5 * Math.cos((Math.PI * 0) / 6) } },
+    ],
+    labels: [
+      { key: "big", objectId: "big-top", at: { x: 6, y: 3 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
+      { key: "small", objectId: "small-top", at: { x: 6, y: 1.5 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    big: <InlineMath math="P_{\text{peak}}=3\text{ kW},\ E\approx22.9\text{ kWh}" />,
+    small: <InlineMath math="P_{\text{peak}}=1.5\text{ kW},\ E\approx11.5\text{ kWh}" />,
+  }}
 />
 
 After asking whether a source is renewable, ask whether enough of it is available at the location and time when energy is needed. For managed resources such as biomass and water, also check ecosystem limits and how quickly the local resource can recover.
 
 Try it with made-up numbers: a forest holds <InlineMath math="100" /> units of wood and regrows <InlineMath math="2" /> units a year. The three lines below harvest <InlineMath math="h=1" />, <InlineMath math="2" /> and <InlineMath math="3" /> units a year. Only the pink line, which harvests faster than the forest regrows, loses wood, even though the source is renewable.
 
-<LineEquation
-  title="Harvest Rate against Regrowth"
-  description="An illustrative stock of 100 units regrowing 2 units a year with three harvest rates h. Horizontal: years in units of 5. Vertical: stock in units of 25."
-  data={(() => {
-    // Illustrative wood stock S(t) = 100 + (g - h) t with regrowth g = 2 per year. Horizontal: years / 5. Vertical: stock / 25.
-    const regrowth = 2;
-    const stock = (harvest, color, text) => ({
-      points: [0, 20].map((t) => ({ x: t / 5, y: (100 + (regrowth - harvest) * t) / 25, z: 0 })),
-      color,
-      showPoints: false,
-      smooth: false,
-      labels: [{ text, at: 1, offset: [1, 0, 0], anchorX: "center" }],
-    });
-    return [
-      stock(1, "#0d9488", <InlineMath math="h=1" />),
-      stock(2, "#64748b", <InlineMath math="h=2" />),
-      stock(3, "#e03b8a", <InlineMath math="h=3" />),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.4, 4.2, 7]}
-  cameraTarget={[2.4, 4.2, 0]}
+<MathVisual
+  title={<>Harvest Rate against Regrowth</>}
+  description={<>An illustrative stock of 100 units regrowing 2 units a year with three harvest rates h. Horizontal: years in units of 5. Vertical: stock in units of 25.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: 2.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "h1", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 1) * 20) / 25 } },
+      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 2) * 20) / 25 } },
+      { id: "h3", kind: "segment", appearance: "warning", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 3) * 20) / 25 } },
+    ],
+    labels: [
+      { key: "h1", objectId: "h1", at: { x: 4, y: (100 + (2 - 1) * 20) / 25 }, placement: "right" },
+      { key: "h2", objectId: "h2", at: { x: 4, y: (100 + (2 - 2) * 20) / 25 }, placement: "right" },
+      { key: "h3", objectId: "h3", at: { x: 4, y: (100 + (2 - 3) * 20) / 25 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    h1: <InlineMath math="h=1" />,
+    h2: <InlineMath math="h=2" />,
+    h3: <InlineMath math="h=3" />,
+  }}
 />
 
 ## Match Each Source to the Site
@@ -115,19 +103,34 @@ In a [wind turbine](https://www.energy.gov/cmei/systems/how-do-wind-turbines-wor
 
 In [hydropower](https://www.energy.gov/cmei/water/how-hydropower-works), the available energy depends on water flow and height difference. Water flows through a penstock to spin a turbine, which then drives a generator. The generator produces electricity.
 
-Here are the paths for sunlight, wind and water side by side.
+Each path ends at a generator, but each starts with a different share of the incoming energy. Rotate the bars for typical values: a solar cell turns about a fifth of the sunlight into electricity, a wind turbine can never pass the Betz limit, and a hydro turbine passes on almost all of the water's energy.
 
-<Mermaid
-  title="Three Conversion Paths"
-  description="Sunlight, wind and water each reach electricity through their own device."
-  chart={`flowchart LR
-    S["Sunlight"] --> P["Photovoltaic cell"]
-    W["Wind"] --> B["Blades and rotor"]
-    H["Falling water"] --> T["Penstock and turbine"]
-    B --> G["Generator"]
-    T --> G
-    P --> E["Electricity"]
-    G --> E`}
+<MathVisual
+  title={<>Three Conversion Paths</>}
+  description={<>Typical conversion efficiencies of a solar cell, a wind turbine and a hydro turbine, with the Betz limit for wind (pink). One grid step up is 10 percent.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 10.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 8, z: 12 }, target: { x: 2.5, y: 4, z: 0 } },
+    objects: [
+      { id: "pv", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "wind", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2.25, z: 0 }, size: { length: 1.2, height: 4.5, width: 1.2 } },
+      { id: "hydro", kind: "cuboid", appearance: "construction", center: { x: 5, y: 4.5, z: 0 }, size: { length: 1.2, height: 9, width: 1.2 } },
+      { id: "betz", kind: "segment", appearance: "warning", from: { x: 1.7, y: 160 / 27, z: 0 }, to: { x: 3.3, y: 160 / 27, z: 0 } },
+    ],
+    labels: [
+      { key: "pv", objectId: "pv", at: { x: 0, y: 2, z: 0 }, placement: "above" },
+      { key: "wind", objectId: "wind", at: { x: 2.5, y: 4.5, z: 0.7 }, placement: "right" },
+      { key: "hydro", objectId: "hydro", at: { x: 5, y: 9, z: 0 }, placement: "above" },
+      { key: "betz", objectId: "betz", at: { x: 3.3, y: 160 / 27, z: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    pv: <InlineMath math="\text{solar cell}\approx20\%" />,
+    wind: <InlineMath math="\text{wind turbine}\approx45\%" />,
+    hydro: <InlineMath math="\text{hydro turbine}\approx90\%" />,
+    betz: <InlineMath math="\text{Betz limit}\ \tfrac{16}{27}\approx59.3\%" />,
+  }}
 />
 
 ## Some Sources Need More Specific Conditions

@@ -68,16 +68,34 @@ Mit der gerundeten Streuung lässt sich der Durchmesser so angeben:
 
 Der Wert <InlineMath math="3{,}13 \text{ cm}" /> beschreibt die Lage der Daten. Die Abweichung von <InlineMath math="0{,}02 \text{ cm}" /> zeigt, dass die einzelnen Ablesungen nicht genau übereinstimmten.
 
-Hier ist die ganze Rechnung von den Messwerten bis zu den beiden Streumaßen.
+Hier sind die fünf Messwerte aus der Tabelle auf einer Linie. Die fuchsia Linie ist ihr Mittelwert, und das türkise Band reicht eine Standardabweichung zu jeder Seite und deckt die meisten Messwerte ab. Zoom hinein und zähl die Punkte im Band.
 
-<Mermaid
-  title="Von Messwerten zur Streuung"
-  description="Zuerst kommt der Mittelwert, dann die Abweichungen, dann die Stichprobenstreuung und die Unsicherheit des Mittelwerts."
-  chart={`flowchart LR
-    A["Fünf Messwerte"] --> B["Mittelwert: 3,132 cm"]
-    B --> C["Abweichungen vom Mittelwert"]
-    C --> D["s_d = 0,0164 cm"]
-    D --> E["u = s_d / Wurzel 5 = 0,00735 cm"]`}
+<MathVisual
+  title={<>Von Messwerten zur Streuung</>}
+  description={<>Fünf Messwerte des Durchmessers (orange), ihr Mittelwert (fuchsia) und das Band einer Standardabweichung (türkis). Ein Gitterschritt entspricht 0,01 cm ab 3,10 cm.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 2.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "band", kind: "polygon", appearance: "construction", vertices: [{ x: 3.2 - Math.sqrt(0.00108 / 4) * 100, y: 0 }, { x: 3.2 + Math.sqrt(0.00108 / 4) * 100, y: 0 }, { x: 3.2 + Math.sqrt(0.00108 / 4) * 100, y: 1.6 }, { x: 3.2 - Math.sqrt(0.00108 / 4) * 100, y: 1.6 }] },
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "mean", kind: "segment", appearance: "answer", from: { x: 3.2, y: 0 }, to: { x: 3.2, y: 1.6 } },
+      { id: "reading-0", kind: "point", appearance: "primary", at: { x: 2, y: 0.4 } },
+      { id: "reading-1", kind: "point", appearance: "primary", at: { x: 4, y: 0.4 } },
+      { id: "reading-2", kind: "point", appearance: "primary", at: { x: 5, y: 0.4 } },
+      { id: "reading-3", kind: "point", appearance: "primary", at: { x: 1, y: 0.4 } },
+      { id: "reading-4", kind: "point", appearance: "primary", at: { x: 4, y: 0.9 } },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 3.2, y: 1.6 }, placement: "above" },
+      { key: "band", objectId: "band", at: { x: 3.2 + Math.sqrt(0.00108 / 4) * 100, y: 1.6 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    mean: <InlineMath math="\bar d=3{,}132\text{ cm}" />,
+    band: <InlineMath math="\pm s_d=\pm0{,}0164\text{ cm}" />,
+  }}
 />
 
 ## Datenstreuung und Unsicherheit des Mittelwerts
@@ -108,75 +126,82 @@ Bei unabhängigen Ablesungen mit derselben Streuung ist die **Standardunsicherhe
 
 Die Szene unten stellt die fünf Messwerte nebeneinander. Jeder türkise Stab ist der Abstand eines Messwerts vom Mittelwert, <InlineMath math="100" />-fach vergrößert. Die orangen Linien bei <InlineMath math="\pm s_d" /> zeigen, wie weit einzelne Messwerte streuen, die engeren violetten Linien bei <InlineMath math="\pm u(\bar d)" /> zeigen, wie genau der Mittelwert selbst bekannt ist. Addier mal die Stäbe über der grauen Linie und die darunter: Sie heben sich auf, weil die Abweichungen vom Mittelwert immer null ergeben.
 
-<LineEquation
-  title="Fünf Messwerte um ihren Mittelwert"
-  description="Jeder Stab ist ein Messwert minus Mittelwert, in Einheiten von 0,01 cm. Orange Linien markieren die Streuung s, violette die Unsicherheit des Mittelwerts u."
-  data={(() => {
-    // Measured diameters in cm. The vertical axis shows d_i - mean in units of 0.01 cm.
-    const readings = [3.12, 3.14, 3.15, 3.11, 3.14];
-    const count = readings.length;
-    const mean = readings.reduce((sum, d) => sum + d, 0) / count;
-    const spread = Math.sqrt(readings.reduce((sum, d) => sum + (d - mean) ** 2, 0) / (count - 1));
-    const meanUncertainty = spread / Math.sqrt(count);
-    const scale = 100;
-    const level = (value, color, text) => ({
-      points: [{ x: 0.5, y: value * scale, z: 0 }, { x: count + 0.5, y: value * scale, z: 0 }],
-      color,
-      showPoints: false,
-      smooth: false,
-      labels: [{ text, at: 1, offset: [0.8, 0, 0], anchorX: "center" }],
-    });
-    return [
-      level(0, "#64748b", <InlineMath math="\bar d" />),
-      level(spread, "#bb6800", <InlineMath math="+s_d" />),
-      level(-spread, "#bb6800", <InlineMath math="-s_d" />),
-      level(meanUncertainty, "#8242e5", <InlineMath math="+u(\bar d)" />),
-      level(-meanUncertainty, "#8242e5", <InlineMath math="-u(\bar d)" />),
-      ...readings.map((d, i) => ({
-        points: [{ x: i + 1, y: 0, z: 0 }, { x: i + 1, y: (d - mean) * scale, z: 0 }],
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [1],
-        smooth: false,
-        labels: [{ text: <InlineMath math={`d_${i + 1}`} />, at: 1, offset: [0, d > mean ? 0.4 : -0.4, 0], anchorX: "center" }],
-      })),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[3.3, 0, 7.5]}
-  cameraTarget={[3.3, 0, 0]}
+<MathVisual
+  title={<>Fünf Messwerte um ihren Mittelwert</>}
+  description={<>Jeder Stab ist ein Messwert minus Mittelwert, in Einheiten von 0,01 cm. Orange Linien markieren die Streuung s, violette die Unsicherheit des Mittelwerts u.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: -2.8, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "mean", kind: "segment", appearance: "reference", from: { x: 0.5, y: 0 }, to: { x: 5.5, y: 0 } },
+      { id: "plus-s", kind: "segment", appearance: "primary", from: { x: 0.5, y: Math.sqrt(0.00108 / 4) * 100 }, to: { x: 5.5, y: Math.sqrt(0.00108 / 4) * 100 } },
+      { id: "minus-s", kind: "segment", appearance: "primary", from: { x: 0.5, y: -Math.sqrt(0.00108 / 4) * 100 }, to: { x: 5.5, y: -Math.sqrt(0.00108 / 4) * 100 } },
+      { id: "plus-u", kind: "segment", appearance: "secondary", from: { x: 0.5, y: (Math.sqrt(0.00108 / 4) / Math.sqrt(5)) * 100 }, to: { x: 5.5, y: (Math.sqrt(0.00108 / 4) / Math.sqrt(5)) * 100 } },
+      { id: "minus-u", kind: "segment", appearance: "secondary", from: { x: 0.5, y: -((Math.sqrt(0.00108 / 4) / Math.sqrt(5)) * 100) }, to: { x: 5.5, y: -((Math.sqrt(0.00108 / 4) / Math.sqrt(5)) * 100) } },
+      { id: "reading-1", kind: "segment", appearance: "construction", from: { x: 1, y: 0 }, to: { x: 1, y: (3.12 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "value-1", kind: "point", appearance: "construction", at: { x: 1, y: (3.12 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "reading-2", kind: "segment", appearance: "construction", from: { x: 2, y: 0 }, to: { x: 2, y: (3.14 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "value-2", kind: "point", appearance: "construction", at: { x: 2, y: (3.14 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "reading-3", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: (3.15 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "value-3", kind: "point", appearance: "construction", at: { x: 3, y: (3.15 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "reading-4", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: (3.11 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "value-4", kind: "point", appearance: "construction", at: { x: 4, y: (3.11 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "reading-5", kind: "segment", appearance: "construction", from: { x: 5, y: 0 }, to: { x: 5, y: (3.14 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "value-5", kind: "point", appearance: "construction", at: { x: 5, y: (3.14 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 5.5, y: 0 }, placement: "right" },
+      { key: "ps", objectId: "plus-s", at: { x: 5.5, y: Math.sqrt(0.00108 / 4) * 100 }, placement: "right" },
+      { key: "ms", objectId: "minus-s", at: { x: 5.5, y: -Math.sqrt(0.00108 / 4) * 100 }, placement: "right" },
+      { key: "pu", objectId: "plus-u", at: { x: 5.5, y: (Math.sqrt(0.00108 / 4) / Math.sqrt(5)) * 100 }, placement: "right" },
+      { key: "mu", objectId: "minus-u", at: { x: 5.5, y: -((Math.sqrt(0.00108 / 4) / Math.sqrt(5)) * 100) }, placement: "right" },
+      { key: "d1", objectId: "value-1", at: { x: 1, y: (3.12 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 }, placement: "below" },
+      { key: "d2", objectId: "value-2", at: { x: 2, y: (3.14 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 }, placement: "above" },
+      { key: "d3", objectId: "value-3", at: { x: 3, y: (3.15 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 }, placement: "above" },
+      { key: "d4", objectId: "value-4", at: { x: 4, y: (3.11 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 }, placement: "below" },
+      { key: "d5", objectId: "value-5", at: { x: 5, y: (3.14 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    mean: <InlineMath math="\bar d" />,
+    ps: <InlineMath math="+s_d" />,
+    ms: <InlineMath math="-s_d" />,
+    pu: <InlineMath math="+u(\bar d)" />,
+    mu: <InlineMath math="-u(\bar d)" />,
+    d1: <InlineMath math="d_1" />,
+    d2: <InlineMath math="d_2" />,
+    d3: <InlineMath math="d_3" />,
+    d4: <InlineMath math="d_4" />,
+    d5: <InlineMath math="d_5" />,
+  }}
 />
 
 Bei einfachen Messaufgaben gilt die Konvention im Aufgabentext. Wenn dort <InlineMath math="\Delta x" /> für die kompakte Formel steht, bezeichnet <InlineMath math="\Delta x" /> die Stichprobenstandardabweichung der einzelnen Messwerte. Diese Streuung darf nicht mit der Standardunsicherheit des Mittelwerts <InlineMath math="u(\bar x)=s_x/\sqrt N" /> verwechselt werden.
 
 Das Diagramm unten behält dieselbe Streuung <InlineMath math="s_d" /> und fragt, was mit mehr Messwerten passiert. Die Unsicherheit des Mittelwerts fällt anfangs schnell und dann langsamer, weil sie mit <InlineMath math="\sqrt N" /> schrumpft: Viermal so viele Messwerte halbieren sie nur.
 
-<LineEquation
-  title="Mehr Messwerte, schärferer Mittelwert"
-  description="u = s/√N für N = 1 bis 20 Messwerte mit der Streuung s_d des Deckels. Waagrecht: N in Einheiten von 4. Senkrecht: u in Einheiten von 0,004 cm."
-  data={(() => {
-    // u(N) = s / sqrt(N) with the cap's s_d. Horizontal: N / 4. Vertical: u in units of 0.004 cm.
-    const s = Math.sqrt(0.00108 / 4);
-    const counts = Array.from({ length: 20 }, (_, i) => i + 1);
-    return [
-      {
-        points: counts.map((N) => ({ x: N / 4, y: s / Math.sqrt(N) / 0.004, z: 0 })),
-        color: "#8242e5",
-        showPoints: true,
-        smooth: false,
-        labels: [{ text: <InlineMath math="u=\frac{s_d}{\sqrt N}" />, at: 15, offset: [0, 0.6, 0], anchorX: "center" }],
-      },
-      {
-        points: [{ x: 5 / 4, y: s / Math.sqrt(5) / 0.004, z: 0 }],
-        color: "#c026d3",
-        showPoints: true,
-        labels: [{ text: <InlineMath math="N=5:\ u\approx0{,}00735\text{ cm}" />, at: 0, offset: [1.8, 0.3, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.6, 2, 7]}
-  cameraTarget={[2.6, 2, 0]}
+<MathVisual
+  title={<>Mehr Messwerte, schärferer Mittelwert</>}
+  description={<><InlineMath math="u=s/\sqrt N" /> für <InlineMath math="N=1" /> bis 20 Messwerte mit der Streuung <InlineMath math="s_d" /> des Deckels. Waagrecht: N in Einheiten von 4. Senkrecht: u in Einheiten von 0,004 cm.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -0.3, max: 4.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "shrink", kind: "polyline", appearance: "secondary", vertices: [{ x: 1 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(1) / 0.004 }, { x: 2 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(2) / 0.004 }, { x: 3 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(3) / 0.004 }, { x: 1, y: Math.sqrt(0.00108 / 4) / Math.sqrt(4) / 0.004 }, { x: 5 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(5) / 0.004 }, { x: 6 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(6) / 0.004 }, { x: 7 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(7) / 0.004 }, { x: 2, y: Math.sqrt(0.00108 / 4) / Math.sqrt(8) / 0.004 }, { x: 9 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(9) / 0.004 }, { x: 10 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(10) / 0.004 }, { x: 11 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(11) / 0.004 }, { x: 3, y: Math.sqrt(0.00108 / 4) / Math.sqrt(12) / 0.004 }, { x: 13 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(13) / 0.004 }, { x: 14 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(14) / 0.004 }, { x: 15 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(15) / 0.004 }, { x: 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(16) / 0.004 }, { x: 17 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(17) / 0.004 }, { x: 18 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(18) / 0.004 }, { x: 19 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(19) / 0.004 }, { x: 5, y: Math.sqrt(0.00108 / 4) / Math.sqrt(20) / 0.004 }] },
+      { id: "five", kind: "point", appearance: "answer", at: { x: 1.25, y: Math.sqrt(0.00108 / 4) / Math.sqrt(5) / 0.004 } },
+      { id: "fifteen", kind: "point", appearance: "secondary", at: { x: 3.75, y: Math.sqrt(0.00108 / 4) / Math.sqrt(15) / 0.004 } },
+    ],
+    labels: [
+      { key: "rule", objectId: "fifteen", at: { x: 3.75, y: Math.sqrt(0.00108 / 4) / Math.sqrt(15) / 0.004 }, placement: "above" },
+      { key: "five", objectId: "five", at: { x: 1.25, y: Math.sqrt(0.00108 / 4) / Math.sqrt(5) / 0.004 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    rule: <InlineMath math="u=\frac{s_d}{\sqrt N}" />,
+    five: <InlineMath math="N=5:\ u\approx0{,}00735\text{ cm}" />,
+  }}
 />
 
 ## Fläche aus Durchmesserdaten berechnen

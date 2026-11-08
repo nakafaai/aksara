@@ -61,35 +61,33 @@ Jadi, resultan gaya besarnya sekitar <InlineMath math="15{,}6\text{ N}" /> denga
 
 Inilah kedua gaya dengan jajargenjangnya. Resultan fuchsia condong ke gaya yang lebih besar, dan sudutnya terhadap <InlineMath math="\vec A" /> adalah <InlineMath math="\phi\approx26{,}3^\circ" /> dari aturan sinus.
 
-<LineEquation
-  title="Arah Resultan"
-  description="A = 10 N dan B = 8 N dengan sudut 60° beserta jajargenjang yang menghasilkan R. Satu kotak grid sama dengan 2 N."
-  data={(() => {
-    const arrow = (from, to, color, text, offset) => ({
-      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
-      color,
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
-    });
-    // A = 10 N along x and B = 8 N at 60 degrees; R = A + B. One grid step is 2 N.
-    const A = [10, 0];
-    const t = (60 * Math.PI) / 180;
-    const B = [8 * Math.cos(t), 8 * Math.sin(t)];
-    const R = [A[0] + B[0], A[1] + B[1]];
-    const s = (p) => p.map((v) => v / 2);
-    const phi = (Math.atan2(R[1], R[0]) * 180) / Math.PI;
-    return [
-      arrow(s([0, 0]), s(A), "#bb6800", <InlineMath math="A=10\text{ N}" />, [-2.5, -0.4, 0]),
-      arrow(s([0, 0]), s(B), "#8242e5", <InlineMath math="B=8\text{ N}" />, [-1.2, 0.2, 0]),
-      { points: [s(B), s(R), s(A)].map(([x, y]) => ({ x, y, z: 0 })), color: "#64748b", showPoints: false, smooth: false },
-      arrow(s([0, 0]), s(R), "#c026d3", <InlineMath math={`R\\approx${Math.hypot(R[0], R[1]).toFixed(2).replace(".", "{,}")}\\text{ N},\\ \\phi\\approx${phi.toFixed(1).replace(".", "{,}")}^\\circ`} />, [0.4, 0.6, 0]),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[4, 1.8, 9]}
-  cameraTarget={[4, 1.8, 0]}
+<MathVisual
+  title={<>Arah Resultan</>}
+  description={<><InlineMath math="A=10\text{ N}" /> dan <InlineMath math="B=8\text{ N}" /> dengan sudut 60° beserta jajargenjang yang menghasilkan R. Satu kotak grid sama dengan 2 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 0 }, { x: 4.75, y: 0.125 }, { x: 4.75, y: -0.125 }] },
+      { id: "b", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) } },
+      { id: "b-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },
+      { id: "sides", kind: "polyline", appearance: "reference", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 7, y: 2 * Math.sqrt(3) }, { x: 5, y: 0 }] },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
+      { id: "r-head", kind: "polygon", appearance: "answer", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }] },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 1, y: Math.sqrt(3) }, placement: "above-left" },
+      { key: "r", objectId: "r", at: { x: 7, y: 2 * Math.sqrt(3) }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A=10\text{ N}" />,
+    b: <InlineMath math="B=8\text{ N}" />,
+    r: <InlineMath math="R\approx15{,}62\text{ N},\ \phi\approx26{,}3^\circ" />,
+  }}
 />
 
 ## Mengecek dengan Metode Komponen
@@ -179,15 +177,40 @@ Komponen horizontal **negatif**, sedangkan komponen vertikal **positif**. Result
 
 Invers sinus memberi <InlineMath math="60^\circ" />, tetapi arah resultan adalah <InlineMath math="180^\circ-60^\circ=120^\circ" />. Tanda komponenlah yang membedakan kedua calon sudut.
 
-Kedua aturan dan pemeriksaannya bekerja sebagai satu urutan.
+Sambungkan vektor-vektornya ujung ke pangkal, maka kamu mendapat segitiga. Aturan kosinus memberi besarnya, <InlineMath math="R=\sqrt{244}\approx15{,}62\text{ N}" />, dan aturan sinus atau komponen memberi arahnya. Perbesar kedua sudutnya: <InlineMath math="\phi" /> yang sama dari kedua cara memeriksa jawabannya.
 
-<Mermaid
-  title="Besar, Arah, Periksa"
-  description="Aturan kosinus memberi besar R, aturan sinus memberi arahnya, dan komponen memastikan keduanya."
-  chart={`flowchart LR
-    A["Aturan kosinus: R"] --> B["Aturan sinus: sin phi = B sin theta / R"]
-    B --> C["Komponen: tan phi = B sin theta / (A + B cos theta)"]
-    C --> D["phi sama: jawaban terperiksa"]`}
+<MathVisual
+  title={<>Besar, Arah, lalu Periksa</>}
+  description={<>Segitiga vektor A (oranye), B (ungu), dan resultannya R (fuchsia), dengan sudut antara A dan B (teal) serta arah R (kuning). Satu kotak grid berarti 2 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 0 }, { x: 4.75, y: 0.125 }, { x: 4.75, y: -0.125 }] },
+      { id: "b", kind: "segment", appearance: "secondary", from: { x: 5, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
+      { id: "b-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 7 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
+      { id: "r-head", kind: "polygon", appearance: "answer", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }] },
+      { id: "phi", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 1.5, startDegrees: 0, sweepDegrees: (Math.atan2(2 * Math.sqrt(3), 7) * 180) / Math.PI },
+      { id: "theta", kind: "arc", appearance: "construction", center: { x: 5, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 60 },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 6, y: Math.sqrt(3) }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 3.5, y: Math.sqrt(3) }, placement: "above-left" },
+      { key: "phi", objectId: "phi", at: { x: 1.5, y: 0.35 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 6, y: 0.3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A=10\text{ N}" />,
+    b: <InlineMath math="B=8\text{ N}" />,
+    r: <InlineMath math="R^2=10^2+8^2+2\cdot10\cdot8\cos60^\circ=244" />,
+    phi: <InlineMath math="\phi\approx26{,}3^\circ" />,
+    theta: <InlineMath math="\theta=60^\circ" />,
+  }}
 />
 
 ## Metode Komponen untuk Lebih dari Dua Vektor

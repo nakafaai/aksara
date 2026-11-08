@@ -20,16 +20,28 @@ Gehe vom Bedarf aus, <Highlight>wähle eine passende örtliche Quelle</Highlight
 
 Kosten, Sicherheit, Wartung und Umweltschutz müssen in jeder Stufe geprüft werden. Auch die Quelle und die Anlagen müssen zum Standort passen.
 
-Hier ist dieser Plan als ein zusammenhängender Weg.
+Fang beim Bedarf an und prüf dann die Quelle. Ein Dorf mit 50 Häusern, die je <InlineMath math="1\text{ kWh}" /> pro Tag brauchen, braucht <InlineMath math="50\text{ kWh}" />, und ein <InlineMath math="2{,}5\text{ kW}" />-Kleinwasserkraftwerk liefert rund um die Uhr <InlineMath math="60\text{ kWh}" />. Dreh die Balken und vergleich sie.
 
-<Mermaid
-  title="Vom Bedarf zur Energiedienstleistung"
-  description="Ein Plan beginnt beim Bedarf und endet bei der Dienstleistung, und Kosten, Sicherheit, Wartung und Umwelt werden bei jedem Schritt geprüft."
-  chart={`flowchart LR
-    A["Energiebedarf"] --> B["Passende lokale Quelle"]
-    B --> C["Umwandlung"]
-    C --> D["Verteilung oder Speicherung"]
-    D --> E["Energiedienstleistung"]`}
+<MathVisual
+  title={<>Vom Bedarf zur Energiedienstleistung</>}
+  description={<>Täglicher Energiebedarf von 50 Häusern (violett) und die Tagesleistung eines 2,5-kW-Kleinwasserkraftwerks (türkis). Ein Gitterschritt nach oben entspricht 10 kWh.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 6, z: 10 }, target: { x: 1.25, y: 3, z: 0 } },
+    objects: [
+      { id: "need", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 2.5, z: 0 }, size: { length: 1.2, height: 5, width: 1.2 } },
+      { id: "supply", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: 3, z: 0 }, size: { length: 1.2, height: 6, width: 1.2 } },
+    ],
+    labels: [
+      { key: "need", objectId: "need", at: { x: 0, y: 5, z: 0 }, placement: "above" },
+      { key: "supply", objectId: "supply", at: { x: 2.5, y: 6, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    need: <InlineMath math="50\cdot1=50\text{ kWh}" />,
+    supply: <InlineMath math="2{,}5\cdot24=60\text{ kWh}" />,
+  }}
 />
 
 ## Kleine Wasserkraftanlagen in Plaosan
@@ -63,40 +75,37 @@ Für ein **fiktives Rechenbeispiel** wählen wir die Wasserdichte <InlineMath ma
 
 Dreh die Fläche unten. Jeder Punkt darauf ist die Formel mit einem Volumenstrom nach rechts und einer Fallhöhe in den Bildschirm hinein, und seine Höhe ist die Leistung in Kilowatt. Der fuchsiafarbene Punkt ist das hypothetische Beispiel oben, <InlineMath math="1\,400\text{ W}" />. Folgst du einer orangen Linie, steigt die Leistung gleichmäßig mit der Fallhöhe, entlang einer türkisen Linie steigt sie mit dem Volumenstrom. In der hinteren Ecke, wo das meiste Wasser am tiefsten fällt, liegt die Fläche am höchsten.
 
-<LineEquation
-  title="Mikrowasserkraft aus Volumenstrom und Fallhöhe"
-  description="P = ρgQhη mit ρ = 1000 kg/m³, g = 10 m/s² und η = 0,7. Nach rechts: Volumenstrom in Einheiten von 0,01 m³/s. In den Bildschirm: Fallhöhe in Einheiten von 5 m. Nach oben: Leistung in kW."
-  data={(() => {
-    // P = rho g Q h eta with rho = 1000 kg/m^3, g = 10 m/s^2, eta = 0.7.
-    // x: flow Q in units of 0.01 m^3/s. z: head h in units of 5 m. y: power in kW.
-    const power = (Q, h) => 1000 * 10 * Q * h * 0.7;
-    const flows = [0, 0.01, 0.02, 0.03, 0.04];
-    const heads = [0, 5, 10, 15, 20];
-    const at = (Q, h) => ({ x: Q * 100, y: power(Q, h) / 1000, z: h / 5 });
-    const mesh = (points, color) => ({ points, color, showPoints: false, smooth: false });
-    return [
-      ...heads.map((h) => mesh([at(0, h), at(0.04, h)], "#0d9488")),
-      ...flows.map((Q) => mesh([at(Q, 0), at(Q, 20)], "#bb6800")),
-      {
-        points: [at(0.02, 10)],
-        color: "#c026d3",
-        showPoints: true,
-        labels: [{ text: <InlineMath math="1\,400\text{ W}" />, at: 0, offset: [0, 0.7, 0], anchorX: "center" }],
-      },
-      {
-        points: [at(0.04, 0)],
-        showPoints: false,
-        labels: [{ text: <InlineMath math="Q" />, at: 0, offset: [0.6, 0, 0], anchorX: "center" }],
-      },
-      {
-        points: [at(0, 20)],
-        showPoints: false,
-        labels: [{ text: <InlineMath math="h" />, at: 0, offset: [0, 0, 0.6], anchorX: "center" }],
-      },
-    ];
-  })()}
-  cameraPosition={[9, 7, 9]}
-  cameraTarget={[2, 1.5, 2]}
+<MathVisual
+  title={<>Mikrowasserkraft aus Volumenstrom und Fallhöhe</>}
+  description={<><InlineMath math="P=\rho gQh\eta" /> mit <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" /> und <InlineMath math="\eta=0{,}7" />. Nach rechts: Volumenstrom in Einheiten von <InlineMath math="0{,}01\text{ m}^3\text{/s}" />. In den Bildschirm: Fallhöhe in Einheiten von 5 m. Nach oben: Leistung in kW.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 9 }, target: { x: 2, y: 1.5, z: 2 } },
+    objects: [
+      { id: "head-0", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: (1000 * 10 * 0.04 * 0 * 0.7) / 1000, z: 0 } },
+      { id: "head-5", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 1 }, to: { x: 4, y: (1000 * 10 * 0.04 * 5 * 0.7) / 1000, z: 1 } },
+      { id: "head-10", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 2 }, to: { x: 4, y: (1000 * 10 * 0.04 * 10 * 0.7) / 1000, z: 2 } },
+      { id: "head-15", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 3 }, to: { x: 4, y: (1000 * 10 * 0.04 * 15 * 0.7) / 1000, z: 3 } },
+      { id: "head-20", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 4 }, to: { x: 4, y: (1000 * 10 * 0.04 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-0", kind: "segment", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: (1000 * 10 * 0.0 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-1", kind: "segment", appearance: "primary", from: { x: 1, y: 0, z: 0 }, to: { x: 1, y: (1000 * 10 * 0.01 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-2", kind: "segment", appearance: "primary", from: { x: 2, y: 0, z: 0 }, to: { x: 2, y: (1000 * 10 * 0.02 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-3", kind: "segment", appearance: "primary", from: { x: 3, y: 0, z: 0 }, to: { x: 3, y: (1000 * 10 * 0.03 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-4", kind: "segment", appearance: "primary", from: { x: 4, y: 0, z: 0 }, to: { x: 4, y: (1000 * 10 * 0.04 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "design", kind: "point", appearance: "answer", at: { x: 2, y: (1000 * 10 * 0.02 * 10 * 0.7) / 1000, z: 2 } },
+    ],
+    labels: [
+      { key: "power", objectId: "design", at: { x: 2, y: (1000 * 10 * 0.02 * 10 * 0.7) / 1000, z: 2 }, placement: "above" },
+      { key: "q", objectId: "head-0", at: { x: 4, y: 0, z: 0 }, placement: "right" },
+      { key: "h", objectId: "flow-0", at: { x: 0, y: 0, z: 4 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    power: <InlineMath math="1\,400\text{ W}" />,
+    q: <InlineMath math="Q" />,
+    h: <InlineMath math="h" />,
+  }}
 />
 
 Der [Betreiber des Mikro-Wasserkraftprojekts am Kali-Pedati-Wasserfall](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) gibt eine installierte Leistung von <InlineMath math="7 \text{ kW}" /> an. Eine Gruppe aus <InlineMath math="14" /> Haushalten verwaltet die Anlage, und derselbe Betreiber nennt etwa <InlineMath math="500 \text{ W}" /> pro Haushalt. Prüfe, ob beide Angaben zusammenpassen: <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />, also <InlineMath math="7 \text{ kW}" />. Diese Zahlen stammen vom Betreiber und nicht aus unabhängigen Langzeitmessungen. Solche Stromproduktionsdaten wären nötig, um die Leistung der Anlage über längere Zeit zu beurteilen.
@@ -130,16 +139,36 @@ SDG <InlineMath math="7" /> zielt darauf, allen Menschen [Zugang zu bezahlbarer,
 
 Die vier Bedingungen lassen sich mit Fragen prüfen. Können Haushalte und öffentliche Einrichtungen die Energie bezahlen und zugleich andere Grundbedürfnisse decken? Steht die Energieversorgung zur Verfügung, wenn sie benötigt wird? Kann das Energiesystem weiterarbeiten und dabei Menschen, Ökosysteme und künftige Generationen schützen? Ist die Energieversorgung sicher und leistungsfähig genug für Beleuchtung, Kommunikation, produktive Arbeit und Gesundheitsversorgung?
 
-Prüf die vier Bedingungen mit je einer Frage.
+Bewerte jede Option nach den vier Fragen, und die Formen erzählen den Rest. Bei diesen beispielhaften Werten von 4 deckt ein Solar-Inselnetz mit Batterien mehr vom Quadrat ab als ein Dieselgenerator, vor allem auf der Achse nachhaltig. Zoom auf jede Ecke.
 
-<Mermaid
-  title="Vier Fragen zum Energiezugang"
-  description="SDG 7 verlangt bezahlbare, verlässliche, nachhaltige und moderne Energie. Jede Bedingung wird zu einer Frage."
-  chart={`flowchart TD
-    A["Energiezugang für alle"] --> B["Bezahlbar: reicht das Geld noch für anderes Nötige?"]
-    A --> C["Verlässlich: ist sie da, wenn man sie braucht?"]
-    A --> D["Nachhaltig: hält sie ohne Schaden?"]
-    A --> E["Modern: betreibt sie heutige Geräte und Dienste?"]`}
+<MathVisual
+  title={<>Vier Fragen zum Energiezugang</>}
+  description={<>Beispielhafte Werte von 4 für ein Solar-Inselnetz mit Batterien (türkis) und einen Dieselgenerator (rosa).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "axis-affordable", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "axis-reliable", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "axis-sustainable", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: -4 } },
+      { id: "axis-modern", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: -4, y: 0 } },
+      { id: "solar", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 3 }, { x: 3, y: 0 }, { x: 0, y: -4 }, { x: -4, y: 0 }] },
+      { id: "diesel", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 2 }, { x: 3, y: 0 }, { x: 0, y: -1 }, { x: -3, y: 0 }] },
+    ],
+    labels: [
+      { key: "affordable", objectId: "axis-affordable", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "reliable", objectId: "axis-reliable", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "sustainable", objectId: "axis-sustainable", at: { x: 0, y: -4 }, placement: "below" },
+      { key: "modern", objectId: "axis-modern", at: { x: -4, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    affordable: <>bezahlbar</>,
+    reliable: <>zuverlässig</>,
+    sustainable: <>nachhaltig</>,
+    modern: <>modern</>,
+  }}
 />
 
 ## Ein prüfbarer lokaler Energieplan

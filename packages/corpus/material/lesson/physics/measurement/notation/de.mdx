@@ -45,63 +45,41 @@ Verschiebe das Dezimalkomma so weit, bis der Koeffizient zwischen <InlineMath ma
 
 Hier liegt jeder Wert bei seinem Exponenten <InlineMath math="n" /> nach rechts und seinem Koeffizienten <InlineMath math="a" /> nach oben. Werte in Normalform landen zwischen den beiden grauen Linien, weil <InlineMath math="1 \le a < 10" /> gilt. Such jetzt den fuchsiafarbenen Pfeil: <InlineMath math="10{,}0\times10^{-13}" /> aus der Multiplikation am Ende dieser Lektion liegt genau auf der oberen Linie, also außerhalb des Bands. Eine Kommaverschiebung bringt ihn als <InlineMath math="1{,}0\times10^{-12}" /> hinein.
 
-<LineEquation
-  title="Jeder Wert in Normalform"
-  description="Jeder Punkt ist ein Wert der Form a x 10^n, nach rechts bei seinem Exponenten n und nach oben bei seinem Koeffizienten a. Die grauen Linien markieren a = 1 und a = 10."
-  data={(() => {
-    // Horizontal: exponent n. Vertical: coefficient a of a x 10^n.
-    const standard = (value) => {
-      const n = Math.floor(Math.log10(value));
-      return { a: value / 10 ** n, n };
-    };
-    const write = (a, n, digits) =>
-      `${a.toFixed(digits).replace(".", "{,}")}\\times10^{${n}}`;
-    const values = [
-      { value: 7640000, digits: 2, color: "#bb6800", offset: [0, 0.8, 0] },
-      { value: 0.000764, digits: 2, color: "#8242e5", offset: [0, -0.8, 0] },
-      { value: 0.000000911, digits: 2, color: "#0d9488", offset: [0, 0.8, 0] },
-    ];
-    // (2.5 x 10^-6)(4.0 x 10^-7): multiply the coefficients, add the exponents.
-    const product = { a: 2.5 * 4.0, n: -6 + -7 };
-    const fixed = standard(product.a * 10 ** product.n);
-    const band = (a) => ({
-      points: [{ x: -14, y: a, z: 0 }, { x: 7, y: a, z: 0 }],
-      color: "#64748b",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math={`a=${a}`} />, at: 1, offset: [0.9, 0, 0] }],
-    });
-    return [
-      band(1),
-      band(10),
-      ...values.map(({ value, digits, color, offset }) => {
-        const { a, n } = standard(value);
-        return {
-          points: [{ x: n, y: a, z: 0 }],
-          color,
-          showPoints: true,
-          labels: [{ text: <InlineMath math={write(a, n, digits)} />, at: 0, offset, anchorX: "center" }],
-        };
-      }),
-      {
-        points: [
-          { x: product.n, y: product.a, z: 0 },
-          { x: fixed.n, y: fixed.a, z: 0 },
-        ],
-        color: "#c026d3",
-        cone: { position: "end", size: 0.3 },
-        showPoints: false,
-        smooth: false,
-        labels: [
-          { text: <InlineMath math={write(product.a, product.n, 1)} />, at: 0, offset: [0, 0.8, 0], anchorX: "center" },
-          { text: <InlineMath math={write(fixed.a, fixed.n, 1)} />, at: 1, offset: [0, -0.8, 0], anchorX: "center" },
-        ],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[-3.5, 5, 22]}
-  cameraTarget={[-3.5, 5, 0]}
+<MathVisual
+  title={<>Jeder Wert in Normalform</>}
+  description={<>Jeder Punkt ist ein Wert der Form <InlineMath math="a\times10^n" />, nach rechts bei seinem Exponenten n und nach oben bei seinem Koeffizienten a. Die grauen Linien markieren <InlineMath math="a=1" /> und <InlineMath math="a=10" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 9 }, y: { min: 0, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "band-1", kind: "segment", appearance: "reference", from: { x: -14, y: 1 }, to: { x: 7, y: 1 } },
+      { id: "band-10", kind: "segment", appearance: "reference", from: { x: -14, y: 10 }, to: { x: 7, y: 10 } },
+      { id: "big", kind: "point", appearance: "primary", at: { x: 6, y: 7.64 } },
+      { id: "small", kind: "point", appearance: "secondary", at: { x: -4, y: 7.64 } },
+      { id: "tiny", kind: "point", appearance: "construction", at: { x: -7, y: 9.11 } },
+      { id: "fix", kind: "segment", appearance: "answer", from: { x: -13, y: 10 }, to: { x: -12, y: 1 } },
+      { id: "fix-head", kind: "polygon", appearance: "answer", vertices: [{ x: -12, y: 1 }, { x: -12 - (0.3 * 1) / Math.hypot(1, -9) + ((0.3 / 2) * 9) / Math.hypot(1, -9), y: 1 - (0.3 * -9) / Math.hypot(1, -9) + ((0.3 / 2) * 1) / Math.hypot(1, -9) }, { x: -12 - (0.3 * 1) / Math.hypot(1, -9) - ((0.3 / 2) * 9) / Math.hypot(1, -9), y: 1 - (0.3 * -9) / Math.hypot(1, -9) - ((0.3 / 2) * 1) / Math.hypot(1, -9) }] },
+    ],
+    labels: [
+      { key: "one", objectId: "band-1", at: { x: 7, y: 1 }, placement: "right" },
+      { key: "ten", objectId: "band-10", at: { x: 7, y: 10 }, placement: "right" },
+      { key: "big", objectId: "big", at: { x: 6, y: 7.64 }, placement: "above" },
+      { key: "small", objectId: "small", at: { x: -4, y: 7.64 }, placement: "below" },
+      { key: "tiny", objectId: "tiny", at: { x: -7, y: 9.11 }, placement: "above" },
+      { key: "raw", objectId: "fix", at: { x: -13, y: 10 }, placement: "above" },
+      { key: "fixed", objectId: "fix", at: { x: -12, y: 1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    one: <InlineMath math="a=1" />,
+    ten: <InlineMath math="a=10" />,
+    big: <InlineMath math="7{,}64\times10^{6}" />,
+    small: <InlineMath math="7{,}64\times10^{-4}" />,
+    tiny: <InlineMath math="9{,}11\times10^{-7}" />,
+    raw: <InlineMath math="10{,}0\times10^{-13}" />,
+    fixed: <InlineMath math="1{,}0\times10^{-12}" />,
+  }}
 />
 
 ## Signifikante Stellen im Koeffizienten
@@ -137,15 +115,45 @@ Der gemessene Durchmesser trägt <InlineMath math="3" /> signifikante Stellen. D
 
 > Bei potenzierten Einheiten wird auch der Umrechnungsfaktor potenziert. Von <InlineMath math="\text{cm}" /> zu <InlineMath math="\text{m}" /> beträgt der Faktor <InlineMath math="10^{-2}" />, von <InlineMath math="\text{cm}^2" /> zu <InlineMath math="\text{m}^2" /> dagegen <InlineMath math="10^{-4}" />.
 
-Bei Einheiten mit Exponent wird auch der Umrechnungsfaktor potenziert. Folge der Kette für die Fläche des Deckels.
+Eine Einheit mit Potenz nimmt auch den Umrechnungsfaktor hoch. Ein Zentimeter sind <InlineMath math="10\text{ mm}" />, also enthält ein Quadratzentimeter <InlineMath math="10\times10=100" /> Quadratmillimeter, und genauso gilt <InlineMath math="1\text{ cm}^2=10^{-4}\text{ m}^2" />. Zoom hinein und zähl eine Reihe.
 
-<Mermaid
-  title="Eine Einheit mit Exponent umrechnen"
-  description="Der Faktor von cm zu m wird für eine Fläche quadriert, also gilt von cm² zu m² der Faktor 10^-4."
-  chart={`flowchart LR
-    A["1 cm = 10^-2 m"] --> B["1 cm^2 = (10^-2 m)^2 = 10^-4 m^2"]
-    B --> C["7,645... cm^2 = 7,645... x 10^-4 m^2"]
-    C --> D["Einmal runden: 7,65 x 10^-4 m^2"]`}
+<MathVisual
+  title={<>Eine Einheit mit Potenz umrechnen</>}
+  description={<>Ein Quadratzentimeter, aufgeteilt in Quadratmillimeter.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1.5, max: 11.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 10 }, { x: 0, y: 10 }] },
+      { id: "v1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 10 } },
+      { id: "v2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 10 } },
+      { id: "v3", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 10 } },
+      { id: "v4", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 10 } },
+      { id: "v5", kind: "segment", appearance: "reference", from: { x: 5, y: 0 }, to: { x: 5, y: 10 } },
+      { id: "v6", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 10 } },
+      { id: "v7", kind: "segment", appearance: "reference", from: { x: 7, y: 0 }, to: { x: 7, y: 10 } },
+      { id: "v8", kind: "segment", appearance: "reference", from: { x: 8, y: 0 }, to: { x: 8, y: 10 } },
+      { id: "v9", kind: "segment", appearance: "reference", from: { x: 9, y: 0 }, to: { x: 9, y: 10 } },
+      { id: "h1", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 10, y: 1 } },
+      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 10, y: 2 } },
+      { id: "h3", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 10, y: 3 } },
+      { id: "h4", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 10, y: 4 } },
+      { id: "h5", kind: "segment", appearance: "reference", from: { x: 0, y: 5 }, to: { x: 10, y: 5 } },
+      { id: "h6", kind: "segment", appearance: "reference", from: { x: 0, y: 6 }, to: { x: 10, y: 6 } },
+      { id: "h7", kind: "segment", appearance: "reference", from: { x: 0, y: 7 }, to: { x: 10, y: 7 } },
+      { id: "h8", kind: "segment", appearance: "reference", from: { x: 0, y: 8 }, to: { x: 10, y: 8 } },
+      { id: "h9", kind: "segment", appearance: "reference", from: { x: 0, y: 9 }, to: { x: 10, y: 9 } },
+    ],
+    labels: [
+      { key: "side", objectId: "square", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "area", objectId: "square", at: { x: 5, y: 10 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    side: <InlineMath math="1\text{ cm}=10\text{ mm}" />,
+    area: <InlineMath math="1\text{ cm}^2=(10\text{ mm})^2=100\text{ mm}^2" />,
+  }}
 />
 
 ## Rechnungen mit wissenschaftlicher Schreibweise
@@ -165,14 +173,34 @@ Der letzte Schritt erfüllt zwei Aufgaben. Der Koeffizient <InlineMath math="10{
 
 Die offiziellen Schreibregeln findest du in [NIST SP 811 Kapitel 7](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values), die Umrechnungsfaktoren in [NIST SP 811 Anhang B](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors).
 
-Hier ist die ganze Multiplikation als Weg, den du wiederverwenden kannst.
+Multipliziere die Zahlen vorne und addiere die Exponenten: <InlineMath math="2{,}5\times4{,}0=10{,}0" /> und <InlineMath math="-6+(-7)=-13" />. Weil <InlineMath math="10{,}0" /> nicht zwischen 1 und 10 liegt, verschiebst du eine Zehnerpotenz und bekommst <InlineMath math="1{,}0\times10^{-12}" />. Zoom die Exponentenlinie entlang.
 
-<Mermaid
-  title="Multiplizieren in wissenschaftlicher Schreibweise"
-  description="Multiplizier die Koeffizienten, addier die Exponenten, schieb das Komma zurück in die Normalform und runde einmal."
-  chart={`flowchart LR
-    A["2,5 x 4,0 = 10,0"] --> C["10,0 x 10^-13"]
-    B["-6 + -7 = -13"] --> C
-    C --> D["Normalform: 1,00 x 10^-12"]
-    D --> E["Auf 2 signifikante Stellen runden: 1,0 x 10^-12"]`}
+<MathVisual
+  title={<>Multiplizieren in wissenschaftlicher Schreibweise</>}
+  description={<>Zehnerexponenten auf einem Zahlenstrahl: die beiden Faktoren (orange, violett) und die Verschiebung zur Normalform (fuchsia).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 2 }, y: { min: -1.2, max: 2.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -14, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "zero", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "first", kind: "segment", appearance: "primary", from: { x: 0, y: 0.6 }, to: { x: -6, y: 0.6 } },
+      { id: "first-head", kind: "polygon", appearance: "primary", vertices: [{ x: -6, y: 0.6 }, { x: -5.6, y: 0.8 }, { x: -5.6, y: 0.4 }] },
+      { id: "second", kind: "segment", appearance: "secondary", from: { x: -6, y: 1.2 }, to: { x: -13, y: 1.2 } },
+      { id: "second-head", kind: "polygon", appearance: "secondary", vertices: [{ x: -13, y: 1.2 }, { x: -12.6, y: 1.4 }, { x: -12.6, y: 1 }] },
+      { id: "fix", kind: "segment", appearance: "answer", from: { x: -13, y: 0 }, to: { x: -12, y: 0 } },
+      { id: "fix-head", kind: "polygon", appearance: "answer", vertices: [{ x: -12, y: 0 }, { x: -12.4, y: 0.2 }, { x: -12.4, y: -0.2 }] },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: -3, y: 0.6 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: -9.5, y: 1.2 }, placement: "above" },
+      { key: "fix", objectId: "fix", at: { x: -12.5, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="10^{-6}" />,
+    second: <InlineMath math="\cdot10^{-7}:\ -6+(-7)=-13" />,
+    fix: <InlineMath math="10{,}0\times10^{-13}=1{,}0\times10^{-12}" />,
+  }}
 />

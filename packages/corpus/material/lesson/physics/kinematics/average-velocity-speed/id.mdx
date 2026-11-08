@@ -95,23 +95,33 @@ Perhatikan bahwa kedua perhitungan memakai waktu yang sama. Perbedaannya muncul 
 
 Inilah kedua perjalanan sebagai posisi terhadap waktu, dengan A bergerak tetap <InlineMath math="2\text{ m/s}" /> dan B <InlineMath math="3\text{ m/s}" />. Kecepatan rata-rata adalah kemiringan garis lurus dari titik pertama ke titik terakhir. Untuk A, garis itu adalah lintasannya sendiri, <InlineMath math="2\text{ m/s}" />. Untuk B, tali busur fuchsia melompati belokannya dan hanya memberi <InlineMath math="1\text{ m/s}" />, walaupun B menempuh <InlineMath math="9\text{ m}" />.
 
-<LineEquation
-  title="Kecepatan Rata-rata adalah Kemiringan dari Awal ke Akhir"
-  description="Perjalanan A bergerak 6 m ke kanan, perjalanan B 6 m ke kanan lalu 3 m kembali, masing-masing dalam 3 s. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 2 m."
-  data={(() => {
-    // Two 3 s trips at constant speed: A at 2 m/s, B at 3 m/s. Horizontal: time in s. Vertical: position in m / 2.
-    const straight = [[0, 0], [3, 6]];
-    const back = [[0, 0], [2, 6], [3, 3]];
-    const path = (corners) => corners.map(([t, x]) => ({ x: t, y: x / 2, z: 0 }));
-    return [
-      { points: path(straight), color: "#0d9488", showPoints: true, smooth: false, labels: [{ text: "A", at: 1, offset: [0.3, 0.2, 0] }] },
-      { points: path(back), color: "#bb6800", showPoints: true, smooth: false, labels: [{ text: "B", at: 1, offset: [0, 0.4, 0] }] },
-      { points: path([[0, 0], [3, 3]]), color: "#c026d3", showPoints: false, smooth: false, labels: [{ text: <InlineMath math="\bar v_B=\frac{3\text{ m}}{3\text{ s}}=1\text{ m/s}" />, at: 1, offset: [0.4, -0.6, 0], anchorX: "center" }] },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[1.6, 1.6, 6]}
-  cameraTarget={[1.6, 1.6, 0]}
+<MathVisual
+  title={<>Kecepatan Rata-rata adalah Kemiringan dari Awal ke Akhir</>}
+  description={<>Perjalanan A bergerak 6 m ke kanan, perjalanan B 6 m ke kanan lalu 3 m kembali, masing-masing dalam 3 s. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 2 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 }] },
+      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 3 }, { x: 3, y: 1.5 }] },
+      { id: "chord", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 1.5 } },
+      { id: "a-end", kind: "point", appearance: "construction", at: { x: 3, y: 3 } },
+      { id: "b-turn", kind: "point", appearance: "primary", at: { x: 2, y: 3 } },
+      { id: "b-end", kind: "point", appearance: "primary", at: { x: 3, y: 1.5 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a-end", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "b", objectId: "b-turn", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "chord", objectId: "chord", at: { x: 3, y: 1.5 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    chord: <InlineMath math="\bar v_B=\frac{3\text{ m}}{3\text{ s}}=1\text{ m/s}" />,
+  }}
 />
 
 ## Tanda Menunjukkan Arah Kecepatan Rata-rata
@@ -140,14 +150,30 @@ Lintasan tetap memiliki panjang, tetapi perubahan posisi menjadi nol karena bend
 
 Sebelum memakai rumus, periksa apakah <Highlight>soal meminta jarak atau perpindahan</Highlight>. Pilihan besaran tersebut menentukan apakah yang dihitung adalah kelajuan rata-rata atau kecepatan rata-rata.
 
-Pilih besarannya dari pertanyaan sebelum kamu membagi.
+Perjalanan B bergerak <InlineMath math="6\text{ m}" /> ke kanan lalu <InlineMath math="3\text{ m}" /> kembali dalam <InlineMath math="3\text{ s}" />. Kalau yang ditanya lintasannya, bagilah jarak total, dan kalau yang ditanya perubahan posisinya, bagilah perpindahannya. Perbesar kedua jawabannya.
 
-<Mermaid
-  title="Kelajuan atau Kecepatan dari Pertanyaannya"
-  description="Lintasan per sekon membutuhkan jarak total, perubahan posisi per sekon membutuhkan perpindahan."
-  chart={`flowchart TD
-    A["Apa yang ditanyakan?"] --> B["Berapa lintasan yang ditempuh setiap sekon?"]
-    A --> C["Berapa perubahan posisi setiap sekon?"]
-    B --> D["Jarak total / waktu = kelajuan rata-rata"]
-    C --> E["Perpindahan / waktu = kecepatan rata-rata"]`}
+<MathVisual
+  title={<>Kelajuan atau Kecepatan dari Pertanyaannya</>}
+  description={<>Lintasan perjalanan B (oranye dan ungu) dan perpindahannya (fuchsia).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "out", kind: "segment", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 6, y: 1 } },
+      { id: "out-head", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 1 }, { x: 5.75, y: 1.125 }, { x: 5.75, y: 0.875 }] },
+      { id: "back", kind: "segment", appearance: "secondary", from: { x: 6, y: 0.5 }, to: { x: 3, y: 0.5 } },
+      { id: "back-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 0.5 }, { x: 3.25, y: 0.625 }, { x: 3.25, y: 0.375 }] },
+      { id: "net", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "net-head", kind: "polygon", appearance: "answer", vertices: [{ x: 3, y: 0 }, { x: 2.75, y: 0.125 }, { x: 2.75, y: -0.125 }] },
+    ],
+    labels: [
+      { key: "path", objectId: "out", at: { x: 3, y: 1 }, placement: "above" },
+      { key: "net", objectId: "net", at: { x: 1.5, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    path: <InlineMath math="\frac{9\text{ m}}{3\text{ s}}=3\text{ m/s}" />,
+    net: <InlineMath math="\frac{3\text{ m}}{3\text{ s}}=1\text{ m/s}" />,
+  }}
 />

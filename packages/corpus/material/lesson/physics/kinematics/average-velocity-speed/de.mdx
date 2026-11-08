@@ -95,23 +95,33 @@ Beide Rechnungen verwenden dasselbe Zeitintervall. Der **Unterschied steckt im Z
 
 Hier sind beide Fahrten als Position über der Zeit, A bewegt sich gleichmäßig mit <InlineMath math="2\text{ m/s}" />, B mit <InlineMath math="3\text{ m/s}" />. Die Durchschnittsgeschwindigkeit ist die Steigung der Geraden vom ersten zum letzten Punkt. Bei A ist diese Gerade der Weg selbst, <InlineMath math="2\text{ m/s}" />. Bei B überspringt die fuchsiafarbene Sehne die Wende und ergibt nur <InlineMath math="1\text{ m/s}" />, obwohl B <InlineMath math="9\text{ m}" /> zurückgelegt hat.
 
-<LineEquation
-  title="Durchschnittsgeschwindigkeit ist die Steigung vom Start zum Ziel"
-  description="Fahrt A geht 6 m nach rechts, Fahrt B 6 m nach rechts und 3 m zurück, jeweils in 3 s. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 2 m."
-  data={(() => {
-    // Two 3 s trips at constant speed: A at 2 m/s, B at 3 m/s. Horizontal: time in s. Vertical: position in m / 2.
-    const straight = [[0, 0], [3, 6]];
-    const back = [[0, 0], [2, 6], [3, 3]];
-    const path = (corners) => corners.map(([t, x]) => ({ x: t, y: x / 2, z: 0 }));
-    return [
-      { points: path(straight), color: "#0d9488", showPoints: true, smooth: false, labels: [{ text: "A", at: 1, offset: [0.3, 0.2, 0] }] },
-      { points: path(back), color: "#bb6800", showPoints: true, smooth: false, labels: [{ text: "B", at: 1, offset: [0, 0.4, 0] }] },
-      { points: path([[0, 0], [3, 3]]), color: "#c026d3", showPoints: false, smooth: false, labels: [{ text: <InlineMath math="\bar v_B=\frac{3\text{ m}}{3\text{ s}}=1\text{ m/s}" />, at: 1, offset: [0.4, -0.6, 0], anchorX: "center" }] },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[1.6, 1.6, 6]}
-  cameraTarget={[1.6, 1.6, 0]}
+<MathVisual
+  title={<>Durchschnittsgeschwindigkeit ist die Steigung vom Start zum Ziel</>}
+  description={<>Fahrt A geht 6 m nach rechts, Fahrt B 6 m nach rechts und 3 m zurück, jeweils in 3 s. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 2 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 }] },
+      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 3 }, { x: 3, y: 1.5 }] },
+      { id: "chord", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 1.5 } },
+      { id: "a-end", kind: "point", appearance: "construction", at: { x: 3, y: 3 } },
+      { id: "b-turn", kind: "point", appearance: "primary", at: { x: 2, y: 3 } },
+      { id: "b-end", kind: "point", appearance: "primary", at: { x: 3, y: 1.5 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a-end", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "b", objectId: "b-turn", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "chord", objectId: "chord", at: { x: 3, y: 1.5 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    chord: <InlineMath math="\bar v_B=\frac{3\text{ m}}{3\text{ s}}=1\text{ m/s}" />,
+  }}
 />
 
 ## Das Vorzeichen zeigt die Richtung der mittleren Geschwindigkeit
@@ -140,14 +150,30 @@ Für eine Rundtour hat der Weg dennoch Länge. Aber die Positionsänderung von A
 
 Prüfe daher vor jeder Rechnung, ob nach Wegstrecke oder Verschiebung gefragt ist. So lassen sich mittlere Schnelligkeit und mittlere Geschwindigkeit zuverlässig auseinanderhalten.
 
-Wähl die Größe nach der Frage aus, bevor du teilst.
+Fahrt B geht <InlineMath math="6\text{ m}" /> nach rechts und <InlineMath math="3\text{ m}" /> zurück, in <InlineMath math="3\text{ s}" />. Fragt die Aufgabe nach dem Weg, teilst du die Gesamtstrecke, fragt sie nach der Ortsänderung, teilst du die Verschiebung. Zoom auf beide Antworten.
 
-<Mermaid
-  title="Tempo oder Geschwindigkeit nach der Frage"
-  description="Weg pro Sekunde braucht die Gesamtstrecke, Ortsänderung pro Sekunde braucht die Verschiebung."
-  chart={`flowchart TD
-    A["Was fragt die Aufgabe?"] --> B["Wie viel Weg pro Sekunde?"]
-    A --> C["Wie stark ändert sich die Position pro Sekunde?"]
-    B --> D["Gesamtstrecke / Zeit = Durchschnittstempo"]
-    C --> E["Verschiebung / Zeit = Durchschnittsgeschwindigkeit"]`}
+<MathVisual
+  title={<>Tempo oder Geschwindigkeit nach der Frage</>}
+  description={<>Der Weg von Fahrt B (orange und violett) und ihre Verschiebung (fuchsia).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "out", kind: "segment", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 6, y: 1 } },
+      { id: "out-head", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 1 }, { x: 5.75, y: 1.125 }, { x: 5.75, y: 0.875 }] },
+      { id: "back", kind: "segment", appearance: "secondary", from: { x: 6, y: 0.5 }, to: { x: 3, y: 0.5 } },
+      { id: "back-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 0.5 }, { x: 3.25, y: 0.625 }, { x: 3.25, y: 0.375 }] },
+      { id: "net", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "net-head", kind: "polygon", appearance: "answer", vertices: [{ x: 3, y: 0 }, { x: 2.75, y: 0.125 }, { x: 2.75, y: -0.125 }] },
+    ],
+    labels: [
+      { key: "path", objectId: "out", at: { x: 3, y: 1 }, placement: "above" },
+      { key: "net", objectId: "net", at: { x: 1.5, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    path: <InlineMath math="\frac{9\text{ m}}{3\text{ s}}=3\text{ m/s}" />,
+    net: <InlineMath math="\frac{3\text{ m}}{3\text{ s}}=1\text{ m/s}" />,
+  }}
 />

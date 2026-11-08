@@ -61,16 +61,32 @@ Nicht jede Größe braucht eine Richtung. Ein **Skalar** ist mit Zahlenwert und 
 
 Eine schnelle Entscheidungshilfe lautet: Ist die Frage „In welche Richtung?“ für die vollständige Beschreibung nötig, handelt es sich wahrscheinlich um einen Vektor.
 
-Sortier eine Größe mit einer Frage: Braucht sie eine Richtung?
+Frag dich, ob die Größe eine Richtung braucht. Diese zwei Wagen haben dasselbe Tempo, ein Skalar, aber entgegengesetzte Geschwindigkeiten, weil die Geschwindigkeit ein Vektor ist und die Richtung behält. Zoom auf beide Pfeile.
 
-<Mermaid
-  title="Skalar oder Vektor"
-  description="Größen, die mit Zahl und Einheit vollständig sind, sind Skalare. Größen, die zusätzlich eine Richtung brauchen, sind Vektoren."
-  chart={`flowchart TD
-    A["Braucht die Größe eine Richtung?"] --> B["Nein: Skalar"]
-    A --> C["Ja: Vektor"]
-    B --> D["Strecke, Tempo, Masse, Temperatur"]
-    C --> E["Verschiebung, Geschwindigkeit, Kraft"]`}
+<MathVisual
+  title={<>Skalar oder Vektor</>}
+  description={<>Zwei Wagen mit gleichem Tempo in entgegengesetzte Richtungen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -1, max: 2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "east", kind: "segment", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 3, y: 1 } },
+      { id: "east-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 1 }, { x: 2.75, y: 1.125 }, { x: 2.75, y: 0.875 }] },
+      { id: "west", kind: "segment", appearance: "secondary", from: { x: 6, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "west-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 0 }, { x: 3.25, y: 0.125 }, { x: 3.25, y: -0.125 }] },
+      { id: "east-start", kind: "point", appearance: "primary", at: { x: 0, y: 1 } },
+      { id: "west-start", kind: "point", appearance: "secondary", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "east", objectId: "east", at: { x: 1.5, y: 1 }, placement: "above" },
+      { key: "west", objectId: "west", at: { x: 4.5, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    east: <InlineMath math="\text{Tempo }3\text{ m/s},\ v=+3\text{ m/s}" />,
+    west: <InlineMath math="\text{Tempo }3\text{ m/s},\ v=-3\text{ m/s}" />,
+  }}
 />
 
 ## Lesen eines Vektorpfeils
@@ -114,27 +130,30 @@ Die zurückgelegte Strecke beträgt <InlineMath math="7 \text{ m}" />. Der Betra
 
 Der Weg unten umfasst <InlineMath math="7\text{ m}" /> Gehen, aber der fuchsiafarbene Pfeil, die Verschiebung, ist nur <InlineMath math="5\text{ m}" /> lang und zeigt etwa <InlineMath math="36{,}9^\circ" /> nördlich von Osten.
 
-<LineEquation
-  title="7 m gehen, 5 m verschoben"
-  description="4 m nach Osten, dann 3 m nach Norden. Ein Gitterschritt ist 1 m."
-  data={(() => {
-    const arrow = (from, to, color, text, offset) => ({
-      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
-      color,
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
-    });
-    // 4 m east along x, then 3 m north along y. One grid step is 1 m.
-    const d = [4, 3];
-    return [
-      arrow([0, 0], [d[0], 0], "#0d9488", <InlineMath math="4\text{ m}" />, [-2, -0.4, 0]),
-      arrow([d[0], 0], d, "#8242e5", <InlineMath math="3\text{ m}" />, [0.6, -1.5, 0]),
-      arrow([0, 0], d, "#c026d3", <InlineMath math={`${Math.hypot(d[0], d[1])}\\text{ m}`} />, [-2, 0.2, 0]),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2, 1.5, 6.5]}
-  cameraTarget={[2, 1.5, 0]}
+<MathVisual
+  title={<>7 m gehen, 5 m verschoben</>}
+  description={<>4 m nach Osten, dann 3 m nach Norden. Ein Gitterschritt ist 1 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "east", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "east-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: 0 }, { x: 3.75, y: 0.125 }, { x: 3.75, y: -0.125 }] },
+      { id: "north", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "north-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 3 }, { x: 4.125, y: 2.75 }, { x: 3.875, y: 2.75 }] },
+      { id: "walk", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 3 } },
+      { id: "walk-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 4) / Math.hypot(4, 3) + ((0.25 / 2) * -3) / Math.hypot(4, 3), y: 3 - (0.25 * 3) / Math.hypot(4, 3) + ((0.25 / 2) * 4) / Math.hypot(4, 3) }, { x: 4 - (0.25 * 4) / Math.hypot(4, 3) - ((0.25 / 2) * -3) / Math.hypot(4, 3), y: 3 - (0.25 * 3) / Math.hypot(4, 3) - ((0.25 / 2) * 4) / Math.hypot(4, 3) }] },
+    ],
+    labels: [
+      { key: "east", objectId: "east", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "north", objectId: "north", at: { x: 4, y: 1.5 }, placement: "right" },
+      { key: "walk", objectId: "walk", at: { x: 2, y: 1.5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    east: <InlineMath math="4\text{ m}" />,
+    north: <InlineMath math="3\text{ m}" />,
+    walk: <InlineMath math="5\text{ m}" />,
+  }}
 />

@@ -16,55 +16,76 @@ Significant figures are <Highlight>the digits retained to communicate the resolu
 
 Zoom in on the fuchsia line at the right edge of the cap. It sits past the <InlineMath math="3.1\text{ cm}" /> mark but before <InlineMath math="3.2\text{ cm}" />. So the digits <InlineMath math="3" /> and <InlineMath math="1" /> come straight from the marks, and the last <InlineMath math="2" /> is your estimate between two marks. That estimated digit is the last significant figure you report, and no calculator digit after it is supported.
 
-<LineEquation
-  title="Reading a Cap on a Ruler"
-  description="A ruler with a mark every 0.1 cm under a bottle cap. Zoom in where the fuchsia line crosses the ruler."
-  data={(() => {
-    // One grid step is 1 cm. The ruler has a mark every 0.1 cm; the cap's diameter is 3.12 cm.
-    const diameter = 3.12;
-    const radius = diameter / 2;
-    const marks = Array.from({ length: 41 }, (_, i) => ({
-      x: i / 10,
-      height: i % 10 === 0 ? 0.4 : i % 5 === 0 ? 0.28 : 0.16,
-    }));
-    return [
-      {
-        points: marks.flatMap(({ x, height }) => [
-          { x, y: 0, z: 0 },
-          { x, y: height, z: 0 },
-          { x, y: 0, z: 0 },
-        ]),
-        color: "#64748b",
-        showPoints: false,
-        smooth: false,
-        labels: [0, 1, 2, 3, 4].map((cm) => ({
-          text: `${cm}`,
-          at: 30 * cm + 1,
-          offset: [0, 0.3, 0],
-          anchorX: "center",
-        })),
-      },
-      {
-        points: Array.from({ length: 241 }, (_, i) => {
-          const angle = (i / 240) * 2 * Math.PI;
-          return { x: radius + radius * Math.cos(angle), y: 1 + radius + radius * Math.sin(angle), z: 0 };
-        }),
-        color: "#bb6800",
-        showPoints: false,
-        smooth: false,
-      },
-      {
-        points: [{ x: diameter, y: 0, z: 0 }, { x: diameter, y: 1 + radius, z: 0 }],
-        color: "#c026d3",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: <InlineMath math="d=3.12\text{ cm}" />, at: 1, offset: [1.1, 0, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.2, 1.6, 7]}
-  cameraTarget={[2.2, 1.6, 0]}
+<MathVisual
+  title={<>Reading a Cap on a Ruler</>}
+  description={<>A ruler with a mark every 0.1 cm under a bottle cap. Zoom in where the fuchsia line crosses the ruler.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ruler", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "mm-0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 0.4 } },
+      { id: "mm-1", kind: "segment", appearance: "reference", from: { x: 1 / 10, y: 0 }, to: { x: 1 / 10, y: 0.16 } },
+      { id: "mm-2", kind: "segment", appearance: "reference", from: { x: 2 / 10, y: 0 }, to: { x: 2 / 10, y: 0.16 } },
+      { id: "mm-3", kind: "segment", appearance: "reference", from: { x: 3 / 10, y: 0 }, to: { x: 3 / 10, y: 0.16 } },
+      { id: "mm-4", kind: "segment", appearance: "reference", from: { x: 4 / 10, y: 0 }, to: { x: 4 / 10, y: 0.16 } },
+      { id: "mm-5", kind: "segment", appearance: "reference", from: { x: 5 / 10, y: 0 }, to: { x: 5 / 10, y: 0.28 } },
+      { id: "mm-6", kind: "segment", appearance: "reference", from: { x: 6 / 10, y: 0 }, to: { x: 6 / 10, y: 0.16 } },
+      { id: "mm-7", kind: "segment", appearance: "reference", from: { x: 7 / 10, y: 0 }, to: { x: 7 / 10, y: 0.16 } },
+      { id: "mm-8", kind: "segment", appearance: "reference", from: { x: 8 / 10, y: 0 }, to: { x: 8 / 10, y: 0.16 } },
+      { id: "mm-9", kind: "segment", appearance: "reference", from: { x: 9 / 10, y: 0 }, to: { x: 9 / 10, y: 0.16 } },
+      { id: "mm-10", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 0.4 } },
+      { id: "mm-11", kind: "segment", appearance: "reference", from: { x: 11 / 10, y: 0 }, to: { x: 11 / 10, y: 0.16 } },
+      { id: "mm-12", kind: "segment", appearance: "reference", from: { x: 12 / 10, y: 0 }, to: { x: 12 / 10, y: 0.16 } },
+      { id: "mm-13", kind: "segment", appearance: "reference", from: { x: 13 / 10, y: 0 }, to: { x: 13 / 10, y: 0.16 } },
+      { id: "mm-14", kind: "segment", appearance: "reference", from: { x: 14 / 10, y: 0 }, to: { x: 14 / 10, y: 0.16 } },
+      { id: "mm-15", kind: "segment", appearance: "reference", from: { x: 15 / 10, y: 0 }, to: { x: 15 / 10, y: 0.28 } },
+      { id: "mm-16", kind: "segment", appearance: "reference", from: { x: 16 / 10, y: 0 }, to: { x: 16 / 10, y: 0.16 } },
+      { id: "mm-17", kind: "segment", appearance: "reference", from: { x: 17 / 10, y: 0 }, to: { x: 17 / 10, y: 0.16 } },
+      { id: "mm-18", kind: "segment", appearance: "reference", from: { x: 18 / 10, y: 0 }, to: { x: 18 / 10, y: 0.16 } },
+      { id: "mm-19", kind: "segment", appearance: "reference", from: { x: 19 / 10, y: 0 }, to: { x: 19 / 10, y: 0.16 } },
+      { id: "mm-20", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 0.4 } },
+      { id: "mm-21", kind: "segment", appearance: "reference", from: { x: 21 / 10, y: 0 }, to: { x: 21 / 10, y: 0.16 } },
+      { id: "mm-22", kind: "segment", appearance: "reference", from: { x: 22 / 10, y: 0 }, to: { x: 22 / 10, y: 0.16 } },
+      { id: "mm-23", kind: "segment", appearance: "reference", from: { x: 23 / 10, y: 0 }, to: { x: 23 / 10, y: 0.16 } },
+      { id: "mm-24", kind: "segment", appearance: "reference", from: { x: 24 / 10, y: 0 }, to: { x: 24 / 10, y: 0.16 } },
+      { id: "mm-25", kind: "segment", appearance: "reference", from: { x: 25 / 10, y: 0 }, to: { x: 25 / 10, y: 0.28 } },
+      { id: "mm-26", kind: "segment", appearance: "reference", from: { x: 26 / 10, y: 0 }, to: { x: 26 / 10, y: 0.16 } },
+      { id: "mm-27", kind: "segment", appearance: "reference", from: { x: 27 / 10, y: 0 }, to: { x: 27 / 10, y: 0.16 } },
+      { id: "mm-28", kind: "segment", appearance: "reference", from: { x: 28 / 10, y: 0 }, to: { x: 28 / 10, y: 0.16 } },
+      { id: "mm-29", kind: "segment", appearance: "reference", from: { x: 29 / 10, y: 0 }, to: { x: 29 / 10, y: 0.16 } },
+      { id: "mm-30", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 0.4 } },
+      { id: "mm-31", kind: "segment", appearance: "reference", from: { x: 31 / 10, y: 0 }, to: { x: 31 / 10, y: 0.16 } },
+      { id: "mm-32", kind: "segment", appearance: "reference", from: { x: 32 / 10, y: 0 }, to: { x: 32 / 10, y: 0.16 } },
+      { id: "mm-33", kind: "segment", appearance: "reference", from: { x: 33 / 10, y: 0 }, to: { x: 33 / 10, y: 0.16 } },
+      { id: "mm-34", kind: "segment", appearance: "reference", from: { x: 34 / 10, y: 0 }, to: { x: 34 / 10, y: 0.16 } },
+      { id: "mm-35", kind: "segment", appearance: "reference", from: { x: 35 / 10, y: 0 }, to: { x: 35 / 10, y: 0.28 } },
+      { id: "mm-36", kind: "segment", appearance: "reference", from: { x: 36 / 10, y: 0 }, to: { x: 36 / 10, y: 0.16 } },
+      { id: "mm-37", kind: "segment", appearance: "reference", from: { x: 37 / 10, y: 0 }, to: { x: 37 / 10, y: 0.16 } },
+      { id: "mm-38", kind: "segment", appearance: "reference", from: { x: 38 / 10, y: 0 }, to: { x: 38 / 10, y: 0.16 } },
+      { id: "mm-39", kind: "segment", appearance: "reference", from: { x: 39 / 10, y: 0 }, to: { x: 39 / 10, y: 0.16 } },
+      { id: "mm-40", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 0.4 } },
+      { id: "coin", kind: "circle", appearance: "primary", center: { x: 1.56, y: 2.56 }, radius: 1.56 },
+      { id: "diameter", kind: "segment", appearance: "answer", from: { x: 3.12, y: 0 }, to: { x: 3.12, y: 2.56 } },
+    ],
+    labels: [
+      { key: "cm0", objectId: "mm-0", at: { x: 0, y: 0.4 }, placement: "above" },
+      { key: "cm1", objectId: "mm-10", at: { x: 1, y: 0.4 }, placement: "above" },
+      { key: "cm2", objectId: "mm-20", at: { x: 2, y: 0.4 }, placement: "above" },
+      { key: "cm3", objectId: "mm-30", at: { x: 3, y: 0.4 }, placement: "above" },
+      { key: "cm4", objectId: "mm-40", at: { x: 4, y: 0.4 }, placement: "above" },
+      { key: "d", objectId: "diameter", at: { x: 3.12, y: 1.28 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    cm0: <InlineMath math="0" />,
+    cm1: <InlineMath math="1" />,
+    cm2: <InlineMath math="2" />,
+    cm3: <InlineMath math="3" />,
+    cm4: <InlineMath math="4" />,
+    d: <InlineMath math="d=3.12\text{ cm}" />,
+  }}
 />
 
 The significant-figure rule keeps a report from claiming more precision than the measurement tool supports.
@@ -127,18 +148,41 @@ For an exact halfway case, round-to-even avoids a long series of values being bi
 
 Round directly from the unrounded value to the final precision. Do not round through several intermediate values.
 
-The table turns into one decision path once you look at the first digit you drop.
+Look only at the first dropped digit. Below 5 you keep the last digit, above 5 you raise it, and an exact 5 followed by nothing goes to the even neighbor. Zoom in on the three readings between 3.140 and 3.150.
 
-<Mermaid
-  title="Rounding from the First Dropped Digit"
-  description="The first dropped digit decides whether the last kept digit stays, goes up, or follows round-to-even."
-  chart={`flowchart TD
-    A["First dropped digit"] --> B["Less than 5"]
-    A --> C["More than 5, or 5 then a nonzero digit"]
-    A --> D["Exactly 5 then only zeros"]
-    B --> E["Keep the last digit"]
-    C --> F["Raise the last digit by 1"]
-    D --> G["Round to even"]`}
+<MathVisual
+  title={<>Rounding from the First Dropped Digit</>}
+  description={<>Three readings rounded to two decimal places on a magnified number line. One grid step is 0.001.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -0.8, max: 2.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "line", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "low", kind: "point", appearance: "construction", at: { x: 0, y: 0 } },
+      { id: "high", kind: "point", appearance: "construction", at: { x: 10, y: 0 } },
+      { id: "down", kind: "segment", appearance: "primary", from: { x: 2, y: 0.6 }, to: { x: 0, y: 0.6 } },
+      { id: "down-head", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0.6 }, { x: 0.4, y: 0.8 }, { x: 0.4, y: 0.4 }] },
+      { id: "up", kind: "segment", appearance: "secondary", from: { x: 6, y: 0.6 }, to: { x: 10, y: 0.6 } },
+      { id: "up-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 10, y: 0.6 }, { x: 9.6, y: 0.8 }, { x: 9.6, y: 0.4 }] },
+      { id: "even", kind: "segment", appearance: "answer", from: { x: 5, y: 1.4 }, to: { x: 0, y: 1.4 } },
+      { id: "even-head", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 1.4 }, { x: 0.4, y: 1.6 }, { x: 0.4, y: 1.2 }] },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "high", objectId: "high", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "down", objectId: "down", at: { x: 2, y: 0.6 }, placement: "above" },
+      { key: "up", objectId: "up", at: { x: 6, y: 0.6 }, placement: "above" },
+      { key: "even", objectId: "even", at: { x: 5, y: 1.4 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    low: <InlineMath math="3.140" />,
+    high: <InlineMath math="3.150" />,
+    down: <InlineMath math="3.142\to3.14" />,
+    up: <InlineMath math="3.146\to3.15" />,
+    even: <InlineMath math="3.145\to3.14" />,
+  }}
 />
 
 ## Rounding Sums by Decimal Position
@@ -184,16 +228,32 @@ If the International System of Units (SI) is required, convert <InlineMath math=
 
 For addition and subtraction, round by decimal position. For multiplication and division, round by the fewest significant figures among the measured values. [Round-to-even and one-step rounding](https://www.nist.gov/document/2023-nist-hb130-uniform-packaging-and-labeling-regulation) prevent repeated rounding from biasing the result.
 
-Before you round a calculated result, ask which operation produced it.
+Pick the rule from the operation, then round once at the end. A sum keeps the fewest decimal places, so it ends at one decimal. A product keeps the fewest significant figures, so it ends with two. Zoom in on both arrows.
 
-<Mermaid
-  title="Which Rounding Rule Applies"
-  description="Sums and differences follow decimal places, products and quotients follow significant figures."
-  chart={`flowchart TD
-    A["Calculated result"] --> B["Addition or subtraction"]
-    A --> C["Multiplication or division"]
-    B --> D["Keep the fewest decimal places"]
-    C --> E["Keep the fewest significant figures"]
-    D --> F["Round once at the end"]
-    E --> F`}
+<MathVisual
+  title={<>Which Rounding Rule Applies</>}
+  description={<>A sum (orange, one grid step is 0.01) and a product (violet, one grid step is 0.01) rounded by their rules.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.8, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "sum-line", kind: "segment", appearance: "reference", from: { x: 0, y: 1.5 }, to: { x: 10, y: 1.5 } },
+      { id: "product-line", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "sum", kind: "segment", appearance: "primary", from: { x: 6, y: 1.5 }, to: { x: 5, y: 1.5 } },
+      { id: "sum-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 1.5 }, { x: 5.3, y: 1.65 }, { x: 5.3, y: 1.35 }] },
+      { id: "product", kind: "segment", appearance: "secondary", from: { x: 5, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "product-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 10, y: 0 }, { x: 9.7, y: 0.15 }, { x: 9.7, y: -0.15 }] },
+      { id: "sum-exact", kind: "point", appearance: "primary", at: { x: 6, y: 1.5 } },
+      { id: "product-exact", kind: "point", appearance: "secondary", at: { x: 5, y: 0 } },
+    ],
+    labels: [
+      { key: "sum", objectId: "sum-exact", at: { x: 6, y: 1.5 }, placement: "above" },
+      { key: "product", objectId: "product-exact", at: { x: 5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    sum: <InlineMath math="12.11+0.3=12.41\to12.4" />,
+    product: <InlineMath math="2.5\times3.42=8.55\to8.6" />,
+  }}
 />

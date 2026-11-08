@@ -70,39 +70,57 @@ Jika tidak ada energi yang berpindah ke lingkungan, energi sebesar <InlineMath m
 
 Ikuti air yang jatuh pada grafik di bawah, dari <InlineMath math="h=12\text{ m}" /> di kanan sampai ke tanah di kiri. Energi potensial yang oranye berkurang tepat sebanyak energi kinetik hijau toska bertambah, jadi garis ungu untuk jumlah keduanya tidak pernah bergeser dari <InlineMath math="120\text{ J}" />. Di tengah jalan, pada <InlineMath math="6\text{ m}" />, kedua bentuk energi itu membagi energinya sama besar.
 
-<LineEquation
-  title="Energi Potensial Berubah Menjadi Energi Kinetik"
-  description="Air bermassa 1 kg jatuh dari 12 m dengan g = 10 m/s² tanpa energi yang hilang. Mendatar: ketinggian dalam satuan 2 m. Tegak: energi dalam satuan 20 J."
-  data={(() => {
-    // Water of mass 1 kg falls from 12 m with g = 10 m/s^2 and no energy leaving the system.
-    // Horizontal: height h / 2 m. Vertical: energy / 20 J.
-    const m = 1;
-    const g = 10;
-    const top = 12;
-    const heights = Array.from({ length: 13 }, (_, i) => i);
-    const line = (energy, color, text, at, offset) => ({
-      points: heights.map((h) => ({ x: h / 2, y: energy(h) / 20, z: 0 })),
-      color,
-      showPoints: false,
-      smooth: false,
-      labels: [{ text, at, offset, anchorX: "center" }],
-    });
-    const half = top / 2;
-    return [
-      line((h) => m * g * h, "#bb6800", <InlineMath math="E_p=mgh" />, 10, [0.9, 0.2, 0]),
-      line((h) => m * g * (top - h), "#0d9488", <InlineMath math="E_k=mg(12\text{ m}-h)" />, 2, [0.4, 0.8, 0]),
-      line((h) => m * g * h + m * g * (top - h), "#8242e5", <InlineMath math="E_m=120\text{ J}" />, 6, [0, 0.45, 0]),
-      {
-        points: [{ x: half / 2, y: (m * g * half) / 20, z: 0 }],
-        color: "#c026d3",
-        showPoints: true,
-        labels: [{ text: <InlineMath math="h=6\text{ m}:\ E_p=E_k=60\text{ J}" />, at: 0, offset: [0, -0.5, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[3, 3.2, 9]}
-  cameraTarget={[3, 3.2, 0]}
+<MathVisual
+  title={<>Energi Potensial Berubah Menjadi Energi Kinetik</>}
+  description={<>Air bermassa 1 kg jatuh dari 12 m dengan <InlineMath math="g=10\text{ m/s}^2" /> tanpa energi yang hilang. Mendatar: ketinggian dalam satuan 2 m. Tegak: energi dalam satuan 20 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.8, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
+      { id: "kinetic", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 6, y: 0 } },
+      { id: "mechanical", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 6, y: 6 } },
+      { id: "half", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "ep", objectId: "potential", at: { x: 5, y: 5 }, placement: "below-right" },
+      { key: "ek", objectId: "kinetic", at: { x: 1, y: 5 }, placement: "above-right" },
+      { key: "em", objectId: "mechanical", at: { x: 3, y: 6 }, placement: "above" },
+      { key: "half", objectId: "half", at: { x: 3, y: 3 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    ep: <InlineMath math="E_p=mgh" />,
+    ek: <InlineMath math="E_k=mg(12\text{ m}-h)" />,
+    em: <InlineMath math="E_m=120\text{ J}" />,
+    half: <InlineMath math="h=6\text{ m}:\ E_p=E_k=60\text{ J}" />,
+  }}
+/>
+
+Tanpa gesekan, setiap joule energi potensial menjadi energi kinetik: <InlineMath math="mgh=\tfrac12mv^2" />, jadi <InlineMath math="v=\sqrt{2gh}" /> dan massanya saling menghapus. Ketinggian empat kali lipat hanya memberi kelajuan dua kali lipat. Ikuti kurvanya dari <InlineMath math="5\text{ m}" /> sampai <InlineMath math="20\text{ m}" />.
+
+<MathVisual
+  title={<>Ketinggian Menjadi Kelajuan</>}
+  description={<>Kelajuan di dasar terhadap tinggi jatuh dengan <InlineMath math="g=10\text{ m/s}^2" />. Mendatar: satu kotak grid berarti 2 m. Tegak: satu kotak grid berarti 4 m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -0.5, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "speed", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: Math.sqrt(2 * 10 * 1) / 4 }, { x: 1, y: Math.sqrt(2 * 10 * 2) / 4 }, { x: 1.5, y: Math.sqrt(2 * 10 * 3) / 4 }, { x: 2, y: Math.sqrt(2 * 10 * 4) / 4 }, { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, { x: 3, y: Math.sqrt(2 * 10 * 6) / 4 }, { x: 3.5, y: Math.sqrt(2 * 10 * 7) / 4 }, { x: 4, y: Math.sqrt(2 * 10 * 8) / 4 }, { x: 4.5, y: Math.sqrt(2 * 10 * 9) / 4 }, { x: 5, y: Math.sqrt(2 * 10 * 10) / 4 }, { x: 5.5, y: Math.sqrt(2 * 10 * 11) / 4 }, { x: 6, y: Math.sqrt(2 * 10 * 12) / 4 }, { x: 6.5, y: Math.sqrt(2 * 10 * 13) / 4 }, { x: 7, y: Math.sqrt(2 * 10 * 14) / 4 }, { x: 7.5, y: Math.sqrt(2 * 10 * 15) / 4 }, { x: 8, y: Math.sqrt(2 * 10 * 16) / 4 }, { x: 8.5, y: Math.sqrt(2 * 10 * 17) / 4 }, { x: 9, y: Math.sqrt(2 * 10 * 18) / 4 }, { x: 9.5, y: Math.sqrt(2 * 10 * 19) / 4 }, { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }] },
+      { id: "five", kind: "point", appearance: "secondary", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 } },
+      { id: "twenty", kind: "point", appearance: "answer", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 } },
+    ],
+    labels: [
+      { key: "five", objectId: "five", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, placement: "below-right" },
+      { key: "twenty", objectId: "twenty", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    five: <InlineMath math="h=5\text{ m}:\ v=10\text{ m/s}" />,
+    twenty: <InlineMath math="h=20\text{ m}:\ v=20\text{ m/s}" />,
+  }}
 />
 
 ## Energi Berguna Bergantung pada Tujuan Alat
@@ -124,15 +142,31 @@ Jadi, energi <InlineMath math="30 \text{ J}" /> tidak hilang. Energi itu berpind
 
 [Pembangkit listrik tenaga air](https://www.energy.gov/cmei/water/how-hydropower-works) memanfaatkan perbedaan ketinggian air untuk menggerakkan turbin dan generator.
 
-Inilah neraca energi turbin itu. Kedua keluarannya selalu berjumlah sama dengan masukannya.
+Putar kolomnya: energi yang masuk ke turbin seluruhnya keluar lagi. Energi listrik yang berguna dan bagian yang lepas sebagai panas, bunyi, dan getaran kembali berjumlah sama dengan masukannya.
 
-<Mermaid
-  title="Neraca Energi Turbin"
-  description="120 J dari air yang mengalir menjadi 90 J energi listrik dan 30 J yang berpindah ke lingkungan."
-  chart={`flowchart LR
-    A["Masukan: 120 J"] --> B["Turbin dan generator"]
-    B --> C["Energi listrik berguna: 90 J"]
-    B --> D["Ke lingkungan: 30 J kalor, bunyi, getaran"]`}
+<MathVisual
+  title={<>Neraca Energi Turbin</>}
+  description={<>Energi yang masuk ke turbin dan generator (abu-abu) lalu keluar sebagai listrik (teal) dan ke lingkungan (merah muda). Satu kotak grid ke atas berarti 20 J.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 7 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 5, z: 10 }, target: { x: 1.5, y: 3, z: 0 } },
+    objects: [
+      { id: "input", kind: "cuboid", appearance: "reference", center: { x: 0, y: 3, z: 0 }, size: { length: 1.6, height: 6, width: 1.6 } },
+      { id: "useful", kind: "cuboid", appearance: "construction", center: { x: 3, y: 2.25, z: 0 }, size: { length: 1.6, height: 4.5, width: 1.6 } },
+      { id: "lost", kind: "cuboid", appearance: "warning", center: { x: 3, y: 5.25, z: 0 }, size: { length: 1.6, height: 1.5, width: 1.6 } },
+    ],
+    labels: [
+      { key: "input", objectId: "input", at: { x: 0, y: 6, z: 0 }, placement: "above" },
+      { key: "useful", objectId: "useful", at: { x: 3, y: 2.25, z: 0.85 }, placement: "right" },
+      { key: "lost", objectId: "lost", at: { x: 3, y: 6, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    input: <InlineMath math="120\text{ J}" />,
+    useful: <InlineMath math="90\text{ J},\ \eta=\tfrac{90}{120}=75\%" />,
+    lost: <InlineMath math="120-90=30\text{ J}" />,
+  }}
 />
 
 ## Periksa Klaim dengan Neraca Energi

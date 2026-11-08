@@ -22,40 +22,29 @@ A renewable energy source is replenished by natural processes on a human time sc
 
 Wind shows how strongly "available right now" can swing. The power the wind carries through a rotor of area <InlineMath math="A" /> is <InlineMath math="P=\tfrac12\rho Av^3" />, because faster air brings more kilograms each second and each kilogram carries more energy. In the graph below, the rotor has a radius of <InlineMath math="1\text{ m}" /> and air has <InlineMath math="\rho=1.2\text{ kg/m}^3" />. Compare the two points: doubling the wind speed from <InlineMath math="4" /> to <InlineMath math="8\text{ m/s}" /> makes the power <InlineMath math="2^3=8" /> times larger.
 
-<LineEquation
-  title="Wind Power Depends on Wind Speed"
-  description="Power in the wind through a rotor of radius 1 m with air density 1.2 kg/m³. Horizontal: wind speed in units of 2 m/s. Vertical: power in units of 500 W."
-  data={(() => {
-    // Power in the wind through a rotor of radius 1 m: P = (1/2) rho A v^3, rho = 1.2 kg/m^3.
-    // Horizontal: v / 2 m/s. Vertical: P / 500 W.
-    const rho = 1.2;
-    const area = Math.PI * 1 ** 2;
-    const power = (v) => 0.5 * rho * area * v ** 3;
-    const samples = 241;
-    const marked = (v, color, offset) => ({
-      points: [{ x: v / 2, y: power(v) / 500, z: 0 }],
-      color,
-      showPoints: true,
-      labels: [{ text: <InlineMath math={`v=${v}\\text{ m/s}:\\ P\\approx${Math.round(power(v))}\\text{ W}`} />, at: 0, offset, anchorX: "center" }],
-    });
-    return [
-      {
-        points: Array.from({ length: samples }, (_, i) => {
-          const v = (10 * i) / (samples - 1);
-          return { x: v / 2, y: power(v) / 500, z: 0 };
-        }),
-        color: "#0d9488",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: <InlineMath math="P=\tfrac12\rho Av^3" />, at: 216, offset: [-1.5, 0.4, 0], anchorX: "center" }],
-      },
-      marked(4, "#bb6800", [1.6, 0.2, 0]),
-      marked(8, "#c026d3", [-1.9, 0.2, 0]),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.5, 1.9, 7.5]}
-  cameraTarget={[2.5, 1.9, 0]}
+<MathVisual
+  title={<>Wind Power Depends on Wind Speed</>}
+  description={<>Power in the wind through a rotor of radius 1 m with air density <InlineMath math="1.2\text{ kg/m}^3" />. Horizontal: wind speed in units of 2 m/s. Vertical: power in units of 500 W.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -0.3, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "power", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 0.25 / 2, y: (0.5 * 1.2 * Math.PI * 0.25 ** 3) / 500 }, { x: 0.5 / 2, y: (0.5 * 1.2 * Math.PI * 0.5 ** 3) / 500 }, { x: 0.75 / 2, y: (0.5 * 1.2 * Math.PI * 0.75 ** 3) / 500 }, { x: 1.0 / 2, y: (0.5 * 1.2 * Math.PI * 1.0 ** 3) / 500 }, { x: 1.25 / 2, y: (0.5 * 1.2 * Math.PI * 1.25 ** 3) / 500 }, { x: 1.5 / 2, y: (0.5 * 1.2 * Math.PI * 1.5 ** 3) / 500 }, { x: 1.75 / 2, y: (0.5 * 1.2 * Math.PI * 1.75 ** 3) / 500 }, { x: 1, y: (0.5 * 1.2 * Math.PI * 2.0 ** 3) / 500 }, { x: 2.25 / 2, y: (0.5 * 1.2 * Math.PI * 2.25 ** 3) / 500 }, { x: 2.5 / 2, y: (0.5 * 1.2 * Math.PI * 2.5 ** 3) / 500 }, { x: 2.75 / 2, y: (0.5 * 1.2 * Math.PI * 2.75 ** 3) / 500 }, { x: 3.0 / 2, y: (0.5 * 1.2 * Math.PI * 3.0 ** 3) / 500 }, { x: 3.25 / 2, y: (0.5 * 1.2 * Math.PI * 3.25 ** 3) / 500 }, { x: 3.5 / 2, y: (0.5 * 1.2 * Math.PI * 3.5 ** 3) / 500 }, { x: 3.75 / 2, y: (0.5 * 1.2 * Math.PI * 3.75 ** 3) / 500 }, { x: 2, y: (0.5 * 1.2 * Math.PI * 4.0 ** 3) / 500 }, { x: 4.25 / 2, y: (0.5 * 1.2 * Math.PI * 4.25 ** 3) / 500 }, { x: 4.5 / 2, y: (0.5 * 1.2 * Math.PI * 4.5 ** 3) / 500 }, { x: 4.75 / 2, y: (0.5 * 1.2 * Math.PI * 4.75 ** 3) / 500 }, { x: 5.0 / 2, y: (0.5 * 1.2 * Math.PI * 5.0 ** 3) / 500 }, { x: 5.25 / 2, y: (0.5 * 1.2 * Math.PI * 5.25 ** 3) / 500 }, { x: 5.5 / 2, y: (0.5 * 1.2 * Math.PI * 5.5 ** 3) / 500 }, { x: 5.75 / 2, y: (0.5 * 1.2 * Math.PI * 5.75 ** 3) / 500 }, { x: 3, y: (0.5 * 1.2 * Math.PI * 6.0 ** 3) / 500 }, { x: 6.25 / 2, y: (0.5 * 1.2 * Math.PI * 6.25 ** 3) / 500 }, { x: 6.5 / 2, y: (0.5 * 1.2 * Math.PI * 6.5 ** 3) / 500 }, { x: 6.75 / 2, y: (0.5 * 1.2 * Math.PI * 6.75 ** 3) / 500 }, { x: 7.0 / 2, y: (0.5 * 1.2 * Math.PI * 7.0 ** 3) / 500 }, { x: 7.25 / 2, y: (0.5 * 1.2 * Math.PI * 7.25 ** 3) / 500 }, { x: 7.5 / 2, y: (0.5 * 1.2 * Math.PI * 7.5 ** 3) / 500 }, { x: 7.75 / 2, y: (0.5 * 1.2 * Math.PI * 7.75 ** 3) / 500 }, { x: 4, y: (0.5 * 1.2 * Math.PI * 8.0 ** 3) / 500 }, { x: 8.25 / 2, y: (0.5 * 1.2 * Math.PI * 8.25 ** 3) / 500 }, { x: 8.5 / 2, y: (0.5 * 1.2 * Math.PI * 8.5 ** 3) / 500 }, { x: 8.75 / 2, y: (0.5 * 1.2 * Math.PI * 8.75 ** 3) / 500 }, { x: 9.0 / 2, y: (0.5 * 1.2 * Math.PI * 9.0 ** 3) / 500 }, { x: 9.25 / 2, y: (0.5 * 1.2 * Math.PI * 9.25 ** 3) / 500 }, { x: 9.5 / 2, y: (0.5 * 1.2 * Math.PI * 9.5 ** 3) / 500 }, { x: 9.75 / 2, y: (0.5 * 1.2 * Math.PI * 9.75 ** 3) / 500 }, { x: 5, y: (0.5 * 1.2 * Math.PI * 10.0 ** 3) / 500 }] },
+      { id: "v4", kind: "point", appearance: "primary", at: { x: 2, y: (0.5 * 1.2 * Math.PI * 4 ** 3) / 500 } },
+      { id: "v8", kind: "point", appearance: "answer", at: { x: 4, y: (0.5 * 1.2 * Math.PI * 8 ** 3) / 500 } },
+    ],
+    labels: [
+      { key: "rule", objectId: "power", at: { x: 4.5, y: (0.5 * 1.2 * Math.PI * 9 ** 3) / 500 }, placement: "left" },
+      { key: "v4", objectId: "v4", at: { x: 2, y: (0.5 * 1.2 * Math.PI * 4 ** 3) / 500 }, placement: "right" },
+      { key: "v8", objectId: "v8", at: { x: 4, y: (0.5 * 1.2 * Math.PI * 8 ** 3) / 500 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    rule: <InlineMath math="P=\tfrac12\rho Av^3" />,
+    v4: <InlineMath math="v=4\text{ m/s}:\ P\approx121\text{ W}" />,
+    v8: <InlineMath math="v=8\text{ m/s}:\ P\approx965\text{ W}" />,
+  }}
 />
 
 <Mermaid
@@ -71,6 +60,31 @@ Wind shows how strongly "available right now" can swing. The power the wind carr
     E --> H["Check natural limits"]`}/>
 
 [Renewable sources](https://www.eia.gov/energyexplained/renewable-sources/) are naturally replenished, but their available output still depends on local resource conditions. These sources include biomass, hydropower, geothermal, wind, and solar energy.
+
+The same panel collects less when the sun is low, because its light spreads over a larger area. On a flat panel the power is about <InlineMath math="1000\sin\alpha\text{ W/m}^2" /> for a sun at height <InlineMath math="\alpha" />, so a sun at <InlineMath math="30^\circ" /> gives half of the noon value. Follow the curve through the day's angles.
+
+<MathVisual
+  title={<>Low Sun, Less Power</>}
+  description={<>Approximate sunlight power on a flat panel against the sun's height above the horizon. Horizontal: one grid step is 10 degrees. Vertical: one grid step is 200 W per square meter.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -0.5, max: 5.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "sun", kind: "polyline", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: (1000 * Math.sin((5 * Math.PI) / 180)) / 200 }, { x: 1, y: (1000 * Math.sin((10 * Math.PI) / 180)) / 200 }, { x: 1.5, y: (1000 * Math.sin((15 * Math.PI) / 180)) / 200 }, { x: 2, y: (1000 * Math.sin((20 * Math.PI) / 180)) / 200 }, { x: 2.5, y: (1000 * Math.sin((25 * Math.PI) / 180)) / 200 }, { x: 3, y: (1000 * Math.sin((30 * Math.PI) / 180)) / 200 }, { x: 3.5, y: (1000 * Math.sin((35 * Math.PI) / 180)) / 200 }, { x: 4, y: (1000 * Math.sin((40 * Math.PI) / 180)) / 200 }, { x: 4.5, y: (1000 * Math.sin((45 * Math.PI) / 180)) / 200 }, { x: 5, y: (1000 * Math.sin((50 * Math.PI) / 180)) / 200 }, { x: 5.5, y: (1000 * Math.sin((55 * Math.PI) / 180)) / 200 }, { x: 6, y: (1000 * Math.sin((60 * Math.PI) / 180)) / 200 }, { x: 6.5, y: (1000 * Math.sin((65 * Math.PI) / 180)) / 200 }, { x: 7, y: (1000 * Math.sin((70 * Math.PI) / 180)) / 200 }, { x: 7.5, y: (1000 * Math.sin((75 * Math.PI) / 180)) / 200 }, { x: 8, y: (1000 * Math.sin((80 * Math.PI) / 180)) / 200 }, { x: 8.5, y: (1000 * Math.sin((85 * Math.PI) / 180)) / 200 }, { x: 9, y: 5 }] },
+      { id: "low", kind: "point", appearance: "primary", at: { x: 3, y: (1000 * Math.sin((30 * Math.PI) / 180)) / 200 } },
+      { id: "noon", kind: "point", appearance: "answer", at: { x: 9, y: 5 } },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 3, y: (1000 * Math.sin((30 * Math.PI) / 180)) / 200 }, placement: "above-left" },
+      { key: "noon", objectId: "noon", at: { x: 9, y: 5 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    low: <InlineMath math="30^\circ:\ 1000\sin30^\circ=500\text{ W/m}^2" />,
+    noon: <InlineMath math="90^\circ:\ 1000\text{ W/m}^2" />,
+  }}
+/>
 
 ## Compare Sources through Energy Conversion Paths
 
@@ -109,14 +123,27 @@ Identify the source and its initial energy form, then the conversion device that
 
 Once the conversion path is clear, compare the source's physical conditions, cost, emissions, land or water needs, and maintenance requirements.
 
-Here is the complete conversion path of a steam power plant, the shape you compare for every source.
+Every steam plant turns heat into work, and heat cannot all become work. Even an ideal engine reaches only <InlineMath math="\eta=1-T_c/T_h" />, so hotter steam allows more. With cooling water at <InlineMath math="300\text{ K}" />, geothermal steam near <InlineMath math="450\text{ K}" /> caps out far below a fuel-fired boiler. Follow the curve.
 
-<Mermaid
-  title="Inside a Steam Power Plant"
-  description="Heat from fuel or geothermal fluid makes steam, the steam spins a turbine, and the generator delivers electricity."
-  chart={`flowchart LR
-    A["Heat source: fuel or geothermal fluid"] --> B["Steam"]
-    B --> C["Turbine"]
-    C --> D["Generator"]
-    D --> E["Electrical energy"]`}
+<MathVisual
+  title={<>The Ceiling of a Steam Power Plant</>}
+  description={<>The ideal efficiency limit against the steam temperature with cooling at 300 K. Horizontal: one grid step is 100 K. Vertical: one grid step is 10 percent.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2.5, max: 9.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "limit", kind: "polyline", appearance: "primary", vertices: [{ x: 3, y: 0 }, { x: 3.25, y: 10 * (1 - 300 / 325) }, { x: 3.5, y: 10 * (1 - 300 / 350) }, { x: 3.75, y: 10 * (1 - 300 / 375) }, { x: 4, y: 10 * (1 - 300 / 400) }, { x: 4.25, y: 10 * (1 - 300 / 425) }, { x: 4.5, y: 10 * (1 - 300 / 450) }, { x: 4.75, y: 10 * (1 - 300 / 475) }, { x: 5, y: 10 * (1 - 300 / 500) }, { x: 5.25, y: 10 * (1 - 300 / 525) }, { x: 5.5, y: 10 * (1 - 300 / 550) }, { x: 5.75, y: 10 * (1 - 300 / 575) }, { x: 6, y: 10 * (1 - 300 / 600) }, { x: 6.25, y: 10 * (1 - 300 / 625) }, { x: 6.5, y: 10 * (1 - 300 / 650) }, { x: 6.75, y: 10 * (1 - 300 / 675) }, { x: 7, y: 10 * (1 - 300 / 700) }, { x: 7.25, y: 10 * (1 - 300 / 725) }, { x: 7.5, y: 10 * (1 - 300 / 750) }, { x: 7.75, y: 10 * (1 - 300 / 775) }, { x: 8, y: 10 * (1 - 300 / 800) }, { x: 8.25, y: 10 * (1 - 300 / 825) }, { x: 8.5, y: 10 * (1 - 300 / 850) }, { x: 8.75, y: 10 * (1 - 300 / 875) }, { x: 9, y: 10 * (1 - 300 / 900) }] },
+      { id: "geo", kind: "point", appearance: "construction", at: { x: 4.5, y: 10 * (1 - 300 / 450) } },
+      { id: "coal", kind: "point", appearance: "answer", at: { x: 8, y: 10 * (1 - 300 / 800) } },
+    ],
+    labels: [
+      { key: "geo", objectId: "geo", at: { x: 4.5, y: 10 * (1 - 300 / 450) }, placement: "below-right" },
+      { key: "coal", objectId: "coal", at: { x: 8, y: 10 * (1 - 300 / 800) }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    geo: <InlineMath math="450\text{ K}:\ 1-\tfrac{300}{450}\approx33\%" />,
+    coal: <InlineMath math="800\text{ K}:\ 1-\tfrac{300}{800}=62.5\%" />,
+  }}
 />

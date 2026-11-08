@@ -95,18 +95,34 @@ Die Tabelle setzt **konstante Beschleunigung im betrachteten Zeitintervall** vor
 
 Die letzte Zeile ist leicht misszuverstehen: Eine negative Beschleunigung bedeutet nicht automatisch, dass sich das Objekt nach links bewegt. Sie bedeutet, dass die Geschwindigkeitsänderung <Highlight>in die negative Achsenrichtung zeigt</Highlight>.
 
-Vergleich die beiden Vorzeichen, nie die Beschleunigung allein.
+Lies die Vorzeichen zusammen. Bei <InlineMath math="v>0" /> lässt eine Beschleunigung mit gleichem Vorzeichen das Tempo wachsen, mit entgegengesetztem schrumpfen, und <InlineMath math="a=0" /> hält es gleich. Zoom auf die drei Linien und vergleiche ihre Steigungen.
 
-<Mermaid
-  title="Schneller oder langsamer"
-  description="Haben Geschwindigkeit und Beschleunigung dasselbe Vorzeichen, wird das Objekt schneller. Entgegengesetzte Vorzeichen bedeuten, dass es bremst."
-  chart={`flowchart TD
-    A["Vorzeichen von v und a"] --> B["Gleiches Vorzeichen"]
-    A --> C["Entgegengesetzte Vorzeichen"]
-    A --> D["a = 0"]
-    B --> E["Wird schneller"]
-    C --> F["Wird langsamer"]
-    D --> G["Geschwindigkeit bleibt gleich"]`}
+<MathVisual
+  title={<>Schneller oder langsamer</>}
+  description={<>Geschwindigkeit über der Zeit für <InlineMath math="a=+1" /> (teal), <InlineMath math="a=-1" /> (rosa) und <InlineMath math="a=0" /> (grau), jeweils mit positiver Geschwindigkeit. Waagerecht: Sekunden. Senkrecht: m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "faster", kind: "segment", appearance: "construction", from: { x: 0, y: 2 }, to: { x: 4, y: 6 } },
+      { id: "slower", kind: "segment", appearance: "warning", from: { x: 0, y: 6 }, to: { x: 4, y: 2 } },
+      { id: "steady", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 4, y: 3 } },
+      { id: "faster-end", kind: "point", appearance: "construction", at: { x: 4, y: 6 } },
+      { id: "slower-end", kind: "point", appearance: "warning", at: { x: 4, y: 2 } },
+      { id: "steady-end", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "faster", objectId: "faster-end", at: { x: 4, y: 6 }, placement: "right" },
+      { key: "slower", objectId: "slower-end", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "steady", objectId: "steady-end", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    faster: <InlineMath math="a>0:\ \text{schneller}" />,
+    slower: <InlineMath math="a<0:\ \text{langsamer}" />,
+    steady: <InlineMath math="a=0" />,
+  }}
 />
 
 ## Berechnung der Geschwindigkeitsänderung pro Sekunde

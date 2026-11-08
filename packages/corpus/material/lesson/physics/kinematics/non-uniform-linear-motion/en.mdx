@@ -58,22 +58,28 @@ Look at the "From Rest" motion. At the first instant the car is not moving yet, 
 
 For the toy car starting from rest, the marks each second land at <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="9" />, <InlineMath math="16" /> and <InlineMath math="25\text{ m}" />. The gaps grow by <InlineMath math="2\text{ m}" /> every second, so the position graph bends into a parabola instead of a straight line.
 
-<LineEquation
-  title="Position Marks Spread Apart"
-  description="x = ½at² with a = 2 m/s² for 5 s. Horizontal: time in s. Vertical: position in units of 5 m."
-  data={(() => {
-    // Starting from rest with a = 2 m/s^2: x(t) = (1/2) a t^2. Horizontal: time in s. Vertical: position / 5 m.
-    const a = 2;
-    const position = (t) => 0.5 * a * t ** 2;
-    const samples = 201;
-    return [
-      { points: Array.from({ length: samples }, (_, i) => { const t = (5 * i) / (samples - 1); return { x: t, y: position(t) / 5, z: 0 }; }), color: "#bb6800", showPoints: false, smooth: false },
-      { points: [1, 2, 3, 4, 5].map((t) => ({ x: t, y: position(t) / 5, z: 0 })), color: "#c026d3", showPoints: true, smooth: false, labels: [{ text: <InlineMath math="1,\ 4,\ 9,\ 16,\ 25\text{ m}" />, at: 4, offset: [-1.6, 0.4, 0], anchorX: "center" }] },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.5, 2.5, 8]}
-  cameraTarget={[2.5, 2.5, 0]}
+<MathVisual
+  title={<>Position Marks Spread Apart</>}
+  description={<><InlineMath math="x=\tfrac12at^2" /> with <InlineMath math="a=2\text{ m/s}^2" /> for 5 s. Horizontal: time in s. Vertical: position in units of 5 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "position", kind: "quadratic", appearance: "primary", coefficients: { a: 0.2, b: 0, c: 0 }, domain: { min: 0, max: 5 }, inputAxis: "x" },
+      { id: "mark-1", kind: "point", appearance: "answer", at: { x: 1, y: 1 ** 2 / 5 } },
+      { id: "mark-2", kind: "point", appearance: "answer", at: { x: 2, y: 2 ** 2 / 5 } },
+      { id: "mark-3", kind: "point", appearance: "answer", at: { x: 3, y: 3 ** 2 / 5 } },
+      { id: "mark-4", kind: "point", appearance: "answer", at: { x: 4, y: 4 ** 2 / 5 } },
+      { id: "mark-5", kind: "point", appearance: "answer", at: { x: 5, y: 5 ** 2 / 5 } },
+    ],
+    labels: [
+      { key: "marks", objectId: "mark-5", at: { x: 5, y: 5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    marks: <InlineMath math="1,\ 4,\ 9,\ 16,\ 25\text{ m}" />,
+  }}
 />
 
 ## Calculating Displacement from Graph Area

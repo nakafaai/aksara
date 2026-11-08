@@ -79,15 +79,34 @@ Force, work, and power can also be read as dimension structures.
 [P] &= \frac{[W]}{[t]} = [\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-3}
 \end{aligned}" />
 
-Dimensional analysis follows the same three steps every time.
+Put each quantity at its powers of length, mass and time: across, up and into the page. Multiplying adds the powers, so mass <InlineMath math="\mathrm{M}" /> plus acceleration <InlineMath math="\mathrm{LT^{-2}}" /> lands force at <InlineMath math="\mathrm{LMT^{-2}}" />. Rotate the scene and follow the two steps.
 
-<Mermaid
-  title="Three Steps of Dimensional Analysis"
-  description="Write the formula, replace each quantity with its base dimensions, then combine the powers."
-  chart={`flowchart LR
-    A["Write the formula"] --> B["Replace each quantity with L, M, T"]
-    B --> C["Add or subtract the powers"]
-    C --> D["Dimension of the result"]`}
+<MathVisual
+  title={<>Three Steps of Dimensional Analysis</>}
+  description={<>Powers of L (across), M (up) and T (depth) for mass, acceleration and force.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -2.5, max: 0.5 } },
+    view: { kind: "camera", position: { x: 4, y: 3, z: 3 }, target: { x: 0.5, y: 0.5, z: -1 } },
+    objects: [
+      { id: "m", kind: "segment", appearance: "secondary", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 1, z: 0 } },
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 1, z: 0 }, to: { x: 1, y: 1, z: -2 } },
+      { id: "f", kind: "segment", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: -2 } },
+      { id: "m-end", kind: "point", appearance: "secondary", at: { x: 0, y: 1, z: 0 } },
+      { id: "f-end", kind: "point", appearance: "answer", at: { x: 1, y: 1, z: -2 } },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0, z: 0 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m-end", at: { x: 0, y: 1, z: 0 }, placement: "above" },
+      { key: "f", objectId: "f-end", at: { x: 1, y: 1, z: -2 }, placement: "right" },
+      { key: "o", objectId: "origin", at: { x: 0, y: 0, z: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    m: <InlineMath math="m:\ \mathrm{M}" />,
+    f: <InlineMath math="F=ma:\ \mathrm{LMT^{-2}}" />,
+    o: <InlineMath math="(0,0,0)" />,
+  }}
 />
 
 ## Checking Dimensional Consistency in a Formula
@@ -109,15 +128,41 @@ Both terms on the right have dimension <InlineMath math="[\mathrm{L}]" />, so th
 
 <InlineMath math="s+t" /> is invalid here because the dimensions differ: <InlineMath math="[\mathrm L]\ne[\mathrm T]" />.
 
-Check the formula term by term, and every term must come out the same.
+Write each dimension as its powers of L and T, and multiplying adds the powers like arrows. Both <InlineMath math="v_0t" /> and <InlineMath math="\tfrac12at^2" /> land on the fuchsia point, <InlineMath math="\mathrm{L}" />, the same dimension as <InlineMath math="s" />, so <InlineMath math="s=v_0t+\tfrac12at^2" /> is consistent. Zoom in where the arrows meet.
 
-<Mermaid
-  title="Every Term Must Have the Same Dimension"
-  description="Replace each quantity in s = v0 t + ½at² with its dimension and simplify each term."
-  chart={`flowchart LR
-    A["s: L"] --> D["All terms L: consistent"]
-    B["v0 t: (L T^-1)(T) = L"] --> D
-    C["½ a t^2: (L T^-2)(T^2) = L"] --> D`}
+<MathVisual
+  title={<>Every Term Must Have the Same Dimension</>}
+  description={<>Powers of length (across) and time (up) for the terms of the motion formula.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.5 }, y: { min: -2.4, max: 0.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "v0", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1, y: -1 } },
+      { id: "v0-head", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: -1 }, { x: 1 - (0.25 * 1) / Math.hypot(1, -1) + ((0.25 / 2) * 1) / Math.hypot(1, -1), y: -1 - (0.25 * -1) / Math.hypot(1, -1) + ((0.25 / 2) * 1) / Math.hypot(1, -1) }, { x: 1 - (0.25 * 1) / Math.hypot(1, -1) - ((0.25 / 2) * 1) / Math.hypot(1, -1), y: -1 - (0.25 * -1) / Math.hypot(1, -1) - ((0.25 / 2) * 1) / Math.hypot(1, -1) }] },
+      { id: "t", kind: "segment", appearance: "secondary", from: { x: 1, y: -1 }, to: { x: 1, y: 0 } },
+      { id: "t-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: 0 }, { x: 1.125, y: -0.25 }, { x: 0.875, y: -0.25 }] },
+      { id: "a", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 1, y: -2 } },
+      { id: "a-head", kind: "polygon", appearance: "construction", vertices: [{ x: 1, y: -2 }, { x: 1 - (0.25 * 1) / Math.hypot(1, -2) + ((0.25 / 2) * 2) / Math.hypot(1, -2), y: -2 - (0.25 * -2) / Math.hypot(1, -2) + ((0.25 / 2) * 1) / Math.hypot(1, -2) }, { x: 1 - (0.25 * 1) / Math.hypot(1, -2) - ((0.25 / 2) * 2) / Math.hypot(1, -2), y: -2 - (0.25 * -2) / Math.hypot(1, -2) - ((0.25 / 2) * 1) / Math.hypot(1, -2) }] },
+      { id: "t2", kind: "segment", appearance: "highlight", from: { x: 1, y: -2 }, to: { x: 1, y: 0 } },
+      { id: "t2-head", kind: "polygon", appearance: "highlight", vertices: [{ x: 1, y: 0 }, { x: 1.125, y: -0.25 }, { x: 0.875, y: -0.25 }] },
+      { id: "length", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 0.5, y: -0.5 }, placement: "above-left" },
+      { key: "a", objectId: "a", at: { x: 0.5, y: -1 }, placement: "left" },
+      { key: "t", objectId: "t", at: { x: 1, y: -0.5 }, placement: "right" },
+      { key: "t2", objectId: "t2", at: { x: 1, y: -1.5 }, placement: "right" },
+      { key: "length", objectId: "length", at: { x: 1, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    v0: <InlineMath math="v_0:\ \mathrm{LT^{-1}}" />,
+    a: <InlineMath math="a:\ \mathrm{LT^{-2}}" />,
+    t: <InlineMath math="\cdot t:\ \mathrm{T}" />,
+    t2: <InlineMath math="\cdot t^2:\ \mathrm{T^2}" />,
+    length: <InlineMath math="\mathrm{L}" />,
+  }}
 />
 
 ## One Object Can Have Many Quantities

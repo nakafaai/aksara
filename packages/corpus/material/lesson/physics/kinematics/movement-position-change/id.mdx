@@ -38,36 +38,34 @@ Keduanya memiliki perpindahan <InlineMath math="20-20=0\text{ m}" />. Namun, A t
 
 Coba gambar kedua keadaan itu sebagai grafik posisi terhadap waktu, lalu ikuti setiap garis dari kiri ke kanan. Garis A tetap datar di <InlineMath math="20\text{ m}" />, sedangkan B naik sampai <InlineMath math="50\text{ m}" /> pada <InlineMath math="3\text{ s}" /> lalu kembali. Kedua garis mulai dan berakhir di titik yang sama, makanya perpindahan keduanya sama-sama nol.
 
-<LineEquation
-  title="Titik Ujung Sama, Gerak Berbeda"
-  description="Waktu dalam sekon bergerak ke kanan. Posisi naik dalam satuan 10 m, jadi 5 berarti 50 m. Bandingkan posisi A dan B pada 3 s."
-  data={(() => {
-    // Position x(t) in meters; the vertical axis shows x / 10.
-    const positionA = () => 20;
-    const positionB = (t) => (t <= 3 ? 20 + 10 * t : 50 - 10 * (t - 3));
-    return [
-      {
-        points: [0, 3, 6].map((t) => ({ x: t, y: positionA(t) / 10, z: 0 })),
-        color: "#0d9488",
-        showPoints: true,
-        smooth: false,
-        labels: [{ text: <InlineMath math="A" />, at: 2, offset: [0.35, -0.35, 0] }],
-      },
-      {
-        points: [0, 3, 6].map((t) => ({ x: t, y: positionB(t) / 10, z: 0 })),
-        color: "#bb6800",
-        showPoints: true,
-        smooth: false,
-        labels: [
-          { text: <InlineMath math="B" />, at: 1, offset: [0, 0.45, 0] },
-          { text: <InlineMath math="50\text{ m}" />, at: 1, offset: [1.6, 0, 0] },
-        ],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[3, 3.2, 9]}
-  cameraTarget={[3, 3.2, 0]}
+<MathVisual
+  title={<>Titik Ujung Sama, Gerak Berbeda</>}
+  description={<>Waktu dalam sekon bergerak ke kanan. Posisi naik dalam satuan 10 m, jadi 5 berarti 50 m. Bandingkan posisi A dan B pada 3 s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 2 }, { x: 3, y: 2 }, { x: 6, y: 2 }] },
+      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 2 }, { x: 3, y: 5 }, { x: 6, y: 2 }] },
+      { id: "a-0", kind: "point", appearance: "construction", at: { x: 0, y: 2 } },
+      { id: "a-3", kind: "point", appearance: "construction", at: { x: 3, y: 2 } },
+      { id: "a-6", kind: "point", appearance: "construction", at: { x: 6, y: 2 } },
+      { id: "b-0", kind: "point", appearance: "primary", at: { x: 0, y: 2 } },
+      { id: "b-3", kind: "point", appearance: "primary", at: { x: 3, y: 5 } },
+      { id: "b-6", kind: "point", appearance: "primary", at: { x: 6, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a-6", at: { x: 6, y: 2 }, placement: "below-left" },
+      { key: "b", objectId: "b-3", at: { x: 3, y: 5 }, placement: "above" },
+      { key: "top", objectId: "b-3", at: { x: 3, y: 5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    top: <InlineMath math="50\text{ m}" />,
+  }}
 />
 
 ## Patokan Harus Konsisten
@@ -92,15 +90,34 @@ Pada jalan lurus, kita bebas memilih arah positif. Di contoh ini, **timur dipili
 
 Tanda negatif tidak berarti geraknya "lebih kecil" atau "salah". Tanda itu hanya memberi tahu arah perubahan posisi.
 
-Setiap soal perpindahan melewati empat langkah yang sama.
+Ambil kedua posisi dari acuan yang sama, kurangkan <InlineMath math="\Delta x=x_\text{akhir}-x_\text{awal}" />, lalu baca tandanya. Dua posisi yang sama memberi <InlineMath math="+30\text{ m}" /> saat ke timur dan <InlineMath math="-30\text{ m}" /> saat kembali.
 
-<Mermaid
-  title="Empat Langkah Menuju Perpindahan"
-  description="Baca kedua posisi dari satu patokan, kurangkan posisi akhir dengan posisi awal, lalu ubah tandanya menjadi arah."
-  chart={`flowchart LR
-    A["Posisi awal dan akhir dari satu patokan"] --> B["Delta x = x_akhir - x_awal"]
-    B --> C["Baca tandanya"]
-    C --> D["Positif: timur. Negatif: barat. Nol: tempat sama"]`}
+<MathVisual
+  title={<>Empat Langkah Menuju Perpindahan</>}
+  description={<>Dua gerakan antara 20 m dan 50 m pada satu sumbu. Satu kotak grid berarti 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "east", kind: "segment", appearance: "primary", from: { x: 2, y: 1 }, to: { x: 5, y: 1 } },
+      { id: "east-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 1 }, { x: 4.75, y: 1.125 }, { x: 4.75, y: 0.875 }] },
+      { id: "west", kind: "segment", appearance: "secondary", from: { x: 5, y: 0.5 }, to: { x: 2, y: 0.5 } },
+      { id: "west-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 0.5 }, { x: 2.25, y: 0.625 }, { x: 2.25, y: 0.375 }] },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "east", objectId: "east", at: { x: 3.5, y: 1 }, placement: "above" },
+      { key: "west", objectId: "west", at: { x: 3.5, y: 0.5 }, placement: "below" },
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    east: <InlineMath math="\Delta x=50-20=+30\text{ m}" />,
+    west: <InlineMath math="\Delta x=20-50=-30\text{ m}" />,
+    origin: <InlineMath math="x=0" />,
+  }}
 />
 
 ## Menghitung Selisih Akhir dan Awal
@@ -120,36 +137,26 @@ Perhatikan urutan pengurangannya. Kita selalu membaca <Highlight>posisi akhir di
 
 Panah di bawah berawal di posisi awal dan berakhir di posisi akhir. Panjangnya adalah besar perpindahan, dan karena menunjuk ke timur, tandanya positif.
 
-<LineEquation
-  title="Perpindahan Siswa"
-  description="Posisi di sebelah timur gerbang, satu kotak grid untuk setiap 10 m. Panahnya berjalan dari 10 m ke 40 m."
-  data={(() => {
-    // Positions east of the gate in meters; one grid step is 10 m.
-    const initial = 10;
-    const final = 40;
-    const change = final - initial;
-    return [
-      {
-        points: [0, 5].map((x) => ({ x, y: 0, z: 0 })),
-        color: "#64748b",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: "Gerbang", at: 0, offset: [0, -0.4, 0], anchorX: "center" }],
-      },
-      {
-        points: [initial, final].map((x) => ({ x: x / 10, y: 0.6, z: 0 })),
-        color: "#bb6800",
-        cone: { position: "end", size: 0.22 },
-        showPoints: true,
-        pointIndices: [0],
-        smooth: false,
-        labels: [
-          { text: <InlineMath math={`\\Delta x=${final}-${initial}=+${change}\\text{ m}`} />, at: 0, offset: [change / 20, 0.45, 0], anchorX: "center" },
-        ],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.5, 0.4, 6]}
-  cameraTarget={[2.5, 0.4, 0]}
+<MathVisual
+  title={<>Perpindahan Siswa</>}
+  description={<>Posisi di sebelah timur gerbang, satu kotak grid untuk setiap 10 m. Panahnya berjalan dari 10 m ke 40 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "gate", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "walk", kind: "segment", appearance: "primary", from: { x: 1, y: 0.6 }, to: { x: 4, y: 0.6 } },
+      { id: "walk-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0.6 }, { x: 3.78, y: 0.71 }, { x: 3.78, y: 0.49 }] },
+      { id: "walk-start", kind: "point", appearance: "primary", at: { x: 1, y: 0.6 } },
+    ],
+    labels: [
+      { key: "gate", objectId: "gate", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "change", objectId: "walk", at: { x: 2.5, y: 0.6 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    gate: <>Gerbang</>,
+    change: <InlineMath math="\Delta x=40-10=+30\text{ m}" />,
+  }}
 />

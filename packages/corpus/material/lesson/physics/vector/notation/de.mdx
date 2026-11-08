@@ -32,30 +32,35 @@ Die Reihenfolge der Buchstaben ist wichtig. <InlineMath math="\overrightarrow{AB
 
 Beide Pfeile unten sind gleich lang, aber die Reihenfolge der Buchstaben dreht die Richtung um: <InlineMath math="\overrightarrow{AB}" /> beginnt bei <InlineMath math="A" />, <InlineMath math="\overrightarrow{BA}" /> bei <InlineMath math="B" />. Also gilt <InlineMath math="\overrightarrow{BA}=-\overrightarrow{AB}" />.
 
-<LineEquation
-  title="Die Reihenfolge der Punkte bestimmt die Richtung"
-  description="Die Vektoren AB und BA zwischen A(1, 1) und B(4, 3), der zweite nach unten verschoben, damit er neben dem ersten liegt."
-  data={(() => {
-    const arrow = (from, to, color, text, offset) => ({
-      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
-      color,
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
-    });
-    // Points A(1, 1) and B(4, 3): AB and BA have the same length and opposite directions.
-    const A = [1, 1];
-    const B = [4, 3];
-    return [
-      arrow(A, B, "#bb6800", <InlineMath math="\overrightarrow{AB}" />, [-1.4, 0.2, 0]),
-      arrow([B[0], B[1] - 1.5], [A[0], A[1] - 1.5], "#8242e5", <InlineMath math="\overrightarrow{BA}" />, [1.4, -0.2, 0]),
-      { points: [A, B].map(([x, y]) => ({ x, y, z: 0 })), color: "#64748b", showPoints: true, smooth: false, lineWidth: 0.5, labels: [{ text: "A", at: 0, offset: [-0.35, 0, 0] }, { text: "B", at: 1, offset: [0.35, 0, 0] }] },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.5, 1.2, 7]}
-  cameraTarget={[2.5, 1.2, 0]}
+<MathVisual
+  title={<>Die Reihenfolge der Punkte bestimmt die Richtung</>}
+  description={<>Die Vektoren AB und BA zwischen A(1, 1) und B(4, 3), der zweite nach unten verschoben, damit er neben dem ersten liegt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: -1, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ab-line", kind: "segment", appearance: "reference", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "b", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "ab-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 3) / Math.hypot(3, 2) + ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 3 - (0.25 * 2) / Math.hypot(3, 2) + ((0.25 / 2) * 3) / Math.hypot(3, 2) }, { x: 4 - (0.25 * 3) / Math.hypot(3, 2) - ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 3 - (0.25 * 2) / Math.hypot(3, 2) - ((0.25 / 2) * 3) / Math.hypot(3, 2) }] },
+      { id: "ba", kind: "segment", appearance: "secondary", from: { x: 4, y: 1.5 }, to: { x: 1, y: -0.5 } },
+      { id: "ba-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: -0.5 }, { x: 1 - (0.25 * -3) / Math.hypot(-3, -2.0) + ((0.25 / 2) * 2.0) / Math.hypot(-3, -2.0), y: -0.5 - (0.25 * -2.0) / Math.hypot(-3, -2.0) + ((0.25 / 2) * -3) / Math.hypot(-3, -2.0) }, { x: 1 - (0.25 * -3) / Math.hypot(-3, -2.0) - ((0.25 / 2) * 2.0) / Math.hypot(-3, -2.0), y: -0.5 - (0.25 * -2.0) / Math.hypot(-3, -2.0) - ((0.25 / 2) * -3) / Math.hypot(-3, -2.0) }] },
+    ],
+    labels: [
+      { key: "ab", objectId: "ab", at: { x: 2.5, y: 2 }, placement: "above-left" },
+      { key: "ba", objectId: "ba", at: { x: 2.5, y: 0.5 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 1 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    ab: <InlineMath math="\overrightarrow{AB}" />,
+    ba: <InlineMath math="\overrightarrow{BA}" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
 />
 
 ## Notation mit einem Buchstaben
@@ -149,30 +154,31 @@ Wird ein Vektor als <InlineMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" /> geschrie
 
 Leg die beiden Kräfte Spitze an Fuß. Der zweite Pfeil endet genau dort, wo der erste begonnen hat, die Summe ist also der Nullvektor: ohne Länge und ohne Richtung.
 
-<LineEquation
-  title="Zwei Kräfte, die sich aufheben"
-  description="F₁ = 20î N und F₂ = −20î N, Spitze an Fuß gelegt. Ein Gitterschritt sind 5 N."
-  data={(() => {
-    const arrow = (from, to, color, text, offset) => ({
-      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
-      color,
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
-    });
-    // F1 = 20 i N and F2 = -20 i N, drawn head to tail: the sum returns to the start. One grid step is 5 N.
-    const F1 = 20;
-    const F2 = -20;
-    return [
-      arrow([0, 0.6], [F1 / 5, 0.6], "#bb6800", <InlineMath math="\vec F_1=20\hat i\text{ N}" />, [-2, 0.4, 0]),
-      arrow([F1 / 5, 0], [(F1 + F2) / 5, 0], "#8242e5", <InlineMath math="\vec F_2=-20\hat i\text{ N}" />, [2, -0.4, 0]),
-      { points: [{ x: (F1 + F2) / 5, y: 0, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />, at: 0, offset: [-0.2, -0.6, 0], anchorX: "center" }] },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2, 0.2, 6]}
-  cameraTarget={[2, 0.2, 0]}
+<MathVisual
+  title={<>Zwei Kräfte, die sich aufheben</>}
+  description={<><InlineMath math="\vec F_1=20\hat i\text{ N}" /> und <InlineMath math="\vec F_2=-20\hat i\text{ N}" />, Spitze an Fuß gelegt. Ein Gitterschritt entspricht 5 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "f1", kind: "segment", appearance: "primary", from: { x: 0, y: 0.6 }, to: { x: 4, y: 0.6 } },
+      { id: "f1-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0.6 }, { x: 3.75, y: 0.725 }, { x: 3.75, y: 0.475 }] },
+      { id: "f2", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "f2-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.25, y: 0.125 }, { x: 0.25, y: -0.125 }] },
+      { id: "sum", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 2, y: 0.6 }, placement: "above" },
+      { key: "f2", objectId: "f2", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    f1: <InlineMath math="\vec F_1=20\hat i\text{ N}" />,
+    f2: <InlineMath math="\vec F_2=-20\hat i\text{ N}" />,
+    sum: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />,
+  }}
 />
 
 ## Häufige Lesefehler

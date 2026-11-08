@@ -61,35 +61,33 @@ Die resultierende Kraft hat also einen Betrag von etwa <InlineMath math="15{,}6\
 
 Hier sind die beiden Kräfte mit ihrem Parallelogramm. Die fuchsiafarbene Resultierende neigt sich zur größeren Kraft, und ihr Winkel zu <InlineMath math="\vec A" /> ist das <InlineMath math="\phi\approx26{,}3^\circ" /> aus dem Sinussatz.
 
-<LineEquation
-  title="Richtung der Resultierenden"
-  description="A = 10 N und B = 8 N unter 60° mit dem Parallelogramm, das R liefert. Ein Gitterschritt sind 2 N."
-  data={(() => {
-    const arrow = (from, to, color, text, offset) => ({
-      points: [from, to].map(([x, y]) => ({ x, y, z: 0 })),
-      color,
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: text ? [{ text, at: 1, offset, anchorX: "center" }] : [],
-    });
-    // A = 10 N along x and B = 8 N at 60 degrees; R = A + B. One grid step is 2 N.
-    const A = [10, 0];
-    const t = (60 * Math.PI) / 180;
-    const B = [8 * Math.cos(t), 8 * Math.sin(t)];
-    const R = [A[0] + B[0], A[1] + B[1]];
-    const s = (p) => p.map((v) => v / 2);
-    const phi = (Math.atan2(R[1], R[0]) * 180) / Math.PI;
-    return [
-      arrow(s([0, 0]), s(A), "#bb6800", <InlineMath math="A=10\text{ N}" />, [-2.5, -0.4, 0]),
-      arrow(s([0, 0]), s(B), "#8242e5", <InlineMath math="B=8\text{ N}" />, [-1.2, 0.2, 0]),
-      { points: [s(B), s(R), s(A)].map(([x, y]) => ({ x, y, z: 0 })), color: "#64748b", showPoints: false, smooth: false },
-      arrow(s([0, 0]), s(R), "#c026d3", <InlineMath math={`R\\approx${Math.hypot(R[0], R[1]).toFixed(2).replace(".", "{,}")}\\text{ N},\\ \\phi\\approx${phi.toFixed(1).replace(".", "{,}")}^\\circ`} />, [0.4, 0.6, 0]),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[4, 1.8, 9]}
-  cameraTarget={[4, 1.8, 0]}
+<MathVisual
+  title={<>Richtung der Resultierenden</>}
+  description={<><InlineMath math="A=10\text{ N}" /> und <InlineMath math="B=8\text{ N}" /> unter 60° mit dem Parallelogramm, das R liefert. Ein Gitterschritt entspricht 2 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 0 }, { x: 4.75, y: 0.125 }, { x: 4.75, y: -0.125 }] },
+      { id: "b", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) } },
+      { id: "b-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },
+      { id: "sides", kind: "polyline", appearance: "reference", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 7, y: 2 * Math.sqrt(3) }, { x: 5, y: 0 }] },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
+      { id: "r-head", kind: "polygon", appearance: "answer", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }] },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 1, y: Math.sqrt(3) }, placement: "above-left" },
+      { key: "r", objectId: "r", at: { x: 7, y: 2 * Math.sqrt(3) }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A=10\text{ N}" />,
+    b: <InlineMath math="B=8\text{ N}" />,
+    r: <InlineMath math="R\approx15{,}62\text{ N},\ \phi\approx26{,}3^\circ" />,
+  }}
 />
 
 ## Überprüfung mit Komponenten
@@ -179,15 +177,40 @@ Die horizontale Komponente ist **negativ**, die vertikale **positiv**. Die Resul
 
 Die Sinusumkehrung liefert <InlineMath math="60^\circ" />. Die Resultierende zeigt jedoch in die Richtung <InlineMath math="180^\circ-60^\circ=120^\circ" />. Die Vorzeichen der Komponenten unterscheiden die beiden möglichen Winkel.
 
-Die beiden Sätze und die Kontrolle bilden eine Abfolge.
+Häng die Vektoren Spitze an Fuß, und du bekommst ein Dreieck. Der Kosinussatz liefert den Betrag, <InlineMath math="R=\sqrt{244}\approx15{,}62\text{ N}" />, und der Sinussatz oder die Komponenten liefern die Richtung. Zoom auf beide Winkel: Dasselbe <InlineMath math="\phi" /> aus beiden Wegen prüft die Antwort.
 
-<Mermaid
-  title="Betrag, Richtung, Kontrolle"
-  description="Der Kosinussatz liefert den Betrag von R, der Sinussatz die Richtung, und die Komponenten bestätigen beides."
-  chart={`flowchart LR
-    A["Kosinussatz: R"] --> B["Sinussatz: sin phi = B sin theta / R"]
-    B --> C["Komponenten: tan phi = B sin theta / (A + B cos theta)"]
-    C --> D["Gleiches phi: Ergebnis geprüft"]`}
+<MathVisual
+  title={<>Betrag, Richtung, Probe</>}
+  description={<>Das Vektordreieck aus A (orange), B (violett) und ihrer Resultierenden R (fuchsia), mit dem Winkel zwischen A und B (türkis) und der Richtung von R (gelb). Ein Gitterschritt entspricht 2 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 0 }, { x: 4.75, y: 0.125 }, { x: 4.75, y: -0.125 }] },
+      { id: "b", kind: "segment", appearance: "secondary", from: { x: 5, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
+      { id: "b-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 7 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
+      { id: "r-head", kind: "polygon", appearance: "answer", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }] },
+      { id: "phi", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 1.5, startDegrees: 0, sweepDegrees: (Math.atan2(2 * Math.sqrt(3), 7) * 180) / Math.PI },
+      { id: "theta", kind: "arc", appearance: "construction", center: { x: 5, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 60 },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 6, y: Math.sqrt(3) }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 3.5, y: Math.sqrt(3) }, placement: "above-left" },
+      { key: "phi", objectId: "phi", at: { x: 1.5, y: 0.35 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 6, y: 0.3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A=10\text{ N}" />,
+    b: <InlineMath math="B=8\text{ N}" />,
+    r: <InlineMath math="R^2=10^2+8^2+2\cdot10\cdot8\cos60^\circ=244" />,
+    phi: <InlineMath math="\phi\approx26{,}3^\circ" />,
+    theta: <InlineMath math="\theta=60^\circ" />,
+  }}
 />
 
 ## Komponentenverfahren für mehr als zwei Vektoren

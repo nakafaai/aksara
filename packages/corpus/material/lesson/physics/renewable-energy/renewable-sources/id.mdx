@@ -20,71 +20,59 @@ Istilah terbarukan menjelaskan cara sumber <Highlight>tersedia kembali melalui p
 
 Begini wujud "bergantung pada waktu" untuk panel surya. Dalam model sederhana, sistem panel berdaya puncak <InlineMath math="3\text{ kW}" /> mengikuti setengah gelombang sinus dari matahari terbit pukul 06.00 sampai terbenam pukul 18.00, lalu tidak menghasilkan apa-apa di malam hari. Energi satu hari adalah luas di bawah kurva, <InlineMath math="E=P_{\text{peak}}\cdot\frac{24}{\pi}\text{ jam}" />, jadi hari cerah memberi sekitar <InlineMath math="22{,}9\text{ kWh}" />. Pada hari berawan dengan puncak separuhnya, kurva ungu hanya berisi separuh energi itu. Sumbernya memang pulih setiap pagi, tetapi dayanya tidak selalu ada saat kamu butuhkan.
 
-<LineEquation
-  title="Daya Surya dalam Satu Hari"
-  description="Model sederhana sistem panel 3 kW pada hari cerah dan hari berawan dengan puncak separuhnya. Mendatar: jam dalam satuan 2 jam. Tegak: daya dalam kW."
-  data={(() => {
-    // Simple clear-sky model: P(t) = P_peak sin(pi (t - 6) / 12) from 06:00 to 18:00, zero at night.
-    // Horizontal: clock time / 2 h, so x = t / 2 and the phase is pi x / 6 - pi / 2. Vertical: power in kW.
-    const day = (peak, color, text) => ({
-      curve: {
-        kind: "sin",
-        amplitude: peak,
-        frequency: Math.PI / 6,
-        phase: -Math.PI / 2,
-        shift: 0,
-        domain: [3, 9],
-        samples: 201,
-      },
-      color,
-      showPoints: false,
-      labels: [{ text, at: 100, offset: [0, 0.45, 0], anchorX: "center" }],
-    });
-    const night = (from, to) => ({
-      points: [from, to].map((x) => ({ x, y: 0, z: 0 })),
-      color: "#64748b",
-      showPoints: false,
-      smooth: false,
-    });
-    const energy = (peak) => ((peak * 24) / Math.PI).toFixed(1).replace(".", "{,}");
-    return [
-      night(0, 3),
-      night(9, 12),
-      day(3, "#bb6800", <InlineMath math={`P_{\\text{peak}}=3\\text{ kW},\\ E\\approx${energy(3)}\\text{ kWh}`} />),
-      day(1.5, "#8242e5", <InlineMath math={`P_{\\text{peak}}=1{,}5\\text{ kW},\\ E\\approx${energy(1.5)}\\text{ kWh}`} />),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[6, 1.6, 8]}
-  cameraTarget={[6, 1.6, 0]}
+<MathVisual
+  title={<>Daya Surya dalam Satu Hari</>}
+  description={<>Model sederhana sistem panel 3 kW pada hari cerah dan hari berawan dengan puncak separuhnya. Mendatar: jam dalam satuan 2 jam. Tegak: daya dalam kW.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "night-1", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "night-2", kind: "segment", appearance: "reference", from: { x: 9, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "big", kind: "polyline", appearance: "primary", vertices: [{ x: 3, y: 0 }, { x: 25 / 8, y: 3 * Math.cos((Math.PI * -2.875) / 6) }, { x: 27 / 8, y: 3 * Math.cos((Math.PI * -2.625) / 6) }, { x: 29 / 8, y: 3 * Math.cos((Math.PI * -2.375) / 6) }, { x: 31 / 8, y: 3 * Math.cos((Math.PI * -2.125) / 6) }, { x: 33 / 8, y: 3 * Math.cos((Math.PI * -1.875) / 6) }, { x: 35 / 8, y: 3 * Math.cos((Math.PI * -1.625) / 6) }, { x: 37 / 8, y: 3 * Math.cos((Math.PI * -1.375) / 6) }, { x: 39 / 8, y: 3 * Math.cos((Math.PI * -1.125) / 6) }, { x: 41 / 8, y: 3 * Math.cos((Math.PI * -0.875) / 6) }, { x: 43 / 8, y: 3 * Math.cos((Math.PI * -0.625) / 6) }, { x: 45 / 8, y: 3 * Math.cos((Math.PI * -0.375) / 6) }, { x: 47 / 8, y: 3 * Math.cos((Math.PI * -0.125) / 6) }, { x: 49 / 8, y: 3 * Math.cos((Math.PI * 0.125) / 6) }, { x: 51 / 8, y: 3 * Math.cos((Math.PI * 0.375) / 6) }, { x: 53 / 8, y: 3 * Math.cos((Math.PI * 0.625) / 6) }, { x: 55 / 8, y: 3 * Math.cos((Math.PI * 0.875) / 6) }, { x: 57 / 8, y: 3 * Math.cos((Math.PI * 1.125) / 6) }, { x: 59 / 8, y: 3 * Math.cos((Math.PI * 1.375) / 6) }, { x: 61 / 8, y: 3 * Math.cos((Math.PI * 1.625) / 6) }, { x: 63 / 8, y: 3 * Math.cos((Math.PI * 1.875) / 6) }, { x: 65 / 8, y: 3 * Math.cos((Math.PI * 2.125) / 6) }, { x: 67 / 8, y: 3 * Math.cos((Math.PI * 2.375) / 6) }, { x: 69 / 8, y: 3 * Math.cos((Math.PI * 2.625) / 6) }, { x: 71 / 8, y: 3 * Math.cos((Math.PI * 2.875) / 6) }, { x: 9, y: 0 }] },
+      { id: "small", kind: "polyline", appearance: "secondary", vertices: [{ x: 3, y: 0 }, { x: 26 / 8, y: 1.5 * Math.cos((Math.PI * -2.75) / 6) }, { x: 28 / 8, y: 1.5 * Math.cos((Math.PI * -2.5) / 6) }, { x: 30 / 8, y: 1.5 * Math.cos((Math.PI * -2.25) / 6) }, { x: 32 / 8, y: 1.5 * Math.cos((Math.PI * -2) / 6) }, { x: 34 / 8, y: 1.5 * Math.cos((Math.PI * -1.75) / 6) }, { x: 36 / 8, y: 1.5 * Math.cos((Math.PI * -1.5) / 6) }, { x: 38 / 8, y: 1.5 * Math.cos((Math.PI * -1.25) / 6) }, { x: 40 / 8, y: 1.5 * Math.cos((Math.PI * -1) / 6) }, { x: 42 / 8, y: 1.5 * Math.cos((Math.PI * -0.75) / 6) }, { x: 44 / 8, y: 1.5 * Math.cos((Math.PI * -0.5) / 6) }, { x: 46 / 8, y: 1.5 * Math.cos((Math.PI * -0.25) / 6) }, { x: 48 / 8, y: 1.5 * Math.cos((Math.PI * 0) / 6) }, { x: 50 / 8, y: 1.5 * Math.cos((Math.PI * 0.25) / 6) }, { x: 52 / 8, y: 1.5 * Math.cos((Math.PI * 0.5) / 6) }, { x: 54 / 8, y: 1.5 * Math.cos((Math.PI * 0.75) / 6) }, { x: 56 / 8, y: 1.5 * Math.cos((Math.PI * 1) / 6) }, { x: 58 / 8, y: 1.5 * Math.cos((Math.PI * 1.25) / 6) }, { x: 60 / 8, y: 1.5 * Math.cos((Math.PI * 1.5) / 6) }, { x: 62 / 8, y: 1.5 * Math.cos((Math.PI * 1.75) / 6) }, { x: 64 / 8, y: 1.5 * Math.cos((Math.PI * 2) / 6) }, { x: 66 / 8, y: 1.5 * Math.cos((Math.PI * 2.25) / 6) }, { x: 68 / 8, y: 1.5 * Math.cos((Math.PI * 2.5) / 6) }, { x: 70 / 8, y: 1.5 * Math.cos((Math.PI * 2.75) / 6) }, { x: 9, y: 0 }] },
+      { id: "big-top", kind: "point", appearance: "primary", at: { x: 6, y: 3 * Math.cos((Math.PI * 0) / 6) } },
+      { id: "small-top", kind: "point", appearance: "secondary", at: { x: 6, y: 1.5 * Math.cos((Math.PI * 0) / 6) } },
+    ],
+    labels: [
+      { key: "big", objectId: "big-top", at: { x: 6, y: 3 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
+      { key: "small", objectId: "small-top", at: { x: 6, y: 1.5 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    big: <InlineMath math="P_{\text{peak}}=3\text{ kW},\ E\approx22{,}9\text{ kWh}" />,
+    small: <InlineMath math="P_{\text{peak}}=1{,}5\text{ kW},\ E\approx11{,}5\text{ kWh}" />,
+  }}
 />
 
 Karena itu, periksa apakah sumber tersebut dapat tersedia kembali dan apakah jumlahnya cukup di lokasi serta waktu yang dibutuhkan. Untuk biomassa dan air yang dikelola, periksa juga berapa banyak bahan atau air yang dapat dipakai tanpa mengganggu pemulihan sumber dan ekosistem setempat.
 
 Coba dengan angka buatan: sebuah hutan menyimpan <InlineMath math="100" /> satuan kayu dan tumbuh kembali <InlineMath math="2" /> satuan per tahun. Tiga garis di bawah memanen <InlineMath math="h=1" />, <InlineMath math="2" />, dan <InlineMath math="3" /> satuan per tahun. Hanya garis merah muda, yang memanen lebih cepat daripada pertumbuhan hutannya, yang kehilangan kayu, walaupun sumbernya terbarukan.
 
-<LineEquation
-  title="Laju Panen dan Laju Tumbuh Kembali"
-  description="Persediaan ilustrasi 100 satuan yang tumbuh kembali 2 satuan per tahun dengan tiga laju panen h. Mendatar: tahun dalam satuan 5. Tegak: persediaan dalam satuan 25."
-  data={(() => {
-    // Illustrative wood stock S(t) = 100 + (g - h) t with regrowth g = 2 per year. Horizontal: years / 5. Vertical: stock / 25.
-    const regrowth = 2;
-    const stock = (harvest, color, text) => ({
-      points: [0, 20].map((t) => ({ x: t / 5, y: (100 + (regrowth - harvest) * t) / 25, z: 0 })),
-      color,
-      showPoints: false,
-      smooth: false,
-      labels: [{ text, at: 1, offset: [1, 0, 0], anchorX: "center" }],
-    });
-    return [
-      stock(1, "#0d9488", <InlineMath math="h=1" />),
-      stock(2, "#64748b", <InlineMath math="h=2" />),
-      stock(3, "#e03b8a", <InlineMath math="h=3" />),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.4, 4.2, 7]}
-  cameraTarget={[2.4, 4.2, 0]}
+<MathVisual
+  title={<>Laju Panen dan Laju Tumbuh Kembali</>}
+  description={<>Persediaan ilustrasi 100 satuan yang tumbuh kembali 2 satuan per tahun dengan tiga laju panen h. Mendatar: tahun dalam satuan 5. Tegak: persediaan dalam satuan 25.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: 2.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "h1", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 1) * 20) / 25 } },
+      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 2) * 20) / 25 } },
+      { id: "h3", kind: "segment", appearance: "warning", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 3) * 20) / 25 } },
+    ],
+    labels: [
+      { key: "h1", objectId: "h1", at: { x: 4, y: (100 + (2 - 1) * 20) / 25 }, placement: "right" },
+      { key: "h2", objectId: "h2", at: { x: 4, y: (100 + (2 - 2) * 20) / 25 }, placement: "right" },
+      { key: "h3", objectId: "h3", at: { x: 4, y: (100 + (2 - 3) * 20) / 25 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    h1: <InlineMath math="h=1" />,
+    h2: <InlineMath math="h=2" />,
+    h3: <InlineMath math="h=3" />,
+  }}
 />
 
 ## Cocokkan Setiap Sumber dengan Kondisi Lokasi
@@ -115,19 +103,34 @@ Pada [turbin angin](https://www.energy.gov/cmei/systems/how-do-wind-turbines-wor
 
 Pada [tenaga air](https://www.energy.gov/cmei/water/how-hydropower-works), energi yang tersedia dipengaruhi oleh debit air dan beda ketinggian. Air mengalir melalui penstock untuk memutar turbin, lalu turbin memutar generator. Generator tersebut menghasilkan listrik.
 
-Inilah jalur untuk cahaya matahari, angin, dan air secara berdampingan.
+Setiap jalur berakhir di generator, tetapi masing-masing mulai dengan bagian energi masuk yang berbeda. Putar batang nilai tipikalnya: sel surya mengubah sekitar seperlima cahaya matahari menjadi listrik, turbin angin tidak pernah bisa melewati batas Betz, dan turbin air meneruskan hampir semua energi airnya.
 
-<Mermaid
-  title="Tiga Jalur Konversi"
-  description="Cahaya matahari, angin, dan air masing-masing sampai ke listrik lewat alatnya sendiri."
-  chart={`flowchart LR
-    S["Cahaya matahari"] --> P["Sel fotovoltaik"]
-    W["Angin"] --> B["Bilah dan rotor"]
-    H["Air yang jatuh"] --> T["Pipa pesat dan turbin"]
-    B --> G["Generator"]
-    T --> G
-    P --> E["Listrik"]
-    G --> E`}
+<MathVisual
+  title={<>Tiga Jalur Konversi</>}
+  description={<>Efisiensi konversi tipikal sel surya, turbin angin, dan turbin air, dengan batas Betz untuk angin (merah muda). Satu kotak grid ke atas berarti 10 persen.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 10.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 8, z: 12 }, target: { x: 2.5, y: 4, z: 0 } },
+    objects: [
+      { id: "pv", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "wind", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2.25, z: 0 }, size: { length: 1.2, height: 4.5, width: 1.2 } },
+      { id: "hydro", kind: "cuboid", appearance: "construction", center: { x: 5, y: 4.5, z: 0 }, size: { length: 1.2, height: 9, width: 1.2 } },
+      { id: "betz", kind: "segment", appearance: "warning", from: { x: 1.7, y: 160 / 27, z: 0 }, to: { x: 3.3, y: 160 / 27, z: 0 } },
+    ],
+    labels: [
+      { key: "pv", objectId: "pv", at: { x: 0, y: 2, z: 0 }, placement: "above" },
+      { key: "wind", objectId: "wind", at: { x: 2.5, y: 4.5, z: 0.7 }, placement: "right" },
+      { key: "hydro", objectId: "hydro", at: { x: 5, y: 9, z: 0 }, placement: "above" },
+      { key: "betz", objectId: "betz", at: { x: 3.3, y: 160 / 27, z: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    pv: <InlineMath math="\text{sel surya}\approx20\%" />,
+    wind: <InlineMath math="\text{turbin angin}\approx45\%" />,
+    hydro: <InlineMath math="\text{turbin air}\approx90\%" />,
+    betz: <InlineMath math="\text{batas Betz}\ \tfrac{16}{27}\approx59{,}3\%" />,
+  }}
 />
 
 ## Kondisi untuk Panas Bumi Biogas dan Energi Laut

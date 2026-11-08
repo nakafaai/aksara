@@ -40,6 +40,31 @@ Erneuerbare Energiesysteme arbeiten oft mit **Bewegung, Höhe, Temperaturuntersc
 
 Biomasse und Batterien enthalten außerdem chemische Energie. Solarmodule empfangen Energie, die das Sonnenlicht trägt. Die vier Formeln in der Tabelle berechnen Energie aus Bewegung, Höhe, Temperaturänderung und elektrischer Leistung.
 
+Eine gedehnte Feder speichert Spannenergie <InlineMath math="E=\tfrac12kx^2" />. Mit <InlineMath math="k=200\text{ N/m}" /> speichert die dreifache Dehnung die neunfache Energie, <InlineMath math="1\text{ J}" /> bei <InlineMath math="10\text{ cm}" /> und <InlineMath math="9\text{ J}" /> bei <InlineMath math="30\text{ cm}" />. Folge der Kurve.
+
+<MathVisual
+  title={<>Spannenergie wächst mit dem Quadrat</>}
+  description={<>Spannenergie einer Feder mit <InlineMath math="k=200\text{ N/m}" /> über ihrer Dehnung. Waagerecht: Ein Gitterschritt entspricht 5 cm. Senkrecht: Joule.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "spring", kind: "quadratic", appearance: "secondary", coefficients: { a: 0.25, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
+      { id: "ten", kind: "point", appearance: "primary", at: { x: 2, y: 1 } },
+      { id: "thirty", kind: "point", appearance: "answer", at: { x: 6, y: 9 } },
+    ],
+    labels: [
+      { key: "ten", objectId: "ten", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "thirty", objectId: "thirty", at: { x: 6, y: 9 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    ten: <InlineMath math="x=0{,}1\text{ m}:\ E=1\text{ J}" />,
+    thirty: <InlineMath math="x=0{,}3\text{ m}:\ E=9\text{ J}" />,
+  }}
+/>
+
 ## Die Formel an die Situation anpassen
 
 Kinetische Energie ist die Energie, die ein Objekt **aufgrund seiner Bewegung** besitzt.
@@ -64,38 +89,29 @@ E_k &= \frac{1}{2}mv^2 \\
 
 Das Diagramm unten setzt jede Geschwindigkeit von <InlineMath math="0" /> bis <InlineMath math="6\text{ m/s}" /> in dieselbe Formel ein. Vergleich die beiden markierten Punkte. Wenn sich die Geschwindigkeit von <InlineMath math="3\text{ m/s}" /> auf <InlineMath math="6\text{ m/s}" /> verdoppelt, verdoppelt sich die Energie nicht: Sie steigt von <InlineMath math="9\text{ J}" /> auf <InlineMath math="36\text{ J}" />, also auf das Vierfache, weil die Geschwindigkeit quadriert wird. Deshalb macht schon etwas mehr Wind für eine Turbine so viel aus.
 
-<LineEquation
-  title="Kinetische Energie wächst mit dem Quadrat der Geschwindigkeit"
-  description="Kinetische Energie von 2 kg Luft bei 0 bis 6 m/s. Waagrecht: Geschwindigkeit in m/s. Senkrecht: Energie in Einheiten von 6 J."
-  data={(() => {
-    // E_k = (1/2) m v^2 for m = 2 kg of air. Horizontal: v in m/s. Vertical: E_k / 6 J.
-    const m = 2;
-    const kinetic = (v) => 0.5 * m * v ** 2;
-    const samples = 241;
-    const named = (v, color, offset) => ({
-      points: [{ x: v, y: kinetic(v) / 6, z: 0 }],
-      color,
-      showPoints: true,
-      labels: [{ text: <InlineMath math={`v=${v}\\text{ m/s}:\\ E_k=${kinetic(v)}\\text{ J}`} />, at: 0, offset, anchorX: "center" }],
-    });
-    return [
-      {
-        points: Array.from({ length: samples }, (_, i) => {
-          const v = (6 * i) / (samples - 1);
-          return { x: v, y: kinetic(v) / 6, z: 0 };
-        }),
-        color: "#0d9488",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: <InlineMath math="E_k=\tfrac{1}{2}mv^2" />, at: 200, offset: [-1.4, 0.6, 0], anchorX: "center" }],
-      },
-      named(3, "#bb6800", [1.6, -0.2, 0]),
-      named(6, "#c026d3", [-2, 0, 0]),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[3, 3, 9]}
-  cameraTarget={[3, 3, 0]}
+<MathVisual
+  title={<>Kinetische Energie wächst mit dem Quadrat der Geschwindigkeit</>}
+  description={<>Kinetische Energie von 2 kg Luft bei 0 bis 6 m/s. Waagrecht: Geschwindigkeit in m/s. Senkrecht: Energie in Einheiten von 8 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "kinetic", kind: "quadratic", appearance: "construction", coefficients: { a: 0.125, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
+      { id: "v3", kind: "point", appearance: "primary", at: { x: 3, y: 1.125 } },
+      { id: "v6", kind: "point", appearance: "answer", at: { x: 6, y: 4.5 } },
+    ],
+    labels: [
+      { key: "rule", objectId: "kinetic", at: { x: 5, y: 3.125 }, placement: "left" },
+      { key: "v3", objectId: "v3", at: { x: 3, y: 1.125 }, placement: "right" },
+      { key: "v6", objectId: "v6", at: { x: 6, y: 4.5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    rule: <InlineMath math="E_k=\tfrac{1}{2}mv^2" />,
+    v3: <InlineMath math="v=3\text{ m/s}:\ E_k=9\text{ J}" />,
+    v6: <InlineMath math="v=6\text{ m/s}:\ E_k=36\text{ J}" />,
+  }}
 />
 
 Der Arbeit-Energie-Satz verbindet die Gesamtarbeit mit der Änderung der kinetischen Energie.
@@ -162,28 +178,24 @@ Ein Gerät arbeitet <InlineMath math="60 \text{ s}" /> lang mit konstanter Spann
 
 Vergleich diese Gerade mit der Kurve der kinetischen Energie oben. Die potenzielle Energie wächst proportional zur Höhe, also bringt jeder zusätzliche Meter dieselben <InlineMath math="mg=20\text{ J}" />.
 
-<LineEquation
-  title="Potenzielle Energie wächst gleichmäßig mit der Höhe"
-  description="E_p = mgh für 2 kg mit g = 10 m/s². Waagrecht: Höhe in m. Senkrecht: Energie in Einheiten von 20 J."
-  data={(() => {
-    // E_p = m g h for m = 2 kg and g = 10 m/s^2. Horizontal: h in m. Vertical: E_p / 20 J.
-    const m = 2;
-    const g = 10;
-    const potential = (h) => m * g * h;
-    return [
-      {
-        points: [0, 5].map((h) => ({ x: h, y: potential(h) / 20, z: 0 })),
-        color: "#bb6800",
-        showPoints: true,
-        pointIndices: [1],
-        smooth: false,
-        labels: [{ text: <InlineMath math={`h=5\\text{ m}:\\ E_p=${potential(5)}\\text{ J}`} />, at: 1, offset: [-1.6, 0.4, 0], anchorX: "center" }],
-      },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.5, 2.5, 7]}
-  cameraTarget={[2.5, 2.5, 0]}
+<MathVisual
+  title={<>Potenzielle Energie wächst gleichmäßig mit der Höhe</>}
+  description={<><InlineMath math="E_p=mgh" /> für 2 kg mit <InlineMath math="g=10\text{ m/s}^2" />. Waagrecht: Höhe in m. Senkrecht: Energie in Einheiten von 20 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 5 } },
+      { id: "top", kind: "point", appearance: "primary", at: { x: 5, y: 5 } },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 5, y: 5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    top: <InlineMath math="h=5\text{ m}:\ E_p=100\text{ J}" />,
+  }}
 />
 
 ## Ein Kraftwerk wandelt mehrere Energieformen um

@@ -86,21 +86,32 @@ Different observers assign different relative velocities to the same physical mo
 
 Here are the car, the taxi and the truck leaving the same spot. The gap between two lines is the position of one vehicle as the other sees it. The car and the taxi drift apart slowly, <InlineMath math="2\text{ m}" /> each second, while the car and the truck separate by <InlineMath math="20\text{ m}" /> each second.
 
-<LineEquation
-  title="Gaps Grow at the Relative Velocity"
-  description="Positions of three vehicles relative to the ground, starting together. Horizontal: time in s. Vertical: position in units of 10 m."
-  data={(() => {
-    // Ground velocities: car +12, taxi +14, truck -8 m/s, all from x = 0. Horizontal: time in s. Vertical: position / 10 m.
-    const runner = (v, color, text) => ({ points: [0, 3].map((t) => ({ x: t, y: (v * t) / 10, z: 0 })), color, showPoints: false, smooth: false, labels: [{ text, at: 1, offset: [0.9, 0, 0], anchorX: "center" }] });
-    return [
-      runner(12, "#bb6800", "car +12"),
-      runner(14, "#8242e5", "taxi +14"),
-      runner(-8, "#0d9488", "truck -8"),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[1.8, 0.8, 9]}
-  cameraTarget={[1.8, 0.8, 0]}
+<MathVisual
+  title={<>Gaps Grow at the Relative Velocity</>}
+  description={<>Positions of three vehicles relative to the ground, starting together. Horizontal: time in s. Vertical: position in units of 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -3, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "car", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: (12 * 3) / 10 } },
+      { id: "taxi", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: (14 * 3) / 10 } },
+      { id: "truck", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: (-8 * 3) / 10 } },
+      { id: "car-end", kind: "point", appearance: "primary", at: { x: 3, y: (12 * 3) / 10 } },
+      { id: "taxi-end", kind: "point", appearance: "secondary", at: { x: 3, y: (14 * 3) / 10 } },
+      { id: "truck-end", kind: "point", appearance: "construction", at: { x: 3, y: (-8 * 3) / 10 } },
+    ],
+    labels: [
+      { key: "car", objectId: "car-end", at: { x: 3, y: (12 * 3) / 10 }, placement: "right" },
+      { key: "taxi", objectId: "taxi-end", at: { x: 3, y: (14 * 3) / 10 }, placement: "right" },
+      { key: "truck", objectId: "truck-end", at: { x: 3, y: (-8 * 3) / 10 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    car: <>car +12</>,
+    taxi: <>taxi +14</>,
+    truck: <>truck -8</>,
+  }}
 />
 
 ## Relative Velocity Is a Difference
@@ -113,13 +124,30 @@ Here are the car, the taxi and the truck leaving the same spot. The gap between 
 
 So, before saying an object is fast, slow, still, or moving backward, always check the frame of reference.
 
-The car, the taxi and the truck all come down to the same subtraction with a different observer.
+Every observer uses the same subtraction, <InlineMath math="v_\text{rel}=v_\text{car}-v_\text{observer}" />. Standing still you see <InlineMath math="12\text{ m/s}" />, the faster taxi sees the car drift back, and the oncoming truck sees it rush in at <InlineMath math="20\text{ m/s}" />. Zoom in on each bar.
 
-<Mermaid
-  title="One Subtraction for Every Observer"
-  description="Relative velocity is the object's ground velocity minus the observer's ground velocity."
-  chart={`flowchart TD
-    A["v_object/observer = v_object - v_observer"] --> B["Observer still: 12 - 0 = 12 m/s"]
-    A --> C["Same direction: 12 - 14 = -2 m/s"]
-    A --> D["Opposite direction: 12 - (-8) = +20 m/s"]`}
+<MathVisual
+  title={<>One Subtraction for Every Observer</>}
+  description={<>The car's velocity in m/s seen from the roadside (gray), the taxi (violet) and the truck (teal). One grid step is 4 m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -1.5, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "still", kind: "polygon", appearance: "reference", vertices: [{ x: 0.5, y: 0 }, { x: 1.5, y: 0 }, { x: 1.5, y: 3 }, { x: 0.5, y: 3 }] },
+      { id: "taxi", kind: "polygon", appearance: "secondary", vertices: [{ x: 2.5, y: 0 }, { x: 3.5, y: 0 }, { x: 3.5, y: -0.5 }, { x: 2.5, y: -0.5 }] },
+      { id: "truck", kind: "polygon", appearance: "construction", vertices: [{ x: 4.5, y: 0 }, { x: 5.5, y: 0 }, { x: 5.5, y: 5 }, { x: 4.5, y: 5 }] },
+    ],
+    labels: [
+      { key: "still", objectId: "still", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "taxi", objectId: "taxi", at: { x: 3, y: -0.5 }, placement: "below" },
+      { key: "truck", objectId: "truck", at: { x: 5, y: 5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    still: <InlineMath math="12-0=12" />,
+    taxi: <InlineMath math="12-14=-2" />,
+    truck: <InlineMath math="12-(-8)=+20" />,
+  }}
 />

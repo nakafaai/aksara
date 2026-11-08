@@ -30,53 +30,41 @@ Das **Objekt bewegt sich nicht**, wenn sich der Ursprung ändert. Nur seine Koor
 
 Schau dir die Szene unten an. Die graue Linie ist das Objekt, und sie verschiebt sich nie. Jeder Pfeil startet an einem anderen Ursprung und endet am Objekt, also ist seine Beschriftung die Koordinate des Objekts von diesem Ursprung aus. Zähl die Gitterschritte ruhig selbst nach: Ein Schritt sind <InlineMath math="10\text{ m}" />, und ein Pfeil nach Westen bekommt ein negatives Vorzeichen.
 
-<LineEquation
-  title="Ein Objekt, drei Ursprünge"
-  description="Jede Zeile misst dasselbe Objekt von einem anderen Ursprung aus, Osten liegt rechts. Ein Gitterschritt sind 10 m."
-  data={(() => {
-    // Street coordinates in meters, east positive; one grid unit is 10 m.
-    const object = 30;
-    const origins = [
-      { name: "Geschäft", at: 0, row: 2, color: "#bb6800" },
-      { name: "Ranis Haus", at: 20, row: 1, color: "#8242e5" },
-      { name: "Nayas Haus", at: 50, row: 0, color: "#c026d3" },
-    ];
-    return [
-      {
-        points: [{ x: object / 10, y: -0.5, z: 0 }, { x: object / 10, y: 2.5, z: 0 }],
-        color: "#64748b",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: "Objekt", at: 1, offset: [0, 0.35, 0], anchorX: "center" }],
-      },
-      ...origins.map((origin) => {
-        const coordinate = object - origin.at;
-        const sign = coordinate > 0 ? "+" : "";
-        return {
-          points: [
-            { x: origin.at / 10, y: origin.row, z: 0 },
-            { x: object / 10, y: origin.row, z: 0 },
-          ],
-          color: origin.color,
-          cone: { position: "end", size: 0.22 },
-          showPoints: false,
-          smooth: false,
-          labels: [
-            { text: origin.name, at: 0, offset: [0, -0.35, 0], anchorX: "center" },
-            {
-              text: <InlineMath math={`x'=${sign}${coordinate}\\text{ m}`} />,
-              at: 0,
-              offset: [(object - origin.at) / 20, 0.35, 0],
-              anchorX: "center",
-            },
-          ],
-        };
-      }),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2.5, 1, 8]}
-  cameraTarget={[2.5, 1, 0]}
+<MathVisual
+  title={<>Ein Objekt, drei Ursprünge</>}
+  description={<>Jede Zeile misst dasselbe Objekt von einem anderen Ursprung aus, Osten liegt rechts. Ein Gitterschritt entspricht 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "object", kind: "segment", appearance: "reference", from: { x: 3, y: -0.5 }, to: { x: 3, y: 2.5 } },
+      { id: "from-0", kind: "segment", appearance: "primary", from: { x: 0, y: 2 }, to: { x: 3, y: 2 } },
+      { id: "from-0-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 2 }, { x: 2.78, y: 2.11 }, { x: 2.78, y: 1.89 }] },
+      { id: "from-1", kind: "segment", appearance: "secondary", from: { x: 2, y: 1 }, to: { x: 3, y: 1 } },
+      { id: "from-1-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 1 }, { x: 2.78, y: 1.11 }, { x: 2.78, y: 0.89 }] },
+      { id: "from-2", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "from-2-head", kind: "polygon", appearance: "answer", vertices: [{ x: 3, y: 0 }, { x: 3.22, y: 0.11 }, { x: 3.22, y: -0.11 }] },
+    ],
+    labels: [
+      { key: "object", objectId: "object", at: { x: 3, y: 2.5 }, placement: "above" },
+      { key: "name0", objectId: "from-0", at: { x: 0, y: 2 }, placement: "below" },
+      { key: "coord0", objectId: "from-0", at: { x: 1.5, y: 2 }, placement: "above" },
+      { key: "name1", objectId: "from-1", at: { x: 2, y: 1 }, placement: "below" },
+      { key: "coord1", objectId: "from-1", at: { x: 2.5, y: 1 }, placement: "above" },
+      { key: "name2", objectId: "from-2", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "coord2", objectId: "from-2", at: { x: 4, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    object: <>Objekt</>,
+    name0: <>Geschäft</>,
+    name1: <>Ranis Haus</>,
+    name2: <>Nayas Haus</>,
+    coord0: <InlineMath math="x'=+30\text{ m}" />,
+    coord1: <InlineMath math="x'=+10\text{ m}" />,
+    coord2: <InlineMath math="x'=-20\text{ m}" />,
+  }}
 />
 
 ## Vorzeichen und Richtung lesen
@@ -108,6 +96,43 @@ Eine vollständige Angabe lautet: „Das Objekt liegt <InlineMath math="10 \text
 
 Der Satz „Das Objekt ist in der Nähe des Hauses“ nennt das Haus als Bezug, aber keinen genauen Punkt am Haus, keine numerische Entfernung, Einheit oder Richtung. Mit einem **eindeutigen Ursprung** können zwei Beobachter die Koordinate des Objekts vom selben Ort aus messen.
 
+In zwei Dimensionen braucht eine Ortsangabe einen Ursprung und zwei Zahlen. Von <InlineMath math="O" /> aus liegt der Punkt <InlineMath math="P" /> bei <InlineMath math="(3,2)" />, von einem zweiten Ursprung <InlineMath math="O'" /> bei <InlineMath math="(1,1)" /> aus aber bei <InlineMath math="\vec r\,'=\vec r-\vec r_0" />. Zoom auf den fuchsia Pfeil.
+
+<MathVisual
+  title={<>Ein Punkt, zwei Ursprünge</>}
+  description={<>Die Position von P von O aus (orange) und von O' aus (fuchsia), mit der Verschiebung zwischen den Ursprüngen (violett).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 4 }, y: { min: -0.8, max: 2.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "r", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 2 } },
+      { id: "r-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 2 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 2) + ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 2 - (0.25 * 2) / Math.hypot(3, 2) + ((0.25 / 2) * 3) / Math.hypot(3, 2) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 2) - ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 2 - (0.25 * 2) / Math.hypot(3, 2) - ((0.25 / 2) * 3) / Math.hypot(3, 2) }] },
+      { id: "r0", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 1, y: 1 } },
+      { id: "r0-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: 1 }, { x: 1 - (0.25 * 1) / Math.hypot(1, 1) + ((0.25 / 2) * -1) / Math.hypot(1, 1), y: 1 - (0.25 * 1) / Math.hypot(1, 1) + ((0.25 / 2) * 1) / Math.hypot(1, 1) }, { x: 1 - (0.25 * 1) / Math.hypot(1, 1) - ((0.25 / 2) * -1) / Math.hypot(1, 1), y: 1 - (0.25 * 1) / Math.hypot(1, 1) - ((0.25 / 2) * 1) / Math.hypot(1, 1) }] },
+      { id: "rp", kind: "segment", appearance: "answer", from: { x: 1, y: 1 }, to: { x: 3, y: 2 } },
+      { id: "rp-head", kind: "polygon", appearance: "answer", vertices: [{ x: 3, y: 2 }, { x: 3 - (0.25 * 2) / Math.hypot(2, 1) + ((0.25 / 2) * -1) / Math.hypot(2, 1), y: 2 - (0.25 * 1) / Math.hypot(2, 1) + ((0.25 / 2) * 2) / Math.hypot(2, 1) }, { x: 3 - (0.25 * 2) / Math.hypot(2, 1) - ((0.25 / 2) * -1) / Math.hypot(2, 1), y: 2 - (0.25 * 1) / Math.hypot(2, 1) - ((0.25 / 2) * 2) / Math.hypot(2, 1) }] },
+      { id: "o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "op", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: 3, y: 2 } },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "op", objectId: "op", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "p", objectId: "p", at: { x: 3, y: 2 }, placement: "above-right" },
+      { key: "r", objectId: "r", at: { x: 1.5, y: 1 }, placement: "below-right" },
+      { key: "rp", objectId: "rp", at: { x: 2, y: 1.5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    o: <InlineMath math="O" />,
+    op: <InlineMath math="O'" />,
+    p: <InlineMath math="P" />,
+    r: <InlineMath math="\vec r=(3,2)" />,
+    rp: <InlineMath math="\vec r\,'=\vec r-\vec r_0=(2,1)" />,
+  }}
+/>
+
 ## Eine Positionsangabe relativ zum Geschäft
 
 Mit dem Geschäft als Ursprung befindet sich eine Markierung an der Koordinate <InlineMath math="40 \text{ m}" />. Dimas' Haus liegt im selben Bezugssystem bei <InlineMath math="30 \text{ m}" />. Wird der **Ursprung zu Dimas' Haus verschoben**, lautet die Koordinate der Markierung:
@@ -123,38 +148,33 @@ Die Markierung liegt also <InlineMath math="10 \text{ m}" /> östlich von Dimas'
 
 Beide Pfeile unten enden an derselben Markierung. Nur ihr Startpunkt, der Ursprung, ändert sich, und mit ihm die Zahl im Positionssatz.
 
-<LineEquation
-  title="Eine Markierung, zwei Ursprünge"
-  description="Die Markierung bei 40 m vom Geschäft, gemessen vom Geschäft und von Dimas' Haus bei 30 m. Ein Gitterschritt sind 10 m."
-  data={(() => {
-    // Street coordinates from the store in meters; one grid step is 10 m.
-    const marker = 40;
-    const origins = [
-      { name: "Geschäft", at: 0, row: 1, color: "#bb6800" },
-      { name: "Dimas' Haus", at: 30, row: 0, color: "#8242e5" },
-    ];
-    return [
-      {
-        points: [{ x: marker / 10, y: -0.5, z: 0 }, { x: marker / 10, y: 1.5, z: 0 }],
-        color: "#64748b",
-        showPoints: false,
-        smooth: false,
-        labels: [{ text: "Markierung", at: 1, offset: [0, 0.35, 0], anchorX: "center" }],
-      },
-      ...origins.map((origin) => ({
-        points: [{ x: origin.at / 10, y: origin.row, z: 0 }, { x: marker / 10, y: origin.row, z: 0 }],
-        color: origin.color,
-        cone: { position: "end", size: 0.22 },
-        showPoints: false,
-        smooth: false,
-        labels: [
-          { text: origin.name, at: 0, offset: [0, -0.35, 0], anchorX: "center" },
-          { text: <InlineMath math={`+${marker - origin.at}\\text{ m}`} />, at: 0, offset: [(marker - origin.at) / 20, 0.35, 0], anchorX: "center" },
-        ],
-      })),
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[2, 0.5, 6]}
-  cameraTarget={[2, 0.5, 0]}
+<MathVisual
+  title={<>Eine Markierung, zwei Ursprünge</>}
+  description={<>Die Markierung bei 40 m vom Geschäft, gemessen vom Geschäft und von Dimas' Haus bei 30 m. Ein Gitterschritt entspricht 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1, max: 2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "marker", kind: "segment", appearance: "reference", from: { x: 4, y: -0.5 }, to: { x: 4, y: 1.5 } },
+      { id: "from-0", kind: "segment", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 4, y: 1 } },
+      { id: "from-0-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 1 }, { x: 3.78, y: 1.11 }, { x: 3.78, y: 0.89 }] },
+      { id: "from-1", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "from-1-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 0 }, { x: 3.78, y: 0.11 }, { x: 3.78, y: -0.11 }] },
+    ],
+    labels: [
+      { key: "marker", objectId: "marker", at: { x: 4, y: 1.5 }, placement: "above" },
+      { key: "name0", objectId: "from-0", at: { x: 0, y: 1 }, placement: "below" },
+      { key: "name1", objectId: "from-1", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "coord0", objectId: "from-0", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "coord1", objectId: "from-1", at: { x: 3.5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    marker: <>Markierung</>,
+    name0: <>Geschäft</>,
+    name1: <>Dimas' Haus</>,
+    coord0: <InlineMath math="+40\text{ m}" />,
+    coord1: <InlineMath math="+10\text{ m}" />,
+  }}
 />

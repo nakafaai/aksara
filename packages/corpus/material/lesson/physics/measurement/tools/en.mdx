@@ -129,6 +129,58 @@ A stopwatch is used when we want to measure the **duration of an event**. If the
 
 <BlockMath math="t = 12.8 \text{ s}" />
 
+A vernier caliper adds a tenth of a millimeter by lining up two scales. Its 10 small divisions span 9 mm, so the vernier zero past 23 mm and the seventh line meeting a main line give 23.7 mm. Zoom in on the fuchsia line.
+
+<MathVisual
+  title={<>Reading a Vernier Caliper</>}
+  description={<>The main scale in millimeters (top) and the vernier scale with 10 divisions over 9 mm (bottom).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 14 }, y: { min: -1.6, max: 1.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "main", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 13, y: 0 } },
+      { id: "mm-0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 0.6 } },
+      { id: "mm-1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 0.3 } },
+      { id: "mm-2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 0.3 } },
+      { id: "mm-3", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 0.3 } },
+      { id: "mm-4", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 0.3 } },
+      { id: "mm-5", kind: "segment", appearance: "reference", from: { x: 5, y: 0 }, to: { x: 5, y: 0.45 } },
+      { id: "mm-6", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 0.3 } },
+      { id: "mm-7", kind: "segment", appearance: "reference", from: { x: 7, y: 0 }, to: { x: 7, y: 0.3 } },
+      { id: "mm-8", kind: "segment", appearance: "reference", from: { x: 8, y: 0 }, to: { x: 8, y: 0.3 } },
+      { id: "mm-9", kind: "segment", appearance: "reference", from: { x: 9, y: 0 }, to: { x: 9, y: 0.3 } },
+      { id: "mm-10", kind: "segment", appearance: "reference", from: { x: 10, y: 0 }, to: { x: 10, y: 0.6 } },
+      { id: "mm-11", kind: "segment", appearance: "reference", from: { x: 11, y: 0 }, to: { x: 11, y: 0.3 } },
+      { id: "mm-12", kind: "segment", appearance: "reference", from: { x: 12, y: 0 }, to: { x: 12, y: 0.3 } },
+      { id: "mm-13", kind: "segment", appearance: "reference", from: { x: 13, y: 0 }, to: { x: 13, y: 0.3 } },
+      { id: "v-0", kind: "segment", appearance: "secondary", from: { x: 3.7, y: -0.1 }, to: { x: 3.7, y: -0.7 } },
+      { id: "v-1", kind: "segment", appearance: "secondary", from: { x: 4.6, y: -0.1 }, to: { x: 4.6, y: -0.5 } },
+      { id: "v-2", kind: "segment", appearance: "secondary", from: { x: 5.5, y: -0.1 }, to: { x: 5.5, y: -0.5 } },
+      { id: "v-3", kind: "segment", appearance: "secondary", from: { x: 6.4, y: -0.1 }, to: { x: 6.4, y: -0.5 } },
+      { id: "v-4", kind: "segment", appearance: "secondary", from: { x: 7.3, y: -0.1 }, to: { x: 7.3, y: -0.5 } },
+      { id: "v-5", kind: "segment", appearance: "secondary", from: { x: 8.2, y: -0.1 }, to: { x: 8.2, y: -0.7 } },
+      { id: "v-6", kind: "segment", appearance: "secondary", from: { x: 9.1, y: -0.1 }, to: { x: 9.1, y: -0.5 } },
+      { id: "v-7", kind: "segment", appearance: "answer", from: { x: 10, y: -0.1 }, to: { x: 10, y: -0.5 } },
+      { id: "v-8", kind: "segment", appearance: "secondary", from: { x: 10.9, y: -0.1 }, to: { x: 10.9, y: -0.5 } },
+      { id: "v-9", kind: "segment", appearance: "secondary", from: { x: 11.8, y: -0.1 }, to: { x: 11.8, y: -0.5 } },
+      { id: "v-10", kind: "segment", appearance: "secondary", from: { x: 12.7, y: -0.1 }, to: { x: 12.7, y: -0.7 } },
+    ],
+    labels: [
+      { key: "two", objectId: "mm-0", at: { x: 0, y: 0.6 }, placement: "above" },
+      { key: "three", objectId: "mm-10", at: { x: 10, y: 0.6 }, placement: "above" },
+      { key: "zero", objectId: "v-0", at: { x: 3.7, y: -0.7 }, placement: "below" },
+      { key: "line", objectId: "v-7", at: { x: 10, y: -0.5 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    two: <InlineMath math="2\text{ cm}" />,
+    three: <InlineMath math="3\text{ cm}" />,
+    zero: <InlineMath math="0" />,
+    line: <InlineMath math="23+7\times0.1=23.7\text{ mm}" />,
+  }}
+/>
+
 ## Measurement Tools Around Us
 
 Many everyday quantities can be read directly from an instrument. Other quantities, such as density, can be calculated from several measurements. The table pairs a common instrument with the quantity it reports, so you can choose the tool from the quantity you need.
@@ -162,20 +214,49 @@ The definitions of [measurement](https://jcgm.bipm.org/vim/en/2.1.html) and [qua
 
 The pencil below does not start at zero, so read both ends. Its tail sits at <InlineMath math="1\text{ cm}" /> and its tip at <InlineMath math="8\text{ cm}" />, and the length is the difference, <InlineMath math="7\text{ cm}" />.
 
-<LineEquation
-  title="Reading a Length from Two Marks"
-  description="A pencil from the 1 cm mark to the 8 cm mark on a ruler. One grid step is 1 cm."
-  data={(() => {
-    // Ruler marks every 0.1 cm from 0 to 9 cm; the pencil lies from 1 cm to 8 cm. One grid step is 1 cm.
-    const start = 1;
-    const end = 8;
-    const marks = Array.from({ length: 91 }, (_, i) => ({ x: i / 10, height: i % 10 === 0 ? 0.4 : i % 5 === 0 ? 0.28 : 0.16 }));
-    return [
-      { points: marks.flatMap(({ x, height }) => [{ x, y: 0, z: 0 }, { x, y: height, z: 0 }, { x, y: 0, z: 0 }]), color: "#64748b", showPoints: false, smooth: false, labels: [0, 1, 8].map((cm) => ({ text: `${cm}`, at: 30 * cm + 1, offset: [0, 0.3, 0], anchorX: "center" })) },
-      { points: [start, end].map((x) => ({ x, y: 1, z: 0 })), color: "#bb6800", cone: { position: "end", size: 0.3 }, showPoints: true, pointIndices: [0], smooth: false, labels: [{ text: <InlineMath math={`L=${end}-${start}=${end - start}\\text{ cm}`} />, at: 0, offset: [(end - start) / 2, 0.45, 0], anchorX: "center" }] },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[4.5, 0.8, 8]}
-  cameraTarget={[4.5, 0.8, 0]}
+<MathVisual
+  title={<>Reading a Length from Two Marks</>}
+  description={<>A pencil from the 1 cm mark to the 8 cm mark on a ruler. One grid step is 1 cm.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9.5 }, y: { min: -0.5, max: 2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ruler", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 9, y: 0 } },
+      { id: "half-0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 0.4 } },
+      { id: "half-1", kind: "segment", appearance: "reference", from: { x: 1 / 2, y: 0 }, to: { x: 1 / 2, y: 0.28 } },
+      { id: "half-2", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 0.4 } },
+      { id: "half-3", kind: "segment", appearance: "reference", from: { x: 3 / 2, y: 0 }, to: { x: 3 / 2, y: 0.28 } },
+      { id: "half-4", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 0.4 } },
+      { id: "half-5", kind: "segment", appearance: "reference", from: { x: 5 / 2, y: 0 }, to: { x: 5 / 2, y: 0.28 } },
+      { id: "half-6", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 0.4 } },
+      { id: "half-7", kind: "segment", appearance: "reference", from: { x: 7 / 2, y: 0 }, to: { x: 7 / 2, y: 0.28 } },
+      { id: "half-8", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 0.4 } },
+      { id: "half-9", kind: "segment", appearance: "reference", from: { x: 9 / 2, y: 0 }, to: { x: 9 / 2, y: 0.28 } },
+      { id: "half-10", kind: "segment", appearance: "reference", from: { x: 5, y: 0 }, to: { x: 5, y: 0.4 } },
+      { id: "half-11", kind: "segment", appearance: "reference", from: { x: 11 / 2, y: 0 }, to: { x: 11 / 2, y: 0.28 } },
+      { id: "half-12", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 0.4 } },
+      { id: "half-13", kind: "segment", appearance: "reference", from: { x: 13 / 2, y: 0 }, to: { x: 13 / 2, y: 0.28 } },
+      { id: "half-14", kind: "segment", appearance: "reference", from: { x: 7, y: 0 }, to: { x: 7, y: 0.4 } },
+      { id: "half-15", kind: "segment", appearance: "reference", from: { x: 15 / 2, y: 0 }, to: { x: 15 / 2, y: 0.28 } },
+      { id: "half-16", kind: "segment", appearance: "reference", from: { x: 8, y: 0 }, to: { x: 8, y: 0.4 } },
+      { id: "half-17", kind: "segment", appearance: "reference", from: { x: 17 / 2, y: 0 }, to: { x: 17 / 2, y: 0.28 } },
+      { id: "half-18", kind: "segment", appearance: "reference", from: { x: 9, y: 0 }, to: { x: 9, y: 0.4 } },
+      { id: "pencil", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 8, y: 1 } },
+      { id: "pencil-head", kind: "polygon", appearance: "primary", vertices: [{ x: 8, y: 1 }, { x: 7.7, y: 1.15 }, { x: 7.7, y: 0.85 }] },
+      { id: "pencil-start", kind: "point", appearance: "primary", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "cm0", objectId: "half-0", at: { x: 0, y: 0.4 }, placement: "above" },
+      { key: "cm1", objectId: "half-2", at: { x: 1, y: 0.4 }, placement: "above" },
+      { key: "cm8", objectId: "half-16", at: { x: 8, y: 0.4 }, placement: "above" },
+      { key: "length", objectId: "pencil", at: { x: 4.5, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    cm0: <InlineMath math="0" />,
+    cm1: <InlineMath math="1" />,
+    cm8: <InlineMath math="8" />,
+    length: <InlineMath math="L=8-1=7\text{ cm}" />,
+  }}
 />

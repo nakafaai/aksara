@@ -45,17 +45,28 @@ Jadi, jarak henti terdiri dari dua tahap. Tahap pertama terjadi ketika pengemudi
   }}
 />
 
-Kedua bagian itu terjadi berurutan.
+Luas di bawah kecepatan adalah jaraknya. Selama waktu reaksi mobil tetap <InlineMath math="20\text{ m/s}" />, berupa persegi panjang <InlineMath math="20\text{ m}" />. Lalu rem memberi segitiga <InlineMath math="v^2/2b=40\text{ m}" />, jadi mobil butuh <InlineMath math="60\text{ m}" /> seluruhnya. Perbesar kedua luasnya.
 
-<Mermaid
-  title="Dua Tahap Berhenti"
-  description="Selama waktu reaksi kelajuannya tetap, lalu rem memperlambat kendaraan sampai diam."
-  chart={`flowchart LR
-    A["Bahaya terlihat"] --> B["Waktu reaksi: kelajuan sama"]
-    B --> C["Rem bekerja: perlambatan tetap"]
-    C --> D["Berhenti"]
-    B -.-> E["Jarak reaksi = v t"]
-    C -.-> F["Jarak pengereman = v^2 / 2b"]`}
+<MathVisual
+  title={<>Dua Tahap Pengereman</>}
+  description={<>Kecepatan terhadap waktu saat berhenti dari 20 m/s: reaksi (teal) dan pengereman (oranye). Mendatar: sekon. Tegak: satu kotak grid berarti 5 m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "reaction", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 4 }, { x: 0, y: 4 }] },
+      { id: "braking", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0 }, { x: 5, y: 0 }, { x: 1, y: 4 }] },
+    ],
+    labels: [
+      { key: "reaction", objectId: "reaction", at: { x: 0.5, y: 2 }, placement: "center" },
+      { key: "braking", objectId: "braking", at: { x: 2.3, y: 1.3 }, placement: "center" },
+    ],
+  }}
+  labels={{
+    reaction: <InlineMath math="20\cdot1=20\text{ m}" />,
+    braking: <InlineMath math="\tfrac{20^2}{2\cdot5}=40\text{ m}" />,
+  }}
 />
 
 ## Jarak Rem Menggunakan Perlambatan Tetap
@@ -90,25 +101,29 @@ Saat kecepatan naik dari <InlineMath math="10\text{ m/s}" /> ke <InlineMath math
 
 Grafik di bawah menjumlahkan kedua bagian untuk setiap kelajuan sampai <InlineMath math="30\text{ m/s}" />. Jarak reaksi hijau toska tumbuh sebagai garis lurus. Total yang oranye melengkung ke atas karena bagian pengeremannya tumbuh bersama <InlineMath math="v^2" />. Pada <InlineMath math="20\text{ m/s}" /> totalnya <InlineMath math="20+40=60\text{ m}" />.
 
-<LineEquation
-  title="Jarak Henti terhadap Kelajuan"
-  description="Waktu reaksi 1 s dan perlambatan pengereman 5 m/s². Mendatar: kelajuan dalam satuan 5 m/s. Tegak: jarak dalam satuan 20 m."
-  data={(() => {
-    // Reaction time 1 s, braking deceleration 5 m/s^2. Horizontal: speed / 5 m/s. Vertical: distance / 20 m.
-    const reaction = 1;
-    const b = 5;
-    const samples = 241;
-    const total = (v) => v * reaction + v ** 2 / (2 * b);
-    const curve = (f, color, text, at, offset) => ({ points: Array.from({ length: samples }, (_, i) => { const v = (30 * i) / (samples - 1); return { x: v / 5, y: f(v) / 20, z: 0 }; }), color, showPoints: false, smooth: false, labels: [{ text, at, offset, anchorX: "center" }] });
-    return [
-      curve((v) => v * reaction, "#0d9488", "reaksi", 240, [0.8, 0, 0]),
-      curve(total, "#bb6800", "total", 200, [-1.4, 0.4, 0]),
-      { points: [{ x: 20 / 5, y: total(20) / 20, z: 0 }], color: "#c026d3", showPoints: true, labels: [{ text: <InlineMath math={`v=20\\text{ m/s}:\\ ${total(20)}\\text{ m}`} />, at: 0, offset: [1.4, -0.3, 0], anchorX: "center" }] },
-    ];
-  })()}
-  showZAxis={false}
-  cameraPosition={[3, 3.4, 9]}
-  cameraTarget={[3, 3.4, 0]}
+<MathVisual
+  title={<>Jarak Henti terhadap Kelajuan</>}
+  description={<>Waktu reaksi 1 s dan perlambatan pengereman <InlineMath math="5\text{ m/s}^2" />. Mendatar: kelajuan dalam satuan 5 m/s. Tegak: jarak dalam satuan 20 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "reaction", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 6, y: 1.5 } },
+      { id: "total", kind: "quadratic", appearance: "primary", coefficients: { a: 0.125, b: 0.25, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
+      { id: "at-20", kind: "point", appearance: "answer", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "reaction", objectId: "reaction", at: { x: 6, y: 1.5 }, placement: "right" },
+      { key: "total", objectId: "total", at: { x: 6, y: 6 }, placement: "left" },
+      { key: "at", objectId: "at-20", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    reaction: <>reaksi</>,
+    total: <>total</>,
+    at: <InlineMath math="v=20\text{ m/s}:\ 60\text{ m}" />,
+  }}
 />
 
 ## Menghitung Jarak Reaksi dan Jarak Rem
