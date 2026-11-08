@@ -1,29 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "monthly-rainfall",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$20$$",
+          column: 2,
+          label:
+            "Jumlah curah hujan enam bulan pertama sama dengan jumlah curah hujan enam bulan terakhir.",
         },
         {
-          correct: true,
-          label: "$$24$$",
+          column: 1,
+          label:
+            "Curah hujan bulan Desember lebih dari 8 kali curah hujan bulan Agustus.",
         },
         {
-          correct: false,
-          label: "$$22$$",
+          column: 2,
+          label:
+            "Penurunan curah hujan terbesar dari satu bulan ke bulan berikutnya terjadi dari Maret ke April.",
         },
         {
-          correct: false,
-          label: "$$25$$",
-        },
-        {
-          correct: false,
-          label: "$$26$$",
+          column: 1,
+          label: "Banyak bulan basah lebih dari dua kali banyak bulan kering.",
         },
       ],
     },

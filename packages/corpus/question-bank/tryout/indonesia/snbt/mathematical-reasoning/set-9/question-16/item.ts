@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "monthly-rainfall",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$31{,}2$$",
-        },
-        {
-          correct: false,
-          label: "$$34{,}8$$",
-        },
-        {
-          correct: false,
-          label: "$$36$$",
-        },
-        {
-          correct: true,
-          label: "$$37{,}2$$",
-        },
-        {
-          correct: false,
-          label: "$$40{,}4$$",
-        },
+        { correct: false, label: "103 mm" },
+        { correct: false, label: "140 mm" },
+        { correct: true, label: "169 mm" },
+        { correct: false, label: "175 mm" },
+        { correct: false, label: "181 mm" },
       ],
     },
   },
