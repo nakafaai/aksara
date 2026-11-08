@@ -3,7 +3,7 @@ export const metadata = {
     description: "Define a definite integral as the limit of Riemann sums and evaluate one directly from that limit.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-24",
+    dateModified: "2026-11-08",
     subject: "Integrals",
 };
 
@@ -87,6 +87,35 @@ Finally, we take the limit as <InlineMath math="n \to \infty" />. In this limit,
 
 Because <InlineMath math="f(x) = x" /> is nonnegative from <InlineMath math="x=0" /> to <InlineMath math="x=7" />, the definite integral is also the geometric area: <InlineMath math="\frac{49}{2}" />, or <InlineMath math="24.5" /> square units. The limit has turned the rectangle approximations into an exact value.
 
+Here is the limit at work. The exact area under <InlineMath math="y = x" /> from <InlineMath math="0" /> to <InlineMath math="7" /> is the triangle <InlineMath math="\tfrac12 \cdot 7 \cdot 7 = \tfrac{49}{2}" />. Seven right-endpoint rectangles of width <InlineMath math="1" /> cover it with a little extra on top: <InlineMath math="1 + 2 + \cdots + 7 = 28" />, which matches <InlineMath math="\tfrac{49}{2}(1 + \tfrac17) = 28" />.
+
+<MathVisual
+  title={<>Seven rectangles over the exact area</>}
+  description={<>The triangle under <InlineMath math="y = x" /> from 0 to 7, area <InlineMath math="\tfrac{49}{2}" />, covered by seven rectangles of total area 28.</>}
+  labels={{
+    f: <InlineMath math="y = x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 7 }], appearance: "primary" },
+      { id: "r1", kind: "polygon", vertices: [{ x: (0 * 7) / 7, y: 0 }, { x: (1 * 7) / 7, y: 0 }, { x: (1 * 7) / 7, y: (1 * 7) / 7 }, { x: (0 * 7) / 7, y: (1 * 7) / 7 }], appearance: "secondary" },
+      { id: "r2", kind: "polygon", vertices: [{ x: (1 * 7) / 7, y: 0 }, { x: (2 * 7) / 7, y: 0 }, { x: (2 * 7) / 7, y: (2 * 7) / 7 }, { x: (1 * 7) / 7, y: (2 * 7) / 7 }], appearance: "secondary" },
+      { id: "r3", kind: "polygon", vertices: [{ x: (2 * 7) / 7, y: 0 }, { x: (3 * 7) / 7, y: 0 }, { x: (3 * 7) / 7, y: (3 * 7) / 7 }, { x: (2 * 7) / 7, y: (3 * 7) / 7 }], appearance: "secondary" },
+      { id: "r4", kind: "polygon", vertices: [{ x: (3 * 7) / 7, y: 0 }, { x: (4 * 7) / 7, y: 0 }, { x: (4 * 7) / 7, y: (4 * 7) / 7 }, { x: (3 * 7) / 7, y: (4 * 7) / 7 }], appearance: "secondary" },
+      { id: "r5", kind: "polygon", vertices: [{ x: (4 * 7) / 7, y: 0 }, { x: (5 * 7) / 7, y: 0 }, { x: (5 * 7) / 7, y: (5 * 7) / 7 }, { x: (4 * 7) / 7, y: (5 * 7) / 7 }], appearance: "secondary" },
+      { id: "r6", kind: "polygon", vertices: [{ x: (5 * 7) / 7, y: 0 }, { x: (6 * 7) / 7, y: 0 }, { x: (6 * 7) / 7, y: (6 * 7) / 7 }, { x: (5 * 7) / 7, y: (6 * 7) / 7 }], appearance: "secondary" },
+      { id: "r7", kind: "polygon", vertices: [{ x: (6 * 7) / 7, y: 0 }, { x: (7 * 7) / 7, y: 0 }, { x: (7 * 7) / 7, y: (7 * 7) / 7 }, { x: (6 * 7) / 7, y: (7 * 7) / 7 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 ## Comparing Different Rectangle Counts
 
 Write the right-endpoint sum as <InlineMath math="R_n=\frac{49}{2}(1+\frac1n)" />. We can check several values of <InlineMath math="n" /> before taking the limit. Since the graph increases, right-endpoint rectangles give an **overestimate**.
@@ -102,3 +131,49 @@ Write the right-endpoint sum as <InlineMath math="R_n=\frac{49}{2}(1+\frac1n)" /
 The difference from the exact value is <InlineMath math="R_n-\frac{49}{2}=\frac{49}{2n}" />. Doubling the rectangle count therefore halves the error in this linear example. You can also check the exact area as a triangle whose base and height both equal <InlineMath math="7" />:
 
 <BlockMath math="A=\frac12(7)(7)=\frac{49}{2}" />
+
+Double the rectangle count to <InlineMath math="14" />, each of width <InlineMath math="\tfrac12" />. The extra slivers on top get thinner, and the total drops to <InlineMath math="\tfrac{49}{2}(1 + \tfrac{1}{14}) = 26.25" />. Every time <InlineMath math="n" /> grows, the sum moves closer to <InlineMath math="24.5" />.
+
+<MathVisual
+  title={<>Fourteen thinner rectangles</>}
+  description={<>Fourteen rectangles of width one half under <InlineMath math="y = x" />, with total area 26.25 against the exact 24.5.</>}
+  labels={{
+    f: <InlineMath math="y = x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 7 }], appearance: "primary" },
+      { id: "r1", kind: "polygon", vertices: [{ x: (0 * 7) / 14, y: 0 }, { x: (1 * 7) / 14, y: 0 }, { x: (1 * 7) / 14, y: (1 * 7) / 14 }, { x: (0 * 7) / 14, y: (1 * 7) / 14 }], appearance: "secondary" },
+      { id: "r2", kind: "polygon", vertices: [{ x: (1 * 7) / 14, y: 0 }, { x: (2 * 7) / 14, y: 0 }, { x: (2 * 7) / 14, y: (2 * 7) / 14 }, { x: (1 * 7) / 14, y: (2 * 7) / 14 }], appearance: "secondary" },
+      { id: "r3", kind: "polygon", vertices: [{ x: (2 * 7) / 14, y: 0 }, { x: (3 * 7) / 14, y: 0 }, { x: (3 * 7) / 14, y: (3 * 7) / 14 }, { x: (2 * 7) / 14, y: (3 * 7) / 14 }], appearance: "secondary" },
+      { id: "r4", kind: "polygon", vertices: [{ x: (3 * 7) / 14, y: 0 }, { x: (4 * 7) / 14, y: 0 }, { x: (4 * 7) / 14, y: (4 * 7) / 14 }, { x: (3 * 7) / 14, y: (4 * 7) / 14 }], appearance: "secondary" },
+      { id: "r5", kind: "polygon", vertices: [{ x: (4 * 7) / 14, y: 0 }, { x: (5 * 7) / 14, y: 0 }, { x: (5 * 7) / 14, y: (5 * 7) / 14 }, { x: (4 * 7) / 14, y: (5 * 7) / 14 }], appearance: "secondary" },
+      { id: "r6", kind: "polygon", vertices: [{ x: (5 * 7) / 14, y: 0 }, { x: (6 * 7) / 14, y: 0 }, { x: (6 * 7) / 14, y: (6 * 7) / 14 }, { x: (5 * 7) / 14, y: (6 * 7) / 14 }], appearance: "secondary" },
+      { id: "r7", kind: "polygon", vertices: [{ x: (6 * 7) / 14, y: 0 }, { x: (7 * 7) / 14, y: 0 }, { x: (7 * 7) / 14, y: (7 * 7) / 14 }, { x: (6 * 7) / 14, y: (7 * 7) / 14 }], appearance: "secondary" },
+      { id: "r8", kind: "polygon", vertices: [{ x: (7 * 7) / 14, y: 0 }, { x: (8 * 7) / 14, y: 0 }, { x: (8 * 7) / 14, y: (8 * 7) / 14 }, { x: (7 * 7) / 14, y: (8 * 7) / 14 }], appearance: "secondary" },
+      { id: "r9", kind: "polygon", vertices: [{ x: (8 * 7) / 14, y: 0 }, { x: (9 * 7) / 14, y: 0 }, { x: (9 * 7) / 14, y: (9 * 7) / 14 }, { x: (8 * 7) / 14, y: (9 * 7) / 14 }], appearance: "secondary" },
+      { id: "r10", kind: "polygon", vertices: [{ x: (9 * 7) / 14, y: 0 }, { x: (10 * 7) / 14, y: 0 }, { x: (10 * 7) / 14, y: (10 * 7) / 14 }, { x: (9 * 7) / 14, y: (10 * 7) / 14 }], appearance: "secondary" },
+      { id: "r11", kind: "polygon", vertices: [{ x: (10 * 7) / 14, y: 0 }, { x: (11 * 7) / 14, y: 0 }, { x: (11 * 7) / 14, y: (11 * 7) / 14 }, { x: (10 * 7) / 14, y: (11 * 7) / 14 }], appearance: "secondary" },
+      { id: "r12", kind: "polygon", vertices: [{ x: (11 * 7) / 14, y: 0 }, { x: (12 * 7) / 14, y: 0 }, { x: (12 * 7) / 14, y: (12 * 7) / 14 }, { x: (11 * 7) / 14, y: (12 * 7) / 14 }], appearance: "secondary" },
+      { id: "r13", kind: "polygon", vertices: [{ x: (12 * 7) / 14, y: 0 }, { x: (13 * 7) / 14, y: 0 }, { x: (13 * 7) / 14, y: (13 * 7) / 14 }, { x: (12 * 7) / 14, y: (13 * 7) / 14 }], appearance: "secondary" },
+      { id: "r14", kind: "polygon", vertices: [{ x: (13 * 7) / 14, y: 0 }, { x: (14 * 7) / 14, y: 0 }, { x: (14 * 7) / 14, y: (14 * 7) / 14 }, { x: (13 * 7) / 14, y: (14 * 7) / 14 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Put the right-endpoint sums side by side. From <InlineMath math="n = 1" /> to <InlineMath math="n = 100" /> the bars shrink from <InlineMath math="49" /> toward the exact area <InlineMath math="\frac{49}{2} = 24.5" />, and the gap above it is always <InlineMath math="\frac{49}{2n}" />.
+
+<BarChart
+  title={<>Right-endpoint sums <InlineMath math="R_n" /> for six rectangle counts</>}
+  description={<>Bars of <InlineMath math="R_n = \frac{49}{2}\left(1 + \frac1n\right)" /> for <InlineMath math="n = 1, 2, 7, 10, 14, 100" />, falling toward <InlineMath math="24.5" />.</>}
+  yAxisLabel="Approximation"
+  data={[1, 2, 7, 10, 14, 100].map((n) => ({ name: String(n), value: (49 / 2) * (1 + 1 / n) }))}
+  chartConfig={{ value: { label: "Approximation", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

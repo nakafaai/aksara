@@ -3,7 +3,7 @@ export const metadata = {
    description: "Komplizierte Grenzwerte mit Summen-, Produkt-, Quotienten-, Potenz- und Wurzelregeln in überschaubare Schritte zerlegen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-23",
+   dateModified: "2026-11-08",
    subject: "Grenzwerte",
 };
 
@@ -59,6 +59,42 @@ Wenn <InlineMath math="x\to2" /> geht, haben <InlineMath math="x" /> und <Inline
 
 <BlockMath math="\begin{aligned}\lim_{x\to2}[x+(x+1)]&=2+3=5\\\lim_{x\to2}[x-(x+1)]&=2-3=-1\end{aligned}" />
 
+Schau dir die Summenregel an zwei Geraden an. Für <InlineMath math="x \to 2" /> geht <InlineMath math="f(x) = \tfrac{x}{2} + 1" /> gegen <InlineMath math="2" /> und <InlineMath math="g(x) = 3 - x" /> gegen <InlineMath math="1" />. Ihre Summe <InlineMath math="f(x) + g(x) = 4 - \tfrac{x}{2}" /> geht gegen <InlineMath math="3 = 2 + 1" />, genau die Summe der beiden Grenzwerte.
+
+<MathVisual
+  title={<>Der Grenzwert einer Summe ist die Summe der Grenzwerte</>}
+  description={<>Die Geraden <InlineMath math="f" />, <InlineMath math="g" /> und <InlineMath math="f + g" /> mit ihren Werten bei <InlineMath math="x = 2" />: 2, 1 und 3.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    g: <InlineMath math="g" />,
+    sum: <InlineMath math="f + g" />,
+    pf: <InlineMath math="2" />,
+    pg: <InlineMath math="1" />,
+    ps: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.7 }, y: { min: -1.4, max: 4.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "g", kind: "segment", from: { x: 0, y: 3 }, to: { x: 4, y: -1 }, appearance: "secondary" },
+      { id: "sum", kind: "segment", from: { x: 0, y: 4 }, to: { x: 4, y: 2 }, appearance: "construction" },
+      { id: "pf", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "pg", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "ps", kind: "point", at: { x: 2, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "g", objectId: "g", at: { x: 4, y: -1 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "pf", objectId: "pf", at: { x: 2, y: 2 }, placement: "left" },
+      { key: "pg", objectId: "pg", at: { x: 2, y: 1 }, placement: "left" },
+      { key: "ps", objectId: "ps", at: { x: 2, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
+
 ### Produktregel
 
 Beim **Produkt** zweier Funktionen werden die beiden Grenzwerte miteinander multipliziert:
@@ -69,6 +105,36 @@ Wenn <InlineMath math="x\to2" /> geht, haben <InlineMath math="x" /> und <Inline
 
 <BlockMath math="\lim_{x\to2}x(x+1)=2\cdot3=6" />
 
+Die Produktregel funktioniert genauso. Die Kurve <InlineMath math="f(x)g(x) = (\tfrac{x}{2} + 1)(3 - x)" /> geht durch <InlineMath math="(2, 2)" />, weil sich die Grenzwerte multiplizieren: <InlineMath math="2 \cdot 1 = 2" />. Die Produktkurve ist keine Gerade mehr, ihr Grenzwert kommt aber trotzdem direkt aus den beiden Faktoren.
+
+<MathVisual
+  title={<>Der Grenzwert eines Produkts ist das Produkt der Grenzwerte</>}
+  description={<>Die Geraden <InlineMath math="f" /> und <InlineMath math="g" /> und die Parabel <InlineMath math="fg" />, die bei <InlineMath math="x = 2" /> den Wert <InlineMath math="2 \cdot 1 = 2" /> hat.</>}
+  labels={{
+    f: <InlineMath math="f" />,
+    g: <InlineMath math="g" />,
+    product: <InlineMath math="fg" />,
+    pp: <InlineMath math="(2, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.7 }, y: { min: -3.4, max: 4.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "g", kind: "segment", from: { x: 0, y: 3 }, to: { x: 4, y: -1 }, appearance: "secondary" },
+      { id: "product", kind: "quadratic", inputAxis: "x", coefficients: { a: -1 / 2, b: 1 / 2, c: 3 }, domain: { min: 0, max: 4 }, appearance: "construction" },
+      { id: "pp", kind: "point", at: { x: 2, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "g", objectId: "g", at: { x: 4, y: -1 }, placement: "right" },
+      { key: "product", objectId: "product", at: { x: 4, y: -3 }, placement: "right" },
+      { key: "pp", objectId: "pp", at: { x: 2, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 ### Konstanter Faktor
 
 Einen **konstanten Faktor** dürfen wir vor das Grenzwertzeichen ziehen:
@@ -78,6 +144,37 @@ Einen **konstanten Faktor** dürfen wir vor das Grenzwertzeichen ziehen:
 Mit dem konstanten Faktor <InlineMath math="5" /> und <InlineMath math="x\to2" /> ergibt sich:
 
 <BlockMath math="\lim_{x\to2}5x=5\lim_{x\to2}x=5\cdot2=10" />
+
+Der konstante Faktor streckt jede Höhe um denselben Faktor. Nahe <InlineMath math="x = 2" /> nähert sich die violette Gerade <InlineMath math="y = x" /> dem Wert <InlineMath math="2" /> und die orange Gerade <InlineMath math="y = 5x" /> dem Wert <InlineMath math="5 \cdot 2 = 10" />, an jeder Stelle fünfmal so hoch.
+
+<MathVisual
+  title={<>Ein konstanter Faktor skaliert den Grenzwert</>}
+  description={<>Die Geraden <InlineMath math="y = x" /> und <InlineMath math="y = 5x" /> mit den Werten 2 und 10 bei <InlineMath math="x = 2" />.</>}
+  labels={{
+    identity: <InlineMath math="y = x" />,
+    scaled: <InlineMath math="y = 5x" />,
+    "p-identity": <InlineMath math="2" />,
+    "p-scaled": <InlineMath math="5 \cdot 2 = 10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.8 }, y: { min: -0.6, max: 12.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "identity", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4.2, y: 4.2 }, appearance: "secondary" },
+      { id: "scaled", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2.5, y: 12.5 }, appearance: "primary" },
+      { id: "guide", kind: "segment", from: { x: 2, y: 2 }, to: { x: 2, y: 10 }, appearance: "construction" },
+      { id: "p-identity", kind: "point", at: { x: 2, y: 2 }, appearance: "secondary" },
+      { id: "p-scaled", kind: "point", at: { x: 2, y: 10 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "identity", objectId: "identity", at: { x: 4.2, y: 4.2 }, placement: "right" },
+      { key: "scaled", objectId: "scaled", at: { x: 2.5, y: 12.5 }, placement: "right" },
+      { key: "p-identity", objectId: "p-identity", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "p-scaled", objectId: "p-scaled", at: { x: 2, y: 10 }, placement: "left" },
+    ],
+  }}
+/>
 
 ### Quotientenregel
 

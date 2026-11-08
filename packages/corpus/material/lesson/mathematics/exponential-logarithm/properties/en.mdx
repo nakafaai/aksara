@@ -4,7 +4,7 @@ export const metadata = {
     "Use seven exponent properties with correct domain conditions, a base-two pattern table, and worked integer and rational examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-01",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Exponents and Logarithms",
 };
 
@@ -27,6 +27,16 @@ The table shows a repeated pattern. Moving down one row **increases the exponent
 
 For example, <InlineMath math="2^5\cdot2^3" /> combines five factors of two with three more factors. The result has eight factors of two, so <InlineMath math="2^5\cdot2^3=2^8" />.
 
+Each step up the list multiplies by <InlineMath math="2" />, so the bars double: <InlineMath math="1, 2, 4, 8, 16, 32, 64" />. The exponent counts how many factors of <InlineMath math="2" /> were multiplied, which is why <InlineMath math="2^0 = 1" /> starts the list with no factors at all.
+
+<BarChart
+  title={<>Powers of two</>}
+  description={<>Bar <InlineMath math="n" /> shows <InlineMath math="2^n" /> for <InlineMath math="n = 0" /> to <InlineMath math="6" />.</>}
+  yAxisLabel="Value"
+  data={Array.from({ length: 7 }, (_, n) => ({ name: `${n}`, value: 2 ** n }))}
+  chartConfig={{ value: { label: "Value", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Seven Exponent Properties
 
 | Situation | Property | Conditions used here |
@@ -41,6 +51,34 @@ For example, <InlineMath math="2^5\cdot2^3" /> combines five factors of two with
 
 The **base stays the same** when powers with equal bases are multiplied or divided. Only the exponents are combined. By contrast, a power outside parentheses acts on the entire expression inside the parentheses.
 
+Multiplying powers of the same base adds the exponents. On the exponent line, <InlineMath math="2^3" /> is a step of length <InlineMath math="3" /> and <InlineMath math="2^2" /> a step of length <InlineMath math="2" />. Put them end to end and you land on exponent <InlineMath math="5" />: <InlineMath math="2^3 \cdot 2^2 = 2^5 = 32" />.
+
+<MathVisual
+  title={<>Exponents add when powers multiply</>}
+  description={<>Two steps on the exponent line, of lengths 3 and 2, ending at exponent 5 for <InlineMath math="2^3 \cdot 2^2 = 2^5" />.</>}
+  labels={{
+    s0: <InlineMath math="\times 2^3" />,
+    s1: <InlineMath math="\times 2^2" />,
+    end: <InlineMath math="2^5 = 32" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 7.5, y: 0 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 3, y: 0.3 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 3, y: 0.6 }, to: { x: 5, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s0", objectId: "s0", at: { x: 0 + 3 / 2, y: 0.3 }, placement: "above" },
+      { key: "s1", objectId: "s1", at: { x: 3 + 2 / 2, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 ## Conditions for Exponent Rules
 
 - A zero base works for some positive exponents, but not for negative exponents because <InlineMath math="0^{-1}" /> would require division by zero. The integer rules therefore use <InlineMath math="a\neq0" /> as one consistent condition.
@@ -48,6 +86,16 @@ The **base stays the same** when powers with equal bases are multiplied or divid
 - For rational exponents, using <InlineMath math="a>0" /> keeps every root and power real and unambiguous. Some individual negative-base examples are real, but one unrestricted rule would not cover all rational exponents.
 
 Check the **conditions on the base and exponent** before applying a property.
+
+Zero and negative exponents continue the same pattern. Each step to the left halves the value, so <InlineMath math="2^0 = 1" />, <InlineMath math="2^{-1} = \frac12" /> and <InlineMath math="2^{-3} = \frac18" />. The values get smaller but stay positive, because each one is <InlineMath math="1" /> divided by a positive power of <InlineMath math="2" />: <InlineMath math="2^{-n} = \frac{1}{2^n}" />.
+
+<BarChart
+  title={<>Powers of two from <InlineMath math="2^{-3}" /> to <InlineMath math="2^3" /></>}
+  description={<>Bars of <InlineMath math="2^k" /> for <InlineMath math="k = -3" /> to <InlineMath math="3" />: each step to the right doubles the value, and <InlineMath math="2^0 = 1" />.</>}
+  yAxisLabel="Value"
+  data={[-3, -2, -1, 0, 1, 2, 3].map((k) => ({ name: String(k), value: 2 ** k }))}
+  chartConfig={{ value: { label: "Value", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## The Operation Determines the Exponent Rule
 

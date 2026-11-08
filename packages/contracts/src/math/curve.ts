@@ -5,6 +5,7 @@ import {
   EquationTextSchema,
   FormulaTextSchema,
   InequalityTextSchema,
+  PlaneFormulaPointSchema,
 } from "#contracts/math/formula/field";
 import { MathObjectFields } from "#contracts/math/object";
 
@@ -56,11 +57,42 @@ const PlaneRegionObjectSchema = Schema.Struct({
   kind: Schema.Literal("region"),
 });
 
+/** A point placed by formulas of the sliders, which moves as they move. */
+const PlaneMarkerObjectSchema = Schema.Struct({
+  ...MathObjectFields,
+  kind: Schema.Literal("marker"),
+  x: FormulaTextSchema,
+  y: FormulaTextSchema,
+});
+
+/**
+ * Straight segments through points placed by formulas of the sliders, such as
+ * the moving radius of a unit circle. A `path` stays open.
+ */
+const PlanePathObjectSchema = Schema.Struct({
+  ...MathObjectFields,
+  kind: Schema.Literal("path"),
+  points: Schema.Array(PlaneFormulaPointSchema).check(Schema.isMinLength(2)),
+});
+
+/**
+ * A closed outline through points placed by formulas of the sliders, such as
+ * a right triangle with angle a: the last point joins back to the first.
+ */
+const PlaneLoopObjectSchema = Schema.Struct({
+  ...MathObjectFields,
+  kind: Schema.Literal("loop"),
+  points: Schema.Array(PlaneFormulaPointSchema).check(Schema.isMinLength(3)),
+});
+
 /** The plane objects a formula defines, which a renderer samples itself. */
 export const PlaneCurveObjectSchemas = [
   PlaneFunctionObjectSchema,
   PlaneImplicitObjectSchema,
+  PlaneLoopObjectSchema,
+  PlaneMarkerObjectSchema,
   PlaneParametricObjectSchema,
+  PlanePathObjectSchema,
   PlanePolarObjectSchema,
   PlaneRegionObjectSchema,
 ] as const;
