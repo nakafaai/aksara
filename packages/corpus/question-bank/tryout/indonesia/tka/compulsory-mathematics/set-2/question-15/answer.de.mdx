@@ -1,29 +1,9 @@
-Die Spiegelung an der <InlineMath math="x" />-Achse ändert das Vorzeichen der zweiten Koordinate. Die anschließende Drehung vertauscht die Koordinaten und ändert das Vorzeichen der neuen ersten Koordinate.
+Translation, Spiegelung und Drehung sind **Kongruenzabbildungen**: Sie erhalten alle Längen und damit auch Winkel und Flächen. Eine zentrische Streckung mit dem Faktor <InlineMath math="k" /> multipliziert Längen mit <InlineMath math="|k|" /> und Flächen mit <InlineMath math="k^2" />.
 
-<BlockMath math="\begin{aligned}
-(x,y)&\longmapsto(x,-y) \\
-&\longmapsto(y,x) \\
-T(x,y)&=(y,x) \\
-T(2,-3)&=(-3,2) \\
-T^2(x,y)&=T(y,x) \\
-&=(x,y)
-\end{aligned}" />
+- Eine Translation verschiebt alle Punkte um denselben Vektor, jede Seite behält ihre Länge. Die Aussage ist richtig.
+- Eine Spiegelung ist eine Kongruenzabbildung, das Bild ist deckungsgleich und hat dieselbe Fläche. Die Aussage ist richtig.
+- Bei <InlineMath math="k=-2" /> wird jede Länge verdoppelt, die Fläche also mit <InlineMath math="(-2)^2=4" /> multipliziert, nicht mit <InlineMath math="2" />. Die Aussage ist falsch.
+- Die Drehung um <InlineMath math="180^\circ" /> bildet <InlineMath math="(x,y)" /> auf <InlineMath math="(-x,-y)" /> ab, genau wie die Streckung mit <InlineMath math="k=-1" />. Die Aussage ist richtig.
+- Die Spiegelung an der <InlineMath math="x" />-Achse gibt <InlineMath math="(x,-y)" />, danach die Spiegelung an der <InlineMath math="y" />-Achse <InlineMath math="(-x,-y)" />. Das ist die Drehung um <InlineMath math="180^\circ" />. Eine Translation würde jeden Punkt um denselben Vektor verschieben, hier wird aber zum Beispiel <InlineMath math="(1,0)" /> um <InlineMath math="(-2,0)" /> verschoben und <InlineMath math="(2,0)" /> um <InlineMath math="(-4,0)" />. Die Aussage ist falsch.
 
-Damit ist <InlineMath math="T^2" /> die Identität. Für einen Fixpunkt muss <InlineMath math="(y,x)=(x,y)" /> gelten. Die Fixpunkte liegen genau auf <InlineMath math="y=x" />. Die Abbildung <InlineMath math="(x,y)\mapsto(y,x)" /> ist eine Spiegelung an dieser Geraden und **kehrt die Orientierung um**.
-
-Die vier Aussagen über Koordinatenregel, Bildpunkt, Identität und Fixpunkte stimmen. Die Aussage, die Orientierung bleibe erhalten, ist falsch.
-
-Orientierung meint hier die Umlaufrichtung um die Eckpunkte. Das Dreieck ABC wird in der Zeichnung gegen den Uhrzeigersinn durchlaufen, sein Bild A′B′C′ dagegen im Uhrzeigersinn. Seitenlängen und Fläche bleiben gleich, da die Abbildung eine Spiegelung ist.
-
-<LineEquation
-  title="Spiegelung kehrt die Orientierung um"
-  description="Die graue Gerade ist y = x. Vertauschte Koordinaten der violetten Eckpunkte ergeben das orange Bild."
-  cameraPosition={[1.5, 1.5, 7]}
-  cameraTarget={[1.5, 1.5, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: -0.2, y: -0.2, z: 0 }, { x: 3.5, y: 3.5, z: 0 }], smooth: false, color: "#64748b", showPoints: false },
-    { points: [{ x: 1, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 1, y: 0, z: 0 }], color: "#9333ea", smooth: false, labels: [{ text: "A", at: 0, offset: [0, -0.35, 0] }, { text: "B", at: 1, offset: [0.2, -0.3, 0] }, { text: "C = C′", at: 2, offset: [0.4, 0.3, 0] }] },
-    { points: [{ x: 0, y: 1, z: 0 }, { x: 0, y: 3, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 0, y: 1, z: 0 }], color: "#d97706", smooth: false, labels: [{ text: <InlineMath math="A^{\prime}" />, at: 0, offset: [-0.35, 0, 0] }, { text: <InlineMath math="B^{\prime}" />, at: 1, offset: [-0.35, 0.2, 0] }] },
-  ]}
-/>
+Richtig sind also die Aussagen über die Translation, die Spiegelung und die Drehung um <InlineMath math="180^\circ" />.

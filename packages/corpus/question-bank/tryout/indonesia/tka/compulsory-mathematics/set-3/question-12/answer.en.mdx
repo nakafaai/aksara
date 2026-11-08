@@ -1,58 +1,13 @@
-Let the cuboid edge lengths be <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" />. **Pythagoras’ theorem** on its three face types gives:
+The segments from the centre <InlineMath math="O" /> to the six vertices **split the regular hexagon into six equilateral triangles** with side <InlineMath math="8\text{ cm}" />. Every measure asked for can be read from those triangles.
 
 <BlockMath math="\begin{aligned}
-a^2+b^2&=85 \\
-a^2+c^2&=100 \\
-b^2+c^2&=113
+AD&=2\cdot8=16\text{ cm} \\
+AC&=2\cdot8\cdot\sin60^\circ=8\sqrt3\text{ cm} \\
+A_{ABCDEF}&=6\cdot\frac{\sqrt3}{4}\cdot8^2=96\sqrt3\text{ cm}^2 \\
+A_{ACE}&=\frac{\sqrt3}{4}\cdot\big(8\sqrt3\big)^2=48\sqrt3\text{ cm}^2
 \end{aligned}" />
 
-Add the two equations containing the desired squared edge and subtract the third. The result is twice that squared edge.
-
-<BlockMath math="(a^2+b^2)+(a^2+c^2)-(b^2+c^2)=2a^2=85+100-113" />
-
-<BlockMath math="\begin{aligned}
-a^2&=\frac{85+100-113}{2}=36 \\
-b^2&=\frac{85+113-100}{2}=49 \\
-c^2&=\frac{100+113-85}{2}=64
-\end{aligned}" />
-
-Edge lengths are positive, so <InlineMath math="a=6" />, <InlineMath math="b=7" />, and <InlineMath math="c=8" />.
-
-<BlockMath math="V=abc=6\cdot7\cdot8=336" />
-
-<MathVisual
-  title="Three types of face diagonal"
-  description="Each diagonal connects two corners on one face. Rotate the cuboid to trace the two perpendicular edges that determine each diagonal."
-  labels={{
-    a: <InlineMath math="a=6" />,
-    b: <InlineMath math="b=7" />,
-    c: <InlineMath math="c=8" />,
-    ab: <InlineMath math="\sqrt{85}" />,
-    ac: <InlineMath math="\sqrt{100}" />,
-    bc: <InlineMath math="\sqrt{113}" />,
-  }}
-  scene={{
-    space: "space",
-    frame: {
-      kind: "cartesian",
-      x: { min: -4, max: 4 },
-      y: { min: -5, max: 5 },
-      z: { min: -4.5, max: 4.5 },
-    },
-    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
-    objects: [
-      { id: "cuboid", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0, z: 0 }, size: { length: 6, width: 7, height: 8 } },
-      { id: "ab", kind: "segment", appearance: "primary", from: { x: -3, y: 4, z: -3.5 }, to: { x: 3, y: 4, z: 3.5 } },
-      { id: "ac", kind: "segment", appearance: "secondary", from: { x: -3, y: -4, z: 3.5 }, to: { x: 3, y: 4, z: 3.5 } },
-      { id: "bc", kind: "segment", appearance: "highlight", from: { x: 3, y: -4, z: -3.5 }, to: { x: 3, y: 4, z: 3.5 } },
-    ],
-    labels: [
-      { key: "a", objectId: "cuboid", at: { x: 0, y: -4, z: 3.5 }, placement: "below" },
-      { key: "b", objectId: "cuboid", at: { x: 3, y: -4, z: 0 }, placement: "right" },
-      { key: "c", objectId: "cuboid", at: { x: -3, y: 0, z: 3.5 }, placement: "left" },
-      { key: "ab", objectId: "ab", at: { x: 0, y: 4, z: 0 }, placement: "above" },
-      { key: "ac", objectId: "ac", at: { x: 0, y: 0, z: 3.5 }, placement: "left" },
-      { key: "bc", objectId: "bc", at: { x: 3, y: 0, z: 0 }, placement: "right" },
-    ],
-  }}
-/>
+- <InlineMath math="AC=8\sqrt2\text{ cm}" /> is false. The angle <InlineMath math="ABC=120^\circ" />, so <InlineMath math="AC=8\sqrt3" />. The value <InlineMath math="8\sqrt2" /> belongs to a right angle.
+- <InlineMath math="AD=16\text{ cm}" /> is true, because <InlineMath math="AD" /> passes through the centre and equals two sides of an equilateral triangle.
+- The area <InlineMath math="96\sqrt3\text{ cm}^2" /> is true.
+- Triangle <InlineMath math="ACE" /> has area <InlineMath math="48\sqrt3" />, half of the tile, not a third. So the statement is false. Each of the three triangles outside <InlineMath math="ACE" /> has area <InlineMath math="16\sqrt3" />.

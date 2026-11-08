@@ -1,21 +1,16 @@
-Es gibt <InlineMath math="\binom82=\frac{8\cdot7}{2\cdot1}=28" /> gleich wahrscheinliche **ungeordnete Paare**. Eine ungerade Summe entsteht aus einer geraden und einer ungeraden Karte. Beide Gruppen enthalten vier Karten.
-
-Bei Ereignissen ohne Bezug zur Reihenfolge stammt jedes ungeordnete Paar aus zwei gleich wahrscheinlichen Ziehungsreihenfolgen. Daher sind auch alle ungeordneten Paare gleich wahrscheinlich.
-
-<BlockMath math="P=\frac{4\cdot4}{28}=\frac47" />
-
-Die verfügbaren Primzahlen sind <InlineMath math="2,3,5,7" />. Soll die größere Zahl <InlineMath math="8" /> sein, kann die andere Karte jede der sieben kleineren Zahlen zeigen.
+Bei der Auswahl kommt es nicht auf die Reihenfolge an, also zählst du mit **Binomialkoeffizienten**. Genau ein Torwart bedeutet: einer von <InlineMath math="2" /> Torwarten und vier von <InlineMath math="6" /> Feldspielern.
 
 <BlockMath math="\begin{aligned}
-P(\text{zwei Primzahlen})&=\frac{\binom42}{28}=\frac{4\cdot3}{2\cdot1\cdot28}=\frac6{28}=\frac3{14} \\
-P(\max=8)&=\frac7{28}=\frac14
+\text{alle Auswahlen}&=\binom85=56 \\
+\text{genau 1 Torwart}&=\binom21\binom64=2\cdot15=30 \\
+P&=\frac{30}{56}=\frac{15}{28}
 \end{aligned}" />
 
-Nach einer geraden ersten Karte bleiben vier ungerade Karten unter sieben. Die Wahrscheinlichkeit für eine ungerade zweite Karte beträgt <InlineMath math="\frac47" />. Sie unterscheidet sich von der unbedingten Wahrscheinlichkeit <InlineMath math="\frac48=\frac12" />. Die Ereignisse sind daher nicht unabhängig.
+Zur Kontrolle: Kein Torwart gibt <InlineMath math="\binom65=6" /> Auswahlen, zwei Torwarte <InlineMath math="\binom22\binom63=20" />, und <InlineMath math="6+30+20=56" />.
 
-Die vier Wahrscheinlichkeitsaussagen stimmen. Die Unabhängigkeitsaussage ist falsch.
+Die Wahrscheinlichkeit ist also <InlineMath math="\frac{15}{28}" />.
 
-| Erste Karte | Gerade Karten übrig | Ungerade Karten übrig |
-| --- | --- | --- |
-| Gerade | 3 | 4 |
-| Ungerade | 4 | 3 |
+- <InlineMath math="\frac{3}{28}=\frac{6}{56}" /> ist die Wahrscheinlichkeit, dass kein Torwart gewählt wird.
+- <InlineMath math="\frac{5}{14}=\frac{20}{56}" /> ist die Wahrscheinlichkeit für beide Torwarte.
+- <InlineMath math="\frac{3}{7}=\frac{30}{70}" /> nimmt <InlineMath math="\binom84=70" /> als Anzahl aller Auswahlen, gewählt werden aber <InlineMath math="5" /> Spieler, also <InlineMath math="\binom85=56" />.
+- <InlineMath math="\frac{25}{28}=\frac{50}{56}" /> ist die Wahrscheinlichkeit für mindestens einen Torwart, also einschließlich zweier Torwarte.

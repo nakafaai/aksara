@@ -1,32 +1,16 @@
-Für die **Streckung mit Zentrum** <InlineMath math="C" /> gilt <InlineMath math="A'=C+3(A-C)" />. Stelle die Gleichung nach dem Zentrum um.
+Eine Drehung um einen Punkt <InlineMath math="P" />, der nicht der Ursprung ist, führst du in drei Schritten aus: **den Vektor von <InlineMath math="P" /> zu <InlineMath math="A" /> bilden, diesen Vektor drehen, und das Ergebnis wieder an <InlineMath math="P" /> ansetzen**.
 
 <BlockMath math="\begin{aligned}
-A'&=3A-2C \\
-2C&=3A-A' \\
-&=(6,3)-(8,10) \\
-&=(-2,-7) \\
-C&=\left(-1,-\frac72\right)
+\overrightarrow{PA}&=(1-(-1),\ 5-2)=(2,3) \\
+\text{gedreht}&:\ (2,3)\mapsto(-3,2) \\
+A'&=P+(-3,2)=(-1-3,\ 2+2)=(-4,4)
 \end{aligned}" />
 
-Addiere die Koordinaten des Zentrums und multipliziere mit <InlineMath math="2" />.
+Zur Kontrolle: <InlineMath math="PA=\sqrt{2^2+3^2}=\sqrt{13}" /> und <InlineMath math="PA'=\sqrt{(-3)^2+2^2}=\sqrt{13}" />. Außerdem ist <InlineMath math="(2,3)\cdot(-3,2)=-6+6=0" />, die beiden Vektoren stehen also senkrecht aufeinander.
 
-<BlockMath math="\begin{aligned}
-2(x_C+y_C)&=2\left(-1-\frac72\right) \\
-&=-2-7=-9
-\end{aligned}" />
+Der Bildpunkt ist also <InlineMath math="(-4,4)" />.
 
-Der Vektor von C nach A wird dreimal so lang und behält seine Richtung. Die Koordinatendifferenzen prüfen diesen Zusammenhang.
-
-<BlockMath math="\begin{aligned}A-C&=\left(3,\frac92\right) \\ A^{\prime}-C&=\left(9,\frac{27}{2}\right)=3(A-C)\end{aligned}" />
-
-<LineEquation
-  title="Streckungszentrum außerhalb des Ursprungs"
-  description="A liegt auf einem Drittel der Strecke von C zum Bildpunkt A′."
-  cameraPosition={[3.5, 3.25, 23]}
-  cameraTarget={[3.5, 3.25, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: -1, y: -3.5, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 8, y: 10, z: 0 }], color: "#64748b", smooth: false, labels: [{ text: "C", at: 0, offset: [-0.5, -0.5, 0] }, { text: "A", at: 1, offset: [-0.5, 0.5, 0] }, { text: <InlineMath math="A^{\prime}" />, at: 2, offset: [0.4, 0.5, 0] }] },
-    { points: [{ x: -1, y: -3.5, z: 0 }, { x: 2, y: 1, z: 0 }], smooth: false, color: "#d97706", showPoints: false, lineWidth: 4 },
-  ]}
-/>
+- <InlineMath math="(-5,1)" /> dreht um den Ursprung statt um <InlineMath math="P" />.
+- <InlineMath math="(-3,2)" /> ist nur der gedrehte Vektor. Er wurde nicht wieder an <InlineMath math="P" /> angesetzt.
+- <InlineMath math="(-4,0)" /> dreht den Vektor zu <InlineMath math="(-3,-2)" />, mit falschem Vorzeichen bei der zweiten Koordinate.
+- <InlineMath math="(2,0)" /> dreht im Uhrzeigersinn: <InlineMath math="(2,3)\mapsto(3,-2)" />.

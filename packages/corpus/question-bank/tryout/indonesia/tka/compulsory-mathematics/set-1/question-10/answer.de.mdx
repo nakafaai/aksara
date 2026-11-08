@@ -1,34 +1,20 @@
-Da Abstände nicht negativ sind, bedeuten **gleiche Abstandsquadrate** auch gleiche Längen. Setze <InlineMath math="P=(t,0)" /> in die Abstandsformel ein.
+Ein <InlineMath math="n" />-Eck lässt sich von einer Ecke aus in <InlineMath math="n-2" /> Dreiecke zerlegen. Seine Innenwinkelsumme ist deshalb <InlineMath math="(n-2)\cdot180^\circ" />. Bestimme daraus **zuerst die Eckenzahl**.
 
 <BlockMath math="\begin{aligned}
-(t-(-2))^2+(0-3)^2&=(t-4)^2+(0-5)^2 \\
-(t+2)^2+3^2&=(t-4)^2+5^2 \\
-t^2+4t+13&=t^2-8t+41 \\
-4t+8t&=41-13 \\
-12t&=28 \\
-t&=\frac{28}{12}=\frac73
+(n-2)\cdot180^\circ&=3{.}240^\circ \\
+n-2&=18 \\
+n&=20
 \end{aligned}" />
 
-Damit ist <InlineMath math="P=(\frac73,0)" />. Gesucht ist:
+Die Außenwinkel eines Vielecks ergeben zusammen immer <InlineMath math="360^\circ" />. Bei einem regelmäßigen Zwanzigeck sind alle gleich groß.
 
-<BlockMath math="3t=3\left(\frac73\right)=7" />
+<BlockMath math="\frac{360^\circ}{20}=18^\circ" />
 
-<LineEquation
-  title="Zwei gleiche Abstände"
-  description="Die violetten Strecken treffen sich bei P auf der x-Achse. PA und PB sind gleich lang, obwohl sie in unterschiedliche Richtungen zeigen."
-  cameraPosition={[1, 2.5, 9]}
-  cameraTarget={[1, 2.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [{ x: -2, y: 3, z: 0 }, { x: 7 / 3, y: 0, z: 0 }, { x: 4, y: 5, z: 0 }],
-      color: "#9333ea",
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="A(-2,3)" />, at: 0, offset: [-0.4, 0.5, 0] },
-        { text: <InlineMath math="P(7/3,0)" />, at: 1, offset: [0.5, -0.5, 0] },
-        { text: <InlineMath math="B(4,5)" />, at: 2, offset: [0, 0.5, 0] },
-      ],
-    },
-  ]}
-/>
+Zur Kontrolle: Jeder Innenwinkel ist <InlineMath math="180^\circ-18^\circ=162^\circ" />, und <InlineMath math="20\cdot162^\circ=3{.}240^\circ" />.
+
+Jeder Außenwinkel misst also <InlineMath math="18^\circ" />.
+
+- <InlineMath math="162^\circ" /> ist der Innenwinkel des Zwanzigecks, nicht sein Außenwinkel.
+- <InlineMath math="160^\circ" /> entsteht, wenn <InlineMath math="n=18" /> gesetzt wird, also die <InlineMath math="2" /> vergessen wird, und dann der Innenwinkel <InlineMath math="180^\circ-\frac{360^\circ}{18}=160^\circ" /> berechnet wird.
+- <InlineMath math="20^\circ" /> entsteht, wenn <InlineMath math="n=\frac{3{.}240}{180}=18" /> gesetzt und die <InlineMath math="2" /> vergessen wird.
+- <InlineMath math="40^\circ" /> nimmt als Eckenzahl <InlineMath math="\frac{3{.}240}{360}=9" />, als bestünde die Winkelsumme aus vollen Umdrehungen, und rechnet dann <InlineMath math="\frac{360^\circ}{9}=40^\circ" />.
