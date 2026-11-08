@@ -75,6 +75,52 @@ describe("path policy", () => {
     ).toEqual([]);
   });
 
+  it("rejects a name that repeats its folder's word, alone or as its plural, in any case", () => {
+    expect(
+      pathViolations([
+        "scripts/check/check.ts",
+        "packages/compiler/artifact/artifacts.ts",
+        "packages/compiler/batches/batch.ts",
+        "packages/compiler/Hash/hash.ts",
+        "packages/compiler/box/boxes/item.ts",
+      ])
+    ).toEqual([
+      "scripts/check/check.ts: check.ts repeats its folder's word",
+      "packages/compiler/artifact/artifacts.ts: artifacts.ts repeats its folder's word",
+      "packages/compiler/batches/batch.ts: batch.ts repeats its folder's word",
+      "packages/compiler/Hash/hash.ts: hash.ts repeats its folder's word",
+      "packages/compiler/box/boxes/item.ts: boxes repeats its folder's word",
+    ]);
+  });
+
+  it("allows a name that adds a word to its folder, and an identity's folder", () => {
+    expect(
+      pathViolations([
+        "packages/compiler/artifact/verify.ts",
+        "packages/compiler/hash/hashing.ts",
+        "packages/compiler/check/check.test.ts",
+        "packages/compiler/release/2026.ts",
+        ".agents/skills/nakafa/nakafa.md",
+        "packages/corpus/articles/articles/en.mdx",
+      ])
+    ).toEqual([
+      "packages/compiler/check/check.test.ts: final test has no colocated packages/compiler/check/check.ts owner",
+      "packages/compiler/check/check.test.ts: check.test.ts repeats its folder's word",
+    ]);
+  });
+
+  it("leaves the names a tool writes alone, and still rejects its JavaScript", () => {
+    expect(
+      pathViolations([
+        "packages/contracts/dist/source-map.d.ts",
+        "packages/backend/_generated/api-types.ts",
+        "node_modules/left-pad/index.js",
+      ])
+    ).toEqual([
+      "node_modules/left-pad/index.js: hand-written JavaScript source is not allowed",
+    ]);
+  });
+
   it("rejects orphan and every non-final Vitest test suffix", () => {
     expect(
       pathViolations([
