@@ -1,157 +1,266 @@
 export const metadata = {
-  title: "Fungsi Kepadatan Distribusi Normal",
-  description: "Baca kurva kepadatan normal, bakukan nilai dengan skor z, lalu hitung peluang suatu interval.",
+  title: "Distribusi Normal dan Skor Z",
+  description: "Distribusi normal berbentuk lonceng dengan pusat di rata-rata dan lebar dari simpangan baku. Ubah nilai menjadi skor z, lalu hitung peluang dari tabel z.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Analisis Data dan Peluang",
 };
 
+## Kurva Lonceng dengan Pusat dan Sebaran
 
+Distribusi normal adalah model peluang untuk besaran kontinu yang **mengumpul di sekitar satu nilai tengah dan menipis secara simetris** ke kedua sisi. Jika <InlineMath math="X" /> berdistribusi normal dengan rata-rata <InlineMath math="\mu" /> dan simpangan baku <InlineMath math="\sigma > 0" />, ditulis <InlineMath math="X \sim N(\mu, \sigma^2)" />, kurvanya berbentuk lonceng dan simetris terhadap garis <InlineMath math="x = \mu" />. Peluang <InlineMath math="X" /> jatuh di suatu selang sama dengan luas di bawah kurva pada selang itu, dan luas seluruhnya <InlineMath math="1" />.
 
-## Mengenal Distribusi Normal
-
-Pengukuran seperti tinggi badan manusia atau hasil laboratorium berulang sering mengelompok di sekitar suatu nilai tengah. Pada populasi dan kondisi tertentu, **distribusi normal** dapat mendekati pola tersebut. Periksa kecocokan model dengan data yang diamati sebelum menggunakannya.
-
-Pada tahun <InlineMath math="1733" />, Abraham de Moivre menurunkan pendekatan normal untuk distribusi binomial dengan <InlineMath math="n" /> yang besar. Pierre-Simon Laplace kemudian memperluas hasil tersebut, yang kini berkaitan dengan teorema de Moivre-Laplace dan perkembangan teorema limit pusat.
-
-> Distribusi normal adalah salah satu model yang dapat dipilih. Model ini berguna ketika pengamatan kurang lebih simetris di sekitar rata-rata dan kecocokannya memadai untuk pertanyaan yang sedang dikaji.
-
-## Karakteristik Kurva Normal
-
-Fungsi kepadatan normal berbentuk lonceng yang simetris. Visualisasi berikut menunjukkan kurva normal standar dengan <InlineMath math="\mu = 0" /> dan <InlineMath math="\sigma = 1" />:
+Pada grafik interaktif, kurva normal baku dengan <InlineMath math="\mu = 0" /> dan <InlineMath math="\sigma = 1" /> berpuncak di pusat. Dua ruas tegak menandai titik belok di <InlineMath math="\mu - \sigma" /> dan <InlineMath math="\mu + \sigma" />, tempat kurva berubah dari cekung ke bawah menjadi cekung ke atas.
 
 <LineEquation
-  title="Kurva Distribusi Normal Standar"
-  description={
-    <>
-      Kepadatan normal standar berpusat di <InlineMath math="\mu=0" />. Ruas vertikal menandai titik beloknya pada <InlineMath math="\mu\pm\sigma" />.
-    </>
-  }
+  title="Kurva Distribusi Normal Baku"
+  description={<>Kepadatan normal baku berpusat di <InlineMath math="\mu = 0" />. Ruas tegak menandai titik beloknya di <InlineMath math="\mu \pm \sigma" />.</>}
   showZAxis={false}
   cameraPosition={[0, 0, 5]}
   data={[
     {
-      points: Array.from({ length: 71 }, (_, index) => {
-        const x = (index - 35) / 10;
+      points: Array.from({ length: 701 }, (_, index) => {
+        const x = (index - 350) / 100;
         const y = Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
         return { x, y, z: 0 };
       }),
       color: "#9333ea",
       smooth: false,
       showPoints: false,
-      labels: [
-        { text: <InlineMath math="\mu=0" />, at: 35, offset: [0, 0.5, 0] }
-      ]
+      labels: [{ text: <InlineMath math="\mu = 0" />, at: 350, offset: [0, 0.5, 0] }],
     },
     {
       points: [
         { x: -1, y: 0, z: 0 },
-        { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 }
+        { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 },
       ],
       color: "#ea580c",
       smooth: false,
       showPoints: false,
-      labels: [
-        { text: <InlineMath math="\mu-\sigma" />, at: 0, offset: [0, -0.3, 0] }
-      ]
+      labels: [{ text: <InlineMath math="\mu - \sigma" />, at: 0, offset: [0, -0.3, 0] }],
     },
     {
       points: [
         { x: 1, y: 0, z: 0 },
-        { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 }
+        { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 },
       ],
       color: "#ea580c",
       smooth: false,
       showPoints: false,
-      labels: [
-        { text: <InlineMath math="\mu+\sigma" />, at: 0, offset: [0, -0.3, 0] }
-      ]
+      labels: [{ text: <InlineMath math="\mu + \sigma" />, at: 0, offset: [0, -0.3, 0] }],
     },
   ]}
 />
 
-Kurva ini memiliki empat ciri utama:
+Rata-rata, median, dan modus berimpit di <InlineMath math="\mu" />, karena kurva simetris dan hanya punya satu puncak. Kurva tidak pernah menyentuh sumbu <InlineMath math="x" />: kepadatannya positif untuk setiap <InlineMath math="x" /> dan mendekati nol jauh dari pusat. Abraham de Moivre menurunkan kurva ini pada tahun <InlineMath math="1733" /> sebagai pendekatan [distribusi binomial](/id/materi/matematika/analisis-data-dan-peluang/fungsi-distribusi-binomial) untuk banyak percobaan yang besar.
 
-1. **Bentuk dan Simetri**
+## Rumus Fungsi Kepadatan Normal
 
-    Kurva berbentuk seperti lonceng dan simetris terhadap garis vertikal yang melewati rata-rata (<InlineMath math="\mu" />). Artinya, bagian kiri dan kanan kurva adalah cerminan sempurna satu sama lain.
+Tinggi kurva di setiap titik <InlineMath math="x" /> diberikan oleh fungsi kepadatan:
 
-2. **Titik Pusat**
+<BlockMath math="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}, \qquad -\infty < x < \infty" />
 
-    Kepadatan normal simetris dan memiliki satu puncak. Karena itu, rata-rata, median, dan modusnya berimpit di <InlineMath math="\mu" />.
+Di sini <InlineMath math="\pi \approx 3{,}1416" /> dan <InlineMath math="e \approx 2{,}7183" /> adalah konstanta, sedangkan <InlineMath math="\mu" /> dan <InlineMath math="\sigma > 0" /> adalah parameter distribusi. Pecahan <InlineMath math="\frac{x - \mu}{\sigma}" /> menghitung **jarak dari pusat dalam satuan simpangan baku**. Jarak itu dikuadratkan, jadi dua nilai <InlineMath math="x" /> yang sama jauh di kiri dan kanan <InlineMath math="\mu" /> mendapat kepadatan yang sama. Faktor <InlineMath math="\frac{1}{\sigma\sqrt{2\pi}}" /> membuat luas total di bawah kurva tepat <InlineMath math="1" />.
 
-3. **Titik Belok**
+Kepadatan bukan peluang. Di puncak kurva normal baku, <InlineMath math="f(0) = \frac{1}{\sqrt{2\pi}} \approx 0{,}399" />. Untuk <InlineMath math="\sigma = 0{,}25" />, tinggi puncaknya <InlineMath math="\frac{1}{0{,}25\sqrt{2\pi}} \approx 1{,}596" />, lebih dari <InlineMath math="1" />, padahal peluang tidak pernah melebihi <InlineMath math="1" />. Peluang satu nilai tepat juga nol, <InlineMath math="P(X = a) = 0" />, karena luas di atas satu titik nol. Peluang selalu dihitung untuk selang, sebagai [integral tentu](/id/materi/matematika/integral/integral-tentu) dari kepadatan.
 
-    Kurva memiliki titik belok di <InlineMath math="x = \mu \pm \sigma" />, yang berarti kurva berubah dari cekung ke cembung (atau sebaliknya) pada jarak satu standar deviasi dari mean.
+## Pusat dan Lebar Kurva Normal
 
-4. **Asimtot Horizontal**
+Parameter <InlineMath math="\mu" /> **menggeser kurva tanpa mengubah bentuknya**, sedangkan <InlineMath math="\sigma" /> mengatur lebarnya. Luas di bawah kurva selalu <InlineMath math="1" />, jadi kurva yang lebih lebar juga lebih rendah, dengan tinggi puncak <InlineMath math="\frac{1}{\sigma\sqrt{2\pi}}" />. Grafik interaktif menggambar tiga kurva dari rumus yang sama.
 
-    Kepadatan tetap positif untuk setiap <InlineMath math="x" /> berhingga dan mendekati <InlineMath math="0" /> ketika <InlineMath math="x" /> menuju salah satu arah tak berhingga.
+<LineEquation
+  title={<>Kurva <InlineMath math="N(0, 1)" />, <InlineMath math="N(2, 1)" />, dan <InlineMath math="N(0, 4)" /></>}
+  description={<>Mengubah <InlineMath math="\mu" /> dari <InlineMath math="0" /> ke <InlineMath math="2" /> menggeser kurva ke kanan. Mengubah <InlineMath math="\sigma" /> dari <InlineMath math="1" /> ke <InlineMath math="2" /> melebarkan kurva dan menurunkan puncaknya menjadi setengah.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0.2, 9]}
+  cameraTarget={[0, 0.2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 801 }, (_, index) => {
+        const x = -4 + index / 100;
+        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#9333ea",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="N(0, 1)" />, at: 400, offset: [-1, 0.1, 0] }],
+    },
+    {
+      points: Array.from({ length: 801 }, (_, index) => {
+        const x = -2 + index / 100;
+        return { x, y: Math.exp(-0.5 * (x - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#0d9488",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="N(2, 1)" />, at: 400, offset: [1, 0.1, 0] }],
+    },
+    {
+      points: Array.from({ length: 1201 }, (_, index) => {
+        const x = -6 + index / 100;
+        return { x, y: Math.exp(-0.5 * (x / 2) ** 2) / (2 * Math.sqrt(2 * Math.PI)), z: 0 };
+      }),
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="N(0, 4)" />, at: 300, offset: [-0.5, 0.2, 0] }],
+    },
+  ]}
+/>
 
-## Fungsi Kepadatan Peluang
+Kurva <InlineMath math="N(0, 1)" /> dan <InlineMath math="N(2, 1)" /> punya bentuk yang sama, hanya pusatnya bergeser <InlineMath math="2" /> satuan ke kanan. Kurva <InlineMath math="N(0, 4)" /> berpusat di tempat yang sama dengan <InlineMath math="N(0, 1)" />, tetapi dua kali lebih lebar, dan puncaknya turun dari <InlineMath math="0{,}399" /> menjadi <InlineMath math="0{,}199" />. Parameter kedua pada <InlineMath math="N(\mu, \sigma^2)" /> adalah varians, jadi <InlineMath math="N(0, 4)" /> berarti <InlineMath math="\sigma = 2" />.
 
-Rumus berikut memberikan **kepadatan peluang** pada setiap nilai <InlineMath math="x" />.
+Simpangan baku <InlineMath math="\sigma" /> berperan seperti [simpangan baku data tunggal](/id/materi/matematika/statistika-dasar/varian-dan-simpangan-baku-data-tunggal): makin besar nilainya, makin jauh nilai-nilai menyebar dari rata-rata. Pusat kurva selalu di <InlineMath math="\mu" />, sehingga [nilai harapan distribusi normal](/id/materi/matematika/analisis-data-dan-peluang/nilai-harapan-distribusi-normal) juga <InlineMath math="\mu" />.
 
-Jika <InlineMath math="X" /> terdistribusi normal dengan rata-rata <InlineMath math="\mu" />, varians <InlineMath math="\sigma^2" />, dan <InlineMath math="\sigma>0" />, fungsi kepadatannya adalah:
+## Luas di Sekitar Pusat Kurva
 
-<BlockMath math="f_{\mu,\sigma}(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}" />
+Setiap distribusi normal membagi luasnya dengan cara yang sama jika jarak diukur dalam simpangan baku. Persentase ini dikenal sebagai **aturan <InlineMath math="68" />, <InlineMath math="95" />, dan <InlineMath math="99{,}7" /> persen**:
 
-Rumus ini berlaku untuk setiap <InlineMath math="x" /> yang memenuhi <InlineMath math="-\infty < x < \infty" />.
-
-Arti setiap konstanta dan parameter adalah:
-
-- <InlineMath math="\pi \approx 3{,}1416" /> adalah konstanta lingkaran
-- <InlineMath math="e \approx 2{,}7183" /> adalah bilangan Euler
-- <InlineMath math="\mu" /> adalah rata-rata distribusi
-- <InlineMath math="\sigma>0" /> adalah simpangan baku
-
-> Parameter <InlineMath math="\mu" /> menggeser pusat kurva, sedangkan <InlineMath math="\sigma" /> menentukan sebarannya. Peluang diperoleh dari luas di bawah kurva kepadatan. Tinggi <InlineMath math="f(x)" /> pada satu titik merupakan nilai kepadatan.
-## Transformasi ke Normal Standar
-
-Dalam praktik, kita sering menggunakan **distribusi normal standar** dengan rata-rata <InlineMath math="\mu = 0" /> dan simpangan baku <InlineMath math="\sigma = 1" />. Untuk mengubah distribusi normal biasa menjadi normal standar, kita menggunakan transformasi:
-
-<BlockMath math="Z = \frac{X - \mu}{\sigma}" />
-
-Variabel <InlineMath math="Z" /> disebut **skor baku** atau **skor-z**. Nilainya menunjukkan <Highlight>berapa simpangan baku</Highlight> posisi <InlineMath math="x" /> di atas atau di bawah rata-rata dan memungkinkan satu tabel normal standar digunakan untuk semua distribusi normal.
-
-Mengapa menggunakan z-score?
-
-Dengan transformasi ini, kita bisa membandingkan data dari distribusi yang berbeda. Misalnya, kamu bisa membandingkan nilai matematika dengan nilai fisika, meskipun rata-rata dan standar deviasinya berbeda.
-
-Untuk nilai pengamatan <InlineMath math="x" />, kita tulis skor bakunya sebagai <InlineMath math="z" />. Misalkan nilai matematika 80 berasal dari distribusi dengan mean 70 dan simpangan baku 5, sedangkan nilai fisika 90 berasal dari distribusi dengan mean 80 dan simpangan baku 10.
-
-| Mata pelajaran | Skor baku |
+| Selang | Luas di bawah kurva |
 | --- | --- |
-| Matematika | <InlineMath math="z=\frac{80-70}{5}=2" /> |
-| Fisika | <InlineMath math="z=\frac{90-80}{10}=1" /> |
+| <InlineMath math="\mu - \sigma" /> sampai <InlineMath math="\mu + \sigma" /> | <InlineMath math="68{,}27\%" /> |
+| <InlineMath math="\mu - 2\sigma" /> sampai <InlineMath math="\mu + 2\sigma" /> | <InlineMath math="95{,}45\%" /> |
+| <InlineMath math="\mu - 3\sigma" /> sampai <InlineMath math="\mu + 3\sigma" /> | <InlineMath math="99{,}73\%" /> |
 
-Nilai matematika memiliki **posisi lebih tinggi relatif terhadap kelompoknya**, meskipun skor mentah 80 lebih kecil daripada 90. Perbandingan ini mengukur posisi dalam distribusi, bukan menyamakan kesulitan kedua ujian.
+Misalkan tinggi badan sekelompok remaja berdistribusi <InlineMath math="N(165, 6^2)" /> dalam sentimeter. Sekitar <InlineMath math="68\%" /> tinggi badan berada antara <InlineMath math="159" /> dan <InlineMath math="171" /> cm, dan sekitar <InlineMath math="95\%" /> antara <InlineMath math="153" /> dan <InlineMath math="177" /> cm. Hanya sekitar <InlineMath math="0{,}27\%" /> yang berjarak lebih dari <InlineMath math="18" /> cm dari rata-rata.
 
-## Menghitung Peluang Normal di Antara Dua Batas
+## Skor Z Membakukan Setiap Normal
 
-Misalkan <InlineMath math="X" /> terdistribusi normal dengan <InlineMath math="\mu = 50" /> dan <InlineMath math="\sigma = 10" />. Tentukan peluang bahwa <InlineMath math="X" /> berada antara <InlineMath math="45" /> dan <InlineMath math="62" />.
+Skor z mengubah nilai <InlineMath math="x" /> menjadi jarak dari rata-rata dalam satuan simpangan baku:
 
-**Langkah 1**: Transformasi ke z-score
+<BlockMath math="z = \frac{x - \mu}{\sigma}" />
+
+Jika <InlineMath math="X \sim N(\mu, \sigma^2)" />, maka <InlineMath math="Z = \frac{X - \mu}{\sigma}" /> berdistribusi **normal baku <InlineMath math="N(0, 1)" />**. Akibatnya satu tabel peluang kumulatif <InlineMath math="\Phi(z) = P(Z < z)" /> cukup untuk semua distribusi normal. Tabel biasanya hanya memuat <InlineMath math="z" /> positif, dan simetri kurva memberi sisanya: <InlineMath math="\Phi(-z) = 1 - \Phi(z)" />.
+
+Skor z juga membandingkan nilai dari kelompok yang berbeda. Nilai matematika <InlineMath math="80" /> berasal dari distribusi dengan rata-rata <InlineMath math="70" /> dan simpangan baku <InlineMath math="5" />, sedangkan nilai fisika <InlineMath math="90" /> berasal dari distribusi dengan rata-rata <InlineMath math="80" /> dan simpangan baku <InlineMath math="10" />.
+
+| Mata pelajaran | Skor z |
+| --- | --- |
+| Matematika | <InlineMath math="z = \frac{80 - 70}{5} = 2" /> |
+| Fisika | <InlineMath math="z = \frac{90 - 80}{10} = 1" /> |
+
+Nilai matematika **lebih tinggi relatif terhadap kelompoknya**, walaupun skor mentah <InlineMath math="80" /> lebih kecil daripada <InlineMath math="90" />. Perbandingan ini mengukur posisi dalam distribusi, bukan menyamakan kesulitan kedua ujian.
+
+## Menghitung Peluang dengan Tabel Z
+
+Peluang normal dihitung dalam tiga langkah: bakukan batas-batasnya, baca <InlineMath math="\Phi" /> dari tabel, lalu **kurangkan luas kumulatif batas bawah dari luas kumulatif batas atas**.
+
+**Contoh 1**. Misalkan <InlineMath math="X" /> berdistribusi normal dengan <InlineMath math="\mu = 50" /> dan <InlineMath math="\sigma = 10" />. Peluang <InlineMath math="45 < X < 62" /> dihitung dari skor z kedua batas:
 
 <MathContainer>
-<BlockMath math="z_1 = \frac{45 - 50}{10} = \frac{-5}{10} = -0{,}5" />
-<BlockMath math="z_2 = \frac{62 - 50}{10} = \frac{12}{10} = 1{,}2" />
+  <BlockMath math="z_1 = \frac{45 - 50}{10} = -0{,}5, \qquad z_2 = \frac{62 - 50}{10} = 1{,}2" />
+  <BlockMath math="P(45 < X < 62) = \Phi(1{,}2) - \Phi(-0{,}5) \approx 0{,}8849 - 0{,}3085 = 0{,}5764" />
 </MathContainer>
 
-**Langkah 2**: Gunakan tabel distribusi normal standar
+Peluangnya sekitar <InlineMath math="0{,}5764" />, atau <InlineMath math="57{,}64\%" />. Grafik interaktif menunjukkan luas itu pada kurva normal baku, di antara <InlineMath math="z = -0{,}5" /> dan <InlineMath math="z = 1{,}2" />.
 
-Interval yang telah dibakukan adalah <InlineMath math="P(-0{,}5 < Z < 1{,}2)" />. Kurangi **peluang kumulatif pada batas bawah** dari **peluang kumulatif pada batas atas**:
+<LineEquation
+  title={<>Luas di antara <InlineMath math="z = -0{,}5" /> dan <InlineMath math="z = 1{,}2" /></>}
+  description={<>Busur tebal adalah bagian kurva normal baku di atas selang yang dibakukan. Luas di bawah busur itu sama dengan <InlineMath math="P(45 < X < 62) \approx 0{,}5764" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0.2, 5.5]}
+  cameraTarget={[0, 0.2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 701 }, (_, index) => {
+        const x = -3.5 + index / 100;
+        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#9333ea",
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: Array.from({ length: 341 }, (_, index) => {
+        const x = -0.5 + index / 200;
+        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
+      }),
+      color: "#0d9488",
+      lineWidth: 4,
+      smooth: false,
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: -0.5, y: 0, z: 0 },
+        { x: -0.5, y: Math.exp(-0.5 * 0.5 ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="-0{,}5" />, at: 0, offset: [0, -0.2, 0] }],
+    },
+    {
+      points: [
+        { x: 1.2, y: 0, z: 0 },
+        { x: 1.2, y: Math.exp(-0.5 * 1.2 ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
+      ],
+      color: "#ea580c",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="1{,}2" />, at: 0, offset: [0, -0.2, 0] }],
+    },
+  ]}
+/>
 
-<BlockMath math="\begin{aligned} P(a &lt; Z &lt; b) &amp;= P(Z &lt; b) \\ &amp;\quad{}- P(Z &lt; a) \end{aligned}" />
+Periksa dengan membagi selang di pusat. Bagian kiri <InlineMath math="P(-0{,}5 < Z < 0) = 0{,}5 - 0{,}3085 = 0{,}1915" />, dan bagian kanan <InlineMath math="P(0 < Z < 1{,}2) = 0{,}8849 - 0{,}5 = 0{,}3849" />. Jumlahnya <InlineMath math="0{,}1915 + 0{,}3849 = 0{,}5764" />, sama dengan hasil pertama.
 
-Dari tabel distribusi normal standar:
+**Contoh 2**. Dengan tinggi badan <InlineMath math="N(165, 6^2)" />, peluang seorang remaja lebih tinggi dari <InlineMath math="177" /> cm adalah luas ekor kanan:
 
-- <InlineMath math="P(Z < -0{,}5) \approx 0{,}3085" />
-- <InlineMath math="P(Z < 1{,}2) \approx 0{,}8849" />
+<MathContainer>
+  <BlockMath math="z = \frac{177 - 165}{6} = 2" />
+  <BlockMath math="P(X > 177) = 1 - \Phi(2) \approx 1 - 0{,}9772 = 0{,}0228" />
+</MathContainer>
 
-**Langkah 3**: Hitung peluang akhir
+Periksa dengan aturan <InlineMath math="95\%" />: luas <InlineMath math="95{,}45\%" /> berada dalam dua simpangan baku, jadi sisanya <InlineMath math="4{,}55\%" /> terbagi rata ke dua ekor. Satu ekor berisi sekitar <InlineMath math="2{,}28\%" />, cocok dengan <InlineMath math="0{,}0228" />.
 
-<BlockMath math="\begin{aligned} &amp;P(45 &lt; X &lt; 62) \\ &amp;= P(-0{,}5 &lt; Z &lt; 1{,}2) \\ &amp;\approx 0{,}8849 - 0{,}3085 \\ &amp;= 0{,}5764 \end{aligned}" />
+## Kesalahan yang Sering Terjadi
 
-Jadi, peluang bahwa <InlineMath math="X" /> berada antara <InlineMath math="45" /> dan <InlineMath math="62" /> adalah <InlineMath math="0{,}5764" /> atau sekitar <InlineMath math="57{,}64\%" />.
+| Kesalahan | Mengapa keliru | Cara memeriksa |
+| --- | --- | --- |
+| Membaca <InlineMath math="f(x)" /> sebagai peluang | <InlineMath math="f(x)" /> adalah tinggi kepadatan dan bisa lebih dari <InlineMath math="1" /> | Peluang adalah luas dan selalu di antara <InlineMath math="0" /> dan <InlineMath math="1" /> |
+| Membakukan dengan varians | Skor z memakai simpangan baku <InlineMath math="\sigma" />, bukan <InlineMath math="\sigma^2" /> | Pada <InlineMath math="N(50, 100)" />, simpangan bakunya <InlineMath math="10" /> |
+| Membaca <InlineMath math="P(X > a)" /> langsung dari tabel | Tabel z memberi luas di kiri, <InlineMath math="P(Z < z)" /> | Ekor kanan adalah <InlineMath math="1 - \Phi(z)" /> |
+| Mengurangkan dengan urutan terbalik | <InlineMath math="P(a < Z < b) = \Phi(b) - \Phi(a)" /> untuk <InlineMath math="a < b" /> | Peluang hasilnya harus positif |
+| Memakai model normal untuk data yang sangat miring | Model normal mengandaikan sebaran yang simetris | Bandingkan rata-rata dan median data lebih dulu |
+
+Sebelum menghitung, **gambar sketsa kurva dan arsir luas yang ditanyakan**. Sketsa itu langsung menunjukkan apakah jawabanmu harus kurang dari <InlineMath math="0{,}5" />, lebih dari <InlineMath math="0{,}5" />, atau mendekati salah satu angka aturan <InlineMath math="68" />, <InlineMath math="95" />, dan <InlineMath math="99{,}7" /> persen.
+
+## Latihan Soal
+
+Soal pertama melatih skor z, soal kedua dan ketiga menghitung luas, dan soal keempat membalik arahnya, dari peluang ke nilai batas. Pakai tabel z dengan empat angka desimal, lalu **periksa jawabanmu dengan sketsa kurva** sebelum membaca pembahasan.
+
+1. Nilai ujian berdistribusi <InlineMath math="N(70, 8^2)" />. Tentukan skor z untuk nilai <InlineMath math="82" /> dan jelaskan artinya.
+
+2. Dengan distribusi nilai yang sama, tentukan peluang seorang siswa mendapat nilai kurang dari <InlineMath math="58" />.
+
+3. Berat kemasan gula berdistribusi normal dengan rata-rata <InlineMath math="250" /> g dan simpangan baku <InlineMath math="5" /> g. Tentukan peluang berat satu kemasan berada antara <InlineMath math="240" /> g dan <InlineMath math="260" /> g.
+
+4. Waktu menyelesaikan sebuah tes berdistribusi normal dengan rata-rata <InlineMath math="60" /> menit dan simpangan baku <InlineMath math="12" /> menit. Tentukan batas waktu yang hanya dilampaui oleh <InlineMath math="10\%" /> peserta paling lama.
+
+### Pembahasan
+
+**Soal 1**. Skor z membandingkan jarak dari rata-rata dengan simpangan baku:
+
+<BlockMath math="z = \frac{82 - 70}{8} = \frac{12}{8} = 1{,}5" />
+
+Nilai <InlineMath math="82" /> berada **satu setengah simpangan baku di atas rata-rata**. Periksa: <InlineMath math="70 + 1{,}5 \cdot 8 = 82" />.
+
+**Soal 2**. Skor z untuk <InlineMath math="58" /> adalah <InlineMath math="\frac{58 - 70}{8} = -1{,}5" />. Tabel hanya memuat z positif, jadi pakai simetri:
+
+<BlockMath math="P(X < 58) = \Phi(-1{,}5) = 1 - \Phi(1{,}5) \approx 1 - 0{,}9332 = 0{,}0668" />
+
+Periksa: <InlineMath math="58" /> dan <InlineMath math="82" /> berjarak sama dari <InlineMath math="70" />, jadi **kedua ekor sama luas**, dan <InlineMath math="P(X > 82) = 1 - 0{,}9332" /> juga <InlineMath math="0{,}0668" />.
+
+**Soal 3**. Kedua batas berjarak <InlineMath math="10" /> g dari rata-rata, yaitu <InlineMath math="z = \pm 2" />:
+
+<BlockMath math="P(240 < X < 260) = \Phi(2) - \Phi(-2) \approx 0{,}9772 - 0{,}0228 = 0{,}9544" />
+
+Periksa dengan aturan <InlineMath math="95\%" />: selang ini tepat **dua simpangan baku di kiri dan kanan rata-rata**, dan nilai eksaknya <InlineMath math="0{,}9545" />. Selisih <InlineMath math="0{,}0001" /> berasal dari pembulatan tabel.
+
+**Soal 4**. Batas <InlineMath math="c" /> memenuhi <InlineMath math="P(X > c) = 0{,}10" />, jadi luas di kirinya <InlineMath math="0{,}90" />. Tabel memberi <InlineMath math="\Phi(1{,}28) \approx 0{,}8997" />, nilai terdekat ke <InlineMath math="0{,}90" />, sehingga <InlineMath math="z \approx 1{,}28" />. Ubah kembali ke menit:
+
+<BlockMath math="c = \mu + z\sigma \approx 60 + 1{,}28 \cdot 12 = 75{,}36" />
+
+Batasnya sekitar <InlineMath math="75{,}4" /> menit. Periksa: <InlineMath math="\frac{75{,}36 - 60}{12} = 1{,}28" />, dan luas di kanan skor itu <InlineMath math="1 - 0{,}8997 \approx 0{,}10" />, jadi **hanya sepersepuluh peserta melewati batas itu**.
