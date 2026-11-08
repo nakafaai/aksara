@@ -1,20 +1,17 @@
-Jabatannya berbeda, jadi urutan pemilihan diperhatikan dan ini soal **permutasi**. Syarat larangan lebih mudah ditangani dengan menghitung semua susunan lalu **membuang susunan yang memuat Ani dan Budi sekaligus**.
+Yang dihitung hanyalah **siapa berpasangan dengan siapa**. Karena pasangan tidak diberi nama, urutan munculnya pasangan tidak boleh menambah hitungan.
 
-# Semua susunan tanpa syarat
+# Membentuk pasangan satu per satu
 
-<BlockMath math="P(7,3)=7\cdot6\cdot5=210" />
+Pilih siswa mana pun, misalnya siswa pertama dalam daftar. Ia dapat dipasangkan dengan 5 siswa lain. Dari 4 siswa yang tersisa, ambil yang pertama dalam daftar, dan ia dapat dipasangkan dengan 3 siswa. Dua siswa terakhir **otomatis menjadi satu pasangan**.
 
-# Susunan yang dilarang
+<BlockMath math="5\cdot3\cdot1=15" />
 
-Jika Ani dan Budi sama-sama terpilih, pengurus ketiga dipilih dari 5 calon lain. Ketiga orang itu lalu dibagi ke tiga jabatan dalam <InlineMath math="3!" /> cara.
+# Pemeriksaan dengan kombinasi
 
-<BlockMath math="\begin{aligned}
-\text{dilarang}&=5\cdot3!=30\\
-\text{banyak cara}&=210-30=180
-\end{aligned}" />
+Jika pasangan diberi nomor 1, 2, dan 3, banyak caranya <InlineMath math="\binom62\binom42\binom22=15\cdot6\cdot1=90" />. Setiap pembagian tanpa nomor muncul **sebanyak <InlineMath math="3!=6" /> kali** dalam hitungan itu, satu kali untuk setiap urutan nomor.
 
-Pemeriksaan dengan cara langsung: tanpa Ani dan Budi ada <InlineMath math="P(5,3)=60" /> cara, dan dengan tepat salah satu dari mereka ada <InlineMath math="2\cdot\binom52\cdot3!=120" /> cara. Jumlahnya <InlineMath math="60+120=180" />.
+<BlockMath math="\frac{90}{3!}=15" />
 
-Nilai 210 mengabaikan syarat larangan. Nilai 150 membuang 60 susunan, karena menghitung pasangan Ani dan Budi dua kali.
+Nilai 90 memperlakukan pasangan seolah-olah bernomor, dan nilai 45 hanya membagi 90 dengan 2. Nilai 6 dan 10 tidak menghitung semua cara memasangkan siswa yang tersisa.
 
-Jadi, banyak cara memilih ketiga pengurus adalah **180**.
+Jadi, banyak cara membagi keenam siswa adalah **15**.

@@ -1,20 +1,17 @@
-The positions are different, so the order matters and this is **a permutation** problem. The restriction is easiest to handle by counting all arrangements and then **removing those that contain both Ani and Budi**.
+All that counts is **who is paired with whom**. Since the pairs have no names, the order in which the pairs appear must not add to the count.
 
-# All arrangements without the condition
+# Forming the pairs one at a time
 
-<BlockMath math="P(7,3)=7\cdot6\cdot5=210" />
+Take any student, for example the first on the list. They can be paired with 5 others. Of the 4 students left, take the first on the list, who can be paired with 3 others. The last two students **automatically form a pair**.
 
-# Forbidden arrangements
+<BlockMath math="5\cdot3\cdot1=15" />
 
-If Ani and Budi are both chosen, the third officer comes from the other 5 candidates. These three people are then assigned to the three positions in <InlineMath math="3!" /> ways.
+# Check with combinations
 
-<BlockMath math="\begin{aligned}
-\text{forbidden}&=5\cdot3!=30\\
-\text{ways}&=210-30=180
-\end{aligned}" />
+If the pairs were numbered 1, 2 and 3, the count would be <InlineMath math="\binom62\binom42\binom22=15\cdot6\cdot1=90" />. Each unnumbered division appears **<InlineMath math="3!=6" /> times** in that count, once for each order of the numbers.
 
-Direct check: without Ani and Budi there are <InlineMath math="P(5,3)=60" /> ways, and with exactly one of them there are <InlineMath math="2\cdot\binom52\cdot3!=120" /> ways. The total is <InlineMath math="60+120=180" />.
+<BlockMath math="\frac{90}{3!}=15" />
 
-The value 210 ignores the restriction. The value 150 removes 60 arrangements, counting the pair Ani and Budi twice.
+The value 90 treats the pairs as numbered, and 45 only divides 90 by 2. The values 6 and 10 do not count every way of pairing the remaining students.
 
-So the number of ways to choose the three officers is **180**.
+So the number of ways to divide the six students is **15**.

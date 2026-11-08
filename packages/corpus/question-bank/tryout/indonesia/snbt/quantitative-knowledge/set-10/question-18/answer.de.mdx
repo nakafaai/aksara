@@ -1,20 +1,17 @@
-Die Ämter sind verschieden, die Reihenfolge zählt also, und es geht um **Permutationen**. Die Einschränkung behandelst du am einfachsten, indem du alle Besetzungen zählst und dann **die Besetzungen mit Ani und Budi zugleich abziehst**.
+Es zählt nur, **wer mit wem ein Paar bildet**. Da die Paare keine Namen haben, darf die Reihenfolge der Paare die Anzahl nicht erhöhen.
 
-# Alle Besetzungen ohne Bedingung
+# Die Paare nacheinander bilden
 
-<BlockMath math="P(7,3)=7\cdot6\cdot5=210" />
+Nimm einen beliebigen Schüler, etwa den ersten auf der Liste. Er kann mit 5 anderen ein Paar bilden. Von den 4 übrigen nimmst du den ersten auf der Liste, und er kann mit 3 anderen ein Paar bilden. Die letzten beiden **bilden automatisch ein Paar**.
 
-# Verbotene Besetzungen
+<BlockMath math="5\cdot3\cdot1=15" />
 
-Sind Ani und Budi beide gewählt, kommt die dritte Person aus den anderen 5 Kandidaten. Diese drei Personen werden dann auf <InlineMath math="3!" /> Arten auf die drei Ämter verteilt.
+# Kontrolle mit Kombinationen
 
-<BlockMath math="\begin{aligned}
-\text{verboten}&=5\cdot3!=30\\
-\text{Möglichkeiten}&=210-30=180
-\end{aligned}" />
+Wären die Paare mit 1, 2 und 3 nummeriert, gäbe es <InlineMath math="\binom62\binom42\binom22=15\cdot6\cdot1=90" /> Möglichkeiten. Jede Einteilung ohne Nummern taucht darin **<InlineMath math="3!=6" />-mal auf**, einmal für jede Reihenfolge der Nummern.
 
-Direkte Kontrolle: Ohne Ani und Budi gibt es <InlineMath math="P(5,3)=60" /> Möglichkeiten, mit genau einem der beiden <InlineMath math="2\cdot\binom52\cdot3!=120" />. Zusammen sind das <InlineMath math="60+120=180" />.
+<BlockMath math="\frac{90}{3!}=15" />
 
-Der Wert 210 übersieht die Einschränkung. Der Wert 150 zieht 60 Besetzungen ab und zählt das Paar Ani und Budi doppelt.
+Der Wert 90 behandelt die Paare als nummeriert, und 45 teilt 90 nur durch 2. Die Werte 6 und 10 zählen nicht alle Möglichkeiten, die übrigen Schüler zu paaren.
 
-Es gibt also **180** Möglichkeiten, die drei Ämter zu besetzen.
+Es gibt also **15** Möglichkeiten, die sechs Schüler einzuteilen.
