@@ -27,18 +27,22 @@ Why is this true? Since <InlineMath math="\chi_A(t) = \det(A - t \cdot I) = (a_{
 
 No full determinant expansion or root-finding procedure is needed for a triangular matrix.
 
-Before you compute anything, look at the shape of the matrix, because it decides your path.
+A diagonal matrix scales each coordinate axis by its own diagonal entry. For <InlineMath math="D=\operatorname{diag}(2,\tfrac12)" />, the vectors <InlineMath math="e_1" /> and <InlineMath math="e_2" /> are eigenvectors with eigenvalues <InlineMath math="2" /> and <InlineMath math="\tfrac12" />, while a mixed vector such as <InlineMath math="(1,1)" /> changes direction.
 
-<Mermaid
-  title="Reading or computing eigenvalues"
-  description="The shape of the matrix decides which path you take."
-  chart={`
-    flowchart TD
-        A[Matrix A] --> B{Diagonal or triangular?}
-        B -->|Yes| C[Read the main diagonal]
-        B -->|No| D["Compute χ_A(t) = det(A - tI)"]
-        D --> E[Find the roots of χ_A]
-  `}
+<MathVisual
+  title={<><InlineMath math="D=\operatorname{diag}(2,\tfrac12)" /> stretches the axes</>}
+  description={<>The gray unit square becomes the violet rectangle. The axis vectors only change length, by the diagonal entries <InlineMath math="2" /> and <InlineMath math="\tfrac12" />. The teal vector <InlineMath math="(1,1)" /> turns into the magenta vector <InlineMath math="(2,\tfrac12)" />, which leaves its line.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 / 2 }, { x: 0, y: 1 / 2 }], appearance: "secondary" },
+      { id: "mixed", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "turned", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 / 2 }, appearance: "answer" },
+    ],
+  }}
 />
 
 ## Upper and Lower Triangular Matrices
@@ -51,7 +55,7 @@ For example, off-diagonal entries can change while the **same eigenvalues** rema
 
 <BlockMath math="T=\begin{pmatrix}2&4&1\\0&2&3\\0&0&-1\end{pmatrix},\qquad \chi_T(t)=(2-t)^2(-1-t)" />
 
-Thus 2 occurs twice and −1 once. This gives the eigenvalues, but does not by itself prove diagonalizability.
+Thus <InlineMath math="2" /> occurs twice and <InlineMath math="-1" /> once. This gives the eigenvalues, but does not by itself prove diagonalizability.
 
 For <InlineMath math="T" /> above, the eigenvalues <InlineMath math="2" /> and <InlineMath math="-1" /> can be read straight from the diagonal. Rotate this three-dimensional scene: the vector <InlineMath math="e_1" /> is only stretched by two along its own axis, because the first column of <InlineMath math="T" /> is <InlineMath math="(2,0,0)^T" />. The vector <InlineMath math="v=(1,-1,1)^T" /> satisfies <InlineMath math="Tv=-v" />, so its image points exactly the other way. The entries <InlineMath math="4" />, <InlineMath math="1" />, and <InlineMath math="3" /> above the diagonal change the eigenvectors, but they never change the eigenvalues.
 
@@ -119,6 +123,31 @@ Its characteristic polynomial is:
 
 **The roots of this characteristic polynomial** are <InlineMath math="\lambda_1 = 2" /> and <InlineMath math="\lambda_2 = 0" />.
 
+The eigenvalues <InlineMath math="1\pm i=\sqrt2\,e^{\pm i\pi/4}" /> have modulus <InlineMath math="\sqrt2" /> and angle <InlineMath math="45^\circ" />. Apply <InlineMath math="A" /> to <InlineMath math="e_1" /> again and again, and every step rotates the vector by that angle and stretches it by that modulus.
+
+<MathVisual
+  title={<>Powers of <InlineMath math="A=\begin{pmatrix}1&-1\\1&1\end{pmatrix}" /> turn and stretch</>}
+  description={<>The magenta polyline joins <InlineMath math="e_1" />, <InlineMath math="Ae_1" />, <InlineMath math="A^2e_1" />, <InlineMath math="A^3e_1" />, and <InlineMath math="A^4e_1=(-4,0)" />. Each step turns by <InlineMath math="45^\circ" /> and stretches by <InlineMath math="\sqrt2" />, so no real direction stays on its line.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 1.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "fourth", kind: "segment", from: { x: 0, y: 0 }, to: { x: -4, y: 0 }, appearance: "construction" },
+      { id: "iterates", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 2 }, { x: -2, y: 2 }, { x: -4, y: 0 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "fourth", objectId: "fourth", at: { x: -4, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "start": <InlineMath math="e_1" />,
+    "fourth": <InlineMath math="A^4e_1" />,
+  }}
+/>
+
 ## Characteristic Polynomial Factorization
 
 When <InlineMath math="A \in \mathbb{C}^{n \times n}" /> has eigenvalues <InlineMath math="\lambda_1, \ldots, \lambda_n" /> **counted with algebraic multiplicity**, its characteristic polynomial factors as:
@@ -175,15 +204,3 @@ These identities are useful checks, but they do not determine every eigenvalue o
 <BlockMath math="\det A = 0 \quad \Longleftrightarrow \quad 0 \in \sigma(A)" />
 
 So a square matrix is singular exactly when zero is one of its eigenvalues.
-
-Use the two checks in this diagram every time you finish finding the roots of a characteristic polynomial.
-
-<Mermaid
-  title="Two quick checks for eigenvalues"
-  description="The sum and product of the eigenvalues must match the trace and determinant."
-  chart={`
-    flowchart LR
-        A[Roots λ_1, ..., λ_n of χ_A] --> B[λ_1 + ... + λ_n = tr A]
-        A --> C[λ_1 · ... · λ_n = det A]
-  `}
-/>

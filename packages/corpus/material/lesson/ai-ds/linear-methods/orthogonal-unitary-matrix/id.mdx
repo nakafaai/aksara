@@ -45,20 +45,6 @@ Semua nilai singularnya sama dengan <InlineMath math="1" />, sehingga
 
 Perkalian dengan matriks tersebut tidak memperbesar galat relatif dalam norma Euklides. Inilah alasan faktorisasi <InlineMath math="\mathrm{QR}" /> menggunakan reflektor Householder dan rotasi Givens.
 
-Diagram ini menunjukkan mengapa satu persamaan <InlineMath math="Q^TQ=I" /> sudah cukup untuk menjaga semua ukuran geometri.
-
-<Mermaid
-  title="Satu syarat, banyak akibat"
-  description="Satu persamaan membawa semua sifat yang dijaga matriks ortogonal."
-  chart={`
-    flowchart TD
-        A[Q^T Q = I] --> B[Kolom Q ortonormal]
-        A --> C[⟨Qx, Qy⟩ = ⟨x, y⟩]
-        C --> D[Panjang tetap: ‖Qx‖ = ‖x‖]
-        C --> E[Sudut tetap]
-  `}
-/>
-
 ## Determinan dan Orientasi
 
 Untuk matriks uniter,
@@ -74,19 +60,6 @@ Untuk matriks ortogonal real, determinannya real, sehingga
 
 Kasus <InlineMath math="\det Q=1" /> **mempertahankan orientasi**. Kasus <InlineMath math="\det Q=-1" /> membalik orientasi dan mengandung komponen refleksi.
 
-Cek tanda determinan untuk tahu apakah matriks ortogonal real memutar atau mencerminkan.
-
-<Mermaid
-  title="Determinan memisahkan rotasi dan refleksi"
-  description="Untuk matriks ortogonal real, determinannya hanya bisa satu atau minus satu."
-  chart={`
-    flowchart TD
-        A[Q ortogonal real] --> B{det Q}
-        B -->|+1| C[Rotasi: orientasi tetap]
-        B -->|-1| D[Refleksi: orientasi terbalik]
-  `}
-/>
-
 ## Nilai Eigen dan Struktur Spektral
 
 Jika <InlineMath math="Uv=\lambda v" /> dengan <InlineMath math="v\ne0" />, maka
@@ -101,6 +74,34 @@ Jadi, setiap nilai eigen berada pada **lingkaran satuan kompleks**. Nilai eigen 
 <BlockMath math="U=V\operatorname{diag}(e^{i\theta_1},\ldots,e^{i\theta_n})V^H" />
 
 Dalam dekomposisi ini, <InlineMath math="V" /> adalah matriks uniter. Untuk matriks dengan entri bilangan real, matriks ortogonal dapat direduksi menjadi blok-blok yang terdiri atas <InlineMath math="1" />, <InlineMath math="-1" />, dan rotasi bidang.
+
+Gambarkan nilai eigen dari dua contoh di bawah sebagai bilangan kompleks. Rotasi <InlineMath math="R(60^\circ)" /> punya pasangan sekawan <InlineMath math="e^{\pm i\pi/3}" />, dan refleksi Householder punya <InlineMath math="1" /> dan <InlineMath math="-1" />. Semuanya bermodulus <InlineMath math="1" />.
+
+<MathVisual
+  title={<>Nilai eigen pada lingkaran satuan</>}
+  description={<>Lingkaran satuan abu-abu di bidang kompleks. Titik magenta <InlineMath math="e^{\pm i\pi/3}=\tfrac12\pm\tfrac{\sqrt3}2i" /> adalah nilai eigen rotasi <InlineMath math="R(60^\circ)" />, dan busur kuning menandai sudut <InlineMath math="60^\circ" />. Titik hijau toska <InlineMath math="1" /> dan <InlineMath math="-1" /> adalah nilai eigen refleksi <InlineMath math="H" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.4, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "upper", kind: "point", at: { x: 1 / 2, y: Math.sqrt(3) / 2 }, appearance: "answer" },
+      { id: "lower", kind: "point", at: { x: 1 / 2, y: -Math.sqrt(3) / 2 }, appearance: "answer" },
+      { id: "plus", kind: "point", at: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "minus", kind: "point", at: { x: -1, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "upper", objectId: "upper", at: { x: 1 / 2, y: Math.sqrt(3) / 2 }, placement: "above-right" },
+      { key: "lower", objectId: "lower", at: { x: 1 / 2, y: -Math.sqrt(3) / 2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "upper": <InlineMath math="e^{i\pi/3}" />,
+    "lower": <InlineMath math="e^{-i\pi/3}" />,
+  }}
+/>
 
 ## Contoh Rotasi
 
@@ -171,6 +172,33 @@ Matriks <InlineMath math="H" /> merefleksikan vektor terhadap **hiperbidang yang
 </MathContainer>
 
 Dari kedua identitas di atas, kita memperoleh <InlineMath math="H^TH=I" />. Pada arah <InlineMath math="u" />, matriks <InlineMath math="H" /> memiliki nilai eigen <InlineMath math="-1" />. Setiap vektor yang tegak lurus terhadap <InlineMath math="u" /> memiliki nilai eigen <InlineMath math="1" />. Karena itu, <InlineMath math="\det H=-1" />.
+
+Di bidang, ambil <InlineMath math="u=\tfrac1{\sqrt2}(1,1)" />. Maka <InlineMath math="uu^T=\tfrac12\begin{pmatrix}1&1\\1&1\end{pmatrix}" />, jadi <InlineMath math="H=\begin{pmatrix}0&-1\\-1&0\end{pmatrix}" /> mengirim <InlineMath math="(x,y)" /> ke <InlineMath math="(-y,-x)" />. Garis cermin <InlineMath math="y=-x" /> tegak lurus dengan <InlineMath math="u" />, dan segitiganya kembali dengan orientasi terbalik.
+
+<MathVisual
+  title={<>Refleksi Householder untuk <InlineMath math="u=\tfrac1{\sqrt2}(1,1)" /></>}
+  description={<><InlineMath math="H=I-2uu^T=\begin{pmatrix}0&-1\\-1&0\end{pmatrix}" /> mencerminkan segitiga ungu terhadap garis abu-abu <InlineMath math="y=-x" /> menjadi segitiga magenta. Vektor hijau toska <InlineMath math="u" /> menjadi vektor oranye <InlineMath math="Hu=-u" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: -3, y: 3 }, { x: 3, y: -3 }], appearance: "reference" },
+      { id: "triangle", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: 3, y: 1 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "image", kind: "polygon", vertices: [{ x: -1, y: -2 }, { x: -1, y: -3 }, { x: -2, y: -2 }], appearance: "answer" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "construction" },
+      { id: "flipped", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "normal", objectId: "normal", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "above-left" },
+      { key: "flipped", objectId: "flipped", at: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "normal": <InlineMath math="u" />,
+    "flipped": <InlineMath math="Hu=-u" />,
+  }}
+/>
 
 ## Pemeriksaan Ekuivalen dan Konsekuensi
 

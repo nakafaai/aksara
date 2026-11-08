@@ -11,22 +11,6 @@ export const metadata = {
 
 [Definisi determinan](/id/materi/ai-ds/metode-linear-ai/definisi-determinan) menghasilkan beberapa cara perhitungan. <Highlight>Rumus langsung</Highlight> cukup untuk matriks kecil. Pada matriks padat berukuran besar, eliminasi atau faktorisasi <InlineMath math="\mathrm{LU}" /> mengubah matriks menjadi bentuk segitiga dan menghindari pertumbuhan faktorial pada ekspansi kofaktor rekursif.
 
-Diagram ini memasangkan setiap ukuran matriks dengan metode yang kamu pakai.
-
-<Mermaid
-  title="Memilih metode determinan"
-  description="Ukuran matriks menentukan metodenya."
-  chart={`
-    flowchart TD
-        A[Matriks n × n] --> B{Ukuran?}
-        B -->|n = 1| C[det = a_11]
-        B -->|n = 2| D[det = a_11 a_22 - a_12 a_21]
-        B -->|n = 3| E[Ekspansi kofaktor]
-        B -->|n besar| F[Eliminasi Gauss]
-        F --> G[Hasil kali diagonal, dikali tanda tukar baris]
-  `}
-/>
-
 ## Kasus Dasar Matriks Ordo Satu
 
 Untuk matriks berukuran <InlineMath math="1 \times 1" />, determinan sangat sederhana. Jika <InlineMath math="A \in \mathbb{R}^{1 \times 1}" /> dengan <InlineMath math="A = (a_{11})" />, maka:
@@ -130,6 +114,23 @@ Determinannya adalah:
 
 > Pada ketiga jenis matriks ini, determinan sama dengan <Highlight>perkalian semua elemen diagonal utama</Highlight>.
 
+Untuk <InlineMath math="U=\begin{pmatrix}3&3/2\\0&2\end{pmatrix}" />, entri di atas diagonal hanya menggeser kolom kedua ke samping. Alas dan tingginya tetap <InlineMath math="3" /> dan <InlineMath math="2" />, jadi <InlineMath math="\det U=3\cdot2=6" />, yaitu hasil kali entri diagonalnya.
+
+<MathVisual
+  title={<>Pergeseran menjaga luas <InlineMath math="3\cdot2=6" /></>}
+  description={<>Jajar genjang ungu dibentuk oleh kolom <InlineMath math="(3,0)" /> dan kolom hijau toska <InlineMath math="(3/2,2)" /> dari matriks segitiga atas <InlineMath math="U" />. Persegi panjang abu-abu milik <InlineMath math="\operatorname{diag}(3,2)" />. Keduanya punya luas <InlineMath math="6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rectangle", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 0, y: 2 }], appearance: "reference" },
+      { id: "sheared", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 9 / 2, y: 2 }, { x: 3 / 2, y: 2 }], appearance: "secondary" },
+      { id: "column", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 2, y: 2 }, appearance: "construction" },
+    ],
+  }}
+/>
+
 ## Matriks Elementer
 
 Matriks elementer adalah matriks yang diperoleh dari matriks identitas dengan satu operasi baris elementer. Determinan matriks elementer memiliki nilai yang mudah dihitung:
@@ -148,20 +149,21 @@ Matriks elementer adalah matriks yang diperoleh dari matriks identitas dengan sa
 
 Untuk pertukaran dan transveksi, indeks menunjuk **dua baris yang berbeda**, yaitu <InlineMath math="i\neq j" />. Satu pertukaran baris mengubah tanda determinan, sedangkan penambahan kelipatan satu baris ke baris lain tidak mengubah determinan.
 
-Ingat tiga aturan di diagram ini setiap kali kamu mengubah baris selama eliminasi.
+Ambil baris-baris <InlineMath math="A=\begin{pmatrix}2&1\\1&3\end{pmatrix}" />, yang determinannya <InlineMath math="2\cdot3-1\cdot1=5" />. Mengurangkan setengah baris pertama dari baris kedua menggeser baris kedua sepanjang garis yang sejajar dengan baris pertama, jadi jajar genjangnya tetap punya alas dan tinggi yang sama.
 
-<Mermaid
-  title="Pengaruh operasi baris pada determinan"
-  description="Setiap operasi baris elementer mengubah determinan dengan cara yang pasti."
-  chart={`
-    flowchart TD
-        A[Operasi baris elementer] --> B[Tukar dua baris]
-        A --> C[Kali satu baris dengan c]
-        A --> D[Tambah kelipatan baris lain]
-        B --> E[det berganti tanda]
-        C --> F[det dikali c]
-        D --> G[det tetap]
-  `}
+<MathVisual
+  title={<>Transveksi menggeser baris tanpa mengubah luas</>}
+  description={<>Jajar genjang ungu memakai baris <InlineMath math="(2,1)" /> dan <InlineMath math="(1,3)" />. Setelah <InlineMath math="R_2\leftarrow R_2-\tfrac12R_1" />, baris kedua menjadi <InlineMath math="(0,5/2)" /> dan membentuk jajar genjang hijau toska. Ruas oranye menunjukkan pergeserannya, sejajar dengan baris pertama. Kedua luasnya sama dengan <InlineMath math="5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "before", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 3, y: 4 }, { x: 1, y: 3 }], appearance: "secondary" },
+      { id: "after", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 2, y: 7 / 2 }, { x: 0, y: 5 / 2 }], appearance: "construction" },
+      { id: "slide", kind: "segment", from: { x: 1, y: 3 }, to: { x: 0, y: 5 / 2 }, appearance: "primary" },
+    ],
+  }}
 />
 
 ## Eliminasi Gauss untuk Perhitungan Determinan

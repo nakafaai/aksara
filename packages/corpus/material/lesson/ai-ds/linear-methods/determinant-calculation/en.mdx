@@ -11,22 +11,6 @@ export const metadata = {
 
 The [determinant definition](/en/subjects/ai-ds/linear-methods/determinant) leads to several calculation methods. <Highlight>Direct formulas</Highlight> cover small matrices. For a large dense matrix, elimination or an <InlineMath math="\mathrm{LU}" /> factorization reduces the matrix to triangular form and avoids the factorial growth of recursive cofactor expansion.
 
-This diagram matches each matrix size with the method you use for it.
-
-<Mermaid
-  title="Choosing a determinant method"
-  description="The size of the matrix decides the method."
-  chart={`
-    flowchart TD
-        A[n × n matrix] --> B{Size?}
-        B -->|n = 1| C[det = a_11]
-        B -->|n = 2| D[det = a_11 a_22 - a_12 a_21]
-        B -->|n = 3| E[Cofactor expansion]
-        B -->|large n| F[Gaussian elimination]
-        F --> G[Product of the diagonal, times the swap sign]
-  `}
-/>
-
 ## Basic Case of a First Order Matrix
 
 For matrices of size <InlineMath math="1 \times 1" />, the determinant is very simple. If <InlineMath math="A \in \mathbb{R}^{1 \times 1}" /> with <InlineMath math="A = (a_{11})" />, then:
@@ -130,6 +114,23 @@ Its determinant is:
 
 > For all three types of matrices, the determinant equals <Highlight>the product of all main diagonal elements</Highlight>.
 
+For <InlineMath math="U=\begin{pmatrix}3&3/2\\0&2\end{pmatrix}" />, the entry above the diagonal only shears the second column sideways. The base and the height stay <InlineMath math="3" /> and <InlineMath math="2" />, so <InlineMath math="\det U=3\cdot2=6" />, the product of the diagonal entries.
+
+<MathVisual
+  title={<>Shearing keeps the area <InlineMath math="3\cdot2=6" /></>}
+  description={<>The violet parallelogram is spanned by the column <InlineMath math="(3,0)" /> and the teal column <InlineMath math="(3/2,2)" /> of the upper triangular matrix <InlineMath math="U" />. The gray rectangle belongs to <InlineMath math="\operatorname{diag}(3,2)" />. Both have area <InlineMath math="6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rectangle", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 0, y: 2 }], appearance: "reference" },
+      { id: "sheared", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 9 / 2, y: 2 }, { x: 3 / 2, y: 2 }], appearance: "secondary" },
+      { id: "column", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 2, y: 2 }, appearance: "construction" },
+    ],
+  }}
+/>
+
 ## Elementary Matrices
 
 Elementary matrices are matrices obtained from the identity matrix with one elementary row operation. The determinants of elementary matrices have values that are easy to calculate:
@@ -148,20 +149,21 @@ Elementary matrices are matrices obtained from the identity matrix with one elem
 
 For swaps and transvections, the indices refer to **two distinct rows**, so <InlineMath math="i\neq j" />. A single row swap changes the sign of the determinant, while adding a multiple of one row to another leaves the determinant unchanged.
 
-Keep the three rules in this diagram in mind every time you change a row during elimination.
+Take the rows of <InlineMath math="A=\begin{pmatrix}2&1\\1&3\end{pmatrix}" />, whose determinant is <InlineMath math="2\cdot3-1\cdot1=5" />. Subtracting half of the first row from the second moves the second row along a line parallel to the first row, so the parallelogram keeps its base and its height.
 
-<Mermaid
-  title="How row operations change the determinant"
-  description="Each elementary row operation changes the determinant in a fixed way."
-  chart={`
-    flowchart TD
-        A[Elementary row operation] --> B[Swap two rows]
-        A --> C[Multiply one row by c]
-        A --> D[Add a multiple of another row]
-        B --> E[det changes sign]
-        C --> F[det is multiplied by c]
-        D --> G[det stays the same]
-  `}
+<MathVisual
+  title={<>A transvection slides a row without changing the area</>}
+  description={<>The violet parallelogram uses the rows <InlineMath math="(2,1)" /> and <InlineMath math="(1,3)" />. After <InlineMath math="R_2\leftarrow R_2-\tfrac12R_1" />, the second row becomes <InlineMath math="(0,5/2)" /> and gives the teal parallelogram. The orange segment shows the slide, parallel to the first row. Both areas equal <InlineMath math="5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "before", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 3, y: 4 }, { x: 1, y: 3 }], appearance: "secondary" },
+      { id: "after", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 2, y: 7 / 2 }, { x: 0, y: 5 / 2 }], appearance: "construction" },
+      { id: "slide", kind: "segment", from: { x: 1, y: 3 }, to: { x: 0, y: 5 / 2 }, appearance: "primary" },
+    ],
+  }}
 />
 
 ## Gaussian Elimination for Determinant Calculation

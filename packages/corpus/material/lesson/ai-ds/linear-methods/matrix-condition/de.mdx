@@ -48,6 +48,35 @@ Ist <InlineMath math="A" /> reell symmetrisch, so sind ihre Singulärwerte die B
 
 Bei einer allgemeinen nichtnormalen Matrix müssen Spektralradius und Spektralnorm **nicht übereinstimmen**.
 
+Die Scherung <InlineMath math="A=\begin{pmatrix}1&1\\0&1\end{pmatrix}" /> hat den einzigen Eigenwert <InlineMath math="1" />, also <InlineMath math="\rho(A)=1" />. Die Matrix <InlineMath math="A^{\mathsf T}A=\begin{pmatrix}1&1\\1&2\end{pmatrix}" /> hat den größten Eigenwert <InlineMath math="\tfrac{3+\sqrt5}2=\varphi^2" />, also <InlineMath math="\|A\|_2=\varphi\approx1.618" />. Eine nicht normale Matrix kann einen Vektor stärker strecken, als ihre Eigenwerte zeigen.
+
+<MathVisual
+  title={<><InlineMath math="\rho(A)=1" />, aber <InlineMath math="\|A\|_2=\varphi" /></>}
+  description={<>Bei der Scherung <InlineMath math="A=\begin{pmatrix}1&1\\0&1\end{pmatrix}" /> behält der magentafarbene Eigenvektor <InlineMath math="e_1" /> die Länge <InlineMath math="1" />. Der türkise Einheitsvektor <InlineMath math="v_1" /> wird zum violetten Vektor <InlineMath math="Av_1" /> der Länge <InlineMath math="\varphi=\tfrac{1+\sqrt5}2" />, der den gelben Kreis mit Radius <InlineMath math="\|A\|_2" /> erreicht. Der graue Kreis ist der Einheitskreis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "norm", kind: "circle", center: { x: 0, y: 0 }, radius: (1 + Math.sqrt(5)) / 2, appearance: "highlight" },
+      { id: "eigen", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "singular", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, appearance: "construction" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: (3 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "eigen", objectId: "eigen", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "singular", objectId: "singular", at: { x: 1 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, placement: "above-left" },
+      { key: "image", objectId: "image", at: { x: (3 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "eigen": <InlineMath math="e_1" />,
+    "singular": <InlineMath math="v_1" />,
+    "image": <InlineMath math="Av_1" />,
+  }}
+/>
+
 ## Konditionszahl eines linearen Gleichungssystems
 
 Für eine invertierbare quadratische Matrix und eine induzierte Norm definieren wir
@@ -69,18 +98,6 @@ Im Nenner steht der Eigenwert mit dem **kleinsten Betrag**. Sein Vorzeichen ents
 | Nahe bei <InlineMath math="1" /> | Im **ungünstigsten Fall** ist die relative Änderung der Lösung ungefähr so groß wie die relative Änderung der Eingabe. |
 | Groß | Bestimmte Eingaberichtungen können viel größere relative Änderungen der Lösung erzeugen. |
 | Unendlich | Die Matrix ist singulär, daher ist das inverse Problem nicht eindeutig lösbar. |
-
-Dieses Diagramm zeigt, wie die Konditionszahl einen Fehler in den Daten mit dem Fehler der Lösung verbindet.
-
-<Mermaid
-  title="Der relative Fehler geht durch die Konditionszahl"
-  description="Die Konditionszahl begrenzt, wie stark ein Fehler in den Daten in der Lösung wachsen kann."
-  chart={`
-    flowchart LR
-        A[Relativer Fehler in b] --> B["höchstens mit κ(A) multipliziert"]
-        B --> C[Relativer Fehler in x]
-  `}
-/>
 
 ## Empfindlichkeit eines zweidimensionalen Diagonalsystems
 
@@ -167,16 +184,21 @@ Ein stabiles Verfahren kann die bereits vorhandene Empfindlichkeit eines schlech
 
 In numerischen Berechnungen sollte man die reziproke Konditionszahl aus einer zuverlässigen Faktorisierung schätzen. Man bildet <InlineMath math="A^{-1}" /> nicht eigens explizit, nur um <InlineMath math="\kappa(A)" /> auszuwerten.
 
-Halt die beiden Fragen in diesem Diagramm auseinander, wenn du ein numerisches Ergebnis beurteilst.
+Im System mit <InlineMath math="A=\begin{pmatrix}1&1\\1&1.01\end{pmatrix}" /> zeigen beide Zeilen fast in dieselbe Richtung. Eine Änderung um <InlineMath math="0.01" /> in einem Eintrag von <InlineMath math="b" /> verschiebt die Lösung um <InlineMath math="\sqrt2" />. Das ist eine Eigenschaft des Problems, also kann kein stabiler Algorithmus sie beseitigen. Ein stabiler Algorithmus fügt nur keinen viel größeren Fehler hinzu.
 
-<Mermaid
-  title="Kondition des Problems und Stabilität des Algorithmus"
-  description="Die Genauigkeit eines Ergebnisses hängt von zwei getrennten Dingen ab."
-  chart={`
-    flowchart TD
-        A[Problem Ax = b] --> B["Kondition: κ(A)"]
-        C[Algorithmus] --> D[Stabil oder nicht]
-        B --> E[Genauigkeit der berechneten Lösung]
-        D --> E
-  `}
+<MathVisual
+  title={<>Fast parallele Geraden machen das Lösen empfindlich</>}
+  description={<>Die violette Gerade <InlineMath math="x+y=2" /> und die türkise Gerade <InlineMath math="x+1.01y=2.01" /> treffen sich im magentafarbenen Punkt <InlineMath math="(1,1)" />. Mit der rechten Seite <InlineMath math="2.02" /> entsteht die orange Gerade, und die Lösung wandert zum gelben Punkt <InlineMath math="(0,2)" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 0, y: 2 }, { x: 2, y: 0 }], appearance: "secondary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 1 }, { x: 2.01, y: 0 }], appearance: "construction" },
+      { id: "shifted", kind: "line", through: [{ x: 0, y: 2 }, { x: 2.02, y: 0 }], appearance: "primary" },
+      { id: "solution", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "moved", kind: "point", at: { x: 0, y: 2 }, appearance: "highlight" },
+    ],
+  }}
 />

@@ -45,17 +45,34 @@ Bezeichne jede Minordeterminante mit <InlineMath math="c_{ij}" />. Die wechselnd
 
 Für jedes Element wird die Determinante der passenden Untermatrix mit dem Vorzeichen aus dem Schachbrettmuster <InlineMath math="(-1)^{i+j}" /> versehen.
 
-Dieses Diagramm zeigt den Weg von den Kofaktoren über die adjungierte Matrix zur Inversen.
+Nimm <InlineMath math="A=\begin{pmatrix}3&1\\1&2\end{pmatrix}" />. Die adjugierte Matrix ist <InlineMath math="\tilde A=\begin{pmatrix}2&-1\\-1&3\end{pmatrix}" />, und <InlineMath math="\det A=3\cdot2-1\cdot1=5" />. Jede Zeile von <InlineMath math="\tilde A" /> steht senkrecht auf der anderen Spalte von <InlineMath math="A" />. Deshalb hat das Produkt <InlineMath math="\tilde AA" /> außerhalb der Diagonale nur Nullen.
 
-<Mermaid
-  title="Von den Kofaktoren zur Inversen"
-  description="Die adjungierte Matrix verbindet Kofaktoren und Inverse."
-  chart={`
-    flowchart LR
-        A[Kofaktoren C_ij] --> B[Kofaktormatrix]
-        B --> C[Transponieren: adj A]
-        C --> D[A^-1 = adj A / det A]
-  `}
+<MathVisual
+  title={<>Zeilen von <InlineMath math="\tilde A" /> und Spalten von <InlineMath math="A" /></>}
+  description={<>Die violette Spalte <InlineMath math="a_1=(3,1)" /> und die türkise Spalte <InlineMath math="a_2=(1,2)" /> von <InlineMath math="A" />. Die magentafarbene Zeile <InlineMath math="r_1=(2,-1)" /> von <InlineMath math="\tilde A" /> steht senkrecht auf <InlineMath math="a_2" />, die orange Zeile <InlineMath math="r_2=(-1,3)" /> steht senkrecht auf <InlineMath math="a_1" />, und <InlineMath math="r_1\cdot a_1=r_2\cdot a_2=5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: -2, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "secondary" },
+      { id: "a2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "r1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1 }, appearance: "answer" },
+      { id: "r2", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "a1", objectId: "a1", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "a2", objectId: "a2", at: { x: 1, y: 2 }, placement: "above-right" },
+      { key: "r1", objectId: "r1", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "r2", objectId: "r2", at: { x: -1, y: 3 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "a1": <InlineMath math="a_1" />,
+    "a2": <InlineMath math="a_2" />,
+    "r1": <InlineMath math="r_1" />,
+    "r2": <InlineMath math="r_2" />,
+  }}
 />
 
 ## Identität der adjugierten Matrix
@@ -215,19 +232,28 @@ Prüfe die drei Zählerdeterminanten durch Entwicklung nach der ersten Zeile. Se
 <BlockMath math="A\begin{pmatrix}30\\25\\35\end{pmatrix}=\begin{pmatrix}30+25-35\\30-25+35\\-30+25+35\end{pmatrix}=\begin{pmatrix}20\\40\\30\end{pmatrix}=b" />
 </MathContainer>
 
-Folg diesen Schritten für jede Komponente <InlineMath math="x_j" /> der Lösung.
+Jede Gleichung des Systems ist eine Ebene im Raum. Weil <InlineMath math="\det A=-4\neq0" /> gilt, treffen sich die drei Ebenen in genau einem Punkt, und die Cramersche Regel legt ihn auf <InlineMath math="x_1=-120/(-4)=30" />, <InlineMath math="x_2=-100/(-4)=25" /> und <InlineMath math="x_3=-140/(-4)=35" />.
 
-<Mermaid
-  title="Schritte der Cramerschen Regel"
-  description="Eine Spalte ersetzen, die Determinante bilden, dann teilen."
-  chart={`
-    flowchart TD
-        A[Ax = b] --> B{det A ≠ 0?}
-        B -->|Nein| X[Keine eindeutige Lösung]
-        B -->|Ja| C[Spalte j durch b ersetzen]
-        C --> D["det A_j(b) berechnen"]
-        D --> E["x_j = det A_j(b) / det A"]
-  `}
+<MathVisual
+  title={<>Drei Ebenen treffen sich in <InlineMath math="(30,25,35)" /></>}
+  description={<>Die violette Ebene <InlineMath math="x_1+x_2-x_3=20" />, die türkise Ebene <InlineMath math="x_1-x_2+x_3=40" /> und die orange Ebene <InlineMath math="-x_1+x_2+x_3=30" /> schneiden sich im magentafarbenen Punkt, den die Cramersche Regel berechnet.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: 5, max: 55 }, y: { min: 0, max: 50 }, z: { min: 20, max: 50 } },
+    view: { kind: "isometric", target: { x: 30, y: 25, z: 35 } },
+    objects: [
+      { id: "first", kind: "polygon", vertices: [{ x: 50, y: 15, z: 45 }, { x: 30, y: 15, z: 25 }, { x: 10, y: 35, z: 25 }, { x: 30, y: 35, z: 45 }], appearance: "secondary" },
+      { id: "second", kind: "polygon", vertices: [{ x: 40, y: 45, z: 45 }, { x: 40, y: 25, z: 25 }, { x: 20, y: 5, z: 25 }, { x: 20, y: 25, z: 45 }], appearance: "construction" },
+      { id: "third", kind: "polygon", vertices: [{ x: 50, y: 35, z: 45 }, { x: 30, y: 35, z: 25 }, { x: 10, y: 15, z: 25 }, { x: 30, y: 15, z: 45 }], appearance: "primary" },
+      { id: "solution", kind: "point", at: { x: -120 / -4, y: -100 / -4, z: -140 / -4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "solution", objectId: "solution", at: { x: -120 / -4, y: -100 / -4, z: -140 / -4 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "solution": <InlineMath math="(30,25,35)" />,
+  }}
 />
 
 ## Lösungseigenschaften für ganzzahlige Matrizen

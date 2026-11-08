@@ -19,20 +19,6 @@ Die **Multiplikation von** <InlineMath math="v" /> mit <InlineMath math="A" /> �
 
 > Per Definition können Eigenwerte gleich <InlineMath math="0" /> sein, aber <Highlight>Eigenvektoren sind immer ungleich Null</Highlight>.
 
-Dieses Diagramm macht aus der Definition <InlineMath math="Av=\lambda v" /> eine Folge von Schritten, die du direkt rechnen kannst.
-
-<Mermaid
-  title="Von der Definition zu den Eigenvektoren"
-  description="Die Schritte, die aus der Definition eine Rechnung machen."
-  chart={`
-    flowchart TD
-        A[Av = λv mit v ≠ 0] --> B["(A - λI)v = 0"]
-        B --> C["det(A - λI) = 0"]
-        C --> D[Eigenwerte λ]
-        D --> E["Eigenraum ker(A - λI)"]
-  `}
-/>
-
 ## Grundlegende Eigenschaften von Eigenvektoren
 
 **Skalare Multiplikation**: Seien <InlineMath math="A \in \mathbb{K}^{n \times n}" /> und <InlineMath math="v \in \mathbb{K}^n" /> mit <InlineMath math="v \neq 0" /> ein Eigenvektor von <InlineMath math="A" /> für den Eigenwert <InlineMath math="\lambda \in \mathbb{K}" />. Dann sind alle Vielfachen <InlineMath math="t \cdot v" /> mit <InlineMath math="t \neq 0" /> auch Eigenvektoren von <InlineMath math="A" /> für denselben Eigenwert <InlineMath math="\lambda" />.
@@ -168,6 +154,34 @@ Für jeden Eigenraum gelten die folgenden Eigenschaften:
 
 7. **Schnitt der Eigenräume**: Wenn <InlineMath math="\lambda_1 \neq \lambda_2" />, dann gilt <InlineMath math="E_A(\lambda_1) \cap E_A(\lambda_2) = \{0\}" />.
 
+Mit <InlineMath math="A=\operatorname{diag}(2,2,1)" /> erfüllt jeder Vektor der Form <InlineMath math="(a,b,0)" /> die Gleichung <InlineMath math="Av=2v" />. Also ist <InlineMath math="E_A(2)" /> eine ganze Ebene mit geometrischer Multiplizität <InlineMath math="2" />, während <InlineMath math="E_A(1)" /> die von <InlineMath math="e_3" /> aufgespannte Gerade ist.
+
+<MathVisual
+  title={<>Der Eigenraum <InlineMath math="E_A(2)" /> ist eine Ebene</>}
+  description={<>Für <InlineMath math="A=\operatorname{diag}(2,2,1)" /> liegt das violette Quadrat in <InlineMath math="E_A(2)" />, der Ebene <InlineMath math="z=0" />. Der türkise Vektor <InlineMath math="v=(1,1,0)" /> wird zum magentafarbenen Vektor <InlineMath math="Av=(2,2,0)" /> in dieser Ebene. Die orange Strecke spannt <InlineMath math="E_A(1)" /> auf, die Gerade durch <InlineMath math="e_3" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 2.5 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 1, y: 1, z: 0.5 } },
+    objects: [
+      { id: "plane", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }, { x: 0, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 2, z: 0 }, appearance: "answer" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: 0 }, appearance: "construction" },
+      { id: "axis", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "vector", objectId: "vector", at: { x: 1, y: 1, z: 0 }, placement: "below-right" },
+      { key: "image", objectId: "image", at: { x: 2, y: 2, z: 0 }, placement: "right" },
+      { key: "axis", objectId: "axis", at: { x: 0, y: 0, z: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "vector": <InlineMath math="v" />,
+    "image": <InlineMath math="Av" />,
+    "axis": <InlineMath math="e_3" />,
+  }}
+/>
+
 ## Zusammenhang mit Invertibilität
 
 Eine Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> ist genau dann invertierbar, wenn **null keiner ihrer Eigenwerte** ist.
@@ -182,19 +196,30 @@ Die Multiplikation von <InlineMath math="A \cdot v = \lambda \cdot v" /> mit <In
 
 <BlockMath math="v = \lambda A^{-1}v \quad \Longrightarrow \quad A^{-1}v = \frac{1}{\lambda}v" />
 
-Die eine Frage in diesem Diagramm reicht, um zu entscheiden, ob <InlineMath math="A" /> invertierbar ist.
+Für <InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" /> liefert der Vektor <InlineMath math="v=(2,-1)" /> das Ergebnis <InlineMath math="Av=(2-2,4-4)=(0,0)=0\cdot v" />. Der Eigenwert <InlineMath math="0" /> bedeutet, dass <InlineMath math="A" /> eine ganze Richtung in den Ursprung drückt. Keine Inverse kann sie zurückholen.
 
-<Mermaid
-  title="Ein Eigenwert null und Invertierbarkeit"
-  description="Eine Frage entscheidet, ob die Matrix eine Inverse hat."
-  chart={`
-    flowchart TD
-        A[Quadratische Matrix A] --> B{Ist 0 ein Eigenwert von A?}
-        B -->|Ja| C[Ein v ≠ 0 hat Av = 0]
-        C --> D[A ist singulär]
-        B -->|Nein| E[A ist invertierbar]
-        E --> F[Eigenwerte von A^-1 sind 1/λ]
-  `}
+<MathVisual
+  title={<>Ein Eigenwert null macht die Ebene flach</>}
+  description={<><InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" /> schickt das graue Einheitsquadrat auf die violette Strecke von <InlineMath math="(0,0)" /> bis <InlineMath math="(3,6)" />. Der türkise Eigenvektor <InlineMath math="v=(2,-1)" /> wird zum magentafarbenen Punkt <InlineMath math="Av=0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -1.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 6 }, appearance: "secondary" },
+      { id: "kernel", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1 }, appearance: "construction" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "kernel", objectId: "kernel", at: { x: 2, y: -1 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "kernel": <InlineMath math="v" />,
+    "zero": <InlineMath math="Av=0" />,
+  }}
 />
 
 ## Invertibilitätskriterien

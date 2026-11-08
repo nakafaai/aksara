@@ -45,20 +45,6 @@ Alle ihre Singulärwerte sind gleich <InlineMath math="1" />. Somit gilt
 
 Die Multiplikation mit einer solchen Matrix verstärkt relative Fehler in der euklidischen Norm nicht. Deshalb beruhen <InlineMath math="\mathrm{QR}" />-Faktorisierungen auf Householder-Spiegelungen und Givens-Rotationen.
 
-Dieses Diagramm zeigt, warum die eine Gleichung <InlineMath math="Q^TQ=I" /> reicht, um jedes geometrische Maß zu erhalten.
-
-<Mermaid
-  title="Eine Bedingung, viele Folgen"
-  description="Eine Gleichung trägt jede Eigenschaft, die eine orthogonale Matrix erhält."
-  chart={`
-    flowchart TD
-        A[Q^T Q = I] --> B[Spalten von Q orthonormal]
-        A --> C[⟨Qx, Qy⟩ = ⟨x, y⟩]
-        C --> D[Längen bleiben: ‖Qx‖ = ‖x‖]
-        C --> E[Winkel bleiben]
-  `}
-/>
-
 ## Determinanten und Orientierung
 
 Für eine unitäre Matrix gilt
@@ -74,19 +60,6 @@ Bei einer reellen orthogonalen Matrix ist die Determinante reell. Daher
 
 Der Fall <InlineMath math="\det Q=1" /> **erhält die Orientierung**. Der Fall <InlineMath math="\det Q=-1" /> kehrt die Orientierung um und enthält eine Spiegelungskomponente.
 
-Prüf das Vorzeichen der Determinante, um zu sehen, ob eine reelle orthogonale Matrix dreht oder spiegelt.
-
-<Mermaid
-  title="Die Determinante trennt Drehungen von Spiegelungen"
-  description="Für eine reelle orthogonale Matrix ist die Determinante nur eins oder minus eins."
-  chart={`
-    flowchart TD
-        A[Reelle orthogonale Q] --> B{det Q}
-        B -->|+1| C[Drehung: Orientierung bleibt]
-        B -->|-1| D[Spiegelung: Orientierung kehrt sich um]
-  `}
-/>
-
 ## Eigenwerte und Spektralstruktur
 
 Gilt <InlineMath math="Uv=\lambda v" /> mit <InlineMath math="v\ne0" />, dann
@@ -101,6 +74,34 @@ Jeder Eigenwert liegt daher auf dem **komplexen Einheitskreis**. Nichtreelle Eig
 <BlockMath math="U=V\operatorname{diag}(e^{i\theta_1},\ldots,e^{i\theta_n})V^H" />
 
 In dieser Zerlegung ist <InlineMath math="V" /> unitär. Über den reellen Zahlen lässt sich eine orthogonale Matrix auf Blöcke aus <InlineMath math="1" />, <InlineMath math="-1" /> und ebenen Rotationen reduzieren.
+
+Zeichne die Eigenwerte der beiden Beispiele weiter unten als komplexe Zahlen. Die Drehung <InlineMath math="R(60^\circ)" /> hat das konjugierte Paar <InlineMath math="e^{\pm i\pi/3}" />, und die Householder-Spiegelung hat <InlineMath math="1" /> und <InlineMath math="-1" />. Alle haben den Betrag <InlineMath math="1" />.
+
+<MathVisual
+  title={<>Eigenwerte auf dem Einheitskreis</>}
+  description={<>Der graue Einheitskreis in der komplexen Ebene. Die magentafarbenen Punkte <InlineMath math="e^{\pm i\pi/3}=\tfrac12\pm\tfrac{\sqrt3}2i" /> sind die Eigenwerte der Drehung <InlineMath math="R(60^\circ)" />, und der gelbe Bogen markiert den Winkel <InlineMath math="60^\circ" />. Die türkisen Punkte <InlineMath math="1" /> und <InlineMath math="-1" /> sind die Eigenwerte der Spiegelung <InlineMath math="H" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.4, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "upper", kind: "point", at: { x: 1 / 2, y: Math.sqrt(3) / 2 }, appearance: "answer" },
+      { id: "lower", kind: "point", at: { x: 1 / 2, y: -Math.sqrt(3) / 2 }, appearance: "answer" },
+      { id: "plus", kind: "point", at: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "minus", kind: "point", at: { x: -1, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "upper", objectId: "upper", at: { x: 1 / 2, y: Math.sqrt(3) / 2 }, placement: "above-right" },
+      { key: "lower", objectId: "lower", at: { x: 1 / 2, y: -Math.sqrt(3) / 2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "upper": <InlineMath math="e^{i\pi/3}" />,
+    "lower": <InlineMath math="e^{-i\pi/3}" />,
+  }}
+/>
 
 ## Rotationsbeispiel
 
@@ -171,6 +172,33 @@ Die Matrix <InlineMath math="H" /> spiegelt einen Vektor an der zu <InlineMath m
 </MathContainer>
 
 Aus den beiden Identitäten folgt <InlineMath math="H^TH=I" />. In Richtung <InlineMath math="u" /> hat die Matrix den Eigenwert <InlineMath math="-1" />. Jeder zu <InlineMath math="u" /> senkrechte Vektor hat den Eigenwert <InlineMath math="1" />. Deshalb ist <InlineMath math="\det H=-1" />.
+
+Nimm in der Ebene <InlineMath math="u=\tfrac1{\sqrt2}(1,1)" />. Dann ist <InlineMath math="uu^T=\tfrac12\begin{pmatrix}1&1\\1&1\end{pmatrix}" />, also schickt <InlineMath math="H=\begin{pmatrix}0&-1\\-1&0\end{pmatrix}" /> den Punkt <InlineMath math="(x,y)" /> nach <InlineMath math="(-y,-x)" />. Die Spiegelachse <InlineMath math="y=-x" /> steht senkrecht auf <InlineMath math="u" />, und das Dreieck kommt mit umgekehrter Orientierung zurück.
+
+<MathVisual
+  title={<>Die Householder-Spiegelung für <InlineMath math="u=\tfrac1{\sqrt2}(1,1)" /></>}
+  description={<><InlineMath math="H=I-2uu^T=\begin{pmatrix}0&-1\\-1&0\end{pmatrix}" /> spiegelt das violette Dreieck an der grauen Geraden <InlineMath math="y=-x" /> auf das magentafarbene Dreieck. Der türkise Vektor <InlineMath math="u" /> wird zum orangen Vektor <InlineMath math="Hu=-u" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: -3, y: 3 }, { x: 3, y: -3 }], appearance: "reference" },
+      { id: "triangle", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: 3, y: 1 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "image", kind: "polygon", vertices: [{ x: -1, y: -2 }, { x: -1, y: -3 }, { x: -2, y: -2 }], appearance: "answer" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "construction" },
+      { id: "flipped", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "normal", objectId: "normal", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "above-left" },
+      { key: "flipped", objectId: "flipped", at: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "normal": <InlineMath math="u" />,
+    "flipped": <InlineMath math="Hu=-u" />,
+  }}
+/>
 
 ## Gleichwertige Prüfungen und Folgen
 

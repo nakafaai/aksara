@@ -48,6 +48,35 @@ If <InlineMath math="A" /> is real symmetric, its singular values are the absolu
 
 For a general nonnormal matrix, the spectral radius and spectral norm **need not be equal**.
 
+The shear <InlineMath math="A=\begin{pmatrix}1&1\\0&1\end{pmatrix}" /> has the single eigenvalue <InlineMath math="1" />, so <InlineMath math="\rho(A)=1" />. Its matrix <InlineMath math="A^{\mathsf T}A=\begin{pmatrix}1&1\\1&2\end{pmatrix}" /> has largest eigenvalue <InlineMath math="\tfrac{3+\sqrt5}2=\varphi^2" />, so <InlineMath math="\|A\|_2=\varphi\approx1.618" />. A nonnormal matrix can stretch some vector further than its eigenvalues show.
+
+<MathVisual
+  title={<><InlineMath math="\rho(A)=1" /> but <InlineMath math="\|A\|_2=\varphi" /></>}
+  description={<>For the shear <InlineMath math="A=\begin{pmatrix}1&1\\0&1\end{pmatrix}" />, the magenta eigenvector <InlineMath math="e_1" /> keeps length <InlineMath math="1" />. The teal unit vector <InlineMath math="v_1" /> becomes the violet vector <InlineMath math="Av_1" /> of length <InlineMath math="\varphi=\tfrac{1+\sqrt5}2" />, which reaches the amber circle of radius <InlineMath math="\|A\|_2" />. The gray circle is the unit circle.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "norm", kind: "circle", center: { x: 0, y: 0 }, radius: (1 + Math.sqrt(5)) / 2, appearance: "highlight" },
+      { id: "eigen", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "singular", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, appearance: "construction" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: (3 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "eigen", objectId: "eigen", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "singular", objectId: "singular", at: { x: 1 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, placement: "above-left" },
+      { key: "image", objectId: "image", at: { x: (3 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "eigen": <InlineMath math="e_1" />,
+    "singular": <InlineMath math="v_1" />,
+    "image": <InlineMath math="Av_1" />,
+  }}
+/>
+
 ## Condition number of a linear solve
 
 For an invertible square matrix and an induced norm, define
@@ -69,18 +98,6 @@ Use the eigenvalue with the **smallest magnitude** in the denominator. Its sign 
 | Near <InlineMath math="1" /> | In the **worst case**, the relative change in the solution is about as large as the relative change in the input. |
 | Large | Some input directions can produce much larger relative changes in the solution. |
 | Infinite | The matrix is singular, so the inverse problem is not uniquely solvable. |
-
-This diagram shows how the condition number links an error in the data with the error in the solution.
-
-<Mermaid
-  title="Relative error passes through the condition number"
-  description="The condition number bounds how much an error in the data can grow in the solution."
-  chart={`
-    flowchart LR
-        A[Relative error in b] --> B["multiplied by at most κ(A)"]
-        B --> C[Relative error in x]
-  `}
-/>
 
 ## Sensitivity of a Two Dimensional Diagonal System
 
@@ -167,16 +184,21 @@ A stable algorithm cannot remove sensitivity already present in an ill-condition
 
 In numerical work, estimate the reciprocal condition number from a trusted factorization. This gives <InlineMath math="\kappa(A)" /> without explicitly forming <InlineMath math="A^{-1}" />.
 
-Keep the two questions in this diagram apart when you judge a numerical result.
+In the system with <InlineMath math="A=\begin{pmatrix}1&1\\1&1.01\end{pmatrix}" />, the two rows point in almost the same direction. A change of <InlineMath math="0.01" /> in one entry of <InlineMath math="b" /> moves the solution by <InlineMath math="\sqrt2" />. That is a property of the problem, so no stable algorithm can remove it. A stable algorithm only avoids adding much more error on top.
 
-<Mermaid
-  title="Problem conditioning and algorithm stability"
-  description="The accuracy of a result depends on two separate things."
-  chart={`
-    flowchart TD
-        A[Problem Ax = b] --> B["Conditioning: κ(A)"]
-        C[Algorithm] --> D[Stable or not]
-        B --> E[Accuracy of the computed solution]
-        D --> E
-  `}
+<MathVisual
+  title={<>Nearly parallel lines make a sensitive solve</>}
+  description={<>The violet line <InlineMath math="x+y=2" /> and the teal line <InlineMath math="x+1.01y=2.01" /> meet at the magenta point <InlineMath math="(1,1)" />. Changing the right side to <InlineMath math="2.02" /> gives the orange line and moves the solution to the amber point <InlineMath math="(0,2)" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 0, y: 2 }, { x: 2, y: 0 }], appearance: "secondary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 1 }, { x: 2.01, y: 0 }], appearance: "construction" },
+      { id: "shifted", kind: "line", through: [{ x: 0, y: 2 }, { x: 2.02, y: 0 }], appearance: "primary" },
+      { id: "solution", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "moved", kind: "point", at: { x: 0, y: 2 }, appearance: "highlight" },
+    ],
+  }}
 />

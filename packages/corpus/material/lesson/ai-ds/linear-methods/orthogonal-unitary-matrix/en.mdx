@@ -45,20 +45,6 @@ All their singular values equal <InlineMath math="1" />, so
 
 Multiplication by such a matrix does not amplify relative errors in the Euclidean norm. This is why <InlineMath math="\mathrm{QR}" /> factorizations rely on Householder reflectors and Givens rotations.
 
-This diagram shows why the single equation <InlineMath math="Q^TQ=I" /> is enough to keep every geometric measure.
-
-<Mermaid
-  title="One condition, many consequences"
-  description="One equation carries every property an orthogonal matrix keeps."
-  chart={`
-    flowchart TD
-        A[Q^T Q = I] --> B[Columns of Q are orthonormal]
-        A --> C[⟨Qx, Qy⟩ = ⟨x, y⟩]
-        C --> D[Lengths kept: ‖Qx‖ = ‖x‖]
-        C --> E[Angles kept]
-  `}
-/>
-
 ## Determinants and Orientation
 
 For a unitary matrix,
@@ -74,19 +60,6 @@ For a real orthogonal matrix, the determinant is real, so
 
 The case <InlineMath math="\det Q=1" /> **preserves orientation**. The case <InlineMath math="\det Q=-1" /> reverses orientation and contains a reflection component.
 
-Check the sign of the determinant to tell whether a real orthogonal matrix rotates or reflects.
-
-<Mermaid
-  title="The determinant separates rotations from reflections"
-  description="For a real orthogonal matrix, the determinant can only be one or minus one."
-  chart={`
-    flowchart TD
-        A[Real orthogonal Q] --> B{det Q}
-        B -->|+1| C[Rotation: orientation kept]
-        B -->|-1| D[Reflection: orientation flipped]
-  `}
-/>
-
 ## Eigenvalues and Spectral Structure
 
 If <InlineMath math="Uv=\lambda v" /> with <InlineMath math="v\ne0" />, then
@@ -101,6 +74,34 @@ Every eigenvalue therefore lies on the **complex unit circle**. Nonreal eigenval
 <BlockMath math="U=V\operatorname{diag}(e^{i\theta_1},\ldots,e^{i\theta_n})V^H" />
 
 In this decomposition, <InlineMath math="V" /> is unitary. Over the real numbers, an orthogonal matrix can instead be reduced to blocks consisting of <InlineMath math="1" />, <InlineMath math="-1" />, and planar rotations.
+
+Plot the eigenvalues of the two examples below as complex numbers. The rotation <InlineMath math="R(60^\circ)" /> has the conjugate pair <InlineMath math="e^{\pm i\pi/3}" />, and the Householder reflection has <InlineMath math="1" /> and <InlineMath math="-1" />. All of them have modulus <InlineMath math="1" />.
+
+<MathVisual
+  title={<>Eigenvalues on the unit circle</>}
+  description={<>The gray unit circle in the complex plane. The magenta points <InlineMath math="e^{\pm i\pi/3}=\tfrac12\pm\tfrac{\sqrt3}2i" /> are the eigenvalues of the rotation <InlineMath math="R(60^\circ)" />, and the amber arc marks the angle <InlineMath math="60^\circ" />. The teal points <InlineMath math="1" /> and <InlineMath math="-1" /> are the eigenvalues of the reflection <InlineMath math="H" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.4, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "upper", kind: "point", at: { x: 1 / 2, y: Math.sqrt(3) / 2 }, appearance: "answer" },
+      { id: "lower", kind: "point", at: { x: 1 / 2, y: -Math.sqrt(3) / 2 }, appearance: "answer" },
+      { id: "plus", kind: "point", at: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "minus", kind: "point", at: { x: -1, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "upper", objectId: "upper", at: { x: 1 / 2, y: Math.sqrt(3) / 2 }, placement: "above-right" },
+      { key: "lower", objectId: "lower", at: { x: 1 / 2, y: -Math.sqrt(3) / 2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "upper": <InlineMath math="e^{i\pi/3}" />,
+    "lower": <InlineMath math="e^{-i\pi/3}" />,
+  }}
+/>
 
 ## Rotation Example
 
@@ -171,6 +172,33 @@ The matrix <InlineMath math="H" /> reflects a vector across the **hyperplane per
 </MathContainer>
 
 The two identities above give <InlineMath math="H^TH=I" />. Its eigenvalue in the direction <InlineMath math="u" /> is <InlineMath math="-1" />, while every vector perpendicular to <InlineMath math="u" /> has eigenvalue <InlineMath math="1" />. Therefore <InlineMath math="\det H=-1" />.
+
+In the plane, take <InlineMath math="u=\tfrac1{\sqrt2}(1,1)" />. Then <InlineMath math="uu^T=\tfrac12\begin{pmatrix}1&1\\1&1\end{pmatrix}" />, so <InlineMath math="H=\begin{pmatrix}0&-1\\-1&0\end{pmatrix}" /> sends <InlineMath math="(x,y)" /> to <InlineMath math="(-y,-x)" />. The mirror line <InlineMath math="y=-x" /> is perpendicular to <InlineMath math="u" />, and the triangle comes back with its orientation reversed.
+
+<MathVisual
+  title={<>The Householder reflection for <InlineMath math="u=\tfrac1{\sqrt2}(1,1)" /></>}
+  description={<><InlineMath math="H=I-2uu^T=\begin{pmatrix}0&-1\\-1&0\end{pmatrix}" /> mirrors the violet triangle across the gray line <InlineMath math="y=-x" /> onto the magenta triangle. The teal vector <InlineMath math="u" /> goes to the orange vector <InlineMath math="Hu=-u" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: -3, y: 3 }, { x: 3, y: -3 }], appearance: "reference" },
+      { id: "triangle", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: 3, y: 1 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "image", kind: "polygon", vertices: [{ x: -1, y: -2 }, { x: -1, y: -3 }, { x: -2, y: -2 }], appearance: "answer" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "construction" },
+      { id: "flipped", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "normal", objectId: "normal", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "above-left" },
+      { key: "flipped", objectId: "flipped", at: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "normal": <InlineMath math="u" />,
+    "flipped": <InlineMath math="Hu=-u" />,
+  }}
+/>
 
 ## Equivalent Checks and Consequences
 

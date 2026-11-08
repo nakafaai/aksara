@@ -27,18 +27,22 @@ Mengapa hal ini benar? Karena <InlineMath math="\chi_A(t) = \det(A - t \cdot I) 
 
 Dengan demikian, kita tidak memerlukan ekspansi determinan lengkap atau prosedur pencarian akar untuk matriks segitiga.
 
-Sebelum menghitung apa pun, lihat dulu bentuk matriksnya, karena itu menentukan jalanmu.
+Matriks diagonal menskalakan setiap sumbu koordinat dengan entri diagonalnya sendiri. Untuk <InlineMath math="D=\operatorname{diag}(2,\tfrac12)" />, vektor <InlineMath math="e_1" /> dan <InlineMath math="e_2" /> adalah vektor eigen dengan nilai eigen <InlineMath math="2" /> dan <InlineMath math="\tfrac12" />, sedangkan vektor campuran seperti <InlineMath math="(1,1)" /> berubah arah.
 
-<Mermaid
-  title="Membaca atau menghitung nilai eigen"
-  description="Bentuk matriks menentukan jalan yang kamu ambil."
-  chart={`
-    flowchart TD
-        A[Matriks A] --> B{Diagonal atau segitiga?}
-        B -->|Ya| C[Baca entri diagonal utama]
-        B -->|Tidak| D["Hitung χ_A(t) = det(A - tI)"]
-        D --> E[Cari akar χ_A]
-  `}
+<MathVisual
+  title={<><InlineMath math="D=\operatorname{diag}(2,\tfrac12)" /> meregangkan sumbu</>}
+  description={<>Persegi satuan abu-abu menjadi persegi panjang ungu. Vektor sumbu hanya berubah panjang, sebesar entri diagonal <InlineMath math="2" /> dan <InlineMath math="\tfrac12" />. Vektor hijau toska <InlineMath math="(1,1)" /> menjadi vektor magenta <InlineMath math="(2,\tfrac12)" />, yang keluar dari garisnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 / 2 }, { x: 0, y: 1 / 2 }], appearance: "secondary" },
+      { id: "mixed", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "turned", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 / 2 }, appearance: "answer" },
+    ],
+  }}
 />
 
 ## Matriks Segitiga Atas dan Bawah
@@ -51,7 +55,7 @@ Sebagai contoh, entri di luar diagonal dapat berubah sementara **nilai eigen tet
 
 <BlockMath math="T=\begin{pmatrix}2&4&1\\0&2&3\\0&0&-1\end{pmatrix},\qquad \chi_T(t)=(2-t)^2(-1-t)" />
 
-Jadi, 2 muncul dua kali dan −1 sekali. Hasil ini menentukan nilai eigen, tetapi belum membuktikan bahwa matriks dapat didiagonalisasi.
+Jadi, <InlineMath math="2" /> muncul dua kali dan <InlineMath math="-1" /> sekali. Hasil ini menentukan nilai eigen, tetapi belum membuktikan bahwa matriks dapat didiagonalisasi.
 
 Untuk <InlineMath math="T" /> di atas, nilai eigen <InlineMath math="2" /> dan <InlineMath math="-1" /> terbaca langsung dari diagonal. Putar adegan tiga dimensi ini: vektor <InlineMath math="e_1" /> hanya diregangkan dua kali di sumbunya sendiri, karena kolom pertama <InlineMath math="T" /> adalah <InlineMath math="(2,0,0)^T" />. Vektor <InlineMath math="v=(1,-1,1)^T" /> memenuhi <InlineMath math="Tv=-v" />, jadi bayangannya menunjuk tepat ke arah berlawanan. Entri <InlineMath math="4" />, <InlineMath math="1" />, dan <InlineMath math="3" /> di atas diagonal mengubah vektor eigennya, tapi tidak pernah mengubah nilai eigennya.
 
@@ -119,6 +123,31 @@ Polinomial karakteristiknya adalah:
 
 **Akar polinomial karakteristik ini** adalah <InlineMath math="\lambda_1 = 2" /> dan <InlineMath math="\lambda_2 = 0" />.
 
+Nilai eigen <InlineMath math="1\pm i=\sqrt2\,e^{\pm i\pi/4}" /> punya modulus <InlineMath math="\sqrt2" /> dan sudut <InlineMath math="45^\circ" />. Terapkan <InlineMath math="A" /> pada <InlineMath math="e_1" /> berulang kali, dan setiap langkah memutar vektor sebesar sudut itu dan meregangkannya sebesar modulus itu.
+
+<MathVisual
+  title={<>Pangkat <InlineMath math="A=\begin{pmatrix}1&-1\\1&1\end{pmatrix}" /> memutar dan meregangkan</>}
+  description={<>Garis patah magenta menghubungkan <InlineMath math="e_1" />, <InlineMath math="Ae_1" />, <InlineMath math="A^2e_1" />, <InlineMath math="A^3e_1" />, dan <InlineMath math="A^4e_1=(-4,0)" />. Setiap langkah berputar <InlineMath math="45^\circ" /> dan meregang sebesar <InlineMath math="\sqrt2" />, jadi tidak ada arah real yang tetap pada garisnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 1.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "fourth", kind: "segment", from: { x: 0, y: 0 }, to: { x: -4, y: 0 }, appearance: "construction" },
+      { id: "iterates", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 2 }, { x: -2, y: 2 }, { x: -4, y: 0 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "fourth", objectId: "fourth", at: { x: -4, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "start": <InlineMath math="e_1" />,
+    "fourth": <InlineMath math="A^4e_1" />,
+  }}
+/>
+
 ## Faktorisasi Polinomial Karakteristik
 
 Ketika <InlineMath math="A \in \mathbb{C}^{n \times n}" /> memiliki nilai eigen <InlineMath math="\lambda_1, \ldots, \lambda_n" /> yang **dihitung menurut multiplisitas aljabar**, polinomial karakteristiknya dapat difaktorkan sebagai:
@@ -175,15 +204,3 @@ Kedua identitas ini berguna untuk memeriksa hasil, tetapi belum menentukan semua
 <BlockMath math="\det A = 0 \quad \Longleftrightarrow \quad 0 \in \sigma(A)" />
 
 Jadi, matriks persegi singular tepat ketika nol merupakan salah satu nilai eigennya.
-
-Pakai dua cek di diagram ini setiap kali kamu selesai mencari akar polinom karakteristik.
-
-<Mermaid
-  title="Dua cek cepat untuk nilai eigen"
-  description="Jumlah dan hasil kali nilai eigen harus cocok dengan trace dan determinan."
-  chart={`
-    flowchart LR
-        A[Akar λ_1, ..., λ_n dari χ_A] --> B[λ_1 + ... + λ_n = tr A]
-        A --> C[λ_1 · ... · λ_n = det A]
-  `}
-/>

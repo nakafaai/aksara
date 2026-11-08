@@ -27,18 +27,22 @@ Warum ist das wahr? Da <InlineMath math="\chi_A(t) = \det(A - t \cdot I) = (a_{1
 
 Damit sind für eine Dreiecksmatrix weder eine vollständige Determinantenentwicklung noch ein Verfahren zur Nullstellensuche nötig.
 
-Bevor du irgendetwas rechnest, schau dir die Form der Matrix an, denn sie entscheidet über deinen Weg.
+Eine Diagonalmatrix skaliert jede Koordinatenachse mit ihrem eigenen Diagonaleintrag. Für <InlineMath math="D=\operatorname{diag}(2,\tfrac12)" /> sind <InlineMath math="e_1" /> und <InlineMath math="e_2" /> Eigenvektoren zu den Eigenwerten <InlineMath math="2" /> und <InlineMath math="\tfrac12" />, während ein gemischter Vektor wie <InlineMath math="(1,1)" /> seine Richtung ändert.
 
-<Mermaid
-  title="Eigenwerte ablesen oder berechnen"
-  description="Die Form der Matrix entscheidet über deinen Weg."
-  chart={`
-    flowchart TD
-        A[Matrix A] --> B{Diagonal oder Dreieck?}
-        B -->|Ja| C[Hauptdiagonale ablesen]
-        B -->|Nein| D["χ_A(t) = det(A - tI) berechnen"]
-        D --> E[Nullstellen von χ_A finden]
-  `}
+<MathVisual
+  title={<><InlineMath math="D=\operatorname{diag}(2,\tfrac12)" /> streckt die Achsen</>}
+  description={<>Das graue Einheitsquadrat wird zum violetten Rechteck. Die Achsenvektoren ändern nur ihre Länge, um die Diagonaleinträge <InlineMath math="2" /> und <InlineMath math="\tfrac12" />. Der türkise Vektor <InlineMath math="(1,1)" /> wird zum magentafarbenen Vektor <InlineMath math="(2,\tfrac12)" />, der seine Gerade verlässt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 / 2 }, { x: 0, y: 1 / 2 }], appearance: "secondary" },
+      { id: "mixed", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "turned", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 / 2 }, appearance: "answer" },
+    ],
+  }}
 />
 
 ## Obere und untere Dreiecksmatrizen
@@ -51,7 +55,7 @@ Zum Beispiel können sich Einträge außerhalb der Diagonale ändern, während d
 
 <BlockMath math="T=\begin{pmatrix}2&4&1\\0&2&3\\0&0&-1\end{pmatrix},\qquad \chi_T(t)=(2-t)^2(-1-t)" />
 
-Damit tritt 2 zweimal und −1 einmal auf. Das bestimmt die Eigenwerte, beweist aber noch keine Diagonalisierbarkeit.
+Damit tritt <InlineMath math="2" /> zweimal und <InlineMath math="-1" /> einmal auf. Das bestimmt die Eigenwerte, beweist aber noch keine Diagonalisierbarkeit.
 
 Für <InlineMath math="T" /> oben kannst du die Eigenwerte <InlineMath math="2" /> und <InlineMath math="-1" /> direkt auf der Diagonale ablesen. Dreh diese dreidimensionale Szene: Der Vektor <InlineMath math="e_1" /> wird nur entlang seiner eigenen Achse verdoppelt, weil die erste Spalte von <InlineMath math="T" /> gleich <InlineMath math="(2,0,0)^T" /> ist. Der Vektor <InlineMath math="v=(1,-1,1)^T" /> erfüllt <InlineMath math="Tv=-v" />, also zeigt sein Bild genau in die Gegenrichtung. Die Einträge <InlineMath math="4" />, <InlineMath math="1" /> und <InlineMath math="3" /> oberhalb der Diagonale ändern die Eigenvektoren, aber nie die Eigenwerte.
 
@@ -119,6 +123,31 @@ Ihr charakteristisches Polynom lautet:
 
 **Die Nullstellen dieses charakteristischen Polynoms** sind <InlineMath math="\lambda_1 = 2" /> und <InlineMath math="\lambda_2 = 0" />.
 
+Die Eigenwerte <InlineMath math="1\pm i=\sqrt2\,e^{\pm i\pi/4}" /> haben den Betrag <InlineMath math="\sqrt2" /> und den Winkel <InlineMath math="45^\circ" />. Wendest du <InlineMath math="A" /> immer wieder auf <InlineMath math="e_1" /> an, dreht jeder Schritt den Vektor um diesen Winkel und streckt ihn um diesen Betrag.
+
+<MathVisual
+  title={<>Potenzen von <InlineMath math="A=\begin{pmatrix}1&-1\\1&1\end{pmatrix}" /> drehen und strecken</>}
+  description={<>Der magentafarbene Streckenzug verbindet <InlineMath math="e_1" />, <InlineMath math="Ae_1" />, <InlineMath math="A^2e_1" />, <InlineMath math="A^3e_1" /> und <InlineMath math="A^4e_1=(-4,0)" />. Jeder Schritt dreht um <InlineMath math="45^\circ" /> und streckt um <InlineMath math="\sqrt2" />, also bleibt keine reelle Richtung auf ihrer Geraden.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 1.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "fourth", kind: "segment", from: { x: 0, y: 0 }, to: { x: -4, y: 0 }, appearance: "construction" },
+      { id: "iterates", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 2 }, { x: -2, y: 2 }, { x: -4, y: 0 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "fourth", objectId: "fourth", at: { x: -4, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "start": <InlineMath math="e_1" />,
+    "fourth": <InlineMath math="A^4e_1" />,
+  }}
+/>
+
 ## Charakteristische Polynomfaktorisierung
 
 Hat <InlineMath math="A \in \mathbb{C}^{n \times n}" /> die **mit algebraischer Multiplizität gezählten** Eigenwerte <InlineMath math="\lambda_1, \ldots, \lambda_n" />, dann faktorisiert das charakteristische Polynom als:
@@ -175,15 +204,3 @@ Diese beiden Identitäten eignen sich zur Ergebniskontrolle, bestimmen für eine
 <BlockMath math="\det A = 0 \quad \Longleftrightarrow \quad 0 \in \sigma(A)" />
 
 Eine quadratische Matrix ist also genau dann singulär, wenn null einer ihrer Eigenwerte ist.
-
-Nutz die zwei Proben in diesem Diagramm jedes Mal, wenn du die Nullstellen eines charakteristischen Polynoms gefunden hast.
-
-<Mermaid
-  title="Zwei schnelle Proben für Eigenwerte"
-  description="Summe und Produkt der Eigenwerte müssen zu Spur und Determinante passen."
-  chart={`
-    flowchart LR
-        A[Nullstellen λ_1, ..., λ_n von χ_A] --> B[λ_1 + ... + λ_n = Spur A]
-        A --> C[λ_1 · ... · λ_n = det A]
-  `}
-/>

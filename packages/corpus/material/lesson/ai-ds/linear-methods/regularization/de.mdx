@@ -33,20 +33,6 @@ Dabei ist <InlineMath math="x_0" /> ein Referenzwert und <InlineMath math="L" />
 
 Der Strafterm fügt eine ausdrückliche Modellannahme über die Lösung hinzu und kann die numerische Kondition des Optimierungsproblems verbessern. Die Beobachtungsdaten enthalten weiterhin dieselben Informationen.
 
-Die drei Entscheidungen in diesem Diagramm bestimmen das Tikhonov-Problem, das du löst.
-
-<Mermaid
-  title="Ein Tikhonov-Problem aufstellen"
-  description="Drei Entscheidungen bestimmen die regularisierte Lösung."
-  chart={`
-    flowchart LR
-        A[Referenz x_0] --> D[Tikhonov-Problem]
-        B[Matrix L] --> D
-        C[Parameter α] --> D
-        D --> E[Lösung x_α]
-  `}
-/>
-
 ## Erweitertes Ausgleichsproblem
 
 Das regularisierte Problem lässt sich als folgendes Ausgleichsproblem schreiben:
@@ -73,6 +59,22 @@ Für <InlineMath math="L=I" /> und <InlineMath math="x_0=0" /> sei <InlineMath m
 </MathContainer>
 
 Ist <InlineMath math="\sigma_i" /> deutlich größer als <InlineMath math="\alpha" />, liegt der Faktor <InlineMath math="\phi_i(\alpha)" /> nahe bei <InlineMath math="1" />. Die Regularisierung verändert den **zugehörigen Anteil** der Lösung daher kaum. Ist <InlineMath math="\sigma_i" /> deutlich kleiner als <InlineMath math="\alpha" />, liegt der Faktor nahe bei <InlineMath math="0" /> und der zugehörige Anteil wird kleiner. So führt ein kleiner Messfehler nicht zu einer großen Änderung der angepassten Lösung.
+
+Der Faktor <InlineMath math="\phi_i(\alpha)" /> entscheidet, wie viel von Komponente <InlineMath math="i" /> übrig bleibt. Für <InlineMath math="\sigma_2=0.1" /> ist der Faktor bei <InlineMath math="\alpha=0.1" /> genau <InlineMath math="\tfrac12" />, also bestimmt <InlineMath math="\alpha" />, wie viel von dieser schwachen Richtung bleibt.
+
+<BarChart
+  title={<>Filterfaktor <InlineMath math="\phi_2(\alpha)" /> für <InlineMath math="\sigma_2=0.1" /></>}
+  description={<>Jeder Balken ist <InlineMath math="\phi_2(\alpha)=\sigma_2^2/(\sigma_2^2+\alpha^2)" /> für den kleinen Singulärwert von <InlineMath math="A=\operatorname{diag}(1,0.1)" />, mit <InlineMath math="\alpha" /> darunter. Der Faktor fällt von fast <InlineMath math="1" /> auf fast <InlineMath math="0" />, sobald <InlineMath math="\alpha" /> an <InlineMath math="\sigma_2" /> vorbeigeht.</>}
+  yAxisLabel="Filterfaktor"
+  data={[
+    { name: "0.01", value: 0.1 ** 2 / (0.1 ** 2 + 0.01 ** 2) },
+    { name: "0.05", value: 0.1 ** 2 / (0.1 ** 2 + 0.05 ** 2) },
+    { name: "0.1", value: 0.1 ** 2 / (0.1 ** 2 + 0.1 ** 2) },
+    { name: "0.2", value: 0.1 ** 2 / (0.1 ** 2 + 0.2 ** 2) },
+    { name: "0.5", value: 0.1 ** 2 / (0.1 ** 2 + 0.5 ** 2) },
+  ]}
+  chartConfig={{ value: { label: "Filterfaktor", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
 
 ## Gerechnetes Sensitivitätsbeispiel
 
@@ -155,18 +157,27 @@ Es gibt **keinen universell besten Wert** für <InlineMath math="\alpha" />. Er 
 
 Ein kleines <InlineMath math="\alpha" /> betont die Datentreue und kann Rauschverstärkung bestehen lassen. Ein großes <InlineMath math="\alpha" /> betont die Strafe und kann die Lösung zu stark glätten oder schrumpfen. Auch Parameterspalten und Strafzeilen müssen sinnvoll skaliert sein. Andernfalls lässt sich der Zahlenwert von <InlineMath math="\alpha" /> kaum interpretieren.
 
-Dieses Diagramm fasst zusammen, wohin sich die Lösung bewegt, wenn du <InlineMath math="\alpha" /> verkleinerst oder vergrößerst.
+Für <InlineMath math="A=\operatorname{diag}(1,0.1)" /> und <InlineMath math="b=(1,0.2)" /> ist die Lösung <InlineMath math="x_\alpha=\bigl(\tfrac1{1+\alpha^2},\tfrac{0.02}{0.01+\alpha^2}\bigr)" />. Ein größeres <InlineMath math="\alpha" /> verkleinert <InlineMath math="x_\alpha" /> und vergrößert das Residuum, also tauscht jede Wahl das eine gegen das andere.
 
-<Mermaid
-  title="Was ein kleiner oder großer Regularisierungsparameter bewirkt"
-  description="Der Regularisierungsparameter verschiebt die Lösung zwischen Daten und Referenz."
-  chart={`
-    flowchart TD
-        A[Parameter α] --> B[α nahe 0]
-        A --> C[α wächst]
-        B --> D[x_α nahe der Kleinste-Quadrate-Lösung, empfindlich für Fehler]
-        C --> E[x_α nahe der Referenz x_0, weniger empfindlich]
-  `}
+<ScatterDiagram
+  title={<>Residuum gegen Lösungsgröße</>}
+  description={<>Jeder Punkt ist ein <InlineMath math="\alpha" /> von <InlineMath math="0.05" /> bis <InlineMath math="1" />, mit <InlineMath math="\|Ax_\alpha-b\|_2" /> nach rechts und <InlineMath math="\|x_\alpha\|_2" /> nach oben. Kleine <InlineMath math="\alpha" /> liegen oben links, große <InlineMath math="\alpha" /> unten rechts.</>}
+  xAxisLabel="Residuennorm"
+  yAxisLabel="Lösungsnorm"
+  datasets={[
+    {
+      name: "Parameterwerte",
+      color: "var(--chart-3)",
+      points: [
+        { x: Math.sqrt((0.05 ** 2 / (1 + 0.05 ** 2)) ** 2 + (0.2 * 0.05 ** 2 / (0.01 + 0.05 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.05 ** 2)) ** 2 + (0.02 / (0.01 + 0.05 ** 2)) ** 2) },
+        { x: Math.sqrt((0.1 ** 2 / (1 + 0.1 ** 2)) ** 2 + (0.2 * 0.1 ** 2 / (0.01 + 0.1 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.1 ** 2)) ** 2 + (0.02 / (0.01 + 0.1 ** 2)) ** 2) },
+        { x: Math.sqrt((0.2 ** 2 / (1 + 0.2 ** 2)) ** 2 + (0.2 * 0.2 ** 2 / (0.01 + 0.2 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.2 ** 2)) ** 2 + (0.02 / (0.01 + 0.2 ** 2)) ** 2) },
+        { x: Math.sqrt((0.3 ** 2 / (1 + 0.3 ** 2)) ** 2 + (0.2 * 0.3 ** 2 / (0.01 + 0.3 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.3 ** 2)) ** 2 + (0.02 / (0.01 + 0.3 ** 2)) ** 2) },
+        { x: Math.sqrt((0.5 ** 2 / (1 + 0.5 ** 2)) ** 2 + (0.2 * 0.5 ** 2 / (0.01 + 0.5 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.5 ** 2)) ** 2 + (0.02 / (0.01 + 0.5 ** 2)) ** 2) },
+        { x: Math.sqrt((1 ** 2 / (1 + 1 ** 2)) ** 2 + (0.2 * 1 ** 2 / (0.01 + 1 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 1 ** 2)) ** 2 + (0.02 / (0.01 + 1 ** 2)) ** 2) },
+      ],
+    },
+  ]}
 />
 
 ## Allgemeine Gewichte und Nebenbedingungen

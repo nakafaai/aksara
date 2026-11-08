@@ -31,20 +31,6 @@ Galat <InlineMath math="\varepsilon_i" /> mencakup kesalahan acak pada pengukura
 
 Matriks <InlineMath math="A" /> disebut **matriks desain**. Jika seluruh pengamatan tidak dapat dipenuhi secara eksak oleh satu vektor parameter, nilai <InlineMath math="x" /> dapat diperkirakan dengan kuadrat terkecil atau model residual lain. Data menentukan parameter secara unik jika <InlineMath math="A" /> memiliki rank kolom penuh. Bilangan kondisi <InlineMath math="A" /> menunjukkan seberapa peka hasil perkiraan terhadap perubahan kecil pada data.
 
-Diagram ini mengikuti data dari pengukuran sampai ke estimasi parameter.
-
-<Mermaid
-  title="Dari pengukuran ke estimasi"
-  description="Setiap pengamatan menjadi satu baris matriks rancangan."
-  chart={`
-    flowchart LR
-        A["Pengukuran (t_i, y_i)"] --> B["Baris h(t_i)"]
-        B --> C[Matriks rancangan A dan vektor b]
-        C --> D[b = Ax + ε]
-        D --> E[Estimasi kuadrat terkecil untuk x]
-  `}
-/>
-
 ## Fungsi basis membentuk beragam model
 
 Misalkan <InlineMath math="\phi_1(t),\ldots,\phi_n(t)" /> adalah fungsi-fungsi basis yang diketahui. Model dengan respons skalar dapat ditulis sebagai
@@ -121,18 +107,27 @@ Putar permukaan model interaksi <InlineMath math="y=1+\tfrac t2+\tfrac s2+\tfrac
   }}
 />
 
-Ikuti contoh tiga pengamatan tadi sebagai alur: dua baris menentukan parameter, baris ketiga mengeceknya.
+Model <InlineMath math="y=a+bt" /> punya baris <InlineMath math="(1,t_i)" />. Dua pengamatan pertama memberi <InlineMath math="a=1" /> dan <InlineMath math="a+b=3" />, jadi <InlineMath math="b=2" />, dan pengamatan ketiga <InlineMath math="1+2\cdot2=5" /> jatuh tepat di garis.
 
-<Mermaid
-  title="Tiga pengamatan, satu garis"
-  description="Tiga pengamatan contoh dengan fungsi basis konstanta dan garis."
-  chart={`
-    flowchart TD
-        A["(0,1), (1,3), (2,5)"] --> B["Baris (1,0), (1,1), (1,2)"]
-        B --> C[a = 1 dari baris pertama]
-        C --> D[b = 2 dari baris kedua]
-        D --> E["Cek baris ketiga: 1 + 2·2 = 5"]
-  `}
+<ScatterDiagram
+  title={<>Tiga pengamatan pada garis <InlineMath math="y=1+2t" /></>}
+  description={<>Titik <InlineMath math="(0,1)" />, <InlineMath math="(1,3)" />, dan <InlineMath math="(2,5)" /> beserta garis yang dicocokkan. Setiap residunya <InlineMath math="0" />, jadi baris ketiga menegaskan <InlineMath math="a=1" /> dan <InlineMath math="b=2" />.</>}
+  xAxisLabel="Nilai masukan"
+  yAxisLabel="Nilai pengamatan"
+  datasets={[
+    {
+      name: "Pengamatan",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 1 },
+        { x: 1, y: 3 },
+        { x: 2, y: 5 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+  showResiduals
 />
 
 ## Respons berganda
@@ -154,6 +149,30 @@ Pada suhu <InlineMath math="T" /> dan volume <InlineMath math="V" /> yang diketa
 Tekanan <InlineMath math="p" /> bersifat linear terhadap **jumlah zat yang belum diketahui** <InlineMath math="n" />. Besaran <InlineMath math="n" /> menyatakan jumlah zat dalam mol, sedangkan jumlah molekul atau partikel dihitung dengan <InlineMath math="N=nN_A" />.
 
 Pengukuran tekanan berulang pada beberapa nilai <InlineMath math="(T_i,V_i)" /> yang diketahui menghasilkan satu baris matriks desain <InlineMath math="RT_i/V_i" /> untuk setiap pengamatan.
+
+Lima pengukuran pada <InlineMath math="(T_i,V_i)" /> yang berbeda memberi lima baris <InlineMath math="RT_i/V_i" />, di sini dengan <InlineMath math="R=8.314\ \mathrm{kPa\,L/(mol\,K)}" />, suhu dalam kelvin, dan volume dalam liter. Untuk gas dengan <InlineMath math="n=2\ \mathrm{mol}" />, setiap tekanan sama dengan dua kali entri desainnya, jadi titik-titiknya berbaris pada satu garis yang melewati titik asal.
+
+<ScatterDiagram
+  title={<>Tekanan linear terhadap jumlah zat <InlineMath math="n" /></>}
+  description={<>Setiap titik memasangkan entri desain <InlineMath math="RT_i/V_i" /> dengan tekanan <InlineMath math="p_i=(RT_i/V_i)\,n" /> untuk <InlineMath math="n=2\ \mathrm{mol}" />. Garis yang dicocokkan melewati titik asal dengan kemiringan <InlineMath math="2" />.</>}
+  xAxisLabel="Entri desain (kPa/mol)"
+  yAxisLabel="Tekanan (kPa)"
+  datasets={[
+    {
+      name: "Pengukuran",
+      color: "var(--chart-2)",
+      points: [
+        { x: 8.314 * 280 / 10, y: 2 * 8.314 * 280 / 10 },
+        { x: 8.314 * 300 / 12, y: 2 * 8.314 * 300 / 12 },
+        { x: 8.314 * 320 / 8, y: 2 * 8.314 * 320 / 8 },
+        { x: 8.314 * 350 / 10, y: 2 * 8.314 * 350 / 10 },
+        { x: 8.314 * 300 / 6, y: 2 * 8.314 * 300 / 6 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
 
 ## Linearisasi lokal model nonlinear
 

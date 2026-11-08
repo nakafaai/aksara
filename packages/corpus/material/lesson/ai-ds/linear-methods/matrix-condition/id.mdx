@@ -48,6 +48,35 @@ Jika <InlineMath math="A" /> adalah matriks simetris real, nilai singularnya ada
 
 Untuk matriks nonnormal umum, radius spektral dan norma spektral **tidak harus sama**.
 
+Geseran <InlineMath math="A=\begin{pmatrix}1&1\\0&1\end{pmatrix}" /> punya satu nilai eigen <InlineMath math="1" />, jadi <InlineMath math="\rho(A)=1" />. Matriks <InlineMath math="A^{\mathsf T}A=\begin{pmatrix}1&1\\1&2\end{pmatrix}" /> punya nilai eigen terbesar <InlineMath math="\tfrac{3+\sqrt5}2=\varphi^2" />, jadi <InlineMath math="\|A\|_2=\varphi\approx1.618" />. Matriks yang tidak normal bisa meregangkan suatu vektor lebih jauh daripada yang ditunjukkan nilai eigennya.
+
+<MathVisual
+  title={<><InlineMath math="\rho(A)=1" /> tetapi <InlineMath math="\|A\|_2=\varphi" /></>}
+  description={<>Untuk geseran <InlineMath math="A=\begin{pmatrix}1&1\\0&1\end{pmatrix}" />, vektor eigen magenta <InlineMath math="e_1" /> tetap sepanjang <InlineMath math="1" />. Vektor satuan hijau toska <InlineMath math="v_1" /> menjadi vektor ungu <InlineMath math="Av_1" /> sepanjang <InlineMath math="\varphi=\tfrac{1+\sqrt5}2" />, yang mencapai lingkaran kuning berjari-jari <InlineMath math="\|A\|_2" />. Lingkaran abu-abu adalah lingkaran satuan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "norm", kind: "circle", center: { x: 0, y: 0 }, radius: (1 + Math.sqrt(5)) / 2, appearance: "highlight" },
+      { id: "eigen", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "singular", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, appearance: "construction" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: (3 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "eigen", objectId: "eigen", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "singular", objectId: "singular", at: { x: 1 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, placement: "above-left" },
+      { key: "image", objectId: "image", at: { x: (3 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "eigen": <InlineMath math="e_1" />,
+    "singular": <InlineMath math="v_1" />,
+    "image": <InlineMath math="Av_1" />,
+  }}
+/>
+
 ## Bilangan kondisi penyelesaian linear
 
 Untuk matriks persegi yang dapat diinverskan dan sebuah norma terinduksi, definisikan
@@ -69,18 +98,6 @@ Gunakan nilai eigen dengan **magnitudo terkecil** pada penyebut. Tanda positif a
 | Dekat <InlineMath math="1" /> | Pada kasus terburuk, perubahan relatif pada data <InlineMath math="b" /> menghasilkan perubahan relatif pada solusi yang hampir sama besar. |
 | Besar | Perubahan data <InlineMath math="b" /> pada arah tertentu dapat menghasilkan perubahan relatif yang jauh lebih besar pada solusi. |
 | Tak hingga | Matriks singular, sehingga masalah invers tidak memiliki solusi unik. |
-
-Diagram ini menunjukkan bagaimana bilangan kondisi menghubungkan galat di data dengan galat di solusi.
-
-<Mermaid
-  title="Galat relatif melewati bilangan kondisi"
-  description="Bilangan kondisi membatasi seberapa besar galat data bisa membesar di solusi."
-  chart={`
-    flowchart LR
-        A[Galat relatif di b] --> B["dikali paling banyak κ(A)"]
-        B --> C[Galat relatif di x]
-  `}
-/>
 
 ## Sensitivitas Sistem Diagonal Dua Dimensi
 
@@ -165,16 +182,21 @@ Algoritma stabil tidak dapat menghilangkan sensitivitas yang memang terdapat pad
 
 Dalam komputasi numerik, estimasikan kebalikan bilangan kondisi dari faktorisasi yang tepercaya. Jangan membentuk <InlineMath math="A^{-1}" /> secara eksplisit hanya untuk mengevaluasi <InlineMath math="\kappa(A)" />.
 
-Pisahkan dua pertanyaan di diagram ini saat kamu menilai hasil numerik.
+Pada sistem dengan <InlineMath math="A=\begin{pmatrix}1&1\\1&1.01\end{pmatrix}" />, kedua barisnya hampir searah. Perubahan <InlineMath math="0.01" /> pada satu entri <InlineMath math="b" /> memindahkan solusi sejauh <InlineMath math="\sqrt2" />. Itu sifat masalahnya, jadi algoritma stabil apa pun tidak bisa menghapusnya. Algoritma yang stabil hanya menjaga agar tidak ada galat besar yang ditambahkan di atasnya.
 
-<Mermaid
-  title="Kondisi masalah dan stabilitas algoritma"
-  description="Akurasi hasil bergantung pada dua hal yang berbeda."
-  chart={`
-    flowchart TD
-        A[Masalah Ax = b] --> B["Kondisi: κ(A)"]
-        C[Algoritma] --> D[Stabil atau tidak]
-        B --> E[Akurasi solusi yang dihitung]
-        D --> E
-  `}
+<MathVisual
+  title={<>Garis yang hampir sejajar membuat penyelesaian peka</>}
+  description={<>Garis ungu <InlineMath math="x+y=2" /> dan garis hijau toska <InlineMath math="x+1.01y=2.01" /> bertemu di titik magenta <InlineMath math="(1,1)" />. Mengubah ruas kanan menjadi <InlineMath math="2.02" /> memberi garis oranye dan memindahkan solusi ke titik kuning <InlineMath math="(0,2)" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 0, y: 2 }, { x: 2, y: 0 }], appearance: "secondary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 1 }, { x: 2.01, y: 0 }], appearance: "construction" },
+      { id: "shifted", kind: "line", through: [{ x: 0, y: 2 }, { x: 2.02, y: 0 }], appearance: "primary" },
+      { id: "solution", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "moved", kind: "point", at: { x: 0, y: 2 }, appearance: "highlight" },
+    ],
+  }}
 />

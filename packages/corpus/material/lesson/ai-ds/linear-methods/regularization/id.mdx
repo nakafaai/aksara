@@ -33,20 +33,6 @@ Di sini <InlineMath math="x_0" /> adalah perkiraan acuan dan <InlineMath math="L
 
 Penalti menambahkan asumsi model tentang bentuk solusi dan dapat memperbaiki kondisi numerik masalah optimisasi. Informasi di dalam data pengamatan tetap sama.
 
-Tiga pilihan di diagram ini menentukan masalah Tikhonov yang kamu selesaikan.
-
-<Mermaid
-  title="Menyusun masalah Tikhonov"
-  description="Tiga pilihan menentukan solusi yang diregularisasi."
-  chart={`
-    flowchart LR
-        A[Acuan x_0] --> D[Masalah Tikhonov]
-        B[Matriks L] --> D
-        C[Parameter α] --> D
-        D --> E[Solusi x_α]
-  `}
-/>
-
 ## Bentuk Kuadrat Terkecil Teraugmentasi
 
 Masalah regularisasi di atas dapat ditulis sebagai masalah kuadrat terkecil berikut:
@@ -73,6 +59,22 @@ Untuk <InlineMath math="L=I" /> dan <InlineMath math="x_0=0" />, tulis <InlineMa
 </MathContainer>
 
 Jika <InlineMath math="\sigma_i" /> jauh lebih besar daripada <InlineMath math="\alpha" />, faktor <InlineMath math="\phi_i(\alpha)" /> mendekati <InlineMath math="1" />. Regularisasi hampir tidak mengubah **komponen solusi** yang terkait dengan nilai singular tersebut. Jika <InlineMath math="\sigma_i" /> jauh lebih kecil daripada <InlineMath math="\alpha" />, faktor <InlineMath math="\phi_i(\alpha)" /> mendekati <InlineMath math="0" />, sehingga komponen solusinya diperkecil. Cara ini mencegah kesalahan kecil pada data pengukuran menghasilkan perubahan besar pada solusi.
+
+Faktor <InlineMath math="\phi_i(\alpha)" /> memutuskan seberapa banyak komponen <InlineMath math="i" /> yang tersisa. Untuk <InlineMath math="\sigma_2=0.1" />, faktornya tepat <InlineMath math="\tfrac12" /> saat <InlineMath math="\alpha=0.1" />, jadi <InlineMath math="\alpha" /> menentukan seberapa banyak arah yang lemah itu bertahan.
+
+<BarChart
+  title={<>Faktor filter <InlineMath math="\phi_2(\alpha)" /> untuk <InlineMath math="\sigma_2=0.1" /></>}
+  description={<>Setiap batang adalah <InlineMath math="\phi_2(\alpha)=\sigma_2^2/(\sigma_2^2+\alpha^2)" /> untuk nilai singular kecil dari <InlineMath math="A=\operatorname{diag}(1,0.1)" />, dengan <InlineMath math="\alpha" /> tertulis di bawahnya. Faktornya turun dari hampir <InlineMath math="1" /> ke hampir <InlineMath math="0" /> saat <InlineMath math="\alpha" /> melewati <InlineMath math="\sigma_2" />.</>}
+  yAxisLabel="Faktor filter"
+  data={[
+    { name: "0.01", value: 0.1 ** 2 / (0.1 ** 2 + 0.01 ** 2) },
+    { name: "0.05", value: 0.1 ** 2 / (0.1 ** 2 + 0.05 ** 2) },
+    { name: "0.1", value: 0.1 ** 2 / (0.1 ** 2 + 0.1 ** 2) },
+    { name: "0.2", value: 0.1 ** 2 / (0.1 ** 2 + 0.2 ** 2) },
+    { name: "0.5", value: 0.1 ** 2 / (0.1 ** 2 + 0.5 ** 2) },
+  ]}
+  chartConfig={{ value: { label: "Faktor filter", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
 
 ## Contoh Perhitungan Sensitivitas
 
@@ -155,18 +157,27 @@ Di contoh ini, setiap komponen menyusut sendiri-sendiri: <InlineMath math="x_{\a
 
 Nilai <InlineMath math="\alpha" /> yang kecil membuat solusi mengikuti data dengan lebih dekat, tetapi gangguan kecil pada data masih dapat menghasilkan perubahan besar pada solusi. Nilai <InlineMath math="\alpha" /> yang besar memberi pengaruh lebih kuat pada penalti, sehingga solusi dapat menjadi terlalu mulus atau komponennya menjadi terlalu kecil. Kolom parameter dan baris penalti juga harus memakai skala yang bermakna. Jika skala ini diabaikan, angka <InlineMath math="\alpha" /> saja belum menunjukkan seberapa kuat penalti bekerja.
 
-Diagram ini merangkum ke mana solusi bergerak saat kamu memperkecil atau memperbesar <InlineMath math="\alpha" />.
+Untuk <InlineMath math="A=\operatorname{diag}(1,0.1)" /> dan <InlineMath math="b=(1,0.2)" />, solusinya <InlineMath math="x_\alpha=\bigl(\tfrac1{1+\alpha^2},\tfrac{0.02}{0.01+\alpha^2}\bigr)" />. Memperbesar <InlineMath math="\alpha" /> mengecilkan <InlineMath math="x_\alpha" /> dan menaikkan residu, jadi setiap pilihan menukar yang satu dengan yang lain.
 
-<Mermaid
-  title="Efek parameter regularisasi kecil atau besar"
-  description="Parameter regularisasi menggeser solusi antara data dan acuan."
-  chart={`
-    flowchart TD
-        A[Parameter α] --> B[α mendekati 0]
-        A --> C[α membesar]
-        B --> D[x_α mendekati solusi kuadrat terkecil, peka terhadap galat]
-        C --> E[x_α mendekati acuan x_0, kurang peka]
-  `}
+<ScatterDiagram
+  title={<>Residu terhadap ukuran solusi</>}
+  description={<>Setiap titik adalah satu nilai <InlineMath math="\alpha" /> dari <InlineMath math="0.05" /> sampai <InlineMath math="1" />, dengan <InlineMath math="\|Ax_\alpha-b\|_2" /> mendatar dan <InlineMath math="\|x_\alpha\|_2" /> tegak. <InlineMath math="\alpha" /> kecil ada di kiri atas, <InlineMath math="\alpha" /> besar di kanan bawah.</>}
+  xAxisLabel="Norma residu"
+  yAxisLabel="Norma solusi"
+  datasets={[
+    {
+      name: "Nilai parameter",
+      color: "var(--chart-3)",
+      points: [
+        { x: Math.sqrt((0.05 ** 2 / (1 + 0.05 ** 2)) ** 2 + (0.2 * 0.05 ** 2 / (0.01 + 0.05 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.05 ** 2)) ** 2 + (0.02 / (0.01 + 0.05 ** 2)) ** 2) },
+        { x: Math.sqrt((0.1 ** 2 / (1 + 0.1 ** 2)) ** 2 + (0.2 * 0.1 ** 2 / (0.01 + 0.1 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.1 ** 2)) ** 2 + (0.02 / (0.01 + 0.1 ** 2)) ** 2) },
+        { x: Math.sqrt((0.2 ** 2 / (1 + 0.2 ** 2)) ** 2 + (0.2 * 0.2 ** 2 / (0.01 + 0.2 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.2 ** 2)) ** 2 + (0.02 / (0.01 + 0.2 ** 2)) ** 2) },
+        { x: Math.sqrt((0.3 ** 2 / (1 + 0.3 ** 2)) ** 2 + (0.2 * 0.3 ** 2 / (0.01 + 0.3 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.3 ** 2)) ** 2 + (0.02 / (0.01 + 0.3 ** 2)) ** 2) },
+        { x: Math.sqrt((0.5 ** 2 / (1 + 0.5 ** 2)) ** 2 + (0.2 * 0.5 ** 2 / (0.01 + 0.5 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.5 ** 2)) ** 2 + (0.02 / (0.01 + 0.5 ** 2)) ** 2) },
+        { x: Math.sqrt((1 ** 2 / (1 + 1 ** 2)) ** 2 + (0.2 * 1 ** 2 / (0.01 + 1 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 1 ** 2)) ** 2 + (0.02 / (0.01 + 1 ** 2)) ** 2) },
+      ],
+    },
+  ]}
 />
 
 ## Bobot dan Syarat pada Solusi
