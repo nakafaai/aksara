@@ -39,6 +39,40 @@ For example, off-diagonal entries can change while the **same eigenvalues** rema
 
 Thus 2 occurs twice and −1 once. This gives the eigenvalues, but does not by itself prove diagonalizability.
 
+Zoom in near the two magenta points and follow the curve along the <InlineMath math="t" />-axis. At <InlineMath math="t=-1" /> it crosses the axis, which marks a simple root. At <InlineMath math="t=2" /> it only touches the axis and turns back, because the factor <InlineMath math="(2-t)^2" /> appears twice. Changing the entries <InlineMath math="4" />, <InlineMath math="1" />, and <InlineMath math="3" /> above the diagonal never moves these two points.
+
+<LineEquation
+  title={<>Characteristic polynomial of the triangular matrix <InlineMath math="T" /></>}
+  description={<>The violet curve is <InlineMath math="\chi_T(t)=(2-t)^2(-1-t)" />. The magenta points mark the root <InlineMath math="t=-1" /> and the double root <InlineMath math="t=2" />.</>}
+  showZAxis={false}
+  cameraPosition={[0.85, 0, 14]}
+  cameraTarget={[0.85, 0, 0]}
+  data={[
+    {
+      points: Array.from({ length: 451 }, (_, index) => {
+        const t = -1.4 + index / 100;
+        return { x: t, y: (2 - t) ** 2 * (-1 - t), z: 0 };
+      }),
+      color: "#8242e5",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\chi_T(t)=(2-t)^2(-1-t)" />, at: 340, offset: [-0.2, 2.5, 0] }],
+    },
+    {
+      points: [{ x: -1, y: 0, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="t=-1" />, at: 0, offset: [-0.7, -0.5, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 0, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="t=2" />, at: 0, offset: [0.4, 0.6, 0] }],
+    },
+  ]}
+/>
+
 ## Computing Eigenvalues of Nontriangular Matrices
 
 The diagonal rule is special to triangular matrices. Once a matrix is no longer triangular, the eigenvalues stay hidden in the characteristic polynomial, so the work moves from reading diagonal entries to **solving for roots**.

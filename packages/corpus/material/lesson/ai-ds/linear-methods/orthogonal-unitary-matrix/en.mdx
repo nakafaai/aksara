@@ -94,6 +94,74 @@ The characteristic polynomial is
 
 Unless <InlineMath math="\alpha" /> is a multiple of <InlineMath math="\pi" />, the rotation has **no real eigenvector**. That is expected: no nonzero real direction remains fixed or merely changes sign under a genuine planar rotation.
 
+Turn the scene and check what the rotation keeps. The tips of <InlineMath math="x" />, <InlineMath math="y" />, <InlineMath math="R(\alpha)x" />, and <InlineMath math="R(\alpha)y" /> all sit on the same gray circle, so every length stays <InlineMath math="\sqrt5" />. The right angle between <InlineMath math="x" /> and <InlineMath math="y" /> survives too, because <InlineMath math="R(\alpha)^TR(\alpha)=I" /> keeps every inner product. Only the direction changes, by the amber angle <InlineMath math="\alpha=60^\circ" />, which is why no real vector keeps its direction here.
+
+<LineEquation
+  title={<>A rotation <InlineMath math="R(60^\circ)" /> keeps lengths and angles</>}
+  description={<>The vectors <InlineMath math="x=(2,1)^T" /> and <InlineMath math="y=(-1,2)^T" /> are rotated by <InlineMath math="\alpha=60^\circ" />. All four arrow tips lie on the circle of radius <InlineMath math="\sqrt5" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0.2, 8]}
+  cameraTarget={[0, 0.2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.sqrt(5) * Math.cos(angle), y: Math.sqrt(5) * Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\|v\|=\sqrt5" />, at: 135, offset: [-0.5, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x" />, at: 1, offset: [0.3, -0.1, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: -1, y: 2, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y" />, at: 1, offset: [-0.3, 0.2, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 2 * Math.cos(Math.PI / 3) - Math.sin(Math.PI / 3), y: 2 * Math.sin(Math.PI / 3) + Math.cos(Math.PI / 3), z: 0 },
+      ],
+      color: "#c026d3",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="R(\alpha)x" />, at: 1, offset: [0.45, 0.25, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: -Math.cos(Math.PI / 3) - 2 * Math.sin(Math.PI / 3), y: -Math.sin(Math.PI / 3) + 2 * Math.cos(Math.PI / 3), z: 0 },
+      ],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="R(\alpha)y" />, at: 1, offset: [-0.4, -0.35, 0] }],
+    },
+    {
+      kind: "circle-arc",
+      radius: 0.9,
+      startDegrees: (Math.atan2(1, 2) * 180) / Math.PI,
+      sweepDegrees: 60,
+      color: "#b98d00",
+      label: { text: <InlineMath math="\alpha=60^\circ" />, progress: 0.5, offset: [0.3, 0.25, 0] },
+    },
+  ]}
+/>
+
 ## Reflection Example
 
 For a unit vector <InlineMath math="u\in\mathbb{R}^n" />, the Householder matrix

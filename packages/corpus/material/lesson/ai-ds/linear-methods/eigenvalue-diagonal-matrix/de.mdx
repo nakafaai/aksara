@@ -39,6 +39,40 @@ Zum Beispiel können sich Einträge außerhalb der Diagonale ändern, während d
 
 Damit tritt 2 zweimal und −1 einmal auf. Das bestimmt die Eigenwerte, beweist aber noch keine Diagonalisierbarkeit.
 
+Zoom an die beiden magentafarbenen Punkte heran und folg der Kurve entlang der <InlineMath math="t" />-Achse. Bei <InlineMath math="t=-1" /> schneidet sie die Achse, das ist eine einfache Nullstelle. Bei <InlineMath math="t=2" /> berührt sie die Achse nur und kehrt um, weil der Faktor <InlineMath math="(2-t)^2" /> zweimal vorkommt. Wenn du die Einträge <InlineMath math="4" />, <InlineMath math="1" /> und <InlineMath math="3" /> oberhalb der Diagonale änderst, bewegen sich diese beiden Punkte nie.
+
+<LineEquation
+  title={<>Charakteristisches Polynom der Dreiecksmatrix <InlineMath math="T" /></>}
+  description={<>Die violette Kurve ist <InlineMath math="\chi_T(t)=(2-t)^2(-1-t)" />. Die magentafarbenen Punkte markieren die Nullstelle <InlineMath math="t=-1" /> und die doppelte Nullstelle <InlineMath math="t=2" />.</>}
+  showZAxis={false}
+  cameraPosition={[0.85, 0, 14]}
+  cameraTarget={[0.85, 0, 0]}
+  data={[
+    {
+      points: Array.from({ length: 451 }, (_, index) => {
+        const t = -1.4 + index / 100;
+        return { x: t, y: (2 - t) ** 2 * (-1 - t), z: 0 };
+      }),
+      color: "#8242e5",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\chi_T(t)=(2-t)^2(-1-t)" />, at: 340, offset: [-0.2, 2.5, 0] }],
+    },
+    {
+      points: [{ x: -1, y: 0, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="t=-1" />, at: 0, offset: [-0.7, -0.5, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 0, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="t=2" />, at: 0, offset: [0.4, 0.6, 0] }],
+    },
+  ]}
+/>
+
 ## Eigenwerte nicht dreieckiger Matrizen berechnen
 
 Die Diagonalregel gilt speziell für Dreiecksmatrizen. Sobald die Matrix nicht mehr dreieckig ist, verbergen sich die Eigenwerte im charakteristischen Polynom, sodass die Arbeit vom Ablesen der Diagonaleinträge zum **Bestimmen der Wurzeln** wechselt.

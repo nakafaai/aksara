@@ -94,6 +94,74 @@ Das charakteristische Polynom lautet
 
 Falls <InlineMath math="\alpha" /> kein Vielfaches von <InlineMath math="\pi" /> ist, besitzt die Drehung **keinen reellen Eigenvektor**. Das ist zu erwarten: Bei einer echten ebenen Drehung bleibt keine reelle Richtung ungleich null fest oder ändert nur ihr Vorzeichen.
 
+Dreh die Szene und prüf, was die Drehung erhält. Die Spitzen von <InlineMath math="x" />, <InlineMath math="y" />, <InlineMath math="R(\alpha)x" /> und <InlineMath math="R(\alpha)y" /> liegen alle auf demselben grauen Kreis, also bleibt jede Länge <InlineMath math="\sqrt5" />. Auch der rechte Winkel zwischen <InlineMath math="x" /> und <InlineMath math="y" /> bleibt, weil <InlineMath math="R(\alpha)^TR(\alpha)=I" /> jedes Skalarprodukt erhält. Nur die Richtung ändert sich, um den gelben Winkel <InlineMath math="\alpha=60^\circ" />. Deshalb behält hier kein reeller Vektor seine Richtung.
+
+<LineEquation
+  title={<>Die Drehung <InlineMath math="R(60^\circ)" /> erhält Längen und Winkel</>}
+  description={<>Die Vektoren <InlineMath math="x=(2,1)^T" /> und <InlineMath math="y=(-1,2)^T" /> werden um <InlineMath math="\alpha=60^\circ" /> gedreht. Alle vier Pfeilspitzen liegen auf dem Kreis mit Radius <InlineMath math="\sqrt5" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0.2, 8]}
+  cameraTarget={[0, 0.2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.sqrt(5) * Math.cos(angle), y: Math.sqrt(5) * Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\|v\|=\sqrt5" />, at: 135, offset: [-0.5, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x" />, at: 1, offset: [0.3, -0.1, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: -1, y: 2, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y" />, at: 1, offset: [-0.3, 0.2, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 2 * Math.cos(Math.PI / 3) - Math.sin(Math.PI / 3), y: 2 * Math.sin(Math.PI / 3) + Math.cos(Math.PI / 3), z: 0 },
+      ],
+      color: "#c026d3",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="R(\alpha)x" />, at: 1, offset: [0.45, 0.25, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: -Math.cos(Math.PI / 3) - 2 * Math.sin(Math.PI / 3), y: -Math.sin(Math.PI / 3) + 2 * Math.cos(Math.PI / 3), z: 0 },
+      ],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="R(\alpha)y" />, at: 1, offset: [-0.4, -0.35, 0] }],
+    },
+    {
+      kind: "circle-arc",
+      radius: 0.9,
+      startDegrees: (Math.atan2(1, 2) * 180) / Math.PI,
+      sweepDegrees: 60,
+      color: "#b98d00",
+      label: { text: <InlineMath math="\alpha=60^\circ" />, progress: 0.5, offset: [0.3, 0.25, 0] },
+    },
+  ]}
+/>
+
 ## Spiegelungsbeispiel
 
 Für einen Einheitsvektor <InlineMath math="u\in\mathbb{R}^n" /> definieren wir die Householder-Matrix

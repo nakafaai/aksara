@@ -106,6 +106,70 @@ Using the same <InlineMath math="A" /> as above, project <InlineMath math="x=e_2
 
 <BlockMath math="\operatorname{proj}^{A}_{e_1}(e_2)=\frac12e_1,\qquad r=\begin{pmatrix}-1/2\\1\end{pmatrix},\qquad e_1^TAr=2(-1/2)+1=0" />
 
+Rotate or zoom the scene below and compare the two unit sets. The vectors <InlineMath math="e_1" /> and <InlineMath math="e_2" /> lie on the gray circle, yet both sit outside the magenta ellipse, because <InlineMath math="\|e_1\|_A=\|e_2\|_A=\sqrt2" />. The orange residual <InlineMath math="r" /> doesn't look perpendicular to <InlineMath math="e_1" />, and in the Euclidean sense it isn't. Under <InlineMath math="A" /> it is, because <InlineMath math="e_1^TAr=0" />.
+
+<LineEquation
+  title={<>Euclidean and weighted unit circles</>}
+  description={<>The gray circle is <InlineMath math="x^Tx=1" />, the magenta ellipse is <InlineMath math="x^TAx=1" /> for <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />. The orange segment is the residual <InlineMath math="r=e_2-\tfrac12e_1" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0.1, 3.6]}
+  cameraTarget={[0, 0.1, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.cos(angle), y: Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x^Tx=1" />, at: 225, offset: [-0.35, -0.15, 0] }],
+    },
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const t = (index / 360) * 2 * Math.PI;
+        const along = Math.cos(t) / Math.sqrt(3);
+        const across = Math.sin(t);
+        return { x: (along + across) / Math.SQRT2, y: (along - across) / Math.SQRT2, z: 0 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x^TAx=1" />, at: 135, offset: [0.4, -0.2, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.12 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="e_1" />, at: 1, offset: [0.18, 0.1, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.12 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="e_2" />, at: 1, offset: [-0.18, 0.12, 0] }],
+    },
+    {
+      points: [{ x: 1 / 2, y: 0, z: 0 }, { x: 1 / 4, y: 1 / 2, z: 0 }, { x: 0, y: 1, z: 0 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.12 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="r" />, at: 1, offset: [0.18, 0.06, 0] }],
+    },
+    {
+      points: [{ x: 1 / 2, y: 0, z: 0 }],
+      color: "#bb6800",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="\tfrac12e_1" />, at: 0, offset: [0.05, -0.18, 0] }],
+    },
+  ]}
+/>
+
 ## Writing an Inner Product as a Matrix
 
 In the standard basis <InlineMath math="e_1,\ldots,e_n" />, every finite-dimensional inner product has a unique representation matrix with entries

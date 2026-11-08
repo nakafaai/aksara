@@ -77,6 +77,86 @@ The vector <InlineMath math="v_2" /> below is an eigenvector for <InlineMath mat
 <BlockMath math="A \cdot v_2 = \begin{pmatrix} 4 \\ 4 \end{pmatrix} = 4 \cdot v_2" />
 </MathContainer>
 
+Rotate or zoom this scene to compare each arrow with its image under the symmetric matrix above. The violet unit vectors <InlineMath math="v_1" /> and <InlineMath math="v_2" /> only get longer: their orange images stay on the same lines, scaled by <InlineMath math="\lambda_1=2" /> and <InlineMath math="\lambda_2=4" />. The vector <InlineMath math="e_1" /> doesn't, because <InlineMath math="Ae_1=(3,1)^T" /> turns away from the <InlineMath math="x" />-axis. The magenta ellipse collects the images of all unit vectors, and its longest and shortest radii point exactly along the eigenvectors.
+
+<LineEquation
+  title={<>Eigenvectors stay on their lines</>}
+  description={<>Violet arrows are unit vectors, orange arrows are their images under <InlineMath math="A=\begin{pmatrix}3&1\\1&3\end{pmatrix}" />. The magenta ellipse holds the image of every unit vector.</>}
+  showZAxis={false}
+  cameraPosition={[0.2, 0.3, 10]}
+  cameraTarget={[0.2, 0.3, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.cos(angle), y: Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\|v\|=1" />, at: 200, offset: [-0.5, -0.1, 0] }],
+    },
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: 3 * Math.cos(angle) + Math.sin(angle), y: Math.cos(angle) + 3 * Math.sin(angle), z: 0 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="Av" />, at: 315, offset: [0.45, -0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: -Math.SQRT2, y: Math.SQRT2, z: 0 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.25 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="Av_1=2v_1" />, at: 1, offset: [-0.6, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2 * Math.SQRT2, y: 2 * Math.SQRT2, z: 0 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.25 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="Av_2=4v_2" />, at: 1, offset: [0.4, 0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.25 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="Ae_1" />, at: 1, offset: [0.5, 0, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: -Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="v_1" />, at: 1, offset: [-0.3, -0.1, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="v_2" />, at: 1, offset: [0.3, -0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="e_1" />, at: 1, offset: [0.15, -0.25, 0] }],
+    },
+  ]}
+/>
+
 ## Linear Independence of Eigenvectors
 
 Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> and <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> be **pairwise distinct eigenvalues** of <InlineMath math="A" />, so <InlineMath math="\lambda_i \neq \lambda_j" /> whenever <InlineMath math="i \neq j" />. Then corresponding eigenvectors <InlineMath math="v_1, \ldots, v_k \in \mathbb{K}^n" /> are linearly independent.

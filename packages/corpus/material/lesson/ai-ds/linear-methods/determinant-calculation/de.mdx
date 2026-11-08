@@ -183,3 +183,58 @@ Da es **einen Zeilentausch** gibt (<InlineMath math="p = 1" />):
 <BlockMath math="= (-1)^1 \cdot 1 \cdot 2 \cdot 6" />
 <BlockMath math="= -12" />
 </MathContainer>
+
+Dreh die beiden schiefen Spate unten. Der rechte wird von den Spalten von <InlineMath math="A" /> aufgespannt, der linke von den Spalten von <InlineMath math="R" />, wobei zusammengehörige Spalten dieselbe Farbe haben. Jeder Eliminationsschritt addiert ein Vielfaches einer Zeile zu einer anderen, und das schert den Spat, ohne sein Volumen zu ändern. Die eine Zeilenvertauschung dreht nur die Orientierung um, deshalb wird das Vorzeichen negativ. Beide Spate haben also das Volumen <InlineMath math="12" />, und im linken kannst du es als Grundfläche <InlineMath math="1\cdot2" /> mal Höhe <InlineMath math="6" /> ablesen.
+
+<LineEquation
+  title={<>Dasselbe Volumen vor und nach der Elimination</>}
+  description={<>Der rechte Spat wird von den Spalten von <InlineMath math="A" /> aufgespannt, der linke von den Spalten von <InlineMath math="R" />. Beide haben das Volumen <InlineMath math="12=|\det A|" />.</>}
+  cameraPosition={[5, 6, 13]}
+  cameraTarget={[-1.2, 0.8, 2]}
+  data={[
+    ...[
+      { origin: [0, 0, 0], columns: [[0, 2, 1], [3, 2, 0], [3, 0, 1]] },
+      { origin: [-5, 0, 0], columns: [[1, 0, 0], [0, 2, 0], [1, -2, 6]] },
+    ].flatMap(({ origin, columns: [u, v, w] }) => {
+      const corner = (...vectors) => ({
+        x: origin[0] + vectors.reduce((sum, vector) => sum + vector[0], 0),
+        y: origin[1] + vectors.reduce((sum, vector) => sum + vector[1], 0),
+        z: origin[2] + vectors.reduce((sum, vector) => sum + vector[2], 0),
+      });
+      return [
+        [[u], [u, v]],
+        [[u], [u, w]],
+        [[v], [v, u]],
+        [[v], [v, w]],
+        [[w], [w, u]],
+        [[w], [w, v]],
+        [[u, v], [u, v, w]],
+        [[u, w], [u, v, w]],
+        [[v, w], [u, v, w]],
+      ].map(([from, to]) => ({
+        points: [corner(...from), corner(...to)],
+        color: "#64748b",
+        smooth: false,
+        showPoints: false,
+      }));
+    }),
+    ...[
+      { origin: [0, 0, 0], column: [0, 2, 1], color: "#8242e5", label: <InlineMath math="a^1" /> },
+      { origin: [0, 0, 0], column: [3, 2, 0], color: "#0d9488", label: <InlineMath math="a^2" /> },
+      { origin: [0, 0, 0], column: [3, 0, 1], color: "#c026d3", label: <InlineMath math="a^3" /> },
+      { origin: [-5, 0, 0], column: [1, 0, 0], color: "#8242e5", label: <InlineMath math="r^1" /> },
+      { origin: [-5, 0, 0], column: [0, 2, 0], color: "#0d9488", label: <InlineMath math="r^2" /> },
+      { origin: [-5, 0, 0], column: [1, -2, 6], color: "#c026d3", label: <InlineMath math="r^3" /> },
+    ].map(({ origin, column, color, label }) => ({
+      points: [
+        { x: origin[0], y: origin[1], z: origin[2] },
+        { x: origin[0] + column[0], y: origin[1] + column[1], z: origin[2] + column[2] },
+      ],
+      color,
+      cone: { position: "end", size: 0.3 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: label, at: 1, offset: [0.35, 0.3, 0] }],
+    })),
+  ]}
+/>

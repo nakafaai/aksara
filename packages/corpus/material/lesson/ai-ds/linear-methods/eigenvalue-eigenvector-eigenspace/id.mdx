@@ -77,6 +77,86 @@ Vektor <InlineMath math="v_2" /> berikut adalah vektor eigen untuk <InlineMath m
 <BlockMath math="A \cdot v_2 = \begin{pmatrix} 4 \\ 4 \end{pmatrix} = 4 \cdot v_2" />
 </MathContainer>
 
+Putar atau perbesar adegan ini untuk membandingkan tiap panah dengan bayangannya oleh matriks simetris di atas. Vektor satuan ungu <InlineMath math="v_1" /> dan <InlineMath math="v_2" /> hanya memanjang: bayangan oranyenya tetap di garis yang sama, dikali <InlineMath math="\lambda_1=2" /> dan <InlineMath math="\lambda_2=4" />. Vektor <InlineMath math="e_1" /> tidak begitu, karena <InlineMath math="Ae_1=(3,1)^T" /> berbelok dari sumbu <InlineMath math="x" />. Elips magenta berisi bayangan semua vektor satuan, dan jari-jari terpanjang serta terpendeknya tepat searah vektor eigen.
+
+<LineEquation
+  title={<>Vektor eigen tetap di garisnya</>}
+  description={<>Panah ungu adalah vektor satuan, panah oranye adalah bayangannya oleh <InlineMath math="A=\begin{pmatrix}3&1\\1&3\end{pmatrix}" />. Elips magenta memuat bayangan setiap vektor satuan.</>}
+  showZAxis={false}
+  cameraPosition={[0.2, 0.3, 10]}
+  cameraTarget={[0.2, 0.3, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.cos(angle), y: Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\|v\|=1" />, at: 200, offset: [-0.5, -0.1, 0] }],
+    },
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: 3 * Math.cos(angle) + Math.sin(angle), y: Math.cos(angle) + 3 * Math.sin(angle), z: 0 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="Av" />, at: 315, offset: [0.45, -0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: -Math.SQRT2, y: Math.SQRT2, z: 0 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.25 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="Av_1=2v_1" />, at: 1, offset: [-0.6, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2 * Math.SQRT2, y: 2 * Math.SQRT2, z: 0 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.25 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="Av_2=4v_2" />, at: 1, offset: [0.4, 0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.25 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="Ae_1" />, at: 1, offset: [0.5, 0, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: -Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="v_1" />, at: 1, offset: [-0.3, -0.1, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="v_2" />, at: 1, offset: [0.3, -0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="e_1" />, at: 1, offset: [0.15, -0.25, 0] }],
+    },
+  ]}
+/>
+
 ## Kebebasan Linear Vektor Eigen
 
 Misalkan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dan <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> adalah nilai eigen <InlineMath math="A" /> yang **berbeda secara berpasangan**, sehingga <InlineMath math="\lambda_i \neq \lambda_j" /> setiap kali <InlineMath math="i \neq j" />. Vektor eigen yang bersesuaian <InlineMath math="v_1, \ldots, v_k \in \mathbb{K}^n" /> bersifat bebas linear.

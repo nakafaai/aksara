@@ -98,6 +98,61 @@ Set <InlineMath math="\varepsilon=1/1000" /> and compare two right-hand sides. O
 <BlockMath math="\kappa_2(A)=\frac1{1/1000}=1000" />
 </MathContainer>
 
+To see the amplification, take <InlineMath math="\varepsilon=1/3" /> so the picture fits. Every perturbation <InlineMath math="\Delta b" /> of length <InlineMath math="1" /> lies on the gray circle, and its effect <InlineMath math="\Delta x=A^{-1}\Delta b" /> lies on the magenta ellipse. Rotate or zoom the scene: the ellipse is stretched three times along the second axis and not at all along the first. That ratio <InlineMath math="3" /> is <InlineMath math="\kappa_2(A)=1/\varepsilon" />. For <InlineMath math="\varepsilon=1/1000" />, the same ellipse would be a thousand times taller than it is wide.
+
+<LineEquation
+  title={<>A perturbation <InlineMath math="\Delta b" /> is stretched by <InlineMath math="A^{-1}" /></>}
+  description={<>For <InlineMath math="\varepsilon=1/3" />, every perturbation of length one on the gray circle maps to the magenta ellipse with semiaxes <InlineMath math="1" /> and <InlineMath math="3" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0, 9]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.cos(angle), y: Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\|\Delta b\|=1" />, at: 200, offset: [-0.7, -0.1, 0] }],
+    },
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.cos(angle), y: 3 * Math.sin(angle), z: 0 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="A^{-1}\Delta b" />, at: 320, offset: [0.75, 0, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 3, z: 0 }],
+      color: "#8242e5",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="1/\varepsilon=3" />, at: 1, offset: [-0.75, 0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\Delta b" />, at: 1, offset: [0.3, -0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: 3 * Math.SQRT1_2, z: 0 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\Delta x" />, at: 1, offset: [0.45, 0.1, 0] }],
+    },
+  ]}
+/>
+
 ## Perturbation bound
 
 Assume <InlineMath math="A" /> is invertible and <InlineMath math="b\ne0" />, so the relative errors below have **nonzero denominators**. Compare the original system <InlineMath math="Ax=b" /> with a system whose matrix and vector change slightly:

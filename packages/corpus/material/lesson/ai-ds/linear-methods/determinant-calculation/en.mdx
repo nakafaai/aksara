@@ -183,3 +183,58 @@ Since there is **one row swap** (<InlineMath math="p = 1" />):
 <BlockMath math="= (-1)^1 \cdot 1 \cdot 2 \cdot 6" />
 <BlockMath math="= -12" />
 </MathContainer>
+
+Rotate the two slanted boxes below. The right box is spanned by the columns of <InlineMath math="A" />, the left box by the columns of <InlineMath math="R" />, with matching colors for matching columns. Each elimination step adds a multiple of one row to another, which shears the box without changing its volume. The single row swap only flips the orientation, so the sign turns negative. Both boxes therefore hold volume <InlineMath math="12" />, and in the left box you can read it as base <InlineMath math="1\cdot2" /> times height <InlineMath math="6" />.
+
+<LineEquation
+  title={<>The same volume before and after elimination</>}
+  description={<>The right box is spanned by the columns of <InlineMath math="A" />, the left box by the columns of <InlineMath math="R" />. Both have volume <InlineMath math="12=|\det A|" />.</>}
+  cameraPosition={[5, 6, 13]}
+  cameraTarget={[-1.2, 0.8, 2]}
+  data={[
+    ...[
+      { origin: [0, 0, 0], columns: [[0, 2, 1], [3, 2, 0], [3, 0, 1]] },
+      { origin: [-5, 0, 0], columns: [[1, 0, 0], [0, 2, 0], [1, -2, 6]] },
+    ].flatMap(({ origin, columns: [u, v, w] }) => {
+      const corner = (...vectors) => ({
+        x: origin[0] + vectors.reduce((sum, vector) => sum + vector[0], 0),
+        y: origin[1] + vectors.reduce((sum, vector) => sum + vector[1], 0),
+        z: origin[2] + vectors.reduce((sum, vector) => sum + vector[2], 0),
+      });
+      return [
+        [[u], [u, v]],
+        [[u], [u, w]],
+        [[v], [v, u]],
+        [[v], [v, w]],
+        [[w], [w, u]],
+        [[w], [w, v]],
+        [[u, v], [u, v, w]],
+        [[u, w], [u, v, w]],
+        [[v, w], [u, v, w]],
+      ].map(([from, to]) => ({
+        points: [corner(...from), corner(...to)],
+        color: "#64748b",
+        smooth: false,
+        showPoints: false,
+      }));
+    }),
+    ...[
+      { origin: [0, 0, 0], column: [0, 2, 1], color: "#8242e5", label: <InlineMath math="a^1" /> },
+      { origin: [0, 0, 0], column: [3, 2, 0], color: "#0d9488", label: <InlineMath math="a^2" /> },
+      { origin: [0, 0, 0], column: [3, 0, 1], color: "#c026d3", label: <InlineMath math="a^3" /> },
+      { origin: [-5, 0, 0], column: [1, 0, 0], color: "#8242e5", label: <InlineMath math="r^1" /> },
+      { origin: [-5, 0, 0], column: [0, 2, 0], color: "#0d9488", label: <InlineMath math="r^2" /> },
+      { origin: [-5, 0, 0], column: [1, -2, 6], color: "#c026d3", label: <InlineMath math="r^3" /> },
+    ].map(({ origin, column, color, label }) => ({
+      points: [
+        { x: origin[0], y: origin[1], z: origin[2] },
+        { x: origin[0] + column[0], y: origin[1] + column[1], z: origin[2] + column[2] },
+      ],
+      color,
+      cone: { position: "end", size: 0.3 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: label, at: 1, offset: [0.35, 0.3, 0] }],
+    })),
+  ]}
+/>

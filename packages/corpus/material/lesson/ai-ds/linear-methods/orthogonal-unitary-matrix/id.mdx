@@ -94,6 +94,74 @@ Polinomial karakteristiknya adalah
 
 Kecuali <InlineMath math="\alpha" /> merupakan kelipatan <InlineMath math="\pi" />, rotasi ini **tidak memiliki vektor eigen real**. Pada rotasi bidang sejati, tidak ada arah real tak nol yang tetap atau hanya berubah tanda.
 
+Putar adegan ini dan cek apa yang dijaga oleh rotasi. Ujung <InlineMath math="x" />, <InlineMath math="y" />, <InlineMath math="R(\alpha)x" />, dan <InlineMath math="R(\alpha)y" /> semuanya ada di lingkaran abu-abu yang sama, jadi panjangnya tetap <InlineMath math="\sqrt5" />. Sudut siku-siku antara <InlineMath math="x" /> dan <InlineMath math="y" /> juga bertahan, karena <InlineMath math="R(\alpha)^TR(\alpha)=I" /> menjaga setiap produk dalam. Yang berubah hanya arahnya, sebesar sudut kuning <InlineMath math="\alpha=60^\circ" />. Karena itu, tidak ada vektor real yang arahnya tetap.
+
+<LineEquation
+  title={<>Rotasi <InlineMath math="R(60^\circ)" /> menjaga panjang dan sudut</>}
+  description={<>Vektor <InlineMath math="x=(2,1)^T" /> dan <InlineMath math="y=(-1,2)^T" /> diputar sejauh <InlineMath math="\alpha=60^\circ" />. Keempat ujung panah ada di lingkaran berjari-jari <InlineMath math="\sqrt5" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0.2, 8]}
+  cameraTarget={[0, 0.2, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.sqrt(5) * Math.cos(angle), y: Math.sqrt(5) * Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\|v\|=\sqrt5" />, at: 135, offset: [-0.5, 0.3, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x" />, at: 1, offset: [0.3, -0.1, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: -1, y: 2, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y" />, at: 1, offset: [-0.3, 0.2, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: 2 * Math.cos(Math.PI / 3) - Math.sin(Math.PI / 3), y: 2 * Math.sin(Math.PI / 3) + Math.cos(Math.PI / 3), z: 0 },
+      ],
+      color: "#c026d3",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="R(\alpha)x" />, at: 1, offset: [0.45, 0.25, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 },
+        { x: -Math.cos(Math.PI / 3) - 2 * Math.sin(Math.PI / 3), y: -Math.sin(Math.PI / 3) + 2 * Math.cos(Math.PI / 3), z: 0 },
+      ],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="R(\alpha)y" />, at: 1, offset: [-0.4, -0.35, 0] }],
+    },
+    {
+      kind: "circle-arc",
+      radius: 0.9,
+      startDegrees: (Math.atan2(1, 2) * 180) / Math.PI,
+      sweepDegrees: 60,
+      color: "#b98d00",
+      label: { text: <InlineMath math="\alpha=60^\circ" />, progress: 0.5, offset: [0.3, 0.25, 0] },
+    },
+  ]}
+/>
+
 ## Contoh Refleksi
 
 Untuk vektor satuan <InlineMath math="u\in\mathbb{R}^n" />, matriks Householder

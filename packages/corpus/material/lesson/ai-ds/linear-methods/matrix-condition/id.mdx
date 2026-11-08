@@ -98,6 +98,61 @@ Ambil <InlineMath math="\varepsilon=1/1000" /> dan bandingkan dua ruas kanan. Ha
 <BlockMath math="\kappa_2(A)=\frac1{1/1000}=1000" />
 </MathContainer>
 
+Supaya pembesarannya kelihatan, ambil <InlineMath math="\varepsilon=1/3" /> agar gambarnya muat. Setiap gangguan <InlineMath math="\Delta b" /> berpanjang <InlineMath math="1" /> ada di lingkaran abu-abu, dan akibatnya <InlineMath math="\Delta x=A^{-1}\Delta b" /> ada di elips magenta. Putar atau perbesar adegannya: elips itu diregangkan tiga kali sepanjang sumbu kedua dan sama sekali tidak sepanjang sumbu pertama. Perbandingan <InlineMath math="3" /> itu adalah <InlineMath math="\kappa_2(A)=1/\varepsilon" />. Untuk <InlineMath math="\varepsilon=1/1000" />, elips yang sama akan seribu kali lebih tinggi daripada lebarnya.
+
+<LineEquation
+  title={<>Gangguan <InlineMath math="\Delta b" /> diperbesar oleh <InlineMath math="A^{-1}" /></>}
+  description={<>Untuk <InlineMath math="\varepsilon=1/3" />, setiap gangguan berpanjang satu di lingkaran abu-abu dipetakan ke elips magenta dengan setengah sumbu <InlineMath math="1" /> dan <InlineMath math="3" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0, 9]}
+  cameraTarget={[0, 0, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.cos(angle), y: Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\|\Delta b\|=1" />, at: 200, offset: [-0.7, -0.1, 0] }],
+    },
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.cos(angle), y: 3 * Math.sin(angle), z: 0 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="A^{-1}\Delta b" />, at: 320, offset: [0.75, 0, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 3, z: 0 }],
+      color: "#8242e5",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="1/\varepsilon=3" />, at: 1, offset: [-0.75, 0.25, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.15 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\Delta b" />, at: 1, offset: [0.3, -0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: Math.SQRT1_2, y: 3 * Math.SQRT1_2, z: 0 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.2 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\Delta x" />, at: 1, offset: [0.45, 0.1, 0] }],
+    },
+  ]}
+/>
+
 ## Batas Perubahan Solusi
 
 Asumsikan <InlineMath math="A" /> dapat diinverskan dan <InlineMath math="b\ne0" />, agar galat relatif berikut memiliki **penyebut tak nol**. Bandingkan sistem awal <InlineMath math="Ax=b" /> dengan sistem yang matriks dan vektornya berubah sedikit.

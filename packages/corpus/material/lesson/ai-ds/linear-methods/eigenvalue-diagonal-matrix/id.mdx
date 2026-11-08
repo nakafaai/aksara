@@ -39,6 +39,40 @@ Sebagai contoh, entri di luar diagonal dapat berubah sementara **nilai eigen tet
 
 Jadi, 2 muncul dua kali dan −1 sekali. Hasil ini menentukan nilai eigen, tetapi belum membuktikan bahwa matriks dapat didiagonalisasi.
 
+Perbesar grafik di sekitar dua titik magenta dan ikuti kurvanya sepanjang sumbu <InlineMath math="t" />. Di <InlineMath math="t=-1" />, kurva memotong sumbu, jadi itu akar tunggal. Di <InlineMath math="t=2" />, kurva cuma menyentuh sumbu lalu berbalik, karena faktor <InlineMath math="(2-t)^2" /> muncul dua kali. Mengubah entri <InlineMath math="4" />, <InlineMath math="1" />, dan <InlineMath math="3" /> di atas diagonal tidak menggeser kedua titik ini sama sekali.
+
+<LineEquation
+  title={<>Polinom karakteristik matriks segitiga <InlineMath math="T" /></>}
+  description={<>Kurva ungu adalah <InlineMath math="\chi_T(t)=(2-t)^2(-1-t)" />. Titik magenta menandai akar <InlineMath math="t=-1" /> dan akar ganda <InlineMath math="t=2" />.</>}
+  showZAxis={false}
+  cameraPosition={[0.85, 0, 14]}
+  cameraTarget={[0.85, 0, 0]}
+  data={[
+    {
+      points: Array.from({ length: 451 }, (_, index) => {
+        const t = -1.4 + index / 100;
+        return { x: t, y: (2 - t) ** 2 * (-1 - t), z: 0 };
+      }),
+      color: "#8242e5",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\chi_T(t)=(2-t)^2(-1-t)" />, at: 340, offset: [-0.2, 2.5, 0] }],
+    },
+    {
+      points: [{ x: -1, y: 0, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="t=-1" />, at: 0, offset: [-0.7, -0.5, 0] }],
+    },
+    {
+      points: [{ x: 2, y: 0, z: 0 }],
+      color: "#c026d3",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="t=2" />, at: 0, offset: [0.4, 0.6, 0] }],
+    },
+  ]}
+/>
+
 ## Menghitung Nilai Eigen Matriks yang Bukan Segitiga
 
 Aturan diagonal hanya berlaku khusus untuk matriks segitiga. Begitu matriksnya tidak lagi segitiga, nilai eigennya tersembunyi di dalam polinomial karakteristik, sehingga pekerjaannya berpindah dari membaca entri diagonal menjadi **mencari akar**.

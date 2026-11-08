@@ -106,6 +106,70 @@ Projiziere mit demselben <InlineMath math="A" /> den Vektor <InlineMath math="x=
 
 <BlockMath math="\operatorname{proj}^{A}_{e_1}(e_2)=\frac12e_1,\qquad r=\begin{pmatrix}-1/2\\1\end{pmatrix},\qquad e_1^TAr=2(-1/2)+1=0" />
 
+Dreh oder zoom die Szene unten und vergleich die beiden Einheitsmengen. Die Vektoren <InlineMath math="e_1" /> und <InlineMath math="e_2" /> liegen auf dem grauen Kreis, aber beide liegen außerhalb der magentafarbenen Ellipse, weil <InlineMath math="\|e_1\|_A=\|e_2\|_A=\sqrt2" /> gilt. Das orange Residuum <InlineMath math="r" /> sieht nicht senkrecht zu <InlineMath math="e_1" /> aus, und euklidisch ist es das auch nicht. Bezüglich <InlineMath math="A" /> steht es senkrecht, denn <InlineMath math="e_1^TAr=0" />.
+
+<LineEquation
+  title={<>Euklidischer und gewichteter Einheitskreis</>}
+  description={<>Der graue Kreis ist <InlineMath math="x^Tx=1" />, die magentafarbene Ellipse ist <InlineMath math="x^TAx=1" /> für <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />. Die orange Strecke ist das Residuum <InlineMath math="r=e_2-\tfrac12e_1" />.</>}
+  showZAxis={false}
+  cameraPosition={[0, 0.1, 3.6]}
+  cameraTarget={[0, 0.1, 0]}
+  data={[
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        return { x: Math.cos(angle), y: Math.sin(angle), z: 0 };
+      }),
+      color: "#64748b",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x^Tx=1" />, at: 225, offset: [-0.35, -0.15, 0] }],
+    },
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const t = (index / 360) * 2 * Math.PI;
+        const along = Math.cos(t) / Math.sqrt(3);
+        const across = Math.sin(t);
+        return { x: (along + across) / Math.SQRT2, y: (along - across) / Math.SQRT2, z: 0 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x^TAx=1" />, at: 135, offset: [0.4, -0.2, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
+      color: "#8242e5",
+      cone: { position: "end", size: 0.12 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="e_1" />, at: 1, offset: [0.18, 0.1, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
+      color: "#0d9488",
+      cone: { position: "end", size: 0.12 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="e_2" />, at: 1, offset: [-0.18, 0.12, 0] }],
+    },
+    {
+      points: [{ x: 1 / 2, y: 0, z: 0 }, { x: 1 / 4, y: 1 / 2, z: 0 }, { x: 0, y: 1, z: 0 }],
+      color: "#bb6800",
+      cone: { position: "end", size: 0.12 },
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="r" />, at: 1, offset: [0.18, 0.06, 0] }],
+    },
+    {
+      points: [{ x: 1 / 2, y: 0, z: 0 }],
+      color: "#bb6800",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="\tfrac12e_1" />, at: 0, offset: [0.05, -0.18, 0] }],
+    },
+  ]}
+/>
+
 ## Ein Skalarprodukt als Matrix schreiben
 
 In der Standardbasis <InlineMath math="e_1,\ldots,e_n" /> besitzt jedes endlichdimensionale Skalarprodukt genau eine Darstellungsmatrix mit den Einträgen

@@ -89,6 +89,70 @@ Vergleiche den zweiten Parameter vor und nach derselben Datenänderung. Der erst
 
 <BlockMath math="\Delta x_2=\frac{(1/10)(1/100)}{(1/10)^2+(1/5)^2}=\frac{1/1000}{1/20}=\frac1{50}" />
 
+Beweg die Kamera um das Bild dieses Beispiels. Die türkisen Ellipsen sind Höhenlinien der Datenanpassung, und sie sind entlang <InlineMath math="x_2" /> zehnmal länger, weil <InlineMath math="\sigma_2=0.1" /> ist. Das ist die instabile Richtung. Die magentafarbene Kurve zeigt <InlineMath math="x_\alpha" />, während <InlineMath math="\alpha" /> von <InlineMath math="0" /> aus wächst: Sie startet bei <InlineMath math="x_{\mathrm{LS}}=(1,2)^T" />, geht durch <InlineMath math="x_{0.2}=(25/26,0.4)^T" /> und läuft zum Referenzwert <InlineMath math="x_0=0" />. Bei <InlineMath math="x_{0.2}" /> berührt die Höhenlinie den gelben Kreis gerade, also passt kein Punkt mit derselben Parameterlänge besser zu den Daten.
+
+<LineEquation
+  title={<>Der Tikhonov-Lösungspfad <InlineMath math="x_\alpha" /></>}
+  description={<>Die türkisen Ellipsen sind Höhenlinien von <InlineMath math="\|Ax-b\|^2" />, die magentafarbene Kurve ist <InlineMath math="x_\alpha" /> für <InlineMath math="\alpha" /> von <InlineMath math="0" /> bis <InlineMath math="3" />, und der gelbe Kreis geht durch <InlineMath math="x_{0.2}" />.</>}
+  showZAxis={false}
+  cameraPosition={[0.05, 1.3, 8.5]}
+  cameraTarget={[0.05, 1.3, 0]}
+  data={[
+    ...[1, 1 / 4].map((share, contour) => {
+      const level = share * ((25 / 26 - 1) ** 2 + 0.01 * (0.4 - 2) ** 2);
+      return {
+        points: Array.from({ length: 361 }, (_, index) => {
+          const angle = (index / 360) * 2 * Math.PI;
+          return { x: 1 + Math.sqrt(level) * Math.cos(angle), y: 2 + 10 * Math.sqrt(level) * Math.sin(angle), z: 0 };
+        }),
+        color: "#0d9488",
+        smooth: false,
+        showPoints: false,
+        ...(contour === 0 ? { labels: [{ text: <InlineMath math="\|Ax-b\|^2" />, at: 90, offset: [0.65, 0, 0] }] } : {}),
+      };
+    }),
+    {
+      points: Array.from({ length: 361 }, (_, index) => {
+        const angle = (index / 360) * 2 * Math.PI;
+        const radius = Math.hypot(25 / 26, 0.4);
+        return { x: radius * Math.cos(angle), y: radius * Math.sin(angle), z: 0 };
+      }),
+      color: "#b98d00",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="\|x\|=\|x_{0.2}\|" />, at: 135, offset: [-0.7, 0.3, 0] }],
+    },
+    {
+      points: Array.from({ length: 401 }, (_, index) => {
+        const alpha = 3 * (index / 400) ** 2;
+        return { x: 1 / (1 + alpha ** 2), y: (0.1 * 0.2) / (0.1 ** 2 + alpha ** 2), z: 0 };
+      }),
+      color: "#c026d3",
+      smooth: false,
+      showPoints: false,
+      labels: [{ text: <InlineMath math="x_\alpha" />, at: 163, offset: [0, -0.3, 0] }],
+    },
+    {
+      points: [{ x: 1, y: 2, z: 0 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="x_{\mathrm{LS}}" />, at: 0, offset: [0.4, 0.1, 0] }],
+    },
+    {
+      points: [{ x: 25 / 26, y: 2 / 5, z: 0 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="x_{0.2}" />, at: 0, offset: [0.4, -0.15, 0] }],
+    },
+    {
+      points: [{ x: 0, y: 0, z: 0 }],
+      color: "#8242e5",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="x_0" />, at: 0, offset: [-0.3, -0.25, 0] }],
+    },
+  ]}
+/>
+
 ## Wahl des Regularisierungsparameters
 
 Es gibt **keinen universell besten Wert** für <InlineMath math="\alpha" />. Er hängt vom Rauschniveau, von der Parameterskalierung, von der Strafe und vom Zweck des Modells ab.
