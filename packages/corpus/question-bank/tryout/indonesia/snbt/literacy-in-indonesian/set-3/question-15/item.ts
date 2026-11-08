@@ -14,7 +14,7 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Penjualan makanan berlabel hijau naik lebih dari 40 persen.",
+          label: "Penjualan jajanan berlabel hijau naik lebih dari 40 persen.",
         },
         {
           column: 2,
@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Jumlah porsi makanan merah yang berkurang lebih banyak daripada jumlah porsi makanan hijau yang bertambah.",
+            "Jumlah porsi jajanan merah yang berkurang lebih banyak daripada jumlah porsi jajanan hijau yang bertambah.",
         },
         {
           column: 2,

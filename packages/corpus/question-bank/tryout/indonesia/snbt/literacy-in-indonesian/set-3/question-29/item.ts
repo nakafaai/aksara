@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Catatan itu menunjukkan bahwa sang kakek pernah menghadapi pilihan serupa dengan cucunya.",
+            "Catatan itu memperlihatkan bahwa dilema Sinta pernah dialami kakeknya.",
         },
         {
           correct: false,

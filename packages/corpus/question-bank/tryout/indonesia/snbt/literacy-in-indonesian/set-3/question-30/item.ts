@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Pembaca yang menyukai kisah manusia dan alam tanpa menuntut jawaban mudah.",
+            "Pembaca yang suka kisah lingkungan tanpa mengharapkan penyelesaian sederhana.",
         },
       ],
     },
