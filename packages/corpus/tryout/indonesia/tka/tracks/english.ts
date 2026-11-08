@@ -3,8 +3,8 @@ import type { TrackSourceInput } from "#corpus/tryout/schema";
 
 /** Active official-format TKA English sets. */
 export const tkaEnglishTrack = {
+  group: "senior-high-school",
   key: "english-language",
-  kind: "subject",
   order: 3,
   profile: {
     names: {

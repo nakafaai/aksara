@@ -115,11 +115,11 @@ describe("structured snapshot data", () => {
         "\n"
       );
 
-      expect(assessmentRows.length).toBe(24);
+      expect(assessmentRows.length).toBe(27);
       expect(
         Hex.encode(yield* digestSha256(new TextEncoder().encode(canonical)))
       ).toBe(
-        "fc191f9d12576439524bbbc854c97422336a1123c9f5262e321be9a65ab2afd4"
+        "a850674b1e0b5b8b156e9cf1280009fc82c9d017f75611fc8f7534efee8b49d9"
       );
     })
   );
