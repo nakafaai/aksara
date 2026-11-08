@@ -28,6 +28,10 @@ const NON_VISUAL_COMPONENTS: ReadonlySet<string> = new Set([
 /** Semantic HTML elements such as table and sup begin with a lowercase letter. */
 const HTML_ELEMENT = /^[a-z]/u;
 
+/** A lesson is one folder below the lesson root with one MDX file per locale. */
+const LESSON_FILE =
+  /(?:^|\/)(packages\/corpus\/material\/lesson\/.+)\/[^/]+\.mdx$/u;
+
 /** Tells whether one renderer component name models a concept interactively. */
 export function isInteractiveVisual(name: string): boolean {
   return !(
@@ -53,6 +57,28 @@ export function countVisuals(
     }
   }
   return counts;
+}
+
+/** Names the lesson folder of one locale file, or nothing for any other page. */
+export function lessonFolder(file: string): string | undefined {
+  return LESSON_FILE.exec(file)?.[1];
+}
+
+/**
+ * Lists every lesson folder with a locale file that holds no interactive
+ * visual, in path order. Every lesson carries one that models its concept.
+ */
+export function bareLessons(
+  documents: Iterable<readonly [file: string, document: DocumentParts]>
+): readonly string[] {
+  const bare = new Set<string>();
+  for (const [file, document] of documents) {
+    const folder = lessonFolder(file);
+    if (folder !== undefined && countVisuals(document).size === 0) {
+      bare.add(folder);
+    }
+  }
+  return [...bare].sort();
 }
 
 /** Sums the counts of every component name. */

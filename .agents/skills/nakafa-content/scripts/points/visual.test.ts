@@ -3,9 +3,11 @@ import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { inspectDocument } from "#nakafa-content/points/document";
 import { lesson } from "#nakafa-content/points/test/lesson";
 import {
+  bareLessons,
   countVisuals,
   findVisualLoss,
   isInteractiveVisual,
+  lessonFolder,
 } from "#nakafa-content/points/visual";
 
 /** Parses and inspects one lesson that holds the given teaching blocks. */
@@ -140,5 +142,39 @@ describe("visual loss", () => {
     assert.isUndefined(findVisualLoss(base, parse(LINE, UNIT_CIRCLE)));
     assert.isUndefined(findVisualLoss(base, parse(LINE, LINE, UNIT_CIRCLE)));
     assert.isUndefined(findVisualLoss(parse(), parse()));
+  });
+});
+
+describe("lessons without a visual", () => {
+  const ROOT = "packages/corpus/material/lesson/mathematics";
+
+  it("names the lesson folder of a locale file and nothing else", () => {
+    assert.strictEqual(
+      lessonFolder(`${ROOT}/matrix/matrix-concept/id.mdx`),
+      `${ROOT}/matrix/matrix-concept`
+    );
+    assert.strictEqual(
+      lessonFolder(`/repo/${ROOT}/matrix/matrix-concept/de.mdx`),
+      `${ROOT}/matrix/matrix-concept`
+    );
+    assert.isUndefined(
+      lessonFolder("packages/corpus/articles/politics/a/en.mdx")
+    );
+    assert.isUndefined(lessonFolder(`${ROOT}/matrix/readme.md`));
+  });
+
+  it("lists a lesson once when any locale misses a visual", () => {
+    const mermaid = parse('<Mermaid chart="graph TD; A-->B" />');
+    const drawn = parse(LINE);
+    const bare = bareLessons([
+      [`${ROOT}/b/en.mdx`, mermaid],
+      [`${ROOT}/b/id.mdx`, mermaid],
+      [`${ROOT}/a/en.mdx`, drawn],
+      [`${ROOT}/a/id.mdx`, parse()],
+      [`${ROOT}/c/en.mdx`, drawn],
+      ["packages/corpus/articles/politics/x/en.mdx", parse()],
+    ]);
+
+    assert.deepStrictEqual(bare, [`${ROOT}/a`, `${ROOT}/b`]);
   });
 });

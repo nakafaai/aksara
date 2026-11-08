@@ -141,8 +141,12 @@ layer(NodeServices.layer, { excludeTestServices: true })(
         const result = yield* check(root);
 
         assert.strictEqual(result.code, 0);
+        assert.deepStrictEqual(result.log.slice(0, 2), [
+          "1 lesson(s) without an interactive visual, which every lesson needs:",
+          `  ${ROOT}`,
+        ]);
         assert.include(
-          result.log[0],
+          result.log[2],
           "passed for 2 files and compared 0 changed files"
         );
       })

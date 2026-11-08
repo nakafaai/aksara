@@ -14,7 +14,13 @@ describe("points report", () => {
   it.effect("passes a run without findings with exit code 0", () =>
     Effect.gen(function* () {
       const result = yield* capture(
-        printReport({ base: BASE, compared: 2, files: 5, findings: [] })
+        printReport({
+          bare: [],
+          base: BASE,
+          compared: 2,
+          files: 5,
+          findings: [],
+        })
       );
 
       assert.strictEqual(result.code, 0);
@@ -36,6 +42,7 @@ describe("points report", () => {
       } as const;
       const result = yield* capture(
         printReport({
+          bare: [],
           base: BASE,
           compared: 1,
           files: 3,
@@ -55,6 +62,28 @@ describe("points report", () => {
         "Points check found 3 finding(s) in 2 of 3 files, compared with 0123456.",
       ]);
       assert.deepStrictEqual(result.log, []);
+    })
+  );
+
+  it.effect("lists the lessons without a visual and keeps the exit code", () =>
+    Effect.gen(function* () {
+      const result = yield* capture(
+        printReport({
+          bare: ["lessons/a", "lessons/b"],
+          base: BASE,
+          compared: 0,
+          files: 4,
+          findings: [],
+        })
+      );
+
+      assert.strictEqual(result.code, 0);
+      assert.deepStrictEqual(result.log, [
+        "2 lesson(s) without an interactive visual, which every lesson needs:",
+        "  lessons/a",
+        "  lessons/b",
+        "Points check passed for 4 files and compared 0 changed files with 0123456.",
+      ]);
     })
   );
 });

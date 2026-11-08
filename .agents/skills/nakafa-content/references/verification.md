@@ -221,7 +221,9 @@ revision from ending with fewer interactive visuals than it started with. It
 parses each MDX file with the checker's own MDX tooling and reads the ESTree of
 every JSX attribute and every expression of the page, never raw text. The
 three findings, the thresholds, and the one scoped skip live in
-[computed and exact visuals](visuals.md#computed-and-exact-visuals).
+[computed and exact visuals](visuals.md#computed-and-exact-visuals). It also
+lists every lesson folder without an interactive visual, with their count, as
+the [every-lesson rule](visuals.md#interactive-visual-in-every-lesson) requires.
 
 ```sh
 bun run points
