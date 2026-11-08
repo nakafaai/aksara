@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "inductive-reasoning",
     topic: "inference",
   },
-  stimulus: "sepeda",
+  stimulus: "pasar",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -14,21 +14,19 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Jumlah pesepeda di kedua jalan bersama-sama naik 120 orang.",
+          label: "Jumlah pengunjung kedua pasar bersama-sama naik 300 orang.",
         },
         {
           column: 2,
-          label:
-            "Jumlah pesepeda di Jalan Cempaka naik setelah jalur dibangun.",
+          label: "Jumlah pengunjung Pasar Kenari naik setelah renovasi.",
         },
         {
           column: 2,
-          label:
-            "Jumlah pesepeda di Jalan Merdeka naik lebih dari tiga kali lipat.",
+          label: "Pengunjung Pasar Cendana naik lebih dari dua kali lipat.",
         },
         {
           column: 1,
-          label: "Jumlah pesepeda di Jalan Cempaka turun 40%.",
+          label: "Pengunjung Pasar Kenari turun 20%.",
         },
       ],
     },

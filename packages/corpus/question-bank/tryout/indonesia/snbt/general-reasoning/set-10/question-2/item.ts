@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "inductive-reasoning",
     topic: "strengthening",
   },
-  stimulus: "sepeda",
+  stimulus: "pasar",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Jalan Cempaka sedang diperbaiki pada hari penghitungan sesudah jalur dibangun.",
+            "Jalan menuju Pasar Kenari sedang diperbaiki pada hari penghitungan sesudah renovasi.",
         },
         {
           correct: false,
           label:
-            "Harga sepeda di toko-toko Kota Lembayung naik sepanjang tahun itu.",
+            "Harga sayur dan ikan di kedua pasar naik sedikit sepanjang tahun itu.",
         },
         {
           correct: false,
           label:
-            "Kota lain yang membangun jalur sepeda juga mencatat kenaikan jumlah pesepeda.",
+            "Pasar di kota lain yang direnovasi juga mencatat kenaikan jumlah pengunjung.",
         },
         {
           correct: false,
           label:
-            "Cuaca pada kedua hari penghitungan sama-sama cerah dan tidak berangin.",
+            "Cuaca pada kedua hari penghitungan sama-sama cerah dan tidak hujan.",
         },
         {
           correct: true,
           label:
-            "Sebagian pengguna jalur baru mengaku dulu pergi bekerja dengan sepeda motor.",
+            "Sebagian pengunjung baru Pasar Cendana mengaku dulu selalu berbelanja di minimarket.",
         },
       ],
     },

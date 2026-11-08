@@ -6,34 +6,35 @@ const item: ItemSource = {
     contentDomain: "inductive-reasoning",
     topic: "conclusion",
   },
-  stimulus: "sepeda",
+  stimulus: "pasar",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Jalur sepeda menambah tepat 180 pesepeda baru di kota itu.",
+          label:
+            "Renovasi Pasar Cendana mendatangkan tepat 600 pembeli baru ke kawasan itu setiap hari.",
         },
         {
           correct: false,
           label:
-            "Jalan Cempaka menjadi lebih berbahaya bagi pesepeda setelah jalur dibangun.",
+            "Pedagang di Pasar Kenari menaikkan harga dagangannya setelah Pasar Cendana direnovasi.",
         },
         {
           correct: true,
           label:
-            "Sebagian kenaikan di Jalan Merdeka mungkin berasal dari pesepeda yang pindah dari Jalan Cempaka.",
+            "Sebagian kenaikan pengunjung Pasar Cendana mungkin berasal dari Pasar Kenari.",
         },
         {
           correct: false,
           label:
-            "Jumlah pesepeda di kedua jalan naik lebih dari dua kali lipat setelah jalur dibangun.",
+            "Jumlah pengunjung kedua pasar bersama-sama naik lebih dari dua kali lipat setelah renovasi.",
         },
         {
           correct: false,
           label:
-            "Jalur sepeda tidak berpengaruh apa pun terhadap jumlah pesepeda di kedua jalan.",
+            "Renovasi tidak berpengaruh apa pun terhadap jumlah pengunjung di kedua pasar itu.",
         },
       ],
     },
