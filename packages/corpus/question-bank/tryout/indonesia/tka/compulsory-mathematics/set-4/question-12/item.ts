@@ -13,11 +13,13 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Jarak titik $$O$$ ke tali busur $$AB$$ adalah $$12\\text{ cm}$$.",
+          label:
+            "Jarak titik $$O$$ ke tali busur $$AB$$ adalah $$12\\text{ cm}$$.",
         },
         {
           column: 2,
-          label: "Tali busur lain yang panjangnya $$24\\text{ cm}$$ berjarak $$34\\text{ cm}$$ dari $$O$$.",
+          label:
+            "Tali busur lain yang panjangnya $$24\\text{ cm}$$ berjarak $$34\\text{ cm}$$ dari $$O$$.",
         },
         {
           column: 2,

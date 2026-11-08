@@ -13,7 +13,8 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Rata-rata penjualan per hari naik dibandingkan data $$30$$ hari.",
+          label:
+            "Rata-rata penjualan per hari naik dibandingkan data $$30$$ hari.",
         },
         {
           correct: true,

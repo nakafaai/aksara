@@ -21,11 +21,13 @@ const item: ItemSource = {
         },
         {
           column: 1,
-          label: "Mesin $$C$$ sendiri memerlukan $$40$$ menit untuk mencetak $$1{.}200$$ lembar.",
+          label:
+            "Mesin $$C$$ sendiri memerlukan $$40$$ menit untuk mencetak $$1{.}200$$ lembar.",
         },
         {
           column: 1,
-          label: "Ketiga mesin bersama-sama mencetak $$2{.}700$$ lembar dalam $$30$$ menit.",
+          label:
+            "Ketiga mesin bersama-sama mencetak $$2{.}700$$ lembar dalam $$30$$ menit.",
         },
       ],
     },

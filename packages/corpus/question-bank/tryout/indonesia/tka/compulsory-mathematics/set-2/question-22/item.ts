@@ -13,7 +13,8 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Lebih dari $$40\\,\\%$$ hari bersuhu maksimum di atas rata-rata.",
+          label:
+            "Lebih dari $$40\\,\\%$$ hari bersuhu maksimum di atas rata-rata.",
         },
         {
           correct: true,
@@ -25,7 +26,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Ada tepat $$3$$ hari yang suhu maksimumnya di bawah $$32^\\circ\\text{C}$$.",
+          label:
+            "Ada tepat $$3$$ hari yang suhu maksimumnya di bawah $$32^\\circ\\text{C}$$.",
         },
         {
           correct: false,

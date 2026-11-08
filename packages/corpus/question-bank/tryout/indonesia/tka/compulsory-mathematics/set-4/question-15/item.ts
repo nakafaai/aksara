@@ -16,19 +16,23 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "pencerminan terhadap sumbu $$y$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$2$$",
+          label:
+            "pencerminan terhadap sumbu $$y$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$2$$",
         },
         {
           correct: true,
-          label: "rotasi $$180^\\circ$$ dengan pusat $$O$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$2$$",
+          label:
+            "rotasi $$180^\\circ$$ dengan pusat $$O$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$2$$",
         },
         {
           correct: false,
-          label: "pencerminan terhadap garis $$y=x$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$-2$$",
+          label:
+            "pencerminan terhadap garis $$y=x$$, dilanjutkan dilatasi dengan pusat $$O$$ dan faktor skala $$-2$$",
         },
         {
           correct: true,
-          label: "dilatasi dengan pusat $$O$$ dan faktor skala $$2$$, dilanjutkan pencerminan terhadap titik $$O$$",
+          label:
+            "dilatasi dengan pusat $$O$$ dan faktor skala $$2$$, dilanjutkan pencerminan terhadap titik $$O$$",
         },
       ],
     },

@@ -16,19 +16,23 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Pencerminan terhadap suatu garis mempertahankan luas segitiga.",
+          label:
+            "Pencerminan terhadap suatu garis mempertahankan luas segitiga.",
         },
         {
           correct: false,
-          label: "Dilatasi dengan faktor skala $$-2$$ menghasilkan segitiga yang luasnya $$2$$ kali luas semula.",
+          label:
+            "Dilatasi dengan faktor skala $$-2$$ menghasilkan segitiga yang luasnya $$2$$ kali luas semula.",
         },
         {
           correct: true,
-          label: "Rotasi $$180^\\circ$$ dengan pusat $$O(0,0)$$ sama dengan dilatasi berpusat di $$O$$ dengan faktor skala $$-1$$.",
+          label:
+            "Rotasi $$180^\\circ$$ dengan pusat $$O(0,0)$$ sama dengan dilatasi berpusat di $$O$$ dengan faktor skala $$-1$$.",
         },
         {
           correct: false,
-          label: "Pencerminan terhadap sumbu $$x$$ dilanjutkan pencerminan terhadap sumbu $$y$$ sama dengan sebuah translasi.",
+          label:
+            "Pencerminan terhadap sumbu $$x$$ dilanjutkan pencerminan terhadap sumbu $$y$$ sama dengan sebuah translasi.",
         },
       ],
     },

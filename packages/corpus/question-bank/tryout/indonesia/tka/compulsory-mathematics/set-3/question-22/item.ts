@@ -17,7 +17,8 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Rata-rata lama perjalanan, dihitung dengan titik tengah kelas, lebih dari $$17$$ menit.",
+          label:
+            "Rata-rata lama perjalanan, dihitung dengan titik tengah kelas, lebih dari $$17$$ menit.",
         },
         {
           correct: false,
@@ -25,7 +26,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Lebih dari separuh siswa memerlukan kurang dari $$15$$ menit.",
+          label:
+            "Lebih dari separuh siswa memerlukan kurang dari $$15$$ menit.",
         },
         {
           correct: true,

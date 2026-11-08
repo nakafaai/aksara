@@ -20,7 +20,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Grafik $$f$$ memotong sumbu $$x$$ di titik $$\\left(\\frac12,0\\right)$$.",
+          label:
+            "Grafik $$f$$ memotong sumbu $$x$$ di titik $$\\left(\\frac12,0\\right)$$.",
         },
         {
           correct: true,
@@ -28,7 +29,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Untuk $$x>1$$, nilai $$f(x)$$ makin besar ketika $$x$$ makin besar.",
+          label:
+            "Untuk $$x>1$$, nilai $$f(x)$$ makin besar ketika $$x$$ makin besar.",
         },
       ],
     },

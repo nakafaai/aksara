@@ -17,19 +17,23 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Di antara siswa yang diantar keluarga, $$40\\,\\%$$ adalah siswa kelas X.",
+          label:
+            "Di antara siswa yang diantar keluarga, $$40\\,\\%$$ adalah siswa kelas X.",
         },
         {
           correct: false,
-          label: "Siswa yang berjalan kaki kurang dari $$15\\,\\%$$ dari seluruh siswa.",
+          label:
+            "Siswa yang berjalan kaki kurang dari $$15\\,\\%$$ dari seluruh siswa.",
         },
         {
           correct: true,
-          label: "Di setiap kelas, angkutan umum adalah cara berangkat yang paling banyak dipilih.",
+          label:
+            "Di setiap kelas, angkutan umum adalah cara berangkat yang paling banyak dipilih.",
         },
         {
           correct: false,
-          label: "Persentase siswa yang bersepeda di kelas XI lebih besar daripada di kelas X.",
+          label:
+            "Persentase siswa yang bersepeda di kelas XI lebih besar daripada di kelas X.",
         },
       ],
     },
