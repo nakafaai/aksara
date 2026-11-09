@@ -28,6 +28,45 @@ Ambil contoh satu benda berada di koordinat <InlineMath math="30 \text{ m}" /> k
 
 Perhatikan bahwa **bendanya tidak berpindah** saat titik asal diganti. Hanya koordinatnya yang berubah. Jika titik asal digeser ke kanan, koordinat positif yang besar dapat menjadi positif yang lebih kecil, nol, atau negatif.
 
+Lihat adegan di bawah. Garis abu-abu adalah bendanya, dan garis itu tidak pernah bergeser. Setiap panah berangkat dari titik asal yang berbeda dan berakhir di benda, jadi labelnya adalah koordinat benda menurut titik asal itu. Coba hitung kotak gridnya sendiri: satu kotak sama dengan <InlineMath math="10\text{ m}" />, dan panah yang menunjuk ke barat mendapat tanda negatif.
+
+<MathVisual
+  title={<>Satu Benda, Tiga Titik Asal</>}
+  description={<>Setiap baris mengukur benda yang sama dari titik asal yang berbeda, dengan timur ke kanan. Satu kotak grid sama dengan 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "object", kind: "segment", appearance: "reference", from: { x: 3, y: -0.5 }, to: { x: 3, y: 2.5 } },
+      { id: "from-0", kind: "segment", appearance: "primary", from: { x: 0, y: 2 }, to: { x: 3, y: 2 } },
+      { id: "from-0-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 2 }, { x: 2.78, y: 2.11 }, { x: 2.78, y: 1.89 }] },
+      { id: "from-1", kind: "segment", appearance: "secondary", from: { x: 2, y: 1 }, to: { x: 3, y: 1 } },
+      { id: "from-1-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 1 }, { x: 2.78, y: 1.11 }, { x: 2.78, y: 0.89 }] },
+      { id: "from-2", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "from-2-head", kind: "polygon", appearance: "answer", vertices: [{ x: 3, y: 0 }, { x: 3.22, y: 0.11 }, { x: 3.22, y: -0.11 }] },
+    ],
+    labels: [
+      { key: "object", objectId: "object", at: { x: 3, y: 2.5 }, placement: "above" },
+      { key: "name0", objectId: "from-0", at: { x: 0, y: 2 }, placement: "below" },
+      { key: "coord0", objectId: "from-0", at: { x: 1.5, y: 2 }, placement: "above" },
+      { key: "name1", objectId: "from-1", at: { x: 2, y: 1 }, placement: "below" },
+      { key: "coord1", objectId: "from-1", at: { x: 2.5, y: 1 }, placement: "above" },
+      { key: "name2", objectId: "from-2", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "coord2", objectId: "from-2", at: { x: 4, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    object: <>Benda</>,
+    name0: <>Toko</>,
+    name1: <>Rumah Rani</>,
+    name2: <>Rumah Naya</>,
+    coord0: <InlineMath math="x'=+30\text{ m}" />,
+    coord1: <InlineMath math="x'=+10\text{ m}" />,
+    coord2: <InlineMath math="x'=-20\text{ m}" />,
+  }}
+/>
+
 ## Membaca Tanda dan Arah
 
 Tanda posisi menunjukkan <Highlight>sisi benda terhadap titik acuan</Highlight>. Dalam contoh jalan tadi, timur dipilih sebagai arah positif. Nilai positif berarti benda berada di timur titik acuan, sedangkan nilai negatif berarti benda berada di baratnya.
@@ -57,6 +96,43 @@ Contoh pernyataan yang lengkap adalah: "Benda berada <InlineMath math="10 \text{
 
 Kalimat "benda ada di dekat rumah" sudah menyebut rumah sebagai patokan, tetapi belum menetapkan bagian rumah yang menjadi titik nol, jarak numerik, satuan, dan arah. Dengan **titik nol yang pasti**, dua pengamat dapat mengukur koordinat benda dari tempat yang sama.
 
+Dalam dua dimensi, pernyataan posisi butuh titik asal dan dua bilangan. Dari <InlineMath math="O" />, titik <InlineMath math="P" /> ada di <InlineMath math="(3,2)" />, tetapi dari titik asal kedua <InlineMath math="O'" /> di <InlineMath math="(1,1)" />, letaknya <InlineMath math="\vec r\,'=\vec r-\vec r_0" />. Perbesar panah fuchsia.
+
+<MathVisual
+  title={<>Satu Titik, Dua Titik Asal</>}
+  description={<>Posisi P dari O (oranye) dan dari O' (fuchsia), dengan pergeseran antara kedua titik asal (ungu).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 4 }, y: { min: -0.8, max: 2.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "r", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 2 } },
+      { id: "r-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 2 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 2) + ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 2 - (0.25 * 2) / Math.hypot(3, 2) + ((0.25 / 2) * 3) / Math.hypot(3, 2) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 2) - ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 2 - (0.25 * 2) / Math.hypot(3, 2) - ((0.25 / 2) * 3) / Math.hypot(3, 2) }] },
+      { id: "r0", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 1, y: 1 } },
+      { id: "r0-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: 1 }, { x: 1 - (0.25 * 1) / Math.hypot(1, 1) + ((0.25 / 2) * -1) / Math.hypot(1, 1), y: 1 - (0.25 * 1) / Math.hypot(1, 1) + ((0.25 / 2) * 1) / Math.hypot(1, 1) }, { x: 1 - (0.25 * 1) / Math.hypot(1, 1) - ((0.25 / 2) * -1) / Math.hypot(1, 1), y: 1 - (0.25 * 1) / Math.hypot(1, 1) - ((0.25 / 2) * 1) / Math.hypot(1, 1) }] },
+      { id: "rp", kind: "segment", appearance: "answer", from: { x: 1, y: 1 }, to: { x: 3, y: 2 } },
+      { id: "rp-head", kind: "polygon", appearance: "answer", vertices: [{ x: 3, y: 2 }, { x: 3 - (0.25 * 2) / Math.hypot(2, 1) + ((0.25 / 2) * -1) / Math.hypot(2, 1), y: 2 - (0.25 * 1) / Math.hypot(2, 1) + ((0.25 / 2) * 2) / Math.hypot(2, 1) }, { x: 3 - (0.25 * 2) / Math.hypot(2, 1) - ((0.25 / 2) * -1) / Math.hypot(2, 1), y: 2 - (0.25 * 1) / Math.hypot(2, 1) - ((0.25 / 2) * 2) / Math.hypot(2, 1) }] },
+      { id: "o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "op", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: 3, y: 2 } },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "op", objectId: "op", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "p", objectId: "p", at: { x: 3, y: 2 }, placement: "above-right" },
+      { key: "r", objectId: "r", at: { x: 1.5, y: 1 }, placement: "below-right" },
+      { key: "rp", objectId: "rp", at: { x: 2, y: 1.5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    o: <InlineMath math="O" />,
+    op: <InlineMath math="O'" />,
+    p: <InlineMath math="P" />,
+    r: <InlineMath math="\vec r=(3,2)" />,
+    rp: <InlineMath math="\vec r\,'=\vec r-\vec r_0=(2,1)" />,
+  }}
+/>
+
 ## Kalimat Posisi dari Patokan Toko
 
 Sebuah penanda berada pada koordinat <InlineMath math="40 \text{ m}" /> ketika toko menjadi titik asal. Rumah Dimas berada pada koordinat <InlineMath math="30 \text{ m}" /> dalam kerangka yang sama. Jika **titik asal digeser** ke rumah Dimas, koordinat penanda menjadi:
@@ -69,3 +145,36 @@ x'
 \end{aligned}" />
 
 Jadi, penanda berada <InlineMath math="10 \text{ m}" /> di timur rumah Dimas. Dengan toko sebagai titik asal, koordinatnya <InlineMath math="40 \text{ m}" />. Dengan rumah Dimas sebagai titik asal, koordinatnya <InlineMath math="+10 \text{ m}" />. Keduanya benar karena memakai titik asal berbeda dalam kerangka acuan yang dijelaskan dengan jelas.
+
+Kedua panah di bawah berakhir di patok yang sama. Yang berubah hanya titik berangkatnya, yaitu titik asal, dan bersama itu angka dalam kalimat posisinya.
+
+<MathVisual
+  title={<>Satu Patok, Dua Titik Asal</>}
+  description={<>Patok di 40 m dari toko, diukur dari toko dan dari rumah Dimas di 30 m. Satu kotak grid sama dengan 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1, max: 2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "marker", kind: "segment", appearance: "reference", from: { x: 4, y: -0.5 }, to: { x: 4, y: 1.5 } },
+      { id: "from-0", kind: "segment", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 4, y: 1 } },
+      { id: "from-0-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 1 }, { x: 3.78, y: 1.11 }, { x: 3.78, y: 0.89 }] },
+      { id: "from-1", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "from-1-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 0 }, { x: 3.78, y: 0.11 }, { x: 3.78, y: -0.11 }] },
+    ],
+    labels: [
+      { key: "marker", objectId: "marker", at: { x: 4, y: 1.5 }, placement: "above" },
+      { key: "name0", objectId: "from-0", at: { x: 0, y: 1 }, placement: "below" },
+      { key: "name1", objectId: "from-1", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "coord0", objectId: "from-0", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "coord1", objectId: "from-1", at: { x: 3.5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    marker: <>Patok</>,
+    name0: <>Toko</>,
+    name1: <>Rumah Dimas</>,
+    coord0: <InlineMath math="+40\text{ m}" />,
+    coord1: <InlineMath math="+10\text{ m}" />,
+  }}
+/>

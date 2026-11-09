@@ -4,7 +4,7 @@ export const metadata = {
   description: "Derive the four basic reflection matrices and apply them to points and triangles.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Geometric Transformation",
 };
 
@@ -94,6 +94,45 @@ Compare the four matrices using **the same original point**, <InlineMath math="P
 | <InlineMath math="y=x" /> | <InlineMath math="(x,y)\mapsto(y,x)" /> | <InlineMath math="(-4,3)" /> |
 | <InlineMath math="y=-x" /> | <InlineMath math="(x,y)\mapsto(-y,-x)" /> | <InlineMath math="(4,-3)" /> |
 
+Plot <InlineMath math="P(3, -4)" /> and its four images from the table. The axis mirrors <InlineMath math="y = 0" /> and <InlineMath math="x = 0" /> only flip one sign, giving <InlineMath math="(3, 4)" /> and <InlineMath math="(-3, -4)" />. The diagonal mirrors <InlineMath math="y = x" /> and <InlineMath math="y = -x" /> swap the coordinates as well, giving <InlineMath math="(-4, 3)" /> and <InlineMath math="(4, -3)" />.
+
+<MathVisual
+  title={<>One point, four reflections</>}
+  description={<>The point <InlineMath math="P(3, -4)" /> with its images across the x-axis, the y-axis, the line <InlineMath math="y = x" /> and the line <InlineMath math="y = -x" />.</>}
+  labels={{
+    p: <InlineMath math="P(3, -4)" />,
+    "x-axis": <InlineMath math="(3, 4)" />,
+    "y-axis": <InlineMath math="(-3, -4)" />,
+    diagonal: <InlineMath math="(-4, 3)" />,
+    anti: <InlineMath math="(4, -3)" />,
+    d1: <InlineMath math="y = x" />,
+    d2: <InlineMath math="y = -x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "d1", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "d2", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "p", kind: "point", at: { x: 3, y: -4 }, appearance: "primary" },
+      { id: "x-axis", kind: "point", at: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "y-axis", kind: "point", at: { x: -3, y: -4 }, appearance: "secondary" },
+      { id: "diagonal", kind: "point", at: { x: -4, y: 3 }, appearance: "answer" },
+      { id: "anti", kind: "point", at: { x: 4, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 3, y: -4 }, placement: "below-right" },
+      { key: "x-axis", objectId: "x-axis", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "y-axis", objectId: "y-axis", at: { x: -3, y: -4 }, placement: "below-left" },
+      { key: "diagonal", objectId: "diagonal", at: { x: -4, y: 3 }, placement: "left" },
+      { key: "anti", objectId: "anti", at: { x: 4, y: -3 }, placement: "right" },
+      { key: "d1", objectId: "d1", at: { x: 9 / 2, y: 9 / 2 }, placement: "below-right" },
+      { key: "d2", objectId: "d2", at: { x: -9 / 2, y: 9 / 2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 ## Finding the Image of a Point using Matrix
 
 Find the image of <InlineMath math="(3,-4)" /> reflected across the <InlineMath math="x" />-axis.
@@ -105,6 +144,35 @@ Use **row-by-column multiplication** with the reflection matrix for the <InlineM
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ -4 \end{pmatrix} \\ &amp;= \begin{pmatrix} (1)(3) + (0)(-4) \\ (0)(3) + (-1)(-4) \end{pmatrix} \\ &amp;= \begin{pmatrix} 3 \\ 4 \end{pmatrix} \end{aligned}" />
 
 The image is <InlineMath math="(3,4)" />.
+
+In the plane, the multiplication keeps <InlineMath math="x = 3" /> and flips <InlineMath math="y = -4" /> to <InlineMath math="4" />. <InlineMath math="P(3, -4)" /> and <InlineMath math="P'(3, 4)" /> lie on one vertical segment, and the x-axis cuts it in half.
+
+<MathVisual
+  title={<><InlineMath math="(3, -4)" /> reflected across the x-axis</>}
+  description={<>The point <InlineMath math="P(3, -4)" /> and its image <InlineMath math="P'(3, 4)" />, joined by a vertical segment whose midpoint <InlineMath math="(3, 0)" /> lies on the x-axis.</>}
+  labels={{
+    p: <InlineMath math="P(3, -4)" />,
+    image: <InlineMath math="P'(3, 4)" />,
+    mid: <InlineMath math="(3, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: -1, y: 0 }, { x: 5, y: 0 }], appearance: "reference" },
+      { id: "join", kind: "segment", from: { x: 3, y: -4 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "mid", kind: "point", at: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 3, y: -4 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 3, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 3, y: -4 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "mid", objectId: "mid", at: { x: 3, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Finding the Image of a Triangle using Matrix
 
@@ -132,62 +200,35 @@ The columns represent <InlineMath math="A" />, <InlineMath math="B" /> and <Inli
 
 The image is triangle <InlineMath math="A'B'C'" /> with vertices <InlineMath math="A'(-3,1)" />, <InlineMath math="B'(2,3)" />, and <InlineMath math="C'(-2,-1)" />.
 
-<LineEquation
-  title={
-    <>
-      Reflection of <InlineMath math="\triangle ABC" /> over <InlineMath math="y" />-axis using Matrix
-    </>
-  }
-  description={
-    <>
-      Triangle <InlineMath math="ABC" /> is reflected to become{" "}
-      <InlineMath math="A'B'C'" /> over the <InlineMath math="y" />-axis.
-    </>
-  }
-  data={[
-    ...[
-      {
-        from: { x: 3, y: 1, z: 0, label: <InlineMath math="A(3,1)" /> },
-        to: { x: -2, y: 3, z: 0, label: <InlineMath math="B(-2,3)" /> },
-      },
-      {
-        from: { x: -2, y: 3, z: 0, label: <InlineMath math="B(-2,3)" /> },
-        to: { x: 2, y: -1, z: 0, label: <InlineMath math="C(2,-1)" /> },
-      },
-      {
-        from: { x: 2, y: -1, z: 0, label: <InlineMath math="C(2,-1)" /> },
-        to: { x: 3, y: 1, z: 0, label: <InlineMath math="A(3,1)" /> },
-      },
-    ].map((segment) => ({
-      points: [segment.from, segment.to],
-      smooth: false,
-      color: "#d97706",
-      showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],
-    })),
-    ...[
-      {
-        from: { x: -3, y: 1, z: 0, label: <InlineMath math="A'(-3,1)" /> },
-        to: { x: 2, y: 3, z: 0, label: <InlineMath math="B'(2,3)" /> },
-      },
-      {
-        from: { x: 2, y: 3, z: 0, label: <InlineMath math="B'(2,3)" /> },
-        to: { x: -2, y: -1, z: 0, label: <InlineMath math="C'(-2,-1)" /> },
-      },
-      {
-        from: { x: -2, y: -1, z: 0, label: <InlineMath math="C'(-2,-1)" /> },
-        to: { x: -3, y: 1, z: 0, label: <InlineMath math="A'(-3,1)" /> },
-      },
-    ].map((segment) => ({
-      points: [segment.from, segment.to],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],
-    })),
-  ]}
-  cameraPosition={[0, 1, 10]}
-  cameraTarget={[0, 1, 0]}
+<MathVisual
+  title={<>Triangle <InlineMath math="ABC" /> reflected across the y-axis</>}
+  description={<>Triangle <InlineMath math="ABC" /> with <InlineMath math="A(3, 1)" />, <InlineMath math="B(-2, 3)" />, <InlineMath math="C(2, -1)" /> and its image <InlineMath math="A'(-3, 1)" />, <InlineMath math="B'(2, 3)" />, <InlineMath math="C'(-2, -1)" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    "a-image": <InlineMath math="A'" />,
+    "b-image": <InlineMath math="B'" />,
+    "c-image": <InlineMath math="C'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -1.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "tri", kind: "polygon", vertices: [{ x: 3, y: 1 }, { x: -2, y: 3 }, { x: 2, y: -1 }], appearance: "primary" },
+      { id: "image", kind: "polygon", vertices: [{ x: -3, y: 1 }, { x: 2, y: 3 }, { x: -2, y: -1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "tri", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "b", objectId: "tri", at: { x: -2, y: 3 }, placement: "above" },
+      { key: "c", objectId: "tri", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "a-image", objectId: "image", at: { x: -3, y: 1 }, placement: "left" },
+      { key: "b-image", objectId: "image", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "c-image", objectId: "image", at: { x: -2, y: -1 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Exercises

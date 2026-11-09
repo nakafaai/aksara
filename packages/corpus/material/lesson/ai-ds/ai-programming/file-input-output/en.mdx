@@ -108,6 +108,20 @@ with open('file.txt', 'w', encoding='utf-8') as f:
 
 The `file` argument reuses `print()` formatting while directing the resulting text to the chosen file object.
 
+`f.write(text)` returns the number of characters written, and the newline `\n` counts as one character. Writing `'Hello\n'`, `'Python\n'`, and then `'!'` leaves a file of <InlineMath math="6+7+1=14" /> characters.
+
+<BarChart
+  title={<>Return values of <code>f.write()</code> for three strings</>}
+  description={<>Each bar is the number that <code>f.write()</code> returns for the string below it. Every <code>\n</code> adds one character.</>}
+  yAxisLabel="Characters written"
+  data={[
+    { name: "'Hello\\n'", value: 6 },
+    { name: "'Python\\n'", value: 7 },
+    { name: "'!'", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Characters written", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
 ## File Opening Modes
 
 Python provides various **modes for opening files** according to the needs of the operations to be performed.
@@ -159,6 +173,21 @@ with open('data.txt', 'r+', encoding='utf-8') as f:
 />
 
 The mode controls **whether a file must already exist**, whether opening it truncates existing content, and which operations are allowed. `r` and `r+` require an existing file. `w` creates or truncates, while `a` creates or appends. Adding `b` selects binary mode, where `encoding` is not used.
+
+Start from a file holding `'abc\n'`, four characters. Opening with `'r'` and reading changes nothing. Opening with `'w'` and writing `'xy'` erases the old contents, while `'a'` adds `'xy'` at the end.
+
+<BarChart
+  title={<>File size after each mode</>}
+  description={<>Each bar is the number of characters in the file after opening it with the mode below it and, for <code>'w'</code> and <code>'a'</code>, writing <code>'xy'</code>. Every mode starts again from the four-character file.</>}
+  yAxisLabel="Characters in file"
+  data={[
+    { name: "start", value: 4 },
+    { name: "'r'", value: 4 },
+    { name: "'w'", value: 2 },
+    { name: "'a'", value: 4 + 2 },
+  ]}
+  chartConfig={{ value: { label: "Characters in file", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
 
 ## File Reading Methods
 
@@ -218,6 +247,69 @@ with open('sample.txt', 'r', encoding='utf-8') as f:
 />
 
 In text mode, `read()` and `readline()` return strings and return `''` when no more text is available. In binary mode they return `bytes` and use `b''` at end of file. Iteration stops automatically at the end.
+
+An open file has a position, and every read moves it forward. For the contents `"Hi!\nPython\n"`, the position starts at the beginning after `open()`. `read(3)` takes `Hi!` and stops at position `3`, the first `readline()` takes the rest of that line up to `\n`, and the second `readline()` takes `Python\n` up to the end of the file. The next read returns an empty string, because the position is already at the end.
+
+<MathVisual
+  title={<>The file position while reading</>}
+  description={<>Each character of the file is one point, and ↵ is a newline. The segments show the position after each call.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.4, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "char-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "char-b", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "char-c", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "char-d", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "char-e", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "char-f", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "char-g", kind: "point", at: { x: 6, y: 0 }, appearance: "reference" },
+      { id: "char-h", kind: "point", at: { x: 7, y: 0 }, appearance: "reference" },
+      { id: "char-i", kind: "point", at: { x: 8, y: 0 }, appearance: "reference" },
+      { id: "char-j", kind: "point", at: { x: 9, y: 0 }, appearance: "reference" },
+      { id: "char-k", kind: "point", at: { x: 10, y: 0 }, appearance: "reference" },
+      { id: "stop-a", kind: "segment", from: { x: -1 / 2, y: -0.6 }, to: { x: -1 / 2, y: -0.2 }, appearance: "reference" },
+      { id: "stop-b", kind: "segment", from: { x: 5 / 2, y: -1.1 }, to: { x: 5 / 2, y: -0.2 }, appearance: "secondary" },
+      { id: "stop-c", kind: "segment", from: { x: 7 / 2, y: -1.6 }, to: { x: 7 / 2, y: -0.2 }, appearance: "construction" },
+      { id: "stop-d", kind: "segment", from: { x: 21 / 2, y: -2.1 }, to: { x: 21 / 2, y: -0.2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "char-a", objectId: "char-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "char-b", objectId: "char-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "char-c", objectId: "char-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "char-d", objectId: "char-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "char-e", objectId: "char-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "char-f", objectId: "char-f", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "char-g", objectId: "char-g", at: { x: 6, y: 0 }, placement: "above" },
+      { key: "char-h", objectId: "char-h", at: { x: 7, y: 0 }, placement: "above" },
+      { key: "char-i", objectId: "char-i", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "char-j", objectId: "char-j", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "char-k", objectId: "char-k", at: { x: 10, y: 0 }, placement: "above" },
+      { key: "stop-a", objectId: "stop-a", at: { x: -1 / 2, y: -0.6 }, placement: "right" },
+      { key: "stop-b", objectId: "stop-b", at: { x: 5 / 2, y: -1.1 }, placement: "right" },
+      { key: "stop-c", objectId: "stop-c", at: { x: 7 / 2, y: -1.6 }, placement: "right" },
+      { key: "stop-d", objectId: "stop-d", at: { x: 21 / 2, y: -2.1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "char-a": "H",
+    "char-b": "i",
+    "char-c": "!",
+    "char-d": "↵",
+    "char-e": "P",
+    "char-f": "y",
+    "char-g": "t",
+    "char-h": "h",
+    "char-i": "o",
+    "char-j": "n",
+    "char-k": "↵",
+    "stop-a": "open()",
+    "stop-b": "read(3)",
+    "stop-c": "readline()",
+    "stop-d": "readline()",
+  }}
+/>
 
 ## Safe File Handling
 

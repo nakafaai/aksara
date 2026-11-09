@@ -4,7 +4,7 @@ export const metadata = {
     description: "Deute die Punktspiegelung als halbe Drehung und berechne Bildpunkte sowie Bildgeraden mit Koordinatenformeln.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Geometrische Transformation",
 };
 
@@ -25,6 +25,36 @@ Das Spiegelzentrum ist der **Mittelpunkt** der Verbindungsstrecke. Der Mittelwer
 
 Ein Punkt im Zentrum bleibt fest. Beispielsweise ergibt <InlineMath math="Q(a,b)" /> den Bildpunkt <InlineMath math="Q'(2a-a,2b-b)=(a,b)" />.
 
+Eine Halbdrehung um ein Zentrum dreht eine ganze Figur. Spiegle das Dreieck <InlineMath math="ABC" /> mit <InlineMath math="A(2, 1)" />, <InlineMath math="B(4, 2)" /> und <InlineMath math="C(3, 4)" /> am Punkt <InlineMath math="(1, 1)" />: Jeder Bildpunkt ist <InlineMath math="(2 - x, 2 - y)" />, also <InlineMath math="A'(0, 1)" />, <InlineMath math="B'(-2, 0)" /> und <InlineMath math="C'(-1, -2)" />. Jede Strecke von einer Ecke zu ihrem Bild läuft durch das Zentrum und wird dort halbiert.
+
+<MathVisual
+  title={<>Ein Dreieck, gespiegelt am Punkt <InlineMath math="(1, 1)" /></>}
+  description={<>Das Dreieck <InlineMath math="ABC" /> und sein Bild <InlineMath math="A'B'C'" /> nach der Spiegelung am Punkt <InlineMath math="(1, 1)" />, jede Ecke durch das Zentrum mit ihrem Bild verbunden.</>}
+  labels={{
+    tri: <InlineMath math="ABC" />,
+    image: <InlineMath math="A'B'C'" />,
+    c: <InlineMath math="(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 4.6 }, y: { min: -2.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ja", kind: "segment", from: { x: 2, y: 1 }, to: { x: 0, y: 1 }, appearance: "construction" },
+      { id: "jb", kind: "segment", from: { x: 4, y: 2 }, to: { x: -2, y: 0 }, appearance: "construction" },
+      { id: "jc", kind: "segment", from: { x: 3, y: 4 }, to: { x: -1, y: -2 }, appearance: "construction" },
+      { id: "tri", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: 4, y: 2 }, { x: 3, y: 4 }], appearance: "primary" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: -2, y: 0 }, { x: -1, y: -2 }], appearance: "secondary" },
+      { id: "c", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "tri", objectId: "tri", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: -1, y: -2 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 ## Einen Punkt an einem anderen Punkt spiegeln
 
 Bestimme das Bild des Punktes <InlineMath math="(5, 4)" /> unter der Punktspiegelung <InlineMath math="\sigma_{(2,3)}" />.
@@ -42,50 +72,30 @@ Berechne **das Doppelte jeder Zentrumskoordinate** und ziehe dann die ursprüngl
 
 Somit ist das Bild des Punktes <InlineMath math="(5,4)" /> <InlineMath math="(-1,2)" />.
 
-<LineEquation
-  title={
-    <>
-      Spiegelbild des Punktes <InlineMath math="Q(5,4)" /> am Punkt{" "}
-      <InlineMath math="P(2,3)" />
-    </>
-  }
-  description={
-    <>
-      Spiegelung des Punktes <InlineMath math="Q(5,4)" /> am Zentrum{" "}
-      <InlineMath math="P(2,3)" /> mit dem Bildpunkt{" "}
-      <InlineMath math="Q'(-1,2)" />.
-    </>
-  }
-  data={[
-    {
-      points: [{ x: 2, y: 3, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P(2,3)" />, at: 0, offset: [1.5, -0.5, 0] }],
-    },
-    {
-      points: [{ x: 5, y: 4, z: 0 }],
-      color: "#0284c7",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="Q(5,4)" />, at: 0, offset: [0.3, 0.5, 0] }],
-    },
-    {
-      points: [{ x: -1, y: 2, z: 0 }],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="Q'(-1,2)" />, at: 0, offset: [-0.7, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 5, y: 4, z: 0 },
-        { x: -1, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#db2777",
-    }, // Verbindungsstrecke QQ'
-  ]}
-  cameraPosition={[2, 3, 10]}
-  cameraTarget={[2, 3, 0]}
+<MathVisual
+  title={<>Halbdrehung von <InlineMath math="Q(5, 4)" /> um <InlineMath math="P(2, 3)" /></>}
+  description={<>Das Zentrum <InlineMath math="P(2, 3)" /> ist der Mittelpunkt von <InlineMath math="Q(5, 4)" /> und seinem Bild <InlineMath math="Q'(-1, 2)" />.</>}
+  labels={{
+    q: <InlineMath math="Q(5, 4)" />,
+    c: <InlineMath math="P(2, 3)" />,
+    image: <InlineMath math="Q'(-1, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 5.6 }, y: { min: 1, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "join", kind: "segment", from: { x: 5, y: 4 }, to: { x: -1, y: 2 }, appearance: "construction" },
+      { id: "q", kind: "point", at: { x: 5, y: 4 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
+      { id: "image", kind: "point", at: { x: -1, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "q", objectId: "q", at: { x: 5, y: 4 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: -1, y: 2 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Eine Gerade an einem Punkt spiegeln
@@ -113,51 +123,36 @@ Ersetzen wir <InlineMath math="x'" /> und <InlineMath math="y'" /> wieder durch 
 
 Äquivalent dazu können wir die Gleichung als <InlineMath math="2x - y - 1 = 0" /> schreiben.
 
-<LineEquation
-  title={
-    <>
-      Spiegelbild der Geraden <InlineMath math="2x-y+3=0" /> am Punkt{" "}
-      <InlineMath math="P(1,3)" />
-    </>
-  }
-  description={
-    <>
-      Die Gerade <InlineMath math="2x-y+3=0" /> wird am Punkt{" "}
-      <InlineMath math="P(1,3)" /> gespiegelt. Ihre Bildgerade lautet{" "}
-      <InlineMath math="2x-y-1=0" />.
-    </>
-  }
-  data={[
-    { points: [{ x: 0, y: 3, z: 0 }, { x: 2, y: 3, z: 0 }], smooth: false, showPoints: true, color: "#db2777" },
-    {
-      points: [{ x: 1, y: 3, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P(1,3)" />, at: 0, offset: [0.5, -0.5, 0] }],
-    },
-    {
-      // Ursprüngliche Gerade: 2x - y + 3 = 0  => y = 2x + 3
-      points: Array.from({ length: 7 }, (_, i) => {
-        const xVal = i / 2 - 1;
-        return { x: xVal, y: 2 * xVal + 3, z: 0 };
-      }),
-      smooth: false,
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="2x-y+3=0" />, at: 4, offset: [-1.5, 0.3, 0] }],
-    },
-    {
-      // Bildgerade: 2x - y - 1 = 0 => y = 2x - 1
-      points: Array.from({ length: 7 }, (_, i) => {
-        const xVal = i / 2;
-        return { x: xVal, y: 2 * xVal - 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#059669",
-      labels: [{ text: <InlineMath math="2x-y-1=0" />, at: 2, offset: [1.3, -0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[1, 3, 13]}
-  cameraTarget={[1, 3, 0]}
+<MathVisual
+  title={<>Die Gerade <InlineMath math="l" /> und ihr Bild <InlineMath math="l'" /></>}
+  description={<>Die Gerade <InlineMath math="l: 2x - y + 3 = 0" />, ihr Bild <InlineMath math="l': 2x - y - 1 = 0" /> bei der Halbdrehung um <InlineMath math="(1, 3)" /> und der Punkt <InlineMath math="(0, 3)" /> auf <InlineMath math="l" /> mit seinem Bild <InlineMath math="(2, 3)" /> auf <InlineMath math="l'" />.</>}
+  labels={{
+    l: <InlineMath math="l: 2x - y + 3 = 0" />,
+    "image-line": <InlineMath math="l': 2x - y - 1 = 0" />,
+    c: <InlineMath math="(1, 3)" />,
+    a: <InlineMath math="(0, 3)" />,
+    image: <InlineMath math="(2, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "l", kind: "line", through: [{ x: 0, y: 3 }, { x: 1, y: 5 }], appearance: "primary" },
+      { id: "image-line", kind: "line", through: [{ x: 0, y: -1 }, { x: 1, y: 1 }], appearance: "secondary" },
+      { id: "join", kind: "segment", from: { x: 0, y: 3 }, to: { x: 2, y: 3 }, appearance: "construction" },
+      { id: "a", kind: "point", at: { x: 0, y: 3 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 1, y: 3 }, appearance: "answer" },
+      { id: "image", kind: "point", at: { x: 2, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l", objectId: "l", at: { x: 3 / 2, y: 6 }, placement: "left" },
+      { key: "image-line", objectId: "image-line", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 1, y: 3 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "image", objectId: "image", at: { x: 2, y: 3 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Übungen

@@ -31,6 +31,37 @@ Ein Jordan-Block der Größe <InlineMath math="s" /> zum Eigenwert <InlineMath m
 
 Die **nilpotente Matrix** <InlineMath math="N_s" /> besitzt Einsen auf der Superdiagonalen und sonst nur Nullen. Ein Block der Größe <InlineMath math="1" /> ist einfach <InlineMath math="(\lambda)" />. Ein größerer Block zeigt, dass ein Eigenvektor durch verallgemeinerte Eigenvektoren ergänzt werden muss.
 
+Der Block <InlineMath math="J=\begin{pmatrix}2&1\\0&2\end{pmatrix}" /> hat den einzigen Eigenwert <InlineMath math="2" />, aber nur eine Eigenrichtung. Der Vektor <InlineMath math="e_2" /> geht nicht nach <InlineMath math="2e_2" />, sondern nach <InlineMath math="2e_2+e_1" />, also gilt <InlineMath math="(J-2I)e_2=e_1" /> und <InlineMath math="e_2" /> ist ein verallgemeinerter Eigenvektor.
+
+<MathVisual
+  title={<>Ein Jordanblock <InlineMath math="J_2(2)" /> addiert <InlineMath math="e_1" /></>}
+  description={<>Der violette Vektor <InlineMath math="e_1" /> wird zum orangen Vektor <InlineMath math="Je_1=2e_1" />. Der türkise Vektor <InlineMath math="e_2" /> wird zum magentafarbenen Vektor <InlineMath math="Je_2=(1,2)" />. Die graue Strecke von <InlineMath math="2e_2" /> nach <InlineMath math="Je_2" /> ist der zusätzliche Schritt <InlineMath math="e_1" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "second-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "construction" },
+      { id: "shift", kind: "segment", from: { x: 0, y: 2 }, to: { x: 1, y: 2 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "first-image", objectId: "first-image", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "second", objectId: "second", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "second-image", objectId: "second-image", at: { x: 1, y: 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="e_1" />,
+    "first-image": <InlineMath math="Je_1=2e_1" />,
+    "second": <InlineMath math="e_2" />,
+    "second-image": <InlineMath math="Je_2=2e_2+e_1" />,
+  }}
+/>
+
 ## Verallgemeinerte Eigenvektorketten
 
 Die Vektoren <InlineMath math="v_1,\ldots,v_s" /> bilden eine Jordan-Kette zu <InlineMath math="\lambda" />, wenn
@@ -91,6 +122,21 @@ Der Eigenwert <InlineMath math="1" /> hat die algebraische Vielfachheit <InlineM
 
 Die beiden Vektoren bilden eine Jordankette, denn <InlineMath math="(A-I)v_1=0" /> und <InlineMath math="(A-I)v_2=v_1" />. Der Eigenwert <InlineMath math="2" /> liefert den separaten Block <InlineMath math="J_1(2)" />.
 
+Angenommen, der Eigenwert <InlineMath math="\lambda" /> hat Jordanblöcke der Größen <InlineMath math="3" /> und <InlineMath math="1" />. Jeder Block der Größe <InlineMath math="s" /> trägt <InlineMath math="\min(k,s)" /> zu <InlineMath math="\dim\ker(A-\lambda I)^k" /> bei, also lauten die Dimensionen <InlineMath math="2,3,4,4" />. Der erste Wert zählt die Blöcke, und die Folge wächst nicht mehr ab <InlineMath math="4=\mu_A(\lambda)" />.
+
+<BarChart
+  title={<><InlineMath math="\dim\ker(A-\lambda I)^k" /> für Blöcke der Größen <InlineMath math="3" /> und <InlineMath math="1" /></>}
+  description={<>Jeder Balken ist <InlineMath math="\min(k,3)+\min(k,1)" /> für die darunter stehende Potenz <InlineMath math="k" />. Der erste Balken zählt die Blöcke, und die Balken wachsen nicht weiter, sobald der größte Block aufgebraucht ist.</>}
+  yAxisLabel="Kerndimension"
+  data={[
+    { name: "1", value: Math.min(1, 3) + Math.min(1, 1) },
+    { name: "2", value: Math.min(2, 3) + Math.min(2, 1) },
+    { name: "3", value: Math.min(3, 3) + Math.min(3, 1) },
+    { name: "4", value: Math.min(4, 3) + Math.min(4, 1) },
+  ]}
+  chartConfig={{ value: { label: "Kerndimension", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>
+
 ## Matrixpotenzen aus Jordanblöcken
 
 Die Darstellung <InlineMath math="J_s(\lambda)=\lambda I+N" /> mit <InlineMath math="N^s=0" /> macht Potenzen explizit berechenbar:
@@ -106,3 +152,50 @@ Für <InlineMath math="\lambda=0" /> verwendest du direkt <InlineMath math="J_s(
 Die Formel erklärt, warum Potenzen einer nicht diagonalisierbaren Matrix neben Eigenwertpotenzen auch **Polynomfaktoren** in <InlineMath math="m" /> enthalten. Sie liefert die exakten Matrixpotenzen, die zur Analyse von Rekursionen und Differentialgleichungen benötigt werden.
 
 Die Jordan-Form dient vor allem der exakten algebraischen Klassifikation. Sie reagiert sehr empfindlich auf kleine numerische Störungen. Numerische Software berechnet deshalb gewöhnlich eine Schur-Zerlegung, weil sie auf diese Störungen stabiler reagiert.
+
+Folg den magentafarbenen Punkten unten ab <InlineMath math="x_0=e_2" />. Mit <InlineMath math="J_2(0.8)^m=\begin{pmatrix}0.8^m&m\cdot0.8^{m-1}\\0&0.8^m\end{pmatrix}" /> sind beide Eigenwerte <InlineMath math="0.8<1" />, also klingt am Ende alles auf null ab. Trotzdem wächst die erste Komponente zuerst bis <InlineMath math="2.048" /> bei <InlineMath math="m=4" /> und <InlineMath math="m=5" />, wegen des Faktors <InlineMath math="m" /> aus dem Jordan-Block. Die Diagonalmatrix <InlineMath math="0.8I" /> schrumpft <InlineMath math="e_2" /> nur gerade nach unten, wie die grauen Punkte.
+
+<MathVisual
+  title={<>Die Iterierten <InlineMath math="x_m=J_2(0.8)^me_2" /> wachsen, bevor sie abklingen</>}
+  description={<>Die magentafarbenen Punkte sind <InlineMath math="x_m=(m\cdot0.8^{m-1},0.8^m)^T" /> für <InlineMath math="m=0,\ldots,12" />. Die grauen Punkte sind <InlineMath math="(0.8I)^me_2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 2.4 }, y: { min: -0.1, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "step-0", kind: "point", at: { x: 0, y: 0.8 ** 0 }, appearance: "answer" },
+      { id: "step-1", kind: "point", at: { x: 1 * 0.8 ** 0, y: 0.8 ** 1 }, appearance: "answer" },
+      { id: "step-2", kind: "point", at: { x: 2 * 0.8 ** 1, y: 0.8 ** 2 }, appearance: "answer" },
+      { id: "step-3", kind: "point", at: { x: 3 * 0.8 ** 2, y: 0.8 ** 3 }, appearance: "answer" },
+      { id: "step-4", kind: "point", at: { x: 4 * 0.8 ** 3, y: 0.8 ** 4 }, appearance: "answer" },
+      { id: "step-5", kind: "point", at: { x: 5 * 0.8 ** 4, y: 0.8 ** 5 }, appearance: "answer" },
+      { id: "step-6", kind: "point", at: { x: 6 * 0.8 ** 5, y: 0.8 ** 6 }, appearance: "answer" },
+      { id: "step-7", kind: "point", at: { x: 7 * 0.8 ** 6, y: 0.8 ** 7 }, appearance: "answer" },
+      { id: "step-8", kind: "point", at: { x: 8 * 0.8 ** 7, y: 0.8 ** 8 }, appearance: "answer" },
+      { id: "step-9", kind: "point", at: { x: 9 * 0.8 ** 8, y: 0.8 ** 9 }, appearance: "answer" },
+      { id: "step-10", kind: "point", at: { x: 10 * 0.8 ** 9, y: 0.8 ** 10 }, appearance: "answer" },
+      { id: "step-11", kind: "point", at: { x: 11 * 0.8 ** 10, y: 0.8 ** 11 }, appearance: "answer" },
+      { id: "step-12", kind: "point", at: { x: 12 * 0.8 ** 11, y: 0.8 ** 12 }, appearance: "answer" },
+      { id: "plain-1", kind: "point", at: { x: 0, y: 0.8 ** 1 }, appearance: "reference" },
+      { id: "plain-2", kind: "point", at: { x: 0, y: 0.8 ** 2 }, appearance: "reference" },
+      { id: "plain-3", kind: "point", at: { x: 0, y: 0.8 ** 3 }, appearance: "reference" },
+      { id: "plain-4", kind: "point", at: { x: 0, y: 0.8 ** 4 }, appearance: "reference" },
+      { id: "plain-5", kind: "point", at: { x: 0, y: 0.8 ** 5 }, appearance: "reference" },
+      { id: "plain-6", kind: "point", at: { x: 0, y: 0.8 ** 6 }, appearance: "reference" },
+      { id: "plain-7", kind: "point", at: { x: 0, y: 0.8 ** 7 }, appearance: "reference" },
+      { id: "plain-8", kind: "point", at: { x: 0, y: 0.8 ** 8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "step-0", objectId: "step-0", at: { x: 0, y: 1 }, placement: "right" },
+      { key: "step-4", objectId: "step-4", at: { x: 4 * 0.8 ** 3, y: 0.8 ** 4 }, placement: "above" },
+      { key: "step-5", objectId: "step-5", at: { x: 5 * 0.8 ** 4, y: 0.8 ** 5 }, placement: "right" },
+      { key: "plain-6", objectId: "plain-6", at: { x: 0, y: 0.8 ** 6 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "step-0": <InlineMath math="x_0=e_2" />,
+    "step-4": <InlineMath math="x_4" />,
+    "step-5": <InlineMath math="x_5" />,
+    "plain-6": <InlineMath math="(0.8I)^me_2" />,
+  }}
+/>

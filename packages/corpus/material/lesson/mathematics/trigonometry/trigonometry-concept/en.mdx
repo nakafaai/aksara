@@ -4,7 +4,7 @@ export const metadata = {
   description: "Build trigonometry from right triangles, similarity, the Pythagorean theorem, six ratios, and an example that measures height from shadows under stated assumptions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-13",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Trigonometry",
 };
 
@@ -67,18 +67,32 @@ Imagine a right triangle with an angle <InlineMath math="\theta" /> (theta). We 
 - **Adjacent side**: the side adjacent to angle <InlineMath math="\theta" /> other than the hypotenuse.
 
 <ContentBlock>
-  <Triangle
-    title="Right Triangle"
-    description={
-      <>
-        Right triangle with angle <InlineMath math="\theta" />.
-      </>
-    }
-    angle={45}
+  <MathVisual
+    title={<>Side names in a right triangle</>}
+    description={<>A right triangle with <InlineMath math="\theta = 45^\circ" /> at the left corner, showing the hypotenuse, the opposite side and the adjacent side.</>}
     labels={{
-      opposite: "Opposite Side",
-      adjacent: "Adjacent Side",
-      hypotenuse: "Hypotenuse",
+      opp: <>Opposite Side</>,
+      adj: <>Adjacent Side</>,
+      hyp: <>Hypotenuse</>,
+      theta: <InlineMath math="\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 4.4 }, y: { min: -0.7, max: 3.6 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "hyp", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "primary" },
+        { id: "opp", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 3 }, appearance: "secondary" },
+        { id: "adj", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+        { id: "right", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 53 / 20, y: 0 }, { x: 53 / 20, y: 7 / 20 }, { x: 3, y: 7 / 20 }], appearance: "reference" },
+        { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 4 / 5, startDegrees: 0, sweepDegrees: 45, appearance: "highlight" },
+      ],
+      labels: [
+        { key: "hyp", objectId: "hyp", at: { x: 3 / 2, y: 3 / 2 }, placement: "above-left" },
+        { key: "opp", objectId: "opp", at: { x: 3, y: 3 / 2 }, placement: "right" },
+        { key: "adj", objectId: "adj", at: { x: 3 / 2, y: 0 }, placement: "below" },
+        { key: "theta", objectId: "theta", at: { x: 0.8 * Math.cos(Math.PI / 8), y: 0.8 * Math.sin(Math.PI / 8) }, placement: "right" },
+      ],
     }}
   />
 </ContentBlock>
@@ -125,15 +139,70 @@ If we calculate <InlineMath math="\sin \theta" /> for both triangles:
 
 Although the triangles have different sizes, <InlineMath math="\sin \theta" /> has the same value. The same reasoning applies to the other side ratios.
 
-<UnitCircle
-  title="Visualizing Trigonometric Ratios"
-  description="Move the angle to see how sine and cosine are determined by the point on the unit circle."
-  angle={30}
+<MathVisual
+  title={<>The point for <InlineMath math="\theta = 30^\circ" /> on the unit circle</>}
+  description={<>The radius to <InlineMath math="(\cos 30^\circ, \sin 30^\circ) = \left(\tfrac{\sqrt3}{2}, \tfrac12\right)" />, with <InlineMath math="\cos 30^\circ" /> as the horizontal leg and <InlineMath math="\sin 30^\circ" /> as the vertical leg.</>}
+  labels={{
+    cos: <InlineMath math="\cos 30^\circ" />,
+    sin: <InlineMath math="\sin 30^\circ" />,
+    point: <InlineMath math="(\cos\theta, \sin\theta)" />,
+    theta: <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 1.3 }, y: { min: -1.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "cos", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.sqrt(3) / 2, y: 0 }, appearance: "construction" },
+      { id: "sin", kind: "segment", from: { x: Math.sqrt(3) / 2, y: 0 }, to: { x: Math.sqrt(3) / 2, y: 1 / 2 }, appearance: "highlight" },
+      { id: "radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.sqrt(3) / 2, y: 1 / 2 }, appearance: "primary" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 3 / 10, startDegrees: 0, sweepDegrees: 30, appearance: "highlight" },
+      { id: "point", kind: "point", at: { x: Math.sqrt(3) / 2, y: 1 / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "cos", objectId: "cos", at: { x: Math.sqrt(3) / 2 / 2, y: 0 }, placement: "below" },
+      { key: "sin", objectId: "sin", at: { x: Math.sqrt(3) / 2, y: 1 / 4 }, placement: "right" },
+      { key: "point", objectId: "point", at: { x: Math.sqrt(3) / 2, y: 1 / 2 }, placement: "above-right" },
+      { key: "theta", objectId: "theta", at: { x: 0.3 * Math.cos(Math.PI / 12), y: 0.3 * Math.sin(Math.PI / 12) }, placement: "right" },
+    ],
+  }}
 />
 
 On the unit circle, the point corresponding to <InlineMath math="\theta" /> has coordinates <InlineMath math="(\cos \theta,\sin \theta)" />. This definition extends sine and cosine beyond the acute angles of a right triangle.
 
 The right-triangle ratios and the unit-circle coordinates agree for acute angles, so the same values can be used in problems with triangles of different sizes.
+
+Draw both triangles with <InlineMath math="\theta = 30^\circ" /> at the same corner. Triangle <InlineMath math="A" /> has opposite side 3 cm and hypotenuse 6 cm, triangle <InlineMath math="B" /> has 5 cm and 10 cm, so <InlineMath math="\sin\theta = \frac36 = \frac{5}{10} = 0.5" /> for both.
+
+<MathVisual
+  title={<>Two sizes, one sine</>}
+  description={<>Two right triangles with <InlineMath math="\theta = 30^\circ" /> at the origin: opposite side 3 with hypotenuse 6, and opposite side 5 with hypotenuse 10.</>}
+  labels={{
+    "small-hyp": <InlineMath math="6" />,
+    "small-opp": <InlineMath math="3" />,
+    "big-hyp": <InlineMath math="10" />,
+    "big-opp": <InlineMath math="5" />,
+    theta: <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 9.6 }, y: { min: -0.7, max: 5.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "big", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 5 * Math.sqrt(3), y: 0 }, { x: 5 * Math.sqrt(3), y: 5 }], appearance: "secondary" },
+      { id: "small", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3 * Math.sqrt(3), y: 0 }, { x: 3 * Math.sqrt(3), y: 3 }], appearance: "primary" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 6 / 5, startDegrees: 0, sweepDegrees: 30, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "small-hyp", objectId: "small", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "above-left" },
+      { key: "small-opp", objectId: "small", at: { x: 3 * Math.sqrt(3), y: 3 / 2 }, placement: "left" },
+      { key: "big-hyp", objectId: "big", at: { x: 5 * Math.sqrt(3) / 2, y: 5 / 2 }, placement: "above-left" },
+      { key: "big-opp", objectId: "big", at: { x: 5 * Math.sqrt(3), y: 5 / 2 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 1.2 * Math.cos(Math.PI / 12), y: 1.2 * Math.sin(Math.PI / 12) }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Measuring Lengths and Modeling Periodic Change
 

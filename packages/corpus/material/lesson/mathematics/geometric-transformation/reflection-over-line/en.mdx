@@ -4,7 +4,7 @@ export const metadata = {
     description: "Construct a reflection across any line with perpendicular bisectors and equal distances.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-08",
+  dateModified: "2026-11-08",
   subject: "Geometric Transformation",
 };
 
@@ -16,84 +16,71 @@ If <InlineMath math="P" /> lies on the mirror, <InlineMath math="P'=P" />. Other
 
 <BlockMath math="PM=MP',\qquad PP'\perp m" />
 
+Test both cases on the mirror <InlineMath math="m: y = \tfrac12 x + 1" />. The point <InlineMath math="Q(4, 3)" /> lies on <InlineMath math="m" />, because <InlineMath math="\tfrac12 \cdot 4 + 1 = 3" />, so its image is <InlineMath math="Q" /> itself. The point <InlineMath math="R(0, 6)" /> is off the mirror, and its image <InlineMath math="R'(4, -2)" /> lands on the other side at the same distance, with the midpoint <InlineMath math="(2, 2)" /> on <InlineMath math="m" /> and <InlineMath math="RR'" /> perpendicular to <InlineMath math="m" />.
+
+<MathVisual
+  title={<>A fixed point and a mirrored point</>}
+  description={<>The mirror <InlineMath math="m" /> with the fixed point <InlineMath math="Q(4, 3)" /> on it, and <InlineMath math="R(0, 6)" /> with its image <InlineMath math="R'(4, -2)" />, whose midpoint <InlineMath math="(2, 2)" /> lies on <InlineMath math="m" />.</>}
+  labels={{
+    mirror: <InlineMath math="m" />,
+    q: <InlineMath math="Q = Q'" />,
+    r: <InlineMath math="R(0, 6)" />,
+    image: <InlineMath math="R'(4, -2)" />,
+    mid: <InlineMath math="(2, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5.5 }, y: { min: -2.6, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 1 }, { x: 4, y: 3 }], appearance: "reference" },
+      { id: "join", kind: "segment", from: { x: 0, y: 6 }, to: { x: 4, y: -2 }, appearance: "construction" },
+      { id: "q", kind: "point", at: { x: 4, y: 3 }, appearance: "answer" },
+      { id: "r", kind: "point", at: { x: 0, y: 6 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 4, y: -2 }, appearance: "secondary" },
+      { id: "mid", kind: "point", at: { x: 2, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 5, y: 7 / 2 }, placement: "above" },
+      { key: "q", objectId: "q", at: { x: 4, y: 3 }, placement: "above-left" },
+      { key: "r", objectId: "r", at: { x: 0, y: 6 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 4, y: -2 }, placement: "right" },
+      { key: "mid", objectId: "mid", at: { x: 2, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 ## Reflecting a Point across an Oblique Line
 
 Reflect <InlineMath math="P(2,4)" /> across <InlineMath math="m:y=\frac12x+1" />. The **midpoint** <InlineMath math="M" /> lies on the mirror, while the segment joining the point to its image is perpendicular to the mirror.
 
-<LineEquation
-  title="Point Reflection over a Line"
-  description={
-    <>
-      Point <InlineMath math="P(2,4)" /> is reflected over line{" "}
-      <InlineMath math="m" /> to produce the image{" "}
-      <InlineMath math="P'(3.6, 0.8)" />.
-    </>
-  }
-  cameraPosition={[2.5, 2.5, 9]}
-  cameraTarget={[2.5, 2.5, 0]}
-  data={[
-    {
-      points: [
-        { x: 0, y: 1, z: 0 },
-        { x: 5, y: 3.5, z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      lineWidth: 2,
-      labels: [
-        {
-          text: <InlineMath math="m" />,
-          at: 1,
-          offset: [0.3, 0.4, 0],
-        },
-      ],
-    },
-    {
-      points: [{ x: 2, y: 4, z: 0 }],
-      color: "#9333ea",
-      showPoints: true,
-      labels: [
-        {
-          text: <InlineMath math="P" />,
-          at: 0,
-          offset: [0.4, 0.5, 0],
-        },
-      ],
-    },
-    {
-      points: [{ x: 3.6, y: 0.8, z: 0 }],
-      color: "#9333ea",
-      showPoints: true,
-      labels: [
-        {
-          text: <InlineMath math="P'" />,
-          at: 0,
-          offset: [0.7, 0.7, 0],
-        },
-      ],
-    },
-    {
-      points: [{ x: 2.8, y: 2.4, z: 0 }],
-      color: "#db2777",
-      showPoints: true,
-      labels: [
-        {
-          text: <InlineMath math="M" />,
-          at: 0,
-          offset: [-1, 0.6, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: 2, y: 4, z: 0 },
-        { x: 2.8, y: 2.4, z: 0 },
-        { x: 3.6, y: 0.8, z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-    },
-  ]}
+<MathVisual
+  title={<>Reflecting <InlineMath math="P(2, 4)" /> across <InlineMath math="m" /></>}
+  description={<>The mirror <InlineMath math="m: y = \tfrac12 x + 1" />, the point <InlineMath math="P(2, 4)" />, the midpoint <InlineMath math="M\left(\tfrac{14}{5}, \tfrac{12}{5}\right)" /> on the mirror and the image <InlineMath math="P'\left(\tfrac{18}{5}, \tfrac45\right)" />.</>}
+  labels={{
+    mirror: <InlineMath math="m" />,
+    p: <InlineMath math="P(2, 4)" />,
+    mid: <InlineMath math="M" />,
+    image: <InlineMath math="P'\left(\tfrac{18}{5}, \tfrac45\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 1 }, { x: 4, y: 3 }], appearance: "reference" },
+      { id: "join", kind: "segment", from: { x: 2, y: 4 }, to: { x: 18 / 5, y: 4 / 5 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "mid", kind: "point", at: { x: 14 / 5, y: 12 / 5 }, appearance: "construction" },
+      { id: "image", kind: "point", at: { x: 18 / 5, y: 4 / 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 5, y: 7 / 2 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "mid", objectId: "mid", at: { x: 14 / 5, y: 12 / 5 }, placement: "above-right" },
+      { key: "image", objectId: "image", at: { x: 18 / 5, y: 4 / 5 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ### Finding the Perpendicular Foot
@@ -108,6 +95,37 @@ At the intersection, both equations give the same vertical coordinate:
   <BlockMath math="\frac12x+1=-2x+8\quad\Longrightarrow\quad\frac52x=7\quad\Longrightarrow\quad x=\frac{14}{5}" />
   <BlockMath math="y=\frac12\cdot\frac{14}{5}+1=\frac75+\frac55=\frac{12}{5},\qquad M\left(\frac{14}{5},\frac{12}{5}\right)" />
 </MathContainer>
+
+The perpendicular through <InlineMath math="P" /> has slope <InlineMath math="-2" />, so it is <InlineMath math="y = -2x + 8" />. It meets the mirror at the foot <InlineMath math="M\left(\tfrac{14}{5}, \tfrac{12}{5}\right)" />, and the small square at <InlineMath math="M" /> marks the right angle between the two lines.
+
+<MathVisual
+  title={<>The perpendicular from <InlineMath math="P" /> meets the mirror at <InlineMath math="M" /></>}
+  description={<>The mirror <InlineMath math="m" />, the perpendicular <InlineMath math="y = -2x + 8" /> through <InlineMath math="P(2, 4)" />, and their intersection <InlineMath math="M\left(\tfrac{14}{5}, \tfrac{12}{5}\right)" /> with a right-angle mark.</>}
+  labels={{
+    mirror: <InlineMath math="m" />,
+    perp: <InlineMath math="y = -2x + 8" />,
+    p: <InlineMath math="P(2, 4)" />,
+    mid: <InlineMath math="M\left(\tfrac{14}{5}, \tfrac{12}{5}\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 1 }, { x: 4, y: 3 }], appearance: "reference" },
+      { id: "perp", kind: "line", through: [{ x: 2, y: 4 }, { x: 4, y: 0 }], appearance: "construction" },
+      { id: "angle", kind: "polygon", vertices: [{ x: 14 / 5, y: 12 / 5 }, { x: (14 / 5) + (3 / 5 / Math.sqrt(5)), y: (12 / 5) + (3 / 10 / Math.sqrt(5)) }, { x: (14 / 5) + (3 / 5 / Math.sqrt(5)) + (-3 / 10 / Math.sqrt(5)), y: (12 / 5) + (3 / 10 / Math.sqrt(5)) + (3 / 5 / Math.sqrt(5)) }, { x: (14 / 5) + (-3 / 10 / Math.sqrt(5)), y: (12 / 5) + (3 / 5 / Math.sqrt(5)) }], appearance: "highlight" },
+      { id: "p", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "mid", kind: "point", at: { x: 14 / 5, y: 12 / 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 5, y: 7 / 2 }, placement: "above" },
+      { key: "perp", objectId: "perp", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 2, y: 4 }, placement: "left" },
+      { key: "mid", objectId: "mid", at: { x: 14 / 5, y: 12 / 5 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ### Finding and Checking the Image
 

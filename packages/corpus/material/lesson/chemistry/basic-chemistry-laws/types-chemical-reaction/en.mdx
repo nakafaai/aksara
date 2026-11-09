@@ -149,6 +149,32 @@ Check the **atom count** of each element on both sides. Each ethanol molecule co
 | H | 12 | <InlineMath math="2\times6=12" /> |
 | O | 6 | <InlineMath math="2\times1+2\times2=6" /> |
 
+The combustion example <InlineMath math="\mathrm{P_4}+5\mathrm{O_2}\rightarrow\mathrm{P_4O_{10}}" /> releases energy as light and heat, and its atoms tell you it is balanced. Rotate the bars: four phosphorus atoms and ten oxygen atoms on each side.
+
+<MathVisual
+  title={<>Atoms on Both Sides</>}
+  description={<>Phosphorus (amber) and oxygen (orange) atoms in the reactants (back) and the products (front). One grid step up is 2 atoms.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 9, z: 11 }, target: { x: 1.25, y: 2.5, z: 0 } },
+    objects: [
+      { id: "p-left", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "p-right", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o-left", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2.5, z: -0.75 }, size: { length: 1.2, height: 5, width: 1.2 } },
+      { id: "o-right", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2.5, z: 0.75 }, size: { length: 1.2, height: 5, width: 1.2 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p-right", at: { x: 0, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "o", objectId: "o-right", at: { x: 2.5, y: 5.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    p: <InlineMath math="\mathrm{P}:\ 4=4" />,
+    o: <InlineMath math="\mathrm{O}:\ 5\cdot2=10" />,
+  }}
+/>
+
 ## Coefficients Do Not Change Formulas
 
 A coefficient is the number placed before a chemical formula. We may change coefficients so the number of atoms before and after the reaction matches.
@@ -171,3 +197,30 @@ Use the following table to check each reaction type.
 | Gas formation | Bubbles or gas leave the mixture. | Check for a gas product such as <InlineMath math="\mathrm{CO_2(g)}" /> and rule out boiling. |
 
 After identifying the reaction type, write the reactants on the left and the products on the right. Then adjust the coefficients until each type of atom has the same count on both sides.
+
+Bubbles are the first clue, and the equation <InlineMath math="\mathrm{C_6H_{12}O_6}\rightarrow2\mathrm{C_2H_5OH}+2\mathrm{CO_2}" /> confirms fermentation. Take one mole of glucose and use <InlineMath math="\mathrm{C}=12" />, <InlineMath math="\mathrm{H}=1" /> and <InlineMath math="\mathrm{O}=16" />: <InlineMath math="180\ \mathrm{g}" /> of sugar becomes ethanol and carbon dioxide with the same total. Rotate the columns and compare their heights.
+
+<MathVisual
+  title={<>Fermentation Keeps the Mass</>}
+  description={<>One mole of glucose (left) and the ethanol and carbon dioxide it forms (right). One grid step up is 20 grams.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 10 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8.5, y: 12, z: 11 }, target: { x: 1.5, y: 4.5, z: 0 } },
+    objects: [
+      { id: "glucose", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 4.5, z: 0 }, size: { length: 1.6, height: 9, width: 1.6 } },
+      { id: "ethanol", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 2.3, z: 0 }, size: { length: 1.6, height: 4.6, width: 1.6 } },
+      { id: "carbon-dioxide", kind: "cuboid", appearance: "reference", center: { x: 3, y: 6.8, z: 0 }, size: { length: 1.6, height: 4.4, width: 1.6 } },
+    ],
+    labels: [
+      { key: "glucose", objectId: "glucose", at: { x: 0, y: 9, z: 0 }, placement: "above" },
+      { key: "ethanol", objectId: "ethanol", at: { x: 3, y: 2.3, z: 0.85 }, placement: "right" },
+      { key: "gas", objectId: "carbon-dioxide", at: { x: 3, y: 6.8, z: 0.85 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    glucose: <InlineMath math="\mathrm{C_6H_{12}O_6}:\ 180\ \mathrm{g}" />,
+    ethanol: <InlineMath math="2\mathrm{C_2H_5OH}:\ 2\cdot46=92\ \mathrm{g}" />,
+    gas: <InlineMath math="2\mathrm{CO_2}:\ 2\cdot44=88\ \mathrm{g}" />,
+  }}
+/>

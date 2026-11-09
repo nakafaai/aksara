@@ -56,6 +56,32 @@ Betrachte den Fall „Aus der Ruhe“. Im ersten Augenblick steht das Auto noch.
   }}
 />
 
+Beim Spielzeugauto, das aus dem Stand startet, liegen die Marken jede Sekunde bei <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="9" />, <InlineMath math="16" /> und <InlineMath math="25\text{ m}" />. Die Abstände wachsen jede Sekunde um <InlineMath math="2\text{ m}" />, deshalb biegt sich das Positionsdiagramm zu einer Parabel statt zu einer Geraden.
+
+<MathVisual
+  title={<>Positionsmarken rücken auseinander</>}
+  description={<><InlineMath math="x=\tfrac12at^2" /> mit <InlineMath math="a=2\text{ m/s}^2" /> für 5 s. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 5 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "position", kind: "quadratic", appearance: "primary", coefficients: { a: 0.2, b: 0, c: 0 }, domain: { min: 0, max: 5 }, inputAxis: "x" },
+      { id: "mark-1", kind: "point", appearance: "answer", at: { x: 1, y: 1 ** 2 / 5 } },
+      { id: "mark-2", kind: "point", appearance: "answer", at: { x: 2, y: 2 ** 2 / 5 } },
+      { id: "mark-3", kind: "point", appearance: "answer", at: { x: 3, y: 3 ** 2 / 5 } },
+      { id: "mark-4", kind: "point", appearance: "answer", at: { x: 4, y: 4 ** 2 / 5 } },
+      { id: "mark-5", kind: "point", appearance: "answer", at: { x: 5, y: 5 ** 2 / 5 } },
+    ],
+    labels: [
+      { key: "marks", objectId: "mark-5", at: { x: 5, y: 5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    marks: <InlineMath math="1,\ 4,\ 9,\ 16,\ 25\text{ m}" />,
+  }}
+/>
+
 ## Verschiebung aus der Diagrammfläche berechnen
 
 Ein Geschwindigkeits-Zeit-Diagramm zeigt die Geschwindigkeit. Die **vorzeichenbehaftete Fläche** zwischen dem Diagramm und der Zeitachse stellt zusätzlich die Verschiebung dar. Oberhalb der Zeitachse kann diese Fläche bei gleichmäßig beschleunigter Bewegung ein Dreieck oder ein Trapez sein. Eine Fläche unterhalb der Achse trägt eine negative Verschiebung bei.

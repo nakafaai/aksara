@@ -124,6 +124,42 @@ Das Symbol <InlineMath math="q" /> steht für die Teilchenladung in Coulomb, <In
 
 Ein elektrisches Feld übt eine Kraft auf geladene Teilchen aus. Ein Proton wird in Feldrichtung abgelenkt, ein Elektron in die Gegenrichtung und ein Neutron in diesem einfachen Modell gar nicht.
 
+Schick drei Strahlen mit derselben Bewegungsenergie <InlineMath math="K" /> zwischen geladene Platten. Nach einer Strecke <InlineMath math="x" /> ist ein Teilchen mit Ladung <InlineMath math="q" /> im Feld <InlineMath math="E" /> um <InlineMath math="y=\tfrac{qEx^2}{4K}" /> zur Seite gewandert. Elektron und Proton biegen gleich weit in entgegengesetzte Richtungen ab, und das Neutron fliegt gerade. Zoom auf das Ende der Platten.
+
+<MathVisual
+  title={<>Gleiche Energie, entgegengesetzte Bögen</>}
+  description={<>Bahnen eines Elektrons (violett), eines Protons (orange) und eines Neutrons (grau) mit gleicher Bewegungsenergie zwischen einer positiven und einer negativen Platte.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "plate-plus", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 8, y: 3 } },
+      { id: "plate-minus", kind: "segment", appearance: "secondary", from: { x: 0, y: -3 }, to: { x: 8, y: -3 } },
+      { id: "electron", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: (1 * 2.5 * 0.5 ** 2) / 64 }, { x: 1, y: (1 * 2.5 * 1 ** 2) / 64 }, { x: 1.5, y: (1 * 2.5 * 1.5 ** 2) / 64 }, { x: 2, y: (1 * 2.5 * 2 ** 2) / 64 }, { x: 2.5, y: (1 * 2.5 * 2.5 ** 2) / 64 }, { x: 3, y: (1 * 2.5 * 3 ** 2) / 64 }, { x: 3.5, y: (1 * 2.5 * 3.5 ** 2) / 64 }, { x: 4, y: (1 * 2.5 * 4 ** 2) / 64 }, { x: 4.5, y: (1 * 2.5 * 4.5 ** 2) / 64 }, { x: 5, y: (1 * 2.5 * 5 ** 2) / 64 }, { x: 5.5, y: (1 * 2.5 * 5.5 ** 2) / 64 }, { x: 6, y: (1 * 2.5 * 6 ** 2) / 64 }, { x: 6.5, y: (1 * 2.5 * 6.5 ** 2) / 64 }, { x: 7, y: (1 * 2.5 * 7 ** 2) / 64 }, { x: 7.5, y: (1 * 2.5 * 7.5 ** 2) / 64 }, { x: 8, y: (1 * 2.5 * 8 ** 2) / 64 }] },
+      { id: "proton", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: (-1 * 2.5 * 0.5 ** 2) / 64 }, { x: 1, y: (-1 * 2.5 * 1 ** 2) / 64 }, { x: 1.5, y: (-1 * 2.5 * 1.5 ** 2) / 64 }, { x: 2, y: (-1 * 2.5 * 2 ** 2) / 64 }, { x: 2.5, y: (-1 * 2.5 * 2.5 ** 2) / 64 }, { x: 3, y: (-1 * 2.5 * 3 ** 2) / 64 }, { x: 3.5, y: (-1 * 2.5 * 3.5 ** 2) / 64 }, { x: 4, y: (-1 * 2.5 * 4 ** 2) / 64 }, { x: 4.5, y: (-1 * 2.5 * 4.5 ** 2) / 64 }, { x: 5, y: (-1 * 2.5 * 5 ** 2) / 64 }, { x: 5.5, y: (-1 * 2.5 * 5.5 ** 2) / 64 }, { x: 6, y: (-1 * 2.5 * 6 ** 2) / 64 }, { x: 6.5, y: (-1 * 2.5 * 6.5 ** 2) / 64 }, { x: 7, y: (-1 * 2.5 * 7 ** 2) / 64 }, { x: 7.5, y: (-1 * 2.5 * 7.5 ** 2) / 64 }, { x: 8, y: (-1 * 2.5 * 8 ** 2) / 64 }] },
+      { id: "neutron", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "electron-end", kind: "point", appearance: "secondary", at: { x: 8, y: 2.5 } },
+      { id: "proton-end", kind: "point", appearance: "primary", at: { x: 8, y: -2.5 } },
+      { id: "neutron-end", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+    ],
+    labels: [
+      { key: "plus", objectId: "plate-plus", at: { x: 0, y: 3 }, placement: "above-right" },
+      { key: "minus", objectId: "plate-minus", at: { x: 0, y: -3 }, placement: "below-right" },
+      { key: "electron", objectId: "electron-end", at: { x: 8, y: 2.5 }, placement: "right" },
+      { key: "proton", objectId: "proton-end", at: { x: 8, y: -2.5 }, placement: "right" },
+      { key: "neutron", objectId: "neutron-end", at: { x: 8, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    plus: <>positive Platte</>,
+    minus: <>negative Platte</>,
+    electron: <InlineMath math="e^{-},\ q<0" />,
+    proton: <InlineMath math="p^{+},\ q>0" />,
+    neutron: <InlineMath math="n,\ q=0" />,
+  }}
+/>
+
 ## Masse und Beschleunigung
 
 Subatomare Teilchenmassen sind winzig, daher verwenden wir oft die **einheitliche Atommasseneinheit**, geschrieben als <InlineMath math="\text{u}" />. Ein <InlineMath math="\mathrm u" /> ist <InlineMath math="\frac{1}{12}" /> der Masse eines neutralen <InlineMath math="{}^{12}_{6}\mathrm{C}" />-Atoms im Grundzustand.
@@ -143,6 +179,33 @@ Ein einfacher Vergleich ist:
 Ein Proton hat also ungefähr die gleiche Masse wie <InlineMath math="1836" /> Elektronen. Protonen und Neutronen im Kern liefern deshalb fast die gesamte Atommasse.
 
 Wirkt dieselbe Kraft gleich lange auf einen Tennisball und eine Bowlingkugel, erfährt der leichtere Tennisball eine größere Beschleunigung und Geschwindigkeitsänderung. Die Bälle stehen in diesem Vergleich nur für den Massenunterschied. Ihre Form bildet keine Teilchenform ab. Ein Elektron reagiert stärker als ein Proton auf dieselbe elektrische Kraft, weil seine Masse wesentlich kleiner ist.
+
+Hier sind die drei Massen in u im selben Maßstab, ein Gitterschritt für <InlineMath math="0{,}5\ \text{u}" />. Proton und Neutron sind fast gleich hoch. Die Säule des Elektrons ist auch da, aber mit etwa <InlineMath math="1/1836" /> der Protonenmasse siehst du sie kaum. Deshalb sitzt die Masse eines Atoms im Kern.
+
+<MathVisual
+  title={<>Massen der drei Teilchen</>}
+  description={<>Proton 1,0073 u, Neutron 1,0087 u und Elektron 0,00055 u in einem Maßstab. Ein Gitterschritt nach oben sind 0,5 u.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 1, z: 0 } },
+    objects: [
+      { id: "proton", kind: "cuboid", appearance: "primary", center: { x: 0, y: (1.0073 * 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1.0073 * 2, width: 1.2 } },
+      { id: "neutron", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: (1.0087 * 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1.0087 * 2, width: 1.2 } },
+      { id: "electron", kind: "cuboid", appearance: "secondary", center: { x: 5, y: (0.00055 * 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 0.00055 * 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "proton", objectId: "proton", at: { x: 0, y: 2.5, z: 0 }, placement: "above" },
+      { key: "neutron", objectId: "neutron", at: { x: 2.5, y: 2.5, z: 0 }, placement: "above" },
+      { key: "electron", objectId: "electron", at: { x: 5, y: 0.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    proton: <InlineMath math="1{,}0073\ \text{u}" />,
+    neutron: <InlineMath math="1{,}0087\ \text{u}" />,
+    electron: <InlineMath math="0{,}00055\ \text{u}" />,
+  }}
+/>
 
 ## Aufenthaltsbereich und chemische Rolle
 

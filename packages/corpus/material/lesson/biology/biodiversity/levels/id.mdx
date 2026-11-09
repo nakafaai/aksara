@@ -44,6 +44,51 @@ Sifat yang tampak biasanya tidak ditentukan oleh gen saja. Tinggi tanaman, misal
 
 Perbedaan gen dapat membuat tiap individu merespons perubahan lingkungan dengan cara yang berbeda. Karena itu, populasi dengan variasi yang lebih besar lebih mungkin memiliki individu yang dapat bertahan dan berkembang biak dalam kondisi baru.
 
+Bayangkan dua populasi padi berisi 10 tanaman, tiap tanaman diletakkan menurut seberapa tahan ia terhadap tekanan seperti banjir yang lama. Di baris atas semua tanaman punya varian turunan yang sama, dan di baris bawah variannya berbeda-beda. Saat kondisi baru menuntut ketahanan melewati garis merah muda, hanya populasi yang beragam yang masih punya tanaman yang bertahan. Perbesar di sekitar garis itu dan hitung titik di sebelah kanannya.
+
+<MathVisual
+  title={<>Keragaman Memberi Sebagian Tanaman Peluang</>}
+  description={<>Ketahanan ilustratif dari 10 tanaman dengan satu varian yang sama (atas) dan 10 tanaman dengan varian berbeda (bawah). Titik di kanan garis merah muda bertahan dalam kondisi baru.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "threshold", kind: "segment", appearance: "warning", from: { x: 7, y: 0 }, to: { x: 7, y: 3 } },
+      { id: "same-0", kind: "point", appearance: "reference", at: { x: 4.55, y: 2 } },
+      { id: "same-1", kind: "point", appearance: "reference", at: { x: 4.65, y: 2 } },
+      { id: "same-2", kind: "point", appearance: "reference", at: { x: 4.75, y: 2 } },
+      { id: "same-3", kind: "point", appearance: "reference", at: { x: 4.85, y: 2 } },
+      { id: "same-4", kind: "point", appearance: "reference", at: { x: 4.95, y: 2 } },
+      { id: "same-5", kind: "point", appearance: "reference", at: { x: 5.05, y: 2 } },
+      { id: "same-6", kind: "point", appearance: "reference", at: { x: 5.15, y: 2 } },
+      { id: "same-7", kind: "point", appearance: "reference", at: { x: 5.25, y: 2 } },
+      { id: "same-8", kind: "point", appearance: "reference", at: { x: 5.35, y: 2 } },
+      { id: "same-9", kind: "point", appearance: "reference", at: { x: 5.45, y: 2 } },
+      { id: "spread-0", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "spread-1", kind: "point", appearance: "secondary", at: { x: 3, y: 1 } },
+      { id: "spread-2", kind: "point", appearance: "secondary", at: { x: 3.5, y: 1 } },
+      { id: "spread-3", kind: "point", appearance: "secondary", at: { x: 4, y: 1 } },
+      { id: "spread-4", kind: "point", appearance: "secondary", at: { x: 5, y: 1 } },
+      { id: "spread-5", kind: "point", appearance: "secondary", at: { x: 5.5, y: 1 } },
+      { id: "spread-6", kind: "point", appearance: "secondary", at: { x: 6, y: 1 } },
+      { id: "spread-7", kind: "point", appearance: "secondary", at: { x: 6.5, y: 1 } },
+      { id: "spread-8", kind: "point", appearance: "answer", at: { x: 7.5, y: 1 } },
+      { id: "spread-9", kind: "point", appearance: "answer", at: { x: 8, y: 1 } },
+    ],
+    labels: [
+      { key: "line", objectId: "threshold", at: { x: 7, y: 3 }, placement: "above" },
+      { key: "same", objectId: "same-9", at: { x: 5.45, y: 2 }, placement: "right" },
+      { key: "spread", objectId: "spread-9", at: { x: 8, y: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    line: <>kondisi baru</>,
+    same: <>0 dari 10 bertahan</>,
+    spread: <>2 dari 10 bertahan</>,
+  }}
+/>
+
 ## Membandingkan Keanekaragaman pada Skala Lebih Luas
 
 Keanekaragaman genetik membandingkan anggota satu spesies. Keanekaragaman spesies membandingkan spesies yang hidup bersama, sedangkan keanekaragaman ekosistem membandingkan habitat serta interaksi antara organisme dan lingkungan. Ketika luas pengamatan bertambah, **pisahkan jumlah spesies dari kondisi habitat** yang menopang organisme tersebut.
@@ -63,6 +108,34 @@ Bandingkan contoh pengamatan rekaan berikut. Luas petak dan cara menghitung dibu
 
 Kedua petak memiliki 10 individu dan 3 spesies. Namun, **kelimpahan lebih merata** di petak 2. Menghitung jumlah spesies saja akan melewatkan perbedaan ini.
 
+Adegan di bawah mengubah kedua petak menjadi batang, oranye untuk spesies A, ungu untuk B, dan hijau toska untuk C, dengan satu kotak grid untuk <InlineMath math="2" /> individu. Putar adegannya sampai kedua baris terlihat berdampingan. Petak 1 punya satu batang tinggi dan dua batang pendek, sedangkan petak 2 punya tiga batang yang tingginya mirip. Salah satu cara umum untuk memberi angka pada perbedaan ini adalah indeks Simpson, <InlineMath math="1-\sum p_i^2" />, dengan <InlineMath math="p_i" /> sebagai bagian setiap spesies dari seluruh individu. Nilainya <InlineMath math="0{,}34" /> untuk petak 1 dan <InlineMath math="0{,}66" /> untuk petak 2, jadi petak yang lebih merata nilainya hampir dua kali lipat walaupun jumlah spesiesnya sama.
+
+<MathVisual
+  title={<>Kekayaan Sama, Kemerataan Berbeda</>}
+  description={<>Individu spesies A (oranye), B (ungu), dan C (hijau toska) pada dua petak hipotetis yang sama luas. Satu kotak grid ke atas sama dengan 2 individu.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 6.5 }, y: { min: 0, max: 5 }, z: { min: -2.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 9, y: 6, z: 9 }, target: { x: 2, y: 1.2, z: 0 } },
+    objects: [
+      { id: "plot-1-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 8 / 4, z: -1.5 }, size: { length: 1.2, height: 8 / 2, width: 1.2 } },
+      { id: "plot-1-b", kind: "cuboid", appearance: "secondary", center: { x: 2, y: 1 / 4, z: -1.5 }, size: { length: 1.2, height: 1 / 2, width: 1.2 } },
+      { id: "plot-1-c", kind: "cuboid", appearance: "construction", center: { x: 4, y: 1 / 4, z: -1.5 }, size: { length: 1.2, height: 1 / 2, width: 1.2 } },
+      { id: "plot-2-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 4 / 4, z: 1.5 }, size: { length: 1.2, height: 4 / 2, width: 1.2 } },
+      { id: "plot-2-b", kind: "cuboid", appearance: "secondary", center: { x: 2, y: 3 / 4, z: 1.5 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "plot-2-c", kind: "cuboid", appearance: "construction", center: { x: 4, y: 3 / 4, z: 1.5 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "first", objectId: "plot-1-a", at: { x: 0, y: 8 / 2 + 0.4, z: -1.5 }, placement: "above" },
+      { key: "second", objectId: "plot-2-a", at: { x: 0, y: 4 / 2 + 0.4, z: 1.5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="\text{Petak 1}:\ 1-\left(0{,}8^2+0{,}1^2+0{,}1^2\right)=0{,}34" />,
+    second: <InlineMath math="\text{Petak 2}:\ 1-\left(0{,}4^2+0{,}3^2+0{,}3^2\right)=0{,}66" />,
+  }}
+/>
+
 ### Keanekaragaman Ekosistem Membandingkan Habitat dan Interaksi Ekologis
 
 Keanekaragaman ekosistem lebih luas lagi. Sawah, sungai, hutan hujan, mangrove, savana, dan terumbu karang memiliki kondisi berbeda. **Cahaya, air, salinitas, tanah, suhu, dan interaksi organisme** membuat jenis yang hidup di sana tidak sama.
@@ -81,6 +154,54 @@ Data biodiversitas primer dapat berasal dari museum, koleksi ilmiah, DNA barcode
     B --> E["Varietas padi"]
     C --> F["Banyak organisme"]
     D --> G["Habitat berbeda"]`}
+/>
+
+Kekayaan spesies menghitung berapa jenis yang hidup di suatu tempat. Kedua petak sama-sama berisi 12 individu, tetapi satu punya empat spesies dan yang lain hanya dua. Perbesar dan hitung warna di tiap petak.
+
+<MathVisual
+  title={<>Jumlah Sama, Kekayaan Berbeda</>}
+  description={<>Dua petak dengan masing-masing 12 individu. Tiap warna adalah satu spesies.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "plot-a", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 0, y: 4 }] },
+      { id: "plot-b", kind: "polygon", appearance: "reference", vertices: [{ x: 6, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 4 }, { x: 6, y: 4 }] },
+      { id: "a-0-0", kind: "point", appearance: "primary", at: { x: 0.5, y: 0.75 } },
+      { id: "b-0-0", kind: "point", appearance: "primary", at: { x: 6.5, y: 0.75 } },
+      { id: "a-0-1", kind: "point", appearance: "primary", at: { x: 0.5, y: 2 } },
+      { id: "b-0-1", kind: "point", appearance: "primary", at: { x: 6.5, y: 2 } },
+      { id: "a-0-2", kind: "point", appearance: "primary", at: { x: 0.5, y: 3.25 } },
+      { id: "b-0-2", kind: "point", appearance: "primary", at: { x: 6.5, y: 3.25 } },
+      { id: "a-1-0", kind: "point", appearance: "secondary", at: { x: 1.5, y: 0.75 } },
+      { id: "b-1-0", kind: "point", appearance: "primary", at: { x: 7.5, y: 0.75 } },
+      { id: "a-1-1", kind: "point", appearance: "secondary", at: { x: 1.5, y: 2 } },
+      { id: "b-1-1", kind: "point", appearance: "primary", at: { x: 7.5, y: 2 } },
+      { id: "a-1-2", kind: "point", appearance: "secondary", at: { x: 1.5, y: 3.25 } },
+      { id: "b-1-2", kind: "point", appearance: "primary", at: { x: 7.5, y: 3.25 } },
+      { id: "a-2-0", kind: "point", appearance: "highlight", at: { x: 2.5, y: 0.75 } },
+      { id: "b-2-0", kind: "point", appearance: "secondary", at: { x: 8.5, y: 0.75 } },
+      { id: "a-2-1", kind: "point", appearance: "highlight", at: { x: 2.5, y: 2 } },
+      { id: "b-2-1", kind: "point", appearance: "secondary", at: { x: 8.5, y: 2 } },
+      { id: "a-2-2", kind: "point", appearance: "highlight", at: { x: 2.5, y: 3.25 } },
+      { id: "b-2-2", kind: "point", appearance: "secondary", at: { x: 8.5, y: 3.25 } },
+      { id: "a-3-0", kind: "point", appearance: "construction", at: { x: 3.5, y: 0.75 } },
+      { id: "b-3-0", kind: "point", appearance: "secondary", at: { x: 9.5, y: 0.75 } },
+      { id: "a-3-1", kind: "point", appearance: "construction", at: { x: 3.5, y: 2 } },
+      { id: "b-3-1", kind: "point", appearance: "secondary", at: { x: 9.5, y: 2 } },
+      { id: "a-3-2", kind: "point", appearance: "construction", at: { x: 3.5, y: 3.25 } },
+      { id: "b-3-2", kind: "point", appearance: "secondary", at: { x: 9.5, y: 3.25 } },
+    ],
+    labels: [
+      { key: "a", objectId: "plot-a", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "b", objectId: "plot-b", at: { x: 8, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    a: <>4 spesies</>,
+    b: <>2 spesies</>,
+  }}
 />
 
 ## Tentukan Tingkat Keanekaragaman Lebih Dahulu

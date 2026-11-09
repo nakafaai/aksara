@@ -59,7 +59,13 @@ type MaterialFixtureSource = typeof MaterialFixtureSourceSchema.Type;
 export const materialManifest = Effect.fn("MaterialTest.manifest")(
   (mathematics: readonly string[] = ["FunctionMachine"]) =>
     createRendererManifest({
-      base: ["BlockMath", "Highlight", "InlineMath", "MathContainer"],
+      base: [
+        "BlockMath",
+        "Highlight",
+        "InlineMath",
+        "MathContainer",
+        "MathVisual",
+      ],
       domains: testRendererDomains({
         chemistry: ["AtomShellLab"],
         mathematics,

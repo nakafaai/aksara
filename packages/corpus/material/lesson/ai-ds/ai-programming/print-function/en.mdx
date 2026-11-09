@@ -77,6 +77,21 @@ print("First", "Line", "Second", "Line", sep="\\n")     # newline`
 
 The `sep` value determines the exact characters written between adjacent objects, such as a space, comma, tab, or line break.
 
+`print(1, 2, 3, sep=s)` writes three digit characters and inserts `s` twice between them. The length of the output line, without the final newline, is <InlineMath math="3+2k" />, where <InlineMath math="k" /> is `len(s)`.
+
+<BarChart
+  title={<>Output length of <code>print(1, 2, 3, sep=s)</code></>}
+  description={<>Each bar is the number of characters written for the <code>sep</code> value below it: <InlineMath math="5" /> for a space, <InlineMath math="3" /> for the empty string, <InlineMath math="7" /> for a comma and a space, and <InlineMath math="9" /> for <code>' | '</code>.</>}
+  yAxisLabel="Characters"
+  data={[
+    { name: "' '", value: 3 + 2 * 1 },
+    { name: "''", value: 3 + 2 * 0 },
+    { name: "', '", value: 3 + 2 * 2 },
+    { name: "' | '", value: 3 + 2 * 3 },
+  ]}
+  chartConfig={{ value: { label: "Characters", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
 ## End Parameter
 
 The `end` parameter sets the character or string written after the printed objects. <Highlight>Its default value is a line break</Highlight> (`\n`), so the next call to `print` starts on a new line.
@@ -123,6 +138,54 @@ print("D", "E", "F", sep="-", end="\\n")`
 
 Changing `end` lets several calls continue on one line. Pass `flush=True` when the output must appear immediately, because this writes any buffered text at once.
 
+This picture runs `print("A", "B", "C", sep="-")`, then `print("x", end=" ")`, then `print("y")`, and puts every character where it appears. `sep` is only inserted between arguments, so the teal dash appears twice for three arguments. `end` is added once at the end of each call: the newline ↵ moves the cursor to the next line, while `end=" "` keeps `y` on the same line as `x`.
+
+<MathVisual
+  title={<>Three <code>print</code> calls in the output stream</>}
+  description={<>Violet characters come from the arguments, teal ones from <code>sep</code>, and orange ones from <code>end</code>. The symbol ↵ is a newline and ␣ is a space.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-a", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "first-b", kind: "point", at: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "first-c", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "first-d", kind: "point", at: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "first-e", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "first-f", kind: "point", at: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "second-a", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "second-b", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "second-c", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "second-d", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-a", objectId: "first-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "first-b", objectId: "first-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "first-c", objectId: "first-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "first-d", objectId: "first-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "first-e", objectId: "first-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "first-f", objectId: "first-f", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "second-a", objectId: "second-a", at: { x: 0, y: -1 }, placement: "above" },
+      { key: "second-b", objectId: "second-b", at: { x: 1, y: -1 }, placement: "above" },
+      { key: "second-c", objectId: "second-c", at: { x: 2, y: -1 }, placement: "above" },
+      { key: "second-d", objectId: "second-d", at: { x: 3, y: -1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "first-a": "A",
+    "first-b": "-",
+    "first-c": "B",
+    "first-d": "-",
+    "first-e": "C",
+    "first-f": "↵",
+    "second-a": "x",
+    "second-b": "␣",
+    "second-c": "y",
+    "second-d": "↵",
+  }}
+/>
+
 ## Displaying Various Data Types
 
 `print()` accepts objects of many types and obtains their **human-readable string representation** before writing it. Custom classes can control that representation with `__str__()`.
@@ -160,6 +223,23 @@ print("Result:", integer_num, "+", decimal_num, "=", integer_num + decimal_num)`
 />
 
 One `print()` call can accept values of different types, convert each value to text, and write them in order. This is enough for quick inspection while a program runs.
+
+`print` converts every argument with `str()` before writing it, so the data type decides what appears. The float `3.0` keeps its decimal point, `None` shows up as a word, and a list writes its brackets, commas, and spaces.
+
+<BarChart
+  title={<>Characters that <code>print</code> writes for six values</>}
+  description={<>Each bar is <code>len(str(x))</code> for the value <code>x</code> written below it, the number of characters that appear on screen.</>}
+  yAxisLabel="Characters"
+  data={[
+    { name: "42", value: 2 },
+    { name: "3.0", value: 3 },
+    { name: "3.14", value: 4 },
+    { name: "True", value: 4 },
+    { name: "None", value: 4 },
+    { name: "[1, 2]", value: 6 },
+  ]}
+  chartConfig={{ value: { label: "Characters", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>
 
 ## Output Formatting Techniques
 

@@ -47,6 +47,37 @@ Reale Messgeräte schätzen diesen Wert über ein kurzes, aber endliches Abtasti
   }}
 />
 
+Sieh dir den Grenzwert an einer Beispielbewegung an, <InlineMath math="x=t^2" />. Jede farbige Linie ist eine Durchschnittsgeschwindigkeit ab <InlineMath math="t=3\text{ s}" />, über <InlineMath math="2" />, <InlineMath math="1" /> und <InlineMath math="0{,}5\text{ s}" />. Wird das Intervall kleiner, fallen die Steigungen von <InlineMath math="8" /> auf <InlineMath math="7" /> und <InlineMath math="6{,}5\text{ m/s}" /> und nähern sich der Momentangeschwindigkeit <InlineMath math="6\text{ m/s}" />.
+
+<MathVisual
+  title={<>Das Zeitintervall verkleinern</>}
+  description={<>Sekanten von <InlineMath math="x=t^2" /> ab <InlineMath math="t=3\text{ s}" /> über 2 s, 1 s und 0,5 s. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 4 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "position", kind: "quadratic", appearance: "reference", coefficients: { a: 0.25, b: 0, c: 0 }, domain: { min: 0, max: 5 }, inputAxis: "x" },
+      { id: "step-2", kind: "segment", appearance: "warning", from: { x: 3, y: 2.25 }, to: { x: 5, y: 6.25 } },
+      { id: "step-1", kind: "segment", appearance: "primary", from: { x: 3, y: 2.25 }, to: { x: 4, y: 4 } },
+      { id: "step-half", kind: "segment", appearance: "secondary", from: { x: 3, y: 2.25 }, to: { x: 3.5, y: 3.5 ** 2 / 4 } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 3, y: 2.25 } },
+    ],
+    labels: [
+      { key: "s2", objectId: "step-2", at: { x: 5, y: 6.25 }, placement: "right" },
+      { key: "s1", objectId: "step-1", at: { x: 4, y: 4 }, placement: "right" },
+      { key: "sh", objectId: "step-half", at: { x: 3.5, y: 3.5 ** 2 / 4 }, placement: "right" },
+      { key: "now", objectId: "now", at: { x: 3, y: 2.25 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    s2: <InlineMath math="\frac{\Delta x}{\Delta t}=8\text{ m/s}" />,
+    s1: <InlineMath math="\frac{\Delta x}{\Delta t}=7\text{ m/s}" />,
+    sh: <InlineMath math="\frac{\Delta x}{\Delta t}=6{,}5\text{ m/s}" />,
+    now: <InlineMath math="t=3\text{ s}:\ v=6\text{ m/s}" />,
+  }}
+/>
+
 ## Die Richtung bestimmt das Vorzeichen der Geschwindigkeit
 
 Der Messpunkt in der Simulation erfasst das Auto zu einem bestimmten Zeitpunkt. Die Schnelligkeit gibt den Betrag der Bewegung an. Die **Fahrtrichtung** beim Passieren des Messpunkts bestimmt das Vorzeichen der Geschwindigkeit.
@@ -61,6 +92,33 @@ Bei <InlineMath math="t=9 \text{ s}" /> fährt das Auto mit einer momentanen Sch
 | <InlineMath math="9 \text{ s}" /> | <InlineMath math="8 \text{ m/s}" /> | nach links | <InlineMath math="-8 \text{ m/s}" /> |
 
 Die momentane Schnelligkeit hat kein Richtungszeichen. Die momentane Geschwindigkeit verwendet ein positives oder negatives Vorzeichen für die Richtung auf der gewählten Achse.
+
+Ein Tacho zeigt nur den Betrag. Ergänze die Richtung als Vorzeichen: nach rechts positiv, nach links negativ, also werden gleichartige Anzeigen zu zwei verschiedenen Geschwindigkeiten. Zoom auf beide Anzeigen.
+
+<MathVisual
+  title={<>Von der Tachoanzeige zur Geschwindigkeit</>}
+  description={<>Geschwindigkeit bei 6 s (türkis, nach rechts) und bei 9 s (violett, nach links). Senkrecht: Ein Gitterschritt entspricht 5 m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -2.5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "six", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
+      { id: "nine", kind: "segment", appearance: "secondary", from: { x: 9, y: 0 }, to: { x: 9, y: -1.6 } },
+      { id: "six-top", kind: "point", appearance: "construction", at: { x: 6, y: 4 } },
+      { id: "nine-end", kind: "point", appearance: "secondary", at: { x: 9, y: -1.6 } },
+    ],
+    labels: [
+      { key: "six", objectId: "six-top", at: { x: 6, y: 4 }, placement: "above" },
+      { key: "nine", objectId: "nine-end", at: { x: 9, y: -1.6 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    six: <InlineMath math="6\text{ s}:\ +20\text{ m/s}" />,
+    nine: <InlineMath math="9\text{ s}:\ -8\text{ m/s}" />,
+  }}
+/>
 
 ## Unterschied zur mittleren Schnelligkeit
 

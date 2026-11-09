@@ -103,6 +103,35 @@ Alle Wasserstoffisotope besitzen <InlineMath math="1" /> Proton und gehören des
 
 Deuterium wird manchmal als <InlineMath math="\mathrm{D}" /> geschrieben, und Tritium wird manchmal als <InlineMath math="\mathrm{T}" /> geschrieben. Diese Abkürzungen bedeuten keine neuen Elemente. Deuterium und Tritium sind immer noch Wasserstoff, weil ihre Protonenzahl immer noch <InlineMath math="1" /> beträgt.
 
+Die Szene zeigt den Kern jedes Wasserstoffisotops, Protonen orange hinten, Neutronen grau vorn. Die Protonensäule ändert sich nie, deshalb bleiben alle Wasserstoff. Nur die Neutronensäule wächst, von <InlineMath math="0" /> auf <InlineMath math="1" /> und <InlineMath math="2" />, und mit ihr die Massenzahl.
+
+<MathVisual
+  title={<>Drei Isotope des Wasserstoffs</>}
+  description={<>Protonen (orange, hinten) und Neutronen (grau, vorn) in Wasserstoff-1, -2 und -3. Ein Gitterschritt nach oben ist 1 Teilchen.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 1, z: 0 } },
+    objects: [
+      { id: "one-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "two-p", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "two-n", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: (1) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "three-p", kind: "cuboid", appearance: "primary", center: { x: 5, y: (1) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "three-n", kind: "cuboid", appearance: "reference", center: { x: 5, y: (2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "one", objectId: "one-p", at: { x: 0, y: 1.5, z: -0.75 }, placement: "above" },
+      { key: "two", objectId: "two-n", at: { x: 2.5, y: 1.5, z: 0.75 }, placement: "above" },
+      { key: "three", objectId: "three-n", at: { x: 5, y: 2.5, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    one: <InlineMath math="{}^{1}\mathrm{H}:\ n^0=0" />,
+    two: <InlineMath math="{}^{2}\mathrm{H}:\ n^0=1" />,
+    three: <InlineMath math="{}^{3}\mathrm{H}:\ n^0=2" />,
+  }}
+/>
+
 ## Kohlenstoffisotope unterscheiden sich in der Neutronenzahl
 
 Kohlenstoff hat immer <InlineMath math="6" /> Protonen. In <InlineMath math="{}^{12}_{6}\mathrm{C}" />, <InlineMath math="{}^{13}_{6}\mathrm{C}" /> und <InlineMath math="{}^{14}_{6}\mathrm{C}" /> erhöht sich die Neutronenzahl.
@@ -131,6 +160,40 @@ Wenn das Atom neutral ist, sind Elektronen immer noch gleich Protonen:
 <BlockMath math="\text{neutrales Atom} \Rightarrow e^- = p^+" />
 
 Ein neutrales <InlineMath math="{}^{14}_{6}\mathrm{C}" />-Atom besitzt also <InlineMath math="6" /> Protonen, <InlineMath math="6" /> Elektronen und <InlineMath math="8" /> Neutronen.
+
+Leg jeden Kern nach seinen Neutronen nach rechts und seinen Protonen nach oben. Isotope eines Elements haben dasselbe <InlineMath math="Z" />, also stehen die Kohlenstoffisotope in einer gelben Reihe. Ein Ion bewegt sich auf dieser Karte gar nicht, weil sich nur seine Elektronen geändert haben. Zoom hinein und vergleiche <InlineMath math="^{14}\mathrm{C}" /> mit <InlineMath math="^{14}\mathrm{N}" />: gleiche Massenzahl, verschiedene Elemente.
+
+<MathVisual
+  title={<>Isotope reihen sich auf, Ionen bleiben stehen</>}
+  description={<>Fünf Kerne nach Neutronenzahl (waagerecht) und Protonenzahl (senkrecht). Die gelbe Reihe enthält die drei Kohlenstoffisotope.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 5, max: 9 }, y: { min: 5, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "carbon-row", kind: "segment", appearance: "highlight", from: { x: 5.5, y: 6 }, to: { x: 8.5, y: 6 } },
+      { id: "c12", kind: "point", appearance: "primary", at: { x: 6, y: 6 } },
+      { id: "c13", kind: "point", appearance: "primary", at: { x: 7, y: 6 } },
+      { id: "c14", kind: "point", appearance: "primary", at: { x: 8, y: 6 } },
+      { id: "n14", kind: "point", appearance: "secondary", at: { x: 7, y: 7 } },
+      { id: "o16", kind: "point", appearance: "construction", at: { x: 8, y: 8 } },
+    ],
+    labels: [
+      { key: "c12", objectId: "c12", at: { x: 6, y: 6 }, placement: "below" },
+      { key: "c13", objectId: "c13", at: { x: 7, y: 6 }, placement: "below" },
+      { key: "c14", objectId: "c14", at: { x: 8, y: 6 }, placement: "below" },
+      { key: "n14", objectId: "n14", at: { x: 7, y: 7 }, placement: "above" },
+      { key: "o16", objectId: "o16", at: { x: 8, y: 8 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    c12: <InlineMath math="^{12}\mathrm{C}" />,
+    c13: <InlineMath math="^{13}\mathrm{C}" />,
+    c14: <InlineMath math="^{14}\mathrm{C}" />,
+    n14: <InlineMath math="^{14}\mathrm{N}" />,
+    o16: <InlineMath math="^{16}\mathrm{O}" />,
+  }}
+/>
 
 ## Verwendung von Isotopen
 

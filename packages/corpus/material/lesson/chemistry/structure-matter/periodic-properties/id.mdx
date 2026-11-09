@@ -73,6 +73,45 @@ Tren tersebut bergantung pada **tarikan inti terhadap elektron valensi**. Elektr
   }}
 />
 
+Natrium memperlihatkan mengapa letak bisa meramalkan sifat. Satu-satunya elektron terluarnya, yang berwarna fuchsia, sendirian di kulit M, jauh dari inti dan terlindung oleh sepuluh elektron di dalam, jadi mudah dilepas.
+
+<MathVisual
+  title={<>Elektron Terluar Natrium yang Sendirian</>}
+  description={<>11 elektron natrium di kulit K, L, dan M, dengan elektron terluar berwarna fuchsia.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "nucleus", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "shell-k", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "electron-k-1", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (0 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (0 + 0.125)) / 2) } },
+      { id: "electron-k-2", kind: "point", appearance: "secondary", at: { x: 1 * Math.cos((2 * Math.PI * (1 + 0.125)) / 2), y: 1 * Math.sin((2 * Math.PI * (1 + 0.125)) / 2) } },
+      { id: "shell-l", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 2 },
+      { id: "electron-l-1", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (0 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (0 + 0.125)) / 8) } },
+      { id: "electron-l-2", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (1 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (1 + 0.125)) / 8) } },
+      { id: "electron-l-3", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (2 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (2 + 0.125)) / 8) } },
+      { id: "electron-l-4", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (3 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (3 + 0.125)) / 8) } },
+      { id: "electron-l-5", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (4 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (4 + 0.125)) / 8) } },
+      { id: "electron-l-6", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (5 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (5 + 0.125)) / 8) } },
+      { id: "electron-l-7", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (6 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (6 + 0.125)) / 8) } },
+      { id: "electron-l-8", kind: "point", appearance: "secondary", at: { x: 2 * Math.cos((2 * Math.PI * (7 + 0.125)) / 8), y: 2 * Math.sin((2 * Math.PI * (7 + 0.125)) / 8) } },
+      { id: "shell-m", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "electron-m-1", kind: "point", appearance: "answer", at: { x: 3 * Math.cos((2 * Math.PI * (0 + 0.125)) / 1), y: 3 * Math.sin((2 * Math.PI * (0 + 0.125)) / 1) } },
+    ],
+    labels: [
+      { key: "k", objectId: "shell-k", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "l", objectId: "shell-l", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "m", objectId: "shell-m", at: { x: 3, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    k: <InlineMath math="\mathrm{K}:\ 2" />,
+    l: <InlineMath math="\mathrm{L}:\ 8" />,
+    m: <InlineMath math="\mathrm{M}:\ 1" />,
+  }}
+/>
+
 ## Empat Sifat Periodik
 
 Setiap sifat menjelaskan aspek atom yang berbeda. Panah tren menunjukkan perubahan ukuran atom, energi untuk melepas elektron, perubahan energi saat elektron ditambahkan, dan tarikan terhadap elektron yang dipakai bersama dalam ikatan.
@@ -97,6 +136,51 @@ Pada atom klorin, penambahan elektron melepaskan energi. Afinitas elektronnya po
 <BlockMath math="\mathrm{Cl(g)}+e^- \rightarrow \mathrm{Cl^-(g)}" />
 
 Gas mulia seperti <InlineMath math="\mathrm{Ar}" /> sudah memiliki kulit valensi stabil, sehingga tidak mudah menerima elektron tambahan. Karena itu, afinitas elektron memiliki lebih banyak pengecualian daripada tren jari-jari atom dan energi ionisasi.
+
+Ini kedua tren itu dalam data nyata. Sepanjang satu periode, inti mendapat tambahan proton sementara kulit terluarnya tetap, jadi elektron makin sulit dilepas dan energi ionisasi pertama naik. Di awal periode berikutnya, kulit baru menambah jarak dan perisai, lalu energinya turun tajam. Perbesar penurunan merah muda dari neon ke natrium.
+
+<MathVisual
+  title={<>Energi Ionisasi Melintasi Dua Periode</>}
+  description={<>Energi ionisasi pertama untuk nomor atom 3 sampai 18, periode 2 (ungu) dan periode 3 (oranye). Mendatar: satu kotak grid berarti 2 nomor atom. Tegak: satu kotak grid berarti <InlineMath math="250\ \mathrm{kJ/mol}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1, max: 9.5 }, y: { min: 1, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "period-2", kind: "polyline", appearance: "secondary", vertices: [{ x: 1.5, y: 2.08 }, { x: 2, y: 3.596 }, { x: 2.5, y: 3.204 }, { x: 3, y: 4.344 }, { x: 3.5, y: 5.608 }, { x: 4, y: 5.256 }, { x: 4.5, y: 6.724 }, { x: 5, y: 8.324 }] },
+      { id: "period-3", kind: "polyline", appearance: "primary", vertices: [{ x: 5.5, y: 1.984 }, { x: 6, y: 2.952 }, { x: 6.5, y: 2.312 }, { x: 7, y: 3.148 }, { x: 7.5, y: 4.048 }, { x: 8, y: 4 }, { x: 8.5, y: 5.004 }, { x: 9, y: 6.084 }] },
+      { id: "drop", kind: "segment", appearance: "warning", from: { x: 5, y: 8.324 }, to: { x: 5.5, y: 1.984 } },
+      { id: "z3", kind: "point", appearance: "answer", at: { x: 1.5, y: 2.08 } },
+      { id: "z4", kind: "point", appearance: "secondary", at: { x: 2, y: 3.596 } },
+      { id: "z5", kind: "point", appearance: "secondary", at: { x: 2.5, y: 3.204 } },
+      { id: "z6", kind: "point", appearance: "secondary", at: { x: 3, y: 4.344 } },
+      { id: "z7", kind: "point", appearance: "secondary", at: { x: 3.5, y: 5.608 } },
+      { id: "z8", kind: "point", appearance: "secondary", at: { x: 4, y: 5.256 } },
+      { id: "z9", kind: "point", appearance: "secondary", at: { x: 4.5, y: 6.724 } },
+      { id: "z10", kind: "point", appearance: "answer", at: { x: 5, y: 8.324 } },
+      { id: "z11", kind: "point", appearance: "answer", at: { x: 5.5, y: 1.984 } },
+      { id: "z12", kind: "point", appearance: "primary", at: { x: 6, y: 2.952 } },
+      { id: "z13", kind: "point", appearance: "primary", at: { x: 6.5, y: 2.312 } },
+      { id: "z14", kind: "point", appearance: "primary", at: { x: 7, y: 3.148 } },
+      { id: "z15", kind: "point", appearance: "primary", at: { x: 7.5, y: 4.048 } },
+      { id: "z16", kind: "point", appearance: "primary", at: { x: 8, y: 4 } },
+      { id: "z17", kind: "point", appearance: "primary", at: { x: 8.5, y: 5.004 } },
+      { id: "z18", kind: "point", appearance: "answer", at: { x: 9, y: 6.084 } },
+    ],
+    labels: [
+      { key: "li", objectId: "z3", at: { x: 1.5, y: 2.08 }, placement: "below" },
+      { key: "ne", objectId: "z10", at: { x: 5, y: 8.324 }, placement: "above" },
+      { key: "na", objectId: "z11", at: { x: 5.5, y: 1.984 }, placement: "below" },
+      { key: "ar", objectId: "z18", at: { x: 9, y: 6.084 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    li: <InlineMath math="\mathrm{Li}:\ 520" />,
+    ne: <InlineMath math="\mathrm{Ne}:\ 2081" />,
+    na: <InlineMath math="\mathrm{Na}:\ 496" />,
+    ar: <InlineMath math="\mathrm{Ar}:\ 1521" />,
+  }}
+/>
 
 ## Membandingkan Dua Pasangan Unsur
 

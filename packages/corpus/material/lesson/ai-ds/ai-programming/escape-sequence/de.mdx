@@ -90,6 +90,21 @@ Die Escape-Sequenz für einen Zeilenumbruch ist \\n.`
 
 Ein Raw-String mit einem Präfix wie `r` bewahrt die meisten Backslashes, statt sie als Escape-Sequenzen auszuwerten. Anführungszeichen müssen trotzdem zu den Begrenzern des Literals passen. Außerdem kann ein Raw-String nicht mit einer ungeraden Anzahl von Backslashes enden.
 
+Ein Backslash vor einem Anführungszeichen sagt Python nur, dass das Zeichen zum Text gehört. Der Backslash selbst landet nie im String, also enthalten `'It\'s'` und `"It's"` beide vier Zeichen.
+
+<BarChart
+  title={<><code>len()</code> von Strings mit Anführungszeichen darin</>}
+  description={<>Jeder Balken ist die <code>len()</code> des darunter stehenden Literals. Die Variante mit Escape und die Variante mit der anderen Art von Anführungszeichen sind gleich lang, <InlineMath math="4" /> und <InlineMath math="8" />.</>}
+  yAxisLabel="Stringlänge"
+  data={[
+    { name: "'It\\'s'", value: 4 },
+    { name: "\"It's\"", value: 4 },
+    { name: "'Say \"hi\"'", value: 8 },
+    { name: "\"Say \\\"hi\\\"\"", value: 8 },
+  ]}
+  chartConfig={{ value: { label: "Stringlänge", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
 ## Übersicht der Escapesequenzen
 
 Diese **Escape-Sequenzen** stellen Zeichen in Python-Stringliteralen dar:
@@ -132,6 +147,22 @@ In `str.format()` und f-Strings begrenzen geschweifte Klammern die **Ersetzungsf
 
 `{{` ergibt eine öffnende und `}}` eine schließende geschweifte Klammer. In `'{{{}}}'` werden die äußeren Klammerpaare zu wörtlichen Zeichen, während das mittlere `{}` ein Ersetzungsfeld bleibt.
 
+Jede Escape-Sequenz erzeugt genau ein Zeichen, und `ord()` liest dessen Unicode-Code. Tabulator und Zeilenumbruch sind Steuerzeichen mit den Codes <InlineMath math="9" /> und <InlineMath math="10" />, Anführungszeichen und Backslash dagegen gewöhnliche Zeichen mit größeren Codes.
+
+<BarChart
+  title={<><code>ord()</code> des Zeichens jeder Escape-Sequenz</>}
+  description={<>Jeder Balken ist der Unicode-Code des Zeichens, das die Escape-Sequenz darunter erzeugt, von <code>\t</code> mit dem Code <InlineMath math="9" /> bis <code>\\</code> mit dem Code <InlineMath math="92" />.</>}
+  yAxisLabel="Unicode-Code"
+  data={[
+    { name: "\\t", value: 9 },
+    { name: "\\n", value: 10 },
+    { name: "\\\"", value: 34 },
+    { name: "\\'", value: 39 },
+    { name: "\\\\", value: 92 },
+  ]}
+  chartConfig={{ value: { label: "Unicode-Code", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
 ## Mehrere Escapes in einer Ausgabe verwenden
 
 Im folgenden Beispiel steuern Escape-Sequenzen **Tabulatoren und Zeilenumbrüche** sowie Anführungszeichen und wörtliche Backslashes in einer Ausgabe.
@@ -161,3 +192,66 @@ print("Erste Zeile\\nZweite Zeile\\t(mit Tabulator)\\nDritte Zeile")`
 In diesem Beispiel erstellt `\t` übersichtliche Spalten, `\n` trennt Zeilen und `\\` zeigt Windows-Dateipfade korrekt an.
 
 Entscheidend ist der Unterschied zwischen der Schreibweise im Quellcode und dem fertigen String. `\n` besteht im Quellcode beispielsweise aus zwei Zeichen, steht im String aber für genau einen Zeilenumbruch.
+
+Dieses Bild gibt `"Name\tAge\nBob\t25"` in einem Terminal mit einem Tabstopp alle acht Spalten aus. Die gelben Strecken zeigen, wie `\t` zum nächsten Vielfachen von acht springt, deshalb beginnen `Age` und `25` in derselben Spalte, obwohl `Name` und `Bob` verschieden lang sind. Die orange Strecke zeigt, wie `\n` den Cursor an den Anfang der nächsten Zeile bringt. Egal wie breit es aussieht, jede Escape-Sequenz bleibt ein Zeichen, also ist `len()` dieses Strings <InlineMath math="15" />.
+
+<MathVisual
+  title={<>Wohin der Cursor bei <code>\t</code> und <code>\n</code> springt</>}
+  description={<>Violette Zeichen sind normaler Text, gelbe Strecken Tabsprünge und orange Strecken Zeilenumbrüche, für ein Terminal mit einem Tabstopp alle acht Spalten.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -1.6, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "name-a", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "name-b", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "name-c", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "name-d", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "age-a", kind: "point", at: { x: 8, y: 0 }, appearance: "secondary" },
+      { id: "age-b", kind: "point", at: { x: 9, y: 0 }, appearance: "secondary" },
+      { id: "age-c", kind: "point", at: { x: 10, y: 0 }, appearance: "secondary" },
+      { id: "bob-a", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "bob-b", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "bob-c", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "num-a", kind: "point", at: { x: 8, y: -1 }, appearance: "secondary" },
+      { id: "num-b", kind: "point", at: { x: 9, y: -1 }, appearance: "secondary" },
+      { id: "tab-a", kind: "segment", from: { x: 4, y: 0 }, to: { x: 8, y: 0 }, appearance: "highlight" },
+      { id: "newline", kind: "segment", from: { x: 11, y: 0 }, to: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "tab-b", kind: "segment", from: { x: 3, y: -1 }, to: { x: 8, y: -1 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "name-a", objectId: "name-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "name-b", objectId: "name-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "name-c", objectId: "name-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "name-d", objectId: "name-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "age-a", objectId: "age-a", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "age-b", objectId: "age-b", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "age-c", objectId: "age-c", at: { x: 10, y: 0 }, placement: "above" },
+      { key: "bob-a", objectId: "bob-a", at: { x: 0, y: -1 }, placement: "above" },
+      { key: "bob-b", objectId: "bob-b", at: { x: 1, y: -1 }, placement: "above" },
+      { key: "bob-c", objectId: "bob-c", at: { x: 2, y: -1 }, placement: "above" },
+      { key: "num-a", objectId: "num-a", at: { x: 8, y: -1 }, placement: "above" },
+      { key: "num-b", objectId: "num-b", at: { x: 9, y: -1 }, placement: "above" },
+      { key: "tab-a", objectId: "tab-a", at: { x: 6, y: 0 }, placement: "above" },
+      { key: "newline", objectId: "newline", at: { x: 11 / 2, y: -1 / 2 }, placement: "below-right" },
+      { key: "tab-b", objectId: "tab-b", at: { x: 11 / 2, y: -1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "name-a": "N",
+    "name-b": "a",
+    "name-c": "m",
+    "name-d": "e",
+    "age-a": "A",
+    "age-b": "g",
+    "age-c": "e",
+    "bob-a": "B",
+    "bob-b": "o",
+    "bob-c": "b",
+    "num-a": "2",
+    "num-b": "5",
+    "tab-a": "\\t",
+    "newline": "\\n",
+    "tab-b": "\\t",
+  }}
+/>

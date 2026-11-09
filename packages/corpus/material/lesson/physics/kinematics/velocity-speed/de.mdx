@@ -95,6 +95,33 @@ Das **positive Vorzeichen** bedeutet, dass die Geschwindigkeit nach rechts geric
 
 Bei der Geschwindigkeit erhält das Vorzeichen seine Bedeutung durch die festgelegte positive Richtung und die daraus bestimmte Verschiebung.
 
+Beide Fahrten unten dauern <InlineMath math="4\text{ s}" /> und erreichen <InlineMath math="8\text{ m}" />. Die orange kehrt bis <InlineMath math="4\text{ m}" /> zurück: Tempo <InlineMath math="12/4=3\text{ m/s}" />, Geschwindigkeit <InlineMath math="+4/4=+1\text{ m/s}" />. Die violette kommt ganz zurück: Tempo <InlineMath math="4\text{ m/s}" />, Geschwindigkeit <InlineMath math="0" />. Zähl Anstieg und Abstieg jeder Linie für die Strecke und vergleich nur die Endpunkte für die Verschiebung.
+
+<MathVisual
+  title={<>Zwei Fahrten, zwei Tempi, zwei Geschwindigkeiten</>}
+  description={<>Bis 8 m und zurück auf 4 m oder 0 m, jeweils in 4 s mit konstantem Tempo. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 2 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "to-four", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: (4 * 8) / 12, y: 4 }, { x: 4, y: 2 }] },
+      { id: "to-zero", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 4 }, { x: 4, y: 0 }] },
+      { id: "four-end", kind: "point", appearance: "primary", at: { x: 4, y: 2 } },
+      { id: "zero-top", kind: "point", appearance: "secondary", at: { x: 2, y: 4 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "four", objectId: "four-end", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "zero", objectId: "zero-top", at: { x: 2, y: 4 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    four: <InlineMath math="12\text{ m},\ \Delta x=+4\text{ m}" />,
+    zero: <InlineMath math="16\text{ m},\ \Delta x=0" />,
+  }}
+/>
+
 ## Wenn Schnelligkeit und Geschwindigkeit verschieden sind
 
 Stell dir nun vor, das Objekt bewegt sich von <InlineMath math="0 \text{ m}" /> nach <InlineMath math="8 \text{ m}" /> und kehrt dann zu <InlineMath math="0 \text{ m}" /> zurück. Die gesamte Bewegung dauert <InlineMath math="4 \text{ s}" />.
@@ -117,3 +144,29 @@ Die mittlere Schnelligkeit kann also ungleich null sein, obwohl die mittlere Ges
 | Mittlere Geschwindigkeit | Verschiebung | Ja | <InlineMath math="\text{m/s}" /> nach rechts |
 
 Geht es darum, wie schnell ein Weg zurückgelegt wird, verwenden wir **Weglänge und Schnelligkeit**. Geht es um die gerichtete Ortsänderung, verwenden wir Verschiebung und Geschwindigkeit.
+
+Lauf eine Runde, und die beiden Mittelwerte trennen sich. Nach einer ganzen Runde ist deine Strecke der ganze Kreis, aber du bist wieder am Start, also ist die Durchschnittsgeschwindigkeit null. Nach einer halben Runde ist die Verschiebung der Durchmesser. Zoom auf beide Labels.
+
+<MathVisual
+  title={<>Strecke ergibt Tempo, Verschiebung ergibt Geschwindigkeit</>}
+  description={<>Eine Kreisbahn mit Radius 3 m, dem Start (fuchsia) und der Verschiebung nach einer halben Runde (orange).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 9 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "track", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "start", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "half", kind: "segment", appearance: "primary", from: { x: 3, y: 0 }, to: { x: -3, y: 0 } },
+      { id: "half-end", kind: "point", appearance: "primary", at: { x: -3, y: 0 } },
+    ],
+    labels: [
+      { key: "lap", objectId: "start", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "half", objectId: "half", at: { x: 0, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    lap: <InlineMath math="\text{1 Runde: } s=2\pi r\approx18{,}85\text{ m},\ \Delta x=0" />,
+    half: <InlineMath math="\text{halb: } s=\pi r,\ \lvert\Delta x\rvert=2r=6\text{ m}" />,
+  }}
+/>
