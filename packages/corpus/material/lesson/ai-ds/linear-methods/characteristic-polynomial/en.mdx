@@ -43,6 +43,33 @@ This means:
 - The second highest coefficient is related to the matrix trace
 - The **constant term** is the determinant of the matrix
 
+For a <InlineMath math="2\times2" /> matrix, <InlineMath math="\chi_A(t)=t^2-(\operatorname{tr}A)\,t+\det A" />. With <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />, the trace is <InlineMath math="4" /> and the determinant is <InlineMath math="3" />, so <InlineMath math="\chi_A(t)=t^2-4t+3=(t-1)(t-3)" />.
+
+<MathVisual
+  title={<>The parabola <InlineMath math="\chi_A(t)=t^2-4t+3" /></>}
+  description={<>The magenta points are the roots <InlineMath math="1" /> and <InlineMath math="3" />, the eigenvalues of <InlineMath math="A" />. The amber point is <InlineMath math="\chi_A(0)=\det A=3" />, and the gray vertex sits at <InlineMath math="t=\operatorname{tr}A/2=2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "polynomial", kind: "quadratic", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: -0.5, max: 4.5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "small", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "large", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: 3 }, appearance: "highlight" },
+      { id: "vertex", kind: "point", at: { x: 2, y: -1 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "intercept": <InlineMath math="\det A=3" />,
+    "vertex": <InlineMath math="t=\tfrac{\operatorname{tr}A}2" />,
+  }}
+/>
+
 ## Eigenvalues as Polynomial Roots
 
 The value <InlineMath math="\lambda \in \mathbb{K}" /> is an eigenvalue of <InlineMath math="A" /> if and only if <InlineMath math="\det(A - \lambda \cdot I) = 0" />.
@@ -64,6 +91,30 @@ Now, what happens if an eigenvalue appears multiple times as a root of the chara
 For every eigenvalue <InlineMath math="\lambda" />, its **algebraic multiplicity satisfies**
 
 <BlockMath math="1 \leq \mu_A(\lambda) \leq n" />
+
+Three <InlineMath math="2\times2" /> matrices with trace <InlineMath math="4" /> but determinants <InlineMath math="3" />, <InlineMath math="4" />, and <InlineMath math="5" /> give three kinds of roots. <InlineMath math="\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> has two simple roots, <InlineMath math="\begin{pmatrix}2&1\\0&2\end{pmatrix}" /> has the root <InlineMath math="2" /> with algebraic multiplicity <InlineMath math="2" />, and <InlineMath math="\begin{pmatrix}2&-1\\1&2\end{pmatrix}" /> has the complex roots <InlineMath math="2\pm i" />.
+
+<MathVisual
+  title={<>Simple roots, a double root, and no real root</>}
+  description={<>The gray parabola <InlineMath math="t^2-4t+3" /> crosses the axis twice. The teal parabola <InlineMath math="(t-2)^2" /> only touches the axis at the magenta point <InlineMath math="t=2" />, so that root counts twice. The orange parabola <InlineMath math="t^2-4t+5" /> never reaches the axis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two-roots", kind: "quadratic", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "reference" },
+      { id: "double-root", kind: "quadratic", coefficients: { a: 1, b: -4, c: 4 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "construction" },
+      { id: "no-root", kind: "quadratic", coefficients: { a: 1, b: -4, c: 5 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "primary" },
+      { id: "touch", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "touch", objectId: "touch", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "touch": <InlineMath math="t=2" />,
+  }}
+/>
 
 ## Relationship between Geometric and Algebraic Multiplicity
 
@@ -178,6 +229,45 @@ Its characteristic polynomial is:
 <BlockMath math="\chi_A(t) = (1-t)^2 = t^2 - 2 \cdot t + 1" />
 
 The eigenvalue is <InlineMath math="\lambda = 1" /> with <InlineMath math="\mu_A(1) = 2" />.
+
+Compare the five parabolas below, one for each rotation angle. The lowest point of each sits at <InlineMath math="t=\cos\alpha" /> with value <InlineMath math="1-\cos^2\alpha=\sin^2\alpha" />. Only for <InlineMath math="\alpha=0" /> and <InlineMath math="\alpha=\pi" /> is that value zero, so the parabola touches the <InlineMath math="t" />-axis at <InlineMath math="t=1" /> or <InlineMath math="t=-1" />. For every other angle, the parabola floats above the axis, its roots are complex, and the rotation keeps no direction at all.
+
+<MathVisual
+  title={<>Characteristic polynomial of a rotation <InlineMath math="t^2-2t\cos\alpha+1" /></>}
+  description={<>One parabola for each angle <InlineMath math="\alpha" />. Its lowest point sits at <InlineMath math="t=\cos\alpha" /> with value <InlineMath math="\sin^2\alpha" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.3, max: 3.3 }, y: { min: -0.6, max: 5.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "zero", kind: "quadratic", coefficients: { a: 1, b: -2 * (1), c: 1 }, domain: { min: -1, max: 3 }, inputAxis: "x", appearance: "secondary" },
+      { id: "third", kind: "quadratic", coefficients: { a: 1, b: -2 * (1 / 2), c: 1 }, domain: { min: -3 / 2, max: 5 / 2 }, inputAxis: "x", appearance: "construction" },
+      { id: "half", kind: "quadratic", coefficients: { a: 1, b: -2 * (0), c: 1 }, domain: { min: -7 / 4, max: 7 / 4 }, inputAxis: "x", appearance: "highlight" },
+      { id: "twothirds", kind: "quadratic", coefficients: { a: 1, b: -2 * (-1 / 2), c: 1 }, domain: { min: -5 / 2, max: 3 / 2 }, inputAxis: "x", appearance: "primary" },
+      { id: "full", kind: "quadratic", coefficients: { a: 1, b: -2 * (-1), c: 1 }, domain: { min: -3, max: 1 }, inputAxis: "x", appearance: "answer" },
+      { id: "root-plus", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "root-minus", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "zero", objectId: "zero", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "third", objectId: "third", at: { x: -3 / 2, y: 19 / 4 }, placement: "above-left" },
+      { key: "half", objectId: "half", at: { x: 7 / 4, y: 65 / 16 }, placement: "above-right" },
+      { key: "twothirds", objectId: "twothirds", at: { x: -5 / 2, y: 19 / 4 }, placement: "above-left" },
+      { key: "full", objectId: "full", at: { x: 1, y: 4 }, placement: "above-right" },
+      { key: "root-plus", objectId: "root-plus", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "root-minus", objectId: "root-minus", at: { x: -1, y: 0 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "zero": <InlineMath math="\alpha=0" />,
+    "third": <InlineMath math="\alpha=\tfrac\pi3" />,
+    "half": <InlineMath math="\alpha=\tfrac\pi2" />,
+    "twothirds": <InlineMath math="\alpha=\tfrac{2\pi}3" />,
+    "full": <InlineMath math="\alpha=\pi" />,
+    "root-plus": <InlineMath math="t=1" />,
+    "root-minus": <InlineMath math="t=-1" />,
+  }}
+/>
 
 ## Properties of Similar Matrices
 

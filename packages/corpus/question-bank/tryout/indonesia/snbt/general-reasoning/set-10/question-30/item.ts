@@ -1,31 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "mixture",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label: "$$104$$",
-        },
-        {
-          correct: false,
-          label: "$$107$$",
-        },
-        {
-          correct: true,
-          label: "$$110$$",
-        },
-        {
-          correct: false,
-          label: "$$113$$",
-        },
-        {
-          correct: false,
-          label: "$$116$$",
-        },
-      ],
+      kind: "numericEntry",
+      unit: "mL",
+      value: "25",
     },
   },
 };

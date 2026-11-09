@@ -3,7 +3,7 @@ export const metadata = {
   description: "Juring dibatasi oleh dua jari-jari dan sebuah busur. Besarnya ditentukan oleh sudut pusat, dan juring dapat berupa juring kecil atau juring besar.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Busur dan Juring Lingkaran",
 };
 
@@ -14,43 +14,35 @@ Juring adalah daerah pada lingkaran yang dibatasi oleh <Highlight>dua jari-jari 
 
 Perhatikan batas dan daerahnya pada gambar. **Busur** hanya bagian lengkung pada tepi, sedangkan **juring** mencakup seluruh daerah di antara dua jari-jari dan busur.
 
-<LineEquation
-  title={<>Visualisasi Juring dalam Lingkaran</>}
-  description="Dua jari-jari dan busur berwarna jingga menandai batas sebuah juring."
-  data={[
-    {
-      kind: "circle-outline", radius: 3,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      kind: "circle-radius", radius: 3, degrees: 45,
-      color: "#9333ea",
-      showPoints: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.3, 0.3, 0] }
-      ]
-    },
-    {
-      kind: "circle-radius", radius: 3, degrees: 135,
-      color: "#9333ea",
-      showPoints: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.3, 0] }
-      ]
-    },
-    { kind: "circle-arc", radius: 3,
-      startDegrees: 45,
-      sweepDegrees: 90,
-      segments: 25,
-      color: "#ea580c",
-      lineWidth: 4,
-      label: { text: "Busur", offset: [0.5, 0.5, 0] } }
-  ]}
-  cameraPosition={[0, 0, 10]}
+<MathVisual
+  title={<>Juring yang dibatasi <InlineMath math="OA" />, <InlineMath math="OB" />, dan busur <InlineMath math="AB" /></>}
+  description={<>Pada lingkaran berjari-jari 3, jari-jari <InlineMath math="OA" /> dan <InlineMath math="OB" /> pada <InlineMath math="45^\circ" /> dan <InlineMath math="135^\circ" /> serta busur <InlineMath math="AB" /> di antaranya membatasi juring <InlineMath math="90^\circ" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    arc: <>Busur</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "reference" },
+      { id: "oa", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, appearance: "secondary" },
+      { id: "ob", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, appearance: "secondary" },
+      { id: "arc", kind: "arc", center: { x: 0, y: 0 }, radius: 3, startDegrees: 45, sweepDegrees: 90, appearance: "primary" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "a", kind: "point", at: { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, appearance: "secondary" },
+      { id: "b", kind: "point", at: { x: -3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, placement: "left" },
+      { key: "arc", objectId: "arc", at: { x: 0, y: 3 }, placement: "above" },
+    ],
+  }}
 />
 
 ## Karakteristik Juring
@@ -69,17 +61,34 @@ Sudut pusat diukur di pusat lingkaran, di antara dua jari-jari yang membatasi ju
 
 Sebagai contoh, <InlineMath math="90^\circ" /> adalah **seperempat putaran penuh** sehingga luas juringnya seperempat luas lingkaran. Juring dengan sudut pusat <InlineMath math="180^\circ" /> memiliki setengah luas lingkaran.
 
-<LineEquation
-  title="Juring pada Lingkaran yang Sama"
-  description="Tiga juring bersebelahan dengan jari-jari sama, tanpa menumpuk bidang yang berbeda."
-  data={[
-    { kind: "circle-outline", radius: 4, color: "#0d9488", showPoints: false },
-    ...[0, 60, 150, 270].map((degrees) => ({ kind: "circle-radius", radius: 4, degrees, color: "#7c3aed", showPoints: false })),
-    { kind: "circle-arc", radius: 4, startDegrees: 0, sweepDegrees: 60, color: "#d97706", lineWidth: 4, label: { text: <InlineMath math="60^\circ" />, offset: [0.5, 0.3, 0] } },
-    { kind: "circle-arc", radius: 4, startDegrees: 60, sweepDegrees: 90, color: "#65a30d", lineWidth: 4, label: { text: <InlineMath math="90^\circ" />, offset: [-0.3, 0.4, 0] } },
-    { kind: "circle-arc", radius: 4, startDegrees: 150, sweepDegrees: 120, color: "#c026d3", lineWidth: 4, label: { text: <InlineMath math="120^\circ" />, offset: [-0.5, -0.3, 0] } },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Tiga juring pada satu lingkaran</>}
+  description={<>Juring berdampingan dengan sudut pusat <InlineMath math="60^\circ" />, <InlineMath math="90^\circ" />, dan <InlineMath math="120^\circ" /> pada lingkaran berjari-jari 4, yaitu <InlineMath math="\tfrac16" />, <InlineMath math="\tfrac14" />, dan <InlineMath math="\tfrac13" /> lingkaran.</>}
+  labels={{
+    s60: <InlineMath math="60^\circ" />,
+    s90: <InlineMath math="90^\circ" />,
+    s120: <InlineMath math="120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.6, max: 4.6 }, y: { min: -4.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "reference" },
+      { id: "r0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "r60", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) }, appearance: "construction" },
+      { id: "r150", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2 * Math.sqrt(3), y: 2 }, appearance: "construction" },
+      { id: "r270", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -4 }, appearance: "construction" },
+      { id: "s60", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 0, sweepDegrees: 60, appearance: "primary" },
+      { id: "s90", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 60, sweepDegrees: 90, appearance: "secondary" },
+      { id: "s120", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 150, sweepDegrees: 120, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "s60", objectId: "s60", at: { x: 2 * Math.sqrt(3), y: 2 }, placement: "right" },
+      { key: "s90", objectId: "s90", at: { x: 4 * Math.cos(105 * Math.PI / 180), y: 4 * Math.sin(105 * Math.PI / 180) }, placement: "above" },
+      { key: "s120", objectId: "s120", at: { x: 4 * Math.cos(210 * Math.PI / 180), y: 4 * Math.sin(210 * Math.PI / 180) }, placement: "left" },
+    ],
+  }}
 />
 
 
@@ -102,3 +111,29 @@ Pada muka jam yang tandanya berjarak sama, dua tanda jam yang berdekatan membata
 Pada penyiram ideal berjari-jari <InlineMath math="6\text{ m}" /> yang menyapu <InlineMath math="90^\circ" />, daerah yang disiram adalah seperempat cakram:
 
 <BlockMath math="L=\frac{90^\circ}{360^\circ}\pi(6)^2=\frac14\times36\pi=9\pi\text{ m}^2" />
+
+Penyiram itu membasahi seperempat lingkaran berjari-jari 6 m. Luasnya seperempat luas lingkaran penuh: <InlineMath math="\frac{90^\circ}{360^\circ} \cdot \pi \cdot 6^2 = 9\pi \approx 28{,}27\ \text{m}^2" />.
+
+<MathVisual
+  title={<>Juring <InlineMath math="90^\circ" /> dari penyiram</>}
+  description={<>Juring berjari-jari 6 m dengan sudut pusat <InlineMath math="90^\circ" />, seluas <InlineMath math="9\pi\ \text{m}^2" />.</>}
+  labels={{
+    r: <InlineMath math="6" />,
+    area: <InlineMath math="9\pi" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 6.8 }, y: { min: -0.8, max: 6.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "r1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 0 }, appearance: "secondary" },
+      { id: "r2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 6 }, appearance: "secondary" },
+      { id: "edge", kind: "arc", center: { x: 0, y: 0 }, radius: 6, startDegrees: 0, sweepDegrees: 90, appearance: "primary" },
+      { id: "sprinkler", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "r", objectId: "r1", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "area", objectId: "edge", at: { x: 6 * Math.cos(Math.PI / 4), y: 6 * Math.sin(Math.PI / 4) }, placement: "below-left" },
+    ],
+  }}
+/>

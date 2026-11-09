@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "remote-work",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label:
-            "Memberi kriteria untuk menilai kesinambungan identitas mantel dan menjelaskan mengapa celah riwayat membatasi hubungan antara M-17 dan foto $$2019$$.",
+          column: 2,
+          label: "Teks 2 menolak segala bentuk kerja dari rumah.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Membuktikan bahwa mantel dengan bentuk sama selalu merupakan benda yang sama meskipun kode bagian dalam tidak terlihat.",
+            "Teks 1 membahas kesulitan karyawan baru yang bekerja dari rumah.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Mengizinkan siswa mengisi halaman yang hilang selama dugaan tersebut selaras dengan foto publikasi.",
+            "Teks 1 menyebut perusahaan dapat merekrut orang dari kota mana saja.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Menjadikan buku perawatan lebih dapat dipercaya daripada foto hanya karena riwayatnya ditulis secara kronologis.",
-        },
-        {
-          correct: false,
-          label:
-            "Menetapkan bahwa riwayat penyimpanan lebih penting daripada bukti penggunaan sehingga foto panggung tidak diperlukan.",
+            "Teks 2 menyebut karyawan baru yang bekerja dari rumah lebih mudah merasa terasing.",
         },
       ],
     },

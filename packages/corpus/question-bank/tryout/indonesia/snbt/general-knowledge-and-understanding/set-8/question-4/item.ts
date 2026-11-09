@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "komodo",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Sumber, metode, dan jejak data dapat diperiksa secara mandiri sebelum klaim diterima.",
-        },
-        {
-          correct: false,
-          label:
-            "Aturan pengodean yang sama diterapkan pada setiap kelompok dan setiap waktu pengukuran.",
-        },
-        {
           correct: true,
-          label:
-            "Instrumen diuji untuk memastikan bahwa skor benar-benar mewakili konsep yang hendak diukur.",
+          label: "$$1991$$",
         },
         {
           correct: false,
-          label:
-            "Satuan, aturan pembulatan, dan batas setiap kategori ditetapkan sebelum pencatatan dimulai.",
+          label: "$$1980$$",
         },
         {
           correct: false,
-          label:
-            "Penilai memakai rubrik yang ditetapkan sebelum mengetahui identitas peserta atau hasil akhirnya.",
+          label: "$$1969$$",
+        },
+        {
+          correct: false,
+          label: "$$1990$$",
+        },
+        {
+          correct: false,
+          label: "$$1992$$",
         },
       ],
     },

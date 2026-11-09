@@ -1,35 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "figurative-meaning",
+  },
+  stimulus: "panas",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
+          label: "masalah itu selalu terjadi pada bulan yang sama setiap tahun",
+        },
+        {
+          correct: false,
           label:
-            "Bagian awal menetapkan naskah tertulis sebagai versi asli, lalu bagian berikutnya menghapus variasi lisan dari pertunjukan.",
+            "warga kota berjalan berkeliling untuk mencari tempat yang sejuk",
+        },
+        {
+          correct: false,
+          label: "listrik dibagikan secara merata ke seluruh bagian kota",
         },
         {
           correct: true,
           label:
-            "Keragaman sumber mendorong rancangan panggung, lalu uji penonton memperbaiki penyajian dan catatan program menjelaskan perubahan.",
+            "akibat dari masalah itu justru memperbesar penyebabnya sendiri",
         },
         {
           correct: false,
-          label:
-            "Bagian awal menggabungkan versi tanpa penjelasan, lalu bagian berikutnya menyembunyikan sumber agar penonton bebas menafsirkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Bagian awal menolak perubahan cerita, lalu bagian berikutnya mengukur kesetiaan melalui kesamaan setiap kata dengan naskah.",
-        },
-        {
-          correct: false,
-          label:
-            "Bagian awal menguji tanggapan penonton, lalu bagian berikutnya memilih versi tertua berdasarkan suara terbanyak.",
+          label: "masalah itu dapat diselesaikan dengan cepat dan mudah",
         },
       ],
     },

@@ -1,30 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "inductive-reasoning",
+    topic: "data-comparison",
+  },
+  stimulus: "klinik",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Budi tidak menyelesaikan setiap sesi latihan yang dijadwalkan bulan ini.",
+            "Kunjungan kucing pada bulan Maret lebih dari $$2{,}5$$ kali kunjungan kucing pada bulan Februari.",
         },
         {
-          correct: false,
-          label: "Budi tidak menyukai balap sepeda.",
+          column: 2,
+          label:
+            "Rata-rata kunjungan anjing per bulan dari Januari sampai Juni lebih dari $$86$$.",
         },
         {
-          correct: false,
-          label: "Budi tidak akan pernah bisa menang balap sepeda.",
+          column: 2,
+          label:
+            "Total kunjungan pada bulan Maret lebih dari dua kali total kunjungan pada bulan Februari.",
         },
         {
-          correct: false,
-          label: "Budi sama sekali tidak berlatih sepeda bulan ini.",
-        },
-        {
-          correct: false,
-          label: "Budi dilarang mengikuti semua balap sepeda jarak jauh.",
+          column: 1,
+          label:
+            "Pada bulan Mei, kunjungan kucing masih lebih banyak daripada kunjungan kucing pada bulan Januari.",
         },
       ],
     },

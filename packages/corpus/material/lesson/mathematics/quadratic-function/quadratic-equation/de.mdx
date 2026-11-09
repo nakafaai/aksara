@@ -3,7 +3,7 @@ export const metadata = {
   description: "Löse quadratische Gleichungen durch Faktorisieren, quadratische Ergänzung und die Lösungsformel anhand vollständiger Beispiele und Übungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Quadratische Funktionen",
 };
 
@@ -93,6 +93,33 @@ Die beiden Vorzeichen liefern:
 
 <BlockMath math="\begin{aligned} &amp;x = \frac{3 + 5}{4} = 2 \\ &amp;\text{oder} \\ &amp;x = \frac{3 - 5}{4} = -\frac{1}{2} \end{aligned}" />
 
+Alle drei Verfahren finden dieselben zwei Zahlen, weil die Parabel <InlineMath math="y = 2x^2 - 3x - 2" /> genau dort die x-Achse schneidet: bei <InlineMath math="x = -\tfrac12" /> und <InlineMath math="x = 2" />.
+
+<MathVisual
+  title={<>Die Lösungen von <InlineMath math="2x^2 - 3x - 2 = 0" /> im Graphen</>}
+  description={<>Die Parabel <InlineMath math="y = 2x^2 - 3x - 2" />, die die x-Achse bei <InlineMath math="-\tfrac12" /> und 2 schneidet.</>}
+  labels={{
+    curve: <InlineMath math="y = 2x^2 - 3x - 2" />,
+    r1: <InlineMath math="-\tfrac12" />,
+    r2: <InlineMath math="2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 3.1 }, y: { min: -3.6, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: -2 }, domain: { min: -6 / 5, max: 27 / 10 }, appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: -1 / 2, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 27 / 10, y: 112 / 25 }, placement: "left" },
+      { key: "r1", objectId: "r1", at: { x: -1 / 2, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "r2", at: { x: 2, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 ## Sachsituationen als quadratische Gleichungen modellieren
 
 Sachaufgaben verstecken die Gleichung in einer Beschreibung, deshalb übersetzt du zuerst jeden Satz in eine Größe. Erst wenn die Gleichung dasteht, wählst du die Lösungsmethode.
@@ -144,6 +171,33 @@ Die quadratische Gleichung faktorisieren:
 </MathContainer>
 
 Die gesuchten Zahlen sind <InlineMath math="7" /> und <InlineMath math="9" />.
+
+Die Lösungen von <InlineMath math="p^2 - 16p + 63 = 0" /> liegen dort, wo <InlineMath math="y = p^2 - 16p + 63" /> die Achse trifft: <InlineMath math="p = 7" /> und <InlineMath math="p = 9" />, die beiden Zahlen mit der Summe 16 und dem Produkt 63.
+
+<MathVisual
+  title={<>Zwei Zahlen mit Summe 16 und Produkt 63</>}
+  description={<>Die Parabel <InlineMath math="y = p^2 - 16p + 63" />, die die Achse bei 7 und 9 schneidet.</>}
+  labels={{
+    curve: <InlineMath math="y = p^2 - 16p + 63" />,
+    r1: <InlineMath math="7" />,
+    r2: <InlineMath math="9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 5.5, max: 10.5 }, y: { min: -1.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -16, c: 63 }, domain: { min: 6, max: 10 }, appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: 7, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: 9, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 10, y: 3 }, placement: "left" },
+      { key: "r1", objectId: "r1", at: { x: 7, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "r2", at: { x: 9, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
 
 ### Geschwindigkeit eines Fahrzeugs
 

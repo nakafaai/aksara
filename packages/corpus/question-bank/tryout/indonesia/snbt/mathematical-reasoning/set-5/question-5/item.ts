@@ -1,31 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "phone-storage",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label: "$$640$$",
-        },
-        {
-          correct: true,
-          label: "$$5120$$",
-        },
-        {
-          correct: false,
-          label: "$$1280$$",
-        },
-        {
-          correct: false,
-          label: "$$720$$",
-        },
-        {
-          correct: false,
-          label: "$$840$$",
-        },
-      ],
+      kind: "numericEntry",
+      unit: "foto",
+      value: "28160",
     },
   },
 };

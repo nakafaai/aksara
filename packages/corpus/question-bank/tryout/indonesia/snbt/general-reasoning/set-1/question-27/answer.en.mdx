@@ -1,13 +1,20 @@
-Calculate in thousand rupiah. **Reverse** the price changes in order: remove the tax, restore the voucher deduction, then remove the markup.
+The problem needs **the weekday of the first day of February**, because it decides which dates fall on a Sunday. Then check whether any Sunday is also a multiple of <InlineMath math="5" />, so that no closed day is counted twice.
 
-Tax is calculated on the price after the voucher. The final price is therefore <InlineMath math="110\%" /> of that price, so divide by <InlineMath math="1.10" /> to recover the price before tax.
+January has <InlineMath math="31" /> days, so 1 February is <InlineMath math="31" /> days after 1 January. A week has <InlineMath math="7" /> days, so only the remainder matters:
 
-Before the <InlineMath math="10\%" /> tax, the price after the voucher was
+<BlockMath math="31=4\times7+3" />
 
-<BlockMath math="605\div1.10=550" />
+Friday moves forward <InlineMath math="3" /> days to Monday. So 1 February <InlineMath math="2027" /> is a Monday.
 
-Restore the <InlineMath math="50" /> thousand rupiah voucher, then divide by the markup factor <InlineMath math="1.20" />.
+February <InlineMath math="2027" /> has <InlineMath math="28" /> days. The Sundays are the 7th, 14th, 21st, and 28th. The multiples of <InlineMath math="5" /> are the 5th, 10th, 15th, 20th, and 25th. No date appears in both lists, so **no closed day is counted twice**.
 
-<BlockMath math="\begin{aligned} 550+50 &amp;=600 \\ P_0 &amp;=600\div1.20=500 \\ 605-P_0 &amp;=605-500=105 \end{aligned}" />
+<BlockMath math="\text{Open days}=28-4-5=19" />
 
-The final price therefore exceeds the initial price by <InlineMath math="105" /> thousand rupiah.
+The other options come from these mistakes:
+
+- <InlineMath math="24" /> comes from subtracting only the Sundays.
+- <InlineMath math="23" /> comes from subtracting only the multiples of <InlineMath math="5" />.
+- <InlineMath math="20" /> comes from keeping 1 February on a Friday. The Sundays would then be the 3rd, 10th, 17th, and 24th, so the 10th counts once and only <InlineMath math="8" /> days are closed.
+- <InlineMath math="18" /> comes from assuming February has five Sundays.
+
+So the bakery is open on <InlineMath math="19" /> days in February <InlineMath math="2027" />.

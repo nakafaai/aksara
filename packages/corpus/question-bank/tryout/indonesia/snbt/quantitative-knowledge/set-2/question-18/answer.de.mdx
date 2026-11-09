@@ -1,75 +1,23 @@
-Zunächst bestimmen wir den **Funktionsparameter** <InlineMath math="n" /> aus <InlineMath math="f(-2) = \frac{1}{2}" />.
+Zähle alle Dreiecke und **ziehe die Dreiecke ab, die eine Seite des Achtecks benutzen**. Teile diese nach der Anzahl der benutzten Achteckseiten auf, damit keines doppelt gezählt wird.
 
-# Den unbekannten Wert finden
+# Alle Dreiecke
 
-Wir setzen <InlineMath math="x = -2" /> in die Funktionsgleichung ein:
+**Keine drei Ecken** eines regelmäßigen Achtecks **liegen auf einer Geraden**, also bildet jede Wahl von drei Ecken ein Dreieck.
 
-<BlockMath math="f(-2) = \frac{1}{\sqrt{(-2)^2 - (-2) + n}}" />
+<BlockMath math="\binom83=\frac{8\cdot7\cdot6}{3\cdot2\cdot1}=56" />
 
-<BlockMath math="\frac{1}{2} = \frac{1}{\sqrt{4 + 2 + n}}" />
+# Dreiecke mit einer Achteckseite
 
-<BlockMath math="\frac{1}{2} = \frac{1}{\sqrt{6 + n}}" />
+Ein Dreieck mit **zwei Achteckseiten** entsteht aus drei aufeinanderfolgenden Ecken. Für die mittlere Ecke gibt es 8 Möglichkeiten, also gibt es 8 solche Dreiecke.
 
-Da **beide Seiten positiv** sind, bleibt die Gleichung beim Quadrieren gleichwertig:
+Ein Dreieck mit **genau einer Achteckseite** entsteht aus einer Achteckseite und einer dritten Ecke, die keinem der beiden Endpunkte benachbart ist. Für jede Seite scheiden die beiden Endpunkte und ihre beiden anderen Nachbarn aus, es bleiben also <InlineMath math="8-4=4" /> Ecken.
 
-<BlockMath math="\left(\frac{1}{2}\right)^2 = \left(\frac{1}{\sqrt{6 + n}}\right)^2" />
+<BlockMath math="8\times4=32" />
 
-<BlockMath math="\frac{1}{4} = \frac{1}{6 + n}" />
+Die Anzahl der Dreiecke ohne Achteckseite ist
 
-<BlockMath math="4 = 6 + n" />
+<BlockMath math="56-8-32=16" />
 
-<BlockMath math="n = -2" />
+Der Wert 56 zählt alle Dreiecke. Der Wert 48 entfernt nur die Dreiecke mit zwei Achteckseiten. Der Wert 40 zählt die Dreiecke mit mindestens einer Achteckseite, also das Gegenteil des Gesuchten. Der Wert 32 zählt die Dreiecke mit genau einer Achteckseite.
 
-Die Funktion <InlineMath math="f(x)" /> lautet also:
-
-<BlockMath math="f(x) = \frac{1}{\sqrt{x^2 - x - 2}}" />
-
-Prüfen wir nun den Wahrheitsgehalt jeder Aussage.
-
-# Aussage eins
-
-<InlineMath math="n" /> soll eine **ungerade Zahl** sein.
-Da <InlineMath math="n = -2" /> gerade ist, ist Aussage 1 falsch.
-
-# Aussage zwei
-
-<InlineMath math="0" /> soll zum Wertebereich von <InlineMath math="f(x)" /> gehören. Die Funktion <InlineMath math="f(x) = \frac{1}{\sqrt{\dots}}" /> besitzt einen **konstanten, von null verschiedenen Zähler**. Deshalb kann der Funktionswert niemals <InlineMath math="0" /> werden.
-Aussage 2 ist daher falsch.
-
-# Aussage drei
-
-Die Funktion <InlineMath math="f" /> hat einen Wert von <InlineMath math="\frac{1}{4}" />, wenn <InlineMath math="x = -4" />.
-Wir prüfen die Behauptung durch **direktes Einsetzen**:
-
-<BlockMath math="f(-4) = \frac{1}{\sqrt{(-4)^2 - (-4) - 2}}" />
-
-<BlockMath math="= \frac{1}{\sqrt{16 + 4 - 2}}" />
-
-<BlockMath math="= \frac{1}{\sqrt{18}}" />
-
-<BlockMath math="= \frac{1}{3\sqrt{2}}" />
-
-Da <InlineMath math="\frac{1}{3\sqrt{2}} \neq \frac{1}{4}" /> gilt, ist Aussage 3 falsch.
-
-# Aussage vier
-
-Der behauptete Definitionsbereich der Funktion <InlineMath math="f" /> lautet <InlineMath math="(-\infty,-1)\cup(2,\infty)" />. Da die Quadratwurzel im Nenner steht, muss ihr **Radikand strikt positiv** sein:
-
-<BlockMath math="x^2 - x - 2 > 0" />
-
-Wir faktorisieren die quadratische Ungleichung:
-
-<BlockMath math="(x - 2)(x + 1) > 0" />
-
-Die Nullstellen sind <InlineMath math="x = 2" /> und <InlineMath math="x = -1" />. Eine Vorzeichenbetrachtung zeigt, dass der Ausdruck für <InlineMath math="x < -1" /> oder <InlineMath math="x > 2" /> positiv ist.
-
-| <InlineMath math="x" /> | <InlineMath math="x-2" /> | <InlineMath math="x+1" /> | <InlineMath math="(x-2)(x+1)" /> |
-| --- | :---: | :---: | :---: |
-| <InlineMath math="x<-1" /> | − | − | + |
-| <InlineMath math="-1<x<2" /> | − | + | − |
-| <InlineMath math="x>2" /> | + | + | + |
-
-Der Definitionsbereich von <InlineMath math="f" /> ist also <InlineMath math="\{x \mid x &lt; -1 \text{ oder } x &gt; 2\}" />.
-Aussage 4 ist wahr.
-
-Nur Aussage 4 ist wahr. Es gibt daher genau <InlineMath math="1" /> wahre Aussage.
+Es lassen sich also **16** solche Dreiecke bilden.

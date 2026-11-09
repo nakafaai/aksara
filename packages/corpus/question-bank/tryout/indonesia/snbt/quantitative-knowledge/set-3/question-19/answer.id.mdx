@@ -1,23 +1,20 @@
-Cari **panjang sebenarnya** dari luas dan lebar, lalu ubah panjang tersebut menjadi ukuran pada gambar.
+Hasil kali genap jika **paling sedikit satu bilangan genap**. Kejadian ini mencakup dua kasus, jadi lebih ringkas menghitung komplemennya: hasil kali ganjil hanya jika kedua bilangan ganjil.
 
-# Mencari panjang asli
+# Ruang sampel dan komplemen
 
-Dengan **rumus luas persegi panjang** <InlineMath math="L = p \times \ell" />, diperoleh
+Ada 9 bilangan, terdiri atas 5 bilangan ganjil (1, 3, 5, 7, 9) dan 4 bilangan genap. Dua bilangan diambil sekaligus, jadi urutan tidak diperhatikan dan setiap pasangan **memiliki peluang yang sama**.
 
-<BlockMath math="810 = p \times 18" />
+<BlockMath math="\begin{aligned}
+n(S)&=\binom92=36\\
+n(\text{keduanya ganjil})&=\binom52=10
+\end{aligned}" />
 
-<BlockMath math="p = \frac{810}{18}" />
+# Menghitung peluang
 
-<BlockMath math="p = 45 \text{ m}" />
+<BlockMath math="P(\text{hasil kali genap})=1-\frac{10}{36}=\frac{26}{36}=\frac{13}{18}" />
 
-# Menggunakan skala
+**Cek dengan menghitung langsung**, karena kedua cara harus sama: pasangan genap-ganjil ada <InlineMath math="4\times5=20" /> dan pasangan genap-genap ada <InlineMath math="\binom42=6" />, jumlahnya 26.
 
-Misalkan <InlineMath math="d" /> adalah panjang pada gambar. Karena **satuan pada skala berbeda**, sentimeter dan meter tetap kita tulis di dalam perbandingan:
+Nilai <InlineMath math="\tfrac5{18}" /> adalah peluang komplemen, belum dikurangkan dari 1. Nilai <InlineMath math="\tfrac59" /> hanya menghitung 20 pasangan genap-ganjil dan melupakan 6 pasangan genap-genap. Nilai <InlineMath math="\tfrac16" /> hanya menghitung pasangan genap-genap. Nilai <InlineMath math="\tfrac{56}{81}" /> menganggap bilangan boleh terambil dua kali, <InlineMath math="1-\left(\tfrac59\right)^2" />.
 
-<BlockMath math="\frac{d}{45 \text{ m}} = \frac{3 \text{ cm}}{90 \text{ m}}" />
-
-<BlockMath math="d = \frac{3 \text{ cm}}{90 \text{ m}} \times 45 \text{ m}" />
-
-<BlockMath math="d = 1{,}5 \text{ cm}" />
-
-Jadi, panjang persegi panjang pada gambar adalah <InlineMath math="1{,}5 \text{ cm}" />.
+Jadi, peluang hasil kalinya genap adalah <InlineMath math="\tfrac{13}{18}" />.

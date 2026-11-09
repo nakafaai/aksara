@@ -1,19 +1,11 @@
-Die Reihenfolge der beiden Kugeln spielt keine Rolle. Die Anzahl gleich wahrscheinlicher Paare beträgt:
+Durch <InlineMath math="5" /> teilbare Zahlen enden auf <InlineMath math="0" /> oder <InlineMath math="5" />. Zähle **die beiden Fälle** getrennt, weil die Bedingung für die Hunderterziffer verschieden ist.
 
-<BlockMath math="\binom{12}{2}=\frac{12\times11}{2}=66" />
+**Einerziffer 0**. Die Hunderterziffer kann <InlineMath math="1" /> bis <InlineMath math="9" /> sein, also <InlineMath math="9" /> Möglichkeiten. Die Zehnerziffer muss von beiden verschieden sein, es bleiben <InlineMath math="8" /> Möglichkeiten.
 
-Die Auszahlung für gemischte Farben steigt um <InlineMath math="20\%" />. In Tausend Rupiah beträgt sie nun:
+<BlockMath math="9\times8=72" />
 
-<BlockMath math="30\times\frac{120}{100}=36" />
+**Einerziffer 5**. Die Hunderterziffer darf weder <InlineMath math="0" /> noch <InlineMath math="5" /> sein, also <InlineMath math="8" /> Möglichkeiten. Die Zehnerziffer darf <InlineMath math="0" /> sein, muss aber von der Hunderterziffer und von <InlineMath math="5" /> verschieden sein, also <InlineMath math="8" /> Möglichkeiten.
 
-| Paar | Anzahl | Auszahlung |
-| --- | ---: | ---: |
-| Rot und Rot | <InlineMath math="\binom42=6" /> | <InlineMath math="60" /> |
-| Rot und Blau | <InlineMath math="4\times8=32" /> | <InlineMath math="36" /> |
-| Blau und Blau | <InlineMath math="\binom82=28" /> | <InlineMath math="0" /> |
+<BlockMath math="8\times8=64" />
 
-<InlineMath math="X" /> bezeichnet die Auszahlung in Tausend Rupiah. Für den Erwartungswert multiplizieren wir **Auszahlung mit Wahrscheinlichkeit** für jedes Paar und addieren die Produkte:
-
-<BlockMath math="\begin{aligned}\mathrm{E}[X]&amp;=\frac{60\times6+36\times32}{66}\\&amp;=\frac{360+1152}{66}\\&amp;=\frac{1512}{66}\\&amp;=\frac{252}{11}\end{aligned}" />
-
-Die neue erwartete Auszahlung beträgt somit <InlineMath math="252/11" /> Tausend Rupiah.
+Zusammen sind es <InlineMath math="72+64=136" /> Zahlen.

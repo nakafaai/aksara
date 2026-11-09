@@ -23,6 +23,20 @@ Matriks kompleks <InlineMath math="A \in \mathbb{C}^{n \times n}" /> disebut nor
 
 Kondisi aljabar ini membuat ruang eigen untuk nilai eigen yang berbeda saling ortogonal. Untuk matriks dengan entri bilangan kompleks, kondisi ini juga memungkinkan diagonalisasi uniter.
 
+Uji normalitas dengan menghitung <InlineMath math="\|A^HA-AA^H\|_F" />. Matriks simetris <InlineMath math="\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> dan rotasi <InlineMath math="\begin{pmatrix}0&-1\\1&0\end{pmatrix}" /> memberi <InlineMath math="0" />. Geseran <InlineMath math="\begin{pmatrix}1&1\\0&1\end{pmatrix}" /> memberi <InlineMath math="A^TA-AA^T=\begin{pmatrix}-1&0\\0&1\end{pmatrix}" />, jadi jaraknya <InlineMath math="\sqrt2" /> dan matriks itu tidak normal.
+
+<BarChart
+  title={<>Seberapa jauh <InlineMath math="A^HA" /> dari <InlineMath math="AA^H" /></>}
+  description={<>Setiap batang adalah <InlineMath math="\|A^HA-AA^H\|_F" /> untuk matriks yang tertulis di bawahnya. Hanya geseran yang punya batang, setinggi <InlineMath math="\sqrt2" />.</>}
+  yAxisLabel="Selisih norma Frobenius"
+  data={[
+    { name: "simetris", value: 0 },
+    { name: "rotasi", value: 0 },
+    { name: "geseran", value: Math.sqrt(2) },
+  ]}
+  chartConfig={{ value: { label: "Selisih norma Frobenius", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
 ## Sifat Khusus Ruang Eigen Matriks Normal
 
 Pada matriks normal, ruang nol matriks sama dengan ruang nol konjugat transposnya.
@@ -50,6 +64,33 @@ Identitas ini juga membuktikan ortogonalitas. Jika <InlineMath math="Av=\lambda 
 <BlockMath math="\overline{\lambda}v^Hw=(Av)^Hw=v^HA^Hw" />
 <BlockMath math="=\overline{\mu}v^Hw\qquad\Longrightarrow\qquad v^Hw=0" />
 </MathContainer>
+
+Matriks simetris <InlineMath math="A=\begin{pmatrix}3&1\\1&3\end{pmatrix}" /> normal. Nilai eigen <InlineMath math="4" /> dan <InlineMath math="2" /> berbeda, jadi ruang eigennya harus saling tegak lurus: <InlineMath math="u_1=\tfrac1{\sqrt2}(1,1)" /> dan <InlineMath math="u_2=\tfrac1{\sqrt2}(-1,1)" /> memenuhi <InlineMath math="u_1^Tu_2=0" />. Setelah dinormalkan, keduanya langsung menjadi basis ortonormal.
+
+<MathVisual
+  title={<>Ruang eigen untuk <InlineMath math="4" /> dan <InlineMath math="2" /> saling tegak lurus</>}
+  description={<>Vektor satuan hijau toska <InlineMath math="u_1" /> teregang menjadi ruas ungu <InlineMath math="4u_1" />, dan vektor satuan oranye <InlineMath math="u_2" /> menjadi ruas magenta <InlineMath math="2u_2" />. Persegi kecil abu-abu menandai sudut siku-siku di antara kedua arah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 3.5 }, y: { min: -2, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "corner", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0.3 * Math.SQRT1_2, y: 0.3 * Math.SQRT1_2 }, { x: 0, y: 0.6 * Math.SQRT1_2 }, { x: -0.3 * Math.SQRT1_2, y: 0.3 * Math.SQRT1_2 }], appearance: "reference" },
+      { id: "first-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 * Math.SQRT1_2, y: 4 * Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "construction" },
+      { id: "second-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2 * Math.SQRT1_2, y: 2 * Math.SQRT1_2 }, appearance: "answer" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-image", objectId: "first-image", at: { x: 4 * Math.SQRT1_2, y: 4 * Math.SQRT1_2 }, placement: "right" },
+      { key: "second-image", objectId: "second-image", at: { x: -2 * Math.SQRT1_2, y: 2 * Math.SQRT1_2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first-image": <InlineMath math="Au_1=4u_1" />,
+    "second-image": <InlineMath math="Au_2=2u_2" />,
+  }}
+/>
 
 ## Matriks Hermitian dan Uniter sebagai Contoh Normal
 
@@ -94,3 +135,34 @@ Nilai eigen matriks uniter memiliki modulus <InlineMath math="1" />, sehingga te
 </MathContainer>
 
 Jadi setiap nilai eigen matriks uniter memiliki modulus <InlineMath math="1" />. Secara geometri, transformasi uniter mempertahankan panjang vektor dan semua nilai eigennya berada pada lingkaran satuan.
+
+Bidang kompleks di bawah menunjukkan di mana nilai eigen dua keluarga matriks normal berada. Matriks Hermitian <InlineMath math="H" /> di atas punya nilai eigen <InlineMath math="1" /> dan <InlineMath math="3" />, keduanya di sumbu real. Rotasi <InlineMath math="R(60^\circ)" /> adalah matriks uniter, dan nilai eigennya <InlineMath math="e^{\pm i\pi/3}" /> ada di lingkaran satuan karena <InlineMath math="|\lambda|=1" />. Perbesar adegannya dan cek: tidak ada titik ungu yang keluar dari sumbu real, dan tidak ada titik oranye yang keluar dari lingkaran.
+
+<MathVisual
+  title={<>Letak nilai eigen matriks Hermitian dan uniter</>}
+  description={<>Titik ungu adalah nilai eigen <InlineMath math="1" /> dan <InlineMath math="3" /> dari <InlineMath math="H" />. Titik oranye adalah nilai eigen <InlineMath math="e^{\pm i\pi/3}" /> dari rotasi <InlineMath math="R(60^\circ)" /> di lingkaran satuan abu-abu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 3.4 }, y: { min: -1.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "one", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "up", kind: "point", at: { x: Math.cos(Math.PI / 3), y: Math.sin(Math.PI / 3) }, appearance: "primary" },
+      { id: "down", kind: "point", at: { x: Math.cos(Math.PI / 3), y: -Math.sin(Math.PI / 3) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "three", objectId: "three", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "up", objectId: "up", at: { x: Math.cos(Math.PI / 3), y: Math.sin(Math.PI / 3) }, placement: "above-right" },
+      { key: "down", objectId: "down", at: { x: Math.cos(Math.PI / 3), y: -Math.sin(Math.PI / 3) }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "one": <InlineMath math="1" />,
+    "three": <InlineMath math="3" />,
+    "up": <InlineMath math="e^{i\pi/3}" />,
+    "down": <InlineMath math="e^{-i\pi/3}" />,
+  }}
+/>

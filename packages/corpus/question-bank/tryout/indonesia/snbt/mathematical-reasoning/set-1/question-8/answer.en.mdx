@@ -1,59 +1,21 @@
-We will find the length of the cuboid's base using the **perimeter of the rectangular base**.
+The condition is that **the volume entering is at least the tank capacity**. Let the roof area be <InlineMath math="A" /> square metres.
 
-# Using the Base Perimeter Formula
+# The capacity to reach
 
-The rectangular base has **two pairs of equal sides**, so its perimeter formula (<InlineMath math="K" />) is:
+**The tank capacity** is <InlineMath math="\tfrac{22}{7}\cdot0.7^2\cdot2=3.08" /> cubic metres.
 
-<BlockMath math="K = 2(p + l)" />
+# Setting up the inequality
 
-Given:
-- Base perimeter (<InlineMath math="K" />) is <InlineMath math="6x" />
-- Base width (<InlineMath math="l" />) is <InlineMath math="4x - 5" />
+A rainfall of 20 mm equals 0.02 m, and only 80% of the water enters.
 
-We substitute these values into the formula:
+<BlockMath math="\begin{aligned}
+A\cdot0.02\cdot0.8&\ge3.08\\
+0.016A&\ge3.08\\
+A&\ge192.5
+\end{aligned}" />
 
-<BlockMath math="6x = 2(p + (4x - 5))" />
+The minimum roof area is 192.5 square metres, **a little more than two and a half times the current roof**.
 
-# Calculating Base Length
+The area 154 square metres forgets the 80% efficiency. The area 123.2 square metres multiplies by 0.8 when it should divide. The area 19.25 square metres uses 20 mm as 0.2 m.
 
-We simplify the equation to solve for <InlineMath math="p" />.
-
-**Divide both sides** by <InlineMath math="2" />:
-
-<BlockMath math="\frac{6x}{2} = p + 4x - 5" />
-
-<BlockMath math="3x = p + 4x - 5" />
-
-Rearrange the terms to isolate <InlineMath math="p" />:
-
-<BlockMath math="p = 3x - 4x + 5" />
-
-<BlockMath math="p = -x + 5" />
-
-<BlockMath math="p = 5 - x" />
-
-So, the length of the box's base is <InlineMath math="(5 - x) \text{ cm}" />.
-
-For example, take <InlineMath math="x=3" />. The base width is <InlineMath math="4(3)-5=7" /> cm, its length is <InlineMath math="5-3=2" /> cm, and the height is <InlineMath math="5-3/3=4" /> cm. The base perimeter is <InlineMath math="2(2+7)=18=6(3)" /> cm, as required. Height is not part of the base perimeter calculation.
-
-<MathVisual
-  title="Example Box When x = 3"
-  description="The box measures 2 cm × 7 cm × 4 cm. Follow the four base edges to distinguish the base perimeter from the height."
-  labels={{ p: "2 cm", l: "7 cm", t: "4 cm" }}
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -3, max: 3 }, z: { min: -4.5, max: 4.5 } },
-    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
-    objects: [
-      { id: "box", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0, z: 0 }, size: { length: 2, width: 7, height: 4 } },
-      { id: "p", kind: "segment", appearance: "primary", from: { x: -1, y: -2, z: 3.5 }, to: { x: 1, y: -2, z: 3.5 } },
-      { id: "l", kind: "segment", appearance: "secondary", from: { x: 1, y: -2, z: -3.5 }, to: { x: 1, y: -2, z: 3.5 } },
-      { id: "t", kind: "segment", appearance: "highlight", from: { x: -1, y: -2, z: 3.5 }, to: { x: -1, y: 2, z: 3.5 } },
-    ],
-    labels: [
-      { key: "p", objectId: "p", at: { x: 0, y: -2, z: 3.5 }, placement: "below" },
-      { key: "l", objectId: "l", at: { x: 1, y: -2, z: 0 }, placement: "right" },
-      { key: "t", objectId: "t", at: { x: -1, y: 0, z: 3.5 }, placement: "left" },
-    ],
-  }}
-/>
+So the minimum roof area needed is **<InlineMath math="192.5\text{ m}^2" />**.

@@ -1,77 +1,68 @@
-Fungsi <InlineMath math="f" /> didefinisikan oleh:
+Diagonal membagi trapesium menjadi empat segitiga: <InlineMath math="ABE" />, <InlineMath math="BCE" />, <InlineMath math="CDE" />, dan <InlineMath math="DAE" />. Luas trapesium adalah jumlah keempatnya, dan **perbandingan sisi sejajar** menentukan semuanya dari luas <InlineMath math="CDE" />.
 
-<BlockMath math="f(x) = \frac{1}{\sqrt{-x^2 + 4x + 21}}" />
-
-Kuantitas <InlineMath math="P = 7" />.
-
-Untuk menentukan kuantitas <InlineMath math="Q" />, kita perlu mencari nilai <InlineMath math="x" /> agar <InlineMath math="f(x)" /> terdefinisi sebagai bilangan real.
-
-Agar <InlineMath math="f(x)" /> terdefinisi, penyebut tidak boleh nol dan ekspresi di dalam akar **harus lebih besar dari nol**
-
-<BlockMath math="\sqrt{-x^2 + 4x + 21} \neq 0" />
-
-<BlockMath math="-x^2 + 4x + 21 > 0" />
-
-Kalikan kedua ruas dengan <InlineMath math="-1" /> (ingat tanda pertidaksamaan berubah)
-
-<BlockMath math="x^2 - 4x - 21 < 0" />
-
-Faktorkan bentuk kuadrat tersebut
-
-<BlockMath math="(x - 7)(x + 3) < 0" />
-
-Akar-akar dari <InlineMath math="(x - 7)(x + 3) = 0" /> adalah <InlineMath math="x = 7" /> dan <InlineMath math="x = -3" />.
-
-Dengan menggunakan garis bilangan, pertidaksamaan <InlineMath math="(x - 7)(x + 3) < 0" /> dipenuhi untuk <InlineMath math="-3 < x < 7" />.
-
-<NumberLine
-  title="Garis Bilangan"
-  description={<>Visualisasi solusi pertidaksamaan <InlineMath math="(x - 7)(x + 3) < 0" /> pada garis bilangan.</>}
-  min={-5}
-  max={9}
-  segments={[
-    {
-      end: -3,
-      startInclusive: false,
-      endInclusive: false,
-      shaded: false,
-      showPoints: true,
-      startLabel: <InlineMath math="-\infty" />,
-      endLabel: <InlineMath math="-3" />,
-      label: <InlineMath math="+" />,
+<MathVisual
+  title={<>Trapesium <InlineMath math="ABCD" /></>}
+  description={<>Sisi <InlineMath math="AB" /> sejajar sisi <InlineMath math="DC" />. Diagonal <InlineMath math="AC" /> dan <InlineMath math="BD" /> berpotongan di <InlineMath math="E" />, membagi trapesium menjadi empat segitiga.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 7 },
     },
-    {
-      start: -3,
-      end: 7,
-      startInclusive: false,
-      endInclusive: false,
-      shaded: true,
-      showPoints: true,
-      startLabel: <InlineMath math="-3" />,
-      endLabel: <InlineMath math="7" />,
-      label: <InlineMath math="-" />,
-    },
-    {
-      start: 7,
-      startInclusive: false,
-      endInclusive: false,
-      shaded: false,
-      showPoints: true,
-      startLabel: <InlineMath math="7" />,
-      endLabel: <InlineMath math="+\infty" />,
-      label: <InlineMath math="+" />,
-    },
-  ]}
+    view: { kind: "fit", padding: 0.12 },
+    objects: [
+      {
+        id: "trapezoid",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 12, y: 0 },
+          { x: 8, y: 6 },
+          { x: 4, y: 6 },
+        ],
+      },
+      { id: "diagonal-ac", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 8, y: 6 } },
+      { id: "diagonal-bd", kind: "segment", appearance: "secondary", from: { x: 12, y: 0 }, to: { x: 4, y: 6 } },
+      { id: "point-e", kind: "point", appearance: "highlight", at: { x: (3 / 4) * 8, y: (3 / 4) * 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "trapezoid", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "trapezoid", at: { x: 12, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "trapezoid", at: { x: 8, y: 6 }, placement: "above-right" },
+      { key: "d", objectId: "trapezoid", at: { x: 4, y: 6 }, placement: "above-left" },
+      { key: "e", objectId: "point-e", at: { x: (3 / 4) * 8, y: (3 / 4) * 6 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+  }}
 />
 
-Jadi domain fungsi <InlineMath math="f" /> adalah <InlineMath math="-3 < x < 7" />.
 
-Nilai <InlineMath math="x" /> yang memenuhi adalah bilangan bulat dalam interval <InlineMath math="(-3, 7)" />, yaitu <InlineMath math="-2" /> sampai <InlineMath math="6" />.
+# Segitiga yang sebangun
 
-<BlockMath math="Q=6-(-2)+1=9" />
+Karena <InlineMath math="AB\parallel DC" />, sudut <InlineMath math="EAB" /> sama dengan sudut <InlineMath math="ECD" /> dan sudut <InlineMath math="EBA" /> sama dengan sudut <InlineMath math="EDC" /> (sudut dalam berseberangan). Jadi segitiga <InlineMath math="ABE" /> **sebangun** dengan segitiga <InlineMath math="CDE" /> dengan faktor skala <InlineMath math="AB:DC=12:4=3:1" />.
 
-Banyaknya nilai <InlineMath math="x" /> adalah <InlineMath math="9" />, sehingga <InlineMath math="Q = 9" />.
+Akibatnya <InlineMath math="AE:EC=3:1" /> dan <InlineMath math="BE:ED=3:1" />. Perbandingan luas dua bangun sebangun adalah kuadrat faktor skalanya.
 
-Karena <InlineMath math="P = 7" /> dan <InlineMath math="Q = 9" />, maka <InlineMath math="P < Q" />.
+<BlockMath math="[ABE]=3^2\times[CDE]=9\times3=27\text{ cm}^2" />
 
-Jadi kuantitas <InlineMath math="P" /> lebih kecil daripada <InlineMath math="Q" />.
+# Dua segitiga di samping
+
+Segitiga <InlineMath math="DAE" /> dan <InlineMath math="DCE" /> memiliki puncak yang sama, yaitu <InlineMath math="D" />, dan alasnya terletak pada garis <InlineMath math="AC" />. Keduanya **memiliki tinggi yang sama**, jadi perbandingan luasnya sama dengan perbandingan alas <InlineMath math="AE:EC=3:1" />. Dengan alasan serupa pada garis <InlineMath math="BD" />, perbandingan <InlineMath math="[BCE]:[DCE]=BE:ED=3:1" />.
+
+<BlockMath math="[DAE]=[BCE]=3\times3=9\text{ cm}^2" />
+
+Luas trapesium adalah jumlah keempat segitiga.
+
+<BlockMath math="[ABCD]=27+9+9+3=48\text{ cm}^2" />
+
+Nilai 30 muncul jika perbandingan luas dianggap <InlineMath math="3:1" />, bukan <InlineMath math="9:1" />. Nilai 39 lupa salah satu segitiga samping. Nilai 36 menganggap segitiga samping seluas <InlineMath math="CDE" />. Nilai 54 menggandakan luas <InlineMath math="ABE" />.
+
+Jadi, luas trapesium <InlineMath math="ABCD" /> adalah **<InlineMath math="48\text{ cm}^2" />**.

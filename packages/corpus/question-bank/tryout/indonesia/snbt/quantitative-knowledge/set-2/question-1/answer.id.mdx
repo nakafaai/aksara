@@ -1,67 +1,21 @@
-Misalkan bilangan pertama adalah <InlineMath math="A" /> dan bilangan kedua adalah <InlineMath math="B" />.
+Tulis <InlineMath math="n^2+n=n(n+1)" />. Bentuk ini adalah **hasil kali dua bilangan bulat berurutan**, jadi salah satu faktornya pasti genap. Karena <InlineMath math="6=2\times3" />, syarat habis dibagi 6 tinggal bergantung pada faktor 3.
 
-Dari soal, kita mendapatkan **sistem persamaan** sebagai berikut:
+# Syarat faktor tiga
 
-1. Dua kali bilangan pertama dikurangi tiga kali bilangan kedua menghasilkan <InlineMath math="14" />:
+Bilangan prima 3 membagi <InlineMath math="n(n+1)" /> jika dan hanya jika 3 membagi <InlineMath math="n" /> atau 3 membagi <InlineMath math="n+1" />. Kondisi kedua berarti <InlineMath math="n" /> **bersisa 2 jika dibagi 3**.
 
-   <BlockMath math="2A - 3B = 14" />
+| Sisa <InlineMath math="n" /> jika dibagi 3 | Contoh | <InlineMath math="n(n+1)" /> habis dibagi 3? |
+| :---: | :---: | :---: |
+| 0 | <InlineMath math="3\times4=12" /> | Ya |
+| 1 | <InlineMath math="1\times2=2" /> | Tidak |
+| 2 | <InlineMath math="2\times3=6" /> | Ya |
 
-2. Bilangan pertama dikali <InlineMath math="k" /> ditambah dua kali bilangan kedua menghasilkan <InlineMath math="4" />:
+# Menghitung bilangan
 
-   <BlockMath math="Ak + 2B = 4" />
+Bilangan kelipatan 3 dari 1 sampai 100 adalah 3, 6, sampai 99, yaitu 33 bilangan. Bilangan bersisa 2 adalah 2, 5, sampai 98, yaitu <InlineMath math="\frac{98-2}{3}+1=33" /> bilangan.
 
-3. Nilai <InlineMath math="k" /> sama dengan penjumlahan bilangan pertama dan kedua:
+<BlockMath math="33+33=66" />
 
-   <BlockMath math="k = A + B" />
+Nilai 33 hanya menghitung kelipatan 3. Nilai 67 memakai sisa 1, padahal <InlineMath math="n+1" /> habis dibagi 3 berarti <InlineMath math="n" /> bersisa 2. Nilai 50 hanya menghitung bilangan genap, padahal faktor 2 sudah selalu ada. Nilai 100 menganggap hasil kali dua bilangan berurutan selalu habis dibagi 6, padahal yang selalu habis dibagi 6 adalah hasil kali tiga bilangan berurutan.
 
-   Dengan syarat <InlineMath math="k > 0" />.
-
-# Substitusi dan Pemfaktoran
-
-Langkah pertama adalah substitusi persamaan (3) ke dalam persamaan (2):
-
-<BlockMath math="A(A + B) + 2B = 4" />
-
-<BlockMath math="A^2 + AB + 2B = 4" />
-
-Faktorkan suku yang memuat <InlineMath math="B" />:
-
-<BlockMath math="A^2 + B(A + 2) = 4" />
-
-<BlockMath math="B(A + 2) = 4 - A^2" />
-
-Perhatikan bahwa <InlineMath math="4 - A^2" /> adalah **selisih dua kuadrat**, sehingga dapat difaktorkan menjadi <InlineMath math="(2 - A)(2 + A)" />:
-
-<BlockMath math="B(A + 2) = (2 - A)(2 + A)" />
-
-Sebelum membagi, periksa nilai khusus <InlineMath math="A = -2" />. Persamaan (1) akan menghasilkan <InlineMath math="B = -6" />, sehingga <InlineMath math="k = A + B = -8" />. Hasil ini bertentangan dengan <InlineMath math="k > 0" />. Jadi, <InlineMath math="A + 2 \neq 0" /> dan pembagian berikut sah:
-
-<BlockMath math="B = 2 - A" />
-
-Selanjutnya, substitusi nilai <InlineMath math="B" /> ke dalam persamaan (1):
-
-<BlockMath math="2A - 3(2 - A) = 14" />
-
-<BlockMath math="2A - 6 + 3A = 14" />
-
-<BlockMath math="5A - 6 = 14" />
-
-<BlockMath math="5A = 20" />
-
-<BlockMath math="A = 4" />
-
-Jadi, nilai bilangan pertama adalah <InlineMath math="4" />.
-
-# Verifikasi
-
-Kita dapat memverifikasi hasilnya:
-
-Jika <InlineMath math="A = 4" />, maka <InlineMath math="B = 2 - 4 = -2" />.
-
-Nilai <InlineMath math="k = A + B = 4 + (-2) = 2" />.
-
-**Syarat positif** <InlineMath math="k > 0" /> terpenuhi karena <InlineMath math="2 > 0" />.
-
-Cek persamaan (1): <InlineMath math="2(4) - 3(-2) = 8 + 6 = 14" /> (Benar).
-
-Cek persamaan (2): <InlineMath math="4(2) + 2(-2) = 8 - 4 = 4" /> (Benar).
+Jadi, banyak bilangan <InlineMath math="n" /> yang memenuhi adalah **66**.

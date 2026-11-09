@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "term-meaning",
+  },
+  stimulus: "tempe",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Pada bus tanpa relawan dengan pengarahan pengemudi yang sama, pesan norma terbaru tetap menurunkan hitungan percakapan keras.",
+          label: "memisahkan biji kedelai dari kulit arinya",
         },
         {
           correct: false,
-          label:
-            "Poster tambahan di dekat pintu keluar meningkatkan ingatan terhadap pesan, sedangkan kriteria pengamatan percakapan keras tetap sama.",
+          label: "mengubah warna biji kedelai menjadi putih",
         },
         {
           correct: true,
-          label:
-            "Rekaman lengkap dari uji pertama menunjukkan percakapan keras tidak berubah. Keluhan turun hanya karena saluran pelaporan tidak berfungsi pada bus berposter baru.",
+          label: "membuat biji-biji kedelai saling menempel",
         },
         {
           correct: false,
-          label:
-            "Pengelola akan menggunakan angka mayoritas yang berasal dari pengamatan terbaru.",
+          label: "melunakkan biji kedelai agar mudah dikunyah",
         },
         {
           correct: false,
-          label:
-            "Pengamat anonim memakai kriteria volume yang telah ditetapkan.",
+          label: "menutupi biji kedelai dengan lapisan daun",
         },
       ],
     },

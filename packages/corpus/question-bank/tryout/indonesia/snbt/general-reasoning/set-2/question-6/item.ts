@@ -1,29 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "strengthening",
+  },
+  stimulus: "museum",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "Jumlah penjualan baju dan celana kurang dari $$70$$",
+          label:
+            "Survei menunjukkan sebagian besar pengunjung hari Rabu pada bulan kedua pernah berkunjung pada hari lain selama bulan pertama.",
         },
         {
           correct: false,
-          label: "Penjualan celana $$10$$ lebih sedikit dari baju",
+          label: "Museum menambah koleksi baru pada awal bulan kedua.",
         },
         {
           correct: false,
-          label: "Penjualan jas $$35$$ lebih banyak dari celana",
+          label:
+            "Hujan lebih sering turun pada bulan kedua daripada bulan pertama.",
         },
         {
           correct: false,
-          label: "Penjualan baju $$10$$ lebih banyak dari celana",
+          label:
+            "Sebagian besar pengunjung hari Rabu pada bulan kedua adalah pelajar yang datang bersama sekolahnya dalam rombongan kunjungan belajar.",
         },
         {
           correct: false,
-          label: "Penjualan celana $$35$$ lebih sedikit dari jas",
+          label: "Tarif parkir di sekitar museum naik pada bulan kedua.",
         },
       ],
     },

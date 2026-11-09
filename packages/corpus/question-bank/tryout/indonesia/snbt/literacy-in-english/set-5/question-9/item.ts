@@ -1,35 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "assumption",
+  },
+  stimulus: "basic-income",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Most basic income pilots last longer than ten years.",
+        },
+        {
+          correct: false,
+          label:
+            "People who dislike their jobs never leave them, whatever their income.",
+        },
+        {
+          correct: false,
+          label:
+            "Starting a business is always more useful than keeping a steady job.",
+        },
+        {
+          correct: false,
+          label:
+            "Participants in pilots do not know when their payments will end.",
+        },
+        {
           correct: true,
           label:
-            "The definition explains why entry-date labels matter: they help volunteers identify which suitable packages should be used first.",
-        },
-        {
-          correct: false,
-          label:
-            "Defining *stock rotation* proves that the labels alone caused the trial value of $$47$$.",
-        },
-        {
-          correct: false,
-          label:
-            "The definition makes changes in package demand irrelevant to any later decision.",
-        },
-        {
-          correct: false,
-          label:
-            "The term *stock rotation* replaces the measured comparison and the affected groups' experience.",
-        },
-        {
-          correct: false,
-          label:
-            "The definition shows that newer suitable stock should always be used before older stock.",
+            "People may act differently when they expect payments to last for life.",
         },
       ],
     },

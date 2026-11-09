@@ -94,6 +94,34 @@ Let <InlineMath math="Hv=\lambda v" /> and <InlineMath math="Hw=\mu w" /> with <
 
 Hence <InlineMath math="(\lambda-\mu)w^Hv=0" />, so <InlineMath math="w^Hv=0" />. With a repeated eigenvalue, arbitrary eigenvectors inside the same eigenspace may fail to be orthogonal. Gram-Schmidt can produce an orthonormal basis within that eigenspace.
 
+For the symmetric matrix <InlineMath math="A=\begin{pmatrix}1&2\\2&1\end{pmatrix}" />, the eigenvalues <InlineMath math="3" /> and <InlineMath math="-1" /> have the eigenvectors <InlineMath math="v_1=(1,1)" /> and <InlineMath math="v_2=(1,-1)" />. Their inner product is <InlineMath math="1-1=0" />, exactly what <InlineMath math="\lambda_1\langle v_1,v_2\rangle=\langle Av_1,v_2\rangle=\langle v_1,Av_2\rangle=\lambda_2\langle v_1,v_2\rangle" /> with <InlineMath math="\lambda_1\neq\lambda_2" /> guarantees.
+
+<MathVisual
+  title={<>The eigenvectors for <InlineMath math="3" /> and <InlineMath math="-1" /> are perpendicular</>}
+  description={<>The teal segment <InlineMath math="v_1" /> stretches to the violet segment <InlineMath math="3v_1" />. The orange segment <InlineMath math="v_2" /> flips to the magenta segment <InlineMath math="-v_2" />. The two lines still meet at a right angle.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "second-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first-image", objectId: "first-image", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1, y: -1 }, placement: "right" },
+      { key: "second-image", objectId: "second-image", at: { x: -1, y: 1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first-image": <InlineMath math="Av_1=3v_1" />,
+    "second": <InlineMath math="v_2" />,
+    "second-image": <InlineMath math="Av_2=-v_2" />,
+  }}
+/>
+
 ## Spectral Decomposition and Quadratic Geometry
 
 The spectral theorem collects these facts into a complete decomposition:
@@ -110,6 +138,30 @@ The columns of <InlineMath math="Q" /> or <InlineMath math="U" /> form an **orth
 <BlockMath math="x^HHx=\sum_{j=1}^n\lambda_j|u_j^Hx|^2" />
 
 This formula shows immediately that <InlineMath math="H" /> is positive definite exactly when every eigenvalue is positive.
+
+Take the real symmetric matrix <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> with eigenvalues <InlineMath math="3" /> and <InlineMath math="1" />, and slice the quadratic form <InlineMath math="q(x)=x^TAx" /> along each unit eigenvector. Along <InlineMath math="v_1=(1,1)^T/\sqrt2" />, the slice is the magenta parabola <InlineMath math="3s^2" />. Along <InlineMath math="v_2=(1,-1)^T/\sqrt2" />, the slice is the teal parabola <InlineMath math="s^2" />. So the curvature along each principal axis equals its eigenvalue, and because <InlineMath math="A" /> is symmetric, the two axes are perpendicular.
+
+<MathVisual
+  title={<>Slices of the quadratic form <InlineMath math="q(x)=x^TAx" /> along the eigenvectors</>}
+  description={<>For <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />: the magenta parabola is <InlineMath math="q(sv_1)" /> and the teal parabola is <InlineMath math="q(sv_2)" />, where <InlineMath math="s" /> is the distance along the unit eigenvector.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -0.3, max: 3.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "steep", kind: "quadratic", coefficients: { a: 3, b: 0, c: 0 }, domain: { min: -1, max: 1 }, inputAxis: "x", appearance: "answer" },
+      { id: "flat", kind: "quadratic", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -7 / 4, max: 7 / 4 }, inputAxis: "x", appearance: "construction" },
+    ],
+    labels: [
+      { key: "steep", objectId: "steep", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "flat", objectId: "flat", at: { x: 7 / 4, y: 49 / 16 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "steep": <InlineMath math="q(sv_1)=3s^2" />,
+    "flat": <InlineMath math="q(sv_2)=s^2" />,
+  }}
+/>
 
 ## Worked Hermitian Diagonalization
 
@@ -138,3 +190,16 @@ Check the orthogonality and the first eigenvector directly. The normalizing fact
 <BlockMath math="u_1^Hu_2=\frac{-(1-i)(1+i)+2}{\sqrt{18}}=\frac{-2+2}{\sqrt{18}}=0" />
 <BlockMath math="Hu_1=\frac1{\sqrt3}\begin{pmatrix}-2(1+i)+(1+i)\\-(1-i)(1+i)+3\end{pmatrix}=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}=u_1" />
 </MathContainer>
+
+Check <InlineMath math="u_1^Hu_2" /> term by term. The first entries give <InlineMath math="\overline{-(1+i)}\,(1+i)/\sqrt{18}=-(1-i)(1+i)/\sqrt{18}=-2/\sqrt{18}" />, and the second entries give <InlineMath math="1\cdot2/\sqrt{18}=2/\sqrt{18}" />. The two terms cancel, so <InlineMath math="u_1^Hu_2=0" />.
+
+<BarChart
+  title={<>The two terms of <InlineMath math="u_1^Hu_2" /> cancel</>}
+  description={<>The first bar is <InlineMath math="\bar u_{11}u_{21}=-2/\sqrt{18}" />, the second is <InlineMath math="\bar u_{12}u_{22}=2/\sqrt{18}" />. They have the same height with opposite signs, so the sum is <InlineMath math="0" />.</>}
+  yAxisLabel="Inner product term"
+  data={[
+    { name: "first entries", value: -2 / Math.sqrt(18) },
+    { name: "second entries", value: 2 / Math.sqrt(18) },
+  ]}
+  chartConfig={{ value: { label: "Inner product term", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>

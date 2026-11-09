@@ -3,27 +3,15 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "$$x=3$$ termasuk daerah asal $$f$$." },
+        { column: 2, label: "$$x=2{,}5$$ termasuk daerah asal $$f$$." },
+        { column: 2, label: "$$x=4$$ termasuk daerah asal $$f$$." },
         {
-          correct: false,
-          label: "$$1 : 2$$",
-        },
-        {
-          correct: false,
-          label: "$$3 : 4$$",
-        },
-        {
-          correct: true,
-          label: "$$2 : 1$$",
-        },
-        {
-          correct: false,
-          label: "$$4 : 5$$",
-        },
-        {
-          correct: false,
-          label: "$$4 : 3$$",
+          column: 1,
+          label: "Setiap bilangan real $$x<0$$ termasuk daerah asal $$f$$.",
         },
       ],
     },

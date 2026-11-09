@@ -1,34 +1,9 @@
-Let <InlineMath math="x" /> and <InlineMath math="y" /> be the counts of the two package types. The constraints are:
+A number that leaves remainder <InlineMath math="2" /> when divided by <InlineMath math="5" /> ends in <InlineMath math="2" /> or <InlineMath math="7" />. List the numbers between <InlineMath math="100" /> and <InlineMath math="150" /> that **leave remainder** <InlineMath math="3" /> **when divided by** <InlineMath math="7" />, then pick the one ending in <InlineMath math="2" /> or <InlineMath math="7" />:
 
-<BlockMath math="3x+4y\le36" />
+<BlockMath math="101,\ 108,\ 115,\ 122,\ 129,\ 136,\ 143" />
 
-<BlockMath math="2x+y\le18" />
+Only <InlineMath math="122" /> ends in <InlineMath math="2" /> or <InlineMath math="7" />. Check:
 
-<BlockMath math="x,y\in\mathbb Z_{\ge0}" />
+<BlockMath math="122=24\times5+2,\qquad 122=17\times7+3" />
 
-Since <InlineMath math="y\ge0" />, the labour constraint gives <InlineMath math="2x\le18" />, so only integer values <InlineMath math="x=0,1,\ldots,9" /> need checking. For each <InlineMath math="x" />, choose the largest <InlineMath math="y" /> satisfying **both constraints**. This gives the greatest profit because each <InlineMath math="Y" /> package adds positive profit.
-
-| <InlineMath math="x" /> | <InlineMath math="y" /> maximum | Profit before fixed cost |
-| :---: | :---: | :---: |
-| <InlineMath math="0" /> | <InlineMath math="9" /> | <InlineMath math="45" /> |
-| <InlineMath math="1" /> | <InlineMath math="8" /> | <InlineMath math="49" /> |
-| <InlineMath math="2" /> | <InlineMath math="7" /> | <InlineMath math="53" /> |
-| <InlineMath math="3" /> | <InlineMath math="6" /> | <InlineMath math="57" /> |
-| <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="66" /> |
-| <InlineMath math="5" /> | <InlineMath math="5" /> | <InlineMath math="70" /> |
-| <InlineMath math="6" /> | <InlineMath math="4" /> | <InlineMath math="74" /> |
-| <InlineMath math="7" /> | <InlineMath math="3" /> | <InlineMath math="78" /> |
-| <InlineMath math="8" /> | <InlineMath math="2" /> | <InlineMath math="82" /> |
-| <InlineMath math="9" /> | <InlineMath math="0" /> | <InlineMath math="81" /> |
-
-The maximum profit before fixed cost is <InlineMath math="82" /> at <InlineMath math="(x,y)=(8,2)" />.
-
-The case <InlineMath math="x=8" /> shows why both limits must be checked:
-
-<BlockMath math="\begin{aligned}3(8)+4y\le36&amp;\Rightarrow y\le3\\2(8)+y\le18&amp;\Rightarrow y\le2\end{aligned}" />
-
-The tighter limit gives <InlineMath math="y=2" />. Profit before the fixed cost is <InlineMath math="9x+5y=9(8)+5(2)=72+10=82" />.
-
-Subtract the same fixed cost from every choice. The maximum net profit is:
-
-<BlockMath math="82-10=72" />
+Other numbers with both remainders are <InlineMath math="5\times7=35" /> apart, namely <InlineMath math="87" /> and <InlineMath math="157" />, and both lie outside the range. So Andi has <InlineMath math="122" /> marbles.

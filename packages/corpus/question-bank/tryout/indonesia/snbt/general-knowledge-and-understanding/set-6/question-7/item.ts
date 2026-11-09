@@ -1,31 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "word-relation",
+    topic: "analogy",
+  },
+  stimulus: "abu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "larangan yang menghapus seluruh pilihan tindakan",
+          label: "roda : sepeda",
+        },
+        {
+          correct: false,
+          label: "nelayan : ikan",
         },
         {
           correct: true,
-          label:
-            "rangsangan yang membuat suatu tindakan lebih menarik atau menguntungkan",
+          label: "madu : lebah",
         },
         {
           correct: false,
-          label: "informasi yang tidak mengubah biaya atau manfaat tindakan",
+          label: "air : gelas",
         },
         {
           correct: false,
-          label: "hukuman setelah tindakan lain yang tidak berkaitan",
-        },
-        {
-          correct: false,
-          label: "standar untuk mengukur hasil tanpa memengaruhi keputusan",
+          label: "dokter : pasien",
         },
       ],
     },

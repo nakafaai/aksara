@@ -1,29 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "data-interpretation",
+  },
+  stimulus: "mebel",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$5$$",
+          column: 1,
+          label:
+            "Stok pada akhir Juni lebih banyak daripada stok pada awal Januari.",
         },
         {
-          correct: true,
-          label: "$$\\frac{25}{4}$$",
+          column: 1,
+          label:
+            "Ada tepat tiga bulan ketika produksi lebih banyak daripada penjualan.",
         },
         {
-          correct: false,
-          label: "$$\\frac{23}{4}$$",
+          column: 2,
+          label:
+            "Total penjualan selama enam bulan lebih banyak daripada total produksi.",
         },
         {
-          correct: false,
-          label: "$$6$$",
-        },
-        {
-          correct: false,
-          label: "$$7$$",
+          column: 2,
+          label:
+            "Penurunan stok terbesar dalam satu bulan terjadi pada bulan Juni.",
         },
       ],
     },

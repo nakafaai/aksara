@@ -4,7 +4,7 @@ export const metadata = {
   description: "Unterscheide Histogramme von Balkendiagrammen, lies Häufigkeitsverteilungen ab und wähle für numerische oder kategoriale Daten die passende Darstellung.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Statistik",
 };
 
@@ -21,8 +21,8 @@ Prüfe zuerst, ob die horizontale Achse **getrennte Kategorien** oder Intervalle
 Balkendiagramme eignen sich für **kategoriale Daten**, etwa Smartphone-Marken oder Lieblingssportarten:
 
 <BarChart
-  title="Smartphone-Marken einer Oberstufengruppe"
-  description="Vergleicht die Anzahl der Lernenden für jede Smartphone-Marke."
+  title={<>Smartphone-Marken einer Oberstufengruppe</>}
+  description={<>Vergleicht die Anzahl der Lernenden für jede Smartphone-Marke.</>}
   data={[
     { name: "Apple", value: 12 },
     { name: "Samsung", value: 10 },
@@ -57,8 +57,8 @@ Histogramme verwenden wir für numerische Daten, die in aneinandergrenzende Inte
 Die Nutzungsdauern umfassen <InlineMath math="90" /> Beobachtungen. Damit ein Klassenrand nicht doppelt gezählt wird, **gehört die linke Grenze zur Klasse und die rechte nicht**, etwa <InlineMath math="0\le t<2" /> und <InlineMath math="2\le t<4" />. Die letzte Klasse umfasst <InlineMath math="8\le t\le10" />. Dabei bezeichnet <InlineMath math="t" /> die Dauer in Stunden.
 
 <HistogramChart
-  title="Tägliche Smartphone-Nutzung einer Oberstufengruppe"
-  description="Zeigt, wie sich die tägliche Nutzungsdauer auf Zeitintervalle verteilt."
+  title={<>Tägliche Smartphone-Nutzung einer Oberstufengruppe</>}
+  description={<>Zeigt, wie sich die tägliche Nutzungsdauer auf Zeitintervalle verteilt.</>}
   data={[
     { name: "0-2", value: 10 },
     { name: "2-4", value: 12 },
@@ -87,6 +87,24 @@ Das Histogramm zeigt folgende Häufigkeiten:
 - <InlineMath math="8" /> Lernende liegen im Intervall <InlineMath math="8\text{-}10 \text{ Stunden}" />
 
 Insgesamt liegen <InlineMath math="32+28=60" /> von <InlineMath math="90" /> Beobachtungen zwischen <InlineMath math="4\text{-}8 \text{ Stunden}" />. Damit befindet sich die Mehrheit in diesem Bereich. Das am häufigsten besetzte Einzelintervall ist <InlineMath math="4\text{-}6 \text{ Stunden}" />.
+
+Teil jede Häufigkeit durch die 90 Beobachtungen, um die Klassen als Anteile zu vergleichen. Die Klassen 4-6 und 6-8 enthalten <InlineMath math="\frac{32}{90} \approx 35{,}6\%" /> und <InlineMath math="\frac{28}{90} \approx 31{,}1\%" />, zusammen zwei Drittel der Schüler.
+
+<HistogramChart
+  title={<>Handynutzung in Prozent</>}
+  description={<>Balken von <InlineMath math="\frac{f}{90} \times 100\%" /> für die Klassen 0-2, 2-4, 4-6, 6-8 und 8-10 Stunden.</>}
+  data={[["0-2", 10], ["2-4", 12], ["4-6", 32], ["6-8", 28], ["8-10", 8]].map(([name, f]) => ({ name, value: (100 * f) / 90 }))}
+  chartConfig={{
+    value: {
+      label: "Anteil der Schüler (%)",
+      colors: {
+        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+      },
+    },
+  }}
+  yAxisLabel="Anteil der Schüler (%)"
+/>
 
 ## Unterschiede bei Datentyp und Balkenform
 

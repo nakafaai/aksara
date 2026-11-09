@@ -1,41 +1,22 @@
-The volume cannot be calculated yet because <InlineMath math="x" /> is unknown. Start with the **surface area** to determine <InlineMath math="x" />.
+The word PELANGI has 7 letters, all different: the vowels E, A, I and the consonants P, L, N, G. The way to guarantee that no two vowels touch is **arranging the consonants first, then inserting the vowels into the gaps**.
 
-Let <InlineMath math="l" />, <InlineMath math="w" />, and <InlineMath math="h" /> denote length, width, and height. The surface area formula is:
+# Arranging the consonants
 
-<BlockMath math="S = 2(lw+lh+wh)" />
+The four consonants can be arranged in <InlineMath math="4!=24" /> ways. Each arrangement has **five gaps**: before the first letter, between letters, and after the last letter.
 
-Substituting the dimensions gives:
+<BlockMath math="\_\,\text{K}\,\_\,\text{K}\,\_\,\text{K}\,\_\,\text{K}\,\_" />
 
-<BlockMath math="\begin{aligned}88&=2\bigl(6x^2+6x+4x\bigr)\\&=12x^2+20x\\0&=12x^2+20x-88\\0&=3x^2+5x-22\\&=(3x+11)(x-2)\end{aligned}" />
+# Inserting the vowels
 
-The first factor gives <InlineMath math="x=-\frac{11}{3}" />, while the second gives <InlineMath math="x=2" />.
+The three different vowels go into **3 different gaps**, and their order matters.
 
-Since <InlineMath math="x>0" />, we take <InlineMath math="x=2" />. The prism therefore measures <InlineMath math="6\text{ cm}" /> by <InlineMath math="4\text{ cm}" /> by <InlineMath math="2\text{ cm}" />.
+<BlockMath math="\begin{aligned}
+P(5,3)&=5\cdot4\cdot3=60\\
+\text{arrangements}&=24\cdot60=1{,}440
+\end{aligned}" />
 
-Each unit cube has volume <InlineMath math="1\text{ cm}^3" />, so the required number equals the prism's volume:
+Since each gap holds at most one vowel, no two vowels can be next to each other.
 
-<BlockMath math="6\times4\times2=48" />
+The value 5,040 is <InlineMath math="7!" />, all arrangements without the condition. The value 576 uses only the 4 gaps between consonants and forgets both ends. The value 720 is <InlineMath math="6!" />, and 2,880 doubles the result for no reason.
 
-The prism needs <InlineMath math="48" /> unit cubes.
-
-Picture **two layers of unit cubes**. Each layer contains <InlineMath math="6\times4=24" /> cubes, giving <InlineMath math="2\times24=48" /> in total.
-
-<MathVisual
- title="A prism measuring 6 by 4 by 2 centimeters"
- description="A prism measuring 6 by 4 by 2 centimeters"
- scene={{
- space: "space",
- frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 3 }, z: { min: -3, max: 3 } },
- view: { kind: "camera", position: { x: 8, y: 6, z: 10 }, target: { x: 0, y: 1, z: 0 } },
- objects: [
- { id: "prism", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: 0 }, size: { length: 6, height: 2, width: 4 } },
- { id: "layer", kind: "polygon", appearance: "highlight", vertices: [{ x: -3, y: 1, z: -2 }, { x: 3, y: 1, z: -2 }, { x: 3, y: 1, z: 2 }, { x: -3, y: 1, z: 2 }] },
- ],
- labels: [
- { key: "length", objectId: "prism", at: { x: 0, y: 0, z: 2 }, placement: "below" },
- { key: "width", objectId: "prism", at: { x: 3, y: 0, z: 0 }, placement: "right" },
- { key: "height", objectId: "prism", at: { x: -3, y: 1, z: 2 }, placement: "left" },
- ],
- }}
- labels={{ length: <InlineMath math="6" />, width: <InlineMath math="4" />, height: <InlineMath math="2" /> }}
-/>
+So the number of possible arrangements is **1,440**.

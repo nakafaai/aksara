@@ -1,31 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "application",
+  },
+  stimulus: "four-day-week",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Wayfinding as the main measure in a service trial",
+          label:
+            "A law requiring bus companies to close on Fridays for staff rest",
         },
         {
           correct: false,
-          label: "From a short comparison to a permanent service change",
-        },
-        {
-          correct: false,
-          label: "Consultation without comparable outcome measures",
-        },
-        {
-          correct: false,
-          label: "A local service trial with no follow-up decision",
+          label: "A rule moving companies to four ten-hour days from next year",
         },
         {
           correct: true,
           label:
-            "Evidence-informed change in a neighbourhood bus information board",
+            "A publicly funded trial in care homes with results published either way",
+        },
+        {
+          correct: false,
+          label:
+            "A ban on trials that fail to report positive results to the public",
+        },
+        {
+          correct: false,
+          label:
+            "A plan to stop collecting data once a trial has begun in a company",
         },
       ],
     },

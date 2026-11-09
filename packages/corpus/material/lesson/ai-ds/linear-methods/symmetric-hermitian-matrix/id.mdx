@@ -94,6 +94,34 @@ Misalkan <InlineMath math="Hv=\lambda v" /> dan <InlineMath math="Hw=\mu w" /> d
 
 Jadi <InlineMath math="(\lambda-\mu)w^Hv=0" />, sehingga <InlineMath math="w^Hv=0" />. Untuk nilai eigen yang berulang, vektor eigen sembarang di dalam ruang eigen yang sama belum tentu ortogonal. Namun, Gram-Schmidt dapat memilih basis ortonormal di dalam ruang tersebut.
 
+Untuk matriks simetris <InlineMath math="A=\begin{pmatrix}1&2\\2&1\end{pmatrix}" />, nilai eigen <InlineMath math="3" /> dan <InlineMath math="-1" /> punya vektor eigen <InlineMath math="v_1=(1,1)" /> dan <InlineMath math="v_2=(1,-1)" />. Hasil kali dalamnya <InlineMath math="1-1=0" />, persis seperti yang dijamin oleh <InlineMath math="\lambda_1\langle v_1,v_2\rangle=\langle Av_1,v_2\rangle=\langle v_1,Av_2\rangle=\lambda_2\langle v_1,v_2\rangle" /> dengan <InlineMath math="\lambda_1\neq\lambda_2" />.
+
+<MathVisual
+  title={<>Vektor eigen untuk <InlineMath math="3" /> dan <InlineMath math="-1" /> saling tegak lurus</>}
+  description={<>Ruas hijau toska <InlineMath math="v_1" /> teregang menjadi ruas ungu <InlineMath math="3v_1" />. Ruas oranye <InlineMath math="v_2" /> berbalik menjadi ruas magenta <InlineMath math="-v_2" />. Kedua garis tetap membentuk sudut siku-siku.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "second-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first-image", objectId: "first-image", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1, y: -1 }, placement: "right" },
+      { key: "second-image", objectId: "second-image", at: { x: -1, y: 1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first-image": <InlineMath math="Av_1=3v_1" />,
+    "second": <InlineMath math="v_2" />,
+    "second-image": <InlineMath math="Av_2=-v_2" />,
+  }}
+/>
+
 ## Dekomposisi Spektral dan Geometri Bentuk Kuadrat
 
 Teorema spektral merangkum semua fakta tadi menjadi dekomposisi lengkap:
@@ -110,6 +138,30 @@ Kolom-kolom <InlineMath math="Q" /> atau <InlineMath math="U" /> membentuk **bas
 <BlockMath math="x^HHx=\sum_{j=1}^n\lambda_j|u_j^Hx|^2" />
 
 Rumus ini langsung menunjukkan bahwa <InlineMath math="H" /> definit positif tepat ketika semua nilai eigennya positif.
+
+Ambil matriks simetris real <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> dengan nilai eigen <InlineMath math="3" /> dan <InlineMath math="1" />, lalu iris bentuk kuadrat <InlineMath math="q(x)=x^TAx" /> sepanjang setiap vektor eigen satuan. Sepanjang <InlineMath math="v_1=(1,1)^T/\sqrt2" />, irisannya parabola magenta <InlineMath math="3s^2" />. Sepanjang <InlineMath math="v_2=(1,-1)^T/\sqrt2" />, irisannya parabola hijau toska <InlineMath math="s^2" />. Jadi kelengkungan di setiap sumbu utama sama dengan nilai eigennya, dan karena <InlineMath math="A" /> simetris, kedua sumbu itu saling tegak lurus.
+
+<MathVisual
+  title={<>Irisan bentuk kuadrat <InlineMath math="q(x)=x^TAx" /> sepanjang vektor eigen</>}
+  description={<>Untuk <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />: parabola magenta adalah <InlineMath math="q(sv_1)" /> dan parabola hijau toska adalah <InlineMath math="q(sv_2)" />, dengan <InlineMath math="s" /> jarak di sepanjang vektor eigen satuan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -0.3, max: 3.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "steep", kind: "quadratic", coefficients: { a: 3, b: 0, c: 0 }, domain: { min: -1, max: 1 }, inputAxis: "x", appearance: "answer" },
+      { id: "flat", kind: "quadratic", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -7 / 4, max: 7 / 4 }, inputAxis: "x", appearance: "construction" },
+    ],
+    labels: [
+      { key: "steep", objectId: "steep", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "flat", objectId: "flat", at: { x: 7 / 4, y: 49 / 16 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "steep": <InlineMath math="q(sv_1)=3s^2" />,
+    "flat": <InlineMath math="q(sv_2)=s^2" />,
+  }}
+/>
 
 ## Diagonalisasi Hermitian yang Dihitung Lengkap
 
@@ -138,3 +190,16 @@ Periksa ortogonalitas dan vektor eigen pertama secara langsung. Faktor normalisa
 <BlockMath math="u_1^Hu_2=\frac{-(1-i)(1+i)+2}{\sqrt{18}}=\frac{-2+2}{\sqrt{18}}=0" />
 <BlockMath math="Hu_1=\frac1{\sqrt3}\begin{pmatrix}-2(1+i)+(1+i)\\-(1-i)(1+i)+3\end{pmatrix}=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}=u_1" />
 </MathContainer>
+
+Periksa <InlineMath math="u_1^Hu_2" /> suku demi suku. Entri pertama memberi <InlineMath math="\overline{-(1+i)}\,(1+i)/\sqrt{18}=-(1-i)(1+i)/\sqrt{18}=-2/\sqrt{18}" />, dan entri kedua memberi <InlineMath math="1\cdot2/\sqrt{18}=2/\sqrt{18}" />. Kedua suku saling menghapus, jadi <InlineMath math="u_1^Hu_2=0" />.
+
+<BarChart
+  title={<>Dua suku <InlineMath math="u_1^Hu_2" /> saling menghapus</>}
+  description={<>Batang pertama adalah <InlineMath math="\bar u_{11}u_{21}=-2/\sqrt{18}" />, batang kedua adalah <InlineMath math="\bar u_{12}u_{22}=2/\sqrt{18}" />. Tingginya sama dengan tanda berlawanan, sehingga jumlahnya <InlineMath math="0" />.</>}
+  yAxisLabel="Suku hasil kali dalam"
+  data={[
+    { name: "entri pertama", value: -2 / Math.sqrt(18) },
+    { name: "entri kedua", value: 2 / Math.sqrt(18) },
+  ]}
+  chartConfig={{ value: { label: "Suku hasil kali dalam", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>

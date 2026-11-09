@@ -30,6 +30,57 @@ Perjanjian iklim internasional memakai sasaran suhu untuk mengarahkan tindakan b
 
 [Risiko dan kerugian akibat perubahan iklim](https://www.ipcc.ch/report/ar6/syr/resources/spm-headline-statements/) meningkat pada setiap tambahan pemanasan. Sasaran <InlineMath math="1{,}5\,^\circ\text{C}" /> dan <InlineMath math="2\,^\circ\text{C}" /> menjadi ukuran bersama untuk menilai seberapa cepat dan seberapa besar emisi perlu diturunkan.
 
+Target suhu bisa diubah menjadi anggaran karbon dioksida bersama. IPCC memperkirakan bahwa sejak awal 2020 masih ada sekitar <InlineMath math="500" /> miliar ton <InlineMath math="\mathrm{CO_2}" /> yang boleh dilepaskan untuk peluang separuh-separuh tetap di bawah <InlineMath math="1{,}5\,^\circ\text{C}" />. Adegan di bawah menghabiskan anggaran itu dengan dua cara, mulai dari angka bulat <InlineMath math="40" /> miliar ton per tahun. Kedua bangun luasnya sama, <InlineMath math="500" />. Kalau emisi tetap, persegi panjang merah muda habis setelah <InlineMath math="12{,}5" /> tahun. Kalau emisi diturunkan teratur sampai nol, segitiga hijau toska memanjang sampai <InlineMath math="25" /> tahun. Karena itu, target suhu juga menentukan seberapa cepat emisi harus turun, bukan hanya seberapa jauh.
+
+<MathVisual
+  title={<>Dua Cara Menghabiskan Satu Anggaran Karbon</>}
+  description={<>Anggaran 500 <InlineMath math="\mathrm{GtCO_2}" /> yang dihabiskan mulai dari 40 <InlineMath math="\mathrm{GtCO_2}" /> per tahun. Mendatar: tahun sesudah 2020 dalam satuan 5. Tegak: emisi tahunan dalam satuan 10 <InlineMath math="\mathrm{GtCO_2}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "constant", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 500 / 40 / 5, y: 0 }, { x: 500 / 40 / 5, y: 40 / 10 }, { x: 0, y: 40 / 10 }] },
+      { id: "decline", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: (2 * 500) / 40 / 5, y: 0 }, { x: 0, y: 40 / 10 }] },
+    ],
+    labels: [
+      { key: "constant", objectId: "constant", at: { x: 500 / 40 / 5, y: 40 / 10 }, placement: "above-right" },
+      { key: "decline", objectId: "decline", at: { x: (2 * 500) / 40 / 5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    constant: <InlineMath math="\frac{500}{40}=12{,}5\ \text{tahun}" />,
+    decline: <InlineMath math="\frac{2\times500}{40}=25\ \text{tahun}" />,
+  }}
+/>
+
+Target suhu menjadi ukuran bersama begitu kamu mengubahnya menjadi anggaran. IPCC memperkirakan berapa banyak karbon dioksida yang masih bisa dilepas sejak 2020 untuk peluang separuh-separuh pada tiap batas: <InlineMath math="500" />, <InlineMath math="850" />, dan <InlineMath math="1350\ \mathrm{GtCO_2}" /> untuk <InlineMath math="1{,}5" />, <InlineMath math="1{,}7" />, dan <InlineMath math="2\ ^\circ\mathrm{C}" />. Bagi masing-masing dengan <InlineMath math="40\ \mathrm{GtCO_2}" /> per tahun untuk melihat berapa lama anggaran itu bertahan pada laju tersebut. Putar batangnya dan bandingkan.
+
+<MathVisual
+  title={<>Tiap Target Punya Anggarannya Sendiri</>}
+  description={<>Sisa anggaran karbon dioksida sejak 2020 untuk peluang 50 persen pada tiga batas pemanasan. Tiap label membagi anggaran dengan <InlineMath math="40\ \mathrm{GtCO_2}" /> per tahun. Satu kotak grid ke atas berarti <InlineMath math="250\ \mathrm{GtCO_2}" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 7, z: 11 }, target: { x: 2.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "t15", kind: "cuboid", appearance: "answer", center: { x: 0, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "t17", kind: "cuboid", appearance: "highlight", center: { x: 2.5, y: 1.7, z: 0 }, size: { length: 1.2, height: 3.4, width: 1.2 } },
+      { id: "t20", kind: "cuboid", appearance: "warning", center: { x: 5, y: 2.7, z: 0 }, size: { length: 1.2, height: 5.4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "t15", objectId: "t15", at: { x: 0, y: 2, z: 0 }, placement: "above" },
+      { key: "t17", objectId: "t17", at: { x: 2.5, y: 3.4, z: 0 }, placement: "above" },
+      { key: "t20", objectId: "t20", at: { x: 5, y: 5.4, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    t15: <InlineMath math="1{,}5\ ^\circ\mathrm{C}:\ \tfrac{500}{40}=12{,}5\ \text{tahun}" />,
+    t17: <InlineMath math="1{,}7\ ^\circ\mathrm{C}:\ \tfrac{850}{40}=21{,}25\ \text{tahun}" />,
+    t20: <InlineMath math="2\ ^\circ\mathrm{C}:\ \tfrac{1350}{40}=33{,}75\ \text{tahun}" />,
+  }}
+/>
+
 ## Peran Perjanjian Negara dan Badan Ilmiah
 
 Kerja sama global melibatkan banyak jenis lembaga. Ada yang **menilai bukti ilmiah**, ada yang menyusun kesepakatan, ada yang menjalankan program, dan ada yang mengukur kemajuan.
@@ -83,3 +134,37 @@ Misalnya, sebuah negara rekaan melaporkan 100 juta ton emisi setara karbon dioks
 | Penurunan yang dilaporkan | <InlineMath math="(100-90)/100\times100\%" /> | <InlineMath math="10\%" /> |
 
 Emisi sudah turun, tetapi **target belum tercapai**. Sebelum membandingkan laporan nyata, periksa tahun dasar, cakupan sektor dan gas, metode penghitungan, serta tahun sasarannya.
+
+Siklus ini berjalan dengan dua jam yang sama-sama berdetak tiap lima tahun, dengan selisih tiga tahun. Rencana nasional baru jatuh tempo pada tahun <InlineMath math="2020+5k" />, dan tiap global stocktake datang pada <InlineMath math="2023+5k" />, dua tahun sebelum rencana putaran berikutnya, supaya temuannya bisa memperkuat rencana itu. Telusuri tiap baris dan ikuti tiap stocktake ke rencana sesudahnya.
+
+<MathVisual
+  title={<>Tiap Stocktake Mengisi Rencana Berikutnya</>}
+  description={<>Tahun rencana nasional (baris atas) dan global stocktake (baris bawah) dalam Persetujuan Paris. Satu kotak grid mendatar berarti 2 tahun.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "plans-row", kind: "segment", appearance: "reference", from: { x: 0.5, y: 2 }, to: { x: 9, y: 2 } },
+      { id: "takes-row", kind: "segment", appearance: "reference", from: { x: 0.5, y: 1 }, to: { x: 9, y: 1 } },
+      { id: "plan-2020", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "plan-2025", kind: "point", appearance: "primary", at: { x: 3.5, y: 2 } },
+      { id: "plan-2030", kind: "point", appearance: "primary", at: { x: 6, y: 2 } },
+      { id: "plan-2035", kind: "point", appearance: "primary", at: { x: 8.5, y: 2 } },
+      { id: "take-2023", kind: "point", appearance: "secondary", at: { x: 2.5, y: 1 } },
+      { id: "take-2028", kind: "point", appearance: "secondary", at: { x: 5, y: 1 } },
+      { id: "take-2033", kind: "point", appearance: "secondary", at: { x: 7.5, y: 1 } },
+      { id: "feed-2023", kind: "segment", appearance: "answer", from: { x: 2.5, y: 1 }, to: { x: 3.5, y: 2 } },
+      { id: "feed-2028", kind: "segment", appearance: "answer", from: { x: 5, y: 1 }, to: { x: 6, y: 2 } },
+      { id: "feed-2033", kind: "segment", appearance: "answer", from: { x: 7.5, y: 1 }, to: { x: 8.5, y: 2 } },
+    ],
+    labels: [
+      { key: "take", objectId: "take-2023", at: { x: 2.5, y: 1 }, placement: "below" },
+      { key: "plan", objectId: "plan-2025", at: { x: 3.5, y: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    take: <>global stocktake pertama, 2023</>,
+    plan: <>rencana baru, 2025</>,
+  }}
+/>

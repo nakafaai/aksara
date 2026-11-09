@@ -5,26 +5,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$y = 2x - 4$$",
-        },
-        {
-          correct: false,
-          label: "$$y = -2x - 2$$",
-        },
-        {
-          correct: false,
-          label: "$$y = -2x + 4$$",
-        },
-        {
-          correct: true,
-          label: "$$y = 2x + 12$$",
-        },
-        {
-          correct: false,
-          label: "$$y = -2x + 12$$",
-        },
+        { correct: false, label: "$$1$$" },
+        { correct: false, label: "$$2$$" },
+        { correct: true, label: "$$3$$" },
+        { correct: false, label: "$$4$$" },
+        { correct: false, label: "$$5$$" },
       ],
     },
   },

@@ -1,20 +1,22 @@
-Kita perlu mencari **semua pasangan bilangan bulat**, bukan hanya satu tripel Pythagoras. Karena kuadrat tidak bergantung pada tanda, misalkan <InlineMath math="u=\min(|x|,|y|)" /> dan <InlineMath math="v=\max(|x|,|y|)" />. Maka <InlineMath math="2u^2\le169" />, sehingga cukup memeriksa <InlineMath math="u=0,1,\ldots,9" />. Nilai <InlineMath math="169-u^2" /> harus berupa **kuadrat sempurna**.
+Tentukan dulu suku pertama dan beda dari dua suku yang diketahui. Setelah itu, **hitung banyak suku dengan teliti**: dari suku kelima sampai suku kedua belas ada <InlineMath math="12-5+1=8" /> suku.
 
-| <InlineMath math="u" /> | <InlineMath math="169-u^2" /> | <InlineMath math="v" /> |
-| --- | --- | --- |
-| 0 | 169 | 13 |
-| 1 | 168 | Bukan bilangan bulat |
-| 2 | 165 | Bukan bilangan bulat |
-| 3 | 160 | Bukan bilangan bulat |
-| 4 | 153 | Bukan bilangan bulat |
-| 5 | 144 | 12 |
-| 6 | 133 | Bukan bilangan bulat |
-| 7 | 120 | Bukan bilangan bulat |
-| 8 | 105 | Bukan bilangan bulat |
-| 9 | 88 | Bukan bilangan bulat |
+# Suku pertama dan beda
 
-Jadi, nilai mutlak pasangan tersebut hanya <InlineMath math="(0,13)" /> atau <InlineMath math="(5,12)" />, termasuk pertukaran posisi. Untuk pasangan pertama, jumlahnya <InlineMath math="\pm13" />. Untuk pasangan kedua, kita periksa kedua tanda:
+<BlockMath math="\begin{aligned}
+u_8-u_3&=5b=31-11=20\quad\Rightarrow\quad b=4\\
+a&=u_3-2b=11-8=3
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}5+12&=17\\5-12&=-7\\-5+12&=7\\-5-12&=-17\end{aligned}" />
+**Rumus suku umumnya** <InlineMath math="u_n=3+4(n-1)=4n-1" />, sehingga <InlineMath math="u_5=19" /> dan <InlineMath math="u_{12}=47" />.
 
-Semua jumlah yang mungkin adalah <InlineMath math="\{-17,-13,-7,7,13,17\}" />. Nilai <InlineMath math="\pm10" /> dan <InlineMath math="\pm14" /> tidak termasuk, sehingga hanya **pernyataan 1 dan 3** yang benar.
+# Jumlah delapan suku
+
+Suku kelima sampai kedua belas membentuk barisan aritmetika juga, jadi jumlahnya **banyak suku kali rata-rata suku pertama dan terakhir**.
+
+<BlockMath math="S=\frac{8}{2}\left(19+47\right)=4\cdot66=264" />
+
+Cek dengan selisih jumlah: <InlineMath math="S_{12}-S_4=300-36=264" />.
+
+Nilai 300 adalah jumlah dua belas suku pertama tanpa dikurangi. Nilai 245 adalah <InlineMath math="S_{12}-S_5" />, yang ikut membuang suku kelima. Nilai 297 menghitung sembilan suku, dan nilai 330 menghitung sepuluh suku.
+
+Jadi, jumlah suku kelima sampai kedua belas adalah **264**.

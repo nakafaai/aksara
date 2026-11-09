@@ -38,6 +38,21 @@ Die interaktive Shell wertet ein Zahlenliteral aus und zeigt seinen Wert an. Ver
 
 Python liest jedes Literal anhand seiner Schreibweise. <InlineMath math="4" /> erzeugt eine Ganzzahl. Der Dezimalpunkt in <InlineMath math="4." /> macht den Ausdruck dagegen zu einem Gleitkommaliteral, das als <InlineMath math="4.0" /> angezeigt wird.
 
+In wissenschaftlicher Schreibweise verschiebt die Zahl nach `e` das Dezimaltrennzeichen. `3.2e5` bedeutet <InlineMath math="3.2\cdot10^5=320000" />, und `2e-2` bedeutet <InlineMath math="2\cdot10^{-2}=0.02" />. Der Zehnerlogarithmus zeigt diese Verschiebung als Zahl nahe am Exponenten.
+
+<BarChart
+  title={<><InlineMath math="\log_{10}" /> von vier Literalen in wissenschaftlicher Schreibweise</>}
+  description={<>Jeder Balken ist <InlineMath math="\log_{10}" /> des darunter stehenden Literals. Negative Balken gehören zu Zahlen unter <InlineMath math="1" />, etwa <code>9.99e-05</code>, das fast genau <InlineMath math="-4" /> ergibt.</>}
+  yAxisLabel="Zehnerpotenz"
+  data={[
+    { name: "2.e4", value: Math.log10(2.e4) },
+    { name: "2e-2", value: Math.log10(2e-2) },
+    { name: "3.2e5", value: Math.log10(3.2e5) },
+    { name: "9.99e-05", value: Math.log10(9.99e-05) },
+  ]}
+  chartConfig={{ value: { label: "Zehnerpotenz", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
 ## Arten von Zahlendaten
 
 Die **drei wichtigsten eingebauten Zahlentypen** in Python sind `int`, `float` und `complex`. Ein `int` speichert eine ganze Zahl beliebiger Größe, ein `float` eine Näherung einer reellen Zahl, und ein `complex` einen Real- und einen Imaginärteil.
@@ -92,6 +107,41 @@ Komplexe Zahlen besitzen einen **Real- und einen Imaginärteil**. In einem Pytho
 </MathContainer>
 
 Eine komplexe Zahl lässt sich in einer Koordinatenebene darstellen. Ihr Realteil bestimmt die waagerechte und ihr Imaginärteil die senkrechte Koordinate.
+
+Die drei Zahltypen wohnen an verschiedenen Orten. Ein `int` sitzt nur auf ganzzahligen Punkten, ein `float` kann dazwischen liegen, und ein `complex` wie `1+2j` verlässt den Zahlenstrahl, weil er einen Imaginärteil hat.
+
+<MathVisual
+  title={<>Wo <code>int</code>, <code>float</code> und <code>complex</code> liegen</>}
+  description={<>Die violetten Punkte sind <code>int</code>-Werte von <InlineMath math="-3" /> bis <InlineMath math="3" /> auf der grauen Linie. Die türkisen Punkte sind die <code>float</code>-Werte <code>2.5</code> und <code>-0.75</code>. Der magentafarbene Punkt <code>1+2j</code> liegt in der Ebene, mit Realteil <InlineMath math="1" /> und Imaginärteil <InlineMath math="2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -3.5, y: 0 }, to: { x: 3.5, y: 0 }, appearance: "reference" },
+      { id: "int-0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "int-1", kind: "point", at: { x: -2, y: 0 }, appearance: "secondary" },
+      { id: "int-2", kind: "point", at: { x: -1, y: 0 }, appearance: "secondary" },
+      { id: "int-3", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "int-4", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "int-5", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "int-6", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "float-a", kind: "point", at: { x: 2.5, y: 0 }, appearance: "construction" },
+      { id: "float-b", kind: "point", at: { x: -0.75, y: 0 }, appearance: "construction" },
+      { id: "complex", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "float-a", objectId: "float-a", at: { x: 2.5, y: 0 }, placement: "above" },
+      { key: "float-b", objectId: "float-b", at: { x: -0.75, y: 0 }, placement: "above" },
+      { key: "complex", objectId: "complex", at: { x: 1, y: 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "float-a": <code>2.5</code>,
+    "float-b": <code>-0.75</code>,
+    "complex": <code>1+2j</code>,
+  }}
+/>
 
 ## Die Typfunktion zum Überprüfen von Datentypen
 
@@ -182,6 +232,42 @@ Der Konstruktor `complex()` erzeugt komplexe Zahlen aus **einer oder zwei reelle
 />
 
 `complex(2.)` erzeugt eine komplexe Zahl mit Realteil <InlineMath math="2" /> und Imaginärteil <InlineMath math="0" />. Unterdessen erzeugt `complex(0., 2.)` eine rein imaginäre Zahl <InlineMath math="2j" />.
+
+Vergleich die violette Treppe mit der grauen Linie <InlineMath math="y=x" />. Bei positiven Zahlen wirft `int()` den Nachkommateil weg, also liegt das Ergebnis unter der Linie, zum Beispiel wird `int(2.9)` zu `2`. Bei negativen Zahlen liegt das Ergebnis über der Linie, denn `int(-2.9)` wird zu `-2`, nicht zu `-3`. `int()` schneidet also immer Richtung null ab, und die Stufe um null ist breiter als die anderen.
+
+<MathVisual
+  title={<><code>int()</code> schneidet Richtung null ab</>}
+  description={<>Die violette Treppe ist <code>int(x)</code>, die graue Linie die Winkelhalbierende. Magentafarbene Punkte markieren <code>int(2.9)</code> und <code>int(-2.9)</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "identity", kind: "segment", from: { x: -3.5, y: -3.5 }, to: { x: 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "step-a", kind: "segment", from: { x: -1, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "step-b", kind: "segment", from: { x: 1, y: 1 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "step-c", kind: "segment", from: { x: 2, y: 2 }, to: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "step-d", kind: "segment", from: { x: 3, y: 3 }, to: { x: 3.5, y: 3 }, appearance: "secondary" },
+      { id: "step-e", kind: "segment", from: { x: -2, y: -1 }, to: { x: -1, y: -1 }, appearance: "secondary" },
+      { id: "step-f", kind: "segment", from: { x: -3, y: -2 }, to: { x: -2, y: -2 }, appearance: "secondary" },
+      { id: "step-g", kind: "segment", from: { x: -3.5, y: -3 }, to: { x: -3, y: -3 }, appearance: "secondary" },
+      { id: "positive", kind: "point", at: { x: 2.9, y: 2 }, appearance: "answer" },
+      { id: "negative", kind: "point", at: { x: -2.9, y: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "identity", objectId: "identity", at: { x: 3.5, y: 3.5 }, placement: "above-left" },
+      { key: "step", objectId: "step-d", at: { x: 3.5, y: 3 }, placement: "right" },
+      { key: "positive", objectId: "positive", at: { x: 2.9, y: 2 }, placement: "below-right" },
+      { key: "negative", objectId: "negative", at: { x: -2.9, y: -2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "identity": <InlineMath math="y=x" />,
+    "step": "int(x)",
+    "positive": "int(2.9) = 2",
+    "negative": "int(-2.9) = -2",
+  }}
+/>
 
 ## Zusammenfassungstabelle für Zahlendatentypen
 

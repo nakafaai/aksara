@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "idiom",
+  },
+  stimulus: "pinisi",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "secara cepat dan mendadak",
+        },
+        {
+          correct: false,
+          label: "dari bagian atas ke bagian bawah kapal",
+        },
+        {
           correct: true,
-          label:
-            "Penurunan keterlambatan ternyata terjadi karena perpustakaan menutup sebagian besar layanan peminjaman selama masa uji.",
+          label: "dari satu generasi ke generasi berikutnya",
         },
         {
           correct: false,
-          label:
-            "Setelah nomor kontak diperbarui, penurunan keterlambatan juga terjadi pada kelompok yang sebelumnya tidak menerima pesan.",
+          label: "sedikit demi sedikit setiap hari",
         },
         {
           correct: false,
-          label:
-            "Desain kartu baru membuat pengingat lebih mudah dibaca, tetapi tidak mengubah proporsi pengguna dengan nomor telepon yang masih aktif.",
-        },
-        {
-          correct: false,
-          label:
-            "Uji akan diperluas dengan dua saluran pengingat dan proses banding.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian pengguna tidak menerima pesan karena nomor telepon berubah.",
+          label: "dari satu buku catatan ke buku catatan lainnya",
         },
       ],
     },

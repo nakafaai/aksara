@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "quantitative-reasoning",
+    topic: "percent",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\frac1{210}$$",
+          column: 1,
+          label: "Harga akhir buku itu Rp108.000.",
         },
         {
-          correct: false,
-          label: "$$\\frac1{180}$$",
+          column: 2,
+          label: "Total potongan yang diterima sama dengan diskon 30%.",
         },
         {
-          correct: false,
-          label: "$$\\frac1{144}$$",
+          column: 1,
+          label: "Jika urutan kedua diskon ditukar, harga akhirnya tetap sama.",
         },
         {
-          correct: false,
-          label: "$$\\frac1{120}$$",
-        },
-        {
-          correct: true,
-          label: "$$\\frac1{168}$$",
+          column: 2,
+          label: "Potongan dari diskon tambahan 10% besarnya Rp15.000.",
         },
       ],
     },

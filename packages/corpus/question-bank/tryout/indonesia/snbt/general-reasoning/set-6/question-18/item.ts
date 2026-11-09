@@ -1,33 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "deductive-reasoning",
+    topic: "rule-application",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Semua makanan gorengan mengandung lemak trans industri.",
-        },
-        {
-          correct: false,
-          label:
-            "Mengurangi konsumsi lemak trans industri menjamin seseorang tidak mengalami penyakit jantung koroner.",
-        },
-        {
-          correct: false,
-          label:
-            "Perubahan LDL dan HDL saling meniadakan sehingga risiko penyakit jantung tidak berubah.",
-        },
-        {
           correct: true,
-          label:
-            "Mengurangi konsumsi lemak trans industri mengurangi paparan terhadap faktor risiko pola makan yang dapat dicegah untuk penyakit jantung koroner.",
+          label: "D, B, C",
         },
         {
           correct: false,
-          label:
-            "Membatasi lemak trans industri hanya bermanfaat bagi orang yang sudah menderita penyakit jantung koroner.",
+          label: "B, D, C",
+        },
+        {
+          correct: false,
+          label: "D, B, A",
+        },
+        {
+          correct: false,
+          label: "B, D, A",
+        },
+        {
+          correct: false,
+          label: "D, C, B",
         },
       ],
     },

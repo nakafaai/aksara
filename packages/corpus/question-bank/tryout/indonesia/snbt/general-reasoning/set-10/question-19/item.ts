@@ -1,29 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "quantifiers",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "$$75\\frac13$$",
+          label:
+            "Sebagian siswa kelas VII sudah berusia paling sedikit 12 tahun.",
         },
         {
           correct: false,
-          label: "$$74$$",
+          label: "Semua siswa kelas VII pernah mengikuti turnamen catur.",
         },
         {
           correct: false,
-          label: "$$75$$",
+          label: "Sebagian anggota klub catur belum pernah mengikuti turnamen.",
         },
         {
           correct: false,
-          label: "$$76$$",
+          label:
+            "Semua orang yang berusia paling sedikit 12 tahun adalah anggota klub catur.",
         },
         {
           correct: false,
-          label: "$$76\\frac23$$",
+          label:
+            "Tidak ada siswa kelas VII yang pernah mengikuti turnamen catur.",
         },
       ],
     },

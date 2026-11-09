@@ -23,11 +23,11 @@ Misalkan <InlineMath math="A_{ij}" /> adalah matriks <InlineMath math="(n-1) \ti
 
 Pola tanda untuk tiga baris dan tiga kolom berikut memperlihatkan bahwa setiap langkah ke kanan atau ke bawah membalik tanda.
 
-| | j = 1 | j = 2 | j = 3 |
+| | <InlineMath math="j=1" /> | <InlineMath math="j=2" /> | <InlineMath math="j=3" /> |
 |---|---|---|---|
-| i = 1 | + | − | + |
-| i = 2 | − | + | − |
-| i = 3 | + | − | + |
+| <InlineMath math="i=1" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="+" /> |
+| <InlineMath math="i=2" /> | <InlineMath math="-" /> | <InlineMath math="+" /> | <InlineMath math="-" /> |
+| <InlineMath math="i=3" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="+" /> |
 
 Pengembangan sepanjang sembarang kolom <InlineMath math="j" /> memberikan
 
@@ -92,6 +92,36 @@ Aturan Sarrus menggunakan pola diagonal untuk menentukan suku-suku mana yang dij
 
 Aturan Sarrus hanya berlaku untuk matriks <InlineMath math="3 \times 3" />. Untuk matriks yang lebih besar, gunakan pengembangan kofaktor atau metode berbasis faktorisasi. Memperpanjang pola diagonal tersebut akan menghasilkan aturan yang salah.
 
+Untuk <InlineMath math="A=\begin{pmatrix}2&1&0\\0&2&1\\1&0&2\end{pmatrix}" />, aturan Sarrus memberi <InlineMath math="2\cdot2\cdot2+1\cdot1\cdot1+0\cdot0\cdot0-(0\cdot2\cdot1+2\cdot1\cdot0+1\cdot0\cdot2)=9" />. Nilai itu adalah volume paralelepipedum yang dibentuk oleh kolom <InlineMath math="a=(2,0,1)" />, <InlineMath math="b=(1,2,0)" />, dan <InlineMath math="c=(0,1,2)" />.
+
+<MathVisual
+  title={<>Paralelepipedum bervolume <InlineMath math="\det A=9" /></>}
+  description={<>Paralelepipedum dibentuk oleh kolom <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" /> dari <InlineMath math="A" />. Pasangan sisi yang sejajar memakai warna yang sama: ungu, hijau toska, dan oranye.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -0.5, max: 3.5 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 1.5, z: 1.5 } },
+    objects: [
+      { id: "bottom", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 1 }, { x: 3, y: 2, z: 1 }, { x: 1, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "top", kind: "polygon", vertices: [{ x: 0, y: 1, z: 2 }, { x: 2, y: 1, z: 3 }, { x: 3, y: 3, z: 3 }, { x: 1, y: 3, z: 2 }], appearance: "secondary" },
+      { id: "left", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 2, z: 0 }, { x: 1, y: 3, z: 2 }, { x: 0, y: 1, z: 2 }], appearance: "construction" },
+      { id: "right", kind: "polygon", vertices: [{ x: 2, y: 0, z: 1 }, { x: 3, y: 2, z: 1 }, { x: 3, y: 3, z: 3 }, { x: 2, y: 1, z: 3 }], appearance: "construction" },
+      { id: "front", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 2 }, { x: 2, y: 1, z: 3 }, { x: 2, y: 0, z: 1 }], appearance: "primary" },
+      { id: "back", kind: "polygon", vertices: [{ x: 1, y: 2, z: 0 }, { x: 1, y: 3, z: 2 }, { x: 3, y: 3, z: 3 }, { x: 3, y: 2, z: 1 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "bottom", objectId: "bottom", at: { x: 2, y: 0, z: 1 }, placement: "below" },
+      { key: "left", objectId: "left", at: { x: 1, y: 2, z: 0 }, placement: "right" },
+      { key: "front", objectId: "front", at: { x: 0, y: 1, z: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "bottom": <InlineMath math="a" />,
+    "left": <InlineMath math="b" />,
+    "front": <InlineMath math="c" />,
+  }}
+/>
+
 ## Kompleksitas Komputasi
 
 Untuk matriks padat berukuran <InlineMath math="n \times n" />, implementasi rekursif langsung menghitung <InlineMath math="n" /> determinan berukuran <InlineMath math="n-1" /> pada setiap tingkat. Beban komputasinya mengikuti rekurensi
@@ -102,6 +132,43 @@ Untuk matriks padat berukuran <InlineMath math="n \times n" />, implementasi rek
 </MathContainer>
 
 **Pertumbuhan faktorial** membuat pengembangan Laplace rekursif tidak praktis untuk matriks padat berukuran besar. Eliminasi Gauss atau faktorisasi <InlineMath math="\mathrm{LU}" /> menghitung determinan dalam <InlineMath math="O(n^3)" /> operasi aritmetika.
+
+Ekspansi penuh menghasilkan <InlineMath math="n!" /> hasil kali, sedangkan eliminasi butuh sekitar <InlineMath math="\tfrac23n^3" /> operasi. Bahkan jika setiap hasil kali dihitung sebagai satu langkah saja, <InlineMath math="n!" /> sudah melewati <InlineMath math="\tfrac23n^3" /> mulai <InlineMath math="n=5" />, yaitu <InlineMath math="120" /> melawan sekitar <InlineMath math="83" />.
+
+<ScatterDiagram
+  title={<><InlineMath math="n!" /> melawan <InlineMath math="\tfrac23n^3" /></>}
+  description={<>Untuk ukuran <InlineMath math="n=1" /> sampai <InlineMath math="7" />, titik pertama adalah <InlineMath math="n!" /> hasil kali ekspansi Laplace dan titik kedua adalah <InlineMath math="\tfrac23n^3" /> operasi eliminasi. Pada <InlineMath math="n=7" />, nilainya <InlineMath math="5040" /> melawan sekitar <InlineMath math="229" />.</>}
+  xAxisLabel="Ukuran matriks"
+  yAxisLabel="Banyak langkah"
+  datasets={[
+    {
+      name: "Ekspansi Laplace",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 1 },
+        { x: 2, y: 1 * 2 },
+        { x: 3, y: 1 * 2 * 3 },
+        { x: 4, y: 1 * 2 * 3 * 4 },
+        { x: 5, y: 1 * 2 * 3 * 4 * 5 },
+        { x: 6, y: 1 * 2 * 3 * 4 * 5 * 6 },
+        { x: 7, y: 1 * 2 * 3 * 4 * 5 * 6 * 7 },
+      ],
+    },
+    {
+      name: "Eliminasi",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 2 / 3 * 1 ** 3 },
+        { x: 2, y: 2 / 3 * 2 ** 3 },
+        { x: 3, y: 2 / 3 * 3 ** 3 },
+        { x: 4, y: 2 / 3 * 4 ** 3 },
+        { x: 5, y: 2 / 3 * 5 ** 3 },
+        { x: 6, y: 2 / 3 * 6 ** 3 },
+        { x: 7, y: 2 / 3 * 7 ** 3 },
+      ],
+    },
+  ]}
+/>
 
 ## Menggunakan Entri Nol
 
@@ -126,6 +193,39 @@ Karena **elemen pertama bernilai nol**, ekspansi kofaktor baris pertama menyisak
 </MathContainer>
 
 Dengan memilih baris atau kolom yang memiliki banyak nol, kita dapat menghemat perhitungan.
+
+Ekspansi matriks yang sama di sepanjang kolom pertama memberi kofaktor <InlineMath math="C_{11}=2" />, <InlineMath math="C_{21}=-3" />, dan <InlineMath math="C_{31}=-6" />, sehingga <InlineMath math="\det A=0\cdot2+2\cdot(-3)+1\cdot(-6)=-12" />. Di adegan ini, setiap garis menunjukkan determinan saat kamu mengganti satu entri kolom pertama dengan nilai <InlineMath math="v" /> dan entri lain tetap. Ketiga garis lewat titik magenta di <InlineMath math="\det A=-12" />, dan kemiringan masing-masing tepat sama dengan kofaktornya. Titik abu-abu di <InlineMath math="v=6" />, <InlineMath math="v=-2" />, dan <InlineMath math="v=-1" /> menandai nilai yang membuat matriks singular.
+
+<MathVisual
+  title={<>Determinan linear terhadap setiap entri kolom pertama</>}
+  description={<>Setiap garis menunjukkan <InlineMath math="\det A" /> saat satu entri kolom pertama diganti nilai <InlineMath math="v" />. Kemiringannya adalah kofaktor entri itu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 8.5 }, y: { min: -21, max: 5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "c11", kind: "segment", from: { x: -4, y: -20 }, to: { x: 8, y: 4 }, appearance: "secondary" },
+      { id: "c21", kind: "segment", from: { x: -10 / 3, y: 4 }, to: { x: 14 / 3, y: -20 }, appearance: "construction" },
+      { id: "c31", kind: "segment", from: { x: -5 / 3, y: 4 }, to: { x: 7 / 3, y: -20 }, appearance: "primary" },
+      { id: "now-a", kind: "point", at: { x: 0, y: -12 }, appearance: "answer" },
+      { id: "now-b", kind: "point", at: { x: 2, y: -12 }, appearance: "answer" },
+      { id: "now-c", kind: "point", at: { x: 1, y: -12 }, appearance: "answer" },
+      { id: "zero-a", kind: "point", at: { x: 6, y: 0 }, appearance: "reference" },
+      { id: "zero-b", kind: "point", at: { x: -2, y: 0 }, appearance: "reference" },
+      { id: "zero-c", kind: "point", at: { x: -1, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "c11", objectId: "c11", at: { x: 8, y: 4 }, placement: "above-left" },
+      { key: "c21", objectId: "c21", at: { x: -10 / 3, y: 4 }, placement: "above-right" },
+      { key: "c31", objectId: "c31", at: { x: 7 / 3, y: -20 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "c11": <InlineMath math="a_{11}:\ C_{11}=2" />,
+    "c21": <InlineMath math="a_{21}:\ C_{21}=-3" />,
+    "c31": <InlineMath math="a_{31}:\ C_{31}=-6" />,
+  }}
+/>
 
 ## Determinan Matriks Transpos
 

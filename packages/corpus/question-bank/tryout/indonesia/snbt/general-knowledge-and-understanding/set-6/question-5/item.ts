@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "author-purpose",
+  },
+  stimulus: "karst",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Uang jaminan dapat mengurangi sampah, tetapi keberhasilannya harus dinilai bersama akses layanan dan biaya bagi berbagai pihak.",
+            "menjelaskan secara rinci proses terbentuknya gua, dolina, dan sungai bawah tanah di kawasan karst",
         },
         {
           correct: false,
           label:
-            "Sebagian pedagang menilai kebersihan seharusnya dibiayai dari anggaran acara tanpa mengubah harga wadah.",
+            "membandingkan kawasan karst dengan kawasan berbatu lain yang lebih mudah dikelola",
         },
         {
           correct: false,
           label:
-            "Evaluasi akhir akan memasukkan biaya pencucian dan kehilangan wadah.",
-        },
-        {
-          correct: false,
-          label:
-            "Tingkat pengembalian malam pertama membuktikan sistem harus diterapkan permanen tanpa perubahan.",
+            "mengajak warga berhenti memakai air sungai bawah tanah pada musim kemarau",
         },
         {
           correct: true,
           label:
-            "Setelah akses loket diperbaiki, selisih tingkat pengembalian antarbagian area mengecil.",
+            "mengingatkan bahwa kerusakan karst dapat terjadi di bawah permukaan sehingga harus diperhatikan",
+        },
+        {
+          correct: false,
+          label:
+            "menceritakan sejarah penambangan batu kapur di kawasan Gunung Sewu sejak dahulu",
         },
       ],
     },

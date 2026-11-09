@@ -1,17 +1,26 @@
-Vergleiche **Spiegelachsenanzahl und Drehsymmetrieordnung**. Die Ausgangslage wird einmal gezählt und entspricht der Lage nach einer vollen Drehung um 360°.
+Bringe die Gleichung von <InlineMath math="g" /> in die Form <InlineMath math="y=mx+c" />, damit sich Steigung und Achsenabschnitte ablesen lassen. Eine Gerade senkrecht zu <InlineMath math="g" /> hat **eine Steigung, deren Produkt mit der Steigung von <InlineMath math="g" /> gleich <InlineMath math="-1" /> ist**.
 
-| Figur | Spiegelachsen | Drehsymmetrieordnung | Gleich? |
-| --- | --- | --- | --- |
-| Regelmäßiges Sechseck | 6: drei durch gegenüberliegende Eckpunkte und drei durch gegenüberliegende Seitenmittelpunkte | 6: Vielfache von 60° | Ja |
-| Gleichschenkliges rechtwinkliges Dreieck | 1: vom rechten Winkel zum Mittelpunkt der Hypotenuse | 1: nur die Ausgangslage | Ja |
-| Rechtwinkliges Trapez mit genau einem parallelen Seitenpaar | 0: keine Spiegelachse | 1: nur die Ausgangslage | Nein |
-| Nicht quadratisches Rechteck | 2: durch die Mittelpunkte gegenüberliegender Seiten | 2: Ausgangslage und 180° | Ja |
+# Gleichungen beider Geraden
 
-Die Gerade im Dreieck ist seine **einzige Spiegelachse**. Eine halbe Drehung bildet das Dreieck nicht auf sich selbst ab.
+<BlockMath math="\begin{aligned}
+g:\ 2x-3y=6\quad&\Rightarrow\quad y=\tfrac23x-2\\
+h:\ m_h=-\tfrac32\quad&\Rightarrow\quad y=-\tfrac32x+4
+\end{aligned}" />
 
-<MathVisual title="Spiegelachse eines gleichschenkligen rechtwinkligen Dreiecks" description="Die Gerade im Dreieck ist seine einzige Spiegelachse. Eine halbe Drehung bildet das Dreieck nicht auf sich selbst ab."
- scene={{space:"plane",frame:{kind:"cartesian",x:{min:-0.5,max:3.5},y:{min:-0.5,max:3.5}},view:{kind:"fit",padding:0.1},objects:[{id:"triangle",kind:"polygon",appearance:"primary",vertices:[{x:0,y:0},{x:3,y:0},{x:0,y:3}]},{id:"axis",kind:"segment",appearance:"highlight",from:{x:0,y:0},to:{x:1.5,y:1.5}}],labels:[]}}
- labels={{}}
-/>
+Die Steigung von <InlineMath math="g" /> ist <InlineMath math="\tfrac23" />, die erste Aussage ist also **wahr**. Die Gerade <InlineMath math="h" /> schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="y=0" />, also bei <InlineMath math="x=\tfrac83" /> und nicht bei 6. Die zweite Aussage ist falsch.
 
-Die Figuren (1), (2) und (4) erfüllen die Bedingung. Es sind also 3 Figuren.
+# Schnittpunkt und Dreiecksfläche
+
+Setze die Gleichung von <InlineMath math="h" /> in die Gleichung von <InlineMath math="g" /> ein.
+
+<BlockMath math="\begin{aligned}
+2x-3\left(-\tfrac32x+4\right)&=6\\
+\tfrac{13}{2}x&=18\\
+x=\tfrac{36}{13},\qquad y&=-\tfrac32\cdot\tfrac{36}{13}+4=-\tfrac{2}{13}
+\end{aligned}" />
+
+Der Schnittpunkt hat eine negative <InlineMath math="y" />-Koordinate, er **liegt also im IV. Quadranten** und nicht im I. Die dritte Aussage ist falsch.
+
+Die Gerade <InlineMath math="g" /> schneidet die <InlineMath math="x" />-Achse in <InlineMath math="(3,0)" /> und die <InlineMath math="y" />-Achse in <InlineMath math="(0,-2)" />. Das Dreieck, das sie mit den Achsen bildet, ist rechtwinklig mit den Katheten 3 und 2, sein Flächeninhalt ist also <InlineMath math="\tfrac12\cdot3\cdot2=3" />. Die vierte Aussage ist wahr.
+
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.

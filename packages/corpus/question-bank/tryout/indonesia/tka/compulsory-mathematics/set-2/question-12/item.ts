@@ -8,27 +8,24 @@ const item: ItemSource = {
   },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$64+6\\pi^2$$",
+          column: 1,
+          label: "Ada tepat $$13$$ nilai $$x$$ yang mungkin.",
         },
         {
-          correct: false,
-          label: "$$64+18\\pi^2$$",
+          column: 2,
+          label: "Jika $$x=12$$, segitiga itu tumpul.",
         },
         {
-          correct: true,
-          label: "$$64+9\\pi^2$$",
+          column: 1,
+          label: "Jika $$x=13$$, segitiga itu tumpul.",
         },
         {
-          correct: false,
-          label: "$$8+3\\pi$$",
-        },
-        {
-          correct: false,
-          label: "$$8+9\\pi$$",
+          column: 2,
+          label: "Nilai $$x=17$$ mungkin.",
         },
       ],
     },

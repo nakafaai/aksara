@@ -1,57 +1,20 @@
-We will find the value of the added numbers, determine the **new median**, and then compare the values of <InlineMath math="P" /> and <InlineMath math="Q" />.
+A quadratic equation with roots <InlineMath math="u" /> and <InlineMath math="v" /> can be written <InlineMath math="x^2-(u+v)x+uv=0" />. So what you need is **the sum and product of the new roots**, which follow from <InlineMath math="\alpha+\beta=3" /> and <InlineMath math="\alpha\beta=1" /> without finding the roots.
 
-# Finding the Added Numbers
+# The sum and product of the new roots
 
-Let the **two equal natural numbers** being added be <InlineMath math="x" />.
-The initial data consists of <InlineMath math="7" /> numbers: <InlineMath math="2, 3, 5, 7, 8, 9, 11" />.
-Sum of initial data:
+<BlockMath math="\begin{aligned}
+\alpha^2+\beta^2&=(\alpha+\beta)^2-2\alpha\beta=9-2=7\\
+\alpha^2\beta^2&=(\alpha\beta)^2=1
+\end{aligned}" />
 
-<BlockMath math="\begin{gathered}2+3+5+7+8+9+11\\=45\end{gathered}" />
+# Building the equation
 
-After adding <InlineMath math="2" /> numbers of value <InlineMath math="x" />, the count of data becomes <InlineMath math="7 + 2 = 9" />.
-The new average is given as <InlineMath math="9" />.
+Put the sum and product into the general form. **The sum of the roots enters with a minus sign**.
 
-<BlockMath math="\bar{x}=\frac{45+2x}{9}" />
+<BlockMath math="x^2-7x+1=0" />
 
-<BlockMath math="9 = \frac{45 + 2x}{9}" />
+A check with the actual roots: <InlineMath math="\alpha=\frac{3+\sqrt5}{2}" /> gives <InlineMath math="\alpha^2=\frac{7+3\sqrt5}{2}" />, and this value satisfies <InlineMath math="x^2-7x+1=0" />.
 
-<BlockMath math="81 = 45 + 2x" />
+The equation with coefficient 9 forgets to subtract <InlineMath math="2\alpha\beta" />, and the one with 11 adds it. The equation <InlineMath math="x^2+7x+1=0" /> has the wrong sign on the sum of the roots. The equation with constant 2 uses <InlineMath math="2\alpha\beta" /> as the product.
 
-<BlockMath math="2x = 81 - 45" />
-
-<BlockMath math="2x = 36" />
-
-<BlockMath math="x = 18" />
-
-So, the added number is <InlineMath math="18" />.
-
-# Determining the New Median
-
-The new data after adding <InlineMath math="18" /> and <InlineMath math="18" /> is:
-
-<BlockMath math="2,3,5,7,8,9,11,18,18" />
-
-The data are **already sorted**. Since the number of data points <InlineMath math="n = 9" /> (odd), the median is the <InlineMath math="\frac{9+1}{2} = 5" />-th data point.
-
-<BlockMath math="m=8" />
-
-# Calculating the First Quantity
-
-The value of <InlineMath math="P" /> is defined as the **new median minus the new mean**.
-The new mean is known to be <InlineMath math="9" />.
-
-<BlockMath math="P=m-\bar{x}" />
-
-<BlockMath math="P = 8 - 9" />
-
-<BlockMath math="P = -1" />
-
-Given <InlineMath math="Q = -12" />.
-
-<BlockMath math="P = -1" />
-
-<BlockMath math="Q = -12" />
-
-Since <InlineMath math="-1 > -12" />, then:
-
-<BlockMath math="P > Q" />
+So the required equation is <InlineMath math="x^2-7x+1=0" />.

@@ -1,29 +1,29 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "paper-folding",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$2520$$ unit",
+          column: 1,
+          label: "Setelah dilipat 5 kali, ketebalan tumpukan adalah 3,2 mm.",
         },
         {
-          correct: false,
-          label: "$$1960$$ unit",
+          column: 2,
+          label: "Setiap kali dilipat, ketebalan tumpukan bertambah 0,1 mm.",
         },
         {
-          correct: false,
-          label: "$$2000$$ unit",
+          column: 2,
+          label:
+            "Setelah dilipat 7 kali, tumpukan terdiri atas 64 lapisan kertas.",
         },
         {
-          correct: false,
-          label: "$$2720$$ unit",
-        },
-        {
-          correct: false,
-          label: "$$3000$$ unit",
+          column: 1,
+          label:
+            "Setelah dilipat 20 kali, ketebalan tumpukan lebih dari 100 m.",
         },
       ],
     },

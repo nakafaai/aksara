@@ -1,31 +1,17 @@
-# Find the impact time
+For a candidate who answers every question, the score depends only on the number of correct answers <InlineMath math="b" />, as <InlineMath math="5b-40" />, so **the score depends only on the number of correct answers**.
 
-At impact, the rocket and the aircraft carrier are at the **same position**. Set their position equations equal:
+# Possible values of b
 
-<BlockMath math="s_R(t) = s_K(t)" />
+The number of correct answers can be any integer from 0 to 40, so there are **41 possibilities**, including <InlineMath math="b=0" />.
 
-<BlockMath math="4000 - t^2 = 60t" />
+# Each b gives a different score
 
-<BlockMath math="t^2 + 60t - 4000 = 0" />
+The expression <InlineMath math="5b-40" /> rises by 5 whenever <InlineMath math="b" /> rises by 1, so two different values of <InlineMath math="b" /> never give the same score. The scores are
 
-Factor the quadratic equation:
+<BlockMath math="-40,\,-35,\,-30,\,\dots,\,155,\,160" />
 
-<BlockMath math="(t + 100)(t - 40) = 0" />
+That is 41 different values.
 
-The factors give <InlineMath math="t = -100" /> and <InlineMath math="t = 40" />. Elapsed time cannot be negative, so <InlineMath math="t = 40" /> seconds.
+The value 40 forgets the case <InlineMath math="b=0" />. The value 201 counts every integer from <InlineMath math="-40" /> to 160, although only multiples of 5 are possible. The value 160 is the top score, not the number of scores.
 
-<BlockMath math="t = 40 \text{ seconds}" />
-
-# Find the impact position
-
-Substitute <InlineMath math="t = 40" /> into the aircraft carrier's equation:
-
-<BlockMath math="s_K(40) = 60(40)" />
-
-<BlockMath math="s_K(40) = 2400 \text{ m}" />
-
-Convert **meters to kilometers**:
-
-<BlockMath math="2400\text{ m}=\frac{2400}{1000}\text{ km}= 2.4 \text{ km}" />
-
-The rocket hits the aircraft carrier at <InlineMath math="2.4\text{ km}" />.
+So the number of possible different scores is **41**.

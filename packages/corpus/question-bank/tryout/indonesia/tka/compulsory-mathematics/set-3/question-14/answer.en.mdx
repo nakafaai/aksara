@@ -1,31 +1,16 @@
-Undo the transformations in **reverse order**. Let <InlineMath math="R" /> be the point after reflection and before dilation. With scale factor <InlineMath math="-2" />, the equation <InlineMath math="Q=C-2(R-C)" /> gives:
+A rotation about a centre other than the origin takes three steps: **move the centre to the origin, rotate, then move back**. A rotation of <InlineMath math="90^\circ" /> anticlockwise about the origin maps <InlineMath math="(a,b)" /> to <InlineMath math="(-b,a)" />.
 
 <BlockMath math="\begin{aligned}
-Q-C&=-2(R-C) \\
-R-C&=-\frac12(Q-C) \\
-R&=C-\frac12(Q-C) \\
-&=(1,-2)-\frac12(6,2) \\
-&=(-2,-3)
+B-C&=(7-2,\ 3-(-1))=(5,4) \\
+(5,4)&\to(-4,5) \\
+B'&=(-4+2,\ 5+(-1))=(-2,4)
 \end{aligned}" />
 
-Reflection in <InlineMath math="y=x" /> swaps the coordinates, so the original point is <InlineMath math="P=(-3,-2)" />. Check by applying the dilation again to its reflected image.
+As a check, <InlineMath math="CB=\sqrt{5^2+4^2}=\sqrt{41}" /> and <InlineMath math="CB'=\sqrt{(-4)^2+5^2}=\sqrt{41}" />, while <InlineMath math="(5,4)\cdot(-4,5)=-20+20=0" />, so the two segments are perpendicular.
 
-<BlockMath math="\begin{aligned}
-Q&=C-2(R-C) \\
-&=(1,-2)-2(-3,-1) \\
-&=(1,-2)+(6,2) \\
-&=(7,0)
-\end{aligned}" />
+So the image of <InlineMath math="B" /> is <InlineMath math="(-2,4)" />.
 
-<LineEquation
-  title="Reflection and negative dilation"
-  description="R and Q are on opposite sides of center C. Distance CQ is twice CR."
-  cameraPosition={[2,-2,17]}
-  cameraTarget={[2,-2,0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: -4, y: -4, z: 0 }, { x: 1, y: 1, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: -3, y: -2, z: 0 }, { x: -2, y: -3, z: 0 }], color: "#9333ea", smooth: false, labels: [{ text: "P", at: 0, offset: [-0.4, 0.4, 0] }, { text: "R", at: 1, offset: [0, -0.6, 0] }] },
-    { points: [{ x: -2, y: -3, z: 0 }, { x: 1, y: -2, z: 0 }, { x: 7, y: 0, z: 0 }], color: "#d97706", smooth: false, labels: [{ text: "C", at: 1, offset: [0, -0.6, 0] }, { text: "Q", at: 2, offset: [0.4, 0.4, 0] }] },
-  ]}
-/>
+- <InlineMath math="(-4,5)" /> forgets to move the rotated point back to the centre <InlineMath math="C" />.
+- <InlineMath math="(-3,7)" /> rotates about the origin instead of <InlineMath math="C" />.
+- <InlineMath math="(6,4)" /> swaps the coordinates of <InlineMath math="(5,4)" /> without changing a sign.
+- <InlineMath math="(6,-6)" /> rotates clockwise, <InlineMath math="(5,4)\to(4,-5)" />.

@@ -75,6 +75,34 @@ Every eigenvalue therefore lies on the **complex unit circle**. Nonreal eigenval
 
 In this decomposition, <InlineMath math="V" /> is unitary. Over the real numbers, an orthogonal matrix can instead be reduced to blocks consisting of <InlineMath math="1" />, <InlineMath math="-1" />, and planar rotations.
 
+Plot the eigenvalues of the two examples below as complex numbers. The rotation <InlineMath math="R(60^\circ)" /> has the conjugate pair <InlineMath math="e^{\pm i\pi/3}" />, and the Householder reflection has <InlineMath math="1" /> and <InlineMath math="-1" />. All of them have modulus <InlineMath math="1" />.
+
+<MathVisual
+  title={<>Eigenvalues on the unit circle</>}
+  description={<>The gray unit circle in the complex plane. The magenta points <InlineMath math="e^{\pm i\pi/3}=\tfrac12\pm\tfrac{\sqrt3}2i" /> are the eigenvalues of the rotation <InlineMath math="R(60^\circ)" />, and the amber arc marks the angle <InlineMath math="60^\circ" />. The teal points <InlineMath math="1" /> and <InlineMath math="-1" /> are the eigenvalues of the reflection <InlineMath math="H" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.4, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "upper", kind: "point", at: { x: 1 / 2, y: Math.sqrt(3) / 2 }, appearance: "answer" },
+      { id: "lower", kind: "point", at: { x: 1 / 2, y: -Math.sqrt(3) / 2 }, appearance: "answer" },
+      { id: "plus", kind: "point", at: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "minus", kind: "point", at: { x: -1, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "upper", objectId: "upper", at: { x: 1 / 2, y: Math.sqrt(3) / 2 }, placement: "above-right" },
+      { key: "lower", objectId: "lower", at: { x: 1 / 2, y: -Math.sqrt(3) / 2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "upper": <InlineMath math="e^{i\pi/3}" />,
+    "lower": <InlineMath math="e^{-i\pi/3}" />,
+  }}
+/>
+
 ## Rotation Example
 
 A counterclockwise planar rotation by <InlineMath math="\alpha" /> is
@@ -94,6 +122,42 @@ The characteristic polynomial is
 
 Unless <InlineMath math="\alpha" /> is a multiple of <InlineMath math="\pi" />, the rotation has **no real eigenvector**. That is expected: no nonzero real direction remains fixed or merely changes sign under a genuine planar rotation.
 
+Turn the scene and check what the rotation keeps. The tips of <InlineMath math="x" />, <InlineMath math="y" />, <InlineMath math="R(\alpha)x" />, and <InlineMath math="R(\alpha)y" /> all sit on the same gray circle, so every length stays <InlineMath math="\sqrt5" />. The right angle between <InlineMath math="x" /> and <InlineMath math="y" /> survives too, because <InlineMath math="R(\alpha)^TR(\alpha)=I" /> keeps every inner product. Only the direction changes, by the amber angle <InlineMath math="\alpha=60^\circ" />, which is why no real vector keeps its direction here.
+
+<MathVisual
+  title={<>A rotation <InlineMath math="R(60^\circ)" /> keeps lengths and angles</>}
+  description={<>The vectors <InlineMath math="x=(2,1)^T" /> and <InlineMath math="y=(-1,2)^T" /> are rotated by <InlineMath math="\alpha=60^\circ" />. All four segment tips lie on the circle of radius <InlineMath math="\sqrt5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 2.6 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "radius", kind: "circle", center: { x: 0, y: 0 }, radius: Math.sqrt(5), appearance: "reference" },
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "y", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 2 }, appearance: "construction" },
+      { id: "rx", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.cos(Math.PI / 3) - Math.sin(Math.PI / 3), y: 2 * Math.sin(Math.PI / 3) + Math.cos(Math.PI / 3) }, appearance: "answer" },
+      { id: "ry", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.cos(Math.PI / 3) - 2 * Math.sin(Math.PI / 3), y: -Math.sin(Math.PI / 3) + 2 * Math.cos(Math.PI / 3) }, appearance: "primary" },
+      { id: "alpha", kind: "arc", center: { x: 0, y: 0 }, radius: 0.9, startDegrees: Math.atan2(1, 2) * 180 / Math.PI, sweepDegrees: 60, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "radius", objectId: "radius", at: { x: -Math.sqrt(5) * Math.SQRT1_2, y: -Math.sqrt(5) * Math.SQRT1_2 }, placement: "below-left" },
+      { key: "x", objectId: "x", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "y", objectId: "y", at: { x: -1, y: 2 }, placement: "above-left" },
+      { key: "rx", objectId: "rx", at: { x: 2 * Math.cos(Math.PI / 3) - Math.sin(Math.PI / 3), y: 2 * Math.sin(Math.PI / 3) + Math.cos(Math.PI / 3) }, placement: "above-right" },
+      { key: "ry", objectId: "ry", at: { x: -Math.cos(Math.PI / 3) - 2 * Math.sin(Math.PI / 3), y: -Math.sin(Math.PI / 3) + 2 * Math.cos(Math.PI / 3) }, placement: "below-left" },
+      { key: "alpha", objectId: "alpha", at: { x: 0.9 * Math.cos(Math.atan2(1, 2) + Math.PI / 6), y: 0.9 * Math.sin(Math.atan2(1, 2) + Math.PI / 6) }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "radius": <InlineMath math="\|v\|=\sqrt5" />,
+    "x": <InlineMath math="x" />,
+    "y": <InlineMath math="y" />,
+    "rx": <InlineMath math="R(\alpha)x" />,
+    "ry": <InlineMath math="R(\alpha)y" />,
+    "alpha": <InlineMath math="\alpha=60^\circ" />,
+  }}
+/>
+
 ## Reflection Example
 
 For a unit vector <InlineMath math="u\in\mathbb{R}^n" />, the Householder matrix
@@ -108,6 +172,33 @@ The matrix <InlineMath math="H" /> reflects a vector across the **hyperplane per
 </MathContainer>
 
 The two identities above give <InlineMath math="H^TH=I" />. Its eigenvalue in the direction <InlineMath math="u" /> is <InlineMath math="-1" />, while every vector perpendicular to <InlineMath math="u" /> has eigenvalue <InlineMath math="1" />. Therefore <InlineMath math="\det H=-1" />.
+
+In the plane, take <InlineMath math="u=\tfrac1{\sqrt2}(1,1)" />. Then <InlineMath math="uu^T=\tfrac12\begin{pmatrix}1&1\\1&1\end{pmatrix}" />, so <InlineMath math="H=\begin{pmatrix}0&-1\\-1&0\end{pmatrix}" /> sends <InlineMath math="(x,y)" /> to <InlineMath math="(-y,-x)" />. The mirror line <InlineMath math="y=-x" /> is perpendicular to <InlineMath math="u" />, and the triangle comes back with its orientation reversed.
+
+<MathVisual
+  title={<>The Householder reflection for <InlineMath math="u=\tfrac1{\sqrt2}(1,1)" /></>}
+  description={<><InlineMath math="H=I-2uu^T=\begin{pmatrix}0&-1\\-1&0\end{pmatrix}" /> mirrors the violet triangle across the gray line <InlineMath math="y=-x" /> onto the magenta triangle. The teal vector <InlineMath math="u" /> goes to the orange vector <InlineMath math="Hu=-u" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: -3, y: 3 }, { x: 3, y: -3 }], appearance: "reference" },
+      { id: "triangle", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: 3, y: 1 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "image", kind: "polygon", vertices: [{ x: -1, y: -2 }, { x: -1, y: -3 }, { x: -2, y: -2 }], appearance: "answer" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "construction" },
+      { id: "flipped", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "normal", objectId: "normal", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "above-left" },
+      { key: "flipped", objectId: "flipped", at: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "normal": <InlineMath math="u" />,
+    "flipped": <InlineMath math="Hu=-u" />,
+  }}
+/>
 
 ## Equivalent Checks and Consequences
 

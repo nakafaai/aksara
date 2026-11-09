@@ -1,6 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "paraphrase",
+  },
+  stimulus: "karst",
   versions: {
     id: {
       kind: "choice",
@@ -8,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Laporan menilai manfaat, risiko, biaya, dan dampak pada berbagai kelompok sebelum memberi rekomendasi.",
+            "Kawasan karst jarang mendapat hujan sehingga permukaannya selalu kering.",
         },
         {
           correct: false,
           label:
-            "Petunjuk memakai kata 'segera' tanpa batas waktu sehingga dua pelaksana menafsirkannya secara berbeda.",
+            "Air yang tersimpan di bawah kawasan karst lebih banyak daripada air hujan yang turun.",
+        },
+        {
+          correct: false,
+          label:
+            "Batu kapur menahan air hujan di permukaan selama musim hujan berlangsung.",
+        },
+        {
+          correct: false,
+          label:
+            "Permukaan kawasan karst kering karena air hujan yang turun di sana bersifat asam.",
         },
         {
           correct: true,
           label:
-            "Model mempertimbangkan interaksi cuaca, perilaku pengguna, dan jadwal layanan alih-alih mencari satu penyebab tunggal.",
-        },
-        {
-          correct: false,
-          label:
-            "Satu asumsi dasar diperiksa lebih dahulu karena seluruh simpulan berikutnya bergantung padanya.",
-        },
-        {
-          correct: false,
-          label:
-            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
+            "Permukaan yang tampak kering tidak berarti kawasan karst kekurangan air.",
         },
       ],
     },

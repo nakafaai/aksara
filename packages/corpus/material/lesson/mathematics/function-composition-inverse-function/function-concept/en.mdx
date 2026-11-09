@@ -4,7 +4,7 @@ export const metadata = {
     "A function assigns exactly one output to every allowed input and can be represented with notation, tables, and ordered pairs.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Function Composition and Inverse Function",
 };
 
@@ -30,6 +30,36 @@ The same information can be written as ordered pairs:
 
 Each first coordinate appears with only one second coordinate, so these pairs describe a function on the displayed inputs.
 
+Each input of <InlineMath math="f(x) = x + 2" /> gets exactly one output, so the pairs <InlineMath math="(3, 5)" />, <InlineMath math="(-1, 1)" /> and <InlineMath math="(0, 2)" /> all lie on one line, one point above each input.
+
+<MathVisual
+  title={<>Input and output pairs of <InlineMath math="f(x) = x + 2" /></>}
+  description={<>The pairs <InlineMath math="(3, 5)" />, <InlineMath math="(-1, 1)" /> and <InlineMath math="(0, 2)" /> on the line <InlineMath math="y = x + 2" />.</>}
+  labels={{
+    rule: <InlineMath math="y = x + 2" />,
+    a: <InlineMath math="(3, 5)" />,
+    b: <InlineMath math="(-1, 1)" />,
+    c: <InlineMath math="(0, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 4.6 }, y: { min: -0.6, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rule", kind: "segment", from: { x: -2, y: 0 }, to: { x: 4, y: 6 }, appearance: "construction" },
+      { id: "a", kind: "point", at: { x: 3, y: 5 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 0, y: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "rule", objectId: "rule", at: { x: 4, y: 6 }, placement: "left" },
+      { key: "a", objectId: "a", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -1, y: 1 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 0, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Reading Function Notation
 
 In the equation <InlineMath math="f(x)=y" />:
@@ -52,8 +82,8 @@ The notation <InlineMath math="f(3)" /> **does not mean multiplication** by <Inl
 The interactive function machine uses <InlineMath math="f(x)=2x+1" />. Change the input, predict the output, and then compare your prediction with the displayed result.
 
 <FunctionMachine
-  title="Function Machine"
-  description="Enter a number to evaluate the fixed function rule."
+  title={<>Function Machine</>}
+  description={<>Enter a number to evaluate the fixed function rule.</>}
   inputLabel="Function input"
 />
 
@@ -71,6 +101,36 @@ Compare these two relations:
 </MathContainer>
 
 Relation <InlineMath math="R" /> is a function. Inputs <InlineMath math="1" /> and <InlineMath math="2" /> share **the same output**, <InlineMath math="4" />, which is allowed. Relation <InlineMath math="S" /> is not a function because input <InlineMath math="1" /> has **two different outputs**, <InlineMath math="4" /> and <InlineMath math="6" />.
+
+Plot <InlineMath math="S" />: the input 1 has two points above it, <InlineMath math="(1, 4)" /> and <InlineMath math="(1, 6)" />, so the vertical line <InlineMath math="x = 1" /> meets the graph twice. That is exactly why <InlineMath math="S" /> is not a function, while in <InlineMath math="R" /> every input has one point.
+
+<MathVisual
+  title={<>The vertical line test on <InlineMath math="S" /></>}
+  description={<>The points <InlineMath math="(1, 4)" />, <InlineMath math="(1, 6)" /> and <InlineMath math="(3, 7)" /> of <InlineMath math="S" />, with the vertical line <InlineMath math="x = 1" /> through two of them.</>}
+  labels={{
+    test: <InlineMath math="x = 1" />,
+    a: <InlineMath math="(1, 4)" />,
+    b: <InlineMath math="(1, 6)" />,
+    c: <InlineMath math="(3, 7)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -0.6, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "test", kind: "line", through: [{ x: 1, y: 0 }, { x: 1, y: 8 }], appearance: "warning" },
+      { id: "a", kind: "point", at: { x: 1, y: 4 }, appearance: "secondary" },
+      { id: "b", kind: "point", at: { x: 1, y: 6 }, appearance: "secondary" },
+      { id: "c", kind: "point", at: { x: 3, y: 7 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "test", objectId: "test", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 4 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 1, y: 6 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 3, y: 7 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Check Your Understanding
 

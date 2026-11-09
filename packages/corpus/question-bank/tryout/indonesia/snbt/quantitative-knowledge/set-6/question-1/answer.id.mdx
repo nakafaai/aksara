@@ -1,55 +1,22 @@
-Kita diminta untuk menentukan **titik potong tunggal** antara dua garis:
+Karena FPB-nya 12, kedua bilangan dapat ditulis <InlineMath math="a=12m" /> dan <InlineMath math="b=12n" /> dengan <InlineMath math="m" /> dan <InlineMath math="n" /> **tidak memiliki faktor persekutuan selain 1**. Dalam bentuk ini, KPK-nya adalah <InlineMath math="12mn" />.
 
-1. <InlineMath math="y = 2x + 3" />
-2. <InlineMath math="y = ax + b" />
+# Mencari pasangan yang mungkin
 
-Agar kita bisa menentukan titik potong yang unik <InlineMath math="(x, y)" />, kita harus bisa menyelesaikan sistem persamaan tersebut. Samakan kedua persamaan:
+<BlockMath math="12mn=180\quad\Rightarrow\quad mn=15" />
 
-<BlockMath math="2x + 3 = ax + b" />
+Pasangan <InlineMath math="(m,n)" /> yang hasil kalinya 15 dan relatif prima adalah <InlineMath math="(1,15)" /> dan <InlineMath math="(3,5)" />. **Syarat jumlah memilih salah satunya**.
 
-<BlockMath math="2x - ax = b - 3" />
+| <InlineMath math="(m,n)" /> | Bilangan | Jumlah |
+| :---: | :---: | :---: |
+| <InlineMath math="(1,15)" /> | 12 dan 180 | 192 |
+| <InlineMath math="(3,5)" /> | 36 dan 60 | 96 |
 
-<BlockMath math="(2 - a)x = b - 3" />
+# Menghitung selisih
 
-Dari persamaan di atas, nilai <InlineMath math="x" /> dapat ditentukan jika dan hanya jika koefisien <InlineMath math="x" /> tidak nol, yaitu <InlineMath math="2 - a \neq 0" /> atau <InlineMath math="a \neq 2" />. Jika <InlineMath math="a \neq 2" />, maka:
+Bilangannya 36 dan 60. Cek: FPB keduanya 12, KPK keduanya 180, dan jumlahnya 96.
 
-<BlockMath math="x = \frac{b - 3}{2 - a}" />
+<BlockMath math="60-36=24" />
 
-Setelah <InlineMath math="x" /> diketahui, substitusi ke salah satu persamaan memberi <InlineMath math="y" />. Syarat <InlineMath math="a\neq2" /> menjamin adanya tepat satu titik potong. Letaknya masih bergantung pada <InlineMath math="a" /> dan <InlineMath math="b" />, kecuali informasi tambahan membuat ketergantungan tersebut hilang.
+Nilai 168 adalah selisih pasangan lain, 12 dan 180, yang jumlahnya bukan 96. Nilai 12 adalah FPB, nilai 15 adalah hasil kali <InlineMath math="mn" />, dan nilai 36 adalah bilangan yang lebih kecil.
 
-# Analisis Pernyataan Pertama
-
-Pernyataan (1) memberikan informasi <InlineMath math="a \neq 2" />. Ini menjamin bahwa kedua garis memiliki **gradien yang berbeda** (<InlineMath math="m_1 = 2" /> dan <InlineMath math="m_2 = a \neq 2" />), sehingga mereka pasti berpotongan di satu titik. Namun, kita tidak mengetahui nilai <InlineMath math="b" />. Tanpa nilai <InlineMath math="b" />, kita tidak bisa menentukan koordinat titik potong tersebut (nilai <InlineMath math="x" /> dan <InlineMath math="y" /> masih bergantung pada <InlineMath math="b" />). Oleh karena itu, pernyataan (1) saja **tidak cukup**.
-
-| Nilai parameter | Titik potong |
-| --- | --- |
-| <InlineMath math="a=0,\ b=1" /> | <InlineMath math="(-1,1)" /> |
-| <InlineMath math="a=0,\ b=5" /> | <InlineMath math="(1,5)" /> |
-
-# Analisis Pernyataan Kedua
-
-Pernyataan (2) memberikan informasi <InlineMath math="b = 3" />. Persamaan kedua menjadi <InlineMath math="y = ax + 3" />. Kita tidak mengetahui nilai <InlineMath math="a" />.
-
-- Jika <InlineMath math="a = 2" />, maka garisnya menjadi <InlineMath math="y = 2x + 3" />, yang **berimpit dengan garis pertama** (titik potong tak hingga banyaknya).
-- Jika <InlineMath math="a \neq 2" />, garis berpotongan di satu titik.
-
-Karena <InlineMath math="a" /> tidak diketahui, kita tidak bisa memastikan apakah ada satu titik potong, meskipun kedua garis pasti melalui <InlineMath math="(0,3)" />. Oleh karena itu, pernyataan (2) saja **tidak cukup**.
-
-# Menggabungkan Kedua Pernyataan
-
-Jika kita menggabungkan kedua pernyataan:
-
-1. <InlineMath math="a \neq 2" />
-2. <InlineMath math="b = 3" />
-
-Kita substitusi ke dalam persamaan untuk mencari <InlineMath math="x" />:
-
-<BlockMath math="\begin{aligned}x&=\frac{3-3}{2-a}\\&=\frac{0}{2-a}\\&=0\end{aligned}" />
-
-(Pembagian dengan <InlineMath math="2 - a" /> valid karena <InlineMath math="a \neq 2" />). Kemudian kita cari <InlineMath math="y" />:
-
-<BlockMath math="y = 2(0) + 3 = 3" />
-
-Kita mendapatkan **titik potong yang unik** yaitu <InlineMath math="(0, 3)" />. Karena kita bisa menentukan titik potongnya, maka kedua pernyataan bersama-sama **cukup**.
-
-Jadi, **kedua pernyataan bersama-sama** cukup, tetapi setiap pernyataan sendiri tidak cukup.
+Jadi, selisih kedua bilangan adalah **24**.

@@ -1,48 +1,21 @@
-Gesucht ist eine **erreichbare obere Schranke** für <InlineMath math="x+y" /> unter diesen Bedingungen:
+Bevor du Summe und Produkt der Lösungen verwendest, prüfe, ob sich die Gleichung faktorisieren lässt. Das geht: **die Form passt zu <InlineMath math="(x-3)(x-k)" />**, denn <InlineMath math="3+k" /> ist die Summe und <InlineMath math="3k" /> das Produkt.
 
-<BlockMath math="\begin{cases} x \ge 0 \\ y \ge 0 \\ x + 5y \le 10 \\ 5x + y \le a^2 - 5 \end{cases}" />
+# Die Lösungen
 
-Durch Addition der beiden schrägen Nebenbedingungen erhält man eine obere Schranke für <InlineMath math="x + y" />:
+<BlockMath math="x^2-(k+3)x+3k=(x-3)(x-k)=0" />
 
-<BlockMath math="\begin{aligned}&(x+5y)+(5x+y)\\&\quad\le10+(a^2-5)\end{aligned}" />
+Die Lösungen sind 3 und <InlineMath math="k" />, **egal welchen Wert k hat**.
 
-<BlockMath math="6x + 6y \le 5 + a^2" />
+# Die Bedingung an die Differenz
 
-<BlockMath math="x + y \le \frac{a^2 + 5}{6}" />
+Die Lösungen unterscheiden sich um 5, also **liegt <InlineMath math="k" /> im Abstand 5 von 3**.
 
-Für <InlineMath math="a=3" /> beziehungsweise <InlineMath math="a=4" /> beträgt diese Schranke <InlineMath math="\frac{7}{3}" /> beziehungsweise <InlineMath math="\frac{7}{2}" />. Beide Werte liegen unter <InlineMath math="5" />. Für <InlineMath math="a=16" /> oder <InlineMath math="a=25" /> erfüllt bereits der Punkt <InlineMath math="(6,0)" /> alle Ungleichungen und liefert <InlineMath math="x+y=6" />. Dann wäre der Maximalwert größer als <InlineMath math="5" />.
+<BlockMath math="\lvert k-3\rvert=5\;\Longrightarrow\;k=8\;\text{oder}\;k=-2" />
 
-Es bleibt <InlineMath math="a=5" /> zu prüfen. Die obere Schranke lautet nun:
+Kontrolle: Für <InlineMath math="k=8" /> sind die Lösungen 3 und 8, für <InlineMath math="k=-2" /> sind es 3 und <InlineMath math="-2" />. Beide Paare unterscheiden sich um 5.
 
-<BlockMath math="x+y \le \frac{5^2+5}{6}=5" />
+<BlockMath math="8+(-2)=6" />
 
-Bestimme den Schnittpunkt der Randgeraden durch Elimination:
+Der Wert 8 verwendet nur eine Möglichkeit. Der Wert 10 ist die Differenz der beiden Werte von <InlineMath math="k" />, nicht ihre Summe. Der Wert 3 ist die feste Lösung, und 5 ist die gegebene Differenz.
 
-<BlockMath math="\begin{aligned}x+5y&=10\\5x+y&=20\\5(x+5y)-(5x+y)&=50-20\\24y&=30\\y&=\frac54\\x&=10-5\cdot\frac54=\frac{15}{4}\end{aligned}" />
-
-Der Schnittpunkt <InlineMath math="\left(\frac{15}{4},\frac{5}{4}\right)" /> erfüllt beide Randgleichungen:
-
-<BlockMath math="\frac{15}{4}+5\left(\frac{5}{4}\right)=10" />
-
-<BlockMath math="\begin{aligned}5\left(\frac{15}{4}\right)+\frac54&=20\\&=5^2-5\end{aligned}" />
-
-<BlockMath math="\frac{15}{4}+\frac{5}{4}=5" />
-
-Damit ist <InlineMath math="5" /> sowohl eine obere Schranke als auch ein erreichbarer Wert. Folglich gilt <InlineMath math="a=5" />.
-
-<MathVisual
- title="Zulässiger Bereich für a = 5"
- description="Am Schnittpunkt der beiden Randgeraden ist die Koordinatensumme fünf."
- scene={{
- space: "plane",
- frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 4 } },
- view: { kind: "fit", padding: 0.5 },
- objects: [
- { id: "feasible", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 3.75, y: 1.25 }, { x: 0, y: 2 }] },
- { id: "objective", kind: "segment", appearance: "secondary", from: { x: 2, y: 3 }, to: { x: 5, y: 0 } },
- { id: "maximum", kind: "point", appearance: "answer", at: { x: 3.75, y: 1.25 } },
- ],
- labels: [{ key: "maximum", objectId: "maximum", at: { x: 3.75, y: 1.25 }, placement: "above-right" }],
- }}
- labels={{ maximum: <InlineMath math="(15/4,5/4)" /> }}
-/>
+Die Summe aller Werte von <InlineMath math="k" /> ist also **6**.

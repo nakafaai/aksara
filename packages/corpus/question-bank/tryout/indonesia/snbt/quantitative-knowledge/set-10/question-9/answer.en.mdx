@@ -1,23 +1,20 @@
-Separate the **protest and no-protest cases** so each possibility is counted exactly once.
+Each new square is attached to the previous one and shares one side, so **each pattern adds exactly 3 matches**. The numbers of matches form the arithmetic sequence 4, 7, 10 and so on.
 
-Define the events:
+# Formula for the nth term
 
--   <InlineMath math="A" />: construction finishes on time
--   <InlineMath math="B" />: a protest occurs
--   <InlineMath math="B^c" />: no protest occurs
+<BlockMath math="U_n=4+(n-1)\cdot3=3n+1" />
 
-The cases <InlineMath math="B" /> and <InlineMath math="B^c" /> are mutually exclusive and cover every possibility. Use the law of total probability:
+The formula <InlineMath math="4n" /> only fits the first pattern, because **a shared side is not counted twice**. For example, pattern 2 needs 7 matches, not 8. The first statement is false.
 
-<BlockMath math="\begin{aligned}P(A)&=P(B)P(A\mid B)\\&\quad+P(B^c)P(A\mid B^c)\end{aligned}" />
+# Using the formula
 
-Substitute the given probabilities:
+<BlockMath math="\begin{aligned}
+U_{10}&=3\cdot10+1=31\\
+U_{20}-U_{10}&=61-31=30
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}P(B)&=0.7\\P(B^c)&=1 - 0.7 = 0.3\end{aligned}" />
+The second statement is true. The difference is 30, that is **10 extra patterns times 3 matches**, not 31. The third statement is false.
 
-<BlockMath math="\begin{aligned}P(A\mid B^c)&=0.8\\P(A\mid B)&=0.4\end{aligned}" />
+For 100 matches, solve <InlineMath math="3n+1=100" />, which gives <InlineMath math="n=33" />. Since 33 is a whole number, pattern 33 uses exactly 100 matches. The fourth statement is true.
 
-<BlockMath math="\begin{aligned}P(A)&=(0.7)(0.4)\\&\quad+(0.3)(0.8)\end{aligned}" />
-
-<BlockMath math="\begin{aligned}P(A)&=0.28 + 0.24\\&=0.52\end{aligned}" />
-
-Thus, construction finishes on time with probability <InlineMath math="0.52" />.
+So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.

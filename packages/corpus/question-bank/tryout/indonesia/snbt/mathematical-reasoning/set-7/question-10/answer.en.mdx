@@ -1,11 +1,19 @@
-# Find the Undamaged Share
+The distance between two intersections is **the difference in x plus the difference in y**. Compute some orders, then make sure no route is shorter.
 
-Let <InlineMath math="A" /> mean selecting an undamaged item. The **undamaged items are the complement** of the damaged items:
+# Length of some orders
 
-<BlockMath math="n(A)=80-20=60" />
+Compare **the length of each visiting order**, including the way back to G.
 
-All <InlineMath math="80" /> items are equally likely to be selected, so divide the favorable count by the total count:
+| Order | Length in blocks |
+| :---: | :---: |
+| G, B, A, C, G | <InlineMath math="6+5+4+7=22" /> |
+| G, A, C, B, G | <InlineMath math="7+4+9+6=26" /> |
+| G, C, B, A, G | <InlineMath math="7+9+5+7=28" /> |
 
-<BlockMath math="P(A)=\frac{n(A)}{n(S)}=\frac{60}{80}=\frac34" />
+# A lower bound for every route
 
-Thus, the probability is <InlineMath math="\frac34" />. This also equals <InlineMath math="1-\frac{20}{80}" />, which checks the result using the damaged share.
+The route must reach x equal to 5, at B, and come back to x equal to 0, so it needs at least <InlineMath math="2\cdot5=10" /> horizontal blocks. It must also reach y equal to 6, at C, and come back to 0, so at least <InlineMath math="2\cdot6=12" /> vertical blocks. So **every route is at least 22 blocks**.
+
+The order G, B, A, C, G reaches that bound, so 22 blocks or 2,200 m is the shortest. The values 2,600 m and 2,800 m come from poorer orders.
+
+So the shortest route is **2,200 m**.

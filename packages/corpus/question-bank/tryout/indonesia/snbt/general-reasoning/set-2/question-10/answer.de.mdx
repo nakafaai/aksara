@@ -1,15 +1,22 @@
-Jede Kiste enthält <InlineMath math="12" /> Früchte. Die unabhängigen, gleichverteilten Ziehungen ergeben <InlineMath math="12\times12=144" /> gleich wahrscheinliche Paare.
+Jedes Paar besteht aus zwei Buchstaben, also untersuchst du **den ersten und den zweiten Buchstaben getrennt** mit ihrer Stelle im Alphabet: A = 1, B = 2 bis Z = 26.
 
-<BlockMath math="\begin{aligned}1+2+4+5&amp;=12\\4+2+3+3&amp;=12\end{aligned}" />
+| Paar | Erster Buchstabe | Zweiter Buchstabe |
+| --- | --- | --- |
+| AY | <InlineMath math="1" /> | <InlineMath math="25" /> |
+| DW | <InlineMath math="4" /> | <InlineMath math="23" /> |
+| HT | <InlineMath math="8" /> | <InlineMath math="20" /> |
+| MP | <InlineMath math="13" /> | <InlineMath math="16" /> |
+| SK | <InlineMath math="19" /> | <InlineMath math="11" /> |
 
-| Kombination | Anzahl der Paare | Wahrscheinlichkeit |
-| :--- | :---: | :---: |
-| <InlineMath math="2" /> Große Äpfel | <InlineMath math="1\times4=4" /> | <InlineMath math="\frac{4}{144}" /> |
-| <InlineMath math="2" /> Kleine Äpfel | <InlineMath math="2\times2=4" /> | <InlineMath math="\frac{4}{144}" /> |
-| <InlineMath math="2" /> Große Orangen | <InlineMath math="4\times3=12" /> | <InlineMath math="\frac{12}{144}" /> |
-| <InlineMath math="2" /> Kleine Orangen | <InlineMath math="5\times3=15" /> | <InlineMath math="\frac{15}{144}" /> |
-| Großer Apfel und kleine Orange | <InlineMath math="3+20=23" /> | <InlineMath math="\frac{23}{144}" /> |
+Der erste Buchstabe wächst um <InlineMath math="3, 4, 5, 6" />, als Nächstes also um <InlineMath math="7" />: <InlineMath math="19+7=26" />, das ist Z. Der zweite Buchstabe sinkt um <InlineMath math="2, 3, 4, 5" />, als Nächstes also um <InlineMath math="6" />: <InlineMath math="11-6=5" />, das ist E.
 
-Bei der gemischten Kombination kann der große Apfel aus jeder der beiden Kisten stammen. Die beiden **disjunkten Fälle** ergeben <InlineMath math="1\times3=3" /> und <InlineMath math="5\times4=20" /> Paare, zusammen also <InlineMath math="3+20=23" />.
+Es gibt eine zweite Probe: Die beiden Stellen ergeben zusammen <InlineMath math="26, 27, 28, 29, 30" />, also jedes Mal **eins mehr**. Das nächste Paar muss <InlineMath math="31" /> ergeben, und Z mit E liefert <InlineMath math="26+5=31" />.
 
-Unter den Antwortmöglichkeiten ist <InlineMath math="\frac{23}{144}" /> die größte Wahrscheinlichkeit. Sie gehört zu **einem großen Apfel und einer kleinen Orange**.
+Die anderen Optionen entstehen aus diesen Fehlern:
+
+- YE addiert beim ersten Buchstaben noch einmal <InlineMath math="6" />, obwohl der Schritt jedes Mal um eins wächst.
+- YF wiederholt bei beiden Buchstaben den letzten Schritt, <InlineMath math="+6" /> und <InlineMath math="-5" />.
+- ZD zieht beim zweiten Buchstaben <InlineMath math="7" /> ab, obwohl sein Schritt immer um eins kleiner ist als der des ersten Buchstabens.
+- ZF zieht beim zweiten Buchstaben noch einmal <InlineMath math="5" /> ab.
+
+Das nächste Paar ist also ZE.

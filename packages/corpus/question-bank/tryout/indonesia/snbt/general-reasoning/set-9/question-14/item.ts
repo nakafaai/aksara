@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "grid-logic",
+  },
+  stimulus: "lantai",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "A, C, B, D, E",
-        },
-        {
-          correct: false,
-          label: "D, C, A, E, B",
-        },
-        {
-          correct: false,
-          label: "E, D, A, C, B",
-        },
-        {
           correct: true,
-          label: "D, A, C, E, B",
+          label: "Umar tinggal di lantai 1.",
         },
         {
           correct: false,
-          label: "A, D, C, B, E",
+          label: "Rani hobi memotret.",
+        },
+        {
+          correct: false,
+          label: "Sita tinggal di lantai 2.",
+        },
+        {
+          correct: false,
+          label: "Tika hobi melukis.",
+        },
+        {
+          correct: false,
+          label: "Rani tinggal di lantai 4.",
         },
       ],
     },

@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "pinisi",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Uji terbatas membuktikan bahwa denda harus dihapus untuk semua keadaan.",
+            "Wisata bahari membuat kebutuhan kayu untuk membangun kapal pinisi baru terus berkurang.",
+        },
+        {
+          correct: false,
+          label:
+            "Perajin pinisi berhenti membuat kapal baru karena kekurangan pembeli dari kalangan pedagang.",
+        },
+        {
+          correct: false,
+          label:
+            "Kapal pinisi untuk wisata bahari kini dibuat dari bahan selain kayu.",
         },
         {
           correct: true,
           label:
-            "Besarnya pendapatan denda tidak selalu menunjukkan bahwa layanan perpustakaan bekerja lebih baik.",
+            "Wisata bahari membuka pasar baru, tetapi bahan kayu untuk kapal makin sulit didapat.",
         },
         {
           correct: false,
           label:
-            "Keberhasilan kebijakan terutama ditentukan oleh banyaknya uang denda yang berhasil dikumpulkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian pengguna tidak menerima pesan karena nomor telepon berubah.",
-        },
-        {
-          correct: false,
-          label:
-            "Uji akan diperluas dengan dua saluran pengingat dan proses banding.",
+            "Penetapan oleh UNESCO pada tahun 2017 menyebabkan kayu untuk kapal menjadi langka.",
         },
       ],
     },

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Perkalian skalar dapat mengubah besar dan arah vektor. Terapkan operasi ini dalam perhitungan, fisika, dan geometri.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-12",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Vektor dan Operasinya",
 };
 
@@ -24,52 +24,32 @@ Jika <InlineMath math="k" /> adalah bilangan real (skalar) dan <InlineMath math=
 Vektor pada diagram memakai <InlineMath math="\vec v=(2,1)" />. **Selisih koordinat ujung dan pangkal** untuk ketiga panah adalah <InlineMath math="(2,1)" />, <InlineMath math="(4,2)" />, dan <InlineMath math="(-2,-1)" />.
 
 <ContentBlock>
-  <LineEquation
-    cameraPosition={[1, 2, 9]}
-    cameraTarget={[1, 2, 0]}
-    title="Skalar Mengubah Panjang dan Arah"
-    description="Pangkal panah dipisahkan agar ketiga vektor dapat dibandingkan. Faktor positif mempertahankan arah dan faktor negatif membalik arah."
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
-      color: "#9333ea",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\vec v" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 2, z: 0 }, { x: 4, y: 4, z: 0 }],
-      color: "#ea580c",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="2\vec v" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 4, z: 0 }, { x: -2, y: 3, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="-\vec v" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    ]}
+  <MathVisual
+    title={<><InlineMath math="\vec v" />, <InlineMath math="2\vec v" />, dan <InlineMath math="-\vec v" /></>}
+    description={<>Vektor <InlineMath math="\vec v = (2, 1)" />, vektor yang diregangkan <InlineMath math="2\vec v = (4, 2)" />, dan vektor yang dibalik <InlineMath math="-\vec v = (-2, -1)" />, digambar dari titik awal yang terpisah.</>}
+    labels={{
+      v: <InlineMath math="\vec v" />,
+      two: <InlineMath math="2\vec v" />,
+      neg: <InlineMath math="-\vec v" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -2.6, max: 4.6 }, y: { min: -0.5, max: 4.6 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+        { id: "v-head", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }], appearance: "primary" },
+        { id: "two", kind: "segment", from: { x: 0, y: 2 }, to: { x: 4, y: 4 }, appearance: "secondary" },
+        { id: "two-head", kind: "polygon", vertices: [{ x: 4, y: 4 }, { x: (4) + (-1 / Math.sqrt(20)) + (-1 / 5 / Math.sqrt(20)), y: (4) + (-1 / 2 / Math.sqrt(20)) + (2 / 5 / Math.sqrt(20)) }, { x: (4) + (-1 / Math.sqrt(20)) + (1 / 5 / Math.sqrt(20)), y: (4) + (-1 / 2 / Math.sqrt(20)) + (-2 / 5 / Math.sqrt(20)) }], appearance: "secondary" },
+        { id: "neg", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2, y: 3 }, appearance: "construction" },
+        { id: "neg-head", kind: "polygon", vertices: [{ x: -2, y: 3 }, { x: (-2) + (1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (3) + (1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }, { x: (-2) + (1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (3) + (1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }], appearance: "construction" },
+      ],
+      labels: [
+        { key: "v", objectId: "v", at: { x: 2, y: 1 }, placement: "right" },
+        { key: "two", objectId: "two", at: { x: 4, y: 4 }, placement: "right" },
+        { key: "neg", objectId: "neg", at: { x: -2, y: 3 }, placement: "left" },
+      ],
+    }}
   />
 </ContentBlock>
 
@@ -87,6 +67,36 @@ Secara geometris, perkalian skalar mengubah besar vektor dengan faktor <InlineMa
 Pada kedua kasus tersebut, termasuk ketika <InlineMath math="k=0" />, besarnya memenuhi:
 
 <BlockMath math="|k \cdot \vec{v}| = |k| \cdot |\vec{v}|" />
+
+Nilai mutlak faktornya menentukan panjang. <InlineMath math="\vec v = (4, 2)" /> sepanjang <InlineMath math="2\sqrt5" />. Baik <InlineMath math="\tfrac12\vec v = (2, 1)" /> maupun <InlineMath math="-\tfrac12\vec v = (-2, -1)" /> sepanjang <InlineMath math="\tfrac12 \cdot 2\sqrt5 = \sqrt5" />, dan tanda negatif hanya membalik arahnya.
+
+<MathVisual
+  title={<>Setengah <InlineMath math="\vec v" /> ke kedua arah</>}
+  description={<>Vektor <InlineMath math="\vec v = (4, 2)" /> serta vektor <InlineMath math="\tfrac12\vec v = (2, 1)" /> dan <InlineMath math="-\tfrac12\vec v = (-2, -1)" />, masing-masing sepanjang <InlineMath math="\sqrt5" />.</>}
+  labels={{
+    v: <InlineMath math="\vec v" />,
+    half: <InlineMath math="\tfrac12\vec v" />,
+    neg: <InlineMath math="-\tfrac12\vec v" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 4.6 }, y: { min: -0.5, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "v-head", kind: "polygon", vertices: [{ x: 4, y: 2 }, { x: (4) + (-1 / Math.sqrt(20)) + (-1 / 5 / Math.sqrt(20)), y: (2) + (-1 / 2 / Math.sqrt(20)) + (2 / 5 / Math.sqrt(20)) }, { x: (4) + (-1 / Math.sqrt(20)) + (1 / 5 / Math.sqrt(20)), y: (2) + (-1 / 2 / Math.sqrt(20)) + (-2 / 5 / Math.sqrt(20)) }], appearance: "primary" },
+      { id: "half", kind: "segment", from: { x: 0, y: 2 }, to: { x: 2, y: 3 }, appearance: "secondary" },
+      { id: "half-head", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (3) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (3) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }], appearance: "secondary" },
+      { id: "neg", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2, y: 3 }, appearance: "construction" },
+      { id: "neg-head", kind: "polygon", vertices: [{ x: -2, y: 3 }, { x: (-2) + (1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (3) + (1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }, { x: (-2) + (1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (3) + (1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "half", objectId: "half", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "neg", objectId: "neg", at: { x: -2, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
 
 ### Mengalikan Setiap Komponen dengan Skalar
 
@@ -125,6 +135,32 @@ Diketahui vektor <InlineMath math="\vec{v} = (4, -2, 3)" />. Tentukan hasil dari
 <BlockMath math="\begin{aligned} -3\vec{v} &amp;= -3(4, -2, 3) \\ &amp;= (-12, 6, -9) \end{aligned}" />
 
 Perhatikan bahwa arah vektor hasil berlawanan dengan vektor asal karena skalarnya negatif.
+
+Di ruang, aturan yang sama berlaku. <InlineMath math="-3\vec{v} = (-12, 6, -9)" /> mengarah tepat berlawanan dengan <InlineMath math="\vec{v} = (4, -2, 3)" /> dan 3 kali lebih panjang.
+
+<MathVisual
+  title={<><InlineMath math="\vec v" /> dan <InlineMath math="-3\vec v" /> di ruang</>}
+  description={<>Vektor <InlineMath math="\vec{v} = (4, -2, 3)" /> dan vektor <InlineMath math="-3\vec{v} = (-12, 6, -9)" />, pada satu garis melalui titik asal dengan arah berlawanan.</>}
+  labels={{
+    v: <InlineMath math="\vec v" />,
+    neg: <InlineMath math="-3\vec v" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -13, max: 5 }, y: { min: -3, max: 7 }, z: { min: -10, max: 4 } },
+    view: { kind: "isometric", target: { x: -4, y: 2, z: -3 } },
+    objects: [
+      { id: "neg", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: -12, y: 6, z: -9 }, appearance: "secondary" },
+      { id: "neg-head", kind: "polygon", vertices: [{ x: -12, y: 6, z: -9 }, { x: (-294 / 25) + (12 / Math.sqrt(261)), y: (6) + (-6 / Math.sqrt(261)), z: (-233 / 25) + (9 / Math.sqrt(261)) }, { x: (-306 / 25) + (12 / Math.sqrt(261)), y: (6) + (-6 / Math.sqrt(261)), z: (-217 / 25) + (9 / Math.sqrt(261)) }], appearance: "secondary" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: -2, z: 3 }, appearance: "primary" },
+      { id: "v-head", kind: "polygon", vertices: [{ x: 4, y: -2, z: 3 }, { x: (476 / 125) + (-16 / 5 / Math.sqrt(29)), y: (-2) + (8 / 5 / Math.sqrt(29)), z: (407 / 125) + (-12 / 5 / Math.sqrt(29)) }, { x: (524 / 125) + (-16 / 5 / Math.sqrt(29)), y: (-2) + (8 / 5 / Math.sqrt(29)), z: (343 / 125) + (-12 / 5 / Math.sqrt(29)) }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 4, y: -2, z: 3 }, placement: "right" },
+      { key: "neg", objectId: "neg", at: { x: -12, y: 6, z: -9 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Aplikasi Perkalian Skalar dengan Vektor
 

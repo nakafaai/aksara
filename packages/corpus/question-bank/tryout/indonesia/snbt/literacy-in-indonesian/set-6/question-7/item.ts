@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "fact-opinion",
+  },
+  stimulus: "homework-debate",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Fakta", "Opini"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            'Karena langkah "air dengan volume sama dituangkan pada tanah terbuka dan tanah yang ditutup serat tumbuhan" dapat diulang, model sudah mencakup faktor yang hilang ketika baki kecil tidak meniru seluruh kemiringan, akar, dan curah hujan suatu lereng dan dapat menggantikan pengamatan lapangan.',
+            "Tinjauan penelitian menemukan hubungan pekerjaan rumah dan prestasi lebih kuat pada siswa sekolah menengah.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Selisih yang muncul pada kedua ulangan mendukung dugaan bahwa penutup mengurangi tanah terbawa, tetapi model belum dapat memprediksi besarnya erosi pada lereng dengan akar, tanah, dan hujan yang berbeda.",
+            "Tinjauan itu mencakup puluhan penelitian yang dilakukan di Amerika Serikat.",
         },
         {
-          correct: false,
-          label:
-            "Keterbatasan bahwa baki kecil tidak meniru seluruh kemiringan, akar, dan curah hujan suatu lereng membuat hubungan bahwa penutup permukaan dapat mengubah banyaknya tanah yang terbawa aliran tidak dapat diperiksa, bahkan di dalam model.",
+          column: 2,
+          label: "Pekerjaan rumah sebaiknya dihapus di sekolah dasar.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Hubungan bahwa penutup permukaan dapat mengubah banyaknya tanah yang terbawa aliran dapat diterapkan langsung pada keadaan nyata selama urutan model diulang dengan cara yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi istilah pada akhir bacaan sudah cukup membuktikan hubungan sebab dalam model erosi menggunakan baki tanah, meskipun bagian model tidak dibandingkan.",
+            "Waktu sore anak-anak lebih berguna untuk membaca, bermain, dan tidur cukup.",
         },
       ],
     },

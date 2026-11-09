@@ -1,49 +1,20 @@
-Die Platten bedecken **alle vier Stallwände**. Jede Platte ist so hoch wie eine Wand und nimmt entlang des Umfangs 0,8 m ein. Zuerst bestimmen wir Grundmaße, die mit ganzen Platten auskommen. Danach berechnen wir den Preis.
+Ein Stufentarif bedeutet, dass **jeder Teil des Verbrauchs zum Preis seiner eigenen Stufe abgerechnet wird**, nicht der ganze Verbrauch zu einem Preis. Ein Verbrauch von 250 kWh läuft durch Stufe 1 und endet in Stufe 2.
 
-# Maße der Grundfläche bestimmen
+# Den Verbrauch auf die Stufen verteilen
 
-Schreibe die Breite als <InlineMath math="w=0{,}8m" /> und die Länge als <InlineMath math="l=0{,}8n" />. Die positiven ganzen Zahlen <InlineMath math="m" /> und <InlineMath math="n" /> zählen die Platten an einer kurzen und einer langen Wand. Die Grundfläche beträgt 256 m², also gilt:
+Die 250 kWh **teilen sich in 100 kWh in Stufe 1 und 150 kWh in Stufe 2**.
 
-<BlockMath math="\begin{aligned}
-lw&=256 \\
-(0{,}8n)(0{,}8m)&=256 \\
-0{,}64mn&=256 \\
-mn&=\frac{256}{0{,}64}=400
-\end{aligned}" />
+| Teil | kWh | Kosten |
+| :---: | :---: | :---: |
+| Stufe 1 | 100 | <InlineMath math="100\cdot1\,000=100\,000" /> |
+| Stufe 2 | 150 | <InlineMath math="150\cdot1\,500=225\,000" /> |
 
-Die Breite muss zwischen 5 m und 7,5 m liegen. Das begrenzt die Plattenzahl an der kurzen Wand.
+# Mit der Grundgebühr addieren
 
-<BlockMath math="\begin{aligned}
-5\le0{,}8m&\le7{,}5 \\
-6{,}25\le m&\le9{,}375
-\end{aligned}" />
+<BlockMath math="20\,000+100\,000+225\,000=345\,000" />
 
-Für <InlineMath math="m" /> kommen somit nur 7, 8 oder 9 infrage. Entscheidend sind **ganzzahlige Plattenzahlen an beiden Seiten**.
+Die Rechnung **enthält immer die Grundgebühr**, egal wie hoch der Verbrauch ist.
 
-| Platten an der kurzen Wand <InlineMath math="m" /> | Breite (m) | Platten an der langen Wand <InlineMath math="n=400/m" /> | Ganze Platten? |
-| ---: | ---: | --- | --- |
-| 7 | 5,6 | <InlineMath math="400/7=57+1/7" /> | Nein |
-| 8 | 6,4 | <InlineMath math="400/8=50" /> | Ja |
-| 9 | 7,2 | <InlineMath math="400/9=44+4/9" /> | Nein |
+Eine Rechnung von 395 000 Rupiah berechnet alle 250 kWh zum Preis der Stufe 2, und 520 000 Rupiah alle zum Preis der Stufe 3. Eine Rechnung von 325 000 Rupiah vergisst die Grundgebühr, und 270 000 Rupiah berechnet den ganzen Verbrauch zum Preis der Stufe 1.
 
-Der Stall ist daher 6,4 m breit und <InlineMath math="0{,}8(50)=40\,\mathrm{m}" /> lang. Die Flächenprobe stimmt: <InlineMath math="6{,}4\times40=256\,\mathrm{m}^2" />.
-
-# Plattenzahl und Preis berechnen
-
-Der Stall hat **zwei Paare gleich langer Wände**. Jede kurze Wand benötigt 8 Platten, jede lange Wand 50.
-
-<BlockMath math="\begin{aligned}
-N&=2(8)+2(50) \\
-&=16+100=116
-\end{aligned}" />
-
-Multipliziere die 116 Platten mit dem Stückpreis von Rp40.000,00.
-
-<BlockMath math="\begin{aligned}
-C&=116\times40{.}000 \\
-&=(100+16)\times40{.}000 \\
-&=4{.}000{.}000+640{.}000 \\
-&=4{.}640{.}000
-\end{aligned}" />
-
-Die Platten kosten **Rp4.640.000,00**.
+Die Stromrechnung für diesen Monat beträgt also **345 000 Rupiah**.

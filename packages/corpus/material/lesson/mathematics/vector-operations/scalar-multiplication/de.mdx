@@ -3,7 +3,7 @@ export const metadata = {
   description: "Beschreibe, wie die Skalarmultiplikation Betrag und Richtung eines Vektors verändert, und wende sie in Rechnungen, Physik und Geometrie an.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Vektoren und ihre Operationen",
 };
 
@@ -26,52 +26,32 @@ Die Skalarmultiplikation verändert einen Vektor nach den folgenden Regeln:
 Das Diagramm verwendet <InlineMath math="\vec v=(2,1)" />. **Endpunkt minus Anfangspunkt** ergibt für die drei Pfeile <InlineMath math="(2,1)" />, <InlineMath math="(4,2)" /> und <InlineMath math="(-2,-1)" />.
 
 <ContentBlock>
-  <LineEquation
-    cameraPosition={[1, 2, 9]}
-    cameraTarget={[1, 2, 0]}
-    title="Länge und Richtung beim Skalieren"
-    description="Die Pfeilanfänge sind versetzt, damit du alle drei Vektoren vergleichen kannst. Ein positiver Faktor erhält die Richtung, ein negativer kehrt sie um."
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
-      color: "#9333ea",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\vec v" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 2, z: 0 }, { x: 4, y: 4, z: 0 }],
-      color: "#ea580c",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="2\vec v" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 4, z: 0 }, { x: -2, y: 3, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="-\vec v" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    ]}
+  <MathVisual
+    title={<><InlineMath math="\vec v" />, <InlineMath math="2\vec v" /> und <InlineMath math="-\vec v" /></>}
+    description={<>Der Vektor <InlineMath math="\vec v = (2, 1)" />, der gestreckte Vektor <InlineMath math="2\vec v = (4, 2)" /> und der umgekehrte Vektor <InlineMath math="-\vec v = (-2, -1)" />, von getrennten Anfangspunkten aus gezeichnet.</>}
+    labels={{
+      v: <InlineMath math="\vec v" />,
+      two: <InlineMath math="2\vec v" />,
+      neg: <InlineMath math="-\vec v" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -2.6, max: 4.6 }, y: { min: -0.5, max: 4.6 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+        { id: "v-head", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }], appearance: "primary" },
+        { id: "two", kind: "segment", from: { x: 0, y: 2 }, to: { x: 4, y: 4 }, appearance: "secondary" },
+        { id: "two-head", kind: "polygon", vertices: [{ x: 4, y: 4 }, { x: (4) + (-1 / Math.sqrt(20)) + (-1 / 5 / Math.sqrt(20)), y: (4) + (-1 / 2 / Math.sqrt(20)) + (2 / 5 / Math.sqrt(20)) }, { x: (4) + (-1 / Math.sqrt(20)) + (1 / 5 / Math.sqrt(20)), y: (4) + (-1 / 2 / Math.sqrt(20)) + (-2 / 5 / Math.sqrt(20)) }], appearance: "secondary" },
+        { id: "neg", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2, y: 3 }, appearance: "construction" },
+        { id: "neg-head", kind: "polygon", vertices: [{ x: -2, y: 3 }, { x: (-2) + (1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (3) + (1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }, { x: (-2) + (1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (3) + (1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }], appearance: "construction" },
+      ],
+      labels: [
+        { key: "v", objectId: "v", at: { x: 2, y: 1 }, placement: "right" },
+        { key: "two", objectId: "two", at: { x: 4, y: 4 }, placement: "right" },
+        { key: "neg", objectId: "neg", at: { x: -2, y: 3 }, placement: "left" },
+      ],
+    }}
   />
 </ContentBlock>
 
@@ -89,6 +69,36 @@ Geometrisch verändert die Multiplikation den Betrag eines Vektors um den Faktor
 In beiden Fällen und auch für <InlineMath math="k=0" /> gilt für den Betrag:
 
 <BlockMath math="|k \cdot \vec{v}| = |k| \cdot |\vec{v}|" />
+
+Der Betrag des Faktors bestimmt die Länge. <InlineMath math="\vec v = (4, 2)" /> hat die Länge <InlineMath math="2\sqrt5" />. Sowohl <InlineMath math="\tfrac12\vec v = (2, 1)" /> als auch <InlineMath math="-\tfrac12\vec v = (-2, -1)" /> haben die Länge <InlineMath math="\tfrac12 \cdot 2\sqrt5 = \sqrt5" />, und das Minuszeichen kehrt nur die Richtung um.
+
+<MathVisual
+  title={<>Die Hälfte von <InlineMath math="\vec v" /> in beide Richtungen</>}
+  description={<>Der Vektor <InlineMath math="\vec v = (4, 2)" /> und die Vektoren <InlineMath math="\tfrac12\vec v = (2, 1)" /> und <InlineMath math="-\tfrac12\vec v = (-2, -1)" />, jeweils der Länge <InlineMath math="\sqrt5" />.</>}
+  labels={{
+    v: <InlineMath math="\vec v" />,
+    half: <InlineMath math="\tfrac12\vec v" />,
+    neg: <InlineMath math="-\tfrac12\vec v" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 4.6 }, y: { min: -0.5, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "v-head", kind: "polygon", vertices: [{ x: 4, y: 2 }, { x: (4) + (-1 / Math.sqrt(20)) + (-1 / 5 / Math.sqrt(20)), y: (2) + (-1 / 2 / Math.sqrt(20)) + (2 / 5 / Math.sqrt(20)) }, { x: (4) + (-1 / Math.sqrt(20)) + (1 / 5 / Math.sqrt(20)), y: (2) + (-1 / 2 / Math.sqrt(20)) + (-2 / 5 / Math.sqrt(20)) }], appearance: "primary" },
+      { id: "half", kind: "segment", from: { x: 0, y: 2 }, to: { x: 2, y: 3 }, appearance: "secondary" },
+      { id: "half-head", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (3) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (3) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }], appearance: "secondary" },
+      { id: "neg", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2, y: 3 }, appearance: "construction" },
+      { id: "neg-head", kind: "polygon", vertices: [{ x: -2, y: 3 }, { x: (-2) + (1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (3) + (1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }, { x: (-2) + (1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (3) + (1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "half", objectId: "half", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "neg", objectId: "neg", at: { x: -2, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
 
 ### Einen Vektor komponentenweise skalieren
 
@@ -127,6 +137,32 @@ Gegeben ist der Vektor <InlineMath math="\vec{v} = (4, -2, 3)" />. Bestimme das 
 <BlockMath math="\begin{aligned} -3\vec{v} &amp;= -3(4, -2, 3) \\ &amp;= (-12, 6, -9) \end{aligned}" />
 
 Weil der Skalar negativ ist, zeigt der Ergebnisvektor in die entgegengesetzte Richtung.
+
+Im Raum gilt dieselbe Regel. <InlineMath math="-3\vec{v} = (-12, 6, -9)" /> zeigt genau entgegengesetzt zu <InlineMath math="\vec{v} = (4, -2, 3)" /> und ist 3-mal so lang.
+
+<MathVisual
+  title={<><InlineMath math="\vec v" /> und <InlineMath math="-3\vec v" /> im Raum</>}
+  description={<>Der Vektor <InlineMath math="\vec{v} = (4, -2, 3)" /> und der Vektor <InlineMath math="-3\vec{v} = (-12, 6, -9)" />, auf einer Geraden durch den Ursprung in entgegengesetzte Richtungen.</>}
+  labels={{
+    v: <InlineMath math="\vec v" />,
+    neg: <InlineMath math="-3\vec v" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -13, max: 5 }, y: { min: -3, max: 7 }, z: { min: -10, max: 4 } },
+    view: { kind: "isometric", target: { x: -4, y: 2, z: -3 } },
+    objects: [
+      { id: "neg", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: -12, y: 6, z: -9 }, appearance: "secondary" },
+      { id: "neg-head", kind: "polygon", vertices: [{ x: -12, y: 6, z: -9 }, { x: (-294 / 25) + (12 / Math.sqrt(261)), y: (6) + (-6 / Math.sqrt(261)), z: (-233 / 25) + (9 / Math.sqrt(261)) }, { x: (-306 / 25) + (12 / Math.sqrt(261)), y: (6) + (-6 / Math.sqrt(261)), z: (-217 / 25) + (9 / Math.sqrt(261)) }], appearance: "secondary" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: -2, z: 3 }, appearance: "primary" },
+      { id: "v-head", kind: "polygon", vertices: [{ x: 4, y: -2, z: 3 }, { x: (476 / 125) + (-16 / 5 / Math.sqrt(29)), y: (-2) + (8 / 5 / Math.sqrt(29)), z: (407 / 125) + (-12 / 5 / Math.sqrt(29)) }, { x: (524 / 125) + (-16 / 5 / Math.sqrt(29)), y: (-2) + (8 / 5 / Math.sqrt(29)), z: (343 / 125) + (-12 / 5 / Math.sqrt(29)) }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 4, y: -2, z: 3 }, placement: "right" },
+      { key: "neg", objectId: "neg", at: { x: -12, y: 6, z: -9 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Anwendungen der Skalarmultiplikation von Vektoren
 

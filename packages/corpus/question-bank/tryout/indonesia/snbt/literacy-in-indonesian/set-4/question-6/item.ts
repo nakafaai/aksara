@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "main-idea",
+  },
+  stimulus: "free-transit",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Angkutan umum sebaiknya dihapus dan diganti dengan kendaraan pribadi yang lebih cepat.",
+        },
+        {
+          correct: false,
+          label:
+            "Tiket angkutan umum sebaiknya dinaikkan agar pemerintah memperoleh pendapatan lebih besar.",
+        },
+        {
           correct: true,
           label:
-            "Model daur air dalam kotak transparan menyederhanakan proses agar dapat diperiksa sambil tetap memiliki batas representasi.",
+            "Dana sebaiknya dipakai untuk layanan andal, dengan potongan tiket bagi yang membutuhkan.",
         },
         {
           correct: false,
           label:
-            "Model daur air dalam kotak transparan membuktikan bahwa pengulangan yang sama sudah mencakup seluruh kondisi atmosfer nyata.",
+            "Semua warga kota sebaiknya mendapat angkutan umum gratis tanpa kecuali.",
         },
         {
           correct: false,
           label:
-            "Model daur air dalam kotak transparan hanya berguna untuk menghafal istilah kondensasi tanpa mengamati perubahan wujud air.",
-        },
-        {
-          correct: false,
-          label:
-            "Model daur air dalam kotak transparan menggantikan pengamatan lapangan karena lampu dan es meniru atmosfer secara lengkap.",
-        },
-        {
-          correct: false,
-          label:
-            "Model daur air dalam kotak transparan tidak dapat membantu memeriksa proses apa pun karena tidak sama persis dengan alam.",
+            "Warga berpenghasilan rendah sebaiknya beralih ke sepeda motor agar lebih tepat waktu.",
         },
       ],
     },

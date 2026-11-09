@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "karst",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Asumsi, batas data, dan kriteria keputusan dinyatakan langsung dalam laporan.",
+          label: "menguap ke udara",
         },
         {
           correct: false,
-          label:
-            "Sumber, metode, dan jejak data dapat diperiksa secara mandiri sebelum klaim diterima.",
+          label: "mengalir di atas permukaan",
         },
         {
           correct: true,
-          label:
-            "Tim membuka data, metode, alasan pengecualian, dan keterbatasan agar proses dapat diperiksa.",
+          label: "masuk ke dalam celah-celah",
         },
         {
           correct: false,
-          label:
-            "Tim memeriksa rekaman asli beserta asal dan riwayat perubahannya sebelum menggunakannya.",
+          label: "membeku menjadi es",
         },
         {
           correct: false,
-          label:
-            "Penilai memakai rubrik yang ditetapkan sebelum mengetahui identitas peserta atau hasil akhirnya.",
+          label: "menggenang di permukaan tanah",
         },
       ],
     },

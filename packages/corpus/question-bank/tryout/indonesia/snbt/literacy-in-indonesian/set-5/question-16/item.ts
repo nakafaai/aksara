@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "cause-effect",
+  },
+  stimulus: "chili-prices",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Hujan lebat pada bulan Juni merontokkan bunga cabai sehingga panen gagal.",
+        },
+        {
           correct: true,
           label:
-            "Siswa membandingkan buku pesanan dan sejarah lisan untuk menjelaskan perubahan reparasi tanpa menganggap alasan yang diingat tiga penjahit sebagai motif semua pelanggan.",
+            "Permintaan naik menjelang hari raya, sementara pasokan sedikit turun dari Mei.",
         },
         {
           correct: false,
           label:
-            "Siswa memakai buku pesanan untuk membuktikan alasan semua pelanggan karena catatan transaksi dibuat pada saat kejadian.",
+            "Pasokan pada bulan Juni adalah yang paling rendah selama enam bulan itu.",
         },
         {
           correct: false,
           label:
-            "Siswa menyamakan buku pesanan dan wawancara karena keduanya membahas perubahan reparasi pada kawasan yang sama.",
+            "Petani menahan panennya karena harga pada bulan Mei terlalu tinggi bagi pembeli.",
         },
         {
           correct: false,
           label:
-            "Siswa mengutamakan wawancara tahun $$2026$$ karena sumber yang lebih baru selalu memberikan gambaran masa lalu yang lebih lengkap.",
-        },
-        {
-          correct: false,
-          label:
-            "Siswa menggabungkan kedua sumber untuk mengisi alasan pelanggan yang tidak tercatat dengan dugaan yang dianggap masuk akal.",
+            "Cabai dari kabupaten lain membanjiri pasar induk pada bulan Juni.",
         },
       ],
     },

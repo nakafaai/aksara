@@ -1,14 +1,24 @@
-Let <InlineMath math="b_1" /> and <InlineMath math="b_2" /> be the numbers of black balls in the two boxes. The first box gives <InlineMath math="b_1=12" />. The problem specifies that the two draws are **independent**:
+Let the roots be <InlineMath math="t" /> and <InlineMath math="t^2" />. The sum of the roots is known, so **the sum formula fixes <InlineMath math="t" />**, and then the product of the roots gives <InlineMath math="q" />.
 
-<BlockMath math="\begin{aligned} \frac{3}{10} &= \frac{b_1}{20}\cdot\frac{b_2}{20} \\ &= \frac{12}{20}\cdot\frac{b_2}{20} \\ \frac{3}{10}&=\frac{12b_2}{400} \\ b_2&=\frac{3}{10}\cdot\frac{400}{12} \\ b_2 &= 10 \end{aligned}" />
+# The root from the sum of roots
 
-The boxes therefore contain:
+<BlockMath math="\begin{aligned}
+t+t^2&=12\\
+t^2+t-12&=0\\
+(t+4)(t-3)&=0
+\end{aligned}" />
 
-- Box <InlineMath math="1" />: <InlineMath math="20 - 12 = 8" /> white balls
-- Box <InlineMath math="2" />: <InlineMath math="20 - 10 = 10" /> white balls
+There are **two possibilities**, <InlineMath math="t=3" /> or <InlineMath math="t=-4" />.
 
-Multiplying the two white-ball probabilities gives:
+# The value of q from the product
 
-<BlockMath math="\frac{8}{20}\cdot\frac{10}{20}=\frac{1}{5}" />
+| <InlineMath math="t" /> | Roots | <InlineMath math="q=t\cdot t^2" /> |
+| :---: | :---: | :---: |
+| 3 | 3 and 9 | 27 |
+| <InlineMath math="-4" /> | <InlineMath math="-4" /> and 16 | <InlineMath math="-64" /> |
 
-Since <InlineMath math="\frac{1}{5}" /> is already in lowest terms, <InlineMath math="m=1" /> and <InlineMath math="n=5" />. Hence <InlineMath math="m+n=6" />.
+Both pairs do add up to 12, so **both are valid**. The sum of all values of <InlineMath math="q" /> is <InlineMath math="27+(-64)=-37" />.
+
+The values 27 and <InlineMath math="-64" /> use only one possibility. The value 37 has the wrong sign, and <InlineMath math="-91" /> adds the two absolute values with a minus sign.
+
+So the sum of all possible values of <InlineMath math="q" /> is **<InlineMath math="-37" />**.

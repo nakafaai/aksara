@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "categorical-syllogism",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$150\\text{ gram}$$",
+          column: 1,
+          label:
+            "Tidak ada pemain gamelan di Sanggar Laras yang berusia di bawah $$10$$ tahun.",
         },
         {
-          correct: false,
-          label: "$$175\\text{ gram}$$",
+          column: 1,
+          label:
+            "Sebagian penari di Sanggar Laras berusia $$10$$ tahun atau lebih.",
         },
         {
-          correct: false,
-          label: "$$250\\text{ gram}$$",
+          column: 2,
+          label:
+            "Semua penari di Sanggar Laras dapat membaca notasi kepatihan.",
         },
         {
-          correct: false,
-          label: "$$275\\text{ gram}$$",
-        },
-        {
-          correct: true,
-          label: "$$225\\text{ gram}$$",
+          column: 2,
+          label:
+            "Semua anggota sanggar yang dapat membaca notasi kepatihan adalah pemain gamelan.",
         },
       ],
     },

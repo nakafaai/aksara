@@ -1,28 +1,21 @@
-Wir müssen den **Mindestanzahlungsbetrag** ermitteln, der es Jeje ermöglicht, den niedrigsten Zinssatz zu erhalten.
+Die Formel des Stufentarifs ändert sich in jeder Stufe, der Pauschaltarif ist immer <InlineMath math="1\,400x" />. Vergleiche die beiden Rechnungen also **Stufe für Stufe**.
 
-# Zinsanalyse
+# Stufe 1, bis 100 kWh
 
-Der anfängliche Zinssatz beträgt <InlineMath math="6\%" /> pro Jahr mit einer Mindestanzahlung von <InlineMath math="10\%" />. Jedes weitere Vielfache der Mindestanzahlung (d. h. Vielfache von <InlineMath math="10\%" />) führt zu einer Senkung des Jahreszinssatzes um einen Prozentpunkt, insgesamt höchstens um **zwei Prozentpunkte**.
+<BlockMath math="20\,000+1\,000x<1\,400x\;\Longleftrightarrow\;20\,000<400x\;\Longleftrightarrow\;x>50" />
 
-| Anzahlung bezogen auf den ursprünglichen Preis | Zinssenkung | Jahreszinssatz |
-| --- | --- | --- |
-| 10% | 0 Prozentpunkte | 6% |
-| 20% | 1 Prozentpunkt | 5% |
-| 30% | 2 Prozentpunkte | 4% |
-| Ab 40% | Weiterhin höchstens 2 Prozentpunkte | Weiterhin 4% |
+# Stufe 2, von 100 bis 300 kWh
 
-Um den niedrigsten Zinssatz (<InlineMath math="4\%" />) zu erhalten, muss Jeje daher eine Mindestanzahlung von **<InlineMath math="30\%" />** leisten.
+Die Stufenrechnung ist <InlineMath math="20\,000+100\,000+1\,500(x-100)=1\,500x-30\,000" />.
 
-# Anzahlungsbetrag berechnen
+<BlockMath math="1\,500x-30\,000<1\,400x\;\Longleftrightarrow\;100x<30\,000\;\Longleftrightarrow\;x<300" />
 
-Der **ursprüngliche Laptoppreis** beträgt <InlineMath math="\text{Rp}12{.}000{.}000{,}00" />. Wir berechnen <InlineMath math="30\%" /> dieses Preises:
+Die ganze Stufe 2 unter 300 kWh erfüllt das. Bei <InlineMath math="x=300" /> betragen **beide Rechnungen 420 000 Rupiah**.
 
-<BlockMath math="30\% \times 12{.}000{.}000" />
+# Stufe 3, über 300 kWh
 
-<BlockMath math="\frac{30}{100} \times 12{.}000{.}000" />
+Die Stufenrechnung ist <InlineMath math="420\,000+2\,000(x-300)=2\,000x-180\,000" />. Die Bedingung <InlineMath math="2\,000x-180\,000<1\,400x" /> bedeutet <InlineMath math="x<300" />, was <InlineMath math="x>300" /> widerspricht. In dieser Stufe **ist der Pauschaltarif immer günstiger**.
 
-<BlockMath math="3{.}600{.}000" />
+Zusammen ergibt sich <InlineMath math="50<x<300" />. Die Wahl <InlineMath math="x>50" /> vergisst Stufe 3, <InlineMath math="x<300" /> vergisst die Grundgebühr bei kleinem Verbrauch, und <InlineMath math="100<x<300" /> sowie <InlineMath math="50<x<100" /> prüfen jeweils nur eine Stufe.
 
-Die Anzahlung, die Jeje leisten muss, beträgt also <InlineMath math="\text{Rp}3{.}600{.}000{,}00" />.
-
-Der Rabatt verändert den Kaufpreis. Laut Aufgabenregel wird die Anzahlung jedoch **vom ursprünglichen Preis** berechnet, nicht vom rabattierten Preis.
+Der Stufentarif ist also genau dann günstiger, wenn **<InlineMath math="50<x<300" />** gilt.

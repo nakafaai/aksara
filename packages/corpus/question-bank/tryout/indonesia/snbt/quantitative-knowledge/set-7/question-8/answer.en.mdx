@@ -1,37 +1,30 @@
-Compare the **two groups of animal keepers**:
-- People raising goats: <InlineMath math="K = 450" />
-- People raising chickens: <InlineMath math="A = 300" />
-- Total population: <InlineMath math="S = 600" />
+Let the craftsperson make <InlineMath math="x" /> bags of type A and <InlineMath math="y" /> bags of type B. This is **linear programming**: the profit is maximised over the region bounded by working hours and material.
 
-Let <InlineMath math="M" /> and <InlineMath math="m" /> denote the maximum and minimum numbers of people who raise both animals.
+# Model and corner points
 
-# Maximum Number of People Raising Both
+<BlockMath math="\begin{aligned}
+\text{hours}&:\quad 2x+3y\le60\\
+\text{material}&:\quad x+y\le25\\
+\text{profit}&:\quad K=40{,}000x+50{,}000y
+\end{aligned}" />
 
-The maximum number of people raising both animals is the size of the smaller group. This happens if **all members of the smaller group** are also members of the larger group.
+Both variables are also non-negative, <InlineMath math="x\ge0" /> and <InlineMath math="y\ge0" />. A linear function reaches its maximum **at one of the corner points of the region**. The intersection of the two boundary lines comes from subtracting twice the material equation from the hours equation.
 
-<BlockMath math="\begin{aligned}M&=\min(K,A)\\&=\min(450,300)\\&=300\end{aligned}" />
+<BlockMath math="\begin{aligned}
+(2x+3y)-2(x+y)&=60-50\\
+y&=10,\quad x=15
+\end{aligned}" />
 
-# Minimum Number of People Raising Both
+# Comparing the profits
 
-The minimum overlap occurs when the **union is as large as possible**, namely 600 people. Adding the group sizes gives <InlineMath math="450+300=750" />. The excess <InlineMath math="750-600" /> counts people included twice:
+| Corner point | Profit |
+| :---: | :---: |
+| <InlineMath math="(25,0)" /> | Rp1,000,000 |
+| <InlineMath math="(15,10)" /> | Rp1,100,000 |
+| <InlineMath math="(0,20)" /> | Rp1,000,000 |
 
-<BlockMath math="m=\max(0,K+A-S)" />
+The largest profit is at <InlineMath math="(15,10)" />, which uses exactly 60 hours and exactly 25 bags. **Both constraints are used up** at this point.
 
-Substitute the known values:
+A profit of Rp1,250,000 makes 25 bags of type B, which would need 75 hours. A profit of Rp1,200,000 makes 30 bags of type A and breaks the material limit. A profit of Rp1,150,000 appears if the working hours of bags A and B are swapped.
 
-<BlockMath math="\begin{aligned}m&=\max(0,750-600)\\&=\max(0,150)\\&=150\end{aligned}" />
-
-Both bounds can be attained by the following population allocations.
-
-| Bound | Goats only | Both | Chickens only | Neither |
-| --- | --- | --- | --- | --- |
-| M | 150 | 300 | 0 | 150 |
-| m | 300 | 150 | 150 | 0 |
-
-# Sum of Maximum and Minimum
-
-We are asked to find the **sum of the maximum and minimum values**.
-
-<BlockMath math="\begin{aligned}M+m&=300+150\\&=450\end{aligned}" />
-
-Thus, the sum of the maximum and minimum number of people raising both animals is <InlineMath math="450" />.
+So the maximum profit is **Rp1,100,000**.

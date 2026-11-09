@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "pool-pumps",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$3:7$$",
-        },
-        {
-          correct: false,
-          label: "$$9:14$$",
-        },
-        {
-          correct: true,
-          label: "$$19:21$$",
-        },
-        {
-          correct: false,
-          label: "$$21:19$$",
-        },
-        {
-          correct: false,
-          label: "$$7:3$$",
-        },
+        { correct: false, label: "pukul 08.00" },
+        { correct: false, label: "pukul 09.00" },
+        { correct: false, label: "pukul 09.45" },
+        { correct: false, label: "pukul 10.00" },
+        { correct: true, label: "pukul 10.15" },
       ],
     },
   },

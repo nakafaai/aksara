@@ -1,31 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
+  },
+  stimulus: "youth-pledge",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
-        },
-        {
-          correct: true,
-          label: "Langkah Kecil Raka di Ruang Arsip Sekolah",
-        },
-        {
-          correct: false,
-          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
+          label:
+            "Bahasa persatuan harus diambil dari bahasa dengan penutur terbanyak.",
         },
         {
           correct: false,
           label:
-            "metakognisi sebagai definisi tanpa tindakan yang dapat diperiksa",
+            "Bahasa Melayu tidak cocok karena memiliki tingkatan tutur yang rumit.",
         },
         {
           correct: false,
-          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
+          label:
+            "Nama bahasa sebaiknya diputuskan setelah kemerdekaan tercapai.",
+        },
+        {
+          correct: false,
+          label:
+            "Bahasa daerah harus dihapus agar bangsa Indonesia dapat bersatu.",
+        },
+        {
+          correct: true,
+          label:
+            "Nama bahasa sebaiknya selaras dengan nama bangsa dan tanah airnya.",
         },
       ],
     },

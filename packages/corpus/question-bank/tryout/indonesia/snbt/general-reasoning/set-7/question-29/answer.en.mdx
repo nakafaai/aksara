@@ -1,17 +1,11 @@
-The two balls are selected without regard to order. From <InlineMath math="12" /> balls, the number of equally likely pairs is:
+Split into **two cases** by the two volumes, since they are always chosen together or not at all. Besides those two, there are <InlineMath math="5" /> other books.
 
-<BlockMath math="\binom{12}{2}=66" />
+**Both volumes chosen**. One more book comes from the <InlineMath math="5" /> others:
 
-The payout for two red balls rises by <InlineMath math="50\%" />, from <InlineMath math="30" /> to <InlineMath math="45" /> thousand rupiah. The other payouts stay fixed:
+<BlockMath math="\binom{5}{1}=5" />
 
-| Outcome | Pairs | New payout |
-| :--- | ---: | ---: |
-| Two red | <InlineMath math="\binom82=28" /> | <InlineMath math="45" /> |
-| Different colours | <InlineMath math="8\times4=32" /> | <InlineMath math="15" /> |
-| Two blue | <InlineMath math="\binom42=6" /> | <InlineMath math="0" /> |
+**Neither volume chosen**. All three books come from the <InlineMath math="5" /> others:
 
-Let <InlineMath math="X" /> be the payout in thousand rupiah. Every payout in the table uses that unit. Weight each payout by its probability to obtain the expectation:
+<BlockMath math="\binom{5}{3}=10" />
 
-<BlockMath math="\begin{aligned}\mathbb E[X]&amp;=45\frac{28}{66}+15\frac{32}{66}\\&amp;\quad+0\frac6{66}\\&amp;=\frac{1260+480}{66}\\&amp;=\frac{290}{11}\end{aligned}" />
-
-The new expected payout is therefore **<InlineMath math="290/11" /> thousand rupiah**.
+Choosing exactly one volume is not allowed, so that case is not counted. The total is <InlineMath math="5+10=15" /> ways.

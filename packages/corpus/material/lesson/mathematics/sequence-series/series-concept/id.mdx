@@ -3,7 +3,7 @@ export const metadata = {
   description: "Nyatakan deret sebagai jumlah suku barisan dan bandingkan dua cara menghitung banyak jabat tangan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-08",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Barisan dan Deret",
 };
 
@@ -23,6 +23,16 @@ Untuk barisan <InlineMath math="(U_n)" />, jumlah <InlineMath math="n" /> suku p
 
 Soal berhingga meminta satu jumlah parsial tertentu. Untuk deret tak hingga, kita mengkaji apakah barisan <InlineMath math="(S_n)" /> mendekati satu limit berhingga ketika <InlineMath math="n" /> bertambah.
 
+Saat orang ke-<InlineMath math="n" /> bergabung, ia bersalaman dengan <InlineMath math="n - 1" /> orang yang sudah ada. Batangnya menunjukkan salaman baru ini, <InlineMath math="1, 2, 3, \ldots, 7" />: itulah suku-suku deretnya, dan menjumlahkannya memberi total salaman.
+
+<BarChart
+  title={<>Salaman baru saat satu orang bergabung</>}
+  description={<>Batang <InlineMath math="n" /> menunjukkan <InlineMath math="n - 1" /> salaman baru saat orang ke-<InlineMath math="n" /> bergabung, untuk <InlineMath math="n = 2" /> sampai <InlineMath math="8" />.</>}
+  yAxisLabel="Salaman baru"
+  data={[["2", 2 - 1], ["3", 3 - 1], ["4", 4 - 1], ["5", 5 - 1], ["6", 6 - 1], ["7", 7 - 1], ["8", 8 - 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Salaman baru", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Banyaknya Jabat Tangan
 
 Bayangkan ada beberapa orang dalam satu kelompok. Jika setiap orang berjabat tangan tepat satu kali dengan setiap orang lain di kelompok itu, berapa total jabat tangan yang terjadi?
@@ -30,8 +40,8 @@ Bayangkan ada beberapa orang dalam satu kelompok. Jika setiap orang berjabat tan
 Dengan tiga orang, orang pertama berjabat tangan dengan dua orang lain. Masih ada satu pasangan antara orang kedua dan ketiga, sehingga totalnya <InlineMath math="2+1=3" />. Untuk empat orang, diagram memiliki **satu garis untuk setiap pasangan**. Garis yang berpotongan tidak menambahkan orang atau jabat tangan baru.
 
 <Mermaid
-  title="Pasangan Jabat Tangan"
-  description="Setiap garis menghubungkan satu pasangan. Hitung setiap garis sekali meskipun garis memiliki dua ujung."
+  title={<>Pasangan Jabat Tangan</>}
+  description={<>Setiap garis menghubungkan satu pasangan. Hitung setiap garis sekali meskipun garis memiliki dua ujung.</>}
   chart={`flowchart LR
   A["Orang pertama"]
   B["Orang kedua"]
@@ -58,6 +68,49 @@ Penjumlahan seperti <InlineMath math="1+2+3+4" /> ini adalah contoh **deret bila
 
 Setiap pasangan harus dihitung tepat sekali. Jika jabat tangan setiap orang dihitung secara terpisah, setiap pasangan akan terhitung dua kali, satu kali dari sudut pandang masing-masing orang.
 
+Sekarang coba lima orang, <InlineMath math="A" /> sampai <InlineMath math="E" />, yang berdiri melingkar. <InlineMath math="A" /> bersalaman 4 kali, <InlineMath math="B" /> menambah 3 salaman baru, <InlineMath math="C" /> menambah 2, dan <InlineMath math="D" /> menambah 1, setiap kelompok dengan warnanya sendiri. <InlineMath math="E" /> sudah bersalaman dengan semua orang. Hitung ruas garisnya: <InlineMath math="4 + 3 + 2 + 1 = 10" />.
+
+<MathVisual
+  title={<>Sepuluh salaman di antara lima orang</>}
+  description={<>Setiap pasangan dari lima orang dihubungkan satu ruas garis. Ruas garisnya dikelompokkan menurut orang yang memulainya: 4 dari A, 3 dari B, 2 dari C, dan 1 dari D.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0, y: 2 }, to: { x: 2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, appearance: "primary" },
+      { id: "ac", kind: "segment", from: { x: 0, y: 2 }, to: { x: 2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, appearance: "primary" },
+      { id: "ad", kind: "segment", from: { x: 0, y: 2 }, to: { x: -2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, appearance: "primary" },
+      { id: "ae", kind: "segment", from: { x: 0, y: 2 }, to: { x: -2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, appearance: "primary" },
+      { id: "bc", kind: "segment", from: { x: 2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, to: { x: 2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, appearance: "secondary" },
+      { id: "bd", kind: "segment", from: { x: 2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, to: { x: -2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, appearance: "secondary" },
+      { id: "be", kind: "segment", from: { x: 2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, to: { x: -2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, appearance: "secondary" },
+      { id: "cd", kind: "segment", from: { x: 2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, to: { x: -2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, appearance: "answer" },
+      { id: "ce", kind: "segment", from: { x: 2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, to: { x: -2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, appearance: "answer" },
+      { id: "de", kind: "segment", from: { x: -2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, to: { x: -2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, appearance: "highlight" },
+      { id: "a", kind: "point", at: { x: 0, y: 2 }, appearance: "reference" },
+      { id: "b", kind: "point", at: { x: 2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, appearance: "reference" },
+      { id: "c", kind: "point", at: { x: 2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, appearance: "reference" },
+      { id: "d", kind: "point", at: { x: -2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, appearance: "reference" },
+      { id: "e", kind: "point", at: { x: -2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 2 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, placement: "below-right" },
+      { key: "d", objectId: "d", at: { x: -2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, placement: "below-left" },
+      { key: "e", objectId: "e", at: { x: -2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, placement: "left" },
+    ],
+  }}
+/>
+
 ### Cara Menghitung yang Kedua
 
 Satu jabat tangan merupakan satu pasangan orang yang **urutannya tidak diperhatikan**. Banyak pasangan yang dapat dipilih dari <InlineMath math="n" /> orang adalah:
@@ -65,6 +118,19 @@ Satu jabat tangan merupakan satu pasangan orang yang **urutannya tidak diperhati
 <BlockMath math="\binom{n}{2}=\frac{n(n-1)}{2}" />
 
 Untuk <InlineMath math="n=5" />, diperoleh <InlineMath math="\binom52=10" />, sama dengan hasil penjumlahan berurutan.
+
+Total salaman untuk kelompok 2 sampai 8 orang membentuk sebuah deret. Dari <InlineMath math="n - 1" /> menjadi <InlineMath math="n" /> orang, salamannya bertambah <InlineMath math="n - 1" />, jadi totalnya adalah jumlah parsial <InlineMath math="1, 3, 6, 10, 15, 21, 28" /> dari <InlineMath math="1 + 2 + 3 + \cdots" />.
+
+<BarChart
+  title={<>Salaman saat kelompok membesar</>}
+  description={<>Batang ke-<InlineMath math="n" /> menunjukkan <InlineMath math="\frac{n(n-1)}{2}" />, yaitu salaman di antara <InlineMath math="n" /> orang, untuk <InlineMath math="n = 2" /> sampai <InlineMath math="8" />.</>}
+  yAxisLabel="Salaman"
+  data={Array.from({ length: 7 }, (_, i) => {
+    const n = i + 2;
+    return { name: `${n}`, value: (n * (n - 1)) / 2 };
+  })}
+  chartConfig={{ value: { label: "Salaman", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Pola Aritmetika dan Geometri
 

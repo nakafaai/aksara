@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "text-comparison",
+  },
+  stimulus: "village-tourism",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Karena surat dan foto sama-sama berkaitan dengan kegiatan baca, keduanya pasti dibuat untuk tujuan yang sama.",
+            "Upacara syukur panen sebaiknya digelar lebih sering untuk wisatawan.",
         },
         {
           correct: true,
           label:
-            "Surat menjelaskan tujuan pendirian panggung, sedangkan foto menunjukkan penggunaannya di ruang tunggu. Keduanya mendukung keberadaan kegiatan baca, tetapi tidak menjelaskan alasan setiap penumpang membaca.",
+            "Pariwisata memberi penghasilan baru dan membuat sebagian anak muda pulang.",
         },
         {
           correct: false,
           label:
-            "Foto penumpang membuktikan bahwa alasan panitia mendirikan panggung diterima oleh seluruh penumpang.",
+            "Jumlah pengunjung perlu dibatasi agar rumah adat tidak rusak.",
+        },
+        {
+          correct: false,
+          label: "Lahan parkir bus sebaiknya dibangun di dekat rumah adat.",
         },
         {
           correct: false,
           label:
-            "Foto harus menjadi sumber utama karena merekam tindakan langsung, sedangkan surat hanya berisi rencana panitia.",
-        },
-        {
-          correct: false,
-          label:
-            "Setelah informasi surat dan foto digabungkan, asal serta waktu pembuatan masing-masing sumber tidak lagi penting.",
+            "Wisatawan sebaiknya dilarang menyaksikan semua kegiatan budaya desa.",
         },
       ],
     },

@@ -4,7 +4,7 @@ export const metadata = {
   description: "Erkläre, wie eine Regressionsgerade einen linearen Datentrend zusammenfasst, Vorhersagen ermöglicht und mit der Methode der kleinsten Quadrate bestimmt wird.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Statistik",
 };
 
@@ -27,8 +27,8 @@ Für jede Beobachtung ist das **Residuum** der beobachtete Wert minus dem vorher
 Vergleiche bei jedem Datenpaar die Lernzeit mit dem Prüfungsergebnis. Mit längerer Lernzeit liegen die Punkte tendenziell höher. Dieses Muster bildet einen positiven linearen Trend.
 
 <ScatterDiagram
-  title="Regressionslinie für den Zusammenhang zwischen Lernzeit und Prüfungsergebnissen"
-  description="Die Linie zeigt den linearen Trend (Regressionslinie) der Daten."
+  title={<>Regressionslinie für den Zusammenhang zwischen Lernzeit und Prüfungsergebnissen</>}
+  description={<>Die Linie zeigt den linearen Trend (Regressionslinie) der Daten.</>}
   xAxisLabel="Lernzeit (Stunden)"
   yAxisLabel="Prüfungsergebnis"
   datasets={[
@@ -96,6 +96,16 @@ Dabei bedeutet:
 Diese Formeln bestimmen eine eindeutige Kleinste-Quadrate-Gerade, solange die beobachteten <InlineMath math="x" />-Werte nicht alle gleich sind. Sind alle <InlineMath math="x" />-Werte identisch, ist der Nenner der Steigungsformel null und die Daten bestimmen keine eindeutige Regressionssteigung.
 
 
+Lass die Gerade durch den Schwerpunkt gehen und änder ihre Steigung <InlineMath math="b" />. Für die Lerndaten ist die Summe der quadrierten Residuen <InlineMath math="S_{yy} - 2bS_{xy} + b^2S_{xx}" /> bei <InlineMath math="b = \tfrac{9184}{1331} \approx 6{,}900" /> am kleinsten, etwa 94,45, und für jede andere Steigung größer.
+
+<BarChart
+  title={<>Summe der quadrierten Residuen gegen die Steigung</>}
+  description={<>Balken der Summe der quadrierten Residuen für die Steigungen <InlineMath math="b = 5;\ 6;\ 6{,}900;\ 8;\ 9" />, jede Gerade durch den Schwerpunkt.</>}
+  yAxisLabel="Summe der quadrierten Residuen"
+  data={[5, 6, 9184 / 1331, 8, 9].map((b) => ({ name: b === 9184 / 1331 ? "6.900" : String(b), value: 4244 / 3 - 2 * b * (574 / 3) + b ** 2 * (1331 / 48) }))}
+  chartConfig={{ value: { label: "Summe der quadrierten Residuen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Die Koeffizienten aus den Daten berechnen
 
 Verwende alle Datenpaare des Diagramms. Mit den Produkt- und Quadratspalten geht jede Beobachtung genau einmal in die Rechnung ein. Die **Summe jeder Spalte** wird dann in die Steigungsformel eingesetzt.
@@ -136,3 +146,13 @@ Für <InlineMath math="7\text{ Stunden}" /> ergibt dieselbe Rechnung:
 <BlockMath math="\hat y(7)=\frac{73066+9184(7)}{1331}=\frac{137354}{1331}\approx103{,}20" />
 
 Die beobachteten Lernzeiten reichen nur von <InlineMath math="1" /> bis <InlineMath math="6\text{ Stunden}" />. Die zweite Vorhersage ist eine **Extrapolation**. Die vorhandenen Daten prüfen nicht, ob der lineare Trend außerhalb dieses Bereichs anhält. Falls die Prüfung höchstens <InlineMath math="100" /> Punkte zulässt, überschreitet die zweite Vorhersage sogar diese Grenze. Prüfe eine Regressionsgerade sowohl am beobachteten Bereich als auch an den Grenzen der vorhergesagten Größe.
+
+Vorhergesagte Noten aus <InlineMath math="\hat y = \frac{73066 + 9184x}{1331}" /> für 1 bis 7 Stunden. Innerhalb des beobachteten Bereichs von 1 bis 6 Stunden bleiben die Vorhersagen realistisch, aber bei 7 Stunden sagt die Gerade etwa 103,2 voraus, mehr als die Höchstpunktzahl 100.
+
+<BarChart
+  title={<>Vorhersagen innerhalb und außerhalb der Daten</>}
+  description={<>Balken der vorhergesagten Punktzahl <InlineMath math="\hat y" /> für <InlineMath math="x = 1" /> bis 7 Lernstunden.</>}
+  yAxisLabel="Vorhergesagte Punktzahl"
+  data={[1, 2, 3, 4, 5, 6, 7].map((x) => ({ name: String(x), value: (73066 + 9184 * x) / 1331 }))}
+  chartConfig={{ value: { label: "Vorhergesagte Punktzahl", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

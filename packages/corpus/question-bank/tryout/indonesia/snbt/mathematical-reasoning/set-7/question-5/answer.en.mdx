@@ -1,17 +1,19 @@
-# Relate Water and Solid Volumes
+Two fair dice give **36 equally likely ordered pairs**. The player wins a prize when the sum is 12, 11 or 7.
 
-A **fully submerged solid** displaces water equal to its own volume. Because the container began full, the lost water volume equals the total volume of the balls. Let <InlineMath math="V_c" /> be the cylinder volume and <InlineMath math="V_b" /> one ball's volume, in cubic centimeters.
+# Pairs for each sum
 
-<BlockMath math="\begin{aligned}V_c&=\pi(20)^2(30)=12{,}000\pi \\ V_b&=\frac43\pi(3)^3=\frac43\pi(27)=36\pi\end{aligned}" />
+Count **the dice pairs for each prize-winning sum**.
 
-# Find and Check the Number of Balls
+| Sum | Pairs | Count |
+| :---: | :---: | :---: |
+| 12 | <InlineMath math="(6,6)" /> | 1 |
+| 11 | <InlineMath math="(5,6),(6,5)" /> | 2 |
+| 7 | <InlineMath math="(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)" /> | 6 |
 
-Subtract the **remaining water from the initial volume**, then divide by the volume of one ball. The common factor <InlineMath math="\pi" /> cancels:
+# Probability of a prize
 
-<BlockMath math="\begin{aligned}n(36\pi)&=12{,}000\pi-11{,}388\pi \\ 36n&=612 \\ n&=\frac{612}{36}=17\end{aligned}" />
+The three events cannot happen together, so **their pairs are added**.
 
-The result is a positive integer. Check the remaining water volume:
+<BlockMath math="\frac{1+2+6}{36}=\frac{9}{36}=0.25" />
 
-<BlockMath math="12{,}000\pi-17(36\pi)=11{,}388\pi\text{ cm}^3" />
-
-This matches the question, so <InlineMath math="17" /> balls were inserted.
+So the probability of winning a prize is **0.25**.

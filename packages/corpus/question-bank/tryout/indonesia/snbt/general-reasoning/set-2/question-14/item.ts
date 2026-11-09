@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "arrangement",
+  },
+  stimulus: "loker",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Harga gabah, GKP (gabah kering panen), di tingkat petani terus mengalami penurunan dari tahun ke tahun",
-        },
-        {
-          correct: false,
-          label:
-            "Pemerintah terpaksa menaikkan harga pembelian gabah petani dan memberikan bantuan pada petani",
-        },
-        {
-          correct: false,
-          label:
-            "Pihak terkait harus merevisi Peraturan Presiden Nomor $$63$$ Tahun $$2017$$ tentang Penyaluran Bantuan Sosial secara Nontunai",
-        },
-        {
-          correct: false,
-          label:
-            "Transaksi penjualan gabah di $$30$$ provinsi selama April $$2019$$ turun $$5{,}37\\%$$ sangat kontras dengan kenaikan harga kebutuhan",
-        },
-        {
           correct: true,
-          label:
-            "Melemahnya stabilisasi harga di tingkat petani menggerus daya beli dan kesejahteraan petani",
+          label: "Loker Beni berada di kolom $$1$$.",
+        },
+        {
+          correct: false,
+          label: "Loker Eli berada di baris atas.",
+        },
+        {
+          correct: false,
+          label: "Loker Fajar berada di kolom $$3$$.",
+        },
+        {
+          correct: false,
+          label: "Loker Ana berada di kolom $$2$$.",
+        },
+        {
+          correct: false,
+          label: "Loker Caca berada di baris bawah.",
         },
       ],
     },

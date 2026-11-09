@@ -1,31 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "text-comparison",
+  },
+  stimulus: "village-tourism",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
+          label: "menjadikan rumah warga sebagai penginapan bagi wisatawan",
         },
         {
           correct: false,
-          label: "Mengutamakan Sumber Terbaru dalam Kajian sumber sezaman",
+          label: "menjual kain tenun kepada pengunjung yang datang ke desa",
         },
         {
           correct: false,
-          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
+          label: "mengajak anak muda pulang untuk menjadi pemandu wisata",
+        },
+        {
+          correct: false,
+          label: "mempromosikan desa agar dikenal lebih luas oleh orang kota",
         },
         {
           correct: true,
-          label: "Membaca Dua Sumber tentang Panggung Baca di Terminal",
-        },
-        {
-          correct: false,
-          label:
-            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
+          label: "menggelar upacara syukur panen setiap Sabtu untuk wisatawan",
         },
       ],
     },

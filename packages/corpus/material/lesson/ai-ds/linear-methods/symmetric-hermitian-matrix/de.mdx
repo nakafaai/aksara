@@ -94,6 +94,34 @@ Seien <InlineMath math="Hv=\lambda v" /> und <InlineMath math="Hw=\mu w" /> mit 
 
 Daher gilt <InlineMath math="(\lambda-\mu)w^Hv=0" /> und somit <InlineMath math="w^Hv=0" />. Bei einem mehrfachen Eigenwert müssen beliebige Eigenvektoren innerhalb desselben Eigenraums nicht orthogonal sein. Mit Gram-Schmidt lässt sich dort jedoch eine Orthonormalbasis wählen.
 
+Für die symmetrische Matrix <InlineMath math="A=\begin{pmatrix}1&2\\2&1\end{pmatrix}" /> haben die Eigenwerte <InlineMath math="3" /> und <InlineMath math="-1" /> die Eigenvektoren <InlineMath math="v_1=(1,1)" /> und <InlineMath math="v_2=(1,-1)" />. Ihr Skalarprodukt ist <InlineMath math="1-1=0" />, genau das garantiert <InlineMath math="\lambda_1\langle v_1,v_2\rangle=\langle Av_1,v_2\rangle=\langle v_1,Av_2\rangle=\lambda_2\langle v_1,v_2\rangle" /> mit <InlineMath math="\lambda_1\neq\lambda_2" />.
+
+<MathVisual
+  title={<>Die Eigenvektoren zu <InlineMath math="3" /> und <InlineMath math="-1" /> stehen senkrecht aufeinander</>}
+  description={<>Die türkise Strecke <InlineMath math="v_1" /> wird zur violetten Strecke <InlineMath math="3v_1" /> gestreckt. Die orange Strecke <InlineMath math="v_2" /> klappt zur magentafarbenen Strecke <InlineMath math="-v_2" /> um. Beide Geraden bilden weiter einen rechten Winkel.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "second-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first-image", objectId: "first-image", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1, y: -1 }, placement: "right" },
+      { key: "second-image", objectId: "second-image", at: { x: -1, y: 1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first-image": <InlineMath math="Av_1=3v_1" />,
+    "second": <InlineMath math="v_2" />,
+    "second-image": <InlineMath math="Av_2=-v_2" />,
+  }}
+/>
+
 ## Spektralzerlegung und Geometrie quadratischer Formen
 
 Der Spektralsatz fasst diese Tatsachen zu einer vollständigen Zerlegung zusammen:
@@ -110,6 +138,30 @@ Die Spalten von <InlineMath math="Q" /> oder <InlineMath math="U" /> bilden eine
 <BlockMath math="x^HHx=\sum_{j=1}^n\lambda_j|u_j^Hx|^2" />
 
 Diese Formel zeigt unmittelbar, dass <InlineMath math="H" /> genau dann positiv definit ist, wenn alle Eigenwerte positiv sind.
+
+Nimm die reelle symmetrische Matrix <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> mit den Eigenwerten <InlineMath math="3" /> und <InlineMath math="1" /> und schneide die quadratische Form <InlineMath math="q(x)=x^TAx" /> entlang jedes Einheitseigenvektors. Entlang <InlineMath math="v_1=(1,1)^T/\sqrt2" /> ist der Schnitt die magentafarbene Parabel <InlineMath math="3s^2" />. Entlang <InlineMath math="v_2=(1,-1)^T/\sqrt2" /> ist der Schnitt die türkise Parabel <InlineMath math="s^2" />. Die Krümmung entlang jeder Hauptachse ist also ihr Eigenwert, und weil <InlineMath math="A" /> symmetrisch ist, stehen die beiden Achsen senkrecht aufeinander.
+
+<MathVisual
+  title={<>Schnitte der quadratischen Form <InlineMath math="q(x)=x^TAx" /> entlang der Eigenvektoren</>}
+  description={<>Für <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />: Die magentafarbene Parabel ist <InlineMath math="q(sv_1)" /> und die türkise Parabel <InlineMath math="q(sv_2)" />, wobei <InlineMath math="s" /> der Abstand entlang des Einheitseigenvektors ist.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -0.3, max: 3.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "steep", kind: "quadratic", coefficients: { a: 3, b: 0, c: 0 }, domain: { min: -1, max: 1 }, inputAxis: "x", appearance: "answer" },
+      { id: "flat", kind: "quadratic", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -7 / 4, max: 7 / 4 }, inputAxis: "x", appearance: "construction" },
+    ],
+    labels: [
+      { key: "steep", objectId: "steep", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "flat", objectId: "flat", at: { x: 7 / 4, y: 49 / 16 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "steep": <InlineMath math="q(sv_1)=3s^2" />,
+    "flat": <InlineMath math="q(sv_2)=s^2" />,
+  }}
+/>
 
 ## Vollständig gerechnete hermitesche Diagonalisierung
 
@@ -138,3 +190,16 @@ Prüfe die Orthogonalität und den ersten Eigenvektor direkt. Der Normierungsfak
 <BlockMath math="u_1^Hu_2=\frac{-(1-i)(1+i)+2}{\sqrt{18}}=\frac{-2+2}{\sqrt{18}}=0" />
 <BlockMath math="Hu_1=\frac1{\sqrt3}\begin{pmatrix}-2(1+i)+(1+i)\\-(1-i)(1+i)+3\end{pmatrix}=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}=u_1" />
 </MathContainer>
+
+Prüfe <InlineMath math="u_1^Hu_2" /> Summand für Summand. Die ersten Einträge liefern <InlineMath math="\overline{-(1+i)}\,(1+i)/\sqrt{18}=-(1-i)(1+i)/\sqrt{18}=-2/\sqrt{18}" />, die zweiten Einträge <InlineMath math="1\cdot2/\sqrt{18}=2/\sqrt{18}" />. Beide Summanden heben sich auf, also gilt <InlineMath math="u_1^Hu_2=0" />.
+
+<BarChart
+  title={<>Die beiden Summanden von <InlineMath math="u_1^Hu_2" /> heben sich auf</>}
+  description={<>Der erste Balken ist <InlineMath math="\bar u_{11}u_{21}=-2/\sqrt{18}" />, der zweite ist <InlineMath math="\bar u_{12}u_{22}=2/\sqrt{18}" />. Sie sind gleich hoch mit entgegengesetztem Vorzeichen, also ist die Summe <InlineMath math="0" />.</>}
+  yAxisLabel="Summand des Skalarprodukts"
+  data={[
+    { name: "erste Einträge", value: -2 / Math.sqrt(18) },
+    { name: "zweite Einträge", value: 2 / Math.sqrt(18) },
+  ]}
+  chartConfig={{ value: { label: "Summand des Skalarprodukts", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>

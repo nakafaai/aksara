@@ -1,34 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "octopus-arms",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Successful integration is determined mainly by the price and speed of the device.",
-        },
-        {
           correct: true,
           label:
-            "educators should choose technology intentionally so that it supports existing developmental and learning goals.",
+            "A soft robot with control spread along its body outperformed an identical robot with one central processor.",
         },
         {
           correct: false,
           label:
-            "Technology is fully integrated when children focus on the device rather than the activity.",
+            "Octopuses learned to open jars faster than any other invertebrate tested in the same laboratory.",
         },
         {
           correct: false,
           label:
-            "Every classroom activity should include a screen so that children become digitally fluent.",
+            "Prosthetic human arms with more joints were harder for users to control than simpler designs.",
         },
         {
           correct: false,
           label:
-            "passive and interactive screen use are equally suitable in early childhood settings.",
+            "Severed octopus arms stopped responding to touch after about an hour, even when kept in seawater.",
+        },
+        {
+          correct: false,
+          label:
+            "Robots with a single central processor were cheaper to build than robots with many controllers.",
         },
       ],
     },

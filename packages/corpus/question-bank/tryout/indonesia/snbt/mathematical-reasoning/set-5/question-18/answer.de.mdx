@@ -1,40 +1,15 @@
-Das Verhältnis lässt sich über den **gewichteten Durchschnitt** der beiden Gruppen bestimmen.
+Der Ergebnisraum besteht aus **10 000 gleich wahrscheinlichen PINs**. Die Wahrscheinlichkeit ist die Anzahl der PINs mit verschiedenen Ziffern geteilt durch 10 000.
 
-Wir setzen:
-- <InlineMath math="n_L" /> = Anzahl männlicher Mitarbeiter
-- <InlineMath math="n_P" /> = Anzahl weiblicher Mitarbeiter
-- <InlineMath math="\bar{x}_L = 320{.}000" /> (Durchschnittseinkommen der Männer)
-- <InlineMath math="\bar{x}_P = 285{.}000" /> (Durchschnittseinkommen von Frauen)
-- <InlineMath math="\bar{x} = 300{.}000" /> (gemeinsames Durchschnittseinkommen)
+# PINs mit verschiedenen Ziffern
 
-Für den gemeinsamen Durchschnitt gilt:
+**Die erste Ziffer darf 0 sein**, also sind es <InlineMath math="10\cdot9\cdot8\cdot7=5\,040" />.
 
-<BlockMath math="\bar{x} = \frac{n_L \cdot \bar{x}_L + n_P \cdot \bar{x}_P}{n_L + n_P}" />
+# Wahrscheinlichkeit
 
-Mit <InlineMath math="S" /> bezeichnen wir das gesamte Monatseinkommen aller Beschäftigten in Rupiah. Mit den gegebenen Werten folgt:
+<BlockMath math="\frac{5\,040}{10\,000}=0{,}504" />
 
-<BlockMath math="\begin{aligned}S&=320{.}000n_L \\ &\quad+285{.}000n_P \\ 300{.}000&=\frac{S}{n_L+n_P}\end{aligned}" />
+Das ist knapp über der Hälfte, also **wiederholt fast die Hälfte aller PINs eine Ziffer**.
 
-Zur Vereinfachung teilen wir alle Geldbeträge durch <InlineMath math="1{.}000" />:
+Der Wert 0,496 ist die Wahrscheinlichkeit des Gegenereignisses, einer wiederholten Ziffer. Der Wert 0,4536 verbietet eine führende 0, obwohl eine PIN mit 0 beginnen darf. Der Wert 0,3024 verwendet <InlineMath math="9\cdot8\cdot7\cdot6" />, und 0,0504 setzt das Komma falsch.
 
-<BlockMath math="300 = \frac{320 n_L + 285 n_P}{n_L + n_P}" />
-
-Nun multiplizieren wir mit dem Nenner:
-
-<BlockMath math="\begin{aligned}&300(n_L+n_P) \\ &\quad=320n_L+285n_P\end{aligned}" />
-
-<BlockMath math="\begin{aligned}&300n_L+300n_P \\ &\quad=320n_L+285n_P\end{aligned}" />
-
-Wir bringen die gleichartigen Terme auf jeweils eine Seite:
-
-<BlockMath math="\begin{aligned}&300n_P-285n_P \\ &\quad=320n_L-300n_L\end{aligned}" />
-
-<BlockMath math="15 n_P = 20 n_L" />
-
-Daraus folgt das Verhältnis <InlineMath math="n_L : n_P" />:
-
-<BlockMath math="\frac{n_L}{n_P} = \frac{15}{20}" />
-
-<BlockMath math="\frac{n_L}{n_P} = \frac{3}{4}" />
-
-Auf <InlineMath math="3" /> männliche Beschäftigte kommen somit <InlineMath math="4" /> weibliche Beschäftigte. Das gesuchte Verhältnis ist <InlineMath math="3:4" />.
+Die Wahrscheinlichkeit beträgt also **0,504**.

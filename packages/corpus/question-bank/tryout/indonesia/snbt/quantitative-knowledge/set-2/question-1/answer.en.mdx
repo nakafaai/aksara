@@ -1,67 +1,21 @@
-Let the first number be <InlineMath math="A" /> and the second number be <InlineMath math="B" />.
+Write <InlineMath math="n^2+n=n(n+1)" />. This is **a product of two consecutive integers**, so one factor is always even. Since <InlineMath math="6=2\times3" />, divisibility by 6 depends only on the factor 3.
 
-From the problem, we get the following **system of equations**:
+# The condition for the factor three
 
-1. Twice the first number minus three times the second number equals <InlineMath math="14" />:
+The prime 3 divides <InlineMath math="n(n+1)" /> exactly when 3 divides <InlineMath math="n" /> or 3 divides <InlineMath math="n+1" />. The second condition means that <InlineMath math="n" /> **leaves remainder 2 on division by 3**.
 
-   <BlockMath math="2A - 3B = 14" />
+| Remainder of <InlineMath math="n" /> on division by 3 | Example | Is <InlineMath math="n(n+1)" /> divisible by 3? |
+| :---: | :---: | :---: |
+| 0 | <InlineMath math="3\times4=12" /> | Yes |
+| 1 | <InlineMath math="1\times2=2" /> | No |
+| 2 | <InlineMath math="2\times3=6" /> | Yes |
 
-2. The first number multiplied by <InlineMath math="k" /> plus twice the second number equals <InlineMath math="4" />:
+# Counting the numbers
 
-   <BlockMath math="Ak + 2B = 4" />
+The multiples of 3 from 1 to 100 are 3, 6, up to 99, which is 33 numbers. The numbers with remainder 2 are 2, 5, up to 98, which is <InlineMath math="\frac{98-2}{3}+1=33" /> numbers.
 
-3. The value of <InlineMath math="k" /> is equal to the sum of the first and second numbers:
+<BlockMath math="33+33=66" />
 
-   <BlockMath math="k = A + B" />
+The value 33 counts only the multiples of 3. The value 67 uses remainder 1, although <InlineMath math="n+1" /> divisible by 3 means that <InlineMath math="n" /> leaves remainder 2. The value 50 counts only the even numbers, although the factor 2 is always there. The value 100 assumes that a product of two consecutive integers is always divisible by 6, which is true only for a product of three consecutive integers.
 
-   With the condition <InlineMath math="k > 0" />.
-
-# Substitution and Factorization
-
-First, substitute equation (3) into equation (2):
-
-<BlockMath math="A(A + B) + 2B = 4" />
-
-<BlockMath math="A^2 + AB + 2B = 4" />
-
-Factor the terms containing <InlineMath math="B" />:
-
-<BlockMath math="A^2 + B(A + 2) = 4" />
-
-<BlockMath math="B(A + 2) = 4 - A^2" />
-
-The **difference of squares** <InlineMath math="4 - A^2" /> factors as <InlineMath math="(2 - A)(2 + A)" />:
-
-<BlockMath math="B(A + 2) = (2 - A)(2 + A)" />
-
-Before dividing, check the exceptional value <InlineMath math="A = -2" />. Equation (1) would then give <InlineMath math="B = -6" />, so <InlineMath math="k = A + B = -8" />, which contradicts <InlineMath math="k > 0" />. Therefore <InlineMath math="A + 2 \neq 0" />, and the division is valid:
-
-<BlockMath math="B = 2 - A" />
-
-Next, substitute the value of <InlineMath math="B" /> into equation (1):
-
-<BlockMath math="2A - 3(2 - A) = 14" />
-
-<BlockMath math="2A - 6 + 3A = 14" />
-
-<BlockMath math="5A - 6 = 14" />
-
-<BlockMath math="5A = 20" />
-
-<BlockMath math="A = 4" />
-
-So, the value of the first number is <InlineMath math="4" />.
-
-# Verification
-
-We can verify the result:
-
-If <InlineMath math="A = 4" />, then <InlineMath math="B = 2 - 4 = -2" />.
-
-The value of <InlineMath math="k = A + B = 4 + (-2) = 2" />.
-
-The **positivity condition** <InlineMath math="k > 0" /> is satisfied since <InlineMath math="2 > 0" />.
-
-Check equation (1): <InlineMath math="2(4) - 3(-2) = 8 + 6 = 14" /> (Correct).
-
-Check equation (2): <InlineMath math="4(2) + 2(-2) = 8 - 4 = 4" /> (Correct).
+So **66** numbers <InlineMath math="n" /> satisfy the condition.

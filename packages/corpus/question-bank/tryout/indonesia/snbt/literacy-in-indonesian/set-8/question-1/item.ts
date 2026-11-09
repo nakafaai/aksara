@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "tempe-mold",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Percobaan membuktikan bahwa semua jenis tumbuhan kehilangan sebagian besar air hanya melalui permukaan bawah daun.",
-        },
-        {
-          correct: false,
-          label:
-            "Percobaan menunjukkan bahwa petroleum jelly menambah massa daun sehingga pengukuran kehilangan air tidak dapat ditafsirkan sama sekali.",
-        },
-        {
           correct: true,
           label:
-            "Pada daun kacang yang dipetik, pelapisan permukaan bawah berkaitan dengan kehilangan massa paling kecil, tetapi hasil satu jenis daun belum dapat digeneralisasi ke semua tumbuhan.",
+            "Benang-benang miselium kapang yang menjalar di antara butir kedelai.",
         },
         {
           correct: false,
           label:
-            "Pelapisan permukaan atas tidak memengaruhi transpirasi karena rata-rata $$0{,}74$$ gram sama dengan $$0{,}82$$ gram.",
+            "Air rebusan yang mengering dan menjadi lengket di sekitar butir kedelai.",
         },
         {
           correct: false,
           label:
-            "Perbedaan ketiga rata-rata hanya dapat dijelaskan oleh letak stomata karena seluruh sumber ketidakpastian sudah dikendalikan.",
+            "Daun pisang yang menekan butir-butir kedelai selama satu sampai dua hari.",
+        },
+        {
+          correct: false,
+          label:
+            "Bakteri penghasil vitamin B12 yang menempel pada kulit kedelai.",
+        },
+        {
+          correct: false,
+          label:
+            "Enzim dari kedelai sendiri yang mungkin keluar ketika kedelai direndam.",
         },
       ],
     },

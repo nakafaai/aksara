@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "garden-fence",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$420$$",
+          column: 1,
+          label:
+            "Kebun berbentuk persegi dapat dibuat dengan seluruh kawat itu.",
         },
         {
-          correct: true,
-          label: "$$480$$",
+          column: 1,
+          label:
+            "Hanya ada satu ukuran kebun yang luasnya tepat $$192\\text{ m}^2$$.",
         },
         {
-          correct: false,
-          label: "$$450$$",
+          column: 2,
+          label:
+            "Kebun dengan sisi tegak lurus tembok sepanjang 10 m dapat dibuat.",
         },
         {
-          correct: false,
-          label: "$$510$$",
-        },
-        {
-          correct: false,
-          label: "$$540$$",
+          column: 2,
+          label:
+            "Makin panjang sisi yang tegak lurus tembok, makin luas kebun yang dapat dibuat.",
         },
       ],
     },

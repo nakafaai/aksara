@@ -1,59 +1,25 @@
-Let the first number be <InlineMath math="A" /> and the second number be <InlineMath math="B" />.
+The phrase "given that the product is even" makes this a **conditional probability**. The sample space is no longer all 36 pairs but only the pairs whose product is even.
 
-From the given information, we can form a **system of equations**:
+# The new sample space
 
-<BlockMath math="2A - 3B = 14 \quad \ldots \text{(1)}" />
+A product of two numbers is odd exactly when both numbers are odd. There are <InlineMath math="3\times3=9" /> odd-odd pairs out of 36, so **27 pairs have an even product**. Each pair is equally likely because the dice are fair.
 
-<BlockMath math="Ak + 2B = 4 \quad \ldots \text{(2)}" />
+# The required event
 
-<BlockMath math="A + B = -3 \quad \ldots \text{(3)}" />
+There are 15 pairs whose sum is at least 8.
 
-# Solving the System of Equations to Find A and B
+| Sum | Pairs | Count |
+| :---: | :---: | :---: |
+| 8 | (2,6), (3,5), (4,4), (5,3), (6,2) | 5 |
+| 9 | (3,6), (4,5), (5,4), (6,3) | 4 |
+| 10 | (4,6), (5,5), (6,4) | 3 |
+| 11 | (5,6), (6,5) | 2 |
+| 12 | (6,6) | 1 |
 
-Choose the **two equations without k**, (1) and (3), to find <InlineMath math="A" /> and <InlineMath math="B" />.
+From these 15 pairs, **remove those with two odd faces**: (3,5), (5,3), and (5,5). That leaves 12 pairs.
 
-Multiply equation (3) by <InlineMath math="2" />:
+<BlockMath math="P=\frac{12}{27}=\frac49" />
 
-<BlockMath math="2(A + B) = 2(-3)" />
+The value <InlineMath math="\tfrac13=\tfrac{12}{36}" /> forgets to change the sample space. The value <InlineMath math="\tfrac59=\tfrac{15}{27}" /> forgets to remove the three odd pairs from the event. The value <InlineMath math="\tfrac23=\tfrac{12}{18}" /> assumes that only half of the pairs have an even product. The value <InlineMath math="\tfrac45=\tfrac{12}{15}" /> reverses the condition: it is the probability of an even product given a sum of at least 8.
 
-<BlockMath math="2A + 2B = -6 \quad \ldots \text{(3a)}" />
-
-Subtract equation (3a) from equation (1):
-
-<BlockMath math="\begin{aligned}&(2A-3B)-(2A+2B)\\&=14-(-6)\end{aligned}" />
-
-<BlockMath math="2A - 3B - 2A - 2B = 14 + 6" />
-
-<BlockMath math="-5B = 20" />
-
-<BlockMath math="B = -4" />
-
-Substitute <InlineMath math="B = -4" /> into equation (3):
-
-<BlockMath math="A + (-4) = -3" />
-
-<BlockMath math="A = -3 + 4" />
-
-<BlockMath math="A = 1" />
-
-Therefore, <InlineMath math="A = 1" /> and <InlineMath math="B = -4" />.
-
-# Determining the Unknown Value
-
-Use the **known values**. Substitute <InlineMath math="A = 1" /> and <InlineMath math="B = -4" /> into equation (2):
-
-<BlockMath math="Ak + 2B = 4" />
-
-<BlockMath math="1 \cdot k + 2(-4) = 4" />
-
-<BlockMath math="k - 8 = 4" />
-
-<BlockMath math="k = 4 + 8" />
-
-<BlockMath math="k = 12" />
-
-Therefore, the value of <InlineMath math="k" /> is <InlineMath math="12" />.
-
-All three original equations are satisfied:
-
-<BlockMath math="\begin{aligned}2(1)-3(-4)&=14\\12(1)+2(-4)&=4\\1+(-4)&=-3\end{aligned}" />
+So the required probability is <InlineMath math="\tfrac49" />.

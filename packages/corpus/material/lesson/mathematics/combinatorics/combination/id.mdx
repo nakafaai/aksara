@@ -3,7 +3,7 @@ export const metadata = {
    description: "Gunakan kombinasi untuk menghitung pemilihan tanpa memperhatikan urutan, termasuk kasus bersyarat.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Kombinatorik",
 };
 
@@ -20,6 +20,42 @@ Dalam kehidupan sehari-hari, kombinasi sering kita temui ketika:
 - Menentukan kombinasi warna untuk desain
 
 Dalam permutasi, <InlineMath math="ABC" /> dan <InlineMath math="BAC" /> merupakan susunan yang berbeda. Dalam kombinasi, <Highlight>keduanya merupakan pilihan yang sama</Highlight> karena anggotanya tidak berubah.
+
+Memilih 2 dari 4 teman tidak memedulikan urutan, jadi setiap pilihan adalah satu ruas garis di antara dua titik. Hitung ruas garisnya: 4 sisi dan 2 diagonal, semuanya <InlineMath math="6" />. Itu sesuai dengan <InlineMath math="\binom{4}{2} = \frac{4!}{2! \cdot 2!} = 6" />, sedangkan pasangan berurutan akan menghitung setiap ruas garis dua kali, <InlineMath math="12" />.
+
+<MathVisual
+  title={<>Enam cara memilih 2 dari 4</>}
+  description={<>Empat teman A, B, C, dan D sebagai titik. Setiap ruas garis dari enam ruas adalah satu cara memilih dua di antaranya.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0, y: 1 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "ac", kind: "segment", from: { x: 0, y: 1 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "ad", kind: "segment", from: { x: 0, y: 1 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "bc", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "bd", kind: "segment", from: { x: 1, y: 1 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "cd", kind: "segment", from: { x: 1, y: 0 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "a", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 1, y: 0 }, appearance: "primary" },
+      { id: "d", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "c", objectId: "c", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "d", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
 
 ## Rumus Kombinasi
 
@@ -50,6 +86,19 @@ Pemilihan dua dari tiga siswa A, B, dan C memperlihatkan pembagian dengan <Inlin
 | B, C | BC, CB |
 
 <BlockMath math="C(3,2)=\frac{3\times2}{2!}=\frac{6}{2}=3" />
+
+Batangnya menunjukkan <InlineMath math="\binom{6}{k}" /> untuk <InlineMath math="k = 0" /> sampai <InlineMath math="6" />: <InlineMath math="1, 6, 15, 20, 15, 6, 1" />. Barisnya simetris, karena memilih <InlineMath math="k" /> objek untuk diambil sama dengan memilih <InlineMath math="6 - k" /> objek untuk ditinggal.
+
+<BarChart
+  title={<>Memilih dari enam objek</>}
+  description={<>Batang ke-<InlineMath math="k" /> menunjukkan <InlineMath math="\binom{6}{k}" />, yang simetris terhadap <InlineMath math="k = 3" />.</>}
+  yAxisLabel="Kombinasi"
+  data={Array.from({ length: 7 }, (_, k) => {
+    const factorial = (n) => Array.from({ length: n }, (_, i) => i + 1).reduce((product, i) => product * i, 1);
+    return { name: `${k}`, value: factorial(6) / (factorial(k) * factorial(6 - k)) };
+  })}
+  chartConfig={{ value: { label: "Kombinasi", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Menghitung Pilihan Dengan dan Tanpa Syarat
 
@@ -103,6 +152,34 @@ Beberapa pemilihan memiliki **syarat tambahan**. Misalnya, dari <InlineMath math
 </MathContainer>
 
 **Total**: <InlineMath math="210 + 70 + 5 = 285" /> cara
+
+Memilih <InlineMath math="3" /> dari <InlineMath math="4" /> teman sama dengan memilih <InlineMath math="1" /> teman yang ditinggal. Setiap segitiga di bawah meninggalkan pojok yang berbeda, jadi ada tepat <InlineMath math="4" /> segitiga: <InlineMath math="\binom{4}{3} = \binom{4}{1} = 4" />.
+
+<MathVisual
+  title={<>Memilih tiga dari empat berarti meninggalkan satu</>}
+  description={<>Empat segitiga, masing-masing dari tiga di antara empat teman, dengan teman yang ditinggal digambar sebagai titik abu-abu.</>}
+  labels={{
+    t0: <InlineMath math="\binom{4}{3} = 4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 6.2 }, y: { min: -0.6, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "t0", kind: "polygon", vertices: [{ x: 1.0, y: 1 }, { x: 1.0, y: 0 }, { x: 0.0, y: 0 }], appearance: "primary" },
+      { id: "m0", kind: "point", at: { x: 0.0, y: 1 }, appearance: "reference" },
+      { id: "t1", kind: "polygon", vertices: [{ x: 1.6, y: 1 }, { x: 2.6, y: 0 }, { x: 1.6, y: 0 }], appearance: "primary" },
+      { id: "m1", kind: "point", at: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "t2", kind: "polygon", vertices: [{ x: 3.2, y: 1 }, { x: 4.2, y: 1 }, { x: 3.2, y: 0 }], appearance: "primary" },
+      { id: "m2", kind: "point", at: { x: 4.2, y: 0 }, appearance: "reference" },
+      { id: "t3", kind: "polygon", vertices: [{ x: 4.8, y: 1 }, { x: 5.8, y: 1 }, { x: 5.8, y: 0 }], appearance: "primary" },
+      { id: "m3", kind: "point", at: { x: 4.8, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "t0", objectId: "t0", at: { x: 0.5, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Latihan
 

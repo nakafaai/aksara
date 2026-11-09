@@ -30,6 +30,39 @@ Urutan huruf tidak boleh ditukar sembarangan. <InlineMath math="\overrightarrow{
 
 <Highlight>Tanda panah di atas huruf</Highlight> memberi tahu bahwa yang dibahas adalah vektor. Tanda mutlak memberi tahu bahwa yang dibahas hanya besarnya.
 
+Kedua panah di bawah sama panjang, tetapi urutan hurufnya membalik arahnya: <InlineMath math="\overrightarrow{AB}" /> berawal di <InlineMath math="A" /> dan <InlineMath math="\overrightarrow{BA}" /> berawal di <InlineMath math="B" />. Jadi, <InlineMath math="\overrightarrow{BA}=-\overrightarrow{AB}" />.
+
+<MathVisual
+  title={<>Urutan Titik Menentukan Arah</>}
+  description={<>Vektor AB dan BA di antara titik A(1, 1) dan B(4, 3), yang kedua digeser ke bawah supaya berdampingan dengan yang pertama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: -1, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ab-line", kind: "segment", appearance: "reference", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "b", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "ab-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 3) / Math.hypot(3, 2) + ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 3 - (0.25 * 2) / Math.hypot(3, 2) + ((0.25 / 2) * 3) / Math.hypot(3, 2) }, { x: 4 - (0.25 * 3) / Math.hypot(3, 2) - ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 3 - (0.25 * 2) / Math.hypot(3, 2) - ((0.25 / 2) * 3) / Math.hypot(3, 2) }] },
+      { id: "ba", kind: "segment", appearance: "secondary", from: { x: 4, y: 1.5 }, to: { x: 1, y: -0.5 } },
+      { id: "ba-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: -0.5 }, { x: 1 - (0.25 * -3) / Math.hypot(-3, -2.0) + ((0.25 / 2) * 2.0) / Math.hypot(-3, -2.0), y: -0.5 - (0.25 * -2.0) / Math.hypot(-3, -2.0) + ((0.25 / 2) * -3) / Math.hypot(-3, -2.0) }, { x: 1 - (0.25 * -3) / Math.hypot(-3, -2.0) - ((0.25 / 2) * 2.0) / Math.hypot(-3, -2.0), y: -0.5 - (0.25 * -2.0) / Math.hypot(-3, -2.0) - ((0.25 / 2) * -3) / Math.hypot(-3, -2.0) }] },
+    ],
+    labels: [
+      { key: "ab", objectId: "ab", at: { x: 2.5, y: 2 }, placement: "above-left" },
+      { key: "ba", objectId: "ba", at: { x: 2.5, y: 0.5 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 1 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    ab: <InlineMath math="\overrightarrow{AB}" />,
+    ba: <InlineMath math="\overrightarrow{BA}" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
+/>
+
 ## Notasi dengan Satu Huruf
 
 Dalam perhitungan, vektor sering diberi nama **satu huruf dengan tanda panah** seperti <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" />, atau <InlineMath math="\vec{F}" />. Pilih huruf sesuai besarannya, misalnya <InlineMath math="\vec{v}" /> untuk kecepatan dan <InlineMath math="\vec{F}" /> untuk gaya.
@@ -118,6 +151,35 @@ Misalnya, tetapkan kanan sebagai arah positif. Gaya ke kanan dan ke kiri yang ma
 Dalam model, **panjang sebenarnya sama** untuk ketiga panah. Memutar pandangan mengubah proyeksi pada layar, tetapi tidak mengubah besar vektor satuan.
 
 Nanti, saat vektor ditulis sebagai <InlineMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />, notasi <InlineMath math="\hat{i}" /> dan <InlineMath math="\hat{j}" /> memberi arah positif kedua sumbu, sedangkan skalar bertanda <InlineMath math="A_x" /> dan <InlineMath math="A_y" /> memberi komponen sepanjang sumbu tersebut.
+
+Letakkan kedua gaya ujung ke pangkal. Panah kedua berakhir tepat di tempat panah pertama berawal, jadi jumlahnya adalah vektor nol: tanpa panjang dan tanpa arah.
+
+<MathVisual
+  title={<>Dua Gaya yang Saling Meniadakan</>}
+  description={<><InlineMath math="\vec F_1=20\hat i\text{ N}" /> dan <InlineMath math="\vec F_2=-20\hat i\text{ N}" /> disusun ujung ke pangkal. Satu kotak grid sama dengan 5 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "f1", kind: "segment", appearance: "primary", from: { x: 0, y: 0.6 }, to: { x: 4, y: 0.6 } },
+      { id: "f1-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0.6 }, { x: 3.75, y: 0.725 }, { x: 3.75, y: 0.475 }] },
+      { id: "f2", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "f2-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.25, y: 0.125 }, { x: 0.25, y: -0.125 }] },
+      { id: "sum", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 2, y: 0.6 }, placement: "above" },
+      { key: "f2", objectId: "f2", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    f1: <InlineMath math="\vec F_1=20\hat i\text{ N}" />,
+    f2: <InlineMath math="\vec F_2=-20\hat i\text{ N}" />,
+    sum: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />,
+  }}
+/>
 
 ## Kesalahan Membaca yang Sering Terjadi
 

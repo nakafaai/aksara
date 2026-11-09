@@ -1,31 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "bank-pin",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label: "$$70$$",
-        },
-        {
-          correct: false,
-          label: "$$72$$",
-        },
-        {
-          correct: false,
-          label: "$$76$$",
-        },
-        {
-          correct: false,
-          label: "$$0$$",
-        },
-        {
-          correct: true,
-          label: "$$64$$",
-        },
-      ],
+      kind: "numericEntry",
+      unit: "PIN",
+      value: "5040",
     },
   },
 };

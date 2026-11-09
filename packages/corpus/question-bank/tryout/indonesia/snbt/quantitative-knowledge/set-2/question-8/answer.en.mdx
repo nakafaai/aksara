@@ -1,75 +1,26 @@
-Check the **inverse formula, range, and function values** in order.
+For a three-term arithmetic sequence, the quickest approach is to write the terms **symmetrically around the middle term**: <InlineMath math="u-b" />, <InlineMath math="u" />, and <InlineMath math="u+b" /> with common difference <InlineMath math="b>0" />.
 
-# Statement One
+# The middle term from the sum
 
-We will find the **inverse function** of <InlineMath math="f(x) = \frac{2x + 1}{3x - 5}" />.
+<BlockMath math="(u-b)+u+(u+b)=3u=18\quad\Rightarrow\quad u=6" />
 
-Let <InlineMath math="f(x) = y" />, then:
+The original sequence is <InlineMath math="6-b" />, 6, and <InlineMath math="6+b" />. After the changes, **the new sequence** is <InlineMath math="7-b" />, 6, and <InlineMath math="13+b" />.
 
-<BlockMath math="y = \frac{2x + 1}{3x - 5}" />
+# The geometric condition
 
-<BlockMath math="y(3x - 5) = 2x + 1" />
+In a geometric sequence, **the square of the middle term equals the product of the first and third terms**.
 
-<BlockMath math="3xy - 5y = 2x + 1" />
+<BlockMath math="\begin{aligned}
+6^2&=(7-b)(13+b)\\
+36&=91-6b-b^2\\
+b^2+6b-55&=0\\
+(b+11)(b-5)&=0
+\end{aligned}" />
 
-<BlockMath math="3xy - 2x = 5y + 1" />
+Because the difference is positive, <InlineMath math="b=5" />. The original sequence is 1, 6, and 11. Check: the new sequence 2, 6, and 18 is indeed geometric with ratio 3.
 
-<BlockMath math="x(3y - 2) = 5y + 1" />
+<BlockMath math="1\times6\times11=66" />
 
-<BlockMath math="x = \frac{5y + 1}{3y - 2}" />
+The value <InlineMath math="-510" /> comes from <InlineMath math="b=-11" />, which gives 17, 6, and <InlineMath math="-5" /> with a negative difference. The value 216 is the product of the new geometric sequence, <InlineMath math="2\times6\times18" />. The value 108 mixes the two sequences, as in <InlineMath math="1\times6\times18" />.
 
-So, the inverse function is:
-
-<BlockMath math="f^{-1}(x) = \frac{5x + 1}{3x - 2},\qquad x\ne\frac23" />
-
-Statement 1 is true.
-
-# Statement Two
-
-The range of the inverse function <InlineMath math="f^{-1}(x)" /> is equal to the **domain of the original function** <InlineMath math="f(x)" />.
-
-The function <InlineMath math="f(x) = \frac{2x + 1}{3x - 5}" /> is defined if the denominator is not equal to zero:
-
-<BlockMath math="3x - 5 \neq 0" />
-
-<BlockMath math="3x \neq 5" />
-
-<BlockMath math="x \neq \frac{5}{3}" />
-
-This means the domain of <InlineMath math="f(x)" /> is all real numbers except <InlineMath math="\frac{5}{3}" />.
-
-Therefore, the range of <InlineMath math="f^{-1}(x)" /> is all real numbers except <InlineMath math="\frac{5}{3}" />.
-
-So, the value <InlineMath math="y = \frac{5}{3}" /> is indeed not a member of the range of <InlineMath math="f^{-1}(x)" />.
-
-Statement 2 is true.
-
-# Statement Three
-
-Use the **same input** in both functions. We check if <InlineMath math="x = \frac{1}{2}" /> satisfies <InlineMath math="f(x) = f^{-1}(x)" />.
-
-Calculate <InlineMath math="f\left(\frac{1}{2}\right)" />:
-
-<BlockMath math="f\left(\frac{1}{2}\right) = \frac{2(\frac{1}{2}) + 1}{3(\frac{1}{2}) - 5}" />
-
-<BlockMath math="= \frac{1 + 1}{\frac{3}{2} - \frac{10}{2}}" />
-
-<BlockMath math="= \frac{2}{-\frac{7}{2}}" />
-
-<BlockMath math="= 2 \times \left(-\frac{2}{7}\right) = -\frac{4}{7}" />
-
-Calculate <InlineMath math="f^{-1}\left(\frac{1}{2}\right)" />:
-
-<BlockMath math="f^{-1}\left(\frac{1}{2}\right) = \frac{5(\frac{1}{2}) + 1}{3(\frac{1}{2}) - 2}" />
-
-<BlockMath math="= \frac{\frac{5}{2} + \frac{2}{2}}{\frac{3}{2} - \frac{4}{2}}" />
-
-<BlockMath math="= \frac{\frac{7}{2}}{-\frac{1}{2}}" />
-
-<BlockMath math="= \frac{7}{2} \times (-2) = -7" />
-
-Since <InlineMath math="-\frac{4}{7} \neq -7" />, then <InlineMath math="x = \frac{1}{2}" /> does not satisfy the equation.
-
-Statement 3 is false.
-
-The correct sequence of truth values is **True, True, False**.
+So the product of the three original numbers is **66**.

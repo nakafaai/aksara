@@ -1,35 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "taman-siswa",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Pertanyaan itu memindahkan seluruh tanggung jawab desain kepada anak sehingga Tari tidak perlu menilai hasil perubahan.",
+          column: 2,
+          label: "Ki Hadjar ingin Taman Siswa meniru sekolah Eropa sepenuhnya.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Pertanyaan itu memastikan jawaban pertama setiap anak pasti berlaku pada seluruh situasi berikutnya.",
+            "Dalam sistem among, guru berperan sebagai penguasa yang memerintah.",
         },
         {
-          correct: true,
-          label:
-            "Pertanyaan itu mengganti tebakan Tari dengan pilihan yang dinyatakan peserta, lalu memberi dasar untuk menguji apakah perubahan benar-benar membantu.",
+          column: 1,
+          label: "Taman Siswa didirikan di Yogyakarta pada 1922.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Pertanyaan itu hanya memperlambat permainan karena hambatan sudah dapat diketahui dari penampilan setiap anak.",
-        },
-        {
-          correct: false,
-          label:
-            "Pertanyaan itu membuktikan Tari telah memahami seluruh sudut pandang peserta sebelum permainan dimulai.",
+            "Peraturan tahun 1932 tentang sekolah swasta akhirnya dicabut setelah protes meluas.",
         },
       ],
     },

@@ -5,26 +5,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$2x^2 + 8x - 6$$",
-        },
-        {
-          correct: false,
-          label: "$$2x^2 + 8x - 9$$",
-        },
-        {
-          correct: true,
-          label: "$$2x^2 + 8x - 11$$",
-        },
-        {
-          correct: false,
-          label: "$$2x^2 + 4x - 6$$",
-        },
-        {
-          correct: false,
-          label: "$$2x^2 + 4x - 9$$",
-        },
+        { correct: false, label: "$$-1$$" },
+        { correct: false, label: "$$2$$" },
+        { correct: false, label: "$$3$$" },
+        { correct: true, label: "$$5$$" },
+        { correct: false, label: "$$6$$" },
       ],
     },
   },

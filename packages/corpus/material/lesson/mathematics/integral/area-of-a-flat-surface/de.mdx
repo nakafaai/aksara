@@ -3,7 +3,7 @@ export const metadata = {
   description: "Berechne mit bestimmten Integralen Flächen, die von Kurven begrenzt werden, anhand vollständiger Beispiele zu quadratischen Funktionen und Wurzelfunktionen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Integrale",
 };
 
@@ -44,64 +44,30 @@ Liegt der Graph unterhalb der Achse, verwende den **Betrag** als Höhe. Bei eine
 
 Betrachte die Fläche zwischen <InlineMath math="f(x) = x^2 - 4x" /> und der <InlineMath math="x" />-Achse im Intervall von <InlineMath math="x = 1" /> bis <InlineMath math="x = 3" />.
 
-<LineEquation
-  showZAxis={false}
-  title={<>Funktionsgraph <InlineMath math="f(x) = x^2 - 4x" /></>}
-  description="Der Graph und die beiden senkrechten Grenzen des Integrationsintervalls."
-  cameraPosition={[2, -1.5, 9]}
-  cameraTarget={[2, -1.5, 0]}
-  data={[
-    {
-      points: Array.from({ length: 31 }, (_, i) => {
-        const x = 0 + (i * 4) / 30;
-        const y = x * x - 4 * x;
-        return { x, y, z: 0 };
-      }),
-      color: "#9333ea",
-      smooth: false,
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="f(x)=x^2-4x" />, at: 25, offset: [-1.333333, -2.677778, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 1, y: 0, z: 0 },
-        { x: 1, y: -3, z: 0 }
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="x=1" />, at: 0, offset: [-1.6, -2, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 3, y: 0, z: 0 },
-        { x: 3, y: -3, z: 0 }
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="x=3" />, at: 0, offset: [1.6, -2, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 1, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 }
-      ],
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      lineWidth: 1,
-      labels: [
-        { text: <InlineMath math="x\in[1,3]" />, at: 0, offset: [1, 0.7, 0] }
-      ]
-    }
-  ]}
+<MathVisual
+  title={<>Graph von <InlineMath math="f(x) = x^2 - 4x" /></>}
+  description={<>Die Kurve <InlineMath math="f(x) = x^2 - 4x" /> mit den Grenzen <InlineMath math="x = 1" /> und <InlineMath math="x = 3" />. Auf <InlineMath math="[1, 3]" /> liegt sie unter der x-Achse, von <InlineMath math="f(1) = -3" /> hinab zu <InlineMath math="f(2) = -4" /> und zurück zu <InlineMath math="f(3) = -3" />.</>}
+  labels={{
+    curve: <InlineMath math="f(x) = x^2 - 4x" />,
+    left: <InlineMath math="x = 1" />,
+    right: <InlineMath math="x = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -4.6, max: 1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -4, c: 0 }, domain: { min: 0, max: 4 }, appearance: "primary" },
+      { id: "left", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: -3 }, appearance: "construction" },
+      { id: "right", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: -3 }, appearance: "construction" },
+      { id: "base", kind: "segment", from: { x: 1, y: 0 }, to: { x: 3, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: 1, y: -3 / 2 }, placement: "left" },
+      { key: "right", objectId: "right", at: { x: 3, y: -3 / 2 }, placement: "right" },
+    ],
+  }}
 />
 
 Auf <InlineMath math="[1,3]" /> lässt sich die Funktion als <InlineMath math="f(x)=x(x-4)" /> faktorisieren. Jeder Punkt des Intervalls erfüllt <InlineMath math="x>0" /> und <InlineMath math="x-4<0" />. Daher gilt im gesamten Intervall <InlineMath math="f(x)<0" />. Die Randwerte <InlineMath math="f(1)=-3" /> und <InlineMath math="f(3)=-3" /> stimmen mit dieser Vorzeichenanalyse überein.
@@ -128,61 +94,30 @@ Daher beträgt die Fläche dieser Region <InlineMath math="\frac{22}{3}" /> Quad
 
 Im zweiten Beispiel berechnen wir die Fläche unter <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /> von <InlineMath math="x = 0" /> bis <InlineMath math="x = 2" />.
 
-<LineEquation
-  showZAxis={false}
-  title={<>Funktionsgraph <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /></>}
-  description="Bereich unter der Kurve, dessen Fläche mit Intervallhilfslinien berechnet wird."
-  data={[
-    {
-      points: Array.from({ length: 31 }, (_, i) => {
-        const x = 0 + (i * 2) / 30;
-        const y = x * Math.sqrt(x * x + 5);
-        return { x, y, z: 0 };
-      }),
-      color: "#059669",
-      smooth: false,
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="f(x)=x\sqrt{x^2+5}" />, at: 25, offset: [-3.166667, -0.448111, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#7c3aed",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="x=0" />, at: 0, offset: [-0.5, -0.5, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 2, y: 0, z: 0 },
-        { x: 2, y: 6, z: 0 }
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="x=2" />, at: 0, offset: [0.3, -0.5, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 2, y: 6, z: 0 },
-        { x: 2, y: 6, z: 0 }
-      ],
-      color: "#7c3aed",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="f(2)=6" />, at: 0, offset: [1.5, -1, 0] }
-      ]
-    }
-  ]}
-  cameraTarget={[1, 2.5, 0]}
-  cameraPosition={[1, 2.5, 12]}
+<MathVisual
+  title={<>Graph von <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /></>}
+  description={<>Die Kurve <InlineMath math="f(x) = x\sqrt{x^2 + 5}" /> von <InlineMath math="x = 0" /> bis <InlineMath math="x = 2" />, mit der Grenze <InlineMath math="x = 2" /> und dem Punkt <InlineMath math="f(2) = 6" />.</>}
+  labels={{
+    curve: <InlineMath math="f(x) = x\sqrt{x^2 + 5}" />,
+    edge: <InlineMath math="x = 2" />,
+    top: <InlineMath math="f(2) = 6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.6 }, y: { min: -0.5, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "polyline", vertices: [{ x: 0, y: (0) * Math.sqrt((0) ** 2 + 5) }, { x: 1 / 20, y: (1 / 20) * Math.sqrt((1 / 20) ** 2 + 5) }, { x: 1 / 10, y: (1 / 10) * Math.sqrt((1 / 10) ** 2 + 5) }, { x: 3 / 20, y: (3 / 20) * Math.sqrt((3 / 20) ** 2 + 5) }, { x: 1 / 5, y: (1 / 5) * Math.sqrt((1 / 5) ** 2 + 5) }, { x: 1 / 4, y: (1 / 4) * Math.sqrt((1 / 4) ** 2 + 5) }, { x: 3 / 10, y: (3 / 10) * Math.sqrt((3 / 10) ** 2 + 5) }, { x: 7 / 20, y: (7 / 20) * Math.sqrt((7 / 20) ** 2 + 5) }, { x: 2 / 5, y: (2 / 5) * Math.sqrt((2 / 5) ** 2 + 5) }, { x: 9 / 20, y: (9 / 20) * Math.sqrt((9 / 20) ** 2 + 5) }, { x: 1 / 2, y: (1 / 2) * Math.sqrt((1 / 2) ** 2 + 5) }, { x: 11 / 20, y: (11 / 20) * Math.sqrt((11 / 20) ** 2 + 5) }, { x: 3 / 5, y: (3 / 5) * Math.sqrt((3 / 5) ** 2 + 5) }, { x: 13 / 20, y: (13 / 20) * Math.sqrt((13 / 20) ** 2 + 5) }, { x: 7 / 10, y: (7 / 10) * Math.sqrt((7 / 10) ** 2 + 5) }, { x: 3 / 4, y: (3 / 4) * Math.sqrt((3 / 4) ** 2 + 5) }, { x: 4 / 5, y: (4 / 5) * Math.sqrt((4 / 5) ** 2 + 5) }, { x: 17 / 20, y: (17 / 20) * Math.sqrt((17 / 20) ** 2 + 5) }, { x: 9 / 10, y: (9 / 10) * Math.sqrt((9 / 10) ** 2 + 5) }, { x: 19 / 20, y: (19 / 20) * Math.sqrt((19 / 20) ** 2 + 5) }, { x: 1, y: (1) * Math.sqrt((1) ** 2 + 5) }, { x: 21 / 20, y: (21 / 20) * Math.sqrt((21 / 20) ** 2 + 5) }, { x: 11 / 10, y: (11 / 10) * Math.sqrt((11 / 10) ** 2 + 5) }, { x: 23 / 20, y: (23 / 20) * Math.sqrt((23 / 20) ** 2 + 5) }, { x: 6 / 5, y: (6 / 5) * Math.sqrt((6 / 5) ** 2 + 5) }, { x: 5 / 4, y: (5 / 4) * Math.sqrt((5 / 4) ** 2 + 5) }, { x: 13 / 10, y: (13 / 10) * Math.sqrt((13 / 10) ** 2 + 5) }, { x: 27 / 20, y: (27 / 20) * Math.sqrt((27 / 20) ** 2 + 5) }, { x: 7 / 5, y: (7 / 5) * Math.sqrt((7 / 5) ** 2 + 5) }, { x: 29 / 20, y: (29 / 20) * Math.sqrt((29 / 20) ** 2 + 5) }, { x: 3 / 2, y: (3 / 2) * Math.sqrt((3 / 2) ** 2 + 5) }, { x: 31 / 20, y: (31 / 20) * Math.sqrt((31 / 20) ** 2 + 5) }, { x: 8 / 5, y: (8 / 5) * Math.sqrt((8 / 5) ** 2 + 5) }, { x: 33 / 20, y: (33 / 20) * Math.sqrt((33 / 20) ** 2 + 5) }, { x: 17 / 10, y: (17 / 10) * Math.sqrt((17 / 10) ** 2 + 5) }, { x: 7 / 4, y: (7 / 4) * Math.sqrt((7 / 4) ** 2 + 5) }, { x: 9 / 5, y: (9 / 5) * Math.sqrt((9 / 5) ** 2 + 5) }, { x: 37 / 20, y: (37 / 20) * Math.sqrt((37 / 20) ** 2 + 5) }, { x: 19 / 10, y: (19 / 10) * Math.sqrt((19 / 10) ** 2 + 5) }, { x: 39 / 20, y: (39 / 20) * Math.sqrt((39 / 20) ** 2 + 5) }, { x: 2, y: (2) * Math.sqrt((2) ** 2 + 5) }], appearance: "primary" },
+      { id: "edge", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "top", kind: "point", at: { x: 2, y: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1, y: Math.sqrt(6) }, placement: "left" },
+      { key: "edge", objectId: "edge", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "top", objectId: "top", at: { x: 2, y: 6 }, placement: "left" },
+    ],
+  }}
 />
 
 Die Form <InlineMath math="x\sqrt{x^2 + 5}" /> legt eine **Substitution** nahe: Der lineare Faktor <InlineMath math="x" /> passt bis auf einen konstanten Faktor zur Ableitung des Ausdrucks unter der Wurzel.
@@ -254,3 +189,30 @@ Die Schnittpunkte liegen also bei <InlineMath math="x = 0" /> und <InlineMath ma
 </MathContainer>
 
 Die Fläche dieser Region beträgt <InlineMath math="\frac{4}{3}" /> Quadrateinheiten.
+
+Aufgabe 3 im Graphen: <InlineMath math="y = 2x - x^2" /> beginnt bei 0, steigt bei <InlineMath math="x = 1" /> auf 1 und kehrt bei <InlineMath math="x = 2" /> zu 0 zurück. Die Fläche zwischen dem Bogen und der x-Achse ist <InlineMath math="\int_0^2 (2x - x^2)\,dx = \tfrac43" />.
+
+<MathVisual
+  title={<>Der Bogen <InlineMath math="y = 2x - x^2" /></>}
+  description={<>Die Parabel <InlineMath math="y = 2x - x^2" /> zwischen ihren Nullstellen 0 und 2, die mit der x-Achse die Fläche <InlineMath math="\tfrac43" /> einschließt.</>}
+  labels={{
+    arch: <InlineMath math="y = 2x - x^2" />,
+    area: <InlineMath math="A = \tfrac43" />,
+    top: <InlineMath math="(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 2.4 }, y: { min: -0.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "arch", kind: "quadratic", inputAxis: "x", coefficients: { a: -1, b: 2, c: 0 }, domain: { min: 0, max: 2 }, appearance: "primary" },
+      { id: "base", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "top", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "arch", objectId: "arch", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "area", objectId: "base", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "top", objectId: "top", at: { x: 1, y: 1 }, placement: "above" },
+    ],
+  }}
+/>

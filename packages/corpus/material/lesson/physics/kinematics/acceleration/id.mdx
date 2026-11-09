@@ -95,6 +95,36 @@ Pada tabel ini, percepatan dianggap **tetap selama selang waktu yang diamati**.
 
 Bagian terakhir sering membuat siswa keliru. Percepatan negatif bukan otomatis berarti benda bergerak ke kiri. Percepatan negatif berarti <Highlight>perubahan kecepatannya mengarah ke sisi negatif</Highlight> dari sumbu yang dipilih.
 
+Baca kedua tandanya bersama-sama. Dengan <InlineMath math="v>0" />, percepatan bertanda sama membuat kelajuan bertambah, tanda berlawanan membuatnya berkurang, dan <InlineMath math="a=0" /> membuatnya tetap. Perbesar ketiga garis dan bandingkan kemiringannya.
+
+<MathVisual
+  title={<>Makin Cepat atau Makin Lambat</>}
+  description={<>Kecepatan terhadap waktu untuk <InlineMath math="a=+1" /> (teal), <InlineMath math="a=-1" /> (merah muda), dan <InlineMath math="a=0" /> (abu-abu), semuanya dengan kecepatan positif. Mendatar: sekon. Tegak: m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "faster", kind: "segment", appearance: "construction", from: { x: 0, y: 2 }, to: { x: 4, y: 6 } },
+      { id: "slower", kind: "segment", appearance: "warning", from: { x: 0, y: 6 }, to: { x: 4, y: 2 } },
+      { id: "steady", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 4, y: 3 } },
+      { id: "faster-end", kind: "point", appearance: "construction", at: { x: 4, y: 6 } },
+      { id: "slower-end", kind: "point", appearance: "warning", at: { x: 4, y: 2 } },
+      { id: "steady-end", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "faster", objectId: "faster-end", at: { x: 4, y: 6 }, placement: "right" },
+      { key: "slower", objectId: "slower-end", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "steady", objectId: "steady-end", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    faster: <InlineMath math="a>0:\ \text{lebih cepat}" />,
+    slower: <InlineMath math="a<0:\ \text{lebih lambat}" />,
+    steady: <InlineMath math="a=0" />,
+  }}
+/>
+
 ## Menghitung Perubahan Kecepatan Setiap Detik
 
 Misalkan kecepatan mobil berubah dari <InlineMath math="2\text{ m/s}" /> menjadi <InlineMath math="18\text{ m/s}" /> dalam <InlineMath math="4\text{ s}" />. Percepatan rata-ratanya:

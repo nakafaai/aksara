@@ -1,23 +1,25 @@
-Beide Uhren zeigen zu Beginn dieselbe Zeit an. Da die langsame Uhr in jeder tatsächlichen Stunde <InlineMath math="5\text{ Minuten}" /> verliert, wächst ihr **Rückstand** um <InlineMath math="5\text{ Minuten}" /> pro Stunde.
+Beginne bei der Tatsache, die sicher ist, und schließe Schritt für Schritt weiter. Schreib die Aussagen als Symbole:
 
-# Nötigen Rückstand für dieselbe Anzeige bestimmen
+- <InlineMath math="p" />: Das Lager erhält am Montag eine Reislieferung.
+- <InlineMath math="q" />: Die Mitarbeiter wiegen alle Säcke neu.
+- <InlineMath math="r" />: Der Bestandsbericht wird verspätet verschickt.
+- <InlineMath math="s" />: Der Lagerleiter ruft den Lieferanten an.
 
-Ein <InlineMath math="12\text{-Stunden}" />-Zifferblatt **wiederholt sich nach** <InlineMath math="12\text{ Stunden}" />. Die Zeiger zeigen daher erstmals wieder dieselbe Zeit an, wenn die langsame Uhr genau <InlineMath math="12\text{ Stunden}" /> zurückliegt:
+Die Prämissen sind <InlineMath math="p \Rightarrow q" />, <InlineMath math="q \Rightarrow r" />, <InlineMath math="\neg r \vee s" /> und die Tatsache <InlineMath math="\neg s" />.
 
-<BlockMath math="\begin{aligned} 12\,\text{h} &amp;= 12 \times 60\,\text{min} \\ &amp;= 720\,\text{min} \end{aligned}" />
+**Schritt 1** nutzt die Disjunktion. In <InlineMath math="\neg r \vee s" /> muss mindestens ein Teil wahr sein. Da <InlineMath math="s" /> falsch ist, muss <InlineMath math="\neg r" /> wahr sein. Also ist **der Bestandsbericht nicht verspätet**.
 
-# Zeit bis zu diesem Rückstand bestimmen
+**Schritt 2** nutzt zweimal den Modus tollens. Aus <InlineMath math="q \Rightarrow r" /> und <InlineMath math="\neg r" /> folgt <InlineMath math="\neg q" />. Aus <InlineMath math="p \Rightarrow q" /> und <InlineMath math="\neg q" /> folgt <InlineMath math="\neg p" />.
 
-Sei <InlineMath math="t" /> die tatsächlich vergangene Zeit in Stunden. Der **Rückstand der alten Uhr** beträgt dann <InlineMath math="5t\text{ Minuten}" />:
+<BlockMath math="\neg s,\; \neg r \vee s \;\Rightarrow\; \neg r \;\Rightarrow\; \neg q \;\Rightarrow\; \neg p" />
 
-<BlockMath math="\begin{aligned} 5t &amp;= 720 \\ t &amp;= \frac{720}{5} \\ t &amp;= 144\text{ Stunden} \end{aligned}" />
+Das Lager hat also am Montag keine Reislieferung erhalten.
 
-Beide Uhren zeigen also nach <InlineMath math="144\text{ Stunden}" />, also nach <InlineMath math="6\text{ Tagen}" />, erstmals wieder dieselbe Zeit an.
+Die anderen Optionen sind falsch:
 
-Prüfe die verstrichene Zeit auf beiden Uhren. Ein **Unterschied von zwölf Stunden** ergibt auf Zwölf-Stunden-Zifferblättern dieselbe Anzeige. Bei sechs Stunden Unterschied ist das noch nicht der Fall.
+- Dass alle Säcke neu gewogen werden, widerspricht <InlineMath math="\neg q" />.
+- Ein verspäteter Bericht widerspricht <InlineMath math="\neg r" />.
+- Die Prämissen sagen nichts über andere Tage, eine Lieferung an einem anderen Tag ist also möglich, aber nicht sicher.
+- Die Prämissen betreffen nur diese Woche, über die nächste Woche folgt nichts.
 
-| Tatsächliche Zeit | Verstrichene Zeit auf der langsamen Uhr | Rückstand |
-| --- | --- | --- |
-| <InlineMath math="12\text{ Stunden}" /> | <InlineMath math="12\times\frac{55}{60}=11\text{ Stunden}" /> | <InlineMath math="12-11=1\text{ Stunden}" /> |
-| <InlineMath math="72\text{ Stunden}" /> | <InlineMath math="72\times\frac{55}{60}=66\text{ Stunden}" /> | <InlineMath math="72-66=6\text{ Stunden}" /> |
-| <InlineMath math="144\text{ Stunden}" /> | <InlineMath math="144\times\frac{55}{60}=132\text{ Stunden}" /> | <InlineMath math="144-132=12\text{ Stunden}" /> |
+Sicher wahr ist also, dass das Lager in dieser Woche am Montag keine Reislieferung erhalten hat.

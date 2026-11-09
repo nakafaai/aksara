@@ -3,11 +3,40 @@ export const metadata = {
   description: "Hubungkan akar polinomial dengan faktor linearnya, lalu gunakan Teorema Faktor untuk memfaktorkan polinomial.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Polinomial",
 };
 
 ## Akar Polinomial dan Faktor Linearnya
+
+**Teorema faktor** menyatakan bahwa <InlineMath math="(x - c)" /> adalah faktor <InlineMath math="P(x)" /> jika dan hanya jika <InlineMath math="P(c) = 0" />. Jadi setiap pembuat nol <InlineMath math="c" /> memberi satu faktor linear, dan grafik <InlineMath math="y = P(x)" /> bertemu sumbu <InlineMath math="x" /> tepat di pembuat nol itu: memotongnya di pembuat nol tunggal dan menyinggungnya di pembuat nol ganda.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="y = x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2" /></>}
+  description={<>Grafiknya memotong sumbu x di nol tunggal <InlineMath math="-1" /> dan hanya menyinggungnya di nol ganda <InlineMath math="2" />.</>}
+  labels={{
+    curve: <InlineMath math="y = (x + 1)(x - 2)^2" />,
+    single: <InlineMath math="-1" />,
+    double: <InlineMath math="2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 3.5 }, y: { min: -6.5, max: 6.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "polyline", vertices: [{ x: -3 / 2, y: (-3 / 2) ** 3 - 3 * (-3 / 2) ** 2 + 4 }, { x: -7 / 5, y: (-7 / 5) ** 3 - 3 * (-7 / 5) ** 2 + 4 }, { x: -13 / 10, y: (-13 / 10) ** 3 - 3 * (-13 / 10) ** 2 + 4 }, { x: -6 / 5, y: (-6 / 5) ** 3 - 3 * (-6 / 5) ** 2 + 4 }, { x: -11 / 10, y: (-11 / 10) ** 3 - 3 * (-11 / 10) ** 2 + 4 }, { x: -1, y: (-1) ** 3 - 3 * (-1) ** 2 + 4 }, { x: -9 / 10, y: (-9 / 10) ** 3 - 3 * (-9 / 10) ** 2 + 4 }, { x: -4 / 5, y: (-4 / 5) ** 3 - 3 * (-4 / 5) ** 2 + 4 }, { x: -7 / 10, y: (-7 / 10) ** 3 - 3 * (-7 / 10) ** 2 + 4 }, { x: -3 / 5, y: (-3 / 5) ** 3 - 3 * (-3 / 5) ** 2 + 4 }, { x: -1 / 2, y: (-1 / 2) ** 3 - 3 * (-1 / 2) ** 2 + 4 }, { x: -2 / 5, y: (-2 / 5) ** 3 - 3 * (-2 / 5) ** 2 + 4 }, { x: -3 / 10, y: (-3 / 10) ** 3 - 3 * (-3 / 10) ** 2 + 4 }, { x: -1 / 5, y: (-1 / 5) ** 3 - 3 * (-1 / 5) ** 2 + 4 }, { x: -1 / 10, y: (-1 / 10) ** 3 - 3 * (-1 / 10) ** 2 + 4 }, { x: 0, y: (0) ** 3 - 3 * (0) ** 2 + 4 }, { x: 1 / 10, y: (1 / 10) ** 3 - 3 * (1 / 10) ** 2 + 4 }, { x: 1 / 5, y: (1 / 5) ** 3 - 3 * (1 / 5) ** 2 + 4 }, { x: 3 / 10, y: (3 / 10) ** 3 - 3 * (3 / 10) ** 2 + 4 }, { x: 2 / 5, y: (2 / 5) ** 3 - 3 * (2 / 5) ** 2 + 4 }, { x: 1 / 2, y: (1 / 2) ** 3 - 3 * (1 / 2) ** 2 + 4 }, { x: 3 / 5, y: (3 / 5) ** 3 - 3 * (3 / 5) ** 2 + 4 }, { x: 7 / 10, y: (7 / 10) ** 3 - 3 * (7 / 10) ** 2 + 4 }, { x: 4 / 5, y: (4 / 5) ** 3 - 3 * (4 / 5) ** 2 + 4 }, { x: 9 / 10, y: (9 / 10) ** 3 - 3 * (9 / 10) ** 2 + 4 }, { x: 1, y: (1) ** 3 - 3 * (1) ** 2 + 4 }, { x: 11 / 10, y: (11 / 10) ** 3 - 3 * (11 / 10) ** 2 + 4 }, { x: 6 / 5, y: (6 / 5) ** 3 - 3 * (6 / 5) ** 2 + 4 }, { x: 13 / 10, y: (13 / 10) ** 3 - 3 * (13 / 10) ** 2 + 4 }, { x: 7 / 5, y: (7 / 5) ** 3 - 3 * (7 / 5) ** 2 + 4 }, { x: 3 / 2, y: (3 / 2) ** 3 - 3 * (3 / 2) ** 2 + 4 }, { x: 8 / 5, y: (8 / 5) ** 3 - 3 * (8 / 5) ** 2 + 4 }, { x: 17 / 10, y: (17 / 10) ** 3 - 3 * (17 / 10) ** 2 + 4 }, { x: 9 / 5, y: (9 / 5) ** 3 - 3 * (9 / 5) ** 2 + 4 }, { x: 19 / 10, y: (19 / 10) ** 3 - 3 * (19 / 10) ** 2 + 4 }, { x: 2, y: (2) ** 3 - 3 * (2) ** 2 + 4 }, { x: 21 / 10, y: (21 / 10) ** 3 - 3 * (21 / 10) ** 2 + 4 }, { x: 11 / 5, y: (11 / 5) ** 3 - 3 * (11 / 5) ** 2 + 4 }, { x: 23 / 10, y: (23 / 10) ** 3 - 3 * (23 / 10) ** 2 + 4 }, { x: 12 / 5, y: (12 / 5) ** 3 - 3 * (12 / 5) ** 2 + 4 }, { x: 5 / 2, y: (5 / 2) ** 3 - 3 * (5 / 2) ** 2 + 4 }, { x: 13 / 5, y: (13 / 5) ** 3 - 3 * (13 / 5) ** 2 + 4 }, { x: 27 / 10, y: (27 / 10) ** 3 - 3 * (27 / 10) ** 2 + 4 }, { x: 14 / 5, y: (14 / 5) ** 3 - 3 * (14 / 5) ** 2 + 4 }, { x: 29 / 10, y: (29 / 10) ** 3 - 3 * (29 / 10) ** 2 + 4 }, { x: 3, y: (3) ** 3 - 3 * (3) ** 2 + 4 }, { x: 31 / 10, y: (31 / 10) ** 3 - 3 * (31 / 10) ** 2 + 4 }, { x: 16 / 5, y: (16 / 5) ** 3 - 3 * (16 / 5) ** 2 + 4 }], appearance: "primary" },
+      { id: "single", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+      { id: "double", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "single", objectId: "single", at: { x: -1, y: 0 }, placement: "left" },
+      { key: "double", objectId: "double", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Polinomial <InlineMath math="x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2" /> memperlihatkan kedua kasus. Faktor <InlineMath math="(x + 1)" /> muncul sekali, jadi grafiknya memotong sumbu di <InlineMath math="-1" />. Faktor <InlineMath math="(x - 2)" /> muncul dua kali, jadi grafiknya turun ke <InlineMath math="0" /> di <InlineMath math="x = 2" /> lalu naik lagi tanpa memotong sumbu.
 
 Ketika kita membagi suatu polinomial <InlineMath math="P(x)" /> dengan <InlineMath math="(x - c)" />, terkadang sisa pembagiannya adalah nol. Kita tahu dari Teorema Sisa bahwa jika sisa pembagiannya nol, maka <InlineMath math="P(c) = 0" />. Nah, apa artinya jika <InlineMath math="P(c) = 0" />?
 
@@ -39,9 +68,30 @@ Dan dari Teorema Sisa, kita tahu <InlineMath math="S = P(c)" />.
 - Jika <InlineMath math="(x - c)" /> adalah faktor, artinya <InlineMath math="P(x)" /> habis dibagi <InlineMath math="(x - c)" />. Ini hanya terjadi jika sisa pembagiannya nol. Maka, <InlineMath math="S = P(c) = 0" />.
 - Jika <InlineMath math="P(c) = 0" />, maka <InlineMath math="S = 0" />. Persamaan menjadi <InlineMath math="P(x) = (x - c) \cdot H(x) + 0" />, atau <InlineMath math="P(x) = (x - c) \cdot H(x)" />. Jadi, <InlineMath math="(x - c)" /> adalah faktor dari <InlineMath math="P(x)" />.
 
+<Mermaid
+  title={<>Empat pernyataan yang setara</>}
+  description={<>Untuk polinomial P(x) dan bilangan real c, keempat pernyataan ini selalu benar bersama atau salah bersama.</>}
+  chart={`flowchart LR
+  A["P(c) = 0"] <--> B["Sisa P(x) dibagi x - c adalah 0"]
+  B <--> C["x - c faktor dari P(x)"]
+  C <--> D["Grafik y = P(x) bertemu sumbu x di c"]`}
+/>
+
 ## Menggunakan Teorema Faktor untuk Memfaktorkan Polinomial
 
 Setiap **akar yang telah diverifikasi** memberi satu faktor linear. Bagi polinomial dengan faktor itu, lalu faktorkan hasil baginya. Derajat berkurang satu pada setiap pembagian oleh faktor linear, sehingga perhitungan berikutnya lebih sederhana.
+
+<Mermaid
+  title={<>Langkah memfaktorkan dengan teorema faktor</>}
+  description={<>Setiap pembuat nol yang terbukti memberi satu faktor linear dan menurunkan derajat hasil bagi.</>}
+  chart={`flowchart TD
+  A["Coba calon pembuat nol c"] --> B{"P(c) = 0?"}
+  B -->|"tidak"| A
+  B -->|"ya"| C["Bagi P(x) dengan x - c memakai Horner"]
+  C --> D{"Hasil bagi masih bisa difaktorkan?"}
+  D -->|"ya"| A
+  D -->|"tidak"| E["Kalikan semua faktor untuk memeriksa"]`}
+/>
 
 Faktorisasi bergantung pada sistem bilangan. Dalam bilangan real, <InlineMath math="x^2+1" /> tidak dapat dipecah menjadi faktor linear karena <InlineMath math="x^2+1>0" />. Simpan faktor seperti ini, beserta koefisien utama yang diperlukan. Contohnya:
 
@@ -98,9 +148,38 @@ Gabungkan semua faktor.
 
 <BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
 
+Periksa faktorisasinya dengan substitusi: <InlineMath math="P(-5) = -125 + 50 + 65 + 10 = 0" /> serta <InlineMath math="P(2) = 8 + 8 - 26 + 10 = 0" />. Ketiga pembuat nol <InlineMath math="-5" />, <InlineMath math="1" />, dan <InlineMath math="2" /> memberi tiga faktor linear. Hasil kali ketiganya berderajat tiga dengan koefisien utama <InlineMath math="1" />, sama seperti <InlineMath math="P(x)" />, jadi <InlineMath math="P(x) = (x + 5)(x - 1)(x - 2)" /> tepat.
+
+Hitung <InlineMath math="P(x) = x^3 + 2x^2 - 13x + 10" /> di bilangan bulat dari <InlineMath math="-5" /> sampai 2. Batangnya 0 tepat di <InlineMath math="-5" />, 1, dan 2, tiga nol di balik <InlineMath math="(x - 1)(x - 2)(x + 5)" />.
+
+<BarChart
+  title={<>Nilai <InlineMath math="P(x) = x^3 + 2x^2 - 13x + 10" /></>}
+  description={<>Batang <InlineMath math="P(x)" /> untuk <InlineMath math="x = -5" /> sampai 2, bernilai nol di <InlineMath math="-5" />, 1, dan 2.</>}
+  yAxisLabel="P(x)"
+  data={[-5, -4, -3, -2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: x ** 3 + 2 * x ** 2 - 13 * x + 10 }))}
+  chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Kesalahan yang Sering Terjadi
+
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Menulis faktor <InlineMath math="(x + 1)" /> untuk pembuat nol <InlineMath math="1" /> | Pembuat nol <InlineMath math="c" /> memberi faktor <InlineMath math="(x - c)" /> | Substitusikan <InlineMath math="c" /> ke faktor, hasilnya harus nol |
+| Berhenti setelah faktor pertama | Hasil bagi masih bisa difaktorkan | Setiap faktor harus linear atau tidak punya akar real, jadi coba faktorkan hasil baginya lagi |
+| Menganggap sisa bukan nol tetap memberi faktor | Sisa <InlineMath math="P(c) \ne 0" /> berarti <InlineMath math="(x - c)" /> bukan faktor | Hitung <InlineMath math="P(c)" /> sebelum membagi |
+| Membuang koefisien utama | Tanpa <InlineMath math="2" />, hasil kalinya hanya setengah dari <InlineMath math="2x^3 - 2x^2 + 2x - 2" /> | Jabarkan hasil faktorisasi dan bandingkan dengan polinomial awal |
+
+Pemeriksaan paling kuat adalah **menjabarkan kembali hasil faktorisasi**. Hasilnya harus sama persis dengan polinomial awal.
+
 ## Latihan
 
 Misalkan <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" />. Tunjukkan bahwa <InlineMath math="P(-1) = 0" />, lalu gunakan hasil <InlineMath math="P(-1) = 0" /> untuk **memfaktorkan** <InlineMath math="P(x)" /> secara lengkap. Setelah pembagian oleh faktor linear pertama, polinomial kubik ini langsung menghasilkan hasil bagi kuadrat. Cari dua bilangan yang jumlah dan hasil kalinya cocok dengan koefisien kuadrat tersebut.
+
+Kerjakan juga soal berikut, lalu **periksa dengan menjabarkan hasil faktorisasimu**.
+
+2. Tunjukkan bahwa <InlineMath math="(x - 2)" /> adalah faktor <InlineMath math="x^3 - 3x^2 + 4" />, lalu faktorkan secara lengkap.
+
+3. Tentukan <InlineMath math="k" /> agar <InlineMath math="(x + 2)" /> menjadi faktor <InlineMath math="x^3 + kx^2 - 4x - 12" />, lalu faktorkan polinomialnya.
 
 ### Kunci Jawaban
 
@@ -147,3 +226,25 @@ Untuk hasil bagi ini, <InlineMath math="-6+3=-3" /> dan <InlineMath math="(-6)(3
 **Langkah 5**. Faktorisasi Lengkap
 
 <BlockMath math="P(x) = (x + 1)(x - 6)(x + 3)" />
+
+**Soal 2**. <InlineMath math="P(2) = 8 - 12 + 4 = 0" />, jadi <InlineMath math="(x - 2)" /> adalah faktor. Metode Horner dengan <InlineMath math="c = 2" /> pada koefisien <InlineMath math="1, -3, 0, 4" /> memberi <InlineMath math="1, -1, -2, 0" />, sehingga
+
+<BlockMath math="x^3 - 3x^2 + 4 = (x - 2)(x^2 - x - 2) = (x - 2)^2(x + 1)" />
+
+Faktor <InlineMath math="(x - 2)" /> muncul dua kali, jadi <InlineMath math="2" /> adalah pembuat nol ganda, dan grafiknya hanya menyinggung sumbu <InlineMath math="x" /> di titik itu. Periksa: <InlineMath math="(x^2 - 4x + 4)(x + 1) = x^3 - 3x^2 + 4" />.
+
+**Soal 3**. Karena <InlineMath math="(x + 2)" /> faktor, <InlineMath math="P(-2) = 0" />:
+
+<BlockMath math="-8 + 4k + 8 - 12 = 4k - 12 = 0 \quad\Longrightarrow\quad k = 3" />
+
+Untuk <InlineMath math="k = 3" />, metode Horner dengan <InlineMath math="c = -2" /> pada koefisien <InlineMath math="1, 3, -4, -12" /> memberi <InlineMath math="1, 1, -6, 0" />, jadi hasil baginya <InlineMath math="x^2 + x - 6 = (x + 3)(x - 2)" /> dan <InlineMath math="x^3 + 3x^2 - 4x - 12 = (x + 2)(x + 3)(x - 2)" />. Periksa dengan menjabarkan: <InlineMath math="(x + 2)(x + 3) = x^2 + 5x + 6" />, dan <InlineMath math="(x^2 + 5x + 6)(x - 2) = x^3 + 3x^2 - 4x - 12" />.
+
+Kunci jawaban dalam satu diagram: <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" /> bernilai 0 di <InlineMath math="-3" />, <InlineMath math="-1" />, dan 6, dan tidak di tempat lain di antaranya, sesuai dengan <InlineMath math="(x + 1)(x - 6)(x + 3)" />.
+
+<BarChart
+  title={<>Nilai <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" /></>}
+  description={<>Batang <InlineMath math="P(x)" /> untuk <InlineMath math="x = -3" /> sampai 6, bernilai nol di <InlineMath math="-3" />, <InlineMath math="-1" />, dan 6.</>}
+  yAxisLabel="P(x)"
+  data={[-3, -2, -1, 0, 1, 2, 3, 4, 5, 6].map((x) => ({ name: String(x), value: x ** 3 - 2 * x ** 2 - 21 * x - 18 }))}
+  chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

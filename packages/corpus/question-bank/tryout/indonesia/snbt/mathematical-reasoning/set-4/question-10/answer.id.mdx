@@ -1,17 +1,21 @@
-Karena setiap pasangan harus berada di mobil yang sama dan urutan tempat duduk tidak dihitung, kita anggap **setiap pasangan sebagai satu unit**. Kedua mobil berbeda, sehingga menempatkan suatu kelompok di mobil <InlineMath math="A" /> menghasilkan pengaturan yang berbeda dari menempatkannya di mobil <InlineMath math="B" />.
+Banyak penumpang pada suatu ruas adalah **banyak penumpang ketika bus meninggalkan tempat di awal ruas itu**. Hitung untuk kelima ruas.
 
-Kapasitas setiap mobil adalah <InlineMath math="6\text{ orang}" />, yang setara dengan <InlineMath math="3" /> pasang suami istri. Oleh karena itu, jumlah pasangan dalam satu mobil tidak boleh lebih dari <InlineMath math="3" />. Kombinasi distribusi jumlah pasangan yang mungkin untuk mobil <InlineMath math="A" /> dan mobil <InlineMath math="B" /> agar memenuhi kapasitas adalah:
-1. Mobil <InlineMath math="A" /> membawa <InlineMath math="3" /> pasang, mobil <InlineMath math="B" /> membawa <InlineMath math="2" /> pasang.
-2. Mobil <InlineMath math="A" /> membawa <InlineMath math="2" /> pasang, mobil <InlineMath math="B" /> membawa <InlineMath math="3" /> pasang.
+# Banyak penumpang pada setiap ruas
 
-Untuk kasus pertama, kita memilih <InlineMath math="3" /> pasang dari <InlineMath math="5" /> pasang yang tersedia untuk masuk ke mobil <InlineMath math="A" />. Sisanya otomatis masuk ke mobil <InlineMath math="B" />.
+Muatan setiap ruas **dihitung berurutan dari terminal awal**.
 
-<BlockMath math="\begin{aligned}C(5,3) &=\frac{5!}{3!(5-3)!} \\ &=\frac{5 \times 4 \times 3!}{3! \times 2 \times 1} \\ &=10\end{aligned}" />
+| Ruas | Penumpang |
+| :---: | :---: |
+| terminal awal ke Halte A | 25 |
+| Halte A ke Halte B | <InlineMath math="25+12-8=29" /> |
+| Halte B ke Halte C | <InlineMath math="29+6-10=25" /> |
+| Halte C ke Halte D | <InlineMath math="25+9-7=27" /> |
+| Halte D ke terminal akhir | <InlineMath math="27+14-6=35" /> |
 
-Untuk kasus kedua, kita memilih <InlineMath math="2" /> pasang dari <InlineMath math="5" /> pasang yang tersedia untuk masuk ke mobil <InlineMath math="A" />.
+# Ruas terpadat
 
-<BlockMath math="\begin{aligned}C(5,2) &=\frac{5!}{2!(5-2)!} \\ &=\frac{5 \times 4 \times 3!}{2 \times 1 \times 3!} \\ &=10\end{aligned}" />
+Nilai terbesar adalah 35, pada ruas Halte D ke terminal akhir. Halte D memiliki penumpang naik terbanyak, tetapi yang menentukan adalah **selisih naik dan turun yang terkumpul sejak awal**.
 
-Total cara pengaturan penumpang adalah jumlahan dari kedua kemungkinan tersebut.
+Ruas Halte A ke Halte B sempat tinggi, yaitu 29, tetapi turun lagi setelah 10 penumpang turun di Halte B.
 
-<BlockMath math="10 + 10 = 20 \text{ cara}" />
+Jadi, bus paling penuh pada ruas **Halte D ke terminal akhir**.

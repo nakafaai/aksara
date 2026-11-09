@@ -1,30 +1,20 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-22
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$3$$",
+          column: 1,
+          label: "Luas segitiga $$ABC$$ adalah $$12$$ satuan luas.",
         },
+        { column: 2, label: "Segitiga $$ABC$$ siku-siku di $$C$$." },
+        { column: 1, label: "Panjang $$AC$$ adalah $$2\\sqrt5$$ satuan." },
         {
-          correct: false,
-          label: "$$5$$",
-        },
-        {
-          correct: false,
-          label: "$$6$$",
-        },
-        {
-          correct: false,
-          label: "$$7$$",
-        },
-        {
-          correct: true,
-          label: "$$4$$",
+          column: 2,
+          label: "Pusat lingkaran luar segitiga $$ABC$$ adalah $$(3,2)$$.",
         },
       ],
     },

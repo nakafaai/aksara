@@ -1,23 +1,19 @@
-Use the following symbols for the cooking time of each piece of meat.
+Apply the rules **in their order of priority**. An earlier rule always beats a later one, and arrival time only breaks ties. The table columns are *Jam datang* (arrival time), *Usia* (age), *Hamil* (pregnant), and *Tanda bahaya* (danger signs).
 
-| Meat | Time |
-| :--- | :---: |
-| Lamb | <InlineMath math="t_1" /> |
-| Beef | <InlineMath math="t_2" /> |
-| Duck | <InlineMath math="t_3" /> |
-| Rabbit | <InlineMath math="t_4" /> |
-| Chicken | <InlineMath math="t_5" /> |
+**Rule 1**. Only Jihan shows danger signs, so Jihan is served first even though Jihan arrived at <InlineMath math="08{:}00" />.
 
-Beef takes longer than lamb. <InlineMath math="t_2>t_1" />.
+**Rule 2**. Among the others, priority goes to Kurnia (<InlineMath math="62" /> years), Ilham (<InlineMath math="70" /> years), and Gita (pregnant). Hadi is <InlineMath math="45" /> and not pregnant, so Hadi is in the last group.
 
-Beef takes **no longer** than duck. <InlineMath math="t_2\leq t_3" />.
+**Rule 3**. Inside the priority group, order by arrival: Kurnia at <InlineMath math="07{:}55" />, Ilham at <InlineMath math="08{:}10" />, then Gita at <InlineMath math="08{:}15" />.
 
-Rabbit takes less time than chicken. <InlineMath math="t_4<t_5" />.
+<BlockMath math="\text{Jihan},\ \text{Kurnia},\ \text{Ilham},\ \text{Gita},\ \text{Hadi}" />
 
-Rabbit takes longer than duck. <InlineMath math="t_4>t_3" />.
+The third patient is Ilham.
 
-Combining the comparisons gives:
+The other answers come from misapplying the rules:
 
-<BlockMath math="t_1<t_2\leq t_3<t_4<t_5" />
+- Using arrival time alone gives Hadi, Kurnia, Jihan, so Jihan would be third.
+- Ignoring rule 2 after Jihan gives Jihan, Hadi, Kurnia, so Kurnia would be third.
+- Treating pregnancy as ranking above old age gives Jihan, Gita, Kurnia, so Kurnia would again be third. Rule 2 gives both groups **the same priority**.
 
-Therefore, **lamb** has the shortest cooking time. Beef and duck may take the same time, but both take longer than lamb.
+So the patient served third is Ilham.

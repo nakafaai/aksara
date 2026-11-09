@@ -1,39 +1,28 @@
-Es gilt <InlineMath math="a = 2 \times b" />, und <InlineMath math="b" /> ist durch <InlineMath math="5" /> teilbar, wobei <InlineMath math="a" /> und <InlineMath math="b" /> natürliche Zahlen sind.
+Sowohl <InlineMath math="4^x" /> als auch <InlineMath math="2^{x+3}" /> lassen sich mit <InlineMath math="2^x" /> schreiben. **Setze deshalb <InlineMath math="t=2^x" />**, dann wird aus der Gleichung eine quadratische Gleichung in <InlineMath math="t" />.
 
-Da <InlineMath math="b" /> durch fünf teilbar ist, schreiben wir es als **Vielfaches von fünf**: <InlineMath math="b=5k" /> mit einer natürlichen Zahl <InlineMath math="k" />.
+# In eine quadratische Gleichung umformen
 
-<BlockMath math="a=2b=2(5k)=10k" />
+Verwende <InlineMath math="4^x=\left(2^x\right)^2=t^2" /> und <InlineMath math="2^{x+3}=2^3\cdot2^x=8t" />.
 
-**Aussage (1)**: <InlineMath math="a" /> ist eine gerade Zahl
+<BlockMath math="\begin{aligned}
+t^2-8t+12&=0\\
+(t-2)(t-6)&=0
+\end{aligned}" />
 
-Da <InlineMath math="a = 2b" /> gilt, ist <InlineMath math="a" /> das Ergebnis der Multiplikation einer ganzen Zahl mit <InlineMath math="2" />. Jede mit <InlineMath math="2" /> multiplizierte ganze Zahl ergibt immer eine gerade Zahl. Daher ist die Aussage (1) wahr.
+Die Lösungen sind <InlineMath math="t=2" /> und <InlineMath math="t=6" />. Beide sind positiv, also **sind beide als Werte von <InlineMath math="2^x" /> zulässig**, denn <InlineMath math="2^x" /> ist nie null oder negativ.
 
-**Aussage (2)**: Die Einerstelle von <InlineMath math="a" /> ist immer <InlineMath math="0" />
+# Lösungen addieren
 
-Da <InlineMath math="b" /> durch <InlineMath math="5" /> teilbar ist, kann <InlineMath math="b" /> <InlineMath math="5, 10, 15, 20, \ldots" /> sein.
+Verbinde das Produkt der Werte von <InlineMath math="t" /> mit der Summe der Exponenten.
 
-| <InlineMath math="b" /> | <InlineMath math="a=2b" /> |
-| :---: | :---: |
-| 5 | 10 |
-| 10 | 20 |
-| 15 | 30 |
+<BlockMath math="\begin{aligned}
+2^{x_1}\cdot2^{x_2}&=2\cdot6\\
+2^{x_1+x_2}&=12\\
+x_1+x_2&={}^{2}\log12={}^{2}\log4+{}^{2}\log3=2+{}^{2}\log3
+\end{aligned}" />
 
-Da <InlineMath math="b" /> immer ein Vielfaches von <InlineMath math="5" /> ist, ist <InlineMath math="2b" /> immer ein Vielfaches von <InlineMath math="10" />. Die Einerstelle von <InlineMath math="a" /> ist daher stets <InlineMath math="0" />. Aussage (2) ist wahr.
+Dasselbe Ergebnis folgt aus <InlineMath math="x_1=1" /> und <InlineMath math="x_2={}^{2}\log6=1+{}^{2}\log3" />.
 
-**Aussage (3)**: <InlineMath math="a + b" /> ist teilbar durch <InlineMath math="5" />
+Der Wert 3 entsteht aus <InlineMath math="2^{x_1}+2^{x_2}=8=2^3" />, dabei **ergibt sich die Summe der Exponenten aus dem Produkt** und nicht aus der Summe. Die Werte 6 und 8 sind Werte von <InlineMath math="t" />, noch keine Werte von <InlineMath math="x" />. Der Wert <InlineMath math="{}^{2}\log6" /> ist nur eine der beiden Lösungen.
 
-<BlockMath math="a + b = 2b + b = 3b" />
-
-Da <InlineMath math="b" /> durch <InlineMath math="5" /> teilbar ist, ist <InlineMath math="3b" /> auch durch <InlineMath math="5" /> teilbar. Daher ist die Aussage (3) wahr.
-
-**Aussage (4)**: <InlineMath math="3a + 2b" /> ist eine ungerade Zahl
-
-<BlockMath math="3a + 2b = 3(2b) + 2b" />
-
-<BlockMath math="= 6b + 2b" />
-
-<BlockMath math="= 8b" />
-
-Da <InlineMath math="8" /> eine gerade Zahl ist, ist <InlineMath math="8b" /> immer eine gerade Zahl, keine ungerade Zahl. Daher ist die Aussage (4) falsch.
-
-Daher sind die wahren Aussagen (1), (2) und (3). Die Anzahl wahrer Aussagen beträgt <InlineMath math="3" />.
+Also gilt <InlineMath math="x_1+x_2=2+{}^{2}\log3" />.

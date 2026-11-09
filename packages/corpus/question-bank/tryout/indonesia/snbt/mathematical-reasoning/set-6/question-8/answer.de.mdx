@@ -1,55 +1,13 @@
-# Quotienten der Folge bestimmen
+Nach <InlineMath math="n" /> Faltungen ist die Dicke <InlineMath math="0{,}1\cdot2^n" /> mm. Das Verhältnis zweier Dicken **hängt nur von der Differenz der Faltungen ab**, weil sich der Faktor 0,1 kürzt.
 
-Das Holz wird in <InlineMath math="6" /> Stücke geschnitten, also gilt <InlineMath math="n = 6" />. Die Längen der Stücke bilden eine geometrische Folge.
+# Zwei Dicken vergleichen
 
-Wir ordnen die Stücke **vom längsten zum kürzesten**. Das erste Glied ist <InlineMath math="a = 96" />, das <InlineMath math="6" />. Glied ist mit <InlineMath math="U_6 = 3" /> das kürzeste.
+<BlockMath math="\frac{0{,}1\cdot2^{12}}{0{,}1\cdot2^{8}}=2^{12-8}=2^4=16" />
 
-Die Formel für den <InlineMath math="n" />-ten Term einer geometrischen Folge lautet:
+# Bedeutung des Ergebnisses
 
-<BlockMath math="U_n = ar^{n-1}" />
+Vier zusätzliche Faltungen verdoppeln die Dicke viermal: <InlineMath math="2\cdot2\cdot2\cdot2=16" />. **Jede Faltung multipliziert, sie addiert nicht**, vier Faltungen mehr bedeuten also das 16-Fache.
 
-Wir setzen die bekannten Werte ein:
+Der Wert 1,5 ist das Verhältnis der Faltzahlen, <InlineMath math="\tfrac{12}{8}" />. Der Wert 4 ist die Differenz der Faltzahlen, und 32 verwendet <InlineMath math="2^5" />.
 
-<BlockMath math="U_6 = 96 \cdot r^{6-1}" />
-
-<BlockMath math="3 = 96 \cdot r^5" />
-
-Nun bestimmen wir den Quotienten <InlineMath math="r" />:
-
-<BlockMath math="r^5 = \frac{3}{96}" />
-
-<BlockMath math="r^5 = \frac{1}{32}" />
-
-<BlockMath math="r^5 = \left(\frac{1}{2}\right)^5" />
-
-<BlockMath math="r = \frac{1}{2}" />
-
-Der Quotient ist also <InlineMath math="\frac{1}{2}" />: Jedes folgende Stück ist halb so lang wie das vorherige.
-
-# Berechnung der Gesamtholzlänge
-
-Die ursprüngliche Länge ist die **Summe aller Stücke** <InlineMath math="S_6" />. Da <InlineMath math="r < 1" /> gilt, verwenden wir:
-
-<BlockMath math="S_n = \frac{a(1 - r^n)}{1 - r}" />
-
-Wir setzen <InlineMath math="a = 96" />, <InlineMath math="r = \frac{1}{2}" /> und <InlineMath math="n = 6" /> ein:
-
-<BlockMath math="S_6 = \frac{96\left(1 - \left(\frac{1}{2}\right)^6\right)}{1 - \frac{1}{2}}" />
-
-<BlockMath math="S_6 = \frac{96\left(1 - \frac{1}{64}\right)}{\frac{1}{2}}" />
-
-Damit erhalten wir:
-
-<BlockMath math="S_6 = 96 \cdot \left(\frac{63}{64}\right) \cdot 2" />
-
-<BlockMath math="S_6 = 192 \cdot \frac{63}{64}" />
-
-<BlockMath math="S_6 = 3 \cdot 63" />
-
-<BlockMath math="S_6 = 189" />
-
-Das Holzbrett war ursprünglich <InlineMath math="189\text{ cm}" /> lang.
-
-Die sechs Längen geben eine direkte Kontrolle der Summe.
-
-<BlockMath math="96+48+24+12+6+3=189\text{ cm}" />
+Nach 12 Faltungen ist der Stapel also **16-mal** so dick wie nach 8 Faltungen.

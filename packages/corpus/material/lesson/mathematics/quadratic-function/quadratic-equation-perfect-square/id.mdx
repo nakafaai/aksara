@@ -3,7 +3,7 @@ export const metadata = {
   description: "Selesaikan persamaan kuadrat dengan mengubahnya menjadi trinomial kuadrat sempurna.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-04-19",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Persamaan dan Fungsi Kuadrat",
 };
 
@@ -30,8 +30,8 @@ Mulailah dengan <InlineMath math="a\ne0" />. Setelah seluruh persamaan dibagi de
 Dua persegi panjang masing-masing memiliki luas <InlineMath math="px" />. Ketika keduanya diletakkan di sisi persegi berluas <InlineMath math="x^2" />, tersisa sudut seluas <InlineMath math="p^2" />. Menambah sudut itu melengkapi persegi bersisi <InlineMath math="x+p" />.
 
 <MathVisual
-  title="Sudut yang melengkapi persegi"
-  description="Contoh x = 2 dan p = 1. Luas 4 ditambah dua persegi panjang seluas 2 dan satu sudut seluas 1 menghasilkan persegi seluas 9."
+  title={<>Sudut yang melengkapi persegi</>}
+  description={<>Contoh <InlineMath math="x = 2" /> dan <InlineMath math="p = 1" />. Luas 4 ditambah dua persegi panjang seluas 2 dan satu sudut seluas 1 menghasilkan persegi seluas 9.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },
@@ -99,6 +99,34 @@ Selesaikan persamaan: <InlineMath math="x^2 + 5x + 6 = 0" />
 </MathContainer>
 
 Jadi, akar-akar persamaan adalah <InlineMath math="x = -2" /> dan <InlineMath math="x = -3" />.
+
+Melengkapkan kuadrat menampakkan titik puncaknya: <InlineMath math="x^2 + 5x + 6 = \left(x + \tfrac52\right)^2 - \tfrac14" />, jadi titik terendahnya <InlineMath math="\left(-\tfrac52, -\tfrac14\right)" />, dan parabola memotong sumbu <InlineMath math="\tfrac12" /> di setiap sisinya, di <InlineMath math="-3" /> dan <InlineMath math="-2" />.
+
+<MathVisual
+  title={<>Bentuk puncak <InlineMath math="x^2 + 5x + 6" /></>}
+  description={<>Parabola <InlineMath math="y = \left(x + \tfrac52\right)^2 - \tfrac14" /> dengan titik puncak <InlineMath math="\left(-\tfrac52, -\tfrac14\right)" /> dan akar <InlineMath math="-3" /> serta <InlineMath math="-2" />.</>}
+  labels={{
+    vertex: <InlineMath math="\left(-\tfrac52, -\tfrac14\right)" />,
+    r1: <InlineMath math="-3" />,
+    r2: <InlineMath math="-2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.3, max: -0.7 }, y: { min: -0.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 6 }, domain: { min: -4, max: -1 }, appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "vertex", kind: "point", at: { x: -5 / 2, y: -1 / 4 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex", at: { x: -5 / 2, y: -1 / 4 }, placement: "below" },
+      { key: "r1", objectId: "r1", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "r2", at: { x: -2, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
 
 ### Persamaan dengan Koefisien Utama Bukan Satu
 
@@ -180,6 +208,30 @@ Karena tidak ada bilangan real yang kuadratnya <InlineMath math="-1" />, maka pe
 Dalam bilangan kompleks, gunakan <InlineMath math="i^2=-1" /> untuk memperoleh:
 
 <BlockMath math="(x+1)^2=-1\quad\Rightarrow\quad x+1=\pm i\quad\Rightarrow\quad x=-1\pm i" />
+
+<InlineMath math="x^2 + 2x + 2 = (x + 1)^2 + 1" /> paling kecil bernilai 1 untuk setiap <InlineMath math="x" /> real: titik terendahnya <InlineMath math="(-1, 1)" />, di atas sumbu x. Karena itu <InlineMath math="(x + 1)^2 = -1" /> tidak memiliki penyelesaian real, hanya <InlineMath math="x = -1 \pm i" />.
+
+<MathVisual
+  title={<>Parabola di atas sumbu</>}
+  description={<>Parabola <InlineMath math="y = (x + 1)^2 + 1" /> dengan titik terendah <InlineMath math="(-1, 1)" />, yang tidak pernah mencapai sumbu x.</>}
+  labels={{
+    curve: <InlineMath math="y = (x + 1)^2 + 1" />,
+    vertex: <InlineMath math="(-1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 1.5 }, y: { min: -0.6, max: 5.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 2, c: 2 }, domain: { min: -3, max: 1 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: -1, y: 1 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "vertex", objectId: "vertex", at: { x: -1, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
 
 ### Pada Persamaan Kuadrat Tidak Lengkap
 

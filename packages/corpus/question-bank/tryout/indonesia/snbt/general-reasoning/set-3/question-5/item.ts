@@ -1,29 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "inductive-reasoning",
+    topic: "data-comparison",
+  },
+  stimulus: "kipas",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$840$$",
+          column: 1,
+          label:
+            "Penjualan kipas angin pada bulan April lebih dari dua kali penjualan pada bulan Januari.",
         },
         {
-          correct: false,
-          label: "$$1050$$",
+          column: 1,
+          label:
+            "Bulan dengan rata-rata suhu maksimum tertinggi juga merupakan bulan dengan penjualan kipas angin tertinggi.",
         },
         {
-          correct: false,
-          label: "$$1260$$",
+          column: 2,
+          label:
+            "Rata-rata pengunjung kolam renang per bulan untuk keenam bulan dalam tabel lebih dari $$3{.}600$$ orang.",
         },
         {
-          correct: true,
-          label: "$$2401$$",
-        },
-        {
-          correct: false,
-          label: "$$1470$$",
+          column: 2,
+          label:
+            "Penjualan kipas angin pada bulan Juni lebih rendah daripada penjualan pada bulan Maret.",
         },
       ],
     },

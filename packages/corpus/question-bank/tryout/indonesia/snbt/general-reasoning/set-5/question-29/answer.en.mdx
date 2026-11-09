@@ -1,17 +1,11 @@
-There are <InlineMath math="\binom{12}{2}=\frac{12\times11}{2}=66" /> **equally likely** pairs. Group them by colour.
+Count the squares **by size**. A square of <InlineMath math="k\times k" /> tiles fits in <InlineMath math="3-k+1" /> row positions and <InlineMath math="5-k+1" /> column positions. The largest size is <InlineMath math="3\times3" />, because there are only three rows.
 
-| Pair | Pair count | Payout |
-| :--- | :---: | :---: |
-| Red-red | <InlineMath math="\binom72=\frac{7\times6}{2}=21" /> | <InlineMath math="60" /> |
-| Mixed | <InlineMath math="7\times5=35" /> | <InlineMath math="30" /> |
-| Blue-blue | <InlineMath math="\binom52=\frac{5\times4}{2}=10" /> | <InlineMath math="0" /> |
+<BlockMath math="\begin{aligned}
+1\times1 &: 3\times5=15 \\
+2\times2 &: 2\times4=8 \\
+3\times3 &: 1\times3=3
+\end{aligned}" />
 
-Payouts are in thousand rupiah. The expected payout is:
+The total is <InlineMath math="15+8+3=26" />. Rectangles that are not squares, such as <InlineMath math="1\times2" /> tiles, do not count.
 
-<BlockMath math="\begin{aligned}E&amp;=\frac{60\times21+30\times35}{66}\\&amp;=\frac{1260+1050}{66}\\&amp;=\frac{2310}{66}=35\end{aligned}" />
-
-Subtract the entry fee to find the expected net gain, in thousand rupiah:
-
-<BlockMath math="35-30=5" />
-
-An expected value is a **long-run average**, not a guaranteed payment in one game. A single game has a net gain of <InlineMath math="30" />, <InlineMath math="0" />, or <InlineMath math="-30" /> thousand rupiah, depending on the pair drawn.
+So there are <InlineMath math="26" /> squares in the tiling.

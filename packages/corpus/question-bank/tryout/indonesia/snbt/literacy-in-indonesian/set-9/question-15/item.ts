@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "water-stunting",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "Menguji Aksesibilitas Papan Arah di Hutan Kota",
+          column: 1,
+          label:
+            "Desa dengan akses air minum layak tertinggi memiliki persentase balita stunting terendah.",
         },
         {
-          correct: false,
-          label: "Papan Baru yang Berhasil Sama Besar bagi Semua Pengunjung",
+          column: 2,
+          label: "Jumlah balita stunting terbanyak terdapat di Wonosari.",
         },
         {
-          correct: false,
-          label: "Mengapa Persentase Gabungan Selalu Cukup untuk Menilai Akses",
+          column: 2,
+          label:
+            "Kurang dari separuh rumah tangga di Tanjungrejo memiliki air minum layak.",
         },
         {
-          correct: false,
-          label: "Peta Raba sebagai Bukti Akhir Jalur yang Aksesibel",
-        },
-        {
-          correct: false,
-          label: "Menilai Papan Arah tanpa Memisahkan Kelompok Pengguna",
+          column: 1,
+          label:
+            "Jumlah balita stunting di Karangsari dua kali jumlah balita stunting di Sukamaju.",
         },
       ],
     },

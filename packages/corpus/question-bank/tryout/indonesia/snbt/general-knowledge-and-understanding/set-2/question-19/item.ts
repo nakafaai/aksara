@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "idiom",
+  },
+  stimulus: "gerhana",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "menambah jumlah penyuluh tanpa memperbaiki pengelolaan atau perlindungan lingkungan.",
+          label: "Tanpa pakaian yang menutupi tubuh",
         },
         {
           correct: false,
-          label:
-            "hanya memperbaiki kualitas air di kawasan pesisir yang padat penduduk.",
+          label: "Dengan mata yang terbuka lebar",
         },
         {
           correct: true,
-          label:
-            "memperkuat kapasitas manusia, pengelolaan berbasis sains, perlindungan habitat, dan teknologi akuakultur yang sesuai.",
+          label: "Tanpa bantuan alat seperti teropong atau kacamata khusus",
         },
         {
           correct: false,
-          label:
-            "menambah alat tangkap dan subsidi agar volume tangkapan jangka pendek meningkat.",
+          label: "Tanpa berkedip selama gerhana",
         },
         {
           correct: false,
-          label:
-            "menaikkan tangkapan lebih dahulu dan baru mengumpulkan data stok setelah produksi menurun.",
+          label: "Dalam keadaan mata lelah",
         },
       ],
     },

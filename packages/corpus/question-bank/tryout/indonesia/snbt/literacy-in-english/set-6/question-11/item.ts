@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "water-meters",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The character treats completing the whole project as the necessary first step before seeking review.",
+          label: "2.0%",
         },
         {
           correct: false,
-          label:
-            "The account presents metadata as a general idea rather than something developed through the character's choice.",
+          label: "9.3%",
         },
         {
           correct: false,
-          label:
-            "The main obstacle becomes manageable because another person assumes responsibility for the next step.",
-        },
-        {
-          correct: false,
-          label:
-            "The passage presents documenting uncertainty as more important than taking a reviewable action.",
+          label: "12.1%",
         },
         {
           correct: true,
-          label:
-            "Theo records uncertainty about a photograph instead of guessing, which preserves the record for later evidence from a visitor.",
+          label: "15.0%",
+        },
+        {
+          correct: false,
+          label: "17.6%",
         },
       ],
     },

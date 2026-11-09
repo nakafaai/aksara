@@ -1,60 +1,26 @@
 export const metadata = {
   title: "Argumen Utama Bilangan Kompleks",
-  description: "Tentukan argumen utama unik bilangan kompleks tak nol dalam interval dari negatif pi sampai pi dan reduksi sudut koterminal ke wakil tersebut.",
+  description: "Argumen utama bilangan kompleks adalah satu sudut arah di selang minus pi sampai pi. Tentukan dari komponennya dengan aturan kuadran atau reduksi sudut.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Bilangan Kompleks",
 };
 
-## Sudut-sudut Berbeda yang Menunjukkan Arah Sama
+## Satu Sudut Wakil untuk Setiap Arah
 
-Argumen <InlineMath math="\theta" /> dari bilangan kompleks tak nol <InlineMath math="z = x + iy" /> adalah sudut yang dibentuk vektor <InlineMath math="z" /> terhadap sumbu riil positif. Vektor nol tidak memiliki arah, sehingga <InlineMath math="\text{Arg}(0)" /> tidak terdefinisi.
+Argumen utama bilangan kompleks <InlineMath math="z \ne 0" />, ditulis <InlineMath math="\operatorname{Arg} z" />, adalah **satu-satunya argumen dalam selang <InlineMath math="(-\pi, \pi]" />**, atau <InlineMath math="(-180^\circ, 180^\circ]" /> dalam derajat. Semua argumen lain berbeda kelipatan putaran penuh dari argumen utama:
 
-Arah yang sama dapat dinyatakan dengan <Highlight>tak hingga banyak sudut koterminal</Highlight>.
+<MathContainer>
+  <BlockMath math="-\pi < \operatorname{Arg} z \le \pi" />
+  <BlockMath math="\arg z = \operatorname{Arg} z + 2\pi k, \qquad k \in \mathbb{Z}" />
+</MathContainer>
 
-Jika <InlineMath math="\theta" /> adalah argumen dari <InlineMath math="z" />, maka <InlineMath math="\theta + 2\pi k" /> (dengan <InlineMath math="k" /> bilangan bulat: <InlineMath math="0, \pm 1, \pm 2, \ldots" />) juga merupakan argumen dari <InlineMath math="z" />, karena menambahkan kelipatan <InlineMath math="360^\circ" /> atau <InlineMath math="2\pi" /> radian akan menghasilkan sudut yang sama pada bidang kompleks.
-
-**Contohnya**:
-
-sudut <InlineMath math="45^\circ" />, <InlineMath math="405^\circ" /> (<InlineMath math="45^\circ + 360^\circ" />), dan <InlineMath math="-315^\circ" /> (<InlineMath math="45^\circ - 360^\circ" />) semuanya menunjukkan arah yang sama.
-
-Satu bilangan kompleks memiliki tak hingga banyak argumen. Untuk memilih satu nilai yang unik, kita tetapkan **argumen utama** pada interval tertentu.
-
-## Definisi Argumen Utama
-
-Untuk bilangan kompleks tak nol <InlineMath math="z = r(\cos \theta + i\sin \theta)" /> dengan <InlineMath math="r>0" />, **argumen utama** <InlineMath math="\operatorname{Arg}(z)" /> adalah satu-satunya sudut <InlineMath math="\theta" /> yang dipilih dari <InlineMath math="(-\pi, \pi]" />. Dalam satuan derajat, konvensi yang sama ditulis sebagai:
-
-<BlockMath math="\begin{aligned} &amp;-\pi &lt; \theta \leq \pi \\ &amp;\text{atau} \\ &amp;-180^\circ &lt; \theta \leq 180^\circ \end{aligned}" />
-
-Sebagian referensi memakai <InlineMath math="[0, 2\pi)" />. Kedua konvensi memilih satu sudut untuk mewakili semua sudut koterminal. Semua contoh berikut memakai <InlineMath math="(-\pi, \pi]" /> secara konsisten.
-
-## Menentukan Argumen Utama
-
-Tentukan salah satu argumen, lalu **tambahkan atau kurangkan putaran penuh** sampai sudut berada dalam interval utama. Dalam derajat, batas kiri tidak termasuk, tetapi batas kanan termasuk. Karena itu, arah sumbu riil negatif memakai sudut positif 180 derajat.
-
-| Sudut awal | Perhitungan | Argumen utama |
-| --- | --- | --- |
-| <InlineMath math="300^\circ" /> | <InlineMath math="300^\circ-360^\circ=-60^\circ" /> | <InlineMath math="-60^\circ" /> |
-| <InlineMath math="405^\circ" /> | <InlineMath math="405^\circ-360^\circ=45^\circ" /> | <InlineMath math="45^\circ" /> |
-| <InlineMath math="-315^\circ" /> | <InlineMath math="-315^\circ+360^\circ=45^\circ" /> | <InlineMath math="45^\circ" /> |
-| <InlineMath math="-180^\circ" /> | <InlineMath math="-180^\circ+360^\circ=180^\circ" /> | <InlineMath math="180^\circ" /> |
-
-### Mencari Argumen Utama
-
-Periksa **kuadran titik** sebelum memakai invers tangen. Perbandingan komponen hanya menentukan kemiringan, sehingga dua arah yang berlawanan dapat memiliki nilai tangen sama.
-
-Untuk <InlineMath math="z=1+i" />: <InlineMath math="(1,1)" /> berada di kuadran I.
-
-<BlockMath math="\begin{aligned}\tan\theta&amp;=\frac{1}{1}=1\\\operatorname{Arg}(1+i)&amp;=45^\circ=\frac{\pi}{4}\end{aligned}" />
-
-Untuk <InlineMath math="z=\sqrt{3}+i" />: <InlineMath math="(\sqrt{3},1)" /> berada di kuadran I.
-
-<BlockMath math="\begin{aligned}\tan\theta&amp;=\frac{1}{\sqrt{3}}\\\operatorname{Arg}(\sqrt{3}+i)&amp;=30^\circ=\frac{\pi}{6}\end{aligned}" />
+Untuk <InlineMath math="z = 1 + i" />, sudut <InlineMath math="45^\circ" />, <InlineMath math="405^\circ" />, dan <InlineMath math="-315^\circ" /> menunjuk ke arah yang sama, tetapi hanya <InlineMath math="45^\circ" /> yang berada di selang utama, jadi <InlineMath math="\operatorname{Arg}(1 + i) = 45^\circ = \frac{\pi}{4}" />. Grafik interaktif menunjukkan sudut untuk <InlineMath math="1 + i" /> dan <InlineMath math="\sqrt{3} + i" />, keduanya diukur dari sumbu nyata positif.
 
 <MathVisual
-  title="Sudut dari sumbu riil positif"
-  description="Dua vektor pada kuadran I memiliki sudut 45 dan 30 derajat terhadap sumbu riil positif. Busur menunjukkan sudut yang sedang diukur."
+  title={<>Sudut dari sumbu riil positif</>}
+  description={<>Dua vektor pada kuadran I memiliki sudut 45 dan 30 derajat terhadap sumbu riil positif. Busur menunjukkan sudut yang sedang diukur.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.25, max: 2.2 }, y: { min: -0.25, max: 1.6 } },
@@ -68,7 +34,7 @@ Untuk <InlineMath math="z=\sqrt{3}+i" />: <InlineMath math="(\sqrt{3},1)" /> ber
     labels: [
       { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-left" },
       { key: "second", objectId: "second", at: { x: Math.sqrt(3), y: 1 }, placement: "above" },
-      { key: "first-angle", objectId: "first-angle", at: { x: 0.42, y: 0.17 }, placement: "above-left" },
+      { key: "first-angle", objectId: "first-angle", at: { x: 0.45 * Math.cos((22.5 * Math.PI) / 180), y: 0.45 * Math.sin((22.5 * Math.PI) / 180) }, placement: "right" },
       { key: "second-angle", objectId: "second-angle", at: { x: 0.87, y: 0.23 }, placement: "below-right" },
     ],
   }}
@@ -80,58 +46,194 @@ Untuk <InlineMath math="z=\sqrt{3}+i" />: <InlineMath math="(\sqrt{3},1)" /> ber
   }}
 />
 
-Untuk titik di kuadran II, invers tangen saja memberi arah yang salah. Titik <InlineMath math="(-1,1)" /> berada di kuadran II, sehingga kita tambahkan setengah putaran:
+Ujung kiri selang tidak termasuk, sedangkan ujung kanannya termasuk. Karena itu bilangan pada sumbu nyata negatif, misalnya <InlineMath math="-4" />, punya argumen utama <InlineMath math="180^\circ" />, bukan <InlineMath math="-180^\circ" />. Bilangan nol tidak punya argumen, karena vektor nol tidak punya arah.
 
-<BlockMath math="\begin{aligned}\arctan\left(\frac{1}{-1}\right)&amp;=-45^\circ\\\operatorname{Arg}(-1+i)&amp;=-45^\circ+180^\circ=135^\circ\end{aligned}" />
+## Banyak Sudut untuk Satu Arah
+
+Menambah satu putaran penuh, <InlineMath math="360^\circ" /> atau <InlineMath math="2\pi" />, membawa vektor kembali ke arah yang sama. Akibatnya setiap bilangan kompleks tak nol punya **tak hingga banyak argumen** <InlineMath math="\theta + 2\pi k" />. Argumen utama memilih satu wakil dari semua sudut itu, sehingga arah yang sama selalu ditulis dengan angka yang sama.
+
+Sudut acuan dan aturan kuadran pada [modulus dan argumen bilangan kompleks](/id/materi/matematika/bilangan-kompleks/modulus-dan-argumen-bilangan-kompleks) langsung menghasilkan sudut di selang ini. Sudut di luar selang muncul ketika kamu menjumlahkan argumen, misalnya saat mengalikan dua bilangan kompleks, atau ketika soal memberi sudut seperti <InlineMath math="750^\circ" />.
+
+## Menurunkan Sudut ke Selang Utama
+
+Untuk mendapatkan argumen utama dari sudut sembarang, **tambahkan atau kurangkan putaran penuh** sampai sudutnya berada di <InlineMath math="(-180^\circ, 180^\circ]" />:
+
+| Sudut awal | Perhitungan | Argumen utama |
+| --- | --- | --- |
+| <InlineMath math="300^\circ" /> | <InlineMath math="300^\circ - 360^\circ" /> | <InlineMath math="-60^\circ" /> |
+| <InlineMath math="405^\circ" /> | <InlineMath math="405^\circ - 360^\circ" /> | <InlineMath math="45^\circ" /> |
+| <InlineMath math="-315^\circ" /> | <InlineMath math="-315^\circ + 360^\circ" /> | <InlineMath math="45^\circ" /> |
+| <InlineMath math="-180^\circ" /> | <InlineMath math="-180^\circ + 360^\circ" /> | <InlineMath math="180^\circ" /> |
+
+Sudut yang besar butuh beberapa putaran sekaligus. Untuk <InlineMath math="1000^\circ" />, tiga putaran membawa sudut ke dalam selang:
+
+<BlockMath math="1000^\circ - 3 \cdot 360^\circ = -80^\circ" />
+
+Periksa: <InlineMath math="-80^\circ" /> berada di antara <InlineMath math="-180^\circ" /> dan <InlineMath math="180^\circ" />, dan <InlineMath math="-80^\circ + 3 \cdot 360^\circ = 1000^\circ" />, jadi kedua sudut menunjuk ke arah yang sama.
+
+<Mermaid
+  title={<>Menurunkan sudut ke selang utama</>}
+  description={<>Tambah atau kurangi satu putaran penuh sampai sudut masuk ke selang (-180°, 180°].</>}
+  chart={`flowchart TD
+  A["Sudut θ"] --> B{"Apakah θ lebih dari 180°?"}
+  B -->|"ya"| C["Kurangkan 360°"]
+  C --> B
+  B -->|"tidak"| D{"Apakah θ sama dengan atau kurang dari -180°?"}
+  D -->|"ya"| E["Tambahkan 360°"]
+  E --> D
+  D -->|"tidak"| F["θ adalah argumen utama"]`}
+/>
+
+## Argumen Utama dari Komponen x dan y
+
+Jika <InlineMath math="z = x + iy" /> diketahui dalam bentuk Kartesius, argumen utama diperoleh dari <InlineMath math="\arctan\frac{y}{x}" /> **ditambah koreksi setengah putaran untuk titik di kiri sumbu imajiner**:
+
+<BlockMath math="\operatorname{Arg} z = \begin{cases} \arctan\frac{y}{x}, &amp; x > 0 \\ \arctan\frac{y}{x} + 180^\circ, &amp; x < 0,\ y \ge 0 \\ \arctan\frac{y}{x} - 180^\circ, &amp; x < 0,\ y < 0 \\ 90^\circ, &amp; x = 0,\ y > 0 \\ -90^\circ, &amp; x = 0,\ y < 0 \end{cases}" />
+
+Fungsi <InlineMath math="\operatorname{atan2}(y, x)" /> di bahasa pemrograman memakai aturan yang sama dan mengembalikan sudut di <InlineMath math="(-\pi, \pi]" /> untuk setiap <InlineMath math="z \ne 0" />. Banyak kalkulator ilmiah tidak punya tombol atan2, tetapi fungsi Pol atau `R→P` di kalkulator itu memberikan sudut yang sama.
+
+**Contoh 1**. Untuk <InlineMath math="z = -1 + i" />, nilai <InlineMath math="\arctan\frac{1}{-1} = -45^\circ" />. Titiknya ada di kiri sumbu imajiner dengan <InlineMath math="y \ge 0" />, jadi tambahkan setengah putaran:
+
+<BlockMath math="\operatorname{Arg}(-1 + i) = -45^\circ + 180^\circ = 135^\circ" />
+
+Periksa dengan modulus <InlineMath math="\sqrt{2}" />: <InlineMath math="\sqrt{2}\cos 135^\circ = -1" /> dan <InlineMath math="\sqrt{2}\sin 135^\circ = 1" />.
+
+**Contoh 2**. Untuk <InlineMath math="z = -1 - i" />, nilai <InlineMath math="\arctan\frac{-1}{-1} = 45^\circ" />, sama seperti untuk <InlineMath math="1 + i" />. Titiknya ada di kiri sumbu imajiner dengan <InlineMath math="y < 0" />, jadi kurangkan setengah putaran:
+
+<BlockMath math="\operatorname{Arg}(-1 - i) = 45^\circ - 180^\circ = -135^\circ" />
+
+Periksa: <InlineMath math="\sqrt{2}\cos(-135^\circ) = -1" /> dan <InlineMath math="\sqrt{2}\sin(-135^\circ) = -1" />. Bilangan <InlineMath math="1 + i" /> dan <InlineMath math="-1 - i" /> punya nilai tangen yang sama, tetapi arahnya berlawanan.
+
+<MathVisual
+  title={<>Nilai tangen sama, arah berbeda</>}
+  description={<>Bilangan <InlineMath math="1 + i" /> dan <InlineMath math="-1 - i" /> sama-sama memberi <InlineMath math="\arctan 1 = 45^\circ" />, tetapi busurnya menunjuk ke arah yang berlawanan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 1.6 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "secondary" },
+      { id: "third", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: -1 }, appearance: "answer" },
+      { id: "first-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.35, startDegrees: 0, sweepDegrees: 45, appearance: "primary" },
+      { id: "second-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.6, startDegrees: 0, sweepDegrees: 135, appearance: "secondary" },
+      { id: "third-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.85, startDegrees: 0, sweepDegrees: -135, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 1 }, placement: "left" },
+      { key: "third", objectId: "third", at: { x: -1, y: -1 }, placement: "left" },
+      { key: "first-angle", objectId: "first-angle", at: { x: 0.35 * Math.cos((22.5 * Math.PI) / 180), y: 0.35 * Math.sin((22.5 * Math.PI) / 180) }, placement: "right" },
+      { key: "second-angle", objectId: "second-angle", at: { x: 0.6 * Math.cos((67.5 * Math.PI) / 180), y: 0.6 * Math.sin((67.5 * Math.PI) / 180) }, placement: "above-right" },
+      { key: "third-angle", objectId: "third-angle", at: { x: 0.85 * Math.cos((-67.5 * Math.PI) / 180), y: 0.85 * Math.sin((-67.5 * Math.PI) / 180) }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="1+i" />,
+    second: <InlineMath math="-1+i" />,
+    third: <InlineMath math="-1-i" />,
+    "first-angle": <InlineMath math="45^\circ" />,
+    "second-angle": <InlineMath math="135^\circ" />,
+    "third-angle": <InlineMath math="-135^\circ" />,
+  }}
+/>
+
+## Konvensi Nol sampai Dua Pi
+
+Sebagian buku memilih argumen utama dari selang <InlineMath math="[0, 2\pi)" />, atau <InlineMath math="[0^\circ, 360^\circ)" />. Kedua konvensi memilih satu wakil untuk setiap arah, dan **keduanya hanya berbeda untuk sudut negatif**. Jika argumen utama di <InlineMath math="(-180^\circ, 180^\circ]" /> negatif, tambahkan <InlineMath math="360^\circ" /> untuk mendapatkan wakil di <InlineMath math="[0^\circ, 360^\circ)" />.
+
+Untuk <InlineMath math="-1 - i" />, argumen <InlineMath math="-135^\circ" /> menjadi <InlineMath math="225^\circ" />, sedangkan <InlineMath math="135^\circ" /> untuk <InlineMath math="-1 + i" /> tidak berubah. Periksa: <InlineMath math="\cos 225^\circ = \cos(-135^\circ)" /> dan <InlineMath math="\sin 225^\circ = \sin(-135^\circ)" />, jadi kedua sudut menunjuk ke arah yang sama. Tulis selalu konvensi yang kamu pakai, karena jawaban <InlineMath math="225^\circ" /> salah untuk soal yang meminta selang <InlineMath math="(-180^\circ, 180^\circ]" />.
 
 ## Kesamaan Dua Bilangan Kompleks dalam Bentuk Polar
 
-Dua bilangan kompleks tak nol <InlineMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)" /> dan <InlineMath math="z_2 = r_2(\cos \theta_2 + i\sin \theta_2)" />, dengan <InlineMath math="r_1>0" /> dan <InlineMath math="r_2>0" />, dikatakan **sama** jika dan hanya jika:
+Dua bilangan kompleks tak nol <InlineMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)" /> dan <InlineMath math="z_2 = r_2(\cos \theta_2 + i\sin \theta_2)" />, dengan <InlineMath math="r_1 > 0" /> dan <InlineMath math="r_2 > 0" />, sama jika dan hanya jika **modulusnya sama dan argumennya berbeda kelipatan putaran penuh**:
 
-1.  Modulusnya sama:
+<BlockMath math="r_1 = r_2 \quad\text{dan}\quad \theta_1 - \theta_2 = 2\pi k \text{ untuk suatu } k \in \mathbb{Z}" />
 
-    <InlineMath math="r_1 = r_2" /> (atau <InlineMath math="|z_1| = |z_2|" />)
-
-2.  Argumennya sama atau berbeda kelipatan <InlineMath math="2\pi" /> (atau <InlineMath math="360^\circ" />):
-
-    <InlineMath math="\theta_1 = \theta_2 + 2k\pi" /> atau <InlineMath math="\theta_1 - \theta_2 = 2k\pi" /> untuk
-    suatu bilangan bulat <InlineMath math="k" />.
-
-Jika kita menggunakan **Argumen Utama** dalam <InlineMath math="(-\pi, \pi]" />, syarat kedua menjadi <InlineMath math="\text{Arg}(z_1) = \text{Arg}(z_2)" />.
-
-### Perbandingan Kesamaan
-
-Bandingkan **modulus dan arah** sekaligus. Modulus sama belum cukup jika kedua vektor menunjuk ke arah berbeda.
+Dengan argumen utama, syarat kedua menjadi lebih sederhana, yaitu <InlineMath math="\operatorname{Arg} z_1 = \operatorname{Arg} z_2" />. Modulus yang sama belum cukup jika kedua vektor menunjuk ke arah berbeda:
 
 | Pasangan | Modulus | Selisih sudut | Kesimpulan |
 | --- | --- | --- | --- |
 | <InlineMath math="\sqrt{2}(\cos45^\circ+i\sin45^\circ)" />, <InlineMath math="\sqrt{2}(\cos95^\circ+i\sin95^\circ)" /> | <InlineMath math="\sqrt{2}=\sqrt{2}" /> | <InlineMath math="45^\circ-95^\circ=-50^\circ" /> | Berbeda |
 | <InlineMath math="\cos30^\circ+i\sin30^\circ" />, <InlineMath math="\cos390^\circ+i\sin390^\circ" /> | <InlineMath math="1=1" /> | <InlineMath math="30^\circ-390^\circ=-360^\circ" /> | Sama |
 
-## Latihan
+## Kesalahan yang Sering Terjadi
 
-Tanda komponen menentukan **kuadran atau sumbu**. Temukan sudut, lalu pastikan sudut berada dalam interval utama. Tentukan argumen utama kedua bilangan berikut dalam derajat. Jika komponen riil nol, perbandingan untuk tangen tidak terdefinisi, tetapi arah vektor tetap dapat ditentukan.
+| Kesalahan | Mengapa keliru | Cara memeriksa |
+| --- | --- | --- |
+| Menulis <InlineMath math="-180^\circ" /> untuk sumbu nyata negatif | Ujung kiri selang tidak termasuk | Argumen utama <InlineMath math="-4" /> adalah <InlineMath math="180^\circ" /> |
+| Memakai <InlineMath math="\arctan\frac{y}{x}" /> untuk titik dengan <InlineMath math="x < 0" /> | Hasilnya menunjuk ke arah yang berlawanan | Hitung balik <InlineMath math="r\cos\theta" />, tandanya harus sama dengan <InlineMath math="x" /> |
+| Berhenti setelah satu putaran pada sudut besar | <InlineMath math="1000^\circ - 360^\circ = 640^\circ" /> masih di luar selang | Hasil akhirnya harus di antara <InlineMath math="-180^\circ" /> dan <InlineMath math="180^\circ" /> |
+| Mencampur dua konvensi | <InlineMath math="(-\pi, \pi]" /> dan <InlineMath math="[0, 2\pi)" /> berbeda untuk sudut negatif | Baca selang yang diminta soal sebelum menjawab |
+| Menganggap modulus sama berarti bilangannya sama | Arahnya juga harus sama | Bandingkan argumen utama kedua bilangan |
 
-1.  <InlineMath math="1 + \sqrt{3}i" />
-2.  <InlineMath math="-i" />
+Satu pemeriksaan menangkap hampir semua kesalahan ini: **pastikan jawabanmu berada di selang yang diminta dan menunjuk ke kuadran yang benar**.
+
+## Latihan Soal
+
+Soal pertama dan kedua menentukan argumen utama dari komponen, soal ketiga mereduksi sudut besar, dan soal keempat membandingkan dua konvensi. **Tentukan kuadran atau sumbunya dulu**, lalu periksa jawabanmu sebelum membaca pembahasan.
+
+1. Tentukan argumen utama <InlineMath math="z = 1 + \sqrt{3}i" /> dalam derajat.
+
+2. Tentukan argumen utama <InlineMath math="z = -i" /> dalam derajat.
+
+3. Tentukan argumen utama untuk sudut <InlineMath math="750^\circ" /> dan <InlineMath math="-510^\circ" />.
+
+4. Tentukan argumen utama <InlineMath math="z = -2 - 2i" /> dalam selang <InlineMath math="(-180^\circ, 180^\circ]" />, lalu dalam selang <InlineMath math="[0^\circ, 360^\circ)" />.
 
 ### Pembahasan
 
-Pada kuadran I, gunakan perbandingan komponen. Pada sumbu imajiner, baca **arah vektor** langsung agar tidak membagi dengan nol.
+**Soal 1**. Titik <InlineMath math="(1, \sqrt{3})" /> ada di kuadran I, jadi tidak perlu koreksi:
 
-1.  <InlineMath math="z = 1 + \sqrt{3}i" />:
+<BlockMath math="\operatorname{Arg} z = \arctan\sqrt{3} = 60^\circ" />
 
-    Titik <InlineMath math="(1, \sqrt{3})" /> ada di Kuadran <InlineMath math="I" />.
+Periksa dengan modulus <InlineMath math="2" />: <InlineMath math="2\cos 60^\circ = 1" /> dan <InlineMath math="2\sin 60^\circ = \sqrt{3}" />, jadi **sudutnya mengembalikan kedua komponen**.
 
-    <MathContainer>
-      <BlockMath math="\tan \theta = \frac{\sqrt{3}}{1} = \sqrt{3}" />
-      <BlockMath math="\theta = \arctan(\sqrt{3}) = 60^\circ" />
-    </MathContainer>
+**Soal 2**. Bilangan <InlineMath math="-i = 0 - 1i" /> ada di sumbu imajiner negatif, jadi pembagian <InlineMath math="\frac{y}{x}" /> tidak diperlukan:
 
-    Karena <InlineMath math="60^\circ \in (-180^\circ, 180^\circ]" />, <InlineMath math="\text{Arg}(z) = 60^\circ" />.
+<BlockMath math="\operatorname{Arg}(-i) = -90^\circ" />
 
-2.  <InlineMath math="z = -i" />:
+Periksa: <InlineMath math="\cos(-90^\circ) = 0" /> dan <InlineMath math="\sin(-90^\circ) = -1" />, sehingga **vektornya menunjuk lurus ke bawah**.
 
-    Tuliskan sebagai <InlineMath math="z = 0 - 1i" />. Titik <InlineMath math="(0, -1)" /> tepat berada pada sumbu imajiner negatif, sehingga kita tidak perlu membagi dengan <InlineMath math="x=0" />.
+**Soal 3**. Kurangkan atau tambahkan putaran penuh sampai sudutnya masuk ke selang utama:
 
-    <BlockMath math="\text{Arg}(z) = -90^\circ = -\frac{\pi}{2}" />
+<MathContainer>
+  <BlockMath math="750^\circ - 2 \cdot 360^\circ = 30^\circ" />
+  <BlockMath math="-510^\circ + 360^\circ = -150^\circ" />
+</MathContainer>
+
+Periksa: <InlineMath math="30^\circ + 2 \cdot 360^\circ = 750^\circ" /> dan <InlineMath math="-150^\circ - 360^\circ = -510^\circ" />, jadi setiap hasil kembali ke sudut asalnya, dan keduanya berada di <InlineMath math="(-180^\circ, 180^\circ]" />. Untuk <InlineMath math="-510^\circ" />, menambah dua putaran memberi <InlineMath math="210^\circ" />, yang **sudah melewati ujung kanan selang**.
+
+**Soal 4**. Titik <InlineMath math="(-2, -2)" /> ada di kiri sumbu imajiner dengan <InlineMath math="y < 0" />:
+
+<BlockMath math="\operatorname{Arg} z = \arctan\frac{-2}{-2} - 180^\circ = 45^\circ - 180^\circ = -135^\circ" />
+
+Dalam selang <InlineMath math="[0^\circ, 360^\circ)" />, tambahkan satu putaran: <InlineMath math="-135^\circ + 360^\circ = 225^\circ" />. Periksa dengan modulus <InlineMath math="2\sqrt{2}" />: <InlineMath math="2\sqrt{2}\cos 225^\circ = -2" /> dan <InlineMath math="2\sqrt{2}\sin 225^\circ = -2" />, jadi **kedua jawaban menunjuk ke kuadran III**.
+
+Soal 4 menunjukkan kedua konvensi sekaligus. Panah ke <InlineMath math="-2 - 2i" /> mengarah ke kuadran III. Diukur searah jarum jam, sudutnya <InlineMath math="-135^\circ" />, wakil dalam <InlineMath math="(-180^\circ, 180^\circ]" />, dan diukur berlawanan arah jarum jam, sudutnya <InlineMath math="225^\circ" />, wakil dalam <InlineMath math="[0^\circ, 360^\circ)" />.
+
+<MathVisual
+  title={<>Dua nama untuk arah <InlineMath math="-2 - 2i" /></>}
+  description={<>Panah ke <InlineMath math="-2 - 2i" /> dengan busur searah jarum jam <InlineMath math="-135^\circ" /> dan busur berlawanan arah jarum jam <InlineMath math="225^\circ" />.</>}
+  labels={{
+    z: <InlineMath math="-2 - 2i" />,
+    neg: <InlineMath math="-135^\circ" />,
+    pos: <InlineMath math="225^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 1.4 }, y: { min: -2.6, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "neg", kind: "arc", center: { x: 0, y: 0 }, radius: 1 / 2, startDegrees: 0, sweepDegrees: -135, appearance: "answer" },
+      { id: "pos", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 225, appearance: "construction" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2, y: -2 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: -2, y: -2 }, { x: (-2) + (1 / 2 / Math.sqrt(8)) + (1 / 5 / Math.sqrt(8)), y: (-2) + (1 / 2 / Math.sqrt(8)) + (-1 / 5 / Math.sqrt(8)) }, { x: (-2) + (1 / 2 / Math.sqrt(8)) + (-1 / 5 / Math.sqrt(8)), y: (-2) + (1 / 2 / Math.sqrt(8)) + (1 / 5 / Math.sqrt(8)) }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: -2, y: -2 }, placement: "left" },
+      { key: "neg", objectId: "neg", at: { x: 0.5 * Math.cos(-3 * Math.PI / 8), y: 0.5 * Math.sin(-3 * Math.PI / 8) }, placement: "below-right" },
+      { key: "pos", objectId: "pos", at: { x: 0, y: 1 }, placement: "above" },
+    ],
+  }}
+/>

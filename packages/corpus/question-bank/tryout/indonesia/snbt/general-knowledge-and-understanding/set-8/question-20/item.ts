@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "gambut",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Survei lapangan acak menemukan bahwa peta yang telah disesuaikan dengan intensitas kunjungan memprediksi kepadatan bibit dengan baik.",
+          label: "penuh terisi air",
         },
         {
           correct: false,
-          label:
-            "Tanda pengenal relawan meningkatkan jumlah laporan di jalur populer tanpa menambah cakupan pada area yang jarang dikunjungi.",
+          label: "tertutup lumpur tebal",
+        },
+        {
+          correct: false,
+          label: "baru dibangun ulang",
         },
         {
           correct: true,
-          label:
-            "Survei acak menunjukkan peluang kunjungan dan ketepatan klasifikasi sama di semua lokasi sejak pencatatan dimulai.",
+          label: "rusak dan berlubang",
         },
         {
           correct: false,
-          label:
-            "Peta publik akan memisahkan laporan, intensitas pengamatan, dan validasi.",
-        },
-        {
-          correct: false,
-          label: "Kesepakatan pada foto saat air pasang tetap lebih rendah.",
+          label: "terlalu tinggi",
         },
       ],
     },

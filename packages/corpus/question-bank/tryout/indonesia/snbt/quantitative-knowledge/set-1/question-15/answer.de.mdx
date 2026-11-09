@@ -1,47 +1,50 @@
-Die Dreiecke <InlineMath math="ABC" /> und <InlineMath math="DEA" /> sind ähnlich. Dabei **entsprechen einander die Eckpunkte** <InlineMath math="A \leftrightarrow D" />, <InlineMath math="B \leftrightarrow E" /> und <InlineMath math="C \leftrightarrow A" />.
+Die Punkte <InlineMath math="A" /> und <InlineMath math="B" /> liegen beide oberhalb der <InlineMath math="x" />-Achse, der Weg <InlineMath math="A\to P\to B" /> muss also die Achse berühren und wieder nach oben führen. Der passende Schritt ist, **einen der Punkte an der <InlineMath math="x" />-Achse zu spiegeln**, denn dann wird aus dem Weg eine gerade Linie.
 
-Punkt <InlineMath math="C" /> hat dieselbe horizontale Koordinate wie <InlineMath math="B" /> und dieselbe vertikale Koordinate wie <InlineMath math="A" />. Daher gilt <InlineMath math="C(8,1)" />.
+<MathVisual
+  title={<>Kürzester Weg über die <InlineMath math="x" />-Achse</>}
+  description={<>Das Spiegelbild von <InlineMath math="B" /> an der <InlineMath math="x" />-Achse ist <InlineMath math="B'" />. Die Strecke <InlineMath math="PB" /> ist so lang wie <InlineMath math="PB'" />, deshalb folgt der kürzeste Weg der Geraden von <InlineMath math="A" /> nach <InlineMath math="B'" />.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.12 },
+    objects: [
+      { id: "path-ap", kind: "segment", appearance: "answer", from: { x: 1, y: 2 }, to: { x: 3, y: 0 } },
+      { id: "path-pb", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 7, y: 4 } },
+      { id: "mirror-pb", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 7, y: -4 } },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 7, y: 4 } },
+      { id: "point-b-image", kind: "point", appearance: "construction", at: { x: 7, y: -4 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "point-b", at: { x: 7, y: 4 }, placement: "above-right" },
+      { key: "image", objectId: "point-b-image", at: { x: 7, y: -4 }, placement: "below-right" },
+      { key: "p", objectId: "point-p", at: { x: 3, y: 0 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A(1,2)" />,
+    b: <InlineMath math="B(7,4)" />,
+    image: <InlineMath math="B'(7,-4)" />,
+    p: <InlineMath math="P(3,0)" />,
+  }}
+/>
 
-# Die Seitenlängen bestimmen
+# Punkt B spiegeln
 
-Das Dreieck <InlineMath math="ABC" /> ist bei <InlineMath math="C" /> **rechtwinklig**. Daher gilt:
+Das Spiegelbild von <InlineMath math="B(7,4)" /> an der <InlineMath math="x" />-Achse ist <InlineMath math="B'(7,-4)" />. Jeder Punkt <InlineMath math="P" /> auf der <InlineMath math="x" />-Achse ist von <InlineMath math="B" /> und von <InlineMath math="B'" /> gleich weit entfernt, also gilt <InlineMath math="AP+PB=AP+PB'" />. Ein Weg von <InlineMath math="A" /> nach <InlineMath math="B'" /> ist **am kürzesten, wenn er gerade ist**, und diese Gerade schneidet die <InlineMath math="x" />-Achse tatsächlich, weil <InlineMath math="A" /> oberhalb und <InlineMath math="B'" /> unterhalb der Achse liegt.
 
-<BlockMath math="AC = |8 - 2| = 6" />
+<BlockMath math="AP+PB\ge AB'=\sqrt{(7-1)^2+(-4-2)^2}=\sqrt{72}=6\sqrt2" />
 
-<BlockMath math="BC = |4 - 1| = 3" />
+# Punkt P bestimmen
 
-Für das Dreieck <InlineMath math="ADE" /> gilt:
+Die Gerade <InlineMath math="AB'" /> hat die Steigung <InlineMath math="\frac{-4-2}{7-1}=-1" />, ihre Gleichung ist also <InlineMath math="y-2=-(x-1)" />. Sie schneidet die <InlineMath math="x" />-Achse in <InlineMath math="P(3,0)" />. **Prüfe den Wert**: <InlineMath math="AP=\sqrt{4+4}=2\sqrt2" /> und <InlineMath math="PB=\sqrt{16+16}=4\sqrt2" />, zusammen <InlineMath math="6\sqrt2" />.
 
-<BlockMath math="AE = |1 - (-3)| = 4" />
+Der Wert <InlineMath math="2\sqrt{10}" /> ist der direkte Abstand <InlineMath math="AB" />, der die <InlineMath math="x" />-Achse nie berührt. Der Wert <InlineMath math="5+\sqrt{13}" /> wählt <InlineMath math="P(4,0)" /> unter der Mitte der <InlineMath math="x" />-Koordinaten. Der Wert <InlineMath math="2+2\sqrt{13}" /> wählt <InlineMath math="P" /> genau unter <InlineMath math="A" />, und <InlineMath math="4+2\sqrt{10}" /> wählt <InlineMath math="P" /> genau unter <InlineMath math="B" />. Alle drei sind länger als <InlineMath math="6\sqrt2" />.
 
-# Die Ähnlichkeit nutzen
-
-Da beide Dreiecke ähnlich sind, sind die Verhältnisse der **entsprechenden Seiten** gleich.
-
-<BlockMath math="\frac{AE}{BC} = \frac{AD}{AC}" />
-
-Wir setzen die bekannten Werte ein:
-
-<BlockMath math="\frac{4}{3} = \frac{AD}{6}" />
-
-Wir multiplizieren beide Seiten mit <InlineMath math="6" /> und erhalten die genaue Länge aus dem Ähnlichkeitsverhältnis:
-
-<BlockMath math="AD = \frac{4 \times 6}{3} = \frac{24}{3} = 8" />
-
-# Den Flächeninhalt berechnen
-
-Beide Dreiecke haben rechte Winkel (Dreieck <InlineMath math="ABC" /> bei <InlineMath math="C" />, Dreieck <InlineMath math="ADE" /> bei <InlineMath math="A" />).
-
-Der Flächeninhalt ist die Hälfte des Produkts aus **Grundseite und zugehöriger Höhe**.
-
-Für Dreieck <InlineMath math="ADE" />:
-
-<BlockMath math="L_{ADE}=\frac12\times AD\times AE" />
-
-<BlockMath math="= \frac{1}{2} \times 8 \times 4" />
-
-<BlockMath math="= \frac{32}{2}" />
-
-<BlockMath math="= 16" />
-
-Daher beträgt die Fläche des Dreiecks <InlineMath math="ADE" /> <InlineMath math="16" /> Flächeneinheiten.
+Der kleinste Wert von <InlineMath math="AP+PB" /> ist also <InlineMath math="6\sqrt2" />.

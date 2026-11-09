@@ -1,32 +1,21 @@
-For the same order, the number of workers and the work time are **inversely proportional**. Each worker has the same constant rate, so four times as many workers need one quarter of the time.
+Write the number as <InlineMath math="\overline{abc}" /> with <InlineMath math="a" /> from 1 to 9, <InlineMath math="b" /> from 0 to 9, and <InlineMath math="c" /> even because the number is even. Fix <InlineMath math="c" /> first, then **count the pairs <InlineMath math="(a,b)" /> with sum <InlineMath math="10-c" />**.
 
-Given:
+# Counting by the units digit
 
-- <InlineMath math="x\text{ workers}" /> can complete the order in <InlineMath math="20\text{ days}" />.
-- The order must be completed in <InlineMath math="5\text{ days}" /> with <InlineMath math="P\text{ workers}" />.
+For a sum <InlineMath math="a+b=s" /> with <InlineMath math="1\le s\le10" />, <InlineMath math="a" /> can be 1 to <InlineMath math="s" /> as long as <InlineMath math="b=s-a" /> **is at most 9**. For <InlineMath math="s=10" />, <InlineMath math="a=10" /> is impossible, which leaves 9 pairs.
 
-If <InlineMath math="n" /> is the number of workers and <InlineMath math="t" /> the time in days, the fixed workload gives:
+| Units digit <InlineMath math="c" /> | <InlineMath math="a+b" /> | Number of pairs <InlineMath math="(a,b)" /> |
+| :---: | :---: | :---: |
+| 0 | 10 | 9 |
+| 2 | 8 | 8 |
+| 4 | 6 | 6 |
+| 6 | 4 | 4 |
+| 8 | 2 | 2 |
 
-<BlockMath math="n_1t_1=n_2t_2" />
+<BlockMath math="9+8+6+4+2=29" />
 
-Substitute the known values:
+# Checking the other options
 
-<BlockMath math="x \cdot 20 = P \cdot 5" />
+There are 54 three-digit numbers with digit sum 10 in all, and 25 of them are odd. **Even and odd numbers are not split evenly**, so 27, half of 54, is wrong. The value 54 counts every number without the even condition, and the value 25 counts the odd ones. The value 31 counts the case <InlineMath math="c=0" /> with 11 pairs, as if <InlineMath math="a=0" /> or <InlineMath math="a=10" /> were allowed.
 
-<BlockMath math="20x = 5P" />
-
-Then the value of <InlineMath math="P" /> is:
-
-<BlockMath math="P = \frac{20x}{5}" />
-
-<BlockMath math="P = 4x" />
-
-It is known that <InlineMath math="Q = 4x" />.
-
-Therefore:
-
-<BlockMath math="P = 4x \quad \text{and} \quad Q = 4x" />
-
-<BlockMath math="P = Q" />
-
-So, the correct relationship is <InlineMath math="P = Q" />.
+So **29** such numbers exist.

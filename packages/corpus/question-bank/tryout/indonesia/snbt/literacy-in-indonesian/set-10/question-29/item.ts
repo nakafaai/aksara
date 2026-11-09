@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "character",
+  },
+  stimulus: "wall-clock",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Menegaskan bahwa gang itu pasti akan diperiksa petugas pada malam berikutnya.",
+          label: "tidak tahu cara membetulkan jarum jam dinding",
         },
         {
           correct: true,
-          label:
-            "Mewujudkan batas pengetahuan yang dimiliki para tokoh sekaligus membuka kemungkinan peta dilanjutkan tanpa memastikan siapa yang akan melengkapinya.",
+          label: "ingin menjaga kenangan tentang Kakek apa adanya",
         },
         {
           correct: false,
-          label:
-            "Membuktikan bahwa catatan warga tidak berguna karena masih menyisakan lokasi kosong.",
+          label: "ingin membeli jam baru yang lebih tepat waktunya",
         },
         {
           correct: false,
-          label:
-            "Menunjukkan bahwa Nara sengaja mengabaikan gang agar peta buatannya terlihat lebih menarik.",
+          label: "kesal karena jam itu selalu terlambat setiap hari",
         },
         {
           correct: false,
-          label:
-            "Menutup konflik dengan memastikan tidak ada sumber cahaya di sekitar gang tersebut.",
+          label: "menganggap waktu tidak penting dalam hidupnya",
         },
       ],
     },

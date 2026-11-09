@@ -1,85 +1,17 @@
-The sample space (<InlineMath math="S" />) is the selection of <InlineMath math="3" /> numbers from the set of whole numbers less than <InlineMath math="10" />, which is <InlineMath math="\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}" />.
-The number of elements in this set is <InlineMath math="n = 10" />.
+First solve the inequality, then test each statement on **the whole solution interval**, not on a single example.
 
-The number of ways to choose <InlineMath math="3" /> numbers from <InlineMath math="10" /> is:
+<BlockMath math="x^2-5x+4=(x-1)(x-4)<0\quad\Rightarrow\quad 1<x<4" />
 
-<BlockMath math="\begin{aligned}n(S)&=C(10, 3)\\&=\frac{10 \times 9 \times 8}{3 \times 2 \times 1}\\&=120\end{aligned}" />
+# Statements that do not always hold
 
-Check each statement.
+The statement <InlineMath math="x-2>0" /> fails for <InlineMath math="x=1.5" />, which lies in the interval but is less than 2. One **counterexample** is enough, so the first statement is false.
 
-The numbers are selected together, so **order does not matter**. We use combinations, and every three-number group is equally likely.
+For <InlineMath math="1<x<4" />, taking reciprocals of positive numbers reverses the order: <InlineMath math="\frac1x>\frac14" />. The third statement claims the opposite, so it is false for every <InlineMath math="x" /> in the interval.
 
-# Statement One
+# Statements that always hold
 
-**Set of even numbers**: <InlineMath math="\{0, 2, 4, 6, 8\}" /> (<InlineMath math="5" /> numbers).
-Number of ways to choose <InlineMath math="3" /> even numbers from <InlineMath math="5" />:
+Since <InlineMath math="0<x<4" />, both sides are positive and **squaring keeps the order**, so <InlineMath math="x^2<16" />. The second statement is true.
 
-<BlockMath math="\begin{aligned}n(A)&=C(5, 3)\\&=\frac{5 \times 4 \times 3}{3 \times 2 \times 1}\\&=10\end{aligned}" />
+On the interval <InlineMath math="1<x<4" />, the factor <InlineMath math="x-1" /> is positive and the factor <InlineMath math="x-5" /> is negative. Their product is negative, so the fourth statement is true.
 
-Probability:
-
-<BlockMath math="\begin{aligned}P(A)&=\frac{10}{120}\\&=\frac{1}{12}\end{aligned}" />
-
-Is <InlineMath math="\frac{1}{12} > \frac{1}{20}" />?
-
-<BlockMath math="\begin{aligned}\frac{1}{12}&=\frac{5}{60}\\\frac{1}{20}&=\frac{3}{60}\end{aligned}" />
-
-Since <InlineMath math="\frac{5}{60} > \frac{3}{60}" />, statement 1 is true.
-
-# Statement Two
-
-The number <InlineMath math="3" /> **must be selected**. So we just need to choose <InlineMath math="2" /> more numbers from the remaining <InlineMath math="9" />.
-
-<BlockMath math="\begin{aligned}n(B)&=C(9, 2)\\&=\frac{9 \times 8}{2 \times 1}\\&=36\end{aligned}" />
-
-Probability:
-
-<BlockMath math="\begin{aligned}P(B)&=\frac{36}{120}\\&=\frac{3}{10}\end{aligned}" />
-
-Statement 2 is true.
-
-# Statement Three
-
-Let <InlineMath math="C" /> be the event that no factor of <InlineMath math="9" /> is selected. **Its complement**, <InlineMath math="C^c" />, means at least one factor is selected.
-
-Factors of <InlineMath math="9" /> in the set are <InlineMath math="\{1, 3, 9\}" /> (<InlineMath math="3" /> numbers).
-Numbers that are not factors of <InlineMath math="9" /> are <InlineMath math="\{0, 2, 4, 5, 6, 7, 8\}" /> (<InlineMath math="7" /> numbers).
-
-The probability that at least one factor of <InlineMath math="9" /> is selected is <InlineMath math="1" /> minus the probability that no factor of <InlineMath math="9" /> is selected.
-
-Number of ways to choose <InlineMath math="3" /> numbers that are **not** factors of <InlineMath math="9" />:
-
-<BlockMath math="\begin{aligned}n(C)&=C(7, 3)\\&=\frac{7 \times 6 \times 5}{3 \times 2 \times 1}\\&=35\end{aligned}" />
-
-Probability of no factor of <InlineMath math="9" />:
-
-<BlockMath math="\begin{aligned}P(C)&=\frac{35}{120}\\&=\frac{7}{24}\end{aligned}" />
-
-Probability of at least one:
-
-<BlockMath math="\begin{aligned}P(C^c)&=1 - \frac{7}{24}\\&=\frac{17}{24}\end{aligned}" />
-
-Is <InlineMath math="\frac{17}{24} < \frac{1}{2}" />?
-<InlineMath math="\frac{1}{2} = \frac{12}{24}" />.
-Since <InlineMath math="\frac{17}{24} > \frac{12}{24}" />, statement 3 is false.
-
-# Statement Four
-
-Odd prime numbers in the set: <InlineMath math="\{3, 5, 7\}" /> (<InlineMath math="3" /> numbers).
-Numbers that are **not odd primes**: <InlineMath math="\{0, 1, 2, 4, 6, 8, 9\}" /> (<InlineMath math="7" /> numbers).
-
-The event "the selected numbers are not odd prime numbers" means all three numbers are chosen from the set of non-odd-prime numbers.
-
-Number of ways to choose <InlineMath math="3" /> numbers from <InlineMath math="7" /> non-odd-prime numbers:
-
-<BlockMath math="\begin{aligned}n(D)&=C(7, 3)\\&=35\end{aligned}" />
-
-Probability:
-
-<BlockMath math="\begin{aligned}P(D)&=\frac{35}{120}\\&=\frac{7}{24}\end{aligned}" />
-
-Is <InlineMath math="\frac{7}{24} < \frac{1}{3}" />?
-<InlineMath math="\frac{1}{3} = \frac{8}{24}" />.
-Since <InlineMath math="\frac{7}{24} < \frac{8}{24}" />, statement 4 is true.
-
-The correct statements are <InlineMath math="1, 2, 4" />. There are <InlineMath math="3" /> true statements.
+So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.

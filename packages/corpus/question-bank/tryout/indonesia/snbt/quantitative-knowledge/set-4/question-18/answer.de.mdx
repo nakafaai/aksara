@@ -1,33 +1,13 @@
-Täglich kommt Reis hinzu und **kein Reis wird entnommen**. Wir verwenden folgende Größen:
-*   Der anfängliche Scheunenbestand beträgt <InlineMath math="55" /> Tonnen.
-*   Die durchschnittlich pro Tag hinzugefügte Reismenge (<InlineMath math="x" />) liegt zwischen <InlineMath math="0{,}04" /> und <InlineMath math="0{,}09" /> Tonnen.
-*   <InlineMath math="P = 55" /> Tonnen.
-*   <InlineMath math="Q" />: Gesamtbestand in der Scheune nach <InlineMath math="8\text{ Tagen}" />.
+Die Schüler sind verschieden und haben Namen, die Bücher lassen sich also **nacheinander an einen Schüler nach dem anderen** verteilen. Die Reihenfolge der Bücher bei einem Schüler spielt keine Rolle, jeder Schritt ist also eine Kombination.
 
-# Berechnung der zweiten Größe
+# Bücher für jeden Schüler auswählen
 
-Der Gesamtbestand <InlineMath math="Q" /> besteht aus **Anfangsbestand und zusätzlicher Ernte**. Bei durchschnittlich <InlineMath math="x" /> Tonnen pro Tag kommen in acht Tagen <InlineMath math="8x" /> Tonnen hinzu.
+Rani wählt 2 von 6 Büchern, Sena 2 der übrigen 4, und Tio bekommt die letzten 2. **Die drei Auswahlen werden multipliziert**, weil sie nacheinander geschehen.
 
-<BlockMath math="Q=55+8x" />
+<BlockMath math="\binom62\cdot\binom42\cdot\binom22=15\cdot6\cdot1=90" />
 
-Über einen Zeitraum von <InlineMath math="8\text{ Tagen}" /> liegt die zusätzliche Ernte in folgendem Bereich:
-*   Minimum: <InlineMath math="8 \times 0{,}04 = 0{,}32" /> Tonnen.
-*   Maximum: <InlineMath math="8 \times 0{,}09 = 0{,}72" /> Tonnen.
+# Andere Wahlmöglichkeiten prüfen
 
-Damit liegt der Gesamtbestand <InlineMath math="Q" /> zwischen:
+Der Wert 15 teilt zusätzlich durch <InlineMath math="3!" />, als wären die drei Schüler nicht unterscheidbar. Der Wert 540 multipliziert dagegen mit <InlineMath math="3!" />, obwohl die Schüler schon ab dem ersten Schritt unterschieden werden, sodass **jede Verteilung sechsmal gezählt wird**. Der Wert 360 berechnet <InlineMath math="\frac{6!}{2!}" /> und entfernt die Reihenfolge der Bücher nur bei einem Schüler. Der Wert 729 ist <InlineMath math="3^6" /> und erlaubt einem Schüler beliebig viele Bücher.
 
-<BlockMath math="55 + 0{,}32 \le Q \le 55 + 0{,}72" />
-
-<BlockMath math="55{,}32 \le Q \le 55{,}72" />
-
-# Vergleich der Größen
-
-Jetzt vergleichen wir die Werte von <InlineMath math="P" /> und <InlineMath math="Q" />:
-*   <InlineMath math="P = 55" />
-*   <InlineMath math="Q" /> ist mindestens <InlineMath math="55{,}32" />
-
-Da bereits der **Mindestwert des Endbestands** <InlineMath math="Q" /> mit <InlineMath math="55{,}32" /> größer als <InlineMath math="P" /> mit <InlineMath math="55" /> ist, ist <InlineMath math="Q" /> stets größer als <InlineMath math="P" />.
-
-<BlockMath math="P < Q" />
-
-Die richtige Beziehung ist also <InlineMath math="P < Q" />.
+Es gibt also **90** Möglichkeiten, die Bücher zu verteilen.

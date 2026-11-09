@@ -1,33 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "word-function",
+  },
+  stimulus: "bayu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Setiap perubahan dalam adaptasi pasti merusak tradisi.",
+          label:
+            "penguatan bahwa turbin selalu berputar lebih cepat dan menghasilkan lebih banyak listrik ketika angin bertambah kencang",
         },
         {
           correct: false,
           label:
-            "Karena versi berbeda, kelompok tidak perlu menjelaskan sumber atau perubahan apa pun.",
+            "alasan turbin dibangun di daerah terbuka yang anginnya stabil",
         },
         {
           correct: true,
           label:
-            "Menyebut satu versi sebagai asli dapat menghapus informasi tentang cara cerita hidup di komunitas berbeda.",
+            "keadaan yang berlawanan dengan dugaan, yaitu angin kencang malah membuat turbin berhenti",
         },
         {
           correct: false,
-          label: "Naskah tertulis yang ditemukan diterbitkan pada 1970-an.",
+          label: "urutan waktu dari angin yang lemah menuju angin yang kencang",
         },
         {
           correct: false,
-          label:
-            "Kelompok akan mencantumkan sumber dan perubahan dramatik dalam catatan program.",
+          label: "contoh lain dari keadaan ketika angin bertiup terlalu lemah",
         },
       ],
     },

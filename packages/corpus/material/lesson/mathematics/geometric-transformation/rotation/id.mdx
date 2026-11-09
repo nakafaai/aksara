@@ -4,7 +4,7 @@ export const metadata = {
   description: "Gunakan pusat, arah, dan sudut untuk merotasi titik maupun garis sambil mempertahankan jarak dan bentuk.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Transformasi Geometri",
 };
 
@@ -24,6 +24,38 @@ Pusat <InlineMath math="C" /> **tetap di tempat**. Untuk titik <InlineMath math=
 Putaran yang berbeda sebesar satu putaran penuh memberikan bayangan yang sama. Misalnya, putaran <InlineMath math="90^\circ" /> berlawanan jarum jam sama hasilnya dengan <InlineMath math="270^\circ" /> searah jarum jam:
 
 <BlockMath math="90^\circ-360^\circ=-270^\circ" />
+
+Putar <InlineMath math="P(4, 1)" /> terhadap <InlineMath math="C(1, 1)" /> sejauh <InlineMath math="90^\circ" />. Pusatnya tetap, jarak <InlineMath math="CP = CP' = 3" /> tidak berubah, dan arah dari <InlineMath math="C" /> berputar seperempat putaran berlawanan arah jarum jam, jadi <InlineMath math="P" /> mendarat di <InlineMath math="P'(1, 4)" />.
+
+<MathVisual
+  title={<>Seperempat putaran terhadap <InlineMath math="C(1, 1)" /></>}
+  description={<>Titik <InlineMath math="P(4, 1)" /> diputar <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap <InlineMath math="C(1, 1)" /> ke <InlineMath math="P'(1, 4)" />, dengan kedua jari-jari sepanjang 3.</>}
+  labels={{
+    c: <InlineMath math="C(1, 1)" />,
+    p: <InlineMath math="P(4, 1)" />,
+    image: <InlineMath math="P'(1, 4)" />,
+    turn: <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "cp", kind: "segment", from: { x: 1, y: 1 }, to: { x: 4, y: 1 }, appearance: "construction" },
+      { id: "ci", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 4 }, appearance: "construction" },
+      { id: "turn", kind: "arc", center: { x: 1, y: 1 }, radius: 3, startDegrees: 0, sweepDegrees: 90, appearance: "highlight" },
+      { id: "c", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "p", kind: "point", at: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 1, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "c", objectId: "c", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "p", objectId: "p", at: { x: 4, y: 1 }, placement: "below" },
+      { key: "image", objectId: "image", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "turn", objectId: "turn", at: { x: 1 + 3 / Math.sqrt(2), y: 1 + 3 / Math.sqrt(2) }, placement: "above-right" },
+    ],
+  }}
+/>
 
 ## Rotasi terhadap Titik Asal
 
@@ -58,60 +90,32 @@ Gunakan **sudut positif** karena putarannya berlawanan arah jarum jam:
 
 Jadi, bayangan titik <InlineMath math="B(0,4)" /> adalah <InlineMath math="B'(-4,0)" />.
 
-<LineEquation
-  title={
-    <>
-      Rotasi Titik <InlineMath math="B(0,4)" /> sebesar{" "}
-      <InlineMath math="90^\circ" /> terhadap Titik Asal
-    </>
-  }
-  description={
-    <>
-      Visualisasi rotasi titik <InlineMath math="B(0,4)" /> menjadi{" "}
-      <InlineMath math="B'(-4,0)" /> sebesar <InlineMath math="90^\circ" />{" "}
-      berlawanan arah jarum jam mengelilingi titik asal{" "}
-      <InlineMath math="O(0,0)" />.
-    </>
-  }
-  data={[
-    { points: Array.from({ length: 33 }, (_, i) => { const angle = Math.PI / 2 + i * Math.PI / 64; return { x: 4 * Math.cos(angle), y: 4 * Math.sin(angle), z: 0 }; }), smooth: false, showPoints: false, color: "#d97706", cone: { position: "end", size: 0.2 }, labels: [{ text: <InlineMath math="90^\circ" />, at: 16, offset: [-0.3, 0.3, 0] }] },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [0.5, -0.6, 0] }],
-    }, // Titik Pusat Rotasi
-    {
-      points: [{ x: 0, y: 4, z: 0 }],
-      color: "#0284c7",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B(0,4)" />, at: 0, offset: [0.3, 0.3, 0] }],
-    }, // Titik Asli
-    {
-      points: [{ x: -4, y: 0, z: 0 }],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B'(-4,0)" />, at: 0, offset: [-0.1, -0.6, 0] }],
-    }, // Titik Bayangan
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-    }, // Garis OB
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: -4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-    }, // Garis OB'
-  ]}
-  cameraPosition={[-2, 2, 9]}
-  cameraTarget={[-2, 2, 0]}
+<MathVisual
+  title={<>Seperempat putaran <InlineMath math="B(0, 4)" /> terhadap titik asal</>}
+  description={<><InlineMath math="B(0, 4)" /> berputar <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap <InlineMath math="O" /> ke <InlineMath math="B'(-4, 0)" />. Kedua titik berjarak 4 satuan dari <InlineMath math="O" />.</>}
+  labels={{
+    b: <InlineMath math="B(0, 4)" />,
+    image: <InlineMath math="B'(-4, 0)" />,
+    turn: <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 1.5 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ob", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 4 }, appearance: "construction" },
+      { id: "oi", kind: "segment", from: { x: 0, y: 0 }, to: { x: -4, y: 0 }, appearance: "construction" },
+      { id: "turn", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 90, sweepDegrees: 90, appearance: "highlight" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "b", kind: "point", at: { x: 0, y: 4 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b", objectId: "b", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -4, y: 0 }, placement: "below" },
+      { key: "turn", objectId: "turn", at: { x: -2 * Math.sqrt(2), y: 2 * Math.sqrt(2) }, placement: "above-left" },
+    ],
+  }}
 />
 
 ## Merotasikan Sebuah Garis Seperempat Putaran
@@ -136,51 +140,33 @@ Substitusikan <InlineMath math="x = y'" /> dan <InlineMath math="y = -x'" /> ke 
 
 Mengganti <InlineMath math="x'" /> dan <InlineMath math="y'" /> kembali ke <InlineMath math="x" /> dan <InlineMath math="y" />, persamaan garis bayangan adalah <InlineMath math="-x = 2y" /> atau <InlineMath math="y = -\frac{1}{2}x" />.
 
-<LineEquation
-  title={
-    <>
-      Rotasi Garis <InlineMath math="y=2x" /> sebesar{" "}
-      <InlineMath math="90^\circ" /> terhadap Titik Asal
-    </>
-  }
-  description={
-    <>
-      Garis asli <InlineMath math="y=2x" /> dirotasikan{" "}
-      <InlineMath math="90^\circ" /> menghasilkan garis bayangan{" "}
-      <InlineMath math="y = -\frac{1}{2}x" />.
-    </>
-  }
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#e11d48",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [0.5, -0.5, 0] }],
-    }, // Titik Pusat Rotasi
-    {
-      // Garis Asli: y = 2x
-      points: Array.from({ length: 13 }, (_, pointIndex) => {
-        const xVal = (pointIndex - 6) * 0.25;
-        return { x: xVal, y: 2 * xVal, z: 0 };
-      }),
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y=2x" />, at: 9, offset: [1, 0.5, 0] }],
-    },
-    {
-      // Garis Bayangan: y = -1/2 x
-      points: Array.from({ length: 13 }, (_, pointIndex) => {
-        const xVal = (pointIndex - 6) * 0.5;
-        return { x: xVal, y: (-1 / 2) * xVal, z: 0 };
-      }),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y=(-\frac{1}{2})x" />, at: 2, offset: [0.3, 0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 10]}
+<MathVisual
+  title={<>Garis <InlineMath math="y = 2x" /> setelah seperempat putaran</>}
+  description={<>Garis <InlineMath math="y = 2x" /> dan bayangannya <InlineMath math="y = -\tfrac12 x" /> setelah rotasi <InlineMath math="90^\circ" /> terhadap titik asal, dengan titik <InlineMath math="(1, 2)" /> berputar ke <InlineMath math="(-2, 1)" />.</>}
+  labels={{
+    l: <InlineMath math="y = 2x" />,
+    "image-line": <InlineMath math="y = -\tfrac12 x" />,
+    a: <InlineMath math="(1, 2)" />,
+    image: <InlineMath math="(-2, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -2, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "l", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "image-line", kind: "line", through: [{ x: 0, y: 0 }, { x: -2, y: 1 }], appearance: "secondary" },
+      { id: "turn", kind: "arc", center: { x: 0, y: 0 }, radius: Math.sqrt(5), startDegrees: Math.atan2(2, 1) * 180 / Math.PI, sweepDegrees: 90, appearance: "highlight" },
+      { id: "a", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: -2, y: 1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l", objectId: "l", at: { x: 7 / 5, y: 14 / 5 }, placement: "right" },
+      { key: "image-line", objectId: "image-line", at: { x: -14 / 5, y: 7 / 5 }, placement: "above" },
+      { key: "a", objectId: "a", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -2, y: 1 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Latihan

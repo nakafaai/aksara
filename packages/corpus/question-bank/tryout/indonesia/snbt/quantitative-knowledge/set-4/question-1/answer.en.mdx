@@ -1,40 +1,28 @@
-Using <InlineMath math="f(x)=2x-1" />, we need the **sum of the two roots** of the following equation:
+A perfect square has an even exponent on every prime, and a perfect cube has exponents that are multiples of 3. So write <InlineMath math="n=2^a\,3^b\,5^c" /> and decide **each exponent separately**. Any other prime factor would only make <InlineMath math="n" /> larger.
 
-<BlockMath math="6f(x^2)-f^2(x)=6x^2-x" />
+# The conditions on each exponent
 
-First, we find the forms of <InlineMath math="f(x^2)" /> and <InlineMath math="f^2(x)" /> or <InlineMath math="(f(x))^2" />.
-
-<BlockMath math="f(x^2) = 2(x^2) - 1 = 2x^2 - 1" />
+With <InlineMath math="20=2^2\cdot5" /> and <InlineMath math="12=2^2\cdot3" />:
 
 <BlockMath math="\begin{aligned}
-f^2(x)&=(2x-1)^2 \\
-&=4x^2-4x+1
+20n&=2^{a+2}\,3^{b}\,5^{c+1}\\
+12n&=2^{a+2}\,3^{b+1}\,5^{c}
 \end{aligned}" />
 
-Next, we substitute these results into the given equation.
+| Prime | Square condition from <InlineMath math="20n" /> | Cube condition from <InlineMath math="12n" /> | Smallest exponent |
+| :---: | :---: | :---: | :---: |
+| 2 | <InlineMath math="a+2" /> even | <InlineMath math="a+2" /> a multiple of 3 | <InlineMath math="a=4" /> |
+| 3 | <InlineMath math="b" /> even | <InlineMath math="b+1" /> a multiple of 3 | <InlineMath math="b=2" /> |
+| 5 | <InlineMath math="c+1" /> even | <InlineMath math="c" /> a multiple of 3 | <InlineMath math="c=3" /> |
 
-<BlockMath math="\begin{gathered}
-6(2x^2-1)-(4x^2-4x+1) \\
-=6x^2-x \\
-12x^2-6-4x^2+4x-1 \\
-=6x^2-x \\
-8x^2+4x-7=6x^2-x
-\end{gathered}" />
+Every exponent must **satisfy both conditions at once**. For example, <InlineMath math="a" /> is even and <InlineMath math="a+2" /> is a multiple of 3, so its smallest value is 4.
 
-We move all terms to the left side to form a quadratic equation <InlineMath math="ax^2 + bx + c = 0" />.
+# Computing and checking
 
-<BlockMath math="8x^2 - 6x^2 + 4x + x - 7 = 0" />
+<BlockMath math="n=2^4\cdot3^2\cdot5^3=16\cdot9\cdot125=18{,}000" />
 
-<BlockMath math="2x^2 + 5x - 7 = 0" />
+Check: <InlineMath math="20n=360{,}000=600^2" /> and <InlineMath math="12n=216{,}000=60^3" />.
 
-From the quadratic equation <InlineMath math="2x^2 + 5x - 7 = 0" />, we get <InlineMath math="a = 2" />, <InlineMath math="b = 5" />, and <InlineMath math="c = -7" />.
+The value 5 satisfies only the square condition, since <InlineMath math="20\cdot5=100" />. The value 18 satisfies only the cube condition, since <InlineMath math="12\cdot18=216" />. The value 90 is the least common multiple of the two, but <InlineMath math="20\cdot90=1800" /> is not a perfect square. The value 720 satisfies the square condition, but <InlineMath math="12\cdot720" /> contains only <InlineMath math="5^1" />.
 
-The **sum of the roots of the quadratic equation** (<InlineMath math="x_1 + x_2" />) can be calculated using the formula <InlineMath math="-\frac{b}{a}" />.
-
-<BlockMath math="x_1 + x_2 = -\frac{5}{2}" />
-
-So, the value of <InlineMath math="x_1 + x_2" /> is <InlineMath math="-\frac{5}{2}" />.
-
-As a check, factor the quadratic to find both roots directly:
-
-<BlockMath math="(2x+7)(x-1)=0\quad\Rightarrow\quad x_1=1,\ x_2=-\frac72,\ x_1+x_2=-\frac52" />
+So the smallest <InlineMath math="n" /> is **18,000**.

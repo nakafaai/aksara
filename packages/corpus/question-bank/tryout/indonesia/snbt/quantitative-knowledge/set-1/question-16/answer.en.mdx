@@ -1,36 +1,17 @@
-Combining the three fractions requires a **common denominator**. The expression is
+Order the five numbers as <InlineMath math="a<b<c<d<e" />. The median of five values is the third value, so <InlineMath math="c=10" />. A mean of 12 means that **the five numbers always add up to 60**.
 
-<BlockMath math="\frac{x + 2y}{3} + \frac{2x - y}{4} - \frac{3x + 2y}{6}" />
+<BlockMath math="a+b+10+d+e=60\quad\Rightarrow\quad e=50-a-b-d" />
 
-# Finding the Common Denominator
+# Making the other numbers small
 
-To simplify this expression, we need to find the **least common multiple (LCM)** of <InlineMath math="3" />, <InlineMath math="4" />, and <InlineMath math="6" />.
+To make <InlineMath math="e" /> as large as possible, the other three numbers must be as small as the conditions allow. The smallest distinct positive integers below 10 are <InlineMath math="a=1" /> and <InlineMath math="b=2" />. The number <InlineMath math="d" /> must be **greater than the median** and different from it, so its smallest value is <InlineMath math="d=11" />.
 
-Prime factorization:
-- <InlineMath math="3 = 3" />
-- <InlineMath math="4 = 2^2" />
-- <InlineMath math="6 = 2 \times 3" />
+<BlockMath math="e=50-1-2-11=36" />
 
-The LCM of <InlineMath math="3" />, <InlineMath math="4" />, and <InlineMath math="6" /> is <InlineMath math="2^2 \times 3 = 12" />.
+Check: the data <InlineMath math="1,2,10,11,36" /> are all different, the median is 10, and the mean is <InlineMath math="\tfrac{60}{5}=12" />.
 
-# Equalizing Denominators
+# The tempting wrong values
 
-Multiply the **numerator and denominator by the same number**, keeping each fraction unchanged. The new denominator is <InlineMath math="12" />:
+The value 37 uses <InlineMath math="d=10" />, although the numbers must be different. The value 38 uses <InlineMath math="1,1,10,10" />, which breaks the distinctness condition twice. The value 34 starts from <InlineMath math="a=2" /> and <InlineMath math="b=3" />, although 1 is also a positive integer. The value 46 leaves the median 10 out of the sum, as in <InlineMath math="60-1-2-11" />.
 
-<BlockMath math="\begin{aligned}\frac{x + 2y}{3}&=\frac{4(x + 2y)}{12}\\&=\frac{4x + 8y}{12}\end{aligned}" />
-
-<BlockMath math="\begin{aligned}\frac{2x - y}{4}&=\frac{3(2x - y)}{12}\\&=\frac{6x - 3y}{12}\end{aligned}" />
-
-<BlockMath math="\begin{aligned}\frac{3x + 2y}{6}&=\frac{2(3x + 2y)}{12}\\&=\frac{6x + 4y}{12}\end{aligned}" />
-
-# Simplifying the Expression
-
-Call the expression <InlineMath math="E" />. Once the denominators match, combine the numerators. Keep the **minus sign before the third fraction**.
-
-<BlockMath math="\begin{aligned}E&=\frac{4x+8y}{12}+\frac{6x-3y}{12}\\&\quad-\frac{6x+4y}{12}\end{aligned}" />
-
-Let <InlineMath math="N" /> be the combined numerator, so <InlineMath math="E=N/12" />. Expand the brackets and collect like terms:
-
-<BlockMath math="\begin{aligned}N&=(4x+8y)+(6x-3y)\\&\quad-(6x+4y)\\&=4x+8y+6x-3y\\&\quad-6x-4y\\&=(4x+6x-6x)\\&\quad+(8y-3y-4y)\\&=4x+y\end{aligned}" />
-
-<BlockMath math="E=\frac N{12}=\frac{4x+y}{12}" />
+So the largest possible value of the greatest number is **36**.

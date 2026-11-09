@@ -1,29 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-purpose",
+  },
+  stimulus: "essay-scoring",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Danau tersebut dahulu menjadi lokasi peperangan",
+          label:
+            "Membuktikan bahwa semua skor yang diberikan mesin kepada siswa itu keliru.",
         },
         {
           correct: true,
-          label: "Ratusan sisa kerangka manusia tersebar di sekitar danau",
+          label:
+            "Menunjukkan bahwa rata-rata yang tinggi dapat menutupi kesalahan pada esai tak biasa.",
         },
         {
           correct: false,
-          label: "Semua jasad terbukti meninggal akibat badai es",
+          label:
+            "Menunjukkan bahwa siswa di kelas penulis malas menulis esai yang panjang.",
         },
         {
           correct: false,
-          label: "Danau tersebut pernah menjadi permukiman kuno",
+          label:
+            "Menegaskan bahwa kosakata yang canggih tidak penting dalam menulis esai.",
         },
         {
           correct: false,
-          label: "Satu kelompok peziarah menamai danau tersebut",
+          label:
+            "Menyindir dinas pendidikan karena menggelar uji coba di dua belas sekolah.",
         },
       ],
     },

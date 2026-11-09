@@ -1,29 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "quantitative-reasoning",
+    topic: "relative-motion",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\frac1{30}$$",
+          column: 1,
+          label: "Ari menyusul Bima untuk pertama kali setelah $$400$$ detik.",
         },
         {
-          correct: false,
-          label: "$$\\frac1{24}$$",
+          column: 1,
+          label:
+            "Saat pertama kali menyusul Bima, Ari telah menempuh tepat $$5$$ putaran.",
         },
         {
-          correct: false,
-          label: "$$\\frac1{18}$$",
+          column: 2,
+          label:
+            "Jika keduanya berlari berlawanan arah dari titik awal yang sama, mereka bertemu untuk pertama kali setelah $$40$$ detik.",
         },
         {
-          correct: false,
-          label: "$$\\frac1{15}$$",
-        },
-        {
-          correct: true,
-          label: "$$\\frac1{20}$$",
+          column: 2,
+          label: "Dalam $$10$$ menit, Bima menempuh lebih dari $$6$$ putaran.",
         },
       ],
     },

@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "elimination",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "kunci merah",
+        },
+        {
+          correct: false,
+          label: "kunci biru",
+        },
+        {
           correct: true,
-          label: "tanda tangan digital : keaslian dokumen",
+          label: "kunci hijau",
         },
         {
           correct: false,
-          label: "kompresi : ukuran berkas",
+          label: "kunci kuning",
         },
         {
           correct: false,
-          label: "kata sandi : kecerahan layar",
-        },
-        {
-          correct: false,
-          label: "cadangan data : kecepatan jaringan",
-        },
-        {
-          correct: false,
-          label: "enkripsi : resolusi cetak",
+          label: "tidak dapat dipastikan dari keterangan itu",
         },
       ],
     },

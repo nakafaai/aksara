@@ -42,6 +42,34 @@ For a concrete example, the two columns of the following matrix are identical. O
 
 <BlockMath math="A\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}" />
 
+Take <InlineMath math="A=\begin{pmatrix}1&2\\1&2\end{pmatrix}" /> and <InlineMath math="b=(2,2)^T" />. The second column is twice the first, so the data only fix the combination <InlineMath math="x_1+2x_2" />. The function <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" /> is zero on the whole magenta line <InlineMath math="x_1+2x_2=2" />, for example at the teal point <InlineMath math="(2,0)^T" />, so every point on that line fits equally well and <InlineMath math="x" /> is not identifiable. The orange segment from the origin meets the line at a right angle at <InlineMath math="x^+=(2/5,4/5)^T" />, so that is the choice with the smallest norm.
+
+<MathVisual
+  title={<>The line of minimizers and the minimum-norm solution</>}
+  description={<>The magenta line holds every minimizer of <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" />. The violet point is the minimum-norm solution <InlineMath math="x^+=(2/5,4/5)^T" />, and the orange segment is its distance to the origin.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 3 }, y: { min: -0.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "line", through: [{ x: 2, y: 0 }, { x: 0, y: 1 }], appearance: "answer" },
+      { id: "other", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "shortest", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 / 5, y: 4 / 5 }, appearance: "primary" },
+      { id: "best", kind: "point", at: { x: 2 / 5, y: 4 / 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "floor", objectId: "floor", at: { x: -1 / 2, y: 5 / 4 }, placement: "above-right" },
+      { key: "other", objectId: "other", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "best", objectId: "best", at: { x: 2 / 5, y: 4 / 5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "floor": <InlineMath math="x_1+2x_2=2" />,
+    "other": <InlineMath math="(2,0)^T" />,
+    "best": <InlineMath math="x^+" />,
+  }}
+/>
+
 ## Solution Uniqueness and Numerical Stability
 
 <Highlight>Full column rank guarantees a unique least-squares minimizer</Highlight>, but not a numerically reliable one. A very small nonzero singular value can make the estimate highly sensitive to small changes in the data.
@@ -81,6 +109,36 @@ The exact rank is the **number of positive singular values**:
 
 For <InlineMath math="m \geq n" />, full column rank is therefore equivalent to <InlineMath math="\sigma_n>0" />. Parameter directions that the data cannot identify are spanned by the right singular vectors associated with zero singular values, which form a basis for <InlineMath math="\ker(A)" />.
 
+For <InlineMath math="A=\begin{pmatrix}2&2\\1&1\end{pmatrix}" />, the right singular vector <InlineMath math="v_1=\tfrac1{\sqrt2}(1,1)" /> goes to <InlineMath math="Av_1=(2\sqrt2,\sqrt2)" /> of length <InlineMath math="\sigma_1=\sqrt{10}" />, while <InlineMath math="v_2=\tfrac1{\sqrt2}(1,-1)" /> goes to <InlineMath math="0" />, so <InlineMath math="\sigma_2=0" />. Only one singular value is positive, so <InlineMath math="\operatorname{rank}A=1" />.
+
+<MathVisual
+  title={<>One positive singular value means rank <InlineMath math="1" /></>}
+  description={<>The teal segment <InlineMath math="v_1" /> and the orange segment <InlineMath math="v_2" /> lie on the gray unit circle. <InlineMath math="A" /> sends <InlineMath math="v_1" /> to the violet segment of length <InlineMath math="\sqrt{10}" /> and <InlineMath math="v_2" /> to the magenta point <InlineMath math="0" />. The whole plane lands on the gray line through <InlineMath math="(2,1)" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "range", kind: "line", through: [{ x: 0, y: 0 }, { x: 2, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.SQRT2, y: Math.SQRT2 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: -Math.SQRT1_2 }, appearance: "primary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "above-left" },
+      { key: "second", objectId: "second", at: { x: Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-right" },
+      { key: "image", objectId: "image", at: { x: 2 * Math.SQRT2, y: Math.SQRT2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="v_1" />,
+    "second": <InlineMath math="v_2" />,
+    "image": <InlineMath math="Av_1=\sqrt{10}\,u_1" />,
+  }}
+/>
+
 ## Exact Rank and Numerical Rank
 
 If the exact rank is <InlineMath math="r" /> with <InlineMath math="0<r<q" />, then
@@ -97,6 +155,19 @@ Floating-point data rarely contain exact zeros. A numerical rank instead counts 
 The factor <InlineMath math="c" /> reflects the application and noise model, so there is no universal decimal cutoff. If <InlineMath math="A" /> is rank deficient, the least-squares minimum still exists, but the minimizing parameter vector is not unique. The Moore-Penrose pseudoinverse selects the minimum-norm solution:
 
 <BlockMath math="x^{\dagger}=V\Sigma^{\dagger}U^T b" />
+
+Change one entry to get <InlineMath math="A_\varepsilon=\begin{pmatrix}2&2\\1&1+\varepsilon\end{pmatrix}" /> with <InlineMath math="\varepsilon=10^{-6}" />. Exactly, <InlineMath math="\det A_\varepsilon=2\varepsilon\neq0" />, so the rank is <InlineMath math="2" />, but <InlineMath math="\sigma_2=2\varepsilon/\sigma_1\approx6\cdot10^{-7}" />. With a measurement tolerance of <InlineMath math="10^{-4}" />, only <InlineMath math="\sigma_1" /> counts, so the numerical rank is <InlineMath math="1" />.
+
+<BarChart
+  title={<>Singular values of <InlineMath math="A_\varepsilon" /> for <InlineMath math="\varepsilon=10^{-6}" /></>}
+  description={<>The first bar is <InlineMath math="\sigma_1\approx\sqrt{10}" />, the second is <InlineMath math="\sigma_2=2\varepsilon/\sigma_1" />, too small to see. Both come from <InlineMath math="\sigma_1^2+\sigma_2^2=\|A_\varepsilon\|_F^2" /> and <InlineMath math="\sigma_1\sigma_2=|\det A_\varepsilon|" />.</>}
+  yAxisLabel="Singular value"
+  data={[
+    { name: "1", value: Math.sqrt((10 + 2e-6 + 1e-12 + Math.sqrt((10 + 2e-6 + 1e-12) ** 2 - 4 * (2e-6) ** 2)) / 2) },
+    { name: "2", value: 2e-6 / Math.sqrt((10 + 2e-6 + 1e-12 + Math.sqrt((10 + 2e-6 + 1e-12) ** 2 - 4 * (2e-6) ** 2)) / 2) },
+  ]}
+  chartConfig={{ value: { label: "Singular value", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
 
 ## Estimating Matrix Rank with SVD or Rank Revealing QR
 

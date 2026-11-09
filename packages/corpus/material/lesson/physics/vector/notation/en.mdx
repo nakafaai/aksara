@@ -30,6 +30,39 @@ The order of the letters matters. <InlineMath math="\overrightarrow{AB}" /> and 
 
 <Highlight>The arrow above the letters</Highlight> tells us that the quantity is a vector. Absolute-value bars tell us that only the magnitude is being discussed.
 
+Both arrows below have the same length, but the order of the letters flips the direction: <InlineMath math="\overrightarrow{AB}" /> starts at <InlineMath math="A" /> and <InlineMath math="\overrightarrow{BA}" /> starts at <InlineMath math="B" />. So <InlineMath math="\overrightarrow{BA}=-\overrightarrow{AB}" />.
+
+<MathVisual
+  title={<>The Order of the Points Sets the Direction</>}
+  description={<>Vectors AB and BA between the points A(1, 1) and B(4, 3), the second shifted down to sit beside the first.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: -1, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ab-line", kind: "segment", appearance: "reference", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "b", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "ab-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 3) / Math.hypot(3, 2) + ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 3 - (0.25 * 2) / Math.hypot(3, 2) + ((0.25 / 2) * 3) / Math.hypot(3, 2) }, { x: 4 - (0.25 * 3) / Math.hypot(3, 2) - ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 3 - (0.25 * 2) / Math.hypot(3, 2) - ((0.25 / 2) * 3) / Math.hypot(3, 2) }] },
+      { id: "ba", kind: "segment", appearance: "secondary", from: { x: 4, y: 1.5 }, to: { x: 1, y: -0.5 } },
+      { id: "ba-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: -0.5 }, { x: 1 - (0.25 * -3) / Math.hypot(-3, -2.0) + ((0.25 / 2) * 2.0) / Math.hypot(-3, -2.0), y: -0.5 - (0.25 * -2.0) / Math.hypot(-3, -2.0) + ((0.25 / 2) * -3) / Math.hypot(-3, -2.0) }, { x: 1 - (0.25 * -3) / Math.hypot(-3, -2.0) - ((0.25 / 2) * 2.0) / Math.hypot(-3, -2.0), y: -0.5 - (0.25 * -2.0) / Math.hypot(-3, -2.0) - ((0.25 / 2) * -3) / Math.hypot(-3, -2.0) }] },
+    ],
+    labels: [
+      { key: "ab", objectId: "ab", at: { x: 2.5, y: 2 }, placement: "above-left" },
+      { key: "ba", objectId: "ba", at: { x: 2.5, y: 0.5 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 1 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    ab: <InlineMath math="\overrightarrow{AB}" />,
+    ba: <InlineMath math="\overrightarrow{BA}" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
+/>
+
 ## Single Letter Notation
 
 In calculations, vectors are often named with **one letter carrying an arrow** such as <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" />, or <InlineMath math="\vec{F}" />. The letter helps identify the physical quantity.
@@ -118,6 +151,35 @@ A **unit vector** has magnitude <InlineMath math="1" /> and only shows direction
 All three arrows have **the same actual length**. Rotating the view changes their projection on the screen, but not the magnitude of a unit vector.
 
 Later, when a vector is written as <InlineMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />, <InlineMath math="\hat{i}" /> and <InlineMath math="\hat{j}" /> give the positive axis directions, while the signed scalars <InlineMath math="A_x" /> and <InlineMath math="A_y" /> give the components along those axes.
+
+Place the two forces head to tail. The second arrow ends exactly where the first began, so the sum is the zero vector: no length and no direction.
+
+<MathVisual
+  title={<>Two Forces That Cancel</>}
+  description={<><InlineMath math="\vec F_1=20\hat i\text{ N}" /> and <InlineMath math="\vec F_2=-20\hat i\text{ N}" /> placed head to tail. One grid step is 5 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "f1", kind: "segment", appearance: "primary", from: { x: 0, y: 0.6 }, to: { x: 4, y: 0.6 } },
+      { id: "f1-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0.6 }, { x: 3.75, y: 0.725 }, { x: 3.75, y: 0.475 }] },
+      { id: "f2", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "f2-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.25, y: 0.125 }, { x: 0.25, y: -0.125 }] },
+      { id: "sum", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 2, y: 0.6 }, placement: "above" },
+      { key: "f2", objectId: "f2", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    f1: <InlineMath math="\vec F_1=20\hat i\text{ N}" />,
+    f2: <InlineMath math="\vec F_2=-20\hat i\text{ N}" />,
+    sum: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />,
+  }}
+/>
 
 ## Common Reading Mistakes
 

@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "calendar",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$18$$",
+        },
+        {
           correct: true,
-          label: "$$105$$",
+          label: "$$19$$",
         },
         {
           correct: false,
-          label: "$$95$$",
+          label: "$$20$$",
         },
         {
           correct: false,
-          label: "$$100$$",
+          label: "$$23$$",
         },
         {
           correct: false,
-          label: "$$110$$",
-        },
-        {
-          correct: false,
-          label: "$$115$$",
+          label: "$$24$$",
         },
       ],
     },

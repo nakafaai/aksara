@@ -1,31 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "letter-number-pattern",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Pintu pelimpah pasti terbuka secara otomatis.",
-        },
-        {
-          correct: false,
-          label: "Petak tanaman bagian barat pasti tetap kering.",
-        },
-        {
-          correct: false,
-          label:
-            "Tidak ada air yang dapat mencapai petak tanaman bagian barat.",
-        },
-        {
           correct: true,
-          label:
-            "Tidak dapat disimpulkan apakah petak tanaman bagian barat menerima air.",
+          label: "26Z",
         },
         {
           correct: false,
-          label: "Petak tanaman bagian barat tidak mungkin menghijau.",
+          label: "25Y",
+        },
+        {
+          correct: false,
+          label: "26Y",
+        },
+        {
+          correct: false,
+          label: "24X",
+        },
+        {
+          correct: false,
+          label: "27Z",
         },
       ],
     },

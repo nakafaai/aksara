@@ -4,7 +4,7 @@ export const metadata = {
     "Use correlation to describe the direction and strength of a linear relationship, interpret Pearson's r, and explain why correlation does not imply causation.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-30",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Statistics",
 };
 
@@ -40,8 +40,8 @@ A value near zero does not rule out every relationship. Points may follow a clea
 Suppose the data satisfy <InlineMath math="y=x^2" /> for <InlineMath math="x=-2,-1,0,1,2" />. You can follow a **U-shaped pattern** in the plot even though the linear correlation is zero.
 
 <ScatterDiagram
-  title="A Curved Relationship in Five Data Pairs"
-  description="The values fall toward the middle and rise again, so one straight line does not describe the pattern."
+  title={<>A Curved Relationship in Five Data Pairs</>}
+  description={<>The values fall toward the middle and rise again, so one straight line does not describe the pattern.</>}
   datasets={[{ name: "Data pairs", color: "var(--chart-1)", points: [{ x: -2, y: 4 }, { x: -1, y: 1 }, { x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 4 }] }]}
 />
 
@@ -50,6 +50,41 @@ The coordinate means are <InlineMath math="\bar x=0" /> and <InlineMath math="\b
 <BlockMath math="\begin{aligned}\sum(x_i-\bar x)(y_i-\bar y)&=(-2)(2)+(-1)(-1)+0(-2) \\ &\quad+1(-1)+2(2) \\ &=-4+1+0-1+4=0\end{aligned}" />
 
 Both variables still vary. The sum of squared horizontal deviations is <InlineMath math="10" />, and the sum of squared vertical deviations is <InlineMath math="14" />. Thus <InlineMath math="r=0/\sqrt{10\cdot14}=0" />. **Zero correlation** here accompanies an exact quadratic relationship.
+
+Split the plot at <InlineMath math="\bar x = 0" /> and <InlineMath math="\bar y = 2" />. The products of deviations are <InlineMath math="-4" />, 1, 0, <InlineMath math="-1" /> and 4: each point on the left has a partner on the right with the opposite product, so they cancel and <InlineMath math="r = 0" />.
+
+<MathVisual
+  title={<>Products of deviations cancel</>}
+  description={<>The five points of <InlineMath math="y = x^2" /> with the mean lines <InlineMath math="x = 0" /> and <InlineMath math="y = 2" />, labelled with their products <InlineMath math="(x - \bar x)(y - \bar y)" />.</>}
+  labels={{
+    a: <InlineMath math="-4" />,
+    b: <InlineMath math="1" />,
+    c: <InlineMath math="0" />,
+    d: <InlineMath math="-1" />,
+    e: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.8, max: 2.8 }, y: { min: -0.6, max: 4.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mx", kind: "line", through: [{ x: 0, y: 0 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "my", kind: "line", through: [{ x: 0, y: 2 }, { x: 1, y: 2 }], appearance: "reference" },
+      { id: "a", kind: "point", at: { x: -2, y: 4 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "d", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "e", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -2, y: 4 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -1, y: 1 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "d", objectId: "d", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "e", objectId: "e", at: { x: 2, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Swapping Variables and Changing Units
 
@@ -72,6 +107,16 @@ The linear association accounts for <InlineMath math="64\%" /> of the observed v
 The coefficient of determination satisfies:
 
 <BlockMath math="0\le r^2\le1" />
+
+Squaring shrinks a correlation more the weaker it is: <InlineMath math="r = 0.5" /> accounts for only <InlineMath math="r^2 = 25\%" /> of the variation, <InlineMath math="r = 0.8" /> for <InlineMath math="64\%" />, and <InlineMath math="r = 0.9" /> for <InlineMath math="81\%" />.
+
+<BarChart
+  title={<><InlineMath math="r^2" /> for five correlations</>}
+  description={<>Bars of <InlineMath math="r^2" /> in percent for <InlineMath math="r = 0.2, 0.5, 0.8, 0.9, 1" />.</>}
+  yAxisLabel="Share of variation (%)"
+  data={[0.2, 0.5, 0.8, 0.9, 1].map((r) => ({ name: String(r), value: 100 * r ** 2 }))}
+  chartConfig={{ value: { label: "Share of variation (%)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Correlation and Causal Relationships
 

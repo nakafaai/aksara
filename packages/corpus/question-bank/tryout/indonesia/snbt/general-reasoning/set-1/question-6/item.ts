@@ -1,6 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "explanation",
+  },
+  stimulus: "bibit",
   versions: {
     id: {
       kind: "choice",
@@ -8,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kementerian menggunakan seluruh anggarannya untuk menjamin kenaikan permanen pada setiap tanaman pangan.",
+            "Bibit yang disiram pada sore hari menerima cahaya matahari lebih lama setiap hari, sehingga fotosintesisnya lebih banyak daripada bibit yang disiram pada pagi hari.",
         },
         {
           correct: false,
           label:
-            "Produksi jagung meningkat lebih sedikit daripada produksi padi pada periode yang dilaporkan.",
+            "Kompos melepaskan unsur hara ke tanah lebih lambat daripada pupuk cair.",
+        },
+        {
+          correct: false,
+          label:
+            "Petani lebih teliti mengukur takaran air ketika menyiram pada sore hari.",
         },
         {
           correct: true,
           label:
-            "Kementerian memprioritaskan dukungan produksi, dan publikasi tahun $$2017$$ melaporkan kenaikan historis produksi padi dan jagung.",
+            "Nitrogen pupuk cair mudah lepas ke udara saat tanah panas, sedangkan larutan yang disiram sore sempat meresap semalaman.",
         },
         {
           correct: false,
           label:
-            "Angka-angka tersebut membuktikan bahwa perubahan arah anggaran merupakan satu-satunya penyebab kenaikan produksi.",
-        },
-        {
-          correct: false,
-          label: "Sisa anggaran kementerian tidak digunakan.",
+            "Varietas cabai yang ditanam membutuhkan lebih banyak air daripada varietas lain.",
         },
       ],
     },

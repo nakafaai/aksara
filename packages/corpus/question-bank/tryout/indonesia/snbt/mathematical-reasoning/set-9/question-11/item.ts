@@ -1,29 +1,29 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "knockout-cup",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$9$$",
+          column: 2,
+          label:
+            "Pemain yang mendapat bye dan akhirnya menjadi juara memainkan 6 pertandingan.",
         },
         {
-          correct: false,
-          label: "$$7$$",
+          column: 1,
+          label: "Juara turnamen memainkan paling banyak 6 pertandingan.",
         },
         {
-          correct: false,
-          label: "$$8$$",
+          column: 1,
+          label: "Babak perempat final terdiri atas 4 pertandingan.",
         },
         {
-          correct: false,
-          label: "$$10$$",
-        },
-        {
-          correct: false,
-          label: "$$11$$",
+          column: 2,
+          label:
+            "Banyak pertandingan di babak kedua sama dengan banyak pertandingan di semua babak setelahnya digabungkan.",
         },
       ],
     },

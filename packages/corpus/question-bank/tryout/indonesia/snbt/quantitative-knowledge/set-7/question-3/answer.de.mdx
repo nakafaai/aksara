@@ -1,10 +1,18 @@
-Eine passende Zahl muss **beide Restbedingungen** erfüllen. Wir prüfen für jeden Kandidaten die Division durch 5 und durch 4.
+Beide Zahlen sind kleine Differenzen zwischen einer Wurzel und einer nahen ganzen Zahl, grobe Dezimalschätzungen können also täuschen. Sicher ist es, **mit dem konjugierten Term zu erweitern**, sodass jede Differenz zu einem Bruch wird.
 
-| Zahl | Division durch 5 | Division durch 4 | Erfüllt beide |
-| --- | --- | --- | --- |
-| 19 | <InlineMath math="19=5\times3+4" /> | <InlineMath math="19=4\times4+3" /> | Ja |
-| 29 | <InlineMath math="29=5\times5+4" /> | <InlineMath math="29=4\times7+1" /> | Nein |
-| 39 | <InlineMath math="39=5\times7+4" /> | <InlineMath math="39=4\times9+3" /> | Ja |
-| 49 | <InlineMath math="49=5\times9+4" /> | <InlineMath math="49=4\times12+1" /> | Nein |
+# Erweitern mit dem konjugierten Term
 
-Nur 19 und 39 erfüllen beide Bedingungen, also **Auswahl 1 und 3**.
+<BlockMath math="\begin{aligned}
+P&=\sqrt{17}-4=\frac{(\sqrt{17}-4)(\sqrt{17}+4)}{\sqrt{17}+4}=\frac{17-16}{\sqrt{17}+4}=\frac{1}{\sqrt{17}+4}\\
+Q&=5-\sqrt{24}=\frac{(5-\sqrt{24})(5+\sqrt{24})}{5+\sqrt{24}}=\frac{25-24}{5+\sqrt{24}}=\frac{1}{5+\sqrt{24}}
+\end{aligned}" />
+
+# Nenner vergleichen
+
+Beide Brüche haben den Zähler 1, also ist **der Bruch mit dem kleineren Nenner größer**. Vergleiche die Nenner.
+
+<BlockMath math="\sqrt{17}+4<\sqrt{25}+4=9<5+\sqrt{24}" />
+
+Die letzte Ungleichung gilt, weil <InlineMath math="\sqrt{24}>4" /> ist. Der Nenner von <InlineMath math="P" /> ist kleiner, also gilt <InlineMath math="P>Q" />. Zur Kontrolle: <InlineMath math="P\approx0{,}123" /> und <InlineMath math="Q\approx0{,}101" />.
+
+Die richtige Beziehung ist also **<InlineMath math="P>Q" />**.

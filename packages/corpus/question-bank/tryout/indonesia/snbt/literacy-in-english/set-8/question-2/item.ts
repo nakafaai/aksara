@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "city-birdsong",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["True", "False"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label:
-            "The triangular-truss bridge produced a mean of $$39$$ under the fixed span and load placement. Variation in paper fibres and folds bounds the comparison.",
+          column: 1,
+          label: "Traffic noise is concentrated at low frequencies.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
+            "Singing louder or at night uses time that could be spent feeding.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The mean result with the change was $$39$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "In the robin study, street lighting predicted night singing better than daytime noise.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
-        },
-        {
-          correct: false,
-          label:
-            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+            "During the 2020 lockdowns, white-crowned sparrows in San Francisco sang more loudly.",
         },
       ],
     },

@@ -1,46 +1,18 @@
-Pengeluaran Rani terdiri atas **harga dua paket bibit dan pupuk untuk bagian yang ditanami**. Luas seluruh lahan bukan dasar biaya pupuk karena Rani tidak menanami seluruh lahan.
+Kerjakan dari tagihan ke pemakaian. Kurangi dulu biaya beban, lalu **habiskan sisa uang blok demi blok** sampai tidak ada sisa.
 
-# Menghitung Luas yang Ditanami
+# Biaya pemakaian dan blok yang terlewati
 
-Dua paket menghasilkan 4 bibit stroberi, 2 bibit jeruk, dan 8 bibit mangga. Lahan satu bibit jeruk memiliki panjang dan lebar masing-masing dua kali ukuran lahan stroberi. Karena itu, **luasnya menjadi empat kali**, bukan dua kali.
+<BlockMath math="550{.}000-20{.}000=530{.}000" />
 
-| Bibit | Jumlah bibit | Luas per bibit (cm²) | Luas total (cm²) |
-| --- | --- | --- | --- |
-| Stroberi | <InlineMath math="2\times2=4" /> | <InlineMath math="10\times5=50" /> | <InlineMath math="4\times50=200" /> |
-| Jeruk | <InlineMath math="2\times1=2" /> | <InlineMath math="(2\times10)(2\times5)=200" /> | <InlineMath math="2\times200=400" /> |
-| Mangga | <InlineMath math="2\times4=8" /> | <InlineMath math="5\times2{,}5=12{,}5" /> | <InlineMath math="8\times12{,}5=100" /> |
+Blok 1 penuh berbiaya <InlineMath math="100\cdot1{.}000=100{.}000" />, dan blok 2 penuh, yaitu 200 kWh, berbiaya <InlineMath math="200\cdot1{.}500=300{.}000" />. Keduanya berjumlah 400.000 untuk 300 kWh. Karena 530.000 lebih dari 400.000, **pemakaiannya masuk ke blok 3**.
 
-Jumlahkan luas ketiga kelompok. Untuk mengubah cm² menjadi m², bagi dengan <InlineMath math="100^2=10{.}000" />, karena kedua ukuran panjang berubah satuan.
+# Pemakaian di blok 3
 
 <BlockMath math="\begin{aligned}
-A&=200+400+100=700\,\mathrm{cm}^2 \\
-&=\frac{700}{10{.}000}\,\mathrm{m}^2 \\
-&=0{,}07\,\mathrm{m}^2
+530{.}000-400{.}000&=130{.}000\\
+\frac{130{.}000}{2{.}000}&=65\text{ kWh}
 \end{aligned}" />
 
-Bibit juga dapat ditata tanpa tumpang tindih. Susun dua jeruk dalam baris 40 cm × 10 cm, empat stroberi dalam baris 40 cm × 5 cm, dan delapan mangga dalam baris 40 cm × 2,5 cm. Ketiga baris membentuk persegi panjang 40 cm × 17,5 cm yang muat di lahan 100 cm × 35 cm.
+Total pemakaiannya <InlineMath math="300+65=365" /> kWh. Pemeriksaan: <InlineMath math="20{.}000+100{.}000+300{.}000+65\cdot2{.}000=550{.}000" />.
 
-<LineEquation
-  title="Susunan petak bibit"
-  description="Setiap kotak mewakili satu bibit. Ungu untuk jeruk, jingga untuk stroberi, dan hijau kebiruan untuk mangga. Satuan koordinat adalah sentimeter."
-  cameraPosition={[20,8.75,50]}
-  cameraTarget={[20,8.75,0]}
-  showZAxis={false}
-  data={[
-    ...[{ count: 2, width: 20, bottom: 0, height: 10, color: "#9333ea" }, { count: 4, width: 10, bottom: 10, height: 5, color: "#d97706" }, { count: 8, width: 5, bottom: 15, height: 2.5, color: "#0d9488" }].flatMap(({ count, width, bottom, height, color }) => Array.from({ length: count }, (_,i) => ({ points: [{ x: i*width, y: bottom, z: 0 }, { x: (i+1)*width, y: bottom, z: 0 }, { x: (i+1)*width, y: bottom+height, z: 0 }, { x: i*width, y: bottom+height, z: 0 }, { x: i*width, y: bottom, z: 0 }], color, smooth: false, showPoints: false }))),
-  ]}
-/>
-
-# Menghitung Biaya Bibit dan Pupuk
-
-Harga bibit dihitung per paket, sedangkan pupuk dihitung menurut **luas 0,07 m² yang ditanami**. Semua biaya pada perhitungan berikut dinyatakan dalam rupiah.
-
-Di sini, <InlineMath math="C_b" /> adalah biaya bibit dan <InlineMath math="C_p" /> adalah biaya pupuk.
-
-<BlockMath math="\begin{aligned}
-C_b&=2\times45{.}000=90{.}000 \\
-C_p&=0{,}07\times100{.}000=7{.}000 \\
-C&=90{.}000+7{.}000=97{.}000
-\end{aligned}" />
-
-Jadi, Rani membayar **Rp97.000,00**.
+Jadi, keluarga Sari memakai **365 kWh** listrik.

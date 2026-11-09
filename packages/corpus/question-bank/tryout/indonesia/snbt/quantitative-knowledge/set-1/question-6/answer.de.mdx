@@ -1,95 +1,26 @@
-Da der Umfang der Raute <InlineMath math="PQRS" /> <InlineMath math="20\text{ Einheiten}" /> beträgt, ist jede Seite
+Die Ungleichung <InlineMath math="\lvert A\rvert<B" /> ist gleichwertig mit <InlineMath math="-B<A<B" />. Diese Form erzwingt zugleich <InlineMath math="B>0" />, deshalb **müssen beide Schranken gleichzeitig gelten**.
 
-<BlockMath math="\begin{aligned}PQ&=\frac{20}{4}\\&=5 \text{ Einheiten}\end{aligned}" />
+# Beide Schranken lösen
 
-Die Diagonalen einer Raute **halbieren sich rechtwinklig**. Der Mittelpunkt von <InlineMath math="PR" /> ist <InlineMath math="O(4,0)" />, also gilt <InlineMath math="PO=4" />. Im rechtwinkligen Dreieck <InlineMath math="POQ" /> ist <InlineMath math="PQ=5" /> die Hypotenuse.
+Mit <InlineMath math="A=2x-5" /> und <InlineMath math="B=x+1" /> lautet die Ungleichung
 
-<BlockMath math="OQ=\sqrt{PQ^2-PO^2}=\sqrt{5^2-4^2}=\sqrt9=3" />
+<BlockMath math="-(x+1)<2x-5<x+1" />
 
-Da <InlineMath math="Q" /> oberhalb der waagerechten Achse liegt, hat dieser Punkt die Koordinaten <InlineMath math="Q(4,3)" />. Gegenüber liegt <InlineMath math="S(4,-3)" />.
+Löse die rechte und die linke Schranke getrennt.
 
-Zunächst berechnen wir die Steigung der Geraden <InlineMath math="PS" />:
+<BlockMath math="\begin{aligned}
+2x-5&<x+1 &&\Rightarrow\quad x<6\\
+2x-5&>-x-1 &&\Rightarrow\quad 3x>4 \quad\Rightarrow\quad x>\tfrac43
+\end{aligned}" />
 
-<BlockMath math="m = \frac{y_2 - y_1}{x_2 - x_1}" />
+Die **Schnittmenge beider Schranken** ist <InlineMath math="\tfrac43<x<6" />. Auf diesem Intervall gilt <InlineMath math="x+1>0" />, die Bedingung <InlineMath math="B>0" /> ist also von selbst erfüllt.
 
-Für <InlineMath math="P(0, 0)" /> und <InlineMath math="S(4, -3)" /> gilt:
+# Ganze Zahlen addieren
 
-<BlockMath math="m_{PS} = \frac{-3 - 0}{4 - 0}" />
+Im Intervall <InlineMath math="\tfrac43<x<6" /> liegen die ganzen Zahlen 2, 3, 4 und 5. **Prüfe die Ränder**: <InlineMath math="x=5" /> liefert <InlineMath math="5<6" />, dagegen ergibt <InlineMath math="x=6" /> die falsche Aussage <InlineMath math="7<7" /> und <InlineMath math="x=1" /> die falsche Aussage <InlineMath math="3<2" />.
 
-<BlockMath math="m_{PS} = \frac{-3}{4}" />
+<BlockMath math="2+3+4+5=14" />
 
-<BlockMath math="m_{PS} = -\frac{3}{4}" />
+Der Wert 12 verwendet nur den Fall <InlineMath math="2x-5\ge0" /> und verliert dadurch <InlineMath math="x=2" />. Der Wert 15 rundet die Schranke <InlineMath math="\tfrac43" /> ab und nimmt <InlineMath math="x=1" /> mit. Der Wert 20 nimmt <InlineMath math="x=6" /> mit, obwohl das Zeichen ein echtes Kleiner ist. Der Wert 21 macht beide Fehler.
 
-Da die gesuchte Gerade senkrecht auf <InlineMath math="PS" /> steht, ist das Produkt der beiden Steigungen gleich <InlineMath math="-1" />:
-
-<BlockMath math="m_1 \cdot m_2 = -1" />
-
-<BlockMath math="-\frac{3}{4} \cdot m_2 = -1" />
-
-<BlockMath math="m_2 = \frac{-1}{-\frac{3}{4}} = \frac{4}{3}" />
-
-Die Gerade durch <InlineMath math="Q" />, die senkrecht auf <InlineMath math="PS" /> steht, hat also die Steigung <InlineMath math="m = \frac{4}{3}" />.
-
-Mit der **Punkt-Steigungs-Form** und <InlineMath math="Q(4,3)" /> bestimmen wir die gesuchte Gerade:
-
-<BlockMath math="\begin{aligned}y-3&=\frac43(x-4)\\3y-9&=4x-16\\4x-3y&=7\end{aligned}" />
-
-<MathVisual
-  title="Senkrechte Geraden"
-  description={<>Darstellung der Geraden <InlineMath math="PS" /> und der durch <InlineMath math="Q" /> verlaufenden Geraden, die senkrecht auf <InlineMath math="PS" /> steht.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 9 },
-      y: { min: -4, max: 7 },
-    },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      {
-        id: "rhombus-pqrs",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 4, y: 3 },
-          { x: 8, y: 0 },
-          { x: 4, y: -3 },
-        ],
-      },
-      {
-        id: "perpendicular-line",
-        kind: "line",
-        appearance: "secondary",
-        through: [
-          { x: 1, y: -1 },
-          { x: 7, y: 7 },
-        ],
-      },
-    ],
-    labels: [
-      { key: "point-p", objectId: "rhombus-pqrs", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "point-q", objectId: "rhombus-pqrs", at: { x: 4, y: 3 }, placement: "above-left" },
-      { key: "point-r", objectId: "rhombus-pqrs", at: { x: 8, y: 0 }, placement: "below-right" },
-      { key: "point-s", objectId: "rhombus-pqrs", at: { x: 4, y: -3 }, placement: "below" },
-      { key: "line-equation", objectId: "perpendicular-line", at: { x: 5.5, y: 5 }, placement: "below-right" },
-    ],
-  }}
-  labels={{
-    "point-p": <><InlineMath math="P(0,0)" /></>,
-    "point-q": <><InlineMath math="Q(4,3)" /></>,
-    "point-r": <><InlineMath math="R(8,0)" /></>,
-    "point-s": <><InlineMath math="S(4,-3)" /></>,
-    "line-equation": <><InlineMath math="4x-3y=7" /></>,
-  }}
-/>
-
-Für <InlineMath math="4x - 3y = 7" /> gilt:
-
-<BlockMath math="m = -\frac{4}{-3} = \frac{4}{3}" />
-
-Zum Schluss prüfen wir, ob die Gerade durch <InlineMath math="Q(4, 3)" /> verläuft:
-
-<BlockMath math="4(4) - 3(3) = 16 - 9 = 7" />
-
-Die Gleichung ist erfüllt. Somit lautet die Gleichung der Geraden durch <InlineMath math="Q" />, die senkrecht auf <InlineMath math="PS" /> steht, <InlineMath math="4x - 3y = 7" />.
+Die Summe aller ganzzahligen Lösungen ist also **14**.

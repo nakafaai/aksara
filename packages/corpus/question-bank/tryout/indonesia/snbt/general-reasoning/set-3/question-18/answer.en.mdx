@@ -1,12 +1,28 @@
-The phrase **at least one** guarantees that a participant drank tea without added sugar. It directly supports the fourth choice without any extra assumption.
+Compute **each student's final score**, then check all three conditions. A student passes only if no condition fails. UTS and UAS are the midterm and final exams, and *Kehadiran* is attendance.
 
-| Other choice | Why it is not a necessary conclusion |
-| --- | --- |
-| Every participant chose tea with sugar | Contradicts the existence of a tea drinker without added sugar |
-| Every tea drinker added sugar | Contradicts the existence of a tea drinker without added sugar |
-| Nobody drank tea without sugar | Directly denies the stated existence of at least one person |
-| Every participant chose tea | The passage only says some participants chose tea, which does not establish all participants |
+<BlockMath math="\begin{aligned}
+\text{Ayu} &: 0.4(80)+0.6(50)=32+30=62 \\
+\text{Bagas} &: 0.4(90)+0.6(45)=36+27=63 \\
+\text{Citra} &: 0.4(55)+0.6(65)=22+39=61 \\
+\text{Dimas} &: 0.4(50)+0.6(66)=20+39.6=59.6 \\
+\text{Elsa} &: 0.4(70)+0.6(60)=28+36=64
+\end{aligned}" />
 
-Distinguish **some** from **all**. For example, two participants could choose tea, one with sugar and one without, while another participant chooses water. This example satisfies every premise but shows that everyone choosing tea is not required.
+| Student | Final score at least 60 | Attendance at least 75% | UAS at least 50 | Passes? |
+| --- | --- | --- | --- | --- |
+| Ayu | Yes | Yes | Yes, exactly <InlineMath math="50" /> | Yes |
+| Bagas | Yes | Yes | No | No |
+| Citra | Yes | No | Yes | No |
+| Dimas | No | Yes | Yes | No |
+| Elsa | Yes | Yes, exactly <InlineMath math="75\%" /> | Yes | Yes |
 
-The necessary conclusion is therefore that at least one participant drank tea without added sugar.
+Ayu and Elsa meet conditions exactly at the limit. **At least** means a value equal to the limit still qualifies.
+
+The other options come from skipping one condition:
+
+- Bagas passes only if the UAS condition is ignored, but Bagas's UAS is <InlineMath math="45" />.
+- Citra passes only if attendance is ignored, but attendance is <InlineMath math="70\%" />.
+- Dimas passes only if <InlineMath math="59.6" /> is rounded to <InlineMath math="60" />, although the condition is at least <InlineMath math="60" />.
+- "Only Elsa" comes from treating Ayu's UAS of exactly <InlineMath math="50" /> as a fail.
+
+So the students who pass are Ayu and Elsa.

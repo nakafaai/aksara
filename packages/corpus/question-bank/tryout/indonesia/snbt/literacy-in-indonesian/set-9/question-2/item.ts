@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "peat-fire",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Panel paling efektif pada $$250\\,\\text{Hz}$$ karena nilai $$68\\,\\text{dB}$$ paling dekat dengan hasil setelah panel dilepas, sehingga perbedaannya paling konsisten.",
+            "Gambut terbentuk karena sisa tumbuhan membusuk sempurna dalam waktu singkat.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Pada $$1{.}000\\,\\text{Hz}$$, selisih antara kondisi berpanel dan dua kondisi tanpa panel paling besar. Temuan itu tetap terbatas pada susunan dan ruang yang diuji.",
+            "Lahan gambut tropis Indonesia terutama terdapat di Sumatra, Kalimantan, dan Papua.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Karena semua angka dengan panel lebih rendah, besar penurunan energi bunyi dapat dihitung langsung sebagai persentase selisih desibel.",
+            "Kebakaran gambut dapat menjalar di bawah tanah tanpa nyala yang besar.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Perbedaan satu desibel antara kondisi awal dan kondisi setelah panel dilepas membatalkan hubungan apa pun antara panel dan hasil pengukuran.",
-        },
-        {
-          correct: false,
-          label:
-            "Data $$4{.}000\\,\\text{Hz}$$ membuktikan bahwa panel akan menghasilkan penurunan $$11\\,\\text{dB}$$ di setiap auditorium yang memakai bahan dan ketebalan serupa.",
+            "Menyekat kanal dapat memadamkan api gambut yang sudah menyala.",
         },
       ],
     },

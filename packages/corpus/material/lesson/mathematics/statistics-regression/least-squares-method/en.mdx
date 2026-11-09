@@ -4,7 +4,7 @@ export const metadata = {
   description: "Find a best fit line by minimizing the sum of squared residuals, then calculate and interpret its coefficients.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistics",
 };
 
@@ -37,8 +37,8 @@ Why square the residuals?
 For example, a company wants to see the relationship between the **advertising costs** they incur (in millions of rupiah) and the number of products sold (in thousands of units). The data they collected is as follows:
 
 <ScatterDiagram
-  title="Line Resulting from Least Squares Method (Ads vs Sales)"
-  description="The line shows the linear trend relationship between advertising costs and sales, minimizing squared errors."
+  title={<>Line Resulting from Least Squares Method (Ads vs Sales)</>}
+  description={<>The line shows the linear trend relationship between advertising costs and sales, minimizing squared errors.</>}
   xAxisLabel="Advertising Cost (Millions of Rupiah)"
   yAxisLabel="Product Sales (Thousands of Units)"
   datasets={[
@@ -130,3 +130,23 @@ Use every pair in the plot. The product and square columns keep each observation
 Use the unrounded coefficients when calculating predictions. Rounding only the displayed coefficients gives:
 
 <BlockMath math="\hat y\approx30.491+8.222x" />
+
+Keep the line through the point of means <InlineMath math="(\bar x, \bar y) = \left(\tfrac{77}{12}, \tfrac{999}{12}\right)" /> and change only its slope <InlineMath math="b" />. For the advertising data the sum of squared residuals is <InlineMath math="S_{yy} - 2bS_{xy} + b^2S_{xx}" />, a parabola in <InlineMath math="b" />: it is smallest at <InlineMath math="b = \tfrac{8625}{1049} \approx 8.222" /> and grows on both sides.
+
+<BarChart
+  title={<>Sum of squared residuals against the slope</>}
+  description={<>Bars of the sum of squared residuals for the slopes <InlineMath math="b = 6, 7, 8.222, 9, 10" />, each line passing through the point of means.</>}
+  yAxisLabel="Sum of squared residuals"
+  data={[6, 7, 8625 / 1049, 9, 10].map((b) => ({ name: b === 8625 / 1049 ? "8.222" : String(b), value: 31265 / 4 - 2 * b * (2875 / 4) + b ** 2 * (1049 / 12) }))}
+  chartConfig={{ value: { label: "Sum of squared residuals", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Now keep the slope <InlineMath math="b \approx 8.222" /> and shift the line up or down by <InlineMath math="d" /> thousand units. Each shift adds <InlineMath math="12d^2" /> to the sum of squared residuals, one <InlineMath math="d^2" /> for each of the 12 pairs, so the intercept <InlineMath math="a \approx 30.491" /> is the best one.
+
+<BarChart
+  title={<>Sum of squared residuals against a shift</>}
+  description={<>Bars of the sum of squared residuals for the fitted line shifted by <InlineMath math="d = -10, -5, 0, 5, 10" />. The smallest bar, about 1906.6, is the fitted line itself.</>}
+  yAxisLabel="Sum of squared residuals"
+  data={[-10, -5, 0, 5, 10].map((d) => ({ name: String(d), value: 31265 / 4 - 2875 ** 2 / (16 * (1049 / 12)) + 12 * d ** 2 }))}
+  chartConfig={{ value: { label: "Sum of squared residuals", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

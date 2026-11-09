@@ -1,29 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "grid-logic",
+  },
+  stimulus: "bazar",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Mungkin", "Tidak mungkin"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$91{,}5\\%$$",
+          column: 1,
+          label: "Stan X-C berada di nomor 4.",
         },
         {
-          correct: false,
-          label: "$$92{,}7\\%$$",
+          column: 1,
+          label: "Stan XI-C berada tepat di sebelah kanan stan XI-B.",
         },
         {
-          correct: true,
-          label: "$$93{,}8\\%$$",
+          column: 2,
+          label: "Stan XI-A berada di nomor 3.",
         },
         {
-          correct: false,
-          label: "$$94{,}2\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$95{,}0\\%$$",
+          column: 2,
+          label: "Stan XI-C berada di nomor 2.",
         },
       ],
     },

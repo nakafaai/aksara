@@ -1,29 +1,15 @@
-# First Box Probability
+Travel distance on the grid is **the number of blocks east or west plus the number of blocks north or south**, because the robot cannot cut diagonally.
 
-The first box contains <InlineMath math="4" /> red balls and <InlineMath math="3" /> blue balls.
-The total number of balls in the first box is:
+# From A to C and the routes to B
 
-<BlockMath math="n(S_1) = 4 + 3 = 7" />
+From A(3,4) to C(1,6) the robot moves 2 blocks west and 2 blocks north, which is 4 blocks or 400 m, **not 500 m**. The first statement is false.
 
-The probability of drawing a **red ball from the first box** (<InlineMath math="M" />) is:
+A shortest route from G to B consists of 5 steps east and 1 step north. The routes differ only in **when the step north is taken**, at step 1 up to step 6, so there are 6 routes. The second statement is true.
 
-<BlockMath math="P(M) = \frac{n(M)}{n(S_1)} = \frac{4}{7}" />
+# Battery use
 
-# Second Box Probability
+From G to B there are <InlineMath math="5+1=6" /> blocks, so a round trip is 12 blocks and uses <InlineMath math="12\cdot2\%=24\%" /> of the battery. The third statement is true.
 
-The second box contains <InlineMath math="7" /> red balls and <InlineMath math="3" /> white balls.
-The total number of balls in the second box is:
+A full battery lasts for <InlineMath math="\tfrac{100\%}{2\%}=50" /> blocks, exactly 5,000 m or 5 km. The robot **cannot travel more than 5 km**, so the fourth statement is false.
 
-<BlockMath math="n(S_2) = 7 + 3 = 10" />
-
-The probability of drawing a **white ball from the second box** (<InlineMath math="W" />) is:
-
-<BlockMath math="P(W) = \frac{n(W)}{n(S_2)} = \frac{3}{10}" />
-
-# Combined Probability
-
-Since the two draws are **independent**, the probability of drawing a red ball from the first box and a white ball from the second box is:
-
-<BlockMath math="\begin{aligned}P(M\cap W)&=P(M)P(W) \\ &=\frac47\times\frac3{10} \\ &=\frac{12}{70}=\frac6{35}\end{aligned}" />
-
-Thus, the probability is <InlineMath math="\frac{6}{35}" />, which is the same as the listed choice <InlineMath math="\frac{12}{70}" />.
+So the first statement is **false**, the second is **true**, the third is **true**, and the fourth is **false**.

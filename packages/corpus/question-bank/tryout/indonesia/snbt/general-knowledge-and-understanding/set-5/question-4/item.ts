@@ -1,34 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "sentence-relation",
+  },
+  stimulus: "subak",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Kalimat (7) membantah pernyataan pada kalimat (6).",
+        },
+        {
+          correct: false,
+          label:
+            "Kalimat (7) memberikan contoh lain manfaat subak di luar pengendalian hama.",
+        },
+        {
           correct: true,
           label:
-            "Evaluasi melibatkan kelompok terdampak dengan kebutuhan mobilitas, bahasa, dan akses yang berbeda.",
+            "Kalimat (7) menjelaskan cara jadwal tanam serentak mengendalikan hama.",
         },
         {
           correct: false,
           label:
-            "Laporan hanya membandingkan biaya total dan manfaat rata-rata tanpa membedakan kebutuhan pengguna.",
+            "Kalimat (7) menyebutkan akibat buruk dari jadwal tanam yang serentak.",
         },
         {
           correct: false,
           label:
-            "Prosedur direvisi setelah keluhan terverifikasi menunjukkan hambatan yang tidak terdeteksi pada uji awal.",
-        },
-        {
-          correct: false,
-          label:
-            "Metode menyediakan beberapa jalur pelaksanaan yang tetap tunduk pada kriteria hasil yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim membuka data, metode, alasan pengecualian, dan keterbatasan agar proses dapat diperiksa.",
+            "Kalimat (7) mengulang isi kalimat (6) dengan kata-kata yang berbeda.",
         },
       ],
     },

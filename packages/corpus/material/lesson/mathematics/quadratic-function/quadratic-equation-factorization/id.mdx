@@ -3,7 +3,7 @@ export const metadata = {
   description: "Faktorkan persamaan kuadrat dengan sifat hasil kali nol, pengelompokan, dan pola khusus, lalu kalikan kembali faktor-faktornya untuk memperoleh persamaan semula.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Persamaan dan Fungsi Kuadrat",
 };
 
@@ -35,8 +35,8 @@ Untuk <InlineMath math="x>0" />, panjang sisi <InlineMath math="x+3" /> dan <Inl
 <BlockMath math="x^2+3x+2x+6=(x+3)(x+2)" />
 
 <MathVisual
-  title="Empat bagian satu persegi panjang"
-  description="Diagram memakai x = 2. Persegi panjang berukuran 5 kali 4 dibagi menjadi bagian x², 3x, 2x, dan 6."
+  title={<>Empat bagian satu persegi panjang</>}
+  description={<>Diagram memakai <InlineMath math="x = 2" />. Persegi panjang berukuran 5 kali 4 dibagi menjadi bagian <InlineMath math="x^2" />, <InlineMath math="3x" />, <InlineMath math="2x" />, dan 6.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 5 } },
@@ -99,8 +99,8 @@ Pasangan <InlineMath math="(2, 3)" /> memberikan jumlah <InlineMath math="5" />,
 
 **Langkah 4**: Dari bentuk faktor di atas, kita mendapatkan:
 
-- <InlineMath math="x + 3 = 0" /> → <InlineMath math="x = -3" />
-- <InlineMath math="x + 2 = 0" /> → <InlineMath math="x = -2" />
+- <InlineMath math="x + 3 = 0 \Rightarrow x = -3" />
+- <InlineMath math="x + 2 = 0 \Rightarrow x = -2" />
 
 Jadi, akar-akar persamaan adalah <InlineMath math="x = -3" /> dan <InlineMath math="x = -2" />.
 
@@ -137,8 +137,8 @@ Kita dapat mengelompokkan keempat suku persamaan itu menjadi dua pasangan:
 
 **Langkah 4**: Dari bentuk faktor di atas, kita mendapatkan:
 
-- <InlineMath math="3x - 2 = 0" /> → <InlineMath math="x = \frac{2}{3}" />
-- <InlineMath math="x + 5 = 0" /> → <InlineMath math="x = -5" />
+- <InlineMath math="3x - 2 = 0 \Rightarrow x = \frac{2}{3}" />
+- <InlineMath math="x + 5 = 0 \Rightarrow x = -5" />
 
 Jadi, akar-akar persamaan adalah <InlineMath math="x = \frac{2}{3}" /> dan <InlineMath math="x = -5" />.
 
@@ -170,10 +170,37 @@ Pasangan <InlineMath math="(6, -1)" /> memberikan jumlah <InlineMath math="5" />
 
 **Langkah 5**: Tentukan akar-akar persamaan:
 
-- <InlineMath math="2x - 1 = 0" /> → <InlineMath math="x = \frac{1}{2}" />
-- <InlineMath math="x + 3 = 0" /> → <InlineMath math="x = -3" />
+- <InlineMath math="2x - 1 = 0 \Rightarrow x = \frac{1}{2}" />
+- <InlineMath math="x + 3 = 0 \Rightarrow x = -3" />
 
 Jadi, akar-akar persamaan adalah <InlineMath math="x = \frac{1}{2}" /> dan <InlineMath math="x = -3" />.
+
+Setiap faktor linear memberi satu titik potong. Untuk <InlineMath math="2x^2 + 5x - 3 = (2x - 1)(x + 3)" />, parabola bertemu sumbu x tempat <InlineMath math="2x - 1 = 0" /> dan tempat <InlineMath math="x + 3 = 0" />: di <InlineMath math="x = \tfrac12" /> dan <InlineMath math="x = -3" />.
+
+<MathVisual
+  title={<>Faktor <InlineMath math="2x^2 + 5x - 3" /> sebagai titik potong</>}
+  description={<>Parabola <InlineMath math="y = 2x^2 + 5x - 3" />, yang memotong sumbu x di <InlineMath math="-3" /> dan <InlineMath math="\tfrac12" />.</>}
+  labels={{
+    curve: <InlineMath math="y = 2x^2 + 5x - 3" />,
+    r1: <InlineMath math="-3" />,
+    r2: <InlineMath math="\tfrac12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 1.6 }, y: { min: -6.6, max: 5.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 5, c: -3 }, domain: { min: -18 / 5, max: 11 / 10 }, appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: 1 / 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 11 / 10, y: 123 / 25 }, placement: "left" },
+      { key: "r1", objectId: "r1", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "r2", at: { x: 1 / 2, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
 
 ## Cara Cepat Saat Salah Satu Akar Diketahui
 
@@ -267,6 +294,36 @@ Untuk persamaan tanpa suku <InlineMath math="x" />, pisahkan dahulu <InlineMath 
  </MathContainer>
 
  Akar-akarnya adalah <InlineMath math="x = 3i" /> dan <InlineMath math="x = -3i" />. Cek dengan rumus di atas: <InlineMath math="c/a = -9" /> sehingga <InlineMath math="x = \pm i\sqrt{9} = \pm 3i" />.
+
+Bagi dengan 2 lalu bandingkan <InlineMath math="x^2 - 9" /> dengan <InlineMath math="x^2 + 9" />. Parabola pertama turun di bawah sumbu dan memotongnya di <InlineMath math="x = -3" /> dan <InlineMath math="x = 3" />. Parabola kedua selalu paling sedikit 9 di atasnya, jadi <InlineMath math="x^2 + 9 = 0" />, seperti <InlineMath math="2x^2 + 18 = 0" />, tidak memiliki akar real, hanya <InlineMath math="3i" /> dan <InlineMath math="-3i" />.
+
+<MathVisual
+  title={<>Akar real dan tanpa akar real</>}
+  description={<>Parabola <InlineMath math="y = x^2 - 9" />, yang memotong di <InlineMath math="-3" /> dan 3, serta <InlineMath math="y = x^2 + 9" />, yang tidak pernah mencapai sumbu x.</>}
+  labels={{
+    low: <InlineMath math="y = x^2 - 9" />,
+    high: <InlineMath math="y = x^2 + 9" />,
+    r1: <InlineMath math="-3" />,
+    r2: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -9.6, max: 21.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "low", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: -9 }, domain: { min: -7 / 2, max: 7 / 2 }, appearance: "primary" },
+      { id: "high", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 9 }, domain: { min: -7 / 2, max: 7 / 2 }, appearance: "secondary" },
+      { id: "r1", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 7 / 2, y: 13 / 4 }, placement: "right" },
+      { key: "high", objectId: "high", at: { x: 7 / 2, y: 85 / 4 }, placement: "right" },
+      { key: "r1", objectId: "r1", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "r2", at: { x: 3, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
 
 ## Ketika Pasangan Faktor Bulat Tidak Ditemukan
 

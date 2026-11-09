@@ -3,7 +3,7 @@ export const metadata = {
   description: "Find the modal class and estimate the median of grouped data from a frequency table.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistics",
 };
 
@@ -29,9 +29,30 @@ The highest frequency is <InlineMath math="16" />, so the modal class is <Inline
 
 That interval contains the **most sales as a class**. The most frequent individual size need not belong to it. For example, the <InlineMath math="16" /> sales could be spread across three sizes, while the <InlineMath math="11" /> sales in another class could all have one size. The grouped table does not supply that detail.
 
+In the histogram the modal class is simply the tallest bar: <InlineMath math="43\text{-}45" /> with <InlineMath math="16" /> students. No other class comes close, so the most common shoe sizes lie in that interval.
+
+<HistogramChart
+  title={<>The modal class is the tallest bar</>}
+  description={<>The number of students in each shoe size class. The class 43 to 45 has the highest bar.</>}
+  yAxisLabel="Students"
+  data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 16 }, { name: "46-48", value: 1 }]}
+  chartConfig={{ value: { label: "Students", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Median for Grouped Data
 
 The median splits ordered data into two equal halves. A grouped table lists intervals together with their frequencies. We therefore locate the median class and **estimate the median's position** within that class.
+
+Add the frequencies class by class to get the cumulative frequencies <InlineMath math="2, 13, 29, 30" />. The last bar is always the total <InlineMath math="30" />, and the class where a bar first passes a target position is the class to interpolate in.
+
+<BarChart
+  title={<>Cumulative frequency of each class</>}
+  description={<>Bar for each class showing how many values lie at or below its upper boundary, up to 30.</>}
+  yAxisLabel="Cumulative frequency"
+  data={[["37-39", 2], ["40-42", 2 + 11], ["43-45", 2 + 11 + 16], ["46-48", 2 + 11 + 16 + 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Cumulative frequency", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Locating the Median Class and Position
 
 Calculate the **cumulative frequency** by adding the class frequencies from the first through the current class. Find the first class whose cumulative frequency reaches <InlineMath math="n/2" />. Within that class, estimate the median by interpolation:
@@ -88,3 +109,25 @@ The class width is the difference between its two boundaries:
 The estimated median shoe size is <InlineMath math="42.875" />. This value lies between the class boundaries <InlineMath math="42.5" /> and <InlineMath math="45.5" /> used for interpolation.
 
 This result is an **estimate**. The exact values inside each interval are unavailable, so the original middle observation cannot be recovered. The [mean for grouped data](/en/subjects/mathematics/statistics-foundations/mean-group-data) has the same limitation.
+
+You can read the median straight off the cumulative frequency line at half of the data. The line climbs through the class boundaries <InlineMath math="36.5, 39.5, 42.5, 45.5, 48.5" />. It reaches <InlineMath math="n/2 = 15" /> inside the class <InlineMath math="43\text{-}45" />, at <InlineMath math="42.5 + \frac{15 - 13}{16} \cdot 3 = 42.875" />, the same value as the formula.
+
+<MathVisual
+  title={<>Reading the median from the cumulative frequency</>}
+  description={<>The cumulative frequency line of the shoe sizes. The level 15 meets it above <InlineMath math="42.875" />, the estimated median.</>}
+  labels={{
+    me: <InlineMath math="\operatorname{Me}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 36, max: 49 }, y: { min: -2, max: 31 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ogive", kind: "polyline", vertices: [{ x: 36.5, y: 0 }, { x: 39.5, y: 2 }, { x: 42.5, y: 13 }, { x: 45.5, y: 29 }, { x: 48.5, y: 30 }], appearance: "secondary" },
+      { id: "me", kind: "polyline", vertices: [{ x: 36.5, y: 15 }, { x: 42.5 + ((15 - 13) / 16) * 3, y: 15 }, { x: 42.5 + ((15 - 13) / 16) * 3, y: 0 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "me", objectId: "me", at: { x: 42.5 + ((15 - 13) / 16) * 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>

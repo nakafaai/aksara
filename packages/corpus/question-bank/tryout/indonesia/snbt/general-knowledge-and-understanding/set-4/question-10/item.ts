@@ -1,35 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "cause",
+  },
+  stimulus: "rempah",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Dalam perbandingan baru dengan jumlah barang yang sama, jalur digital tetap lebih cepat pada semua kelompok usia.",
+          column: 1,
+          label: "Cengkih dan pala hanya dihasilkan di Maluku.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Pencatatan waktu digital dimulai setelah barang dipindai, sedangkan waktu tunai dihitung sejak barang pertama diletakkan.",
+            "Rempah berpindah melalui banyak pedagang sebelum sampai ke Eropa.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Setelah papan petunjuk dibuat lebih terlihat, lebih banyak pembeli lansia memilih jalur digital, tetapi waktu layanan terukur per transaksi tetap sama.",
+            "Bibit cengkih dan pala ditanam di wilayah lain di luar Maluku.",
         },
         {
-          correct: false,
-          label:
-            "Uji berikutnya akan memperbaiki jaringan dan membandingkan jumlah barang yang sebanding.",
-        },
-        {
-          correct: false,
-          label:
-            "Keluhan sinyal terkonsentrasi pada satu lorong di sisi pasar.",
+          column: 2,
+          label: "Bangsa Eropa berusaha memotong peran para perantara.",
         },
       ],
     },

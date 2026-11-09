@@ -1,35 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "figurative-language",
+  },
+  stimulus: "letter-poem",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "gaji pertama aku lirik ternyata jauh lebih kecil daripada yang ia harapkan selama ini",
+        },
+        {
+          correct: false,
+          label:
+            "aku lirik mengirim uang pada malam hari ketika udara kota dingin",
+        },
+        {
           correct: true,
           label:
-            "Menuliskan pertanyaan pada pembatas mengubah benda yang sisinya semula dibalik menjadi jejak penalaran yang Jati bawa menuju pembahasan berikutnya.",
+            "kiriman uang terasa tidak mampu mewakili kasih sayang yang ingin diberikan",
         },
         {
           correct: false,
-          label:
-            "Pembatas bermakna keberhasilan karena bentuknya sama dengan pembatas penuh catatan milik Mira.",
+          label: "ibu aku lirik tidak menyukai uang yang dikirim lewat layar",
         },
         {
           correct: false,
-          label:
-            "Pembatas kehilangan perannya setelah kelompok gagal menyepakati satu tafsir terhadap kalimat di halaman $$17$$.",
-        },
-        {
-          correct: false,
-          label:
-            "Perubahan Jati terjadi karena Mira memberi tafsir yang benar dan menyelesaikan kebingungannya.",
-        },
-        {
-          correct: false,
-          label:
-            "Pembatas tetap menandai rasa malu karena pada akhir cerita Jati masih memiliki dua pertanyaan yang belum terjawab.",
+          label: "aku lirik lupa menuliskan jumlah uang dengan benar",
         },
       ],
     },

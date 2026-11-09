@@ -1,4 +1,4 @@
-import { Array as Arr, type Schema } from "effect";
+import { Array as Arr, Option, Result, type Schema } from "effect";
 import {
   arcContained,
   axisContains,
@@ -6,6 +6,15 @@ import {
   cuboidContained,
   quadraticContained,
 } from "#contracts/math/extent";
+import type { FormulaScope } from "#contracts/math/formula/compile";
+import { isPlaneFormulaPoint } from "#contracts/math/formula/field";
+import {
+  type FormulaGeometry,
+  planeFormulaGeometry,
+  planeFormulaPoint,
+} from "#contracts/math/formula/plane";
+import { geometryVisible } from "#contracts/math/formula/scope";
+import { spaceFormulaGeometry } from "#contracts/math/formula/space";
 import { infinitePathIntersectsBox } from "#contracts/math/intersection";
 import type {
   PlaneLabelAnchor,
@@ -70,11 +79,45 @@ function spaceAxes(
   ];
 }
 
-/** Checks whether one plane object has complete visible geometry in its frame. */
+/**
+ * Whether a formula's samples show anything inside the frame. A formula that
+ * does not read is reported by its own field, so it is not reported again.
+ */
+function sampledVisible(
+  geometry: Result.Result<FormulaGeometry, unknown>,
+  frame: PlaneMathFrame | SpaceMathFrame
+) {
+  return Result.isFailure(geometry) || geometryVisible(geometry.success, frame);
+}
+
+/** Checks whether one plane object shows visible geometry in its frame. */
 function planeObjectContained(
   frame: PlaneMathFrame,
-  object: PlaneMathObject
+  object: PlaneMathObject,
+  scope: FormulaScope,
+  labels: readonly PlaneLabelAnchor[]
 ): boolean {
+  if (object.kind === "function") {
+    const axis = object.inputAxis ?? "x";
+    const named = Arr.flatMap(labels, ({ at, objectId }) =>
+      objectId === object.id && !isPlaneFormulaPoint(at) ? [at[axis]] : []
+    );
+    return sampledVisible(
+      planeFormulaGeometry(object, frame, scope, named),
+      frame
+    );
+  }
+  if (
+    object.kind === "implicit" ||
+    object.kind === "loop" ||
+    object.kind === "marker" ||
+    object.kind === "parametric" ||
+    object.kind === "path" ||
+    object.kind === "polar" ||
+    object.kind === "region"
+  ) {
+    return sampledVisible(planeFormulaGeometry(object, frame, scope), frame);
+  }
   if (object.kind === "line") {
     const [start, through] = object.through;
     return infinitePathIntersectsBox(
@@ -111,8 +154,19 @@ function planeObjectContained(
 /** Checks whether one space object has complete visible geometry in its frame. */
 function spaceObjectContained(
   frame: SpaceMathFrame,
-  object: SpaceMathObject
+  object: SpaceMathObject,
+  scope: FormulaScope
 ): boolean {
+  if (
+    object.kind === "function" ||
+    object.kind === "parametric" ||
+    object.kind === "prism" ||
+    object.kind === "pyramid" ||
+    object.kind === "revolution" ||
+    object.kind === "surface"
+  ) {
+    return sampledVisible(spaceFormulaGeometry(object, frame, scope), frame);
+  }
   if (object.kind === "line") {
     const [start, through] = object.through;
     return infinitePathIntersectsBox(
@@ -140,15 +194,36 @@ function spaceObjectContained(
   return cuboidContained(frame, object);
 }
 
+/**
+ * Whether a plane label starts inside its frame. A label placed by formulas is
+ * checked where the sliders start; a formula that does not read is reported by
+ * its own field, so it is not reported again.
+ */
+function planeLabelContained(
+  frame: PlaneMathFrame,
+  label: PlaneLabelAnchor,
+  scope: FormulaScope
+) {
+  if (!isPlaneFormulaPoint(label.at)) {
+    return planeContains(frame, label.at);
+  }
+  const placed = planeFormulaPoint(label.at, scope);
+  return (
+    Result.isFailure(placed) ||
+    Option.exists(placed.success, (point) => planeContains(frame, point))
+  );
+}
+
 /** Reports every finite plane object or label that escapes its authored frame. */
 export function planeBoundsIssues(
   frame: PlaneMathFrame,
   objects: readonly PlaneMathObject[],
-  labels: readonly PlaneLabelAnchor[]
+  labels: readonly PlaneLabelAnchor[],
+  scope: FormulaScope = {}
 ): readonly Schema.FilterIssue[] {
   return [
     ...Arr.flatMap(objects, (object, index): Schema.FilterIssue[] =>
-      planeObjectContained(frame, object)
+      planeObjectContained(frame, object, scope, labels)
         ? []
         : [
             {
@@ -158,7 +233,7 @@ export function planeBoundsIssues(
           ]
     ),
     ...Arr.flatMap(labels, (label, index): Schema.FilterIssue[] =>
-      planeContains(frame, label.at)
+      planeLabelContained(frame, label, scope)
         ? []
         : [
             {
@@ -176,7 +251,8 @@ export function spaceBoundsIssues(
   frame: SpaceMathFrame,
   objects: readonly SpaceMathObject[],
   labels: readonly SpaceLabelAnchor[],
-  view: SpaceMathView
+  view: SpaceMathView,
+  scope: FormulaScope = {}
 ): readonly Schema.FilterIssue[] {
   const viewIssues: readonly Schema.FilterIssue[] =
     view.kind === "isometric" &&
@@ -191,7 +267,7 @@ export function spaceBoundsIssues(
       : [];
   return [
     ...Arr.flatMap(objects, (object, index): Schema.FilterIssue[] =>
-      spaceObjectContained(frame, object)
+      spaceObjectContained(frame, object, scope)
         ? []
         : [
             {

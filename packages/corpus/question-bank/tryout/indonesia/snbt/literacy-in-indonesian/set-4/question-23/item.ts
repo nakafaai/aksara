@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "banda-nutmeg",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Kemajuan bergantung pada penyelesaian tugas besar sebelum meminta orang lain meninjaunya.",
+            "Sampai abad ke-18, pohon pala hanya tumbuh di Kepulauan Banda.",
         },
         {
-          correct: false,
-          label:
-            "Benda atau latar membentuk hasil lebih kuat daripada pilihan khusus yang dibuat tokoh.",
+          column: 2,
+          label: "Fuli adalah jenis pala yang tumbuh di Mauritius.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Bukti yang belum pasti sebaiknya disimpan sampai tokoh dapat menawarkan hasil lengkap.",
+            "Dalam Perjanjian Breda, Belanda menyerahkan Pulau Run kepada Inggris.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Perubahan terjadi ketika Nisa memecah hambatan menjadi tindakan yang dapat diperiksa.",
-        },
-        {
-          correct: false,
-          label:
-            "Tindakan kecil terutama berguna karena menunda bagian konflik yang belum selesai.",
+            "Setelah 1621, kebun pala di Banda dikerjakan oleh orang-orang yang didatangkan sebagai budak.",
         },
       ],
     },

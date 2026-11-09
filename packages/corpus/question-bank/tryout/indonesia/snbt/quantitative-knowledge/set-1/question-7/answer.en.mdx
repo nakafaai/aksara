@@ -1,85 +1,19 @@
-Given <InlineMath math="\sin A = \frac{5}{13}" /> and <InlineMath math="\cos B = \frac{8}{17}" /> where <InlineMath math="A" /> and <InlineMath math="B" /> are **acute angles**.
+The question asks for a definite yes or a definite no. A statement is sufficient only when **every pair of numbers that satisfies it gives the same answer**. To show that a statement is not sufficient, one yes example and one no example are enough.
 
-From <InlineMath math="\sin A = \frac{5}{13}" />, choose a right triangle with opposite side <InlineMath math="5" /> and the hypotenuse is <InlineMath math="13" />. Then the adjacent side is
+# Statement one alone
 
-<BlockMath math="\begin{aligned}&\sqrt{13^2 - 5^2}\\&=\sqrt{169 - 25}\\&=\sqrt{144}\\&=12\end{aligned}" />
+The pair <InlineMath math="x=3,\ y=1" /> satisfies <InlineMath math="9>1" /> and gives <InlineMath math="x>y" />. The pair <InlineMath math="x=-3,\ y=1" /> also satisfies <InlineMath math="9>1" />, but <InlineMath math="x<y" />. Squaring **erases the sign information**, so statement (1) alone is not sufficient.
 
-So for angle <InlineMath math="A" />
+# Statement two alone
 
-<BlockMath math="\begin{aligned}\sin A&=\frac{5}{13}\\\cos A&=\frac{12}{13}\\\tan A&=\frac{5}{12}\end{aligned}" />
+The pair <InlineMath math="x=3,\ y=1" /> satisfies <InlineMath math="x+y>0" /> and gives <InlineMath math="x>y" />. The pair <InlineMath math="x=1,\ y=3" /> also satisfies <InlineMath math="x+y>0" />, but <InlineMath math="x<y" />. A positive sum **does not decide which number is larger**, so statement (2) alone is not sufficient.
 
-<UnitCircle
-  title={<>Angle <InlineMath math="A" /></>}
-  description={<>Visualization of angle <InlineMath math="A" /> with <InlineMath math="\sin A = \frac{5}{13}" />, <InlineMath math="\cos A = \frac{12}{13}" />, and <InlineMath math="\tan A = \frac{5}{12}" />.</>}
-  angle={Math.asin(5 / 13) * 180 / Math.PI}
-  trigValues={{
-    sin: "5/13",
-    cos: "12/13",
-    tan: "5/12",
-  }}
-/>
+# Both statements together
 
-From <InlineMath math="\cos B = \frac{8}{17}" />, choose a right triangle with adjacent side <InlineMath math="8" /> and the hypotenuse is <InlineMath math="17" />. Then the opposite side is
+Write statement (1) as a product of two factors.
 
-<BlockMath math="\begin{aligned}&\sqrt{17^2 - 8^2}\\&=\sqrt{289 - 64}\\&=\sqrt{225}\\&=15\end{aligned}" />
+<BlockMath math="x^2-y^2=(x-y)(x+y)>0" />
 
-So for angle <InlineMath math="B" />
+A product is positive only when both factors have the same sign. Statement (2) guarantees <InlineMath math="x+y>0" />, so **the factor <InlineMath math="x-y" /> must be positive too**. This gives <InlineMath math="x>y" /> for every pair that satisfies both statements.
 
-<BlockMath math="\begin{aligned}\sin B&=\frac{15}{17}\\\cos B&=\frac{8}{17}\\\tan B&=\frac{15}{8}\end{aligned}" />
-
-<UnitCircle
-  title={<>Angle <InlineMath math="B" /></>}
-  description={<>Visualization of angle <InlineMath math="B" /> with <InlineMath math="\sin B = \frac{15}{17}" />, <InlineMath math="\cos B = \frac{8}{17}" />, and <InlineMath math="\tan B = \frac{15}{8}" />.</>}
-  angle={Math.acos(8 / 17) * 180 / Math.PI}
-  trigValues={{
-    sin: "15/17",
-    cos: "8/17",
-    tan: "15/8",
-  }}
-/>
-
-**Statement (1)**: <InlineMath math="\tan A + \tan B = \frac{19}{20}" />
-
-<BlockMath math="\tan A + \tan B = \frac{5}{12} + \frac{15}{8}" />
-
-<BlockMath math="= \frac{10}{24} + \frac{45}{24}" />
-
-<BlockMath math="= \frac{55}{24}" />
-
-The calculation gives <InlineMath math="\tan A + \tan B = \frac{55}{24}" />. Statement (1) gives <InlineMath math="\frac{19}{20}" />, so it is false.
-
-**Statement (2)**: <InlineMath math="\cos A \sin B + \cos B \sin A = \frac{220}{221}" />
-
-<BlockMath math="\begin{aligned}&\cos A\sin B+\cos B\sin A\\&=\frac{12}{13}\cdot\frac{15}{17}\\&\quad+\frac8{17}\cdot\frac5{13}\end{aligned}" />
-
-<BlockMath math="= \frac{180}{221} + \frac{40}{221}" />
-
-<BlockMath math="= \frac{220}{221}" />
-
-Statement (2) is true.
-
-**Statement (3)**: <InlineMath math="\frac{\tan A}{\tan B} = \frac{25}{32}" />
-
-<BlockMath math="\frac{\tan A}{\tan B} = \frac{\frac{5}{12}}{\frac{15}{8}}" />
-
-<BlockMath math="= \frac{5}{12} \cdot \frac{8}{15}" />
-
-<BlockMath math="= \frac{40}{180}" />
-
-<BlockMath math="= \frac{2}{9}" />
-
-The calculation gives <InlineMath math="\frac{\tan A}{\tan B} = \frac{2}{9}" />. Statement (3) gives <InlineMath math="\frac{25}{32}" />, so it is false.
-
-**Statement (4)**: <InlineMath math="\frac{\sin A \cos B}{\sin B \cos A} = \frac{2}{9}" />
-
-<BlockMath math="\frac{\sin A \cos B}{\sin B \cos A} = \frac{\sin A}{\cos A} \cdot \frac{\cos B}{\sin B}" />
-
-<BlockMath math="= \tan A \cdot \frac{1}{\tan B}" />
-
-<BlockMath math="= \frac{\tan A}{\tan B}" />
-
-<BlockMath math="= \frac{2}{9}" />
-
-Statement (4) is true.
-
-Therefore, the true statements are (2) and (4). The number of true statements is <InlineMath math="2" />.
+So **both statements together are sufficient**, but neither statement alone is sufficient.

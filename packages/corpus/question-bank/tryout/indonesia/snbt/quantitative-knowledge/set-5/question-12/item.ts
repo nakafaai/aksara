@@ -5,25 +5,13 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "Jika semua betul.",
-        },
-        {
-          correct: false,
-          label: "Jika (1), (2), dan (3) yang betul.",
-        },
+        { correct: true, label: "$$P>Q$$" },
+        { correct: false, label: "$$Q>P$$" },
+        { correct: false, label: "$$P=Q$$" },
         {
           correct: false,
-          label: "Jika (1) dan (3) yang betul.",
-        },
-        {
-          correct: false,
-          label: "Jika (2) dan (4) yang betul.",
-        },
-        {
-          correct: false,
-          label: "Jika (4) saja yang betul.",
+          label:
+            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
         },
       ],
     },

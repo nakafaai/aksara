@@ -1,60 +1,26 @@
 export const metadata = {
-  title: "Principal Argument of Complex Numbers",
-  description: "Find the unique principal argument of a nonzero complex number in the interval from negative pi to pi and reduce coterminal angles to that representative.",
+  title: "Principal Argument of a Complex Number",
+  description: "The principal argument of a complex number is its single direction angle between minus pi and pi. Find it from the components or by reducing an angle.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Complex Number",
 };
 
-## Different Angles That Describe the Same Direction
+## One Representative Angle for Every Direction
 
-The argument <InlineMath math="\theta" /> of a nonzero complex number <InlineMath math="z = x + iy" /> is the angle formed by the vector <InlineMath math="z" /> with the positive real axis. The zero vector has no direction, so <InlineMath math="\text{Arg}(0)" /> is undefined.
+The principal argument of a complex number <InlineMath math="z \ne 0" />, written <InlineMath math="\operatorname{Arg} z" />, is **the only argument in the range <InlineMath math="(-\pi, \pi]" />**, or <InlineMath math="(-180^\circ, 180^\circ]" /> in degrees. Every other argument differs from the principal argument by whole turns:
 
-The same direction can be described by <Highlight>infinitely many coterminal angles</Highlight>.
+<MathContainer>
+  <BlockMath math="-\pi < \operatorname{Arg} z \le \pi" />
+  <BlockMath math="\arg z = \operatorname{Arg} z + 2\pi k, \qquad k \in \mathbb{Z}" />
+</MathContainer>
 
-If <InlineMath math="\theta" /> is an argument of <InlineMath math="z" />, then <InlineMath math="\theta + 2\pi k" /> (where <InlineMath math="k" /> is an integer: <InlineMath math="0, \pm 1, \pm 2, \ldots" />) is also an argument of <InlineMath math="z" />, because adding multiples of <InlineMath math="360^\circ" /> or <InlineMath math="2\pi" /> radians results in the same angle on the complex plane.
-
-**Example**:
-
-The angles <InlineMath math="45^\circ" />, <InlineMath math="405^\circ" /> (<InlineMath math="45^\circ + 360^\circ" />), and <InlineMath math="-315^\circ" /> (<InlineMath math="45^\circ - 360^\circ" />) all indicate the same direction.
-
-Because there are infinitely many arguments for a single complex number, we often need a unique standard value. This value is called the **Principal Argument**.
-
-## Definition of Principal Argument
-
-For a nonzero complex number <InlineMath math="z = r(\cos \theta + i\sin \theta)" /> with <InlineMath math="r>0" />, the **Principal Argument** <InlineMath math="\operatorname{Arg}(z)" /> is the unique angle <InlineMath math="\theta" /> chosen from <InlineMath math="(-\pi, \pi]" />. In degrees, the same convention is:
-
-<BlockMath math="\begin{aligned} &amp;-\pi &lt; \theta \leq \pi \\ &amp;\text{or} \\ &amp;-180^\circ &lt; \theta \leq 180^\circ \end{aligned}" />
-
-Some references use <InlineMath math="[0, 2\pi)" /> instead. Both conventions select one representative from each set of coterminal angles. Every example below uses <InlineMath math="(-\pi, \pi]" /> consistently.
-
-## Determining the Principal Argument
-
-Find any argument, then **add or subtract full turns** until the angle lies in the principal interval. In degrees, the left endpoint is excluded and the right endpoint is included. The negative real axis therefore uses positive 180 degrees.
-
-| Starting angle | Calculation | Principal argument |
-| --- | --- | --- |
-| <InlineMath math="300^\circ" /> | <InlineMath math="300^\circ-360^\circ=-60^\circ" /> | <InlineMath math="-60^\circ" /> |
-| <InlineMath math="405^\circ" /> | <InlineMath math="405^\circ-360^\circ=45^\circ" /> | <InlineMath math="45^\circ" /> |
-| <InlineMath math="-315^\circ" /> | <InlineMath math="-315^\circ+360^\circ=45^\circ" /> | <InlineMath math="45^\circ" /> |
-| <InlineMath math="-180^\circ" /> | <InlineMath math="-180^\circ+360^\circ=180^\circ" /> | <InlineMath math="180^\circ" /> |
-
-### Finding the Principal Argument
-
-Check the **quadrant of the point** before using inverse tangent. The component ratio determines the slope, so two opposite directions can have the same tangent.
-
-For <InlineMath math="z=1+i" />: <InlineMath math="(1,1)" /> lies in quadrant I.
-
-<BlockMath math="\begin{aligned}\tan\theta&amp;=\frac{1}{1}=1\\\operatorname{Arg}(1+i)&amp;=45^\circ=\frac{\pi}{4}\end{aligned}" />
-
-For <InlineMath math="z=\sqrt{3}+i" />: <InlineMath math="(\sqrt{3},1)" /> lies in quadrant I.
-
-<BlockMath math="\begin{aligned}\tan\theta&amp;=\frac{1}{\sqrt{3}}\\\operatorname{Arg}(\sqrt{3}+i)&amp;=30^\circ=\frac{\pi}{6}\end{aligned}" />
+For <InlineMath math="z = 1 + i" />, the angles <InlineMath math="45^\circ" />, <InlineMath math="405^\circ" />, and <InlineMath math="-315^\circ" /> point in the same direction, but only <InlineMath math="45^\circ" /> lies in the principal range, so <InlineMath math="\operatorname{Arg}(1 + i) = 45^\circ = \frac{\pi}{4}" />. The interactive graph shows the angles for <InlineMath math="1 + i" /> and <InlineMath math="\sqrt{3} + i" />, both measured from the positive real axis.
 
 <MathVisual
-  title="Angles from the positive real axis"
-  description="Two vectors in quadrant I make angles of 45 and 30 degrees with the positive real axis. The arcs show the angles being measured."
+  title={<>Angles from the positive real axis</>}
+  description={<>Two vectors in quadrant I make angles of 45 and 30 degrees with the positive real axis. The arcs show the angles being measured.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.25, max: 2.2 }, y: { min: -0.25, max: 1.6 } },
@@ -68,7 +34,7 @@ For <InlineMath math="z=\sqrt{3}+i" />: <InlineMath math="(\sqrt{3},1)" /> lies 
     labels: [
       { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-left" },
       { key: "second", objectId: "second", at: { x: Math.sqrt(3), y: 1 }, placement: "above" },
-      { key: "first-angle", objectId: "first-angle", at: { x: 0.42, y: 0.17 }, placement: "above-left" },
+      { key: "first-angle", objectId: "first-angle", at: { x: 0.45 * Math.cos((22.5 * Math.PI) / 180), y: 0.45 * Math.sin((22.5 * Math.PI) / 180) }, placement: "right" },
       { key: "second-angle", objectId: "second-angle", at: { x: 0.87, y: 0.23 }, placement: "below-right" },
     ],
   }}
@@ -80,58 +46,194 @@ For <InlineMath math="z=\sqrt{3}+i" />: <InlineMath math="(\sqrt{3},1)" /> lies 
   }}
 />
 
-For a point in quadrant II, inverse tangent alone gives the wrong direction. The point <InlineMath math="(-1,1)" /> lies in quadrant II, so add half a turn:
+The left end of the range is excluded, while the right end is included. That is why a number on the negative real axis, such as <InlineMath math="-4" />, has principal argument <InlineMath math="180^\circ" />, not <InlineMath math="-180^\circ" />. Zero has no argument, because the zero vector has no direction.
 
-<BlockMath math="\begin{aligned}\arctan\left(\frac{1}{-1}\right)&amp;=-45^\circ\\\operatorname{Arg}(-1+i)&amp;=-45^\circ+180^\circ=135^\circ\end{aligned}" />
+## Many Angles for One Direction
+
+Adding one full turn, <InlineMath math="360^\circ" /> or <InlineMath math="2\pi" />, brings a vector back to the same direction. As a result, every nonzero complex number has **infinitely many arguments** <InlineMath math="\theta + 2\pi k" />. The principal argument picks one representative from all of them, so the same direction is always written with the same number.
+
+The reference angle and quadrant rules for the [modulus and argument of a complex number](/en/subjects/mathematics/complex-number/modulus-argument-complex-numbers) give an angle in this range directly. Angles outside the range appear when you add arguments, for example when you multiply two complex numbers, or when a problem gives an angle such as <InlineMath math="750^\circ" />.
+
+## Reducing an Angle to the Principal Range
+
+To get the principal argument from any angle, **add or subtract full turns** until the angle lies in <InlineMath math="(-180^\circ, 180^\circ]" />:
+
+| Starting angle | Calculation | Principal argument |
+| --- | --- | --- |
+| <InlineMath math="300^\circ" /> | <InlineMath math="300^\circ - 360^\circ" /> | <InlineMath math="-60^\circ" /> |
+| <InlineMath math="405^\circ" /> | <InlineMath math="405^\circ - 360^\circ" /> | <InlineMath math="45^\circ" /> |
+| <InlineMath math="-315^\circ" /> | <InlineMath math="-315^\circ + 360^\circ" /> | <InlineMath math="45^\circ" /> |
+| <InlineMath math="-180^\circ" /> | <InlineMath math="-180^\circ + 360^\circ" /> | <InlineMath math="180^\circ" /> |
+
+A large angle needs several turns at once. For <InlineMath math="1000^\circ" />, three turns bring the angle into the range:
+
+<BlockMath math="1000^\circ - 3 \cdot 360^\circ = -80^\circ" />
+
+Check: <InlineMath math="-80^\circ" /> lies between <InlineMath math="-180^\circ" /> and <InlineMath math="180^\circ" />, and <InlineMath math="-80^\circ + 3 \cdot 360^\circ = 1000^\circ" />, so both angles point in the same direction.
+
+<Mermaid
+  title={<>Reducing an angle to the principal interval</>}
+  description={<>Add or subtract one full turn until the angle lies in (-180°, 180°].</>}
+  chart={`flowchart TD
+  A["Angle θ"] --> B{"Is θ more than 180°?"}
+  B -->|"yes"| C["Subtract 360°"]
+  C --> B
+  B -->|"no"| D{"Is θ equal to or less than -180°?"}
+  D -->|"yes"| E["Add 360°"]
+  E --> D
+  D -->|"no"| F["θ is the principal argument"]`}
+/>
+
+## The Principal Argument from the Components x and y
+
+If <InlineMath math="z = x + iy" /> is given in Cartesian form, the principal argument comes from <InlineMath math="\arctan\frac{y}{x}" /> **plus a half-turn correction for points left of the imaginary axis**:
+
+<BlockMath math="\operatorname{Arg} z = \begin{cases} \arctan\frac{y}{x}, &amp; x > 0 \\ \arctan\frac{y}{x} + 180^\circ, &amp; x < 0,\ y \ge 0 \\ \arctan\frac{y}{x} - 180^\circ, &amp; x < 0,\ y < 0 \\ 90^\circ, &amp; x = 0,\ y > 0 \\ -90^\circ, &amp; x = 0,\ y < 0 \end{cases}" />
+
+The function <InlineMath math="\operatorname{atan2}(y, x)" /> in programming languages follows the same rule and returns an angle in <InlineMath math="(-\pi, \pi]" /> for every <InlineMath math="z \ne 0" />. Many scientific calculators have no atan2 key, but their Pol or `R→P` function gives the same angle.
+
+**Example 1**. For <InlineMath math="z = -1 + i" />, the value is <InlineMath math="\arctan\frac{1}{-1} = -45^\circ" />. The point lies left of the imaginary axis with <InlineMath math="y \ge 0" />, so add half a turn:
+
+<BlockMath math="\operatorname{Arg}(-1 + i) = -45^\circ + 180^\circ = 135^\circ" />
+
+Check with modulus <InlineMath math="\sqrt{2}" />: <InlineMath math="\sqrt{2}\cos 135^\circ = -1" /> and <InlineMath math="\sqrt{2}\sin 135^\circ = 1" />.
+
+**Example 2**. For <InlineMath math="z = -1 - i" />, the value is <InlineMath math="\arctan\frac{-1}{-1} = 45^\circ" />, the same as for <InlineMath math="1 + i" />. The point lies left of the imaginary axis with <InlineMath math="y < 0" />, so subtract half a turn:
+
+<BlockMath math="\operatorname{Arg}(-1 - i) = 45^\circ - 180^\circ = -135^\circ" />
+
+Check: <InlineMath math="\sqrt{2}\cos(-135^\circ) = -1" /> and <InlineMath math="\sqrt{2}\sin(-135^\circ) = -1" />. The numbers <InlineMath math="1 + i" /> and <InlineMath math="-1 - i" /> have the same tangent, but they point in opposite directions.
+
+<MathVisual
+  title={<>Same tangent, different direction</>}
+  description={<>The numbers <InlineMath math="1 + i" /> and <InlineMath math="-1 - i" /> both give <InlineMath math="\arctan 1 = 45^\circ" />, but their arcs point in opposite directions.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 1.6 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "secondary" },
+      { id: "third", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: -1 }, appearance: "answer" },
+      { id: "first-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.35, startDegrees: 0, sweepDegrees: 45, appearance: "primary" },
+      { id: "second-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.6, startDegrees: 0, sweepDegrees: 135, appearance: "secondary" },
+      { id: "third-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.85, startDegrees: 0, sweepDegrees: -135, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 1 }, placement: "left" },
+      { key: "third", objectId: "third", at: { x: -1, y: -1 }, placement: "left" },
+      { key: "first-angle", objectId: "first-angle", at: { x: 0.35 * Math.cos((22.5 * Math.PI) / 180), y: 0.35 * Math.sin((22.5 * Math.PI) / 180) }, placement: "right" },
+      { key: "second-angle", objectId: "second-angle", at: { x: 0.6 * Math.cos((67.5 * Math.PI) / 180), y: 0.6 * Math.sin((67.5 * Math.PI) / 180) }, placement: "above-right" },
+      { key: "third-angle", objectId: "third-angle", at: { x: 0.85 * Math.cos((-67.5 * Math.PI) / 180), y: 0.85 * Math.sin((-67.5 * Math.PI) / 180) }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="1+i" />,
+    second: <InlineMath math="-1+i" />,
+    third: <InlineMath math="-1-i" />,
+    "first-angle": <InlineMath math="45^\circ" />,
+    "second-angle": <InlineMath math="135^\circ" />,
+    "third-angle": <InlineMath math="-135^\circ" />,
+  }}
+/>
+
+## The Zero to Two Pi Convention
+
+Some books choose the principal argument from <InlineMath math="[0, 2\pi)" />, or <InlineMath math="[0^\circ, 360^\circ)" />. Both conventions pick one representative for each direction, and **they differ only for negative angles**. If the principal argument in <InlineMath math="(-180^\circ, 180^\circ]" /> is negative, add <InlineMath math="360^\circ" /> to get the representative in <InlineMath math="[0^\circ, 360^\circ)" />.
+
+For <InlineMath math="-1 - i" />, the argument <InlineMath math="-135^\circ" /> becomes <InlineMath math="225^\circ" />, while <InlineMath math="135^\circ" /> for <InlineMath math="-1 + i" /> stays the same. Check: <InlineMath math="\cos 225^\circ = \cos(-135^\circ)" /> and <InlineMath math="\sin 225^\circ = \sin(-135^\circ)" />, so both angles point in the same direction. Always state the convention you use, because <InlineMath math="225^\circ" /> is wrong for a problem that asks for <InlineMath math="(-180^\circ, 180^\circ]" />.
 
 ## Equality of Two Complex Numbers in Polar Form
 
-Two nonzero complex numbers <InlineMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)" /> and <InlineMath math="z_2 = r_2(\cos \theta_2 + i\sin \theta_2)" />, with <InlineMath math="r_1>0" /> and <InlineMath math="r_2>0" />, are said to be **equal** if and only if:
+Two nonzero complex numbers <InlineMath math="z_1 = r_1(\cos \theta_1 + i\sin \theta_1)" /> and <InlineMath math="z_2 = r_2(\cos \theta_2 + i\sin \theta_2)" />, with <InlineMath math="r_1 > 0" /> and <InlineMath math="r_2 > 0" />, are equal if and only if **their moduli are equal and their arguments differ by whole turns**:
 
-1.  Their moduli are equal:
+<BlockMath math="r_1 = r_2 \quad\text{and}\quad \theta_1 - \theta_2 = 2\pi k \text{ for some } k \in \mathbb{Z}" />
 
-    <InlineMath math="r_1 = r_2" /> (or <InlineMath math="|z_1| = |z_2|" />)
-
-2.  Their arguments are the same or differ by a multiple of <InlineMath math="2\pi" /> (or <InlineMath math="360^\circ" />):
-
-    <InlineMath math="\theta_1 = \theta_2 + 2k\pi" /> or <InlineMath math="\theta_1 - \theta_2 = 2k\pi" /> for
-    some integer <InlineMath math="k" />.
-
-If we use the **Principal Argument** in <InlineMath math="(-\pi, \pi]" />, the second condition simplifies to <InlineMath math="\text{Arg}(z_1) = \text{Arg}(z_2)" />.
-
-### Comparing Equality
-
-Compare **both modulus and direction**. Equal moduli are not enough when the vectors point in different directions.
+With principal arguments, the second condition becomes simpler: <InlineMath math="\operatorname{Arg} z_1 = \operatorname{Arg} z_2" />. Equal moduli are not enough when the two vectors point in different directions:
 
 | Pair | Moduli | Angle difference | Conclusion |
 | --- | --- | --- | --- |
 | <InlineMath math="\sqrt{2}(\cos45^\circ+i\sin45^\circ)" />, <InlineMath math="\sqrt{2}(\cos95^\circ+i\sin95^\circ)" /> | <InlineMath math="\sqrt{2}=\sqrt{2}" /> | <InlineMath math="45^\circ-95^\circ=-50^\circ" /> | Different |
 | <InlineMath math="\cos30^\circ+i\sin30^\circ" />, <InlineMath math="\cos390^\circ+i\sin390^\circ" /> | <InlineMath math="1=1" /> | <InlineMath math="30^\circ-390^\circ=-360^\circ" /> | Equal |
 
-## Exercise
+## Common Mistakes
 
-The component signs identify the **quadrant or axis**. Find the angle and check that it lies in the principal interval. Find the principal argument of each number below in degrees. If the real component is zero, the tangent ratio is undefined, but you can still identify the direction of the vector.
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Writing <InlineMath math="-180^\circ" /> for the negative real axis | The left end of the range is excluded | The principal argument of <InlineMath math="-4" /> is <InlineMath math="180^\circ" /> |
+| Using <InlineMath math="\arctan\frac{y}{x}" /> for a point with <InlineMath math="x < 0" /> | The result points in the opposite direction | Rebuild <InlineMath math="r\cos\theta" />, its sign must match <InlineMath math="x" /> |
+| Stopping after one turn on a large angle | <InlineMath math="1000^\circ - 360^\circ = 640^\circ" /> is still outside the range | The final result must lie between <InlineMath math="-180^\circ" /> and <InlineMath math="180^\circ" /> |
+| Mixing the two conventions | <InlineMath math="(-\pi, \pi]" /> and <InlineMath math="[0, 2\pi)" /> differ for negative angles | Read the range the problem asks for before you answer |
+| Assuming equal moduli mean equal numbers | The directions must match too | Compare the principal arguments of both numbers |
 
-1.  <InlineMath math="1 + \sqrt{3}i" />
-2.  <InlineMath math="-i" />
+One check catches almost all of these mistakes: **make sure your answer lies in the requested range and points into the right quadrant**.
+
+## Exercises
+
+The first two problems find the principal argument from the components, the third reduces large angles, and the fourth compares the two conventions. **Find the quadrant or axis first**, then check your answer before you read the solution.
+
+1. Find the principal argument of <InlineMath math="z = 1 + \sqrt{3}i" /> in degrees.
+
+2. Find the principal argument of <InlineMath math="z = -i" /> in degrees.
+
+3. Find the principal argument for the angles <InlineMath math="750^\circ" /> and <InlineMath math="-510^\circ" />.
+
+4. Find the principal argument of <InlineMath math="z = -2 - 2i" /> in <InlineMath math="(-180^\circ, 180^\circ]" />, then in <InlineMath math="[0^\circ, 360^\circ)" />.
 
 ### Worked Solutions
 
-In quadrant I, use the component ratio. On the imaginary axis, read the **vector direction** directly to avoid division by zero.
+**Problem 1**. The point <InlineMath math="(1, \sqrt{3})" /> lies in quadrant I, so no correction is needed:
 
-1.  <InlineMath math="z = 1 + \sqrt{3}i" />:
+<BlockMath math="\operatorname{Arg} z = \arctan\sqrt{3} = 60^\circ" />
 
-    The point <InlineMath math="(1, \sqrt{3})" /> is in Quadrant <InlineMath math="I" />.
+Check with modulus <InlineMath math="2" />: <InlineMath math="2\cos 60^\circ = 1" /> and <InlineMath math="2\sin 60^\circ = \sqrt{3}" />, so **the angle rebuilds both components**.
 
-    <MathContainer>
-      <BlockMath math="\tan \theta = \frac{\sqrt{3}}{1} = \sqrt{3}" />
-      <BlockMath math="\theta = \arctan(\sqrt{3}) = 60^\circ" />
-    </MathContainer>
+**Problem 2**. The number <InlineMath math="-i = 0 - 1i" /> lies on the negative imaginary axis, so the quotient <InlineMath math="\frac{y}{x}" /> is not needed:
 
-    Since <InlineMath math="60^\circ \in (-180^\circ, 180^\circ]" />, <InlineMath math="\text{Arg}(z) = 60^\circ" />.
+<BlockMath math="\operatorname{Arg}(-i) = -90^\circ" />
 
-2.  <InlineMath math="z = -i" />:
+Check: <InlineMath math="\cos(-90^\circ) = 0" /> and <InlineMath math="\sin(-90^\circ) = -1" />, so **the vector points straight down**.
 
-    Write it as <InlineMath math="z = 0 - 1i" />. The point <InlineMath math="(0, -1)" /> lies directly on the negative imaginary axis, so no division by <InlineMath math="x=0" /> is needed.
+**Problem 3**. Subtract or add full turns until the angle falls into the principal range:
 
-    <BlockMath math="\text{Arg}(z) = -90^\circ = -\frac{\pi}{2}" />
+<MathContainer>
+  <BlockMath math="750^\circ - 2 \cdot 360^\circ = 30^\circ" />
+  <BlockMath math="-510^\circ + 360^\circ = -150^\circ" />
+</MathContainer>
+
+Check: <InlineMath math="30^\circ + 2 \cdot 360^\circ = 750^\circ" /> and <InlineMath math="-150^\circ - 360^\circ = -510^\circ" />, so each result returns to its given angle, and both lie in <InlineMath math="(-180^\circ, 180^\circ]" />. For <InlineMath math="-510^\circ" />, adding two turns gives <InlineMath math="210^\circ" />, which **already passes the right end of the range**.
+
+**Problem 4**. The point <InlineMath math="(-2, -2)" /> lies left of the imaginary axis with <InlineMath math="y < 0" />:
+
+<BlockMath math="\operatorname{Arg} z = \arctan\frac{-2}{-2} - 180^\circ = 45^\circ - 180^\circ = -135^\circ" />
+
+In <InlineMath math="[0^\circ, 360^\circ)" />, add one turn: <InlineMath math="-135^\circ + 360^\circ = 225^\circ" />. Check with modulus <InlineMath math="2\sqrt{2}" />: <InlineMath math="2\sqrt{2}\cos 225^\circ = -2" /> and <InlineMath math="2\sqrt{2}\sin 225^\circ = -2" />, so **both answers point into quadrant III**.
+
+Problem 4 shows both conventions at once. The arrow to <InlineMath math="-2 - 2i" /> points into quadrant III. Measured clockwise it is <InlineMath math="-135^\circ" />, the representative in <InlineMath math="(-180^\circ, 180^\circ]" />, and measured counterclockwise it is <InlineMath math="225^\circ" />, the representative in <InlineMath math="[0^\circ, 360^\circ)" />.
+
+<MathVisual
+  title={<>Two names for the direction of <InlineMath math="-2 - 2i" /></>}
+  description={<>The arrow to <InlineMath math="-2 - 2i" /> with a clockwise arc of <InlineMath math="-135^\circ" /> and a counterclockwise arc of <InlineMath math="225^\circ" />.</>}
+  labels={{
+    z: <InlineMath math="-2 - 2i" />,
+    neg: <InlineMath math="-135^\circ" />,
+    pos: <InlineMath math="225^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 1.4 }, y: { min: -2.6, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "neg", kind: "arc", center: { x: 0, y: 0 }, radius: 1 / 2, startDegrees: 0, sweepDegrees: -135, appearance: "answer" },
+      { id: "pos", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 225, appearance: "construction" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2, y: -2 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: -2, y: -2 }, { x: (-2) + (1 / 2 / Math.sqrt(8)) + (1 / 5 / Math.sqrt(8)), y: (-2) + (1 / 2 / Math.sqrt(8)) + (-1 / 5 / Math.sqrt(8)) }, { x: (-2) + (1 / 2 / Math.sqrt(8)) + (-1 / 5 / Math.sqrt(8)), y: (-2) + (1 / 2 / Math.sqrt(8)) + (1 / 5 / Math.sqrt(8)) }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: -2, y: -2 }, placement: "left" },
+      { key: "neg", objectId: "neg", at: { x: 0.5 * Math.cos(-3 * Math.PI / 8), y: 0.5 * Math.sin(-3 * Math.PI / 8) }, placement: "below-right" },
+      { key: "pos", objectId: "pos", at: { x: 0, y: 1 }, placement: "above" },
+    ],
+  }}
+/>

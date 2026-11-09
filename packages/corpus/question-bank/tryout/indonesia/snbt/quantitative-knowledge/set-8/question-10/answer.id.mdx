@@ -1,42 +1,19 @@
-Kita mencari syarat agar **pertidaksamaan berlaku untuk setiap bilangan real**:
+Semut tidak dapat menembus balok, jadi diagonal ruang bukan lintasannya. Caranya adalah **membuka dua sisi balok menjadi satu bidang datar**, lalu lintasan terpendek pada bidang itu adalah garis lurus.
 
-<BlockMath math="\begin{gathered}(2m+1)x^2-4(m+1)x\\+m>-4\end{gathered}" />
+# Tiga cara membuka balok
 
-Kita ubah ke bentuk umum fungsi kuadrat dengan memindahkan <InlineMath math="-4" /> ke ruas kiri:
+Lintasan dari <InlineMath math="A" /> ke <InlineMath math="G" /> melewati dua sisi yang bertetangga. Saat kedua sisi dibuka, salah satu rusuk tetap utuh dan **dua rusuk lainnya tersambung menjadi satu ruas**. Ada tiga pilihan rusuk yang tetap utuh.
 
-<BlockMath math="\begin{gathered}(2m+1)x^2-4(m+1)x\\+(m+4)>0\end{gathered}" />
+<BlockMath math="\begin{aligned}
+\text{rusuk 12 utuh}&:\quad \sqrt{12^2+(4+3)^2}=\sqrt{144+49}=\sqrt{193}\\
+\text{rusuk 4 utuh}&:\quad \sqrt{4^2+(12+3)^2}=\sqrt{16+225}=\sqrt{241}\\
+\text{rusuk 3 utuh}&:\quad \sqrt{3^2+(12+4)^2}=\sqrt{9+256}=\sqrt{265}
+\end{aligned}" />
 
-Agar fungsi kuadrat selalu bernilai positif (definit positif) untuk setiap <InlineMath math="x" /> real, maka grafik fungsi harus seluruhnya berada di atas sumbu-<InlineMath math="x" />. Syarat yang harus dipenuhi adalah:
+# Memilih yang terpendek
 
-1. Koefisien <InlineMath math="x^2" /> harus positif (<InlineMath math="a > 0" />).
-2. Diskriminan harus negatif (<InlineMath math="D < 0" />).
+Nilai terkecil adalah <InlineMath math="\sqrt{193}\approx13{,}9" />. Lintasan terpendek didapat saat **rusuk terpanjang tetap utuh** dan dua rusuk pendek disambung.
 
-Jika <InlineMath math="2m+1=0" />, maka <InlineMath math="m=-\frac12" /> dan ruas kiri menjadi <InlineMath math="-2x+\frac72" />. Bentuk linear ini tidak positif untuk semua <InlineMath math="x" />. Jadi kasus tersebut tidak memberi solusi tambahan.
+Panjang 13 cm adalah diagonal ruang <InlineMath math="\sqrt{144+16+9}" />, yang menembus bagian dalam balok. Panjang 19 cm berjalan di sepanjang rusuk <InlineMath math="12+4+3" />. Nilai <InlineMath math="\sqrt{241}" /> dan <InlineMath math="\sqrt{265}" /> berasal dari cara membuka yang lain.
 
-**Syarat 1: <InlineMath math="a > 0" />**
-
-<BlockMath math="\begin{aligned} 2m + 1 &> 0 \\ 2m &> -1 \\ m &> -\frac{1}{2} \quad \dots \text{(1)} \end{aligned}" />
-
-**Syarat 2: <InlineMath math="D < 0" />**
-
-Gunakan rumus diskriminan <InlineMath math="D = b^2 - 4ac" />. Dengan <InlineMath math="a = 2m + 1" />, <InlineMath math="b = -4(m + 1)" />, dan <InlineMath math="c = m + 4" />:
-
-<BlockMath math="\begin{gathered}(-4(m+1))^2\\-4(2m+1)(m+4)<0\\16(m^2+2m+1)\\-4(2m^2+9m+4)<0\end{gathered}" />
-
-Bagi kedua ruas dengan <InlineMath math="4" /> untuk menyederhanakan:
-
-<BlockMath math="\begin{gathered}4(m^2+2m+1)\\-(2m^2+9m+4)<0\\4m^2+8m+4\\-2m^2-9m-4<0\\2m^2-m<0\\m(2m-1)<0\end{gathered}" />
-
-Nilai batasnya adalah <InlineMath math="m = 0" /> dan <InlineMath math="m = \frac{1}{2}" />. Karena hasil kalinya harus negatif, penyelesaiannya berada di antara kedua nilai tersebut:
-
-<BlockMath math="0 < m < \frac{1}{2} \quad \dots \text{(2)}" />
-
-Kita cari irisan dari syarat (1) dan (2):
-- Syarat (1): <InlineMath math="m > -\frac{1}{2}" />
-- Syarat (2): <InlineMath math="0 < m < \frac{1}{2}" />
-
-Irisan dari kedua daerah tersebut adalah:
-
-<BlockMath math="0 < m < \frac{1}{2}" />
-
-<NumberLine title="Irisan kedua syarat" description="Hanya nilai m di antara 0 dan 1/2 yang memenuhi kedua syarat. Kedua batas tidak disertakan." min={-1} max={1} segments={[{start:0,end:0.5,startInclusive:false,endInclusive:false,shaded:true,showPoints:true,startLabel:<InlineMath math="0" />,endLabel:<InlineMath math="\frac12" />}]} />
+Jadi, panjang lintasan terpendek adalah **<InlineMath math="\sqrt{193}\text{ cm}" />**.

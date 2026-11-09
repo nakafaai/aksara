@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "idiom",
+  },
+  stimulus: "tabungan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Anak bermain di luar ruangan.",
+          label: "Rasa lelah sesudah bekerja seharian",
         },
         {
           correct: false,
-          label: "Anak memiliki lebih banyak kesempatan.",
+          label: "Upah tetap yang diterima setiap bulan",
         },
         {
           correct: false,
-          label: "Musim panas bermain di luar ruangan.",
+          label: "Keluhan warga kepada pengurus",
         },
         {
           correct: false,
-          label: "Kesempatan terjadi di luar ruangan.",
+          label: "Pekerjaan ringan yang tidak memerlukan tenaga",
         },
         {
           correct: true,
-          label: "Musim panas memberi anak kesempatan.",
+          label: "Usaha keras yang telah dilakukan",
         },
       ],
     },

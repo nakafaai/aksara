@@ -1,23 +1,17 @@
-Diketahui:
+Bilangan satu, dua, dan tiga angka bisa dihitung sekaligus jika setiap bilangan ditulis **sebagai tiga angka dengan nol di depan**, misalnya 5 menjadi 005 dan 42 menjadi 042. Penulisan ini tidak menambah atau menghapus angka 7.
 
--   <InlineMath math="B_3 = 2" />
--   <InlineMath math="B_5 = -1" />
--   <InlineMath math="B_n = B_{n+2} + B_{n-1}" />
+# Menghitung susunan tiga angka
 
-Agar <InlineMath math="B_2" /> muncul dalam **rumus rekursif**, substitusikan <InlineMath math="n = 3" />.
+Setiap posisi boleh diisi angka 0 sampai 9 kecuali 7, jadi ada 9 pilihan untuk setiap posisi. Ketiga posisi **dipilih bebas**.
 
-<BlockMath math="B_3 = B_{3+2} + B_{3-1}" />
+<BlockMath math="9\times9\times9=729" />
 
-<BlockMath math="B_3 = B_5 + B_2" />
+Hitungan ini memuat susunan 000, yang bukan bilangan bulat positif.
 
-Sekarang substitusikan <InlineMath math="B_3 = 2" /> dan <InlineMath math="B_5 = -1" />.
+<BlockMath math="729-1=728" />
 
-<BlockMath math="2 = -1 + B_2" />
+# Memeriksa pilihan lain
 
-<BlockMath math="B_2 = 3" />
+Nilai 729 lupa membuang 000. Nilai 648 hanya menghitung bilangan tiga angka, <InlineMath math="8\times9\times9" />, dan melupakan bilangan satu dan dua angka. Nilai 700 mengurangkan 100 bilangan untuk setiap posisi angka 7 tanpa memperhatikan bilangan yang memuat angka 7 lebih dari sekali. Nilai 810 hanya melarang angka 7 di dua posisi, <InlineMath math="9\times9\times10" />.
 
-Substitusikan nilai <InlineMath math="B_2=3" /> kembali ke rumus rekursif:
-
-<BlockMath math="-1 + 3 = 2" />
-
-Jumlah tersebut sesuai dengan <InlineMath math="B_3 = 2" />, sehingga <InlineMath math="B_2" /> bernilai <InlineMath math="3" />.
+Jadi, banyak bilangan yang dimaksud adalah **728**.

@@ -1,48 +1,21 @@
-Find an **attainable upper bound** for <InlineMath math="x+y" /> under these constraints:
+Before using the sum and product of roots, check whether the equation factorises. It does: **the form fits <InlineMath math="(x-3)(x-k)" />**, because <InlineMath math="3+k" /> is the sum and <InlineMath math="3k" /> is the product.
 
-<BlockMath math="\begin{cases} x \ge 0 \\ y \ge 0 \\ x + 5y \le 10 \\ 5x + y \le a^2 - 5 \end{cases}" />
+# The roots
 
-Adding the two slanted constraints gives an upper bound for <InlineMath math="x + y" />:
+<BlockMath math="x^2-(k+3)x+3k=(x-3)(x-k)=0" />
 
-<BlockMath math="\begin{aligned}&(x+5y)+(5x+y)\\&\quad\le10+(a^2-5)\end{aligned}" />
+The roots are 3 and <InlineMath math="k" />, **whatever k is**.
 
-<BlockMath math="6x + 6y \le 5 + a^2" />
+# The difference condition
 
-<BlockMath math="x + y \le \frac{a^2 + 5}{6}" />
+The roots differ by 5, so <InlineMath math="k" /> **lies 5 away from 3**.
 
-If <InlineMath math="a=3" /> or <InlineMath math="a=4" />, this bound is respectively <InlineMath math="\frac{7}{3}" /> or <InlineMath math="\frac{7}{2}" />, both below <InlineMath math="5" />. If <InlineMath math="a=16" /> or <InlineMath math="a=25" />, the feasible point <InlineMath math="(6,0)" /> already gives <InlineMath math="x+y=6" />, so the maximum would exceed <InlineMath math="5" />.
+<BlockMath math="\lvert k-3\rvert=5\;\Longrightarrow\;k=8\;\text{or}\;k=-2" />
 
-It remains to check <InlineMath math="a=5" />. The bound becomes:
+Check: for <InlineMath math="k=8" /> the roots are 3 and 8, and for <InlineMath math="k=-2" /> they are 3 and <InlineMath math="-2" />. Both differ by 5.
 
-<BlockMath math="x+y \le \frac{5^2+5}{6}=5" />
+<BlockMath math="8+(-2)=6" />
 
-Find the intersection of the boundary lines by elimination:
+The value 8 uses only one possibility. The value 10 is the difference of the two values of <InlineMath math="k" />, not their sum. The value 3 is the fixed root, and 5 is the given difference.
 
-<BlockMath math="\begin{aligned}x+5y&=10\\5x+y&=20\\5(x+5y)-(5x+y)&=50-20\\24y&=30\\y&=\frac54\\x&=10-5\cdot\frac54=\frac{15}{4}\end{aligned}" />
-
-The intersection point <InlineMath math="\left(\frac{15}{4},\frac{5}{4}\right)" /> satisfies both boundary equations:
-
-<BlockMath math="\frac{15}{4}+5\left(\frac{5}{4}\right)=10" />
-
-<BlockMath math="\begin{aligned}5\left(\frac{15}{4}\right)+\frac54&=20\\&=5^2-5\end{aligned}" />
-
-<BlockMath math="\frac{15}{4}+\frac{5}{4}=5" />
-
-Thus, <InlineMath math="5" /> is both an upper bound and an attainable value. Therefore, <InlineMath math="a=5" />.
-
-<MathVisual
- title="Feasible region for a = 5"
- description="The vertex where the two boundaries meet attains a coordinate sum of five."
- scene={{
- space: "plane",
- frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 4 } },
- view: { kind: "fit", padding: 0.5 },
- objects: [
- { id: "feasible", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 3.75, y: 1.25 }, { x: 0, y: 2 }] },
- { id: "objective", kind: "segment", appearance: "secondary", from: { x: 2, y: 3 }, to: { x: 5, y: 0 } },
- { id: "maximum", kind: "point", appearance: "answer", at: { x: 3.75, y: 1.25 } },
- ],
- labels: [{ key: "maximum", objectId: "maximum", at: { x: 3.75, y: 1.25 }, placement: "above-right" }],
- }}
- labels={{ maximum: <InlineMath math="(15/4,5/4)" /> }}
-/>
+So the sum of all values of <InlineMath math="k" /> is **6**.

@@ -1,28 +1,21 @@
-Kita harus menentukan besarnya **uang muka minimal** yang memungkinkan Jeje mendapatkan suku bunga terendah.
+Tagihan tarif bertingkat berubah rumusnya di setiap blok, sedangkan paket datar selalu <InlineMath math="1{.}400x" />. Jadi **bandingkan kedua tagihan di setiap blok secara terpisah**.
 
-# Analisis Suku Bunga
+# Blok 1, sampai 100 kWh
 
-Suku bunga awal adalah <InlineMath math="6\%" /> per tahun dengan uang muka minimal <InlineMath math="10\%" />. Setiap kelipatan selanjutnya dari uang muka minimal (yaitu kelipatan <InlineMath math="10\%" />) akan memberikan pengurangan suku bunga tahunan sebesar satu poin persentase, dengan **pengurangan maksimum dua poin persentase**.
+<BlockMath math="20{.}000+1{.}000x<1{.}400x\;\Longleftrightarrow\;20{.}000<400x\;\Longleftrightarrow\;x>50" />
 
-| Uang muka dari harga awal | Pengurangan tingkat bunga | Tingkat bunga per tahun |
-| --- | --- | --- |
-| 10% | 0 poin persentase | 6% |
-| 20% | 1 poin persentase | 5% |
-| 30% | 2 poin persentase | 4% |
-| 40% atau lebih | Tetap maksimum 2 poin persentase | Tetap 4% |
+# Blok 2, dari 100 sampai 300 kWh
 
-Jadi, untuk mendapatkan bunga paling kecil (<InlineMath math="4\%" />), Jeje harus membayar uang muka minimal sebesar **<InlineMath math="30\%" />**.
+Tagihan bertingkatnya <InlineMath math="20{.}000+100{.}000+1{.}500(x-100)=1{.}500x-30{.}000" />.
 
-# Menghitung Besar Uang Muka
+<BlockMath math="1{.}500x-30{.}000<1{.}400x\;\Longleftrightarrow\;100x<30{.}000\;\Longleftrightarrow\;x<300" />
 
-**Harga awal laptop** adalah <InlineMath math="\text{Rp}12{.}000{.}000{,}00" />. Kita hitung <InlineMath math="30\%" /> dari harga tersebut:
+Seluruh blok 2 di bawah 300 kWh memenuhi. Pada <InlineMath math="x=300" />, kedua tagihan **sama-sama Rp420.000,00**.
 
-<BlockMath math="30\% \times 12{.}000{.}000" />
+# Blok 3, di atas 300 kWh
 
-<BlockMath math="\frac{30}{100} \times 12{.}000{.}000" />
+Tagihan bertingkatnya <InlineMath math="420{.}000+2{.}000(x-300)=2{.}000x-180{.}000" />. Syarat <InlineMath math="2{.}000x-180{.}000<1{.}400x" /> berarti <InlineMath math="x<300" />, yang bertentangan dengan <InlineMath math="x>300" />. Di blok ini **paket datar selalu lebih murah**.
 
-<BlockMath math="3{.}600{.}000" />
+Gabungan ketiga hasil adalah <InlineMath math="50<x<300" />. Pilihan <InlineMath math="x>50" /> lupa blok 3, <InlineMath math="x<300" /> lupa biaya beban pada pemakaian kecil, dan <InlineMath math="100<x<300" /> serta <InlineMath math="50<x<100" /> masing-masing hanya memeriksa satu blok.
 
-Jadi, uang muka yang harus dibayarkan Jeje adalah <InlineMath math="\text{Rp}3{.}600{.}000{,}00" />.
-
-Diskon mengubah harga pembelian, tetapi aturan toko menghitung uang muka dari **harga awal**, bukan dari harga setelah diskon.
+Jadi, tarif bertingkat lebih murah tepat ketika **<InlineMath math="50<x<300" />**.

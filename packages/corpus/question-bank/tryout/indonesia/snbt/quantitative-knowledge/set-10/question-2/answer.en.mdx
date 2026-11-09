@@ -1,77 +1,16 @@
-<LineEquation
-  title="Angle Analysis"
-  description="Relationship between intersecting angles."
-  cameraPosition={[0, 0, 13.5]}
-  data={[
-    {
-      points: [
-        { x: -5, y: 0, z: 0 },
-        { x: 0, y: 0, z: 0 },
-        { x: 5, y: 0, z: 0 },
-      ],
-      color: "#4f46e5",
-      showPoints: false,
-      smooth: false,
-      cone: { position: "both", size: 0.5 },
-    },
-    {
-      points: [
-        { x: -3.8302222156, y: 3.2139380484, z: 0 },
-        { x: 0, y: 0, z: 0 },
-        { x: 3.8302222156, y: -3.2139380484, z: 0 },
-      ],
-      color: "#4f46e5",
-      showPoints: false,
-      smooth: false,
-      cone: { position: "both", size: 0.5 },
-      labels: [
-        {
-          text: <InlineMath math="x^\circ" />,
-          at: 1,
-          offset: [-1.2, 0.4, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: 3.8302222156, y: 3.2139380484, z: 0 },
-        { x: 0, y: 0, z: 0 },
-        { x: -3.8302222156, y: -3.2139380484, z: 0 },
-      ],
-      color: "#4f46e5",
-      showPoints: false,
-      smooth: false,
-      cone: { position: "both", size: 0.5 },
-      labels: [
-        {
-          text: <InlineMath math="y^\circ" />,
-          at: 1,
-          offset: [1.2, 0.4, 0],
-          fontSize: 0.6,
-        },
-        {
-          text: <InlineMath math="z^\circ" />,
-          at: 1,
-          offset: [0, -0.8, 0],
-          fontSize: 0.6,
-        },
-      ],
-    },
-  ]}
-/>
+The ratio <InlineMath math="a:b=3:4" /> means **<InlineMath math="a=3k" /> and <InlineMath math="b=4k" />** for some number <InlineMath math="k\ne0" />. The expression depends only on the ratio, so <InlineMath math="k" /> will cancel.
 
-The angle between the two diagonal lines above the intersection is **vertically opposite** <InlineMath math="z^\circ" />. Vertically opposite angles are equal, so that upper angle also measures <InlineMath math="z^\circ" />.
+# Substitution
 
-The three adjacent angles <InlineMath math="x^\circ" />, <InlineMath math="z^\circ" />, and <InlineMath math="y^\circ" /> form a straight angle, so their measures add to <InlineMath math="180^\circ" />:
+<BlockMath math="\begin{aligned}
+\frac{2a+b}{a-3b}&=\frac{2(3k)+4k}{3k-3(4k)}\\
+&=\frac{10k}{-9k}=-\frac{10}{9}
+\end{aligned}" />
 
-<BlockMath math="x^\circ + z^\circ + y^\circ = 180^\circ" />
+# Checking the sign
 
-Because <InlineMath math="x^\circ = y^\circ" />, replace <InlineMath math="y" /> with <InlineMath math="x" />:
+The denominator <InlineMath math="a-3b" /> is negative because <InlineMath math="3b" /> **is much larger than <InlineMath math="a" />**, while the numerator is positive for <InlineMath math="k>0" />. So the result must be negative. For <InlineMath math="k<0" />, the numerator and denominator both change sign, and the result is still <InlineMath math="-\tfrac{10}{9}" />.
 
-<BlockMath math="x^\circ + z^\circ + x^\circ = 180^\circ" />
+The value <InlineMath math="\tfrac{10}{9}" /> ignores the negative sign of the denominator. The value <InlineMath math="-\tfrac{9}{10}" /> turns the fraction upside down.
 
-<BlockMath math="z^\circ + 2x^\circ = 180^\circ" />
-
-<BlockMath math="z^\circ = 180^\circ - 2x^\circ" />
-
-Thus, angle <InlineMath math="z" /> measures <InlineMath math="180 - 2x" /> degrees.
+So the value of the expression is **<InlineMath math="-\tfrac{10}{9}" />**.

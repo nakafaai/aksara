@@ -1,34 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "batik",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Museum akan menampilkan riwayat revisi label pameran.",
+          column: 1,
+          label: "Canting dipakai untuk menggoreskan malam pada batik tulis.",
         },
         {
-          correct: true,
-          label:
-            "Museum meningkatkan keandalan keterangan dengan membedakan dokumen, ingatan, dan ketidakpastian, bukan dengan memaksa satu versi menang.",
+          column: 2,
+          label: "Batik cap umumnya lebih mahal daripada batik tulis.",
         },
         {
-          correct: false,
-          label:
-            "Catatan tertulis selalu benar, sedangkan semua kesaksian lisan harus ditolak.",
+          column: 1,
+          label: "Malam dilunturkan setelah kain dicelup agar motif terlihat.",
         },
         {
-          correct: false,
-          label:
-            "Museum sebaiknya memilih kisah paling menarik dan menghapus keterangan yang mengganggu kelancaran cerita.",
-        },
-        {
-          correct: false,
-          label:
-            "Museum akan menerima koreksi yang dilengkapi asal sumber yang dapat diperiksa.",
+          column: 2,
+          label: "Motif batik tulis selalu identik di setiap bagian kain.",
         },
       ],
     },

@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "bike-lanes",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The term *co-design* proves that the character's first estimate was correct before any accountable action was taken.",
+            "The lanes were separated from traffic by low concrete barriers.",
         },
         {
           correct: false,
           label:
-            "The definition reduces *co-design* to the recurring object, so the character's choice and development no longer matter.",
+            "The council member said Main Street had become more dangerous.",
         },
         {
           correct: true,
           label:
-            "The definition of *co-design* explains why Amina's participation in testing and revising the map is part of the design process rather than an afterthought.",
+            "Cycling rose about 25 percent citywide, even on streets with no new lanes.",
         },
         {
           correct: false,
           label:
-            "The term *co-design* describes the final outcome as certain, even though the narrative presents a gradual change.",
+            "Station Avenue had fewer cyclists than Main Street in both periods.",
         },
         {
           correct: false,
           label:
-            "The definition is included only to name the setting and has no connection to the character's decision.",
+            "The analyst said the risk per cyclist was the figure that mattered.",
         },
       ],
     },

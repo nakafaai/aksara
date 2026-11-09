@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "time-zones",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$\\frac{3\\sqrt{6}}{2}\\text{ cm}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{3\\sqrt{3}}{2}\\text{ cm}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1}{2}\\sqrt{3}\\text{ cm}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1}{3}\\sqrt{3}\\text{ cm}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{3}{2}\\sqrt{2}\\text{ cm}$$",
-        },
+        { correct: false, label: "6 jam 10 menit" },
+        { correct: false, label: "6 jam 35 menit" },
+        { correct: false, label: "7 jam 5 menit" },
+        { correct: true, label: "7 jam 35 menit" },
+        { correct: false, label: "9 jam 35 menit" },
       ],
     },
   },

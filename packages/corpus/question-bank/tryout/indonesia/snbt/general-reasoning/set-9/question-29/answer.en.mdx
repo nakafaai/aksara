@@ -1,27 +1,11 @@
-The two balls are selected without regard to order. The number of equally likely pairs is:
+First count all arrangements with Ani and Budi together, then **subtract** those that put Citra at an end.
 
-<BlockMath math="\binom{12}{2}=\frac{12\times11}{2}=66" />
+Treat Ani and Budi as one block. The block with Citra, Dedi, and Eka makes <InlineMath math="4" /> units, which can be ordered in <InlineMath math="4!=24" /> ways. Inside the block, Ani and Budi can swap in <InlineMath math="2" /> ways.
 
-| Pair | Count | Prize |
-| --- | ---: | ---: |
-| Red and red | <InlineMath math="\binom62=15" /> | <InlineMath math="40" /> |
-| Red and blue | <InlineMath math="6\times6=36" /> | <InlineMath math="20" /> |
-| Blue and blue | <InlineMath math="\binom62=15" /> | <InlineMath math="0" /> |
+<BlockMath math="24\times2=48" />
 
-All prizes in the table are in thousand rupiah. Let <InlineMath math="X" /> be the payout from one draw. Its expected value is:
+Arrangements with Citra in the leftmost seat: the other three units can be ordered in <InlineMath math="3!=6" /> ways, times <InlineMath math="2" /> for the block, that is <InlineMath math="12" />. With Citra in the rightmost seat there are also <InlineMath math="12" />.
 
-<BlockMath math="\begin{aligned}\mathrm{E}[X]&amp;=\frac{40\times15+20\times36}{66}\\&amp;=\frac{600+720}{66}\\&amp;=20\end{aligned}" />
+<BlockMath math="48-12-12=24" />
 
-A retry is awarded only after two blue balls. Its probability is:
-
-<BlockMath math="\frac{15}{66}=\frac5{22}" />
-
-Restoring the box makes the retry’s expected payout <InlineMath math="20" /> again. Add the first draw’s expected payout to the retry’s expected payout weighted by the probability of receiving it:
-
-<BlockMath math="\begin{aligned}20+\frac5{22}\times20&amp;=20+\frac{50}{11}\\&amp;=\frac{270}{11}\end{aligned}" />
-
-The entry fee is paid **once**. The expected net gain is:
-
-<BlockMath math="\frac{270}{11}-20=\frac{50}{11}" />
-
-Therefore, the expected net gain is **<InlineMath math="50/11" /> thousand rupiah**.
+So there are <InlineMath math="24" /> possible seating arrangements.

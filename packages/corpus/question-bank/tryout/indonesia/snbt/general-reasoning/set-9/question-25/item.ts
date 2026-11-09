@@ -1,31 +1,17 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "quantitative-reasoning",
+    topic: "target-value",
+  },
+  stimulus: "konser",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label: "$$770$$",
-        },
-        {
-          correct: false,
-          label: "$$780$$",
-        },
-        {
-          correct: true,
-          label: "$$790$$",
-        },
-        {
-          correct: false,
-          label: "$$800$$",
-        },
-        {
-          correct: false,
-          label: "$$810$$",
-        },
-      ],
+      kind: "numericEntry",
+      unit: "tiket",
+      value: "867",
     },
   },
 };

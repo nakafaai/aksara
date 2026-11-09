@@ -1,13 +1,22 @@
-The easiest comparison keeps the **decimal factor** <InlineMath math="0.44" /> the same. First rewrite the target:
+Write the statement in symbols so its form is clear. Let <InlineMath math="p" />: the train tickets are sold out, <InlineMath math="q" />: Rani takes the bus, and <InlineMath math="r" />: Rani postpones the trip. The statement is <InlineMath math="p \Rightarrow (q \vee r)" />.
 
-<BlockMath math="0.44 \times \frac{17}{18} = 0.44 \times \frac{34}{36}" />
+An implication is false only when the "if" part is true and the "then" part is false. So this statement is **broken only when the tickets are sold out, Rani does not take the bus, and Rani does not postpone**. An equivalent statement must be broken in exactly the same situation.
 
-# Rewrite each option
+Transform it algebraically:
 
-**Multiplying one factor and dividing the other** by the same number does not change a product. The multiplier must be nonzero. For the first option, multiply the decimal factor by four and divide the fractional factor by four:
+<BlockMath math="\begin{aligned}
+p \Rightarrow (q \vee r) &\equiv \neg p \vee q \vee r \\
+&\equiv \neg(p \wedge \neg q) \vee r \\
+&\equiv (p \wedge \neg q) \Rightarrow r
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}0.11\times\frac{35}{9}&amp;=(0.11\times4)\times\left(\frac{35}{9}\div4\right)\\&amp;=0.44\times\frac{35}{36}\end{aligned}" />
+The last form reads: if the train tickets are sold out and Rani does not take the bus, Rani postpones the trip. It is also broken only when the tickets are sold out, Rani does not take the bus, and Rani does not postpone.
 
-<BlockMath math="\begin{aligned} 0.11 \times \frac{35}{9} &amp;= 0.44 \times \frac{35}{36} \\ 0.22 \times \frac{17}{9} &amp;= 0.44 \times \frac{17}{18} \\ 0.33 \times \frac{34}{27} &amp;= 0.44 \times \frac{17}{18} \\ 0.55 \times \frac{34}{45} &amp;= 0.44 \times \frac{17}{18} \\ 0.66 \times \frac{17}{27} &amp;= 0.44 \times \frac{17}{18} \end{aligned}" />
+The other options are not equivalent:
 
-The four forms with a coefficient other than <InlineMath math="0.11" /> equal the target. The form with coefficient <InlineMath math="0.11" /> has the same positive factor <InlineMath math="0.44" />, but <InlineMath math="\frac{35}{36} > \frac{34}{36}" />. Therefore, the only greater number is <InlineMath math="0.11 \times \frac{35}{9}" />.
+- "If Rani takes the bus or postpones, the tickets are sold out" is the converse. It is broken when Rani takes the bus although tickets remain, a situation that does not break the original.
+- "If the tickets are not sold out, Rani neither takes the bus nor postpones the trip" is the inverse, which is also not equivalent to the original implication.
+- "If Rani does not take the bus or does not postpone, the tickets are not sold out" negates <InlineMath math="q \vee r" /> incorrectly. The correct negation is "does not take the bus **and** does not postpone".
+- "The tickets are sold out, but Rani neither takes the bus nor postpones" is the negation of the original, not an equivalent statement.
+
+So the equivalent statement is "if the train tickets are sold out and Rani does not take the bus, Rani postpones the trip".

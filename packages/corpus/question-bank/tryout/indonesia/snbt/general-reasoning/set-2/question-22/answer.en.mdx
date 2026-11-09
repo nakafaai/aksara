@@ -1,11 +1,25 @@
-Let <InlineMath math="x" /> litres come from the <InlineMath math="30\%" /> solution. The <InlineMath math="60\%" /> solution contributes <InlineMath math="40-x" /> litres. Adding water brings the total volume to <InlineMath math="45" /> litres.
+The key is **the last number in each row**. Rows 1 to <InlineMath math="k" /> hold <InlineMath math="1+2+\cdots+k" /> numbers, so the last number in row <InlineMath math="k" /> is
 
-Water increases the mixture volume, but the **amount of solute is conserved**, so
+<BlockMath math="1+2+\cdots+k=\frac{k(k+1)}{2}" />
 
-<BlockMath math="\begin{aligned}0.3x+0.6(40-x)&amp;=0.3(45)\\0.3x+24-0.6x&amp;=13.5\\24-0.3x&amp;=13.5\\0.3x&amp;=10.5\\x&amp;=35\end{aligned}" />
+Find the first row whose last number reaches <InlineMath math="100" />:
 
-The initial volumes are therefore <InlineMath math="35" /> litres and <InlineMath math="40-35=5" /> litres.
+<BlockMath math="\begin{aligned}
+k=13 &: \frac{13\times14}{2}=91 \\
+k=14 &: \frac{14\times15}{2}=105
+\end{aligned}" />
 
-Keep the ratio in the order requested: the <InlineMath math="30\%" /> solution to the <InlineMath math="60\%" /> solution is
+Row <InlineMath math="13" /> ends at <InlineMath math="91" />, so row <InlineMath math="14" /> holds <InlineMath math="92" /> to <InlineMath math="105" />. The number <InlineMath math="100" /> sits in that row at position
 
-<BlockMath math="35:5=7:1" />
+<BlockMath math="100-91=9" />
+
+Check with the sample rows: row <InlineMath math="4" /> ends at <InlineMath math="\frac{4\times5}{2}=10" />, which matches the arrangement given.
+
+The other options come from these mistakes:
+
+- Row <InlineMath math="13" /> comes from treating the row that ends at <InlineMath math="91" /> as if it still contained <InlineMath math="100" />.
+- Position <InlineMath math="5" /> comes from counting back from <InlineMath math="105" />, since <InlineMath math="105-100=5" />.
+- Position <InlineMath math="10" /> comes from using <InlineMath math="100-90" />, as if the previous row ended at <InlineMath math="90" />.
+- Row <InlineMath math="10" />, position <InlineMath math="10" /> comes from the wrong idea that <InlineMath math="100=10\times10" /> fixes its place.
+
+So <InlineMath math="100" /> is in row <InlineMath math="14" />, position <InlineMath math="9" />.

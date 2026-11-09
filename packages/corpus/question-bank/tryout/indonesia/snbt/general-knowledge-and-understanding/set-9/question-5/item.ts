@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
+  },
+  stimulus: "tenun",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pengamat anonim memakai kriteria volume yang telah ditetapkan.",
+            "Kain tenun ikat hanya dibuat dengan pewarna biru dari daun tarum.",
+        },
+        {
+          correct: false,
+          label:
+            "Mesin cetak menghasilkan kain tenun ikat yang sama persis dengan buatan tangan.",
         },
         {
           correct: true,
           label:
-            "Pesan norma deskriptif dapat mengubah perilaku, tetapi efeknya harus dipisahkan dari faktor lain dan klaimnya harus akurat.",
+            "Proses tenun ikat panjang dan rumit, sehingga kainnya bernilai tinggi.",
         },
         {
           correct: false,
           label:
-            "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang.",
+            "Motif tenun ikat dibuat secara acak tanpa makna tertentu bagi pemakainya maupun daerahnya.",
         },
         {
           correct: false,
           label:
-            "Karena keluhan berkurang, jumlah seluruh percakapan keras pasti turun dengan ukuran yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengelola akan menggunakan angka mayoritas yang berasal dari pengamatan terbaru.",
+            "Benang tenun ikat diwarnai setelah kainnya selesai ditenun oleh para perajin.",
         },
       ],
     },

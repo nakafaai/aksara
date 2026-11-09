@@ -6,29 +6,30 @@ const item: ItemSource = {
     contentDomain: "data-probability",
     topic: "data",
   },
+  stimulus: "travel-time",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$\\frac14$$",
+          label: "$$25\\,\\%$$",
         },
         {
           correct: false,
-          label: "$$\\frac25$$",
+          label: "$$37{,}5\\,\\%$$",
         },
         {
           correct: false,
-          label: "$$\\frac12$$",
+          label: "$$62{,}5\\,\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$77{,}5\\,\\%$$",
         },
         {
           correct: true,
-          label: "$$\\frac13$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac23$$",
+          label: "$$87{,}5\\,\\%$$",
         },
       ],
     },

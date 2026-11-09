@@ -1,42 +1,11 @@
-A cylinder’s volume uses its **radius**, but the question gives its diameter. Match the length units to the flow rate, which is measured in cubic decimetres per minute.
+Check what happens if Gilang is **not** chosen. By rule 1, Fani cannot be chosen either, since Fani always brings Gilang. The four athletes must then come from Hana, Indra, Joko, Kiki, and Lusi.
 
-# Calculating the cylinder volume
+- At most one of Hana and Indra can be chosen (rule 2).
+- At most one of Joko and Kiki can be chosen (rule 3).
+- Lusi adds at most one more.
 
-One metre equals ten decimetres, so the height is <InlineMath math="4.2\times10=42\text{ dm}" />. The diameter is <InlineMath math="3\times10=30\text{ dm}" />, and the **radius is half the diameter**, giving <InlineMath math="30/2=15\text{ dm}" />.
+So without Gilang at most **three** athletes can be chosen, but the team needs four. Gilang is therefore **certainly** chosen.
 
-<MathVisual
-  title="The cylinder base viewed from above"
-  description="The diameter crosses the centre from one edge to the opposite edge. A radius runs only from the centre to one edge, so it is half as long."
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -18, max: 18 }, y: { min: -18, max: 18 } },
-    view: { kind: "fit" },
-    objects: [
-      { id: "base", kind: "circle", center: { x: 0, y: 0 }, radius: 15, appearance: "primary" },
-      { id: "diameter", kind: "segment", from: { x: -15, y: 0 }, to: { x: 15, y: 0 }, appearance: "secondary" },
-      { id: "radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 15 }, appearance: "highlight" },
-    ],
-    labels: [
-      { key: "diameter", objectId: "diameter", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "radius", objectId: "radius", at: { x: 0, y: 7.5 }, placement: "right" },
-    ],
-  }}
-  labels={{
-    diameter: <InlineMath math="d=30\text{ dm}" />,
-    radius: <InlineMath math="r=15\text{ dm}" />,
-  }}
-/>
+No other athlete is certain. For example, the team Gilang, Hana, Joko, and Lusi leaves out Fani, the team Gilang, Indra, Joko, and Lusi leaves out Hana, and the team Fani, Gilang, Hana, and Kiki leaves out both Lusi and Joko. All three teams meet every rule.
 
-<BlockMath math="\begin{aligned}V&amp;=\pi r^2h\\&amp;\approx\frac{22}{7}\times15^2\times42\\&amp;=22\times225\times6\\&amp;=29{,}700\text{ dm}^3\end{aligned}" />
-
-# Converting volume to time
-
-At a **constant flow rate**, the same volume leaves the tank each minute. Divide the full volume by the leakage rate to obtain the time in minutes:
-
-<BlockMath math="t\approx\frac{29{,}700}{12}=2{,}475\text{ min}" />
-
-Separate the minutes into complete hours and a remainder:
-
-<BlockMath math="2{,}475=41\times60+15" />
-
-The approximate emptying time is <InlineMath math="41\text{ hours }15\text{ minutes}" />.
+So the athlete who is certainly chosen is Gilang.

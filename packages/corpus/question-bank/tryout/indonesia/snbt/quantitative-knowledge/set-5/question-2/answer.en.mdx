@@ -1,39 +1,19 @@
-For a <InlineMath math="2\times2" /> determinant, subtract the product of the other diagonal entries from the **product of the main diagonal entries**:
+Each number is a sum of two square roots, and in every case the numbers under the roots add up to 9. Compare the **squares** of the three numbers, because for positive numbers the order of the squares is the order of the numbers.
 
-<BlockMath math="\begin{vmatrix}a&b\\c&d\end{vmatrix}=ad-bc" />
+# Squaring each number
 
-# Calculating the Left Hand Side Determinant
+Use **the square of a sum**, <InlineMath math="(\sqrt p+\sqrt q)^2=p+q+2\sqrt{pq}" />.
 
-First, we calculate the **left determinant**:
+<BlockMath math="\begin{aligned}
+a^2&=2+7+2\sqrt{14}=9+2\sqrt{14}\\
+b^2&=3+6+2\sqrt{18}=9+2\sqrt{18}\\
+c^2&=4+5+2\sqrt{20}=9+2\sqrt{20}
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}&\begin{vmatrix}-6&3\\2&4\end{vmatrix}\\&=(-6)(4)-(3)(2)\end{aligned}" />
+# Comparing the products
 
-<BlockMath math="= -24 - 6" />
+The part 9 is the same in all three, so the order is decided by **the product of the two numbers under the roots**: <InlineMath math="14<18<20" />. Hence <InlineMath math="a^2<b^2<c^2" />, and since all three are positive, <InlineMath math="a<b<c" />.
 
-<BlockMath math="= -30" />
+The order <InlineMath math="c<b<a" /> comes from assuming that the roots of the most spread-out numbers, like 2 and 7, give the largest sum. The other orders contradict <InlineMath math="14<18<20" />. In general, for a fixed total, two numbers that are closer together give a larger sum of square roots.
 
-# Calculating the Right Hand Side Determinant
-
-Next, we calculate the **right determinant** which contains the variable <InlineMath math="x" />:
-
-<BlockMath math="\begin{aligned}&\begin{vmatrix}2x&3\\-4x&-1\end{vmatrix}\\&=(2x)(-1)-(3)(-4x)\end{aligned}" />
-
-<BlockMath math="= -2x - (-12x)" />
-
-<BlockMath math="= -2x + 12x" />
-
-<BlockMath math="= 10x" />
-
-# Determining the Variable Value
-
-Now we **equate both determinant results** according to the original equation:
-
-<BlockMath math="-30 = 10x" />
-
-Divide both sides by <InlineMath math="10" /> to find the value of <InlineMath math="x" />:
-
-<BlockMath math="x = \frac{-30}{10}" />
-
-<BlockMath math="x = -3" />
-
-Thus, the value of <InlineMath math="x" /> that satisfies the equation is <InlineMath math="-3" />.
+So the order from smallest to largest is <InlineMath math="a<b<c" />.

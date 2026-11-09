@@ -1,31 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "time-zones",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label: "$$50$$",
-        },
-        {
-          correct: false,
-          label: "$$55$$",
-        },
-        {
-          correct: true,
-          label: "$$65$$",
-        },
-        {
-          correct: false,
-          label: "$$70$$",
-        },
-        {
-          correct: false,
-          label: "$$75$$",
-        },
-      ],
+      kind: "numericEntry",
+      unit: "menit",
+      value: "145",
     },
   },
 };

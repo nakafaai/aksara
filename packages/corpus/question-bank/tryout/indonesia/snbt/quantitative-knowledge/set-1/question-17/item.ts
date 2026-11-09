@@ -6,24 +6,29 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{1}{10}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{11}{10}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{31}{10}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{41}{10}$$",
-        },
-        {
           correct: true,
-          label: "$$\\frac{1}{10}(x^2+6x+8)^5 + \\frac{21}{10}$$",
+          label:
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (2) saja tidak cukup.",
+        },
+        {
+          correct: false,
+          label:
+            "Pernyataan (2) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (1) saja tidak cukup.",
+        },
+        {
+          correct: false,
+          label:
+            "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
+        },
+        {
+          correct: false,
+          label:
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan dan pernyataan (2) saja cukup.",
+        },
+        {
+          correct: false,
+          label:
+            "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
         },
       ],
     },

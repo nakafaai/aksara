@@ -1,31 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-23
 const item: ItemSource = {
+  stimulus: "volleyball-league",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$220$$",
-        },
-        {
-          correct: false,
-          label: "$$260$$",
-        },
-        {
-          correct: false,
-          label: "$$280$$",
-        },
-        {
-          correct: true,
-          label: "$$240$$",
-        },
-        {
-          correct: false,
-          label: "$$300$$",
-        },
+        { correct: false, label: "$$4$$" },
+        { correct: false, label: "$$5$$" },
+        { correct: false, label: "$$6$$" },
+        { correct: false, label: "$$7$$" },
+        { correct: true, label: "$$8$$" },
       ],
     },
   },

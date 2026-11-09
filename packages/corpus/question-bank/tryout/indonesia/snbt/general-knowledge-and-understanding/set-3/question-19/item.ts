@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "application",
+  },
+  stimulus: "lebah",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Melon",
+        },
+        {
+          correct: false,
+          label: "Kopi",
+        },
+        {
+          correct: false,
+          label: "Apel",
+        },
+        {
           correct: true,
-          label:
-            "Ketepatan pesan dinilai dari terjaganya maksud dan tindakan, bukan dari kesamaan kata demi kata.",
+          label: "Jagung",
         },
         {
           correct: false,
-          label:
-            "Satu terjemahan yang lulus uji kedua pasti dapat digunakan tanpa perubahan di seluruh daerah.",
-        },
-        {
-          correct: false,
-          label:
-            "Terjemahan harus mengikuti setiap kata sumber meskipun warga salah memahami tindakan yang diminta.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim menempatkan tindakan sebelum alasan dalam susunan pesan baru.",
-        },
-        {
-          correct: false,
-          label:
-            "Pesan darurat boleh mengubah tingkat bahaya selama warga lebih mudah mengingat kata-katanya.",
+          label: "Semangka",
         },
       ],
     },

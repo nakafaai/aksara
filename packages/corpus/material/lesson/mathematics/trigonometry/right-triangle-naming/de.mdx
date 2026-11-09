@@ -4,7 +4,7 @@ export const metadata = {
   description: "Bestimme Gegenkathete, Ankathete und Hypotenuse relativ zu einem gewählten spitzen Winkel im rechtwinkligen Dreieck.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Trigonometrie",
 };
 
@@ -13,6 +13,37 @@ export const metadata = {
 In der Trigonometrie des rechtwinkligen Dreiecks beschreibt der Name einer Seite ihre Lage <Highlight>zu einem gewählten spitzen Winkel</Highlight>. Sind die Seiten richtig zugeordnet, lassen sich mit ihren Verhältnissen Entfernungen und Höhen berechnen, die nur schwer direkt messbar sind.
 
 Die Höhe eines Turms kann zum Beispiel als eine Seite eines rechtwinkligen Dreiecks modelliert werden. Eine gemessene waagerechte Entfernung und der Höhenwinkel entscheiden dann, welches trigonometrische Verhältnis gebraucht wird.
+
+So sieht ein solcher Turm als rechtwinkliges Dreieck aus. Aus 40 m Entfernung ist die Sichtlinie zur Spitze eines 30 m hohen Turms die Hypotenuse, <InlineMath math="\sqrt{30^2 + 40^2} = 50" /> m lang. Bezogen auf den Höhenwinkel <InlineMath math="\theta" /> an deinem Auge ist der Turm die Gegenkathete und der Abstand am Boden die Ankathete.
+
+<MathVisual
+  title={<>Ein Turm als rechtwinkliges Dreieck</>}
+  description={<>Ein 30 m hoher Turm aus 40 m Entfernung, mit einer 50 m langen Sichtlinie und dem Höhenwinkel <InlineMath math="\theta" /> beim Beobachter.</>}
+  labels={{
+    tower: <>Turm</>,
+    ground: <>Abstand am Boden</>,
+    sight: <>Sichtlinie</>,
+    theta: <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 46 }, y: { min: -3, max: 34 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "sight", kind: "segment", from: { x: 0, y: 0 }, to: { x: 40, y: 30 }, appearance: "primary" },
+      { id: "tower", kind: "segment", from: { x: 40, y: 0 }, to: { x: 40, y: 30 }, appearance: "secondary" },
+      { id: "ground", kind: "segment", from: { x: 0, y: 0 }, to: { x: 40, y: 0 }, appearance: "construction" },
+      { id: "right", kind: "polygon", vertices: [{ x: 40, y: 0 }, { x: 75 / 2, y: 0 }, { x: 75 / 2, y: 5 / 2 }, { x: 40, y: 5 / 2 }], appearance: "reference" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 6, startDegrees: 0, sweepDegrees: Math.atan2(30, 40) * 180 / Math.PI, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "sight", objectId: "sight", at: { x: 20, y: 15 }, placement: "above-left" },
+      { key: "tower", objectId: "tower", at: { x: 40, y: 15 }, placement: "right" },
+      { key: "ground", objectId: "ground", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "theta", objectId: "theta", at: { x: 6 * Math.cos(Math.atan2(30, 40) / 2), y: 6 * Math.sin(Math.atan2(30, 40) / 2) }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Drei Seitennamen in einem rechtwinkligen Dreieck
 
@@ -25,19 +56,38 @@ Wähle einen der beiden spitzen Winkel als Bezugswinkel. Ist dieser Winkel <Inli
 3. **Hypotenuse**: die Seite gegenüber dem rechten Winkel, <InlineMath math="90^\circ" />. Sie ist immer die längste Seite eines rechtwinkligen Dreiecks.
 
 <ContentBlock>
-  <Triangle
-    title="Rechtwinkliges Dreieck"
-    description={
-      <>
-        Rechtwinkliges Dreieck mit dem Winkel <InlineMath math="\theta" /> sowie
-        Gegenkathete, Ankathete und Hypotenuse.
-      </>
-    }
-    angle={30}
+  <MathVisual
+    title={<>Seitennamen bezogen auf <InlineMath math="\theta" /></>}
+    description={<>Ein rechtwinkliges Dreieck mit dem Bezugswinkel <InlineMath math="\theta = 30^\circ" /> bei <InlineMath math="A" />: die Hypotenuse <InlineMath math="AB" />, die Gegenkathete <InlineMath math="BC" /> und die Ankathete <InlineMath math="AC" />.</>}
     labels={{
-      opposite: "Gegenkathete",
-      adjacent: "Ankathete",
-      hypotenuse: "Hypotenuse",
+      opp: <>Gegenkathete</>,
+      adj: <>Ankathete</>,
+      hyp: <>Hypotenuse</>,
+      theta: <InlineMath math="\theta" />,
+      a: <InlineMath math="A" />,
+      b: <InlineMath math="B" />,
+      c: <InlineMath math="C" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 6.4 }, y: { min: -0.7, max: 3.6 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "hyp", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "primary" },
+        { id: "opp", kind: "segment", from: { x: 3 * Math.sqrt(3), y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "secondary" },
+        { id: "adj", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 0 }, appearance: "construction" },
+        { id: "right", kind: "polygon", vertices: [{ x: 3 * Math.sqrt(3), y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 7 / 20 }, { x: 3 * Math.sqrt(3), y: 7 / 20 }], appearance: "reference" },
+        { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 30, appearance: "highlight" },
+      ],
+      labels: [
+        { key: "hyp", objectId: "hyp", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "above-left" },
+        { key: "opp", objectId: "opp", at: { x: 3 * Math.sqrt(3), y: 3 / 2 }, placement: "right" },
+        { key: "adj", objectId: "adj", at: { x: 3 * Math.sqrt(3) / 2, y: 0 }, placement: "below" },
+        { key: "theta", objectId: "theta", at: { x: Math.cos(Math.PI / 12), y: Math.sin(Math.PI / 12) }, placement: "right" },
+        { key: "a", objectId: "hyp", at: { x: 0, y: 0 }, placement: "below-left" },
+        { key: "b", objectId: "hyp", at: { x: 3 * Math.sqrt(3), y: 3 }, placement: "above-right" },
+        { key: "c", objectId: "right", at: { x: 3 * Math.sqrt(3), y: 0 }, placement: "below-right" },
+      ],
     }}
   />
 </ContentBlock>
@@ -56,3 +106,40 @@ Im Dreieck <InlineMath math="ABC" /> liege der rechte Winkel bei <InlineMath mat
 | <InlineMath math="B" /> | <InlineMath math="AC" /> | <InlineMath math="BC" /> | <InlineMath math="AB" /> |
 
 Die Tabelle zeigt den **Tausch der Kathetennamen**. Wechselst du vom Winkel <InlineMath math="A" /> zum Winkel <InlineMath math="B" />, bleibt die Länge von <InlineMath math="BC" /> gleich. Aus der Gegenkathete wird die Ankathete.
+
+Verschieb den Bezugswinkel nach <InlineMath math="B" /> und sieh noch einmal hin. <InlineMath math="AB" /> bleibt die Hypotenuse, weil sie dem rechten Winkel bei <InlineMath math="C" /> gegenüberliegt, aber <InlineMath math="AC" /> ist jetzt die Gegenkathete und <InlineMath math="BC" /> die Ankathete.
+
+<MathVisual
+  title={<>Dasselbe Dreieck, vom Winkel <InlineMath math="B" /> aus gesehen</>}
+  description={<>Das Dreieck <InlineMath math="ABC" /> mit dem rechten Winkel bei <InlineMath math="C" /> und dem Bezugswinkel bei <InlineMath math="B" />: <InlineMath math="AC" /> ist Gegenkathete, <InlineMath math="BC" /> Ankathete, <InlineMath math="AB" /> Hypotenuse.</>}
+  labels={{
+    opp: <>Gegenkathete</>,
+    adj: <>Ankathete</>,
+    hyp: <>Hypotenuse</>,
+    theta: <InlineMath math="\theta" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 6.4 }, y: { min: -0.7, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "hyp", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "primary" },
+      { id: "adj", kind: "segment", from: { x: 3 * Math.sqrt(3), y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "construction" },
+      { id: "opp", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 0 }, appearance: "secondary" },
+      { id: "right", kind: "polygon", vertices: [{ x: 3 * Math.sqrt(3), y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 7 / 20 }, { x: 3 * Math.sqrt(3), y: 7 / 20 }], appearance: "reference" },
+      { id: "theta", kind: "arc", center: { x: 3 * Math.sqrt(3), y: 3 }, radius: 4 / 5, startDegrees: 210, sweepDegrees: 60, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "hyp", objectId: "hyp", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "above-left" },
+      { key: "opp", objectId: "opp", at: { x: 3 * Math.sqrt(3) / 2, y: 0 }, placement: "below" },
+      { key: "adj", objectId: "adj", at: { x: 3 * Math.sqrt(3), y: 3 / 2 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 3 * Math.sqrt(3) - 0.5, y: 3 - 0.8 }, placement: "below-left" },
+      { key: "a", objectId: "hyp", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "hyp", at: { x: 3 * Math.sqrt(3), y: 3 }, placement: "above-right" },
+      { key: "c", objectId: "right", at: { x: 3 * Math.sqrt(3), y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>

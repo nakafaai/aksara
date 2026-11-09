@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "bakau",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "pencernaan sempurna.",
+          column: 1,
+          label: "Akar mangrove membantu menahan lumpur di tepi pantai.",
         },
         {
-          correct: true,
-          label: "penyerapan yang tidak sempurna.",
+          column: 2,
+          label:
+            "Penanaman kembali mangrove selalu berhasil di pesisir mana pun.",
         },
         {
-          correct: false,
-          label: "fermentasi cepat.",
+          column: 1,
+          label:
+            "Tambak yang dibuat dengan menebang mangrove lebih mudah terkikis gelombang.",
         },
         {
-          correct: false,
-          label: "produksi enzim berlebih.",
-        },
-        {
-          correct: false,
-          label: "kesukaan terhadap makanan.",
+          column: 2,
+          label:
+            "Pemecah ombak bambu dipasang untuk menggantikan hutan mangrove secara permanen.",
         },
       ],
     },

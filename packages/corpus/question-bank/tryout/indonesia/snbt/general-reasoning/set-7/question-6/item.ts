@@ -1,6 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "explanation",
+  },
+  stimulus: "klinik",
   versions: {
     id: {
       kind: "choice",
@@ -8,27 +14,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Lampu itu lebih tahan lama dan lebih mahal daripada lampu teras.",
+            "Kunjungan anjing pada bulan April naik dibandingkan bulan Maret.",
         },
         {
           correct: false,
-          label:
-            "Lampu itu kurang tahan lama, tetapi lebih mahal daripada lampu teras.",
-        },
-        {
-          correct: false,
-          label:
-            "Lampu itu lebih tahan lama, tetapi lebih murah daripada lampu teras.",
-        },
-        {
-          correct: false,
-          label:
-            "Lampu itu sama tahan lama dan sama mahalnya dengan lampu teras.",
+          label: "Klinik itu menambah seorang dokter hewan pada bulan Juni.",
         },
         {
           correct: true,
           label:
-            "Lampu itu kurang tahan lama dan lebih murah daripada lampu teras.",
+            "Kucing yang divaksin pertama kali pada bulan Maret kembali untuk vaksin kedua empat minggu kemudian.",
+        },
+        {
+          correct: false,
+          label:
+            "Pemilik kucing di kota itu umumnya lebih senang membawa kucingnya ke klinik ketika cuaca sedang cerah.",
+        },
+        {
+          correct: false,
+          label: "Tarif pemeriksaan anjing dinaikkan pada awal bulan April.",
         },
       ],
     },

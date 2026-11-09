@@ -4,7 +4,7 @@ export const metadata = {
   description: "Use centers, directions, and angles to rotate points and lines while preserving distances and shape.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Geometric Transformation",
 };
 
@@ -24,6 +24,38 @@ The center <InlineMath math="C" /> **remains fixed**. For a point <InlineMath ma
 Angles differing by a full turn give the same image. For example, a <InlineMath math="90^\circ" /> counterclockwise turn gives the same result as a <InlineMath math="270^\circ" /> clockwise turn:
 
 <BlockMath math="90^\circ-360^\circ=-270^\circ" />
+
+Turn <InlineMath math="P(4, 1)" /> about <InlineMath math="C(1, 1)" /> through <InlineMath math="90^\circ" />. The center stays fixed, the distance <InlineMath math="CP = CP' = 3" /> does not change, and the direction from <InlineMath math="C" /> turns a quarter turn counterclockwise, so <InlineMath math="P" /> lands at <InlineMath math="P'(1, 4)" />.
+
+<MathVisual
+  title={<>A quarter turn about <InlineMath math="C(1, 1)" /></>}
+  description={<>The point <InlineMath math="P(4, 1)" /> rotated <InlineMath math="90^\circ" /> counterclockwise about <InlineMath math="C(1, 1)" /> to <InlineMath math="P'(1, 4)" />, with both radii of length 3.</>}
+  labels={{
+    c: <InlineMath math="C(1, 1)" />,
+    p: <InlineMath math="P(4, 1)" />,
+    image: <InlineMath math="P'(1, 4)" />,
+    turn: <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "cp", kind: "segment", from: { x: 1, y: 1 }, to: { x: 4, y: 1 }, appearance: "construction" },
+      { id: "ci", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 4 }, appearance: "construction" },
+      { id: "turn", kind: "arc", center: { x: 1, y: 1 }, radius: 3, startDegrees: 0, sweepDegrees: 90, appearance: "highlight" },
+      { id: "c", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "p", kind: "point", at: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 1, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "c", objectId: "c", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "p", objectId: "p", at: { x: 4, y: 1 }, placement: "below" },
+      { key: "image", objectId: "image", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "turn", objectId: "turn", at: { x: 1 + 3 / Math.sqrt(2), y: 1 + 3 / Math.sqrt(2) }, placement: "above-right" },
+    ],
+  }}
+/>
 
 ## Rotation about the Origin
 
@@ -58,59 +90,32 @@ Use a **positive angle** for this counterclockwise turn:
 
 The image of point <InlineMath math="B(0,4)" /> is <InlineMath math="B'(-4,0)" />.
 
-<LineEquation
-  title={
-    <>
-      Rotation of Point <InlineMath math="B(0,4)" /> by{" "}
-      <InlineMath math="90^\circ" /> about the Origin
-    </>
-  }
-  description={
-    <>
-      Visualization of rotating point <InlineMath math="B(0,4)" /> to{" "}
-      <InlineMath math="B'(-4,0)" /> by <InlineMath math="90^\circ" />{" "}
-      counter-clockwise around the origin <InlineMath math="O(0,0)" />.
-    </>
-  }
-  data={[
-    { points: Array.from({ length: 33 }, (_, i) => { const angle = Math.PI / 2 + i * Math.PI / 64; return { x: 4 * Math.cos(angle), y: 4 * Math.sin(angle), z: 0 }; }), smooth: false, showPoints: false, color: "#d97706", cone: { position: "end", size: 0.2 }, labels: [{ text: <InlineMath math="90^\circ" />, at: 16, offset: [-0.3, 0.3, 0] }] },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [0.5, -0.6, 0] }],
-    }, // Center of Rotation
-    {
-      points: [{ x: 0, y: 4, z: 0 }],
-      color: "#0284c7",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B(0,4)" />, at: 0, offset: [0.3, 0.3, 0] }],
-    }, // Original Point
-    {
-      points: [{ x: -4, y: 0, z: 0 }],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B'(-4,0)" />, at: 0, offset: [-0.1, -0.6, 0] }],
-    }, // Image Point
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-    }, // Line OB
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: -4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-    }, // Line OB'
-  ]}
-  cameraPosition={[-2, 2, 9]}
-  cameraTarget={[-2, 2, 0]}
+<MathVisual
+  title={<>A quarter turn of <InlineMath math="B(0, 4)" /> about the origin</>}
+  description={<><InlineMath math="B(0, 4)" /> turns <InlineMath math="90^\circ" /> counterclockwise about <InlineMath math="O" /> to <InlineMath math="B'(-4, 0)" />. Both points are 4 units from <InlineMath math="O" />.</>}
+  labels={{
+    b: <InlineMath math="B(0, 4)" />,
+    image: <InlineMath math="B'(-4, 0)" />,
+    turn: <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 1.5 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ob", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 4 }, appearance: "construction" },
+      { id: "oi", kind: "segment", from: { x: 0, y: 0 }, to: { x: -4, y: 0 }, appearance: "construction" },
+      { id: "turn", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 90, sweepDegrees: 90, appearance: "highlight" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "b", kind: "point", at: { x: 0, y: 4 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b", objectId: "b", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -4, y: 0 }, placement: "below" },
+      { key: "turn", objectId: "turn", at: { x: -2 * Math.sqrt(2), y: 2 * Math.sqrt(2) }, placement: "above-left" },
+    ],
+  }}
 />
 
 ## Rotating a Line by a Quarter Turn
@@ -135,51 +140,33 @@ Substitute <InlineMath math="x = y'" /> and <InlineMath math="y = -x'" /> into t
 
 Replacing <InlineMath math="x'" /> and <InlineMath math="y'" /> back to <InlineMath math="x" /> and <InlineMath math="y" />, the equation of the image line is <InlineMath math="-x = 2y" /> or <InlineMath math="y = -\frac{1}{2}x" />.
 
-<LineEquation
-  title={
-    <>
-      Rotation of Line <InlineMath math="y=2x" /> by{" "}
-      <InlineMath math="90^\circ" /> about the Origin
-    </>
-  }
-  description={
-    <>
-      Original line <InlineMath math="y=2x" /> rotated{" "}
-      <InlineMath math="90^\circ" /> results in image line{" "}
-      <InlineMath math="y = -\frac{1}{2}x" />.
-    </>
-  }
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#e11d48",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [0.5, -0.5, 0] }],
-    }, // Center of Rotation
-    {
-      // Original Line: y = 2x
-      points: Array.from({ length: 13 }, (_, pointIndex) => {
-        const xVal = (pointIndex - 6) * 0.25;
-        return { x: xVal, y: 2 * xVal, z: 0 };
-      }),
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y=2x" />, at: 9, offset: [1, 0.5, 0] }],
-    },
-    {
-      // Image Line: y = -1/2 x
-      points: Array.from({ length: 13 }, (_, pointIndex) => {
-        const xVal = (pointIndex - 6) * 0.5;
-        return { x: xVal, y: (-1 / 2) * xVal, z: 0 };
-      }),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y=(-\frac{1}{2})x" />, at: 2, offset: [0.3, 0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 10]}
+<MathVisual
+  title={<>The line <InlineMath math="y = 2x" /> after a quarter turn</>}
+  description={<>The line <InlineMath math="y = 2x" /> and its image <InlineMath math="y = -\tfrac12 x" /> after a <InlineMath math="90^\circ" /> rotation about the origin, with the point <InlineMath math="(1, 2)" /> turning to <InlineMath math="(-2, 1)" />.</>}
+  labels={{
+    l: <InlineMath math="y = 2x" />,
+    "image-line": <InlineMath math="y = -\tfrac12 x" />,
+    a: <InlineMath math="(1, 2)" />,
+    image: <InlineMath math="(-2, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -2, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "l", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "image-line", kind: "line", through: [{ x: 0, y: 0 }, { x: -2, y: 1 }], appearance: "secondary" },
+      { id: "turn", kind: "arc", center: { x: 0, y: 0 }, radius: Math.sqrt(5), startDegrees: Math.atan2(2, 1) * 180 / Math.PI, sweepDegrees: 90, appearance: "highlight" },
+      { id: "a", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: -2, y: 1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l", objectId: "l", at: { x: 7 / 5, y: 14 / 5 }, placement: "right" },
+      { key: "image-line", objectId: "image-line", at: { x: -14 / 5, y: 7 / 5 }, placement: "above" },
+      { key: "a", objectId: "a", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -2, y: 1 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Exercises

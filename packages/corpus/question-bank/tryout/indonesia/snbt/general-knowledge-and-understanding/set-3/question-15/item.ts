@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "bunga",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Tim menempatkan tindakan sebelum alasan dalam susunan pesan baru.",
+          column: 2,
+          label: "Pada bunga tunggal, bunga dihitung dari saldo terbaru.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Satu terjemahan yang lulus uji kedua pasti dapat digunakan tanpa perubahan di seluruh daerah.",
+            "Bunga yang tidak dibayar dapat membuat utang kartu kredit bertambah cepat.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Pesan darurat perlu mempertahankan makna dan tindakan melalui bahasa yang dipahami warga, bukan sekadar menyalin urutan kata resmi.",
+            "Selisih hasil bunga tunggal dan bunga majemuk sudah sangat besar sejak tahun pertama.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Terjemahan harus mengikuti setiap kata sumber meskipun warga salah memahami tindakan yang diminta.",
-        },
-        {
-          correct: false,
-          label:
-            "Setiap versi akan diuji lagi bersama warga sebelum digunakan.",
+            "Menabung lebih awal memberi waktu lebih panjang bagi bunga untuk berlipat.",
         },
       ],
     },

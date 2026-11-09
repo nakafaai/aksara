@@ -1,37 +1,20 @@
-# Mencari Jumlah Siswa Laki-laki dan Perempuan
+Titik dipilih menurut luas, jadi peluangnya adalah **luas daerah yang memenuhi dibagi luas seluruh segitiga**.
 
-Diketahui **jumlah total siswa** adalah <InlineMath math="50" />.
-Misalkan <InlineMath math="n_L" /> adalah jumlah siswa laki-laki dan <InlineMath math="n_P" /> adalah jumlah siswa perempuan.
-Diketahui juga jumlah siswa perempuan <InlineMath math="4" /> lebih banyak dari siswa laki-laki, sehingga:
+# Daerah yang memenuhi
 
-<BlockMath math="n_P = n_L + 4" />
+Garis <InlineMath math="x+y=2" /> memotong kedua sisi siku-siku di <InlineMath math="(2,0)" /> dan <InlineMath math="(0,2)" />. Titik dengan <InlineMath math="x+y<2" /> membentuk **segitiga kecil di dekat titik asal** dengan titik sudut <InlineMath math="(0,0)" />, <InlineMath math="(2,0)" />, dan <InlineMath math="(0,2)" />.
 
-Karena total siswa adalah <InlineMath math="50" />, maka:
+<BlockMath math="\begin{aligned}
+L_{\text{kecil}}&=\tfrac12\cdot2\cdot2=2\\
+L_{\text{besar}}&=\tfrac12\cdot4\cdot4=8
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned} n_L + n_P &= 50 \\ n_L + (n_L + 4) &= 50 \\ 2n_L + 4 &= 50 \\ 2n_L &= 46 \\ n_L &= 23 \end{aligned}" />
+# Peluang
 
-Sehingga jumlah siswa perempuan adalah:
+<BlockMath math="P=\frac{2}{8}=\frac14" />
 
-<BlockMath math="\begin{aligned}n_P&=23 + 4\\&=27\end{aligned}" />
+Segitiga kecil sebangun dengan segitiga besar dengan perbandingan sisi <InlineMath math="1:2" />, jadi **perbandingan luasnya <InlineMath math="1:4" />**.
 
-# Menghitung Total Nilai
+Nilai <InlineMath math="\tfrac12" /> memakai perbandingan sisi, bukan perbandingan luas. Nilai <InlineMath math="\tfrac34" /> adalah peluang kejadian sebaliknya, dan <InlineMath math="\tfrac18" /> membagi dengan luas persegi berukuran 4 kali 4.
 
-Diketahui rata-rata nilai siswa laki-laki (<InlineMath math="\bar{x}_L" />) adalah <InlineMath math="76" />. Maka **total nilai siswa laki-laki** adalah:
-
-<BlockMath math="\begin{aligned}S_L&=n_L \times \bar{x}_L\\&=23 \times 76\\&=1748\end{aligned}" />
-
-Diketahui rata-rata seluruh kelas (<InlineMath math="\bar x" />) adalah <InlineMath math="70" />. Maka total nilai seluruh kelas adalah:
-
-<BlockMath math="\begin{aligned}S&=50 \times 70\\&=3500\end{aligned}" />
-
-# Menghitung Rata-rata Siswa Perempuan
-
-Total nilai siswa perempuan dapat dicari dengan **mengurangi total nilai kelas dengan total nilai siswa laki-laki**:
-
-<BlockMath math="\begin{aligned}S_P&=3500 - 1748\\&=1752\end{aligned}" />
-
-Maka, rata-rata nilai siswa perempuan (<InlineMath math="\bar{x}_P" />) adalah:
-
-<BlockMath math="\begin{aligned}\bar{x}_P&=\frac{S_P}{n_P}\\&=\frac{1752}{27}\\&=64{,}\overline{8}\\&\approx 64{,}89\end{aligned}" />
-
-Jadi, setelah dibulatkan sampai dua angka di belakang koma, nilai rata-rata siswa perempuan adalah <InlineMath math="64{,}89" />.
+Jadi, peluang titik terpilih memenuhi <InlineMath math="x+y<2" /> adalah **<InlineMath math="\tfrac14" />**.

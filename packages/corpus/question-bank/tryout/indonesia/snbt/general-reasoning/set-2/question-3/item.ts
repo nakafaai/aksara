@@ -1,29 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "inductive-reasoning",
+    topic: "inference",
+  },
+  stimulus: "sekolah",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Warga kehilangan motor",
+          column: 1,
+          label:
+            "Selisih jam masuk kedua kelompok sekolah adalah $$45$$ menit.",
         },
         {
-          correct: false,
-          label: "Warga resah dan gelisah",
+          column: 1,
+          label:
+            "Angka keterlambatan di sekolah yang memundurkan jam masuk turun lebih dari separuhnya.",
         },
         {
-          correct: true,
-          label: "Petugas keamanan berpatroli secara rutin",
+          column: 2,
+          label:
+            "Siswa di sekolah yang tetap masuk pukul $$06.30$$ tidur lebih lama daripada tahun sebelumnya.",
         },
         {
-          correct: false,
-          label: "Hampir setiap minggu terjadi pencurian di Gang Mawar",
-        },
-        {
-          correct: false,
-          label: "Petugas keamanan tidak berpatroli secara rutin",
+          column: 2,
+          label:
+            "Perubahan jam masuk membuat semua kegiatan di sekolah tersebut berakhir menjelang magrib.",
         },
       ],
     },

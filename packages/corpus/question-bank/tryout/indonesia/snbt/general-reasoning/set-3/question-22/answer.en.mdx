@@ -1,11 +1,18 @@
-Adding water increases the mixture volume to
+Count the matches **by direction**, because every match is either horizontal or vertical.
 
-<BlockMath math="50+5=55\,\text{L}" />
+A big <InlineMath math="n\times n" /> square has <InlineMath math="n+1" /> horizontal lines, each made of <InlineMath math="n" /> matches. In the same way there are <InlineMath math="n+1" /> vertical lines of <InlineMath math="n" /> matches each. So
 
-Only water evaporates, so the **solute amount remains unchanged**. Before evaporation, it is
+<BlockMath math="\text{number of matches}=n(n+1)+n(n+1)=2n(n+1)" />
 
-<BlockMath math="0.20\times55=11\,\text{L}" />
+Check with the table: <InlineMath math="2(1)(2)=4" />, <InlineMath math="2(2)(3)=12" />, and <InlineMath math="2(3)(4)=24" />. The formula fits all three patterns. For pattern <InlineMath math="10" />:
 
-Evaporation then returns the total volume to <InlineMath math="55-5=50\,\text{L}" />. The concentration after evaporation is therefore
+<BlockMath math="2(10)(11)=220" />
 
-<BlockMath math="\frac{11}{50}\times100\%=22\%" />
+The other options come from these mistakes:
+
+- <InlineMath math="110" /> counts matches in one direction only, such as the horizontal ones.
+- <InlineMath math="200" /> uses <InlineMath math="2n^2" />, as if there were only <InlineMath math="n" /> lines in each direction, although the edge lines count too.
+- <InlineMath math="242" /> uses <InlineMath math="2(n+1)^2" />, treating each line as <InlineMath math="n+1" /> matches long.
+- <InlineMath math="400" /> counts <InlineMath math="4" /> matches for every small square, so shared sides are counted twice.
+
+So pattern <InlineMath math="10" /> needs <InlineMath math="220" /> matches.

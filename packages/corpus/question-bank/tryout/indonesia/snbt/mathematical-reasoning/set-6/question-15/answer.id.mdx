@@ -1,51 +1,15 @@
-# Memodelkan jumlah truk dan muatan
+Untuk setiap tanggal, hitung **banyak hari setelah 1 Januari 2027**, lalu geser hari Jumat sejauh sisa pembagian oleh 7.
 
-Karena setiap truk **terisi penuh**, jumlah seluruh kapasitas truk sama dengan berat barang. Variabel menyatakan banyak truk setiap jenis.
+# Akhir tahun dan awal tahun berikutnya
 
-| Jenis | Banyak truk | Kapasitas setiap truk |
-| --- | --- | --- |
-| I | <InlineMath math="x=4" /> | <InlineMath math="3\text{ t}" /> |
-| II | <InlineMath math="y" /> | <InlineMath math="4\text{ t}" /> |
-| III | <InlineMath math="z" /> | <InlineMath math="6\text{ t}" /> |
+31 Desember adalah 364 hari setelah 1 Januari, dan <InlineMath math="364=7\cdot52" /> habis dibagi 7. Jadi 31 Desember jatuh pada hari Jumat, dan pernyataan kedua benar.
 
-<BlockMath math="x+y+z=20\quad(1)" />
+1 Januari 2028 adalah 365 hari setelah 1 Januari 2027, dan <InlineMath math="365=7\cdot52+1" />. Harinya **bergeser satu dari Jumat**, yaitu Sabtu. Pernyataan pertama benar.
 
-<BlockMath math="3x+4y+6z=96\quad(2)" />
+# Tanggal 1 Maret dan banyak hari Sabtu
 
-# Menyelesaikan Sistem Persamaan
+1 Maret adalah <InlineMath math="31+28=59" /> hari setelah 1 Januari, dan <InlineMath math="59=7\cdot8+3" />. Tiga hari setelah Jumat adalah Senin, **bukan Minggu**. Pernyataan ketiga salah.
 
-Substitusi nilai <InlineMath math="x = 4" /> ke persamaan (1):
+Karena <InlineMath math="365=7\cdot52+1" />, hanya hari Jumat yang muncul 53 kali. Hari Sabtu muncul 52 kali, jadi pernyataan keempat salah.
 
-<BlockMath math="4 + y + z = 20" />
-
-<BlockMath math="y + z = 16 \quad (3)" />
-
-Substitusi nilai <InlineMath math="x = 4" /> ke persamaan (2):
-
-<BlockMath math="3(4) + 4y + 6z = 96" />
-
-<BlockMath math="12 + 4y + 6z = 96" />
-
-<BlockMath math="4y + 6z = 84" />
-
-Sederhanakan persamaan di atas dengan membagi kedua ruas dengan <InlineMath math="2" />:
-
-<BlockMath math="2y + 3z = 42 \quad (4)" />
-
-Samakan **koefisien variabel yang dieliminasi**. Untuk menghilangkan <InlineMath math="z" />, kalikan persamaan (3) dengan <InlineMath math="3" />. Koefisien <InlineMath math="z" /> pada kedua persamaan menjadi sama:
-
-<BlockMath math="\begin{aligned}3(y+z)&=3(16) \\ 3y+3z&=48 \\ 2y+3z&=42\end{aligned}" />
-
-Kurangkan persamaan kedua dari persamaan pertama:
-
-<BlockMath math="\begin{aligned}&(3y+3z)-(2y+3z) \\ &\quad=48-42\end{aligned}" />
-
-<BlockMath math="y = 6" />
-
-Jadi, banyak truk jenis <InlineMath math="\text{II}" /> yang disewa adalah <InlineMath math="6" />.
-
-Sebagai pemeriksaan, <InlineMath math="z=16-6=10" />.
-
-<BlockMath math="4+6+10=20" />
-
-<BlockMath math="3(4)+4(6)+6(10)=12+24+60=96" />
+Jadi, pernyataan pertama **benar**, kedua **benar**, ketiga **salah**, dan keempat **salah**.

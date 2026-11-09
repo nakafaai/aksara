@@ -5,26 +5,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$1$$, $$2$$, dan $$3$$",
-        },
-        {
-          correct: false,
-          label: "$$1$$ dan $$3$$",
-        },
-        {
-          correct: false,
-          label: "$$2$$ dan $$4$$",
-        },
-        {
-          correct: false,
-          label: "$$4$$ saja",
-        },
-        {
-          correct: false,
-          label: "$$1$$, $$2$$, $$3$$, dan $$4$$",
-        },
+        { correct: false, label: "$$\\dfrac{3}{10}$$" },
+        { correct: false, label: "$$\\dfrac{2}{5}$$" },
+        { correct: false, label: "$$\\dfrac{1}{2}$$" },
+        { correct: false, label: "$$\\dfrac{3}{5}$$" },
+        { correct: true, label: "$$\\dfrac{3}{4}$$" },
       ],
     },
   },

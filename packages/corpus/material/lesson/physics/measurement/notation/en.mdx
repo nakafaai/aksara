@@ -43,6 +43,45 @@ If <Highlight>the decimal point moves left</Highlight>, the exponent is positive
 0.000764 &= 7.64 \times 10^{-4}
 \end{aligned}" />
 
+Here every value sits at its exponent <InlineMath math="n" /> across and its coefficient <InlineMath math="a" /> up. Values in standard form land between the two gray lines, because <InlineMath math="1 \le a < 10" />. Now find the fuchsia arrow: <InlineMath math="10.0\times10^{-13}" /> from the multiplication at the end of this lesson sits on the top line, outside the band, and one decimal move takes it inside as <InlineMath math="1.0\times10^{-12}" />.
+
+<MathVisual
+  title={<>Every Value in Standard Form</>}
+  description={<>Each point is a value written as <InlineMath math="a\times10^n" />, placed at its exponent n across and its coefficient a up. The gray lines mark <InlineMath math="a=1" /> and <InlineMath math="a=10" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 9 }, y: { min: 0, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "band-1", kind: "segment", appearance: "reference", from: { x: -14, y: 1 }, to: { x: 7, y: 1 } },
+      { id: "band-10", kind: "segment", appearance: "reference", from: { x: -14, y: 10 }, to: { x: 7, y: 10 } },
+      { id: "big", kind: "point", appearance: "primary", at: { x: 6, y: 7.64 } },
+      { id: "small", kind: "point", appearance: "secondary", at: { x: -4, y: 7.64 } },
+      { id: "tiny", kind: "point", appearance: "construction", at: { x: -7, y: 9.11 } },
+      { id: "fix", kind: "segment", appearance: "answer", from: { x: -13, y: 10 }, to: { x: -12, y: 1 } },
+      { id: "fix-head", kind: "polygon", appearance: "answer", vertices: [{ x: -12, y: 1 }, { x: -12 - (0.3 * 1) / Math.hypot(1, -9) + ((0.3 / 2) * 9) / Math.hypot(1, -9), y: 1 - (0.3 * -9) / Math.hypot(1, -9) + ((0.3 / 2) * 1) / Math.hypot(1, -9) }, { x: -12 - (0.3 * 1) / Math.hypot(1, -9) - ((0.3 / 2) * 9) / Math.hypot(1, -9), y: 1 - (0.3 * -9) / Math.hypot(1, -9) - ((0.3 / 2) * 1) / Math.hypot(1, -9) }] },
+    ],
+    labels: [
+      { key: "one", objectId: "band-1", at: { x: 7, y: 1 }, placement: "right" },
+      { key: "ten", objectId: "band-10", at: { x: 7, y: 10 }, placement: "right" },
+      { key: "big", objectId: "big", at: { x: 6, y: 7.64 }, placement: "above" },
+      { key: "small", objectId: "small", at: { x: -4, y: 7.64 }, placement: "below" },
+      { key: "tiny", objectId: "tiny", at: { x: -7, y: 9.11 }, placement: "above" },
+      { key: "raw", objectId: "fix", at: { x: -13, y: 10 }, placement: "above" },
+      { key: "fixed", objectId: "fix", at: { x: -12, y: 1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    one: <InlineMath math="a=1" />,
+    ten: <InlineMath math="a=10" />,
+    big: <InlineMath math="7.64\times10^{6}" />,
+    small: <InlineMath math="7.64\times10^{-4}" />,
+    tiny: <InlineMath math="9.11\times10^{-7}" />,
+    raw: <InlineMath math="10.0\times10^{-13}" />,
+    fixed: <InlineMath math="1.0\times10^{-12}" />,
+  }}
+/>
+
 ## Significant Figures in the Coefficient
 
 In scientific notation, read the **significant figures from the coefficient**. The power of <InlineMath math="10" /> sets the scale.
@@ -76,6 +115,47 @@ The measured diameter supports <InlineMath math="3" /> significant figures, so t
 
 > Be careful with powered units. The conversion factor is powered too. From <InlineMath math="\text{cm}" /> to <InlineMath math="\text{m}" />, the factor is <InlineMath math="10^{-2}" />, but from <InlineMath math="\text{cm}^2" /> to <InlineMath math="\text{m}^2" />, the factor is <InlineMath math="10^{-4}" />.
 
+A powered unit takes the power of the conversion factor too. One centimeter is <InlineMath math="10\text{ mm}" />, so one square centimeter holds <InlineMath math="10\times10=100" /> square millimeters, and in the same way <InlineMath math="1\text{ cm}^2=10^{-4}\text{ m}^2" />. Zoom in and count a row.
+
+<MathVisual
+  title={<>Converting a Powered Unit</>}
+  description={<>One square centimeter divided into square millimeters.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -1.5, max: 11.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 10 }, { x: 0, y: 10 }] },
+      { id: "v1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 10 } },
+      { id: "v2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 10 } },
+      { id: "v3", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 10 } },
+      { id: "v4", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 10 } },
+      { id: "v5", kind: "segment", appearance: "reference", from: { x: 5, y: 0 }, to: { x: 5, y: 10 } },
+      { id: "v6", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 10 } },
+      { id: "v7", kind: "segment", appearance: "reference", from: { x: 7, y: 0 }, to: { x: 7, y: 10 } },
+      { id: "v8", kind: "segment", appearance: "reference", from: { x: 8, y: 0 }, to: { x: 8, y: 10 } },
+      { id: "v9", kind: "segment", appearance: "reference", from: { x: 9, y: 0 }, to: { x: 9, y: 10 } },
+      { id: "h1", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 10, y: 1 } },
+      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 10, y: 2 } },
+      { id: "h3", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 10, y: 3 } },
+      { id: "h4", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 10, y: 4 } },
+      { id: "h5", kind: "segment", appearance: "reference", from: { x: 0, y: 5 }, to: { x: 10, y: 5 } },
+      { id: "h6", kind: "segment", appearance: "reference", from: { x: 0, y: 6 }, to: { x: 10, y: 6 } },
+      { id: "h7", kind: "segment", appearance: "reference", from: { x: 0, y: 7 }, to: { x: 10, y: 7 } },
+      { id: "h8", kind: "segment", appearance: "reference", from: { x: 0, y: 8 }, to: { x: 10, y: 8 } },
+      { id: "h9", kind: "segment", appearance: "reference", from: { x: 0, y: 9 }, to: { x: 10, y: 9 } },
+    ],
+    labels: [
+      { key: "side", objectId: "square", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "area", objectId: "square", at: { x: 5, y: 10 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    side: <InlineMath math="1\text{ cm}=10\text{ mm}" />,
+    area: <InlineMath math="1\text{ cm}^2=(10\text{ mm})^2=100\text{ mm}^2" />,
+  }}
+/>
+
 ## Calculations with Scientific Notation
 
 In scientific notation, **multiply the coefficients and add the exponents** of <InlineMath math="10" /> separately.
@@ -92,3 +172,35 @@ A &= (2.5 \times 10^{-6})(4.0 \times 10^{-7}) \text{ m}^2 \\
 The last step does two jobs. The coefficient <InlineMath math="10.0" /> is not in standard form because it is not less than <InlineMath math="10" />, and both measured lengths carry only <InlineMath math="2" /> significant figures. We therefore report <InlineMath math="1.0 \times 10^{-12}" />.
 
 NIST publishes the official value-writing rules in [SP 811 Chapter 7](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values) and the unit-conversion factors in [SP 811 Appendix B](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors).
+
+Multiply the numbers in front and add the exponents: <InlineMath math="2.5\times4.0=10.0" /> and <InlineMath math="-6+(-7)=-13" />. Since <InlineMath math="10.0" /> is not between 1 and 10, move one power over to get <InlineMath math="1.0\times10^{-12}" />. Zoom along the exponent line.
+
+<MathVisual
+  title={<>Multiplying in Scientific Notation</>}
+  description={<>Exponents of ten on a number line: the two factors (orange, violet) and the shift to standard form (fuchsia).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 2 }, y: { min: -1.2, max: 2.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -14, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "zero", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "first", kind: "segment", appearance: "primary", from: { x: 0, y: 0.6 }, to: { x: -6, y: 0.6 } },
+      { id: "first-head", kind: "polygon", appearance: "primary", vertices: [{ x: -6, y: 0.6 }, { x: -5.6, y: 0.8 }, { x: -5.6, y: 0.4 }] },
+      { id: "second", kind: "segment", appearance: "secondary", from: { x: -6, y: 1.2 }, to: { x: -13, y: 1.2 } },
+      { id: "second-head", kind: "polygon", appearance: "secondary", vertices: [{ x: -13, y: 1.2 }, { x: -12.6, y: 1.4 }, { x: -12.6, y: 1 }] },
+      { id: "fix", kind: "segment", appearance: "answer", from: { x: -13, y: 0 }, to: { x: -12, y: 0 } },
+      { id: "fix-head", kind: "polygon", appearance: "answer", vertices: [{ x: -12, y: 0 }, { x: -12.4, y: 0.2 }, { x: -12.4, y: -0.2 }] },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: -3, y: 0.6 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: -9.5, y: 1.2 }, placement: "above" },
+      { key: "fix", objectId: "fix", at: { x: -12.5, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="10^{-6}" />,
+    second: <InlineMath math="\cdot10^{-7}:\ -6+(-7)=-13" />,
+    fix: <InlineMath math="10.0\times10^{-13}=1.0\times10^{-12}" />,
+  }}
+/>

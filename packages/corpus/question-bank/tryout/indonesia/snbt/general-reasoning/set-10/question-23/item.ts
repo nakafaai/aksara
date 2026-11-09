@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "data-interpretation",
+  },
+  stimulus: "internet",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$\\frac3{11}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac13$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac4{11}$$",
+          label: "Paket Hemat",
         },
         {
           correct: true,
-          label: "$$\\frac7{22}$$",
+          label: "Paket Keluarga",
         },
         {
           correct: false,
-          label: "$$\\frac5{11}$$",
+          label: "Paket Super",
+        },
+        {
+          correct: false,
+          label: "Paket Pelajar",
+        },
+        {
+          correct: false,
+          label: "Paket Keluarga dan Paket Super sama murahnya",
         },
       ],
     },

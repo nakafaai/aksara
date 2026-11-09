@@ -1,19 +1,21 @@
-Wir zählen die **Ausgangslage** als eine Rotationssymmetrie. Vergleiche die Drehungen, die die Figur auf sich selbst abbilden, mit den Achsen, die sie in spiegelbildliche Hälften teilen.
+Die größte Zahl sei <InlineMath math="L" />, die kleinste <InlineMath math="K" />. Die Änderung des Mittelwerts liefert **die Summe dieser beiden Zahlen**, ihre Differenz ist schon bekannt.
 
-| Figur | Rotationssymmetrien | Spiegelachsen |
-| --- | --- | --- |
-| Regelmäßiges Achteck | 8: Vielfache von 45° zwischen 0° und 315° | 8: vier durch gegenüberliegende Eckpunkte und vier durch die Mittelpunkte gegenüberliegender Seiten |
-| Raute, die kein Quadrat ist | 2: Drehungen um 0° und 180° | 2: beide Diagonalen |
-| Gleichschenkliges, nicht gleichseitiges Dreieck | 1: nur die Ausgangslage | 1: die Gerade durch Spitze und Basismittelpunkt |
-| Drachenviereck, das keine Raute ist | 1: nur die Ausgangslage | 1: die Diagonale zwischen den Eckpunkten, an denen gleich lange Seiten zusammentreffen |
+# Summe der größten und der kleinsten Zahl
 
-Die Raute unten besitzt **zwei Spiegelachsen**, nämlich ihre Diagonalen. Eine Drehung um 180° vertauscht gegenüberliegende Eckpunkte und bildet die Raute auf sich selbst ab.
+Die zehn Zahlen ergeben zusammen <InlineMath math="10\times20=200" />, die übrigen acht <InlineMath math="8\times19=152" />. **Die Differenz der beiden Summen** ist die Summe der beiden entfernten Zahlen.
 
-<MathVisual
- title="Beide Diagonalen sind Spiegelachsen"
- description="Die horizontale und die vertikale Diagonale teilen die Raute jeweils in zwei spiegelbildliche Dreiecke."
- scene={{space:"plane",frame:{kind:"cartesian",x:{min:-4,max:4},y:{min:-3,max:3}},view:{kind:"fit",padding:0.15},objects:[{id:"rhombus",kind:"polygon",appearance:"primary",vertices:[{x:-3,y:0},{x:0,y:2},{x:3,y:0},{x:0,y:-2}]},{id:"horizontal",kind:"segment",appearance:"highlight",from:{x:-3,y:0},to:{x:3,y:0}},{id:"vertical",kind:"segment",appearance:"secondary",from:{x:0,y:-2},to:{x:0,y:2}}],labels:[]}}
- labels={{}}
-/>
+<BlockMath math="L+K=200-152=48" />
 
-In jeder Zeile stimmen beide Anzahlen überein. Keine Figur hat mehr Rotationssymmetrien, also lautet die Antwort 0.
+# System lösen
+
+<BlockMath math="\begin{aligned}
+L+K&=48\\
+L-K&=30\\
+2L&=78\quad\Rightarrow\quad L=39,\ K=9
+\end{aligned}" />
+
+Probe: <InlineMath math="39-9=30" />, und die übrigen acht Zahlen ergeben 152 mit dem Mittelwert 19, der sinnvoll zwischen 9 und 39 liegt.
+
+Der Wert 48 ist die Summe <InlineMath math="L+K" />, noch nicht aufgeteilt. Der Wert 30 ist die Differenz, und der Wert 9 ist die kleinste Zahl. Der Wert 35 rechnet die Summe der acht Zahlen mit dem Mittelwert 20 und erhält so <InlineMath math="L+K=40" />.
+
+Die größte Zahl ist also **39**.

@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "work-rate",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$\\frac18$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac16$$",
-        },
-        {
           correct: true,
-          label: "$$\\frac17$$",
+          label: "pukul 07.28",
         },
         {
           correct: false,
-          label: "$$\\frac15$$",
+          label: "pukul 07.24",
         },
         {
           correct: false,
-          label: "$$\\frac14$$",
+          label: "pukul 07.30",
+        },
+        {
+          correct: false,
+          label: "pukul 07.34",
+        },
+        {
+          correct: false,
+          label: "pukul 07.40",
         },
       ],
     },

@@ -4,7 +4,7 @@ export const metadata = {
   description: "Turunkan matriks pencerminan terhadap titik asal dan terapkan pada titik maupun segitiga utuh.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Transformasi Geometri",
 };
 
@@ -35,11 +35,74 @@ Matriks ini adalah **negatif matriks identitas**. Jika pencerminan dilakukan dua
 
 <BlockMath math="M=-I=\begin{pmatrix}-1&0\\0&-1\end{pmatrix},\qquad M^2=\begin{pmatrix}1&0\\0&1\end{pmatrix}=I" />
 
+Terapkan <InlineMath math="M" /> pada <InlineMath math="P(2, 1)" /> dan kamu mendapat <InlineMath math="P'(-2, -1)" />. Terapkan <InlineMath math="M" /> sekali lagi, tandanya berbalik kembali menjadi <InlineMath math="(2, 1)" />, jadi dua pencerminan terhadap titik asal mengembalikan setiap titik ke tempat semula, dan itulah pernyataan <InlineMath math="M^2 = I" />.
+
+<MathVisual
+  title={<>Dicerminkan dua kali kembali ke titik semula</>}
+  description={<><InlineMath math="P(2, 1)" /> dan bayangannya <InlineMath math="P'(-2, -1)" /> terhadap titik asal. Mencerminkan <InlineMath math="P'" /> sekali lagi menghasilkan <InlineMath math="P" /> kembali.</>}
+  labels={{
+    p: <InlineMath math="P(2, 1)" />,
+    image: <InlineMath math="P'(-2, -1)" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 2.6 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "join", kind: "segment", from: { x: 2, y: 1 }, to: { x: -2, y: -1 }, appearance: "construction" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "p", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: -2, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: -2, y: -1 }, placement: "below" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 ## Aplikasi Matriks Pencerminan terhadap Titik Pusat
 
 Satu perkalian matriks dapat bekerja pada **beberapa kolom sekaligus**. Setiap kolom menyimpan satu titik, sehingga susunan kolom menentukan urutan titik sudut pada bangun.
 
 <BlockMath math="M\begin{pmatrix}x_A&x_B\\y_A&y_B\end{pmatrix}=\begin{pmatrix}-x_A&-x_B\\-y_A&-y_B\end{pmatrix}" />
+
+Letakkan titik sudut <InlineMath math="A(1, 1)" />, <InlineMath math="B(3, 1)" />, dan <InlineMath math="C(2, 3)" /> dalam tiga kolom lalu kalikan sekali dengan <InlineMath math="M" />. Kolom bayangan <InlineMath math="(-1, -1)" />, <InlineMath math="(-3, -1)" />, dan <InlineMath math="(-2, -3)" /> memberi <InlineMath math="A'B'C'" /> dengan urutan titik sudut yang sama, terputar setengah putaran terhadap <InlineMath math="O" />.
+
+<MathVisual
+  title={<>Satu perkalian memindahkan seluruh segitiga</>}
+  description={<>Segitiga <InlineMath math="ABC" /> dan bayangannya <InlineMath math="A'B'C'" /> setelah pencerminan terhadap titik asal.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    "a-image": <InlineMath math="A'" />,
+    "b-image": <InlineMath math="B'" />,
+    "c-image": <InlineMath math="C'" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "tri", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: 3, y: 1 }, { x: 2, y: 3 }], appearance: "primary" },
+      { id: "image", kind: "polygon", vertices: [{ x: -1, y: -1 }, { x: -3, y: -1 }, { x: -2, y: -3 }], appearance: "secondary" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "tri", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "b", objectId: "tri", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "c", objectId: "tri", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "a-image", objectId: "image", at: { x: -1, y: -1 }, placement: "above" },
+      { key: "b-image", objectId: "image", at: { x: -3, y: -1 }, placement: "above" },
+      { key: "c-image", objectId: "image", at: { x: -2, y: -3 }, placement: "below" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
 
 ### Mencerminkan Dua Titik
 
@@ -63,72 +126,37 @@ Untuk titik <InlineMath math="B(3,-2)" />:
 
 Bayangan titik <InlineMath math="B" /> adalah <InlineMath math="B'(-3,2)" />.
 
-<LineEquation
-  title={
-    <>
-      Pencerminan Titik <InlineMath math="A" /> dan <InlineMath math="B" />{" "}
-      terhadap Titik Pusat
-    </>
-  }
-  description={
-    <>
-      Visualisasi pencerminan titik <InlineMath math="A(-1,1)" /> menjadi{" "}
-      <InlineMath math="A'(1,-1)" /> dan <InlineMath math="B(3,-2)" /> menjadi{" "}
-      <InlineMath math="B'(-3,2)" /> terhadap titik pusat{" "}
-      <InlineMath math="O(0,0)" />.
-    </>
-  }
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0.3, -0.3, 0] }],
-    }, // Titik Pusat
-    // Titik A dan A'
-    {
-      points: [{ x: -1, y: 1, z: 0 }],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A(-1,1)" />, at: 0, offset: [-0.7, 0.3, 0] }],
-    },
-    {
-      points: [{ x: 1, y: -1, z: 0 }],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A'(1,-1)" />, at: 0, offset: [0.3, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: -1, y: 1, z: 0 },
-        { x: 1, y: -1, z: 0 },
-      ],
-      smooth: false,
-      color: "#4f46e5",
-    }, // Garis AA'
-    // Titik B dan B'
-    {
-      points: [{ x: 3, y: -2, z: 0 }],
-      color: "#9333ea",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B(3,-2)" />, at: 0, offset: [0.3, -0.3, 0] }],
-    },
-    {
-      points: [{ x: -3, y: 2, z: 0 }],
-      color: "#9333ea",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B'(-3,2)" />, at: 0, offset: [-0.1, 0.65, 0] }],
-    },
-    {
-      points: [
-        { x: 3, y: -2, z: 0 },
-        { x: -3, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#4f46e5",
-    }, // Garis BB'
-  ]}
-  cameraPosition={[0, 0, 10]}
+<MathVisual
+  title={<>Dua titik dicerminkan terhadap titik asal</>}
+  description={<><InlineMath math="A(-1, 1)" /> dan <InlineMath math="B(3, -2)" /> dengan bayangannya <InlineMath math="A'(1, -1)" /> dan <InlineMath math="B'(-3, 2)" />, setiap pasangan dihubungkan melalui <InlineMath math="O" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    a: <InlineMath math="A(-1, 1)" />,
+    b: <InlineMath math="B(3, -2)" />,
+    "a-image": <InlineMath math="A'(1, -1)" />,
+    "b-image": <InlineMath math="B'(-3, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ja", kind: "segment", from: { x: -1, y: 1 }, to: { x: 1, y: -1 }, appearance: "construction" },
+      { id: "jb", kind: "segment", from: { x: 3, y: -2 }, to: { x: -3, y: 2 }, appearance: "construction" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "a", kind: "point", at: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "a-image", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "b-image", kind: "point", at: { x: -3, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: -1, y: 1 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3, y: -2 }, placement: "below" },
+      { key: "a-image", objectId: "a-image", at: { x: 1, y: -1 }, placement: "below-right" },
+      { key: "b-image", objectId: "b-image", at: { x: -3, y: 2 }, placement: "above" },
+    ],
+  }}
 />
 
 ## Latihan

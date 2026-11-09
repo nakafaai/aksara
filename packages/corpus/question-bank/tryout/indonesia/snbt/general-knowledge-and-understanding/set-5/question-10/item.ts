@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "paraphrase",
+  },
+  stimulus: "petir",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Dokumen tertulis membuktikan bahwa kesaksian lisan tidak memiliki nilai sejarah.",
+            "Guruh dapat menyambar orang yang mendengarnya dari jarak dekat.",
         },
         {
           correct: false,
           label:
-            "Arsip harus memilih narasumber yang paling yakin dan menghapus rekaman yang tidak sesuai.",
-        },
-        {
-          correct: false,
-          label:
-            "Upacara peresmian berlangsung beberapa bulan setelah sebagian kelas pindah.",
+            "Orang hanya dapat tersambar petir jika guruh terdengar sangat keras.",
         },
         {
           correct: true,
           label:
-            "Tafsir terbaik saat ini tetap terbuka untuk koreksi karena sumber sejarah tidak merekam masa lalu secara sempurna.",
+            "Terdengarnya guruh menandakan bahwa bahaya sambaran petir sudah dekat.",
         },
         {
           correct: false,
           label:
-            "Tafsir yang telah dimuat dalam pameran tidak boleh diubah meskipun ditemukan bukti baru.",
+            "Petir yang guruhnya tidak terdengar pasti tidak berbahaya bagi siapa pun.",
+        },
+        {
+          correct: false,
+          label:
+            "Jarak petir tidak dapat diperkirakan dari bunyi guruh yang terdengar.",
         },
       ],
     },

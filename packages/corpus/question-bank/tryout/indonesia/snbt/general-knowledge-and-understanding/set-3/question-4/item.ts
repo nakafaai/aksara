@@ -1,34 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "batik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Tim menyediakan berkas data mentah, tetapi tidak menguraikan dasar keputusannya.",
-        },
-        {
-          correct: false,
-          label:
-            "Pembaca menyimpulkan sikap penulis dari pilihan rincian meskipun sikap itu tidak dinyatakan langsung.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim memeriksa rekaman asli beserta asal dan riwayat perubahannya sebelum menggunakannya.",
-        },
-        {
           correct: true,
           label:
-            "Asumsi, batas data, dan kriteria keputusan dinyatakan langsung dalam laporan.",
+            "Pembuatannya tidak memakai malam untuk menghalangi pewarna pada bagian kain tertentu.",
+        },
+        {
+          correct: false,
+          label: "Motifnya tidak pernah meniru motif batik tradisional.",
+        },
+        {
+          correct: false,
+          label: "Kain itu tidak dapat dipakai untuk pakaian sehari-hari.",
+        },
+        {
+          correct: false,
+          label: "Harganya lebih mahal daripada batik tulis.",
         },
         {
           correct: false,
           label:
-            "Laporan menilai manfaat, risiko, biaya, dan dampak pada berbagai kelompok sebelum memberi rekomendasi.",
+            "Kain itu tidak diakui oleh UNESCO karena dibuat setelah tahun $$2009$$, ketika batik ditetapkan sebagai warisan budaya.",
         },
       ],
     },

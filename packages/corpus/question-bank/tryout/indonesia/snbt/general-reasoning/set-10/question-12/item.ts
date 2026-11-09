@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "modus-tollens",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$4$$",
+          label: "Perpustakaan sekolah tutup pada sore itu.",
         },
         {
           correct: false,
-          label: "$$5$$",
+          label: "Rina meminjam buku di perpustakaan lain.",
         },
         {
           correct: false,
-          label: "$$7$$",
+          label: "Rina membawa kartu anggota, tetapi lupa judul bukunya.",
         },
         {
           correct: true,
-          label: "$$6$$",
+          label: "Rina tidak membawa kartu anggota perpustakaan.",
         },
         {
           correct: false,
-          label: "$$8$$",
+          label: "Rina tidak ingin membaca buku pada sore itu.",
         },
       ],
     },

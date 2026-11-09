@@ -1,6 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "strengthening",
+  },
+  stimulus: "sekolah",
   versions: {
     id: {
       kind: "choice",
@@ -8,25 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Semua penduduk Desa Nelayan membuat pakan ikan organik atau pakan ikan nonorganik",
+            "Di sekolah yang memundurkan jam masuk, penurunan keterlambatan paling besar terjadi pada siswa yang rumahnya paling jauh.",
         },
         {
           correct: false,
           label:
-            "Semua penduduk Desa Nelayan membuat pakan organik dan pakan nonorganik",
-        },
-        {
-          correct: false,
-          label: "Semua penduduk Desa Nelayan tidak memiliki lahan budi daya",
-        },
-        {
-          correct: false,
-          label: "Semua penduduk Desa Nelayan memiliki lahan budi daya",
+            "Pada tahun yang sama, sekolah yang memundurkan jam masuk juga memperberat sanksi bagi siswa yang datang terlambat ke sekolah.",
         },
         {
           correct: false,
           label:
-            "Sebagian penduduk Desa Nelayan yang membudidaya ikan tidak memiliki pakan nonorganik",
+            "Siswa di kedua kelompok sekolah memakai jenis transportasi yang beragam.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebagian siswa tetap terlambat walaupun jam masuk sudah dimundurkan.",
+        },
+        {
+          correct: false,
+          label:
+            "Nilai ujian semester tidak bergantung pada jam masuk sekolah.",
         },
       ],
     },

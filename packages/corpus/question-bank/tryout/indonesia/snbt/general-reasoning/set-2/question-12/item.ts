@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "categorical-syllogism",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Musim tanam petani atau musim rendeng menjadi tidak menentu serta petani kekurangan bibit dan pupuk",
-        },
-        {
-          correct: false,
-          label:
-            "Realisasi pengadaan beras semakin tidak optimal dan pemerintah terpaksa melakukan impor beras",
+          label: "Semua siswa kelas XI adalah anggota paduan suara.",
         },
         {
           correct: true,
-          label:
-            "Stok beras pemerintah atau CBP (cadangan beras pemerintah) akan terancam berkurang",
+          label: "Sebagian siswa kelas XI dibebaskan dari piket hari Sabtu.",
+        },
+        {
+          correct: false,
+          label: "Semua anggota paduan suara dibebaskan dari piket hari Sabtu.",
         },
         {
           correct: false,
           label:
-            "Bantuan beras Rastra beralih menjadi bantuan pangan nontunai melalui BPNT",
+            "Semua peserta olimpiade matematika adalah anggota paduan suara.",
         },
         {
           correct: false,
-          label:
-            "HPP (harga pembelian pemerintah) menjadi semakin rendah dibandingkan dengan harga di pasar",
+          label: "Sebagian anggota paduan suara bukan siswa kelas XI.",
         },
       ],
     },

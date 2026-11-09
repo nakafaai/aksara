@@ -1,27 +1,24 @@
-We determine the **lower and upper bounds** of <InlineMath math="z = x-y" /> separately.
+Let the smallest number be <InlineMath math="a" />. The seven numbers are <InlineMath math="a,a+1,\dots,a+6" />, so **their sum can be written in terms of <InlineMath math="a" />**.
 
-# Upper Bound
+# Setting up the equation
 
-Because <InlineMath math="x < y" />, we have:
+<BlockMath math="\begin{aligned}
+a+(a+1)+\cdots+(a+6)&=7a+(0+1+\cdots+6)\\
+&=7a+21
+\end{aligned}" />
 
-<BlockMath math="x-y < 0" />
+The sum **equals four times the smallest number**.
 
-<BlockMath math="z < 0" />
+<BlockMath math="\begin{aligned}
+7a+21&=4a\\
+3a&=-21\\
+a&=-7
+\end{aligned}" />
 
-The difference can be arbitrarily close to <InlineMath math="0" />, but it **cannot equal** <InlineMath math="0" /> because <InlineMath math="x \neq y" />.
+# Check
 
-# Lower Bound
+The numbers are <InlineMath math="-7,-6,-5,-4,-3,-2,-1" />. Their sum is <InlineMath math="-28" />, and <InlineMath math="4\cdot(-7)=-28" />. A negative answer makes sense, because **the sum of seven positive numbers is always more than four times the smallest one**.
 
-We also know that <InlineMath math="x > 1" /> and <InlineMath math="y < 2" />. Therefore:
+The value <InlineMath math="-1" /> is the largest number, and <InlineMath math="-4" /> is the middle one. The values 7 and 3 come from a sign error when moving the 21.
 
-<BlockMath math="x-y > 1-y > 1-2" />
-
-<BlockMath math="z > -1" />
-
-The value <InlineMath math="-1" /> is not attained either because **both endpoints are excluded** from the open interval.
-
-Combining both bounds gives:
-
-<BlockMath math="-1 < z < 0" />
-
-Thus, <InlineMath math="z" /> lies between <InlineMath math="-1" /> and <InlineMath math="0" />.
+So the smallest number is **<InlineMath math="-7" />**.

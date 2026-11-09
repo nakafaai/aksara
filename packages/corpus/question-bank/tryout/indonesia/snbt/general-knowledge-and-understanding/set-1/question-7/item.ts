@@ -1,29 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "affix-meaning",
+  },
+  stimulus: "elektronik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "kata *menemukan* pada kalimat (3).",
+          label:
+            "*Penginapan* di dekat pantai itu selalu penuh pada akhir pekan.",
         },
         {
           correct: false,
-          label: "kata *hidup* pada kalimat (4).",
+          label: "*Pendapatan* para pengepul tidak menentu setiap bulan.",
         },
         {
           correct: true,
-          label: "kata *penelitian* pada kalimat (6).",
+          label:
+            "*Pembangunan* jembatan desa selesai lebih cepat daripada jadwal.",
         },
         {
           correct: false,
-          label: "kata *sampel* pada kalimat (5).",
+          label: "*Pemandian* air panas itu dikelola oleh warga setempat.",
         },
         {
           correct: false,
-          label: "kata *beredar* pada kalimat (8).",
+          label: "*Pemandangan* dari puncak bukit itu sangat luas.",
         },
       ],
     },

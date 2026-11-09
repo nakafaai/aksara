@@ -3,7 +3,7 @@ export const metadata = {
     description: "Use the zero-width, reversed-bound, linearity, and interval-addition properties of definite integrals.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Integrals",
 };
 
@@ -43,6 +43,32 @@ With <InlineMath math="k=3" />, every contribution becomes **three times as larg
 
 <BlockMath math="\int_0^2 3x\,dx=3\int_0^2 x\,dx=3(2)=6" />
 
+Doubling the function doubles every height, so the area doubles too. On <InlineMath math="[0, 2]" /> the area under <InlineMath math="y = x + 1" /> is <InlineMath math="4" />, and the area under <InlineMath math="y = 2(x + 1)" /> is <InlineMath math="8 = 2 \cdot 4" />.
+
+<MathVisual
+  title={<>A constant factor scales the area</>}
+  description={<>The trapezoids under <InlineMath math="y = x + 1" /> and <InlineMath math="y = 2(x + 1)" /> on <InlineMath math="[0, 2]" />, with areas 4 and 8.</>}
+  labels={{
+    single: <InlineMath math="4" />,
+    double: <InlineMath math="8" />,
+    top: <InlineMath math="y = 2(x + 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "double", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 6 }, { x: 0, y: 2 }], appearance: "secondary" },
+      { id: "single", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 1 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "single", objectId: "single", at: { x: 1, y: 1 }, placement: "center" },
+      { key: "double", objectId: "double", at: { x: 1, y: 3 }, placement: "center" },
+      { key: "top", objectId: "double", at: { x: 2, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
+
 ## Sum and Difference Rule
 
 The integral of a sum or difference of two functions is equal to the sum or difference of their individual integrals.
@@ -57,6 +83,33 @@ By linearity, a complicated integrand can be split into simpler pieces. Integrat
 For the integrand <InlineMath math="x+1" />, calculate the contributions from <InlineMath math="x" /> and the constant <InlineMath math="1" /> separately. **Preserve the addition** when combining them:
 
 <BlockMath math="\begin{aligned}\int_0^2(x+1)\,dx&=\int_0^2x\,dx+\int_0^2 1\,dx\\&=2+[x]_0^2\\&=2+(2-0)=4\end{aligned}" />
+
+Stack the two pieces. Under <InlineMath math="y = x + 1" /> from <InlineMath math="0" /> to <InlineMath math="2" />, the violet rectangle is <InlineMath math="\int_0^2 1\,dx = 2" /> and the orange triangle on top of it is <InlineMath math="\int_0^2 x\,dx = 2" />. Together they fill the whole region, so <InlineMath math="\int_0^2 (x + 1)\,dx = 2 + 2 = 4" />.
+
+<MathVisual
+  title={<>The area under <InlineMath math="x + 1" /> splits into two pieces</>}
+  description={<>A rectangle of area 2 under <InlineMath math="y = 1" /> and a triangle of area 2 for <InlineMath math="y = x" />, stacked into the region under <InlineMath math="y = x + 1" /> of area 4.</>}
+  labels={{
+    one: <InlineMath math="2" />,
+    ramp: <InlineMath math="2" />,
+    graph: <InlineMath math="y = x + 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.9 }, y: { min: -0.4, max: 3.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "one", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 }, { x: 0, y: 1 }], appearance: "secondary" },
+      { id: "ramp", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: 2, y: 1 }, { x: 2, y: 3 }], appearance: "primary" },
+      { id: "graph", kind: "segment", from: { x: 0, y: 1 }, to: { x: 2, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 0.5 }, placement: "center" },
+      { key: "ramp", objectId: "ramp", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "graph", objectId: "graph", at: { x: 1, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Interval Addition Property
 
@@ -74,3 +127,30 @@ Split the interval <InlineMath math="[0,2]" /> at <InlineMath math="x=1" />. The
 | <InlineMath math="[1,2]" /> | <InlineMath math="\frac{2^2}{2}-\frac{1^2}{2}" /> | <InlineMath math="\frac32" /> |
 
 The two parts add to <InlineMath math="\frac12+\frac32=2" />, agreeing with <InlineMath math="\int_0^2 x\,dx" />. The **same split point** is the upper limit of the first integral and the lower limit of the second, so no part of the interval is omitted.
+
+Split an interval and the areas add. Under <InlineMath math="y = x + 1" />, the region from <InlineMath math="0" /> to <InlineMath math="2" /> has area <InlineMath math="4" /> and the region from <InlineMath math="2" /> to <InlineMath math="4" /> has area <InlineMath math="8" />. Together they make the whole area <InlineMath math="\int_0^4 (x + 1)\,dx = 12" />.
+
+<MathVisual
+  title={<>Areas add when the interval splits</>}
+  description={<>Two trapezoids under <InlineMath math="y = x + 1" />, from 0 to 2 with area 4 and from 2 to 4 with area 8, total 12.</>}
+  labels={{
+    left: <InlineMath math="4" />,
+    right: <InlineMath math="8" />,
+    f: <InlineMath math="y = x + 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "line", through: [{ x: 0, y: 1 }, { x: 4, y: 5 }], appearance: "reference" },
+      { id: "left", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "right", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 5 }, { x: 2, y: 3 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: 1, y: 1 }, placement: "center" },
+      { key: "right", objectId: "right", at: { x: 3, y: 2 }, placement: "center" },
+      { key: "f", objectId: "f", at: { x: 1, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>

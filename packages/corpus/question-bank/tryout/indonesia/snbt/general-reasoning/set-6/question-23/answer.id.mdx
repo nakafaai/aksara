@@ -1,19 +1,14 @@
-Kita perlu menghitung **setiap peserta tepat sekali**, walaupun seorang peserta memakai beberapa layanan. Prinsip inklusi dan eksklusi memperbaiki hitungan ganda dengan cara berikut:
+Produktivitas dihitung **per hektare**, jadi bagi hasil panen dengan luas lahan setiap kelompok.
 
-| Layanan yang dipakai seorang peserta | Hitungan awal dari A + B + C | Koreksi irisan dua layanan | Koreksi irisan tiga layanan | Hitungan akhir |
-| --- | --- | --- | --- | --- |
-| Tepat satu | 1 | 0 | 0 | 1 |
-| Tepat dua | 2 | −1 | 0 | 1 |
-| Ketiganya | 3 | −3 | +1 | 1 |
+<BlockMath math="\begin{aligned}
+\text{A} &= \frac{72}{12}=6{,}0 \\
+\text{B} &= \frac{52}{8}=6{,}5 \\
+\text{C} &= \frac{84}{15}=5{,}6 \\
+\text{D} &= \frac{63}{10}=6{,}3
+\end{aligned}" />
 
-Pengguna ketiga layanan semula terhitung tiga kali, lalu dikurangi tiga kali karena masuk ke setiap irisan berpasangan. Karena itu, jumlah pengguna ketiga layanan perlu **ditambahkan kembali sekali**.
+Urutan dari tertinggi: B <InlineMath math="(6{,}5)" />, D <InlineMath math="(6{,}3)" />, A <InlineMath math="(6{,}0)" />, C <InlineMath math="(5{,}6)" />.
 
-Misalkan <InlineMath math="U" /> adalah banyak peserta yang menggunakan sedikitnya satu layanan:
+Urutan C, A, D, B adalah urutan **hasil panen**, bukan produktivitas. C memanen paling banyak karena lahannya paling luas, tetapi hasil per hektarenya paling rendah.
 
-<BlockMath math="\begin{aligned}U&amp;=64+58+49\\&amp;\quad-24-19-17+8\\&amp;=171-60+8\\&amp;=119\end{aligned}" />
-
-Peserta yang tidak menggunakan layanan mana pun adalah sisa dari seluruh <InlineMath math="140" /> peserta:
-
-<BlockMath math="140-119=21" />
-
-Jadi, ada <InlineMath math="21" /> peserta yang tidak menggunakan satu pun layanan.
+Jadi, urutannya adalah B, D, A, C.

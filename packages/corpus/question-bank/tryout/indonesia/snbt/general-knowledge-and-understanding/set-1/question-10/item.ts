@@ -1,29 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "word-relation",
+    topic: "synonym",
+  },
+  stimulus: "elektronik",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "pertumbuhan.",
+          column: 1,
+          label: "memerlukan",
         },
         {
-          correct: true,
-          label: "menurun.",
+          column: 2,
+          label: "menggugat",
         },
         {
-          correct: false,
-          label: "progresif.",
+          column: 1,
+          label: "membutuhkan",
         },
         {
-          correct: false,
-          label: "menaiki.",
-        },
-        {
-          correct: false,
-          label: "meninggi.",
+          column: 2,
+          label: "mendakwa",
         },
       ],
     },

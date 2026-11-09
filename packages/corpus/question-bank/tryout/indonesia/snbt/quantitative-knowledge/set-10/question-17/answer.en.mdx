@@ -1,12 +1,19 @@
-A broken duck egg meets **both conditions at once**, so count it only once in the event “duck or broken”. Separate the eggs by type and condition:
+A statement is sufficient if **only one real number** satisfies it. Solve each statement, then compare the solution sets.
 
-| Type | Broken | Intact | Total |
-| --- | --- | --- | --- |
-| Duck | <InlineMath math="\frac12\cdot10=5" /> | <InlineMath math="10-5=5" /> | <InlineMath math="10" /> |
-| Chicken | <InlineMath math="\frac14\cdot20=5" /> | <InlineMath math="20-5=15" /> | <InlineMath math="20" /> |
+# Each statement alone
 
-All ten duck eggs qualify, whether broken or intact. Add the five broken chicken eggs. These two groups are disjoint, so:
+Statement (1) means <InlineMath math="x" /> is 3 away from 2.
 
-<BlockMath math="P=\frac{10+5}{10+20}=\frac{15}{30}=\frac12" />
+<BlockMath math="x-2=3\;\text{or}\;x-2=-3\;\Longrightarrow\;x=5\;\text{or}\;x=-1" />
 
-The required probability is <InlineMath math="0.5" />. Inclusion-exclusion gives the same favorable count: <InlineMath math="10+(5+5)-5=15" />.
+Statement (2) factorises.
+
+<BlockMath math="x^2-4x-5=(x-5)(x+1)=0\;\Longrightarrow\;x=5\;\text{or}\;x=-1" />
+
+Each gives **two values**, so neither is sufficient alone.
+
+# Both statements together
+
+The two statements have **exactly the same solution set**, <InlineMath math="\{-1,5\}" />. Combining them removes no value, so <InlineMath math="x" /> can still be 5 or <InlineMath math="-1" />. This is no accident: squaring <InlineMath math="\lvert x-2\rvert=3" /> gives <InlineMath math="x^2-4x+4=9" />, which is equation (2).
+
+So **statements (1) and (2) together are not sufficient** to answer the question.

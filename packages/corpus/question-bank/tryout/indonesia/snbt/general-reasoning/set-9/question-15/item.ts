@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "grid-logic",
+  },
+  stimulus: "lantai",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Semua laporan yang tidak anonim telah diverifikasi.",
-        },
-        {
-          correct: false,
-          label: "Sebagian laporan anonim telah diverifikasi.",
-        },
-        {
-          correct: false,
-          label: "Tidak ada laporan distrik yang anonim.",
-        },
-        {
-          correct: false,
-          label: "Setiap laporan yang diarsipkan telah diverifikasi.",
+          label: "Rani hobi memasak.",
         },
         {
           correct: true,
-          label:
-            "Sebagian laporan distrik diarsipkan dan bukan laporan anonim.",
+          label: "Sita tinggal di lantai 2.",
+        },
+        {
+          correct: false,
+          label: "Tika tinggal di lantai 4.",
+        },
+        {
+          correct: false,
+          label: "Rani tinggal di lantai 4.",
+        },
+        {
+          correct: false,
+          label: "Tika hobi melukis.",
         },
       ],
     },

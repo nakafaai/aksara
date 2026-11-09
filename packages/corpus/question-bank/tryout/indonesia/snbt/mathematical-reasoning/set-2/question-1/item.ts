@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "ride-fare",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$30\\text{ m}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$70\\text{ m}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$80\\text{ m}^2$$",
-        },
-        {
-          correct: true,
-          label: "$$60\\text{ m}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$90\\text{ m}^2$$",
-        },
+        { correct: false, label: "$$\\text{Rp}22{.}500{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}23{.}250{,}00$$" },
+        { correct: true, label: "$$\\text{Rp}25{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}27{.}500{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}30{.}000{,}00$$" },
       ],
     },
   },

@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "abu",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Tingkat pengembalian malam pertama membuktikan sistem harus diterapkan permanen tanpa perubahan.",
+          column: 2,
+          label: "Abu vulkanik aman dihirup karena berasal dari bahan alami.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Tingkat pengembalian awal mungkin mencampurkan pengaruh insentif dan kedekatan loket.",
+            "Abu vulkanik di atap yang sudah terkena hujan lebih membebani atap daripada abu yang masih kering.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Karena ada keluhan, uang jaminan tidak mungkin memengaruhi perilaku pengunjung.",
+            "Abu vulkanik dapat membahayakan penerbangan walaupun pesawat terbang jauh dari gunung yang meletus.",
         },
         {
-          correct: false,
-          label: "Satu loket dipindahkan dan jam layanannya diperpanjang.",
-        },
-        {
-          correct: false,
+          column: 2,
           label:
-            "Evaluasi akhir akan memasukkan biaya pencucian dan kehilangan wadah.",
+            "Abu vulkanik membuat lahan di lereng gunung api tidak dapat ditanami selamanya.",
         },
       ],
     },

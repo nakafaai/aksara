@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "sentence-meaning",
+    topic: "referent",
+  },
+  stimulus: "sidat",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima.",
-        },
-        {
-          correct: false,
-          label:
-            "Karena undangan terbuka, asal peserta dan alasan ketidakhadiran tidak perlu diperiksa.",
-        },
-        {
-          correct: false,
-          label:
-            "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat.",
+          label: "kebiasaan sidat bersembunyi di dalam lumpur pada siang hari",
         },
         {
           correct: true,
-          label:
-            "Inklusif berarti menyediakan cara yang layak agar beragam kelompok dapat dipertimbangkan, bukan menjamin semua tuntutan menang.",
+          label: "perjalanan sidat antara sungai dan laut sepanjang hidupnya",
         },
         {
           correct: false,
-          label:
-            "Masukan hanya layak dipertimbangkan jika disampaikan langsung secara lisan dalam pertemuan.",
+          label: "cara petani membudidayakan sidat di kolam",
+        },
+        {
+          correct: false,
+          label: "bentuk tubuh sidat yang panjang seperti belut",
+        },
+        {
+          correct: false,
+          label: "kebiasaan sidat memakan ikan-ikan kecil di sungai",
         },
       ],
     },

@@ -1,250 +1,251 @@
 export const metadata = {
-  title: "Modulus and Argument of Complex Numbers",
-  description: "Calculate the modulus and argument of a complex number, apply quadrant rules, and convert between Cartesian and polar forms.",
+  title: "Modulus and Argument of a Complex Number",
+  description: "The modulus of a complex number is its distance from the origin, and its argument is its direction angle. Find both with quadrant rules and the polar form.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Complex Number",
 };
 
-## The Length and Direction of a Complex Vector
+## The Length and Direction of a Complex Number
 
-A complex number <InlineMath math="z = x + iy" /> can be represented as a point <InlineMath math="(x, y)" /> on the complex plane (similar to the Cartesian plane). Besides being a point, we can also view it as a **vector** starting from the origin <InlineMath math="(0, 0)" /> to the point <InlineMath math="(x, y)" />.
+A complex number <InlineMath math="z = x + iy" /> is drawn as the point <InlineMath math="(x, y)" /> on the complex plane, or as a vector from the origin to that point. The vector has a length and a direction. Its length is the **modulus** <InlineMath math="|z|" />, and its direction is the **argument** <InlineMath math="\arg z" />, the angle from the positive real axis to the vector:
 
-This vector has a **length** and a **direction**. This length and direction are what we call the **Modulus** and **Argument**.
+<MathContainer>
+  <BlockMath math="|z| = \sqrt{x^2 + y^2}" />
+  <BlockMath math="\cos\theta = \frac{x}{|z|}, \qquad \sin\theta = \frac{y}{|z|}" />
+</MathContainer>
 
-At the origin, the modulus is zero but the **argument is undefined**, because the zero vector has no direction.
+For <InlineMath math="z = 3 + 4i" />, the modulus is <InlineMath math="\sqrt{9 + 16} = 5" />, and the argument is <InlineMath math="\arctan\frac{4}{3} \approx 53.13^\circ" />. The interactive graph draws that vector with its components <InlineMath math="x = 3" /> and <InlineMath math="y = 4" />, which form a right triangle with hypotenuse <InlineMath math="|z|" />.
 
-## Modulus of a Complex Number
-
-The **Modulus** of a complex number <InlineMath math="z = x + iy" />, written as <InlineMath math="|z|" />, is the **distance** from the origin <InlineMath math="(0,0)" /> to the point <InlineMath math="(x, y)" /> on the complex plane. This is the same as the **length of the vector** representing <InlineMath math="z" />.
-
-<LineEquation
-  title="Modulus Visualization"
-  description={
-    <>
-      The modulus <InlineMath math="|z|" /> is the length of the vector from the
-      origin to the point <InlineMath math="z" />. It is the hypotenuse of the
-      corresponding right triangle.
-    </>
-  }
-  cameraPosition={[1.5, 2, 8]}
-  cameraTarget={[1.5, 2, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#0284c7",
-      labels: [
-        { text: <InlineMath math="z=3+4i" />, at: 1, offset: [0.5, 0.5, 0] },
-        {
-          text: <InlineMath math="|z|" />,
-          at: 1,
-          offset: [-2, -1.5, 0],
-
-        },
-      ],
-      cone: { position: "end" },
-    },
-    // Helper lines for x and y
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="x=3" />, at: 1, offset: [-1.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 3, y: 0, z: 0 },
-        { x: 3, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#059669",
-      labels: [{ text: <InlineMath math="y=4" />, at: 1, offset: [0.65, -2, 0] }],
-    },
-  ]}
+<MathVisual
+  title={<><InlineMath math="|z| = 5" /> is the hypotenuse</>}
+  description={<>The vector <InlineMath math="z = 3 + 4i" /> with components <InlineMath math="x = 3" /> and <InlineMath math="y = 4" />. Its modulus <InlineMath math="|z| = 5" /> is the hypotenuse of that right triangle, and its argument is about <InlineMath math="53.13^\circ" />.</>}
+  labels={{
+    z: <InlineMath math="|z| = 5" />,
+    x: <InlineMath math="x = 3" />,
+    y: <InlineMath math="y = 4" />,
+    theta: <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.4 }, y: { min: -0.7, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "highlight" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 4 / 5, startDegrees: 0, sweepDegrees: Math.atan2(4, 3) * 180 / Math.PI, appearance: "highlight" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 3, y: 4 }, { x: 277 / 100, y: 193 / 50 }, { x: 293 / 100, y: 187 / 50 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 3 / 2, y: 2 }, placement: "above-left" },
+      { key: "x", objectId: "x", at: { x: 3 / 2, y: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 0.8 * Math.cos(Math.atan2(4, 3) / 2), y: 0.8 * Math.sin(Math.atan2(4, 3) / 2) }, placement: "right" },
+    ],
+  }}
 />
 
-To calculate the modulus, <Highlight>we can use the Pythagorean Theorem</Highlight> on the right-angled triangle formed by the component lengths (<InlineMath math="|x|" /> and <InlineMath math="|y|" />), and the modulus (<InlineMath math="|z|" />) as the hypotenuse.
+The origin has modulus <InlineMath math="0" />, but **the argument of zero is undefined**, because the zero vector has no direction.
 
-**Definition of Modulus**:
+## Finding the Modulus with the Pythagorean Theorem
 
-The modulus of the complex number <InlineMath math="z = x + iy" /> is:
+The modulus is the hypotenuse of a right triangle with legs <InlineMath math="|x|" /> and <InlineMath math="|y|" />, so **the modulus is always zero or positive**. A negative component is squared, so its sign disappears:
 
-<BlockMath math="|z| = \sqrt{x^2 + y^2}" />
-
-The modulus is always **non-negative** (never negative) because it represents a distance.
-
-### Calculating the Modulus
-
-Square **both components with their signs**, add the squares, then take the nonnegative square root. A negative component does not make the distance negative.
-
-1.  <InlineMath math="z_1 = 3 + 4i" />, with <InlineMath math="x=3, y=4" />
-
-    <BlockMath math="\begin{aligned} |z_1| &amp;= \sqrt{3^2 + 4^2} \\ &amp;= \sqrt{9 + 16} \\ &amp;= \sqrt{25} \\ &amp;= 5 \end{aligned}" />
-
-2.  <InlineMath math="z_2 = -1 - 2i" />, with <InlineMath math="x=-1, y=-2" />
-
-    <BlockMath math="\begin{aligned} |z_2| &amp;= \sqrt{(-1)^2 + (-2)^2} \\ &amp;= \sqrt{1 + 4} \\ &amp;= \sqrt{5} \end{aligned}" />
-
-3.  <InlineMath math="z_3 = 5" />, with <InlineMath math="x=5, y=0" />
-
-    <BlockMath math="|z_3| = \sqrt{5^2 + 0^2} = \sqrt{25} = 5" />
-
-    (The modulus of a real number is its absolute value).
-
-4.  <InlineMath math="z_4 = -2i" />, with <InlineMath math="x=0, y=-2" />
-
-    <BlockMath math="|z_4| = \sqrt{0^2 + (-2)^2} = \sqrt{4} = 2" />
-
-## Argument of a Complex Number
-
-The **Argument** of a non-zero complex number <InlineMath math="z = x + iy" />, written as <InlineMath math="\arg(z)" /> or <InlineMath math="\theta" />, is the **angle** formed by the vector <InlineMath math="z" /> with the **positive real axis** on the complex plane. This angle is usually measured in radians or degrees.
-
-From basic trigonometry on the same right-angled triangle as in the modulus visualization, we know the relationships:
-
-<MathContainer>
-  <BlockMath math="x = |z| \cos \theta" />
-  <BlockMath math="y = |z| \sin \theta" />
-  <BlockMath math="\tan \theta = \frac{y}{x} \quad (\text{if } x \neq 0)" />
-</MathContainer>
-
-When <InlineMath math="x" /> and <InlineMath math="y" /> are both nonzero, first calculate the positive reference angle:
-
-<BlockMath math="\alpha = \arctan\left(\left|\frac{y}{x}\right|\right)" />
-
-The ratio <InlineMath math="|y/x|" /> is positive and finite, so the reference angle is acute: <InlineMath math="0^\circ<\alpha<90^\circ" />.
-
-The signs of <InlineMath math="x" /> and <InlineMath math="y" /> locate the quadrant. They determine how the reference angle becomes the Principal Argument in <InlineMath math="(-180^\circ, 180^\circ]" />:
-
-| Quadrant | Component signs | Principal argument |
+| Number | Calculation | Modulus |
 | --- | --- | --- |
-| I | <InlineMath math="x>0,\ y>0" /> | <InlineMath math="\alpha" /> |
-| II | <InlineMath math="x<0,\ y>0" /> | <InlineMath math="180^\circ-\alpha" /> |
-| III | <InlineMath math="x<0,\ y<0" /> | <InlineMath math="-180^\circ+\alpha" /> |
-| IV | <InlineMath math="x>0,\ y<0" /> | <InlineMath math="-\alpha" /> |
+| <InlineMath math="3 + 4i" /> | <InlineMath math="\sqrt{3^2 + 4^2} = \sqrt{25}" /> | <InlineMath math="5" /> |
+| <InlineMath math="-1 - 2i" /> | <InlineMath math="\sqrt{(-1)^2 + (-2)^2} = \sqrt{5}" /> | <InlineMath math="\sqrt{5}" /> |
+| <InlineMath math="5" /> | <InlineMath math="\sqrt{5^2 + 0^2} = \sqrt{25}" /> | <InlineMath math="5" /> |
+| <InlineMath math="-2i" /> | <InlineMath math="\sqrt{0^2 + (-2)^2} = \sqrt{4}" /> | <InlineMath math="2" /> |
 
-Points on an axis do not require a quotient <InlineMath math="y/x" />. Read their direction directly:
+The real number <InlineMath math="5" /> has modulus <InlineMath math="5" />, the same as its absolute value, so the modulus extends absolute value to the complex plane. Check <InlineMath math="-1 - 2i" />: its distance <InlineMath math="\sqrt{5} \approx 2.24" /> is larger than <InlineMath math="|-1| = 1" /> and <InlineMath math="|-2| = 2" /> but less than their sum <InlineMath math="1 + 2 = 3" />, exactly like the hypotenuse of a triangle. The modulus of a product is the product of the moduli, <InlineMath math="|z_1 z_2| = |z_1|\,|z_2|" />, one of the [properties of the modulus](/en/subjects/mathematics/complex-number/properties-modulus-complex-numbers).
+
+## Reference Angle and Quadrant Rules
+
+A calculator returns <InlineMath math="\arctan\frac{y}{x}" /> only between <InlineMath math="-90^\circ" /> and <InlineMath math="90^\circ" />, so for points in quadrants II and III the result points the wrong way. For a point inside a quadrant, first find the **acute reference angle** from the lengths of the two components, then use the signs of <InlineMath math="x" /> and <InlineMath math="y" /> to pick the quadrant:
+
+<BlockMath math="\alpha = \arctan\left|\frac{y}{x}\right|, \qquad 0^\circ < \alpha < 90^\circ" />
+
+| Quadrant | Component signs | Argument in <InlineMath math="(-180^\circ, 180^\circ]" /> |
+| --- | --- | --- |
+| I | <InlineMath math="x > 0,\ y > 0" /> | <InlineMath math="\alpha" /> |
+| II | <InlineMath math="x < 0,\ y > 0" /> | <InlineMath math="180^\circ - \alpha" /> |
+| III | <InlineMath math="x < 0,\ y < 0" /> | <InlineMath math="-180^\circ + \alpha" /> |
+| IV | <InlineMath math="x > 0,\ y < 0" /> | <InlineMath math="-\alpha" /> |
+
+The interactive graph shows four numbers with modulus <InlineMath math="2" />, one in each quadrant, with the arc of each argument. The arcs in quadrants III and IV turn clockwise, because those arguments are negative.
+
+<MathVisual
+  title={<>Arguments in all four quadrants</>}
+  description={<>Four vectors with modulus 2. The arcs above the real axis turn counterclockwise, and the arcs below it turn clockwise.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.4, max: 2.4 }, y: { min: -2.2, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: Math.sqrt(3) }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.sqrt(3), y: 1 }, appearance: "secondary" },
+      { id: "c", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: -Math.sqrt(3) }, appearance: "highlight" },
+      { id: "d", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.sqrt(3), y: -1 }, appearance: "reference" },
+      { id: "a-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.5, startDegrees: 0, sweepDegrees: 60, appearance: "primary" },
+      { id: "b-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.8, startDegrees: 0, sweepDegrees: 150, appearance: "secondary" },
+      { id: "c-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 1.1, startDegrees: 0, sweepDegrees: -120, appearance: "highlight" },
+      { id: "d-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.5, startDegrees: 0, sweepDegrees: -30, appearance: "reference" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: Math.sqrt(3) }, placement: "above-right" },
+      { key: "b", objectId: "b", at: { x: -Math.sqrt(3), y: 1 }, placement: "above-left" },
+      { key: "c", objectId: "c", at: { x: -1, y: -Math.sqrt(3) }, placement: "below-left" },
+      { key: "d", objectId: "d", at: { x: Math.sqrt(3), y: -1 }, placement: "below-right" },
+      { key: "a-angle", objectId: "a-angle", at: { x: 0.5 * Math.cos(Math.PI / 6), y: 0.25 }, placement: "right" },
+      { key: "b-angle", objectId: "b-angle", at: { x: 0.8 * Math.cos((5 * Math.PI) / 12), y: 0.8 * Math.sin((5 * Math.PI) / 12) }, placement: "above" },
+      { key: "c-angle", objectId: "c-angle", at: { x: 0.55, y: -1.1 * Math.sin(Math.PI / 3) }, placement: "below-right" },
+      { key: "d-angle", objectId: "d-angle", at: { x: 0.5 * Math.cos(Math.PI / 12), y: -0.5 * Math.sin(Math.PI / 12) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="1 + \sqrt{3}i" />,
+    b: <InlineMath math="-\sqrt{3} + i" />,
+    c: <InlineMath math="-1 - \sqrt{3}i" />,
+    d: <InlineMath math="\sqrt{3} - i" />,
+    "a-angle": <InlineMath math="60^\circ" />,
+    "b-angle": <InlineMath math="150^\circ" />,
+    "c-angle": <InlineMath math="-120^\circ" />,
+    "d-angle": <InlineMath math="-30^\circ" />,
+  }}
+/>
+
+Points on an axis need no quotient <InlineMath math="\frac{y}{x}" />. Their direction reads off directly: the positive real axis is <InlineMath math="0^\circ" />, the positive imaginary axis <InlineMath math="90^\circ" />, the negative real axis <InlineMath math="180^\circ" />, and the negative imaginary axis <InlineMath math="-90^\circ" />.
+
+<Mermaid
+  title={<>Choosing the argument from the quadrant</>}
+  description={<>The same reference angle gives a different argument in each quadrant.</>}
+  chart={`flowchart TD
+  A["Find r and the acute reference angle α"] --> B{"Signs of x and y?"}
+  B -->|"x positive, y positive"| C["θ = α"]
+  B -->|"x negative, y positive"| D["θ = 180° - α"]
+  B -->|"x negative, y negative"| E["θ = -180° + α"]
+  B -->|"x positive, y negative"| F["θ = -α"]
+  C --> G["Check: r cos θ = x and r sin θ = y"]
+  D --> G
+  E --> G
+  F --> G`}
+/>
+
+## Examples of Finding the Modulus and Argument
+
+**Example 1**. For <InlineMath math="z = -\sqrt{3} + i" />, the point <InlineMath math="(-\sqrt{3}, 1)" /> lies in quadrant II, because <InlineMath math="x < 0" /> and <InlineMath math="y > 0" />:
 
 <MathContainer>
-  <BlockMath math="x>0,\ y=0 \Rightarrow \text{Arg}(z)=0^\circ" />
-  <BlockMath math="x=0,\ y>0 \Rightarrow \text{Arg}(z)=90^\circ" />
-  <BlockMath math="x<0,\ y=0 \Rightarrow \text{Arg}(z)=180^\circ" />
-  <BlockMath math="x=0,\ y<0 \Rightarrow \text{Arg}(z)=-90^\circ" />
+  <BlockMath math="|z| = \sqrt{3 + 1} = 2, \qquad \alpha = \arctan\frac{1}{\sqrt{3}} = 30^\circ" />
+  <BlockMath math="\arg z = 180^\circ - 30^\circ = 150^\circ" />
 </MathContainer>
 
-### Calculating the Argument
+Check by rebuilding the components: <InlineMath math="2\cos 150^\circ = -\sqrt{3}" /> and <InlineMath math="2\sin 150^\circ = 1" />. Both match <InlineMath math="z" />, so **the angle and its quadrant are right**.
 
-For each point, first locate the **quadrant**, then compute the reference angle <InlineMath math="\alpha" /> from <InlineMath math="|y/x|" />, then apply the quadrant rule above.
+**Example 2**. For <InlineMath math="z = -1 - \sqrt{3}i" />, both components are negative, so the point lies in quadrant III:
 
-1.  <InlineMath math="z_1 = 1 + i" />
+<MathContainer>
+  <BlockMath math="|z| = \sqrt{1 + 3} = 2, \qquad \alpha = \arctan\sqrt{3} = 60^\circ" />
+  <BlockMath math="\arg z = -180^\circ + 60^\circ = -120^\circ" />
+</MathContainer>
 
-    The point <InlineMath math="(1, 1)" /> is in Quadrant <InlineMath math="I" />.
+Check: <InlineMath math="2\cos(-120^\circ) = -1" /> and <InlineMath math="2\sin(-120^\circ) = -\sqrt{3}" />. If you only press <InlineMath math="\arctan\frac{-\sqrt{3}}{-1} = \arctan\sqrt{3}" /> on a calculator, you get <InlineMath math="60^\circ" />, the opposite direction, exactly half a turn away.
 
-    <MathContainer>
-      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{1}{1} = 1" />
-      <BlockMath math="\begin{aligned} &amp;\theta = \arctan(1) = 45^\circ \text{ or } \frac{\pi}{4} \text{ radians} \end{aligned}" />
-    </MathContainer>
+## The Polar Form from Modulus and Argument
 
-2.  <InlineMath math="z_2 = -\sqrt{3} + i" />
+The modulus <InlineMath math="r" /> and the argument <InlineMath math="\theta" /> give the **polar form** <InlineMath math="z = r(\cos\theta + i\sin\theta)" />, one of several [forms of a complex number](/en/subjects/mathematics/complex-number/complex-number-form). To return to Cartesian form, multiply the modulus by the cosine and sine of the angle.
 
-    The point <InlineMath math="(-\sqrt{3}, 1)" /> is in Quadrant <InlineMath math="II" />.
+**Example 3**. The number <InlineMath math="z = 2 + 2i" /> lies in quadrant I with <InlineMath math="r = \sqrt{8} = 2\sqrt{2}" /> and <InlineMath math="\theta = 45^\circ" />, so <InlineMath math="z = 2\sqrt{2}(\cos 45^\circ + i\sin 45^\circ)" />. Check: <InlineMath math="2\sqrt{2} \cdot \frac{\sqrt{2}}{2} = 2" /> for both components.
 
-    <MathContainer>
-      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{1}{-\sqrt{3}}" />
-      <BlockMath math="\begin{aligned} \text{Base angle} &amp;= \arctan\left(\left|\frac{1}{-\sqrt{3}}\right|\right) \\ &amp;= \arctan\left(\frac{1}{\sqrt{3}}\right) \\ &amp;= 30^\circ \end{aligned}" />
-      <BlockMath math="\begin{aligned} \theta &amp;= 180^\circ - 30^\circ \\ &amp;= 150^\circ \text{ or } \frac{5\pi}{6} \text{ radians} \end{aligned}" />
-    </MathContainer>
+**Example 4**. The number <InlineMath math="z = 6(\cos 120^\circ + i\sin 120^\circ)" /> converts to Cartesian form:
 
-    Quadrant <InlineMath math="II" /> lies above the negative real axis, so subtract the reference angle from <InlineMath math="180^\circ" />.
+<BlockMath math="z = 6\left(-\frac{1}{2}\right) + 6\left(\frac{\sqrt{3}}{2}\right)i = -3 + 3\sqrt{3}i" />
 
-3.  <InlineMath math="z_3 = -1 - i\sqrt{3}" />
+Check the modulus: <InlineMath math="\sqrt{9 + 27} = \sqrt{36} = 6" />, and the point <InlineMath math="(-3, 3\sqrt{3})" /> lies in quadrant II, as the angle <InlineMath math="120^\circ" /> requires. The angle in a polar form is usually chosen from <InlineMath math="(-180^\circ, 180^\circ]" />, which gives the [principal argument](/en/subjects/mathematics/complex-number/principal-argument-complex-numbers).
 
-    The point <InlineMath math="(-1, -\sqrt{3})" /> is in Quadrant <InlineMath math="III" />.
+## Common Mistakes
 
-    <MathContainer>
-      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{-\sqrt{3}}{-1} = \sqrt{3}" />
-      <BlockMath math="\text{Base angle} = \arctan(\sqrt{3}) = 60^\circ" />
-      <BlockMath math="\begin{aligned} \text{Arg}(z_3) &amp;= -180^\circ + 60^\circ \\ &amp;= -120^\circ \\ &amp;= -\frac{2\pi}{3} \end{aligned}" />
-    </MathContainer>
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Using <InlineMath math="\arctan\frac{y}{x}" /> without checking the quadrant | The result always lies between <InlineMath math="-90^\circ" /> and <InlineMath math="90^\circ" /> | Rebuild <InlineMath math="r\cos\theta" /> and <InlineMath math="r\sin\theta" />, their signs must match |
+| Writing a negative modulus | The modulus is a distance | A square root is always zero or positive |
+| Computing the modulus as <InlineMath math="\lvert x \rvert + \lvert y \rvert" /> | That is the path along the axes, not the straight distance | For <InlineMath math="3 + 4i" />, the distance is <InlineMath math="5" />, not <InlineMath math="7" /> |
+| Giving an argument for <InlineMath math="z = 0" /> | The zero vector has no direction | The argument is defined only for <InlineMath math="z \ne 0" /> |
+| Mixing degrees and radians | A calculator can be set to the other unit | <InlineMath math="\arctan 1" /> must be <InlineMath math="45^\circ" /> or <InlineMath math="\frac{\pi}{4}" /> |
 
-    Quadrant <InlineMath math="III" /> lies below the negative real axis, so its Principal Argument is negative.
+The strongest check is **rebuilding the components from the modulus and argument**. If <InlineMath math="r\cos\theta" /> and <InlineMath math="r\sin\theta" /> return <InlineMath math="x" /> and <InlineMath math="y" />, the modulus and the direction are right. Then check that the argument lies in <InlineMath math="(-180^\circ, 180^\circ]" />, because <InlineMath math="225^\circ" /> rebuilds the same components of <InlineMath math="-1 - i" /> as <InlineMath math="-135^\circ" />.
 
-4.  <InlineMath math="z_4 = 3 - 3i" />
+## Exercises
 
-    The point <InlineMath math="(3, -3)" /> is in Quadrant <InlineMath math="IV" />.
+The first problem lies in quadrant I, the second and third on an axis, and the fourth in quadrant IV with an angle that is not a special angle. **Locate the point first**, then find the modulus and the argument in <InlineMath math="(-180^\circ, 180^\circ]" />.
 
-    <MathContainer>
-      <BlockMath math="\tan \theta = \frac{y}{x} = \frac{-3}{3} = -1" />
-      <BlockMath math="\begin{aligned} \text{Base angle} &amp;= \arctan(|-1|) \\ &amp;= \arctan(1) \\ &amp;= 45^\circ \end{aligned}" />
-      <BlockMath math="\text{Arg}(z_4) = -45^\circ = -\frac{\pi}{4}" />
-    </MathContainer>
+1. Find the modulus and argument of <InlineMath math="z = 2 + 2i" />.
 
-    Quadrant <InlineMath math="IV" /> lies below the positive real axis, so its Principal Argument is negative.
+2. Find the modulus and argument of <InlineMath math="z = -4" />.
 
-## Converting between Cartesian and Polar Forms
+3. Find the modulus and argument of <InlineMath math="z = -i" />.
 
-The modulus and argument give the **polar form** of a complex number. To return to Cartesian form, multiply the modulus by the cosine and sine of the angle. Use the same number to check both directions of conversion.
-
-From Cartesian form:
-
-<BlockMath math="\begin{aligned}z&amp;=2+2i\\r&amp;=\sqrt{2^2+2^2}=2\sqrt2,\quad\theta=45^\circ\\z&amp;=2\sqrt2(\cos45^\circ+i\sin45^\circ)\end{aligned}" />
-
-From polar form:
-
-<BlockMath math="\begin{aligned}z&amp;=2\sqrt2\left(\frac{\sqrt2}{2}+i\frac{\sqrt2}{2}\right)\\&amp;=2+2i\end{aligned}" />
-
-## Exercise
-
-Find the modulus and Principal Argument (in degrees) of the following complex numbers. For each number, compute the **distance from the origin** first, then choose the angle inside <InlineMath math="(-180^\circ, 180^\circ]" />.
-
-1.  <InlineMath math="z_a = 2 + 2i" />
-2.  <InlineMath math="z_b = -4" />
-3.  <InlineMath math="z_c = -i" />
+4. Find the modulus and argument of <InlineMath math="z = 5 - 12i" />, with the argument rounded to two decimal places.
 
 ### Worked Solutions
 
-Use **distance for the modulus** and the position of the point for its argument. Points on negative axes need different angles from a point in quadrant I.
+**Problem 1**. The point <InlineMath math="(2, 2)" /> lies in quadrant I:
 
-1.  <InlineMath math="z_a = 2 + 2i" />:
+<BlockMath math="|z| = \sqrt{4 + 4} = 2\sqrt{2}, \qquad \arg z = \arctan 1 = 45^\circ" />
 
-    <InlineMath math="x=2, y=2" /> (Quadrant <InlineMath math="I" />) Modulus:
+Check: <InlineMath math="2\sqrt{2}\cos 45^\circ = 2" /> and <InlineMath math="2\sqrt{2}\sin 45^\circ = 2" />, so **both components come back intact**.
 
-    <BlockMath math="\begin{aligned} |z_a| &amp;= \sqrt{2^2 + 2^2} \\ &amp;= \sqrt{4+4} \\ &amp;= \sqrt{8} \\ &amp;= 2\sqrt{2} \end{aligned}" />
+**Problem 2**. The number <InlineMath math="-4 = -4 + 0i" /> lies on the negative real axis, so no quotient <InlineMath math="\frac{y}{x}" /> is needed:
 
-    Argument:
+<BlockMath math="|z| = \sqrt{16} = 4, \qquad \arg z = 180^\circ" />
 
-    <BlockMath math="\tan\theta=\frac22=1" />
+Check: <InlineMath math="4\cos 180^\circ = -4" /> and <InlineMath math="4\sin 180^\circ = 0" />. The angle <InlineMath math="-180^\circ" /> points the same way, but **the left end of the interval is excluded**, so the answer is <InlineMath math="180^\circ" />.
 
-    The point is in Quadrant <InlineMath math="I" />, so its Principal Argument is the acute angle:
+**Problem 3**. The number <InlineMath math="-i = 0 - 1i" /> lies on the negative imaginary axis:
 
-    <BlockMath math="\theta=\arctan(1)=45^\circ" />
+<BlockMath math="|z| = \sqrt{0 + 1} = 1, \qquad \arg z = -90^\circ" />
 
-2.  <InlineMath math="z_b = -4" />:
+Check: <InlineMath math="\cos(-90^\circ) = 0" /> and <InlineMath math="\sin(-90^\circ) = -1" />, so **the vector points straight down**.
 
-    <InlineMath math="z_b = -4 + 0i" />. <InlineMath math="x=-4, y=0" /> (Negative
-    real axis) Modulus:
+**Problem 4**. The point <InlineMath math="(5, -12)" /> lies in quadrant IV, because <InlineMath math="x > 0" /> and <InlineMath math="y < 0" />:
 
-    <BlockMath math="|z_b| = \sqrt{(-4)^2 + 0^2} = \sqrt{16} = 4" />
+<MathContainer>
+  <BlockMath math="|z| = \sqrt{25 + 144} = \sqrt{169} = 13" />
+  <BlockMath math="\alpha = \arctan\frac{12}{5} \approx 67.38^\circ, \qquad \arg z \approx -67.38^\circ" />
+</MathContainer>
 
-    Argument: The point is on the negative real axis.
+Check: <InlineMath math="13\cos(-67.38^\circ) \approx 5.00" /> and <InlineMath math="13\sin(-67.38^\circ) \approx -12.00" />, so **quadrant IV gives a negative argument**.
 
-    <BlockMath math="\theta = 180^\circ" />
+Problem 4 on the plane: <InlineMath math="5 - 12i" /> lies in quadrant IV, 5 to the right and 12 down. The modulus is <InlineMath math="\sqrt{25 + 144} = 13" />, and the argument is measured clockwise: <InlineMath math="\arg z \approx -67.38^\circ" />.
 
-3.  <InlineMath math="z_c = -i" />:
-
-    <InlineMath math="z_c = 0 - 1i" />. <InlineMath math="x=0, y=-1" /> (Negative
-    imaginary axis) Modulus:
-
-    <BlockMath math="|z_c| = \sqrt{0^2 + (-1)^2} = \sqrt{1} = 1" />
-
-    Argument: The point is on the negative imaginary axis.
-
-    <BlockMath math="\text{Arg}(z_c) = -90^\circ" />
+<MathVisual
+  title={<>The modulus and argument of <InlineMath math="5 - 12i" /></>}
+  description={<>The vector to <InlineMath math="5 - 12i" /> with components 5 and <InlineMath math="-12" />, modulus 13 and a clockwise arc for <InlineMath math="\arg z \approx -67.38^\circ" />.</>}
+  labels={{
+    z: <InlineMath math="|z| = 13" />,
+    x: <InlineMath math="5" />,
+    y: <InlineMath math="-12" />,
+    theta: <InlineMath math="\arg z" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6.4 }, y: { min: -13, max: 1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 5, y: 0 }, to: { x: 5, y: -12 }, appearance: "highlight" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 2, startDegrees: 0, sweepDegrees: -Math.atan2(12, 5) * 180 / Math.PI, appearance: "answer" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: -12 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 5, y: -12 }, { x: 649 / 130, y: -149 / 13 }, { x: 601 / 130, y: -151 / 13 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 5 / 2, y: -6 }, placement: "left" },
+      { key: "x", objectId: "x", at: { x: 5 / 2, y: 0 }, placement: "above" },
+      { key: "y", objectId: "y", at: { x: 5, y: -6 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 2 * Math.cos(Math.atan2(12, 5) / 2), y: -2 * Math.sin(Math.atan2(12, 5) / 2) }, placement: "right" },
+    ],
+  }}
+/>

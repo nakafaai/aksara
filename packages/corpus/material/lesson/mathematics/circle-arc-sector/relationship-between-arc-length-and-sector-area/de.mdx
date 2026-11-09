@@ -1,54 +1,32 @@
+
 export const metadata = {
-  title: "Beziehung zwischen Bogenlänge und Sektorfläche",
-  description: "Den proportionalen Zusammenhang zwischen Bogenlänge, Sektorfläche und Mittelpunktswinkel verstehen und anwenden.",
+  title: "Bogenlänge und Sektorfläche",
+  description: "Bogen und Sektor nehmen denselben Anteil des Kreises ein, also ist die Sektorfläche halbe Bogenlänge mal Radius. Mit Herleitung, Beispielen und Übungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Kreisbögen und Sektoren",
 };
 
+## Bogen und Sektor nehmen denselben Anteil ein
 
-
-## Verhältnis von Bogenlänge und Sektorfläche
-
-Bogenlänge und Sektorfläche nehmen denselben Anteil am gesamten Kreis, deshalb <Highlight>ändern sich beide im gleichen Verhältnis</Highlight> zum Mittelpunktswinkel:
+Ein Bogen und der Sektor zum selben Mittelpunktswinkel nehmen **denselben Anteil des Kreises** ein. Der Anteil des Bogens am Umfang ist gleich dem Anteil des Sektors an der Kreisfläche, und beide sind gleich dem Mittelpunktswinkel geteilt durch <InlineMath math="360^\circ" />. Aus dieser Gleichheit folgt eine kurze Formel für Sektorfläche <InlineMath math="A" />, Bogenlänge <InlineMath math="s" /> und Radius <InlineMath math="r" />:
 
 <MathContainer>
-<BlockMath math="\begin{aligned} &amp;\frac{\text{Bogenlänge}}{\text{Kreisumfang}} \\ &amp;=\frac{\text{Sektorfläche}}{\text{Kreisfläche}} \\ &amp;=\frac{\alpha}{360^\circ} \end{aligned}" />
+  <BlockMath math="\frac{s}{2\pi r} = \frac{A}{\pi r^2} = \frac{\alpha}{360^\circ}" />
+  <BlockMath math="A = \frac{1}{2} s r" />
 </MathContainer>
 
-Alle drei Brüche beschreiben denselben Anteil am vollständigen Kreis.
-
-## Formeln für Bogenlänge und Sektorfläche
-
-Multipliziere den **Winkelanteil** mit dem Kreisumfang, um die Bogenlänge zu erhalten, oder mit der Kreisfläche für die Sektorfläche. Beide Formeln verwenden Radius und Winkel desselben Sektors:
-
-<MathContainer>
-<BlockMath math="\text{Bogenlänge} = \frac{\alpha}{360^\circ} \times 2\pi r" />
-<BlockMath math="\text{Sektorfläche} = \frac{\alpha}{360^\circ} \times \pi r^2" />
-</MathContainer>
-
-Bezeichne die Bogenlänge mit <InlineMath math="s" /> und die Sektorfläche mit <InlineMath math="A" />. Dividiere bei einem Winkel ungleich null die beiden Formeln. Der gemeinsame Winkelanteil kürzt sich heraus:
-
-<BlockMath math="\frac{A}{s}=\frac{\frac{\alpha}{360^\circ}\pi r^2}{\frac{\alpha}{360^\circ}2\pi r}=\frac{r}{2}\quad\Longrightarrow\quad A=\frac{sr}{2}" />
-
-<MathContainer>
-<BlockMath math="\begin{aligned} &amp;\text{Sektorfläche} \\ &amp;= \frac{1}{2} \times \text{Bogenlänge} \times r \end{aligned}" />
-</MathContainer>
-
-## Visualisierung proportionaler Beziehungen
-
-Die Zeichnungen verwenden **denselben Radius** von 4 Einheiten. Vergleiche den Winkelanteil mit dem Umfangs- und Flächenanteil. Wächst der Winkel von 45 auf 90 Grad, verdoppeln sich sowohl Bogenlänge als auch Sektorfläche.
-
-<ContentStack>
+Das Diagramm zum Sektor mit <InlineMath math="45^\circ" /> nutzt den Radius <InlineMath math="4" />. Sein Bogen ist ein Achtel des Umfangs, sein Sektor ein Achtel der Kreisfläche.
 
 <LineEquation
-  title={<>Winkel <InlineMath math="45^\circ" /> ergibt ein Verhältnis <InlineMath math="\frac{1}{8}" /></>}
-  description={<>Bei einem Mittelpunktswinkel von <InlineMath math="45^\circ" /> beträgt die Bogenlänge <InlineMath math="\frac{1}{8}" /> des Umfangs und die Sektorfläche <InlineMath math="\frac{1}{8}" /> der Kreisfläche.</>}
+  title={<>Ein Winkel von <InlineMath math="45^\circ" /> nimmt <InlineMath math="\frac{1}{8}" /> des Kreises ein</>}
+  description={<>Beim Radius <InlineMath math="4" /> ist der Bogen <InlineMath math="\pi" /> und der Sektor <InlineMath math="2\pi" />, doppelt so viel wie die Bogenlänge.</>}
   cameraPosition={[0, 0, 12]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 4 * Math.cos(angle),
@@ -82,8 +60,8 @@ Die Zeichnungen verwenden **denselben Radius** von 4 Einheiten. Vergleiche den W
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 106 }, (_, sampleIndex) => {
-        const i = sampleIndex / 7;
+      points: Array.from({ length: 211 }, (_, sampleIndex) => {
+        const i = sampleIndex / 14;
         const angle = (i * Math.PI / 4) / 15;
         return {
           x: 4 * Math.cos(angle),
@@ -98,7 +76,7 @@ Die Zeichnungen verwenden **denselben Radius** von 4 Einheiten. Vergleiche den W
       labels: [
         {
           text: <InlineMath math="45^\circ" />,
-          at: 56,
+          at: 112,
           offset: [1, 0.8, 0],
         },
       ],
@@ -106,13 +84,22 @@ Die Zeichnungen verwenden **denselben Radius** von 4 Einheiten. Vergleiche den W
   ]}
 />
 
+Für diesen Sektor gilt <InlineMath math="s = \frac{1}{8} \times 8\pi = \pi" /> und <InlineMath math="A = \frac{1}{8} \times 16\pi = 2\pi" />. Die kurze Formel liefert dasselbe ohne den Winkel: <InlineMath math="A = \frac{1}{2} \times \pi \times 4 = 2\pi" />.
+
+## Verhältnisse auf demselben Kreis
+
+Auf einem Kreis ist das Verhältnis zweier Bögen gleich dem Verhältnis ihrer Sektoren und ihrer Mittelpunktswinkel. Ein doppelt so großer Winkel macht **Bogen und Sektor beide doppelt so groß**. Die nächsten drei Diagramme nutzen denselben Radius <InlineMath math="4" />.
+
+<ContentStack>
+
 <LineEquation
-  title={<>Winkel <InlineMath math="90^\circ" /> ergibt ein Verhältnis <InlineMath math="\frac{1}{4}" /></>}
-  description={<>Bei einem Mittelpunktswinkel von <InlineMath math="90^\circ" /> beträgt die Bogenlänge <InlineMath math="\frac{1}{4}" /> des Umfangs und die Sektorfläche <InlineMath math="\frac{1}{4}" /> der Kreisfläche.</>}
+  title={<>Ein Winkel von <InlineMath math="90^\circ" /> nimmt <InlineMath math="\frac{1}{4}" /> des Kreises ein</>}
+  description={<>Beim Radius <InlineMath math="4" /> ist der Bogen <InlineMath math="2\pi" /> und der Sektor <InlineMath math="4\pi" />, doppelt so viel wie die Bogenlänge.</>}
   cameraPosition={[0, 0, 12]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 4 * Math.cos(angle),
@@ -146,7 +133,8 @@ Die Zeichnungen verwenden **denselben Radius** von 4 Einheiten. Vergleiche den W
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 31 }, (_, i) => {
+      points: Array.from({ length: 211 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (i * Math.PI / 2) / 30;
         return {
           x: 4 * Math.cos(angle),
@@ -161,7 +149,7 @@ Die Zeichnungen verwenden **denselben Radius** von 4 Einheiten. Vergleiche den W
       labels: [
         {
           text: <InlineMath math="90^\circ" />,
-          at: 15,
+          at: 105,
           offset: [0.8, 1, 0],
         },
       ],
@@ -170,12 +158,13 @@ Die Zeichnungen verwenden **denselben Radius** von 4 Einheiten. Vergleiche den W
 />
 
 <LineEquation
-  title={<>Winkel <InlineMath math="180^\circ" /> ergibt ein Verhältnis <InlineMath math="\frac{1}{2}" /></>}
-  description={<>Bei einem Mittelpunktswinkel von <InlineMath math="180^\circ" /> beträgt die Bogenlänge <InlineMath math="\frac{1}{2}" /> des Umfangs und die Sektorfläche <InlineMath math="\frac{1}{2}" /> der Kreisfläche.</>}
+  title={<>Ein Winkel von <InlineMath math="180^\circ" /> nimmt <InlineMath math="\frac{1}{2}" /> des Kreises ein</>}
+  description={<>Beim Radius <InlineMath math="4" /> ist der Bogen <InlineMath math="4\pi" /> und der Sektor <InlineMath math="8\pi" />, doppelt so viel wie die Bogenlänge.</>}
   cameraPosition={[0, 0, 12]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 4 * Math.cos(angle),
@@ -199,7 +188,8 @@ Die Zeichnungen verwenden **denselben Radius** von 4 Einheiten. Vergleiche den W
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 31 }, (_, i) => {
+      points: Array.from({ length: 211 }, (_, sampleIndex) => {
+        const i = sampleIndex / 7;
         const angle = (i * Math.PI) / 30;
         return {
           x: 4 * Math.cos(angle),
@@ -214,7 +204,7 @@ Die Zeichnungen verwenden **denselben Radius** von 4 Einheiten. Vergleiche den W
       labels: [
         {
           text: <InlineMath math="180^\circ" />,
-          at: 15,
+          at: 105,
           offset: [0, -0.5, 0],
         },
       ],
@@ -223,12 +213,13 @@ Die Zeichnungen verwenden **denselben Radius** von 4 Einheiten. Vergleiche den W
 />
 
 <LineEquation
-  title={<>Allgemeiner Winkel <InlineMath math="\alpha" /></>}
-  description={<>Bei einem Mittelpunktswinkel von <InlineMath math="\alpha" /> beträgt die Bogenlänge <InlineMath math="\frac{\alpha}{360^\circ}" /> des Umfangs und die Sektorfläche <InlineMath math="\frac{\alpha}{360^\circ}" /> der Kreisfläche.</>}
+  title={<>Ein Winkel von <InlineMath math="120^\circ" /> nimmt <InlineMath math="\frac{1}{3}" /> des Kreises ein</>}
+  description={<>Beim Radius <InlineMath math="4" /> ist der Bogen <InlineMath math="\frac{8\pi}{3}" /> und der Sektor <InlineMath math="\frac{16\pi}{3}" />, doppelt so viel wie die Bogenlänge.</>}
   cameraPosition={[0, 0, 12]}
   data={[
     {
-      points: Array.from({ length: 61 }, (_, i) => {
+      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+        const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
           x: 4 * Math.cos(angle),
@@ -262,7 +253,8 @@ Die Zeichnungen verwenden **denselben Radius** von 4 Einheiten. Vergleiche den W
       lineWidth: 2,
     },
     {
-      points: Array.from({ length: 41 }, (_, i) => {
+      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+        const i = sampleIndex / 5;
         const angle = (i * 2 * Math.PI / 3) / 40;
         return {
           x: 4 * Math.cos(angle),
@@ -277,7 +269,7 @@ Die Zeichnungen verwenden **denselben Radius** von 4 Einheiten. Vergleiche den W
       labels: [
         {
           text: <InlineMath math="\alpha=120^\circ" />,
-          at: 20,
+          at: 100,
           offset: [-0.8, 1, 0],
         },
       ],
@@ -287,27 +279,40 @@ Die Zeichnungen verwenden **denselben Radius** von 4 Einheiten. Vergleiche den W
 
 </ContentStack>
 
-| Winkel | Bogenlänge | Sektorfläche |
+Mit <InlineMath math="r = 4" /> ergeben die vier Diagramme diese Bögen und Sektoren. Jede Sektorfläche ist genau doppelt so groß wie ihre Bogenlänge, denn <InlineMath math="\frac{A}{s} = \frac{r}{2} = 2" />.
+
+| Mittelpunktswinkel | Bogenlänge | Sektorfläche |
 | --- | --- | --- |
 | <InlineMath math="45^\circ" /> | <InlineMath math="\pi" /> | <InlineMath math="2\pi" /> |
 | <InlineMath math="90^\circ" /> | <InlineMath math="2\pi" /> | <InlineMath math="4\pi" /> |
-| <InlineMath math="120^\circ" /> | <InlineMath math="8\pi/3" /> | <InlineMath math="16\pi/3" /> |
+| <InlineMath math="120^\circ" /> | <InlineMath math="\frac{8\pi}{3}" /> | <InlineMath math="\frac{16\pi}{3}" /> |
 | <InlineMath math="180^\circ" /> | <InlineMath math="4\pi" /> | <InlineMath math="8\pi" /> |
 
-## Anwendung in der Erdmessung
+Diese Verhältnisse gelten nur auf demselben Kreis. Zwei Bögen mit <InlineMath math="45^\circ" /> auf Kreisen mit verschiedenen Radien sind verschieden lang.
 
-Im vereinfachten Modell der Messung von Eratosthenes ist die Erde eine Kugel. Die Städte liegen auf **demselben Meridian**, und Sonnenstrahlen treffen parallel ein. Zur Sommersonnenwende steht die Sonne im Modell mittags senkrecht über Syene. In Alexandria beträgt ihr Winkel zur Vertikalen etwa <InlineMath math="7{,}2^\circ" />. Wegen der parallelen Strahlen entspricht dieser Winkel dem Winkel zwischen den Städten im Erdmittelpunkt.
+## Sektorfläche aus der Bogenlänge
 
-Mit einem angenommenen Oberflächenabstand von <InlineMath math="5{.}000 \text{ Stadien}" /> entspricht die Strecke einem Fünfzigstel des Umfangs. Das Modell erklärt die geometrische Methode und gibt keine exakten heutigen Ortsmessungen wieder.
+Die Formel <InlineMath math="A = \frac{1}{2} s r" /> entsteht, wenn du **die Flächenformel durch die Bogenformel teilst**. Der gemeinsame Winkelfaktor kürzt sich weg, der Mittelpunktswinkel wird also nicht mehr gebraucht:
+
+<BlockMath math="\frac{A}{s} = \frac{\frac{\alpha}{360^\circ}\pi r^2}{\frac{\alpha}{360^\circ}2\pi r} = \frac{r}{2} \quad\Longrightarrow\quad A = \frac{1}{2} s r" />
+
+Das erinnert an die Dreiecksfläche, halbe Grundseite mal Höhe. Ein sehr schmaler Sektor ist fast ein Dreieck mit der Grundseite <InlineMath math="s" /> und der Höhe <InlineMath math="r" />, und der ganze Sektor ist die Summe vieler solcher schmaler Dreiecke. Die Formel hilft, wenn eine Aufgabe Bogenlänge und Radius nennt, aber keinen Winkel.
+
+## Den Erdumfang mit einem Bogen messen
+
+Mit demselben Verhältnis von Bogen und Mittelpunktswinkel schätzte Eratosthenes den Erdumfang. Seine Rechnung beruht auf einigen Vereinfachungen: Die Erde ist eine Kugel, beide Städte liegen auf **demselben Meridian**, und die Sonnenstrahlen sind parallel.
+
+Zur Mittagszeit an der Sommersonnenwende steht die Sonne der Annahme nach genau über Syene. In Alexandria bildet die Richtung zur Sonne mit der Senkrechten einen Winkel von etwa <InlineMath math="7{,}2^\circ" />. Weil die Strahlen parallel sind, ist dieser Winkel gleich dem Winkel zwischen den beiden Städten im Erdmittelpunkt.
 
 <LineEquation
-  title={<>Erdumfangsmessung durch Eratosthenes</>}
-  description={<>Das Modell verbindet einen Winkel von <InlineMath math="7{,}2^\circ" /> mit einer Oberflächenstrecke von <InlineMath math="5{.}000 \text{ Stadien}" />.</>}
+  title="Eratosthenes misst den Erdumfang"
+  description={<>Der Winkel von <InlineMath math="7{,}2^\circ" /> im Erdmittelpunkt ist gleich dem Winkel der Sonnenstrahlen zur Senkrechten in Alexandria, den dieses Diagramm nicht zeichnet.</>}
   cameraPosition={[2.5, 0.4, 8]}
   cameraTarget={[2.5, 0.4, 0]}
   data={[
     {
-      points: Array.from({ length: 73 }, (_, i) => {
+      points: Array.from({ length: 217 }, (_, sampleIndex) => {
+        const i = sampleIndex / 3;
         const angle = (-15 + (i * 45) / 72) * Math.PI / 180;
         return {
           x: 5 * Math.cos(angle),
@@ -322,7 +327,7 @@ Mit einem angenommenen Oberflächenabstand von <InlineMath math="5{.}000 \text{ 
       labels: [
         {
           text: "Erde",
-          at: 72,
+          at: 216,
           offset: [-0.4, 0.2, 0],
         },
       ],
@@ -362,8 +367,8 @@ Mit einem angenommenen Oberflächenabstand von <InlineMath math="5{.}000 \text{ 
       ],
     },
     {
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 10;
+      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+        const i = sampleIndex / 20;
         const angle = (i * (7.2 * Math.PI) / 180) / 10;
         return {
           x: 5 * Math.cos(angle),
@@ -378,14 +383,14 @@ Mit einem angenommenen Oberflächenabstand von <InlineMath math="5{.}000 \text{ 
       labels: [
         {
           text: <InlineMath math="5{.}000\,\text{Stadien}" />,
-          at: 50,
+          at: 100,
           offset: [0.5, 0.4, 0],
         },
       ],
     },
     {
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 10;
+      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+        const i = sampleIndex / 20;
         const angle = (i * (7.2 * Math.PI) / 180) / 10;
         const radius = 1.5;
         return {
@@ -401,7 +406,7 @@ Mit einem angenommenen Oberflächenabstand von <InlineMath math="5{.}000 \text{ 
       labels: [
         {
           text: <InlineMath math="7{,}2^\circ" />,
-          at: 50,
+          at: 100,
           offset: [0.3, 0.8, 0],
         },
       ],
@@ -409,77 +414,90 @@ Mit einem angenommenen Oberflächenabstand von <InlineMath math="5{.}000 \text{ 
   ]}
 />
 
-Verwendung der proportionalen Beziehung:
-
-Dabei ist <InlineMath math="D" /> die Entfernung von Alexandria nach Syene und <InlineMath math="C" /> der Erdumfang:
+Die Entfernung der Städte auf der Oberfläche wird mit <InlineMath math="5{.}000" /> Stadien angenommen. Ein Bogen von <InlineMath math="7{,}2^\circ" /> ist ein Fünfzigstel einer Drehung, also:
 
 <MathContainer>
-  <BlockMath math="\frac DC=\frac{7{,}2^\circ}{360^\circ}" />
-  <BlockMath math="\begin{aligned} \frac{5{.}000 \text{ Stadien}}{\text{Erdumfang}} &amp;= \frac{7{,}2^\circ}{360^\circ} \\ &amp;= \frac{1}{50} \end{aligned}" />
-  <BlockMath math="\begin{aligned} &amp;\text{Erdumfang} \\ &amp;= 5{.}000 \times 50 \\ &amp;= 250{.}000 \text{ Stadien} \end{aligned}" />
+  <BlockMath math="\frac{5{.}000}{U} = \frac{7{,}2^\circ}{360^\circ} = \frac{1}{50}" />
+  <BlockMath math="U = 5{.}000 \times 50 = 250{.}000 \text{ Stadien}" />
 </MathContainer>
 
-Die Länge des antiken Stadions ist **nicht sicher bekannt**. Nimmt man 160 Meter pro Stadion an, entsprechen 250.000 Stadien einer Strecke von 40.000 km. Andere angenommene Stadienlängen ergeben andere Umrechnungen.
+Die Länge eines antiken Stadions ist **nicht genau bekannt**. Nimmt man <InlineMath math="160" /> Meter pro Stadion an, ergeben sich <InlineMath math="40{.}000" /> km. Andere Stadionlängen liefern andere Zahlen, die Rechnung zeigt also die Methode und keinen exakten modernen Wert.
 
-## Direkte Beziehung zwischen Bogen und Sektor
+## Beispiele zu Bogen und Sektor
 
-Bei einem Kreis mit Radius <InlineMath math="r" /> und einem **von null verschiedenen Mittelpunktswinkel** ergibt die Sektorfläche geteilt durch die Bogenlänge <InlineMath math="r/2" />:
+Jedes Beispiel beginnt damit, **den passenden Zusammenhang** zu den Angaben zu wählen: die Formel <InlineMath math="A = \frac{1}{2} s r" /> für Bogen und Radius oder ein Verhältnis für zwei Sektoren auf demselben Kreis.
+
+**Beispiel 1**. Ein Kreis mit dem Radius <InlineMath math="14\text{ cm}" /> hat einen Bogen der Länge <InlineMath math="22\text{ cm}" />. Bestimme die Fläche des Sektors.
+
+<BlockMath math="A = \frac{1}{2} \times 22 \times 14 = 154\text{ cm}^2" />
+
+Probe über den Winkel, mit <InlineMath math="\pi = \frac{22}{7}" />. Der Umfang beträgt <InlineMath math="88\text{ cm}" />, der Bogen von <InlineMath math="22\text{ cm}" /> ist also ein Viertel davon, und ein Viertel der Kreisfläche <InlineMath math="616\text{ cm}^2" /> sind tatsächlich <InlineMath math="154\text{ cm}^2" />.
+
+**Beispiel 2**. Ein Sektor hat die Fläche <InlineMath math="154\text{ cm}^2" /> und die Bogenlänge <InlineMath math="22\text{ cm}" />. Bestimme den Radius.
+
+<BlockMath math="\frac{A}{s} = \frac{r}{2} \quad\Longrightarrow\quad r = \frac{2A}{s} = \frac{2 \times 154}{22} = 14\text{ cm}" />
+
+Probe: <InlineMath math="\frac{1}{2} \times 22 \times 14 = 154" />.
+
+**Beispiel 3**. Auf einem Kreis ist der Bogen mit dem Mittelpunktswinkel <InlineMath math="40^\circ" /> genau <InlineMath math="10\text{ cm}" /> lang. Bestimme die Länge des Bogens mit dem Mittelpunktswinkel <InlineMath math="100^\circ" />.
+
+<BlockMath math="\frac{s_2}{10} = \frac{100^\circ}{40^\circ} \quad\Longrightarrow\quad s_2 = 25\text{ cm}" />
+
+Probe: Der Umfang dieses Kreises beträgt <InlineMath math="10 \times \frac{360}{40} = 90\text{ cm}" />, und <InlineMath math="\frac{100}{360} \times 90 = 25\text{ cm}" />. Auch die Fläche des zweiten Sektors ist <InlineMath math="2{,}5" />-mal so groß wie die des ersten, weil die Fläche auf demselben Kreis proportional zum Mittelpunktswinkel ist.
+
+## Häufige Fehler
+
+Bevor du rechnest, prüfst du, ob die verglichenen Sektoren auf **demselben Kreis** liegen.
+
+| Fehler | Warum er falsch ist | So prüfst du |
+| --- | --- | --- |
+| <InlineMath math="A = s \times r" /> schreiben | Der Faktor <InlineMath math="\frac{1}{2}" /> stammt aus <InlineMath math="\frac{\pi r^2}{2\pi r} = \frac{r}{2}" /> | Vergleiche mit der vollständigen Formel für einen Winkel |
+| Bögen auf verschiedenen Kreisen vergleichen | Das Verhältnis gilt nur bei gleichem Radius | Prüfe, ob die Radien gleich sind |
+| Den Durchmesser als <InlineMath math="r" /> einsetzen | Die Formel braucht den Abstand vom Mittelpunkt zum Bogen | Halbiere den Durchmesser vor dem Einsetzen |
+| Flächen- und Längeneinheiten mischen | Ein Bogen hat eine Längeneinheit, ein Sektor eine Flächeneinheit | Prüfe die Einheit jeder Antwort |
+
+Vergisst du den Faktor einhalb, wird die Sektorfläche doppelt so groß. Ein Sektor mit <InlineMath math="180^\circ" />, der so groß wie der ganze Kreis herauskommt, verrät diesen Fehler.
+
+## Übungen zu Bogen und Sektor
+
+Entscheide bei jeder Aufgabe zuerst, ob du **halbe Bogenlänge mal Radius** oder ein Verhältnis brauchst. Aufgabe 4 braucht beides.
+
+1. Der Bogen eines Sektors ist <InlineMath math="6\text{ cm}" /> lang, der Radius beträgt <InlineMath math="10\text{ cm}" />. Bestimme die Sektorfläche.
+
+2. Ein Sektor mit dem Radius <InlineMath math="12\text{ cm}" /> hat die Fläche <InlineMath math="60\text{ cm}^2" />. Bestimme seine Bogenlänge und ungefähr seinen Mittelpunktswinkel.
+
+3. Zwei Städte liegen auf demselben Großkreis der Erde und sind entlang dieses Kreises <InlineMath math="1{.}000\text{ km}" /> voneinander entfernt. Ihr Winkel im Erdmittelpunkt beträgt <InlineMath math="9^\circ" />. Schätze den Erdumfang.
+
+4. Auf einem Kreis ist der Bogen mit dem Mittelpunktswinkel <InlineMath math="60^\circ" /> genau <InlineMath math="4\pi\text{ cm}" /> lang. Bestimme den Radius, die Länge des Bogens mit <InlineMath math="150^\circ" /> und die Fläche des Sektors mit <InlineMath math="150^\circ" />.
+
+### Lösungen
+
+**Aufgabe 1**. Bogen und Radius sind bekannt, also nutzt du **halbe Bogenlänge mal Radius**:
+
+<BlockMath math="A = \frac{1}{2} \times 6 \times 10 = 30\text{ cm}^2" />
+
+Probe über den Winkel: <InlineMath math="\alpha = \frac{6}{20\pi} \times 360^\circ = \frac{108^\circ}{\pi}" />, und <InlineMath math="\frac{108/\pi}{360} \times 100\pi = 30" />.
+
+**Aufgabe 2**. Stelle die Formel nach dem Bogen um und teile den Bogen durch den Umfang, **um den Winkel zu erhalten**:
 
 <MathContainer>
-<BlockMath math="\frac{\text{Sektorfläche}}{\text{Bogenlänge}} = \frac{r}{2}" />
+  <BlockMath math="s = \frac{2A}{r} = \frac{2 \times 60}{12} = 10\text{ cm}" />
+  <BlockMath math="\alpha = \frac{10}{2\pi \times 12} \times 360^\circ = \frac{150^\circ}{\pi} \approx 47{,}7^\circ" />
 </MathContainer>
 
-Ändert sich der Mittelpunktswinkel, ändern sich Sektorfläche und Bogenlänge um denselben Faktor. Ihr Verhältnis bleibt daher <InlineMath math="r/2" />.
+Probe: <InlineMath math="\frac{1}{2} \times 10 \times 12 = 60" />.
 
-Das Verhältnis hängt allein vom Radius ab. Der Mittelpunktswinkel kürzt sich bei der Division heraus.
+**Aufgabe 3**. Ein Bogen von <InlineMath math="9^\circ" /> ist **ein Vierzigstel einer Drehung**, denn <InlineMath math="\frac{9}{360} = \frac{1}{40}" />:
 
-## Übungen
+<BlockMath math="U = 1{.}000 \times 40 = 40{.}000\text{ km}" />
 
-Die ersten beiden Aufgaben verwenden die **Beziehung zwischen Fläche und Bogenlänge**, um eine Fläche oder einen Radius zu bestimmen. Die dritte nutzt den Anteil des Bogens am Umfang einer kugelförmigen Erde.
+Probe: <InlineMath math="40 \times 9^\circ = 360^\circ" />, vierzig solche Bögen umrunden die Erde also genau einmal.
 
-1. Ein Kreis hat den Radius <InlineMath math="14 \text{ cm}" />. Die Bogenlänge eines Sektors beträgt <InlineMath math="22 \text{ cm}" />. Bestimme seine Fläche.
-
-2. Ein Sektor hat die Fläche <InlineMath math="154 \text{ cm}^2" /> und die Bogenlänge <InlineMath math="22 \text{ cm}" />. Bestimme den Kreisradius.
-
-3. Zwei Orte liegen auf demselben Großkreis und sind <InlineMath math="1{.}000 \text{ km}" /> voneinander entfernt. Der zugehörige Mittelpunktswinkel der Erde beträgt <InlineMath math="9^\circ" />. Schätze den Erdumfang.
-
-### Ausführliche Lösungen
-
-Bestimme zuerst die **gesuchte Größe**. Für die Fläche multiplizierst du die Bogenlänge mit dem halben Radius. Für den Radius stellst du die Gleichung um. Den Erdumfang erhältst du über den Anteil an einer vollen Umdrehung.
-
-**Lösung 1**
-
-Gegeben: <InlineMath math="r = 14 \text{ cm}" />, Bogenlänge = <InlineMath math="22 \text{ cm}" />
-
-Verwendet wird: <InlineMath math="\text{Sektorfläche} = \frac{1}{2} \times \text{Bogenlänge} \times r" />
+**Aufgabe 4**. Ein Bogen von <InlineMath math="60^\circ" /> ist ein Sechstel des Umfangs, der Umfang beträgt also <InlineMath math="6 \times 4\pi = 24\pi" />, und es gilt <InlineMath math="r = 12\text{ cm}" />. Den Bogen mit <InlineMath math="150^\circ" /> liefert **das Verhältnis der Winkel**, seine Sektorfläche die Formel halbe Bogenlänge mal Radius:
 
 <MathContainer>
-<BlockMath math="\text{Sektorfläche} = \frac{1}{2} \times 22 \times 14" />
-<BlockMath math="= \frac{22 \times 14}{2}" />
-<BlockMath math="= \frac{308}{2}" />
-<BlockMath math="= 154 \text{ cm}^2" />
+  <BlockMath math="s = \frac{150^\circ}{60^\circ} \times 4\pi = 10\pi\text{ cm}" />
+  <BlockMath math="A = \frac{1}{2} \times 10\pi \times 12 = 60\pi\text{ cm}^2" />
 </MathContainer>
 
-**Lösung 2**
-
-Gegeben: Sektorfläche = <InlineMath math="154 \text{ cm}^2" />, Bogenlänge = <InlineMath math="22 \text{ cm}" />
-
-Verwendet wird: <InlineMath math="\frac{\text{Sektorfläche}}{\text{Bogenlänge}} = \frac{r}{2}" />
-
-<MathContainer>
-<BlockMath math="\frac{154}{22} = \frac{r}{2}" />
-<BlockMath math="7 = \frac{r}{2}" />
-<BlockMath math="r = 14 \text{ cm}" />
-</MathContainer>
-
-**Lösung 3**
-
-Gegeben: Abstand = <InlineMath math="1{.}000 \text{ km}" />, Winkel = <InlineMath math="9^\circ" />
-
-Verwenden des Verhältnisses: <InlineMath math="\frac{\text{Entfernung}}{\text{Erdumfang}} = \frac{9^\circ}{360^\circ}" />
-
-<MathContainer>
-<BlockMath math="\begin{aligned} \frac{1{.}000}{\text{Erdumfang}} &amp;= \frac{9^\circ}{360^\circ} \\ &amp;= \frac{1}{40} \end{aligned}" />
-<BlockMath math="\text{Erdumfang} = 1{.}000 \times 40" />
-<BlockMath math="= 40{.}000 \text{ km}" />
-</MathContainer>
+Probe mit der vollständigen Formel: <InlineMath math="\frac{150}{360} \times \pi \times 12^2 = 60\pi" />.

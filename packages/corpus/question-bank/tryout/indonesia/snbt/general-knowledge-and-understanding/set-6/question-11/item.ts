@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "noken",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Tingkat pengembalian malam pertama membuktikan sistem harus diterapkan permanen tanpa perubahan.",
+          label: "kecepatan bekerja",
         },
         {
           correct: false,
-          label:
-            "Karena ada keluhan, uang jaminan tidak mungkin memengaruhi perilaku pengunjung.",
+          label: "kekuatan tangan yang besar",
         },
         {
           correct: false,
-          label: "Satu loket dipindahkan dan jam layanannya diperpanjang.",
-        },
-        {
-          correct: false,
-          label:
-            "Evaluasi akhir akan memasukkan biaya pencucian dan kehilangan wadah.",
+          label: "keberanian mencoba",
         },
         {
           correct: true,
-          label:
-            "Perubahan perilaku tidak cukup dinilai dari satu angka jika desain layanan membebani kelompok secara berbeda.",
+          label: "kesungguhan dan kesabaran",
+        },
+        {
+          correct: false,
+          label: "kecerdikan mencari cara",
         },
       ],
     },

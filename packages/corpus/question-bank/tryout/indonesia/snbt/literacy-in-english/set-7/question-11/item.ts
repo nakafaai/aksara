@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "museum-visits",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The character treats completing the whole project as the necessary first step before seeking review.",
+          label: "8.3%",
         },
         {
           correct: false,
-          label:
-            "The account presents cognitive load as a general idea rather than something developed through the character's choice.",
+          label: "10.7%",
         },
         {
           correct: true,
-          label:
-            "Priya reduces an overloaded flood warning to two sentences and tests it with an unfamiliar reader, turning assumed clarity into evidence.",
+          label: "12.0%",
         },
         {
           correct: false,
-          label:
-            "The main obstacle becomes manageable because another person assumes responsibility for the next step.",
+          label: "15.8%",
         },
         {
           correct: false,
-          label:
-            "The passage presents documenting uncertainty as more important than taking a reviewable action.",
+          label: "50.0%",
         },
       ],
     },

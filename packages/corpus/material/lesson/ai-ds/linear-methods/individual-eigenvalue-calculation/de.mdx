@@ -66,6 +66,33 @@ Das Wort „kleinster“ ist mehrdeutig. Deshalb muss das Ziel immer genau benan
 
 Bei einer indefiniten Matrix muss der Eigenwert mit dem **kleinsten Betrag nicht** der negativste Eigenwert sein. Diese Unterscheidung verhindert einen häufigen Interpretationsfehler.
 
+Für <InlineMath math="A=\operatorname{diag}(2,5)" /> aus dem Beispiel weiter unten multipliziert die Potenziteration die Komponente zu <InlineMath math="\lambda_i" /> mit <InlineMath math="\lambda_i" />, die inverse Iteration mit Verschiebung <InlineMath math="\mu=1" /> dagegen mit <InlineMath math="1/(\lambda_i-1)" />. Der größte Faktor gewinnt, also läuft die erste Methode zu <InlineMath math="5" /> und die zweite zu <InlineMath math="2" />.
+
+<ScatterDiagram
+  title={<>Der Faktor pro Schritt für jeden Eigenwert</>}
+  description={<>Nach rechts stehen die Eigenwerte <InlineMath math="2" /> und <InlineMath math="5" />. Die Punkte der Potenziteration liegen bei <InlineMath math="\lambda_i" />, die der verschobenen inversen Iteration bei <InlineMath math="1/(\lambda_i-1)" />, also <InlineMath math="1" /> und <InlineMath math="1/4" />.</>}
+  xAxisLabel="Eigenwert"
+  yAxisLabel="Faktor pro Schritt"
+  datasets={[
+    {
+      name: "Potenziteration",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: 2 },
+        { x: 5, y: 5 },
+      ],
+    },
+    {
+      name: "Verschobene inverse Iteration",
+      color: "var(--chart-2)",
+      points: [
+        { x: 2, y: 1 / (2 - 1) },
+        { x: 5, y: 1 / (5 - 1) },
+      ],
+    },
+  ]}
+/>
+
 ## Beispiel zur verschobenen inversen Iteration
 
 Betrachten wir
@@ -89,6 +116,40 @@ Prüfe auch das erste Residuum: Die Schätzung verbessert sich, ist aber noch ni
 
 <BlockMath math="r_1=\frac1{17\sqrt{17}}\begin{pmatrix}-12\\48\end{pmatrix},\qquad \|r_1\|_2=\frac{12}{17}" />
 
+Beide Verfahren unten starten beim selben violetten Vektor <InlineMath math="q_0" />. Die inverse Iteration mit Shift <InlineMath math="\mu=1" /> multipliziert die zweite Komponente in jedem Schritt mit <InlineMath math="1/4" />, also kippen die türkisen Strecken <InlineMath math="q_k\propto(1,4^{-k})^T" /> auf die erste Achse, den Eigenvektor zu <InlineMath math="2" />. Die einfache Potenzmethode benutzt <InlineMath math="A" /> selbst, deshalb steigen die orangen Strecken <InlineMath math="p_k\propto(2^k,5^k)^T" /> zum Eigenvektor zu <InlineMath math="5" />. Der Shift entscheidet, welchen Eigenwert du bekommst.
+
+<MathVisual
+  title={<>Verschobene inverse Iteration und Potenzmethode laufen in verschiedene Richtungen</>}
+  description={<>Für <InlineMath math="A=\operatorname{diag}(2,5)" /> und <InlineMath math="q_0=(1,1)^T/\sqrt2" />: Türkise Strecken sind <InlineMath math="q_k" /> mit Shift <InlineMath math="\mu=1" />, orange Strecken die Iterierten <InlineMath math="p_k" /> der Potenzmethode.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.3 }, y: { min: -0.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "quarter", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 90, appearance: "reference" },
+      { id: "q0", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "q1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 / Math.hypot(4, 1), y: 1 / Math.hypot(4, 1) }, appearance: "construction" },
+      { id: "q2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 16 / Math.hypot(16, 1), y: 1 / Math.hypot(16, 1) }, appearance: "construction" },
+      { id: "p1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 / Math.hypot(2, 5), y: 5 / Math.hypot(2, 5) }, appearance: "primary" },
+      { id: "p2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 / Math.hypot(4, 25), y: 25 / Math.hypot(4, 25) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "q0", objectId: "q0", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "above-right" },
+      { key: "q1", objectId: "q1", at: { x: 4 / Math.hypot(4, 1), y: 1 / Math.hypot(4, 1) }, placement: "right" },
+      { key: "q2", objectId: "q2", at: { x: 16 / Math.hypot(16, 1), y: 1 / Math.hypot(16, 1) }, placement: "below-right" },
+      { key: "p1", objectId: "p1", at: { x: 2 / Math.hypot(2, 5), y: 5 / Math.hypot(2, 5) }, placement: "above-right" },
+      { key: "p2", objectId: "p2", at: { x: 4 / Math.hypot(4, 25), y: 25 / Math.hypot(4, 25) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "q0": <InlineMath math="q_0" />,
+    "q1": <InlineMath math="q_1" />,
+    "q2": <InlineMath math="q_2" />,
+    "p1": <InlineMath math="p_1" />,
+    "p2": <InlineMath math="p_2" />,
+  }}
+/>
+
 ## Praktische Prüfungen
 
 Mit diesen Prüfungen entscheidest du, ob ein berechnetes Paar aus Eigenwert und Eigenvektor stimmt, ohne die ganze Determinante erneut zu rechnen. Arbeite sie der Reihe nach für dein Ergebnis ab.
@@ -97,3 +158,19 @@ Mit diesen Prüfungen entscheidest du, ob ein berechnetes Paar aus Eigenwert und
 2. Verwende die **Residuumsnorm** als Abbruchkriterium. Eine kleine Änderung zwischen zwei Eigenwertschätzungen beweist noch kein genaues Eigenpaar.
 3. Das Vorzeichen eines Eigenvektors ist frei: <InlineMath math="q" /> und <InlineMath math="-q" /> beschreiben dieselbe Eigenrichtung.
 4. Für Eigenwertcluster oder allgemeine nichtnormale Matrizen eignen sich Mehrvektorverfahren oder die Schur-Form, mit Lanczos bei symmetrischen Problemen und Arnoldi- oder <InlineMath math="\mathrm{QR}" />-basierte Eigenwertlöser.
+
+Im Beispiel oben liefert <InlineMath math="q_k\propto(4^k,1)" /> den Wert <InlineMath math="\rho_k=\tfrac{2\cdot16^k+5}{16^k+1}" /> und das Residuum <InlineMath math="\|r_k\|_2=\tfrac{3\cdot4^k}{16^k+1}" />. Für <InlineMath math="k=1" /> ist das <InlineMath math="12/17" />, der oben berechnete Wert, und jeder Schritt teilt es ungefähr durch <InlineMath math="4" />.
+
+<BarChart
+  title={<>Die Residuennorm <InlineMath math="\|r_k\|_2" /> schrumpft pro Schritt etwa um den Faktor <InlineMath math="4" /></>}
+  description={<>Jeder Balken ist <InlineMath math="\tfrac{3\cdot4^k}{16^k+1}" /> für die darunter stehende Iteration <InlineMath math="k" />. Brich die Iteration ab, sobald dieses Residuum klein genug ist.</>}
+  yAxisLabel="Residuennorm"
+  data={[
+    { name: "1", value: 3 * 4 ** 1 / (16 ** 1 + 1) },
+    { name: "2", value: 3 * 4 ** 2 / (16 ** 2 + 1) },
+    { name: "3", value: 3 * 4 ** 3 / (16 ** 3 + 1) },
+    { name: "4", value: 3 * 4 ** 4 / (16 ** 4 + 1) },
+    { name: "5", value: 3 * 4 ** 5 / (16 ** 5 + 1) },
+  ]}
+  chartConfig={{ value: { label: "Residuennorm", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>

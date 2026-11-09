@@ -4,7 +4,7 @@ export const metadata = {
   description: "Bedakan histogram dari diagram batang, baca pola frekuensi, dan pilih diagram yang sesuai dengan jenis data.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -21,8 +21,8 @@ Tentukan dahulu apakah sumbu horizontal memuat **kategori yang terpisah** atau i
 Diagram batang digunakan untuk data kategori (seperti merek HP atau jenis olahraga favorit):
 
 <BarChart
-  title="Diagram Batang Merek HP yang Digunakan Siswa SMA"
-  description="Menunjukkan jumlah siswa per merek HP."
+  title={<>Diagram Batang Merek HP yang Digunakan Siswa SMA</>}
+  description={<>Menunjukkan jumlah siswa per merek HP.</>}
   data={[
     { name: "Apple", value: 12 },
     { name: "Samsung", value: 10 },
@@ -58,8 +58,8 @@ Histogram, di sisi lain, digunakan untuk data angka yang dikelompokkan dalam int
 Data durasi ini memuat <InlineMath math="90" /> pengamatan. Agar waktu pada batas kelas tidak dihitung dua kali, gunakan **batas kiri termasuk dan batas kanan tidak termasuk**, misalnya <InlineMath math="0\le t<2" /> dan <InlineMath math="2\le t<4" />. Kelas terakhir mencakup <InlineMath math="8\le t\le10" />. Variabel <InlineMath math="t" /> menyatakan durasi dalam jam.
 
 <HistogramChart
-  title="Histogram Penggunaan Telepon Genggam oleh Siswa SMA"
-  description="Menunjukkan distribusi lama waktu siswa menggunakan HP per hari."
+  title={<>Histogram Penggunaan Telepon Genggam oleh Siswa SMA</>}
+  description={<>Menunjukkan distribusi lama waktu siswa menggunakan HP per hari.</>}
   data={[
     { name: "0-2", value: 10 },
     { name: "2-4", value: 12 },
@@ -88,6 +88,24 @@ Histogram di atas menunjukkan pola penggunaan ponsel siswa SMA berikut:
 - <InlineMath math="8" /> siswa menggunakan HP selama <InlineMath math="8\text{-}10 \text{ jam}" /> per hari
 
 Jika digabungkan, <InlineMath math="32+28=60" /> dari <InlineMath math="90" /> pengamatan berada pada rentang <InlineMath math="4\text{-}8 \text{ jam}" /> per hari, sehingga rentang ini memuat mayoritas data. Interval tunggal dengan frekuensi tertinggi adalah <InlineMath math="4\text{-}6 \text{ jam}" />.
+
+Bagi setiap frekuensi dengan 90 pengamatan untuk membandingkan kelas sebagai bagian. Kelas 4-6 dan 6-8 memuat <InlineMath math="\frac{32}{90} \approx 35{,}6\%" /> dan <InlineMath math="\frac{28}{90} \approx 31{,}1\%" />, bersama-sama dua pertiga siswa.
+
+<HistogramChart
+  title={<>Penggunaan ponsel dalam persen</>}
+  description={<>Batang <InlineMath math="\frac{f}{90} \times 100\%" /> untuk kelas 0-2, 2-4, 4-6, 6-8, dan 8-10 jam.</>}
+  data={[["0-2", 10], ["2-4", 12], ["4-6", 32], ["6-8", 28], ["8-10", 8]].map(([name, f]) => ({ name, value: (100 * f) / 90 }))}
+  chartConfig={{
+    value: {
+      label: "Persentase siswa",
+      colors: {
+        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+      },
+    },
+  }}
+  yAxisLabel="Persentase siswa"
+/>
 
 ## Perbedaan Jenis Data dan Bentuk Batang
 

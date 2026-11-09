@@ -5,26 +5,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$-\\frac{1008}{2015}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1}{2015}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1007}{2015}$$",
-        },
-        {
-          correct: true,
-          label: "$$-\\frac{1007}{2015}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{1008}{2015}$$",
-        },
+        { correct: false, label: "$$2x+3y-13=0$$" },
+        { correct: false, label: "$$3x+2y-12=0$$" },
+        { correct: false, label: "$$3x-2y=0$$" },
+        { correct: false, label: "$$2x-3y-5=0$$" },
+        { correct: true, label: "$$2x-3y+5=0$$" },
       ],
     },
   },

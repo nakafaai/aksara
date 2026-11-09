@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "sentence-relation",
+  },
+  stimulus: "rabies",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Kalimat (5) membantah keterangan tentang kematian pada kalimat (4).",
+        },
+        {
           correct: true,
           label:
-            "Sebagian penurunan keluhan awal mungkin berasal dari kehadiran relawan atau pengarahan pengemudi.",
+            "Kalimat (5) menyebutkan tindakan yang perlu diambil akibat isi kalimat (4).",
         },
         {
           correct: false,
           label:
-            "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang.",
+            "Kalimat (5) memberikan contoh gejala rabies yang muncul setelah gigitan.",
         },
         {
           correct: false,
           label:
-            "Karena keluhan berkurang, jumlah seluruh percakapan keras pasti turun dengan ukuran yang sama.",
+            "Kalimat (5) menjelaskan cara virus rabies bergerak menuju otak.",
         },
         {
           correct: false,
           label:
-            "Pengamat anonim memakai kriteria volume yang telah ditetapkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengelola akan menggunakan angka mayoritas yang berasal dari pengamatan terbaru.",
+            "Kalimat (5) mengulang isi kalimat (4) dengan kata-kata yang lebih singkat dan jelas.",
         },
       ],
     },

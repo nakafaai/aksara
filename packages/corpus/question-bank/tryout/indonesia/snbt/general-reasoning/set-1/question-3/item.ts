@@ -1,33 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "inductive-reasoning",
+    topic: "inference",
+  },
+  stimulus: "atap",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Nilai FOLU lebih rendah daripada energi pada tahun dasar $$2010$$.",
+            "Selisih suhu pada rumah tanpa plafon lebih dari tiga kali selisih suhu pada rumah berplafon.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Energi dan FOLU merupakan dua nilai terbesar pada kedua acuan, meskipun urutannya berubah.",
+            "Data penelitian menunjukkan bahwa cat putih membuat suhu ruang utama lebih rendah sepanjang hari.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Sektor pertanian memiliki nilai tertinggi pada proyeksi $$2030$$.",
+            "Tagihan listrik yang hampir sama menunjukkan bahwa penghuni rumah beratap putih tetap sering menyalakan kipas angin.",
         },
         {
-          correct: false,
-          label: "Sektor yang sama memiliki nilai tertinggi pada kedua acuan.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Gabungan sektor limbah dan proses industri melampaui energi pada tahun dasar $$2010$$.",
+            "Sebagian rumah yang diteliti memiliki plafon, sedangkan sebagian lainnya tidak.",
         },
       ],
     },

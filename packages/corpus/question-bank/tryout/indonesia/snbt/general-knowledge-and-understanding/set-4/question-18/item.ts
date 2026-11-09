@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "puter",
   versions: {
     id: {
       kind: "choice",
@@ -9,26 +14,24 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Semua nama lokal harus memiliki kedudukan hukum yang sama dengan nama administrasi.",
+            "Adonan akan membeku lebih cepat karena tidak ada garam yang mengganggu terbentuknya kristal es di dalam tabung.",
         },
         {
           correct: false,
-          label:
-            "Agar peta konsisten, semua nama selain nama resmi harus dihapus dari pencarian dan arsip.",
+          label: "Adonan akan langsung berubah menjadi serutan es.",
         },
         {
           correct: false,
-          label: "Nama administrasi ditetapkan sebagai indeks utama.",
+          label: "Es batu tidak akan mencair sama sekali.",
         },
         {
           correct: true,
           label:
-            "Standardisasi dan pelestarian pengetahuan lokal dapat berjalan bersama jika fungsi setiap nama dibedakan.",
+            "Adonan akan lebih sulit membeku karena es batu saja tidak sedingin campuran es dan garam.",
         },
         {
           correct: false,
-          label:
-            "Bukti baru dapat mengubah catatan tanpa menghapus riwayat nama sebelumnya.",
+          label: "Tekstur es puter pasti menjadi lebih lembut.",
         },
       ],
     },

@@ -1,17 +1,11 @@
-There are <InlineMath math="\binom{10}{2}=45" /> **equally likely** ball pairs in one round.
+Split the chimes into two kinds: **chimes on the hour** and **half-hour chimes**. Then list every time between <InlineMath math="09{:}15" /> and <InlineMath math="13{:}15" />.
 
-| Outcome | Pairs | Payout |
-| :--- | :---: | :---: |
-| Two red | <InlineMath math="\binom52=10" /> | <InlineMath math="40" /> |
-| Different colours | <InlineMath math="5\times5=25" /> | <InlineMath math="20" /> |
-| Two blue | <InlineMath math="\binom52=10" /> | <InlineMath math="0" /> |
+The hours passed are <InlineMath math="10{:}00" />, <InlineMath math="11{:}00" />, <InlineMath math="12{:}00" />, and <InlineMath math="13{:}00" />. On a 12-hour clock, <InlineMath math="13{:}00" /> shows the number <InlineMath math="1" />, so the clock chimes once, not <InlineMath math="13" /> times.
 
-Payouts in the table are in thousand rupiah. The expected payout for one round is
+<BlockMath math="10+11+12+1=34" />
 
-<BlockMath math="\begin{aligned}E_1&amp;=40\frac{10}{45}+20\frac{25}{45}\\&amp;\quad+0\frac{10}{45}\\&amp;=\frac{400+500}{45}\\&amp;=20\end{aligned}" />
+The half hours passed are <InlineMath math="09{:}30" />, <InlineMath math="10{:}30" />, <InlineMath math="11{:}30" />, and <InlineMath math="12{:}30" />, one chime each. <InlineMath math="13{:}30" /> is already outside the range.
 
-The box is **restored before round two**, so that round has the same expected payout. The total expected payout is
+<BlockMath math="34+4=38" />
 
-<BlockMath math="E_1+E_2=20+20=40" />
-
-A fair fee equals the expected payout, making the expected **net gain zero**. The total fair fee is therefore <InlineMath math="40" /> thousand rupiah.
+A common mistake is counting <InlineMath math="13" /> chimes at <InlineMath math="13{:}00" />, which gives <InlineMath math="50" />. So the clock chimes <InlineMath math="38" /> times.
