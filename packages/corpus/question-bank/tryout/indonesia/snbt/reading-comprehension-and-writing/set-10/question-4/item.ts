@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "referent",
+  },
+  stimulus: "net-recycling",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Pengelompokan bahan membuat penyelesaian hidangan sebelum batas waktu tidak perlu diukur.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengelompokan bahan memungkinkan beberapa unsur kelas diubah sekaligus.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengelompokan bahan dipilih karena semua nilai pembanding sudah terbukti sama.",
+          label: "pabrik karpet",
         },
         {
           correct: true,
-          label:
-            "Pengelompokan bahan menurut tahap resep dapat mempersingkat pencarian saat kelompok berpindah tahap.",
+          label: "jaring yang sudah dicuci dan dipotong-potong",
         },
         {
           correct: false,
-          label:
-            "Pengelompokan bahan dipilih karena hasil akhir pengujiannya sudah pasti.",
+          label: "koperasi nelayan",
+        },
+        {
+          correct: false,
+          label: "benang",
+        },
+        {
+          correct: false,
+          label: "karpet",
         },
       ],
     },

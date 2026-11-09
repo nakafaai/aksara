@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "coherence",
+  },
+  stimulus: "screen-printing",
   versions: {
     id: {
       kind: "choice",
@@ -9,25 +14,24 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tim merencanakan uji lebih lama dengan aturan pengukuran yang diubah.",
+            "Jembatan tua di kota itu dibangun lebih dari seratus tahun lalu.",
         },
         {
           correct: false,
-          label: "Tim akan mengulang hanya pertemuan dengan hasil tertinggi.",
+          label: "Kantong plastik sebaiknya dibakar setelah dipakai.",
+        },
+        {
+          correct: false,
+          label: "Oleh karena itu, Pak Darto menutup usaha sablonnya.",
         },
         {
           correct: true,
           label:
-            "Tim merencanakan uji lebih lama dengan resep lebih beragam dan aturan pengukuran yang sama.",
+            "Berkat tas kain, mesin sablon Pak Darto kini jarang menganggur.",
         },
         {
           correct: false,
-          label:
-            "Tim akan menerapkan susunan baru secara permanen sebagai pengganti uji lanjutan.",
-        },
-        {
-          correct: false,
-          label: "Tim merencanakan uji lebih lama dengan resep yang sama saja.",
+          label: "Namun, tidak ada toko yang mau memesan tas kain.",
         },
       ],
     },

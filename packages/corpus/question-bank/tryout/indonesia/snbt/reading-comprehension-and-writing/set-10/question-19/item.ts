@@ -1,35 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "sentence-relation",
+  },
+  stimulus: "running-club",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Tim merubah satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim mengrubah satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim hanya mengubah satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
-        },
-        {
           correct: true,
           label:
-            "Tim mengubah satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
+            "Kalimat (5) menjelaskan penyebab berkurangnya anggota yang ikut latihan pada bulan April.",
         },
         {
           correct: false,
           label:
-            "Tim mengubah terhadap satu faktor saja, yaitu pemakaian peta kecil dengan waktu tempuh.",
+            "Kalimat (5) menjelaskan penyebab membaiknya waktu anggota pada bulan April.",
+        },
+        {
+          correct: false,
+          label: "Kalimat (5) membantah data bulan April pada tabel.",
+        },
+        {
+          correct: false,
+          label: "Kalimat (5) menyebut rencana klub mengikuti lomba.",
+        },
+        {
+          correct: false,
+          label: "Kalimat (5) memberi contoh anggota yang paling cepat.",
         },
       ],
     },
