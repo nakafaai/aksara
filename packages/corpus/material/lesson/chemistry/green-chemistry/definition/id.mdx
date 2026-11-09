@@ -16,6 +16,32 @@ Kimia hijau mempertimbangkan [seluruh daur hidup produk kimia](https://www.epa.g
 
 Penilaian dimulai dari **rancangan**. Pengolahan limbah tetap penting setelah limbah terbentuk. Dalam kimia hijau, bahan, pelarut, energi, katalis, dan produk akhir dinilai sebelum proses dijalankan.
 
+Tahap terakhir siklus hidup juga pilihan rancangan. Kalau suatu produk kehilangan separuh massanya yang tersisa tiap <InlineMath math="T" /> bulan, yang masih ada setelah <InlineMath math="t" /> bulan adalah <InlineMath math="\left(\tfrac{1}{2}\right)^{t/T}" /> bagian. Dengan <InlineMath math="T=2" /> sebagai ilustrasi, produk teal hampir habis dalam dua tahun, sementara produk yang awet dengan <InlineMath math="T=120" /> masih tersisa sekitar <InlineMath math="87\%" />. Telusuri kedua kurvanya.
+
+<MathVisual
+  title={<>Dirancang untuk Terurai</>}
+  description={<>Bagian dua produk ilustratif yang tersisa selama 24 bulan: rancangan yang mudah terurai (teal) dan yang awet (abu-abu). Mendatar: satu kotak grid berarti 2 bulan. Tegak: satu kotak grid berarti 20 persen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.3, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "persistent", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: 5 * 0.5 ** (1 / 120) }, { x: 1, y: 5 * 0.5 ** (2 / 120) }, { x: 1.5, y: 5 * 0.5 ** (3 / 120) }, { x: 2, y: 5 * 0.5 ** (4 / 120) }, { x: 2.5, y: 5 * 0.5 ** (5 / 120) }, { x: 3, y: 5 * 0.5 ** (6 / 120) }, { x: 3.5, y: 5 * 0.5 ** (7 / 120) }, { x: 4, y: 5 * 0.5 ** (8 / 120) }, { x: 4.5, y: 5 * 0.5 ** (9 / 120) }, { x: 5, y: 5 * 0.5 ** (10 / 120) }, { x: 5.5, y: 5 * 0.5 ** (11 / 120) }, { x: 6, y: 5 * 0.5 ** (12 / 120) }, { x: 6.5, y: 5 * 0.5 ** (13 / 120) }, { x: 7, y: 5 * 0.5 ** (14 / 120) }, { x: 7.5, y: 5 * 0.5 ** (15 / 120) }, { x: 8, y: 5 * 0.5 ** (16 / 120) }, { x: 8.5, y: 5 * 0.5 ** (17 / 120) }, { x: 9, y: 5 * 0.5 ** (18 / 120) }, { x: 9.5, y: 5 * 0.5 ** (19 / 120) }, { x: 10, y: 5 * 0.5 ** (20 / 120) }, { x: 10.5, y: 5 * 0.5 ** (21 / 120) }, { x: 11, y: 5 * 0.5 ** (22 / 120) }, { x: 11.5, y: 5 * 0.5 ** (23 / 120) }, { x: 12, y: 5 * 0.5 ** (24 / 120) }] },
+      { id: "degradable", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: 5 * 0.5 ** (1 / 2) }, { x: 1, y: 5 * 0.5 ** (2 / 2) }, { x: 1.5, y: 5 * 0.5 ** (3 / 2) }, { x: 2, y: 5 * 0.5 ** (4 / 2) }, { x: 2.5, y: 5 * 0.5 ** (5 / 2) }, { x: 3, y: 5 * 0.5 ** (6 / 2) }, { x: 3.5, y: 5 * 0.5 ** (7 / 2) }, { x: 4, y: 5 * 0.5 ** (8 / 2) }, { x: 4.5, y: 5 * 0.5 ** (9 / 2) }, { x: 5, y: 5 * 0.5 ** (10 / 2) }, { x: 5.5, y: 5 * 0.5 ** (11 / 2) }, { x: 6, y: 5 * 0.5 ** (12 / 2) }, { x: 6.5, y: 5 * 0.5 ** (13 / 2) }, { x: 7, y: 5 * 0.5 ** (14 / 2) }, { x: 7.5, y: 5 * 0.5 ** (15 / 2) }, { x: 8, y: 5 * 0.5 ** (16 / 2) }, { x: 8.5, y: 5 * 0.5 ** (17 / 2) }, { x: 9, y: 5 * 0.5 ** (18 / 2) }, { x: 9.5, y: 5 * 0.5 ** (19 / 2) }, { x: 10, y: 5 * 0.5 ** (20 / 2) }, { x: 10.5, y: 5 * 0.5 ** (21 / 2) }, { x: 11, y: 5 * 0.5 ** (22 / 2) }, { x: 11.5, y: 5 * 0.5 ** (23 / 2) }, { x: 12, y: 5 * 0.5 ** (24 / 2) }] },
+      { id: "persist-end", kind: "point", appearance: "reference", at: { x: 12, y: 5 * 0.5 ** (24 / 120) } },
+      { id: "degrade-half", kind: "point", appearance: "construction", at: { x: 1, y: 2.5 } },
+    ],
+    labels: [
+      { key: "persist", objectId: "persist-end", at: { x: 12, y: 5 * 0.5 ** (24 / 120) }, placement: "above-left" },
+      { key: "half", objectId: "degrade-half", at: { x: 1, y: 2.5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    persist: <InlineMath math="\left(\tfrac{1}{2}\right)^{24/120}\approx87\%" />,
+    half: <InlineMath math="\left(\tfrac{1}{2}\right)^{2/2}=50\%" />,
+  }}
+/>
+
 ## Mencegah Limbah sejak Tahap Perancangan
 
 Pencegahan mengubah bahan atau proses sebelum limbah terbentuk. Pembersihan menangani limbah yang sudah terbentuk. Kimia hijau mengutamakan pencegahan sejak tahap perancangan.
@@ -44,6 +70,54 @@ Elektrolisis air menunjukkan bahwa penilaian kimia hijau harus memasukkan sumber
 
 Reaksi ini tidak menghasilkan karbon dioksida secara langsung. Namun, emisi daur hidup bergantung pada sumber listrik. [Elektrolisis](https://www.energy.gov/cmei/fuels/hydrogen-production-electrolysis) dapat menghasilkan emisi sangat rendah jika memakai listrik terbarukan atau nuklir. Jika listrik berasal dari pembangkit berbahan bakar fosil, emisi daur hidupnya lebih tinggi.
 
+Adegan di bawah menggambar molekul reaksi ini sesuai skala. Hitung atom di setiap sisi: empat atom hidrogen ungu dan dua atom oksigen oranye sebelum panah, lalu empat dan dua yang sama sesudahnya. Elektrolisis hanya menata ulang atom-atom itu, jadi tidak ada zat baru yang muncul di elektroliser. Yang dibutuhkan adalah energi listrik di atas panah, dan ke sanalah pertanyaan kimia hijau berikutnya bergerak.
+
+<MathVisual
+  title={<>Air Terurai Menjadi Hidrogen dan Oksigen</>}
+  description={<>Molekul digambar sesuai skala dalam angstrom: <InlineMath math="\mathrm{O{-}H}\ 0{,}96\ \text{Å}" /> dengan sudut <InlineMath math="104{,}5^\circ" />, <InlineMath math="\mathrm{H{-}H}\ 0{,}74\ \text{Å}" />, <InlineMath math="\mathrm{O{=}O}\ 1{,}21\ \text{Å}" />. Titik oranye adalah atom oksigen, titik ungu atom hidrogen.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 3.5 }, y: { min: -3, max: 2.5 }, z: { min: -1, max: 1 } },
+    view: { kind: "camera", position: { x: -1, y: 0.5, z: 7 }, target: { x: -0.5, y: -0.25, z: 0 } },
+    objects: [
+      { id: "water-1-oxygen", kind: "point", appearance: "primary", at: { x: -3, y: 1, z: 0 } },
+      { id: "water-1-hydrogen-left", kind: "point", appearance: "secondary", at: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-1-hydrogen-right", kind: "point", appearance: "secondary", at: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-1-bond-left", kind: "segment", appearance: "reference", from: { x: -3, y: 1, z: 0 }, to: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-1-bond-right", kind: "segment", appearance: "reference", from: { x: -3, y: 1, z: 0 }, to: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: 1 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-2-oxygen", kind: "point", appearance: "primary", at: { x: -3, y: -1.5, z: 0 } },
+      { id: "water-2-hydrogen-left", kind: "point", appearance: "secondary", at: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-2-hydrogen-right", kind: "point", appearance: "secondary", at: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-2-bond-left", kind: "segment", appearance: "reference", from: { x: -3, y: -1.5, z: 0 }, to: { x: -3 - 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "water-2-bond-right", kind: "segment", appearance: "reference", from: { x: -3, y: -1.5, z: 0 }, to: { x: -3 + 0.96 * Math.sin((104.5 / 2) * (Math.PI / 180)), y: -1.5 - 0.96 * Math.cos((104.5 / 2) * (Math.PI / 180)), z: 0 } },
+      { id: "arrow", kind: "segment", appearance: "highlight", from: { x: -1.5, y: 0, z: 0 }, to: { x: 0, y: 0, z: 0 } },
+      { id: "arrow-head-up", kind: "segment", appearance: "highlight", from: { x: -0.3, y: 0.2, z: 0 }, to: { x: 0, y: 0, z: 0 } },
+      { id: "arrow-head-down", kind: "segment", appearance: "highlight", from: { x: -0.3, y: -0.2, z: 0 }, to: { x: 0, y: 0, z: 0 } },
+      { id: "hydrogen-1-left", kind: "point", appearance: "secondary", at: { x: 1.5, y: 1.25, z: 0 } },
+      { id: "hydrogen-1-right", kind: "point", appearance: "secondary", at: { x: 1.5 + 0.74, y: 1.25, z: 0 } },
+      { id: "hydrogen-1-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: 1.25, z: 0 }, to: { x: 1.5 + 0.74, y: 1.25, z: 0 } },
+      { id: "hydrogen-2-left", kind: "point", appearance: "secondary", at: { x: 1.5, y: 0.25, z: 0 } },
+      { id: "hydrogen-2-right", kind: "point", appearance: "secondary", at: { x: 1.5 + 0.74, y: 0.25, z: 0 } },
+      { id: "hydrogen-2-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: 0.25, z: 0 }, to: { x: 1.5 + 0.74, y: 0.25, z: 0 } },
+      { id: "oxygen-left", kind: "point", appearance: "primary", at: { x: 1.5, y: -1.25, z: 0 } },
+      { id: "oxygen-right", kind: "point", appearance: "primary", at: { x: 1.5 + 1.21, y: -1.25, z: 0 } },
+      { id: "oxygen-bond", kind: "segment", appearance: "reference", from: { x: 1.5, y: -1.25, z: 0 }, to: { x: 1.5 + 1.21, y: -1.25, z: 0 } },
+    ],
+    labels: [
+      { key: "water", objectId: "water-1-oxygen", at: { x: -3, y: 1.6, z: 0 }, placement: "above" },
+      { key: "energy", objectId: "arrow", at: { x: -0.75, y: 0.35, z: 0 }, placement: "above" },
+      { key: "hydrogen", objectId: "hydrogen-1-bond", at: { x: 1.5 + 0.74 / 2, y: 1.7, z: 0 }, placement: "above" },
+      { key: "oxygen", objectId: "oxygen-bond", at: { x: 1.5 + 1.21 / 2, y: -1.7, z: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    water: <InlineMath math="2\mathrm{H_2O}" />,
+    energy: "energi listrik",
+    hydrogen: <InlineMath math="2\mathrm{H_2}" />,
+    oxygen: <InlineMath math="\mathrm{O_2}" />,
+  }}
+/>
+
 Bandingkan dua pasokan listrik untuk reaksi yang sama. Produk langsungnya tetap hidrogen dan oksigen, tetapi sumber emisi di luar alat elektrolisis berbeda.
 
 | Bagian yang dinilai | Listrik dari pembakaran batu bara | Listrik dari panel surya |
@@ -68,6 +142,36 @@ Pemakaian <InlineMath math="\mathrm{CO_2}" /> saja belum membuktikan bahwa prose
 - Apakah produk dan limbah sampingnya dikelola dengan baik?
 
 Penilaian kimia hijau mencakup bahan, energi, bahaya, produk, dan limbah sejak proses dimulai sampai produk selesai digunakan.
+
+Reaktor mengubah karbon dioksida menjadi metanol lewat <InlineMath math="\mathrm{CO_2}+3\mathrm{H_2}\rightarrow\mathrm{CH_3OH}+\mathrm{H_2O}" />. Setiap atom hidrogen di batang itu harus berasal dari suatu sumber, jadi jalur ini hanya sehijau hidrogen, energi, dan katalisnya. Putar batangnya dan hitung hidrogen di tiap ruas.
+
+<MathVisual
+  title={<>Atom di Kedua Ruas</>}
+  description={<>Atom karbon (abu-abu), hidrogen (ungu), dan oksigen (oranye) di pereaksi (belakang) dan hasil reaksi (depan). Satu kotak grid ke atas berarti 1 atom.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 10, z: 11 }, target: { x: 2.5, y: 3, z: 0 } },
+    objects: [
+      { id: "c-left", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: -0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "c-right", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.5, z: 0.75 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "h-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: -0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
+      { id: "h-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 3, z: 0.75 }, size: { length: 1.2, height: 6, width: 1.2 } },
+      { id: "o-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "c", objectId: "c-right", at: { x: 0, y: 1.3, z: 0.75 }, placement: "above" },
+      { key: "h", objectId: "h-right", at: { x: 2.5, y: 6.3, z: 0.75 }, placement: "above" },
+      { key: "o", objectId: "o-right", at: { x: 5, y: 2.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    c: <InlineMath math="\mathrm{C}:\ 1=1" />,
+    h: <InlineMath math="\mathrm{H}:\ 3\cdot2=4+2" />,
+    o: <InlineMath math="\mathrm{O}:\ 2=1+1" />,
+  }}
+/>
 
 ## Memeriksa Klaim Hijau
 

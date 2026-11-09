@@ -42,11 +42,68 @@ Nur ein Teil der chemischen Energie einer trophischen Ebene wird zu **neuer Biom
 
 Darum wird eine Energiepyramide nach oben hin immer schmaler. Ihre Breite steht für die verfügbare Energie und misst weder die Bedeutung noch die Anzahl der Organismen. Zahlenpyramiden können andere Formen haben.
 
+Die Szene unten baut diese Pyramide aus Zahlen. Nimm an, die Grasschicht enthält <InlineMath math="10\,000\ \text{kJ}" />, und jede Ebene gibt als Beispiel ein Zehntel ihrer Energie weiter. Die obere Fläche jeder Schicht ist proportional zu ihrer Energie, also ist jede Ebene darüber an jeder Seite <InlineMath math="\sqrt{10}" />-mal schmaler. Dreh die Szene und schau von oben: Die Vogelschicht bedeckt nur ein Hundertstel der Grasschicht, und die fehlende Energie hat das System unterwegs als Wärme verlassen.
+
+<MathVisual
+  title={<>Eine Energiepyramide mit einem Zehntel pro Ebene</>}
+  description={<>Die obere Fläche jeder Schicht ist proportional zur verfügbaren Energie dieser trophischen Ebene, ausgehend von beispielhaften 10 000 kJ im Gras.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: 0, max: 2.5 }, z: { min: -4, max: 4 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 9 }, target: { x: 0, y: 0.5, z: 0 } },
+    objects: [
+      { id: "grass", kind: "cuboid", appearance: "construction", center: { x: 0, y: 0.25, z: 0 }, size: { length: 6 * Math.sqrt(1), height: 0.5, width: 6 * Math.sqrt(1) } },
+      { id: "grasshopper", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 0.75, z: 0 }, size: { length: 6 * Math.sqrt(1 / 10), height: 0.5, width: 6 * Math.sqrt(1 / 10) } },
+      { id: "bird", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1.25, z: 0 }, size: { length: 6 * Math.sqrt(1 / 100), height: 0.5, width: 6 * Math.sqrt(1 / 100) } },
+    ],
+    labels: [
+      { key: "grass", objectId: "grass", at: { x: 3.25, y: 0.25, z: 0 }, placement: "right" },
+      { key: "grasshopper", objectId: "grasshopper", at: { x: 1.25, y: 0.75, z: 0 }, placement: "right" },
+      { key: "bird", objectId: "bird", at: { x: 0, y: 1.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    grass: <InlineMath math="\text{Gras: }10\,000\ \text{kJ}" />,
+    grasshopper: <InlineMath math="\text{Heuschrecke: }1\,000\ \text{kJ}" />,
+    bird: <InlineMath math="\text{Vogel: }100\ \text{kJ}" />,
+  }}
+/>
+
 | Was wird verfolgt? | Richtung | So liest du das Beispiel |
 | --- | --- | --- |
 | Energie | Fließt vom Produzenten zu den Konsumenten und verlässt das System schließlich als Wärme | Gras liefert einer Heuschrecke Energie, ein Teil davon gelangt anschließend zu einem Vogel |
 | Stoffe | Zirkulieren durch biologische, physikalische und chemische Prozesse zwischen Organismen, Luft, Wasser und Boden | Falllaub wird abgebaut, sodass mineralische Nährstoffe für Pflanzen wieder verfügbar werden können |
 | Ökologische Nische | Beschreibt die Bedingungen und Ressourcen, die ein Organismus zum Leben braucht, sowie seine Beziehungen zu anderen Organismen | Bestäuber, Räuber und Zersetzer können denselben Lebensraum teilen, aber verschiedene Nischen besetzen |
+
+Nur etwa ein Zehntel der Energie einer Stufe kommt bei der nächsten an, also <InlineMath math="E_{n+1}=\tfrac{1}{10}E_n" />. Jeder Gitterschritt nach unten bedeutet ein Zehntel so viel Energie, und die kurzen rosa Pfeile markieren den Rest, der als Wärme verloren geht. Zoom auf die Punkte und lies ab, wie viel jede Stufe bekommt.
+
+<MathVisual
+  title={<>Ein Zehntel geht jede Stufe hinauf</>}
+  description={<>Energie auf drei Stufen einer Nahrungskette, ausgehend von 10.000 kJ im Gras. Senkrecht: Ein Gitterschritt nach unten ist ein Zehntel so viel Energie.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 1, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "energy", kind: "polyline", appearance: "primary", vertices: [{ x: 1, y: 4 }, { x: 2, y: 3 }, { x: 3, y: 2 }] },
+      { id: "level-0", kind: "point", appearance: "construction", at: { x: 1, y: 4 } },
+      { id: "level-1", kind: "point", appearance: "secondary", at: { x: 2, y: 3 } },
+      { id: "level-2", kind: "point", appearance: "answer", at: { x: 3, y: 2 } },
+      { id: "heat-0", kind: "segment", appearance: "warning", from: { x: 1, y: 4 }, to: { x: 1.5, y: 3.5 } },
+      { id: "heat-1", kind: "segment", appearance: "warning", from: { x: 2, y: 3 }, to: { x: 2.5, y: 2.5 } },
+    ],
+    labels: [
+      { key: "grass", objectId: "level-0", at: { x: 1, y: 4 }, placement: "right" },
+      { key: "hopper", objectId: "level-1", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "bird", objectId: "level-2", at: { x: 3, y: 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    grass: <InlineMath math="\text{Gras: } 10.000\ \mathrm{kJ}" />,
+    hopper: <InlineMath math="\text{Heuschrecke: } 1.000\ \mathrm{kJ}" />,
+    bird: <InlineMath math="\text{Vogel: } 100\ \mathrm{kJ}" />,
+  }}
+/>
 
 ## Stoffe durchlaufen mithilfe der Zersetzer einen Kreislauf
 
@@ -57,6 +114,36 @@ Stoffe verhalten sich anders als Energie. Die Elemente, aus denen Körper aufgeb
 <Highlight>Energie fließt, Stoffe zirkulieren</Highlight>. Wenn Blätter fallen, Tiere sterben oder Nahrungsreste zurückbleiben, bauen Bakterien und Pilze dieses Material ab. Die Abbauprodukte gelangen als Nährstoffe in den Boden oder ins Wasser zurück.
 
 Ohne Zersetzer würden sich Überreste ansammeln, und die von Produzenten benötigten Elemente blieben im organischen Material gebunden. Zersetzer wandeln diese Reste in Stoffformen um, die andere Organismen wieder nutzen können.
+
+Zersetzer setzen wie alle Lebewesen durch Zellatmung Energie frei: <InlineMath math="\mathrm{C_6H_{12}O_6}+6\mathrm{O_2}\rightarrow6\mathrm{CO_2}+6\mathrm{H_2O}" />. Die Atome werden nur neu angeordnet, also ist der Kohlenstoff, der im Kohlenstoffdioxid in die Luft zurückkehrt, derselbe, der in der Nahrung war. Dreh die Balken: Jedes Element ist vorher und nachher gleich hoch.
+
+<MathVisual
+  title={<>Zellatmung behält jedes Atom</>}
+  description={<>Kohlenstoff- (grau), Wasserstoff- (violett) und Sauerstoffatome (orange) in den Edukten (hinten) und den Produkten (vorne). Ein Gitterschritt nach oben entspricht 4 Atomen.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 7, z: 11 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "carbon-left", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.75, z: -0.75 }, size: { length: 1.2, height: 1.5, width: 1.2 } },
+      { id: "carbon-right", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.75, z: 0.75 }, size: { length: 1.2, height: 1.5, width: 1.2 } },
+      { id: "hydrogen-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.5, z: -0.75 }, size: { length: 1.2, height: 3, width: 1.2 } },
+      { id: "hydrogen-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.5, z: 0.75 }, size: { length: 1.2, height: 3, width: 1.2 } },
+      { id: "oxygen-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.25, z: -0.75 }, size: { length: 1.2, height: 4.5, width: 1.2 } },
+      { id: "oxygen-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.25, z: 0.75 }, size: { length: 1.2, height: 4.5, width: 1.2 } },
+    ],
+    labels: [
+      { key: "carbon", objectId: "carbon-right", at: { x: 0, y: 1.8, z: 0.75 }, placement: "above" },
+      { key: "hydrogen", objectId: "hydrogen-right", at: { x: 2.5, y: 3.3, z: 0.75 }, placement: "above" },
+      { key: "oxygen", objectId: "oxygen-right", at: { x: 5, y: 4.8, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    carbon: <InlineMath math="\mathrm{C}:\ 6=6" />,
+    hydrogen: <InlineMath math="\mathrm{H}:\ 12=12" />,
+    oxygen: <InlineMath math="\mathrm{O}:\ 6+12=12+6" />,
+  }}
+/>
 
 ## Die ökologische Nische beschreibt die Nutzung der Umwelt
 
