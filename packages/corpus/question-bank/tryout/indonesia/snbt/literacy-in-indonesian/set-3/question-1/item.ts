@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "cause-effect",
+  },
+  stimulus: "mangrove-carbon",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil mengendalikan faktor yang disebutkan tetapi menjadikan satu uji singkat sebagai bukti yang berlaku umum.",
-        },
-        {
-          correct: false,
-          label:
-            "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil menyebut keterbatasan tetapi mengeluarkan kondisi pembanding dari penafsiran hasil.",
-        },
-        {
-          correct: false,
-          label:
-            "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil menjadikan definisi istilah ilmiah sebagai hasil ukur yang menutup penelitian.",
+            "Pohon mangrove menyerap karbon dioksida jauh lebih cepat daripada tumbuhan lain.",
         },
         {
           correct: true,
           label:
-            "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil mengendalikan faktor lain dan mengakui keterbatasan pengukuran.",
+            "Genangan yang hampir tanpa oksigen membuat sisa tumbuhan sangat lambat terurai dan menumpuk.",
         },
         {
           correct: false,
           label:
-            "Simulasi membandingkan pengaruh pencahayaan enam jam terhadap perkecambahan kacang hijau dengan jarak lampu dijaga tetap, sambil memakai pembanding hanya untuk mengukuhkan hipotesis awal dan menghapus ketidakpastian yang tersisa.",
+            "Air laut membawa karbon dari daratan dan mengendapkannya di sela-sela akar mangrove.",
+        },
+        {
+          correct: false,
+          label:
+            "Akar napas mangrove memompa karbon dioksida dari udara ke dalam lapisan tanah.",
+        },
+        {
+          correct: false,
+          label:
+            "Ombak yang tertahan akar mangrove perlahan mengubah lumpur menjadi karbon.",
         },
       ],
     },

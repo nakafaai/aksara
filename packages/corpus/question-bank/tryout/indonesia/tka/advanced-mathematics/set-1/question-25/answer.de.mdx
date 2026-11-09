@@ -1,0 +1,30 @@
+Der Nenner <InlineMath math="x-2" /> geht für <InlineMath math="x\to2" /> gegen <InlineMath math="0" />, trotzdem ist der Grenzwert endlich, nämlich <InlineMath math="7" />. Das ist nur möglich, wenn **auch der Zähler gegen <InlineMath math="0" /> geht**. Ginge der Zähler gegen eine Zahl ungleich null, würde der Bruch unbeschränkt wachsen, und der Grenzwert existierte nicht.
+
+# Bestimmung der Parameter
+
+Der Zähler ist ein Polynom. Dass er gegen <InlineMath math="0" /> geht, bedeutet also, dass **sein Wert an der Stelle <InlineMath math="x=2" /> gleich <InlineMath math="0" /> ist**.
+
+<BlockMath math="\begin{aligned}
+2^2+2a+b&=0 \\
+b&=-4-2a
+\end{aligned}" />
+
+Mit <InlineMath math="b=-4-2a" /> enthält der Zähler den Faktor <InlineMath math="x-2" />, und dieser kürzt sich für <InlineMath math="x\ne2" />.
+
+<BlockMath math="\begin{aligned}
+x^2+ax-4-2a&=(x-2)(x+a+2) \\
+f(x)&=x+a+2\quad\text{für }x\ne2 \\
+\lim_{x\to2}f(x)&=4+a=7
+\end{aligned}" />
+
+Also gilt <InlineMath math="a=3" /> und <InlineMath math="b=-4-2\cdot3=-10" />, und damit <InlineMath math="f(x)=\frac{x^2+3x-10}{x-2}=x+5" /> für jedes <InlineMath math="x\ne2" />.
+
+# Bewertung der Aussagen
+
+1. Die Aussage, dass <InlineMath math="f" /> an der Stelle <InlineMath math="x=2" /> definiert ist und <InlineMath math="f(2)=7" /> gilt, ist falsch. Die Funktion <InlineMath math="f" /> ist nur für <InlineMath math="x\ne2" /> definiert, also **existiert <InlineMath math="f(2)" /> nicht**. Der Wert <InlineMath math="7" /> ist der Grenzwert in der Nähe von <InlineMath math="x=2" />, nicht der Funktionswert an dieser Stelle.
+2. Die Aussage <InlineMath math="a=3" /> ist wahr, wie die Rechnung oben zeigt.
+3. Die Aussage <InlineMath math="\lim_{x\to\infty}\frac{f(x)}{x}=2" /> ist falsch. Für große <InlineMath math="x" /> gilt <InlineMath math="\frac{f(x)}{x}=\frac{x+5}{x}=1+\frac5x" />, und das geht gegen <InlineMath math="1" />.
+4. Die Aussage <InlineMath math="b=-10" /> ist wahr, wie die Rechnung oben zeigt.
+5. Die Aussage <InlineMath math="\lim_{x\to-5}f(x)=0" /> ist wahr. In der Nähe von <InlineMath math="x=-5" /> gilt <InlineMath math="f(x)=x+5" />, also ist der Grenzwert <InlineMath math="-5+5=0" />. Einsetzen in die ursprüngliche Formel ergibt denselben Wert: <InlineMath math="\frac{25-15-10}{-7}=0" />.
+
+Wahr sind also <InlineMath math="a=3" />, <InlineMath math="b=-10" /> und <InlineMath math="\lim_{x\to-5}f(x)=0" />.

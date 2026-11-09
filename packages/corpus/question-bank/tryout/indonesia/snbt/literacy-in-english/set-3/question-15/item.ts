@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "meat-survey",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Waiting for someone else to complete the next step",
-        },
-        {
-          correct: false,
-          label: "Hiding unresolved evidence in a larger project",
-        },
-        {
-          correct: false,
-          label: "Self-efficacy as a definition without a reviewable action",
+          label: "42",
         },
         {
           correct: true,
-          label: "Building confidence through one reviewable step",
+          label: "126",
         },
         {
           correct: false,
-          label: "A complete plan without a small accountable step",
+          label: "200",
+        },
+        {
+          correct: false,
+          label: "400",
+        },
+        {
+          correct: false,
+          label: "630",
         },
       ],
     },

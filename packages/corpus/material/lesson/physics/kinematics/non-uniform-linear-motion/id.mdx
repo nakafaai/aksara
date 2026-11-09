@@ -56,6 +56,32 @@ Pada gerak "Dari Diam", mobil belum melaju pada detik awal. Jarak antartanda pos
   }}
 />
 
+Untuk mobil mainan yang mulai dari diam, tanda setiap sekon jatuh di <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="9" />, <InlineMath math="16" />, dan <InlineMath math="25\text{ m}" />. Jaraknya bertambah <InlineMath math="2\text{ m}" /> setiap sekon, jadi grafik posisinya melengkung menjadi parabola, bukan garis lurus.
+
+<MathVisual
+  title={<>Tanda Posisi Makin Renggang</>}
+  description={<><InlineMath math="x=\tfrac12at^2" /> dengan <InlineMath math="a=2\text{ m/s}^2" /> selama 5 s. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 5 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "position", kind: "quadratic", appearance: "primary", coefficients: { a: 0.2, b: 0, c: 0 }, domain: { min: 0, max: 5 }, inputAxis: "x" },
+      { id: "mark-1", kind: "point", appearance: "answer", at: { x: 1, y: 1 ** 2 / 5 } },
+      { id: "mark-2", kind: "point", appearance: "answer", at: { x: 2, y: 2 ** 2 / 5 } },
+      { id: "mark-3", kind: "point", appearance: "answer", at: { x: 3, y: 3 ** 2 / 5 } },
+      { id: "mark-4", kind: "point", appearance: "answer", at: { x: 4, y: 4 ** 2 / 5 } },
+      { id: "mark-5", kind: "point", appearance: "answer", at: { x: 5, y: 5 ** 2 / 5 } },
+    ],
+    labels: [
+      { key: "marks", objectId: "mark-5", at: { x: 5, y: 5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    marks: <InlineMath math="1,\ 4,\ 9,\ 16,\ 25\text{ m}" />,
+  }}
+/>
+
 ## Menghitung Perpindahan dari Luas Grafik
 
 Grafik kecepatan-waktu menunjukkan kecepatan dan perpindahan. **Luas bertanda** antara grafik dan sumbu waktu menyatakan perpindahan. Pada GLBB di atas sumbu waktu, daerah itu dapat berupa segitiga atau trapesium. Daerah di bawah sumbu menyumbang perpindahan negatif.

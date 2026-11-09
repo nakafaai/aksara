@@ -1,35 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "inference",
+  },
+  stimulus: "village-postman",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Kabar bahwa Mbah Karsih sedang sakit keras dan perlu segera dijenguk.",
+        },
+        {
+          correct: false,
+          label:
+            "Permintaan agar Warno lebih sering menelepon ibunya lewat video.",
+        },
+        {
           correct: true,
-          label:
-            "Peta baru membantu sebagian kelompok menemukan alat, tetapi hasil yang tidak merata dan batas peserta menunjukkan bahwa akses informasi belum sama dengan desain alat yang inklusif.",
+          label: "Permintaan agar Warno sesekali mengirim surat untuk ibunya.",
         },
         {
           correct: false,
           label:
-            "Peta baru sudah membuat taman inklusif karena setiap kelompok memiliki setidaknya satu keluarga yang berhasil menemukan alat.",
+            "Pemberitahuan bahwa kantor pos di kecamatan akan segera ditutup.",
         },
         {
           correct: false,
-          label:
-            "Perubahan kecil pada kelompok sensorik membuktikan keluarga dalam kelompok itu tidak membutuhkan informasi kebisingan.",
-        },
-        {
-          correct: false,
-          label:
-            "Keberhasilan kelompok tanpa kebutuhan akses dapat dipakai untuk menyimpulkan bahwa semua alat mudah digunakan oleh semua anak.",
-        },
-        {
-          correct: false,
-          label:
-            "Karena peta lama dan baru diuji pada jam sebanding, peta baru tidak lagi memerlukan pengujian bersama kelompok lain.",
+          label: "Tagihan biaya kiriman paket yang belum dibayar oleh Warno.",
         },
       ],
     },

@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
+  },
+  stimulus: "golden-record",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The ledger gains meaning primarily from its worn cover, regardless of the crossed-out totals and unanswered questions.",
+            "The makers expected to play the record again after the launch.",
+        },
+        {
+          correct: false,
+          label: "The record was too small for anyone else ever to notice it.",
         },
         {
           correct: false,
           label:
-            "The morning setting resolves the budget because the added initials are equivalent to confirmed prices.",
-        },
-        {
-          correct: false,
-          label:
-            "The ledger keeps the same meaning as a final record even after Iris changes how the team uses it.",
-        },
-        {
-          correct: false,
-          label:
-            "The blank final line confirms that the original balanced total was accurate despite the unresolved costs.",
+            "The makers' names were engraved in large letters on the cover.",
         },
         {
           correct: true,
+          label: "Choosing its contents made them reflect on what humanity is.",
+        },
+        {
+          correct: false,
           label:
-            "The ledger's meaning shifts through its premature claim of finality, Iris's questions, the teammates' deadlines, and the unresolved last line.",
+            "The makers planned to sell copies of the music on the record.",
         },
       ],
     },

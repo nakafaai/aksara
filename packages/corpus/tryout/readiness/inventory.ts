@@ -27,13 +27,17 @@ type ReadinessBlueprint = NonNullable<ReadinessSection["blueprint"]>;
 
 /**
  * The official response format of one item: a choice with one correct option
- * is a single choice, with several a multiple choice, and a matrix a category
- * table. Every language of an item asks the same task, so one version tells.
+ * is a single choice, with several a multiple choice, a matrix a category
+ * table, and a typed number a short answer. Every language of an item asks the
+ * same task, so one version tells.
  */
 function responseFormat(question: QuestionSource): readonly ResponseFormat[] {
   return Arr.map(itemVersions(question.item.versions), ({ interaction }) => {
     if (interaction.kind === "matrix") {
       return "category";
+    }
+    if (interaction.kind === "numericEntry") {
+      return "short-answer";
     }
     return Arr.filter(interaction.options, ({ correct }) => correct).length > 1
       ? "multiple-choice"

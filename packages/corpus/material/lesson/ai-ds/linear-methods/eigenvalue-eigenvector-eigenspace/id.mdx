@@ -77,6 +77,45 @@ Vektor <InlineMath math="v_2" /> berikut adalah vektor eigen untuk <InlineMath m
 <BlockMath math="A \cdot v_2 = \begin{pmatrix} 4 \\ 4 \end{pmatrix} = 4 \cdot v_2" />
 </MathContainer>
 
+Putar atau perbesar adegan ini untuk membandingkan tiap ruas dengan bayangannya oleh matriks simetris di atas. Vektor satuan ungu <InlineMath math="v_1" /> dan <InlineMath math="v_2" /> hanya memanjang: bayangan oranyenya tetap di garis yang sama, dikali <InlineMath math="\lambda_1=2" /> dan <InlineMath math="\lambda_2=4" />. Vektor <InlineMath math="e_1" /> tidak begitu, karena <InlineMath math="Ae_1=(3,1)^T" /> berbelok dari sumbu <InlineMath math="x" />. Hanya arah eigen yang bertahan, dan panjang bayangannya langsung menunjukkan nilai eigen.
+
+<MathVisual
+  title={<>Vektor eigen tetap di garisnya</>}
+  description={<>Ruas ungu adalah vektor satuan, ruas oranye adalah bayangannya oleh <InlineMath math="A=\begin{pmatrix}3&1\\1&3\end{pmatrix}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.4, max: 3.4 }, y: { min: -1.6, max: 3.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "av1", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT2, y: Math.SQRT2 }, appearance: "primary" },
+      { id: "av2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.SQRT2, y: 2 * Math.SQRT2 }, appearance: "primary" },
+      { id: "ae1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "v1", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "v2", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "e1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "unit", objectId: "unit", at: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-left" },
+      { key: "av1", objectId: "av1", at: { x: -Math.SQRT2, y: Math.SQRT2 }, placement: "above-left" },
+      { key: "av2", objectId: "av2", at: { x: 2 * Math.SQRT2, y: 2 * Math.SQRT2 }, placement: "above-right" },
+      { key: "ae1", objectId: "ae1", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "v1", objectId: "v1", at: { x: -Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "below-left" },
+      { key: "v2", objectId: "v2", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "below-right" },
+      { key: "e1", objectId: "e1", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "unit": <InlineMath math="\|v\|=1" />,
+    "av1": <InlineMath math="Av_1=2v_1" />,
+    "av2": <InlineMath math="Av_2=4v_2" />,
+    "ae1": <InlineMath math="Ae_1" />,
+    "v1": <InlineMath math="v_1" />,
+    "v2": <InlineMath math="v_2" />,
+    "e1": <InlineMath math="e_1" />,
+  }}
+/>
+
 ## Kebebasan Linear Vektor Eigen
 
 Misalkan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dan <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> adalah nilai eigen <InlineMath math="A" /> yang **berbeda secara berpasangan**, sehingga <InlineMath math="\lambda_i \neq \lambda_j" /> setiap kali <InlineMath math="i \neq j" />. Vektor eigen yang bersesuaian <InlineMath math="v_1, \ldots, v_k \in \mathbb{K}^n" /> bersifat bebas linear.
@@ -115,6 +154,34 @@ Ketujuh sifat berikut semuanya mengikuti definisi <InlineMath math="E_A(\lambda)
 
 7. **Perpotongan ruang eigen**: Jika <InlineMath math="\lambda_1 \neq \lambda_2" />, maka <InlineMath math="E_A(\lambda_1) \cap E_A(\lambda_2) = \{0\}" />.
 
+Dengan <InlineMath math="A=\operatorname{diag}(2,2,1)" />, setiap vektor berbentuk <InlineMath math="(a,b,0)" /> memenuhi <InlineMath math="Av=2v" />. Jadi <InlineMath math="E_A(2)" /> adalah sebuah bidang utuh dengan multiplisitas geometrik <InlineMath math="2" />, sedangkan <InlineMath math="E_A(1)" /> adalah garis yang direntang oleh <InlineMath math="e_3" />.
+
+<MathVisual
+  title={<>Ruang eigen <InlineMath math="E_A(2)" /> adalah sebuah bidang</>}
+  description={<>Untuk <InlineMath math="A=\operatorname{diag}(2,2,1)" />, persegi ungu terletak di <InlineMath math="E_A(2)" />, yaitu bidang <InlineMath math="z=0" />. Vektor hijau toska <InlineMath math="v=(1,1,0)" /> menjadi vektor magenta <InlineMath math="Av=(2,2,0)" /> di dalam bidang itu. Ruas oranye merentang <InlineMath math="E_A(1)" />, garis yang memuat <InlineMath math="e_3" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 2.5 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 1, y: 1, z: 0.5 } },
+    objects: [
+      { id: "plane", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }, { x: 0, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 2, z: 0 }, appearance: "answer" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: 0 }, appearance: "construction" },
+      { id: "axis", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "vector", objectId: "vector", at: { x: 1, y: 1, z: 0 }, placement: "below-right" },
+      { key: "image", objectId: "image", at: { x: 2, y: 2, z: 0 }, placement: "right" },
+      { key: "axis", objectId: "axis", at: { x: 0, y: 0, z: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "vector": <InlineMath math="v" />,
+    "image": <InlineMath math="Av" />,
+    "axis": <InlineMath math="e_3" />,
+  }}
+/>
+
 ## Hubungan dengan Invertibilitas
 
 Matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dapat diinversi jika dan hanya jika **nol bukan salah satu** nilai eigennya.
@@ -128,6 +195,32 @@ Jika matriks <InlineMath math="A" /> dapat diinversi dan <InlineMath math="v \ne
 **Menerapkan** <InlineMath math="A^{-1}" /> pada <InlineMath math="A \cdot v = \lambda \cdot v" /> menghasilkan:
 
 <BlockMath math="v = \lambda A^{-1}v \quad \Longrightarrow \quad A^{-1}v = \frac{1}{\lambda}v" />
+
+Untuk <InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" />, vektor <InlineMath math="v=(2,-1)" /> memberi <InlineMath math="Av=(2-2,4-4)=(0,0)=0\cdot v" />. Nilai eigen <InlineMath math="0" /> berarti <InlineMath math="A" /> memampatkan satu arah utuh ke titik asal, jadi tidak ada invers yang bisa mengembalikannya.
+
+<MathVisual
+  title={<>Nilai eigen nol memipihkan bidang</>}
+  description={<><InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" /> memetakan persegi satuan abu-abu ke ruas ungu dari <InlineMath math="(0,0)" /> sampai <InlineMath math="(3,6)" />. Vektor eigen hijau toska <InlineMath math="v=(2,-1)" /> menjadi titik magenta <InlineMath math="Av=0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -1.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 6 }, appearance: "secondary" },
+      { id: "kernel", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1 }, appearance: "construction" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "kernel", objectId: "kernel", at: { x: 2, y: -1 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "kernel": <InlineMath math="v" />,
+    "zero": <InlineMath math="Av=0" />,
+  }}
+/>
 
 ## Kriteria Invertibilitas
 

@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "cause-effect",
+  },
+  stimulus: "tambora-1816",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Because fragment collection reached $$71\\%$$, compared with $$38\\%$$ and $$40\\%$$, holding water volume, fragment size, flow rate, and collection time constant isolates adding a removable mesh with smaller openings as the only possible cause.",
+            "Ash clouds blocked the sun over Europe for the whole of 1816.",
+        },
+        {
+          correct: false,
+          label: "The eruption pushed cold ocean water towards North America.",
+        },
+        {
+          correct: false,
+          label: "Rain carried volcanic gas to Europe and turned it into snow.",
         },
         {
           correct: false,
           label:
-            "The strongest follow-up would change both adding a removable mesh with smaller openings and at least one controlled condition, preventing the effect of either change from being isolated.",
-        },
-        {
-          correct: false,
-          label:
-            "The limitation that the model used clean fragments of only one material affects numerical precision, but it does not restrict how widely the finding can be applied.",
-        },
-        {
-          correct: false,
-          label:
-            "A larger repetition under the same rules could narrow uncertainty but could not change the first interpretation of the smaller mesh and fragment collection.",
+            "The blast was so loud that it changed wind patterns around the whole world for months.",
         },
         {
           correct: true,
           label:
-            "Fragment collection reached $$71\\%$$, compared with $$38\\%$$ and $$40\\%$$. This supports an association in the model, but mixed debris must be tested before making claims about selectivity in environmental conditions.",
+            "Sulphur droplets high in the atmosphere reflected part of the sunlight.",
         },
       ],
     },

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Add the real and imaginary parts of two complex numbers, then represent their sum as the diagonal of a parallelogram.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Complex Number",
 };
 
@@ -35,70 +35,34 @@ Then their sum is:
 
 Using the **parallelogram rule**, the addition of complex numbers can be viewed geometrically on the complex plane. If we represent <InlineMath math="z_1" /> and <InlineMath math="z_2" /> as vectors (arrows) from the origin <InlineMath math="(0, 0)" />, then their sum, <InlineMath math="z_1 + z_2" />, is the diagonal vector of the parallelogram formed by <InlineMath math="z_1" /> and <InlineMath math="z_2" />.
 
-<LineEquation
-  title="Geometric Addition of Complex Numbers"
-  description={
-    <>
-      Visualization of the sum <InlineMath math="z_1 = 2+3i" /> and{" "}
-      <InlineMath math="z_2 = 1-i" /> using the parallelogram rule.
-    </>
-  }
-  cameraPosition={[1.5, 1, 8]}
-  cameraTarget={[1.5, 1, 0]}
-  showZAxis={false}
-  data={[
-    // Vector z1
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 2, y: 3, z: 0 },
-      ],
-      smooth: false,
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="z_1=2+3i" />, at: 1, offset: [0.5, 0.5, 0] }],
-      cone: { position: "end" },
-    },
-    // Vector z2
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1, y: -1, z: 0 },
-      ],
-      smooth: false,
-      color: "#059669",
-      labels: [{ text: <InlineMath math="z_2=1-i" />, at: 1, offset: [0.5, -0.5, 0] }],
-      cone: { position: "end" },
-    },
-    // Resultant vector z1 + z2
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="z_1+z_2=3+2i" />, at: 1, offset: [0.55, 0, 0] }],
-      cone: { position: "end" },
-    },
-    // Parallelogram helper line (from end of z1 to end of z1+z2)
-    {
-      points: [
-        { x: 2, y: 3, z: 0 },
-        { x: 3, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#059669",
-    },
-    // Parallelogram helper line (from end of z2 to end of z1+z2)
-    {
-      points: [
-        { x: 1, y: -1, z: 0 },
-        { x: 3, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#0284c7",
-    },
-  ]}
+<MathVisual
+  title={<>Adding <InlineMath math="z_1 = 2 + 3i" /> and <InlineMath math="z_2 = 1 - i" /></>}
+  description={<>The vectors <InlineMath math="z_1 = 2 + 3i" /> and <InlineMath math="z_2 = 1 - i" /> span a parallelogram whose diagonal is <InlineMath math="z_1 + z_2 = 3 + 2i" />.</>}
+  labels={{
+    z1: <InlineMath math="z_1 = 2 + 3i" />,
+    z2: <InlineMath math="z_2 = 1 - i" />,
+    sum: <InlineMath math="z_1 + z_2 = 3 + 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -1.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "h1", kind: "segment", from: { x: 2, y: 3 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "h2", kind: "segment", from: { x: 1, y: -1 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)), y: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)) }, { x: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)), y: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 1, y: -1 }, { x: (1) + (-1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)) }, { x: (1) + (-1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)) }], appearance: "secondary" },
+      { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "answer" },
+      { id: "sum-head", kind: "polygon", vertices: [{ x: 3, y: 2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 2, y: 3 }, placement: "above-left" },
+      { key: "z2", objectId: "z2", at: { x: 1, y: -1 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 3, y: 2 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Scaling Negating and Subtracting
@@ -132,6 +96,40 @@ Subtracting <InlineMath math="z_2" /> from <InlineMath math="z_1" /> (<InlineMat
 So, subtract the real parts and subtract the imaginary parts.
 
 Geometrically, <InlineMath math="z_1 - z_2" /> is the vector from the tip of <InlineMath math="z_2" /> to the tip of <InlineMath math="z_1" />.
+
+Subtraction adds the negative. For <InlineMath math="z_1 = 2 + 3i" /> and <InlineMath math="z_2 = 1 - i" />, attach <InlineMath math="-z_2 = -1 + i" /> at the tip of <InlineMath math="z_1" />. The arrow from the origin to the end is <InlineMath math="z_1 - z_2 = 1 + 4i" />.
+
+<MathVisual
+  title={<><InlineMath math="z_1 - z_2" /> as <InlineMath math="z_1 + (-z_2)" /></>}
+  description={<>The vector <InlineMath math="z_1 = 2 + 3i" />, the negative <InlineMath math="-z_2 = -1 + i" /> attached at its tip, and the difference <InlineMath math="z_1 - z_2 = 1 + 4i" />, with <InlineMath math="z_2 = 1 - i" /> for comparison.</>}
+  labels={{
+    z1: <InlineMath math="z_1" />,
+    neg: <InlineMath math="-z_2" />,
+    diff: <InlineMath math="z_1 - z_2 = 1 + 4i" />,
+    z2: <InlineMath math="z_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 3.4 }, y: { min: -1.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "construction" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 1, y: -1 }, { x: (1) + (-1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)) }, { x: (1) + (-1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)) }], appearance: "construction" },
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)), y: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)) }, { x: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)), y: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: 2, y: 3 }, to: { x: 1, y: 4 }, appearance: "secondary" },
+      { id: "neg-head", kind: "polygon", vertices: [{ x: 1, y: 4 }, { x: (1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)), y: (4) + (-1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)) }, { x: (1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)), y: (4) + (-1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)) }], appearance: "secondary" },
+      { id: "diff", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 4 }, appearance: "answer" },
+      { id: "diff-head", kind: "polygon", vertices: [{ x: 1, y: 4 }, { x: (1) + (-1 / 4 / Math.sqrt(17)) + (-2 / 5 / Math.sqrt(17)), y: (4) + (-1 / Math.sqrt(17)) + (1 / 10 / Math.sqrt(17)) }, { x: (1) + (-1 / 4 / Math.sqrt(17)) + (2 / 5 / Math.sqrt(17)), y: (4) + (-1 / Math.sqrt(17)) + (-1 / 10 / Math.sqrt(17)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1, y: 3 / 2 }, placement: "right" },
+      { key: "neg", objectId: "neg", at: { x: 3 / 2, y: 7 / 2 }, placement: "right" },
+      { key: "diff", objectId: "diff", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "z2", objectId: "z2", at: { x: 1, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
 
 ### Combining Addition Subtraction and Scaling
 
@@ -180,65 +178,32 @@ Add and subtract the corresponding parts, then read the sum as a **diagonal** on
 
 3.  The vectors <InlineMath math="z_1" /> and <InlineMath math="z_2" /> form two sides of a parallelogram. Its diagonal ends at <InlineMath math="z_3=z_1+z_2=4+i" />:
 
-    <LineEquation
-      title="Addition of Complex Numbers"
-      description={
-        <>
-          The vectors <InlineMath math="z_1" /> and <InlineMath math="z_2" />
-          form the sides of the parallelogram. <InlineMath math="z_3=z_1+z_2" />
-          is its diagonal.
-        </>
-      }
-      cameraPosition={[2, 0.5, 8]}
-      cameraTarget={[2, 0.5, 0]}
-      showZAxis={false}
-      data={[
-        {
-          points: [
-            { x: 0, y: 0, z: 0 },
-            { x: 1, y: 2, z: 0 },
-          ],
-          smooth: false,
-          color: "#0284c7",
-          labels: [{ text: <InlineMath math="z_1=1+2i" />, at: 1, offset: [0.5, 0.5, 0] }],
-          cone: { position: "end" },
-        },
-        {
-          points: [
-            { x: 0, y: 0, z: 0 },
-            { x: 3, y: -1, z: 0 },
-          ],
-          smooth: false,
-          color: "#059669",
-          labels: [{ text: <InlineMath math="z_2=3-i" />, at: 1, offset: [0.5, -0.5, 0] }],
-          cone: { position: "end" },
-        },
-        {
-          points: [
-            { x: 0, y: 0, z: 0 },
-            { x: 4, y: 1, z: 0 }, // z3 = z1 + z2
-          ],
-          smooth: false,
-          color: "#e11d48",
-          labels: [{ text: <InlineMath math="z_3=4+i" />, at: 1, offset: [0, 0.8, 0] }],
-          cone: { position: "end" },
-        },
-        // Parallelogram helper lines
-        {
-          points: [
-            { x: 1, y: 2, z: 0 }, // end of z1
-            { x: 4, y: 1, z: 0 }, // end of z3
-          ],
-          smooth: false,
-          color: "#059669",
-        },
-        {
-          points: [
-            { x: 3, y: -1, z: 0 }, // end of z2
-            { x: 4, y: 1, z: 0 }, // end of z3
-          ],
-          smooth: false,
-          color: "#0284c7",
-        },
-      ]}
+    <MathVisual
+      title={<><InlineMath math="z_3 = z_1 + z_2 = 4 + i" /></>}
+      description={<>The vectors <InlineMath math="z_1 = 1 + 2i" /> and <InlineMath math="z_2 = 3 - i" /> form two sides of a parallelogram. Its diagonal ends at <InlineMath math="z_3 = 4 + i" />.</>}
+      labels={{
+        z1: <InlineMath math="z_1 = 1 + 2i" />,
+        z2: <InlineMath math="z_2 = 3 - i" />,
+        sum: <InlineMath math="z_3 = 4 + i" />,
+      }}
+      scene={{
+        space: "plane",
+        frame: { kind: "cartesian", x: { min: -0.6, max: 5 }, y: { min: -1.6, max: 2.8 } },
+        view: { kind: "fit", padding: 0.3 },
+        objects: [
+          { id: "h1", kind: "segment", from: { x: 1, y: 2 }, to: { x: 4, y: 1 }, appearance: "construction" },
+          { id: "h2", kind: "segment", from: { x: 3, y: -1 }, to: { x: 4, y: 1 }, appearance: "construction" },
+          { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "primary" },
+          { id: "z1-head", kind: "polygon", vertices: [{ x: 1, y: 2 }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }], appearance: "primary" },
+          { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -1 }, appearance: "secondary" },
+          { id: "z2-head", kind: "polygon", vertices: [{ x: 3, y: -1 }, { x: (3) + (-3 / 4 / Math.sqrt(10)) + (1 / 10 / Math.sqrt(10)), y: (-1) + (1 / 4 / Math.sqrt(10)) + (3 / 10 / Math.sqrt(10)) }, { x: (3) + (-3 / 4 / Math.sqrt(10)) + (-1 / 10 / Math.sqrt(10)), y: (-1) + (1 / 4 / Math.sqrt(10)) + (-3 / 10 / Math.sqrt(10)) }], appearance: "secondary" },
+          { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "answer" },
+          { id: "sum-head", kind: "polygon", vertices: [{ x: 4, y: 1 }, { x: (4) + (-1 / Math.sqrt(17)) + (-1 / 10 / Math.sqrt(17)), y: (1) + (-1 / 4 / Math.sqrt(17)) + (2 / 5 / Math.sqrt(17)) }, { x: (4) + (-1 / Math.sqrt(17)) + (1 / 10 / Math.sqrt(17)), y: (1) + (-1 / 4 / Math.sqrt(17)) + (-2 / 5 / Math.sqrt(17)) }], appearance: "answer" },
+        ],
+        labels: [
+          { key: "z1", objectId: "z1", at: { x: 1, y: 2 }, placement: "above-left" },
+          { key: "z2", objectId: "z2", at: { x: 3, y: -1 }, placement: "below" },
+          { key: "sum", objectId: "sum", at: { x: 4, y: 1 }, placement: "right" },
+        ],
+      }}
     />

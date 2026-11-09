@@ -3,7 +3,7 @@ export const metadata = {
   description: "Tentukan garis singgung parabola, elips, dan hiperbola dari titik pada kurva, gradien tertentu, atau titik di luar kurva.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Geometri Analitik",
 };
 
@@ -14,6 +14,41 @@ Sebuah penggaris yang ditempelkan pada kurva halus dapat bertemu dengan kurva di
 Ketika substitusi garis ke persamaan irisan kerucut menghasilkan persamaan kuadrat, garis singgung ditandai oleh <Highlight>akar ganda</Highlight>. Dua akar berbeda berarti dua titik potong. Periksa koefisien kuadrat sebelum memakai diskriminan. Misalnya, garis yang sejajar asimtot hiperbola dapat menghasilkan persamaan linear.
 
 Untuk parabola, elips, dan hiperbola, cara menentukan persamaan garis singgung bergantung pada informasi yang tersedia.
+
+Substitusikan tiga garis sejajar ke <InlineMath math="y = x^2" />. Untuk <InlineMath math="y = 2x - 1" />, <InlineMath math="x^2 - 2x + 1 = (x - 1)^2 = 0" /> memiliki satu akar kembar, jadi garis itu menyinggung parabola di <InlineMath math="(1, 1)" />. Garis <InlineMath math="y = 2x" /> memotongnya dua kali, di <InlineMath math="x = 0" /> dan <InlineMath math="x = 2" />, dan <InlineMath math="y = 2x - 2" /> tidak mengenainya, karena <InlineMath math="x^2 - 2x + 2 = 0" /> tidak memiliki akar real.
+
+<MathVisual
+  title={<>Dua akar, satu akar kembar, tanpa akar</>}
+  description={<>Parabola <InlineMath math="y = x^2" /> dengan garis potong <InlineMath math="y = 2x" />, garis singgung <InlineMath math="y = 2x - 1" /> di <InlineMath math="(1, 1)" />, dan garis <InlineMath math="y = 2x - 2" /> yang tidak mengenainya.</>}
+  labels={{
+    parabola: <InlineMath math="y = x^2" />,
+    secant: <InlineMath math="y = 2x" />,
+    tangent: <InlineMath math="y = 2x - 1" />,
+    miss: <InlineMath math="y = 2x - 2" />,
+    touch: <InlineMath math="(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 3.4 }, y: { min: -3.4, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -5 / 4, max: 5 / 2 }, appearance: "secondary" },
+      { id: "secant", kind: "segment", from: { x: -1 / 2, y: -1 }, to: { x: 3, y: 6 }, appearance: "primary" },
+      { id: "tangent", kind: "segment", from: { x: -1, y: -3 }, to: { x: 3, y: 5 }, appearance: "answer" },
+      { id: "miss", kind: "segment", from: { x: -1 / 2, y: -3 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "x0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "x2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "touch", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: 5 / 2, y: 25 / 4 }, placement: "left" },
+      { key: "secant", objectId: "secant", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "tangent", objectId: "tangent", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "miss", objectId: "miss", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Titik pada Kurva
 
@@ -48,6 +83,33 @@ Dari parabola <InlineMath math="y^2 = 8x" />, kita memperoleh <InlineMath math="
 </MathContainer>
 
 > Bentuk titik hanya sah setelah titik yang diberikan terbukti berada pada irisan kerucut. Bentuk ini merangkum perhitungan turunan menjadi substitusi aljabar yang dapat digunakan kembali.
+
+Di <InlineMath math="(2, 4)" /> bentuk titik memberi <InlineMath math="y = x + 2" />. Garis itu hanya menyentuh <InlineMath math="y^2 = 8x" /> di sana: substitusi <InlineMath math="x = y - 2" /> memberi <InlineMath math="y^2 - 8y + 16 = (y - 4)^2 = 0" />, yaitu akar kembar.
+
+<MathVisual
+  title={<>Garis singgung <InlineMath math="y = x + 2" /> di <InlineMath math="(2, 4)" /></>}
+  description={<>Parabola <InlineMath math="y^2 = 8x" /> dan garis singgungnya <InlineMath math="y = x + 2" />, yang hanya bertemu dengannya di <InlineMath math="(2, 4)" />.</>}
+  labels={{
+    parabola: <InlineMath math="y^2 = 8x" />,
+    tangent: <InlineMath math="y = x + 2" />,
+    p: <InlineMath math="(2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 8.6 }, y: { min: -4.6, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "y", coefficients: { a: 1 / 8, b: 0, c: 0 }, domain: { min: -4, max: 8 }, appearance: "secondary" },
+      { id: "tangent", kind: "segment", from: { x: -2, y: 0 }, to: { x: 6, y: 8 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: 2, y: -4 }, placement: "right" },
+      { key: "tangent", objectId: "tangent", at: { x: 6, y: 8 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 2, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
 
 ## Gradien yang Diketahui
 
@@ -106,22 +168,39 @@ Selanjutnya, substitusikan ke persamaan parabola untuk mencari titik singgung:
 
 Dengan [rumus kuadrat](/id/materi/matematika/persamaan-dan-fungsi-kuadrat/rumus-persamaan-kuadrat), kita memperoleh <InlineMath math="x_1 = \frac{1}{2}" /> dan <InlineMath math="x_2 = 8" />. Titik singgungnya adalah <InlineMath math="(\frac{1}{2}, 2)" /> dan <InlineMath math="(8, 8)" />. Garis dari masing-masing titik tersebut ke <InlineMath math="A(2,5)" /> memberi dua garis singgung <InlineMath math="y = 2x + 1" /> dan <InlineMath math="y = \frac{1}{2}x + 4" />.
 
-<LineEquation
-  title="Dua Garis Singgung dan Tali Busur Kontak"
-  description="Parabola, dua titik singgung, dan garis yang menghubungkan kedua titik singgung."
-  showZAxis={false}
-  cameraPosition={[5, 4, 18]}
-  cameraTarget={[5, 4, 0]}
-  data={[
-    { points: Array.from({ length: 111 }, (_, i) => { const y = -2 + i / 10; return { x: y * y / 8, y, z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false },
-    { points: [{ x: 0, y: 1, z: 0 }, { x: 4, y: 9, z: 0 }], smooth: false, color: "#0d9488", showPoints: false },
-    { points: [{ x: 0, y: 4, z: 0 }, { x: 10, y: 9, z: 0 }], smooth: false, color: "#ea580c", showPoints: false },
-    { points: [{ x: 0.5, y: 2, z: 0 }, { x: 8, y: 8, z: 0 }], smooth: false, color: "#db2777", showPoints: true, labels: [
-      { text: <InlineMath math="T_1" />, at: 0, offset: [-0.5, -0.5, 0] },
-      { text: <InlineMath math="T_2" />, at: 1, offset: [0.5, -0.5, 0] },
-    ] },
-    { points: [{ x: 2, y: 5, z: 0 }], color: "#0284c7", showPoints: true, labels: [{ text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0.5, 0] }] },
-  ]}
+<MathVisual
+  title={<>Dua garis singgung dari <InlineMath math="A(2, 5)" /> dan tali busur singgung</>}
+  description={<>Parabola <InlineMath math="y^2 = 8x" />, garis singgung <InlineMath math="y = 2x + 1" /> dan <InlineMath math="y = \tfrac12 x + 4" /> melalui <InlineMath math="A(2, 5)" />, dan tali busur merah muda yang menghubungkan titik singgung <InlineMath math="\left(\tfrac12, 2\right)" /> dan <InlineMath math="(8, 8)" />.</>}
+  labels={{
+    parabola: <InlineMath math="y^2 = 8x" />,
+    t1: <InlineMath math="T_1" />,
+    t2: <InlineMath math="T_2" />,
+    a: <InlineMath math="A" />,
+    l1: <InlineMath math="y = 2x + 1" />,
+    l2: <InlineMath math="y = \tfrac12 x + 4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.5, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "y", coefficients: { a: 1 / 8, b: 0, c: 0 }, domain: { min: -2, max: 9 }, appearance: "secondary" },
+      { id: "l1", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 9 }, appearance: "construction" },
+      { id: "l2", kind: "segment", from: { x: 0, y: 4 }, to: { x: 10, y: 9 }, appearance: "highlight" },
+      { id: "chord", kind: "segment", from: { x: 1 / 2, y: 2 }, to: { x: 8, y: 8 }, appearance: "warning" },
+      { id: "t1", kind: "point", at: { x: 1 / 2, y: 2 }, appearance: "warning" },
+      { id: "t2", kind: "point", at: { x: 8, y: 8 }, appearance: "warning" },
+      { id: "a", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: 81 / 8, y: 9 }, placement: "left" },
+      { key: "t1", objectId: "t1", at: { x: 1 / 2, y: 2 }, placement: "right" },
+      { key: "t2", objectId: "t2", at: { x: 8, y: 8 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: 2, y: 5 }, placement: "left" },
+      { key: "l1", objectId: "l1", at: { x: 4, y: 9 }, placement: "left" },
+      { key: "l2", objectId: "l2", at: { x: 10, y: 9 }, placement: "above" },
+    ],
+  }}
 />
 
 Bandingkan **dua garis melalui titik luar** dengan tali busur kontak berwarna merah muda. Kedua garis singgung melewati <InlineMath math="A" />, sedangkan tali busur menghubungkan <InlineMath math="T_1" /> dan <InlineMath math="T_2" /> serta memotong parabola di kedua titik itu.

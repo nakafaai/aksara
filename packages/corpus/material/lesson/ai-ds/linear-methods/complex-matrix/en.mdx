@@ -36,6 +36,44 @@ For example,
 
 The entry in row <InlineMath math="j" /> and column <InlineMath math="i" /> of <InlineMath math="A^H" /> is therefore <InlineMath math="\overline{a_{ij}}" />.
 
+Take <InlineMath math="A=\begin{pmatrix}1+2i&3-i\\-2+i&2i\end{pmatrix}" />. Conjugation mirrors every entry across the real axis, then the transpose swaps the places of <InlineMath math="a_{12}" /> and <InlineMath math="a_{21}" />, so <InlineMath math="A^H=\begin{pmatrix}1-2i&-2-i\\3+i&-2i\end{pmatrix}" />.
+
+<MathVisual
+  title={<>Conjugation mirrors every entry of <InlineMath math="A" /></>}
+  description={<>The violet points are the four entries of <InlineMath math="A" /> in the complex plane. The magenta points are their conjugates, and each gray segment is perpendicular to the real axis and cut in half by it.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 4 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pair-one", kind: "segment", from: { x: 1, y: 2 }, to: { x: 1, y: -2 }, appearance: "reference" },
+      { id: "pair-two", kind: "segment", from: { x: 3, y: -1 }, to: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "pair-three", kind: "segment", from: { x: -2, y: 1 }, to: { x: -2, y: -1 }, appearance: "reference" },
+      { id: "pair-four", kind: "segment", from: { x: 0, y: 2 }, to: { x: 0, y: -2 }, appearance: "reference" },
+      { id: "a11", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "a12", kind: "point", at: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "a21", kind: "point", at: { x: -2, y: 1 }, appearance: "secondary" },
+      { id: "a22", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+      { id: "c11", kind: "point", at: { x: 1, y: -2 }, appearance: "answer" },
+      { id: "c12", kind: "point", at: { x: 3, y: 1 }, appearance: "answer" },
+      { id: "c21", kind: "point", at: { x: -2, y: -1 }, appearance: "answer" },
+      { id: "c22", kind: "point", at: { x: 0, y: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a11", objectId: "a11", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "a12", objectId: "a12", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "a21", objectId: "a21", at: { x: -2, y: 1 }, placement: "left" },
+      { key: "a22", objectId: "a22", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "a11": <InlineMath math="1+2i" />,
+    "a12": <InlineMath math="3-i" />,
+    "a21": <InlineMath math="-2+i" />,
+    "a22": <InlineMath math="2i" />,
+  }}
+/>
+
 ## Properties of Adjoint Matrix
 
 The adjoint **reverses the order of a product** and conjugates scalars. For sums and products below, the matrix dimensions must be compatible.
@@ -55,6 +93,33 @@ For the one-entry matrix <InlineMath math="A=(1+i)" />, compare the conjugate of
 <BlockMath math="\overline i A^H=(-i)(1-i)=-1-i" />
 <BlockMath math="iA^H=i(1-i)=1+i\ne(iA)^H" />
 </MathContainer>
+
+The <InlineMath math="1\times1" /> matrix <InlineMath math="A=(z)" /> has <InlineMath math="A^HA=(\bar zz)=(|z|^2)" />. For <InlineMath math="z=1+2i" />, the angle of <InlineMath math="\bar z" /> is minus the angle of <InlineMath math="z" />, so the product lands on the positive real axis: <InlineMath math="\bar zz=(1-2i)(1+2i)=1+4=5" />. That is why the diagonal of <InlineMath math="A^HA" /> is always real and nonnegative.
+
+<MathVisual
+  title={<><InlineMath math="\bar zz=|z|^2" /> for <InlineMath math="z=1+2i" /></>}
+  description={<>The violet segment <InlineMath math="z" /> and the teal segment <InlineMath math="\bar z" /> make opposite angles with the real axis. Their product is the magenta segment <InlineMath math="\bar zz=5" /> on the positive real axis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "number", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "conjugate", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -2 }, appearance: "construction" },
+      { id: "product", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "number", objectId: "number", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "conjugate", objectId: "conjugate", at: { x: 1, y: -2 }, placement: "right" },
+      { key: "product", objectId: "product", at: { x: 5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "number": <InlineMath math="z=1+2i" />,
+    "conjugate": <InlineMath math="\bar z=1-2i" />,
+    "product": <InlineMath math="\bar zz=5" />,
+  }}
+/>
 
 ## Euclidean Norm on Complex Spaces
 
@@ -90,3 +155,35 @@ This is why using <InlineMath math="v^Tv" /> would be wrong in a complex space: 
 **Triangle inequality**: <InlineMath math="\|v + w\|_2 \leq \|v\|_2 + \|w\|_2" />
 
 These properties show that <InlineMath math="\|\cdot\|_2" /> satisfies the definition of a norm. Using the adjoint in the Hermitian inner product keeps complex lengths, orthogonality, and projections consistent with their real counterparts.
+
+Draw each entry of <InlineMath math="v" /> as a point in the complex plane, as in this scene. The conjugate <InlineMath math="\overline{v_i}" /> is that point mirrored across the real axis, and <InlineMath math="\overline{v_i}v_i=|v_i|^2" /> is the squared radius of its circle. So <InlineMath math="v^Hv=2+5=7" /> adds two squared radii, not the complex entries. Without the conjugate, <InlineMath math="v^Tv=(1+i)^2+(2-i)^2=3-2i" /> is not even a real number.
+
+<MathVisual
+  title={<>The length of the complex vector <InlineMath math="v=(1+i,2-i)^T" /></>}
+  description={<>Each entry is drawn in the complex plane. The violet circle has radius <InlineMath math="|v_1|=\sqrt2" />, the teal circle radius <InlineMath math="|v_2|=\sqrt5" />, and the small points are the conjugates.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-circle", kind: "circle", center: { x: 0, y: 0 }, radius: Math.SQRT2, appearance: "secondary" },
+      { id: "second-circle", kind: "circle", center: { x: 0, y: 0 }, radius: Math.sqrt(5), appearance: "construction" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1 }, appearance: "construction" },
+      { id: "first-bar", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "second-bar", kind: "point", at: { x: 2, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "second", objectId: "second", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "first-bar", objectId: "first-bar", at: { x: 1, y: -1 }, placement: "below-left" },
+      { key: "second-bar", objectId: "second-bar", at: { x: 2, y: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="v_1=1+i" />,
+    "second": <InlineMath math="v_2=2-i" />,
+    "first-bar": <InlineMath math="\overline{v_1}" />,
+    "second-bar": <InlineMath math="\overline{v_2}" />,
+  }}
+/>

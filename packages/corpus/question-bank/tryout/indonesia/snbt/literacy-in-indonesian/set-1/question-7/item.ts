@@ -1,31 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "assumption",
+  },
+  stimulus: "class-ranking",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Daftar seluruh produk plastik yang dibuat di Indonesia",
-        },
-        {
-          correct: false,
-          label: "Sejarah terbentuknya kepulauan Seychelles",
-        },
-        {
-          correct: false,
           label:
-            "Cara menentukan kewarganegaraan setiap benda plastik yang ditemukan",
+            "Nilai rapor sama sekali tidak mencerminkan penguasaan materi.",
         },
         {
           correct: true,
           label:
-            "Langkah pengurangan sampah melalui kerja sama daratan, pelayaran, perikanan, dan negara-negara terkait",
+            "Kemampuan rata-rata siswa dapat berbeda dari satu kelas ke kelas lain.",
         },
         {
           correct: false,
-          label: "Perbandingan jumlah penduduk Indonesia dan Seychelles",
+          label:
+            "Orang tua tidak pernah membaca nilai setiap mata pelajaran di rapor.",
+        },
+        {
+          correct: false,
+          label: "Setiap kelas memiliki jumlah siswa yang sama.",
+        },
+        {
+          correct: false,
+          label:
+            "Guru di kelas yang kuat memberikan nilai lebih rendah daripada guru di kelas lain.",
         },
       ],
     },

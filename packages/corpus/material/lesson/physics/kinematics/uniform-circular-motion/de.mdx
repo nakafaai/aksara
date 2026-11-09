@@ -67,6 +67,48 @@ An jedem Punkt der Kreisbahn zeigt die Geschwindigkeit tangential zum Kreis. Die
 
 Stell dir ein kleines Objekt auf der rechten Seite des Kreises vor, das sich gegen den Uhrzeigersinn bewegt. Seine Geschwindigkeit zeigt entlang der Bahn nach oben, während seine Beschleunigung nach links zum Mittelpunkt zeigt. Dieses Richtungspaar unterscheidet eine Kreisbewegung von einer gewöhnlichen geradlinigen Bewegung.
 
+Hier ist das kleine Auto aus dem Beispiel zu vier Zeitpunkten, jeweils eine Vierteldrehung auseinander. Jeder türkise Geschwindigkeitspfeil berührt die Bahn tangential und ist gleich lang, also bleibt das Tempo gleich. Jeder pinke Beschleunigungspfeil zeigt zur Mitte, und genau das lenkt die Geschwindigkeit ständig um.
+
+<MathVisual
+  title={<>Geschwindigkeit und Beschleunigung auf der Bahn</>}
+  description={<>Radius 4 m und Periode 6 s. Türkise Pfeile sind die Geschwindigkeit in halbem Maßstab, pinke die Zentripetalbeschleunigung in halbem Maßstab.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ring", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "center", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "spot-0", kind: "point", appearance: "construction", at: { x: 4, y: 0 } },
+      { id: "velocity-0", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: (2 * Math.PI) / 3 } },
+      { id: "velocity-0-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: (2 * Math.PI) / 3 }, { x: 4.125, y: (2 * Math.PI) / 3 + -0.25 }, { x: 3.875, y: (2 * Math.PI) / 3 + -0.25 }] },
+      { id: "accel-0", kind: "segment", appearance: "warning", from: { x: 4, y: 0 }, to: { x: 4 - (2 * Math.PI ** 2) / 9, y: 0 } },
+      { id: "accel-0-head", kind: "polygon", appearance: "warning", vertices: [{ x: 4 - (2 * Math.PI ** 2) / 9, y: 0 }, { x: 4 - (2 * Math.PI ** 2) / 9 + 0.25, y: 0.125 }, { x: 4 - (2 * Math.PI ** 2) / 9 + 0.25, y: -0.125 }] },
+      { id: "spot-1", kind: "point", appearance: "construction", at: { x: 0, y: 4 } },
+      { id: "velocity-1", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: -((2 * Math.PI) / 3), y: 4 } },
+      { id: "velocity-1-head", kind: "polygon", appearance: "construction", vertices: [{ x: -((2 * Math.PI) / 3), y: 4 }, { x: -((2 * Math.PI) / 3) + 0.25, y: 4.125 }, { x: -((2 * Math.PI) / 3) + 0.25, y: 3.875 }] },
+      { id: "accel-1", kind: "segment", appearance: "warning", from: { x: 0, y: 4 }, to: { x: 0, y: 4 - (2 * Math.PI ** 2) / 9 } },
+      { id: "accel-1-head", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 4 - (2 * Math.PI ** 2) / 9 }, { x: 0.125, y: 4 - (2 * Math.PI ** 2) / 9 + 0.25 }, { x: -0.125, y: 4 - (2 * Math.PI ** 2) / 9 + 0.25 }] },
+      { id: "spot-2", kind: "point", appearance: "construction", at: { x: -4, y: 0 } },
+      { id: "velocity-2", kind: "segment", appearance: "construction", from: { x: -4, y: 0 }, to: { x: -4, y: -((2 * Math.PI) / 3) } },
+      { id: "velocity-2-head", kind: "polygon", appearance: "construction", vertices: [{ x: -4, y: -((2 * Math.PI) / 3) }, { x: -3.875, y: -((2 * Math.PI) / 3) + 0.25 }, { x: -4.125, y: -((2 * Math.PI) / 3) + 0.25 }] },
+      { id: "accel-2", kind: "segment", appearance: "warning", from: { x: -4, y: 0 }, to: { x: -4 + (2 * Math.PI ** 2) / 9, y: 0 } },
+      { id: "accel-2-head", kind: "polygon", appearance: "warning", vertices: [{ x: -4 + (2 * Math.PI ** 2) / 9, y: 0 }, { x: -4 + (2 * Math.PI ** 2) / 9 + -0.25, y: 0.125 }, { x: -4 + (2 * Math.PI ** 2) / 9 + -0.25, y: -0.125 }] },
+      { id: "spot-3", kind: "point", appearance: "construction", at: { x: 0, y: -4 } },
+      { id: "velocity-3", kind: "segment", appearance: "construction", from: { x: 0, y: -4 }, to: { x: (2 * Math.PI) / 3, y: -4 } },
+      { id: "velocity-3-head", kind: "polygon", appearance: "construction", vertices: [{ x: (2 * Math.PI) / 3, y: -4 }, { x: (2 * Math.PI) / 3 + -0.25, y: -3.875 }, { x: (2 * Math.PI) / 3 + -0.25, y: -4.125 }] },
+      { id: "accel-3", kind: "segment", appearance: "warning", from: { x: 0, y: -4 }, to: { x: 0, y: -4 + (2 * Math.PI ** 2) / 9 } },
+      { id: "accel-3-head", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: -4 + (2 * Math.PI ** 2) / 9 }, { x: 0.125, y: -4 + (2 * Math.PI ** 2) / 9 + -0.25 }, { x: -0.125, y: -4 + (2 * Math.PI ** 2) / 9 + -0.25 }] },
+    ],
+    labels: [
+      { key: "values", objectId: "center", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    values: <InlineMath math="v\approx4{,}19\text{ m/s},\ a_c\approx4{,}39\text{ m/s}^2" />,
+  }}
+/>
+
 ## Tangentialer Geschwindigkeitsbetrag und Winkelgeschwindigkeit gehören zusammen
 
 Der tangentiale Geschwindigkeitsbetrag beschreibt, wie schnell sich das Objekt **entlang der Kreisbahn** bewegt. Bei einem Radius <InlineMath math="r" /> hat eine volle Runde die Länge <InlineMath math="2\pi r" />. Da eine Umdrehung die Zeit <InlineMath math="T" /> benötigt, gilt:
@@ -106,3 +148,30 @@ Seine Zentripetalbeschleunigung beträgt:
 <BlockMath math="a_c=\frac{v^2}{r}=\frac{(4\pi/3)^2}{4}=\frac{16\pi^2}{36}=\frac{4\pi^2}{9}\text{ m/s}^2\approx4{,}39\text{ m/s}^2" />
 
 Das Auto bewegt sich also mit einem **konstanten Geschwindigkeitsbetrag** von etwa <InlineMath math="4{,}19\text{ m/s}" />. Trotzdem beträgt seine Beschleunigung ungefähr <InlineMath math="4{,}39\text{ m/s}^2" />, weil sich die Richtung seiner Geschwindigkeit fortlaufend ändert.
+
+Folge der Kette ab der Periode. In einer Sekunde dreht sich der Radius um <InlineMath math="\omega=2\pi/T" />, der Punkt legt den Bogen <InlineMath math="v=\omega r" /> zurück, und dann gilt <InlineMath math="a_c=v^2/r=4\pi^2/9\text{ m/s}^2" />. Zoom auf den orangen Bogen dieser Sekunde.
+
+<MathVisual
+  title={<>Von der Periode zur Zentripetalbeschleunigung</>}
+  description={<>Der Winkel (violette Radien) und der Bogen (orange) in 1 s auf einem Kreis mit Radius 4 m und Periode 6 s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ring", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "arc", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 4, startDegrees: 0, sweepDegrees: 60 },
+      { id: "r0", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "r1", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4 * Math.cos(Math.PI / 3), y: 4 * Math.sin(Math.PI / 3) } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 4 * Math.cos(Math.PI / 3), y: 4 * Math.sin(Math.PI / 3) } },
+    ],
+    labels: [
+      { key: "omega", objectId: "r1", at: { x: 2 * Math.cos(Math.PI / 3), y: 2 * Math.sin(Math.PI / 3) }, placement: "left" },
+      { key: "arc", objectId: "arc", at: { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    omega: <InlineMath math="\omega=\frac{2\pi}{6}=\frac{\pi}{3}\text{ rad/s}" />,
+    arc: <InlineMath math="v=\omega r=\frac{4\pi}{3}\text{ m/s}" />,
+  }}
+/>

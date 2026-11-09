@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-view",
+  },
+  stimulus: "walkable-city",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Simulasi membuktikan bahwa populasi nyata dengan sumber daya lebih banyak selalu bertambah sampai mencapai jumlah $$24$$ individu.",
+            "Kemacetan kota paling tepat diatasi dengan melebarkan jalan secara bertahap.",
         },
         {
           correct: false,
           label:
-            "Perbedaan hasil simulasi A dan B menunjukkan bahwa keping warna dapat menggantikan pengamatan populasi di lapangan.",
+            "Ojek sebaiknya dilarang agar warga terbiasa berjalan kaki untuk jarak dekat.",
         },
         {
           correct: true,
           label:
-            "Simulasi menunjukkan bagaimana dua batas sumber daya menghasilkan dua titik henti populasi, tetapi titik $$16$$ dan $$24$$ berasal dari aturan model dan bukan temuan lapangan.",
+            "Kota perlu mengutamakan trotoar, bukan mengorbankannya demi jalan lebar.",
         },
         {
           correct: false,
           label:
-            "Karena model tidak memuat penyakit dan migrasi, hubungan antara sumber daya dan batas populasi tidak dapat dipelajari melalui simulasi.",
+            "Kendaraan pribadi sebaiknya dilarang masuk ke pusat kota sepanjang hari.",
         },
         {
           correct: false,
           label:
-            "Definisi daya dukung memastikan bahwa setiap lingkungan memiliki batas populasi tetap yang dapat dihitung dari satu simulasi.",
+            "Trotoar mungkin hanya cocok dibangun di kota yang penduduknya sedikit.",
         },
       ],
     },

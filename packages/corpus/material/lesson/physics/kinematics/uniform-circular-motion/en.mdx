@@ -65,6 +65,48 @@ At every point on a circular path, <Highlight>velocity points tangent to the cir
 
 Imagine a small object on the right side of the circle moving counterclockwise. Its velocity points upward along the path, while its acceleration points left toward the center. This direction pair is what makes circular motion different from ordinary straight-line motion.
 
+Here is the small car from the example at four moments, one quarter turn apart. Every teal velocity arrow is tangent to the track and has the same length, so the speed never changes. Every pink acceleration arrow points to the center, which is what keeps turning the velocity.
+
+<MathVisual
+  title={<>Velocity and Acceleration around the Track</>}
+  description={<>Radius 4 m and period 6 s. Teal arrows are velocity at half scale, pink arrows centripetal acceleration at half scale.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ring", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "center", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "spot-0", kind: "point", appearance: "construction", at: { x: 4, y: 0 } },
+      { id: "velocity-0", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: (2 * Math.PI) / 3 } },
+      { id: "velocity-0-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: (2 * Math.PI) / 3 }, { x: 4.125, y: (2 * Math.PI) / 3 + -0.25 }, { x: 3.875, y: (2 * Math.PI) / 3 + -0.25 }] },
+      { id: "accel-0", kind: "segment", appearance: "warning", from: { x: 4, y: 0 }, to: { x: 4 - (2 * Math.PI ** 2) / 9, y: 0 } },
+      { id: "accel-0-head", kind: "polygon", appearance: "warning", vertices: [{ x: 4 - (2 * Math.PI ** 2) / 9, y: 0 }, { x: 4 - (2 * Math.PI ** 2) / 9 + 0.25, y: 0.125 }, { x: 4 - (2 * Math.PI ** 2) / 9 + 0.25, y: -0.125 }] },
+      { id: "spot-1", kind: "point", appearance: "construction", at: { x: 0, y: 4 } },
+      { id: "velocity-1", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: -((2 * Math.PI) / 3), y: 4 } },
+      { id: "velocity-1-head", kind: "polygon", appearance: "construction", vertices: [{ x: -((2 * Math.PI) / 3), y: 4 }, { x: -((2 * Math.PI) / 3) + 0.25, y: 4.125 }, { x: -((2 * Math.PI) / 3) + 0.25, y: 3.875 }] },
+      { id: "accel-1", kind: "segment", appearance: "warning", from: { x: 0, y: 4 }, to: { x: 0, y: 4 - (2 * Math.PI ** 2) / 9 } },
+      { id: "accel-1-head", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 4 - (2 * Math.PI ** 2) / 9 }, { x: 0.125, y: 4 - (2 * Math.PI ** 2) / 9 + 0.25 }, { x: -0.125, y: 4 - (2 * Math.PI ** 2) / 9 + 0.25 }] },
+      { id: "spot-2", kind: "point", appearance: "construction", at: { x: -4, y: 0 } },
+      { id: "velocity-2", kind: "segment", appearance: "construction", from: { x: -4, y: 0 }, to: { x: -4, y: -((2 * Math.PI) / 3) } },
+      { id: "velocity-2-head", kind: "polygon", appearance: "construction", vertices: [{ x: -4, y: -((2 * Math.PI) / 3) }, { x: -3.875, y: -((2 * Math.PI) / 3) + 0.25 }, { x: -4.125, y: -((2 * Math.PI) / 3) + 0.25 }] },
+      { id: "accel-2", kind: "segment", appearance: "warning", from: { x: -4, y: 0 }, to: { x: -4 + (2 * Math.PI ** 2) / 9, y: 0 } },
+      { id: "accel-2-head", kind: "polygon", appearance: "warning", vertices: [{ x: -4 + (2 * Math.PI ** 2) / 9, y: 0 }, { x: -4 + (2 * Math.PI ** 2) / 9 + -0.25, y: 0.125 }, { x: -4 + (2 * Math.PI ** 2) / 9 + -0.25, y: -0.125 }] },
+      { id: "spot-3", kind: "point", appearance: "construction", at: { x: 0, y: -4 } },
+      { id: "velocity-3", kind: "segment", appearance: "construction", from: { x: 0, y: -4 }, to: { x: (2 * Math.PI) / 3, y: -4 } },
+      { id: "velocity-3-head", kind: "polygon", appearance: "construction", vertices: [{ x: (2 * Math.PI) / 3, y: -4 }, { x: (2 * Math.PI) / 3 + -0.25, y: -3.875 }, { x: (2 * Math.PI) / 3 + -0.25, y: -4.125 }] },
+      { id: "accel-3", kind: "segment", appearance: "warning", from: { x: 0, y: -4 }, to: { x: 0, y: -4 + (2 * Math.PI ** 2) / 9 } },
+      { id: "accel-3-head", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: -4 + (2 * Math.PI ** 2) / 9 }, { x: 0.125, y: -4 + (2 * Math.PI ** 2) / 9 + -0.25 }, { x: -0.125, y: -4 + (2 * Math.PI ** 2) / 9 + -0.25 }] },
+    ],
+    labels: [
+      { key: "values", objectId: "center", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    values: <InlineMath math="v\approx4.19\text{ m/s},\ a_c\approx4.39\text{ m/s}^2" />,
+  }}
+/>
+
 ## Tangential Speed Connects to Angular Speed
 
 Tangential speed is the magnitude of the object's velocity **along the circular path**. If the radius is <InlineMath math="r" />, one full circumference is <InlineMath math="2\pi r" />. Because one revolution takes time <InlineMath math="T" />, the tangential speed is:
@@ -104,3 +146,30 @@ Its centripetal acceleration is:
 <BlockMath math="a_c=\frac{v^2}{r}=\frac{(4\pi/3)^2}{4}=\frac{16\pi^2}{36}=\frac{4\pi^2}{9}\text{ m/s}^2\approx4.39\text{ m/s}^2" />
 
 So the car moves with **constant speed** of about <InlineMath math="4.19\text{ m/s}" />, but it still has acceleration of about <InlineMath math="4.39\text{ m/s}^2" /> because the direction of its velocity keeps changing.
+
+Follow the chain from the period. In one second the radius turns <InlineMath math="\omega=2\pi/T" />, the point travels the arc <InlineMath math="v=\omega r" />, and then <InlineMath math="a_c=v^2/r=4\pi^2/9\text{ m/s}^2" />. Zoom in on the orange arc covered in that second.
+
+<MathVisual
+  title={<>From Period to Centripetal Acceleration</>}
+  description={<>The angle (violet radii) and the arc (orange) covered in 1 s on a circle of radius 4 m with period 6 s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ring", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "arc", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 4, startDegrees: 0, sweepDegrees: 60 },
+      { id: "r0", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "r1", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4 * Math.cos(Math.PI / 3), y: 4 * Math.sin(Math.PI / 3) } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 4 * Math.cos(Math.PI / 3), y: 4 * Math.sin(Math.PI / 3) } },
+    ],
+    labels: [
+      { key: "omega", objectId: "r1", at: { x: 2 * Math.cos(Math.PI / 3), y: 2 * Math.sin(Math.PI / 3) }, placement: "left" },
+      { key: "arc", objectId: "arc", at: { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    omega: <InlineMath math="\omega=\frac{2\pi}{6}=\frac{\pi}{3}\text{ rad/s}" />,
+    arc: <InlineMath math="v=\omega r=\frac{4\pi}{3}\text{ m/s}" />,
+  }}
+/>

@@ -78,6 +78,36 @@ In a prokaryotic cell, DNA occupies the nucleoid region and **no nuclear membran
   }}
 />
 
+Bacteria can change food so quickly because they multiply by splitting. One cell splits into two, so after <InlineMath math="n" /> splits there are <InlineMath math="2^n" /> cells. Zoom in on the first points, then look at how steeply the last ones climb.
+
+<MathVisual
+  title={<>Splitting Doubles the Cells</>}
+  description={<>Cell count after each split, starting from one cell. Horizontal: number of splits. Vertical: one grid step is 10 cells.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "count", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0.1 }, { x: 1, y: 0.2 }, { x: 2, y: 0.4 }, { x: 3, y: 0.8 }, { x: 4, y: 1.6 }, { x: 5, y: 3.2 }, { x: 6, y: 6.4 }] },
+      { id: "cell-0", kind: "point", appearance: "secondary", at: { x: 0, y: 0.1 } },
+      { id: "cell-1", kind: "point", appearance: "secondary", at: { x: 1, y: 0.2 } },
+      { id: "cell-2", kind: "point", appearance: "secondary", at: { x: 2, y: 0.4 } },
+      { id: "cell-3", kind: "point", appearance: "secondary", at: { x: 3, y: 0.8 } },
+      { id: "cell-4", kind: "point", appearance: "secondary", at: { x: 4, y: 1.6 } },
+      { id: "cell-5", kind: "point", appearance: "secondary", at: { x: 5, y: 3.2 } },
+      { id: "cell-6", kind: "point", appearance: "answer", at: { x: 6, y: 6.4 } },
+    ],
+    labels: [
+      { key: "start", objectId: "cell-0", at: { x: 0, y: 0.1 }, placement: "above-right" },
+      { key: "end", objectId: "cell-6", at: { x: 6, y: 6.4 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    start: <InlineMath math="2^0=1" />,
+    end: <InlineMath math="2^6=64" />,
+  }}
+/>
+
 ## Observing Bacterial Cell Shapes
 
 Bacterial cell shape can be observed with a microscope and provides one early clue. **Cell shape alone cannot identify** a bacterial type. A complete identification also needs evidence about cell structure, chemistry, or genes.
@@ -111,6 +141,33 @@ The nucleoid is not enclosed by a nuclear membrane. Bacterial DNA can still be c
 ### Cell Walls and Bacterial Shape
 
 Many bacteria have cell walls containing **peptidoglycan**, a molecular network that gives shape and protection. Gram-positive bacteria tend to have a thick peptidoglycan layer. Gram-negative bacteria have a thinner peptidoglycan layer and an outer membrane. This outer membrane can affect resistance to certain substances.
+
+A cell takes in food and gets rid of waste through its surface, while what it needs grows with its volume. A cube with side <InlineMath math="s" /> has surface <InlineMath math="6s^2" /> and volume <InlineMath math="s^3" />, so every unit of volume gets <InlineMath math="\tfrac{6}{s}" /> units of surface. Rotate the cubes: the smallest one has the most surface for its size, which helps a tiny bacterium exchange substances quickly.
+
+<MathVisual
+  title={<>Small Cells Have More Surface per Volume</>}
+  description={<>Cubes with sides of 1, 2 and 4 micrometers. Each label divides the surface area by the volume.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 9.5 }, y: { min: 0, max: 4.5 }, z: { min: -2.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 5, y: 6, z: 13 }, target: { x: 4, y: 1.5, z: 0 } },
+    objects: [
+      { id: "cube-1", kind: "cuboid", appearance: "answer", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "cube-2", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 1, z: 0 }, size: { length: 2, height: 2, width: 2 } },
+      { id: "cube-4", kind: "cuboid", appearance: "reference", center: { x: 7, y: 2, z: 0 }, size: { length: 4, height: 4, width: 4 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "cube-1", at: { x: 0, y: 1, z: 0 }, placement: "above" },
+      { key: "s2", objectId: "cube-2", at: { x: 3, y: 2, z: 0 }, placement: "above" },
+      { key: "s4", objectId: "cube-4", at: { x: 7, y: 4, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    s1: <InlineMath math="\frac{6}{1}=6" />,
+    s2: <InlineMath math="\frac{24}{8}=3" />,
+    s4: <InlineMath math="\frac{96}{64}=1.5" />,
+  }}
+/>
 
 ## Bacterial Roles in Disease and Everyday Life
 

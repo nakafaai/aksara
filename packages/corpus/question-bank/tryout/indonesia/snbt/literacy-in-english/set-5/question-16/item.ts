@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "cause-effect",
+  },
+  stimulus: "great-stink",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The recurring object mainly establishes the setting and changes little in relation to the conflict.",
+            "John Snow had persuaded Parliament that cholera spread through water.",
         },
         {
           correct: false,
           label:
-            "The character's final decision removes the ambiguity that the recurring object previously carried.",
+            "A cholera outbreak that summer had killed several members of Parliament.",
         },
         {
           correct: true,
           label:
-            "Samira turns a blue date stamp from a reminder of unfinished work into a shared practice by recording the last package, and the next volunteer carries the action forward.",
+            "Many believed foul air spread disease, so the smell seemed dangerous.",
         },
         {
           correct: false,
           label:
-            "The passage uses motif as a descriptive label without tying it to the character's choice.",
+            "The river had flooded the Houses of Parliament during the hot June.",
         },
         {
           correct: false,
           label:
-            "The conflict is settled by the setting before the character's final action changes the object's meaning.",
+            "Bazalgette had already finished the new sewers at his own expense.",
         },
       ],
     },

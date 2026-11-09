@@ -1,30 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "class-ranking",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Semua benda plastik yang diproduksi di daratan",
+          label:
+            "Siswa yang berperingkat tinggi lebih sering diterima di perguruan tinggi negeri daripada siswa berperingkat rendah.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebagian besar orang tua lebih menyukai rapor yang mencantumkan peringkat daripada rapor deskriptif.",
+        },
+        {
+          correct: false,
+          label:
+            "Siswa di sekolah tanpa peringkat memperoleh rata-rata nilai ujian akhir yang sedikit lebih tinggi.",
         },
         {
           correct: true,
           label:
-            "Sampah yang masuk ke laut melalui sungai atau langsung dari pesisir",
+            "Dibandingkan sekolah tanpa peringkat yang serupa, siswa di sekolah berperingkat lebih jarang menjelaskan materi kepada teman.",
         },
         {
           correct: false,
-          label: "Sampah yang terdampar kembali di daratan suatu negara",
-        },
-        {
-          correct: false,
-          label: "Semua sampah nonorganik yang ditemukan di laut",
-        },
-        {
-          correct: false,
-          label: "Sampah yang tidak dapat terurai secara alami",
+          label:
+            "Guru memerlukan waktu dua kali lebih lama untuk menulis rapor deskriptif daripada rapor berperingkat.",
         },
       ],
     },

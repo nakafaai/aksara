@@ -368,7 +368,7 @@ returns unchanged, branded as a content language. It accepts `ar`, `id`, `de-CH`
 `zh-Hant-TW`, and `sr-Latn`. It refuses `AR` and `iw`, which name the canonical
 tags `ar` and `he`, and it refuses `en_US`, the empty string, and `x`, which Intl
 rejects. An item version and a stimulus version take it. The try-out contract
-keeps `DeliveryLanguageSchema`, which still holds the three app locales.
+keeps `DeliveryLanguageSchema`, which holds the declared app locales.
 
 The direction of a text is not stored: the renderer follows the script of each
 text. Every reader of the language was traced. `hasFamilyVersions` keeps one
@@ -482,8 +482,9 @@ Aksara then publishes a genesis release, as the release record describes.
 Authors keep MDX for prompts, readings, and explanations, and an `item.ts` for
 the interaction. The source of an item is `ItemSource` in the corpus: its
 blueprint, the key of its set's reading, and its interaction in each language it
-is asked in, a `choice` of options that are correct or not, or a `matrix` of
-statements in columns. Publication derives every identifier, the key, the
+is asked in, a `choice` of options that are correct or not, a `matrix` of
+statements in columns, or a `numericEntry` with its exact decimal value and an
+optional unit. Publication derives every identifier, the key, the
 prompt with its interaction placed after the stem, and the hashes. A reading is
 its own file in the set, `<reading>/stimulus.<language>.mdx`, used by key; the
 migration moved each of the 159 readings out of the 887 prompts that copied it.

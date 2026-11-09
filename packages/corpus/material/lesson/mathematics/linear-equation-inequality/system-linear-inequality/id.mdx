@@ -3,7 +3,7 @@ export const metadata = {
     description: "Selesaikan sistem pertidaksamaan linear dengan grafik, modelkan batasannya, lalu tentukan solusi optimum sederhana.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-18",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Sistem Persamaan dan Pertidaksamaan Linear",
 };
 
@@ -96,6 +96,34 @@ Daerah hasil adalah bagian yang tidak memuat titik <InlineMath math="(0, 0)" />,
 
 Titik <InlineMath math="(0,0)" /> memenuhi syarat pertama saja, sehingga bukan solusi sistem. Pada sistem dengan tanda ketat, **titik pada garis batas tidak ikut**, termasuk titik perpotongan kedua garis.
 
+Arsir kedua syarat sekaligus. Titik <InlineMath math="(2, 1)" /> lolos kedua uji, <InlineMath math="9 < 10" /> dan <InlineMath math="14 > 10" />, jadi titik itu berada di irisan: baji yang dimulai di titik temu garis batas <InlineMath math="\left(\tfrac{15}{13}, \tfrac{20}{13}\right)" />. Garis batas tidak termasuk penyelesaian, karena kedua pertidaksamaan bersifat tegas.
+
+<MathVisual
+  title={<>Irisan memuat <InlineMath math="(2, 1)" /></>}
+  description={<>Garis batas <InlineMath math="2x + 5y = 10" /> dan <InlineMath math="6x + 2y = 10" />, baji tempat <InlineMath math="2x + 5y < 10" /> dan <InlineMath math="6x + 2y > 10" /> sama-sama berlaku, digambar sampai <InlineMath math="x = 4" />, dan titik uji <InlineMath math="(2, 1)" />.</>}
+  labels={{
+    l1: <InlineMath math="2x + 5y = 10" />,
+    l2: <InlineMath math="6x + 2y = 10" />,
+    test: <InlineMath math="(2, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -7.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "region", kind: "polygon", vertices: [{ x: 15 / 13, y: 20 / 13 }, { x: 4, y: 2 / 5 }, { x: 4, y: -7 }], appearance: "answer" },
+      { id: "l1", kind: "line", through: [{ x: 0, y: 2 }, { x: 5, y: 0 }], appearance: "primary" },
+      { id: "l2", kind: "line", through: [{ x: 0, y: 5 }, { x: 5 / 3, y: 0 }], appearance: "secondary" },
+      { id: "test", kind: "point", at: { x: 2, y: 1 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 0, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "l2", at: { x: 0, y: 5 }, placement: "right" },
+      { key: "test", objectId: "test", at: { x: 2, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 ### Penggambaran Grafik
 
 Ketika menggambar grafik pertidaksamaan linear:
@@ -133,6 +161,40 @@ Sekarang uji <InlineMath math="(1,5)" />:
 </MathContainer>
 
 Pernyataan kedua salah, sehingga <InlineMath math="(1,5)" /> bukan solusi. Kedua garis batas berpotongan di <InlineMath math="(2,4)" />, tetapi titik itu hanya salah satu bagian solusi. Solusi lengkapnya adalah seluruh daerah irisan, termasuk bagian garis batas yang juga memenuhi pertidaksamaan lainnya.
+
+Gambar kedua garis batas melalui titik temunya <InlineMath math="(2, 4)" />. Daerah penyelesaian terletak di bawah <InlineMath math="x + y = 6" /> dan di bawah <InlineMath math="y = 2x" />. Titik <InlineMath math="(2, 3)" /> berada di dalamnya, sedangkan <InlineMath math="(1, 5)" /> berada di atas garis <InlineMath math="y = 2x" />, karena itu <InlineMath math="2(1) - 5 = -3" /> gagal memenuhi pertidaksamaan kedua.
+
+<MathVisual
+  title={<>Menguji <InlineMath math="(2, 3)" /> dan <InlineMath math="(1, 5)" /></>}
+  description={<>Daerah tempat <InlineMath math="x + y \leq 6" /> dan <InlineMath math="2x - y \geq 0" />, digambar sampai <InlineMath math="y = -2" />, dengan titik pojok <InlineMath math="(2, 4)" />, penyelesaian <InlineMath math="(2, 3)" />, dan bukan penyelesaian <InlineMath math="(1, 5)" />.</>}
+  labels={{
+    l1: <InlineMath math="x + y = 6" />,
+    l2: <InlineMath math="y = 2x" />,
+    corner: <InlineMath math="(2, 4)" />,
+    yes: <InlineMath math="(2, 3)" />,
+    no: <InlineMath math="(1, 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 9 }, y: { min: -3, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "region", kind: "polygon", vertices: [{ x: 2, y: 4 }, { x: 8, y: -2 }, { x: -1, y: -2 }], appearance: "answer" },
+      { id: "l1", kind: "line", through: [{ x: 0, y: 6 }, { x: 6, y: 0 }], appearance: "primary" },
+      { id: "l2", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "secondary" },
+      { id: "corner", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "yes", kind: "point", at: { x: 2, y: 3 }, appearance: "highlight" },
+      { id: "no", kind: "point", at: { x: 1, y: 5 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 6, y: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "l2", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "corner", objectId: "corner", at: { x: 2, y: 4 }, placement: "right" },
+      { key: "yes", objectId: "yes", at: { x: 2, y: 3 }, placement: "below" },
+      { key: "no", objectId: "no", at: { x: 1, y: 5 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Memodelkan Pilihan yang Memenuhi Syarat
 
@@ -211,44 +273,32 @@ Daerah berwarna ungu menunjukkan solusi dari <InlineMath math="15x + 9y \geq 120
 
 Irisan kedua daerah adalah solusi dari sistem pertidaksamaan linear tersebut.
 
-<Inequality
-  cameraPosition={[5, 5, 22]}
-  cameraTarget={[5, 5, 0]}
-  title="Sistem Pertidaksamaan Linear"
-  description={
-    <>
-      Visualisasi dari sistem pertidaksamaan <InlineMath math="x + y \leq 10" />{" "}
-      dan <InlineMath math="15x + 9y \geq 120" />.
-    </>
-  }
-  data={[
-    {
-      is2D: true,
-      boundaryLine2D: [1, 1, -10],
-      xRange: [-50, 50],
-      yRange: [-50, 50],
-      zRange: [-0.05, 0.05],
-      color: "#ea580c",
-      boundaryColor: "#ea580c",
-      label: {
-        text: <InlineMath math="x + y \le 10" />,
-        position: [0, 4, 0.15],
-      },
-    },
-    {
-      is2D: true,
-      boundaryLine2D: [-15, -9, 120],
-      xRange: [-50, 50],
-      yRange: [-50, 50],
-      zRange: [-0.05, 0.05],
-      color: "#9333ea",
-      boundaryColor: "#9333ea",
-      label: {
-        text: <InlineMath math="15x + 9y \ge 120" />,
-        position: [9, 8, 0.15],
-      },
-    },
-  ]}
+<MathVisual
+  title={<>Daerah tempat kedua pertidaksamaan berlaku</>}
+  description={<>Garis batas <InlineMath math="x + y = 10" /> (oranye) dan <InlineMath math="15x + 9y = 120" /> (ungu) bertemu di <InlineMath math="(5, 5)" />. Setengah bidang oranye adalah <InlineMath math="x + y \leq 10" />, setengah bidang ungu adalah <InlineMath math="15x + 9y \geq 120" />, dan irisannya adalah baji di sebelah kanan <InlineMath math="(5, 5)" />.</>}
+  labels={{
+    l1: <InlineMath math="x + y \le 10" />,
+    l2: <InlineMath math="15x + 9y \ge 120" />,
+    corner: <InlineMath math="(5, 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 12.5 }, y: { min: -6.5, max: 14.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "h1", kind: "polygon", vertices: [{ x: -1, y: -6 }, { x: 12, y: -6 }, { x: 12, y: -2 }, { x: -1, y: 11 }], appearance: "primary" },
+      { id: "h2", kind: "polygon", vertices: [{ x: -2 / 5, y: 14 }, { x: 12, y: 14 }, { x: 12, y: -6 }, { x: 58 / 5, y: -6 }], appearance: "secondary" },
+      { id: "region", kind: "polygon", vertices: [{ x: 5, y: 5 }, { x: 12, y: -2 }, { x: 12, y: -6 }, { x: 58 / 5, y: -6 }], appearance: "answer" },
+      { id: "l1", kind: "line", through: [{ x: 0, y: 10 }, { x: 10, y: 0 }], appearance: "primary" },
+      { id: "l2", kind: "line", through: [{ x: 8, y: 0 }, { x: 2, y: 10 }], appearance: "secondary" },
+      { id: "corner", kind: "point", at: { x: 5, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 1, y: 9 }, placement: "right" },
+      { key: "l2", objectId: "l2", at: { x: 16 / 5, y: 8 }, placement: "right" },
+      { key: "corner", objectId: "corner", at: { x: 5, y: 5 }, placement: "right" },
+    ],
+  }}
 />
 
 ### Cara Membaca Visualisasi

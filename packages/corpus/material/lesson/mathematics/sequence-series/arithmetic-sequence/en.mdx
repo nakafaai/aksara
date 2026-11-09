@@ -3,7 +3,7 @@ export const metadata = {
   description: "Build arithmetic sequences from a constant difference, derive the general term, and solve complete applications and exercises.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-05",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Sequence and Series",
 };
 
@@ -24,6 +24,41 @@ In this sequence:
 - The difference between the fourth and third term: <InlineMath math="10 - 8 = 2" />
 
 Since the difference between consecutive terms is always <InlineMath math="2" />, this sequence is an arithmetic sequence with common difference <InlineMath math="b = 2" />.
+
+Each step of <InlineMath math="4, 6, 8, 10, \ldots" /> climbs by the same height. Plot term <InlineMath math="U_n" /> above position <InlineMath math="n" />: every riser of the staircase is exactly <InlineMath math="2" />, the common difference, and every tread is one position long.
+
+<MathVisual
+  title={<>Equal steps of an arithmetic sequence</>}
+  description={<>The terms <InlineMath math="4, 6, 8, 10, 12" /> plotted above positions 1 to 5, joined by a staircase whose risers all have height <InlineMath math="b = 2" />.</>}
+  labels={{
+    u5: <InlineMath math="U_5 = 12" />,
+    r1: <InlineMath math="+2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 13.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "t1", kind: "segment", from: { x: 1, y: 4 }, to: { x: 2, y: 4 }, appearance: "construction" },
+      { id: "t2", kind: "segment", from: { x: 2, y: 6 }, to: { x: 3, y: 6 }, appearance: "construction" },
+      { id: "t3", kind: "segment", from: { x: 3, y: 8 }, to: { x: 4, y: 8 }, appearance: "construction" },
+      { id: "t4", kind: "segment", from: { x: 4, y: 10 }, to: { x: 5, y: 10 }, appearance: "construction" },
+      { id: "r1", kind: "segment", from: { x: 2, y: 4 }, to: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "r2", kind: "segment", from: { x: 3, y: 6 }, to: { x: 3, y: 8 }, appearance: "construction" },
+      { id: "r3", kind: "segment", from: { x: 4, y: 8 }, to: { x: 4, y: 10 }, appearance: "construction" },
+      { id: "r4", kind: "segment", from: { x: 5, y: 10 }, to: { x: 5, y: 12 }, appearance: "construction" },
+      { id: "u1", kind: "point", at: { x: 1, y: 4 }, appearance: "primary" },
+      { id: "u2", kind: "point", at: { x: 2, y: 6 }, appearance: "primary" },
+      { id: "u3", kind: "point", at: { x: 3, y: 8 }, appearance: "primary" },
+      { id: "u4", kind: "point", at: { x: 4, y: 10 }, appearance: "primary" },
+      { id: "u5", kind: "point", at: { x: 5, y: 12 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "u5", objectId: "u5", at: { x: 5, y: 12 }, placement: "above-left" },
+      { key: "r1", objectId: "r1", at: { x: 2, y: 5 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Common Difference in Arithmetic Sequences
 
@@ -124,6 +159,16 @@ There are <InlineMath math="76" /> seats in row <InlineMath math="15" />.
 
 This result gives **the seats in one row**, row <InlineMath math="15" />. Finding the total number of seats in the first fifteen rows requires the corresponding arithmetic series.
 
+Here are all fifteen rows of the theater as bars, <InlineMath math="U_n = 20 + 4(n - 1)" />. Each bar is exactly <InlineMath math="4" /> seats taller than the one before, so the tops climb in a straight line up to <InlineMath math="U_{15} = 76" />.
+
+<BarChart
+  title={<>Seats in each row of the theater</>}
+  description={<>Bar <InlineMath math="n" /> shows the seats in row <InlineMath math="n" />, from 20 in the first row to 76 in the fifteenth.</>}
+  yAxisLabel="Seats"
+  data={[["1", 20 + 4 * (1 - 1)], ["2", 20 + 4 * (2 - 1)], ["3", 20 + 4 * (3 - 1)], ["4", 20 + 4 * (4 - 1)], ["5", 20 + 4 * (5 - 1)], ["6", 20 + 4 * (6 - 1)], ["7", 20 + 4 * (7 - 1)], ["8", 20 + 4 * (8 - 1)], ["9", 20 + 4 * (9 - 1)], ["10", 20 + 4 * (10 - 1)], ["11", 20 + 4 * (11 - 1)], ["12", 20 + 4 * (12 - 1)], ["13", 20 + 4 * (13 - 1)], ["14", 20 + 4 * (14 - 1)], ["15", 20 + 4 * (15 - 1)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Seats", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Increasing Decreasing and Constant Sequences
 
 An arithmetic sequence increases when <InlineMath math="b>0" />, decreases when <InlineMath math="b<0" />, and remains constant when <InlineMath math="b=0" />. For example:
@@ -131,6 +176,45 @@ An arithmetic sequence increases when <InlineMath math="b>0" />, decreases when 
 <BlockMath math="12,9,6,3,\ldots\qquad b=-3" />
 
 The **sign of the common difference** therefore describes the direction in which the sequence changes.
+
+The sign of <InlineMath math="b" /> decides the direction of the sequence. Each set of points below is an arithmetic sequence over positions 1 to 5: <InlineMath math="b = 2" /> climbs, <InlineMath math="b = -3" /> falls from <InlineMath math="12" /> through <InlineMath math="9, 6, 3" /> to <InlineMath math="0" />, and <InlineMath math="b = 0" /> stays level at <InlineMath math="6" />.
+
+<MathVisual
+  title={<>Increasing, decreasing and constant</>}
+  description={<>Three arithmetic sequences plotted against their position: one with <InlineMath math="b = 2" />, one with <InlineMath math="b = -3" /> and one with <InlineMath math="b = 0" />.</>}
+  labels={{
+    a5: <InlineMath math="b = 2" />,
+    b5: <InlineMath math="b = -3" />,
+    c5: <InlineMath math="b = 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: -0.8, max: 13 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a1", kind: "point", at: { x: 1, y: 4 }, appearance: "primary" },
+      { id: "a2", kind: "point", at: { x: 2, y: 6 }, appearance: "primary" },
+      { id: "a3", kind: "point", at: { x: 3, y: 8 }, appearance: "primary" },
+      { id: "a4", kind: "point", at: { x: 4, y: 10 }, appearance: "primary" },
+      { id: "a5", kind: "point", at: { x: 5, y: 12 }, appearance: "primary" },
+      { id: "b1", kind: "point", at: { x: 1, y: 12 }, appearance: "secondary" },
+      { id: "b2", kind: "point", at: { x: 2, y: 9 }, appearance: "secondary" },
+      { id: "b3", kind: "point", at: { x: 3, y: 6 }, appearance: "secondary" },
+      { id: "b4", kind: "point", at: { x: 4, y: 3 }, appearance: "secondary" },
+      { id: "b5", kind: "point", at: { x: 5, y: 0 }, appearance: "secondary" },
+      { id: "c1", kind: "point", at: { x: 1, y: 6 }, appearance: "construction" },
+      { id: "c2", kind: "point", at: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "c3", kind: "point", at: { x: 3, y: 6 }, appearance: "construction" },
+      { id: "c4", kind: "point", at: { x: 4, y: 6 }, appearance: "construction" },
+      { id: "c5", kind: "point", at: { x: 5, y: 6 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "a5", objectId: "a5", at: { x: 5, y: 12 }, placement: "right" },
+      { key: "b5", objectId: "b5", at: { x: 5, y: 0 }, placement: "right" },
+      { key: "c5", objectId: "c5", at: { x: 5, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## First Exercise
 

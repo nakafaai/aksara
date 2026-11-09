@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
+  },
+  stimulus: "cultivated-meat",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Because the trial reached $$31$$, compared with a baseline of $$19$$ and a comparison value of $$20$$, a shared glossary with examples from each participant should become permanent before the stated limitation is examined.",
+            "To show that governments have already answered every question about cost and energy",
+        },
+        {
+          correct: false,
+          label:
+            "To argue that cultivated meat uses more energy than farming does",
+        },
+        {
+          correct: false,
+          label:
+            "To suggest that regulators never ask questions about traditional foods",
+        },
+        {
+          correct: false,
+          label:
+            "To admit that the questions about cultivated meat cannot be answered",
         },
         {
           correct: true,
           label:
-            "The mean of $$31$$, compared with $$19$$ at baseline and $$20$$ in the comparison, supports further glossary testing. Entries must retain their contexts and remain open to challenges from participants with different usage.",
-        },
-        {
-          correct: false,
-          label:
-            "The consultation with affected groups makes the baseline and comparison figures unnecessary for the decision.",
-        },
-        {
-          correct: false,
-          label:
-            "The limitation that one glossary could not capture every regional or family usage affects delivery details, but it does not restrict who can be covered by the conclusion.",
-        },
-        {
-          correct: false,
-          label:
-            "Because staffing and schedules were stable, the difference between the trial and comparison is best attributed to those unchanged conditions.",
+            "To point out that a ban stops the research that could settle open questions",
         },
       ],
     },

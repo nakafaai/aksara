@@ -19,6 +19,40 @@ The evidence sequence runs from Thomson's cathode ray experiment through Rutherf
 
 J. J. Thomson discovered the electron in <InlineMath math="1897" /> and showed that this particle was far lighter than an atom.
 
+Each experiment answered one question and opened the next. Dalton pictured solid spheres in 1803, Thomson found the electron in 1897, Rutherford's team found a tiny dense nucleus in 1911, hydrogen nuclei were identified as protons in 1919, and Chadwick found the neutron in 1932. Zoom along the line and notice how fast the last three came.
+
+<MathVisual
+  title={<>From Solid Spheres to Three Particles</>}
+  description={<>Five steps in the discovery of atomic structure on one time line. One grid step is 14 years.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "years", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "dalton", kind: "point", appearance: "secondary", at: { x: (1803 - 1800) / 14, y: 0 } },
+      { id: "thomson", kind: "point", appearance: "secondary", at: { x: (1897 - 1800) / 14, y: 0 } },
+      { id: "rutherford", kind: "point", appearance: "secondary", at: { x: (1911 - 1800) / 14, y: 0 } },
+      { id: "proton", kind: "point", appearance: "secondary", at: { x: (1919 - 1800) / 14, y: 0 } },
+      { id: "chadwick", kind: "point", appearance: "answer", at: { x: (1932 - 1800) / 14, y: 0 } },
+    ],
+    labels: [
+      { key: "dalton", objectId: "dalton", at: { x: (1803 - 1800) / 14, y: 0 }, placement: "above" },
+      { key: "thomson", objectId: "thomson", at: { x: (1897 - 1800) / 14, y: 0 }, placement: "below" },
+      { key: "rutherford", objectId: "rutherford", at: { x: (1911 - 1800) / 14, y: 0 }, placement: "above" },
+      { key: "proton", objectId: "proton", at: { x: (1919 - 1800) / 14, y: 0 }, placement: "below" },
+      { key: "chadwick", objectId: "chadwick", at: { x: (1932 - 1800) / 14, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    dalton: <>1803: solid spheres</>,
+    thomson: <>1897: electron</>,
+    rutherford: <>1911: nucleus</>,
+    proton: <>1919: proton</>,
+    chadwick: <>1932: neutron</>,
+  }}
+/>
+
 ## Evidence from Experimental Evidence and Atomic Structure
 
 Switch the mode below and compare the **direction of motion**, **which path bends**, and **which path stays straight**. Use those observations to identify the particle.
@@ -154,3 +188,29 @@ A neutral atom has the same number of protons and electrons. For example, if an 
 <BlockMath math="\begin{aligned} \text{neutral atom} &amp;\Rightarrow \text{number of } p^+ \\ &amp;= \text{number of } e^- \end{aligned}" />
 
 Remember these three relationships: **protons determine element identity**, **neutrons help determine mass**, and **electrons determine many chemical behaviors**. Use them together when comparing atomic charge, mass, and identity.
+
+Here are the relative charges as bars above and below zero. The electron reaches down to <InlineMath math="-1" />, the proton up to <InlineMath math="+1" />, and the neutron has no bar at all. One proton and one electron cancel, which is why a neutral atom has equal numbers of both.
+
+<MathVisual
+  title={<>Relative Charges of the Three Particles</>}
+  description={<>Electron at <InlineMath math="-1" /> below zero, proton at <InlineMath math="+1" /> above zero, neutron at <InlineMath math="0" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: -2, max: 2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 0, z: 0 } },
+    objects: [
+      { id: "proton", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: (1) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "electron", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (1) / 2 + -1, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+    ],
+    labels: [
+      { key: "electron", objectId: "electron", at: { x: 0, y: -1.5, z: 0 }, placement: "below" },
+      { key: "proton", objectId: "proton", at: { x: 2.5, y: 1.5, z: 0 }, placement: "above" },
+      { key: "neutron", objectId: "proton", at: { x: 5, y: 0.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    electron: <InlineMath math="e^-:\ -1" />,
+    proton: <InlineMath math="p^+:\ +1" />,
+    neutron: <InlineMath math="n^0:\ 0" />,
+  }}
+/>

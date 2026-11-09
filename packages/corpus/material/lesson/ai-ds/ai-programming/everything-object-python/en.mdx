@@ -386,6 +386,21 @@ print(square(5))                    # 25`
   }]}
 />
 
+Because a function is an object, you can hand it to another function like any value. `list(map(square, [1, 2, 3, 4]))` receives the function object `square` without parentheses, calls it for each element, and gives `[1, 4, 9, 16]`.
+
+<BarChart
+  title={<><code>map(square, [1, 2, 3, 4])</code></>}
+  description={<>Each bar is <code>square(n)</code> for the input <InlineMath math="n" /> written below it, computed by <code>map</code>, which receives the function as an argument.</>}
+  yAxisLabel="Result of square"
+  data={[
+    { name: "1", value: 1 ** 2 },
+    { name: "2", value: 2 ** 2 },
+    { name: "3", value: 3 ** 2 },
+    { name: "4", value: 4 ** 2 },
+  ]}
+  chartConfig={{ value: { label: "Result of square", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Classes and Instances as Objects
 
 A class defines how its instances are constructed and how their shared behavior is resolved. The class itself is also an object, and **each instance carries its own instance state**.
@@ -460,6 +475,31 @@ print(Student.university)           # University of Indonesia`
   }]}
 />
 
+One class `Point` can create many instances, and every instance keeps its own attributes. `p1 = Point(1, 2)` and `p2 = Point(4, 1)` have different `x` and `y`, yet they share the same methods, such as `p1.distance(p2)`, which gives <InlineMath math="\sqrt{3^2+1^2}=\sqrt{10}" />.
+
+<MathVisual
+  title={<>Two instances of one class <code>Point</code></>}
+  description={<>The violet point is <code>p1</code> and the teal point is <code>p2</code>, each at the coordinates of its own attributes. The gray segment is the distance <InlineMath math="\sqrt{10}" /> that the method <code>distance</code> computes.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "distance", kind: "segment", from: { x: 1, y: 2 }, to: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "first", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "second", kind: "point", at: { x: 4, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: 4, y: 1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "first": <code>p1 = Point(1, 2)</code>,
+    "second": <code>p2 = Point(4, 1)</code>,
+  }}
+/>
+
 ## Special Methods
 
 Special methods begin and end with **double underscores**. Python invokes them through syntax and built-ins such as `+`, `abs()`, `repr()`, and truth testing. Implement one only when its meaning is natural for the domain.
@@ -519,6 +559,33 @@ zero = Vector2D(0, 0)
 print(bool(first))                   # True
 print(bool(zero))                    # False`
   }]}
+/>
+
+Suppose a `Vector` class has a special method `__add__` that adds the components. When you write `v + w`, Python actually calls `v.__add__(w)`. This picture shows the result for `Vector(2, 1)` and `Vector(1, 2)`: the segment `w` is attached at the tip of `v`, and the magenta segment from start to end is the new object `Vector(3, 3)`. That is how the `+` operator gets a meaning for your own objects.
+
+<MathVisual
+  title={<>The special method <code>__add__</code> behind <code>v + w</code></>}
+  description={<>The violet segment is <code>v</code>, the teal segment is <code>w</code> attached at the tip of <code>v</code>, and the magenta segment is the result <code>v + w</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "w", kind: "segment", from: { x: 2, y: 1 }, to: { x: 3, y: 3 }, appearance: "construction" },
+      { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "w", objectId: "w", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 3 / 2, y: 3 / 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "v": "v = Vector(2, 1)",
+    "w": "w = Vector(1, 2)",
+    "sum": "v + w = Vector(3, 3)",
+  }}
 />
 
 ## Object Oriented Programming Practice

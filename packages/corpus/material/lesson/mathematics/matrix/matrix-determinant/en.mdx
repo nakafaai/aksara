@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate order-two matrix determinants and solve linear equations using Cramer's Rule. Learn determinant formulas with worked examples and practice.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Matrix",
 };
 
@@ -42,6 +42,36 @@ Then, the determinant of matrix <InlineMath math="B" /> is:
 </MathContainer>
 
 So, the determinant value of matrix <InlineMath math="B" /> is <InlineMath math="26" />.
+
+Geometrically, the determinant measures area. The columns of <InlineMath math="B" />, <InlineMath math="(-1, -7)" /> and <InlineMath math="(3, -5)" />, span a parallelogram, and its area is <InlineMath math="|\det(B)| = 26" />.
+
+<MathVisual
+  title={<>The parallelogram of the columns of <InlineMath math="B" /></>}
+  description={<>The parallelogram spanned by <InlineMath math="(-1, -7)" /> and <InlineMath math="(3, -5)" />, with area <InlineMath math="|(-1)(-5) - (3)(-7)| = 26" />.</>}
+  labels={{
+    area: <InlineMath math="26" />,
+    c1: <InlineMath math="(-1, -7)" />,
+    c2: <InlineMath math="(3, -5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: -13, max: 1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -1, y: -7 }, { x: 2, y: -12 }, { x: 3, y: -5 }], appearance: "answer" },
+      { id: "c1", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: -7 }, appearance: "primary" },
+      { id: "c1-head", kind: "polygon", vertices: [{ x: -1, y: -7 }, { x: (-1) + (2 / 5 / Math.sqrt(50)) + (28 / 25 / Math.sqrt(50)), y: (-7) + (14 / 5 / Math.sqrt(50)) + (-4 / 25 / Math.sqrt(50)) }, { x: (-1) + (2 / 5 / Math.sqrt(50)) + (-28 / 25 / Math.sqrt(50)), y: (-7) + (14 / 5 / Math.sqrt(50)) + (4 / 25 / Math.sqrt(50)) }], appearance: "primary" },
+      { id: "c2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -5 }, appearance: "secondary" },
+      { id: "c2-head", kind: "polygon", vertices: [{ x: 3, y: -5 }, { x: (3) + (-6 / 5 / Math.sqrt(34)) + (4 / 5 / Math.sqrt(34)), y: (-5) + (2 / Math.sqrt(34)) + (12 / 25 / Math.sqrt(34)) }, { x: (3) + (-6 / 5 / Math.sqrt(34)) + (-4 / 5 / Math.sqrt(34)), y: (-5) + (2 / Math.sqrt(34)) + (-12 / 25 / Math.sqrt(34)) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "area", objectId: "area", at: { x: 1, y: -6 }, placement: "center" },
+      { key: "c1", objectId: "c1", at: { x: -1, y: -7 }, placement: "left" },
+      { key: "c2", objectId: "c2", at: { x: 3, y: -5 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Solving Systems of Two Linear Equations Using Determinants
 
 Determinants can be used to solve systems of linear equations through Cramer's rule.
@@ -134,28 +164,29 @@ So, the solution set of the system of linear equations is <InlineMath math="x=2"
 
 You can also read the Cramer solution as the **intersection of two lines**. Rewrite the equations as <InlineMath math="y=2x-7" /> and <InlineMath math="y=\frac14x-\frac72" />. Their slopes differ, so they intersect exactly once.
 
-<LineEquation
-  title="Two Lines with One Intersection"
-  description={<>Green line: <InlineMath math="2x-y=7" />. Orange line: <InlineMath math="x-4y=14" />. They intersect at <InlineMath math="(2,-3)" />.</>}
-  cameraPosition={[2, -2, 18]}
-  cameraTarget={[2, -2, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [{ x: -1, y: -9, z: 0 }, { x: 2, y: -3, z: 0 }, { x: 6, y: 5, z: 0 }],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="(2,-3)" />, at: 1, offset: [0.6, 0.6, 0] }],
-    },
-    {
-      points: [{ x: -2, y: -4, z: 0 }, { x: 6, y: -2, z: 0 }],
-      smooth: false,
-      color: "#f97316",
-      showPoints: false,
-    },
-  ]}
+<MathVisual
+  title={<>Two lines with one intersection</>}
+  description={<>The lines <InlineMath math="2x - y = 7" /> and <InlineMath math="x - 4y = 14" /> have different slopes and meet exactly once, at <InlineMath math="(2, -3)" />.</>}
+  labels={{
+    l1: <InlineMath math="2x - y = 7" />,
+    l2: <InlineMath math="x - 4y = 14" />,
+    p: <InlineMath math="(2, -3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 7 }, y: { min: -9.6, max: 5.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "l1", kind: "line", through: [{ x: -1, y: -9 }, { x: 6, y: 5 }], appearance: "secondary" },
+      { id: "l2", kind: "line", through: [{ x: -2, y: -4 }, { x: 6, y: -2 }], appearance: "primary" },
+      { id: "p", kind: "point", at: { x: 2, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 6, y: 5 }, placement: "left" },
+      { key: "l2", objectId: "l2", at: { x: 6, y: -2 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 2, y: -3 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Substituting the intersection coordinates checks both equations.
@@ -218,3 +249,30 @@ Each problem below uses the determinant for a different purpose. The first asks 
     </MathContainer>
 
     So, the solution of the system of linear equations is <InlineMath math="x=2" /> and <InlineMath math="y=-4" />, or the ordered pair <InlineMath math="(2, -4)" />.
+
+In Solution 2, Cramer's rule gives <InlineMath math="(2, -4)" />. Draw <InlineMath math="y = 2x - 8" /> and <InlineMath math="y = -\frac{x + 10}{3}" />: they cross exactly at <InlineMath math="(2, -4)" />, and substituting checks both equations, <InlineMath math="2(2) - (-4) = 8" /> and <InlineMath math="2 + 3(-4) = -10" />.
+
+<MathVisual
+  title={<>The solution <InlineMath math="(2, -4)" /> as an intersection</>}
+  description={<>The lines <InlineMath math="2x - y = 8" /> and <InlineMath math="x + 3y = -10" />, which meet at <InlineMath math="(2, -4)" />.</>}
+  labels={{
+    l1: <InlineMath math="2x - y = 8" />,
+    l2: <InlineMath math="x + 3y = -10" />,
+    p: <InlineMath math="(2, -4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -9, max: 2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "l1", kind: "line", through: [{ x: 0, y: -8 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "l2", kind: "line", through: [{ x: -10, y: 0 }, { x: 2, y: -4 }], appearance: "primary" },
+      { id: "p", kind: "point", at: { x: 2, y: -4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l2", objectId: "l2", at: { x: -2, y: -8 / 3 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 2, y: -4 }, placement: "below-right" },
+    ],
+  }}
+/>

@@ -1,90 +1,198 @@
 export const metadata = {
-  title: "Kejadian Beririsan A dan B",
-  description: "Hitung peluang kejadian beririsan dan hindari penghitungan ganda melalui contoh irisan serta penyelesaian bertahap.",
+  title: "Peluang Kejadian Tidak Saling Lepas",
+  description: "Jika A dan B bisa terjadi bersamaan, P(A ∪ B) = P(A) + P(B) − P(A ∩ B). Pahami alasan pengurangannya lewat diagram Venn, contoh, dan latihan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-21",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Peluang",
 };
 
-## Hasil Percobaan yang Termasuk dalam Dua Kejadian
+## Peluang A atau B saat Keduanya Bisa Terjadi Bersamaan
 
-Kejadian saling lepas tidak dapat terjadi bersamaan dalam satu percobaan. Sebaliknya, dua kejadian **tidak saling lepas** jika keduanya dapat terjadi pada hasil yang sama.
+Dua kejadian **tidak saling lepas** jika keduanya bisa terjadi pada hasil yang sama, yaitu irisannya tidak kosong, <InlineMath math="A \cap B \ne \varnothing" />. Untuk dua kejadian <InlineMath math="A" /> dan <InlineMath math="B" />, peluang <InlineMath math="A" /> atau <InlineMath math="B" /> diberikan oleh [aturan penjumlahan](/id/materi/matematika/peluang/aturan-penjumlahan):
 
-Dalam bahasa himpunan, setidaknya ada satu hasil yang menjadi anggota kejadian <InlineMath math="A" /> dan kejadian <InlineMath math="B" />.
+<BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
 
-Pada satu pengambilan kartu dan satu lemparan dadu, kamu dapat memeriksa irisan dengan mencatat **hasil yang memenuhi kedua syarat**.
+Irisan dikurangi **satu kali** karena hasil di irisan sudah terhitung di <InlineMath math="P(A)" /> dan terhitung lagi di <InlineMath math="P(B)" />.
+
+<MathVisual
+  title="Diagram Venn pelemparan satu dadu"
+  description={<>Kejadian <InlineMath math="A" /> = hasil genap dan <InlineMath math="B" /> = hasil lebih dari 3. Hasil 4 dan 6 berada di irisan kedua lingkaran.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sample-space", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "a", kind: "circle", center: { x: -0.9, y: 0 }, radius: 1.7, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 0.9, y: 0 }, radius: 1.7, appearance: "secondary" },
+      { id: "two", kind: "point", at: { x: -1.8, y: 0 }, appearance: "primary" },
+      { id: "four", kind: "point", at: { x: 0, y: 0.5 }, appearance: "highlight" },
+      { id: "six", kind: "point", at: { x: 0, y: -0.5 }, appearance: "highlight" },
+      { id: "five", kind: "point", at: { x: 1.8, y: 0 }, appearance: "secondary" },
+      { id: "one", kind: "point", at: { x: -3.2, y: 1.8 }, appearance: "reference" },
+      { id: "three", kind: "point", at: { x: 3.2, y: 1.8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -0.9, y: 1.7 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 0.9, y: 1.7 }, placement: "above" },
+      { key: "sample-space", objectId: "sample-space", at: { x: -3.8, y: -2.4 }, placement: "above-right" },
+      { key: "two", objectId: "two", at: { x: -1.8, y: 0 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: 0, y: 0.5 }, placement: "right" },
+      { key: "six", objectId: "six", at: { x: 0, y: -0.5 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 1.8, y: 0 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: -3.2, y: 1.8 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: 3.2, y: 1.8 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    "sample-space": <InlineMath math="S" />,
+    two: <InlineMath math="2" />,
+    four: <InlineMath math="4" />,
+    six: <InlineMath math="6" />,
+    five: <InlineMath math="5" />,
+    one: <InlineMath math="1" />,
+    three: <InlineMath math="3" />,
+  }}
+/>
+
+Pada dadu, <InlineMath math="A = \{2, 4, 6\}" /> dan <InlineMath math="B = \{4, 5, 6\}" />, jadi <InlineMath math="A \cap B = \{4, 6\}" />. Rumusnya memberi <InlineMath math="\frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />. Periksa dengan mendaftar: <InlineMath math="A \cup B = \{2, 4, 5, 6\}" /> memuat 4 dari 6 hasil.
+
+## Mengenali Kejadian yang Beririsan
+
+Kamu bisa memeriksa irisan dengan mencatat **hasil yang memenuhi kedua syarat sekaligus**. Jika ada minimal satu hasil seperti itu, kedua kejadian tidak saling lepas.
 
 | Percobaan | Kejadian <InlineMath math="A" /> | Kejadian <InlineMath math="B" /> | Irisan |
 | --- | --- | --- | --- |
-| Ambil satu kartu | Kartu Hati | Kartu King | King Hati <InlineMath math="K\heartsuit" /> |
+| Ambil satu kartu remi | Kartu hati | Kartu king | King hati |
 | Lempar satu dadu | <InlineMath math="\{2,4,6\}" /> | <InlineMath math="\{4,5,6\}" /> | <InlineMath math="\{4,6\}" /> |
+| Pilih satu siswa | Suka matematika | Suka fisika | Suka keduanya |
 
-## Irisan Kejadian yang Bertumpang Tindih
+Kebalikannya adalah [kejadian saling lepas](/id/materi/matematika/peluang/dua-kejadian-a-dan-b-saling-lepas), yang irisannya kosong sehingga <InlineMath math="P(A \cap B) = 0" />. Rumus <InlineMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" /> tetap berlaku untuk kejadian saling lepas, karena suku irisannya bernilai nol.
 
-Pada kejadian tidak saling lepas, sebagian hasil dapat menjadi anggota <InlineMath math="A" /> sekaligus <InlineMath math="B" />. Hasil yang sama ini membentuk **irisan** <InlineMath math="A \cap B" />.
+## Mengapa Irisan Dikurangi Satu Kali
 
-Definisinya terletak pada himpunan hasil: kedua kejadian tidak saling lepas jika irisannya tidak kosong.
+Hitung dulu banyak anggotanya. Jika <InlineMath math="n(A)" /> dan <InlineMath math="n(B)" /> dijumlahkan, setiap anggota irisan masuk ke kedua hitungan, jadi terhitung **dua kali**. Kurangi irisannya sekali agar setiap anggota tercatat tepat satu kali:
 
-<BlockMath math="A \cap B \ne \varnothing" />
+<BlockMath math="n(A \cup B) = n(A) + n(B) - n(A \cap B)" />
 
-Pada ruang sampel berhingga dengan setiap hasil dasar berpeluang positif, irisan yang tidak kosong juga memiliki peluang positif:
+Bagi setiap suku dengan <InlineMath math="n(S)" /> untuk ruang sampel yang setiap hasilnya sama mungkin, maka diperoleh rumus peluangnya. Rumus peluang itu sendiri berlaku untuk ruang sampel apa pun, hanya pembagian dengan <InlineMath math="n(S)" /> yang memerlukan syarat sama mungkin. Untuk dadu, <InlineMath math="3 + 3 - 2 = 4" /> anggota, sama dengan daftar <InlineMath math="\{2, 4, 5, 6\}" />. Tanpa pengurangan, nilainya <InlineMath math="\frac{6}{6} = 1" />, seolah setiap lemparan pasti masuk <InlineMath math="A" /> atau <InlineMath math="B" />, padahal mata 1 dan 3 tidak masuk <InlineMath math="A" /> maupun <InlineMath math="B" />.
 
-<BlockMath math="P(A \cap B) > 0" />
+<Mermaid
+  title="Memilih rumus peluang A atau B"
+  description="Isi irisan menentukan apakah peluang irisan perlu dikurangkan."
+  chart={`flowchart TD
+  A["Tulis isi irisan A dan B"] --> B{"Irisannya kosong?"}
+  B -->|"ya, saling lepas"| C["P(A) + P(B)"]
+  B -->|"tidak, beririsan"| D["P(A) + P(B) - P(A dan B)"]
+  C --> E["Periksa dengan mendaftar gabungan"]
+  D --> E`}
+/>
 
-Pada kejadian saling lepas, peluang irisannya adalah <InlineMath math="P(A \cap B) = 0" />.
+## Contoh Kartu Hati atau King
 
-## Menghitung Peluang Gabungan
+Satu kartu diambil dari 52 kartu remi. Berapa peluang terambil kartu hati atau kartu king?
 
-Karena <InlineMath math="A" /> dan <InlineMath math="B" /> dapat terjadi bersamaan, kita tidak boleh langsung menjumlahkan <InlineMath math="P(A) + P(B)" /> untuk mencari <InlineMath math="P(A \text{ atau } B)" />.
+Ada <InlineMath math="13" /> kartu hati, <InlineMath math="4" /> kartu king, dan **<InlineMath math="1" /> kartu yang termasuk keduanya**, yaitu king hati:
 
-Penjumlahan langsung akan **menghitung irisan** <InlineMath math="A \cap B" /> **dua kali**, sekali dalam <InlineMath math="P(A)" /> dan sekali dalam <InlineMath math="P(B)" />.
+<BlockMath math="P(A \cup B) = \frac{13}{52} + \frac{4}{52} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13}" />
 
-Karena itu, <Highlight>peluang irisan harus dikurangkan satu kali</Highlight>. Hasilnya adalah **aturan penjumlahan umum**:
+<MathVisual
+  title="Banyak kartu di setiap daerah diagram Venn"
+  description={<>Lingkaran <InlineMath math="A" /> memuat 13 kartu hati dan lingkaran <InlineMath math="B" /> memuat 4 kartu king. King hati berada di irisan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "deck", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "hearts", kind: "circle", center: { x: -0.9, y: 0 }, radius: 1.7, appearance: "primary" },
+      { id: "kings", kind: "circle", center: { x: 0.9, y: 0 }, radius: 1.7, appearance: "secondary" },
+      { id: "hearts-only", kind: "point", at: { x: -1.6, y: 0 }, appearance: "primary" },
+      { id: "both", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "kings-only", kind: "point", at: { x: 1.6, y: 0 }, appearance: "secondary" },
+      { id: "neither", kind: "point", at: { x: 3, y: -1.8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "hearts", objectId: "hearts", at: { x: -0.9, y: 1.7 }, placement: "above" },
+      { key: "kings", objectId: "kings", at: { x: 0.9, y: 1.7 }, placement: "above" },
+      { key: "hearts-only", objectId: "hearts-only", at: { x: -1.6, y: 0 }, placement: "below" },
+      { key: "both", objectId: "both", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "kings-only", objectId: "kings-only", at: { x: 1.6, y: 0 }, placement: "below" },
+      { key: "neither", objectId: "neither", at: { x: 3, y: -1.8 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    hearts: <InlineMath math="A" />,
+    kings: <InlineMath math="B" />,
+    "hearts-only": <InlineMath math="12" />,
+    both: <InlineMath math="1" />,
+    "kings-only": <InlineMath math="3" />,
+    neither: <InlineMath math="36" />,
+  }}
+/>
 
-<BlockMath math="\begin{aligned} P(A \text{ atau } B) &amp;= P(A) + P(B) \\ &amp;\quad{}- P(A \cap B) \end{aligned}" />
+Periksa dengan menghitung setiap daerah: 12 kartu hati selain king, 1 king hati, dan 3 king lainnya, jadi <InlineMath math="12 + 1 + 3 = 16" /> kartu. Sisanya <InlineMath math="52 - 16 = 36" /> kartu tidak termasuk keduanya.
 
-Dengan simbol gabungan dan irisan:
+## Contoh dengan Data Survei
 
-<BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;\quad{}- P(A \cap B) \end{aligned}" />
+Dari 40 siswa, 25 suka matematika, 18 suka fisika, dan 10 suka keduanya. Satu siswa dipilih acak. Misalkan <InlineMath math="M" /> adalah kejadian siswa suka matematika dan <InlineMath math="F" /> kejadian siswa suka fisika. Tentukan peluang siswa itu suka matematika atau fisika, dan peluang siswa itu tidak suka keduanya.
 
-Rumus ini berlaku pada kedua keadaan. Untuk kejadian saling lepas, <InlineMath math="P(A \cap B)=0" />, sehingga rumus penjumlahan peluang menjadi <InlineMath math="P(A \cup B) = P(A) + P(B)" />.
+<MathContainer>
+  <BlockMath math="P(M \cup F) = \frac{25}{40} + \frac{18}{40} - \frac{10}{40} = \frac{33}{40}" />
+  <BlockMath math="P(\text{tidak keduanya}) = 1 - \frac{33}{40} = \frac{7}{40}" />
+</MathContainer>
 
-## Peluang Mendapat Kartu Hati atau Raja
+Peluang kedua memakai **komplemen**: siswa yang tidak suka keduanya adalah semua siswa di luar <InlineMath math="M \cup F" />. Periksa dengan daerah Venn: <InlineMath math="25 - 10 = 15" /> hanya matematika, <InlineMath math="18 - 10 = 8" /> hanya fisika, dan <InlineMath math="10" /> keduanya. Jumlahnya <InlineMath math="33" />, dan <InlineMath math="40 - 33 = 7" /> siswa tidak suka keduanya.
 
-Gunakan kembali contoh kartu:
+## Kesalahan yang Sering Terjadi
 
-- Kejadian <InlineMath math="A" />: Dapat kartu Hati (<InlineMath math="\heartsuit" />). Ada <InlineMath math="13" /> kartu Hati dari <InlineMath math="52" /> kartu. <InlineMath math="P(A) = 13/52" />.
-- Kejadian <InlineMath math="B" />: Dapat kartu King. Ada <InlineMath math="4" /> kartu King dari <InlineMath math="52" /> kartu. <InlineMath math="P(B) = 4/52" />.
-- Kejadian <InlineMath math="A" /> **dan** B: Dapat kartu King Hati (<InlineMath math="K\heartsuit" />). Hanya ada <InlineMath math="1" /> kartu King Hati. <InlineMath math="P(A \cap B) = 1/52" />.
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Menjumlahkan <InlineMath math="P(A) + P(B)" /> tanpa mengurangi irisan | Hasil di irisan terhitung dua kali | Untuk dadu, nilainya <InlineMath math="1" />, padahal mata 1 dan 3 tidak masuk <InlineMath math="A" /> maupun <InlineMath math="B" /> |
+| Mengurangi irisan dua kali | Irisan hanya berlebih satu kali | Hitung banyak anggota gabungan dengan mendaftar |
+| Menyamakan tidak saling lepas dengan saling bebas | Tidak saling lepas membahas irisan, saling bebas membahas <InlineMath math="P(A \cap B) = P(A)P(B)" /> | Periksa kedua syarat secara terpisah |
+| Lupa kartu yang masuk dua kejadian | King hati termasuk kartu hati dan kartu king | Tulis isi irisan sebelum menghitung |
+| Mendapat peluang lebih dari 1 | Penjumlahan tanpa pengurangan bisa melewati 1 | Peluang gabungan tidak pernah lebih dari 1 |
 
-Maka, peluang mendapat kartu Hati atau kartu King adalah:
+Pemeriksaan paling mudah adalah **menghitung setiap daerah diagram Venn** lalu menjumlahkannya. Hasilnya harus sama dengan rumus.
 
-<BlockMath math="\begin{aligned}P(A \cup B) &= P(A) + P(B) \\ &\quad{}- P(A \cap B)  \\ &= \frac{13}{52} + \frac{4}{52} - \frac{1}{52} \\ &= \frac{16}{52} = \frac{4}{13}\end{aligned}" />
+## Latihan Soal
 
-Pengurangan <InlineMath math="1/52" /> mencegah kartu King Hati dihitung dua kali.
+Tulis isi irisan dulu, lalu **periksa jawabanmu dengan mendaftar atau menghitung daerah Venn**.
 
-## Latihan
+1. Sebuah dadu dilempar sekali. <InlineMath math="A" /> adalah kejadian muncul bilangan prima dan <InlineMath math="B" /> adalah kejadian muncul bilangan ganjil. Tentukan <InlineMath math="P(A \cup B)" />.
 
-Sebuah **dadu adil** bersisi enam dilempar satu kali. Misalkan <InlineMath math="A=\{2,4,6\}" /> adalah kejadian “hasilnya genap” dan <InlineMath math="B=\{5,6\}" /> adalah kejadian “hasilnya lebih dari <InlineMath math="4" />.”
+2. Satu kartu diambil dari 52 kartu remi. Tentukan peluang terambil kartu merah atau kartu as.
 
-1.  Jelaskan mengapa <InlineMath math="A" /> dan <InlineMath math="B" /> tidak saling lepas.
-2.  Tentukan <InlineMath math="P(A \cup B)" /> dengan aturan penjumlahan umum.
-3.  Pastikan nilai <InlineMath math="P(A \cup B)" /> benar dengan menuliskan anggota gabungan kedua kejadian.
+3. Diketahui <InlineMath math="P(A) = 0{,}5" />, <InlineMath math="P(B) = 0{,}4" />, dan <InlineMath math="P(A \cup B) = 0{,}7" />. Tentukan <InlineMath math="P(A \cap B)" />, lalu tentukan apakah <InlineMath math="A" /> dan <InlineMath math="B" /> saling lepas.
+
+4. Satu bilangan dipilih acak dari 1 sampai 30. Tentukan peluang bilangan itu habis dibagi 3 atau habis dibagi 5.
+
 ### Pembahasan
 
-**Soal 1**. Irisannya memuat **satu hasil yang sama**, yaitu <InlineMath math="6" />:
+**Soal 1**. <InlineMath math="A = \{2, 3, 5\}" />, <InlineMath math="B = \{1, 3, 5\}" />, dan <InlineMath math="A \cap B = \{3, 5\}" />:
 
-<BlockMath math="A \cap B=\{6\}" />
+<BlockMath math="P(A \cup B) = \frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />
 
-Jadi, kedua kejadian **tidak saling lepas**.
+Periksa: <InlineMath math="A \cup B = \{1, 2, 3, 5\}" /> memuat 4 dari 6 hasil.
 
-**Soal 2**. Peluang setiap kejadian dan peluang irisannya adalah
+**Soal 2**. Ada <InlineMath math="26" /> kartu merah, <InlineMath math="4" /> kartu as, dan <InlineMath math="2" /> as merah (as hati dan as wajik):
 
-<BlockMath math="\begin{aligned} &amp;P(A)=\frac{3}{6}, \\ &amp;P(B)=\frac{2}{6}, \\ &amp;P(A \cap B)=\frac{1}{6} \end{aligned}" />
+<BlockMath math="P = \frac{26}{52} + \frac{4}{52} - \frac{2}{52} = \frac{28}{52} = \frac{7}{13}" />
 
-Terapkan aturan penjumlahan umum:
+Periksa: 26 kartu merah ditambah 2 as hitam memberi 28 kartu.
 
-<BlockMath math="\begin{aligned}P(A \cup B) &=P(A)+P(B) \\ &\quad{}-P(A \cap B)  \\ &=\frac{3}{6}+\frac{2}{6}-\frac{1}{6}=\frac{4}{6}=\frac{2}{3}\end{aligned}" />
+**Soal 3**. Susun ulang rumusnya:
 
-**Soal 3**. Jika didaftar langsung, gabungannya adalah <InlineMath math="A \cup B=\{2,4,5,6\}" />. Ada <InlineMath math="4" /> hasil dari <InlineMath math="6" /> kemungkinan, sehingga cara kedua juga menghasilkan <InlineMath math="2/3" />.
+<BlockMath math="P(A \cap B) = P(A) + P(B) - P(A \cup B) = 0{,}5 + 0{,}4 - 0{,}7 = 0{,}2" />
+
+Karena <InlineMath math="P(A \cap B) = 0{,}2 \ne 0" />, kedua kejadian **tidak saling lepas**. Periksa: <InlineMath math="0{,}5 + 0{,}4 - 0{,}2 = 0{,}7" />, sama dengan peluang gabungan yang diketahui.
+
+**Soal 4**. Bilangan kelipatan 3 ada <InlineMath math="10" />, kelipatan 5 ada <InlineMath math="6" />, dan kelipatan keduanya, yaitu kelipatan 15, ada <InlineMath math="2" /> (15 dan 30):
+
+<BlockMath math="P = \frac{10}{30} + \frac{6}{30} - \frac{2}{30} = \frac{14}{30} = \frac{7}{15}" />
+
+Periksa dengan mendaftar: 3, 5, 6, 9, 10, 12, 15, 18, 20, 21, 24, 25, 27, 30, yaitu 14 bilangan.

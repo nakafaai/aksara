@@ -84,6 +84,21 @@ print(list(numbers))   # Output: [1, 2, 3]`
   ]}
 />
 
+Jede Runde von `for item in [3, 8, 1, 6]` ruft einmal `next()` auf und liefert ein Element. Mit `total += item` im Schleifenrumpf wächst die Summe jedes Mal um einen Schritt, bis der Iterator nach dem vierten Element erschöpft ist.
+
+<BarChart
+  title={<><code>total</code> nach jedem <code>next()</code></>}
+  description={<>Jeder Balken ist <code>total</code>, nachdem das darunter stehende Element addiert wurde: <InlineMath math="3" />, <InlineMath math="11" />, <InlineMath math="12" />, dann <InlineMath math="18" />.</>}
+  yAxisLabel="Laufende Summe"
+  data={[
+    { name: "3", value: 3 },
+    { name: "8", value: 3 + 8 },
+    { name: "1", value: 3 + 8 + 1 },
+    { name: "6", value: 3 + 8 + 1 + 6 },
+  ]}
+  chartConfig={{ value: { label: "Laufende Summe", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>
+
 ## Mitgliedschaftsoperatoren
 
 Die Operatoren `in` und `not in` fragen, ob ein Container **einen bestimmten Wert enthält**. Jeder Container-Typ legt fest, wie die Mitgliedschaft geprüft wird: Eine Liste durchsucht ihre Elemente, ein Dictionary sucht unter den Schlüsseln, und ein String sucht nach einem Teilstring.
@@ -237,6 +252,39 @@ print(all([]))  # Output: True`
   ]}
 />
 
+Prüf die Liste `[3, 8, 1, 6]` gegen die Bedingung `v > 5`. Die zwei magentafarbenen Punkte, <InlineMath math="8" /> und <InlineMath math="6" />, liegen über der Linie, also ist `any(v > 5 for v in values)` gleich `True`. Die türkisen Punkte <InlineMath math="3" /> und <InlineMath math="1" /> liegen darunter, also ist `all(v > 5 for v in values)` gleich `False`. Mit der Bedingung `v > 0` besteht jeder Punkt, und `all` wird `True`.
+
+<MathVisual
+  title={<><code>any</code> und <code>all</code> auf <code>[3, 8, 1, 6]</code></>}
+  description={<>Jeder Punkt ist ein Wert an seiner Position. Magentafarbene Punkte erfüllen <InlineMath math="v>5" />, türkise nicht, und die graue Linie ist die Grenze <InlineMath math="5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.7, max: 3.7 }, y: { min: 0, max: 9 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "limit", kind: "segment", from: { x: -0.5, y: 5 }, to: { x: 3.5, y: 5 }, appearance: "reference" },
+      { id: "value-a", kind: "point", at: { x: 0, y: 3 }, appearance: "construction" },
+      { id: "value-b", kind: "point", at: { x: 1, y: 8 }, appearance: "answer" },
+      { id: "value-c", kind: "point", at: { x: 2, y: 1 }, appearance: "construction" },
+      { id: "value-d", kind: "point", at: { x: 3, y: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 3.5, y: 5 }, placement: "right" },
+      { key: "value-a", objectId: "value-a", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "value-b", objectId: "value-b", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "value-c", objectId: "value-c", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "value-d", objectId: "value-d", at: { x: 3, y: 6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "limit": "v > 5",
+    "value-a": "3",
+    "value-b": "8",
+    "value-c": "1",
+    "value-d": "6",
+  }}
+/>
+
 ## Entpackoperator
 
 In einem Funktionsaufruf erweitert ein vorangestelltes Sternchen (`*`) ein Iterable zu **Positionsargumenten**. Die Anzahl der entstandenen Argumente muss weiterhin zur aufgerufenen Funktion passen.
@@ -353,4 +401,37 @@ print(formatted)
 # Ausgabe: Name: Alice, Alter: 25, Stadt: Jakarta`
     }
   ]}
+/>
+
+Ein Name mit Stern nimmt jedes Element, das kein anderer Name nimmt, und ist immer eine Liste. `a, *rest = [1, 2, 3, 4]` ergibt `a = 1` und `rest = [2, 3, 4]`. `first, *middle, last = [1, 2, 3, 4, 5]` ergibt `middle = [2, 3, 4]`.
+
+<MathVisual
+  title={<>Wohin jedes Element beim Entpacken mit Stern geht</>}
+  description={<>Die obere Zeile ist <code>[1, 2, 3, 4]</code>: Die violette Zelle geht an <code>a</code>, die türkisen Zellen an <code>rest</code>. Die untere Zeile ist <code>[1, 2, 3, 4, 5]</code>: Die violette Zelle geht an <code>first</code>, die drei türkisen Zellen an <code>middle</code> und die orange Zelle an <code>last</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-name", kind: "polygon", vertices: [{ x: 0.05, y: 0.7 }, { x: 0.95, y: 0.7 }, { x: 0.95, y: 1.3 }, { x: 0.05, y: 1.3 }], appearance: "secondary" },
+      { id: "rest-name", kind: "polygon", vertices: [{ x: 1.05, y: 0.7 }, { x: 3.95, y: 0.7 }, { x: 3.95, y: 1.3 }, { x: 1.05, y: 1.3 }], appearance: "construction" },
+      { id: "head", kind: "polygon", vertices: [{ x: 0.05, y: -0.3 }, { x: 0.95, y: -0.3 }, { x: 0.95, y: 0.3 }, { x: 0.05, y: 0.3 }], appearance: "secondary" },
+      { id: "middle", kind: "polygon", vertices: [{ x: 1.05, y: -0.3 }, { x: 3.95, y: -0.3 }, { x: 3.95, y: 0.3 }, { x: 1.05, y: 0.3 }], appearance: "construction" },
+      { id: "tail", kind: "polygon", vertices: [{ x: 4.05, y: -0.3 }, { x: 4.95, y: -0.3 }, { x: 4.95, y: 0.3 }, { x: 4.05, y: 0.3 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-name", objectId: "first-name", at: { x: 0.5, y: 1.3 }, placement: "above" },
+      { key: "rest-name", objectId: "rest-name", at: { x: 2.5, y: 1.3 }, placement: "above" },
+      { key: "head", objectId: "head", at: { x: 0.5, y: -0.3 }, placement: "below" },
+      { key: "middle", objectId: "middle", at: { x: 2.5, y: -0.3 }, placement: "below" },
+      { key: "tail", objectId: "tail", at: { x: 4.5, y: -0.3 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "first-name": <code>a</code>,
+    "rest-name": <code>rest</code>,
+    "head": <code>first</code>,
+    "middle": <code>middle</code>,
+    "tail": <code>last</code>,
+  }}
 />

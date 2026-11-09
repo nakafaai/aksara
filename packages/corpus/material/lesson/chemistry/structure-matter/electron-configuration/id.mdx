@@ -29,6 +29,43 @@ Kata **diskret** berarti tidak semua nilai energi boleh dipakai. Bayangkan anak 
 
 **Eksitasi** berarti elektron menyerap energi dan naik sementara ke tingkat energi lebih tinggi. Saat elektron turun kembali, energi dilepas sebagai cahaya. Pada eksperimen nyala, percobaan harus mengikuti prosedur keselamatan dan memakai alat pelindung diri karena melibatkan pemanasan bahan kimia.
 
+Warna nyala api adalah cahaya dari elektron yang turun ke tingkat energi yang lebih rendah. Pada hidrogen, tingkatnya ada di <InlineMath math="E_n=-\tfrac{13{,}6}{n^2}\ \mathrm{eV}" />, jadi turun dari <InlineMath math="n=3" /> ke <InlineMath math="n=2" /> melepas <InlineMath math="1{,}89\ \mathrm{eV}" />, dan <InlineMath math="\lambda=\tfrac{1240}{1{,}89}\approx656\ \mathrm{nm}" /> adalah cahaya merah. Perbesar bagian atas, tempat tingkat-tingkatnya berdesakan.
+
+<MathVisual
+  title={<>Elektron yang Turun Memancarkan Cahaya Berwarna</>}
+  description={<>Tingkat energi atom hidrogen dan dua penurunan ke tingkat <InlineMath math="n=2" />, merah (panah merah muda) dan biru kehijauan (panah teal). Tegak: energi dalam elektronvolt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -14.5, max: 0.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "level-1", kind: "segment", appearance: "secondary", from: { x: 0, y: -13.6 }, to: { x: 6, y: -13.6 } },
+      { id: "level-2", kind: "segment", appearance: "secondary", from: { x: 0, y: -13.6 / 2 ** 2 }, to: { x: 6, y: -13.6 / 2 ** 2 } },
+      { id: "level-3", kind: "segment", appearance: "reference", from: { x: 0, y: -13.6 / 3 ** 2 }, to: { x: 6, y: -13.6 / 3 ** 2 } },
+      { id: "level-4", kind: "segment", appearance: "reference", from: { x: 0, y: -13.6 / 4 ** 2 }, to: { x: 6, y: -13.6 / 4 ** 2 } },
+      { id: "level-5", kind: "segment", appearance: "reference", from: { x: 0, y: -13.6 / 5 ** 2 }, to: { x: 6, y: -13.6 / 5 ** 2 } },
+      { id: "drop-red", kind: "segment", appearance: "warning", from: { x: 2.5, y: -13.6 / 3 ** 2 }, to: { x: 2.5, y: -13.6 / 2 ** 2 } },
+      { id: "drop-teal", kind: "segment", appearance: "construction", from: { x: 4, y: -13.6 / 4 ** 2 }, to: { x: 4, y: -13.6 / 2 ** 2 } },
+      { id: "red-end", kind: "point", appearance: "warning", at: { x: 2.5, y: -13.6 / 2 ** 2 } },
+      { id: "teal-end", kind: "point", appearance: "construction", at: { x: 4, y: -13.6 / 2 ** 2 } },
+    ],
+    labels: [
+      { key: "n1", objectId: "level-1", at: { x: 6, y: -13.6 }, placement: "right" },
+      { key: "n2", objectId: "level-2", at: { x: 6, y: -13.6 / 2 ** 2 }, placement: "right" },
+      { key: "n3", objectId: "level-3", at: { x: 6, y: -13.6 / 3 ** 2 }, placement: "right" },
+      { key: "red", objectId: "drop-red", at: { x: 2.5, y: (-13.6 / 3 ** 2 + -13.6 / 2 ** 2) / 2 }, placement: "left" },
+      { key: "teal", objectId: "drop-teal", at: { x: 4, y: (-13.6 / 4 ** 2 + -13.6 / 2 ** 2) / 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    n1: <InlineMath math="n=1:\ -13{,}6\ \mathrm{eV}" />,
+    n2: <InlineMath math="n=2:\ -3{,}4\ \mathrm{eV}" />,
+    n3: <InlineMath math="n=3:\ -1{,}51\ \mathrm{eV}" />,
+    red: <InlineMath math="1{,}89\ \mathrm{eV},\ 656\ \mathrm{nm}" />,
+    teal: <InlineMath math="2{,}55\ \mathrm{eV},\ 486\ \mathrm{nm}" />,
+  }}
+/>
+
 ## Susunan Elektron dalam Model Kulit
 
 **Konfigurasi elektron** adalah cara menuliskan penyebaran elektron di sekitar inti atom. Di sini, kita memakai **model kulit sederhana**, yaitu elektron dikelompokkan pada kulit <InlineMath math="\mathrm{K}" />, <InlineMath math="\mathrm{L}" />, <InlineMath math="\mathrm{M}" />, dan <InlineMath math="\mathrm{N}" />.
@@ -127,6 +164,84 @@ Contoh klorin:
 e^- &= 17 \\
 \text{konfigurasi} &= 2, 8, 7
 \end{aligned}" />
+
+Isi kulit-kulitnya berurutan untuk 20 unsur pertama, dari hidrogen dengan <InlineMath math="Z=1" /> sampai kalsium dengan <InlineMath math="Z=20" />. Tiap baris adalah satu kulit dan tiap kolom satu unsur, jadi tiap kolom memuat <InlineMath math="Z" /> elektron seluruhnya. Putar adegannya: kulit L penuh di neon, dan mulai kalium elektron berikutnya masuk ke kulit N.
+
+<MathVisual
+  title={<>Dua Puluh Atom, Kulit demi Kulit</>}
+  description={<>Elektron di kulit K (abu-abu), L (ungu), M (oranye), dan N (fuchsia) untuk nomor atom 1 sampai 20. Satu kotak grid ke atas berarti 2 elektron.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: 0, max: 4.5 }, z: { min: -0.6, max: 4.2 } },
+    view: { kind: "camera", position: { x: 16, y: 9, z: 12 }, target: { x: 5.7, y: 1, z: 1.8 } },
+    objects: [
+      { id: "z1-s0", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.25, z: 0 }, size: { length: 0.5, height: 0.5, width: 0.9 } },
+      { id: "z2-s0", kind: "cuboid", appearance: "reference", center: { x: 0.6, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z3-s0", kind: "cuboid", appearance: "reference", center: { x: 1.2, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z3-s1", kind: "cuboid", appearance: "secondary", center: { x: 1.2, y: 0.25, z: 1.2 }, size: { length: 0.5, height: 0.5, width: 0.9 } },
+      { id: "z4-s0", kind: "cuboid", appearance: "reference", center: { x: 1.8, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z4-s1", kind: "cuboid", appearance: "secondary", center: { x: 1.8, y: 0.5, z: 1.2 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z5-s0", kind: "cuboid", appearance: "reference", center: { x: 2.4, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z5-s1", kind: "cuboid", appearance: "secondary", center: { x: 2.4, y: 0.75, z: 1.2 }, size: { length: 0.5, height: 1.5, width: 0.9 } },
+      { id: "z6-s0", kind: "cuboid", appearance: "reference", center: { x: 3, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z6-s1", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 1, z: 1.2 }, size: { length: 0.5, height: 2, width: 0.9 } },
+      { id: "z7-s0", kind: "cuboid", appearance: "reference", center: { x: 3.6, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z7-s1", kind: "cuboid", appearance: "secondary", center: { x: 3.6, y: 1.25, z: 1.2 }, size: { length: 0.5, height: 2.5, width: 0.9 } },
+      { id: "z8-s0", kind: "cuboid", appearance: "reference", center: { x: 4.2, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z8-s1", kind: "cuboid", appearance: "secondary", center: { x: 4.2, y: 1.5, z: 1.2 }, size: { length: 0.5, height: 3, width: 0.9 } },
+      { id: "z9-s0", kind: "cuboid", appearance: "reference", center: { x: 4.8, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z9-s1", kind: "cuboid", appearance: "secondary", center: { x: 4.8, y: 1.75, z: 1.2 }, size: { length: 0.5, height: 3.5, width: 0.9 } },
+      { id: "z10-s0", kind: "cuboid", appearance: "reference", center: { x: 5.4, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z10-s1", kind: "cuboid", appearance: "secondary", center: { x: 5.4, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z11-s0", kind: "cuboid", appearance: "reference", center: { x: 6, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z11-s1", kind: "cuboid", appearance: "secondary", center: { x: 6, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z11-s2", kind: "cuboid", appearance: "primary", center: { x: 6, y: 0.25, z: 2.4 }, size: { length: 0.5, height: 0.5, width: 0.9 } },
+      { id: "z12-s0", kind: "cuboid", appearance: "reference", center: { x: 6.6, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z12-s1", kind: "cuboid", appearance: "secondary", center: { x: 6.6, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z12-s2", kind: "cuboid", appearance: "primary", center: { x: 6.6, y: 0.5, z: 2.4 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z13-s0", kind: "cuboid", appearance: "reference", center: { x: 7.2, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z13-s1", kind: "cuboid", appearance: "secondary", center: { x: 7.2, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z13-s2", kind: "cuboid", appearance: "primary", center: { x: 7.2, y: 0.75, z: 2.4 }, size: { length: 0.5, height: 1.5, width: 0.9 } },
+      { id: "z14-s0", kind: "cuboid", appearance: "reference", center: { x: 7.8, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z14-s1", kind: "cuboid", appearance: "secondary", center: { x: 7.8, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z14-s2", kind: "cuboid", appearance: "primary", center: { x: 7.8, y: 1, z: 2.4 }, size: { length: 0.5, height: 2, width: 0.9 } },
+      { id: "z15-s0", kind: "cuboid", appearance: "reference", center: { x: 8.4, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z15-s1", kind: "cuboid", appearance: "secondary", center: { x: 8.4, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z15-s2", kind: "cuboid", appearance: "primary", center: { x: 8.4, y: 1.25, z: 2.4 }, size: { length: 0.5, height: 2.5, width: 0.9 } },
+      { id: "z16-s0", kind: "cuboid", appearance: "reference", center: { x: 9, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z16-s1", kind: "cuboid", appearance: "secondary", center: { x: 9, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z16-s2", kind: "cuboid", appearance: "primary", center: { x: 9, y: 1.5, z: 2.4 }, size: { length: 0.5, height: 3, width: 0.9 } },
+      { id: "z17-s0", kind: "cuboid", appearance: "reference", center: { x: 9.6, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z17-s1", kind: "cuboid", appearance: "secondary", center: { x: 9.6, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z17-s2", kind: "cuboid", appearance: "primary", center: { x: 9.6, y: 1.75, z: 2.4 }, size: { length: 0.5, height: 3.5, width: 0.9 } },
+      { id: "z18-s0", kind: "cuboid", appearance: "reference", center: { x: 10.2, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z18-s1", kind: "cuboid", appearance: "secondary", center: { x: 10.2, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z18-s2", kind: "cuboid", appearance: "primary", center: { x: 10.2, y: 2, z: 2.4 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z19-s0", kind: "cuboid", appearance: "reference", center: { x: 10.8, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z19-s1", kind: "cuboid", appearance: "secondary", center: { x: 10.8, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z19-s2", kind: "cuboid", appearance: "primary", center: { x: 10.8, y: 2, z: 2.4 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z19-s3", kind: "cuboid", appearance: "answer", center: { x: 10.8, y: 0.25, z: 3.6 }, size: { length: 0.5, height: 0.5, width: 0.9 } },
+      { id: "z20-s0", kind: "cuboid", appearance: "reference", center: { x: 11.4, y: 0.5, z: 0 }, size: { length: 0.5, height: 1, width: 0.9 } },
+      { id: "z20-s1", kind: "cuboid", appearance: "secondary", center: { x: 11.4, y: 2, z: 1.2 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z20-s2", kind: "cuboid", appearance: "primary", center: { x: 11.4, y: 2, z: 2.4 }, size: { length: 0.5, height: 4, width: 0.9 } },
+      { id: "z20-s3", kind: "cuboid", appearance: "answer", center: { x: 11.4, y: 0.5, z: 3.6 }, size: { length: 0.5, height: 1, width: 0.9 } },
+    ],
+    labels: [
+      { key: "k", objectId: "z20-s0", at: { x: 11.4, y: 1, z: 0 }, placement: "right" },
+      { key: "l", objectId: "z20-s1", at: { x: 11.4, y: 4, z: 1.2 }, placement: "right" },
+      { key: "m", objectId: "z20-s2", at: { x: 11.4, y: 4, z: 2.4 }, placement: "right" },
+      { key: "n", objectId: "z20-s3", at: { x: 11.4, y: 1, z: 3.6 }, placement: "right" },
+      { key: "calcium", objectId: "z20-s3", at: { x: 11.4, y: 1, z: 3.6 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    k: <InlineMath math="\mathrm{K}" />,
+    l: <InlineMath math="\mathrm{L}" />,
+    m: <InlineMath math="\mathrm{M}" />,
+    n: <InlineMath math="\mathrm{N}" />,
+    calcium: <InlineMath math="\mathrm{Ca}:\ 2,8,8,2" />,
+  }}
+/>
 
 ## Menghubungkan Konfigurasi dengan Spektrum
 

@@ -18,6 +18,7 @@ import {
   quadraticExtrema,
   radialOffsets,
 } from "#contracts/math/extent";
+import { isPlaneFormulaPoint } from "#contracts/math/formula/field";
 import type {
   PlaneLabelAnchor,
   PlaneMathFrame,
@@ -126,7 +127,10 @@ function cuboidCoordinates(
   ];
 }
 
-/** Projects every finite or frame-clipped coordinate of one scene object. */
+/**
+ * Projects every finite or frame-clipped coordinate of one scene object. A
+ * formula object authors no coordinate: its samples come from its formula.
+ */
 function objectCoordinates(
   frame: SceneFrame,
   object: PlaneMathObject | SpaceMathObject,
@@ -182,15 +186,26 @@ function objectCoordinates(
   if (object.kind === "quadratic") {
     return quadraticCoordinates(object, root, threshold);
   }
-  return cuboidCoordinates(object, root);
+  if (object.kind === "prism" || object.kind === "pyramid") {
+    return Arr.flatMap(object.base, (point, pointIndex) =>
+      pointCoordinates(point, [...root, "base", pointIndex])
+    );
+  }
+  if (object.kind === "cuboid") {
+    return cuboidCoordinates(object, root);
+  }
+  return [];
 }
 
-/** Projects all label anchors after the objects they annotate. */
+/**
+ * Projects all exact label anchors after the objects they annotate. An anchor
+ * placed by formulas moves with the sliders, so it holds no exact coordinate.
+ */
 function labelCoordinates(
   labels: readonly (PlaneLabelAnchor | SpaceLabelAnchor)[]
 ) {
-  return Arr.flatMap(labels, (label, index) =>
-    pointCoordinates(label.at, ["labels", index, "at"])
+  return Arr.flatMap(labels, ({ at }, index) =>
+    isPlaneFormulaPoint(at) ? [] : pointCoordinates(at, ["labels", index, "at"])
   );
 }
 

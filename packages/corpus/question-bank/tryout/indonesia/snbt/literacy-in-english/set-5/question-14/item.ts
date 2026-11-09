@@ -1,35 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "screens-sleep",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "The term *psychological safety* proves that the character's first estimate was correct before any accountable action was taken.",
-        },
-        {
-          correct: false,
-          label:
-            "The definition reduces *psychological safety* to the recurring object, so the character's choice and development no longer matter.",
-        },
-        {
-          correct: false,
-          label:
-            "The term *psychological safety* describes the final outcome as certain, even though the narrative presents a gradual change.",
-        },
-        {
           correct: true,
           label:
-            "The definition clarifies why inviting each member to voice a concern changes the group's decision process: it creates room to raise problems without humiliation.",
+            "Students who chose to take part may differ from those who did not.",
         },
         {
           correct: false,
           label:
-            "The definition is included only to name the setting and has no connection to the character's decision.",
+            "Sixty students are too many for a school counsellor to follow closely.",
+        },
+        {
+          correct: false,
+          label:
+            "Two weeks is too long for students to remember their usual bedtimes.",
+        },
+        {
+          correct: false,
+          label:
+            "The volunteers' sleep fell instead of rising during the two weeks.",
+        },
+        {
+          correct: false,
+          label: "The volunteers were the heaviest screen users in the survey.",
         },
       ],
     },

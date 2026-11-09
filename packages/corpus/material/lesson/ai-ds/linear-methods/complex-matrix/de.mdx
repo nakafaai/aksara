@@ -36,6 +36,44 @@ Zum Beispiel gilt
 
 Der Eintrag in Zeile <InlineMath math="j" /> und Spalte <InlineMath math="i" /> von <InlineMath math="A^H" /> ist somit <InlineMath math="\overline{a_{ij}}" />.
 
+Nimm <InlineMath math="A=\begin{pmatrix}1+2i&3-i\\-2+i&2i\end{pmatrix}" />. Die Konjugation spiegelt jeden Eintrag an der reellen Achse, danach vertauscht das Transponieren die Plätze von <InlineMath math="a_{12}" /> und <InlineMath math="a_{21}" />, also <InlineMath math="A^H=\begin{pmatrix}1-2i&-2-i\\3+i&-2i\end{pmatrix}" />.
+
+<MathVisual
+  title={<>Die Konjugation spiegelt jeden Eintrag von <InlineMath math="A" /></>}
+  description={<>Die violetten Punkte sind die vier Einträge von <InlineMath math="A" /> in der komplexen Ebene. Die magentafarbenen Punkte sind ihre Konjugierten, und jede graue Strecke steht senkrecht auf der reellen Achse und wird von ihr halbiert.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 4 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pair-one", kind: "segment", from: { x: 1, y: 2 }, to: { x: 1, y: -2 }, appearance: "reference" },
+      { id: "pair-two", kind: "segment", from: { x: 3, y: -1 }, to: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "pair-three", kind: "segment", from: { x: -2, y: 1 }, to: { x: -2, y: -1 }, appearance: "reference" },
+      { id: "pair-four", kind: "segment", from: { x: 0, y: 2 }, to: { x: 0, y: -2 }, appearance: "reference" },
+      { id: "a11", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "a12", kind: "point", at: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "a21", kind: "point", at: { x: -2, y: 1 }, appearance: "secondary" },
+      { id: "a22", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+      { id: "c11", kind: "point", at: { x: 1, y: -2 }, appearance: "answer" },
+      { id: "c12", kind: "point", at: { x: 3, y: 1 }, appearance: "answer" },
+      { id: "c21", kind: "point", at: { x: -2, y: -1 }, appearance: "answer" },
+      { id: "c22", kind: "point", at: { x: 0, y: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a11", objectId: "a11", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "a12", objectId: "a12", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "a21", objectId: "a21", at: { x: -2, y: 1 }, placement: "left" },
+      { key: "a22", objectId: "a22", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "a11": <InlineMath math="1+2i" />,
+    "a12": <InlineMath math="3-i" />,
+    "a21": <InlineMath math="-2+i" />,
+    "a22": <InlineMath math="2i" />,
+  }}
+/>
+
 ## Eigenschaften der adjungierten Matrix
 
 Die Adjungierte **kehrt die Reihenfolge der Faktoren um** und konjugiert Skalare. Für die folgenden Summen und Produkte müssen die Matrixdimensionen zusammenpassen.
@@ -55,6 +93,33 @@ Vergleiche für die Matrix mit einem Eintrag <InlineMath math="A=(1+i)" /> die K
 <BlockMath math="\overline i A^H=(-i)(1-i)=-1-i" />
 <BlockMath math="iA^H=i(1-i)=1+i\ne(iA)^H" />
 </MathContainer>
+
+Die <InlineMath math="1\times1" />-Matrix <InlineMath math="A=(z)" /> hat <InlineMath math="A^HA=(\bar zz)=(|z|^2)" />. Für <InlineMath math="z=1+2i" /> ist der Winkel von <InlineMath math="\bar z" /> das Negative des Winkels von <InlineMath math="z" />, also landet das Produkt auf der positiven reellen Achse: <InlineMath math="\bar zz=(1-2i)(1+2i)=1+4=5" />. Deshalb ist die Diagonale von <InlineMath math="A^HA" /> immer reell und nicht negativ.
+
+<MathVisual
+  title={<><InlineMath math="\bar zz=|z|^2" /> für <InlineMath math="z=1+2i" /></>}
+  description={<>Die violette Strecke <InlineMath math="z" /> und die türkise Strecke <InlineMath math="\bar z" /> bilden entgegengesetzte Winkel mit der reellen Achse. Ihr Produkt ist die magentafarbene Strecke <InlineMath math="\bar zz=5" /> auf der positiven reellen Achse.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "number", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "conjugate", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -2 }, appearance: "construction" },
+      { id: "product", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "number", objectId: "number", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "conjugate", objectId: "conjugate", at: { x: 1, y: -2 }, placement: "right" },
+      { key: "product", objectId: "product", at: { x: 5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "number": <InlineMath math="z=1+2i" />,
+    "conjugate": <InlineMath math="\bar z=1-2i" />,
+    "product": <InlineMath math="\bar zz=5" />,
+  }}
+/>
 
 ## Euklidische Norm für komplexe Räume
 
@@ -90,3 +155,35 @@ Deshalb wäre <InlineMath math="v^Tv" /> in einem komplexen Raum falsch: Ohne Ko
 **Dreiecksungleichung**: <InlineMath math="\|v + w\|_2 \leq \|v\|_2 + \|w\|_2" />
 
 Diese Eigenschaften zeigen, dass <InlineMath math="\|\cdot\|_2" /> die Definition einer Norm erfüllt. Die Adjungierte im hermiteschen Skalarprodukt sorgt dafür, dass komplexe Längen, Orthogonalität und Projektionen mit ihren reellen Gegenstücken übereinstimmen.
+
+Zeichne jeden Eintrag von <InlineMath math="v" /> als Punkt in der komplexen Ebene, wie in dieser Szene. Die Konjugierte <InlineMath math="\overline{v_i}" /> ist dieser Punkt an der reellen Achse gespiegelt, und <InlineMath math="\overline{v_i}v_i=|v_i|^2" /> ist das Quadrat des Kreisradius. Also addiert <InlineMath math="v^Hv=2+5=7" /> zwei Radiusquadrate, nicht die komplexen Einträge. Ohne Konjugation ist <InlineMath math="v^Tv=(1+i)^2+(2-i)^2=3-2i" /> nicht einmal reell.
+
+<MathVisual
+  title={<>Die Länge des komplexen Vektors <InlineMath math="v=(1+i,2-i)^T" /></>}
+  description={<>Jeder Eintrag ist in der komplexen Ebene gezeichnet. Der violette Kreis hat den Radius <InlineMath math="|v_1|=\sqrt2" />, der türkise den Radius <InlineMath math="|v_2|=\sqrt5" />, und die kleinen Punkte sind die Konjugierten.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-circle", kind: "circle", center: { x: 0, y: 0 }, radius: Math.SQRT2, appearance: "secondary" },
+      { id: "second-circle", kind: "circle", center: { x: 0, y: 0 }, radius: Math.sqrt(5), appearance: "construction" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1 }, appearance: "construction" },
+      { id: "first-bar", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "second-bar", kind: "point", at: { x: 2, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "second", objectId: "second", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "first-bar", objectId: "first-bar", at: { x: 1, y: -1 }, placement: "below-left" },
+      { key: "second-bar", objectId: "second-bar", at: { x: 2, y: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="v_1=1+i" />,
+    "second": <InlineMath math="v_2=2-i" />,
+    "first-bar": <InlineMath math="\overline{v_1}" />,
+    "second-bar": <InlineMath math="\overline{v_2}" />,
+  }}
+/>

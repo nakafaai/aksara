@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-purpose",
+  },
+  stimulus: "batik-wax",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Benang putih tetap berarti kerusakan dari awal sampai akhir, sedangkan perubahan Wulan hanya berkaitan dengan sistem katalog.",
-        },
-        {
-          correct: false,
-          label:
-            "Benang putih membuktikan semua kostum lama harus dipertahankan karena usia benda selalu menentukan nilainya.",
-        },
-        {
-          correct: false,
-          label:
-            "Benang putih hanya menandai perpindahan gedung dan tidak memengaruhi cara Wulan menilai label lama.",
-        },
-        {
-          correct: false,
-          label:
-            "Benang putih memperoleh arti baru semata-mata karena Raka membaca nama Mira, tanpa kaitan dengan keputusan Wulan sebelumnya.",
+            "menyatakan bahwa motif batik tidak penting sama sekali bagi UNESCO",
         },
         {
           correct: true,
           label:
-            "Benang putih bergerak dari tanda benda yang hendak disingkirkan menjadi tanda hubungan yang dirawat tanpa menyembunyikan kerapuhannya.",
+            "memperkuat gagasan awal bahwa batik ditentukan oleh cara membuatnya",
+        },
+        {
+          correct: false,
+          label:
+            "menjelaskan alasan harga batik tulis lebih mahal daripada batik cap",
+        },
+        {
+          correct: false,
+          label: "menyarankan agar pembatik berhenti membuat motif yang baru",
+        },
+        {
+          correct: false,
+          label: "mengkritik UNESCO karena terlambat mengakui batik Indonesia",
         },
       ],
     },

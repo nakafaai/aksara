@@ -145,6 +145,30 @@ student_info("Maya", age=20, major="Informatik", gpa=3.8)
 
 Parameter `*args` sammelt zusätzliche Positionsargumente in einem Tupel, während `**kwargs` zusätzliche Schlüsselwortargumente in einem Wörterbuch sammelt.
 
+Angenommen `def power(x, n=2): return x ** n`. Rufst du `power(x)` ohne zweites Argument auf, nimmt Python den Standardwert `n=2`, und das ergibt die violette Kurve. Ein zweites Argument überschreibt den Standardwert: `power(x, 1)` liefert die graue Linie. Beide treffen sich bei `x = 0` und `x = 1`, weil für jedes positive `n` gilt: `0 ** n` ist `0` und `1 ** n` ist `1`.
+
+<MathVisual
+  title={<>Der Standardparameter <code>n</code> von <code>power</code></>}
+  description={<>Jede Kurve ist das Ergebnis von <code>power</code> für einen Wert von <code>n</code>. Die violette Kurve nutzt den Standardwert <InlineMath math="n=2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "linear", kind: "segment", from: { x: -1.5, y: -1.5 }, to: { x: 1.5, y: 1.5 }, appearance: "reference" },
+      { id: "square", kind: "quadratic", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -1.5, max: 1.5 }, inputAxis: "x", appearance: "secondary" },
+    ],
+    labels: [
+      { key: "linear", objectId: "linear", at: { x: 1.5, y: 1.5 }, placement: "right" },
+      { key: "square", objectId: "square", at: { x: 1.5, y: 2.25 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "linear": "power(x, 1)",
+    "square": "power(x)",
+  }}
+/>
+
 ## Funktionsrückgabewerte
 
 Funktionen können **Werte mithilfe** der `return`-Anweisung zurückgeben. Wenn es kein `return` oder `return` ohne Wert gibt, gibt die Funktion `None` zurück.
@@ -181,6 +205,33 @@ result = print_message("Hallo Welt")  # Ausgabe: Nachricht: Hallo Welt
 print(f"Ergebnis der print_message-Funktion: {result}")  # Ausgabe: Ergebnis der print_message-Funktion: None`
     }
   ]}
+/>
+
+Eine Funktion kann mehrere Werte auf einmal als Tupel zurückgeben. `def min_max(data): return min(data), max(data)` und dann `low, high = min_max([4, 1, 7, 3])` liefern `low = 1` und `high = 7` aus einem Aufruf.
+
+<MathVisual
+  title={<><code>min_max([4, 1, 7, 3])</code> gibt <code>(1, 7)</code> zurück</>}
+  description={<>Jeder Punkt ist ein Datenelement an seiner Position. Der magentafarbene Punkt ist der Wert von <code>min</code> und der orange Punkt der Wert von <code>max</code>, die beiden Werte, die gemeinsam in einem Tupel zurückkommen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "values", kind: "polyline", vertices: [{ x: 0, y: 4 }, { x: 1, y: 1 }, { x: 2, y: 7 }, { x: 3, y: 3 }], appearance: "reference" },
+      { id: "other-a", kind: "point", at: { x: 0, y: 4 }, appearance: "secondary" },
+      { id: "other-b", kind: "point", at: { x: 3, y: 3 }, appearance: "secondary" },
+      { id: "smallest", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "largest", kind: "point", at: { x: 2, y: 7 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "smallest", objectId: "smallest", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "largest", objectId: "largest", at: { x: 2, y: 7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "smallest": <code>min</code>,
+    "largest": <code>max</code>,
+  }}
 />
 
 ## Variablenumfang in Funktionen
@@ -380,6 +431,32 @@ print(calc['subtrahieren'](10, 4)) # Ausgabe: 6
 print(calc['multiplizieren'](6, 7))    # Ausgabe: 42`
     }
   ]}
+/>
+
+Jeder Aufruf von `create_multiplier(factor)` baut eine Closure, die sich ihren eigenen `factor` merkt. `multiply_two` zeichnet die Gerade <InlineMath math="y=2x" />, und `multiply_five` zeichnet die Gerade <InlineMath math="y=5x" />. Deshalb liefern `multiply_two(10)` und `multiply_five(4)` beide `20`.
+
+<MathVisual
+  title={<>Zwei Closures aus <code>create_multiplier</code></>}
+  description={<>Die violette Gerade ist <code>multiply_two</code> und die türkise Gerade <code>multiply_five</code>. Der magentafarbene und der gelbe Punkt sind die beiden Aufrufe aus dem Beispiel, beide auf der Höhe <InlineMath math="20" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 25 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "secondary" },
+      { id: "five", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 5 }], appearance: "construction" },
+      { id: "two-call", kind: "point", at: { x: 10, y: 20 }, appearance: "answer" },
+      { id: "five-call", kind: "point", at: { x: 4, y: 20 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "two-call", objectId: "two-call", at: { x: 10, y: 20 }, placement: "left" },
+      { key: "five-call", objectId: "five-call", at: { x: 4, y: 20 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "two-call": <code>multiply_two(10)</code>,
+    "five-call": <code>multiply_five(4)</code>,
+  }}
 />
 
 ## Fehlerbehandlung in Funktionen

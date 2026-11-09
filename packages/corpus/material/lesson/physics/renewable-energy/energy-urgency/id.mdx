@@ -20,6 +20,31 @@ Energi berasal dari sumbernya dan dikonversi menjadi listrik. Jaringan kemudian 
 
 Pembangkit harus mampu menghasilkan daya yang cukup, dan jaringan listrik harus mampu menyalurkannya ketika permintaan meningkat.
 
+Jaringan menyalurkan daya pada tegangan tinggi karena rugi di kabel sebesar <InlineMath math="I^2R" /> dan <InlineMath math="I=P/V" />. Mengirim <InlineMath math="100\text{ kW}" /> lewat <InlineMath math="1\ \Omega" /> kehilangan <InlineMath math="10\%" /> pada <InlineMath math="1\text{ kV}" />, tetapi hanya <InlineMath math="0{,}1\%" /> pada <InlineMath math="10\text{ kV}" />. Perbesar seberapa cepat kurvanya turun.
+
+<MathVisual
+  title={<>Tegangan Makin Tinggi, Rugi Makin Kecil</>}
+  description={<>Bagian dari 100 kW yang hilang pada saluran 1 ohm terhadap tegangan saluran. Mendatar: kV. Tegak: satu kotak grid berarti 2 persen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 10.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "loss", kind: "polyline", appearance: "warning", vertices: [{ x: 1, y: 5 }, { x: 1.25, y: 10 / (5 / 4) ** 2 / 2 }, { x: 1.5, y: 10 / (6 / 4) ** 2 / 2 }, { x: 1.75, y: 10 / (7 / 4) ** 2 / 2 }, { x: 2, y: 10 / (8 / 4) ** 2 / 2 }, { x: 2.25, y: 10 / (9 / 4) ** 2 / 2 }, { x: 2.5, y: 10 / (10 / 4) ** 2 / 2 }, { x: 2.75, y: 10 / (11 / 4) ** 2 / 2 }, { x: 3, y: 10 / (12 / 4) ** 2 / 2 }, { x: 3.25, y: 10 / (13 / 4) ** 2 / 2 }, { x: 3.5, y: 10 / (14 / 4) ** 2 / 2 }, { x: 3.75, y: 10 / (15 / 4) ** 2 / 2 }, { x: 4, y: 10 / (16 / 4) ** 2 / 2 }, { x: 4.25, y: 10 / (17 / 4) ** 2 / 2 }, { x: 4.5, y: 10 / (18 / 4) ** 2 / 2 }, { x: 4.75, y: 10 / (19 / 4) ** 2 / 2 }, { x: 5, y: 10 / (20 / 4) ** 2 / 2 }, { x: 5.25, y: 10 / (21 / 4) ** 2 / 2 }, { x: 5.5, y: 10 / (22 / 4) ** 2 / 2 }, { x: 5.75, y: 10 / (23 / 4) ** 2 / 2 }, { x: 6, y: 10 / (24 / 4) ** 2 / 2 }, { x: 6.25, y: 10 / (25 / 4) ** 2 / 2 }, { x: 6.5, y: 10 / (26 / 4) ** 2 / 2 }, { x: 6.75, y: 10 / (27 / 4) ** 2 / 2 }, { x: 7, y: 10 / (28 / 4) ** 2 / 2 }, { x: 7.25, y: 10 / (29 / 4) ** 2 / 2 }, { x: 7.5, y: 10 / (30 / 4) ** 2 / 2 }, { x: 7.75, y: 10 / (31 / 4) ** 2 / 2 }, { x: 8, y: 10 / (32 / 4) ** 2 / 2 }, { x: 8.25, y: 10 / (33 / 4) ** 2 / 2 }, { x: 8.5, y: 10 / (34 / 4) ** 2 / 2 }, { x: 8.75, y: 10 / (35 / 4) ** 2 / 2 }, { x: 9, y: 10 / (36 / 4) ** 2 / 2 }, { x: 9.25, y: 10 / (37 / 4) ** 2 / 2 }, { x: 9.5, y: 10 / (38 / 4) ** 2 / 2 }, { x: 9.75, y: 10 / (39 / 4) ** 2 / 2 }, { x: 10, y: 10 / (40 / 4) ** 2 / 2 }] },
+      { id: "low", kind: "point", appearance: "warning", at: { x: 1, y: 5 } },
+      { id: "high", kind: "point", appearance: "construction", at: { x: 10, y: 10 / 10 ** 2 / 2 } },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "high", objectId: "high", at: { x: 10, y: 10 / 10 ** 2 / 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    low: <InlineMath math="1\text{ kV}:\ I=100\text{ A},\ 10\%" />,
+    high: <InlineMath math="10\text{ kV}:\ I=10\text{ A},\ 0{,}1\%" />,
+  }}
+/>
+
 ## Kebutuhan Bertambah dari Banyak Alat
 
 Satu lampu memakai sedikit energi, tetapi kebutuhan total menjadi besar ketika banyak alat dipakai bersamaan.
@@ -56,6 +81,36 @@ Bandingkan dua alat, masing-masing berdaya tetap <InlineMath math="1 \text{ kW}"
 | Keduanya menyala pukul 18.00 sampai 19.00 | <InlineMath math="1+1=2 \text{ kW}" /> | <InlineMath math="2 \times 1=2 \text{ kWh}" /> |
 | Alat pertama pukul 18.00 sampai 19.00, alat kedua pukul 19.00 sampai 20.00 | <InlineMath math="1 \text{ kW}" /> | <InlineMath math="1 \times 1+1 \times 1=2 \text{ kWh}" /> |
 
+Inilah kedua jadwal sebagai daya sepanjang malam. Jadwal oranye menyalakan kedua alat bersamaan, jadi dayanya melompat ke puncak <InlineMath math="2\text{ kW}" />. Jadwal ungu menyebar pekerjaan yang sama ke dua jam dan tidak pernah lebih dari <InlineMath math="1\text{ kW}" />. Coba hitung luas di bawah setiap garis, yaitu daya kali waktu: keduanya sama-sama <InlineMath math="2\text{ kWh}" />. Energinya sama, yang berubah hanya puncak daya yang harus disediakan jaringan.
+
+<MathVisual
+  title={<>Energi Sama, Puncak Berbeda</>}
+  description={<>Daya yang dipakai dua alat 1 kW dari pukul 17.00 sampai 21.00. Mendatar: jam dalam satuan jam. Tegak: daya dalam kW.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.3 }, y: { min: -0.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "together", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 0 }, { x: 4, y: 0 }] },
+      { id: "staggered", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 0 }, { x: 4, y: 0 }] },
+    ],
+    labels: [
+      { key: "two", objectId: "together", at: { x: 1.5, y: 2 }, placement: "above" },
+      { key: "one", objectId: "staggered", at: { x: 2.5, y: 1 }, placement: "above" },
+      { key: "h18", objectId: "together", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "h19", objectId: "together", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "h20", objectId: "staggered", at: { x: 3, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    two: <InlineMath math="2\text{ kW}" />,
+    one: <InlineMath math="1\text{ kW}" />,
+    h18: <>18:00</>,
+    h19: <>19:00</>,
+    h20: <>20:00</>,
+  }}
+/>
+
 ## Rasio Nasional dan Kesenjangan Akses Lokal
 
 **Rasio Elektrifikasi** adalah persentase rumah tangga yang memiliki akses listrik. **Rasio Desa Berlistrik** adalah persentase desa atau kelurahan yang sudah memiliki listrik.
@@ -80,6 +135,28 @@ Rasio nasional perlu dilengkapi dengan kondisi setempat. Wilayah yang belum terl
 Permintaan listrik dapat naik ketika lebih banyak orang memakai listrik untuk belajar, layanan kesehatan, produksi makanan, transportasi, atau usaha kecil. Jika pembangkit dan jaringan tidak mampu memenuhi kenaikan tersebut, listrik dapat padam, biaya dapat naik, atau sumber energi yang lebih mencemari dapat dipakai.
 
 Jumlah energi harian dan kapasitas daya menjawab dua kebutuhan yang berbeda. Sistem dapat memiliki energi yang cukup sepanjang hari tetapi tetap gagal memasok semua alat yang menyala bersamaan. Karena itu, energi total harus cukup dan daya juga harus <Highlight>mampu memenuhi beban puncak</Highlight>. Batas kapasitas dapat berasal dari sumber energi, pembangkit, jaringan, atau penyimpanan.
+
+Pertumbuhan <InlineMath math="3{,}6\%" /> per tahun itu berlipat. Kurva di bawah mengalikan dengan <InlineMath math="1{,}036" /> setiap tahun sejak 2026, jadi pada 2030 permintaan sekitar <InlineMath math="15{,}2\%" /> lebih tinggi, sedikit lebih dari empat kali <InlineMath math="3{,}6\%" />.
+
+<MathVisual
+  title={<>Pertumbuhan Permintaan Berlipat</>}
+  description={<>Pertumbuhan permintaan listrik 3,6% per tahun dari 2026 sampai 2030. Mendatar: tahun sesudah 2026. Tegak: pertumbuhan dalam satuan 4%.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -0.3, max: 4.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "growth", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: ((1.036 ** (0 / 5) - 1) * 100) / 4 }, { x: 1 / 5, y: ((1.036 ** (1 / 5) - 1) * 100) / 4 }, { x: 2 / 5, y: ((1.036 ** (2 / 5) - 1) * 100) / 4 }, { x: 3 / 5, y: ((1.036 ** (3 / 5) - 1) * 100) / 4 }, { x: 4 / 5, y: ((1.036 ** (4 / 5) - 1) * 100) / 4 }, { x: 1, y: ((1.036 ** (5 / 5) - 1) * 100) / 4 }, { x: 6 / 5, y: ((1.036 ** (6 / 5) - 1) * 100) / 4 }, { x: 7 / 5, y: ((1.036 ** (7 / 5) - 1) * 100) / 4 }, { x: 8 / 5, y: ((1.036 ** (8 / 5) - 1) * 100) / 4 }, { x: 9 / 5, y: ((1.036 ** (9 / 5) - 1) * 100) / 4 }, { x: 2, y: ((1.036 ** (10 / 5) - 1) * 100) / 4 }, { x: 11 / 5, y: ((1.036 ** (11 / 5) - 1) * 100) / 4 }, { x: 12 / 5, y: ((1.036 ** (12 / 5) - 1) * 100) / 4 }, { x: 13 / 5, y: ((1.036 ** (13 / 5) - 1) * 100) / 4 }, { x: 14 / 5, y: ((1.036 ** (14 / 5) - 1) * 100) / 4 }, { x: 3, y: ((1.036 ** (15 / 5) - 1) * 100) / 4 }, { x: 16 / 5, y: ((1.036 ** (16 / 5) - 1) * 100) / 4 }, { x: 17 / 5, y: ((1.036 ** (17 / 5) - 1) * 100) / 4 }, { x: 18 / 5, y: ((1.036 ** (18 / 5) - 1) * 100) / 4 }, { x: 19 / 5, y: ((1.036 ** (19 / 5) - 1) * 100) / 4 }, { x: 4, y: ((1.036 ** (20 / 5) - 1) * 100) / 4 }] },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: ((1.036 ** 4 - 1) * 100) / 4 } },
+    ],
+    labels: [
+      { key: "end", objectId: "end", at: { x: 4, y: ((1.036 ** 4 - 1) * 100) / 4 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    end: <InlineMath math="2030:\ +15{,}2\%" />,
+  }}
+/>
 
 ## Enam Pertanyaan untuk Menilai Kebutuhan Energi
 

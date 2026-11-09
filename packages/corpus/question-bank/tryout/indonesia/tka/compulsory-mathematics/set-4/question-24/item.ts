@@ -2,38 +2,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "reasoning",
+    cognitiveLevel: "knowledge-understanding",
     contentDomain: "data-probability",
-    topic: "data",
+    topic: "probability",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label:
-            "Jangkauan antarkuartil tinggi bibit pada media A lebih besar daripada jangkauan antarkuartil tinggi bibit pada media B.",
+          correct: false,
+          label: "$$\\frac14$$",
         },
         {
           correct: false,
-          label:
-            "Jangkauan tinggi bibit pada media B lebih besar daripada jangkauan tinggi bibit pada media A.",
-        },
-        {
-          correct: true,
-          label:
-            "Paling sedikit setengah dari bibit pada media B memiliki tinggi $$14\\text{ cm}$$ atau lebih.",
+          label: "$$\\frac27$$",
         },
         {
           correct: false,
-          label:
-            "Median tinggi bibit pada media A lebih besar daripada median tinggi bibit pada media B.",
+          label: "$$\\frac{9}{28}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\frac{15}{28}$$",
         },
         {
           correct: true,
-          label:
-            "Tinggi terendah di antara seluruh $$80$$ bibit terdapat pada media A.",
+          label: "$$\\frac47$$",
         },
       ],
     },

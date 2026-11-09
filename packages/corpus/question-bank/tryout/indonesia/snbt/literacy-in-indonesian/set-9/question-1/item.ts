@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "cause-effect",
+  },
+  stimulus: "peat-fire",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Pengujian awal menunjukkan panel gabus berkaitan dengan penurunan tingkat bunyi dan waktu dengung pada kondisi tertentu, tetapi bukti itu belum mewakili seluruh ruang atau frekuensi.",
+            "Gambut yang kering menjadi ringan, berongga, dan mudah menyala.",
         },
         {
           correct: false,
           label:
-            "Pengujian membuktikan bahwa panel gabus selalu menurunkan energi bunyi sebesar persentase yang sama dengan selisih angka desibel pada setiap frekuensi.",
+            "Kanal-kanal yang digali membawa minyak dari lapisan tanah yang lebih dalam.",
         },
         {
           correct: false,
           label:
-            "Kembalinya angka setelah panel dilepas menunjukkan bahwa posisi mikrofon tidak lagi perlu dikendalikan pada pengujian berikutnya.",
+            "Air rawa yang mengalir keluar meninggalkan garam yang mudah menyala.",
         },
         {
           correct: false,
           label:
-            "Perubahan waktu dengung pada satu posisi menjadi bukti yang lebih kuat daripada seluruh data tingkat bunyi karena langsung mengukur mutu auditorium.",
+            "Tumbuhan yang ditanam di lahan itu menghasilkan getah yang mudah terbakar.",
         },
         {
           correct: false,
           label:
-            "Tujuan utama laporan adalah memilih satu frekuensi terbaik agar pengukuran pada frekuensi dan ruang lain tidak perlu dilakukan.",
+            "Permukaan tanah yang turun menjadikan lahan itu lebih dekat ke sumber panas bumi.",
         },
       ],
     },

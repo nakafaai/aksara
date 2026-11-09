@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "electric-cars",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Istilah *sejarah lisan* membuktikan bahwa sumber yang lebih baru pasti lebih akurat daripada sumber lainnya.",
+            "Teks 2 menyatakan bahwa mobil listrik sama sekali tidak lebih unggul daripada mobil bensin.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Definisi *sejarah lisan* menempatkan wawancara sebagai rekaman pengalaman yang perlu dinilai menurut penutur dan waktu perekamannya, bukan disamakan dengan catatan transaksi.",
+            "Teks 1 mengakui bahwa mobil listrik yang baru dibuat membawa jejak karbon lebih besar daripada mobil bensin.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Definisi itu menyamakan *sejarah lisan* dengan kesalahan sehingga perbedaan antarsumber tidak perlu dianalisis.",
+            "Menurut Teks 1, keunggulan mobil listrik makin besar ketika listriknya makin bersih.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Penyebutan *sejarah lisan* mengizinkan bagian sumber yang hilang diisi dengan dugaan pembaca.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi tersebut hanya menamai bentuk dokumen dan tidak memengaruhi cara asal serta tujuan sumber dibandingkan.",
+            "Teks 2 mengusulkan agar dana untuk bus listrik dialihkan ke mobil pribadi.",
         },
       ],
     },

@@ -79,6 +79,33 @@ x_t &= x_0+\Delta x \\
 
 This calculation works because the **velocity does not change**. If the velocity changes, we cannot use one fixed value of <InlineMath math="v" /> for the whole motion.
 
+The dots below are the position marks, one per second. They climb by the same <InlineMath math="2\text{ m}" /> every second, so they fall on one straight line, and its slope is the velocity.
+
+<MathVisual
+  title={<>Equal Steps Make a Straight Line</>}
+  description={<><InlineMath math="x=1\text{ m}+(2\text{ m/s})\,t" /> for 5 s. Horizontal: time in s. Vertical: position in units of 2 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "position", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: (1 + 2 * 0) / 2 }, { x: 1, y: (1 + 2 * 1) / 2 }, { x: 2, y: (1 + 2 * 2) / 2 }, { x: 3, y: (1 + 2 * 3) / 2 }, { x: 4, y: (1 + 2 * 4) / 2 }, { x: 5, y: (1 + 2 * 5) / 2 }] },
+      { id: "t-0", kind: "point", appearance: "primary", at: { x: 0, y: (1 + 2 * 0) / 2 } },
+      { id: "t-1", kind: "point", appearance: "primary", at: { x: 1, y: (1 + 2 * 1) / 2 } },
+      { id: "t-2", kind: "point", appearance: "primary", at: { x: 2, y: (1 + 2 * 2) / 2 } },
+      { id: "t-3", kind: "point", appearance: "primary", at: { x: 3, y: (1 + 2 * 3) / 2 } },
+      { id: "t-4", kind: "point", appearance: "primary", at: { x: 4, y: (1 + 2 * 4) / 2 } },
+      { id: "t-5", kind: "point", appearance: "primary", at: { x: 5, y: (1 + 2 * 5) / 2 } },
+    ],
+    labels: [
+      { key: "end", objectId: "t-5", at: { x: 5, y: 5.5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    end: <InlineMath math="x(5\text{ s})=11\text{ m}" />,
+  }}
+/>
+
 ## Recognizing Uniform Motion on Graphs
 
 Two graphs identify uniform linear motion. The velocity-time graph must be horizontal, while the position-time graph must be a straight line with **constant slope**.
@@ -91,6 +118,27 @@ Two graphs identify uniform linear motion. The velocity-time graph must be horiz
 The signed area between a velocity-time graph and the time axis equals displacement. For constant velocity, that area is a rectangle, so <InlineMath math="\Delta x=v\Delta t" />. An area below the time axis contributes negative displacement.
 
 On a position-time graph, the slope of the line represents velocity. The sign of the slope gives direction, while a larger absolute steepness means a larger speed. For uniform linear motion, the line stays straight because the slope does not change from start to finish.
+
+On a velocity-time graph the same motion is a flat line at <InlineMath math="2\text{ m/s}" />. The area under it is the displacement, <InlineMath math="10\text{ m}" />, which added to <InlineMath math="x_0=1\text{ m}" /> gives the final position <InlineMath math="11\text{ m}" />.
+
+<MathVisual
+  title={<>Constant Velocity and Its Area</>}
+  description={<><InlineMath math="v=2\text{ m/s}" /> for 5 s. Horizontal: time in s. Vertical: velocity in m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "area", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 2 }, { x: 0, y: 2 }] },
+    ],
+    labels: [
+      { key: "area", objectId: "area", at: { x: 2.5, y: 1 }, placement: "center" },
+    ],
+  }}
+  labels={{
+    area: <InlineMath math="\Delta x=2\times5=10\text{ m}" />,
+  }}
+/>
 
 ## Direction Distinguishes Constant Speed from Constant Velocity
 

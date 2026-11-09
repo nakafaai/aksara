@@ -3,7 +3,7 @@ export const metadata = {
   description: "Telusuri cara matematikawan sejak Babilonia kuno hingga Zu Chongzhi membatasi dan menghampiri pi, serta asal penggunaan simbol modernnya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-08",
+  dateModified: "2026-11-08",
   subject: "Busur dan Juring Lingkaran",
 };
 
@@ -18,6 +18,35 @@ Secara matematis, <InlineMath math="\pi" /> dapat didefinisikan sebagai:
 <BlockMath math="\pi = \frac{\text{keliling lingkaran}}{\text{diameter lingkaran}}" />
 
 Perbandingan ini tidak bergantung pada ukuran lingkaran. Jika semua panjang diperbesar dua kali, keliling dan diameter ikut menjadi dua kali sehingga perbandingannya tetap.
+
+Gelindingkan lingkaran berdiameter 1 sepanjang garis selama satu putaran penuh. Titik yang mula-mula di bawah menyentuh garis lagi setelah menempuh jarak sebesar kelilingnya, <InlineMath math="\pi \approx 3{,}14159" />.
+
+<MathVisual
+  title={<>Satu putaran lingkaran berdiameter 1</>}
+  description={<>Lingkaran berdiameter 1 pada awalnya dan setelah satu putaran penuh sepanjang garis, berjarak <InlineMath math="\pi" />.</>}
+  labels={{
+    dist: <InlineMath math="\pi" />,
+    start: <InlineMath math="0" />,
+    end: <InlineMath math="\pi" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 4 }, y: { min: -0.5, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "before", kind: "circle", center: { x: 0, y: 1 / 2 }, radius: 1 / 2, appearance: "reference" },
+      { id: "after", kind: "circle", center: { x: Math.PI, y: 1 / 2 }, radius: 1 / 2, appearance: "secondary" },
+      { id: "dist", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.PI, y: 0 }, appearance: "primary" },
+      { id: "start", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "end", kind: "point", at: { x: Math.PI, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "dist", objectId: "dist", at: { x: Math.PI / 2, y: 0 }, placement: "below" },
+      { key: "start", objectId: "start", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "end", objectId: "end", at: { x: Math.PI, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Pendekatan Awal
 
@@ -36,56 +65,29 @@ Archimedes dari Sirakusa, matematikawan Yunani yang hidup sekitar <InlineMath ma
 
 Keliling poligon beraturan di dalam lingkaran lebih kecil daripada keliling lingkaran. Keliling poligon beraturan di luar yang setiap sisinya menyinggung lingkaran lebih besar. Semakin banyak sisinya, semakin dekat batas bawah dan batas atas tersebut.
 
-<LineEquation
-  title={<>Visualisasi Metode Poligon Archimedes</>}
-  description="Poligon beraturan di dalam dan di luar lingkaran membatasi kelilingnya dari bawah dan atas."
-  cameraPosition={[0, 0, 10]}
-  data={[
-    {
-      points: Array.from({ length: 181 }, (_, i) => {
-        const angle = (i * 2 * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#0891b2",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: "Lingkaran", at: 45, offset: [0.5, 0.5, 0] }]
-    },
-    {
-      points: Array.from({ length: 7 }, (_, i) => {
-        const angle = (i * 2 * Math.PI) / 6;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#ea580c",
-      smooth: false,
-      showPoints: true,
-      labels: [{ text: "Poligon Dalam", at: 2, offset: [-1, -0.5, 0] }]
-    },
-    {
-      points: Array.from({ length: 7 }, (_, i) => {
-        const angle = (i * 2 * Math.PI) / 6;
-        const radius = 3;
-        const outerRadius = radius / Math.cos(Math.PI / 6);
-        return {
-          x: outerRadius * Math.cos(angle),
-          y: outerRadius * Math.sin(angle),
-          z: 0
-        };
-      }),
-      color: "#9333ea",
-      smooth: false,
-      showPoints: true,
-      labels: [{ text: "Poligon Luar", at: 4, offset: [0.8, -0.5, 0] }]
-    }
-  ]}
+<MathVisual
+  title={<>Segi enam di dalam dan di luar lingkaran berjari-jari 3</>}
+  description={<>Segi enam dalam berkeliling 18 dan segi enam luar <InlineMath math="12\sqrt3" />, jadi <InlineMath math="3 < \pi < 2\sqrt3" />.</>}
+  labels={{
+    circle: <>Lingkaran</>,
+    inner: <>Segi enam dalam</>,
+    outer: <>Segi enam luar</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "outer", kind: "polygon", vertices: [{ x: 2 * Math.sqrt(3), y: 0 }, { x: Math.sqrt(3), y: 3 }, { x: -Math.sqrt(3), y: 3 }, { x: -2 * Math.sqrt(3), y: 0 }, { x: -Math.sqrt(3), y: -3 }, { x: Math.sqrt(3), y: -3 }], appearance: "secondary" },
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "reference" },
+      { id: "inner", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 3 / 2, y: 3 * Math.sqrt(3) / 2 }, { x: -3 / 2, y: 3 * Math.sqrt(3) / 2 }, { x: -3, y: 0 }, { x: -3 / 2, y: -3 * Math.sqrt(3) / 2 }, { x: 3 / 2, y: -3 * Math.sqrt(3) / 2 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "circle", objectId: "circle", at: { x: 3 * Math.cos(Math.PI / 4), y: 3 * Math.sin(Math.PI / 4) }, placement: "above-right" },
+      { key: "inner", objectId: "inner", at: { x: 3 / 2, y: -3 * Math.sqrt(3) / 2 }, placement: "below" },
+      { key: "outer", objectId: "outer", at: { x: -Math.sqrt(3), y: 3 }, placement: "above" },
+    ],
+  }}
 />
 
 Untuk segienam pada gambar, jari-jari <InlineMath math="3" /> dan diameter <InlineMath math="6" />. Setiap sisi segienam dalam sama dengan jari-jari. Sisi segienam luar diperoleh dari segitiga siku-siku dengan sudut <InlineMath math="30^\circ" />:
@@ -112,6 +114,16 @@ Zu Chongzhi juga memberikan **pendekatan pecahan** <InlineMath math="\pi \approx
 <MathContainer>
 <BlockMath math="\frac{355}{113} = 3{,}1415929\ldots" />
 </MathContainer>
+
+Bandingkan seberapa jauh setiap hampiran dari <InlineMath math="\pi" />. Hampiran Mesopotamia <InlineMath math="\tfrac{25}{8}" /> dan Mesir <InlineMath math="\tfrac{256}{81}" /> meleset sekitar 0,02, batas <InlineMath math="\tfrac{223}{71}" /> dan <InlineMath math="\tfrac{22}{7}" /> sekitar 0,001, dan <InlineMath math="\tfrac{355}{113}" /> kurang dari 0,0000003.
+
+<BarChart
+  title={<>Jarak lima hampiran dari <InlineMath math="\pi" /></>}
+  description={<>Batang <InlineMath math="|\text{hampiran} - \pi|" /> untuk <InlineMath math="\tfrac{25}{8}" />, <InlineMath math="\tfrac{256}{81}" />, <InlineMath math="\tfrac{223}{71}" />, <InlineMath math="\tfrac{22}{7}" />, dan <InlineMath math="\tfrac{355}{113}" />.</>}
+  yAxisLabel="Jarak dari pi"
+  data={[["25/8", 25 / 8], ["256/81", 256 / 81], ["223/71", 223 / 71], ["22/7", 22 / 7], ["355/113", 355 / 113]].map(([name, value]) => ({ name, value: Math.abs(value - Math.PI) }))}
+  chartConfig={{ value: { label: "Jarak dari pi", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Era Modern dan Simbol Pi
 

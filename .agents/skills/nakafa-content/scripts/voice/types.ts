@@ -7,7 +7,7 @@ import type { TeachingSectionReview } from "#nakafa-content/body/review";
 
 export type LessonVoiceLocale = AppLocaleCode;
 
-export type LessonVoiceGenre = "article" | "lesson";
+export type LessonVoiceGenre = "article" | "lesson" | "page";
 
 export interface LessonVoiceRule {
   id: string;
@@ -38,6 +38,8 @@ export interface LessonVoiceReport {
     file: string;
     locale: LessonVoiceLocale;
   })[];
+  /** Findings the gate reports and does not fail until the last clears (D37, D39). */
+  pending?: LessonVoiceFileIssue[];
 }
 
 export interface LineState {
@@ -53,7 +55,7 @@ export interface LineContext {
   isProtectedRegion: boolean;
 }
 
-/** Narrows a file or caller locale to the three lesson locales. */
+/** Narrows a file or caller locale to the declared lesson locales. */
 export function isLessonVoiceLocale(
   locale: string
 ): locale is LessonVoiceLocale {

@@ -1,86 +1,215 @@
 export const metadata = {
-  title: "Dua Kejadian A dan B Saling Lepas",
-  description: "Menggabungkan peluang kejadian saling lepas melalui contoh koin, dadu, dan kartu.",
+  title: "Peluang Kejadian Saling Lepas",
+  description: "Dua kejadian saling lepas jika tidak mungkin terjadi bersamaan, sehingga P(A ∪ B) = P(A) + P(B). Pelajari ciri, contoh dua dadu, dan latihannya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-21",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Peluang",
 };
 
-## Kejadian yang Tidak Memiliki Hasil Bersama
+## Kejadian Saling Lepas dan Rumus Peluangnya
 
-Bayangkan satu percobaan dapat menghasilkan salah satu dari dua kejadian, tetapi tidak keduanya. Dalam peluang, kejadian dengan hubungan seperti ini disebut **saling lepas**, _mutually exclusive_, atau _disjoint_.
-
-Kejadian <InlineMath math="A" /> dan kejadian <InlineMath math="B" /> disebut **saling lepas** jika keduanya **tidak mungkin terjadi bersamaan** dalam satu percobaan. Jika <InlineMath math="A" /> terjadi, <InlineMath math="B" /> tidak terjadi, begitu pula sebaliknya.
-
-## Ciri Khas Kejadian Saling Lepas
-
-Ciri utamanya adalah **irisan yang kosong**: tidak ada hasil percobaan yang termasuk dalam kejadian <InlineMath math="A" /> sekaligus kejadian <InlineMath math="B" />. Sifat itu yang membuat kedua peluangnya boleh langsung dijumlahkan, karena tidak ada hasil yang terhitung dua kali.
-### Peluang Dua Kejadian Terjadi Bersamaan
-
-Karena kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> tidak dapat terjadi bersama, peluang irisannya adalah **nol**.
-
-Kita bisa tulis peluang kejadian "<InlineMath math="A" /> **dan** <InlineMath math="B" />" (keduanya terjadi) sebagai:
-
-<BlockMath math="P(A \text{ dan } B) = 0" />
-
-Atau pakai simbol irisan:
-
-<BlockMath math="P(A \cap B) = 0" />
-
-Untuk kejadian saling lepas, irisannya kosong sehingga peluangnya nol.
-
-## Menghitung Peluang Gabungan untuk Kejadian Saling Lepas
-
-Untuk menghitung peluang kejadian <InlineMath math="A" /> **ATAU** kejadian <InlineMath math="B" />, gunakan fakta bahwa kedua kejadian tidak memiliki hasil yang sama.
-
-Kedua peluang dapat **dijumlahkan** tanpa menghitung satu hasil sebanyak dua kali.
-
-Rumusnya adalah:
-
-<BlockMath math="P(A \text{ atau } B) = P(A) + P(B)" />
-
-Atau pakai simbol gabungan (union):
+Dua kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> **saling lepas** jika keduanya tidak mungkin terjadi bersamaan dalam satu percobaan. Irisannya kosong, <InlineMath math="A \cap B = \varnothing" />, sehingga <InlineMath math="P(A \cap B) = 0" />. Untuk kejadian saling lepas, peluang <InlineMath math="A" /> atau <InlineMath math="B" /> cukup dijumlahkan:
 
 <BlockMath math="P(A \cup B) = P(A) + P(B)" />
 
-**Aturan penjumlahan khusus** ini <Highlight>hanya berlaku untuk kejadian saling lepas</Highlight>. Jika kedua kejadian beririsan, peluang irisannya juga harus diperhitungkan.
+<MathVisual
+  title="Diagram Venn dua kejadian saling lepas"
+  description={<>Pelemparan satu dadu dengan <InlineMath math="A = \{1, 2\}" /> dan <InlineMath math="B = \{5, 6\}" />. Kedua lingkaran tidak bersentuhan, jadi tidak ada hasil yang masuk keduanya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sample-space", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "a", kind: "circle", center: { x: -1.7, y: 0 }, radius: 1.2, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 1.7, y: 0 }, radius: 1.2, appearance: "secondary" },
+      { id: "one", kind: "point", at: { x: -2.2, y: 0.3 }, appearance: "primary" },
+      { id: "two", kind: "point", at: { x: -1.4, y: -0.3 }, appearance: "primary" },
+      { id: "five", kind: "point", at: { x: 1.4, y: 0.3 }, appearance: "secondary" },
+      { id: "six", kind: "point", at: { x: 2.2, y: -0.3 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: -0.3, y: 1.8 }, appearance: "reference" },
+      { id: "four", kind: "point", at: { x: 0.3, y: -1.8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1.7, y: 1.2 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 1.7, y: 1.2 }, placement: "above" },
+      { key: "sample-space", objectId: "sample-space", at: { x: -3.8, y: -2.4 }, placement: "above-right" },
+      { key: "one", objectId: "one", at: { x: -2.2, y: 0.3 }, placement: "right" },
+      { key: "two", objectId: "two", at: { x: -1.4, y: -0.3 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 1.4, y: 0.3 }, placement: "right" },
+      { key: "six", objectId: "six", at: { x: 2.2, y: -0.3 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: -0.3, y: 1.8 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: 0.3, y: -1.8 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    "sample-space": <InlineMath math="S" />,
+    one: <InlineMath math="1" />,
+    two: <InlineMath math="2" />,
+    five: <InlineMath math="5" />,
+    six: <InlineMath math="6" />,
+    three: <InlineMath math="3" />,
+    four: <InlineMath math="4" />,
+  }}
+/>
 
-## Contoh Kejadian Saling Lepas
+Pada dadu itu, <InlineMath math="P(A \cup B) = \frac{2}{6} + \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />. Periksa dengan mendaftar: <InlineMath math="A \cup B = \{1, 2, 5, 6\}" /> memuat 4 dari 6 hasil.
 
-Pada koin dan dadu adil serta pengambilan acak satu kartu dari tumpukan standar, semua hasil dasar **sama mungkin**. Tabel ini mencatat banyak hasil tiap kejadian. Setiap pasangan kejadian memiliki irisan kosong.
+## Mengenali Kejadian Saling Lepas
+
+Tanyakan satu hal: adakah satu hasil yang memenuhi **kedua kejadian sekaligus**? Jika tidak ada, kedua kejadian saling lepas. Setiap percobaan dalam tabel ini punya hasil dasar yang sama mungkin.
 
 | Percobaan | Dua kejadian | Peluang gabungan |
 | --- | --- | --- |
 | Koin adil | Angka atau Gambar | <InlineMath math="\frac12+\frac12=1" /> |
-| Dadu adil | Angka tiga atau lima | <InlineMath math="\frac16+\frac16=\frac13" /> |
+| Dadu adil | Mata tiga atau mata lima | <InlineMath math="\frac16+\frac16=\frac13" /> |
 | Dadu adil | Genap atau ganjil | <InlineMath math="\frac36+\frac36=1" /> |
-| Kartu standar | King atau Queen | <InlineMath math="\frac4{52}+\frac4{52}=\frac2{13}" /> |
-| Kartu standar | Merah atau keriting | <InlineMath math="\frac{26}{52}+\frac{13}{52}=\frac34" /> |
+| Kartu remi | King atau queen | <InlineMath math="\frac4{52}+\frac4{52}=\frac2{13}" /> |
+| Kartu remi | Merah atau keriting | <InlineMath math="\frac{26}{52}+\frac{13}{52}=\frac34" /> |
 
-Pada dadu, hasil genap adalah <InlineMath math="\{2,4,6\}" /> dan hasil ganjil adalah <InlineMath math="\{1,3,5\}" />. Kedua kelompok mencakup semua sisi dadu. Pada kartu, semua keriting berwarna hitam sehingga tidak ada keriting yang masuk kelompok merah. Tumpukan standar memuat <InlineMath math="52" /> kartu, termasuk <InlineMath math="4" /> King, <InlineMath math="4" /> Queen, <InlineMath math="26" /> kartu merah, dan <InlineMath math="13" /> keriting.
+Baris terakhir saling lepas karena semua kartu keriting berwarna hitam. Sebaliknya, kartu merah dan kartu king **tidak** saling lepas, karena king hati dan king wajik termasuk keduanya. Kejadian seperti itu memakai rumus pada [kejadian tidak saling lepas](/id/materi/matematika/peluang/dua-kejadian-a-dan-b-tidak-saling-lepas).
 
-## Latihan
+## Mengapa Peluangnya Boleh Langsung Dijumlahkan
 
-Sebuah **dadu adil** bersisi enam dilempar satu kali. Misalkan <InlineMath math="A=\{1,2\}" /> dan <InlineMath math="B=\{5,6\}" />.
+Untuk dua kejadian apa pun yang irisannya kosong berlaku <InlineMath math="P(A \cup B) = P(A) + P(B)" />, karena tidak ada hasil yang terhitung dua kali. Pada ruang sampel yang setiap hasilnya sama mungkin, alasannya bisa dihitung langsung: banyak anggota gabungan adalah jumlah banyak anggota kedua kejadian.
 
-1.  Tunjukkan bahwa <InlineMath math="A" /> dan <InlineMath math="B" /> saling lepas.
-2.  Tentukan <InlineMath math="P(A \cup B)" />.
-3.  Tentukan peluang bahwa kedua kejadian tidak terjadi.
+<BlockMath math="n(A \cup B) = n(A) + n(B) \quad\Longrightarrow\quad P(A \cup B) = \frac{n(A) + n(B)}{n(S)} = P(A) + P(B)" />
+
+Rumus ini adalah kasus khusus [aturan penjumlahan](/id/materi/matematika/peluang/aturan-penjumlahan) umum <InlineMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" /> dengan <InlineMath math="P(A \cap B) = 0" />. Aturan yang sama berlaku untuk lebih dari dua kejadian, asalkan **setiap pasangannya saling lepas**: <InlineMath math="P(A_1 \cup A_2 \cup A_3) = P(A_1) + P(A_2) + P(A_3)" />.
+
+## Kejadian dan Komplemennya
+
+Kejadian <InlineMath math="A" /> dan komplemennya <InlineMath math="A^c" /> (bukan <InlineMath math="A" />) selalu saling lepas, dan **gabungan keduanya adalah seluruh ruang sampel**. Karena itu <InlineMath math="P(A) + P(A^c) = P(S) = 1" />, atau
+
+<BlockMath math="P(A^c) = 1 - P(A)" />
+
+Rumus komplemen ini menghemat hitungan saat kejadian yang ditanyakan punya banyak hasil. Peluang dadu tidak menghasilkan mata 6 adalah <InlineMath math="1 - \frac{1}{6} = \frac{5}{6}" />, tanpa perlu menjumlahkan lima peluang. Periksa dengan mendaftar: hasil selain 6 adalah <InlineMath math="\{1, 2, 3, 4, 5\}" />, yaitu 5 dari 6 hasil.
+
+<MathVisual
+  title="Kejadian A dan komplemennya"
+  description={<>Satu dadu dengan <InlineMath math="A = \{6\}" />. Lima hasil di luar lingkaran membentuk komplemen <InlineMath math="A^c = \{1, 2, 3, 4, 5\}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sample-space", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "six-event", kind: "circle", center: { x: 2, y: 0 }, radius: 1.1, appearance: "primary" },
+      { id: "six", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "one", kind: "point", at: { x: -3, y: 1.2 }, appearance: "secondary" },
+      { id: "two", kind: "point", at: { x: -1.5, y: 1.2 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: -3, y: -1.2 }, appearance: "secondary" },
+      { id: "four", kind: "point", at: { x: -1.5, y: -1.2 }, appearance: "secondary" },
+      { id: "five", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "six-event", objectId: "six-event", at: { x: 2, y: 1.1 }, placement: "above" },
+      { key: "sample-space", objectId: "sample-space", at: { x: -3.8, y: 2.4 }, placement: "below-right" },
+      { key: "six", objectId: "six", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: -3, y: 1.2 }, placement: "right" },
+      { key: "two", objectId: "two", at: { x: -1.5, y: 1.2 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: -3, y: -1.2 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: -1.5, y: -1.2 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 0, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "six-event": <InlineMath math="A" />,
+    "sample-space": <InlineMath math="S" />,
+    six: <InlineMath math="6" />,
+    one: <InlineMath math="1" />,
+    two: <InlineMath math="2" />,
+    three: <InlineMath math="3" />,
+    four: <InlineMath math="4" />,
+    five: <InlineMath math="5" />,
+  }}
+/>
+
+## Contoh Jumlah Mata Dua Dadu
+
+Dua dadu dilempar bersamaan. Tentukan peluang jumlah mata kedua dadu 7 atau 11.
+
+Ruang sampelnya punya <InlineMath math="6 \times 6 = 36" /> pasangan yang sama mungkin. Jumlah 7 muncul dari <InlineMath math="6" /> pasangan, dan jumlah 11 dari <InlineMath math="2" /> pasangan. Satu lemparan tidak mungkin berjumlah 7 dan 11 sekaligus, jadi kedua kejadian **saling lepas**:
+
+<BlockMath math="P(7 \text{ atau } 11) = \frac{6}{36} + \frac{2}{36} = \frac{8}{36} = \frac{2}{9}" />
+
+<MathVisual
+  title="Pasangan dua dadu yang berjumlah 7 atau 11"
+  description={<>Setiap titik <InlineMath math="(a, b)" /> adalah hasil dadu pertama dan kedua. Titik pada garis <InlineMath math="a + b = 7" /> dan <InlineMath math="a + b = 11" /> tidak pernah sama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "seven", kind: "segment", from: { x: 1, y: 6 }, to: { x: 6, y: 1 }, appearance: "primary" },
+      { id: "eleven", kind: "segment", from: { x: 5, y: 6 }, to: { x: 6, y: 5 }, appearance: "secondary" },
+      { id: "seven-1", kind: "point", at: { x: 1, y: 6 }, appearance: "primary" },
+      { id: "seven-2", kind: "point", at: { x: 2, y: 5 }, appearance: "primary" },
+      { id: "seven-3", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "seven-4", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "seven-5", kind: "point", at: { x: 5, y: 2 }, appearance: "primary" },
+      { id: "seven-6", kind: "point", at: { x: 6, y: 1 }, appearance: "primary" },
+      { id: "eleven-1", kind: "point", at: { x: 5, y: 6 }, appearance: "secondary" },
+      { id: "eleven-2", kind: "point", at: { x: 6, y: 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "seven", objectId: "seven", at: { x: 3, y: 4 }, placement: "below-left" },
+      { key: "eleven", objectId: "eleven", at: { x: 6, y: 5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    seven: <InlineMath math="a + b = 7" />,
+    eleven: <InlineMath math="a + b = 11" />,
+  }}
+/>
+
+Periksa dengan mendaftar. Jumlah 7 berasal dari (1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1), dan jumlah 11 dari (5, 6), (6, 5). Tidak ada pasangan yang muncul di kedua daftar, dan totalnya 8 pasangan dari 36.
+
+## Saling Lepas Tidak Sama dengan Saling Bebas
+
+Istilah saling lepas dan saling bebas sering tertukar. **Saling lepas** berarti kedua kejadian tidak bisa terjadi bersamaan. [Saling bebas](/id/materi/matematika/kombinatorik/peluang-kejadian-majemuk-saling-bebas) didefinisikan dengan <InlineMath math="P(A \cap B) = P(A)\,P(B)" />. Jika <InlineMath math="P(A) > 0" />, definisi ini sama dengan mengatakan bahwa terjadinya <InlineMath math="A" /> tidak mengubah peluang <InlineMath math="B" />.
+
+Jika <InlineMath math="P(A) > 0" /> dan <InlineMath math="P(B) > 0" />, kejadian saling lepas **tidak mungkin** saling bebas. Irisannya berpeluang <InlineMath math="0" />, padahal <InlineMath math="P(A)\,P(B) > 0" />. Pada dadu, mengetahui bahwa <InlineMath math="A" /> terjadi membuat peluang bersyarat <InlineMath math="P(B \mid A) = 0" />, padahal <InlineMath math="P(B) = \frac{1}{3}" />, jadi kedua kejadian saling memengaruhi.
+
+## Kesalahan yang Sering Terjadi
+
+| Kesalahan | Mengapa salah | Cara memeriksa |
+| --- | --- | --- |
+| Menjumlahkan peluang kejadian yang beririsan | Hasil di irisan terhitung dua kali | **Tulis irisannya dulu**, harus kosong |
+| Menganggap saling lepas sama dengan saling bebas | Saling lepas memberi <InlineMath math="P(A \cap B) = 0" />, saling bebas memberi <InlineMath math="P(A)P(B)" /> | Bandingkan <InlineMath math="P(A \cap B)" /> dengan <InlineMath math="P(A)P(B)" /> |
+| Menganggap kartu merah dan king saling lepas | King hati dan king wajik termasuk keduanya | Cari satu hasil yang memenuhi kedua syarat |
+| Menjumlahkan tiga kejadian yang hanya sebagian saling lepas | Rumus jumlah butuh setiap pasangan saling lepas | Periksa semua pasangan, bukan hanya satu |
+| Mendapat peluang gabungan lebih dari 1 | Itu tanda peluang kejadian yang beririsan dijumlahkan, sehingga irisannya terhitung dua kali | Kejadian saling lepas tidak pernah memberi jumlah lebih dari 1 |
+
+## Latihan Soal
+
+Pastikan dulu irisannya kosong, lalu **periksa jawabanmu dengan mendaftar hasil**.
+
+1. Sebuah dadu dilempar sekali dengan <InlineMath math="A = \{1, 2\}" /> dan <InlineMath math="B = \{5, 6\}" />. Tentukan <InlineMath math="P(A \cup B)" /> dan peluang kedua kejadian tidak terjadi.
+
+2. Satu kartu diambil dari 52 kartu remi. Tentukan peluang terambil king atau queen.
+
+3. Dua dadu dilempar. Tentukan peluang jumlah matanya 2 atau 12.
+
+4. Kejadian <InlineMath math="A" /> dan <InlineMath math="B" /> saling lepas dengan <InlineMath math="P(A) = 0{,}3" /> dan <InlineMath math="P(B) = 0{,}5" />. Tentukan <InlineMath math="P(A \cup B)" />, peluang tidak satu pun terjadi, dan apakah keduanya saling bebas.
+
 ### Pembahasan
 
-**Soal 1**. Kedua kejadian memiliki **irisan kosong**, sehingga tidak ada hasil yang sama:
+**Soal 1**. Irisannya kosong, jadi <InlineMath math="P(A \cup B) = \frac{2}{6} + \frac{2}{6} = \frac{2}{3}" />. Hasil di luar <InlineMath math="A \cup B" /> adalah <InlineMath math="\{3, 4\}" />, sehingga peluang kedua kejadian tidak terjadi adalah <InlineMath math="\frac{2}{6} = \frac{1}{3}" />. Periksa dengan komplemen: <InlineMath math="1 - \frac{2}{3} = \frac{1}{3}" />.
 
-<BlockMath math="A \cap B=\varnothing" />
+**Soal 2**. Satu kartu tidak mungkin king sekaligus queen, jadi
 
-Jadi, keduanya **saling lepas**.
+<BlockMath math="P = \frac{4}{52} + \frac{4}{52} = \frac{8}{52} = \frac{2}{13}" />
 
-**Soal 2**. Setiap kejadian memuat <InlineMath math="2" /> dari <InlineMath math="6" /> hasil dadu yang sama mungkin. Aturan penjumlahan khusus memberikan
+Periksa: ada 8 kartu yang memenuhi, yaitu 4 king dan 4 queen.
 
-<BlockMath math="\begin{aligned}P(A \cup B)&=P(A)+P(B) \\ &=\frac{2}{6}+\frac{2}{6} \\ &=\frac{4}{6}=\frac{2}{3}\end{aligned}" />
+**Soal 3**. Jumlah 2 hanya dari (1, 1), dan jumlah 12 hanya dari (6, 6). Kedua kejadian saling lepas:
 
-**Soal 3**. Hasil di luar <InlineMath math="A \cup B=\{1,2,5,6\}" /> adalah <InlineMath math="\{3,4\}" />. Dengan demikian,
+<BlockMath math="P = \frac{1}{36} + \frac{1}{36} = \frac{2}{36} = \frac{1}{18}" />
 
-<BlockMath math="P(\text{bukan }A\text{ maupun }B)=\frac{2}{6}=\frac{1}{3}" />
+Periksa: 2 dari 36 pasangan memenuhi.
 
-Sebagai pemeriksaan, peluang gabungan dan peluang komplemennya berjumlah <InlineMath math="2/3+1/3=1" />.
+**Soal 4**. Karena saling lepas, <InlineMath math="P(A \cup B) = 0{,}3 + 0{,}5 = 0{,}8" />, dan peluang tidak satu pun terjadi adalah <InlineMath math="1 - 0{,}8 = 0{,}2" />. Keduanya **tidak saling bebas**, karena <InlineMath math="P(A \cap B) = 0" /> sedangkan <InlineMath math="P(A)\,P(B) = 0{,}15" />. Periksa: <InlineMath math="0{,}8 + 0{,}2 = 1" />.

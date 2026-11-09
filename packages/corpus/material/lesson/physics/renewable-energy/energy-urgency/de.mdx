@@ -20,6 +20,31 @@ Die Energie stammt aus einer Quelle und wird in elektrische Energie umgewandelt.
 
 Kraftwerke müssen genug Leistung erzeugen, und das Stromnetz muss sie bei steigendem Bedarf übertragen können.
 
+Netze übertragen Leistung mit Hochspannung, weil der Verlust in den Leitungen <InlineMath math="I^2R" /> ist und <InlineMath math="I=P/V" /> gilt. Wer <InlineMath math="100\text{ kW}" /> durch <InlineMath math="1\ \Omega" /> schickt, verliert bei <InlineMath math="1\text{ kV}" /> <InlineMath math="10\%" />, bei <InlineMath math="10\text{ kV}" /> aber nur <InlineMath math="0{,}1\%" />. Zoom darauf, wie schnell die Kurve fällt.
+
+<MathVisual
+  title={<>Höhere Spannung, kleinere Verluste</>}
+  description={<>Anteil von 100 kW, der in einer 1-Ohm-Leitung verloren geht, über der Leitungsspannung. Waagerecht: kV. Senkrecht: Ein Gitterschritt entspricht 2 Prozent.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 10.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "loss", kind: "polyline", appearance: "warning", vertices: [{ x: 1, y: 5 }, { x: 1.25, y: 10 / (5 / 4) ** 2 / 2 }, { x: 1.5, y: 10 / (6 / 4) ** 2 / 2 }, { x: 1.75, y: 10 / (7 / 4) ** 2 / 2 }, { x: 2, y: 10 / (8 / 4) ** 2 / 2 }, { x: 2.25, y: 10 / (9 / 4) ** 2 / 2 }, { x: 2.5, y: 10 / (10 / 4) ** 2 / 2 }, { x: 2.75, y: 10 / (11 / 4) ** 2 / 2 }, { x: 3, y: 10 / (12 / 4) ** 2 / 2 }, { x: 3.25, y: 10 / (13 / 4) ** 2 / 2 }, { x: 3.5, y: 10 / (14 / 4) ** 2 / 2 }, { x: 3.75, y: 10 / (15 / 4) ** 2 / 2 }, { x: 4, y: 10 / (16 / 4) ** 2 / 2 }, { x: 4.25, y: 10 / (17 / 4) ** 2 / 2 }, { x: 4.5, y: 10 / (18 / 4) ** 2 / 2 }, { x: 4.75, y: 10 / (19 / 4) ** 2 / 2 }, { x: 5, y: 10 / (20 / 4) ** 2 / 2 }, { x: 5.25, y: 10 / (21 / 4) ** 2 / 2 }, { x: 5.5, y: 10 / (22 / 4) ** 2 / 2 }, { x: 5.75, y: 10 / (23 / 4) ** 2 / 2 }, { x: 6, y: 10 / (24 / 4) ** 2 / 2 }, { x: 6.25, y: 10 / (25 / 4) ** 2 / 2 }, { x: 6.5, y: 10 / (26 / 4) ** 2 / 2 }, { x: 6.75, y: 10 / (27 / 4) ** 2 / 2 }, { x: 7, y: 10 / (28 / 4) ** 2 / 2 }, { x: 7.25, y: 10 / (29 / 4) ** 2 / 2 }, { x: 7.5, y: 10 / (30 / 4) ** 2 / 2 }, { x: 7.75, y: 10 / (31 / 4) ** 2 / 2 }, { x: 8, y: 10 / (32 / 4) ** 2 / 2 }, { x: 8.25, y: 10 / (33 / 4) ** 2 / 2 }, { x: 8.5, y: 10 / (34 / 4) ** 2 / 2 }, { x: 8.75, y: 10 / (35 / 4) ** 2 / 2 }, { x: 9, y: 10 / (36 / 4) ** 2 / 2 }, { x: 9.25, y: 10 / (37 / 4) ** 2 / 2 }, { x: 9.5, y: 10 / (38 / 4) ** 2 / 2 }, { x: 9.75, y: 10 / (39 / 4) ** 2 / 2 }, { x: 10, y: 10 / (40 / 4) ** 2 / 2 }] },
+      { id: "low", kind: "point", appearance: "warning", at: { x: 1, y: 5 } },
+      { id: "high", kind: "point", appearance: "construction", at: { x: 10, y: 10 / 10 ** 2 / 2 } },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "high", objectId: "high", at: { x: 10, y: 10 / 10 ** 2 / 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    low: <InlineMath math="1\text{ kV}:\ I=100\text{ A},\ 10\%" />,
+    high: <InlineMath math="10\text{ kV}:\ I=10\text{ A},\ 0{,}1\%" />,
+  }}
+/>
+
 ## Der Bedarf vieler Geräte summiert sich
 
 Eine einzelne Lampe wirkt unbedeutend. Der Energiebedarf wird jedoch groß, wenn viele Menschen viele Geräte gleichzeitig nutzen.
@@ -56,6 +81,36 @@ Vergleiche zwei Geräte, die jeweils eine Stunde lang konstant <InlineMath math=
 | Beide laufen von 18:00 bis 19:00 Uhr | <InlineMath math="1+1=2 \text{ kW}" /> | <InlineMath math="2 \times 1=2 \text{ kWh}" /> |
 | Erstes Gerät von 18:00 bis 19:00 Uhr, zweites von 19:00 bis 20:00 Uhr | <InlineMath math="1 \text{ kW}" /> | <InlineMath math="1 \times 1+1 \times 1=2 \text{ kWh}" /> |
 
+Hier sind beide Zeitpläne als Leistung über den Abend. Der orange Plan lässt beide Geräte gleichzeitig laufen und springt auf eine Spitze von <InlineMath math="2\text{ kW}" />. Der violette Plan verteilt dieselbe Arbeit auf zwei Stunden und kommt nie über <InlineMath math="1\text{ kW}" />. Zähl die Fläche unter jeder Linie, also Leistung mal Zeit: Beide enthalten <InlineMath math="2\text{ kWh}" />. Die Energie bleibt gleich, nur die Spitze, die das Netz liefern muss, ändert sich.
+
+<MathVisual
+  title={<>Gleiche Energie, andere Spitze</>}
+  description={<>Leistung zweier 1-kW-Geräte von 17:00 bis 21:00 Uhr. Waagrecht: Uhrzeit in Stunden. Senkrecht: Leistung in kW.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.3 }, y: { min: -0.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "together", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 0 }, { x: 4, y: 0 }] },
+      { id: "staggered", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 0 }, { x: 4, y: 0 }] },
+    ],
+    labels: [
+      { key: "two", objectId: "together", at: { x: 1.5, y: 2 }, placement: "above" },
+      { key: "one", objectId: "staggered", at: { x: 2.5, y: 1 }, placement: "above" },
+      { key: "h18", objectId: "together", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "h19", objectId: "together", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "h20", objectId: "staggered", at: { x: 3, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    two: <InlineMath math="2\text{ kW}" />,
+    one: <InlineMath math="1\text{ kW}" />,
+    h18: <>18:00</>,
+    h19: <>19:00</>,
+    h20: <>20:00</>,
+  }}
+/>
+
 ## Landesweite Quoten und örtliche Versorgungslücken
 
 Die **Elektrifizierungsquote** gibt den Anteil der Haushalte mit Stromzugang an. Die **Quote elektrifizierter Dörfer** bezeichnet den Anteil der Dörfer und städtischen Ortsteile, die bereits mit Strom versorgt werden.
@@ -80,6 +135,28 @@ Landesweite Quoten brauchen örtlichen Kontext. Die verbleibenden unversorgten G
 Steigende Nachfrage kann auf nützliche Leistungen wie Lernen, Gesundheitsversorgung, Lebensmittelproduktion, Verkehr und kleine Unternehmen zurückgehen. Das Risiko entsteht, wenn Versorgung und Netze nicht mithalten können. Dann drohen Stromausfälle, höhere Kosten oder ein stärkerer Einsatz umweltschädlicherer Energiequellen.
 
 Tagesenergiebedarf und Spitzenleistung sind zwei verschiedene Anforderungen. Ein System kann über den Tag genug Energie liefern und trotzdem überlastet sein, wenn viele Geräte gleichzeitig laufen. Erzeugung, Netz und Speicher müssen deshalb sowohl den gesamten Energiebedarf als auch <Highlight>die höchste gleichzeitige Leistungsanforderung</Highlight> abdecken.
+
+Ein Wachstum von <InlineMath math="3{,}6\%" /> pro Jahr verzinst sich. Die Kurve unten multipliziert ab 2026 jedes Jahr mit <InlineMath math="1{,}036" />, also liegt die Nachfrage 2030 etwa <InlineMath math="15{,}2\%" /> höher, etwas mehr als das Vierfache von <InlineMath math="3{,}6\%" />.
+
+<MathVisual
+  title={<>Nachfragewachstum verzinst sich</>}
+  description={<>Wachstum der Stromnachfrage um 3,6 % pro Jahr von 2026 bis 2030. Waagrecht: Jahre nach 2026. Senkrecht: Wachstum in Einheiten von 4 %.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -0.3, max: 4.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "growth", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: ((1.036 ** (0 / 5) - 1) * 100) / 4 }, { x: 1 / 5, y: ((1.036 ** (1 / 5) - 1) * 100) / 4 }, { x: 2 / 5, y: ((1.036 ** (2 / 5) - 1) * 100) / 4 }, { x: 3 / 5, y: ((1.036 ** (3 / 5) - 1) * 100) / 4 }, { x: 4 / 5, y: ((1.036 ** (4 / 5) - 1) * 100) / 4 }, { x: 1, y: ((1.036 ** (5 / 5) - 1) * 100) / 4 }, { x: 6 / 5, y: ((1.036 ** (6 / 5) - 1) * 100) / 4 }, { x: 7 / 5, y: ((1.036 ** (7 / 5) - 1) * 100) / 4 }, { x: 8 / 5, y: ((1.036 ** (8 / 5) - 1) * 100) / 4 }, { x: 9 / 5, y: ((1.036 ** (9 / 5) - 1) * 100) / 4 }, { x: 2, y: ((1.036 ** (10 / 5) - 1) * 100) / 4 }, { x: 11 / 5, y: ((1.036 ** (11 / 5) - 1) * 100) / 4 }, { x: 12 / 5, y: ((1.036 ** (12 / 5) - 1) * 100) / 4 }, { x: 13 / 5, y: ((1.036 ** (13 / 5) - 1) * 100) / 4 }, { x: 14 / 5, y: ((1.036 ** (14 / 5) - 1) * 100) / 4 }, { x: 3, y: ((1.036 ** (15 / 5) - 1) * 100) / 4 }, { x: 16 / 5, y: ((1.036 ** (16 / 5) - 1) * 100) / 4 }, { x: 17 / 5, y: ((1.036 ** (17 / 5) - 1) * 100) / 4 }, { x: 18 / 5, y: ((1.036 ** (18 / 5) - 1) * 100) / 4 }, { x: 19 / 5, y: ((1.036 ** (19 / 5) - 1) * 100) / 4 }, { x: 4, y: ((1.036 ** (20 / 5) - 1) * 100) / 4 }] },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: ((1.036 ** 4 - 1) * 100) / 4 } },
+    ],
+    labels: [
+      { key: "end", objectId: "end", at: { x: 4, y: ((1.036 ** 4 - 1) * 100) / 4 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    end: <InlineMath math="2030:\ +15{,}2\%" />,
+  }}
+/>
 
 ## Sechs Fragen zur Bewertung des Energiebedarfs
 

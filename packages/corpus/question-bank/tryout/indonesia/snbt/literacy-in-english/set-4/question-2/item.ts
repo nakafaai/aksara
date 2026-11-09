@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
+  },
+  stimulus: "deep-vents",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The mean result with the change was $$-4^{\\circ}\\text{C}$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
+          label: "It catches small animals that drift past in the current.",
         },
         {
           correct: false,
-          label:
-            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
-        },
-        {
-          correct: false,
-          label:
-            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
-        },
-        {
-          correct: false,
-          label:
-            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
+          label: "It produces the food that the worm's bacteria later digest.",
         },
         {
           correct: true,
           label:
-            "The salted samples produced a mean of $$-4^{\\circ}\\text{C}$$ under the stated test conditions. This is the trial result, not a claim about every freezer.",
+            "It takes in the chemicals the bacteria need and passes them on.",
+        },
+        {
+          correct: false,
+          label: "It warns other animals that the worm's body is poisonous.",
+        },
+        {
+          correct: false,
+          label: "It allows the worm to swim between vents when one closes.",
         },
       ],
     },

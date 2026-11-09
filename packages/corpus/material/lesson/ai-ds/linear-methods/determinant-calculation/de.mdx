@@ -114,6 +114,23 @@ Ihre Determinante ist:
 
 > Für alle drei Matrizentypen ist die Determinante gleich <Highlight>dem Produkt aller Hauptdiagonalelemente</Highlight>.
 
+Bei <InlineMath math="U=\begin{pmatrix}3&3/2\\0&2\end{pmatrix}" /> schiebt der Eintrag oberhalb der Diagonale nur die zweite Spalte zur Seite. Grundseite und Höhe bleiben <InlineMath math="3" /> und <InlineMath math="2" />, also gilt <InlineMath math="\det U=3\cdot2=6" />, das Produkt der Diagonaleinträge.
+
+<MathVisual
+  title={<>Die Scherung erhält den Flächeninhalt <InlineMath math="3\cdot2=6" /></>}
+  description={<>Das violette Parallelogramm wird von der Spalte <InlineMath math="(3,0)" /> und der türkisen Spalte <InlineMath math="(3/2,2)" /> der oberen Dreiecksmatrix <InlineMath math="U" /> aufgespannt. Das graue Rechteck gehört zu <InlineMath math="\operatorname{diag}(3,2)" />. Beide haben den Flächeninhalt <InlineMath math="6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rectangle", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 0, y: 2 }], appearance: "reference" },
+      { id: "sheared", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 9 / 2, y: 2 }, { x: 3 / 2, y: 2 }], appearance: "secondary" },
+      { id: "column", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 2, y: 2 }, appearance: "construction" },
+    ],
+  }}
+/>
+
 ## Elementarmatrizen
 
 Elementarmatrizen sind Matrizen, die aus der Identitätsmatrix mit einer elementaren Zeilenoperation erhalten werden. Die Determinanten elementarer Matrizen haben leicht zu berechnende Werte:
@@ -131,6 +148,23 @@ Elementarmatrizen sind Matrizen, die aus der Identitätsmatrix mit einer element
     <BlockMath math="\det P_i^j(\lambda) = 1" />
 
 Bei Vertauschungen und Transvektionen bezeichnen die Indizes **zwei verschiedene Zeilen**, also <InlineMath math="i\neq j" />. Eine einzelne Zeilenvertauschung wechselt das Vorzeichen der Determinante. Das Addieren eines Vielfachen einer Zeile zu einer anderen lässt die Determinante dagegen unverändert.
+
+Nimm die Zeilen von <InlineMath math="A=\begin{pmatrix}2&1\\1&3\end{pmatrix}" />, deren Determinante <InlineMath math="2\cdot3-1\cdot1=5" /> ist. Ziehst du die halbe erste Zeile von der zweiten ab, wandert die zweite Zeile entlang einer Geraden parallel zur ersten Zeile. Das Parallelogramm behält also Grundseite und Höhe.
+
+<MathVisual
+  title={<>Eine Transvektion verschiebt eine Zeile, ohne den Flächeninhalt zu ändern</>}
+  description={<>Das violette Parallelogramm benutzt die Zeilen <InlineMath math="(2,1)" /> und <InlineMath math="(1,3)" />. Nach <InlineMath math="R_2\leftarrow R_2-\tfrac12R_1" /> wird die zweite Zeile zu <InlineMath math="(0,5/2)" /> und ergibt das türkise Parallelogramm. Die orange Strecke zeigt die Verschiebung parallel zur ersten Zeile. Beide Flächeninhalte sind <InlineMath math="5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "before", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 3, y: 4 }, { x: 1, y: 3 }], appearance: "secondary" },
+      { id: "after", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 2, y: 7 / 2 }, { x: 0, y: 5 / 2 }], appearance: "construction" },
+      { id: "slide", kind: "segment", from: { x: 1, y: 3 }, to: { x: 0, y: 5 / 2 }, appearance: "primary" },
+    ],
+  }}
+/>
 
 ## Gaußsche Eliminierung zur Determinantenberechnung
 
@@ -183,3 +217,57 @@ Da es **einen Zeilentausch** gibt (<InlineMath math="p = 1" />):
 <BlockMath math="= (-1)^1 \cdot 1 \cdot 2 \cdot 6" />
 <BlockMath math="= -12" />
 </MathContainer>
+
+Dreh die beiden schiefen Spate unten. Der rechte wird von den Spalten von <InlineMath math="A" /> aufgespannt, der linke von den Spalten von <InlineMath math="R" />, wobei zusammengehörige Spalten dieselbe Farbe haben. Jeder Eliminationsschritt addiert ein Vielfaches einer Zeile zu einer anderen, und das schert den Spat, ohne sein Volumen zu ändern. Die eine Zeilenvertauschung dreht nur die Orientierung um, deshalb wird das Vorzeichen negativ. Beide Spate haben also das Volumen <InlineMath math="12" />, und im linken kannst du es als Grundfläche <InlineMath math="1\cdot2" /> mal Höhe <InlineMath math="6" /> ablesen.
+
+<MathVisual
+  title={<>Dasselbe Volumen vor und nach der Elimination</>}
+  description={<>Der rechte Spat wird von den Spalten von <InlineMath math="A" /> aufgespannt, der linke von den Spalten von <InlineMath math="R" />. Beide haben das Volumen <InlineMath math="12=|\det A|" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 6.5 }, y: { min: -2.5, max: 4.5 }, z: { min: -0.5, max: 6.5 } },
+    view: { kind: "isometric", target: { x: -1, y: 1, z: 2 } },
+    objects: [
+      { id: "a-edge-a", kind: "segment", from: { x: 0, y: 2, z: 1 }, to: { x: 3, y: 4, z: 1 }, appearance: "reference" },
+      { id: "a-edge-b", kind: "segment", from: { x: 0, y: 2, z: 1 }, to: { x: 3, y: 2, z: 2 }, appearance: "reference" },
+      { id: "a-edge-c", kind: "segment", from: { x: 3, y: 2, z: 0 }, to: { x: 3, y: 4, z: 1 }, appearance: "reference" },
+      { id: "a-edge-d", kind: "segment", from: { x: 3, y: 2, z: 0 }, to: { x: 6, y: 2, z: 1 }, appearance: "reference" },
+      { id: "a-edge-e", kind: "segment", from: { x: 3, y: 0, z: 1 }, to: { x: 3, y: 2, z: 2 }, appearance: "reference" },
+      { id: "a-edge-f", kind: "segment", from: { x: 3, y: 0, z: 1 }, to: { x: 6, y: 2, z: 1 }, appearance: "reference" },
+      { id: "a-edge-g", kind: "segment", from: { x: 3, y: 4, z: 1 }, to: { x: 6, y: 4, z: 2 }, appearance: "reference" },
+      { id: "a-edge-h", kind: "segment", from: { x: 3, y: 2, z: 2 }, to: { x: 6, y: 4, z: 2 }, appearance: "reference" },
+      { id: "a-edge-i", kind: "segment", from: { x: 6, y: 2, z: 1 }, to: { x: 6, y: 4, z: 2 }, appearance: "reference" },
+      { id: "r-edge-a", kind: "segment", from: { x: -4, y: 0, z: 0 }, to: { x: -4, y: 2, z: 0 }, appearance: "reference" },
+      { id: "r-edge-b", kind: "segment", from: { x: -4, y: 0, z: 0 }, to: { x: -3, y: -2, z: 6 }, appearance: "reference" },
+      { id: "r-edge-c", kind: "segment", from: { x: -5, y: 2, z: 0 }, to: { x: -4, y: 2, z: 0 }, appearance: "reference" },
+      { id: "r-edge-d", kind: "segment", from: { x: -5, y: 2, z: 0 }, to: { x: -4, y: 0, z: 6 }, appearance: "reference" },
+      { id: "r-edge-e", kind: "segment", from: { x: -4, y: -2, z: 6 }, to: { x: -3, y: -2, z: 6 }, appearance: "reference" },
+      { id: "r-edge-f", kind: "segment", from: { x: -4, y: -2, z: 6 }, to: { x: -4, y: 0, z: 6 }, appearance: "reference" },
+      { id: "r-edge-g", kind: "segment", from: { x: -4, y: 2, z: 0 }, to: { x: -3, y: 0, z: 6 }, appearance: "reference" },
+      { id: "r-edge-h", kind: "segment", from: { x: -3, y: -2, z: 6 }, to: { x: -3, y: 0, z: 6 }, appearance: "reference" },
+      { id: "r-edge-i", kind: "segment", from: { x: -4, y: 0, z: 6 }, to: { x: -3, y: 0, z: 6 }, appearance: "reference" },
+      { id: "a-col-1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 2, z: 1 }, appearance: "secondary" },
+      { id: "a-col-2", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 2, z: 0 }, appearance: "construction" },
+      { id: "a-col-3", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 0, z: 1 }, appearance: "answer" },
+      { id: "r-col-1", kind: "segment", from: { x: -5, y: 0, z: 0 }, to: { x: -4, y: 0, z: 0 }, appearance: "secondary" },
+      { id: "r-col-2", kind: "segment", from: { x: -5, y: 0, z: 0 }, to: { x: -5, y: 2, z: 0 }, appearance: "construction" },
+      { id: "r-col-3", kind: "segment", from: { x: -5, y: 0, z: 0 }, to: { x: -4, y: -2, z: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a-col-1", objectId: "a-col-1", at: { x: 0, y: 2, z: 1 }, placement: "above-right" },
+      { key: "a-col-2", objectId: "a-col-2", at: { x: 3, y: 2, z: 0 }, placement: "above-right" },
+      { key: "a-col-3", objectId: "a-col-3", at: { x: 3, y: 0, z: 1 }, placement: "above-right" },
+      { key: "r-col-1", objectId: "r-col-1", at: { x: -4, y: 0, z: 0 }, placement: "above-right" },
+      { key: "r-col-2", objectId: "r-col-2", at: { x: -5, y: 2, z: 0 }, placement: "above-right" },
+      { key: "r-col-3", objectId: "r-col-3", at: { x: -4, y: -2, z: 6 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "a-col-1": <InlineMath math="a^1" />,
+    "a-col-2": <InlineMath math="a^2" />,
+    "a-col-3": <InlineMath math="a^3" />,
+    "r-col-1": <InlineMath math="r^1" />,
+    "r-col-2": <InlineMath math="r^2" />,
+    "r-col-3": <InlineMath math="r^3" />,
+  }}
+/>

@@ -1,29 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "text-comparison",
+  },
+  stimulus: "essay-scoring",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Menjaga pintu masuk rumah dari pencuri",
+          label:
+            "Teks 2 menuduh data dalam Teks 1 sebagai hasil rekayasa dinas pendidikan.",
         },
         {
           correct: false,
-          label: "Membawa hasil panen dari luar kota",
-        },
-        {
-          correct: false,
-          label: "Menghias bagian hunian dengan lukisan dinding",
-        },
-        {
-          correct: false,
-          label: "Menjual roti langsung kepada pembeli di jalan",
+          label:
+            "Teks 2 memperluas usulan Teks 1 agar mesin juga menilai ujian di sekolah swasta.",
         },
         {
           correct: true,
-          label: "Menggiling biji-bijian yang diperlukan untuk membuat roti",
+          label:
+            "Teks 2 mengakui sebagian manfaat mesin, tetapi menolak menyerahkan nilai akhir kepadanya.",
+        },
+        {
+          correct: false,
+          label:
+            "Teks 2 membahas topik yang sama sekali berbeda dari topik dalam Teks 1.",
+        },
+        {
+          correct: false,
+          label:
+            "Teks 2 mendukung sepenuhnya rencana dinas pendidikan dalam Teks 1.",
         },
       ],
     },

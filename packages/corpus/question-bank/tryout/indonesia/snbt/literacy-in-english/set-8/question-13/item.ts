@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "scooter-pilot",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Progress depends on completing the larger task before asking another person to review it.",
+            "The city did not record how many trips riders made after month 2.",
         },
         {
           correct: false,
           label:
-            "The object or setting shapes the outcome more strongly than the character's specific choice.",
+            "The scooters' top speed limit was raised rather than lowered at the start of month 3.",
         },
         {
           correct: true,
           label:
-            "Jonas's progress began when the difficulty was turned into a specific, reviewable action.",
+            "Riders' growing experience could also explain the falling injury rate.",
         },
         {
           correct: false,
           label:
-            "The unresolved evidence should remain private until the character can offer a complete result.",
+            "The pilot ended before any injuries had been reported at all.",
         },
         {
           correct: false,
           label:
-            "The small action matters mainly because it postpones the unresolved part of the conflict.",
+            "Average trip length is the only figure the operator measured.",
         },
       ],
     },

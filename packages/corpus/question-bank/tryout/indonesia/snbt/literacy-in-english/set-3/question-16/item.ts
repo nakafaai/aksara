@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "cause-effect",
+  },
+  stimulus: "rosetta-stone",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "It was the oldest known example of Egyptian writing ever found.",
+        },
+        {
+          correct: false,
+          label:
+            "It explained in Greek exactly how each hieroglyph should be pronounced.",
+        },
+        {
+          correct: false,
+          label:
+            "It showed every hieroglyphic sign together with a picture of its meaning.",
+        },
+        {
           correct: true,
           label:
-            "Nora rotates an accurate map to match the passenger's viewpoint, making the route usable and changing what the folded map represents.",
+            "It gave the same decree in hieroglyphs and in readable Greek.",
         },
         {
           correct: false,
           label:
-            "The recurring object mainly establishes the setting and changes little in relation to the conflict.",
-        },
-        {
-          correct: false,
-          label:
-            "The character's final decision removes the ambiguity that the recurring object previously carried.",
-        },
-        {
-          correct: false,
-          label:
-            "The passage uses irony as a descriptive label without tying it to the character's choice.",
-        },
-        {
-          correct: false,
-          label:
-            "The conflict is settled by the setting before the character's final action changes the object's meaning.",
+            "It was found inside a temple that Champollion had studied for years.",
         },
       ],
     },

@@ -1,30 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "theme-message",
+  },
+  stimulus: "wall-clock",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Tiga Puluh Dua Lampu yang Pasti Menyala",
+          label: "akhirnya tahu bahwa pendengaran Kakek sudah lemah",
         },
         {
           correct: false,
-          label: "Perdebatan Pak Udin dan Bu Sari di Dekat Jembatan",
+          label: "ingin menghentikan kebiasaan memutar jam setiap Senin",
         },
         {
           correct: false,
-          label: "Kepala Kantor dan Peta Bersih yang Selesai",
+          label:
+            "merasa terpaksa menggantikan tugas yang dulu selalu dikerjakan Kakek",
         },
         {
           correct: true,
-          label: "Peta Berlapis untuk Cahaya yang Berubah",
+          label:
+            "mulai merasakan makna kebiasaan itu setelah menjalaninya sendiri",
         },
         {
           correct: false,
-          label: "Gang Gelap yang Tidak Pernah Diperiksa",
+          label: "baru mengetahui jumlah putaran jam yang benar dari Ibu",
         },
       ],
     },

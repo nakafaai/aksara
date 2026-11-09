@@ -99,6 +99,27 @@ print('x = {0:12e}'.format(x))      # Output: x = 1.239800e+02`
   ]}
 />
 
+Lebar <InlineMath math="15" /> menyisakan <InlineMath math="15-3=12" /> kolom untuk karakter pengisi di sekitar `'xxx'`. Rata kiri menaruh semua pengisi di kanan, rata kanan menaruh semuanya di kiri, dan rata tengah membaginya menjadi <InlineMath math="6" /> dan <InlineMath math="6" />.
+
+<MathVisual
+  title={<><code>'xxx'</code> dalam lebar <InlineMath math="15" /> dengan tiga perataan</>}
+  description={<>Setiap baris adalah <InlineMath math="15" /> kolom. Persegi panjang ungu adalah <code>'xxx'</code> dan persegi panjang abu-abu adalah pengisi. Dari atas ke bawah: rata kiri, rata kanan, dan rata tengah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 15.5 }, y: { min: -0.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-text", kind: "polygon", vertices: [{ x: 0, y: 1.7 }, { x: 3, y: 1.7 }, { x: 3, y: 2.3 }, { x: 0, y: 2.3 }], appearance: "secondary" },
+      { id: "left-fill", kind: "polygon", vertices: [{ x: 3, y: 1.7 }, { x: 15, y: 1.7 }, { x: 15, y: 2.3 }, { x: 3, y: 2.3 }], appearance: "reference" },
+      { id: "right-fill", kind: "polygon", vertices: [{ x: 0, y: 0.7 }, { x: 12, y: 0.7 }, { x: 12, y: 1.3 }, { x: 0, y: 1.3 }], appearance: "reference" },
+      { id: "right-text", kind: "polygon", vertices: [{ x: 12, y: 0.7 }, { x: 15, y: 0.7 }, { x: 15, y: 1.3 }, { x: 12, y: 1.3 }], appearance: "secondary" },
+      { id: "center-fill-a", kind: "polygon", vertices: [{ x: 0, y: -0.3 }, { x: 6, y: -0.3 }, { x: 6, y: 0.3 }, { x: 0, y: 0.3 }], appearance: "reference" },
+      { id: "center-text", kind: "polygon", vertices: [{ x: 6, y: -0.3 }, { x: 9, y: -0.3 }, { x: 9, y: 0.3 }, { x: 6, y: 0.3 }], appearance: "secondary" },
+      { id: "center-fill-b", kind: "polygon", vertices: [{ x: 9, y: -0.3 }, { x: 15, y: -0.3 }, { x: 15, y: 0.3 }, { x: 9, y: 0.3 }], appearance: "reference" },
+    ],
+  }}
+/>
+
 ## Cara Merujuk Argumen
 
 Replacement field memilih **nilai yang akan dimasukkan ke teks**. Pakai indeks untuk memilih argumen posisi, nama untuk memilih argumen kata kunci, atau penomoran otomatis untuk mengambil argumen posisi secara berurutan.
@@ -171,9 +192,9 @@ Arti presisi bergantung pada tipe penyajian. Untuk `f` dan `e`, presisi menentuk
 
 | Tipe format | Perilaku presisi | Contoh |
 |-------------|-------------------|--------|
-| `f/F` | Tempat desimal | `{:.2f}` → `123.99` |
-| `e/E` | Tempat desimal dalam eksponensial | `{:.2e}` → `1.24e+02` |
-| `g/G` | Digit signifikan | `{:.3g}` → `124` |
+| `f/F` | Tempat desimal | `{:.2f}` <InlineMath math="\rightarrow" /> `123.99` |
+| `e/E` | Tempat desimal dalam eksponensial | `{:.2e}` <InlineMath math="\rightarrow" /> `1.24e+02` |
+| `g/G` | Digit signifikan | `{:.3g}` <InlineMath math="\rightarrow" /> `124` |
 
 ### Opsi Tanda
 
@@ -226,6 +247,56 @@ print('Tiny number f: {0:12f}'.format(1.1e-10))  # Output: Tiny number f:     0.
 print('Tiny number g: {0:12g}'.format(1.1e-10))  # Output: Tiny number g:      1.1e-10`
     }
   ]}
+/>
+
+Spesifikasi `.1f` menampilkan setiap bilangan dengan satu angka desimal, jadi semua <InlineMath math="x" /> di satu anak tangga tampil sebagai angka yang sama. Perbesar tangga ungu: setiap anak tangga selebar <InlineMath math="0.1" /> dan berpusat di nilai yang ditampilkan, misalnya semua nilai antara <InlineMath math="0.35" /> dan <InlineMath math="0.45" /> tampil sebagai `0.4`. Tepat di batas seperti <InlineMath math="0.25" />, hasilnya bergantung pada nilai biner yang tersimpan, jadi gambar ini tidak menandai nilai di batasnya. Nilai aslinya tidak berubah, hanya tampilannya.
+
+<MathVisual
+  title={<>Presisi <code>.1f</code> sebagai tangga pembulatan</>}
+  description={<>Tangga ungu adalah nilai yang tampil dengan <code>.1f</code> untuk masukan dari nol sampai satu, garis abu-abu adalah garis identitas.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 1.1 }, y: { min: -0.1, max: 1.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "identity", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "step-a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / 20, y: 0 }, appearance: "secondary" },
+      { id: "step-b", kind: "segment", from: { x: 1 / 20, y: 1 / 10 }, to: { x: 3 / 20, y: 1 / 10 }, appearance: "secondary" },
+      { id: "step-c", kind: "segment", from: { x: 3 / 20, y: 2 / 10 }, to: { x: 5 / 20, y: 2 / 10 }, appearance: "secondary" },
+      { id: "step-d", kind: "segment", from: { x: 5 / 20, y: 3 / 10 }, to: { x: 7 / 20, y: 3 / 10 }, appearance: "secondary" },
+      { id: "step-e", kind: "segment", from: { x: 7 / 20, y: 4 / 10 }, to: { x: 9 / 20, y: 4 / 10 }, appearance: "secondary" },
+      { id: "step-f", kind: "segment", from: { x: 9 / 20, y: 5 / 10 }, to: { x: 11 / 20, y: 5 / 10 }, appearance: "secondary" },
+      { id: "step-g", kind: "segment", from: { x: 11 / 20, y: 6 / 10 }, to: { x: 13 / 20, y: 6 / 10 }, appearance: "secondary" },
+      { id: "step-h", kind: "segment", from: { x: 13 / 20, y: 7 / 10 }, to: { x: 15 / 20, y: 7 / 10 }, appearance: "secondary" },
+      { id: "step-i", kind: "segment", from: { x: 15 / 20, y: 8 / 10 }, to: { x: 17 / 20, y: 8 / 10 }, appearance: "secondary" },
+      { id: "step-j", kind: "segment", from: { x: 17 / 20, y: 9 / 10 }, to: { x: 19 / 20, y: 9 / 10 }, appearance: "secondary" },
+      { id: "step-k", kind: "segment", from: { x: 19 / 20, y: 1 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "identity", objectId: "identity", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "step", objectId: "step-e", at: { x: 9 / 20, y: 4 / 10 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "identity": <InlineMath math="y=x" />,
+    "step": 'float(f"{x:.1f}")',
+  }}
+/>
+
+Setiap digit presisi tambahan memperkecil galat pembulatan kira-kira sepuluh kali. Untuk `math.pi`, format dengan presisi <InlineMath math="0" /> menampilkan <InlineMath math="3" /> dan galatnya sekitar <InlineMath math="0.14" />, sedangkan presisi <InlineMath math="4" /> menampilkan <InlineMath math="3.1416" /> dan galatnya di bawah <InlineMath math="10^{-5}" />.
+
+<BarChart
+  title={<>Galat pembulatan <code>math.pi</code> untuk presisi <InlineMath math="0" /> sampai <InlineMath math="4" /></>}
+  description={<>Setiap batang adalah selisih antara <InlineMath math="\pi" /> dan nilai yang tampil dengan banyak digit desimal yang tertulis di bawahnya.</>}
+  yAxisLabel="Galat pembulatan"
+  data={[
+    { name: "0", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 0) / 10 ** 0) },
+    { name: "1", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 1) / 10 ** 1) },
+    { name: "2", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 2) / 10 ** 2) },
+    { name: "3", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 3) / 10 ** 3) },
+    { name: "4", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 4) / 10 ** 4) },
+  ]}
+  chartConfig={{ value: { label: "Galat pembulatan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## F Strings dan Template Dinamis

@@ -1,0 +1,29 @@
+The equation compares two determinants, so the first step is to **turn each determinant into an algebraic expression in** <InlineMath math="x" />. After that, the determinant equation becomes an ordinary quadratic equation.
+
+The determinant of a <InlineMath math="2\times2" /> matrix is the product of the main diagonal minus the product of the other diagonal.
+
+<BlockMath math="\begin{vmatrix} x & 2 \\ 3 & x-1 \end{vmatrix}=x(x-1)-2\cdot3=x^2-x-6" />
+
+Expand the <InlineMath math="3\times3" /> determinant along its first row. The middle entry of that row is <InlineMath math="0" />, so only two cofactors need to be calculated. The cofactor signs along the first row are positive, negative, positive.
+
+<BlockMath math="\begin{aligned}
+\begin{vmatrix} 1 & 0 & 2 \\ 0 & x & 1 \\ 1 & 1 & 3 \end{vmatrix}&=1\begin{vmatrix} x & 1 \\ 1 & 3 \end{vmatrix}-0\begin{vmatrix} 0 & 1 \\ 1 & 3 \end{vmatrix}+2\begin{vmatrix} 0 & x \\ 1 & 1 \end{vmatrix} \\
+&=1(3x-1)-0+2(0\cdot1-x\cdot1) \\
+&=3x-1-2x=x-1
+\end{aligned}" />
+
+Set the two results equal and move every term to the left side.
+
+<BlockMath math="\begin{aligned}
+x^2-x-6&=x-1 \\
+x^2-2x-5&=0
+\end{aligned}" />
+
+The discriminant of this quadratic is <InlineMath math="D=(-2)^2-4(1)(-5)=24" />. Since <InlineMath math="D>0" />, there are two different real values of <InlineMath math="x" />, namely <InlineMath math="x=1+\sqrt6" /> and <InlineMath math="x=1-\sqrt6" />. The sum-of-roots formula gives <InlineMath math="-\frac{b}{a}=-\frac{-2}{1}=2" />, and adding the roots directly gives the same value, <InlineMath math="(1+\sqrt6)+(1-\sqrt6)=2" />.
+
+So the sum of all real values of <InlineMath math="x" /> that satisfy the equation is <InlineMath math="2" />.
+
+- <InlineMath math="-5" /> is the **product** of the two roots, <InlineMath math="\frac{c}{a}" />, not their sum.
+- <InlineMath math="-2" /> comes from dropping the minus sign in the formula <InlineMath math="-\frac{b}{a}" />.
+- <InlineMath math="1" /> comes from solving only <InlineMath math="x^2-x-6=0" />, as if the right side were zero. The <InlineMath math="3\times3" /> determinant equals <InlineMath math="x-1" />, not zero.
+- <InlineMath math="6" /> appears if the minor of the third entry is computed as <InlineMath math="x\cdot1-0\cdot1=x" /> instead of <InlineMath math="0\cdot1-x\cdot1=-x" />. The right-hand determinant then becomes <InlineMath math="5x-1" />, and the equation <InlineMath math="x^2-6x-5=0" /> has root sum <InlineMath math="6" />.

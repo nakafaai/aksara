@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "school-distance",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Definisi *konduksi* membuktikan bahwa suhu akhir kedua wadah hanya ditentukan oleh daya hantar bahannya.",
+            "Sebagian besar orang tua di kota besar lebih suka sekolah yang dekat rumah.",
         },
         {
           correct: false,
           label:
-            "Definisi itu menjadikan *konduksi* nama untuk seluruh alat, bukan proses tertentu yang disimulasikan.",
+            "Les tambahan di kota besar semakin mahal dalam beberapa tahun terakhir.",
         },
         {
           correct: false,
           label:
-            "Istilah *konduksi* menghapus keterbatasan representasi karena prosesnya dapat diulang di kelas.",
+            "Sekolah unggulan di kota memiliki fasilitas yang lebih lengkap daripada sekolah lain.",
+        },
+        {
+          correct: false,
+          label:
+            "Pemeriksaan alamat memerlukan waktu yang lebih lama daripada biasanya.",
         },
         {
           correct: true,
           label:
-            "Definisi *konduksi* menjelaskan salah satu jalur perpindahan energi melalui dinding wadah, sekaligus mencegah seluruh pendinginan dianggap terjadi hanya melalui jalur itu.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi tersebut hanya menjelaskan bahan pembuat model dan tidak berhubungan dengan proses yang diamati.",
+            "Anak dari kecamatan tanpa SMA negeri hampir tidak pernah diterima di SMA negeri.",
         },
       ],
     },

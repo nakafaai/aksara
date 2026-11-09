@@ -1,0 +1,23 @@
+Most of the statements depend on the roots of <InlineMath math="Q(x)" />, so the most efficient step is to **factor <InlineMath math="Q(x)" /> completely**. The leading coefficient is <InlineMath math="1" />, so every integer root divides the constant term <InlineMath math="-6" />: it is <InlineMath math="\pm1" />, <InlineMath math="\pm2" />, <InlineMath math="\pm3" />, or <InlineMath math="\pm6" />.
+
+# Factoring
+
+Test <InlineMath math="x=1" />: <InlineMath math="Q(1)=1-5+5+5-6=0" />, so **<InlineMath math="x-1" /> is a factor** of <InlineMath math="Q(x)" />. Dividing <InlineMath math="Q(x)" /> by <InlineMath math="x-1" /> leaves a cubic quotient. Look for the next integer root in that quotient: <InlineMath math="x=-1" /> works because <InlineMath math="-1-4-1+6=0" />.
+
+<BlockMath math="\begin{aligned}
+Q(x)&=(x-1)(x^3-4x^2+x+6) \\
+&=(x-1)(x+1)(x^2-5x+6) \\
+&=(x-1)(x+1)(x-2)(x-3)
+\end{aligned}" />
+
+The roots of <InlineMath math="Q(x)=0" /> are <InlineMath math="-1" />, <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="3" />. Multiplying the four factors back together does give <InlineMath math="x^4-5x^3+5x^2+5x-6" />.
+
+# Judging each statement
+
+1. The statement that <InlineMath math="x+1" /> is a factor of <InlineMath math="Q(x)" /> is true. It appears in the factorization above, and <InlineMath math="Q(-1)=1+5+5-5-6=0" />.
+2. The statement that <InlineMath math="x+2" /> is a factor of <InlineMath math="Q(x)" /> is false, because <InlineMath math="Q(-2)=16+40+20-10-6=60\ne0" />.
+3. The statement about the remainder on division by <InlineMath math="x-4" /> is true. By the remainder theorem, the remainder is <InlineMath math="Q(4)=(4-1)(4+1)(4-2)(4-3)=3\cdot5\cdot2\cdot1=30" />.
+4. The statement that there are exactly two positive roots is false. There are **three** positive roots: <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="3" />.
+5. The statement about the product of the roots is true. The product of the four roots is <InlineMath math="(-1)\cdot1\cdot2\cdot3=-6" />. This agrees with the product-of-roots formula for a quartic, <InlineMath math="\frac{e}{a}=\frac{-6}{1}=-6" />.
+
+So the true statements are that <InlineMath math="x+1" /> is a factor of <InlineMath math="Q(x)" />, that the remainder on division by <InlineMath math="x-4" /> is <InlineMath math="30" />, and that the product of all roots is <InlineMath math="-6" />.

@@ -4,7 +4,7 @@ export const metadata = {
   description: "Spiegle Punkte an einer Geraden der Form x = k und leite die Bildkoordinaten aus gleichen horizontalen Abständen ab.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Geometrische Transformation",
 };
 
@@ -17,6 +17,39 @@ Ein Punkt auf der Spiegelgeraden bleibt fest. Liegt der Punkt außerhalb, befind
 Der **Mittelpunkt** der Verbindung zwischen Urbild und Bild liegt auf der Spiegelgeraden. Die Koordinate entlang der Geraden bleibt gleich. Aus der Mittelpunktkoordinate folgt:
 
 <BlockMath math="\frac{x+x'}{2}=k\quad\Longrightarrow\quad x+x'=2k\quad\Longrightarrow\quad x'=2k-x,\qquad y'=y" />
+
+Nimm die Achse <InlineMath math="x = 1" /> und den Punkt <InlineMath math="(-1, 3)" />. Er liegt 2 Einheiten links der Achse, also liegt sein Bild 2 Einheiten rechts davon, bei <InlineMath math="(3, 3)" />. Der Mittelwert der beiden x-Koordinaten, <InlineMath math="\frac{-1 + 3}{2} = 1" />, ist die Koordinate der Achse, und <InlineMath math="y" /> bleibt 3.
+
+<MathVisual
+  title={<>Gleiche Abstände zu <InlineMath math="x = 1" /></>}
+  description={<>Der Punkt <InlineMath math="(-1, 3)" /> und sein Bild <InlineMath math="(3, 3)" />, beide 2 Einheiten von der Achse <InlineMath math="x = 1" /> entfernt.</>}
+  labels={{
+    mirror: <InlineMath math="x = 1" />,
+    q: <InlineMath math="(-1, 3)" />,
+    image: <InlineMath math="(3, 3)" />,
+    left: <InlineMath math="2" />,
+    right: <InlineMath math="2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 1, y: 0 }, { x: 1, y: 4 }], appearance: "reference" },
+      { id: "left", kind: "segment", from: { x: -1, y: 3 }, to: { x: 1, y: 3 }, appearance: "construction" },
+      { id: "right", kind: "segment", from: { x: 1, y: 3 }, to: { x: 3, y: 3 }, appearance: "construction" },
+      { id: "q", kind: "point", at: { x: -1, y: 3 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 3, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 1, y: 4 }, placement: "right" },
+      { key: "q", objectId: "q", at: { x: -1, y: 3 }, placement: "below" },
+      { key: "image", objectId: "image", at: { x: 3, y: 3 }, placement: "below" },
+      { key: "left", objectId: "left", at: { x: 0, y: 3 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 2, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
 
 ## Einen Punkt an einer vertikalen Geraden spiegeln
 
@@ -44,52 +77,33 @@ Hier <InlineMath math="x=1" />, <InlineMath math="y=4" /> und <InlineMath math="
 
 Somit ist das Bild des Punktes <InlineMath math="A(1,4)" /> <InlineMath math="A'(5,4)" />.
 
-<LineEquation
-  title={
-    <>
-      Spiegelbild eines Punktes an der Geraden <InlineMath math="x=k" />
-    </>
-  }
-  description={
-    <>
-      Spiegelung des Punktes <InlineMath math="A(1,4)" /> an der Geraden{" "}
-      <InlineMath math="x=3" /> mit dem Bildpunkt{" "}
-      <InlineMath math="A'(5,4)" />.
-    </>
-  }
-  data={[
-    {
-      points: [
-        { x: 3, y: 1, z: 0 },
-        { x: 3, y: 6, z: 0 },
-      ],
-      smooth: false,
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="x=3" />, at: 1, offset: [0.5, 0.5, 0] }],
-    }, // Spiegelgerade
-    {
-      points: [{ x: 1, y: 4, z: 0 }],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A(1,4)" />, at: 0, offset: [-0.5, 0.6, 0] }],
-    },
-    {
-      points: [{ x: 5, y: 4, z: 0 }],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A'(5,4)" />, at: 0, offset: [0.2, 0.6, 0] }],
-    },
-    {
-      points: [
-        { x: 1, y: 4, z: 0 },
-        { x: 5, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#db2777",
-    }, // Horizontale Hilfslinie
-  ]}
-  cameraTarget={[3, 4, 0]}
-  cameraPosition={[3, 4, 8]}
+<MathVisual
+  title={<>Spiegelung an <InlineMath math="x = 3" /></>}
+  description={<>Die Achse <InlineMath math="x = 3" /> mit dem Fixpunkt <InlineMath math="P(3, 2)" /> und <InlineMath math="A(1, 4)" /> mit seinem Bild <InlineMath math="A'(5, 4)" />, beide 2 Einheiten von der Achse entfernt.</>}
+  labels={{
+    mirror: <InlineMath math="x = 3" />,
+    p: <InlineMath math="P = P'" />,
+    a: <InlineMath math="A(1, 4)" />,
+    image: <InlineMath math="A'(5, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 3, y: 0 }, { x: 3, y: 5 }], appearance: "reference" },
+      { id: "join", kind: "segment", from: { x: 1, y: 4 }, to: { x: 5, y: 4 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 3, y: 2 }, appearance: "answer" },
+      { id: "a", kind: "point", at: { x: 1, y: 4 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 5, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 4 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: 5, y: 4 }, placement: "above" },
+    ],
+  }}
 />
 
 ## Übungen
@@ -142,3 +156,32 @@ Aus <InlineMath math="x' = 2k - x" /> folgt <InlineMath math="0 = 2(-2) - x" />.
 </MathContainer>
 
 Somit sind die Koordinaten des Punktes <InlineMath math="C" /> <InlineMath math="C(-4,3)" />.
+
+Rückwärts rechnen nutzt denselben Mittelpunkt. Das Bild <InlineMath math="C'(0, 3)" /> liegt 2 Einheiten rechts von <InlineMath math="x = -2" />, also liegt der Ausgangspunkt <InlineMath math="C" /> 2 Einheiten links davon, bei <InlineMath math="(-4, 3)" />.
+
+<MathVisual
+  title={<><InlineMath math="C" /> aus seinem Bild bestimmen</>}
+  description={<>Die Achse <InlineMath math="x = -2" /> mit dem Bild <InlineMath math="C'(0, 3)" /> und dem Ausgangspunkt <InlineMath math="C(-4, 3)" />, beide 2 Einheiten von der Achse entfernt.</>}
+  labels={{
+    mirror: <InlineMath math="x = -2" />,
+    c: <InlineMath math="C(-4, 3)" />,
+    image: <InlineMath math="C'(0, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 1 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: -2, y: 0 }, { x: -2, y: 4 }], appearance: "reference" },
+      { id: "left", kind: "segment", from: { x: -4, y: 3 }, to: { x: -2, y: 3 }, appearance: "construction" },
+      { id: "right", kind: "segment", from: { x: -2, y: 3 }, to: { x: 0, y: 3 }, appearance: "construction" },
+      { id: "c", kind: "point", at: { x: -4, y: 3 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 0, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: -2, y: 4 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: -4, y: 3 }, placement: "below" },
+      { key: "image", objectId: "image", at: { x: 0, y: 3 }, placement: "below" },
+    ],
+  }}
+/>

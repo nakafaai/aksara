@@ -3,7 +3,7 @@ export const metadata = {
    description: "Kreispermutationen zählen relative Reihenfolgen. Beispiele erklären gleiche Rotationen, unterschiedliche Spiegelbilder und Anordnungen mit Zusatzbedingungen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Kombinatorik",
 };
 
@@ -14,6 +14,50 @@ Wenn an einem runden Tisch jede Person einen Platz im Uhrzeigersinn weiterrückt
 Das unterscheidet sie von einer linearen Permutation. In einer Reihe sind der erste und der letzte Platz eindeutig. Im Kreis gibt es keinen ausgezeichneten Startpunkt.
 
 Jedes Objekt kann daher als Bezugspunkt dienen. Lineare Reihenfolgen, die sich nur durch eine Drehung unterscheiden, beschreiben dieselbe Anordnung im Kreis.
+
+Dreh den linken Tisch um einen Platz im Uhrzeigersinn, dann erhältst du den rechten Tisch. Jede Person hat dieselben Nachbarn in derselben Reihenfolge, die beiden Bilder sind also eine Kreisanordnung, nicht zwei. Jede Anordnung von <InlineMath math="4" /> Personen kommt unter den <InlineMath math="4! = 24" /> Reihen <InlineMath math="4" />-mal vor, es bleiben also <InlineMath math="24 / 4 = 3! = 6" />.
+
+<MathVisual
+  title={<>Eine Drehung ergibt keine neue Anordnung</>}
+  description={<>Vier Personen an zwei runden Tischen. Der rechte Tisch ist der linke, um einen Platz gedreht, mit denselben Nachbarn.</>}
+  labels={{
+    la: <InlineMath math="A" />,
+    lb: <InlineMath math="B" />,
+    lc: <InlineMath math="C" />,
+    ld: <InlineMath math="D" />,
+    ra: <InlineMath math="A" />,
+    rb: <InlineMath math="B" />,
+    rc: <InlineMath math="C" />,
+    rd: <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "lring", kind: "circle", center: { x: -1.6, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "la", kind: "point", at: { x: -1.6, y: 1 }, appearance: "primary" },
+      { id: "lb", kind: "point", at: { x: -0.6, y: 0 }, appearance: "secondary" },
+      { id: "lc", kind: "point", at: { x: -1.6, y: -1 }, appearance: "answer" },
+      { id: "ld", kind: "point", at: { x: -2.6, y: 0 }, appearance: "highlight" },
+      { id: "rring", kind: "circle", center: { x: 1.6, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "rd", kind: "point", at: { x: 1.6, y: 1 }, appearance: "highlight" },
+      { id: "ra", kind: "point", at: { x: 2.6, y: 0 }, appearance: "primary" },
+      { id: "rb", kind: "point", at: { x: 1.6, y: -1 }, appearance: "secondary" },
+      { id: "rc", kind: "point", at: { x: 0.6, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "la", objectId: "la", at: { x: -1.6, y: 1 }, placement: "above" },
+      { key: "lb", objectId: "lb", at: { x: -0.6, y: 0 }, placement: "right" },
+      { key: "lc", objectId: "lc", at: { x: -1.6, y: -1 }, placement: "below" },
+      { key: "ld", objectId: "ld", at: { x: -2.6, y: 0 }, placement: "left" },
+      { key: "rd", objectId: "rd", at: { x: 1.6, y: 1 }, placement: "above" },
+      { key: "ra", objectId: "ra", at: { x: 2.6, y: 0 }, placement: "right" },
+      { key: "rb", objectId: "rb", at: { x: 1.6, y: -1 }, placement: "below" },
+      { key: "rc", objectId: "rc", at: { x: 0.6, y: 0 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Formel der Kreispermutation
 
@@ -49,6 +93,16 @@ Für <InlineMath math="3" /> Kinder ergibt sich <InlineMath math="P_3 = (3-1)! =
 
 Die Formel <InlineMath math="(n-1)!" /> fasst gedrehte Anordnungen zusammen, zählt Spiegelbilder aber weiterhin getrennt. Das passt zu Personen, die zur Tischmitte schauen, denn eine gespiegelte Reihenfolge vertauscht die linken und rechten Nachbarn. Ein Armband lässt sich dagegen umdrehen. Bei <InlineMath math="n\geq3" /> verschiedenen Perlen bildet jede Kreisreihenfolge mit einem anderen Spiegelbild ein Paar. Daher bleiben <InlineMath math="\frac{(n-1)!}{2}" /> Anordnungen.
 
+Fünf Personen können sich auf <InlineMath math="5! = 120" /> Arten in einer Reihe aufstellen, um einen Tisch gibt es aber nur <InlineMath math="4! = 24" /> verschiedene Anordnungen. Jede Kreisanordnung kommt unter den Reihen <InlineMath math="5" />-mal vor, einmal für jede Drehung, und <InlineMath math="120 / 5 = 24" />.
+
+<BarChart
+  title={<>Fünf Personen in einer Reihe und um einen Tisch</>}
+  description={<>Die Anzahl der Anordnungen von fünf Personen in einer Reihe und um einen runden Tisch.</>}
+  yAxisLabel="Anordnungen"
+  data={[["in einer Reihe", 5 * 4 * 3 * 2 * 1], ["um einen Tisch", 4 * 3 * 2 * 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Anordnungen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Kreisförmige Anordnungen zählen
 
 Dieselbe Formel zählt **kreisförmige Sitzordnungen** und andere Formationen um einen Mittelpunkt. Halte eine Person als Bezugspunkt fest und zähle die Reihenfolge der übrigen Personen relativ zu ihr. Bei festen Paaren werden stattdessen die Paare als Einheiten angeordnet.
@@ -58,6 +112,20 @@ Dieselbe Formel zählt **kreisförmige Sitzordnungen** und andere Formationen um
 Fünf Lernende sitzen für eine Diskussion **an einem runden Tisch**. Die Anzahl der Sitzordnungen beträgt:
 
 <BlockMath math="\begin{aligned} P_5 &amp;= (5-1)! \\ &amp;= 4! \\ &amp;= 4 \times 3 \times 2 \times 1 \\ &amp;= 24 \text{ Anordnungen} \end{aligned}" />
+
+Die Balken zeigen <InlineMath math="(n-1)!" /> für <InlineMath math="n = 3" /> bis <InlineMath math="7" /> Personen an einem Tisch: <InlineMath math="2, 6, 24, 120, 720" />. Jeder Wert ist <InlineMath math="n" />-mal kleiner als die <InlineMath math="n!" /> Möglichkeiten, dieselben Personen in einer Reihe aufzustellen.
+
+<BarChart
+  title={<>Kreisanordnungen von 3 bis 7 Personen</>}
+  description={<>Balken <InlineMath math="n" /> zeigt <InlineMath math="(n-1)!" />, die Kreisanordnungen von <InlineMath math="n" /> Personen.</>}
+  yAxisLabel="Anordnungen"
+  data={Array.from({ length: 5 }, (_, i) => {
+    const n = i + 3;
+    return { name: `${n}`, value: Array.from({ length: n - 1 }, (_, k) => k + 1).reduce((product, k) => product * k, 1) };
+  })}
+  chartConfig={{ value: { label: "Anordnungen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Ein Spiel im Kreis
 
 Acht Kinder stellen sich für ein Spiel **im Kreis** auf. Die Anzahl der verschiedenen Formationen ist:

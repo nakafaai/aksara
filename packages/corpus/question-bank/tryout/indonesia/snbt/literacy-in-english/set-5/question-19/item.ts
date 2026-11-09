@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-purpose",
+  },
+  stimulus: "great-stink",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "The term *motif* confirms one final outcome and therefore removes the need to interpret the ending.",
-        },
-        {
-          correct: false,
-          label:
-            "The definition treats *motif* as the physical object itself rather than as a feature of the narrative ending.",
-        },
-        {
-          correct: false,
-          label:
-            "The term *motif* makes the reader's personal impression sufficient even when it conflicts with story details.",
-        },
-        {
           correct: true,
           label:
-            "The definition of *motif* identifies how the recurring stamp links the missing package date, Samira's action, and the next volunteer's response into one idea.",
+            "To show that he planned for a city larger than the one he served",
         },
         {
           correct: false,
           label:
-            "The definition explains only the setting, so the recurring object and the character's action are irrelevant.",
+            "To criticise him for spending more of the board's money than necessary",
+        },
+        {
+          correct: false,
+          label:
+            "To explain why the river smelled so strongly in the summer of 1858",
+        },
+        {
+          correct: false,
+          label:
+            "To prove that the sewers have never been too small at any time since",
+        },
+        {
+          correct: false,
+          label:
+            "To suggest that he had probably miscalculated the original sizes",
         },
       ],
     },

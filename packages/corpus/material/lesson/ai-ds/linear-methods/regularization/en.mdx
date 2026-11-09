@@ -60,6 +60,22 @@ For <InlineMath math="L=I" /> and <InlineMath math="x_0=0" />, write <InlineMath
 
 When <InlineMath math="\sigma_i" /> is much larger than <InlineMath math="\alpha" />, the factor <InlineMath math="\phi_i(\alpha)" /> is close to <InlineMath math="1" />, so regularization changes the **corresponding solution component** very little. When <InlineMath math="\sigma_i" /> is much smaller than <InlineMath math="\alpha" />, the factor is close to <InlineMath math="0" />, so that component becomes smaller. This prevents a small measurement error from causing a large change in the fitted solution.
 
+The factor <InlineMath math="\phi_i(\alpha)" /> decides how much of component <InlineMath math="i" /> survives. For <InlineMath math="\sigma_2=0.1" />, the factor is exactly <InlineMath math="\tfrac12" /> at <InlineMath math="\alpha=0.1" />, so <InlineMath math="\alpha" /> decides how much of that weak direction stays.
+
+<BarChart
+  title={<>Filter factor <InlineMath math="\phi_2(\alpha)" /> for <InlineMath math="\sigma_2=0.1" /></>}
+  description={<>Each bar is <InlineMath math="\phi_2(\alpha)=\sigma_2^2/(\sigma_2^2+\alpha^2)" /> for the small singular value of <InlineMath math="A=\operatorname{diag}(1,0.1)" />, with <InlineMath math="\alpha" /> written below it. The factor drops from almost <InlineMath math="1" /> to almost <InlineMath math="0" /> as <InlineMath math="\alpha" /> passes <InlineMath math="\sigma_2" />.</>}
+  yAxisLabel="Filter factor"
+  data={[
+    { name: "0.01", value: 0.1 ** 2 / (0.1 ** 2 + 0.01 ** 2) },
+    { name: "0.05", value: 0.1 ** 2 / (0.1 ** 2 + 0.05 ** 2) },
+    { name: "0.1", value: 0.1 ** 2 / (0.1 ** 2 + 0.1 ** 2) },
+    { name: "0.2", value: 0.1 ** 2 / (0.1 ** 2 + 0.2 ** 2) },
+    { name: "0.5", value: 0.1 ** 2 / (0.1 ** 2 + 0.5 ** 2) },
+  ]}
+  chartConfig={{ value: { label: "Filter factor", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
 ## Worked Sensitivity Example
 
 Consider
@@ -89,6 +105,45 @@ Compare the second parameter before and after the same data change. The first pa
 
 <BlockMath math="\Delta x_2=\frac{(1/10)(1/100)}{(1/10)^2+(1/5)^2}=\frac{1/1000}{1/20}=\frac1{50}" />
 
+In this example each component shrinks on its own: <InlineMath math="x_{\alpha,1}=\frac{1}{1+\alpha^2}" /> and <InlineMath math="x_{\alpha,2}=\frac{0.02}{0.01+\alpha^2}" />. Follow the magenta points down from <InlineMath math="x_{\mathrm{LS}}=(1,2)^T" />: as soon as <InlineMath math="\alpha" /> reaches <InlineMath math="0.1" />, the second component has dropped by half, while the first has barely moved. That happens because <InlineMath math="\sigma_2=0.1" /> is small, so the unstable direction is pulled toward the reference <InlineMath math="x_0=0" /> first. The amber circle has the length of <InlineMath math="x_{0.2}=(25/26,0.4)^T" />, which marks how far the penalty has already shortened the solution.
+
+<MathVisual
+  title={<>The Tikhonov solution <InlineMath math="x_\alpha" /> for several values of <InlineMath math="\alpha" /></>}
+  description={<>Magenta points are <InlineMath math="x_\alpha" /> for <InlineMath math="\alpha=0,\ 0.1,\ 0.2,\ 0.5,\ 2" />. The amber circle passes through <InlineMath math="x_{0.2}" />, and the violet point is the reference <InlineMath math="x_0=0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.4 }, y: { min: -1.2, max: 2.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "norm", kind: "circle", center: { x: 0, y: 0 }, radius: Math.hypot(25 / 26, 2 / 5), appearance: "highlight" },
+      { id: "origin", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "ls", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "tenth", kind: "point", at: { x: 100 / 101, y: 1 }, appearance: "answer" },
+      { id: "fifth", kind: "point", at: { x: 25 / 26, y: 2 / 5 }, appearance: "answer" },
+      { id: "half", kind: "point", at: { x: 4 / 5, y: 1 / 13 }, appearance: "answer" },
+      { id: "two", kind: "point", at: { x: 1 / 5, y: 2 / 401 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "norm", objectId: "norm", at: { x: -Math.hypot(25 / 26, 2 / 5) * Math.SQRT1_2, y: Math.hypot(25 / 26, 2 / 5) * Math.SQRT1_2 }, placement: "above-left" },
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "ls", objectId: "ls", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "tenth", objectId: "tenth", at: { x: 100 / 101, y: 1 }, placement: "right" },
+      { key: "fifth", objectId: "fifth", at: { x: 25 / 26, y: 2 / 5 }, placement: "right" },
+      { key: "half", objectId: "half", at: { x: 4 / 5, y: 1 / 13 }, placement: "above" },
+      { key: "two", objectId: "two", at: { x: 1 / 5, y: 2 / 401 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "norm": <InlineMath math="\|x\|=\|x_{0.2}\|" />,
+    "origin": <InlineMath math="x_0" />,
+    "ls": <InlineMath math="x_{\mathrm{LS}}" />,
+    "tenth": <InlineMath math="\alpha=0.1" />,
+    "fifth": <InlineMath math="x_{0.2}" />,
+    "half": <InlineMath math="\alpha=0.5" />,
+    "two": <InlineMath math="\alpha=2" />,
+  }}
+/>
+
 ## Choosing the Regularization Parameter
 
 There is **no universally best** <InlineMath math="\alpha" />. It depends on the noise level, parameter scaling, penalty, and purpose of the model.
@@ -101,6 +156,29 @@ There is **no universally best** <InlineMath math="\alpha" />. It depends on the
 | L-curve | Exploratory inverse-problem analysis | Inspect the corner of the residual-norm versus penalty-norm curve |
 
 A small <InlineMath math="\alpha" /> prioritizes fitting the data, so noise can still be amplified. A large <InlineMath math="\alpha" /> prioritizes the penalty, which can make the fitted solution too smooth or shrink it too strongly. Scale the parameter columns and penalty rows consistently so the numerical value of <InlineMath math="\alpha" /> has a clear meaning.
+
+For <InlineMath math="A=\operatorname{diag}(1,0.1)" /> and <InlineMath math="b=(1,0.2)" />, the solution is <InlineMath math="x_\alpha=\bigl(\tfrac1{1+\alpha^2},\tfrac{0.02}{0.01+\alpha^2}\bigr)" />. Growing <InlineMath math="\alpha" /> shrinks <InlineMath math="x_\alpha" /> and raises the residual, so every choice trades one against the other.
+
+<ScatterDiagram
+  title={<>Residual against solution size</>}
+  description={<>Each point is one <InlineMath math="\alpha" /> from <InlineMath math="0.05" /> to <InlineMath math="1" />, with <InlineMath math="\|Ax_\alpha-b\|_2" /> across and <InlineMath math="\|x_\alpha\|_2" /> up. Small <InlineMath math="\alpha" /> sits at the top left, large <InlineMath math="\alpha" /> at the bottom right.</>}
+  xAxisLabel="Residual norm"
+  yAxisLabel="Solution norm"
+  datasets={[
+    {
+      name: "Parameter values",
+      color: "var(--chart-3)",
+      points: [
+        { x: Math.sqrt((0.05 ** 2 / (1 + 0.05 ** 2)) ** 2 + (0.2 * 0.05 ** 2 / (0.01 + 0.05 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.05 ** 2)) ** 2 + (0.02 / (0.01 + 0.05 ** 2)) ** 2) },
+        { x: Math.sqrt((0.1 ** 2 / (1 + 0.1 ** 2)) ** 2 + (0.2 * 0.1 ** 2 / (0.01 + 0.1 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.1 ** 2)) ** 2 + (0.02 / (0.01 + 0.1 ** 2)) ** 2) },
+        { x: Math.sqrt((0.2 ** 2 / (1 + 0.2 ** 2)) ** 2 + (0.2 * 0.2 ** 2 / (0.01 + 0.2 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.2 ** 2)) ** 2 + (0.02 / (0.01 + 0.2 ** 2)) ** 2) },
+        { x: Math.sqrt((0.3 ** 2 / (1 + 0.3 ** 2)) ** 2 + (0.2 * 0.3 ** 2 / (0.01 + 0.3 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.3 ** 2)) ** 2 + (0.02 / (0.01 + 0.3 ** 2)) ** 2) },
+        { x: Math.sqrt((0.5 ** 2 / (1 + 0.5 ** 2)) ** 2 + (0.2 * 0.5 ** 2 / (0.01 + 0.5 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 0.5 ** 2)) ** 2 + (0.02 / (0.01 + 0.5 ** 2)) ** 2) },
+        { x: Math.sqrt((1 ** 2 / (1 + 1 ** 2)) ** 2 + (0.2 * 1 ** 2 / (0.01 + 1 ** 2)) ** 2), y: Math.sqrt((1 / (1 + 1 ** 2)) ** 2 + (0.02 / (0.01 + 1 ** 2)) ** 2) },
+      ],
+    },
+  ]}
+/>
 
 ## General Weights and Constraints
 

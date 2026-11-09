@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-purpose",
+  },
+  stimulus: "urban-heat",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Definisi *indikator* membuktikan bahwa perubahan uji menyebabkan hasil yang tercatat meskipun kondisi pembanding diabaikan.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi itu menjadikan *indikator* pengganti variabel kontrol sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi tersebut memperluas *indikator* dari percobaan singkat ini ke semua keadaan yang menyerupainya.",
+            "Membuktikan bahwa citra satelit tidak berguna untuk meneliti pulau bahang.",
         },
         {
           correct: true,
           label:
-            "Definisi *indikator* menjelaskan bahwa persentase cahaya mewakili kejernihan visual, sehingga ukuran itu belum cukup untuk menyatakan air aman diminum.",
+            "Menunjukkan bahwa peta satelit siang belum tentu mencerminkan saat warga paling gerah.",
         },
         {
           correct: false,
           label:
-            "Istilah *indikator* dipakai untuk menamai keterbatasan laporan, bukan konsep yang diwakili hasil pengukuran.",
+            "Menjelaskan bahwa suhu udara di kota selalu jauh lebih rendah daripada suhu permukaan jalan.",
+        },
+        {
+          correct: false,
+          label:
+            "Menunjukkan bahwa pulau bahang perkotaan hanya terjadi pada siang hari.",
+        },
+        {
+          correct: false,
+          label:
+            "Menyarankan agar satelit diganti dengan alat pengukur suhu di setiap trotoar.",
         },
       ],
     },

@@ -19,8 +19,8 @@ The principal argument of a complex number <InlineMath math="z \ne 0" />, writte
 For <InlineMath math="z = 1 + i" />, the angles <InlineMath math="45^\circ" />, <InlineMath math="405^\circ" />, and <InlineMath math="-315^\circ" /> point in the same direction, but only <InlineMath math="45^\circ" /> lies in the principal range, so <InlineMath math="\operatorname{Arg}(1 + i) = 45^\circ = \frac{\pi}{4}" />. The interactive graph shows the angles for <InlineMath math="1 + i" /> and <InlineMath math="\sqrt{3} + i" />, both measured from the positive real axis.
 
 <MathVisual
-  title="Angles from the positive real axis"
-  description="Two vectors in quadrant I make angles of 45 and 30 degrees with the positive real axis. The arcs show the angles being measured."
+  title={<>Angles from the positive real axis</>}
+  description={<>Two vectors in quadrant I make angles of 45 and 30 degrees with the positive real axis. The arcs show the angles being measured.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.25, max: 2.2 }, y: { min: -0.25, max: 1.6 } },
@@ -34,7 +34,7 @@ For <InlineMath math="z = 1 + i" />, the angles <InlineMath math="45^\circ" />, 
     labels: [
       { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-left" },
       { key: "second", objectId: "second", at: { x: Math.sqrt(3), y: 1 }, placement: "above" },
-      { key: "first-angle", objectId: "first-angle", at: { x: 0.42, y: 0.17 }, placement: "above-left" },
+      { key: "first-angle", objectId: "first-angle", at: { x: 0.45 * Math.cos((22.5 * Math.PI) / 180), y: 0.45 * Math.sin((22.5 * Math.PI) / 180) }, placement: "right" },
       { key: "second-angle", objectId: "second-angle", at: { x: 0.87, y: 0.23 }, placement: "below-right" },
     ],
   }}
@@ -71,13 +71,26 @@ A large angle needs several turns at once. For <InlineMath math="1000^\circ" />,
 
 Check: <InlineMath math="-80^\circ" /> lies between <InlineMath math="-180^\circ" /> and <InlineMath math="180^\circ" />, and <InlineMath math="-80^\circ + 3 \cdot 360^\circ = 1000^\circ" />, so both angles point in the same direction.
 
+<Mermaid
+  title={<>Reducing an angle to the principal interval</>}
+  description={<>Add or subtract one full turn until the angle lies in (-180°, 180°].</>}
+  chart={`flowchart TD
+  A["Angle θ"] --> B{"Is θ more than 180°?"}
+  B -->|"yes"| C["Subtract 360°"]
+  C --> B
+  B -->|"no"| D{"Is θ equal to or less than -180°?"}
+  D -->|"yes"| E["Add 360°"]
+  E --> D
+  D -->|"no"| F["θ is the principal argument"]`}
+/>
+
 ## The Principal Argument from the Components x and y
 
 If <InlineMath math="z = x + iy" /> is given in Cartesian form, the principal argument comes from <InlineMath math="\arctan\frac{y}{x}" /> **plus a half-turn correction for points left of the imaginary axis**:
 
 <BlockMath math="\operatorname{Arg} z = \begin{cases} \arctan\frac{y}{x}, &amp; x > 0 \\ \arctan\frac{y}{x} + 180^\circ, &amp; x < 0,\ y \ge 0 \\ \arctan\frac{y}{x} - 180^\circ, &amp; x < 0,\ y < 0 \\ 90^\circ, &amp; x = 0,\ y > 0 \\ -90^\circ, &amp; x = 0,\ y < 0 \end{cases}" />
 
-The function <InlineMath math="\operatorname{atan2}(y, x)" /> in programming languages follows the same rule and returns an angle in <InlineMath math="(-\pi, \pi]" /> for every <InlineMath math="z \ne 0" />. Many scientific calculators have no atan2 key, but their Pol or R→P function gives the same angle.
+The function <InlineMath math="\operatorname{atan2}(y, x)" /> in programming languages follows the same rule and returns an angle in <InlineMath math="(-\pi, \pi]" /> for every <InlineMath math="z \ne 0" />. Many scientific calculators have no atan2 key, but their Pol or `R→P` function gives the same angle.
 
 **Example 1**. For <InlineMath math="z = -1 + i" />, the value is <InlineMath math="\arctan\frac{1}{-1} = -45^\circ" />. The point lies left of the imaginary axis with <InlineMath math="y \ge 0" />, so add half a turn:
 
@@ -90,6 +103,40 @@ Check with modulus <InlineMath math="\sqrt{2}" />: <InlineMath math="\sqrt{2}\co
 <BlockMath math="\operatorname{Arg}(-1 - i) = 45^\circ - 180^\circ = -135^\circ" />
 
 Check: <InlineMath math="\sqrt{2}\cos(-135^\circ) = -1" /> and <InlineMath math="\sqrt{2}\sin(-135^\circ) = -1" />. The numbers <InlineMath math="1 + i" /> and <InlineMath math="-1 - i" /> have the same tangent, but they point in opposite directions.
+
+<MathVisual
+  title={<>Same tangent, different direction</>}
+  description={<>The numbers <InlineMath math="1 + i" /> and <InlineMath math="-1 - i" /> both give <InlineMath math="\arctan 1 = 45^\circ" />, but their arcs point in opposite directions.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 1.6 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "secondary" },
+      { id: "third", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: -1 }, appearance: "answer" },
+      { id: "first-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.35, startDegrees: 0, sweepDegrees: 45, appearance: "primary" },
+      { id: "second-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.6, startDegrees: 0, sweepDegrees: 135, appearance: "secondary" },
+      { id: "third-angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.85, startDegrees: 0, sweepDegrees: -135, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 1 }, placement: "left" },
+      { key: "third", objectId: "third", at: { x: -1, y: -1 }, placement: "left" },
+      { key: "first-angle", objectId: "first-angle", at: { x: 0.35 * Math.cos((22.5 * Math.PI) / 180), y: 0.35 * Math.sin((22.5 * Math.PI) / 180) }, placement: "right" },
+      { key: "second-angle", objectId: "second-angle", at: { x: 0.6 * Math.cos((67.5 * Math.PI) / 180), y: 0.6 * Math.sin((67.5 * Math.PI) / 180) }, placement: "above-right" },
+      { key: "third-angle", objectId: "third-angle", at: { x: 0.85 * Math.cos((-67.5 * Math.PI) / 180), y: 0.85 * Math.sin((-67.5 * Math.PI) / 180) }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    first: <InlineMath math="1+i" />,
+    second: <InlineMath math="-1+i" />,
+    third: <InlineMath math="-1-i" />,
+    "first-angle": <InlineMath math="45^\circ" />,
+    "second-angle": <InlineMath math="135^\circ" />,
+    "third-angle": <InlineMath math="-135^\circ" />,
+  }}
+/>
 
 ## The Zero to Two Pi Convention
 
@@ -162,3 +209,31 @@ Check: <InlineMath math="30^\circ + 2 \cdot 360^\circ = 750^\circ" /> and <Inlin
 <BlockMath math="\operatorname{Arg} z = \arctan\frac{-2}{-2} - 180^\circ = 45^\circ - 180^\circ = -135^\circ" />
 
 In <InlineMath math="[0^\circ, 360^\circ)" />, add one turn: <InlineMath math="-135^\circ + 360^\circ = 225^\circ" />. Check with modulus <InlineMath math="2\sqrt{2}" />: <InlineMath math="2\sqrt{2}\cos 225^\circ = -2" /> and <InlineMath math="2\sqrt{2}\sin 225^\circ = -2" />, so **both answers point into quadrant III**.
+
+Problem 4 shows both conventions at once. The arrow to <InlineMath math="-2 - 2i" /> points into quadrant III. Measured clockwise it is <InlineMath math="-135^\circ" />, the representative in <InlineMath math="(-180^\circ, 180^\circ]" />, and measured counterclockwise it is <InlineMath math="225^\circ" />, the representative in <InlineMath math="[0^\circ, 360^\circ)" />.
+
+<MathVisual
+  title={<>Two names for the direction of <InlineMath math="-2 - 2i" /></>}
+  description={<>The arrow to <InlineMath math="-2 - 2i" /> with a clockwise arc of <InlineMath math="-135^\circ" /> and a counterclockwise arc of <InlineMath math="225^\circ" />.</>}
+  labels={{
+    z: <InlineMath math="-2 - 2i" />,
+    neg: <InlineMath math="-135^\circ" />,
+    pos: <InlineMath math="225^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 1.4 }, y: { min: -2.6, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "neg", kind: "arc", center: { x: 0, y: 0 }, radius: 1 / 2, startDegrees: 0, sweepDegrees: -135, appearance: "answer" },
+      { id: "pos", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 225, appearance: "construction" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2, y: -2 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: -2, y: -2 }, { x: (-2) + (1 / 2 / Math.sqrt(8)) + (1 / 5 / Math.sqrt(8)), y: (-2) + (1 / 2 / Math.sqrt(8)) + (-1 / 5 / Math.sqrt(8)) }, { x: (-2) + (1 / 2 / Math.sqrt(8)) + (-1 / 5 / Math.sqrt(8)), y: (-2) + (1 / 2 / Math.sqrt(8)) + (1 / 5 / Math.sqrt(8)) }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: -2, y: -2 }, placement: "left" },
+      { key: "neg", objectId: "neg", at: { x: 0.5 * Math.cos(-3 * Math.PI / 8), y: 0.5 * Math.sin(-3 * Math.PI / 8) }, placement: "below-right" },
+      { key: "pos", objectId: "pos", at: { x: 0, y: 1 }, placement: "above" },
+    ],
+  }}
+/>

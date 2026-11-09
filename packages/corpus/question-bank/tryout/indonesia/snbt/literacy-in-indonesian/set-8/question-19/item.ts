@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "nickel-processing",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Istilah *kontekstualisasi* membuktikan bahwa sumber yang lebih baru pasti lebih akurat daripada sumber lainnya.",
+            "Teks 1 menyebut bahwa larangan ekspor bijih nikel mentah mulai berlaku pada 2020.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Definisi itu menyamakan *kontekstualisasi* dengan kesalahan sehingga perbedaan antarsumber tidak perlu dianalisis.",
+            "Teks 2 menolak setiap bentuk pengolahan nikel di dalam negeri.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Penyebutan *kontekstualisasi* mengizinkan bagian sumber yang hilang diisi dengan dugaan pembaca.",
+            "Teks 1 membahas kecelakaan kerja di kawasan industri pengolahan.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Definisi tersebut hanya menamai bentuk dokumen dan tidak memengaruhi cara asal serta tujuan sumber dibandingkan.",
-        },
-        {
-          correct: true,
-          label:
-            "Definisi *kontekstualisasi* mengarahkan siswa membaca perubahan jadwal, peserta, tujuan pencatatan, dan kekosongan arsip sebelum menafsirkan pola peminjaman.",
+            "Teks 2 menyebut warga sekitar mengeluhkan debu dan air sungai yang keruh.",
         },
       ],
     },

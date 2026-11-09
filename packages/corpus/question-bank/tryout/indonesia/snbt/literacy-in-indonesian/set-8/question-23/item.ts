@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "bandung-conference",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Setiap nilai menyimpang harus dimasukkan ke perhitungan agar peneliti tidak dituduh memilih data.",
+            "Konferensi Asia Afrika diikuti oleh wakil dari 29 negara Eropa.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Setiap nilai menyimpang harus dihapus setelah pengukuran ulang menghasilkan angka yang lebih berdekatan.",
+            "Persiapan konferensi dibahas dalam pertemuan di Kolombo dan Bogor.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Median tiga pengukuran selalu menjadi nilai benar sehingga ketelitian alat tidak perlu dilaporkan.",
+            "Gerakan Non-Blok lahir dalam Konferensi Asia Afrika pada 1955.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Nilai menyimpang perlu diselidiki, diberi status berdasarkan bukti, dan tetap disimpan agar keputusan memasukkan atau mengecualikannya dapat diaudit.",
-        },
-        {
-          correct: false,
-          label:
-            "Dua hasil yang berbeda sebaiknya langsung dirata-ratakan sebelum penyebab perbedaannya diperiksa.",
+            "Dasasila Bandung menekankan penyelesaian sengketa secara damai.",
         },
       ],
     },

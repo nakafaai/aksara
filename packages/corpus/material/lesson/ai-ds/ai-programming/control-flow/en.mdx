@@ -94,6 +94,43 @@ else:
   ]}
 />
 
+Run `for i in range(10)` with `if i == 7: break` and then `if i % 2 == 0: continue` before `print(i)`. Even numbers jump to the next pass, odd numbers reach `print`, and `7` ends the loop, so only `1`, `3`, and `5` are printed.
+
+<MathVisual
+  title={<>Where each <code>i</code> goes with <code>break</code> and <code>continue</code></>}
+  description={<>The teal points are skipped by <code>continue</code>, the magenta points reach <code>print</code>, and the orange point <code>7</code> triggers <code>break</code>. The gray points <code>8</code> and <code>9</code> are never reached.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9.5 }, y: { min: -0.8, max: 0.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.3, y: 0 }, to: { x: 9.3, y: 0 }, appearance: "reference" },
+      { id: "skip-0", kind: "point", at: { x: 0, y: 0 }, appearance: "construction" },
+      { id: "skip-2", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "skip-4", kind: "point", at: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "skip-6", kind: "point", at: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "print-1", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "print-3", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "print-5", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "stop", kind: "point", at: { x: 7, y: 0 }, appearance: "primary" },
+      { id: "never-8", kind: "point", at: { x: 8, y: 0 }, appearance: "reference" },
+      { id: "never-9", kind: "point", at: { x: 9, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "print-1", objectId: "print-1", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "print-3", objectId: "print-3", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "print-5", objectId: "print-5", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "stop", objectId: "stop", at: { x: 7, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "print-1": <InlineMath math="1" />,
+    "print-3": <InlineMath math="3" />,
+    "print-5": <InlineMath math="5" />,
+    "stop": <code>break</code>,
+  }}
+/>
+
 ## Enumerate Function
 
 Use `enumerate()` when an iteration needs **both a counter and each value**. It returns an iterator that yields `(index, value)` tuples.
@@ -248,6 +285,55 @@ print(numbers, letters)
 
 This process is called "unzipping" because it separates data that has been combined.
 
+`zip` pairs elements at the same position and stops when the shortest input runs out. If `p` gets a fifth element, `p = [1, 2, 3, 4, 5]`, while `q = ['a', 'b', 'c', 'd']` stays at four, `zip(p, q)` still gives four pairs and `5` is left out.
+
+<MathVisual
+  title={<><code>zip(p, q)</code> stops at the shortest input</>}
+  description={<>The violet points are <code>p</code>, the teal points are <code>q</code>, and each gray line is one tuple from <code>zip</code>. The orange point <code>5</code> has no partner, so <code>zip</code> leaves it out.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pair-0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "pair-1", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "pair-2", kind: "segment", from: { x: 2, y: 1 }, to: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "pair-3", kind: "segment", from: { x: 3, y: 1 }, to: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "number-0", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "number-1", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "number-2", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "number-3", kind: "point", at: { x: 3, y: 1 }, appearance: "secondary" },
+      { id: "letter-0", kind: "point", at: { x: 0, y: 0 }, appearance: "construction" },
+      { id: "letter-1", kind: "point", at: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "letter-2", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "letter-3", kind: "point", at: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "extra", kind: "point", at: { x: 4, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "number-0", objectId: "number-0", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "number-1", objectId: "number-1", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "number-2", objectId: "number-2", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "number-3", objectId: "number-3", at: { x: 3, y: 1 }, placement: "above" },
+      { key: "letter-0", objectId: "letter-0", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "letter-1", objectId: "letter-1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "letter-2", objectId: "letter-2", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "letter-3", objectId: "letter-3", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "extra", objectId: "extra", at: { x: 4, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "number-0": <code>1</code>,
+    "number-1": <code>2</code>,
+    "number-2": <code>3</code>,
+    "number-3": <code>4</code>,
+    "letter-0": <code>a</code>,
+    "letter-1": <code>b</code>,
+    "letter-2": <code>c</code>,
+    "letter-3": <code>d</code>,
+    "extra": <code>5</code>,
+  }}
+/>
+
 ## Range and For Loop
 
 The `range()` function produces a **sequence of integers** for iteration. Use it when a loop needs numeric positions or a fixed number of repetitions. Because `range` yields each value on demand instead of storing the whole sequence, its memory use stays small even when the loop runs millions of times.
@@ -325,6 +411,40 @@ for i in range(n):  # Doesn't store all numbers in memory
         break`
     }
   ]}
+/>
+
+Follow the loop `for i in range(1, 6): total += i` pass by pass. Before the loop, `total` is `0`, and each pass adds the current value of `i`. The points climb more steeply because the additions keep growing: `1`, `3`, `6`, `10`, then `15`. The last value equals `sum(range(1, 6))`, and `range(1, 6)` stops before `6`.
+
+<MathVisual
+  title={<>Building a running sum with <code>total += i</code></>}
+  description={<>Each point is the value of <code>total</code> after one pass of the loop <code>for i in range(1, 6)</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 16 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "total", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 3 }, { x: 3, y: 6 }, { x: 4, y: 10 }, { x: 5, y: 15 }], appearance: "secondary" },
+      { id: "step-b", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "step-c", kind: "point", at: { x: 2, y: 3 }, appearance: "secondary" },
+      { id: "step-d", kind: "point", at: { x: 3, y: 6 }, appearance: "secondary" },
+      { id: "step-e", kind: "point", at: { x: 4, y: 10 }, appearance: "secondary" },
+      { id: "step-f", kind: "point", at: { x: 5, y: 15 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "step-b", objectId: "step-b", at: { x: 1, y: 1 }, placement: "left" },
+      { key: "step-c", objectId: "step-c", at: { x: 2, y: 3 }, placement: "left" },
+      { key: "step-d", objectId: "step-d", at: { x: 3, y: 6 }, placement: "left" },
+      { key: "step-e", objectId: "step-e", at: { x: 4, y: 10 }, placement: "left" },
+      { key: "step-f", objectId: "step-f", at: { x: 5, y: 15 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "step-b": "total = 1",
+    "step-c": "total = 3",
+    "step-d": "total = 6",
+    "step-e": "total = 10",
+    "step-f": "total = 15",
+  }}
 />
 
 ## Conditional Statements

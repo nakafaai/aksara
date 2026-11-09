@@ -3,7 +3,7 @@ export const metadata = {
    description: "Count arrangements that use every object with the factorial formula, then apply it in worked examples and exercises.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Combinatorics",
 };
 
@@ -54,6 +54,19 @@ The factorial <InlineMath math="n!" /> is the product of the positive integers f
 - <InlineMath math="0! = 1" /> (based on mathematical definition)
 - <InlineMath math="1! = 1" />
 
+Factorials grow fast. The bars show <InlineMath math="n!" /> for <InlineMath math="n = 1" /> to <InlineMath math="7" />: <InlineMath math="1, 2, 6, 24, 120, 720, 5040" />. Each bar is the previous one multiplied by the next whole number, because one more object adds one more choice for the first place.
+
+<BarChart
+  title={<>How fast the factorial grows</>}
+  description={<>Bar <InlineMath math="n" /> shows <InlineMath math="n!" /> for <InlineMath math="n = 1" /> to <InlineMath math="7" />.</>}
+  yAxisLabel="Orders"
+  data={Array.from({ length: 7 }, (_, i) => {
+    const n = i + 1;
+    return { name: `${n}`, value: Array.from({ length: n }, (_, k) => k + 1).reduce((product, k) => product * k, 1) };
+  })}
+  chartConfig={{ value: { label: "Orders", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Assigning All Objects to Distinct Positions
 
 Each arrangement below gives every object **its own position**, so no object is left out and none repeats. Counting starts with the number of objects and multiplies one choice fewer at every step.
@@ -73,6 +86,79 @@ A family consisting of <InlineMath math="6" /> members will **sit in a row** on 
 <MathContainer>
 <BlockMath math="6P_6 = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720 \text{ ways}" />
 </MathContainer>
+
+Here are all the orders of three objects <InlineMath math="A" />, <InlineMath math="B" /> and <InlineMath math="C" />, one order per row. The first place has 3 choices, the second 2 and the last 1, so there are exactly <InlineMath math="3! = 6" /> rows and no order appears twice.
+
+<MathVisual
+  title={<>All six orders of A, B and C</>}
+  description={<>Six rows, each a different order of A, B and C: <InlineMath math="3! = 3 \cdot 2 \cdot 1 = 6" />.</>}
+  labels={{
+    o00: <InlineMath math="A" />,
+    o01: <InlineMath math="B" />,
+    o02: <InlineMath math="C" />,
+    o10: <InlineMath math="A" />,
+    o11: <InlineMath math="C" />,
+    o12: <InlineMath math="B" />,
+    o20: <InlineMath math="B" />,
+    o21: <InlineMath math="A" />,
+    o22: <InlineMath math="C" />,
+    o30: <InlineMath math="B" />,
+    o31: <InlineMath math="C" />,
+    o32: <InlineMath math="A" />,
+    o40: <InlineMath math="C" />,
+    o41: <InlineMath math="A" />,
+    o42: <InlineMath math="B" />,
+    o50: <InlineMath math="C" />,
+    o51: <InlineMath math="B" />,
+    o52: <InlineMath math="A" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 3.8 }, y: { min: 0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "o00", kind: "point", at: { x: 1, y: 6 }, appearance: "primary" },
+      { id: "o01", kind: "point", at: { x: 2, y: 6 }, appearance: "secondary" },
+      { id: "o02", kind: "point", at: { x: 3, y: 6 }, appearance: "answer" },
+      { id: "o10", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "o11", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+      { id: "o12", kind: "point", at: { x: 3, y: 5 }, appearance: "secondary" },
+      { id: "o20", kind: "point", at: { x: 1, y: 4 }, appearance: "secondary" },
+      { id: "o21", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "o22", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "o30", kind: "point", at: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "o31", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
+      { id: "o32", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "o40", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "o41", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "o42", kind: "point", at: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "o50", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "o51", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "o52", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "o00", objectId: "o00", at: { x: 1, y: 6 }, placement: "right" },
+      { key: "o01", objectId: "o01", at: { x: 2, y: 6 }, placement: "right" },
+      { key: "o02", objectId: "o02", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "o10", objectId: "o10", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "o11", objectId: "o11", at: { x: 2, y: 5 }, placement: "right" },
+      { key: "o12", objectId: "o12", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "o20", objectId: "o20", at: { x: 1, y: 4 }, placement: "right" },
+      { key: "o21", objectId: "o21", at: { x: 2, y: 4 }, placement: "right" },
+      { key: "o22", objectId: "o22", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "o30", objectId: "o30", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "o31", objectId: "o31", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "o32", objectId: "o32", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "o40", objectId: "o40", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "o41", objectId: "o41", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "o42", objectId: "o42", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "o50", objectId: "o50", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "o51", objectId: "o51", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "o52", objectId: "o52", at: { x: 3, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Calculating Complete Permutations
 
 For a complete permutation of <InlineMath math="n" /> objects:
@@ -101,6 +187,16 @@ Expand <InlineMath math="5!" /> **one factor at a time**:
 <BlockMath math="\begin{aligned}5P_3 &amp;=\frac{5!}{(5-3)!}=\frac{5!}{2!}\\ &amp;=\frac{5\times4\times3\times2\times1}{2\times1}\\ &amp;=\frac{120}{2}=60\text{ ways}\end{aligned}" />
 
 In permutation of <InlineMath math="n" /> items from <InlineMath math="n" /> objects, **no objects are left over** and **all positions must be filled**.
+
+Arranging only <InlineMath math="r" /> of <InlineMath math="5" /> objects stops the product early: <InlineMath math="5, 20, 60, 120, 120" /> for <InlineMath math="r = 1" /> to <InlineMath math="5" />. The last two bars are equal because the final place has only one object left, so <InlineMath math="{}_5P_4 = {}_5P_5 = 5!" />.
+
+<BarChart
+  title={<>Partial and complete permutations of five objects</>}
+  description={<>Bar <InlineMath math="r" /> shows the number of ordered arrangements of <InlineMath math="r" /> of 5 objects.</>}
+  yAxisLabel="Arrangements"
+  data={[["1", 5], ["2", 5 * 4], ["3", 5 * 4 * 3], ["4", 5 * 4 * 3 * 2], ["5", 5 * 4 * 3 * 2 * 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Arrangements", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Exercises
 

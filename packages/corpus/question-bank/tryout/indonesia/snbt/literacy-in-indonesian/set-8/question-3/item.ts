@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "cause-effect",
+  },
+  stimulus: "tempe-mold",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Dibandingkan kelompok tanpa lapisan, pelapisan permukaan bawah menurunkan rata-rata kehilangan massa sebesar $$0{,}54$$ persen.",
+            "Kapang *Rhizopus* menghasilkan B12 jauh lebih banyak di tempat pembuatan yang dingin.",
         },
         {
           correct: false,
           label:
-            "Dibandingkan kelompok tanpa lapisan, pelapisan permukaan bawah menurunkan rata-rata kehilangan massa sebesar sekitar $$193$$ persen.",
+            "Kedelai impor mengandung B12 lebih banyak daripada kedelai lokal.",
+        },
+        {
+          correct: false,
+          label:
+            "Daun jati menambahkan B12 ke dalam tempe selama proses fermentasi.",
+        },
+        {
+          correct: false,
+          label:
+            "Tempe yang terlalu basah mungkin menghasilkan B12 dua kali lipat.",
         },
         {
           correct: true,
           label:
-            "Dibandingkan kelompok tanpa lapisan, rata-rata kehilangan massa pada pelapisan permukaan bawah lebih rendah sekitar $$65{,}9$$ persen. Angka itu menggambarkan sampel daun petik, bukan perkiraan pasti untuk semua tumbuhan.",
-        },
-        {
-          correct: false,
-          label:
-            "Dibandingkan kelompok tanpa lapisan, pelapisan permukaan bawah menurunkan kehilangan massa sebesar $$65{,}9$$ poin persentase karena kedua nilai diukur dalam gram.",
-        },
-        {
-          correct: false,
-          label:
-            "Rata-rata $$0{,}28$$ gram berarti $$65{,}9$$ persen daun pada kelompok pelapisan permukaan bawah tidak mengalami transpirasi.",
+            "B12 berasal dari bakteri yang ikut tumbuh, dan jumlahnya tidak selalu sama.",
         },
       ],
     },

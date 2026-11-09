@@ -1,31 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-purpose",
+  },
+  stimulus: "lichen-air",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Menjelaskan alasan pembakaran batu bara dihentikan di Inggris.",
+        },
+        {
           correct: true,
           label:
-            "Beras dapat dijadikan banyak hidangan ikonik dari seluruh dunia",
-        },
-        {
-          correct: false,
-          label: "Beras merupakan bahan pangan pokok bagi masyarakat Indonesia",
-        },
-        {
-          correct: false,
-          label: "Pasokan beras di Indonesia sedang menipis",
+            "Memberikan bukti bahwa keberadaan lumut kerak mengikuti naik turunnya kadar sulfur dioksida.",
         },
         {
           correct: false,
           label:
-            "Beras menjadi makanan pokok bagi miliaran orang di Asia dan Afrika",
+            "Membandingkan jenis lumut kerak di Inggris dengan jenis lumut kerak di Indonesia.",
         },
         {
           correct: false,
-          label: "Pengolahan beras mengundang pertanyaan di setiap dapur",
+          label:
+            "Menunjukkan bahwa lumut kerak di pedesaan lebih tahan terhadap pencemaran daripada lumut kerak di kota.",
+        },
+        {
+          correct: false,
+          label:
+            "Membuktikan bahwa semua jenis lumut kerak kembali setelah udara menjadi bersih.",
         },
       ],
     },

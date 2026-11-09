@@ -43,6 +43,35 @@ Begin by recording every material used, the changes it undergoes, the products, 
 
 A green claim is <Highlight>testable only when it includes evidence</Highlight>. Words such as "natural", "efficient", and "eco-friendly" do not identify which hazard or waste has decreased. A fair comparison must also keep the required function constant. Using less cleaner is not an improvement if the surface remains dirty, and a replacement material must still perform the same task.
 
+Trace one activity as mass in and mass out. Every kilogram that goes in leaves either in the product or in the residue, so <InlineMath math="m_\text{in}=m_\text{product}+m_\text{residue}" />. The band splits by mass: with illustrative numbers, <InlineMath math="10\ \mathrm{kg}" /> in gives <InlineMath math="8\ \mathrm{kg}" /> of product and <InlineMath math="2\ \mathrm{kg}" /> of residue. Zoom in on the pink branch, the part a greener process tries to shrink.
+
+<MathVisual
+  title={<>Mass In Equals Mass Out</>}
+  description={<>An illustrative mass flow: the input band (gray) splits into product (teal) and residue (pink), with widths drawn to scale. One grid step is 1 kilogram.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: -1.5, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "input", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 10 }, { x: 0, y: 10 }] },
+      { id: "product", kind: "polygon", appearance: "construction", vertices: [{ x: 5, y: 2 }, { x: 8, y: 2 }, { x: 8, y: 10 }, { x: 5, y: 10 }] },
+      { id: "residue", kind: "polygon", appearance: "warning", vertices: [{ x: 5, y: -1 }, { x: 8, y: -1 }, { x: 8, y: 1 }, { x: 5, y: 1 }] },
+      { id: "to-product", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 2 }, { x: 5, y: 2 }, { x: 5, y: 10 }, { x: 3, y: 10 }] },
+      { id: "to-residue", kind: "polygon", appearance: "warning", vertices: [{ x: 3, y: 0 }, { x: 5, y: -1 }, { x: 5, y: 1 }, { x: 3, y: 2 }] },
+    ],
+    labels: [
+      { key: "input", objectId: "input", at: { x: 1.5, y: 10 }, placement: "above" },
+      { key: "product", objectId: "product", at: { x: 6.5, y: 10 }, placement: "above" },
+      { key: "residue", objectId: "residue", at: { x: 8, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    input: <InlineMath math="10\ \mathrm{kg}\ \text{in}" />,
+    product: <InlineMath math="8\ \mathrm{kg}\ \text{product}" />,
+    residue: <InlineMath math="10-8=2\ \mathrm{kg}\ \text{residue}" />,
+  }}
+/>
+
 ## Use Enough Soap without Adding Excess Residue
 
 Lots of foam can be mistaken for better cleaning. With dish soap, too much product can lengthen rinsing and add more cleaning residue to wastewater. Compare the dose that removes the dirt with a larger dose, then check the residue and water needed for rinsing. This comparison measures the soap dose during use. The cleaner formulation remains unchanged.
@@ -61,6 +90,33 @@ As a **hypothetical data example**, two cleaner formulations are tested on the s
 
 <BlockMath math="\frac{10-8}{10}\times100\%=\frac{2}{10}\times100\%=20\%" />
 
+In the scene below, each column is the dose needed for the same clean surface, with one grid step for <InlineMath math="2 \mathrm{mL}" />. The gray block on top of B is the part B no longer needs. It is exactly one fifth of A's column, which is the <InlineMath math="20\%" /> from the calculation. Rotate the scene: the saving shows up only because both columns do the same job.
+
+<MathVisual
+  title={<>The Same Clean Surface with Less Product</>}
+  description={<>Hypothetical doses of two cleaner formulations for the same stain and surface area. One grid step up is 2 mL.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6.5 }, z: { min: -1, max: 1 } },
+    view: { kind: "camera", position: { x: 6, y: 6, z: 10 }, target: { x: 1.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "dose-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 10 / 4, z: 0 }, size: { length: 1.4, height: 10 / 2, width: 1.4 } },
+      { id: "dose-b", kind: "cuboid", appearance: "construction", center: { x: 3, y: 8 / 4, z: 0 }, size: { length: 1.4, height: 8 / 2, width: 1.4 } },
+      { id: "saved", kind: "cuboid", appearance: "reference", center: { x: 3, y: 8 / 2 + (10 - 8) / 4, z: 0 }, size: { length: 1.4, height: (10 - 8) / 2, width: 1.4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "dose-a", at: { x: 0, y: 10 / 2 + 0.5, z: 0 }, placement: "above" },
+      { key: "saved", objectId: "saved", at: { x: 3, y: 10 / 2 + 0.5, z: 0 }, placement: "above" },
+      { key: "b", objectId: "dose-b", at: { x: 3, y: 8 / 4, z: 0.9 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A:\ 10\ \mathrm{mL}" />,
+    saved: <InlineMath math="\frac{10-8}{10}\times100\%=20\%" />,
+    b: <InlineMath math="B:\ 8\ \mathrm{mL}" />,
+  }}
+/>
+
 This result shows reduced product volume in that test. Claiming that B is safer or saves water still requires data on composition, hazards, and rinse water.
 
 ## Composting Treats Waste That Already Exists
@@ -74,6 +130,34 @@ Dry leaves, fruit peels, and food scraps contain organic matter. Burning causes 
 | Compost it properly | Microorganisms gradually decompose the organic matter. | Biological treatment handles the organic waste after it has been produced. |
 
 [Composting](https://www.epa.gov/sustainable-management-food/approaches-composting) still needs controlled moisture, oxygen flow, pile structure, and nutrient balance. A poorly managed pile can become anaerobic, smell, or release leachate. These conditions affect microbial activity and temperature. In this example, composting is waste treatment. An activity is product or process redesign when it changes the chemical design to prevent waste at the source.
+
+Follow the carbon in the same pile of leaves. Burning oxidizes almost all of it within minutes, so it leaves as smoke and carbon dioxide. In an illustrative compost model the carbon left is <InlineMath math="40+60e^{-t/4}" /> percent after <InlineMath math="t" /> weeks, so microorganisms work slowly and part of the carbon stays in the compost for the soil. Zoom in on both curves near the start.
+
+<MathVisual
+  title={<>Burning or Composting the Same Leaves</>}
+  description={<>Share of the pile's carbon left after burning (pink) and during composting (teal). Horizontal: one grid step is one week. Vertical: one grid step is 20 percent.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.3, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "burn", kind: "polyline", appearance: "warning", vertices: [{ x: 0, y: 5 }, { x: 0.003, y: 0.25 }, { x: 12, y: 0.25 }] },
+      { id: "compost", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: (40 + 60 * Math.exp(-0.5 / 4)) / 20 }, { x: 1, y: (40 + 60 * Math.exp(-1 / 4)) / 20 }, { x: 1.5, y: (40 + 60 * Math.exp(-1.5 / 4)) / 20 }, { x: 2, y: (40 + 60 * Math.exp(-2 / 4)) / 20 }, { x: 2.5, y: (40 + 60 * Math.exp(-2.5 / 4)) / 20 }, { x: 3, y: (40 + 60 * Math.exp(-3 / 4)) / 20 }, { x: 3.5, y: (40 + 60 * Math.exp(-3.5 / 4)) / 20 }, { x: 4, y: (40 + 60 * Math.exp(-4 / 4)) / 20 }, { x: 4.5, y: (40 + 60 * Math.exp(-4.5 / 4)) / 20 }, { x: 5, y: (40 + 60 * Math.exp(-5 / 4)) / 20 }, { x: 5.5, y: (40 + 60 * Math.exp(-5.5 / 4)) / 20 }, { x: 6, y: (40 + 60 * Math.exp(-6 / 4)) / 20 }, { x: 6.5, y: (40 + 60 * Math.exp(-6.5 / 4)) / 20 }, { x: 7, y: (40 + 60 * Math.exp(-7 / 4)) / 20 }, { x: 7.5, y: (40 + 60 * Math.exp(-7.5 / 4)) / 20 }, { x: 8, y: (40 + 60 * Math.exp(-8 / 4)) / 20 }, { x: 8.5, y: (40 + 60 * Math.exp(-8.5 / 4)) / 20 }, { x: 9, y: (40 + 60 * Math.exp(-9 / 4)) / 20 }, { x: 9.5, y: (40 + 60 * Math.exp(-9.5 / 4)) / 20 }, { x: 10, y: (40 + 60 * Math.exp(-10 / 4)) / 20 }, { x: 10.5, y: (40 + 60 * Math.exp(-10.5 / 4)) / 20 }, { x: 11, y: (40 + 60 * Math.exp(-11 / 4)) / 20 }, { x: 11.5, y: (40 + 60 * Math.exp(-11.5 / 4)) / 20 }, { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 }] },
+      { id: "kept", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 12, y: 2 } },
+      { id: "compost-end", kind: "point", appearance: "construction", at: { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 } },
+    ],
+    labels: [
+      { key: "burn", objectId: "burn", at: { x: 0.003, y: 0.25 }, placement: "above-right" },
+      { key: "compost", objectId: "compost-end", at: { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 }, placement: "above-left" },
+      { key: "kept", objectId: "kept", at: { x: 12, y: 2 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    burn: <>burning: gone in minutes</>,
+    compost: <>composting: weeks</>,
+    kept: <>carbon kept in compost</>,
+  }}
+/>
 
 ## Natural Materials Still Need Evidence
 
