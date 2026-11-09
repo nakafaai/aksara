@@ -4,7 +4,7 @@ export const metadata = {
     "Perkalian berulang dengan faktor yang sama menghasilkan pertumbuhan eksponensial. Model bakteri dan populasi menunjukkan pola tersebut melalui rumus, tabel, dan grafik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-03",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Eksponen dan Logaritma",
 };
 
@@ -55,7 +55,7 @@ Tabel mencatat pembelahan yang telah selesai pada **nilai bulat** <InlineMath ma
 <FunctionChart
   p={30}
   a={2}
-  title="Pertumbuhan Bakteri Ideal"
+  title={<>Pertumbuhan Bakteri Ideal</>}
   description={
     <>
       Jumlahnya menjadi dua kali lipat setiap <InlineMath math="30\text{ menit}" />.
@@ -102,6 +102,16 @@ Anggap suatu kultur berisi <InlineMath math="8{.}000" /> bakteri setelah <Inline
 
 Kultur tersebut dimulai dengan <InlineMath math="2{.}000" /> bakteri.
 
+Hitung maju dari nilai awal yang ditemukan <InlineMath math="P_0 = 2.000" />: banyaknya bakteri berlipat dua setiap selang, jadi setelah dua selang menjadi <InlineMath math="8.000" />, sesuai dengan pengamatan.
+
+<BarChart
+  title={<>Pertumbuhan dari <InlineMath math="P_0 = 2.000" /></>}
+  description={<>Batang <InlineMath math="2.000 \cdot 2^x" /> untuk <InlineMath math="x = 0" /> sampai 4 selang.</>}
+  yAxisLabel="Bakteri"
+  data={[0, 1, 2, 3, 4].map((x) => ({ name: String(x), value: 2000 * 2 ** x }))}
+  chartConfig={{ value: { label: "Bakteri", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Memperpanjang Model Interval yang Sama
 
 Setelah <InlineMath math="10" /> interval penggandaan, kultur yang sama memiliki:
@@ -140,7 +150,7 @@ Enam nilai pertamanya adalah:
   p={50}
   a={2}
   n={6}
-  title="Pertumbuhan Bakteri Ideal"
+  title={<>Pertumbuhan Bakteri Ideal</>}
   description={
     <>
       Jumlahnya menjadi dua kali lipat setiap <InlineMath math="15\text{ menit}" />.

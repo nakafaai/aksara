@@ -49,6 +49,16 @@ Notice how Horner's method only focuses on the coefficients <InlineMath math="(1
 
 This method can only be directly used if the divisor is a linear polynomial of degree one, i.e., in the form <InlineMath math="(x-c)" /> or <InlineMath math="(ax-b)" /> (which can be transformed).
 
+The bottom row of the scheme for <InlineMath math="(x^3 - 7x + 8) \div (x - 2)" /> as bars: each entry is the next coefficient plus 2 times the bar before. The first three give the quotient <InlineMath math="x^2 + 2x - 3" />, and the last is the remainder 2.
+
+<BarChart
+  title={<>The Horner row for <InlineMath math="c = 2" /></>}
+  description={<>Bars of the bottom row 1, 2, <InlineMath math="-3" /> and the remainder 2.</>}
+  yAxisLabel="Value"
+  data={[["degree 2", 1], ["degree 1", 0 + 2 * 1], ["degree 0", -7 + 2 * 2], ["remainder", 8 + 2 * -3]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Value", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Preparing to Use the Horner Method
 
 The **coefficient order** must include every power, from the highest down to the constant. A missing term still needs a position, filled by zero. For <InlineMath math="2x^3+5x^2+6" />, use:
@@ -71,8 +81,8 @@ In each column, **multiply the previous result and add the next coefficient**. T
 Start with the first coefficient, two. After every coefficient has been processed, the last result is the polynomial value at the divisor’s root. By the Remainder Theorem, it is the remainder. The earlier results give the quotient coefficients.
 
 <Mermaid
-  title="The flow of the Horner method"
-  description="Each column repeats multiply, then add, until the coefficients run out."
+  title={<>The flow of the Horner method</>}
+  description={<>Each column repeats multiply, then add, until the coefficients run out.</>}
   chart={`flowchart TD
   A["Write every coefficient, with zero for a missing term"] --> B["Bring down the first coefficient"]
   B --> C["Multiply the latest result by c"]
@@ -128,29 +138,12 @@ The final number is the **remainder**, <InlineMath math="-3" />. The preceding n
 
 Check the remainder by evaluating the polynomial directly: <InlineMath math="P(-3) = 2(-27) + 5(9) + 6 = -54 + 45 + 6 = -3" />. That equals the remainder, as the [remainder theorem](/en/subjects/mathematics/polynomial/remainder-theorem) says. The graph of <InlineMath math="y = P(x)" /> shows the same link: the point of the graph at <InlineMath math="x = -3" /> sits exactly at height <InlineMath math="-3" />.
 
-<LineEquation
-  title={<>Graph of <InlineMath math="y = 2x^3 + 5x^2 + 6" /></>}
-  description={<>The value of the graph at <InlineMath math="x = -3" /> equals the remainder of division by <InlineMath math="x + 3" />, namely <InlineMath math="-3" />.</>}
-  cameraPosition={[-1, 2.3, 24]}
-  cameraTarget={[-1, 2.3, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 421 }, (_, i) => {
-        const x = -3.2 + i / 100;
-        return { x, y: 2 * x ** 3 + 5 * x ** 2 + 6, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [{ x: -3, y: 2 * (-3) ** 3 + 5 * (-3) ** 2 + 6, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="(-3, -3)" />, at: 0, offset: [-1.2, -0.8, 0] }],
-    },
-  ]}
+<BarChart
+  title={<>Values of <InlineMath math="y = 2x^3 + 5x^2 + 6" /></>}
+  description={<>Bars of <InlineMath math="P(x) = 2x^3 + 5x^2 + 6" /> for <InlineMath math="x = -3" /> to 1. The bar at <InlineMath math="x = -3" /> equals the remainder of division by <InlineMath math="x + 3" />, namely <InlineMath math="-3" />.</>}
+  yAxisLabel="P(x)"
+  data={[-3, -2, -1, 0, 1].map((x) => ({ name: String(x), value: 2 * x ** 3 + 5 * x ** 2 + 6 }))}
+  chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ### A Divisor with a Leading Coefficient Other Than One
@@ -162,8 +155,8 @@ For example, use the same scheme for <InlineMath math="2x+6=2(x+3)" />. To prese
 <BlockMath math="2x^3+5x^2+6=(2x+6)\left(x^2-\frac12x+\frac32\right)-3" />
 
 <Mermaid
-  title="The value of c from the form of the divisor"
-  description="The form of the divisor decides the number on the left of the scheme and whether the quotient needs another division."
+  title={<>The value of c from the form of the divisor</>}
+  description={<>The form of the divisor decides the number on the left of the scheme and whether the quotient needs another division.</>}
   chart={`flowchart TD
   A{"Form of the divisor?"} -->|"x - c"| B["Use c"]
   A -->|"x + c"| C["Use -c"]
@@ -263,3 +256,13 @@ The bottom row is <InlineMath math="1, \frac52, \frac54, -\frac{35}{8}" />. Sinc
 <BlockMath math="x^3 + 2x^2 - 5 = (2x - 1)\left(\frac12x^2 + \frac54x + \frac58\right) - \frac{35}{8}" />
 
 Check: <InlineMath math="P\left(\frac12\right) = \frac18 + \frac12 - 5 = -\frac{35}{8}" />.
+
+Problem 1 as bars: dividing <InlineMath math="x^4 + 4" /> by <InlineMath math="x - 1" /> carries each 1 straight down, because every missing term contributes 0. The quotient is <InlineMath math="x^3 + x^2 + x + 1" />, and the remainder <InlineMath math="5 = P(1)" />.
+
+<BarChart
+  title={<>The Horner row for <InlineMath math="x^4 + 4" /> and <InlineMath math="c = 1" /></>}
+  description={<>Bars of the bottom row 1, 1, 1, 1 and the remainder 5.</>}
+  yAxisLabel="Value"
+  data={[["degree 3", 1], ["degree 2", 0 + 1 * 1], ["degree 1", 0 + 1 * 1], ["degree 0", 0 + 1 * 1], ["remainder", 4 + 1 * 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Value", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

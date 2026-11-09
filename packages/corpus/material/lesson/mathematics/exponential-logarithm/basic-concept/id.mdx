@@ -4,7 +4,7 @@ export const metadata = {
     "Bangun konsep eksponen dari perkalian berulang, lalu hubungkan pangkat nol, negatif, dan pecahan dengan pertumbuhan serta peluruhan eksponensial.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-01",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Eksponen dan Logaritma",
 };
 
@@ -27,6 +27,16 @@ Eksponen adalah <Highlight>cara ringkas untuk menulis perkalian berulang</Highli
 Jika tahap ke-<InlineMath math="n" /> kita tulis sebagai <InlineMath math="m(n)" />, polanya menjadi <InlineMath math="m(n)=2^n" />. Sebagai contoh:
 
 <InlineMath math="m(5)=2^5=32" />.
+
+Setiap kenaikan pangkat menggandakan batangnya: <InlineMath math="2^0 = 1" />, <InlineMath math="2^1 = 2" />, <InlineMath math="2^2 = 4" />, dan seterusnya sampai <InlineMath math="2^5 = 32" />, nilai <InlineMath math="m(5)" /> dalam teks.
+
+<BarChart
+  title={<>Perpangkatan dua</>}
+  description={<>Batang <InlineMath math="2^n" /> untuk <InlineMath math="n = 0" /> sampai 5.</>}
+  yAxisLabel="Nilai"
+  data={[0, 1, 2, 3, 4, 5].map((x) => ({ name: String(x), value: 2 ** x }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Makna Notasi Eksponen
 
@@ -64,6 +74,16 @@ Untuk setiap bilangan real tak nol <InlineMath math="a" /> dan bilangan bulat po
 Alasannya, <InlineMath math="a^n a^{-n}=a^0=1" />. Jadi, pangkat negatif menyatakan **kebalikan dari pangkat positif** yang bersesuaian. Sebagai contoh:
 
 <InlineMath math="3^{-2}=\frac{1}{3^2}=\frac{1}{9}=0{,}111\ldots" />.
+
+Pangkat negatif meneruskan pola ke kiri: setiap langkah membagi dengan 3, jadi <InlineMath math="3^0 = 1" />, <InlineMath math="3^{-1} = \tfrac13" />, dan <InlineMath math="3^{-2} = \tfrac19" />. Nilainya mengecil menuju 0 tetapi tetap positif.
+
+<BarChart
+  title={<>Perpangkatan 3 dari <InlineMath math="3^{-2}" /> sampai <InlineMath math="3^2" /></>}
+  description={<>Batang <InlineMath math="3^n" /> untuk <InlineMath math="n = -2" /> sampai 2.</>}
+  yAxisLabel="Nilai"
+  data={[-2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: 3 ** x }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Pangkat Pecahan
 

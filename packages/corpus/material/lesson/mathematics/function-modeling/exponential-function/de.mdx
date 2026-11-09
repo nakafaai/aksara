@@ -3,7 +3,7 @@ export const metadata = {
   description: "Exponentielles Wachstum und exponentiellen Zerfall an Graphen, Bevölkerungsmodellen, Halbwertszeiten und Zinseszins verstehen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Funktionen und ihre Modellierung",
 };
 
@@ -53,38 +53,29 @@ Aus den Potenzregeln folgen diese Identitäten. Beim Multiplizieren zweier Funkt
 
 Die beiden **Grundformen** lassen sich im selben Koordinatensystem direkt vergleichen:
 
-<LineEquation
+<MathVisual
   title={<>Vergleich von Exponentialfunktionen</>}
-  description={
-    <>
-      Der Graph von <InlineMath math="f(x) = 2^x" /> zeigt Wachstum, der Graph
-      von <InlineMath math="g(x) = (0{,}5)^x" /> zeigt Zerfall.
-    </>
-  }
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 351 }, (_, i) => {
-        const x = (i - 275) / 25;
-        return { x, y: Math.pow(2, x), z: 0 };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, at: 300, offset: [2, -0.5, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 351 }, (_, i) => {
-        const x = (i - 75) / 25;
-        return { x, y: Math.pow(0.5, x), z: 0 };
-      }),
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="g(x)=(0{,}5)^x" />, at: 50, offset: [-2, -0.5, 0] }],
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 10]}
+  description={<>Die Wachstumsfunktion <InlineMath math="f(x) = 2^x" /> und die Zerfallsfunktion <InlineMath math="g(x) = (0{,}5)^x" /> für <InlineMath math="-3 \le x \le 3" />. Beide gehen durch <InlineMath math="(0, 1)" /> und sind Spiegelbilder an der y-Achse.</>}
+  labels={{
+    f: <InlineMath math="f(x) = 2^x" />,
+    g: <InlineMath math="g(x) = (0{,}5)^x" />,
+    one: <InlineMath math="(0, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.4, max: 3.4 }, y: { min: -0.5, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "polyline", vertices: [{ x: -3, y: 2 ** (-3) }, { x: -29 / 10, y: 2 ** (-29 / 10) }, { x: -14 / 5, y: 2 ** (-14 / 5) }, { x: -27 / 10, y: 2 ** (-27 / 10) }, { x: -13 / 5, y: 2 ** (-13 / 5) }, { x: -5 / 2, y: 2 ** (-5 / 2) }, { x: -12 / 5, y: 2 ** (-12 / 5) }, { x: -23 / 10, y: 2 ** (-23 / 10) }, { x: -11 / 5, y: 2 ** (-11 / 5) }, { x: -21 / 10, y: 2 ** (-21 / 10) }, { x: -2, y: 2 ** (-2) }, { x: -19 / 10, y: 2 ** (-19 / 10) }, { x: -9 / 5, y: 2 ** (-9 / 5) }, { x: -17 / 10, y: 2 ** (-17 / 10) }, { x: -8 / 5, y: 2 ** (-8 / 5) }, { x: -3 / 2, y: 2 ** (-3 / 2) }, { x: -7 / 5, y: 2 ** (-7 / 5) }, { x: -13 / 10, y: 2 ** (-13 / 10) }, { x: -6 / 5, y: 2 ** (-6 / 5) }, { x: -11 / 10, y: 2 ** (-11 / 10) }, { x: -1, y: 2 ** (-1) }, { x: -9 / 10, y: 2 ** (-9 / 10) }, { x: -4 / 5, y: 2 ** (-4 / 5) }, { x: -7 / 10, y: 2 ** (-7 / 10) }, { x: -3 / 5, y: 2 ** (-3 / 5) }, { x: -1 / 2, y: 2 ** (-1 / 2) }, { x: -2 / 5, y: 2 ** (-2 / 5) }, { x: -3 / 10, y: 2 ** (-3 / 10) }, { x: -1 / 5, y: 2 ** (-1 / 5) }, { x: -1 / 10, y: 2 ** (-1 / 10) }, { x: 0, y: 2 ** (0) }, { x: 1 / 10, y: 2 ** (1 / 10) }, { x: 1 / 5, y: 2 ** (1 / 5) }, { x: 3 / 10, y: 2 ** (3 / 10) }, { x: 2 / 5, y: 2 ** (2 / 5) }, { x: 1 / 2, y: 2 ** (1 / 2) }, { x: 3 / 5, y: 2 ** (3 / 5) }, { x: 7 / 10, y: 2 ** (7 / 10) }, { x: 4 / 5, y: 2 ** (4 / 5) }, { x: 9 / 10, y: 2 ** (9 / 10) }, { x: 1, y: 2 ** (1) }, { x: 11 / 10, y: 2 ** (11 / 10) }, { x: 6 / 5, y: 2 ** (6 / 5) }, { x: 13 / 10, y: 2 ** (13 / 10) }, { x: 7 / 5, y: 2 ** (7 / 5) }, { x: 3 / 2, y: 2 ** (3 / 2) }, { x: 8 / 5, y: 2 ** (8 / 5) }, { x: 17 / 10, y: 2 ** (17 / 10) }, { x: 9 / 5, y: 2 ** (9 / 5) }, { x: 19 / 10, y: 2 ** (19 / 10) }, { x: 2, y: 2 ** (2) }, { x: 21 / 10, y: 2 ** (21 / 10) }, { x: 11 / 5, y: 2 ** (11 / 5) }, { x: 23 / 10, y: 2 ** (23 / 10) }, { x: 12 / 5, y: 2 ** (12 / 5) }, { x: 5 / 2, y: 2 ** (5 / 2) }, { x: 13 / 5, y: 2 ** (13 / 5) }, { x: 27 / 10, y: 2 ** (27 / 10) }, { x: 14 / 5, y: 2 ** (14 / 5) }, { x: 29 / 10, y: 2 ** (29 / 10) }, { x: 3, y: 2 ** (3) }], appearance: "primary" },
+      { id: "g", kind: "polyline", vertices: [{ x: -3, y: 2 ** (-(-3)) }, { x: -29 / 10, y: 2 ** (-(-29 / 10)) }, { x: -14 / 5, y: 2 ** (-(-14 / 5)) }, { x: -27 / 10, y: 2 ** (-(-27 / 10)) }, { x: -13 / 5, y: 2 ** (-(-13 / 5)) }, { x: -5 / 2, y: 2 ** (-(-5 / 2)) }, { x: -12 / 5, y: 2 ** (-(-12 / 5)) }, { x: -23 / 10, y: 2 ** (-(-23 / 10)) }, { x: -11 / 5, y: 2 ** (-(-11 / 5)) }, { x: -21 / 10, y: 2 ** (-(-21 / 10)) }, { x: -2, y: 2 ** (-(-2)) }, { x: -19 / 10, y: 2 ** (-(-19 / 10)) }, { x: -9 / 5, y: 2 ** (-(-9 / 5)) }, { x: -17 / 10, y: 2 ** (-(-17 / 10)) }, { x: -8 / 5, y: 2 ** (-(-8 / 5)) }, { x: -3 / 2, y: 2 ** (-(-3 / 2)) }, { x: -7 / 5, y: 2 ** (-(-7 / 5)) }, { x: -13 / 10, y: 2 ** (-(-13 / 10)) }, { x: -6 / 5, y: 2 ** (-(-6 / 5)) }, { x: -11 / 10, y: 2 ** (-(-11 / 10)) }, { x: -1, y: 2 ** (-(-1)) }, { x: -9 / 10, y: 2 ** (-(-9 / 10)) }, { x: -4 / 5, y: 2 ** (-(-4 / 5)) }, { x: -7 / 10, y: 2 ** (-(-7 / 10)) }, { x: -3 / 5, y: 2 ** (-(-3 / 5)) }, { x: -1 / 2, y: 2 ** (-(-1 / 2)) }, { x: -2 / 5, y: 2 ** (-(-2 / 5)) }, { x: -3 / 10, y: 2 ** (-(-3 / 10)) }, { x: -1 / 5, y: 2 ** (-(-1 / 5)) }, { x: -1 / 10, y: 2 ** (-(-1 / 10)) }, { x: 0, y: 2 ** (-(0)) }, { x: 1 / 10, y: 2 ** (-(1 / 10)) }, { x: 1 / 5, y: 2 ** (-(1 / 5)) }, { x: 3 / 10, y: 2 ** (-(3 / 10)) }, { x: 2 / 5, y: 2 ** (-(2 / 5)) }, { x: 1 / 2, y: 2 ** (-(1 / 2)) }, { x: 3 / 5, y: 2 ** (-(3 / 5)) }, { x: 7 / 10, y: 2 ** (-(7 / 10)) }, { x: 4 / 5, y: 2 ** (-(4 / 5)) }, { x: 9 / 10, y: 2 ** (-(9 / 10)) }, { x: 1, y: 2 ** (-(1)) }, { x: 11 / 10, y: 2 ** (-(11 / 10)) }, { x: 6 / 5, y: 2 ** (-(6 / 5)) }, { x: 13 / 10, y: 2 ** (-(13 / 10)) }, { x: 7 / 5, y: 2 ** (-(7 / 5)) }, { x: 3 / 2, y: 2 ** (-(3 / 2)) }, { x: 8 / 5, y: 2 ** (-(8 / 5)) }, { x: 17 / 10, y: 2 ** (-(17 / 10)) }, { x: 9 / 5, y: 2 ** (-(9 / 5)) }, { x: 19 / 10, y: 2 ** (-(19 / 10)) }, { x: 2, y: 2 ** (-(2)) }, { x: 21 / 10, y: 2 ** (-(21 / 10)) }, { x: 11 / 5, y: 2 ** (-(11 / 5)) }, { x: 23 / 10, y: 2 ** (-(23 / 10)) }, { x: 12 / 5, y: 2 ** (-(12 / 5)) }, { x: 5 / 2, y: 2 ** (-(5 / 2)) }, { x: 13 / 5, y: 2 ** (-(13 / 5)) }, { x: 27 / 10, y: 2 ** (-(27 / 10)) }, { x: 14 / 5, y: 2 ** (-(14 / 5)) }, { x: 29 / 10, y: 2 ** (-(29 / 10)) }, { x: 3, y: 2 ** (-(3)) }], appearance: "secondary" },
+      { id: "one", kind: "point", at: { x: 0, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 3, y: 8 }, placement: "left" },
+      { key: "g", objectId: "g", at: { x: -3, y: 8 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: 0, y: 1 }, placement: "below" },
+    ],
+  }}
 />
 
 Vergleich der Funktionswerte <InlineMath math="f(x) = 2^x" /> und <InlineMath math="g(x) = (0{,}5)^x" />:
@@ -102,39 +93,29 @@ Eine **vertikale Verschiebung** bewegt die Asymptote, während eine horizontale 
 
 Die Funktion <InlineMath math="f(x) = a \cdot b^x + c" /> verschiebt den Graphen **nach oben** (wenn <InlineMath math="c > 0" />) oder nach unten (wenn <InlineMath math="c < 0" />).
 
-<LineEquation
-  title={<>Vertikale Verschiebung</>}
-  description={
-    <>
-    Vergleich von <InlineMath math="f(x) = 2^x" /> mit{" "}
-      <InlineMath math="g(x) = 2^x + 2" />.
-    </>
-  }
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 176 }, (_, i) => {
-        const x = -4 + i / 25;
-        return { x, y: Math.pow(2, x), z: 0 };
-      }),
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="f(x)=2^x" />, at: 125, offset: [1.5, -0.5, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 176 }, (_, i) => {
-        const x = -4 + i / 25;
-        return { x, y: Math.pow(2, x) + 2, z: 0 };
-      }),
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="g(x)=2^x+2" />, at: 125, offset: [0, -0.5, 0] }],
-    },
-  ]}
-  showZAxis={false}
-  cameraTarget={[0, 3, 0]}
-  cameraPosition={[0, 3, 13]}
+<MathVisual
+  title={<>Verschiebung nach oben</>}
+  description={<>Der Graph von <InlineMath math="g(x) = 2^x + 2" /> ist <InlineMath math="f(x) = 2^x" />, um 2 nach oben verschoben. Die waagerechte Asymptote wandert von <InlineMath math="y = 0" /> nach <InlineMath math="y = 2" />.</>}
+  labels={{
+    f: <InlineMath math="f(x) = 2^x" />,
+    g: <InlineMath math="g(x) = 2^x + 2" />,
+    asym: <InlineMath math="y = 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.4, max: 2.8 }, y: { min: -0.5, max: 8.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "asym", kind: "line", through: [{ x: 0, y: 2 }, { x: 1, y: 2 }], appearance: "reference" },
+      { id: "f", kind: "polyline", vertices: [{ x: -4, y: 2 ** (-4) }, { x: -39 / 10, y: 2 ** (-39 / 10) }, { x: -19 / 5, y: 2 ** (-19 / 5) }, { x: -37 / 10, y: 2 ** (-37 / 10) }, { x: -18 / 5, y: 2 ** (-18 / 5) }, { x: -7 / 2, y: 2 ** (-7 / 2) }, { x: -17 / 5, y: 2 ** (-17 / 5) }, { x: -33 / 10, y: 2 ** (-33 / 10) }, { x: -16 / 5, y: 2 ** (-16 / 5) }, { x: -31 / 10, y: 2 ** (-31 / 10) }, { x: -3, y: 2 ** (-3) }, { x: -29 / 10, y: 2 ** (-29 / 10) }, { x: -14 / 5, y: 2 ** (-14 / 5) }, { x: -27 / 10, y: 2 ** (-27 / 10) }, { x: -13 / 5, y: 2 ** (-13 / 5) }, { x: -5 / 2, y: 2 ** (-5 / 2) }, { x: -12 / 5, y: 2 ** (-12 / 5) }, { x: -23 / 10, y: 2 ** (-23 / 10) }, { x: -11 / 5, y: 2 ** (-11 / 5) }, { x: -21 / 10, y: 2 ** (-21 / 10) }, { x: -2, y: 2 ** (-2) }, { x: -19 / 10, y: 2 ** (-19 / 10) }, { x: -9 / 5, y: 2 ** (-9 / 5) }, { x: -17 / 10, y: 2 ** (-17 / 10) }, { x: -8 / 5, y: 2 ** (-8 / 5) }, { x: -3 / 2, y: 2 ** (-3 / 2) }, { x: -7 / 5, y: 2 ** (-7 / 5) }, { x: -13 / 10, y: 2 ** (-13 / 10) }, { x: -6 / 5, y: 2 ** (-6 / 5) }, { x: -11 / 10, y: 2 ** (-11 / 10) }, { x: -1, y: 2 ** (-1) }, { x: -9 / 10, y: 2 ** (-9 / 10) }, { x: -4 / 5, y: 2 ** (-4 / 5) }, { x: -7 / 10, y: 2 ** (-7 / 10) }, { x: -3 / 5, y: 2 ** (-3 / 5) }, { x: -1 / 2, y: 2 ** (-1 / 2) }, { x: -2 / 5, y: 2 ** (-2 / 5) }, { x: -3 / 10, y: 2 ** (-3 / 10) }, { x: -1 / 5, y: 2 ** (-1 / 5) }, { x: -1 / 10, y: 2 ** (-1 / 10) }, { x: 0, y: 2 ** (0) }, { x: 1 / 10, y: 2 ** (1 / 10) }, { x: 1 / 5, y: 2 ** (1 / 5) }, { x: 3 / 10, y: 2 ** (3 / 10) }, { x: 2 / 5, y: 2 ** (2 / 5) }, { x: 1 / 2, y: 2 ** (1 / 2) }, { x: 3 / 5, y: 2 ** (3 / 5) }, { x: 7 / 10, y: 2 ** (7 / 10) }, { x: 4 / 5, y: 2 ** (4 / 5) }, { x: 9 / 10, y: 2 ** (9 / 10) }, { x: 1, y: 2 ** (1) }, { x: 11 / 10, y: 2 ** (11 / 10) }, { x: 6 / 5, y: 2 ** (6 / 5) }, { x: 13 / 10, y: 2 ** (13 / 10) }, { x: 7 / 5, y: 2 ** (7 / 5) }, { x: 3 / 2, y: 2 ** (3 / 2) }, { x: 8 / 5, y: 2 ** (8 / 5) }, { x: 17 / 10, y: 2 ** (17 / 10) }, { x: 9 / 5, y: 2 ** (9 / 5) }, { x: 19 / 10, y: 2 ** (19 / 10) }, { x: 2, y: 2 ** (2) }, { x: 21 / 10, y: 2 ** (21 / 10) }, { x: 11 / 5, y: 2 ** (11 / 5) }, { x: 23 / 10, y: 2 ** (23 / 10) }, { x: 12 / 5, y: 2 ** (12 / 5) }, { x: 5 / 2, y: 2 ** (5 / 2) }], appearance: "primary" },
+      { id: "g", kind: "polyline", vertices: [{ x: -4, y: 2 ** (-4) + 2 }, { x: -39 / 10, y: 2 ** (-39 / 10) + 2 }, { x: -19 / 5, y: 2 ** (-19 / 5) + 2 }, { x: -37 / 10, y: 2 ** (-37 / 10) + 2 }, { x: -18 / 5, y: 2 ** (-18 / 5) + 2 }, { x: -7 / 2, y: 2 ** (-7 / 2) + 2 }, { x: -17 / 5, y: 2 ** (-17 / 5) + 2 }, { x: -33 / 10, y: 2 ** (-33 / 10) + 2 }, { x: -16 / 5, y: 2 ** (-16 / 5) + 2 }, { x: -31 / 10, y: 2 ** (-31 / 10) + 2 }, { x: -3, y: 2 ** (-3) + 2 }, { x: -29 / 10, y: 2 ** (-29 / 10) + 2 }, { x: -14 / 5, y: 2 ** (-14 / 5) + 2 }, { x: -27 / 10, y: 2 ** (-27 / 10) + 2 }, { x: -13 / 5, y: 2 ** (-13 / 5) + 2 }, { x: -5 / 2, y: 2 ** (-5 / 2) + 2 }, { x: -12 / 5, y: 2 ** (-12 / 5) + 2 }, { x: -23 / 10, y: 2 ** (-23 / 10) + 2 }, { x: -11 / 5, y: 2 ** (-11 / 5) + 2 }, { x: -21 / 10, y: 2 ** (-21 / 10) + 2 }, { x: -2, y: 2 ** (-2) + 2 }, { x: -19 / 10, y: 2 ** (-19 / 10) + 2 }, { x: -9 / 5, y: 2 ** (-9 / 5) + 2 }, { x: -17 / 10, y: 2 ** (-17 / 10) + 2 }, { x: -8 / 5, y: 2 ** (-8 / 5) + 2 }, { x: -3 / 2, y: 2 ** (-3 / 2) + 2 }, { x: -7 / 5, y: 2 ** (-7 / 5) + 2 }, { x: -13 / 10, y: 2 ** (-13 / 10) + 2 }, { x: -6 / 5, y: 2 ** (-6 / 5) + 2 }, { x: -11 / 10, y: 2 ** (-11 / 10) + 2 }, { x: -1, y: 2 ** (-1) + 2 }, { x: -9 / 10, y: 2 ** (-9 / 10) + 2 }, { x: -4 / 5, y: 2 ** (-4 / 5) + 2 }, { x: -7 / 10, y: 2 ** (-7 / 10) + 2 }, { x: -3 / 5, y: 2 ** (-3 / 5) + 2 }, { x: -1 / 2, y: 2 ** (-1 / 2) + 2 }, { x: -2 / 5, y: 2 ** (-2 / 5) + 2 }, { x: -3 / 10, y: 2 ** (-3 / 10) + 2 }, { x: -1 / 5, y: 2 ** (-1 / 5) + 2 }, { x: -1 / 10, y: 2 ** (-1 / 10) + 2 }, { x: 0, y: 2 ** (0) + 2 }, { x: 1 / 10, y: 2 ** (1 / 10) + 2 }, { x: 1 / 5, y: 2 ** (1 / 5) + 2 }, { x: 3 / 10, y: 2 ** (3 / 10) + 2 }, { x: 2 / 5, y: 2 ** (2 / 5) + 2 }, { x: 1 / 2, y: 2 ** (1 / 2) + 2 }, { x: 3 / 5, y: 2 ** (3 / 5) + 2 }, { x: 7 / 10, y: 2 ** (7 / 10) + 2 }, { x: 4 / 5, y: 2 ** (4 / 5) + 2 }, { x: 9 / 10, y: 2 ** (9 / 10) + 2 }, { x: 1, y: 2 ** (1) + 2 }, { x: 11 / 10, y: 2 ** (11 / 10) + 2 }, { x: 6 / 5, y: 2 ** (6 / 5) + 2 }, { x: 13 / 10, y: 2 ** (13 / 10) + 2 }, { x: 7 / 5, y: 2 ** (7 / 5) + 2 }, { x: 3 / 2, y: 2 ** (3 / 2) + 2 }, { x: 8 / 5, y: 2 ** (8 / 5) + 2 }, { x: 17 / 10, y: 2 ** (17 / 10) + 2 }, { x: 9 / 5, y: 2 ** (9 / 5) + 2 }, { x: 19 / 10, y: 2 ** (19 / 10) + 2 }, { x: 2, y: 2 ** (2) + 2 }, { x: 21 / 10, y: 2 ** (21 / 10) + 2 }, { x: 11 / 5, y: 2 ** (11 / 5) + 2 }, { x: 23 / 10, y: 2 ** (23 / 10) + 2 }, { x: 12 / 5, y: 2 ** (12 / 5) + 2 }, { x: 5 / 2, y: 2 ** (5 / 2) + 2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2, y: 4 }, placement: "right" },
+      { key: "g", objectId: "g", at: { x: 2, y: 6 }, placement: "left" },
+      { key: "asym", objectId: "asym", at: { x: -4, y: 2 }, placement: "above" },
+    ],
+  }}
 />
 
 ### Horizontale Verschiebung
@@ -150,6 +131,42 @@ Bei einer **Verschiebung um zwei nach rechts** wird jede ursprüngliche Eingabe 
 | <InlineMath math="(0,1)" /> | <InlineMath math="(2,1)" /> |
 | <InlineMath math="(1,2)" /> | <InlineMath math="(3,2)" /> |
 | <InlineMath math="(2,4)" /> | <InlineMath math="(4,4)" /> |
+
+Eine Verschiebung um 2 nach rechts bewegt jeden Punkt von <InlineMath math="y = 2^x" /> um 2 Einheiten: <InlineMath math="(0, 1)" /> nach <InlineMath math="(2, 1)" />, <InlineMath math="(1, 2)" /> nach <InlineMath math="(3, 2)" /> und <InlineMath math="(2, 4)" /> nach <InlineMath math="(4, 4)" />. Form und Asymptote <InlineMath math="y = 0" /> bleiben gleich.
+
+<MathVisual
+  title={<><InlineMath math="y = 2^x" /> und <InlineMath math="y = 2^{x-2}" /></>}
+  description={<>Die Kurven <InlineMath math="y = 2^x" /> und <InlineMath math="y = 2^{x - 2}" /> mit drei Punkten und ihren Bildern 2 Einheiten rechts davon.</>}
+  labels={{
+    f: <InlineMath math="y = 2^x" />,
+    g: <InlineMath math="y = 2^{x-2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.4, max: 4.8 }, y: { min: -0.4, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "polyline", vertices: [{ x: -2, y: 2 ** (-2) }, { x: -19 / 10, y: 2 ** (-19 / 10) }, { x: -9 / 5, y: 2 ** (-9 / 5) }, { x: -17 / 10, y: 2 ** (-17 / 10) }, { x: -8 / 5, y: 2 ** (-8 / 5) }, { x: -3 / 2, y: 2 ** (-3 / 2) }, { x: -7 / 5, y: 2 ** (-7 / 5) }, { x: -13 / 10, y: 2 ** (-13 / 10) }, { x: -6 / 5, y: 2 ** (-6 / 5) }, { x: -11 / 10, y: 2 ** (-11 / 10) }, { x: -1, y: 2 ** (-1) }, { x: -9 / 10, y: 2 ** (-9 / 10) }, { x: -4 / 5, y: 2 ** (-4 / 5) }, { x: -7 / 10, y: 2 ** (-7 / 10) }, { x: -3 / 5, y: 2 ** (-3 / 5) }, { x: -1 / 2, y: 2 ** (-1 / 2) }, { x: -2 / 5, y: 2 ** (-2 / 5) }, { x: -3 / 10, y: 2 ** (-3 / 10) }, { x: -1 / 5, y: 2 ** (-1 / 5) }, { x: -1 / 10, y: 2 ** (-1 / 10) }, { x: 0, y: 2 ** (0) }, { x: 1 / 10, y: 2 ** (1 / 10) }, { x: 1 / 5, y: 2 ** (1 / 5) }, { x: 3 / 10, y: 2 ** (3 / 10) }, { x: 2 / 5, y: 2 ** (2 / 5) }, { x: 1 / 2, y: 2 ** (1 / 2) }, { x: 3 / 5, y: 2 ** (3 / 5) }, { x: 7 / 10, y: 2 ** (7 / 10) }, { x: 4 / 5, y: 2 ** (4 / 5) }, { x: 9 / 10, y: 2 ** (9 / 10) }, { x: 1, y: 2 ** (1) }, { x: 11 / 10, y: 2 ** (11 / 10) }, { x: 6 / 5, y: 2 ** (6 / 5) }, { x: 13 / 10, y: 2 ** (13 / 10) }, { x: 7 / 5, y: 2 ** (7 / 5) }, { x: 3 / 2, y: 2 ** (3 / 2) }, { x: 8 / 5, y: 2 ** (8 / 5) }, { x: 17 / 10, y: 2 ** (17 / 10) }, { x: 9 / 5, y: 2 ** (9 / 5) }, { x: 19 / 10, y: 2 ** (19 / 10) }, { x: 2, y: 2 ** (2) }, { x: 21 / 10, y: 2 ** (21 / 10) }, { x: 11 / 5, y: 2 ** (11 / 5) }, { x: 23 / 10, y: 2 ** (23 / 10) }, { x: 12 / 5, y: 2 ** (12 / 5) }, { x: 5 / 2, y: 2 ** (5 / 2) }], appearance: "primary" },
+      { id: "g", kind: "polyline", vertices: [{ x: 0, y: 2 ** (-2) }, { x: 1 / 10, y: 2 ** (-19 / 10) }, { x: 1 / 5, y: 2 ** (-9 / 5) }, { x: 3 / 10, y: 2 ** (-17 / 10) }, { x: 2 / 5, y: 2 ** (-8 / 5) }, { x: 1 / 2, y: 2 ** (-3 / 2) }, { x: 3 / 5, y: 2 ** (-7 / 5) }, { x: 7 / 10, y: 2 ** (-13 / 10) }, { x: 4 / 5, y: 2 ** (-6 / 5) }, { x: 9 / 10, y: 2 ** (-11 / 10) }, { x: 1, y: 2 ** (-1) }, { x: 11 / 10, y: 2 ** (-9 / 10) }, { x: 6 / 5, y: 2 ** (-4 / 5) }, { x: 13 / 10, y: 2 ** (-7 / 10) }, { x: 7 / 5, y: 2 ** (-3 / 5) }, { x: 3 / 2, y: 2 ** (-1 / 2) }, { x: 8 / 5, y: 2 ** (-2 / 5) }, { x: 17 / 10, y: 2 ** (-3 / 10) }, { x: 9 / 5, y: 2 ** (-1 / 5) }, { x: 19 / 10, y: 2 ** (-1 / 10) }, { x: 2, y: 2 ** (0) }, { x: 21 / 10, y: 2 ** (1 / 10) }, { x: 11 / 5, y: 2 ** (1 / 5) }, { x: 23 / 10, y: 2 ** (3 / 10) }, { x: 12 / 5, y: 2 ** (2 / 5) }, { x: 5 / 2, y: 2 ** (1 / 2) }, { x: 13 / 5, y: 2 ** (3 / 5) }, { x: 27 / 10, y: 2 ** (7 / 10) }, { x: 14 / 5, y: 2 ** (4 / 5) }, { x: 29 / 10, y: 2 ** (9 / 10) }, { x: 3, y: 2 ** (1) }, { x: 31 / 10, y: 2 ** (11 / 10) }, { x: 16 / 5, y: 2 ** (6 / 5) }, { x: 33 / 10, y: 2 ** (13 / 10) }, { x: 17 / 5, y: 2 ** (7 / 5) }, { x: 7 / 2, y: 2 ** (3 / 2) }, { x: 18 / 5, y: 2 ** (8 / 5) }, { x: 37 / 10, y: 2 ** (17 / 10) }, { x: 19 / 5, y: 2 ** (9 / 5) }, { x: 39 / 10, y: 2 ** (19 / 10) }, { x: 4, y: 2 ** (2) }, { x: 41 / 10, y: 2 ** (21 / 10) }, { x: 21 / 5, y: 2 ** (11 / 5) }, { x: 43 / 10, y: 2 ** (23 / 10) }, { x: 22 / 5, y: 2 ** (12 / 5) }, { x: 9 / 2, y: 2 ** (5 / 2) }], appearance: "secondary" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 9 / 5, y: 1 }, appearance: "construction" },
+      { id: "s0-head", kind: "polygon", vertices: [{ x: 9 / 5, y: 1 }, { x: 49 / 30, y: 16 / 15 }, { x: 49 / 30, y: 14 / 15 }], appearance: "construction" },
+      { id: "s1", kind: "segment", from: { x: 1, y: 2 }, to: { x: 14 / 5, y: 2 }, appearance: "construction" },
+      { id: "s1-head", kind: "polygon", vertices: [{ x: 14 / 5, y: 2 }, { x: 79 / 30, y: 31 / 15 }, { x: 79 / 30, y: 29 / 15 }], appearance: "construction" },
+      { id: "s2", kind: "segment", from: { x: 2, y: 4 }, to: { x: 19 / 5, y: 4 }, appearance: "construction" },
+      { id: "s2-head", kind: "polygon", vertices: [{ x: 19 / 5, y: 4 }, { x: 109 / 30, y: 61 / 15 }, { x: 109 / 30, y: 59 / 15 }], appearance: "construction" },
+      { id: "a0", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "a1", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "a2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "b0", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "b1", kind: "point", at: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "b2", kind: "point", at: { x: 4, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 5 / 2, y: 2 ** 2.5 }, placement: "left" },
+      { key: "g", objectId: "g", at: { x: 9 / 2, y: 2 ** 2.5 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Anwendungen von Exponentialfunktionen
 

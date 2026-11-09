@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use binomial-square and sum-of-cubes identities to simplify expressions and solve equations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Polynomial",
 };
 
@@ -29,13 +29,43 @@ These **polynomial identities** are useful for expanding expressions and finding
 
 You can read each identity in either direction: from a product to an expanded expression, or from an expanded expression to its factors.
 
+The identity <InlineMath math="(a + b)^2 = a^2 + 2ab + b^2" /> as an area: a square of side <InlineMath math="a + b" /> splits into a square <InlineMath math="a^2" />, two rectangles <InlineMath math="ab" /> and a square <InlineMath math="b^2" />. With <InlineMath math="a = 3" /> and <InlineMath math="b = 1" />: <InlineMath math="16 = 9 + 3 + 3 + 1" />.
+
+<MathVisual
+  title={<><InlineMath math="(a + b)^2" /> as four areas</>}
+  description={<>A square of side 4 split into <InlineMath math="a^2 = 9" />, two rectangles <InlineMath math="ab = 3" /> and <InlineMath math="b^2 = 1" />, with <InlineMath math="a = 3" /> and <InlineMath math="b = 1" />.</>}
+  labels={{
+    aa: <InlineMath math="a^2" />,
+    ab1: <InlineMath math="ab" />,
+    ab2: <InlineMath math="ab" />,
+    bb: <InlineMath math="b^2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -0.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "aa", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "ab1", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 3, y: 3 }], appearance: "secondary" },
+      { id: "ab2", kind: "polygon", vertices: [{ x: 0, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 4 }, { x: 0, y: 4 }], appearance: "secondary" },
+      { id: "bb", kind: "polygon", vertices: [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 4, y: 4 }, { x: 3, y: 4 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "aa", objectId: "aa", at: { x: 3 / 2, y: 3 / 2 }, placement: "center" },
+      { key: "ab1", objectId: "ab1", at: { x: 7 / 2, y: 3 / 2 }, placement: "center" },
+      { key: "ab2", objectId: "ab2", at: { x: 3 / 2, y: 7 / 2 }, placement: "center" },
+      { key: "bb", objectId: "bb", at: { x: 7 / 2, y: 7 / 2 }, placement: "center" },
+    ],
+  }}
+/>
+
 ### Seeing the Difference of Squares as an Area
 
 Start with a square of side <InlineMath math="4" /> and remove a square of side <InlineMath math="1" /> from its upper-right corner. The two colored pieces retain **the same total area** when rearranged into a <InlineMath math="5\times3" /> rectangle. The larger piece rotates without changing size.
 
 <MathVisual
-  title="Two arrangements with area 15"
-  description="A four-by-four square with a one-by-one corner removed becomes a five-by-three rectangle."
+  title={<>Two arrangements with area 15</>}
+  description={<>A four-by-four square with a one-by-one corner removed becomes a five-by-three rectangle.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -0.5, max: 4.5 } },
@@ -109,3 +139,13 @@ The sides differ, so the equation is **not an identity**. The mixed terms in the
 <BlockMath math="\begin{aligned}(2x-3)^2+5&amp;=(2x)^2-2(2x)(3)+3^2+5 \\ &amp;=4x^2-12x+9+5 \\ &amp;=4x^2-12x+14\end{aligned}" />
 
 The result agrees with the right side for every input. Therefore, the equation is a **polynomial identity**.
+
+For Problem 1, subtract the right side from the left: <InlineMath math="(2m - 3)^3 - (8m^3 - 27)" />. It is 0 at <InlineMath math="m = 0" /> but 18 at <InlineMath math="m = 1" /> and <InlineMath math="-36" /> at <InlineMath math="m = 2" />, so the two sides disagree and the equation is not an identity.
+
+<BarChart
+  title={<>The gap in <InlineMath math="(2m - 3)^3 = 8m^3 - 27" /></>}
+  description={<>Bars of <InlineMath math="(2m - 3)^3 - (8m^3 - 27)" /> for <InlineMath math="m = 0, 1, 2, 3" />: 0, 18, <InlineMath math="-36" /> and <InlineMath math="-162" />.</>}
+  yAxisLabel="Left minus right"
+  data={[0, 1, 2, 3].map((x) => ({ name: String(x), value: (2 * x - 3) ** 3 - (8 * x ** 3 - 27) }))}
+  chartConfig={{ value: { label: "Left minus right", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

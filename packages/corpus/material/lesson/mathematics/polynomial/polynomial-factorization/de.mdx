@@ -3,7 +3,7 @@ export const metadata = {
   description: "Faktorisiere Polynome mithilfe reeller und komplexer Nullstellen vollständig und wende dabei den Fundamentalsatz der Algebra an.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Polynom",
 };
 
@@ -30,6 +30,16 @@ Jede Nullstelle liefert einen Linearfaktor. Bestimme Nullstellen durch **Gruppie
 Behalte den **Leitkoeffizienten** und wiederholte Faktoren bei. Das folgende Polynom hat zum Beispiel drei Nullstellen, wenn du Wiederholungen mitzählst: eins, eins und minus zwei.
 
 <BlockMath math="2x^3-6x+4=2(x-1)^2(x+2)" />
+
+Berechne <InlineMath math="2x^3 - 6x + 4 = 2(x - 1)^2(x + 2)" /> für die ganzen Zahlen von <InlineMath math="-3" /> bis 2. Die Balken wechseln das Vorzeichen bei der einfachen Nullstelle <InlineMath math="-2" />, an der doppelten Nullstelle 1 berühren sie 0 nur und bleiben auf beiden Seiten positiv.
+
+<BarChart
+  title={<>Werte von <InlineMath math="2(x - 1)^2(x + 2)" /></>}
+  description={<>Balken von <InlineMath math="2x^3 - 6x + 4" /> für <InlineMath math="x = -3" /> bis 2, null bei <InlineMath math="-2" /> und 1.</>}
+  yAxisLabel="Wert"
+  data={[-3, -2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: 2 * x ** 3 - 6 * x + 4 }))}
+  chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Verwendung der vollständigen Faktorisierung
 
@@ -74,6 +84,34 @@ Der führende Koeffizient von <InlineMath math="P(x)" /> ist <InlineMath math="a
 <BlockMath math="P(x) = 1 \cdot (x - 1)(x - i)(x + i)" />
 <BlockMath math="P(x) = (x - 1)(x - i)(x + i)" />
 </MathContainer>
+
+Die drei Nullstellen von <InlineMath math="x^3 - x^2 + x - 1 = (x - 1)(x - i)(x + i)" /> in der komplexen Ebene: eine reelle bei 1 und das konjugierte Paar <InlineMath math="i" /> und <InlineMath math="-i" />, Spiegelbilder an der reellen Achse.
+
+<MathVisual
+  title={<>Die Nullstellen 1, <InlineMath math="i" /> und <InlineMath math="-i" /></>}
+  description={<>Die Punkte 1, <InlineMath math="i" /> und <InlineMath math="-i" /> in der komplexen Ebene, das konjugierte Paar über die reelle Achse verbunden.</>}
+  labels={{
+    one: <InlineMath math="1" />,
+    up: <InlineMath math="i" />,
+    down: <InlineMath math="-i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 2 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "pair", kind: "segment", from: { x: 0, y: -1 }, to: { x: 0, y: 1 }, appearance: "reference" },
+      { id: "one", kind: "point", at: { x: 1, y: 0 }, appearance: "primary" },
+      { id: "up", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "down", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "up", objectId: "up", at: { x: 0, y: 1 }, placement: "right" },
+      { key: "down", objectId: "down", at: { x: 0, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Übung
 
@@ -135,8 +173,8 @@ Die anderen Wurzeln sind <InlineMath math="2 + i" /> und <InlineMath math="2 - i
 Die waagerechte Achse zeigt den Realteil, die senkrechte den Imaginärteil. Die Nullstellen <InlineMath math="2+i" /> und <InlineMath math="2-i" /> sind **Spiegelbilder an der reellen Achse**. Die Nullstelle <InlineMath math="-1" /> liegt auf der reellen Achse.
 
 <MathVisual
-  title="Die Nullstellen -1, 2+i und 2-i"
-  description="Die Nullstellen 2+i und 2-i liegen jeweils eine Einheit oberhalb und unterhalb der reellen Achse."
+  title={<>Die Nullstellen -1, 2+i und 2-i</>}
+  description={<>Die Nullstellen 2+i und 2-i liegen jeweils eine Einheit oberhalb und unterhalb der reellen Achse.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2, max: 3 }, y: { min: -2, max: 2 } },

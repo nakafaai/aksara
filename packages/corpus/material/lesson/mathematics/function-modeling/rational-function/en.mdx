@@ -3,7 +3,7 @@ export const metadata = {
   description: "Analyze rational functions through domain restrictions, equivalent simplification, arithmetic operations, area, and travel-time models.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-18",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Functions and Their Modeling",
 };
 
@@ -34,22 +34,31 @@ The model also shows how the two dimensions depend on each other: making the coo
 
 The dimensions are **inversely proportional**. A five-metre length requires a twenty-metre width, while a ten-metre length requires a ten-metre width.
 
-<LineEquation
-  title="Length and width at fixed area"
-  description="The graph shows lengths from 5 to 20 metres. Every point has length times width equal to 100 square metres."
-  data={[{
-    points: Array.from({ length: 61 }, (_, i) => {
-      const x = 5 + i / 4;
-      return { x, y: 100 / x, z: 0 };
-    }),
-    smooth: false,
-    color: "#9333ea",
-    showPoints: false,
-    labels: [{ text: <InlineMath math="w=100/x" />, at: 20, offset: [1, 1, 0] }],
-  }]}
-  showZAxis={false}
-  cameraTarget={[12, 12, 0]}
-  cameraPosition={[12, 12, 35]}
+<MathVisual
+  title={<>Length and width at fixed area</>}
+  description={<>The curve <InlineMath math="w = \frac{100}{x}" /> for lengths from 5 to 20 metres. Every point has length times width equal to 100 square metres, for example <InlineMath math="(5, 20)" />, <InlineMath math="(10, 10)" /> and <InlineMath math="(20, 5)" />.</>}
+  labels={{
+    curve: <InlineMath math="w = \frac{100}{x}" />,
+    a: <InlineMath math="(5, 20)" />,
+    b: <InlineMath math="(10, 10)" />,
+    c: <InlineMath math="(20, 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 3.5, max: 21.5 }, y: { min: 3.5, max: 21.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "polyline", vertices: [{ x: 5, y: 100 / (5) }, { x: 11 / 2, y: 100 / (11 / 2) }, { x: 6, y: 100 / (6) }, { x: 13 / 2, y: 100 / (13 / 2) }, { x: 7, y: 100 / (7) }, { x: 15 / 2, y: 100 / (15 / 2) }, { x: 8, y: 100 / (8) }, { x: 17 / 2, y: 100 / (17 / 2) }, { x: 9, y: 100 / (9) }, { x: 19 / 2, y: 100 / (19 / 2) }, { x: 10, y: 100 / (10) }, { x: 21 / 2, y: 100 / (21 / 2) }, { x: 11, y: 100 / (11) }, { x: 23 / 2, y: 100 / (23 / 2) }, { x: 12, y: 100 / (12) }, { x: 25 / 2, y: 100 / (25 / 2) }, { x: 13, y: 100 / (13) }, { x: 27 / 2, y: 100 / (27 / 2) }, { x: 14, y: 100 / (14) }, { x: 29 / 2, y: 100 / (29 / 2) }, { x: 15, y: 100 / (15) }, { x: 31 / 2, y: 100 / (31 / 2) }, { x: 16, y: 100 / (16) }, { x: 33 / 2, y: 100 / (33 / 2) }, { x: 17, y: 100 / (17) }, { x: 35 / 2, y: 100 / (35 / 2) }, { x: 18, y: 100 / (18) }, { x: 37 / 2, y: 100 / (37 / 2) }, { x: 19, y: 100 / (19) }, { x: 39 / 2, y: 100 / (39 / 2) }, { x: 20, y: 100 / (20) }], appearance: "primary" },
+      { id: "a", kind: "point", at: { x: 5, y: 20 }, appearance: "answer" },
+      { id: "b", kind: "point", at: { x: 10, y: 10 }, appearance: "answer" },
+      { id: "c", kind: "point", at: { x: 20, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "b", at: { x: 10, y: 10 }, placement: "above-right" },
+      { key: "a", objectId: "a", at: { x: 5, y: 20 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 20, y: 5 }, placement: "above" },
+    ],
+  }}
 />
 
 ## Common Forms
@@ -126,6 +135,31 @@ First record <InlineMath math="x\neq 2" />, then factor the **difference of squa
 </MathContainer>
 
 The graph agrees with the line <InlineMath math="y=x+2" /> except for a hole at <InlineMath math="x=2" />.
+
+<InlineMath math="g(x) = \frac{x^2 - 4}{x - 2}" /> has the graph of <InlineMath math="y = x + 2" /> with one point missing. At <InlineMath math="x = 2" /> the original fraction is undefined, so the line has a hole at <InlineMath math="(2, 4)" /> even though <InlineMath math="x + 2" /> would give 4 there.
+
+<MathVisual
+  title={<>The line <InlineMath math="y = x + 2" /> with a hole at <InlineMath math="(2, 4)" /></>}
+  description={<>The graph of <InlineMath math="g(x) = \frac{x^2 - 4}{x - 2}" />: the line <InlineMath math="y = x + 2" /> with an open circle at <InlineMath math="(2, 4)" />.</>}
+  labels={{
+    line: <InlineMath math="y = x + 2" />,
+    hole: <InlineMath math="(2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 5.6 }, y: { min: -0.6, max: 7.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "left", kind: "segment", from: { x: -1, y: 1 }, to: { x: 2 - 0.12 / Math.sqrt(2), y: 4 - 0.12 / Math.sqrt(2) }, appearance: "primary" },
+      { id: "right", kind: "segment", from: { x: 2 + 0.12 / Math.sqrt(2), y: 4 + 0.12 / Math.sqrt(2) }, to: { x: 5, y: 7 }, appearance: "primary" },
+      { id: "hole", kind: "circle", center: { x: 2, y: 4 }, radius: 3 / 25, appearance: "warning" },
+    ],
+    labels: [
+      { key: "line", objectId: "right", at: { x: 5, y: 7 }, placement: "left" },
+      { key: "hole", objectId: "hole", at: { x: 2, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Operations on Rational Expressions
 
@@ -236,3 +270,13 @@ The simplified formula still has a hole at the excluded **input** <InlineMath ma
 </MathContainer>
 
 Algebraically, <InlineMath math="v\neq 0" />. For a moving car, **speed must be positive**, so the physical model uses <InlineMath math="v>0" />.
+
+Travel times for 300 km from <InlineMath math="t(v) = \frac{300}{v}" />: 10 hours at 30 km/h, 6 at 50, 5 at 60, 4 at 75 and 3 at 100. Doubling the speed from 30 to 60 km/h halves the time.
+
+<BarChart
+  title={<>Travel time against speed</>}
+  description={<>Bars of <InlineMath math="t(v) = \frac{300}{v}" /> in hours for <InlineMath math="v = 30, 50, 60, 75, 100" /> km/h.</>}
+  yAxisLabel="Time (h)"
+  data={[30, 50, 60, 75, 100].map((x) => ({ name: String(x), value: 300 / x }))}
+  chartConfig={{ value: { label: "Time (h)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
