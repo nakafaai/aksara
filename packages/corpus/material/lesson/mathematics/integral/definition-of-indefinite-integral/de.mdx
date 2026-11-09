@@ -3,7 +3,7 @@ export const metadata = {
   description: "Ein unbestimmtes Integral umfasst alle Stammfunktionen, die sich nur durch eine Integrationskonstante unterscheiden.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Integrale",
 };
 
@@ -32,20 +32,65 @@ Die Aussage über eine konstante Differenz gilt auf **einem Intervall**, auf dem
 
 Die drei Parabeln stellen <InlineMath math="2x^2" />, <InlineMath math="2x^2+1" /> und <InlineMath math="2x^2+5" /> dar. Bei demselben Wert von <InlineMath math="x" /> haben die Kurven unterschiedliche Höhen, aber gleiche Tangentensteigungen. Verschiebe oder drehe die Ansicht und vergleiche die Form der Kurven.
 
-<LineEquation
-  title="Stammfunktionen mit verschiedenen Konstanten"
-  description="Die violette Kurve hat die Konstante null, die orange Kurve eins und die türkise Kurve fünf."
-  data={[
-    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x, z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=0" />, offset: [0, -0.5, 0] }] },
-    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x + 1, z: 0 }; }), smooth: false, color: "#ea580c", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=1" />, offset: [0, 0.5, 0] }] },
-    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x + 5, z: 0 }; }), smooth: false, color: "#0d9488", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=5" />, offset: [0, 0.5, 0] }] },
-  ]}
-  showZAxis={false}
-  cameraTarget={[0, 4.5, 0]}
-  cameraPosition={[0, 4.5, 17]}
+<MathVisual
+  title={<>Stammfunktionen, die sich um eine Konstante unterscheiden</>}
+  description={<>Die violette Kurve <InlineMath math="y = 2x^2" /> hat die Konstante 0, die orange Kurve <InlineMath math="y = 2x^2 + 1" /> die Konstante 1 und die türkise Kurve <InlineMath math="y = 2x^2 + 5" /> die Konstante 5. Bei <InlineMath math="x = 1" /> sind ihre Höhen 2, 3 und 7.</>}
+  labels={{
+    c0: <InlineMath math="C = 0" />,
+    c1: <InlineMath math="C = 1" />,
+    c5: <InlineMath math="C = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -0.6, max: 9.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c0", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 0 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "secondary" },
+      { id: "c1", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 1 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "primary" },
+      { id: "c5", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 5 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "construction" },
+      { id: "h0", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "h1", kind: "point", at: { x: 1, y: 3 }, appearance: "primary" },
+      { id: "h5", kind: "point", at: { x: 1, y: 7 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "c0", objectId: "c0", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "c1", objectId: "c1", at: { x: 0, y: 1 }, placement: "below" },
+      { key: "c5", objectId: "c5", at: { x: 0, y: 5 }, placement: "below" },
+    ],
+  }}
 />
 
 Eine Änderung der Konstanten bewirkt eine **vertikale Verschiebung**. Bei <InlineMath math="x=1" /> sind die Funktionswerte zum Beispiel <InlineMath math="2" />, <InlineMath math="3" /> und <InlineMath math="7" />. Alle drei Ableitungen haben dort den Wert <InlineMath math="4" />.
+
+Zeichne an jeder Kurve die Tangente bei <InlineMath math="x = 1" />. Alle drei Tangenten haben die Steigung 4, weil jede Stammfunktion von <InlineMath math="4x" /> dieselbe Ableitung hat. Nur ihre Höhen 2, 3 und 7 unterscheiden sich, also sind die Tangenten parallel.
+
+<MathVisual
+  title={<>Parallele Tangenten bei <InlineMath math="x = 1" /></>}
+  description={<>Die Kurven <InlineMath math="y = 2x^2 + C" /> für <InlineMath math="C = 0, 1, 5" /> mit ihren Tangenten der Steigung 4 bei <InlineMath math="x = 1" />.</>}
+  labels={{
+    c0: <InlineMath math="C = 0" />,
+    c1: <InlineMath math="C = 1" />,
+    c5: <InlineMath math="C = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -0.6, max: 9.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c0", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 0 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "secondary" },
+      { id: "c1", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 1 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "primary" },
+      { id: "c5", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 5 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "construction" },
+      { id: "t0", kind: "segment", from: { x: 1 / 2, y: 0 }, to: { x: 3 / 2, y: 4 }, appearance: "secondary" },
+      { id: "t1", kind: "segment", from: { x: 1 / 2, y: 1 }, to: { x: 3 / 2, y: 5 }, appearance: "primary" },
+      { id: "t5", kind: "segment", from: { x: 1 / 2, y: 5 }, to: { x: 3 / 2, y: 9 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "c0", objectId: "c0", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "c1", objectId: "c1", at: { x: 0, y: 1 }, placement: "below" },
+      { key: "c5", objectId: "c5", at: { x: 0, y: 5 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Formale Notation von Integralen
 
@@ -72,3 +117,13 @@ Es gelte <InlineMath math="F'(x)=4x" /> und <InlineMath math="F(1)=7" />. Die al
 <BlockMath math="\begin{aligned}F(1)&=2(1)^2+C=7\\2+C&=7\\C&=5\end{aligned}" />
 
 Damit ist <InlineMath math="F(x)=2x^2+5" />. Prüfe beide Bedingungen: Die Ableitung von <InlineMath math="2x^2+5" /> ist <InlineMath math="4x" />, und <InlineMath math="F(1)=2+5=7" />. Ein Funktionswert wählt genau eine der Stammfunktionen auf demselben Intervall aus.
+
+Prüf die vier Stammfunktionen aus der Tabelle an der Bedingung <InlineMath math="F(1) = 7" />. Ihre Werte <InlineMath math="F(1) = 2 + C" /> sind 3, 7, <InlineMath math="-8" /> und 2, und nur <InlineMath math="C = 5" /> liefert 7.
+
+<BarChart
+  title={<>Welche Konstante <InlineMath math="F(1) = 7" /> liefert</>}
+  description={<>Balken von <InlineMath math="F(1) = 2 + C" /> für <InlineMath math="C = 1, 5, -10, 0" />.</>}
+  yAxisLabel="F(1)"
+  data={[1, 5, -10, 0].map((c) => ({ name: "C = " + c, value: 2 * 1 ** 2 + c }))}
+  chartConfig={{ value: { label: "F(1)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

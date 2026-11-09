@@ -3,7 +3,7 @@ export const metadata = {
     description: "Bestimme eine Umkehrfunktion, prüfe, ob die ursprüngliche Funktion bijektiv ist, und verbinde beide Graphen mit der Spiegelung an der ersten Winkelhalbierenden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Funktionszusammensetzung und Umkehrfunktion",
 };
 
@@ -14,8 +14,8 @@ Beim Übersetzen wird einem englischen Wort ein indonesisches Wort zugeordnet. D
 Reale Übersetzungen können mehrdeutig sein. Hier verwenden wir bewusst ein kleines Wörterbuch, in dem jedes ausgewählte Wort genau einer Übersetzung zugeordnet ist.
 
 <InverseFunctionIllustration
-  title="Übersetzungsmaschine"
-  description="Die Übersetzungsmaschine wandelt Wörter oder Sätze vom Englischen ins Indonesische um."
+  title={<>Übersetzungsmaschine</>}
+  description={<>Die Übersetzungsmaschine wandelt Wörter oder Sätze vom Englischen ins Indonesische um.</>}
   machineLabel="Übersetzungsmaschine"
   content={{ input: "Mathematics", output: "Matematika" }}
 />
@@ -97,78 +97,37 @@ Der Graph der Umkehrfunktion <InlineMath math="f^{-1}(x)" /> entsteht durch Spie
 
 Betrachten wir zum Beispiel den Graphen von <InlineMath math="f(x) = 2x + 3" />, seine Umkehrung <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" /> und die Identitätslinie <InlineMath math="y=x" />.
 
-<LineEquation
-  title={
-    <>
-      Graphen von <InlineMath math="f(x)" /> und der Umkehrfunktion
-    </>
-  }
-  description={
-    <>
-      Die Grafik zeigt <InlineMath math="f(x)" />, die Umkehrfunktion{" "}
-      <InlineMath math="f^{-1}(x)" /> und die Gerade <InlineMath math="y=x" /> als
-      Spiegelachse.
-    </>
-  }
-  data={[
-    {
-      // f(x) = 2x + 3
-      points: Array.from({ length: 13 }, (_, pointIndex) => {
-        const i = pointIndex - 2;
-        const x = i - 5;
-        return { x, y: 2 * x + 3, z: 0 };
-      }),
-      pointIndices: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      smooth: false,
-      color: "#ea580c",
-      labels: [
-        {
-          text: <InlineMath math="f(x)=2x + 3" />,
-          at: 7,
-          offset: [-2.5, 0, 0],
-        },
-      ],
-    },
-    {
-      // f⁻¹(x) = (x - 3) / 2
-      points: Array.from({ length: 35 }, (_, pointIndex) => {
-        const i = pointIndex - 12;
-        const x = i - 5;
-        return { x, y: (x - 3) / 2, z: 0 };
-      }),
-      pointIndices: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22],
-      smooth: false,
-      color: "#059669",
-      labels: [
-        {
-          text: <InlineMath math="f^{-1}(x)=\frac{x-3}{2}" />,
-          at: 22,
-          offset: [-1.8, -2.8, 0],
-        },
-      ],
-    },
-    {
-      // y = x (Identitätsgerade)
-      points: Array.from({ length: 21 }, (_, pointIndex) => {
-        const i = pointIndex - 5;
-        const x = i - 5;
-        return { x, y: x, z: 0 };
-      }),
-      pointIndices: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-      smooth: false,
-      color: "#db2777",
-      labels: [
-        {
-          text: <InlineMath math="y=x" />,
-          at: 15,
-          offset: [-1, 0, 0],
-        },
-      ],
-    },
-  ]}
-  showZAxis={false}
-  cameraTarget={[0, 0, 0]}
-  cameraPosition={[0, 0, 13]}
+<MathVisual
+  title={<><InlineMath math="f(x) = 2x + 3" /> und ihre Umkehrfunktion</>}
+  description={<>Die Geraden <InlineMath math="f(x) = 2x + 3" /> und <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" /> sind Spiegelbilder an <InlineMath math="y = x" />. Der Punkt <InlineMath math="(1, 5)" /> auf <InlineMath math="f" /> gehört zu <InlineMath math="(5, 1)" /> auf <InlineMath math="f^{-1}" />, mit dem Mittelpunkt <InlineMath math="(3, 3)" />.</>}
+  labels={{
+    f: <InlineMath math="f(x) = 2x + 3" />,
+    inv: <InlineMath math="f^{-1}(x) = \frac{x - 3}{2}" />,
+    mirror: <InlineMath math="y = x" />,
+    p: <InlineMath math="(1, 5)" />,
+    q: <InlineMath math="(5, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 7.5 }, y: { min: -5.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "f", kind: "segment", from: { x: -4, y: -5 }, to: { x: 2, y: 7 }, appearance: "primary" },
+      { id: "inv", kind: "segment", from: { x: -5, y: -4 }, to: { x: 7, y: 2 }, appearance: "secondary" },
+      { id: "pair", kind: "segment", from: { x: 1, y: 5 }, to: { x: 5, y: 1 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "q", kind: "point", at: { x: 5, y: 1 }, appearance: "secondary" },
+      { id: "mid", kind: "point", at: { x: 3, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2, y: 7 }, placement: "left" },
+      { key: "inv", objectId: "inv", at: { x: 7, y: 2 }, placement: "above-left" },
+      { key: "mirror", objectId: "mirror", at: { x: 7, y: 7 }, placement: "below-right" },
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: 5, y: 1 }, placement: "below" },
+    ],
+  }}
 />
 
 Die Spiegelung **vertauscht die Koordinaten**. Der Punkt <InlineMath math="(1,5)" /> auf dem ursprünglichen Graphen wird zum Punkt <InlineMath math="(5,1)" /> auf dem Graphen der Umkehrfunktion. Beide liegen auf gegenüberliegenden Seiten der Spiegelachse und haben den Mittelpunkt <InlineMath math="(3,3)" />.
@@ -199,3 +158,33 @@ Sei <InlineMath math="r:\mathbb{R}\to\mathbb{R}" /> durch <InlineMath math="r(x)
 </MathContainer>
 
 **Aufgabe 3**. Sowohl <InlineMath math="r" /> als auch <InlineMath math="r^{-1}" /> haben die Definitionsmenge <InlineMath math="\mathbb{R}" /> und die Bildmenge <InlineMath math="\mathbb{R}" />. Die beiden Identitäten bestätigen, dass sich die Funktionen auf ihren vollständigen Definitionsmengen gegenseitig aufheben.
+
+Für <InlineMath math="r(x) = 3x - 5" /> ist die Umkehrfunktion <InlineMath math="r^{-1}(x) = \frac{x + 5}{3}" />. Beide Geraden schneiden die Spiegelachse <InlineMath math="y = x" /> im selben Punkt <InlineMath math="\left(\tfrac52, \tfrac52\right)" />, der einen Eingabe, die <InlineMath math="r" /> nicht verändert, weil <InlineMath math="3 \cdot \tfrac52 - 5 = \tfrac52" /> ist.
+
+<MathVisual
+  title={<><InlineMath math="r" /> und <InlineMath math="r^{-1}" /> treffen sich auf der Spiegelachse</>}
+  description={<>Die Geraden <InlineMath math="r(x) = 3x - 5" /> und <InlineMath math="r^{-1}(x) = \frac{x + 5}{3}" />, Spiegelbilder an <InlineMath math="y = x" />, die sie in <InlineMath math="\left(\tfrac52, \tfrac52\right)" /> schneiden.</>}
+  labels={{
+    r: <InlineMath math="r(x) = 3x - 5" />,
+    inv: <InlineMath math="r^{-1}(x)" />,
+    mirror: <InlineMath math="y = x" />,
+    fixed: <InlineMath math="\left(\tfrac52, \tfrac52\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "r", kind: "segment", from: { x: 0, y: -5 }, to: { x: 10 / 3, y: 5 }, appearance: "primary" },
+      { id: "inv", kind: "segment", from: { x: -5, y: 0 }, to: { x: 5, y: 10 / 3 }, appearance: "secondary" },
+      { id: "fixed", kind: "point", at: { x: 5 / 2, y: 5 / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "r", objectId: "r", at: { x: 0, y: -5 }, placement: "right" },
+      { key: "inv", objectId: "inv", at: { x: -5, y: 0 }, placement: "above" },
+      { key: "mirror", objectId: "mirror", at: { x: -9 / 2, y: -9 / 2 }, placement: "right" },
+      { key: "fixed", objectId: "fixed", at: { x: 5 / 2, y: 5 / 2 }, placement: "right" },
+    ],
+  }}
+/>

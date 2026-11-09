@@ -4,7 +4,7 @@ export const metadata = {
   description: "A least-squares regression line summarizes a linear data trend, supports prediction, and is determined from paired observations.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Statistics",
 };
 
@@ -27,8 +27,8 @@ For each observation, the **residual** is the observed value minus the predicted
 Compare the study time and exam score in each pair below. As study time increases, the points tend to rise. That pattern gives the point cloud a positive linear trend.
 
 <ScatterDiagram
-  title="Regression Line for the Relationship Between Study Time and Exam Scores"
-  description="The line shows the linear trend (regression line) of the data."
+  title={<>Regression Line for the Relationship Between Study Time and Exam Scores</>}
+  description={<>The line shows the linear trend (regression line) of the data.</>}
   xAxisLabel="Study Time (Hours)"
   yAxisLabel="Exam Score"
   datasets={[
@@ -98,6 +98,16 @@ Formula key:
 These formulas determine the unique least-squares line when the observed <InlineMath math="x" /> values are not all equal. If every <InlineMath math="x" /> value is identical, the slope denominator is zero and the data do not determine a unique regression slope.
 
 
+Keep the line through the point of means and vary its slope <InlineMath math="b" />. For the study data the sum of squared residuals <InlineMath math="S_{yy} - 2bS_{xy} + b^2S_{xx}" /> is smallest at <InlineMath math="b = \tfrac{9184}{1331} \approx 6.900" />, about 94.45, and larger for every other slope.
+
+<BarChart
+  title={<>Sum of squared residuals against the slope</>}
+  description={<>Bars of the sum of squared residuals for the slopes <InlineMath math="b = 5, 6, 6.900, 8, 9" />, each line passing through the point of means.</>}
+  yAxisLabel="Sum of squared residuals"
+  data={[5, 6, 9184 / 1331, 8, 9].map((b) => ({ name: b === 9184 / 1331 ? "6.900" : String(b), value: 4244 / 3 - 2 * b * (574 / 3) + b ** 2 * (1331 / 48) }))}
+  chartConfig={{ value: { label: "Sum of squared residuals", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Calculating the Coefficients from the Data
 
 Use every pair in the plot. The product and square columns keep each observation in the calculation exactly once. The **sum of each column** then enters the slope formula.
@@ -138,3 +148,13 @@ For <InlineMath math="7\text{ hours}" />, the same calculation gives:
 <BlockMath math="\hat y(7)=\frac{73066+9184(7)}{1331}=\frac{137354}{1331}\approx103.20" />
 
 The observed study times run only from <InlineMath math="1" /> to <InlineMath math="6\text{ hours}" />. The second prediction is an **extrapolation**. The available data do not check whether the linear trend continues beyond that range. If exam scores are capped at <InlineMath math="100" />, the second prediction even exceeds the score limit. Check a regression line against both the observed range and the limits of the predicted quantity.
+
+Predicted scores from <InlineMath math="\hat y = \frac{73066 + 9184x}{1331}" /> for 1 to 7 hours. Inside the observed range of 1 to 6 hours the predictions stay realistic, but at 7 hours the line predicts about 103.2, more than the maximum score of 100.
+
+<BarChart
+  title={<>Predictions inside and outside the data</>}
+  description={<>Bars of the predicted score <InlineMath math="\hat y" /> for <InlineMath math="x = 1" /> to 7 hours of study.</>}
+  yAxisLabel="Predicted score"
+  data={[1, 2, 3, 4, 5, 6, 7].map((x) => ({ name: String(x), value: (73066 + 9184 * x) / 1331 }))}
+  chartConfig={{ value: { label: "Predicted score", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

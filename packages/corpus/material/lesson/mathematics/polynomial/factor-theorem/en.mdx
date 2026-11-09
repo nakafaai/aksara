@@ -11,35 +11,29 @@ export const metadata = {
 
 **The factor theorem** says that <InlineMath math="(x - c)" /> is a factor of <InlineMath math="P(x)" /> if and only if <InlineMath math="P(c) = 0" />. So every zero <InlineMath math="c" /> gives one linear factor, and the graph of <InlineMath math="y = P(x)" /> meets the <InlineMath math="x" />-axis exactly at that zero: it crosses at a single zero and touches at a double zero.
 
-<LineEquation
+<MathVisual
   title={<>Graph of <InlineMath math="y = x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2" /></>}
   description={<>The graph crosses the x-axis at the single zero <InlineMath math="-1" /> and only touches it at the double zero <InlineMath math="2" />.</>}
-  cameraPosition={[0.85, 0, 16]}
-  cameraTarget={[0.85, 0, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 471 }, (_, i) => {
-        const x = -1.5 + i / 100;
-        return { x, y: x ** 3 - 3 * x ** 2 + 4, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [{ x: -1, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="-1" />, at: 0, offset: [-0.6, 0.8, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 0, z: 0 }],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="2" />, at: 0, offset: [0, -0.9, 0] }],
-    },
-  ]}
+  labels={{
+    curve: <InlineMath math="y = (x + 1)(x - 2)^2" />,
+    single: <InlineMath math="-1" />,
+    double: <InlineMath math="2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 3.5 }, y: { min: -6.5, max: 6.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "polyline", vertices: [{ x: -3 / 2, y: (-3 / 2) ** 3 - 3 * (-3 / 2) ** 2 + 4 }, { x: -7 / 5, y: (-7 / 5) ** 3 - 3 * (-7 / 5) ** 2 + 4 }, { x: -13 / 10, y: (-13 / 10) ** 3 - 3 * (-13 / 10) ** 2 + 4 }, { x: -6 / 5, y: (-6 / 5) ** 3 - 3 * (-6 / 5) ** 2 + 4 }, { x: -11 / 10, y: (-11 / 10) ** 3 - 3 * (-11 / 10) ** 2 + 4 }, { x: -1, y: (-1) ** 3 - 3 * (-1) ** 2 + 4 }, { x: -9 / 10, y: (-9 / 10) ** 3 - 3 * (-9 / 10) ** 2 + 4 }, { x: -4 / 5, y: (-4 / 5) ** 3 - 3 * (-4 / 5) ** 2 + 4 }, { x: -7 / 10, y: (-7 / 10) ** 3 - 3 * (-7 / 10) ** 2 + 4 }, { x: -3 / 5, y: (-3 / 5) ** 3 - 3 * (-3 / 5) ** 2 + 4 }, { x: -1 / 2, y: (-1 / 2) ** 3 - 3 * (-1 / 2) ** 2 + 4 }, { x: -2 / 5, y: (-2 / 5) ** 3 - 3 * (-2 / 5) ** 2 + 4 }, { x: -3 / 10, y: (-3 / 10) ** 3 - 3 * (-3 / 10) ** 2 + 4 }, { x: -1 / 5, y: (-1 / 5) ** 3 - 3 * (-1 / 5) ** 2 + 4 }, { x: -1 / 10, y: (-1 / 10) ** 3 - 3 * (-1 / 10) ** 2 + 4 }, { x: 0, y: (0) ** 3 - 3 * (0) ** 2 + 4 }, { x: 1 / 10, y: (1 / 10) ** 3 - 3 * (1 / 10) ** 2 + 4 }, { x: 1 / 5, y: (1 / 5) ** 3 - 3 * (1 / 5) ** 2 + 4 }, { x: 3 / 10, y: (3 / 10) ** 3 - 3 * (3 / 10) ** 2 + 4 }, { x: 2 / 5, y: (2 / 5) ** 3 - 3 * (2 / 5) ** 2 + 4 }, { x: 1 / 2, y: (1 / 2) ** 3 - 3 * (1 / 2) ** 2 + 4 }, { x: 3 / 5, y: (3 / 5) ** 3 - 3 * (3 / 5) ** 2 + 4 }, { x: 7 / 10, y: (7 / 10) ** 3 - 3 * (7 / 10) ** 2 + 4 }, { x: 4 / 5, y: (4 / 5) ** 3 - 3 * (4 / 5) ** 2 + 4 }, { x: 9 / 10, y: (9 / 10) ** 3 - 3 * (9 / 10) ** 2 + 4 }, { x: 1, y: (1) ** 3 - 3 * (1) ** 2 + 4 }, { x: 11 / 10, y: (11 / 10) ** 3 - 3 * (11 / 10) ** 2 + 4 }, { x: 6 / 5, y: (6 / 5) ** 3 - 3 * (6 / 5) ** 2 + 4 }, { x: 13 / 10, y: (13 / 10) ** 3 - 3 * (13 / 10) ** 2 + 4 }, { x: 7 / 5, y: (7 / 5) ** 3 - 3 * (7 / 5) ** 2 + 4 }, { x: 3 / 2, y: (3 / 2) ** 3 - 3 * (3 / 2) ** 2 + 4 }, { x: 8 / 5, y: (8 / 5) ** 3 - 3 * (8 / 5) ** 2 + 4 }, { x: 17 / 10, y: (17 / 10) ** 3 - 3 * (17 / 10) ** 2 + 4 }, { x: 9 / 5, y: (9 / 5) ** 3 - 3 * (9 / 5) ** 2 + 4 }, { x: 19 / 10, y: (19 / 10) ** 3 - 3 * (19 / 10) ** 2 + 4 }, { x: 2, y: (2) ** 3 - 3 * (2) ** 2 + 4 }, { x: 21 / 10, y: (21 / 10) ** 3 - 3 * (21 / 10) ** 2 + 4 }, { x: 11 / 5, y: (11 / 5) ** 3 - 3 * (11 / 5) ** 2 + 4 }, { x: 23 / 10, y: (23 / 10) ** 3 - 3 * (23 / 10) ** 2 + 4 }, { x: 12 / 5, y: (12 / 5) ** 3 - 3 * (12 / 5) ** 2 + 4 }, { x: 5 / 2, y: (5 / 2) ** 3 - 3 * (5 / 2) ** 2 + 4 }, { x: 13 / 5, y: (13 / 5) ** 3 - 3 * (13 / 5) ** 2 + 4 }, { x: 27 / 10, y: (27 / 10) ** 3 - 3 * (27 / 10) ** 2 + 4 }, { x: 14 / 5, y: (14 / 5) ** 3 - 3 * (14 / 5) ** 2 + 4 }, { x: 29 / 10, y: (29 / 10) ** 3 - 3 * (29 / 10) ** 2 + 4 }, { x: 3, y: (3) ** 3 - 3 * (3) ** 2 + 4 }, { x: 31 / 10, y: (31 / 10) ** 3 - 3 * (31 / 10) ** 2 + 4 }, { x: 16 / 5, y: (16 / 5) ** 3 - 3 * (16 / 5) ** 2 + 4 }], appearance: "primary" },
+      { id: "single", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+      { id: "double", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "single", objectId: "single", at: { x: -1, y: 0 }, placement: "left" },
+      { key: "double", objectId: "double", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 The polynomial <InlineMath math="x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2" /> shows both cases. The factor <InlineMath math="(x + 1)" /> appears once, so the graph crosses the axis at <InlineMath math="-1" />. The factor <InlineMath math="(x - 2)" /> appears twice, so the graph comes down to <InlineMath math="0" /> at <InlineMath math="x = 2" /> and rises again without crossing the axis.
@@ -75,8 +69,8 @@ And from the Remainder Theorem, we know <InlineMath math="S = P(c)" />.
 - If <InlineMath math="P(c) = 0" />, then <InlineMath math="S = 0" />. The equation becomes <InlineMath math="P(x) = (x - c) \cdot H(x) + 0" />, or <InlineMath math="P(x) = (x - c) \cdot H(x)" />. Therefore, <InlineMath math="(x - c)" /> is a factor of <InlineMath math="P(x)" />.
 
 <Mermaid
-  title="Four equivalent statements"
-  description="For a polynomial P(x) and a real number c, these four statements are always true together or false together."
+  title={<>Four equivalent statements</>}
+  description={<>For a polynomial P(x) and a real number c, these four statements are always true together or false together.</>}
   chart={`flowchart LR
   A["P(c) = 0"] <--> B["Dividing P(x) by x - c leaves remainder 0"]
   B <--> C["x - c is a factor of P(x)"]
@@ -88,8 +82,8 @@ And from the Remainder Theorem, we know <InlineMath math="S = P(c)" />.
 Each **verified root** gives one linear factor. Divide the polynomial by that factor, then factor the quotient. Division by a linear factor reduces the degree by one, making the next calculation simpler.
 
 <Mermaid
-  title="Steps for factoring with the factor theorem"
-  description="Each confirmed zero gives one linear factor and lowers the degree of the quotient."
+  title={<>Steps for factoring with the factor theorem</>}
+  description={<>Each confirmed zero gives one linear factor and lowers the degree of the quotient.</>}
   chart={`flowchart TD
   A["Try a candidate zero c"] --> B{"P(c) = 0?"}
   B -->|"no"| A
@@ -155,6 +149,16 @@ Combine all factors.
 <BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
 
 Check the factorization by substitution: <InlineMath math="P(-5) = -125 + 50 + 65 + 10 = 0" /> and <InlineMath math="P(2) = 8 + 8 - 26 + 10 = 0" />. The zeros <InlineMath math="-5" />, <InlineMath math="1" />, and <InlineMath math="2" /> give three linear factors. Their product has degree three and leading coefficient <InlineMath math="1" />, like <InlineMath math="P(x)" />, so <InlineMath math="P(x) = (x + 5)(x - 1)(x - 2)" /> exactly.
+
+Evaluate <InlineMath math="P(x) = x^3 + 2x^2 - 13x + 10" /> at the integers from <InlineMath math="-5" /> to 2. The bars are 0 exactly at <InlineMath math="-5" />, 1 and 2, the three zeros behind <InlineMath math="(x - 1)(x - 2)(x + 5)" />.
+
+<BarChart
+  title={<>Values of <InlineMath math="P(x) = x^3 + 2x^2 - 13x + 10" /></>}
+  description={<>Bars of <InlineMath math="P(x)" /> for <InlineMath math="x = -5" /> to 2, zero at <InlineMath math="-5" />, 1 and 2.</>}
+  yAxisLabel="P(x)"
+  data={[-5, -4, -3, -2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: x ** 3 + 2 * x ** 2 - 13 * x + 10 }))}
+  chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Common Mistakes
 
@@ -234,3 +238,13 @@ The factor <InlineMath math="(x - 2)" /> appears twice, so <InlineMath math="2" 
 <BlockMath math="-8 + 4k + 8 - 12 = 4k - 12 = 0 \quad\Longrightarrow\quad k = 3" />
 
 For <InlineMath math="k = 3" />, the Horner method with <InlineMath math="c = -2" /> on the coefficients <InlineMath math="1, 3, -4, -12" /> gives <InlineMath math="1, 1, -6, 0" />, so the quotient is <InlineMath math="x^2 + x - 6 = (x + 3)(x - 2)" /> and <InlineMath math="x^3 + 3x^2 - 4x - 12 = (x + 2)(x + 3)(x - 2)" />. Check by expanding: <InlineMath math="(x + 2)(x + 3) = x^2 + 5x + 6" />, and <InlineMath math="(x^2 + 5x + 6)(x - 2) = x^3 + 3x^2 - 4x - 12" />.
+
+The answer key in one chart: <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" /> is 0 at <InlineMath math="-3" />, <InlineMath math="-1" /> and 6, and nowhere else between them, which matches <InlineMath math="(x + 1)(x - 6)(x + 3)" />.
+
+<BarChart
+  title={<>Values of <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" /></>}
+  description={<>Bars of <InlineMath math="P(x)" /> for <InlineMath math="x = -3" /> to 6, zero at <InlineMath math="-3" />, <InlineMath math="-1" /> and 6.</>}
+  yAxisLabel="P(x)"
+  data={[-3, -2, -1, 0, 1, 2, 3, 4, 5, 6].map((x) => ({ name: String(x), value: x ** 3 - 2 * x ** 2 - 21 * x - 18 }))}
+  chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

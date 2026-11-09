@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate probabilities for equally likely discrete outcomes such as dice and cards.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Data Analysis and Probability",
 };
 
@@ -44,13 +44,23 @@ Rolling <InlineMath math="1" /> is as likely as rolling <InlineMath math="6" />.
 
 <BlockMath math="P(X\text{ even})=\frac{3}{6}=\frac{1}{2}" />
 
+Every face of a fair die gets the same bar, <InlineMath math="\tfrac16 \approx 16.67\%" />. The six equal bars together make 1, and the event "even" collects three of them: <InlineMath math="\tfrac36 = \tfrac12" />.
+
+<BarChart
+  title={<>One roll of a fair die</>}
+  description={<>Six equal bars of <InlineMath math="P(X = x) = \tfrac16" /> for <InlineMath math="x = 1" /> to 6.</>}
+  yAxisLabel="Probability"
+  data={[1, 2, 3, 4, 5, 6].map((x) => ({ name: String(x), value: 1 / 6 }))}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### A Wheel with Eight Sectors
 
 A fair spinner has **eight equal sectors** numbered <InlineMath math="1" /> through <InlineMath math="8" />. Compare sector <InlineMath math="5" /> with the others. Every sector has central angle <InlineMath math="360^\circ/8=45^\circ" />.
 
 <MathVisual
-  title="Eight equal sectors"
-  description="Each number occupies one 45-degree sector. All sectors have equal area."
+  title={<>Eight equal sectors</>}
+  description={<>Each number occupies one 45-degree sector. All sectors have equal area.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1.25, max: 1.25 }, y: { min: -1.25, max: 1.25 } },
@@ -84,6 +94,17 @@ A fair spinner has **eight equal sectors** numbered <InlineMath math="1" /> thro
 The sample space is <InlineMath math="S=\{1,2,3,4,5,6,7,8\}" />, so <InlineMath math="k=8" />. Each sector is equally likely, giving the mass function <InlineMath math="P(X=x)=1/8" /> for every <InlineMath math="x\in S" />. For sector five,
 
 <BlockMath math="P(X=5)=\frac{1}{8}=0.125=12.5\%" />
+
+Add the equal probabilities one sector at a time. <InlineMath math="P(X \le x) = \frac{x}{8}" /> climbs in equal steps of <InlineMath math="\tfrac18" /> and reaches 1 at <InlineMath math="x = 8" />.
+
+<BarChart
+  title={<>Cumulative probability on the wheel</>}
+  description={<>Bars of <InlineMath math="P(X \le x) = \frac{x}{8}" /> for <InlineMath math="x = 1" /> to 8.</>}
+  yAxisLabel="Cumulative probability"
+  data={[1, 2, 3, 4, 5, 6, 7, 8].map((x) => ({ name: String(x), value: x / 8 }))}
+  chartConfig={{ value: { label: "Cumulative probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Exercises
 
 Identify the outcome set, count the **equally likely outcomes**, and find the requested event probability. Check that the requested object belongs to the outcome set before dividing.

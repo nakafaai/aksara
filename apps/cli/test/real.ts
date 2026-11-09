@@ -82,8 +82,7 @@ export const RENDERER_MANIFEST = await Effect.runPromise(
         return { components: [component], name };
       }
       if (name === "mathematics") {
-        const component = "FunctionMachine";
-        return { components: [component], name };
+        return { components: ["FunctionMachine", "MathVisual"], name };
       }
       return { components: [], name };
     }),

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Beweise Polynomidentitäten durch Umformen und widerlege falsche Gleichungen mit einem Gegenbeispiel.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Polynom",
 };
 
@@ -29,13 +29,43 @@ Diese **Polynomidentitäten** helfen dir beim Ausmultiplizieren und Faktorisiere
 
 Diese Identitäten lassen sich in beide Richtungen lesen: von der Produktform zur entwickelten Form oder von der entwickelten Form zur Faktorform. Welche Richtung passt, hängt von der geforderten Operation ab.
 
+Die Identität <InlineMath math="(a + b)^2 = a^2 + 2ab + b^2" /> als Fläche: Ein Quadrat der Seite <InlineMath math="a + b" /> zerfällt in ein Quadrat <InlineMath math="a^2" />, zwei Rechtecke <InlineMath math="ab" /> und ein Quadrat <InlineMath math="b^2" />. Mit <InlineMath math="a = 3" /> und <InlineMath math="b = 1" />: <InlineMath math="16 = 9 + 3 + 3 + 1" />.
+
+<MathVisual
+  title={<><InlineMath math="(a + b)^2" /> als vier Flächen</>}
+  description={<>Ein Quadrat der Seite 4, geteilt in <InlineMath math="a^2 = 9" />, zwei Rechtecke <InlineMath math="ab = 3" /> und <InlineMath math="b^2 = 1" />, mit <InlineMath math="a = 3" /> und <InlineMath math="b = 1" />.</>}
+  labels={{
+    aa: <InlineMath math="a^2" />,
+    ab1: <InlineMath math="ab" />,
+    ab2: <InlineMath math="ab" />,
+    bb: <InlineMath math="b^2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -0.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "aa", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "ab1", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 3, y: 3 }], appearance: "secondary" },
+      { id: "ab2", kind: "polygon", vertices: [{ x: 0, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 4 }, { x: 0, y: 4 }], appearance: "secondary" },
+      { id: "bb", kind: "polygon", vertices: [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 4, y: 4 }, { x: 3, y: 4 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "aa", objectId: "aa", at: { x: 3 / 2, y: 3 / 2 }, placement: "center" },
+      { key: "ab1", objectId: "ab1", at: { x: 7 / 2, y: 3 / 2 }, placement: "center" },
+      { key: "ab2", objectId: "ab2", at: { x: 3 / 2, y: 7 / 2 }, placement: "center" },
+      { key: "bb", objectId: "bb", at: { x: 7 / 2, y: 7 / 2 }, placement: "center" },
+    ],
+  }}
+/>
+
 ### Die Differenz zweier Quadrate als Fläche
 
 Entferne aus der rechten oberen Ecke eines Quadrats mit Seitenlänge <InlineMath math="4" /> ein Quadrat mit Seitenlänge <InlineMath math="1" />. Die zwei farbigen Teile behalten **denselben Flächeninhalt**, wenn du daraus ein Rechteck mit Seitenlängen <InlineMath math="5" /> und <InlineMath math="3" /> legst. Das größere Teil wird gedreht, nicht vergrößert.
 
 <MathVisual
-  title="Zwei Anordnungen mit Flächeninhalt 15"
-  description="Ein Vier-mal-vier-Quadrat ohne eine Eins-mal-eins-Ecke wird zu einem Fünf-mal-drei-Rechteck umgelegt."
+  title={<>Zwei Anordnungen mit Flächeninhalt 15</>}
+  description={<>Ein Vier-mal-vier-Quadrat ohne eine Eins-mal-eins-Ecke wird zu einem Fünf-mal-drei-Rechteck umgelegt.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -0.5, max: 4.5 } },
@@ -109,3 +139,13 @@ Die Seiten unterscheiden sich. Die Gleichung ist **keine Identität**. Die gemis
 <BlockMath math="\begin{aligned}(2x-3)^2+5&amp;=(2x)^2-2(2x)(3)+3^2+5 \\ &amp;=4x^2-12x+9+5 \\ &amp;=4x^2-12x+14\end{aligned}" />
 
 Das Ergebnis stimmt für alle Variablenwerte mit der rechten Seite überein. Die Gleichung ist daher eine **Polynomidentität**.
+
+Zieh für Aufgabe 1 die rechte Seite von der linken ab: <InlineMath math="(2m - 3)^3 - (8m^3 - 27)" />. Das ist 0 bei <InlineMath math="m = 0" />, aber 18 bei <InlineMath math="m = 1" /> und <InlineMath math="-36" /> bei <InlineMath math="m = 2" />, also stimmen die Seiten nicht überein, und die Gleichung ist keine Identität.
+
+<BarChart
+  title={<>Die Lücke in <InlineMath math="(2m - 3)^3 = 8m^3 - 27" /></>}
+  description={<>Balken von <InlineMath math="(2m - 3)^3 - (8m^3 - 27)" /> für <InlineMath math="m = 0, 1, 2, 3" />: 0, 18, <InlineMath math="-36" /> und <InlineMath math="-162" />.</>}
+  yAxisLabel="Links minus rechts"
+  data={[0, 1, 2, 3].map((x) => ({ name: String(x), value: (2 * x - 3) ** 3 - (8 * x ** 3 - 27) }))}
+  chartConfig={{ value: { label: "Links minus rechts", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

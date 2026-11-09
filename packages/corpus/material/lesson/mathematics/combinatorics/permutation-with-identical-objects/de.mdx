@@ -22,8 +22,8 @@ Zum Beispiel hat das Wort MAMA <InlineMath math="n = 4" /> Buchstaben mit zweima
 Versieh gleiche Buchstaben vorübergehend mit Nummern: <InlineMath math="M_1, M_2, A_1, A_2" />. Mit Nummern sind alle vier Buchstaben verschieden und lassen sich auf <InlineMath math="4! = 24" /> Arten anordnen. Ohne Nummern werden <InlineMath math="M_1 A_1 M_2 A_2" /> und <InlineMath math="M_2 A_1 M_1 A_2" /> zum selben Wort MAMA.
 
 <Mermaid
-  title="Von 24 nummerierten Anordnungen zu 6 Wörtern MAMA"
-  description="Jedes Entfernen von Nummern legt Anordnungen zusammen, die sich nur in der Reihenfolge gleicher Buchstaben unterscheiden."
+  title={<>Von 24 nummerierten Anordnungen zu 6 Wörtern MAMA</>}
+  description={<>Jedes Entfernen von Nummern legt Anordnungen zusammen, die sich nur in der Reihenfolge gleicher Buchstaben unterscheiden.</>}
   chart={`flowchart LR
   A["24 nummerierte Anordnungen"] -->|"Nummern der M entfernen, durch 2! teilen"| B["12 Anordnungen"]
   B -->|"Nummern der A entfernen, durch 2! teilen"| C["6 sichtbare Anordnungen"]`}
@@ -81,6 +81,16 @@ Müssen die beiden N nebeneinander stehen, behandelst du NN als **einen Block**.
 
 Der Block NN wird nicht mit <InlineMath math="2!" /> multipliziert, weil das Vertauschen der beiden N im Block das Wort nicht ändert. Prüfe das zweite Ergebnis über die Lage des Blocks: NN kann <InlineMath math="5" /> Paare benachbarter Plätze belegen, und für jedes Paar füllen B, A, A, A die übrigen vier Plätze auf <InlineMath math="\frac{4!}{3!} = 4" /> Arten, also <InlineMath math="5 \times 4 = 20" />. Prüfe das erste Ergebnis über die Symmetrie. Ein Buchstabe, der unter <InlineMath math="n" /> Buchstaben <InlineMath math="r" />-mal vorkommt, steht in <InlineMath math="\frac{r}{n}" /> aller Anordnungen vorne, weil jede sichtbare Anordnung gleich viele nummerierte Fassungen hat. B kommt einmal vor, also steht B in <InlineMath math="\frac{1}{6} \times 60 = 10" /> Anordnungen vorne.
 
+Bedingungen verkleinern die Anzahl. Alle Anordnungen von <InlineMath math="BANANA" /> sind <InlineMath math="\frac{6!}{1!\,3!\,2!} = 60" />. Steht B vorn, bleiben <InlineMath math="\frac{5!}{3!\,2!} = 10" />, und klebt man die beiden N zusammen, bleiben <InlineMath math="\frac{5!}{3!} = 20" />.
+
+<BarChart
+  title={<>Anordnungen von <InlineMath math="BANANA" /> mit und ohne Bedingung</>}
+  description={<>Balken von 60 Anordnungen ohne Bedingung, 10 mit B vorn und 20 mit den beiden N zusammen.</>}
+  yAxisLabel="Anordnungen"
+  data={[["ohne Bedingung", 720 / (1 * 6 * 2)], ["B vorn", 120 / (6 * 2)], ["NN zusammen", 120 / 6]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Anordnungen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Zwei Sorten von Objekten und die Kombination
 
 Gibt es nur zwei Sorten von Objekten, **ist die Formel gleich einer** [Kombination](/de/faecher/mathematik/kombinatorik/kombination). Drei A und zwei B anzuordnen heißt, <InlineMath math="2" /> der <InlineMath math="5" /> Plätze für B zu wählen, und der Rest ist automatisch A:
@@ -90,7 +100,7 @@ Gibt es nur zwei Sorten von Objekten, **ist die Formel gleich einer** [Kombinati
 Zum Beispiel ist ein kürzester Weg, der <InlineMath math="3" /> Kästchen nach rechts und <InlineMath math="2" /> Kästchen nach oben führt, eine Anordnung der Schritte RRROO, wobei R einen Schritt nach rechts und O einen Schritt nach oben bedeutet. Es gibt also <InlineMath math="10" /> Wege.
 
 <MathVisual
-  title="Zwei kürzeste Wege über ein 3 mal 2 Gitter"
+  title={<>Zwei kürzeste Wege über ein 3 mal 2 Gitter</>}
   description={<>Jeder Weg von <InlineMath math="S" /> nach <InlineMath math="F" /> nutzt drei Schritte R und zwei Schritte O. Die Wege RRROO und RORRO unterscheiden sich nur in der Reihenfolge der Schritte.</>}
   scene={{
     space: "plane",
@@ -137,8 +147,8 @@ Eine [Permutation aller Objekte](/de/faecher/mathematik/kombinatorik/permutation
 Je mehr gleiche Objekte eine Gruppe enthält, **desto größer ist die Fakultät im Nenner**, und desto kleiner wird das Ergebnis.
 
 <Mermaid
-  title="Die passende Zählweise wählen"
-  description="Fragen nach gleichen Objekten, festen Plätzen und Objekten, die zusammenstehen müssen, bestimmen die Formel."
+  title={<>Die passende Zählweise wählen</>}
+  description={<>Fragen nach gleichen Objekten, festen Plätzen und Objekten, die zusammenstehen müssen, bestimmen die Formel.</>}
   chart={`flowchart TD
   A{"Gibt es gleiche Objekte?"} -->|"nein"| B["n!"]
   A -->|"ja"| C["n! geteilt durch die Fakultät jeder Gruppe"]
@@ -149,6 +159,16 @@ Je mehr gleiche Objekte eine Gruppe enthält, **desto größer ist die Fakultät
   F -->|"ja"| G["Sie zu einem Block zusammenfassen"]
   F -->|"nein"| H["Mit der Formel zählen"]
   G --> H`}
+/>
+
+Jeder wiederholte Buchstabe teilt die Anzahl: <InlineMath math="ABCD" /> hat <InlineMath math="4! = 24" /> Anordnungen, <InlineMath math="AABC" /> hat <InlineMath math="\frac{4!}{2!} = 12" /> und <InlineMath math="AABB" /> hat <InlineMath math="\frac{4!}{2!\,2!} = 6" />.
+
+<BarChart
+  title={<>Anordnungen von vier Buchstaben</>}
+  description={<>Balken der Anzahl der Anordnungen von <InlineMath math="ABCD" />, <InlineMath math="AABC" /> und <InlineMath math="AABB" />: 24, 12 und 6.</>}
+  yAxisLabel="Anordnungen"
+  data={[["ABCD", 24 / 1], ["AABC", 24 / 2], ["AABB", 24 / (2 * 2)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Anordnungen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Typische Fehler

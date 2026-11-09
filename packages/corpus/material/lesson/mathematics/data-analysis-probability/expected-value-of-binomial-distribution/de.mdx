@@ -28,8 +28,8 @@ Gelten alle vier Bedingungen, dann liefert die Formel der [Binomialverteilung](/
 Würfeln, bis eine Sechs fällt, ist kein solches Experiment, weil die Anzahl der Würfe nicht feststeht. Fragen zu beantworten, deren Chancen auf eine richtige Antwort verschieden sind, ist es ebenfalls nicht, weil <InlineMath math="p" /> nicht in jedem Versuch gleich ist.
 
 <Mermaid
-  title="Die Bedingungen der Binomialverteilung prüfen"
-  description="Alle vier Bedingungen müssen gelten, damit X binomialverteilt ist."
+  title={<>Die Bedingungen der Binomialverteilung prüfen</>}
+  description={<>Alle vier Bedingungen müssen gelten, damit X binomialverteilt ist.</>}
   chart={`flowchart TD
   A{"Jeder Versuch nur Treffer oder Niete?"} -->|"ja"| B{"Anzahl der Versuche n fest?"}
   B -->|"ja"| C{"Versuche unabhängig?"}
@@ -63,7 +63,7 @@ Die Summe der letzten Spalte ist der Erwartungswert:
 Probe mit der kurzen Formel: <InlineMath math="np = 3 \cdot \frac{1}{2} = 1{,}5" />. Beide Wege stimmen überein, aber für großes <InlineMath math="n" /> wird eine solche Tabelle zu lang, also übernimmt die Formel <InlineMath math="np" /> die Arbeit.
 
 <MathVisual
-  title="Der Erwartungswert als Gleichgewichtspunkt"
+  title={<>Der Erwartungswert als Gleichgewichtspunkt</>}
   description={<>Jede Balkenhöhe ist die Wahrscheinlichkeit bei drei Münzwürfen, gemessen in Achteln. Die Balken sind genau bei <InlineMath math="E(X) = 1{,}5" /> im Gleichgewicht.</>}
   scene={{
     space: "plane",
@@ -119,8 +119,8 @@ Der Wert <InlineMath math="1{,}17" /> kann in einer Serie von sieben Würfen nic
 Der Erwartungswert unterscheidet sich auch vom wahrscheinlichsten Ergebnis. Die Binomialformel liefert <InlineMath math="P(X = 0) \approx 0{,}279" />, <InlineMath math="P(X = 1) \approx 0{,}391" /> und <InlineMath math="P(X = 2) \approx 0{,}234" />. Am wahrscheinlichsten ist eine Fünf, während der Erwartungswert zwischen <InlineMath math="1" /> und <InlineMath math="2" /> liegt. Probe mit der Definition des Erwartungswerts: <InlineMath math="1(0{,}3907) + 2(0{,}2344) + 3(0{,}0781) + 4(0{,}0156) + 5(0{,}0019) + 6(0{,}0001) \approx 1{,}166" />, also bis auf Rundung <InlineMath math="\frac{7}{6} \approx 1{,}167" />.
 
 <BarChart
-  title="Wie oft die Fünf in sieben Würfen fällt"
-  description="Der höchste Balken steht bei 1, der Erwartungswert 7/6, etwa 1,17, liegt zwischen 1 und 2."
+  title={<>Wie oft die Fünf in sieben Würfen fällt</>}
+  description={<>Der höchste Balken steht bei 1, der Erwartungswert 7/6, etwa 1,17, liegt zwischen 1 und 2.</>}
   data={Array.from({ length: 8 }, (_, k) => {
     const ways = Array.from({ length: k }, (_, i) => (7 - i) / (i + 1)).reduce((product, factor) => product * factor, 1);
     const probability = ways * (1 / 6) ** k * (5 / 6) ** (7 - k);
@@ -139,6 +139,16 @@ Angenommen, eine richtige Antwort bringt <InlineMath math="4" /> Punkte und eine
 <BlockMath math="E(S) = 5 \cdot E(X) - 20 = 5 \cdot 4 - 20 = 0" />
 
 Probe pro Frage: Ein geratener Versuch hat den Erwartungswert <InlineMath math="4 \cdot \frac{1}{5} - 1 \cdot \frac{4}{5} = 0" /> Punkte, also haben auch zwanzig geratene Fragen den Erwartungswert <InlineMath math="0" />. Bei dieser Regel bringt Raten auf lange Sicht keine Punkte.
+
+Die Verteilung der richtig geratenen Antworten von 20 mit <InlineMath math="p = \tfrac15" /> hat ihren Gipfel bei 4, genau beim Erwartungswert <InlineMath math="np = 4" />, und etwa <InlineMath math="98\%" /> ihrer Wahrscheinlichkeit liegen zwischen 1 und 8 richtigen Antworten.
+
+<BarChart
+  title={<>Richtig geratene Antworten von 20 mit <InlineMath math="p = \tfrac15" /></>}
+  description={<>Balken von <InlineMath math="P(X = k)" /> in Prozent für <InlineMath math="k = 0" /> bis 10 richtige Antworten. Größere Anzahlen haben jeweils eine Wahrscheinlichkeit unter <InlineMath math="0{,}3\%" />.</>}
+  yAxisLabel="Wahrscheinlichkeit (%)"
+  data={[1, 20, 190, 1140, 4845, 15504, 38760, 77520, 125970, 167960, 184756].map((c, k) => ({ name: String(k), value: 100 * c * 0.2 ** k * 0.8 ** (20 - k) }))}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit (%)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Häufige Fehler
 

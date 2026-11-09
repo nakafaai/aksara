@@ -11,35 +11,29 @@ export const metadata = {
 
 **Der Faktorsatz** besagt, dass <InlineMath math="(x - c)" /> genau dann ein Faktor von <InlineMath math="P(x)" /> ist, wenn <InlineMath math="P(c) = 0" /> gilt. Jede Nullstelle <InlineMath math="c" /> liefert also einen Linearfaktor, und der Graph von <InlineMath math="y = P(x)" /> trifft die <InlineMath math="x" />-Achse genau an dieser Nullstelle: Er schneidet sie bei einer einfachen Nullstelle und berührt sie bei einer doppelten.
 
-<LineEquation
+<MathVisual
   title={<>Graph von <InlineMath math="y = x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2" /></>}
-  description={<>Der Graph schneidet die x-Achse bei der einfachen Nullstelle <InlineMath math="-1" /> und berührt sie nur bei der doppelten Nullstelle <InlineMath math="2" />.</>}
-  cameraPosition={[0.85, 0, 16]}
-  cameraTarget={[0.85, 0, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 471 }, (_, i) => {
-        const x = -1.5 + i / 100;
-        return { x, y: x ** 3 - 3 * x ** 2 + 4, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [{ x: -1, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="-1" />, at: 0, offset: [-0.6, 0.8, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 0, z: 0 }],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="2" />, at: 0, offset: [0, -0.9, 0] }],
-    },
-  ]}
+  description={<>Der Graph schneidet die x-Achse bei der einfachen Nullstelle <InlineMath math="-1" /> und berührt sie bei der doppelten Nullstelle <InlineMath math="2" /> nur.</>}
+  labels={{
+    curve: <InlineMath math="y = (x + 1)(x - 2)^2" />,
+    single: <InlineMath math="-1" />,
+    double: <InlineMath math="2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 3.5 }, y: { min: -6.5, max: 6.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "polyline", vertices: [{ x: -3 / 2, y: (-3 / 2) ** 3 - 3 * (-3 / 2) ** 2 + 4 }, { x: -7 / 5, y: (-7 / 5) ** 3 - 3 * (-7 / 5) ** 2 + 4 }, { x: -13 / 10, y: (-13 / 10) ** 3 - 3 * (-13 / 10) ** 2 + 4 }, { x: -6 / 5, y: (-6 / 5) ** 3 - 3 * (-6 / 5) ** 2 + 4 }, { x: -11 / 10, y: (-11 / 10) ** 3 - 3 * (-11 / 10) ** 2 + 4 }, { x: -1, y: (-1) ** 3 - 3 * (-1) ** 2 + 4 }, { x: -9 / 10, y: (-9 / 10) ** 3 - 3 * (-9 / 10) ** 2 + 4 }, { x: -4 / 5, y: (-4 / 5) ** 3 - 3 * (-4 / 5) ** 2 + 4 }, { x: -7 / 10, y: (-7 / 10) ** 3 - 3 * (-7 / 10) ** 2 + 4 }, { x: -3 / 5, y: (-3 / 5) ** 3 - 3 * (-3 / 5) ** 2 + 4 }, { x: -1 / 2, y: (-1 / 2) ** 3 - 3 * (-1 / 2) ** 2 + 4 }, { x: -2 / 5, y: (-2 / 5) ** 3 - 3 * (-2 / 5) ** 2 + 4 }, { x: -3 / 10, y: (-3 / 10) ** 3 - 3 * (-3 / 10) ** 2 + 4 }, { x: -1 / 5, y: (-1 / 5) ** 3 - 3 * (-1 / 5) ** 2 + 4 }, { x: -1 / 10, y: (-1 / 10) ** 3 - 3 * (-1 / 10) ** 2 + 4 }, { x: 0, y: (0) ** 3 - 3 * (0) ** 2 + 4 }, { x: 1 / 10, y: (1 / 10) ** 3 - 3 * (1 / 10) ** 2 + 4 }, { x: 1 / 5, y: (1 / 5) ** 3 - 3 * (1 / 5) ** 2 + 4 }, { x: 3 / 10, y: (3 / 10) ** 3 - 3 * (3 / 10) ** 2 + 4 }, { x: 2 / 5, y: (2 / 5) ** 3 - 3 * (2 / 5) ** 2 + 4 }, { x: 1 / 2, y: (1 / 2) ** 3 - 3 * (1 / 2) ** 2 + 4 }, { x: 3 / 5, y: (3 / 5) ** 3 - 3 * (3 / 5) ** 2 + 4 }, { x: 7 / 10, y: (7 / 10) ** 3 - 3 * (7 / 10) ** 2 + 4 }, { x: 4 / 5, y: (4 / 5) ** 3 - 3 * (4 / 5) ** 2 + 4 }, { x: 9 / 10, y: (9 / 10) ** 3 - 3 * (9 / 10) ** 2 + 4 }, { x: 1, y: (1) ** 3 - 3 * (1) ** 2 + 4 }, { x: 11 / 10, y: (11 / 10) ** 3 - 3 * (11 / 10) ** 2 + 4 }, { x: 6 / 5, y: (6 / 5) ** 3 - 3 * (6 / 5) ** 2 + 4 }, { x: 13 / 10, y: (13 / 10) ** 3 - 3 * (13 / 10) ** 2 + 4 }, { x: 7 / 5, y: (7 / 5) ** 3 - 3 * (7 / 5) ** 2 + 4 }, { x: 3 / 2, y: (3 / 2) ** 3 - 3 * (3 / 2) ** 2 + 4 }, { x: 8 / 5, y: (8 / 5) ** 3 - 3 * (8 / 5) ** 2 + 4 }, { x: 17 / 10, y: (17 / 10) ** 3 - 3 * (17 / 10) ** 2 + 4 }, { x: 9 / 5, y: (9 / 5) ** 3 - 3 * (9 / 5) ** 2 + 4 }, { x: 19 / 10, y: (19 / 10) ** 3 - 3 * (19 / 10) ** 2 + 4 }, { x: 2, y: (2) ** 3 - 3 * (2) ** 2 + 4 }, { x: 21 / 10, y: (21 / 10) ** 3 - 3 * (21 / 10) ** 2 + 4 }, { x: 11 / 5, y: (11 / 5) ** 3 - 3 * (11 / 5) ** 2 + 4 }, { x: 23 / 10, y: (23 / 10) ** 3 - 3 * (23 / 10) ** 2 + 4 }, { x: 12 / 5, y: (12 / 5) ** 3 - 3 * (12 / 5) ** 2 + 4 }, { x: 5 / 2, y: (5 / 2) ** 3 - 3 * (5 / 2) ** 2 + 4 }, { x: 13 / 5, y: (13 / 5) ** 3 - 3 * (13 / 5) ** 2 + 4 }, { x: 27 / 10, y: (27 / 10) ** 3 - 3 * (27 / 10) ** 2 + 4 }, { x: 14 / 5, y: (14 / 5) ** 3 - 3 * (14 / 5) ** 2 + 4 }, { x: 29 / 10, y: (29 / 10) ** 3 - 3 * (29 / 10) ** 2 + 4 }, { x: 3, y: (3) ** 3 - 3 * (3) ** 2 + 4 }, { x: 31 / 10, y: (31 / 10) ** 3 - 3 * (31 / 10) ** 2 + 4 }, { x: 16 / 5, y: (16 / 5) ** 3 - 3 * (16 / 5) ** 2 + 4 }], appearance: "primary" },
+      { id: "single", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+      { id: "double", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "single", objectId: "single", at: { x: -1, y: 0 }, placement: "left" },
+      { key: "double", objectId: "double", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 Das Polynom <InlineMath math="x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2" /> zeigt beide Fälle. Der Faktor <InlineMath math="(x + 1)" /> kommt einmal vor, also schneidet der Graph die Achse bei <InlineMath math="-1" />. Der Faktor <InlineMath math="(x - 2)" /> kommt zweimal vor, also sinkt der Graph bei <InlineMath math="x = 2" /> auf <InlineMath math="0" /> und steigt wieder, ohne die Achse zu schneiden.
@@ -75,8 +69,8 @@ Und aus dem Restsatz wissen wir <InlineMath math="S = P(c)" />.
 - Wenn <InlineMath math="P(c) = 0" />, dann <InlineMath math="S = 0" />. Die Gleichung lautet <InlineMath math="P(x) = (x - c) \cdot H(x) + 0" /> oder <InlineMath math="P(x) = (x - c) \cdot H(x)" />. Daher ist <InlineMath math="(x - c)" /> ein Faktor von <InlineMath math="P(x)" />.
 
 <Mermaid
-  title="Vier gleichwertige Aussagen"
-  description="Für ein Polynom P(x) und eine reelle Zahl c sind diese vier Aussagen immer zusammen wahr oder zusammen falsch."
+  title={<>Vier gleichwertige Aussagen</>}
+  description={<>Für ein Polynom P(x) und eine reelle Zahl c sind diese vier Aussagen immer zusammen wahr oder zusammen falsch.</>}
   chart={`flowchart LR
   A["P(c) = 0"] <--> B["P(x) durch x - c lässt den Rest 0"]
   B <--> C["x - c ist ein Faktor von P(x)"]
@@ -88,8 +82,8 @@ Und aus dem Restsatz wissen wir <InlineMath math="S = P(c)" />.
 Jede **bestätigte Nullstelle** liefert einen Linearfaktor. Dividiere das Polynom durch diesen Faktor und zerlege anschließend den Quotienten. Bei jeder Division durch einen Linearfaktor sinkt der Grad um eins. Dadurch wird die nächste Rechnung einfacher.
 
 <Mermaid
-  title="Schritte beim Faktorisieren mit dem Faktorsatz"
-  description="Jede bestätigte Nullstelle liefert einen Linearfaktor und senkt den Grad des Quotienten."
+  title={<>Schritte beim Faktorisieren mit dem Faktorsatz</>}
+  description={<>Jede bestätigte Nullstelle liefert einen Linearfaktor und senkt den Grad des Quotienten.</>}
   chart={`flowchart TD
   A["Mögliche Nullstelle c testen"] --> B{"P(c) = 0?"}
   B -->|"nein"| A
@@ -155,6 +149,16 @@ Fasse alle Faktoren zusammen.
 <BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
 
 Prüfe die Faktorisierung durch Einsetzen: <InlineMath math="P(-5) = -125 + 50 + 65 + 10 = 0" /> sowie <InlineMath math="P(2) = 8 + 8 - 26 + 10 = 0" />. Die Nullstellen <InlineMath math="-5" />, <InlineMath math="1" /> und <InlineMath math="2" /> liefern drei Linearfaktoren. Ihr Produkt hat den Grad drei und den Leitkoeffizienten <InlineMath math="1" /> wie <InlineMath math="P(x)" />, also gilt genau <InlineMath math="P(x) = (x + 5)(x - 1)(x - 2)" />.
+
+Berechne <InlineMath math="P(x) = x^3 + 2x^2 - 13x + 10" /> für die ganzen Zahlen von <InlineMath math="-5" /> bis 2. Die Balken sind genau bei <InlineMath math="-5" />, 1 und 2 null, den drei Nullstellen hinter <InlineMath math="(x - 1)(x - 2)(x + 5)" />.
+
+<BarChart
+  title={<>Werte von <InlineMath math="P(x) = x^3 + 2x^2 - 13x + 10" /></>}
+  description={<>Balken von <InlineMath math="P(x)" /> für <InlineMath math="x = -5" /> bis 2, null bei <InlineMath math="-5" />, 1 und 2.</>}
+  yAxisLabel="P(x)"
+  data={[-5, -4, -3, -2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: x ** 3 + 2 * x ** 2 - 13 * x + 10 }))}
+  chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Typische Fehler
 
@@ -234,3 +238,13 @@ Der Faktor <InlineMath math="(x - 2)" /> kommt zweimal vor, also ist <InlineMath
 <BlockMath math="-8 + 4k + 8 - 12 = 4k - 12 = 0 \quad\Longrightarrow\quad k = 3" />
 
 Für <InlineMath math="k = 3" /> liefert die Horner-Methode mit <InlineMath math="c = -2" /> und den Koeffizienten <InlineMath math="1, 3, -4, -12" /> die Zeile <InlineMath math="1, 1, -6, 0" />, also ist der Quotient <InlineMath math="x^2 + x - 6 = (x + 3)(x - 2)" /> und <InlineMath math="x^3 + 3x^2 - 4x - 12 = (x + 2)(x + 3)(x - 2)" />. Probe durch Ausmultiplizieren: <InlineMath math="(x + 2)(x + 3) = x^2 + 5x + 6" /> und <InlineMath math="(x^2 + 5x + 6)(x - 2) = x^3 + 3x^2 - 4x - 12" />.
+
+Die Lösung in einem Diagramm: <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" /> ist bei <InlineMath math="-3" />, <InlineMath math="-1" /> und 6 null und dazwischen nirgends sonst, passend zu <InlineMath math="(x + 1)(x - 6)(x + 3)" />.
+
+<BarChart
+  title={<>Werte von <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" /></>}
+  description={<>Balken von <InlineMath math="P(x)" /> für <InlineMath math="x = -3" /> bis 6, null bei <InlineMath math="-3" />, <InlineMath math="-1" /> und 6.</>}
+  yAxisLabel="P(x)"
+  data={[-3, -2, -1, 0, 1, 2, 3, 4, 5, 6].map((x) => ({ name: String(x), value: x ** 3 - 2 * x ** 2 - 21 * x - 18 }))}
+  chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

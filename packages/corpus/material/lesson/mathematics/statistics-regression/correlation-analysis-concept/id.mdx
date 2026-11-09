@@ -4,7 +4,7 @@ export const metadata = {
     "Korelasi menggambarkan arah dan kekuatan hubungan linear, cara membaca arti koefisien korelasi Pearson r, dan alasan korelasi tidak membuktikan hubungan sebab akibat.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-30",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -40,8 +40,8 @@ Nilai yang mendekati nol tidak meniadakan semua jenis hubungan. Titik-titik dapa
 Misalkan pasangan data memenuhi <InlineMath math="y=x^2" /> untuk <InlineMath math="x=-2,-1,0,1,2" />. Kamu dapat mengikuti **pola berbentuk huruf U** pada diagram, meskipun korelasi linearnya nol.
 
 <ScatterDiagram
-  title="Hubungan Melengkung pada Lima Pasangan Data"
-  description="Nilai turun menuju tengah lalu naik lagi, sehingga satu garis lurus tidak merangkum pola."
+  title={<>Hubungan Melengkung pada Lima Pasangan Data</>}
+  description={<>Nilai turun menuju tengah lalu naik lagi, sehingga satu garis lurus tidak merangkum pola.</>}
   datasets={[{ name: "Pasangan data", color: "var(--chart-1)", points: [{ x: -2, y: 4 }, { x: -1, y: 1 }, { x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 4 }] }]}
 />
 
@@ -50,6 +50,41 @@ Rata-rata koordinatnya adalah <InlineMath math="\bar x=0" /> dan <InlineMath mat
 <BlockMath math="\begin{aligned}\sum(x_i-\bar x)(y_i-\bar y)&=(-2)(2)+(-1)(-1)+0(-2) \\ &\quad+1(-1)+2(2) \\ &=-4+1+0-1+4=0\end{aligned}" />
 
 Kedua variabel tetap bervariasi. Jumlah kuadrat simpangan horizontal adalah <InlineMath math="10" />, sedangkan jumlah kuadrat simpangan vertikal adalah <InlineMath math="14" />. Maka <InlineMath math="r=0/\sqrt{10\cdot14}=0" />. **Korelasi nol** di sini tetap disertai hubungan kuadrat yang pasti.
+
+Bagi diagram di <InlineMath math="\bar x = 0" /> dan <InlineMath math="\bar y = 2" />. Hasil kali simpangannya <InlineMath math="-4" />, 1, 0, <InlineMath math="-1" />, dan 4: setiap titik di kiri punya pasangan di kanan dengan hasil kali berlawanan, jadi semuanya saling menghapus dan <InlineMath math="r = 0" />.
+
+<MathVisual
+  title={<>Hasil kali simpangan saling menghapus</>}
+  description={<>Lima titik <InlineMath math="y = x^2" /> dengan garis rata-rata <InlineMath math="x = 0" /> dan <InlineMath math="y = 2" />, diberi label hasil kali <InlineMath math="(x - \bar x)(y - \bar y)" />.</>}
+  labels={{
+    a: <InlineMath math="-4" />,
+    b: <InlineMath math="1" />,
+    c: <InlineMath math="0" />,
+    d: <InlineMath math="-1" />,
+    e: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.8, max: 2.8 }, y: { min: -0.6, max: 4.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mx", kind: "line", through: [{ x: 0, y: 0 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "my", kind: "line", through: [{ x: 0, y: 2 }, { x: 1, y: 2 }], appearance: "reference" },
+      { id: "a", kind: "point", at: { x: -2, y: 4 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "d", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "e", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -2, y: 4 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -1, y: 1 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "d", objectId: "d", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "e", objectId: "e", at: { x: 2, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Menukar Variabel dan Mengubah Satuan
 
@@ -72,6 +107,16 @@ Keterkaitan linear tersebut menerangkan <InlineMath math="64\%" /> variasi nilai
 Koefisien determinasi memenuhi:
 
 <BlockMath math="0\le r^2\le1" />
+
+Pengkuadratan memperkecil korelasi makin lemah korelasinya: <InlineMath math="r = 0{,}5" /> hanya menjelaskan <InlineMath math="r^2 = 25\%" /> variasi, <InlineMath math="r = 0{,}8" /> menjelaskan <InlineMath math="64\%" />, dan <InlineMath math="r = 0{,}9" /> menjelaskan <InlineMath math="81\%" />.
+
+<BarChart
+  title={<><InlineMath math="r^2" /> untuk lima korelasi</>}
+  description={<>Batang <InlineMath math="r^2" /> dalam persen untuk <InlineMath math="r = 0{,}2;\ 0{,}5;\ 0{,}8;\ 0{,}9;\ 1" />.</>}
+  yAxisLabel="Bagian variasi (%)"
+  data={[0.2, 0.5, 0.8, 0.9, 1].map((r) => ({ name: String(r), value: 100 * r ** 2 }))}
+  chartConfig={{ value: { label: "Bagian variasi (%)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Korelasi dan Hubungan Sebab Akibat
 

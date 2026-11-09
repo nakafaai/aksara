@@ -3,7 +3,7 @@ export const metadata = {
   description: "Produkt-, Quotienten-, Potenz- und Basiswechselregeln anwenden, um Terme zu vereinfachen, Gleichungen zu lösen und logarithmische Modelle zu verstehen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Funktionen und ihre Modellierung",
 };
 
@@ -80,34 +80,30 @@ Der Vergleich hängt von der **Richtung des Graphen** ab. Eine Basis über eins 
 - Wenn <InlineMath math="b > 1" /> und <InlineMath math="\log_b M < {\log_b N}" />, dann <InlineMath math="M < N" />
 - Wenn <InlineMath math="0 < b < 1" /> und <InlineMath math="\log_b M < {\log_b N}" />, dann <InlineMath math="M > N" />
 
-<LineEquation
-  title="Reihenfolge bei zwei Basen"
-  description="Bei den Eingaben 2 und 4 liefert die Basis zwei die Werte 1 und 2. Die Basis ein halb liefert minus 1 und minus 2."
-  data={[
-    {
-      points: Array.from({ length: 121 }, (_, i) => {
-        const t = -3 + i / 20;
-        return { x: 2 ** t, y: t, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="\log_2 x" />, at: 100, offset: [1, 0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 121 }, (_, i) => {
-        const t = -3 + i / 20;
-        return { x: 2 ** t, y: -t, z: 0 };
-      }),
-      smooth: false,
-      showPoints: false,
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="\log_{1/2} x" />, at: 100, offset: [1, -0.5, 0] }],
-    },
-  ]}
-  showZAxis={false}
-  cameraTarget={[3, 0, 0]}
-  cameraPosition={[3, 0, 14]}
+<MathVisual
+  title={<>Ordnung bei zwei Basen</>}
+  description={<>Die Kurven <InlineMath math="y = \log_2 x" /> und <InlineMath math="y = \log_{1/2} x" /> für <InlineMath math="\tfrac18 \le x \le 8" />. Bei den Eingaben 2 und 4 liefert die Basis 2 die Werte 1 und 2, die Basis <InlineMath math="\tfrac12" /> aber <InlineMath math="-1" /> und <InlineMath math="-2" />.</>}
+  labels={{
+    up: <InlineMath math="\log_2 x" />,
+    down: <InlineMath math="\log_{1/2} x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 8.6 }, y: { min: -3.4, max: 3.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "up", kind: "polyline", vertices: [{ x: 2 ** (-3), y: (-3) }, { x: 2 ** (-29 / 10), y: (-29 / 10) }, { x: 2 ** (-14 / 5), y: (-14 / 5) }, { x: 2 ** (-27 / 10), y: (-27 / 10) }, { x: 2 ** (-13 / 5), y: (-13 / 5) }, { x: 2 ** (-5 / 2), y: (-5 / 2) }, { x: 2 ** (-12 / 5), y: (-12 / 5) }, { x: 2 ** (-23 / 10), y: (-23 / 10) }, { x: 2 ** (-11 / 5), y: (-11 / 5) }, { x: 2 ** (-21 / 10), y: (-21 / 10) }, { x: 2 ** (-2), y: (-2) }, { x: 2 ** (-19 / 10), y: (-19 / 10) }, { x: 2 ** (-9 / 5), y: (-9 / 5) }, { x: 2 ** (-17 / 10), y: (-17 / 10) }, { x: 2 ** (-8 / 5), y: (-8 / 5) }, { x: 2 ** (-3 / 2), y: (-3 / 2) }, { x: 2 ** (-7 / 5), y: (-7 / 5) }, { x: 2 ** (-13 / 10), y: (-13 / 10) }, { x: 2 ** (-6 / 5), y: (-6 / 5) }, { x: 2 ** (-11 / 10), y: (-11 / 10) }, { x: 2 ** (-1), y: (-1) }, { x: 2 ** (-9 / 10), y: (-9 / 10) }, { x: 2 ** (-4 / 5), y: (-4 / 5) }, { x: 2 ** (-7 / 10), y: (-7 / 10) }, { x: 2 ** (-3 / 5), y: (-3 / 5) }, { x: 2 ** (-1 / 2), y: (-1 / 2) }, { x: 2 ** (-2 / 5), y: (-2 / 5) }, { x: 2 ** (-3 / 10), y: (-3 / 10) }, { x: 2 ** (-1 / 5), y: (-1 / 5) }, { x: 2 ** (-1 / 10), y: (-1 / 10) }, { x: 2 ** (0), y: (0) }, { x: 2 ** (1 / 10), y: (1 / 10) }, { x: 2 ** (1 / 5), y: (1 / 5) }, { x: 2 ** (3 / 10), y: (3 / 10) }, { x: 2 ** (2 / 5), y: (2 / 5) }, { x: 2 ** (1 / 2), y: (1 / 2) }, { x: 2 ** (3 / 5), y: (3 / 5) }, { x: 2 ** (7 / 10), y: (7 / 10) }, { x: 2 ** (4 / 5), y: (4 / 5) }, { x: 2 ** (9 / 10), y: (9 / 10) }, { x: 2 ** (1), y: (1) }, { x: 2 ** (11 / 10), y: (11 / 10) }, { x: 2 ** (6 / 5), y: (6 / 5) }, { x: 2 ** (13 / 10), y: (13 / 10) }, { x: 2 ** (7 / 5), y: (7 / 5) }, { x: 2 ** (3 / 2), y: (3 / 2) }, { x: 2 ** (8 / 5), y: (8 / 5) }, { x: 2 ** (17 / 10), y: (17 / 10) }, { x: 2 ** (9 / 5), y: (9 / 5) }, { x: 2 ** (19 / 10), y: (19 / 10) }, { x: 2 ** (2), y: (2) }, { x: 2 ** (21 / 10), y: (21 / 10) }, { x: 2 ** (11 / 5), y: (11 / 5) }, { x: 2 ** (23 / 10), y: (23 / 10) }, { x: 2 ** (12 / 5), y: (12 / 5) }, { x: 2 ** (5 / 2), y: (5 / 2) }, { x: 2 ** (13 / 5), y: (13 / 5) }, { x: 2 ** (27 / 10), y: (27 / 10) }, { x: 2 ** (14 / 5), y: (14 / 5) }, { x: 2 ** (29 / 10), y: (29 / 10) }, { x: 2 ** (3), y: (3) }], appearance: "primary" },
+      { id: "down", kind: "polyline", vertices: [{ x: 2 ** (-3), y: -(-3) }, { x: 2 ** (-29 / 10), y: -(-29 / 10) }, { x: 2 ** (-14 / 5), y: -(-14 / 5) }, { x: 2 ** (-27 / 10), y: -(-27 / 10) }, { x: 2 ** (-13 / 5), y: -(-13 / 5) }, { x: 2 ** (-5 / 2), y: -(-5 / 2) }, { x: 2 ** (-12 / 5), y: -(-12 / 5) }, { x: 2 ** (-23 / 10), y: -(-23 / 10) }, { x: 2 ** (-11 / 5), y: -(-11 / 5) }, { x: 2 ** (-21 / 10), y: -(-21 / 10) }, { x: 2 ** (-2), y: -(-2) }, { x: 2 ** (-19 / 10), y: -(-19 / 10) }, { x: 2 ** (-9 / 5), y: -(-9 / 5) }, { x: 2 ** (-17 / 10), y: -(-17 / 10) }, { x: 2 ** (-8 / 5), y: -(-8 / 5) }, { x: 2 ** (-3 / 2), y: -(-3 / 2) }, { x: 2 ** (-7 / 5), y: -(-7 / 5) }, { x: 2 ** (-13 / 10), y: -(-13 / 10) }, { x: 2 ** (-6 / 5), y: -(-6 / 5) }, { x: 2 ** (-11 / 10), y: -(-11 / 10) }, { x: 2 ** (-1), y: -(-1) }, { x: 2 ** (-9 / 10), y: -(-9 / 10) }, { x: 2 ** (-4 / 5), y: -(-4 / 5) }, { x: 2 ** (-7 / 10), y: -(-7 / 10) }, { x: 2 ** (-3 / 5), y: -(-3 / 5) }, { x: 2 ** (-1 / 2), y: -(-1 / 2) }, { x: 2 ** (-2 / 5), y: -(-2 / 5) }, { x: 2 ** (-3 / 10), y: -(-3 / 10) }, { x: 2 ** (-1 / 5), y: -(-1 / 5) }, { x: 2 ** (-1 / 10), y: -(-1 / 10) }, { x: 2 ** (0), y: -(0) }, { x: 2 ** (1 / 10), y: -(1 / 10) }, { x: 2 ** (1 / 5), y: -(1 / 5) }, { x: 2 ** (3 / 10), y: -(3 / 10) }, { x: 2 ** (2 / 5), y: -(2 / 5) }, { x: 2 ** (1 / 2), y: -(1 / 2) }, { x: 2 ** (3 / 5), y: -(3 / 5) }, { x: 2 ** (7 / 10), y: -(7 / 10) }, { x: 2 ** (4 / 5), y: -(4 / 5) }, { x: 2 ** (9 / 10), y: -(9 / 10) }, { x: 2 ** (1), y: -(1) }, { x: 2 ** (11 / 10), y: -(11 / 10) }, { x: 2 ** (6 / 5), y: -(6 / 5) }, { x: 2 ** (13 / 10), y: -(13 / 10) }, { x: 2 ** (7 / 5), y: -(7 / 5) }, { x: 2 ** (3 / 2), y: -(3 / 2) }, { x: 2 ** (8 / 5), y: -(8 / 5) }, { x: 2 ** (17 / 10), y: -(17 / 10) }, { x: 2 ** (9 / 5), y: -(9 / 5) }, { x: 2 ** (19 / 10), y: -(19 / 10) }, { x: 2 ** (2), y: -(2) }, { x: 2 ** (21 / 10), y: -(21 / 10) }, { x: 2 ** (11 / 5), y: -(11 / 5) }, { x: 2 ** (23 / 10), y: -(23 / 10) }, { x: 2 ** (12 / 5), y: -(12 / 5) }, { x: 2 ** (5 / 2), y: -(5 / 2) }, { x: 2 ** (13 / 5), y: -(13 / 5) }, { x: 2 ** (27 / 10), y: -(27 / 10) }, { x: 2 ** (14 / 5), y: -(14 / 5) }, { x: 2 ** (29 / 10), y: -(29 / 10) }, { x: 2 ** (3), y: -(3) }], appearance: "secondary" },
+      { id: "u2", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "u4", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "d4", kind: "point", at: { x: 4, y: -2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "up", objectId: "u4", at: { x: 4, y: 2 }, placement: "above" },
+      { key: "down", objectId: "d4", at: { x: 4, y: -2 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Logarithmische Rechenregeln anwenden
@@ -237,6 +233,16 @@ In diesem Modell wird **die volle Ladung nur angenähert**, in endlicher Zeit ab
 | <InlineMath math="90\%" /> | <InlineMath math="-50\ln(0{,}1)\approx115{,}13" /> |
 | <InlineMath math="99\%" /> | <InlineMath math="-50\ln(0{,}01)\approx230{,}26" /> |
 
+Die Ladezeiten <InlineMath math="t = -50\ln\left(1 - \tfrac{C}{C_0}\right)" /> wachsen schneller als die Ziele: 50% dauern etwa 34,66 Minuten, 90% etwa 115,13 und 99% etwa 230,26, doppelt so lang wie 90% für die letzten 9%.
+
+<BarChart
+  title={<>Zeit bis zu jedem Ladestand</>}
+  description={<>Balken von <InlineMath math="-50\ln(1 - p)" /> in Minuten für die Ziele 50%, 90% und 99%.</>}
+  yAxisLabel="Zeit (min)"
+  data={[0.5, 0.9, 0.99].map((p) => ({ name: Math.round(100 * p) + "% geladen", value: -50 * Math.log(1 - p) }))}
+  chartConfig={{ value: { label: "Zeit (min)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Abwertung des Autopreises
 
 Die konstante Rate ist eine **Annahme für den betrachteten Zeitraum**. Der Fahrzeugwert halbiert sich alle fünf Jahre.
@@ -271,6 +277,16 @@ Aus diesen Ergebnissen ergibt sich für den Autopreis zu jedem Zeitpunkt <Inline
 Der modellierte Fahrzeugwert nach <InlineMath math="10 \text{ Jahren}" /> beträgt daher:
 
 <BlockMath math="\begin{aligned} H(10) &amp;= 200e^{2\ln(1/2)} \\ &amp;= 200\left(\frac{1}{2}\right)^2 \\ &amp;= 50 \text{ Millionen Rupiah} \end{aligned}" />
+
+Halbierung alle 5 Jahre: <InlineMath math="H(t) = 200\left(\tfrac12\right)^{t/5}" /> ergibt 200, 100, 50 und 25 Millionen Rupiah nach 0, 5, 10 und 15 Jahren, passend zu <InlineMath math="H(10) = 50" />.
+
+<BarChart
+  title={<>Autopreis alle 5 Jahre</>}
+  description={<>Balken von <InlineMath math="H(t) = 200e^{\frac{\ln(1/2)}{5}t}" /> in Millionen Rupiah für <InlineMath math="t = 0, 5, 10, 15" />.</>}
+  yAxisLabel="Preis (Millionen Rupiah)"
+  data={[0, 5, 10, 15].map((x) => ({ name: String(x), value: 200 * Math.exp((Math.log(1 / 2) / 5) * x) }))}
+  chartConfig={{ value: { label: "Preis (Millionen Rupiah)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Übungen
 
