@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "research-design",
-  },
-  stimulus: "pollinators",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Petani di kebun itu menolak membiarkan daun gugur membusuk di bawah pohon.",
+            "Istilah *konflik* memastikan satu kelanjutan cerita sehingga pembaca tidak lagi perlu menafsirkan akhir.",
         },
         {
           correct: false,
           label:
-            "Agas hanya dapat diamati di laboratorium, bukan di kebun milik petani.",
+            "Definisi itu menyamakan *konflik* dengan benda yang berulang, bukan dengan sifat penutup cerita.",
         },
         {
           correct: false,
           label:
-            "Jumlah buah kakao di kebun-kebun itu justru turun setelah serasah dibiarkan.",
+            "Penyebutan *konflik* membuat kesan pribadi pembaca cukup meskipun bertentangan dengan rincian cerita.",
         },
         {
           correct: true,
           label:
-            "Kenaikan jumlah buah belum dapat dipastikan disebabkan oleh tumpukan serasah.",
+            "Definisi *konflik* menjelaskan mengapa makna benang merah berkembang melalui pertentangan antara menyembunyikan kerusakan dan mempertahankan riwayat blus.",
         },
         {
           correct: false,
           label:
-            "Tumpukan kulit buah terlalu mahal untuk dipakai oleh semua petani.",
+            "Definisi tersebut hanya menerangkan latar sehingga tindakan tokoh dan perubahan makna benda tidak relevan.",
         },
       ],
     },

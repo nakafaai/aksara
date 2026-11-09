@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "liquefaction",
+  stimulus: "passage-1",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: true,
           label:
-            "Tanah liat yang butirannya halus dan saling melekat lebih tahan terhadap likuefaksi.",
+            "Rata-rata $$15{,}6$$ detik untuk sepuluh ayunan pada tali $$60$$ sentimeter memberi periode perkiraan $$1{,}56$$ detik. Ketelitian perkiraan periode masih dipengaruhi pencatatan manual.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Likuefaksi dapat dicegah sepenuhnya dengan memadatkan tanah setelah gempa terjadi.",
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Pada likuefaksi, air di rongga tanah sempat keluar sebelum tekanannya naik.",
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Sebagian lokasi likuefaksi terparah di Palu berada di lereng di bawah saluran irigasi.",
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
+        },
+        {
+          correct: false,
+          label:
+            "Hasil $$15{,}6$$ detik pada tali $$60$$ sentimeter membuktikan bahwa periode selalu berkurang $$4{,}5$$ detik untuk setiap pengurangan panjang tali sebesar $$40$$ sentimeter.",
         },
       ],
     },

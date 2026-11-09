@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "conflict",
-  },
-  stimulus: "waste-meeting",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Kartu mengubah suasana karena bentuk fisiknya lebih menarik daripada sakelar dan diagram pada meja pameran.",
+        },
+        {
           correct: true,
-          label: "cara menangani sampah yang menumpuk sambil menunggu truk",
+          label:
+            "Pertanyaan pada kartu menahan tindakan otomatis pengunjung dan mengarahkannya menjadi percobaan, pembacaan diagram, serta percakapan.",
         },
         {
           correct: false,
-          label: "jadwal ronda malam yang tidak disepakati oleh para warga",
+          label:
+            "Kartu mengubah suasana dengan menyatakan jawaban percobaan secara langsung sehingga pengunjung tidak perlu berdiskusi.",
         },
         {
           correct: false,
-          label: "siapa yang harus menggantikan Pak Karto sebagai ketua RT",
+          label:
+            "Kartu membuat bel dan pengeras suara berhenti, sehingga penyebab perubahan suasana sepenuhnya berasal dari latar yang mendadak sunyi.",
         },
         {
           correct: false,
-          label: "harga ember kompos yang dianggap terlalu mahal oleh warga",
-        },
-        {
-          correct: false,
-          label: "kemungkinan Dina pindah ke sekolah lain yang lebih jauh",
+          label:
+            "Kartu tetap menandai kegagalan pengunjung bertanya karena tidak ada seorang pun yang menuliskan jawaban di atasnya.",
         },
       ],
     },

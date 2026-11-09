@@ -1,33 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "fiction",
-    topic: "explicit-information",
-  },
-  stimulus: "jamu-seller",
+  stimulus: "passage-2",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Sari kuliah di jurusan kedokteran di kota.",
+          correct: true,
+          label: "Dua Wadah, Dua Laju Pendinginan: Pola dan Batas Percobaan",
         },
         {
-          column: 2,
-          label: "Bu Darmi tidak mengangkat telepon dari Sari.",
+          correct: false,
+          label: "Mengukur konduksi melalui satu perbandingan awal",
         },
         {
-          column: 1,
-          label: "Bakul Bu Darmi berisi delapan botol jamu.",
+          correct: false,
+          label: "Menjadikan konduksi penjelasan tunggal atas hasil pengamatan",
         },
         {
-          column: 1,
+          correct: false,
+          label: "Kaidah akhir dari perbandingan pertama tentang konduksi",
+        },
+        {
+          correct: false,
           label:
-            "Sari menelepon ibunya karena tidak tahu takaran pesanan seorang kakek.",
+            "Keterbatasan yang membuat uji lanjutan konduksi tidak diperlukan",
         },
       ],
     },

@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
-  },
-  stimulus: "zoo-purpose",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Zoos should be closed because animals always suffer in captivity.",
+            "The organisers of a night-market waste station evaluated matching symbols on bins and stall permits through consultation alone, without comparing the measured outcome across conditions.",
         },
         {
           correct: true,
           label:
-            "Zoos should focus on species they can help and drop those they cannot keep well.",
+            "The night market compared matching permit and bin symbols across measured conditions, consulted affected groups, and supported only a limited extension because each evening's visitors and food mix varied.",
         },
         {
           correct: false,
           label:
-            "Zoos already do enough conservation work to justify all their animals.",
+            "The organisers of a night-market waste station evaluated matching symbols on bins and stall permits through the measured comparison alone, while excluding the affected groups' experience from the decision.",
         },
         {
           correct: false,
           label:
-            "Zoos should keep more elephants and polar bears to attract far more paying visitors.",
+            "The organisers of a night-market waste station evaluated matching symbols on bins and stall permits through a comparison and consultation, then treated the short trial as sufficient for permanent adoption.",
         },
         {
           correct: false,
           label:
-            "Zoos should release every animal born in captivity back into the wild.",
+            "The organisers of a night-market waste station evaluated matching symbols on bins and stall permits mainly by defining a technical term, with the proposed change serving only as background information.",
         },
       ],
     },

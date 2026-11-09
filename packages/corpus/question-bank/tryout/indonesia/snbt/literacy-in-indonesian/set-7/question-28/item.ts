@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
-  },
-  stimulus: "waste-meeting",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "anak Bu Ning sudah sembuh sehingga tidak akan batuk lagi",
+          label:
+            "Aula menjadi tenang karena semua sumber bunyi yang disebutkan pada awal cerita menghilang pada penutup.",
         },
         {
           correct: false,
-          label: "Bu Ning menuduh Pak Hasan sebagai penyebab batuk anaknya",
+          label:
+            "Suasana tetap sama karena bel dan tombol masih terdengar, sehingga tindakan tokoh tidak memberi perubahan apa pun.",
         },
         {
           correct: false,
-          label: "warga lain sudah lebih dulu batuk karena bau sampah",
+          label:
+            "Perubahan suasana membuktikan bahwa keramaian selalu menghalangi munculnya rasa ingin tahu di pameran.",
+        },
+        {
+          correct: false,
+          label:
+            "Percakapan menjadi terarah karena Lila menyelesaikan perdebatan dengan memberi jawaban yang benar.",
         },
         {
           correct: true,
-          label: "membakar sampah akan mengganggu kesehatan lebih banyak warga",
-        },
-        {
-          correct: false,
-          label: "Bu Ning ingin pindah dari kampung itu bersama anaknya",
+          label:
+            "Keramaian fisik tetap ada, tetapi pilihan bunyi dan tindakan pada penutup memperlihatkan terbentuknya ruang perhatian di tengah keramaian itu.",
         },
       ],
     },

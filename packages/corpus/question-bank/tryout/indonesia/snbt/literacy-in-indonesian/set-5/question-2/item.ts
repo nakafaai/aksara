@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "conclusion",
-  },
-  stimulus: "urban-heat",
+  stimulus: "passage-1",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Satelit mengukur suhu udara yang dirasakan orang di trotoar.",
-        },
-        {
-          column: 1,
+          correct: false,
           label:
-            "Permukaan gelap menyerap lebih banyak sinar matahari daripada permukaan terang.",
+            "Pada kondisi dengan perubahan, hasil rata-rata tercatat $$68$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Gedung tinggi yang berdempetan membantu menurunkan suhu kota karena memberi keteduhan.",
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
         {
-          column: 1,
-          label: "Pendingin ruangan dapat menambah panas di luar gedung.",
+          correct: true,
+          label:
+            "Rata-rata $$68$$ persen cahaya melewati sampel setelah disaring dengan kerikil, pasir, dan arang. Ukuran kejernihan itu tidak membuktikan bahwa air aman diminum.",
+        },
+        {
+          correct: false,
+          label:
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+        },
+        {
+          correct: false,
+          label:
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
       ],
     },

@@ -1,36 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "library-hours",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "During the pilot, every daytime time slot had fewer visitors than before the pilot.",
+            "Everyone should take the largest possible dose of every vitamin.",
         },
         {
-          column: 1,
-          label:
-            "During the pilot, the evening slot attracted more visitors than the 9 a.m. to 12 noon slot.",
+          correct: false,
+          label: "Supplements always cure an infection after symptoms begin.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "The average number of daytime visitors fell by more than 100 per weekday during the pilot.",
+            "When nutrient intake is already adequate, taking more supplements usually does not prevent infection or speed recovery.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "The questionnaire was given to every visitor to the library during the pilot.",
+            "A nutrient deficiency has no effect on normal immune function.",
+        },
+        {
+          correct: false,
+          label: "Vitamin and mineral supplements prevent every common cold.",
         },
       ],
     },

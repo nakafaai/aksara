@@ -1,33 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "borrowed-words",
+  stimulus: "passage-5",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Kata *meja* dan *jendela* berasal dari bahasa Belanda.",
-        },
-        {
-          column: 1,
-          label: "Kata *kulkas* berasal dari kata Belanda *koelkast*.",
-        },
-        {
-          column: 2,
+          correct: false,
           label:
-            "Dalam bahasa Indonesia, kata *sengsara* masih berarti perputaran kelahiran dan kematian.",
+            "Petunjuk yang memakai ikon selalu dapat berdiri sendiri tanpa arahan petugas atau penjelasan tambahan.",
         },
         {
-          column: 1,
-          label: "Kata *daring* merupakan singkatan dari *dalam jaringan*.",
+          correct: false,
+          label:
+            "Urutan layanan yang paling mudah dipahami harus diterapkan tanpa pengecualian agar pasien tidak bingung.",
+        },
+        {
+          correct: true,
+          label:
+            "Alat bantu menjadi lebih aman ketika isinya diperiksa, batas penggunaannya dinyatakan, dan arahan manusia tetap tersedia.",
+        },
+        {
+          correct: false,
+          label:
+            "Kesalahan mengikuti panah terjadi semata-mata karena Arum tidak mampu membaca nomor meja yang tersedia.",
+        },
+        {
+          correct: false,
+          label:
+            "Karena kartu berhasil membantu nenek Arum, kartu itu sudah terbukti sesuai untuk seluruh pasien klinik.",
         },
       ],
     },

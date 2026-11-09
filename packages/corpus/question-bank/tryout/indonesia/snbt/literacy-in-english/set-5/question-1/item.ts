@@ -1,40 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "main-idea",
-  },
-  stimulus: "placebo-effect",
+  stimulus: "passage-1",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "The class tested how coarse fabric on a model ramp affected friction, while controlling the listed factors but treating one short trial as proof of a universal effect.",
+        },
+        {
+          correct: false,
+          label:
+            "The class tested how coarse fabric on a model ramp affected friction, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
+        },
+        {
+          correct: false,
+          label:
+            "The class tested how coarse fabric on a model ramp affected friction, while treating the scientific term as the measured outcome that settles the investigation.",
+        },
+        {
+          correct: false,
+          label:
+            "The class tested how coarse fabric on a model ramp affected friction, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
+        },
+        {
           correct: true,
           label:
-            "Placebo effects are smaller than once claimed, yet some of them are real and measurable.",
-        },
-        {
-          correct: false,
-          label:
-            "Beecher's 1955 figure showed that a third of all illnesses exist only in patients' minds.",
-        },
-        {
-          correct: false,
-          label:
-            "Placebos can only work when patients are deceived about what they are being given.",
-        },
-        {
-          correct: false,
-          label:
-            "Drug trials should stop comparing new medicines with dummy treatments of any kind.",
-        },
-        {
-          correct: false,
-          label:
-            "Naloxone is the most effective treatment for pain after dental surgery.",
+            "The class found that a coarse-fabric ramp was associated with a longer mean travel time under controlled conditions, while surface wear limited a broader conclusion.",
         },
       ],
     },

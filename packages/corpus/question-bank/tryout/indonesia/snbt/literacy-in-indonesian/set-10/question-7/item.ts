@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "front-labels",
+  stimulus: "passage-2",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            'Logo "Pilihan Lebih Sehat" wajib dipasang pada semua produk di Indonesia.',
+            "Hanya $$62$$ mililiter yang keluar, jadi $$88$$ mililiter lainnya pasti gagal memasuki permukaan campuran organik.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Di Cile, tanda segi delapan hitam wajib bagi produk yang melewati batas tertentu.",
+            "Seluruh air telah masuk setelah $$15$$ menit, jadi campuran organik dan pasir memiliki perkolasi yang sama.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Sebagian produsen di Cile mengubah resep agar produknya tidak diberi tanda.",
+            "Hampir seluruh air sudah masuk setelah lima menit dan seluruhnya masuk setelah $$15$$ menit, tetapi keluaran yang lebih kecil menunjukkan banyak air masih tersimpan dalam kolom.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Tabel informasi nilai gizi tidak mencantumkan kandungan gula.",
+            "Campuran organik memiliki infiltrasi lebih lambat daripada lempung karena air di permukaannya tersisa lebih sedikit setelah lima menit.",
+        },
+        {
+          correct: false,
+          label:
+            "Keluaran kecil membuktikan penguapan tinggi meskipun bacaan menyatakan penguapan dapat diabaikan.",
         },
       ],
     },

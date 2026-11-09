@@ -1,40 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "paragraph-relation",
-  },
-  stimulus: "mangrove-carbon",
+  stimulus: "passage-1",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "paragraf ketiga membantah temuan paragraf kedua tentang simpanan karbon",
-        },
-        {
-          correct: false,
-          label:
-            "paragraf ketiga mengulang penjelasan paragraf kedua dengan contoh yang berbeda",
-        },
-        {
-          correct: false,
-          label:
-            "paragraf ketiga memperkenalkan peran mangrove yang sama sekali baru",
-        },
-        {
-          correct: false,
-          label:
-            "paragraf ketiga menyimpulkan seluruh isi bacaan tentang mangrove",
-        },
-        {
           correct: true,
           label:
-            "paragraf ketiga menjelaskan akibat jika simpanan karbon dalam paragraf kedua terganggu",
+            "Uji Awal Pencahayaan Enam Jam pada Perkecambahan Kacang Hijau",
+        },
+        {
+          correct: false,
+          label: "Mengukur variabel kontrol melalui satu perbandingan awal",
+        },
+        {
+          correct: false,
+          label:
+            "Menjadikan variabel kontrol penjelasan tunggal atas hasil pengamatan",
+        },
+        {
+          correct: false,
+          label:
+            "Kaidah akhir dari perbandingan pertama tentang variabel kontrol",
+        },
+        {
+          correct: false,
+          label:
+            "Keterbatasan yang membuat uji lanjutan variabel kontrol tidak diperlukan",
         },
       ],
     },

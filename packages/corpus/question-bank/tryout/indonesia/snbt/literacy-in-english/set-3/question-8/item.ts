@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "four-day-week",
+  stimulus: "passage-2",
   versions: {
     en: {
-      columns: ["Yes", "No"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "In a reduced week, employees work fewer total hours for the same pay.",
+            "Because the trial reached $$44$$, compared with a baseline of $$28$$ and a comparison value of $$30$$, a map showing walking time from each bus stop should become permanent before the stated limitation is examined.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "The best trial results came mainly from compressed weeks of four ten-hour days.",
+            "The consultation with affected groups makes the baseline and comparison figures unnecessary for the decision.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Governments could require employers in trials to share their data.",
+            "The rise to $$44$$, compared with $$28$$ at baseline and $$30$$ in the comparison, supports a limited extension of the map trial. Differences in mobility needs must shape the follow-up.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Hospitals and care homes were well represented in the voluntary trials.",
+            "The limitation that walking times differed for people with different mobility needs affects delivery details, but it does not restrict who can be covered by the conclusion.",
+        },
+        {
+          correct: false,
+          label:
+            "Because staffing and schedules were stable, the difference between the trial and comparison is best attributed to those unchanged conditions.",
         },
       ],
     },

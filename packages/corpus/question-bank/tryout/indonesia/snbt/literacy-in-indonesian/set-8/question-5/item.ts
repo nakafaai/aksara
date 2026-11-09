@@ -1,38 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-purpose",
-  },
-  stimulus: "tempe-mold",
+  stimulus: "passage-1",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
+          label: "Petroleum Jelly Menghentikan Seluruh Transpirasi Daun",
+        },
+        {
+          correct: false,
           label:
-            "membuktikan bahwa tempe pertama kali dibuat dengan kedelai impor",
+            "Menjadikan transpirasi penjelasan tunggal atas hasil pengamatan",
+        },
+        {
+          correct: false,
+          label: "Kaidah akhir dari perbandingan pertama tentang transpirasi",
         },
         {
           correct: true,
-          label: "menunjukkan bahwa tempe sudah dikenal di Jawa sejak lama",
+          label:
+            "Permukaan Daun dan Kehilangan Air: Temuan Awal pada Daun Kacang",
         },
         {
           correct: false,
           label:
-            "menjelaskan cara membuat tempe yang paling tepat menurut leluhur",
-        },
-        {
-          correct: false,
-          label:
-            "membandingkan tempe di Jawa dengan tempe di negara-negara lain",
-        },
-        {
-          correct: false,
-          label: "menyarankan agar pembaca membaca karya sastra Jawa tersebut",
+            "Keterbatasan yang membuat uji lanjutan transpirasi tidak diperlukan",
         },
       ],
     },

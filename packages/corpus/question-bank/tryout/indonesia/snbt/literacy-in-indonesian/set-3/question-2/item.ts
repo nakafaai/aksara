@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "conclusion",
-  },
-  stimulus: "mangrove-carbon",
+  stimulus: "passage-1",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Sebagian besar karbon di ekosistem mangrove tersimpan di dalam tanah.",
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Mengubah hutan mangrove menjadi tambak hanya menghilangkan karbon yang tersimpan di batang dan daun.",
+            "Pada kondisi dengan perubahan, hasil rata-rata tercatat $$18$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Menanam bibit sebanyak-banyaknya di dataran lumpur yang hampir selalu tergenang menjamin keberhasilan pemulihan mangrove.",
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Akar mangrove membantu menahan endapan sehingga garis pantai tidak mudah terkikis.",
+            "Nilai $$18$$ adalah rata-rata pada pencahayaan enam jam dengan jarak lampu tetap. Jumlah wadah dan delapan hari pengamatan membatasi penafsiran di luar uji.",
+        },
+        {
+          correct: false,
+          label:
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
         },
       ],
     },

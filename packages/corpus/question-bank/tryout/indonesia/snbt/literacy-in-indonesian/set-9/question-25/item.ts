@@ -1,37 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "application",
-  },
-  stimulus: "batik-wax",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Lima Penanda yang Berhasil Difoto Laras",
+        },
+        {
           correct: true,
-          label:
-            "batik cap, karena motifnya berulang rapi dan ada retakan malam",
+          label: "Bingkai Kosong dalam Esai Laras",
         },
         {
           correct: false,
-          label:
-            "batik tulis, karena garis retakan hanya muncul pada batik tulis",
+          label: "Penyunting yang Menolak Karya Tidak Selesai",
         },
         {
           correct: false,
-          label: "tekstil bermotif batik, karena motifnya berulang dengan rapi",
+          label: "Rekaman Suara sebagai Pengganti Semua Foto",
         },
         {
           correct: false,
-          label: "batik tulis, karena motif buatan tangan selalu sama persis",
-        },
-        {
-          correct: false,
-          label: "tekstil bermotif batik, karena dibuat dengan cap tembaga",
+          label: "Cara Menghapus Batas Pengalaman dari Sebuah Esai",
         },
       ],
     },

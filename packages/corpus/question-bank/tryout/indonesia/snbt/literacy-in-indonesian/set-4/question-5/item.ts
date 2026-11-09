@@ -1,40 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "application",
-  },
-  stimulus: "antibiotic-resistance",
+  stimulus: "passage-1",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Menunda pengobatan infeksi sampai antibiotik golongan baru tersedia.",
+          label: "Mengukur daya generalisasi melalui satu perbandingan awal",
         },
         {
           correct: false,
           label:
-            "Memberikan antibiotik dalam takaran rendah kepada semua hewan ternak agar tumbuh cepat.",
+            "Menjadikan daya generalisasi penjelasan tunggal atas hasil pengamatan",
         },
         {
           correct: false,
           label:
-            "Meminum antibiotik setiap kali terkena pilek agar tidak menjadi parah.",
+            "Kaidah akhir dari perbandingan pertama tentang daya generalisasi",
+        },
+        {
+          correct: false,
+          label:
+            "Keterbatasan yang membuat uji lanjutan daya generalisasi tidak diperlukan",
         },
         {
           correct: true,
-          label:
-            "Berhenti memakai antibiotik untuk penyakit virus dan pemacu pertumbuhan ternak.",
-        },
-        {
-          correct: false,
-          label:
-            "Menyimpan semua antibiotik sebagai cadangan dan tidak memakainya sama sekali.",
+          label: "Uji Awal Panel Peneduh terhadap Suhu Air Kolam Mini",
         },
       ],
     },

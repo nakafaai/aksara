@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "antikythera",
+  stimulus: "passage-4",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Its unusual weight compared with the statues found beside it",
+          label:
+            "The recurring object mainly establishes the setting and changes little in relation to the conflict.",
         },
         {
           correct: false,
           label:
-            "Thousands of letters that were clearly visible on its surface",
+            "The character's final decision removes the ambiguity that the recurring object previously carried.",
         },
         {
           correct: false,
-          label: "X-ray images taken soon after it was brought to the surface",
-        },
-        {
-          correct: false,
-          label: "A user's manual found together with it in the wreck",
+          label:
+            "The passage uses tone as a descriptive label without tying it to the character's choice.",
         },
         {
           correct: true,
-          label: "A toothed gear wheel seen after the lump cracked apart",
+          label:
+            "Eli turns a blank caption card from a sign of hesitation into an invitation to observe, while keeping the detailed museum information available.",
+        },
+        {
+          correct: false,
+          label:
+            "The conflict is settled by the setting before the character's final action changes the object's meaning.",
         },
       ],
     },

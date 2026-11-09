@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
-  },
-  stimulus: "banda-nutmeg",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Orang Banda menolak menanam pala setelah harga pala di Eropa turun tajam.",
+            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda. Tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
         },
         {
           correct: false,
           label:
-            "Inggris meminta VOC menyerang Banda agar dapat merebut Pulau Run.",
-        },
-        {
-          correct: false,
-          label:
-            "Pedagang Tionghoa berhenti membeli pala dari Kepulauan Banda sama sekali.",
-        },
-        {
-          correct: false,
-          label:
-            "Pohon pala di Banda rusak sehingga VOC membutuhkan lahan baru di pulau-pulau lain.",
+            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda. Perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
         },
         {
           correct: true,
           label:
-            "Orang Banda tetap menjual pala kepada pedagang lain meski terikat perjanjian.",
+            "Mencatat rute sulit dari posisi kursi roda membuat usulan Nisa bertumpu pada hambatan yang dapat ditunjukkan, bukan asumsi tentang akses.",
+        },
+        {
+          correct: false,
+          label:
+            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda. Latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
+        },
+        {
+          correct: false,
+          label:
+            "Nisa memilih untuk mencatat rute yang sulit dan mengusulkan tanda yang bisa dibaca dari kursi roda. Definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
       ],
     },

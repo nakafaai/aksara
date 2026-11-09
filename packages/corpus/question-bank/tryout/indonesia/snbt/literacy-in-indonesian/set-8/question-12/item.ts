@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "plot-function",
-  },
-  stimulus: "jamu-seller",
+  stimulus: "passage-3",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Ia merasa bosan karena buku kuliahnya terlalu sulit dipahami.",
+            "Hasil $$27$$ dari $$30$$ menunjukkan bahwa tiga pasangan yang tersisa pasti salah karena petugas tidak memahami satuan meter.",
         },
         {
           correct: true,
           label:
-            "Ia sadar ibunya sudah lama menguasai takaran dan pantangan yang ia pelajari.",
+            "Hasil $$27$$ dari $$30$$ menunjukkan formulir baru mengurangi kebutuhan menebak satuan dan titik acuan, tetapi pengukuran dari musim atau waktu berbeda tetap belum otomatis setara.",
         },
         {
           correct: false,
           label:
-            "Ia ingin memastikan ibunya sudah tidur nyenyak sebelum ia kembali ke kota besok.",
+            "Perbedaan $$27$$ dan $$14$$ membuktikan bahwa formulir menjadi satu-satunya penjelasan atas setiap pasangan yang dapat dibandingkan.",
         },
         {
           correct: false,
           label:
-            "Ia memutuskan bahwa ilmu farmasi tidak berguna bagi penjual jamu.",
+            "Tiga puluh pasangan sudah cukup untuk memastikan formulir akan memberi hasil yang sama di setiap desa dan musim.",
         },
         {
           correct: false,
-          label: "Ia ingin membaca buku itu bersama ibunya pada sore hari.",
+          label:
+            "Selama nilai asli disimpan, semua catatan lama dapat dibandingkan tanpa mengetahui satuan dan titik acuannya.",
         },
       ],
     },

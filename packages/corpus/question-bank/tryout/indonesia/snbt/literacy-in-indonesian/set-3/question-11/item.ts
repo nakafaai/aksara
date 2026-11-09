@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
-  },
-  stimulus: "last-angkot",
+  stimulus: "passage-3",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Mak Inah ingin anak Pak Damar mengetahui bahwa ayahnya miskin.",
+            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
         },
         {
           correct: false,
           label:
-            "Mak Inah merasa tersinggung karena tawaran gratis dari Pak Damar.",
-        },
-        {
-          correct: false,
-          label:
-            "Mak Inah ingin Pak Damar menabung uang itu untuk biaya sekolah anaknya.",
+            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
         },
         {
           correct: true,
           label:
-            "Mak Inah ingin menghargai kerja Pak Damar dan menjaga harga dirinya sebagai ayah.",
+            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui data pembanding dan masukan pihak terdampak.",
         },
         {
           correct: false,
           label:
-            "Mak Inah menyindir Pak Damar yang meninggalkan angkot demi bus koridor.",
+            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
+        },
+        {
+          correct: false,
+          label:
+            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
         },
       ],
     },

@@ -1,40 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
-  },
-  stimulus: "tin-roof",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Radio di rumah itu sudah rusak sehingga siarannya tidak dapat didengar.",
-        },
-        {
-          correct: false,
-          label:
-            "Bunyi tetesan air terdengar lebih merdu daripada lagu-lagu di radio.",
-        },
-        {
-          correct: false,
-          label:
-            "Ayah tidak suka mendengarkan berita apa pun yang disiarkan radio.",
-        },
-        {
           correct: true,
           label:
-            "Kenyataan yang dialami sendiri lebih dapat dipercaya daripada janji.",
+            "Serpihan biru menjadi petunjuk sejarah karena berulang di sepanjang retakan, mengungkap lengkung yang sesuai dengan foto $$1978$$, dan mengarah pada bidang pintu lama yang akhirnya dipertahankan.",
         },
         {
           correct: false,
           label:
-            "Hujan malam itu sudah diramalkan dengan tepat oleh siaran radio.",
+            "Benda berulang memperoleh makna terutama dari bentuk fisiknya, bukan dari hubungannya dengan pilihan tokoh.",
+        },
+        {
+          correct: false,
+          label:
+            "Akhir cerita menunjukkan bahwa latar, bukan tindakan tokoh, menyelesaikan konflik.",
+        },
+        {
+          correct: false,
+          label:
+            "Makna benda tetap sama meskipun tokoh menggunakannya dengan cara berbeda.",
+        },
+        {
+          correct: false,
+          label:
+            "Tindakan akhir penting karena mengukuhkan penafsiran yang sudah terbentuk sejak awal.",
         },
       ],
     },

@@ -1,36 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "rooftop-solar",
+  stimulus: "passage-3",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label:
-            "Rumah Q dan Rumah R memiliki kapasitas panel yang sama dan menghasilkan listrik yang sama.",
+          correct: false,
+          label: "Menghitung Keberhasilan Klinik dari Satu Ukuran",
         },
         {
-          column: 2,
-          label:
-            "Rumah S tidak perlu membeli listrik dari jaringan sama sekali.",
+          correct: false,
+          label: "Dari Uji Singkat Menuju Sistem Klinik yang Tetap",
         },
         {
-          column: 1,
-          label:
-            "Rumah dengan kapasitas panel terbesar juga menghasilkan listrik paling banyak.",
+          correct: false,
+          label: "Masukan Pasien sebagai Pengganti Data Perbandingan",
         },
         {
-          column: 1,
-          label:
-            "Selama bulan itu, panel Rumah S menghasilkan listrik lebih banyak daripada yang dipakai rumahnya.",
+          correct: true,
+          label: "Menguji Penanda Alur Klinik: Hasil, Batas, dan Perbaikan",
+        },
+        {
+          correct: false,
+          label: "Perbedaan Kebutuhan Medis yang Membatalkan Penanda Baru",
         },
       ],
     },

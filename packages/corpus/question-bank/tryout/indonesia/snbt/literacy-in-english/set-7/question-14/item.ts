@@ -1,39 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "conclusion",
-  },
-  stimulus: "museum-visits",
+  stimulus: "passage-3",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "The term *cognitive load* proves that the character's first estimate was correct before any accountable action was taken.",
+        },
+        {
+          correct: false,
+          label:
+            "The definition reduces *cognitive load* to the recurring object, so the character's choice and development no longer matter.",
+        },
+        {
+          correct: false,
+          label:
+            "The term *cognitive load* describes the final outcome as certain, even though the narrative presents a gradual change.",
+        },
+        {
           correct: true,
           label:
-            "Families came more and stayed longer, but the holiday may explain part of it.",
+            "The definition explains why removing nonessential detail can make the safe route easier to locate: the reader has less information to hold and process at once.",
         },
         {
           correct: false,
           label:
-            "The new gallery doubled the number of families visiting the museum.",
-        },
-        {
-          correct: false,
-          label:
-            "Adults without children stopped visiting because of the new gallery.",
-        },
-        {
-          correct: false,
-          label:
-            "School groups disliked the new gallery, since their visits became a little shorter.",
-        },
-        {
-          correct: false,
-          label: "The museum will keep growing by 12 percent every six months.",
+            "The definition is included only to name the setting and has no connection to the character's decision.",
         },
       ],
     },

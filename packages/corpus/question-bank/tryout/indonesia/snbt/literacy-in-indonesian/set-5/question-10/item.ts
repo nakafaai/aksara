@@ -1,33 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "fiction",
-    topic: "explicit-information",
-  },
-  stimulus: "radio-repair",
+  stimulus: "passage-2",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Ibu gadis itu menyarankan agar radio tersebut dibuang.",
+          correct: true,
+          label: "Kegunaan dan Batas Model Rangkaian Listrik Dua Lampu",
         },
         {
-          column: 2,
+          correct: false,
+          label: "Mengukur rangkaian tertutup melalui satu perbandingan awal",
+        },
+        {
+          correct: false,
           label:
-            "Pak Darsa berhasil menangkap kembali siaran wayang yang dulu didengar sang kakek.",
+            "Menjadikan rangkaian tertutup penjelasan tunggal atas hasil pengamatan",
         },
         {
-          column: 2,
-          label: "Gadis itu datang terlambat ketika mengambil radionya.",
+          correct: false,
+          label:
+            "Kaidah akhir dari perbandingan pertama tentang rangkaian tertutup",
         },
         {
-          column: 1,
-          label: "Pak Darsa mengganti dua kapasitor yang menggembung.",
+          correct: false,
+          label:
+            "Keterbatasan yang membuat uji lanjutan rangkaian tertutup tidak diperlukan",
         },
       ],
     },

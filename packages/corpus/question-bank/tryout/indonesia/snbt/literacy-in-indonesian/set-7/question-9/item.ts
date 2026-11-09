@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
-  },
-  stimulus: "walkable-city",
+  stimulus: "passage-2",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Jumlah kendaraan pribadi di kota itu naik setiap tahun selama sepuluh tahun terakhir.",
-        },
-        {
-          correct: false,
-          label:
-            "Biaya membangun trotoar lebih murah daripada biaya melebarkan jalan.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian pengendara mobil mengeluh karena lajur jalan menjadi lebih sempit.",
-        },
-        {
-          correct: false,
-          label:
-            "Pedagang kaki lima lebih suka berjualan di trotoar yang lebar.",
+            "Definisi *daya dukung* membuktikan bahwa hasil model selalu sama dengan keadaan populasi di lapangan.",
         },
         {
           correct: true,
           label:
-            "Setelah trotoar diperbaiki, pejalan kaki bertambah dan perjalanan pendek naik ojek turun.",
+            "Definisi *daya dukung* menjelaskan mengapa populasi berhenti pada dua batas sumber daya, sekaligus menegaskan bahwa batas lingkungan nyata dapat berubah dan bukan angka tetap.",
+        },
+        {
+          correct: false,
+          label:
+            "Definisi itu menjadikan *daya dukung* nama untuk seluruh alat, bukan proses tertentu yang disimulasikan.",
+        },
+        {
+          correct: false,
+          label:
+            "Istilah *daya dukung* menghapus keterbatasan representasi karena prosesnya dapat diulang di kelas.",
+        },
+        {
+          correct: false,
+          label:
+            "Definisi tersebut hanya menjelaskan bahan pembuat model dan tidak berhubungan dengan proses yang diamati.",
         },
       ],
     },

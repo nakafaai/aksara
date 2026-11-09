@@ -1,35 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "library-hours",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "About 36",
-        },
-        {
-          correct: false,
-          label: "About 45",
-        },
-        {
           correct: true,
-          label: "About 59",
+          label:
+            "A varied, balanced diet supports adequate nutrient intake without guaranteeing immunity from illness.",
         },
         {
           correct: false,
-          label: "About 72",
+          label: "Vitamin C is the only nutrient involved in immune function.",
         },
         {
           correct: false,
-          label: "About 230",
+          label:
+            "Sugar and vitamin C compete for physical space in white blood cells.",
+        },
+        {
+          correct: false,
+          label: "One serving of fruit makes a person immune to infection.",
+        },
+        {
+          correct: false,
+          label: "Dietary change is useful only when completed in one day.",
         },
       ],
     },

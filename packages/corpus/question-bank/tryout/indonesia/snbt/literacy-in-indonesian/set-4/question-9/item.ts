@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "assumption",
-  },
-  stimulus: "free-transit",
+  stimulus: "passage-2",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pengendara mobil tidak pernah mau naik bus dalam keadaan apa pun.",
-        },
-        {
-          correct: false,
-          label: "Harga bahan bakar bus akan turun jika tiket dihapus.",
+            "Definisi *kondensasi* membuktikan bahwa hasil model selalu sama dengan kondisi atmosfer di alam.",
         },
         {
           correct: false,
           label:
-            "Semua warga berpenghasilan rendah sudah memiliki kendaraan pribadi.",
+            "Definisi itu menjadikan *kondensasi* nama untuk seluruh alat, bukan proses tertentu yang disimulasikan.",
         },
         {
           correct: false,
           label:
-            "Sopir bus bersedia bekerja tanpa dibayar jika tiket digratiskan.",
+            "Istilah *kondensasi* menghapus keterbatasan representasi karena prosesnya dapat diulang di kelas.",
         },
         {
           correct: true,
           label:
-            "Pendapatan tiket yang hilang tidak sepenuhnya digantikan dana lain.",
+            "Definisi *kondensasi* menghubungkan proses pada model dengan proses yang diwakilinya sehingga kegunaan model dapat dibedakan dari batas penerapannya.",
+        },
+        {
+          correct: false,
+          label:
+            "Definisi tersebut hanya menjelaskan bahan pembuat model dan tidak berhubungan dengan proses yang diamati.",
         },
       ],
     },

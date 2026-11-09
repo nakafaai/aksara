@@ -1,40 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "conclusion",
-  },
-  stimulus: "great-stink",
+  stimulus: "passage-4",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "London has replaced every one of Bazalgette's sewers with new tunnels.",
+          label: "A recurring object that remains part of the setting",
+        },
+        {
+          correct: false,
+          label: "A conflict settled before the character's final choice",
         },
         {
           correct: true,
-          label:
-            "Growth beyond what Bazalgette planned for has partly brought the old problem back.",
+          label: "A small record passed forward",
         },
         {
           correct: false,
-          label:
-            "The new tunnel was needed because his pipes were too small from the start.",
+          label: "Motif as a term without a role in the story",
         },
         {
           correct: false,
-          label:
-            "Heavy rain no longer reaches the old sewers since the tunnel was built.",
-        },
-        {
-          correct: false,
-          label:
-            "The Thames is probably cleaner today than at any time in its history.",
+          label: "An ending that removes the object's interpretive tension",
         },
       ],
     },

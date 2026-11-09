@@ -1,39 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "tone-attitude",
-  },
-  stimulus: "bird-compass",
+  stimulus: "passage-1",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "It has been proven beyond doubt by experiments in the wild.",
-        },
-        {
-          correct: false,
-          label:
-            "It is less convincing than the idea of iron cells in the beak.",
-        },
-        {
-          correct: false,
-          label:
-            "It is an interesting guess with no experimental support so far.",
-        },
-        {
           correct: true,
-          label:
-            "Its support is stronger than ever, but the question is not settled.",
+          label: "How seed orientation may influence early root growth",
+        },
+        {
+          correct: false,
+          label: "Measuring gravitropism in one preliminary comparison",
         },
         {
           correct: false,
           label:
-            "It explains bird navigation fully, so other cues are unnecessary.",
+            "Treating gravitropism as the sole explanation for the observed result",
+        },
+        {
+          correct: false,
+          label:
+            "A final rule derived from the first comparison of gravitropism",
+        },
+        {
+          correct: false,
+          label:
+            "A limitation that makes another test of gravitropism unnecessary",
         },
       ],
     },

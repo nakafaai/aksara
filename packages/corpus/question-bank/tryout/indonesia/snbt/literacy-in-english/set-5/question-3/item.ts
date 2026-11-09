@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "placebo-effect",
+  stimulus: "passage-1",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Beecher concluded that about a third of patients felt better after a placebo.",
+            "Because mean travel time reached $$67$$ tenths of a second, compared with $$42$$ and $$41$$, holding block mass, ramp angle, and release point constant isolates covering the ramp with coarse fabric as the only possible cause.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "The 2001 review found a large placebo effect on outcomes measured objectively.",
+            "Mean travel time reached $$67$$ tenths of a second, compared with $$42$$ and $$41$$. This supports an association between coarse fabric and longer travel time under the tested conditions, but possible surface wear requires further testing before a broader claim.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "The 2010 study measured improvement mainly with laboratory tests.",
+            "The strongest follow-up would change both covering the ramp with coarse fabric and at least one controlled condition, preventing the effect of either change from being isolated.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "In the dental study, naloxone removed much of the pain relief from the placebo.",
+            "The limitation that wear could change the fabric surface during repeated trials affects numerical precision, but it does not restrict how widely the finding can be applied.",
+        },
+        {
+          correct: false,
+          label:
+            "A larger repetition under the same rules could narrow uncertainty but could not change the first interpretation of coarse fabric and model-ramp travel time.",
         },
       ],
     },

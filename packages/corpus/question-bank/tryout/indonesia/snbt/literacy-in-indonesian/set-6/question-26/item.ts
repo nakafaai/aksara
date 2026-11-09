@@ -1,40 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-reasoning",
-  },
-  stimulus: "sriwijaya-stones",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
+        },
+        {
+          correct: false,
+          label:
+            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
+        },
+        {
           correct: true,
           label:
-            "prasasti perlu dibaca dengan menyadari sudut pandang pembuatnya",
+            "Reno memakai catatan lama dan kelembapan saat ini untuk menunda pemindahan secara hati-hati, sementara sudut pandang terbatas menjaga penyebab garis dan respons supervisor tetap terbuka.",
         },
         {
           correct: false,
           label:
-            "prasasti Sriwijaya tidak dapat dipercaya sama sekali sebagai sumber sejarah",
+            "Bacaan memakai sudut pandang terbatas sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
         },
         {
           correct: false,
           label:
-            "rakyat Sriwijaya dilarang menulis apa pun tentang kehidupan mereka",
-        },
-        {
-          correct: false,
-          label:
-            "catatan I-Tsing lebih lengkap daripada semua prasasti yang ditemukan",
-        },
-        {
-          correct: false,
-          label:
-            "raja Sriwijaya tidak pandai menulis sehingga prasastinya singkat",
+            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
         },
       ],
     },

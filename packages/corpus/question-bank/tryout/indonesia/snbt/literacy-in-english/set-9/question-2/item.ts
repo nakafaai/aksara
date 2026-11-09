@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "tambora-1816",
+  stimulus: "passage-1",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Tambora erupted in April 1816.",
-        },
-        {
-          column: 1,
-          label: "Snow fell in parts of New England in June 1816.",
-        },
-        {
-          column: 2,
+          correct: false,
           label:
-            "The sulphur droplets stayed for months because rain kept washing them higher.",
+            "The mean result with the change was $$71\\%$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Ice cores from Greenland and Antarctica contain volcanic sulphate from that time.",
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
+        },
+        {
+          correct: false,
+          label:
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+        },
+        {
+          correct: false,
+          label:
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
+        },
+        {
+          correct: true,
+          label:
+            "The smaller-mesh condition produced a mean of $$71\\%$$ at the tested flow rate. Clean fragments of one material do not represent every waste stream.",
         },
       ],
     },

@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "visitor-fee",
+  stimulus: "passage-2",
   versions: {
     en: {
-      columns: ["Yes", "No"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Booking time slots can spread visits across the day.",
+          correct: false,
+          label:
+            "Because the trial reached $$29$$, compared with a baseline of $$17$$ and a comparison value of $$18$$, revised captions separating observation from interpretation should become permanent before the stated limitation is examined.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Fee revenue should be reported openly and spent where residents can see the results.",
+            "The consultation with affected groups makes the baseline and comparison figures unnecessary for the decision.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Cities that depend on tourism should close their gates to visitors.",
+            "The rise to $$29$$, compared with $$17$$ at baseline and $$18$$ in the comparison, supports a limited extension of the revised-caption trial. The follow-up must include screen-reader users, who were absent from the first trial.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Venice charges the fee to day visitors on every day of the year.",
+            "The limitation that the trial did not include visitors using screen readers affects delivery details, but it does not restrict who can be covered by the conclusion.",
+        },
+        {
+          correct: false,
+          label:
+            "Because staffing and schedules were stable, the difference between the trial and comparison is best attributed to those unchanged conditions.",
         },
       ],
     },

@@ -1,36 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "tone-attitude",
-  },
-  stimulus: "letter-poem",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "marah karena ibunya tidak pernah mengirim surat balasan",
+          label: "Mira Menjawab Seluruh Pertanyaan Jati",
+        },
+        {
+          correct: false,
+          label: "Buku Tipis yang Membuat Jati Menjadi Pembaca Mahir",
+        },
+        {
+          correct: false,
+          label: "Dua Tafsir yang Menentukan Satu Jawaban Pasti",
         },
         {
           correct: true,
-          label: "rindu dan kesepian, tetapi tetap berusaha menenangkan ibunya",
+          label: "Dari Pembatas Kosong ke Pertanyaan yang Dibawa Pulang",
         },
         {
           correct: false,
-          label: "bangga karena telah berhasil hidup mewah di kota besar",
-        },
-        {
-          correct: false,
-          label:
-            "takut karena lampu-lampu kota tidak pernah padam sepanjang malam hari",
-        },
-        {
-          correct: false,
-          label: "menyesal karena salah memilih pekerjaan di kota",
+          label: "Pertanyaan yang Membuktikan Jati Gagal Memahami Buku",
         },
       ],
     },

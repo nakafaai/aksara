@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
-  },
-  stimulus: "meat-survey",
+  stimulus: "passage-3",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Health was not given as a main reason by any of the age groups surveyed.",
+            "Progress depends on completing the larger task before asking another person to review it.",
         },
         {
           correct: false,
           label:
-            "Older respondents were more likely to eat less meat than younger ones.",
+            "The object or setting shapes the outcome more strongly than the character's specific choice.",
         },
         {
           correct: false,
           label:
-            "The survey included too few people to say anything reliable about health.",
+            "The unresolved evidence should remain private until the character can offer a complete result.",
         },
         {
           correct: false,
           label:
-            "Environmental concern was the main reason given by most respondents who cut meat.",
+            "The small action matters mainly because it postpones the unresolved part of the conflict.",
         },
         {
           correct: true,
           label:
-            "The group with the highest rate of cutting meat named cost, as prices rose.",
+            "Leah's progress began when the difficulty was turned into a specific, reviewable action.",
         },
       ],
     },

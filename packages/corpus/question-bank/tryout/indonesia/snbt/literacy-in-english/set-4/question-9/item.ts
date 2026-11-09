@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "figurative-language",
-  },
-  stimulus: "visitor-fee",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The fee will make the city famous as a model of good tourism policy.",
+            "Defining *plain language* proves that every visitor understands the new captions without further testing.",
         },
         {
           correct: false,
           label:
-            "The fee will be printed on symbols and signs throughout the city.",
+            "The definition makes *plain language* identical to screen-reader compatibility, so the missing group no longer matters.",
         },
         {
           correct: false,
           label:
-            "The fee proves that the city has finally solved its overtourism problem.",
+            "The term *plain language* replaces the measured comparison and visitors' experience with a label that settles the decision.",
         },
         {
           correct: false,
           label:
-            "The fee may push residents to leave the city for quieter places.",
+            "The definition requires captions to remove every interpretation and contain observations only.",
         },
         {
           correct: true,
           label:
-            "The fee may look like action while leaving the crowds as large as before.",
+            "The definition explains the accessibility goal of the revised captions, while the comparison and later screen-reader testing still determine whether that goal is met.",
         },
       ],
     },

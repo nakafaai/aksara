@@ -1,40 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
-  },
-  stimulus: "social-media-age",
+  stimulus: "passage-2",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Karena jenis baterai dijaga sama, perilaku kedua susunan pada model dapat dianggap sama persis dengan perilaku instalasi rumah.",
+        },
+        {
+          correct: false,
+          label:
+            "Bacaan hanya mendefinisikan rangkaian tertutup tanpa membandingkan susunan komponen atau membahas perilaku lampu.",
+        },
+        {
+          correct: false,
+          label:
+            "Perbandingan seri dan paralel sudah cukup menjelaskan keselamatan instalasi rumah, sedangkan batas tegangan hanya memengaruhi terang lampu.",
+        },
+        {
+          correct: false,
+          label:
+            "Karena tidak meniru instalasi rumah, model tersebut tidak dapat dipakai untuk menjelaskan hubungan susunan komponen dan perilaku lampu.",
+        },
+        {
           correct: true,
           label:
-            "Batas usia ada gunanya, tetapi tidak cukup tanpa kewajiban rancangan bagi platform.",
-        },
-        {
-          correct: false,
-          label:
-            "Batas usia sebaiknya dihapus karena remaja berhak memakai media sosial seperti orang dewasa.",
-        },
-        {
-          correct: false,
-          label:
-            "Batas usia akan efektif asalkan setiap pengguna diwajibkan mengunggah kartu identitas.",
-        },
-        {
-          correct: false,
-          label:
-            "Batas usia sebaiknya diserahkan sepenuhnya kepada keluarga dan sekolah masing-masing.",
-        },
-        {
-          correct: false,
-          label:
-            "Batas usia mungkin berhasil jika diterapkan bersamaan oleh semua negara di dunia.",
+            "Rangkaian listrik dengan dua lampu menyederhanakan proses agar dapat diperiksa sambil tetap memiliki batas representasi.",
         },
       ],
     },

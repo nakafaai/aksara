@@ -1,37 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "application",
-  },
-  stimulus: "recycling-rate",
+  stimulus: "passage-3",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Asking residents to put many more mixed food trays into their recycling bins",
+          label: "Waiting for someone else to complete the next step",
         },
         {
           correct: false,
-          label: "Reporting the share of waste that goes into bins more often",
+          label: "Hiding unresolved evidence in a larger project",
         },
         {
           correct: false,
-          label: "Sending all sorting plant rejects to a larger landfill site",
-        },
-        {
-          correct: false,
-          label: "Counting glass by volume instead of by weight in the report",
+          label: "Systems thinking as a definition without a reviewable action",
         },
         {
           correct: true,
-          label:
-            "Persuading residents to keep paper dry and free of food before binning it",
+          label: "Following one mistake back through the system",
+        },
+        {
+          correct: false,
+          label: "A complete plan without a small accountable step",
         },
       ],
     },

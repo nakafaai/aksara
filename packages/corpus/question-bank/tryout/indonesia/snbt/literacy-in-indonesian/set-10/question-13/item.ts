@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "theme-message",
-  },
-  stimulus: "village-postman",
+  stimulus: "passage-3",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Teknologi baru sebaiknya ditolak karena merenggangkan hubungan keluarga.",
+            "Menggabungkan semua peserta menjadi satu angka agar peningkatan peta baru terlihat lebih stabil.",
         },
         {
           correct: false,
           label:
-            "Pekerjaan tukang pos sudah tidak lagi diperlukan di daerah pedesaan.",
+            "Mempertahankan ikon yang ada dan hanya menambah jumlah petugas untuk menjelaskan arti setiap simbol.",
         },
         {
           correct: false,
           label:
-            "Anak yang merantau wajib pulang setiap tahun untuk menemui kedua orang tuanya.",
-        },
-        {
-          correct: false,
-          label:
-            "Surat kilat selalu lebih berharga daripada surat yang dikirim biasa.",
+            "Mengukur kecepatan menemukan alat tanpa memeriksa apakah anak dapat atau ingin menggunakan alat tersebut.",
         },
         {
           correct: true,
           label:
-            "Kepedulian sederhana dapat menjawab kerinduan yang tidak dipenuhi teknologi.",
+            "Merancang ikon bersama kelompok yang belum terwakili, lalu mengukur keberhasilan menemukan alat dan pengalaman menggunakannya sebagai dua hasil terpisah.",
+        },
+        {
+          correct: false,
+          label:
+            "Menguji peta hanya pada kelompok mobilitas karena kelompok itu menunjukkan kenaikan paling besar.",
         },
       ],
     },

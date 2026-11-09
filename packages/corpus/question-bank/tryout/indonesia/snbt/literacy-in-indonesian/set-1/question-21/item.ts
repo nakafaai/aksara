@@ -1,40 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "assumption",
-  },
-  stimulus: "car-free-day",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Jumlah pengunjung hari bebas kendaraan terus bertambah setiap bulan.",
+          label: "Semua kelompok selalu mempunyai tujuan yang sama",
         },
         {
           correct: false,
-          label:
-            "Pedagang di sepanjang Jalan Merdeka mendukung perluasan program.",
+          label: "Perang tidak pernah menghasilkan perubahan politik",
         },
         {
           correct: false,
-          label:
-            "Warga lebih memilih bersepeda daripada berjalan kaki pada Minggu pagi.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengukuran karbon monoksida lebih akurat pada hari Minggu daripada pada hari kerja.",
+          label: "Kelompok yang bertikai selalu memiliki informasi lengkap",
         },
         {
           correct: true,
           label:
-            "Penurunan polusi di Jalan Merdeka tidak sekadar berpindah ke jalan-jalan di sekitarnya.",
+            "Biaya perang memberi kedua pihak dorongan kuat untuk mencari kesepakatan",
+        },
+        {
+          correct: false,
+          label: "Lembaga internasional menyelesaikan setiap perselisihan",
         },
       ],
     },

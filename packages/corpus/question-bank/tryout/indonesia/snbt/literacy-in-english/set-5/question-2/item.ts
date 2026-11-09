@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
-  },
-  stimulus: "placebo-effect",
+  stimulus: "passage-1",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The sugar pills in his studies secretly contained small doses of real medicine.",
+            "The mean result with the change was $$67$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
           correct: false,
           label:
-            "Patients exaggerated their symptoms in order to be given stronger drugs.",
-        },
-        {
-          correct: false,
-          label:
-            "Most of the illnesses he studied could not be cured by any medicine.",
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
         },
         {
           correct: true,
           label:
-            "Many of the patients would have improved even without any treatment.",
+            "The coarse-fabric condition produced a mean of $$67$$ under the fixed ramp setup. Surface wear across repetitions still limits a broader inference.",
         },
         {
           correct: false,
-          label: "The 2001 review included far more patients than he did.",
+          label:
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+        },
+        {
+          correct: false,
+          label:
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
         },
       ],
     },

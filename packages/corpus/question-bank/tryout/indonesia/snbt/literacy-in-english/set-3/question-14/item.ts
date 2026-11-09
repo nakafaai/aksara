@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "research-design",
-  },
-  stimulus: "meat-survey",
+  stimulus: "passage-3",
   versions: {
     en: {
       kind: "choice",
@@ -14,25 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "A second survey asking the same people whether they enjoy eating meat",
+            "The term *self-efficacy* proves that the character's first estimate was correct before any accountable action was taken.",
         },
         {
           correct: false,
           label:
-            "The opinions of doctors about how much meat adults should eat",
+            "The definition reduces *self-efficacy* to the recurring object, so the character's choice and development no longer matter.",
         },
         {
           correct: false,
           label:
-            "The number of vegetarian restaurants that opened during the year",
-        },
-        {
-          correct: false,
-          label: "A list of the reasons respondents gave for eating less meat",
+            "The term *self-efficacy* describes the final outcome as certain, even though the narrative presents a gradual change.",
         },
         {
           correct: true,
-          label: "Records of each household's meat purchases over both years",
+          label:
+            "The definition of *self-efficacy* provides a lens for reading the character's specific choice as a response to uncertainty, not as an isolated moral label.",
+        },
+        {
+          correct: false,
+          label:
+            "The definition is included only to name the setting and has no connection to the character's decision.",
         },
       ],
     },

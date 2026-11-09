@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "batik-wax",
+  stimulus: "passage-5",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Malam dihilangkan dari kain dengan cara merebus kain tersebut.",
+            "Keduanya menunjukkan bahwa kemampuan teknis Laras belum cukup untuk menghasilkan esai yang layak diterbitkan.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Pada batik tulis, malam dibubuhkan dengan cap tembaga yang bermotif.",
+            "Keduanya menjadi cara Laras meminta pembaca melengkapi sendiri bukti yang gagal ia peroleh di lapangan.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Garis retakan dapat muncul pada batik tulis maupun batik cap.",
+            "Keduanya membuktikan bahwa karya yang tidak selesai selalu lebih menarik daripada dokumentasi yang lengkap.",
         },
         {
-          column: 2,
-          label: "Teknik cap mulai berkembang pada abad ke-15.",
+          correct: false,
+          label:
+            "Keduanya menutupi jalur yang ditutup dengan simbol agar pembaca tidak mempertanyakan kekurangan data Laras.",
+        },
+        {
+          correct: true,
+          label:
+            "Keduanya menandai batas pengamatan, sehingga ketidaklengkapan menjadi bagian jujur dari esai, bukan celah yang disamarkan.",
         },
       ],
     },

@@ -1,38 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
-  },
-  stimulus: "borrowed-words",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Lembaga bahasa melarang penutur mempelajari asal-usul kata.",
+          label:
+            "Istilah *literasi kesehatan* membuktikan bahwa pilihan pertama tokoh sudah benar sebelum ia mengamati kebutuhan orang lain.",
         },
         {
           correct: false,
           label:
-            "Kata pinjaman selalu dipakai dengan makna yang sama seperti aslinya.",
+            "Definisi itu membatasi *literasi kesehatan* pada perasaan tokoh sehingga tindakan dan akibat pilihannya tidak perlu diperiksa.",
         },
         {
           correct: false,
           label:
-            "Sebagian besar kata pinjaman hanya muncul dalam dokumen resmi.",
+            "Penyebutan *literasi kesehatan* menjadikan perubahan tokoh selesai seketika, padahal bacaan menunjukkan perkembangan bertahap.",
         },
         {
           correct: true,
           label:
-            "Ejaan dan bunyinya disesuaikan sehingga terdengar seperti kata asli.",
+            "Definisi *literasi kesehatan* menyatukan tiga tindakan Arum: memperoleh informasi dari petugas, memahaminya melalui kartu yang diperiksa, dan menggunakannya untuk membantu nenek.",
         },
         {
           correct: false,
-          label: "Penutur tidak tertarik pada sejarah bahasa sama sekali.",
+          label:
+            "Definisi tersebut menunjukkan bahwa kemampuan membaca nomor meja sudah cukup untuk menggunakan semua informasi kesehatan.",
         },
       ],
     },

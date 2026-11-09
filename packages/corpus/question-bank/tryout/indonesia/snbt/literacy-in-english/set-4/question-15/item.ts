@@ -1,38 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "bike-lanes",
+  stimulus: "passage-3",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "The citywide figure must have been calculated incorrectly.",
+          label: "Waiting for someone else to complete the next step",
         },
         {
           correct: false,
-          label: "River Road became more dangerous than the other two streets.",
+          label: "Hiding unresolved evidence in a larger project",
         },
         {
           correct: false,
-          label:
-            "Cycling on River Road would have fallen without the new lane.",
+          label: "Co-design as a definition without a reviewable action",
         },
         {
           correct: false,
-          label:
-            "Every new cyclist on River Road moved there from Main Street.",
+          label: "A complete plan without a small accountable step",
         },
         {
           correct: true,
-          label:
-            "The lane probably attracted extra cyclists beyond the citywide rise.",
+          label: "Testing an accessibility map with its intended users",
         },
       ],
     },

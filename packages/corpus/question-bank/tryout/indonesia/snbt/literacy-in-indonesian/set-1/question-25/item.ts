@@ -1,40 +1,29 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "tone-attitude",
-  },
-  stimulus: "kawi-script",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Kalimat (13)",
+        },
+        {
+          correct: false,
+          label: "Kalimat (15)",
+        },
+        {
           correct: true,
-          label:
-            "Berhati-hati membedakan hubungan yang sudah mapan dari hubungan yang belum dapat dipastikan.",
+          label: "Kalimat (9)",
         },
         {
           correct: false,
-          label:
-            "Meragukan bahwa aksara Kawi pernah dipakai di luar Pulau Jawa.",
+          label: "Kalimat (7)",
         },
         {
           correct: false,
-          label:
-            "Menolak pendapat para ahli tentang asal-usul aksara Nusantara.",
-        },
-        {
-          correct: false,
-          label:
-            "Yakin bahwa seluruh aksara Nusantara berasal langsung dari aksara Kawi.",
-        },
-        {
-          correct: false,
-          label:
-            "Menganggap asal-usul aksara di Sumatra dan Sulawesi tidak penting untuk dibahas.",
+          label: "Kalimat (12)",
         },
       ],
     },
