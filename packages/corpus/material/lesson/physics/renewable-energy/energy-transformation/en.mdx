@@ -66,6 +66,39 @@ In a [photovoltaic panel](https://www.eia.gov/energyexplained/solar/photovoltaic
 
 [Geothermal power plants](https://www.energy.gov/hgeo/geothermal/geothermal-electricity-generation) use hot fluid or steam from below Earth's surface to drive turbines and produce electricity.
 
+A power plant converts energy in stages, and every stage passes on only part of what it gets, so the stage efficiencies multiply. With illustrative values of <InlineMath math="90\%" /> for the turbine and <InlineMath math="95\%" /> each for the generator and the lines, the chain delivers <InlineMath math="\eta=0.9\times0.95\times0.95\approx81\%" /> of the water's energy. Rotate the bars and watch the gray part grow.
+
+<MathVisual
+  title={<>Stage Efficiencies Multiply</>}
+  description={<>Energy left at each stage of an illustrative hydropower chain from 100 J of water energy (teal, front) and the energy lost so far (gray, back). One grid step up is 20 J.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 6.5 }, z: { min: -1.8, max: 1.8 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 12 }, target: { x: 3.75, y: 2.5, z: 0 } },
+    objects: [
+      { id: "useful-0", kind: "cuboid", appearance: "construction", center: { x: 0, y: 2.5, z: 0.7 }, size: { length: 1.2, height: 5, width: 1.2 } },
+      { id: "useful-1", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: ((100 * 90 * 100 * 100) / (20 * 100 * 100 * 100)) / 2, z: 0.7 }, size: { length: 1.2, height: (100 * 90 * 100 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "lost-1", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: ((100 * 100 * 100 * 100 - 100 * 90 * 100 * 100) / (20 * 100 * 100 * 100)) / 2, z: -0.7 }, size: { length: 1.2, height: (100 * 100 * 100 * 100 - 100 * 90 * 100 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "useful-2", kind: "cuboid", appearance: "construction", center: { x: 5, y: ((100 * 90 * 95 * 100) / (20 * 100 * 100 * 100)) / 2, z: 0.7 }, size: { length: 1.2, height: (100 * 90 * 95 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "lost-2", kind: "cuboid", appearance: "reference", center: { x: 5, y: ((100 * 100 * 100 * 100 - 100 * 90 * 95 * 100) / (20 * 100 * 100 * 100)) / 2, z: -0.7 }, size: { length: 1.2, height: (100 * 100 * 100 * 100 - 100 * 90 * 95 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "useful-3", kind: "cuboid", appearance: "construction", center: { x: 7.5, y: ((100 * 90 * 95 * 95) / (20 * 100 * 100 * 100)) / 2, z: 0.7 }, size: { length: 1.2, height: (100 * 90 * 95 * 95) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "lost-3", kind: "cuboid", appearance: "reference", center: { x: 7.5, y: ((100 * 100 * 100 * 100 - 100 * 90 * 95 * 95) / (20 * 100 * 100 * 100)) / 2, z: -0.7 }, size: { length: 1.2, height: (100 * 100 * 100 * 100 - 100 * 90 * 95 * 95) / (20 * 100 * 100 * 100), width: 1.2 } },
+    ],
+    labels: [
+      { key: "stage0", objectId: "useful-0", at: { x: 0, y: 5, z: 0.7 }, placement: "above" },
+      { key: "stage1", objectId: "useful-1", at: { x: 2.5, y: 5, z: 0.7 }, placement: "above" },
+      { key: "stage2", objectId: "useful-2", at: { x: 5, y: 5, z: 0.7 }, placement: "above" },
+      { key: "stage3", objectId: "useful-3", at: { x: 7.5, y: 5, z: 0.7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    stage0: <InlineMath math="\text{water}:\ 100\text{ J}" />,
+    stage1: <InlineMath math="\text{turbine}:\ 90\text{ J}" />,
+    stage2: <InlineMath math="\text{generator}:\ 85.5\text{ J}" />,
+    stage3: <InlineMath math="\text{lines}:\ \approx81.2\text{ J}" />,
+  }}
+/>
+
 ## Efficiency Measures the Useful Share
 
 Because not all input energy becomes the output we need, we use **efficiency**. Efficiency compares useful energy with input energy.
@@ -101,6 +134,45 @@ E_{\text{surroundings}}
 So, an efficiency of <InlineMath math="20\%" /> does not mean the remaining <InlineMath math="80\%" /> disappears. The remaining <InlineMath math="80\%" /> is transferred to the surroundings, for example through heating or reflected and transmitted radiation.
 
 [Energy efficiency](https://www.eia.gov/energyexplained/use-of-energy/efficiency-and-conservation.php) measures the share of input energy converted into useful output by a device.
+
+Move the efficiency of the panel and watch the <InlineMath math="800\text{ J}" /> split. At <InlineMath math="\eta=20\%" /> the amber band is the lesson's <InlineMath math="160\text{ J}" /> of electricity and the pink band the <InlineMath math="640\text{ J}" /> that goes to the surroundings, and the two bands always add back to the input.
+
+<MathVisual
+  title={<>Efficiency Splits the Input</>}
+  description={<>800 J of light into a panel (gray) split into electricity (amber) and energy to the surroundings (pink), with band widths drawn to scale. One grid step is 100 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "input", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 8 }, { x: 0, y: 8 }] },
+      { id: "useful", kind: "loop", appearance: "highlight", points: [{ x: "3", y: "8 - 8a" }, { x: "8", y: "8 - 8a" }, { x: "8", y: "8" }, { x: "3", y: "8" }] },
+      { id: "lost", kind: "loop", appearance: "warning", points: [{ x: "3", y: "0" }, { x: "8", y: "0" }, { x: "8", y: "8 - 8a" }, { x: "3", y: "8 - 8a" }] },
+    ],
+    labels: [
+      { key: "input", objectId: "input", at: { x: 1.5, y: 8 }, placement: "above" },
+      { key: "useful", objectId: "useful", at: { x: "8", y: "8 - 4a" }, placement: "right" },
+      { key: "lost", objectId: "lost", at: { x: "8", y: "4 - 4a" }, placement: "right" },
+    ],
+    parameters: [
+      { name: "a", min: 0.05, max: 0.95, value: 0.2, step: 0.01, label: "slider" },
+    ],
+    readouts: [
+      { key: "eta", formula: "100 a" },
+      { key: "out", formula: "800 a" },
+      { key: "rest", formula: "800 (1 - a)" },
+    ],
+  }}
+  labels={{
+    slider: <InlineMath math="\eta" />,
+    input: <InlineMath math="800\text{ J light}" />,
+    useful: <InlineMath math="\text{electricity}" />,
+    lost: <InlineMath math="\text{to the surroundings}" />,
+    eta: <InlineMath math="\eta\ (\%)" />,
+    out: <InlineMath math="E_{\text{useful}}=\eta E_{\text{input}}\ (\text{J})" />,
+    rest: <InlineMath math="E_{\text{input}}-E_{\text{useful}}\ (\text{J})" />,
+  }}
+/>
 
 ## Comparing Conversion Paths across Devices
 

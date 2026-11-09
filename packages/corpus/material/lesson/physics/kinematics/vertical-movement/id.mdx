@@ -95,6 +95,39 @@ Di titik tertinggi, kecepatan bola nol sesaat, tetapi percepatannya tetap <Inlin
 
 Gerak ini simetris. Bola berada di tinggi <InlineMath math="15\text{ m}" /> pada detik ke-1 dan ke-3, dengan kelajuan yang sama tetapi arah berlawanan, dan kembali ke titik lempar dengan kelajuan awalnya.
 
+Geser waktu untuk bola yang dilempar ke atas dengan <InlineMath math="20\text{ m/s}" />. Panah ungu adalah kecepatannya, digambar sebagai jarak satu sekon: panahnya memendek saat naik, hilang pada <InlineMath math="t=2\text{ s}" /> di puncak, dan menunjuk ke bawah saat kembali.
+
+<MathVisual
+  title={<>Lihat Kecepatan Berbalik Arah</>}
+  description={<>Bola yang dilempar lurus ke atas dengan 20 m/s, posisinya pada waktu yang dipilih (fuchsia), dan kecepatannya (ungu). Satu kotak grid berarti 5 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.6, max: 5.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "track", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "ball", kind: "marker", appearance: "answer", x: "0", y: "4s - s^2" },
+      { id: "velocity", kind: "path", appearance: "secondary", points: [{ x: "0", y: "4s - s^2" }, { x: "0", y: "4s - s^2 + (20 - 10 s)/10" }] },
+    ],
+    labels: [
+      { key: "ball", objectId: "ball", at: { x: "0", y: "4s - s^2" }, placement: "right" },
+    ],
+    parameters: [
+      { name: "s", min: 0, max: 4, value: 1, step: 0.01, label: "time" },
+    ],
+    readouts: [
+      { key: "height", formula: "20 s - 5 s^2" },
+      { key: "vy", formula: "20 - 10 s" },
+    ],
+  }}
+  labels={{
+    time: <InlineMath math="t\ (\text{s})" />,
+    ball: <InlineMath math="h" />,
+    height: <InlineMath math="h=v_0t-\tfrac12gt^2\ (\text{m})" />,
+    vy: <InlineMath math="v=v_0-gt\ (\text{m/s})" />,
+  }}
+/>
+
 ## Benda Jatuh Bebas
 
 Dalam pelajaran fisika sekolah, jatuh bebas berarti benda dilepas **tanpa kecepatan awal**, jadi <InlineMath math="v_0 = 0" />. Sebagian buku menyebut semua gerak di bawah gravitasi saja sebagai jatuh bebas, termasuk lemparan, tetapi halaman ini memakai arti yang pertama. Untuk benda yang jatuh setinggi <InlineMath math="h" />, waktu jatuh dan kelajuan saat menyentuh tanah adalah:
@@ -130,52 +163,37 @@ Tanpa hambatan udara, persamaan yang sama berlaku pada komponen vertikal bola ya
 
 Karena itu, waktu benda di udara pada gerak parabola dihitung dari komponen vertikal saja. Bola yang ditendang miring dengan komponen vertikal awal <InlineMath math="20\text{ m/s}" /> tetap naik selama <InlineMath math="2\text{ s}" /> dan mendarat setelah <InlineMath math="4\text{ s}" /> di tanah datar, sama seperti bola yang dilempar tegak ke atas dengan <InlineMath math="20\text{ m/s}" />.
 
-<LineEquation
-  title="Dua bola dengan kecepatan vertikal awal yang sama"
-  description="Satu kotak grafik mewakili 5 m. Bola teal ditendang dengan v_x = 10 m/s dan v_0y = 20 m/s, bola jingga dilempar tegak ke atas dengan 20 m/s. Garis abu-abu menghubungkan posisi keduanya pada waktu yang sama, dan tingginya selalu sama."
-  showZAxis={false}
-  cameraPosition={[4, 2, 12]}
-  cameraTarget={[4, 2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, index) => {
-        const t = (4 * index) / 400;
-        return { x: (10 * t) / 5, y: (20 * t - 5 * t ** 2) / 5, z: 0 };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="\text{ditendang miring}" />, at: 400, offset: [0, 0.4, 0] }],
-    },
-    {
-      points: Array.from({ length: 3 }, (_, t) => ({ x: 0, y: (20 * t - 5 * t ** 2) / 5, z: 0 })),
-      color: "#d97706",
-      showPoints: true,
-      smooth: false,
-      labels: [{ text: <InlineMath math="\text{tegak ke atas}" />, at: 2, offset: [-0.3, 0.4, 0] }],
-    },
-    {
-      points: [{ x: 0, y: (20 * 1 - 5 * 1 ** 2) / 5, z: 0 }, { x: (10 * 1) / 5, y: (20 * 1 - 5 * 1 ** 2) / 5, z: 0 }],
-      color: "#64748b",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="t = 1\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
-    },
-    {
-      points: [{ x: 0, y: (20 * 2 - 5 * 2 ** 2) / 5, z: 0 }, { x: (10 * 2) / 5, y: (20 * 2 - 5 * 2 ** 2) / 5, z: 0 }],
-      color: "#64748b",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="t = 2\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
-    },
-    {
-      points: [{ x: 0, y: (20 * 3 - 5 * 3 ** 2) / 5, z: 0 }, { x: (10 * 3) / 5, y: (20 * 3 - 5 * 3 ** 2) / 5, z: 0 }],
-      color: "#64748b",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="t = 3\text{ s}" />, at: 1, offset: [0.3, 0.25, 0] }],
-    }
-  ]}
+<MathVisual
+  title={<>Dua bola dengan kecepatan awal tegak yang sama</>}
+  description={<>Satu kotak grid mewakili 5 m. Bola teal ditendang dengan <InlineMath math="v_x=10\text{ m/s}" /> dan <InlineMath math="v_{0y}=20\text{ m/s}" />, dan bola oranye dilempar lurus ke atas dengan 20 m/s. Garis abu-abu menghubungkan posisi keduanya pada saat yang sama, dan tingginya selalu sama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 9 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "kicked", kind: "parametric", appearance: "construction", x: "2t", y: "4t - t^2", parameter: { min: 0, max: 4 } },
+      { id: "up-0", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "up-1", kind: "point", appearance: "primary", at: { x: 0, y: 3 } },
+      { id: "up-2", kind: "point", appearance: "primary", at: { x: 0, y: 4 } },
+      { id: "t1", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 2, y: 3 } },
+      { id: "t2", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 4, y: 4 } },
+      { id: "t3", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 6, y: 3 } },
+    ],
+    labels: [
+      { key: "kicked", objectId: "kicked", at: { x: 8, y: 0 }, placement: "above-left" },
+      { key: "up", objectId: "up-2", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "t1", objectId: "t1", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "t2", objectId: "t2", at: { x: 4, y: 4 }, placement: "right" },
+      { key: "t3", objectId: "t3", at: { x: 6, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    kicked: <InlineMath math="\text{ditendang miring}" />,
+    up: <InlineMath math="\text{dilempar lurus ke atas}" />,
+    t1: <InlineMath math="t=1\text{ s}" />,
+    t2: <InlineMath math="t=2\text{ s}" />,
+    t3: <InlineMath math="t=3\text{ s}" />,
+  }}
 />
 
 ## Kesalahan yang Sering Terjadi

@@ -90,6 +90,41 @@ For the velocity at time <InlineMath math="t" />, find **both components at that
 
 The direction of the velocity above the horizontal is <InlineMath math="\alpha = \operatorname{atan2}(v_y, v_x)" />. For <InlineMath math="v_x > 0" />, this is the same as <InlineMath math="\tan\alpha = \frac{v_y}{v_x}" />. A positive <InlineMath math="v_y" /> means the object is moving up at a slant, and a negative one means it is moving down.
 
+Move the time and follow the cannonball. The violet arrow is the velocity at that moment: its horizontal part never changes, its vertical part falls by <InlineMath math="10\text{ m/s}" /> each second, and at the top, near <InlineMath math="t\approx3.46\text{ s}" />, the arrow lies flat.
+
+<MathVisual
+  title={<>Follow the Velocity in Time</>}
+  description={<>The cannonball fired at 40 m/s and <InlineMath math="60^\circ" />, with its position at the chosen time (fuchsia) and the distance it covers in the next second at that velocity (violet). One grid step is 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: -1, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "path", kind: "parametric", appearance: "construction", x: "2t", y: "2 sqrt(3) t - t^2/2", parameter: { min: 0, max: 4 * Math.sqrt(3) } },
+      { id: "ball", kind: "marker", appearance: "answer", x: "2s", y: "2 sqrt(3) s - s^2/2" },
+      { id: "velocity", kind: "path", appearance: "secondary", points: [{ x: "2s", y: "2 sqrt(3) s - s^2/2" }, { x: "2s + 2", y: "2 sqrt(3) s - s^2/2 + 2 sqrt(3) - s" }] },
+    ],
+    labels: [
+      { key: "ball", objectId: "ball", at: { x: "2s", y: "2 sqrt(3) s - s^2/2" }, placement: "below" },
+    ],
+    parameters: [
+      { name: "s", min: 0, max: 4 * Math.sqrt(3), value: 2, step: 0.01, label: "time" },
+    ],
+    readouts: [
+      { key: "vx", formula: "20" },
+      { key: "vy", formula: "20 sqrt(3) - 10 s" },
+      { key: "speed", formula: "sqrt(400 + (20 sqrt(3) - 10 s)^2)" },
+    ],
+  }}
+  labels={{
+    time: <InlineMath math="t\ (\text{s})" />,
+    ball: <InlineMath math="(x,y)" />,
+    vx: <InlineMath math="v_x\ (\text{m/s})" />,
+    vy: <InlineMath math="v_y=v_0\sin60^\circ-gt\ (\text{m/s})" />,
+    speed: <InlineMath math="v=\sqrt{v_x^2+v_y^2}\ (\text{m/s})" />,
+  }}
+/>
+
 ## A Sixty Degree Cannonball
 
 A ball is fired at <InlineMath math="40\text{ m/s}" /> at an angle of <InlineMath math="60^\circ" />. Because <InlineMath math="\sin 60^\circ" /> and <InlineMath math="\cos 60^\circ" /> have **exact values**, every result can be written without rounding until the last step.
@@ -115,55 +150,41 @@ Check the speed: <InlineMath math="v^2 = 20^2 + 14.64^2 \approx 614.4" />, and <
 
 At <InlineMath math="t = 2\text{ s}" /> the ball is still rising because <InlineMath math="v_y" /> is positive, and that time is indeed earlier than the time to the top, <InlineMath math="3.46\text{ s}" />.
 
-<LineEquation
-  title="The cannonball velocity along its path"
-  description="One grid square stands for 10 m. Each arrow shows the distance covered in one second at the velocity of that moment. Its horizontal part is always 20 m/s, while its vertical part drops by 10 m/s every second."
-  showZAxis={false}
-  cameraPosition={[8, 1.5, 23]}
-  cameraTarget={[8, 1.5, 0]}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, index) => {
-        const t = (4 * Math.sqrt(3) * index) / 400;
-        return { x: (20 * t) / 10, y: (20 * Math.sqrt(3) * t - 5 * t ** 2) / 10, z: 0 };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [{ x: (20 * (0)) / 10, y: (20 * Math.sqrt(3) * (0) - 5 * (0) ** 2) / 10, z: 0 }, { x: (20 * (0)) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (0) - 5 * (0) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (0)) / 10, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="v = 40\text{ m/s}" />, at: 1, offset: [-0.6, 0.4, 0] }],
-    },
-    {
-      points: [{ x: (20 * (2)) / 10, y: (20 * Math.sqrt(3) * (2) - 5 * (2) ** 2) / 10, z: 0 }, { x: (20 * (2)) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (2) - 5 * (2) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (2)) / 10, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="v \approx 24.8\text{ m/s}" />, at: 1, offset: [0, 0.4, 0] }],
-    },
-    {
-      points: [{ x: (20 * (2 * Math.sqrt(3))) / 10, y: (20 * Math.sqrt(3) * (2 * Math.sqrt(3)) - 5 * (2 * Math.sqrt(3)) ** 2) / 10, z: 0 }, { x: (20 * (2 * Math.sqrt(3))) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (2 * Math.sqrt(3)) - 5 * (2 * Math.sqrt(3)) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (2 * Math.sqrt(3))) / 10, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="v = v_x = 20\text{ m/s}" />, at: 1, offset: [0, 0.4, 0] }],
-    },
-    {
-      points: [{ x: (20 * (4 * Math.sqrt(3))) / 10, y: (20 * Math.sqrt(3) * (4 * Math.sqrt(3)) - 5 * (4 * Math.sqrt(3)) ** 2) / 10, z: 0 }, { x: (20 * (4 * Math.sqrt(3))) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (4 * Math.sqrt(3)) - 5 * (4 * Math.sqrt(3)) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (4 * Math.sqrt(3))) / 10, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="v = 40\text{ m/s}" />, at: 1, offset: [0.3, -0.3, 0] }],
-    }
-  ]}
+<MathVisual
+  title={<>The cannonball velocity along its path</>}
+  description={<>One grid square stands for 10 m. Each arrow shows the distance covered in one second at the velocity of that moment. Its horizontal part is always 20 m/s, while its vertical part drops by 10 m/s every second.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -4.2, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "path", kind: "parametric", appearance: "construction", x: "2t", y: "2 sqrt(3) t - t^2/2", parameter: { min: 0, max: 4 * Math.sqrt(3) } },
+      { id: "at-0", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "v0", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) } },
+      { id: "v0-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },
+      { id: "at-1", kind: "point", appearance: "secondary", at: { x: 4, y: 4 * Math.sqrt(3) - 2 } },
+      { id: "v1", kind: "segment", appearance: "secondary", from: { x: 4, y: 4 * Math.sqrt(3) - 2 }, to: { x: 6, y: 6 * Math.sqrt(3) - 4 } },
+      { id: "v1-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 6, y: 6 * Math.sqrt(3) - 4 }, { x: 6 - (0.25 * 2) / Math.hypot(2, 1.4641016151377553) + ((0.25 / 2) * -1.4641016151377553) / Math.hypot(2, 1.4641016151377553), y: 6 * Math.sqrt(3) - 4 - (0.25 * 1.4641016151377553) / Math.hypot(2, 1.4641016151377553) + ((0.25 / 2) * 2) / Math.hypot(2, 1.4641016151377553) }, { x: 6 - (0.25 * 2) / Math.hypot(2, 1.4641016151377553) - ((0.25 / 2) * -1.4641016151377553) / Math.hypot(2, 1.4641016151377553), y: 6 * Math.sqrt(3) - 4 - (0.25 * 1.4641016151377553) / Math.hypot(2, 1.4641016151377553) - ((0.25 / 2) * 2) / Math.hypot(2, 1.4641016151377553) }] },
+      { id: "at-2", kind: "point", appearance: "secondary", at: { x: 4 * Math.sqrt(3), y: 6 } },
+      { id: "v2", kind: "segment", appearance: "secondary", from: { x: 4 * Math.sqrt(3), y: 6 }, to: { x: 4 * Math.sqrt(3) + 2, y: 6 } },
+      { id: "v2-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4 * Math.sqrt(3) + 2, y: 6 }, { x: 4 * Math.sqrt(3) + 2 + -0.25, y: 6.125 }, { x: 4 * Math.sqrt(3) + 2 + -0.25, y: 5.875 }] },
+      { id: "at-3", kind: "point", appearance: "secondary", at: { x: 8 * Math.sqrt(3), y: 0 } },
+      { id: "v3", kind: "segment", appearance: "secondary", from: { x: 8 * Math.sqrt(3), y: 0 }, to: { x: 8 * Math.sqrt(3) + 2, y: -2 * Math.sqrt(3) } },
+      { id: "v3-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 8 * Math.sqrt(3) + 2, y: -2 * Math.sqrt(3) }, { x: 8 * Math.sqrt(3) + 2 - (0.25 * 2.0) / Math.hypot(2.0, -3.4641016151377544) + ((0.25 / 2) * 3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544), y: -2 * Math.sqrt(3) - (0.25 * -3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544) + ((0.25 / 2) * 2.0) / Math.hypot(2.0, -3.4641016151377544) }, { x: 8 * Math.sqrt(3) + 2 - (0.25 * 2.0) / Math.hypot(2.0, -3.4641016151377544) - ((0.25 / 2) * 3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544), y: -2 * Math.sqrt(3) - (0.25 * -3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544) - ((0.25 / 2) * 2.0) / Math.hypot(2.0, -3.4641016151377544) }] },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "left" },
+      { key: "v1", objectId: "v1", at: { x: 6, y: 6 * Math.sqrt(3) - 4 }, placement: "above" },
+      { key: "v2", objectId: "v2", at: { x: 4 * Math.sqrt(3) + 2, y: 6 }, placement: "above" },
+      { key: "v3", objectId: "v3", at: { x: 8 * Math.sqrt(3) + 2, y: -2 * Math.sqrt(3) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    v0: <InlineMath math="v=40\text{ m/s}" />,
+    v1: <InlineMath math="v\approx24.8\text{ m/s}" />,
+    v2: <InlineMath math="v=v_x=20\text{ m/s}" />,
+    v3: <InlineMath math="v=40\text{ m/s}" />,
+  }}
 />
 
 ## A Forty Five Degree Kick
