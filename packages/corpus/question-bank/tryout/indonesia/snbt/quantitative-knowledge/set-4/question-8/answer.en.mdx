@@ -1,17 +1,22 @@
-A figure must meet **both minimum counts**: at least two rotational symmetries and three reflection axes. Count the initial position as one rotational symmetry.
+An upward parabola has its minimum at the vertex, **but only if the vertex lies in the interval**. So first locate the vertex.
 
-| Figure | Rotational symmetries | Reflection axes | Both conditions? |
-| --- | --- | --- | --- |
-| Scalene triangle | 1: initial position | 0: no reflection axis | No |
-| Parallelogram that is neither rectangle nor rhombus | 2: rotations of 0° and 180° | 0: no reflection axis | No |
-| Ellipse that is not a circle | 2: rotations of 0° and 180° | 2: major and minor axes | No |
-| Regular hexagon | 6: multiples of 60° from 0° to 300° | 6: three through opposite vertices and three through opposite side midpoints | Yes |
+# The position of the vertex
 
-The diagram shows the **six reflection axes** of the regular hexagon. The ellipse has only two axes and falls short of the required three. Therefore, only one figure meets both conditions.
+<BlockMath math="f(x)=x^2-6x+13=(x-3)^2+4" />
 
-<MathVisual
- title="Six reflection axes of a hexagon"
- description="Three lines pass through opposite vertices. The other three pass through the midpoints of opposite sides."
- scene={{"space":"plane","frame":{"kind":"cartesian","x":{"min":-3,"max":3},"y":{"min":-3,"max":3}},"view":{"kind":"fit","padding":0.1},"objects":[{"id":"hexagon","kind":"polygon","appearance":"primary","vertices":[{"x":2.0,"y":0},{"x":1.0,"y":1.732050807569},{"x":-1.0,"y":1.732050807569},{"x":-2.0,"y":0},{"x":-1.0,"y":-1.732050807569},{"x":1.0,"y":-1.732050807569}]},{"id":"axis-0","kind":"segment","appearance":"highlight","from":{"x":-2.3,"y":0},"to":{"x":2.3,"y":0}},{"id":"axis-1","kind":"segment","appearance":"secondary","from":{"x":-1.991858428704,"y":-1.15},"to":{"x":1.991858428704,"y":1.15}},{"id":"axis-2","kind":"segment","appearance":"highlight","from":{"x":-1.15,"y":-1.991858428704},"to":{"x":1.15,"y":1.991858428704}},{"id":"axis-3","kind":"segment","appearance":"secondary","from":{"x":0,"y":-2.3},"to":{"x":0,"y":2.3}},{"id":"axis-4","kind":"segment","appearance":"highlight","from":{"x":1.15,"y":-1.991858428704},"to":{"x":-1.15,"y":1.991858428704}},{"id":"axis-5","kind":"segment","appearance":"secondary","from":{"x":1.991858428704,"y":-1.15},"to":{"x":-1.991858428704,"y":1.15}}],"labels":[]}}
- labels={{}}
-/>
+The vertex is at <InlineMath math="x=3" /> with value 4. The point <InlineMath math="x=3" /> **lies outside the interval** <InlineMath math="4\le x\le7" />, so the value 4 is not reached there.
+
+# Values on the interval
+
+To the right of the vertex, the parabola keeps rising. On <InlineMath math="4\le x\le7" /> the smallest value is at the left end and the largest at the right end.
+
+<BlockMath math="\begin{aligned}
+f(4)&=(4-3)^2+4=5\\
+f(7)&=(7-3)^2+4=20
+\end{aligned}" />
+
+The minimum value is 5, reached at <InlineMath math="x=4" />.
+
+The value 4 is the value at the vertex, which lies outside the interval. The value 20 is the maximum on the interval. The value 8 is <InlineMath math="f(5)" />, the value in the middle of the interval, and the value 13 is the constant term, which also equals <InlineMath math="f(6)" />.
+
+So the minimum value of the function on the interval is **5**.

@@ -1,75 +1,26 @@
-Wir prüfen nacheinander **Umkehrfunktion, Wertebereich und Funktionswerte**.
+Bei einer arithmetischen Folge aus drei Gliedern schreibst du die Glieder am einfachsten **symmetrisch um das mittlere Glied**: <InlineMath math="u-b" />, <InlineMath math="u" /> und <InlineMath math="u+b" /> mit der Differenz <InlineMath math="b>0" />.
 
-# Aussage eins
+# Mittleres Glied aus der Summe
 
-Wir bestimmen die **Umkehrfunktion** von <InlineMath math="f(x) = \frac{2x + 1}{3x - 5}" />.
+<BlockMath math="(u-b)+u+(u+b)=3u=18\quad\Rightarrow\quad u=6" />
 
-Sei <InlineMath math="f(x) = y" />, dann:
+Die ursprüngliche Folge lautet <InlineMath math="6-b" />, 6 und <InlineMath math="6+b" />. Nach den Änderungen lautet **die neue Folge** <InlineMath math="7-b" />, 6 und <InlineMath math="13+b" />.
 
-<BlockMath math="y = \frac{2x + 1}{3x - 5}" />
+# Bedingung für die geometrische Folge
 
-<BlockMath math="y(3x - 5) = 2x + 1" />
+In einer geometrischen Folge ist **das Quadrat des mittleren Glieds gleich dem Produkt aus erstem und drittem Glied**.
 
-<BlockMath math="3xy - 5y = 2x + 1" />
+<BlockMath math="\begin{aligned}
+6^2&=(7-b)(13+b)\\
+36&=91-6b-b^2\\
+b^2+6b-55&=0\\
+(b+11)(b-5)&=0
+\end{aligned}" />
 
-<BlockMath math="3xy - 2x = 5y + 1" />
+Weil die Differenz positiv ist, gilt <InlineMath math="b=5" />. Die ursprüngliche Folge ist 1, 6 und 11. Probe: Die neue Folge 2, 6 und 18 ist tatsächlich geometrisch mit dem Quotienten 3.
 
-<BlockMath math="x(3y - 2) = 5y + 1" />
+<BlockMath math="1\times6\times11=66" />
 
-<BlockMath math="x = \frac{5y + 1}{3y - 2}" />
+Der Wert <InlineMath math="-510" /> kommt von <InlineMath math="b=-11" />, das die Folge 17, 6 und <InlineMath math="-5" /> mit negativer Differenz liefert. Der Wert 216 ist das Produkt der neuen geometrischen Folge, <InlineMath math="2\times6\times18" />. Der Wert 108 vermischt beide Folgen, nämlich <InlineMath math="1\times6\times18" />.
 
-Die Umkehrfunktion lautet also:
-
-<BlockMath math="f^{-1}(x) = \frac{5x + 1}{3x - 2},\qquad x\ne\frac23" />
-
-Aussage 1 ist wahr.
-
-# Aussage zwei
-
-Der Wertebereich der Umkehrfunktion <InlineMath math="f^{-1}(x)" /> entspricht dem **Definitionsbereich der ursprünglichen Funktion** <InlineMath math="f(x)" />.
-
-Die Funktion <InlineMath math="f(x) = \frac{2x + 1}{3x - 5}" /> ist definiert, wenn der Nenner ungleich Null ist:
-
-<BlockMath math="3x - 5 \neq 0" />
-
-<BlockMath math="3x \neq 5" />
-
-<BlockMath math="x \neq \frac{5}{3}" />
-
-Damit besteht der Definitionsbereich von <InlineMath math="f(x)" /> aus allen reellen Zahlen außer <InlineMath math="\frac{5}{3}" />.
-
-Daher umfasst der Wertebereich von <InlineMath math="f^{-1}(x)" /> alle reellen Zahlen außer <InlineMath math="\frac{5}{3}" />.
-
-Der Wert <InlineMath math="y = \frac{5}{3}" /> gehört also tatsächlich nicht zum Wertebereich von <InlineMath math="f^{-1}(x)" />.
-
-Aussage 2 ist wahr.
-
-# Aussage drei
-
-Wir verwenden **denselben Eingabewert** in beiden Funktionen und prüfen, ob <InlineMath math="x = \frac{1}{2}" /> <InlineMath math="f(x) = f^{-1}(x)" /> erfüllt.
-
-Wir berechnen <InlineMath math="f\left(\frac{1}{2}\right)" />:
-
-<BlockMath math="f\left(\frac{1}{2}\right) = \frac{2(\frac{1}{2}) + 1}{3(\frac{1}{2}) - 5}" />
-
-<BlockMath math="= \frac{1 + 1}{\frac{3}{2} - \frac{10}{2}}" />
-
-<BlockMath math="= \frac{2}{-\frac{7}{2}}" />
-
-<BlockMath math="= 2 \times \left(-\frac{2}{7}\right) = -\frac{4}{7}" />
-
-Danach berechnen wir <InlineMath math="f^{-1}\left(\frac{1}{2}\right)" />:
-
-<BlockMath math="f^{-1}\left(\frac{1}{2}\right) = \frac{5(\frac{1}{2}) + 1}{3(\frac{1}{2}) - 2}" />
-
-<BlockMath math="= \frac{\frac{5}{2} + \frac{2}{2}}{\frac{3}{2} - \frac{4}{2}}" />
-
-<BlockMath math="= \frac{\frac{7}{2}}{-\frac{1}{2}}" />
-
-<BlockMath math="= \frac{7}{2} \times (-2) = -7" />
-
-Da <InlineMath math="-\frac{4}{7} \neq -7" />, erfüllt <InlineMath math="x = \frac{1}{2}" /> die Gleichung nicht.
-
-Aussage 3 ist falsch.
-
-Die korrekte Reihenfolge lautet **wahr, wahr, falsch**.
+Das Produkt der drei ursprünglichen Zahlen ist also **66**.

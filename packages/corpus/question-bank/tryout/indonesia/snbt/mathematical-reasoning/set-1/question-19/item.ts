@@ -1,30 +1,27 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-23
 const item: ItemSource = {
+  stimulus: "volleyball-league",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$220$$",
+          column: 2,
+          label:
+            "Ada kemungkinan keenam tim memperoleh poin yang sama pada akhir kompetisi.",
+        },
+        { column: 1, label: "Setiap tim bertanding sebanyak 5 kali." },
+        {
+          column: 2,
+          label:
+            "Ada kemungkinan dua tim sama-sama memperoleh 15 poin pada akhir kompetisi.",
         },
         {
-          correct: false,
-          label: "$$240$$",
-        },
-        {
-          correct: false,
-          label: "$$280$$",
-        },
-        {
-          correct: false,
-          label: "$$300$$",
-        },
-        {
-          correct: true,
-          label: "$$260$$",
+          column: 1,
+          label:
+            "Tim yang memperoleh 12 poin pada akhir kompetisi memenangi tepat 4 pertandingan.",
         },
       ],
     },

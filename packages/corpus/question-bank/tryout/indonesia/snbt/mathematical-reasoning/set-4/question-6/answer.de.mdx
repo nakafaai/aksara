@@ -1,19 +1,22 @@
-Wir können dieses Problem mit einer **geometrischen Reihe** modellieren. Bimas jährliche THR-Zahlung bildet eine geometrische Folge, weil sich der Betrag jedes Jahr verdoppelt.
+Berechne die Kosten jeder Zutat für ein Rezept, addiere sie und **teile durch 12 Stück**. Die Preiseinheiten müssen zu den Mengen passen, etwa Gramm zu Kilogramm.
 
-Bimas Monatsgehalt beträgt <InlineMath math="\text{Rp}3{.}000{.}000{,}00" />. Zuerst bestimmen wir den Anfangswert <InlineMath math="a" />, also die THR-Zahlung im ersten Jahr:
+# Kosten jeder Zutat
 
-<BlockMath math="\begin{aligned}a &= 10\% \times 3{.}000{.}000 \\ &=300{.}000\end{aligned}" />
+Gramm und Milliliter werden **in Kilogramm und Liter umgerechnet**, passend zu den Preiseinheiten.
 
-Da sich die THR-Zahlung jedes Jahr verdoppelt, hat die Folge den Quotienten <InlineMath math="r" /> mit dem Wert <InlineMath math="2" />. Gesucht ist die gesamte Zahlung über <InlineMath math="5\text{ Jahre}" />, also die Summe der ersten <InlineMath math="5" /> Folgenglieder <InlineMath math="S_5" />.
+| Zutat | Menge | Kosten |
+| :---: | :---: | :---: |
+| Mehl | 0,25 kg | <InlineMath math="0{,}25\cdot12\,000=3\,000" /> |
+| Eier | 3 Stück | <InlineMath math="3\cdot2\,000=6\,000" /> |
+| Zucker | 0,15 kg | <InlineMath math="0{,}15\cdot20\,000=3\,000" /> |
+| Milch | 0,2 L | <InlineMath math="0{,}2\cdot15\,000=3\,000" /> |
 
-Für die Summe der ersten <InlineMath math="n" /> Glieder einer geometrischen Reihe gilt <InlineMath math="S_n = \frac{a(r^n - 1)}{r - 1}" />. Setzen wir <InlineMath math="a = 300{.}000" />, <InlineMath math="r = 2" /> und <InlineMath math="n = 5" /> ein:
+# Kosten pro Stück
 
-<BlockMath math="S_5 = \frac{300{.}000(2^5 - 1)}{2 - 1}" />
+Ein Rezept kostet insgesamt 15 000, und **ein Rezept ergibt 12 Stück**.
 
-<BlockMath math="S_5 = \frac{300{.}000(32 - 1)}{1}" />
+<BlockMath math="\frac{15\,000}{12}=1\,250" />
 
-<BlockMath math="S_5 = 300{.}000 \times 31" />
+Der Wert 15 000 Rupiah sind die Kosten des ganzen Rezepts, nicht pro Stück. Der Wert 1 000 Rupiah lässt eine Zutat weg, etwa wenn nur Mehl, Zucker und Eier addiert werden.
 
-<BlockMath math="S_5 = 9{.}300{.}000" />
-
-Damit erhält Bima in den ersten <InlineMath math="5\text{ Jahren}" /> insgesamt <InlineMath math="\text{Rp}9{.}300{.}000{,}00" /> THR.
+Die Zutatenkosten pro Stück betragen also **1 250 Rupiah**.

@@ -1,14 +1,19 @@
-Wir vergleichen **Spiegelachsen und Drehsymmetrieordnung**. Die volle Drehung um 360° zählt einmal. Eine Spiegelachse muss eine Figur in spiegelbildliche Hälften teilen.
+Sind vier verschiedene Ziffern gewählt, **gibt es genau eine aufsteigende und genau eine absteigende Anordnung**. Jede Art wird also durch die Wahl einer Menge von vier Ziffern gezählt, mit besonderer Vorsicht bei der Ziffer 0.
 
-| Figur | Spiegelachsen | Deckende Drehungen |
-| --- | --- | --- |
-| Gleichschenkliges Trapez | 1: durch die Mittelpunkte der parallelen Seiten | 1: 360° |
-| Rechteck, kein Quadrat | 2: durch die Mittelpunkte gegenüberliegender Seiten | 2: 180° und 360° |
-| Gleichseitiges Dreieck | 3: jede Ecke zum Mittelpunkt der gegenüberliegenden Seite | 3: 120°, 240°, 360° |
-| Drachenviereck, keine Raute | 1: die Diagonale durch die Ecken zwischen gleich langen Nachbarseiten | 1: 360° |
+# Aufsteigende Anordnungen
 
-Beim folgenden Trapez bildet **eine senkrechte Gerade** die Spiegelachse. Eine Drehung um 180° vertauscht die lange und kurze Grundseite, sodass das Trapez nicht auf seiner Ausgangslage liegt.
+Bei einer aufsteigenden Anordnung steht die kleinste Ziffer vorn. Wäre 0 gewählt, begänne die Zahl mit 0 und wäre **keine vierstellige Zahl**. Die vier Ziffern stammen also aus 1 bis 9.
 
-<MathVisual title="Eine Spiegelachse des Trapezes" description="Eine Spiegelachse des Trapezes" scene={{space:"plane",frame:{kind:"cartesian",x:{min:-4,max:4},y:{min:-1,max:4}},view:{kind:"fit",padding:0.12},objects:[{id:"trapezoid",kind:"polygon",appearance:"primary",vertices:[{x:-3,y:0},{x:3,y:0},{x:1,y:3},{x:-1,y:3}]},{id:"axis",kind:"segment",appearance:"highlight",from:{x:0,y:0},to:{x:0,y:3}}],labels:[]}} labels={{}} />
+<BlockMath math="\binom94=\frac{9\cdot8\cdot7\cdot6}{4\cdot3\cdot2\cdot1}=126" />
 
-Bei jeder Figur in der Tabelle stimmen beide Anzahlen überein. Damit gibt es <InlineMath math="0" /> Figuren mit unterschiedlichen Anzahlen.
+# Absteigende Anordnungen
+
+Bei einer absteigenden Anordnung steht die größte Ziffer vorn, also landet eine gewählte 0 immer hinten. **Die Ziffer 0 ist erlaubt**, die vier Ziffern stammen also aus 0 bis 9.
+
+<BlockMath math="\binom{10}{4}=\frac{10\cdot9\cdot8\cdot7}{4\cdot3\cdot2\cdot1}=210" />
+
+Keine Zahl ist zugleich aufsteigend und absteigend, also werden beide Anzahlen addiert: <InlineMath math="126+210=336" />.
+
+Die Werte 126 und 210 zählen jeweils nur eine Art. Der Wert 252 verbietet die 0 bei beiden Arten, und 420 erlaubt sie bei beiden.
+
+Es gibt also **336** solche vierstelligen Zahlen.

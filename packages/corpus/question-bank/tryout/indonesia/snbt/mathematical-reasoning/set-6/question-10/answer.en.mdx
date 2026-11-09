@@ -1,29 +1,15 @@
-This problem involves arranging <InlineMath math="3\text{ people}" /> from <InlineMath math="7" /> candidates to fill specific positions (chair, secretary, treasurer). Swapping two people’s roles gives a different assignment, so we use a **permutation**.
+For this box the volumetric weight is fixed, whatever is inside. The cost rises only when **the actual weight makes the charged weight exceed the volumetric weight**.
 
-# Calculating Permutation
+# Volumetric weight of the box
 
-The formula for the permutation of <InlineMath math="r" /> objects from <InlineMath math="n" /> objects is:
+<BlockMath math="\frac{40\cdot40\cdot30}{6{,}000}=\frac{48{,}000}{6{,}000}=8\text{ kg}" />
 
-<BlockMath math="P^n_r = \frac{n!}{(n - r)!}" />
+An empty box **is charged 8 kg**, Rp72,000.
 
-Given:
-- Number of candidates (<InlineMath math="n" />) is <InlineMath math="7" />
-- Number of positions chosen (<InlineMath math="r" />) is <InlineMath math="3" />
+# Limit on the actual weight
 
-Substitute into the formula:
+As long as the actual weight is at most 8 kg, the charged weight stays 8 kg. If the actual weight is slightly above 8 kg, say 8.2 kg, it **becomes the larger weight and rounds up to 9 kg**, so the cost rises to Rp81,000.
 
-<BlockMath math="P^7_3 = \frac{7!}{(7 - 3)!}" />
+The choice 8.9 kg is wrong because it rounds up to 9 kg. The choice 7.9 kg assumes the actual weight must be below 8 kg, although exactly 8 kg still gives the same cost. The choices 5.5 kg and 7 kg do give the same cost, but they are not the largest.
 
-<BlockMath math="P^7_3 = \frac{7!}{4!}" />
-
-Expand the **factorials**:
-
-<BlockMath math="P^7_3 = \frac{7 \times 6 \times 5 \times 4!}{4!}" />
-
-<BlockMath math="P^7_3 = 7 \times 6 \times 5" />
-
-<BlockMath math="P^7_3 = 210" />
-
-There are <InlineMath math="210" /> possible assignments of the three roles.
-
-The factors count available candidates: seven for chair, then six for secretary, and finally five for treasurer.
+So the largest actual weight is **8 kg**.

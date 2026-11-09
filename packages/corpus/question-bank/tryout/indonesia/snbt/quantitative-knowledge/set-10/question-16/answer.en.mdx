@@ -1,37 +1,23 @@
-Let <InlineMath math="x" /> be the number of students who like **all three subjects** (Mathematics, Physics, and Biology).
+The mean changes because the total changes. Work with **the total of the data**, not directly with the mean.
 
-Because every student likes at least one subject, the union of the three sets contains all <InlineMath math="50" /> students. Apply the inclusion-exclusion principle:
+# Totals before and after
 
-Students who like all three subjects are first counted three times, then subtracted three times through the pairwise overlaps. Add the **three-way intersection back once** so each student is counted once.
+<BlockMath math="\begin{aligned}
+\text{total of 8 numbers}&=8\cdot15=120\\
+\text{total of 10 numbers}&=10\cdot18=180
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}&n(M\cup B\cup P)\\&=n(M)+n(B)+n(P)\\&\quad-n(M\cap B)\\&\quad-n(M\cap P)\\&\quad-n(B\cap P)\\&\quad+n(M\cap B\cap P)\end{aligned}" />
+# The value of x
 
-Given:
+The difference between the totals is **the sum of the two new numbers**, <InlineMath math="x+2x=3x" />.
 
-<BlockMath math="n(M \cup B \cup P) = 50" />
+<BlockMath math="\begin{aligned}
+3x&=180-120=60\\
+x&=20
+\end{aligned}" />
 
-<BlockMath math="n(M) = 35" />
+Check: <InlineMath math="\tfrac{120+20+40}{10}=\tfrac{180}{10}=18" />.
 
-<BlockMath math="n(B) = 20" />
+The value 40 is the second new number, <InlineMath math="2x" />. The value 60 is the sum of the two new numbers, <InlineMath math="3x" />, and 30 is the mean of those two numbers.
 
-<BlockMath math="n(P) = 15" />
-
-<BlockMath math="n(M \cap B) = 13" />
-
-<BlockMath math="n(M \cap P) = 7" />
-
-<BlockMath math="n(B \cap P) = 5" />
-
-<BlockMath math="n(M \cap B \cap P) = x" />
-
-Substitute these values into the formula:
-
-<BlockMath math="\begin{aligned}50&=35+20+15\\&\quad-(13+7+5)+x\end{aligned}" />
-
-<BlockMath math="50 = 70 - 25 + x" />
-
-<BlockMath math="50 = 45 + x" />
-
-<BlockMath math="x = 5" />
-
-Therefore, the number of students who like all three subjects is <InlineMath math="5" />.
+So the value of <InlineMath math="x" /> is **20**.

@@ -5,26 +5,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$P > Q$$",
-        },
-        {
-          correct: false,
-          label: "$$P = Q$$",
-        },
-        {
-          correct: false,
-          label: "$$P = 2Q$$",
-        },
-        {
-          correct: false,
-          label: "Tidak dapat ditentukan",
-        },
-        {
-          correct: true,
-          label: "$$P < Q$$",
-        },
+        { correct: false, label: "$$15$$" },
+        { correct: true, label: "$$90$$" },
+        { correct: false, label: "$$360$$" },
+        { correct: false, label: "$$540$$" },
+        { correct: false, label: "$$729$$" },
       ],
     },
   },

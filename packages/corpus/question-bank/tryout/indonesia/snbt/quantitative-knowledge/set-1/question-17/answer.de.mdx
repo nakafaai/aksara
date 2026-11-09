@@ -1,79 +1,20 @@
-Gegeben seien die Funktion <InlineMath math="f(x) = (x+3)(x^2+6x+8)^4" /> und <InlineMath math="F(x) = \int f(x) \, dx" /> mit der **Anfangsbedingung** <InlineMath math="F(-3) = 2" />.
+Aus den Angaben folgt, dass die Punktsumme der Klasse A <InlineMath math="30\times72=2160" /> beträgt. Gefragt ist **die Anzahl der Schüler in Klasse B**, etwa <InlineMath math="n" />. Eine Aussage reicht aus, wenn sie genau einen Wert für <InlineMath math="n" /> liefert.
 
-# Substitution
+# Erste Aussage allein
 
-Wir verwenden **Substitution**, weil die Ableitung des inneren quadratischen Terms den Faktor <InlineMath math="x+3" /> vor der vierten Potenz enthält.
+Die Punktsumme der Klasse B ist <InlineMath math="77n" />, und der gemeinsame Mittelwert ist die Summe aller Punkte geteilt durch die Anzahl aller Schüler. Diese Gleichung **enthält nur eine Unbekannte**.
 
-Sei <InlineMath math="u = x^2 + 6x + 8" />.
+<BlockMath math="\begin{aligned}
+\frac{2160+77n}{30+n}&=74\\
+2160+77n&=2220+74n\\
+3n&=60\\
+n&=20
+\end{aligned}" />
 
-Die Ableitung von <InlineMath math="u" /> nach <InlineMath math="x" />:
+Probe: <InlineMath math="\frac{2160+1540}{50}=\frac{3700}{50}=74" />. Aussage (1) allein reicht aus.
 
-<BlockMath math="\frac{du}{dx} = 2x + 6" />
+# Zweite Aussage allein
 
-Wir faktorisieren:
+Aussage (2) nennt die Punktsumme der Klasse B, aber **weder Mittelwert noch Schülerzahl**. Klasse B könnte 20 Schüler mit Mittelwert 77 oder 22 Schüler mit Mittelwert 70 haben, beide Fälle ergeben 1.540. Aussage (2) allein reicht nicht aus.
 
-<BlockMath math="\frac{du}{dx} = 2(x + 3)" />
-
-Beide Seiten mit <InlineMath math="dx" /> multiplizieren:
-
-<BlockMath math="du = 2(x + 3) \, dx" />
-
-Wir teilen beide Seiten durch <InlineMath math="2" />:
-
-<BlockMath math="\frac{du}{2} = (x + 3) \, dx" />
-
-# Das Integral lösen
-
-Nach dem Variablenwechsel nutzen wir die **Potenzregel der Integration**:
-
-<BlockMath math="\begin{aligned}F(x)&=\int f(x)\,dx\\&=\int(x+3)u^4\,dx\end{aligned}" />
-
-Mit der Substitution <InlineMath math="u = x^2 + 6x + 8" /> und <InlineMath math="(x+3) \, dx = \frac{du}{2}" /> folgt:
-
-<BlockMath math="F(x) = \int u^4 \cdot \frac{du}{2}" />
-
-<BlockMath math="= \frac{1}{2} \int u^4 \, du" />
-
-<BlockMath math="= \frac{1}{2} \cdot \frac{u^5}{5} + C" />
-
-<BlockMath math="= \frac{1}{10} u^5 + C" />
-
-Wir ersetzen <InlineMath math="u = x^2 + 6x + 8" /> zurück:
-
-<BlockMath math="F(x) = \frac{1}{10}(x^2 + 6x + 8)^5 + C" />
-
-# Bestimmung der Konstante C
-
-Nun verwenden wir die **Anfangsbedingung** <InlineMath math="F(-3) = 2" />:
-
-<BlockMath math="\begin{aligned}F(-3)&=\frac1{10}\bigl(9-18+8\bigr)^5\\&\quad+C\\&=2\end{aligned}" />
-
-Zuerst berechnen wir den Klammerausdruck:
-
-<BlockMath math="\begin{aligned}&(-3)^2+6(-3)+8\\&=9-18+8\\&=-1\end{aligned}" />
-
-Damit gilt:
-
-<BlockMath math="\frac{1}{10}(-1)^5 + C = 2" />
-
-<BlockMath math="\frac{1}{10}(-1) + C = 2" />
-
-<BlockMath math="-\frac{1}{10} + C = 2" />
-
-<BlockMath math="C = 2 + \frac{1}{10}" />
-
-<BlockMath math="C = \frac{20}{10} + \frac{1}{10}" />
-
-<BlockMath math="C = \frac{21}{10}" />
-
-# Stammfunktion bestimmen
-
-Wir setzen den Wert von <InlineMath math="C" /> in <InlineMath math="F(x)" /> ein:
-
-<BlockMath math="\begin{aligned}F(x)&=\frac1{10}(x^2+6x+8)^5\\&\quad+\frac{21}{10}\end{aligned}" />
-
-Mit dieser Konstante gilt wie gefordert <InlineMath math="F(-3)=2" />.
-
-Das Ergebnis ist [eine Stammfunktion](/de/faecher/mathematik/integralrechnung/definition-des-unbestimmten-integrals). Zur Prüfung **leiten wir das Ergebnis ab**:
-
-<BlockMath math="\begin{aligned}F\prime(x)&=\frac5{10}(x^2+6x+8)^4(2x+6)\\&=(x+3)(x^2+6x+8)^4\\&=f(x)\end{aligned}" />
+Weil Aussage (1) allein ausreicht und Aussage (2) allein nicht, lautet die Antwort: **Aussage (1) allein reicht aus**, Aussage (2) allein dagegen nicht.

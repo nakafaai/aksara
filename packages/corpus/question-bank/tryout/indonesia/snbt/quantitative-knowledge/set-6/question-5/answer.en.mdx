@@ -1,20 +1,22 @@
-We need **all integer pairs**, not just one Pythagorean triple. Squaring removes the sign, so let <InlineMath math="u=\min(|x|,|y|)" /> and <InlineMath math="v=\max(|x|,|y|)" />. Then <InlineMath math="2u^2\le169" />, so we only need to test <InlineMath math="u=0,1,\ldots,9" />. The value <InlineMath math="169-u^2" /> must be a **perfect square**.
+First find the first term and the common difference from the two given terms. Then **count the terms carefully**: from the fifth term to the twelfth there are <InlineMath math="12-5+1=8" /> terms.
 
-| <InlineMath math="u" /> | <InlineMath math="169-u^2" /> | <InlineMath math="v" /> |
-| --- | --- | --- |
-| 0 | 169 | 13 |
-| 1 | 168 | Not an integer |
-| 2 | 165 | Not an integer |
-| 3 | 160 | Not an integer |
-| 4 | 153 | Not an integer |
-| 5 | 144 | 12 |
-| 6 | 133 | Not an integer |
-| 7 | 120 | Not an integer |
-| 8 | 105 | Not an integer |
-| 9 | 88 | Not an integer |
+# The first term and the common difference
 
-Thus the absolute values are only <InlineMath math="(0,13)" /> or <InlineMath math="(5,12)" />, including swapped coordinates. The first pair gives sums <InlineMath math="\pm13" />. For the second pair, check both signs:
+<BlockMath math="\begin{aligned}
+u_8-u_3&=5b=31-11=20\quad\Rightarrow\quad b=4\\
+a&=u_3-2b=11-8=3
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}5+12&=17\\5-12&=-7\\-5+12&=7\\-5-12&=-17\end{aligned}" />
+**The general term** is <InlineMath math="u_n=3+4(n-1)=4n-1" />, so <InlineMath math="u_5=19" /> and <InlineMath math="u_{12}=47" />.
 
-All possible sums are <InlineMath math="\{-17,-13,-7,7,13,17\}" />. Neither <InlineMath math="\pm10" /> nor <InlineMath math="\pm14" /> occurs, so only **statements 1 and 3** are correct.
+# The sum of eight terms
+
+The fifth to twelfth terms also form an arithmetic sequence, so their sum is **the number of terms times the mean of the first and last**.
+
+<BlockMath math="S=\frac{8}{2}\left(19+47\right)=4\cdot66=264" />
+
+A check with a difference of sums: <InlineMath math="S_{12}-S_4=300-36=264" />.
+
+The value 300 is the sum of the first twelve terms without subtracting anything. The value 245 is <InlineMath math="S_{12}-S_5" />, which also removes the fifth term. The value 297 counts nine terms, and the value 330 counts ten.
+
+So the sum of the fifth to twelfth terms is **264**.

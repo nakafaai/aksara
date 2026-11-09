@@ -1,30 +1,17 @@
-# Delivery Schedule Analysis
+The amount of medicine is lowest **just before the next dose is taken**. So check those moments for each value of <InlineMath math="T" />.
 
-We need to find the time interval for all three suppliers to deliver goods simultaneously. The concept used is the **least common multiple** (LCM).
+# The first low point
 
-Given delivery schedules:
-*   Oil <InlineMath math="A" />: every <InlineMath math="3\text{ days}" />.
-*   Oil <InlineMath math="B" />: every <InlineMath math="4\text{ days}" />.
-*   Oil <InlineMath math="C" />: every <InlineMath math="x\text{ days}" />.
+Just before the second dose, the body holds only what remains of the first dose, <InlineMath math="360\cdot\left(\tfrac12\right)^{T/8}" />. **The 90 mg limit must hold at this point**, so
 
-The first simultaneous delivery occurred on April <InlineMath math="1" />, <InlineMath math="2023" />. The <InlineMath math="11" />th simultaneous delivery occurs <InlineMath math="120\text{ days}" /> later.
+<BlockMath math="360\cdot\left(\tfrac12\right)^{T/8}\ge90\;\Longleftrightarrow\;\left(\tfrac12\right)^{T/8}\ge\tfrac14\;\Longleftrightarrow\;\tfrac{T}{8}\le2\;\Longleftrightarrow\;T\le16" />
 
-# Calculating Delivery Interval
+# Checking T equal to 16 and 24
 
-Since the **first simultaneous delivery has already occurred**, the <InlineMath math="11" />th simultaneous delivery means there is a difference of <InlineMath math="11 - 1 = 10" /> simultaneous delivery intervals. The total elapsed time is <InlineMath math="120\text{ days}" />.
+For <InlineMath math="T=16" />, the amount at 22:00 is exactly 90 mg, which **still meets the condition of not less than 90 mg**. After the second dose it becomes 450 mg, and at the end of the first 24 hours it is still <InlineMath math="450\cdot\tfrac12=225" /> mg.
 
-<BlockMath math="\frac{120}{10}=12\text{ days}" />
+For <InlineMath math="T=24" />, there is no second dose before hour 24, and just before hour 24 only 45 mg remain. This value fails.
 
-This means all three suppliers deliver goods simultaneously every <InlineMath math="12\text{ days}" />. This is the LCM value of their delivery schedules.
+The values 4, 8 and 12 hours also work, but they are all smaller than 16. The value 8 hours is tempting because it equals the half-life, but the condition is only the 90 mg limit.
 
-<BlockMath math="\text{LCM}(3, 4, x) = 12" />
-
-# Determining the Unknown Value
-
-We know that <InlineMath math="\text{LCM}(3, 4) = 12" />. For <InlineMath math="\text{LCM}(12, x) = 12" />, <InlineMath math="x" /> must be a **factor** of <InlineMath math="12" /> (a number that divides <InlineMath math="12" /> without a remainder).
-
-Checking the available options:
-*   <InlineMath math="5, 7, 8, 9" /> are not factors of <InlineMath math="12" />.
-*   <InlineMath math="6" /> is a factor of <InlineMath math="12" />.
-
-Among the listed choices, <InlineMath math="x=6" /> is possible. The other positive factors of <InlineMath math="12" /> also satisfy the equation, but they are not listed.
+So the largest value of <InlineMath math="T" /> that works is **16 hours**.

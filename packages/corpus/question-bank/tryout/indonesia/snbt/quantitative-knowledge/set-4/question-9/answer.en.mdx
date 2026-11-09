@@ -1,41 +1,23 @@
-Given the **recurrence relation** is <InlineMath math="b_{n+2} = b_{n+1} - 3b_n" />.
-We also know the values <InlineMath math="b_4 = 5" /> and <InlineMath math="b_5 = -1" />.
-We are asked to find the value of <InlineMath math="b_2" />. We will find it by working backwards from <InlineMath math="b_5" /> to <InlineMath math="b_3" />, and then to <InlineMath math="b_2" />.
+The <InlineMath math="n" />th term of a geometric sequence is <InlineMath math="u_n=ar^{n-1}" />. From the first and fourth terms, **the ratio can be found first**, and every other statement follows.
 
-# Finding the Previous Term
+# Finding the ratio
 
-Choose the **index connecting the two known terms**, <InlineMath math="n=3" />:
+<BlockMath math="\begin{aligned}
+u_4&=ar^3=48r^3=6\\
+r^3&=\tfrac18\\
+r&=\tfrac12
+\end{aligned}" />
 
-<BlockMath math="b_{3+2} = b_{3+1} - 3b_3" />
+The only real number whose cube is <InlineMath math="\tfrac18" /> is <InlineMath math="\tfrac12" />, so **the ratio is unique**. The first statement is true.
 
-<BlockMath math="b_5 = b_4 - 3b_3" />
+# Terms and sums
 
-Substitute the values <InlineMath math="b_5 = -1" /> and <InlineMath math="b_4 = 5" />:
+<BlockMath math="\begin{aligned}
+u_6&=48\left(\tfrac12\right)^5=\tfrac{48}{32}=1.5\\
+S_5&=\frac{48\left(1-\left(\tfrac12\right)^5\right)}{1-\tfrac12}=96\cdot\tfrac{31}{32}=93\\
+S_\infty&=\frac{48}{1-\tfrac12}=96
+\end{aligned}" />
 
-<BlockMath math="-1 = 5 - 3b_3" />
+The third statement is true. The sixth term is 1.5, not 3, so the fourth statement is false. The number 3 is the fifth term. The infinite sum exists because <InlineMath math="\lvert r\rvert<1" />, and its value is 96. The number 64 appears when the ratio is taken as <InlineMath math="\tfrac14" />, so **the second statement is false**.
 
-<BlockMath math="3b_3 = 5 + 1" />
-
-<BlockMath math="3b_3 = 6" />
-
-<BlockMath math="b_3 = 2" />
-
-# Finding the Requested Term
-
-Now move **one index backwards** to <InlineMath math="n=2" />:
-
-<BlockMath math="b_{2+2} = b_{2+1} - 3b_2" />
-
-<BlockMath math="b_4 = b_3 - 3b_2" />
-
-Substitute the values <InlineMath math="b_4 = 5" /> and <InlineMath math="b_3 = 2" />:
-
-<BlockMath math="5 = 2 - 3b_2" />
-
-<BlockMath math="3b_2 = 2 - 5" />
-
-<BlockMath math="3b_2 = -3" />
-
-<BlockMath math="b_2 = -1" />
-
-So, the value of <InlineMath math="b_2" /> is <InlineMath math="-1" />.
+So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.

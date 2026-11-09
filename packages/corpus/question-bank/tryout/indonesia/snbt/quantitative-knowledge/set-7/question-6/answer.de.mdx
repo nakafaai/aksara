@@ -1,11 +1,22 @@
-Die Matrix <InlineMath math="A" /> hat die **Determinante** <InlineMath math="8" />. Mit dieser Bedingung bestimmen wir <InlineMath math="x" />.
+Fasse die beiden Logarithmen mit der Regel **Summe der Logarithmen gleich Logarithmus des Produkts** zusammen und denke daran, dass jedes Argument eines Logarithmus positiv sein muss.
 
-Die Determinante einer <InlineMath math="2 \times 2" />-Matrix wird mit der Formel <InlineMath math="ad - bc" /> berechnet.
+# Bedingung an die Argumente
 
-<BlockMath math="\begin{aligned}\det(A)&=(2)(1)\\&\quad-(x-2)(-1)\end{aligned}" />
+Damit beide Logarithmen definiert sind, muss <InlineMath math="x+2>0" /> und <InlineMath math="x-4>0" /> gelten. Beides gilt zusammen genau für <InlineMath math="x>4" />, also **muss jede Lösung größer als 4 sein**.
 
-Wir wissen, dass <InlineMath math="\det(A) = 8" />, also:
+# Die Gleichung lösen
 
-<BlockMath math="\begin{align*} 8 &= 2 - (-(x-2)) \\ 8 &= 2 + (x-2) \\ 8 &= 2 + x - 2 \\ 8 &= x \end{align*}" />
+<BlockMath math="\begin{aligned}
+{}^{2}\log\big[(x+2)(x-4)\big]&=4\\
+(x+2)(x-4)&=2^4=16\\
+x^2-2x-24&=0\\
+(x-6)(x+4)&=0
+\end{aligned}" />
 
-Somit ist der Wert von <InlineMath math="x" /> <InlineMath math="8" />.
+Die Lösung <InlineMath math="x=-4" /> **fällt weg**, weil sie <InlineMath math="x>4" /> verletzt, denn <InlineMath math="{}^{2}\log(-2)" /> ist nicht definiert. Übrig bleibt nur <InlineMath math="x=6" />.
+
+Kontrolle: <InlineMath math="{}^{2}\log8+{}^{2}\log2=3+1=4" />.
+
+Der Wert 2 addiert beide Lösungen, ohne die Bedingung zu prüfen. Der Wert <InlineMath math="-4" /> ist die verworfene Lösung, und <InlineMath math="-6" /> entsteht durch einen Vorzeichenfehler beim Faktorisieren. Der Wert 9 entsteht, wenn man die Summe der Logarithmen als Logarithmus der Summe liest, also <InlineMath math="(x+2)+(x-4)=16" />.
+
+Die Summe aller Lösungen ist also **6**.

@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "print-prices",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$3{,}2\\text{ km}$$",
+          column: 2,
+          label:
+            "Untuk mendapatkan 300 lembar, memesan 501 lembar lebih murah daripada memesan tepat 300 lembar.",
         },
         {
-          correct: true,
-          label: "$$7{,}6\\text{ km}$$",
+          column: 1,
+          label:
+            "Biaya pesanan 101 lembar lebih murah daripada biaya pesanan 100 lembar.",
         },
         {
-          correct: false,
-          label: "$$6{,}4\\text{ km}$$",
+          column: 2,
+          label:
+            "Makin banyak lembar dalam satu pesanan, biaya totalnya selalu makin besar.",
         },
         {
-          correct: false,
-          label: "$$7{,}0\\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$8{,}4\\text{ km}$$",
+          column: 1,
+          label:
+            "Biaya pesanan 501 lembar lebih murah daripada biaya pesanan 400 lembar.",
         },
       ],
     },

@@ -1,40 +1,28 @@
-Mit <InlineMath math="f(x)=2x-1" /> bestimmen wir die **Summe der beiden Lösungen** dieser Gleichung:
+Eine Quadratzahl hat bei jedem Primfaktor einen geraden Exponenten, eine Kubikzahl hat Exponenten, die Vielfache von 3 sind. Schreibe deshalb <InlineMath math="n=2^a\,3^b\,5^c" /> und bestimme **jeden Exponenten einzeln**. Weitere Primfaktoren würden <InlineMath math="n" /> nur größer machen.
 
-<BlockMath math="6f(x^2)-f^2(x)=6x^2-x" />
+# Bedingungen für jeden Exponenten
 
-Zuerst finden wir die Formen von <InlineMath math="f(x^2)" /> und <InlineMath math="f^2(x)" /> bzw. <InlineMath math="(f(x))^2" />.
-
-<BlockMath math="f(x^2) = 2(x^2) - 1 = 2x^2 - 1" />
+Mit <InlineMath math="20=2^2\cdot5" /> und <InlineMath math="12=2^2\cdot3" /> gilt:
 
 <BlockMath math="\begin{aligned}
-f^2(x)&=(2x-1)^2 \\
-&=4x^2-4x+1
+20n&=2^{a+2}\,3^{b}\,5^{c+1}\\
+12n&=2^{a+2}\,3^{b+1}\,5^{c}
 \end{aligned}" />
 
-Als nächstes setzen wir diese Ergebnisse in die gegebene Gleichung ein.
+| Primfaktor | Quadratbedingung aus <InlineMath math="20n" /> | Kubikbedingung aus <InlineMath math="12n" /> | Kleinster Exponent |
+| :---: | :---: | :---: | :---: |
+| 2 | <InlineMath math="a+2" /> gerade | <InlineMath math="a+2" /> Vielfaches von 3 | <InlineMath math="a=4" /> |
+| 3 | <InlineMath math="b" /> gerade | <InlineMath math="b+1" /> Vielfaches von 3 | <InlineMath math="b=2" /> |
+| 5 | <InlineMath math="c+1" /> gerade | <InlineMath math="c" /> Vielfaches von 3 | <InlineMath math="c=3" /> |
 
-<BlockMath math="\begin{gathered}
-6(2x^2-1)-(4x^2-4x+1) \\
-=6x^2-x \\
-12x^2-6-4x^2+4x-1 \\
-=6x^2-x \\
-8x^2+4x-7=6x^2-x
-\end{gathered}" />
+Jeder Exponent muss **beide Bedingungen zugleich erfüllen**. Zum Beispiel ist <InlineMath math="a" /> gerade und <InlineMath math="a+2" /> ein Vielfaches von 3, der kleinste Wert ist also 4.
 
-Wir verschieben alle Terme auf die linke Seite, um eine quadratische Gleichung <InlineMath math="ax^2 + bx + c = 0" /> zu bilden.
+# Berechnen und prüfen
 
-<BlockMath math="8x^2 - 6x^2 + 4x + x - 7 = 0" />
+<BlockMath math="n=2^4\cdot3^2\cdot5^3=16\cdot9\cdot125=18{.}000" />
 
-<BlockMath math="2x^2 + 5x - 7 = 0" />
+Probe: <InlineMath math="20n=360{.}000=600^2" /> und <InlineMath math="12n=216{.}000=60^3" />.
 
-Aus der quadratischen Gleichung <InlineMath math="2x^2 + 5x - 7 = 0" /> erhalten wir <InlineMath math="a = 2" />, <InlineMath math="b = 5" /> und <InlineMath math="c = -7" />.
+Der Wert 5 erfüllt nur die Quadratbedingung, denn <InlineMath math="20\cdot5=100" />. Der Wert 18 erfüllt nur die Kubikbedingung, denn <InlineMath math="12\cdot18=216" />. Der Wert 90 ist das kgV der beiden, aber <InlineMath math="20\cdot90=1800" /> ist keine Quadratzahl. Der Wert 720 erfüllt die Quadratbedingung, doch <InlineMath math="12\cdot720" /> enthält nur <InlineMath math="5^1" />.
 
-Die **Summe der Lösungen der quadratischen Gleichung** (<InlineMath math="x_1 + x_2" />) kann mit der Formel <InlineMath math="-\frac{b}{a}" /> berechnet werden.
-
-<BlockMath math="x_1 + x_2 = -\frac{5}{2}" />
-
-Der Wert von <InlineMath math="x_1 + x_2" /> ist also <InlineMath math="-\frac{5}{2}" />.
-
-Zur Kontrolle faktorisieren wir die Gleichung und bestimmen beide Lösungen direkt:
-
-<BlockMath math="(2x+7)(x-1)=0\quad\Rightarrow\quad x_1=1,\ x_2=-\frac72,\ x_1+x_2=-\frac52" />
+Das kleinste <InlineMath math="n" /> ist also **18.000**.

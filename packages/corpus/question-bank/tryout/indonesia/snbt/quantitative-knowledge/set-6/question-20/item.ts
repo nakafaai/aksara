@@ -3,27 +3,28 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$-9x^2 + 30x + 30$$",
+          column: 2,
+          label:
+            "Rata-rata banyak sepeda yang disewa per minggu di Taman Kota lebih besar daripada di Pantai.",
         },
         {
-          correct: false,
-          label: "$$-9x^2 - 30x - 20$$",
+          column: 1,
+          label:
+            "Jumlah sepeda yang disewa di kedua lokasi paling banyak terjadi pada minggu keempat.",
         },
         {
-          correct: false,
-          label: "$$-9x^2 + 30$$",
+          column: 2,
+          label:
+            "Banyak sepeda yang disewa di Taman Kota turun $$24\\%$$ dari minggu kedua ke minggu ketiga.",
         },
         {
-          correct: false,
-          label: "$$-9x^2 - 20$$",
-        },
-        {
-          correct: true,
-          label: "$$-9x^2 + 30x - 20$$",
+          column: 1,
+          label:
+            "Pada minggu ketiga, banyak sepeda yang disewa di Pantai $$1{,}5$$ kali banyak sepeda yang disewa di Taman Kota.",
         },
       ],
     },

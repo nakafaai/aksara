@@ -1,6 +1,5 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-22
 const item: ItemSource = {
   versions: {
     id: {
@@ -8,23 +7,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$x \\in [2, 10)$$",
+          label: "$$\\left(\\dfrac{32\\pi}{3}-8\\sqrt3\\right)\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$x \\in [0, 10)$$",
+          label: "$$\\left(\\dfrac{16\\pi}{3}-4\\sqrt3\\right)\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$x \\in [0, 2) \\cup [5, 10)$$",
+          label: "$$\\left(\\dfrac{32\\pi}{3}-4\\sqrt3\\right)\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$x \\in [2, 8)$$",
+          label: "$$\\left(\\dfrac{32\\pi}{3}-16\\sqrt3\\right)\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$x \\in [5, 10)$$",
+          label: "$$\\left(\\dfrac{16\\pi}{3}-8\\sqrt3\\right)\\text{ cm}^2$$",
         },
       ],
     },

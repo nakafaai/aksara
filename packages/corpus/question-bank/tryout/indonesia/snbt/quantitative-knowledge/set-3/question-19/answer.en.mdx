@@ -1,23 +1,20 @@
-Find the **actual length** from the area and width, then convert it to the drawing length.
+A product is even when **at least one number is even**. That event covers two cases, so it is quicker to count the complement: the product is odd only when both numbers are odd.
 
-# Finding the actual length
+# The sample space and the complement
 
-Using the **rectangle area formula** <InlineMath math="A = p \times \ell" /> gives
+There are 9 numbers: 5 odd (1, 3, 5, 7, 9) and 4 even. Two numbers are taken at once, so order does not matter and every pair **is equally likely**.
 
-<BlockMath math="810 = p \times 18" />
+<BlockMath math="\begin{aligned}
+n(S)&=\binom92=36\\
+n(\text{both odd})&=\binom52=10
+\end{aligned}" />
 
-<BlockMath math="p = \frac{810}{18}" />
+# Computing the probability
 
-<BlockMath math="p = 45 \text{ m}" />
+<BlockMath math="P(\text{even product})=1-\frac{10}{36}=\frac{26}{36}=\frac{13}{18}" />
 
-# Applying the scale
+**A direct count** gives the same result: there are <InlineMath math="4\times5=20" /> even-odd pairs and <InlineMath math="\binom42=6" /> even-even pairs, 26 in total.
 
-Let <InlineMath math="d" /> be the length in the drawing. The **scale uses different units**, so we keep them visible in the proportion:
+The value <InlineMath math="\tfrac5{18}" /> is the probability of the complement, not yet subtracted from 1. The value <InlineMath math="\tfrac59" /> counts only the 20 even-odd pairs and forgets the 6 even-even pairs. The value <InlineMath math="\tfrac16" /> counts only the even-even pairs. The value <InlineMath math="\tfrac{56}{81}" /> lets a number be drawn twice, <InlineMath math="1-\left(\tfrac59\right)^2" />.
 
-<BlockMath math="\frac{d}{45 \text{ m}} = \frac{3 \text{ cm}}{90 \text{ m}}" />
-
-<BlockMath math="d = \frac{3 \text{ cm}}{90 \text{ m}} \times 45 \text{ m}" />
-
-<BlockMath math="d = 1.5 \text{ cm}" />
-
-Thus, the rectangle is <InlineMath math="1.5 \text{ cm}" /> long in the drawing.
+So the probability of an even product is <InlineMath math="\tfrac{13}{18}" />.

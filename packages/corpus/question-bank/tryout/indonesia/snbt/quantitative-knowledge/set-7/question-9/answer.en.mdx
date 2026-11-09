@@ -1,33 +1,17 @@
-The four positions follow the **letter and digit pattern** <InlineMath math="L_1-D_1-L_2-D_2" />:
+Factor the expression: <InlineMath math="n^3-n=(n-1)n(n+1)" />. So <InlineMath math="n^3-n" /> is **the product of three consecutive integers**, and its divisibility can be read from that.
 
-<BlockMath math="\underline{L_1}\;\underline{D_1}\;\underline{L_2}\;\underline{D_2}" />
+# Divisibility by 6 and by 4
 
-The available vowels are <InlineMath math="\{A,I,U,E,O\}" />. The first digit comes from <InlineMath math="\{1,3,5,7,9\}" />, while the second digit comes from <InlineMath math="\{0,1,2,4,6\}" />.
+Among three consecutive integers there is always an even number and always a multiple of 3. Their product is **always divisible by <InlineMath math="2\cdot3=6" />**, so the first statement is true.
 
-# Choose the letters
+For <InlineMath math="n=2" />, the value is <InlineMath math="1\cdot2\cdot3=6" />, which is not divisible by 4. One counterexample is enough, so the second statement is false.
 
-The second letter is fixed by <InlineMath math="L_2=O" />. Because **letters may not repeat** and the first letter may not be A, the choices for the first letter are <InlineMath math="L_1\in\{I,U,E\}" />. This gives <InlineMath math="3" /> letter arrangements.
+# The case of odd n
 
-# Choose the digits
+If <InlineMath math="n" /> is odd, then <InlineMath math="n-1" /> and <InlineMath math="n+1" /> are **two consecutive even numbers**. One of them is a multiple of 4, so their product is divisible by <InlineMath math="2\cdot4=8" />. A multiple of 3 is still among the three numbers, and 8 and 3 share no factor other than 1, so the product is divisible by 24. Example: <InlineMath math="n=5" /> gives <InlineMath math="4\cdot5\cdot6=120=5\cdot24" />. The third statement is true.
 
-The two digit sets **overlap only** at <InlineMath math="1" />, so we split the count into two cases.
+# Divisibility by 5
 
-1. If <InlineMath math="D_2=1" />, then <InlineMath math="D_1\in\{3,5,7,9\}" />. The number of digit pairs is
+The example <InlineMath math="n=2" /> gives 6, which is not divisible by 5. Three consecutive integers **do not always contain a multiple of 5**, so the fourth statement is false.
 
-   <BlockMath math="1\times4=4" />
-
-2. If <InlineMath math="D_2\in\{0,2,4,6\}" />, it cannot equal any odd choice for <InlineMath math="D_1\in\{1,3,5,7,9\}" />. The number of digit pairs is
-
-   <BlockMath math="4\times5=20" />
-
-Therefore, the total number of valid digit pairs is
-
-<BlockMath math="4+20=24" />
-
-# Count all codes
-
-Multiplying the **independent letter and digit choices** gives
-
-<BlockMath math="3\times24=72" />
-
-Thus, <InlineMath math="72" /> codes can be formed.
+So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.

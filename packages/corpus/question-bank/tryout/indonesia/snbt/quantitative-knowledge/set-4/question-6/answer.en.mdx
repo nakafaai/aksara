@@ -1,49 +1,25 @@
-To determine the equation of the tangent line, we need to find the **gradient and tangent point** first.
+Squaring both sides is safe only when **neither side is negative**. So first find the conditions under which the inequality makes sense, and only then square.
 
-# Determining the Gradient
+# Conditions before squaring
 
-The gradient is the **first derivative** of the curve function (<InlineMath math="y'" />).
+The root is defined when <InlineMath math="x+3\ge0" />, that is, <InlineMath math="x\ge-3" />. The left side is never negative, so the right side must be **positive** for the left side to be smaller.
 
-<BlockMath math="y = x^2 - x + 2" />
+<BlockMath math="x-3>0\quad\Rightarrow\quad x>3" />
 
-<BlockMath math="y' = 2x - 1" />
+The condition <InlineMath math="x>3" /> already includes <InlineMath math="x\ge-3" />.
 
-Substitute the abscissa <InlineMath math="x = 1" /> into <InlineMath math="y'" /> to get the gradient.
+# Squaring both sides
 
-<BlockMath math="m = y'(1) = 2(1) - 1 = 1" />
+For <InlineMath math="x>3" /> both sides are positive, so **squaring keeps the direction of the inequality**.
 
-# Determining the Tangent Point
+<BlockMath math="\begin{aligned}
+x+3&<x^2-6x+9\\
+0&<x^2-7x+6\\
+0&<(x-1)(x-6)
+\end{aligned}" />
 
-We find the **vertical coordinate of the tangent point** (<InlineMath math="y" />) when the abscissa <InlineMath math="x = 1" />.
+The product is positive for <InlineMath math="x<1" /> or <InlineMath math="x>6" />. Its intersection with <InlineMath math="x>3" /> is <InlineMath math="x>6" />. Check <InlineMath math="x=7" />: <InlineMath math="\sqrt{10}\approx3.16<4" />, while <InlineMath math="x=6" /> gives the false statement <InlineMath math="3<3" />.
 
-<BlockMath math="y = (1)^2 - 1 + 2" />
+The set <InlineMath math="x<1" /> or <InlineMath math="x>6" /> squares without any condition. The set containing <InlineMath math="-3\le x<1" /> uses only the root condition, although the right side is negative there. The set <InlineMath math="1<x<6" /> flips the sign, and the set <InlineMath math="x\ge3" /> stops at the condition on the right side.
 
-<BlockMath math="y = 1 - 1 + 2 = 2" />
-
-So, the tangent point is <InlineMath math="(1, 2)" />.
-
-# Determining the Equation of the Tangent Line
-
-Use the **point and slope formula** <InlineMath math="y - y_1 = m(x - x_1)" /> with <InlineMath math="m = 1" /> and point <InlineMath math="(1, 2)" />.
-
-<BlockMath math="y - 2 = 1(x - 1)" />
-
-<BlockMath math="y - 2 = x - 1" />
-
-<BlockMath math="y = x - 1 + 2" />
-
-<BlockMath math="y = x + 1" />
-
-So, the equation of the tangent line is <InlineMath math="y = x + 1" />.
-
-<LineEquation
- title="Curve and tangent line"
- description="The purple curve and orange line share the point (1,2) and slope 1 there."
- cameraPosition={[1,2.5,7]}
- cameraTarget={[1,2.5,0]}
- showZAxis={false}
- data={[
-  {points:Array.from({length:81},(_,i)=>{const x=i/40;return {x,y:x*x-x+2,z:0};}),smooth:false,showPoints:true,pointIndices:[40],color:"#7c3aed",labels:[{at:40,text:<InlineMath math="(1,2)" />,offset:[0.3,-0.3,0]}]},
-  {points:[{x:0,y:1,z:0},{x:2,y:3,z:0}],smooth:false,showPoints:false,color:"#ea580c"}
- ]}
-/>
+So the solution set is <InlineMath math="\{x\mid x>6\}" />.

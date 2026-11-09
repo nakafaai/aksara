@@ -3,28 +3,23 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$13x + y - 15 = 0$$",
+          column: 2,
+          label:
+            "Panjang diagonal terpendeknya adalah $$4\\sqrt2\\text{ cm}$$.",
         },
         {
-          correct: false,
-          label: "$$-13x - y - 15 = 0$$",
+          column: 1,
+          label: "Panjang diagonal terpanjangnya adalah $$8\\text{ cm}$$.",
         },
         {
-          correct: false,
-          label: "$$13x - y - 15 = 0$$",
+          column: 2,
+          label: "Jari-jari lingkaran dalamnya adalah $$4\\text{ cm}$$.",
         },
-        {
-          correct: false,
-          label: "$$-13x + y - 15 = 0$$",
-        },
-        {
-          correct: false,
-          label: "$$13x + y - 37 = 0$$",
-        },
+        { column: 1, label: "Luasnya adalah $$24\\sqrt3\\text{ cm}^2$$." },
       ],
     },
   },

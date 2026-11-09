@@ -1,14 +1,30 @@
-Jede Figur muss **beide Obergrenzen** einhalten: höchstens zwei Spiegelachsen und höchstens zwei deckende Lagen bei einer vollen Drehung. Die Ausgangslage wird einmal über die Drehung um <InlineMath math="360^\circ" /> gezählt.
+Die beiden Schnittpunkte mit der x-Achse liefern **die faktorisierte Form <InlineMath math="f(x)=a(x+1)(x-5)" />**. Der Schnittpunkt mit der y-Achse legt <InlineMath math="a" /> fest.
 
-| Figur | Spiegelachsen | Deckende Drehungen |
-| --- | --- | --- |
-| Rechtwinkliges Trapez | 0 | 1: nur 360° |
-| Regelmäßiges Fünfeck | 5: von jeder Ecke zum Mittelpunkt der gegenüberliegenden Seite | 5: Vielfache von 72° |
-| Gleichseitiges Dreieck | 3: von jeder Ecke zum Mittelpunkt der gegenüberliegenden Seite | 3: 120°, 240°, 360° |
-| Drachenviereck, keine Raute | 1: die Diagonale durch die Ecken zwischen gleich langen Nachbarseiten | 1: nur 360° |
+# Die Funktion bestimmen
 
-Das Drachenviereck besitzt **eine Spiegelachse**. Bei einer Drehung um 180° liegt es nicht auf sich selbst, denn die obere und untere Ecke haben unterschiedliche Abstände vom Diagonalenschnittpunkt.
+<BlockMath math="\begin{aligned}
+f(0)=a(1)(-5)&=10\;\Longrightarrow\; a=-2\\
+f(x)&=-2(x+1)(x-5)=-2x^2+8x+10
+\end{aligned}" />
 
-<MathVisual title="Die Spiegelachse des Drachenvierecks" description="Die senkrechte Diagonale teilt das Drachenviereck in spiegelbildliche Hälften." scene={{space:"plane",frame:{kind:"cartesian",x:{min:-3,max:3},y:{min:-2,max:4}},view:{kind:"fit",padding:0.12},objects:[{id:"kite",kind:"polygon",appearance:"primary",vertices:[{x:0,y:3},{x:2,y:0},{x:0,y:-1},{x:-2,y:0}]},{id:"axis",kind:"segment",appearance:"highlight",from:{x:0,y:-1},to:{x:0,y:3}}],labels:[]}} labels={{}} />
+Wegen <InlineMath math="a<0" /> ist die Parabel **nach unten geöffnet** und hat einen Höchstwert.
 
-Das rechtwinklige Trapez und das Drachenviereck erfüllen beide Grenzen. Die Antwort ist also <InlineMath math="2" />.
+# Symmetrieachse und Höchstwert
+
+Die Symmetrieachse liegt **in der Mitte zwischen den beiden Nullstellen**, also bei <InlineMath math="x=\tfrac{-1+5}{2}=2" /> und nicht bei <InlineMath math="x=3" />. Die zweite Aussage ist falsch.
+
+<BlockMath math="f(2)=-2(3)(-3)=18" />
+
+Der Höchstwert ist 18, also ist die erste Aussage wahr.
+
+# Vorzeichen und der Wert an der Stelle eins
+
+Eine nach unten geöffnete Parabel ist **nur zwischen ihren Nullstellen positiv**, also für <InlineMath math="-1<x<5" />. Für <InlineMath math="5<x<6" /> ist sie negativ, zum Beispiel <InlineMath math="f(5{,}5)=-2(6{,}5)(0{,}5)=-6{,}5" />. Die dritte Aussage ist falsch.
+
+Die Summe <InlineMath math="a+b+c" /> ist gleich <InlineMath math="f(1)" />.
+
+<BlockMath math="a+b+c=-2+8+10=16" />
+
+Die vierte Aussage ist wahr.
+
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.

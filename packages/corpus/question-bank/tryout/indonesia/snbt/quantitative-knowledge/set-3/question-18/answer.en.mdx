@@ -1,23 +1,17 @@
-Given:
+One-, two-, and three-digit numbers can be counted together if each number is written **as three digits with leading zeros**, for example 5 as 005 and 42 as 042. This adds no 7 and removes no 7.
 
--   <InlineMath math="B_3 = 2" />
--   <InlineMath math="B_5 = -1" />
--   <InlineMath math="B_n = B_{n+2} + B_{n-1}" />
+# Counting three-digit strings
 
-To make <InlineMath math="B_2" /> appear in the **recurrence**, substitute <InlineMath math="n = 3" />.
+Each position can hold any digit from 0 to 9 except 7, so there are 9 choices per position. The three positions are **chosen independently**.
 
-<BlockMath math="B_3 = B_{3+2} + B_{3-1}" />
+<BlockMath math="9\times9\times9=729" />
 
-<BlockMath math="B_3 = B_5 + B_2" />
+This count includes the string 000, which is not a positive integer.
 
-Now substitute <InlineMath math="B_3 = 2" /> and <InlineMath math="B_5 = -1" />.
+<BlockMath math="729-1=728" />
 
-<BlockMath math="2 = -1 + B_2" />
+# Checking the other options
 
-<BlockMath math="B_2 = 3" />
+The value 729 forgets to remove 000. The value 648 counts only three-digit numbers, <InlineMath math="8\times9\times9" />, and forgets the one- and two-digit numbers. The value 700 subtracts 100 numbers for each position of the digit 7 without accounting for numbers that contain 7 more than once. The value 810 forbids 7 in only two positions, <InlineMath math="9\times9\times10" />.
 
-Substituting the result into the recurrence gives:
-
-<BlockMath math="-1 + 3 = 2" />
-
-This matches <InlineMath math="B_3 = 2" />, so <InlineMath math="B_2" /> equals <InlineMath math="3" />.
+So **728** such numbers exist.

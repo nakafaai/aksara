@@ -24,7 +24,7 @@ describe("loadTryoutContent", () => {
         ]);
         expect(sets).toHaveLength(85);
         expect(questions).toHaveLength(1924);
-        expect(Arr.flatMap(sets, ({ stimuli }) => stimuli)).toHaveLength(190);
+        expect(Arr.flatMap(sets, ({ stimuli }) => stimuli)).toHaveLength(240);
         expect(papers).toHaveLength(25);
         expect(
           Arr.reduce(papers, 0, (total, { sections }) =>

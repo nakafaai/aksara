@@ -3,28 +3,22 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$x_0 + 11$$",
+          column: 1,
+          label: "Grafik $$f$$ memotong sumbu $$x$$ di titik $$(3,0)$$.",
         },
         {
-          correct: false,
-          label: "$$x_0 + 12$$",
+          column: 2,
+          label: "Grafik $$f$$ memotong sumbu $$y$$ di titik $$(0,-3)$$.",
         },
         {
-          correct: false,
-          label: "$$\\frac{1}{2}x_0 + 11$$",
+          column: 2,
+          label: "Terdapat bilangan real $$x$$ yang memenuhi $$f(x)=-4$$.",
         },
-        {
-          correct: false,
-          label: "$$\\frac{1}{2}x_0 + 21$$",
-        },
-        {
-          correct: true,
-          label: "$$\\frac{1}{2}x_0 + 12$$",
-        },
+        { column: 1, label: "$$f(5)=12$$" },
       ],
     },
   },

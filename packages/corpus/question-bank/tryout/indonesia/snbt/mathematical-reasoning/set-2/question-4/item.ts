@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "ride-fare",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$12{,}25\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$14{,}50\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$15{,}00\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$15{,}75\\%$$",
-        },
-        {
-          correct: true,
-          label: "$$13{,}75\\%$$",
-        },
+        { correct: true, label: "paling jauh 2 km atau paling sedikit 11 km" },
+        { correct: false, label: "paling sedikit 11 km" },
+        { correct: false, label: "paling jauh 2 km atau paling sedikit 10 km" },
+        { correct: false, label: "paling jauh 2 km" },
+        { correct: false, label: "lebih dari 2 km dan kurang dari 10 km" },
       ],
     },
   },

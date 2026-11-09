@@ -1,67 +1,21 @@
-Die erste Zahl sei <InlineMath math="A" /> und die zweite Zahl sei <InlineMath math="B" />.
+Schreibe <InlineMath math="n^2+n=n(n+1)" />. Das ist **ein Produkt zweier aufeinanderfolgender ganzer Zahlen**, also ist ein Faktor immer gerade. Wegen <InlineMath math="6=2\times3" /> hängt die Teilbarkeit durch 6 nur noch vom Faktor 3 ab.
 
-Die Angaben liefern das folgende **Gleichungssystem**:
+# Bedingung für den Faktor drei
 
-1. Das Doppelte der ersten Zahl minus das Dreifache der zweiten Zahl ergibt <InlineMath math="14" />:
+Die Primzahl 3 teilt <InlineMath math="n(n+1)" /> genau dann, wenn 3 die Zahl <InlineMath math="n" /> oder die Zahl <InlineMath math="n+1" /> teilt. Die zweite Bedingung bedeutet, dass <InlineMath math="n" /> **bei Division durch 3 den Rest 2 lässt**.
 
-   <BlockMath math="2A - 3B = 14" />
+| Rest von <InlineMath math="n" /> bei Division durch 3 | Beispiel | Ist <InlineMath math="n(n+1)" /> durch 3 teilbar? |
+| :---: | :---: | :---: |
+| 0 | <InlineMath math="3\times4=12" /> | Ja |
+| 1 | <InlineMath math="1\times2=2" /> | Nein |
+| 2 | <InlineMath math="2\times3=6" /> | Ja |
 
-2. Die erste Zahl multipliziert mit <InlineMath math="k" /> plus dem Doppelten der zweiten Zahl ergibt <InlineMath math="4" />:
+# Zahlen zählen
 
-   <BlockMath math="Ak + 2B = 4" />
+Die Vielfachen von 3 zwischen 1 und 100 sind 3, 6 bis 99, also 33 Zahlen. Die Zahlen mit Rest 2 sind 2, 5 bis 98, also <InlineMath math="\frac{98-2}{3}+1=33" /> Zahlen.
 
-3. Der Wert von <InlineMath math="k" /> ist gleich der Summe der ersten und zweiten Zahl:
+<BlockMath math="33+33=66" />
 
-   <BlockMath math="k = A + B" />
+Der Wert 33 zählt nur die Vielfachen von 3. Der Wert 67 verwendet den Rest 1, obwohl die Teilbarkeit von <InlineMath math="n+1" /> durch 3 den Rest 2 für <InlineMath math="n" /> bedeutet. Der Wert 50 zählt nur die geraden Zahlen, obwohl der Faktor 2 ohnehin immer vorhanden ist. Der Wert 100 nimmt an, dass ein Produkt zweier aufeinanderfolgender Zahlen immer durch 6 teilbar ist. Das gilt aber erst für das Produkt dreier aufeinanderfolgender Zahlen.
 
-   Mit der Bedingung <InlineMath math="k > 0" />.
-
-# Einsetzen und Faktorisieren
-
-Zunächst setzen wir den Ausdruck aus Gleichung (3) in Gleichung (2) ein:
-
-<BlockMath math="A(A + B) + 2B = 4" />
-
-<BlockMath math="A^2 + AB + 2B = 4" />
-
-Nun fassen wir die Terme mit <InlineMath math="B" /> zusammen:
-
-<BlockMath math="A^2 + B(A + 2) = 4" />
-
-<BlockMath math="B(A + 2) = 4 - A^2" />
-
-Da <InlineMath math="4 - A^2" /> eine **Differenz von Quadraten** ist, lässt sich der Ausdruck als <InlineMath math="(2 - A)(2 + A)" /> schreiben:
-
-<BlockMath math="B(A + 2) = (2 - A)(2 + A)" />
-
-Vor der Division prüfen wir den Sonderfall <InlineMath math="A = -2" />. Aus Gleichung (1) würde dann <InlineMath math="B = -6" /> folgen und damit <InlineMath math="k = A + B = -8" />. Das widerspricht <InlineMath math="k > 0" />. Also gilt <InlineMath math="A + 2 \neq 0" />, und die folgende Division ist zulässig:
-
-<BlockMath math="B = 2 - A" />
-
-Anschließend setzen wir den Wert von <InlineMath math="B" /> in Gleichung (1) ein:
-
-<BlockMath math="2A - 3(2 - A) = 14" />
-
-<BlockMath math="2A - 6 + 3A = 14" />
-
-<BlockMath math="5A - 6 = 14" />
-
-<BlockMath math="5A = 20" />
-
-<BlockMath math="A = 4" />
-
-Damit ist die erste Zahl <InlineMath math="4" />.
-
-# Überprüfung
-
-Eine Probe bestätigt das Ergebnis:
-
-Wenn <InlineMath math="A = 4" />, dann <InlineMath math="B = 2 - 4 = -2" />.
-
-Außerdem gilt <InlineMath math="k = A + B = 4 + (-2) = 2" />.
-
-Die **Positivitätsbedingung** <InlineMath math="k > 0" /> ist erfüllt, da <InlineMath math="2 > 0" /> gilt.
-
-Probe in Gleichung (1): <InlineMath math="2(4) - 3(-2) = 8 + 6 = 14" />.
-
-Probe in Gleichung (2): <InlineMath math="4(2) + 2(-2) = 8 - 4 = 4" />.
+Es gibt also **66** solche Zahlen <InlineMath math="n" />.

@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "delivery-drone",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$9 \\text{ m}$$",
-        },
-        {
-          correct: true,
-          label: "$$6 \\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$12 \\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$16 \\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$18 \\text{ m}$$",
-        },
+        { correct: true, label: "$$25\\%$$" },
+        { correct: false, label: "$$30\\%$$" },
+        { correct: false, label: "$$45\\%$$" },
+        { correct: false, label: "$$55\\%$$" },
+        { correct: false, label: "$$75\\%$$" },
       ],
     },
   },

@@ -1,17 +1,21 @@
-We need to find the number of days **without** shipments of oil <InlineMath math="A" /> or <InlineMath math="B" />. We count the days **with** shipments, then subtract that from the total days in April (<InlineMath math="30\text{ days}" />).
+The school may print more than 480 sheets, so compare **the cost of every way that gives at least 480 sheets**, including ways that cross a group boundary.
 
-Here is the breakdown of the delivery schedule:
+# Cost of each way
 
-| Oil Type | Delivery Dates (Arithmetic Sequence) | Total Days |
-| :--- | :--- | :---: |
-| Oil <InlineMath math="A" /> (Every <InlineMath math="3\text{ days}" />) | <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="7" />, <InlineMath math="10" />, <InlineMath math="13" />, <InlineMath math="16" />, <InlineMath math="19" />, <InlineMath math="22" />, <InlineMath math="25" />, <InlineMath math="28" /> | <InlineMath math="10" /> |
-| Oil <InlineMath math="B" /> (Every <InlineMath math="4\text{ days}" />) | <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="9" />, <InlineMath math="13" />, <InlineMath math="17" />, <InlineMath math="21" />, <InlineMath math="25" />, <InlineMath math="29" /> | <InlineMath math="8" /> |
-| **Union** (<InlineMath math="A \cup B" />) | <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="7" />, <InlineMath math="9" />, <InlineMath math="10" />, <InlineMath math="13" />, <InlineMath math="16" />, <InlineMath math="17" />, <InlineMath math="19" />, <InlineMath math="21" />, <InlineMath math="22" />, <InlineMath math="25" />, <InlineMath math="28" />, <InlineMath math="29" /> | <InlineMath math="15" /> |
+Each way gives **at least 480 sheets**.
 
-Both brands arrive on dates 1, 13, and 25. To count **days with at least one shipment**, subtract these three dates that were counted twice:
+| Way | Cost |
+| :---: | :---: |
+| 480 sheets at once | <InlineMath math="480\cdot400=192{,}000" /> |
+| 500 sheets at once | <InlineMath math="500\cdot400=200{,}000" /> |
+| two orders of 240 | <InlineMath math="2\cdot240\cdot400=192{,}000" /> |
+| five orders of 96 | <InlineMath math="5\cdot96\cdot500=240{,}000" /> |
+| 501 sheets at once | <InlineMath math="501\cdot300=150{,}300" /> |
 
-<BlockMath math="|A\cup B|=10+8-3=15" />
+# Choosing the cheapest
 
-The number of **days with neither shipment** is the number of days in April minus the union count:
+Ordering 501 sheets brings the price down to Rp300 per sheet, so **the cost is the smallest** even with 21 sheets to spare. The saving is <InlineMath math="192{,}000-150{,}300=41{,}700" /> rupiah compared with ordering exactly 480.
 
-<BlockMath math="30-15=15" />
+Splitting the order does not help, because each small order stays in the same price group or a more expensive one.
+
+So the cheapest way is **ordering 501 sheets in one order for Rp150,300**.

@@ -1,19 +1,17 @@
-Kardi and Anton work on separate walls, so we can add their **daily work rates**. All walls have the same area, and each worker maintains a constant rate.
+Compute the cost of each plan for 13 GB. What matters is **the part of the usage above each plan's quota**.
 
-# Adding the Work Rates
+# Cost of the Hemat plan
 
-A rate tells us **how many walls are completed in one day**, rather than how many days the work takes. Kardi completes ten walls per day and Anton completes six.
+Its quota is 10 GB, so **3 GB are charged as extra**, because <InlineMath math="13-10=3" />.
 
-| Worker | Rate (walls per day) |
-| --- | --- |
-| Kardi | 10 |
-| Anton | 6 |
-| Both | <InlineMath math="10+6=16" /> |
+<BlockMath math="50{,}000+3\cdot9{,}000=77{,}000" />
 
-# Finding the Time to Finish All Walls
+# Cost of the Bebas plan and the difference
 
-Divide **the number of walls by the combined rate**. Since the rate is measured in walls per day, the quotient is a duration in working days.
+Its quota is 20 GB, so a usage of 13 GB **stays within the quota** and the cost is still 95,000.
 
-<BlockMath math="\begin{aligned}t&=\frac{56\text{ walls}}{16\text{ walls/day}}\\&=\frac{56\div8}{16\div8}\text{ days}\\&=\frac72\text{ days}=3.5\text{ days}\end{aligned}" />
+<BlockMath math="95{,}000-77{,}000=18{,}000" />
 
-After three days, they finish <InlineMath math="3\times16=48" /> walls. The remaining eight walls take another <InlineMath math="8/16=1/2" /> day. They therefore need **three and a half working days**.
+A difference of Rp27,000 is only the extra charge of the Hemat plan. The choices saying Bebas is cheaper come from treating 13 GB as above the Bebas quota or from charging Hemat's extras from 0 GB.
+
+So **the Hemat plan is cheaper by Rp18,000** for a usage of 13 GB.

@@ -1,25 +1,15 @@
-# Positionsgleichung
+Der Roboter fährt nur entlang der Straßen, also nicht auf gerader Linie. Seine kürzeste Fahrstrecke ist **die Zahl der Abschnitte nach Osten plus die nach Norden**.
 
-Die beiden Objekte treffen sich, wenn ihre Positionsfunktionen **denselben Wert** haben.
+# Anzahl der Abschnitte
 
-<BlockMath math="s_D(t) = s_R(t)" />
+Von <InlineMath math="(0,0)" /> nach <InlineMath math="(3,4)" /> fährt der Roboter 3 Abschnitte nach Osten und 4 nach Norden, **in beliebiger Reihenfolge**.
 
-<BlockMath math="60t = 4000 - t^2" />
+<BlockMath math="3+4=7\text{ Abschnitte}" />
 
-<BlockMath math="t^2 + 60t - 4000 = 0" />
+# Fahrstrecke
 
-Wir faktorisieren die quadratische Gleichung:
+<BlockMath math="7\cdot100=700\text{ m}" />
 
-<BlockMath math="(t - 40)(t + 100) = 0" />
+Die Luftlinie <InlineMath math="\sqrt{3^2+4^2}=5" /> Abschnitte, also 500 m, **steht dem Roboter nicht zur Verfügung**, weil sie durch Häuserblöcke führt.
 
-<BlockMath math="\begin{aligned}t-40&=0 \\ \text{oder}\quad t+100&=0\end{aligned}" />
-
-<BlockMath math="t = 40 \quad \text{oder} \quad t = -100" />
-
-Da <InlineMath math="t \ge 0" /> gelten muss, entfällt die **negative Lösung**. Drohne und Roboter treffen sich bei <InlineMath math="t = 40\text{ Sekunden}" />.
-
-Prüfe die positive Lösung in beiden ursprünglichen Funktionen:
-
-<BlockMath math="\begin{aligned}s_D(40)&=4000-40^2=2400 \\ s_R(40)&=60(40)=2400\end{aligned}" />
-
-Beide Positionen betragen <InlineMath math="2400\text{ m}" />. Damit ist das Treffen nach <InlineMath math="40\text{ Sekunden}" /> bestätigt.
+Die kürzeste Fahrstrecke von G nach A beträgt also **700 m**.

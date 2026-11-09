@@ -1,17 +1,17 @@
-Liste zuerst die Elemente von <InlineMath math="A" /> auf. Es sind die **ganzen Zahlen**, die echt zwischen <InlineMath math="-3" /> und <InlineMath math="8" /> liegen:
+Es zählt nur, **wer mit wem ein Paar bildet**. Da die Paare keine Namen haben, darf die Reihenfolge der Paare die Anzahl nicht erhöhen.
 
-<BlockMath math="A = \left\{\begin{gathered}-2,-1,0,1,2,\\3,4,5,6,7\end{gathered}\right\}" />
+# Die Paare nacheinander bilden
 
-Die Menge <InlineMath math="B" /> enthält alle ganzen Zahlen, die kleiner oder gleich <InlineMath math="7" /> sind:
+Nimm einen beliebigen Schüler, etwa den ersten auf der Liste. Er kann mit 5 anderen ein Paar bilden. Von den 4 übrigen nimmst du den ersten auf der Liste, und er kann mit 3 anderen ein Paar bilden. Die letzten beiden **bilden automatisch ein Paar**.
 
-<BlockMath math="B = \left\{\begin{gathered}\ldots,-3,-2,-1,0,\\1,2,3,4,5,6,7\end{gathered}\right\}" />
+<BlockMath math="5\cdot3\cdot1=15" />
 
-Die Schnittmenge <InlineMath math="A \cap B" /> enthält genau die Elemente, die in beiden Mengen liegen.
+# Kontrolle mit Kombinationen
 
-Alle Elemente von <InlineMath math="A" />, also die ganzen Zahlen von <InlineMath math="-2" /> bis <InlineMath math="7" />, liegen auch in <InlineMath math="B" />. Daher ist die Schnittmenge gleich <InlineMath math="A" />:
+Wären die Paare mit 1, 2 und 3 nummeriert, gäbe es <InlineMath math="\binom62\binom42\binom22=15\cdot6\cdot1=90" /> Möglichkeiten. Jede Einteilung ohne Nummern taucht darin **<InlineMath math="3!=6" />-mal auf**, einmal für jede Reihenfolge der Nummern.
 
-<BlockMath math="A \cap B = \left\{\begin{gathered}-2,-1,0,1,2,\\3,4,5,6,7\end{gathered}\right\}" />
+<BlockMath math="\frac{90}{3!}=15" />
 
-In Mengenschreibweise sind dies alle ganzen Zahlen, die größer als <InlineMath math="-3" /> und höchstens <InlineMath math="7" /> sind:
+Der Wert 90 behandelt die Paare als nummeriert, und 45 teilt 90 nur durch 2. Die Werte 6 und 10 zählen nicht alle Möglichkeiten, die übrigen Schüler zu paaren.
 
-<BlockMath math="\begin{aligned}&A\cap B\\&=\{x\in\mathbb Z\mid-3<x\leq7\}\end{aligned}" />
+Es gibt also **15** Möglichkeiten, die sechs Schüler einzuteilen.

@@ -1,42 +1,19 @@
-Gesucht ist die Bedingung, unter der die **Ungleichung für alle reellen Eingaben gilt**:
+Die Ameise kann nicht durch den Quader gehen, die Raumdiagonale ist also nicht ihr Weg. Der Trick ist, **zwei Seitenflächen in eine Ebene aufzuklappen**, denn dort ist der kürzeste Weg eine Strecke.
 
-<BlockMath math="\begin{gathered}(2m+1)x^2-4(m+1)x\\+m>-4\end{gathered}" />
+# Drei Arten des Aufklappens
 
-Wir bringen <InlineMath math="-4" /> auf die linke Seite:
+Ein Weg von <InlineMath math="A" /> nach <InlineMath math="G" /> läuft über zwei benachbarte Flächen. Beim Aufklappen bleibt eine Kante ganz, und **die beiden anderen Kanten fügen sich zu einer Strecke zusammen**. Für die ganze Kante gibt es drei Möglichkeiten.
 
-<BlockMath math="\begin{gathered}(2m+1)x^2-4(m+1)x\\+(m+4)>0\end{gathered}" />
+<BlockMath math="\begin{aligned}
+\text{Kante 12 ganz}&:\quad \sqrt{12^2+(4+3)^2}=\sqrt{144+49}=\sqrt{193}\\
+\text{Kante 4 ganz}&:\quad \sqrt{4^2+(12+3)^2}=\sqrt{16+225}=\sqrt{241}\\
+\text{Kante 3 ganz}&:\quad \sqrt{3^2+(12+4)^2}=\sqrt{9+256}=\sqrt{265}
+\end{aligned}" />
 
-Damit dieser quadratische Ausdruck für jedes reelle <InlineMath math="x" /> positiv ist, muss sein Graph vollständig über der <InlineMath math="x" />-Achse liegen. Dafür gelten zwei Bedingungen:
+# Den kürzesten wählen
 
-1. Der Koeffizient von <InlineMath math="x^2" /> muss positiv sein (<InlineMath math="a > 0" />).
-2. Die Diskriminante muss negativ sein (<InlineMath math="D < 0" />).
+Der kleinste Wert ist <InlineMath math="\sqrt{193}\approx13{,}9" />. Der kürzeste Weg entsteht, wenn **die längste Kante ganz bleibt** und die beiden kurzen zusammengefügt werden.
 
-Für <InlineMath math="2m+1=0" /> gilt <InlineMath math="m=-\frac12" />. Die linke Seite wird dann zu <InlineMath math="-2x+\frac72" />. Dieser lineare Ausdruck ist nicht für alle <InlineMath math="x" /> positiv und liefert daher keine weitere Lösung.
+Die Länge 13 cm ist die Raumdiagonale <InlineMath math="\sqrt{144+16+9}" />, die durch das Innere geht. Die Länge 19 cm läuft entlang der Kanten <InlineMath math="12+4+3" />. Die Werte <InlineMath math="\sqrt{241}" /> und <InlineMath math="\sqrt{265}" /> gehören zu den anderen Netzen.
 
-**Bedingung 1: <InlineMath math="a > 0" />**
-
-<BlockMath math="\begin{aligned} 2m + 1 &> 0 \\ 2m &> -1 \\ m &> -\frac{1}{2} \quad \dots \text{(1)} \end{aligned}" />
-
-**Bedingung 2: <InlineMath math="D < 0" />**
-
-Mit <InlineMath math="D = b^2 - 4ac" />, <InlineMath math="a = 2m + 1" />, <InlineMath math="b = -4(m + 1)" /> und <InlineMath math="c = m + 4" /> folgt:
-
-<BlockMath math="\begin{gathered}(-4(m+1))^2\\-4(2m+1)(m+4)<0\\16(m^2+2m+1)\\-4(2m^2+9m+4)<0\end{gathered}" />
-
-Nach Division durch <InlineMath math="4" /> vereinfacht sich die Ungleichung zu:
-
-<BlockMath math="\begin{gathered}4(m^2+2m+1)\\-(2m^2+9m+4)<0\\4m^2+8m+4\\-2m^2-9m-4<0\\2m^2-m<0\\m(2m-1)<0\end{gathered}" />
-
-Die Randwerte sind <InlineMath math="m = 0" /> und <InlineMath math="m = \frac{1}{2}" />. Da das Produkt negativ sein soll, liegt die Lösung zwischen diesen Werten:
-
-<BlockMath math="0 < m < \frac{1}{2} \quad \dots \text{(2)}" />
-
-Nun bilden wir den Schnitt der Bedingungen (1) und (2):
-- Bedingung (1): <InlineMath math="m > -\frac{1}{2}" />
-- Bedingung (2): <InlineMath math="0 < m < \frac{1}{2}" />
-
-Beide Bedingungen sind genau für folgende Werte erfüllt:
-
-<BlockMath math="0 < m < \frac{1}{2}" />
-
-<NumberLine title="Die Schnittmenge beider Bedingungen" description="Nur m zwischen 0 und 1/2 erfüllt beide Bedingungen. Beide Randwerte sind ausgeschlossen." min={-1} max={1} segments={[{start:0,end:0.5,startInclusive:false,endInclusive:false,shaded:true,showPoints:true,startLabel:<InlineMath math="0" />,endLabel:<InlineMath math="\frac12" />}]} />
+Der kürzeste Weg ist also **<InlineMath math="\sqrt{193}\text{ cm}" />** lang.

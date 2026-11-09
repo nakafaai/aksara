@@ -1,88 +1,24 @@
-Given that the perimeter of rhombus <InlineMath math="PQRS" /> is <InlineMath math="20\text{ units}" />, the length of each side is
+The rule for <InlineMath math="g" /> is not given directly. However, <InlineMath math="(g\circ f)(x)=g\bigl(f(x)\bigr)" />, so <InlineMath math="g(-2)" /> can be read from the composition once you find **the input <InlineMath math="x" /> that makes <InlineMath math="f(x)=-2" />**.
 
-<BlockMath math="\begin{aligned}PQ&=\frac{20}{4}\\&=5 \text{ units}\end{aligned}" />
+# Finding the right input
 
-The diagonals of a rhombus **bisect each other at right angles**. The midpoint of <InlineMath math="PR" /> is <InlineMath math="O(4,0)" />, so <InlineMath math="PO=4" />. In right triangle <InlineMath math="POQ" />, the hypotenuse is <InlineMath math="PQ=5" />.
+<BlockMath math="3x+1=-2\quad\Rightarrow\quad 3x=-3\quad\Rightarrow\quad x=-1" />
 
-<BlockMath math="OQ=\sqrt{PQ^2-PO^2}=\sqrt{5^2-4^2}=\sqrt9=3" />
+For <InlineMath math="x=-1" />, <InlineMath math="f(-1)=-2" />, so <InlineMath math="g(-2)=(g\circ f)(-1)" />. **Substitute <InlineMath math="x=-1" /> into the composition**, not <InlineMath math="x=-2" />.
 
-Since <InlineMath math="Q" /> lies above the horizontal axis, its coordinates are <InlineMath math="Q(4,3)" />. The opposite point is <InlineMath math="S(4,-3)" />.
+<BlockMath math="g(-2)=9(-1)^2+3(-1)-2=9-3-2=4" />
 
-Verify the length of side <InlineMath math="PQ" />
+# Checking with the rule for g
 
-<BlockMath math="\begin{aligned}PQ&=\sqrt{(4-0)^2 + (3-0)^2}\\&=\sqrt{16 + 9}\\&=\sqrt{25}\\&=5 \text{ units}\end{aligned}" />
+Let <InlineMath math="u=3x+1" />, so <InlineMath math="x=\frac{u-1}{3}" />. This substitution gives the complete rule for <InlineMath math="g" />.
 
-This matches the given perimeter.
+<BlockMath math="\begin{aligned}
+g(u)&=9\left(\frac{u-1}{3}\right)^2+3\left(\frac{u-1}{3}\right)-2\\
+&=(u-1)^2+(u-1)-2=u^2-u-2
+\end{aligned}" />
 
-<MathVisual
-  title={<>Rhombus <InlineMath math="PQRS" /> with Auxiliary Lines</>}
-  description={<>Visualization of rhombus <InlineMath math="PQRS" /> with auxiliary lines forming a right triangle to calculate the length of side <InlineMath math="PQ" />.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 9 },
-      y: { min: -4, max: 4 },
-    },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      {
-        id: "rhombus-pqrs",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 4, y: 3 },
-          { x: 8, y: 0 },
-          { x: 4, y: -3 },
-        ],
-      },
-      {
-        id: "horizontal-leg",
-        kind: "segment",
-        appearance: "construction",
-        from: { x: 0, y: 0 },
-        to: { x: 4, y: 0 },
-      },
-      {
-        id: "vertical-leg",
-        kind: "segment",
-        appearance: "construction",
-        from: { x: 4, y: 0 },
-        to: { x: 4, y: 3 },
-      },
-    ],
-    labels: [
-      { key: "point-p", objectId: "rhombus-pqrs", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "point-q", objectId: "rhombus-pqrs", at: { x: 4, y: 3 }, placement: "above" },
-      { key: "point-r", objectId: "rhombus-pqrs", at: { x: 8, y: 0 }, placement: "below-right" },
-      { key: "point-s", objectId: "rhombus-pqrs", at: { x: 4, y: -3 }, placement: "below" },
-      { key: "side-length", objectId: "rhombus-pqrs", at: { x: 2, y: 1.5 }, placement: "above-left" },
-      { key: "horizontal-length", objectId: "horizontal-leg", at: { x: 2, y: 0 }, placement: "below" },
-      { key: "vertical-length", objectId: "vertical-leg", at: { x: 4, y: 1.5 }, placement: "right" },
-    ],
-  }}
-  labels={{
-    "point-p": <><InlineMath math="P(0,0)" /></>,
-    "point-q": <><InlineMath math="Q(4,3)" /></>,
-    "point-r": <><InlineMath math="R(8,0)" /></>,
-    "point-s": <><InlineMath math="S" /></>,
-    "side-length": <><InlineMath math="5" /></>,
-    "horizontal-length": <><InlineMath math="4" /></>,
-    "vertical-length": <><InlineMath math="3" /></>,
-  }}
-/>
+So <InlineMath math="g(-2)=4+2-2=4" />, **the same as before**.
 
-Calculate the gradient of <InlineMath math="QR" /> using the slope formula
+The value 28 puts <InlineMath math="x=-2" /> into the composition. The value <InlineMath math="-1" /> stops at the input <InlineMath math="x" />. The value 0 ignores the term <InlineMath math="+1" /> and uses <InlineMath math="x=-\tfrac23" />. The value <InlineMath math="-2" /> comes from the wrong inverse <InlineMath math="x=\frac{u+1}{3}" />.
 
-<BlockMath math="m = \frac{y_2 - y_1}{x_2 - x_1}" />
-
-With <InlineMath math="Q(4, 3)" /> and <InlineMath math="R(8, 0)" />
-
-<BlockMath math="m_{QR} = \frac{0 - 3}{8 - 4}" />
-
-<BlockMath math="m_{QR} = \frac{-3}{4}" />
-
-<BlockMath math="m_{QR} = -\frac{3}{4}" />
-
-The line falls by <InlineMath math="3\text{ units}" /> while moving <InlineMath math="4\text{ units}" /> to the right, so its slope must be negative. Therefore, the gradient of <InlineMath math="QR" /> is <InlineMath math="-\frac{3}{4}" />.
+So the value of <InlineMath math="g(-2)" /> is **4**.

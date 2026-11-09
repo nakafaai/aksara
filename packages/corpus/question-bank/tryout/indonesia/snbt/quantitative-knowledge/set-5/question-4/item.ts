@@ -3,29 +3,13 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label: "$$P > Q$$",
-        },
-        {
-          correct: false,
-          label: "$$P = Q$$",
-        },
-        {
-          correct: false,
-          label: "$$P + Q = 1$$",
-        },
-        {
-          correct: false,
-          label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu pilihan.",
-        },
-        {
-          correct: true,
-          label: "$$P < Q$$",
-        },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 2, label: "$${}^{2}\\log10=2p$$" },
+        { column: 1, label: "$${}^{4}\\log25=p$$" },
+        { column: 1, label: "$${}^{5}\\log2=\\dfrac{1}{p}$$" },
+        { column: 2, label: "$${}^{2}\\log40=3p$$" },
       ],
     },
   },

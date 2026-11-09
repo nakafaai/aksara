@@ -3,27 +3,27 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$2$$",
+          column: 1,
+          label:
+            "Buku fiksi mencakup $$35\\%$$ dari seluruh buku yang dipinjam.",
         },
         {
-          correct: true,
-          label: "$$4$$",
+          column: 1,
+          label: "Median banyak buku yang dipinjam per jenis adalah 48.",
         },
         {
-          correct: false,
-          label: "$$5$$",
+          column: 2,
+          label:
+            "Jika data disajikan dalam diagram lingkaran, sudut pusat sektor buku bahasa adalah $$60^\\circ$$.",
         },
         {
-          correct: false,
-          label: "$$7$$",
-        },
-        {
-          correct: false,
-          label: "$$1$$",
+          column: 2,
+          label:
+            "Banyak buku sains yang dipinjam lebih dari dua kali banyak buku sejarah yang dipinjam.",
         },
       ],
     },

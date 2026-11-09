@@ -1,29 +1,27 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "bus-route",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\frac{1}{3}$$",
+          column: 2,
+          label:
+            "Banyak penumpang yang naik selama satu kali perjalanan adalah 70 orang.",
+        },
+        { column: 1, label: "Di terminal akhir, 35 penumpang turun." },
+        {
+          column: 2,
+          label:
+            "Banyak penumpang di dalam bus tidak pernah melebihi 32 orang.",
         },
         {
-          correct: false,
-          label: "$$\\frac{2}{3}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{3}{4}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{5}{6}$$",
-        },
-        {
-          correct: true,
-          label: "$$\\frac{1}{2}$$",
+          column: 1,
+          label:
+            "Rata-rata banyak penumpang di dalam bus pada kelima ruas adalah $$28{,}2$$ orang.",
         },
       ],
     },

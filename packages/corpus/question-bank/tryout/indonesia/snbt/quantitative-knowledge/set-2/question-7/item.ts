@@ -1,30 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-22
 const item: ItemSource = {
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (2) saja tidak cukup.",
+        },
+        {
+          correct: false,
+          label:
+            "Pernyataan (2) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (1) saja tidak cukup.",
+        },
+        {
+          correct: false,
+          label:
+            "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
+        },
+        {
+          correct: false,
+          label:
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan dan pernyataan (2) saja cukup.",
+        },
+        {
           correct: true,
-          label: "$$8$$",
-        },
-        {
-          correct: false,
-          label: "$$6$$",
-        },
-        {
-          correct: false,
-          label: "$$7$$",
-        },
-        {
-          correct: false,
-          label: "$$9$$",
-        },
-        {
-          correct: false,
-          label: "$$10$$",
+          label:
+            "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
         },
       ],
     },

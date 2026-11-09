@@ -7,23 +7,28 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$25^\\circ$$",
+          label:
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (2) saja tidak cukup.",
         },
         {
           correct: false,
-          label: "$$15^\\circ$$",
+          label:
+            "Pernyataan (2) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (1) saja tidak cukup.",
         },
         {
           correct: false,
-          label: "$$20^\\circ$$",
+          label:
+            "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
         },
         {
           correct: false,
-          label: "$$30^\\circ$$",
+          label:
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan dan pernyataan (2) saja cukup.",
         },
         {
           correct: false,
-          label: "$$35^\\circ$$",
+          label:
+            "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
         },
       ],
     },

@@ -1,11 +1,19 @@
-# Menentukan Bagian Barang Tidak Rusak
+Jarak antara dua persimpangan adalah **selisih absis ditambah selisih ordinat**. Hitung panjang beberapa urutan, lalu pastikan tidak ada rute yang lebih pendek.
 
-Misalkan <InlineMath math="A" /> adalah kejadian terpilihnya barang tidak rusak. **Barang tidak rusak merupakan komplemen** dari barang rusak:
+# Panjang beberapa urutan
 
-<BlockMath math="n(A)=80-20=60" />
+Bandingkan **panjang setiap urutan kunjungan**, termasuk jalan kembali ke gudang.
 
-Semua <InlineMath math="80" /> barang memiliki peluang terpilih yang sama. Karena itu, bagi jumlah barang yang memenuhi dengan jumlah seluruh barang:
+| Urutan | Panjang dalam ruas |
+| :---: | :---: |
+| G, B, A, C, G | <InlineMath math="6+5+4+7=22" /> |
+| G, A, C, B, G | <InlineMath math="7+4+9+6=26" /> |
+| G, C, B, A, G | <InlineMath math="7+9+5+7=28" /> |
 
-<BlockMath math="P(A)=\frac{n(A)}{n(S)}=\frac{60}{80}=\frac34" />
+# Batas bawah setiap rute
 
-Jadi, peluangnya <InlineMath math="\frac34" />. Nilai ini juga sama dengan <InlineMath math="1-\frac{20}{80}" />, sehingga hasilnya sesuai jika diperiksa melalui bagian barang rusak.
+Rute harus mencapai absis 5, yaitu B, dan kembali ke absis 0, jadi paling sedikit <InlineMath math="2\cdot5=10" /> ruas mendatar. Rute juga harus mencapai ordinat 6, yaitu C, dan kembali ke ordinat 0, jadi paling sedikit <InlineMath math="2\cdot6=12" /> ruas tegak. Jadi **setiap rute paling sedikit 22 ruas**.
+
+Urutan G, B, A, C, G mencapai batas itu, jadi 22 ruas atau 2.200 m adalah yang terpendek. Nilai 2.600 m dan 2.800 m berasal dari urutan yang kurang baik.
+
+Jadi, panjang rute terpendek adalah **2.200 m**.

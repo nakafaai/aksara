@@ -5,27 +5,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$P > Q$$",
-        },
-        {
-          correct: false,
-          label: "$$Q > P$$",
-        },
-        {
-          correct: false,
-          label: "$$P = 2Q$$",
-        },
-        {
-          correct: true,
-          label: "$$P = Q$$",
-        },
-        {
-          correct: false,
-          label:
-            "Hubungan antara $$P$$ dan $$Q$$ tidak dapat ditentukan dari informasi yang diberikan.",
-        },
+        { correct: false, label: "$$5\\%$$" },
+        { correct: false, label: "$$10\\%$$" },
+        { correct: true, label: "$$11\\tfrac{1}{9}\\%$$" },
+        { correct: false, label: "$$20\\%$$" },
+        { correct: false, label: "$$25\\%$$" },
       ],
     },
   },

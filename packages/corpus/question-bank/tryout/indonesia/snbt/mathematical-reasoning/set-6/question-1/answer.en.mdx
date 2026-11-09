@@ -1,30 +1,21 @@
-From <InlineMath math="07:00" /> to <InlineMath math="09:24" />, the runners are on the track for:
+A team's points are **3 times its wins plus its draws**. Compute them for all five teams, then add.
 
-<BlockMath math="\begin{aligned}&09{:}24-07{:}00 \\ &\quad=2\text{ h }24\text{ min}\end{aligned}" />
+# Points of each team
 
-<BlockMath math="\begin{aligned}&(2\times60)+24=120+24 \\ &\quad=144\text{ min}\end{aligned}" />
+<BlockMath math="\begin{aligned}
+A&:\quad 3\cdot3+1=10\\
+B&:\quad 3\cdot2+1=7\\
+C&:\quad 3\cdot1+2=5\\
+D&:\quad 3\cdot1+1=4\\
+E&:\quad 3\cdot0+1=1
+\end{aligned}" />
 
-The fourth common crossing occurs after <InlineMath math="144\text{ minutes}" />, so consecutive common crossings are separated by:
+**The total of the five teams** is <InlineMath math="10+7+5+4+1=27" />.
 
-<BlockMath math="\frac{144}{4}\text{ min}=36\text{ min}" />
+# Check by matches
 
-This meeting interval corresponds to the **Least Common Multiple** (LCM) of the runners' lap times.
+There are <InlineMath math="\binom52=10" /> matches. The draws add up to 6, and **each drawn match is recorded for two teams**, so there are 3 drawn matches and 7 matches with a winner. A match with a winner gives 3 points, and a draw gives <InlineMath math="1+1=2" /> points.
 
-<BlockMath math="\begin{aligned} \text{Runner A} &= 12 \text{ minutes} \\ \text{Runner B} &= x \text{ minutes} \\ \text{Runner C} &= 9 \text{ minutes} \end{aligned}" />
+<BlockMath math="7\cdot3+3\cdot2=27" />
 
-We need to find the value of <InlineMath math="x" /> such that <InlineMath math="\text{LCM}(12, x, 9) = 36" />. First, find the LCM of <InlineMath math="12" /> and <InlineMath math="9" />:
-
-<BlockMath math="\text{LCM}(12, 9) = 36" />
-
-Since <InlineMath math="\text{LCM}(12, 9)" /> is already <InlineMath math="36" />, the lap time <InlineMath math="x" /> must keep <InlineMath math="\text{LCM}(12, 9, x)" /> equal to <InlineMath math="36" />. Check the choices:
-
-| Lap time | LCM with 36 |
-| --- | --- |
-| <InlineMath math="5" /> | <InlineMath math="180" /> |
-| <InlineMath math="6" /> | <InlineMath math="36" /> |
-| <InlineMath math="7" /> | <InlineMath math="252" /> |
-| <InlineMath math="10" /> | <InlineMath math="180" /> |
-| <InlineMath math="13" /> | <InlineMath math="468" /> |
-
-
-Among the listed options, only <InlineMath math="x=6" /> gives the required interval between common crossings.
+So the total of all teams' points is **27 points**.

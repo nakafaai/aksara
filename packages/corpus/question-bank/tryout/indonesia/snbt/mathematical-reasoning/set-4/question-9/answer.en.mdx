@@ -1,35 +1,14 @@
-The total length of the wire is <InlineMath math="20\text{ m}" />. This length represents the **perimeter of the rectangular chicken coop**. Let the length be <InlineMath math="p" /> and the width be <InlineMath math="l" />. We can write the perimeter equation:
+The number of passengers on the bus changes at each stop: **add those who board and subtract those who alight**. Run this count from the first terminal.
 
-<BlockMath math="2(p + l) = 20" />
+# Counting stop by stop
 
-<BlockMath math="p + l = 10 \implies l = 10 - p" />
+<BlockMath math="\begin{aligned}
+\text{first terminal}&:\quad 0+25=25\\
+\text{Stop A}&:\quad 25+12-8=29\\
+\text{Stop B}&:\quad 29+6-10=25\\
+\text{Stop C}&:\quad 25+9-7=27
+\end{aligned}" />
 
-Next, we want to maximize the area of the coop (<InlineMath math="L" />). The area of a rectangle is <InlineMath math="L = p \times l" />. Substitute the equation <InlineMath math="l = 10 - p" /> into the area formula:
+The count must run **in order from the start**, because each stop depends on the number of passengers before it.
 
-<BlockMath math="L(p) = p(10 - p)" />
-
-<BlockMath math="L(p) = 10p - p^2" />
-
-This equation is a quadratic function whose curve is a downward-opening parabola (since the coefficient of <InlineMath math="p^2" /> is negative), meaning it has a maximum value at its **vertex**. The coordinate of the vertex (<InlineMath math="p_{\max}" />) can be found using the formula <InlineMath math="-\frac{b}{2a}" />:
-
-<BlockMath math="\begin{aligned}p_{\max} &=-\frac{10}{2(-1)} \\ &=-\frac{10}{-2} \\ &=5\text{ m}\end{aligned}" />
-
-After finding the length <InlineMath math="p = 5\text{ m}" />, we can determine the width <InlineMath math="l" />:
-
-<BlockMath math="l = 10 - 5 = 5\text{ m}" />
-
-Thus, for the area to be maximum, the length and width of the coop must be <InlineMath math="5\text{ m}" /> and <InlineMath math="5\text{ m}" /> respectively.
-
-The graph shows area <InlineMath math="L" /> for different lengths <InlineMath math="p" />. Both dimensions must be positive, so <InlineMath math="0\lt p\lt 10" />. The graph endpoints show the limits where one dimension becomes zero.
-
-<LineEquation
-  title="Maximum area with a fixed perimeter"
-  description="The horizontal axis is length p in metres, and the vertical axis is area L in square metres. The vertex is (5, 25)."
-  cameraPosition={[5,12.5,38]}
-  cameraTarget={[5,12.5,0]}
-  showZAxis={false}
-  data={[
-    {points:Array.from({length:101},(_,i)=>({x:i/10,y:10*(i/10)-(i/10)**2,z:0})),color:"#6366f1",smooth:false,showPoints:false},
-    {points:[{x:5,y:0,z:0},{x:5,y:25,z:0}],color:"#f97316",smooth:false,pointIndices:[1],labels:[{at:1,text:<InlineMath math="(5,25)" />,offset:[0,1,0]}]}
-  ]}
-/>
+So when the bus leaves Stop C there are **27 people** on board.

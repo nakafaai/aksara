@@ -3,27 +3,25 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\frac{2x + 12}{x^2 - 4}$$",
+          column: 1,
+          label: "Rata-rata banyak pengunjung per hari adalah $$150$$.",
         },
         {
-          correct: true,
-          label: "$$\\frac{x - 4}{x^2 - 4}$$",
+          column: 1,
+          label:
+            "Kenaikan terbesar dari satu hari ke hari berikutnya terjadi dari Rabu ke Kamis.",
         },
         {
-          correct: false,
-          label: "$$\\frac{x - 12}{x^2 - 4}$$",
+          column: 2,
+          label: "Median banyak pengunjung lebih besar daripada rata-ratanya.",
         },
         {
-          correct: false,
-          label: "$$\\frac{-x + 12}{x^2 - 4}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{-2x}{x^2 - 4}$$",
+          column: 2,
+          label: "Banyak pengunjung naik $$30\\%$$ dari Senin ke Selasa.",
         },
       ],
     },

@@ -3,27 +3,28 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\frac{10}{16}$$",
+          column: 1,
+          label:
+            "Peluang terambil kartu bernomor bilangan prima adalah $$\\dfrac13$$.",
         },
         {
-          correct: false,
-          label: "$$\\frac{11}{17}$$",
+          column: 2,
+          label:
+            "Peluang terambil kartu bernomor bilangan kuadrat sempurna adalah $$\\dfrac15$$.",
         },
         {
-          correct: true,
-          label: "$$\\frac{17}{11}$$",
+          column: 1,
+          label:
+            "Peluang terambil kartu bernomor bilangan genap yang juga kelipatan 5 adalah $$\\dfrac{1}{10}$$.",
         },
         {
-          correct: false,
-          label: "$$\\frac{9}{10}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{27}{26}$$",
+          column: 2,
+          label:
+            "Peluang terambil kartu bernomor bilangan ganjil yang lebih dari 20 adalah $$\\dfrac15$$.",
         },
       ],
     },

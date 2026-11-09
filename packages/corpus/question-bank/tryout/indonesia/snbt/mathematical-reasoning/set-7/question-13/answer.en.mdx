@@ -1,22 +1,18 @@
-# Count Segments Before Counting Time
+Reverse the formula <InlineMath math="F=\tfrac95C+32" /> by undoing its steps from the end: **subtract 32 first, then multiply by <InlineMath math="\tfrac59" />**.
 
-The first trip from <InlineMath math="A" /> to <InlineMath math="C" /> covers **half a lap**, or two equal segments. Each later arrival at <InlineMath math="C" /> adds a full lap of four segments:
+# Reversing the formula
 
-| Arrival at C | Total segments from the start |
-| --- | ---: |
-| First | <InlineMath math="2" /> |
-| Second | <InlineMath math="2+4=6" /> |
-| Third | <InlineMath math="6+4=10" /> |
-| Fourth | <InlineMath math="10+4=14" /> |
+<BlockMath math="\begin{aligned}
+F-32&=\tfrac95C\\
+C&=\tfrac59(F-32)
+\end{aligned}" />
 
-# Convert Segments to Time
+# Substitution
 
-At **constant speed**, equal segments take equal amounts of time. The third arrival takes twelve minutes for ten segments, so the time per segment is:
+<BlockMath math="C=\tfrac59(356-32)=\tfrac59\cdot324=180" />
 
-<BlockMath math="t_s=\frac{12}{10}=1.2\text{ minutes}" />
+Check: <InlineMath math="\tfrac95\cdot180+32=324+32=356" />, **matching the recipe**.
 
-The fourth arrival therefore occurs at:
+The value 197.8 °C forgets to subtract 32. The value 165.8 °C multiplies first and subtracts 32 afterwards. The value 215.6 °C adds 32 instead. The value 324 °C only subtracts 32 without multiplying by <InlineMath math="\tfrac59" />.
 
-<BlockMath math="T=14\times1.2=16.8\text{ minutes}" />
-
-This is measured from the start. As a check, one extra lap takes <InlineMath math="4\times1.2=4.8" /> minutes, so <InlineMath math="12+4.8=16.8" /> minutes.
+So the oven temperature is **180 °C**.

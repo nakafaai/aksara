@@ -1,53 +1,23 @@
-First, find the **sum of the original values**.
+Each percentage change is taken from the price **just before that change**, not from the original price. That is why successive changes are multiplied, not added.
 
-<BlockMath math="\begin{gathered}1+2+3+4+5+6+7\\=28\end{gathered}" />
+# The factors of the successive changes
 
-Let <InlineMath math="x" /> be the datum that is replaced. Since it is replaced by the number <InlineMath math="34" />, the new sum of data becomes:
+Let the original price be <InlineMath math="H" />. A 20% rise means **multiplying by 1.2**, and a 25% drop means multiplying by 0.75.
 
-<BlockMath math="\begin{aligned}28-x+34&=62-x\end{aligned}" />
+<BlockMath math="H\times1.2\times0.75=0.9H" />
 
-The number of data points (<InlineMath math="n" />) remains <InlineMath math="7" />. The formula for the new average (<InlineMath math="\bar{x}_{\text{new}}" />) is:
+The final price is 90% of the original price.
 
-<BlockMath math="\bar{x}_{\text{new}} = \frac{62 - x}{7}" />
+# The increase needed
 
-It is given that the new average is equal to twice the new median (<InlineMath math="\bar{x}=2m" />). Here <InlineMath math="\bar{x}" /> is the new mean and <InlineMath math="m" /> is the new median. We need to check the possible values of the new median.
+An increase of <InlineMath math="k\%" /> must bring <InlineMath math="0.9H" /> back to <InlineMath math="H" />. This percentage is **taken from <InlineMath math="0.9H" />**, so the divisor is 0.9.
 
-The initial data is ordered: <InlineMath math="1, 2, 3, 4, 5, 6, 7" />. The initial median is <InlineMath math="4" />.
-The replacement number <InlineMath math="34" /> will definitely be in the last position because it is the largest.
+<BlockMath math="\begin{aligned}
+0.9H\left(1+\frac{k}{100}\right)&=H\\
+1+\frac{k}{100}&=\frac{10}{9}\\
+k&=\frac{100}{9}=11\tfrac19
+\end{aligned}" />
 
-**Case 1**: If the replaced number is <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, or <InlineMath math="4" />
+The value 10% assumes that a 10% increase cancels a 10% decrease, although 10% of the smaller price is not enough. The value 5% adds the percentages, <InlineMath math="20-25=-5" />. The value 25% only reverses the last decrease, and the value 20% only reverses the first increase.
 
-For example, if we replace <InlineMath math="1" />, the data becomes <InlineMath math="2, 3, 4, 5, 6, 7, 34" />. The median becomes <InlineMath math="5" />.
-The same applies if we replace <InlineMath math="2, 3" />, or <InlineMath math="4" />. The data will shift so that the median becomes <InlineMath math="5" />.
-
-Test this in the equation:
-
-<BlockMath math="\frac{62 - x}{7} = 2 \times 5" />
-
-<BlockMath math="62 - x = 70" />
-
-<BlockMath math="x = -8" />
-
-The result <InlineMath math="x = -8" /> is invalid because the data must be from the initial set (<InlineMath math="1" /> to <InlineMath math="7" />).
-
-**Case 2**: If the replaced number is <InlineMath math="5" />, <InlineMath math="6" />, or <InlineMath math="7" />
-
-For example, if we replace <InlineMath math="7" />, the data becomes <InlineMath math="1, 2, 3, 4, 5, 6, 34" />. The median remains <InlineMath math="4" />.
-The same applies if we replace <InlineMath math="5" /> or <InlineMath math="6" />. The median remains <InlineMath math="4" />.
-
-Test this in the equation:
-
-<BlockMath math="\frac{62 - x}{7} = 2 \times 4" />
-
-<BlockMath math="62 - x = 56" />
-
-<BlockMath math="x = 6" />
-
-The result <InlineMath math="x = 6" /> is valid because <InlineMath math="6" /> is in the initial data.
-
-So, the replaced number is <InlineMath math="6" />.
-Thus, <InlineMath math="P = 6" /> and <InlineMath math="Q = 6" />.
-
-So, <InlineMath math="P = Q" />.
-
-After replacing 6, the sorted data are <InlineMath math="1,2,3,4,5,7,34" />. Their sum is 56, so the mean is 8, exactly twice the median 4.
+So the final price must be raised by <InlineMath math="11\tfrac19\%" />.

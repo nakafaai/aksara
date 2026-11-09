@@ -1,21 +1,23 @@
-We are given a **recursive formula** for a sequence of numbers:
+Three students are chosen at once, with no order, so the sample space is counted with **combinations**. At least 2 girls means exactly 2 girls or exactly 3 girls.
 
-<BlockMath math="a_n = a_{n+1} + 3a_{n+3}" />
+# Sample space and event
 
-We also know that <InlineMath math="a_1 = -1" /> and <InlineMath math="a_2 = 2" />. We are asked to find the value of <InlineMath math="a_4 + a_1" />.
+<BlockMath math="n(S)=\binom{10}{3}=120" />
 
-# Determining the Value of the Fourth Term
+Count **each case separately**, then add, because the two cases cannot happen together.
 
-To find the **fourth term**, we can use the given equation by substituting <InlineMath math="n = 1" />:
+<BlockMath math="\begin{aligned}
+\text{exactly 2 girls}&:\quad \binom42\binom61=6\cdot6=36\\
+\text{exactly 3 girls}&:\quad \binom43=4\\
+n(A)&=36+4=40
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned} a_1 &= a_{1+1} + 3a_{1+3} \\ a_1 &= a_2 + 3a_4 \end{aligned}" />
+# Probability
 
-Next, we substitute the values <InlineMath math="a_1 = -1" /> and <InlineMath math="a_2 = 2" /> into the equation:
+The probability is **the number of outcomes in the event divided by the size of the sample space**.
 
-<BlockMath math="\begin{aligned} -1 &= 2 + 3a_4 \\ 3a_4 &= -1 - 2 \\ 3a_4 &= -3 \\ a_4 &= \frac{-3}{3} \\ a_4 &= -1 \end{aligned}" />
+<BlockMath math="P(A)=\frac{40}{120}=\frac13" />
 
-Now that we have found <InlineMath math="a_4 = -1" />, we can calculate <InlineMath math="a_4 + a_1" />:
+The value <InlineMath math="\tfrac{44}{125}" /> treats each choice as independent with a fixed probability <InlineMath math="\tfrac25" /> for a girl, as if the same student could be chosen again. The value <InlineMath math="\tfrac23" /> is the probability of the opposite event, at most 1 girl. The values <InlineMath math="\tfrac25" /> and <InlineMath math="\tfrac35" /> are the probabilities of a girl or a boy in a single choice.
 
-<BlockMath math="\begin{aligned} a_4 + a_1 &= (-1) + (-1) \\ &= -2 \end{aligned}" />
-
-So, the value of <InlineMath math="a_4 + a_1" /> is <InlineMath math="-2" />.
+So the probability of choosing at least 2 girls is **<InlineMath math="\tfrac13" />**.

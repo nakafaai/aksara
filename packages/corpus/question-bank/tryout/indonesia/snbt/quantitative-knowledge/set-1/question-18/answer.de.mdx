@@ -1,101 +1,23 @@
-Gegeben sei die **arithmetische Folge** <InlineMath math="5, 8, 11, \ldots" />.
+Berechne zuerst die Kennwerte der ursprünglichen Daten und prüfe dann, **was sich bei jeder Änderung tatsächlich verschiebt**. Der Größe nach geordnet haben die Plätze 1 bis 3 den Wert 5, die Plätze 4 bis 8 den Wert 6, die Plätze 9 bis 14 den Wert 7, die Plätze 15 bis 18 den Wert 8 und die Plätze 19 und 20 den Wert 9.
 
-Aus der Folge:
-- Erstes Glied <InlineMath math="a = 5" />
-- Gemeinsame Differenz <InlineMath math="b = 8 - 5 = 3" />
+# Kennwerte der ursprünglichen Daten
 
-Formel für das <InlineMath math="n" />-te Glied einer arithmetischen Folge:
+<BlockMath math="\bar x=\frac{3(5)+5(6)+6(7)+4(8)+2(9)}{20}=\frac{137}{20}=6{,}85" />
 
-<BlockMath math="U_n = a + (n-1)b" />
+Der Median von 20 Werten ist der Mittelwert aus dem 10. und dem 11. Wert. Beide sind 7, also ist der Median 7. **Der Mittelwert 6,85 ist kleiner als der Median 7**, die dritte Aussage ist also wahr.
 
-Formel für die Summe der ersten <InlineMath math="n" /> Glieder:
+# Neue Schüler hinzufügen
 
-<BlockMath math="S_n = \frac{n}{2}(2a + (n-1)b)" />
+Mit zwei Schülern, die 9 Punkte haben, gibt es 22 Werte, und der Median ist der Mittelwert aus dem 11. und dem 12. Wert. Werte am oberen Ende verschieben die Siebenen nicht, sie belegen weiterhin die Plätze 9 bis 14. Der Median bleibt 7, die erste Aussage ist falsch.
 
-# Bewertung der ersten Aussage
+Mit drei Schülern, die 6 Punkte haben, steigt die Häufigkeit von 6 auf <InlineMath math="5+3=8" /> und **übertrifft damit die Häufigkeit von 7**, die bei 6 bleibt. Der Modalwert wird 6, die zweite Aussage ist falsch.
 
-Aussage: Der Wert von <InlineMath math="a" /> ist **größer als** der Wert von <InlineMath math="b" />.
+# Schüler mit fünf Punkten entfernen
 
-<BlockMath math="a = 5 \text{ und } b = 3" />
+Ohne die drei Schüler mit 5 Punkten bleiben 17 Schüler mit der Punktsumme <InlineMath math="137-15=122" />.
 
-<BlockMath math="5 > 3" />
+<BlockMath math="\bar x=\frac{122}{17}\approx7{,}18>7" />
 
-Daher ist die Aussage (1) wahr.
+Der neue Mittelwert ist **größer als 7**, die vierte Aussage ist also wahr.
 
-# Bewertung der zweiten Aussage
-
-Aussage: <InlineMath math="U_{11} = a \times 7" />.
-
-Mit der **Formel für das n-te Glied** berechnen wir <InlineMath math="U_{11}" />:
-
-<BlockMath math="U_{11} = a + (11-1)b" />
-
-<BlockMath math="= 5 + 10 \times 3" />
-
-<BlockMath math="= 5 + 30" />
-
-<BlockMath math="= 35" />
-
-Zum Vergleich berechnen wir <InlineMath math="a \times 7" />:
-
-<BlockMath math="a \times 7 = 5 \times 7 = 35" />
-
-Aus <InlineMath math="U_{11} = 35" /> und <InlineMath math="a \times 7 = 35" /> folgt <InlineMath math="U_{11} = a \times 7" />.
-
-Daher ist die Aussage (2) wahr.
-
-# Bewertung der dritten Aussage
-
-Aussage: <InlineMath math="S_6 = b \times 25" />.
-
-Mit der **Summenformel** berechnen wir <InlineMath math="S_6" />:
-
-<BlockMath math="S_6 = \frac{6}{2}(2a + (6-1)b)" />
-
-<BlockMath math="= 3(2 \times 5 + 5 \times 3)" />
-
-<BlockMath math="= 3(10 + 15)" />
-
-<BlockMath math="= 3 \times 25" />
-
-<BlockMath math="= 75" />
-
-Zum Vergleich berechnen wir <InlineMath math="b \times 25" />:
-
-<BlockMath math="b \times 25 = 3 \times 25 = 75" />
-
-Aus <InlineMath math="S_6 = 75" /> und <InlineMath math="b \times 25 = 75" /> folgt <InlineMath math="S_6 = b \times 25" />.
-
-Daher ist die Aussage (3) wahr.
-
-# Bewertung der vierten Aussage
-
-Aussage: <InlineMath math="U_{18} = S_5" />.
-
-Unterscheide **ein einzelnes Glied von einer Summe**. Zuerst berechnen wir <InlineMath math="U_{18}" />:
-
-<BlockMath math="U_{18} = a + (18-1)b" />
-
-<BlockMath math="= 5 + 17 \times 3" />
-
-<BlockMath math="= 5 + 51" />
-
-<BlockMath math="= 56" />
-
-Danach berechnen wir <InlineMath math="S_5" />:
-
-<BlockMath math="S_5 = \frac{5}{2}(2a + (5-1)b)" />
-
-<BlockMath math="= \frac{5}{2}(2 \times 5 + 4 \times 3)" />
-
-<BlockMath math="= \frac{5}{2}(10 + 12)" />
-
-<BlockMath math="= \frac{5}{2} \times 22" />
-
-<BlockMath math="= 55" />
-
-Aus <InlineMath math="U_{18} = 56" /> und <InlineMath math="S_5 = 55" /> folgt <InlineMath math="U_{18} \neq S_5" />.
-
-Daher ist die Aussage (4) falsch.
-
-Damit sind nur die Aussagen (1), (2) und (3) wahr.
+Die erste Aussage ist also **falsch**, die zweite **falsch**, die dritte **wahr** und die vierte **wahr**.

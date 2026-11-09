@@ -1,22 +1,15 @@
-The original sum is <InlineMath math="6\cdot20=120" />. The five known values sum to <InlineMath math="12+16+21+25+30=104" />, so <InlineMath math="x=120-104=16" />.
+A train leaves at a given time if **the time since 05.00 is divisible by its gap**.
 
-Replacing each value <InlineMath math="a" /> with <InlineMath math="2a-4" /> gives
+# Line A
 
-| Original value | After <InlineMath math="2a-4" /> | After correcting the maximum |
-| ---: | ---: | ---: |
-| 12 | <InlineMath math="2(12)-4=20" /> | <InlineMath math="20" /> |
-| 16 | <InlineMath math="2(16)-4=28" /> | <InlineMath math="28" /> |
-| 16 | <InlineMath math="2(16)-4=28" /> | <InlineMath math="28" /> |
-| 21 | <InlineMath math="2(21)-4=38" /> | <InlineMath math="38" /> |
-| 25 | <InlineMath math="2(25)-4=46" /> | <InlineMath math="46" /> |
-| 30 | <InlineMath math="2(30)-4=56" /> | <InlineMath math="56-6=50" /> |
+06.00 is 60 minutes after 05.00, and 60 is not divisible by 16. The multiples of 16 between 60 and 120 are 64, 80, 96 and 112, so line A leaves at 06.04, 06.20, 06.36 and 06.52, **exactly 4 times**. The first statement is true.
 
-Reducing the **largest value** by <InlineMath math="6" /> gives <InlineMath math="20,28,28,38,46,50" />. Their sum is <InlineMath math="210" />, so the mean is <InlineMath math="210/6=35" />.
+21.00 is 960 minutes after 05.00, and <InlineMath math="\tfrac{960}{16}=60" />, a whole number. The fourth statement is true.
 
-Let <InlineMath math="S" /> be the sum of the squared deviations from the mean:
+# Lines B and C
 
-<BlockMath math="\begin{aligned}S&=(-15)^2+(-7)^2+(-7)^2 \\ &\quad+3^2+11^2+15^2 \\ &=225+49+49+9+121+225\\&=678\end{aligned}" />
+07.15 is 135 minutes after 05.00, and <InlineMath math="\tfrac{135}{24}=5.625" />, **not a whole number**. The second statement is false.
 
-The **population variance** of the final six values is
+12.10 is 430 minutes after 05.00, and 430 is not divisible by 40. The third statement is false.
 
-<BlockMath math="\sigma^2=\frac S6=\frac{678}{6}=113" />
+So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.

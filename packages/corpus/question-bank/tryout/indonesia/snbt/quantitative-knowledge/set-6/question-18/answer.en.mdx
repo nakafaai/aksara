@@ -1,46 +1,22 @@
-Use the **total survey population** as the upper bound for the union:
+First count the numbers divisible by 4 or 6, then remove those that are also divisible by 9. The first step uses **the inclusion-exclusion principle**, because multiples of 12 are counted twice.
 
-- The universal set <InlineMath math="S" /> contains <InlineMath math="300" /> teenagers.
-- The sports set <InlineMath math="O" /> contains <InlineMath math="135" /> teenagers.
-- The nature-activity set <InlineMath math="C" /> contains <InlineMath math="255" /> teenagers.
+# Divisible by 4 or 6
 
-We are asked to find the difference between the maximum value (<InlineMath math="B" />) and the minimum value (<InlineMath math="A" />) of the intersection of these two sets (<InlineMath math="O \cap C" />).
+The common multiples of 4 and 6 are **the multiples of their least common multiple**, 12.
 
-# Minimum overlap
+<BlockMath math="\begin{aligned}
+\left\lfloor\tfrac{300}{4}\right\rfloor+\left\lfloor\tfrac{300}{6}\right\rfloor-\left\lfloor\tfrac{300}{12}\right\rfloor&=75+50-25\\
+&=100
+\end{aligned}" />
 
-The intersection is smallest when the **union is as large as possible**. The union cannot contain more than the <InlineMath math="300" /> surveyed teenagers, and this bound is reached when everyone participates in at least one activity.
+# Those also divisible by 9
 
-<BlockMath math="\begin{aligned}n(O\cup C)&=n(O)+n(C)\\&\quad{}-n(O\cap C)\end{aligned}" />
+A number from that group that is divisible by 9 is a multiple of <InlineMath math="\text{lcm}(4,9)=36" /> or of <InlineMath math="\text{lcm}(6,9)=18" />. Every multiple of 36 is also a multiple of 18, so **counting the multiples of 18 is enough**.
 
-<BlockMath math="300 = 135 + 255 - A" />
+<BlockMath math="\left\lfloor\tfrac{300}{18}\right\rfloor=16" />
 
-<BlockMath math="300 = 390 - A" />
+The numbers that remain number <InlineMath math="100-16=84" />.
 
-<BlockMath math="A = 390 - 300" />
+The value 100 forgets to remove the multiples of 9. The value 92 removes only the 8 multiples of 36. The value 76 removes the 8 multiples of 36 and the 16 multiples of 18 together, although the multiples of 36 are already among the multiples of 18. The value 67 removes all 33 multiples of 9 from 1 to 300, including those that were never in the first group.
 
-<BlockMath math="A = 90" />
-
-# Maximum overlap
-
-The maximum intersection occurs when the smaller set is a subset of the larger set. In this case, **all sports participants** also participate in nature activities.
-
-<BlockMath math="B = \min(n(O), n(C))" />
-
-<BlockMath math="B = \min(135, 255)" />
-
-<BlockMath math="B = 135" />
-
-# Calculating the Difference
-
-Both bounds are attainable with the following **allocation of participants**. Each row still totals 300.
-
-| Bound | Sports only | Both | Nature only | Neither |
-| --- | --- | --- | --- | --- |
-| A | 45 | 90 | 165 | 0 |
-| B | 0 | 135 | 120 | 45 |
-
-<BlockMath math="B - A = 135 - 90" />
-
-<BlockMath math="B - A = 45" />
-
-Thus, the difference between <InlineMath math="B" /> and <InlineMath math="A" /> is <InlineMath math="45\text{ people}" />.
+So the number of such integers is **84**.

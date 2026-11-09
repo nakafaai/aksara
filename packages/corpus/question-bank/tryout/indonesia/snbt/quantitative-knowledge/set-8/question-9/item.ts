@@ -3,27 +3,27 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$m < -2 \\lor m > 6$$",
+          column: 1,
+          label: "Waktu tempuh seluruh perjalanan adalah $$3{,}5$$ jam.",
         },
         {
-          correct: false,
-          label: "$$m > 6$$",
+          column: 2,
+          label:
+            "Kecepatan rata-rata mobil selama seluruh perjalanan adalah $$50\\text{ km/jam}$$.",
         },
         {
-          correct: false,
-          label: "$$-2 < m < 6$$",
+          column: 1,
+          label:
+            "Jika sisa perjalanan juga ditempuh dengan kecepatan $$60\\text{ km/jam}$$, mobil tiba 30 menit lebih cepat.",
         },
         {
-          correct: false,
-          label: "$$-6 < m < 2$$",
-        },
-        {
-          correct: false,
-          label: "$$m \\leq -2 \\lor m \\geq 6$$",
+          column: 2,
+          label:
+            "Mobil membutuhkan 2 jam 30 menit untuk menempuh $$120\\text{ km}$$ pertama.",
         },
       ],
     },

@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "village-trees",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$4500$$",
-        },
-        {
-          correct: false,
-          label: "$$4665$$",
-        },
-        {
-          correct: false,
-          label: "$$4860$$",
-        },
-        {
-          correct: false,
-          label: "$$9540$$",
-        },
-        {
-          correct: true,
-          label: "$$4770$$",
-        },
+        { correct: false, label: "tahun ke-6" },
+        { correct: false, label: "tahun ke-8" },
+        { correct: false, label: "tahun ke-10" },
+        { correct: true, label: "tahun ke-11" },
+        { correct: false, label: "tahun ke-12" },
       ],
     },
   },
