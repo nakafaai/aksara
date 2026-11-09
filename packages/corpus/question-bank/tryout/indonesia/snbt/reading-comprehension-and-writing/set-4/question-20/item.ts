@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Tandon air hujan menurunkan pemakaian air PDAM, terutama pada bulan ketika hujan sering turun.",
+            "Tandon air hujan menurunkan pemakaian air PDAM, terutama ketika tandon terisi air hujan.",
         },
         {
           correct: false,
