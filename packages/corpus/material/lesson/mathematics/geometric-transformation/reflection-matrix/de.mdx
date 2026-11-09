@@ -4,7 +4,7 @@ export const metadata = {
   description: "Leite die vier grundlegenden Spiegelungsmatrizen her und wende sie auf Punkte und Dreiecke an.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Geometrische Transformation",
 };
 
@@ -94,6 +94,45 @@ Vergleiche die vier Matrizen mit **demselben Ausgangspunkt** <InlineMath math="P
 | <InlineMath math="y=x" /> | <InlineMath math="(x,y)\mapsto(y,x)" /> | <InlineMath math="(-4,3)" /> |
 | <InlineMath math="y=-x" /> | <InlineMath math="(x,y)\mapsto(-y,-x)" /> | <InlineMath math="(4,-3)" /> |
 
+Trag <InlineMath math="P(3, -4)" /> und seine vier Bilder aus der Tabelle ein. Die Achsenspiegelungen an <InlineMath math="y = 0" /> und <InlineMath math="x = 0" /> kehren nur ein Vorzeichen um und liefern <InlineMath math="(3, 4)" /> und <InlineMath math="(-3, -4)" />. Die Spiegelungen an den Diagonalen <InlineMath math="y = x" /> und <InlineMath math="y = -x" /> vertauschen zusätzlich die Koordinaten und liefern <InlineMath math="(-4, 3)" /> und <InlineMath math="(4, -3)" />.
+
+<MathVisual
+  title={<>Ein Punkt, vier Spiegelungen</>}
+  description={<>Der Punkt <InlineMath math="P(3, -4)" /> mit seinen Bildern bei Spiegelung an der x-Achse, der y-Achse, der Geraden <InlineMath math="y = x" /> und der Geraden <InlineMath math="y = -x" />.</>}
+  labels={{
+    p: <InlineMath math="P(3, -4)" />,
+    "x-axis": <InlineMath math="(3, 4)" />,
+    "y-axis": <InlineMath math="(-3, -4)" />,
+    diagonal: <InlineMath math="(-4, 3)" />,
+    anti: <InlineMath math="(4, -3)" />,
+    d1: <InlineMath math="y = x" />,
+    d2: <InlineMath math="y = -x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "d1", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "d2", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "p", kind: "point", at: { x: 3, y: -4 }, appearance: "primary" },
+      { id: "x-axis", kind: "point", at: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "y-axis", kind: "point", at: { x: -3, y: -4 }, appearance: "secondary" },
+      { id: "diagonal", kind: "point", at: { x: -4, y: 3 }, appearance: "answer" },
+      { id: "anti", kind: "point", at: { x: 4, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 3, y: -4 }, placement: "below-right" },
+      { key: "x-axis", objectId: "x-axis", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "y-axis", objectId: "y-axis", at: { x: -3, y: -4 }, placement: "below-left" },
+      { key: "diagonal", objectId: "diagonal", at: { x: -4, y: 3 }, placement: "left" },
+      { key: "anti", objectId: "anti", at: { x: 4, y: -3 }, placement: "right" },
+      { key: "d1", objectId: "d1", at: { x: 9 / 2, y: 9 / 2 }, placement: "below-right" },
+      { key: "d2", objectId: "d2", at: { x: -9 / 2, y: 9 / 2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 ## Das Bild eines Punktes mit einer Matrix bestimmen
 
 Bestimme das Bild von <InlineMath math="(3,-4)" /> bei der Spiegelung an der <InlineMath math="x" />-Achse.
@@ -105,6 +144,35 @@ Wir setzen den Punkt als **Spaltenvektor** in die Spiegelungsmatrix der <InlineM
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ -4 \end{pmatrix} \\ &amp;= \begin{pmatrix} (1)(3) + (0)(-4) \\ (0)(3) + (-1)(-4) \end{pmatrix} \\ &amp;= \begin{pmatrix} 3 \\ 4 \end{pmatrix} \end{aligned}" />
 
 Somit ist das Bild <InlineMath math="(3,4)" />.
+
+In der Ebene behält die Multiplikation <InlineMath math="x = 3" /> bei und kehrt <InlineMath math="y = -4" /> zu <InlineMath math="4" /> um. <InlineMath math="P(3, -4)" /> und <InlineMath math="P'(3, 4)" /> liegen auf einer senkrechten Strecke, die von der x-Achse halbiert wird.
+
+<MathVisual
+  title={<><InlineMath math="(3, -4)" />, an der x-Achse gespiegelt</>}
+  description={<>Der Punkt <InlineMath math="P(3, -4)" /> und sein Bild <InlineMath math="P'(3, 4)" />, verbunden durch eine senkrechte Strecke, deren Mittelpunkt <InlineMath math="(3, 0)" /> auf der x-Achse liegt.</>}
+  labels={{
+    p: <InlineMath math="P(3, -4)" />,
+    image: <InlineMath math="P'(3, 4)" />,
+    mid: <InlineMath math="(3, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: -1, y: 0 }, { x: 5, y: 0 }], appearance: "reference" },
+      { id: "join", kind: "segment", from: { x: 3, y: -4 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "mid", kind: "point", at: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 3, y: -4 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 3, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 3, y: -4 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "mid", objectId: "mid", at: { x: 3, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Das Bild eines Dreiecks mit einer Matrix bestimmen
 
@@ -132,62 +200,35 @@ Die Spalten stehen von links nach rechts für <InlineMath math="A" />, <InlineMa
 
 Das Bilddreieck <InlineMath math="A'B'C'" /> hat daher die Eckpunkte <InlineMath math="A'(-3,1)" />, <InlineMath math="B'(2,3)" /> und <InlineMath math="C'(-2,-1)" />.
 
-<LineEquation
-  title={
-    <>
-      Spiegelung von <InlineMath math="\triangle ABC" /> an der <InlineMath math="y" />-Achse
-    </>
-  }
-  description={
-    <>
-      Das Dreieck <InlineMath math="ABC" /> wird an der <InlineMath math="y" />-Achse
-      zum Bilddreieck <InlineMath math="A'B'C'" /> gespiegelt.
-    </>
-  }
-  data={[
-    ...[
-      {
-        from: { x: 3, y: 1, z: 0, label: <InlineMath math="A(3,1)" /> },
-        to: { x: -2, y: 3, z: 0, label: <InlineMath math="B(-2,3)" /> },
-      },
-      {
-        from: { x: -2, y: 3, z: 0, label: <InlineMath math="B(-2,3)" /> },
-        to: { x: 2, y: -1, z: 0, label: <InlineMath math="C(2,-1)" /> },
-      },
-      {
-        from: { x: 2, y: -1, z: 0, label: <InlineMath math="C(2,-1)" /> },
-        to: { x: 3, y: 1, z: 0, label: <InlineMath math="A(3,1)" /> },
-      },
-    ].map((segment) => ({
-      points: [segment.from, segment.to],
-      smooth: false,
-      color: "#d97706",
-      showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],
-    })),
-    ...[
-      {
-        from: { x: -3, y: 1, z: 0, label: <InlineMath math="A'(-3,1)" /> },
-        to: { x: 2, y: 3, z: 0, label: <InlineMath math="B'(2,3)" /> },
-      },
-      {
-        from: { x: 2, y: 3, z: 0, label: <InlineMath math="B'(2,3)" /> },
-        to: { x: -2, y: -1, z: 0, label: <InlineMath math="C'(-2,-1)" /> },
-      },
-      {
-        from: { x: -2, y: -1, z: 0, label: <InlineMath math="C'(-2,-1)" /> },
-        to: { x: -3, y: 1, z: 0, label: <InlineMath math="A'(-3,1)" /> },
-      },
-    ].map((segment) => ({
-      points: [segment.from, segment.to],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: [0.3, 0.3, 0] }],
-    })),
-  ]}
-  cameraPosition={[0, 1, 10]}
-  cameraTarget={[0, 1, 0]}
+<MathVisual
+  title={<>Dreieck <InlineMath math="ABC" />, an der y-Achse gespiegelt</>}
+  description={<>Das Dreieck <InlineMath math="ABC" /> mit <InlineMath math="A(3, 1)" />, <InlineMath math="B(-2, 3)" />, <InlineMath math="C(2, -1)" /> und sein Bild <InlineMath math="A'(-3, 1)" />, <InlineMath math="B'(2, 3)" />, <InlineMath math="C'(-2, -1)" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    "a-image": <InlineMath math="A'" />,
+    "b-image": <InlineMath math="B'" />,
+    "c-image": <InlineMath math="C'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -1.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "tri", kind: "polygon", vertices: [{ x: 3, y: 1 }, { x: -2, y: 3 }, { x: 2, y: -1 }], appearance: "primary" },
+      { id: "image", kind: "polygon", vertices: [{ x: -3, y: 1 }, { x: 2, y: 3 }, { x: -2, y: -1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "tri", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "b", objectId: "tri", at: { x: -2, y: 3 }, placement: "above" },
+      { key: "c", objectId: "tri", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "a-image", objectId: "image", at: { x: -3, y: 1 }, placement: "left" },
+      { key: "b-image", objectId: "image", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "c-image", objectId: "image", at: { x: -2, y: -1 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Übungen

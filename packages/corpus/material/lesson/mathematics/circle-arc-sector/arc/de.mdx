@@ -3,7 +3,7 @@ export const metadata = {
   description: "Kreisbögen unterscheiden, ihre Länge berechnen und den Zusammenhang mit dem Mittelpunktswinkel verstehen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Kreisbögen und Sektoren",
 };
 
@@ -14,37 +14,37 @@ Ein Kreisbogen ist <Highlight>der Teil einer Kreislinie zwischen zwei Punkten</H
 
 Jeder Bogen hat zwei Endpunkte auf dem Kreis. Auf einem festen Kreis hängt seine Länge vom zugehörigen Mittelpunktswinkel ab: Je größer dieser Winkel ist, desto länger ist der Bogen.
 
-<LineEquation
-  title={<>Visualisierung von Kreisbögen</>}
-  description="Ein Kreisbogen und der zugehörige Mittelpunktswinkel."
-  cameraPosition={[0, 0, 12]}
-  data={[
-    {
-      kind: "circle-outline", radius: 4,
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: "Kreis", at: 56, offset: [1.5, 0.5, 0] }]
-    },
-    { kind: "circle-arc", radius: 4,
-      startDegrees: 30,
-      sweepDegrees: 120,
-      segments: 12,
-      color: "#ea580c",
-      label: { text: <>Bogen <InlineMath math="AB" /></>, offset: [1.5, 0.5, 0] } },
-    { kind: "circle-arc", radius: 4, startDegrees: 150, sweepDegrees: 240, color: "#db2777", label: { text: "Großer Bogen", offset: [0, -0.5, 0] } },
-    {
-      kind: "circle-radius", radius: 4, degrees: 30,
-      color: "#9333ea",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A" />, at: 1, offset: [0.3, 0.3, 0] }]
-    },
-    {
-      kind: "circle-radius", radius: 4, degrees: 150,
-      color: "#9333ea",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.3, 0] }]
-    }
-  ]}
+<MathVisual
+  title={<>Kleiner und großer Bogen <InlineMath math="AB" /></>}
+  description={<>Auf einem Kreis mit Radius 4 teilen die Punkte <InlineMath math="A" /> und <InlineMath math="B" /> bei <InlineMath math="30^\circ" /> und <InlineMath math="150^\circ" /> den Kreis in einen kleinen Bogen von <InlineMath math="120^\circ" /> und einen großen Bogen von <InlineMath math="240^\circ" />.</>}
+  labels={{
+    minor: <>Kleiner Bogen</>,
+    major: <>Großer Bogen</>,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.6, max: 4.6 }, y: { min: -4.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "major", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 150, sweepDegrees: 240, appearance: "secondary" },
+      { id: "minor", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 30, sweepDegrees: 120, appearance: "primary" },
+      { id: "oa", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(3), y: 2 }, appearance: "construction" },
+      { id: "ob", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2 * Math.sqrt(3), y: 2 }, appearance: "construction" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "a", kind: "point", at: { x: 2 * Math.sqrt(3), y: 2 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: -2 * Math.sqrt(3), y: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "minor", objectId: "minor", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "major", objectId: "major", at: { x: 0, y: -4 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 2 * Math.sqrt(3), y: 2 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -2 * Math.sqrt(3), y: 2 }, placement: "left" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Bogenarten nach ihrer Größe
@@ -73,29 +73,31 @@ Das Bogenmaß ist als **Bogenlänge geteilt durch Radius** definiert. Für einen
 
 In der zweiten Formel bezeichnet <InlineMath math="\alpha" /> den Mittelpunktswinkel im Bogenmaß.
 
-<LineEquation
-  title={<>Vergleich der Bogenlängen</>}
-  description="Bögen mit unterschiedlichen Mittelpunktswinkeln auf demselben Kreis."
-  cameraPosition={[0, 0, 10]}
-  data={[
-    {
-      kind: "circle-outline", radius: 3,
-      color: "#0891b2",
-      showPoints: false
-    },
-    { kind: "circle-arc", radius: 3,
-      startDegrees: 0,
-      sweepDegrees: 60,
-      segments: 6,
-      color: "#ea580c",
-      label: { text: <InlineMath math="60^\circ" />, offset: [0.8, 0.3, 0] } },
-    { kind: "circle-arc", radius: 3,
-      startDegrees: 180,
-      sweepDegrees: 120,
-      segments: 12,
-      color: "#9333ea",
-      label: { text: <InlineMath math="120^\circ" />, offset: [-1.5, 0.3, 0] } }
-  ]}
+<MathVisual
+  title={<>Die Bogenlänge wächst mit dem Winkel</>}
+  description={<>Auf einem Kreis mit Radius 3 ein Bogen von <InlineMath math="60^\circ" /> und ein Bogen von <InlineMath math="120^\circ" />. Der zweite ist doppelt so lang: <InlineMath math="\pi" /> und <InlineMath math="2\pi" />.</>}
+  labels={{
+    small: <InlineMath math="60^\circ" />,
+    large: <InlineMath math="120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "reference" },
+      { id: "r1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "r2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 2, y: 3 * Math.sqrt(3) / 2 }, appearance: "construction" },
+      { id: "r3", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: 0 }, appearance: "construction" },
+      { id: "r4", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 2, y: -3 * Math.sqrt(3) / 2 }, appearance: "construction" },
+      { id: "small", kind: "arc", center: { x: 0, y: 0 }, radius: 3, startDegrees: 0, sweepDegrees: 60, appearance: "primary" },
+      { id: "large", kind: "arc", center: { x: 0, y: 0 }, radius: 3, startDegrees: 180, sweepDegrees: 120, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "small", objectId: "small", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "above-right" },
+      { key: "large", objectId: "large", at: { x: -3 * Math.sqrt(3) / 2, y: -3 / 2 }, placement: "below-left" },
+    ],
+  }}
 />
 
 ## Zusammenhang zwischen Bogen und Mittelpunktswinkel
@@ -186,3 +188,29 @@ Der Bogen nimmt denselben Anteil am Umfang ein wie der Mittelpunktswinkel am Vol
 <BlockMath math="= \frac{45^\circ}{360^\circ} \times 88" />
 <BlockMath math="= \frac{1}{8} \times 88 = 11 \text{ cm}" />
 </MathContainer>
+
+In Lösung 1 ist der Mittelpunktswinkel <InlineMath math="90^\circ" /> eine Vierteldrehung, also ist der Bogen ein Viertel des Umfangs: <InlineMath math="\frac{90}{360} \times 2\pi \times 14 = 7\pi \approx 21{,}99" /> cm.
+
+<MathVisual
+  title={<>Ein Bogen von <InlineMath math="90^\circ" /> auf einem Kreis mit Radius 14 cm</>}
+  description={<>Der Viertelbogen eines Kreises mit Radius 14 cm, der Länge <InlineMath math="7\pi \approx 21{,}99" /> cm.</>}
+  labels={{
+    arc: <InlineMath math="7\pi \approx 21{,}99" />,
+    r: <InlineMath math="14" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 15 }, y: { min: -15, max: 15 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 14, appearance: "reference" },
+      { id: "r1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 14, y: 0 }, appearance: "construction" },
+      { id: "r2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 14 }, appearance: "construction" },
+      { id: "arc", kind: "arc", center: { x: 0, y: 0 }, radius: 14, startDegrees: 0, sweepDegrees: 90, appearance: "primary" },
+    ],
+    labels: [
+      { key: "arc", objectId: "arc", at: { x: 14 * Math.cos(Math.PI / 4), y: 14 * Math.sin(Math.PI / 4) }, placement: "above-right" },
+      { key: "r", objectId: "r1", at: { x: 7, y: 0 }, placement: "below" },
+    ],
+  }}
+/>

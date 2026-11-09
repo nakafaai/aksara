@@ -4,7 +4,7 @@ export const metadata = {
   description: "Cerminkan titik terhadap pusat sembarang dengan menggabungkan translasi dan operasi matriks.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Transformasi Geometri",
 };
 
@@ -29,11 +29,83 @@ Jika pusat pencerminan bukan titik asal, kita memerlukan translasi selain perkal
 
 Vektor terakhir menghasilkan aturan koordinat <InlineMath math="(x,y)\mapsto(2a-x,2b-y)" />.
 
+Ikuti <InlineMath math="Q(2, 3)" /> melalui tiga langkah itu. Mengurangkan pusat <InlineMath math="(1, 1)" /> memberi <InlineMath math="(1, 2)" />, mencerminkan terhadap titik asal memberi <InlineMath math="(-1, -2)" />, dan menambahkan pusat kembali memberi bayangan <InlineMath math="(0, -1)" />.
+
+<MathVisual
+  title={<>Geser, cerminkan, geser kembali</>}
+  description={<>Titik <InlineMath math="(2, 3)" /> digeser ke <InlineMath math="(1, 2)" />, dicerminkan terhadap titik asal ke <InlineMath math="(-1, -2)" />, lalu digeser kembali ke <InlineMath math="(0, -1)" />.</>}
+  labels={{
+    q: <InlineMath math="(2, 3)" />,
+    s1: <InlineMath math="(1, 2)" />,
+    s2: <InlineMath math="(-1, -2)" />,
+    image: <InlineMath math="(0, -1)" />,
+    c: <InlineMath math="(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 2.6 }, y: { min: -2.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "step1", kind: "segment", from: { x: 2, y: 3 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "step1-head", kind: "polygon", vertices: [{ x: 1, y: 2 }, { x: (1) + (1 / 6 / Math.sqrt(2)) + (1 / 15 / Math.sqrt(2)), y: (2) + (1 / 6 / Math.sqrt(2)) + (-1 / 15 / Math.sqrt(2)) }, { x: (1) + (1 / 6 / Math.sqrt(2)) + (-1 / 15 / Math.sqrt(2)), y: (2) + (1 / 6 / Math.sqrt(2)) + (1 / 15 / Math.sqrt(2)) }], appearance: "construction" },
+      { id: "step2", kind: "segment", from: { x: 1, y: 2 }, to: { x: -1, y: -2 }, appearance: "construction" },
+      { id: "step2-head", kind: "polygon", vertices: [{ x: -1, y: -2 }, { x: (-1) + (1 / 3 / Math.sqrt(20)) + (4 / 15 / Math.sqrt(20)), y: (-2) + (2 / 3 / Math.sqrt(20)) + (-2 / 15 / Math.sqrt(20)) }, { x: (-1) + (1 / 3 / Math.sqrt(20)) + (-4 / 15 / Math.sqrt(20)), y: (-2) + (2 / 3 / Math.sqrt(20)) + (2 / 15 / Math.sqrt(20)) }], appearance: "construction" },
+      { id: "step3", kind: "segment", from: { x: -1, y: -2 }, to: { x: 0, y: -1 }, appearance: "construction" },
+      { id: "step3-head", kind: "polygon", vertices: [{ x: 0, y: -1 }, { x: (0) + (-1 / 6 / Math.sqrt(2)) + (-1 / 15 / Math.sqrt(2)), y: (-1) + (-1 / 6 / Math.sqrt(2)) + (1 / 15 / Math.sqrt(2)) }, { x: (0) + (-1 / 6 / Math.sqrt(2)) + (1 / 15 / Math.sqrt(2)), y: (-1) + (-1 / 6 / Math.sqrt(2)) + (-1 / 15 / Math.sqrt(2)) }], appearance: "construction" },
+      { id: "c", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "q", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "s1", kind: "point", at: { x: 1, y: 2 }, appearance: "highlight" },
+      { id: "s2", kind: "point", at: { x: -1, y: -2 }, appearance: "highlight" },
+      { id: "image", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "q", objectId: "q", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "s1", objectId: "s1", at: { x: 1, y: 2 }, placement: "left" },
+      { key: "s2", objectId: "s2", at: { x: -1, y: -2 }, placement: "left" },
+      { key: "image", objectId: "image", at: { x: 0, y: -1 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 1, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 ### Operasi Matriks Pencerminan terhadap Titik
 
 Perkalian matriks <InlineMath math="2 \times 2" /> saja selalu memetakan <InlineMath math="(0,0)" /> ke <InlineMath math="(0,0)" />. Pencerminan terhadap pusat bukan nol memetakan asal ke <InlineMath math="(2a,2b)" />, sehingga kita memerlukan **tambahan vektor translasi**:
 
 <BlockMath math="\begin{pmatrix}x'\\y'\end{pmatrix}=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}+2\begin{pmatrix}a\\b\end{pmatrix}" />
+
+Rumus itu membagi gerakan yang sama menjadi dua bagian. Matriks <InlineMath math="-I" /> mengirim <InlineMath math="(2, 3)" /> ke <InlineMath math="(-2, -3)" />, yaitu pencerminan terhadap titik asal, dan menambahkan <InlineMath math="2(1, 1) = (2, 2)" /> menggeser titik itu ke bayangan <InlineMath math="(0, -1)" />.
+
+<MathVisual
+  title={<>Kalikan dengan <InlineMath math="-I" />, lalu tambahkan <InlineMath math="2(a, b)" /></>}
+  description={<>Titik <InlineMath math="(2, 3)" /> dicerminkan terhadap titik asal ke <InlineMath math="(-2, -3)" />, lalu digeser oleh <InlineMath math="(2, 2)" /> ke bayangannya <InlineMath math="(0, -1)" />.</>}
+  labels={{
+    q: <InlineMath math="(2, 3)" />,
+    flip: <InlineMath math="(-2, -3)" />,
+    image: <InlineMath math="(0, -1)" />,
+    shift: <InlineMath math="(2, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 2.6 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "join", kind: "segment", from: { x: 2, y: 3 }, to: { x: -2, y: -3 }, appearance: "construction" },
+      { id: "shift", kind: "segment", from: { x: -2, y: -3 }, to: { x: 0, y: -1 }, appearance: "highlight" },
+      { id: "shift-head", kind: "polygon", vertices: [{ x: 0, y: -1 }, { x: (0) + (-2 / 5 / Math.sqrt(8)) + (-4 / 25 / Math.sqrt(8)), y: (-1) + (-2 / 5 / Math.sqrt(8)) + (4 / 25 / Math.sqrt(8)) }, { x: (0) + (-2 / 5 / Math.sqrt(8)) + (4 / 25 / Math.sqrt(8)), y: (-1) + (-2 / 5 / Math.sqrt(8)) + (-4 / 25 / Math.sqrt(8)) }], appearance: "highlight" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "q", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "flip", kind: "point", at: { x: -2, y: -3 }, appearance: "construction" },
+      { id: "image", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "q", objectId: "q", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "flip", objectId: "flip", at: { x: -2, y: -3 }, placement: "left" },
+      { key: "image", objectId: "image", at: { x: 0, y: -1 }, placement: "right" },
+      { key: "shift", objectId: "shift", at: { x: -1, y: -2 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Menentukan Bayangan Titik
 
@@ -49,49 +121,30 @@ Titik yang akan dicerminkan adalah <InlineMath math="(x,y) = (2,3)" /> dan pusat
 
 Diagram berikut menempatkan **pusat tepat di tengah** titik asal dan bayangannya.
 
-<LineEquation
-  title={
-    <>
-      Pencerminan Titik <InlineMath math="Q(2,3)" /> terhadap{" "}
-      <InlineMath math="P(1,1)" />
-    </>
-  }
-  description={
-    <>
-      Titik <InlineMath math="Q(2,3)" /> dicerminkan terhadap{" "}
-      <InlineMath math="P(1,1)" /> menjadi <InlineMath math="Q'(0,-1)" />.
-    </>
-  }
-  data={[
-    {
-      points: [{ x: 1, y: 1, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P(1,1)" />, at: 0, offset: [0.3, -0.5, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 3, z: 0 }],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="Q(2,3)" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-    {
-      points: [{ x: 0, y: -1, z: 0 }],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="Q'(0,-1)" />, at: 0, offset: [-0.8, -0.2, 0] }],
-    },
-    {
-      points: [
-        { x: 2, y: 3, z: 0 },
-        { x: 0, y: -1, z: 0 },
-      ],
-      smooth: false,
-      color: "#4f46e5",
-    }, // Garis QQ'
-  ]}
-  cameraPosition={[1, 1, 8]}
-  cameraTarget={[1, 1, 0]}
+<MathVisual
+  title={<><InlineMath math="(2, 3)" /> dicerminkan terhadap <InlineMath math="(1, 1)" /></>}
+  description={<>Pusat <InlineMath math="(1, 1)" /> terletak di tengah-tengah antara titik <InlineMath math="(2, 3)" /> dan bayangannya <InlineMath math="(0, -1)" />.</>}
+  labels={{
+    c: <InlineMath math="(1, 1)" />,
+    q: <InlineMath math="(2, 3)" />,
+    image: <InlineMath math="(0, -1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3 }, y: { min: -1.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "join", kind: "segment", from: { x: 2, y: 3 }, to: { x: 0, y: -1 }, appearance: "construction" },
+      { id: "c", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "q", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "c", objectId: "c", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "q", objectId: "q", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 0, y: -1 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Latihan

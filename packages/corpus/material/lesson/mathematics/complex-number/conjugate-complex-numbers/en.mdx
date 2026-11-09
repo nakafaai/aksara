@@ -32,53 +32,29 @@ The number <InlineMath math="3 - 2i" /> is the one most often wrong. The imagina
 
 The points <InlineMath math="(x, y)" /> and <InlineMath math="(x, -y)" /> lie at the same distance from the real axis, one above it and one below. So <InlineMath math="\bar{z}" /> is **the reflection of <InlineMath math="z" /> across the real axis**.
 
-<LineEquation
-  title={
-    <>
-      Visualization of <InlineMath math="z = 3+2i" /> and its Conjugate{" "}
-      <InlineMath math="\bar{z} = 3-2i" />
-    </>
-  }
-  description={
-    <>
-      The points <InlineMath math="z" /> and <InlineMath math="\bar{z}" /> are
-      mirror images across the real axis.
-    </>
-  }
-  cameraPosition={[1.5, 0, 8]}
-  cameraTarget={[1.5, 0, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="z=3+2i" />, at: 1, offset: [0.5, 0.5, 0] }],
-      cone: { position: "end" },
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: -2, z: 0 },
-      ],
-      smooth: false,
-      color: "#65a30d",
-      labels: [{ text: <InlineMath math="\bar{z}=3-2i" />, at: 1, offset: [0.5, -0.5, 0] }],
-      cone: { position: "end" },
-    },
-    // Real axis line as mirror (optional)
-    {
-      points: [
-        { x: -0.5, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#d97706",
-    },
-  ]}
+<MathVisual
+  title={<><InlineMath math="z = 3 + 2i" /> and its conjugate <InlineMath math="\bar{z} = 3 - 2i" /></>}
+  description={<>The points <InlineMath math="z" /> and <InlineMath math="\bar{z}" /> are mirror images across the real axis, joined by a vertical segment that the axis cuts in half.</>}
+  labels={{
+    z: <InlineMath math="z = 3 + 2i" />,
+    bar: <InlineMath math="\bar{z} = 3 - 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "segment", from: { x: 3, y: 2 }, to: { x: 3, y: -2 }, appearance: "construction" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 3, y: 2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "bar", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -2 }, appearance: "secondary" },
+      { id: "bar-head", kind: "polygon", vertices: [{ x: 3, y: -2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (-2) + (1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (-2) + (1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "bar", objectId: "bar", at: { x: 3, y: -2 }, placement: "right" },
+    ],
+  }}
 />
 
 A reflection keeps lengths, so <InlineMath math="|\bar{z}| = |z|" />. Only the direction turns over: if <InlineMath math="z" /> makes the angle <InlineMath math="\theta" /> with the positive real axis, <InlineMath math="\bar{z}" /> makes the angle <InlineMath math="-\theta" />. For <InlineMath math="z = 3 + 2i" />, both have [modulus](/en/subjects/mathematics/complex-number/modulus-argument-complex-numbers) <InlineMath math="\sqrt{13}" />, and their arguments are about <InlineMath math="33.7^\circ" /> and <InlineMath math="-33.7^\circ" />. This rule of opposite arguments holds for <InlineMath math="z \ne 0" />, up to whole turns of <InlineMath math="360^\circ" />: for a negative real number such as <InlineMath math="-2" />, the arguments of <InlineMath math="z" /> and <InlineMath math="\bar{z}" /> both equal <InlineMath math="180^\circ" />.
@@ -90,7 +66,7 @@ When you add <InlineMath math="z" /> and <InlineMath math="\bar{z}" />, **the im
 <BlockMath math="\begin{aligned}z+\bar z&amp;=(x+iy)+(x-iy)=2x=2\operatorname{Re}(z)\\z-\bar z&amp;=(x+iy)-(x-iy)=2iy=2i\operatorname{Im}(z)\end{aligned}" />
 
 <MathVisual
-  title="The parallelogram of z and its conjugate"
+  title={<>The parallelogram of z and its conjugate</>}
   description={<>The vectors <InlineMath math="z = 3 + 2i" /> and <InlineMath math="\bar{z} = 3 - 2i" /> add like vectors. Their sum is <InlineMath math="6" />, exactly on the real axis.</>}
   scene={{
     space: "plane",
@@ -139,13 +115,43 @@ Compute <InlineMath math="\frac{3 + 4i}{1 - 2i}" />. The conjugate of the denomi
 Check by multiplying back: <InlineMath math="(-1 + 2i)(1 - 2i) = -1 + 2i + 2i - 4i^2 = 3 + 4i" />, the original numerator. The same method also computes the [inverse of a complex number](/en/subjects/mathematics/complex-number/inverse-complex-numbers), because <InlineMath math="\frac{1}{z} = \frac{\bar{z}}{|z|^2}" /> for <InlineMath math="z \ne 0" />.
 
 <Mermaid
-  title="Steps for dividing by a complex number"
-  description="The conjugate of the denominator turns the denominator into a real number, and multiplication checks the result."
+  title={<>Steps for dividing by a complex number</>}
+  description={<>The conjugate of the denominator turns the denominator into a real number, and multiplication checks the result.</>}
   chart={`flowchart LR
   A["Write the numerator and denominator"] --> B["Multiply top and bottom by the conjugate of the denominator"]
   B --> C["The denominator becomes the squared modulus"]
   C --> D["Separate the real and imaginary parts"]
   D --> E["Multiply the result by the denominator to check"]`}
+/>
+
+Check the quotient on the plane. <InlineMath math="-1 + 2i" /> has modulus <InlineMath math="\sqrt5" />, which is <InlineMath math="5 \div \sqrt5" />: the modulus of <InlineMath math="3 + 4i" /> divided by the modulus of <InlineMath math="1 - 2i" />.
+
+<MathVisual
+  title={<><InlineMath math="\frac{3 + 4i}{1 - 2i} = -1 + 2i" /></>}
+  description={<>The numerator <InlineMath math="3 + 4i" /> of modulus 5, the denominator <InlineMath math="1 - 2i" /> of modulus <InlineMath math="\sqrt5" />, and the quotient <InlineMath math="-1 + 2i" /> of modulus <InlineMath math="\sqrt5" />.</>}
+  labels={{
+    num: <InlineMath math="3 + 4i" />,
+    den: <InlineMath math="1 - 2i" />,
+    q: <InlineMath math="-1 + 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 3.6 }, y: { min: -2.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "num", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "num-head", kind: "polygon", vertices: [{ x: 3, y: 4 }, { x: 277 / 100, y: 193 / 50 }, { x: 293 / 100, y: 187 / 50 }], appearance: "primary" },
+      { id: "den", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "den-head", kind: "polygon", vertices: [{ x: 1, y: -2 }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (-2) + (1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (-2) + (1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }], appearance: "secondary" },
+      { id: "q", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 2 }, appearance: "answer" },
+      { id: "q-head", kind: "polygon", vertices: [{ x: -1, y: 2 }, { x: (-1) + (1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }, { x: (-1) + (1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "num", objectId: "num", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "den", objectId: "den", at: { x: 1, y: -2 }, placement: "right" },
+      { key: "q", objectId: "q", at: { x: -1, y: 2 }, placement: "left" },
+    ],
+  }}
 />
 
 ## When a Number Equals Its Conjugate

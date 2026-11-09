@@ -5,7 +5,7 @@ export const metadata = {
   description: "Represent two-dimensional vectors by components, then calculate their magnitudes and unit vectors in the coordinate plane.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-11",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Vector and Operations",
 };
 
@@ -37,69 +37,75 @@ The **length** or **magnitude** of vector <InlineMath math="\overrightarrow{OQ}"
 
 <BlockMath math="|\overrightarrow{OQ}| = \sqrt{x^2 + y^2}" />
 
+Components can be negative. For <InlineMath math="\overrightarrow{OR} = -3\mathbf{i} + 2\mathbf{j}" /> the horizontal component points left, along <InlineMath math="-\mathbf{i}" />, and the vertical one points up. The magnitude uses squares, so the signs do not change it: <InlineMath math="|\overrightarrow{OR}| = \sqrt{(-3)^2 + 2^2} = \sqrt{13}" />.
+
+<MathVisual
+  title={<>A vector with a negative component</>}
+  description={<>The vector from <InlineMath math="O(0, 0)" /> to <InlineMath math="R(-3, 2)" />, with horizontal component <InlineMath math="-3\mathbf{i}" /> and vertical component <InlineMath math="2\mathbf{j}" />, of length <InlineMath math="\sqrt{13}" />.</>}
+  labels={{
+    or: <InlineMath math="\overrightarrow{OR}" />,
+    x: <InlineMath math="-3\mathbf{i}" />,
+    y: <InlineMath math="2\mathbf{j}" />,
+    r: <InlineMath math="R(-3, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 0.8 }, y: { min: -0.6, max: 2.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: -3, y: 0 }, to: { x: -3, y: 2 }, appearance: "highlight" },
+      { id: "or", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: 2 }, appearance: "primary" },
+      { id: "or-head", kind: "polygon", vertices: [{ x: -3, y: 2 }, { x: (-3) + (3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }, { x: (-3) + (3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "r", kind: "point", at: { x: -3, y: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "or", objectId: "or", at: { x: -3 / 2, y: 1 }, placement: "above-right" },
+      { key: "x", objectId: "x", at: { x: -3 / 2, y: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: -3, y: 1 }, placement: "left" },
+      { key: "r", objectId: "r", at: { x: -3, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Two Dimensional Vector Visualization
 
 The visualization below connects the vector, its components, and its magnitude in the Cartesian plane:
 
-<LineEquation
-  cameraPosition={[1, 1.4, 9]}
-  cameraTarget={[1, 1.4, 0]}
-  title="Vector in the Coordinate Plane"
-  description={
-    <>
-      Visualization of vector{" "}
-      <InlineMath math="OQ = 4\mathbf{i} + 3\mathbf{j}" />{" "}
-      in the Cartesian coordinate system
-    </>
-  }
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.7 * ((4) - (0)), y: (0) + 0.7 * ((3) - (0)), z: (0) + 0.7 * ((0) - (0)) }, { x: 4, y: 3, z: 0 }],
-      color: "#65a30d",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <>Vector <InlineMath math="OQ" /></>,
-        at: 1,
-        offset: [-0.25, 0.65, 0],
-        anchorX: "center",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 4, y: 0, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <><InlineMath math="x" />-component</>,
-        at: 1,
-        offset: [0, -0.5, 0],
-        anchorX: "center",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((0) - (0)), y: (0) + 0.5 * ((3) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 0, y: 3, z: 0 }],
-      color: "#ca8a04",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <><InlineMath math="y" />-component</>,
-        at: 1,
-        offset: [-0.3, 0, 0],
-        anchorX: "right",
-      }],
-    },
-  ]}
+<MathVisual
+  title={<><InlineMath math="\overrightarrow{OQ} = 4\mathbf{i} + 3\mathbf{j}" /> and its components</>}
+  description={<>The vector from <InlineMath math="O(0, 0)" /> to <InlineMath math="Q(4, 3)" /> with its horizontal component <InlineMath math="4\mathbf{i}" /> and vertical component <InlineMath math="3\mathbf{j}" />.</>}
+  labels={{
+    oq: <InlineMath math="\overrightarrow{OQ}" />,
+    x: <InlineMath math="4\mathbf{i}" />,
+    y: <InlineMath math="3\mathbf{j}" />,
+    q: <InlineMath math="Q(4, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.6, max: 3.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 4, y: 0 }, to: { x: 4, y: 3 }, appearance: "highlight" },
+      { id: "oq", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "oq-head", kind: "polygon", vertices: [{ x: 4, y: 3 }, { x: 461 / 125, y: 729 / 250 }, { x: 479 / 125, y: 681 / 250 }], appearance: "primary" },
+      { id: "q", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "oq", objectId: "oq", at: { x: 2, y: 3 / 2 }, placement: "above-left" },
+      { key: "x", objectId: "x", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: 4, y: 3 / 2 }, placement: "right" },
+      { key: "q", objectId: "q", at: { x: 4, y: 3 }, placement: "above-right" },
+    ],
+  }}
 />
 
-The diagram shows all three coordinate axes. The vector lies in the <InlineMath math="xy" />-plane, so its <InlineMath math="z" />-component is <InlineMath math="0" />.
+The vector lies in the <InlineMath math="xy" />-plane, so its <InlineMath math="z" />-component is <InlineMath math="0" />.
 
 In the visualization above:
 
-- Vector <InlineMath math="\overrightarrow{OQ}" /> (light green) has initial point <InlineMath math="O(0,0)" /> and endpoint <InlineMath math="Q(4,3)" />
+- Vector <InlineMath math="\overrightarrow{OQ}" /> (orange) has initial point <InlineMath math="O(0,0)" /> and endpoint <InlineMath math="Q(4,3)" />
 - The <InlineMath math="x" />-component (teal) is the projection of vector <InlineMath math="\overrightarrow{OQ}" /> on the <InlineMath math="x" />-axis, which is <InlineMath math="4\mathbf{i}" />
 - The <InlineMath math="y" />-component (yellow) is the projection of vector <InlineMath math="\overrightarrow{OQ}" /> on the <InlineMath math="y" />-axis, which is <InlineMath math="3\mathbf{j}" />
 
@@ -116,3 +122,30 @@ To obtain **unit length**, divide each component by the vector magnitude. The di
 The new components have the same ratio as the original components. Check the unit vector magnitude with Pythagoras:
 
 <BlockMath math="|\hat{u}|=\sqrt{\left(\frac45\right)^2+\left(\frac35\right)^2}=\sqrt{\frac{16}{25}+\frac9{25}}=\sqrt1=1" />
+
+Dividing by 5 shrinks <InlineMath math="\overrightarrow{OQ}" /> to length 1 without turning it. The unit vector <InlineMath math="\hat{u} = \tfrac45\mathbf{i} + \tfrac35\mathbf{j}" /> ends on the circle of radius 1, on the same ray from <InlineMath math="O" /> as <InlineMath math="Q(4, 3)" />.
+
+<MathVisual
+  title={<>The unit vector <InlineMath math="\hat{u}" /> along <InlineMath math="\overrightarrow{OQ}" /></>}
+  description={<>The vector <InlineMath math="\overrightarrow{OQ}" /> to <InlineMath math="Q(4, 3)" /> and the unit vector <InlineMath math="\hat{u} = \left(\tfrac45, \tfrac35\right)" /> along it, ending on the circle of radius 1.</>}
+  labels={{
+    oq: <InlineMath math="\overrightarrow{OQ}" />,
+    u: <InlineMath math="\hat{u}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 4.6 }, y: { min: -1.3, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "oq", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "oq-head", kind: "polygon", vertices: [{ x: 4, y: 3 }, { x: 461 / 125, y: 729 / 250 }, { x: 479 / 125, y: 681 / 250 }], appearance: "primary" },
+      { id: "u", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 / 5, y: 3 / 5 }, appearance: "answer" },
+      { id: "u-head", kind: "polygon", vertices: [{ x: 4 / 5, y: 3 / 5 }, { x: 47 / 75, y: 83 / 150 }, { x: 53 / 75, y: 67 / 150 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "oq", objectId: "oq", at: { x: 3, y: 9 / 4 }, placement: "above-left" },
+      { key: "u", objectId: "u", at: { x: 4 / 5, y: 3 / 5 }, placement: "below-right" },
+    ],
+  }}
+/>

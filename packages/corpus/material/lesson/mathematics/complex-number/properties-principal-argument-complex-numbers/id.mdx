@@ -21,7 +21,7 @@ Bilangan bulat <InlineMath math="k" /> selalu <InlineMath math="-1" />, <InlineM
 Modulus ikut dikalikan atau dibagi, tetapi modulus yang positif tidak mengubah arah. Karena itu argumen hasil kali hanya bergantung pada argumen kedua faktornya.
 
 <MathVisual
-  title="Argumen dijumlahkan saat dikalikan"
+  title={<>Argumen dijumlahkan saat dikalikan</>}
   description={<>Mengalikan dengan <InlineMath math="i" /> memutar <InlineMath math="1 + i" /> sejauh <InlineMath math="90^\circ" />, dari <InlineMath math="45^\circ" /> ke <InlineMath math="135^\circ" />.</>}
   scene={{
     space: "plane",
@@ -78,7 +78,7 @@ Kedua komponen negatif, jadi **hasil kali ada di kuadran III**, tempat argumen u
 Periksa: kalikan pembilang dan penyebut dengan <InlineMath math="-i" />, sehingga <InlineMath math="\frac{-1 - i}{i} = (-1 - i)(-i) = i + i^2 = -1 + i" />. Bilangan <InlineMath math="-1 + i" /> memang punya argumen utama <InlineMath math="135^\circ" />.
 
 <MathVisual
-  title="Jumlah argumen yang keluar dari selang utama"
+  title={<>Jumlah argumen yang keluar dari selang utama</>}
   description={<>Busur <InlineMath math="135^\circ + 120^\circ = 255^\circ" /> melewati <InlineMath math="180^\circ" />. Arah yang sama ditulis sebagai argumen utama <InlineMath math="-105^\circ" />.</>}
   scene={{
     space: "plane",
@@ -119,8 +119,8 @@ Untuk <InlineMath math="(-1 + i)^3" />, nilai <InlineMath math="3 \cdot 135^\cir
 [Konjugat](/id/materi/matematika/bilangan-kompleks/konjugat-bilangan-kompleks) <InlineMath math="\bar{z} = x - iy" /> adalah cerminan <InlineMath math="z" /> terhadap sumbu nyata, jadi argumennya berganti tanda: <InlineMath math="\operatorname{Arg}\bar{z} = -\operatorname{Arg} z" />. Satu pengecualian ada di sumbu nyata negatif. Bilangan <InlineMath math="-4" /> sama dengan konjugatnya, dan argumen utama keduanya <InlineMath math="180^\circ" />, karena <InlineMath math="-180^\circ" /> tidak termasuk dalam selang.
 
 <Mermaid
-  title="Argumen setelah satu operasi"
-  description="Setiap operasi mengubah argumen dengan caranya sendiri, lalu hasilnya dikembalikan ke selang utama."
+  title={<>Argumen setelah satu operasi</>}
+  description={<>Setiap operasi mengubah argumen dengan caranya sendiri, lalu hasilnya dikembalikan ke selang utama.</>}
   chart={`flowchart TD
   A{"Operasi apa?"} -->|"perkalian"| B["Jumlahkan argumen"]
   A -->|"pembagian"| C["Kurangkan argumen"]
@@ -131,6 +131,39 @@ Untuk <InlineMath math="(-1 + i)^3" />, nilai <InlineMath math="3 \cdot 135^\cir
   D --> F
   E --> F
   F --> G["Periksa dengan bentuk Kartesius"]`}
+/>
+
+Perpangkatan mengalikan argumen. <InlineMath math="(-1 + i)^3" /> memiliki argumen <InlineMath math="3 \cdot 135^\circ = 405^\circ" />, satu putaran penuh ditambah <InlineMath math="45^\circ" />, dan memang <InlineMath math="(-1 + i)^2 = -2i" /> serta <InlineMath math="(-1 + i)^3 = 2 + 2i" /> mengarah ke <InlineMath math="45^\circ" />.
+
+<MathVisual
+  title={<>Perpangkatan <InlineMath math="-1 + i" /></>}
+  description={<>Panah ke <InlineMath math="-1 + i" /> pada <InlineMath math="135^\circ" />, <InlineMath math="(-1 + i)^2 = -2i" /> pada <InlineMath math="-90^\circ" />, dan <InlineMath math="(-1 + i)^3 = 2 + 2i" /> pada <InlineMath math="45^\circ" />, dengan panjang <InlineMath math="\sqrt2" />, 2, dan <InlineMath math="2\sqrt2" />.</>}
+  labels={{
+    z: <InlineMath math="-1 + i" />,
+    z2: <InlineMath math="-2i" />,
+    z3: <InlineMath math="2 + 2i" />,
+    a3: <InlineMath math="45^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 2.8 }, y: { min: -2.6, max: 2.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a3", kind: "arc", center: { x: 0, y: 0 }, radius: 3 / 5, startDegrees: 0, sweepDegrees: 45, appearance: "answer" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: -1, y: 1 }, { x: (-1) + (1 / 5 / Math.sqrt(2)) + (-2 / 25 / Math.sqrt(2)), y: (1) + (-1 / 5 / Math.sqrt(2)) + (-2 / 25 / Math.sqrt(2)) }, { x: (-1) + (1 / 5 / Math.sqrt(2)) + (2 / 25 / Math.sqrt(2)), y: (1) + (-1 / 5 / Math.sqrt(2)) + (2 / 25 / Math.sqrt(2)) }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -2 }, appearance: "construction" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 0, y: -2 }, { x: 2 / 25, y: -9 / 5 }, { x: -2 / 25, y: -9 / 5 }], appearance: "construction" },
+      { id: "z3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 }, appearance: "secondary" },
+      { id: "z3-head", kind: "polygon", vertices: [{ x: 2, y: 2 }, { x: (2) + (-2 / 5 / Math.sqrt(8)) + (-4 / 25 / Math.sqrt(8)), y: (2) + (-2 / 5 / Math.sqrt(8)) + (4 / 25 / Math.sqrt(8)) }, { x: (2) + (-2 / 5 / Math.sqrt(8)) + (4 / 25 / Math.sqrt(8)), y: (2) + (-2 / 5 / Math.sqrt(8)) + (-4 / 25 / Math.sqrt(8)) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: -1, y: 1 }, placement: "left" },
+      { key: "z2", objectId: "z2", at: { x: 0, y: -2 }, placement: "right" },
+      { key: "z3", objectId: "z3", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "a3", objectId: "a3", at: { x: 0.6 * Math.cos(Math.PI / 8), y: 0.6 * Math.sin(Math.PI / 8) }, placement: "right" },
+    ],
+  }}
 />
 
 ## Kesalahan yang Sering Terjadi

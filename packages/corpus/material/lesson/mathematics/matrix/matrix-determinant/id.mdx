@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung determinan matriks ordo dua dan selesaikan SPLDV dengan Aturan Cramer. Pelajari rumus determinan dengan contoh bertahap dan latihan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -42,6 +42,36 @@ Maka, determinan matriks <InlineMath math="B" /> adalah:
 </MathContainer>
 
 Jadi, nilai determinan dari matriks <InlineMath math="B" /> adalah <InlineMath math="26" />.
+
+Secara geometris, determinan mengukur luas. Kolom-kolom <InlineMath math="B" />, yaitu <InlineMath math="(-1, -7)" /> dan <InlineMath math="(3, -5)" />, membentuk jajargenjang, dan luasnya <InlineMath math="|\det(B)| = 26" />.
+
+<MathVisual
+  title={<>Jajargenjang dari kolom-kolom <InlineMath math="B" /></>}
+  description={<>Jajargenjang yang dibentuk <InlineMath math="(-1, -7)" /> dan <InlineMath math="(3, -5)" />, dengan luas <InlineMath math="|(-1)(-5) - (3)(-7)| = 26" />.</>}
+  labels={{
+    area: <InlineMath math="26" />,
+    c1: <InlineMath math="(-1, -7)" />,
+    c2: <InlineMath math="(3, -5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: -13, max: 1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -1, y: -7 }, { x: 2, y: -12 }, { x: 3, y: -5 }], appearance: "answer" },
+      { id: "c1", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: -7 }, appearance: "primary" },
+      { id: "c1-head", kind: "polygon", vertices: [{ x: -1, y: -7 }, { x: (-1) + (2 / 5 / Math.sqrt(50)) + (28 / 25 / Math.sqrt(50)), y: (-7) + (14 / 5 / Math.sqrt(50)) + (-4 / 25 / Math.sqrt(50)) }, { x: (-1) + (2 / 5 / Math.sqrt(50)) + (-28 / 25 / Math.sqrt(50)), y: (-7) + (14 / 5 / Math.sqrt(50)) + (4 / 25 / Math.sqrt(50)) }], appearance: "primary" },
+      { id: "c2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -5 }, appearance: "secondary" },
+      { id: "c2-head", kind: "polygon", vertices: [{ x: 3, y: -5 }, { x: (3) + (-6 / 5 / Math.sqrt(34)) + (4 / 5 / Math.sqrt(34)), y: (-5) + (2 / Math.sqrt(34)) + (12 / 25 / Math.sqrt(34)) }, { x: (3) + (-6 / 5 / Math.sqrt(34)) + (-4 / 5 / Math.sqrt(34)), y: (-5) + (2 / Math.sqrt(34)) + (-12 / 25 / Math.sqrt(34)) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "area", objectId: "area", at: { x: 1, y: -6 }, placement: "center" },
+      { key: "c1", objectId: "c1", at: { x: -1, y: -7 }, placement: "left" },
+      { key: "c2", objectId: "c2", at: { x: 3, y: -5 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Menyelesaikan SPLDV dengan Determinan
 
 Aturan Cramer memakai determinan untuk mencari nilai variabel dalam sistem persamaan linear.
@@ -132,28 +162,29 @@ Jadi, himpunan penyelesaian dari sistem persamaan linear tersebut adalah <Inline
 
 Hasil Cramer juga dapat kamu baca sebagai **titik potong dua garis**. Ubah persamaan menjadi <InlineMath math="y=2x-7" /> dan <InlineMath math="y=\frac14x-\frac72" />. Kemiringannya berbeda, jadi kedua garis hanya berpotongan sekali.
 
-<LineEquation
-  title="Dua Garis dengan Satu Titik Potong"
-  description={<>Garis hijau: <InlineMath math="2x-y=7" />. Garis jingga: <InlineMath math="x-4y=14" />. Keduanya berpotongan di <InlineMath math="(2,-3)" />.</>}
-  cameraPosition={[2, -2, 18]}
-  cameraTarget={[2, -2, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [{ x: -1, y: -9, z: 0 }, { x: 2, y: -3, z: 0 }, { x: 6, y: 5, z: 0 }],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="(2,-3)" />, at: 1, offset: [0.6, 0.6, 0] }],
-    },
-    {
-      points: [{ x: -2, y: -4, z: 0 }, { x: 6, y: -2, z: 0 }],
-      smooth: false,
-      color: "#f97316",
-      showPoints: false,
-    },
-  ]}
+<MathVisual
+  title={<>Dua garis dengan satu titik potong</>}
+  description={<>Garis <InlineMath math="2x - y = 7" /> dan <InlineMath math="x - 4y = 14" /> memiliki gradien berbeda dan berpotongan tepat sekali, di <InlineMath math="(2, -3)" />.</>}
+  labels={{
+    l1: <InlineMath math="2x - y = 7" />,
+    l2: <InlineMath math="x - 4y = 14" />,
+    p: <InlineMath math="(2, -3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 7 }, y: { min: -9.6, max: 5.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "l1", kind: "line", through: [{ x: -1, y: -9 }, { x: 6, y: 5 }], appearance: "secondary" },
+      { id: "l2", kind: "line", through: [{ x: -2, y: -4 }, { x: 6, y: -2 }], appearance: "primary" },
+      { id: "p", kind: "point", at: { x: 2, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 6, y: 5 }, placement: "left" },
+      { key: "l2", objectId: "l2", at: { x: 6, y: -2 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 2, y: -3 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Substitusi koordinat titik potong memeriksa kedua persamaan sekaligus.
@@ -216,3 +247,30 @@ Setiap soal di bawah memakai determinan untuk tujuan yang berbeda. Soal pertama 
     </MathContainer>
 
     Jadi, penyelesaian dari sistem persamaan linear tersebut adalah <InlineMath math="x=2" /> dan <InlineMath math="y=-4" />, atau pasangan berurutan <InlineMath math="(2, -4)" />.
+
+Pada Pembahasan 2, aturan Cramer memberi <InlineMath math="(2, -4)" />. Gambar <InlineMath math="y = 2x - 8" /> dan <InlineMath math="y = -\frac{x + 10}{3}" />: keduanya berpotongan tepat di <InlineMath math="(2, -4)" />, dan substitusi memeriksa kedua persamaan, <InlineMath math="2(2) - (-4) = 8" /> dan <InlineMath math="2 + 3(-4) = -10" />.
+
+<MathVisual
+  title={<>Penyelesaian <InlineMath math="(2, -4)" /> sebagai titik potong</>}
+  description={<>Garis <InlineMath math="2x - y = 8" /> dan <InlineMath math="x + 3y = -10" />, yang bertemu di <InlineMath math="(2, -4)" />.</>}
+  labels={{
+    l1: <InlineMath math="2x - y = 8" />,
+    l2: <InlineMath math="x + 3y = -10" />,
+    p: <InlineMath math="(2, -4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -9, max: 2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "l1", kind: "line", through: [{ x: 0, y: -8 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "l2", kind: "line", through: [{ x: -10, y: 0 }, { x: 2, y: -4 }], appearance: "primary" },
+      { id: "p", kind: "point", at: { x: 2, y: -4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l2", objectId: "l2", at: { x: -2, y: -8 / 3 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 2, y: -4 }, placement: "below-right" },
+    ],
+  }}
+/>

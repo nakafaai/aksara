@@ -42,6 +42,54 @@ Die Flugfähigkeit fasst diese Tiere zusammen, andere Merkmale unterscheiden sie
 | Fledermaus | Haare und Milchdrüsen | Säugetiere |
 | Insekt | Drei Beinpaare und Außenskelett | Insekten |
 
+Die Szene unten sortiert sechs Tiere zweimal. Der fuchsiafarbene Kreis nutzt ein einziges Kriterium, das Fliegen, und fängt Spatz, Fledermaus und Schmetterling ein. Die drei Klassenkreise nutzen stattdessen gemeinsame Körpermerkmale, also kommt der Pinguin zum Spatz, die Katze zur Fledermaus und die Ameise zum Schmetterling. Die drei Flieger liegen gleichzeitig in zwei Gruppen. Keine der beiden Einteilungen ist falsch: Sie beantworten verschiedene Fragen, und nur die Klassenkreise folgen der Verwandtschaft.
+
+<MathVisual
+  title={<>Dieselben Tiere, zwei Kriterien</>}
+  description={<>Sechs Tiere, gruppiert nach Flugfähigkeit (fuchsiafarbener Kreis) und nach Klasse aus gemeinsamen Körpermerkmalen (oranger, violetter und türkiser Kreis).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -2.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "birds", kind: "circle", appearance: "primary", center: { x: -3.5, y: 0 }, radius: 2 },
+      { id: "mammals", kind: "circle", appearance: "secondary", center: { x: 3.5, y: 0 }, radius: 2 },
+      { id: "insects", kind: "circle", appearance: "construction", center: { x: 0, y: 5 }, radius: 2 },
+      { id: "flight", kind: "circle", appearance: "answer", center: { x: 0, y: 1.6 }, radius: 2.7 },
+      { id: "sparrow", kind: "point", appearance: "primary", at: { x: -2.2, y: 0.6 } },
+      { id: "penguin", kind: "point", appearance: "primary", at: { x: -4.6, y: -0.6 } },
+      { id: "bat", kind: "point", appearance: "secondary", at: { x: 2.2, y: 0.6 } },
+      { id: "cat", kind: "point", appearance: "secondary", at: { x: 4.6, y: -0.6 } },
+      { id: "butterfly", kind: "point", appearance: "construction", at: { x: 0, y: 3.6 } },
+      { id: "ant", kind: "point", appearance: "construction", at: { x: 0, y: 6.2 } },
+    ],
+    labels: [
+      { key: "birds", objectId: "birds", at: { x: -3.5, y: -2 }, placement: "below" },
+      { key: "mammals", objectId: "mammals", at: { x: 3.5, y: -2 }, placement: "below" },
+      { key: "insects", objectId: "insects", at: { x: 0, y: 7 }, placement: "above" },
+      { key: "flight", objectId: "flight", at: { x: 0, y: -1.1 }, placement: "below" },
+      { key: "sparrow", objectId: "sparrow", at: { x: -2.2, y: 0.6 }, placement: "above" },
+      { key: "penguin", objectId: "penguin", at: { x: -4.6, y: -0.6 }, placement: "above" },
+      { key: "bat", objectId: "bat", at: { x: 2.2, y: 0.6 }, placement: "above" },
+      { key: "cat", objectId: "cat", at: { x: 4.6, y: -0.6 }, placement: "above" },
+      { key: "butterfly", objectId: "butterfly", at: { x: 0, y: 3.6 }, placement: "right" },
+      { key: "ant", objectId: "ant", at: { x: 0, y: 6.2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    birds: "Vögel",
+    mammals: "Säugetiere",
+    insects: "Insekten",
+    flight: "Kann fliegen",
+    sparrow: "Spatz",
+    penguin: "Pinguin",
+    bat: "Fledermaus",
+    cat: "Katze",
+    butterfly: "Schmetterling",
+    ant: "Ameise",
+  }}
+/>
+
 ### Natürliche Klassifikation vergleicht viele Merkmale
 
 Die natürliche Klassifikation berücksichtigt **mehrere Merkmale gleichzeitig**, etwa Körperform, Ernährungsweise, Zellaufbau und Fortpflanzung. Das historische Fünf-Reiche-System nutzte umfassende Merkmalskombinationen, um Organismen Monera, Protista, Fungi, Plantae und Animalia zuzuordnen. Moderne Befunde fassen jedoch nicht mehr alle Prokaryoten als Monera zusammen. Vergleiche ribosomaler RNA und weitere Belege unterscheiden die Domänen Bacteria und Archaea neben Eukarya.
@@ -64,6 +112,59 @@ Phylogenetische Klassifikation erschließt evolutionäre Verwandtschaft anhand v
     D --> G["Phylogenetische Klassifikation"]`}
 />
 
+Ein Schlüssel mit Ja-oder-Nein-Fragen teilt jede Gruppe in zwei. Nach <InlineMath math="k" /> Fragen kannst du bis zu <InlineMath math="2^k" /> Gruppen unterscheiden, drei Fragen reichen also für acht. Zoom auf jede Ebene und zähl die Zweige.
+
+<MathVisual
+  title={<>Jede Frage verdoppelt die Gruppen</>}
+  description={<>Ein dichotomer Schlüssel mit drei Ja-oder-Nein-Fragen. Jede Gabelung ist eine Frage, und jeder Endpunkt ist eine Gruppe.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 10 }, y: { min: -1, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "fork-root-a0", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: -4, y: 2 } },
+      { id: "fork-root-a1", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 4, y: 2 } },
+      { id: "fork-a0-b0", kind: "segment", appearance: "reference", from: { x: -4, y: 2 }, to: { x: -6, y: 1 } },
+      { id: "fork-a0-b1", kind: "segment", appearance: "reference", from: { x: -4, y: 2 }, to: { x: -2, y: 1 } },
+      { id: "fork-a1-b2", kind: "segment", appearance: "reference", from: { x: 4, y: 2 }, to: { x: 2, y: 1 } },
+      { id: "fork-a1-b3", kind: "segment", appearance: "reference", from: { x: 4, y: 2 }, to: { x: 6, y: 1 } },
+      { id: "fork-b0-c0", kind: "segment", appearance: "reference", from: { x: -6, y: 1 }, to: { x: -7, y: 0 } },
+      { id: "fork-b0-c1", kind: "segment", appearance: "reference", from: { x: -6, y: 1 }, to: { x: -5, y: 0 } },
+      { id: "fork-b1-c2", kind: "segment", appearance: "reference", from: { x: -2, y: 1 }, to: { x: -3, y: 0 } },
+      { id: "fork-b1-c3", kind: "segment", appearance: "reference", from: { x: -2, y: 1 }, to: { x: -1, y: 0 } },
+      { id: "fork-b2-c4", kind: "segment", appearance: "reference", from: { x: 2, y: 1 }, to: { x: 1, y: 0 } },
+      { id: "fork-b2-c5", kind: "segment", appearance: "reference", from: { x: 2, y: 1 }, to: { x: 3, y: 0 } },
+      { id: "fork-b3-c6", kind: "segment", appearance: "reference", from: { x: 6, y: 1 }, to: { x: 5, y: 0 } },
+      { id: "fork-b3-c7", kind: "segment", appearance: "reference", from: { x: 6, y: 1 }, to: { x: 7, y: 0 } },
+      { id: "node-root", kind: "point", appearance: "secondary", at: { x: 0, y: 3 } },
+      { id: "node-a0", kind: "point", appearance: "secondary", at: { x: -4, y: 2 } },
+      { id: "node-a1", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "node-b0", kind: "point", appearance: "secondary", at: { x: -6, y: 1 } },
+      { id: "node-b1", kind: "point", appearance: "secondary", at: { x: -2, y: 1 } },
+      { id: "node-b2", kind: "point", appearance: "secondary", at: { x: 2, y: 1 } },
+      { id: "node-b3", kind: "point", appearance: "secondary", at: { x: 6, y: 1 } },
+      { id: "node-c0", kind: "point", appearance: "answer", at: { x: -7, y: 0 } },
+      { id: "node-c1", kind: "point", appearance: "answer", at: { x: -5, y: 0 } },
+      { id: "node-c2", kind: "point", appearance: "answer", at: { x: -3, y: 0 } },
+      { id: "node-c3", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "node-c4", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "node-c5", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "node-c6", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
+      { id: "node-c7", kind: "point", appearance: "answer", at: { x: 7, y: 0 } },
+    ],
+    labels: [
+      { key: "one", objectId: "node-a1", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "two", objectId: "node-b3", at: { x: 6, y: 1 }, placement: "right" },
+      { key: "three", objectId: "node-c7", at: { x: 7, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    one: <InlineMath math="2^1=2" />,
+    two: <InlineMath math="2^2=4" />,
+    three: <InlineMath math="2^3=8" />,
+  }}
+/>
+
 ## Taxa und Ränge in einer Hierarchie
 
 In der Klassifikation ist ein **Taxon** eine bestimmte benannte Gruppe, während ein **Rang** seine Stufe in der Hierarchie bezeichnet. Die gebräuchliche Reihenfolge reicht vom Allgemeinen zum Spezifischen: Domäne, Reich, Stamm beziehungsweise Abteilung, Klasse, Ordnung, Familie, Gattung und Art. Weitere Rangstufen können dazwischenliegen.
@@ -73,6 +174,49 @@ In der Biologie ist „Familie“ der Name eines Rangs, während *Hominidae* ein
 Doch die Hierarchie allein reicht nicht aus. Eine Alltagsbezeichnung wie „flugfähige Tiere“ ist nicht automatisch ein formales Taxon. Prüfe bei jedem Gruppennamen, ob er eine praktische Nutzung, gemeinsame Merkmale oder eine Hypothese zur evolutionären Verwandtschaft beschreibt.
 
 In der Genomforschung müssen Gruppennamen konsistent sein, damit Daten aus vielen Laboren gemeinsam ausgewertet werden können. Öffentliche Sequenzdatenbanken verwenden eine [gemeinsame Klassifikation und Nomenklatur](https://www.ncbi.nlm.nih.gov/taxonomy), um Organismennamen mit genetischen Befunden zu verbinden.
+
+Hier ist ein vollständiger Weg durch die Rangstufen, für den Menschen. Jede Stufe liegt in der jeweils darüberliegenden und umfasst weniger Lebewesen. Zoom von der Domäne bis zum kleinsten Kreis, in dem nur noch unsere eigene Art übrig ist.
+
+<MathVisual
+  title={<>Rangstufen ineinander, von der Domäne bis zur Art</>}
+  description={<>Jeder Kreis ist ein Taxon in der Einordnung des Menschen, innerhalb des Taxons eine Stufe darüber.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -0.5, max: 17 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "rank-domain", kind: "circle", appearance: "primary", center: { x: 0, y: 8 }, radius: 8 },
+      { id: "rank-kingdom", kind: "circle", appearance: "reference", center: { x: 0, y: 7 }, radius: 7 },
+      { id: "rank-phylum", kind: "circle", appearance: "reference", center: { x: 0, y: 6 }, radius: 6 },
+      { id: "rank-class", kind: "circle", appearance: "reference", center: { x: 0, y: 5 }, radius: 5 },
+      { id: "rank-order", kind: "circle", appearance: "reference", center: { x: 0, y: 4 }, radius: 4 },
+      { id: "rank-family", kind: "circle", appearance: "reference", center: { x: 0, y: 3 }, radius: 3 },
+      { id: "rank-genus", kind: "circle", appearance: "reference", center: { x: 0, y: 2 }, radius: 2 },
+      { id: "rank-species", kind: "circle", appearance: "answer", center: { x: 0, y: 1 }, radius: 1 },
+      { id: "human", kind: "point", appearance: "answer", at: { x: 0, y: 1 } },
+    ],
+    labels: [
+      { key: "domain", objectId: "rank-domain", at: { x: 0, y: 16 }, placement: "above" },
+      { key: "kingdom", objectId: "rank-kingdom", at: { x: 0, y: 14 }, placement: "above" },
+      { key: "phylum", objectId: "rank-phylum", at: { x: 0, y: 12 }, placement: "above" },
+      { key: "class", objectId: "rank-class", at: { x: 0, y: 10 }, placement: "above" },
+      { key: "order", objectId: "rank-order", at: { x: 0, y: 8 }, placement: "above" },
+      { key: "family", objectId: "rank-family", at: { x: 0, y: 6 }, placement: "above" },
+      { key: "genus", objectId: "rank-genus", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "species", objectId: "rank-species", at: { x: 0, y: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    domain: <>Domäne Eukarya</>,
+    kingdom: <>Reich Animalia</>,
+    phylum: <>Stamm Chordata</>,
+    class: <>Klasse Mammalia</>,
+    order: <>Ordnung Primates</>,
+    family: <>Familie Hominidae</>,
+    genus: <>Gattung Homo</>,
+    species: <>Art Homo sapiens</>,
+  }}
+/>
 
 ## Kriterium und Zweck eines Gruppennamens
 

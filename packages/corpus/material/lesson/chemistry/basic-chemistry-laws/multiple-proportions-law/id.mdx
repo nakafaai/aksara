@@ -145,8 +145,67 @@ Sekarang massa oksigen sudah sama, maka massa nitrogen yang dibandingkan adalah:
 
 Mengalikan <InlineMath math="\mathrm{N_2O}" /> menjadi <InlineMath math="2\mathrm{N_2O}" /> menyamakan basis massa oksigen. Rumus senyawanya tetap <InlineMath math="\mathrm{N_2O}" />.
 
+Adegan di bawah menjajarkan kedua perbandingan, dengan satu kotak grid untuk <InlineMath math="8\ \mathrm{g}" />. Dengan hidrogen tetap <InlineMath math="2\ \mathrm{g}" />, batang oksigennya <InlineMath math="16:32=1:2" />. Dengan oksigen tetap <InlineMath math="32\ \mathrm{g}" />, batang nitrogennya <InlineMath math="56:14=4:1" />. Setiap pasangan menjadi perbandingan bilangan bulat sederhana hanya karena satu unsur ditetapkan lebih dulu.
+
+<MathVisual
+  title={<>Tetapkan Satu Unsur, Bandingkan yang Lain</>}
+  description={<>Oranye: oksigen bersama 2 g hidrogen dalam <InlineMath math="\mathrm{H_2O}" /> dan <InlineMath math="\mathrm{H_2O_2}" />. Ungu: nitrogen bersama 32 g oksigen dalam <InlineMath math="2\mathrm{N_2O}" /> dan <InlineMath math="\mathrm{NO_2}" />. Satu kotak grid ke atas sama dengan 8 g.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 8.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 3.5, y: 3, z: 0 } },
+    objects: [
+      { id: "water-o", kind: "cuboid", appearance: "primary", center: { x: 0, y: (16 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 16 / 8, width: 1.2 } },
+      { id: "peroxide-o", kind: "cuboid", appearance: "primary", center: { x: 2, y: (32 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 32 / 8, width: 1.2 } },
+      { id: "dinitrogen-n", kind: "cuboid", appearance: "secondary", center: { x: 5, y: (56 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 56 / 8, width: 1.2 } },
+      { id: "dioxide-n", kind: "cuboid", appearance: "secondary", center: { x: 7, y: (14 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 14 / 8, width: 1.2 } },
+    ],
+    labels: [
+      { key: "water", objectId: "water-o", at: { x: 0, y: 2.5, z: 0 }, placement: "above" },
+      { key: "peroxide", objectId: "peroxide-o", at: { x: 2, y: 4.5, z: 0 }, placement: "above" },
+      { key: "dinitrogen", objectId: "dinitrogen-n", at: { x: 5, y: 7.5, z: 0 }, placement: "above" },
+      { key: "dioxide", objectId: "dioxide-n", at: { x: 7, y: 2.25, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    water: <InlineMath math="\mathrm{H_2O}:\ 16" />,
+    peroxide: <InlineMath math="\mathrm{H_2O_2}:\ 32" />,
+    dinitrogen: <InlineMath math="2\mathrm{N_2O}:\ 56" />,
+    dioxide: <InlineMath math="\mathrm{NO_2}:\ 14" />,
+  }}
+/>
+
 ## Kesalahan yang Perlu Dihindari
 
 Jangan bandingkan massa total air dan hidrogen peroksida, karena kedua total itu sudah mencakup hidrogen dan oksigen. Bandingkan hanya **massa oksigen setelah massa hidrogen disamakan**. Air dan karbon dioksida juga bukan pasangan untuk hukum ini karena unsur selain oksigennya berbeda.
 
 Pada hukum perbandingan tetap, kita membandingkan rasio massa unsur dalam satu senyawa. Pada hukum perbandingan berganda, kita membandingkan rasio tersebut pada dua atau lebih senyawa yang tersusun dari pasangan unsur yang sama. Rasio bilangan bulat sederhana yang dihasilkan mendukung gagasan Dalton bahwa atom bergabung dalam hitungan bilangan bulat.
+
+Tiap garis memberi massa oksigen yang bergabung dengan sejumlah karbon: <InlineMath math="m_\mathrm{O}=\tfrac{4}{3}m_\mathrm{C}" /> dalam <InlineMath math="\mathrm{CO}" /> dan <InlineMath math="m_\mathrm{O}=\tfrac{8}{3}m_\mathrm{C}" /> dalam <InlineMath math="\mathrm{CO_2}" />. Tetapkan karbonnya <InlineMath math="12\ \mathrm{g}" /> di garis abu-abu, lalu baca kedua massa oksigennya. Perbesar: perbandingannya <InlineMath math="1:2" />, perbandingan bilangan bulat yang sederhana.
+
+<MathVisual
+  title={<>Tetapkan Karbon, Baca Oksigen</>}
+  description={<>Massa oksigen terhadap massa karbon dalam <InlineMath math="\mathrm{CO}" /> (ungu) dan <InlineMath math="\mathrm{CO_2}" /> (oranye). Mendatar: satu kotak grid berarti 1 gram karbon. Tegak: satu kotak grid berarti 4 gram oksigen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 15.5 }, y: { min: -1, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "co", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 15, y: 5 } },
+      { id: "co2", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 15, y: 10 } },
+      { id: "fixed", kind: "segment", appearance: "reference", from: { x: 12, y: 0 }, to: { x: 12, y: 9 } },
+      { id: "co-12", kind: "point", appearance: "secondary", at: { x: 12, y: 4 } },
+      { id: "co2-12", kind: "point", appearance: "primary", at: { x: 12, y: 8 } },
+    ],
+    labels: [
+      { key: "co", objectId: "co-12", at: { x: 12, y: 4 }, placement: "below-right" },
+      { key: "co2", objectId: "co2-12", at: { x: 12, y: 8 }, placement: "above-left" },
+      { key: "ratio", objectId: "fixed", at: { x: 12, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    co: <InlineMath math="\mathrm{CO}:\ 16\ \mathrm{g}" />,
+    co2: <InlineMath math="\mathrm{CO_2}:\ 32\ \mathrm{g}" />,
+    ratio: <InlineMath math="16:32=1:2" />,
+  }}
+/>

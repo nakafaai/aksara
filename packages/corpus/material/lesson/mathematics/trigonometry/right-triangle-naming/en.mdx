@@ -4,7 +4,7 @@ export const metadata = {
   description: "Identify the opposite side, adjacent side, and hypotenuse relative to a chosen acute angle in a right triangle.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-13",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Trigonometry",
 };
 
@@ -13,6 +13,37 @@ export const metadata = {
 In right-triangle trigonometry, a side name tells us how that side is positioned <Highlight>relative to a chosen acute angle</Highlight>. Once the sides are identified correctly, their ratios can be used to calculate distances and heights that are difficult to measure directly.
 
 For example, the height of a tower can be represented by one side of a right triangle. A measured horizontal distance and angle of elevation then determine which trigonometric ratio to use.
+
+Here is such a tower as a right triangle. Seen from 40 m away, the line of sight to the top of a 30 m tower is the hypotenuse, <InlineMath math="\sqrt{30^2 + 40^2} = 50" /> m long. Relative to the angle of elevation <InlineMath math="\theta" /> at your eye, the tower is the opposite side and the ground distance is the adjacent side.
+
+<MathVisual
+  title={<>A tower as a right triangle</>}
+  description={<>A 30 m tower seen from 40 m away, with a 50 m line of sight and the angle of elevation <InlineMath math="\theta" /> at the observer.</>}
+  labels={{
+    tower: <>Tower</>,
+    ground: <>Ground distance</>,
+    sight: <>Line of sight</>,
+    theta: <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 46 }, y: { min: -3, max: 34 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "sight", kind: "segment", from: { x: 0, y: 0 }, to: { x: 40, y: 30 }, appearance: "primary" },
+      { id: "tower", kind: "segment", from: { x: 40, y: 0 }, to: { x: 40, y: 30 }, appearance: "secondary" },
+      { id: "ground", kind: "segment", from: { x: 0, y: 0 }, to: { x: 40, y: 0 }, appearance: "construction" },
+      { id: "right", kind: "polygon", vertices: [{ x: 40, y: 0 }, { x: 75 / 2, y: 0 }, { x: 75 / 2, y: 5 / 2 }, { x: 40, y: 5 / 2 }], appearance: "reference" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 6, startDegrees: 0, sweepDegrees: Math.atan2(30, 40) * 180 / Math.PI, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "sight", objectId: "sight", at: { x: 20, y: 15 }, placement: "above-left" },
+      { key: "tower", objectId: "tower", at: { x: 40, y: 15 }, placement: "right" },
+      { key: "ground", objectId: "ground", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "theta", objectId: "theta", at: { x: 6 * Math.cos(Math.atan2(30, 40) / 2), y: 6 * Math.sin(Math.atan2(30, 40) / 2) }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Three Names of Sides in a Right Triangle
 
@@ -25,19 +56,38 @@ Choose one of the two acute angles as the reference angle. If that angle is <Inl
 3. **Hypotenuse**: the side opposite the right angle, <InlineMath math="90^\circ" />. It is always the longest side of a right triangle.
 
 <ContentBlock>
-  <Triangle
-    title="Right Triangle"
-    description={
-      <>
-        Right triangle with angle <InlineMath math="\theta" /> and opposite
-        side, adjacent side, and hypotenuse.
-      </>
-    }
-    angle={30}
+  <MathVisual
+    title={<>Side names relative to <InlineMath math="\theta" /></>}
+    description={<>A right triangle with the reference angle <InlineMath math="\theta = 30^\circ" /> at <InlineMath math="A" />: the hypotenuse <InlineMath math="AB" />, the opposite side <InlineMath math="BC" /> and the adjacent side <InlineMath math="AC" />.</>}
     labels={{
-      opposite: "Opposite Side",
-      adjacent: "Adjacent Side",
-      hypotenuse: "Hypotenuse",
+      opp: <>Opposite Side</>,
+      adj: <>Adjacent Side</>,
+      hyp: <>Hypotenuse</>,
+      theta: <InlineMath math="\theta" />,
+      a: <InlineMath math="A" />,
+      b: <InlineMath math="B" />,
+      c: <InlineMath math="C" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 6.4 }, y: { min: -0.7, max: 3.6 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "hyp", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "primary" },
+        { id: "opp", kind: "segment", from: { x: 3 * Math.sqrt(3), y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "secondary" },
+        { id: "adj", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 0 }, appearance: "construction" },
+        { id: "right", kind: "polygon", vertices: [{ x: 3 * Math.sqrt(3), y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 7 / 20 }, { x: 3 * Math.sqrt(3), y: 7 / 20 }], appearance: "reference" },
+        { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 30, appearance: "highlight" },
+      ],
+      labels: [
+        { key: "hyp", objectId: "hyp", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "above-left" },
+        { key: "opp", objectId: "opp", at: { x: 3 * Math.sqrt(3), y: 3 / 2 }, placement: "right" },
+        { key: "adj", objectId: "adj", at: { x: 3 * Math.sqrt(3) / 2, y: 0 }, placement: "below" },
+        { key: "theta", objectId: "theta", at: { x: Math.cos(Math.PI / 12), y: Math.sin(Math.PI / 12) }, placement: "right" },
+        { key: "a", objectId: "hyp", at: { x: 0, y: 0 }, placement: "below-left" },
+        { key: "b", objectId: "hyp", at: { x: 3 * Math.sqrt(3), y: 3 }, placement: "above-right" },
+        { key: "c", objectId: "right", at: { x: 3 * Math.sqrt(3), y: 0 }, placement: "below-right" },
+      ],
     }}
   />
 </ContentBlock>
@@ -56,3 +106,40 @@ Let triangle <InlineMath math="ABC" /> have its right angle at <InlineMath math=
 | <InlineMath math="B" /> | <InlineMath math="AC" /> | <InlineMath math="BC" /> | <InlineMath math="AB" /> |
 
 The table shows **the two leg names swapping**. When you move from angle <InlineMath math="A" /> to angle <InlineMath math="B" />, the length of <InlineMath math="BC" /> stays the same, but its role changes from opposite to adjacent.
+
+Move the reference angle to <InlineMath math="B" /> and look again. <InlineMath math="AB" /> is still the hypotenuse because it faces the right angle at <InlineMath math="C" />, but <InlineMath math="AC" /> is now the opposite side and <InlineMath math="BC" /> is the adjacent side.
+
+<MathVisual
+  title={<>The same triangle seen from angle <InlineMath math="B" /></>}
+  description={<>Triangle <InlineMath math="ABC" /> with the right angle at <InlineMath math="C" /> and the reference angle at <InlineMath math="B" />: <InlineMath math="AC" /> is opposite, <InlineMath math="BC" /> is adjacent, <InlineMath math="AB" /> is the hypotenuse.</>}
+  labels={{
+    opp: <>Opposite Side</>,
+    adj: <>Adjacent Side</>,
+    hyp: <>Hypotenuse</>,
+    theta: <InlineMath math="\theta" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 6.4 }, y: { min: -0.7, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "hyp", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "primary" },
+      { id: "adj", kind: "segment", from: { x: 3 * Math.sqrt(3), y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "construction" },
+      { id: "opp", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 0 }, appearance: "secondary" },
+      { id: "right", kind: "polygon", vertices: [{ x: 3 * Math.sqrt(3), y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 7 / 20 }, { x: 3 * Math.sqrt(3), y: 7 / 20 }], appearance: "reference" },
+      { id: "theta", kind: "arc", center: { x: 3 * Math.sqrt(3), y: 3 }, radius: 4 / 5, startDegrees: 210, sweepDegrees: 60, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "hyp", objectId: "hyp", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "above-left" },
+      { key: "opp", objectId: "opp", at: { x: 3 * Math.sqrt(3) / 2, y: 0 }, placement: "below" },
+      { key: "adj", objectId: "adj", at: { x: 3 * Math.sqrt(3), y: 3 / 2 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 3 * Math.sqrt(3) - 0.5, y: 3 - 0.8 }, placement: "below-left" },
+      { key: "a", objectId: "hyp", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "hyp", at: { x: 3 * Math.sqrt(3), y: 3 }, placement: "above-right" },
+      { key: "c", objectId: "right", at: { x: 3 * Math.sqrt(3), y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>

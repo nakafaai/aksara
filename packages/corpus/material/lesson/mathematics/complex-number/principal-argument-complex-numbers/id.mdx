@@ -19,8 +19,8 @@ Argumen utama bilangan kompleks <InlineMath math="z \ne 0" />, ditulis <InlineMa
 Untuk <InlineMath math="z = 1 + i" />, sudut <InlineMath math="45^\circ" />, <InlineMath math="405^\circ" />, dan <InlineMath math="-315^\circ" /> menunjuk ke arah yang sama, tetapi hanya <InlineMath math="45^\circ" /> yang berada di selang utama, jadi <InlineMath math="\operatorname{Arg}(1 + i) = 45^\circ = \frac{\pi}{4}" />. Grafik interaktif menunjukkan sudut untuk <InlineMath math="1 + i" /> dan <InlineMath math="\sqrt{3} + i" />, keduanya diukur dari sumbu nyata positif.
 
 <MathVisual
-  title="Sudut dari sumbu riil positif"
-  description="Dua vektor pada kuadran I memiliki sudut 45 dan 30 derajat terhadap sumbu riil positif. Busur menunjukkan sudut yang sedang diukur."
+  title={<>Sudut dari sumbu riil positif</>}
+  description={<>Dua vektor pada kuadran I memiliki sudut 45 dan 30 derajat terhadap sumbu riil positif. Busur menunjukkan sudut yang sedang diukur.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.25, max: 2.2 }, y: { min: -0.25, max: 1.6 } },
@@ -34,7 +34,7 @@ Untuk <InlineMath math="z = 1 + i" />, sudut <InlineMath math="45^\circ" />, <In
     labels: [
       { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-left" },
       { key: "second", objectId: "second", at: { x: Math.sqrt(3), y: 1 }, placement: "above" },
-      { key: "first-angle", objectId: "first-angle", at: { x: 0.62 * Math.cos((37.5 * Math.PI) / 180), y: 0.62 * Math.sin((37.5 * Math.PI) / 180) }, placement: "center" },
+      { key: "first-angle", objectId: "first-angle", at: { x: 0.45 * Math.cos((22.5 * Math.PI) / 180), y: 0.45 * Math.sin((22.5 * Math.PI) / 180) }, placement: "right" },
       { key: "second-angle", objectId: "second-angle", at: { x: 0.87, y: 0.23 }, placement: "below-right" },
     ],
   }}
@@ -72,8 +72,8 @@ Sudut yang besar butuh beberapa putaran sekaligus. Untuk <InlineMath math="1000^
 Periksa: <InlineMath math="-80^\circ" /> berada di antara <InlineMath math="-180^\circ" /> dan <InlineMath math="180^\circ" />, dan <InlineMath math="-80^\circ + 3 \cdot 360^\circ = 1000^\circ" />, jadi kedua sudut menunjuk ke arah yang sama.
 
 <Mermaid
-  title="Menurunkan sudut ke selang utama"
-  description="Tambah atau kurangi satu putaran penuh sampai sudut masuk ke selang (-180°, 180°]."
+  title={<>Menurunkan sudut ke selang utama</>}
+  description={<>Tambah atau kurangi satu putaran penuh sampai sudut masuk ke selang (-180°, 180°].</>}
   chart={`flowchart TD
   A["Sudut θ"] --> B{"Apakah θ lebih dari 180°?"}
   B -->|"ya"| C["Kurangkan 360°"]
@@ -90,7 +90,7 @@ Jika <InlineMath math="z = x + iy" /> diketahui dalam bentuk Kartesius, argumen 
 
 <BlockMath math="\operatorname{Arg} z = \begin{cases} \arctan\frac{y}{x}, &amp; x > 0 \\ \arctan\frac{y}{x} + 180^\circ, &amp; x < 0,\ y \ge 0 \\ \arctan\frac{y}{x} - 180^\circ, &amp; x < 0,\ y < 0 \\ 90^\circ, &amp; x = 0,\ y > 0 \\ -90^\circ, &amp; x = 0,\ y < 0 \end{cases}" />
 
-Fungsi <InlineMath math="\operatorname{atan2}(y, x)" /> di bahasa pemrograman memakai aturan yang sama dan mengembalikan sudut di <InlineMath math="(-\pi, \pi]" /> untuk setiap <InlineMath math="z \ne 0" />. Banyak kalkulator ilmiah tidak punya tombol atan2, tetapi fungsi Pol atau R→P di kalkulator itu memberikan sudut yang sama.
+Fungsi <InlineMath math="\operatorname{atan2}(y, x)" /> di bahasa pemrograman memakai aturan yang sama dan mengembalikan sudut di <InlineMath math="(-\pi, \pi]" /> untuk setiap <InlineMath math="z \ne 0" />. Banyak kalkulator ilmiah tidak punya tombol atan2, tetapi fungsi Pol atau `R→P` di kalkulator itu memberikan sudut yang sama.
 
 **Contoh 1**. Untuk <InlineMath math="z = -1 + i" />, nilai <InlineMath math="\arctan\frac{1}{-1} = -45^\circ" />. Titiknya ada di kiri sumbu imajiner dengan <InlineMath math="y \ge 0" />, jadi tambahkan setengah putaran:
 
@@ -105,7 +105,7 @@ Periksa dengan modulus <InlineMath math="\sqrt{2}" />: <InlineMath math="\sqrt{2
 Periksa: <InlineMath math="\sqrt{2}\cos(-135^\circ) = -1" /> dan <InlineMath math="\sqrt{2}\sin(-135^\circ) = -1" />. Bilangan <InlineMath math="1 + i" /> dan <InlineMath math="-1 - i" /> punya nilai tangen yang sama, tetapi arahnya berlawanan.
 
 <MathVisual
-  title="Nilai tangen sama, arah berbeda"
+  title={<>Nilai tangen sama, arah berbeda</>}
   description={<>Bilangan <InlineMath math="1 + i" /> dan <InlineMath math="-1 - i" /> sama-sama memberi <InlineMath math="\arctan 1 = 45^\circ" />, tetapi busurnya menunjuk ke arah yang berlawanan.</>}
   scene={{
     space: "plane",
@@ -209,3 +209,31 @@ Periksa: <InlineMath math="30^\circ + 2 \cdot 360^\circ = 750^\circ" /> dan <Inl
 <BlockMath math="\operatorname{Arg} z = \arctan\frac{-2}{-2} - 180^\circ = 45^\circ - 180^\circ = -135^\circ" />
 
 Dalam selang <InlineMath math="[0^\circ, 360^\circ)" />, tambahkan satu putaran: <InlineMath math="-135^\circ + 360^\circ = 225^\circ" />. Periksa dengan modulus <InlineMath math="2\sqrt{2}" />: <InlineMath math="2\sqrt{2}\cos 225^\circ = -2" /> dan <InlineMath math="2\sqrt{2}\sin 225^\circ = -2" />, jadi **kedua jawaban menunjuk ke kuadran III**.
+
+Soal 4 menunjukkan kedua konvensi sekaligus. Panah ke <InlineMath math="-2 - 2i" /> mengarah ke kuadran III. Diukur searah jarum jam, sudutnya <InlineMath math="-135^\circ" />, wakil dalam <InlineMath math="(-180^\circ, 180^\circ]" />, dan diukur berlawanan arah jarum jam, sudutnya <InlineMath math="225^\circ" />, wakil dalam <InlineMath math="[0^\circ, 360^\circ)" />.
+
+<MathVisual
+  title={<>Dua nama untuk arah <InlineMath math="-2 - 2i" /></>}
+  description={<>Panah ke <InlineMath math="-2 - 2i" /> dengan busur searah jarum jam <InlineMath math="-135^\circ" /> dan busur berlawanan arah jarum jam <InlineMath math="225^\circ" />.</>}
+  labels={{
+    z: <InlineMath math="-2 - 2i" />,
+    neg: <InlineMath math="-135^\circ" />,
+    pos: <InlineMath math="225^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 1.4 }, y: { min: -2.6, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "neg", kind: "arc", center: { x: 0, y: 0 }, radius: 1 / 2, startDegrees: 0, sweepDegrees: -135, appearance: "answer" },
+      { id: "pos", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 225, appearance: "construction" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2, y: -2 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: -2, y: -2 }, { x: (-2) + (1 / 2 / Math.sqrt(8)) + (1 / 5 / Math.sqrt(8)), y: (-2) + (1 / 2 / Math.sqrt(8)) + (-1 / 5 / Math.sqrt(8)) }, { x: (-2) + (1 / 2 / Math.sqrt(8)) + (-1 / 5 / Math.sqrt(8)), y: (-2) + (1 / 2 / Math.sqrt(8)) + (1 / 5 / Math.sqrt(8)) }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: -2, y: -2 }, placement: "left" },
+      { key: "neg", objectId: "neg", at: { x: 0.5 * Math.cos(-3 * Math.PI / 8), y: 0.5 * Math.sin(-3 * Math.PI / 8) }, placement: "below-right" },
+      { key: "pos", objectId: "pos", at: { x: 0, y: 1 }, placement: "above" },
+    ],
+  }}
+/>

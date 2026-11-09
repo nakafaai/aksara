@@ -3,7 +3,7 @@ export const metadata = {
   description: "Find the median, mode, and range of a data set through complete examples for odd and even sample sizes.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistics",
 };
 
@@ -34,6 +34,16 @@ Middle position: <InlineMath math="(5+1)/2 = 3" />. The data at position <Inline
 
 So, <InlineMath math="\text{Median} = 7" />.
 
+Line the five sorted scores up by position. The bar in the middle position <InlineMath math="\frac{5 + 1}{2} = 3" /> has height 7, so the median is 7, with two scores on each side.
+
+<BarChart
+  title={<>Five sorted scores</>}
+  description={<>Bars of the sorted scores <InlineMath math="6, 7, 7, 8, 9" /> at positions 1 to 5. The third bar is the median.</>}
+  yAxisLabel="Score"
+  data={[6, 7, 7, 8, 9].map((value, i) => ({ name: "position " + (i + 1), value }))}
+  chartConfig={{ value: { label: "Score", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### An Even Number of Values
 
 Write <InlineMath math="x_{(i)}" /> for the value at position <InlineMath math="i" /> after sorting the data from smallest to largest. The median is the mean of the values at positions <InlineMath math="n/2" /> and <InlineMath math="n/2+1" />:
@@ -58,6 +68,16 @@ So, the median is <InlineMath math="7.5" />.
 
 The median depends on the **values at the middle positions**. Changing the largest value while preserving the order and number of observations leaves the median unchanged. Adding or removing observations can shift the middle positions, so the median must be recalculated.
 
+With six scores there is no single middle bar. Positions 3 and 4 hold 7 and 8, so the median is their average, <InlineMath math="\frac{7 + 8}{2} = 7.5" />, a value that is not one of the scores.
+
+<BarChart
+  title={<>Six sorted scores</>}
+  description={<>Bars of the sorted scores <InlineMath math="6, 7, 7, 8, 9, 10" /> at positions 1 to 6. The median lies between the third and fourth bars.</>}
+  yAxisLabel="Score"
+  data={[6, 7, 7, 8, 9, 10].map((value, i) => ({ name: "position " + (i + 1), value }))}
+  chartConfig={{ value: { label: "Score", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## The Mode as the Most Frequent Value
 
 The mode is the **value that appears most often**, meaning <Highlight>the value with the highest frequency</Highlight>.
@@ -81,8 +101,8 @@ Test scores:
 | <InlineMath math="9" /> | <InlineMath math="1" /> |
 
 <BarChart
-  title="Frequency of Each Value"
-  description="The value with the tallest bar is the mode."
+  title={<>Frequency of Each Value</>}
+  description={<>The value with the tallest bar is the mode.</>}
   data={[{ name: "6", value: 1 }, { name: "7", value: 3 }, { name: "8", value: 2 }, { name: "9", value: 1 }]}
   chartConfig={{ value: { label: "Frequency", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
   yAxisLabel="Frequency"

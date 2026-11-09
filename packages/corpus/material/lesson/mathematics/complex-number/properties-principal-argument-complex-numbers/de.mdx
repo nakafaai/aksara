@@ -21,7 +21,7 @@ Die ganze Zahl <InlineMath math="k" /> ist immer <InlineMath math="-1" />, <Inli
 Die Beträge werden ebenfalls multipliziert oder dividiert, aber ein positiver Betrag ändert keine Richtung. Deshalb hängt das Argument eines Produkts nur von den Argumenten seiner beiden Faktoren ab.
 
 <MathVisual
-  title="Beim Multiplizieren addieren sich die Argumente"
+  title={<>Beim Multiplizieren addieren sich die Argumente</>}
   description={<>Die Multiplikation mit <InlineMath math="i" /> dreht <InlineMath math="1 + i" /> um <InlineMath math="90^\circ" />, von <InlineMath math="45^\circ" /> auf <InlineMath math="135^\circ" />.</>}
   scene={{
     space: "plane",
@@ -78,7 +78,7 @@ Beide Komponenten sind negativ, also **liegt das Produkt im III. Quadranten**, w
 Probe: Erweitere Zähler und Nenner mit <InlineMath math="-i" />, dann gilt <InlineMath math="\frac{-1 - i}{i} = (-1 - i)(-i) = i + i^2 = -1 + i" />. Die Zahl <InlineMath math="-1 + i" /> hat tatsächlich den Hauptwert <InlineMath math="135^\circ" />.
 
 <MathVisual
-  title="Eine Winkelsumme außerhalb des Hauptintervalls"
+  title={<>Eine Winkelsumme außerhalb des Hauptintervalls</>}
   description={<>Der Bogen <InlineMath math="135^\circ + 120^\circ = 255^\circ" /> geht über <InlineMath math="180^\circ" /> hinaus. Dieselbe Richtung hat den Hauptwert <InlineMath math="-105^\circ" />.</>}
   scene={{
     space: "plane",
@@ -119,8 +119,8 @@ Für <InlineMath math="(-1 + i)^3" /> ergibt <InlineMath math="3 \cdot 135^\circ
 Die [konjugiert komplexe Zahl](/de/faecher/mathematik/komplexe-zahlen/konjugiert-komplexe-zahlen) <InlineMath math="\bar{z} = x - iy" /> ist das Spiegelbild von <InlineMath math="z" /> an der reellen Achse, also wechselt ihr Argument das Vorzeichen: <InlineMath math="\operatorname{Arg}\bar{z} = -\operatorname{Arg} z" />. Die einzige Ausnahme ist die negative reelle Achse. Die Zahl <InlineMath math="-4" /> ist ihre eigene Konjugierte, und beide haben den Hauptwert <InlineMath math="180^\circ" />, weil <InlineMath math="-180^\circ" /> außerhalb des Intervalls liegt.
 
 <Mermaid
-  title="Das Argument nach einer Rechenart"
-  description="Jede Rechenart ändert das Argument auf ihre Weise, danach kommt das Ergebnis zurück ins Hauptintervall."
+  title={<>Das Argument nach einer Rechenart</>}
+  description={<>Jede Rechenart ändert das Argument auf ihre Weise, danach kommt das Ergebnis zurück ins Hauptintervall.</>}
   chart={`flowchart TD
   A{"Welche Rechenart?"} -->|"Produkt"| B["Argumente addieren"]
   A -->|"Quotient"| C["Argumente subtrahieren"]
@@ -131,6 +131,39 @@ Die [konjugiert komplexe Zahl](/de/faecher/mathematik/komplexe-zahlen/konjugiert
   D --> F
   E --> F
   F --> G["Probe mit der kartesischen Form"]`}
+/>
+
+Potenzen multiplizieren das Argument. <InlineMath math="(-1 + i)^3" /> hat das Argument <InlineMath math="3 \cdot 135^\circ = 405^\circ" />, eine volle Drehung plus <InlineMath math="45^\circ" />, und tatsächlich ist <InlineMath math="(-1 + i)^2 = -2i" /> und <InlineMath math="(-1 + i)^3 = 2 + 2i" /> zeigt auf <InlineMath math="45^\circ" />.
+
+<MathVisual
+  title={<>Die Potenzen von <InlineMath math="-1 + i" /></>}
+  description={<>Die Pfeile zu <InlineMath math="-1 + i" /> bei <InlineMath math="135^\circ" />, <InlineMath math="(-1 + i)^2 = -2i" /> bei <InlineMath math="-90^\circ" /> und <InlineMath math="(-1 + i)^3 = 2 + 2i" /> bei <InlineMath math="45^\circ" />, mit den Längen <InlineMath math="\sqrt2" />, 2 und <InlineMath math="2\sqrt2" />.</>}
+  labels={{
+    z: <InlineMath math="-1 + i" />,
+    z2: <InlineMath math="-2i" />,
+    z3: <InlineMath math="2 + 2i" />,
+    a3: <InlineMath math="45^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 2.8 }, y: { min: -2.6, max: 2.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a3", kind: "arc", center: { x: 0, y: 0 }, radius: 3 / 5, startDegrees: 0, sweepDegrees: 45, appearance: "answer" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: -1, y: 1 }, { x: (-1) + (1 / 5 / Math.sqrt(2)) + (-2 / 25 / Math.sqrt(2)), y: (1) + (-1 / 5 / Math.sqrt(2)) + (-2 / 25 / Math.sqrt(2)) }, { x: (-1) + (1 / 5 / Math.sqrt(2)) + (2 / 25 / Math.sqrt(2)), y: (1) + (-1 / 5 / Math.sqrt(2)) + (2 / 25 / Math.sqrt(2)) }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -2 }, appearance: "construction" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 0, y: -2 }, { x: 2 / 25, y: -9 / 5 }, { x: -2 / 25, y: -9 / 5 }], appearance: "construction" },
+      { id: "z3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 }, appearance: "secondary" },
+      { id: "z3-head", kind: "polygon", vertices: [{ x: 2, y: 2 }, { x: (2) + (-2 / 5 / Math.sqrt(8)) + (-4 / 25 / Math.sqrt(8)), y: (2) + (-2 / 5 / Math.sqrt(8)) + (4 / 25 / Math.sqrt(8)) }, { x: (2) + (-2 / 5 / Math.sqrt(8)) + (4 / 25 / Math.sqrt(8)), y: (2) + (-2 / 5 / Math.sqrt(8)) + (-4 / 25 / Math.sqrt(8)) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: -1, y: 1 }, placement: "left" },
+      { key: "z2", objectId: "z2", at: { x: 0, y: -2 }, placement: "right" },
+      { key: "z3", objectId: "z3", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "a3", objectId: "a3", at: { x: 0.6 * Math.cos(Math.PI / 8), y: 0.6 * Math.sin(Math.PI / 8) }, placement: "right" },
+    ],
+  }}
 />
 
 ## Häufige Fehler

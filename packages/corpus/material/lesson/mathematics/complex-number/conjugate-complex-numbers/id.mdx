@@ -32,53 +32,29 @@ Bilangan <InlineMath math="3 - 2i" /> paling sering salah. Bagian imajiner <Inli
 
 Titik <InlineMath math="(x, y)" /> dan <InlineMath math="(x, -y)" /> berjarak sama dari sumbu real, satu di atas dan satu di bawahnya. Karena itu, <InlineMath math="\bar{z}" /> adalah **pencerminan <InlineMath math="z" /> terhadap sumbu real**.
 
-<LineEquation
-  title={
-    <>
-      Visualisasi <InlineMath math="z = 3+2i" /> dan Konjugatnya{" "}
-      <InlineMath math="\bar{z} = 3-2i" />
-    </>
-  }
-  description={
-    <>
-      Titik <InlineMath math="z" /> dan <InlineMath math="\bar{z}" /> merupakan
-      bayangan cermin terhadap sumbu real.
-    </>
-  }
-  cameraPosition={[1.5, 0, 8]}
-  cameraTarget={[1.5, 0, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="z=3+2i" />, at: 1, offset: [0.5, 0.5, 0] }],
-      cone: { position: "end" },
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: -2, z: 0 },
-      ],
-      smooth: false,
-      color: "#65a30d",
-      labels: [{ text: <InlineMath math="\bar{z}=3-2i" />, at: 1, offset: [0.5, -0.5, 0] }],
-      cone: { position: "end" },
-    },
-    // Garis Sumbu Real sebagai cermin (opsional)
-    {
-      points: [
-        { x: -0.5, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#d97706",
-    },
-  ]}
+<MathVisual
+  title={<><InlineMath math="z = 3 + 2i" /> dan sekawannya <InlineMath math="\bar{z} = 3 - 2i" /></>}
+  description={<>Titik <InlineMath math="z" /> dan <InlineMath math="\bar{z}" /> saling bercermin terhadap sumbu real, dihubungkan ruas tegak yang dibagi dua sama panjang oleh sumbu itu.</>}
+  labels={{
+    z: <InlineMath math="z = 3 + 2i" />,
+    bar: <InlineMath math="\bar{z} = 3 - 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "segment", from: { x: 3, y: 2 }, to: { x: 3, y: -2 }, appearance: "construction" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 3, y: 2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "bar", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -2 }, appearance: "secondary" },
+      { id: "bar-head", kind: "polygon", vertices: [{ x: 3, y: -2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (-2) + (1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (-2) + (1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "bar", objectId: "bar", at: { x: 3, y: -2 }, placement: "right" },
+    ],
+  }}
 />
 
 Pencerminan tidak mengubah panjang, jadi <InlineMath math="|\bar{z}| = |z|" />. Arahnya saja yang berbalik: jika <InlineMath math="z" /> membentuk sudut <InlineMath math="\theta" /> dengan sumbu real positif, <InlineMath math="\bar{z}" /> membentuk sudut <InlineMath math="-\theta" />. Untuk <InlineMath math="z = 3 + 2i" />, keduanya punya [modulus](/id/materi/matematika/bilangan-kompleks/modulus-dan-argumen-bilangan-kompleks) <InlineMath math="\sqrt{13}" />, dan argumennya sekitar <InlineMath math="33{,}7^\circ" /> dan <InlineMath math="-33{,}7^\circ" />. Aturan argumen berlawanan ini berlaku untuk <InlineMath math="z \ne 0" /> dan dihitung modulo <InlineMath math="360^\circ" />: untuk bilangan real negatif seperti <InlineMath math="-2" />, argumen <InlineMath math="z" /> dan <InlineMath math="\bar{z}" /> sama-sama <InlineMath math="180^\circ" />.
@@ -90,7 +66,7 @@ Saat <InlineMath math="z" /> dan <InlineMath math="\bar{z}" /> dijumlahkan, **ba
 <BlockMath math="\begin{aligned}z+\bar z&amp;=(x+iy)+(x-iy)=2x=2\operatorname{Re}(z)\\z-\bar z&amp;=(x+iy)-(x-iy)=2iy=2i\operatorname{Im}(z)\end{aligned}" />
 
 <MathVisual
-  title="Jajaran genjang dari z dan konjugatnya"
+  title={<>Jajaran genjang dari z dan konjugatnya</>}
   description={<>Vektor <InlineMath math="z = 3 + 2i" /> dan <InlineMath math="\bar{z} = 3 - 2i" /> dijumlahkan seperti vektor. Hasilnya <InlineMath math="6" />, tepat di sumbu real.</>}
   scene={{
     space: "plane",
@@ -139,13 +115,43 @@ Hitung <InlineMath math="\frac{3 + 4i}{1 - 2i}" />. Konjugat penyebutnya <Inline
 Periksa dengan mengalikan balik: <InlineMath math="(-1 + 2i)(1 - 2i) = -1 + 2i + 2i - 4i^2 = 3 + 4i" />, yaitu pembilang semula. Cara yang sama juga menghitung [invers bilangan kompleks](/id/materi/matematika/bilangan-kompleks/invers-bilangan-kompleks), karena <InlineMath math="\frac{1}{z} = \frac{\bar{z}}{|z|^2}" /> untuk <InlineMath math="z \ne 0" />.
 
 <Mermaid
-  title="Langkah membagi dengan bilangan kompleks"
-  description="Konjugat penyebut mengubah penyebut menjadi bilangan real, lalu hasilnya diperiksa dengan perkalian."
+  title={<>Langkah membagi dengan bilangan kompleks</>}
+  description={<>Konjugat penyebut mengubah penyebut menjadi bilangan real, lalu hasilnya diperiksa dengan perkalian.</>}
   chart={`flowchart LR
   A["Tulis pembilang dan penyebut"] --> B["Kalikan atas dan bawah dengan konjugat penyebut"]
   B --> C["Penyebut menjadi kuadrat modulus"]
   C --> D["Pisahkan bagian real dan imajiner"]
   D --> E["Kalikan hasil dengan penyebut untuk memeriksa"]`}
+/>
+
+Periksa hasil baginya pada bidang. <InlineMath math="-1 + 2i" /> memiliki modulus <InlineMath math="\sqrt5" />, yaitu <InlineMath math="5 \div \sqrt5" />: modulus <InlineMath math="3 + 4i" /> dibagi modulus <InlineMath math="1 - 2i" />.
+
+<MathVisual
+  title={<><InlineMath math="\frac{3 + 4i}{1 - 2i} = -1 + 2i" /></>}
+  description={<>Pembilang <InlineMath math="3 + 4i" /> dengan modulus 5, penyebut <InlineMath math="1 - 2i" /> dengan modulus <InlineMath math="\sqrt5" />, dan hasil bagi <InlineMath math="-1 + 2i" /> dengan modulus <InlineMath math="\sqrt5" />.</>}
+  labels={{
+    num: <InlineMath math="3 + 4i" />,
+    den: <InlineMath math="1 - 2i" />,
+    q: <InlineMath math="-1 + 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 3.6 }, y: { min: -2.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "num", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "num-head", kind: "polygon", vertices: [{ x: 3, y: 4 }, { x: 277 / 100, y: 193 / 50 }, { x: 293 / 100, y: 187 / 50 }], appearance: "primary" },
+      { id: "den", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "den-head", kind: "polygon", vertices: [{ x: 1, y: -2 }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (-2) + (1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (-2) + (1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }], appearance: "secondary" },
+      { id: "q", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 2 }, appearance: "answer" },
+      { id: "q-head", kind: "polygon", vertices: [{ x: -1, y: 2 }, { x: (-1) + (1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }, { x: (-1) + (1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "num", objectId: "num", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "den", objectId: "den", at: { x: 1, y: -2 }, placement: "right" },
+      { key: "q", objectId: "q", at: { x: -1, y: 2 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Kapan Bilangan Sama dengan Konjugatnya

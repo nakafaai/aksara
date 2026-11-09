@@ -3,7 +3,7 @@ export const metadata = {
     description: "Leite das allgemeine Glied einer geometrischen Folge mit konstantem Faktor her und prüfe idealisierte Wachstumsmodelle.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Folgen und Reihen",
 };
 
@@ -68,6 +68,39 @@ Bei einem **positiven ersten Glied** bestimmt der Faktor das grundlegende Verhal
 | <InlineMath math="-1/2" /> | <InlineMath math="8,-4,2,-1" /> | Wechselnde Vorzeichen, Beträge nähern sich null |
 
 Aus diesem Grund stellt eine geometrische Folge nicht immer ein Wachstum dar.
+
+Beginne jede Folge bei 8 und ändere nur den Quotienten. Mit <InlineMath math="r = 1" /> bleiben die Glieder bei 8, mit <InlineMath math="r = \tfrac12" /> halbieren sie sich in Richtung 0, und mit <InlineMath math="r = -\tfrac12" /> werden sie ebenfalls kleiner, springen aber von einer Seite der 0 zur anderen. Bei <InlineMath math="n = 3" /> treffen sich die beiden schrumpfenden Folgen bei 2, weil <InlineMath math="\left(-\tfrac12\right)^2 = \left(\tfrac12\right)^2" /> ist.
+
+<MathVisual
+  title={<>Ein Anfangsglied, drei Quotienten</>}
+  description={<>Die Glieder <InlineMath math="U_1" /> bis <InlineMath math="U_4" /> für <InlineMath math="a = 8" /> mit <InlineMath math="r = 1" />, <InlineMath math="r = \tfrac12" /> und <InlineMath math="r = -\tfrac12" />, alle mit Start bei 8.</>}
+  labels={{
+    one: <InlineMath math="r = 1" />,
+    half: <InlineMath math="r = \tfrac12" />,
+    neg: <InlineMath math="r = -\tfrac12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.4, max: 4.8 }, y: { min: -5, max: 9.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "start", kind: "point", at: { x: 1, y: 8 }, appearance: "answer" },
+      { id: "one2", kind: "point", at: { x: 2, y: 8 }, appearance: "construction" },
+      { id: "one3", kind: "point", at: { x: 3, y: 8 }, appearance: "construction" },
+      { id: "one4", kind: "point", at: { x: 4, y: 8 }, appearance: "construction" },
+      { id: "half2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "half4", kind: "point", at: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "neg2", kind: "point", at: { x: 2, y: -4 }, appearance: "secondary" },
+      { id: "neg4", kind: "point", at: { x: 4, y: -1 }, appearance: "secondary" },
+      { id: "meet3", kind: "point", at: { x: 3, y: 2 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "one", objectId: "one4", at: { x: 4, y: 8 }, placement: "right" },
+      { key: "half", objectId: "half4", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "neg", objectId: "neg4", at: { x: 4, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Ein idealisiertes Bakterienwachstumsmodell
 
@@ -170,3 +203,13 @@ Anschließend berechnen wir die Länge des dritten Stücks <InlineMath math="U_3
 </MathContainer>
 
 Das dritte Stück ist somit <InlineMath math="36 \text{ cm}" /> lang.
+
+Alle fünf Seilstücke in einem Diagramm: Jeder Balken ist <InlineMath math="\tfrac32" />-mal so lang wie der vorige, von 16 cm bis 81 cm, und der mittlere Balken ist <InlineMath math="U_3 = 36" /> cm.
+
+<BarChart
+  title={<>Die fünf Seilstücke</>}
+  description={<>Balken von <InlineMath math="U_n = 16\left(\tfrac32\right)^{n-1}" /> für <InlineMath math="n = 1" /> bis 5: 16, 24, 36, 54 und 81 cm.</>}
+  yAxisLabel="Länge (cm)"
+  data={[1, 2, 3, 4, 5].map((n) => ({ name: String(n), value: 16 * (3 / 2) ** (n - 1) }))}
+  chartConfig={{ value: { label: "Länge (cm)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

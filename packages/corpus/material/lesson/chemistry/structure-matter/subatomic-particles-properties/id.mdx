@@ -123,6 +123,42 @@ Simbol <InlineMath math="q" /> adalah muatan partikel dalam coulomb, sedangkan <
 
 Medan listrik memberikan gaya pada partikel bermuatan. Proton terdorong searah medan, elektron berlawanan arah, dan neutron tidak dibelokkan pada model sederhana ini.
 
+Kirim tiga berkas dengan energi kinetik <InlineMath math="K" /> yang sama di antara dua pelat bermuatan. Setelah menempuh jarak <InlineMath math="x" />, partikel bermuatan <InlineMath math="q" /> dalam medan <InlineMath math="E" /> sudah bergeser ke samping sejauh <InlineMath math="y=\tfrac{qEx^2}{4K}" />. Elektron dan proton berbelok sama jauh ke arah yang berlawanan, sedangkan neutron lurus saja. Perbesar di ujung pelat.
+
+<MathVisual
+  title={<>Energi Sama, Belokan Berlawanan</>}
+  description={<>Lintasan elektron (ungu), proton (oranye), dan neutron (abu-abu) dengan energi kinetik yang sama di antara pelat positif dan pelat negatif.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "plate-plus", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 8, y: 3 } },
+      { id: "plate-minus", kind: "segment", appearance: "secondary", from: { x: 0, y: -3 }, to: { x: 8, y: -3 } },
+      { id: "electron", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: (1 * 2.5 * 0.5 ** 2) / 64 }, { x: 1, y: (1 * 2.5 * 1 ** 2) / 64 }, { x: 1.5, y: (1 * 2.5 * 1.5 ** 2) / 64 }, { x: 2, y: (1 * 2.5 * 2 ** 2) / 64 }, { x: 2.5, y: (1 * 2.5 * 2.5 ** 2) / 64 }, { x: 3, y: (1 * 2.5 * 3 ** 2) / 64 }, { x: 3.5, y: (1 * 2.5 * 3.5 ** 2) / 64 }, { x: 4, y: (1 * 2.5 * 4 ** 2) / 64 }, { x: 4.5, y: (1 * 2.5 * 4.5 ** 2) / 64 }, { x: 5, y: (1 * 2.5 * 5 ** 2) / 64 }, { x: 5.5, y: (1 * 2.5 * 5.5 ** 2) / 64 }, { x: 6, y: (1 * 2.5 * 6 ** 2) / 64 }, { x: 6.5, y: (1 * 2.5 * 6.5 ** 2) / 64 }, { x: 7, y: (1 * 2.5 * 7 ** 2) / 64 }, { x: 7.5, y: (1 * 2.5 * 7.5 ** 2) / 64 }, { x: 8, y: (1 * 2.5 * 8 ** 2) / 64 }] },
+      { id: "proton", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: (-1 * 2.5 * 0.5 ** 2) / 64 }, { x: 1, y: (-1 * 2.5 * 1 ** 2) / 64 }, { x: 1.5, y: (-1 * 2.5 * 1.5 ** 2) / 64 }, { x: 2, y: (-1 * 2.5 * 2 ** 2) / 64 }, { x: 2.5, y: (-1 * 2.5 * 2.5 ** 2) / 64 }, { x: 3, y: (-1 * 2.5 * 3 ** 2) / 64 }, { x: 3.5, y: (-1 * 2.5 * 3.5 ** 2) / 64 }, { x: 4, y: (-1 * 2.5 * 4 ** 2) / 64 }, { x: 4.5, y: (-1 * 2.5 * 4.5 ** 2) / 64 }, { x: 5, y: (-1 * 2.5 * 5 ** 2) / 64 }, { x: 5.5, y: (-1 * 2.5 * 5.5 ** 2) / 64 }, { x: 6, y: (-1 * 2.5 * 6 ** 2) / 64 }, { x: 6.5, y: (-1 * 2.5 * 6.5 ** 2) / 64 }, { x: 7, y: (-1 * 2.5 * 7 ** 2) / 64 }, { x: 7.5, y: (-1 * 2.5 * 7.5 ** 2) / 64 }, { x: 8, y: (-1 * 2.5 * 8 ** 2) / 64 }] },
+      { id: "neutron", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "electron-end", kind: "point", appearance: "secondary", at: { x: 8, y: 2.5 } },
+      { id: "proton-end", kind: "point", appearance: "primary", at: { x: 8, y: -2.5 } },
+      { id: "neutron-end", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+    ],
+    labels: [
+      { key: "plus", objectId: "plate-plus", at: { x: 0, y: 3 }, placement: "above-right" },
+      { key: "minus", objectId: "plate-minus", at: { x: 0, y: -3 }, placement: "below-right" },
+      { key: "electron", objectId: "electron-end", at: { x: 8, y: 2.5 }, placement: "right" },
+      { key: "proton", objectId: "proton-end", at: { x: 8, y: -2.5 }, placement: "right" },
+      { key: "neutron", objectId: "neutron-end", at: { x: 8, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    plus: <>pelat positif</>,
+    minus: <>pelat negatif</>,
+    electron: <InlineMath math="e^{-},\ q<0" />,
+    proton: <InlineMath math="p^{+},\ q>0" />,
+    neutron: <InlineMath math="n,\ q=0" />,
+  }}
+/>
+
 ## Massa dan Percepatan
 
 Massa partikel subatom sangat kecil, sehingga kita sering memakai **satuan massa atom terpadu**, ditulis <InlineMath math="\text{u}" />. Satu <InlineMath math="\mathrm u" /> adalah <InlineMath math="\frac{1}{12}" /> massa atom <InlineMath math="{}^{12}_{6}\mathrm{C}" /> netral pada keadaan dasar.
@@ -142,6 +178,33 @@ Perbandingan massa proton terhadap massa elektron adalah:
 Jadi, satu proton massanya kira-kira sama dengan <InlineMath math="1836" /> elektron. Proton dan neutron di dalam inti menyumbang hampir seluruh massa atom.
 
 Bayangkan gaya yang sama bekerja pada bola tenis dan bola bowling dalam selang waktu yang sama. Massa bola tenis lebih kecil, sehingga percepatan dan perubahan kecepatan bola tenis lebih besar. Kedua bola hanya mewakili perbedaan massa. Bentuk bola tidak mewakili bentuk partikel. Elektron juga merespons gaya listrik lebih kuat daripada proton karena massa elektron jauh lebih kecil.
+
+Inilah ketiga massa dalam u pada skala yang sama, dengan satu kotak grid untuk <InlineMath math="0{,}5\ \text{u}" />. Proton dan neutron hampir sama tinggi. Kolom elektron juga ada, tetapi dengan massa sekitar <InlineMath math="1/1836" /> proton, kolom itu hampir tidak terlihat. Itulah sebabnya massa atom terpusat di intinya.
+
+<MathVisual
+  title={<>Massa Tiga Partikel</>}
+  description={<>Proton 1,0073 u, neutron 1,0087 u, dan elektron 0,00055 u pada satu skala. Satu kotak grid ke atas sama dengan 0,5 u.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 3.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 1, z: 0 } },
+    objects: [
+      { id: "proton", kind: "cuboid", appearance: "primary", center: { x: 0, y: (1.0073 * 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1.0073 * 2, width: 1.2 } },
+      { id: "neutron", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: (1.0087 * 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1.0087 * 2, width: 1.2 } },
+      { id: "electron", kind: "cuboid", appearance: "secondary", center: { x: 5, y: (0.00055 * 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 0.00055 * 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "proton", objectId: "proton", at: { x: 0, y: 2.5, z: 0 }, placement: "above" },
+      { key: "neutron", objectId: "neutron", at: { x: 2.5, y: 2.5, z: 0 }, placement: "above" },
+      { key: "electron", objectId: "electron", at: { x: 5, y: 0.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    proton: <InlineMath math="1{,}0073\ \text{u}" />,
+    neutron: <InlineMath math="1{,}0087\ \text{u}" />,
+    electron: <InlineMath math="0{,}00055\ \text{u}" />,
+  }}
+/>
 
 ## Letak Partikel dan Peran Kimianya
 

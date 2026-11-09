@@ -108,6 +108,30 @@ If the carbon mass is kept the same, the oxygen masses in <InlineMath math="\mat
 
 The ratio <InlineMath math="1:2" /> is a simple whole-number ratio. This pattern supports the law of multiple proportions: when two elements form several compounds, the masses of one element that combine with a fixed mass of another element have a simple whole-number ratio.
 
+With carbon fixed at <InlineMath math="12\ \mathrm{g}" />, carbon monoxide holds <InlineMath math="16\ \mathrm{g}" /> of oxygen and carbon dioxide <InlineMath math="32\ \mathrm{g}" />, one grid step for <InlineMath math="8\ \mathrm{g}" />. The second bar is exactly twice the first, which Dalton read as one oxygen atom against two.
+
+<MathVisual
+  title={<>Oxygen per 12 g of Carbon</>}
+  description={<>Oxygen combined with 12 g of carbon in <InlineMath math="\mathrm{CO}" /> and <InlineMath math="\mathrm{CO_2}" />. One grid step up is 8 g.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 5, z: 8 }, target: { x: 1.5, y: 2, z: 0 } },
+    objects: [
+      { id: "monoxide", kind: "cuboid", appearance: "primary", center: { x: 0, y: (16 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 16 / 8, width: 1.2 } },
+      { id: "dioxide", kind: "cuboid", appearance: "primary", center: { x: 3, y: (32 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 32 / 8, width: 1.2 } },
+    ],
+    labels: [
+      { key: "monoxide", objectId: "monoxide", at: { x: 0, y: 2.5, z: 0 }, placement: "above" },
+      { key: "dioxide", objectId: "dioxide", at: { x: 3, y: 4.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    monoxide: <InlineMath math="\mathrm{CO}:\ 16\ \mathrm{g}" />,
+    dioxide: <InlineMath math="\mathrm{CO_2}:\ 32\ \mathrm{g}" />,
+  }}
+/>
+
 ## Limits of the Dalton Model
 
 Dalton's model explained the mass patterns in chemical reactions, but it could not explain every observation. If atoms were solid spheres with no inner parts, why could metals conduct electricity? Why could electric and magnetic fields bend cathode rays?
@@ -127,3 +151,31 @@ J. J. Thomson's cathode ray experiments revealed a **negatively charged particle
 Dalton assumed that all atoms of the same element had the same mass. That assumption could not explain isotopes, which have the same number of protons but different numbers of neutrons. The discovery of subatomic particles explains why atoms of one element can have different masses.
 
 Dalton's model explains conservation of mass, fixed composition, and multiple proportions. It cannot explain electric charge, isotopes, or the internal structure of atoms. Those later observations require a model that includes subatomic particles.
+
+Dalton's solid spheres can't explain alpha particles that bounce back from gold foil. With all the positive charge in a tiny nucleus, a particle passing at distance <InlineMath math="b" /> is turned by <InlineMath math="\theta=2\arctan\tfrac{b_0}{b}" />, where <InlineMath math="b_0" /> depends on the energy and the charges. Only a near miss, much closer than <InlineMath math="b_0" />, turns it far back. Zoom in on the left end of the curve.
+
+<MathVisual
+  title={<>Only a Near Miss Bounces Back</>}
+  description={<>Deflection angle of an alpha particle against how far it passes from the nucleus. Horizontal: one grid step is half of the distance <InlineMath math="b_0" />. Vertical: one grid step is 30 degrees.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 10.5 }, y: { min: -0.3, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "deflection", kind: "polyline", appearance: "primary", vertices: [{ x: 0.5, y: (2 * Math.atan(4 / 1) * 180) / Math.PI / 30 }, { x: 1, y: (2 * Math.atan(4 / 2) * 180) / Math.PI / 30 }, { x: 1.5, y: (2 * Math.atan(4 / 3) * 180) / Math.PI / 30 }, { x: 2, y: (2 * Math.atan(4 / 4) * 180) / Math.PI / 30 }, { x: 2.5, y: (2 * Math.atan(4 / 5) * 180) / Math.PI / 30 }, { x: 3, y: (2 * Math.atan(4 / 6) * 180) / Math.PI / 30 }, { x: 3.5, y: (2 * Math.atan(4 / 7) * 180) / Math.PI / 30 }, { x: 4, y: (2 * Math.atan(4 / 8) * 180) / Math.PI / 30 }, { x: 4.5, y: (2 * Math.atan(4 / 9) * 180) / Math.PI / 30 }, { x: 5, y: (2 * Math.atan(4 / 10) * 180) / Math.PI / 30 }, { x: 5.5, y: (2 * Math.atan(4 / 11) * 180) / Math.PI / 30 }, { x: 6, y: (2 * Math.atan(4 / 12) * 180) / Math.PI / 30 }, { x: 6.5, y: (2 * Math.atan(4 / 13) * 180) / Math.PI / 30 }, { x: 7, y: (2 * Math.atan(4 / 14) * 180) / Math.PI / 30 }, { x: 7.5, y: (2 * Math.atan(4 / 15) * 180) / Math.PI / 30 }, { x: 8, y: (2 * Math.atan(4 / 16) * 180) / Math.PI / 30 }, { x: 8.5, y: (2 * Math.atan(4 / 17) * 180) / Math.PI / 30 }, { x: 9, y: (2 * Math.atan(4 / 18) * 180) / Math.PI / 30 }, { x: 9.5, y: (2 * Math.atan(4 / 19) * 180) / Math.PI / 30 }, { x: 10, y: (2 * Math.atan(4 / 20) * 180) / Math.PI / 30 }] },
+      { id: "near", kind: "point", appearance: "answer", at: { x: 0.5, y: (2 * Math.atan(4 / 1) * 180) / Math.PI / 30 } },
+      { id: "edge", kind: "point", appearance: "secondary", at: { x: 2, y: 3 } },
+      { id: "far", kind: "point", appearance: "reference", at: { x: 10, y: (2 * Math.atan(4 / 20) * 180) / Math.PI / 30 } },
+    ],
+    labels: [
+      { key: "near", objectId: "near", at: { x: 0.5, y: (2 * Math.atan(4 / 1) * 180) / Math.PI / 30 }, placement: "right" },
+      { key: "edge", objectId: "edge", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "far", objectId: "far", at: { x: 10, y: (2 * Math.atan(4 / 20) * 180) / Math.PI / 30 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    near: <InlineMath math="b=0.25\,b_0:\ \theta\approx152^\circ" />,
+    edge: <InlineMath math="b=b_0:\ \theta=90^\circ" />,
+    far: <InlineMath math="b=5\,b_0:\ \theta\approx23^\circ" />,
+  }}
+/>

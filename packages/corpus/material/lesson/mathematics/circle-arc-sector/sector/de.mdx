@@ -3,7 +3,7 @@ export const metadata = {
   description: "Beschreibe einen Sektor mit zwei Radien und einem Kreisbogen. Erkläre, wie der Mittelpunktswinkel seine Größe bestimmt und wie sich kleine und große Sektoren unterscheiden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Kreisbögen und Sektoren",
 };
 
@@ -14,43 +14,35 @@ Ein Kreissektor ist der Bereich eines Kreises, der von <Highlight>zwei Radien un
 
 Unterscheide im Bild den Rand von der Fläche. Der **Kreisbogen** ist nur der gekrümmte Rand. Der **Sektor** umfasst die gesamte Fläche zwischen den Radien und dem Kreisbogen.
 
-<LineEquation
-  title={<>Kreissektor im Kreis</>}
-  description="Zwei Radien und der orangefarbene Kreisbogen markieren den Rand eines Sektors."
-  data={[
-    {
-      kind: "circle-outline", radius: 3,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      kind: "circle-radius", radius: 3, degrees: 45,
-      color: "#9333ea",
-      showPoints: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.3, 0.3, 0] }
-      ]
-    },
-    {
-      kind: "circle-radius", radius: 3, degrees: 135,
-      color: "#9333ea",
-      showPoints: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.3, 0] }
-      ]
-    },
-    { kind: "circle-arc", radius: 3,
-      startDegrees: 45,
-      sweepDegrees: 90,
-      segments: 25,
-      color: "#ea580c",
-      lineWidth: 4,
-      label: { text: "Bogen", offset: [0.5, 0.5, 0] } }
-  ]}
-  cameraPosition={[0, 0, 10]}
+<MathVisual
+  title={<>Ein Sektor, begrenzt von <InlineMath math="OA" />, <InlineMath math="OB" /> und dem Bogen <InlineMath math="AB" /></>}
+  description={<>Auf einem Kreis mit Radius 3 begrenzen die Radien <InlineMath math="OA" /> und <InlineMath math="OB" /> bei <InlineMath math="45^\circ" /> und <InlineMath math="135^\circ" /> und der Bogen <InlineMath math="AB" /> dazwischen einen Sektor von <InlineMath math="90^\circ" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    arc: <>Bogen</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "reference" },
+      { id: "oa", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, appearance: "secondary" },
+      { id: "ob", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, appearance: "secondary" },
+      { id: "arc", kind: "arc", center: { x: 0, y: 0 }, radius: 3, startDegrees: 45, sweepDegrees: 90, appearance: "primary" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "a", kind: "point", at: { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, appearance: "secondary" },
+      { id: "b", kind: "point", at: { x: -3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, placement: "left" },
+      { key: "arc", objectId: "arc", at: { x: 0, y: 3 }, placement: "above" },
+    ],
+  }}
 />
 
 ## Merkmale eines Sektors
@@ -69,17 +61,34 @@ Der Mittelpunktswinkel wird im Mittelpunkt des Kreises zwischen den beiden begre
 
 Zum Beispiel entspricht <InlineMath math="90^\circ" /> **einem Viertel einer vollen Umdrehung**. Der zugehörige Sektor besitzt daher ein Viertel der Kreisfläche. Ein Sektor mit <InlineMath math="180^\circ" /> besitzt die Hälfte der Kreisfläche.
 
-<LineEquation
-  title="Sektoren im selben Kreis"
-  description="Drei benachbarte Sektoren haben denselben Radius und liegen in derselben Ebene."
-  data={[
-    { kind: "circle-outline", radius: 4, color: "#0d9488", showPoints: false },
-    ...[0, 60, 150, 270].map((degrees) => ({ kind: "circle-radius", radius: 4, degrees, color: "#7c3aed", showPoints: false })),
-    { kind: "circle-arc", radius: 4, startDegrees: 0, sweepDegrees: 60, color: "#d97706", lineWidth: 4, label: { text: <InlineMath math="60^\circ" />, offset: [0.5, 0.3, 0] } },
-    { kind: "circle-arc", radius: 4, startDegrees: 60, sweepDegrees: 90, color: "#65a30d", lineWidth: 4, label: { text: <InlineMath math="90^\circ" />, offset: [-0.3, 0.4, 0] } },
-    { kind: "circle-arc", radius: 4, startDegrees: 150, sweepDegrees: 120, color: "#c026d3", lineWidth: 4, label: { text: <InlineMath math="120^\circ" />, offset: [-0.5, -0.3, 0] } },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Drei Sektoren auf einem Kreis</>}
+  description={<>Benachbarte Sektoren mit den Mittelpunktswinkeln <InlineMath math="60^\circ" />, <InlineMath math="90^\circ" /> und <InlineMath math="120^\circ" /> auf einem Kreis mit Radius 4, also <InlineMath math="\tfrac16" />, <InlineMath math="\tfrac14" /> und <InlineMath math="\tfrac13" /> des Kreises.</>}
+  labels={{
+    s60: <InlineMath math="60^\circ" />,
+    s90: <InlineMath math="90^\circ" />,
+    s120: <InlineMath math="120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.6, max: 4.6 }, y: { min: -4.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "reference" },
+      { id: "r0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "r60", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) }, appearance: "construction" },
+      { id: "r150", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2 * Math.sqrt(3), y: 2 }, appearance: "construction" },
+      { id: "r270", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -4 }, appearance: "construction" },
+      { id: "s60", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 0, sweepDegrees: 60, appearance: "primary" },
+      { id: "s90", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 60, sweepDegrees: 90, appearance: "secondary" },
+      { id: "s120", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 150, sweepDegrees: 120, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "s60", objectId: "s60", at: { x: 2 * Math.sqrt(3), y: 2 }, placement: "right" },
+      { key: "s90", objectId: "s90", at: { x: 4 * Math.cos(105 * Math.PI / 180), y: 4 * Math.sin(105 * Math.PI / 180) }, placement: "above" },
+      { key: "s120", objectId: "s120", at: { x: 4 * Math.cos(210 * Math.PI / 180), y: 4 * Math.sin(210 * Math.PI / 180) }, placement: "left" },
+    ],
+  }}
 />
 
 
@@ -101,4 +110,30 @@ Auf einem gleichmäßig eingeteilten Zifferblatt begrenzen zwei benachbarte Stun
 
 Ein idealisierter Rasensprenger mit Radius <InlineMath math="6\text{ m}" /> und Schwenkwinkel <InlineMath math="90^\circ" /> bewässert ein Viertel einer Kreisscheibe:
 
-<BlockMath math="L=\frac{90^\circ}{360^\circ}\pi(6)^2=\frac14\times36\pi=9\pi\text{ m}^2" />
+<BlockMath math="A=\frac{90^\circ}{360^\circ}\pi(6)^2=\frac14\times36\pi=9\pi\text{ m}^2" />
+
+Der Rasensprenger bewässert einen Viertelkreis mit Radius 6 m. Seine Fläche ist ein Viertel des ganzen Kreises: <InlineMath math="\frac{90^\circ}{360^\circ} \cdot \pi \cdot 6^2 = 9\pi \approx 28{,}27\ \text{m}^2" />.
+
+<MathVisual
+  title={<>Der Sektor des Rasensprengers mit <InlineMath math="90^\circ" /></>}
+  description={<>Ein Sektor mit Radius 6 m und dem Mittelpunktswinkel <InlineMath math="90^\circ" />, mit der Fläche <InlineMath math="9\pi\ \text{m}^2" />.</>}
+  labels={{
+    r: <InlineMath math="6" />,
+    area: <InlineMath math="9\pi" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 6.8 }, y: { min: -0.8, max: 6.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "r1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 0 }, appearance: "secondary" },
+      { id: "r2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 6 }, appearance: "secondary" },
+      { id: "edge", kind: "arc", center: { x: 0, y: 0 }, radius: 6, startDegrees: 0, sweepDegrees: 90, appearance: "primary" },
+      { id: "sprinkler", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "r", objectId: "r1", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "area", objectId: "edge", at: { x: 6 * Math.cos(Math.PI / 4), y: 6 * Math.sin(Math.PI / 4) }, placement: "below-left" },
+    ],
+  }}
+/>

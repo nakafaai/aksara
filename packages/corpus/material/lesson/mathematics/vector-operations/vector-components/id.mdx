@@ -5,7 +5,7 @@ export const metadata = {
   description: "Uraikan vektor menjadi komponen koordinat, hitung kembali besarnya dengan teorema Pythagoras, dan bentuk vektor satuan arah.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-11",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Vektor dan Operasinya",
 };
 
@@ -15,58 +15,34 @@ Setiap vektor pada bidang koordinat <Highlight>dapat diuraikan sepanjang kedua s
 
 Komponen skalar menunjukkan seberapa jauh dan ke arah bertanda mana vektor membentang sepanjang sumbu <InlineMath math="x" /> dan <InlineMath math="y" />. Setiap vektor pada bidang merupakan kombinasi linear dari vektor satuan <InlineMath math="\mathbf{i}" /> dan <InlineMath math="\mathbf{j}" />.
 
-<LineEquation
-  cameraPosition={[1.8, 4, 12.5]}
-  cameraTarget={[1.8, 4, 0]}
-  title="Visualisasi Vektor dan Komponennya"
-  description={
-    <>
-      Vektor <InlineMath math="AB" /> dan komponennya pada sumbu{" "}
-      <InlineMath math="x" /> dan <InlineMath math="y" />, dengan komponen{" "}
-      <InlineMath math="z" /> bernilai nol.
-    </>
-  }
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.75 * ((6) - (0)), y: (0) + 0.75 * ((8) - (0)), z: (0) + 0.75 * ((0) - (0)) }, { x: 6, y: 8, z: 0 }],
-      color: "#e11d48",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="AB" />,
-        at: 1,
-        offset: [-0.3, 0.7, 0],
-        anchorX: "center",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((6) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 6, y: 0, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <>Komponen <InlineMath math="x" /></>,
-        at: 1,
-        offset: [0, -0.6, 0],
-        anchorX: "center",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((0) - (0)), y: (0) + 0.5 * ((8) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 0, y: 8, z: 0 }],
-      color: "#65a30d",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <>Komponen <InlineMath math="y" /></>,
-        at: 1,
-        offset: [-0.4, 0, 0],
-        anchorX: "right",
-      }],
-    },
-  ]}
+<MathVisual
+  title={<><InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" /> dan komponennya</>}
+  description={<>Vektor ke <InlineMath math="(6, 8)" /> dengan vektor komponen <InlineMath math="6\mathbf{i}" /> sepanjang sumbu x dan <InlineMath math="8\mathbf{j}" /> sepanjang sumbu y.</>}
+  labels={{
+    ab: <InlineMath math="\overrightarrow{AB}" />,
+    x: <InlineMath math="6\mathbf{i}" />,
+    y: <InlineMath math="8\mathbf{j}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 7 }, y: { min: -0.8, max: 8.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "gx", kind: "segment", from: { x: 6, y: 0 }, to: { x: 6, y: 8 }, appearance: "reference" },
+      { id: "gy", kind: "segment", from: { x: 0, y: 8 }, to: { x: 6, y: 8 }, appearance: "reference" },
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "x-head", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 28 / 5, y: 4 / 25 }, { x: 28 / 5, y: -4 / 25 }], appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 8 }, appearance: "highlight" },
+      { id: "y-head", kind: "polygon", vertices: [{ x: 0, y: 8 }, { x: -4 / 25, y: 38 / 5 }, { x: 4 / 25, y: 38 / 5 }], appearance: "highlight" },
+      { id: "ab", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "ab-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "ab", objectId: "ab", at: { x: 3, y: 4 }, placement: "below-right" },
+      { key: "x", objectId: "x", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: 0, y: 4 }, placement: "left" },
+    ],
+  }}
 />
 
 Jika kita memiliki vektor <InlineMath math="\overrightarrow{AB}" />, maka:
@@ -110,65 +86,37 @@ Untuk vektor <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" 
 
 Vektor dapat digunakan pada bidang datar dua dimensi dan ruang tiga dimensi.
 
-<LineEquation
-  cameraPosition={[11, 10, -11]}
-  cameraTarget={[1.5, 3.5, 2]}
-  title="Vektor dalam Ruang 3D"
-  description="Visualisasi vektor beserta komponennya dalam ruang tiga dimensi."
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.85 * ((5) - (0)), y: (0) + 0.85 * ((7) - (0)), z: (0) + 0.85 * ((4) - (0)) }, { x: 5, y: 7, z: 4 }],
-      color: "#ea580c",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: "Vektor 3D",
-        at: 1,
-        offset: [0, 0.8, 0],
-        anchorX: "center",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((5) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 5, y: 0, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <>Komponen <InlineMath math="x" /></>,
-        at: 1,
-        offset: [0, -0.7, 0],
-        anchorX: "center",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * ((0) - (0)), y: (0) + 0.6 * ((7) - (0)), z: (0) + 0.6 * ((0) - (0)) }, { x: 0, y: 7, z: 0 }],
-      color: "#65a30d",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <>Komponen <InlineMath math="y" /></>,
-        at: 1,
-        offset: [-0.8, 0, 0],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * ((0) - (0)), y: (0) + 0.6 * ((0) - (0)), z: (0) + 0.6 * ((4) - (0)) }, { x: 0, y: 0, z: 4 }],
-      color: "#ca8a04",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <>Komponen <InlineMath math="z" /></>,
-        at: 1,
-        offset: [0.5, -0.3, 0],
-        anchorX: "left",
-      }],
-    },
-  ]}
+<MathVisual
+  title={<>Vektor di ruang dan ketiga komponennya</>}
+  description={<>Vektor ke <InlineMath math="(5, 7, 4)" /> dengan vektor komponen <InlineMath math="5\mathbf{i}" />, <InlineMath math="7\mathbf{j}" />, dan <InlineMath math="4\mathbf{k}" /> sepanjang ketiga sumbu.</>}
+  labels={{
+    v: <InlineMath math="\vec{v}" />,
+    x: <InlineMath math="5\mathbf{i}" />,
+    y: <InlineMath math="7\mathbf{j}" />,
+    z: <InlineMath math="4\mathbf{k}" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 8 }, z: { min: -0.5, max: 5 } },
+    view: { kind: "isometric", target: { x: 5 / 2, y: 7 / 2, z: 2 } },
+    objects: [
+      { id: "guide", kind: "polyline", vertices: [{ x: 5, y: 0, z: 0 }, { x: 5, y: 7, z: 0 }, { x: 5, y: 7, z: 4 }], appearance: "reference" },
+      { id: "x", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 5, y: 0, z: 0 }, appearance: "construction" },
+      { id: "x-head", kind: "polygon", vertices: [{ x: 5, y: 0, z: 0 }, { x: 23 / 5, y: 0, z: 4 / 25 }, { x: 23 / 5, y: 0, z: -4 / 25 }], appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 7, z: 0 }, appearance: "highlight" },
+      { id: "y-head", kind: "polygon", vertices: [{ x: 0, y: 7, z: 0 }, { x: 0, y: 33 / 5, z: -4 / 25 }, { x: 0, y: 33 / 5, z: 4 / 25 }], appearance: "highlight" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 }, appearance: "secondary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 0, y: 0, z: 4 }, { x: -4 / 25, y: 0, z: 18 / 5 }, { x: 4 / 25, y: 0, z: 18 / 5 }], appearance: "secondary" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 5, y: 7, z: 4 }, appearance: "primary" },
+      { id: "v-head", kind: "polygon", vertices: [{ x: 5, y: 7, z: 4 }, { x: (5) + (-2 / Math.sqrt(90)) + (-16 / 25 / Math.sqrt(41)), y: (7) + (-14 / 5 / Math.sqrt(90)), z: (4) + (-8 / 5 / Math.sqrt(90)) + (4 / 5 / Math.sqrt(41)) }, { x: (5) + (-2 / Math.sqrt(90)) + (16 / 25 / Math.sqrt(41)), y: (7) + (-14 / 5 / Math.sqrt(90)), z: (4) + (-8 / 5 / Math.sqrt(90)) + (-4 / 5 / Math.sqrt(41)) }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 5 / 2, y: 7 / 2, z: 2 }, placement: "above" },
+      { key: "x", objectId: "x", at: { x: 5 / 2, y: 0, z: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: 0, y: 7 / 2, z: 0 }, placement: "left" },
+      { key: "z", objectId: "z", at: { x: 0, y: 0, z: 2 }, placement: "left" },
+    ],
+  }}
 />
 
 Dalam ruang tiga dimensi, sebuah vektor memiliki **tiga komponen**: komponen <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />. Vektor di ruang tiga dimensi dapat dinyatakan sebagai:
@@ -194,6 +142,33 @@ Untuk menyatakan arah vektor tak nol, kita dapat menggunakan vektor satuan. Vekt
 Vektor satuan arah dari <InlineMath math="\overrightarrow{AB}" /> kita lambangkan dengan <InlineMath math="\mathbf{u}_{AB}" /> dan dihitung dengan:
 
 <BlockMath math="\mathbf{u}_{AB} = \frac{\overrightarrow{AB}}{|\overrightarrow{AB}|}" />
+
+Membagi <InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" /> dengan panjangnya 10 memberi <InlineMath math="\mathbf{u}_{AB} = 0{,}6\mathbf{i} + 0{,}8\mathbf{j}" />. Vektor satuan itu terletak pada sinar yang sama dengan <InlineMath math="\overrightarrow{AB}" />, tetapi berakhir pada lingkaran berjari-jari 1.
+
+<MathVisual
+  title={<>Vektor satuan arah <InlineMath math="\overrightarrow{AB}" /></>}
+  description={<>Vektor <InlineMath math="\overrightarrow{AB}" /> ke <InlineMath math="(6, 8)" /> dan vektor satuan arahnya <InlineMath math="\mathbf{u}_{AB} = (0{,}6;\ 0{,}8)" />, yang berakhir pada lingkaran satuan.</>}
+  labels={{
+    ab: <InlineMath math="\overrightarrow{AB}" />,
+    u: <InlineMath math="\mathbf{u}_{AB}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 7 }, y: { min: -1.3, max: 8.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "ab", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "ab-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+      { id: "u", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 5, y: 4 / 5 }, appearance: "answer" },
+      { id: "u-head", kind: "polygon", vertices: [{ x: 3 / 5, y: 4 / 5 }, { x: 67 / 150, y: 53 / 75 }, { x: 83 / 150, y: 47 / 75 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "ab", objectId: "ab", at: { x: 3, y: 4 }, placement: "below-right" },
+      { key: "u", objectId: "u", at: { x: 3 / 5, y: 4 / 5 }, placement: "left" },
+    ],
+  }}
+/>
 
 ### Contoh Vektor Satuan Arah
 

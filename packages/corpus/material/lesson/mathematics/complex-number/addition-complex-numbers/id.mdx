@@ -3,7 +3,7 @@ export const metadata = {
   description: "Jumlahkan bagian real dan imajiner dua bilangan kompleks, lalu tunjukkan jumlah kedua bilangan sebagai diagonal dengan aturan jajar genjang.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Bilangan Kompleks",
 };
 
@@ -35,70 +35,34 @@ Maka penjumlahannya:
 
 Dengan **aturan jajar genjang**, penjumlahan bilangan kompleks bisa kita lihat secara geometris di bidang kompleks. Kalau kita gambarkan <InlineMath math="z_1" /> dan <InlineMath math="z_2" /> sebagai vektor (panah) dari titik asal <InlineMath math="(0, 0)" />, maka hasil penjumlahannya, <InlineMath math="z_1 + z_2" />, adalah vektor diagonal dari jajar genjang yang dibentuk oleh <InlineMath math="z_1" /> dan <InlineMath math="z_2" />.
 
-<LineEquation
-  title="Penjumlahan Bilangan Kompleks secara Geometris"
-  description={
-    <>
-      Visualisasi penjumlahan <InlineMath math="z_1 = 2+3i" /> dan{" "}
-      <InlineMath math="z_2 = 1-i" /> menggunakan aturan jajar genjang.
-    </>
-  }
-  cameraPosition={[1.5, 1, 8]}
-  cameraTarget={[1.5, 1, 0]}
-  showZAxis={false}
-  data={[
-    // Vektor z1
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 2, y: 3, z: 0 },
-      ],
-      smooth: false,
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="z_1=2+3i" />, at: 1, offset: [0.5, 0.5, 0] }],
-      cone: { position: "end" },
-    },
-    // Vektor z2
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1, y: -1, z: 0 },
-      ],
-      smooth: false,
-      color: "#059669",
-      labels: [{ text: <InlineMath math="z_2=1-i" />, at: 1, offset: [0.5, -0.5, 0] }],
-      cone: { position: "end" },
-    },
-    // Vektor hasil z1 + z2
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="z_1+z_2=3+2i" />, at: 1, offset: [0.55, 0, 0] }],
-      cone: { position: "end" },
-    },
-    // Garis bantu jajar genjang (dari ujung z1 ke ujung z1+z2)
-    {
-      points: [
-        { x: 2, y: 3, z: 0 },
-        { x: 3, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#059669",
-    },
-    // Garis bantu jajar genjang (dari ujung z2 ke ujung z1+z2)
-    {
-      points: [
-        { x: 1, y: -1, z: 0 },
-        { x: 3, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#0284c7",
-    },
-  ]}
+<MathVisual
+  title={<>Menjumlahkan <InlineMath math="z_1 = 2 + 3i" /> dan <InlineMath math="z_2 = 1 - i" /></>}
+  description={<>Vektor <InlineMath math="z_1 = 2 + 3i" /> dan <InlineMath math="z_2 = 1 - i" /> membentuk jajargenjang yang diagonalnya <InlineMath math="z_1 + z_2 = 3 + 2i" />.</>}
+  labels={{
+    z1: <InlineMath math="z_1 = 2 + 3i" />,
+    z2: <InlineMath math="z_2 = 1 - i" />,
+    sum: <InlineMath math="z_1 + z_2 = 3 + 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -1.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "h1", kind: "segment", from: { x: 2, y: 3 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "h2", kind: "segment", from: { x: 1, y: -1 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)), y: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)) }, { x: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)), y: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 1, y: -1 }, { x: (1) + (-1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)) }, { x: (1) + (-1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)) }], appearance: "secondary" },
+      { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "answer" },
+      { id: "sum-head", kind: "polygon", vertices: [{ x: 3, y: 2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 2, y: 3 }, placement: "above-left" },
+      { key: "z2", objectId: "z2", at: { x: 1, y: -1 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 3, y: 2 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Perkalian Skalar Negasi dan Pengurangan
@@ -132,6 +96,40 @@ Mengurangkan <InlineMath math="z_2" /> dari <InlineMath math="z_1" /> (<InlineMa
 Jadi, kita kurangkan bagian real dengan bagian real, dan bagian imajiner dengan bagian imajiner.
 
 Secara geometris, <InlineMath math="z_1 - z_2" /> adalah vektor dari ujung <InlineMath math="z_2" /> ke ujung <InlineMath math="z_1" />.
+
+Pengurangan berarti menambahkan negatifnya. Untuk <InlineMath math="z_1 = 2 + 3i" /> dan <InlineMath math="z_2 = 1 - i" />, pasang <InlineMath math="-z_2 = -1 + i" /> di ujung <InlineMath math="z_1" />. Panah dari titik asal ke titik akhirnya adalah <InlineMath math="z_1 - z_2 = 1 + 4i" />.
+
+<MathVisual
+  title={<><InlineMath math="z_1 - z_2" /> sebagai <InlineMath math="z_1 + (-z_2)" /></>}
+  description={<>Vektor <InlineMath math="z_1 = 2 + 3i" />, negatif <InlineMath math="-z_2 = -1 + i" /> yang dipasang di ujungnya, dan selisih <InlineMath math="z_1 - z_2 = 1 + 4i" />, dengan <InlineMath math="z_2 = 1 - i" /> sebagai pembanding.</>}
+  labels={{
+    z1: <InlineMath math="z_1" />,
+    neg: <InlineMath math="-z_2" />,
+    diff: <InlineMath math="z_1 - z_2 = 1 + 4i" />,
+    z2: <InlineMath math="z_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 3.4 }, y: { min: -1.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "construction" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 1, y: -1 }, { x: (1) + (-1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)) }, { x: (1) + (-1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)) }], appearance: "construction" },
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)), y: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)) }, { x: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)), y: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: 2, y: 3 }, to: { x: 1, y: 4 }, appearance: "secondary" },
+      { id: "neg-head", kind: "polygon", vertices: [{ x: 1, y: 4 }, { x: (1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)), y: (4) + (-1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)) }, { x: (1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)), y: (4) + (-1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)) }], appearance: "secondary" },
+      { id: "diff", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 4 }, appearance: "answer" },
+      { id: "diff-head", kind: "polygon", vertices: [{ x: 1, y: 4 }, { x: (1) + (-1 / 4 / Math.sqrt(17)) + (-2 / 5 / Math.sqrt(17)), y: (4) + (-1 / Math.sqrt(17)) + (1 / 10 / Math.sqrt(17)) }, { x: (1) + (-1 / 4 / Math.sqrt(17)) + (2 / 5 / Math.sqrt(17)), y: (4) + (-1 / Math.sqrt(17)) + (-1 / 10 / Math.sqrt(17)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1, y: 3 / 2 }, placement: "right" },
+      { key: "neg", objectId: "neg", at: { x: 3 / 2, y: 7 / 2 }, placement: "right" },
+      { key: "diff", objectId: "diff", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "z2", objectId: "z2", at: { x: 1, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
 
 ### Menggabungkan Penjumlahan Pengurangan dan Perkalian Skalar
 
@@ -180,65 +178,32 @@ Jumlahkan dan kurangkan bagian yang bersesuaian, lalu baca jumlah sebagai **diag
 
 3.  Vektor <InlineMath math="z_1" /> dan <InlineMath math="z_2" /> menjadi dua sisi jajar genjang. Diagonalnya berakhir di <InlineMath math="z_3=z_1+z_2=4+i" />:
 
-    <LineEquation
-      title="Penjumlahan Bilangan Kompleks"
-      description={
-        <>
-          Vektor <InlineMath math="z_1" /> dan <InlineMath math="z_2" /> membentuk
-          sisi-sisi jajar genjang. <InlineMath math="z_3=z_1+z_2" /> menjadi
-          diagonalnya.
-        </>
-      }
-      cameraPosition={[2, 0.5, 8]}
-      cameraTarget={[2, 0.5, 0]}
-      showZAxis={false}
-      data={[
-        {
-          points: [
-            { x: 0, y: 0, z: 0 },
-            { x: 1, y: 2, z: 0 },
-          ],
-          smooth: false,
-          color: "#0284c7",
-          labels: [{ text: <InlineMath math="z_1=1+2i" />, at: 1, offset: [0.5, 0.5, 0] }],
-          cone: { position: "end" },
-        },
-        {
-          points: [
-            { x: 0, y: 0, z: 0 },
-            { x: 3, y: -1, z: 0 },
-          ],
-          smooth: false,
-          color: "#059669",
-          labels: [{ text: <InlineMath math="z_2=3-i" />, at: 1, offset: [0.5, -0.5, 0] }],
-          cone: { position: "end" },
-        },
-        {
-          points: [
-            { x: 0, y: 0, z: 0 },
-            { x: 4, y: 1, z: 0 }, // z3 = z1 + z2
-          ],
-          smooth: false,
-          color: "#e11d48",
-          labels: [{ text: <InlineMath math="z_3=4+i" />, at: 1, offset: [0, 0.8, 0] }],
-          cone: { position: "end" },
-        },
-        // Garis bantu jajar genjang
-        {
-          points: [
-            { x: 1, y: 2, z: 0 }, // ujung z1
-            { x: 4, y: 1, z: 0 }, // ujung z3
-          ],
-          smooth: false,
-          color: "#059669",
-        },
-        {
-          points: [
-            { x: 3, y: -1, z: 0 }, // ujung z2
-            { x: 4, y: 1, z: 0 }, // ujung z3
-          ],
-          smooth: false,
-          color: "#0284c7",
-        },
-      ]}
+    <MathVisual
+      title={<><InlineMath math="z_3 = z_1 + z_2 = 4 + i" /></>}
+      description={<>Vektor <InlineMath math="z_1 = 1 + 2i" /> dan <InlineMath math="z_2 = 3 - i" /> membentuk dua sisi jajargenjang. Diagonalnya berakhir di <InlineMath math="z_3 = 4 + i" />.</>}
+      labels={{
+        z1: <InlineMath math="z_1 = 1 + 2i" />,
+        z2: <InlineMath math="z_2 = 3 - i" />,
+        sum: <InlineMath math="z_3 = 4 + i" />,
+      }}
+      scene={{
+        space: "plane",
+        frame: { kind: "cartesian", x: { min: -0.6, max: 5 }, y: { min: -1.6, max: 2.8 } },
+        view: { kind: "fit", padding: 0.3 },
+        objects: [
+          { id: "h1", kind: "segment", from: { x: 1, y: 2 }, to: { x: 4, y: 1 }, appearance: "construction" },
+          { id: "h2", kind: "segment", from: { x: 3, y: -1 }, to: { x: 4, y: 1 }, appearance: "construction" },
+          { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "primary" },
+          { id: "z1-head", kind: "polygon", vertices: [{ x: 1, y: 2 }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }], appearance: "primary" },
+          { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -1 }, appearance: "secondary" },
+          { id: "z2-head", kind: "polygon", vertices: [{ x: 3, y: -1 }, { x: (3) + (-3 / 4 / Math.sqrt(10)) + (1 / 10 / Math.sqrt(10)), y: (-1) + (1 / 4 / Math.sqrt(10)) + (3 / 10 / Math.sqrt(10)) }, { x: (3) + (-3 / 4 / Math.sqrt(10)) + (-1 / 10 / Math.sqrt(10)), y: (-1) + (1 / 4 / Math.sqrt(10)) + (-3 / 10 / Math.sqrt(10)) }], appearance: "secondary" },
+          { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "answer" },
+          { id: "sum-head", kind: "polygon", vertices: [{ x: 4, y: 1 }, { x: (4) + (-1 / Math.sqrt(17)) + (-1 / 10 / Math.sqrt(17)), y: (1) + (-1 / 4 / Math.sqrt(17)) + (2 / 5 / Math.sqrt(17)) }, { x: (4) + (-1 / Math.sqrt(17)) + (1 / 10 / Math.sqrt(17)), y: (1) + (-1 / 4 / Math.sqrt(17)) + (-2 / 5 / Math.sqrt(17)) }], appearance: "answer" },
+        ],
+        labels: [
+          { key: "z1", objectId: "z1", at: { x: 1, y: 2 }, placement: "above-left" },
+          { key: "z2", objectId: "z2", at: { x: 3, y: -1 }, placement: "below" },
+          { key: "sum", objectId: "sum", at: { x: 4, y: 1 }, placement: "right" },
+        ],
+      }}
     />
