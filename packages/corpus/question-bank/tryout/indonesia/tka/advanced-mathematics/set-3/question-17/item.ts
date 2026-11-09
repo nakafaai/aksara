@@ -27,7 +27,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Tali busur yang titik tengahnya $$P$$ terletak pada garis $$x+3y-19=0$$.",
+            "Garis yang memuat tali busur dengan titik tengah $$P$$ adalah $$x+3y-19=0$$.",
         },
       ],
     },
