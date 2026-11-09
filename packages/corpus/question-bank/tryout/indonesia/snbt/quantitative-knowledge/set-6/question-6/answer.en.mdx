@@ -1,27 +1,26 @@
-We are given the function <InlineMath math="f(x) = 2x - 3" /> and the **composite function** <InlineMath math="(g \circ f)(x) = 4x^2 - 12x + 10" />. We are asked to find the value of <InlineMath math="g(1)" />.
+Factor the left side into linear factors, then **check the sign of the product on each interval** between its zeros.
 
-The definition of a composite function is <InlineMath math="(g \circ f)(x) = g(f(x))" />. Let <InlineMath math="u = f(x) = 2x - 3" />. We rearrange this equation to express <InlineMath math="x" /> in terms of <InlineMath math="u" />:
+<BlockMath math="\left(x^2-9\right)(x-5)=(x+3)(x-3)(x-5)" />
 
-<BlockMath math="2x = u + 3" />
+# The sign on each interval
 
-<BlockMath math="x = \frac{u + 3}{2}" />
+The zeros are <InlineMath math="-3" />, 3, and 5. The sign of the product changes each time it passes one zero.
 
-Substitute <InlineMath math="x" /> into the equation <InlineMath math="(g \circ f)(x)" />:
+| Interval | <InlineMath math="x+3" /> | <InlineMath math="x-3" /> | <InlineMath math="x-5" /> | Product |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="x<-3" /> | negative | negative | negative | negative |
+| <InlineMath math="-3<x<3" /> | positive | negative | negative | positive |
+| <InlineMath math="3<x<5" /> | positive | positive | negative | negative |
+| <InlineMath math="x>5" /> | positive | positive | positive | positive |
 
-<BlockMath math="\begin{aligned}g(u)&=4\left(\frac{u+3}{2}\right)^2\\&\quad{}-12\left(\frac{u+3}{2}\right)+10\end{aligned}" />
+Because the sign is less than or equal to, **the zeros are included**. The solution is <InlineMath math="x\le-3" /> or <InlineMath math="3\le x\le5" />.
 
-<BlockMath math="\begin{aligned}g(u)&=4\left(\frac{u^2+6u+9}{4}\right)\\&\quad{}-6(u+3)+10\end{aligned}" />
+# Counting the integers
 
-<BlockMath math="\begin{aligned}g(u)&=(u^2+6u+9)\\&\quad{}-(6u+18)+10\end{aligned}" />
+On <InlineMath math="-10\le x\le-3" /> there are 8 integers, and on <InlineMath math="3\le x\le5" /> there are 3, namely 3, 4, and 5.
 
-<BlockMath math="\begin{aligned}g(u)&=u^2+6u-6u\\&\quad{}+9-18+10\end{aligned}" />
+<BlockMath math="8+3=11" />
 
-<BlockMath math="g(u) = u^2 + 1" />
+The value 8 uses strictly less than and so drops <InlineMath math="-3" />, 3, and 5. The value 13 uses the positive region. The value 3 counts only the part <InlineMath math="3\le x\le5" />, and the value 7 counts the left part without <InlineMath math="-3" />.
 
-Thus, we have <InlineMath math="g(x) = x^2 + 1" />.
-
-Then the value of <InlineMath math="g(1)" /> is:
-
-<BlockMath math="g(1) = 1^2 + 1 = 1 + 1 = 2" />
-
-So, the value of <InlineMath math="g(1)" /> is <InlineMath math="2" />.
+So **11** integers satisfy the inequality.

@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "ordering",
+  },
+  stimulus: "lagu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Simpulan tersebut pasti benar.",
+          label: "Lagu S dinyanyikan pada urutan ketiga.",
         },
         {
           correct: false,
-          label: "Simpulan tersebut kemungkinan besar benar.",
+          label: "Lagu T dinyanyikan pada urutan kelima.",
+        },
+        {
+          correct: false,
+          label: "Lagu Q dinyanyikan pada urutan terakhir.",
         },
         {
           correct: true,
-          label: "Simpulan tidak relevan dengan informasi yang diberikan.",
+          label: "Lagu P dinyanyikan pada urutan kedua.",
         },
         {
           correct: false,
-          label: "Simpulan tersebut pasti salah.",
-        },
-        {
-          correct: false,
-          label:
-            "Simpulan relevan, tetapi tidak dapat dinilai karena informasi tidak cukup.",
+          label: "Lagu R dinyanyikan pada urutan keempat.",
         },
       ],
     },

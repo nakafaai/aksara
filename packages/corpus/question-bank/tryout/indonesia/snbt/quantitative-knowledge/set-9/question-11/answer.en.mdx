@@ -1,33 +1,20 @@
-Use **complement probabilities** to calculate the chance of failing.
+The angle between a tangent and a chord subtends the same arc as the inscribed angle on the other side. This is **the tangent-chord theorem**: the two angles are equal.
 
-Let:
--   <InlineMath math="P(A)" /> = Probability Ali passes
--   <InlineMath math="P(B)" /> = Probability Bima passes
--   <InlineMath math="P(D)" /> = Probability Dika passes
+# The arc being subtended
 
-Given:
+The <InlineMath math="35^\circ" /> angle between <InlineMath math="\ell" /> and <InlineMath math="AB" /> subtends the minor arc <InlineMath math="AB" />. Angle <InlineMath math="ACB" />, with <InlineMath math="C" /> on the major arc, **also subtends the minor arc <InlineMath math="AB" />**.
 
-<BlockMath math="\begin{aligned}P(A)&=0.75\\P(A^c)&=1 - 0.75\\&=0.25\end{aligned}" />
+# Computing through the central angle
 
-<BlockMath math="\begin{aligned}P(B)&=0.8\\P(B^c)&=1 - 0.8\\&=0.2\end{aligned}" />
+Let the centre be <InlineMath math="O" />. The radius <InlineMath math="OA" /> is perpendicular to the tangent, so <InlineMath math="\angle OAB=90^\circ-35^\circ=55^\circ" />. Triangle <InlineMath math="OAB" /> is isosceles because <InlineMath math="OA=OB" />.
 
-<BlockMath math="\begin{aligned}P(D)&=0.85\\P(D^c)&=1 - 0.85\\&=0.15\end{aligned}" />
+<BlockMath math="\begin{aligned}
+\angle AOB&=180^\circ-2\cdot55^\circ=70^\circ\\
+\angle ACB&=\tfrac12\angle AOB=35^\circ
+\end{aligned}" />
 
-Because the three outcomes are independent, we multiply the appropriate pass and fail probabilities within each case. Exactly one person passes in one of three mutually exclusive cases:
+An inscribed angle is **half the central angle** on the same arc, and the result agrees with the tangent-chord theorem.
 
-| Only person who passes | Probability calculation |
-| --- | --- |
-| Ali | <InlineMath math="P(A\cap B^c\cap D^c)=0.75 \cdot 0.2 \cdot 0.15= 0.0225" /> |
-| Bima | <InlineMath math="P(B\cap A^c\cap D^c)=0.8 \cdot 0.25 \cdot 0.15= 0.03" /> |
+The value <InlineMath math="70^\circ" /> is the central angle <InlineMath math="AOB" />, and <InlineMath math="55^\circ" /> is angle <InlineMath math="OAB" />. The value <InlineMath math="145^\circ" /> is the supplement of <InlineMath math="35^\circ" />, the inscribed angle if <InlineMath math="C" /> were on the minor arc.
 
-# Only Dika passes
-
-<BlockMath math="\begin{aligned}&P(D\cap A^c\cap B^c)\\&=0.85 \cdot 0.25 \cdot 0.2\\&= 0.0425\end{aligned}" />
-
-# Total Probability
-
-Thus, the probability that only one person passes is the **sum of three mutually exclusive case probabilities**:
-
-<BlockMath math="\begin{aligned}&0.0225+0.03\\&\quad+0.0425\\&=0.095\end{aligned}" />
-
-Thus, the required probability is <InlineMath math="0.095" />, or <InlineMath math="9.5\%" />.
+So angle <InlineMath math="ACB" /> measures **<InlineMath math="35^\circ" />**.

@@ -1,33 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "panas",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Naskah tertulis yang ditemukan diterbitkan pada 1970-an.",
-        },
-        {
-          correct: false,
-          label: "Setiap perubahan dalam adaptasi pasti merusak tradisi.",
-        },
-        {
-          correct: false,
-          label:
-            "Karena versi berbeda, kelompok tidak perlu menjelaskan sumber atau perubahan apa pun.",
-        },
-        {
-          correct: false,
-          label:
-            "Kelompok akan mencantumkan sumber dan perubahan dramatik dalam catatan program.",
+          label: "menambah pemakaian pendingin ruangan di gedung-gedung kota",
         },
         {
           correct: true,
-          label:
-            "Adaptasi yang bertanggung jawab dapat mengubah bentuk cerita selama sumber, perubahan, dan keragamannya tetap dapat ditelusuri.",
+          label: "mendinginkan udara kota melalui penguapan air dari daun",
+        },
+        {
+          correct: false,
+          label: "menyerap seluruh panas yang dibuang mesin kendaraan",
+        },
+        {
+          correct: false,
+          label: "menggantikan seluruh jalan beraspal dengan tanah lapang",
+        },
+        {
+          correct: false,
+          label: "menaikkan suhu malam hari di daerah pinggiran kota",
         },
       ],
     },

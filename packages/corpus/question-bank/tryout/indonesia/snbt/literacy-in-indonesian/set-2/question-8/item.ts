@@ -1,29 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-view",
+  },
+  stimulus: "unpaid-internship",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Uwet berkebun di bawah pohon ceri",
+          column: 1,
+          label:
+            "Pengalaman kerja yang berharga tidak menghapus kewajiban menghargai kerja mahasiswa magang.",
         },
         {
-          correct: false,
-          label: "Uwet mencari siput",
+          column: 2,
+          label:
+            "Lembaga nirlaba yang tidak mampu membayar tidak boleh menerima mahasiswa magang.",
         },
         {
-          correct: true,
-          label: "Uwet mencoba mengambil buah ceri",
+          column: 1,
+          label:
+            "Magang tanpa upah dapat menjadikan pengalaman kerja hak istimewa mahasiswa dari keluarga mampu.",
         },
         {
-          correct: false,
-          label: "Uwet menangkap siput",
-        },
-        {
-          correct: false,
-          label: "Uwet menunggu kedatangan Enjin dan Ensi",
+          column: 2,
+          label:
+            "Kampus sebaiknya mengakui setiap kegiatan magang sebagai satuan kredit semester.",
         },
       ],
     },

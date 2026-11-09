@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "proportion",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$1$$",
+          label: "$$\\text{Rp}1{,}2$$ juta",
         },
         {
           correct: false,
-          label: "$$\\frac{21}{20}$$",
+          label: "$$\\text{Rp}1{,}5$$ juta",
         },
         {
           correct: false,
-          label: "$$\\frac{23}{20}$$",
+          label: "$$\\text{Rp}1{,}65$$ juta",
         },
         {
           correct: true,
-          label: "$$\\frac{11}{10}$$",
+          label: "$$\\text{Rp}1{,}8$$ juta",
         },
         {
           correct: false,
-          label: "$$\\frac65$$",
+          label: "$$\\text{Rp}2{,}2$$ juta",
         },
       ],
     },

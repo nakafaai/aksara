@@ -1,29 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "categorical-syllogism",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$0 \\leq x \\leq 30$$",
+          column: 1,
+          label: "Dimas boleh bertugas di posko.",
         },
         {
-          correct: true,
-          label: "$$30 \\leq x \\leq 40$$",
+          column: 2,
+          label: "Dimas adalah tenaga kesehatan.",
         },
         {
-          correct: false,
-          label: "$$30 \\leq x \\leq 35$$",
+          column: 1,
+          label:
+            "Sebagian relawan yang boleh bertugas di posko tidak bertugas di dapur umum.",
         },
         {
-          correct: false,
-          label: "$$20 \\leq x \\leq 30$$",
+          column: 1,
+          label:
+            "Jika Dimas bertugas di dapur umum, Dimas bukan tenaga kesehatan.",
         },
         {
-          correct: false,
-          label: "Tidak dapat ditentukan",
+          column: 2,
+          label:
+            "Semua relawan yang boleh bertugas di posko telah lolos pelatihan dasar.",
         },
       ],
     },

@@ -1,27 +1,26 @@
-Gegeben sind <InlineMath math="f(x) = 2x - 3" /> und <InlineMath math="(g \circ f)(x) = 4x^2 - 12x + 10" />. Gesucht ist <InlineMath math="g(1)" />.
+Zerlege die linke Seite in lineare Faktoren und **prüfe das Vorzeichen des Produkts auf jedem Intervall** zwischen den Nullstellen.
 
-Für die **Verkettung** gilt <InlineMath math="(g \circ f)(x) = g(f(x))" />. Setzen wir <InlineMath math="u = f(x) = 2x - 3" />. Dann drücken wir <InlineMath math="x" /> durch <InlineMath math="u" /> aus:
+<BlockMath math="\left(x^2-9\right)(x-5)=(x+3)(x-3)(x-5)" />
 
-<BlockMath math="2x = u + 3" />
+# Vorzeichen auf jedem Intervall
 
-<BlockMath math="x = \frac{u + 3}{2}" />
+Die Nullstellen sind <InlineMath math="-3" />, 3 und 5. Das Vorzeichen des Produkts wechselt an jeder Nullstelle.
 
-Wir setzen <InlineMath math="x" /> in <InlineMath math="(g \circ f)(x)" /> ein:
+| Intervall | <InlineMath math="x+3" /> | <InlineMath math="x-3" /> | <InlineMath math="x-5" /> | Produkt |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="x<-3" /> | negativ | negativ | negativ | negativ |
+| <InlineMath math="-3<x<3" /> | positiv | negativ | negativ | positiv |
+| <InlineMath math="3<x<5" /> | positiv | positiv | negativ | negativ |
+| <InlineMath math="x>5" /> | positiv | positiv | positiv | positiv |
 
-<BlockMath math="\begin{aligned}g(u)&=4\left(\frac{u+3}{2}\right)^2\\&\quad{}-12\left(\frac{u+3}{2}\right)+10\end{aligned}" />
+Weil das Zeichen „kleiner oder gleich“ lautet, **gehören die Nullstellen dazu**. Die Lösung ist <InlineMath math="x\le-3" /> oder <InlineMath math="3\le x\le5" />.
 
-<BlockMath math="\begin{aligned}g(u)&=4\left(\frac{u^2+6u+9}{4}\right)\\&\quad{}-6(u+3)+10\end{aligned}" />
+# Ganze Zahlen zählen
 
-<BlockMath math="\begin{aligned}g(u)&=(u^2+6u+9)\\&\quad{}-(6u+18)+10\end{aligned}" />
+Auf <InlineMath math="-10\le x\le-3" /> liegen 8 ganze Zahlen, auf <InlineMath math="3\le x\le5" /> liegen 3, nämlich 3, 4 und 5.
 
-<BlockMath math="\begin{aligned}g(u)&=u^2+6u-6u\\&\quad{}+9-18+10\end{aligned}" />
+<BlockMath math="8+3=11" />
 
-<BlockMath math="g(u) = u^2 + 1" />
+Der Wert 8 verwendet ein echtes Kleiner und lässt <InlineMath math="-3" />, 3 und 5 weg. Der Wert 13 verwendet den positiven Bereich. Der Wert 3 zählt nur den Teil <InlineMath math="3\le x\le5" />, und der Wert 7 zählt den linken Teil ohne <InlineMath math="-3" />.
 
-Somit gilt <InlineMath math="g(x) = x^2 + 1" />.
-
-Damit ist der gesuchte Wert <InlineMath math="g(1)" />:
-
-<BlockMath math="g(1) = 1^2 + 1 = 1 + 1 = 2" />
-
-Der Wert von <InlineMath math="g(1)" /> ist also <InlineMath math="2" />.
+Es gibt also **11** solche ganze Zahlen.

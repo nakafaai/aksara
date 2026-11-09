@@ -1,44 +1,24 @@
-Die Entleerungszeit hängt von zwei Größen ab: dem **Wasservolumen** im vollen Tank und der **gemeinsamen Durchflussrate** der drei Hähne.
+Suche eine Regel, die für **alle drei Beispiele zugleich** gilt. Vergleiche zuerst die Anordnung der Konsonanten, dann die Veränderung der Vokale.
 
-# Wasservolumen bestimmen
+Sieh dir die Konsonanten an. Bei RAKIT wandert der letzte Buchstabe T nach vorn. Bei BOLAN wandert N nach vorn, bei MUSIK das K. Der erste Schritt ist also, **den letzten Buchstaben an die erste Stelle zu setzen**:
 
-Der Tank ist ein Würfel mit der **Seitenlänge** <InlineMath math="4\text{ dm}" />:
+| Eingabe | Nach dem Verschieben des letzten Buchstabens | Ausgabe |
+| --- | --- | --- |
+| RAKIT | TRAKI | TREKO |
+| BOLAN | NBOLA | NBULE |
+| MUSIK | KMUSI | KMASO |
 
-<BlockMath math="\begin{aligned} V &amp;= s^3 \\ &amp;= 4 \times 4 \times 4 \\ &amp;= 64\text{ dm}^3 \end{aligned}" />
+Vergleiche die mittlere Spalte mit der Ausgabe. Die Konsonanten bleiben, aber jeder Vokal wird zum **nächsten Vokal** im Kreis A, E, I, O, U: A wird E, I wird O, O wird U und U wird A. Alle vier Änderungen kommen in den Beispielen vor: A zu E (RAKIT, BOLAN), I zu O (RAKIT, MUSIK), O zu U (BOLAN) und U zu A (MUSIK).
 
-Da <InlineMath math="1\text{ dm}^3 = 1\text{ Liter}" /> gilt, enthält der volle Tank <InlineMath math="64\text{ Liter}" /> Wasser.
+Wende beide Schritte auf PITAR an:
 
-<MathVisual
-  title="Der volle würfelförmige Tank"
-  description="Die drei senkrecht zueinander stehenden Kanten messen jeweils 4 dm. Länge mal Breite mal Höhe ergibt 64 Kubikdezimeter, also 64 Liter."
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 4.5 } },
-    view: { kind: "isometric", target: { x: 2, y: 2, z: 2 } },
-    objects: [{ id: "tank", kind: "cuboid", center: { x: 2, y: 2, z: 2 }, size: { length: 4, width: 4, height: 4 }, appearance: "primary" }],
-    labels: [
-      { key: "length", objectId: "tank", at: { x: 2, y: 0, z: 4 }, placement: "below-left" },
-      { key: "height", objectId: "tank", at: { x: 4, y: 2, z: 4 }, placement: "right" },
-      { key: "width", objectId: "tank", at: { x: 4, y: 0, z: 2 }, placement: "below-right" },
-    ],
-  }}
-  labels={{
-    length: <InlineMath math="4\text{ dm}" />,
-    height: <InlineMath math="4\text{ dm}" />,
-    width: <InlineMath math="4\text{ dm}" />,
-  }}
-/>
+<BlockMath math="\text{PITAR} \;\rightarrow\; \text{RPITA} \;\rightarrow\; \text{RPOTE}" />
 
-# Durchflussraten addieren
+Die anderen Optionen entstehen aus einer unvollständigen oder falschen Regel:
 
-Alle drei Hähne lassen **gleichzeitig** Wasser ab. Deshalb werden ihre Durchflussraten addiert:
+- RPITA verschiebt nur den letzten Buchstaben und behält die Vokale.
+- POTER ändert nur die Vokale und verschiebt keinen Buchstaben.
+- OTERP setzt den ersten Buchstaben ans Ende, die Beispiele setzen aber den letzten Buchstaben nach vorn.
+- RPETU verschiebt die Vokale rückwärts, zum Beispiel I zu E.
 
-<BlockMath math="\begin{aligned} Q &amp;= Q_1 + Q_2 + Q_3 \\ Q &amp;= 4 + 3 + 1 \\ Q &amp;= 8 \text{ Liter/Minute} \end{aligned}" />
-
-# Entleerungszeit bestimmen
-
-Das Wasservolumen wird durch die **gemeinsame Durchflussrate** geteilt:
-
-<BlockMath math="\begin{aligned} t &amp;= \frac{V}{Q} \\ &amp;= \frac{64}{8} \\ &amp;= 8\text{ Minuten} \end{aligned}" />
-
-Der Tank ist also nach <InlineMath math="8\text{ Minuten}" /> leer.
+Die Maschine macht aus PITAR also RPOTE.

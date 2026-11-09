@@ -1,29 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "pool-pumps",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$\\frac{21}{2}$$",
+          column: 1,
+          label: "Pompa A bekerja 1,5 kali lebih cepat daripada pompa B.",
         },
         {
-          correct: false,
-          label: "$$9$$",
+          column: 1,
+          label:
+            "Laju saluran pembuangan mengosongkan kolam sama dengan setengah laju pompa B mengisi kolam.",
         },
         {
-          correct: false,
-          label: "$$10$$",
+          column: 2,
+          label:
+            "Dengan saluran pembuangan tertutup, jika pompa A diganti pompa yang dua kali lebih cepat, waktu mengisi kolam kosong bersama pompa B menjadi setengah dari waktu semula.",
         },
         {
-          correct: false,
-          label: "$$11$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{23}{2}$$",
+          column: 2,
+          label:
+            "Dengan saluran pembuangan tertutup, waktu mengisi kolam kosong dengan kedua pompa bersamaan sama dengan setengah rata-rata waktu kedua pompa jika bekerja sendiri.",
         },
       ],
     },

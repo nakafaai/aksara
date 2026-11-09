@@ -1,29 +1,21 @@
-Find the parameter using the **determinant condition** for this matrix.
+Triangle <InlineMath math="DEF" /> is tilted relative to the sides of the square, so its base and height are hard to read. It is easier to take **the area of the square minus three right triangles in the corners**: <InlineMath math="AED" />, <InlineMath math="EBF" />, and <InlineMath math="FCD" />.
 
-<BlockMath math="A = \begin{pmatrix} 5 & 3 - x \\ -1 & 1 \end{pmatrix}" />
+# The three corner triangles
 
-For a <InlineMath math="2\times2" /> matrix, the determinant is the product of the main diagonal entries minus the product of the other diagonal entries:
+Each corner triangle has a right angle, so its area is **half the product of its legs**. The midpoints split each 12 cm side into two 6 cm parts.
 
-<BlockMath math="\det\begin{pmatrix}a&b\\c&d\end{pmatrix}=ad-bc" />
+| Triangle | Legs | Area |
+| :---: | :---: | :---: |
+| <InlineMath math="AED" /> | <InlineMath math="AE=6" />, <InlineMath math="AD=12" /> | 36 |
+| <InlineMath math="EBF" /> | <InlineMath math="EB=6" />, <InlineMath math="BF=6" /> | 18 |
+| <InlineMath math="FCD" /> | <InlineMath math="FC=6" />, <InlineMath math="CD=12" /> | 36 |
 
-Calculate the determinant of matrix <InlineMath math="A" />:
+# Computing the area of triangle DEF
 
-<BlockMath math="\begin{aligned}\det(A)&=(5)(1)\\&\quad-(3-x)(-1)\end{aligned}" />
+The three corner triangles and triangle <InlineMath math="DEF" /> **cover the square exactly, without overlap**.
 
-<BlockMath math="\det(A) = 5 - (-(3 - x))" />
+<BlockMath math="[DEF]=144-36-18-36=54\text{ cm}^2" />
 
-<BlockMath math="\det(A) = 5 + (3 - x)" />
+The value 72 subtracts only the two large triangles and forgets <InlineMath math="EBF" />. The value 90 subtracts only one large triangle and <InlineMath math="EBF" />. The value 108 subtracts only one large triangle, and the value 126 subtracts only <InlineMath math="EBF" />.
 
-<BlockMath math="\det(A) = 8 - x" />
-
-Given <InlineMath math="\det(A) = 8" />, then:
-
-<BlockMath math="8 - x = 8" />
-
-<BlockMath math="-x = 8 - 8" />
-
-<BlockMath math="-x = 0" />
-
-<BlockMath math="x = 0" />
-
-So, the value of <InlineMath math="x" /> is <InlineMath math="0" />.
+So the area of triangle <InlineMath math="DEF" /> is **<InlineMath math="54\text{ cm}^2" />**.

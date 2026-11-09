@@ -1,29 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "flaw",
+  },
+  stimulus: "kamera",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$85 \\text{ km/jam}$$",
+          label:
+            "menganggap data dua tahun terlalu sedikit untuk dibandingkan satu sama lain",
         },
         {
           correct: false,
-          label: "$$95 \\text{ km/jam}$$",
+          label:
+            "tidak menyebutkan harga kamera CCTV yang dipasang di jalan-jalan utama",
+        },
+        {
+          correct: false,
+          label:
+            "membandingkan jumlah kasus dari dua periode yang panjangnya berbeda",
         },
         {
           correct: true,
-          label: "$$75 \\text{ km/jam}$$",
+          label:
+            "mengabaikan ronda malam yang dimulai hampir bersamaan sebagai penyebab lain",
         },
         {
           correct: false,
-          label: "$$80 \\text{ km/jam}$$",
-        },
-        {
-          correct: false,
-          label: "$$90 \\text{ km/jam}$$",
+          label:
+            "menganggap semua warga desa setuju dengan rencana penambahan kamera",
         },
       ],
     },

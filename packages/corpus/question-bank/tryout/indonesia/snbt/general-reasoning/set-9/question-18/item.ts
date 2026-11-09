@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "deductive-reasoning",
+    topic: "rule-application",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Audit telah selesai.",
+          label: "$$\\text{Rp}80{.}000$$",
         },
         {
           correct: false,
-          label: "Audit dibatalkan.",
-        },
-        {
-          correct: false,
-          label: "Status audit tidak dapat disimpulkan.",
+          label: "$$\\text{Rp}110{.}400$$",
         },
         {
           correct: true,
-          label: "Audit belum selesai.",
+          label: "$$\\text{Rp}116{.}000$$",
         },
         {
           correct: false,
-          label: "Audit selesai, tetapi kuota tidak tersedia.",
+          label: "$$\\text{Rp}120{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}128{.}000$$",
         },
       ],
     },

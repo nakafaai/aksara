@@ -1,31 +1,21 @@
-Use the **determinant of a two-by-two matrix**: the main-diagonal product minus the other diagonal product.
+The length <InlineMath math="s" /> is not given, but the third side of a triangle is not free. **The triangle inequality** limits it: every side is shorter than the sum of the other two.
 
-<BlockMath math="\mathbf{P} = \begin{pmatrix} 3 - x & -5 \\ 6 & 3 \end{pmatrix}" />
+# The bounds on the third side
 
-The formula for the determinant of a <InlineMath math="2 \times 2" /> matrix:
+The three triangle inequalities for sides 5, 8, and <InlineMath math="s" /> are as follows.
 
-<BlockMath math="\det(\mathbf{P}) = \begin{vmatrix} a & b \\ c & d \end{vmatrix} = ad - bc" />
+<BlockMath math="\begin{aligned}
+s&<5+8=13\\
+8&<5+s\quad\Rightarrow\quad s>3\\
+5&<8+s\quad\Rightarrow\quad s>-3
+\end{aligned}" />
 
-For matrix <InlineMath math="\mathbf{P}" />:
+So <InlineMath math="3<s<13" />. **The lower bound 3 is excluded**, because sides 5, 8, and 3 only form a straight line.
 
-<BlockMath math="\begin{aligned}\det(\mathbf P)&=(3-x)(3)\\&\quad-(-5)(6)\end{aligned}" />
+# Comparing the quantities
 
-<BlockMath math="= 3(3 - x) - (-30)" />
+From <InlineMath math="s>3" /> we get <InlineMath math="P=2s>6=Q" /> for every possible triangle. Although <InlineMath math="s" /> is not unique, **the relation is always the same**.
 
-<BlockMath math="= 9 - 3x + 30" />
+The option saying the information is not enough comes from noticing only that <InlineMath math="s" /> is unknown. The option <InlineMath math="P=Q" /> uses <InlineMath math="s=3" />, which does not form a triangle.
 
-<BlockMath math="= 39 - 3x" />
-
-Given <InlineMath math="\det(\mathbf{P}) = 33" />, then:
-
-<BlockMath math="39 - 3x = 33" />
-
-<BlockMath math="-3x = 33 - 39" />
-
-<BlockMath math="-3x = -6" />
-
-<BlockMath math="x = \frac{-6}{-3}" />
-
-<BlockMath math="x = 2" />
-
-Thus, the value of <InlineMath math="x" /> is <InlineMath math="2" />.
+So the correct relation is <InlineMath math="P>Q" /> for every possible triangle.

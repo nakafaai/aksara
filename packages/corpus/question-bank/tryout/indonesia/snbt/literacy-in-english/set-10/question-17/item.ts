@@ -1,35 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "golden-record",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["True", "False"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 2,
           label:
-            "Erasing “FINAL” and adding three questions changes the ledger from a display of certainty into a shared inquiry that the blank ending continues.",
+            "The record's music comes from a single culture chosen by Sagan.",
         },
         {
-          correct: false,
-          label:
-            "The pencil marks establish the ledger's full meaning before Iris reads the unresolved costs or changes the page.",
+          column: 1,
+          label: "Each of the two Voyager spacecraft carried a record.",
         },
         {
-          correct: false,
-          label:
-            "The ending supplies the final supplier quote, making Iris's earlier questions unnecessary to the outcome.",
+          column: 2,
+          label: "The record's images are printed on it as photographs.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The empty hall changes the ledger's meaning by itself, independently of the erased word and the teammates' additions.",
-        },
-        {
-          correct: false,
-          label:
-            "The ledger remains a record of fixed totals even after its final claim is erased and its open questions receive deadlines.",
+            "The spacecraft will come near another star within a few hundred years.",
         },
       ],
     },

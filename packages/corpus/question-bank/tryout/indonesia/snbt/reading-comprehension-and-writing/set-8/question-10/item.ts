@@ -1,35 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "argument-evaluation",
+  },
+  stimulus: "infiltration-well",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Tim akan mengelompokkan pertanyaan dan menilai pemahaman sambil mengubah aturan ukuran kelompok.",
-        },
-        {
           correct: true,
           label:
-            "Tim akan mengelompokkan jenis pertanyaan dan menilai pemahaman sambil mempertahankan aturan ukuran kelompok.",
+            "Musim kemarau tahun ini jauh lebih pendek daripada musim kemarau tahun-tahun sebelumnya.",
+        },
+        {
+          correct: false,
+          label: "Sumur resapan di kampung itu diisi batu dan ijuk.",
+        },
+        {
+          correct: false,
+          label: "Warga membuat sumur resapan secara bergotong royong.",
         },
         {
           correct: false,
           label:
-            "Tim akan mengulang hanya sesi dengan jumlah pengunjung yang bertanya paling tinggi.",
+            "Rumah yang tidak membuat sumur resapan tetap mengalami sumur kering.",
         },
         {
           correct: false,
-          label:
-            "Tim akan menerapkan kartu permanen sebagai pengganti penilaian lanjutan.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan mempertahankan aturan kelompok tanpa menilai pemahaman atau mengelompokkan pertanyaan.",
+          label: "Selokan kampung dibersihkan setiap bulan.",
         },
       ],
     },

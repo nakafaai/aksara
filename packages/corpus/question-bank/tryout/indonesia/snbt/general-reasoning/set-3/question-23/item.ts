@@ -1,29 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "data-interpretation",
+  },
+  stimulus: "moda",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$39$$",
-        },
-        {
-          correct: false,
-          label: "$$45$$",
+          label:
+            "Persentase pesepeda yang lebih kecil di sekolah B berarti banyak pesepedanya juga lebih sedikit.",
         },
         {
           correct: true,
-          label: "$$51$$",
+          label:
+            "Banyak siswa sekolah B yang bersepeda lebih banyak daripada siswa sekolah A yang bersepeda.",
         },
         {
           correct: false,
-          label: "$$63$$",
+          label:
+            "Jika kedua sekolah digabung, banyak pengguna angkutan umum kurang dari $$700$$ orang.",
         },
         {
           correct: false,
-          label: "$$75$$",
+          label:
+            "Siswa sekolah A yang berjalan kaki lebih sedikit daripada siswa sekolah B yang berjalan kaki.",
+        },
+        {
+          correct: false,
+          label:
+            "Lebih dari separuh siswa sekolah B diantar keluarga atau berjalan kaki.",
         },
       ],
     },

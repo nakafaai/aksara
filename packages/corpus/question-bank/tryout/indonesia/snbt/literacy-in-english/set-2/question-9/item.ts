@@ -1,32 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "tone-attitude",
+  },
+  stimulus: "right-repair",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "fully supportive, because the concerns prove that only manufacturers should repair devices.",
+        },
+        {
+          correct: false,
+          label:
+            "dismissive, because the concerns are presented as excuses with no basis.",
+        },
+        {
+          correct: false,
+          label:
+            "uncertain, because the author cannot decide whether repairs are safe.",
+        },
+        {
+          correct: false,
+          label:
+            "indifferent, because the author does not discuss the concerns at all.",
+        },
+        {
           correct: true,
           label:
-            "An individual bird immediately loses immune genes when it migrates.",
-        },
-        {
-          correct: false,
-          label:
-            "The analysis included $$1{,}311$$ Afro-Palaearctic songbird species.",
-        },
-        {
-          correct: false,
-          label:
-            "Colonization from a higher- to a lower-pathogen region was more frequent.",
-        },
-        {
-          correct: false,
-          label: "MHC-I genes are involved in pathogen recognition.",
-        },
-        {
-          correct: false,
-          label: "High MHC-I diversity may involve both benefits and costs.",
+            "partly accepting, because the concerns are treated as real but not as a reason for blanket restrictions.",
         },
       ],
     },

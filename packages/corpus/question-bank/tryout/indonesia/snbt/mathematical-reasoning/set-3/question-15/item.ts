@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "floor-tiles",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$0{,}15$$ bagian",
+          column: 1,
+          label:
+            "Biaya pembelian ubin sesuai saran tukang dengan jumlah dus paling sedikit adalah $$\\text{Rp}1{.}632{.}000{,}00$$.",
         },
         {
-          correct: false,
-          label: "$$0{,}3$$ bagian",
+          column: 2,
+          label:
+            "Lantai yang sama juga dapat ditutup ubin persegi berukuran $$40\\text{ cm}\\times40\\text{ cm}$$ tanpa memotong ubin.",
         },
         {
-          correct: true,
-          label: "$$0{,}75$$ bagian",
+          column: 1,
+          label:
+            "Jika dibeli dus dengan jumlah paling sedikit sesuai saran tukang, setelah lantai selesai dipasang tersisa 24 ubin, dengan anggapan tidak ada ubin yang pecah.",
         },
         {
-          correct: false,
-          label: "$$0{,}45$$ bagian",
-        },
-        {
-          correct: false,
-          label: "$$0{,}6$$ bagian",
+          column: 2,
+          label:
+            "Tanpa cadangan, banyak dus paling sedikit yang diperlukan adalah 16 dus.",
         },
       ],
     },

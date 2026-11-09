@@ -1,24 +1,23 @@
-Because every worker has the same constant rate, the **total workload stays fixed** and can be measured in worker-days.
+An absolute value changes form where its inside equals zero, at <InlineMath math="x=1" /> and <InlineMath math="x=7" />. These two points split the number line into three regions, and **each region is solved separately**.
 
-Given:
-*   <InlineMath math="15\text{ people}" /> can complete the work in <InlineMath math="35\text{ days}" />.
-*   The work is desired to be completed in <InlineMath math="3" /> weeks <InlineMath math="= 3 \times 7 = 21\text{ days}" />.
+# Three regions
 
-Let <InlineMath math="P" /> be the total number of workers needed to complete the work in <InlineMath math="21\text{ days}" />.
+For <InlineMath math="x<1" />, both insides are negative. For <InlineMath math="1\le x\le7" />, only the second inside is negative. For <InlineMath math="x>7" />, both are positive.
 
-<BlockMath math="15 \times 35 = P \times 21" />
+<BlockMath math="\begin{aligned}
+x<1:&\quad (1-x)+(7-x)=10 \;\Rightarrow\; 8-2x=10 \;\Rightarrow\; x=-1\\
+1\le x\le7:&\quad (x-1)+(7-x)=6\ne10\\
+x>7:&\quad (x-1)+(x-7)=10 \;\Rightarrow\; 2x-8=10 \;\Rightarrow\; x=9
+\end{aligned}" />
 
-<BlockMath math="525 = 21P" />
+The value <InlineMath math="x=-1" /> is indeed less than 1 and <InlineMath math="x=9" /> is indeed greater than 7, so **both are accepted**. The middle region gives no solution.
 
-<BlockMath math="P = \frac{525}{21}" />
+# Meaning as distance
 
-<BlockMath math="P = 25" />
+The expression <InlineMath math="\lvert x-1\rvert+\lvert x-7\rvert" /> is **the sum of the distances from <InlineMath math="x" /> to the points 1 and 7**. Between the two points, this sum is always 6. For a sum of 10, the point <InlineMath math="x" /> must lie 2 units outside one of the ends, at <InlineMath math="-1" /> or at <InlineMath math="9" />.
 
-So, a total of <InlineMath math="25\text{ workers}" /> are needed.
+<BlockMath math="(-1)(9)=-9" />
 
-The question asks for the **additional** workers.
-The initial number of workers is <InlineMath math="15" />.
+The values 9 and <InlineMath math="-1" /> use only one solution. The value 8 is the sum of the two solutions, not their product. The value 7 is the product of the boundary points 1 and 7.
 
-<BlockMath math="25-15=10" />
-
-Thus, <InlineMath math="10" /> additional workers are needed.
+So the product of all solutions is **<InlineMath math="-9" />**.

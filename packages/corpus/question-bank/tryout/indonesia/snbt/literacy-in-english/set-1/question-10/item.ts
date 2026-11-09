@@ -1,34 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "application",
+  },
+  stimulus: "parking-minimums",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Eating one high-fiber food prevents disease and removes the need for exercise or stress management.",
-        },
-        {
           correct: true,
           label:
-            "Regular activity, a varied diet, and practical stress management work together, while guidance should be adapted and additional help sought when needed.",
+            "If most buyers there want two spaces per home, developers should be free to build them.",
         },
         {
           correct: false,
           label:
-            "Vigorous exercise is the only reliable way to protect health, regardless of a person's circumstances.",
+            "The town should keep its parking minimums permanently, whatever buyers want.",
         },
         {
           correct: false,
           label:
-            "Healthy living requires expensive food, a gym membership, and the complete absence of uncomfortable feelings.",
+            "The town should ban new parking in order to make residents use public transport.",
         },
         {
           correct: false,
           label:
-            "The same health advice applies to everyone, and people should manage persistent stress without seeking help.",
+            "The town should copy the parking rules of large cities that have removed their minimums.",
+        },
+        {
+          correct: false,
+          label:
+            "The town should require developers to build no more than one space per home.",
         },
       ],
     },

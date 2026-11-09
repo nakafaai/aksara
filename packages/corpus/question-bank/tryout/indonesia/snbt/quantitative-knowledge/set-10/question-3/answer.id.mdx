@@ -1,11 +1,13 @@
-Menghitung peluang salah satu kakak beradik menang secara langsung mudah membuat kasus keduanya menang terhitung dua kali. Lebih ringkas jika kita memakai **kejadian komplemen**, yaitu keduanya tidak terpilih.
+Kuantitas <InlineMath math="P" /> adalah **deret geometri tak hingga** dengan suku pertama <InlineMath math="\tfrac13" /> dan rasio <InlineMath math="\tfrac13" />. Deret itu konvergen karena rasionya di antara <InlineMath math="-1" /> dan 1.
 
-Setelah dua kakak beradik dikeluarkan, terdapat <InlineMath math="2998" /> peserta lain.
+# Jumlah deret
 
-Misalkan <InlineMath math="E" /> adalah kejadian kedua kakak beradik tidak menang. Kejadian setidaknya satu menang adalah komplemennya, <InlineMath math="E^c" />.
+<BlockMath math="P=\frac{a}{1-r}=\frac{1/3}{1-1/3}=\frac{1/3}{2/3}=\frac12" />
 
-<BlockMath math="\begin{aligned} P(E) &= \frac{\binom{2998}{20}}{\binom{3000}{20}} \\ &= \frac{2998!\,2980!}{2978!\,3000!} \\ &= \frac{2980}{3000}\cdot\frac{2979}{2999} \end{aligned}" />
+# Pemeriksaan dengan jumlah parsial
 
-<BlockMath math="\begin{aligned} P(E^c) &= 1-P(E) \\ &= 1-\frac{2980\cdot2979}{3000\cdot2999} \\ &= \frac{8997000-8877420}{8997000} \\ &= \frac{119580}{8997000} \\ &= \frac{1993}{149950} \\ &\approx 0{,}0133 \end{aligned}" />
+Jumlah empat suku pertama adalah <InlineMath math="\tfrac{27+9+3+1}{81}=\tfrac{40}{81}\approx0{,}494" />. Jumlah parsialnya **terus mendekati 0,5 tetapi tidak pernah melewatinya**, dan jumlah deret tak hingga adalah nilai limit itu, tepat 0,5.
 
-Jadi, peluang setidaknya salah satu dari mereka memperoleh hadiah sekitar <InlineMath math="0{,}0133" />, atau <InlineMath math="1{,}33\%" />.
+Jika hanya beberapa suku dijumlahkan, orang bisa mengira <InlineMath math="P<Q" />. Namun deret ini berlanjut tanpa akhir, sehingga nilainya tepat sama dengan <InlineMath math="Q" />.
+
+Jadi, hubungan yang benar adalah **<InlineMath math="P=Q" />**.

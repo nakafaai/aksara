@@ -1,31 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "fiction",
+    topic: "explicit-information",
+  },
+  stimulus: "boat-race",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Mengukur erosi melalui satu perbandingan awal",
+          column: 2,
+          label: "Ilham menyelesaikan lomba di urutan ketiga.",
         },
         {
-          correct: false,
-          label: "Menjadikan erosi penjelasan tunggal atas hasil pengamatan",
+          column: 2,
+          label: "Anak dari desa seberang berteriak meminta tolong.",
         },
         {
-          correct: false,
-          label: "Kaidah akhir dari perbandingan pertama tentang erosi",
+          column: 1,
+          label: "Layar perahu Pak Rasyid sudah tiga kali ditambal.",
         },
         {
-          correct: true,
-          label: "Penutup Permukaan dalam Model Erosi: Hasil dan Batas",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Keterbatasan yang membuat uji lanjutan erosi tidak diperlukan",
+            "Ilham berlatih membaca angin di teluk selama sebulan sebelum lomba.",
         },
       ],
     },

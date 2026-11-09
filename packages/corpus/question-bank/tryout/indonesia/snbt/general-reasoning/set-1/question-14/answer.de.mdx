@@ -1,25 +1,27 @@
-Gesucht ist der einzige Wert, der **außerhalb** des offenen Intervalls <InlineMath math="\frac{144}{29} < x < 5" /> liegt.
+Bei einer Frage nach dem, was sicher stimmt, suchst du **alle Anordnungen, die die Bedingungen erfüllen**, und wählst die Aussage, die in allen gilt.
 
-# Untergrenze umformen
+K sitzt auf Stuhl 1, also liegt Stuhl 4 K gegenüber. Die Stühle 2 und 6 liegen neben K, daher kann N nur auf Stuhl 3, 4 oder 5 sitzen. L und M brauchen ein gegenüberliegendes Stuhlpaar: die Stühle 2 und 5 oder die Stühle 3 und 6. Das Paar 1 und 4 fällt weg, weil Stuhl 1 K gehört.
 
-Wir schreiben die **Untergrenze** als eine Zahl, die knapp unter <InlineMath math="5" /> liegt:
+**Fall L und M auf den Stühlen 2 und 5**. Frei sind die Stühle 3, 4 und 6. N muss auf Stuhl 3 oder 4 sitzen. Säße N auf Stuhl 4, bräuchte O Stuhl 5, der besetzt ist. Also sitzt N auf Stuhl 3, O auf Stuhl 4 und P auf Stuhl 6. Stuhl 6 ist gerade, Bedingung 5 ist erfüllt.
 
-<BlockMath math="\begin{aligned} \frac{144}{29} &amp;= \frac{145-1}{29} \\ &amp;= \frac{145}{29}-\frac{1}{29} \\ &amp;= 5-\frac{1}{29} \end{aligned}" />
+**Fall L und M auf den Stühlen 3 und 6**. Frei sind die Stühle 2, 4 und 5. N muss auf Stuhl 4 oder 5 sitzen. Säße N auf Stuhl 5, bräuchte O Stuhl 6, der besetzt ist. Also sitzt N auf Stuhl 4, O auf Stuhl 5 und P auf Stuhl 2.
 
-Damit lautet das Intervall
+In jedem Fall können L und M die Plätze tauschen. Das ergibt vier Anordnungen:
 
-<BlockMath math="5 - \frac{1}{29} < x < 5" />
+| Anordnung | Stuhl 1 | Stuhl 2 | Stuhl 3 | Stuhl 4 | Stuhl 5 | Stuhl 6 |
+| --- | --- | --- | --- | --- | --- | --- |
+| I | K | L | N | O | M | P |
+| II | K | M | N | O | L | P |
+| III | K | P | L | N | O | M |
+| IV | K | P | M | N | O | L |
 
-# Antwortmöglichkeiten umformen
+P sitzt immer auf Stuhl 6 oder Stuhl 2. Beide liegen neben Stuhl 1, also **sitzt P sicher neben K**.
 
-Jeder Zähler ist **um eins kleiner als das Fünffache seines Nenners**:
+Die anderen Aussagen gelten nur in manchen Anordnungen:
 
-<BlockMath math="\begin{aligned} \frac{139}{28} &amp;= 5-\frac{1}{28} \\ \frac{149}{30} &amp;= 5-\frac{1}{30} \\ \frac{154}{31} &amp;= 5-\frac{1}{31} \\ \frac{159}{32} &amp;= 5-\frac{1}{32} \\ \frac{164}{33} &amp;= 5-\frac{1}{33} \end{aligned}" />
+- N sitzt P in den Anordnungen I und II gegenüber, nicht aber in III und IV, wo N auf Stuhl 4 K gegenübersitzt.
+- L sitzt nur in Anordnung I auf einem geraden Stuhl.
+- O sitzt K in den Anordnungen I und II gegenüber, in III und IV aber auf Stuhl 5.
+- In Anordnung I sitzt M auf Stuhl 5 neben O auf Stuhl 4.
 
-Für Nenner größer als <InlineMath math="29" /> ist <InlineMath math="\frac{1}{n}" /> kleiner als <InlineMath math="\frac{1}{29}" />. Zieht man diesen kleineren Bruch von <InlineMath math="5" /> ab, liegt das Ergebnis zwischen der Untergrenze und <InlineMath math="5" />. Somit erfüllen alle Möglichkeiten mit den Nennern <InlineMath math="30" /> bis <InlineMath math="33" /> die Ungleichung.
-
-Dagegen gilt <InlineMath math="\frac{1}{28} > \frac{1}{29}" /> und damit
-
-<BlockMath math="5-\frac{1}{28} < 5-\frac{1}{29}" />
-
-Also liegt <InlineMath math="\frac{139}{28}" /> unterhalb der Untergrenze und ist der einzige Wert, der die Ungleichung nicht erfüllt.
+Sicher stimmt also, dass P neben K sitzt.

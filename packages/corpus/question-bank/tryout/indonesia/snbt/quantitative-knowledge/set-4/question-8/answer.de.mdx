@@ -1,17 +1,22 @@
-Eine Figur muss **beide Mindestzahlen** erreichen: mindestens zwei Rotationssymmetrien und drei Spiegelachsen. Die Ausgangslage zählt als eine Rotationssymmetrie.
+Eine nach oben geöffnete Parabel hat ihr Minimum im Scheitel, **aber nur, wenn der Scheitel im Intervall liegt**. Bestimme deshalb zuerst die Lage des Scheitels.
 
-| Figur | Rotationssymmetrien | Spiegelachsen | Beide Bedingungen? |
-| --- | --- | --- | --- |
-| Ungleichseitiges Dreieck | 1: Ausgangslage | 0: keine Spiegelachse | Nein |
-| Parallelogramm, weder Rechteck noch Raute | 2: Drehungen um 0° und 180° | 0: keine Spiegelachse | Nein |
-| Ellipse, die kein Kreis ist | 2: Drehungen um 0° und 180° | 2: Haupt- und Nebenachse | Nein |
-| Regelmäßiges Sechseck | 6: Vielfache von 60° zwischen 0° und 300° | 6: drei durch gegenüberliegende Eckpunkte und drei durch gegenüberliegende Seitenmittelpunkte | Ja |
+# Lage des Scheitels
 
-Die Zeichnung zeigt die **sechs Spiegelachsen** des regelmäßigen Sechsecks. Die Ellipse hat nur zwei Achsen und erreicht die geforderten drei nicht. Daher erfüllt nur eine Figur beide Bedingungen.
+<BlockMath math="f(x)=x^2-6x+13=(x-3)^2+4" />
 
-<MathVisual
- title="Sechs Spiegelachsen des Sechsecks"
- description="Drei Geraden verlaufen durch gegenüberliegende Eckpunkte. Die anderen drei verlaufen durch die Mittelpunkte gegenüberliegender Seiten."
- scene={{"space":"plane","frame":{"kind":"cartesian","x":{"min":-3,"max":3},"y":{"min":-3,"max":3}},"view":{"kind":"fit","padding":0.1},"objects":[{"id":"hexagon","kind":"polygon","appearance":"primary","vertices":[{"x":2.0,"y":0},{"x":1.0,"y":1.732050807569},{"x":-1.0,"y":1.732050807569},{"x":-2.0,"y":0},{"x":-1.0,"y":-1.732050807569},{"x":1.0,"y":-1.732050807569}]},{"id":"axis-0","kind":"segment","appearance":"highlight","from":{"x":-2.3,"y":0},"to":{"x":2.3,"y":0}},{"id":"axis-1","kind":"segment","appearance":"secondary","from":{"x":-1.991858428704,"y":-1.15},"to":{"x":1.991858428704,"y":1.15}},{"id":"axis-2","kind":"segment","appearance":"highlight","from":{"x":-1.15,"y":-1.991858428704},"to":{"x":1.15,"y":1.991858428704}},{"id":"axis-3","kind":"segment","appearance":"secondary","from":{"x":0,"y":-2.3},"to":{"x":0,"y":2.3}},{"id":"axis-4","kind":"segment","appearance":"highlight","from":{"x":1.15,"y":-1.991858428704},"to":{"x":-1.15,"y":1.991858428704}},{"id":"axis-5","kind":"segment","appearance":"secondary","from":{"x":1.991858428704,"y":-1.15},"to":{"x":-1.991858428704,"y":1.15}}],"labels":[]}}
- labels={{}}
-/>
+Der Scheitel liegt bei <InlineMath math="x=3" /> mit dem Wert 4. Die Stelle <InlineMath math="x=3" /> **liegt außerhalb des Intervalls** <InlineMath math="4\le x\le7" />, der Wert 4 wird dort also nicht erreicht.
+
+# Werte auf dem Intervall
+
+Rechts vom Scheitel steigt die Parabel immer weiter. Auf <InlineMath math="4\le x\le7" /> liegt der kleinste Wert am linken Rand und der größte am rechten Rand.
+
+<BlockMath math="\begin{aligned}
+f(4)&=(4-3)^2+4=5\\
+f(7)&=(7-3)^2+4=20
+\end{aligned}" />
+
+Der Minimalwert ist 5 und wird bei <InlineMath math="x=4" /> erreicht.
+
+Der Wert 4 ist der Scheitelwert, der außerhalb des Intervalls liegt. Der Wert 20 ist das Maximum auf dem Intervall. Der Wert 8 ist <InlineMath math="f(5)" />, der Wert in der Mitte des Intervalls, und der Wert 13 ist das Absolutglied, das zugleich <InlineMath math="f(6)" /> ist.
+
+Der Minimalwert der Funktion auf dem Intervall ist also **5**.

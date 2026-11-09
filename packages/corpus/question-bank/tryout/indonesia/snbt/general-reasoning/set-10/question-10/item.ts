@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "time-pattern",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$1$$ dan $$4$$",
-        },
-        {
-          correct: false,
-          label: "$$3$$ dan $$4$$",
-        },
-        {
-          correct: false,
-          label: "$$2$$, $$3$$, dan $$4$$",
+          label: "pukul 16.36",
         },
         {
           correct: true,
-          label: "$$3$$ saja",
+          label: "pukul 17.12",
         },
         {
           correct: false,
-          label: "$$1$$, $$2$$, $$3$$, dan $$4$$",
+          label: "pukul 17.24",
+        },
+        {
+          correct: false,
+          label: "pukul 17.48",
+        },
+        {
+          correct: false,
+          label: "pukul 18.00",
         },
       ],
     },

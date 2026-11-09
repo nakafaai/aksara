@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "seed-soak",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Berdasarkan data, sebuah simpulan terbatas tentang uji di studio rekaman sekolah.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim yang berdasarkan data menarik simpulan terbatas tentang uji di studio rekaman sekolah.",
-        },
-        {
-          correct: false,
-          label:
-            "Karena tim menarik simpulan terbatas tentang uji di studio rekaman sekolah.",
+            "Hasil percobaan ini akan dipresentasikan kepada tiga kelas-kelas lain pada pekan depan.",
         },
         {
           correct: true,
           label:
-            "Berdasarkan data, tim menarik simpulan terbatas tentang uji di studio rekaman sekolah.",
+            "Hasil percobaan ini akan dipresentasikan kepada tiga kelas lain pada pekan depan.",
         },
         {
           correct: false,
           label:
-            "Berdasarkan data, menarik tentang uji di studio rekaman sekolah.",
+            "Hasil percobaan ini akan di presentasikan kepada tiga kelas lain pada pekan depan.",
+        },
+        {
+          correct: false,
+          label:
+            "Hasil percobaan ini akan dipresentasikan kepada tiga kelas lain pada Pekan Depan.",
+        },
+        {
+          correct: false,
+          label:
+            "Hasil percobaan ini akan dipresentasikan kepada 3 kelas-kelas lain pada pekan depan.",
         },
       ],
     },

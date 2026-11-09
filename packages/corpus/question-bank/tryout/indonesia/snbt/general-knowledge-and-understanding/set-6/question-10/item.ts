@@ -1,34 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "sentence-function",
+  },
+  stimulus: "abu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Setelah jumlah dan jam loket disamakan, tingkat pengembalian tetap tinggi di seluruh area.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengunjung di satu pintu menunggu lebih lama karena pengembalian deposit diperiksa satu per satu, sedangkan jumlah sampah dicatat dengan cara yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Evaluasi akhir akan memasukkan biaya pencucian dan kehilangan wadah.",
-        },
-        {
           correct: true,
           label:
-            "Pengurangan sampah ternyata berasal dari larangan membawa wadah sekali pakai yang berlaku bersamaan.",
+            "memberikan sisi baik abu vulkanik setelah dampak buruknya dijelaskan",
         },
         {
           correct: false,
-          label: "Satu loket dipindahkan dan jam layanannya diperpanjang.",
+          label:
+            "membantah bahaya awan abu bagi penerbangan yang disebut sebelumnya",
+        },
+        {
+          correct: false,
+          label: "memberikan contoh lain dampak buruk abu vulkanik di darat",
+        },
+        {
+          correct: false,
+          label:
+            "menjelaskan cara membersihkan abu yang menumpuk di atap rumah",
+        },
+        {
+          correct: false,
+          label:
+            "menyimpulkan bahwa abu vulkanik sebenarnya tidak berbahaya bagi siapa pun",
         },
       ],
     },

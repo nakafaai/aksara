@@ -1,31 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-23
 const item: ItemSource = {
+  stimulus: "rain-tank",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$5 - x$$",
-        },
-        {
-          correct: false,
-          label: "$$x - 5$$",
-        },
-        {
-          correct: false,
-          label: "$$x + 5$$",
-        },
-        {
-          correct: false,
-          label: "$$5 - 2x$$",
-        },
-        {
-          correct: false,
-          label: "$$2x - 5$$",
-        },
+        { correct: false, label: "$$19{,}25\\text{ m}^2$$" },
+        { correct: false, label: "$$123{,}2\\text{ m}^2$$" },
+        { correct: false, label: "$$154\\text{ m}^2$$" },
+        { correct: true, label: "$$192{,}5\\text{ m}^2$$" },
+        { correct: false, label: "$$240\\text{ m}^2$$" },
       ],
     },
   },

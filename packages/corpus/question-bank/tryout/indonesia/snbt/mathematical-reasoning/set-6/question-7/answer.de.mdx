@@ -1,39 +1,20 @@
-# Gemeinsame Differenz bestimmen
+Nach <InlineMath math="n" /> Faltungen hat der Stapel <InlineMath math="2^n" /> Lagen und **eine Dicke von <InlineMath math="0{,}1\cdot2^n" /> mm**. Jede Aussage wird mit dieser Formel geprüft.
 
-Januar ist der erste Monat (<InlineMath math="U_1" />), also gilt <InlineMath math="a = 100\text{ Fahrzeuge}" />. April ist der <InlineMath math="4" />. Monat (<InlineMath math="U_4" />) mit <InlineMath math="160\text{ Fahrzeugen}" />.
+# Fünf und sieben Faltungen
 
-Die **gemeinsame Differenz** <InlineMath math="b" /> folgt aus der Formel für das <InlineMath math="n" />-te Glied:
+<BlockMath math="\begin{aligned}
+n=5&:\quad 0{,}1\cdot2^5=0{,}1\cdot32=3{,}2\text{ mm}\\
+n=7&:\quad 2^7=128\text{ Lagen}
+\end{aligned}" />
 
-<BlockMath math="U_n = a + (n - 1)b" />
+Die erste Aussage ist wahr. Sieben Faltungen ergeben 128 Lagen, **nicht 64**, also ist die dritte Aussage falsch.
 
-Wir setzen die Werte für April ein (<InlineMath math="n=4" />):
+# Das Verdoppeln und zwanzig Faltungen
 
-<BlockMath math="160 = 100 + (4 - 1)b" />
+Von 1 auf 2 Faltungen steigt die Dicke von 0,2 mm auf 0,4 mm, also um 0,2 mm, nicht um 0,1 mm. Die Zunahme **wird mit jeder Faltung größer**, also ist die zweite Aussage falsch.
 
-<BlockMath math="160 = 100 + 3b" />
+<BlockMath math="0{,}1\cdot2^{20}=0{,}1\cdot1\,048\,576=104\,857{,}6\text{ mm}\approx104{,}9\text{ m}" />
 
-<BlockMath math="60 = 3b" />
+Die Dicke beträgt mehr als 100 m, also ist die vierte Aussage wahr.
 
-<BlockMath math="b = 20" />
-
-Die Produktion steigt also jeden Monat um <InlineMath math="20\text{ Fahrzeuge}" />.
-
-# Berechnung der gesamten Jahresproduktion
-
-Die Jahresproduktion ist die **Summe der** <InlineMath math="12\text{ Monatswerte}" /> (<InlineMath math="S_{12}" />). Dafür verwenden wir die Summenformel der arithmetischen Folge:
-
-<BlockMath math="S_n = \frac{n}{2} \{2a + (n - 1)b\}" />
-
-Wir setzen <InlineMath math="n = 12" />, <InlineMath math="a = 100" /> und <InlineMath math="b = 20" /> ein:
-
-<BlockMath math="\begin{aligned}S_{12}&=\frac{12}{2}\bigl[2(100) \\ &\quad+(12-1)(20)\bigr]\end{aligned}" />
-
-<BlockMath math="S_{12} = 6 \{200 + (11)(20)\}" />
-
-<BlockMath math="S_{12} = 6 (200 + 220)" />
-
-<BlockMath math="S_{12} = 6 (420)" />
-
-<BlockMath math="S_{12} = 2520" />
-
-Die Fabrik produziert im Jahr insgesamt <InlineMath math="2{.}520\text{ Fahrzeuge}" />.
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.

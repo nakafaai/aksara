@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "quantitative-reasoning",
+    topic: "exponential-growth",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "Presentasi $$A$$" },
-        { correct: false, label: "Presentasi $$C$$" },
-        { correct: false, label: "Presentasi $$D$$" },
-        { correct: false, label: "Tidak dapat ditentukan secara unik" },
-        { correct: true, label: "Presentasi $$F$$" },
-      ],
+      kind: "numericEntry",
+      unit: "menit",
+      value: "120",
     },
   },
 };

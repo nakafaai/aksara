@@ -1,29 +1,15 @@
-Soal ini berkaitan dengan menyusun <InlineMath math="3\text{ orang}" /> dari <InlineMath math="7" /> kandidat untuk menempati posisi yang spesifik (ketua, sekretaris, bendahara). Menukar jabatan dua orang menghasilkan susunan yang berbeda, sehingga kita menggunakan **permutasi**.
+Untuk kardus ini, berat volumenya tetap, berapa pun isinya. Biaya hanya naik jika **berat aktual membuat berat yang ditagihkan melebihi berat volume**.
 
-# Menghitung Permutasi
+# Berat volume kardus
 
-Rumus permutasi <InlineMath math="r" /> objek dari <InlineMath math="n" /> objek adalah:
+<BlockMath math="\frac{40\cdot40\cdot30}{6{.}000}=\frac{48{.}000}{6{.}000}=8\text{ kg}" />
 
-<BlockMath math="P^n_r = \frac{n!}{(n - r)!}" />
+Kardus kosong **ditagih 8 kg**, yaitu Rp72.000,00.
 
-Diketahui:
-- Jumlah kandidat (<InlineMath math="n" />) adalah <InlineMath math="7" />
-- Jumlah posisi yang dipilih (<InlineMath math="r" />) adalah <InlineMath math="3" />
+# Batas berat aktual
 
-Substitusi ke dalam rumus:
+Selama berat aktual paling besar 8 kg, berat yang ditagihkan tetap 8 kg. Jika berat aktual sedikit lebih dari 8 kg, misalnya 8,2 kg, berat itu **menjadi lebih besar dan dibulatkan ke atas menjadi 9 kg**, sehingga biayanya naik menjadi Rp81.000,00.
 
-<BlockMath math="P^7_3 = \frac{7!}{(7 - 3)!}" />
+Pilihan 8,9 kg salah karena dibulatkan menjadi 9 kg. Pilihan 7,9 kg menganggap berat aktual harus kurang dari 8 kg, padahal tepat 8 kg masih memberi biaya yang sama. Pilihan 5,5 kg dan 7 kg memang memberi biaya yang sama, tetapi bukan yang paling besar.
 
-<BlockMath math="P^7_3 = \frac{7!}{4!}" />
-
-Jabarkan **faktorial**:
-
-<BlockMath math="P^7_3 = \frac{7 \times 6 \times 5 \times 4!}{4!}" />
-
-<BlockMath math="P^7_3 = 7 \times 6 \times 5" />
-
-<BlockMath math="P^7_3 = 210" />
-
-Jadi, banyaknya susunan staf pengurus yang mungkin adalah <InlineMath math="210" /> cara.
-
-Ketiga faktor menyatakan banyak kandidat yang masih tersedia: tujuh untuk ketua, lalu enam untuk sekretaris, dan lima untuk bendahara.
+Jadi, berat aktual barang paling besar adalah **8 kg**.

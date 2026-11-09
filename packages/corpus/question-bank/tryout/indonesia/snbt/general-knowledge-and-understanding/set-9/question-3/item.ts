@@ -1,34 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "tenun",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Prosedur lapangan dihentikan saat cuaca berubah, lalu dilanjutkan dengan cara yang sama setelah cuaca pulih.",
+            "Benang ditenun lebih dahulu, baru kemudian diikat dan dicelup.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Prosedur direvisi setelah keluhan terverifikasi menunjukkan hambatan yang tidak terdeteksi pada uji awal.",
+            "Satu kali pencelupan sudah cukup untuk menghasilkan kain dengan banyak warna.",
         },
         {
-          correct: false,
-          label:
-            "Evaluasi melibatkan kelompok terdampak dengan kebutuhan mobilitas, bahasa, dan akses yang berbeda.",
+          column: 1,
+          label: "Pewarna merah dapat dibuat dari akar mengkudu.",
         },
         {
-          correct: true,
-          label:
-            "Metode menyediakan beberapa jalur pelaksanaan yang tetap tunduk pada kriteria hasil yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Aturan pengodean yang sama diterapkan pada setiap kelompok dan setiap waktu pengukuran.",
+          column: 1,
+          label: "Motif tenun ikat dapat menunjukkan asal daerah pemakainya.",
         },
       ],
     },

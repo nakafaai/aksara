@@ -1,15 +1,22 @@
-Alle Anordnungen sind gleich wahrscheinlich. Der Nenner der Wahrscheinlichkeit ist daher <InlineMath math="6!=720" />. Zähle die zulässigen Anordnungen schrittweise.
+Ordne jede Aussage als Benar (richtig) oder Salah (falsch) ein. Schreib die Kosten jedes Tarifs als Funktion der Nutzung <InlineMath math="u" /> GB. Zusatzkosten fallen erst an, **wenn das enthaltene Datenvolumen aufgebraucht ist**.
 
-Zuerst steht <InlineMath math="E" /> auf einer der <InlineMath math="4" /> inneren Positionen. Die übrigen Berichte lassen sich auf <InlineMath math="5!" /> Arten anordnen. Das ergibt <InlineMath math="4\times5!=480" /> Anordnungen.
+<BlockMath math="\begin{aligned}
+A(u) &= 50{.}000+6{.}000(u-10) &&\text{für } u>10 \\
+B(u) &= 80{.}000 &&\text{für } u\le 20 \\
+B(u) &= 80{.}000+4{.}000(u-20) &&\text{für } u>20
+\end{aligned}" />
 
-Ziehe davon die Anordnungen mit benachbarten <InlineMath math="A" /> und <InlineMath math="B" /> ab. Als **gemeinsamer Block** haben sie zwei innere Reihenfolgen: <InlineMath math="AB" /> und <InlineMath math="BA" />. Insgesamt ergeben sich <InlineMath math="2\times5!" /> Anordnungen. Davon steht <InlineMath math="E" /> jedoch in <InlineMath math="2\times2\times4!" /> Fällen an einem Ende.
+**Aussage 1** ist falsch. Für <InlineMath math="15" /> GB gilt <InlineMath math="A(15)=50{.}000+5\times6{.}000=80{.}000" /> und <InlineMath math="B(15)=80{.}000" />. Die Kosten sind gleich, Tarif A ist also nicht günstiger.
 
-Bei der Zählung der Endpositionen wählt der erste Faktor <InlineMath math="2" /> die Reihenfolge im Block und der zweite das Ende für <InlineMath math="E" />. Die <InlineMath math="4!" /> ordnen die vier übrigen Objekte an.
+**Aussage 2** ist richtig. <InlineMath math="A(12)=50{.}000+2\times6{.}000=62{.}000" /> ist günstiger als <InlineMath math="80{.}000" />.
 
-<BlockMath math="\begin{aligned} N_{AB} &amp;=2\times5!-2\times2\times4! \\ &amp;=240-96=144 \\ N &amp;=480-144=336 \end{aligned}" />
+**Aussage 3** ist falsch. <InlineMath math="A(25)=50{.}000+15\times6{.}000=140{.}000" /> und <InlineMath math="B(25)=80{.}000+5\times4{.}000=100{.}000" />. Der Unterschied beträgt <InlineMath math="\text{Rp}40{.}000" />.
 
-Unter den Anordnungen mit getrennten <InlineMath math="A" /> und <InlineMath math="B" /> und einem inneren <InlineMath math="E" /> bildet der Tausch von <InlineMath math="C" /> und <InlineMath math="D" /> Paare mit umgekehrter Reihenfolge. In genau der Hälfte steht <InlineMath math="C" /> vor <InlineMath math="D" />.
+**Aussage 4** ist richtig. Prüfe zwei Nutzungsbereiche:
 
-<BlockMath math="\begin{aligned} N_{\mathrm{valid}} &amp;=336\div2=168 \\ P &amp;=\frac{168}{720}=\frac{7}{30} \end{aligned}" />
+- Für <InlineMath math="16\le u\le 20" /> ist <InlineMath math="A(u)" /> mindestens <InlineMath math="A(16)=86{.}000" />, während <InlineMath math="B(u)=80{.}000" /> ist.
+- Für <InlineMath math="u>20" /> ist der Unterschied <InlineMath math="A(u)-B(u)=(6{.}000u-10{.}000)-4{.}000u=2{.}000u-10{.}000" />, und das ist positiv, weil <InlineMath math="u>5" /> gilt.
 
-Die Wahrscheinlichkeit für alle Bedingungen beträgt <InlineMath math="\frac{7}{30}" />.
+In beiden Bereichen ist Tarif B günstiger.
+
+Die Aussagen 2 und 4 sind also richtig, die Aussagen 1 und 3 falsch.

@@ -1,31 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "leuit",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "asal mula virus corona.",
+          column: 2,
+          label: "Padi disimpan di leuit dalam bentuk beras agar cepat diolah.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "cacar merupakan penyakit yang berbahaya dibandingkan virus corona.",
+            "Kolong leuit membantu mengurangi kelembapan pada padi yang disimpan.",
         },
         {
-          correct: true,
-          label:
-            "penelitian DNA purba tentang sejarah dan evolusi virus variola.",
+          column: 2,
+          label: "Semua komunitas yang memiliki leuit melarang penjualan padi.",
         },
         {
-          correct: false,
-          label: "penyebab hilangnya orang Viking.",
-        },
-        {
-          correct: false,
-          label: "penyebab punahnya cacar purba.",
+          column: 1,
+          label: "Sekam ikut melindungi bulir padi dari serangan serangga.",
         },
       ],
     },

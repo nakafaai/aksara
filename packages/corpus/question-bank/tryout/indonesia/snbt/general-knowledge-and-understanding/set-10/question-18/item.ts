@@ -1,35 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "kunang",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan.",
+          column: 1,
+          label: "Cahaya kunang-kunang hampir tidak menghasilkan panas.",
         },
         {
-          correct: false,
-          label:
-            "Dokumen yang tidak muncul dalam pencarian otomatis pasti tidak tersimpan di arsip.",
+          column: 2,
+          label: "Semua jenis kunang-kunang memiliki pola kedipan yang sama.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Koreksi pengguna lebih sering diberikan pada koleksi populer.",
+            "Mengurangi lampu yang menyala di dekat sawah pada malam hari dapat membantu kunang-kunang menemukan pasangan.",
         },
         {
-          correct: true,
-          label:
-            "Hasil pencarian nol tidak cukup untuk menyimpulkan ketiadaan sumber ketika proses pengenalan memiliki pola kegagalan.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan mengaudit perbedaan kinerja menurut jenis tulisan dan periode.",
+          column: 2,
+          label: "Kunang-kunang dewasa bertelur di dalam air sungai.",
         },
       ],
     },

@@ -1,23 +1,20 @@
-Pisahkan **kasus protes dan tanpa protes** agar setiap kemungkinan dihitung tepat sekali.
+Setiap persegi baru ditempel pada persegi sebelumnya dan memakai satu sisi yang sama, jadi **setiap pola menambah tepat 3 batang**. Banyak batang membentuk barisan aritmetika 4, 7, 10, dan seterusnya.
 
-Definisikan kejadian:
+# Rumus suku ke-n
 
--   <InlineMath math="A" />: pembangunan selesai tepat waktu
--   <InlineMath math="B" />: terjadi protes
--   <InlineMath math="B^c" />: tidak terjadi protes
+<BlockMath math="U_n=4+(n-1)\cdot3=3n+1" />
 
-Kejadian <InlineMath math="B" /> dan <InlineMath math="B^c" /> saling lepas dan mencakup semua kemungkinan. Gunakan aturan peluang total:
+Rumus <InlineMath math="4n" /> hanya cocok untuk pola pertama, karena **sisi yang berbagi tidak dihitung dua kali**. Misalnya pola ke-2 memerlukan 7 batang, bukan 8. Pernyataan pertama salah.
 
-<BlockMath math="\begin{aligned}P(A)&=P(B)P(A\mid B)\\&\quad+P(B^c)P(A\mid B^c)\end{aligned}" />
+# Memakai rumus
 
-Substitusikan peluang yang diketahui:
+<BlockMath math="\begin{aligned}
+U_{10}&=3\cdot10+1=31\\
+U_{20}-U_{10}&=61-31=30
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}P(B)&=0{,}7\\P(B^c)&=1 - 0{,}7 = 0{,}3\end{aligned}" />
+Pernyataan kedua benar. Selisihnya 30, yaitu **10 pola tambahan dikali 3 batang**, bukan 31. Pernyataan ketiga salah.
 
-<BlockMath math="\begin{aligned}P(A\mid B^c)&=0{,}8\\P(A\mid B)&=0{,}4\end{aligned}" />
+Untuk 100 batang, selesaikan <InlineMath math="3n+1=100" />, sehingga <InlineMath math="n=33" />. Bilangan 33 adalah bilangan bulat, jadi pola ke-33 memakai tepat 100 batang. Pernyataan keempat benar.
 
-<BlockMath math="\begin{aligned}P(A)&=(0{,}7)(0{,}4)\\&\quad+(0{,}3)(0{,}8)\end{aligned}" />
-
-<BlockMath math="\begin{aligned}P(A)&=0{,}28 + 0{,}24\\&=0{,}52\end{aligned}" />
-
-Jadi, peluang pembangunan selesai tepat waktu adalah <InlineMath math="0{,}52" />.
+Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **salah**, dan keempat **benar**.

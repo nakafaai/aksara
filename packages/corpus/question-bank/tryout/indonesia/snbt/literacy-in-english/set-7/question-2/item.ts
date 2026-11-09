@@ -1,35 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "slime-mould",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["True", "False"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+          column: 2,
+          label: "The slime mould is a kind of fungus.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
+            "In the maze experiment, food was placed at the entrance and at the exit.",
         },
         {
-          correct: false,
-          label:
-            "The mean result with the change was $$19$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
+          column: 2,
+          label: "Tubes that carry more nutrients gradually become thinner.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
-        },
-        {
-          correct: true,
-          label:
-            "The blue-filter condition produced a mean of $$19$$ at the tested lamp distance. Reduced light intensity prevents treating colour as the only explanation.",
+            "The slime mould's network around Tokyo kept working well when one link was cut.",
         },
       ],
     },

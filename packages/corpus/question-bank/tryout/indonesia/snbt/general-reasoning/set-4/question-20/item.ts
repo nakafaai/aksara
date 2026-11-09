@@ -1,32 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "tournament",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "A bermain seri melawan C.",
+        },
+        {
+          correct: false,
+          label: "B mengalahkan D.",
+        },
+        {
+          correct: false,
+          label: "D bermain seri melawan A.",
+        },
+        {
           correct: true,
-          label:
-            "Makanan selingan sekolah yang aman dan bergizi seimbang dapat membantu memenuhi asupan zat gizi anak",
+          label: "C mengalahkan D.",
         },
         {
           correct: false,
-          label: "Semua jajanan sekolah tidak aman",
-        },
-        {
-          correct: false,
-          label: "Anak sebaiknya mengganti makanan utama dengan jajanan",
-        },
-        {
-          correct: false,
-          label:
-            "Keamanan mikrobiologis dan kimia boleh diabaikan jika jajanan menyediakan cukup energi",
-        },
-        {
-          correct: false,
-          label:
-            "Energi merupakan satu-satunya pertimbangan gizi saat memilih makanan selingan",
+          label: "A kalah dari B.",
         },
       ],
     },

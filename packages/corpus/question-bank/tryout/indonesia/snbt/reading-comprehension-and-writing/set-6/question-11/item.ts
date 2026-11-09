@@ -1,31 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "title",
+  },
+  stimulus: "water-turn",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "analisa efektivitas contoh pencatatan waktu suara",
+          label: "Musim Kemarau di Indonesia",
         },
         {
           correct: false,
-          label: "analisis efektifitas contoh pencatatan waktu suara",
+          label: "Petugas Pintu Air Desa Sukadamai",
+        },
+        {
+          correct: false,
+          label: "Perselisihan antara Petani Hulu dan Petani Hilir",
         },
         {
           correct: true,
-          label: "analisis efektivitas contoh pencatatan waktu suara",
+          label: "Jadwal Giliran Air Mengakhiri Kekeringan Sawah Hilir",
         },
         {
           correct: false,
-          label: "analisa efektifitas contoh pencatatan waktu suara",
-        },
-        {
-          correct: false,
-          label:
-            "analisis efektivitas contoh pencatatan dalam kontek kebisingan",
+          label: "Cara Menanam Padi di Sawah Hilir",
         },
       ],
     },

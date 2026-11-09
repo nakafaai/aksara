@@ -1,14 +1,30 @@
-Setiap bangun harus memenuhi **dua batas sekaligus**: paling banyak dua sumbu lipat dan paling banyak dua posisi yang berimpit saat diputar satu putaran penuh. Posisi awal dihitung sekali, melalui putaran <InlineMath math="360^\circ" />.
+Dua titik potong dengan sumbu <InlineMath math="x" /> memberi **bentuk faktor <InlineMath math="f(x)=a(x+1)(x-5)" />**. Titik potong dengan sumbu <InlineMath math="y" /> menentukan nilai <InlineMath math="a" />.
 
-| Bangun | Sumbu lipat | Simetri putar |
-| --- | --- | --- |
-| Trapesium siku-siku | 0 | 1: hanya 360° |
-| Segilima beraturan | 5: setiap sudut ke titik tengah sisi di seberangnya | 5: setiap kelipatan 72° |
-| Segitiga sama sisi | 3: setiap sudut ke titik tengah sisi di seberangnya | 3: 120°, 240°, 360° |
-| Layang-layang bukan belah ketupat | 1: diagonal yang melalui pertemuan sisi-sisi sama panjang | 1: hanya 360° |
+# Menentukan rumus fungsi
 
-Layang-layang berikut hanya memiliki **satu sumbu lipat**. Putaran 180° tidak membuat bangun berimpit karena puncak atas dan bawah berjarak berbeda dari perpotongan diagonal.
+<BlockMath math="\begin{aligned}
+f(0)=a(1)(-5)&=10\;\Longrightarrow\; a=-2\\
+f(x)&=-2(x+1)(x-5)=-2x^2+8x+10
+\end{aligned}" />
 
-<MathVisual title="Sumbu simetri layang-layang" description="Diagonal vertikal membagi layang-layang menjadi dua bagian yang saling mencerminkan." scene={{space:"plane",frame:{kind:"cartesian",x:{min:-3,max:3},y:{min:-2,max:4}},view:{kind:"fit",padding:0.12},objects:[{id:"kite",kind:"polygon",appearance:"primary",vertices:[{x:0,y:3},{x:2,y:0},{x:0,y:-1},{x:-2,y:0}]},{id:"axis",kind:"segment",appearance:"highlight",from:{x:0,y:-1},to:{x:0,y:3}}],labels:[]}} labels={{}} />
+Karena <InlineMath math="a<0" />, grafiknya **terbuka ke bawah** dan memiliki nilai maksimum.
 
-Trapesium siku-siku dan layang-layang memenuhi kedua batas. Jadi, jawabannya <InlineMath math="2" /> bangun.
+# Sumbu simetri dan nilai maksimum
+
+Sumbu simetri berada **di tengah kedua akar**, yaitu <InlineMath math="x=\tfrac{-1+5}{2}=2" />, bukan <InlineMath math="x=3" />. Pernyataan kedua salah.
+
+<BlockMath math="f(2)=-2(3)(-3)=18" />
+
+Nilai maksimumnya 18, jadi pernyataan pertama benar.
+
+# Tanda fungsi dan nilai di satu
+
+Grafik yang terbuka ke bawah bernilai positif **hanya di antara kedua akar**, yaitu pada <InlineMath math="-1<x<5" />. Untuk <InlineMath math="5<x<6" /> nilainya negatif, misalnya <InlineMath math="f(5{,}5)=-2(6{,}5)(0{,}5)=-6{,}5" />. Pernyataan ketiga salah.
+
+Jumlah <InlineMath math="a+b+c" /> sama dengan <InlineMath math="f(1)" />.
+
+<BlockMath math="a+b+c=-2+8+10=16" />
+
+Pernyataan keempat benar.
+
+Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.

@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "inference",
+  },
+  stimulus: "jamu-label",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Data di kumpulkan di kantor barang hilang dan kemudian dibandingkan.",
+          label: "harga jamu menjadi lebih murah",
         },
         {
           correct: false,
-          label:
-            "Data dikumpulkan dikantor barang hilang dan kemudian dibandingkan.",
+          label: "Bu Sumiati tidak perlu lagi berkeliling",
         },
         {
           correct: false,
-          label:
-            "Data mengumpulkan di kantor barang hilang dan kemudian membandingkan.",
+          label: "jamu dapat diminum kapan saja tanpa batas waktu",
         },
         {
           correct: false,
-          label:
-            "Data dikumpulkan pada di kantor barang hilang lalu di bandingkan.",
+          label: "tetangga lama berhenti membeli jamu",
         },
         {
           correct: true,
           label:
-            "Data dikumpulkan di kantor barang hilang dan kemudian dibandingkan.",
+            "pembeli baru dapat mengetahui bahan jamu yang sebelumnya membuat mereka ragu",
         },
       ],
     },

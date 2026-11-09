@@ -1,33 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "ordering",
+  },
+  stimulus: "urutan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Tidak terjadi kejahatan di Kampung Bambu pada hari Minggu lalu.",
+          label: "$$8$$",
         },
         {
           correct: false,
-          label:
-            "Tidak terjadi pencurian di Kampung Bambu pada hari Minggu lalu.",
-        },
-        {
-          correct: false,
-          label:
-            "Peningkatan keamanan mencegah seluruh kejahatan pada hari Minggu lalu.",
-        },
-        {
-          correct: false,
-          label:
-            "Tidak terjadi kejahatan di Kampung Bambu sejak hari Minggu lalu.",
+          label: "$$9$$",
         },
         {
           correct: true,
-          label: "Terjadi pencurian di Kampung Bambu pada hari Minggu lalu.",
+          label: "$$10$$",
+        },
+        {
+          correct: false,
+          label: "$$11$$",
+        },
+        {
+          correct: false,
+          label: "$$12$$",
         },
       ],
     },

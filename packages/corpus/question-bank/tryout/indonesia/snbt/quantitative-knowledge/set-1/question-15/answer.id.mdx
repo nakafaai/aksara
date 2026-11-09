@@ -1,47 +1,50 @@
-Segitiga <InlineMath math="ABC" /> dan <InlineMath math="DEA" /> sebangun, dengan **pasangan titik yang bersesuaian** <InlineMath math="A \leftrightarrow D" />, <InlineMath math="B \leftrightarrow E" />, dan <InlineMath math="C \leftrightarrow A" />.
+Titik <InlineMath math="A" /> dan <InlineMath math="B" /> sama-sama berada di atas sumbu <InlineMath math="x" />, jadi lintasan <InlineMath math="A\to P\to B" /> harus menyentuh sumbu lalu kembali naik. Trik yang tepat adalah **mencerminkan salah satu titik terhadap sumbu <InlineMath math="x" />** agar lintasan itu berubah menjadi garis lurus.
 
-Titik <InlineMath math="C" /> memiliki koordinat horizontal yang sama dengan <InlineMath math="B" /> dan koordinat vertikal yang sama dengan <InlineMath math="A" />, sehingga <InlineMath math="C(8,1)" />.
+<MathVisual
+  title={<>Lintasan terpendek melalui sumbu <InlineMath math="x" /></>}
+  description={<>Bayangan <InlineMath math="B" /> terhadap sumbu <InlineMath math="x" /> adalah <InlineMath math="B'" />. Ruas <InlineMath math="PB" /> sama panjang dengan <InlineMath math="PB'" />, jadi lintasan terpendek mengikuti garis lurus dari <InlineMath math="A" /> ke <InlineMath math="B'" />.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.12 },
+    objects: [
+      { id: "path-ap", kind: "segment", appearance: "answer", from: { x: 1, y: 2 }, to: { x: 3, y: 0 } },
+      { id: "path-pb", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 7, y: 4 } },
+      { id: "mirror-pb", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 7, y: -4 } },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 7, y: 4 } },
+      { id: "point-b-image", kind: "point", appearance: "construction", at: { x: 7, y: -4 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "point-b", at: { x: 7, y: 4 }, placement: "above-right" },
+      { key: "image", objectId: "point-b-image", at: { x: 7, y: -4 }, placement: "below-right" },
+      { key: "p", objectId: "point-p", at: { x: 3, y: 0 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A(1,2)" />,
+    b: <InlineMath math="B(7,4)" />,
+    image: <InlineMath math="B'(7,-4)" />,
+    p: <InlineMath math="P(3,0)" />,
+  }}
+/>
 
-# Menghitung Panjang Sisi
+# Mencerminkan titik B
 
-Untuk segitiga <InlineMath math="ABC" /> yang merupakan **segitiga siku-siku** di <InlineMath math="C" />:
+Bayangan <InlineMath math="B(7,4)" /> terhadap sumbu <InlineMath math="x" /> adalah <InlineMath math="B'(7,-4)" />. Setiap titik <InlineMath math="P" /> pada sumbu <InlineMath math="x" /> berjarak sama ke <InlineMath math="B" /> dan ke <InlineMath math="B'" />, jadi <InlineMath math="AP+PB=AP+PB'" />. Panjang lintasan dari <InlineMath math="A" /> ke <InlineMath math="B'" /> **paling pendek jika lurus**, dan garis lurus itu memang memotong sumbu <InlineMath math="x" /> karena <InlineMath math="A" /> di atas dan <InlineMath math="B'" /> di bawah sumbu.
 
-<BlockMath math="AC = |8 - 2| = 6" />
+<BlockMath math="AP+PB\ge AB'=\sqrt{(7-1)^2+(-4-2)^2}=\sqrt{72}=6\sqrt2" />
 
-<BlockMath math="BC = |4 - 1| = 3" />
+# Menemukan titik P
 
-Untuk segitiga <InlineMath math="ADE" />:
+Garis <InlineMath math="AB'" /> bergradien <InlineMath math="\frac{-4-2}{7-1}=-1" />, jadi persamaannya <InlineMath math="y-2=-(x-1)" />. Titik potongnya dengan sumbu <InlineMath math="x" /> adalah <InlineMath math="P(3,0)" />. **Cek nilainya**: <InlineMath math="AP=\sqrt{4+4}=2\sqrt2" /> dan <InlineMath math="PB=\sqrt{16+16}=4\sqrt2" />, jumlahnya <InlineMath math="6\sqrt2" />.
 
-<BlockMath math="AE = |1 - (-3)| = 4" />
+Nilai <InlineMath math="2\sqrt{10}" /> adalah jarak langsung <InlineMath math="AB" />, yang tidak menyentuh sumbu <InlineMath math="x" />. Nilai <InlineMath math="5+\sqrt{13}" /> memilih <InlineMath math="P(4,0)" /> di bawah titik tengah absis. Nilai <InlineMath math="2+2\sqrt{13}" /> memilih <InlineMath math="P" /> tepat di bawah <InlineMath math="A" />, dan <InlineMath math="4+2\sqrt{10}" /> memilih <InlineMath math="P" /> tepat di bawah <InlineMath math="B" />. Ketiganya lebih panjang daripada <InlineMath math="6\sqrt2" />.
 
-# Menggunakan Kesebangunan
-
-Karena kedua segitiga sebangun, perbandingan **sisi-sisi yang bersesuaian** sama.
-
-<BlockMath math="\frac{AE}{BC} = \frac{AD}{AC}" />
-
-Substitusi nilai yang diketahui:
-
-<BlockMath math="\frac{4}{3} = \frac{AD}{6}" />
-
-Kalikan kedua ruas dengan <InlineMath math="6" /> untuk menemukan panjang yang tepat dari perbandingan kesebangunan:
-
-<BlockMath math="AD = \frac{4 \times 6}{3} = \frac{24}{3} = 8" />
-
-# Menghitung Luas Segitiga Sebangun
-
-Kedua segitiga memiliki sudut siku-siku (segitiga <InlineMath math="ABC" /> di <InlineMath math="C" />, segitiga <InlineMath math="ADE" /> di <InlineMath math="A" />).
-
-Luas segitiga adalah setengah hasil kali **alas dan tinggi** yang saling tegak lurus.
-
-Untuk segitiga <InlineMath math="ADE" />:
-
-<BlockMath math="L_{ADE}=\frac12\times AD\times AE" />
-
-<BlockMath math="= \frac{1}{2} \times 8 \times 4" />
-
-<BlockMath math="= \frac{32}{2}" />
-
-<BlockMath math="= 16" />
-
-Jadi, luas segitiga <InlineMath math="ADE" /> adalah <InlineMath math="16" /> satuan luas.
+Jadi, nilai terkecil <InlineMath math="AP+PB" /> adalah <InlineMath math="6\sqrt2" />.

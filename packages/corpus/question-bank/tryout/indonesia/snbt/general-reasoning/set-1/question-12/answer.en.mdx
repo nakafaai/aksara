@@ -1,23 +1,25 @@
-The two clocks begin with the same reading. Because the slow clock loses <InlineMath math="5\text{ minutes}" /> every real hour, its **delay grows** by <InlineMath math="5\text{ minutes}" /> per hour.
+Start from the fact that is certain and draw conclusions step by step. Write the statements as symbols:
 
-# Find the delay needed for matching dials
+- <InlineMath math="p" />: the warehouse receives a rice delivery on Monday
+- <InlineMath math="q" />: the staff reweigh every sack
+- <InlineMath math="r" />: the stock report is sent late
+- <InlineMath math="s" />: the warehouse head calls the supplier
 
-A <InlineMath math="12\text{-hour}" /> dial **repeats after** <InlineMath math="12\text{ hours}" />. The first time the hands can display the same reading again is therefore when the slow clock is exactly <InlineMath math="12\text{ hours}" /> behind:
+The premises are <InlineMath math="p \Rightarrow q" />, <InlineMath math="q \Rightarrow r" />, <InlineMath math="\neg r \vee s" />, and the fact <InlineMath math="\neg s" />.
 
-<BlockMath math="\begin{aligned} 12\text{ hours} &amp;= 12 \times 60\text{ minutes} \\ &amp;= 720\text{ minutes} \end{aligned}" />
+**Step 1** uses the disjunction. In <InlineMath math="\neg r \vee s" />, at least one part must be true. Since <InlineMath math="s" /> is false, <InlineMath math="\neg r" /> must be true. So **the stock report is not late**.
 
-# Find how long the delay takes to accumulate
+**Step 2** uses modus tollens twice. From <InlineMath math="q \Rightarrow r" /> and <InlineMath math="\neg r" />, we get <InlineMath math="\neg q" />. From <InlineMath math="p \Rightarrow q" /> and <InlineMath math="\neg q" />, we get <InlineMath math="\neg p" />.
 
-Let <InlineMath math="t" /> be the elapsed real time in hours. The **accumulated delay** is <InlineMath math="5t\text{ minutes}" />:
+<BlockMath math="\neg s,\; \neg r \vee s \;\Rightarrow\; \neg r \;\Rightarrow\; \neg q \;\Rightarrow\; \neg p" />
 
-<BlockMath math="\begin{aligned} 5t &amp;= 720 \\ t &amp;= \frac{720}{5} \\ t &amp;= 144\text{ hours} \end{aligned}" />
+So the warehouse did not receive a rice delivery on Monday.
 
-Thus, the clocks first show the same reading again after <InlineMath math="144\text{ hours}" />, or <InlineMath math="6\text{ days}" />.
+The other options are wrong:
 
-Check the elapsed time on both clocks. A **twelve-hour difference** produces matching readings on twelve-hour dials. A six-hour difference does not.
+- Reweighing every sack contradicts <InlineMath math="\neg q" />.
+- A late report contradicts <InlineMath math="\neg r" />.
+- The premises say nothing about other days, so a delivery on another day may or may not have happened.
+- The premises only concern this week, so nothing follows about next week.
 
-| Real elapsed time | Elapsed time on slow clock | Delay |
-| --- | --- | --- |
-| <InlineMath math="12\text{ hours}" /> | <InlineMath math="12\times\frac{55}{60}=11\text{ hours}" /> | <InlineMath math="12-11=1\text{ hours}" /> |
-| <InlineMath math="72\text{ hours}" /> | <InlineMath math="72\times\frac{55}{60}=66\text{ hours}" /> | <InlineMath math="72-66=6\text{ hours}" /> |
-| <InlineMath math="144\text{ hours}" /> | <InlineMath math="144\times\frac{55}{60}=132\text{ hours}" /> | <InlineMath math="144-132=12\text{ hours}" /> |
+So the conclusion that is certainly true is that the warehouse did not receive a rice delivery on Monday this week.

@@ -3,27 +3,27 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "(1), (2), dan (3) SAJA yang benar",
+          column: 2,
+          label:
+            "Jika dua siswa baru dengan nilai $$9$$ bergabung, median nilai berubah.",
         },
         {
-          correct: false,
-          label: "(1) dan (3) SAJA yang benar",
+          column: 2,
+          label:
+            "Jika tiga siswa baru dengan nilai $$6$$ bergabung, modus nilai tetap $$7$$.",
         },
         {
-          correct: false,
-          label: "(2) dan (4) SAJA yang benar",
+          column: 1,
+          label: "Rata-rata nilai lebih kecil daripada median nilai.",
         },
         {
-          correct: false,
-          label: "SEMUA pernyataan benar",
-        },
-        {
-          correct: false,
-          label: "SEMUA pernyataan salah",
+          column: 1,
+          label:
+            "Jika semua siswa dengan nilai $$5$$ dikeluarkan dari data, rata-rata nilai menjadi lebih dari $$7$$.",
         },
       ],
     },

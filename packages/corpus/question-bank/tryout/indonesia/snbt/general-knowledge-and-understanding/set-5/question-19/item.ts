@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "word-relation",
+    topic: "antonym",
+  },
+  stimulus: "pinisi",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Uji terbatas membuktikan bahwa denda harus dihapus untuk semua keadaan.",
+          label: "kuno",
         },
         {
           correct: true,
-          label:
-            "Kebijakan yang proporsional menyesuaikan konsekuensi dengan lamanya keterlambatan dan dampaknya.",
+          label: "modern",
         },
         {
           correct: false,
-          label:
-            "Keberhasilan kebijakan terutama ditentukan oleh banyaknya uang denda yang berhasil dikumpulkan.",
+          label: "adat",
         },
         {
           correct: false,
-          label:
-            "Sebagian pengguna tidak menerima pesan karena nomor telepon berubah.",
+          label: "lokal",
         },
         {
           correct: false,
-          label:
-            "Keterlambatan singkat dan panjang harus selalu dikenai konsekuensi yang sama agar aturan dianggap adil.",
+          label: "klasik",
         },
       ],
     },

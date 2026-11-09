@@ -1,41 +1,25 @@
-Zuerst ordnen wir die Daten **aufsteigend**:
+Nach **dem Restsatz** ist der Rest von <InlineMath math="p(x)" /> bei Division durch <InlineMath math="x-c" /> gleich <InlineMath math="p(c)" />. Die beiden bekannten Reste liefern also zwei Gleichungen für <InlineMath math="a" /> und <InlineMath math="b" />.
 
-<BlockMath math="1, 2, 3, 4, 5, 5, 6" />
+# a und b bestimmen
 
-Es gibt <InlineMath math="n = 7" /> Datenwerte.
+<BlockMath math="\begin{aligned}
+p(1)&=1-2+a+b=4 &&\Rightarrow\quad a+b=5\\
+p(-1)&=-1-2-a+b=-8 &&\Rightarrow\quad -a+b=-5
+\end{aligned}" />
 
-# Analyse der ersten Aussage
+Addierst du beide Gleichungen, erhältst du <InlineMath math="2b=0" />, also <InlineMath math="b=0" /> und <InlineMath math="a=5" />. Das Polynom lautet <InlineMath math="p(x)=x^3-2x^2+5x" />. Die erste Aussage ist **wahr**. Wegen <InlineMath math="b=0" /> enthält jeder Summand <InlineMath math="x" />, also ist <InlineMath math="x" /> ein Faktor. Die dritte Aussage ist wahr.
 
-Bei sieben geordneten Werten steht der **Median** an der Stelle <InlineMath math="\frac{n+1}{2} = \frac{8}{2} = 4" />.
-Der <InlineMath math="4" />-te Wert ist <InlineMath math="4" />.
+# Ein weiterer Funktionswert und ein linearer Rest
 
-<BlockMath math="\operatorname{Me} = 4" />
+<BlockMath math="p(2)=8-8+10=10" />
 
-Aussage 1 ist richtig.
+Der Wert ist 10 und nicht 12, die zweite Aussage ist also falsch. Der Divisor <InlineMath math="x^2-1" /> hat den Grad zwei, deshalb **hat der Rest die Form <InlineMath math="rx+s" />**. Setze <InlineMath math="x=1" /> und <InlineMath math="x=-1" /> ein, denn dort wird der Divisor null.
 
-# Analyse der zweiten Aussage
+<BlockMath math="\begin{aligned}
+r+s&=p(1)=4\\
+-r+s&=p(-1)=-8
+\end{aligned}" />
 
-Die Spannweite ist die **Differenz zwischen dem größten und dem kleinsten Wert**.
+Daraus folgt <InlineMath math="s=-2" /> und <InlineMath math="r=6" />, der Rest ist also <InlineMath math="6x-2" /> und nicht <InlineMath math="6x+2" />. Die vierte Aussage ist falsch.
 
-<BlockMath math="\begin{aligned}\text{Spannweite}&=x_{\max}-x_{\min}\\&=6-1\\&=5\end{aligned}" />
-
-Aussage 2 ist falsch, denn die Rechnung ergibt <InlineMath math="5" />. In der Aussage steht <InlineMath math="6" />.
-
-# Analyse der dritten Aussage
-
-Wir berechnen **Spannweite minus Median**:
-
-<BlockMath math="\text{Spannweite} - \operatorname{Me} = 5 - 4 = 1" />
-
-Aussage 3 ist richtig.
-
-# Analyse der vierten Aussage
-
-Der Mittelwert (<InlineMath math="\bar{x}" />) ist die **Summe geteilt durch die Anzahl der Datenpunkte**.
-
-<BlockMath math="\begin{aligned}\bar{x}&=\frac{1+2+3+4+5+5+6}{7}\\&=\frac{26}{7}\\&=3\frac57\end{aligned}" />
-
-Der Wert <InlineMath math="3\frac{5}{7}" /> ist nicht gleich <InlineMath math="4{,}5" />.
-Aussage 4 ist falsch.
-
-Die richtigen Aussagen sind **(1) und (3)**.
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.

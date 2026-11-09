@@ -1,33 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "sidat",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "memberi undangan yang sama tanpa menyesuaikan hambatan peserta",
+          label: "mencari makan",
+        },
+        {
+          correct: false,
+          label: "berganti kulit",
         },
         {
           correct: true,
-          label:
-            "membuka kesempatan nyata bagi kelompok dengan kebutuhan dan hambatan yang berbeda",
+          label: "bertelur dan berkembang biak",
         },
         {
           correct: false,
-          label: "menerima setiap usulan agar tidak ada kelompok yang kecewa",
+          label: "beristirahat panjang",
         },
         {
           correct: false,
-          label:
-            "menyerahkan keputusan sepenuhnya kepada kelompok yang hadir paling banyak",
-        },
-        {
-          correct: false,
-          label: "mengukur keterlibatan hanya dari jumlah orang yang datang",
+          label: "bersembunyi dari ikan pemangsa",
         },
       ],
     },

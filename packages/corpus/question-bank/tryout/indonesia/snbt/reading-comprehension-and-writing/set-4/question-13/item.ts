@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "text-structure",
+  },
+  stimulus: "rain-gauge",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "kerja sama tim dalam uji tanda genre",
+          label: "masalah, dugaan penyebab, cara menguji, temuan, lalu usulan",
         },
         {
           correct: false,
-          label: "kerjasama tim dalam uji tanda genre",
+          label: "usulan, alasan usulan, lalu contoh pelaksanaan",
         },
         {
           correct: false,
-          label: "kerja-sama tim dalam uji tanda genre",
+          label: "temuan, masalah, lalu usulan",
         },
         {
           correct: false,
-          label: "kerja samah tim dalam uji tanda genre",
+          label: "dugaan penyebab, temuan, lalu masalah",
         },
         {
           correct: false,
-          label: "kerja sama-sama tim dalam uji tanda genre",
+          label: "masalah, usulan, lalu dugaan penyebab",
         },
       ],
     },

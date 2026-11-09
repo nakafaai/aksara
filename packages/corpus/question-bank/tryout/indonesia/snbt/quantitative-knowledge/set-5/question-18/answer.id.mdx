@@ -1,32 +1,21 @@
-Untuk pesanan yang sama, banyak pekerja dan waktu kerja **berbanding terbalik**. Setiap pekerja memiliki laju tetap yang sama, sehingga empat kali pekerja dapat menyelesaikan pekerjaan dalam seperempat waktu.
+Tulis bilangannya sebagai <InlineMath math="\overline{abc}" /> dengan <InlineMath math="a" /> antara 1 dan 9, <InlineMath math="b" /> antara 0 dan 9, dan <InlineMath math="c" /> genap karena bilangannya genap. Tetapkan dulu <InlineMath math="c" />, lalu **hitung pasangan <InlineMath math="(a,b)" /> yang jumlahnya <InlineMath math="10-c" />**.
 
-Diketahui:
+# Menghitung per angka satuan
 
-- <InlineMath math="x\text{ pekerja}" /> dapat menyelesaikan pesanan dalam <InlineMath math="20\text{ hari}" />.
-- Pesanan harus selesai dalam <InlineMath math="5\text{ hari}" /> dengan jumlah pekerja <InlineMath math="P" />.
+Untuk jumlah <InlineMath math="a+b=s" /> dengan <InlineMath math="1\le s\le10" />, nilai <InlineMath math="a" /> boleh 1 sampai <InlineMath math="s" /> asalkan <InlineMath math="b=s-a" /> **tidak lebih dari 9**. Pada <InlineMath math="s=10" />, nilai <InlineMath math="a=10" /> tidak mungkin, jadi tersisa 9 pasangan.
 
-Jika <InlineMath math="n" /> menyatakan banyak pekerja dan <InlineMath math="t" /> menyatakan waktu kerja dalam hari, beban kerja tetap memberi:
+| Angka satuan <InlineMath math="c" /> | <InlineMath math="a+b" /> | Banyak pasangan <InlineMath math="(a,b)" /> |
+| :---: | :---: | :---: |
+| 0 | 10 | 9 |
+| 2 | 8 | 8 |
+| 4 | 6 | 6 |
+| 6 | 4 | 4 |
+| 8 | 2 | 2 |
 
-<BlockMath math="n_1t_1=n_2t_2" />
+<BlockMath math="9+8+6+4+2=29" />
 
-Substitusikan nilai yang diketahui:
+# Memeriksa pilihan lain
 
-<BlockMath math="x \cdot 20 = P \cdot 5" />
+Semua bilangan tiga angka dengan jumlah angka 10 ada 54, dan 25 di antaranya ganjil. **Bilangan genap dan ganjil tidak terbagi rata**, jadi nilai 27, yaitu setengah dari 54, keliru. Nilai 54 menghitung semua bilangan tanpa syarat genap, dan nilai 25 menghitung bilangan ganjil. Nilai 31 menghitung kasus <InlineMath math="c=0" /> dengan 11 pasangan, seolah-olah <InlineMath math="a=0" /> atau <InlineMath math="a=10" /> boleh.
 
-<BlockMath math="20x = 5P" />
-
-Maka nilai <InlineMath math="P" /> adalah:
-
-<BlockMath math="P = \frac{20x}{5}" />
-
-<BlockMath math="P = 4x" />
-
-Diketahui <InlineMath math="Q = 4x" />.
-
-Sehingga:
-
-<BlockMath math="P = 4x \quad \text{dan} \quad Q = 4x" />
-
-<BlockMath math="P = Q" />
-
-Jadi, hubungan yang benar adalah <InlineMath math="P = Q" />.
+Jadi, banyak bilangan yang dimaksud adalah **29**.

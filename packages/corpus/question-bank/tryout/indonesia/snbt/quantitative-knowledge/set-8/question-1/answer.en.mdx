@@ -1,13 +1,19 @@
-Let <InlineMath math="x = 0.323323323..." />. The **repeating block** <InlineMath math="323" /> has three digits, so multiplying by <InlineMath math="1000" /> shifts the decimal point by one full period:
+Factor the left side as <InlineMath math="(a-b)(a+b)=45" />. The task becomes **finding factor pairs of 45** that can be <InlineMath math="a-b" /> and <InlineMath math="a+b" />.
 
-<BlockMath math="1000x = 323.323323..." />
+# Conditions on the factor pair
 
-Now subtract the original equation. The **repeating decimal parts** cancel:
+Since <InlineMath math="a" /> and <InlineMath math="b" /> are positive, <InlineMath math="a-b<a+b" />, so the smaller factor is <InlineMath math="a-b" />. Also <InlineMath math="a=\tfrac{(a+b)+(a-b)}{2}" />, so **both factors must be odd or both even**. Every factor of 45 is odd, so this always holds.
 
-<BlockMath math="\begin{aligned} 1000x &= 323.323323... \\ x &= 0.323323... \\ 999x &= 323 \end{aligned}" />
+# List of pairs
 
-Therefore:
+| <InlineMath math="a-b" /> | <InlineMath math="a+b" /> | <InlineMath math="a" /> | <InlineMath math="b" /> |
+| :---: | :---: | :---: | :---: |
+| 1 | 45 | 23 | 22 |
+| 3 | 15 | 9 | 6 |
+| 5 | 9 | 7 | 2 |
 
-<BlockMath math="x = \frac{323}{999}" />
+The pair <InlineMath math="(9,5)" /> and the rest only reverse the order and give a negative <InlineMath math="b" />. Check: <InlineMath math="23^2-22^2=45" />, <InlineMath math="81-36=45" /> and <InlineMath math="49-4=45" />.
 
-The fraction is <InlineMath math="\frac{323}{999}" />.
+The value 6 counts all six divisors of 45 as if each gave a pair. The value 2 usually misses the factor pair <InlineMath math="1\times45" />.
+
+So the number of pairs is **3**.

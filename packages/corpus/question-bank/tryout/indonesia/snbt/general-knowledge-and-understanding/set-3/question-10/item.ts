@@ -1,34 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "cause-and-sign",
+  },
+  stimulus: "tsunami",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Catatan tertulis selalu benar, sedangkan semua kesaksian lisan harus ditolak.",
+          column: 1,
+          label: "Gempa yang membuat dasar laut terangkat secara tiba-tiba",
         },
         {
-          correct: true,
-          label:
-            "Perbedaan sumber tidak harus dihapus; museum perlu menjelaskan mana yang terbukti, diingat, dan masih terbuka.",
+          column: 1,
+          label: "Longsoran besar di bawah laut",
         },
         {
-          correct: false,
-          label:
-            "Museum sebaiknya memilih kisah paling menarik dan menghapus keterangan yang mengganggu kelancaran cerita.",
+          column: 2,
+          label: "Surutnya air laut sebelum gelombang tiba",
         },
         {
-          correct: false,
-          label: "Museum akan menampilkan riwayat revisi label pameran.",
-        },
-        {
-          correct: false,
+          column: 2,
           label:
-            "Museum dapat menetapkan waktu kegiatan secara pasti selama satu keterangan didukung oleh lebih banyak orang.",
+            "Gempa sangat dalam yang hampir tidak mengubah bentuk dasar laut",
         },
       ],
     },

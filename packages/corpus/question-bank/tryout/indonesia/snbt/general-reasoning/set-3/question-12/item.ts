@@ -1,34 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "modus-tollens",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Harga cabai segar naik minggu ini.",
+        },
+        {
           correct: true,
-          label:
-            "Penjualan kerudung jenis bergo selalu lebih tinggi dibandingkan penjualan kerudung jenis segiempat.",
+          label: "Harga cabai segar tidak naik minggu ini.",
         },
         {
           correct: false,
-          label:
-            "Penjualan kerudung jenis pasmina selalu lebih sedikit dibandingkan penjualan kerudung jenis segiempat.",
+          label: "Bu Sari membeli cabai segar lebih banyak daripada biasanya.",
         },
         {
           correct: false,
-          label:
-            "Banyak penjualan kerudung jenis bergo mengikuti pola barisan aritmetika.",
+          label: "Bu Sari tidak membeli cabai sama sekali minggu ini.",
         },
         {
           correct: false,
-          label:
-            "Tingkat penjualan jenis kerudung tiap minggu selalu lebih tinggi dibandingkan minggu sebelumnya.",
-        },
-        {
-          correct: false,
-          label:
-            "Penjualan kerudung jenis bergo mengalami kenaikan paling kecil dari minggu ke-$$1$$ hingga minggu ke-$$4$$.",
+          label: "Harga cabai kering turun minggu ini.",
         },
       ],
     },

@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
+  },
+  stimulus: "recycling-rate",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Progress depends on completing the larger task before asking another person to review it.",
+            "The city collects far less waste each month than the report claims.",
         },
         {
           correct: false,
-          label:
-            "The object or setting shapes the outcome more strongly than the character's specific choice.",
-        },
-        {
-          correct: false,
-          label:
-            "The unresolved evidence should remain private until the character can offer a complete result.",
+          label: "It includes waste from factories as well as from households.",
         },
         {
           correct: true,
           label:
-            "Hana's progress began when the difficulty was turned into a specific, reviewable action.",
+            "It counts what goes into bins, not what is actually recycled.",
         },
         {
           correct: false,
           label:
-            "The small action matters mainly because it postpones the unresolved part of the conflict.",
+            "The newspaper checked a month in which far more glass was collected.",
+        },
+        {
+          correct: false,
+          label:
+            "It leaves out paper and cardboard, the largest recycled material.",
         },
       ],
     },

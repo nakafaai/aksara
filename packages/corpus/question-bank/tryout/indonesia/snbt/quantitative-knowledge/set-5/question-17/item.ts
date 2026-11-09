@@ -6,24 +6,29 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (2) saja tidak cukup.",
+        },
+        {
           correct: true,
-          label: "$$\\frac{4}{3}C + 4{.}000$$",
+          label:
+            "Pernyataan (2) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (1) saja tidak cukup.",
         },
         {
           correct: false,
-          label: "$$C + 4{.}000$$",
+          label:
+            "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
         },
         {
           correct: false,
-          label: "$$2C + 4{.}000$$",
+          label:
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan dan pernyataan (2) saja cukup.",
         },
         {
           correct: false,
-          label: "$$\\frac{3}{2}C + 1{.}000$$",
-        },
-        {
-          correct: false,
-          label: "$$2C + 2{.}000$$",
+          label:
+            "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
         },
       ],
     },

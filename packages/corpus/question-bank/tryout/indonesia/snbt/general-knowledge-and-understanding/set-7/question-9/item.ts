@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "cause",
+  },
+  stimulus: "sidat",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,26 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Undangan yang sama dapat menghasilkan kesempatan yang tidak sama ketika kondisi peserta berbeda.",
+            "Sidat muda yang ditangkap tidak sempat tumbuh menjadi sidat dewasa.",
         },
         {
           correct: false,
           label:
-            "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima.",
+            "Sidat muda yang ditangkap biasanya memakan sidat dewasa di kolam.",
         },
         {
           correct: false,
           label:
-            "Karena undangan terbuka, asal peserta dan alasan ketidakhadiran tidak perlu diperiksa.",
+            "Sidat dewasa ikut berpindah ke kolam budi daya bersama sidat muda.",
+        },
+        {
+          correct: false,
+          label: "Bendungan menahan sidat muda tetap tinggal di laut dalam.",
         },
         {
           correct: false,
           label:
-            "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat.",
-        },
-        {
-          correct: false,
-          label:
-            "Keputusan akhir akan mencatat pilihan, keberatan, dan pengaruh masukan.",
+            "Penangkapan sidat muda selalu dilakukan saat sidat dewasa sedang memijah.",
         },
       ],
     },

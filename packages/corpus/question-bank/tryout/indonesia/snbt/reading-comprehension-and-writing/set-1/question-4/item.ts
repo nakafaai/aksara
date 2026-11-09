@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "word-choice",
+  },
+  stimulus: "village-radio",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Kalimat (2) mengandung kesalahan tanda baca.",
+          label: "_ialah_ diganti _adalah_",
         },
         {
           correct: false,
-          label: "Kalimat (3) menggunakan konjungsi yang salah.",
+          label: "_gabah_ diganti _padi_",
+        },
+        {
+          correct: false,
+          label: "_kabar_ diganti _khabar_",
         },
         {
           correct: true,
-          label:
-            "Pola *Sebagai negara kepulauan, maka ...* membuat kalimat (1) tidak efektif.",
+          label: "_jam_ diganti _pukul_",
         },
         {
           correct: false,
-          label: "Kalimat (4) memerlukan tambahan tanda koma.",
-        },
-        {
-          correct: false,
-          label: "Kalimat (5) mengandung pemborosan kata.",
+          label: "_setiap_ diganti _tiap-tiap_",
         },
       ],
     },

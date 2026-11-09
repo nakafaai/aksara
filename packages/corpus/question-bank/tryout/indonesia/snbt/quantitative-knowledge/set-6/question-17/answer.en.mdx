@@ -1,10 +1,18 @@
-Each candidate must satisfy **both remainder conditions**. Write each number as the divisor times the quotient, plus the remainder.
+The question asks for a definite yes or a definite no. Since <InlineMath math="12=2^2\cdot3" />, we need to know whether **the prime factorisation of <InlineMath math="n" /> contains at least two factors of 2 and one factor of 3**.
 
-| Number | Division by 7 | Division by 3 | Satisfies both |
-| --- | --- | --- | --- |
-| 52 | <InlineMath math="52=7\times7+3" /> | <InlineMath math="52=3\times17+1" /> | No |
-| 59 | <InlineMath math="59=7\times8+3" /> | <InlineMath math="59=3\times19+2" /> | Yes |
-| 42 | <InlineMath math="42=7\times6+0" /> | <InlineMath math="42=3\times14+0" /> | No |
-| 38 | <InlineMath math="38=7\times5+3" /> | <InlineMath math="38=3\times12+2" /> | Yes |
+# Statement (1) alone
 
-Only 59 and 38 leave remainder 3 modulo 7 and remainder 2 modulo 3. Therefore, **statements 2 and 4** are correct.
+Write <InlineMath math="72=2^3\cdot3^2" />. If <InlineMath math="n" /> contains the factor 2 exactly <InlineMath math="a" /> times and the factor 3 exactly <InlineMath math="b" /> times, then <InlineMath math="n^2" /> contains 2 exactly <InlineMath math="2a" /> times and 3 exactly <InlineMath math="2b" /> times. **The exponents of a square are always even**.
+
+<BlockMath math="\begin{aligned}
+2a\ge3&\;\Longrightarrow\; a\ge2\\
+2b\ge2&\;\Longrightarrow\; b\ge1
+\end{aligned}" />
+
+So <InlineMath math="n" /> has <InlineMath math="2^2\cdot3=12" /> as a factor, and the answer is definitely yes. For example, <InlineMath math="n=12" /> gives <InlineMath math="n^2=144=2\cdot72" />. Statement (1) alone is sufficient.
+
+# Statement (2) alone
+
+The number <InlineMath math="n=6" /> is divisible by 6 but **not divisible by 12**, while <InlineMath math="n=12" /> is divisible by both. The answer can be yes or no, so statement (2) alone is not sufficient.
+
+So **statement (1) alone is sufficient**, but statement (2) alone is not.

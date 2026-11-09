@@ -1,32 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "selection",
+  },
+  stimulus: "estafet",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Mungkin", "Tidak mungkin"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Pertumbuhan ekonomi mulai membaik kembali pada $$2016$$",
+          column: 1,
+          label: "Tim terdiri atas Fani, Gilang, Kiki, dan Lusi.",
         },
         {
-          correct: true,
-          label:
-            "Pertumbuhan tetap di atas $$5\\%$$ pada setiap tahun yang disebutkan",
+          column: 2,
+          label: "Tim terdiri atas Gilang, Hana, Joko, dan Kiki.",
         },
         {
-          correct: false,
-          label:
-            "PDB pada $$2018$$ sebesar $$\\text{Rp }14{.}837{,}4\\text{ triliun}$$ dan PDB per kapita sekitar $$\\text{Rp }56\\text{ juta}$$",
+          column: 2,
+          label: "Tim terdiri atas Fani, Hana, Joko, dan Lusi.",
         },
         {
-          correct: false,
-          label:
-            "Pertumbuhan terendah yang disebutkan adalah $$4{,}88\\%$$ pada $$2015$$",
-        },
-        {
-          correct: false,
-          label: "Pertumbuhan ekonomi pada $$2018$$ sebesar $$5{,}17\\%$$",
+          column: 1,
+          label: "Tim terdiri atas Gilang, Hana, Kiki, dan Lusi.",
         },
       ],
     },

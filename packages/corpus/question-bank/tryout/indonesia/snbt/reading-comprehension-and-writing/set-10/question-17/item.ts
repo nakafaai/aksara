@@ -1,35 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "running-club",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Tim akan mengulang kembali uji peta kecil dengan waktu tempuh untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+          column: 2,
+          label: "Jumlah anggota yang ikut latihan naik setiap bulan.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Untuk memperoleh bukti yang lebih kuat, uji peta kecil dengan waktu tempuh akan diulang kembali oleh tim.",
+            "Rata-rata waktu pada bulan Maret lebih singkat 4 menit daripada rata-rata waktu pada bulan Januari.",
         },
         {
-          correct: false,
-          label:
-            "Tim akan melakukan kegiatan berupa pengulangan uji peta kecil dengan waktu tempuh demi memperoleh bukti yang lebih kuat.",
+          column: 1,
+          label: "Rata-rata waktu anggota makin singkat setiap bulan.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Tim akan mengulang uji untuk memperoleh bukti yang lebih kuat tentang peta kecil dengan waktu tempuh yang telah diuji sebelumnya.",
-        },
-        {
-          correct: true,
-          label:
-            "Tim akan mengulang uji peta kecil dengan waktu tempuh untuk memperoleh bukti yang lebih kuat.",
+            "Jumlah anggota yang ikut latihan pada bulan Maret satu setengah kali jumlah pada bulan Januari.",
         },
       ],
     },

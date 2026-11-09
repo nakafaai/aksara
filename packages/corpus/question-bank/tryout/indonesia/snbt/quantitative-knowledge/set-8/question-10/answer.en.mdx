@@ -1,42 +1,19 @@
-Find the condition for the **inequality to hold for every real input**:
+The ant cannot go through the box, so the space diagonal is not its path. The method is **unfolding two faces of the box into one flat plane**, and then the shortest path on that plane is a straight line.
 
-<BlockMath math="\begin{gathered}(2m+1)x^2-4(m+1)x\\+m>-4\end{gathered}" />
+# Three ways to unfold
 
-Rearrange it into the standard quadratic form by moving <InlineMath math="-4" /> to the left side:
+A path from <InlineMath math="A" /> to <InlineMath math="G" /> crosses two neighbouring faces. When the two faces are unfolded, one edge stays whole and **the other two edges join into one segment**. There are three choices for the edge that stays whole.
 
-<BlockMath math="\begin{gathered}(2m+1)x^2-4(m+1)x\\+(m+4)>0\end{gathered}" />
+<BlockMath math="\begin{aligned}
+\text{edge 12 whole}&:\quad \sqrt{12^2+(4+3)^2}=\sqrt{144+49}=\sqrt{193}\\
+\text{edge 4 whole}&:\quad \sqrt{4^2+(12+3)^2}=\sqrt{16+225}=\sqrt{241}\\
+\text{edge 3 whole}&:\quad \sqrt{3^2+(12+4)^2}=\sqrt{9+256}=\sqrt{265}
+\end{aligned}" />
 
-For the quadratic function to be positive for every real <InlineMath math="x" /> (positive definite), its graph must lie entirely above the <InlineMath math="x" />-axis. The conditions are:
+# Choosing the shortest
 
-1. The coefficient of <InlineMath math="x^2" /> must be positive (<InlineMath math="a > 0" />).
-2. The discriminant must be negative (<InlineMath math="D < 0" />).
+The smallest value is <InlineMath math="\sqrt{193}\approx13.9" />. The shortest path comes when **the longest edge stays whole** and the two short edges are joined.
 
-If <InlineMath math="2m+1=0" />, then <InlineMath math="m=-\frac12" /> and the left side becomes <InlineMath math="-2x+\frac72" />. This linear expression is not positive for every <InlineMath math="x" />, so this case adds no solutions.
+The length 13 cm is the space diagonal <InlineMath math="\sqrt{144+16+9}" />, which goes through the inside of the box. The length 19 cm walks along the edges <InlineMath math="12+4+3" />. The values <InlineMath math="\sqrt{241}" /> and <InlineMath math="\sqrt{265}" /> come from the other unfoldings.
 
-**Condition 1: <InlineMath math="a > 0" />**
-
-<BlockMath math="\begin{aligned} 2m + 1 &> 0 \\ 2m &> -1 \\ m &> -\frac{1}{2} \quad \dots \text{(1)} \end{aligned}" />
-
-**Condition 2: <InlineMath math="D < 0" />**
-
-Recall that <InlineMath math="D = b^2 - 4ac" />. With <InlineMath math="a = 2m + 1" />, <InlineMath math="b = -4(m + 1)" />, and <InlineMath math="c = m + 4" />:
-
-<BlockMath math="\begin{gathered}(-4(m+1))^2\\-4(2m+1)(m+4)<0\\16(m^2+2m+1)\\-4(2m^2+9m+4)<0\end{gathered}" />
-
-Divide both sides by <InlineMath math="4" /> to simplify:
-
-<BlockMath math="\begin{gathered}4(m^2+2m+1)\\-(2m^2+9m+4)<0\\4m^2+8m+4\\-2m^2-9m-4<0\\2m^2-m<0\\m(2m-1)<0\end{gathered}" />
-
-The boundary values are <InlineMath math="m = 0" /> and <InlineMath math="m = \frac{1}{2}" />. Because the product must be negative, the solution lies between them:
-
-<BlockMath math="0 < m < \frac{1}{2} \quad \dots \text{(2)}" />
-
-We find the intersection of conditions (1) and (2):
-- Condition (1): <InlineMath math="m > -\frac{1}{2}" />
-- Condition (2): <InlineMath math="0 < m < \frac{1}{2}" />
-
-The intersection of both regions is:
-
-<BlockMath math="0 < m < \frac{1}{2}" />
-
-<NumberLine title="The intersection of both conditions" description="Only values of m between 0 and 1/2 satisfy both conditions. Both endpoints are excluded." min={-1} max={1} segments={[{start:0,end:0.5,startInclusive:false,endInclusive:false,shaded:true,showPoints:true,startLabel:<InlineMath math="0" />,endLabel:<InlineMath math="\frac12" />}]} />
+So the shortest path has length **<InlineMath math="\sqrt{193}\text{ cm}" />**.

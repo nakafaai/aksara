@@ -1,10 +1,18 @@
-A selected number must satisfy **both remainder conditions**. Check division by 5 and 4 for every candidate.
+Both numbers are small differences between a root and a nearby integer, so rough decimal estimates can mislead. The reliable method is **multiplying by the conjugate** so that each difference becomes a fraction.
 
-| Number | Division by 5 | Division by 4 | Satisfies both |
-| --- | --- | --- | --- |
-| 19 | <InlineMath math="19=5\times3+4" /> | <InlineMath math="19=4\times4+3" /> | Yes |
-| 29 | <InlineMath math="29=5\times5+4" /> | <InlineMath math="29=4\times7+1" /> | No |
-| 39 | <InlineMath math="39=5\times7+4" /> | <InlineMath math="39=4\times9+3" /> | Yes |
-| 49 | <InlineMath math="49=5\times9+4" /> | <InlineMath math="49=4\times12+1" /> | No |
+# Conjugate form
 
-Only 19 and 39 satisfy both conditions, namely **choices 1 and 3**.
+<BlockMath math="\begin{aligned}
+P&=\sqrt{17}-4=\frac{(\sqrt{17}-4)(\sqrt{17}+4)}{\sqrt{17}+4}=\frac{17-16}{\sqrt{17}+4}=\frac{1}{\sqrt{17}+4}\\
+Q&=5-\sqrt{24}=\frac{(5-\sqrt{24})(5+\sqrt{24})}{5+\sqrt{24}}=\frac{25-24}{5+\sqrt{24}}=\frac{1}{5+\sqrt{24}}
+\end{aligned}" />
+
+# Comparing the denominators
+
+Both fractions have numerator 1, so **the fraction with the smaller denominator is larger**. Compare the denominators.
+
+<BlockMath math="\sqrt{17}+4<\sqrt{25}+4=9<5+\sqrt{24}" />
+
+The last inequality holds because <InlineMath math="\sqrt{24}>4" />. The denominator of <InlineMath math="P" /> is smaller, so <InlineMath math="P>Q" />. As a check, <InlineMath math="P\approx0.123" /> and <InlineMath math="Q\approx0.101" />.
+
+So the correct relation is **<InlineMath math="P>Q" />**.

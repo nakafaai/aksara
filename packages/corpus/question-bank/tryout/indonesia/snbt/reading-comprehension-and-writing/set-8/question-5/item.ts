@@ -1,30 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "inference",
+  },
+  stimulus: "rattan-weaving",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Meskipun demikian",
+          label: "Anak muda tetap tinggal di desa untuk menganyam rotan.",
         },
         {
           correct: false,
-          label: "Sementara itu",
+          label: "Tas rotan dari desa itu dijual lebih mahal.",
         },
         {
           correct: false,
-          label: "Sebaliknya",
+          label: "Pembeli dari kota besar datang langsung ke desa.",
         },
         {
           correct: true,
-          label: "Berdasarkan hal itu",
+          label:
+            "Kerajinan rotan di desa itu makin terancam hilang ketika perajin tua tidak lagi mampu bekerja.",
         },
         {
           correct: false,
-          label: "Di samping itu",
+          label: "Perajin tua mengajar menganyam di pabrik di kota.",
         },
       ],
     },

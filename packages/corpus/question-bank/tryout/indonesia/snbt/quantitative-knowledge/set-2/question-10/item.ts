@@ -1,31 +1,15 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-22
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label: "$$0$$",
-        },
-        {
-          correct: true,
-          label: "$$3$$",
-        },
-        {
-          correct: false,
-          label: "$$1$$",
-        },
-        {
-          correct: false,
-          label: "$$2$$",
-        },
-        {
-          correct: false,
-          label: "$$4$$",
-        },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 2, label: "$$x-2>0$$" },
+        { column: 1, label: "$$x^2<16$$" },
+        { column: 2, label: "$$\\dfrac{1}{x}<\\dfrac{1}{4}$$" },
+        { column: 1, label: "$$(x-1)(x-5)<0$$" },
       ],
     },
   },

@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "night-watch",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Berdasarkan data, sebuah simpulan terbatas tentang lokakarya kompos.",
+          label: "kalimat (1)",
+        },
+        {
+          correct: false,
+          label: "kalimat (2)",
+        },
+        {
+          correct: false,
+          label: "kalimat (3)",
+        },
+        {
+          correct: false,
+          label: "kalimat (6)",
         },
         {
           correct: true,
-          label:
-            "Berdasarkan data, tim menarik simpulan terbatas tentang lokakarya kompos.",
-        },
-        {
-          correct: false,
-          label:
-            "Berdasarkan data, tim yang menarik simpulan terbatas tentang lokakarya kompos.",
-        },
-        {
-          correct: false,
-          label:
-            "Data menghasilkan simpulan terbatas tentang lokakarya kompos karena.",
-        },
-        {
-          correct: false,
-          label:
-            "Berdasarkan data, menarik simpulan terbatas tentang lokakarya kompos.",
+          label: "kalimat (7)",
         },
       ],
     },

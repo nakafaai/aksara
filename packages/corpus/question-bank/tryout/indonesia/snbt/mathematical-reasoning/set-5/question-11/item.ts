@@ -1,29 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "sprint-times",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$P < Q$$",
+          column: 1,
+          label: "Jangkauan waktu lari kedelapan siswa adalah 2,9 detik.",
         },
         {
-          correct: false,
-          label: "$$P = Q$$",
+          column: 1,
+          label:
+            "Lebih dari separuh siswa berlari lebih cepat daripada rata-rata waktu.",
         },
         {
-          correct: true,
-          label: "$$P > Q$$",
+          column: 2,
+          label:
+            "Jika data waktu Fajar dihapus, median waktu tujuh siswa lainnya tetap 14,3 detik.",
         },
         {
-          correct: false,
-          label: "$$P = 2Q$$",
-        },
-        {
-          correct: false,
-          label: "Hubungan $$P$$ dan $$Q$$ tidak dapat ditentukan",
+          column: 2,
+          label:
+            "Jika setiap waktu dikurangi 0,3 detik, jangkauan waktu juga berkurang 0,3 detik.",
         },
       ],
     },

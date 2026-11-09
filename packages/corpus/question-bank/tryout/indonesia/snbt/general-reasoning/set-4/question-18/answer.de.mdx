@@ -1,19 +1,20 @@
-# Den Ergebnisraum bestimmen
+Berechne die Gebühr jedes Autos **in der richtigen Reihenfolge der Regeln**: die ersten zwei Stunden, die weiteren Stunden aufgerundet, die Obergrenze, dann der Abo-Rabatt. Die Tabelle nennt *Lama parkir* (Parkdauer) und *Kartu langganan* (Abokarte).
 
-Jedes Regal enthält <InlineMath math="12" /> Bücher. Wir notieren zuerst das Buch aus Regal A und dann das Buch aus Regal B. Die Anzahl gleich wahrscheinlicher **geordneter Paare** beträgt
+| Auto | Stunden nach den ersten zwei | Gebühr vor der Grenze | Gezahlte Gebühr |
+| --- | --- | --- | --- |
+| A | Keine | <InlineMath math="5{.}000" /> | <InlineMath math="5{.}000" /> |
+| B | <InlineMath math="2" /> h <InlineMath math="10" /> min, gezählt <InlineMath math="3" /> h | <InlineMath math="5{.}000+9{.}000=14{.}000" /> | <InlineMath math="14{.}000" /> |
+| C | <InlineMath math="7" /> h | <InlineMath math="5{.}000+21{.}000=26{.}000" /> | <InlineMath math="20{.}000" /> wegen der Grenze |
+| D | <InlineMath math="4" /> h <InlineMath math="5" /> min, gezählt <InlineMath math="5" /> h | <InlineMath math="5{.}000+15{.}000=20{.}000" /> | <InlineMath math="10{.}000" /> zum halben Preis |
+| E | <InlineMath math="3" /> h <InlineMath math="59" /> min, gezählt <InlineMath math="4" /> h | <InlineMath math="5{.}000+12{.}000=17{.}000" /> | <InlineMath math="17{.}000" /> |
 
-<BlockMath math="12\times12=144" />
+<BlockMath math="5{.}000+14{.}000+20{.}000+10{.}000+17{.}000=66{.}000" />
 
-# Die aufgeführten Ergebnisse vergleichen
+Die anderen Optionen entstehen, wenn eine Regel fehlt:
 
-Bei zwei verschiedenen Bucharten zählen **beide Zuordnungen zu den Regalen**. Ein Wissenschafts- und ein Geschichtsbuch können aus Wissenschaft A mit Geschichte B oder aus Geschichte A mit Wissenschaft B bestehen. Diese Ereignisse überschneiden sich nicht, deshalb addieren wir die Anzahlen.
+- <InlineMath math="\text{Rp}72{.}000" /> übergeht die Grenze von <InlineMath math="\text{Rp}20{.}000" /> bei Auto C.
+- <InlineMath math="\text{Rp}76{.}000" /> übergeht den halben Preis bei Auto D.
+- <InlineMath math="\text{Rp}82{.}000" /> übergeht beide Regeln.
+- <InlineMath math="\text{Rp}58{.}500" /> streicht angefangene Stunden, statt sie als ganze Stunde zu zählen.
 
-| Ergebnis | Günstige Paare | Wahrscheinlichkeit |
-| :--- | :---: | :---: |
-| Zwei Belletristikbücher | <InlineMath math="5\times3=15" /> | <InlineMath math="\frac{15}{144}" /> |
-| Ein Belletristikbuch und ein Wissenschaftsbuch | <InlineMath math="5\times3+3\times3=24" /> | <InlineMath math="\frac{24}{144}" /> |
-| Ein Wissenschaftsbuch und ein Geschichtsbuch | <InlineMath math="3\times6+4\times3=30" /> | <InlineMath math="\frac{30}{144}" /> |
-| Zwei Geschichtsbücher | <InlineMath math="4\times6=24" /> | <InlineMath math="\frac{24}{144}" /> |
-| Zwei Wissenschaftsbücher | <InlineMath math="3\times3=9" /> | <InlineMath math="\frac{9}{144}" /> |
-
-Alle Wahrscheinlichkeiten haben denselben Nenner. Daher genügt der Vergleich der Zähler. Der kleinste Zähler ist <InlineMath math="9" />. Somit hat die Auswahl von **zwei Wissenschaftsbüchern** die kleinste Wahrscheinlichkeit.
+Die fünf Autos zahlen also zusammen <InlineMath math="\text{Rp}66{.}000" />.

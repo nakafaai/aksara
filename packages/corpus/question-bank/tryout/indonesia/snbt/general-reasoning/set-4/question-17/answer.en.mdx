@@ -1,17 +1,11 @@
-# Find the speed of vehicle A
+Split the count by **the day Q and R perform**, since they always fill a whole day, Friday or Sunday.
 
-Speed is **distance divided by time**:
+**Q and R on Friday**. Saturday holds P and one other performer, and Sunday holds two. If S were on Saturday, T and U would end up on the same day, Sunday, which is not allowed. So S performs on Sunday evening. T must be earlier than U, so T is on Saturday and U on Sunday afternoon. The free choices are the order of Q and R on Friday (<InlineMath math="2" /> ways) and of P and T on Saturday (<InlineMath math="2" /> ways), so <InlineMath math="2\times2=4" /> schedules.
 
-<BlockMath math="v_A=\frac{20\text{ km}}{2\text{ h}}=10\text{ km/h}" />
+**Q and R on Sunday**. By the same reasoning, S performs Friday evening, T Friday afternoon, and U on Saturday with P. The order of Q and R and the order of P and U each give <InlineMath math="2" /> ways, so there are <InlineMath math="4" /> schedules.
 
-# Scale the speed and calculate the distance
+<BlockMath math="\text{Number of schedules}=4+4=8" />
 
-Vehicle <InlineMath math="B" /> travels at **one-third of that speed**:
+The answer <InlineMath math="4" /> comes from counting only one case. The answers <InlineMath math="6" /> and <InlineMath math="10" /> do not fit the case split, because each case gives a multiple of <InlineMath math="4" />. The answer <InlineMath math="12" /> comes from letting S perform on Saturday without checking condition 4.
 
-<BlockMath math="v_B=\frac13v_A=\frac{10}{3}\text{ km/h}" />
-
-<BlockMath math="s_B=v_Bt=\frac{10}{3}\times3=10\text{ km}" />
-
-Therefore, vehicle <InlineMath math="B" /> travels <InlineMath math="10\text{ km}" />.
-
-Multiply B’s speed by B’s travel time, <InlineMath math="3\text{ hours}" />. Do not simply divide the original <InlineMath math="20\text{ km}" /> distance by three, because A covered that distance over a different time.
+So <InlineMath math="8" /> schedules satisfy all the conditions.

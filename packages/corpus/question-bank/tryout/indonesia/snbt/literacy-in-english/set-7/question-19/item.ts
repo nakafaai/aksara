@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-purpose",
+  },
+  stimulus: "carnegie-libraries",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,24 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "The definition identifies the story's driving struggle: the alert contains accurate knowledge but fails to direct action before time runs out.",
+            "To suggest a personal reason behind Carnegie's gifts to libraries",
+        },
+        {
+          correct: false,
+          label: "To show that private libraries were better than public ones",
         },
         {
           correct: false,
           label:
-            "The term *narrative conflict* confirms one final outcome and therefore removes the need to interpret the ending.",
+            "To explain how Carnegie first made his fortune in the steel industry",
         },
         {
           correct: false,
-          label:
-            "The definition treats *narrative conflict* as the physical object itself rather than as a feature of the narrative ending.",
+          label: "To prove that every working boy in Pittsburgh became wealthy",
         },
         {
           correct: false,
-          label:
-            "The term *narrative conflict* makes the reader's personal impression sufficient even when it conflicts with story details.",
-        },
-        {
-          correct: false,
-          label:
-            "The definition explains only the setting, so the recurring object and the character's action are irrelevant.",
+          label: "To argue that libraries should only open on Saturdays",
         },
       ],
     },

@@ -1,13 +1,20 @@
-Each pairwise intersection includes the <InlineMath math="10" /> people who use all three services. Subtract those people from each intersection to obtain the counts for **exactly two services**.
+The stock at the end of a month depends on **all earlier months**, not just that month's production. Compute each month-end stock in turn with
 
-| Only these services | Number of users |
-| :--- | :---: |
-| <InlineMath math="A,B" /> | <InlineMath math="25-10=15" /> |
-| <InlineMath math="A,C" /> | <InlineMath math="20-10=10" /> |
-| <InlineMath math="B,C" /> | <InlineMath math="18-10=8" /> |
+<BlockMath math="\text{end stock}=\text{starting stock}+\text{production}-\text{sales}" />
 
-The resulting groups are **disjoint**, so add their counts.
+The table rows run from *Januari* (January) to *Juni* (June), with *Produksi* (production) and *Penjualan* (sales).
 
-<BlockMath math="15+10+8=33" />
+| Month | Calculation | End stock |
+| --- | --- | --- |
+| January | <InlineMath math="10+30-25" /> | <InlineMath math="15" /> |
+| February | <InlineMath math="15+40-30" /> | <InlineMath math="25" /> |
+| March | <InlineMath math="25+25-35" /> | <InlineMath math="15" /> |
+| April | <InlineMath math="15+35-20" /> | <InlineMath math="30" /> |
+| May | <InlineMath math="30+30-40" /> | <InlineMath math="20" /> |
+| June | <InlineMath math="20+20-25" /> | <InlineMath math="15" /> |
 
-Therefore, <InlineMath math="33" /> participants use exactly two services.
+The largest stock is <InlineMath math="30" /> wardrobes at the end of April.
+
+February is a trap because its production is the largest, <InlineMath math="40" />. But the February end stock is only <InlineMath math="25" />, because sales were also high and the month started with less stock. March, May, and June sold more than they produced, so stock fell in those months.
+
+So the stock of wardrobes is largest at the end of April.

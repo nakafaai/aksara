@@ -1,13 +1,15 @@
-Terdapat <InlineMath math="\binom{10}{2}=45" /> pasangan bola yang sama mungkin terambil. Banyak pasangan dua merah, berbeda warna, dan dua biru berturut-turut adalah
+Pisahkan soal menjadi dua langkah: **hitung bilangan yang habis dibagi 4 atau 6**, lalu **buang yang juga habis dibagi 5**.
 
-<BlockMath math="\begin{aligned} \binom42 &amp;=6 \\ 4\times6 &amp;=24 \\ \binom62 &amp;=15 \end{aligned}" />
+**Langkah 1** memakai prinsip inklusi dan eksklusi. Bilangan yang habis dibagi <InlineMath math="4" /> dan <InlineMath math="6" /> sekaligus adalah kelipatan KPK keduanya, yaitu <InlineMath math="12" />, dan bilangan itu tidak boleh dihitung dua kali.
 
-Gunakan ribu rupiah untuk semua nilai uang. Nilai harapan pembayaran hadiah sebelum pengembalian biaya adalah
+<BlockMath math="\left\lfloor\frac{200}{4}\right\rfloor+\left\lfloor\frac{200}{6}\right\rfloor-\left\lfloor\frac{200}{12}\right\rfloor=50+33-16=67" />
 
-<BlockMath math="\begin{aligned} E &amp;=30\times\frac6{45}+15\times\frac{24}{45} \\ &amp;=4+8=12 \end{aligned}" />
+**Langkah 2** menghitung bilangan di antara <InlineMath math="67" /> itu yang juga habis dibagi <InlineMath math="5" />. Bilangan yang habis dibagi <InlineMath math="4" /> dan <InlineMath math="5" /> adalah kelipatan <InlineMath math="20" />, yang habis dibagi <InlineMath math="6" /> dan <InlineMath math="5" /> adalah kelipatan <InlineMath math="30" />, dan irisannya adalah kelipatan <InlineMath math="60" />.
 
-Misalkan biaya masuk adalah <InlineMath math="c" />. Peluang dua bola biru adalah <InlineMath math="\frac{15}{45}=\frac13" />, dan **hanya hasil itu** yang mengembalikan <InlineMath math="\frac{c}{4}" />. Biaya masuk tetap dibayar pada setiap permainan.
+<BlockMath math="\left\lfloor\frac{200}{20}\right\rfloor+\left\lfloor\frac{200}{30}\right\rfloor-\left\lfloor\frac{200}{60}\right\rfloor=10+6-3=13" />
 
-<BlockMath math="\begin{aligned} 12-c+\frac13\times\frac c4 &amp;=0 \\ 12-c+\frac{c}{12} &amp;=0 \\ 12-\frac{11c}{12} &amp;=0 \\ 144-11c &amp;=0 \\ c &amp;=\frac{144}{11} \end{aligned}" />
+Kurangkan hasil langkah 2 dari langkah 1:
 
-Agar nilai harapan keuntungan bersih nol, biaya masuk harus sebesar <InlineMath math="\frac{144}{11}" /> ribu rupiah.
+<BlockMath math="67-13=54" />
+
+Sebagai pemeriksaan, bilangan <InlineMath math="60" /> habis dibagi <InlineMath math="4" />, <InlineMath math="6" />, dan <InlineMath math="5" />. Bilangan itu dihitung sekali pada langkah 1 dan dibuang sekali pada langkah 2, sesuai dengan syarat soal. Jadi, ada <InlineMath math="54" /> bilangan yang memenuhi.

@@ -1,25 +1,15 @@
-# Persamaan Posisi
+Robot hanya bergerak sepanjang jalan, jadi tidak dapat menempuh garis lurus. Jarak tempuh terpendeknya adalah **jumlah ruas ke timur dan ruas ke utara** yang harus dilalui.
 
-Kedua benda bertemu ketika fungsi posisinya **bernilai sama**.
+# Banyak ruas
 
-<BlockMath math="s_D(t) = s_R(t)" />
+Dari <InlineMath math="(0,0)" /> ke <InlineMath math="(3,4)" />, robot harus menempuh 3 ruas ke timur dan 4 ruas ke utara, **dalam urutan apa pun**.
 
-<BlockMath math="60t = 4000 - t^2" />
+<BlockMath math="3+4=7\text{ ruas}" />
 
-<BlockMath math="t^2 + 60t - 4000 = 0" />
+# Jarak tempuh
 
-Faktorkan persamaan kuadrat tersebut:
+<BlockMath math="7\cdot100=700\text{ m}" />
 
-<BlockMath math="(t - 40)(t + 100) = 0" />
+Jarak garis lurus <InlineMath math="\sqrt{3^2+4^2}=5" /> ruas, yaitu 500 m, **tidak dapat ditempuh robot** karena memotong blok bangunan.
 
-<BlockMath math="\begin{aligned}t-40&=0 \\ \text{atau}\quad t+100&=0\end{aligned}" />
-
-<BlockMath math="t = 40 \quad \text{atau} \quad t = -100" />
-
-Karena model mensyaratkan <InlineMath math="t \ge 0" />, **akar negatif ditolak**. Drone dan robot bertemu pada <InlineMath math="t = 40\text{ detik}" />.
-
-Periksa akar positif pada kedua fungsi semula:
-
-<BlockMath math="\begin{aligned}s_D(40)&=4000-40^2=2400 \\ s_R(40)&=60(40)=2400\end{aligned}" />
-
-Kedua posisi bernilai <InlineMath math="2400\text{ m}" />, sehingga keduanya memang bertemu setelah <InlineMath math="40\text{ detik}" />.
+Jadi, jarak tempuh terpendek dari G ke A adalah **700 m**.

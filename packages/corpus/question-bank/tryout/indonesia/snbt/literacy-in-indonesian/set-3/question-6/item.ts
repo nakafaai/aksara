@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-purpose",
+  },
+  stimulus: "sugar-tax",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Menunjukkan bahwa pungutan itu terutama bekerja dengan membuat konsumen membeli lebih sedikit.",
+        },
+        {
+          correct: false,
+          label:
+            "Menunjukkan bahwa konsumen Inggris lebih peduli kesehatan daripada konsumen lain.",
+        },
+        {
           correct: true,
           label:
-            "Model jaring-jaring makanan di kebun sekolah menyederhanakan proses agar dapat diperiksa sambil tetap memiliki batas representasi.",
+            "Menunjukkan bahwa cukai dapat mengurangi gula melalui perubahan resep oleh produsen.",
         },
         {
           correct: false,
           label:
-            "Model menggambarkan pengaruh musim dan penyakit secara lengkap sehingga pola pada kartu dapat langsung diterapkan di kebun.",
+            "Menjelaskan cara menghitung besarnya cukai berdasarkan harga jual minuman.",
         },
         {
           correct: false,
           label:
-            "Model hanya membantu menghafal nama makhluk hidup tanpa menunjukkan hubungan makan antarpopulasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengulangan langkah pada model memastikan bahwa seluruh keadaan lapangan akan menghasilkan pola yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Faktor yang tidak digambarkan membuat model tidak berguna untuk menjelaskan prinsip atau menyusun pertanyaan baru.",
+            "Membuktikan bahwa produsen minuman selalu menolak aturan pemerintah tentang gula.",
         },
       ],
     },

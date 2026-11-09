@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "data-interpretation",
+  },
+  stimulus: "unduhan",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$8$$",
+          column: 1,
+          label:
+            "Selisih unduhan Y dan X pada bulan Januari adalah $$20$$ ribu.",
         },
         {
-          correct: false,
-          label: "$$\\frac{15}{2}$$",
+          column: 1,
+          label: "Selisih unduhan Y dan X mengecil setiap bulan.",
         },
         {
-          correct: false,
-          label: "$$\\frac{17}{2}$$",
+          column: 2,
+          label: "Rata-rata unduhan X per bulan lebih dari $$32$$ ribu.",
         },
         {
-          correct: false,
-          label: "$$9$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{19}{2}$$",
+          column: 2,
+          label:
+            "Unduhan Y pada bulan Mei lebih dari $$1{,}25$$ kali unduhan Y pada bulan Januari.",
         },
       ],
     },

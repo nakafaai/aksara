@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "quantitative-reasoning",
+    topic: "inequality",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Pasti benar", "Tidak pasti benar"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\frac1{18}$$",
+          column: 2,
+          label: "$$a+b>2$$",
         },
         {
-          correct: false,
-          label: "$$\\frac1{14}$$",
+          column: 2,
+          label: "$$\\frac{a}{b}>a$$",
         },
         {
-          correct: true,
-          label: "$$\\frac{11}{168}$$",
+          column: 1,
+          label: "$$a^2\\lt a$$",
         },
         {
-          correct: false,
-          label: "$$\\frac{13}{168}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac1{12}$$",
+          column: 1,
+          label: "$$ab\\lt b$$",
         },
       ],
     },

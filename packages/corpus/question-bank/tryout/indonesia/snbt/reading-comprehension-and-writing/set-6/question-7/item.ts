@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "effective-sentence",
+  },
+  stimulus: "larva-compost",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Panah dipasang karena rute lama terbukti tidak berguna dalam semua keadaan.",
+            "Walaupun ukurannya kecil, namun larva itu dapat menghabiskan tumpukan sampah yang besar dalam dua minggu.",
         },
         {
           correct: false,
           label:
-            "Panah diterapkan permanen dan kondisi tanpa panah tidak digunakan lagi.",
+            "Walaupun ukurannya kecil tetapi larva itu dapat menghabiskan tumpukan sampah yang besar dalam dua minggu.",
         },
         {
           correct: false,
           label:
-            "Panah dan kondisi tanpa panah diuji tanpa memisahkan kelompok sesi pembanding.",
-        },
-        {
-          correct: false,
-          label:
-            "Sesi dengan panah hanya dibandingkan dengan komentar tentang rute lama.",
+            "Walaupun ukurannya kecil, sehingga larva itu dapat menghabiskan tumpukan sampah yang besar dalam dua minggu.",
         },
         {
           correct: true,
           label:
-            "Pada sesi uji, panah dipasang di setiap persimpangan, sedangkan sesi pembanding berlangsung tanpa panah tambahan.",
+            "Walaupun ukurannya kecil, larva itu dapat menghabiskan tumpukan sampah yang besar dalam dua minggu.",
+        },
+        {
+          correct: false,
+          label:
+            "Walaupun ukuran larva itu kecil, tetapi dapat menghabiskan tumpukan sampah yang besar dalam dua minggu.",
         },
       ],
     },

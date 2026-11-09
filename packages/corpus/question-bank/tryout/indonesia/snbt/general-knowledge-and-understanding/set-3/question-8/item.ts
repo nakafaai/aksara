@@ -1,35 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
+  },
+  stimulus: "tsunami",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
+          label: "Semua gempa bumi di bawah laut menimbulkan tsunami besar.",
+        },
+        {
+          correct: false,
           label:
-            "Bagian awal menetapkan waktu kegiatan pasar, lalu bagian berikutnya menjelaskan cara menyebarluaskan hasil yang sudah pasti.",
+            "Gempa yang pusatnya sangat dalam selalu menimbulkan tsunami paling tinggi karena energinya tersimpan lebih lama di dalam bumi sebelum dilepaskan.",
+        },
+        {
+          correct: false,
+          label: "Letusan gunung api adalah penyebab utama tsunami di dunia.",
+        },
+        {
+          correct: false,
+          label: "Tsunami hanya dapat dipicu oleh gempa bumi.",
         },
         {
           correct: true,
           label:
-            "Perbedaan awal mendorong pemeriksaan sumber, lalu hasil pemeriksaan menentukan cara museum menulis label secara transparan.",
-        },
-        {
-          correct: false,
-          label:
-            "Bagian awal membandingkan rencana digitalisasi, lalu bagian berikutnya memilih sumber yang paling mudah disimpan.",
-        },
-        {
-          correct: false,
-          label:
-            "Bagian awal mengumpulkan kesaksian, lalu bagian berikutnya mengganti dokumen tertulis dengan versi mayoritas narasumber.",
-        },
-        {
-          correct: false,
-          label:
-            "Bagian awal menilai daya tarik cerita, lalu bagian berikutnya merancang label untuk mengurangi jumlah rincian sejarah.",
+            "Tsunami terutama terbentuk karena dasar laut naik atau turun secara tiba-tiba, sehingga tidak semua gempa bawah laut menimbulkannya.",
         },
       ],
     },

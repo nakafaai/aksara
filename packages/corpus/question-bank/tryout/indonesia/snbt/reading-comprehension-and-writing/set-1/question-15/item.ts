@@ -1,31 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "writing",
+    topic: "conjunction",
+  },
+  stimulus: "grain-barn",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Pencemaran sumber air di berbagai permukiman Indonesia berkaitan erat dengan sanitasi dan air limbah.",
+          label: "menyatakan pertentangan dengan kalimat sebelumnya",
         },
         {
           correct: false,
-          label: "Sanitasi yang tidak aman mencemari sumber air.",
-        },
-        {
-          correct: false,
-          label: "Pencemaran sumber air berkaitan erat.",
-        },
-        {
-          correct: false,
-          label: "Pencemaran sumber air menyebabkan sanitasi dan air limbah.",
+          label: "menambahkan contoh bagi kalimat sebelumnya",
         },
         {
           correct: true,
-          label:
-            "Pencemaran sumber air berkaitan dengan sanitasi dan air limbah.",
+          label: "menyatakan simpulan dari alasan pada kalimat sebelumnya",
+        },
+        {
+          correct: false,
+          label: "menyatakan urutan waktu setelah kalimat sebelumnya",
+        },
+        {
+          correct: false,
+          label: "menyatakan syarat bagi kalimat sebelumnya",
         },
       ],
     },

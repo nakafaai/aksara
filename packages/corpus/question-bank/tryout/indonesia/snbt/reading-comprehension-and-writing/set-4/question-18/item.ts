@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "water-tank",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Berdasarkan data, sebuah simpulan terbatas tentang pasar tukar buku.",
+          label: "kalimat (1)",
+        },
+        {
+          correct: false,
+          label: "kalimat (2)",
         },
         {
           correct: true,
-          label:
-            "Berdasarkan data, tim menarik simpulan terbatas tentang pasar tukar buku.",
+          label: "kalimat (5)",
         },
         {
           correct: false,
-          label:
-            "Tim yang berdasarkan data menarik simpulan terbatas tentang pasar tukar buku.",
+          label: "kalimat (6)",
         },
         {
           correct: false,
-          label:
-            "Karena tim menarik simpulan terbatas tentang pasar tukar buku.",
-        },
-        {
-          correct: false,
-          label: "Berdasarkan data, menarik tentang pasar tukar buku.",
+          label: "kalimat (7)",
         },
       ],
     },

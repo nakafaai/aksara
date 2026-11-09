@@ -1,35 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "cause",
+  },
+  stimulus: "kunang",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Koreksi pengguna lebih sering diberikan pada koleksi populer.",
-        },
-        {
           correct: true,
           label:
-            "Pencarian arsip otomatis bermanfaat jika hasil diperlakukan sebagai indeks terbatas yang dapat diperiksa dan dikoreksi.",
+            "jantan dan betina jadi sulit saling menemukan pada malam hari",
         },
         {
           correct: false,
           label:
-            "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan.",
+            "cahaya lampu membuat larva kunang-kunang kepanasan di dalam tanah",
+        },
+        {
+          correct: false,
+          label: "kunang-kunang memakan serangga lain yang tertarik ke lampu",
         },
         {
           correct: false,
           label:
-            "Dokumen yang tidak muncul dalam pencarian otomatis pasti tidak tersimpan di arsip.",
+            "lampu buatan menghabiskan oksigen yang dibutuhkan kunang-kunang",
         },
         {
           correct: false,
-          label:
-            "Tim akan mengaudit perbedaan kinerja menurut jenis tulisan dan periode.",
+          label: "cahaya lampu mengubah kunang-kunang menjadi sejenis lalat",
         },
       ],
     },

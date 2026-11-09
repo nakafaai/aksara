@@ -1,28 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "lawn-sprinklers",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label: "Tawaran pertama",
-        },
-        {
-          correct: false,
-          label: "Kedua tawaran sama besar",
-        },
-        {
-          correct: false,
-          label: "Tawaran pertama dua kali lebih besar",
-        },
-        { correct: true, label: "Tawaran kedua" },
-        {
-          correct: false,
-          label: "Tidak dapat ditentukan",
-        },
-      ],
+      kind: "numericEntry",
+      unit: "m²",
+      value: "39.48",
     },
   },
 };

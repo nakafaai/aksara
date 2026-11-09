@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "cause",
+  },
+  stimulus: "bekantan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan.",
+          label: "buah yang belum matang lebih mudah ditemukan di hutan bakau",
         },
         {
           correct: false,
-          label:
-            "Dokumen yang tidak muncul dalam pencarian otomatis pasti tidak tersimpan di arsip.",
+          label: "bekantan tidak dapat mencium bau buah matang",
         },
         {
           correct: true,
-          label:
-            "Otomatisasi memperluas akses, tetapi keluaran perlu disertai batas, bukti asli, dan mekanisme revisi.",
+          label: "buah matang yang manis membuat perut bekantan kembung",
+        },
+        {
+          correct: false,
+          label: "buah yang belum matang mengandung bakteri pencerna daun",
         },
         {
           correct: false,
           label:
-            "Koreksi pengguna lebih sering diberikan pada koleksi populer.",
-        },
-        {
-          correct: false,
-          label:
-            "Otomatisasi bermanfaat karena dapat menggantikan gambar asli dengan keluaran yang tidak perlu diperiksa lagi.",
+            "bekantan hanya makan pada malam hari ketika buah belum matang",
         },
       ],
     },

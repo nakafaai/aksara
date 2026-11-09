@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "tenun",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Perubahan cukup besar untuk mengubah keputusan setelah ketidakpastian pengukuran turut dipertimbangkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Dampaknya cukup besar untuk mengubah hasil utama, bukan sekadar variasi kecil di tepi.",
-        },
-        {
-          correct: false,
-          label:
-            "Ukuran sampel dan sumber daya ditambah sepadan dengan luas klaim yang hendak dibuat.",
+          label: "dijemur di bawah sinar matahari",
         },
         {
           correct: true,
-          label:
-            "Unit tambahan terakhir hanya menambah sedikit manfaat pada manfaat yang sudah diperoleh.",
+          label: "dimasukkan ke dalam cairan",
         },
         {
           correct: false,
-          label:
-            "Tim memperoleh keluaran setara dengan waktu dan energi lebih sedikit tanpa menurunkan mutu.",
+          label: "dipukul-pukul dengan kayu",
+        },
+        {
+          correct: false,
+          label: "digulung pada sebatang kayu",
+        },
+        {
+          correct: false,
+          label: "dijahit pada selembar kain",
         },
       ],
     },

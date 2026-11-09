@@ -5,26 +5,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$\\{x\\in\\mathbb Z\\mid-3\\le x\\}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\{x\\in\\mathbb Z\\mid-3<x\\}$$",
-        },
-        {
-          correct: true,
-          label: "$$\\{x\\in\\mathbb Z\\mid-3<x\\le7\\}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\{x\\in\\mathbb Z\\mid x\\le7\\}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\{x\\in\\mathbb Z\\mid-3<x<7\\}$$",
-        },
+        { correct: false, label: "$$6$$" },
+        { correct: false, label: "$$10$$" },
+        { correct: true, label: "$$15$$" },
+        { correct: false, label: "$$45$$" },
+        { correct: false, label: "$$90$$" },
       ],
     },
   },

@@ -1,29 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "village-trees",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\frac{35}{6}$$",
+          column: 2,
+          label:
+            "Banyak bibit yang ditanam naik dengan persentase yang sama setiap tahun.",
         },
         {
-          correct: false,
-          label: "$$\\frac{19}{3}$$",
+          column: 1,
+          label: "Banyak pohon yang tumbuh dari bibit tahun kelima adalah 144.",
         },
         {
-          correct: true,
-          label: "$$\\frac{37}{6}$$",
+          column: 1,
+          label:
+            "Banyak bibit yang mati dari tanaman tiga tahun pertama adalah 81.",
         },
         {
-          correct: false,
-          label: "$$\\frac{20}{3}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{41}{6}$$",
+          column: 2,
+          label:
+            "Banyak bibit yang ditanam pada tahun kesebelas adalah dua kali banyak bibit tahun pertama.",
         },
       ],
     },

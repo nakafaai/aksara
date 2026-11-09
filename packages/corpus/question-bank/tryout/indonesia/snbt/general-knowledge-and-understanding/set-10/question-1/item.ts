@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "sasando",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Perbedaan terdeteksi secara statistik, tetapi terlalu kecil untuk mengubah hasil utama.",
+          label: "tali pengikat yang melilit tabung bambu",
         },
         {
           correct: false,
-          label:
-            "Unit tambahan terakhir hanya memberi kenaikan manfaat yang kecil dibanding unit sebelumnya.",
+          label: "lubang kecil pada dinding batang bambu",
+        },
+        {
+          correct: false,
+          label: "penutup kecil di ujung atas tabung",
         },
         {
           correct: true,
-          label:
-            "Dampaknya cukup besar untuk mengubah hasil utama, bukan sekadar variasi kecil di tepi.",
+          label: "benda kecil penyangga yang diselipkan",
         },
         {
           correct: false,
-          label:
-            "Ukuran sampel dan sumber daya ditambah sepadan dengan luas klaim yang hendak dibuat.",
-        },
-        {
-          correct: false,
-          label:
-            "Satu asumsi dasar diperiksa lebih dahulu karena seluruh simpulan berikutnya bergantung padanya.",
+          label: "alat pemetik yang dipasang di ujung jari",
         },
       ],
     },

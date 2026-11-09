@@ -1,6 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "sentence-relation",
+  },
+  stimulus: "sasando",
   versions: {
     id: {
       kind: "choice",
@@ -8,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Petunjuk memakai kata 'segera' tanpa batas waktu sehingga dua pelaksana menafsirkannya secara berbeda.",
+            "Kalimat (10) membantah keterangan bahwa wadah daun lontar dapat memperkuat bunyi dawai.",
+        },
+        {
+          correct: false,
+          label:
+            "Kalimat (10) memberikan contoh cara melipat daun lontar menjadi wadah berbentuk kipas.",
+        },
+        {
+          correct: false,
+          label:
+            "Kalimat (10) menjelaskan asal nama sasando dari kata dalam bahasa Rote.",
+        },
+        {
+          correct: false,
+          label:
+            "Kalimat (10) mengulang isi kalimat (6) dengan susunan kata-kata yang berbeda.",
         },
         {
           correct: true,
           label:
-            "Simpulan diberi status sementara sampai pengulangan dengan sampel lebih luas selesai.",
-        },
-        {
-          correct: false,
-          label:
-            "Pembaca menyimpulkan sikap penulis dari pilihan rincian meskipun sikap itu tidak dinyatakan langsung.",
-        },
-        {
-          correct: false,
-          label:
-            "Prosedur lapangan disesuaikan saat cuaca berubah tanpa mengubah tujuan dan aturan ukur utama.",
-        },
-        {
-          correct: false,
-          label:
-            "Unit tambahan terakhir hanya memberi kenaikan manfaat yang kecil dibanding unit sebelumnya.",
+            "Kalimat (10) menunjukkan tugas wadah pada kalimat (6) dapat diganti pengeras suara.",
         },
       ],
     },

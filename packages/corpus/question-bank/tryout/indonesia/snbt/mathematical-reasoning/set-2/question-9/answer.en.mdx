@@ -1,27 +1,20 @@
-# Collision condition
+There are two unknowns, the number of correct answers <InlineMath math="b" /> and of wrong answers <InlineMath math="w" />. The question gives **two equations**: the number of answered questions and the total score.
 
-A collision between the rocket and the aircraft carrier occurs when both are at the **same position at the same time**. Therefore, we must equate the rocket's position function with the aircraft carrier's position function.
+# Setting up the system
 
-<BlockMath math="s_R(t) = s_K(t)" />
+<BlockMath math="\begin{aligned}
+b+w&=34\\
+4b-w&=106
+\end{aligned}" />
 
-<BlockMath math="4000 - t^2 = 60t" />
+# Solving the system
 
-# Determining the collision time
+Add the equations so that **<InlineMath math="w" /> cancels**.
 
-We rearrange the quadratic equation into standard form to solve for <InlineMath math="t" />.
+<BlockMath math="5b=140\;\Longrightarrow\;b=28,\quad w=6" />
 
-<BlockMath math="t^2 + 60t - 4000 = 0" />
+Check: <InlineMath math="4\cdot28-6=112-6=106" />. Another way: if all 34 answers were correct, the score would be 136. Each wrong answer takes 5 off that score, losing 4 and gaining <InlineMath math="-1" />. The gap <InlineMath math="136-106=30" /> means 6 wrong answers.
 
-Next, we factorize this quadratic equation. We need to find two numbers that multiply to <InlineMath math="-4000" /> and add up to <InlineMath math="60" />. These numbers are <InlineMath math="100" /> and <InlineMath math="-40" />.
+The value 26 appears if the score 106 is divided by 4 without accounting for the penalty for wrong answers. The other values do not satisfy both equations.
 
-<BlockMath math="(t + 100)(t - 40) = 0" />
-
-From this factorization, we obtain two possible values for <InlineMath math="t" />:
-
-<BlockMath math="t = -100 \quad \text{or} \quad t = 40" />
-
-Since time (<InlineMath math="t" />) **cannot be negative**, the valid value is <InlineMath math="40\text{ seconds}" />. Thus, the collision occurs exactly at <InlineMath math="40\text{ seconds}" />.
-
-Check both positions at the same time:
-
-<BlockMath math="\begin{aligned}s_R(40)&=4000-40^2=2400\text{ m}\\s_K(40)&=60(40)=2400\text{ m}\end{aligned}" />
+So the candidate answered **28 questions** correctly.

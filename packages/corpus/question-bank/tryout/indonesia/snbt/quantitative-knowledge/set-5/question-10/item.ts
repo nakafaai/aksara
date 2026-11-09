@@ -3,27 +3,22 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "Gradien garis $$g$$ adalah $$\\tfrac23$$." },
         {
-          correct: false,
-          label: "$$0$$",
+          column: 2,
+          label: "Garis $$h$$ memotong sumbu $$x$$ di titik $$(6,0)$$.",
         },
         {
-          correct: false,
-          label: "$$1$$",
+          column: 2,
+          label: "Garis $$g$$ dan garis $$h$$ berpotongan di kuadran I.",
         },
         {
-          correct: false,
-          label: "$$2$$",
-        },
-        {
-          correct: false,
-          label: "$$4$$",
-        },
-        {
-          correct: true,
-          label: "$$3$$",
+          column: 1,
+          label:
+            "Luas segitiga yang dibatasi garis $$g$$, sumbu $$x$$, dan sumbu $$y$$ adalah $$3$$ satuan luas.",
         },
       ],
     },

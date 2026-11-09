@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "coffee-picking",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "kalimat (2)",
+        },
+        {
+          correct: false,
+          label: "kalimat (3)",
+        },
+        {
+          correct: false,
+          label: "kalimat (5)",
+        },
+        {
           correct: true,
-          label:
-            "Pada Senin, tim menguji kode pengembalian pada setiap gagang payung.",
+          label: "kalimat (6)",
         },
         {
           correct: false,
-          label:
-            "pada Senin, tim menguji kode pengembalian pada setiap gagang payung.",
-        },
-        {
-          correct: false,
-          label:
-            "Pada senin, tim menguji kode pengembalian pada setiap gagang payung.",
-        },
-        {
-          correct: false,
-          label:
-            "Pada Senin, Tim menguji kode pengembalian pada setiap gagang payung.",
-        },
-        {
-          correct: false,
-          label:
-            "Pada Senin tim menguji kode pengembalian pada setiap gagang payung",
+          label: "kalimat (8)",
         },
       ],
     },

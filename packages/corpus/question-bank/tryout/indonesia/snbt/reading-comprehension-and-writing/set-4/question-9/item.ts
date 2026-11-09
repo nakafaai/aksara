@@ -1,30 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "conclusion",
+  },
+  stimulus: "cassava-flour",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "(4)-(2)-(1)-(3)",
+          label:
+            "Tepung singkong fermentasi dapat menggantikan terigu sepenuhnya pada semua kue.",
         },
         {
           correct: false,
-          label: "(2)-(1)-(4)-(3)",
+          label:
+            "Kue dari tepung terigu selalu lebih murah daripada kue dari tepung singkong.",
+        },
+        {
+          correct: false,
+          label:
+            "Fermentasi membuat tepung singkong mengandung gluten seperti terigu.",
+        },
+        {
+          correct: false,
+          label:
+            "Petani singkong di Kabupaten Wonosari tidak mendapat keuntungan dari tepung singkong.",
         },
         {
           correct: true,
-          label: "(4)-(3)-(1)-(2)",
-        },
-        {
-          correct: false,
-          label: "(2)-(4)-(3)-(1)",
-        },
-        {
-          correct: false,
-          label: "(3)-(2)-(4)-(1)",
+          label:
+            "Tepung singkong fermentasi dapat mengurangi pemakaian terigu, tetapi belum dapat menggantikannya sepenuhnya.",
         },
       ],
     },

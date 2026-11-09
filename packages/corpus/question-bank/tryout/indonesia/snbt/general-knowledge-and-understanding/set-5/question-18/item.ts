@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "pinisi",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Uji terbatas membuktikan bahwa denda harus dihapus untuk semua keadaan.",
+            "Kapal pinisi disusun berdasarkan gambar rancangan yang terperinci.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Keberhasilan kebijakan terutama ditentukan oleh banyaknya uang denda yang berhasil dikumpulkan.",
+            "Pembuatan kapal pinisi dipimpin oleh seorang ahli yang disebut panrita lopi.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Sebagian pengguna tidak menerima pesan karena nomor telepon berubah.",
+            "Kayu yang cocok untuk lambung kapal pinisi dilaporkan makin sulit diperoleh.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Uji akan diperluas dengan dua saluran pengingat dan proses banding.",
-        },
-        {
-          correct: true,
-          label:
-            "Sanksi bertahap dan pengingat berpotensi lebih adil, tetapi jalur komunikasi dan pengecualian masih perlu diuji.",
+            "Sebagian besar kapal pinisi baru dipakai untuk mengangkut barang dagangan.",
         },
       ],
     },

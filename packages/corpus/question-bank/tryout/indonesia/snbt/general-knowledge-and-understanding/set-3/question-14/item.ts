@@ -1,35 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "paraphrase",
+  },
+  stimulus: "bunga",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Bagian awal menguji versi revisi, lalu bagian berikutnya menjelaskan mengapa terjemahan harfiah dipilih kembali.",
-        },
-        {
-          correct: false,
-          label:
-            "Bagian awal membandingkan tiga rute evakuasi, lalu bagian berikutnya menetapkan rute yang berlaku untuk semua kampung.",
-        },
-        {
-          correct: false,
-          label:
-            "Bagian awal mengubah istilah teknis, lalu bagian berikutnya menguji hasil revisi pada peserta yang sama untuk menilai daya ingat.",
-        },
-        {
-          correct: false,
-          label:
-            "Bagian awal menemukan gangguan sinyal, lalu bagian berikutnya memperbaiki pemancar tanpa mengubah isi pesan.",
-        },
-        {
           correct: true,
           label:
-            "Kegagalan versi harfiah menjadi dasar perancangan bersama, lalu uji kedua menyediakan bukti untuk menilai hasil revisi.",
+            "Selisih hasil bunga tunggal dan bunga majemuk makin besar jika uang disimpan makin lama.",
+        },
+        {
+          correct: false,
+          label:
+            "Bunga majemuk selalu menghasilkan dua kali lipat bunga tunggal.",
+        },
+        {
+          correct: false,
+          label:
+            "Pada tahun pertama, bunga tunggal lebih besar daripada bunga majemuk.",
+        },
+        {
+          correct: false,
+          label:
+            "Bunga majemuk hanya menguntungkan penabung jika uangnya disimpan di bank kurang dari satu tahun.",
+        },
+        {
+          correct: false,
+          label: "Selisih hasil kedua cara itu tetap sama setiap tahun.",
         },
       ],
     },

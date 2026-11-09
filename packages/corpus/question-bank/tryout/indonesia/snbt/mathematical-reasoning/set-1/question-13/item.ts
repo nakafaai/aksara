@@ -1,30 +1,27 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-23
 const item: ItemSource = {
+  stimulus: "data-plans",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$4$$",
-        },
-        {
-          correct: false,
-          label: "$$4{,}5$$",
-        },
-        {
           correct: true,
-          label: "$$3{,}5$$",
+          label: "Paket Hemat lebih murah $$\\text{Rp}18{.}000{,}00$$.",
         },
         {
           correct: false,
-          label: "$$5$$",
+          label: "Paket Hemat lebih murah $$\\text{Rp}27{.}000{,}00$$.",
+        },
+        { correct: false, label: "Biaya kedua paket sama." },
+        {
+          correct: false,
+          label: "Paket Bebas lebih murah $$\\text{Rp}18{.}000{,}00$$.",
         },
         {
           correct: false,
-          label: "$$5{,}5$$",
+          label: "Paket Bebas lebih murah $$\\text{Rp}12{.}000{,}00$$.",
         },
       ],
     },

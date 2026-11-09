@@ -1,30 +1,27 @@
-Based on the chart, we can tabulate the sales data (in tons) and their growth patterns as follows:
+Find every possible arrangement. Start with **the pair K and L**, because they must share a shelf and take two places at once. The shelves are *rak atas* (top), *rak tengah* (middle), and *rak bawah* (bottom).
 
-| Month | Garlic | Shallot | Red chili |
-| :--- | :---: | :---: | :---: |
-| Aug | <InlineMath math="58" /> | <InlineMath math="48" /> | <InlineMath math="54" /> |
-| Sep | <InlineMath math="61" /> (<InlineMath math="+3" />) | <InlineMath math="54" /> (<InlineMath math="+6" />) | <InlineMath math="58" /> |
-| Oct | <InlineMath math="67" /> (<InlineMath math="+6" />) | <InlineMath math="60" /> (<InlineMath math="+6" />) | <InlineMath math="62" /> |
-| Nov | <InlineMath math="76" /> (<InlineMath math="+9" />) | <InlineMath math="66" /> (<InlineMath math="+6" />) | <InlineMath math="68" /> |
-| Dec | <InlineMath math="88" /> (<InlineMath math="+12" />) | <InlineMath math="72" /> (<InlineMath math="+6" />) | <InlineMath math="72" /> |
-| **Jan (prediction)** | <InlineMath math="103" /> (<InlineMath math="+15" />) | <InlineMath math="78" /> (<InlineMath math="+6" />) | Not needed |
+O already takes one place on the middle shelf, so the middle shelf has only two places left. K and L can be on the top, middle, or bottom shelf.
 
-For garlic, the monthly increases are <InlineMath math="3,6,9,12" />. They
-**rise by the same amount** of <InlineMath math="3" /> each time, so the next increase is
-<InlineMath math="15" /> and <InlineMath math="88+15=103" />. Shallot sales
-rise by a constant <InlineMath math="6" />, giving
-<InlineMath math="72+6=78" />.
+**K and L on the top shelf**. The top shelf is full. P must be higher than Q, so P is in the middle and Q at the bottom. M and N fill the last middle place and the last bottom place, in two possible ways.
 
-# Statement Analysis
+**K and L on the middle shelf**. The middle shelf holds K, L, and O. The top and bottom shelves each have two places for M, N, P, and Q. N cannot be on top, so N is at the bottom. M must be on a different shelf from N, so M is on top. P must be higher than Q, so P is on top and Q at the bottom.
 
-Verify each statement based on the table above:
+**K and L on the bottom shelf**. The top shelf and the two remaining middle places hold M, N, P, and Q. N cannot be on top, so N is in the middle. M must be on a different shelf from N, so M is on top. Q cannot be higher than P, so P is on top and Q in the middle.
 
-- Every series reaches its displayed maximum in December, so the claim about November is wrong.
-- The January shallot prediction is <InlineMath math="78" /> tons, so the claim of <InlineMath math="76" /> tons is wrong.
-- The January garlic prediction is <InlineMath math="103" /> tons, which is
-  greater than <InlineMath math="100" /> tons.
-- Shallot and red chili are **tied** at <InlineMath math="72" /> tons in December.
-  This tie disproves the claim that shallot is always lower or is always the
-  sole lowest seller.
+| Arrangement | Top shelf | Middle shelf | Bottom shelf |
+| --- | --- | --- | --- |
+| I | K, L | M, O, P | N, Q |
+| II | K, L | N, O, P | M, Q |
+| III | M, P | K, L, O | N, Q |
+| IV | M, P | N, O, Q | K, L |
 
-Under the stated continuation assumption, the supported statement is that garlic sales in January <InlineMath math="2021" /> will exceed <InlineMath math="100" /> tons.
+In all four arrangements, **K is never on the same shelf as M**. This statement must be true.
+
+The other statements do not hold in every arrangement:
+
+- P is on the top shelf in III and IV.
+- Q is on the middle shelf in IV.
+- N is on the middle shelf in II and IV.
+- M is on the middle shelf in I and on the bottom shelf in II.
+
+So the statement that must be true is that K is not on the same shelf as M.

@@ -5,26 +5,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$0 < m < \\frac{1}{2}$$",
-        },
-        {
-          correct: false,
-          label: "$$m < 0 \\lor m > \\frac{1}{2}$$",
-        },
-        {
-          correct: false,
-          label: "$$-\\frac{1}{2} < m < \\frac{1}{2}$$",
-        },
-        {
-          correct: false,
-          label: "$$0 \\leq m < \\frac{1}{2}$$",
-        },
-        {
-          correct: false,
-          label: "$$m < -\\frac{1}{2} \\lor m > 0$$",
-        },
+        { correct: false, label: "$$13\\text{ cm}$$" },
+        { correct: true, label: "$$\\sqrt{193}\\text{ cm}$$" },
+        { correct: false, label: "$$\\sqrt{241}\\text{ cm}$$" },
+        { correct: false, label: "$$\\sqrt{265}\\text{ cm}$$" },
+        { correct: false, label: "$$19\\text{ cm}$$" },
       ],
     },
   },

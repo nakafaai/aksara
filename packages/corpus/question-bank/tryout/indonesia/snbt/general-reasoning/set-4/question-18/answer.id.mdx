@@ -1,19 +1,20 @@
-# Tentukan ruang sampel
+Hitung tarif setiap mobil dengan **urutan aturan yang tepat**: dua jam pertama, jam berikutnya dengan pembulatan ke atas, batas paling banyak, lalu potongan langganan.
 
-Setiap rak berisi <InlineMath math="12" /> buku. Kita mencatat buku dari Rak A lebih dahulu, lalu buku dari Rak B. Banyak **pasangan terurut** yang sama mungkin adalah
+| Mobil | Jam setelah dua jam pertama | Tarif sebelum batas | Tarif dibayar |
+| --- | --- | --- | --- |
+| A | Tidak ada | <InlineMath math="5{.}000" /> | <InlineMath math="5{.}000" /> |
+| B | <InlineMath math="2" /> jam <InlineMath math="10" /> menit, dihitung <InlineMath math="3" /> jam | <InlineMath math="5{.}000+9{.}000=14{.}000" /> | <InlineMath math="14{.}000" /> |
+| C | <InlineMath math="7" /> jam | <InlineMath math="5{.}000+21{.}000=26{.}000" /> | <InlineMath math="20{.}000" /> karena batas |
+| D | <InlineMath math="4" /> jam <InlineMath math="5" /> menit, dihitung <InlineMath math="5" /> jam | <InlineMath math="5{.}000+15{.}000=20{.}000" /> | <InlineMath math="10{.}000" /> karena setengah tarif |
+| E | <InlineMath math="3" /> jam <InlineMath math="59" /> menit, dihitung <InlineMath math="4" /> jam | <InlineMath math="5{.}000+12{.}000=17{.}000" /> | <InlineMath math="17{.}000" /> |
 
-<BlockMath math="12\times12=144" />
+<BlockMath math="5{.}000+14{.}000+20{.}000+10{.}000+17{.}000=66{.}000" />
 
-# Bandingkan hasil yang tersedia
+Pilihan lain muncul karena satu aturan terlewat:
 
-Untuk dua jenis buku berbeda, hitung **kedua kemungkinan asal rak**. Misalnya, satu buku sains dan satu buku sejarah dapat berasal dari sains A dengan sejarah B, atau sejarah A dengan sains B. Karena kedua kejadian tidak bertumpang tindih, banyak pasangan dijumlahkan.
+- <InlineMath math="\text{Rp}72{.}000" /> muncul jika batas <InlineMath math="\text{Rp}20{.}000" /> untuk mobil C diabaikan.
+- <InlineMath math="\text{Rp}76{.}000" /> muncul jika potongan setengah tarif untuk mobil D diabaikan.
+- <InlineMath math="\text{Rp}82{.}000" /> muncul jika kedua aturan itu diabaikan.
+- <InlineMath math="\text{Rp}58{.}500" /> muncul jika sisa waktu yang kurang dari satu jam dibuang, bukan dihitung satu jam.
 
-| Hasil | Pasangan yang memenuhi | Peluang |
-| :--- | :---: | :---: |
-| Dua buku fiksi | <InlineMath math="5\times3=15" /> | <InlineMath math="\frac{15}{144}" /> |
-| Satu buku fiksi dan satu buku sains | <InlineMath math="5\times3+3\times3=24" /> | <InlineMath math="\frac{24}{144}" /> |
-| Satu buku sains dan satu buku sejarah | <InlineMath math="3\times6+4\times3=30" /> | <InlineMath math="\frac{30}{144}" /> |
-| Dua buku sejarah | <InlineMath math="4\times6=24" /> | <InlineMath math="\frac{24}{144}" /> |
-| Dua buku sains | <InlineMath math="3\times3=9" /> | <InlineMath math="\frac{9}{144}" /> |
-
-Semua peluang memiliki penyebut yang sama, sehingga kita cukup membandingkan pembilangnya. Pembilang terkecil adalah <InlineMath math="9" />. Jadi, **mengambil dua buku sains** memiliki peluang terkecil.
+Jadi, total tarif yang dibayar kelima mobil adalah <InlineMath math="\text{Rp}66{.}000" />.

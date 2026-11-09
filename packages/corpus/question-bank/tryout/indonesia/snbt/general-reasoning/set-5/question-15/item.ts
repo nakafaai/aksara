@@ -1,33 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "selection",
+  },
+  stimulus: "estafet",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Pertemuan berlangsung di Istana Negara",
-        },
-        {
           correct: true,
-          label:
-            "Pemerintah meminta masukan yang konkret dan dapat segera dilaksanakan dari perwakilan dunia usaha",
+          label: "Gilang, Joko, dan Lusi",
         },
         {
           correct: false,
-          label:
-            "Defisit transaksi berjalan lebih dari tiga kali defisit neraca perdagangan",
+          label: "Gilang, Kiki, dan Lusi",
         },
         {
           correct: false,
-          label:
-            "Bacaan membuktikan bahwa perang dagang secara permanen menyebabkan defisit perdagangan",
+          label: "Fani, Gilang, dan Joko",
         },
         {
           correct: false,
-          label:
-            "Bacaan menyatakan dunia usaha dapat menghadapi tantangan mendatang tanpa pemerintah",
+          label: "Gilang, Hana, dan Joko",
+        },
+        {
+          correct: false,
+          label: "Fani, Gilang, dan Lusi",
         },
       ],
     },

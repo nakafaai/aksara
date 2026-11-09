@@ -1,18 +1,16 @@
-# Count the choices for each position
+A statement is Benar (true) only if it holds in every valid schedule. Otherwise it is Salah (false). Use the two groups of possible schedules, and for an "if" statement check **only the schedules where the "if" part holds**.
 
-The allowed digits are:
+| Group | Friday | Saturday | Sunday |
+| --- | --- | --- | --- |
+| A | Q and R | P and T | U afternoon, S evening |
+| B | T afternoon, S evening | P and U | Q and R |
 
-<BlockMath math="S=\{1,2,3,4,5,6\}" />
+**Statement 1** is true. U must perform on a later day than T, so U cannot perform on the first day, Friday.
 
-| Position | Requirement | Number of choices |
-| :--- | :--- | :---: |
-| First | A factor of <InlineMath math="7" /> that belongs to <InlineMath math="S" />: only <InlineMath math="1" /> | <InlineMath math="1" /> |
-| Third | Either <InlineMath math="3" /> or <InlineMath math="4" /> | <InlineMath math="2" /> |
-| Second | Any digit in <InlineMath math="S" /> except the two already used | <InlineMath math="4" /> |
-| Fourth | A consonant in "Dito": D or T | <InlineMath math="2" /> |
+**Statement 2** is false. In group A, T performs on Saturday with P and can take the evening session.
 
-The second position always has four choices because the first and third positions use **two different digits** from the six-digit set.
+**Statement 3** is false. In group B, S performs on Friday.
 
-<BlockMath math="1\times2\times4\times2=16" />
+**Statement 4** is true. Q performs on Friday only in group A, and in that group U always performs on Sunday.
 
-Therefore, Dito might need to try at most <InlineMath math="16" /> passcodes.
+So statements 1 and 4 are true, and statements 2 and 3 are false.

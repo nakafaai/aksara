@@ -1,30 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "evaluation",
+  },
+  stimulus: "musik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Paket M dikirim ke penyimpanan berpendingin.",
+          label:
+            "Berapa harga roti tawar dan roti manis yang paling laris di toko Jalan Mawar sejak toko itu pertama dibuka?",
         },
         {
           correct: false,
-          label: "Paket berlabel merah dikirim ke pemeriksaan manual.",
-        },
-        {
-          correct: false,
-          label: "Paket M tidak dikirim ke pemeriksaan manual.",
-        },
-        {
-          correct: false,
-          label: "Tidak ada paket yang dikirim ke kedua jalur.",
+          label:
+            "Lagu apa saja yang diputar di toko Jalan Mawar selama bulan Oktober?",
         },
         {
           correct: true,
           label:
-            "Paket M dikirim ke pemeriksaan manual karena memiliki label biru.",
+            "Apakah cabang lain yang tidak memutar musik juga mengalami kenaikan belanja dari September ke Oktober?",
+        },
+        {
+          correct: false,
+          label: "Berapa lama toko roti di Jalan Mawar sudah berdiri?",
+        },
+        {
+          correct: false,
+          label:
+            "Apakah pengelola toko di Jalan Mawar menyukai musik bertempo lambat?",
         },
       ],
     },

@@ -1,32 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "tempe",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "daftar peristiwa berurutan tanpa pembagian tahap analisis",
+          column: 1,
+          label: "Ragi tempe mengandung spora kapang.",
         },
         {
-          correct: false,
-          label: "pemilihan tanggal tertua sebagai awal untuk semua tujuan",
-        },
-        {
-          correct: false,
+          column: 2,
           label:
-            "penghapusan masa peralihan agar setiap tahap memiliki batas tegas",
+            "Kedelai dibungkus rapat tanpa celah agar kapang tidak terkena udara.",
         },
         {
-          correct: false,
-          label: "perkiraan tanggal yang sangat rinci tanpa dukungan sumber",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "pembagian waktu ke dalam tahap yang dipilih untuk menjelaskan perubahan tertentu",
+            "Benang-benang kapang membuat biji kedelai menyatu menjadi bongkahan.",
+        },
+        {
+          column: 2,
+          label: "Bercak hitam pada tempe menandakan tempe baru setengah jadi.",
         },
       ],
     },

@@ -1,32 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "main-idea",
+  },
+  stimulus: "mangrove-nursery",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Catatan Awal Sebelum Pengujian Label Rak",
+          label:
+            "Garis pantai Desa Pasir Putih mundur hampir dua meter setiap tahun.",
         },
         {
           correct: true,
-          label: "Pengujian Label Foto pada Rak Pengembalian Alat Olahraga",
+          label:
+            "Kelompok nelayan Desa Pasir Putih menahan abrasi dengan membibitkan dan menanam bakau.",
         },
         {
           correct: false,
           label:
-            "Pengujian Beberapa Perubahan Serentak pada Layanan Peminjaman",
+            "Buah bakau yang jatuh di muara dapat disemai di dalam kantong plastik.",
+        },
+        {
+          correct: false,
+          label: "Pagar bambu melindungi bibit bakau dari ombak.",
         },
         {
           correct: false,
           label:
-            "Tanggapan Peminjam terhadap Perancangan Ulang Permanen Layanan",
-        },
-        {
-          correct: false,
-          label: "Evaluasi Menyeluruh atas Layanan Peminjaman Alat Olahraga",
+            "Akar bakau menjadi tempat kepiting dan ikan kecil berkembang biak.",
         },
       ],
     },

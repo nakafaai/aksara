@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "medicine-return",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "menghapus hasil yang tidak sesuai dengan harapan",
+          label: "kalimat (1)",
         },
         {
           correct: false,
-          label: "menolak seluruh data karena masa uji singkat",
+          label: "kalimat (2)",
         },
         {
           correct: false,
-          label: "meringkas laporan agar jumlah katanya lebih sedikit",
+          label: "kalimat (3)",
         },
         {
           correct: false,
-          label: "menunda pengukuran sampai perubahan diterapkan tetap",
+          label: "kalimat (4)",
         },
         {
           correct: true,
-          label: "menahan jangkauan klaim pada kondisi uji yang tersedia",
+          label: "kalimat (5)",
         },
       ],
     },

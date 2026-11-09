@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "bambu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Karena ada beberapa tanggal, tidak ada satu pun fakta tentang riwayat jembatan yang dapat dipastikan.",
+          label: "keras dan tidak dapat ditekuk",
         },
         {
           correct: false,
-          label:
-            "Satu tanggal paling tua selalu paling tepat untuk semua jenis sejarah.",
+          label: "berat dan sulit untuk diangkat",
         },
         {
           correct: false,
-          label: "Bagian tengah jembatan diganti besar-besaran pada 1958.",
+          label: "licin dan mudah tergelincir",
         },
         {
           correct: true,
-          label:
-            "Pilihan batas periode yang wajar dapat berbeda menurut pertanyaan sejarah yang diajukan.",
+          label: "dapat dibengkokkan tanpa patah",
         },
         {
           correct: false,
-          label:
-            "Plakat baru akan menampilkan garis waktu dengan arti setiap tanggal.",
+          label: "berongga di bagian dalamnya",
         },
       ],
     },

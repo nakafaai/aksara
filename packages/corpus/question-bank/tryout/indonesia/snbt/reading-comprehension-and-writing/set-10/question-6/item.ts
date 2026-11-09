@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "main-idea",
+  },
+  stimulus: "screen-printing",
   versions: {
     id: {
       kind: "choice",
@@ -9,25 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Susunan bahan terbukti menjadi satu-satunya penyebab nilai yang lebih tinggi.",
+            "Usaha sablon Pak Darto hanya menerima pesanan kaus untuk acara sekolah.",
+        },
+        {
+          correct: false,
+          label:
+            "Toko-toko di Kota Sukasari tidak lagi memberikan kantong plastik.",
         },
         {
           correct: true,
           label:
-            "Nilai kelompok yang selesai sebelum batas waktu pada pertemuan uji melebihi nilai awal dan pembanding.",
+            "Pak Darto mencari pasar baru bagi usaha sablonnya karena pesanan kaus tidak selalu ada.",
         },
         {
           correct: false,
-          label: "Setiap peserta mengalami peningkatan yang sama.",
-        },
-        {
-          correct: false,
-          label: "Nilai awal dan pembanding sama.",
+          label: "Gambar khas kota berupa jembatan tua dan pasar terapung.",
         },
         {
           correct: false,
           label:
-            "Uji singkat itu menetapkan hasil jangka panjang bagi semua kelas memasak.",
+            "Mesin sablon Pak Darto sering menganggur selama berminggu-minggu.",
         },
       ],
     },

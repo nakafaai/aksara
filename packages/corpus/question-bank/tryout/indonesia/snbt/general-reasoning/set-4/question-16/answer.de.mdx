@@ -1,18 +1,16 @@
-# Die Möglichkeiten für jede Position zählen
+Eine Aussage ist Benar (richtig) nur, wenn sie in jedem gültigen Plan gilt, sonst ist sie Salah (falsch). Nutze die zwei Gruppen möglicher Pläne und prüfe bei einer Wenn-Aussage **nur die Pläne, in denen der Wenn-Teil zutrifft**.
 
-Die zulässigen Ziffern sind:
+| Gruppe | Freitag | Samstag | Sonntag |
+| --- | --- | --- | --- |
+| A | Q und R | P und T | U nachmittags, S abends |
+| B | T nachmittags, S abends | P und U | Q und R |
 
-<BlockMath math="S=\{1,2,3,4,5,6\}" />
+**Aussage 1** ist richtig. U muss an einem späteren Tag als T auftreten und kann daher nicht am ersten Tag, dem Freitag, auftreten.
 
-| Position | Bedingung | Anzahl der Möglichkeiten |
-| :--- | :--- | :---: |
-| Erste | Ein Teiler von <InlineMath math="7" /> aus <InlineMath math="S" />: nur <InlineMath math="1" /> | <InlineMath math="1" /> |
-| Dritte | <InlineMath math="3" /> oder <InlineMath math="4" /> | <InlineMath math="2" /> |
-| Zweite | Eine Ziffer aus <InlineMath math="S" />, die noch nicht verwendet wurde | <InlineMath math="4" /> |
-| Vierte | Ein Konsonant aus "Dito": D oder T | <InlineMath math="2" /> |
+**Aussage 2** ist falsch. In Gruppe A tritt T am Samstag mit P auf und kann die Abendsitzung übernehmen.
 
-Für die zweite Position bleiben stets vier Möglichkeiten, weil die erste und die dritte Position **zwei verschiedene Ziffern** aus der sechselementigen Menge belegen.
+**Aussage 3** ist falsch. In Gruppe B tritt S am Freitag auf.
 
-<BlockMath math="1\times2\times4\times2=16" />
+**Aussage 4** ist richtig. Q tritt nur in Gruppe A am Freitag auf, und dort tritt U immer am Sonntag auf.
 
-Dito muss daher höchstens <InlineMath math="16" /> Codes ausprobieren.
+Die Aussagen 1 und 4 sind also richtig, die Aussagen 2 und 3 falsch.

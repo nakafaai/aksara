@@ -1,45 +1,22 @@
-Use **elimination** on the two given operation results to determine <InlineMath math="k" /> and <InlineMath math="m" />. Then substitute the requested inputs into the operation rule.
+Since <InlineMath math="55=5\times11" /> and 5 and 11 share no factor other than 1, the remainder of <InlineMath math="n^2+n" /> on division by 55 **is fixed by its remainders on division by 5 and by 11**. Compute both remainders, then combine them.
 
-From <InlineMath math="\triangle(2, 4) = 8" />, we get
+# The remainder for each divisor
 
-<BlockMath math="\triangle(2, 4) = 2k + \frac{4}{m} = 8" />
+The remainder of an expression can be computed from the remainder of the number itself.
 
-Multiply both sides by <InlineMath math="m" />
+<BlockMath math="\begin{aligned}
+n^2+n&\equiv 2^2+2=6\equiv1 \pmod 5\\
+n^2+n&\equiv 4^2+4=20\equiv9 \pmod{11}
+\end{aligned}" />
 
-<BlockMath math="2km + 4 = 8m \quad \ldots \text{(1)}" />
+So we need the number <InlineMath math="r" /> with <InlineMath math="0\le r<55" /> that **leaves 9 on division by 11 and 1 on division by 5**.
 
-From <InlineMath math="\triangle(3, 5) = 11" />, we get
+# Combining the two remainders
 
-<BlockMath math="\triangle(3, 5) = 3k + \frac{5}{m} = 11" />
+The candidates for <InlineMath math="r" /> are 9, 20, 31, 42, and 53. Their remainders on division by 5 are 4, 0, 1, 2, and 3. **Only 31** leaves remainder 1, so <InlineMath math="r=31" />.
 
-Multiply both sides by <InlineMath math="m" />
+Check with an actual number. The number <InlineMath math="n=37" /> satisfies both conditions, because <InlineMath math="37=7(5)+2" /> and <InlineMath math="37=3(11)+4" />. It gives <InlineMath math="37^2+37=1406=25(55)+31" />.
 
-<BlockMath math="3km + 5 = 11m \quad \ldots \text{(2)}" />
+The value 37 is the remainder of <InlineMath math="n" /> itself. The value 49 is the remainder of <InlineMath math="n^2" /> without the term <InlineMath math="n" />. The values 6 and 20 use only one condition each, namely <InlineMath math="2^2+2" /> and <InlineMath math="4^2+4" />, without combining them.
 
-Eliminate <InlineMath math="km" /> by multiplying equation (1) by <InlineMath math="3" /> and equation (2) by <InlineMath math="2" />
-
-<BlockMath math="6km + 12 = 24m \quad \ldots \text{(1a)}" />
-
-<BlockMath math="6km + 10 = 22m \quad \ldots \text{(2a)}" />
-
-Subtract equation (2a) from equation (1a)
-
-<BlockMath math="\begin{aligned}&(6km+12)-(6km+10)\\&=24m-22m\end{aligned}" />
-
-<BlockMath math="2 = 2m" />
-
-<BlockMath math="m = 1" />
-
-Substitute <InlineMath math="m = 1" /> into equation (1)
-
-<BlockMath math="2k(1) + 4 = 8(1)" />
-
-<BlockMath math="2k + 4 = 8" />
-
-<BlockMath math="2k = 4" />
-
-<BlockMath math="k = 2" />
-
-With <InlineMath math="k = 2" /> and <InlineMath math="m = 1" />, the value of <InlineMath math="\triangle(5, 9)" /> is
-
-<BlockMath math="\begin{aligned}\triangle(5,9)&amp;=2(5)+\frac91\\&amp;=10+9\\&amp;=19\end{aligned}" />
+So the remainder when <InlineMath math="n^2+n" /> is divided by 55 is **31**.

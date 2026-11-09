@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "sentence-relation",
+  },
+  stimulus: "night-watch",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,24 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tim merubah satu faktor saja, yaitu penggunaan kartu bergambar.",
+            "kalimat (3) menyatakan hal yang bertentangan dengan kalimat (2)",
         },
         {
           correct: false,
-          label:
-            "Tim mengrubah satu faktor saja, yaitu penggunaan kartu bergambar.",
+          label: "kalimat (3) menyatakan akibat dari kalimat (2)",
         },
         {
           correct: false,
-          label:
-            "Tim hanya mengubah satu faktor saja, yaitu penggunaan kartu bergambar.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim mengubah terhadap satu faktor saja, yaitu penggunaan kartu bergambar.",
+          label: "kalimat (3) memerinci isi kalimat (2)",
         },
         {
           correct: true,
           label:
-            "Tim mengubah satu faktor saja, yaitu penggunaan kartu bergambar.",
+            "kalimat (3) menambahkan perubahan lain selain yang disebut kalimat (2)",
+        },
+        {
+          correct: false,
+          label: "kalimat (3) menegaskan ulang isi kalimat (2)",
         },
       ],
     },

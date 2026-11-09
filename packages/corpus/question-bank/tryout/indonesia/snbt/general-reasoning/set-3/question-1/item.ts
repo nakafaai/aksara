@@ -1,33 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "conclusion",
+  },
+  stimulus: "pagar",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Peminat bola basket meningkat pada setiap jenjang kelas",
+          label: "Pagar tanaman menurunkan kadar PM2,5 di seluruh kota.",
         },
         {
           correct: true,
           label:
-            "Seni peran paling tidak diminati siswa karena pesertanya selalu paling sedikit pada setiap jenjangnya",
+            "Pagar tanaman menghalangi sebagian partikel dari jalan mencapai trotoar, terutama ketika udara tidak banyak bergerak.",
         },
         {
           correct: false,
           label:
-            "Seni tari memiliki prospek paling baik karena peminatnya selalu meningkat",
+            "Pada hari berangin kencang, pagar tanaman sama sekali tidak memengaruhi kadar PM2,5 di trotoar karena partikel langsung terbawa angin ke arah lain.",
         },
         {
           correct: false,
           label:
-            "Seni lukis memiliki prospek paling baik karena peminatnya selalu meningkat",
+            "Pagar tanaman yang rapat lebih menguntungkan bagi pengendara di lajur kendaraan.",
         },
         {
           correct: false,
           label:
-            "Di setiap jenjang kelas, menyanyi menjadi kegemaran yang paling sedikit peminatnya",
+            "Kadar PM2,5 di trotoar tanpa pemisah selalu melampaui batas aman.",
         },
       ],
     },

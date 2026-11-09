@@ -1,17 +1,17 @@
-Tuliskan anggota himpunan <InlineMath math="A" />. Anggotanya adalah **bilangan bulat** yang lebih besar dari batas bawah dan lebih kecil dari batas atas, yaitu di antara <InlineMath math="-3" /> dan <InlineMath math="8" />:
+Yang dihitung hanyalah **siapa berpasangan dengan siapa**. Karena pasangan tidak diberi nama, urutan munculnya pasangan tidak boleh menambah hitungan.
 
-<BlockMath math="A = \left\{\begin{gathered}-2,-1,0,1,2,\\3,4,5,6,7\end{gathered}\right\}" />
+# Membentuk pasangan satu per satu
 
-Himpunan <InlineMath math="B" /> berisi setiap bilangan bulat yang kurang dari atau sama dengan <InlineMath math="7" />:
+Pilih siswa mana pun, misalnya siswa pertama dalam daftar. Ia dapat dipasangkan dengan 5 siswa lain. Dari 4 siswa yang tersisa, ambil yang pertama dalam daftar, dan ia dapat dipasangkan dengan 3 siswa. Dua siswa terakhir **otomatis menjadi satu pasangan**.
 
-<BlockMath math="B = \left\{\begin{gathered}\ldots,-3,-2,-1,0,\\1,2,3,4,5,6,7\end{gathered}\right\}" />
+<BlockMath math="5\cdot3\cdot1=15" />
 
-Irisan dari dua himpunan (<InlineMath math="A \cap B" />) adalah himpunan yang berisi anggota yang ada di kedua himpunan tersebut.
+# Pemeriksaan dengan kombinasi
 
-Karena semua anggota himpunan <InlineMath math="A" /> (mulai dari <InlineMath math="-2" /> sampai <InlineMath math="7" />) juga terdapat di dalam himpunan <InlineMath math="B" />, maka irisan keduanya adalah himpunan <InlineMath math="A" /> itu sendiri:
+Jika pasangan diberi nomor 1, 2, dan 3, banyak caranya <InlineMath math="\binom62\binom42\binom22=15\cdot6\cdot1=90" />. Setiap pembagian tanpa nomor muncul **sebanyak <InlineMath math="3!=6" /> kali** dalam hitungan itu, satu kali untuk setiap urutan nomor.
 
-<BlockMath math="A \cap B = \left\{\begin{gathered}-2,-1,0,1,2,\\3,4,5,6,7\end{gathered}\right\}" />
+<BlockMath math="\frac{90}{3!}=15" />
 
-Jika kita ubah kembali ke dalam notasi pembentuk himpunan, anggotanya adalah bilangan bulat yang lebih besar dari <InlineMath math="-3" /> dan kurang dari atau sama dengan <InlineMath math="7" />:
+Nilai 90 memperlakukan pasangan seolah-olah bernomor, dan nilai 45 hanya membagi 90 dengan 2. Nilai 6 dan 10 tidak menghitung semua cara memasangkan siswa yang tersisa.
 
-<BlockMath math="\begin{aligned}&A\cap B\\&=\{x\in\mathbb Z\mid-3<x\leq7\}\end{aligned}" />
+Jadi, banyak cara membagi keenam siswa adalah **15**.

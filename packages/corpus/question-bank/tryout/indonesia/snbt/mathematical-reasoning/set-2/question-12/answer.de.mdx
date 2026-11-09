@@ -1,31 +1,17 @@
-# Zeitpunkt des Aufpralls bestimmen
+Wer alle Aufgaben beantwortet, dessen Punktzahl hängt nur von der Anzahl richtiger Antworten <InlineMath math="b" /> ab, nämlich <InlineMath math="5b-40" />, also **hängt die Punktzahl nur von den richtigen Antworten ab**.
 
-Beim Aufprall befinden sich die Rakete und der Flugzeugträger an **derselben Position**. Wir setzen ihre Positionsgleichungen gleich:
+# Mögliche Werte von b
 
-<BlockMath math="s_R(t) = s_K(t)" />
+Die Anzahl richtiger Antworten kann jede ganze Zahl von 0 bis 40 sein, das sind **41 Möglichkeiten**, <InlineMath math="b=0" /> eingeschlossen.
 
-<BlockMath math="4000 - t^2 = 60t" />
+# Jedes b liefert eine andere Punktzahl
 
-<BlockMath math="t^2 + 60t - 4000 = 0" />
+Der Term <InlineMath math="5b-40" /> steigt um 5, wenn <InlineMath math="b" /> um 1 steigt, zwei verschiedene Werte von <InlineMath math="b" /> liefern also nie dieselbe Punktzahl. Die Punktzahlen sind
 
-Wir faktorisieren die quadratische Gleichung:
+<BlockMath math="-40,\,-35,\,-30,\,\dots,\,155,\,160" />
 
-<BlockMath math="(t + 100)(t - 40) = 0" />
+Das sind 41 verschiedene Werte.
 
-Die Faktoren ergeben <InlineMath math="t = -100" /> und <InlineMath math="t = 40" />. Eine verstrichene Zeit kann nicht negativ sein, daher gilt <InlineMath math="t = 40" /> Sekunden.
+Der Wert 40 vergisst den Fall <InlineMath math="b=0" />. Der Wert 201 zählt alle ganzen Zahlen von <InlineMath math="-40" /> bis 160, obwohl nur Vielfache von 5 möglich sind. Der Wert 160 ist die Höchstpunktzahl, nicht die Anzahl der Punktzahlen.
 
-<BlockMath math="t = 40 \text{ Sekunden}" />
-
-# Position des Aufpralls bestimmen
-
-Wir setzen <InlineMath math="t = 40" /> in die Positionsgleichung des Flugzeugträgers ein:
-
-<BlockMath math="s_K(40) = 60(40)" />
-
-<BlockMath math="s_K(40) = 2400 \text{ m}" />
-
-Wir wandeln **Meter in Kilometer** um:
-
-<BlockMath math="2400\text{ m}=\frac{2400}{1000}\text{ km}= 2{,}4 \text{ km}" />
-
-Die Rakete trifft den Flugzeugträger bei <InlineMath math="2{,}4\text{ km}" />.
+Es gibt also **41** mögliche verschiedene Punktzahlen.

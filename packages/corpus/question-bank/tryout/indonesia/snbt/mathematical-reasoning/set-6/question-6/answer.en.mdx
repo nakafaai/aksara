@@ -1,49 +1,15 @@
-# Volume Rate Analysis
+First match the units: 1 metre is 1,000 mm. Then find **the smallest whole number <InlineMath math="n" />** with <InlineMath math="0.1\cdot2^n>1{,}000" />.
 
-It is given that the **pouring rate is the same** for both cones. This means that in the same time <InlineMath math="t" />, the volume of sand poured is equal.
+# Simplifying the condition
 
-<BlockMath math="V_A = V_B" />
+<BlockMath math="0.1\cdot2^n>1{,}000\;\Longleftrightarrow\;2^n>10{,}000" />
 
-The formula for the volume of a cone is:
+# Finding a large enough power of two
 
-<BlockMath math="V = \frac{1}{3}\pi R^2 h" />
+<BlockMath math="2^{13}=8{,}192,\qquad 2^{14}=16{,}384" />
 
-# Substituting Radius and Height Relationships
+The power 13 **does not yet pass 10,000**, while the power 14 does. After 13 folds the stack is only 819.2 mm thick, and after 14 folds it is 1,638.4 mm.
 
-Write each volume **in terms of its height only** by substituting the radius as a multiple of that height.
+The value 13 stops one step too early. The value 100 treats each fold as adding 10 mm, and 10 uses <InlineMath math="2^{10}" />, which gives only 102.4 mm.
 
-For cone A, we have <InlineMath math="R_1 = h_1" />. Its volume is:
-
-<BlockMath math="V_A = \frac{1}{3}\pi (h_1)^2 h_1" />
-
-<BlockMath math="V_A = \frac{1}{3}\pi h_1^3" />
-
-For cone B, we have <InlineMath math="R_2 = 2h_2" />. Its volume is:
-
-<BlockMath math="V_B = \frac{1}{3}\pi (2h_2)^2 h_2" />
-
-<BlockMath math="V_B = \frac{1}{3}\pi (4h_2^2) h_2" />
-
-<BlockMath math="V_B = \frac{4}{3}\pi h_2^3" />
-
-# Determining the Height Ratio
-
-Since <InlineMath math="V_A = V_B" />, we have:
-
-<BlockMath math="\frac{1}{3}\pi h_1^3 = \frac{4}{3}\pi h_2^3" />
-
-Simplify by dividing both sides by <InlineMath math="\frac{1}{3}\pi" />:
-
-<BlockMath math="h_1^3 = 4h_2^3" />
-
-Arrange into a ratio:
-
-<BlockMath math="\frac{h_1^3}{h_2^3} = \frac{4}{1}" />
-
-<BlockMath math="\left(\frac{h_1}{h_2}\right)^3 = 4" />
-
-Take the **cube root** of both sides:
-
-<BlockMath math="\frac{h_1}{h_2} = \sqrt[3]{4}" />
-
-Thus, the ratio of heights is <InlineMath math="h_1 : h_2 = \sqrt[3]{4} : 1" />.
+So at least **14 folds** are needed.

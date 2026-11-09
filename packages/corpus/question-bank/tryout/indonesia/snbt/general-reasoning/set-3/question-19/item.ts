@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "possibility",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$300$$",
-        },
-        {
-          correct: false,
-          label: "$$150$$",
-        },
-        {
           correct: true,
-          label: "$$100$$",
+          label: "Ada anggota tim debat yang menjadi anggota tim futsal.",
         },
         {
           correct: false,
-          label: "$$75$$",
+          label: "Ada siswa kelas XII yang menjadi anggota tim debat.",
         },
         {
           correct: false,
-          label: "$$50$$",
+          label: "Semua anggota OSIS adalah siswa kelas XII.",
+        },
+        {
+          correct: false,
+          label: "Tidak ada anggota tim debat yang merupakan siswa kelas XII.",
+        },
+        {
+          correct: false,
+          label: "Ada siswa kelas XII yang bukan anggota OSIS.",
         },
       ],
     },

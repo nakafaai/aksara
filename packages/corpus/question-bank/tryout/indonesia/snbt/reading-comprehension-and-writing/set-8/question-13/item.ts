@@ -1,30 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "title",
+  },
+  stimulus: "jamu-label",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "kerjasama tim dalam uji formulir lokasi",
-        },
-        {
-          correct: false,
-          label: "kerja-sama tim dalam uji formulir lokasi",
-        },
-        {
-          correct: false,
-          label: "kerja samah tim dalam uji formulir lokasi",
-        },
-        {
-          correct: false,
-          label: "kerja sama-sama tim dalam uji formulir lokasi",
+          label: "Jamu Gendong di Indonesia",
         },
         {
           correct: true,
-          label: "kerja sama tim dalam uji formulir lokasi",
+          label:
+            "Botol Berlabel Mendekatkan Jamu Bu Sumiati kepada Pembeli Baru",
+        },
+        {
+          correct: false,
+          label: "Resep Beras Kencur Bu Sumiati",
+        },
+        {
+          correct: false,
+          label: "Pelatihan Dinas Koperasi",
+        },
+        {
+          correct: false,
+          label: "Warung di Dekat Sekolah",
         },
       ],
     },

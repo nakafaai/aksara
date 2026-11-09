@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "figurative-language",
+  },
+  stimulus: "last-angkot",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
+            "Mak Inah ingin anak Pak Damar mengetahui bahwa ayahnya miskin.",
         },
         {
           correct: false,
           label:
-            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
+            "Mak Inah merasa tersinggung karena tawaran gratis dari Pak Damar.",
+        },
+        {
+          correct: false,
+          label:
+            "Mak Inah ingin Pak Damar menabung uang itu untuk biaya sekolah anaknya.",
         },
         {
           correct: true,
           label:
-            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui data pembanding dan masukan pihak terdampak.",
+            "Mak Inah ingin menghargai kerja Pak Damar dan menjaga harga dirinya sebagai ayah.",
         },
         {
           correct: false,
           label:
-            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengelola layanan perpustakaan keliling menilai ringkasan jadwal yang ditempel pada setiap titik pemberhentian terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
+            "Mak Inah menyindir Pak Damar yang meninggalkan angkot demi bus koridor.",
         },
       ],
     },

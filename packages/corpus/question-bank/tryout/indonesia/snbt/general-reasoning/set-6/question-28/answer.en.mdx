@@ -1,35 +1,11 @@
-All <InlineMath math="8! = 40{,}320" /> arrangements are **equally likely**. Count those satisfying the conditions, then divide by this total.
+Choose Pasti benar (always true) or Tidak pasti benar (not always true). Use inequality facts: **multiplying by a positive number below 1 makes a number smaller**, and dividing by a number above 1 also makes it smaller. To show a statement is not always true, one counterexample is enough.
 
-# Grouping adjacent reports
+**Statement 1**: not always true. For <InlineMath math="a=0.5" /> and <InlineMath math="b=1.2" />, <InlineMath math="a+b=1.7" />, not more than <InlineMath math="2" />.
 
-Treat C and D as **one block**. Its internal order can be CD or DC, giving <InlineMath math="2" /> possibilities. Together with the other six reports, there are seven objects to arrange:
+**Statement 2**: not always true. Since <InlineMath math="b>1" /> and <InlineMath math="a>0" />, <InlineMath math="\frac{a}{b}<a" />. The statement is always false.
 
-<BlockMath math="N_0=2\times7!=10{,}080" />
+**Statement 3**: always true. Multiply <InlineMath math="a<1" /> by <InlineMath math="a>0" /> to get <InlineMath math="a^2<a" />.
 
-# Removing forbidden arrangements
+**Statement 4**: always true. Multiply <InlineMath math="a<1" /> by <InlineMath math="b>0" /> to get <InlineMath math="ab<b" />.
 
-Let <InlineMath math="N_A" /> count arrangements in which A and B are adjacent. Treat them as a second block. Both blocks have two internal orders, and there are now six objects:
-
-<BlockMath math="N_A=2\times2\times6!=2{,}880" />
-
-Let <InlineMath math="N_G" /> count arrangements with G at an end. Choose one of the two ends, choose the internal order of CD, and arrange the remaining six objects:
-
-<BlockMath math="N_G=2\times2\times6!=2{,}880" />
-
-Arrangements violating both conditions belong to both counts. For their intersection, choose an end for G, choose the internal orders of both blocks, and arrange the remaining five objects:
-
-<BlockMath math="N_{AG}=2\times2\times2\times5!=960" />
-
-Subtract both forbidden groups and **add their intersection back once**:
-
-<BlockMath math="\begin{aligned}N&amp;=N_0-N_A-N_G+N_{AG}\\&amp;=10{,}080-2{,}880\\&amp;\quad-2{,}880+960\\&amp;=5{,}280\end{aligned}" />
-
-# Applying the order condition
-
-**Swapping E and F** preserves the adjacency conditions for A and B and for C and D, as well as G's position. Every arrangement with E before F therefore pairs with exactly one arrangement with F before E. Half satisfy the remaining condition:
-
-<BlockMath math="\frac{5{,}280}{2}=2{,}640" />
-
-The probability that all conditions hold is:
-
-<BlockMath math="P=\frac{2{,}640}{40{,}320}=\frac{11}{168}" />
+So statements 3 and 4 are always true, while statements 1 and 2 are not.

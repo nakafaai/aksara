@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "main-idea",
+  },
+  stimulus: "youth-pledge",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
+            "Kongres Pemuda II diadakan di Batavia oleh perkumpulan pemuda dari berbagai daerah.",
         },
         {
           correct: false,
           label:
-            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
+            "bahasa Jawa ditolak sebagai bahasa persatuan karena penuturnya terlalu banyak.",
         },
         {
           correct: false,
           label:
-            "Bacaan memakai simbol sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
+            "Mohammad Yamin dan Mohammad Tabrani berselisih tentang pemilihan tempat kongres.",
         },
         {
           correct: true,
           label:
-            "Mira mengubah panggung yang sepi dengan membacakan satu halaman, sehingga lampu yang semula menerangi kursi kosong menjadi simbol undangan untuk mendengarkan bersama.",
+            "pilihan kata dan nama dalam ikrar 1928 menjadikan bahasa Indonesia milik bersama.",
         },
         {
           correct: false,
           label:
-            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
+            "Undang-Undang Dasar 1945 lahir dari perdebatan para pemuda pada tahun 1926.",
         },
       ],
     },

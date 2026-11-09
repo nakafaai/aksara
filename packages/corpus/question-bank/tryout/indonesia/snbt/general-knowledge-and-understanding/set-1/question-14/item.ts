@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "polysemy",
+  },
+  stimulus: "bahasa",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Sri Utami menjelaskan bahwa embun es terjadi setiap tahun.",
+          label: "Jenis kayu yang keras dan awet.",
         },
         {
           correct: true,
-          label: "Setelah matahari terbit, suhu udara mencapai lima derajat.",
+          label: "Asli atau sejati.",
         },
         {
           correct: false,
-          label: "Kristal es bening menutupi rumput.",
+          label: "Berusia lanjut dan berpengalaman.",
         },
         {
           correct: false,
-          label: "Pengunjung yang datang lebih awal memotret embun es.",
+          label: "Terlatih mengajar di kelas.",
         },
         {
           correct: false,
-          label: "Karena langit cerah, embun es terbentuk di atas rumput.",
+          label: "Terkenal di kalangan masyarakatnya.",
         },
       ],
     },

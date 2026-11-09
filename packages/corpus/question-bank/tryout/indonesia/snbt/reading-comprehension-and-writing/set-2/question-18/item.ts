@@ -1,34 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "sleep-survey",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "$$(1)\\rightarrow(5)\\rightarrow(4)\\rightarrow(3)\\rightarrow(2)$$.",
+          label: "18 orang siswa tidur kurang dari enam jam setiap malam.",
         },
         {
           correct: true,
-          label:
-            "$$(4)\\rightarrow(5)\\rightarrow(1)\\rightarrow(3)\\rightarrow(2)$$.",
+          label: "Delapan belas siswa tidur kurang dari enam jam setiap malam.",
         },
         {
           correct: false,
           label:
-            "$$(4)\\rightarrow(2)\\rightarrow(3)\\rightarrow(1)\\rightarrow(5)$$.",
+            "Delapan belas (18) siswa-siswa tidur kurang dari enam jam setiap malam.",
         },
         {
           correct: false,
           label:
-            "$$(5)\\rightarrow(4)\\rightarrow(1)\\rightarrow(3)\\rightarrow(2)$$.",
+            "Sebanyak 18 orang siswa-siswa tidur kurang dari enam jam setiap malam.",
         },
         {
           correct: false,
-          label:
-            "$$(5)\\rightarrow(4)\\rightarrow(1)\\rightarrow(2)\\rightarrow(3)$$.",
+          label: "18 siswa, tidur kurang dari enam jam setiap malam.",
         },
       ],
     },

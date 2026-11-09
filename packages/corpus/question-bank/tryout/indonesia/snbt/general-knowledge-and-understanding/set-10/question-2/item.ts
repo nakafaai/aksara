@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "cause",
+  },
+  stimulus: "sasando",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Dua sensor merekam kejadian pada selang waktu yang sama, bukan secara bergantian.",
-        },
-        {
-          correct: false,
-          label:
-            "Catatan disusun dari kejadian paling awal hingga paling akhir agar urutan perubahan dapat ditelusuri.",
-        },
-        {
-          correct: false,
-          label:
-            "Nilai pengukuran berulang tetap berada dalam rentang sempit meskipun waktu pengambilan berbeda.",
-        },
-        {
-          correct: false,
-          label:
-            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
+          label: "daun lontar membuat dawai tidak mudah putus",
         },
         {
           correct: true,
-          label:
-            "Lonjakan muncul pada waktu yang tidak teratur tanpa pola selang yang tetap.",
+          label: "wadah itu membuat getaran dawai lebih kuat",
+        },
+        {
+          correct: false,
+          label: "wadah itu menentukan nada setiap dawai",
+        },
+        {
+          correct: false,
+          label: "daun lontar mudah ditemukan di Pulau Rote",
+        },
+        {
+          correct: false,
+          label: "wadah itu menjadi tempat pemain memegang",
         },
       ],
     },

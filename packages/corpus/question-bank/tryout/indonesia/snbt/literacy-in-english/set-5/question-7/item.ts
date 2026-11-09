@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "basic-income",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "The comparison condition produced a mean value of $$33$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
+            "Recipients in the Finnish pilot reported less stress than a comparison group.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
+            "Employers might lower wages if every adult received the payment.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+            "Pilots have shown that recipients stop working once payments begin.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
-        },
-        {
-          correct: true,
-          label:
-            "The trial condition reached $$47$$, compared with $$32$$ and $$33$$. Because demand varied with holidays and local events, the result supports a limited follow-up rather than a permanent rule.",
+            "The taxes a universal scheme would need have already been tested in pilots.",
         },
       ],
     },

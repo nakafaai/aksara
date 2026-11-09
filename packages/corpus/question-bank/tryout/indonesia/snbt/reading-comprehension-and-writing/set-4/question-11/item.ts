@@ -1,31 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "explicit-information",
+  },
+  stimulus: "rain-gauge",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "analisa efektivitas tanda genre di pasar tukar buku",
-        },
-        {
-          correct: true,
-          label: "analisis efektivitas tanda genre di pasar tukar buku",
-        },
-        {
-          correct: false,
-          label: "analisis efektifitas tanda genre di pasar tukar buku",
-        },
-        {
-          correct: false,
-          label: "analisa efektifitas tanda genre di pasar tukar buku",
+          label:
+            "Lapangan tergenang setiap curah hujan lebih dari 20 milimeter.",
         },
         {
           correct: false,
           label:
-            "analisis efektivitas tanda genre dalam kontek pasar tukar buku",
+            "Sekolah langsung memperbesar saluran air di sekitar lapangan.",
+        },
+        {
+          correct: true,
+          label:
+            "Lapangan tetap kering walaupun curah hujan mencapai 25 milimeter.",
+        },
+        {
+          correct: false,
+          label: "Upacara dipindahkan ke tempat yang tidak tergenang.",
+        },
+        {
+          correct: false,
+          label: "Siswa berhenti mencatat tinggi air hujan.",
         },
       ],
     },

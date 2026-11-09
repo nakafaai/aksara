@@ -1,24 +1,23 @@
-Soal menanyakan **tambahan pekerja**, bukan seluruh pekerja yang dibutuhkan. Kita hitung dahulu jumlah pekerja untuk target empat puluh hari, lalu kurangi delapan puluh pekerja yang sudah tersedia.
+Tulis biaya setiap paket sebagai fungsi pemakaian <InlineMath math="x" /> GB di atas kuotanya. Untuk <InlineMath math="x>10" />, **biaya Hemat adalah <InlineMath math="50{.}000+9{.}000(x-10)" />**, dan untuk <InlineMath math="x>20" />, biaya Bebas adalah <InlineMath math="95{.}000+5{.}000(x-20)" />.
 
-# Menyamakan Beban Kerja
+# Pemakaian 25 GB dan 12 GB
 
-Satu orang-hari adalah pekerjaan satu orang dalam satu hari kerja. Dengan produktivitas harian yang sama dan tetap, **beban kerja proyek tidak berubah** ketika jumlah pekerja diubah.
+<BlockMath math="\begin{aligned}
+\text{Hemat}(25)&=50{.}000+15\cdot9{.}000=185{.}000\\
+\text{Bebas}(25)&=95{.}000+5\cdot5{.}000=120{.}000
+\end{aligned}" />
 
-<BlockMath math="W=80\times50=4{.}000\text{ orang-hari}" />
+Selisihnya 65.000, jadi pernyataan pertama benar. Untuk 12 GB, Hemat berbiaya <InlineMath math="50{.}000+2\cdot9{.}000=68{.}000" />, **lebih murah daripada 95.000**. Pernyataan kedua salah.
 
-Jika <InlineMath math="P" /> menyatakan jumlah seluruh pekerja sejak hari pertama, mereka harus menyelesaikan beban kerja itu dalam empat puluh hari.
+# Laju selisih dan batas anggaran
 
-<BlockMath math="\begin{aligned}40P&=4{.}000\\P&=\frac{4{.}000}{40}\\&=100\text{ orang}\end{aligned}" />
+Di atas 20 GB, setiap GB menambah Hemat Rp9.000,00 dan Bebas Rp5.000,00, jadi selisihnya **bertambah Rp4.000,00 per GB**. Pernyataan ketiga benar.
 
-| Rencana | Pekerja | Hari kerja | Beban kerja (orang-hari) |
-| --- | --- | --- | --- |
-| Awal | 80 | 50 | 4.000 |
-| Dipercepat | 100 | 40 | 4.000 |
+<BlockMath math="\begin{aligned}
+50{.}000+9{.}000(x-10)&\le150{.}000\\
+x-10&\le\tfrac{100}{9}\approx11{,}1
+\end{aligned}" />
 
-# Menghitung Tambahan di Luar Pekerja Awal
+Pemakaian dihitung dalam GB bulat, jadi paling banyak 21 GB. Pemakaian 22 GB berbiaya 158.000, melebihi anggaran. Pernyataan keempat salah.
 
-Dari seratus pekerja yang dibutuhkan, delapan puluh sudah tersedia. Maka **jumlah tambahan adalah selisih jumlah total dan jumlah awal**.
-
-<BlockMath math="P_{\text{tambahan}}=100-80=20\text{ orang}" />
-
-Cek rencana itu: <InlineMath math="(80+20)\times40=4{.}000" /> orang-hari, sama dengan beban kerja awal. Jadi, diperlukan **20 pekerja tambahan** sejak hari pertama.
+Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **benar**, dan keempat **salah**.

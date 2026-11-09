@@ -1,135 +1,15 @@
-<LineEquation
-  title="Solution Visualization"
-  description={
-    <>
-      Auxiliary line divides angle <InlineMath math="\alpha" /> into{" "}
-      <InlineMath math="\beta" /> and <InlineMath math="\gamma" />.
-    </>
-  }
-  cameraPosition={[0.5, 0, 12.5]}
-  cameraTarget={[0.5, 0, 0]}
-  data={[
-    {
-      points: [
-        { x: -4, y: 2, z: 0 },
-        { x: 3.289013841, y: 2, z: 0 },
-      ],
-      color: "#4f46e5",
-      smooth: false,
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="P" />,
-          at: 0,
-          offset: [0, 0.5, 0],
-        },
-        {
-          text: <InlineMath math="Q" />,
-          at: 1,
-          offset: [0, 0.5, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: 1, y: -2, z: 0 },
-        { x: 5, y: -2, z: 0 },
-      ],
-      color: "#4f46e5",
-      smooth: false,
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="R" />,
-          at: 0,
-          offset: [0, -0.5, 0],
-        },
-        {
-          text: <InlineMath math="S" />,
-          at: 1,
-          offset: [0, -0.5, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: 3.289013841, y: 2, z: 0 },
-        { x: -1, y: 0, z: 0 },
-        { x: 1, y: -2, z: 0 },
-      ],
-      color: "#4f46e5",
-      smooth: false,
-      showPoints: true,
-      labels: [
-        {
-          text: <InlineMath math="25^\circ" />,
-          at: 0,
-          offset: [-2, -0.5, 0],
-        },
-        {
-          text: <InlineMath math="\alpha" />,
-          at: 1,
-          offset: [1.45, -0.6, 0],
-        },
-        {
-          text: <InlineMath math="135^\circ" />,
-          at: 2,
-          offset: [1, 0.5, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: -1, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      color: "#0d9488",
-      smooth: false,
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="\beta" />,
-          at: 1,
-          offset: [2, 0.5, 0],
-        },
-        {
-          text: <InlineMath math="\gamma" />,
-          at: 1,
-          offset: [2, -0.5, 0],
-        },
-      ],
-    },
-  ]}
-/>
+Square <InlineMath math="x" /> to simplify the root, then compare **the remaining root term** with its distance to 9.8.
 
-We draw an **auxiliary line parallel** to lines <InlineMath math="PQ" /> and <InlineMath math="RS" /> passing through the vertex of angle <InlineMath math="\alpha" />.
-This line divides angle <InlineMath math="\alpha" /> into two parts, <InlineMath math="\beta" /> and <InlineMath math="\gamma" />.
+# Computing x squared
 
-# Alternate interior angles
+<BlockMath math="x^2=(\sqrt2+\sqrt3)^2=2+2\sqrt6+3=5+2\sqrt6" />
 
-Notice that angle <InlineMath math="\beta" /> and the <InlineMath math="25^\circ" /> angle are **alternate interior angles**.
-Since the lines are parallel, their measures are equal:
+# Comparing with 9.8
 
-<BlockMath math="\beta = 25^\circ" />
+Compare <InlineMath math="5+2\sqrt6" /> with <InlineMath math="9.8" />, or equivalently <InlineMath math="2\sqrt6" /> with <InlineMath math="4.8" />. Both numbers are positive, so **comparing their squares** keeps the direction of the inequality.
 
-# Consecutive interior angles
+<BlockMath math="\left(2\sqrt6\right)^2=24\qquad\text{and}\qquad4.8^2=23.04" />
 
-Angle <InlineMath math="\gamma" /> and the <InlineMath math="135^\circ" /> angle are **consecutive interior angles**.
-The sum of these two angles is <InlineMath math="180^\circ" />:
+Since <InlineMath math="24>23.04" />, we have <InlineMath math="2\sqrt6>4.8" /> and <InlineMath math="x^2>9.8" />. The estimate <InlineMath math="\sqrt6\approx2.45" /> gives <InlineMath math="x^2\approx9.90" />, which agrees.
 
-<BlockMath math="\gamma + 135^\circ = 180^\circ" />
-
-<BlockMath math="\gamma = 180^\circ - 135^\circ = 45^\circ" />
-
-# Sum of the angles
-
-The value of <InlineMath math="\alpha" /> is the **sum of the two component angles**, <InlineMath math="\beta" /> and <InlineMath math="\gamma" />:
-
-<BlockMath math="\alpha = \beta + \gamma" />
-
-<BlockMath math="\alpha = 25^\circ + 45^\circ" />
-
-<BlockMath math="\alpha = 70^\circ" />
-
-Therefore, the value of <InlineMath math="\alpha" /> is <InlineMath math="70^\circ" />.
+So the correct relation is **<InlineMath math="P>Q" />**.

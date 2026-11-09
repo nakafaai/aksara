@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "word-meaning",
+  },
+  stimulus: "rattan-weaving",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Kartu pertanyaan membuat jumlah pengunjung yang bertanya tidak perlu diukur.",
-        },
-        {
-          correct: false,
-          label:
-            "Kartu pertanyaan memungkinkan banyak unsur tur diubah sekaligus.",
-        },
-        {
           correct: true,
-          label:
-            "Dua pertanyaan awal pada kartu memberi pengunjung titik awal yang lebih khusus daripada undangan untuk bertanya apa saja.",
+          label: "hilang sama sekali",
         },
         {
           correct: false,
-          label:
-            "Kartu dipilih karena semua nilai pembanding sudah terbukti sama.",
+          label: "berkurang sedikit",
         },
         {
           correct: false,
-          label:
-            "Kartu dipilih hanya karena hasil akhir pengujiannya telah dipastikan.",
+          label: "berpindah tempat",
+        },
+        {
+          correct: false,
+          label: "menjadi mahal",
+        },
+        {
+          correct: false,
+          label: "berubah bentuk",
         },
       ],
     },

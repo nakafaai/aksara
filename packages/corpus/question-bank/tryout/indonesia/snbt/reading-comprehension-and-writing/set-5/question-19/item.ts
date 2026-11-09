@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "sentence-relation",
+  },
+  stimulus: "seed-soak",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Tim merubah satu faktor saja, yaitu penggunaan daftar pemeriksaan sebelum merekam.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim mengrubah satu faktor saja, yaitu penggunaan daftar pemeriksaan sebelum merekam.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim hanya mengubah satu faktor saja, yaitu penggunaan daftar pemeriksaan sebelum merekam.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim mengubah terhadap satu faktor saja, yaitu penggunaan daftar pemeriksaan sebelum merekam.",
-        },
-        {
           correct: true,
           label:
-            "Tim mengubah satu faktor saja, yaitu penggunaan daftar pemeriksaan sebelum merekam.",
+            "Kalimat (6) menyampaikan dugaan penyebab peristiwa dalam kalimat (5).",
+        },
+        {
+          correct: false,
+          label: "Kalimat (6) memberi contoh biji yang membusuk.",
+        },
+        {
+          correct: false,
+          label: "Kalimat (6) membantah isi kalimat (5).",
+        },
+        {
+          correct: false,
+          label: "Kalimat (6) menyimpulkan seluruh hasil percobaan.",
+        },
+        {
+          correct: false,
+          label: "Kalimat (6) mengulang isi kalimat (5) dengan kata lain.",
         },
       ],
     },

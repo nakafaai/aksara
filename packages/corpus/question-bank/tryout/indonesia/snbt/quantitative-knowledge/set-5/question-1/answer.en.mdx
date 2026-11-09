@@ -1,53 +1,19 @@
-We are given the **first two terms of the sequence**, <InlineMath math="a_1 = -6" /> and <InlineMath math="a_2 = -8" />, and the recursive equation:
+There is no need to compute <InlineMath math="N" /> directly. Each pair of a factor 2 and a factor 5 makes a factor 10, so **pair the factors 2 with the factors 5** as far as possible.
 
-<BlockMath math="a_{n+1} = 2a_{n+2} + 3a_n" />
+# Forming a power of ten
 
-Our goal is to find the value of <InlineMath math="a_3 + 2a_4" />. We will find the values of <InlineMath math="a_3" /> and <InlineMath math="2a_4" /> step by step.
+There are **seven factors 5**, so seven factors 2 can be paired with them. Three factors 2 remain.
 
-# Finding the Third Term
+<BlockMath math="\begin{aligned}
+N&=2^{3}\times\left(2^{7}\times5^{7}\right)\times3\\
+&=2^3\times3\times10^7\\
+&=24\times10^7=240{,}000{,}000
+\end{aligned}" />
 
-We use the recursive equation by substituting <InlineMath math="n = 1" />:
+# Counting the digits
 
-<BlockMath math="a_{1+1} = 2a_{1+2} + 3a_1" />
+The number <InlineMath math="24\times10^7" /> consists of the digits 2 and 4 followed by **seven zeros**, so it has <InlineMath math="2+7=9" /> digits.
 
-<BlockMath math="a_2 = 2a_3 + 3a_1" />
+The value 7 counts only the trailing zeros. The value 8 treats <InlineMath math="2^3\times3" /> as a single digit. The value 10 is the exponent of 2, and the value 17 adds the two exponents <InlineMath math="10+7" />.
 
-Substitute the known values of <InlineMath math="a_1" /> and <InlineMath math="a_2" />:
-
-<BlockMath math="-8 = 2a_3 + 3(-6)" />
-
-<BlockMath math="-8 = 2a_3 - 18" />
-
-**Add 18 to both sides** to isolate the third term:
-
-<BlockMath math="2a_3 = -8 + 18" />
-
-<BlockMath math="2a_3 = 10" />
-
-<BlockMath math="a_3 = 5" />
-
-# Finding Two Times the Fourth Term
-
-Next, we use the recursive equation again with <InlineMath math="n = 2" /> to introduce the term <InlineMath math="a_4" />:
-
-<BlockMath math="a_{2+1} = 2a_{2+2} + 3a_2" />
-
-<BlockMath math="a_3 = 2a_4 + 3a_2" />
-
-Substitute the values <InlineMath math="a_3 = 5" /> and <InlineMath math="a_2 = -8" />:
-
-<BlockMath math="5 = 2a_4 + 3(-8)" />
-
-<BlockMath math="5 = 2a_4 - 24" />
-
-We can directly find **twice the fourth term**, <InlineMath math="2a_4" /> (since the question asks for <InlineMath math="a_3 + 2a_4" />):
-
-<BlockMath math="2a_4 = 5 + 24" />
-
-<BlockMath math="2a_4 = 29" />
-
-Now we sum the obtained values:
-
-<BlockMath math="a_3 + 2a_4 = 5 + 29 = 34" />
-
-Thus, the value of <InlineMath math="a_3 + 2a_4" /> is <InlineMath math="34" />.
+So <InlineMath math="N" /> has **9 digits**.

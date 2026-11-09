@@ -1,31 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "inductive-reasoning",
+    topic: "data-comparison",
+  },
+  stimulus: "bus",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "Pabrik $$Z$$ menjual $$250{.}000$$ unit",
-        },
-        {
-          correct: false,
-          label: "Pabrik $$X$$ menjual $$500{.}000$$ unit",
-        },
-        {
-          correct: false,
-          label: "Pabrik $$Y$$ menjual $$5{.}200{.}000$$ unit",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Prediksi penjualan Pabrik $$Y$$ empat kali penjualan Pabrik $$X$$ pada $$2016$$",
+            "Pada April, penumpang pukul 05.00 sampai 06.30 lebih dari $$15\\%$$ dari jumlah penumpang harian.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Pabrik $$X$$ menjual $$800{.}000$$ unit lebih sedikit daripada pada $$2016$$",
+            "Pendapatan tiket harian pada April lebih rendah daripada pendapatan tiket harian pada Februari.",
+        },
+        {
+          column: 2,
+          label:
+            "Penumpang pukul 06.30 sampai 08.00 turun lebih dari $$25\\%$$ dari Februari ke April.",
+        },
+        {
+          column: 2,
+          label:
+            "Pada April, rata-rata tarif yang dibayar per penumpang lebih dari $$\\text{Rp}3{.}700$$.",
         },
       ],
     },

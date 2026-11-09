@@ -1,17 +1,21 @@
-Nur Wasser wird hinzugefügt, deshalb bleibt das **Alkoholvolumen konstant**. Alkohol entspricht in beiden Verhältnissen vier Teilen. Ein Teil bezeichnet daher vor und nach der Zugabe dasselbe Volumen.
+„Mindestens zwei“ bedeutet **genau zwei oder genau drei** Treffer. Beide Ereignisse schließen sich aus, ihre Wahrscheinlichkeiten werden also addiert. Die Schüsse sind unabhängig, die Wahrscheinlichkeit einer Ergebnisfolge ist daher das Produkt der Einzelwahrscheinlichkeiten.
 
-| Zustand | Alkoholanteile | Wasseranteile |
-| --- | --- | --- |
-| Anfang | 4 | 3 |
-| Ende | 4 | 5 |
-| Änderung | 0 | 2 |
+# Genau zwei Treffer
 
-Die hinzugefügten 5 Liter entsprechen **zwei zusätzlichen Teilen**, denn <InlineMath math="5-3=2" />.
+Der eine Fehlschuss kann der erste, zweite oder dritte Schuss sein, es gibt also **drei Reihenfolgen** mit gleicher Wahrscheinlichkeit.
 
-Das Volumen eines Teils beträgt:
+<BlockMath math="P(\text{genau }2)=3\cdot(0{,}6)^2(0{,}4)=3\cdot0{,}144=0{,}432" />
 
-<BlockMath math="5\,\mathrm{L}\div2=2{,}5\,\mathrm{L}" />
+# Genau drei Treffer
 
-Das endgültige Wasservolumen besteht aus fünf Teilen:
+Es gibt **nur eine Reihenfolge**, bei der alle drei Schüsse treffen.
 
-<BlockMath math="5\cdot2{,}5\,\mathrm{L}=12{,}5\,\mathrm{L}" />
+<BlockMath math="P(\text{genau }3)=(0{,}6)^3=0{,}216" />
+
+Addiere beide Fälle.
+
+<BlockMath math="P(\text{mindestens }2)=0{,}432+0{,}216=0{,}648" />
+
+Der Wert 0,432 zählt nur genau zwei, der Wert 0,216 nur genau drei Treffer. Der Wert 0,36 ist <InlineMath math="(0{,}6)^2" /> und übersieht den dritten Schuss und die Anzahl der Reihenfolgen. Der Wert 0,784 ist <InlineMath math="1-0{,}216" />, also die Wahrscheinlichkeit für höchstens zwei Treffer.
+
+Die Wahrscheinlichkeit für mindestens zwei Treffer ist also <InlineMath math="0{,}648" />.

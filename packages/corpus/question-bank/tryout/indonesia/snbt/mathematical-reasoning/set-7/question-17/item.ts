@@ -1,31 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "delivery-drone",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label: "$$1\\frac{1}{2} \\text{ kg}$$",
-        },
-        {
-          correct: false,
-          label: "$$2 \\text{ kg}$$",
-        },
-        {
-          correct: false,
-          label: "$$4 \\text{ kg}$$",
-        },
-        {
-          correct: true,
-          label: "$$6 \\text{ kg}$$",
-        },
-        {
-          correct: false,
-          label: "$$8 \\text{ kg}$$",
-        },
-      ],
+      kind: "numericEntry",
+      unit: "menit",
+      value: "24",
     },
   },
 };

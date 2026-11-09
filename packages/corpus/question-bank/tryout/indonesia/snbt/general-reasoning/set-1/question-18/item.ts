@@ -1,31 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "deductive-reasoning",
+    topic: "rule-application",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Kantor baru lebih jauh dari rumah sebagian besar karyawan.",
+          label: "Ani",
         },
         {
           correct: false,
-          label:
-            "Perpindahan itu menggandakan rata-rata waktu perjalanan ke kantor.",
+          label: "Budi",
         },
         {
           correct: false,
-          label: "Biaya sewa kantor baru lebih rendah daripada kantor lama.",
-        },
-        {
-          correct: false,
-          label: "Perusahaan pindah setelah masa sewa gedung lama berakhir.",
+          label: "Cici",
         },
         {
           correct: true,
-          label:
-            "Sebagian besar surat pengunduran diri telah diajukan sebelum rencana perpindahan diumumkan.",
+          label: "Dedi",
+        },
+        {
+          correct: false,
+          label: "Eka",
         },
       ],
     },

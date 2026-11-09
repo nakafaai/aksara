@@ -1,34 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "deductive-reasoning",
+    topic: "rule-application",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Paket itu menggunakan cara penyegelan yang berbeda dari Kelompok A.",
+          label: "$$\\text{Rp}44{.}000$$",
         },
         {
           correct: false,
-          label:
-            "Paket itu memiliki semua ciri yang sama dengan paket dalam Kelompok A.",
+          label: "$$\\text{Rp}48{.}000$$",
         },
         {
           correct: false,
-          label:
-            "Paket itu memiliki nomor seri yang sama dengan paket dalam Kelompok A.",
+          label: "$$\\text{Rp}50{.}000$$",
         },
         {
           correct: true,
-          label:
-            "Paket itu menggunakan cara penyegelan yang sama dengan paket dalam Kelompok A.",
+          label: "$$\\text{Rp}52{.}000$$",
         },
         {
           correct: false,
-          label:
-            "Paket itu telah melalui pemeriksaan yang sama dengan paket dalam Kelompok A.",
+          label: "$$\\text{Rp}55{.}000$$",
         },
       ],
     },

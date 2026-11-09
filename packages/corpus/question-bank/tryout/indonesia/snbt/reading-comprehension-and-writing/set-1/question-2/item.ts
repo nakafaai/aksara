@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "village-radio",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "sebelum kalimat (5).",
-        },
-        {
-          correct: false,
-          label: "setelah kalimat (1).",
-        },
-        {
-          correct: false,
-          label: "sebelum kalimat (6).",
+          label: "kalimat (1)",
         },
         {
           correct: true,
-          label: "setelah kalimat (2).",
+          label: "kalimat (2)",
         },
         {
           correct: false,
-          label: "setelah kalimat (7).",
+          label: "kalimat (4)",
+        },
+        {
+          correct: false,
+          label: "kalimat (7)",
+        },
+        {
+          correct: false,
+          label: "kalimat (8)",
         },
       ],
     },

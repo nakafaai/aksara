@@ -1,61 +1,49 @@
-Zunächst vereinfachen wir <InlineMath math="P" /> und <InlineMath math="Q" />.
+Der Graph von <InlineMath math="y=\lvert x-2\rvert" /> ist V-förmig mit dem Scheitel in <InlineMath math="(2,0)" />. Die Gerade <InlineMath math="y=4" /> schneidet beide Äste, deshalb **ist die eingeschlossene Fläche ein Dreieck**.
 
-Wegen <InlineMath math="1<x<2" /> ist **keiner der Nenner null**. Die gemeinsamen Faktoren dürfen deshalb gekürzt werden.
+<LineEquation
+  title={<>Fläche zwischen <InlineMath math="y=\lvert x-2\rvert" /> und <InlineMath math="y=4" /></>}
+  description={<>Der V-förmige Graph mit dem Scheitel <InlineMath math="(2,0)" /> schneidet die Gerade <InlineMath math="y=4" /> in <InlineMath math="(-2,4)" /> und <InlineMath math="(6,4)" />. Die Fläche dazwischen ist ein Dreieck.</>}
+  data={[
+    {
+      points: Array.from({ length: 101 }, (_, i) => {
+        const x = -3 + i / 10;
+        return { x, y: Math.abs(x - 2), z: 0 };
+      }),
+      color: "#9333ea",
+      smooth: false,
+      showPoints: true,
+      pointIndices: [10, 50, 90],
+      labels: [
+        { at: 10, text: <InlineMath math="(-2,4)" />, offset: [-0.6, 0.4, 0] },
+        { at: 50, text: <InlineMath math="(2,0)" />, offset: [0, -0.5, 0] },
+        { at: 90, text: <InlineMath math="(6,4)" />, offset: [0.6, 0.4, 0] },
+      ],
+    },
+    {
+      points: Array.from({ length: 2 }, (_, i) => ({ x: -3 + 10 * i, y: 4, z: 0 })),
+      color: "#0891b2",
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[2, 2, 12]}
+  cameraTarget={[2, 2, 0]}
+  showZAxis={false}
+/>
 
-# Vereinfachung der ersten Größe
+# Schnittpunkte
 
-Wir verwenden die **Differenz zweier Quadrate** <InlineMath math="a^2 - b^2 = (a - b)(a + b)" /> und <InlineMath math="16^x = (4^x)^2" />.
+Löse <InlineMath math="\lvert x-2\rvert=4" />.
 
-<BlockMath math="\begin{aligned}
-P&=\frac{1-16^{x}}{1-4^{x}} \\
-&=\frac{1-(4^{x})^2}{1-4^{x}} \\
-&=\frac{(1-4^{x})(1+4^{x})}{1-4^{x}} \\
-&=1+4^{x}
-\end{aligned}" />
+<BlockMath math="x-2=4\ \ \text{oder}\ \ x-2=-4\quad\Rightarrow\quad x=6\ \ \text{oder}\ \ x=-2" />
 
-# Vereinfachung der zweiten Größe
+Die Ecken des Dreiecks sind <InlineMath math="(-2,4)" />, <InlineMath math="(6,4)" /> und der Scheitel <InlineMath math="(2,0)" />. Die <InlineMath math="y" />-Achse **begrenzt die Fläche nicht**, denn sie kommt in der Aufgabe nicht vor.
 
-Mit **derselben Identität** gilt <InlineMath math="16^{-x} = (4^{-x})^2" />.
+# Flächeninhalt berechnen
 
-<BlockMath math="\begin{aligned}
-Q&=\frac{1-16^{-x}}{1-4^{-x}} \\
-&=\frac{1-(4^{-x})^2}{1-4^{-x}} \\
-&=\frac{(1-4^{-x})(1+4^{-x})}{1-4^{-x}} \\
-&=1+4^{-x}
-\end{aligned}" />
+Die Grundseite des Dreiecks liegt auf der Geraden <InlineMath math="y=4" /> und ist <InlineMath math="6-(-2)=8" /> lang. Die Höhe ist der Abstand des Scheitels <InlineMath math="(2,0)" /> zu dieser Geraden, also 4.
 
-# Analyse der ersten Größe
+<BlockMath math="A=\tfrac12\cdot8\cdot4=16" />
 
-Da die **Exponentialfunktion zur Basis vier streng wächst**, folgt aus <InlineMath math="1<x<2" />:
+Der Wert 32 vergisst den Faktor <InlineMath math="\tfrac12" />. Der Wert 8 zählt nur die Hälfte des Dreiecks auf einer Seite des Scheitels. Die Werte 14 und 6 schneiden die Fläche mit der <InlineMath math="y" />-Achse ab, die nicht zum Rand gehört.
 
-<BlockMath math="4^1 < 4^x < 4^2" />
-
-<BlockMath math="4 < 4^x < 16" />
-
-<BlockMath math="1 + 4 < 1 + 4^x < 1 + 16" />
-
-<BlockMath math="5 < P < 17" />
-
-# Analyse der zweiten Größe
-
-Multiplizieren wir <InlineMath math="1 < x < 2" /> mit <InlineMath math="-1" />, **kehrt sich die Richtung der Ungleichungen um**.
-
-<BlockMath math="-2 < -x < -1" />
-
-<BlockMath math="4^{-2} < 4^{-x} < 4^{-1}" />
-
-<BlockMath math="\frac{1}{16} < 4^{-x} < \frac{1}{4}" />
-
-<BlockMath math="1 + \frac{1}{16} < 1 + 4^{-x} < 1 + \frac{1}{4}" />
-
-<BlockMath math="\frac{17}{16} < Q < \frac{5}{4}" />
-
-# Vergleich der Größen
-
-Aus den obigen Ergebnissen erhalten wir:
-*   <InlineMath math="P > 5" />
-*   <InlineMath math="Q < \frac{5}{4} = 1{,}25" />
-
-Der **untere Grenzwert der ersten Größe** ist bereits größer als der obere Grenzwert der zweiten. Damit ist <InlineMath math="P" /> im gesamten angegebenen Bereich von <InlineMath math="x" /> größer als <InlineMath math="Q" />.
-
-Also, <InlineMath math="P > Q" />.
+Der Flächeninhalt beträgt also **16 Flächeneinheiten**.

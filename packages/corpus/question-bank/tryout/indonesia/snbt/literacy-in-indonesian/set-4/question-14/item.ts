@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "coffee-plots",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Penyebutan *pemangku kepentingan* membuktikan rancangan sudah adil tanpa perlu memeriksa data pembanding atau masukan pengguna.",
+          label: "Kebun A",
         },
         {
           correct: false,
-          label:
-            "Definisi itu membatasi *pemangku kepentingan* pada kebutuhan kelompok terbanyak sehingga variasi kebutuhan lain dapat diabaikan.",
+          label: "Kebun B",
         },
         {
           correct: false,
-          label:
-            "Istilah *pemangku kepentingan* menggantikan konsultasi pihak terdampak dengan satu label yang langsung menentukan keputusan.",
+          label: "Kebun C",
         },
         {
           correct: true,
-          label:
-            "Definisi *pemangku kepentingan* menjelaskan alasan orang tua, pedagang, pengelola pasar, dan petugas kebersihan dilibatkan ketika data penunjuk arah dibahas.",
+          label: "Kebun D",
         },
         {
           correct: false,
-          label:
-            "Definisi tersebut menjelaskan keterbatasan masa uji, bukan kriteria yang dipakai untuk membaca rancangan.",
+          label: "Kebun A dan Kebun D sama besarnya",
         },
       ],
     },

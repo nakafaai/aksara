@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "quantitative-reasoning",
+    topic: "tiered-rate",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\frac1{42}$$",
+          column: 1,
+          label:
+            "Pemakaian $$18$$ m³ dalam sebulan ditagih $$\\text{Rp}63{.}000$$.",
         },
         {
-          correct: true,
-          label: "$$\\frac2{63}$$",
+          column: 2,
+          label:
+            "Untuk pemakaian $$25$$ m³, rata-rata biaya per m³ (termasuk biaya beban) kurang dari $$\\text{Rp}3{.}500$$.",
         },
         {
-          correct: false,
-          label: "$$\\frac1{28}$$",
+          column: 1,
+          label:
+            "Tagihan untuk pemakaian $$20$$ m³ tepat dua kali tagihan untuk pemakaian $$10$$ m³.",
         },
         {
-          correct: false,
-          label: "$$\\frac1{21}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac1{18}$$",
+          column: 2,
+          label:
+            "Pelanggan dengan tagihan $$\\text{Rp}50{.}000$$ memakai lebih dari $$15$$ m³ air.",
         },
       ],
     },

@@ -1,35 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "text-comparison",
+  },
+  stimulus: "recorded-lectures",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Slogan pada lima poster membuktikan bahwa pameran dapat diakses setiap keluarga di seluruh kota yang disinggahi.",
+          label: "perlu tidaknya mahasiswa mengikuti ujian di akhir semester",
+        },
+        {
+          correct: false,
+          label: "apakah dosen sebaiknya berbicara lebih lama di dalam kelas",
         },
         {
           correct: false,
           label:
-            "Sebanyak $$64$$ komentar positif dari $$240$$ catatan membuktikan bahwa sebagian besar seluruh pengunjung mudah mengikuti demonstrasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Adanya $$31$$ komentar tentang bahasa teknis membuktikan bahwa pesan inklusif pada poster sengaja dibuat tidak jujur.",
-        },
-        {
-          correct: false,
-          label:
-            "Delapan belas catatan tentang akses kursi roda mewakili pengalaman semua pengguna kursi roda di lima kota.",
+            "perlu tidaknya mahasiswa yang bekerja paruh waktu mendapat beasiswa kuliah dari kampus",
         },
         {
           correct: true,
           label:
-            "Penyelenggara menampilkan pameran sebagai kegiatan untuk setiap keluarga, tetapi catatan sukarela dari dua kota menunjukkan bahwa sebagian catatan melaporkan hambatan bahasa teknis dan akses.",
+            "apakah rekaman sebaiknya menggantikan ceramah di kelas atau melengkapinya",
+        },
+        {
+          correct: false,
+          label:
+            "mungkin tidaknya diskusi dilakukan di kelas yang sangat besar",
         },
       ],
     },

@@ -1,30 +1,28 @@
-The perimeter adds **all four sides of the rectangle**. The two lengths are equal, as are the two widths.
+The sign of <InlineMath math="x+1" /> is not known, so you **must not multiply both sides by <InlineMath math="x+1" /> straight away**. Move every term to one side and examine the sign of the resulting fraction.
 
-Let <InlineMath math="K,p,l" /> be the numerical values of the perimeter, length, and width in centimetres.
+# Forming a single fraction
 
-<MathVisual
- title="Pairs of rectangle sides"
- description="The sketch is not to scale. Each measurement in centimetres occurs twice in the perimeter because opposite sides are equal."
- scene={{space:"plane",frame:{kind:"cartesian",x:{min:-1,max:7},y:{min:-1,max:4}},view:{kind:"fit",padding:0.2},objects:[{id:"rectangle",kind:"polygon",appearance:"primary",vertices:[{x:0,y:0},{x:6,y:0},{x:6,y:3},{x:0,y:3}]}],labels:[{key:"length",objectId:"rectangle",at:{x:3,y:0},placement:"below"},{key:"width",objectId:"rectangle",at:{x:6,y:1.5},placement:"right"}]}}
- labels={{length:<InlineMath math="8y+5" />,width:<InlineMath math="6y+1" />}}
-/>
+<BlockMath math="\begin{aligned}
+\frac{x-3}{x+1}-2&\ge0\\
+\frac{x-3-2(x+1)}{x+1}&\ge0\\
+\frac{-x-5}{x+1}&\ge0\\
+\frac{x+5}{x+1}&\le0
+\end{aligned}" />
 
-The formula for the perimeter of a rectangle is <InlineMath math="K = 2(p + l)" />. We substitute the known values into the formula.
+The last line multiplies by <InlineMath math="-1" />, so **the inequality sign flips**.
 
-<BlockMath math="x = 2((8y + 5) + (6y + 1))" />
+# Checking the signs
 
-<BlockMath math="x = 2(14y + 6)" />
+The numerator is zero at <InlineMath math="x=-5" />, and the denominator is zero at <InlineMath math="x=-1" />.
 
-<BlockMath math="x = 28y + 12" />
+| Interval | Sign of <InlineMath math="x+5" /> | Sign of <InlineMath math="x+1" /> | Sign of the fraction |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="x<-5" /> | negative | negative | positive |
+| <InlineMath math="-5<x<-1" /> | positive | negative | negative |
+| <InlineMath math="x>-1" /> | positive | positive | positive |
 
-Next, we rearrange the equation to solve for <InlineMath math="y" />.
+The fraction is negative on <InlineMath math="-5<x<-1" /> and zero at <InlineMath math="x=-5" />. The point <InlineMath math="x=-1" /> is **excluded** because the denominator is zero there. Check <InlineMath math="x=-3" />: <InlineMath math="\frac{-6}{-2}=3\ge2" />.
 
-<BlockMath math="28y = x - 12" />
+The set <InlineMath math="x\le-5" /> appears when both sides are multiplied by <InlineMath math="x+1" /> as if it were positive. The set with <InlineMath math="-5<x" /> drops <InlineMath math="x=-5" />, although the left side is exactly 2 there. The set with <InlineMath math="x\le-1" /> includes the point where the denominator is zero. The set <InlineMath math="x\le-5" /> or <InlineMath math="x>-1" /> is the region with the opposite sign.
 
-<BlockMath math="y = \frac{x - 12}{28}" />
-
-<BlockMath math="y = \frac{x}{28} - \frac{12}{28}" />
-
-<BlockMath math="y = \frac{x}{28} - \frac{3}{7}" />
-
-Thus, the dimensionless value of <InlineMath math="y" /> is <InlineMath math="\frac{x}{28} - \frac{3}{7}" />.
+So the solution set is <InlineMath math="\{x\mid -5\le x<-1\}" />.

@@ -1,30 +1,65 @@
-We are asked to find the interval of <InlineMath math="x" /> values where the function value <InlineMath math="f(x)" /> is **greater than or equal to** <InlineMath math="5" /> (<InlineMath math="f(x) \geq 5" />).
+Call the centers <InlineMath math="A" /> and <InlineMath math="B" />, and the intersection points <InlineMath math="P" /> and <InlineMath math="Q" />. The chord <InlineMath math="PQ" /> splits the overlap into **two equal circular segments**, one from each circle.
 
-Check each part of the function one by one:
-
-| Interval | Function value | Check | Satisfies |
-| --- | --- | --- | --- |
-| <InlineMath math="[0,2)" /> | <InlineMath math="3" /> | <InlineMath math="3 < 5" /> | No |
-| <InlineMath math="[2,5)" /> | <InlineMath math="5" /> | <InlineMath math="5 \ge5" /> | Yes |
-| <InlineMath math="[5,8)" /> | <InlineMath math="7" /> | <InlineMath math="7 \ge5" /> | Yes |
-| <InlineMath math="[8,10)" /> | <InlineMath math="9" /> | <InlineMath math="9 \ge5" /> | Yes |
-
-# Combining Intervals
-
-We combine all intervals that satisfy the condition:
-
-<BlockMath math="[2, 5) \cup [5, 8) \cup [8, 10)" />
-
-The intervals meet at <InlineMath math="5" /> and <InlineMath math="8" />. Each joining point belongs to the next interval, so **there is no gap**. The three intervals therefore form one interval.
-
-<BlockMath math="[2, 10)" />
-
-Thus, the interval of <InlineMath math="x" /> values that satisfies the condition is <InlineMath math="x \in [2, 10)" />.
-
-<NumberLine
- title="Union of the Valid Intervals"
- description="The point 2 is included because f(2)=5. The point 10 is excluded because the function is undefined there."
- min={0}
- max={11}
- segments={[{start:2,end:10,startInclusive:true,endInclusive:false,shaded:true,showPoints:true,startLabel:<InlineMath math="2" />,endLabel:<InlineMath math="10" />} ]}
+<MathVisual
+  title={<>Overlap of two circles</>}
+  description={<>The centers <InlineMath math="A" /> and <InlineMath math="B" /> are 4 cm apart. The intersection points <InlineMath math="P" /> and <InlineMath math="Q" /> form two equilateral triangles with the centers, and the chord <InlineMath math="PQ" /> splits the overlap into two equal segments.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 9 },
+      y: { min: -5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.12 },
+    objects: [
+      { id: "circle-left", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "circle-right", kind: "circle", appearance: "secondary", center: { x: 4, y: 0 }, radius: 4 },
+      {
+        id: "rhombus",
+        kind: "polygon",
+        appearance: "construction",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 2, y: 2 * Math.sqrt(3) },
+          { x: 4, y: 0 },
+          { x: 2, y: -2 * Math.sqrt(3) },
+        ],
+      },
+      { id: "chord-pq", kind: "segment", appearance: "highlight", from: { x: 2, y: 2 * Math.sqrt(3) }, to: { x: 2, y: -2 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "a", objectId: "circle-left", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "b", objectId: "circle-right", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "p", objectId: "chord-pq", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "above" },
+      { key: "q", objectId: "chord-pq", at: { x: 2, y: -2 * Math.sqrt(3) }, placement: "below" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+  }}
 />
+
+# The central angle of each segment
+
+The lengths <InlineMath math="AB" />, <InlineMath math="AP" />, and <InlineMath math="BP" /> are all 4 cm, because each circle passes through the other center. So triangle <InlineMath math="ABP" /> is **equilateral** and angle <InlineMath math="PAB=60^\circ" />. The same argument for <InlineMath math="Q" /> gives the central angle <InlineMath math="PAQ=120^\circ" />.
+
+# The area of one segment
+
+A segment is a sector minus triangle <InlineMath math="APQ" />.
+
+<BlockMath math="\begin{aligned}
+A_{\text{sector}}&=\frac{120^\circ}{360^\circ}\cdot\pi\cdot4^2=\frac{16\pi}{3}\\
+A_{\triangle APQ}&=\tfrac12\cdot4\cdot4\cdot\sin120^\circ=4\sqrt3\\
+A_{\text{segment}}&=\frac{16\pi}{3}-4\sqrt3
+\end{aligned}" />
+
+The overlap consists of **two segments**.
+
+<BlockMath math="A=2\left(\frac{16\pi}{3}-4\sqrt3\right)=\frac{32\pi}{3}-8\sqrt3" />
+
+The option <InlineMath math="\frac{16\pi}{3}-4\sqrt3" /> counts only one segment. The option <InlineMath math="\frac{32\pi}{3}-4\sqrt3" /> doubles the sector but subtracts only one triangle. The options <InlineMath math="\frac{32\pi}{3}-16\sqrt3" /> and <InlineMath math="\frac{16\pi}{3}-8\sqrt3" /> subtract the rhombus <InlineMath math="APBQ" /> from each sector, although only triangle <InlineMath math="APQ" /> should be subtracted.
+
+So the area of the overlap is **<InlineMath math="\left(\frac{32\pi}{3}-8\sqrt3\right)\text{ cm}^2" />**.

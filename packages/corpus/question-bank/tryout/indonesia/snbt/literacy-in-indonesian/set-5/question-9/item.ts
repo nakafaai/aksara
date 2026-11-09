@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "assumption",
+  },
+  stimulus: "social-media-age",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Definisi *rangkaian tertutup* membuktikan bahwa hasil model selalu sama dengan keadaan nyata.",
+            "remaja akan selalu jujur tentang usianya ketika membuat akun di platform besar",
         },
         {
           correct: true,
           label:
-            "Definisi *rangkaian tertutup* menghubungkan proses pada model dengan proses yang diwakilinya sehingga kegunaan model dapat dibedakan dari batas penerapannya.",
+            "rancangan platform, bukan hanya usia pengguna, ikut menentukan bahaya bagi remaja",
         },
         {
           correct: false,
           label:
-            "Definisi itu menjadikan *rangkaian tertutup* nama untuk seluruh alat, bukan proses tertentu yang disimulasikan.",
+            "orang dewasa tidak boleh lagi memilih beranda yang disusun oleh algoritma",
         },
         {
           correct: false,
           label:
-            "Istilah *rangkaian tertutup* menghapus keterbatasan representasi karena prosesnya dapat diulang di kelas.",
+            "perundungan daring hanya terjadi pada akun media sosial yang bersifat publik",
         },
         {
           correct: false,
           label:
-            "Definisi tersebut hanya menjelaskan bahan pembuat model dan tidak berhubungan dengan proses yang diamati.",
+            "platform kecil tanpa tim moderasi kemungkinan akan ditutup oleh negara",
         },
       ],
     },

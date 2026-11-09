@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "cause",
+  },
+  stimulus: "tenun",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Aturan pengodean yang sama diterapkan pada setiap kelompok dan setiap waktu pengukuran.",
-        },
-        {
-          correct: false,
-          label:
-            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Dua sensor merekam kejadian pada selang waktu yang sama, bukan secara bergantian.",
-        },
-        {
           correct: true,
-          label:
-            "Nilai pengukuran berulang tetap berada dalam rentang sempit meskipun waktu pengambilan berbeda.",
+          label: "agar bagian itu tidak menyerap pewarna",
         },
         {
           correct: false,
-          label:
-            "Metode menyediakan beberapa jalur pelaksanaan yang tetap tunduk pada kriteria hasil yang sama.",
+          label: "agar benang tidak putus ketika ditenun menjadi kain",
+        },
+        {
+          correct: false,
+          label: "agar warna pada benang lebih cepat kering",
+        },
+        {
+          correct: false,
+          label: "agar benang lebih mudah dibentangkan pada bingkai",
+        },
+        {
+          correct: false,
+          label: "agar motif kain tidak dapat ditiru oleh orang lain",
         },
       ],
     },

@@ -1,55 +1,23 @@
-Sei <InlineMath math="x" /> der Abstand vom Mastfuß zum Anker des <InlineMath math="25" />-Meter-Seils. Der **andere Abstand** ist <InlineMath math="17-x" />. Mit der Masthöhe <InlineMath math="h" /> gilt
+Jede Aussage verlangt **eine andere Auswertung der Daten**: eine Summe, ein Verhältnis, aufeinanderfolgende Differenzen und das Zählen von Werten mit einer Bedingung.
 
-<BlockMath math="x^2+h^2=25^2" />
+# Summen und Verhältnis
 
-<BlockMath math="(17-x)^2+h^2=26^2" />
+Die ersten sechs Monate ergeben <InlineMath math="310+280+250+190+120+80=1\,230" /> mm, die letzten sechs <InlineMath math="50+40+70+140+230+340=870" /> mm. **Sie sind nicht gleich**, die erste Aussage ist also falsch.
 
-Subtraktion der ersten Gleichung von der zweiten ergibt <InlineMath math="(17-x)^2-x^2=26^2-25^2\Rightarrow289-34x=51" />, also <InlineMath math="x=\frac{289-51}{34}=7" />. Damit gilt <InlineMath math="h^2=625-49=576" /> und <InlineMath math="h=24" /> Meter.
+Dezember im Verhältnis zu August ist <InlineMath math="\tfrac{340}{40}=8{,}5" />, mehr als 8. Die zweite Aussage ist wahr.
 
-<MathVisual
-  title="Mast und Halteseile"
-  description="Ein senkrechter Mast mit zwei Halteseilen und Bodenankern auf gegenüberliegenden Seiten des ebenen Bodens."
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -8, max: 11 },
-      y: { min: -1, max: 25 },
-    },
-    view: { kind: "fit", padding: 0.75 },
-    objects: [
-      {
-        id: "ground",
-        kind: "segment",
-        appearance: "reference",
-        from: { x: -7, y: 0 },
-        to: { x: 10, y: 0 },
-      },
-      {
-        id: "pole",
-        kind: "segment",
-        appearance: "primary",
-        from: { x: 0, y: 0 },
-        to: { x: 0, y: 24 },
-      },
-      {
-        id: "left-cable",
-        kind: "segment",
-        appearance: "secondary",
-        from: { x: -7, y: 0 },
-        to: { x: 0, y: 24 },
-      },
-      {
-        id: "right-cable",
-        kind: "segment",
-        appearance: "secondary",
-        from: { x: 0, y: 24 },
-        to: { x: 10, y: 0 },
-      },
-      { id: "left-anchor", kind: "point", appearance: "highlight", at: { x: -7, y: 0 } },
-      { id: "pole-base", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
-      { id: "pole-top", kind: "point", appearance: "highlight", at: { x: 0, y: 24 } },
-      { id: "right-anchor", kind: "point", appearance: "highlight", at: { x: 10, y: 0 } },
-    ],
-  }}
-/>
+# Aufeinanderfolgende Rückgänge
+
+| Von bis | Rückgang |
+| :--- | :---: |
+| März bis April | 60 mm |
+| April bis Mai | 70 mm |
+| Mai bis Juni | 40 mm |
+
+Die übrigen Rückgänge von Januar bis August betragen höchstens 30 mm. **Der größte Rückgang liegt zwischen April und Mai**, die dritte Aussage ist also falsch.
+
+# Nasse und trockene Monate
+
+Nasse Monate sind Januar, Februar, März, April, Mai, Oktober, November und Dezember, also 8 Monate. Trocken sind nur Juli und August, also 2 Monate. Da 8 mehr als <InlineMath math="2\cdot2=4" /> ist, ist die vierte Aussage wahr.
+
+Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **falsch** und die vierte **wahr**.

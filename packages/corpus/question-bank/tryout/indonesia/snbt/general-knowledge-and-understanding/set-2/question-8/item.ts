@@ -1,31 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "sentence-relation",
+  },
+  stimulus: "bakau",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Kalimat (7) dan (8) membantah isi kalimat (6).",
+        },
+        {
+          correct: false,
+          label:
+            "Kalimat (7) dan (8) memberikan definisi istilah dalam kalimat (6).",
+        },
+        {
+          correct: false,
+          label: "Kalimat (7) dan (8) menyebutkan penyebab mangrove ditebang.",
+        },
+        {
           correct: true,
           label:
-            "kemampuan mencerna laktosa berbeda, dan kadar laktase rendah dapat menyebabkan malabsorpsi.",
+            "Kalimat (7) dan (8) menjelaskan akibat dari keadaan pada kalimat (6).",
         },
         {
           correct: false,
-          label: "zat gizi yang disediakan susu dan produk olahannya.",
-        },
-        {
-          correct: false,
-          label:
-            "setiap orang harus mengonsumsi produk susu dalam jumlah yang sama.",
-        },
-        {
-          correct: false,
-          label: "laktase mengubah laktosa menjadi gas di usus besar.",
-        },
-        {
-          correct: false,
-          label: "produk susu fermentasi selalu bebas laktosa.",
+          label: "Kalimat (7) dan (8) membandingkan tambak dengan permukiman.",
         },
       ],
     },

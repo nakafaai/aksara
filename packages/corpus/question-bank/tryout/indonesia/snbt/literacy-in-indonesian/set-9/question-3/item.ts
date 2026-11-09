@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
+  },
+  stimulus: "peat-fire",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Air dari udara menguap sebelum sampai ke permukaan tanah gambut.",
+        },
+        {
+          correct: false,
+          label:
+            "Pesawat penyiram air hanya dapat terbang ketika tidak ada asap.",
+        },
+        {
+          correct: false,
+          label:
+            "Air justru menjadikan gambut lebih ringan dan lebih mudah terbakar.",
+        },
+        {
+          correct: false,
+          label:
+            "Siraman air dari udara baru dilakukan setelah kebakaran berlangsung berbulan-bulan.",
+        },
+        {
           correct: true,
           label:
-            "Mengacak urutan pemasangan panel, mengulang nada pada beberapa posisi mikrofon dan beberapa ruang, lalu membandingkan tingkat bunyi serta waktu dengung pada setiap kondisi.",
-        },
-        {
-          correct: false,
-          label:
-            "Menambah jumlah panel sambil menaikkan volume pengeras suara agar selisih desibel lebih besar dan lebih mudah terlihat.",
-        },
-        {
-          correct: false,
-          label:
-            "Memilih hanya posisi mikrofon yang menghasilkan penurunan terbesar, kemudian mengulang pengukuran pada posisi tersebut.",
-        },
-        {
-          correct: false,
-          label:
-            "Mengganti tiga nada uji dengan musik yang berbeda pada setiap kondisi tanpa mencatat tingkat bunyi awalnya.",
-        },
-        {
-          correct: false,
-          label:
-            "Menanyakan pendapat pendengar tentang kenyamanan ruang tanpa mengulang pengukuran akustik yang menjadi dasar dugaan.",
+            "Bara yang menjalar di bawah tanah tetap menyala walaupun permukaannya padam.",
         },
       ],
     },

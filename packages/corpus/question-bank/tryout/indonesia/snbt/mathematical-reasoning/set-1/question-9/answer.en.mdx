@@ -1,92 +1,15 @@
-We seek values of <InlineMath math="x" /> for which **length, width, and height are all positive**. A zero edge would flatten the box, and a negative length cannot measure an edge.
+The median is the value between the 20th and 21st of the 40 sorted values, **the point that splits the data into two equal halves**. For grouped data, find its class and then estimate it by interpolation.
 
-# Determining Cuboid Dimensions
+# Finding the median class
 
-Use **the base perimeter** to derive the length without relying on another question. All dimensions below are in centimeters.
+Add the frequencies from the lowest class: 4, then <InlineMath math="4+10=14" />, then <InlineMath math="14+15=29" />. The 20th value lies **in the class 20-29**, because 14 values come before that class.
 
-<BlockMath math="\begin{aligned}
-2(p+l)&=6x \\
-p&=3x-l \\
-&=3x-(4x-5)=5-x
-\end{aligned}" />
+# Interpolating inside the class
 
-- Length (<InlineMath math="p" />) is <InlineMath math="5 - x" />
-- Width (<InlineMath math="l" />) is <InlineMath math="4x - 5" />
-- Height (<InlineMath math="t" />) is <InlineMath math="5 - \frac{1}{3}x" />
+The class 20-29 has lower boundary 19.5, width 10 and 15 values. We need <InlineMath math="20-14=6" /> more values from that class.
 
-# Positive Dimension Conditions
+<BlockMath math="\text{Me}=19.5+\frac{20-14}{15}\cdot10=19.5+4=23.5" />
 
-For a nondegenerate box, **every edge dimension must be positive** (<InlineMath math=">0" />).
+The result does lie between 19.5 and 29.5, matching the median class.
 
-**Condition 1: <InlineMath math="p > 0" />**
-
-<BlockMath math="p > 0" />
-
-<BlockMath math="5 - x > 0" />
-
-<BlockMath math="5 > x" />
-
-<BlockMath math="x < 5" />
-
-**Condition 2: <InlineMath math="l > 0" />**
-
-<BlockMath math="l > 0" />
-
-<BlockMath math="4x - 5 > 0" />
-
-<BlockMath math="4x > 5" />
-
-<BlockMath math="x > \frac{5}{4}" />
-
-**Condition 3: <InlineMath math="t > 0" />**
-
-<BlockMath math="t > 0" />
-
-<BlockMath math="5 - \frac{1}{3}x > 0" />
-
-<BlockMath math="5 > \frac{1}{3}x" />
-
-<BlockMath math="15 > x" />
-
-<BlockMath math="x < 15" />
-
-# Determining Set Intersection
-
-Find **the intersection of all three conditions**, so every condition holds at once:
-1. <InlineMath math="x < 5" />
-2. <InlineMath math="x > \frac{5}{4}" /> (or <InlineMath math="1.25" />)
-3. <InlineMath math="x < 15" />
-
-From conditions 1 and 3, we take the stricter one, which is <InlineMath math="x < 5" />. Combined with condition 2, we get the range:
-
-<BlockMath math="\frac{5}{4} < x < 5" />
-
-<NumberLine
-  title={<>Solution set <InlineMath math="A" /></>}
-  description={<>The intersection of all positive dimension conditions is <InlineMath math="\frac{5}{4} < x < 5" />.</>}
-  segments={[
-    {
-      end: 1.25,
-      backgroundColor: "transparent"
-    },
-    {
-      start: 1.25,
-      end: 5,
-      label: <InlineMath math="A" />,
-      startLabel: <InlineMath math="\frac{5}{4}" />,
-      endLabel: <InlineMath math="5" />,
-      startInclusive: false,
-      endInclusive: false
-    },
-    {
-      start: 5,
-      backgroundColor: "transparent"
-    }
-  ]}
-/>
-
-So, the set <InlineMath math="A" /> is:
-
-<BlockMath math="A=\left\{x\in\mathbb R\mid\frac54<x<5\right\}" />
-
-Both endpoints are excluded. At <InlineMath math="x=5/4" />, the width is zero. At <InlineMath math="x=5" />, the length is zero. That is why the number line has open endpoints.
+So the median travel time is **23.5 minutes**.

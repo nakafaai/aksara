@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "argument-evaluation",
+  },
+  stimulus: "suspension-bridge",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Data dikumpulkan di lokakarya kompos dan kemudian dibandingkan.",
+            "Curah hujan dan derasnya arus sungai pada musim hujan tahun ini sama dengan tahun-tahun sebelumnya.",
         },
         {
           correct: false,
           label:
-            "Data di kumpulkan di lokakarya kompos dan kemudian dibandingkan.",
+            "Pada tahun yang sama, sekolah mulai menyediakan bus antarjemput bagi murid dari Kampung Lebak Muncang.",
         },
         {
           correct: false,
           label:
-            "Data dikumpulkan didepan lokakarya kompos dan kemudian dibandingkan.",
+            "Jembatan gantung itu dicat dengan warna cerah agar mudah terlihat dari jauh.",
         },
         {
           correct: false,
           label:
-            "Data mengumpulkan di lokakarya kompos dan kemudian membandingkan.",
+            "Insinyur yang membantu warga pernah membangun jembatan di daerah lain.",
         },
         {
           correct: false,
           label:
-            "Data dikumpulkan pada di lokakarya kompos lalu di bandingkan.",
+            "Jumlah murid dari kampung lain yang tidak masuk sekolah pada musim hujan juga turun tajam tahun ini.",
         },
       ],
     },

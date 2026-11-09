@@ -1,31 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "conclusion",
+  },
+  stimulus: "pasar",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Deforestasi dapat membuat tanah lebih rentan terhadap erosi",
+          label:
+            "Renovasi Pasar Cendana mendatangkan tepat 600 pembeli baru ke kawasan itu setiap hari.",
+        },
+        {
+          correct: false,
+          label:
+            "Pedagang di Pasar Kenari menaikkan harga dagangannya setelah Pasar Cendana direnovasi.",
         },
         {
           correct: true,
           label:
-            "Deforestasi saja menghasilkan hampir seluruh emisi gas rumah kaca akibat aktivitas manusia pada $$2019$$",
+            "Sebagian kenaikan pengunjung Pasar Cendana mungkin berasal dari Pasar Kenari.",
         },
         {
           correct: false,
           label:
-            "Masyarakat yang menggunakan kayu bakar menjadi salah satu yang terdampak deforestasi",
+            "Jumlah pengunjung kedua pasar bersama-sama naik lebih dari dua kali lipat setelah renovasi.",
         },
         {
           correct: false,
-          label: "Deforestasi mengancam habitat satwa liar",
-        },
-        {
-          correct: false,
-          label: "Sektor penggunaan lahan mencakup lebih dari deforestasi saja",
+          label:
+            "Renovasi tidak berpengaruh apa pun terhadap jumlah pengunjung di kedua pasar itu.",
         },
       ],
     },

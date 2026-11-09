@@ -1,95 +1,26 @@
-Given that the perimeter of rhombus <InlineMath math="PQRS" /> is <InlineMath math="20\text{ units}" />, the length of each side is
+The inequality <InlineMath math="\lvert A\rvert<B" /> is equivalent to <InlineMath math="-B<A<B" />. This form also forces <InlineMath math="B>0" />, so **both bounds must hold at the same time**.
 
-<BlockMath math="\begin{aligned}PQ&=\frac{20}{4}\\&=5 \text{ units}\end{aligned}" />
+# Solving both bounds
 
-The diagonals of a rhombus **bisect each other at right angles**. The midpoint of <InlineMath math="PR" /> is <InlineMath math="O(4,0)" />, so <InlineMath math="PO=4" />. In right triangle <InlineMath math="POQ" />, the hypotenuse is <InlineMath math="PQ=5" />.
+With <InlineMath math="A=2x-5" /> and <InlineMath math="B=x+1" />, the inequality becomes
 
-<BlockMath math="OQ=\sqrt{PQ^2-PO^2}=\sqrt{5^2-4^2}=\sqrt9=3" />
+<BlockMath math="-(x+1)<2x-5<x+1" />
 
-Since <InlineMath math="Q" /> lies above the horizontal axis, its coordinates are <InlineMath math="Q(4,3)" />. The opposite point is <InlineMath math="S(4,-3)" />.
+Solve the right bound and the left bound separately.
 
-Calculate the slope of line <InlineMath math="PS" />
+<BlockMath math="\begin{aligned}
+2x-5&<x+1 &&\Rightarrow\quad x<6\\
+2x-5&>-x-1 &&\Rightarrow\quad 3x>4 \quad\Rightarrow\quad x>\tfrac43
+\end{aligned}" />
 
-<BlockMath math="m = \frac{y_2 - y_1}{x_2 - x_1}" />
+**The intersection of the two bounds** is <InlineMath math="\tfrac43<x<6" />. On this interval <InlineMath math="x+1>0" />, so the condition <InlineMath math="B>0" /> holds automatically.
 
-With <InlineMath math="P(0, 0)" /> and <InlineMath math="S(4, -3)" />
+# Adding the integers
 
-<BlockMath math="m_{PS} = \frac{-3 - 0}{4 - 0}" />
+The integers in <InlineMath math="\tfrac43<x<6" /> are 2, 3, 4, and 5. **Check the endpoints**: <InlineMath math="x=5" /> gives <InlineMath math="5<6" />, while <InlineMath math="x=6" /> gives the false statement <InlineMath math="7<7" />, and <InlineMath math="x=1" /> gives the false statement <InlineMath math="3<2" />.
 
-<BlockMath math="m_{PS} = \frac{-3}{4}" />
+<BlockMath math="2+3+4+5=14" />
 
-<BlockMath math="m_{PS} = -\frac{3}{4}" />
+The value 12 uses only the case <InlineMath math="2x-5\ge0" />, so it loses <InlineMath math="x=2" />. The value 15 rounds the bound <InlineMath math="\tfrac43" /> down and includes <InlineMath math="x=1" />. The value 20 includes <InlineMath math="x=6" />, although the sign is strictly less than. The value 21 makes both of these mistakes.
 
-Since the line we're looking for is perpendicular to <InlineMath math="PS" />, then
-
-<BlockMath math="m_1 \cdot m_2 = -1" />
-
-<BlockMath math="-\frac{3}{4} \cdot m_2 = -1" />
-
-<BlockMath math="m_2 = \frac{-1}{-\frac{3}{4}} = \frac{4}{3}" />
-
-So the slope of the line passing through <InlineMath math="Q" /> and perpendicular to <InlineMath math="PS" /> is <InlineMath math="m = \frac{4}{3}" />.
-
-Use **point-slope form** with <InlineMath math="Q(4,3)" /> to determine the required line:
-
-<BlockMath math="\begin{aligned}y-3&=\frac43(x-4)\\3y-9&=4x-16\\4x-3y&=7\end{aligned}" />
-
-<MathVisual
-  title="Line Perpendicular to the Segment"
-  description={<>Visualization of line <InlineMath math="PS" /> and the line passing through <InlineMath math="Q" /> that is perpendicular to <InlineMath math="PS" />.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 9 },
-      y: { min: -4, max: 7 },
-    },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      {
-        id: "rhombus-pqrs",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 4, y: 3 },
-          { x: 8, y: 0 },
-          { x: 4, y: -3 },
-        ],
-      },
-      {
-        id: "perpendicular-line",
-        kind: "line",
-        appearance: "secondary",
-        through: [
-          { x: 1, y: -1 },
-          { x: 7, y: 7 },
-        ],
-      },
-    ],
-    labels: [
-      { key: "point-p", objectId: "rhombus-pqrs", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "point-q", objectId: "rhombus-pqrs", at: { x: 4, y: 3 }, placement: "above-left" },
-      { key: "point-r", objectId: "rhombus-pqrs", at: { x: 8, y: 0 }, placement: "below-right" },
-      { key: "point-s", objectId: "rhombus-pqrs", at: { x: 4, y: -3 }, placement: "below" },
-      { key: "line-equation", objectId: "perpendicular-line", at: { x: 5.5, y: 5 }, placement: "below-right" },
-    ],
-  }}
-  labels={{
-    "point-p": <><InlineMath math="P(0,0)" /></>,
-    "point-q": <><InlineMath math="Q(4,3)" /></>,
-    "point-r": <><InlineMath math="R(8,0)" /></>,
-    "point-s": <><InlineMath math="S(4,-3)" /></>,
-    "line-equation": <><InlineMath math="4x-3y=7" /></>,
-  }}
-/>
-
-Option <InlineMath math="4x - 3y = 7" /> has slope
-
-<BlockMath math="m = -\frac{4}{-3} = \frac{4}{3}" />
-
-Verify that this line passes through <InlineMath math="Q(4, 3)" />
-
-<BlockMath math="4(4) - 3(3) = 16 - 9 = 7" />
-
-Correct. Therefore, the equation of the line passing through <InlineMath math="Q" /> and perpendicular to <InlineMath math="PS" /> is <InlineMath math="4x - 3y = 7" />.
+So the sum of all integer solutions is **14**.

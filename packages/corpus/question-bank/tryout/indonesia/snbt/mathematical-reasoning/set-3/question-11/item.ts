@@ -1,29 +1,28 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "class-election",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\frac{5!}{2}$$",
+          column: 1,
+          label: "Tidak ada kandidat yang menang pada putaran pertama.",
         },
         {
-          correct: true,
-          label: "$$2(5!)$$",
+          column: 2,
+          label:
+            "Jika pada putaran kedua semua pemilih Citra memilih Bunga, semua pemilih Dimas memilih Andra, dan pemilih Andra serta Bunga tetap, Bunga menang.",
         },
         {
-          correct: false,
-          label: "$$5!$$",
+          column: 2,
+          label: "Andra memperoleh $$45\\%$$ suara sah pada putaran pertama.",
         },
         {
-          correct: false,
-          label: "$$2(6!)$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{7!}{2}$$",
+          column: 1,
+          label: "Kandidat yang maju ke putaran kedua adalah Andra dan Bunga.",
         },
       ],
     },

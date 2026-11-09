@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "figurative-language",
+  },
+  stimulus: "island-teacher",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Pengelola ruang laktasi di pasar menilai penunjuk arah dari tiga pintu pasar melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengelola ruang laktasi di pasar menilai penunjuk arah dari tiga pintu pasar melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengelola ruang laktasi di pasar menilai penunjuk arah dari tiga pintu pasar melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
-        },
-        {
           correct: true,
-          label:
-            "Pengelola ruang laktasi di pasar menilai penunjuk arah dari tiga pintu pasar melalui data pembanding dan masukan pihak terdampak.",
+          label: "Menggambarkan cuaca mendung yang menandai hari yang berat.",
+        },
+        {
+          correct: false,
+          label: "Menunjukkan bahwa pulau itu kaya akan tambang timah.",
         },
         {
           correct: false,
           label:
-            "Pengelola ruang laktasi di pasar menilai penunjuk arah dari tiga pintu pasar terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
+            "Menjelaskan bahwa kapal motor di dermaga itu terbuat dari logam timah.",
+        },
+        {
+          correct: false,
+          label: "Menandakan bahwa hari itu adalah hari libur sekolah.",
+        },
+        {
+          correct: false,
+          label: "Menggambarkan langit cerah yang cocok untuk berlayar.",
         },
       ],
     },

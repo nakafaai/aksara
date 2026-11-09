@@ -1,30 +1,22 @@
-Find the **water remaining after leakage** using the following data:
-- Initial water volume is <InlineMath math="86\text{ liters}" />.
-- Average leakage per hour (<InlineMath math="x" />) ranges from <InlineMath math="0.3" /> through <InlineMath math="0.7\text{ liters}" />, inclusive. Thus, <InlineMath math="0.3 \le x \le 0.7" />.
-- The observation time is from <InlineMath math="07.00" /> to <InlineMath math="11.00" />, which is <InlineMath math="4\text{ hours}" />.
+The two lines are parallel because the coefficients of <InlineMath math="x" /> and <InlineMath math="y" /> are proportional, <InlineMath math="3:4=6:8" />. The distance formula for parallel lines only works when **both equations use exactly the same coefficients**.
 
-We calculate the range of water leaked over <InlineMath math="4\text{ hours}" />:
+# Matching the coefficients
 
-<BlockMath math="4(0.3) \le 4x \le 4(0.7)" />
+Multiply the first equation by 2, **including its right-hand side**.
 
-<BlockMath math="1.2 \le 4x \le 2.8" />
+<BlockMath math="\begin{aligned}
+6x+8y-24&=0\\
+6x+8y+1&=0
+\end{aligned}" />
 
-So, the total water leaked ranges from <InlineMath math="1.2\text{ liters}" /> through <InlineMath math="2.8\text{ liters}" />.
+# The distance formula
 
-Next, we calculate the remaining water volume (<InlineMath math="Q" />) at <InlineMath math="11.00" />. The volume <InlineMath math="Q" /> is the initial volume minus the total leakage:
+For the lines <InlineMath math="ax+by+c_1=0" /> and <InlineMath math="ax+by+c_2=0" />, the distance is **the difference of the constants divided by the length of the normal vector**.
 
-<BlockMath math="Q = 86 - 4x" />
+<BlockMath math="d=\frac{\lvert c_1-c_2\rvert}{\sqrt{a^2+b^2}}=\frac{\lvert-24-1\rvert}{\sqrt{6^2+8^2}}=\frac{25}{10}=2.5" />
 
-Since the total leakage is between <InlineMath math="1.2" /> and <InlineMath math="2.8\text{ liters}" />, the range for <InlineMath math="Q" /> is:
-- Lower bound of <InlineMath math="Q" /> (maximum leakage): <InlineMath math="86 - 2.8 = 83.2\text{ liters}" />.
-- Upper bound of <InlineMath math="Q" /> (minimum leakage): <InlineMath math="86 - 1.2 = 84.8\text{ liters}" />.
+Check: the point <InlineMath math="(4,0)" /> lies on the first line, and its distance to the second line is <InlineMath math="\tfrac{\lvert6\cdot4+8\cdot0+1\rvert}{10}=\tfrac{25}{10}=2.5" />.
 
-Thus, <InlineMath math="83.2 \le Q \le 84.8" />.
+The value 1.3 doubles the coefficients but forgets to double the constant 12. The value 2.3 uses <InlineMath math="\lvert-24+1\rvert" /> because of a sign error. The value 2.4 is the distance from the origin to the first line. The value 2.2 divides <InlineMath math="\lvert12-1\rvert" /> by 5 without matching the coefficients.
 
-Now we compare <InlineMath math="P" /> and <InlineMath math="Q" />:
-- <InlineMath math="P = 83.1\text{ liters}" />.
-- The minimum value of <InlineMath math="Q" /> is <InlineMath math="83.2\text{ liters}" />.
-
-Since <InlineMath math="83.1 < 83.2" />, the value of <InlineMath math="P" /> is always smaller than the minimum possible value of <InlineMath math="Q" />.
-
-Therefore, <InlineMath math="P < Q" />.
+So the distance between the lines is **2.5 units**.

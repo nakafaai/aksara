@@ -1,33 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "bayu",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Setiap perubahan dalam adaptasi pasti merusak tradisi.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Karena versi berbeda, kelompok tidak perlu menjelaskan sumber atau perubahan apa pun.",
+            "Turbin tidak menghasilkan listrik ketika angin bertiup terlalu lemah.",
         },
         {
-          correct: false,
-          label: "Naskah tertulis yang ditemukan diterbitkan pada 1970-an.",
-        },
-        {
-          correct: false,
+          column: 2,
           label:
-            "Kelompok akan mencantumkan sumber dan perubahan dramatik dalam catatan program.",
+            "Makin kencang angin bertiup, makin banyak listrik yang selalu dihasilkan turbin.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Kesetiaan terhadap tradisi dapat diwujudkan melalui keterbukaan proses, bukan hanya kesamaan kata.",
+            "Pembangkit tenaga bayu dapat mengurangi pemakaian bahan bakar oleh pembangkit lain.",
+        },
+        {
+          column: 2,
+          label:
+            "Pembangkit tenaga bayu di Sidenreng Rappang dibangun di tengah hutan yang lebat.",
         },
       ],
     },

@@ -1,32 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "disjunctive-syllogism",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Kedua indikator ekonomi tersebut meningkat.",
+          label:
+            "Rapat warga tetap diadakan di balai desa tanpa kursi tambahan.",
+        },
+        {
+          correct: false,
+          label: "Rapat warga dipindah ke balai desa sekaligus ditunda.",
         },
         {
           correct: true,
-          label:
-            "Kemiskinan desa dan ketimpangan desa-kota akan sama-sama meningkat.",
-        },
-        {
-          correct: false,
-          label: "Hanya upah riil buruh tani yang tidak meningkat.",
+          label: "Rapat warga ditunda.",
         },
         {
           correct: false,
           label:
-            "Kemiskinan desa dan ketimpangan desa-kota akan sama-sama menurun.",
+            "Kursi untuk rapat warga dipinjam dari tempat lain selain sekolah.",
         },
         {
           correct: false,
-          label:
-            "Model tersebut tidak memberikan simpulan tentang kemiskinan atau ketimpangan.",
+          label: "Rapat warga diadakan di tempat semula sesuai jadwal.",
         },
       ],
     },

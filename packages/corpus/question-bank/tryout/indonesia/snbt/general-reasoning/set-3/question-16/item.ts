@@ -1,33 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "grouping",
+  },
+  stimulus: "rak",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "Apel mengandung lemak lebih sedikit daripada bengkuang.",
+          column: 1,
+          label: "P berada di rak atas atau rak tengah.",
         },
         {
-          correct: false,
-          label:
-            "Bengkuang memberikan energi $$14\\,\\text{kkal}$$ lebih sedikit daripada apel.",
+          column: 2,
+          label: "Rak bawah selalu berisi Q.",
         },
         {
-          correct: false,
-          label:
-            "Bengkuang mengandung protein $$0{,}46\\,\\text{g}$$ lebih banyak daripada apel.",
+          column: 2,
+          label: "Jika N berada di rak tengah, Q berada di rak bawah.",
         },
         {
-          correct: false,
-          label:
-            "Kedua pangan mengandung protein kurang dari $$1\\,\\text{g}$$ per $$100\\,\\text{g}$$.",
-        },
-        {
-          correct: false,
-          label:
-            "Kedua pangan mengandung lemak kurang dari $$1\\,\\text{g}$$ per $$100\\,\\text{g}$$.",
+          column: 1,
+          label: "Jika K berada di rak atas, P berada di rak tengah.",
         },
       ],
     },

@@ -1,33 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "logical-equivalence",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Banyak siswa menyatakan bahwa pengingat membantu mereka mengingat tenggat.",
-        },
-        {
-          correct: false,
-          label:
-            "Kelas pembanding tanpa aplikasi tidak mengalami peningkatan pengumpulan tepat waktu.",
-        },
-        {
-          correct: false,
-          label:
-            "Sekolah menggunakan definisi “tepat waktu” yang sama pada kedua periode.",
+          label: "Rudi tidak lembur dan makan malam di rumah.",
         },
         {
           correct: true,
-          label:
-            "Pada minggu yang sama, tenggat pengumpulan diperpanjang dari pukul $$17.00$$ hingga tengah malam.",
+          label: "Rudi lembur atau makan malam di rumah.",
         },
         {
           correct: false,
-          label: "Aplikasi mengirim pengingat sehari sebelum setiap tenggat.",
+          label: "Jika Rudi lembur, ia tidak makan malam di rumah.",
+        },
+        {
+          correct: false,
+          label: "Jika Rudi makan malam di rumah, ia tidak lembur.",
+        },
+        {
+          correct: false,
+          label: "Rudi tidak lembur atau tidak makan malam di rumah.",
         },
       ],
     },

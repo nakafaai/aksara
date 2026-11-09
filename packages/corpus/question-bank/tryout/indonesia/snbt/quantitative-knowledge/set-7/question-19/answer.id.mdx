@@ -1,21 +1,23 @@
-Diberikan **rumus rekursif** untuk suatu barisan bilangan:
+Tiga siswa dipilih sekaligus tanpa memperhatikan urutan, jadi ruang sampelnya dihitung dengan **kombinasi**. Paling sedikit 2 perempuan berarti tepat 2 perempuan atau tepat 3 perempuan.
 
-<BlockMath math="a_n = a_{n+1} + 3a_{n+3}" />
+# Ruang sampel dan kejadian
 
-Diketahui pula <InlineMath math="a_1 = -1" /> dan <InlineMath math="a_2 = 2" />. Kita akan menentukan nilai <InlineMath math="a_4 + a_1" />.
+<BlockMath math="n(S)=\binom{10}{3}=120" />
 
-# Menentukan Nilai Suku Keempat
+Hitung **setiap kasus terpisah**, lalu jumlahkan karena kedua kasus tidak mungkin terjadi bersamaan.
 
-Untuk memperoleh **suku keempat**, substitusikan <InlineMath math="n = 1" /> ke rumus rekursif:
+<BlockMath math="\begin{aligned}
+\text{tepat 2 perempuan}&:\quad \binom42\binom61=6\cdot6=36\\
+\text{tepat 3 perempuan}&:\quad \binom43=4\\
+n(A)&=36+4=40
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned} a_1 &= a_{1+1} + 3a_{1+3} \\ a_1 &= a_2 + 3a_4 \end{aligned}" />
+# Peluang
 
-Selanjutnya, masukkan <InlineMath math="a_1 = -1" /> dan <InlineMath math="a_2 = 2" />:
+Peluang adalah **banyak hasil kejadian dibagi banyak hasil ruang sampel**.
 
-<BlockMath math="\begin{aligned} -1 &= 2 + 3a_4 \\ 3a_4 &= -1 - 2 \\ 3a_4 &= -3 \\ a_4 &= \frac{-3}{3} \\ a_4 &= -1 \end{aligned}" />
+<BlockMath math="P(A)=\frac{40}{120}=\frac13" />
 
-Karena <InlineMath math="a_4 = -1" />, nilai <InlineMath math="a_4 + a_1" /> dapat langsung dihitung:
+Nilai <InlineMath math="\tfrac{44}{125}" /> menganggap setiap pilihan bebas dengan peluang perempuan tetap <InlineMath math="\tfrac25" />, seolah-olah siswa yang sama bisa terpilih lagi. Nilai <InlineMath math="\tfrac23" /> adalah peluang kejadian sebaliknya, yaitu paling banyak 1 perempuan. Nilai <InlineMath math="\tfrac25" /> dan <InlineMath math="\tfrac35" /> adalah peluang satu siswa perempuan atau laki-laki pada satu kali pilih.
 
-<BlockMath math="\begin{aligned} a_4 + a_1 &= (-1) + (-1) \\ &= -2 \end{aligned}" />
-
-Jadi, nilai dari <InlineMath math="a_4 + a_1" /> adalah <InlineMath math="-2" />.
+Jadi, peluang terpilih paling sedikit 2 siswa perempuan adalah **<InlineMath math="\tfrac13" />**.

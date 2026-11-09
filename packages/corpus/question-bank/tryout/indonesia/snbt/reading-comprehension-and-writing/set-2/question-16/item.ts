@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "sleep-survey",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "bahkan.",
+          label: "$$18\\,\\%$$",
         },
         {
           correct: false,
-          label: "dan.",
-        },
-        {
-          correct: false,
-          label: "ketika.",
+          label: "$$42\\,\\%$$",
         },
         {
           correct: true,
-          label: "bahwa.",
+          label: "$$60\\,\\%$$",
         },
         {
           correct: false,
-          label: "jika.",
+          label: "$$70\\,\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$88\\,\\%$$",
         },
       ],
     },

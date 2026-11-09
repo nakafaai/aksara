@@ -1,13 +1,15 @@
-There are <InlineMath math="\binom{10}{2}=45" /> equally likely pairs of balls. The numbers of red-red, mixed-colour, and blue-blue pairs are respectively
+Split the problem into two steps: **count the numbers divisible by 4 or 6**, then **remove those also divisible by 5**.
 
-<BlockMath math="\begin{aligned} \binom42 &amp;=6 \\ 4\times6 &amp;=24 \\ \binom62 &amp;=15 \end{aligned}" />
+**Step 1** uses inclusion and exclusion. Numbers divisible by both <InlineMath math="4" /> and <InlineMath math="6" /> are multiples of their least common multiple, <InlineMath math="12" />, and must not be counted twice.
 
-Use thousand rupiah for every monetary amount. The expected prize payout before any fee refund is
+<BlockMath math="\left\lfloor\frac{200}{4}\right\rfloor+\left\lfloor\frac{200}{6}\right\rfloor-\left\lfloor\frac{200}{12}\right\rfloor=50+33-16=67" />
 
-<BlockMath math="\begin{aligned} E &amp;=30\times\frac6{45}+15\times\frac{24}{45} \\ &amp;=4+8=12 \end{aligned}" />
+**Step 2** counts the numbers among those <InlineMath math="67" /> that are also divisible by <InlineMath math="5" />. Numbers divisible by <InlineMath math="4" /> and <InlineMath math="5" /> are multiples of <InlineMath math="20" />, those divisible by <InlineMath math="6" /> and <InlineMath math="5" /> are multiples of <InlineMath math="30" />, and the overlap is the multiples of <InlineMath math="60" />.
 
-Let the entry fee be <InlineMath math="c" />. Two blue balls have probability <InlineMath math="\frac{15}{45}=\frac13" />, and **only that outcome** refunds <InlineMath math="\frac{c}{4}" />. The entry fee is paid on every play.
+<BlockMath math="\left\lfloor\frac{200}{20}\right\rfloor+\left\lfloor\frac{200}{30}\right\rfloor-\left\lfloor\frac{200}{60}\right\rfloor=10+6-3=13" />
 
-<BlockMath math="\begin{aligned} 12-c+\frac13\times\frac c4 &amp;=0 \\ 12-c+\frac{c}{12} &amp;=0 \\ 12-\frac{11c}{12} &amp;=0 \\ 144-11c &amp;=0 \\ c &amp;=\frac{144}{11} \end{aligned}" />
+Subtract step 2 from step 1:
 
-An entry fee of <InlineMath math="\frac{144}{11}" /> thousand rupiah gives an expected net gain of zero.
+<BlockMath math="67-13=54" />
+
+As a check, <InlineMath math="60" /> is divisible by <InlineMath math="4" />, <InlineMath math="6" />, and <InlineMath math="5" />. It is counted once in step 1 and removed once in step 2, as the conditions require. So <InlineMath math="54" /> numbers qualify.

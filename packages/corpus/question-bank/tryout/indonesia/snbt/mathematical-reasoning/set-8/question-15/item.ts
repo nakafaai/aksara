@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "school-vaccination",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$10(\\sqrt{3}+1)$$",
+          column: 2,
+          label:
+            "Peluang seorang siswa yang dipilih acak belum mendapat vaksin apa pun adalah $$\\dfrac16$$.",
         },
         {
-          correct: false,
-          label: "$$10(\\sqrt{6}-\\sqrt{2})$$",
+          column: 1,
+          label:
+            "Banyak siswa yang hanya mendapat vaksin influenza adalah 220.",
         },
         {
-          correct: true,
-          label: "$$10(\\sqrt{6}+\\sqrt{2})$$",
+          column: 2,
+          label:
+            "Jika 30 siswa yang belum divaksin kemudian mendapat vaksin dengue saja, banyak siswa yang mendapat kedua vaksin bertambah 30.",
         },
         {
-          correct: false,
-          label: "$$20\\sqrt{2}$$",
-        },
-        {
-          correct: false,
-          label: "$$20\\sqrt{3}$$",
+          column: 1,
+          label:
+            "Lebih dari separuh siswa sekolah itu mendapat tepat satu jenis vaksin.",
         },
       ],
     },

@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "grouping",
+  },
+  stimulus: "pos",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Laporan Mira tidak lulus pemeriksaan kelengkapan.",
+          label: "$$3$$",
         },
         {
           correct: false,
-          label: "Pengajuan Mira sudah disetujui.",
+          label: "$$4$$",
         },
         {
           correct: false,
-          label: "Penelaahan analis dilewati untuk laporan Mira.",
+          label: "$$5$$",
         },
         {
           correct: false,
-          label:
-            "Setiap laporan dalam antrean akhir disetujui secara otomatis.",
+          label: "$$6$$",
         },
         {
           correct: true,
-          label: "Laporan Mira masuk ke antrean keputusan akhir.",
+          label: "$$7$$",
         },
       ],
     },

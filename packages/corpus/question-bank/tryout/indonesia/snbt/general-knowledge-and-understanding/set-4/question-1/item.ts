@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "awan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Pembaca menyimpulkan sikap penulis dari pilihan rincian meskipun sikap itu tidak dinyatakan langsung.",
-        },
-        {
-          correct: false,
-          label:
-            "Model mempertimbangkan interaksi cuaca, perilaku pengguna, dan jadwal layanan alih-alih mencari satu penyebab tunggal.",
-        },
-        {
-          correct: false,
-          label:
-            "Simpulan diberi status sementara sampai pengulangan dengan sampel lebih luas selesai.",
-        },
-        {
           correct: true,
-          label:
-            "Petunjuk memakai kata 'segera' tanpa batas waktu sehingga dua pelaksana menafsirkannya secara berbeda.",
+          label: "menyebarkan",
         },
         {
           correct: false,
-          label:
-            "Metode menyediakan beberapa jalur pelaksanaan yang tetap tunduk pada kriteria hasil yang sama.",
+          label: "mengumpulkan",
+        },
+        {
+          correct: false,
+          label: "melarutkan",
+        },
+        {
+          correct: false,
+          label: "membakar",
+        },
+        {
+          correct: false,
+          label: "menimbun",
         },
       ],
     },

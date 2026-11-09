@@ -1,29 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "solar-panels",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$60 \\text{ tahun}$$",
+          column: 2,
+          label:
+            "Jika seluruh pemakaian listrik dipenuhi panel, penghematan biaya listrik per bulan adalah $$\\text{Rp}450{.}000{,}00$$.",
         },
         {
-          correct: true,
-          label: "$$57 \\text{ tahun}$$",
+          column: 1,
+          label: "Satu panel menghasilkan 0,9 kWh energi per hari.",
         },
         {
-          correct: false,
-          label: "$$56 \\text{ tahun}$$",
+          column: 1,
+          label:
+            "Jika pemakaian listrik keluarga itu naik $$20\\%$$, diperlukan 12 panel agar seluruh pemakaian terpenuhi.",
         },
         {
-          correct: false,
-          label: "$$54 \\text{ tahun}$$",
-        },
-        {
-          correct: false,
-          label: "$$52 \\text{ tahun}$$",
+          column: 2,
+          label:
+            "Biaya pemasangan 10 panel tertutup oleh penghematan biaya listrik dalam 4 tahun.",
         },
       ],
     },

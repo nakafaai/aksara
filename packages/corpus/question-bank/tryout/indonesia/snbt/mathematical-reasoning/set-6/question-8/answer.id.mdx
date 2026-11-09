@@ -1,55 +1,13 @@
-# Menentukan Rasio Barisan
+Setelah <InlineMath math="n" /> lipatan, ketebalan adalah <InlineMath math="0{,}1\cdot2^n" /> mm. Perbandingan dua ketebalan **hanya bergantung pada selisih banyak lipatan**, karena faktor 0,1 saling menghapus.
 
-Diketahui kayu dipotong menjadi <InlineMath math="6" /> bagian, sehingga <InlineMath math="n = 6" />. Panjang potongan membentuk barisan geometri.
+# Membandingkan dua ketebalan
 
-Kita dapat mengurutkan potongan **dari yang terpanjang ke yang terpendek** tanpa mengubah jumlah panjangnya. Misalkan suku pertama <InlineMath math="a = 96" /> dan suku ke-<InlineMath math="6" /> adalah yang terpendek, yaitu <InlineMath math="U_6 = 3" />.
+<BlockMath math="\frac{0{,}1\cdot2^{12}}{0{,}1\cdot2^{8}}=2^{12-8}=2^4=16" />
 
-Rumus suku ke-<InlineMath math="n" /> barisan geometri adalah:
+# Makna hasilnya
 
-<BlockMath math="U_n = ar^{n-1}" />
+Empat lipatan tambahan menggandakan ketebalan empat kali: <InlineMath math="2\cdot2\cdot2\cdot2=16" />. **Setiap lipatan mengalikan, bukan menambah**, jadi selisih 4 lipatan berarti 16 kali lipat.
 
-Substitusi nilai yang diketahui:
+Nilai 1,5 adalah perbandingan banyak lipatan, <InlineMath math="\tfrac{12}{8}" />. Nilai 4 adalah selisih banyak lipatan, dan 32 memakai <InlineMath math="2^5" />.
 
-<BlockMath math="U_6 = 96 \cdot r^{6-1}" />
-
-<BlockMath math="3 = 96 \cdot r^5" />
-
-Sederhanakan persamaan untuk mencari rasio (<InlineMath math="r" />):
-
-<BlockMath math="r^5 = \frac{3}{96}" />
-
-<BlockMath math="r^5 = \frac{1}{32}" />
-
-<BlockMath math="r^5 = \left(\frac{1}{2}\right)^5" />
-
-<BlockMath math="r = \frac{1}{2}" />
-
-Jadi, rasio antar potongan kayu adalah <InlineMath math="\frac{1}{2}" />.
-
-# Menghitung Total Panjang Kayu
-
-Total panjang kayu mula-mula adalah **jumlah dari seluruh potongan** (<InlineMath math="S_6" />). Karena <InlineMath math="r < 1" />, kita gunakan rumus:
-
-<BlockMath math="S_n = \frac{a(1 - r^n)}{1 - r}" />
-
-Substitusi <InlineMath math="a = 96" />, <InlineMath math="r = \frac{1}{2}" />, dan <InlineMath math="n = 6" />:
-
-<BlockMath math="S_6 = \frac{96\left(1 - \left(\frac{1}{2}\right)^6\right)}{1 - \frac{1}{2}}" />
-
-<BlockMath math="S_6 = \frac{96\left(1 - \frac{1}{64}\right)}{\frac{1}{2}}" />
-
-Hitung hasilnya:
-
-<BlockMath math="S_6 = 96 \cdot \left(\frac{63}{64}\right) \cdot 2" />
-
-<BlockMath math="S_6 = 192 \cdot \frac{63}{64}" />
-
-<BlockMath math="S_6 = 3 \cdot 63" />
-
-<BlockMath math="S_6 = 189" />
-
-Jadi, total panjang bilah kayu mula-mula adalah <InlineMath math="189\text{ cm}" />.
-
-Jumlah keenam panjang potongan memberikan pemeriksaan langsung.
-
-<BlockMath math="96+48+24+12+6+3=189\text{ cm}" />
+Jadi, ketebalan setelah 12 lipatan adalah **16 kali** ketebalan setelah 8 lipatan.

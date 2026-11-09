@@ -1,29 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "inductive-reasoning",
+    topic: "data-comparison",
+  },
+  stimulus: "museum",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Baju pada tahun $$2011\\text{-}2012$$",
+          column: 1,
+          label:
+            "Banyak pengunjung dalam satu minggu naik lebih dari $$5\\%$$.",
         },
         {
-          correct: false,
-          label: "Baju pada tahun $$2012\\text{-}2013$$",
+          column: 1,
+          label:
+            "Jumlah penurunan pengunjung pada hari-hari selain Rabu lebih dari $$150$$ orang per minggu.",
         },
         {
-          correct: true,
-          label: "Jas pada tahun $$2014\\text{-}2015$$",
+          column: 2,
+          label:
+            "Pendapatan tiket mingguan pada bulan kedua lebih besar daripada pada bulan pertama.",
         },
         {
-          correct: false,
-          label: "Jas pada tahun $$2012\\text{-}2013$$",
-        },
-        {
-          correct: false,
-          label: "Celana pada tahun $$2013\\text{-}2014$$",
+          column: 2,
+          label:
+            "Pada bulan kedua, pengunjung hari Rabu lebih banyak daripada pengunjung hari Sabtu.",
         },
       ],
     },

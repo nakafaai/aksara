@@ -1,55 +1,22 @@
-Gesucht ist der **eindeutige Schnittpunkt** zweier Geraden:
+Weil der ggT 12 ist, lassen sich die beiden Zahlen als <InlineMath math="a=12m" /> und <InlineMath math="b=12n" /> schreiben, wobei <InlineMath math="m" /> und <InlineMath math="n" /> **außer 1 keinen gemeinsamen Teiler haben**. In dieser Form ist das kgV gleich <InlineMath math="12mn" />.
 
-1. <InlineMath math="y = 2x + 3" />
-2. <InlineMath math="y = ax + b" />
+# Mögliche Paare finden
 
-Für einen eindeutigen Schnittpunkt <InlineMath math="(x, y)" /> muss das Gleichungssystem genau eine Lösung besitzen. Dazu setzen wir die rechten Seiten gleich:
+<BlockMath math="12mn=180\quad\Rightarrow\quad mn=15" />
 
-<BlockMath math="2x + 3 = ax + b" />
+Die teilerfremden Paare <InlineMath math="(m,n)" /> mit dem Produkt 15 sind <InlineMath math="(1,15)" /> und <InlineMath math="(3,5)" />. **Die Summenbedingung wählt eines davon aus**.
 
-<BlockMath math="2x - ax = b - 3" />
+| <InlineMath math="(m,n)" /> | Zahlen | Summe |
+| :---: | :---: | :---: |
+| <InlineMath math="(1,15)" /> | 12 und 180 | 192 |
+| <InlineMath math="(3,5)" /> | 36 und 60 | 96 |
 
-<BlockMath math="(2 - a)x = b - 3" />
+# Differenz berechnen
 
-Der Wert von <InlineMath math="x" /> lässt sich genau dann eindeutig bestimmen, wenn der Koeffizient von <InlineMath math="x" /> nicht null ist, also <InlineMath math="2 - a \neq 0" /> beziehungsweise <InlineMath math="a \neq 2" />. Für <InlineMath math="a \neq 2" /> gilt dann:
+Die Zahlen sind 36 und 60. Probe: Ihr ggT ist 12, ihr kgV ist 180, und ihre Summe ist 96.
 
-<BlockMath math="x = \frac{b - 3}{2 - a}" />
+<BlockMath math="60-36=24" />
 
-Ist <InlineMath math="x" /> bekannt, ergibt Einsetzen in eine der Gleichungen den Wert von <InlineMath math="y" />. Die Bedingung <InlineMath math="a\neq2" /> sichert genau einen Schnittpunkt. Seine Lage hängt noch von <InlineMath math="a" /> und <InlineMath math="b" /> ab, sofern weitere Angaben diese Abhängigkeit nicht aufheben.
+Der Wert 168 ist die Differenz des anderen Paares, 12 und 180, dessen Summe nicht 96 ist. Der Wert 12 ist der ggT, der Wert 15 das Produkt <InlineMath math="mn" />, und der Wert 36 ist die kleinere Zahl.
 
-# Analyse der ersten Aussage
-
-Aussage (1) liefert <InlineMath math="a \neq 2" />. Die Geraden haben damit **unterschiedliche Steigungen** (<InlineMath math="m_1 = 2" /> und <InlineMath math="m_2 = a \neq 2" />) und schneiden sich in genau einem Punkt. Allerdings kennen wir den Wert von <InlineMath math="b" /> nicht. Ohne <InlineMath math="b" /> hängen die Koordinaten <InlineMath math="x" /> und <InlineMath math="y" /> weiterhin von <InlineMath math="b" /> ab. Aussage (1) allein ist daher **nicht ausreichend**.
-
-| Parameterwerte | Schnittpunkt |
-| --- | --- |
-| <InlineMath math="a=0,\ b=1" /> | <InlineMath math="(-1,1)" /> |
-| <InlineMath math="a=0,\ b=5" /> | <InlineMath math="(1,5)" /> |
-
-# Analyse der zweiten Aussage
-
-Aussage (2) liefert <InlineMath math="b = 3" />. Die zweite Gleichung lautet dann <InlineMath math="y = ax + 3" />, aber <InlineMath math="a" /> bleibt unbekannt.
-
-- Für <InlineMath math="a = 2" /> lautet auch die zweite Gerade <InlineMath math="y = 2x + 3" />. Beide Geraden **stimmen dann überein** und besitzen unendlich viele gemeinsame Punkte.
-- Bei <InlineMath math="a \neq 2" /> schneiden sich die Geraden in einem Punkt.
-
-Beide Geraden gehen zwar durch <InlineMath math="(0,3)" />, aber ohne die Angabe zu <InlineMath math="a" /> ist kein eindeutiger Schnittpunkt garantiert. Aussage (2) allein ist **nicht ausreichend**.
-
-# Analyse beider Aussagen zusammen
-
-Wenn wir beide Aussagen kombinieren:
-
-1. <InlineMath math="a \neq 2" />
-2. <InlineMath math="b = 3" />
-
-Einsetzen in die Gleichung für <InlineMath math="x" /> ergibt:
-
-<BlockMath math="\begin{aligned}x&=\frac{3-3}{2-a}\\&=\frac{0}{2-a}\\&=0\end{aligned}" />
-
-Die Division durch <InlineMath math="2 - a" /> ist zulässig, weil <InlineMath math="a \neq 2" /> gilt. Nun bestimmen wir <InlineMath math="y" />:
-
-<BlockMath math="y = 2(0) + 3 = 3" />
-
-Damit ist der **eindeutige Schnittpunkt** <InlineMath math="(0, 3)" />. Beide Aussagen zusammen sind **ausreichend**.
-
-Also sind **beide Aussagen zusammen** ausreichend, aber keine Aussage allein reicht aus.
+Die Differenz der beiden Zahlen ist also **24**.

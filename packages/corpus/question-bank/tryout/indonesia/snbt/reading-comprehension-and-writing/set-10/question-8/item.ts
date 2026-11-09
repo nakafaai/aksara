@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "word-meaning",
+  },
+  stimulus: "screen-printing",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "Meskipun demikian, tim membatasi simpulan pada uji singkat dengan jenis resep tersebut.",
+          label: "tidak dipakai",
         },
         {
           correct: false,
-          label:
-            "Meskipun demikian tim membatasi simpulan pada uji singkat dengan jenis resep tersebut.",
+          label: "rusak",
         },
         {
           correct: false,
-          label:
-            "Meskipun demikian: tim membatasi simpulan pada uji singkat dengan jenis resep tersebut.",
+          label: "dijual",
         },
         {
           correct: false,
-          label:
-            "Meskipun demikian, tim, membatasi simpulan pada uji singkat dengan jenis resep tersebut.",
+          label: "dipinjamkan",
         },
         {
           correct: false,
-          label:
-            "Meskipun demikian, tim membatasi simpulan pada uji singkat dengan jenis resep tersebut?",
+          label: "dibersihkan",
         },
       ],
     },

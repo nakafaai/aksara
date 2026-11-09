@@ -1,84 +1,17 @@
-Der Grundraum <InlineMath math="S" /> enthält alle Auswahlen von <InlineMath math="3" /> Zahlen aus <InlineMath math="\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}" />. Die Ausgangsmenge hat <InlineMath math="n = 10" /> Elemente, also insgesamt <InlineMath math="10" /> Zahlen.
+Löse zuerst die Ungleichung und prüfe dann jede Aussage auf **dem ganzen Lösungsintervall**, nicht nur an einem Beispiel.
 
-Die Anzahl der Möglichkeiten, <InlineMath math="3" /> Zahlen aus <InlineMath math="10" /> auszuwählen, beträgt:
+<BlockMath math="x^2-5x+4=(x-1)(x-4)<0\quad\Rightarrow\quad 1<x<4" />
 
-<BlockMath math="\begin{aligned}n(S)&=C(10, 3)\\&=\frac{10 \times 9 \times 8}{3 \times 2 \times 1}\\&=120\end{aligned}" />
+# Aussagen, die nicht immer gelten
 
-Prüfen wir jede Aussage.
+Die Aussage <InlineMath math="x-2>0" /> scheitert bei <InlineMath math="x=1{,}5" />, das im Intervall liegt, aber kleiner als 2 ist. Ein **Gegenbeispiel** genügt, die erste Aussage ist also falsch.
 
-Die Zahlen werden gleichzeitig ausgewählt, daher ist **die Reihenfolge unerheblich**. Wir verwenden Kombinationen, und jede Dreiergruppe ist gleich wahrscheinlich.
+Für <InlineMath math="1<x<4" /> kehrt der Kehrwert positiver Zahlen die Reihenfolge um: <InlineMath math="\frac1x>\frac14" />. Die dritte Aussage behauptet das Gegenteil und ist für jedes <InlineMath math="x" /> im Intervall falsch.
 
-# Aussage eins
+# Aussagen, die immer gelten
 
-**Menge gerader Zahlen**: <InlineMath math="\{0, 2, 4, 6, 8\}" /> (<InlineMath math="5" /> Zahlen).
-Anzahl der Möglichkeiten, <InlineMath math="3" /> gerade Zahlen aus <InlineMath math="5" /> auszuwählen:
+Wegen <InlineMath math="0<x<4" /> sind beide Seiten positiv, und **Quadrieren erhält die Reihenfolge**, also <InlineMath math="x^2<16" />. Die zweite Aussage ist wahr.
 
-<BlockMath math="\begin{aligned}n(A)&=C(5, 3)\\&=\frac{5 \times 4 \times 3}{3 \times 2 \times 1}\\&=10\end{aligned}" />
+Auf dem Intervall <InlineMath math="1<x<4" /> ist der Faktor <InlineMath math="x-1" /> positiv und der Faktor <InlineMath math="x-5" /> negativ. Ihr Produkt ist negativ, die vierte Aussage ist also wahr.
 
-Wahrscheinlichkeit:
-
-<BlockMath math="\begin{aligned}P(A)&=\frac{10}{120}\\&=\frac{1}{12}\end{aligned}" />
-
-Ist <InlineMath math="\frac{1}{12} > \frac{1}{20}" />?
-
-<BlockMath math="\begin{aligned}\frac{1}{12}&=\frac{5}{60}\\\frac{1}{20}&=\frac{3}{60}\end{aligned}" />
-
-Da <InlineMath math="\frac{5}{60} > \frac{3}{60}" /> gilt, ist Aussage 1 wahr.
-
-# Aussage zwei
-
-Die Zahl <InlineMath math="3" /> ist **fest ausgewählt**. Dazu kommen <InlineMath math="2" /> Zahlen aus den übrigen <InlineMath math="9" /> Zahlen.
-
-<BlockMath math="\begin{aligned}n(B)&=C(9, 2)\\&=\frac{9 \times 8}{2 \times 1}\\&=36\end{aligned}" />
-
-Wahrscheinlichkeit:
-
-<BlockMath math="\begin{aligned}P(B)&=\frac{36}{120}\\&=\frac{3}{10}\end{aligned}" />
-
-Aussage 2 ist wahr.
-
-# Aussage drei
-
-Das Ereignis <InlineMath math="C" /> bedeutet, dass kein Teiler von <InlineMath math="9" /> ausgewählt wird. Das **Gegenereignis** <InlineMath math="C^c" /> bedeutet, dass mindestens ein Teiler ausgewählt wird.
-
-Die Teiler von <InlineMath math="9" /> in der Ausgangsmenge sind <InlineMath math="\{1, 3, 9\}" /> (<InlineMath math="3" /> Zahlen).
-Zahlen, die keine Teiler von <InlineMath math="9" /> sind, sind <InlineMath math="\{0, 2, 4, 5, 6, 7, 8\}" /> (<InlineMath math="7" /> Zahlen).
-
-Die Wahrscheinlichkeit, dass mindestens ein Teiler von <InlineMath math="9" /> ausgewählt wird, ist <InlineMath math="1" /> minus die Wahrscheinlichkeit, dass kein Teiler von <InlineMath math="9" /> ausgewählt wird.
-
-Die Anzahl der Möglichkeiten, <InlineMath math="3" /> Zahlen auszuwählen, die keine Teiler von <InlineMath math="9" /> sind, beträgt:
-
-<BlockMath math="\begin{aligned}n(C)&=C(7, 3)\\&=\frac{7 \times 6 \times 5}{3 \times 2 \times 1}\\&=35\end{aligned}" />
-
-Wahrscheinlichkeit ohne Teiler von <InlineMath math="9" />:
-
-<BlockMath math="\begin{aligned}P(C)&=\frac{35}{120}\\&=\frac{7}{24}\end{aligned}" />
-
-Wahrscheinlichkeit von mindestens einem:
-
-<BlockMath math="\begin{aligned}P(C^c)&=1 - \frac{7}{24}\\&=\frac{17}{24}\end{aligned}" />
-
-Ist <InlineMath math="\frac{17}{24} < \frac{1}{2}" />?
-<InlineMath math="\frac{1}{2} = \frac{12}{24}" />.
-Da <InlineMath math="\frac{17}{24} > \frac{12}{24}" /> gilt, ist Aussage 3 falsch.
-
-# Aussage vier
-
-Ungerade Primzahlen in der Menge: <InlineMath math="\{3, 5, 7\}" /> (<InlineMath math="3" /> Zahlen).
-Zahlen, die **keine ungeraden Primzahlen** sind: <InlineMath math="\{0, 1, 2, 4, 6, 8, 9\}" /> (<InlineMath math="7" /> Zahlen).
-
-Das Ereignis, dass keine ausgewählte Zahl eine ungerade Primzahl ist, bedeutet, dass alle drei Zahlen aus der Menge der nicht ungeraden Primzahlen stammen.
-
-Die Anzahl der Möglichkeiten, <InlineMath math="3" /> Zahlen aus den <InlineMath math="7" /> nicht ungeraden Primzahlen auszuwählen, beträgt:
-
-<BlockMath math="\begin{aligned}n(D)&=C(7, 3)\\&=35\end{aligned}" />
-
-Wahrscheinlichkeit:
-
-<BlockMath math="\begin{aligned}P(D)&=\frac{35}{120}\\&=\frac{7}{24}\end{aligned}" />
-
-Ist <InlineMath math="\frac{7}{24} < \frac{1}{3}" />?
-<InlineMath math="\frac{1}{3} = \frac{8}{24}" />.
-Da <InlineMath math="\frac{7}{24} < \frac{8}{24}" /> gilt, ist Aussage 4 wahr.
-
-Die richtigen Aussagen sind <InlineMath math="1, 2, 4" />. Es gibt <InlineMath math="3" /> wahre Aussagen.
+Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **falsch** und die vierte **wahr**.

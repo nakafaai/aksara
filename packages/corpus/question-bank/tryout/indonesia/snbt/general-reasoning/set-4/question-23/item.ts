@@ -1,29 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "data-interpretation",
+  },
+  stimulus: "unduhan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$27$$",
+          label: "Unduhan X naik dengan selisih yang sama setiap bulan.",
         },
         {
           correct: false,
-          label: "$$35$$",
+          label: "Total unduhan Y selama lima bulan kurang dari $$200$$ ribu.",
         },
         {
           correct: false,
-          label: "$$52$$",
+          label: "Pada bulan Mei, unduhan X sudah melebihi unduhan Y.",
+        },
+        {
+          correct: false,
+          label:
+            "Persentase kenaikan unduhan Y dari Januari ke Mei lebih besar daripada persentase kenaikan unduhan X.",
         },
         {
           correct: true,
-          label: "$$42$$",
-        },
-        {
-          correct: false,
-          label: "$$57$$",
+          label:
+            "Persentase kenaikan unduhan X dari April ke Mei adalah $$25\\%$$.",
         },
       ],
     },

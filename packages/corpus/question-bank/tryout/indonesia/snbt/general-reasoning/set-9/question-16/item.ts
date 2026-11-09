@@ -1,29 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "grid-logic",
+  },
+  stimulus: "lantai",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Mungkin", "Tidak mungkin"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Tim A",
+          column: 2,
+          label: "Tika tinggal di lantai 4 dan hobi memasak.",
         },
         {
-          correct: true,
-          label: "Tim C",
+          column: 1,
+          label: "Sita tinggal di lantai 3 dan hobi melukis.",
         },
         {
-          correct: false,
-          label: "Tim B",
+          column: 2,
+          label: "Rani tinggal di lantai 2.",
         },
         {
-          correct: false,
-          label: "Tim A dan B",
-        },
-        {
-          correct: false,
-          label: "Ketiganya sama",
+          column: 1,
+          label: "Rani tinggal di lantai 3 dan hobi memasak.",
         },
       ],
     },

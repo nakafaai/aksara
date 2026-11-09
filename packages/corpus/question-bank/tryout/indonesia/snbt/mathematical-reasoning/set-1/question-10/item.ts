@@ -1,31 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-23
 const item: ItemSource = {
+  stimulus: "commute-survey",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$100$$",
-        },
-        {
-          correct: false,
-          label: "$$105$$",
-        },
-        {
-          correct: false,
-          label: "$$115$$",
-        },
-        {
-          correct: true,
-          label: "$$110$$",
-        },
-        {
-          correct: false,
-          label: "$$120$$",
-        },
+        { correct: false, label: "0-9 menit" },
+        { correct: true, label: "10-19 menit" },
+        { correct: false, label: "20-29 menit" },
+        { correct: false, label: "30-39 menit" },
+        { correct: false, label: "40-49 menit" },
       ],
     },
   },

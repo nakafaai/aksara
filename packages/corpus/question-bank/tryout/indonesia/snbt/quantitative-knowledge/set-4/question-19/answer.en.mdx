@@ -1,17 +1,21 @@
-Only water is added, so the **alcohol volume stays constant**. Alcohol has four parts in both ratios, meaning one part represents the same volume before and after the addition.
+"At least two" means **exactly two or exactly three** shots hit the target. The two events are mutually exclusive, so their probabilities add. The shots are independent, so the probability of one sequence of results is the product of the probabilities of each shot.
 
-| Stage | Alcohol parts | Water parts |
-| --- | --- | --- |
-| Initial | 4 | 3 |
-| Final | 4 | 5 |
-| Change | 0 | 2 |
+# Exactly two hits
 
-The added 5 litres correspond to **two extra parts**, since <InlineMath math="5-3=2" />.
+The one miss can be the first, second, or third shot, so there are **three sequences** with equal probability.
 
-The volume of one part is:
+<BlockMath math="P(\text{exactly }2)=3\cdot(0.6)^2(0.4)=3\cdot0.144=0.432" />
 
-<BlockMath math="5\,\mathrm{L}\div2=2.5\,\mathrm{L}" />
+# Exactly three hits
 
-The final water volume contains five parts:
+There is **only one sequence**, with all three shots hitting.
 
-<BlockMath math="5\cdot2.5\,\mathrm{L}=12.5\,\mathrm{L}" />
+<BlockMath math="P(\text{exactly }3)=(0.6)^3=0.216" />
+
+Add the two cases.
+
+<BlockMath math="P(\text{at least }2)=0.432+0.216=0.648" />
+
+The value 0.432 counts only exactly two, and the value 0.216 only exactly three. The value 0.36 is <InlineMath math="(0.6)^2" />, which ignores the third shot and the number of sequences. The value 0.784 is <InlineMath math="1-0.216" />, the probability of at most two hits.
+
+So the probability that at least two shots hit the target is <InlineMath math="0.648" />.

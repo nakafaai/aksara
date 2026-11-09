@@ -1,115 +1,18 @@
-<LineEquation
-  title="Ship Position Illustration"
-  description={
-    <>
-      Positions of ships <InlineMath math="A" />, <InlineMath math="B" />, and{" "}
-      <InlineMath math="C" /> with a <InlineMath math="60^\circ" /> angle.
-    </>
-  }
-  cameraPosition={[1, 2.3, 8.4]}
-  cameraTarget={[1, 2.3, 0]}
-  data={[
-    {
-      points: [
-        { x: 2.7777777778, y: 0, z: 0 },
-        { x: 2.7777777778, y: 2.4056261216, z: 0 },
-        { x: 2.7777777778, y: 4.8112522432, z: 0 },
-      ],
-      color: "#4f46e5",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="A" />,
-          at: 0,
-          offset: [0.25, -0.35, 0],
-        },
-        {
-          text: <InlineMath math="B" />,
-          at: 2,
-          offset: [0.25, 0.25, 0],
-        },
-      ],
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 2.7777777778, y: 0, z: 0 },
-        { x: 1.3888888889, y: 0, z: 0 },
-        { x: 0, y: 0, z: 0 },
-      ],
-      color: "#059669",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="C" />,
-          at: 2,
-          offset: [-0.2, -0.35, 0],
-        },
-      ],
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 2.7777777778, y: 4.8112522432, z: 0 },
-        { x: 1.3888888889, y: 2.4056261216, z: 0 },
-        { x: 0, y: 0, z: 0 },
-      ],
-      color: "#0891b2",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="BC = 500\,\text{m}" />,
-          at: 1,
-          offset: [-1.15, 0.55, 0],
-        },
-      ],
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 1.3888888889, y: 0, z: 0 },
-        { x: 1.3869854649, y: 0.0726888281, z: 0 },
-        { x: 1.3812804102, y: 0.1451784212, z: 0 },
-        { x: 1.3717893619, y: 0.2172700903, z: 0 },
-        { x: 1.3585383344, y: 0.2887662372, z: 0 },
-        { x: 1.3415636476, y: 0.359470896, z: 0 },
-        { x: 1.3209118282, y: 0.42919027, z: 0 },
-        { x: 1.2966394812, y: 0.4977332633, z: 0 },
-        { x: 1.2688131356, y: 0.5649120043, z: 0 },
-        { x: 1.2375090614, y: 0.6305423607, z: 0 },
-        { x: 1.2028130608, y: 0.6944444444, z: 0 },
-        { x: 1.1648202333, y: 0.7564431042, z: 0 },
-        { x: 1.1236347144, y: 0.816368406, z: 0 },
-        { x: 1.0793693909, y: 0.8740560987, z: 0 },
-        { x: 1.0321455909, y: 0.9293480644, z: 0 },
-        { x: 0.9820927516, y: 0.9820927516, z: 0 },
-        { x: 0.9293480644, y: 1.0321455909, z: 0 },
-        { x: 0.8740560987, y: 1.0793693909, z: 0 },
-        { x: 0.816368406, y: 1.1236347144, z: 0 },
-        { x: 0.7564431042, y: 1.1648202333, z: 0 },
-        { x: 0.6944444444, y: 1.2028130608, z: 0 },
-      ],
-      color: "#ea580c",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="60^\circ" />,
-          at: 10,
-          offset: [0.4, 0.2, 0],
-        },
-      ],
-      smooth: false,
-    },
-  ]}
-  showZAxis={false}
-/>
+The sample space consists of **190 equally likely pairs of tickets**. Count the pairs in each event.
 
-Triangle <InlineMath math="ABC" /> is right-angled at <InlineMath math="A" />, so <InlineMath math="BC" /> is the **hypotenuse**. The included angle at <InlineMath math="C" /> is <InlineMath math="60^\circ" />, so the sine ratio gives <InlineMath math="AB" /> directly.
+# Two prizes and exactly one prize
 
-<BlockMath math="\sin 60^\circ = \frac{AB}{BC}" />
+<BlockMath math="\begin{aligned}
+P(\text{two prizes})&=\frac{\binom42}{190}=\frac{6}{190}=\frac{3}{95}\\
+P(\text{exactly one})&=\frac{4\cdot16}{190}=\frac{64}{190}=\frac{32}{95}
+\end{aligned}" />
 
-<BlockMath math="\frac{\sqrt{3}}{2} = \frac{AB}{500}" />
+The first statement is true. Exactly one prize has probability <InlineMath math="\tfrac{32}{95}" />, **not <InlineMath math="\tfrac{16}{95}" />**. The value <InlineMath math="\tfrac{16}{95}" /> comes from halving the 64 pairs again, although each pair of one of Rafi's tickets and one other ticket is counted only once. The third statement is false.
 
-<BlockMath math="\begin{aligned}AB &=500\cdot\frac{\sqrt3}{2} \\ &=250\sqrt3\end{aligned}" />
+# Different prizes and at least one prize
 
-Thus, the distance from ship <InlineMath math="A" /> to ship <InlineMath math="B" /> is <InlineMath math="250\sqrt{3}\text{ m}" />.
+If the prizes differ, order matters: there are 20 choices for the first prize and 19 for the second, <InlineMath math="20\cdot19=380" /> outcomes. The second statement is true.
+
+At least one prize has probability <InlineMath math="\tfrac{3}{95}+\tfrac{32}{95}=\tfrac{35}{95}=\tfrac{7}{19}" />, which is **less than <InlineMath math="\tfrac12" />**. The fourth statement is false.
+
+So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.

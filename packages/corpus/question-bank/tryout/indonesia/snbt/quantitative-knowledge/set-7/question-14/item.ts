@@ -3,28 +3,16 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 2, label: "Jari-jari lingkaran itu adalah $$25$$." },
+        { column: 1, label: "Titik $$(5,3)$$ terletak pada lingkaran itu." },
         {
-          correct: true,
-          label: "(2) dan (4) benar.",
+          column: 2,
+          label: "Titik $$O(0,0)$$ terletak di luar lingkaran itu.",
         },
-        {
-          correct: false,
-          label: "(1), (2), dan (3) benar.",
-        },
-        {
-          correct: false,
-          label: "(1) dan (3) benar.",
-        },
-        {
-          correct: false,
-          label: "(4) saja benar.",
-        },
-        {
-          correct: false,
-          label: "Semua pernyataan benar.",
-        },
+        { column: 1, label: "Garis $$y=4$$ menyinggung lingkaran itu." },
       ],
     },
   },

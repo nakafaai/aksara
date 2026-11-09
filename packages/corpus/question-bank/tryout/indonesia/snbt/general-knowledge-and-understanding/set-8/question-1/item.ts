@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "komodo",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Asumsi, batas data, dan kriteria keputusan dinyatakan langsung dalam laporan.",
+          label: "mengejar mangsa sampai jarak yang jauh",
         },
         {
           correct: false,
-          label:
-            "Dua sensor merekam kejadian pada selang waktu yang sama, bukan secara bergantian.",
+          label: "membuntuti mangsa diam-diam dari belakang",
+        },
+        {
+          correct: false,
+          label: "memancing mangsa dengan umpan",
+        },
+        {
+          correct: false,
+          label: "menggali lubang jebakan",
         },
         {
           correct: true,
-          label:
-            "Dua tren yang bergerak berlawanan ditempatkan berdampingan agar perbedaannya terlihat jelas.",
-        },
-        {
-          correct: false,
-          label:
-            "Unit tambahan terakhir hanya memberi kenaikan manfaat yang kecil dibanding unit sebelumnya.",
-        },
-        {
-          correct: false,
-          label:
-            "Petunjuk memakai kata 'segera' tanpa batas waktu sehingga dua pelaksana menafsirkannya secara berbeda.",
+          label: "menyerang tiba-tiba dari persembunyian",
         },
       ],
     },

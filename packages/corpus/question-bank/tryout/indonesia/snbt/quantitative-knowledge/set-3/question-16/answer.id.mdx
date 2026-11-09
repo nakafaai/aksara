@@ -1,19 +1,21 @@
-Kita menghitung **posisi awal** sebagai satu simetri putar. Bandingkan jumlah posisi yang membuat bangun berimpit kembali dengan jumlah garis lipat yang membagi bangun menjadi dua bagian saling mencerminkan.
+Misalkan bilangan terbesar <InlineMath math="L" /> dan bilangan terkecil <InlineMath math="K" />. Perubahan rata-rata memberi **jumlah kedua bilangan itu**, sedangkan selisihnya sudah diketahui.
 
-| Bangun | Simetri putar | Simetri lipat |
-| --- | --- | --- |
-| Segidelapan beraturan | 8: rotasi kelipatan 45° dari 0° sampai 315° | 8: empat garis melalui pasangan titik sudut berhadapan dan empat melalui titik tengah sisi berhadapan |
-| Belah ketupat bukan persegi | 2: rotasi 0° dan 180° | 2: kedua diagonal |
-| Segitiga sama kaki bukan sama sisi | 1: hanya posisi awal | 1: garis dari puncak ke titik tengah alas |
-| Layang-layang bukan belah ketupat | 1: hanya posisi awal | 1: diagonal yang melalui kedua puncak tempat sisi-sisi sama panjang bertemu |
+# Jumlah bilangan terbesar dan terkecil
 
-Belah ketupat di bawah memiliki **dua sumbu simetri**, yaitu kedua diagonal. Rotasi 180° menukar titik sudut yang berhadapan dan menghasilkan bangun yang berimpit kembali.
+Jumlah sepuluh bilangan adalah <InlineMath math="10\times20=200" />. Jumlah delapan bilangan yang tersisa adalah <InlineMath math="8\times19=152" />. **Selisih kedua jumlah** itu adalah jumlah dua bilangan yang dibuang.
 
-<MathVisual
- title="Dua diagonal sebagai sumbu simetri"
- description="Diagonal mendatar dan tegak membagi belah ketupat menjadi pasangan segitiga yang saling mencerminkan."
- scene={{space:"plane",frame:{kind:"cartesian",x:{min:-4,max:4},y:{min:-3,max:3}},view:{kind:"fit",padding:0.15},objects:[{id:"rhombus",kind:"polygon",appearance:"primary",vertices:[{x:-3,y:0},{x:0,y:2},{x:3,y:0},{x:0,y:-2}]},{id:"horizontal",kind:"segment",appearance:"highlight",from:{x:-3,y:0},to:{x:3,y:0}},{id:"vertical",kind:"segment",appearance:"secondary",from:{x:0,y:-2},to:{x:0,y:2}}],labels:[]}}
- labels={{}}
-/>
+<BlockMath math="L+K=200-152=48" />
 
-Pada setiap baris, kedua jumlah sama. Tidak ada bangun dengan simetri putar lebih banyak, sehingga jawabannya 0.
+# Menyelesaikan sistem
+
+<BlockMath math="\begin{aligned}
+L+K&=48\\
+L-K&=30\\
+2L&=78\quad\Rightarrow\quad L=39,\ K=9
+\end{aligned}" />
+
+Cek: <InlineMath math="39-9=30" />, dan delapan bilangan sisanya berjumlah 152 dengan rata-rata 19, yang wajar berada di antara 9 dan 39.
+
+Nilai 48 adalah jumlah <InlineMath math="L+K" />, belum diuraikan. Nilai 30 adalah selisihnya, dan nilai 9 adalah bilangan terkecil. Nilai 35 menghitung jumlah delapan bilangan dengan rata-rata 20, sehingga <InlineMath math="L+K=40" />.
+
+Jadi, bilangan terbesar adalah **39**.

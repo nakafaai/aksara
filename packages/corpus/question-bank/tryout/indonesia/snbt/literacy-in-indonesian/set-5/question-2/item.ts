@@ -1,35 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "conclusion",
+  },
+  stimulus: "urban-heat",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Pada kondisi dengan perubahan, hasil rata-rata tercatat $$68$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+          column: 2,
+          label: "Satelit mengukur suhu udara yang dirasakan orang di trotoar.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
+            "Permukaan gelap menyerap lebih banyak sinar matahari daripada permukaan terang.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Rata-rata $$68$$ persen cahaya melewati sampel setelah disaring dengan kerikil, pasir, dan arang. Ukuran kejernihan itu tidak membuktikan bahwa air aman diminum.",
+            "Gedung tinggi yang berdempetan membantu menurunkan suhu kota karena memberi keteduhan.",
         },
         {
-          correct: false,
-          label:
-            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
+          column: 1,
+          label: "Pendingin ruangan dapat menambah panas di luar gedung.",
         },
       ],
     },

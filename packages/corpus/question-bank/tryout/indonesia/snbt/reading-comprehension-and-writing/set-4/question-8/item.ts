@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "explicit-information",
+  },
+  stimulus: "cassava-flour",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Meskipun demikian tim membatasi simpulannya pada uji singkat tersebut.",
+          label: "dikupas, lalu diiris tipis",
         },
         {
           correct: false,
-          label:
-            "Meskipun demikian: tim membatasi simpulannya pada uji singkat tersebut.",
-        },
-        {
-          correct: false,
-          label:
-            "Meskipun demikian; tim membatasi simpulannya pada uji singkat tersebut.",
+          label: "diberi bakteri baik",
         },
         {
           correct: true,
-          label:
-            "Meskipun demikian, tim membatasi simpulannya pada uji singkat tersebut.",
+          label: "dikeringkan, digiling, lalu diayak",
         },
         {
           correct: false,
-          label:
-            "Meskipun demikian, tim membatasi simpulannya pada uji singkat tersebut?",
+          label: "dicampur dengan sedikit terigu",
+        },
+        {
+          correct: false,
+          label: "dijemur sampai berbau singkong",
         },
       ],
     },

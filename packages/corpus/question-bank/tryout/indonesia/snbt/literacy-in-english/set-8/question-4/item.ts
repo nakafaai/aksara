@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "city-birdsong",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The definition of *truss* proves that the tested change caused the recorded result, even without the comparison conditions.",
+            "It proves that street lights have no effect on any bird species.",
         },
         {
           correct: false,
           label:
-            "The definition makes *truss* a substitute for the controls, so the unmeasured factor no longer limits the conclusion.",
+            "It shows that robins can see better at night than during the day.",
         },
         {
           correct: false,
           label:
-            "The definition broadens *truss* from this short investigation to every similar system under any condition.",
+            "It means that robins sing only at night in every British city.",
         },
         {
           correct: true,
           label:
-            "The definition explains the structural idea being tested: connected triangles distribute forces, while the washer count measures how the paper model performs.",
+            "It challenges the common explanation that lighting causes night singing.",
         },
         {
           correct: false,
           label:
-            "The term *truss* names the report's limitation rather than the concept represented by the measurements.",
+            "It suggests that daytime noise might be louder in Britain than elsewhere.",
         },
       ],
     },

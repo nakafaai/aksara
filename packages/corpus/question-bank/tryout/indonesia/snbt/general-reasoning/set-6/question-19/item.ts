@@ -1,34 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "quantifiers",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Pada keempat baris tersebut, produksi padi yang lebih tinggi berpasangan dengan impor beras yang lebih rendah.",
+          label: "Pak Harun adalah petani Desa Mekar.",
+        },
+        {
+          correct: false,
+          label: "Pak Harun bukan petani Desa Mekar.",
+        },
+        {
+          correct: false,
+          label: "Semua anggota koperasi meminjam alat panen.",
         },
         {
           correct: true,
-          label:
-            "Produksi beras tertinggi dan pengadaan beras tertinggi terjadi pada tahun yang sama.",
+          label: "Pak Harun adalah anggota koperasi.",
         },
         {
           correct: false,
-          label:
-            "Impor beras tertinggi dan pengadaan beras tertinggi sama-sama terjadi pada $$1999$$.",
-        },
-        {
-          correct: false,
-          label:
-            "Produksi beras tertinggi terjadi pada baris yang sama dengan pengadaan beras terendah.",
-        },
-        {
-          correct: false,
-          label:
-            "Impor beras terendah dan pengadaan beras terendah sama-sama terjadi pada $$2004$$.",
+          label: "Sebagian petani Desa Mekar meminjam alat panen.",
         },
       ],
     },

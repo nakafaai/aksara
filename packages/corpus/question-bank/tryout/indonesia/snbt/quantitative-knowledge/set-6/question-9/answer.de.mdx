@@ -1,19 +1,22 @@
-Wir vergleichen **deckende Drehungen und Spiegelachsen**. Die volle Drehung um <InlineMath math="360^\circ" /> zählt wie in der Aufgabe einmal mit.
+Die Diagonalen einer Raute **schneiden sich rechtwinklig und halbieren sich gegenseitig**. Sie zerlegen die Raute in vier kongruente rechtwinklige Dreiecke mit den Katheten 5 cm und 12 cm.
 
-| Figur | Deckende Drehungen | Spiegelachsen |
-| --- | --- | --- |
-| Gleichschenkliges rechtwinkliges Dreieck | 1: 360° | 1: vom rechten Winkel zum Mittelpunkt der Hypotenuse |
-| Rechtwinkliges Trapez, kein Rechteck | 1: 360° | 0 |
-| Rechteck, kein Quadrat | 2: 180° und 360° | 2: durch die Mittelpunkte gegenüberliegender Seiten |
-| Raute, kein Quadrat | 2: 180° und 360° | 2: beide Diagonalen |
+# Seite und Flächeninhalt
 
-Bei dieser Raute teilen **beide Diagonalen** die Figur in spiegelbildliche Hälften. Eine Drehung um 180° vertauscht gegenüberliegende Eckpunkte.
+Die Rautenseite ist die Hypotenuse dieses Dreiecks, der Flächeninhalt das halbe Produkt der Diagonalen.
 
-<MathVisual
- title="Beide Diagonalen sind Spiegelachsen"
- description="Die horizontale und die vertikale Diagonale teilen die Raute jeweils in zwei spiegelbildliche Dreiecke."
- scene={{space:"plane",frame:{kind:"cartesian",x:{min:-4,max:4},y:{min:-3,max:3}},view:{kind:"fit",padding:0.15},objects:[{id:"rhombus",kind:"polygon",appearance:"primary",vertices:[{x:-3,y:0},{x:0,y:2},{x:3,y:0},{x:0,y:-2}]},{id:"horizontal",kind:"segment",appearance:"highlight",from:{x:-3,y:0},to:{x:3,y:0}},{id:"vertical",kind:"segment",appearance:"secondary",from:{x:0,y:-2},to:{x:0,y:2}}],labels:[]}}
- labels={{}}
-/>
+<BlockMath math="\begin{aligned}
+s&=\sqrt{5^2+12^2}=13\\
+A&=\tfrac12\cdot10\cdot24=120
+\end{aligned}" />
 
-Die Anzahlen stimmen beim Dreieck, Rechteck und bei der Raute überein. Somit erfüllen <InlineMath math="3" /> Figuren die Bedingung.
+Der Umfang beträgt <InlineMath math="4\cdot13=52" /> cm, die erste Aussage ist also **wahr**. Der Flächeninhalt ist 120 und nicht 240, die zweite Aussage ist also falsch. Die Zahl 240 vergisst den Faktor <InlineMath math="\tfrac12" />.
+
+# Höhe und Inkreis
+
+Eine Raute ist auch ein Parallelogramm, ihr Flächeninhalt ist also **Seite mal Höhe**. Diese Höhe ist der Abstand zweier paralleler Seiten.
+
+<BlockMath math="13t=120\quad\Rightarrow\quad t=\frac{120}{13}" />
+
+Die vierte Aussage ist wahr. Der Inkreis berührt alle vier Seiten, sein Durchmesser ist also der Abstand zweier paralleler Seiten. Sein Radius ist <InlineMath math="\tfrac{60}{13}" />, die halbe Höhe, deshalb ist die dritte Aussage falsch.
+
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.

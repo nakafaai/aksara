@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "gut-bacteria",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Karena kondisi perubahan menghasilkan $$23$$, sedangkan hasil pada dua suhu lain $$14$$ dan $$4$$, air bersuhu $$35$$ derajat Celsius telah terisolasi sebagai satu-satunya penyebab selama massa ragi, jumlah gula, dan ukuran botol dibuat sama.",
+            "Tikus tanpa bakteri tidak dapat menjadi gemuk walaupun diberi banyak makanan.",
         },
         {
           correct: false,
           label:
-            "Pengulangan paling informatif sebaiknya mengubah massa ragi, jumlah gula, dan ukuran botol bersamaan dengan air bersuhu $$35$$ derajat Celsius agar gabungan kondisi yang lebih realistis dapat diuji.",
+            "Tikus tanpa bakteri jauh lebih murah dipelihara daripada tikus yang memiliki bakteri.",
         },
         {
           correct: false,
           label:
-            "Keterbatasan bahwa keliling balon hanya menjadi petunjuk kasar jumlah gas memengaruhi ketelitian angka, tetapi tidak memengaruhi luas penerapan temuan tentang produksi gas pada campuran ragi.",
+            "Peneliti ingin mengetahui jenis makanan yang paling disukai tikus kurus.",
         },
         {
           correct: true,
           label:
-            "Dalam tiga suhu yang diuji, $$35^\\circ\\text{C}$$ menghasilkan keliling rata-rata terbesar, tetapi suhu tambahan dan pengukuran gas langsung diperlukan sebelum $$35^\\circ\\text{C}$$ disebut suhu optimum produksi gas.",
+            "Tikus itu dipakai untuk menguji apakah bakteri sendiri mengubah tubuh.",
         },
         {
           correct: false,
           label:
-            "Pengulangan dengan lebih banyak unit dapat mempersempit ketidakpastian, tetapi tidak mungkin mengubah penafsiran awal tentang produksi gas pada campuran ragi.",
+            "Tikus tanpa bakteri mungkin lebih jarang terkena infeksi *C. difficile*.",
         },
       ],
     },

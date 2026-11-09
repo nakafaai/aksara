@@ -1,42 +1,19 @@
-We are asked to find the value of <InlineMath math="a" /> based on information about the **average of Group II and the mode of Group I**.
+The mean depends directly on <InlineMath math="x" />: it is <InlineMath math="\frac{505+x}{8}" />, because the other seven scores add up to 505. The median is the mean of the 4th and 5th values in order, and **those middle values depend on where <InlineMath math="x" /> falls**. So the problem has to be solved case by case.
 
-# Determining the Mode of Group I
+# Three cases for the position of x
 
-Data for Group I: <InlineMath math="3, 5, 5, 8, 9" />.
+| Position of <InlineMath math="x" /> | 4th and 5th values | Median | Equation | <InlineMath math="x" /> | Fits the case? |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="x\le70" /> | 70 and 70 | 70 | <InlineMath math="505+x=560" /> | 55 | Yes |
+| <InlineMath math="70<x<75" /> | 70 and <InlineMath math="x" /> | <InlineMath math="\frac{70+x}{2}" /> | <InlineMath math="4(70+x)=505+x" /> | 75 | No |
+| <InlineMath math="x\ge75" /> | 70 and 75 | 72.5 | <InlineMath math="505+x=580" /> | 75 | Yes |
 
-The mode is the value that **appears most frequently**.
-From the data, the value <InlineMath math="5" /> appears <InlineMath math="2 \text{ times }" />, while every other value appears only <InlineMath math="1 \text{ time }" />.
+In the middle case, <InlineMath math="x=75" /> **does not satisfy** <InlineMath math="70<x<75" />, so that case gives no new solution.
 
-So, Mode of Group I <InlineMath math="= 5" />.
+# Checking both solutions
 
-# Determining the Average of Group II
+For <InlineMath math="x=55" />, the mean is <InlineMath math="\frac{560}{8}=70" /> and the median is 70. For <InlineMath math="x=75" />, the mean is <InlineMath math="\frac{580}{8}=72.5" /> and the median is <InlineMath math="\frac{70+75}{2}=72.5" />. **Both are valid**, so their sum is <InlineMath math="55+75=130" />.
 
-It is given that the average of Group II is **two more than the mode of Group I**.
+The values 55 and 75 are each only one of the solutions. The value 72.5 is the median in the third case, not a value of <InlineMath math="x" />. The value 205 counts 75 twice, although the middle case is not valid.
 
-Writing <InlineMath math="\bar{x}_{II}" /> for the mean of Group II gives:
-
-<BlockMath math="\bar{x}_{II}=5+2=7" />
-
-# Finding the Unknown Value
-
-The average formula is the **sum of all data divided by the number of data points**.
-Data for Group II: <InlineMath math="4, 6, 8, 8, a" />.
-There are <InlineMath math="5" /> data points.
-
-<BlockMath math="\bar{x}_{II} = \frac{4 + 6 + 8 + 8 + a}{5}" />
-
-<BlockMath math="7 = \frac{26 + a}{5}" />
-
-Multiply both sides by <InlineMath math="5" />:
-
-<BlockMath math="7 \times 5 = 26 + a" />
-
-<BlockMath math="35 = 26 + a" />
-
-Subtract <InlineMath math="26" /> from both sides:
-
-<BlockMath math="a = 35 - 26" />
-
-<BlockMath math="a = 9" />
-
-Thus, the value of <InlineMath math="a" /> is <InlineMath math="9" />.
+So the sum of all possible values of <InlineMath math="x" /> is **130**.

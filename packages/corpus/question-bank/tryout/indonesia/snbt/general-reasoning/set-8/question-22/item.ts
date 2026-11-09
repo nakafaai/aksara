@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "quantitative-reasoning",
+    topic: "figure-pattern",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$20\\%$$",
+          label: "$$35$$",
         },
         {
           correct: false,
-          label: "$$22\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$27{,}5\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$30\\%$$",
+          label: "$$50$$",
         },
         {
           correct: true,
-          label: "$$25\\%$$",
+          label: "$$56$$",
+        },
+        {
+          correct: false,
+          label: "$$63$$",
+        },
+        {
+          correct: false,
+          label: "$$84$$",
         },
       ],
     },

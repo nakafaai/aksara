@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "recycling-rate",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The character treats completing the whole project as the necessary first step before seeking review.",
+          label: "25.0%",
         },
         {
           correct: true,
-          label:
-            "Hana traces one bag through the full waste route and discovers that mismatched permit symbols create an error before the bag reaches the bin.",
+          label: "31.0%",
         },
         {
           correct: false,
-          label:
-            "The account presents systems thinking as a general idea rather than something developed through the character's choice.",
+          label: "45.0%",
         },
         {
           correct: false,
-          label:
-            "The main obstacle becomes manageable because another person assumes responsibility for the next step.",
+          label: "67.5%",
         },
         {
           correct: false,
-          label:
-            "The passage presents documenting uncertainty as more important than taking a reviewable action.",
+          label: "68.9%",
         },
       ],
     },

@@ -1,33 +1,17 @@
-Gegeben sind die Funktionen <InlineMath math="f(x) = 2x - 3" /> und <InlineMath math="g(x) = x^2 + 4x - 1" />. Gesucht ist <InlineMath math="a + b + c" /> für die **Verkettung** <InlineMath math="(g \circ f)(x) = ax^2 + bx + c" />.
+Bei fünf Münzen bedeutet „mehr Kopf als Zahl“ **mindestens dreimal Kopf**. Es gibt <InlineMath math="2^5=32" /> gleich wahrscheinliche Ergebnisse, weil die Münzen fair sind.
 
-Zuerst bestimmen wir die Verkettung <InlineMath math="(g \circ f)(x)" />:
+# Günstige Ergebnisse zählen
 
-<BlockMath math="(g \circ f)(x) = g(f(x))" />
+Die Anzahl der Möglichkeiten für genau <InlineMath math="k" /> mal Kopf ist **die Anzahl der Arten, die Kopf-Münzen auszuwählen**, also <InlineMath math="\binom5k" />.
 
-<BlockMath math="= g(2x - 3)" />
+<BlockMath math="\binom53+\binom54+\binom55=10+5+1=16" />
 
-<BlockMath math="= (2x - 3)^2 + 4(2x - 3) - 1" />
+Die Wahrscheinlichkeit ist <InlineMath math="\frac{16}{32}=\frac12" />.
 
-Wir lösen die Klammern auf:
+# Das Symmetrieargument
 
-<BlockMath math="\begin{aligned}&=(4x^2-12x+9)\\&\quad+(8x-12)-1\end{aligned}" />
+Fünf Münzen können nicht gleich oft Kopf und Zahl zeigen, weil 5 ungerade ist. Jedes Ergebnis hat also mehr Kopf **oder** mehr Zahl. Vertauscht man auf jeder Münze Kopf und Zahl, werden die beiden Gruppen eins zu eins einander zugeordnet, **beide Gruppen sind also gleich groß**, jede mit 16 Ergebnissen.
 
-Dann fassen wir gleichartige Terme zusammen:
+Der Wert <InlineMath math="\tfrac5{16}" /> zählt nur genau dreimal Kopf. Der Wert <InlineMath math="\tfrac{15}{32}" /> vergisst das Ergebnis mit fünfmal Kopf. Der Wert <InlineMath math="\tfrac{13}{16}" /> zählt auch zweimal Kopf mit, und der Wert <InlineMath math="\tfrac{31}{32}" /> ist die Wahrscheinlichkeit für mindestens einmal Kopf.
 
-<BlockMath math="\begin{aligned}&=4x^2-12x+8x\\&\quad+9-12-1\end{aligned}" />
-
-<BlockMath math="= 4x^2 - 4x - 4" />
-
-Durch den Vergleich mit <InlineMath math="ax^2 + bx + c" /> erhalten wir:
-
-<BlockMath math="a = 4, \quad b = -4, \quad c = -4" />
-
-Der Wert von <InlineMath math="a + b + c" /> ist also:
-
-<BlockMath math="a + b + c = 4 + (-4) + (-4)" />
-
-<BlockMath math="= 4 - 4 - 4" />
-
-<BlockMath math="= -4" />
-
-Somit gilt <InlineMath math="a + b + c = -4" />.
+Die gesuchte Wahrscheinlichkeit ist also <InlineMath math="\tfrac12" />.

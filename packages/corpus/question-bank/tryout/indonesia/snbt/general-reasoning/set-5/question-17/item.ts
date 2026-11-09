@@ -1,32 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "selection",
+  },
+  stimulus: "estafet",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Sumbangan konsumsi rumah tangga tetap tepat $$2{,}74$$ poin persentase",
+          label: "$$6$$",
+        },
+        {
+          correct: false,
+          label: "$$7$$",
         },
         {
           correct: true,
-          label:
-            "Sumbangan konsumsi rumah tangga berada di bawah $$2{,}74$$ poin persentase",
+          label: "$$8$$",
         },
         {
           correct: false,
-          label:
-            "Sumbangan investasi pasti turun di bawah $$2{,}17$$ poin persentase",
+          label: "$$9$$",
         },
         {
           correct: false,
-          label: "Pertumbuhan ekonomi total pasti menjadi negatif",
-        },
-        {
-          correct: false,
-          label: "Konsumsi rumah tangga tidak memberikan sumbangan sama sekali",
+          label: "$$10$$",
         },
       ],
     },

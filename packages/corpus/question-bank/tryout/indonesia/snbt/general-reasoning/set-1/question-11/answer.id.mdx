@@ -1,25 +1,17 @@
-Kita memakai variabel untuk **umur masing-masing orang**: <InlineMath math="A" /> untuk Ayah, <InlineMath math="I" /> untuk Ibu, dan <InlineMath math="K" /> untuk anak.
+Sebuah simpulan bernilai Benar hanya jika **selalu berlaku pada setiap keadaan yang memenuhi keempat premis**. Jika ada satu keadaan yang memenuhi premis tetapi membuat simpulan itu salah, simpulan dinilai Salah.
 
-# Membentuk model selisih umur
+**Simpulan 1** bernilai Benar. Premis 4 menyatakan Dimas lolos pelatihan dasar, dan premis 1 menyatakan semua yang lolos pelatihan dasar boleh bertugas di posko.
 
-Selisih umur Ibu dan Ayah **paling besar** <InlineMath math="5\text{ tahun}" />, sehingga
+**Simpulan 2** bernilai Salah. Premis 2 hanya menyatakan **sebagian** relawan posko adalah tenaga kesehatan. Dimas bisa termasuk bagian itu, bisa juga tidak.
 
-<BlockMath math="|A-I| \le 5" />
+**Simpulan 3** bernilai Benar. Menurut premis 2, ada relawan yang boleh bertugas di posko dan merupakan tenaga kesehatan. Menurut premis 3, tenaga kesehatan itu tidak bertugas di dapur umum. Jadi, ada relawan yang boleh bertugas di posko dan tidak bertugas di dapur umum.
 
-Ayah berusia <InlineMath math="35\text{ tahun}" /> lebih tua daripada anak, sedangkan Ibu berusia <InlineMath math="x\text{ tahun}" /> lebih tua daripada anak:
+**Simpulan 4** bernilai Benar. Premis 3 dapat ditulis sebagai "jika seseorang tenaga kesehatan, ia tidak bertugas di dapur umum". Kontraposisinya setara dengan pernyataan semula:
 
-<BlockMath math="\begin{aligned} A-K &amp;= 35 \\ I-K &amp;= x \end{aligned}" />
+<BlockMath math="(p \Rightarrow \neg q) \equiv (q \Rightarrow \neg p)" />
 
-Selisih kedua persamaan tersebut memberi <InlineMath math="A-I=35-x" />. Oleh karena itu,
+Di sini <InlineMath math="p" /> berarti "tenaga kesehatan" dan <InlineMath math="q" /> berarti "bertugas di dapur umum". Jadi, jika Dimas bertugas di dapur umum, Dimas bukan tenaga kesehatan.
 
-<BlockMath math="|35-x| \le 5" />
+**Simpulan 5** bernilai Salah. Simpulan ini membalik premis 1. Premis 1 tidak melarang relawan yang belum lolos pelatihan dasar untuk bertugas di posko, misalnya karena alasan lain.
 
-# Menyelesaikan pertidaksamaan
-
-**Pertidaksamaan nilai mutlak** itu berarti <InlineMath math="35-x" /> berada di antara <InlineMath math="-5" /> dan <InlineMath math="5" />:
-
-Kurangi ketiga ruas dengan 35. Saat mengalikan dengan negatif satu, **balik kedua tanda pertidaksamaan**, lalu urutkan kembali dari nilai kecil ke besar.
-
-<BlockMath math="\begin{aligned} -5 &amp;\le 35-x \le 5 \\ -40 &amp;\le -x \le -30 \\ 30 &amp;\le x \le 40 \end{aligned}" />
-
-Jadi, selisih umur Ibu dan anak harus memenuhi <InlineMath math="30 \le x \le 40" />.
+Jadi, simpulan 1, 3, dan 4 benar, sedangkan simpulan 2 dan 5 salah.

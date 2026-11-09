@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "noken",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Dua usulan memunculkan perdebatan tentang keaslian, lalu pemeriksaan material mengarahkan pilihan intervensi minimum.",
+            "Noken dapat dibuat dari serat tumbuhan yang dipintal menjadi benang.",
         },
         {
-          correct: false,
-          label:
-            "Bagian awal menetapkan satu tahun acuan, lalu bagian berikutnya memilih warna seragam untuk mengembalikan keadaan tahun itu.",
+          column: 2,
+          label: "Beban di dalam noken terutama bertumpu pada bahu pemakainya.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Bagian awal memilih penggantian menyeluruh, lalu bagian berikutnya hanya menyusun catatan untuk membenarkan keputusan tersebut.",
+            "Penetapan oleh UNESCO menunjukkan bahwa noken sudah aman dari ancaman kepunahan.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Bagian awal membahas bukti beberapa masa, lalu bagian berikutnya menolak pemeriksaan material karena foto dianggap sudah cukup.",
-        },
-        {
-          correct: false,
-          label:
-            "Bagian awal menilai daya tarik bangunan bagi pengunjung, lalu bagian berikutnya menentukan perbaikan melalui pemungutan suara.",
+            "Makin banyaknya pemakaian tas plastik yang murah menjadi salah satu ancaman bagi keberlanjutan noken.",
         },
       ],
     },

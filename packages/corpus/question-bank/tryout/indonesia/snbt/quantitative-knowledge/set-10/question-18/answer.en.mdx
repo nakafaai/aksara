@@ -1,17 +1,17 @@
-List the members of <InlineMath math="A" />. They are the **integers strictly between** <InlineMath math="-3" /> and <InlineMath math="8" />:
+All that counts is **who is paired with whom**. Since the pairs have no names, the order in which the pairs appear must not add to the count.
 
-<BlockMath math="A = \left\{\begin{gathered}-2,-1,0,1,2,\\3,4,5,6,7\end{gathered}\right\}" />
+# Forming the pairs one at a time
 
-Set <InlineMath math="B" /> contains every integer less than or equal to <InlineMath math="7" />:
+Take any student, for example the first on the list. They can be paired with 5 others. Of the 4 students left, take the first on the list, who can be paired with 3 others. The last two students **automatically form a pair**.
 
-<BlockMath math="B = \left\{\begin{gathered}\ldots,-3,-2,-1,0,\\1,2,3,4,5,6,7\end{gathered}\right\}" />
+<BlockMath math="5\cdot3\cdot1=15" />
 
-The intersection of two sets (<InlineMath math="A \cap B" />) is the set containing elements that are present in both sets.
+# Check with combinations
 
-Since all members of set <InlineMath math="A" /> (from <InlineMath math="-2" /> to <InlineMath math="7" />) are also contained in set <InlineMath math="B" />, the intersection is set <InlineMath math="A" /> itself:
+If the pairs were numbered 1, 2 and 3, the count would be <InlineMath math="\binom62\binom42\binom22=15\cdot6\cdot1=90" />. Each unnumbered division appears **<InlineMath math="3!=6" /> times** in that count, once for each order of the numbers.
 
-<BlockMath math="A \cap B = \left\{\begin{gathered}-2,-1,0,1,2,\\3,4,5,6,7\end{gathered}\right\}" />
+<BlockMath math="\frac{90}{3!}=15" />
 
-Converting this back to set-builder notation, the elements are integers greater than <InlineMath math="-3" /> and less than or equal to <InlineMath math="7" />:
+The value 90 treats the pairs as numbered, and 45 only divides 90 by 2. The values 6 and 10 do not count every way of pairing the remaining students.
 
-<BlockMath math="\begin{aligned}&A\cap B\\&=\{x\in\mathbb Z\mid-3<x\leq7\}\end{aligned}" />
+So the number of ways to divide the six students is **15**.

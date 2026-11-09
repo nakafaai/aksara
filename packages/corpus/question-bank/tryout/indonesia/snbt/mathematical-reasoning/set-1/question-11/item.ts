@@ -1,30 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-23
 const item: ItemSource = {
+  stimulus: "commute-survey",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$\\text{Rp}3{.}600{.}000{,}00$$",
+          column: 1,
+          label:
+            "Sebanyak $$27{,}5\\%$$ siswa memerlukan waktu tempuh 30 menit atau lebih.",
         },
         {
-          correct: false,
-          label: "$$\\text{Rp}3{.}000{.}000{,}00$$",
+          column: 2,
+          label:
+            "Kuartil atas data waktu tempuh terletak pada kelas 20-29 menit.",
         },
         {
-          correct: false,
-          label: "$$\\text{Rp}3{.}200{.}000{,}00$$",
+          column: 2,
+          label:
+            "Lebih dari separuh siswa memerlukan waktu tempuh kurang dari 20 menit.",
         },
         {
-          correct: false,
-          label: "$$\\text{Rp}3{.}400{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}3{.}800{.}000{,}00$$",
+          column: 1,
+          label:
+            "Banyak siswa dengan waktu tempuh kurang dari 10 menit sama dengan banyak siswa dengan waktu tempuh 40 menit atau lebih.",
         },
       ],
     },

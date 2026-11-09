@@ -1,34 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
+  },
+  stimulus: "awan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Hujan buatan dapat diciptakan dari langit yang cerah dengan bantuan pesawat.",
+        },
+        {
+          correct: false,
+          label:
+            "Serbuk garam adalah satu-satunya bahan yang dapat dipakai untuk hujan buatan, sehingga teknologi ini tidak dapat dilakukan tanpa garam.",
+        },
+        {
+          correct: false,
+          label: "Hujan buatan dipakai untuk memadamkan kebakaran hutan.",
+        },
+        {
           correct: true,
           label:
-            "Prosedur lapangan disesuaikan saat cuaca berubah tanpa mengubah tujuan dan aturan ukur utama.",
+            "Modifikasi cuaca bekerja dengan menyemai awan yang sudah ada agar tetes air membesar dan jatuh sebagai hujan.",
         },
         {
           correct: false,
           label:
-            "Metode menyediakan beberapa jalur pelaksanaan yang tetap tunduk pada kriteria hasil yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Setelah ada keluhan, tujuan utama dibatalkan dan diganti dengan hasil lain yang tidak berkaitan.",
-        },
-        {
-          correct: false,
-          label:
-            "Peralatan diperiksa dan komponen aus diganti sebelum kegagalan terjadi.",
-        },
-        {
-          correct: false,
-          label:
-            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
+            "Uap air di awan selalu jatuh sebagai hujan tanpa bantuan apa pun.",
         },
       ],
     },

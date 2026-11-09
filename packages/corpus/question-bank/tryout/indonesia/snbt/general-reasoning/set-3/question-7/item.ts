@@ -1,33 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "conclusion",
+  },
+  stimulus: "kantong",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Penurunan denda minimum akan mempersulit pengembalian kerugian negara.",
+          label: "Aturan pungutan kantong plastik gagal sepenuhnya.",
+        },
+        {
+          correct: false,
+          label: "Warga kota itu tidak peduli terhadap lingkungan.",
         },
         {
           correct: false,
           label:
-            "Ketentuan yang lebih ringan akan mengurangi efek jera dan mempersulit pengembalian kerugian negara.",
-        },
-        {
-          correct: false,
-          label: "Sejumlah ketentuan lebih ringan daripada UU Tipikor.",
+            "Pemakaian plastik oleh warga naik $$40\\%$$ setelah aturan berlaku.",
         },
         {
           correct: false,
           label:
-            "Ketentuan yang lebih ringan diperkirakan akan mengurangi efek jera dan membuat korupsi semakin marak.",
+            "Pungutan kantong plastik perlu dinaikkan dan diberlakukan juga pada kantong sampah agar penjualan kantong sampah turun kembali seperti sebelum aturan berlaku.",
         },
         {
           correct: true,
           label:
-            "Sejumlah ketentuan lebih ringan daripada UU Tipikor dan korupsi di Indonesia akan berkurang.",
+            "Penurunan kantong plastik belanja belum tentu berarti pemakaian plastik warga turun sebanyak itu, karena sebagian warga tampaknya beralih membeli kantong sampah.",
         },
       ],
     },
