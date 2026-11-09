@@ -40,58 +40,33 @@ The vector <InlineMath math="A\hat{x}" /> is the point in <InlineMath math="\ope
 
 The second equation is called the **[normal equation](/en/subjects/ai-ds/linear-methods/normal-equation)**.
 
-<LineEquation
-  title="Orthogonal projection in a least-squares problem"
-  description={<>The blue vector ends at <InlineMath math="A\hat{x}" />, the orange vector ends at <InlineMath math="b" />, and the purple vector is the residual <InlineMath math="A\hat{x}-b" />.</>}
-  cameraPosition={[9, 8, 12]}
-  cameraTarget={[1.5, 1.5, 3]}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1.5, y: 1.5, z: 1.5 },
-        { x: 3, y: 3, z: 3 }
-      ],
-      smooth: false,
-      color: "#0284c7",
-      cone: { position: "end" },
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="A\hat{x}" />, at: 2, offset: [0.5, 0.5, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0.5, y: 1, z: 3 },
-        { x: 1, y: 2, z: 6 }
-      ],
-      smooth: false,
-      color: "#d97706",
-      cone: { position: "end" },
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="b" />, at: 2, offset: [0.5, 0, 0.5] }
-      ]
-    },
-    {
-      points: [
-        { x: 1, y: 2, z: 6 },
-        { x: 2, y: 2.5, z: 4.5 },
-        { x: 3, y: 3, z: 3 }
-      ],
-      smooth: false,
-      color: "#9333ea",
-      cone: { position: "end" },
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="A\hat{x}-b" />, at: 1, offset: [0, -0.5, 0] }
-      ]
-    }
-  ]}
+<MathVisual
+  title={<>The projection <InlineMath math="A\hat x" /> of <InlineMath math="b=(1,2,6)" /></>}
+  description={<>The gray segment is the column space, the line through <InlineMath math="(1,1,1)" />. The teal segment ends at <InlineMath math="A\hat x=(3,3,3)" />, the orange segment ends at <InlineMath math="b" />, and the magenta residual <InlineMath math="A\hat x-b" /> is perpendicular to the column space.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 6.5 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 1.5, z: 3 } },
+    objects: [
+      { id: "column", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 4, z: 4 }, appearance: "reference" },
+      { id: "fit", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 3, z: 3 }, appearance: "construction" },
+      { id: "target", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 2, z: 6 }, appearance: "primary" },
+      { id: "residual", kind: "segment", from: { x: 3, y: 3, z: 3 }, to: { x: 1, y: 2, z: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "fit", objectId: "fit", at: { x: 3, y: 3, z: 3 }, placement: "right" },
+      { key: "target", objectId: "target", at: { x: 1, y: 2, z: 6 }, placement: "above" },
+      { key: "residual", objectId: "residual", at: { x: 2, y: 2.5, z: 4.5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "fit": <InlineMath math="A\hat x" />,
+    "target": <InlineMath math="b" />,
+    "residual": <InlineMath math="A\hat x-b" />,
+  }}
 />
 
-The diagram labels the target vector <InlineMath math="b" />, the projected point <InlineMath math="A\hat{x}" />, and the residual <InlineMath math="A\hat{x}-b" /> between them. The blue vector <InlineMath math="A\hat{x}" /> lies in the column space. The orthogonality condition above proves that it is the nearest point in that space to <InlineMath math="b" />.
+The diagram labels the target vector <InlineMath math="b" />, the projected point <InlineMath math="A\hat{x}" />, and the residual <InlineMath math="A\hat{x}-b" /> between them. The teal vector <InlineMath math="A\hat{x}" /> lies in the column space. The orthogonality condition above proves that it is the nearest point of that space to <InlineMath math="b" />.
 
 ## Fitting One Constant to Three Observations
 
@@ -119,6 +94,37 @@ The residual components sum to zero, so
 
 The zero result satisfies the normal equation.
 
+Fitting one constant <InlineMath math="x" /> to the observations <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="6" /> means minimizing <InlineMath math="(x-1)^2+(x-2)^2+(x-6)^2" />. The derivative vanishes when <InlineMath math="3x=9" />, so the best constant is the mean <InlineMath math="x=3" />, with squared residual <InlineMath math="4+1+9=14" />.
+
+<MathVisual
+  title={<>The best constant for <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="6" /></>}
+  description={<>The violet points are the observations, the teal line is the constant <InlineMath math="x" />, and the magenta segments are the residuals. Move <InlineMath math="x" />: the readout falls to its minimum <InlineMath math="14" /> at <InlineMath math="x=3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "c", min: 0, max: 7, value: 2, step: 0.01, label: "c" },
+    ],
+    objects: [
+      { id: "constant", kind: "function", formula: "c", domain: { min: 0.5, max: 3.5 }, appearance: "construction" },
+      { id: "gap-a", kind: "path", points: [{ x: "1", y: "1" }, { x: "1", y: "c" }], appearance: "answer" },
+      { id: "gap-b", kind: "path", points: [{ x: "2", y: "2" }, { x: "2", y: "c" }], appearance: "answer" },
+      { id: "gap-c", kind: "path", points: [{ x: "3", y: "6" }, { x: "3", y: "c" }], appearance: "answer" },
+      { id: "first", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "second", kind: "point", at: { x: 2, y: 2 }, appearance: "secondary" },
+      { id: "third", kind: "point", at: { x: 3, y: 6 }, appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "sum", formula: "(1 - c)^2 + (2 - c)^2 + (6 - c)^2" },
+    ],
+  }}
+  labels={{
+    "c": <InlineMath math="x" />,
+    "sum": <InlineMath math="F(x)=\|x\mathbf 1-b\|_2^2" />,
+  }}
+/>
+
 ## Other residual norms
 
 The norm determines what **kind of error** the fit prioritizes.
@@ -138,6 +144,26 @@ For the same observations 1, 2, and 6, the norm changes the fitted constant. Lea
 | <InlineMath math="\ell_2^2" /> | <InlineMath math="(1+2+6)/3=3" /> | <InlineMath math="2^2+1^2+(-3)^2=14" /> |
 | <InlineMath math="\ell_1" /> | <InlineMath math="2" /> | <InlineMath math="1+0+4=5" /> |
 | <InlineMath math="\ell_\infty" /> | <InlineMath math="(1+6)/2=7/2" /> | <InlineMath math="\max(5/2,3/2,5/2)=5/2" /> |
+
+Other norms pick other constants for the same data. The sum of absolute residuals is smallest at the median <InlineMath math="2" />, the Euclidean norm at the mean <InlineMath math="3" />, and the largest residual at the midrange <InlineMath math="\tfrac{1+6}2=3.5" />.
+
+<MathVisual
+  title={<>Three norms of the residual <InlineMath math="x\mathbf 1-b" /></>}
+  description={<>With <InlineMath math="x" /> across, the violet curve is <InlineMath math="\|x\mathbf 1-b\|_1" />, the teal curve <InlineMath math="\|x\mathbf 1-b\|_2" />, and the orange curve <InlineMath math="\|x\mathbf 1-b\|_\infty" />. The magenta points mark their minima at <InlineMath math="x=2" />, <InlineMath math="3" />, and <InlineMath math="3.5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 7.3 }, y: { min: 0, max: 13 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sum", kind: "function", formula: "abs(1 - x) + abs(2 - x) + abs(6 - x)", domain: { min: 0, max: 7 }, appearance: "secondary" },
+      { id: "euclid", kind: "function", formula: "sqrt((1 - x)^2 + (2 - x)^2 + (6 - x)^2)", domain: { min: 0, max: 7 }, appearance: "construction" },
+      { id: "largest", kind: "function", formula: "max(abs(1 - x), max(abs(2 - x), abs(6 - x)))", domain: { min: 0, max: 7 }, appearance: "primary" },
+      { id: "median", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+      { id: "mean", kind: "point", at: { x: 3, y: Math.sqrt(14) }, appearance: "answer" },
+      { id: "midrange", kind: "point", at: { x: 3.5, y: 2.5 }, appearance: "answer" },
+    ],
+  }}
+/>
 
 ## Choosing a Stable Numerical Method
 

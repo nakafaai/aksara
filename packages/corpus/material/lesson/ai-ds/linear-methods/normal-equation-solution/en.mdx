@@ -62,6 +62,35 @@ The pseudoinverse is uniquely characterized by the four Penrose identities:
 <BlockMath math="(A^{\dagger}A)^T=A^{\dagger}A" />
 </MathContainer>
 
+Take <InlineMath math="\Sigma=\operatorname{diag}(2,\,0.5,\,0)" />. The pseudoinverse inverts each positive singular value and keeps the zero: <InlineMath math="\Sigma^\dagger=\operatorname{diag}(0.5,\,2,\,0)" />. A small singular value becomes a large entry, which is why near-zero singular values make <InlineMath math="x^\dagger" /> sensitive.
+
+<ScatterDiagram
+  title={<><InlineMath math="\Sigma" /> and <InlineMath math="\Sigma^\dagger" /> entry by entry</>}
+  description={<>For <InlineMath math="i=1" />, <InlineMath math="2" />, <InlineMath math="3" />, the first series is <InlineMath math="\sigma_i" /> and the second is <InlineMath math="\Sigma^\dagger_{ii}" />. The zero singular value stays <InlineMath math="0" /> instead of becoming infinite.</>}
+  xAxisLabel="Index"
+  yAxisLabel="Value"
+  datasets={[
+    {
+      name: "Singular value",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 2 },
+        { x: 2, y: 0.5 },
+        { x: 3, y: 0 },
+      ],
+    },
+    {
+      name: "Pseudoinverse entry",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 1 / 2 },
+        { x: 2, y: 1 / 0.5 },
+        { x: 3, y: 0 },
+      ],
+    },
+  ]}
+/>
+
 ## Direct Solution with QR Decomposition
 
 For a full-column-rank matrix with <InlineMath math="m\ge n" />, use the thin <InlineMath math="\mathrm{QR}" /> decomposition
@@ -118,48 +147,24 @@ The calculation gives:
 <BlockMath math="\|A\hat{x}-b\|_2\approx0.41861" />
 </MathContainer>
 
-<LineEquation
-  title={<>Least-squares fit <InlineMath math="\hat{y}(t)=0.98095t^2+3.02857t-2.00952" /></>}
-  description={<>The cyan curve is the fitted polynomial, while the orange points are the seven observations in <InlineMath math="b" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 6, 26]}
-  cameraTarget={[0, 6, 0]}
-  data={(() => {
-    // Observations encoded by A and b
-    const originalData = [
-      [-3, -2.2],
-      [-2, -4.2],
-      [-1, -4.2],
-      [0, -1.8],
-      [1, 1.8],
-      [2, 8.2],
-      [3, 15.8]
-    ];
-
-    // Coefficients obtained from the QR solve
-    const a = 0.98095;
-    const b = 3.02857;
-    const c = -2.00952;
-
-    return [
-      {
-        points: Array.from({ length: 50 }, (_, i) => {
-          const t = -3 + (i * 6) / 49;
-          const y = a * t * t + b * t + c;
-          return { x: t, y: y, z: 0 };
-        }),
-        color: "#0891b2",
-        smooth: false,
-        showPoints: false
-      },
-      ...originalData.map(([t, y]) => ({
-        points: [{ x: t, y, z: 0 }],
-        color: "#ea580c",
-        smooth: false,
-        showPoints: true
-      }))
-    ];
-  })()}
+<MathVisual
+  title={<>The least-squares parabola <InlineMath math="\hat y(t)=\tfrac{103}{105}t^2+\tfrac{106}{35}t-\tfrac{211}{105}" /></>}
+  description={<>The teal curve is the fitted polynomial, with <InlineMath math="t" /> across, and the orange points are the seven observations in <InlineMath math="b" />. The coefficients are the exact solution of the normal equations, <InlineMath math="0.98095" />, <InlineMath math="3.02857" />, and <InlineMath math="-2.00952" /> after rounding.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -5.5, max: 17 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "fit", kind: "function", formula: "103/105*x^2 + 106/35*x - 211/105", domain: { min: -3, max: 3 }, appearance: "construction" },
+      { id: "obs-0", kind: "point", at: { x: -3, y: -2.2 }, appearance: "primary" },
+      { id: "obs-1", kind: "point", at: { x: -2, y: -4.2 }, appearance: "primary" },
+      { id: "obs-2", kind: "point", at: { x: -1, y: -4.2 }, appearance: "primary" },
+      { id: "obs-3", kind: "point", at: { x: 0, y: -1.8 }, appearance: "primary" },
+      { id: "obs-4", kind: "point", at: { x: 1, y: 1.8 }, appearance: "primary" },
+      { id: "obs-5", kind: "point", at: { x: 2, y: 8.2 }, appearance: "primary" },
+      { id: "obs-6", kind: "point", at: { x: 3, y: 15.8 }, appearance: "primary" },
+    ],
+  }}
 />
 
 ## Choosing a Numerical Method
@@ -171,3 +176,38 @@ The calculation gives:
 | <InlineMath math="\mathrm{SVD}" /> | more work than <InlineMath math="\mathrm{QR}" /> | determines rank and gives the **minimum-norm solution** | highest cost of the three |
 
 Use <InlineMath math="\mathrm{QR}" /> as the usual choice for dense, full-rank problems. Use <InlineMath math="\mathrm{SVD}" /> when the matrix is rank deficient, severely ill conditioned, or requires a minimum-norm solution. Form the normal matrix only when the speed gain is worth the loss of numerical stability. Do not compute an inverse explicitly in production code.
+
+Forming <InlineMath math="A^TA" /> squares the condition number, <InlineMath math="\kappa(A^TA)=\kappa(A)^2" />. With about <InlineMath math="16" /> digits in double precision, a problem with <InlineMath math="\kappa(A)=10^6" /> can lose about <InlineMath math="6" /> digits through <InlineMath math="\mathrm{QR}" /> but about <InlineMath math="12" /> through the normal equations.
+
+<ScatterDiagram
+  title={<>Digits at risk with <InlineMath math="\mathrm{QR}" /> and with <InlineMath math="A^TA" /></>}
+  description={<>With <InlineMath math="\log_{10}\kappa(A)" /> across, the first series loses that many digits and the second series twice as many, because <InlineMath math="\kappa(A^TA)=\kappa(A)^2" />.</>}
+  xAxisLabel="Condition number exponent"
+  yAxisLabel="Digits at risk"
+  datasets={[
+    {
+      name: "With QR",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 1 },
+        { x: 2, y: 2 },
+        { x: 3, y: 3 },
+        { x: 4, y: 4 },
+        { x: 5, y: 5 },
+        { x: 6, y: 6 },
+      ],
+    },
+    {
+      name: "With normal equations",
+      color: "var(--chart-3)",
+      points: [
+        { x: 1, y: 2 * 1 },
+        { x: 2, y: 2 * 2 },
+        { x: 3, y: 2 * 3 },
+        { x: 4, y: 2 * 4 },
+        { x: 5, y: 2 * 5 },
+        { x: 6, y: 2 * 6 },
+      ],
+    },
+  ]}
+/>

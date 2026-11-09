@@ -27,6 +27,24 @@ Der Beweis verbindet die vier Aussagen direkt. Eine orthonormale Eigenbasis lief
 | Reell und symmetrisch | <InlineMath math="\mathbb{R}" /> | Orthogonale Diagonalisierung mit reellen Eigenwerten |
 | Reell und orthogonal | <InlineMath math="\mathbb{R}" /> | Im Allgemeinen entstehen reelle Rotationsblöcke. Eine reelle Diagonalform entsteht nur, wenn alle Eigenwerte reell sind |
 
+Die symmetrische Matrix <InlineMath math="A=\begin{pmatrix}1&2\\2&1\end{pmatrix}" /> ist normal, mit den reellen Eigenwerten <InlineMath math="3" /> und <InlineMath math="-1" /> und den orthonormalen Eigenvektoren <InlineMath math="\tfrac1{\sqrt2}(1,1)" /> und <InlineMath math="\tfrac1{\sqrt2}(1,-1)" />. Sie bildet den Einheitskreis auf eine Ellipse ab, deren Achsen entlang dieser Eigenvektoren liegen.
+
+<MathVisual
+  title={<><InlineMath math="A=\begin{pmatrix}1&2\\2&1\end{pmatrix}" /> bildet den Einheitskreis auf eine Ellipse ab</>}
+  description={<>Der graue Kreis ist der Einheitskreis und die violette Ellipse sein Bild. Die türkise Strecke entlang <InlineMath math="(1,1)" /> hat die halbe Länge <InlineMath math="3" />, die orange Strecke entlang <InlineMath math="(1,-1)" /> die halbe Länge <InlineMath math="1" />, die Beträge der Eigenwerte, senkrecht zueinander.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "image", kind: "parametric", x: "cos(t) + 2*sin(t)", y: "2*cos(t) + sin(t)", parameter: { min: 0, max: 2 * Math.PI }, appearance: "secondary" },
+      { id: "major", kind: "segment", from: { x: -3 * Math.SQRT1_2, y: -3 * Math.SQRT1_2 }, to: { x: 3 * Math.SQRT1_2, y: 3 * Math.SQRT1_2 }, appearance: "construction" },
+      { id: "minor", kind: "segment", from: { x: -Math.SQRT1_2, y: Math.SQRT1_2 }, to: { x: Math.SQRT1_2, y: -Math.SQRT1_2 }, appearance: "primary" },
+    ],
+  }}
+/>
+
 ## Normale Matrix ohne reelle Eigenbasis
 
 Betrachte die Drehung um einen Winkel <InlineMath math="\alpha" />, der kein ganzzahliges Vielfaches von <InlineMath math="\pi" /> ist:
@@ -46,9 +64,38 @@ Seine Diskriminante ist
 
 Da <InlineMath math="\alpha" /> kein ganzzahliges Vielfaches von <InlineMath math="\pi" /> ist, gilt <InlineMath math="\sin\alpha\neq0" />. Das charakteristische Polynom hat daher **keine reelle Nullstelle** und <InlineMath math="R_\alpha" /> besitzt keine reelle Eigenvektorbasis. Über <InlineMath math="\mathbb{C}" /> sind die Eigenwerte <InlineMath math="e^{i\alpha}" /> und <InlineMath math="e^{-i\alpha}" />.
 
-Bei <InlineMath math="\alpha=\pi/2" /> wird der blaue Vektor <InlineMath math="v=(1,1)^T" /> zum orangen Vektor <InlineMath math="Rv=(-1,1)^T" />. Ihr Skalarprodukt ist null. Allgemein gilt <InlineMath math="(x,y)\cdot(-y,x)=0" />: Jeder reelle Vektor ungleich null wird um 90° gedreht und bleibt daher nicht auf seiner ursprünglichen Geraden.
+Bei <InlineMath math="\alpha=\pi/2" /> wird der türkise Vektor <InlineMath math="v=(1,1)^T" /> zum orangen Vektor <InlineMath math="Rv=(-1,1)^T" />. Ihr Skalarprodukt ist null. Allgemein gilt <InlineMath math="(x,y)\cdot(-y,x)=0" />: Jeder reelle Vektor ungleich null wird um <InlineMath math="90^\circ" /> gedreht und bleibt daher nicht auf seiner ursprünglichen Geraden.
 
-<LineEquation description="Der blaue Vektor und sein orangefarbenes Bild stehen senkrecht aufeinander. Eine Vierteldrehung erhält keine Richtungslinie eines reellen Vektors ungleich null." title="Eine Vierteldrehung ändert jede reelle Richtung" cameraPosition={[0, 0.5, 5]} cameraTarget={[0, 0.5, 0]} showZAxis={false} data={[{"points": [{"x": 0, "y": 0, "z": 0}, {"x": 1, "y": 1, "z": 0}], "color": "#0284c7", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="v" />, "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": -1, "y": 1, "z": 0}], "color": "#ea580c", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="Rv" />, "at": 1}]}]} />
+<MathVisual
+  title={<><InlineMath math="v=(1,1)" /> und <InlineMath math="R_\alpha v" /></>}
+  description={<>Die türkise Strecke ist <InlineMath math="v" /> und die orange Strecke die Drehung <InlineMath math="R_\alpha v" />, beide auf dem grauen Kreis mit Radius <InlineMath math="\sqrt2" />. Verschiebe <InlineMath math="\alpha" />: Die Anzeige <InlineMath math="v\cdot R_\alpha v=2\cos\alpha" /> ist bei <InlineMath math="\alpha=\tfrac\pi2" /> gleich <InlineMath math="0" />, und <InlineMath math="R_\alpha v" /> bleibt nur bei <InlineMath math="\alpha=0" /> und <InlineMath math="\alpha=\pi" /> auf der Geraden von <InlineMath math="v" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: 0, max: 2 * Math.PI, value: Math.PI / 2, step: 0.01, label: "angle" },
+    ],
+    objects: [
+      { id: "radius", kind: "circle", center: { x: 0, y: 0 }, radius: Math.SQRT2, appearance: "reference" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "turned", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a) - sin(a)", y: "sin(a) + cos(a)" }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "vector", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "rv", objectId: "turned", at: { x: "cos(a) - sin(a)", y: "sin(a) + cos(a)" }, placement: "left" },
+    ],
+    readouts: [
+      { key: "dot", formula: "2*cos(a)" },
+    ],
+  }}
+  labels={{
+    "angle": <InlineMath math="\alpha" />,
+    "dot": <InlineMath math="v\cdot R_\alpha v" />,
+    "v": <InlineMath math="v" />,
+    "rv": <InlineMath math="R_\alpha v" />,
+  }}
+/>
 
 ## Eine diagonalisierbare nicht normale Matrix
 
@@ -82,3 +129,22 @@ Direktes Multiplizieren zeigt außerdem, dass <InlineMath math="A" /> nicht norm
 </MathContainer>
 
 Dieses Beispiel trennt die beiden Begriffe. Bei einer gewöhnlichen Diagonalisierung darf die Eigenvektormatrix <InlineMath math="S" /> beliebig invertierbar sein. Eine orthogonale Diagonalisierung <Highlight>verlangt dagegen eine orthonormale Eigenbasis</Highlight> und damit eine reelle symmetrische Matrix.
+
+Die Matrix <InlineMath math="A=\begin{pmatrix}1&1\\0&2\end{pmatrix}" /> hat die verschiedenen Eigenwerte <InlineMath math="1" /> und <InlineMath math="2" />, ist also mit den Eigenvektoren <InlineMath math="(1,0)" /> und <InlineMath math="(1,1)" /> diagonalisierbar. Diese treffen sich unter <InlineMath math="45^\circ" />, nicht <InlineMath math="90^\circ" />: <InlineMath math="A^TA=\begin{pmatrix}1&1\\1&5\end{pmatrix}" /> unterscheidet sich von <InlineMath math="AA^T=\begin{pmatrix}2&2\\2&4\end{pmatrix}" />, also ist <InlineMath math="A" /> nicht normal und hat keine orthonormale Eigenbasis.
+
+<MathVisual
+  title={<>Eigenvektoren von <InlineMath math="\begin{pmatrix}1&1\\0&2\end{pmatrix}" /> unter <InlineMath math="45^\circ" /></>}
+  description={<>Die türkise Gerade ist die Eigenrichtung <InlineMath math="(1,0)" /> und die orange Gerade <InlineMath math="(1,1)" />, der gelbe Bogen markiert die <InlineMath math="45^\circ" /> dazwischen. Die violette Kurve ist das Bild des grauen Einheitskreises.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.2, max: 2.2 }, y: { min: -2.2, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "image", kind: "parametric", x: "cos(t) + sin(t)", y: "2*sin(t)", parameter: { min: 0, max: 2 * Math.PI }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: -1.5, y: 0 }, to: { x: 1.5, y: 0 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: -1.5, y: -1.5 }, to: { x: 1.5, y: 1.5 }, appearance: "primary" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.5, startDegrees: 0, sweepDegrees: 45, appearance: "highlight" },
+    ],
+  }}
+/>

@@ -60,18 +60,18 @@ Für <InlineMath math="L=I" /> und <InlineMath math="x_0=0" /> sei <InlineMath m
 
 Ist <InlineMath math="\sigma_i" /> deutlich größer als <InlineMath math="\alpha" />, liegt der Faktor <InlineMath math="\phi_i(\alpha)" /> nahe bei <InlineMath math="1" />. Die Regularisierung verändert den **zugehörigen Anteil** der Lösung daher kaum. Ist <InlineMath math="\sigma_i" /> deutlich kleiner als <InlineMath math="\alpha" />, liegt der Faktor nahe bei <InlineMath math="0" /> und der zugehörige Anteil wird kleiner. So führt ein kleiner Messfehler nicht zu einer großen Änderung der angepassten Lösung.
 
-Der Faktor <InlineMath math="\phi_i(\alpha)" /> entscheidet, wie viel von Komponente <InlineMath math="i" /> übrig bleibt. Für <InlineMath math="\sigma_2=0.1" /> ist der Faktor bei <InlineMath math="\alpha=0.1" /> genau <InlineMath math="\tfrac12" />, also bestimmt <InlineMath math="\alpha" />, wie viel von dieser schwachen Richtung bleibt.
+Der Faktor <InlineMath math="\phi_i(\alpha)" /> entscheidet, wie viel von Komponente <InlineMath math="i" /> übrig bleibt. Für <InlineMath math="\sigma_2=0{,}1" /> ist der Faktor bei <InlineMath math="\alpha=0{,}1" /> genau <InlineMath math="\tfrac12" />, also bestimmt <InlineMath math="\alpha" />, wie viel von dieser schwachen Richtung bleibt.
 
 <BarChart
-  title={<>Filterfaktor <InlineMath math="\phi_2(\alpha)" /> für <InlineMath math="\sigma_2=0.1" /></>}
-  description={<>Jeder Balken ist <InlineMath math="\phi_2(\alpha)=\sigma_2^2/(\sigma_2^2+\alpha^2)" /> für den kleinen Singulärwert von <InlineMath math="A=\operatorname{diag}(1,0.1)" />, mit <InlineMath math="\alpha" /> darunter. Der Faktor fällt von fast <InlineMath math="1" /> auf fast <InlineMath math="0" />, sobald <InlineMath math="\alpha" /> an <InlineMath math="\sigma_2" /> vorbeigeht.</>}
+  title={<>Filterfaktor <InlineMath math="\phi_2(\alpha)" /> für <InlineMath math="\sigma_2=0{,}1" /></>}
+  description={<>Jeder Balken ist <InlineMath math="\phi_2(\alpha)=\sigma_2^2/(\sigma_2^2+\alpha^2)" /> für den kleinen Singulärwert von <InlineMath math="A=\operatorname{diag}(1,0{,}1)" />, mit <InlineMath math="\alpha" /> darunter. Der Faktor fällt von fast <InlineMath math="1" /> auf fast <InlineMath math="0" />, sobald <InlineMath math="\alpha" /> an <InlineMath math="\sigma_2" /> vorbeigeht.</>}
   yAxisLabel="Filterfaktor"
   data={[
-    { name: "0.01", value: 0.1 ** 2 / (0.1 ** 2 + 0.01 ** 2) },
-    { name: "0.05", value: 0.1 ** 2 / (0.1 ** 2 + 0.05 ** 2) },
-    { name: "0.1", value: 0.1 ** 2 / (0.1 ** 2 + 0.1 ** 2) },
-    { name: "0.2", value: 0.1 ** 2 / (0.1 ** 2 + 0.2 ** 2) },
-    { name: "0.5", value: 0.1 ** 2 / (0.1 ** 2 + 0.5 ** 2) },
+    { name: "0,01", value: 0.1 ** 2 / (0.1 ** 2 + 0.01 ** 2) },
+    { name: "0,05", value: 0.1 ** 2 / (0.1 ** 2 + 0.05 ** 2) },
+    { name: "0,1", value: 0.1 ** 2 / (0.1 ** 2 + 0.1 ** 2) },
+    { name: "0,2", value: 0.1 ** 2 / (0.1 ** 2 + 0.2 ** 2) },
+    { name: "0,5", value: 0.1 ** 2 / (0.1 ** 2 + 0.5 ** 2) },
   ]}
   chartConfig={{ value: { label: "Filterfaktor", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
@@ -105,11 +105,11 @@ Vergleiche den zweiten Parameter vor und nach derselben Datenänderung. Der erst
 
 <BlockMath math="\Delta x_2=\frac{(1/10)(1/100)}{(1/10)^2+(1/5)^2}=\frac{1/1000}{1/20}=\frac1{50}" />
 
-In diesem Beispiel schrumpft jede Komponente für sich: <InlineMath math="x_{\alpha,1}=\frac{1}{1+\alpha^2}" /> und <InlineMath math="x_{\alpha,2}=\frac{0.02}{0.01+\alpha^2}" />. Folg den magentafarbenen Punkten von <InlineMath math="x_{\mathrm{LS}}=(1,2)^T" /> nach unten: Sobald <InlineMath math="\alpha" /> den Wert <InlineMath math="0.1" /> erreicht, ist die zweite Komponente schon auf die Hälfte gefallen, während sich die erste kaum bewegt hat. Das liegt daran, dass <InlineMath math="\sigma_2=0.1" /> klein ist, also wird die instabile Richtung zuerst zur Referenz <InlineMath math="x_0=0" /> gezogen. Der gelbe Kreis zeigt die Länge von <InlineMath math="x_{0.2}=(25/26,0.4)^T" />, so siehst du, wie stark die Strafe die Lösung schon verkürzt hat.
+In diesem Beispiel schrumpft jede Komponente für sich: <InlineMath math="x_{\alpha,1}=\frac{1}{1+\alpha^2}" /> und <InlineMath math="x_{\alpha,2}=\frac{0{,}02}{0{,}01+\alpha^2}" />. Folg den magentafarbenen Punkten von <InlineMath math="x_{\mathrm{LS}}=(1,2)^T" /> nach unten: Sobald <InlineMath math="\alpha" /> den Wert <InlineMath math="0{,}1" /> erreicht, ist die zweite Komponente schon auf die Hälfte gefallen, während sich die erste kaum bewegt hat. Das liegt daran, dass <InlineMath math="\sigma_2=0{,}1" /> klein ist, also wird die instabile Richtung zuerst zur Referenz <InlineMath math="x_0=0" /> gezogen. Der gelbe Kreis zeigt die Länge von <InlineMath math="x_{0{,}2}=(25/26,0{,}4)^T" />, so siehst du, wie stark die Strafe die Lösung schon verkürzt hat.
 
 <MathVisual
   title={<>Die Tikhonov-Lösung <InlineMath math="x_\alpha" /> für mehrere Werte von <InlineMath math="\alpha" /></>}
-  description={<>Magentafarbene Punkte sind <InlineMath math="x_\alpha" /> für <InlineMath math="\alpha=0,\ 0.1,\ 0.2,\ 0.5,\ 2" />. Der gelbe Kreis geht durch <InlineMath math="x_{0.2}" />, und der violette Punkt ist die Referenz <InlineMath math="x_0=0" />.</>}
+  description={<>Magentafarbene Punkte sind <InlineMath math="x_\alpha" /> für <InlineMath math="\alpha=0,\ 0{,}1,\ 0{,}2,\ 0{,}5,\ 2" />. Der gelbe Kreis geht durch <InlineMath math="x_{0{,}2}" />, und der violette Punkt ist die Referenz <InlineMath math="x_0=0" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1.2, max: 1.4 }, y: { min: -1.2, max: 2.4 } },
@@ -134,12 +134,12 @@ In diesem Beispiel schrumpft jede Komponente für sich: <InlineMath math="x_{\al
     ],
   }}
   labels={{
-    "norm": <InlineMath math="\|x\|=\|x_{0.2}\|" />,
+    "norm": <InlineMath math="\|x\|=\|x_{0{,}2}\|" />,
     "origin": <InlineMath math="x_0" />,
     "ls": <InlineMath math="x_{\mathrm{LS}}" />,
-    "tenth": <InlineMath math="\alpha=0.1" />,
-    "fifth": <InlineMath math="x_{0.2}" />,
-    "half": <InlineMath math="\alpha=0.5" />,
+    "tenth": <InlineMath math="\alpha=0{,}1" />,
+    "fifth": <InlineMath math="x_{0{,}2}" />,
+    "half": <InlineMath math="\alpha=0{,}5" />,
     "two": <InlineMath math="\alpha=2" />,
   }}
 />
@@ -157,11 +157,11 @@ Es gibt **keinen universell besten Wert** für <InlineMath math="\alpha" />. Er 
 
 Ein kleines <InlineMath math="\alpha" /> betont die Datentreue und kann Rauschverstärkung bestehen lassen. Ein großes <InlineMath math="\alpha" /> betont die Strafe und kann die Lösung zu stark glätten oder schrumpfen. Auch Parameterspalten und Strafzeilen müssen sinnvoll skaliert sein. Andernfalls lässt sich der Zahlenwert von <InlineMath math="\alpha" /> kaum interpretieren.
 
-Für <InlineMath math="A=\operatorname{diag}(1,0.1)" /> und <InlineMath math="b=(1,0.2)" /> ist die Lösung <InlineMath math="x_\alpha=\bigl(\tfrac1{1+\alpha^2},\tfrac{0.02}{0.01+\alpha^2}\bigr)" />. Ein größeres <InlineMath math="\alpha" /> verkleinert <InlineMath math="x_\alpha" /> und vergrößert das Residuum, also tauscht jede Wahl das eine gegen das andere.
+Für <InlineMath math="A=\operatorname{diag}(1,0{,}1)" /> und <InlineMath math="b=(1,0{,}2)" /> ist die Lösung <InlineMath math="x_\alpha=\bigl(\tfrac1{1+\alpha^2},\tfrac{0{,}02}{0{,}01+\alpha^2}\bigr)" />. Ein größeres <InlineMath math="\alpha" /> verkleinert <InlineMath math="x_\alpha" /> und vergrößert das Residuum, also tauscht jede Wahl das eine gegen das andere.
 
 <ScatterDiagram
   title={<>Residuum gegen Lösungsgröße</>}
-  description={<>Jeder Punkt ist ein <InlineMath math="\alpha" /> von <InlineMath math="0.05" /> bis <InlineMath math="1" />, mit <InlineMath math="\|Ax_\alpha-b\|_2" /> nach rechts und <InlineMath math="\|x_\alpha\|_2" /> nach oben. Kleine <InlineMath math="\alpha" /> liegen oben links, große <InlineMath math="\alpha" /> unten rechts.</>}
+  description={<>Jeder Punkt ist ein <InlineMath math="\alpha" /> von <InlineMath math="0{,}05" /> bis <InlineMath math="1" />, mit <InlineMath math="\|Ax_\alpha-b\|_2" /> nach rechts und <InlineMath math="\|x_\alpha\|_2" /> nach oben. Kleine <InlineMath math="\alpha" /> liegen oben links, große <InlineMath math="\alpha" /> unten rechts.</>}
   xAxisLabel="Residuennorm"
   yAxisLabel="Lösungsnorm"
   datasets={[

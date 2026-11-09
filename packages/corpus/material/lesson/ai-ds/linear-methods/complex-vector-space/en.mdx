@@ -33,16 +33,38 @@ For <InlineMath math="z=3+4i" />, conjugation changes the sign of the imaginary 
 <BlockMath math="|z|=|\overline z|=\sqrt{3^2+4^2}=5" />
 </MathContainer>
 
-<LineEquation
-  title="Conjugation Reflects across the Real Axis"
-  description={<>Horizontal coordinate: real part. Vertical coordinate: imaginary part. The points <InlineMath math="3+4i" /> and <InlineMath math="3-4i" /> are equally far from zero.</>}
-  cameraPosition={[1.5, 0, 12]}
-  cameraTarget={[1.5, 0, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }], color: "#0d9488", smooth: false, showPoints: true, pointIndices: [1], labels: [{ text: <InlineMath math="3+4i" />, at: 1 }] },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: -4, z: 0 }], color: "#f97316", smooth: false, showPoints: true, pointIndices: [1], labels: [{ text: <InlineMath math="3-4i" />, at: 1 }] },
-  ]}
+<MathVisual
+  title={<><InlineMath math="z=a+bi" /> and its conjugate <InlineMath math="\bar z=a-bi" /></>}
+  description={<>Move <InlineMath math="a" /> and <InlineMath math="b" />. The teal point <InlineMath math="z" /> and the orange point <InlineMath math="\bar z" /> mirror each other across the real axis, and both sit on the gray circle of radius <InlineMath math="|z|=\sqrt{a^2+b^2}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: -4, max: 4, value: 3, step: 0.1, label: "a" },
+      { name: "b", min: -4, max: 4, value: 4, step: 0.1, label: "b" },
+    ],
+    objects: [
+      { id: "modulus", kind: "implicit", equation: "x^2 + y^2 = a^2 + b^2", appearance: "reference" },
+      { id: "mirror", kind: "path", points: [{ x: "a", y: "b" }, { x: "a", y: "-b" }], appearance: "reference" },
+      { id: "number", kind: "marker", x: "a", y: "b", appearance: "construction" },
+      { id: "conjugate", kind: "marker", x: "a", y: "-b", appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "number", at: { x: "a", y: "b" }, placement: "right" },
+      { key: "zbar", objectId: "conjugate", at: { x: "a", y: "-b" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "abs", formula: "sqrt(a^2 + b^2)" },
+    ],
+  }}
+  labels={{
+    "a": <InlineMath math="\operatorname{Re}z" />,
+    "b": <InlineMath math="\operatorname{Im}z" />,
+    "z": <InlineMath math="z" />,
+    "zbar": <InlineMath math="\bar z" />,
+    "abs": <InlineMath math="|z|=|\bar z|" />,
+  }}
 />
 
 ## Fundamental Theorem of Algebra
@@ -60,6 +82,35 @@ Applying the theorem repeatedly shows that a degree-<InlineMath math="n" /> poly
 <BlockMath math="p(z)=a_n\prod_{j=1}^n(z-z_j)" />
 
 It has exactly <InlineMath math="n" /> complex roots when **multiplicities are counted**. The qualification "nonconstant" matters: a nonzero constant polynomial has no root.
+
+The polynomial <InlineMath math="p(z)=z^3-1" /> crosses the real axis only at <InlineMath math="1" />, yet the theorem promises roots in <InlineMath math="\mathbb C" />, and counting multiplicity there are exactly three: <InlineMath math="1" /> and <InlineMath math="-\tfrac12\pm\tfrac{\sqrt3}2i" />. They sit on the unit circle, <InlineMath math="120^\circ" /> apart.
+
+<MathVisual
+  title={<>The three roots of <InlineMath math="z^3=1" /></>}
+  description={<>The magenta points are the roots of <InlineMath math="z^3-1" /> in the complex plane, on the gray unit circle. The violet triangle joins them, and only the root <InlineMath math="1" /> lies on the real axis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "triangle", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: -1 / 2, y: Math.sqrt(3) / 2 }, { x: -1 / 2, y: -Math.sqrt(3) / 2 }], appearance: "secondary" },
+      { id: "root-a", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "root-b", kind: "point", at: { x: -1 / 2, y: Math.sqrt(3) / 2 }, appearance: "answer" },
+      { id: "root-c", kind: "point", at: { x: -1 / 2, y: -Math.sqrt(3) / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "ra", objectId: "root-a", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "rb", objectId: "root-b", at: { x: -1 / 2, y: Math.sqrt(3) / 2 }, placement: "above-left" },
+      { key: "rc", objectId: "root-c", at: { x: -1 / 2, y: -Math.sqrt(3) / 2 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "ra": <InlineMath math="1" />,
+    "rb": <InlineMath math="-\tfrac12+\tfrac{\sqrt3}2i" />,
+    "rc": <InlineMath math="-\tfrac12-\tfrac{\sqrt3}2i" />,
+  }}
+/>
 
 ## Definition and Axioms of Complex Vector Space
 
@@ -117,6 +168,42 @@ The set <InlineMath math="V=\mathbb C^2" /> is a complex vector space with compo
 |---|---|---|
 | <InlineMath math="\mathbb C" /> | <InlineMath math="\mathbb C" /> | <InlineMath math="1" /> |
 | <InlineMath math="\mathbb C" /> | <InlineMath math="\mathbb R" /> | <InlineMath math="2" /> |
+
+Multiplying by a complex scalar <InlineMath math="c=\sqrt2\,e^{i\theta}" /> turns every component by <InlineMath math="\theta" /> and stretches it by <InlineMath math="\sqrt2" />. At <InlineMath math="\theta=\tfrac\pi4" /> the scalar is <InlineMath math="1+i" />, and the vector <InlineMath math="(1,-i)" /> becomes <InlineMath math="(1+i,\,1-i)" />, exactly the computation above.
+
+<MathVisual
+  title={<><InlineMath math="c\cdot(1,-i)" /> for <InlineMath math="c=\sqrt2\,e^{i\theta}" /></>}
+  description={<>The gray segments are the components <InlineMath math="1" /> and <InlineMath math="-i" />. Move <InlineMath math="\theta" />: the teal segment <InlineMath math="c\cdot1" /> and the orange segment <InlineMath math="c\cdot(-i)" /> turn together and stay at a right angle. The readouts show <InlineMath math="c" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: 0, max: 2 * Math.PI, value: Math.PI / 4, step: 0.01, label: "angle" },
+    ],
+    objects: [
+      { id: "one", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "minus-i", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -1 }, appearance: "reference" },
+      { id: "first", kind: "path", points: [{ x: "0", y: "0" }, { x: "sqrt(2)*cos(a)", y: "sqrt(2)*sin(a)" }], appearance: "construction" },
+      { id: "second", kind: "path", points: [{ x: "0", y: "0" }, { x: "sqrt(2)*sin(a)", y: "-sqrt(2)*cos(a)" }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-tip", objectId: "first", at: { x: "sqrt(2)*cos(a)", y: "sqrt(2)*sin(a)" }, placement: "right" },
+      { key: "second-tip", objectId: "second", at: { x: "sqrt(2)*sin(a)", y: "-sqrt(2)*cos(a)" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "re", formula: "sqrt(2)*cos(a)" },
+      { key: "im", formula: "sqrt(2)*sin(a)" },
+    ],
+  }}
+  labels={{
+    "angle": <InlineMath math="\arg c" />,
+    "re": <InlineMath math="\operatorname{Re}c" />,
+    "im": <InlineMath math="\operatorname{Im}c" />,
+    "first-tip": <InlineMath math="c\cdot1" />,
+    "second-tip": <InlineMath math="c\cdot(-i)" />,
+  }}
+/>
 
 ## Differences from Real Vector Spaces
 
