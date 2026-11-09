@@ -42,7 +42,7 @@ export const tuDarmstadtEntranceTrack = {
     en: "mathematics",
     id: "matematika",
   },
-  sets: Arr.map([1, 2, 3], (setNumber) => {
+  sets: Arr.map([1, 2, 3, 4], (setNumber) => {
     const setKey = `set-${setNumber}`;
     return {
       key: setKey,
