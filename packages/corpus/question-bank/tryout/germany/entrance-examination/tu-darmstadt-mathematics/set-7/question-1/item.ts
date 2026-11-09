@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\sqrt5-\\sqrt3$$",
+          label: "$$c=\\frac{2A}{h}+a$$",
         },
         {
           correct: false,
-          label: "$$\\frac{\\sqrt5+\\sqrt3}{4}$$",
+          label: "$$c=\\frac{A}{2h}-a$$",
         },
         {
           correct: false,
-          label: "$$\\frac{\\sqrt5+\\sqrt3}{2}$$",
+          label: "$$c=\\frac{2A-a}{h}$$",
         },
         {
           correct: false,
-          label: "$$\\sqrt2$$",
+          label: "$$c=2Ah-a$$",
         },
         {
           correct: false,
-          label: "$$2\\sqrt5+2\\sqrt3$$",
+          label: "$$c=\\frac{h}{2A}-a$$",
         },
         {
           correct: true,
-          label: "$$\\sqrt5+\\sqrt3$$",
+          label: "$$c=\\frac{2A}{h}-a$$",
         },
       ],
     },

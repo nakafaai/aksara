@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Er bleibt gleich.",
+          label: "$$25\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "Er nimmt um $$6\\text{ cm}^2$$ ab.",
+          label: "$$30\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "Er nimmt um $$9\\text{ cm}^2$$ zu.",
+          label: "$$156{,}25\\text{ cm}^2$$",
         },
         {
           correct: true,
-          label: "Er nimmt um $$9\\text{ cm}^2$$ ab.",
+          label: "$$150\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "Er nimmt um $$(6a-9)\\text{ cm}^2$$ ab.",
+          label: "$$600\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "Die Änderung hängt von $$a$$ ab.",
+          label: "$$50\\text{ cm}^2$$",
         },
       ],
     },

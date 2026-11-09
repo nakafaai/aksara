@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "um $$25\\,\\%$$",
-        },
-        {
-          correct: false,
-          label: "um $$75\\,\\%$$",
-        },
-        {
-          correct: false,
-          label: "um $$80\\,\\%$$",
-        },
-        {
-          correct: false,
-          label: "um $$12{,}5\\,\\%$$",
-        },
-        {
-          correct: false,
           label: "um $$33\\tfrac13\\,\\%$$",
         },
         {
+          correct: false,
+          label: "um $$66\\tfrac23\\,\\%$$",
+        },
+        {
+          correct: false,
+          label: "um $$60\\,\\%$$",
+        },
+        {
+          correct: false,
+          label: "um $$150\\,\\%$$",
+        },
+        {
+          correct: false,
+          label: "um $$1{,}5\\,\\%$$",
+        },
+        {
           correct: true,
-          label: "um $$20\\,\\%$$",
+          label: "um $$50\\,\\%$$",
         },
       ],
     },
