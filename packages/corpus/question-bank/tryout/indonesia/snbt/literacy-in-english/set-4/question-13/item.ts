@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "bike-lanes",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Main Street actually recorded fewer injuries after the lanes opened.",
+        },
+        {
           correct: true,
           label:
-            "Omar's progress began when the difficulty was turned into a specific, reviewable action.",
+            "Injuries rose slightly, but cyclists doubled, so each rider's risk fell.",
         },
         {
           correct: false,
           label:
-            "Progress depends on completing the larger task before asking another person to review it.",
+            "Injuries on Main Street were caused mostly by pedestrians, not cars.",
         },
         {
           correct: false,
           label:
-            "The object or setting shapes the outcome more strongly than the character's specific choice.",
+            "The lanes on Main Street were built more recently than the others.",
         },
         {
           correct: false,
           label:
-            "The unresolved evidence should remain private until the character can offer a complete result.",
-        },
-        {
-          correct: false,
-          label:
-            "The small action matters mainly because it postpones the unresolved part of the conflict.",
+            "Main Street had fewer cyclists after the lanes than before them.",
         },
       ],
     },

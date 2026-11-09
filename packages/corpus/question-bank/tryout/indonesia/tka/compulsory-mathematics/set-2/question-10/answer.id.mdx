@@ -1,35 +1,18 @@
-Ketiga sisi diketahui, jadi luas segitiga dapat dihitung dengan **rumus Heron**. Setengah kelilingnya adalah <InlineMath math="s=\frac{13+14+15}{2}=21" />.
+Kedua jarum bergerak teratur, dan kedua sudut diukur dari angka dua belas searah jarum jam. Yang penting, **jarum pendek juga terus bergerak di antara jam-jam penuh**.
 
 <BlockMath math="\begin{aligned}
-A^2&=s(s-13)(s-14)(s-15) \\
-&=21\cdot8\cdot7\cdot6 \\
-&=7{.}056 \\
-A&=\sqrt{7{.}056}=84
+\text{jarum panjang}&:\ 20\cdot6^\circ=120^\circ \\
+\text{jarum pendek}&:\ 4\cdot30^\circ+20\cdot0{,}5^\circ=120^\circ+10^\circ=130^\circ \\
+\text{selisih}&:\ 130^\circ-120^\circ=10^\circ
 \end{aligned}" />
 
-Pusat lingkaran dalam berjarak <InlineMath math="r" /> dari setiap sisi. Tiga segitiga kecil dengan tinggi <InlineMath math="r" /> membentuk segitiga semula, sehingga:
+Jarum panjang menempuh <InlineMath math="360^\circ" /> dalam <InlineMath math="60" /> menit, jadi <InlineMath math="6^\circ" /> per menit. Jarum pendek hanya menempuh <InlineMath math="30^\circ" /> dalam <InlineMath math="60" /> menit, jadi <InlineMath math="0{,}5^\circ" /> per menit.
 
-<BlockMath math="\begin{aligned}
-A&=\frac12r(13+14+15)=rs \\
-r&=\frac{84}{21}=4
-\end{aligned}" />
+Sebagai pemeriksaan, pada pukul <InlineMath math="04.00" /> kedua jarum berselisih <InlineMath math="120^\circ" />. Dalam <InlineMath math="20" /> menit, jarum panjang mengejar <InlineMath math="20\cdot5{,}5^\circ=110^\circ" />, sehingga tersisa <InlineMath math="10^\circ" />.
 
-Jari-jari lingkaran dalam adalah <InlineMath math="4" /> satuan panjang.
+Jadi, sudut terkecilnya adalah <InlineMath math="10^\circ" />.
 
-<LineEquation
-  title="Lingkaran dalam dan tiga segitiga"
-  description="Ketiga segitiga kecil mempunyai tinggi yang sama, yaitu jari-jari lingkaran dalam."
-  cameraPosition={[7, 5.5, 21]}
-  cameraTarget={[7, 5.5, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 14, y: 0, z: 0 }, { x: 5, y: 12, z: 0 }, { x: 0, y: 0, z: 0 }], color: "#9333ea", smooth: false, showPoints: false },
-    { points: Array.from({ length: 121 }, (_, i) => { const t = 2 * Math.PI * i / 120; return { x: 6 + 4 * Math.cos(t), y: 4 + 4 * Math.sin(t), z: 0 }; }), color: "#d97706", smooth: false, showPoints: false },
-    ...[{ x: 0, y: 0, z: 0 }, { x: 14, y: 0, z: 0 }, { x: 5, y: 12, z: 0 }].map((p) => ({ points: [{ x: 6, y: 4, z: 0 }, p], color: "#64748b", smooth: false, showPoints: false })),
-    { points: [{ x: 6, y: 0, z: 0 }, { x: 6, y: 4, z: 0 }], color: "#d97706", smooth: false, showPoints: false, labels: [{ text: "r = 4", at: 1, offset: [1.1, -1.7, 0] }] },
-    { points: [{ x: 6, y: 0.6, z: 0 }, { x: 6.6, y: 0.6, z: 0 }, { x: 6.6, y: 0, z: 0 }], color: "#d97706", smooth: false, showPoints: false },
-    { points: [{ x: 7, y: 0, z: 0 }, { x: 7, y: 0, z: 0 }], smooth: false, color: "#9333ea", showPoints: false, labels: [{ text: "14", offset: [0, -0.7, 0] }] },
-    { points: [{ x: 2.5, y: 6, z: 0 }, { x: 2.5, y: 6, z: 0 }], smooth: false, color: "#9333ea", showPoints: false, labels: [{ text: "13", offset: [-0.7, 0, 0] }] },
-    { points: [{ x: 9.5, y: 6, z: 0 }, { x: 9.5, y: 6, z: 0 }], smooth: false, color: "#9333ea", showPoints: false, labels: [{ text: "15", offset: [0.7, 0, 0] }] },
-  ]}
-/>
+- <InlineMath math="0^\circ" /> menganggap jarum pendek tepat berada di angka empat.
+- <InlineMath math="20^\circ" /> menganggap jarum pendek bergerak <InlineMath math="1^\circ" /> per menit, bukan <InlineMath math="0{,}5^\circ" />.
+- <InlineMath math="30^\circ" /> muncul jika jarum panjang dihitung <InlineMath math="5^\circ" /> per menit, yaitu <InlineMath math="130^\circ-100^\circ=30^\circ" />.
+- <InlineMath math="110^\circ" /> memakai angka menit sebagai sudut, seolah-olah jarum panjang berada di <InlineMath math="20^\circ" />, padahal jarum panjang bergerak <InlineMath math="6^\circ" /> per menit.

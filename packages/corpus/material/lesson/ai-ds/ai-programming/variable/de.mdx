@@ -66,6 +66,45 @@ print(z == x)   # Ausgabe: True
 
 Die Zuweisung `y = x` garantiert, dass beide Namen in diesem Moment auf dasselbe Objekt verweisen. Ein neu erstellter gleicher Wert besteht den Gleichheitsvergleich, kann aber in einem eigenen Objekt liegen. Manche Python-Implementierungen verwenden unveränderliche Objekte wieder, doch korrekter Code hängt nicht von dieser Optimierung ab.
 
+Führ `x = 5`, dann `y = x`, dann `x = 7` aus und folg den Strecken. `y = x` kopiert keine Zahl, sondern lässt `y` auf dasselbe Objekt `5` zeigen wie `x`. Wenn `x = 7` läuft, wandert nur die Strecke von `x` zu einem neuen Objekt, von der grauen zur violetten Strecke. Die Strecke von `y` bleibt, wo er war, also zeigt `print(y)` weiterhin `5`.
+
+<MathVisual
+  title={<>Neues Binden von <code>x</code> ändert <code>y</code> nicht</>}
+  description={<>Python bindet <code>x</code> zuerst an <code>5</code>, dann <code>y</code> an dasselbe Objekt und dann <code>x</code> an <code>7</code>. Die graue Strecke ist die alte Bindung von <code>x</code>, die violette die neue, und die türkise Strecke von <code>y</code> zeigt weiter auf <code>5</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1.2, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x", kind: "point", at: { x: 0, y: 0.6 }, appearance: "secondary" },
+      { id: "y", kind: "point", at: { x: 0, y: -0.6 }, appearance: "construction" },
+      { id: "seven", kind: "point", at: { x: 4, y: 1.2 }, appearance: "secondary" },
+      { id: "five", kind: "point", at: { x: 4, y: -0.6 }, appearance: "construction" },
+      { id: "new", kind: "segment", from: { x: 0.2, y: 0.6 }, to: { x: 3.8, y: 1.2 }, appearance: "secondary" },
+      { id: "copy", kind: "segment", from: { x: 0.2, y: -0.6 }, to: { x: 3.8, y: -0.6 }, appearance: "construction" },
+      { id: "old", kind: "segment", from: { x: 0.2, y: 0.6 }, to: { x: 3.8, y: -0.5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "x", objectId: "x", at: { x: 0, y: 0.6 }, placement: "left" },
+      { key: "y", objectId: "y", at: { x: 0, y: -0.6 }, placement: "left" },
+      { key: "seven", objectId: "seven", at: { x: 4, y: 1.2 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 4, y: -0.6 }, placement: "right" },
+      { key: "new", objectId: "new", at: { x: 2, y: 0.9 }, placement: "above" },
+      { key: "copy", objectId: "copy", at: { x: 2, y: -0.6 }, placement: "below" },
+      { key: "old", objectId: "old", at: { x: 2, y: 0.6 - 1.8 * 1.1 / 3.6 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "x": "x",
+    "y": "y",
+    "seven": "7",
+    "five": "5",
+    "new": "x = 7",
+    "copy": "y = x",
+    "old": "x = 5",
+  }}
+/>
+
 ## Eigenschaften von Variablen in Python
 
 Wenn du einem Namen einen Wert zuweist, merke dir zwei Dinge. Python bindet den Namen **ohne separate Deklaration** an ein Objekt. Später kannst du denselben Namen an ein Objekt eines anderen Typs binden.
@@ -192,6 +231,23 @@ print(nama == Nama)         # Ausgabe: False
 print(Nama == NAMA)         # Ausgabe: False`
     }
   ]}
+/>
+
+Ein gültiger Variablenname beginnt mit einem Buchstaben oder `_`, enthält nur Buchstaben, Ziffern und `_` und ist kein Schlüsselwort. `2nd` scheitert an der ersten Regel, `my-var` an der zweiten und `class` an der dritten.
+
+<BarChart
+  title={<>Sechs mögliche Variablennamen</>}
+  description={<>Ein Balken der Höhe <InlineMath math="1" /> bedeutet, dass der Name darunter gültig ist, und kein Balken, dass Python ihn mit einem <code>SyntaxError</code> ablehnt.</>}
+  yAxisLabel="Gültig"
+  data={[
+    { name: "total", value: 1 },
+    { name: "_count", value: 1 },
+    { name: "2nd", value: 0 },
+    { name: "my-var", value: 0 },
+    { name: "class", value: 0 },
+    { name: "my_var2", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Gültig", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
 ## Für Python reservierte Schlüsselwörter
@@ -426,3 +482,30 @@ print(f"Umfang: {perimeter} cm")`
 In diesem Programm bezeichnen `length` und `width` die beiden Eingaben, während `area` und `perimeter` die berechneten Ergebnisse benennen. Die Prüfung weist nicht positive oder nicht endliche Abmessungen vor der Rechnung zurück. Länge `5` und Breite `3` ergeben die Fläche `15.0 cm²` und den Umfang `16.0 cm`. Nichtnumerischen Text lehnt `float()` ab.
 
 Namensbindung, Identifier-Regeln und einheitliche Konventionen machen Python-Code leichter lesbar. Wer Gleichheit, Identität und Neuzuweisung unterscheidet, kann später auch Mutability, Funktionsargumente und Objektmodelle besser einordnen.
+
+Variablen geben den Zahlen in einem Programm klare Namen. Mit `length = 4` und `width = 3` speichert die Zeile `area = length * width` den Wert <InlineMath math="4\cdot3=12" />, und der Name `area` sagt dir beim erneuten Lesen, was diese Zahl bedeutet.
+
+<MathVisual
+  title={<><code>area = length * width</code></>}
+  description={<>Das violette Rechteck misst <code>length</code> mal <code>width</code>. Die türkise Strecke ist die Länge <InlineMath math="4" />, die orange Strecke die Breite <InlineMath math="3" />, und der Flächeninhalt ist <InlineMath math="12" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rectangle", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "length", kind: "segment", from: { x: 0, y: -0.4 }, to: { x: 4, y: -0.4 }, appearance: "construction" },
+      { id: "width", kind: "segment", from: { x: 4.4, y: 0 }, to: { x: 4.4, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "length", objectId: "length", at: { x: 2, y: -0.4 }, placement: "below" },
+      { key: "width", objectId: "width", at: { x: 4.4, y: 1.5 }, placement: "right" },
+      { key: "rectangle", objectId: "rectangle", at: { x: 2, y: 1.5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "length": <code>length = 4</code>,
+    "width": <code>width = 3</code>,
+    "rectangle": <code>area = 12</code>,
+  }}
+/>

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Der binomische Lehrsatz entwickelt Potenzen einer Summe. Beispiele und Aufgaben zeigen, wie man bestimmte und konstante Terme über ihre Koeffizienten findet.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-24",
+    dateModified: "2026-11-08",
     subject: "Kombinatorik",
 };
 
@@ -24,6 +24,36 @@ Für die ersten Potenzen sieht das Muster so aus:
 </MathContainer>
 
 Die Koeffizienten ändern sich mit der Potenz, ihre Positionen folgen jedoch immer derselben Regel.
+
+Nimm ein Quadrat mit der Seite <InlineMath math="x + y" />, hier <InlineMath math="x = 2" /> und <InlineMath math="y = 1" />. Schneid es auf beiden Seiten bei <InlineMath math="x" />: Du erhältst ein Quadrat <InlineMath math="x^2" />, zwei Rechtecke <InlineMath math="xy" /> und ein Quadrat <InlineMath math="y^2" />. Das ist <InlineMath math="(x + y)^2 = x^2 + 2xy + y^2" />, und der Koeffizient <InlineMath math="2" /> zählt die beiden Rechtecke.
+
+<MathVisual
+  title={<>Das Quadrat eines Binoms als Fläche</>}
+  description={<>Ein Quadrat mit Seite <InlineMath math="x + y" />, zerlegt in <InlineMath math="x^2" />, zwei Rechtecke <InlineMath math="xy" /> und <InlineMath math="y^2" />.</>}
+  labels={{
+    xx: <InlineMath math="x^2" />,
+    xy1: <InlineMath math="xy" />,
+    xy2: <InlineMath math="xy" />,
+    yy: <InlineMath math="y^2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 3.3 }, y: { min: -0.3, max: 3.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "xx", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "xy1", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "xy2", kind: "polygon", vertices: [{ x: 0, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "yy", kind: "polygon", vertices: [{ x: 2, y: 2 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 2, y: 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "xx", objectId: "xx", at: { x: 1, y: 1 }, placement: "center" },
+      { key: "xy1", objectId: "xy1", at: { x: 2.5, y: 1 }, placement: "center" },
+      { key: "xy2", objectId: "xy2", at: { x: 1, y: 2.5 }, placement: "center" },
+      { key: "yy", objectId: "yy", at: { x: 2.5, y: 2.5 }, placement: "center" },
+    ],
+  }}
+/>
 
 ## Allgemeine Formel und Binomialkoeffizienten
 
@@ -53,6 +83,87 @@ Im Produkt <InlineMath math="(x+y)(x+y)(x+y)(x+y)" /> wählt jeder Term einen Su
 | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="4xy^3" /> |
 | <InlineMath math="4" /> | <InlineMath math="1" /> | <InlineMath math="y^4" /> |
 
+Die Koeffizienten von <InlineMath math="(x + y)^n" /> für <InlineMath math="n = 0" /> bis <InlineMath math="5" /> bilden das Pascalsche Dreieck. Jede innere Zahl ist die Summe der beiden Zahlen darüber, zum Beispiel <InlineMath math="\binom{5}{2} = \binom{4}{1} + \binom{4}{2} = 4 + 6 = 10" />, und Zeile <InlineMath math="n" /> enthält <InlineMath math="\binom{n}{0}" /> bis <InlineMath math="\binom{n}{n}" />.
+
+<MathVisual
+  title={<>Das Pascalsche Dreieck bis zur fünften Potenz</>}
+  description={<>Die Zeilen 0 bis 5 des Pascalschen Dreiecks, die Koeffizienten <InlineMath math="\binom{n}{k}" /> von <InlineMath math="(x + y)^n" />.</>}
+  labels={{
+    c00: <InlineMath math="1" />,
+    c10: <InlineMath math="1" />,
+    c11: <InlineMath math="1" />,
+    c20: <InlineMath math="1" />,
+    c21: <InlineMath math="2" />,
+    c22: <InlineMath math="1" />,
+    c30: <InlineMath math="1" />,
+    c31: <InlineMath math="3" />,
+    c32: <InlineMath math="3" />,
+    c33: <InlineMath math="1" />,
+    c40: <InlineMath math="1" />,
+    c41: <InlineMath math="4" />,
+    c42: <InlineMath math="6" />,
+    c43: <InlineMath math="4" />,
+    c44: <InlineMath math="1" />,
+    c50: <InlineMath math="1" />,
+    c51: <InlineMath math="5" />,
+    c52: <InlineMath math="10" />,
+    c53: <InlineMath math="10" />,
+    c54: <InlineMath math="5" />,
+    c55: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -5.6, max: 0.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c00", kind: "point", at: { x: 0 - 0 / 2, y: 0 }, appearance: "reference" },
+      { id: "c10", kind: "point", at: { x: 0 - 1 / 2, y: -1 }, appearance: "reference" },
+      { id: "c11", kind: "point", at: { x: 1 - 1 / 2, y: -1 }, appearance: "reference" },
+      { id: "c20", kind: "point", at: { x: 0 - 2 / 2, y: -2 }, appearance: "reference" },
+      { id: "c21", kind: "point", at: { x: 1 - 2 / 2, y: -2 }, appearance: "reference" },
+      { id: "c22", kind: "point", at: { x: 2 - 2 / 2, y: -2 }, appearance: "reference" },
+      { id: "c30", kind: "point", at: { x: 0 - 3 / 2, y: -3 }, appearance: "reference" },
+      { id: "c31", kind: "point", at: { x: 1 - 3 / 2, y: -3 }, appearance: "reference" },
+      { id: "c32", kind: "point", at: { x: 2 - 3 / 2, y: -3 }, appearance: "reference" },
+      { id: "c33", kind: "point", at: { x: 3 - 3 / 2, y: -3 }, appearance: "reference" },
+      { id: "c40", kind: "point", at: { x: 0 - 4 / 2, y: -4 }, appearance: "reference" },
+      { id: "c41", kind: "point", at: { x: 1 - 4 / 2, y: -4 }, appearance: "primary" },
+      { id: "c42", kind: "point", at: { x: 2 - 4 / 2, y: -4 }, appearance: "primary" },
+      { id: "c43", kind: "point", at: { x: 3 - 4 / 2, y: -4 }, appearance: "reference" },
+      { id: "c44", kind: "point", at: { x: 4 - 4 / 2, y: -4 }, appearance: "reference" },
+      { id: "c50", kind: "point", at: { x: 0 - 5 / 2, y: -5 }, appearance: "reference" },
+      { id: "c51", kind: "point", at: { x: 1 - 5 / 2, y: -5 }, appearance: "reference" },
+      { id: "c52", kind: "point", at: { x: 2 - 5 / 2, y: -5 }, appearance: "secondary" },
+      { id: "c53", kind: "point", at: { x: 3 - 5 / 2, y: -5 }, appearance: "reference" },
+      { id: "c54", kind: "point", at: { x: 4 - 5 / 2, y: -5 }, appearance: "reference" },
+      { id: "c55", kind: "point", at: { x: 5 - 5 / 2, y: -5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "c00", objectId: "c00", at: { x: 0 - 0 / 2, y: 0 }, placement: "above" },
+      { key: "c10", objectId: "c10", at: { x: 0 - 1 / 2, y: -1 }, placement: "above" },
+      { key: "c11", objectId: "c11", at: { x: 1 - 1 / 2, y: -1 }, placement: "above" },
+      { key: "c20", objectId: "c20", at: { x: 0 - 2 / 2, y: -2 }, placement: "above" },
+      { key: "c21", objectId: "c21", at: { x: 1 - 2 / 2, y: -2 }, placement: "above" },
+      { key: "c22", objectId: "c22", at: { x: 2 - 2 / 2, y: -2 }, placement: "above" },
+      { key: "c30", objectId: "c30", at: { x: 0 - 3 / 2, y: -3 }, placement: "above" },
+      { key: "c31", objectId: "c31", at: { x: 1 - 3 / 2, y: -3 }, placement: "above" },
+      { key: "c32", objectId: "c32", at: { x: 2 - 3 / 2, y: -3 }, placement: "above" },
+      { key: "c33", objectId: "c33", at: { x: 3 - 3 / 2, y: -3 }, placement: "above" },
+      { key: "c40", objectId: "c40", at: { x: 0 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c41", objectId: "c41", at: { x: 1 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c42", objectId: "c42", at: { x: 2 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c43", objectId: "c43", at: { x: 3 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c44", objectId: "c44", at: { x: 4 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c50", objectId: "c50", at: { x: 0 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c51", objectId: "c51", at: { x: 1 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c52", objectId: "c52", at: { x: 2 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c53", objectId: "c53", at: { x: 3 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c54", objectId: "c54", at: { x: 4 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c55", objectId: "c55", at: { x: 5 - 5 / 2, y: -5 }, placement: "above" },
+    ],
+  }}
+/>
+
 ## Einen bestimmten Koeffizienten bestimmen
 
 Mit dem binomischen Lehrsatz lässt sich der Koeffizient eines bestimmten Terms bestimmen, <Highlight>ohne die gesamte Potenz auszumultiplizieren</Highlight>.
@@ -75,6 +186,19 @@ Nun berechnen wir den Binomialkoeffizienten:
 </MathContainer>
 
 Der gesuchte Koeffizient von <InlineMath math="x^2" /> ist also <InlineMath math="2{.}027{.}091" />.
+
+Bei der zehnten Potenz sind die Koeffizienten <InlineMath math="\binom{10}{k}" />: <InlineMath math="1, 10, 45, 120, 210, 252, 210, 120, 45, 10, 1" />. Der mittlere Term <InlineMath math="252x^5y^5" /> hat den größten Koeffizienten, und die Reihe fällt zu beiden Seiten symmetrisch ab.
+
+<BarChart
+  title={<>Koeffizienten eines Binoms hoch zehn</>}
+  description={<>Balken <InlineMath math="k" /> zeigt <InlineMath math="\binom{10}{k}" />, den Koeffizienten von <InlineMath math="x^{10-k}y^k" />.</>}
+  yAxisLabel="Koeffizient"
+  data={Array.from({ length: 11 }, (_, k) => {
+    const factorial = (n) => Array.from({ length: n }, (_, i) => i + 1).reduce((product, i) => product * i, 1);
+    return { name: `${k}`, value: factorial(10) / (factorial(k) * factorial(10 - k)) };
+  })}
+  chartConfig={{ value: { label: "Koeffizient", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Den konstanten Term finden
 

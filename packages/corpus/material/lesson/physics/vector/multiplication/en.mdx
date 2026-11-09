@@ -54,6 +54,34 @@ If the same constant force opposes the displacement, the angle is <InlineMath ma
 
 <BlockMath math="W=40(5)\cos180^\circ=200(-1)=-200\text{ J}" />
 
+The graph below runs the same <InlineMath math="40\text{ N}" /> pull over <InlineMath math="5\text{ m}" /> through every angle from <InlineMath math="0^\circ" /> to <InlineMath math="180^\circ" />. The work starts at <InlineMath math="200\text{ J}" />, falls to zero when the force is perpendicular, and ends at <InlineMath math="-200\text{ J}" /> when the force points against the motion.
+
+<MathVisual
+  title={<>Work Follows the Cosine of the Angle</>}
+  description={<><InlineMath math="W=Fs\cos\theta" /> for <InlineMath math="F=40\text{ N}" /> and <InlineMath math="s=5\text{ m}" />. Horizontal: angle in units of 30°. Vertical: work in units of 50 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "work", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 0.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 3, y: 0 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 3.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 3.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 3.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 4) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 4.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 4.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 4.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 5) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 5.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 5.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 5.75) / 6) }, { x: 6, y: -4 }] },
+      { id: "zero", kind: "point", appearance: "primary", at: { x: 0, y: 4 } },
+      { id: "right", kind: "point", appearance: "primary", at: { x: 3, y: 0 } },
+      { id: "back", kind: "point", appearance: "primary", at: { x: 6, y: -4 } },
+    ],
+    labels: [
+      { key: "zero", objectId: "zero", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "right", objectId: "right", at: { x: 3, y: 0 }, placement: "above-right" },
+      { key: "back", objectId: "back", at: { x: 6, y: -4 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    zero: <InlineMath math="0^\circ:\ W=200\text{ J}" />,
+    right: <InlineMath math="90^\circ:\ W=0" />,
+    back: <InlineMath math="180^\circ:\ W=-200\text{ J}" />,
+  }}
+/>
+
 ## Cross Product Measures Turning Effect
 
 The cross product of <InlineMath math="\vec{A}" /> and <InlineMath math="\vec{B}" /> has magnitude:
@@ -164,3 +192,27 @@ Compare the operations with **both vector magnitudes fixed and nonzero**. The do
 | <InlineMath math="180^\circ" /> | negative | zero |
 
 So the dot product is useful for asking about alignment, while the cross product is useful for perpendicular effects such as rotation.
+
+Keep both magnitudes fixed and turn the angle. The orange dot product is largest when the vectors line up, while the violet cross product magnitude peaks at <InlineMath math="90^\circ" />. At <InlineMath math="0^\circ" /> and <InlineMath math="180^\circ" /> the cross product vanishes, because parallel vectors give no turning effect.
+
+<MathVisual
+  title={<>Dot and Cross Products against the Angle</>}
+  description={<><InlineMath math="AB\cos\theta" /> and <InlineMath math="AB\sin\theta" /> with <InlineMath math="AB=200" /> for angles from 0° to 180°. Horizontal: angle in units of 30°. Vertical: value in units of 50.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "dot", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 0.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 3, y: 0 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 3.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 3.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 3.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 4) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 4.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 4.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 4.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 5) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 5.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 5.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 5.75) / 6) }, { x: 6, y: -4 }] },
+      { id: "cross", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.25, y: 4 * Math.cos((Math.PI * -2.75) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * -2.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * -2.25) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * -2) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * -1.75) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * -1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * -1.25) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * -1) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * -0.75) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * -0.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * -0.25) / 6) }, { x: 3, y: 4 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 6, y: 0 }] },
+    ],
+    labels: [
+      { key: "dot", objectId: "dot", at: { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, placement: "above-right" },
+      { key: "cross", objectId: "cross", at: { x: 3, y: 4 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    dot: <InlineMath math="\vec A\cdot\vec B" />,
+    cross: <InlineMath math="\lvert\vec A\times\vec B\rvert" />,
+  }}
+/>

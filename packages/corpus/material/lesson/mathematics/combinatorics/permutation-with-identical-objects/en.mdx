@@ -1,272 +1,198 @@
 export const metadata = {
-   title: "Permutations with Identical Objects",
-   description: "Count distinct arrangements when some objects are indistinguishable. Worked examples derive the multinomial formula and apply it to letters, colors, and digits.",
-   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-   datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
-   subject: "Combinatorics",
+  title: "Permutations with Identical Objects",
+  description: "Count the distinct arrangements of letters or objects that repeat with n! divided by the factorial of each group, with worked examples and practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Combinatorics",
 };
 
-## Why identical objects change the count
+## The Formula for Permutations with Identical Objects
 
-A **permutation with identical objects** counts arrangements when some objects cannot be distinguished from one another. The count is smaller than an ordinary permutation because exchanging **identical objects** does not produce a new arrangement.
+If <InlineMath math="n" /> objects split into groups of identical objects, with <InlineMath math="r_1" /> objects of the first kind, <InlineMath math="r_2" /> of the second, and so on, **the number of distinct arrangements** is
 
-Consider the letters in "MAMA". There are <InlineMath math="4" /> letters, but the two copies of <InlineMath math="M" /> are indistinguishable, as are the two copies of <InlineMath math="A" />. If we temporarily label the copies, swapping those labels would be counted as a different permutation even though the visible word stays the same.
+<BlockMath math="P = \frac{n!}{r_1! \, r_2! \cdots r_k!}, \qquad r_1 + r_2 + \cdots + r_k = n" />
 
-The six visible arrangements can be listed without temporary labels. Choose two positions for M, then fill the two remaining positions with A.
+Here <InlineMath math="k" /> is the number of groups of identical objects.
+
+For example, the letters of MAMA have <InlineMath math="n = 4" /> with two M and two A, so the number of arrangements is <InlineMath math="\frac{4!}{2! \, 2!} = \frac{24}{4} = 6" />. That is **fewer** than <InlineMath math="4! = 24" />, because swapping two identical letters does not create a new arrangement.
+
+## Why You Divide by the Factorial of Each Group
+
+Give the identical letters temporary labels: <InlineMath math="M_1, M_2, A_1, A_2" />. With labels, the four letters are all different and can be arranged in <InlineMath math="4! = 24" /> ways. Once the labels are removed, the arrangements <InlineMath math="M_1 A_1 M_2 A_2" /> and <InlineMath math="M_2 A_1 M_1 A_2" /> become the same word, MAMA.
+
+<Mermaid
+  title="From 24 labelled arrangements to 6 words MAMA"
+  description="Each time a set of labels is removed, arrangements that differ only in the order of identical letters merge."
+  chart={`flowchart LR
+  A["24 labelled arrangements"] -->|"remove the M labels, divide by 2!"| B["12 arrangements"]
+  B -->|"remove the A labels, divide by 2!"| C["6 visible arrangements"]`}
+/>
+
+Each visible arrangement appears exactly <InlineMath math="2! \times 2! = 4" /> times among the 24 labelled ones: <InlineMath math="2!" /> ways to swap the two M and <InlineMath math="2!" /> ways to swap the two A. So the number of visible arrangements is <InlineMath math="\frac{24}{4} = 6" />. You can check this by listing every position of the letter M:
 
 | Positions of M | Visible arrangement |
 | --- | --- |
-| 1, 2 | MMAA |
-| 1, 3 | MAMA |
-| 1, 4 | MAAM |
-| 2, 3 | AMMA |
-| 2, 4 | AMAM |
-| 3, 4 | AAMM |
+| 1 and 2 | MMAA |
+| 1 and 3 | MAMA |
+| 1 and 4 | MAAM |
+| 2 and 3 | AMMA |
+| 2 and 4 | AMAM |
+| 3 and 4 | AAMM |
 
-There are six results. If every copy is labeled, each visible result is counted <InlineMath math="2!\times2!=4" /> times. Therefore <InlineMath math="4!/(2!\times2!)=24/4=6" />.
+Listing the positions gives **exactly six arrangements**, as the formula says. Dividing by <InlineMath math="r_i!" /> removes every swap inside one group that the eye cannot see.
 
-## Formula for Permutations with Identical Objects
+## Example with the Letters of KALIMANTAN
 
-For <InlineMath math="n" /> objects divided into groups of identical objects, **the number of distinct arrangements** is:
+How many distinct arrangements can be made from the letters of KALIMANTAN?
 
-<MathContainer>
-<BlockMath math="P = \frac{n!}{r_1! \times r_2! \times r_3! \times \cdots \times r_k!}" />
-</MathContainer>
-
-Here, each symbol has a specific meaning:
-
-- <InlineMath math="n" /> = total number of objects
-- <InlineMath math="r_1, r_2, r_3, \ldots, r_k" /> = number of identical objects in each group
-- <InlineMath math="k" /> = number of groups of identical objects
-- The frequencies include every object, so <InlineMath math="r_1 + r_2 + \cdots + r_k = n" />
-
-Count how often each distinct object appears. Dividing by each <InlineMath math="r_i!" /> removes the repeated counts caused by exchanging identical copies within that group.
-
-## Application to Words and Letters
-
-The same division works for written words, because a **repeated letter** creates identical copies. The example below counts the letters of KALIMANTAN and divides by the repeated groups.
-### Example Word KALIMANTAN
-
-Calculate how many letter arrangements can be made from the word "KALIMANTAN".
-
-Write the letters in order: K-A-L-I-M-A-N-T-A-N
-
-Total letters: <InlineMath math="10" />
-
-The repeated letters are <InlineMath math="A" />, which appears <InlineMath math="3 \text{ times}" />, and <InlineMath math="N" />, which appears <InlineMath math="2 \text{ times}" />. Every other letter appears once.
-
-**Calculation**:
+The word has <InlineMath math="n = 10" /> letters. A appears <InlineMath math="3" /> times, N appears <InlineMath math="2" /> times, and K, L, I, M, T appear once each. Substitute into the formula:
 
 <MathContainer>
-<BlockMath math="P = \frac{10!}{1! \times 3! \times 1! \times 1! \times 1! \times 2! \times 1!}" />
-<BlockMath math="= \frac{10!}{3! \times 2!}" />
+  <BlockMath math="P = \frac{10!}{3! \, 2!} = \frac{3\,628\,800}{6 \times 2}" />
+  <BlockMath math="P = \frac{3\,628\,800}{12} = 302\,400" />
 </MathContainer>
 
-Simplify the fraction by canceling common factors:
+Check by choosing positions. Choose <InlineMath math="3" /> of the <InlineMath math="10" /> positions for A, then <InlineMath math="2" /> of the remaining <InlineMath math="7" /> for N, then arrange the five other letters in the last five positions:
 
-<MathContainer>
-<BlockMath math="= \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3!}{3! \times 2!}" />
-<BlockMath math="= \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4}{2!}" />
-<BlockMath math="= \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4}{2}" />
-</MathContainer>
+<BlockMath math="\binom{10}{3} \times \binom{7}{2} \times 5! = 120 \times 21 \times 120 = 302\,400" />
 
-Finish the calculation:
-- Divide <InlineMath math="10" /> by <InlineMath math="2" />: <InlineMath math="\frac{10}{2} = 5" />
-- The remaining product is <InlineMath math="5 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 302\,400" />
+Both methods give **the same result**, which gives you confidence that no arrangement is counted twice or missed.
 
-### Example Word PALAPA
+## Example with BANANA and a Condition
 
-For the word "PALAPA" with <InlineMath math="6" /> letters:
-Write the letters in order: P-A-L-A-P-A
+The word BANANA has <InlineMath math="n = 6" /> letters. Record the frequencies first:
 
-**Letter identification**: <InlineMath math="P" /> appears <InlineMath math="2 \text{ times}" /> (positions <InlineMath math="1, 5" />), <InlineMath math="A" /> appears <InlineMath math="3 \text{ times}" /> (positions <InlineMath math="2, 4, 6" />), and <InlineMath math="L" /> appears <InlineMath math="1 \text{ time}" />
+| Letter | Frequency |
+| --- | --- |
+| B | 1 |
+| A | 3 |
+| N | 2 |
 
-Calculate each factorial:
-- <InlineMath math="6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720" />
-- <InlineMath math="2! = 2 \times 1 = 2" />
-- <InlineMath math="3! = 3 \times 2 \times 1 = 6" />
+The frequencies add up to <InlineMath math="1 + 3 + 2 = 6" />, equal to <InlineMath math="n" />. Without a condition, the number of arrangements is <InlineMath math="\frac{6!}{1! \, 3! \, 2!} = \frac{720}{12} = 60" />.
 
-So, the calculation is:
+A condition changes what you arrange. If B must come first, the first position is filled, and only ANANA is left to arrange:
 
-<MathContainer>
-<BlockMath math="P = \frac{6!}{2! \times 3! \times 1!}" />
-<BlockMath math="= \frac{6 \times 5 \times 4 \times 3!}{2! \times 3! \times 1!}" />
-<BlockMath math="= \frac{6 \times 5 \times 4}{2 \times 1}" />
-<BlockMath math="= \frac{6 \times 5 \times 4}{2}" />
-</MathContainer>
+<BlockMath math="\frac{5!}{3! \, 2!} = \frac{120}{12} = 10" />
 
-Simplify by dividing <InlineMath math="6" /> by <InlineMath math="2" />:
-- <InlineMath math="\frac{6}{2} = 3" />
-- So: <InlineMath math="3 \times 5 \times 4 = 60 \text{ arrangements}" />
+If the two N must stand together, treat NN as **one block**. The objects to arrange become B, A, A, A, and the block NN, which is five objects with three identical A:
 
-## Counting Arrangements with Repeated Objects
+<BlockMath math="\frac{5!}{3!} = \frac{120}{6} = 20" />
 
-Use the same procedure for any collection that contains repeated objects:
+The block NN is not multiplied by <InlineMath math="2!" />, because swapping the two N inside the block does not change the word. Check the second result by placing the block: NN can occupy <InlineMath math="5" /> pairs of adjacent positions, and for each pair, B, A, A, A fill the other four positions in <InlineMath math="\frac{4!}{3!} = 4" /> ways, so <InlineMath math="5 \times 4 = 20" />. Check the first result by symmetry. A letter that appears <InlineMath math="r" /> times among <InlineMath math="n" /> letters comes first in <InlineMath math="\frac{r}{n}" /> of all arrangements, because every visible arrangement has the same number of labelled versions. B appears once, so B comes first in <InlineMath math="\frac{1}{6} \times 60 = 10" /> arrangements.
 
-1. **Count total objects**: Determine the value of <InlineMath math="n" />
-2. **Identify identical objects**: Group objects that are identical
-3. **Count frequency**: Determine how many times each object appears
-4. **Apply formula**: Insert into the permutation formula
-5. **Calculate factorial**: Complete the calculation carefully
+## Two Kinds of Objects and Combinations
 
-### Arrangements of BANANA
+When there are only two kinds of objects, **the formula equals a** [combination](/en/subjects/mathematics/combinatorics/combination). Arranging three A and two B means choosing <InlineMath math="2" /> of the <InlineMath math="5" /> positions for B, and the rest are A automatically:
 
-Apply the procedure to the word "BANANA":
+<BlockMath math="\frac{5!}{3! \, 2!} = \binom{5}{2} = 10" />
 
-**Step 1**: Count total objects
+For example, a shortest path that moves <InlineMath math="3" /> squares right and <InlineMath math="2" /> squares up is an arrangement of the steps RRRUU, where R means one square right and U one square up. So there are <InlineMath math="10" /> paths.
 
-Write letters one by one: B-A-N-A-N-A
+<MathVisual
+  title="Two shortest paths across a 3 by 2 grid"
+  description={<>Every path from <InlineMath math="S" /> to <InlineMath math="F" /> uses three R steps and two U steps. The paths RRRUU and RURRU differ only in the order of their steps.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "column-0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 2 }, appearance: "construction" },
+      { id: "column-1", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "column-2", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 2 }, appearance: "construction" },
+      { id: "column-3", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "row-0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "row-1", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "row-2", kind: "segment", from: { x: 0, y: 2 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "first-path", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }], appearance: "primary" },
+      { id: "second-path", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 2 }], appearance: "secondary" },
+      { id: "start", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "finish", kind: "point", at: { x: 3, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "finish", objectId: "finish", at: { x: 3, y: 2 }, placement: "above-right" },
+      { key: "first-path", objectId: "first-path", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "second-path", objectId: "second-path", at: { x: 2, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    start: <InlineMath math="S" />,
+    finish: <InlineMath math="F" />,
+    "first-path": <InlineMath math="\text{RRRUU}" />,
+    "second-path": <InlineMath math="\text{RURRU}" />,
+  }}
+/>
 
-Total letters: <InlineMath math="n = 6" />
+## How It Differs from Ordinary Permutations
 
-Read the letter groups and their frequencies together. The three rows account for all <InlineMath math="1+3+2=6" /> letters.
+A [permutation of all the objects](/en/subjects/mathematics/combinatorics/permutation-of-n-items-from-n-objects) treats every object as different, so the number of arrangements is <InlineMath math="n!" />. Permutations with identical objects are the more general case: if every group holds a single object, all <InlineMath math="r_i! = 1" /> and the formula turns back into <InlineMath math="n!" />.
 
-| Letter | Group members | Frequency |
+| Objects arranged | Formula | Arrangements |
 | --- | --- | --- |
-| B | B | 1 |
-| A | A, A, A | 3 |
-| N | N, N | 2 |
+| A, B, C, D (all different) | <InlineMath math="4!" /> | <InlineMath math="24" /> |
+| A, A, B, C (two A identical) | <InlineMath math="\frac{4!}{2!}" /> | <InlineMath math="12" /> |
+| A, A, B, B (two identical pairs) | <InlineMath math="\frac{4!}{2! \, 2!}" /> | <InlineMath math="6" /> |
 
-**Step 2**: Apply formula
+The more identical objects a group holds, **the larger the factorial in the denominator**, so the result gets smaller.
 
-Use the permutation formula with identical objects:
+<Mermaid
+  title="Choosing how to count the arrangements"
+  description="Questions about identical objects, fixed positions, and objects that must stand together decide the formula."
+  chart={`flowchart TD
+  A{"Any identical objects?"} -->|"no"| B["n!"]
+  A -->|"yes"| C["n! divided by the factorial of each group"]
+  C --> D{"Any fixed positions?"}
+  D -->|"yes"| E["Take those objects out, reduce n"]
+  D -->|"no"| F{"Must some objects stand together?"}
+  E --> F
+  F -->|"yes"| G["Join them as one block"]
+  F -->|"no"| H["Count with the formula"]
+  G --> H`}
+/>
 
-<MathContainer>
-<BlockMath math="P = \frac{n!}{r_1! \times r_2! \times r_3!}" />
-<BlockMath math="P = \frac{6!}{1! \times 3! \times 2!}" />
-</MathContainer>
+## Common Mistakes
 
-**Step 3**: Calculate factorial
+| Mistake | Why it fails | How to check |
+| --- | --- | --- |
+| Using <InlineMath math="n!" /> although some letters repeat | Swapping identical letters is counted as a new arrangement | Count the frequency of each letter first |
+| Miscounting a letter's frequency | MATEMATIKA has three A, not two | The frequencies must add up to <InlineMath math="n" /> |
+| Adding the factorials in the denominator | The denominator is <InlineMath math="3! \times 2!" />, not <InlineMath math="3! + 2!" /> | Each group swaps independently, so the swaps multiply |
+| Multiplying the block NN by <InlineMath math="2!" /> | The two N are identical, so swapping them gives no new word | Multiply by the inner arrangements only when the block holds different objects |
+| Forgetting a condition that fixes a position | If B must come first, B is no longer arranged | Reduce <InlineMath math="n" /> and the frequencies for objects whose position is fixed |
 
-Simplify the fraction first:
+The strongest check is **counting by choosing positions** for each group. The result must match the factorial formula.
 
-<MathContainer>
-<BlockMath math="P = \frac{6!}{1! \times 3! \times 2!}" />
-<BlockMath math="= \frac{6 \times 5 \times 4 \times 3!}{1! \times 3! \times 2!}" />
-<BlockMath math="= \frac{6 \times 5 \times 4}{1 \times 2!}" />
-<BlockMath math="= \frac{6 \times 5 \times 4}{2}" />
-</MathContainer>
+## Practice Problems
 
-Calculate with simplification:
-- Divide <InlineMath math="6" /> by <InlineMath math="2" />: <InlineMath math="\frac{6}{2} = 3" />
-- So: <InlineMath math="3 \times 5 \times 4 = 60" />
+Count the frequency of each element first, then **make sure the frequencies add up to <InlineMath math="n" />**.
 
-The word "BANANA" can be arranged in **<InlineMath math="60" /> different ways**.
+1. How many distinct arrangements can be made from the letters of MATEMATIKA?
 
-## Difference from Regular Permutation
+2. A flower shop arranges <InlineMath math="8" /> roses in a row. Only their colors are distinguished: <InlineMath math="3" /> red, <InlineMath math="3" /> white, and <InlineMath math="2" /> yellow. How many color arrangements are possible?
 
-**Regular permutation**: All objects are different, using formula <InlineMath math="n!" />
+3. Six-digit numbers are formed from the digits <InlineMath math="1, 1, 2, 2, 2, 3" />. How many numbers can be formed, and how many of them are greater than <InlineMath math="300\,000" />?
 
-**Permutation with identical objects**: There are identical objects, using formula:
+4. How many distinct arrangements can be made from the letters of INDONESIA?
 
-<MathContainer>
-<BlockMath math="\frac{n!}{r_1! \times r_2! \times \cdots \times r_k!}" />
-</MathContainer>
+### Solutions
 
-**Comparison example**:
+**Problem 1**. Count **the frequency of each letter** first. MATEMATIKA has <InlineMath math="10" /> letters: M twice, A three times, T twice, and E, I, K once each. Together that is <InlineMath math="2 + 3 + 2 + 1 + 1 + 1 = 10" />.
 
-Arranging letters A, B, C, D (all different): <InlineMath math="4! = 24 \text{ ways}" />
+<BlockMath math="P = \frac{10!}{2! \, 3! \, 2!} = \frac{3\,628\,800}{24} = 151\,200" />
 
-Arranging letters <InlineMath math="A, A, B, C" /> (some identical):
+Check by choosing positions: <InlineMath math="\binom{10}{3}\binom{7}{2}\binom{5}{2} \times 3! = 120 \times 21 \times 10 \times 6 = 151\,200" />.
 
-<MathContainer>
-<BlockMath math="\frac{4!}{2!} = \frac{24}{2} = 12 \text{ ways}" />
-</MathContainer>
+**Problem 2**. There are <InlineMath math="8" /> roses in three color groups:
 
-Identical objects **reduce** the number of arrangements because exchanging identical objects does not produce differences.
+<BlockMath math="P = \frac{8!}{3! \, 3! \, 2!} = \frac{40\,320}{72} = 560" />
 
-## Exercises
+Check: choose <InlineMath math="3" /> red positions from <InlineMath math="8" />, then <InlineMath math="3" /> white positions from <InlineMath math="5" />, and the rest are yellow, so <InlineMath math="\binom{8}{3}\binom{5}{3} = 56 \times 10 = 560" />.
 
-Each problem arranges a multiset, so repeated letters, colors, or digits must be divided out. Count the total arrangements first, then <Highlight>divide by the factorials of the repeated groups</Highlight>.
+**Problem 3**. The digit 1 appears twice, 2 three times, and 3 once, so there are <InlineMath math="\frac{6!}{2! \, 3!} = \frac{720}{12} = 60" /> numbers. A number greater than <InlineMath math="300\,000" /> must start with 3, because any other leading digit gives a number below <InlineMath math="300\,000" />. Conversely, every number that starts with 3 is greater than <InlineMath math="300\,000" />, because there is no digit 0 and the smallest such number is <InlineMath math="311\,222" />. The rest, <InlineMath math="1, 1, 2, 2, 2" />, can be arranged in <InlineMath math="\frac{5!}{2! \, 3!} = 10" /> ways. Check: the digit 3 comes first in <InlineMath math="\frac{1}{6}" /> of all arrangements, and <InlineMath math="\frac{1}{6} \times 60 = 10" />.
 
-1. How many letter arrangements can be made from the word "MATEMATIKA"?
+**Problem 4**. INDONESIA has <InlineMath math="9" /> letters: I twice, N twice, and D, O, E, S, A once each.
 
-2. A flower shop arranges <InlineMath math="8" /> roses in a row. Only color matters: <InlineMath math="3" /> are red, <InlineMath math="3" /> are white, and <InlineMath math="2" /> are yellow. How many color arrangements are possible?
+<BlockMath math="P = \frac{9!}{2! \, 2!} = \frac{362\,880}{4} = 90\,720" />
 
-3. From the digits <InlineMath math="1, 1, 2, 2, 2, 3" />, how many <InlineMath math="6" />-digit numbers can be formed?
-
-4. How many different letter arrangements does the word "INDONESIA" have?
-
-### Answer Key
-
-**Problem 1**
-
-The word "MATEMATIKA" has <InlineMath math="10" /> letters
-
-**Letters one by one**: M-A-T-E-M-A-T-I-K-A
-
-**Letter identification**: <InlineMath math="M" /> appears <InlineMath math="2 \text{ times}" /> (positions <InlineMath math="1, 5" />), <InlineMath math="A" /> appears <InlineMath math="3 \text{ times}" /> (positions <InlineMath math="2, 6, 10" />), <InlineMath math="T" /> appears <InlineMath math="2 \text{ times}" /> (positions <InlineMath math="3, 7" />), <InlineMath math="E" /> appears <InlineMath math="1 \text{ time}" />, <InlineMath math="I" /> appears <InlineMath math="1 \text{ time}" />, and <InlineMath math="K" /> appears <InlineMath math="1 \text{ time}" />
-
-Simplify the fraction by canceling common factors:
-
-<MathContainer>
-<BlockMath math="P = \frac{10!}{2! \times 3! \times 2! \times 1! \times 1! \times 1!}" />
-<BlockMath math="= \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3!}{2! \times 3! \times 2!}" />
-<BlockMath math="= \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4}{2! \times 2!}" />
-<BlockMath math="= \frac{10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4}{4}" />
-</MathContainer>
-
-Calculate with simplification:
-- Complete calculation: <InlineMath math="10 \times 9 \times 8 \times 7 \times 6 \times 5 \times 4 = 604\,800" />
-- Divide by <InlineMath math="4" />: <InlineMath math="\frac{604\,800}{4} = 151\,200 \text{ arrangements}" />
-
-**Problem 2**
-
-There are <InlineMath math="8" /> color positions: red appears <InlineMath math="3" /> times, white appears <InlineMath math="3" /> times, and yellow appears <InlineMath math="2" /> times.
-
-Simplify the fraction by canceling common factors:
-
-<MathContainer>
-<BlockMath math="P = \frac{8!}{3! \times 3! \times 2!}" />
-<BlockMath math="= \frac{8 \times 7 \times 6 \times 5 \times 4 \times 3!}{3! \times 3! \times 2!}" />
-<BlockMath math="= \frac{8 \times 7 \times 6 \times 5 \times 4}{3! \times 2!}" />
-<BlockMath math="= \frac{8 \times 7 \times 6 \times 5 \times 4}{6 \times 2}" />
-<BlockMath math="= \frac{8 \times 7 \times 6 \times 5 \times 4}{12}" />
-</MathContainer>
-
-Calculate with simplification:
-- Divide <InlineMath math="6" /> by <InlineMath math="12" />: <InlineMath math="\frac{6}{12} = \frac{1}{2}" />
-- So: <InlineMath math="8 \times 7 \times \frac{1}{2} \times 5 \times 4" />
-- <InlineMath math="= 4 \times 7 \times 5 \times 4 = 560 \text{ ways}" />
-
-**Problem 3**
-
-Digits <InlineMath math="1, 1, 2, 2, 2, 3" /> (total <InlineMath math="6" /> digits)
-
-**Digit identification**: digit <InlineMath math="1" /> appears <InlineMath math="2 \text{ times}" />, digit <InlineMath math="2" /> appears <InlineMath math="3 \text{ times}" />, and digit <InlineMath math="3" /> appears <InlineMath math="1 \text{ time}" />
-
-Simplify the fraction by canceling common factors:
-
-<MathContainer>
-<BlockMath math="P = \frac{6!}{2! \times 3! \times 1!}" />
-<BlockMath math="= \frac{6 \times 5 \times 4 \times 3!}{2! \times 3!}" />
-<BlockMath math="= \frac{6 \times 5 \times 4}{2!}" />
-<BlockMath math="= \frac{6 \times 5 \times 4}{2}" />
-</MathContainer>
-
-Calculate with simplification:
-- Divide <InlineMath math="6" /> by <InlineMath math="2" />: <InlineMath math="\frac{6}{2} = 3" />
-- So: <InlineMath math="3 \times 5 \times 4 = 60 \text{ numbers}" />
-
-**Problem 4**
-
-The word "INDONESIA" has <InlineMath math="9" /> letters
-
-**Letters one by one**: I-N-D-O-N-E-S-I-A
-
-**Letter identification**: <InlineMath math="I" /> appears <InlineMath math="2 \text{ times}" /> (positions <InlineMath math="1, 8" />), <InlineMath math="N" /> appears <InlineMath math="2 \text{ times}" /> (positions <InlineMath math="2, 5" />), <InlineMath math="D" /> appears <InlineMath math="1 \text{ time}" />, <InlineMath math="O" /> appears <InlineMath math="1 \text{ time}" />, <InlineMath math="E" /> appears <InlineMath math="1 \text{ time}" />, <InlineMath math="S" /> appears <InlineMath math="1 \text{ time}" />, and <InlineMath math="A" /> appears <InlineMath math="1 \text{ time}" />
-
-Simplify the fraction by canceling common factors:
-
-<MathContainer>
-<BlockMath math="P = \frac{9!}{2! \times 2! \times 1! \times 1! \times 1! \times 1! \times 1!}" />
-<BlockMath math="= \frac{9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3 \times 2!}{2! \times 2!}" />
-<BlockMath math="= \frac{9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3}{2!}" />
-<BlockMath math="= \frac{9 \times 8 \times 7 \times 6 \times 5 \times 4 \times 3}{2}" />
-</MathContainer>
-
-Calculate with simplification:
-- Divide by <InlineMath math="2" />: <InlineMath math="\frac{8}{2} = 4" />
-- So: <InlineMath math="9 \times 4 \times 7 \times 6 \times 5 \times 4 \times 3" />
-- <InlineMath math="= 9 \times 4 \times 7 \times 6 \times 5 \times 4 \times 3 = 90\,720 \text{ arrangements}" />
+Check by choosing positions: <InlineMath math="\binom{9}{2}\binom{7}{2} \times 5! = 36 \times 21 \times 120 = 90\,720" />.

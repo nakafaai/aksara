@@ -1,24 +1,17 @@
-Untuk kejadian yang **tidak membedakan urutan**, ada <InlineMath math="\binom92=\frac{9\cdot8}{2}=36" /> pasangan yang sama mungkin. Pasangan sewarna diperoleh dengan memilih dua bola dari warna yang sama.
+Urutan pemilihan tidak berpengaruh, jadi hitunglah dengan **kombinasi**. Paling sedikit dua siswa perempuan berarti tepat dua atau tepat tiga.
 
 <BlockMath math="\begin{aligned}
-N&=\binom42+\binom32+\binom22 \\
-&=\frac{4\cdot3}{2}+\frac{3\cdot2}{2}+\frac{2\cdot1}{2} \\
-&=6+3+1=10 \\
-P&=\frac{10}{36}=\frac5{18}
+\text{seluruh pilihan}&=\binom93=84 \\
+\text{tepat 2 perempuan}&=\binom42\binom51=6\cdot5=30 \\
+\text{tepat 3 perempuan}&=\binom43=4 \\
+P&=\frac{30+4}{84}=\frac{34}{84}=\frac{17}{42}
 \end{aligned}" />
 
-Tepat satu merah berarti memilih satu dari empat bola merah dan satu dari lima bola lainnya.
+Sebagai pemeriksaan, tanpa perempuan atau tepat satu perempuan menghasilkan <InlineMath math="\binom53+\binom41\binom52=10+40=50" /> pilihan, dan <InlineMath math="34+50=84" />.
 
-<BlockMath math="P=\frac{4\cdot5}{36}=\frac{20}{36}=\frac59" />
+Jadi, peluangnya adalah <InlineMath math="\frac{17}{42}" />.
 
-Jika bola pertama hijau, tersisa delapan bola, tiga di antaranya biru. Peluang bola kedua biru adalah <InlineMath math="\frac38" />. Pengambilan pertama memengaruhi peluang pengambilan kedua. Misalnya, setelah bola biru terambil, peluang biru berikutnya menjadi <InlineMath math="\frac28" />, sedangkan peluang biru sebelum pengambilan adalah <InlineMath math="\frac39" />.
-
-Jadi, ketiga pernyataan peluang benar dan pernyataan bahwa warna kedua pengambilan saling bebas salah.
-
-Perubahan isi kantong berikut menunjukkan mengapa warna pengambilan kedua bergantung pada hasil pertama.
-
-| Kondisi sebelum mengambil bola berikutnya | Merah | Biru | Hijau | Total | Peluang biru |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Sebelum pengambilan pertama | 4 | 3 | 2 | 9 | <InlineMath math="\frac39" /> |
-| Setelah satu bola hijau diambil | 4 | 3 | 1 | 8 | <InlineMath math="\frac38" /> |
-| Setelah satu bola biru diambil | 4 | 2 | 2 | 8 | <InlineMath math="\frac28" /> |
+- <InlineMath math="\frac{1}{21}=\frac{4}{84}" /> hanya menghitung pilihan dengan tiga siswa perempuan.
+- <InlineMath math="\frac{5}{14}=\frac{30}{84}" /> hanya menghitung tepat dua siswa perempuan dan melupakan kasus tiga perempuan.
+- <InlineMath math="\frac12" /> memerlukan <InlineMath math="42" /> pilihan yang memenuhi, padahal hanya ada <InlineMath math="34" />.
+- <InlineMath math="\frac{25}{42}=\frac{50}{84}" /> adalah peluang komplemennya, yaitu paling banyak satu siswa perempuan.

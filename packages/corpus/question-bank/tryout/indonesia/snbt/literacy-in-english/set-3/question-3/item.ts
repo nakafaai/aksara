@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "bird-compass",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["True", "False"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "The mean rose to $$16$$, compared with $$9$$ at baseline and $$10$$ in the comparison condition. This supports an association between side-facing seed openings and root growth under the tested conditions, but the small containers and six-day trial require further testing before a broader claim.",
+            "Birds kept where they cannot see the sky may still try to fly in the correct seasonal direction.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Because the mean rose to $$16$$, compared with $$9$$ at baseline and $$10$$ in the comparison condition, holding seed type, moisture, container size, and observation time constant isolates placing the seed opening toward the side of a clear container as the only possible cause.",
+            "The 2012 study confirmed that iron-containing cells in the beak send magnetic signals to the brain.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The strongest follow-up would change both placing the seed opening toward the side of a clear container and at least one controlled condition, preventing the effect of either change from being isolated.",
+            "Near the poles, magnetic field lines run almost parallel to the ground.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The limitation that the containers were small and the trial lasted only six days affects numerical precision, but it does not restrict how widely the finding can be applied.",
-        },
-        {
-          correct: false,
-          label:
-            "A larger repetition under the same rules could narrow uncertainty but could not change the first interpretation of side-facing seed openings and root growth.",
+            "The passage suggests that birds may rely on more than one kind of cue to navigate.",
         },
       ],
     },

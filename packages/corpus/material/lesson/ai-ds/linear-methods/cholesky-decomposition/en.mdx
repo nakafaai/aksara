@@ -43,6 +43,31 @@ Define the diagonal square-root matrix as follows.
 
 This matrix satisfies <InlineMath math="D^{\frac{1}{2}} \cdot D^{\frac{1}{2}} = D" />.
 
+For <InlineMath math="A=\begin{pmatrix}4&2\\2&5\end{pmatrix}" />, look at <InlineMath math="q(t)=(t,1)\,A\,(t,1)^T=4t^2+4t+5" />. Because <InlineMath math="A" /> is positive definite, <InlineMath math="q(t)>0" /> for every <InlineMath math="t" />. Its minimum, <InlineMath math="5-\tfrac{2^2}4=4" />, is the second pivot, so that pivot is positive and no row swap is ever needed.
+
+<MathVisual
+  title={<>The second pivot is the minimum of <InlineMath math="q(t)=4t^2+4t+5" /></>}
+  description={<>The violet parabola never touches the axis. Its magenta lowest point sits at <InlineMath math="t=-\tfrac12" /> with value <InlineMath math="4" />, the second pivot <InlineMath math="a_{22}-a_{21}^2/a_{11}" />. The amber point is <InlineMath math="q(0)=a_{22}=5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 1 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "form", kind: "quadratic", coefficients: { a: 4, b: 4, c: 5 }, domain: { min: -1.5, max: 0.5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "pivot", kind: "point", at: { x: -1 / 2, y: 4 }, appearance: "answer" },
+      { id: "corner", kind: "point", at: { x: 0, y: 5 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "pivot", objectId: "pivot", at: { x: -1 / 2, y: 4 }, placement: "below" },
+      { key: "corner", objectId: "corner", at: { x: 0, y: 5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "pivot": <InlineMath math="q(-\tfrac12)=4" />,
+    "corner": <InlineMath math="a_{22}=5" />,
+  }}
+/>
+
 ## The Unique Lower Triangular Factor
 
 Every real symmetric positive definite matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" /> has a unique Cholesky factor with positive diagonal entries:
@@ -108,6 +133,34 @@ Thus
 
 Once the factor is known, solve <InlineMath math="Ax=b" /> through **two triangular systems**: first <InlineMath math="\tilde Ly=b" />, then <InlineMath math="\tilde L^Tx=y" />. This avoids computing a matrix inverse.
 
+The factor <InlineMath math="L" /> from this example maps the unit square onto the parallelogram spanned by its columns. Look for the triangular shape in the scene: the first column <InlineMath math="\ell_1=(2,1)^T" /> may tilt, but the second column <InlineMath math="\ell_2=(0,2)^T" /> points straight up, because the top right entry of <InlineMath math="L" /> is zero. The area of the parallelogram is <InlineMath math="\det L=2\cdot2=4" />, and because <InlineMath math="A=LL^T" />, that area equals <InlineMath math="\sqrt{\det A}=\sqrt{16}" />.
+
+<MathVisual
+  title={<>The factor <InlineMath math="L" /> maps the unit square</>}
+  description={<>The gray square is mapped by <InlineMath math="L=\begin{pmatrix}2&0\\1&2\end{pmatrix}" /> to the magenta parallelogram spanned by the columns <InlineMath math="\ell_1" /> and <InlineMath math="\ell_2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.6 }, y: { min: -0.5, max: 3.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 2, y: 3 }, { x: 0, y: 2 }], appearance: "answer" },
+      { id: "l1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "l2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "image", objectId: "image", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "l1", objectId: "l1", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "l2", objectId: "l2", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "image": <InlineMath math="L\cdot\text{square}" />,
+    "l1": <InlineMath math="\ell_1=(2,1)^T" />,
+    "l2": <InlineMath math="\ell_2=(0,2)^T" />,
+  }}
+/>
+
 ## Cholesky Algorithm Complexity
 
 The Cholesky algorithm for computing the Cholesky factor <InlineMath math="\tilde{L}" /> from <InlineMath math="A \in \mathbb{R}^{n \times n}" /> requires:
@@ -117,3 +170,38 @@ The Cholesky algorithm for computing the Cholesky factor <InlineMath math="\tild
 This expression gives the number of arithmetic operations.
 
 The leading count contains about <InlineMath math="n^3/6" /> multiplications and <InlineMath math="n^3/6" /> additions. Together they give about <InlineMath math="n^3/3" /> floating-point operations, roughly half the <InlineMath math="2n^3/3" /> leading cost of <InlineMath math="\mathrm{LU}" /> factorization for a general dense matrix. Cholesky saves work by **using symmetry** and storing only one triangular half of the factorization.
+
+Both costs grow like <InlineMath math="n^3" />, so doubling <InlineMath math="n" /> multiplies the cost by eight. At every size, Cholesky still needs half the operations of <InlineMath math="\mathrm{LU}" />, because it uses the symmetry and computes only one triangular factor.
+
+<ScatterDiagram
+  title={<><InlineMath math="\tfrac13n^3" /> for Cholesky against <InlineMath math="\tfrac23n^3" /> for <InlineMath math="\mathrm{LU}" /></>}
+  description={<>For <InlineMath math="n=100" /> to <InlineMath math="600" />, the first series is <InlineMath math="n^3/3" /> and the second is <InlineMath math="2n^3/3" /> floating-point operations. At <InlineMath math="n=600" />, that is <InlineMath math="72" /> million against <InlineMath math="144" /> million.</>}
+  xAxisLabel="Matrix size"
+  yAxisLabel="Floating-point operations"
+  datasets={[
+    {
+      name: "Cholesky",
+      color: "var(--chart-1)",
+      points: [
+        { x: 100, y: 100 ** 3 / 3 },
+        { x: 200, y: 200 ** 3 / 3 },
+        { x: 300, y: 300 ** 3 / 3 },
+        { x: 400, y: 400 ** 3 / 3 },
+        { x: 500, y: 500 ** 3 / 3 },
+        { x: 600, y: 600 ** 3 / 3 },
+      ],
+    },
+    {
+      name: "LU",
+      color: "var(--chart-2)",
+      points: [
+        { x: 100, y: 2 * 100 ** 3 / 3 },
+        { x: 200, y: 2 * 200 ** 3 / 3 },
+        { x: 300, y: 2 * 300 ** 3 / 3 },
+        { x: 400, y: 2 * 400 ** 3 / 3 },
+        { x: 500, y: 2 * 500 ** 3 / 3 },
+        { x: 600, y: 2 * 600 ** 3 / 3 },
+      ],
+    },
+  ]}
+/>

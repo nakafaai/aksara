@@ -28,6 +28,45 @@ Take one object at coordinate <InlineMath math="30 \text{ m}" /> when the store 
 
 The **object does not move** when the origin changes. Only its coordinate changes. Shifting the origin to the right can turn a large positive coordinate into a smaller positive coordinate, zero, or a negative coordinate.
 
+Look at the scene below. The gray line is the object, and it never moves. Each arrow starts at a different origin and ends at the object, so its label is the object's coordinate measured from that origin. Count the grid steps yourself: one step is <InlineMath math="10\text{ m}" />, and an arrow pointing west gets a negative sign.
+
+<MathVisual
+  title={<>One Object, Three Origins</>}
+  description={<>Each row measures the same object from a different origin, with east to the right. One grid step is 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "object", kind: "segment", appearance: "reference", from: { x: 3, y: -0.5 }, to: { x: 3, y: 2.5 } },
+      { id: "from-0", kind: "segment", appearance: "primary", from: { x: 0, y: 2 }, to: { x: 3, y: 2 } },
+      { id: "from-0-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 2 }, { x: 2.78, y: 2.11 }, { x: 2.78, y: 1.89 }] },
+      { id: "from-1", kind: "segment", appearance: "secondary", from: { x: 2, y: 1 }, to: { x: 3, y: 1 } },
+      { id: "from-1-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 1 }, { x: 2.78, y: 1.11 }, { x: 2.78, y: 0.89 }] },
+      { id: "from-2", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "from-2-head", kind: "polygon", appearance: "answer", vertices: [{ x: 3, y: 0 }, { x: 3.22, y: 0.11 }, { x: 3.22, y: -0.11 }] },
+    ],
+    labels: [
+      { key: "object", objectId: "object", at: { x: 3, y: 2.5 }, placement: "above" },
+      { key: "name0", objectId: "from-0", at: { x: 0, y: 2 }, placement: "below" },
+      { key: "coord0", objectId: "from-0", at: { x: 1.5, y: 2 }, placement: "above" },
+      { key: "name1", objectId: "from-1", at: { x: 2, y: 1 }, placement: "below" },
+      { key: "coord1", objectId: "from-1", at: { x: 2.5, y: 1 }, placement: "above" },
+      { key: "name2", objectId: "from-2", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "coord2", objectId: "from-2", at: { x: 4, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    object: <>Object</>,
+    name0: <>Store</>,
+    name1: <>Rani's house</>,
+    name2: <>Naya's house</>,
+    coord0: <InlineMath math="x'=+30\text{ m}" />,
+    coord1: <InlineMath math="x'=+10\text{ m}" />,
+    coord2: <InlineMath math="x'=-20\text{ m}" />,
+  }}
+/>
+
 ## Reading Sign and Direction
 
 The sign of a position tells us <Highlight>which side of the reference point</Highlight> the object is on. In the street example, east is chosen as positive. So a positive value means the object is east of the reference point, while a negative value means the object is west of it.
@@ -57,6 +96,43 @@ A complete statement is: "The object is <InlineMath math="10 \text{ m}" /> east 
 
 The sentence "the object is near the house" names the house as a reference, but leaves the exact point on the house, numerical distance, unit, and direction unspecified. A **precise origin** lets two observers measure the object's coordinate from the same place.
 
+In two dimensions a position statement needs an origin and two numbers. From <InlineMath math="O" /> the point <InlineMath math="P" /> sits at <InlineMath math="(3,2)" />, but from a second origin <InlineMath math="O'" /> at <InlineMath math="(1,1)" /> it sits at <InlineMath math="\vec r\,'=\vec r-\vec r_0" />. Zoom in on the fuchsia arrow.
+
+<MathVisual
+  title={<>One Point, Two Origins</>}
+  description={<>The position of P from O (orange) and from O' (fuchsia), with the shift between the origins (violet).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 4 }, y: { min: -0.8, max: 2.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "r", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 2 } },
+      { id: "r-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 2 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 2) + ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 2 - (0.25 * 2) / Math.hypot(3, 2) + ((0.25 / 2) * 3) / Math.hypot(3, 2) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 2) - ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 2 - (0.25 * 2) / Math.hypot(3, 2) - ((0.25 / 2) * 3) / Math.hypot(3, 2) }] },
+      { id: "r0", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 1, y: 1 } },
+      { id: "r0-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: 1 }, { x: 1 - (0.25 * 1) / Math.hypot(1, 1) + ((0.25 / 2) * -1) / Math.hypot(1, 1), y: 1 - (0.25 * 1) / Math.hypot(1, 1) + ((0.25 / 2) * 1) / Math.hypot(1, 1) }, { x: 1 - (0.25 * 1) / Math.hypot(1, 1) - ((0.25 / 2) * -1) / Math.hypot(1, 1), y: 1 - (0.25 * 1) / Math.hypot(1, 1) - ((0.25 / 2) * 1) / Math.hypot(1, 1) }] },
+      { id: "rp", kind: "segment", appearance: "answer", from: { x: 1, y: 1 }, to: { x: 3, y: 2 } },
+      { id: "rp-head", kind: "polygon", appearance: "answer", vertices: [{ x: 3, y: 2 }, { x: 3 - (0.25 * 2) / Math.hypot(2, 1) + ((0.25 / 2) * -1) / Math.hypot(2, 1), y: 2 - (0.25 * 1) / Math.hypot(2, 1) + ((0.25 / 2) * 2) / Math.hypot(2, 1) }, { x: 3 - (0.25 * 2) / Math.hypot(2, 1) - ((0.25 / 2) * -1) / Math.hypot(2, 1), y: 2 - (0.25 * 1) / Math.hypot(2, 1) - ((0.25 / 2) * 2) / Math.hypot(2, 1) }] },
+      { id: "o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "op", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: 3, y: 2 } },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "op", objectId: "op", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "p", objectId: "p", at: { x: 3, y: 2 }, placement: "above-right" },
+      { key: "r", objectId: "r", at: { x: 1.5, y: 1 }, placement: "below-right" },
+      { key: "rp", objectId: "rp", at: { x: 2, y: 1.5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    o: <InlineMath math="O" />,
+    op: <InlineMath math="O'" />,
+    p: <InlineMath math="P" />,
+    r: <InlineMath math="\vec r=(3,2)" />,
+    rp: <InlineMath math="\vec r\,'=\vec r-\vec r_0=(2,1)" />,
+  }}
+/>
+
 ## A Position Sentence from the Store
 
 A marker is at coordinate <InlineMath math="40 \text{ m}" /> when the store is the origin. Dimas's house is at coordinate <InlineMath math="30 \text{ m}" /> in the same frame. If the **origin is shifted** to Dimas's house, the marker's coordinate is:
@@ -69,3 +145,36 @@ x'
 \end{aligned}" />
 
 So, the marker is <InlineMath math="10 \text{ m}" /> east of Dimas's house. With the store as origin, its coordinate is <InlineMath math="40 \text{ m}" />. With Dimas's house as origin, its coordinate is <InlineMath math="+10 \text{ m}" />. Both statements are correct because they use different origins in a clearly defined reference frame.
+
+Both arrows below end at the same marker. Only their starting point, the origin, changes, and with it the number in the position sentence.
+
+<MathVisual
+  title={<>One Marker, Two Origins</>}
+  description={<>The marker at 40 m from the store, measured from the store and from Dimas's house at 30 m. One grid step is 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1, max: 2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "marker", kind: "segment", appearance: "reference", from: { x: 4, y: -0.5 }, to: { x: 4, y: 1.5 } },
+      { id: "from-0", kind: "segment", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 4, y: 1 } },
+      { id: "from-0-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 1 }, { x: 3.78, y: 1.11 }, { x: 3.78, y: 0.89 }] },
+      { id: "from-1", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "from-1-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 0 }, { x: 3.78, y: 0.11 }, { x: 3.78, y: -0.11 }] },
+    ],
+    labels: [
+      { key: "marker", objectId: "marker", at: { x: 4, y: 1.5 }, placement: "above" },
+      { key: "name0", objectId: "from-0", at: { x: 0, y: 1 }, placement: "below" },
+      { key: "name1", objectId: "from-1", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "coord0", objectId: "from-0", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "coord1", objectId: "from-1", at: { x: 3.5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    marker: <>Marker</>,
+    name0: <>Store</>,
+    name1: <>Dimas's house</>,
+    coord0: <InlineMath math="+40\text{ m}" />,
+    coord1: <InlineMath math="+10\text{ m}" />,
+  }}
+/>

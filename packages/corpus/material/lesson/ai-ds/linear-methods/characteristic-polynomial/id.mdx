@@ -43,6 +43,33 @@ Ini berarti:
 - Koefisien kedua tertinggi terkait dengan jejak matriks
 - **Suku konstanta** adalah determinan matriks
 
+Untuk matriks <InlineMath math="2\times2" />, <InlineMath math="\chi_A(t)=t^2-(\operatorname{tr}A)\,t+\det A" />. Dengan <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />, jejaknya <InlineMath math="4" /> dan determinannya <InlineMath math="3" />, jadi <InlineMath math="\chi_A(t)=t^2-4t+3=(t-1)(t-3)" />.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="\chi_A(t)=t^2-4t+3" /></>}
+  description={<>Titik magenta adalah akar <InlineMath math="1" /> dan <InlineMath math="3" />, yaitu nilai eigen <InlineMath math="A" />. Titik kuning <InlineMath math="\chi_A(0)=\det A=3" />, dan titik puncak abu-abu berada di <InlineMath math="t=\operatorname{tr}A/2=2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "polynomial", kind: "quadratic", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: -0.5, max: 4.5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "small", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "large", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: 3 }, appearance: "highlight" },
+      { id: "vertex", kind: "point", at: { x: 2, y: -1 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "intercept": <InlineMath math="\det A=3" />,
+    "vertex": <InlineMath math="t=\tfrac{\operatorname{tr}A}2" />,
+  }}
+/>
+
 ## Nilai Eigen sebagai Akar Polinomial
 
 Nilai <InlineMath math="\lambda \in \mathbb{K}" /> merupakan nilai eigen dari <InlineMath math="A" /> jika dan hanya jika <InlineMath math="\det(A - \lambda \cdot I) = 0" />.
@@ -64,6 +91,30 @@ Sekarang, bagaimana jika sebuah nilai eigen muncul beberapa kali sebagai akar po
 Untuk setiap nilai eigen <InlineMath math="\lambda" />, **multiplisitas aljabarnya memenuhi**
 
 <BlockMath math="1 \leq \mu_A(\lambda) \leq n" />
+
+Tiga matriks <InlineMath math="2\times2" /> dengan jejak <InlineMath math="4" /> tetapi determinan <InlineMath math="3" />, <InlineMath math="4" />, dan <InlineMath math="5" /> memberi tiga bentuk akar. <InlineMath math="\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> punya dua akar sederhana, <InlineMath math="\begin{pmatrix}2&1\\0&2\end{pmatrix}" /> punya akar <InlineMath math="2" /> dengan multiplisitas aljabar <InlineMath math="2" />, dan <InlineMath math="\begin{pmatrix}2&-1\\1&2\end{pmatrix}" /> punya akar kompleks <InlineMath math="2\pm i" />.
+
+<MathVisual
+  title={<>Akar sederhana, akar ganda, dan tanpa akar real</>}
+  description={<>Parabola abu-abu <InlineMath math="t^2-4t+3" /> memotong sumbu dua kali. Parabola hijau toska <InlineMath math="(t-2)^2" /> hanya menyentuh sumbu di titik magenta <InlineMath math="t=2" />, sehingga akar itu dihitung dua kali. Parabola oranye <InlineMath math="t^2-4t+5" /> tidak menyentuh sumbu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two-roots", kind: "quadratic", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "reference" },
+      { id: "double-root", kind: "quadratic", coefficients: { a: 1, b: -4, c: 4 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "construction" },
+      { id: "no-root", kind: "quadratic", coefficients: { a: 1, b: -4, c: 5 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "primary" },
+      { id: "touch", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "touch", objectId: "touch", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "touch": <InlineMath math="t=2" />,
+  }}
+/>
 
 ## Hubungan Multiplisitas Geometrik dan Aljabar
 
@@ -178,6 +229,45 @@ Polinomial karakteristiknya adalah:
 <BlockMath math="\chi_A(t) = (1-t)^2 = t^2 - 2 \cdot t + 1" />
 
 Nilai eigen adalah <InlineMath math="\lambda = 1" /> dengan <InlineMath math="\mu_A(1) = 2" />.
+
+Bandingkan kelima parabola di bawah, satu untuk setiap sudut rotasi. Titik terendah tiap parabola ada di <InlineMath math="t=\cos\alpha" /> dengan nilai <InlineMath math="1-\cos^2\alpha=\sin^2\alpha" />. Hanya untuk <InlineMath math="\alpha=0" /> dan <InlineMath math="\alpha=\pi" /> nilai itu nol, sehingga parabolanya menyentuh sumbu <InlineMath math="t" /> di <InlineMath math="t=1" /> atau <InlineMath math="t=-1" />. Untuk sudut lain, parabolanya melayang di atas sumbu, akarnya kompleks, dan rotasi itu tidak mempertahankan satu arah pun.
+
+<MathVisual
+  title={<>Polinom karakteristik rotasi <InlineMath math="t^2-2t\cos\alpha+1" /></>}
+  description={<>Satu parabola untuk setiap sudut <InlineMath math="\alpha" />. Titik terendahnya ada di <InlineMath math="t=\cos\alpha" /> dengan nilai <InlineMath math="\sin^2\alpha" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.3, max: 3.3 }, y: { min: -0.6, max: 5.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "zero", kind: "quadratic", coefficients: { a: 1, b: -2 * (1), c: 1 }, domain: { min: -1, max: 3 }, inputAxis: "x", appearance: "secondary" },
+      { id: "third", kind: "quadratic", coefficients: { a: 1, b: -2 * (1 / 2), c: 1 }, domain: { min: -3 / 2, max: 5 / 2 }, inputAxis: "x", appearance: "construction" },
+      { id: "half", kind: "quadratic", coefficients: { a: 1, b: -2 * (0), c: 1 }, domain: { min: -7 / 4, max: 7 / 4 }, inputAxis: "x", appearance: "highlight" },
+      { id: "twothirds", kind: "quadratic", coefficients: { a: 1, b: -2 * (-1 / 2), c: 1 }, domain: { min: -5 / 2, max: 3 / 2 }, inputAxis: "x", appearance: "primary" },
+      { id: "full", kind: "quadratic", coefficients: { a: 1, b: -2 * (-1), c: 1 }, domain: { min: -3, max: 1 }, inputAxis: "x", appearance: "answer" },
+      { id: "root-plus", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "root-minus", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "zero", objectId: "zero", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "third", objectId: "third", at: { x: -3 / 2, y: 19 / 4 }, placement: "above-left" },
+      { key: "half", objectId: "half", at: { x: 7 / 4, y: 65 / 16 }, placement: "above-right" },
+      { key: "twothirds", objectId: "twothirds", at: { x: -5 / 2, y: 19 / 4 }, placement: "above-left" },
+      { key: "full", objectId: "full", at: { x: 1, y: 4 }, placement: "above-right" },
+      { key: "root-plus", objectId: "root-plus", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "root-minus", objectId: "root-minus", at: { x: -1, y: 0 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "zero": <InlineMath math="\alpha=0" />,
+    "third": <InlineMath math="\alpha=\tfrac\pi3" />,
+    "half": <InlineMath math="\alpha=\tfrac\pi2" />,
+    "twothirds": <InlineMath math="\alpha=\tfrac{2\pi}3" />,
+    "full": <InlineMath math="\alpha=\pi" />,
+    "root-plus": <InlineMath math="t=1" />,
+    "root-minus": <InlineMath math="t=-1" />,
+  }}
+/>
 
 ## Sifat Matriks Serupa
 

@@ -1,30 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "food-waste",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Membandingkan angka survei bulan Maret dengan berat sampah yang masuk ke tempat pembuangan akhir setelah kampanye.",
+        },
+        {
           correct: true,
           label:
-            "Kesehatan mental dan keadaan ekonomi ibunya membuat pengasuhannya tidak stabil",
+            "Membandingkan hasil penimbangan sebelum dan sesudah kampanye yang dilakukan dengan cara dan lama pengamatan yang sama.",
         },
         {
           correct: false,
-          label: "Norma Jeane menolak tinggal bersama ibunya",
+          label:
+            "Menanyakan kepada responden apakah mereka merasa lebih jarang membuang nasi setelah kampanye.",
         },
         {
           correct: false,
-          label: "Orang tuanya sengaja memutus seluruh hubungan dengannya",
+          label:
+            "Membandingkan sisa nasi dengan sisa sayur setelah kampanye selesai.",
         },
         {
           correct: false,
-          label: "Norma Jeane sudah tidak mempunyai keluarga yang masih hidup",
-        },
-        {
-          correct: false,
-          label: "Ia ditempatkan di panti karena ingin segera menjadi aktris",
+          label:
+            "Menimbang sisa makanan hanya pada rumah tangga yang paling aktif mengikuti kampanye.",
         },
       ],
     },

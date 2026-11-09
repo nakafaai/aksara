@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bestimme Median, Modus und Spannweite anhand vollständiger Beispiele mit einer ungeraden und einer geraden Anzahl von Werten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistik",
 };
 
@@ -34,6 +34,16 @@ Mittlere Position: <InlineMath math="(5+1)/2 = 3" />. An Position <InlineMath ma
 
 Somit gilt <InlineMath math="\text{Median} = 7" />.
 
+Stell die fünf sortierten Noten nach Position auf. Der Balken an der mittleren Position <InlineMath math="\frac{5 + 1}{2} = 3" /> hat die Höhe 7, also ist der Median 7, mit zwei Werten auf jeder Seite.
+
+<BarChart
+  title={<>Fünf sortierte Werte</>}
+  description={<>Balken der sortierten Werte <InlineMath math="6, 7, 7, 8, 9" /> an den Positionen 1 bis 5. Der dritte Balken ist der Median.</>}
+  yAxisLabel="Wert"
+  data={[6, 7, 7, 8, 9].map((value, i) => ({ name: "Position " + (i + 1), value }))}
+  chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Eine gerade Anzahl von Werten
 
 <InlineMath math="x_{(i)}" /> steht für den Wert an Position <InlineMath math="i" />, nachdem die Daten aufsteigend sortiert wurden. Der Median ist der Mittelwert der Werte an den Positionen <InlineMath math="n/2" /> und <InlineMath math="n/2+1" />:
@@ -58,6 +68,16 @@ Der Median beträgt also <InlineMath math="7{,}5" />.
 
 Der Median hängt von den **Werten an den mittleren Positionen** ab. Ändert sich der größte Wert ohne Änderung der Reihenfolge oder Datenanzahl, bleibt der Median gleich. Hinzufügen oder Entfernen von Werten kann die mittleren Positionen verschieben. Dann muss der Median neu berechnet werden.
 
+Bei sechs Werten gibt es keinen einzelnen mittleren Balken. Die Positionen 3 und 4 enthalten 7 und 8, also ist der Median ihr Mittelwert, <InlineMath math="\frac{7 + 8}{2} = 7{,}5" />, ein Wert, der selbst nicht vorkommt.
+
+<BarChart
+  title={<>Sechs sortierte Werte</>}
+  description={<>Balken der sortierten Werte <InlineMath math="6, 7, 7, 8, 9, 10" /> an den Positionen 1 bis 6. Der Median liegt zwischen dem dritten und vierten Balken.</>}
+  yAxisLabel="Wert"
+  data={[6, 7, 7, 8, 9, 10].map((value, i) => ({ name: "Position " + (i + 1), value }))}
+  chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Der Modus als häufigster Wert
 
 Der Modus ist der **Wert, der am häufigsten vorkommt**, also <Highlight>der Wert mit der höchsten Häufigkeit</Highlight>.
@@ -81,8 +101,8 @@ Testergebnisse:
 | <InlineMath math="9" /> | <InlineMath math="1" /> |
 
 <BarChart
-  title="Häufigkeit jedes Wertes"
-  description="Der Wert mit dem höchsten Balken ist der Modus."
+  title={<>Häufigkeit jedes Wertes</>}
+  description={<>Der Wert mit dem höchsten Balken ist der Modus.</>}
   data={[{ name: "6", value: 1 }, { name: "7", value: 3 }, { name: "8", value: 2 }, { name: "9", value: 1 }]}
   chartConfig={{ value: { label: "Häufigkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
   yAxisLabel="Häufigkeit"

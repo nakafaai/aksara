@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bestimme Tangenten an Parabeln, Ellipsen und Hyperbeln aus einem Kurvenpunkt, einer gegebenen Steigung oder einem außerhalb liegenden Punkt.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Analytische Geometrie",
 };
 
@@ -14,6 +14,41 @@ Ein Lineal kann so an eine glatte Kurve gelegt werden, dass es sie in der Nähe 
 Wenn das Einsetzen einer Geraden in einen Kegelschnitt eine quadratische Gleichung ergibt, kennzeichnet eine <Highlight>doppelte Lösung</Highlight> die Tangente. Zwei verschiedene Lösungen bedeuten zwei Schnittpunkte. Prüfe vor dem Einsatz der Diskriminante den quadratischen Koeffizienten. Eine Gerade parallel zu einer Hyperbelasymptote kann zum Beispiel eine lineare Gleichung ergeben.
 
 Die gegebenen Informationen bestimmen das Verfahren: Ein bekannter Berührpunkt führt zur Punktform, eine bekannte Steigung zu einer Geraden mit unbekanntem Achsenabschnitt und ein äußerer Punkt zu einer Geradenschar durch diesen Punkt.
+
+Setz drei parallele Geraden in <InlineMath math="y = x^2" /> ein. Für <InlineMath math="y = 2x - 1" /> hat <InlineMath math="x^2 - 2x + 1 = (x - 1)^2 = 0" /> eine doppelte Nullstelle, also berührt die Gerade die Parabel in <InlineMath math="(1, 1)" />. Die Gerade <InlineMath math="y = 2x" /> schneidet sie zweimal, bei <InlineMath math="x = 0" /> und <InlineMath math="x = 2" />, und <InlineMath math="y = 2x - 2" /> verfehlt sie, weil <InlineMath math="x^2 - 2x + 2 = 0" /> keine reelle Nullstelle hat.
+
+<MathVisual
+  title={<>Zwei Nullstellen, eine doppelte, keine</>}
+  description={<>Die Parabel <InlineMath math="y = x^2" /> mit der Sekante <InlineMath math="y = 2x" />, der Tangente <InlineMath math="y = 2x - 1" /> in <InlineMath math="(1, 1)" /> und der Geraden <InlineMath math="y = 2x - 2" />, die sie verfehlt.</>}
+  labels={{
+    parabola: <InlineMath math="y = x^2" />,
+    secant: <InlineMath math="y = 2x" />,
+    tangent: <InlineMath math="y = 2x - 1" />,
+    miss: <InlineMath math="y = 2x - 2" />,
+    touch: <InlineMath math="(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 3.4 }, y: { min: -3.4, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -5 / 4, max: 5 / 2 }, appearance: "secondary" },
+      { id: "secant", kind: "segment", from: { x: -1 / 2, y: -1 }, to: { x: 3, y: 6 }, appearance: "primary" },
+      { id: "tangent", kind: "segment", from: { x: -1, y: -3 }, to: { x: 3, y: 5 }, appearance: "answer" },
+      { id: "miss", kind: "segment", from: { x: -1 / 2, y: -3 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "x0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "x2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "touch", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: 5 / 2, y: 25 / 4 }, placement: "left" },
+      { key: "secant", objectId: "secant", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "tangent", objectId: "tangent", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "miss", objectId: "miss", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Punkt auf der Kurve
 
@@ -48,6 +83,33 @@ Aus der Parabel <InlineMath math="y^2 = 8x" /> kennen wir <InlineMath math="4p =
 </MathContainer>
 
 > Die Punktform gilt erst, nachdem der angegebene Punkt auf dem Kegelschnitt überprüft wurde. Sie fasst die Ableitungsrechnung in einer wiederverwendbaren algebraischen Ersetzung zusammen.
+
+Bei <InlineMath math="(2, 4)" /> liefert die Punktform <InlineMath math="y = x + 2" />. Die Gerade berührt <InlineMath math="y^2 = 8x" /> nur dort: Einsetzen von <InlineMath math="x = y - 2" /> ergibt <InlineMath math="y^2 - 8y + 16 = (y - 4)^2 = 0" />, eine doppelte Nullstelle.
+
+<MathVisual
+  title={<>Die Tangente <InlineMath math="y = x + 2" /> bei <InlineMath math="(2, 4)" /></>}
+  description={<>Die Parabel <InlineMath math="y^2 = 8x" /> und ihre Tangente <InlineMath math="y = x + 2" />, die sie nur in <InlineMath math="(2, 4)" /> trifft.</>}
+  labels={{
+    parabola: <InlineMath math="y^2 = 8x" />,
+    tangent: <InlineMath math="y = x + 2" />,
+    p: <InlineMath math="(2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 8.6 }, y: { min: -4.6, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "y", coefficients: { a: 1 / 8, b: 0, c: 0 }, domain: { min: -4, max: 8 }, appearance: "secondary" },
+      { id: "tangent", kind: "segment", from: { x: -2, y: 0 }, to: { x: 6, y: 8 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: 2, y: -4 }, placement: "right" },
+      { key: "tangent", objectId: "tangent", at: { x: 6, y: 8 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 2, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
 
 ## Vorgegebene Steigung
 
@@ -106,22 +168,39 @@ Jetzt setzen wir in die Parabelgleichung ein, um die Tangentenpunkte zu finden:
 
 Mit [der quadratischen Formel](/de/faecher/mathematik/quadratische-funktionen/loesungsformel-fuer-quadratische-gleichungen) erhalten wir <InlineMath math="x_1 = \frac{1}{2}" /> und <InlineMath math="x_2 = 8" />. Die Berührpunkte sind <InlineMath math="(\frac{1}{2}, 2)" /> und <InlineMath math="(8, 8)" />. Die Geraden von diesen Punkten zu <InlineMath math="A(2,5)" /> sind die beiden Tangenten <InlineMath math="y = 2x + 1" /> und <InlineMath math="y = \frac{1}{2}x + 4" />.
 
-<LineEquation
-  title="Zwei Tangenten und die Berührsehne"
-  description="Eine Parabel, zwei Berührpunkte und ihre Verbindungsgerade."
-  showZAxis={false}
-  cameraPosition={[5, 4, 18]}
-  cameraTarget={[5, 4, 0]}
-  data={[
-    { points: Array.from({ length: 111 }, (_, i) => { const y = -2 + i / 10; return { x: y * y / 8, y, z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false },
-    { points: [{ x: 0, y: 1, z: 0 }, { x: 4, y: 9, z: 0 }], smooth: false, color: "#0d9488", showPoints: false },
-    { points: [{ x: 0, y: 4, z: 0 }, { x: 10, y: 9, z: 0 }], smooth: false, color: "#ea580c", showPoints: false },
-    { points: [{ x: 0.5, y: 2, z: 0 }, { x: 8, y: 8, z: 0 }], smooth: false, color: "#db2777", showPoints: true, labels: [
-      { text: <InlineMath math="T_1" />, at: 0, offset: [-0.5, -0.5, 0] },
-      { text: <InlineMath math="T_2" />, at: 1, offset: [0.5, -0.5, 0] },
-    ] },
-    { points: [{ x: 2, y: 5, z: 0 }], color: "#0284c7", showPoints: true, labels: [{ text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0.5, 0] }] },
-  ]}
+<MathVisual
+  title={<>Zwei Tangenten von <InlineMath math="A(2, 5)" /> und die Berührsehne</>}
+  description={<>Die Parabel <InlineMath math="y^2 = 8x" />, die Tangenten <InlineMath math="y = 2x + 1" /> und <InlineMath math="y = \tfrac12 x + 4" /> durch <InlineMath math="A(2, 5)" /> und die rosa Sehne zwischen den Berührpunkten <InlineMath math="\left(\tfrac12, 2\right)" /> und <InlineMath math="(8, 8)" />.</>}
+  labels={{
+    parabola: <InlineMath math="y^2 = 8x" />,
+    t1: <InlineMath math="T_1" />,
+    t2: <InlineMath math="T_2" />,
+    a: <InlineMath math="A" />,
+    l1: <InlineMath math="y = 2x + 1" />,
+    l2: <InlineMath math="y = \tfrac12 x + 4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.5, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "y", coefficients: { a: 1 / 8, b: 0, c: 0 }, domain: { min: -2, max: 9 }, appearance: "secondary" },
+      { id: "l1", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 9 }, appearance: "construction" },
+      { id: "l2", kind: "segment", from: { x: 0, y: 4 }, to: { x: 10, y: 9 }, appearance: "highlight" },
+      { id: "chord", kind: "segment", from: { x: 1 / 2, y: 2 }, to: { x: 8, y: 8 }, appearance: "warning" },
+      { id: "t1", kind: "point", at: { x: 1 / 2, y: 2 }, appearance: "warning" },
+      { id: "t2", kind: "point", at: { x: 8, y: 8 }, appearance: "warning" },
+      { id: "a", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: 81 / 8, y: 9 }, placement: "left" },
+      { key: "t1", objectId: "t1", at: { x: 1 / 2, y: 2 }, placement: "right" },
+      { key: "t2", objectId: "t2", at: { x: 8, y: 8 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: 2, y: 5 }, placement: "left" },
+      { key: "l1", objectId: "l1", at: { x: 4, y: 9 }, placement: "left" },
+      { key: "l2", objectId: "l2", at: { x: 10, y: 9 }, placement: "above" },
+    ],
+  }}
 />
 
 Vergleiche die **zwei Geraden durch den äußeren Punkt** mit der rosa Berührsehne. Beide Tangenten verlaufen durch <InlineMath math="A" />. Die Sehne verbindet dagegen <InlineMath math="T_1" /> mit <InlineMath math="T_2" /> und schneidet die Parabel in diesen beiden Punkten.

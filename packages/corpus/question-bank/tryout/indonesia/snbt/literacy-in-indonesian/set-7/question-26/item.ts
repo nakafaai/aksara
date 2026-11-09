@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-view",
+  },
+  stimulus: "borrowed-words",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Lembaga bahasa sebaiknya berhenti membuat padanan untuk kata asing.",
+        },
+        {
           correct: true,
           label:
-            "Pertanyaan Lila mengubah interaksi di satu meja dari gerak tergesa menjadi penyelidikan bersama, meskipun keramaian aula tetap berlangsung.",
+            "Nasib sebuah padanan ditentukan oleh pemakaian penutur, bukan oleh lembaga.",
         },
         {
           correct: false,
           label:
-            "Lila berhasil menenangkan seluruh aula dengan meminta pengeras suara dan bel pergantian sesi dihentikan.",
+            "Kata *unduh* dan *daring* gagal karena jarang dipakai penutur.",
         },
         {
           correct: false,
           label:
-            "Kartu pertanyaan memberi jawaban yang benar sehingga perdebatan pengunjung langsung selesai.",
+            "Dokumen resmi adalah tempat terbaik untuk memperkenalkan kata baru.",
         },
         {
           correct: false,
           label:
-            "Perubahan suasana terjadi karena jumlah pengunjung di aula berkurang setelah sesi berganti.",
-        },
-        {
-          correct: false,
-          label:
-            "Tumpukan kartu kosong menunjukkan bahwa pengunjung tidak memiliki rasa ingin tahu sampai Lila memberi mereka jawaban.",
+            "Padanan dari kosakata sendiri selalu lebih baik daripada kata serapan.",
         },
       ],
     },

@@ -3,7 +3,7 @@ export const metadata = {
    description: "Nutze Kombinationen, um Auswahlen ohne Beachtung der Reihenfolge zu zählen, auch unter zusätzlichen Bedingungen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Kombinatorik",
 };
 
@@ -20,6 +20,42 @@ Kombinationen begegnen uns zum Beispiel beim:
 - Kombinieren von Farben für einen Entwurf
 
 Bei einer Permutation sind <InlineMath math="ABC" /> und <InlineMath math="BAC" /> verschiedene Anordnungen. Bei einer Kombination <Highlight>stehen beide für dieselbe Auswahl</Highlight>, weil sie dieselben Elemente enthalten.
+
+Wenn du 2 von 4 Freunden wählst, zählt die Reihenfolge nicht, jede Wahl ist also eine Strecke zwischen zwei Punkten. Zähl die Strecken: 4 Seiten und 2 Diagonalen, insgesamt <InlineMath math="6" />. Das passt zu <InlineMath math="\binom{4}{2} = \frac{4!}{2! \cdot 2!} = 6" />, geordnete Paare würden jede Strecke doppelt zählen, <InlineMath math="12" />.
+
+<MathVisual
+  title={<>Sechs Möglichkeiten, 2 aus 4 zu wählen</>}
+  description={<>Vier Freunde A, B, C und D als Punkte. Jede der sechs Strecken ist eine Möglichkeit, zwei von ihnen zu wählen.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0, y: 1 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "ac", kind: "segment", from: { x: 0, y: 1 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "ad", kind: "segment", from: { x: 0, y: 1 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "bc", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "bd", kind: "segment", from: { x: 1, y: 1 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "cd", kind: "segment", from: { x: 1, y: 0 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "a", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 1, y: 0 }, appearance: "primary" },
+      { id: "d", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "c", objectId: "c", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "d", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
 
 ## Kombinationsformel
 
@@ -50,6 +86,19 @@ Die Auswahl von zwei der drei Personen A, B und C zeigt die Division durch <Inli
 | B, C | BC, CB |
 
 <BlockMath math="C(3,2)=\frac{3\times2}{2!}=\frac{6}{2}=3" />
+
+Die Balken zeigen <InlineMath math="\binom{6}{k}" /> für <InlineMath math="k = 0" /> bis <InlineMath math="6" />: <InlineMath math="1, 6, 15, 20, 15, 6, 1" />. Die Reihe ist symmetrisch, weil die Wahl von <InlineMath math="k" /> mitzunehmenden Objekten dasselbe ist wie die Wahl von <InlineMath math="6 - k" /> zurückzulassenden.
+
+<BarChart
+  title={<>Aus sechs Objekten wählen</>}
+  description={<>Balken <InlineMath math="k" /> zeigt <InlineMath math="\binom{6}{k}" />, symmetrisch um <InlineMath math="k = 3" />.</>}
+  yAxisLabel="Kombinationen"
+  data={Array.from({ length: 7 }, (_, k) => {
+    const factorial = (n) => Array.from({ length: n }, (_, i) => i + 1).reduce((product, i) => product * i, 1);
+    return { name: `${k}`, value: factorial(6) / (factorial(k) * factorial(6 - k)) };
+  })}
+  chartConfig={{ value: { label: "Kombinationen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Auswahlen mit und ohne Bedingungen zählen
 
@@ -103,6 +152,34 @@ Manche Auswahlen müssen **zusätzliche Bedingungen** erfüllen. Aus <InlineMath
 </MathContainer>
 
 **Gesamt**: <InlineMath math="210 + 70 + 5 = 285" /> Möglichkeiten
+
+Drei von vier Freunden zu wählen heißt, den einen Freund zu wählen, der fehlt. Jedes Dreieck unten lässt eine andere Ecke weg, also gibt es genau <InlineMath math="4" /> Dreiecke: <InlineMath math="\binom{4}{3} = \binom{4}{1} = 4" />.
+
+<MathVisual
+  title={<>Drei von vier wählen heißt einen weglassen</>}
+  description={<>Vier Dreiecke aus jeweils drei der vier Freunde, der weggelassene Freund als grauer Punkt.</>}
+  labels={{
+    t0: <InlineMath math="\binom{4}{3} = 4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 6.2 }, y: { min: -0.6, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "t0", kind: "polygon", vertices: [{ x: 1.0, y: 1 }, { x: 1.0, y: 0 }, { x: 0.0, y: 0 }], appearance: "primary" },
+      { id: "m0", kind: "point", at: { x: 0.0, y: 1 }, appearance: "reference" },
+      { id: "t1", kind: "polygon", vertices: [{ x: 1.6, y: 1 }, { x: 2.6, y: 0 }, { x: 1.6, y: 0 }], appearance: "primary" },
+      { id: "m1", kind: "point", at: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "t2", kind: "polygon", vertices: [{ x: 3.2, y: 1 }, { x: 4.2, y: 1 }, { x: 3.2, y: 0 }], appearance: "primary" },
+      { id: "m2", kind: "point", at: { x: 4.2, y: 0 }, appearance: "reference" },
+      { id: "t3", kind: "polygon", vertices: [{ x: 4.8, y: 1 }, { x: 5.8, y: 1 }, { x: 5.8, y: 0 }], appearance: "primary" },
+      { id: "m3", kind: "point", at: { x: 4.8, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "t0", objectId: "t0", at: { x: 0.5, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Übungsaufgaben
 

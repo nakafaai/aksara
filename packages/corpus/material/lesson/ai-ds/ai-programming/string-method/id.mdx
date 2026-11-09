@@ -161,6 +161,23 @@ print(f"Hasil menghapus suffix: '{filename.removesuffix('.txt')}'")`
 
 Gunakan `removeprefix()` atau `removesuffix()` jika kamu perlu menghapus satu token yang persis. Perbedaan ini mencegah sekumpulan karakter menghapus lebih banyak dari yang dimaksud.
 
+Setiap metode transformasi mengembalikan string baru, dan banyak huruf kapital menunjukkan apa yang dilakukannya. Untuk `'hello World'`, `upper()` membuat kesepuluh huruf kapital, `swapcase()` membalik setiap huruf sehingga sembilan menjadi kapital, dan `capitalize()` hanya menyisakan huruf pertama.
+
+<BarChart
+  title={<>Huruf kapital setelah setiap metode pada <code>'hello World'</code></>}
+  description={<>Setiap batang adalah banyak huruf kapital dalam hasil metode yang tertulis di bawahnya. Batang pertama adalah string asli dengan satu huruf kapital, <code>W</code>.</>}
+  yAxisLabel="Huruf kapital"
+  data={[
+    { name: "original", value: 1 },
+    { name: "upper", value: 10 },
+    { name: "lower", value: 0 },
+    { name: "title", value: 2 },
+    { name: "swapcase", value: 9 },
+    { name: "capitalize", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Huruf kapital", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
 ## Method Pencarian dan Validasi
 
 Satu kelompok method mencari letak teks, kelompok lain menjawab pertanyaan ya atau tidak tentangnya. Method pencari **mengembalikan posisi**, sedangkan method pemeriksa mengembalikan `True` atau `False`.
@@ -265,6 +282,68 @@ for username in usernames:
 />
 
 Method seperti `isdigit()` dan `isalnum()` mengikuti Unicode, sedangkan string kosong membuat keduanya mengembalikan `False`. Nomor telepon, kode pos, atau username tetap memerlukan aturan eksplisit tentang alfabet, panjang, pemisah, prefix, dan batasan domain lainnya.
+
+Cari `"an"` di dalam `"banana"` lewat gambar ini. Dua ruas hijau toska menandai kemunculan di indeks <InlineMath math="1" /> dan <InlineMath math="3" />, jadi `"banana".count("an")` hasilnya `2`. `find` mengembalikan indeks kemunculan pertama dari kiri, yaitu `1`, sedangkan `rfind` mengembalikan indeks kemunculan terakhir, yaitu `3`. Kalau substring tidak ada sama sekali, keduanya mengembalikan `-1`.
+
+<MathVisual
+  title={<><code>find</code>, <code>rfind</code>, dan <code>count</code> pada <code>'banana'</code></>}
+  description={<>Ruas hijau toska menandai setiap kemunculan <code>'an'</code>. Ruas ungu menunjuk hasil <code>find</code>, ruas oranye hasil <code>rfind</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.3, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "char-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "char-b", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "char-c", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "char-d", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "char-e", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "char-f", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "index-a", kind: "point", at: { x: 0, y: -0.8 }, appearance: "reference" },
+      { id: "index-b", kind: "point", at: { x: 1, y: -0.8 }, appearance: "reference" },
+      { id: "index-c", kind: "point", at: { x: 2, y: -0.8 }, appearance: "reference" },
+      { id: "index-d", kind: "point", at: { x: 3, y: -0.8 }, appearance: "reference" },
+      { id: "index-e", kind: "point", at: { x: 4, y: -0.8 }, appearance: "reference" },
+      { id: "index-f", kind: "point", at: { x: 5, y: -0.8 }, appearance: "reference" },
+      { id: "hit-a", kind: "segment", from: { x: 1, y: -0.4 }, to: { x: 2, y: -0.4 }, appearance: "construction" },
+      { id: "hit-b", kind: "segment", from: { x: 3, y: -0.4 }, to: { x: 4, y: -0.4 }, appearance: "construction" },
+      { id: "find", kind: "segment", from: { x: 1, y: 1.5 }, to: { x: 1, y: 0.7 }, appearance: "secondary" },
+      { id: "rfind", kind: "segment", from: { x: 3, y: 1.5 }, to: { x: 3, y: 0.7 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "char-a", objectId: "char-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "char-b", objectId: "char-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "char-c", objectId: "char-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "char-d", objectId: "char-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "char-e", objectId: "char-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "char-f", objectId: "char-f", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "index-a", objectId: "index-a", at: { x: 0, y: -0.8 }, placement: "below" },
+      { key: "index-b", objectId: "index-b", at: { x: 1, y: -0.8 }, placement: "below" },
+      { key: "index-c", objectId: "index-c", at: { x: 2, y: -0.8 }, placement: "below" },
+      { key: "index-d", objectId: "index-d", at: { x: 3, y: -0.8 }, placement: "below" },
+      { key: "index-e", objectId: "index-e", at: { x: 4, y: -0.8 }, placement: "below" },
+      { key: "index-f", objectId: "index-f", at: { x: 5, y: -0.8 }, placement: "below" },
+      { key: "find", objectId: "find", at: { x: 1, y: 1.5 }, placement: "above-left" },
+      { key: "rfind", objectId: "rfind", at: { x: 3, y: 1.5 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "char-a": "b",
+    "char-b": "a",
+    "char-c": "n",
+    "char-d": "a",
+    "char-e": "n",
+    "char-f": "a",
+    "index-a": "0",
+    "index-b": "1",
+    "index-c": "2",
+    "index-d": "3",
+    "index-e": "4",
+    "index-f": "5",
+    "find": 'find("an") = 1',
+    "rfind": 'rfind("an") = 3',
+  }}
+/>
 
 ## Method Pencarian Prefix dan Suffix
 
@@ -424,6 +503,21 @@ print(f"Joined with pipe: {joined}")`
 />
 
 Gunakan `split()` hanya jika aturan delimiter memang sederhana. Method ini tidak memahami field CSV yang dikutip, escaping, atau path lintas platform. Gunakan modul `csv` untuk CSV dan `pathlib` untuk path filesystem.
+
+Tanpa argumen, `split()` memotong string di setiap spasi dan mengembalikan list kata. `'the quick brown fox'.split()` memberi empat kata, dan `len()` setiap kata menjumlah menjadi <InlineMath math="16" />, yaitu <InlineMath math="19" /> karakter dikurangi tiga spasi.
+
+<BarChart
+  title={<>Panjang kata dari <code>'the quick brown fox'.split()</code></>}
+  description={<>Setiap batang adalah <code>len()</code> kata yang tertulis di bawahnya, dalam urutan yang dikembalikan <code>split()</code>.</>}
+  yAxisLabel="Panjang kata"
+  data={[
+    { name: "the", value: 3 },
+    { name: "quick", value: 5 },
+    { name: "brown", value: 5 },
+    { name: "fox", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Panjang kata", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
 
 ## Method Chaining
 

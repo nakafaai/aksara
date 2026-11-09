@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "food-estate",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
+            "Konsumsi beras per orang di negara itu terus naik selama sepuluh tahun terakhir.",
         },
         {
           correct: false,
           label:
-            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
+            "Mesin panen modern mempercepat panen di lahan yang sangat luas.",
         },
         {
           correct: true,
           label:
-            "Sari mengurangi bantuan dari contoh lengkap menjadi pemeriksaan mandiri, lalu mengukur keberhasilan melalui kemampuan Dimas menjelaskan dan memperbaiki langkahnya.",
+            "Banyak sawah baru di lahan gambut panennya jauh di bawah perkiraan.",
         },
         {
           correct: false,
           label:
-            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan memahami penyangga belajar sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
+            "Harga beras dunia melonjak tajam dalam beberapa tahun terakhir.",
         },
         {
           correct: false,
-          label:
-            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
+          label: "Sebagian warga kota lebih menyukai nasi daripada sagu.",
         },
       ],
     },

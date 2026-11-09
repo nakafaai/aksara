@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "figurative-language",
+  },
+  stimulus: "tin-roof",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama. Bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
+          label: "Tamu yang datang mengetuk pintu rumah pada malam hari.",
         },
         {
           correct: true,
-          label:
-            "Retakan dan serpihan yang semula tampak sebagai kerusakan berubah menjadi jalur menuju pintu lama, lalu bidang yang disisakan menegaskan nilainya sebagai bukti sejarah.",
+          label: "Bunyi hujan yang keras dan bertubi-tubi di atap seng.",
         },
         {
           correct: false,
-          label:
-            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama. Akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
+          label: "Anak-anak yang tidak sabar menunggu hujan reda.",
         },
         {
           correct: false,
-          label:
-            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama. Perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
+          label: "Air bocor yang jatuh perlahan ke dalam baskom.",
         },
         {
           correct: false,
-          label:
-            "Galih memilih untuk mengikuti garis retak di dinding dan menemukan bekas warna dari ruangan lama. Benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
+          label: "Angin kencang yang membuat pintu rumah terbuka.",
         },
       ],
     },

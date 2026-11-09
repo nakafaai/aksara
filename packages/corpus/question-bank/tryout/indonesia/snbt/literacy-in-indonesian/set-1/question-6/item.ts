@@ -1,31 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "argument-structure",
+  },
+  stimulus: "class-ranking",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Dugaan berdasarkan jumlah penduduk Indonesia semata",
+          label:
+            "Ia menolak anggapan bahwa beasiswa memerlukan proses seleksi berdasarkan prestasi.",
+        },
+        {
+          correct: false,
+          label:
+            "Ia menyarankan agar beasiswa dibagikan secara merata kepada semua siswa yang membutuhkan.",
         },
         {
           correct: true,
           label:
-            "Hasil simulasi dalam studi ilmiah yang memperhitungkan arus, ombak, angin, dan sifat sampah",
+            "Ia mengakui seleksi itu perlu, tetapi menyebut daftarnya dapat disusun tanpa dicantumkan di rapor setiap siswa.",
         },
         {
           correct: false,
           label:
-            "Jarak Indonesia yang paling dekat dengan seluruh pantai Seychelles",
+            "Ia menganggap seleksi beasiswa sebagai satu-satunya alasan yang sah untuk mempertahankan peringkat di rapor.",
         },
         {
           correct: false,
-          label: "Pernyataan seorang peneliti tanpa data pemodelan",
-        },
-        {
-          correct: false,
-          label: "Penilaian umum terhadap kebijakan sampah Indonesia",
+          label:
+            "Ia mengusulkan agar penerima beasiswa ditentukan oleh penilaian wali kelas tanpa kriteria tertulis.",
         },
       ],
     },

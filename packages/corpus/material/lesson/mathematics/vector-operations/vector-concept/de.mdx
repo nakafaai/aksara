@@ -4,7 +4,7 @@ export const metadata = {
     description: "Lies Betrag und Richtung eines Vektors aus einer Windkarte ab und stelle ihn mit Symbolen sowie einem Pfeil dar.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Vektoroperationen",
 };
 
@@ -18,42 +18,32 @@ Die Windgeschwindigkeit ist ein **Vektor**, weil sie einen **Betrag** und eine *
 
 Ein Vektor ist eine abstrakte Größe. Üblicherweise stellen wir ihn <Highlight>durch eine gerichtete Strecke</Highlight>, also einen Pfeil, dar.
 
-<VectorChart
-  title="Vektordiagramm"
-  description={
-    <>
-      Vektoren in einem kartesischen Koordinatensystem mit waagerechter{" "}
-      <InlineMath math="x" />-Achse und senkrechter <InlineMath math="y" />-Achse.
-    </>
-  }
-  vectors={[
-    {
-      id: "vector_1",
-      name: "Vektor 1",
-      points: [
-        { x: 0, y: 0 },
-        { x: 6, y: 8 },
-      ],
-    },
-    {
-      id: "vector_2",
-      name: "Vektor 2",
-      points: [
-        { x: 1, y: 1 },
-        { x: 5, y: 2 },
-      ],
-      direction: "backward",
-    },
-    {
-      id: "vector_3",
-      name: "Vektor 3",
-      points: [
-        { x: 2, y: 0 },
-        { x: 4, y: 7 },
-      ],
-      direction: "backward",
-    },
-  ]}
+<MathVisual
+  title={<>Drei Vektoren als Pfeile</>}
+  description={<>Vektor 1 von <InlineMath math="(0, 0)" /> nach <InlineMath math="(6, 8)" />, Vektor 2 von <InlineMath math="(5, 2)" /> nach <InlineMath math="(1, 1)" /> und Vektor 3 von <InlineMath math="(4, 7)" /> nach <InlineMath math="(2, 0)" />.</>}
+  labels={{
+    v1: <InlineMath math="1" />,
+    v2: <InlineMath math="2" />,
+    v3: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "v1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "v1-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+      { id: "v2", kind: "segment", from: { x: 5, y: 2 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "v2-head", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: (1) + (8 / 5 / Math.sqrt(17)) + (4 / 25 / Math.sqrt(17)), y: (1) + (2 / 5 / Math.sqrt(17)) + (-16 / 25 / Math.sqrt(17)) }, { x: (1) + (8 / 5 / Math.sqrt(17)) + (-4 / 25 / Math.sqrt(17)), y: (1) + (2 / 5 / Math.sqrt(17)) + (16 / 25 / Math.sqrt(17)) }], appearance: "secondary" },
+      { id: "v3", kind: "segment", from: { x: 4, y: 7 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "v3-head", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (-8 / 25 / Math.sqrt(53)) }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (-28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (8 / 25 / Math.sqrt(53)) }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "v1", objectId: "v1", at: { x: 3, y: 4 }, placement: "above-left" },
+      { key: "v2", objectId: "v2", at: { x: 3, y: 3 / 2 }, placement: "below" },
+      { key: "v3", objectId: "v3", at: { x: 3, y: 7 / 2 }, placement: "right" },
+    ],
+  }}
 />
 
 - **Vektor** <InlineMath math="1" />: Richtung des Vektors vom Punkt <InlineMath math="(0, 0)" /> zum Punkt <InlineMath math="(6, 8)" />
@@ -69,6 +59,40 @@ Anfangs- und Endpunkt eines Pfeils bestimmen seine Richtung und Länge. Die folg
 3.  **Betrag**: Die Länge des Pfeils stellt den Betrag des Vektors dar. Den Betrag des Vektors <InlineMath math="\overrightarrow{AB}" /> schreibt man als <InlineMath math="|\overrightarrow{AB}|" />.
 4.  **Richtung**: Die Richtung, in die die Pfeilspitze zeigt.
 
+Der Betrag ist die Länge des Pfeils. Beim Pfeil von <InlineMath math="A(0, 0)" /> nach <InlineMath math="B(6, 8)" /> bilden der waagerechte Schritt 6 und der senkrechte Schritt 8 ein rechtwinkliges Dreieck mit dem Pfeil als Hypotenuse, also <InlineMath math="|\overrightarrow{AB}| = \sqrt{6^2 + 8^2} = 10" />.
+
+<MathVisual
+  title={<>Der Betrag von <InlineMath math="\overrightarrow{AB}" /> ist 10</>}
+  description={<>Der Pfeil vom Anfangspunkt <InlineMath math="A(0, 0)" /> zum Endpunkt <InlineMath math="B(6, 8)" />, mit den Schritten 6 und 8, die die Länge <InlineMath math="\sqrt{36 + 64} = 10" /> ergeben.</>}
+  labels={{
+    ab: <InlineMath math="|\overrightarrow{AB}| = 10" />,
+    run: <InlineMath math="6" />,
+    rise: <InlineMath math="8" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 7 }, y: { min: -0.8, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "run", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "rise", kind: "segment", from: { x: 6, y: 0 }, to: { x: 6, y: 8 }, appearance: "construction" },
+      { id: "ab", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "ab-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+      { id: "a", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: 6, y: 8 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "ab", objectId: "ab", at: { x: 3, y: 4 }, placement: "above-left" },
+      { key: "run", objectId: "run", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "rise", objectId: "rise", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 6, y: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
 ### Schreibweisen für Vektoren
 
 Vektoren lassen sich auf verschiedene Arten schreiben:
@@ -81,45 +105,33 @@ Vektoren lassen sich auf verschiedene Arten schreiben:
 
 Stellen die folgenden Zeichnungen jeweils einen einzelnen Vektorpfeil dar? Begründe deine Antwort.
 
-<VectorChart
-  title="Kartesisches Koordinatensystem"
-  description={
-    <>
-      Waagerechte <InlineMath math="x" />-Achse und senkrechte{" "}
-      <InlineMath math="y" />-Achse.
-    </>
-  }
-  vectors={[
-    {
-      id: "shape_1",
-      name: "Form 1",
-      points: [
-        { x: 0, y: 0 },
-        { x: 1, y: 9 },
-        { x: 3, y: 4 },
-        { x: 6, y: 8 },
-      ],
-    },
-    {
-      id: "shape_2",
-      name: "Form 2",
-      points: [
-        { x: 1, y: 1 },
-        { x: 2, y: 6 },
-        { x: 5, y: 2 },
-      ],
-      direction: "backward",
-    },
-    {
-      id: "shape_3",
-      name: "Form 3",
-      points: [
-        { x: 2, y: 0 },
-        { x: 4, y: 7 },
-      ],
-      direction: "both",
-    },
-  ]}
+<MathVisual
+  title={<>Drei Formen, die keine einzelnen Vektoren sind</>}
+  description={<>Form 1 ist ein Weg aus drei Strecken, Form 2 ein Streckenzug mit der Pfeilspitze am Anfang und Form 3 eine Strecke mit Pfeilspitzen an beiden Enden.</>}
+  labels={{
+    s1: <InlineMath math="1" />,
+    s2: <InlineMath math="2" />,
+    s3: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 9 }, { x: 3, y: 4 }, { x: 6, y: 8 }], appearance: "primary" },
+      { id: "s1-end-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 6 }, { x: 5, y: 2 }], appearance: "secondary" },
+      { id: "s2-start-head", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: (1) + (2 / 5 / Math.sqrt(26)) + (4 / 5 / Math.sqrt(26)), y: (1) + (2 / Math.sqrt(26)) + (-4 / 25 / Math.sqrt(26)) }, { x: (1) + (2 / 5 / Math.sqrt(26)) + (-4 / 5 / Math.sqrt(26)), y: (1) + (2 / Math.sqrt(26)) + (4 / 25 / Math.sqrt(26)) }], appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 2, y: 0 }, to: { x: 4, y: 7 }, appearance: "construction" },
+      { id: "s3-a-head", kind: "polygon", vertices: [{ x: 4, y: 7 }, { x: (4) + (-4 / 5 / Math.sqrt(53)) + (-28 / 25 / Math.sqrt(53)), y: (7) + (-14 / 5 / Math.sqrt(53)) + (8 / 25 / Math.sqrt(53)) }, { x: (4) + (-4 / 5 / Math.sqrt(53)) + (28 / 25 / Math.sqrt(53)), y: (7) + (-14 / 5 / Math.sqrt(53)) + (-8 / 25 / Math.sqrt(53)) }], appearance: "construction" },
+      { id: "s3-b-head", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (-8 / 25 / Math.sqrt(53)) }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (-28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (8 / 25 / Math.sqrt(53)) }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "s1", objectId: "s1", at: { x: 1, y: 9 }, placement: "above" },
+      { key: "s2", objectId: "s2", at: { x: 2, y: 6 }, placement: "left" },
+      { key: "s3", objectId: "s3", at: { x: 3, y: 7 / 2 }, placement: "right" },
+    ],
+  }}
 />
 
 In der dargestellten Form ist keine der drei Zeichnungen die übliche Darstellung eines einzelnen Vektors:

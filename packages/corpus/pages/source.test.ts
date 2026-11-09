@@ -2,7 +2,7 @@ import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import {
   ActiveAppLocaleListSchema,
-  AppLocaleSchema,
+  ActiveAppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import {
   Array as Arr,
@@ -25,8 +25,8 @@ import {
 import { pageSource } from "#corpus/test/page";
 
 const englishIndonesianLocales = ActiveAppLocaleListSchema.make([
-  AppLocaleSchema.make("en"),
-  AppLocaleSchema.make("id"),
+  ActiveAppLocaleSchema.make("en"),
+  ActiveAppLocaleSchema.make("id"),
 ]);
 /** Resolves the corpus root through the platform-neutral path service. */
 const resolveCorpusRoot = Effect.map(Path.Path, (path) =>

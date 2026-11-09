@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-purpose",
+  },
+  stimulus: "bandung-conference",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,25 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Jati berubah dari menyembunyikan kebingungan menjadi mengajukan dan menguji pertanyaan, meskipun ia belum memperoleh satu tafsir yang pasti.",
+            "menegaskan bahwa gagasan konferensi lebih penting daripada tempatnya",
         },
         {
           correct: false,
           label:
-            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
+            "mengkritik pemerintah yang mengubah gedung itu menjadi museum",
+        },
+        {
+          correct: false,
+          label: "menyarankan agar Museum Konferensi Asia Afrika ditutup saja",
         },
         {
           correct: false,
           label:
-            "Pada akhir cerita, Jati sudah memahami seluruh buku sehingga pembatas pertanyaan tidak lagi diperlukan.",
+            "membuktikan bahwa gedung itu sebenarnya tidak pernah dipakai untuk konferensi",
         },
         {
           correct: false,
-          label:
-            "Bacaan memakai perkembangan tokoh sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
-        },
-        {
-          correct: false,
-          label:
-            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
+          label: "menunjukkan bahwa museum itu jarang dikunjungi orang",
         },
       ],
     },

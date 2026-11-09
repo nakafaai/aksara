@@ -1,22 +1,44 @@
 # Voice and scope
 
-- Use this teacher voice for lessons and pedagogical worked answers. An article
-  uses a professional scientific-journal register and keeps its argument,
-  evidence, and measured uncertainty. An assessed question keeps the exam's
-  source-owned language and must not be rewritten into either register.
-- Write like a teacher guiding students, not like a formal textbook, marketing
-  page, or internal content note.
-- German learner-facing author voice uses `du`, the matching verb forms, and
-  informal imperatives. Do not mix `du` with formal `Sie` address in the same
-  document. A capitalized `Sie` can also refer back to a feminine or plural
-  noun at the beginning of a sentence or after a colon, so classify its
-  grammatical role before editing it.
-- Indonesian learner-facing author voice uses `aku` for a singular teacher and
-  `kamu` for the learner. Do not use `saya`, `Anda`, or `kalian` for that pair.
+- Nakafa never writes formally, in any locale or on any surface. Lessons,
+  worked answers, articles, metadata descriptions, labels, and program, route,
+  page, and Quran shell copy all speak to one reader the way a good teacher
+  talks to one learner: personal, warm, direct, and exact. The only exception
+  is an assessed question: its prompt keeps the exam's source-owned language
+  and must not be rewritten into Nakafa's voice. Its worked answer is Nakafa's
+  voice again.
+- Write like a teacher guiding one learner, not like a formal textbook,
+  government letter, marketing page, or internal content note.
+- Casual is not cringe. No slang overload, forced jokes, invented anecdotes,
+  exclamation runs, or emoji decoration, and never trade a fact, term, number,
+  or hedge for a friendlier sound. A sentence is casual when a respected teacher
+  would say it out loud to one learner without changing a word.
+- An article keeps every argument, source, citation, data point, and measured
+  uncertainty, and says them in plain, warm, evidence-led prose. When it speaks
+  to the reader, it uses the same informal address as a lesson. It drops stiff
+  academic framing such as `dengan demikian dapat disimpulkan bahwa`,
+  `es ist festzuhalten, dass`, or `it is worth noting that`, and keeps each
+  hedge exactly as strong as its evidence. Warm never means loose: a claim keeps
+  its citation and a number keeps its unit and uncertainty.
+- German author voice uses `du`, the matching verb forms, and informal
+  imperatives on every surface. Never use formal `Sie`, `Ihnen`, or `Ihr`
+  address, and never mix it with `du`. A capitalized `Sie` can also refer back
+  to a feminine or plural noun at the beginning of a sentence or after a colon,
+  so classify its grammatical role before editing it.
+- Indonesian author voice uses `aku` for a singular teacher or author and
+  `kamu` for the learner or reader. Never use `saya`, `Anda`, or `kalian` for
+  that pair. Ask with the plain imperative (`Coba hitung ...`, `Isi ...`),
+  never with `Silakan`, `Mohon`, or `Dimohon`. Prefer `itu`, `ini`, or the
+  named noun over a stiff `tersebut` wherever a teacher would say it that way.
   Inclusive `kita` remains natural when teacher and learner really calculate,
   compare, or inspect something together. If only the learner acts, use `kamu`
   or a clear imperative. If only the explanation acts, name the subject rather
   than inventing a shared `kita`.
+- English has no formal pronoun, so its formality lives in register. Write
+  plain, warm English addressed to `you`: active verbs, short sentences, and
+  contractions such as `it's`, `you'll`, and `don't` wherever a teacher would
+  say them. Avoid stiff textbook phrasing such as `one must`, `the reader
+  should`, `it should be noted that`, `kindly`, or `shall` outside a quotation.
 - Apply a five-year-old clarity test to every explanation. The sentence should
   name the object, action, input, and result clearly enough that a new learner
   does not have to recover missing context. This is a clarity test, not

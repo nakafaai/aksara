@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "application",
+  },
+  stimulus: "wayang-school",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
+            "Menghafalkan seluruh alur Mahabharata sebelum pelajaran dimulai.",
+        },
+        {
+          correct: false,
+          label:
+            "Mengganti cerita lama dengan cerita yang sama sekali baru dan asing setiap minggu.",
         },
         {
           correct: true,
           label:
-            "Ayu dan pelanggan menjadikan warna jahitan merah lama sebagai dasar pola reparasi yang terlihat untuk mempertemukan riwayat blus dengan keinginan memperbaikinya.",
+            "Menyisipkan persoalan murid lewat tokoh jenaka dalam cerita yang sudah dikenal.",
         },
         {
           correct: false,
           label:
-            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
+            "Meminta murid menonton pertunjukan wayang semalam suntuk tanpa jeda.",
         },
         {
           correct: false,
           label:
-            "Bacaan memakai konflik sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
-        },
-        {
-          correct: false,
-          label:
-            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
+            "Membacakan nasihat para raja dalam lakon wayang secara langsung di kelas.",
         },
       ],
     },

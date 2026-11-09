@@ -3,7 +3,7 @@ export const metadata = {
   description: "Sifat modulus untuk hasil kali, hasil bagi, konjugat, dan ketaksamaan segitiga, lengkap dengan pembuktian dan contoh bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Bilangan Kompleks",
 };
 
@@ -67,6 +67,36 @@ Sifat ini dapat dibuktikan dengan mengalikan setiap bilangan dengan konjugatnya:
 
 Kedua modulus bernilai tak negatif, sehingga pengambilan akar kuadrat menghasilkan sifat hasil kali.
 
+Ambil <InlineMath math="z_1 = 6 + 8i" /> dan <InlineMath math="z_2 = 3 - i" /> dari latihan. Hasil kalinya <InlineMath math="26 + 18i" />, dan panjangnya <InlineMath math="\sqrt{1000} = 10\sqrt{10}" /> sama dengan <InlineMath math="|z_1| \cdot |z_2| = 10 \cdot \sqrt{10}" />.
+
+<MathVisual
+  title={<>Modulus hasil kali</>}
+  description={<>Faktor <InlineMath math="6 + 8i" /> dan <InlineMath math="3 - i" /> serta hasil kalinya <InlineMath math="26 + 18i" />, sepanjang <InlineMath math="10\sqrt{10}" />.</>}
+  labels={{
+    z1: <InlineMath math="6 + 8i" />,
+    z2: <InlineMath math="3 - i" />,
+    p: <InlineMath math="26 + 18i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 28 }, y: { min: -2, max: 20 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 127 / 25, y: 186 / 25 }, { x: 143 / 25, y: 174 / 25 }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 3, y: -1 }, { x: (3) + (-3 / Math.sqrt(10)) + (2 / 5 / Math.sqrt(10)), y: (-1) + (1 / Math.sqrt(10)) + (6 / 5 / Math.sqrt(10)) }, { x: (3) + (-3 / Math.sqrt(10)) + (-2 / 5 / Math.sqrt(10)), y: (-1) + (1 / Math.sqrt(10)) + (-6 / 5 / Math.sqrt(10)) }], appearance: "secondary" },
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 26, y: 18 }, appearance: "answer" },
+      { id: "p-head", kind: "polygon", vertices: [{ x: 26, y: 18 }, { x: (26) + (-26 / Math.sqrt(1000)) + (-36 / 5 / Math.sqrt(1000)), y: (18) + (-18 / Math.sqrt(1000)) + (52 / 5 / Math.sqrt(1000)) }, { x: (26) + (-26 / Math.sqrt(1000)) + (36 / 5 / Math.sqrt(1000)), y: (18) + (-18 / Math.sqrt(1000)) + (-52 / 5 / Math.sqrt(1000)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 6, y: 8 }, placement: "above-left" },
+      { key: "z2", objectId: "z2", at: { x: 3, y: -1 }, placement: "below" },
+      { key: "p", objectId: "p", at: { x: 26, y: 18 }, placement: "left" },
+    ],
+  }}
+/>
+
 ### Modulus Hasil Bagi
 
 Modulus dari hasil bagi dua bilangan kompleks sama dengan **hasil bagi modulus** masing-masing bilangan kompleks (dengan penyebut tidak nol).
@@ -92,8 +122,8 @@ Jarak langsung lebih pendek daripada lintasan melalui sudut siku-siku:
 <BlockMath math="|3+4i|=\sqrt{3^2+4^2}=5\leq3+4=7" />
 
 <MathVisual
-  title="Jarak langsung dan lintasan dua sisi"
-  description="Vektor mendatar panjang 3 dan vektor tegak panjang 4 menghasilkan vektor langsung panjang 5. Panjang 5 tidak melebihi lintasan 3 tambah 4."
+  title={<>Jarak langsung dan lintasan dua sisi</>}
+  description={<>Vektor mendatar panjang 3 dan vektor tegak panjang 4 menghasilkan vektor langsung panjang 5. Panjang 5 tidak melebihi lintasan 3 tambah 4.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -0.5, max: 4.5 } },
@@ -204,3 +234,13 @@ Hitung modulus sebelum mengalikan, gunakan konjugat untuk kuadrat modulus, lalu 
 Kedua batas dapat dicapai: vektor berlawanan arah memberi batas bawah, sedangkan vektor searah memberi batas atas.
 
 <BlockMath math="\begin{aligned}|3+(-5)|&amp;=2\\|3+5|&amp;=8\end{aligned}" />
+
+Putar <InlineMath math="z_2" /> dengan <InlineMath math="|z_2| = 5" /> sementara <InlineMath math="z_1 = 3" /> tetap. Panjang <InlineMath math="|z_1 + z_2| = \sqrt{34 + 30\cos\theta}" /> turun dari 8 di <InlineMath math="\theta = 0^\circ" /> sampai 2 di <InlineMath math="\theta = 180^\circ" />, jadi selalu berada di antara <InlineMath math="5 - 3 = 2" /> dan <InlineMath math="3 + 5 = 8" />.
+
+<BarChart
+  title={<><InlineMath math="|z_1 + z_2|" /> saat <InlineMath math="z_2" /> berputar</>}
+  description={<>Batang <InlineMath math="|3 + 5(\cos\theta + i\sin\theta)|" /> untuk <InlineMath math="\theta = 0^\circ, 60^\circ, 90^\circ, 120^\circ, 180^\circ" />: 8, 7, <InlineMath math="\sqrt{34}" />, <InlineMath math="\sqrt{19}" />, dan 2.</>}
+  yAxisLabel="Modulus"
+  data={[0, 60, 90, 120, 180].map((d) => ({ name: d + "°", value: Math.sqrt(34 + 30 * Math.cos((d * Math.PI) / 180)) }))}
+  chartConfig={{ value: { label: "Modulus", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

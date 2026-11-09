@@ -125,6 +125,23 @@ print("Array result:", a)  # Output: Array result: [0. 1. 2.]`
   ]}
 />
 
+The number in a `dtype` name is the bits per element, and `itemsize` divides it by <InlineMath math="8" />. `complex128` stores two `float64` values, the real and the imaginary part, so each element needs <InlineMath math="16" /> bytes.
+
+<BarChart
+  title={<><code>itemsize</code> of six <code>dtype</code> values in bytes</>}
+  description={<>Each bar is the <code>itemsize</code> of the <code>dtype</code> named below it, the bits in its name divided by <InlineMath math="8" />.</>}
+  yAxisLabel="Bytes per element"
+  data={[
+    { name: "int8", value: 8 / 8 },
+    { name: "int32", value: 32 / 8 },
+    { name: "int64", value: 64 / 8 },
+    { name: "float32", value: 32 / 8 },
+    { name: "float64", value: 64 / 8 },
+    { name: "complex128", value: 128 / 8 },
+  ]}
+  chartConfig={{ value: { label: "Bytes per element", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
 ## NumPy Array Attributes
 
 Attributes describe the **array structure** without reading every value: its shape, element count, dtype, and bytes occupied by elements. `nbytes` measures element storage, not all Python process memory or the array object’s metadata.
@@ -194,6 +211,39 @@ print("Mixed - dtype:", a.dtype)  # Output: Mixed - dtype: float64
 print("Mixed result:", a)  # Output: Mixed result: [0. 1. 2.]`
     }
   ]}
+/>
+
+Rotate this grid of points, which stands for `np.zeros((2, 3, 4))`. It has two layers along `axis 0`, three rows along `axis 1`, and four columns along `axis 2`, so `arr.shape` is `(2, 3, 4)` and `arr.ndim` is `3`. Count the points: `2 * 3 * 4 = 24`, which is `arr.size`. Every number in `shape` is the count of steps along one segment.
+
+<MathVisual
+  title={<>An array of shape <code>(2, 3, 4)</code> in three dimensions</>}
+  description={<>Each point is one element. The violet and teal layers are <code>axis 0</code>, rows are <code>axis 1</code>, and columns are <code>axis 2</code>.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: -1, max: 3.2 }, z: { min: -0.5, max: 2 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 1, z: 0.5 } },
+    objects: [
+      { id: "row-0-0", kind: "polyline", vertices: [{ x: 0, y: 2, z: 0 }, { x: 1, y: 2, z: 0 }, { x: 2, y: 2, z: 0 }, { x: 3, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "row-0-1", kind: "polyline", vertices: [{ x: 0, y: 1, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 3, y: 1, z: 0 }], appearance: "secondary" },
+      { id: "row-0-2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }], appearance: "secondary" },
+      { id: "row-1-0", kind: "polyline", vertices: [{ x: 0, y: 2, z: 1 }, { x: 1, y: 2, z: 1 }, { x: 2, y: 2, z: 1 }, { x: 3, y: 2, z: 1 }], appearance: "construction" },
+      { id: "row-1-1", kind: "polyline", vertices: [{ x: 0, y: 1, z: 1 }, { x: 1, y: 1, z: 1 }, { x: 2, y: 1, z: 1 }, { x: 3, y: 1, z: 1 }], appearance: "construction" },
+      { id: "row-1-2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 1 }, { x: 1, y: 0, z: 1 }, { x: 2, y: 0, z: 1 }, { x: 3, y: 0, z: 1 }], appearance: "construction" },
+      { id: "axis-zero", kind: "segment", from: { x: -0.8, y: 2, z: 0 }, to: { x: -0.8, y: 2, z: 1.6 }, appearance: "answer" },
+      { id: "axis-one", kind: "segment", from: { x: -0.8, y: 2, z: 0 }, to: { x: -0.8, y: -0.6, z: 0 }, appearance: "highlight" },
+      { id: "axis-two", kind: "segment", from: { x: -0.8, y: 2.6, z: 0 }, to: { x: 3.6, y: 2.6, z: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "axis-zero", objectId: "axis-zero", at: { x: -0.8, y: 2, z: 1.6 }, placement: "above" },
+      { key: "axis-one", objectId: "axis-one", at: { x: -0.8, y: -0.6, z: 0 }, placement: "left" },
+      { key: "axis-two", objectId: "axis-two", at: { x: 3.6, y: 2.6, z: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "axis-zero": "axis 0",
+    "axis-one": "axis 1",
+    "axis-two": "axis 2",
+  }}
 />
 
 ## Data Type Conversion and Manipulation
@@ -298,6 +348,50 @@ for name, arr in arrays.items():
 # float64  - itemsize:  8 bytes, dtype: float64`
     }
   ]}
+/>
+
+`np.array([-2.7, -0.5, 0.5, 2.7]).astype(int)` gives `[-2, 0, 0, 2]`. Converting to integers drops the fractional part, so every value moves toward zero, negative numbers included, which are not rounded down.
+
+<MathVisual
+  title={<><code>astype(int)</code> truncates toward zero</>}
+  description={<>The violet points on top are four <code>float64</code> values, the magenta points below are the result of <code>astype(int)</code>. Every gray line moves toward zero, and <code>-0.5</code> and <code>0.5</code> both end at <code>0</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.2, max: 3.2 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -3, y: 0 }, to: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "move-0", kind: "segment", from: { x: -2.7, y: 1 }, to: { x: -2, y: 0 }, appearance: "reference" },
+      { id: "move-1", kind: "segment", from: { x: -0.5, y: 1 }, to: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "move-2", kind: "segment", from: { x: 0.5, y: 1 }, to: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "move-3", kind: "segment", from: { x: 2.7, y: 1 }, to: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "float-0", kind: "point", at: { x: -2.7, y: 1 }, appearance: "secondary" },
+      { id: "float-1", kind: "point", at: { x: -0.5, y: 1 }, appearance: "secondary" },
+      { id: "float-2", kind: "point", at: { x: 0.5, y: 1 }, appearance: "secondary" },
+      { id: "float-3", kind: "point", at: { x: 2.7, y: 1 }, appearance: "secondary" },
+      { id: "int-0", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "int-1", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "int-2", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "float-0", objectId: "float-0", at: { x: -2.7, y: 1 }, placement: "above" },
+      { key: "float-1", objectId: "float-1", at: { x: -0.5, y: 1 }, placement: "above" },
+      { key: "float-2", objectId: "float-2", at: { x: 0.5, y: 1 }, placement: "above" },
+      { key: "float-3", objectId: "float-3", at: { x: 2.7, y: 1 }, placement: "above" },
+      { key: "int-0", objectId: "int-0", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "int-1", objectId: "int-1", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "int-2", objectId: "int-2", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "float-0": <code>-2.7</code>,
+    "float-1": <code>-0.5</code>,
+    "float-2": <code>0.5</code>,
+    "float-3": <code>2.7</code>,
+    "int-0": <code>-2</code>,
+    "int-1": <code>0</code>,
+    "int-2": <code>2</code>,
+  }}
 />
 
 ## Practical Array Attribute Usage

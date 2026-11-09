@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "conclusion",
+  },
+  stimulus: "scooter-pilot",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The term *connotation* proves that the character's first estimate was correct before any accountable action was taken.",
+            "The lower speed limit cut the total number of injuries in half within a single month.",
         },
         {
           correct: false,
           label:
-            "The definition reduces *connotation* to the recurring object, so the character's choice and development no longer matter.",
+            "Adding 300 scooters caused the injury rate to rise in month 3.",
         },
         {
           correct: false,
           label:
-            "The term *connotation* describes the final outcome as certain, even though the narrative presents a gradual change.",
+            "Shared scooters became more dangerous the longer the pilot ran.",
         },
         {
           correct: false,
           label:
-            "The definition is included only to name the setting and has no connection to the character's decision.",
+            "Riders stopped using the scooters after the speed limit was lowered.",
         },
         {
           correct: true,
           label:
-            "The definition explains why two literal equivalents can suit different settings: each carries a social meaning and level of formality beyond its basic reference.",
+            "Injuries per trip fell over the pilot, though the reasons are not yet clear.",
         },
       ],
     },

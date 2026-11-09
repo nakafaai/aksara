@@ -30,6 +30,57 @@ Internationale Klimaabkommen nutzen Temperaturziele, um gemeinsames Handeln ausz
 
 [Klimarisiken und Verluste](https://www.ipcc.ch/report/ar6/syr/resources/spm-headline-statements/) steigen mit jedem zusätzlichen Maß an Erwärmung. Die Ziele von <InlineMath math="1{,}5\,^\circ\text{C}" /> und <InlineMath math="2\,^\circ\text{C}" /> geben einen gemeinsamen Maßstab vor, um Tempo und Umfang notwendiger Emissionssenkungen einzuschätzen.
 
+Ein Temperaturziel lässt sich in ein gemeinsames Budget an Kohlendioxid übersetzen. Der IPCC schätzte, dass ab Anfang 2020 noch etwa <InlineMath math="500" /> Milliarden Tonnen <InlineMath math="\mathrm{CO_2}" /> ausgestoßen werden konnten, um mit einer Chance von fünfzig Prozent unter <InlineMath math="1{,}5\,^\circ\text{C}" /> zu bleiben. Die Szene unten verbraucht dieses Budget auf zwei Arten, ausgehend von runden <InlineMath math="40" /> Milliarden Tonnen pro Jahr. Beide Flächen sind gleich groß, nämlich <InlineMath math="500" />. Bei gleichbleibenden Emissionen endet das pinke Rechteck nach <InlineMath math="12{,}5" /> Jahren. Sinken die Emissionen gleichmäßig auf null, reicht das türkise Dreieck bis <InlineMath math="25" /> Jahre. Deshalb sagt das Ziel auch, wie schnell die Emissionen fallen müssen, nicht nur wie weit.
+
+<MathVisual
+  title={<>Zwei Arten, ein Kohlenstoffbudget zu verbrauchen</>}
+  description={<>Ein Budget von 500 <InlineMath math="\mathrm{GtCO_2}" />, verbraucht ab 40 <InlineMath math="\mathrm{GtCO_2}" /> pro Jahr. Waagrecht: Jahre nach 2020 in Einheiten von 5. Senkrecht: jährliche Emissionen in Einheiten von 10 <InlineMath math="\mathrm{GtCO_2}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "constant", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 0 }, { x: 500 / 40 / 5, y: 0 }, { x: 500 / 40 / 5, y: 40 / 10 }, { x: 0, y: 40 / 10 }] },
+      { id: "decline", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: (2 * 500) / 40 / 5, y: 0 }, { x: 0, y: 40 / 10 }] },
+    ],
+    labels: [
+      { key: "constant", objectId: "constant", at: { x: 500 / 40 / 5, y: 40 / 10 }, placement: "above-right" },
+      { key: "decline", objectId: "decline", at: { x: (2 * 500) / 40 / 5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    constant: <InlineMath math="\frac{500}{40}=12{,}5\ \text{Jahre}" />,
+    decline: <InlineMath math="\frac{2\times500}{40}=25\ \text{Jahre}" />,
+  }}
+/>
+
+Ein Temperaturziel wird zum gemeinsamen Maßstab, sobald du es in ein Budget verwandelst. Der IPCC hat geschätzt, wie viel Kohlenstoffdioxid ab 2020 noch ausgestoßen werden darf, um jede Grenze mit gleicher Chance einzuhalten: <InlineMath math="500" />, <InlineMath math="850" /> und <InlineMath math="1350\ \mathrm{GtCO_2}" /> für <InlineMath math="1{,}5" />, <InlineMath math="1{,}7" /> und <InlineMath math="2\ ^\circ\mathrm{C}" />. Teile jedes Budget durch <InlineMath math="40\ \mathrm{GtCO_2}" /> pro Jahr, um zu sehen, wie lange es bei diesem Tempo reicht. Dreh die Balken und vergleich.
+
+<MathVisual
+  title={<>Jedes Ziel hat sein eigenes Budget</>}
+  description={<>Verbleibende Kohlenstoffdioxidbudgets ab 2020 für eine Chance von 50 Prozent bei drei Erwärmungsgrenzen. Jedes Label teilt das Budget durch <InlineMath math="40\ \mathrm{GtCO_2}" /> pro Jahr. Ein Gitterschritt nach oben entspricht <InlineMath math="250\ \mathrm{GtCO_2}" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 7, z: 11 }, target: { x: 2.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "t15", kind: "cuboid", appearance: "answer", center: { x: 0, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "t17", kind: "cuboid", appearance: "highlight", center: { x: 2.5, y: 1.7, z: 0 }, size: { length: 1.2, height: 3.4, width: 1.2 } },
+      { id: "t20", kind: "cuboid", appearance: "warning", center: { x: 5, y: 2.7, z: 0 }, size: { length: 1.2, height: 5.4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "t15", objectId: "t15", at: { x: 0, y: 2, z: 0 }, placement: "above" },
+      { key: "t17", objectId: "t17", at: { x: 2.5, y: 3.4, z: 0 }, placement: "above" },
+      { key: "t20", objectId: "t20", at: { x: 5, y: 5.4, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    t15: <InlineMath math="1{,}5\ ^\circ\mathrm{C}:\ \tfrac{500}{40}=12{,}5\ \text{Jahre}" />,
+    t17: <InlineMath math="1{,}7\ ^\circ\mathrm{C}:\ \tfrac{850}{40}=21{,}25\ \text{Jahre}" />,
+    t20: <InlineMath math="2\ ^\circ\mathrm{C}:\ \tfrac{1350}{40}=33{,}75\ \text{Jahre}" />,
+  }}
+/>
+
 ## Aufgabenteilung in der internationalen Klimapolitik
 
 An globaler Klimazusammenarbeit sind unterschiedliche Institutionen beteiligt, weil eine einzige Gruppe nicht alle Aufgaben erfüllen kann. Manche **bewerten wissenschaftliche Erkenntnisse**, andere verhandeln Vereinbarungen, setzen Programme um oder verfolgen den Fortschritt.
@@ -83,3 +134,37 @@ Ein erfundenes Land meldet im Basisjahr 100 Millionen Tonnen Emissionen in Kohle
 | Gemeldete Senkung | <InlineMath math="(100-90)/100\times100\%" /> | <InlineMath math="10\%" /> |
 
 Die Emissionen sind gesunken, aber **das Ziel ist noch nicht erreicht**. Prüfe bei echten Berichten das Basisjahr, die erfassten Sektoren und Gase, die Berechnungsmethoden und das Zieljahr.
+
+Der Kreislauf läuft mit zwei Uhren, die beide alle fünf Jahre ticken, um drei Jahre versetzt. Neue nationale Pläne sind in den Jahren <InlineMath math="2020+5k" /> fällig, und jede globale Bestandsaufnahme kommt <InlineMath math="2023+5k" />, zwei Jahre vor der nächsten Runde von Plänen, damit ihre Ergebnisse diese Pläne stärker machen können. Zoom die Reihen entlang und folge jeder Bestandsaufnahme zu den Plänen danach.
+
+<MathVisual
+  title={<>Jede Bestandsaufnahme speist die nächsten Pläne</>}
+  description={<>Jahre der nationalen Pläne (obere Reihe) und der globalen Bestandsaufnahmen (untere Reihe) im Übereinkommen von Paris. Ein Gitterschritt nach rechts entspricht 2 Jahren.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "plans-row", kind: "segment", appearance: "reference", from: { x: 0.5, y: 2 }, to: { x: 9, y: 2 } },
+      { id: "takes-row", kind: "segment", appearance: "reference", from: { x: 0.5, y: 1 }, to: { x: 9, y: 1 } },
+      { id: "plan-2020", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "plan-2025", kind: "point", appearance: "primary", at: { x: 3.5, y: 2 } },
+      { id: "plan-2030", kind: "point", appearance: "primary", at: { x: 6, y: 2 } },
+      { id: "plan-2035", kind: "point", appearance: "primary", at: { x: 8.5, y: 2 } },
+      { id: "take-2023", kind: "point", appearance: "secondary", at: { x: 2.5, y: 1 } },
+      { id: "take-2028", kind: "point", appearance: "secondary", at: { x: 5, y: 1 } },
+      { id: "take-2033", kind: "point", appearance: "secondary", at: { x: 7.5, y: 1 } },
+      { id: "feed-2023", kind: "segment", appearance: "answer", from: { x: 2.5, y: 1 }, to: { x: 3.5, y: 2 } },
+      { id: "feed-2028", kind: "segment", appearance: "answer", from: { x: 5, y: 1 }, to: { x: 6, y: 2 } },
+      { id: "feed-2033", kind: "segment", appearance: "answer", from: { x: 7.5, y: 1 }, to: { x: 8.5, y: 2 } },
+    ],
+    labels: [
+      { key: "take", objectId: "take-2023", at: { x: 2.5, y: 1 }, placement: "below" },
+      { key: "plan", objectId: "plan-2025", at: { x: 3.5, y: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    take: <>erste globale Bestandsaufnahme, 2023</>,
+    plan: <>neue Pläne, 2025</>,
+  }}
+/>

@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "scooter-pilot",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "The character treats completing the whole project as the necessary first step before seeking review.",
-        },
-        {
           correct: true,
-          label:
-            "Jonas keeps two translations and marks their appropriate contexts, allowing organisers to choose wording by relationship and level of formality.",
+          label: "2.0",
         },
         {
           correct: false,
-          label:
-            "The account presents connotation as a general idea rather than something developed through the character's choice.",
+          label: "2.5",
         },
         {
           correct: false,
-          label:
-            "The main obstacle becomes manageable because another person assumes responsibility for the next step.",
+          label: "2.7",
         },
         {
           correct: false,
-          label:
-            "The passage presents documenting uncertainty as more important than taking a reviewable action.",
+          label: "4.0",
+        },
+        {
+          correct: false,
+          label: "16.0",
         },
       ],
     },

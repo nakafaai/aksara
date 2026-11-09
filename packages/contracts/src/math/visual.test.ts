@@ -124,4 +124,134 @@ describe("math visual boundary", () => {
       expect(error.message).toContain(MATH_VISUAL_RESOLUTION_MESSAGE);
     })
   );
+
+  it.effect(
+    "draws a unit circle whose point, labels, and values follow a slider",
+    () =>
+      Effect.gen(function* () {
+        const circle = {
+          frame: {
+            kind: "cartesian",
+            x: { max: 1.5, min: -1.5 },
+            y: { max: 1.5, min: -1.5 },
+          },
+          labels: [
+            {
+              at: { x: "cos(a)", y: "sin(a)" },
+              key: "point",
+              objectId: "point",
+              placement: "above-right",
+            },
+            {
+              at: { x: "cos(a) / 2", y: "0" },
+              key: "cosine",
+              objectId: "legs",
+            },
+            { at: { x: 1, y: 0 }, key: "one", objectId: "circle" },
+          ],
+          objects: [
+            {
+              angle: { max: 2 * Math.PI, min: 0 },
+              appearance: "reference",
+              id: "circle",
+              kind: "polar",
+              radius: "1",
+            },
+            {
+              appearance: "primary",
+              id: "point",
+              kind: "marker",
+              x: "cos(a)",
+              y: "sin(a)",
+            },
+            {
+              appearance: "secondary",
+              id: "legs",
+              kind: "loop",
+              points: [
+                { x: "0", y: "0" },
+                { x: "cos(a)", y: "0" },
+                { x: "cos(a)", y: "sin(a)" },
+              ],
+            },
+            {
+              appearance: "construction",
+              formula: "x",
+              id: "diagonal",
+              kind: "function",
+            },
+          ],
+          parameters: [
+            {
+              label: "angle",
+              max: 2 * Math.PI,
+              min: 0,
+              name: "a",
+              value: Math.PI / 6,
+            },
+          ],
+          readouts: [
+            { formula: "cos(a)", key: "cosine" },
+            { formula: "sin(a)", key: "sine" },
+          ],
+          space: "plane",
+          view: { kind: "fit" },
+        } as const;
+
+        const visual = yield* decodeMathVisual(circle);
+        expect(mathVisualLabelKeys(visual)).toEqual([
+          "point",
+          "cosine",
+          "one",
+          "sine",
+          "angle",
+        ]);
+
+        for (const at of [
+          { x: "cos(a) + 2", y: "0" },
+          { x: "1 / 0", y: "0" },
+        ]) {
+          const error = yield* decodeMathVisual({
+            ...circle,
+            labels: [{ at, key: "point", objectId: "diagonal" }],
+          }).pipe(Effect.flip);
+          expect(error.message).toContain("inside the Cartesian frame");
+        }
+        const unread = yield* decodeMathVisual({
+          ...circle,
+          labels: [
+            { at: { x: "cos(", y: "0" }, key: "point", objectId: "point" },
+          ],
+        }).pipe(Effect.flip);
+        expect(unread.message).not.toContain("inside the Cartesian frame");
+      })
+  );
+
+  it.effect(
+    "names a space scene's anchors, and no key for an unlabeled slider",
+    () =>
+      Effect.gen(function* () {
+        const visual = yield* decodeMathVisual({
+          frame: {
+            kind: "cartesian",
+            x: { max: 2, min: -2 },
+            y: { max: 2, min: -2 },
+            z: { max: 2, min: -2 },
+          },
+          labels: [{ at: { x: 0, y: 0, z: 0 }, key: "peak", objectId: "bowl" }],
+          objects: [
+            {
+              appearance: "primary",
+              formula: "a (x^2 + y^2) / 4",
+              id: "bowl",
+              kind: "function",
+            },
+          ],
+          parameters: [{ max: 1, min: -1, name: "a", value: 1 }],
+          space: "space",
+          view: { kind: "fit" },
+        });
+        expect(mathVisualLabelKeys(visual)).toEqual(["peak"]);
+      })
+  );
 });

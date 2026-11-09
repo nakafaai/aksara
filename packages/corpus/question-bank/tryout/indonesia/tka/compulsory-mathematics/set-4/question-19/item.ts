@@ -8,28 +8,27 @@ const item: ItemSource = {
   },
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label:
-            "Satu putaran pedal memindahkan sepeda sejauh $$6{,}6\\text{ m}$$.",
+          correct: false,
+          label: "$$50\\,\\%$$",
         },
         {
-          column: 2,
-          label:
-            "Untuk menempuh jarak $$1{,}32\\text{ km}$$, pedal harus diputar $$600$$ kali.",
+          correct: false,
+          label: "$$100\\,\\%$$",
         },
         {
-          column: 2,
-          label:
-            "Jika gir belakang diganti dengan gir $$24$$ gigi, satu putaran pedal memindahkan sepeda sejauh $$9{,}9\\text{ m}$$.",
+          correct: false,
+          label: "$$125\\,\\%$$",
         },
         {
-          column: 1,
-          label:
-            "Jika pedal diputar $$60$$ kali setiap menit, kelajuan sepeda adalah $$23{,}76\\text{ km/jam}$$.",
+          correct: false,
+          label: "$$150\\,\\%$$",
+        },
+        {
+          correct: true,
+          label: "$$237{,}5\\,\\%$$",
         },
       ],
     },

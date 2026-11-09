@@ -63,6 +63,49 @@ Fungi do not photosynthesize. Fungal cells **absorb organic molecules** from the
 | External enzymes | Chemicals released outside the body | They break complex material before absorption |
 | Chitin wall | A firm cell-wall material | It separates fungi from plants with cellulose walls |
 
+The white threads in tempeh grow at their tips, and every tip can fork into two. After <InlineMath math="n" /> rounds of forking there are up to <InlineMath math="2^n" /> tips, and each one releases enzymes and absorbs food. Zoom out and count the tips at every level.
+
+<MathVisual
+  title={<>Forking Hyphae Multiply the Tips</>}
+  description={<>A hypha that forks three times. The violet points are the growing tips.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "hypha-0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 2.4 } },
+      { id: "hypha-1", kind: "segment", appearance: "reference", from: { x: 0, y: 2.4 }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) } },
+      { id: "hypha-2", kind: "segment", appearance: "reference", from: { x: 0, y: 2.4 }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) } },
+      { id: "hypha-3", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) } },
+      { id: "hypha-4", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) } },
+      { id: "hypha-5", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) } },
+      { id: "hypha-6", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) } },
+      { id: "hypha-7", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((-6 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((-6 * Math.PI) / 180) } },
+      { id: "hypha-8", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "hypha-9", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "hypha-10", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "hypha-11", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "hypha-12", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "hypha-13", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "hypha-14", kind: "segment", appearance: "reference", from: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) }, to: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180) + 1.1 * Math.cos((180 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) + 1.1 * Math.sin((180 * Math.PI) / 180) } },
+      { id: "tip-0", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((-6 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((-6 * Math.PI) / 180) } },
+      { id: "tip-1", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "tip-2", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "tip-3", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "tip-4", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((56 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((56 * Math.PI) / 180) } },
+      { id: "tip-5", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((88 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((88 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "tip-6", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180) + 1.1 * Math.cos((118 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) + 1.1 * Math.sin((118 * Math.PI) / 180) } },
+      { id: "tip-7", kind: "point", appearance: "secondary", at: { x: 0 + 1.8 * Math.cos((120 * Math.PI) / 180) + 1.4 * Math.cos((150 * Math.PI) / 180) + 1.1 * Math.cos((180 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((120 * Math.PI) / 180) + 1.4 * Math.sin((150 * Math.PI) / 180) + 1.1 * Math.sin((180 * Math.PI) / 180) } },
+    ],
+    labels: [
+      { key: "tips", objectId: "tip-0", at: { x: 0 + 1.8 * Math.cos((58 * Math.PI) / 180) + 1.4 * Math.cos((26 * Math.PI) / 180) + 1.1 * Math.cos((-6 * Math.PI) / 180), y: 2.4 + 1.8 * Math.sin((58 * Math.PI) / 180) + 1.4 * Math.sin((26 * Math.PI) / 180) + 1.1 * Math.sin((-6 * Math.PI) / 180) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    tips: <InlineMath math="2^3=8" />,
+  }}
+/>
+
 ## Fungi Feed Differently from Animals
 
 Fungi release enzymes onto organic material and **absorb the smaller molecules produced by digestion**. Animals usually digest food inside the body, while plants make sugars through photosynthesis.
@@ -103,6 +146,34 @@ On plant roots, some fungi form [**mycorrhizae**](https://research.fs.usda.gov/t
   chart={`flowchart LR
     P["Plant"] -->|"Sugars from photosynthesis"| F["Mycorrhizal fungus"]
     F -->|"Water and minerals"| P`}
+/>
+
+Decomposer fungi break down fallen leaves, so the litter shrinks. As a simple model, say half of the remaining litter is broken down every 4 weeks: after <InlineMath math="t" /> weeks, <InlineMath math="m=100\left(\tfrac{1}{2}\right)^{t/4}" /> grams are left. Follow the curve: the amount broken down each month gets smaller, while the halving time stays the same.
+
+<MathVisual
+  title={<>Fungi Halve the Leaf Litter</>}
+  description={<>Remaining litter in a simple model where half is broken down every 4 weeks. Horizontal: one grid step is 2 weeks. Vertical: one grid step is 12.5 grams.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "litter", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: (100 * 0.5 ** (0 / 4)) / 12.5 }, { x: 0.5, y: (100 * 0.5 ** (1 / 4)) / 12.5 }, { x: 1, y: (100 * 0.5 ** (2 / 4)) / 12.5 }, { x: 1.5, y: (100 * 0.5 ** (3 / 4)) / 12.5 }, { x: 2, y: (100 * 0.5 ** (4 / 4)) / 12.5 }, { x: 2.5, y: (100 * 0.5 ** (5 / 4)) / 12.5 }, { x: 3, y: (100 * 0.5 ** (6 / 4)) / 12.5 }, { x: 3.5, y: (100 * 0.5 ** (7 / 4)) / 12.5 }, { x: 4, y: (100 * 0.5 ** (8 / 4)) / 12.5 }, { x: 4.5, y: (100 * 0.5 ** (9 / 4)) / 12.5 }, { x: 5, y: (100 * 0.5 ** (10 / 4)) / 12.5 }, { x: 5.5, y: (100 * 0.5 ** (11 / 4)) / 12.5 }, { x: 6, y: (100 * 0.5 ** (12 / 4)) / 12.5 }, { x: 6.5, y: (100 * 0.5 ** (13 / 4)) / 12.5 }, { x: 7, y: (100 * 0.5 ** (14 / 4)) / 12.5 }, { x: 7.5, y: (100 * 0.5 ** (15 / 4)) / 12.5 }, { x: 8, y: (100 * 0.5 ** (16 / 4)) / 12.5 }] },
+      { id: "half-0", kind: "point", appearance: "secondary", at: { x: 0, y: 8 } },
+      { id: "half-4", kind: "point", appearance: "secondary", at: { x: 2, y: 4 } },
+      { id: "half-8", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "half-12", kind: "point", appearance: "secondary", at: { x: 6, y: 1 } },
+      { id: "half-16", kind: "point", appearance: "answer", at: { x: 8, y: 0.5 } },
+    ],
+    labels: [
+      { key: "start", objectId: "half-0", at: { x: 0, y: 8 }, placement: "right" },
+      { key: "end", objectId: "half-16", at: { x: 8, y: 0.5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    start: <InlineMath math="100\ \mathrm{g}" />,
+    end: <InlineMath math="6.25\ \mathrm{g}" />,
+  }}
 />
 
 ## Fungi Absorb Food after External Digestion

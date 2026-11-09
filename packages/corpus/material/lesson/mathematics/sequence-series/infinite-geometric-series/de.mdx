@@ -3,7 +3,7 @@ export const metadata = {
   description: "Verknüpfe unendliche geometrische Reihen mit einem springenden Ball und leite daraus Konvergenz, Divergenz und die Summenformel ab.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Folgen und Reihen",
 };
 
@@ -23,6 +23,16 @@ Das erste Glied (<InlineMath math="a" />) ist <InlineMath math="1" />, der Fakto
 Wie groß ist die _Gesamtstrecke_, die der Ball vom Loslassen bis zum Stillstand zurücklegt?
 
 Im idealisierten Modell bewegt sich der Ball nach unten, dann nach oben, wieder nach unten und so weiter, ohne einen letzten Sprung. Die Gesamtstrecke setzt sich aus allen Abwärts- und Aufwärtswegen zusammen. Da ihre Längen ein unendliches geometrisches Muster bilden, berechnen wir sie mit einer **unendlichen geometrischen Reihe**.
+
+Jeder Aufprall erreicht ein Viertel der vorigen Höhe: 1 m, dann <InlineMath math="\tfrac14" /> m, <InlineMath math="\tfrac{1}{16}" /> m, <InlineMath math="\tfrac{1}{64}" /> m. Die Balken schrumpfen so schnell, dass sie nach wenigen Sprüngen kaum noch zu sehen sind.
+
+<BarChart
+  title={<>Höhen der ersten fünf Sprünge</>}
+  description={<>Balken von <InlineMath math="\left(\tfrac14\right)^{n-1}" /> Metern für <InlineMath math="n = 1" /> bis 5.</>}
+  yAxisLabel="Höhe (m)"
+  data={[1, 2, 3, 4, 5].map((n) => ({ name: String(n), value: (1 / 4) ** (n - 1) }))}
+  chartConfig={{ value: { label: "Höhe (m)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Die Bedingung für Konvergenz
 
@@ -69,25 +79,32 @@ Hier <InlineMath math="a=1" /> und <InlineMath math="r=\frac12" />, also:
 Keine endliche Teilsumme ist gleich <InlineMath math="2" />, aber die Teilsummen können beliebig nahe an <InlineMath math="2" /> herankommen. Die unendliche Summe ist die Grenze dieser endlichen Teilsummen.
 
 
-<LineEquation
-  title="Partialsummen nähern sich zwei"
-  description="Die Punkte zeigen die Summe nach 1 bis 6 Gliedern. Verbindungslinien verdeutlichen nur ihre Reihenfolge. Die waagerechte Linie markiert den Grenzwert 2. Drehe oder vergrößere die Ansicht und vergleiche die Punkte mit dieser Linie."
-  cameraPosition={[3, 1, 9]}
-  cameraTarget={[3, 1, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 6 }, (_, i) => {
-        const n = i + 1;
-        return { x: n, y: 2 - 2 ** (1 - n), z: 0 };
-      }),
-      smooth: false,
-      showPoints: true,
-      color: "blue",
-      labels: [{ text: <InlineMath math="S(n)" />, at: 3, offset: [0, -0.25, 0] }],
-    },
-    { points: [{ x: 0, y: 2, z: 0 }, { x: 7, y: 2, z: 0 }], smooth: false, color: "red", labels: [{ text: <InlineMath math="2" />, at: 1, offset: [0, 0.2, 0] }] }
-  ]}
+<MathVisual
+  title={<>Teilsummen, die sich 2 nähern</>}
+  description={<>Die Summen <InlineMath math="S_n = 2 - 2^{1-n}" /> nach 1 bis 6 Gliedern steigen in Richtung der Geraden <InlineMath math="y = 2" />, ohne sie zu erreichen.</>}
+  labels={{
+    limit: <InlineMath math="2" />,
+    s: <InlineMath math="S_n" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 7.2 }, y: { min: -0.3, max: 2.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "limit", kind: "line", through: [{ x: 0, y: 2 }, { x: 7, y: 2 }], appearance: "secondary" },
+      { id: "order", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 3 / 2 }, { x: 3, y: 7 / 4 }, { x: 4, y: 15 / 8 }, { x: 5, y: 31 / 16 }, { x: 6, y: 63 / 32 }], appearance: "construction" },
+      { id: "s1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 3 / 2 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 3, y: 7 / 4 }, appearance: "primary" },
+      { id: "s4", kind: "point", at: { x: 4, y: 15 / 8 }, appearance: "primary" },
+      { id: "s5", kind: "point", at: { x: 5, y: 31 / 16 }, appearance: "primary" },
+      { id: "s6", kind: "point", at: { x: 6, y: 63 / 32 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 7, y: 2 }, placement: "above" },
+      { key: "s", objectId: "s4", at: { x: 4, y: 15 / 8 }, placement: "below" },
+    ],
+  }}
 />
 
 Auch den Abstand zum Grenzwert kannst du berechnen. Nach sechs Gliedern beträgt die Summe <InlineMath math="1{,}96875" /> und der Abstand <InlineMath math="0{,}03125" />. Mit jedem weiteren Glied halbiert sich **der verbleibende Abstand zum Grenzwert**.
@@ -141,3 +158,31 @@ Hier <InlineMath math="a=12" /> und <InlineMath math="r=-\frac12" />. Da <Inline
 <BlockMath math="\begin{aligned}S_\infty&amp;=\frac{12}{1-(-1/2)}\\&amp;=\frac{12}{3/2}\\&amp;=12\cdot\frac23=8\end{aligned}" />
 
 Durch den negativen Faktor wechseln sich die Vorzeichen der Glieder ab. Ihre Beträge werden jedoch schnell genug kleiner, sodass sich die Teilsummen dem Wert <InlineMath math="8" /> nähern.
+
+Die Teilsummen von <InlineMath math="12 - 6 + 3 - \tfrac32 + \cdots" /> sind 12, 6, 9, 7,5, 8,25 und 7,875. Sie liegen abwechselnd über und unter 8 und nähern sich von beiden Seiten.
+
+<MathVisual
+  title={<>Teilsummen auf beiden Seiten von 8</>}
+  description={<>Die Teilsummen <InlineMath math="S_1" /> bis <InlineMath math="S_6" /> der Reihe mit <InlineMath math="a = 12" /> und <InlineMath math="r = -\tfrac12" />, um die Gerade <InlineMath math="y = 8" />.</>}
+  labels={{
+    limit: <InlineMath math="8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 7.2 }, y: { min: 4.6, max: 12.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "limit", kind: "line", through: [{ x: 0, y: 8 }, { x: 7, y: 8 }], appearance: "secondary" },
+      { id: "order", kind: "polyline", vertices: [{ x: 1, y: 12 }, { x: 2, y: 6 }, { x: 3, y: 9 }, { x: 4, y: 15 / 2 }, { x: 5, y: 33 / 4 }, { x: 6, y: 63 / 8 }], appearance: "construction" },
+      { id: "s1", kind: "point", at: { x: 1, y: 12 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 6 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 3, y: 9 }, appearance: "primary" },
+      { id: "s4", kind: "point", at: { x: 4, y: 15 / 2 }, appearance: "primary" },
+      { id: "s5", kind: "point", at: { x: 5, y: 33 / 4 }, appearance: "primary" },
+      { id: "s6", kind: "point", at: { x: 6, y: 63 / 8 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 7, y: 8 }, placement: "above" },
+    ],
+  }}
+/>

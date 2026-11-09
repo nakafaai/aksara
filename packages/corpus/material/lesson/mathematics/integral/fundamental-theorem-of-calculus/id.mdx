@@ -3,7 +3,7 @@ export const metadata = {
     description: "Hubungkan turunan, fungsi akumulasi, dan integral tentu melalui kedua bagian Teorema Dasar Kalkulus.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-24",
+    dateModified: "2026-11-08",
     subject: "Integral",
 };
 
@@ -42,6 +42,16 @@ Jika batas atasnya <InlineMath math="x^2" />, perubahan batas terhadap <InlineMa
 <BlockMath math="\begin{aligned}G(x)&=\int_1^{x^2}\sqrt{2+t}\,dt\\G'(x)&=\sqrt{2+x^2}\cdot\frac{d}{dx}(x^2)\\&=2x\sqrt{2+x^2}\end{aligned}" />
 
 Faktor <InlineMath math="2x" /> berasal dari turunan batas atas <InlineMath math="x^2" />. Pada <InlineMath math="x=0" />, laju perubahan batas atas nol, sehingga turunan fungsi akumulasi ini juga nol meskipun integrannya positif.
+
+Hitung <InlineMath math="G'(x) = 2x\sqrt{2 + x^2}" /> di lima nilai dari <InlineMath math="0" /> sampai <InlineMath math="2" /> dengan langkah <InlineMath math="0{,}5" />. Batang pertama bernilai <InlineMath math="0" /> karena batas atas <InlineMath math="x^2" /> tidak bergerak di <InlineMath math="x = 0" />. Setelah itu faktor <InlineMath math="2x" /> dan akarnya sama-sama membesar, jadi lajunya naik cepat, sampai <InlineMath math="4\sqrt6 \approx 9{,}8" /> di <InlineMath math="x = 2" />.
+
+<BarChart
+  title={<>Laju <InlineMath math="G'(x)" /> di lima nilai</>}
+  description={<>Batang <InlineMath math="G'(x) = 2x\sqrt{2 + x^2}" /> untuk <InlineMath math="x" /> dari 0 sampai 2 dengan langkah <InlineMath math="0{,}5" />, mulai dari 0.</>}
+  yAxisLabel="Laju"
+  data={[0, 0.5, 1, 1.5, 2].map((x) => ({ name: String(x), value: 2 * x * Math.sqrt(2 + x ** 2) }))}
+  chartConfig={{ value: { label: "Laju", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Evaluasi Integral dengan Antiturunan
 
@@ -85,3 +95,54 @@ Tentukan nilai dari <InlineMath math="\int_{1}^{5} (2x-1) \, dx" />.
     </MathContainer>
 
 Teorema Dasar Kalkulus menghitung integral tentu melalui antiturunan: cari antiturunannya, lalu kurangkan nilai pada batas atas dan batas bawah.
+
+Cek contoh kedua dengan bangun yang bisa diukur. Di bawah <InlineMath math="y = 2x - 1" /> dari <InlineMath math="1" /> sampai <InlineMath math="5" /> ada trapesium dengan sisi sejajar <InlineMath math="1" /> dan <InlineMath math="9" /> serta lebar <InlineMath math="4" />: luasnya <InlineMath math="\tfrac{1 + 9}{2} \cdot 4 = 20" />. Antiturunannya memberi bilangan yang sama, <InlineMath math="F(5) - F(1) = 20 - 0 = 20" /> dengan <InlineMath math="F(x) = x^2 - x" />.
+
+<MathVisual
+  title={<>F(5) dikurangi F(1) adalah luas trapesium</>}
+  description={<>Garis <InlineMath math="y = 2x - 1" /> dan trapesium di bawahnya dari 1 sampai 5, yang luasnya 20 sama dengan <InlineMath math="F(5) - F(1)" />.</>}
+  labels={{
+    f: <InlineMath math="y = 2x - 1" />,
+    area: <InlineMath math="20" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "line", through: [{ x: 1, y: 1 }, { x: 5, y: 9 }], appearance: "reference" },
+      { id: "area", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 9 }, { x: 1, y: 1 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 5.5, y: 10 }, placement: "left" },
+      { key: "area", objectId: "area", at: { x: 3, y: 2.5 }, placement: "center" },
+    ],
+  }}
+/>
+
+Contoh pertama bekerja dengan cara yang sama di bawah kurva. Daerah di bawah <InlineMath math="y = x^2" /> di antara <InlineMath math="x = 1" /> dan <InlineMath math="x = 3" /> luasnya <InlineMath math="\left[\tfrac13 x^3\right]_1^3 = 9 - \tfrac13 = \tfrac{26}{3}" />. Begitu kamu tahu antiturunannya, persegi panjang tidak diperlukan lagi.
+
+<MathVisual
+  title={<>Luas di bawah x kuadrat dari 1 sampai 3</>}
+  description={<>Parabola <InlineMath math="y = x^2" /> dengan daerah di antara <InlineMath math="x = 1" /> dan <InlineMath math="x = 3" /> dibatasi, luasnya <InlineMath math="\tfrac{26}{3}" />.</>}
+  labels={{
+    f: <InlineMath math="y = x^2" />,
+    area: <InlineMath math="\tfrac{26}{3}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3.5 }, y: { min: -0.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 3.2 }, appearance: "reference" },
+      { id: "top", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 1, max: 3 }, appearance: "primary" },
+      { id: "left", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "right", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 9 }, appearance: "primary" },
+      { id: "base", kind: "segment", from: { x: 1, y: 0 }, to: { x: 3, y: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 3.2, y: 10.24 }, placement: "left" },
+      { key: "area", objectId: "base", at: { x: 2, y: 0 }, placement: "above" },
+    ],
+  }}
+/>

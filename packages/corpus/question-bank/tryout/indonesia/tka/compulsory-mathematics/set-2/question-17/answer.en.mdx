@@ -1,32 +1,16 @@
-The base area is <InlineMath math="2(1.5)=3\,\mathrm{m}^2" />. Initial volume equals base area times depth. The **difference between inflow and outflow** determines the added volume.
+The coated part is **the ring-shaped top** and **the outer curved surface**. The wall of the hole and the base do not count.
 
 <BlockMath math="\begin{aligned}
-V_0&=3(0.8)=2.4\,\mathrm{m}^3 \\
-\Delta V&=(18-6)40=480\,\mathrm{L} \\
-&=\frac{480}{1000}\,\mathrm{m}^3=0.48\,\mathrm{m}^3 \\
-V&=2.4+0.48=2.88\,\mathrm{m}^3
+A_{\text{top}}&=\pi\,(R^2-r^2)=\frac{22}{7}\cdot147=462\text{ cm}^2 \\
+A_{\text{outer side}}&=2\pi Rh=2\cdot\frac{22}{7}\cdot14\cdot5=440\text{ cm}^2 \\
+A&=462+440=902\text{ cm}^2
 \end{aligned}" />
 
-Divide the final volume by the base area to find the depth.
+As a check, the top is the large circle of <InlineMath math="616\text{ cm}^2" /> minus the hole of <InlineMath math="154\text{ cm}^2" />, which is <InlineMath math="462\text{ cm}^2" />.
 
-<BlockMath math="h=\frac{2.88}{3}=0.96\,\mathrm{m}" />
+So <InlineMath math="902\text{ cm}^2" /> is coated with chocolate.
 
-<MathVisual
-  title="The added layer of water"
-  description="The lower 0.8 m is the original water. An added 480 litres raises the surface by 0.16 m over the unchanged base."
-  labels={{ base: "2 m", width: "1.5 m", rise: <InlineMath math="\Delta h=\frac{0.48}{3}=0.16\,\mathrm{m}" /> }}
-  scene={{
-    space: "space",
-    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: 0, max: 1.15 }, z: { min: -0.95, max: 0.95 } },
-    view: { kind: "isometric", target: { x: 0, y: 0.48, z: 0 } },
-    objects: [
-      { id: "initial", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.4, z: 0 }, size: { length: 2, width: 1.5, height: 0.8 } },
-      { id: "added", kind: "cuboid", appearance: "primary", center: { x: 0, y: 0.88, z: 0 }, size: { length: 2, width: 1.5, height: 0.16 } },
-    ],
-    labels: [
-      { key: "base", objectId: "initial", at: { x: 0, y: 0, z: 0.75 }, placement: "below" },
-      { key: "width", objectId: "initial", at: { x: 1, y: 0, z: 0 }, placement: "right" },
-      { key: "rise", objectId: "added", at: { x: 0, y: 0.96, z: 0 }, placement: "above" },
-    ],
-  }}
-/>
+- <InlineMath math="440\text{ cm}^2" /> counts only the outer side and forgets the top.
+- <InlineMath math="1{,}056\text{ cm}^2" /> counts the top as a full circle without the hole.
+- <InlineMath math="1{,}122\text{ cm}^2" /> also coats the wall of the hole, <InlineMath math="2\pi rh=220\text{ cm}^2" />.
+- <InlineMath math="1{,}364\text{ cm}^2" /> also coats the ring-shaped base.

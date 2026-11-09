@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "food-waste",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Warna jingga yang tampak di langit",
+          column: 1,
+          label:
+            "Sayur menghasilkan jumlah sisa makanan terbesar per rumah tangga per minggu.",
         },
         {
-          correct: true,
-          label: "Waktu setengah gelap setelah matahari terbenam",
+          column: 1,
+          label:
+            "Lebih dari dua pertiga sisa makanan dalam survei tergolong dapat dihindari.",
         },
         {
-          correct: false,
-          label: "Saat matahari tepat menyentuh cakrawala",
+          column: 2,
+          label:
+            "Sisa buah yang dapat dihindari lebih banyak daripada sisa lauk hewani yang dapat dihindari.",
         },
         {
-          correct: false,
-          label: "Tanda bahwa seluruh kegiatan harus berakhir",
-        },
-        {
-          correct: false,
-          label: "Suasana yang selalu tenang dan damai",
+          column: 2,
+          label: "Survei mencatat sisa makanan yang diberikan kepada ternak.",
         },
       ],
     },

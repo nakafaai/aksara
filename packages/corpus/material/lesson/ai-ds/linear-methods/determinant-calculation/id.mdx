@@ -114,6 +114,23 @@ Determinannya adalah:
 
 > Pada ketiga jenis matriks ini, determinan sama dengan <Highlight>perkalian semua elemen diagonal utama</Highlight>.
 
+Untuk <InlineMath math="U=\begin{pmatrix}3&3/2\\0&2\end{pmatrix}" />, entri di atas diagonal hanya menggeser kolom kedua ke samping. Alas dan tingginya tetap <InlineMath math="3" /> dan <InlineMath math="2" />, jadi <InlineMath math="\det U=3\cdot2=6" />, yaitu hasil kali entri diagonalnya.
+
+<MathVisual
+  title={<>Pergeseran menjaga luas <InlineMath math="3\cdot2=6" /></>}
+  description={<>Jajar genjang ungu dibentuk oleh kolom <InlineMath math="(3,0)" /> dan kolom hijau toska <InlineMath math="(3/2,2)" /> dari matriks segitiga atas <InlineMath math="U" />. Persegi panjang abu-abu milik <InlineMath math="\operatorname{diag}(3,2)" />. Keduanya punya luas <InlineMath math="6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rectangle", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 0, y: 2 }], appearance: "reference" },
+      { id: "sheared", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 9 / 2, y: 2 }, { x: 3 / 2, y: 2 }], appearance: "secondary" },
+      { id: "column", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 2, y: 2 }, appearance: "construction" },
+    ],
+  }}
+/>
+
 ## Matriks Elementer
 
 Matriks elementer adalah matriks yang diperoleh dari matriks identitas dengan satu operasi baris elementer. Determinan matriks elementer memiliki nilai yang mudah dihitung:
@@ -131,6 +148,23 @@ Matriks elementer adalah matriks yang diperoleh dari matriks identitas dengan sa
     <BlockMath math="\det P_i^j(\lambda) = 1" />
 
 Untuk pertukaran dan transveksi, indeks menunjuk **dua baris yang berbeda**, yaitu <InlineMath math="i\neq j" />. Satu pertukaran baris mengubah tanda determinan, sedangkan penambahan kelipatan satu baris ke baris lain tidak mengubah determinan.
+
+Ambil baris-baris <InlineMath math="A=\begin{pmatrix}2&1\\1&3\end{pmatrix}" />, yang determinannya <InlineMath math="2\cdot3-1\cdot1=5" />. Mengurangkan setengah baris pertama dari baris kedua menggeser baris kedua sepanjang garis yang sejajar dengan baris pertama, jadi jajar genjangnya tetap punya alas dan tinggi yang sama.
+
+<MathVisual
+  title={<>Transveksi menggeser baris tanpa mengubah luas</>}
+  description={<>Jajar genjang ungu memakai baris <InlineMath math="(2,1)" /> dan <InlineMath math="(1,3)" />. Setelah <InlineMath math="R_2\leftarrow R_2-\tfrac12R_1" />, baris kedua menjadi <InlineMath math="(0,5/2)" /> dan membentuk jajar genjang hijau toska. Ruas oranye menunjukkan pergeserannya, sejajar dengan baris pertama. Kedua luasnya sama dengan <InlineMath math="5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "before", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 3, y: 4 }, { x: 1, y: 3 }], appearance: "secondary" },
+      { id: "after", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 2, y: 7 / 2 }, { x: 0, y: 5 / 2 }], appearance: "construction" },
+      { id: "slide", kind: "segment", from: { x: 1, y: 3 }, to: { x: 0, y: 5 / 2 }, appearance: "primary" },
+    ],
+  }}
+/>
 
 ## Eliminasi Gauss untuk Perhitungan Determinan
 
@@ -183,3 +217,57 @@ Karena ada **satu pertukaran baris** (<InlineMath math="p = 1" />):
 <BlockMath math="= (-1)^1 \cdot 1 \cdot 2 \cdot 6" />
 <BlockMath math="= -12" />
 </MathContainer>
+
+Putar kedua balok miring di bawah. Balok kanan direntang oleh kolom-kolom <InlineMath math="A" />, sedangkan balok kiri oleh kolom-kolom <InlineMath math="R" />, dengan warna yang sama untuk kolom yang bersesuaian. Tiap langkah eliminasi menambahkan kelipatan satu baris ke baris lain, dan itu hanya menggeser balok tanpa mengubah volumenya. Satu pertukaran baris cuma membalik orientasi, sehingga tandanya menjadi negatif. Jadi kedua balok bervolume <InlineMath math="12" />, dan di balok kiri kamu bisa membacanya sebagai alas <InlineMath math="1\cdot2" /> kali tinggi <InlineMath math="6" />.
+
+<MathVisual
+  title={<>Volume yang sama sebelum dan sesudah eliminasi</>}
+  description={<>Balok miring kanan direntang kolom <InlineMath math="A" />, balok kiri direntang kolom <InlineMath math="R" />. Keduanya bervolume <InlineMath math="12=|\det A|" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 6.5 }, y: { min: -2.5, max: 4.5 }, z: { min: -0.5, max: 6.5 } },
+    view: { kind: "isometric", target: { x: -1, y: 1, z: 2 } },
+    objects: [
+      { id: "a-edge-a", kind: "segment", from: { x: 0, y: 2, z: 1 }, to: { x: 3, y: 4, z: 1 }, appearance: "reference" },
+      { id: "a-edge-b", kind: "segment", from: { x: 0, y: 2, z: 1 }, to: { x: 3, y: 2, z: 2 }, appearance: "reference" },
+      { id: "a-edge-c", kind: "segment", from: { x: 3, y: 2, z: 0 }, to: { x: 3, y: 4, z: 1 }, appearance: "reference" },
+      { id: "a-edge-d", kind: "segment", from: { x: 3, y: 2, z: 0 }, to: { x: 6, y: 2, z: 1 }, appearance: "reference" },
+      { id: "a-edge-e", kind: "segment", from: { x: 3, y: 0, z: 1 }, to: { x: 3, y: 2, z: 2 }, appearance: "reference" },
+      { id: "a-edge-f", kind: "segment", from: { x: 3, y: 0, z: 1 }, to: { x: 6, y: 2, z: 1 }, appearance: "reference" },
+      { id: "a-edge-g", kind: "segment", from: { x: 3, y: 4, z: 1 }, to: { x: 6, y: 4, z: 2 }, appearance: "reference" },
+      { id: "a-edge-h", kind: "segment", from: { x: 3, y: 2, z: 2 }, to: { x: 6, y: 4, z: 2 }, appearance: "reference" },
+      { id: "a-edge-i", kind: "segment", from: { x: 6, y: 2, z: 1 }, to: { x: 6, y: 4, z: 2 }, appearance: "reference" },
+      { id: "r-edge-a", kind: "segment", from: { x: -4, y: 0, z: 0 }, to: { x: -4, y: 2, z: 0 }, appearance: "reference" },
+      { id: "r-edge-b", kind: "segment", from: { x: -4, y: 0, z: 0 }, to: { x: -3, y: -2, z: 6 }, appearance: "reference" },
+      { id: "r-edge-c", kind: "segment", from: { x: -5, y: 2, z: 0 }, to: { x: -4, y: 2, z: 0 }, appearance: "reference" },
+      { id: "r-edge-d", kind: "segment", from: { x: -5, y: 2, z: 0 }, to: { x: -4, y: 0, z: 6 }, appearance: "reference" },
+      { id: "r-edge-e", kind: "segment", from: { x: -4, y: -2, z: 6 }, to: { x: -3, y: -2, z: 6 }, appearance: "reference" },
+      { id: "r-edge-f", kind: "segment", from: { x: -4, y: -2, z: 6 }, to: { x: -4, y: 0, z: 6 }, appearance: "reference" },
+      { id: "r-edge-g", kind: "segment", from: { x: -4, y: 2, z: 0 }, to: { x: -3, y: 0, z: 6 }, appearance: "reference" },
+      { id: "r-edge-h", kind: "segment", from: { x: -3, y: -2, z: 6 }, to: { x: -3, y: 0, z: 6 }, appearance: "reference" },
+      { id: "r-edge-i", kind: "segment", from: { x: -4, y: 0, z: 6 }, to: { x: -3, y: 0, z: 6 }, appearance: "reference" },
+      { id: "a-col-1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 2, z: 1 }, appearance: "secondary" },
+      { id: "a-col-2", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 2, z: 0 }, appearance: "construction" },
+      { id: "a-col-3", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 0, z: 1 }, appearance: "answer" },
+      { id: "r-col-1", kind: "segment", from: { x: -5, y: 0, z: 0 }, to: { x: -4, y: 0, z: 0 }, appearance: "secondary" },
+      { id: "r-col-2", kind: "segment", from: { x: -5, y: 0, z: 0 }, to: { x: -5, y: 2, z: 0 }, appearance: "construction" },
+      { id: "r-col-3", kind: "segment", from: { x: -5, y: 0, z: 0 }, to: { x: -4, y: -2, z: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a-col-1", objectId: "a-col-1", at: { x: 0, y: 2, z: 1 }, placement: "above-right" },
+      { key: "a-col-2", objectId: "a-col-2", at: { x: 3, y: 2, z: 0 }, placement: "above-right" },
+      { key: "a-col-3", objectId: "a-col-3", at: { x: 3, y: 0, z: 1 }, placement: "above-right" },
+      { key: "r-col-1", objectId: "r-col-1", at: { x: -4, y: 0, z: 0 }, placement: "above-right" },
+      { key: "r-col-2", objectId: "r-col-2", at: { x: -5, y: 2, z: 0 }, placement: "above-right" },
+      { key: "r-col-3", objectId: "r-col-3", at: { x: -4, y: -2, z: 6 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "a-col-1": <InlineMath math="a^1" />,
+    "a-col-2": <InlineMath math="a^2" />,
+    "a-col-3": <InlineMath math="a^3" />,
+    "r-col-1": <InlineMath math="r^1" />,
+    "r-col-2": <InlineMath math="r^2" />,
+    "r-col-3": <InlineMath math="r^3" />,
+  }}
+/>

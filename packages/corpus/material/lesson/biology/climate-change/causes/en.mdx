@@ -52,6 +52,33 @@ Human-caused carbon dioxide emissions come mainly from [burning fossil fuels and
 
 > For each climate cause, identify the carbon source, the human activity, the gas that increases or the carbon sink that decreases, and the resulting change in Earth's energy balance.
 
+In a simple textbook model, each layer of greenhouse gas absorbs all the heat radiation from below and sends it out again, half up and half down. With <InlineMath math="n" /> such layers the ground warms to <InlineMath math="T=255\,(n+1)^{1/4}" /> kelvin. Rotate the bars: one layer already lifts the ground from <InlineMath math="255" /> to about <InlineMath math="303" /> kelvin.
+
+<MathVisual
+  title={<>More Layers, Warmer Ground</>}
+  description={<>Ground temperature in the layer model with zero, one and two fully absorbing layers. One grid step up is 50 kelvin.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 8, z: 12 }, target: { x: 2.5, y: 3.5, z: 0 } },
+    objects: [
+      { id: "layers-0", kind: "cuboid", appearance: "reference", center: { x: 0, y: ((255 * 1 ** (1 / 4)) / 50) / 2, z: 0 }, size: { length: 1.2, height: (255 * 1 ** (1 / 4)) / 50, width: 1.2 } },
+      { id: "layers-1", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: ((255 * 2 ** (1 / 4)) / 50) / 2, z: 0 }, size: { length: 1.2, height: (255 * 2 ** (1 / 4)) / 50, width: 1.2 } },
+      { id: "layers-2", kind: "cuboid", appearance: "warning", center: { x: 5, y: ((255 * 3 ** (1 / 4)) / 50) / 2, z: 0 }, size: { length: 1.2, height: (255 * 3 ** (1 / 4)) / 50, width: 1.2 } },
+    ],
+    labels: [
+      { key: "t0", objectId: "layers-0", at: { x: 0, y: (255 * 1 ** (1 / 4)) / 50, z: 0 }, placement: "above" },
+      { key: "t1", objectId: "layers-1", at: { x: 2.5, y: (255 * 2 ** (1 / 4)) / 50, z: 0 }, placement: "above" },
+      { key: "t2", objectId: "layers-2", at: { x: 5, y: (255 * 3 ** (1 / 4)) / 50, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    t0: <InlineMath math="255\ \mathrm{K}" />,
+    t1: <InlineMath math="303\ \mathrm{K}" />,
+    t2: <InlineMath math="336\ \mathrm{K}" />,
+  }}
+/>
+
 ## Combustion Moves Carbon into the Atmosphere
 
 When fossil fuels burn, or when forest biomass is burned or decomposes after clearing, stored carbon enters the atmosphere mainly as carbon dioxide. The carbon itself is not newly created, it **moves from a long-lived store into the atmosphere**. That shift is what raises the atmospheric concentration.
@@ -94,6 +121,32 @@ Plastic is linked to [emissions across its life cycle](https://www.oecd.org/en/p
     B --> G["Less outgoing infrared energy escapes initially"]
     D --> G
     F --> B`}
+/>
+
+Think of the air as a tub: emissions pour carbon in, and forests and oceans take some back out. The extra carbon grows by <InlineMath math="\text{in}-\text{out}" /> every year. With illustrative numbers, <InlineMath math="10" /> units go in and the forest removes <InlineMath math="5" />, so <InlineMath math="5" /> stay each year. Clear part of the forest so it removes only <InlineMath math="3" />, and <InlineMath math="7" /> stay. Zoom in and compare how fast the two lines climb.
+
+<MathVisual
+  title={<>Less Uptake, Faster Build-up</>}
+  description={<>Extra carbon in the air in an illustrative tub model, with the whole forest (gray) and after clearing (pink). Horizontal: years. Vertical: one grid step is 10 units of carbon.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "forest", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: ((10 - 5) * 0) / 10 }, { x: 1, y: ((10 - 5) * 1) / 10 }, { x: 2, y: ((10 - 5) * 2) / 10 }, { x: 3, y: ((10 - 5) * 3) / 10 }, { x: 4, y: ((10 - 5) * 4) / 10 }, { x: 5, y: ((10 - 5) * 5) / 10 }, { x: 6, y: ((10 - 5) * 6) / 10 }, { x: 7, y: ((10 - 5) * 7) / 10 }, { x: 8, y: ((10 - 5) * 8) / 10 }, { x: 9, y: ((10 - 5) * 9) / 10 }, { x: 10, y: ((10 - 5) * 10) / 10 }] },
+      { id: "cleared", kind: "polyline", appearance: "warning", vertices: [{ x: 0, y: ((10 - 3) * 0) / 10 }, { x: 1, y: ((10 - 3) * 1) / 10 }, { x: 2, y: ((10 - 3) * 2) / 10 }, { x: 3, y: ((10 - 3) * 3) / 10 }, { x: 4, y: ((10 - 3) * 4) / 10 }, { x: 5, y: ((10 - 3) * 5) / 10 }, { x: 6, y: ((10 - 3) * 6) / 10 }, { x: 7, y: ((10 - 3) * 7) / 10 }, { x: 8, y: ((10 - 3) * 8) / 10 }, { x: 9, y: ((10 - 3) * 9) / 10 }, { x: 10, y: ((10 - 3) * 10) / 10 }] },
+      { id: "forest-end", kind: "point", appearance: "reference", at: { x: 10, y: 5 } },
+      { id: "cleared-end", kind: "point", appearance: "warning", at: { x: 10, y: 7 } },
+    ],
+    labels: [
+      { key: "forest", objectId: "forest-end", at: { x: 10, y: 5 }, placement: "right" },
+      { key: "cleared", objectId: "cleared-end", at: { x: 10, y: 7 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    forest: <InlineMath math="10-5=5" />,
+    cleared: <InlineMath math="10-3=7" />,
+  }}
 />
 
 ## From Human Activities to Warming

@@ -3,7 +3,7 @@ export const metadata = {
     description: "Bedingte Wahrscheinlichkeiten berechnen, Abhängigkeit von Unabhängigkeit unterscheiden und mehrstufige Ziehungen lösen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
     subject: "Kombinatorik",
 };
 
@@ -33,6 +33,32 @@ Durch Neuordnung der Definition erhält man die allgemeine Multiplikationsregel:
 Sind die Ereignisse unabhängig, ändert die Information über <InlineMath math="A" /> nichts an der Wahrscheinlichkeit von <InlineMath math="B" />:
 
 <BlockMath math="P(B|A) = P(B)" />
+
+Abhängigkeit zeigt sich auch im Flächenmodell. Der linke Streifen mit Breite <InlineMath math="\frac{13}{52}" /> ist ein Herz beim ersten Zug. Darin ist nur <InlineMath math="\frac{12}{51}" /> der Höhe ein zweites Herz, die markierte Ecke hat also die Fläche <InlineMath math="\frac{13}{52} \cdot \frac{12}{51} = \frac{1}{17}" />.
+
+<MathVisual
+  title={<>Zwei Herzen hintereinander als Fläche</>}
+  description={<>Ein Einheitsquadrat: der Streifen der Breite <InlineMath math="\frac{13}{52}" /> für ein erstes Herz und darin der Teil der Höhe <InlineMath math="\frac{12}{51}" /> für ein zweites Herz.</>}
+  labels={{
+    first: <InlineMath math="\tfrac{13}{52}" />,
+    both: <InlineMath math="\tfrac{1}{17}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 1.1 }, y: { min: -0.15, max: 1.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "first", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 13 / 52, y: 0 }, { x: 13 / 52, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "both", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 13 / 52, y: 0 }, { x: 13 / 52, y: 12 / 51 }, { x: 0, y: 12 / 51 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 13 / 104, y: 1 }, placement: "above" },
+      { key: "both", objectId: "both", at: { x: 13 / 52, y: 6 / 51 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Anwendung beim Kartenziehen
 
 Beim Ziehen ohne Zurücklegen ändert sich der Ergebnisraum nach jeder Karte. Beide Beispiele unten aktualisieren die Wahrscheinlichkeiten beim zweiten Zug. Weil die erste Karte nicht zurückgelegt wird, ist der **Nenner der zweiten Wahrscheinlichkeit** um eins kleiner.
@@ -56,6 +82,45 @@ Wahrscheinlichkeitsrechnung:
 
 Nachdem ein Ass gezogen wurde, bleiben <InlineMath math="51 \text{ Karten}" /> übrig. Alle <InlineMath math="4 \text{ Könige}" /> sind noch vorhanden, daher beträgt die bedingte Wahrscheinlichkeit, einen König zu ziehen, <InlineMath math="\frac{4}{51}" />.
 
+Ohne Zurücklegen hängt der zweite Ast vom ersten ab. Ein Ass ziehst du mit Wahrscheinlichkeit <InlineMath math="\frac{4}{52}" />. Danach bleiben 51 Karten, und alle 4 Könige sind noch da, also folgt ein König mit <InlineMath math="\frac{4}{51}" />. Multiplizier entlang des Pfads: <InlineMath math="\frac{4}{52} \cdot \frac{4}{51} = \frac{16}{2652} = \frac{4}{663}" />.
+
+<MathVisual
+  title={<>Erst Ass, dann König, ohne Zurücklegen</>}
+  description={<>Ein Baum für zwei Züge: zuerst Ass oder nicht, dann, nach einem Ass, König oder nicht, die zweiten Wahrscheinlichkeiten aus den 51 übrigen Karten.</>}
+  labels={{
+    b0: <InlineMath math="\text{Ass}\ \tfrac{4}{52}" />,
+    b1: <InlineMath math="\text{kein Ass}\ \tfrac{48}{52}" />,
+    h0: <InlineMath math="\text{König}\ \tfrac{4}{51}" />,
+    h1: <InlineMath math="\text{kein König}\ \tfrac{47}{51}" />,
+    p0: <InlineMath math="\tfrac{4}{663}" />,
+    p1: <InlineMath math="\tfrac{47}{663}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -2.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "root", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "b0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "n0", kind: "point", at: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "b1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1.8 }, appearance: "reference" },
+      { id: "n1", kind: "point", at: { x: 2, y: -1.8 }, appearance: "reference" },
+      { id: "l0", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "e0", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "l1", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 0.6 }, appearance: "secondary" },
+      { id: "e1", kind: "point", at: { x: 4, y: 0.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b0", objectId: "b0", at: { x: 1, y: 1.8 / 2 }, placement: "above" },
+      { key: "b1", objectId: "b1", at: { x: 1, y: -1.8 / 2 }, placement: "above" },
+      { key: "h0", objectId: "l0", at: { x: 3, y: (1.8 + 3) / 2 }, placement: "above" },
+      { key: "p0", objectId: "e0", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "h1", objectId: "l1", at: { x: 3, y: (1.8 + 0.6) / 2 }, placement: "above" },
+      { key: "p1", objectId: "e1", at: { x: 4, y: 0.6 }, placement: "right" },
+    ],
+  }}
+/>
+
 ### Zwei Herzkarten nacheinander
 
 Beim Ziehen zweier Herzkarten verändert sich auch die **Anzahl der günstigen Karten**:
@@ -66,6 +131,17 @@ Beim Ziehen zweier Herzkarten verändert sich auch die **Anzahl der günstigen K
 Die Wahrscheinlichkeit, bei beiden Ziehungen ein Herz zu ziehen, beträgt daher:
 
 <BlockMath math="\begin{aligned} P(A \cap B) &amp;= \frac{13}{52} \times \frac{12}{51} \\ &amp;= \frac{156}{2652} \\ &amp;= \frac{1}{17} \end{aligned}" />
+
+Vergleich die Chance auf ein Herz beim zweiten Zug. Mit Zurücklegen bleibt sie <InlineMath math="\frac{13}{52} = 0{,}25" />. Ohne Zurücklegen sind nach einem ersten Herz nur noch <InlineMath math="12" /> Herzen unter <InlineMath math="51" /> Karten, sie sinkt also auf <InlineMath math="\frac{12}{51} \approx 0{,}235" />. Der erste Zug hat die Ergebnismenge verändert.
+
+<BarChart
+  title={<>Zweites Herz mit und ohne Zurücklegen</>}
+  description={<>Die Wahrscheinlichkeit eines Herzens beim zweiten Zug nach einem ersten Herz, mit und ohne Zurücklegen.</>}
+  yAxisLabel="Wahrscheinlichkeit"
+  data={[["mit Zurücklegen", 13 / 52], ["ohne Zurücklegen", 12 / 51]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Anwendung in der Managementauswahl
 
 Angenommen, ein Unternehmen hat die folgenden Daten über seine Führungskräfte. Die Tabelle unterscheidet Geschlecht und Führungsebene, sodass wir eine Berechnung auf die passende Gruppe beschränken können.
@@ -179,4 +255,4 @@ Das Kartenspiel enthält <InlineMath math="52 \text{ Karten}" />: <InlineMath ma
 <BlockMath math="\begin{aligned} P(A \cap K \cap Q) &amp;= \frac{4}{52} \times \frac{4}{51} \times \frac{4}{50} \\ &amp;= \frac{1}{13} \times \frac{4}{51} \times \frac{2}{25} \\ &amp;= \frac{8}{16575} \end{aligned}" />
 </MathContainer>
 
-Bei jedem Ziehen **sinkt die Gesamtzahl der Karten** (<InlineMath math="52" />→<InlineMath math="51" />→<InlineMath math="50" />). Vom jeweils als Nächstes gesuchten Rang sind noch alle <InlineMath math="4" /> Karten vorhanden: Ein gezogenes Ass entfernt keinen König, und ein gezogener König entfernt keine Dame.
+Bei jedem Ziehen **sinkt die Gesamtzahl der Karten** (<InlineMath math="52 \rightarrow 51 \rightarrow 50" />). Vom jeweils als Nächstes gesuchten Rang sind noch alle <InlineMath math="4" /> Karten vorhanden: Ein gezogenes Ass entfernt keinen König, und ein gezogener König entfernt keine Dame.

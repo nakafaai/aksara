@@ -4,7 +4,7 @@ export const metadata = {
     "Remove radicals from denominators by multiplying by one, using either a matching radical factor or a conjugate, with complete worked solutions.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-04",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Exponents and Logarithms",
 };
 
@@ -29,6 +29,30 @@ For <InlineMath math="b>0" />, multiply by the factor <InlineMath math="\frac{\s
 
 The matching radical factor is **a form of one**. It is not called a conjugate because it has only one term.
 
+Rationalizing <InlineMath math="\tfrac{1}{\sqrt 2} = \tfrac{\sqrt 2}{2}" /> changes the form, never the length. The segment from a corner of the unit square to its center is half the diagonal, <InlineMath math="\tfrac{\sqrt 2}{2}" />, and that same segment also measures <InlineMath math="\tfrac{1}{\sqrt 2}" />.
+
+<MathVisual
+  title={<>One over root 2 equals root 2 over 2</>}
+  description={<>The unit square with the segment from a corner to the center, of length <InlineMath math="\tfrac{\sqrt 2}{2} = \tfrac{1}{\sqrt 2}" />.</>}
+  labels={{
+    half: <InlineMath math="\tfrac{\sqrt 2}{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.3 }, y: { min: -0.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "rest", kind: "segment", from: { x: 0.5, y: 0.5 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "half", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0.5, y: 0.5 }, appearance: "primary" },
+      { id: "center", kind: "point", at: { x: 0.5, y: 0.5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "half", objectId: "half", at: { x: 0.25, y: 0.25 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 ### A Sum or Difference of Two Radicals
 
 Assume <InlineMath math="a,b\geq0" /> and <InlineMath math="a\neq b" />. Multiply by the **conjugate of the denominator**:
@@ -45,6 +69,34 @@ For example:
   <BlockMath math="\begin{aligned} \frac2{\sqrt5-\sqrt2} &amp;=\frac{2(\sqrt5+\sqrt2)}{5-2} \\ &amp;=\frac{2(\sqrt5+\sqrt2)}3 \end{aligned}" />
 </MathContainer>
 
+The conjugate works because of an area. A rectangle with sides <InlineMath math="\sqrt 3 + \sqrt 2" /> and <InlineMath math="\sqrt 3 - \sqrt 2" /> has area <InlineMath math="(\sqrt 3)^2 - (\sqrt 2)^2 = 3 - 2 = 1" />, exactly the unit square drawn beside it. Multiplying by the conjugate turns a sum of radicals into a whole number.
+
+<MathVisual
+  title={<>A long thin rectangle of area 1</>}
+  description={<>A rectangle with sides <InlineMath math="\sqrt 3 + \sqrt 2" /> and <InlineMath math="\sqrt 3 - \sqrt 2" /> has area 1, the same as the unit square.</>}
+  labels={{
+    long: <InlineMath math="\sqrt 3 + \sqrt 2" />,
+    short: <InlineMath math="\sqrt 3 - \sqrt 2" />,
+    unit: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 3.5 }, y: { min: -1.6, max: 0.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rect", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: Math.sqrt(3) + Math.sqrt(2), y: 0 }, { x: Math.sqrt(3) + Math.sqrt(2), y: Math.sqrt(3) - Math.sqrt(2) }, { x: 0, y: Math.sqrt(3) - Math.sqrt(2) }], appearance: "primary" },
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: -1.4 }, { x: 1, y: -1.4 }, { x: 1, y: -0.4 }, { x: 0, y: -0.4 }], appearance: "secondary" },
+      { id: "long", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.sqrt(3) + Math.sqrt(2), y: 0 }, appearance: "primary" },
+      { id: "short", kind: "segment", from: { x: Math.sqrt(3) + Math.sqrt(2), y: 0 }, to: { x: Math.sqrt(3) + Math.sqrt(2), y: Math.sqrt(3) - Math.sqrt(2) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "long", objectId: "long", at: { x: (Math.sqrt(3) + Math.sqrt(2)) / 2, y: 0 }, placement: "below" },
+      { key: "short", objectId: "short", at: { x: Math.sqrt(3) + Math.sqrt(2), y: (Math.sqrt(3) - Math.sqrt(2)) / 2 }, placement: "right" },
+      { key: "unit", objectId: "unit", at: { x: 0.5, y: -0.9 }, placement: "center" },
+    ],
+  }}
+/>
+
 ### A Rational Term and a Radical Term
 
 Assume <InlineMath math="b\geq0" /> and <InlineMath math="a^2\neq b" />. The conjugate again creates a **difference of squares**:
@@ -60,6 +112,36 @@ For example:
   <BlockMath math="\frac6{4+\sqrt3}=\frac{6(4-\sqrt3)}{16-3}=\frac{6(4-\sqrt3)}{13}" />
   <BlockMath math="\begin{aligned} \frac3{2-\sqrt5} &amp;=\frac{3(2+\sqrt5)}{4-5} \\ &amp;=-3(2+\sqrt5) \end{aligned}" />
 </MathContainer>
+
+The conjugate turns <InlineMath math="(4 + \sqrt3)(4 - \sqrt3)" /> into <InlineMath math="4^2 - (\sqrt3)^2" />. As areas, that is a <InlineMath math="4" /> by <InlineMath math="4" /> square with a <InlineMath math="\sqrt3" /> by <InlineMath math="\sqrt3" /> square cut from its corner: <InlineMath math="16 - 3 = 13" /> square units remain, the denominator of <InlineMath math="\frac{6(4-\sqrt3)}{13}" />.
+
+<MathVisual
+  title={<>A square of side 4 minus a square of side <InlineMath math="\sqrt3" /></>}
+  description={<>The L-shaped region left when a square of area 3 is cut from a square of area 16, with area 13.</>}
+  labels={{
+    rest: <InlineMath math="16 - 3 = 13" />,
+    cut: <InlineMath math="3" />,
+    side: <InlineMath math="4" />,
+    "cut-side": <InlineMath math="\sqrt3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.7, max: 4.7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rest", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 - Math.sqrt(3) }, { x: 4 - Math.sqrt(3), y: 4 - Math.sqrt(3) }, { x: 4 - Math.sqrt(3), y: 4 }, { x: 0, y: 4 }], appearance: "primary" },
+      { id: "cut", kind: "polygon", vertices: [{ x: 4 - Math.sqrt(3), y: 4 - Math.sqrt(3) }, { x: 4, y: 4 - Math.sqrt(3) }, { x: 4, y: 4 }, { x: 4 - Math.sqrt(3), y: 4 }], appearance: "warning" },
+      { id: "side", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "cut-side", kind: "segment", from: { x: 4 - Math.sqrt(3), y: 4 }, to: { x: 4, y: 4 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "rest", objectId: "rest", at: { x: 1.5, y: 1.5 }, placement: "center" },
+      { key: "cut", objectId: "cut", at: { x: 4 - Math.sqrt(3) / 2, y: 4 - Math.sqrt(3) / 2 }, placement: "center" },
+      { key: "side", objectId: "side", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "cut-side", objectId: "cut-side", at: { x: 4 - Math.sqrt(3) / 2, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
 
 ## Simplifying Radical and Exponent Expressions
 

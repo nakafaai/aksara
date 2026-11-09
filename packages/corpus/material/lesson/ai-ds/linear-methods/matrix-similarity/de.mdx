@@ -64,6 +64,32 @@ In der Basis <InlineMath math="v_1, \ldots, v_n" /> wird die lineare Transformat
 
 Somit beschreiben ähnliche Matrizen ein und dieselbe lineare Transformation bezüglich verschiedener Basen von <InlineMath math="\mathbb{K}^n" />.
 
+Mit <InlineMath math="A=\operatorname{diag}(2,3)" /> und den Spalten <InlineMath math="s_1=(1,0)" />, <InlineMath math="s_2=(1,1)" /> bekommst du <InlineMath math="As_1=(2,0)=2s_1" /> und <InlineMath math="As_2=(2,3)=-s_1+3s_2" />. Die Koordinaten dieser beiden Bilder in der Basis <InlineMath math="s_1,s_2" /> sind die Spalten von <InlineMath math="B=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" />.
+
+<MathVisual
+  title={<>Die Spalten von <InlineMath math="B" /> aus den Bildern von <InlineMath math="s_1" /> und <InlineMath math="s_2" /> ablesen</>}
+  description={<>Das graue Parallelogramm ist die Basiszelle von <InlineMath math="s_1,s_2" />. <InlineMath math="A" /> schickt sie auf das violette Parallelogramm mit der türkisen Seite <InlineMath math="As_1=2s_1" /> und der magentafarbenen Seite <InlineMath math="As_2=-s_1+3s_2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cell", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 1 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 4, y: 3 }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "second", objectId: "second", at: { x: 2, y: 3 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="As_1=2s_1" />,
+    "second": <InlineMath math="As_2=-s_1+3s_2" />,
+  }}
+/>
+
 ## Durchgerechnetes Basiswechselbeispiel
 
 Es seien
@@ -92,6 +118,48 @@ Obwohl die Einträge verschieden sind, haben beide Matrizen das charakteristisch
 Die Rückumrechnung ergibt **denselben Ausgabevektor**:
 
 <BlockMath math="S\begin{pmatrix}1\\3\end{pmatrix}=\begin{pmatrix}1+3\\3\end{pmatrix}=\begin{pmatrix}4\\3\end{pmatrix}=Ax" />
+
+Das graue Gitter unten ist aus den Spalten <InlineMath math="s_1=(1,0)^T" /> und <InlineMath math="s_2=(1,1)^T" /> gebaut, also hat jeder Kreuzungspunkt ganzzahlige Koordinaten in der neuen Basis. Die orange Strecke <InlineMath math="x" /> endet bei <InlineMath math="1\cdot s_1+1\cdot s_2" />, passend zu <InlineMath math="\xi=(1,1)^T" />. Die magentafarbene Strecke <InlineMath math="Ax=(4,3)^T" /> erreichst du über den gelben Weg <InlineMath math="1\cdot s_1+3\cdot s_2" />, passend zu <InlineMath math="B\xi=(1,3)^T" />. Die Strecken bleiben dieselben, nur ihre Koordinaten liest du anders.
+
+<MathVisual
+  title={<>Dieselben Vektoren in der Basis <InlineMath math="s_1,s_2" /> gelesen</>}
+  description={<>Das graue Gitter folgt den Spalten von <InlineMath math="S" />. Die Strecken zeigen <InlineMath math="x=(2,1)^T" /> und <InlineMath math="Ax=(4,3)^T" />, und der gelbe Weg <InlineMath math="1\cdot s_1+3\cdot s_2" /> erreicht <InlineMath math="Ax" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 7.7 }, y: { min: -0.5, max: 3.7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "grid-u-a", kind: "segment", from: { x: -1, y: 0 }, to: { x: -1 + 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "grid-u-b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0 + 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "grid-u-c", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1 + 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "grid-u-d", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2 + 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "grid-u-e", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3 + 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "grid-u-f", kind: "segment", from: { x: 4, y: 0 }, to: { x: 4 + 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "grid-t-a", kind: "segment", from: { x: 0, y: 1 }, to: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "grid-t-b", kind: "segment", from: { x: 1, y: 2 }, to: { x: 6, y: 2 }, appearance: "reference" },
+      { id: "grid-t-c", kind: "segment", from: { x: 2, y: 3 }, to: { x: 7, y: 3 }, appearance: "reference" },
+      { id: "route", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 4, y: 3 }], appearance: "highlight" },
+      { id: "s1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "s2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "ax", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "route", objectId: "route", at: { x: 5 / 2, y: 3 / 2 }, placement: "below-right" },
+      { key: "s1", objectId: "s1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "s2", objectId: "s2", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "x", objectId: "x", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "ax", objectId: "ax", at: { x: 4, y: 3 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "route": <InlineMath math="1\cdot s_1+3\cdot s_2" />,
+    "s1": <InlineMath math="s_1" />,
+    "s2": <InlineMath math="s_2" />,
+    "x": <InlineMath math="x" />,
+    "ax": <InlineMath math="Ax" />,
+  }}
+/>
 
 ## Invariante Eigenschaften ähnlicher Matrizen
 
@@ -133,3 +201,27 @@ Wenn <InlineMath math="v \in \mathbb{K}^n" /> ein Eigenvektor von <InlineMath ma
 </MathContainer>
 
 Matrixähnlichkeit erhält das Spektrum. Bei einem Basiswechsel ändern sich die Eigenvektorkoordinaten von <InlineMath math="v" /> zu <InlineMath math="S^{-1}v" />, aber beide Koordinatenvektoren stellen dieselbe geometrische Richtung dar.
+
+<InlineMath math="A=\operatorname{diag}(2,3)" /> und <InlineMath math="B=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" /> haben dasselbe charakteristische Polynom <InlineMath math="t^2-5t+6=(t-2)(t-3)" />. Diese eine Kurve trägt alle Invarianten zugleich: Ihre Nullstellen sind die Eigenwerte, der Koeffizient <InlineMath math="-5" /> ist die negative Spur, und das konstante Glied <InlineMath math="6" /> ist die Determinante.
+
+<MathVisual
+  title={<>Ein Polynom für <InlineMath math="A" /> und <InlineMath math="B" /></>}
+  description={<>Die violette Parabel <InlineMath math="t^2-5t+6" /> schneidet die Achse in den magentafarbenen Punkten <InlineMath math="2" /> und <InlineMath math="3" />. Der gelbe Punkt <InlineMath math="6" /> ist <InlineMath math="\det A=\det B" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "polynomial", kind: "quadratic", coefficients: { a: 1, b: -5, c: 6 }, domain: { min: 0, max: 5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "small", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "large", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: 6 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: 6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "intercept": <InlineMath math="\det A=\det B=6" />,
+  }}
+/>

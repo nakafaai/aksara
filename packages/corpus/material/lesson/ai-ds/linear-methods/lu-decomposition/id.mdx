@@ -35,6 +35,30 @@ Kemudian terapkan pembaruan baris berikut.
 
 Pengali disimpan di bawah diagonal <InlineMath math="L" />. Jika dua baris ditukar setelah beberapa langkah eliminasi, **kolom <InlineMath math="L" /> yang sudah terisi** juga harus ditukar. Jika tidak, kesamaan <InlineMath math="PA=LU" /> tidak lagi terpenuhi.
 
+Ambil sistem <InlineMath math="2x+y=3" /> dan <InlineMath math="4x+5y=9" />. Langkah <InlineMath math="R_2\leftarrow R_2-2R_1" /> menyimpan pengali <InlineMath math="\ell_{21}=2" /> di <InlineMath math="L" /> dan menyisakan <InlineMath math="3y=3" /> untuk <InlineMath math="U" />, jadi <InlineMath math="L=\begin{pmatrix}1&0\\2&1\end{pmatrix}" /> dan <InlineMath math="U=\begin{pmatrix}2&1\\0&3\end{pmatrix}" />. Garis kedua berputar menjadi garis mendatar, tetapi tetap melewati solusi yang sama.
+
+<MathVisual
+  title={<>Eliminasi memutar garis kedua di sekitar solusi</>}
+  description={<>Garis ungu <InlineMath math="2x+y=3" /> dan garis hijau toska <InlineMath math="4x+5y=9" /> bertemu di titik magenta <InlineMath math="(1,1)" />. Setelah eliminasi, baris kedua menjadi garis oranye <InlineMath math="3y=3" />, yang melewati titik yang sama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 0, y: 3 }, { x: 3 / 2, y: 0 }], appearance: "secondary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 1 }, { x: 9 / 4, y: 0 }], appearance: "construction" },
+      { id: "eliminated", kind: "line", through: [{ x: 0, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "solution", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "solution", objectId: "solution", at: { x: 1, y: 1 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "solution": <InlineMath math="(1,1)" />,
+  }}
+/>
+
 ## Memfaktorkan Matriks dengan Pivoting Parsial
 
 Kita akan mencatat **kedua pertukaran baris** agar permutasi akhir sesuai dengan faktor.
@@ -103,6 +127,36 @@ Untuk contoh tersebut,
 
 Substitusi langsung mengonfirmasi <InlineMath math="Ax=b" />.
 
+Putar ketiga bidang dari sistem segitiga atas <InlineMath math="Ux=y" /> di bawah. Persamaan terakhir hanya memuat <InlineMath math="x_3" />, jadi bidang ungunya datar di ketinggian <InlineMath math="x_3=3" />. Persamaan kedua tidak memuat <InlineMath math="x_1" />, sehingga bidang hijau toska sejajar sumbu <InlineMath math="x_1" />. Substitusi mundur mengikuti urutan itu: tinggi dulu, lalu <InlineMath math="x_2=2" />, lalu <InlineMath math="x_1=1" /> dari bidang kuning. Ketiganya bertemu tepat di titik magenta <InlineMath math="x=(1,2,3)^T" />.
+
+<MathVisual
+  title={<>Tiga bidang dari <InlineMath math="Ux=y" /> bertemu di <InlineMath math="x=(1,2,3)^T" /></>}
+  description={<>Bidang ungu <InlineMath math="x_3=3" />, bidang hijau toska <InlineMath math="2x_2+x_3=7" />, dan bidang kuning <InlineMath math="2x_1+x_2+x_3=7" />. Sumbu <InlineMath math="x_3" /> mengarah ke atas.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: 0.5, max: 5.5 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "isometric", target: { x: 1, y: 3, z: 2 } },
+    objects: [
+      { id: "flat", kind: "polygon", vertices: [{ x: 1 + (-1.5) * (1) + (-1.5) * (0), y: 3 + (-1.5) * (0) + (-1.5) * (0), z: 2 + (-1.5) * (0) + (-1.5) * (1) }, { x: 1 + (1.5) * (1) + (-1.5) * (0), y: 3 + (1.5) * (0) + (-1.5) * (0), z: 2 + (1.5) * (0) + (-1.5) * (1) }, { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (0), z: 2 + (1.5) * (0) + (1.5) * (1) }, { x: 1 + (-1.5) * (1) + (1.5) * (0), y: 3 + (-1.5) * (0) + (1.5) * (0), z: 2 + (-1.5) * (0) + (1.5) * (1) }], appearance: "secondary" },
+      { id: "middle", kind: "polygon", vertices: [{ x: 1 + (-1.5) * (1) + (-1.5) * (0), y: 3 + (-1.5) * (0) + (-1.5) * (-2 / Math.sqrt(5)), z: 2 + (-1.5) * (0) + (-1.5) * (1 / Math.sqrt(5)) }, { x: 1 + (1.5) * (1) + (-1.5) * (0), y: 3 + (1.5) * (0) + (-1.5) * (-2 / Math.sqrt(5)), z: 2 + (1.5) * (0) + (-1.5) * (1 / Math.sqrt(5)) }, { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (-2 / Math.sqrt(5)), z: 2 + (1.5) * (0) + (1.5) * (1 / Math.sqrt(5)) }, { x: 1 + (-1.5) * (1) + (1.5) * (0), y: 3 + (-1.5) * (0) + (1.5) * (-2 / Math.sqrt(5)), z: 2 + (-1.5) * (0) + (1.5) * (1 / Math.sqrt(5)) }], appearance: "construction" },
+      { id: "steep", kind: "polygon", vertices: [{ x: 1 + (-1.5) * (1 / Math.sqrt(5)) + (-1.5) * (2 / Math.sqrt(30)), y: 3 + (-1.5) * (0) + (-1.5) * (-5 / Math.sqrt(30)), z: 2 + (-1.5) * (-2 / Math.sqrt(5)) + (-1.5) * (1 / Math.sqrt(30)) }, { x: 1 + (1.5) * (1 / Math.sqrt(5)) + (-1.5) * (2 / Math.sqrt(30)), y: 3 + (1.5) * (0) + (-1.5) * (-5 / Math.sqrt(30)), z: 2 + (1.5) * (-2 / Math.sqrt(5)) + (-1.5) * (1 / Math.sqrt(30)) }, { x: 1 + (1.5) * (1 / Math.sqrt(5)) + (1.5) * (2 / Math.sqrt(30)), y: 3 + (1.5) * (0) + (1.5) * (-5 / Math.sqrt(30)), z: 2 + (1.5) * (-2 / Math.sqrt(5)) + (1.5) * (1 / Math.sqrt(30)) }, { x: 1 + (-1.5) * (1 / Math.sqrt(5)) + (1.5) * (2 / Math.sqrt(30)), y: 3 + (-1.5) * (0) + (1.5) * (-5 / Math.sqrt(30)), z: 2 + (-1.5) * (-2 / Math.sqrt(5)) + (1.5) * (1 / Math.sqrt(30)) }], appearance: "highlight" },
+      { id: "solution", kind: "point", at: { x: 1, y: 3, z: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "flat", objectId: "flat", at: { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (0), z: 2 + (1.5) * (0) + (1.5) * (1) }, placement: "right" },
+      { key: "middle", objectId: "middle", at: { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (-2 / Math.sqrt(5)), z: 2 + (1.5) * (0) + (1.5) * (1 / Math.sqrt(5)) }, placement: "right" },
+      { key: "steep", objectId: "steep", at: { x: 1 + (1.5) * (1 / Math.sqrt(5)) + (1.5) * (2 / Math.sqrt(30)), y: 3 + (1.5) * (0) + (1.5) * (-5 / Math.sqrt(30)), z: 2 + (1.5) * (-2 / Math.sqrt(5)) + (1.5) * (1 / Math.sqrt(30)) }, placement: "right" },
+      { key: "solution", objectId: "solution", at: { x: 1, y: 3, z: 2 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "flat": <InlineMath math="x_3=3" />,
+    "middle": <InlineMath math="2x_2+x_3=7" />,
+    "steep": <InlineMath math="2x_1+x_2+x_3=7" />,
+    "solution": <InlineMath math="x=(1,2,3)^T" />,
+  }}
+/>
+
 ## Biaya dan penggunaan ulang
 
 Faktorisasi <InlineMath math="\mathrm{LU}" /> padat membutuhkan sekitar
@@ -114,6 +168,41 @@ Jumlah tersebut menyatakan operasi titik mengambang ketika perkalian dan pengura
 Determinan juga dapat diperoleh dari faktor:
 
 <BlockMath math="\det(A)=\det(P)\prod_{i=1}^{n}u_{ii}" />
+
+Untuk <InlineMath math="n=100" />, faktorisasi butuh sekitar <InlineMath math="\tfrac23n^3\approx666667" /> operasi, sedangkan dua substitusi untuk satu ruas kanan butuh sekitar <InlineMath math="2n^2=20000" />. Menyimpan faktor <InlineMath math="\mathrm{LU}" /> membuat setiap ruas kanan tambahan hanya menambah biaya substitusi.
+
+<ScatterDiagram
+  title={<>Biaya untuk <InlineMath math="m" /> ruas kanan dengan <InlineMath math="n=100" /></>}
+  description={<>Titik pertama adalah <InlineMath math="\tfrac23n^3+2n^2m" /> saat faktor dipakai ulang, titik kedua adalah <InlineMath math="m\bigl(\tfrac23n^3+2n^2\bigr)" /> saat faktorisasi diulang, untuk <InlineMath math="m=1" /> sampai <InlineMath math="6" />.</>}
+  xAxisLabel="Banyak ruas kanan"
+  yAxisLabel="Operasi titik mengambang"
+  datasets={[
+    {
+      name: "Faktorkan sekali",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 2 / 3 * 100 ** 3 + 1 * 2 * 100 ** 2 },
+        { x: 2, y: 2 / 3 * 100 ** 3 + 2 * 2 * 100 ** 2 },
+        { x: 3, y: 2 / 3 * 100 ** 3 + 3 * 2 * 100 ** 2 },
+        { x: 4, y: 2 / 3 * 100 ** 3 + 4 * 2 * 100 ** 2 },
+        { x: 5, y: 2 / 3 * 100 ** 3 + 5 * 2 * 100 ** 2 },
+        { x: 6, y: 2 / 3 * 100 ** 3 + 6 * 2 * 100 ** 2 },
+      ],
+    },
+    {
+      name: "Faktorkan setiap kali",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 1 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 2, y: 2 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 3, y: 3 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 4, y: 4 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 5, y: 5 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 6, y: 6 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+      ],
+    },
+  ]}
+/>
 
 ## Implementasi NumPy dengan Pemeriksaan Pivot
 

@@ -42,11 +42,68 @@ Only part of the chemical energy at one trophic level becomes **new biomass** av
 
 An energy pyramid therefore narrows toward the top. Its width represents available energy, so it does not measure the importance or number of organisms. A pyramid of numbers can have a different shape.
 
+The scene below builds this pyramid from numbers. Suppose the grass layer holds <InlineMath math="10\,000\ \text{kJ}" /> and, as an illustration, each level passes on one tenth of its energy. The top area of each layer is proportional to its energy, so every level up is <InlineMath math="\sqrt{10}" /> times narrower on each side. Rotate it and look down from above: the bird layer covers only one hundredth of the grass layer, and the missing energy left the system as heat along the way.
+
+<MathVisual
+  title={<>An Energy Pyramid with One Tenth per Level</>}
+  description={<>Each layer's top area is proportional to the energy available at that trophic level, starting from an illustrative 10 000 kJ in the grass.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: 0, max: 2.5 }, z: { min: -4, max: 4 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 9 }, target: { x: 0, y: 0.5, z: 0 } },
+    objects: [
+      { id: "grass", kind: "cuboid", appearance: "construction", center: { x: 0, y: 0.25, z: 0 }, size: { length: 6 * Math.sqrt(1), height: 0.5, width: 6 * Math.sqrt(1) } },
+      { id: "grasshopper", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 0.75, z: 0 }, size: { length: 6 * Math.sqrt(1 / 10), height: 0.5, width: 6 * Math.sqrt(1 / 10) } },
+      { id: "bird", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1.25, z: 0 }, size: { length: 6 * Math.sqrt(1 / 100), height: 0.5, width: 6 * Math.sqrt(1 / 100) } },
+    ],
+    labels: [
+      { key: "grass", objectId: "grass", at: { x: 3.25, y: 0.25, z: 0 }, placement: "right" },
+      { key: "grasshopper", objectId: "grasshopper", at: { x: 1.25, y: 0.75, z: 0 }, placement: "right" },
+      { key: "bird", objectId: "bird", at: { x: 0, y: 1.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    grass: <InlineMath math="\text{Grass: }10\,000\ \text{kJ}" />,
+    grasshopper: <InlineMath math="\text{Grasshopper: }1\,000\ \text{kJ}" />,
+    bird: <InlineMath math="\text{Bird: }100\ \text{kJ}" />,
+  }}
+/>
+
 | What to follow | Direction | Example |
 | --- | --- | --- |
 | Energy | Flows from producers to consumers and eventually leaves as heat | Grass supplies energy to a grasshopper, then part of that energy reaches a bird |
 | Matter | Cycles among organisms, air, water, and soil through biological, physical, and chemical processes | Fallen leaves are broken down, and mineral nutrients can become available to plants again |
 | Niche | Describes the conditions an organism tolerates, the resources it uses, and its interactions with other organisms | Pollinators, predators, and decomposers may share a habitat but occupy different niches |
+
+Only about one tenth of the energy at one level reaches the next, so <InlineMath math="E_{n+1}=\tfrac{1}{10}E_n" />. Each grid step down means one tenth as much energy, and the short pink arrows mark the rest leaving as heat. Zoom in on the points and read how much each level receives.
+
+<MathVisual
+  title={<>One Tenth Moves Up Each Level</>}
+  description={<>Energy at three levels of one food chain, starting from 10,000 kJ in the grass. Vertical: one grid step down is one tenth as much energy.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 1, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "energy", kind: "polyline", appearance: "primary", vertices: [{ x: 1, y: 4 }, { x: 2, y: 3 }, { x: 3, y: 2 }] },
+      { id: "level-0", kind: "point", appearance: "construction", at: { x: 1, y: 4 } },
+      { id: "level-1", kind: "point", appearance: "secondary", at: { x: 2, y: 3 } },
+      { id: "level-2", kind: "point", appearance: "answer", at: { x: 3, y: 2 } },
+      { id: "heat-0", kind: "segment", appearance: "warning", from: { x: 1, y: 4 }, to: { x: 1.5, y: 3.5 } },
+      { id: "heat-1", kind: "segment", appearance: "warning", from: { x: 2, y: 3 }, to: { x: 2.5, y: 2.5 } },
+    ],
+    labels: [
+      { key: "grass", objectId: "level-0", at: { x: 1, y: 4 }, placement: "right" },
+      { key: "hopper", objectId: "level-1", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "bird", objectId: "level-2", at: { x: 3, y: 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    grass: <InlineMath math="\text{grass: } 10\,000\ \mathrm{kJ}" />,
+    hopper: <InlineMath math="\text{grasshopper: } 1\,000\ \mathrm{kJ}" />,
+    bird: <InlineMath math="\text{bird: } 100\ \mathrm{kJ}" />,
+  }}
+/>
 
 ## Matter Cycles Through Decomposers
 
@@ -57,6 +114,36 @@ Matter behaves differently from energy. The elements that build bodies move amon
 <Highlight>Energy flows, but matter cycles</Highlight>. When leaves fall, animals die, or food remains are left behind, decomposers such as bacteria and fungi break them down. The products return as nutrients in soil or water.
 
 Without decomposers, remains would accumulate and elements needed by producers would stay locked in organic material. Decomposers convert those remains into forms of matter that other organisms can reuse.
+
+Decomposers, like every other living thing, release energy by respiration: <InlineMath math="\mathrm{C_6H_{12}O_6}+6\mathrm{O_2}\rightarrow6\mathrm{CO_2}+6\mathrm{H_2O}" />. The atoms are only rearranged, so the carbon that returns to the air in carbon dioxide is the same carbon that was in the food. Rotate the bars: each element is just as tall before and after.
+
+<MathVisual
+  title={<>Respiration Keeps Every Atom</>}
+  description={<>Carbon (gray), hydrogen (violet) and oxygen (orange) atoms in the reactants (back) and the products (front). One grid step up is 4 atoms.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 7, z: 11 }, target: { x: 2.5, y: 2, z: 0 } },
+    objects: [
+      { id: "carbon-left", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.75, z: -0.75 }, size: { length: 1.2, height: 1.5, width: 1.2 } },
+      { id: "carbon-right", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.75, z: 0.75 }, size: { length: 1.2, height: 1.5, width: 1.2 } },
+      { id: "hydrogen-left", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.5, z: -0.75 }, size: { length: 1.2, height: 3, width: 1.2 } },
+      { id: "hydrogen-right", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 1.5, z: 0.75 }, size: { length: 1.2, height: 3, width: 1.2 } },
+      { id: "oxygen-left", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.25, z: -0.75 }, size: { length: 1.2, height: 4.5, width: 1.2 } },
+      { id: "oxygen-right", kind: "cuboid", appearance: "primary", center: { x: 5, y: 2.25, z: 0.75 }, size: { length: 1.2, height: 4.5, width: 1.2 } },
+    ],
+    labels: [
+      { key: "carbon", objectId: "carbon-right", at: { x: 0, y: 1.8, z: 0.75 }, placement: "above" },
+      { key: "hydrogen", objectId: "hydrogen-right", at: { x: 2.5, y: 3.3, z: 0.75 }, placement: "above" },
+      { key: "oxygen", objectId: "oxygen-right", at: { x: 5, y: 4.8, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    carbon: <InlineMath math="\mathrm{C}:\ 6=6" />,
+    hydrogen: <InlineMath math="\mathrm{H}:\ 12=12" />,
+    oxygen: <InlineMath math="\mathrm{O}:\ 6+12=12+6" />,
+  }}
+/>
 
 ## A Niche Describes How an Organism Uses Its Environment
 

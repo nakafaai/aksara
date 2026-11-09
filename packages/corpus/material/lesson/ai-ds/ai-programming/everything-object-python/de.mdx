@@ -386,6 +386,21 @@ print(square(5))                    # 25`
   }]}
 />
 
+Weil eine Funktion ein Objekt ist, kannst du sie wie jeden Wert an eine andere Funktion übergeben. `list(map(square, [1, 2, 3, 4]))` bekommt das Funktionsobjekt `square` ohne Klammern, ruft es für jedes Element auf und liefert `[1, 4, 9, 16]`.
+
+<BarChart
+  title={<><code>map(square, [1, 2, 3, 4])</code></>}
+  description={<>Jeder Balken ist <code>square(n)</code> für die darunter stehende Eingabe <InlineMath math="n" />, berechnet von <code>map</code>, das die Funktion als Argument bekommt.</>}
+  yAxisLabel="Ergebnis von square"
+  data={[
+    { name: "1", value: 1 ** 2 },
+    { name: "2", value: 2 ** 2 },
+    { name: "3", value: 3 ** 2 },
+    { name: "4", value: 4 ** 2 },
+  ]}
+  chartConfig={{ value: { label: "Ergebnis von square", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Klassen und Instanzen als Objekte
 
 Eine Klasse definiert, wie ihre Instanzen entstehen und wie gemeinsames Verhalten aufgelöst wird. Die Klasse selbst ist ebenfalls ein Objekt, während **jede Instanz ihren eigenen Instanzzustand** trägt.
@@ -460,6 +475,31 @@ print(Student.university)           # Universitas Indonesia`
   }]}
 />
 
+Eine Klasse `Point` kann viele Instanzen erzeugen, und jede Instanz behält ihre eigenen Attribute. `p1 = Point(1, 2)` und `p2 = Point(4, 1)` haben verschiedene `x` und `y`, teilen sich aber dieselben Methoden, etwa `p1.distance(p2)`, das <InlineMath math="\sqrt{3^2+1^2}=\sqrt{10}" /> liefert.
+
+<MathVisual
+  title={<>Zwei Instanzen einer Klasse <code>Point</code></>}
+  description={<>Der violette Punkt ist <code>p1</code> und der türkise Punkt <code>p2</code>, jeweils an den Koordinaten seiner eigenen Attribute. Die graue Strecke ist der Abstand <InlineMath math="\sqrt{10}" />, den die Methode <code>distance</code> berechnet.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "distance", kind: "segment", from: { x: 1, y: 2 }, to: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "first", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "second", kind: "point", at: { x: 4, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: 4, y: 1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "first": <code>p1 = Point(1, 2)</code>,
+    "second": <code>p2 = Point(4, 1)</code>,
+  }}
+/>
+
 ## Spezielle Methoden
 
 Spezielle Methoden beginnen und enden mit **doppelten Unterstrichen**. Python ruft sie über Syntax und Built-ins wie `+`, `abs()`, `repr()` und Wahrheitstests auf. Implementiere eine solche Methode nur, wenn ihre Bedeutung für die Domäne natürlich ist.
@@ -519,6 +559,33 @@ zero = Vector2D(0, 0)
 print(bool(first))                   # True
 print(bool(zero))                    # False`
   }]}
+/>
+
+Angenommen, eine Klasse `Vector` hat eine spezielle Methode `__add__`, die die Komponenten addiert. Wenn du `v + w` schreibst, ruft Python eigentlich `v.__add__(w)` auf. Dieses Bild zeigt das Ergebnis für `Vector(2, 1)` und `Vector(1, 2)`: Die Strecke `w` hängt an der Spitze von `v`, und die magentafarbene Strecke vom Anfang zum Ende ist das neue Objekt `Vector(3, 3)`. So bekommt der Operator `+` eine Bedeutung für deine eigenen Objekte.
+
+<MathVisual
+  title={<>Die spezielle Methode <code>__add__</code> hinter <code>v + w</code></>}
+  description={<>Die violette Strecke ist <code>v</code>, die türkise Strecke <code>w</code> an der Spitze von <code>v</code>, und die magentafarbene Strecke ist das Ergebnis <code>v + w</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "w", kind: "segment", from: { x: 2, y: 1 }, to: { x: 3, y: 3 }, appearance: "construction" },
+      { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "w", objectId: "w", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 3 / 2, y: 3 / 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "v": "v = Vector(2, 1)",
+    "w": "w = Vector(1, 2)",
+    "sum": "v + w = Vector(3, 3)",
+  }}
 />
 
 ## Objektorientierte Programmierpraxis

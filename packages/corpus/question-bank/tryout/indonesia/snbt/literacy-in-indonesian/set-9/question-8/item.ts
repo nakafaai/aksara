@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
+  },
+  stimulus: "national-exam",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Cadangan bertambah $$11$$ unit karena $$18$$ unit fotosintesis dikurangi $$7$$ unit respirasi, sedangkan serasah termasuk cadangan tumbuhan.",
-        },
-        {
           correct: true,
           label:
-            "Cadangan bertambah $$5$$ unit karena $$18$$ unit masuk, sedangkan $$7$$ unit respirasi dan $$6$$ unit serasah keluar.",
+            "ujian bertaruhan tinggi tidak lagi mengukur kemampuan dengan jujur",
         },
         {
           correct: false,
           label:
-            "Cadangan berkurang $$1$$ unit karena seluruh aliran pada tabel harus dijumlahkan tanpa membedakan asal dan tujuannya.",
+            "bimbingan belajar adalah cara terbaik menyiapkan siswa menghadapi ujian",
         },
         {
           correct: false,
           label:
-            "Cadangan bertambah $$8$$ unit karena $$18$$ unit fotosintesis dikurangi $$7$$ unit respirasi dan $$3$$ unit yang terbawa pasang.",
+            "nilai rapor lebih mudah dibandingkan daripada nilai ujian nasional",
         },
         {
           correct: false,
           label:
-            "Perubahan bersih tidak dapat dihitung karena arus penguraian tanah harus dimasukkan sebagai arus keluar tumbuhan.",
+            "pemerintah tidak memerlukan data tentang mutu pendidikan di daerah",
+        },
+        {
+          correct: false,
+          label:
+            "siswa pada masa lalu lebih bersungguh-sungguh daripada siswa sekarang",
         },
       ],
     },

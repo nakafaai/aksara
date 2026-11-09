@@ -18,51 +18,33 @@ Bilangan kompleks <InlineMath math="z = x + iy" /> digambarkan sebagai titik <In
 
 Untuk <InlineMath math="z = 3 + 4i" />, modulusnya <InlineMath math="\sqrt{9 + 16} = 5" />, dan argumennya <InlineMath math="\arctan\frac{4}{3} \approx 53{,}13^\circ" />. Grafik interaktif menggambar vektor itu bersama komponen <InlineMath math="x = 3" /> dan <InlineMath math="y = 4" />, yang membentuk segitiga siku-siku dengan sisi miring <InlineMath math="|z|" />.
 
-<LineEquation
-  title="Modulus sebagai Sisi Miring"
-  description={<>Vektor <InlineMath math="z = 3 + 4i" /> bersama komponen <InlineMath math="x = 3" /> dan <InlineMath math="y = 4" />. Modulus <InlineMath math="|z| = 5" /> adalah sisi miring segitiga siku-siku itu.</>}
-  cameraPosition={[1.5, 2, 8]}
-  cameraTarget={[1.5, 2, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#0284c7",
-      labels: [
-        { text: <InlineMath math="z=3+4i" />, at: 1, offset: [0.5, 0.5, 0] },
-        {
-          text: <InlineMath math="|z|" />,
-          at: 1,
-          offset: [-2, -1.5, 0],
-
-        },
-      ],
-      cone: { position: "end" },
-    },
-    // Garis bantu x dan y
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="x=3" />, at: 1, offset: [-1.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 3, y: 0, z: 0 },
-        { x: 3, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#059669",
-      labels: [{ text: <InlineMath math="y=4" />, at: 1, offset: [0.65, -2, 0] }],
-    },
-  ]}
+<MathVisual
+  title={<><InlineMath math="|z| = 5" /> adalah sisi miringnya</>}
+  description={<>Vektor <InlineMath math="z = 3 + 4i" /> dengan komponen <InlineMath math="x = 3" /> dan <InlineMath math="y = 4" />. Modulusnya <InlineMath math="|z| = 5" /> adalah sisi miring segitiga siku-siku itu, dan argumennya sekitar <InlineMath math="53{,}13^\circ" />.</>}
+  labels={{
+    z: <InlineMath math="|z| = 5" />,
+    x: <InlineMath math="x = 3" />,
+    y: <InlineMath math="y = 4" />,
+    theta: <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.4 }, y: { min: -0.7, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "highlight" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 4 / 5, startDegrees: 0, sweepDegrees: Math.atan2(4, 3) * 180 / Math.PI, appearance: "highlight" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 3, y: 4 }, { x: 277 / 100, y: 193 / 50 }, { x: 293 / 100, y: 187 / 50 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 3 / 2, y: 2 }, placement: "above-left" },
+      { key: "x", objectId: "x", at: { x: 3 / 2, y: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 0.8 * Math.cos(Math.atan2(4, 3) / 2), y: 0.8 * Math.sin(Math.atan2(4, 3) / 2) }, placement: "right" },
+    ],
+  }}
 />
 
 Titik asal punya modulus <InlineMath math="0" />, tetapi **argumen nol tidak terdefinisi**, karena vektor nol tidak punya arah.
@@ -96,8 +78,8 @@ Kalkulator memberi <InlineMath math="\arctan\frac{y}{x}" /> hanya di antara <Inl
 Grafik interaktif menunjukkan empat bilangan dengan modulus <InlineMath math="2" />, satu di setiap kuadran, bersama busur argumennya. Busur di kuadran III dan IV berputar searah jarum jam, karena argumennya negatif.
 
 <MathVisual
-  title="Argumen di empat kuadran"
-  description="Empat vektor dengan modulus 2. Busur di atas sumbu nyata berputar berlawanan arah jarum jam, dan busur di bawahnya searah jarum jam."
+  title={<>Argumen di empat kuadran</>}
+  description={<>Empat vektor dengan modulus 2. Busur di atas sumbu nyata berputar berlawanan arah jarum jam, dan busur di bawahnya searah jarum jam.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2.4, max: 2.4 }, y: { min: -2.2, max: 2.2 } },
@@ -136,6 +118,21 @@ Grafik interaktif menunjukkan empat bilangan dengan modulus <InlineMath math="2"
 />
 
 Titik pada sumbu tidak memerlukan pembagian <InlineMath math="\frac{y}{x}" />. Arahnya langsung terbaca: sumbu nyata positif <InlineMath math="0^\circ" />, sumbu imajiner positif <InlineMath math="90^\circ" />, sumbu nyata negatif <InlineMath math="180^\circ" />, dan sumbu imajiner negatif <InlineMath math="-90^\circ" />.
+
+<Mermaid
+  title={<>Memilih argumen dari kuadran</>}
+  description={<>Sudut acuan yang sama memberi argumen berbeda di setiap kuadran.</>}
+  chart={`flowchart TD
+  A["Hitung r dan sudut acuan lancip α"] --> B{"Tanda x dan y?"}
+  B -->|"x positif, y positif"| C["θ = α"]
+  B -->|"x negatif, y positif"| D["θ = 180° - α"]
+  B -->|"x negatif, y negatif"| E["θ = -180° + α"]
+  B -->|"x positif, y negatif"| F["θ = -α"]
+  C --> G["Periksa: r cos θ = x dan r sin θ = y"]
+  D --> G
+  E --> G
+  F --> G`}
+/>
 
 ## Contoh Menentukan Modulus dan Argumen
 
@@ -221,3 +218,34 @@ Periksa: <InlineMath math="\cos(-90^\circ) = 0" /> dan <InlineMath math="\sin(-9
 </MathContainer>
 
 Periksa: <InlineMath math="13\cos(-67{,}38^\circ) \approx 5{,}00" /> dan <InlineMath math="13\sin(-67{,}38^\circ) \approx -12{,}00" />, jadi **kuadran IV memberi argumen negatif**.
+
+Soal 4 pada bidang: <InlineMath math="5 - 12i" /> terletak di kuadran IV, 5 ke kanan dan 12 ke bawah. Modulusnya <InlineMath math="\sqrt{25 + 144} = 13" />, dan argumennya diukur searah jarum jam: <InlineMath math="\arg z \approx -67{,}38^\circ" />.
+
+<MathVisual
+  title={<>Modulus dan argumen <InlineMath math="5 - 12i" /></>}
+  description={<>Vektor ke <InlineMath math="5 - 12i" /> dengan komponen 5 dan <InlineMath math="-12" />, modulus 13, dan busur searah jarum jam untuk <InlineMath math="\arg z \approx -67{,}38^\circ" />.</>}
+  labels={{
+    z: <InlineMath math="|z| = 13" />,
+    x: <InlineMath math="5" />,
+    y: <InlineMath math="-12" />,
+    theta: <InlineMath math="\arg z" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6.4 }, y: { min: -13, max: 1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 5, y: 0 }, to: { x: 5, y: -12 }, appearance: "highlight" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 2, startDegrees: 0, sweepDegrees: -Math.atan2(12, 5) * 180 / Math.PI, appearance: "answer" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: -12 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 5, y: -12 }, { x: 649 / 130, y: -149 / 13 }, { x: 601 / 130, y: -151 / 13 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 5 / 2, y: -6 }, placement: "left" },
+      { key: "x", objectId: "x", at: { x: 5 / 2, y: 0 }, placement: "above" },
+      { key: "y", objectId: "y", at: { x: 5, y: -6 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 2 * Math.cos(Math.atan2(12, 5) / 2), y: -2 * Math.sin(Math.atan2(12, 5) / 2) }, placement: "right" },
+    ],
+  }}
+/>

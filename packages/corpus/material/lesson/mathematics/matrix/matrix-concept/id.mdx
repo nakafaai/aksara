@@ -3,7 +3,7 @@ export const metadata = {
   description: "Baca baris, kolom, elemen, dan ordo matriks dalam dua contoh tabel data.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -72,6 +72,39 @@ Untuk matriks di atas:
 | <InlineMath math="a_{31}" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="95" /> |
 | <InlineMath math="a_{32}" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="75" /> |
 
+Sekarang baca setiap baris <InlineMath math="A" /> sebagai satu titik <InlineMath math="(x, y)" />. Kolom 1 memberi <InlineMath math="x" />, yaitu nilai Matematika, dan kolom 2 memberi <InlineMath math="y" />, yaitu nilai Bahasa Inggris. Jadi setiap siswa menjadi satu titik. Lihat titik Aisyah: garis bantunya menunjukkan <InlineMath math="a_{11} = 80" /> ke kanan dan <InlineMath math="a_{12} = 75" /> ke atas. Kalau dua entri di barisnya kamu tukar, titiknya pindah ke <InlineMath math="(75, 80)" />. Itulah alasan posisi entri menentukan maknanya.
+
+<MathVisual
+  title={<>Tiga siswa sebagai tiga titik</>}
+  description={<>Baris ke-<InlineMath math="i" /> matriks <InlineMath math="A" /> menjadi titik (kolom 1, kolom 2): nilai Matematika ke kanan dan nilai Bahasa Inggris ke atas.</>}
+  labels={{
+    aisyah: <>Aisyah <InlineMath math="(80, 75)" /></>,
+    alex: <>Alex <InlineMath math="(70, 95)" /></>,
+    wayan: <>Wayan <InlineMath math="(95, 75)" /></>,
+    math: <InlineMath math="a_{11} = 80" />,
+    english: <InlineMath math="a_{12} = 75" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 60, max: 100 }, y: { min: 60, max: 100 } },
+    view: { kind: "fit", padding: 2 },
+    objects: [
+      { id: "aisyah", kind: "point", at: { x: 80, y: 75 }, appearance: "primary" },
+      { id: "alex", kind: "point", at: { x: 70, y: 95 }, appearance: "secondary" },
+      { id: "wayan", kind: "point", at: { x: 95, y: 75 }, appearance: "answer" },
+      { id: "math", kind: "segment", from: { x: 80, y: 60 }, to: { x: 80, y: 75 }, appearance: "construction" },
+      { id: "english", kind: "segment", from: { x: 60, y: 75 }, to: { x: 80, y: 75 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "aisyah", objectId: "aisyah", at: { x: 80, y: 75 }, placement: "above-right" },
+      { key: "alex", objectId: "alex", at: { x: 70, y: 95 }, placement: "below-right" },
+      { key: "wayan", objectId: "wayan", at: { x: 95, y: 75 }, placement: "above-left" },
+      { key: "math", objectId: "math", at: { x: 80, y: 66 }, placement: "right" },
+      { key: "english", objectId: "english", at: { x: 68, y: 75 }, placement: "below" },
+    ],
+  }}
+/>
+
 ## Ordo Matriks
 
 **Ordo** matriks <Highlight>menyatakan jumlah baris terlebih dahulu</Highlight>, lalu jumlah kolom. Matriks dengan <InlineMath math="m" /> baris dan <InlineMath math="n" /> kolom berordo <InlineMath math="m \times n" />, dibaca "<InlineMath math="m" /> kali <InlineMath math="n" />."
@@ -103,6 +136,87 @@ Sebagai contoh:
 - <InlineMath math="b_{11} = 2" /> adalah elemen pada baris <InlineMath math="1" />, kolom <InlineMath math="1" />.
 - <InlineMath math="b_{23} = 1" /> adalah elemen pada baris <InlineMath math="2" />, kolom <InlineMath math="3" />.
 - <InlineMath math="b_{32} = 2" /> adalah elemen pada baris <InlineMath math="3" />, kolom <InlineMath math="2" />.
+
+Ini matriks <InlineMath math="B" /> dengan setiap entri diletakkan di tempatnya: nomor kolom ke kanan, nomor baris ke bawah. Indeks pertama menghitung baris ke bawah dan indeks kedua menghitung kolom ke kanan, jadi <InlineMath math="b_{23} = 1" /> ada di baris 2 kolom 3, sedangkan <InlineMath math="b_{32} = 2" /> ada di baris 3 kolom 2.
+
+<MathVisual
+  title={<>Letak <InlineMath math="b_{ij}" /> di dalam <InlineMath math="B" /></>}
+  description={<>Sembilan entri <InlineMath math="B" /> diletakkan menurut kolom (ke kanan) dan baris (ke bawah), dengan <InlineMath math="b_{11}" />, <InlineMath math="b_{23}" />, dan <InlineMath math="b_{32}" /> diberi nama.</>}
+  labels={{
+    b11: <InlineMath math="b_{11} = 2" />,
+    b12: <InlineMath math="1" />,
+    b13: <InlineMath math="0" />,
+    b21: <InlineMath math="3" />,
+    b22: <InlineMath math="1" />,
+    b23: <InlineMath math="b_{23} = 1" />,
+    b31: <InlineMath math="1" />,
+    b32: <InlineMath math="b_{32} = 2" />,
+    b33: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "b11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "b12", kind: "point", at: { x: 2, y: -1 }, appearance: "reference" },
+      { id: "b13", kind: "point", at: { x: 3, y: -1 }, appearance: "reference" },
+      { id: "b21", kind: "point", at: { x: 1, y: -2 }, appearance: "reference" },
+      { id: "b22", kind: "point", at: { x: 2, y: -2 }, appearance: "reference" },
+      { id: "b23", kind: "point", at: { x: 3, y: -2 }, appearance: "secondary" },
+      { id: "b31", kind: "point", at: { x: 1, y: -3 }, appearance: "reference" },
+      { id: "b32", kind: "point", at: { x: 2, y: -3 }, appearance: "answer" },
+      { id: "b33", kind: "point", at: { x: 3, y: -3 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "b11", objectId: "b11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "b12", objectId: "b12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "b13", objectId: "b13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "b21", objectId: "b21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "b22", objectId: "b22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "b23", objectId: "b23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "b31", objectId: "b31", at: { x: 1, y: -3 }, placement: "above-right" },
+      { key: "b32", objectId: "b32", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "b33", objectId: "b33", at: { x: 3, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Ordo selalu menyebut baris lebih dulu. Blok kiri punya <InlineMath math="3" /> baris berisi <InlineMath math="2" /> entri, jadi ordonya <InlineMath math="3 \times 2" />, seperti matriks nilai. Blok kanan berisi enam entri yang sama dalam <InlineMath math="2" /> baris berisi <InlineMath math="3" />, jadi ordonya berbeda, <InlineMath math="2 \times 3" />.
+
+<MathVisual
+  title={<>Enam entri yang sama, dua ordo berbeda</>}
+  description={<>Enam entri sebagai blok <InlineMath math="3" /> baris dan <InlineMath math="2" /> kolom, serta sebagai blok <InlineMath math="2" /> baris dan <InlineMath math="3" /> kolom.</>}
+  labels={{
+    t32: <InlineMath math="3 \times 2" />,
+    t23: <InlineMath math="2 \times 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: -4, max: 0.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "a12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "a21", kind: "point", at: { x: 1, y: -2 }, appearance: "primary" },
+      { id: "a22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "a31", kind: "point", at: { x: 1, y: -3 }, appearance: "primary" },
+      { id: "a32", kind: "point", at: { x: 2, y: -3 }, appearance: "primary" },
+      { id: "b11", kind: "point", at: { x: 5, y: -1 }, appearance: "secondary" },
+      { id: "b12", kind: "point", at: { x: 6, y: -1 }, appearance: "secondary" },
+      { id: "b13", kind: "point", at: { x: 7, y: -1 }, appearance: "secondary" },
+      { id: "b21", kind: "point", at: { x: 5, y: -2 }, appearance: "secondary" },
+      { id: "b22", kind: "point", at: { x: 6, y: -2 }, appearance: "secondary" },
+      { id: "b23", kind: "point", at: { x: 7, y: -2 }, appearance: "secondary" },
+      { id: "t32", kind: "segment", from: { x: 1, y: -3.6 }, to: { x: 2, y: -3.6 }, appearance: "primary" },
+      { id: "t23", kind: "segment", from: { x: 5, y: -2.6 }, to: { x: 7, y: -2.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "t32", objectId: "t32", at: { x: 1.5, y: -3.6 }, placement: "below" },
+      { key: "t23", objectId: "t23", at: { x: 6, y: -2.6 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Notasi Umum Matriks
 

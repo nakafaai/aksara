@@ -35,6 +35,30 @@ Then apply the following row update.
 
 The multipliers are stored below the diagonal of <InlineMath math="L" />. If two rows are swapped after earlier elimination steps, the **already-filled columns** of <InlineMath math="L" /> must be swapped as well. Otherwise <InlineMath math="PA=LU" /> will no longer hold.
 
+Take the system <InlineMath math="2x+y=3" /> and <InlineMath math="4x+5y=9" />. The step <InlineMath math="R_2\leftarrow R_2-2R_1" /> stores the multiplier <InlineMath math="\ell_{21}=2" /> in <InlineMath math="L" /> and leaves <InlineMath math="3y=3" /> for <InlineMath math="U" />, so <InlineMath math="L=\begin{pmatrix}1&0\\2&1\end{pmatrix}" /> and <InlineMath math="U=\begin{pmatrix}2&1\\0&3\end{pmatrix}" />. The second line turns into a horizontal line, yet it still passes through the same solution.
+
+<MathVisual
+  title={<>Elimination turns the second line about the solution</>}
+  description={<>The violet line <InlineMath math="2x+y=3" /> and the teal line <InlineMath math="4x+5y=9" /> meet at the magenta point <InlineMath math="(1,1)" />. After elimination, the second row becomes the orange line <InlineMath math="3y=3" />, which passes through the same point.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 0, y: 3 }, { x: 3 / 2, y: 0 }], appearance: "secondary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 1 }, { x: 9 / 4, y: 0 }], appearance: "construction" },
+      { id: "eliminated", kind: "line", through: [{ x: 0, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "solution", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "solution", objectId: "solution", at: { x: 1, y: 1 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "solution": <InlineMath math="(1,1)" />,
+  }}
+/>
+
 ## Factoring a Matrix with Partial Pivoting
 
 We will track **both row swaps** so the final permutation agrees with the factors.
@@ -103,6 +127,36 @@ For the example,
 
 Direct substitution confirms <InlineMath math="Ax=b" />.
 
+Rotate the three planes of the upper triangular system <InlineMath math="Ux=y" /> below. The last equation contains only <InlineMath math="x_3" />, so its violet plane lies flat at height <InlineMath math="x_3=3" />. The second equation has no <InlineMath math="x_1" />, so its teal plane runs parallel to the <InlineMath math="x_1" />-axis. Backward substitution follows that order: the height first, then <InlineMath math="x_2=2" />, then <InlineMath math="x_1=1" /> from the amber plane. All three meet exactly at the magenta point <InlineMath math="x=(1,2,3)^T" />.
+
+<MathVisual
+  title={<>The three planes of <InlineMath math="Ux=y" /> meet at <InlineMath math="x=(1,2,3)^T" /></>}
+  description={<>Violet plane <InlineMath math="x_3=3" />, teal plane <InlineMath math="2x_2+x_3=7" />, and amber plane <InlineMath math="2x_1+x_2+x_3=7" />. The <InlineMath math="x_3" />-axis points up.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: 0.5, max: 5.5 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "isometric", target: { x: 1, y: 3, z: 2 } },
+    objects: [
+      { id: "flat", kind: "polygon", vertices: [{ x: 1 + (-1.5) * (1) + (-1.5) * (0), y: 3 + (-1.5) * (0) + (-1.5) * (0), z: 2 + (-1.5) * (0) + (-1.5) * (1) }, { x: 1 + (1.5) * (1) + (-1.5) * (0), y: 3 + (1.5) * (0) + (-1.5) * (0), z: 2 + (1.5) * (0) + (-1.5) * (1) }, { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (0), z: 2 + (1.5) * (0) + (1.5) * (1) }, { x: 1 + (-1.5) * (1) + (1.5) * (0), y: 3 + (-1.5) * (0) + (1.5) * (0), z: 2 + (-1.5) * (0) + (1.5) * (1) }], appearance: "secondary" },
+      { id: "middle", kind: "polygon", vertices: [{ x: 1 + (-1.5) * (1) + (-1.5) * (0), y: 3 + (-1.5) * (0) + (-1.5) * (-2 / Math.sqrt(5)), z: 2 + (-1.5) * (0) + (-1.5) * (1 / Math.sqrt(5)) }, { x: 1 + (1.5) * (1) + (-1.5) * (0), y: 3 + (1.5) * (0) + (-1.5) * (-2 / Math.sqrt(5)), z: 2 + (1.5) * (0) + (-1.5) * (1 / Math.sqrt(5)) }, { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (-2 / Math.sqrt(5)), z: 2 + (1.5) * (0) + (1.5) * (1 / Math.sqrt(5)) }, { x: 1 + (-1.5) * (1) + (1.5) * (0), y: 3 + (-1.5) * (0) + (1.5) * (-2 / Math.sqrt(5)), z: 2 + (-1.5) * (0) + (1.5) * (1 / Math.sqrt(5)) }], appearance: "construction" },
+      { id: "steep", kind: "polygon", vertices: [{ x: 1 + (-1.5) * (1 / Math.sqrt(5)) + (-1.5) * (2 / Math.sqrt(30)), y: 3 + (-1.5) * (0) + (-1.5) * (-5 / Math.sqrt(30)), z: 2 + (-1.5) * (-2 / Math.sqrt(5)) + (-1.5) * (1 / Math.sqrt(30)) }, { x: 1 + (1.5) * (1 / Math.sqrt(5)) + (-1.5) * (2 / Math.sqrt(30)), y: 3 + (1.5) * (0) + (-1.5) * (-5 / Math.sqrt(30)), z: 2 + (1.5) * (-2 / Math.sqrt(5)) + (-1.5) * (1 / Math.sqrt(30)) }, { x: 1 + (1.5) * (1 / Math.sqrt(5)) + (1.5) * (2 / Math.sqrt(30)), y: 3 + (1.5) * (0) + (1.5) * (-5 / Math.sqrt(30)), z: 2 + (1.5) * (-2 / Math.sqrt(5)) + (1.5) * (1 / Math.sqrt(30)) }, { x: 1 + (-1.5) * (1 / Math.sqrt(5)) + (1.5) * (2 / Math.sqrt(30)), y: 3 + (-1.5) * (0) + (1.5) * (-5 / Math.sqrt(30)), z: 2 + (-1.5) * (-2 / Math.sqrt(5)) + (1.5) * (1 / Math.sqrt(30)) }], appearance: "highlight" },
+      { id: "solution", kind: "point", at: { x: 1, y: 3, z: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "flat", objectId: "flat", at: { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (0), z: 2 + (1.5) * (0) + (1.5) * (1) }, placement: "right" },
+      { key: "middle", objectId: "middle", at: { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (-2 / Math.sqrt(5)), z: 2 + (1.5) * (0) + (1.5) * (1 / Math.sqrt(5)) }, placement: "right" },
+      { key: "steep", objectId: "steep", at: { x: 1 + (1.5) * (1 / Math.sqrt(5)) + (1.5) * (2 / Math.sqrt(30)), y: 3 + (1.5) * (0) + (1.5) * (-5 / Math.sqrt(30)), z: 2 + (1.5) * (-2 / Math.sqrt(5)) + (1.5) * (1 / Math.sqrt(30)) }, placement: "right" },
+      { key: "solution", objectId: "solution", at: { x: 1, y: 3, z: 2 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "flat": <InlineMath math="x_3=3" />,
+    "middle": <InlineMath math="2x_2+x_3=7" />,
+    "steep": <InlineMath math="2x_1+x_2+x_3=7" />,
+    "solution": <InlineMath math="x=(1,2,3)^T" />,
+  }}
+/>
+
 ## Cost and reuse
 
 Dense <InlineMath math="\mathrm{LU}" /> factorization requires approximately
@@ -114,6 +168,41 @@ This count gives the number of floating-point operations when multiplications an
 The determinant also follows from the factors:
 
 <BlockMath math="\det(A)=\det(P)\prod_{i=1}^{n}u_{ii}" />
+
+For <InlineMath math="n=100" />, the factorization takes about <InlineMath math="\tfrac23n^3\approx666667" /> operations, while the two substitutions for one right-hand side take about <InlineMath math="2n^2=20000" />. Keeping the <InlineMath math="\mathrm{LU}" /> factors means every further right-hand side only adds the substitution cost.
+
+<ScatterDiagram
+  title={<>Cost for <InlineMath math="m" /> right-hand sides with <InlineMath math="n=100" /></>}
+  description={<>The first series is <InlineMath math="\tfrac23n^3+2n^2m" /> when the factors are reused, the second is <InlineMath math="m\bigl(\tfrac23n^3+2n^2\bigr)" /> when the factorization is repeated, for <InlineMath math="m=1" /> to <InlineMath math="6" />.</>}
+  xAxisLabel="Right-hand sides"
+  yAxisLabel="Floating-point operations"
+  datasets={[
+    {
+      name: "Factor once",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 2 / 3 * 100 ** 3 + 1 * 2 * 100 ** 2 },
+        { x: 2, y: 2 / 3 * 100 ** 3 + 2 * 2 * 100 ** 2 },
+        { x: 3, y: 2 / 3 * 100 ** 3 + 3 * 2 * 100 ** 2 },
+        { x: 4, y: 2 / 3 * 100 ** 3 + 4 * 2 * 100 ** 2 },
+        { x: 5, y: 2 / 3 * 100 ** 3 + 5 * 2 * 100 ** 2 },
+        { x: 6, y: 2 / 3 * 100 ** 3 + 6 * 2 * 100 ** 2 },
+      ],
+    },
+    {
+      name: "Factor every time",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 1 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 2, y: 2 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 3, y: 3 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 4, y: 4 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 5, y: 5 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 6, y: 6 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+      ],
+    },
+  ]}
+/>
 
 ## NumPy Implementation with Pivot Checks
 

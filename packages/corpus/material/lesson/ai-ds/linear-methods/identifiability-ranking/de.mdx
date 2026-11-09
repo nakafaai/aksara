@@ -42,6 +42,34 @@ Bei der folgenden Matrix sind beide Spalten identisch. Nur die Summe der Paramet
 
 <BlockMath math="A\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}" />
 
+Nimm <InlineMath math="A=\begin{pmatrix}1&2\\1&2\end{pmatrix}" /> und <InlineMath math="b=(2,2)^T" />. Die zweite Spalte ist das Doppelte der ersten, also legen die Daten nur die Kombination <InlineMath math="x_1+2x_2" /> fest. Die Funktion <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" /> ist auf der ganzen magentafarbenen Geraden <InlineMath math="x_1+2x_2=2" /> null, zum Beispiel im türkisen Punkt <InlineMath math="(2,0)^T" />, also passt jeder Punkt dieser Geraden gleich gut, und <InlineMath math="x" /> ist nicht identifizierbar. Die orange Strecke vom Ursprung trifft die Gerade im rechten Winkel bei <InlineMath math="x^+=(2/5,4/5)^T" />, deshalb ist das die Wahl kleinster Norm.
+
+<MathVisual
+  title={<>Die Gerade der Minimierer und die Lösung kleinster Norm</>}
+  description={<>Die magentafarbene Gerade enthält jeden Minimierer von <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" />. Der violette Punkt ist die Lösung kleinster Norm <InlineMath math="x^+=(2/5,4/5)^T" />, und die orange Strecke ist ihr Abstand zum Ursprung.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 3 }, y: { min: -0.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "line", through: [{ x: 2, y: 0 }, { x: 0, y: 1 }], appearance: "answer" },
+      { id: "other", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "shortest", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 / 5, y: 4 / 5 }, appearance: "primary" },
+      { id: "best", kind: "point", at: { x: 2 / 5, y: 4 / 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "floor", objectId: "floor", at: { x: -1 / 2, y: 5 / 4 }, placement: "above-right" },
+      { key: "other", objectId: "other", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "best", objectId: "best", at: { x: 2 / 5, y: 4 / 5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "floor": <InlineMath math="x_1+2x_2=2" />,
+    "other": <InlineMath math="(2,0)^T" />,
+    "best": <InlineMath math="x^+" />,
+  }}
+/>
+
 ## Eindeutigkeit der Lösung und numerische Stabilität
 
 Voller Spaltenrang <Highlight>garantiert einen eindeutigen Ausgleichsminimierer</Highlight>, aber noch keine numerisch verlässliche. Ein sehr kleiner positiver Singulärwert kann die Schätzung gegenüber kleinen Datenänderungen äußerst empfindlich machen.
@@ -81,6 +109,36 @@ Der exakte Rang ist die **Anzahl der positiven Singulärwerte**:
 
 Für <InlineMath math="m \geq n" /> ist voller Spaltenrang daher äquivalent zu <InlineMath math="\sigma_n>0" />. Die aus den Daten nicht identifizierbaren Parameterrichtungen werden von den rechten Singulärvektoren zu Singulärwert null aufgespannt. Diese Vektoren bilden eine Basis von <InlineMath math="\ker(A)" />.
 
+Für <InlineMath math="A=\begin{pmatrix}2&2\\1&1\end{pmatrix}" /> geht der rechte Singulärvektor <InlineMath math="v_1=\tfrac1{\sqrt2}(1,1)" /> nach <InlineMath math="Av_1=(2\sqrt2,\sqrt2)" /> mit der Länge <InlineMath math="\sigma_1=\sqrt{10}" />, während <InlineMath math="v_2=\tfrac1{\sqrt2}(1,-1)" /> nach <InlineMath math="0" /> geht, also <InlineMath math="\sigma_2=0" />. Nur ein Singulärwert ist positiv, also gilt <InlineMath math="\operatorname{rank}A=1" />.
+
+<MathVisual
+  title={<>Ein positiver Singulärwert bedeutet Rang <InlineMath math="1" /></>}
+  description={<>Die türkise Strecke <InlineMath math="v_1" /> und die orange Strecke <InlineMath math="v_2" /> liegen auf dem grauen Einheitskreis. <InlineMath math="A" /> schickt <InlineMath math="v_1" /> auf die violette Strecke der Länge <InlineMath math="\sqrt{10}" /> und <InlineMath math="v_2" /> auf den magentafarbenen Punkt <InlineMath math="0" />. Die ganze Ebene landet auf der grauen Geraden durch <InlineMath math="(2,1)" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "range", kind: "line", through: [{ x: 0, y: 0 }, { x: 2, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.SQRT2, y: Math.SQRT2 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: -Math.SQRT1_2 }, appearance: "primary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "above-left" },
+      { key: "second", objectId: "second", at: { x: Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-right" },
+      { key: "image", objectId: "image", at: { x: 2 * Math.SQRT2, y: Math.SQRT2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="v_1" />,
+    "second": <InlineMath math="v_2" />,
+    "image": <InlineMath math="Av_1=\sqrt{10}\,u_1" />,
+  }}
+/>
+
 ## Exakter und numerischer Rang
 
 Ist der exakte Rang <InlineMath math="r" /> mit <InlineMath math="0<r<q" />, dann gilt
@@ -97,6 +155,19 @@ Gleitkommadaten enthalten nur selten exakte Nullen. Ein numerischer Rang zählt 
 Der Faktor <InlineMath math="c" /> richtet sich nach Anwendung und Rauschmodell. Deshalb gibt es keinen universellen Dezimalgrenzwert. Ist <InlineMath math="A" /> rangdefizient, existiert das Minimum des Ausgleichsproblems weiterhin, aber der minimierende Parametervektor ist nicht eindeutig. Die Moore-Penrose-Pseudoinverse wählt die Lösung mit minimaler Norm:
 
 <BlockMath math="x^{\dagger}=V\Sigma^{\dagger}U^T b" />
+
+Ändere einen Eintrag zu <InlineMath math="A_\varepsilon=\begin{pmatrix}2&2\\1&1+\varepsilon\end{pmatrix}" /> mit <InlineMath math="\varepsilon=10^{-6}" />. Exakt gilt <InlineMath math="\det A_\varepsilon=2\varepsilon\neq0" />, also ist der Rang <InlineMath math="2" />, aber <InlineMath math="\sigma_2=2\varepsilon/\sigma_1\approx6\cdot10^{-7}" />. Mit einer Messtoleranz von <InlineMath math="10^{-4}" /> zählt nur <InlineMath math="\sigma_1" />, also ist der numerische Rang <InlineMath math="1" />.
+
+<BarChart
+  title={<>Singulärwerte von <InlineMath math="A_\varepsilon" /> für <InlineMath math="\varepsilon=10^{-6}" /></>}
+  description={<>Der erste Balken ist <InlineMath math="\sigma_1\approx\sqrt{10}" />, der zweite ist <InlineMath math="\sigma_2=2\varepsilon/\sigma_1" />, zu klein zum Sehen. Beide folgen aus <InlineMath math="\sigma_1^2+\sigma_2^2=\|A_\varepsilon\|_F^2" /> und <InlineMath math="\sigma_1\sigma_2=|\det A_\varepsilon|" />.</>}
+  yAxisLabel="Singulärwert"
+  data={[
+    { name: "1", value: Math.sqrt((10 + 2e-6 + 1e-12 + Math.sqrt((10 + 2e-6 + 1e-12) ** 2 - 4 * (2e-6) ** 2)) / 2) },
+    { name: "2", value: 2e-6 / Math.sqrt((10 + 2e-6 + 1e-12 + Math.sqrt((10 + 2e-6 + 1e-12) ** 2 - 4 * (2e-6) ** 2)) / 2) },
+  ]}
+  chartConfig={{ value: { label: "Singulärwert", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
 
 ## Numerische Verfahren zur Bestimmung des Matrixrangs
 

@@ -1,7 +1,7 @@
 # Accuracy and evidence
 
-- Articles use a professional scientific-journal register. Preserve every
-  claim-matched citation, source distinction, limitation, table, chart, and
+- Articles use plain, warm, evidence-led prose in Nakafa's informal
+  [voice](voice.md). Preserve every claim-matched citation, source distinction, limitation, table, chart, and
   author-created analytical figure. Do not rewrite an article as a lesson or
   remove its evidence to make the prose shorter.
 - Preserve the source's meaning, uncertainty, scope, names, and numerical facts.

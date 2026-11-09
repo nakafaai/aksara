@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "fine-dust",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kedua sumber membantu menelusuri perjalanan sebuah karya. Perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
-        },
-        {
-          correct: false,
-          label:
-            "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
-        },
-        {
-          correct: false,
-          label:
-            "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
+            "Angka di Stasiun B pada beberapa jam lebih tinggi daripada di Stasiun A.",
         },
         {
           correct: true,
+          label: "Datanya hanya tujuh pengukuran pada satu hari kerja.",
+        },
+        {
+          correct: false,
           label:
-            "Label pameran menyebut koleksi atau pemberi pinjaman bagi pengunjung, sedangkan kartu kondisi mencatat lokasi dan kerusakan untuk perawatan. Keduanya memberi bukti berbeda tentang perjalanan karya.",
+            "Pedoman WHO hanya berlaku untuk rata-rata selama 24 jam penuh.",
+        },
+        {
+          correct: false,
+          label:
+            "Angka tertinggi kedua stasiun tercatat pada jam yang berbeda.",
+        },
+        {
+          correct: false,
+          label: "Stasiun B dipasang sekitar dua kilometer dari jalan raya.",
         },
       ],
     },

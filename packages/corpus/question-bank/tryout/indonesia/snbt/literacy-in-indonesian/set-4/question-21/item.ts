@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "regional-language",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
-        },
-        {
-          correct: false,
-          label:
-            "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
-        },
-        {
-          correct: false,
-          label:
-            "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan memahami advokasi diri sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
-        },
-        {
           correct: true,
           label:
-            "Nisa mengubah kesulitan melewati lorong pasar menjadi catatan rute dan usulan tanda akses, lalu diminta menilai tanda yang diuji pengelola.",
+            "Di sekolah-sekolah kota, banyak murid berbahasa ibu yang berbeda dari bahasa daerah provinsi.",
         },
         {
           correct: false,
           label:
-            "Nisa menghadapi hambatan dalam mengikuti latihan mandiri di pasar dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
+            "Sebagian besar murid di desa-desa provinsi itu berbahasa daerah yang sama di rumah masing-masing.",
+        },
+        {
+          correct: false,
+          label:
+            "Guru bahasa daerah di provinsi itu jumlahnya sudah mencukupi untuk semua sekolah.",
+        },
+        {
+          correct: false,
+          label:
+            "Murid yang belajar bahasa daerah memperoleh nilai bahasa Indonesia yang lebih baik.",
+        },
+        {
+          correct: false,
+          label:
+            "Cerita rakyat lebih mudah direkam dengan telepon genggam daripada dengan buku.",
         },
       ],
     },

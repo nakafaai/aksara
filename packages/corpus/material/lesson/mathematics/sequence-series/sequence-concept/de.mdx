@@ -3,7 +3,7 @@ export const metadata = {
   description: "Nutze ein Tisch-Stuhl-Muster, um Zahlenfolgen zu bilden und arithmetische von geometrischen Folgen anhand ihrer Änderungsgesetze zu unterscheiden.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Folgen und Reihen",
 };
 
@@ -38,6 +38,16 @@ Das ergibt <InlineMath math="3,5,7,9,\ldots" />. Eine **rekursive Regel** gibt e
 </MathContainer>
 
 Beide Regeln beschreiben dieselbe Folge. Mit der expliziten Form lässt sich ein weit entferntes Glied direkt berechnen. Die rekursive Form berechnet dagegen jedes neue Glied aus dem vorherigen.
+
+Zeichne die ersten sechs Glieder von <InlineMath math="U_n = 2n + 1" />. Jeder Balken ist 2 höher als der vorige: Die explizite Regel liefert jede Höhe aus der Position <InlineMath math="n" />, und die rekursive Regel <InlineMath math="U_{n+1} = U_n + 2" /> baut sie aus dem vorigen Balken auf.
+
+<BarChart
+  title={<>Die ersten sechs Glieder von <InlineMath math="U_n = 2n + 1" /></>}
+  description={<>Balken von <InlineMath math="U_n = 2n + 1" /> für <InlineMath math="n = 1" /> bis 6: 3, 5, 7, 9, 11 und 13.</>}
+  yAxisLabel="Glied"
+  data={[1, 2, 3, 4, 5, 6].map((n) => ({ name: String(n), value: 2 * n + 1 }))}
+  chartConfig={{ value: { label: "Glied", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Zahlenmuster aus Tischen und Stühlen
 
@@ -151,6 +161,37 @@ Zwei Regeln stimmen an den ersten drei Positionen überein: <InlineMath math="A_
 | <InlineMath math="5" /> | <InlineMath math="16" /> | <InlineMath math="11" /> |
 
 Eine vollständig definierte Folge braucht eine eindeutige Regel oder genügend Bedingungen. Ein erkanntes Muster liefert eine Vermutung. Ein Beweis benötigt eine Regel, die jedes Glied bestimmt.
+
+Die ersten drei Glieder 1, 2, 4 legen die Folge nicht fest. Die Verdopplungsregel <InlineMath math="A_n = 2^{n-1}" /> setzt sich mit 8 und 16 fort, die quadratische Regel <InlineMath math="B_n = 1 + \frac{n(n-1)}{2}" /> mit 7 und 11, und beide passen zu jedem gegebenen Glied.
+
+<MathVisual
+  title={<>Zwei Regeln durch dieselben drei Glieder</>}
+  description={<>Punkte von <InlineMath math="A_n = 2^{n-1}" /> und <InlineMath math="B_n = 1 + \frac{n(n-1)}{2}" /> für <InlineMath math="n = 1" /> bis 5. Sie teilen die Glieder 1, 2, 4 und trennen sich dann.</>}
+  labels={{
+    a: <InlineMath math="A_n = 2^{n-1}" />,
+    b: <InlineMath math="B_n" />,
+    shared: <InlineMath math="1, 2, 4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.4, max: 5.8 }, y: { min: -0.6, max: 17.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p1", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "p2", kind: "point", at: { x: 2, y: 2 }, appearance: "answer" },
+      { id: "p3", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "a4", kind: "point", at: { x: 4, y: 8 }, appearance: "primary" },
+      { id: "a5", kind: "point", at: { x: 5, y: 16 }, appearance: "primary" },
+      { id: "b4", kind: "point", at: { x: 4, y: 7 }, appearance: "secondary" },
+      { id: "b5", kind: "point", at: { x: 5, y: 11 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a5", at: { x: 5, y: 16 }, placement: "left" },
+      { key: "b", objectId: "b5", at: { x: 5, y: 11 }, placement: "right" },
+      { key: "shared", objectId: "p3", at: { x: 3, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
 
 ## Muster finden
 

@@ -4,7 +4,7 @@ export const metadata = {
     "Acht Logarithmengesetze werden hergeleitet und auf Gleichungen sowie Wachstumsmodelle angewendet.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Exponenten und Logarithmen",
 };
 
@@ -31,6 +31,16 @@ Wenn <InlineMath math="m" /> oder <InlineMath math="b" /> als Logarithmusbasis v
 
 Die ersten drei Gesetze folgen unmittelbar aus <InlineMath math="a^1=a" />, <InlineMath math="a^0=1" /> und der Umkehrbeziehung zwischen Logarithmen und Potenzen.
 
+Ein Logarithmus zählt Verdopplungen. <InlineMath math="\log_2 x" /> fragt, wie viele Faktoren <InlineMath math="2" /> das <InlineMath math="x" /> ergeben. Die Balken für <InlineMath math="x = 1, 2, 4, 8, 16, 32" /> steigen also um genau <InlineMath math="1" />, sobald sich <InlineMath math="x" /> verdoppelt: <InlineMath math="0, 1, 2, 3, 4, 5" />.
+
+<BarChart
+  title={<>Logarithmen zur Basis 2 von Zweierpotenzen</>}
+  description={<>Balken für <InlineMath math="\log_2 x" /> bei <InlineMath math="x = 1, 2, 4, 8, 16, 32" />, die um 1 steigen, wenn sich x verdoppelt.</>}
+  yAxisLabel="log₂ x"
+  data={[1, 2, 4, 8, 16, 32].map((x) => ({ name: `${x}`, value: Math.log2(x) }))}
+  chartConfig={{ value: { label: "log₂ x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Woher die Logarithmusregeln kommen
 
 Jedes Logarithmusgesetz folgt aus dem **passenden Potenzgesetz**. Ein Logarithmus gibt den Exponenten an, der eine bestimmte Zahl erzeugt, ein Gesetz über Exponenten wird also zu einem Gesetz über Logarithmen.
@@ -52,6 +62,34 @@ Der Logarithmus zur Basis <InlineMath math="a" /> ergibt:
 
 <BlockMath math="\log_a(bc)=x+y=\log_a b+\log_a c" />
 
+Die Produktregel ist die Potenzregel von der anderen Seite. <InlineMath math="\log_2 8 = 3" /> und <InlineMath math="\log_2 4 = 2" /> sind zwei Schritte auf der Exponentenlinie. Aneinandergehängt erreichen sie <InlineMath math="5" />, und <InlineMath math="2^5 = 32 = 8 \cdot 4" />, also <InlineMath math="\log_2 (8 \cdot 4) = \log_2 8 + \log_2 4" />.
+
+<MathVisual
+  title={<>Logarithmen addieren sich, wenn Zahlen multipliziert werden</>}
+  description={<>Schritte der Länge <InlineMath math="\log_2 8 = 3" /> und <InlineMath math="\log_2 4 = 2" /> enden bei 5, also bei <InlineMath math="\log_2 32" />.</>}
+  labels={{
+    s0: <InlineMath math="\log_2 8" />,
+    s1: <InlineMath math="\log_2 4" />,
+    end: <InlineMath math="\log_2 32 = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 7.5, y: 0 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 3, y: 0.3 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 3, y: 0.6 }, to: { x: 5, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s0", objectId: "s0", at: { x: 0 + 3 / 2, y: 0.3 }, placement: "above" },
+      { key: "s1", objectId: "s1", at: { x: 3 + 2 / 2, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 ### Quotientengesetz
 
 Mit denselben Substitutionen führt die Division zur **Subtraktion der Exponenten**:
@@ -61,6 +99,34 @@ Mit denselben Substitutionen führt die Division zur **Subtraktion der Exponente
 Daraus folgt:
 
 <BlockMath math="\log_a\left(\frac bc\right)=x-y=\log_a b-\log_a c" />
+
+Division geht auf der Exponentenlinie rückwärts. <InlineMath math="\log_2 32 = 5" /> ist ein Schritt der Länge 5, und das Teilen durch <InlineMath math="4" /> nimmt einen Schritt von <InlineMath math="\log_2 4 = 2" /> zurück. Der Weg endet bei <InlineMath math="3" />, und <InlineMath math="\log_2 \frac{32}{4} = \log_2 8 = 3" />.
+
+<MathVisual
+  title={<>Logarithmen subtrahieren sich, wenn Zahlen geteilt werden</>}
+  description={<>Ein Schritt <InlineMath math="\log_2 32 = 5" /> und ein Schritt zurück um <InlineMath math="\log_2 4 = 2" /> enden bei 3, also bei <InlineMath math="\log_2 8" />.</>}
+  labels={{
+    s0: <InlineMath math="\log_2 32" />,
+    s1: <InlineMath math="\log_2 4" />,
+    end: <InlineMath math="\log_2 8 = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 7.5, y: 0 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 5, y: 0.3 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 5, y: 0.6 }, to: { x: 3, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s0", objectId: "s0", at: { x: 2.5, y: 0.3 }, placement: "above" },
+      { key: "s1", objectId: "s1", at: { x: 4, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ### Potenzgesetz
 

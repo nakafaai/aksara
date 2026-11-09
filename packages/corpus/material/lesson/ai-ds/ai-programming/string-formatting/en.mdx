@@ -99,6 +99,27 @@ print('x = {0:12e}'.format(x))      # Output: x = 1.239800e+02`
   ]}
 />
 
+A width of <InlineMath math="15" /> leaves <InlineMath math="15-3=12" /> columns of fill around `'xxx'`. Left alignment puts all the fill on the right, right alignment puts it all on the left, and center alignment splits it into <InlineMath math="6" /> and <InlineMath math="6" />.
+
+<MathVisual
+  title={<><code>'xxx'</code> in width <InlineMath math="15" /> with three alignments</>}
+  description={<>Each row is <InlineMath math="15" /> columns. The violet rectangle is <code>'xxx'</code> and the gray rectangles are fill. From top to bottom: left, right, and center alignment.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 15.5 }, y: { min: -0.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-text", kind: "polygon", vertices: [{ x: 0, y: 1.7 }, { x: 3, y: 1.7 }, { x: 3, y: 2.3 }, { x: 0, y: 2.3 }], appearance: "secondary" },
+      { id: "left-fill", kind: "polygon", vertices: [{ x: 3, y: 1.7 }, { x: 15, y: 1.7 }, { x: 15, y: 2.3 }, { x: 3, y: 2.3 }], appearance: "reference" },
+      { id: "right-fill", kind: "polygon", vertices: [{ x: 0, y: 0.7 }, { x: 12, y: 0.7 }, { x: 12, y: 1.3 }, { x: 0, y: 1.3 }], appearance: "reference" },
+      { id: "right-text", kind: "polygon", vertices: [{ x: 12, y: 0.7 }, { x: 15, y: 0.7 }, { x: 15, y: 1.3 }, { x: 12, y: 1.3 }], appearance: "secondary" },
+      { id: "center-fill-a", kind: "polygon", vertices: [{ x: 0, y: -0.3 }, { x: 6, y: -0.3 }, { x: 6, y: 0.3 }, { x: 0, y: 0.3 }], appearance: "reference" },
+      { id: "center-text", kind: "polygon", vertices: [{ x: 6, y: -0.3 }, { x: 9, y: -0.3 }, { x: 9, y: 0.3 }, { x: 6, y: 0.3 }], appearance: "secondary" },
+      { id: "center-fill-b", kind: "polygon", vertices: [{ x: 9, y: -0.3 }, { x: 15, y: -0.3 }, { x: 15, y: 0.3 }, { x: 9, y: 0.3 }], appearance: "reference" },
+    ],
+  }}
+/>
+
 ## Argument Reference Methods
 
 A replacement field selects **the value to insert into the text**. Use an index for a positional argument, a name for a keyword argument, or automatic numbering to take positional arguments in order.
@@ -171,9 +192,9 @@ Precision has a different meaning for each presentation type. For `f` and `e`, i
 
 | Format Type | Precision Behavior | Example |
 |-------------|-------------------|---------|
-| `f/F` | Decimal places | `{:.2f}` → `123.99` |
-| `e/E` | Decimal places in exponential | `{:.2e}` → `1.24e+02` |
-| `g/G` | Significant digits | `{:.3g}` → `124` |
+| `f/F` | Decimal places | `{:.2f}` <InlineMath math="\rightarrow" /> `123.99` |
+| `e/E` | Decimal places in exponential | `{:.2e}` <InlineMath math="\rightarrow" /> `1.24e+02` |
+| `g/G` | Significant digits | `{:.3g}` <InlineMath math="\rightarrow" /> `124` |
 
 ### Sign Options
 
@@ -226,6 +247,56 @@ print('Tiny number f: {0:12f}'.format(1.1e-10))  # Output: Tiny number f:     0.
 print('Tiny number g: {0:12g}'.format(1.1e-10))  # Output: Tiny number g:      1.1e-10`
     }
   ]}
+/>
+
+The specifier `.1f` shows every number with one decimal place, so every <InlineMath math="x" /> on one step shows as the same number. Zoom into the violet staircase: each step is <InlineMath math="0.1" /> wide and centered on the value it shows, so every value between <InlineMath math="0.35" /> and <InlineMath math="0.45" /> shows as `0.4`. Right at a boundary such as <InlineMath math="0.25" />, the result depends on the stored binary value, so the picture marks no value at a boundary. The original value never changes, only how it is shown.
+
+<MathVisual
+  title={<>The precision <code>.1f</code> as a rounding staircase</>}
+  description={<>The violet staircase is the value shown with <code>.1f</code> for inputs from zero to one, the gray line is the identity line.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 1.1 }, y: { min: -0.1, max: 1.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "identity", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "step-a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / 20, y: 0 }, appearance: "secondary" },
+      { id: "step-b", kind: "segment", from: { x: 1 / 20, y: 1 / 10 }, to: { x: 3 / 20, y: 1 / 10 }, appearance: "secondary" },
+      { id: "step-c", kind: "segment", from: { x: 3 / 20, y: 2 / 10 }, to: { x: 5 / 20, y: 2 / 10 }, appearance: "secondary" },
+      { id: "step-d", kind: "segment", from: { x: 5 / 20, y: 3 / 10 }, to: { x: 7 / 20, y: 3 / 10 }, appearance: "secondary" },
+      { id: "step-e", kind: "segment", from: { x: 7 / 20, y: 4 / 10 }, to: { x: 9 / 20, y: 4 / 10 }, appearance: "secondary" },
+      { id: "step-f", kind: "segment", from: { x: 9 / 20, y: 5 / 10 }, to: { x: 11 / 20, y: 5 / 10 }, appearance: "secondary" },
+      { id: "step-g", kind: "segment", from: { x: 11 / 20, y: 6 / 10 }, to: { x: 13 / 20, y: 6 / 10 }, appearance: "secondary" },
+      { id: "step-h", kind: "segment", from: { x: 13 / 20, y: 7 / 10 }, to: { x: 15 / 20, y: 7 / 10 }, appearance: "secondary" },
+      { id: "step-i", kind: "segment", from: { x: 15 / 20, y: 8 / 10 }, to: { x: 17 / 20, y: 8 / 10 }, appearance: "secondary" },
+      { id: "step-j", kind: "segment", from: { x: 17 / 20, y: 9 / 10 }, to: { x: 19 / 20, y: 9 / 10 }, appearance: "secondary" },
+      { id: "step-k", kind: "segment", from: { x: 19 / 20, y: 1 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "identity", objectId: "identity", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "step", objectId: "step-e", at: { x: 9 / 20, y: 4 / 10 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "identity": <InlineMath math="y=x" />,
+    "step": 'float(f"{x:.1f}")',
+  }}
+/>
+
+Each extra digit of precision cuts the rounding error roughly tenfold. For `math.pi`, precision <InlineMath math="0" /> shows <InlineMath math="3" /> with an error of about <InlineMath math="0.14" />, while precision <InlineMath math="4" /> shows <InlineMath math="3.1416" /> with an error below <InlineMath math="10^{-5}" />.
+
+<BarChart
+  title={<>Rounding error of <code>math.pi</code> for precision <InlineMath math="0" /> to <InlineMath math="4" /></>}
+  description={<>Each bar is the gap between <InlineMath math="\pi" /> and the value shown with the number of decimal digits written below it.</>}
+  yAxisLabel="Rounding error"
+  data={[
+    { name: "0", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 0) / 10 ** 0) },
+    { name: "1", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 1) / 10 ** 1) },
+    { name: "2", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 2) / 10 ** 2) },
+    { name: "3", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 3) / 10 ** 3) },
+    { name: "4", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 4) / 10 ** 4) },
+  ]}
+  chartConfig={{ value: { label: "Rounding error", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## F Strings and Dynamic Templates
