@@ -7,28 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$495\\text{ €}$$",
+          label: "$$7{,}2$$",
         },
         {
           correct: false,
-          label: "$$400\\text{ €}$$",
+          label: "$$55{,}2$$",
         },
         {
           correct: false,
-          label: "$$595\\text{ €}$$",
+          label: "$$720$$",
         },
         {
           correct: false,
-          label: "$$324\\text{ €}$$",
+          label: "$$3{,}2$$",
         },
         {
           correct: false,
-          label:
-            "Das hängt davon ab, ob zuerst der Rabatt oder zuerst die Mehrwertsteuer berechnet wird.",
+          label: "$$32$$",
         },
         {
           correct: true,
-          label: "$$476\\text{ €}$$",
+          label: "$$320$$",
         },
       ],
     },

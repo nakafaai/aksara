@@ -1,13 +1,13 @@
-The task asks how much the bicycle costs after a <InlineMath math="20\,\%" /> discount (*Rabatt*) and <InlineMath math="19\,\%" /> VAT (*Mehrwertsteuer*). Successive percentage changes are handled with **growth factors**. A <InlineMath math="20\,\%" /> discount means the factor <InlineMath math="0.8" />, a <InlineMath math="19\,\%" /> surcharge the factor <InlineMath math="1.19" />.
+The task asks for the library's whole stock of books. Here the **base value is unknown**: the <InlineMath math="48" /> borrowed books are the part, <InlineMath math="15\,\%" /> is the rate, and the whole stock <InlineMath math="G" /> is what you look for.
 
-<BlockMath math="500\cdot0.8\cdot1.19=400\cdot1.19=476" />
+<BlockMath math="0.15\cdot G=48\quad\Rightarrow\quad G=\frac{48}{0.15}=\frac{4800}{15}=320" />
 
-Because the factors are multiplied, the order does not matter. As a check, go the other way round: tax first gives <InlineMath math="500\cdot1.19=595\text{ €}" />, then the discount gives <InlineMath math="595\cdot0.8=476\text{ €}" />.
+Without a calculator you can also go through smaller shares: if <InlineMath math="15\,\%" /> is <InlineMath math="48" /> books, then <InlineMath math="5\,\%" /> is a third of that, <InlineMath math="16" /> books. <InlineMath math="100\,\%" /> is twenty times as much, <InlineMath math="20\cdot16=320" />. As a check: <InlineMath math="15\,\%" /> of <InlineMath math="320" /> is <InlineMath math="0.15\cdot320=48" />.
 
-So you have to pay <InlineMath math="476\text{ €}" />.
+So the library has <InlineMath math="320" /> books.
 
-- <InlineMath math="495\text{ €}" /> combines the rates into <InlineMath math="-20\,\%+19\,\%=-1\,\%" />. The two rates refer to different base values.
-- <InlineMath math="400\text{ €}" /> includes only the discount and forgets the VAT.
-- <InlineMath math="595\text{ €}" /> includes only the VAT and forgets the discount.
-- <InlineMath math="324\text{ €}" /> subtracts the VAT as well, <InlineMath math="400\cdot0.81" />. The tax is added.
-- The option about the order overlooks that the factors <InlineMath math="0.8" /> and <InlineMath math="1.19" /> may be multiplied in any order.
+- <InlineMath math="7.2" /> is <InlineMath math="15\,\%" /> of <InlineMath math="48" />. It swaps the part and the base value.
+- <InlineMath math="55.2" /> computes <InlineMath math="48" /> plus <InlineMath math="15\,\%" /> of <InlineMath math="48" />, as if the stock were only a little larger than the borrowed books.
+- <InlineMath math="720" /> multiplies <InlineMath math="48" /> by <InlineMath math="15" /> instead of dividing by <InlineMath math="0.15" />.
+- <InlineMath math="3.2" /> divides <InlineMath math="48" /> by <InlineMath math="15" /> and forgets the factor <InlineMath math="100" />.
+- <InlineMath math="32" /> divides by <InlineMath math="1.5" /> instead of <InlineMath math="0.15" /> and so shifts the decimal point by one place.
