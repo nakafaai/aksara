@@ -1,21 +1,19 @@
-At <InlineMath math="x=\frac{\pi}{3}" />, the numerator is <InlineMath math="1-2\cdot\frac12=0" /> and the denominator is <InlineMath math="\sin0=0" />. To use the basic limits near zero, **shift the point to zero** with <InlineMath math="t=x-\frac{\pi}{3}" />. As <InlineMath math="x\to\frac{\pi}{3}" />, <InlineMath math="t\to0" />.
+Direct substitution gives <InlineMath math="\frac{1-1}{0}=\frac00" />. **Write <InlineMath math="\sec(2x)" /> as <InlineMath math="\frac{1}{\cos2x}" />** so the numerator takes the form <InlineMath math="1-\cos2x" />.
 
-Expand <InlineMath math="\cos\left(t+\frac{\pi}{3}\right)" /> with the angle-sum formula.
+<BlockMath math="\sec(2x)-1=\frac{1-\cos2x}{\cos2x}=\frac{2\sin^2x}{\cos2x}" />
+
+That line uses <InlineMath math="1-\cos2x=2\sin^2x" />. Now split it into standard limits.
 
 <BlockMath math="\begin{aligned}
-1-2\cos\left(t+\frac{\pi}{3}\right)&=1-2\left(\frac12\cos t-\frac{\sqrt3}{2}\sin t\right) \\
-&=1-\cos t+\sqrt3\sin t
+\lim_{x\to0}\frac{2\sin^2x}{\cos2x\cdot x\tan x}&=2\cdot\lim_{x\to0}\frac{\sin x}{x}\cdot\lim_{x\to0}\frac{\sin x}{\tan x}\cdot\lim_{x\to0}\frac{1}{\cos2x} \\
+&=2\cdot1\cdot1\cdot1=2
 \end{aligned}" />
 
-Divide by <InlineMath math="\sin t" /> and take the limit of each part.
+Numerical check: at <InlineMath math="x=0.01" /> the fraction is about <InlineMath math="2.0003" />.
 
-<BlockMath math="\lim_{t\to0}\frac{1-\cos t+\sqrt3\sin t}{\sin t}=\lim_{t\to0}\frac{1-\cos t}{\sin t}+\sqrt3=0+\sqrt3=\sqrt3" />
+So the limit is <InlineMath math="2" />.
 
-The first part tends to <InlineMath math="0" />, because <InlineMath math="\frac{1-\cos t}{\sin t}=\frac{2\sin^2\frac t2}{2\sin\frac t2\cos\frac t2}=\tan\frac t2\to0" />. Numerical check: for <InlineMath math="x=\frac{\pi}{3}+0.001" />, the value is about <InlineMath math="1.7326" />.
-
-So the limit is <InlineMath math="\sqrt3" />.
-
-- <InlineMath math="0" /> only looks at the numerator tending to zero.
-- <InlineMath math="\frac12" /> uses <InlineMath math="\cos\frac{\pi}{3}" /> as the final answer without resolving the <InlineMath math="\frac00" /> form.
-- <InlineMath math="-\sqrt3" /> has the wrong sign in <InlineMath math="\cos(A+B)=\cos A\cos B-\sin A\sin B" />.
-- <InlineMath math="2" /> treats the fraction as <InlineMath math="\frac{2\sin t}{\sin t}" />.
+- <InlineMath math="0" /> only looks at the numerator tending to <InlineMath math="0" />, but the denominator tends to <InlineMath math="0" /> too.
+- <InlineMath math="\frac12" /> uses <InlineMath math="1-\cos2x\approx\frac{x^2}{2}" />, the rule for <InlineMath math="1-\cos x" />, not for <InlineMath math="1-\cos2x" />.
+- <InlineMath math="1" /> forgets the factor <InlineMath math="2" /> in <InlineMath math="1-\cos2x=2\sin^2x" />.
+- <InlineMath math="4" /> uses <InlineMath math="1-\cos2x\approx(2x)^2" /> without the factor <InlineMath math="\frac12" />.

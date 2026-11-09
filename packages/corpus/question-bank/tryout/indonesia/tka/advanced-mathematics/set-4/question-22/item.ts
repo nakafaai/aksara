@@ -20,15 +20,15 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$-\\sqrt3$$",
+          label: "$$1$$",
         },
         {
           correct: true,
-          label: "$$\\sqrt3$$",
+          label: "$$2$$",
         },
         {
           correct: false,
-          label: "$$2$$",
+          label: "$$4$$",
         },
       ],
     },

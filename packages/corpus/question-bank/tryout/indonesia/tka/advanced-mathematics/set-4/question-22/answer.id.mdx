@@ -1,21 +1,19 @@
-Di <InlineMath math="x=\frac{\pi}{3}" />, pembilang <InlineMath math="1-2\cdot\frac12=0" /> dan penyebut <InlineMath math="\sin0=0" />. Agar limit dasar di sekitar nol bisa dipakai, **geser titiknya ke nol** dengan <InlineMath math="t=x-\frac{\pi}{3}" />. Saat <InlineMath math="x\to\frac{\pi}{3}" />, <InlineMath math="t\to0" />.
+Substitusi langsung memberi <InlineMath math="\frac{1-1}{0}=\frac00" />. **Tulis <InlineMath math="\sec(2x)" /> sebagai <InlineMath math="\frac{1}{\cos2x}" />** agar pembilangnya menjadi bentuk <InlineMath math="1-\cos2x" />.
 
-Jabarkan <InlineMath math="\cos\left(t+\frac{\pi}{3}\right)" /> dengan rumus jumlah sudut.
+<BlockMath math="\sec(2x)-1=\frac{1-\cos2x}{\cos2x}=\frac{2\sin^2x}{\cos2x}" />
+
+Baris itu memakai <InlineMath math="1-\cos2x=2\sin^2x" />. Sekarang pisahkan menjadi limit-limit dasar.
 
 <BlockMath math="\begin{aligned}
-1-2\cos\left(t+\frac{\pi}{3}\right)&=1-2\left(\frac12\cos t-\frac{\sqrt3}{2}\sin t\right) \\
-&=1-\cos t+\sqrt3\sin t
+\lim_{x\to0}\frac{2\sin^2x}{\cos2x\cdot x\tan x}&=2\cdot\lim_{x\to0}\frac{\sin x}{x}\cdot\lim_{x\to0}\frac{\sin x}{\tan x}\cdot\lim_{x\to0}\frac{1}{\cos2x} \\
+&=2\cdot1\cdot1\cdot1=2
 \end{aligned}" />
 
-Bagi dengan <InlineMath math="\sin t" />, lalu hitung limit setiap bagian.
+Pemeriksaan numerik: untuk <InlineMath math="x=0{,}01" />, nilai pecahan itu sekitar <InlineMath math="2{,}0003" />.
 
-<BlockMath math="\lim_{t\to0}\frac{1-\cos t+\sqrt3\sin t}{\sin t}=\lim_{t\to0}\frac{1-\cos t}{\sin t}+\sqrt3=0+\sqrt3=\sqrt3" />
+Jadi, nilai limitnya <InlineMath math="2" />.
 
-Bagian pertama menuju <InlineMath math="0" />, karena <InlineMath math="\frac{1-\cos t}{\sin t}=\frac{2\sin^2\frac t2}{2\sin\frac t2\cos\frac t2}=\tan\frac t2\to0" />. Pemeriksaan numerik: untuk <InlineMath math="x=\frac{\pi}{3}+0{,}001" />, nilainya kira-kira <InlineMath math="1{,}7326" />.
-
-Jadi, nilai limit tersebut adalah <InlineMath math="\sqrt3" />.
-
-- <InlineMath math="0" /> hanya melihat pembilang yang menuju nol.
-- <InlineMath math="\frac12" /> memakai <InlineMath math="\cos\frac{\pi}{3}" /> sebagai hasil akhir, tanpa menyelesaikan bentuk <InlineMath math="\frac00" />.
-- <InlineMath math="-\sqrt3" /> salah tanda pada rumus <InlineMath math="\cos(A+B)=\cos A\cos B-\sin A\sin B" />.
-- <InlineMath math="2" /> menganggap pecahan itu sama dengan <InlineMath math="\frac{2\sin t}{\sin t}" />.
+- <InlineMath math="0" /> hanya melihat pembilang yang menuju <InlineMath math="0" />, padahal penyebutnya juga menuju <InlineMath math="0" />.
+- <InlineMath math="\frac12" /> memakai <InlineMath math="1-\cos2x\approx\frac{x^2}{2}" />, yaitu rumus untuk <InlineMath math="1-\cos x" />, bukan <InlineMath math="1-\cos2x" />.
+- <InlineMath math="1" /> lupa faktor <InlineMath math="2" /> pada <InlineMath math="1-\cos2x=2\sin^2x" />.
+- <InlineMath math="4" /> memakai <InlineMath math="1-\cos2x\approx(2x)^2" /> tanpa faktor <InlineMath math="\frac12" />.
