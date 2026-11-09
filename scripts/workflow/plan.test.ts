@@ -15,6 +15,8 @@ import {
 const PRODUCTION = ["production"];
 const DEVELOPMENT = ["development"];
 const BOTH = ["development", "production"];
+/** The line of the release workflow that limits how many target legs run at once. */
+const MAX_PARALLEL_LINE = /^ {6}max-parallel: .*\n/mu;
 
 /** What the release decision says each accepted dispatch starts, one row per dispatch. */
 const DECIDED = [
@@ -23,6 +25,7 @@ const DECIDED = [
     operation: "release",
     pairedAcceptance: false,
     parity: false,
+    sequential: false,
     target: "production",
   },
   {
@@ -30,6 +33,7 @@ const DECIDED = [
     operation: "release",
     pairedAcceptance: false,
     parity: false,
+    sequential: false,
     target: "development",
   },
   {
@@ -37,6 +41,7 @@ const DECIDED = [
     operation: "release",
     pairedAcceptance: false,
     parity: true,
+    sequential: false,
     target: "both",
   },
   {
@@ -44,6 +49,7 @@ const DECIDED = [
     operation: "accept",
     pairedAcceptance: false,
     parity: false,
+    sequential: false,
     target: "production",
   },
   {
@@ -51,6 +57,7 @@ const DECIDED = [
     operation: "accept",
     pairedAcceptance: false,
     parity: false,
+    sequential: false,
     target: "development",
   },
   {
@@ -58,6 +65,7 @@ const DECIDED = [
     operation: "accept",
     pairedAcceptance: true,
     parity: true,
+    sequential: true,
     target: "both",
   },
   ...Arr.flatMap(["recover", "abort", "cleanup"], (operation) => [
@@ -66,6 +74,7 @@ const DECIDED = [
       operation,
       pairedAcceptance: false,
       parity: false,
+      sequential: false,
       target: "production",
     },
     {
@@ -73,6 +82,7 @@ const DECIDED = [
       operation,
       pairedAcceptance: false,
       parity: false,
+      sequential: false,
       target: "development",
     },
   ]),
@@ -87,11 +97,12 @@ describe("decided plan", () => {
 
   it.each(DECIDED)(
     "starts $legs for $operation on $target",
-    ({ legs, operation, pairedAcceptance, parity, target }) => {
+    ({ legs, operation, pairedAcceptance, parity, sequential, target }) => {
       expect(intendedPlan({ operation, target })).toEqual({
         legs,
         pairedAcceptance,
         parity,
+        sequential,
       });
     }
   );
@@ -124,6 +135,35 @@ layer(workflowSourcesLayer)("workflow plan", (layered) => {
           mainRun({ operation: "release", target: "both" })
         )).legs
       ).toEqual(PRODUCTION);
+    }));
+
+  test("runs every leg together when the matrix declares no limit", ({
+    release,
+  }) =>
+    Effect.gen(function* () {
+      const source = release.replace(MAX_PARALLEL_LINE, "");
+      expect(source).not.toEqual(release);
+      expect(
+        (yield* workflowPlan(
+          source,
+          mainRun({ operation: "accept", target: "both" })
+        )).sequential
+      ).toBe(false);
+    }));
+
+  test("plans one leg at a time from a literal limit", ({ release }) =>
+    Effect.gen(function* () {
+      const source = release.replace(
+        MAX_PARALLEL_LINE,
+        "      max-parallel: 1\n"
+      );
+      expect(source).not.toEqual(release);
+      expect(
+        (yield* workflowPlan(
+          source,
+          mainRun({ operation: "release", target: "both" })
+        )).sequential
+      ).toBe(true);
     }));
 
   test("plans the final parity from the job condition it is given", ({

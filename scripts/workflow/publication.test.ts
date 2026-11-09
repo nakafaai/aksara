@@ -71,6 +71,11 @@ const UNSAFE_PUBLICATION_CHANGES: ReadonlyArray<
     "The release on both must start only the legs",
   ],
   [
+    "inputs.operation == 'accept' && 1 || 2",
+    "inputs.operation == 'accept' && 2 || 2",
+    "The accept on both must start only the legs",
+  ],
+  [
     "format('[\"{0}\"]', inputs.target)",
     "'[\"production\"]'",
     "The release on development must start only the legs",
