@@ -4,7 +4,7 @@ export const metadata = {
     "Forme eine quadratische Gleichung durch quadratische Ergänzung in ein vollständiges Quadrat um und bestimme daraus Schritt für Schritt ihre Lösungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Quadratische Funktionen",
 };
 
@@ -31,8 +31,8 @@ Es gilt <InlineMath math="a\ne0" />. Teile die gesamte Gleichung durch <InlineMa
 Zwei Rechtecke haben jeweils die Fläche <InlineMath math="px" />. Legst du beide an ein Quadrat der Fläche <InlineMath math="x^2" />, fehlt an der Ecke eine Fläche von <InlineMath math="p^2" />. Diese Ecke ergänzt das Quadrat mit der Seitenlänge <InlineMath math="x+p" />.
 
 <MathVisual
-  title="Die fehlende Ecke des Quadrats"
-  description="Für x = 2 und p = 1 ergeben die Fläche 4, zwei Rechtecke der Fläche 2 und die Ecke der Fläche 1 ein Quadrat der Fläche 9."
+  title={<>Die fehlende Ecke des Quadrats</>}
+  description={<>Für <InlineMath math="x = 2" /> und <InlineMath math="p = 1" /> ergeben die Fläche 4, zwei Rechtecke der Fläche 2 und die Ecke der Fläche 1 ein Quadrat der Fläche 9.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },
@@ -100,6 +100,34 @@ Betrachten wir die Gleichung <InlineMath math="x^2 + 5x + 6 = 0" />.
 </MathContainer>
 
 Die Lösungen sind <InlineMath math="x = -2" /> und <InlineMath math="x = -3" />.
+
+Die quadratische Ergänzung zeigt den Scheitel: <InlineMath math="x^2 + 5x + 6 = \left(x + \tfrac52\right)^2 - \tfrac14" />, also ist der tiefste Punkt <InlineMath math="\left(-\tfrac52, -\tfrac14\right)" />, und die Parabel schneidet die Achse <InlineMath math="\tfrac12" /> links und rechts davon, bei <InlineMath math="-3" /> und <InlineMath math="-2" />.
+
+<MathVisual
+  title={<>Die Scheitelform von <InlineMath math="x^2 + 5x + 6" /></>}
+  description={<>Die Parabel <InlineMath math="y = \left(x + \tfrac52\right)^2 - \tfrac14" /> mit dem Scheitel <InlineMath math="\left(-\tfrac52, -\tfrac14\right)" /> und den Nullstellen <InlineMath math="-3" /> und <InlineMath math="-2" />.</>}
+  labels={{
+    vertex: <InlineMath math="\left(-\tfrac52, -\tfrac14\right)" />,
+    r1: <InlineMath math="-3" />,
+    r2: <InlineMath math="-2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.3, max: -0.7 }, y: { min: -0.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 6 }, domain: { min: -4, max: -1 }, appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "vertex", kind: "point", at: { x: -5 / 2, y: -1 / 4 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex", at: { x: -5 / 2, y: -1 / 4 }, placement: "below" },
+      { key: "r1", objectId: "r1", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "r2", at: { x: -2, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
 
 ### Gleichung mit einem Leitkoeffizienten ungleich eins
 
@@ -179,6 +207,30 @@ Da das Quadrat einer reellen Zahl nicht <InlineMath math="-1" /> sein kann, besi
 In den komplexen Zahlen verwendest du <InlineMath math="i^2=-1" /> und erhältst:
 
 <BlockMath math="(x+1)^2=-1\quad\Rightarrow\quad x+1=\pm i\quad\Rightarrow\quad x=-1\pm i" />
+
+<InlineMath math="x^2 + 2x + 2 = (x + 1)^2 + 1" /> ist für jedes reelle <InlineMath math="x" /> mindestens 1: Der tiefste Punkt ist <InlineMath math="(-1, 1)" />, über der x-Achse. Darum hat <InlineMath math="(x + 1)^2 = -1" /> keine reelle Lösung, nur <InlineMath math="x = -1 \pm i" />.
+
+<MathVisual
+  title={<>Eine Parabel über der Achse</>}
+  description={<>Die Parabel <InlineMath math="y = (x + 1)^2 + 1" /> mit dem tiefsten Punkt <InlineMath math="(-1, 1)" />, die die x-Achse nie erreicht.</>}
+  labels={{
+    curve: <InlineMath math="y = (x + 1)^2 + 1" />,
+    vertex: <InlineMath math="(-1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 1.5 }, y: { min: -0.6, max: 5.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 2, c: 2 }, domain: { min: -3, max: 1 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: -1, y: 1 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "vertex", objectId: "vertex", at: { x: -1, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
 
 ### Wenn der lineare Term fehlt
 

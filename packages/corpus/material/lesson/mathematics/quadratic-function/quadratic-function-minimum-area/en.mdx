@@ -3,7 +3,7 @@ export const metadata = {
   description: "Build a quadratic model for a constrained area, locate its minimum, and check that the result is valid in the original problem.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Quadratic Functions",
 };
 
@@ -80,8 +80,8 @@ The completed square explains the minimum. The squared term **cannot be negative
 <BlockMath math="A(x)=2(x-5)^2+50\ge50" />
 
 <MathVisual
-  title="Area against the Chosen Dimension"
-  description="The horizontal axis shows the first square side in centimeters. One vertical unit represents ten square centimeters, so the plotted quantity is A(x)/10. The point (5,5) means a 5 cm side and 50 cm² total area."
+  title={<>Area against the Chosen Dimension</>}
+  description={<>The horizontal axis shows the first square side in centimeters. One vertical unit represents ten square centimeters, so the plotted quantity is A(x)/10. The point (5,5) means a 5 cm side and <InlineMath math="50\ \text{cm}^2" /> total area.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -0.5, max: 11 } },
@@ -98,6 +98,16 @@ The completed square explains the minimum. The squared term **cannot be negative
 The graph endpoints show limiting cases. Zero and ten are excluded when both side lengths must be positive.
 
 The minimum total area is <InlineMath math="50\text{ cm}^2" />, obtained when both squares have side length <InlineMath math="5\text{ cm}" />.
+
+Try whole-number sides: <InlineMath math="A(1) = 82" />, <InlineMath math="A(3) = 58" />, <InlineMath math="A(5) = 50" />, <InlineMath math="A(7) = 58" /> and <InlineMath math="A(9) = 82" />. The total area is symmetric about <InlineMath math="x = 5" /> and smallest there.
+
+<BarChart
+  title={<>Total area for each first side</>}
+  description={<>Bars of <InlineMath math="A(x) = 2x^2 - 20x + 100" /> in square centimetres for <InlineMath math="x = 1" /> to 9.</>}
+  yAxisLabel="Total area (cm²)"
+  data={[1, 2, 3, 4, 5, 6, 7, 8, 9].map((x) => ({ name: String(x), value: 2 * x ** 2 - 20 * x + 100 }))}
+  chartConfig={{ value: { label: "Total area (cm²)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Constraint Model Domain and Vertex
 
@@ -123,6 +133,16 @@ Because <InlineMath math="a=3>0" />, the model has a minimum:
 </MathContainer>
 
 The model predicts a minimum cost of <InlineMath math="\text{IDR }200\,000" /> at <InlineMath math="10" /> items. A real production decision would also check whether the model's stated domain and operational constraints allow that quantity.
+
+The cost bars drop from 500 at <InlineMath math="x = 0" /> to 200 at <InlineMath math="x = 10" /> and climb back to 500 at <InlineMath math="x = 20" />, mirroring each other around the vertex.
+
+<BarChart
+  title={<>Production cost around the vertex</>}
+  description={<>Bars of <InlineMath math="C(x) = 3x^2 - 60x + 500" /> in thousands of rupiah for <InlineMath math="x = 0, 5, 10, 15, 20" />.</>}
+  yAxisLabel="Cost (thousand rupiah)"
+  data={[0, 5, 10, 15, 20].map((x) => ({ name: String(x), value: 3 * x ** 2 - 60 * x + 500 }))}
+  chartConfig={{ value: { label: "Cost (thousand rupiah)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Practice
 

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Aus einer Flächenaufgabe mit Nebenbedingung ein quadratisches Modell aufstellen, sein Minimum bestimmen und das Ergebnis im Sachzusammenhang prüfen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Quadratische Funktionen",
 };
 
@@ -80,8 +80,8 @@ Die quadratische Ergänzung begründet das Minimum. Der quadrierte Term **kann n
 <BlockMath math="A(x)=2(x-5)^2+50\ge50" />
 
 <MathVisual
-  title="Fläche in Abhängigkeit von der Seitenlänge"
-  description="Waagerecht liest du die erste Quadratseite in Zentimetern. Eine senkrechte Einheit entspricht zehn Quadratzentimetern. Dargestellt ist also A(x)/10. Der Punkt (5,5) bedeutet 5 cm Seitenlänge und 50 cm² Gesamtfläche."
+  title={<>Fläche in Abhängigkeit von der Seitenlänge</>}
+  description={<>Waagerecht liest du die erste Quadratseite in Zentimetern. Eine senkrechte Einheit entspricht zehn Quadratzentimetern. Dargestellt ist also A(x)/10. Der Punkt (5,5) bedeutet 5 cm Seitenlänge und <InlineMath math="50\ \text{cm}^2" /> Gesamtfläche.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -0.5, max: 11 } },
@@ -98,6 +98,16 @@ Die quadratische Ergänzung begründet das Minimum. Der quadrierte Term **kann n
 Die Endpunkte zeigen nur Grenzfälle. Null und zehn gehören nicht zu den zulässigen Werten für Figuren mit positiven Seiten.
 
 Die minimale Gesamtfläche beträgt <InlineMath math="50\text{ cm}^2" />. Sie entsteht, wenn beide Quadrate die Seitenlänge <InlineMath math="5\text{ cm}" /> haben.
+
+Probier ganzzahlige Seiten: <InlineMath math="A(1) = 82" />, <InlineMath math="A(3) = 58" />, <InlineMath math="A(5) = 50" />, <InlineMath math="A(7) = 58" /> und <InlineMath math="A(9) = 82" />. Die Gesamtfläche ist symmetrisch zu <InlineMath math="x = 5" /> und dort am kleinsten.
+
+<BarChart
+  title={<>Gesamtfläche für jede erste Seite</>}
+  description={<>Balken von <InlineMath math="A(x) = 2x^2 - 20x + 100" /> in Quadratzentimetern für <InlineMath math="x = 1" /> bis 9.</>}
+  yAxisLabel="Gesamtfläche (cm²)"
+  data={[1, 2, 3, 4, 5, 6, 7, 8, 9].map((x) => ({ name: String(x), value: 2 * x ** 2 - 20 * x + 100 }))}
+  chartConfig={{ value: { label: "Gesamtfläche (cm²)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Nebenbedingung Modell Definitionsbereich und Scheitel
 
@@ -123,6 +133,16 @@ Wegen <InlineMath math="a=3>0" /> besitzt das Modell ein Minimum:
 </MathContainer>
 
 Das Modell sagt minimale Kosten von <InlineMath math="\text{IDR }200\,000" /> bei <InlineMath math="10" /> Artikeln voraus. Bei einer realen Produktionsentscheidung müsste zusätzlich geprüft werden, ob der angegebene Definitionsbereich und die betrieblichen Bedingungen diese Stückzahl zulassen.
+
+Die Kostenbalken fallen von 500 bei <InlineMath math="x = 0" /> auf 200 bei <InlineMath math="x = 10" /> und steigen wieder auf 500 bei <InlineMath math="x = 20" />, spiegelbildlich um den Scheitel.
+
+<BarChart
+  title={<>Produktionskosten um den Scheitel</>}
+  description={<>Balken von <InlineMath math="C(x) = 3x^2 - 60x + 500" /> in Tausend Rupiah für <InlineMath math="x = 0, 5, 10, 15, 20" />.</>}
+  yAxisLabel="Kosten (Tausend Rupiah)"
+  data={[0, 5, 10, 15, 20].map((x) => ({ name: String(x), value: 3 * x ** 2 - 60 * x + 500 }))}
+  chartConfig={{ value: { label: "Kosten (Tausend Rupiah)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Übungsaufgabe
 
