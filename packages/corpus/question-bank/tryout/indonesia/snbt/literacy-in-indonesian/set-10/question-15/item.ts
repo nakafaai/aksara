@@ -1,36 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "bike-share",
+  stimulus: "passage-3",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label:
-            "Jumlah perjalanan turun setiap bulan selama puncak musim hujan.",
+          correct: false,
+          label: "Peta Baru yang Membuat Semua Alat Inklusif",
         },
         {
-          column: 1,
-          label:
-            "Jumlah perjalanan pada Juni lebih dari dua kali jumlah perjalanan pada Januari.",
+          correct: true,
+          label: "Menguji Peta Akses di Taman Bermain",
         },
         {
-          column: 2,
-          label:
-            "Rata-rata perjalanan per sepeda pada Juni dua kali rata-rata pada April.",
+          correct: false,
+          label: "Satu Ikon Tenang untuk Semua Kebutuhan Sensorik",
         },
         {
-          column: 1,
-          label:
-            "Rata-rata perjalanan per sepeda pada Maret lebih tinggi daripada pada Mei.",
+          correct: false,
+          label: "Menggabungkan Hasil Semua Keluarga dalam Satu Angka",
+        },
+        {
+          correct: false,
+          label: "Kecepatan Menemukan Alat sebagai Bukti Akhir Inklusi",
         },
       ],
     },

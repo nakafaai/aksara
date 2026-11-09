@@ -1,39 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "text-comparison",
-  },
-  stimulus: "artefact-return",
+  stimulus: "passage-4",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "keduanya menolak pengembalian sebelum museum baru selesai dibangun",
-        },
-        {
-          correct: false,
-          label:
-            "keduanya menganggap museum Eropa lebih baik dalam merawat benda-benda kuno",
-        },
-        {
           correct: true,
           label:
-            "keduanya setuju bahwa benda hasil rampasan berhak kembali ke tanah asalnya",
-        },
-        {
-          correct: false,
-          label: "keduanya meminta agar pengembalian dilakukan secara bertahap",
+            "Penerangan tampaknya lebih tersedia di sekitar pasar dan jalan utama daripada jalur sungai, tetapi tiga catatan belum cukup untuk mewakili seluruh rute atau memastikan kinerja setiap lampu.",
         },
         {
           correct: false,
           label:
-            "keduanya menilai pengembalian benda budaya sebagai urusan dagang",
+            "Semua lampu bertanda penuh pasti berfungsi karena kantor desa telah menulis bahwa pemeriksaan selesai.",
+        },
+        {
+          correct: false,
+          label:
+            "Empat malam gelap di jalur sungai membuktikan seluruh proyek penerangan gagal di seluruh kampung.",
+        },
+        {
+          correct: false,
+          label:
+            "Pengalaman Sari membuktikan lampu pasar menyala setiap malam sepanjang tahun sampai pukul sembilan.",
+        },
+        {
+          correct: false,
+          label:
+            "Karena Mina tetap menghindari gang, pemasangan lampu tidak mengubah pengalaman malam siapa pun.",
         },
       ],
     },

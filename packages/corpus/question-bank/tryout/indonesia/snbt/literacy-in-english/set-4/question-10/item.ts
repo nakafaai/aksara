@@ -1,40 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "application",
-  },
-  stimulus: "visitor-fee",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "A large fee that only wealthy tourists could afford to pay each day",
-        },
-        {
-          correct: false,
-          label:
-            "Closing the town to all visitors during the busy summer months",
-        },
-        {
-          correct: false,
-          label:
-            "A small fee with no cap on numbers and no public record of spending",
+          label: "Plain language as the main measure in a service trial",
         },
         {
           correct: true,
-          label:
-            "Timed bookings with a daily cap, plus a fee openly spent on residents' needs",
+          label: "Evidence-informed change in a local history display",
         },
         {
           correct: false,
-          label:
-            "Removing all charges so that more visitors can come into the town",
+          label: "From a short comparison to a permanent service change",
+        },
+        {
+          correct: false,
+          label: "Consultation without comparable outcome measures",
+        },
+        {
+          correct: false,
+          label: "A local service trial with no follow-up decision",
         },
       ],
     },

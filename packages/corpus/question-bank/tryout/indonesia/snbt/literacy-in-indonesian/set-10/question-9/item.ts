@@ -1,40 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-reasoning",
-  },
-  stimulus: "front-labels",
+  stimulus: "passage-2",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Menjadikan volume keluaran bawah sebagai ukuran tunggal bagi semua proses air di dalam kolom.",
+        },
+        {
+          correct: false,
+          label:
+            "Membuktikan bahwa air yang telah masuk pasti segera keluar sehingga penyimpanan tidak mungkin terjadi.",
+        },
+        {
+          correct: false,
+          label:
+            "Menunjukkan bahwa kedua istilah dapat dipakai bergantian selama volume awalnya sama.",
+        },
+        {
+          correct: false,
+          label:
+            "Menghapus kebutuhan menghitung air tersimpan karena perkolasi sudah mencakup seluruh air di dalam tanah.",
+        },
+        {
           correct: true,
           label:
-            "menjelaskan mengapa tabel di belakang kemasan jarang dipakai pembeli",
-        },
-        {
-          correct: false,
-          label:
-            "membuktikan bahwa pembeli tidak peduli pada kesehatan mereka sendiri",
-        },
-        {
-          correct: false,
-          label:
-            "menunjukkan bahwa tanda di Cile berhasil menurunkan pembelian",
-        },
-        {
-          correct: false,
-          label:
-            "mengkritik produsen yang mengubah resep agar lolos dari tanda",
-        },
-        {
-          correct: false,
-          label:
-            "menyarankan agar toko memberi pembeli waktu belanja lebih lama",
+            "Mencegah pembaca menyamakan air yang masuk dari permukaan dengan air yang telah bergerak sampai ke bawah kolom.",
         },
       ],
     },

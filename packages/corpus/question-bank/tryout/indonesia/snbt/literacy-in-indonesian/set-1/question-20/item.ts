@@ -1,35 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "car-free-day",
   versions: {
     id: {
-      columns: ["Ya", "Tidak"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label:
-            "Kedua teks mengakui bahwa ada pedagang yang memperoleh manfaat dari hari bebas kendaraan.",
+          correct: false,
+          label: "Merekrutnya langsung sebagai pemeran utama film",
         },
         {
-          column: 2,
-          label:
-            "Teks 1 menyertakan hasil pengukuran kualitas udara di jalan-jalan sekitar Jalan Merdeka.",
+          correct: false,
+          label: "Menjadi wali yang membiayai hidupnya",
         },
         {
-          column: 2,
-          label: "Teks 2 menolak seluruh gagasan hari bebas kendaraan.",
+          correct: false,
+          label: "Mengatur pernikahannya dengan James Dougherty",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Teks 2 mengusulkan pengaturan waktu bongkar muat barang bagi toko di sekitar area.",
+            "Memotretnya di pabrik dan menyarankan agar ia mencoba menjadi model",
+        },
+        {
+          correct: false,
+          label: "Mengajarinya berakting di Actors Studio",
         },
       ],
     },

@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "school-distance",
+  stimulus: "passage-2",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Penulis mengusulkan agar aturan penerimaan berdasarkan jarak dihapus.",
+            "Laju pendinginan rata-rata aluminium sekitar $$1{,}27^\\circ\\text{C}$$ per menit, sehingga bahan aluminium pasti menjadi satu-satunya penyebab seluruh penurunan suhu.",
         },
         {
-          column: 1,
-          label: "Menurut penulis, sekolah negeri tidak tersebar merata.",
+          correct: false,
+          label:
+            "Perbedaan ketebalan dinding membuat laju pendinginan yang tampak pada tabel tidak dapat dibandingkan sama sekali.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Penulis menyebut keluarga yang jujur dirugikan oleh pemindahan alamat.",
+            "Kesamaan volume dan suhu awal membuat laju tersebut dapat diterapkan langsung pada semua wadah aluminium dan plastik.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Penulis mengusulkan agar nilai kembali menjadi satu-satunya dasar penerimaan.",
+            "Definisi konduksi sudah cukup membuktikan bahwa perbedaan laju berasal dari bahan, meskipun ketebalan dan penguapan belum disamakan.",
+        },
+        {
+          correct: true,
+          label:
+            "Laju pendinginan rata-rata sekitar $$1{,}27^\\circ\\text{C}$$ per menit pada aluminium dan $$0{,}73^\\circ\\text{C}$$ per menit pada polipropilena mendukung adanya perbedaan, tetapi rancangan belum mengisolasi bahan sebagai penyebabnya.",
         },
       ],
     },

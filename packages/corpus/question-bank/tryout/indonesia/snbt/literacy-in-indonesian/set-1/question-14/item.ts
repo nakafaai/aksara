@@ -1,35 +1,29 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "food-waste",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Berendam di dalam lumpur",
+        },
+        {
+          correct: false,
+          label: "Bekerja dengan sangat sibuk",
+        },
+        {
+          correct: false,
+          label: "Berkumpul dalam satu kelompok",
+        },
+        {
           correct: true,
-          label: "Sekitar 24 persen",
+          label: "Terjebak dalam keadaan yang tidak menyenangkan",
         },
         {
           correct: false,
-          label: "Sekitar 25 persen",
-        },
-        {
-          correct: false,
-          label: "Sekitar 36 persen",
-        },
-        {
-          correct: false,
-          label: "Sekitar 37 persen",
-        },
-        {
-          correct: false,
-          label: "Hampir 50 persen",
+          label: "Berlumuran oleh suatu benda",
         },
       ],
     },

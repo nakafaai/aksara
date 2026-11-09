@@ -1,41 +1,18 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "theme-message",
-  },
-  stimulus: "salt-field",
   versions: {
     id: {
       kind: "choice",
       options: [
+        { correct: false, label: "Guru" },
+        { correct: false, label: "Kepala Desa" },
         {
           correct: false,
-          label:
-            "Petambak garam sebaiknya beralih ke pekerjaan lain yang lebih menguntungkan.",
+          label: "Ketua acara adat Festival Munara Beba Byak Karon",
         },
-        {
-          correct: false,
-          label:
-            "Hujan merupakan berkah bagi semua orang yang bekerja di ladang dan di laut.",
-        },
-        {
-          correct: false,
-          label:
-            "Anak-anak wajib membantu orang tua bekerja di ladang sejak kecil.",
-        },
-        {
-          correct: true,
-          label:
-            "Kerja yang bergantung pada alam menuntut kesabaran walau hasilnya belum tentu sepadan.",
-        },
-        {
-          correct: false,
-          label:
-            "Pemerintah perlu mengawasi cara pedagang menimbang barang di pasar.",
-        },
+        { correct: false, label: "Penyuluh" },
+        { correct: true, label: "Reporter" },
       ],
     },
   },

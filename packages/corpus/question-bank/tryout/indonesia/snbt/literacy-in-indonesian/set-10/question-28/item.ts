@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
-  },
-  stimulus: "wall-clock",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "tamu yang dulu sering datang berkunjung ke rumah Kakek",
+          label:
+            "Nara menganggap semua keterangan warga lebih tepat daripada data kantor kampung.",
         },
         {
           correct: false,
-          label: "jam yang sudah rusak dan tidak bergerak lagi",
+          label:
+            "Nara yakin gang menuju sungai gelap, tetapi menunda menuliskannya sampai mendapat izin petugas.",
+        },
+        {
+          correct: false,
+          label:
+            "Nara mempertahankan banyak lapisan karena keadaan lampu tidak mungkin pernah dipahami dengan baik.",
         },
         {
           correct: true,
-          label: "jam yang terus berjalan seakan masih menunggu Kakek",
+          label:
+            "Nara memperlakukan peta sebagai pengetahuan sementara: bagian yang belum diamati tidak boleh dianggap sudah diketahui, dan laporan yang berubah perlu tetap memiliki konteks.",
         },
         {
           correct: false,
-          label: "Ibu yang ingin para tamunya segera pulang",
-        },
-        {
-          correct: false,
-          label: "Kakek yang tidak suka menerima tamu di rumahnya",
+          label:
+            "Nara menolak membuat simpulan apa pun selama seluruh warga belum memberikan catatan pada peta.",
         },
       ],
     },

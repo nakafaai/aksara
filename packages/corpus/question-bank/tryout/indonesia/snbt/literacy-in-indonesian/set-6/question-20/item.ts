@@ -1,36 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "assumption",
-  },
-  stimulus: "food-estate",
+  stimulus: "passage-4",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "lahan yang dibuka untuk lumbung pangan cocok ditanami padi",
+          label: "Menelusuri Provenans Lukisan melalui Label dan Kartu Kondisi",
+        },
+        {
+          correct: false,
+          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
+        },
+        {
+          correct: false,
+          label: "Mengutamakan Sumber Terbaru dalam Kajian Provenans",
+        },
+        {
+          correct: false,
+          label: "Menggabungkan Dua Sumber Tanpa Memeriksa Konteks",
         },
         {
           correct: false,
           label:
-            "petani kecil tidak memerlukan bantuan bibit dan harga yang adil",
-        },
-        {
-          correct: false,
-          label: "harga beras dunia tidak pernah berubah dari tahun ke tahun",
-        },
-        {
-          correct: false,
-          label: "pangan lokal lebih bergizi daripada beras bagi masyarakat",
-        },
-        {
-          correct: false,
-          label: "impor beras selalu lebih murah daripada menanam sendiri",
+            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
         },
       ],
     },

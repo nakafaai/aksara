@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "theme-message",
-  },
-  stimulus: "island-teacher",
+  stimulus: "passage-3",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "guru sebaiknya tidak menyeberang ketika laut sedang berbahaya bagi perahu kecil",
-        },
-        {
-          correct: false,
-          label:
-            "kenaikan honor adalah satu-satunya cara agar guru di pulau terpencil bertahan",
-        },
-        {
-          correct: false,
-          label:
-            "nelayan lebih memahami cuaca laut daripada nakhoda kapal motor",
+            "Nilai $$29$$ dibandingkan $$19$$ membuktikan bahwa penunjuk arah akan sama efektifnya pada pasar malam yang lebih ramai.",
         },
         {
           correct: true,
           label:
-            "kesungguhan orang yang dilayani dapat memperbarui semangat di tengah kesulitan",
+            "Rata-rata $$29$$ pengunjung pada uji dibandingkan $$19$$ pada kondisi pembanding mendukung penerusan penunjuk arah secara terbatas, tetapi ketiadaan pengamatan pada pasar malam membatasi penerapannya pada kondisi ramai.",
         },
         {
           correct: false,
           label:
-            "murid yang rajin menghafal perkalian akan selalu disayangi gurunya",
+            "Nilai dasar $$18$$ menunjukkan bahwa sebagian besar pengunjung sudah menemukan ruang, sehingga penunjuk arah tidak perlu diuji lagi.",
+        },
+        {
+          correct: false,
+          label:
+            "Keterlibatan orang tua, pedagang, dan petugas cukup menjamin bahwa hasil berlaku untuk semua keadaan pasar.",
+        },
+        {
+          correct: false,
+          label:
+            "Karena jadwal dan jumlah petugas tidak berubah, penunjuk arah pasti menjadi satu-satunya penyebab kenaikan pada setiap pasar.",
         },
       ],
     },

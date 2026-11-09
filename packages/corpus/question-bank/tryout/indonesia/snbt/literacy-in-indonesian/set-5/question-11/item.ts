@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
-  },
-  stimulus: "radio-repair",
+  stimulus: "passage-3",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "menyembunyikan kegagalannya dengan memutar rekaman seolah-olah siaran asli",
+            "Pengelola pengiriman buku antarpulau menilai label tujuan berukuran besar pada setiap kotak melalui masukan pihak terdampak saja, tanpa membandingkan hasil pengukuran.",
         },
         {
           correct: false,
           label:
-            "acuh tak acuh karena pelanggan kiosnya makin sedikit dari hari ke hari",
+            "Pengelola pengiriman buku antarpulau menilai label tujuan berukuran besar pada setiap kotak melalui data pembanding saja, dengan pengalaman pihak terdampak ditempatkan di luar keputusan.",
+        },
+        {
+          correct: false,
+          label:
+            "Pengelola pengiriman buku antarpulau menilai label tujuan berukuran besar pada setiap kotak melalui data dan masukan pihak terdampak, lalu menjadikan uji singkat cukup untuk penerapan tetap.",
         },
         {
           correct: true,
           label:
-            "jujur tentang apa yang tidak bisa ia pulihkan, tetapi tetap memenuhi maksud gadis itu",
+            "Pengelola menilai label tujuan besar melalui data pembanding dan masukan pihak terdampak, lalu melanjutkan uji secara terbatas karena pengaruh cuaca belum diperiksa.",
         },
         {
           correct: false,
           label:
-            "mudah menyerah ketika mengetahui bahwa stasiun radio itu sudah lama berhenti bersiaran",
-        },
-        {
-          correct: false,
-          label:
-            "mungkin ingin membeli radio itu karena mengenali merek dan tahun pembuatannya",
+            "Pengelola pengiriman buku antarpulau menilai label tujuan berukuran besar pada setiap kotak terutama melalui definisi istilah, sedangkan perubahan yang diusulkan hanya menjadi latar bacaan.",
         },
       ],
     },

@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "museum-visits",
+  stimulus: "passage-3",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Every visitor group came in larger numbers after the gallery opened.",
+            "Priya wrote the warning in two sentences and tested it with a neighbour who had not attended the planning meeting. The choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Families' average visit became 50 percent longer after the gallery opened.",
+            "Testing the two-sentence warning with someone who had not attended the planning meeting lets Priya verify clarity instead of assuming that the message works.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "In the first period, adults without children were the largest group.",
+            "Priya wrote the warning in two sentences and tested it with a neighbour who had not attended the planning meeting. The action transfers responsibility for the unresolved task to another character.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "School groups' average visit became longer after the gallery opened.",
+            "Priya wrote the warning in two sentences and tested it with a neighbour who had not attended the planning meeting. The decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
+        },
+        {
+          correct: false,
+          label:
+            "Priya wrote the warning in two sentences and tested it with a neighbour who had not attended the planning meeting. The setting alone produces the change, so the character's decision has no role in the development.",
         },
       ],
     },

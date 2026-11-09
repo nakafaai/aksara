@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "cultivated-meat",
+  stimulus: "passage-2",
   versions: {
     en: {
-      columns: ["Yes", "No"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Cultivated meat is already cheaper than farmed meat.",
+          correct: false,
+          label:
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Singapore was the first country to approve the sale of cultivated meat.",
+            "The comparison condition produced a mean value of $$20$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "A ban prevents evidence about the product from being collected.",
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Labelling cultivated meat would force consumers to stop buying farmed meat.",
+            "The trial averaged $$31$$ first-review acceptances per session, compared with $$19$$ and $$20$$. Regional and family differences in usage support continued testing rather than treating the glossary as universal.",
+        },
+        {
+          correct: false,
+          label:
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
         },
       ],
     },

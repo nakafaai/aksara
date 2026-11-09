@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
-  },
-  stimulus: "last-angkot",
+  stimulus: "passage-2",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Ia ingin menunjukkan kepada petugas bahwa ia pengemudi yang paling rajin.",
+            "Mengukur jaring-jaring makanan melalui satu perbandingan awal",
         },
         {
           correct: true,
           label:
-            "Ia tetap peduli pada penumpang lamanya walaupun harus menyimpang dari jadwal.",
+            "Kegunaan dan Batas Model Jaring-Jaring Makanan di Kebun Sekolah",
         },
         {
           correct: false,
           label:
-            "Ia menyesal telah meninggalkan pekerjaannya sebagai sopir angkot trayek 07.",
+            "Menjadikan jaring-jaring makanan penjelasan tunggal atas hasil pengamatan",
         },
         {
           correct: false,
           label:
-            "Ia sengaja memperlambat bus agar penumpang lain merasa tidak nyaman.",
+            "Kaidah akhir dari perbandingan pertama tentang jaring-jaring makanan",
         },
         {
           correct: false,
           label:
-            "Ia berharap Mak Inah membayarnya lagi seperti pada hari terakhir angkot.",
+            "Keterbatasan yang membuat uji lanjutan jaring-jaring makanan tidak diperlukan",
         },
       ],
     },

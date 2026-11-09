@@ -1,40 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
-  },
-  stimulus: "youth-pledge",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Bahasa Melayu memiliki jumlah penutur asli paling banyak di Nusantara.",
-        },
-        {
-          correct: false,
-          label:
-            "Bahasa Melayu ditetapkan oleh pemerintah kolonial sebagai bahasa wajib.",
-        },
-        {
-          correct: false,
-          label:
-            "Bahasa Melayu memiliki kosakata paling lengkap di antara bahasa daerah.",
-        },
-        {
           correct: true,
           label:
-            "Bahasa Melayu sudah luas dipahami dan tingkatan tuturnya lebih setara.",
+            "Definisi *metakognisi* menjelaskan cara Raka menilai kebiasaan menundanya, memilih strategi baru, dan memeriksa apakah strategi itu membantu.",
         },
         {
           correct: false,
           label:
-            "Bahasa Melayu sudah lama dipakai dalam surat kabar milik para pemuda.",
+            "Istilah *metakognisi* membuktikan bahwa pilihan pertama tokoh sudah benar sebelum ia mengamati kebutuhan orang lain.",
+        },
+        {
+          correct: false,
+          label:
+            "Definisi itu membatasi *metakognisi* pada perasaan tokoh sehingga tindakan dan akibat pilihannya tidak perlu diperiksa.",
+        },
+        {
+          correct: false,
+          label:
+            "Penyebutan *metakognisi* menjadikan perubahan tokoh selesai seketika, padahal bacaan menunjukkan perkembangan bertahap.",
+        },
+        {
+          correct: false,
+          label:
+            "Definisi tersebut hanya menamai latar kegiatan dan tidak berkaitan dengan keputusan tokoh.",
         },
       ],
     },

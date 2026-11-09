@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "tempe-mold",
+  stimulus: "passage-1",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Kedelai untuk tempe direbus, dikupas, dan direndam sebelum ditaburi ragi.",
+            "Rata-rata $$0{,}28$$ gram membuktikan bahwa tidak ada air yang keluar dari permukaan bawah setelah diberi lapisan.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Enzim dari kapang memecah protein dan lemak kedelai menjadi bagian yang lebih sederhana.",
+            "Selisih antara $$0{,}82$$ dan $$0{,}74$$ gram membuktikan bahwa permukaan atas tidak berperan sama sekali dalam kehilangan air.",
         },
         {
-          column: 2,
-          label: "Vitamin B12 dalam tempe dihasilkan oleh kapang *Rhizopus*.",
+          correct: true,
+          label:
+            "Nilai $$0{,}28$$ gram mendukung dugaan bahwa pelapisan permukaan bawah mengurangi kehilangan air pada sampel ini, tetapi daun petik dari satu jenis belum mewakili tumbuhan utuh secara umum.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Kantong plastik untuk tempe harus tertutup rapat agar tidak dimasuki udara.",
+            "Pengacakan daun membuat hasil percobaan dapat diterapkan langsung pada semua spesies dalam setiap kondisi lingkungan.",
+        },
+        {
+          correct: false,
+          label:
+            "Karena hanya ada delapan daun per kelompok, perbedaan rata-rata tidak boleh digunakan sebagai bukti awal apa pun.",
         },
       ],
     },

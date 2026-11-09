@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "meat-survey",
+  stimulus: "passage-3",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "20 percent",
+          label:
+            "The character treats completing the whole project as the necessary first step before seeking review.",
         },
         {
           correct: false,
-          label: "31.25 percent",
+          label:
+            "The account presents self-efficacy as a general idea rather than something developed through the character's choice.",
         },
         {
           correct: true,
-          label: "31.5 percent",
+          label:
+            "Leah faced an obstacle while trying to finish a family-history audio project and learned through a small accountable action.",
         },
         {
           correct: false,
-          label: "35 percent",
+          label:
+            "The main obstacle becomes manageable because another person assumes responsibility for the next step.",
         },
         {
           correct: false,
-          label: "42 percent",
+          label:
+            "The passage presents documenting uncertainty as more important than taking a reviewable action.",
         },
       ],
     },

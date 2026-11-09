@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "main-idea",
-  },
-  stimulus: "batik-wax",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Batik cap lebih bernilai daripada batik tulis karena motifnya lebih rapi.",
+            "Tindakan itu mengganti tuntutan tugas dari lima penanda menjadi tiga suara tanpa perlu menjelaskan perubahan kepada pembaca.",
         },
         {
           correct: false,
           label:
-            "Kain cetak bermotif batik sebaiknya dilarang karena harganya terlalu murah.",
-        },
-        {
-          correct: false,
-          label:
-            "UNESCO menetapkan batik sebagai warisan budaya karena motifnya sangat beragam.",
-        },
-        {
-          correct: false,
-          label:
-            "Batik tulis selalu memerlukan waktu berbulan-bulan untuk diselesaikan.",
+            "Tindakan itu mengalihkan perhatian Laras dari jalur tertutup sehingga konflik tentang kelengkapan hilang dengan sendirinya.",
         },
         {
           correct: true,
           label:
-            "Batik ditentukan oleh teknik rintang warna dengan malam, bukan oleh motifnya.",
+            "Tindakan itu mengubah keterbatasan menjadi dokumentasi yang memiliki waktu dan tempat, sehingga Laras tidak perlu memakai bukti yang bukan pengalamannya.",
+        },
+        {
+          correct: false,
+          label:
+            "Tindakan itu membuktikan rekaman suara selalu lebih dapat dipercaya daripada foto karena suara tidak dapat dipilih atau disunting.",
+        },
+        {
+          correct: false,
+          label:
+            "Tindakan itu terutama bertujuan menghemat baterai agar Laras tetap dapat mengunduh foto lama dari arsip sekolah.",
         },
       ],
     },

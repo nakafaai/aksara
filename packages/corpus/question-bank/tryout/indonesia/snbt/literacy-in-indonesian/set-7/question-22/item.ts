@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "main-idea",
-  },
-  stimulus: "borrowed-words",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Bahasa Indonesia sebaiknya menolak kata pinjaman dari bahasa Inggris.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian besar kosakata bahasa Indonesia berasal dari bahasa Sanskerta.",
-        },
-        {
-          correct: false,
-          label:
-            "Lembaga bahasa pemerintah berhasil membuat semua padanan menjadi populer.",
-        },
-        {
-          correct: false,
-          label:
-            "Kata pinjaman dari bahasa Belanda lebih banyak daripada dari Portugis.",
+            "Pemeriksaan petugas membuat kartu Arum berlaku sebagai prosedur resmi bagi setiap pasien dengan kondisi apa pun.",
         },
         {
           correct: true,
           label:
-            "Kata pinjaman mencerminkan sejarah dan terus disesuaikan oleh penuturnya.",
+            "Meminta petugas memeriksa kartu membuat penyederhanaan Arum tetap sesuai alur umum dan mengungkap pengecualian yang sebelumnya ia lewatkan.",
+        },
+        {
+          correct: false,
+          label:
+            "Menggambar dengan ikon sudah menjamin semua pasien memahami kartu meskipun isi dan pengecualiannya belum diperiksa.",
+        },
+        {
+          correct: false,
+          label:
+            "Kesalahan awal Arum menunjukkan bahwa petunjuk visual sebaiknya dihapus dan seluruh arahan disampaikan secara lisan.",
+        },
+        {
+          correct: false,
+          label:
+            "Koreksi perawat membuktikan bahwa Arum tidak perlu menggunakan informasi dari petugas administrasi dalam kartu alurnya.",
         },
       ],
     },

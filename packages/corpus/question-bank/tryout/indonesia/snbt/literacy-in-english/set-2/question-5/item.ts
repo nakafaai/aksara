@@ -1,12 +1,6 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
-  },
-  stimulus: "tardigrade-survival",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +8,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Human cells are naturally better protected from X-rays than tardigrade cells are.",
+            "Every participant lost exactly $$1.24\\text{ kg}$$ and kept it off.",
         },
         {
           correct: false,
-          label:
-            "The DNA-protecting protein also allows human cells to survive being dried out.",
+          label: "Only one of the $$35$$ studies reported any weight change.",
         },
         {
           correct: false,
-          label:
-            "All tardigrade species produce the same DNA-protecting protein in their cells.",
+          label: "Average weight increased during Ramadan and fell afterward.",
         },
         {
           correct: true,
           label:
-            "One protein supplies part of the tardigrade's radiation protection, even inside human cells.",
+            "Participants lost $$1.24\\text{ kg}$$ on average during Ramadan, but most of it was regained within weeks.",
         },
         {
           correct: false,
           label:
-            "X-rays cause no damage at all to human cells that contain the tardigrade gene.",
+            "The review prescribed a fixed calorie target for all participants.",
         },
       ],
     },

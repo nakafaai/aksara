@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "main-idea",
-  },
-  stimulus: "deep-vents",
+  stimulus: "passage-1",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Vent life runs on chemical energy from bacteria yet still depends on the sun indirectly.",
+            "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while controlling other factors and reporting a limitation.",
         },
         {
           correct: false,
           label:
-            "The vents were discovered by accident while scientists were searching for shipwrecks.",
+            "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while controlling the listed factors but treating one short trial as proof of a universal effect.",
         },
         {
           correct: false,
           label:
-            "Tube worms are the only animals that can survive at the bottom of the Pacific Ocean.",
+            "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
         },
         {
           correct: false,
           label:
-            "Hydrogen sulphide is harmless to animals that live near the vents.",
+            "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while treating the scientific term as the measured outcome that settles the investigation.",
         },
         {
           correct: false,
           label:
-            "Life on Europa has probably developed in the same way as life around vents.",
+            "The class tested how adding a measured mass of table salt affected the temperature at which visible ice first formed, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
       ],
     },

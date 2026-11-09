@@ -1,33 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "braille-code",
+  stimulus: "passage-4",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Louis Braille was born blind.",
-        },
-        {
-          column: 2,
+          correct: true,
           label:
-            "The school adopted Braille's system officially while he was still alive.",
+            "Tracing the bag backward turns an error found at the bin into a chain of causes, and the side-by-side symbols explain why its source was missed.",
         },
         {
-          column: 1,
-          label: "Pupils could not write using the raised-letter books.",
+          correct: false,
+          label:
+            "Ravi followed the misplaced bag backward through the stalls. The recurring object's physical appearance fixes its complete meaning from the first mention.",
         },
         {
-          column: 1,
-          label: "Braille published his system in 1829.",
+          correct: false,
+          label:
+            "Ravi followed the misplaced bag backward through the stalls. The ending states the object's meaning directly, making the earlier actions irrelevant.",
+        },
+        {
+          correct: false,
+          label:
+            "Ravi followed the misplaced bag backward through the stalls. The setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+        },
+        {
+          correct: false,
+          label:
+            "Ravi followed the misplaced bag backward through the stalls. The object keeps one fixed meaning even as the character's action and the final response change.",
         },
       ],
     },

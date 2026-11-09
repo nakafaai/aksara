@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "conclusion",
-  },
-  stimulus: "app-reminders",
+  stimulus: "passage-3",
   versions: {
     en: {
       kind: "choice",
@@ -14,25 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The gap between the two groups grew wider at every later check.",
+            "A responsible budget should remain unchanged until every uncertain price becomes final.",
+        },
+        {
+          correct: false,
+          label:
+            "Deleting one optional item solved the problem independently of the labels, scenarios, and confirmation dates.",
         },
         {
           correct: true,
           label:
-            "The gap was largest early on and had almost vanished by day 90.",
-        },
-        {
-          correct: false,
-          label: "Reminders had no effect on the number of users at any point.",
-        },
-        {
-          correct: false,
-          label: "Without reminders, almost no one used the app after day 7.",
+            "The budget became more useful when uncertainty was recorded, linked to consequences, and assigned a next action.",
         },
         {
           correct: false,
           label:
-            "Reminders tripled the share of learners still active on day 90.",
+            "Uncertain figures are safest when they remain inside one balanced total until the planning team can present a final answer.",
+        },
+        {
+          correct: false,
+          label:
+            "A contingency is useful mainly because it postpones every unresolved choice until after the event.",
         },
       ],
     },

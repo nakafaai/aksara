@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "half-sleep",
+  stimulus: "passage-1",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Ducks in the middle of the row kept one eye open more often than ducks at the ends.",
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Fur seals usually sleep with both hemispheres when they are on land.",
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
         },
         {
-          column: 1,
-          label: "Frigatebirds slept for less than an hour a day while flying.",
+          correct: false,
+          label:
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Humans can sleep with one hemisphere fully awake, as dolphins do.",
+            "The mean result with the change was $$31$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
+        },
+        {
+          correct: true,
+          label:
+            "The mixture held at $$37^{\\circ}\\text{C}$$ produced a mean of $$31$$ under the stated sample controls. An eye-estimated colour scale keeps the result provisional.",
         },
       ],
     },

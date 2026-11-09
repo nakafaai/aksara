@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-purpose",
-  },
-  stimulus: "free-transit",
+  stimulus: "passage-2",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Membuktikan bahwa bus gratis selalu gagal menarik penumpang baru di kota mana pun.",
+            'Karena langkah "air dipanaskan perlahan, uap menyentuh penutup dingin, lalu tetes air jatuh kembali" dapat diulang, model sudah mencakup faktor yang hilang ketika lampu dan es hanya meniru sebagian kecil kondisi atmosfer dan dapat menggantikan pengamatan lapangan.',
+        },
+        {
+          correct: false,
+          label:
+            "Keterbatasan bahwa lampu dan es hanya meniru sebagian kecil kondisi atmosfer membuat hubungan bahwa air dapat berpindah tempat dan berubah wujud tanpa hilang dari sistem tertutup tidak dapat diperiksa, bahkan di dalam model.",
+        },
+        {
+          correct: false,
+          label:
+            "Hubungan bahwa air dapat berpindah tempat dan berubah wujud tanpa hilang dari sistem tertutup dapat diterapkan langsung pada keadaan nyata selama urutan model diulang dengan cara yang sama.",
         },
         {
           correct: true,
           label:
-            "Menunjukkan bahwa sebagian penumpang baru berasal dari pejalan kaki, bukan pengendara mobil.",
+            "Pengulangan langkah pada model membantu memeriksa bahwa air dapat berpindah tempat dan berubah wujud tanpa hilang dari sistem tertutup. Karena lampu dan es hanya meniru sebagian kecil kondisi atmosfer, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
         },
         {
           correct: false,
           label:
-            "Menjelaskan cara kota itu membiayai bus gratis tanpa kehilangan pendapatan tiket.",
-        },
-        {
-          correct: false,
-          label:
-            "Membandingkan jumlah bus gratis di kota Eropa itu dengan jumlah bus di kota-kota Indonesia.",
-        },
-        {
-          correct: false,
-          label:
-            "Menunjukkan bahwa warga Eropa umumnya lebih suka berjalan kaki daripada naik bus.",
+            "Definisi istilah pada akhir bacaan sudah cukup membuktikan hubungan sebab dalam model daur air dalam kotak transparan, meskipun bagian model tidak dibandingkan.",
         },
       ],
     },

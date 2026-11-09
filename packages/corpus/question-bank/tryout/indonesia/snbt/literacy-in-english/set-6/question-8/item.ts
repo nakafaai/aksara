@@ -1,40 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-reasoning",
-  },
-  stimulus: "grading-curve",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Because the trial reached $$25$$, compared with a baseline of $$14$$ and a comparison value of $$15$$, a card listing the tools needed for each repair should become permanent before the stated limitation is examined.",
+        },
+        {
+          correct: false,
+          label:
+            "The consultation with affected groups makes the baseline and comparison figures unnecessary for the decision.",
+        },
+        {
+          correct: false,
+          label:
+            "The limitation that repair difficulty differed greatly between objects affects delivery details, but it does not restrict who can be covered by the conclusion.",
+        },
+        {
           correct: true,
           label:
-            "To show that a curve can give low marks to students who have learned well",
+            "The mean of $$25$$, compared with $$14$$ at baseline and $$15$$ in the comparison, supports a limited extension of the tool-card trial. The follow-up must group outcomes by repair difficulty.",
         },
         {
           correct: false,
           label:
-            "To argue that strong students should be placed in separate, faster classes",
-        },
-        {
-          correct: false,
-          label:
-            "To show that strong classes usually cheat to raise their marks",
-        },
-        {
-          correct: false,
-          label:
-            "To prove that every student in a strong class will receive an A",
-        },
-        {
-          correct: false,
-          label:
-            "To suggest that a teacher's own standards might be too strict",
+            "Because staffing and schedules were stable, the difference between the trial and comparison is best attributed to those unchanged conditions.",
         },
       ],
     },

@@ -1,37 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
-  },
-  stimulus: "braille-code",
+  stimulus: "passage-4",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "The recurring object gains meaning mainly from its physical description rather than its relation to the choice.",
+        },
+        {
           correct: true,
-          label: "A whole symbol could be felt at once under one fingertip.",
-        },
-        {
-          correct: false,
-          label: "Six dots were cheaper to print than twelve dots on paper.",
+          label:
+            "The green permit card gains meaning through the misplaced blame, Ravi's backward search, and its final contrast with the new bin.",
         },
         {
           correct: false,
           label:
-            "Sighted teachers could read six dots more easily than letters.",
+            "The ending shows that the setting, rather than the character's action, resolves the conflict.",
         },
         {
           correct: false,
           label:
-            "Six dots allowed the system to represent sounds instead of spelling.",
+            "The object's meaning remains fixed even though the character uses it differently.",
         },
         {
           correct: false,
-          label: "Barbier had asked Braille to use fewer dots for the army.",
+          label:
+            "The final action matters because it confirms the interpretation established at the start.",
         },
       ],
     },

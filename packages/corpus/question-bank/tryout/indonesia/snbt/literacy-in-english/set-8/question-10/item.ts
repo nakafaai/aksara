@@ -1,36 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
-  },
-  stimulus: "cultivated-meat",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "To make cultivated meat look more traditional to shoppers",
+          label: "Register as the main measure in a service trial",
         },
         {
           correct: false,
-          label:
-            "To raise the price of cultivated meat above that of farmed meat",
-        },
-        {
-          correct: false,
-          label: "To prove that cultivated meat is safer than farmed meat",
+          label: "From a short comparison to a permanent service change",
         },
         {
           correct: true,
-          label: "To let people who prefer farmed meat avoid cultivated meat",
+          label: "Testing a shared glossary without flattening language",
         },
         {
           correct: false,
-          label: "To persuade farmers to switch to producing cultivated meat",
+          label: "Consultation without comparable outcome measures",
+        },
+        {
+          correct: false,
+          label: "A local service trial with no follow-up decision",
         },
       ],
     },

@@ -1,38 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "application",
-  },
-  stimulus: "zoo-purpose",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Build a much larger enclosure in order to add a second herd of elephants.",
+          label: "System alignment as the main measure in a service trial",
         },
         {
           correct: false,
-          label:
-            "Replace its breeding programmes with more shows for visitors.",
+          label: "From a short comparison to a permanent service change",
         },
         {
           correct: false,
-          label:
-            "Release all of its penguins into the nearest park to free up space.",
+          label: "Consultation without comparable outcome measures",
         },
         {
           correct: true,
-          label: "Rehome its polar bears and breed a threatened local frog.",
+          label: "Aligning waste symbols across a changing night market",
         },
         {
           correct: false,
-          label: "Buy more famous animals so that visitor numbers keep rising.",
+          label: "A local service trial with no follow-up decision",
         },
       ],
     },

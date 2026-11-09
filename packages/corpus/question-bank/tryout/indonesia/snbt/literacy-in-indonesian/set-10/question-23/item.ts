@@ -1,40 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
-  },
-  stimulus: "taman-siswa",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Permainan menjadi adil karena semua peserta akhirnya melakukan peran yang sama melalui jalur berbeda.",
+        },
+        {
           correct: true,
           label:
-            "Sekolah dibayangkan sebagai tempat anak tumbuh dan bermain dengan gembira.",
+            "Perbaikan muncul melalui siklus mendengar, mengubah, mencoba, dan mencatat lagi, sehingga satu keberhasilan tidak menutup evaluasi.",
         },
         {
           correct: false,
           label:
-            "Gedung sekolah itu dibangun di tengah sebuah taman kota di Yogyakarta.",
+            "Catatan meja akhir menunjukkan perubahan pertama gagal dan permainan seharusnya dikembalikan ke rancangan awal.",
         },
         {
           correct: false,
           label:
-            "Para siswanya diwajibkan merawat tanaman di halaman sekolah setiap hari.",
+            "Pilihan tiga anak cukup untuk mewakili kebutuhan semua calon peserta taman bermain.",
         },
         {
           correct: false,
           label:
-            "Nama itu diberikan oleh pemerintah kolonial ketika sekolahnya disahkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Nama itu diambil dari semboyan yang kini dikenal sebagai tut wuri handayani.",
+            "Menurunkan keranjang membuktikan seluruh hambatan fisik dapat diselesaikan dengan perubahan ketinggian.",
         },
       ],
     },

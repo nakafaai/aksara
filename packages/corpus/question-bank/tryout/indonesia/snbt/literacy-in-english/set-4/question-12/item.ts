@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "bike-lanes",
+  stimulus: "passage-3",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "The total number of cyclist injuries on the three streets fell after the lanes opened.",
+            "Omar and Amina tested the route and marked where signs disappeared from view. The choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
-          column: 2,
-          label: "Cycling increased only on streets that received new lanes.",
+          correct: false,
+          label:
+            "Omar and Amina tested the route and marked where signs disappeared from view. The action transfers responsibility for the unresolved task entirely to Amina.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Each of the three streets had more daily cyclists after the lanes opened.",
+            "Testing the route with Amina turns Omar's assumption about access into visible failures that an intended user can document and the team can correct.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Station Avenue had the highest injury rate per cyclist both before and after the lanes opened.",
+            "Omar and Amina tested the route and marked where signs disappeared from view. The decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
+        },
+        {
+          correct: false,
+          label:
+            "Omar and Amina tested the route and marked where signs disappeared from view. The setting alone produces the change, so their decision has no role in the development.",
         },
       ],
     },

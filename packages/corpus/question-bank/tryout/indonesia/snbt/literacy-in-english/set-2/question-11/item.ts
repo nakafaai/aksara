@@ -1,35 +1,29 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "library-hours",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "About 14 percent",
+          label: "Dismissive of all nutritional advice",
+        },
+        {
+          correct: false,
+          label: "Certain that one food can prevent every infection",
         },
         {
           correct: true,
-          label: "About 16 percent",
+          label: "Practical and evidence-based",
         },
         {
           correct: false,
-          label: "About 22 percent",
+          label: "Alarmist about eating any sugar",
         },
         {
           correct: false,
-          label: "About 25 percent",
-        },
-        {
-          correct: false,
-          label: "About 80 percent",
+          label: "Indifferent to dietary habits",
         },
       ],
     },

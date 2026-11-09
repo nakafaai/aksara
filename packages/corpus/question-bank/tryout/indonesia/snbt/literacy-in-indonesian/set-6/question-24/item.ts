@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
-  },
-  stimulus: "sriwijaya-stones",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Prasasti itu memuat daftar kata bahasa Indonesia yang pertama.",
+            "Istilah *penyangga belajar* membuktikan bahwa pilihan pertama tokoh sudah benar sebelum ia mengamati kebutuhan orang lain.",
+        },
+        {
+          correct: false,
+          label:
+            "Definisi itu membatasi *penyangga belajar* pada perasaan tokoh sehingga tindakan dan akibat pilihannya tidak perlu diperiksa.",
         },
         {
           correct: true,
           label:
-            "Prasasti itu termasuk bukti tertulis tertua tentang bahasa Melayu.",
-        },
-        {
-          correct: false,
-          label: "Prasasti itu ditulis oleh I-Tsing dalam bahasa Melayu Kuno.",
+            "Definisi *penyangga belajar* menjelaskan pola contoh, pertanyaan pemandu, dan kerja mandiri sebagai bantuan yang sengaja dikurangi ketika kendali Dimas meningkat.",
         },
         {
           correct: false,
           label:
-            "Prasasti itu membuktikan bahwa aksara Pallawa berasal dari Sumatra.",
+            "Penyebutan *penyangga belajar* menjadikan perubahan tokoh selesai seketika, padahal bacaan menunjukkan perkembangan bertahap.",
         },
         {
           correct: false,
-          label: "Prasasti itu ditulis dalam bahasa Indonesia yang sudah baku.",
+          label:
+            "Definisi tersebut hanya menamai latar kegiatan dan tidak berkaitan dengan keputusan tokoh.",
         },
       ],
     },

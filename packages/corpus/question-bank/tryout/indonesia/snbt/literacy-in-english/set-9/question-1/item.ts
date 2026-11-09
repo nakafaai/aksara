@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "main-idea",
-  },
-  stimulus: "tambora-1816",
+  stimulus: "passage-1",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Tambora cooled distant regions, though the link was understood much later.",
+            "The smaller mesh collected a higher percentage of controlled plastic fragments, while the single-material model limited conclusions about mixed environmental debris.",
         },
         {
           correct: false,
           label:
-            "Mary Shelley wrote *Frankenstein* because she was frightened by news of a distant volcano.",
+            "The class tested how a removable mesh with smaller openings affected the capture of floating plastic fragments, while controlling the listed factors but treating one short trial as proof of a universal effect.",
         },
         {
           correct: false,
           label:
-            "Ice cores prove that volcanoes cause most cold summers in Europe.",
+            "The class tested how a removable mesh with smaller openings affected the capture of floating plastic fragments, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
         },
         {
           correct: false,
           label:
-            "The eruption mainly harmed people on Sumbawa and the nearby islands.",
+            "The class tested how a removable mesh with smaller openings affected the capture of floating plastic fragments, while treating the scientific term as the measured outcome that settles the investigation.",
         },
         {
           correct: false,
           label:
-            "People in 1816 blamed Tambora for the snow that fell in New England.",
+            "The class tested how a removable mesh with smaller openings affected the capture of floating plastic fragments, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
         },
       ],
     },

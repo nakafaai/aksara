@@ -1,40 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "application",
-  },
-  stimulus: "novel-review",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Pembaca yang hanya menyukai cerita dengan akhir yang dibangun perlahan dan rapi.",
+          label: "Poster Baru di Panggung Baca Terminal",
         },
         {
           correct: false,
-          label:
-            "Pembaca yang mencari buku panduan teknis tentang pengelolaan mata air.",
-        },
-        {
-          correct: false,
-          label:
-            "Pembaca yang menginginkan kisah petualangan dengan banyak adegan laga.",
-        },
-        {
-          correct: false,
-          label:
-            "Pembaca yang lebih menyukai tokoh pendukung daripada tokoh utama.",
+          label: "Sopir yang Menunggu Jadwal Berikutnya",
         },
         {
           correct: true,
-          label:
-            "Pembaca yang suka kisah lingkungan tanpa mengharapkan penyelesaian sederhana.",
+          label: "Ketika Lampu Baca Menjadi Undangan",
+        },
+        {
+          correct: false,
+          label: "Mengapa Panggung Baca Hanya untuk Anak-Anak",
+        },
+        {
+          correct: false,
+          label: "Hujan Sore yang Menghentikan Kegiatan Membaca",
         },
       ],
     },

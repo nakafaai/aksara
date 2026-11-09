@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-reasoning",
-  },
-  stimulus: "app-reminders",
+  stimulus: "passage-3",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The reminder group had more people in it than the no-reminder group.",
-        },
-        {
-          correct: false,
-          label:
-            "The table gives no figures for the share of users still active on day 7.",
+            "The term proves that Caleb's original balanced total was reliable before the quotes were checked.",
         },
         {
           correct: true,
           label:
-            "By day 90, the reminder group was only one point ahead of the other.",
+            "The definition explains why the added line is tied to identified security and lighting risks rather than being an arbitrary extra amount.",
         },
         {
           correct: false,
           label:
-            "The people who received reminders were chosen because they were keener.",
+            "The definition turns contingency into another name for every unconfirmed price in the spreadsheet.",
         },
         {
           correct: false,
           label:
-            "More people in the reminder group than in the other had left by day 7.",
+            "The term guarantees that no cost can threaten the deposit once a contingency line appears.",
+        },
+        {
+          correct: false,
+          label:
+            "The definition describes the concert setting but does not help explain Caleb's scenarios or assigned follow-up.",
         },
       ],
     },

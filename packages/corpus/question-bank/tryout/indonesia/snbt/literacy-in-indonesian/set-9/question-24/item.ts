@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
-  },
-  stimulus: "batik-wax",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Motifnya selalu berbeda dari motif batik tradisional yang asli dan lama.",
-        },
-        {
-          correct: false,
-          label: "Harganya lebih mahal daripada batik tulis maupun batik cap.",
+            "Pembaca mengetahui bahwa penyunting sengaja meremehkan Laras karena seluruh niat tokoh disampaikan oleh narator.",
         },
         {
           correct: false,
           label:
-            "Kain itu tidak diakui UNESCO karena dibuat di luar Indonesia.",
+            "Pembaca dapat memastikan foto lama di arsip sekolah palsu karena Laras mempertimbangkan untuk menyalinnya.",
+        },
+        {
+          correct: false,
+          label:
+            "Pembaca memperoleh gambaran objektif tentang semua peristiwa karena sudut pandang Laras tidak membatasi informasi.",
         },
         {
           correct: true,
           label:
-            "Kain itu dibuat tanpa malam, padahal batik ditentukan oleh teknik malam.",
+            "Pembaca dekat dengan kecemasan dan pertimbangan Laras, tetapi tidak boleh menganggap tafsir Laras atas pertanyaan penyunting sebagai fakta tentang niat penyunting.",
         },
         {
           correct: false,
-          label: "Warnanya tidak dapat bertahan lama setelah kain itu dicuci.",
+          label:
+            "Pembaca hanya mengetahui tindakan luar Laras sehingga perubahan makna ikon waktu tidak dapat dipahami.",
         },
       ],
     },

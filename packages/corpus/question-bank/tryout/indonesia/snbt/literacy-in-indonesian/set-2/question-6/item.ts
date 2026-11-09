@@ -1,40 +1,29 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "main-idea",
-  },
-  stimulus: "unpaid-internship",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Semua bentuk magang bagi mahasiswa sebaiknya dihapus karena lebih banyak merugikan daripada menguntungkan.",
+          label: "Komik dan novel",
         },
         {
           correct: true,
-          label:
-            "Magang tanpa upah perlu dibatasi karena mempersempit kesempatan mahasiswa kurang mampu dan menggeser pekerja.",
+          label: "Dongeng dan pengetahuan",
         },
         {
           correct: false,
-          label:
-            "Mahasiswa magang seharusnya dibayar setara dengan karyawan tetap sejak hari pertama bekerja.",
+          label: "Cerita fiksi dan komik",
         },
         {
           correct: false,
-          label:
-            "Perusahaan rintisan dan lembaga nirlaba sebaiknya tidak menerima mahasiswa magang.",
+          label: "Dongeng dan penelitian",
         },
         {
           correct: false,
-          label:
-            "Mahasiswa sebaiknya menolak semua tawaran magang yang tidak memberikan sertifikat.",
+          label: "Cerita fiksi dan keagamaan",
         },
       ],
     },

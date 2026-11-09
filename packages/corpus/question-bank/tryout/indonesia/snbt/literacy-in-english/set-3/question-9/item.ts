@@ -1,40 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-reasoning",
-  },
-  stimulus: "four-day-week",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Defining *wayfinding* proves that the walking-time map should be adopted permanently without further testing.",
+        },
+        {
+          correct: false,
+          label:
+            "Once the map is classified as *wayfinding*, differences in mobility needs no longer limit the conclusion.",
+        },
+        {
+          correct: false,
+          label:
+            "The definition limits *wayfinding* to measuring how quickly every passenger can walk between stops.",
+        },
+        {
+          correct: false,
+          label:
+            "The term *wayfinding* replaces the trial figures and the affected groups' experience with a label that settles the decision by itself.",
+        },
+        {
           correct: true,
           label:
-            "It keeps the same hours and skips the redesign behind the good results.",
-        },
-        {
-          correct: false,
-          label:
-            "It requires employees to accept lower pay for the same amount of work.",
-        },
-        {
-          correct: false,
-          label:
-            "It is used only in hospitals, where staff must be present every day.",
-        },
-        {
-          correct: false,
-          label:
-            "It reduces the number of meetings so much that teams stop communicating.",
-        },
-        {
-          correct: false,
-          label:
-            "It has never been tested in any company in the United Kingdom.",
+            "The definition clarifies why the walking-time map counts as a wayfinding aid, while the measurements and consultation still determine how well it works.",
         },
       ],
     },

@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "chili-prices",
+  stimulus: "passage-3",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "38,0 persen",
+          label:
+            "Penyebutan *logistik* membuktikan rancangan sudah adil tanpa perlu memeriksa data pembanding atau masukan pengguna.",
         },
         {
           correct: false,
-          label: "48,6 persen",
+          label:
+            "Definisi itu membatasi *logistik* pada kebutuhan kelompok terbanyak sehingga variasi kebutuhan lain dapat diabaikan.",
         },
         {
           correct: true,
-          label: "51,4 persen",
+          label:
+            "Definisi *logistik* menunjukkan bahwa ketepatan label hanya satu bagian dari perpindahan buku dari asal sampai penerima, sehingga keterlambatan akibat cuaca tetap relevan.",
         },
         {
           correct: false,
-          label: "105,6 persen",
+          label:
+            "Istilah *logistik* menggantikan konsultasi pihak terdampak dengan satu label yang langsung menentukan keputusan.",
         },
         {
           correct: false,
-          label: "205,6 persen",
+          label:
+            "Definisi tersebut menjelaskan keterbatasan masa uji, bukan kriteria yang dipakai untuk membaca rancangan.",
         },
       ],
     },

@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
-  },
-  stimulus: "antibiotic-resistance",
+  stimulus: "passage-1",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Antibiotik mengubah bakteri yang peka menjadi bakteri yang kebal.",
+            "Simulasi membandingkan pengaruh pemasangan panel peneduh selama empat jam siang terhadap suhu air kolam mini, sambil mengendalikan faktor yang disebutkan tetapi menjadikan satu uji singkat sebagai bukti yang berlaku umum.",
+        },
+        {
+          correct: false,
+          label:
+            "Simulasi membandingkan pengaruh pemasangan panel peneduh selama empat jam siang terhadap suhu air kolam mini, sambil menyebut keterbatasan tetapi mengeluarkan kondisi pembanding dari penafsiran hasil.",
+        },
+        {
+          correct: false,
+          label:
+            "Simulasi membandingkan pengaruh pemasangan panel peneduh selama empat jam siang terhadap suhu air kolam mini, sambil menjadikan definisi istilah ilmiah sebagai hasil ukur yang menutup penelitian.",
+        },
+        {
+          correct: false,
+          label:
+            "Simulasi membandingkan pengaruh pemasangan panel peneduh selama empat jam siang terhadap suhu air kolam mini, sambil memakai pembanding hanya untuk mengukuhkan hipotesis awal dan menghapus ketidakpastian yang tersisa.",
         },
         {
           correct: true,
           label:
-            "Bakteri peka mati sehingga bakteri tahan berkembang biak tanpa banyak pesaing.",
-        },
-        {
-          correct: false,
-          label:
-            "Bakteri belajar melawan antibiotik setelah beberapa kali terpapar obat yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Antibiotik merangsang tubuh menghasilkan lebih banyak bakteri baru.",
-        },
-        {
-          correct: false,
-          label:
-            "Bakteri yang kebal memakan bakteri yang mati karena antibiotik.",
+            "Simulasi membandingkan pengaruh pemasangan panel peneduh selama empat jam siang terhadap suhu air kolam mini, sambil mengendalikan faktor lain dan mengakui keterbatasan pengukuran.",
         },
       ],
     },

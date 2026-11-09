@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "text-comparison",
-  },
-  stimulus: "food-estate",
+  stimulus: "passage-4",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "sawah baru perlu dibuka di lahan gambut agar produksi beras naik",
-        },
-        {
-          correct: false,
-          label:
-            "impor beras sebaiknya dihentikan sama sekali mulai tahun depan",
-        },
-        {
-          correct: false,
-          label:
-            "pangan lokal sebaiknya menggantikan beras sebagai makanan pokok",
+            "Label pemilik membuktikan seluruh perpindahan karya karena kepemilikan selalu sama dengan lokasi penyimpanan.",
         },
         {
           correct: true,
           label:
-            "negara perlu memperkuat pangannya agar tidak mudah terguncang",
+            "Kartu $$1967$$ membuktikan lukisan berada di Surabaya saat diperiksa, tetapi tidak menjelaskan siapa pemiliknya atau bagaimana riwayat penguasaan karya sejak label $$1958$$. Celah itu tetap terbuka.",
         },
         {
           correct: false,
-          label: "mesin modern tidak cocok dipakai oleh para petani kecil",
+          label:
+            "Kartu kondisi lebih penting daripada label pameran karena kerusakan fisik merupakan satu-satunya bagian riwayat karya yang dapat diperiksa.",
+        },
+        {
+          correct: false,
+          label:
+            "Perbedaan informasi kepemilikan dan kerusakan berarti kedua sumber membahas karya yang berbeda.",
+        },
+        {
+          correct: false,
+          label:
+            "Gabungan label dan kartu kondisi menjamin bahwa setiap perpindahan karya telah tercatat lengkap.",
         },
       ],
     },

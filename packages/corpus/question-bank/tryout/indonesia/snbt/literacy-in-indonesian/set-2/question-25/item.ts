@@ -1,38 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-purpose",
-  },
-  stimulus: "subak-water",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Membuktikan bahwa subak sudah ada sejak seribu tahun yang lalu.",
+          label: "Seluruh individu meninggal dalam badai yang sama",
         },
         {
           correct: false,
-          label: "Menolak penetapan subak sebagai Warisan Dunia oleh UNESCO.",
+          label: "Kelompok Mediterania timur merupakan kelompok tertua",
         },
         {
           correct: false,
-          label: "Menyusun jadwal tanam baru untuk menggantikan jadwal pura.",
-        },
-        {
-          correct: false,
-          label:
-            "Menunjukkan bahwa varietas unggul lebih tahan hama daripada varietas lama.",
+          label: "Semua individu Asia Selatan meninggal pada hari yang sama",
         },
         {
           correct: true,
           label:
-            "Menjelaskan secara ilmiah mengapa jadwal pura berhasil menyeimbangkan air dan hama.",
+            "Jasad-jasad tersebut tidak berasal dari satu peristiwa kematian",
+        },
+        {
+          correct: false,
+          label: "Penanggalan radiokarbon membuktikan penyebab kematian",
         },
       ],
     },

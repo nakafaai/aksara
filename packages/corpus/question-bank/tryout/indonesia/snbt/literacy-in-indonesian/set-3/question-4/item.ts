@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "tone-attitude",
-  },
-  stimulus: "mangrove-carbon",
+  stimulus: "passage-1",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menolak semua program penanaman karena mangrove dapat pulih sendiri.",
+            "Definisi *variabel kontrol* membuktikan bahwa perubahan uji menyebabkan hasil yang tercatat meskipun kondisi pembanding diabaikan.",
         },
         {
           correct: false,
           label:
-            "Mendukung semua program penanaman tanpa syarat karena mangrove menyimpan banyak karbon.",
+            "Definisi itu menjadikan *variabel kontrol* pengganti data pengamatan sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
         },
         {
           correct: true,
           label:
-            "Mendukung pemulihan, tetapi kritis terhadap penanaman yang mengabaikan lokasi dan jenis.",
+            "Definisi *variabel kontrol* menjelaskan alasan jenis benih, volume air, dan ukuran wadah dijaga sama agar perbandingan pencahayaan lebih wajar.",
         },
         {
           correct: false,
           label:
-            "Tidak peduli terhadap berhasil atau gagalnya program penanaman mangrove.",
+            "Definisi tersebut memperluas *variabel kontrol* dari percobaan singkat ini ke semua keadaan yang menyerupainya.",
         },
         {
           correct: false,
           label:
-            "Lebih mengutamakan simpanan karbon daripada fungsi mangrove sebagai penahan abrasi.",
+            "Istilah *variabel kontrol* dipakai untuk menamai keterbatasan laporan, bukan konsep yang diwakili hasil pengukuran.",
         },
       ],
     },

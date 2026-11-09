@@ -1,40 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
-  },
-  stimulus: "food-waste",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Rencana itu keliru karena sayur, bukan nasi, menghasilkan jumlah sisa makanan terbesar.",
-        },
-        {
-          correct: false,
-          label:
-            "Rencana itu tidak didukung data karena nasi hanya menyumbang kurang dari seperempat seluruh sisa makanan.",
-        },
-        {
-          correct: false,
-          label:
-            "Rencana itu tepat karena seluruh sisa nasi dapat dihindari dengan perencanaan porsi.",
-        },
-        {
           correct: true,
           label:
-            "Rencana itu didukung data untuk nasi, tetapi tidak menyentuh sisa sayur yang terbuang karena layu.",
+            "AFI menempatkannya sebagai legenda film perempuan dan beberapa filmnya masuk National Film Registry",
         },
         {
           correct: false,
-          label:
-            "Rencana itu sebaiknya diganti dengan kampanye buah karena buah menghasilkan sisa tak terhindarkan terbesar.",
+          label: "Ia pernah bekerja di sebuah pabrik pada masa perang",
+        },
+        {
+          correct: false,
+          label: "Namanya berubah dari Norma Jeane menjadi Marilyn Monroe",
+        },
+        {
+          correct: false,
+          label: "Ia menikah pada usia enam belas tahun",
+        },
+        {
+          correct: false,
+          label: "Ia menjadi model setelah bertemu seorang fotografer",
         },
       ],
     },

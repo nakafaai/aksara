@@ -1,40 +1,29 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
-  },
-  stimulus: "lichen-air",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Survei lumut kerak membutuhkan biaya lebih besar daripada alat pengukur.",
+          label: "Namun, sayangnya",
         },
         {
           correct: false,
-          label:
-            "Lumut kerak tidak tumbuh di kota sehingga survei hanya dapat dilakukan di pedesaan.",
+          label: "Akhirnya, orang menganggap",
         },
         {
           correct: false,
-          label:
-            "Siswa dan warga tidak mampu membedakan bentuk-bentuk lumut kerak.",
+          label: "Walaupun demikian, banyak orang yang beranggapan",
         },
         {
           correct: false,
-          label:
-            "Lumut kerak hanya peka terhadap senyawa nitrogen, bukan sulfur dioksida.",
+          label: "Di balik semua itu, ada peran pemerintah secara agregat",
         },
         {
           correct: true,
-          label:
-            "Lumut kerak mencerminkan udara selama bertahun-tahun dan dipengaruhi faktor lain.",
+          label: "Meskipun memiliki daya tarik universal",
         },
       ],
     },

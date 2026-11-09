@@ -1,40 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "main-idea",
-  },
-  stimulus: "rosetta-stone",
+  stimulus: "passage-4",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The Rosetta Stone should be returned to Egypt from the British Museum in London.",
+          label: "A recurring object that remains part of the setting",
         },
         {
           correct: false,
-          label:
-            "Thomas Young deserves more credit than Champollion for the decipherment of hieroglyphs.",
+          label: "A conflict settled before the character's final choice",
         },
         {
           correct: false,
-          label:
-            "Greek was the most important language in ancient Egypt in 196 BC.",
-        },
-        {
-          correct: false,
-          label:
-            "Coptic was invented by Champollion to help him read the hieroglyphs on the stone.",
+          label: "Irony as a term without a role in the story",
         },
         {
           correct: true,
-          label:
-            "Hieroglyphs were read once scholars saw a mixed working script, not mystical symbols.",
+          label: "Turning an accurate map toward the passenger",
+        },
+        {
+          correct: false,
+          label: "An ending that removes the object's interpretive tension",
         },
       ],
     },

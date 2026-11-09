@@ -1,40 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "application",
-  },
-  stimulus: "basic-income",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "A six-month payment to 500 volunteers chosen from across the country",
-        },
-        {
-          correct: false,
-          label:
-            "A detailed survey asking adults how they would spend a basic income",
-        },
-        {
           correct: true,
-          label:
-            "Payments to every adult in several whole towns for many years",
+          label: "Testing date labels for cautious pantry stock rotation",
         },
         {
           correct: false,
-          label:
-            "A two-year payment to 2,000 unemployed people, as Finland arranged",
+          label: "Stock rotation as the main measure in a service trial",
         },
         {
           correct: false,
-          label:
-            "Payments to jobless people that stop as soon as each one finds work",
+          label: "From a short comparison to a permanent service change",
+        },
+        {
+          correct: false,
+          label: "Consultation without comparable outcome measures",
+        },
+        {
+          correct: false,
+          label: "A local service trial with no follow-up decision",
         },
       ],
     },

@@ -1,37 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "research-design",
-  },
-  stimulus: "scooter-pilot",
+  stimulus: "passage-3",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "The share of trips taken at night in each month of the pilot",
-        },
-        {
           correct: true,
-          label:
-            "Injuries treated at private clinics and hospitals during the pilot",
+          label: "When one welcome needs two translations",
         },
         {
           correct: false,
-          label:
-            "The number of parking spots that the operator marked across the city each month",
+          label: "Waiting for someone else to complete the next step",
         },
         {
           correct: false,
-          label: "The number of riders who wore helmets in each month",
+          label: "Hiding unresolved evidence in a larger project",
         },
         {
           correct: false,
-          label: "The price that riders paid to unlock a scooter for one trip",
+          label: "Connotation as a definition without a reviewable action",
+        },
+        {
+          correct: false,
+          label: "A complete plan without a small accountable step",
         },
       ],
     },

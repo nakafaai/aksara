@@ -1,36 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "chili-prices",
+  stimulus: "passage-3",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label:
-            "Bulan dengan curah hujan tertinggi juga memiliki harga rata-rata tertinggi.",
+          correct: false,
+          label: "logistik sebagai ukuran utama dalam uji layanan",
         },
         {
-          column: 1,
-          label:
-            "Dari Maret ke April, pasokan cabai rawit naik lebih dari 20%.",
+          correct: false,
+          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
         },
         {
-          column: 2,
-          label:
-            "Harga rata-rata pada Juni lebih rendah daripada harga rata-rata pada Mei.",
+          correct: false,
+          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
         },
         {
-          column: 2,
-          label:
-            "Setiap kali curah hujan turun dari bulan sebelumnya, harga rata-rata juga turun.",
+          correct: false,
+          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
+        },
+        {
+          correct: true,
+          label: "Uji Terbatas Label Tujuan untuk Pengiriman Buku Antarpulau",
         },
       ],
     },

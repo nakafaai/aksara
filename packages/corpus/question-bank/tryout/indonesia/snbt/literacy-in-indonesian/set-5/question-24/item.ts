@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
-  },
-  stimulus: "wayang-school",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Penonton masa kini tidak lagi mengenal alur pokok lakon Mahabharata.",
+            "Istilah *akuntabilitas* membuktikan bahwa pilihan pertama tokoh sudah benar sebelum ia mengamati kebutuhan orang lain.",
+        },
+        {
+          correct: false,
+          label:
+            "Definisi itu membatasi *akuntabilitas* pada perasaan tokoh sehingga tindakan dan akibat pilihannya tidak perlu diperiksa.",
         },
         {
           correct: true,
           label:
-            "Goro-goro tidak terikat pada alur pokok sehingga dalang bebas mengisinya.",
+            "Definisi *akuntabilitas* menghubungkan catatan perubahan dan dua kotak yang ditahan dengan kesediaan Bima menjelaskan keputusan serta menerima akibatnya.",
         },
         {
           correct: false,
           label:
-            "Semar adalah dewa sehingga nasihatnya wajib didengar oleh semua penonton.",
+            "Penyebutan *akuntabilitas* menjadikan perubahan tokoh selesai seketika, padahal bacaan menunjukkan perkembangan bertahap.",
         },
         {
           correct: false,
           label:
-            "Pertunjukan yang singkat memberi waktu lebih banyak untuk memberi nasihat.",
-        },
-        {
-          correct: false,
-          label:
-            "UNESCO mewajibkan setiap pertunjukan wayang memuat pesan pendidikan.",
+            "Definisi tersebut hanya menamai latar kegiatan dan tidak berkaitan dengan keputusan tokoh.",
         },
       ],
     },

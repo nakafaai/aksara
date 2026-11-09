@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "application",
-  },
-  stimulus: "coral-bleaching",
+  stimulus: "passage-1",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Karang itu akan mati karena warnanya sudah berubah menjadi putih seluruhnya.",
-        },
-        {
-          correct: false,
-          label: "Alga lain akan segera menutupi karang dan mencegahnya pulih.",
-        },
-        {
-          correct: false,
-          label: "Kerangka kapur karang akan larut karena kehilangan alga.",
+            "Menetapkan bahwa iradiansi tinggi selalu membuat sudut $$45$$ derajat menjadi sudut terbaik.",
         },
         {
           correct: false,
           label:
-            "Karang akan berpindah ke perairan yang lebih dingin di dekatnya.",
+            "Mengubah suhu akhir menjadi ukuran energi agar hasil dari semua putaran dapat langsung dijumlahkan.",
         },
         {
           correct: true,
           label:
-            "Alga kembali menghuni jaringan karang, dan karang itu perlahan pulih.",
+            "Menjelaskan mengapa suhu antarputaran tidak boleh dibandingkan tanpa konteks energi matahari, sedangkan sudut reflektor dapat dibandingkan di dalam putaran yang sama.",
+        },
+        {
+          correct: false,
+          label:
+            "Membuktikan bahwa pemutaran posisi oven tidak diperlukan selama daya matahari telah dicatat.",
+        },
+        {
+          correct: false,
+          label:
+            "Menunjukkan bahwa iradiansi merupakan hasil yang disebabkan oleh perubahan sudut reflektor.",
         },
       ],
     },

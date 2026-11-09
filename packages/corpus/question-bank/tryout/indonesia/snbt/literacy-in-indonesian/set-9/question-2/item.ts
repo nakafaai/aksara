@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "peat-fire",
+  stimulus: "passage-1",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Gambut terbentuk karena sisa tumbuhan membusuk sempurna dalam waktu singkat.",
+            "Panel paling efektif pada $$250\\,\\text{Hz}$$ karena nilai $$68\\,\\text{dB}$$ paling dekat dengan hasil setelah panel dilepas, sehingga perbedaannya paling konsisten.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Lahan gambut tropis Indonesia terutama terdapat di Sumatra, Kalimantan, dan Papua.",
+            "Pada $$1{.}000\\,\\text{Hz}$$, selisih antara kondisi berpanel dan dua kondisi tanpa panel paling besar. Temuan itu tetap terbatas pada susunan dan ruang yang diuji.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Kebakaran gambut dapat menjalar di bawah tanah tanpa nyala yang besar.",
+            "Karena semua angka dengan panel lebih rendah, besar penurunan energi bunyi dapat dihitung langsung sebagai persentase selisih desibel.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Menyekat kanal dapat memadamkan api gambut yang sudah menyala.",
+            "Perbedaan satu desibel antara kondisi awal dan kondisi setelah panel dilepas membatalkan hubungan apa pun antara panel dan hasil pengukuran.",
+        },
+        {
+          correct: false,
+          label:
+            "Data $$4{.}000\\,\\text{Hz}$$ membuktikan bahwa panel akan menghasilkan penurunan $$11\\,\\text{dB}$$ di setiap auditorium yang memakai bahan dan ketebalan serupa.",
         },
       ],
     },

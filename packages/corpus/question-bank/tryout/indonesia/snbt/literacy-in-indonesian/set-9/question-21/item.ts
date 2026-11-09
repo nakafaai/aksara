@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
-  },
-  stimulus: "remote-work",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pekerja berpengalaman menyelesaikan laporan lebih cepat ketika bekerja dari rumah.",
+            "Laras berubah dari takut pada hasil buram menjadi yakin bahwa semua karya yang tidak lengkap pasti lebih jujur daripada karya yang rapi.",
         },
         {
           correct: false,
           label:
-            "Perusahaan yang mengizinkan kerja dari rumah menerima lebih banyak lamaran kerja.",
+            "Laras berubah karena penyunting menyetujui bingkai kosong, sehingga tanggung jawab atas isi esai beralih kepada penyunting.",
+        },
+        {
+          correct: false,
+          label:
+            "Laras mengatasi keterbatasan dengan mengganti seluruh foto menjadi rekaman suara agar tugas lima penanda tetap dianggap lengkap.",
         },
         {
           correct: true,
           label:
-            "Karyawan baru yang bekerja dari rumah sepenuhnya lebih lambat menguasai pekerjaannya.",
+            "Laras beralih dari mengejar kesan lengkap menuju penyajian pengalaman yang dapat dipertanggungjawabkan, termasuk bagian yang tidak berhasil ia capai.",
         },
         {
           correct: false,
           label:
-            "Biaya sewa kantor turun ketika separuh karyawan bekerja dari rumah.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian pekerja lebih suka bekerja di kafe daripada di rumah.",
+            "Laras menyimpulkan bahwa batas waktu dan baterai tidak penting selama sebuah karya memiliki keterangan yang menjelaskan kekurangannya.",
         },
       ],
     },

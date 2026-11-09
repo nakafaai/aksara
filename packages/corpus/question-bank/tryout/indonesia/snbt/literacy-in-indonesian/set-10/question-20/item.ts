@@ -1,40 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
-  },
-  stimulus: "artefact-return",
+  stimulus: "passage-4",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Ia akan menolak seluruh gagasan pengembalian benda budaya rampasan.",
+          label: "Dua Puluh Empat Lampu yang Pasti Menyala Setiap Malam",
         },
         {
           correct: false,
-          label:
-            "Ia akan setuju tanpa syarat karena benda itu memang milik bangsa Indonesia.",
-        },
-        {
-          correct: false,
-          label:
-            "Ia akan mengusulkan agar benda itu dipamerkan di Belanda selamanya.",
-        },
-        {
-          correct: false,
-          label:
-            "Ia akan meminta agar katalog digital tidak perlu lagi dibuat.",
+          label: "Tiga Buku Harian sebagai Suara Seluruh Kampung",
         },
         {
           correct: true,
-          label:
-            "Ia akan mengingatkan bahwa tidak semua museum memiliki fasilitas itu.",
+          label: "Membaca Peta Lampu dan Pengalaman Malam Warga",
+        },
+        {
+          correct: false,
+          label: "Mengapa Peta Resmi Tidak Berguna bagi Sejarah",
+        },
+        {
+          correct: false,
+          label: "Penerangan yang Merata di Semua Jalan Kampung",
         },
       ],
     },

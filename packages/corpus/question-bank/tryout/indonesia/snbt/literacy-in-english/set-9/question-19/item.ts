@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-reasoning",
-  },
-  stimulus: "braille-code",
+  stimulus: "passage-4",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "To show that blind pupils in Paris did not want to learn to read",
+            "The term *plot structure* confirms one final outcome and therefore removes the need to interpret the ending.",
         },
         {
           correct: false,
           label:
-            "To argue that raised letters were better for sighted teachers",
+            "The definition treats *plot structure* as the physical object itself rather than as a feature of the narrative ending.",
         },
         {
           correct: true,
-          label: "To show the problems that Braille's system would later solve",
+          label:
+            "The definition explains the sequence: blame falls on the bin, the backward search reveals the outdated permit, and the final comparison leads the team to correct the symbols.",
         },
         {
           correct: false,
           label:
-            "To explain how Braille injured his eye in his father's workshop",
+            "The term *plot structure* makes the reader's personal impression sufficient even when it conflicts with story details.",
         },
         {
           correct: false,
           label:
-            "To prove that Barbier had invented raised-letter books for the army",
+            "The definition explains only the setting, so the recurring object and the character's action are irrelevant.",
         },
       ],
     },
