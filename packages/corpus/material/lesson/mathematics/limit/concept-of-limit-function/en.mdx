@@ -3,7 +3,7 @@ export const metadata = {
   description: "Estimate limits from value tables and one-sided behavior, then interpret the epsilon-delta definition.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-23",
+    dateModified: "2026-11-08",
     subject: "Limits",
 };
 
@@ -27,6 +27,16 @@ The table below records how <InlineMath math="f(x) = x + 2" /> changes as <Inlin
 | From the right | <InlineMath math="3.1" /> | <InlineMath math="5.1" /> |
 
 As <InlineMath math="x" /> approaches <InlineMath math="3" /> from either side, the table values of <InlineMath math="f(x)" /> approach <InlineMath math="5" />. <Highlight>That approaching value is the limit</Highlight>.
+
+Look at the gap to the limit instead of the values. <InlineMath math="|f(x) - 5| = |x - 3|" /> shrinks from <InlineMath math="0.1" /> to <InlineMath math="0.01" /> to <InlineMath math="0.001" /> as <InlineMath math="x" /> approaches 3 from either side.
+
+<BarChart
+  title={<>Distance from the limit 5</>}
+  description={<>Bars of <InlineMath math="|f(x) - 5|" /> for <InlineMath math="f(x) = x + 2" /> at the table inputs from <InlineMath math="2.9" /> to <InlineMath math="3.1" />.</>}
+  yAxisLabel="Distance from 5"
+  data={[2.9, 2.99, 2.999, 3.001, 3.01, 3.1].map((x) => ({ name: String(x), value: Math.round(10000 * Math.abs(x + 2 - 5)) / 10000 }))}
+  chartConfig={{ value: { label: "Distance from 5", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Notation One Sided Limits and Formal Meaning
 
@@ -98,6 +108,31 @@ Since a limit concerns nearby values with <InlineMath math="x \neq 2" />, we may
 
 <BlockMath math="\lim_{x\to2}\frac{x^2-4}{x-2}= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
 
+The graph of <InlineMath math="\frac{x^2 - 4}{x - 2}" /> is the line <InlineMath math="y = x + 2" /> with a hole at <InlineMath math="(2, 4)" />. The function has no value at 2, but the limit is the height of the hole, 4.
+
+<MathVisual
+  title={<>The line <InlineMath math="y = x + 2" /> with a hole at <InlineMath math="(2, 4)" /></>}
+  description={<>The graph of <InlineMath math="\frac{x^2 - 4}{x - 2}" />: the line <InlineMath math="y = x + 2" /> with an open circle at <InlineMath math="(2, 4)" />.</>}
+  labels={{
+    line: <InlineMath math="y = x + 2" />,
+    hole: <InlineMath math="(2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 5.6 }, y: { min: -0.6, max: 7.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "left", kind: "segment", from: { x: -1, y: 1 }, to: { x: 2 - 0.12 / Math.sqrt(2), y: 4 - 0.12 / Math.sqrt(2) }, appearance: "primary" },
+      { id: "right", kind: "segment", from: { x: 2 + 0.12 / Math.sqrt(2), y: 4 + 0.12 / Math.sqrt(2) }, to: { x: 5, y: 7 }, appearance: "primary" },
+      { id: "hole", kind: "circle", center: { x: 2, y: 4 }, radius: 3 / 25, appearance: "warning" },
+    ],
+    labels: [
+      { key: "line", objectId: "right", at: { x: 5, y: 7 }, placement: "left" },
+      { key: "hole", objectId: "hole", at: { x: 2, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Basic Properties of Limits
 
 The following rules require both limits <InlineMath math="L=\lim_{x\to c}f(x)" /> and <InlineMath math="M=\lim_{x\to c}g(x)" /> to **exist and be finite**, with constant coefficients <InlineMath math="a,b" />.
@@ -161,14 +196,26 @@ Since <InlineMath math="\lim_{x \to 2^-} f(x) = 3 \neq 4 = \lim_{x \to 2^+} f(x)
 
 The graph shows **two different approach heights**. The point on the right branch gives <InlineMath math="f(2)=4" />, but defining that value does not change the left limit of <InlineMath math="3" />.
 
-<LineEquation
-  title="A Jump in a Piecewise Function"
-  description="The left branch approaches height three, but the right branch begins at height four. The orange point marks the function value at x equal to two."
-  showZAxis={false}
-  cameraTarget={[1.5, 3.5, 0]}
-  cameraPosition={[1.5, 3.5, 14]}
-  data={[
-    { points: [{ x: 0, y: 1, z: 0 }, { x: 1.99, y: 2.99, z: 0 }], color: "#9333ea", smooth: false, showPoints: false, labels: [{ at: 1, text: <InlineMath math="3" />, offset: [0.4, -0.3, 0] }] },
-    { points: [{ x: 2, y: 4, z: 0 }, { x: 3, y: 7, z: 0 }], color: "#ea580c", smooth: false, showPoints: true, pointIndices: [0], labels: [{ at: 0, text: <InlineMath math="(2,4)" />, offset: [0.8, 0.2, 0] }] },
-  ]}
+<MathVisual
+  title={<>A jump in a piecewise function</>}
+  description={<>The left branch <InlineMath math="x + 1" /> approaches height 3, but the right branch <InlineMath math="3x - 2" /> starts at height 4. The open circle at <InlineMath math="(2, 3)" /> and the point <InlineMath math="(2, 4)" /> show that the two one-sided limits differ.</>}
+  labels={{
+    hole: <InlineMath math="3" />,
+    value: <InlineMath math="(2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 3.4 }, y: { min: -0.4, max: 7.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "left", kind: "segment", from: { x: 0, y: 1 }, to: { x: 2 - 0.12 / Math.sqrt(2), y: 3 - 0.12 / Math.sqrt(2) }, appearance: "secondary" },
+      { id: "hole", kind: "circle", center: { x: 2, y: 3 }, radius: 3 / 25, appearance: "warning" },
+      { id: "branch", kind: "segment", from: { x: 2, y: 4 }, to: { x: 3, y: 7 }, appearance: "primary" },
+      { id: "value", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "hole", objectId: "hole", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "value", objectId: "value", at: { x: 2, y: 4 }, placement: "left" },
+    ],
+  }}
 />

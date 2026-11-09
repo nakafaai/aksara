@@ -3,7 +3,7 @@ export const metadata = {
     description: "Die sechs grundlegenden trigonometrischen Funktionen im Bogenmaß ableiten und Summen-, Produkt- sowie Quotientenregel in Beispielen anwenden.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Ableitungsfunktionen",
 };
 
@@ -32,19 +32,25 @@ Die Tabelle ordnet jeder Funktion ihre Ableitung und die Bedingung für ihren De
 
 Für <InlineMath math="f(x)=\sin x" /> beschreibt die Ableitung <InlineMath math="f'(x)=\cos x" /> die **Steigung der Sinuskurve**. Bei <InlineMath math="x=0" /> beträgt die Sinussteigung <InlineMath math="1" />. Am Hochpunkt bei <InlineMath math="x=\pi/2" /> wird die Steigung <InlineMath math="0" />.
 
-<LineEquation
-  title="Sinus und seine Ableitungsfunktion"
-  description="Die violette Kurve zeigt den Sinus, die orange Kurve den Kosinus. Die waagerechte Achse misst Winkel im Bogenmaß. Vergleiche das Vorzeichen des Kosinus damit, ob die Sinuskurve steigt oder fällt."
-  data={[
-    { points: Array.from({ length: 161 }, (_, i) => { const x = -Math.PI + i * Math.PI / 80; return { x, y: Math.sin(x), z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ at: 120, text: <InlineMath math="\sin x" />, offset: [0, 0.5, 0] }] },
-    { points: Array.from({ length: 161 }, (_, i) => { const x = -Math.PI + i * Math.PI / 80; return { x, y: Math.cos(x), z: 0 }; }), smooth: false, color: "#ea580c", showPoints: false, labels: [{ at: 80, text: <InlineMath math="\cos x" />, offset: [0, 0.5, 0] }] },
-  ]}
-  showZAxis={false}
-  cameraTarget={[0, 0, 0]}
-  cameraPosition={[0, 0, 10]}
+<BarChart
+  title={<>Die Steigung des Sinus ist der Kosinus</>}
+  description={<>Balken von <InlineMath math="\cos x" />, der Steigung von <InlineMath math="\sin x" />, bei <InlineMath math="x = 0, \tfrac{\pi}{6}, \tfrac{\pi}{3}, \tfrac{\pi}{2}, \tfrac{2\pi}{3}, \tfrac{5\pi}{6}, \pi" /> im Bogenmaß. Die Steigung ist 1 bei 0, 0 im Maximum <InlineMath math="\tfrac{\pi}{2}" /> und danach negativ.</>}
+  yAxisLabel="Steigung von sin x"
+  data={[["0", 0], ["π/6", 1 / 6], ["π/3", 1 / 3], ["π/2", 1 / 2], ["2π/3", 2 / 3], ["5π/6", 5 / 6], ["π", 1]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.cos(k * Math.PI)) / 1000 }))}
+  chartConfig={{ value: { label: "Steigung von sin x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 Auf <InlineMath math="-\pi/2<x<\pi/2" /> ist der Kosinus positiv, also steigt der Sinus. Auf <InlineMath math="\pi/2<x<\pi" /> ist der Kosinus negativ, also fällt der Sinus. Eine **Ableitung von null** am Hochpunkt bedeutet eine waagerechte Tangente.
+
+Jetzt die Höhen von <InlineMath math="\sin x" /> bei denselben Winkeln: 0, <InlineMath math="\tfrac12" />, etwa 0,866, 1 und dann wieder abwärts. Die Balken steigen genau dort, wo die Kosinusbalken positiv sind, und fallen, wo sie negativ sind.
+
+<BarChart
+  title={<>Höhen von <InlineMath math="\sin x" /> von 0 bis <InlineMath math="\pi" /></>}
+  description={<>Balken von <InlineMath math="\sin x" /> bei <InlineMath math="x = 0, \tfrac{\pi}{6}, \tfrac{\pi}{3}, \tfrac{\pi}{2}, \tfrac{2\pi}{3}, \tfrac{5\pi}{6}, \pi" />.</>}
+  yAxisLabel="sin x"
+  data={[["0", 0], ["π/6", 1 / 6], ["π/3", 1 / 3], ["π/2", 1 / 2], ["2π/3", 2 / 3], ["5π/6", 5 / 6], ["π", 1]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.sin(k * Math.PI)) / 1000 }))}
+  chartConfig={{ value: { label: "sin x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Anwenden der Regeln auf trigonometrische Funktionen
 
@@ -166,3 +172,13 @@ Jede Aufgabe verlangt die erste Ableitung eines trigonometrischen Terms, **die z
     <BlockMath math="f'(x) = \cos(2x)" />
 
     Die Ableitung der Funktion ist also <InlineMath math="\cos(2x)" />.
+
+Übung 2 als Diagramm: Die Ableitung <InlineMath math="\cos 2x" /> von <InlineMath math="\sin x \cos x = \tfrac12 \sin 2x" /> ist bis <InlineMath math="x = \tfrac{\pi}{4}" /> positiv und danach negativ, also erreicht <InlineMath math="\sin x \cos x" /> bei <InlineMath math="\tfrac{\pi}{4}" /> seinen größten Wert <InlineMath math="\tfrac12" />.
+
+<BarChart
+  title={<>Werte von <InlineMath math="\cos 2x" /></>}
+  description={<>Balken von <InlineMath math="\cos 2x" /> bei <InlineMath math="x = 0, \tfrac{\pi}{8}, \tfrac{\pi}{4}, \tfrac{3\pi}{8}, \tfrac{\pi}{2}" />.</>}
+  yAxisLabel="cos 2x"
+  data={[["0", 0], ["π/8", 1 / 8], ["π/4", 1 / 4], ["3π/8", 3 / 8], ["π/2", 1 / 2]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.cos(2 * k * Math.PI)) / 1000 }))}
+  chartConfig={{ value: { label: "cos 2x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

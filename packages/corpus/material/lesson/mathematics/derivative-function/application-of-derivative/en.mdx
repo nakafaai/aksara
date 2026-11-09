@@ -3,7 +3,7 @@ export const metadata = {
   description: "Use derivatives to calculate velocity, acceleration, and maximum height in worked physics problems.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Derivative Functions",
 };
 
@@ -36,24 +36,55 @@ For <InlineMath math="0<t<1" />, both factors are negative, so <InlineMath math=
 
 The velocity graph shows a **change of direction** where it crosses the time axis. On the displayed interval, the curve crosses at <InlineMath math="t=1" /> and <InlineMath math="t=3" />. Compare the velocity signs before and after each crossing.
 
-<LineEquation
-  title="Velocity Signs and Direction of Motion"
-  description="The horizontal axis gives time in seconds and the vertical axis gives velocity in meters per second. Below the time axis, the position is decreasing."
-  data={[{
-    points: Array.from({ length: 81 }, (_, i) => { const t = i / 20; return { x: t, y: 3 * t * t - 12 * t + 9, z: 0 }; }),
-    smooth: false,
-    color: "#9333ea",
-    showPoints: true,
-    pointIndices: [20, 60],
-    labels: [
-      { at: 20, text: <InlineMath math="t=1" />, offset: [-0.7, 0.5, 0] },
-      { at: 60, text: <InlineMath math="t=3" />, offset: [0.7, 0.5, 0] },
-      { at: 40, text: <InlineMath math="v(2)=-3" />, offset: [0, -0.8, 0] },
+<MathVisual
+  title={<>Velocity signs and direction of motion</>}
+  description={<>The velocity <InlineMath math="v(t) = 3t^2 - 12t + 9" /> in metres per second against time in seconds. It is 0 at <InlineMath math="t = 1" /> and <InlineMath math="t = 3" /> and negative between them, with <InlineMath math="v(2) = -3" />. Below the time axis the position is decreasing.</>}
+  labels={{
+    t1: <InlineMath math="t = 1" />,
+    t3: <InlineMath math="t = 3" />,
+    low: <InlineMath math="v(2) = -3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 4.4 }, y: { min: -3.6, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "v", kind: "quadratic", inputAxis: "x", coefficients: { a: 3, b: -12, c: 9 }, domain: { min: 0, max: 4 }, appearance: "secondary" },
+      { id: "t1", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "t3", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "low", kind: "point", at: { x: 2, y: -3 }, appearance: "highlight" },
     ],
-  }]}
-  showZAxis={false}
-  cameraTarget={[2, 2.5, 0]}
-  cameraPosition={[2, 2.5, 20]}
+    labels: [
+      { key: "t1", objectId: "t1", at: { x: 1, y: 0 }, placement: "above-left" },
+      { key: "t3", objectId: "t3", at: { x: 3, y: 0 }, placement: "above-right" },
+      { key: "low", objectId: "low", at: { x: 2, y: -3 }, placement: "below" },
+    ],
+  }}
+/>
+
+The position <InlineMath math="s(t) = t^3 - 6t^2 + 9t" /> rises to 4 m at <InlineMath math="t = 1" />, falls back to 0 at <InlineMath math="t = 3" /> and rises again. The turns sit exactly where the velocity changes sign.
+
+<MathVisual
+  title={<>Position against time</>}
+  description={<>The curve <InlineMath math="s(t) = t^3 - 6t^2 + 9t" /> for <InlineMath math="0 \le t \le 4" /> with its turning points <InlineMath math="(1, 4)" /> and <InlineMath math="(3, 0)" />.</>}
+  labels={{
+    top: <InlineMath math="(1, 4)" />,
+    bottom: <InlineMath math="(3, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 4.4 }, y: { min: -0.6, max: 4.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "s", kind: "polyline", vertices: [{ x: 0, y: (0) ** 3 - 6 * (0) ** 2 + 9 * (0) }, { x: 1 / 20, y: (1 / 20) ** 3 - 6 * (1 / 20) ** 2 + 9 * (1 / 20) }, { x: 1 / 10, y: (1 / 10) ** 3 - 6 * (1 / 10) ** 2 + 9 * (1 / 10) }, { x: 3 / 20, y: (3 / 20) ** 3 - 6 * (3 / 20) ** 2 + 9 * (3 / 20) }, { x: 1 / 5, y: (1 / 5) ** 3 - 6 * (1 / 5) ** 2 + 9 * (1 / 5) }, { x: 1 / 4, y: (1 / 4) ** 3 - 6 * (1 / 4) ** 2 + 9 * (1 / 4) }, { x: 3 / 10, y: (3 / 10) ** 3 - 6 * (3 / 10) ** 2 + 9 * (3 / 10) }, { x: 7 / 20, y: (7 / 20) ** 3 - 6 * (7 / 20) ** 2 + 9 * (7 / 20) }, { x: 2 / 5, y: (2 / 5) ** 3 - 6 * (2 / 5) ** 2 + 9 * (2 / 5) }, { x: 9 / 20, y: (9 / 20) ** 3 - 6 * (9 / 20) ** 2 + 9 * (9 / 20) }, { x: 1 / 2, y: (1 / 2) ** 3 - 6 * (1 / 2) ** 2 + 9 * (1 / 2) }, { x: 11 / 20, y: (11 / 20) ** 3 - 6 * (11 / 20) ** 2 + 9 * (11 / 20) }, { x: 3 / 5, y: (3 / 5) ** 3 - 6 * (3 / 5) ** 2 + 9 * (3 / 5) }, { x: 13 / 20, y: (13 / 20) ** 3 - 6 * (13 / 20) ** 2 + 9 * (13 / 20) }, { x: 7 / 10, y: (7 / 10) ** 3 - 6 * (7 / 10) ** 2 + 9 * (7 / 10) }, { x: 3 / 4, y: (3 / 4) ** 3 - 6 * (3 / 4) ** 2 + 9 * (3 / 4) }, { x: 4 / 5, y: (4 / 5) ** 3 - 6 * (4 / 5) ** 2 + 9 * (4 / 5) }, { x: 17 / 20, y: (17 / 20) ** 3 - 6 * (17 / 20) ** 2 + 9 * (17 / 20) }, { x: 9 / 10, y: (9 / 10) ** 3 - 6 * (9 / 10) ** 2 + 9 * (9 / 10) }, { x: 19 / 20, y: (19 / 20) ** 3 - 6 * (19 / 20) ** 2 + 9 * (19 / 20) }, { x: 1, y: (1) ** 3 - 6 * (1) ** 2 + 9 * (1) }, { x: 21 / 20, y: (21 / 20) ** 3 - 6 * (21 / 20) ** 2 + 9 * (21 / 20) }, { x: 11 / 10, y: (11 / 10) ** 3 - 6 * (11 / 10) ** 2 + 9 * (11 / 10) }, { x: 23 / 20, y: (23 / 20) ** 3 - 6 * (23 / 20) ** 2 + 9 * (23 / 20) }, { x: 6 / 5, y: (6 / 5) ** 3 - 6 * (6 / 5) ** 2 + 9 * (6 / 5) }, { x: 5 / 4, y: (5 / 4) ** 3 - 6 * (5 / 4) ** 2 + 9 * (5 / 4) }, { x: 13 / 10, y: (13 / 10) ** 3 - 6 * (13 / 10) ** 2 + 9 * (13 / 10) }, { x: 27 / 20, y: (27 / 20) ** 3 - 6 * (27 / 20) ** 2 + 9 * (27 / 20) }, { x: 7 / 5, y: (7 / 5) ** 3 - 6 * (7 / 5) ** 2 + 9 * (7 / 5) }, { x: 29 / 20, y: (29 / 20) ** 3 - 6 * (29 / 20) ** 2 + 9 * (29 / 20) }, { x: 3 / 2, y: (3 / 2) ** 3 - 6 * (3 / 2) ** 2 + 9 * (3 / 2) }, { x: 31 / 20, y: (31 / 20) ** 3 - 6 * (31 / 20) ** 2 + 9 * (31 / 20) }, { x: 8 / 5, y: (8 / 5) ** 3 - 6 * (8 / 5) ** 2 + 9 * (8 / 5) }, { x: 33 / 20, y: (33 / 20) ** 3 - 6 * (33 / 20) ** 2 + 9 * (33 / 20) }, { x: 17 / 10, y: (17 / 10) ** 3 - 6 * (17 / 10) ** 2 + 9 * (17 / 10) }, { x: 7 / 4, y: (7 / 4) ** 3 - 6 * (7 / 4) ** 2 + 9 * (7 / 4) }, { x: 9 / 5, y: (9 / 5) ** 3 - 6 * (9 / 5) ** 2 + 9 * (9 / 5) }, { x: 37 / 20, y: (37 / 20) ** 3 - 6 * (37 / 20) ** 2 + 9 * (37 / 20) }, { x: 19 / 10, y: (19 / 10) ** 3 - 6 * (19 / 10) ** 2 + 9 * (19 / 10) }, { x: 39 / 20, y: (39 / 20) ** 3 - 6 * (39 / 20) ** 2 + 9 * (39 / 20) }, { x: 2, y: (2) ** 3 - 6 * (2) ** 2 + 9 * (2) }, { x: 41 / 20, y: (41 / 20) ** 3 - 6 * (41 / 20) ** 2 + 9 * (41 / 20) }, { x: 21 / 10, y: (21 / 10) ** 3 - 6 * (21 / 10) ** 2 + 9 * (21 / 10) }, { x: 43 / 20, y: (43 / 20) ** 3 - 6 * (43 / 20) ** 2 + 9 * (43 / 20) }, { x: 11 / 5, y: (11 / 5) ** 3 - 6 * (11 / 5) ** 2 + 9 * (11 / 5) }, { x: 9 / 4, y: (9 / 4) ** 3 - 6 * (9 / 4) ** 2 + 9 * (9 / 4) }, { x: 23 / 10, y: (23 / 10) ** 3 - 6 * (23 / 10) ** 2 + 9 * (23 / 10) }, { x: 47 / 20, y: (47 / 20) ** 3 - 6 * (47 / 20) ** 2 + 9 * (47 / 20) }, { x: 12 / 5, y: (12 / 5) ** 3 - 6 * (12 / 5) ** 2 + 9 * (12 / 5) }, { x: 49 / 20, y: (49 / 20) ** 3 - 6 * (49 / 20) ** 2 + 9 * (49 / 20) }, { x: 5 / 2, y: (5 / 2) ** 3 - 6 * (5 / 2) ** 2 + 9 * (5 / 2) }, { x: 51 / 20, y: (51 / 20) ** 3 - 6 * (51 / 20) ** 2 + 9 * (51 / 20) }, { x: 13 / 5, y: (13 / 5) ** 3 - 6 * (13 / 5) ** 2 + 9 * (13 / 5) }, { x: 53 / 20, y: (53 / 20) ** 3 - 6 * (53 / 20) ** 2 + 9 * (53 / 20) }, { x: 27 / 10, y: (27 / 10) ** 3 - 6 * (27 / 10) ** 2 + 9 * (27 / 10) }, { x: 11 / 4, y: (11 / 4) ** 3 - 6 * (11 / 4) ** 2 + 9 * (11 / 4) }, { x: 14 / 5, y: (14 / 5) ** 3 - 6 * (14 / 5) ** 2 + 9 * (14 / 5) }, { x: 57 / 20, y: (57 / 20) ** 3 - 6 * (57 / 20) ** 2 + 9 * (57 / 20) }, { x: 29 / 10, y: (29 / 10) ** 3 - 6 * (29 / 10) ** 2 + 9 * (29 / 10) }, { x: 59 / 20, y: (59 / 20) ** 3 - 6 * (59 / 20) ** 2 + 9 * (59 / 20) }, { x: 3, y: (3) ** 3 - 6 * (3) ** 2 + 9 * (3) }, { x: 61 / 20, y: (61 / 20) ** 3 - 6 * (61 / 20) ** 2 + 9 * (61 / 20) }, { x: 31 / 10, y: (31 / 10) ** 3 - 6 * (31 / 10) ** 2 + 9 * (31 / 10) }, { x: 63 / 20, y: (63 / 20) ** 3 - 6 * (63 / 20) ** 2 + 9 * (63 / 20) }, { x: 16 / 5, y: (16 / 5) ** 3 - 6 * (16 / 5) ** 2 + 9 * (16 / 5) }, { x: 13 / 4, y: (13 / 4) ** 3 - 6 * (13 / 4) ** 2 + 9 * (13 / 4) }, { x: 33 / 10, y: (33 / 10) ** 3 - 6 * (33 / 10) ** 2 + 9 * (33 / 10) }, { x: 67 / 20, y: (67 / 20) ** 3 - 6 * (67 / 20) ** 2 + 9 * (67 / 20) }, { x: 17 / 5, y: (17 / 5) ** 3 - 6 * (17 / 5) ** 2 + 9 * (17 / 5) }, { x: 69 / 20, y: (69 / 20) ** 3 - 6 * (69 / 20) ** 2 + 9 * (69 / 20) }, { x: 7 / 2, y: (7 / 2) ** 3 - 6 * (7 / 2) ** 2 + 9 * (7 / 2) }, { x: 71 / 20, y: (71 / 20) ** 3 - 6 * (71 / 20) ** 2 + 9 * (71 / 20) }, { x: 18 / 5, y: (18 / 5) ** 3 - 6 * (18 / 5) ** 2 + 9 * (18 / 5) }, { x: 73 / 20, y: (73 / 20) ** 3 - 6 * (73 / 20) ** 2 + 9 * (73 / 20) }, { x: 37 / 10, y: (37 / 10) ** 3 - 6 * (37 / 10) ** 2 + 9 * (37 / 10) }, { x: 15 / 4, y: (15 / 4) ** 3 - 6 * (15 / 4) ** 2 + 9 * (15 / 4) }, { x: 19 / 5, y: (19 / 5) ** 3 - 6 * (19 / 5) ** 2 + 9 * (19 / 5) }, { x: 77 / 20, y: (77 / 20) ** 3 - 6 * (77 / 20) ** 2 + 9 * (77 / 20) }, { x: 39 / 10, y: (39 / 10) ** 3 - 6 * (39 / 10) ** 2 + 9 * (39 / 10) }, { x: 79 / 20, y: (79 / 20) ** 3 - 6 * (79 / 20) ** 2 + 9 * (79 / 20) }, { x: 4, y: (4) ** 3 - 6 * (4) ** 2 + 9 * (4) }], appearance: "primary" },
+      { id: "top", kind: "point", at: { x: 1, y: 4 }, appearance: "answer" },
+      { id: "bottom", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 1, y: 4 }, placement: "above" },
+      { key: "bottom", objectId: "bottom", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+  }}
 />
 
 ## Acceleration from Velocity
@@ -107,3 +138,13 @@ So, the ball reaches its peak at <InlineMath math="5 \text{ seconds}" />. To fin
 <BlockMath math="\begin{aligned} h(5) &amp;= 50(5) - 5(5)^2 \\ &amp;= 250 - 125 \\ &amp;= 125 \end{aligned}" />
 
 The ball’s **maximum height** is <InlineMath math="125 \text{ meters}" />. Velocity is positive before <InlineMath math="t=5" /> and negative afterward within <InlineMath math="0<t<10" />. Height therefore increases up to the peak and then decreases. This sign change verifies that the stationary point is a maximum.
+
+Heights at whole seconds are symmetric about <InlineMath math="t = 5" />: 45 m at 1 s and 9 s, 80 m at 2 s and 8 s, and so on up to 125 m at 5 s, where <InlineMath math="v(5) = 0" />.
+
+<BarChart
+  title={<>Height second by second</>}
+  description={<>Bars of <InlineMath math="h(t) = 50t - 5t^2" /> in metres for <InlineMath math="t = 0" /> to 10 seconds.</>}
+  yAxisLabel="Height (m)"
+  data={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((x) => ({ name: String(x), value: 50 * x - 5 * x ** 2 }))}
+  chartConfig={{ value: { label: "Height (m)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
