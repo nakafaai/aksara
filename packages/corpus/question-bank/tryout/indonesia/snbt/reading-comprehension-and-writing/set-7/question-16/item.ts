@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "library-loans",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Peminjam payung memberikan komentar singkat yang tidak panjang.",
-        },
-        {
-          correct: false,
-          label:
-            "Peminjam payung memberikan komentar singkat sebagai peminjam yang meminjam payung.",
-        },
-        {
-          correct: false,
-          label:
-            "Peminjam payung memberikan komentar singkat dalam bentuk yang singkat.",
+          label: "$$160$$ buku",
         },
         {
           correct: true,
-          label: "Peminjam payung memberikan komentar singkat.",
+          label: "$$180$$ buku",
         },
         {
           correct: false,
-          label:
-            "Peminjam payung memberikan komentar singkat, yaitu komentar yang pendek.",
+          label: "$$200$$ buku",
+        },
+        {
+          correct: false,
+          label: "$$260$$ buku",
+        },
+        {
+          correct: false,
+          label: "$$340$$ buku",
         },
       ],
     },

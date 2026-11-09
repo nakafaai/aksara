@@ -1,33 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "title",
+  },
+  stimulus: "sign-language",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Pemesanan awal terbukti menjadi satu-satunya penyebab rata-rata yang lebih tinggi.",
+          label: "Balai Warga Kelurahan Bandarjaya",
         },
         {
           correct: false,
-          label: "Setiap siswa mengalami peningkatan yang sama.",
+          label: "Mengeja Abjad dengan Jari",
         },
         {
           correct: false,
-          label: "Rata-rata awal dan pembanding sama.",
+          label: "Relawan dari Komunitas Tuli",
+        },
+        {
+          correct: false,
+          label: "Pegawai Bank Belajar pada Akhir Pekan",
         },
         {
           correct: true,
-          label:
-            "Rata-rata porsi yang diambil sesuai pesanan pada sesi uji melebihi rata-rata awal dan pembanding.",
-        },
-        {
-          correct: false,
-          label:
-            "Uji tersebut menetapkan hasil jangka panjang bagi semua program sarapan.",
+          label: "Kelas Bahasa Isyarat Membantu Warga Melayani Orang Tuli",
         },
       ],
     },
