@@ -1,35 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "conclusion",
+  },
+  stimulus: "seed-soak",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Biji kacang hijau tidak dapat berkecambah tanpa direndam.",
+        },
+        {
+          correct: false,
+          label:
+            "Makin lama biji kacang hijau direndam, makin baik perkecambahannya.",
+        },
+        {
+          correct: false,
+          label:
+            "Perendaman selama 24 jam memberi hasil perkecambahan terbaik.",
+        },
+        {
+          correct: false,
+          label:
+            "Lama perendaman tidak berpengaruh pada perkecambahan biji kacang hijau.",
+        },
+        {
           correct: true,
           label:
-            "Tim membandingkan rata-rata 28, 20, dan 22, membatasi simpulan pada rekaman tanpa pengulangan teknis selama uji singkat, serta merencanakan uji dengan lebih banyak tim dan aturan pencatatan yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Karena 28 lebih tinggi daripada 20 dan 22, tim menyatakan seluruh mutu rekaman meningkat dan menerapkan daftar pemeriksaan secara permanen.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim membandingkan 28, 20, dan 22 serta merencanakan uji dengan lebih banyak tim tanpa membatasi cakupan simpulan.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim membatasi simpulan pada pengulangan teknis dan merencanakan uji lanjutan tanpa melaporkan perbandingan hasil.",
-        },
-        {
-          correct: false,
-          label:
-            "Nilai 28, 20, dan 22 tidak menunjukkan pola yang relevan sehingga tim akan mengubah aturan pencatatan pengulangan.",
+            "Perendaman membantu perkecambahan biji kacang hijau, tetapi perendaman yang terlalu lama justru mengurangi biji yang berkecambah.",
         },
       ],
     },

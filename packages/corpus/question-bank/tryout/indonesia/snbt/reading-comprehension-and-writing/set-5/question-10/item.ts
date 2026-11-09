@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "argument-evaluation",
+  },
+  stimulus: "goat-milk",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Dengan ukuran kesepakatan yang diubah, tim akan menguji contoh foto pada lebih banyak jenis pohon.",
+            "Peternak yang ikut pelatihan kini memerah dengan tangan dan wadah yang lebih bersih.",
+        },
+        {
+          correct: false,
+          label:
+            "Tangki pendingin koperasi dapat menampung susu dari empat puluh peternak.",
+        },
+        {
+          correct: false,
+          label: "Harga yoghurt di pasar naik pada tahun itu.",
         },
         {
           correct: true,
           label:
-            "Dengan ukuran kesepakatan yang sama, tim akan menguji contoh foto pada lebih banyak jenis pohon.",
+            "Pada tahun yang sama, koperasi melonggarkan syarat uji kebersihan susu.",
         },
         {
           correct: false,
-          label:
-            "Tim akan mengulang hanya sesi yang menghasilkan kesepakatan tertinggi.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan menerapkan contoh foto secara permanen tanpa pengujian lanjutan.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan menguji contoh foto hanya pada jenis pohon yang sudah terwakili.",
+          label: "Beberapa peternak muda menambah jumlah kambing mereka.",
         },
       ],
     },

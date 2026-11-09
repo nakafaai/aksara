@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "explicit-information",
+  },
+  stimulus: "goat-milk",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "(1)-(3)-(4)-(2)",
-        },
-        {
           correct: true,
-          label: "(4)-(3)-(1)-(2)",
+          label: "Susu lolos uji kebersihan.",
         },
         {
           correct: false,
-          label: "(3)-(4)-(1)-(2)",
+          label: "Susu didinginkan sendiri oleh peternak.",
         },
         {
           correct: false,
-          label: "(3)-(1)-(2)-(4)",
+          label: "Susu sudah diolah menjadi yoghurt.",
         },
         {
           correct: false,
-          label: "(2)-(3)-(1)-(4)",
+          label: "Susu dijual ke pasar sebelum basi.",
+        },
+        {
+          correct: false,
+          label: "Susu berasal dari peternak muda.",
         },
       ],
     },

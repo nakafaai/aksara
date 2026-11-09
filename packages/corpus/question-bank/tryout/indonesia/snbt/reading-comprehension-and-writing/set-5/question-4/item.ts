@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "effective-sentence",
+  },
+  stimulus: "indigo-batik",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Contoh foto dipilih agar kesepakatan pencatat tidak perlu diukur lagi.",
+            "Pewarnaan dengan pasta daun tom sangat memerlukan waktu yang lama sekali.",
         },
         {
           correct: true,
           label:
-            "Contoh foto dipilih untuk memperjelas kategori tertulis yang sebelumnya menghasilkan perbedaan penilaian.",
+            "Pewarnaan dengan pasta daun tom memerlukan waktu yang sangat lama.",
         },
         {
           correct: false,
           label:
-            "Contoh foto dipilih agar beberapa unsur pendataan dapat diubah sekaligus.",
+            "Pewarnaan dengan pasta daun tom memerlukan waktu yang amat sangat lama.",
         },
         {
           correct: false,
           label:
-            "Contoh foto dipilih karena semua nilai pembanding sudah terbukti sama.",
+            "Pewarnaan dengan pasta daun tom, memerlukan waktu yang lama sekali.",
         },
         {
           correct: false,
           label:
-            "Contoh foto dipilih hanya karena hasil akhir pengujian sudah dipastikan.",
+            "Pewarnaan yang dengan pasta daun tom memerlukan waktu sangat lama.",
         },
       ],
     },

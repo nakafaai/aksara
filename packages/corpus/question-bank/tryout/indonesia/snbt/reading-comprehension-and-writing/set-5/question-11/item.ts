@@ -1,31 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "title",
+  },
+  stimulus: "quake-drill",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "analisa efektivitas daftar pemeriksaan sebelum merekam",
+          label: "Gempa Bumi di Indonesia",
         },
         {
           correct: false,
-          label: "analisis efektifitas daftar pemeriksaan sebelum merekam",
+          label: "Jalur Keluar Bertanda Panah Hijau",
+        },
+        {
+          correct: false,
+          label: "Petugas Menghitung Siswa di Lapangan",
+        },
+        {
+          correct: false,
+          label: "Tangga Sekolah yang Macet",
         },
         {
           correct: true,
-          label: "analisis efektivitas daftar pemeriksaan sebelum merekam",
-        },
-        {
-          correct: false,
-          label: "analisa efektifitas daftar pemeriksaan sebelum merekam",
-        },
-        {
-          correct: false,
-          label:
-            "analisis efektivitas daftar pemeriksaan dalam kontek perekaman",
+          label: "Latihan Gempa yang Berulang Membuat Siswa Lebih Siap",
         },
       ],
     },
