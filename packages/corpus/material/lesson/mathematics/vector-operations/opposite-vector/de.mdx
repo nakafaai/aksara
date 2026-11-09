@@ -3,7 +3,7 @@ export const metadata = {
   description: "Beschreibe, wie ein Gegenvektor den Betrag beibeh채lt und die Richtung umkehrt. Nutze Gegenvektoren bei Addition, Verschiebung und Kr채ften.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Vektoren und ihre Operationen",
 };
 
@@ -43,39 +43,28 @@ F체r den Gegenvektor multiplizieren wir **jede Komponente** mit <InlineMath math
 
 Beide Vektoren haben den Betrag <InlineMath math="10" />, ihre Richtungen unterscheiden sich jedoch um <InlineMath math="180^\circ" />.
 
-<LineEquation
-  cameraPosition={[0.5, 0.3, 23]}
-  cameraTarget={[0.5, 0.3, 0]}
-  title="Ein Vektor und sein Gegenvektor"
-  description={<>Die Vektoren <InlineMath math="\overrightarrow{AB}" /> und <InlineMath math="-\overrightarrow{AB}" /> sind gleich lang und zeigen in entgegengesetzte Richtungen.</>}
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 6, y: 8, z: 0 }],
-      color: "#ea580c",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\overrightarrow{AB}" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -6, y: -8, z: 0 }],
-      color: "#9333ea",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="-\overrightarrow{AB}" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+<MathVisual
+  title={<><InlineMath math="\overrightarrow{AB}" /> und <InlineMath math="-\overrightarrow{AB}" /></>}
+  description={<><InlineMath math="\overrightarrow{AB} = 6\mathbf{i} + 8\mathbf{j}" /> und sein Gegenvektor <InlineMath math="-\overrightarrow{AB} = -6\mathbf{i} - 8\mathbf{j}" />, beide der L채nge 10, in entgegengesetzte Richtungen.</>}
+  labels={{
+    ab: <InlineMath math="\overrightarrow{AB}" />,
+    ba: <InlineMath math="-\overrightarrow{AB}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -9, max: 9 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "ab-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 277 / 50, y: 193 / 25 }, { x: 293 / 50, y: 187 / 25 }], appearance: "primary" },
+      { id: "ba", kind: "segment", from: { x: 0, y: 0 }, to: { x: -6, y: -8 }, appearance: "secondary" },
+      { id: "ba-head", kind: "polygon", vertices: [{ x: -6, y: -8 }, { x: -277 / 50, y: -193 / 25 }, { x: -293 / 50, y: -187 / 25 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "ab", objectId: "ab", at: { x: 3, y: 4 }, placement: "left" },
+      { key: "ba", objectId: "ba", at: { x: -3, y: -4 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Eigenschaften von Gegenvektoren
@@ -106,6 +95,40 @@ Gegenvektoren treten immer dann auf, wenn eine Richtung umgekehrt wird:
 
 3. **Vektorgleichungen**: Eine Subtraktion l채sst sich als Addition eines Gegenvektors schreiben, <InlineMath math="\vec{a}-\vec{b}=\vec{a}+(-\vec{b})" />.
 
+Subtraktion wird zur Addition eines Gegenvektors. Mit <InlineMath math="\vec{a} = (4, 1)" /> und <InlineMath math="\vec{b} = (1, 3)" /> zeichnest du <InlineMath math="\vec{a}" /> und setzt <InlineMath math="-\vec{b} = (-1, -3)" /> an seine Spitze. Der Pfeil vom Anfang zum Ende ist <InlineMath math="\vec{a} + (-\vec{b}) = (3, -2)" />, also <InlineMath math="\vec{a} - \vec{b}" />.
+
+<MathVisual
+  title={<><InlineMath math="\vec{a} - \vec{b}" /> als <InlineMath math="\vec{a} + (-\vec{b})" /></>}
+  description={<>Die Vektoren <InlineMath math="\vec{a} = (4, 1)" /> und <InlineMath math="\vec{b} = (1, 3)" />, der Gegenvektor <InlineMath math="-\vec{b}" /> an der Spitze von <InlineMath math="\vec{a}" /> und das Ergebnis <InlineMath math="\vec{a} - \vec{b} = (3, -2)" />.</>}
+  labels={{
+    a: <InlineMath math="\vec{a}" />,
+    b: <InlineMath math="\vec{b}" />,
+    nb: <InlineMath math="-\vec{b}" />,
+    d: <InlineMath math="\vec{a} - \vec{b}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -2.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "construction" },
+      { id: "b-head", kind: "polygon", vertices: [{ x: 1, y: 3 }, { x: (1) + (-1 / 4 / Math.sqrt(10)) + (-3 / 10 / Math.sqrt(10)), y: (3) + (-3 / 4 / Math.sqrt(10)) + (1 / 10 / Math.sqrt(10)) }, { x: (1) + (-1 / 4 / Math.sqrt(10)) + (3 / 10 / Math.sqrt(10)), y: (3) + (-3 / 4 / Math.sqrt(10)) + (-1 / 10 / Math.sqrt(10)) }], appearance: "construction" },
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "a-head", kind: "polygon", vertices: [{ x: 4, y: 1 }, { x: (4) + (-1 / Math.sqrt(17)) + (-1 / 10 / Math.sqrt(17)), y: (1) + (-1 / 4 / Math.sqrt(17)) + (2 / 5 / Math.sqrt(17)) }, { x: (4) + (-1 / Math.sqrt(17)) + (1 / 10 / Math.sqrt(17)), y: (1) + (-1 / 4 / Math.sqrt(17)) + (-2 / 5 / Math.sqrt(17)) }], appearance: "primary" },
+      { id: "nb", kind: "segment", from: { x: 4, y: 1 }, to: { x: 3, y: -2 }, appearance: "secondary" },
+      { id: "nb-head", kind: "polygon", vertices: [{ x: 3, y: -2 }, { x: (3) + (1 / 4 / Math.sqrt(10)) + (3 / 10 / Math.sqrt(10)), y: (-2) + (3 / 4 / Math.sqrt(10)) + (-1 / 10 / Math.sqrt(10)) }, { x: (3) + (1 / 4 / Math.sqrt(10)) + (-3 / 10 / Math.sqrt(10)), y: (-2) + (3 / 4 / Math.sqrt(10)) + (1 / 10 / Math.sqrt(10)) }], appearance: "secondary" },
+      { id: "d", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -2 }, appearance: "answer" },
+      { id: "d-head", kind: "polygon", vertices: [{ x: 3, y: -2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (-2) + (1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (-2) + (1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2, y: 1 / 2 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 1 / 2, y: 3 / 2 }, placement: "left" },
+      { key: "nb", objectId: "nb", at: { x: 7 / 2, y: -1 / 2 }, placement: "right" },
+      { key: "d", objectId: "d", at: { x: 3 / 2, y: -1 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 ## Einheitsvektoren und Gegenrichtung
 
 Ein Einheitsvektor entsteht aus einem Vektor ungleich null, indem du ihn **durch seine L채nge** teilst. Eine Multiplikation mit <InlineMath math="-1" /> kehrt seine Richtung um, w채hrend die Gerade dieselbe bleibt.
@@ -119,39 +142,29 @@ F체r einen Vektor <InlineMath math="\vec{v}" /> **ungleich null** ist der zugeh�
 Er hat den Betrag <InlineMath math="1" /> und zeigt in dieselbe Richtung wie <InlineMath math="\vec{v}" />.
 
 <ContentBlock>
-  <LineEquation
-    cameraPosition={[0.1, 0.1, 3.2]}
-    cameraTarget={[0.1, 0.1, 0]}
-    title="Entgegengesetzte Einheitsrichtungen"
-    description="Die beiden Einheitsvektoren sind gleich lang und zeigen in entgegengesetzte Richtungen."
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0.6, y: 0.8, z: 0 }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\hat{v}" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -0.6, y: -0.8, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="-\hat{v}" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    ]}
+  <MathVisual
+    title={<>Entgegengesetzte Einheitsrichtungen</>}
+    description={<>Der Einheitsvektor <InlineMath math="\hat{v} = (0{,}6;\ 0{,}8)" /> und <InlineMath math="-\hat{v} = (-0{,}6;\ -0{,}8)" />, beide der L채nge 1, auf dem Einheitskreis.</>}
+    labels={{
+      v: <InlineMath math="\hat{v}" />,
+      w: <InlineMath math="-\hat{v}" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -1.3, max: 1.3 }, y: { min: -1.3, max: 1.3 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+        { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 5, y: 4 / 5 }, appearance: "primary" },
+        { id: "v-head", kind: "polygon", vertices: [{ x: 3 / 5, y: 4 / 5 }, { x: 97 / 200, y: 73 / 100 }, { x: 113 / 200, y: 67 / 100 }], appearance: "primary" },
+        { id: "w", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3 / 5, y: -4 / 5 }, appearance: "secondary" },
+        { id: "w-head", kind: "polygon", vertices: [{ x: -3 / 5, y: -4 / 5 }, { x: -97 / 200, y: -73 / 100 }, { x: -113 / 200, y: -67 / 100 }], appearance: "secondary" },
+      ],
+      labels: [
+        { key: "v", objectId: "v", at: { x: 3 / 5, y: 4 / 5 }, placement: "above-right" },
+        { key: "w", objectId: "w", at: { x: -3 / 5, y: -4 / 5 }, placement: "below-left" },
+      ],
+    }}
   />
 </ContentBlock>
 
