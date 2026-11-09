@@ -103,8 +103,8 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
           '      - name: Install dependencies\n        env:\n          "NODE_VERSION" : 24'
         ),
         cli.replace(
-          "      - name: Audit dependencies",
-          '      - name: Audit dependencies\n        env:\n          "BUN_VERSION" : 1.4.4'
+          "          GITHUB_TOKEN:",
+          '          "BUN_VERSION" : 1.4.4\n          GITHUB_TOKEN:'
         ),
       ],
       (source) =>
