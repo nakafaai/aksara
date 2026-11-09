@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "sentence-relation",
+  },
+  stimulus: "minibus-schedule",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Tim merubah satu faktor saja, yaitu penambahan pilihan lokasi terstruktur pada formulir.",
+          label: "Kalimat (2) menyebut akibat dari jadwal tetap.",
         },
         {
           correct: false,
-          label:
-            "Tim mengrubah satu faktor saja, yaitu penambahan pilihan lokasi terstruktur pada formulir.",
+          label: "Kalimat (2) membantah isi kalimat (1).",
+        },
+        {
+          correct: false,
+          label: "Kalimat (2) memberi contoh penumpang yang menunggu.",
         },
         {
           correct: true,
           label:
-            "Tim mengubah satu faktor saja, yaitu penambahan pilihan lokasi terstruktur pada formulir.",
+            "Kalimat (2) menjelaskan keadaan sebelum perubahan yang disebut dalam kalimat (1).",
         },
         {
           correct: false,
-          label:
-            "Tim hanya mengubah satu faktor saja, yaitu penambahan pilihan lokasi terstruktur pada formulir.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim mengubah terhadap satu faktor saja, yaitu penambahan pilihan lokasi terstruktur pada formulir.",
+          label: "Kalimat (2) menyimpulkan isi tabel.",
         },
       ],
     },

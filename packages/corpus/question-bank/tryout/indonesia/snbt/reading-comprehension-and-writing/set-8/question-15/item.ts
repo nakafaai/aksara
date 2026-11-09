@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "explicit-information",
+  },
+  stimulus: "jamu-label",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "harga jamu dan alamat warung",
+        },
+        {
+          correct: false,
+          label: "nama sekolah dan nama warung",
+        },
+        {
+          correct: false,
+          label: "cara membuat jamu kunyit asam",
+        },
+        {
           correct: true,
-          label:
-            "Rata-rata pencocokan pada hari yang sama lebih tinggi. Namun, simpulan tentang layanan barang hilang tetap dibatasi.",
+          label: "daftar bahan, tanggal pembuatan, dan batas waktu minum",
         },
         {
           correct: false,
-          label:
-            "Rata-rata pencocokan pada hari yang sama lebih tinggi. Oleh karena itu, simpulan tentang layanan barang hilang tetap dibatasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Rata-rata pencocokan pada hari yang sama lebih tinggi. Selain itu, simpulan tentang layanan barang hilang tetap dibatasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Rata-rata pencocokan pada hari yang sama lebih tinggi. Sebelumnya, simpulan tentang layanan barang hilang tetap dibatasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Rata-rata pencocokan pada hari yang sama lebih tinggi. Akibatnya, simpulan tentang layanan barang hilang tetap dibatasi.",
+          label: "nomor telepon dinas koperasi",
         },
       ],
     },
