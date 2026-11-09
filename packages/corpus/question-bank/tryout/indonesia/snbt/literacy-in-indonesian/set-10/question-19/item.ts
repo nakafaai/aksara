@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "artefact-return",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Teks 1", "Teks 2"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Menjelaskan mengapa tujuan administratif peta dan pengalaman terbatas para penulis harian menghasilkan bukti yang berbeda, bukan salah satunya otomatis keliru.",
+            "Benda-benda itu diambil dengan kekerasan pada masa penjajahan.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Membuktikan bahwa pengalaman pribadi selalu lebih berat daripada dokumen resmi dalam menyusun sejarah.",
+            "Benda kuno memerlukan ruang dengan suhu dan kelembapan yang stabil.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Mengubah perbedaan rute menjadi kesalahan yang harus dihapus sebelum catatan dapat digunakan.",
+            "Makna benda itu paling dalam bagi masyarakat yang membuatnya.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Mengizinkan siswa menganggap rute yang tidak ditulis memiliki pengalaman yang sama dengan rute terdekat.",
-        },
-        {
-          correct: false,
-          label:
-            "Menetapkan bahwa semua buku harian memiliki perspektif yang sama karena ditulis warga kampung.",
+            "Museum di Indonesia kini sudah mampu merawat benda-benda itu.",
         },
       ],
     },

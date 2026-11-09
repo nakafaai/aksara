@@ -1,30 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "fiction",
+    topic: "explicit-information",
+  },
+  stimulus: "village-postman",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Keluaran Air sebagai Satu-satunya Ukuran Infiltrasi",
+          column: 1,
+          label:
+            "Isi tas Pak Darto kini kebanyakan tagihan, surat dari bank, dan paket kecil.",
         },
         {
-          correct: false,
-          label: "Campuran Organik yang Selalu Menghambat Air Masuk",
+          column: 2,
+          label: "Mbah Karsih tidak suka ditelepon anaknya lewat video.",
         },
         {
-          correct: false,
-          label: "Kolom Pasir sebagai Salinan Semua Lahan Berpasir",
+          column: 2,
+          label: "Pak Darto mengirim suratnya dengan layanan kilat.",
         },
         {
-          correct: false,
-          label: "Mengabaikan Air yang Tersimpan di Dalam Tanah",
-        },
-        {
-          correct: true,
-          label: "Membedakan Infiltrasi, Perkolasi, dan Penyimpanan Air",
+          column: 1,
+          label: "Warno menelepon ibunya lewat video setiap Minggu.",
         },
       ],
     },

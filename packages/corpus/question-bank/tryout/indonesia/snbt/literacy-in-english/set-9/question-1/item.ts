@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "main-idea",
+  },
+  stimulus: "tambora-1816",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "The smaller mesh collected a higher percentage of controlled plastic fragments, while the single-material model limited conclusions about mixed environmental debris.",
+            "Tambora cooled distant regions, though the link was understood much later.",
         },
         {
           correct: false,
           label:
-            "The class tested how a removable mesh with smaller openings affected the capture of floating plastic fragments, while controlling the listed factors but treating one short trial as proof of a universal effect.",
+            "Mary Shelley wrote *Frankenstein* because she was frightened by news of a distant volcano.",
         },
         {
           correct: false,
           label:
-            "The class tested how a removable mesh with smaller openings affected the capture of floating plastic fragments, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
+            "Ice cores prove that volcanoes cause most cold summers in Europe.",
         },
         {
           correct: false,
           label:
-            "The class tested how a removable mesh with smaller openings affected the capture of floating plastic fragments, while treating the scientific term as the measured outcome that settles the investigation.",
+            "The eruption mainly harmed people on Sumbawa and the nearby islands.",
         },
         {
           correct: false,
           label:
-            "The class tested how a removable mesh with smaller openings affected the capture of floating plastic fragments, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
+            "People in 1816 blamed Tambora for the snow that fell in New England.",
         },
       ],
     },

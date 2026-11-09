@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "national-exam",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menetapkan bahwa angka lima unit merupakan taksiran lapangan yang sah selama seluruh operasi hitung dilakukan dengan benar.",
+            "Siswa yang mengikuti bimbingan belajar mendapat nilai ujian nasional yang lebih tinggi.",
         },
         {
           correct: false,
           label:
-            "Menunjukkan bahwa setiap perpindahan karbon harus dianggap keluar agar tidak terjadi penghitungan ganda.",
+            "Banyak orang tua ingin ujian nasional kembali menentukan kelulusan anaknya.",
         },
         {
           correct: false,
           label:
-            "Menggantikan kebutuhan membaca arah panah karena nama komponen sudah menentukan hasil akhirnya.",
+            "Nilai rapor di sekolah kota rata-rata lebih tinggi daripada di sekolah desa.",
         },
         {
           correct: false,
           label:
-            "Membatasi pembahasan pada cadangan tumbuhan sehingga data tanah dan perairan tidak memiliki fungsi apa pun.",
+            "Ujian nasional pada masa lalu diikuti oleh jutaan siswa setiap tahun.",
         },
         {
           correct: true,
           label:
-            "Menjelaskan mengapa arus yang sama dapat dihitung sebagai perpindahan keluar atau sebagai perpindahan internal, bergantung pada komponen yang dimasukkan ke dalam perhitungan.",
+            "Di negara yang ujiannya bertaruhan rendah, sekolah lebih jarang memangkas pelajaran.",
         },
       ],
     },

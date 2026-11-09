@@ -1,31 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "assumption",
+  },
+  stimulus: "nickel-processing",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "Peminjaman, Percakapan, dan Celah Arsip Klub Baca",
+          label:
+            "nilai tambah dari pengolahan nikel otomatis dinikmati masyarakat luas",
         },
         {
           correct: false,
-          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
+          label: "larangan ekspor bijih nikel mentah mulai berlaku pada 2020",
         },
         {
           correct: false,
-          label: "Mengutamakan Sumber Terbaru dalam Kajian kontekstualisasi",
+          label: "smelter memerlukan listrik dalam jumlah yang sangat besar",
         },
         {
           correct: false,
-          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
+          label: "negara lain tidak lagi membutuhkan nikel dari Indonesia",
         },
         {
           correct: false,
           label:
-            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
+            "tambang nikel tidak memerlukan pembukaan hutan sama sekali di daerah itu",
         },
       ],
     },

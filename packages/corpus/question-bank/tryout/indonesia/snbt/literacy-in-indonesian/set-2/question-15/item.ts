@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "rice-irrigation",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Tahapan mengidentifikasi gajah sasaran",
-        },
-        {
-          correct: false,
-          label: "Perkiraan populasi gajah sumatra di Riau",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "Pemanfaatan GPS Collar untuk memitigasi interaksi negatif manusia dan gajah",
+            "Setiap meter kubik air irigasi menghasilkan lebih banyak gabah pada pengairan berselang.",
         },
         {
-          correct: false,
-          label: "Peran BBKSDA Riau dalam konservasi satwa liar",
+          column: 1,
+          label:
+            "Pengairan berselang memerlukan lebih dari dua kali lipat hari kerja penyiangan dibandingkan penggenangan terus-menerus.",
         },
         {
-          correct: false,
-          label: "Kerja sama masyarakat dalam memulihkan habitat gajah",
+          column: 2,
+          label:
+            "Hasil gabah pengairan berselang lebih tinggi lebih dari 10 persen daripada hasil penggenangan terus-menerus.",
+        },
+        {
+          column: 2,
+          label: "Uji coba dilakukan pada musim hujan dan musim kemarau.",
         },
       ],
     },

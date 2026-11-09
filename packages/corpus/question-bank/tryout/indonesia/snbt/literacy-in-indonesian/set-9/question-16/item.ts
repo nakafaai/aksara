@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "conclusion",
+  },
+  stimulus: "water-stunting",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Siswa memakai kemiripan visual sebagai bukti bahwa mantel yang sama pasti muncul pada ketiga foto, lalu memakai buku perawatan untuk melengkapi tahun yang hilang.",
+            "Air dan stunting tampak berkaitan, tetapi pendapatan terbukti sama sekali tidak berpengaruh.",
+        },
+        {
+          correct: false,
+          label:
+            "Stunting di keempat desa itu sepenuhnya disebabkan oleh pendapatan yang rendah.",
+        },
+        {
+          correct: false,
+          label:
+            "Desa yang dekat puskesmas selalu memiliki akses air minum yang lebih baik.",
+        },
+        {
+          correct: false,
+          label:
+            "Diare berulang tidak berkaitan dengan penyerapan zat gizi pada anak.",
         },
         {
           correct: true,
           label:
-            "Siswa mempertemukan bukti penggunaan dan perawatan untuk memperkuat dugaan pemakaian ulang, sambil mempertahankan ketidakpastian identitas mantel pada $$2019$$.",
-        },
-        {
-          correct: false,
-          label:
-            "Siswa menolak foto karena dibuat untuk publikasi dan hanya menerima buku perawatan sebagai sumber sejarah yang netral.",
-        },
-        {
-          correct: false,
-          label:
-            "Siswa menganggap berakhirnya buku perawatan pada $$2010$$ membuktikan bahwa mantel M-17 tidak mungkin digunakan pada $$2019$$.",
-        },
-        {
-          correct: false,
-          label:
-            "Siswa menggabungkan seluruh sumber menjadi satu urutan lengkap karena dua catatan yang tidak lengkap akan selalu menutup celah satu sama lain.",
+            "Akses air yang baik sejalan dengan stunting yang rendah, tetapi faktor lain ikut berbeda.",
         },
       ],
     },

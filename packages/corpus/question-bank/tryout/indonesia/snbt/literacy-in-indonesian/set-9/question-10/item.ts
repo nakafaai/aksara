@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "fiction",
+    topic: "explicit-information",
+  },
+  stimulus: "tea-picker",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Lima Unit Karbon sebagai Hasil Pengukuran Mangrove",
+          column: 1,
+          label:
+            "Mak Inah memetik pucuk teratas dengan dua daun muda di bawahnya.",
         },
         {
-          correct: false,
-          label: "Menghapus Serasah dari Semua Perhitungan Karbon",
+          column: 1,
+          label:
+            "Pemetik dari lereng timur akan dipindah ke bagian pengeringan.",
         },
         {
-          correct: false,
-          label: "Mengapa Fotosintesis Menentukan Seluruh Neraca Karbon",
+          column: 2,
+          label: "Mulai bulan depan, seluruh kebun teh dipanen dengan mesin.",
         },
         {
-          correct: false,
-          label: "Kartu Daur Karbon sebagai Pengganti Pengamatan Lapangan",
-        },
-        {
-          correct: true,
-          label: "Batas Sistem dalam Simulasi Neraca Karbon Mangrove",
+          column: 2,
+          label:
+            "Laras datang ke kebun untuk menggantikan neneknya memetik teh.",
         },
       ],
     },

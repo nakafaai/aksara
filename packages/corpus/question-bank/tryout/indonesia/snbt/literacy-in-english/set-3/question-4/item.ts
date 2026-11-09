@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "bird-compass",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The definition of *gravitropism* proves that the tested change caused the recorded result, even without the comparison conditions.",
+            "It showed that robins can see magnetic patterns in daylight but not at night.",
+        },
+        {
+          correct: false,
+          label:
+            "It proved that aluminium screens help robins grow stronger iron-based magnets.",
+        },
+        {
+          correct: false,
+          label:
+            "It showed that robins navigate better inside huts than they do in the open.",
         },
         {
           correct: true,
           label:
-            "The definition of *gravitropism* clarifies the growth response being investigated, while the comparison and its limitations determine what the results support.",
+            "It showed that weak noise, harmless to a magnet, disrupted the birds until blocked.",
         },
         {
           correct: false,
           label:
-            "The definition makes *gravitropism* a substitute for the controls, so the unmeasured factor no longer limits the conclusion.",
-        },
-        {
-          correct: false,
-          label:
-            "The definition broadens *gravitropism* from this short investigation to every similar system under any condition.",
-        },
-        {
-          correct: false,
-          label:
-            "The term *gravitropism* names the report's limitation rather than the concept represented by the measurements.",
+            "It found cryptochrome in the robins' beaks rather than in their retinas.",
         },
       ],
     },

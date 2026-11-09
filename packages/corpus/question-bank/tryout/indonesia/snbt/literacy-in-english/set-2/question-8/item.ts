@@ -1,26 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "right-repair",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "The songbird species",
-        },
-        { correct: true, label: "The researchers" },
-        {
-          correct: false,
-          label: "The pathogen communities",
+          column: 1,
+          label: "Independent repair shops are often small local businesses.",
         },
         {
-          correct: false,
-          label: "The Palaearctic regions",
+          column: 2,
+          label: "Manufacturers' safety concerns about repairs have no basis.",
         },
         {
-          correct: false,
-          label: "The immune-recognition genes",
+          column: 1,
+          label:
+            "Publishing repair instructions can reduce poorly done repairs.",
+        },
+        {
+          column: 2,
+          label:
+            "The European Union requires owners of household appliances to repair them rather than replace them.",
         },
       ],
     },

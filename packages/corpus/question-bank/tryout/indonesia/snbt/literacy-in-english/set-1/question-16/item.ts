@@ -1,31 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "shipping-container",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "To prove that yoga cures every chronic illness.",
-        },
-        {
-          correct: false,
-          label: "To persuade readers to replace medical care with yoga.",
-        },
-        {
-          correct: false,
           label:
-            "To compare the religious traditions behind different yoga styles.",
+            "Metal boxes could protect goods from theft and damage better than wooden crates.",
         },
         {
           correct: true,
           label:
-            "To explain yoga's possible physical and mental benefits, evidence limits, and safe practice.",
+            "The box, not the goods inside it, should be the unit every part of transport was built to handle.",
         },
         {
           correct: false,
-          label: "To teach a complete sequence of advanced yoga poses.",
+          label:
+            "Converted tankers could carry more cargo than purpose-built cargo ships of the time.",
+        },
+        {
+          correct: false,
+          label:
+            "Trucks could replace ships on long routes such as the one between Newark and Houston.",
+        },
+        {
+          correct: false,
+          label:
+            "Ports should hire more dockworkers so that ships could be loaded faster.",
         },
       ],
     },

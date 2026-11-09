@@ -1,31 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "figurative-language",
+  },
+  stimulus: "placebo-effect",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Measuring friction in one preliminary comparison",
+          label:
+            "Hiding the real symptoms of a disease from patients so that they stay calm",
         },
         {
           correct: false,
           label:
-            "Treating friction as the sole explanation for the observed result",
+            "Teaching patients to imagine pleasant images whenever they feel any pain",
         },
         {
           correct: false,
-          label: "A final rule derived from the first comparison of friction",
+          label:
+            "Giving patients a drug that slowly changes the way their brain works",
         },
         {
           correct: false,
-          label: "A limitation that makes another test of friction unnecessary",
+          label:
+            "Writing down every symptom so that doctors can study it later on",
         },
         {
           correct: true,
-          label: "Testing how ramp texture affects travel time",
+          label:
+            "Making patients expect side effects so strongly that they begin to feel them",
         },
       ],
     },

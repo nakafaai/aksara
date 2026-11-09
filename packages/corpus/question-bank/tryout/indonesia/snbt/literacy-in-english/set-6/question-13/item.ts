@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "water-meters",
   versions: {
     en: {
       kind: "choice",
@@ -9,27 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Progress depends on completing the larger task before asking another person to review it.",
+            "It shows that the smart meters in Area A were installed incorrectly by the company.",
+        },
+        {
+          correct: false,
+          label:
+            "It means that Area A should have been compared with Area B only.",
         },
         {
           correct: true,
           label:
-            "Theo's progress began when the difficulty was turned into a specific, reviewable action.",
+            "Part of Area A's fall may come from repaired leaks rather than the meters.",
         },
         {
           correct: false,
           label:
-            "The object or setting shapes the outcome more strongly than the character's specific choice.",
+            "It proves that the smart meters had no effect on water use at all.",
         },
         {
           correct: false,
-          label:
-            "The unresolved evidence should remain private until the character can offer a complete result.",
-        },
-        {
-          correct: false,
-          label:
-            "The small action matters mainly because it postpones the unresolved part of the conflict.",
+          label: "It shows that leaks are more common in Areas C and D.",
         },
       ],
     },

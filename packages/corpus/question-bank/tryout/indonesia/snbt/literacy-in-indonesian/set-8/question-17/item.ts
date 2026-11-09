@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "breakfast-survey",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Daftar peminjaman lebih tepat untuk mengetahui pemahaman peserta karena mencatat $$18$$ bulan, jauh lebih banyak daripada tujuh pertemuan.",
+            "Mengulang survei yang sama persis kepada 400 siswa kelas X pada tahun ajaran berikutnya.",
         },
         {
           correct: false,
           label:
-            "Catatan fasilitator mewakili seluruh peserta karena dibuat langsung saat percakapan klub berlangsung.",
+            "Bertanya kepada siswa apakah mereka merasa lebih pintar setelah sarapan.",
+        },
+        {
+          correct: false,
+          label:
+            "Membandingkan nilai kuis siswa kelas X dengan nilai siswa kelas XII.",
         },
         {
           correct: true,
           label:
-            "Daftar peminjaman menunjukkan buku yang tercatat keluar, sedangkan catatan fasilitator memberi sebagian pengalaman peserta yang berbicara. Keduanya menjawab pertanyaan yang berbeda.",
+            "Memberi sarapan di sekolah kepada kelas yang dipilih acak, lalu membandingkan nilai.",
         },
         {
           correct: false,
           label:
-            "Menggabungkan kedua sumber membuktikan bahwa setiap peminjaman setelah jadwal berubah dilakukan oleh pekerja muda yang baru bergabung.",
-        },
-        {
-          correct: false,
-          label:
-            "Perbedaan tujuan pencatatan tidak memengaruhi simpulan selama kedua sumber berasal dari klub yang sama.",
+            "Menambah jumlah kuis matematika menjadi tiga kali dalam seminggu saja.",
         },
       ],
     },

@@ -1,30 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-purpose",
+  },
+  stimulus: "coral-bleaching",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Sudut $$45$$ Derajat sebagai Aturan untuk Semua Oven Surya",
+          label:
+            "membuktikan bahwa terumbu karang menutupi sebagian besar dasar laut",
+        },
+        {
+          correct: false,
+          label:
+            "menjelaskan cara alga melakukan fotosintesis di dalam jaringan tubuh karang",
         },
         {
           correct: true,
-          label: "Menguji Sudut Reflektor pada Oven Surya Model",
+          label:
+            "menunjukkan pentingnya terumbu yang kecil luasnya tetapi kaya kehidupan",
         },
         {
           correct: false,
-          label: "Mengabaikan Iradiansi dalam Perbandingan Suhu Air",
+          label:
+            "menyarankan agar penyelam tidak lagi mengunjungi terumbu karang",
         },
         {
           correct: false,
-          label: "Putaran Ketiga yang Menentukan Sudut Terbaik",
-        },
-        {
-          correct: false,
-          label: "Mengapa Posisi Oven Tidak Perlu Diputar",
+          label: "membandingkan karang dengan tumbuhan yang hidup di daratan",
         },
       ],
     },

@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
+  },
+  stimulus: "novel-review",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Definisi *simbol* memastikan bahwa lampu selalu berarti kegiatan membaca dalam cerita apa pun, terlepas dari konteksnya.",
-        },
-        {
           correct: true,
           label:
-            "Definisi *simbol* menjelaskan cara lampu membawa makna undangan melalui perbedaan keadaan panggung sebelum dan sesudah tindakan Mira.",
+            "Catatan itu memperlihatkan bahwa dilema Sinta pernah dialami kakeknya.",
         },
         {
           correct: false,
           label:
-            "Definisi itu menjadikan setiap benda yang disebut lebih dari sekali sebagai simbol, meskipun tidak berkaitan dengan konflik atau perubahan.",
+            "Catatan itu menjelaskan cara membuat peta mata air dengan tangan secara rinci.",
         },
         {
           correct: false,
           label:
-            "Penyebutan *simbol* membuat kesan pribadi pembaca cukup, meskipun bertentangan dengan keadaan panggung dalam cerita.",
+            "Catatan itu menggantikan dialog antarwarga yang terlalu banyak dalam novel.",
         },
         {
           correct: false,
           label:
-            "Definisi tersebut hanya menerangkan fungsi lampu sebagai alat penerangan sehingga respons penumpang tidak relevan.",
+            "Catatan itu membuktikan bahwa perkebunan di hulu sudah ada sejak tahun 1970-an.",
+        },
+        {
+          correct: false,
+          label:
+            "Catatan itu menunjukkan bahwa Sinta sebenarnya tidak berasal dari desa itu.",
         },
       ],
     },

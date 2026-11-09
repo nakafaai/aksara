@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
+  },
+  stimulus: "basic-income",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Because the trial reached $$47$$, compared with a baseline of $$32$$ and a comparison value of $$33$$, shelf labels showing when each package entered the pantry should become permanent before the stated limitation is examined.",
-        },
-        {
           correct: true,
           label:
-            "The mean of $$47$$, compared with $$32$$ at baseline and $$33$$ in the comparison, supports a limited extension of the entry-date label trial. The follow-up must account for demand changes during school holidays and local events.",
+            "To show a response to a national payment that a small pilot cannot reveal",
         },
         {
           correct: false,
           label:
-            "The consultation with affected groups makes the baseline and comparison figures unnecessary for the decision.",
+            "To argue that landlords should be the first group to receive the payment",
         },
         {
           correct: false,
           label:
-            "The limitation that package demand changed with school holidays and local events affects delivery details, but it does not restrict who can be covered by the conclusion.",
+            "To report that prices rose sharply during the Finnish pilot programme",
         },
         {
           correct: false,
           label:
-            "Because staffing and schedules were stable, the difference between the trial and comparison is best attributed to those unchanged conditions.",
+            "To suggest that most shopkeepers would vote in favour of a basic income",
+        },
+        {
+          correct: false,
+          label:
+            "To claim that prices would certainly double under any universal scheme",
         },
       ],
     },

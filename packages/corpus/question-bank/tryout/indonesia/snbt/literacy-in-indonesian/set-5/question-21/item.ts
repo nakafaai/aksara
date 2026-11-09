@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "electric-cars",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Bima mempertahankan target $$18$$ kotak dengan mengirim semua muatan lebih dahulu, lalu merapikan ketidakcocokan label setelah kapal berangkat.",
+            "Penjualan mobil listrik pribadi naik tajam setelah insentif pajak untuk pembelinya diberlakukan.",
         },
         {
           correct: false,
           label:
-            "Bima menyerahkan keputusan tujuan kotak kepada relawan yang datang agar tanggung jawab kesalahan tidak lagi berada padanya.",
-        },
-        {
-          correct: false,
-          label:
-            "Bima menahan seluruh kiriman karena hasil yang tidak lengkap tidak dapat dipertanggungjawabkan dalam keadaan apa pun.",
-        },
-        {
-          correct: false,
-          label:
-            "Bima menyelesaikan masalah terutama dengan mendefinisikan akuntabilitas, sedangkan pembagian tugas hanya menjadi latar cerita.",
+            "Biaya perawatan mobil listrik lebih rendah daripada biaya perawatan mobil bensin.",
         },
         {
           correct: true,
           label:
-            "Bima memilih mengirim $$16$$ kotak yang terverifikasi dan menahan dua kotak yang meragukan, lalu belajar bahwa kepemimpinan menuntut koordinasi dan tanggung jawab yang dapat diperiksa.",
+            "Subsidi bus listrik menurunkan emisi per rupiah lebih banyak daripada subsidi mobil.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebagian besar pembeli mobil listrik pribadi tinggal di kota-kota besar.",
+        },
+        {
+          correct: false,
+          label:
+            "Pembangkit batu bara di negara itu ditutup dalam beberapa tahun ke depan.",
         },
       ],
     },
