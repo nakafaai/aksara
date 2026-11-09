@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hubungkan deret geometri tak hingga dengan lintasan bola memantul, lalu turunkan syarat konvergen dan rumus jumlahnya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-08",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Barisan dan Deret",
 };
 
@@ -23,6 +23,16 @@ Dengan suku pertama (<InlineMath math="a" />) adalah <InlineMath math="1" /> dan
 Berapa _total panjang lintasan_ yang ditempuh bola sejak dilepas sampai akhirnya berhenti?
 
 Dalam model ideal, bola bergerak turun, lalu naik, turun lagi, dan seterusnya tanpa pantulan terakhir. Semua lintasan turun dan naik membentuk deret geometri tak hingga. Jumlah deret tersebut memberikan total panjang lintasan bola.
+
+Setiap pantulan mencapai seperempat tinggi sebelumnya: 1 m, lalu <InlineMath math="\tfrac14" /> m, <InlineMath math="\tfrac{1}{16}" /> m, <InlineMath math="\tfrac{1}{64}" /> m. Batangnya menyusut begitu cepat sehingga setelah beberapa pantulan hampir tidak terlihat.
+
+<BarChart
+  title={<>Tinggi lima pantulan pertama</>}
+  description={<>Batang <InlineMath math="\left(\tfrac14\right)^{n-1}" /> meter untuk <InlineMath math="n = 1" /> sampai 5.</>}
+  yAxisLabel="Tinggi (m)"
+  data={[1, 2, 3, 4, 5].map((n) => ({ name: String(n), value: (1 / 4) ** (n - 1) }))}
+  chartConfig={{ value: { label: "Tinggi (m)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Syarat Rasio untuk Kekonvergenan
 
@@ -69,25 +79,32 @@ Di sini <InlineMath math="a=1" /> dan <InlineMath math="r=\frac12" />, sehingga:
 Tidak ada jumlah parsial berhingga yang tepat sama dengan <InlineMath math="2" />, tetapi jumlah parsialnya dapat dibuat sedekat apa pun dengan <InlineMath math="2" />. Jumlah tak hingga adalah limit dari jumlah-jumlah parsial berhingga tersebut.
 
 
-<LineEquation
-  title="Jumlah parsial mendekati dua"
-  description="Titik menunjukkan jumlah setelah 1 sampai 6 suku. Garis penghubung hanya membantu mengikuti urutan titik, sedangkan garis mendatar menunjukkan limit 2. Putar atau perbesar tampilan untuk membandingkan jarak titik ke garis limit."
-  cameraPosition={[3, 1, 9]}
-  cameraTarget={[3, 1, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 6 }, (_, i) => {
-        const n = i + 1;
-        return { x: n, y: 2 - 2 ** (1 - n), z: 0 };
-      }),
-      smooth: false,
-      showPoints: true,
-      color: "blue",
-      labels: [{ text: <InlineMath math="S(n)" />, at: 3, offset: [0, -0.25, 0] }],
-    },
-    { points: [{ x: 0, y: 2, z: 0 }, { x: 7, y: 2, z: 0 }], smooth: false, color: "red", labels: [{ text: <InlineMath math="2" />, at: 1, offset: [0, 0.2, 0] }] }
-  ]}
+<MathVisual
+  title={<>Jumlah parsial yang mendekati 2</>}
+  description={<>Jumlah <InlineMath math="S_n = 2 - 2^{1-n}" /> setelah 1 sampai 6 suku naik mendekati garis <InlineMath math="y = 2" /> tanpa mencapainya.</>}
+  labels={{
+    limit: <InlineMath math="2" />,
+    s: <InlineMath math="S_n" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 7.2 }, y: { min: -0.3, max: 2.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "limit", kind: "line", through: [{ x: 0, y: 2 }, { x: 7, y: 2 }], appearance: "secondary" },
+      { id: "order", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 3 / 2 }, { x: 3, y: 7 / 4 }, { x: 4, y: 15 / 8 }, { x: 5, y: 31 / 16 }, { x: 6, y: 63 / 32 }], appearance: "construction" },
+      { id: "s1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 3 / 2 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 3, y: 7 / 4 }, appearance: "primary" },
+      { id: "s4", kind: "point", at: { x: 4, y: 15 / 8 }, appearance: "primary" },
+      { id: "s5", kind: "point", at: { x: 5, y: 31 / 16 }, appearance: "primary" },
+      { id: "s6", kind: "point", at: { x: 6, y: 63 / 32 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 7, y: 2 }, placement: "above" },
+      { key: "s", objectId: "s4", at: { x: 4, y: 15 / 8 }, placement: "below" },
+    ],
+  }}
 />
 
 Selisih ke limit juga dapat dihitung. Setelah enam suku, jumlahnya <InlineMath math="1{,}96875" /> dan kekurangannya <InlineMath math="0{,}03125" />. Setiap suku tambahan membagi **sisa jarak ke limit** menjadi dua.
@@ -141,3 +158,31 @@ Di sini <InlineMath math="a=12" /> dan <InlineMath math="r=-\frac12" />. Karena 
 <BlockMath math="\begin{aligned}S_\infty&amp;=\frac{12}{1-(-1/2)}\\&amp;=\frac{12}{3/2}\\&amp;=12\cdot\frac23=8\end{aligned}" />
 
 Rasio negatif membuat tanda suku berganti-ganti, tetapi nilai mutlaknya mengecil cukup cepat sehingga jumlah parsialnya mendekati <InlineMath math="8" />.
+
+Jumlah parsial <InlineMath math="12 - 6 + 3 - \tfrac32 + \cdots" /> adalah 12, 6, 9, 7,5, 8,25, dan 7,875. Nilainya bergantian di atas dan di bawah 8 dan mendekatinya dari kedua sisi.
+
+<MathVisual
+  title={<>Jumlah parsial di kedua sisi 8</>}
+  description={<>Jumlah parsial <InlineMath math="S_1" /> sampai <InlineMath math="S_6" /> dari deret dengan <InlineMath math="a = 12" /> dan <InlineMath math="r = -\tfrac12" />, di sekitar garis <InlineMath math="y = 8" />.</>}
+  labels={{
+    limit: <InlineMath math="8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 7.2 }, y: { min: 4.6, max: 12.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "limit", kind: "line", through: [{ x: 0, y: 8 }, { x: 7, y: 8 }], appearance: "secondary" },
+      { id: "order", kind: "polyline", vertices: [{ x: 1, y: 12 }, { x: 2, y: 6 }, { x: 3, y: 9 }, { x: 4, y: 15 / 2 }, { x: 5, y: 33 / 4 }, { x: 6, y: 63 / 8 }], appearance: "construction" },
+      { id: "s1", kind: "point", at: { x: 1, y: 12 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 6 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 3, y: 9 }, appearance: "primary" },
+      { id: "s4", kind: "point", at: { x: 4, y: 15 / 2 }, appearance: "primary" },
+      { id: "s5", kind: "point", at: { x: 5, y: 33 / 4 }, appearance: "primary" },
+      { id: "s6", kind: "point", at: { x: 6, y: 63 / 8 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 7, y: 8 }, placement: "above" },
+    ],
+  }}
+/>

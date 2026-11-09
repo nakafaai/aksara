@@ -32,53 +32,29 @@ Bei <InlineMath math="3 - 2i" /> passiert am häufigsten ein Fehler. Der Imagin�
 
 Die Punkte <InlineMath math="(x, y)" /> und <InlineMath math="(x, -y)" /> haben denselben Abstand zur reellen Achse, einer darüber und einer darunter. Also ist <InlineMath math="\bar{z}" /> **die Spiegelung von <InlineMath math="z" /> an der reellen Achse**.
 
-<LineEquation
-  title={
-    <>
-      <InlineMath math="z=3+2i" /> und ihre Konjugierte{" "}
-      <InlineMath math="\bar{z} = 3-2i" />
-    </>
-  }
-  description={
-    <>
-      <InlineMath math="z" /> und <InlineMath math="\bar{z}" /> liegen
-      spiegelbildlich zur reellen Achse.
-    </>
-  }
-  cameraPosition={[1.5, 0, 8]}
-  cameraTarget={[1.5, 0, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="z=3+2i" />, at: 1, offset: [0.5, 0.5, 0] }],
-      cone: { position: "end" },
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: -2, z: 0 },
-      ],
-      smooth: false,
-      color: "#65a30d",
-      labels: [{ text: <InlineMath math="\bar{z}=3-2i" />, at: 1, offset: [0.5, -0.5, 0] }],
-      cone: { position: "end" },
-    },
-    // Reelle Achse als Spiegelgerade (optional)
-    {
-      points: [
-        { x: -0.5, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#d97706",
-    },
-  ]}
+<MathVisual
+  title={<><InlineMath math="z = 3 + 2i" /> und seine Konjugierte <InlineMath math="\bar{z} = 3 - 2i" /></>}
+  description={<>Die Punkte <InlineMath math="z" /> und <InlineMath math="\bar{z}" /> sind Spiegelbilder an der reellen Achse, verbunden durch eine senkrechte Strecke, die die Achse halbiert.</>}
+  labels={{
+    z: <InlineMath math="z = 3 + 2i" />,
+    bar: <InlineMath math="\bar{z} = 3 - 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "segment", from: { x: 3, y: 2 }, to: { x: 3, y: -2 }, appearance: "construction" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 3, y: 2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "bar", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -2 }, appearance: "secondary" },
+      { id: "bar-head", kind: "polygon", vertices: [{ x: 3, y: -2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (-2) + (1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (-2) + (1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "bar", objectId: "bar", at: { x: 3, y: -2 }, placement: "right" },
+    ],
+  }}
 />
 
 Eine Spiegelung erhält Längen, also gilt <InlineMath math="|\bar{z}| = |z|" />. Nur die Richtung dreht sich um: Bildet <InlineMath math="z" /> mit der positiven reellen Achse den Winkel <InlineMath math="\theta" />, so bildet <InlineMath math="\bar{z}" /> den Winkel <InlineMath math="-\theta" />. Für <InlineMath math="z = 3 + 2i" /> haben beide den [Betrag](/de/faecher/mathematik/komplexe-zahlen/betrag-und-argument-komplexer-zahlen) <InlineMath math="\sqrt{13}" />, und ihre Argumente sind etwa <InlineMath math="33{,}7^\circ" /> und <InlineMath math="-33{,}7^\circ" />. Diese Regel entgegengesetzter Argumente gilt für <InlineMath math="z \ne 0" /> und modulo <InlineMath math="360^\circ" />: Bei einer negativen reellen Zahl wie <InlineMath math="-2" /> haben <InlineMath math="z" /> und <InlineMath math="\bar{z}" /> beide das Argument <InlineMath math="180^\circ" />.
@@ -90,7 +66,7 @@ Addierst du <InlineMath math="z" /> und <InlineMath math="\bar{z}" />, **heben s
 <BlockMath math="\begin{aligned}z+\bar z&amp;=(x+iy)+(x-iy)=2x=2\operatorname{Re}(z)\\z-\bar z&amp;=(x+iy)-(x-iy)=2iy=2i\operatorname{Im}(z)\end{aligned}" />
 
 <MathVisual
-  title="Das Parallelogramm aus z und seiner Konjugierten"
+  title={<>Das Parallelogramm aus z und seiner Konjugierten</>}
   description={<>Die Vektoren <InlineMath math="z = 3 + 2i" /> und <InlineMath math="\bar{z} = 3 - 2i" /> werden wie Vektoren addiert. Ihre Summe ist <InlineMath math="6" />, genau auf der reellen Achse.</>}
   scene={{
     space: "plane",
@@ -139,13 +115,43 @@ Berechne <InlineMath math="\frac{3 + 4i}{1 - 2i}" />. Die Konjugierte des Nenner
 Probe durch Zurückmultiplizieren: <InlineMath math="(-1 + 2i)(1 - 2i) = -1 + 2i + 2i - 4i^2 = 3 + 4i" />, also der ursprüngliche Zähler. Derselbe Weg berechnet auch den [Kehrwert einer komplexen Zahl](/de/faecher/mathematik/komplexe-zahlen/kehrwerte-komplexer-zahlen), denn <InlineMath math="\frac{1}{z} = \frac{\bar{z}}{|z|^2}" /> für <InlineMath math="z \ne 0" />.
 
 <Mermaid
-  title="Schritte beim Dividieren durch eine komplexe Zahl"
-  description="Die Konjugierte des Nenners macht den Nenner reell, und eine Multiplikation prüft das Ergebnis."
+  title={<>Schritte beim Dividieren durch eine komplexe Zahl</>}
+  description={<>Die Konjugierte des Nenners macht den Nenner reell, und eine Multiplikation prüft das Ergebnis.</>}
   chart={`flowchart LR
   A["Zähler und Nenner aufschreiben"] --> B["Mit der Konjugierten des Nenners erweitern"]
   B --> C["Der Nenner wird zum Betragsquadrat"]
   C --> D["Real- und Imaginärteil trennen"]
   D --> E["Ergebnis mit dem Nenner multiplizieren und prüfen"]`}
+/>
+
+Prüf den Quotienten in der Ebene. <InlineMath math="-1 + 2i" /> hat den Betrag <InlineMath math="\sqrt5" />, also <InlineMath math="5 \div \sqrt5" />: den Betrag von <InlineMath math="3 + 4i" /> geteilt durch den Betrag von <InlineMath math="1 - 2i" />.
+
+<MathVisual
+  title={<><InlineMath math="\frac{3 + 4i}{1 - 2i} = -1 + 2i" /></>}
+  description={<>Der Zähler <InlineMath math="3 + 4i" /> mit Betrag 5, der Nenner <InlineMath math="1 - 2i" /> mit Betrag <InlineMath math="\sqrt5" /> und der Quotient <InlineMath math="-1 + 2i" /> mit Betrag <InlineMath math="\sqrt5" />.</>}
+  labels={{
+    num: <InlineMath math="3 + 4i" />,
+    den: <InlineMath math="1 - 2i" />,
+    q: <InlineMath math="-1 + 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 3.6 }, y: { min: -2.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "num", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "num-head", kind: "polygon", vertices: [{ x: 3, y: 4 }, { x: 277 / 100, y: 193 / 50 }, { x: 293 / 100, y: 187 / 50 }], appearance: "primary" },
+      { id: "den", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "den-head", kind: "polygon", vertices: [{ x: 1, y: -2 }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (-2) + (1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (-2) + (1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }], appearance: "secondary" },
+      { id: "q", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 2 }, appearance: "answer" },
+      { id: "q-head", kind: "polygon", vertices: [{ x: -1, y: 2 }, { x: (-1) + (1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }, { x: (-1) + (1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "num", objectId: "num", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "den", objectId: "den", at: { x: 1, y: -2 }, placement: "right" },
+      { key: "q", objectId: "q", at: { x: -1, y: 2 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Wann eine Zahl gleich ihrer Konjugierten ist

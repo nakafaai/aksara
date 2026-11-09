@@ -3,7 +3,7 @@ export const metadata = {
   description: "Kalikan bilangan kompleks dengan sifat distributif, lalu sederhanakan hasilnya melalui contoh ekspansi binomial.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Bilangan Kompleks",
 };
 
@@ -16,6 +16,35 @@ Mulailah dengan <InlineMath math="z_1 = x_1 + iy_1" /> dan <InlineMath math="z_2
 Ganti **kuadrat satuan imajiner** dengan minus satu, lalu kelompokkan suku real dan imajiner. Hasil kali dua suku imajiner masuk ke bagian real, bukan ke bagian imajiner:
 
 <BlockMath math="\begin{aligned}z_1z_2&amp;=(x_1+iy_1)(x_2+iy_2) \\ &amp;=x_1x_2+ix_1y_2+ix_2y_1+i^2y_1y_2 \\ &amp;=x_1x_2-y_1y_2+i(x_1y_2+x_2y_1)\end{aligned}" />
+
+Mengalikan dengan <InlineMath math="i" /> adalah seperempat putaran. Untuk <InlineMath math="z = 2 + i" />, sifat distributif memberi <InlineMath math="i(2 + i) = 2i + i^2 = -1 + 2i" />, yaitu panah yang sama diputar <InlineMath math="90^\circ" /> berlawanan arah jarum jam dan sama panjangnya.
+
+<MathVisual
+  title={<>Mengalikan dengan <InlineMath math="i" /> memutar sejauh <InlineMath math="90^\circ" /></>}
+  description={<>Panah ke <InlineMath math="2 + i" /> dan panah ke <InlineMath math="i(2 + i) = -1 + 2i" />, keduanya sepanjang <InlineMath math="\sqrt5" />, terpisah seperempat putaran.</>}
+  labels={{
+    z: <InlineMath math="2 + i" />,
+    iz: <InlineMath math="-1 + 2i" />,
+    turn: <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 2.6 }, y: { min: -0.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "turn", kind: "arc", center: { x: 0, y: 0 }, radius: 4 / 5, startDegrees: Math.atan2(1, 2) * 180 / Math.PI, sweepDegrees: 90, appearance: "highlight" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }], appearance: "primary" },
+      { id: "iz", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 2 }, appearance: "secondary" },
+      { id: "iz-head", kind: "polygon", vertices: [{ x: -1, y: 2 }, { x: (-1) + (1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }, { x: (-1) + (1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "iz", objectId: "iz", at: { x: -1, y: 2 }, placement: "left" },
+      { key: "turn", objectId: "turn", at: { x: 0.8 * Math.cos(Math.atan2(1, 2) + Math.PI / 4), y: 0.8 * Math.sin(Math.atan2(1, 2) + Math.PI / 4) }, placement: "above-right" },
+    ],
+  }}
+/>
 
 ## Menghitung Hasil Kali dengan Dua Cara
 
@@ -31,50 +60,32 @@ Pada bidang kompleks, hasil kali berada di titik <InlineMath math="(4,-3)" />. *
 
 <BlockMath math="z_1z_2=(2\cdot1-1\cdot(-2))+i(2\cdot(-2)+1\cdot1)=4-3i" />
 
-<LineEquation
-  title="Visualisasi Perkalian Bilangan Kompleks"
-  description={
-    <>
-      Visualisasi dari <InlineMath math="z_1 = 2+i" />,{" "}
-      <InlineMath math="z_2 = 1-2i" />, dan hasil perkaliannya{" "}
-      <InlineMath math="z_1 \times z_2 = 4-3i" />.
-    </>
-  }
-  cameraPosition={[2, -1, 9]}
-  cameraTarget={[2, -1, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 2, y: 1, z: 0 },
-      ],
-      smooth: false,
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="z_1=2+i" />, at: 1, offset: [0.5, 0.5, 0] }],
-      cone: { position: "end" },
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1, y: -2, z: 0 },
-      ],
-      smooth: false,
-      color: "#059669",
-      labels: [{ text: <InlineMath math="z_2=1-2i" />, at: 1, offset: [0.5, -0.5, 0] }],
-      cone: { position: "end" },
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: -3, z: 0 },
-      ],
-      smooth: false,
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="z_1 \times z_2=4-3i" />, at: 1, offset: [-0.4, -0.65, 0] }],
-      cone: { position: "end" },
-    },
-  ]}
+<MathVisual
+  title={<><InlineMath math="z_1 = 2 + i" />, <InlineMath math="z_2 = 1 - 2i" />, dan hasil kalinya</>}
+  description={<>Hasil kali <InlineMath math="z_1z_2 = 4 - 3i" /> memiliki modulus <InlineMath math="5 = \sqrt5 \cdot \sqrt5" />, yaitu hasil kali modulus <InlineMath math="z_1" /> dan <InlineMath math="z_2" />.</>}
+  labels={{
+    z1: <InlineMath math="z_1 = 2 + i" />,
+    z2: <InlineMath math="z_2 = 1 - 2i" />,
+    p: <InlineMath math="z_1z_2 = 4 - 3i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 5 }, y: { min: -3.6, max: 1.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)), y: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)) }, { x: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)), y: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)) }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 1, y: -2 }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (-2) + (1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (-2) + (1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }], appearance: "secondary" },
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: -3 }, appearance: "answer" },
+      { id: "p-head", kind: "polygon", vertices: [{ x: 4, y: -3 }, { x: 193 / 50, y: -277 / 100 }, { x: 187 / 50, y: -293 / 100 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "z2", objectId: "z2", at: { x: 1, y: -2 }, placement: "left" },
+      { key: "p", objectId: "p", at: { x: 4, y: -3 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Latihan
@@ -91,3 +102,33 @@ Menggunakan **sifat distributif**:
   <BlockMath math="\begin{aligned}(1+i)\left(\frac12-2i\right)&amp;=\frac12-2i+\frac12i-2i^2 \\ &amp;=\left(\frac12+2\right)+\left(-2+\frac12\right)i \\ &amp;=\left(\frac12+\frac42\right)+\left(-\frac42+\frac12\right)i \\ &amp;=\frac52-\frac32i\end{aligned}" />
   <BlockMath math="z_1z_2=\left(1\cdot\frac12-1\cdot(-2)\right)+i\left(1\cdot(-2)+\frac12\cdot1\right)=\frac52-\frac32i" />
 </MathContainer>
+
+Hasil kali dari pembahasan pada bidang: <InlineMath math="z_1 = 1 + i" />, <InlineMath math="z_2 = \tfrac12 - 2i" />, dan <InlineMath math="z_1z_2 = \tfrac52 - \tfrac32 i" />. Modulus hasil kalinya, <InlineMath math="\sqrt{\tfrac{17}{2}}" />, sama dengan <InlineMath math="\sqrt2 \cdot \tfrac{\sqrt{17}}{2}" />, hasil kali kedua modulus.
+
+<MathVisual
+  title={<><InlineMath math="(1 + i)\left(\tfrac12 - 2i\right) = \tfrac52 - \tfrac32 i" /></>}
+  description={<>Faktor <InlineMath math="1 + i" /> dan <InlineMath math="\tfrac12 - 2i" /> serta hasil kalinya <InlineMath math="\tfrac52 - \tfrac32 i" />.</>}
+  labels={{
+    z1: <InlineMath math="1 + i" />,
+    z2: <InlineMath math="\tfrac12 - 2i" />,
+    p: <InlineMath math="\tfrac52 - \tfrac32 i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 3.2 }, y: { min: -2.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: (1) + (-1 / 5 / Math.sqrt(2)) + (-2 / 25 / Math.sqrt(2)), y: (1) + (-1 / 5 / Math.sqrt(2)) + (2 / 25 / Math.sqrt(2)) }, { x: (1) + (-1 / 5 / Math.sqrt(2)) + (2 / 25 / Math.sqrt(2)), y: (1) + (-1 / 5 / Math.sqrt(2)) + (-2 / 25 / Math.sqrt(2)) }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / 2, y: -2 }, appearance: "secondary" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 1 / 2, y: -2 }, { x: (1 / 2) + (-1 / 10 / Math.sqrt(17 / 4)) + (4 / 25 / Math.sqrt(17 / 4)), y: (-2) + (2 / 5 / Math.sqrt(17 / 4)) + (1 / 25 / Math.sqrt(17 / 4)) }, { x: (1 / 2) + (-1 / 10 / Math.sqrt(17 / 4)) + (-4 / 25 / Math.sqrt(17 / 4)), y: (-2) + (2 / 5 / Math.sqrt(17 / 4)) + (-1 / 25 / Math.sqrt(17 / 4)) }], appearance: "secondary" },
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5 / 2, y: -3 / 2 }, appearance: "answer" },
+      { id: "p-head", kind: "polygon", vertices: [{ x: 5 / 2, y: -3 / 2 }, { x: (5 / 2) + (-1 / 2 / Math.sqrt(17 / 2)) + (3 / 25 / Math.sqrt(17 / 2)), y: (-3 / 2) + (3 / 10 / Math.sqrt(17 / 2)) + (1 / 5 / Math.sqrt(17 / 2)) }, { x: (5 / 2) + (-1 / 2 / Math.sqrt(17 / 2)) + (-3 / 25 / Math.sqrt(17 / 2)), y: (-3 / 2) + (3 / 10 / Math.sqrt(17 / 2)) + (-1 / 5 / Math.sqrt(17 / 2)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "z2", objectId: "z2", at: { x: 1 / 2, y: -2 }, placement: "left" },
+      { key: "p", objectId: "p", at: { x: 5 / 2, y: -3 / 2 }, placement: "right" },
+    ],
+  }}
+/>

@@ -21,7 +21,7 @@ The integer <InlineMath math="k" /> is always <InlineMath math="-1" />, <InlineM
 The moduli are multiplied or divided as well, but a positive modulus does not change a direction. That is why the argument of a product depends only on the arguments of its two factors.
 
 <MathVisual
-  title="Arguments add when you multiply"
+  title={<>Arguments add when you multiply</>}
   description={<>Multiplying by <InlineMath math="i" /> turns <InlineMath math="1 + i" /> through <InlineMath math="90^\circ" />, from <InlineMath math="45^\circ" /> to <InlineMath math="135^\circ" />.</>}
   scene={{
     space: "plane",
@@ -78,7 +78,7 @@ Both components are negative, so **the product lies in quadrant III**, where the
 Check: multiply the numerator and denominator by <InlineMath math="-i" />, so <InlineMath math="\frac{-1 - i}{i} = (-1 - i)(-i) = i + i^2 = -1 + i" />. The number <InlineMath math="-1 + i" /> does have principal argument <InlineMath math="135^\circ" />.
 
 <MathVisual
-  title="A sum of arguments that leaves the principal interval"
+  title={<>A sum of arguments that leaves the principal interval</>}
   description={<>The arc <InlineMath math="135^\circ + 120^\circ = 255^\circ" /> passes <InlineMath math="180^\circ" />. The same direction is written as the principal argument <InlineMath math="-105^\circ" />.</>}
   scene={{
     space: "plane",
@@ -119,8 +119,8 @@ For <InlineMath math="(-1 + i)^3" />, the value <InlineMath math="3 \cdot 135^\c
 The [conjugate](/en/subjects/mathematics/complex-number/conjugate-complex-numbers) <InlineMath math="\bar{z} = x - iy" /> is the mirror image of <InlineMath math="z" /> in the real axis, so its argument changes sign: <InlineMath math="\operatorname{Arg}\bar{z} = -\operatorname{Arg} z" />. The one exception is the negative real axis. The number <InlineMath math="-4" /> equals its own conjugate, and both have principal argument <InlineMath math="180^\circ" />, because <InlineMath math="-180^\circ" /> is outside the range.
 
 <Mermaid
-  title="The argument after one operation"
-  description="Each operation changes the argument in its own way, then the result goes back into the principal interval."
+  title={<>The argument after one operation</>}
+  description={<>Each operation changes the argument in its own way, then the result goes back into the principal interval.</>}
   chart={`flowchart TD
   A{"Which operation?"} -->|"product"| B["Add the arguments"]
   A -->|"quotient"| C["Subtract the arguments"]
@@ -131,6 +131,39 @@ The [conjugate](/en/subjects/mathematics/complex-number/conjugate-complex-number
   D --> F
   E --> F
   F --> G["Check with the Cartesian form"]`}
+/>
+
+Powers multiply the argument. <InlineMath math="(-1 + i)^3" /> has argument <InlineMath math="3 \cdot 135^\circ = 405^\circ" />, one full turn plus <InlineMath math="45^\circ" />, and indeed <InlineMath math="(-1 + i)^2 = -2i" /> and <InlineMath math="(-1 + i)^3 = 2 + 2i" /> points at <InlineMath math="45^\circ" />.
+
+<MathVisual
+  title={<>The powers of <InlineMath math="-1 + i" /></>}
+  description={<>The arrows to <InlineMath math="-1 + i" /> at <InlineMath math="135^\circ" />, <InlineMath math="(-1 + i)^2 = -2i" /> at <InlineMath math="-90^\circ" /> and <InlineMath math="(-1 + i)^3 = 2 + 2i" /> at <InlineMath math="45^\circ" />, with lengths <InlineMath math="\sqrt2" />, 2 and <InlineMath math="2\sqrt2" />.</>}
+  labels={{
+    z: <InlineMath math="-1 + i" />,
+    z2: <InlineMath math="-2i" />,
+    z3: <InlineMath math="2 + 2i" />,
+    a3: <InlineMath math="45^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 2.8 }, y: { min: -2.6, max: 2.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a3", kind: "arc", center: { x: 0, y: 0 }, radius: 3 / 5, startDegrees: 0, sweepDegrees: 45, appearance: "answer" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: -1, y: 1 }, { x: (-1) + (1 / 5 / Math.sqrt(2)) + (-2 / 25 / Math.sqrt(2)), y: (1) + (-1 / 5 / Math.sqrt(2)) + (-2 / 25 / Math.sqrt(2)) }, { x: (-1) + (1 / 5 / Math.sqrt(2)) + (2 / 25 / Math.sqrt(2)), y: (1) + (-1 / 5 / Math.sqrt(2)) + (2 / 25 / Math.sqrt(2)) }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -2 }, appearance: "construction" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 0, y: -2 }, { x: 2 / 25, y: -9 / 5 }, { x: -2 / 25, y: -9 / 5 }], appearance: "construction" },
+      { id: "z3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 }, appearance: "secondary" },
+      { id: "z3-head", kind: "polygon", vertices: [{ x: 2, y: 2 }, { x: (2) + (-2 / 5 / Math.sqrt(8)) + (-4 / 25 / Math.sqrt(8)), y: (2) + (-2 / 5 / Math.sqrt(8)) + (4 / 25 / Math.sqrt(8)) }, { x: (2) + (-2 / 5 / Math.sqrt(8)) + (4 / 25 / Math.sqrt(8)), y: (2) + (-2 / 5 / Math.sqrt(8)) + (-4 / 25 / Math.sqrt(8)) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: -1, y: 1 }, placement: "left" },
+      { key: "z2", objectId: "z2", at: { x: 0, y: -2 }, placement: "right" },
+      { key: "z3", objectId: "z3", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "a3", objectId: "a3", at: { x: 0.6 * Math.cos(Math.PI / 8), y: 0.6 * Math.sin(Math.PI / 8) }, placement: "right" },
+    ],
+  }}
 />
 
 ## Common Mistakes

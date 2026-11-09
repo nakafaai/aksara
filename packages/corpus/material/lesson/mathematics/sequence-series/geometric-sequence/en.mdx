@@ -3,7 +3,7 @@ export const metadata = {
   description: "Build geometric sequences from a constant ratio, derive the general term, and test idealized growth models in complete examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-06",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Sequence and Series",
 };
 
@@ -68,6 +68,39 @@ For a **positive first term**, the ratio determines the overall behavior:
 | <InlineMath math="-1/2" /> | <InlineMath math="8,-4,2,-1" /> | Alternating signs, magnitudes approaching zero |
 
 This is why a geometric sequence does not always represent growth.
+
+Start every sequence at 8 and change only the ratio. With <InlineMath math="r = 1" /> the terms stay at 8, with <InlineMath math="r = \tfrac12" /> they halve toward 0, and with <InlineMath math="r = -\tfrac12" /> they also shrink but jump from one side of 0 to the other. At <InlineMath math="n = 3" /> the two halving sequences meet at 2, because <InlineMath math="\left(-\tfrac12\right)^2 = \left(\tfrac12\right)^2" />.
+
+<MathVisual
+  title={<>One first term, three ratios</>}
+  description={<>The terms <InlineMath math="U_1" /> to <InlineMath math="U_4" /> for <InlineMath math="a = 8" /> with <InlineMath math="r = 1" />, <InlineMath math="r = \tfrac12" /> and <InlineMath math="r = -\tfrac12" />, all starting at 8.</>}
+  labels={{
+    one: <InlineMath math="r = 1" />,
+    half: <InlineMath math="r = \tfrac12" />,
+    neg: <InlineMath math="r = -\tfrac12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.4, max: 4.8 }, y: { min: -5, max: 9.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "start", kind: "point", at: { x: 1, y: 8 }, appearance: "answer" },
+      { id: "one2", kind: "point", at: { x: 2, y: 8 }, appearance: "construction" },
+      { id: "one3", kind: "point", at: { x: 3, y: 8 }, appearance: "construction" },
+      { id: "one4", kind: "point", at: { x: 4, y: 8 }, appearance: "construction" },
+      { id: "half2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "half4", kind: "point", at: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "neg2", kind: "point", at: { x: 2, y: -4 }, appearance: "secondary" },
+      { id: "neg4", kind: "point", at: { x: 4, y: -1 }, appearance: "secondary" },
+      { id: "meet3", kind: "point", at: { x: 3, y: 2 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "one", objectId: "one4", at: { x: 4, y: 8 }, placement: "right" },
+      { key: "half", objectId: "half4", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "neg", objectId: "neg4", at: { x: 4, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## An Idealized Bacterial Growth Model
 
@@ -170,3 +203,13 @@ Then, find the length of the third piece (<InlineMath math="U_3" />):
 </MathContainer>
 
 The length of the third piece is <InlineMath math="36 \text{ cm}" />.
+
+All five rope sections in one chart: each bar is <InlineMath math="\tfrac32" /> times the one before, from 16 cm to 81 cm, and the middle bar is <InlineMath math="U_3 = 36" /> cm.
+
+<BarChart
+  title={<>The five rope sections</>}
+  description={<>Bars of <InlineMath math="U_n = 16\left(\tfrac32\right)^{n-1}" /> for <InlineMath math="n = 1" /> to 5: 16, 24, 36, 54 and 81 cm.</>}
+  yAxisLabel="Length (cm)"
+  data={[1, 2, 3, 4, 5].map((n) => ({ name: String(n), value: 16 * (3 / 2) ** (n - 1) }))}
+  chartConfig={{ value: { label: "Length (cm)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
