@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Kegiatan sikat gigi bersama diikuti turunnya siswa bergigi berlubang di semua kelas, terutama pada siswa yang rutin mengikutinya.",
+            "Kegiatan sikat gigi bersama diikuti turunnya siswa bergigi berlubang di semua kelas, dan penurunan paling kecil terjadi di kelas yang sebagian siswanya sering melewatkan kegiatan itu.",
         },
         {
           correct: false,

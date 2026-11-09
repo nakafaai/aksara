@@ -13,26 +13,25 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Kalimat (5) membantah data kelas III pada tabel.",
+          label: "Kalimat (6) membantah isi kalimat (5).",
         },
         {
           correct: false,
           label:
-            "Kalimat (5) menyimpulkan bahwa kegiatan sikat gigi tidak berguna.",
+            "Kalimat (6) menyimpulkan bahwa kegiatan sikat gigi tidak berguna.",
         },
         {
           correct: false,
-          label: "Kalimat (5) memberi contoh siswa kelas IV.",
+          label: "Kalimat (6) memberi contoh siswa kelas IV.",
         },
         {
           correct: false,
-          label:
-            "Kalimat (5) menjelaskan penyebab besarnya penurunan di kelas IV.",
+          label: "Kalimat (6) mengulang isi kalimat (5) dengan kata lain.",
         },
         {
           correct: true,
           label:
-            "Kalimat (5) menjelaskan penyebab kecilnya penurunan di kelas III.",
+            "Kalimat (6) menjelaskan penyebab peristiwa dalam kalimat (5).",
         },
       ],
     },

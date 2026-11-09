@@ -25,7 +25,7 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "Regu Relawan Pemadam Menjaga Kampung Bergang Sempit",
+          label: "Regu Relawan Pemadam Menjaga Kampung dengan Gang Sempit",
         },
         {
           correct: false,

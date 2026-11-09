@@ -32,7 +32,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Kampung bergang sempit sulit dijangkau mobil pemadam sehingga memerlukan regu pemadam di dalam kampung.",
+            "Kampung yang gangnya sempit sulit dijangkau mobil pemadam sehingga memerlukan regu pemadam di dalam kampung.",
         },
       ],
     },
