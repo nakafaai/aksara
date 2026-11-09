@@ -35,7 +35,7 @@ export const tkaIndonesianTrack = {
     en: "indonesian",
     id: "bahasa-indonesia",
   },
-  sets: Arr.map([1, 2, 3, 4], (setNumber) => {
+  sets: Arr.map([1, 2, 3, 4, 5, 6, 7], (setNumber) => {
     const setKey = `set-${setNumber}`;
     return {
       key: setKey,
