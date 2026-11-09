@@ -4,7 +4,7 @@ export const metadata = {
     description: "Read vector magnitude and direction from a wind map, then represent each vector with notation and an arrow.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-08",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Vector Operations",
 };
 
@@ -18,42 +18,32 @@ The wind's velocity is a **vector** because it has both **magnitude** and **dire
 
 A vector is an abstract quantity, but we usually <Highlight>represent it with a directed line segment</Highlight>, or arrow.
 
-<VectorChart
-  title="Vector Graph"
-  description={
-    <>
-      Vectors in a Cartesian coordinate system with horizontal{" "}
-      <InlineMath math="x" /> and vertical <InlineMath math="y" />.
-    </>
-  }
-  vectors={[
-    {
-      id: "vector_1",
-      name: "Vector 1",
-      points: [
-        { x: 0, y: 0 },
-        { x: 6, y: 8 },
-      ],
-    },
-    {
-      id: "vector_2",
-      name: "Vector 2",
-      points: [
-        { x: 1, y: 1 },
-        { x: 5, y: 2 },
-      ],
-      direction: "backward",
-    },
-    {
-      id: "vector_3",
-      name: "Vector 3",
-      points: [
-        { x: 2, y: 0 },
-        { x: 4, y: 7 },
-      ],
-      direction: "backward",
-    },
-  ]}
+<MathVisual
+  title={<>Three vectors as arrows</>}
+  description={<>Vector 1 from <InlineMath math="(0, 0)" /> to <InlineMath math="(6, 8)" />, vector 2 from <InlineMath math="(5, 2)" /> to <InlineMath math="(1, 1)" />, and vector 3 from <InlineMath math="(4, 7)" /> to <InlineMath math="(2, 0)" />.</>}
+  labels={{
+    v1: <InlineMath math="1" />,
+    v2: <InlineMath math="2" />,
+    v3: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "v1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "v1-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+      { id: "v2", kind: "segment", from: { x: 5, y: 2 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "v2-head", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: (1) + (8 / 5 / Math.sqrt(17)) + (4 / 25 / Math.sqrt(17)), y: (1) + (2 / 5 / Math.sqrt(17)) + (-16 / 25 / Math.sqrt(17)) }, { x: (1) + (8 / 5 / Math.sqrt(17)) + (-4 / 25 / Math.sqrt(17)), y: (1) + (2 / 5 / Math.sqrt(17)) + (16 / 25 / Math.sqrt(17)) }], appearance: "secondary" },
+      { id: "v3", kind: "segment", from: { x: 4, y: 7 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "v3-head", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (-8 / 25 / Math.sqrt(53)) }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (-28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (8 / 25 / Math.sqrt(53)) }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "v1", objectId: "v1", at: { x: 3, y: 4 }, placement: "above-left" },
+      { key: "v2", objectId: "v2", at: { x: 3, y: 3 / 2 }, placement: "below" },
+      { key: "v3", objectId: "v3", at: { x: 3, y: 7 / 2 }, placement: "right" },
+    ],
+  }}
 />
 
 - **Vector** <InlineMath math="1" />: Direction of the vector from point <InlineMath math="(0, 0)" /> to point <InlineMath math="(6, 8)" />
@@ -69,6 +59,40 @@ An arrow's initial and terminal points determine its direction and length. The f
 3.  **Magnitude**: The length of the arrow represents the size of the vector, also called its _vector length_. The magnitude of vector <InlineMath math="\overrightarrow{AB}" /> is denoted by <InlineMath math="|\overrightarrow{AB}|" />.
 4.  **Direction**: The direction pointed by the arrowhead.
 
+The magnitude is the length of the arrow. For the arrow from <InlineMath math="A(0, 0)" /> to <InlineMath math="B(6, 8)" />, the horizontal and vertical steps 6 and 8 form a right triangle with the arrow as its hypotenuse, so <InlineMath math="|\overrightarrow{AB}| = \sqrt{6^2 + 8^2} = 10" />.
+
+<MathVisual
+  title={<>The magnitude of <InlineMath math="\overrightarrow{AB}" /> is 10</>}
+  description={<>The arrow from the initial point <InlineMath math="A(0, 0)" /> to the terminal point <InlineMath math="B(6, 8)" />, with steps 6 and 8 that give the length <InlineMath math="\sqrt{36 + 64} = 10" />.</>}
+  labels={{
+    ab: <InlineMath math="|\overrightarrow{AB}| = 10" />,
+    run: <InlineMath math="6" />,
+    rise: <InlineMath math="8" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 7 }, y: { min: -0.8, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "run", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "rise", kind: "segment", from: { x: 6, y: 0 }, to: { x: 6, y: 8 }, appearance: "construction" },
+      { id: "ab", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "ab-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+      { id: "a", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: 6, y: 8 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "ab", objectId: "ab", at: { x: 3, y: 4 }, placement: "above-left" },
+      { key: "run", objectId: "run", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "rise", objectId: "rise", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 6, y: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
 ### Vector Notation
 
 There are several ways to write vectors:
@@ -81,46 +105,33 @@ There are several ways to write vectors:
 
 Do the drawings below represent a single vector arrow? Why or why not?
 
-<VectorChart
-  title="Cartesian Coordinate System"
-  description={
-    <>
-      Horizontal <InlineMath math="x" />
-      -axis and vertical <InlineMath math="y" />
-      -axis.
-    </>
-  }
-  vectors={[
-    {
-      id: "shape_1",
-      name: "Shape 1",
-      points: [
-        { x: 0, y: 0 },
-        { x: 1, y: 9 },
-        { x: 3, y: 4 },
-        { x: 6, y: 8 },
-      ],
-    },
-    {
-      id: "shape_2",
-      name: "Shape 2",
-      points: [
-        { x: 1, y: 1 },
-        { x: 2, y: 6 },
-        { x: 5, y: 2 },
-      ],
-      direction: "backward",
-    },
-    {
-      id: "shape_3",
-      name: "Shape 3",
-      points: [
-        { x: 2, y: 0 },
-        { x: 4, y: 7 },
-      ],
-      direction: "both",
-    },
-  ]}
+<MathVisual
+  title={<>Three shapes that are not single vectors</>}
+  description={<>Shape 1 is a path of three segments, shape 2 a broken line with its arrowhead at the start, and shape 3 a segment with arrowheads at both ends.</>}
+  labels={{
+    s1: <InlineMath math="1" />,
+    s2: <InlineMath math="2" />,
+    s3: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 9 }, { x: 3, y: 4 }, { x: 6, y: 8 }], appearance: "primary" },
+      { id: "s1-end-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 6 }, { x: 5, y: 2 }], appearance: "secondary" },
+      { id: "s2-start-head", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: (1) + (2 / 5 / Math.sqrt(26)) + (4 / 5 / Math.sqrt(26)), y: (1) + (2 / Math.sqrt(26)) + (-4 / 25 / Math.sqrt(26)) }, { x: (1) + (2 / 5 / Math.sqrt(26)) + (-4 / 5 / Math.sqrt(26)), y: (1) + (2 / Math.sqrt(26)) + (4 / 25 / Math.sqrt(26)) }], appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 2, y: 0 }, to: { x: 4, y: 7 }, appearance: "construction" },
+      { id: "s3-a-head", kind: "polygon", vertices: [{ x: 4, y: 7 }, { x: (4) + (-4 / 5 / Math.sqrt(53)) + (-28 / 25 / Math.sqrt(53)), y: (7) + (-14 / 5 / Math.sqrt(53)) + (8 / 25 / Math.sqrt(53)) }, { x: (4) + (-4 / 5 / Math.sqrt(53)) + (28 / 25 / Math.sqrt(53)), y: (7) + (-14 / 5 / Math.sqrt(53)) + (-8 / 25 / Math.sqrt(53)) }], appearance: "construction" },
+      { id: "s3-b-head", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (-8 / 25 / Math.sqrt(53)) }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (-28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (8 / 25 / Math.sqrt(53)) }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "s1", objectId: "s1", at: { x: 1, y: 9 }, placement: "above" },
+      { key: "s2", objectId: "s2", at: { x: 2, y: 6 }, placement: "left" },
+      { key: "s3", objectId: "s3", at: { x: 3, y: 7 / 2 }, placement: "right" },
+    ],
+  }}
 />
 
 As drawn, none of the shapes is a **standard representation** of one vector:

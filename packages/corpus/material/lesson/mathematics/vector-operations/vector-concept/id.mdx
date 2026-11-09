@@ -4,7 +4,7 @@ export const metadata = {
     description: "Baca besar dan arah vektor pada peta angin, lalu nyatakan setiap vektor dengan notasi serta anak panah.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-08",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Vektor dan Operasinya",
 };
 
@@ -18,42 +18,32 @@ Kecepatan angin merupakan **vektor** karena memiliki **besar** dan **arah**. _Be
 
 Vektor adalah besaran abstrak, tetapi biasanya kita <Highlight>menggambarkannya sebagai ruas garis berarah</Highlight> atau anak panah.
 
-<VectorChart
-  title="Grafik Vektor"
-  description={
-    <>
-      Vektor berada di bidang koordinat kartesius dengan <InlineMath math="x" />{" "}
-      horizontal dan <InlineMath math="y" /> vertikal.
-    </>
-  }
-  vectors={[
-    {
-      id: "vector_1",
-      name: "Vektor 1",
-      points: [
-        { x: 0, y: 0 },
-        { x: 6, y: 8 },
-      ],
-    },
-    {
-      id: "vector_2",
-      name: "Vektor 2",
-      points: [
-        { x: 1, y: 1 },
-        { x: 5, y: 2 },
-      ],
-      direction: "backward",
-    },
-    {
-      id: "vector_3",
-      name: "Vektor 3",
-      points: [
-        { x: 2, y: 0 },
-        { x: 4, y: 7 },
-      ],
-      direction: "backward",
-    },
-  ]}
+<MathVisual
+  title={<>Tiga vektor sebagai panah</>}
+  description={<>Vektor 1 dari <InlineMath math="(0, 0)" /> ke <InlineMath math="(6, 8)" />, vektor 2 dari <InlineMath math="(5, 2)" /> ke <InlineMath math="(1, 1)" />, dan vektor 3 dari <InlineMath math="(4, 7)" /> ke <InlineMath math="(2, 0)" />.</>}
+  labels={{
+    v1: <InlineMath math="1" />,
+    v2: <InlineMath math="2" />,
+    v3: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "v1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "v1-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+      { id: "v2", kind: "segment", from: { x: 5, y: 2 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "v2-head", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: (1) + (8 / 5 / Math.sqrt(17)) + (4 / 25 / Math.sqrt(17)), y: (1) + (2 / 5 / Math.sqrt(17)) + (-16 / 25 / Math.sqrt(17)) }, { x: (1) + (8 / 5 / Math.sqrt(17)) + (-4 / 25 / Math.sqrt(17)), y: (1) + (2 / 5 / Math.sqrt(17)) + (16 / 25 / Math.sqrt(17)) }], appearance: "secondary" },
+      { id: "v3", kind: "segment", from: { x: 4, y: 7 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "v3-head", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (-8 / 25 / Math.sqrt(53)) }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (-28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (8 / 25 / Math.sqrt(53)) }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "v1", objectId: "v1", at: { x: 3, y: 4 }, placement: "above-left" },
+      { key: "v2", objectId: "v2", at: { x: 3, y: 3 / 2 }, placement: "below" },
+      { key: "v3", objectId: "v3", at: { x: 3, y: 7 / 2 }, placement: "right" },
+    ],
+  }}
 />
 
 - **Vektor** <InlineMath math="1" />: Arah vektor dari titik <InlineMath math="(0, 0)" /> ke titik <InlineMath math="(6, 8)" />
@@ -69,6 +59,40 @@ Pada anak panah, titik pangkal dan titik ujung menentukan arah serta panjang. Ke
 3.  **Besar (Magnitude)**: Panjang anak panah melambangkan besar vektor dan juga disebut _panjang vektor_. Besar vektor <InlineMath math="\overrightarrow{AB}" /> dinotasikan dengan <InlineMath math="|\overrightarrow{AB}|" />.
 4.  **Arah (Direction)**: Arah yang ditunjuk oleh mata panah.
 
+Besar vektor adalah panjang panahnya. Untuk panah dari <InlineMath math="A(0, 0)" /> ke <InlineMath math="B(6, 8)" />, langkah mendatar 6 dan langkah tegak 8 membentuk segitiga siku-siku dengan panah sebagai sisi miringnya, jadi <InlineMath math="|\overrightarrow{AB}| = \sqrt{6^2 + 8^2} = 10" />.
+
+<MathVisual
+  title={<>Besar <InlineMath math="\overrightarrow{AB}" /> adalah 10</>}
+  description={<>Panah dari titik pangkal <InlineMath math="A(0, 0)" /> ke titik ujung <InlineMath math="B(6, 8)" />, dengan langkah 6 dan 8 yang memberi panjang <InlineMath math="\sqrt{36 + 64} = 10" />.</>}
+  labels={{
+    ab: <InlineMath math="|\overrightarrow{AB}| = 10" />,
+    run: <InlineMath math="6" />,
+    rise: <InlineMath math="8" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 7 }, y: { min: -0.8, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "run", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "rise", kind: "segment", from: { x: 6, y: 0 }, to: { x: 6, y: 8 }, appearance: "construction" },
+      { id: "ab", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "ab-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+      { id: "a", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: 6, y: 8 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "ab", objectId: "ab", at: { x: 3, y: 4 }, placement: "above-left" },
+      { key: "run", objectId: "run", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "rise", objectId: "rise", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 6, y: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
 ### Notasi Vektor
 
 Ada beberapa cara menuliskan vektor:
@@ -81,45 +105,33 @@ Ada beberapa cara menuliskan vektor:
 
 Apakah diagram di bawah ini mewakili satu anak panah vektor? Jelaskan alasannya.
 
-<VectorChart
-  title="Bidang Koordinat Kartesius"
-  description={
-    <>
-      Sumbu <InlineMath math="x" /> horizontal dan sumbu <InlineMath math="y" />{" "}
-      vertikal.
-    </>
-  }
-  vectors={[
-    {
-      id: "bentuk_1",
-      name: "Bentuk 1",
-      points: [
-        { x: 0, y: 0 },
-        { x: 1, y: 9 },
-        { x: 3, y: 4 },
-        { x: 6, y: 8 },
-      ],
-    },
-    {
-      id: "bentuk_2",
-      name: "Bentuk 2",
-      points: [
-        { x: 1, y: 1 },
-        { x: 2, y: 6 },
-        { x: 5, y: 2 },
-      ],
-      direction: "backward",
-    },
-    {
-      id: "bentuk_3",
-      name: "Bentuk 3",
-      points: [
-        { x: 2, y: 0 },
-        { x: 4, y: 7 },
-      ],
-      direction: "both",
-    },
-  ]}
+<MathVisual
+  title={<>Tiga bentuk yang bukan satu vektor</>}
+  description={<>Bentuk 1 adalah lintasan tiga ruas, bentuk 2 garis patah dengan mata panah di awalnya, dan bentuk 3 ruas garis dengan mata panah di kedua ujungnya.</>}
+  labels={{
+    s1: <InlineMath math="1" />,
+    s2: <InlineMath math="2" />,
+    s3: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 9 }, { x: 3, y: 4 }, { x: 6, y: 8 }], appearance: "primary" },
+      { id: "s1-end-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 6 }, { x: 5, y: 2 }], appearance: "secondary" },
+      { id: "s2-start-head", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: (1) + (2 / 5 / Math.sqrt(26)) + (4 / 5 / Math.sqrt(26)), y: (1) + (2 / Math.sqrt(26)) + (-4 / 25 / Math.sqrt(26)) }, { x: (1) + (2 / 5 / Math.sqrt(26)) + (-4 / 5 / Math.sqrt(26)), y: (1) + (2 / Math.sqrt(26)) + (4 / 25 / Math.sqrt(26)) }], appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 2, y: 0 }, to: { x: 4, y: 7 }, appearance: "construction" },
+      { id: "s3-a-head", kind: "polygon", vertices: [{ x: 4, y: 7 }, { x: (4) + (-4 / 5 / Math.sqrt(53)) + (-28 / 25 / Math.sqrt(53)), y: (7) + (-14 / 5 / Math.sqrt(53)) + (8 / 25 / Math.sqrt(53)) }, { x: (4) + (-4 / 5 / Math.sqrt(53)) + (28 / 25 / Math.sqrt(53)), y: (7) + (-14 / 5 / Math.sqrt(53)) + (-8 / 25 / Math.sqrt(53)) }], appearance: "construction" },
+      { id: "s3-b-head", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (-8 / 25 / Math.sqrt(53)) }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (-28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (8 / 25 / Math.sqrt(53)) }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "s1", objectId: "s1", at: { x: 1, y: 9 }, placement: "above" },
+      { key: "s2", objectId: "s2", at: { x: 2, y: 6 }, placement: "left" },
+      { key: "s3", objectId: "s3", at: { x: 3, y: 7 / 2 }, placement: "right" },
+    ],
+  }}
 />
 
 Dalam bentuk yang ditampilkan, ketiga bentuk bukan **representasi baku** dari satu vektor:

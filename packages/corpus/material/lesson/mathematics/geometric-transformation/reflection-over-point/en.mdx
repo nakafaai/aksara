@@ -4,7 +4,7 @@ export const metadata = {
   description: "Treat point reflection as a half-turn and calculate image points and lines with coordinate formulas.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Geometric Transformation",
 };
 
@@ -25,6 +25,36 @@ The center of reflection is the **midpoint** of the joining segment. The average
 
 A point at the center remains fixed. For example, <InlineMath math="Q(a,b)" /> gives <InlineMath math="Q'(2a-a,2b-b)=(a,b)" />.
 
+A half-turn about a center turns a whole figure. Reflect triangle <InlineMath math="ABC" /> with <InlineMath math="A(2, 1)" />, <InlineMath math="B(4, 2)" /> and <InlineMath math="C(3, 4)" /> over <InlineMath math="(1, 1)" />: each image vertex is <InlineMath math="(2 - x, 2 - y)" />, so <InlineMath math="A'(0, 1)" />, <InlineMath math="B'(-2, 0)" /> and <InlineMath math="C'(-1, -2)" />. Every segment from a vertex to its image passes through the center and is cut in half there.
+
+<MathVisual
+  title={<>A triangle reflected over <InlineMath math="(1, 1)" /></>}
+  description={<>Triangle <InlineMath math="ABC" /> and its image <InlineMath math="A'B'C'" /> after reflection over the point <InlineMath math="(1, 1)" />, with each vertex joined to its image through the center.</>}
+  labels={{
+    tri: <InlineMath math="ABC" />,
+    image: <InlineMath math="A'B'C'" />,
+    c: <InlineMath math="(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 4.6 }, y: { min: -2.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ja", kind: "segment", from: { x: 2, y: 1 }, to: { x: 0, y: 1 }, appearance: "construction" },
+      { id: "jb", kind: "segment", from: { x: 4, y: 2 }, to: { x: -2, y: 0 }, appearance: "construction" },
+      { id: "jc", kind: "segment", from: { x: 3, y: 4 }, to: { x: -1, y: -2 }, appearance: "construction" },
+      { id: "tri", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: 4, y: 2 }, { x: 3, y: 4 }], appearance: "primary" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: -2, y: 0 }, { x: -1, y: -2 }], appearance: "secondary" },
+      { id: "c", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "tri", objectId: "tri", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: -1, y: -2 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 ## Reflecting a Point over Another Point
 
 Determine the image of a half-turn <InlineMath math="\sigma_{(2,3)}" /> for the point <InlineMath math="(5, 4)" />.
@@ -42,50 +72,30 @@ Calculate **twice each center coordinate**, then subtract the original point coo
 
 The image of point <InlineMath math="(5,4)" /> is <InlineMath math="(-1,2)" />.
 
-<LineEquation
-  title={
-    <>
-      Image of Point <InlineMath math="Q(5,4)" /> over Point{" "}
-      <InlineMath math="P(2,3)" />
-    </>
-  }
-  description={
-    <>
-      Visualization of reflecting point <InlineMath math="Q(5,4)" /> over the
-      center point <InlineMath math="P(2,3)" /> resulting in{" "}
-      <InlineMath math="Q'(-1,2)" />.
-    </>
-  }
-  data={[
-    {
-      points: [{ x: 2, y: 3, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P(2,3)" />, at: 0, offset: [1.5, -0.5, 0] }],
-    },
-    {
-      points: [{ x: 5, y: 4, z: 0 }],
-      color: "#0284c7",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="Q(5,4)" />, at: 0, offset: [0.3, 0.5, 0] }],
-    },
-    {
-      points: [{ x: -1, y: 2, z: 0 }],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="Q'(-1,2)" />, at: 0, offset: [-0.7, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 5, y: 4, z: 0 },
-        { x: -1, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#db2777",
-    }, // Line connecting Q to Q'
-  ]}
-  cameraPosition={[2, 3, 10]}
-  cameraTarget={[2, 3, 0]}
+<MathVisual
+  title={<>Half-turn of <InlineMath math="Q(5, 4)" /> about <InlineMath math="P(2, 3)" /></>}
+  description={<>The center <InlineMath math="P(2, 3)" /> is the midpoint of <InlineMath math="Q(5, 4)" /> and its image <InlineMath math="Q'(-1, 2)" />.</>}
+  labels={{
+    q: <InlineMath math="Q(5, 4)" />,
+    c: <InlineMath math="P(2, 3)" />,
+    image: <InlineMath math="Q'(-1, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 5.6 }, y: { min: 1, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "join", kind: "segment", from: { x: 5, y: 4 }, to: { x: -1, y: 2 }, appearance: "construction" },
+      { id: "q", kind: "point", at: { x: 5, y: 4 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
+      { id: "image", kind: "point", at: { x: -1, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "q", objectId: "q", at: { x: 5, y: 4 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: -1, y: 2 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Reflecting a Line over a Point
@@ -113,51 +123,36 @@ Replacing <InlineMath math="x'" /> and <InlineMath math="y'" /> back to <InlineM
 
 Alternatively, it can be written as <InlineMath math="2x - y - 1 = 0" />.
 
-<LineEquation
-  title={
-    <>
-      Image of Line <InlineMath math="2x-y+3=0" /> over Point{" "}
-      <InlineMath math="P(1,3)" />
-    </>
-  }
-  description={
-    <>
-      Original line <InlineMath math="2x-y+3=0" /> reflected over point{" "}
-      <InlineMath math="P(1,3)" /> results in image line{" "}
-      <InlineMath math="2x-y-1=0" />.
-    </>
-  }
-  data={[
-    { points: [{ x: 0, y: 3, z: 0 }, { x: 2, y: 3, z: 0 }], smooth: false, showPoints: true, color: "#db2777" },
-    {
-      points: [{ x: 1, y: 3, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P(1,3)" />, at: 0, offset: [0.5, -0.5, 0] }],
-    },
-    {
-      // Original Line: 2x - y + 3 = 0  => y = 2x + 3
-      points: Array.from({ length: 7 }, (_, i) => {
-        const xVal = i / 2 - 1;
-        return { x: xVal, y: 2 * xVal + 3, z: 0 };
-      }),
-      smooth: false,
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="2x-y+3=0" />, at: 4, offset: [-1.5, 0.3, 0] }],
-    },
-    {
-      // Image Line: 2x - y - 1 = 0 => y = 2x - 1
-      points: Array.from({ length: 7 }, (_, i) => {
-        const xVal = i / 2;
-        return { x: xVal, y: 2 * xVal - 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#059669",
-      labels: [{ text: <InlineMath math="2x-y-1=0" />, at: 2, offset: [1.3, -0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[1, 3, 13]}
-  cameraTarget={[1, 3, 0]}
+<MathVisual
+  title={<>The line <InlineMath math="l" /> and its image <InlineMath math="l'" /></>}
+  description={<>The line <InlineMath math="l: 2x - y + 3 = 0" />, its half-turn image <InlineMath math="l': 2x - y - 1 = 0" /> about <InlineMath math="(1, 3)" />, and the point <InlineMath math="(0, 3)" /> on <InlineMath math="l" /> with its image <InlineMath math="(2, 3)" /> on <InlineMath math="l'" />.</>}
+  labels={{
+    l: <InlineMath math="l: 2x - y + 3 = 0" />,
+    "image-line": <InlineMath math="l': 2x - y - 1 = 0" />,
+    c: <InlineMath math="(1, 3)" />,
+    a: <InlineMath math="(0, 3)" />,
+    image: <InlineMath math="(2, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "l", kind: "line", through: [{ x: 0, y: 3 }, { x: 1, y: 5 }], appearance: "primary" },
+      { id: "image-line", kind: "line", through: [{ x: 0, y: -1 }, { x: 1, y: 1 }], appearance: "secondary" },
+      { id: "join", kind: "segment", from: { x: 0, y: 3 }, to: { x: 2, y: 3 }, appearance: "construction" },
+      { id: "a", kind: "point", at: { x: 0, y: 3 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 1, y: 3 }, appearance: "answer" },
+      { id: "image", kind: "point", at: { x: 2, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l", objectId: "l", at: { x: 3 / 2, y: 6 }, placement: "left" },
+      { key: "image-line", objectId: "image-line", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 1, y: 3 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "image", objectId: "image", at: { x: 2, y: 3 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Exercises

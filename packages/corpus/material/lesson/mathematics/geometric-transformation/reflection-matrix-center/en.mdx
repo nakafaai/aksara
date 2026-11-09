@@ -4,7 +4,7 @@ export const metadata = {
   description: "Derive the reflection matrix for the origin and apply it to individual points and complete triangles.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Geometric Transformation",
 };
 
@@ -35,11 +35,74 @@ This matrix is the **negative identity matrix**. Reflecting twice reverses both 
 
 <BlockMath math="M=-I=\begin{pmatrix}-1&0\\0&-1\end{pmatrix},\qquad M^2=\begin{pmatrix}1&0\\0&1\end{pmatrix}=I" />
 
+Apply <InlineMath math="M" /> to <InlineMath math="P(2, 1)" /> and you get <InlineMath math="P'(-2, -1)" />. Apply <InlineMath math="M" /> again and the signs flip back to <InlineMath math="(2, 1)" />, so two reflections over the origin return every point to where it started, which is the statement <InlineMath math="M^2 = I" />.
+
+<MathVisual
+  title={<>Reflecting twice returns the point</>}
+  description={<><InlineMath math="P(2, 1)" /> and its image <InlineMath math="P'(-2, -1)" /> over the origin. Reflecting <InlineMath math="P'" /> again gives <InlineMath math="P" /> back.</>}
+  labels={{
+    p: <InlineMath math="P(2, 1)" />,
+    image: <InlineMath math="P'(-2, -1)" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 2.6 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "join", kind: "segment", from: { x: 2, y: 1 }, to: { x: -2, y: -1 }, appearance: "construction" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "p", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: -2, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: -2, y: -1 }, placement: "below" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 ## Applying the Reflection Matrix over the Origin
 
 One matrix multiplication can act on **several columns at once**. Each column stores a point, so the column order determines the order of the vertices in the figure.
 
 <BlockMath math="M\begin{pmatrix}x_A&x_B\\y_A&y_B\end{pmatrix}=\begin{pmatrix}-x_A&-x_B\\-y_A&-y_B\end{pmatrix}" />
+
+Put the vertices <InlineMath math="A(1, 1)" />, <InlineMath math="B(3, 1)" /> and <InlineMath math="C(2, 3)" /> in three columns and multiply once by <InlineMath math="M" />. The image columns <InlineMath math="(-1, -1)" />, <InlineMath math="(-3, -1)" /> and <InlineMath math="(-2, -3)" /> give <InlineMath math="A'B'C'" /> in the same vertex order, turned a half-turn about <InlineMath math="O" />.
+
+<MathVisual
+  title={<>One multiplication moves a whole triangle</>}
+  description={<>Triangle <InlineMath math="ABC" /> and its image <InlineMath math="A'B'C'" /> after reflection over the origin.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    "a-image": <InlineMath math="A'" />,
+    "b-image": <InlineMath math="B'" />,
+    "c-image": <InlineMath math="C'" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "tri", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: 3, y: 1 }, { x: 2, y: 3 }], appearance: "primary" },
+      { id: "image", kind: "polygon", vertices: [{ x: -1, y: -1 }, { x: -3, y: -1 }, { x: -2, y: -3 }], appearance: "secondary" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "tri", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "b", objectId: "tri", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "c", objectId: "tri", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "a-image", objectId: "image", at: { x: -1, y: -1 }, placement: "above" },
+      { key: "b-image", objectId: "image", at: { x: -3, y: -1 }, placement: "above" },
+      { key: "c-image", objectId: "image", at: { x: -2, y: -3 }, placement: "below" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
 
 ### Reflecting Two Points
 
@@ -63,72 +126,37 @@ For point <InlineMath math="B(3,-2)" />:
 
 The image of point <InlineMath math="B" /> is <InlineMath math="B'(-3,2)" />.
 
-<LineEquation
-  title={
-    <>
-      Reflection of Points <InlineMath math="A" /> and <InlineMath math="B" />{" "}
-      over the Origin
-    </>
-  }
-  description={
-    <>
-      Visualization of reflecting point <InlineMath math="A(-1,1)" /> to{" "}
-      <InlineMath math="A'(1,-1)" /> and <InlineMath math="B(3,-2)" /> to{" "}
-      <InlineMath math="B'(-3,2)" /> over the origin{" "}
-      <InlineMath math="O(0,0)" />.
-    </>
-  }
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0.3, -0.3, 0] }],
-    }, // Origin
-    // Point A and A'
-    {
-      points: [{ x: -1, y: 1, z: 0 }],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A(-1,1)" />, at: 0, offset: [-0.7, 0.3, 0] }],
-    },
-    {
-      points: [{ x: 1, y: -1, z: 0 }],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A'(1,-1)" />, at: 0, offset: [0.3, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: -1, y: 1, z: 0 },
-        { x: 1, y: -1, z: 0 },
-      ],
-      smooth: false,
-      color: "#4f46e5",
-    }, // Line AA'
-    // Point B and B'
-    {
-      points: [{ x: 3, y: -2, z: 0 }],
-      color: "#9333ea",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B(3,-2)" />, at: 0, offset: [0.3, -0.3, 0] }],
-    },
-    {
-      points: [{ x: -3, y: 2, z: 0 }],
-      color: "#9333ea",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B'(-3,2)" />, at: 0, offset: [-0.1, 0.65, 0] }],
-    },
-    {
-      points: [
-        { x: 3, y: -2, z: 0 },
-        { x: -3, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#4f46e5",
-    }, // Line BB'
-  ]}
-  cameraPosition={[0, 0, 10]}
+<MathVisual
+  title={<>Two points reflected over the origin</>}
+  description={<><InlineMath math="A(-1, 1)" /> and <InlineMath math="B(3, -2)" /> with their images <InlineMath math="A'(1, -1)" /> and <InlineMath math="B'(-3, 2)" />, each pair joined through <InlineMath math="O" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    a: <InlineMath math="A(-1, 1)" />,
+    b: <InlineMath math="B(3, -2)" />,
+    "a-image": <InlineMath math="A'(1, -1)" />,
+    "b-image": <InlineMath math="B'(-3, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ja", kind: "segment", from: { x: -1, y: 1 }, to: { x: 1, y: -1 }, appearance: "construction" },
+      { id: "jb", kind: "segment", from: { x: 3, y: -2 }, to: { x: -3, y: 2 }, appearance: "construction" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "a", kind: "point", at: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "a-image", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "b-image", kind: "point", at: { x: -3, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: -1, y: 1 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3, y: -2 }, placement: "below" },
+      { key: "a-image", objectId: "a-image", at: { x: 1, y: -1 }, placement: "below-right" },
+      { key: "b-image", objectId: "b-image", at: { x: -3, y: 2 }, placement: "above" },
+    ],
+  }}
 />
 
 ## Exercises
