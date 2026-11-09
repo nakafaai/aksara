@@ -1,14 +1,21 @@
-Direct substitution of <InlineMath math="x=\frac{\pi}{4}" /> gives <InlineMath math="\cos\frac{\pi}{2}=0" /> on top and <InlineMath math="\frac{\sqrt2}{2}-\frac{\sqrt2}{2}=0" /> below. The form <InlineMath math="\frac00" /> signals a common factor. That factor appears once you write <InlineMath math="\cos2x" /> with **the double-angle formula as a difference of squares**.
+At <InlineMath math="x=\pi" />, the numerator <InlineMath math="1+\cos\pi=0" /> and the denominator is <InlineMath math="0" /> too. To use the basic limits near zero, **shift the point to zero** with <InlineMath math="t=x-\pi" />. As <InlineMath math="x\to\pi" />, <InlineMath math="t\to0" />.
 
-<BlockMath math="\cos2x=\cos^2x-\sin^2x=(\cos x-\sin x)(\cos x+\sin x)" />
+The angle formulas for <InlineMath math="\pi+t" /> give <InlineMath math="\cos(\pi+t)=-\cos t" /> and <InlineMath math="\sin(\pi+t)=-\sin t" />.
 
-Near <InlineMath math="\frac{\pi}{4}" />, but not at that point itself, <InlineMath math="\cos x-\sin x\ne0" />, so you may cancel the factor.
+<BlockMath math="\begin{aligned}
+\lim_{x\to\pi}h(x)&=\lim_{t\to0}\frac{1-\cos t}{t\cdot(-\sin t)} \\
+&=-\lim_{t\to0}\frac{2\sin^2\frac t2}{t\sin t}
+\end{aligned}" />
 
-<BlockMath math="\lim_{x\to\frac{\pi}{4}}\frac{(\cos x-\sin x)(\cos x+\sin x)}{\cos x-\sin x}=\lim_{x\to\frac{\pi}{4}}(\cos x+\sin x)=\frac{\sqrt2}{2}+\frac{\sqrt2}{2}=\sqrt2" />
+The second line uses <InlineMath math="1-\cos t=2\sin^2\frac t2" />. Split it into basic limits.
 
-So the limit is <InlineMath math="\sqrt2" />.
+<BlockMath math="-\lim_{t\to0}\frac{2\sin^2\frac t2}{t\sin t}=-2\cdot\lim_{t\to0}\left(\frac{\sin\frac t2}{t}\right)^2\cdot\lim_{t\to0}\frac{t}{\sin t}=-2\cdot\left(\frac12\right)^2\cdot1=-\frac12" />
 
-- <InlineMath math="0" /> only notices that the numerator is zero. The denominator is zero too, so the form is indeterminate.
-- <InlineMath math="2" /> uses <InlineMath math="\cos\frac{\pi}{4}=\sin\frac{\pi}{4}=1" />.
-- <InlineMath math="\frac12\sqrt2" /> keeps only one term, <InlineMath math="\cos\frac{\pi}{4}" />, of the factor <InlineMath math="\cos x+\sin x" />.
-- <InlineMath math="1" /> uses <InlineMath math="\cos2x=1-2\sin^2x" /> and then treats the denominator as equal to the numerator.
+Numerical check: for <InlineMath math="x=\pi+0.01" />, the value is about <InlineMath math="\frac{0.0000500}{0.01\cdot(-0.0099998)}\approx-0.50" />.
+
+So the limit is <InlineMath math="-\frac12" />.
+
+- <InlineMath math="\frac12" /> takes <InlineMath math="\sin(\pi+t)=\sin t" />, which loses the minus sign.
+- <InlineMath math="-1" /> uses <InlineMath math="1-\cos t\approx t^2" />, but the approximation is <InlineMath math="\frac{t^2}{2}" />.
+- <InlineMath math="0" /> only looks at the numerator tending to zero.
+- <InlineMath math="-2" /> turns the fraction <InlineMath math="\frac12" /> upside down at the end.

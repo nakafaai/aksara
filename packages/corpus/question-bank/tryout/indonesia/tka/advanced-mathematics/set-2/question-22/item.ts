@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0$$",
+          label: "$$\\frac12$$",
         },
         {
           correct: true,
-          label: "$$\\sqrt2$$",
+          label: "$$-\\frac12$$",
         },
         {
           correct: false,
-          label: "$$2$$",
+          label: "$$-1$$",
         },
         {
           correct: false,
-          label: "$$\\frac12\\sqrt2$$",
+          label: "$$0$$",
         },
         {
           correct: false,
-          label: "$$1$$",
+          label: "$$-2$$",
         },
       ],
     },
