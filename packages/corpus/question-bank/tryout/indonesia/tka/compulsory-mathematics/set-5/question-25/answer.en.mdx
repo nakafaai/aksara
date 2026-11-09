@@ -1,0 +1,16 @@
+**Exactly one machine breaks down** in two cases that can't happen together: A breaks and B doesn't, or A doesn't and B breaks. The machines are independent, so each case's probability is the product of the separate probabilities.
+
+<BlockMath math="\begin{aligned}
+P(\text{A breaks, B doesn't})&=0.1\cdot0.8=0.08 \\
+P(\text{A doesn't, B breaks})&=0.9\cdot0.2=0.18 \\
+P(\text{exactly one breaks})&=0.08+0.18=0.26
+\end{aligned}" />
+
+Check: both break with probability <InlineMath math="0.02" /> and neither breaks with probability <InlineMath math="0.72" />, and <InlineMath math="0.26+0.02+0.72=1" />.
+
+So the probability that exactly one machine breaks down is <InlineMath math="0.26" />.
+
+- <InlineMath math="0.02" /> is the probability that both machines break.
+- <InlineMath math="0.28" /> is the probability that at least one machine breaks, which also counts the case where both do.
+- <InlineMath math="0.30" /> just adds <InlineMath math="0.1" /> and <InlineMath math="0.2" />, so the case where both break is counted twice.
+- <InlineMath math="0.72" /> is the probability that neither machine breaks.
