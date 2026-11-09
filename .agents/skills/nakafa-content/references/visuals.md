@@ -157,10 +157,12 @@ graph teaches the wrong mathematics on an education platform.
   mirror image of a coordinate, as the same expression with its sign changed,
   because the contract rejects two coordinates that differ by less than the
   render resolution, and two different trigonometric calls can differ in their
-  last digits. A plane scene draws points, lines, rays, segments, polylines,
-  polygons, circles, arcs, and the exact `quadratic` object, which draws a
-  parabola without sampling. A space scene draws points, lines, rays,
-  segments, polylines, polygons, and cuboids, plus the formula objects below.
+  last digits. A plane scene draws points, lines, rays, segments, vectors,
+  polylines, polygons, circles, arcs, and the exact `quadratic` object, which
+  draws a parabola without sampling. A space scene draws points, lines, rays,
+  segments, vectors, polylines, polygons, and cuboids, plus the formula objects
+  below. A `vector` is `{ kind: "vector", from, to }`: a segment that ends in
+  an arrowhead at `to`, for a displacement, a force, or a position vector.
 - **`MathVisual` draws a formula, not its points.** A formula object names
   what the lesson teaches, and the renderer samples it: at least two hundred
   samples per visible branch, exact samples at the domain ends and at every
