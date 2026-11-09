@@ -3,7 +3,7 @@ export const metadata = {
   description: "Multipliziere Polynome sicher mit dem Distributivgesetz oder der Tabellenmethode und fasse gleichartige Terme Schritt für Schritt zusammen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Polynom",
 };
 
@@ -33,6 +33,16 @@ Achte auf die negativen Terme im zweiten Faktor. Beispielsweise gilt <InlineMath
 
 <BlockMath math="\begin{aligned}(x^2-2x+7)(2x-5)&amp;=x^2(2x-5)-2x(2x-5)+7(2x-5) \\ &amp;=2x^3-5x^2-4x^2+10x+14x-35 \\ &amp;=2x^3+(-5-4)x^2+(10+14)x-35 \\ &amp;=2x^3-9x^2+24x-35\end{aligned}" />
 
+Sammle das Produkt <InlineMath math="(x - 5)(x^2 + 3x - 1)" /> Grad für Grad. Der kubische Term ist <InlineMath math="x^3" />, die quadratischen Terme ergeben <InlineMath math="3x^2 - 5x^2 = -2x^2" />, die linearen <InlineMath math="-x - 15x = -16x" /> und die Konstante <InlineMath math="(-5)(-1) = 5" />.
+
+<BarChart
+  title={<>Koeffizienten von <InlineMath math="x^3 - 2x^2 - 16x + 5" /></>}
+  description={<>Balken der Koeffizienten 1, <InlineMath math="-2" />, <InlineMath math="-16" /> und 5 bei Grad 3, 2, 1 und 0.</>}
+  yAxisLabel="Koeffizient"
+  data={[["Grad 3", 1], ["Grad 2", 3 - 5], ["Grad 1", -1 - 15], ["Grad 0", (-5) * (-1)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Koeffizient", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Tabellenmethode als Flächenmodell
 
 In der Tabelle lässt sich jede Multiplikation zweier Terme einzeln verfolgen. Das funktioniert ähnlich wie ein Flächenmodell bei der Multiplikation zweier Zahlen.
@@ -51,8 +61,8 @@ Der gleiche Ansatz kann auf Polynome angewendet werden.
 Die **vier Teilflächen** erklären die vier Produkte in der Tabelle. Jede Teilfläche erhält ihre Breite aus einer Spalte und ihre Höhe aus einer Zeile. Zusammen ergeben sie die Fläche des ganzen Rechtecks.
 
 <MathVisual
-  title="Ein Rechteck mit Seitenlängen 16 und 12"
-  description="Vier Flächen mit Seitenlängen zehn und zehn, sechs und zehn, zehn und zwei sowie sechs und zwei bilden ein Rechteck."
+  title={<>Ein Rechteck mit Seitenlängen 16 und 12</>}
+  description={<>Vier Flächen mit Seitenlängen zehn und zehn, sechs und zehn, zehn und zwei sowie sechs und zwei bilden ein Rechteck.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -1, max: 13 } },
@@ -102,6 +112,36 @@ Addiere alle Ergebnisse aus den Tabellenfeldern:
 Eine Polynomtabelle darf auch negative Terme enthalten. Ihre Felder zeigen dann **algebraische Produkte**, keine negativen geometrischen Flächen.
 
 Beide Methoden liefern dasselbe Ergebnis. Die Tabellenmethode ordnet lediglich alle Teilprodukte so an, dass kein Term übersehen wird.
+
+Setz eine Zahl für <InlineMath math="x" /> ein, um Beispiel 3 zu prüfen. Mit <InlineMath math="x = 3" /> ist das Rechteck <InlineMath math="(x + 6)" /> mal <InlineMath math="(x + 2)" /> 9 mal 5 groß. Seine Teilflächen <InlineMath math="x^2 = 9" />, <InlineMath math="6x = 18" />, <InlineMath math="2x = 6" /> und <InlineMath math="12" /> ergeben zusammen 45, den Wert von <InlineMath math="x^2 + 8x + 12" /> bei <InlineMath math="x = 3" />.
+
+<MathVisual
+  title={<><InlineMath math="(x + 6)(x + 2)" /> als Fläche bei <InlineMath math="x = 3" /></>}
+  description={<>Ein Rechteck 9 mal 5, geteilt in Flächen von 9, 18, 6 und 12 für <InlineMath math="x^2" />, <InlineMath math="6x" />, <InlineMath math="2x" /> und 12.</>}
+  labels={{
+    sq: <InlineMath math="x^2" />,
+    wide: <InlineMath math="6x" />,
+    top: <InlineMath math="2x" />,
+    corner: <InlineMath math="12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 9.6 }, y: { min: -0.6, max: 5.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "sq", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "wide", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 9, y: 0 }, { x: 9, y: 3 }, { x: 3, y: 3 }], appearance: "secondary" },
+      { id: "top", kind: "polygon", vertices: [{ x: 0, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 5 }, { x: 0, y: 5 }], appearance: "construction" },
+      { id: "corner", kind: "polygon", vertices: [{ x: 3, y: 3 }, { x: 9, y: 3 }, { x: 9, y: 5 }, { x: 3, y: 5 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "sq", objectId: "sq", at: { x: 3 / 2, y: 3 / 2 }, placement: "center" },
+      { key: "wide", objectId: "wide", at: { x: 6, y: 3 / 2 }, placement: "center" },
+      { key: "top", objectId: "top", at: { x: 3 / 2, y: 4 }, placement: "center" },
+      { key: "corner", objectId: "corner", at: { x: 6, y: 4 }, placement: "center" },
+    ],
+  }}
+/>
 
 ## Übung
 

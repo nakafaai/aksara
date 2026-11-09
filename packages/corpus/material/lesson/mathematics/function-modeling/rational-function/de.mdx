@@ -3,7 +3,7 @@ export const metadata = {
   description: "Rationale Funktionen werden durch Definitionsbeschränkungen, äquivalente Vereinfachungen, Rechenoperationen sowie Modelle für Fläche und Fahrzeit beschrieben.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Funktionen und ihre Modellierung",
 };
 
@@ -34,22 +34,31 @@ Das Modell zeigt außerdem einen Zusammenhang: Wird der Stall länger, muss er s
 
 Die Seitenlängen sind **umgekehrt proportional**. Bei fünf Metern Länge brauchst du zwanzig Meter Breite. Bei zehn Metern Länge sind es zehn Meter Breite.
 
-<LineEquation
-  title="Länge und Breite bei fester Fläche"
-  description="Die Grafik zeigt Längen von 5 bis 20 Metern. An jedem Punkt ergeben Länge mal Breite 100 Quadratmeter."
-  data={[{
-    points: Array.from({ length: 61 }, (_, i) => {
-      const x = 5 + i / 4;
-      return { x, y: 100 / x, z: 0 };
-    }),
-    smooth: false,
-    color: "#9333ea",
-    showPoints: false,
-    labels: [{ text: <InlineMath math="w=100/x" />, at: 20, offset: [1, 1, 0] }],
-  }]}
-  showZAxis={false}
-  cameraTarget={[12, 12, 0]}
-  cameraPosition={[12, 12, 35]}
+<MathVisual
+  title={<>Länge und Breite bei fester Fläche</>}
+  description={<>Die Kurve <InlineMath math="w = \frac{100}{x}" /> für Längen von 5 bis 20 Metern. Jeder Punkt hat Länge mal Breite gleich 100 Quadratmeter, zum Beispiel <InlineMath math="(5, 20)" />, <InlineMath math="(10, 10)" /> und <InlineMath math="(20, 5)" />.</>}
+  labels={{
+    curve: <InlineMath math="w = \frac{100}{x}" />,
+    a: <InlineMath math="(5, 20)" />,
+    b: <InlineMath math="(10, 10)" />,
+    c: <InlineMath math="(20, 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 3.5, max: 21.5 }, y: { min: 3.5, max: 21.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "polyline", vertices: [{ x: 5, y: 100 / (5) }, { x: 11 / 2, y: 100 / (11 / 2) }, { x: 6, y: 100 / (6) }, { x: 13 / 2, y: 100 / (13 / 2) }, { x: 7, y: 100 / (7) }, { x: 15 / 2, y: 100 / (15 / 2) }, { x: 8, y: 100 / (8) }, { x: 17 / 2, y: 100 / (17 / 2) }, { x: 9, y: 100 / (9) }, { x: 19 / 2, y: 100 / (19 / 2) }, { x: 10, y: 100 / (10) }, { x: 21 / 2, y: 100 / (21 / 2) }, { x: 11, y: 100 / (11) }, { x: 23 / 2, y: 100 / (23 / 2) }, { x: 12, y: 100 / (12) }, { x: 25 / 2, y: 100 / (25 / 2) }, { x: 13, y: 100 / (13) }, { x: 27 / 2, y: 100 / (27 / 2) }, { x: 14, y: 100 / (14) }, { x: 29 / 2, y: 100 / (29 / 2) }, { x: 15, y: 100 / (15) }, { x: 31 / 2, y: 100 / (31 / 2) }, { x: 16, y: 100 / (16) }, { x: 33 / 2, y: 100 / (33 / 2) }, { x: 17, y: 100 / (17) }, { x: 35 / 2, y: 100 / (35 / 2) }, { x: 18, y: 100 / (18) }, { x: 37 / 2, y: 100 / (37 / 2) }, { x: 19, y: 100 / (19) }, { x: 39 / 2, y: 100 / (39 / 2) }, { x: 20, y: 100 / (20) }], appearance: "primary" },
+      { id: "a", kind: "point", at: { x: 5, y: 20 }, appearance: "answer" },
+      { id: "b", kind: "point", at: { x: 10, y: 10 }, appearance: "answer" },
+      { id: "c", kind: "point", at: { x: 20, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "b", at: { x: 10, y: 10 }, placement: "above-right" },
+      { key: "a", objectId: "a", at: { x: 5, y: 20 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 20, y: 5 }, placement: "above" },
+    ],
+  }}
 />
 
 ## Häufige Formen
@@ -126,6 +135,31 @@ Halte zuerst <InlineMath math="x\neq 2" /> fest und zerlege dann die **Differenz
 </MathContainer>
 
 Der Graph stimmt mit der Geraden <InlineMath math="y=x+2" /> überein, hat aber bei <InlineMath math="x=2" /> eine Lücke.
+
+<InlineMath math="g(x) = \frac{x^2 - 4}{x - 2}" /> hat als Graphen die Gerade <InlineMath math="y = x + 2" /> ohne einen Punkt. Bei <InlineMath math="x = 2" /> ist der ursprüngliche Bruch nicht definiert, also hat die Gerade bei <InlineMath math="(2, 4)" /> ein Loch, obwohl <InlineMath math="x + 2" /> dort 4 ergäbe.
+
+<MathVisual
+  title={<>Die Gerade <InlineMath math="y = x + 2" /> mit einem Loch bei <InlineMath math="(2, 4)" /></>}
+  description={<>Der Graph von <InlineMath math="g(x) = \frac{x^2 - 4}{x - 2}" />: die Gerade <InlineMath math="y = x + 2" /> mit einem offenen Kreis bei <InlineMath math="(2, 4)" />.</>}
+  labels={{
+    line: <InlineMath math="y = x + 2" />,
+    hole: <InlineMath math="(2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 5.6 }, y: { min: -0.6, max: 7.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "left", kind: "segment", from: { x: -1, y: 1 }, to: { x: 2 - 0.12 / Math.sqrt(2), y: 4 - 0.12 / Math.sqrt(2) }, appearance: "primary" },
+      { id: "right", kind: "segment", from: { x: 2 + 0.12 / Math.sqrt(2), y: 4 + 0.12 / Math.sqrt(2) }, to: { x: 5, y: 7 }, appearance: "primary" },
+      { id: "hole", kind: "circle", center: { x: 2, y: 4 }, radius: 3 / 25, appearance: "warning" },
+    ],
+    labels: [
+      { key: "line", objectId: "right", at: { x: 5, y: 7 }, placement: "left" },
+      { key: "hole", objectId: "hole", at: { x: 2, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Rechnen mit rationalen Termen
 
@@ -236,3 +270,13 @@ Die vereinfachte Formel hat bei der ausgeschlossenen Eingabe <InlineMath math="x
 </MathContainer>
 
 Algebraisch gilt <InlineMath math="v\neq 0" />. Für ein fahrendes Auto muss die **Geschwindigkeit positiv** sein. Das physikalische Modell verwendet daher <InlineMath math="v>0" />.
+
+Fahrzeiten für 300 km aus <InlineMath math="t(v) = \frac{300}{v}" />: 10 Stunden bei 30 km/h, 6 bei 50, 5 bei 60, 4 bei 75 und 3 bei 100. Verdoppelt man die Geschwindigkeit von 30 auf 60 km/h, halbiert sich die Zeit.
+
+<BarChart
+  title={<>Fahrzeit gegen Geschwindigkeit</>}
+  description={<>Balken von <InlineMath math="t(v) = \frac{300}{v}" /> in Stunden für <InlineMath math="v = 30, 50, 60, 75, 100" /> km/h.</>}
+  yAxisLabel="Zeit (h)"
+  data={[30, 50, 60, 75, 100].map((x) => ({ name: String(x), value: 300 / x }))}
+  chartConfig={{ value: { label: "Zeit (h)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

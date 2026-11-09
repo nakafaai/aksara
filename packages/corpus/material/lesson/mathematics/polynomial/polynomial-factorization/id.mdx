@@ -3,7 +3,7 @@ export const metadata = {
   description: "Faktorkan polinomial sepenuhnya pada bilangan kompleks dengan mencari semua akar dan menerapkan Teorema Fundamental Aljabar.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Polinomial",
 };
 
@@ -30,6 +30,16 @@ Setiap akar memberi satu faktor linear. Cari akar dengan **pengelompokan suku at
 Jangan hilangkan **koefisien utama** atau faktor yang berulang. Misalnya, polinomial berikut memiliki tiga akar jika pengulangan dihitung, yaitu satu, satu, dan minus dua:
 
 <BlockMath math="2x^3-6x+4=2(x-1)^2(x+2)" />
+
+Hitung <InlineMath math="2x^3 - 6x + 4 = 2(x - 1)^2(x + 2)" /> di bilangan bulat dari <InlineMath math="-3" /> sampai 2. Batangnya berganti tanda di akar tunggal <InlineMath math="-2" />, tetapi di akar ganda 1 hanya menyentuh 0 dan tetap positif di kedua sisinya.
+
+<BarChart
+  title={<>Nilai <InlineMath math="2(x - 1)^2(x + 2)" /></>}
+  description={<>Batang <InlineMath math="2x^3 - 6x + 4" /> untuk <InlineMath math="x = -3" /> sampai 2, bernilai nol di <InlineMath math="-2" /> dan 1.</>}
+  yAxisLabel="Nilai"
+  data={[-3, -2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: 2 * x ** 3 - 6 * x + 4 }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Menggunakan Faktorisasi Penuh
 
@@ -74,6 +84,34 @@ Koefisien utama <InlineMath math="P(x)" /> adalah <InlineMath math="a_3 = 1" />.
 <BlockMath math="P(x) = 1 \cdot (x - 1)(x - i)(x + i)" />
 <BlockMath math="P(x) = (x - 1)(x - i)(x + i)" />
 </MathContainer>
+
+Tiga akar <InlineMath math="x^3 - x^2 + x - 1 = (x - 1)(x - i)(x + i)" /> pada bidang kompleks: satu akar real di 1 dan pasangan sekawan <InlineMath math="i" /> dan <InlineMath math="-i" />, yang saling bercermin terhadap sumbu real.
+
+<MathVisual
+  title={<>Akar 1, <InlineMath math="i" />, dan <InlineMath math="-i" /></>}
+  description={<>Titik 1, <InlineMath math="i" />, dan <InlineMath math="-i" /> pada bidang kompleks, dengan pasangan sekawan dihubungkan melintasi sumbu real.</>}
+  labels={{
+    one: <InlineMath math="1" />,
+    up: <InlineMath math="i" />,
+    down: <InlineMath math="-i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 2 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "pair", kind: "segment", from: { x: 0, y: -1 }, to: { x: 0, y: 1 }, appearance: "reference" },
+      { id: "one", kind: "point", at: { x: 1, y: 0 }, appearance: "primary" },
+      { id: "up", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "down", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "up", objectId: "up", at: { x: 0, y: 1 }, placement: "right" },
+      { key: "down", objectId: "down", at: { x: 0, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Latihan
 
@@ -135,8 +173,8 @@ Akar lainnya adalah <InlineMath math="2 + i" /> dan <InlineMath math="2 - i" />.
 Pada gambar, sumbu mendatar menyatakan bagian real dan sumbu tegak menyatakan bagian imajiner. Akar <InlineMath math="2+i" /> dan <InlineMath math="2-i" /> merupakan **pencerminan terhadap sumbu real**, sedangkan akar <InlineMath math="-1" /> berada pada sumbu real.
 
 <MathVisual
-  title="Akar -1, 2+i, dan 2-i"
-  description="Pasangan akar 2+i dan 2-i terletak satu satuan di atas dan di bawah sumbu real."
+  title={<>Akar -1, 2+i, dan 2-i</>}
+  description={<>Pasangan akar 2+i dan 2-i terletak satu satuan di atas dan di bawah sumbu real.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2, max: 3 }, y: { min: -2, max: 2 } },

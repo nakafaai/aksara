@@ -3,7 +3,7 @@ export const metadata = {
    description: "Nutze Integrale, um Arbeit bei veränderlichen Kräften, Federenergie, Massenverteilungen, Schwerpunkte und Trägheitsmomente zu berechnen.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-23",
+   dateModified: "2026-11-08",
    subject: "Integrale",
 };
 
@@ -33,6 +33,16 @@ Wir berechnen:
 </MathContainer>
 
 Die Kraft verrichtet also <InlineMath math="\frac{50}{3}" /> Joule Arbeit, ungefähr <InlineMath math="16{,}67" /> Joule.
+
+Die Kraft <InlineMath math="F(x) = x^2 + 2x" /> wächst entlang des Wegs, von 3 N bei <InlineMath math="x = 1" /> bis 15 N bei <InlineMath math="x = 3" />. Die Arbeit <InlineMath math="W = \tfrac{50}{3} \approx 16{,}67" /> J summiert diese veränderlichen Werte über die 2 Meter.
+
+<BarChart
+  title={<>Kraft entlang des Wegs</>}
+  description={<>Balken von <InlineMath math="F(x) = x^2 + 2x" /> in Newton für <InlineMath math="x = 1;\ 1{,}5;\ 2;\ 2{,}5;\ 3" /> Meter.</>}
+  yAxisLabel="Kraft (N)"
+  data={[1, 1.5, 2, 2.5, 3].map((x) => ({ name: String(x), value: x ** 2 + 2 * x }))}
+  chartConfig={{ value: { label: "Kraft (N)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Hookes Gesetz und Federenergie
 
@@ -68,6 +78,16 @@ Wir können die Arbeit mit Integralen berechnen:
 <BlockMath math="\begin{aligned} W &amp;= 400[0{,}0064 - 0{,}0025] \\ &amp;= 400 \times 0{,}0039 \\ &amp;= 1{,}56 \text{ Joule} \end{aligned}" />
 </MathContainer>
 
+Zwischen 0,05 m und 0,08 m steigt die Federkraft <InlineMath math="F = 800x" /> von 40 N auf 64 N. Die Arbeit ist das Trapez unter der Kraftgeraden: <InlineMath math="\frac{40 + 64}{2} \times 0{,}03 = 1{,}56" /> J, genau wie das Integral.
+
+<BarChart
+  title={<>Federkraft während der Dehnung</>}
+  description={<>Balken von <InlineMath math="F = 800x" /> in Newton für <InlineMath math="x = 0{,}05;\ 0{,}06;\ 0{,}07;\ 0{,}08" /> Meter.</>}
+  yAxisLabel="Kraft (N)"
+  data={[0.05, 0.06, 0.07, 0.08].map((x) => ({ name: String(x), value: 800 * x }))}
+  chartConfig={{ value: { label: "Kraft (N)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Berechnung der Masse aus Dichtefunktionen
 
 Ändert sich die Dichte eines Körpers mit dem Ort, ist seine **Masse** das Integral der Dichtefunktion über seine Länge, Fläche oder sein Volumen.
@@ -100,16 +120,32 @@ Für den Stab mit der Dichte <InlineMath math="\rho(x) = 3x + 2" /> oben:
 
 Die Dichte wächst von <InlineMath math="2 \text{ kg/m}" /> am linken Ende auf <InlineMath math="8 \text{ kg/m}" /> am rechten Ende. Weil die **rechte Seite dichter** ist, liegt der Schwerpunkt bei <InlineMath math="1{,}2 \text{ m}" /> rechts vom Mittelpunkt bei <InlineMath math="1 \text{ m}" />.
 
-<LineEquation
-  title="Zunehmende Dichte des Stabes"
-  description="Die waagerechte Achse zeigt die Position in Metern, die senkrechte Achse die lineare Dichte in Kilogramm pro Meter. Die orange Linie markiert die Schwerpunktposition."
-  showZAxis={false}
-  cameraTarget={[1, 4, 0]}
-  cameraPosition={[1, 4, 17]}
-  data={[
-    { points: [{ x: 0, y: 2, z: 0 }, { x: 2, y: 8, z: 0 }], color: "#9333ea", smooth: false, showPoints: true, labels: [{ at: 0, text: <InlineMath math="(0,2)" />, offset: [0.5, -0.4, 0] }, { at: 1, text: <InlineMath math="(2,8)" />, offset: [0.5, 0.4, 0] }] },
-    { points: [{ x: 1.2, y: 0, z: 0 }, { x: 1.2, y: 5.6, z: 0 }], color: "#ea580c", smooth: false, showPoints: false, labels: [{ at: 0, text: <InlineMath math="1{,}2" />, offset: [0, -0.5, 0] }] },
-  ]}
+<MathVisual
+  title={<>Zunehmende Dichte des Stabs</>}
+  description={<>Die violette Gerade ist die Dichte <InlineMath math="\rho(x) = 3x + 2" /> von <InlineMath math="(0, 2)" /> bis <InlineMath math="(2, 8)" />, in Kilogramm pro Meter entlang des Stabs. Die orange Strecke markiert den Schwerpunkt bei <InlineMath math="\bar x = 1{,}2" /> m, rechts der Mitte 1.</>}
+  labels={{
+    rho: <InlineMath math="\rho(x) = 3x + 2" />,
+    center: <InlineMath math="\bar x = 1{,}2" />,
+    a: <InlineMath math="(0, 2)" />,
+    b: <InlineMath math="(2, 8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 2.6 }, y: { min: -0.4, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rho", kind: "segment", from: { x: 0, y: 2 }, to: { x: 2, y: 8 }, appearance: "secondary" },
+      { id: "center", kind: "segment", from: { x: 6 / 5, y: 0 }, to: { x: 6 / 5, y: 28 / 5 }, appearance: "primary" },
+      { id: "a", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+      { id: "b", kind: "point", at: { x: 2, y: 8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "rho", objectId: "rho", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "center", objectId: "center", at: { x: 6 / 5, y: 14 / 5 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 0, y: 2 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 2, y: 8 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Berechnung des Trägheitsmoments

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Polynomfunktionen in allgemeiner Form lesen und Grad, Leitterm, Leitkoeffizient sowie konstantes Glied sicher bestimmen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Polynom",
 };
 
@@ -14,8 +14,8 @@ Jede Eingabe liefert <Highlight>genau einen Funktionswert</Highlight>. Für <Inl
 <BlockMath math="P(2)=2(2)^2-3(2)+1=8-6+1=3" />
 
 <MathVisual
-  title="Von der Eingabe zum Punkt im Graphen"
-  description="Der Graph von P(x) = 2x² - 3x + 1. Der Punkt (2,3) zeigt: Zur Eingabe 2 gehört die Ausgabe 3."
+  title={<>Von der Eingabe zum Punkt im Graphen</>}
+  description={<>Der Graph von <InlineMath math="P(x) = 2x^2 - 3x + 1" />. Der Punkt (2,3) zeigt: Zur Eingabe 2 gehört die Ausgabe 3.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.25, max: 2.25 }, y: { min: -0.5, max: 3.5 } },
@@ -62,6 +62,16 @@ Betrachten wir die Funktion <InlineMath math="f(x) = 5x^3 - 2x^2 + 7x - 1" />.
 
 Ein Polynom ungleich null besitzt einen <Highlight>Leitkoeffizienten ungleich null</Highlight>. Andere Koeffizienten dürfen null sein, wie der Koeffizient der dritten Potenz in der folgenden Aufgabe.
 
+Lies die Koeffizienten von <InlineMath math="f(x) = 5x^3 - 2x^2 + 7x - 1" /> vom höchsten Grad abwärts. Der Leitkoeffizient ist 5, dann <InlineMath math="a_2 = -2" />, <InlineMath math="a_1 = 7" /> und die Konstante <InlineMath math="a_0 = -1" />.
+
+<BarChart
+  title={<>Koeffizienten von <InlineMath math="5x^3 - 2x^2 + 7x - 1" /></>}
+  description={<>Balken der Koeffizienten 5, <InlineMath math="-2" />, 7 und <InlineMath math="-1" /> bei Grad 3, 2, 1 und 0.</>}
+  yAxisLabel="Koeffizient"
+  data={[["Grad 3", 5], ["Grad 2", -2], ["Grad 1", 7], ["Grad 0", -1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Koeffizient", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Übung
 
 <BlockMath math="p(t)=-2t^4+3t^2-t+8" />
@@ -83,3 +93,13 @@ Zuerst schreiben wir die **fehlende Potenz** mit einem Nullkoeffizienten:
 Nun setzen wir <InlineMath math="t=2" /> ein:
 
 <BlockMath math="\begin{aligned}p(2)&amp;=-2(2)^4+3(2)^2-2+8\\&amp;=-32+12-2+8\\&amp;=-14\end{aligned}" />
+
+Berechne <InlineMath math="p(t) = -2t^4 + 3t^2 - t + 8" /> für <InlineMath math="t = -2" /> bis 2. Der Leitterm <InlineMath math="-2t^4" /> bestimmt die Enden: <InlineMath math="p(-2) = -10" /> und <InlineMath math="p(2) = -14" />, wie in der Lösung.
+
+<BarChart
+  title={<>Werte von <InlineMath math="p(t) = -2t^4 + 3t^2 - t + 8" /></>}
+  description={<>Balken von <InlineMath math="p(t)" /> für <InlineMath math="t = -2, -1, 0, 1, 2" />: <InlineMath math="-10" />, 10, 8, 8 und <InlineMath math="-14" />.</>}
+  yAxisLabel="p(t)"
+  data={[-2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: -2 * x ** 4 + 3 * x ** 2 - x + 8 }))}
+  chartConfig={{ value: { label: "p(t)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

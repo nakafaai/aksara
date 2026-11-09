@@ -4,7 +4,7 @@ export const metadata = {
     "Wiederholte proportionale Abnahme modellieren, Zerfallsgraphen lesen und Beispiele zu Halbwertszeit, radioaktivem Zerfall und Sprunghöhen lösen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Potenzen und Logarithmen",
 };
 
@@ -34,7 +34,7 @@ Für <InlineMath math="f(x)=50\left(\frac12\right)^x" /> beträgt der Anfangswer
   <FunctionChart
     a={0.5}
     p={50}
-    title="Exponentieller Zerfall"
+    title={<>Exponentieller Zerfall</>}
     description={
       <>
         Jedes Intervall lässt <InlineMath math="\frac12" /> des vorherigen Wertes übrig.
@@ -87,6 +87,16 @@ Für <InlineMath math="h_0=300\text{ cm}" /> und <InlineMath math="p=\frac35" />
 
 Das mathematische Modell erreicht nie den Wert null. Eine praktische Aussage über das Ende der Bewegung braucht daher einen Grenzwert, zum Beispiel „unter <InlineMath math="1\text{ cm}" />“.
 
+Jeder Rückprall behält <InlineMath math="\tfrac35" /> der vorigen Höhe: 300 cm, dann 180 cm, 108 cm, 64,8 cm und 38,88 cm. Der Abfall wird jedes Mal kleiner, aber jeder Balken ist <InlineMath math="\tfrac35" /> des vorigen.
+
+<BarChart
+  title={<>Sprunghöhen</>}
+  description={<>Balken von <InlineMath math="h_n = 300\left(\tfrac35\right)^n" /> in Zentimetern für <InlineMath math="n = 0" /> bis 4.</>}
+  yAxisLabel="Höhe (cm)"
+  data={[0, 1, 2, 3, 4].map((x) => ({ name: String(x), value: 300 * (3 / 5) ** x }))}
+  chartConfig={{ value: { label: "Höhe (cm)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Übungen
 
 Jede Aufgabe gibt einen Anfangsbestand und den Anteil, der nach einem Intervall übrig bleibt. Berechne den Bestand zum verlangten Intervall.
@@ -128,7 +138,7 @@ Jede Aufgabe gibt einen Anfangsbestand und den Anteil, der nach einem Intervall 
        p={300}
        mode="discrete"
        n={13}
-       title="Sprunghöhe"
+       title={<>Sprunghöhe</>}
        description={
          <>
            Diskrete Höhen mit dem Faktor <InlineMath math="\frac35" />.

@@ -49,6 +49,16 @@ Im Horner-Schema brauchen wir nur die Koeffizienten <InlineMath math="(1, 0, -7,
 
 Direkt anwendbar ist das Schema bei einem linearen Divisor der Form <InlineMath math="(x-c)" />. Ein Divisor wie <InlineMath math="(ax-b)" /> muss zuerst passend umgeformt werden.
 
+Die untere Zeile des Schemas für <InlineMath math="(x^3 - 7x + 8) \div (x - 2)" /> als Balken: Jeder Eintrag ist der nächste Koeffizient plus 2-mal der vorige Balken. Die ersten drei ergeben den Quotienten <InlineMath math="x^2 + 2x - 3" />, der letzte ist der Rest 2.
+
+<BarChart
+  title={<>Die Horner-Zeile für <InlineMath math="c = 2" /></>}
+  description={<>Balken der unteren Zeile 1, 2, <InlineMath math="-3" /> und des Rests 2.</>}
+  yAxisLabel="Wert"
+  data={[["Grad 2", 1], ["Grad 1", 0 + 2 * 1], ["Grad 0", -7 + 2 * 2], ["Rest", 8 + 2 * -3]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Das Hornerverfahren vorbereiten
 
 Die **Koeffizientenfolge** muss alle Potenzen vom höchsten Exponenten bis zum konstanten Glied enthalten. Für einen fehlenden Term trägst du null ein. Bei <InlineMath math="2x^3+5x^2+6" /> erhältst du:
@@ -71,8 +81,8 @@ In jeder Spalte **multiplizierst du das vorige Ergebnis und addierst den nächst
 Beginne mit dem ersten Koeffizienten, also zwei. Nach dem letzten Koeffizienten erhältst du den Polynomwert an der Nullstelle des Divisors. Nach dem Restsatz ist das der Divisionsrest. Die vorigen Ergebnisse sind die Koeffizienten des Quotienten.
 
 <Mermaid
-  title="Der Ablauf des Hornerverfahrens"
-  description="Jede Spalte wiederholt erst multiplizieren, dann addieren, bis alle Koeffizienten verbraucht sind."
+  title={<>Der Ablauf des Hornerverfahrens</>}
+  description={<>Jede Spalte wiederholt erst multiplizieren, dann addieren, bis alle Koeffizienten verbraucht sind.</>}
   chart={`flowchart TD
   A["Alle Koeffizienten aufschreiben, null für fehlende Glieder"] --> B["Den ersten Koeffizienten herunterziehen"]
   B --> C["Das letzte Ergebnis mit c multiplizieren"]
@@ -128,29 +138,12 @@ Die letzte Zahl ist der **Rest**, also <InlineMath math="-3" />. Die vorigen Zah
 
 Prüfe den Rest, indem du das Polynom direkt auswertest: <InlineMath math="P(-3) = 2(-27) + 5(9) + 6 = -54 + 45 + 6 = -3" />. Das ist der Rest, wie der [Restsatz](/de/faecher/mathematik/polynome/restsatz) sagt. Der Graph von <InlineMath math="y = P(x)" /> zeigt denselben Zusammenhang: Der Punkt des Graphen bei <InlineMath math="x = -3" /> liegt genau auf der Höhe <InlineMath math="-3" />.
 
-<LineEquation
-  title={<>Graph von <InlineMath math="y = 2x^3 + 5x^2 + 6" /></>}
-  description={<>Der Wert des Graphen bei <InlineMath math="x = -3" /> ist der Rest der Division durch <InlineMath math="x + 3" />, nämlich <InlineMath math="-3" />.</>}
-  cameraPosition={[-1, 2.3, 24]}
-  cameraTarget={[-1, 2.3, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 421 }, (_, i) => {
-        const x = -3.2 + i / 100;
-        return { x, y: 2 * x ** 3 + 5 * x ** 2 + 6, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [{ x: -3, y: 2 * (-3) ** 3 + 5 * (-3) ** 2 + 6, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="(-3, -3)" />, at: 0, offset: [-1.2, -0.8, 0] }],
-    },
-  ]}
+<BarChart
+  title={<>Werte von <InlineMath math="y = 2x^3 + 5x^2 + 6" /></>}
+  description={<>Balken von <InlineMath math="P(x) = 2x^3 + 5x^2 + 6" /> für <InlineMath math="x = -3" /> bis 1. Der Balken bei <InlineMath math="x = -3" /> ist der Rest der Division durch <InlineMath math="x + 3" />, nämlich <InlineMath math="-3" />.</>}
+  yAxisLabel="P(x)"
+  data={[-3, -2, -1, 0, 1].map((x) => ({ name: String(x), value: 2 * x ** 3 + 5 * x ** 2 + 6 }))}
+  chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ### Ein Divisor mit einem Leitkoeffizienten ungleich eins
@@ -162,8 +155,8 @@ Dasselbe Schema funktioniert zum Beispiel für <InlineMath math="2x+6=2(x+3)" />
 <BlockMath math="2x^3+5x^2+6=(2x+6)\left(x^2-\frac12x+\frac32\right)-3" />
 
 <Mermaid
-  title="Der Wert c aus der Form des Divisors"
-  description="Die Form des Divisors bestimmt die Zahl links im Schema und ob der Quotient noch geteilt werden muss."
+  title={<>Der Wert c aus der Form des Divisors</>}
+  description={<>Die Form des Divisors bestimmt die Zahl links im Schema und ob der Quotient noch geteilt werden muss.</>}
   chart={`flowchart TD
   A{"Form des Divisors?"} -->|"x - c"| B["c verwenden"]
   A -->|"x + c"| C["-c verwenden"]
@@ -263,3 +256,13 @@ Die untere Zeile ist <InlineMath math="1, \frac52, \frac54, -\frac{35}{8}" />. D
 <BlockMath math="x^3 + 2x^2 - 5 = (2x - 1)\left(\frac12x^2 + \frac54x + \frac58\right) - \frac{35}{8}" />
 
 Probe: <InlineMath math="P\left(\frac12\right) = \frac18 + \frac12 - 5 = -\frac{35}{8}" />.
+
+Aufgabe 1 als Balken: Beim Teilen von <InlineMath math="x^4 + 4" /> durch <InlineMath math="x - 1" /> wandert jede 1 gerade nach unten, weil jeder fehlende Term 0 beiträgt. Der Quotient ist <InlineMath math="x^3 + x^2 + x + 1" />, der Rest <InlineMath math="5 = P(1)" />.
+
+<BarChart
+  title={<>Die Horner-Zeile für <InlineMath math="x^4 + 4" /> und <InlineMath math="c = 1" /></>}
+  description={<>Balken der unteren Zeile 1, 1, 1, 1 und des Rests 5.</>}
+  yAxisLabel="Wert"
+  data={[["Grad 3", 1], ["Grad 2", 0 + 1 * 1], ["Grad 1", 0 + 1 * 1], ["Grad 0", 0 + 1 * 1], ["Rest", 4 + 1 * 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

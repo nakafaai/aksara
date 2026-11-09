@@ -11,35 +11,29 @@ export const metadata = {
 
 **Teorema faktor** menyatakan bahwa <InlineMath math="(x - c)" /> adalah faktor <InlineMath math="P(x)" /> jika dan hanya jika <InlineMath math="P(c) = 0" />. Jadi setiap pembuat nol <InlineMath math="c" /> memberi satu faktor linear, dan grafik <InlineMath math="y = P(x)" /> bertemu sumbu <InlineMath math="x" /> tepat di pembuat nol itu: memotongnya di pembuat nol tunggal dan menyinggungnya di pembuat nol ganda.
 
-<LineEquation
+<MathVisual
   title={<>Grafik <InlineMath math="y = x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2" /></>}
-  description={<>Grafik memotong sumbu x di pembuat nol tunggal <InlineMath math="-1" /> dan hanya menyinggungnya di pembuat nol ganda <InlineMath math="2" />.</>}
-  cameraPosition={[0.85, 0, 16]}
-  cameraTarget={[0.85, 0, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 471 }, (_, i) => {
-        const x = -1.5 + i / 100;
-        return { x, y: x ** 3 - 3 * x ** 2 + 4, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [{ x: -1, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="-1" />, at: 0, offset: [-0.6, 0.8, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 0, z: 0 }],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="2" />, at: 0, offset: [0, -0.9, 0] }],
-    },
-  ]}
+  description={<>Grafiknya memotong sumbu x di nol tunggal <InlineMath math="-1" /> dan hanya menyinggungnya di nol ganda <InlineMath math="2" />.</>}
+  labels={{
+    curve: <InlineMath math="y = (x + 1)(x - 2)^2" />,
+    single: <InlineMath math="-1" />,
+    double: <InlineMath math="2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 3.5 }, y: { min: -6.5, max: 6.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "polyline", vertices: [{ x: -3 / 2, y: (-3 / 2) ** 3 - 3 * (-3 / 2) ** 2 + 4 }, { x: -7 / 5, y: (-7 / 5) ** 3 - 3 * (-7 / 5) ** 2 + 4 }, { x: -13 / 10, y: (-13 / 10) ** 3 - 3 * (-13 / 10) ** 2 + 4 }, { x: -6 / 5, y: (-6 / 5) ** 3 - 3 * (-6 / 5) ** 2 + 4 }, { x: -11 / 10, y: (-11 / 10) ** 3 - 3 * (-11 / 10) ** 2 + 4 }, { x: -1, y: (-1) ** 3 - 3 * (-1) ** 2 + 4 }, { x: -9 / 10, y: (-9 / 10) ** 3 - 3 * (-9 / 10) ** 2 + 4 }, { x: -4 / 5, y: (-4 / 5) ** 3 - 3 * (-4 / 5) ** 2 + 4 }, { x: -7 / 10, y: (-7 / 10) ** 3 - 3 * (-7 / 10) ** 2 + 4 }, { x: -3 / 5, y: (-3 / 5) ** 3 - 3 * (-3 / 5) ** 2 + 4 }, { x: -1 / 2, y: (-1 / 2) ** 3 - 3 * (-1 / 2) ** 2 + 4 }, { x: -2 / 5, y: (-2 / 5) ** 3 - 3 * (-2 / 5) ** 2 + 4 }, { x: -3 / 10, y: (-3 / 10) ** 3 - 3 * (-3 / 10) ** 2 + 4 }, { x: -1 / 5, y: (-1 / 5) ** 3 - 3 * (-1 / 5) ** 2 + 4 }, { x: -1 / 10, y: (-1 / 10) ** 3 - 3 * (-1 / 10) ** 2 + 4 }, { x: 0, y: (0) ** 3 - 3 * (0) ** 2 + 4 }, { x: 1 / 10, y: (1 / 10) ** 3 - 3 * (1 / 10) ** 2 + 4 }, { x: 1 / 5, y: (1 / 5) ** 3 - 3 * (1 / 5) ** 2 + 4 }, { x: 3 / 10, y: (3 / 10) ** 3 - 3 * (3 / 10) ** 2 + 4 }, { x: 2 / 5, y: (2 / 5) ** 3 - 3 * (2 / 5) ** 2 + 4 }, { x: 1 / 2, y: (1 / 2) ** 3 - 3 * (1 / 2) ** 2 + 4 }, { x: 3 / 5, y: (3 / 5) ** 3 - 3 * (3 / 5) ** 2 + 4 }, { x: 7 / 10, y: (7 / 10) ** 3 - 3 * (7 / 10) ** 2 + 4 }, { x: 4 / 5, y: (4 / 5) ** 3 - 3 * (4 / 5) ** 2 + 4 }, { x: 9 / 10, y: (9 / 10) ** 3 - 3 * (9 / 10) ** 2 + 4 }, { x: 1, y: (1) ** 3 - 3 * (1) ** 2 + 4 }, { x: 11 / 10, y: (11 / 10) ** 3 - 3 * (11 / 10) ** 2 + 4 }, { x: 6 / 5, y: (6 / 5) ** 3 - 3 * (6 / 5) ** 2 + 4 }, { x: 13 / 10, y: (13 / 10) ** 3 - 3 * (13 / 10) ** 2 + 4 }, { x: 7 / 5, y: (7 / 5) ** 3 - 3 * (7 / 5) ** 2 + 4 }, { x: 3 / 2, y: (3 / 2) ** 3 - 3 * (3 / 2) ** 2 + 4 }, { x: 8 / 5, y: (8 / 5) ** 3 - 3 * (8 / 5) ** 2 + 4 }, { x: 17 / 10, y: (17 / 10) ** 3 - 3 * (17 / 10) ** 2 + 4 }, { x: 9 / 5, y: (9 / 5) ** 3 - 3 * (9 / 5) ** 2 + 4 }, { x: 19 / 10, y: (19 / 10) ** 3 - 3 * (19 / 10) ** 2 + 4 }, { x: 2, y: (2) ** 3 - 3 * (2) ** 2 + 4 }, { x: 21 / 10, y: (21 / 10) ** 3 - 3 * (21 / 10) ** 2 + 4 }, { x: 11 / 5, y: (11 / 5) ** 3 - 3 * (11 / 5) ** 2 + 4 }, { x: 23 / 10, y: (23 / 10) ** 3 - 3 * (23 / 10) ** 2 + 4 }, { x: 12 / 5, y: (12 / 5) ** 3 - 3 * (12 / 5) ** 2 + 4 }, { x: 5 / 2, y: (5 / 2) ** 3 - 3 * (5 / 2) ** 2 + 4 }, { x: 13 / 5, y: (13 / 5) ** 3 - 3 * (13 / 5) ** 2 + 4 }, { x: 27 / 10, y: (27 / 10) ** 3 - 3 * (27 / 10) ** 2 + 4 }, { x: 14 / 5, y: (14 / 5) ** 3 - 3 * (14 / 5) ** 2 + 4 }, { x: 29 / 10, y: (29 / 10) ** 3 - 3 * (29 / 10) ** 2 + 4 }, { x: 3, y: (3) ** 3 - 3 * (3) ** 2 + 4 }, { x: 31 / 10, y: (31 / 10) ** 3 - 3 * (31 / 10) ** 2 + 4 }, { x: 16 / 5, y: (16 / 5) ** 3 - 3 * (16 / 5) ** 2 + 4 }], appearance: "primary" },
+      { id: "single", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+      { id: "double", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "single", objectId: "single", at: { x: -1, y: 0 }, placement: "left" },
+      { key: "double", objectId: "double", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 Polinomial <InlineMath math="x^3 - 3x^2 + 4 = (x + 1)(x - 2)^2" /> memperlihatkan kedua kasus. Faktor <InlineMath math="(x + 1)" /> muncul sekali, jadi grafiknya memotong sumbu di <InlineMath math="-1" />. Faktor <InlineMath math="(x - 2)" /> muncul dua kali, jadi grafiknya turun ke <InlineMath math="0" /> di <InlineMath math="x = 2" /> lalu naik lagi tanpa memotong sumbu.
@@ -75,8 +69,8 @@ Dan dari Teorema Sisa, kita tahu <InlineMath math="S = P(c)" />.
 - Jika <InlineMath math="P(c) = 0" />, maka <InlineMath math="S = 0" />. Persamaan menjadi <InlineMath math="P(x) = (x - c) \cdot H(x) + 0" />, atau <InlineMath math="P(x) = (x - c) \cdot H(x)" />. Jadi, <InlineMath math="(x - c)" /> adalah faktor dari <InlineMath math="P(x)" />.
 
 <Mermaid
-  title="Empat pernyataan yang setara"
-  description="Untuk polinomial P(x) dan bilangan real c, keempat pernyataan ini selalu benar bersama atau salah bersama."
+  title={<>Empat pernyataan yang setara</>}
+  description={<>Untuk polinomial P(x) dan bilangan real c, keempat pernyataan ini selalu benar bersama atau salah bersama.</>}
   chart={`flowchart LR
   A["P(c) = 0"] <--> B["Sisa P(x) dibagi x - c adalah 0"]
   B <--> C["x - c faktor dari P(x)"]
@@ -88,8 +82,8 @@ Dan dari Teorema Sisa, kita tahu <InlineMath math="S = P(c)" />.
 Setiap **akar yang telah diverifikasi** memberi satu faktor linear. Bagi polinomial dengan faktor itu, lalu faktorkan hasil baginya. Derajat berkurang satu pada setiap pembagian oleh faktor linear, sehingga perhitungan berikutnya lebih sederhana.
 
 <Mermaid
-  title="Langkah memfaktorkan dengan teorema faktor"
-  description="Setiap pembuat nol yang terbukti memberi satu faktor linear dan menurunkan derajat hasil bagi."
+  title={<>Langkah memfaktorkan dengan teorema faktor</>}
+  description={<>Setiap pembuat nol yang terbukti memberi satu faktor linear dan menurunkan derajat hasil bagi.</>}
   chart={`flowchart TD
   A["Coba calon pembuat nol c"] --> B{"P(c) = 0?"}
   B -->|"tidak"| A
@@ -155,6 +149,16 @@ Gabungkan semua faktor.
 <BlockMath math="P(x) = (x - 1)(x - 2)(x + 5)" />
 
 Periksa faktorisasinya dengan substitusi: <InlineMath math="P(-5) = -125 + 50 + 65 + 10 = 0" /> serta <InlineMath math="P(2) = 8 + 8 - 26 + 10 = 0" />. Ketiga pembuat nol <InlineMath math="-5" />, <InlineMath math="1" />, dan <InlineMath math="2" /> memberi tiga faktor linear. Hasil kali ketiganya berderajat tiga dengan koefisien utama <InlineMath math="1" />, sama seperti <InlineMath math="P(x)" />, jadi <InlineMath math="P(x) = (x + 5)(x - 1)(x - 2)" /> tepat.
+
+Hitung <InlineMath math="P(x) = x^3 + 2x^2 - 13x + 10" /> di bilangan bulat dari <InlineMath math="-5" /> sampai 2. Batangnya 0 tepat di <InlineMath math="-5" />, 1, dan 2, tiga nol di balik <InlineMath math="(x - 1)(x - 2)(x + 5)" />.
+
+<BarChart
+  title={<>Nilai <InlineMath math="P(x) = x^3 + 2x^2 - 13x + 10" /></>}
+  description={<>Batang <InlineMath math="P(x)" /> untuk <InlineMath math="x = -5" /> sampai 2, bernilai nol di <InlineMath math="-5" />, 1, dan 2.</>}
+  yAxisLabel="P(x)"
+  data={[-5, -4, -3, -2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: x ** 3 + 2 * x ** 2 - 13 * x + 10 }))}
+  chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Kesalahan yang Sering Terjadi
 
@@ -234,3 +238,13 @@ Faktor <InlineMath math="(x - 2)" /> muncul dua kali, jadi <InlineMath math="2" 
 <BlockMath math="-8 + 4k + 8 - 12 = 4k - 12 = 0 \quad\Longrightarrow\quad k = 3" />
 
 Untuk <InlineMath math="k = 3" />, metode Horner dengan <InlineMath math="c = -2" /> pada koefisien <InlineMath math="1, 3, -4, -12" /> memberi <InlineMath math="1, 1, -6, 0" />, jadi hasil baginya <InlineMath math="x^2 + x - 6 = (x + 3)(x - 2)" /> dan <InlineMath math="x^3 + 3x^2 - 4x - 12 = (x + 2)(x + 3)(x - 2)" />. Periksa dengan menjabarkan: <InlineMath math="(x + 2)(x + 3) = x^2 + 5x + 6" />, dan <InlineMath math="(x^2 + 5x + 6)(x - 2) = x^3 + 3x^2 - 4x - 12" />.
+
+Kunci jawaban dalam satu diagram: <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" /> bernilai 0 di <InlineMath math="-3" />, <InlineMath math="-1" />, dan 6, dan tidak di tempat lain di antaranya, sesuai dengan <InlineMath math="(x + 1)(x - 6)(x + 3)" />.
+
+<BarChart
+  title={<>Nilai <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" /></>}
+  description={<>Batang <InlineMath math="P(x)" /> untuk <InlineMath math="x = -3" /> sampai 6, bernilai nol di <InlineMath math="-3" />, <InlineMath math="-1" />, dan 6.</>}
+  yAxisLabel="P(x)"
+  data={[-3, -2, -1, 0, 1, 2, 3, 4, 5, 6].map((x) => ({ name: String(x), value: x ** 3 - 2 * x ** 2 - 21 * x - 18 }))}
+  chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
