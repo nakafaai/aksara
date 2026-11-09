@@ -1,0 +1,17 @@
+A matrix power is not the power of each entry. Multiply <InlineMath math="A" /> by itself a few times and **look for the pattern in the entries**.
+
+<BlockMath math="\begin{aligned}
+A^2&=\begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix}=\begin{pmatrix} 4 & 4 \\ 0 & 4 \end{pmatrix} \\
+A^3&=A^2A=\begin{pmatrix} 8 & 4+8 \\ 0 & 8 \end{pmatrix}=\begin{pmatrix} 8 & 12 \\ 0 & 8 \end{pmatrix} \\
+A^4&=A^3A=\begin{pmatrix} 16 & 8+24 \\ 0 & 16 \end{pmatrix}=\begin{pmatrix} 16 & 32 \\ 0 & 16 \end{pmatrix} \\
+A^5&=A^4A=\begin{pmatrix} 32 & 16+64 \\ 0 & 32 \end{pmatrix}=\begin{pmatrix} 32 & 80 \\ 0 & 32 \end{pmatrix}
+\end{aligned}" />
+
+The diagonal entries are always <InlineMath math="2^n" />. The top right entry follows <InlineMath math="n\cdot2^{n-1}" />: <InlineMath math="4" />, <InlineMath math="12" />, <InlineMath math="32" />, <InlineMath math="80" /> for <InlineMath math="n=2,3,4,5" />. It grows faster than the diagonal because each multiplication adds two contributions to it, one from the previous top right entry and one from a diagonal entry.
+
+The entries of <InlineMath math="A^5" /> add up to <InlineMath math="32+80+0+32=144" />.
+
+- <InlineMath math="65" /> raises each entry to the fifth power: <InlineMath math="2^5+1^5+0+2^5" />.
+- <InlineMath math="160" /> uses <InlineMath math="n\cdot2^n" /> for the top right entry, or multiplies the entry sum of <InlineMath math="A" /> by <InlineMath math="2^5" />.
+- <InlineMath math="224" /> takes <InlineMath math="5\cdot2^5=160" /> for the top right entry and adds both diagonal entries.
+- <InlineMath math="96" /> assumes the top right entry doubles like the diagonal, giving <InlineMath math="32" />.

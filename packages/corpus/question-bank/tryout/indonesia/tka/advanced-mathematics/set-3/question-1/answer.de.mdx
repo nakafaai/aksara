@@ -1,0 +1,17 @@
+Eine Matrixpotenz ist nicht die Potenz der einzelnen Einträge. Multipliziere <InlineMath math="A" /> ein paarmal mit sich selbst und **such das Muster in den Einträgen**.
+
+<BlockMath math="\begin{aligned}
+A^2&=\begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix}=\begin{pmatrix} 4 & 4 \\ 0 & 4 \end{pmatrix} \\
+A^3&=A^2A=\begin{pmatrix} 8 & 4+8 \\ 0 & 8 \end{pmatrix}=\begin{pmatrix} 8 & 12 \\ 0 & 8 \end{pmatrix} \\
+A^4&=A^3A=\begin{pmatrix} 16 & 8+24 \\ 0 & 16 \end{pmatrix}=\begin{pmatrix} 16 & 32 \\ 0 & 16 \end{pmatrix} \\
+A^5&=A^4A=\begin{pmatrix} 32 & 16+64 \\ 0 & 32 \end{pmatrix}=\begin{pmatrix} 32 & 80 \\ 0 & 32 \end{pmatrix}
+\end{aligned}" />
+
+Die Diagonaleinträge sind immer <InlineMath math="2^n" />. Der Eintrag oben rechts folgt <InlineMath math="n\cdot2^{n-1}" />: <InlineMath math="4" />, <InlineMath math="12" />, <InlineMath math="32" />, <InlineMath math="80" /> für <InlineMath math="n=2,3,4,5" />. Er wächst schneller als die Diagonale, weil er bei jeder Multiplikation zwei Beiträge bekommt, einen vom vorigen Eintrag oben rechts und einen von einem Diagonaleintrag.
+
+Die Einträge von <InlineMath math="A^5" /> ergeben zusammen <InlineMath math="32+80+0+32=144" />.
+
+- <InlineMath math="65" /> potenziert jeden Eintrag: <InlineMath math="2^5+1^5+0+2^5" />.
+- <InlineMath math="160" /> nimmt <InlineMath math="n\cdot2^n" /> für den Eintrag oben rechts oder multipliziert die Eintragssumme von <InlineMath math="A" /> mit <InlineMath math="2^5" />.
+- <InlineMath math="224" /> nimmt <InlineMath math="5\cdot2^5=160" /> für den Eintrag oben rechts und addiert beide Diagonaleinträge.
+- <InlineMath math="96" /> nimmt an, dass sich der Eintrag oben rechts wie die Diagonale verdoppelt, und erhält <InlineMath math="32" />.
