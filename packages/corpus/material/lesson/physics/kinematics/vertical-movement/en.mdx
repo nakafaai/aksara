@@ -94,19 +94,19 @@ At the highest point the ball's velocity is momentarily zero, but its accelerati
 
 The motion is symmetric. The ball is at a height of <InlineMath math="15\text{ m}" /> at <InlineMath math="1\text{ s}" /> and at <InlineMath math="3\text{ s}" />, with the same speed but opposite directions, and it returns to the launch point with its starting speed.
 
-Slide the time for a ball thrown up at <InlineMath math="20\text{ m/s}" />. The violet arrow is its velocity, drawn as the distance of one second: it shrinks on the way up, vanishes at <InlineMath math="t=2\text{ s}" /> at the top, and points down on the way back.
+Slide the time for a ball thrown up at <InlineMath math="20\text{ m/s}" />. The violet arrow is its velocity, drawn as the distance it covers in one second: it shrinks on the way up, vanishes at <InlineMath math="t=2\text{ s}" /> at the top, and points down on the way back.
 
 <MathVisual
   title={<>Watch the Velocity Turn Around</>}
-  description={<>A ball thrown straight up at 20 m/s, its position at the chosen time (fuchsia) and its velocity (violet). One grid step is 5 m.</>}
+  description={<>A ball thrown straight up at <InlineMath math="20\text{ m/s}" />, its position at the chosen time (fuchsia) and its velocity (violet). One grid step is 5 m.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.6, max: 5.4 } },
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -4.5, max: 8.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
       { id: "track", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
       { id: "ball", kind: "marker", appearance: "answer", x: "0", y: "4s - s^2" },
-      { id: "velocity", kind: "path", appearance: "secondary", points: [{ x: "0", y: "4s - s^2" }, { x: "0", y: "4s - s^2 + (20 - 10 s)/10" }] },
+      { id: "velocity", kind: "path", appearance: "secondary", points: [{ x: "0", y: "4s - s^2" }, { x: "0", y: "4s - s^2 + (20 - 10 s)/5" }] },
     ],
     labels: [
       { key: "ball", objectId: "ball", at: { x: "0", y: "4s - s^2" }, placement: "right" },

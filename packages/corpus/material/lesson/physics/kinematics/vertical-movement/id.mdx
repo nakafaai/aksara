@@ -95,19 +95,19 @@ Di titik tertinggi, kecepatan bola nol sesaat, tetapi percepatannya tetap <Inlin
 
 Gerak ini simetris. Bola berada di tinggi <InlineMath math="15\text{ m}" /> pada detik ke-1 dan ke-3, dengan kelajuan yang sama tetapi arah berlawanan, dan kembali ke titik lempar dengan kelajuan awalnya.
 
-Geser waktu untuk bola yang dilempar ke atas dengan <InlineMath math="20\text{ m/s}" />. Panah ungu adalah kecepatannya, digambar sebagai jarak satu sekon: panahnya memendek saat naik, hilang pada <InlineMath math="t=2\text{ s}" /> di puncak, dan menunjuk ke bawah saat kembali.
+Geser waktu untuk bola yang dilempar ke atas dengan <InlineMath math="20\text{ m/s}" />. Panah ungu adalah kecepatannya, digambar sebagai jarak yang ditempuh dalam satu sekon: panahnya memendek saat naik, hilang pada <InlineMath math="t=2\text{ s}" /> di puncak, dan menunjuk ke bawah saat kembali.
 
 <MathVisual
   title={<>Lihat Kecepatan Berbalik Arah</>}
-  description={<>Bola yang dilempar lurus ke atas dengan 20 m/s, posisinya pada waktu yang dipilih (fuchsia), dan kecepatannya (ungu). Satu kotak grid berarti 5 m.</>}
+  description={<>Bola yang dilempar lurus ke atas dengan <InlineMath math="20\text{ m/s}" />, posisinya pada waktu yang dipilih (fuchsia), dan kecepatannya (ungu). Satu kotak grid berarti 5 m.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.6, max: 5.4 } },
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -4.5, max: 8.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
       { id: "track", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
       { id: "ball", kind: "marker", appearance: "answer", x: "0", y: "4s - s^2" },
-      { id: "velocity", kind: "path", appearance: "secondary", points: [{ x: "0", y: "4s - s^2" }, { x: "0", y: "4s - s^2 + (20 - 10 s)/10" }] },
+      { id: "velocity", kind: "path", appearance: "secondary", points: [{ x: "0", y: "4s - s^2" }, { x: "0", y: "4s - s^2 + (20 - 10 s)/5" }] },
     ],
     labels: [
       { key: "ball", objectId: "ball", at: { x: "0", y: "4s - s^2" }, placement: "right" },

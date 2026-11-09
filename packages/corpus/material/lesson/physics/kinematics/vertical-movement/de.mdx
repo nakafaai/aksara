@@ -95,19 +95,19 @@ Im höchsten Punkt ist die Geschwindigkeit des Balls kurz null, seine Beschleuni
 
 Die Bewegung ist symmetrisch. Der Ball ist nach <InlineMath math="1\text{ s}" /> und nach <InlineMath math="3\text{ s}" /> in <InlineMath math="15\text{ m}" /> Höhe, mit gleicher Schnelligkeit, aber entgegengesetzter Richtung, und kommt mit seiner Anfangsschnelligkeit wieder am Abwurfpunkt an.
 
-Verschieb die Zeit für einen Ball, der mit <InlineMath math="20\text{ m/s}" /> nach oben geworfen wird. Der violette Pfeil ist seine Geschwindigkeit, gezeichnet als Strecke einer Sekunde: Er wird auf dem Weg nach oben kürzer, verschwindet bei <InlineMath math="t=2\text{ s}" /> oben und zeigt auf dem Rückweg nach unten.
+Verschieb die Zeit für einen Ball, der mit <InlineMath math="20\text{ m/s}" /> nach oben geworfen wird. Der violette Pfeil ist seine Geschwindigkeit, gezeichnet als Strecke, die in einer Sekunde zurückgelegt wird: Er wird auf dem Weg nach oben kürzer, verschwindet bei <InlineMath math="t=2\text{ s}" /> oben und zeigt auf dem Rückweg nach unten.
 
 <MathVisual
   title={<>Sieh zu, wie die Geschwindigkeit umkehrt</>}
-  description={<>Ein Ball, senkrecht mit 20 m/s nach oben geworfen, seine Position zur gewählten Zeit (fuchsia) und seine Geschwindigkeit (violett). Ein Gitterschritt entspricht 5 m.</>}
+  description={<>Ein Ball, senkrecht mit <InlineMath math="20\text{ m/s}" /> nach oben geworfen, seine Position zur gewählten Zeit (fuchsia) und seine Geschwindigkeit (violett). Ein Gitterschritt entspricht 5 m.</>}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.6, max: 5.4 } },
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -4.5, max: 8.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
       { id: "track", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
       { id: "ball", kind: "marker", appearance: "answer", x: "0", y: "4s - s^2" },
-      { id: "velocity", kind: "path", appearance: "secondary", points: [{ x: "0", y: "4s - s^2" }, { x: "0", y: "4s - s^2 + (20 - 10 s)/10" }] },
+      { id: "velocity", kind: "path", appearance: "secondary", points: [{ x: "0", y: "4s - s^2" }, { x: "0", y: "4s - s^2 + (20 - 10 s)/5" }] },
     ],
     labels: [
       { key: "ball", objectId: "ball", at: { x: "0", y: "4s - s^2" }, placement: "right" },
