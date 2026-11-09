@@ -74,6 +74,34 @@ The null space of <InlineMath math="A^T" /> is the set of vectors <InlineMath ma
 
 For a full-column-rank matrix, the reduced factorization <InlineMath math="A=Q_1R_1" /> is unique when every **diagonal entry** of <InlineMath math="R_1" /> is positive. That sign condition removes the remaining freedom, because multiplying a column of <InlineMath math="Q_1" /> and the matching row of <InlineMath math="R_1" /> by <InlineMath math="-1" /> leaves the product unchanged.
 
+For the columns <InlineMath math="a_1=(1,1,0)" /> and <InlineMath math="a_2=(1,0,1)" />, Gram-Schmidt gives <InlineMath math="q_1=\tfrac1{\sqrt2}(1,1,0)" /> and <InlineMath math="q_2=\tfrac1{\sqrt6}(1,-1,2)" />. The reduced factorization stops here. The full one adds <InlineMath math="q_3=\tfrac1{\sqrt3}(1,-1,-1)" />, perpendicular to the column plane, and a row of zeros under <InlineMath math="R" />.
+
+<MathVisual
+  title={<>Reduced and full <InlineMath math="Q" /> for two columns in <InlineMath math="\mathbb R^3" /></>}
+  description={<>The gray parallelogram is the plane spanned by <InlineMath math="a_1" /> and <InlineMath math="a_2" />. The violet segment <InlineMath math="q_1" /> and the teal segment <InlineMath math="q_2" /> lie in that plane and form the reduced <InlineMath math="Q" />. The orange segment <InlineMath math="q_3" /> is perpendicular to the plane and completes <InlineMath math="Q" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 2.2 }, y: { min: -1.2, max: 1.2 }, z: { min: -1, max: 1.2 } },
+    view: { kind: "isometric", target: { x: 0.6, y: 0, z: 0.3 } },
+    objects: [
+      { id: "span", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 2, y: 1, z: 1 }, { x: 1, y: 0, z: 1 }], appearance: "reference" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(2), y: 1 / Math.sqrt(2), z: 0 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }, appearance: "construction" },
+      { id: "third", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(3), y: -1 / Math.sqrt(3), z: -1 / Math.sqrt(3) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1 / Math.sqrt(2), y: 1 / Math.sqrt(2), z: 0 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }, placement: "above" },
+      { key: "third", objectId: "third", at: { x: 1 / Math.sqrt(3), y: -1 / Math.sqrt(3), z: -1 / Math.sqrt(3) }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="q_1" />,
+    "second": <InlineMath math="q_2" />,
+    "third": <InlineMath math="q_3" />,
+  }}
+/>
+
 ## Worked Thin QR Example
 
 Let
@@ -98,6 +126,42 @@ The calculation gives:
 <BlockMath math="Q_1^TQ_1=I,\qquad Q_1R_1=A" />
 </MathContainer>
 
+Rotate this three-dimensional scene to see the example from every side. The amber projection <InlineMath math="r_{12}q_1=(1/2,1/2,0)^T" /> is the part of <InlineMath math="a_2" /> that points along <InlineMath math="q_1" />. The orange remainder <InlineMath math="\widetilde q_2" />, from the tip of the projection to the tip of <InlineMath math="a_2" />, is perpendicular to <InlineMath math="q_1" />, and normalizing it gives <InlineMath math="q_2" />. From any angle, the two magenta segments always meet at a right angle.
+
+<MathVisual
+  title={<>Gram-Schmidt on <InlineMath math="a_1,a_2" /></>}
+  description={<>Violet and teal segments are the columns of <InlineMath math="A" />, the amber segment is the projection <InlineMath math="r_{12}q_1" />, the orange segment is the remainder <InlineMath math="\widetilde q_2" />, and the magenta segments are <InlineMath math="q_1,q_2" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.8, max: 1.5 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 0.5, y: 0.4, z: 0.4 } },
+    objects: [
+      { id: "a1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: 0 }, appearance: "secondary" },
+      { id: "a2", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 1 }, appearance: "construction" },
+      { id: "projection", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / 2, y: 1 / 2, z: 0 }, appearance: "highlight" },
+      { id: "remainder", kind: "segment", from: { x: 1 / 2, y: 1 / 2, z: 0 }, to: { x: 1, y: 0, z: 1 }, appearance: "primary" },
+      { id: "q1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }, appearance: "answer" },
+      { id: "q2", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a1", objectId: "a1", at: { x: 1, y: 1, z: 0 }, placement: "above-right" },
+      { key: "a2", objectId: "a2", at: { x: 1, y: 0, z: 1 }, placement: "right" },
+      { key: "projection", objectId: "projection", at: { x: 1 / 2, y: 1 / 2, z: 0 }, placement: "below-right" },
+      { key: "remainder", objectId: "remainder", at: { x: 3 / 4, y: 1 / 4, z: 1 / 2 }, placement: "right" },
+      { key: "q1", objectId: "q1", at: { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }, placement: "above-left" },
+      { key: "q2", objectId: "q2", at: { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "a1": <InlineMath math="a_1" />,
+    "a2": <InlineMath math="a_2" />,
+    "projection": <InlineMath math="r_{12}q_1" />,
+    "remainder": <InlineMath math="\widetilde q_2" />,
+    "q1": <InlineMath math="q_1" />,
+    "q2": <InlineMath math="q_2" />,
+  }}
+/>
+
 ## Householder Method for QR Decomposition
 
 Classical Gram-Schmidt gives a direct derivation, but **nearly dependent columns** can lose orthogonality in floating-point arithmetic. Modified Gram-Schmidt reduces that error. Dense numerical software commonly uses Householder reflectors, while Givens rotations are useful when only selected entries need to be eliminated.
@@ -121,6 +185,35 @@ For <InlineMath math="S=I-2vv^T" /> and <InlineMath math="\|v\|_2=1" />, the fol
 3. <InlineMath math="Sx" /> reflects <InlineMath math="x\in\mathbb{R}^m" /> across the hyperplane perpendicular to <InlineMath math="v" />
 
 4. <InlineMath math="\text{cond}_2(S) = 1" />
+
+For <InlineMath math="x=(3,4)" /> with <InlineMath math="\|x\|_2=5" />, choose <InlineMath math="v=\tfrac{x-5e_1}{\|x-5e_1\|_2}=\tfrac1{\sqrt5}(-1,2)" />. Then <InlineMath math="S=I-2vv^T" /> mirrors <InlineMath math="x" /> across the line perpendicular to <InlineMath math="v" /> and sends it to <InlineMath math="(5,0)" />. One reflection zeroes the second entry without changing the length.
+
+<MathVisual
+  title={<>A Householder reflection sends <InlineMath math="(3,4)" /> to <InlineMath math="(5,0)" /></>}
+  description={<>The gray mirror line is perpendicular to the teal unit vector <InlineMath math="v" />. The violet vector <InlineMath math="x" /> and its magenta image <InlineMath math="Sx" /> have the same length, and the orange segment between them is parallel to <InlineMath math="v" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 5.5 }, y: { min: -1.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 2, y: 1 }], appearance: "reference" },
+      { id: "jump", kind: "segment", from: { x: 3, y: 4 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1 / Math.sqrt(5), y: 2 / Math.sqrt(5) }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "vector", objectId: "vector", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "normal", objectId: "normal", at: { x: -1 / Math.sqrt(5), y: 2 / Math.sqrt(5) }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "vector": <InlineMath math="x=(3,4)" />,
+    "image": <InlineMath math="Sx=(5,0)" />,
+    "normal": <InlineMath math="v" />,
+  }}
+/>
 
 ## Householder Procedure
 
