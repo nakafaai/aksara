@@ -4,7 +4,7 @@ export const metadata = {
   description: "Cari garis kecocokan terbaik dengan meminimalkan jumlah kuadrat residu, lalu hitung dan jelaskan arti setiap koefisien.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -37,8 +37,8 @@ Mengapa residu dikuadratkan?
 Misalnya, sebuah perusahaan ingin melihat hubungan antara **biaya iklan** yang mereka keluarkan (dalam jutaan rupiah) dengan jumlah produk yang terjual (dalam ribuan unit). Data yang mereka kumpulkan adalah sebagai berikut:
 
 <ScatterDiagram
-  title="Garis Hasil Metode Kuadrat Terkecil (Iklan vs Penjualan)"
-  description="Garis menunjukkan tren hubungan linear antara biaya iklan dan penjualan."
+  title={<>Garis Hasil Metode Kuadrat Terkecil (Iklan vs Penjualan)</>}
+  description={<>Garis menunjukkan tren hubungan linear antara biaya iklan dan penjualan.</>}
   xAxisLabel="Biaya Iklan (Juta Rupiah)"
   yAxisLabel="Penjualan Produk (Ribuan Unit)"
   datasets={[
@@ -130,3 +130,23 @@ Gunakan semua pasangan pada diagram. Kolom hasil kali dan kuadrat menjaga agar s
 Gunakan koefisien yang belum dibulatkan ketika menghitung prediksi. Dengan membulatkan hanya angka yang ditampilkan, persamaan garis menjadi:
 
 <BlockMath math="\hat y\approx30{,}491+8{,}222x" />
+
+Pertahankan garis melalui titik rata-rata <InlineMath math="(\bar x, \bar y) = \left(\tfrac{77}{12}, \tfrac{999}{12}\right)" /> dan ubah gradiennya <InlineMath math="b" /> saja. Untuk data iklan, jumlah kuadrat residunya <InlineMath math="S_{yy} - 2bS_{xy} + b^2S_{xx}" />, sebuah parabola dalam <InlineMath math="b" />: nilainya paling kecil di <InlineMath math="b = \tfrac{8625}{1049} \approx 8{,}222" /> dan membesar di kedua sisinya.
+
+<BarChart
+  title={<>Jumlah kuadrat residu terhadap gradien</>}
+  description={<>Batang jumlah kuadrat residu untuk gradien <InlineMath math="b = 6;\ 7;\ 8{,}222;\ 9;\ 10" />, setiap garis melalui titik rata-rata.</>}
+  yAxisLabel="Jumlah kuadrat residu"
+  data={[6, 7, 8625 / 1049, 9, 10].map((b) => ({ name: b === 8625 / 1049 ? "8.222" : String(b), value: 31265 / 4 - 2 * b * (2875 / 4) + b ** 2 * (1049 / 12) }))}
+  chartConfig={{ value: { label: "Jumlah kuadrat residu", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Sekarang pertahankan gradien <InlineMath math="b \approx 8{,}222" /> dan geser garis ke atas atau ke bawah sejauh <InlineMath math="d" /> ribu unit. Setiap pergeseran menambahkan <InlineMath math="12d^2" /> pada jumlah kuadrat residu, satu <InlineMath math="d^2" /> untuk setiap pasangan dari 12 pasangan, jadi titik potong <InlineMath math="a \approx 30{,}491" /> adalah yang terbaik.
+
+<BarChart
+  title={<>Jumlah kuadrat residu terhadap pergeseran</>}
+  description={<>Batang jumlah kuadrat residu untuk garis taksiran yang digeser sejauh <InlineMath math="d = -10, -5, 0, 5, 10" />. Batang terkecil, sekitar 1906,6, adalah garis taksiran itu sendiri.</>}
+  yAxisLabel="Jumlah kuadrat residu"
+  data={[-10, -5, 0, 5, 10].map((d) => ({ name: String(d), value: 31265 / 4 - 2875 ** 2 / (16 * (1049 / 12)) + 12 * d ** 2 }))}
+  chartConfig={{ value: { label: "Jumlah kuadrat residu", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

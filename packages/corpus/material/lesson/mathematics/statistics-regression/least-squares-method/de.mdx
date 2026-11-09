@@ -4,7 +4,7 @@ export const metadata = {
   description: "Bestimme eine Ausgleichsgerade, indem du die Summe der quadrierten Residuen minimierst, und berechne sowie deute ihre Koeffizienten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistik",
 };
 
@@ -37,8 +37,8 @@ Warum die Residuen quadrieren?
 Ein Unternehmen untersucht beispielsweise den Zusammenhang zwischen **Werbekosten** in Millionen Rupiah und Verkaufszahlen in Tausend Stück. Das Streudiagramm zeigt die erhobenen Daten, die Regressionsgerade und die vertikalen Residuen.
 
 <ScatterDiagram
-  title="Regressionsgerade für Werbekosten und Verkaufszahlen"
-  description="Die Gerade beschreibt den linearen Trend und minimiert die Summe der quadrierten vertikalen Residuen."
+  title={<>Regressionsgerade für Werbekosten und Verkaufszahlen</>}
+  description={<>Die Gerade beschreibt den linearen Trend und minimiert die Summe der quadrierten vertikalen Residuen.</>}
   xAxisLabel="Werbekosten (Millionen Rupiah)"
   yAxisLabel="Produktverkäufe (in Tausend Einheiten)"
   datasets={[
@@ -130,3 +130,23 @@ Verwende alle Datenpaare des Diagramms. Mit den Produkt- und Quadratspalten geht
 Verwende für Vorhersagen die ungerundeten Koeffizienten. Mit gerundeten Anzeigewerten lautet die Geradengleichung:
 
 <BlockMath math="\hat y\approx30{,}491+8{,}222x" />
+
+Lass die Gerade durch den Schwerpunkt <InlineMath math="(\bar x, \bar y) = \left(\tfrac{77}{12}, \tfrac{999}{12}\right)" /> gehen und änder nur ihre Steigung <InlineMath math="b" />. Für die Werbedaten ist die Summe der quadrierten Residuen <InlineMath math="S_{yy} - 2bS_{xy} + b^2S_{xx}" />, eine Parabel in <InlineMath math="b" />: Sie ist bei <InlineMath math="b = \tfrac{8625}{1049} \approx 8{,}222" /> am kleinsten und wächst nach beiden Seiten.
+
+<BarChart
+  title={<>Summe der quadrierten Residuen gegen die Steigung</>}
+  description={<>Balken der Summe der quadrierten Residuen für die Steigungen <InlineMath math="b = 6;\ 7;\ 8{,}222;\ 9;\ 10" />, jede Gerade durch den Schwerpunkt.</>}
+  yAxisLabel="Summe der quadrierten Residuen"
+  data={[6, 7, 8625 / 1049, 9, 10].map((b) => ({ name: b === 8625 / 1049 ? "8.222" : String(b), value: 31265 / 4 - 2 * b * (2875 / 4) + b ** 2 * (1049 / 12) }))}
+  chartConfig={{ value: { label: "Summe der quadrierten Residuen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Behalte jetzt die Steigung <InlineMath math="b \approx 8{,}222" /> und verschieb die Gerade um <InlineMath math="d" /> Tausend Stück nach oben oder unten. Jede Verschiebung fügt der Summe der quadrierten Residuen <InlineMath math="12d^2" /> hinzu, ein <InlineMath math="d^2" /> für jedes der 12 Paare, also ist der Achsenabschnitt <InlineMath math="a \approx 30{,}491" /> der beste.
+
+<BarChart
+  title={<>Summe der quadrierten Residuen gegen eine Verschiebung</>}
+  description={<>Balken der Summe der quadrierten Residuen für die um <InlineMath math="d = -10, -5, 0, 5, 10" /> verschobene Gerade. Der kleinste Balken, etwa 1906,6, ist die angepasste Gerade selbst.</>}
+  yAxisLabel="Summe der quadrierten Residuen"
+  data={[-10, -5, 0, 5, 10].map((d) => ({ name: String(d), value: 31265 / 4 - 2875 ** 2 / (16 * (1049 / 12)) + 12 * d ** 2 }))}
+  chartConfig={{ value: { label: "Summe der quadrierten Residuen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

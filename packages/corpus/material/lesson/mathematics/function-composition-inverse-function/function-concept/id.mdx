@@ -4,7 +4,7 @@ export const metadata = {
     "Fungsi memasangkan tepat satu keluaran dengan setiap masukan yang diizinkan dan dapat disajikan melalui notasi, tabel, serta pasangan berurutan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-27",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Fungsi Komposisi dan Fungsi Invers",
 };
 
@@ -30,6 +30,36 @@ Informasi yang sama dapat ditulis sebagai pasangan berurutan:
 
 Setiap koordinat pertama hanya muncul dengan satu koordinat kedua. Jadi, pasangan tersebut menyatakan fungsi pada masukan yang ditampilkan.
 
+Setiap input <InlineMath math="f(x) = x + 2" /> mendapat tepat satu output, jadi pasangan <InlineMath math="(3, 5)" />, <InlineMath math="(-1, 1)" />, dan <InlineMath math="(0, 2)" /> semuanya terletak pada satu garis, satu titik di atas setiap input.
+
+<MathVisual
+  title={<>Pasangan input dan output <InlineMath math="f(x) = x + 2" /></>}
+  description={<>Pasangan <InlineMath math="(3, 5)" />, <InlineMath math="(-1, 1)" />, dan <InlineMath math="(0, 2)" /> pada garis <InlineMath math="y = x + 2" />.</>}
+  labels={{
+    rule: <InlineMath math="y = x + 2" />,
+    a: <InlineMath math="(3, 5)" />,
+    b: <InlineMath math="(-1, 1)" />,
+    c: <InlineMath math="(0, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 4.6 }, y: { min: -0.6, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rule", kind: "segment", from: { x: -2, y: 0 }, to: { x: 4, y: 6 }, appearance: "construction" },
+      { id: "a", kind: "point", at: { x: 3, y: 5 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 0, y: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "rule", objectId: "rule", at: { x: 4, y: 6 }, placement: "left" },
+      { key: "a", objectId: "a", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -1, y: 1 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 0, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Membaca Notasi Fungsi
 
 Dalam persamaan <InlineMath math="f(x)=y" />:
@@ -52,8 +82,8 @@ Notasi <InlineMath math="f(3)" /> **bukan perkalian** <InlineMath math="f\cdot3"
 Mesin fungsi interaktif memakai <InlineMath math="f(x)=2x+1" />. Ubah masukannya, perkirakan keluarannya, lalu bandingkan perkiraanmu dengan hasil yang ditampilkan.
 
 <FunctionMachine
-  title="Mesin Fungsi"
-  description="Masukkan sebuah bilangan untuk menghitung aturan fungsi yang tetap."
+  title={<>Mesin Fungsi</>}
+  description={<>Masukkan sebuah bilangan untuk menghitung aturan fungsi yang tetap.</>}
   inputLabel="Masukan fungsi"
 />
 
@@ -71,6 +101,36 @@ Bandingkan dua relasi berikut:
 </MathContainer>
 
 Relasi <InlineMath math="R" /> adalah fungsi. Masukan <InlineMath math="1" /> dan <InlineMath math="2" /> memiliki **keluaran yang sama**, yaitu <InlineMath math="4" />, dan hal itu diperbolehkan. Relasi <InlineMath math="S" /> bukan fungsi karena masukan <InlineMath math="1" /> memiliki **dua keluaran berbeda**, <InlineMath math="4" /> dan <InlineMath math="6" />.
+
+Gambar <InlineMath math="S" />: input 1 memiliki dua titik di atasnya, <InlineMath math="(1, 4)" /> dan <InlineMath math="(1, 6)" />, jadi garis tegak <InlineMath math="x = 1" /> memotong grafik dua kali. Itulah sebabnya <InlineMath math="S" /> bukan fungsi, sedangkan pada <InlineMath math="R" /> setiap input memiliki satu titik.
+
+<MathVisual
+  title={<>Uji garis tegak pada <InlineMath math="S" /></>}
+  description={<>Titik <InlineMath math="(1, 4)" />, <InlineMath math="(1, 6)" />, dan <InlineMath math="(3, 7)" /> dari <InlineMath math="S" />, dengan garis tegak <InlineMath math="x = 1" /> melalui dua di antaranya.</>}
+  labels={{
+    test: <InlineMath math="x = 1" />,
+    a: <InlineMath math="(1, 4)" />,
+    b: <InlineMath math="(1, 6)" />,
+    c: <InlineMath math="(3, 7)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -0.6, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "test", kind: "line", through: [{ x: 1, y: 0 }, { x: 1, y: 8 }], appearance: "warning" },
+      { id: "a", kind: "point", at: { x: 1, y: 4 }, appearance: "secondary" },
+      { id: "b", kind: "point", at: { x: 1, y: 6 }, appearance: "secondary" },
+      { id: "c", kind: "point", at: { x: 3, y: 7 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "test", objectId: "test", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 4 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 1, y: 6 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 3, y: 7 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Periksa Pemahamanmu
 

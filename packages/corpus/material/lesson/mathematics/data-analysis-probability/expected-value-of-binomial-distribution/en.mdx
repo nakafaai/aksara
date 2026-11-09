@@ -28,8 +28,8 @@ When all four conditions hold, the probability of exactly <InlineMath math="k" /
 Rolling a die until a six appears is not a binomial experiment, because the number of rolls is not fixed. Answering questions whose chances of a correct answer differ is not binomial either, because <InlineMath math="p" /> is not the same in every trial.
 
 <Mermaid
-  title="Checking the binomial conditions"
-  description="All four conditions must hold before X is binomial."
+  title={<>Checking the binomial conditions</>}
+  description={<>All four conditions must hold before X is binomial.</>}
   chart={`flowchart TD
   A{"Only success or failure in each trial?"} -->|"yes"| B{"Is the number of trials n fixed?"}
   B -->|"yes"| C{"Are the trials independent?"}
@@ -63,7 +63,7 @@ The sum of the last column is the expected value:
 Check with the short formula: <InlineMath math="np = 3 \cdot \frac{1}{2} = 1.5" />. Both methods agree, but for a large <InlineMath math="n" /> such a table gets too long, so the formula <InlineMath math="np" /> does the work.
 
 <MathVisual
-  title="The expected value as a balance point"
+  title={<>The expected value as a balance point</>}
   description={<>Each bar height is the probability for three coin tosses, measured in eighths. The bars balance exactly at <InlineMath math="E(X) = 1.5" />.</>}
   scene={{
     space: "plane",
@@ -119,8 +119,8 @@ The value <InlineMath math="1.17" /> cannot occur in one set of seven rolls, bec
 The expected value also differs from the most likely result. The binomial formula gives <InlineMath math="P(X = 0) \approx 0.279" />, <InlineMath math="P(X = 1) \approx 0.391" />, and <InlineMath math="P(X = 2) \approx 0.234" />. The most likely result is one five, while the expected value lies between <InlineMath math="1" /> and <InlineMath math="2" />. Check with the definition of expected value: <InlineMath math="1(0.3907) + 2(0.2344) + 3(0.0781) + 4(0.0156) + 5(0.0019) + 6(0.0001) \approx 1.166" />, which matches <InlineMath math="\frac{7}{6} \approx 1.167" /> up to rounding.
 
 <BarChart
-  title="How many fives appear in seven rolls"
-  description="The tallest bar is at 1, while the expected value 7/6, about 1.17, lies between 1 and 2."
+  title={<>How many fives appear in seven rolls</>}
+  description={<>The tallest bar is at 1, while the expected value 7/6, about 1.17, lies between 1 and 2.</>}
   data={Array.from({ length: 8 }, (_, k) => {
     const ways = Array.from({ length: k }, (_, i) => (7 - i) / (i + 1)).reduce((product, factor) => product * factor, 1);
     const probability = ways * (1 / 6) ** k * (5 / 6) ** (7 - k);
@@ -139,6 +139,16 @@ Suppose a correct answer earns <InlineMath math="4" /> points and a wrong answer
 <BlockMath math="E(S) = 5 \cdot E(X) - 20 = 5 \cdot 4 - 20 = 0" />
 
 Check per question: one guess has an expected value of <InlineMath math="4 \cdot \frac{1}{5} - 1 \cdot \frac{4}{5} = 0" /> points, so twenty guesses also have an expected value of <InlineMath math="0" />. Under this rule, guessing adds nothing to the score in the long run.
+
+The distribution of correct guesses out of 20 with <InlineMath math="p = \tfrac15" /> peaks at 4, exactly the expected value <InlineMath math="np = 4" />, and about <InlineMath math="98\%" /> of its probability lies between 1 and 8 correct answers.
+
+<BarChart
+  title={<>Correct guesses out of 20 with <InlineMath math="p = \tfrac15" /></>}
+  description={<>Bars of <InlineMath math="P(X = k)" /> in percent for <InlineMath math="k = 0" /> to 10 correct answers. Higher counts have probability below <InlineMath math="0.3\%" /> each.</>}
+  yAxisLabel="Probability (%)"
+  data={[1, 20, 190, 1140, 4845, 15504, 38760, 77520, 125970, 167960, 184756].map((c, k) => ({ name: String(k), value: 100 * c * 0.2 ** k * 0.8 ** (20 - k) }))}
+  chartConfig={{ value: { label: "Probability (%)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Common Mistakes
 

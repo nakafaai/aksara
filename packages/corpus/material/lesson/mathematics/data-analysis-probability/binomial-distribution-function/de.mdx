@@ -3,7 +3,7 @@ export const metadata = {
   description: "Prüfe die Voraussetzungen eines Binomialmodells und berechne exakte Wahrscheinlichkeiten mit seiner Wahrscheinlichkeitsmassenfunktion.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-24",
+    dateModified: "2026-11-08",
     subject: "Datenanalyse und Wahrscheinlichkeit",
 };
 
@@ -105,8 +105,8 @@ Die vollständige Berechnung lautet also:
 Die Wahrscheinlichkeit, bei <InlineMath math="7" /> Münzwürfen genau <InlineMath math="5" />-mal Zahl zu erhalten, beträgt somit <InlineMath math="\frac{21}{128}" /> oder ungefähr <InlineMath math="16{,}4\%" />.
 
 <BarChart
-  title="Wahrscheinlichkeiten für Zahl bei sieben Würfen"
-  description="Die waagerechte Achse zählt Zahl-Ergebnisse und bezeichnet nicht die Reihenfolge der Würfe. Jeder Balken zeigt die Wahrscheinlichkeit genau dieser Anzahl."
+  title={<>Wahrscheinlichkeiten für Zahl bei sieben Würfen</>}
+  description={<>Die waagerechte Achse zählt Zahl-Ergebnisse und bezeichnet nicht die Reihenfolge der Würfe. Jeder Balken zeigt die Wahrscheinlichkeit genau dieser Anzahl.</>}
   yAxisLabel="Wahrscheinlichkeit"
   data={[
     { name: "0", value: 0.0078125 },
@@ -220,3 +220,23 @@ Dann:
 </MathContainer>
 
 Daher beträgt die Wahrscheinlichkeit, dass der Schüler genau <InlineMath math="2" /> Fragen richtig beantwortet, ungefähr <InlineMath math="0{,}3115" /> oder <InlineMath math="31{,}15\%" />.
+
+Die ganze Verteilung der Bogenschützin für 6 Schüsse mit <InlineMath math="p = 0{,}8" />: Die Balken türmen sich rechts. Der Balken bei 4 Treffern ist <InlineMath math="0{,}2458" />, die Antwort auf Aufgabe 2, während 5 Treffer mit der Wahrscheinlichkeit <InlineMath math="0{,}3932" /> am wahrscheinlichsten sind.
+
+<BarChart
+  title={<>Alle Ergebnisse von <InlineMath math="X \sim B(6;\ 0{,}8)" /></>}
+  description={<>Balken von <InlineMath math="P(X = k) = \binom{6}{k} 0{,}8^k 0{,}2^{6-k}" /> für <InlineMath math="k = 0" /> bis 6 Treffer.</>}
+  yAxisLabel="Wahrscheinlichkeit"
+  data={[1, 6, 15, 20, 15, 6, 1].map((c, k) => ({ name: String(k), value: c * 0.8 ** k * 0.2 ** (6 - k) }))}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Beim Raten von 8 Fragen mit <InlineMath math="p = \tfrac14" /> sind 2 richtige Antworten am wahrscheinlichsten, mit der Wahrscheinlichkeit <InlineMath math="0{,}3115" />, der Antwort auf Aufgabe 3. Sechs oder mehr richtige Antworten haben zusammen eine Wahrscheinlichkeit unter <InlineMath math="0{,}005" />.
+
+<BarChart
+  title={<>Alle Ergebnisse von <InlineMath math="X \sim B\left(8,\ \tfrac14\right)" /></>}
+  description={<>Balken von <InlineMath math="P(X = k) = \binom{8}{k} 0{,}25^k 0{,}75^{8-k}" /> für <InlineMath math="k = 0" /> bis 8 richtige Antworten.</>}
+  yAxisLabel="Wahrscheinlichkeit"
+  data={[1, 8, 28, 56, 70, 56, 28, 8, 1].map((c, k) => ({ name: String(k), value: c * 0.25 ** k * 0.75 ** (8 - k) }))}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

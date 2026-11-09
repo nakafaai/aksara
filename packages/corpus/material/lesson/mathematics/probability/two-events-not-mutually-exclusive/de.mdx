@@ -16,7 +16,7 @@ Zwei Ereignisse sind **vereinbar**, wenn beide beim selben Ergebnis eintreten k�
 Die Schnittmenge wird **einmal** abgezogen, weil ihre Ergebnisse schon in <InlineMath math="P(A)" /> und noch einmal in <InlineMath math="P(B)" /> gezählt werden.
 
 <MathVisual
-  title="Ein Venn-Diagramm für einen Würfelwurf"
+  title={<>Ein Venn-Diagramm für einen Würfelwurf</>}
   description={<>Das Ereignis <InlineMath math="A" /> = gerade Augenzahl und <InlineMath math="B" /> = Augenzahl größer als 3. Die Ergebnisse 4 und 6 liegen in der Überschneidung beider Kreise.</>}
   scene={{
     space: "plane",
@@ -81,8 +81,8 @@ Zähle zuerst die Elemente. Addierst du <InlineMath math="n(A)" /> und <InlineMa
 Teilst du jeden Term durch <InlineMath math="n(\Omega)" /> für einen Ergebnisraum mit gleichwahrscheinlichen Ergebnissen, erhältst du die Formel für Wahrscheinlichkeiten. Die Formel selbst gilt für jeden Ergebnisraum, nur das Teilen durch <InlineMath math="n(\Omega)" /> braucht gleichwahrscheinliche Ergebnisse. Beim Würfel sind es <InlineMath math="3 + 3 - 2 = 4" /> Elemente, wie in der Liste <InlineMath math="\{2, 4, 5, 6\}" />. Ohne den Abzug käme <InlineMath math="\frac{6}{6} = 1" /> heraus, als würde jeder Wurf in <InlineMath math="A" /> oder <InlineMath math="B" /> landen, obwohl 1 und 3 zu keinem der beiden gehören.
 
 <Mermaid
-  title="Die Formel für P(A oder B) wählen"
-  description="Der Inhalt der Schnittmenge entscheidet, ob ihre Wahrscheinlichkeit abgezogen werden muss."
+  title={<>Die Formel für P(A oder B) wählen</>}
+  description={<>Der Inhalt der Schnittmenge entscheidet, ob ihre Wahrscheinlichkeit abgezogen werden muss.</>}
   chart={`flowchart TD
   A["Schnittmenge von A und B aufschreiben"] --> B{"Ist die Schnittmenge leer?"}
   B -->|"ja, unvereinbar"| C["P(A) + P(B)"]
@@ -100,7 +100,7 @@ Es gibt <InlineMath math="13" /> Herzkarten, <InlineMath math="4" /> Könige und
 <BlockMath math="P(A \cup B) = \frac{13}{52} + \frac{4}{52} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13}" />
 
 <MathVisual
-  title="Die Anzahl der Karten in jedem Bereich des Venn-Diagramms"
+  title={<>Die Anzahl der Karten in jedem Bereich des Venn-Diagramms</>}
   description={<>Der Kreis <InlineMath math="A" /> enthält die 13 Herzkarten und der Kreis <InlineMath math="B" /> die 4 Könige. Der Herzkönig liegt in der Überschneidung.</>}
   scene={{
     space: "plane",
@@ -146,6 +146,43 @@ Von 40 Lernenden mögen 25 Mathematik, 18 Physik und 10 beides. Eine Person wird
 </MathContainer>
 
 Die zweite Wahrscheinlichkeit nutzt das **Gegenereignis**: Wer keines von beiden mag, liegt außerhalb von <InlineMath math="M \cup F" />. Probe mit den Bereichen im Venn-Diagramm: <InlineMath math="25 - 10 = 15" /> mögen nur Mathematik, <InlineMath math="18 - 10 = 8" /> nur Physik und <InlineMath math="10" /> beides. Das sind <InlineMath math="33" />, und <InlineMath math="40 - 33 = 7" /> Personen mögen keines von beiden.
+
+Füll das Venn-Diagramm von innen nach außen: 10 Schüler mögen beides, also mögen <InlineMath math="25 - 10 = 15" /> nur Mathematik und <InlineMath math="18 - 10 = 8" /> nur Physik. Zusammen sind das <InlineMath math="15 + 10 + 8 = 33" />, und die übrigen 7 mögen keins von beiden.
+
+<MathVisual
+  title={<>Die Umfrage im Venn-Diagramm</>}
+  description={<>Die Kreise <InlineMath math="M" /> und <InlineMath math="F" /> für Mathematik und Physik mit 15, 10 und 8 Schülern in ihren Bereichen und 7 außerhalb.</>}
+  labels={{
+    m: <InlineMath math="M" />,
+    f: <InlineMath math="F" />,
+    "only-m": <InlineMath math="15" />,
+    both: <InlineMath math="10" />,
+    "only-f": <InlineMath math="8" />,
+    neither: <InlineMath math="7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "s", kind: "polygon", vertices: [{ x: -19 / 5, y: -12 / 5 }, { x: 19 / 5, y: -12 / 5 }, { x: 19 / 5, y: 12 / 5 }, { x: -19 / 5, y: 12 / 5 }], appearance: "reference" },
+      { id: "m", kind: "circle", center: { x: -9 / 10, y: 0 }, radius: 17 / 10, appearance: "primary" },
+      { id: "f", kind: "circle", center: { x: 9 / 10, y: 0 }, radius: 17 / 10, appearance: "secondary" },
+      { id: "only-m", kind: "point", at: { x: -8 / 5, y: 0 }, appearance: "primary" },
+      { id: "both", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "only-f", kind: "point", at: { x: 8 / 5, y: 0 }, appearance: "secondary" },
+      { id: "neither", kind: "point", at: { x: 3, y: -9 / 5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: -9 / 10, y: 17 / 10 }, placement: "above" },
+      { key: "f", objectId: "f", at: { x: 9 / 10, y: 17 / 10 }, placement: "above" },
+      { key: "only-m", objectId: "only-m", at: { x: -8 / 5, y: 0 }, placement: "below" },
+      { key: "both", objectId: "both", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "only-f", objectId: "only-f", at: { x: 8 / 5, y: 0 }, placement: "below" },
+      { key: "neither", objectId: "neither", at: { x: 3, y: -9 / 5 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Typische Fehler
 

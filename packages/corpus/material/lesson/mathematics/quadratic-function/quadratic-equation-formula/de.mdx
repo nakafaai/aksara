@@ -3,7 +3,7 @@ export const metadata = {
   description: "Leite die Lösungsformel her, nutze die Diskriminante und löse quadratische Gleichungen anhand vollständig ausgearbeiteter Beispiele.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Quadratische Funktionen",
 };
 
@@ -110,6 +110,33 @@ Für <InlineMath math="x_2" /> wird das **Minuszeichen** gewählt:
 
 Die Lösungen sind <InlineMath math="x_1 = 3" /> und <InlineMath math="x_2 = \frac{1}{2}" />.
 
+Beispiel 2 im Graphen: <InlineMath math="y = 2x^2 - 7x + 3" /> schneidet die x-Achse bei <InlineMath math="x = \tfrac12" /> und <InlineMath math="x = 3" />, den beiden Werten, die die Formel als <InlineMath math="\frac{7 \pm 5}{4}" /> liefert.
+
+<MathVisual
+  title={<>Die Lösungen von <InlineMath math="2x^2 - 7x + 3 = 0" /></>}
+  description={<>Die Parabel <InlineMath math="y = 2x^2 - 7x + 3" />, die die x-Achse bei <InlineMath math="\tfrac12" /> und 3 schneidet.</>}
+  labels={{
+    curve: <InlineMath math="y = 2x^2 - 7x + 3" />,
+    r1: <InlineMath math="\tfrac12" />,
+    r2: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -7, c: 3 }, domain: { min: 0, max: 7 / 2 }, appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: 1 / 2, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 7 / 2, y: 3 }, placement: "left" },
+      { key: "r1", objectId: "r1", at: { x: 1 / 2, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "r2", at: { x: 3, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 ## Die Diskriminante
 
 Der Wert von <InlineMath math="D" /> bestimmt die <Highlight>Anzahl der Schnittpunkte mit der waagerechten Achse</Highlight>. In den drei Gleichungen verändert sich nur die Konstante. Eine größere Konstante verschiebt den Scheitelpunkt nach oben.
@@ -123,8 +150,8 @@ Der Wert von <InlineMath math="D" /> bestimmt die <Highlight>Anzahl der Schnittp
 Bei der ersten Gleichung liefert die Formel <InlineMath math="-3" /> und <InlineMath math="-2" />. Im Graphen sind das die waagerechten Koordinaten, bei denen der Funktionswert null ist. Der Scheitelpunkt liegt unterhalb der waagerechten Achse.
 
 <MathVisual
-  title="Zwei Lösungen als Achsenschnittpunkte"
-  description="Die Parabel x² + 5x + 6 schneidet die waagerechte Achse bei -3 und -2. Ihr Scheitelpunkt hat x = -2,5 und y = -0,25."
+  title={<>Zwei Lösungen als Achsenschnittpunkte</>}
+  description={<>Die Parabel <InlineMath math="x^2 + 5x + 6" /> schneidet die waagerechte Achse bei -3 und -2. Ihr Scheitelpunkt hat <InlineMath math="x = -2{,}5" /> und <InlineMath math="y = -0{,}25" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.2, max: -0.8 }, y: { min: -0.75, max: 2.5 } },
@@ -140,6 +167,36 @@ Bei der ersten Gleichung liefert die Formel <InlineMath math="-3" /> und <Inline
     ],
   }}
   labels={{ left: <InlineMath math="(-3,0)" />, right: <InlineMath math="(-2,0)" /> }}
+/>
+
+Erhöh das konstante Glied, und die Parabel rutscht nach oben. Mit <InlineMath math="c = 6" /> schneidet sie die x-Achse zweimal (<InlineMath math="D = 1" />), mit <InlineMath math="c = 6{,}25" /> berührt die Parabel sie nur bei <InlineMath math="-2{,}5" /> (<InlineMath math="D = 0" />), und mit <InlineMath math="c = 7" /> bleibt sie darüber (<InlineMath math="D = -3" />).
+
+<MathVisual
+  title={<>Die Diskriminante als Verschiebung</>}
+  description={<>Die Parabeln <InlineMath math="y = x^2 + 5x + c" /> für <InlineMath math="c = 6" />, <InlineMath math="6{,}25" /> und 7, mit zwei Schnittpunkten, einem Berührpunkt und keinem.</>}
+  labels={{
+    c6: <InlineMath math="c = 6" />,
+    c625: <InlineMath math="c = 6{,}25" />,
+    c7: <InlineMath math="c = 7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.3, max: -0.7 }, y: { min: -0.6, max: 3.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c6", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 6 }, domain: { min: -4, max: -1 }, appearance: "primary" },
+      { id: "c625", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 25 / 4 }, domain: { min: -4, max: -1 }, appearance: "highlight" },
+      { id: "c7", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 7 }, domain: { min: -4, max: -1 }, appearance: "secondary" },
+      { id: "r1", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "touch", kind: "point", at: { x: -5 / 2, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "c6", objectId: "c6", at: { x: -1, y: 2 }, placement: "right" },
+      { key: "c625", objectId: "c625", at: { x: -4, y: 9 / 4 }, placement: "left" },
+      { key: "c7", objectId: "c7", at: { x: -1, y: 3 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Zusammenhang zwischen Lösungen und Koeffizienten

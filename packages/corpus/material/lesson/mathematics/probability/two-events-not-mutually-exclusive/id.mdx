@@ -16,7 +16,7 @@ Dua kejadian **tidak saling lepas** jika keduanya bisa terjadi pada hasil yang s
 Irisan dikurangi **satu kali** karena hasil di irisan sudah terhitung di <InlineMath math="P(A)" /> dan terhitung lagi di <InlineMath math="P(B)" />.
 
 <MathVisual
-  title="Diagram Venn pelemparan satu dadu"
+  title={<>Diagram Venn pelemparan satu dadu</>}
   description={<>Kejadian <InlineMath math="A" /> = hasil genap dan <InlineMath math="B" /> = hasil lebih dari 3. Hasil 4 dan 6 berada di irisan kedua lingkaran.</>}
   scene={{
     space: "plane",
@@ -81,8 +81,8 @@ Hitung dulu banyak anggotanya. Jika <InlineMath math="n(A)" /> dan <InlineMath m
 Bagi setiap suku dengan <InlineMath math="n(S)" /> untuk ruang sampel yang setiap hasilnya sama mungkin, maka diperoleh rumus peluangnya. Rumus peluang itu sendiri berlaku untuk ruang sampel apa pun, hanya pembagian dengan <InlineMath math="n(S)" /> yang memerlukan syarat sama mungkin. Untuk dadu, <InlineMath math="3 + 3 - 2 = 4" /> anggota, sama dengan daftar <InlineMath math="\{2, 4, 5, 6\}" />. Tanpa pengurangan, nilainya <InlineMath math="\frac{6}{6} = 1" />, seolah setiap lemparan pasti masuk <InlineMath math="A" /> atau <InlineMath math="B" />, padahal mata 1 dan 3 tidak masuk <InlineMath math="A" /> maupun <InlineMath math="B" />.
 
 <Mermaid
-  title="Memilih rumus peluang A atau B"
-  description="Isi irisan menentukan apakah peluang irisan perlu dikurangkan."
+  title={<>Memilih rumus peluang A atau B</>}
+  description={<>Isi irisan menentukan apakah peluang irisan perlu dikurangkan.</>}
   chart={`flowchart TD
   A["Tulis isi irisan A dan B"] --> B{"Irisannya kosong?"}
   B -->|"ya, saling lepas"| C["P(A) + P(B)"]
@@ -100,7 +100,7 @@ Ada <InlineMath math="13" /> kartu hati, <InlineMath math="4" /> kartu king, dan
 <BlockMath math="P(A \cup B) = \frac{13}{52} + \frac{4}{52} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13}" />
 
 <MathVisual
-  title="Banyak kartu di setiap daerah diagram Venn"
+  title={<>Banyak kartu di setiap daerah diagram Venn</>}
   description={<>Lingkaran <InlineMath math="A" /> memuat 13 kartu hati dan lingkaran <InlineMath math="B" /> memuat 4 kartu king. King hati berada di irisan.</>}
   scene={{
     space: "plane",
@@ -146,6 +146,43 @@ Dari 40 siswa, 25 suka matematika, 18 suka fisika, dan 10 suka keduanya. Satu si
 </MathContainer>
 
 Peluang kedua memakai **komplemen**: siswa yang tidak suka keduanya adalah semua siswa di luar <InlineMath math="M \cup F" />. Periksa dengan daerah Venn: <InlineMath math="25 - 10 = 15" /> hanya matematika, <InlineMath math="18 - 10 = 8" /> hanya fisika, dan <InlineMath math="10" /> keduanya. Jumlahnya <InlineMath math="33" />, dan <InlineMath math="40 - 33 = 7" /> siswa tidak suka keduanya.
+
+Isi diagram Venn dari dalam ke luar: 10 siswa menyukai keduanya, jadi <InlineMath math="25 - 10 = 15" /> hanya menyukai matematika dan <InlineMath math="18 - 10 = 8" /> hanya fisika. Bersama-sama <InlineMath math="15 + 10 + 8 = 33" />, dan 7 sisanya tidak menyukai keduanya.
+
+<MathVisual
+  title={<>Survei dalam diagram Venn</>}
+  description={<>Lingkaran <InlineMath math="M" /> dan <InlineMath math="F" /> untuk matematika dan fisika dengan 15, 10, dan 8 siswa di daerahnya serta 7 di luar keduanya.</>}
+  labels={{
+    m: <InlineMath math="M" />,
+    f: <InlineMath math="F" />,
+    "only-m": <InlineMath math="15" />,
+    both: <InlineMath math="10" />,
+    "only-f": <InlineMath math="8" />,
+    neither: <InlineMath math="7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "s", kind: "polygon", vertices: [{ x: -19 / 5, y: -12 / 5 }, { x: 19 / 5, y: -12 / 5 }, { x: 19 / 5, y: 12 / 5 }, { x: -19 / 5, y: 12 / 5 }], appearance: "reference" },
+      { id: "m", kind: "circle", center: { x: -9 / 10, y: 0 }, radius: 17 / 10, appearance: "primary" },
+      { id: "f", kind: "circle", center: { x: 9 / 10, y: 0 }, radius: 17 / 10, appearance: "secondary" },
+      { id: "only-m", kind: "point", at: { x: -8 / 5, y: 0 }, appearance: "primary" },
+      { id: "both", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "only-f", kind: "point", at: { x: 8 / 5, y: 0 }, appearance: "secondary" },
+      { id: "neither", kind: "point", at: { x: 3, y: -9 / 5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: -9 / 10, y: 17 / 10 }, placement: "above" },
+      { key: "f", objectId: "f", at: { x: 9 / 10, y: 17 / 10 }, placement: "above" },
+      { key: "only-m", objectId: "only-m", at: { x: -8 / 5, y: 0 }, placement: "below" },
+      { key: "both", objectId: "both", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "only-f", objectId: "only-f", at: { x: 8 / 5, y: 0 }, placement: "below" },
+      { key: "neither", objectId: "neither", at: { x: 3, y: -9 / 5 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Kesalahan yang Sering Terjadi
 
