@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Kakek memberi Bima sisi yang selama ini dipakainya sebagai tanda ia mulai mengajari Bima secara terbuka",
+            "Kakek memberi Bima sisi yang selama ini dipakainya, sebagai tanda ia mulai mengajari Bima secara terbuka",
         },
         {
           correct: false,

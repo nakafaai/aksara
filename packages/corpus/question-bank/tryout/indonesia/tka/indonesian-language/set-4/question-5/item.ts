@@ -16,13 +16,16 @@ const item: ItemSource = {
       ],
       kind: "matrix",
       statements: [
-        { column: 3, label: "Kotak saran tanpa nama dipasang di balai desa." },
+        {
+          column: 3,
+          label: "Kotak saran tanpa nama akan dipasang di balai desa.",
+        },
         {
           column: 1,
           label: "Panel di bawah pohon ketapang tertutup daun dan debu.",
         },
         { column: 2, label: "Warga membersihkan panel setiap hari Jumat." },
-        { column: 3, label: "Curah hujan dicatat setiap hari." },
+        { column: 3, label: "Curah hujan akan dicatat setiap hari." },
       ],
     },
   },

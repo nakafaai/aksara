@@ -35,7 +35,7 @@ export const tkaEnglishTrack = {
     en: "english",
     id: "bahasa-inggris",
   },
-  sets: Arr.map([1, 2, 3, 4], (setNumber) => {
+  sets: Arr.map([1, 2, 3, 4, 5], (setNumber) => {
     const setKey = `set-${setNumber}`;
     return {
       key: setKey,

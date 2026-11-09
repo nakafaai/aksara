@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "jumlah lampu yang mati meningkat pada bulan April karena panel yang terhalang tidak mengisi baterai dengan baik",
+            "jumlah lampu yang mati meningkat pada bulan April, dan teknisi menemukan panel terhalang yang membuat baterai tidak terisi penuh",
         },
         {
           correct: false,

@@ -21,7 +21,10 @@ const item: ItemSource = {
           column: 1,
           label: "Selisih pada kantin pertama pernah lebih dari sepertiga.",
         },
-        { column: 3, label: "Stok dicatat dua kali sehari mulai Oktober." },
+        {
+          column: 3,
+          label: "Stok akan dicatat dua kali sehari mulai Oktober.",
+        },
         { column: 2, label: "Harga dibulatkan ke kelipatan seribu rupiah." },
       ],
     },

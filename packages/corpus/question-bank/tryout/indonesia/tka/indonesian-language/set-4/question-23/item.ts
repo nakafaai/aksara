@@ -22,7 +22,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "*Kode QR* berarti nomor urut antrean siswa di kantin.",
+          label:
+            "*Kantin* berarti kotak tempat siswa memasukkan uang pembayaran.",
         },
         {
           correct: true,
