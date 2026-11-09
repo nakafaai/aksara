@@ -28,7 +28,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "*Kampanye* berarti kegiatan terencana untuk mengajak siswa melakukan sesuatu.",
+            "*Informasi* berarti keterangan atau pemberitahuan yang disampaikan kepada siswa.",
         },
       ],
     },

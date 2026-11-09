@@ -12,15 +12,15 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         { correct: true, label: "She is forgiving when accidents happen." },
-        { correct: true, label: "She expects Raka to use the film carefully." },
+        { correct: true, label: "She expects Bayu to use the film carefully." },
         {
           correct: false,
-          label: "She cares more about the camera than about Raka's feelings.",
+          label: "She cares more about the camera than about Bayu's feelings.",
         },
         {
           correct: true,
           label:
-            "She wants Raka to keep the habit of thinking before taking pictures.",
+            "She wants Bayu to keep the habit of thinking before taking pictures.",
         },
       ],
     },

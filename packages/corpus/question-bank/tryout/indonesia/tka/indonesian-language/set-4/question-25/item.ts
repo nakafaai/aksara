@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "rencana itu menggantikan kampanye “Bayar Dulu, Baru Pergi” yang digelar OSIS",
+            "rencana itu dibuat agar siswa tidak perlu lagi membayar dengan uang tunai",
         },
         {
           correct: false,

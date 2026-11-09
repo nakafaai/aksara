@@ -27,7 +27,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "kampanye OSIS menyebabkan kerugian koperasi bertambah",
+          label:
+            "siswa yang belum terbiasa membuat selisih bulan September naik",
         },
         {
           correct: false,

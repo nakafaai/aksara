@@ -6,33 +6,31 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "main-idea-purpose",
   },
-  stimulus: "phone-free-lunch",
+  stimulus: "library-hours",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "to explain how the student council carried out a survey",
+          label: "to describe the books and equipment in the school library",
         },
         {
           correct: false,
-          label: "to describe what students usually eat in the canteen",
+          label: "to report how the library club carried out its survey",
         },
         {
           correct: false,
-          label:
-            "to argue that phones should be banned for the whole school day",
+          label: "to argue that the library should also open on weekends",
         },
         {
           correct: false,
-          label:
-            "to report that phones are the main cause of students' tiredness",
+          label: "to complain that the librarian works too few hours",
         },
         {
           correct: true,
           label:
-            "to persuade the school to ask students to keep their phones away during lunch",
+            "to persuade the school to keep the library open until five in the afternoon",
         },
       ],
     },

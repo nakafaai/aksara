@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "reader-response",
   },
-  stimulus: "phone-free-lunch",
+  stimulus: "library-hours",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "“I disagree, because the survey shows that phone-free lunches make students tired.”",
+            "“I disagree, because the log shows that students rarely use the library.”",
         },
         {
           correct: false,
           label:
-            "“I agree completely, because the numbers prove that phones ruin friendships.”",
+            "“I agree completely, because the survey proves that every student needs a quiet place to study.”",
         },
         {
           correct: false,
           label:
-            "“The idea is pointless, because the writer admits the data cannot prove anything.”",
+            "“The idea is pointless, because the writer admits that the log counts some students twice.”",
         },
         {
           correct: true,
           label:
-            "“The idea seems worth trying, and the school could test it for longer to see whether the difference lasts.”",
+            "“The plan sounds reasonable, and counting visits after a trial semester would show whether the longer hours are really used.”",
         },
         {
           correct: false,
           label:
-            "“The writer should have asked for phones to be banned during lessons instead.”",
+            "“The writer should have asked for a longer lunch break instead.”",
         },
       ],
     },

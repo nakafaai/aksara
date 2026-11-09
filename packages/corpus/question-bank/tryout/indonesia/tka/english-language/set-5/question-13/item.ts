@@ -11,12 +11,12 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Aunt Wulan lends Raka her film camera" },
+        { correct: false, label: "Aunt Ratih lends Bayu her film camera" },
         {
           correct: false,
-          label: "Raka walks around the harbor and takes three pictures",
+          label: "Bayu walks around the harbor and takes three pictures",
         },
-        { correct: false, label: "Raka gives his prize money to his aunt" },
+        { correct: false, label: "Bayu gives his prize money to his aunt" },
         {
           correct: true,
           label: "the lens cap rolls between the rocks into the water",

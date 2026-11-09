@@ -6,34 +6,31 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "summary",
   },
-  stimulus: "phone-free-lunch",
+  stimulus: "library-hours",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The writer rejects the idea that students need time to relax.",
+          label: "The writer rejects the teachers' concern as unimportant.",
         },
         {
           correct: false,
-          label:
-            "The writer asks the school to collect phones for the whole day.",
+          label: "The writer asks the school to hire three new librarians.",
         },
         {
           correct: true,
           label:
-            "The writer accepts a counterargument but limits the rule to lunch break.",
+            "The writer accepts a concern about cost and suggests volunteers and a one-semester trial.",
         },
         {
           correct: false,
-          label: "The writer reports new survey results about relaxation.",
+          label: "The writer reports new figures from the visitor log.",
         },
         {
           correct: false,
-          label:
-            "The writer explains how to use the phone in the school office.",
+          label: "The writer explains how students can join the library club.",
         },
       ],
     },

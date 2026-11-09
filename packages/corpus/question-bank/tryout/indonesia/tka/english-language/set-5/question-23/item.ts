@@ -6,29 +6,30 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "synthesis",
   },
-  stimulus: "phone-free-lunch",
+  stimulus: "library-hours",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "The survey proves that phones cause students to feel tired.",
+          label:
+            "The log proves that 58 different students visit the library every afternoon.",
         },
         {
           correct: true,
           label:
-            "More students felt rested after lunch in week 2 than in week 1.",
+            "Visits are highest in the two hours before the library closes.",
         },
         {
           correct: false,
           label:
-            "Students in week 2 were not the same students who answered in week 1.",
+            "Most of the survey answers came from students who do not use the library.",
         },
         {
           correct: true,
           label:
-            "The results are based on what students reported about themselves.",
+            "The number of visits rises from the morning to the early afternoon.",
         },
       ],
     },

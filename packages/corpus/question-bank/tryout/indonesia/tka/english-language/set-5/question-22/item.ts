@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "supporting-detail",
   },
-  stimulus: "phone-free-lunch",
+  stimulus: "library-hours",
   versions: {
     en: {
       kind: "choice",
@@ -14,24 +14,24 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "The number of students who talked with someone new rose from 18 to 39.",
-        },
-        {
-          correct: false,
-          label: "The number of students who felt rested rose from 46 to 71.",
+            "64 of the 200 students who answered share a room with younger siblings or live next to a busy road.",
         },
         {
           correct: false,
           label:
-            "The student council asked 120 students about their afternoons.",
+            "The library receives an average of 58 visits per day between 12.00 and 14.00.",
         },
         {
           correct: false,
-          label: "Lunch break at the school lasts thirty minutes.",
+          label: "The library already has tables, fans, and Wi-Fi.",
         },
         {
           correct: false,
-          label: "Students can still use a phone at the school office.",
+          label: "Members of the library club have offered to help on a rota.",
+        },
+        {
+          correct: false,
+          label: "The library closes at two o'clock, right when lessons end.",
         },
       ],
     },
