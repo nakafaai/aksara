@@ -4,9 +4,7 @@ import { Schema } from "effect";
 import {
   FigureNodeSchema,
   ImageSchema,
-  LineEquationPropsSchema,
   MathVisualPropsSchema,
-  NumberLinePropsSchema,
 } from "#contracts/assessment/figure";
 import {
   decodeStrict,
@@ -14,27 +12,16 @@ import {
   text,
 } from "#contracts/test/assessment/document";
 import {
-  circleFigure,
   diagramFigure,
-  fixedPointsLine,
-  lineFigure,
-  lineProps,
-  numberLineFigure,
-  numberLineProps,
+  regionFigure,
   tankFigure,
   tankProps,
 } from "#contracts/test/assessment/figure";
 
-const FIGURES = [
-  tankFigure,
-  numberLineFigure,
-  lineFigure,
-  diagramFigure,
-  circleFigure,
-];
+const FIGURES = [tankFigure, regionFigure, diagramFigure];
 
 describe("figure nodes", () => {
-  it("decodes one figure of each of the five components with the props the corpus uses", () => {
+  it("decodes a space scene, a plane scene with a caption, and a diagram, with the props the corpus uses", () => {
     for (const figure of FIGURES) {
       const decoded = decodeStrict(FigureNodeSchema, figure);
 
@@ -60,7 +47,18 @@ describe("figure nodes", () => {
     }
   });
 
-  it("accepts only the five components and types the props of each", () => {
+  it("refuses the retired number line, line equation and unit circle, which MathVisual draws", () => {
+    for (const component of ["LineEquation", "NumberLine", "UnitCircle"]) {
+      expect(
+        failsStrict(FigureNodeSchema, {
+          ...regionFigure,
+          attrs: { ...regionFigure.attrs, component },
+        })
+      ).toBe(true);
+    }
+  });
+
+  it("accepts only the three components and types the props of each", () => {
     expect(
       failsStrict(FigureNodeSchema, {
         ...tankFigure,
@@ -139,124 +137,6 @@ describe("MathVisual props", () => {
         scene: { ...tankProps.scene, space: "line" },
       })
     ).toBe(true);
-  });
-});
-
-describe("NumberLine props", () => {
-  const [first, second] = numberLineProps.segments;
-
-  it("writes infinity as a word, because JSON cannot hold it", () => {
-    expect(failsStrict(NumberLinePropsSchema, numberLineProps)).toBe(false);
-    for (const start of [Number.NEGATIVE_INFINITY, "infinity"]) {
-      expect(
-        failsStrict(NumberLinePropsSchema, {
-          ...numberLineProps,
-          segments: [{ ...first, start }],
-        })
-      ).toBe(true);
-    }
-  });
-
-  it("keeps a segment and the visible range running upward", () => {
-    expect(
-      failsStrict(NumberLinePropsSchema, {
-        ...numberLineProps,
-        segments: [{ ...second, end: -4, start: 7 }],
-      })
-    ).toBe(true);
-    expect(
-      failsStrict(NumberLinePropsSchema, {
-        ...numberLineProps,
-        segments: [{ ...second, end: 7, start: 7 }],
-      })
-    ).toBe(false);
-    expect(
-      failsStrict(NumberLinePropsSchema, {
-        ...numberLineProps,
-        max: -5,
-        min: 9,
-      })
-    ).toBe(true);
-    const { max: _max, min: _min, ...withoutRange } = numberLineProps;
-
-    expect(failsStrict(NumberLinePropsSchema, withoutRange)).toBe(false);
-  });
-
-  it("allows a background of transparent only, because color carries no meaning", () => {
-    expect(
-      failsStrict(NumberLinePropsSchema, {
-        ...numberLineProps,
-        segments: [{ ...second, backgroundColor: "#ff0000" }],
-      })
-    ).toBe(true);
-  });
-});
-
-describe("LineEquation props", () => {
-  const [first, second] = lineProps.data;
-  const {
-    cameraPosition: _position,
-    cameraTarget: _target,
-    ...withoutCamera
-  } = lineProps;
-
-  /** Tells whether the props fail when the given fields replace those of a base. */
-  const fails = (fields: object, base: object = lineProps) =>
-    failsStrict(LineEquationPropsSchema, { ...base, ...fields });
-
-  it("needs every point index and label place to name a point", () => {
-    expect(fails({})).toBe(false);
-    for (const line of [
-      { ...second, pointIndices: [0, 4] },
-      { ...first, labels: [{ at: 4, text: [text("D")] }] },
-    ]) {
-      expect(fails({ data: [line] })).toBe(true);
-    }
-    for (const line of [
-      { ...first, labels: [{ text: [text("D")] }] },
-      { color: "#9333ea", points: [{ x: 0, y: 0, z: 0 }] },
-    ]) {
-      expect(fails({ data: [line] })).toBe(false);
-    }
-  });
-
-  it("draws a series of width zero as its points alone, and never a negative width", () => {
-    for (const lineWidth of [0, 1, 4]) {
-      expect(fails({ data: [{ ...fixedPointsLine, lineWidth }] })).toBe(false);
-    }
-    expect(fails({ data: [{ ...fixedPointsLine, lineWidth: -1 }] })).toBe(true);
-  });
-
-  it("keeps the camera away from its target, whether or not the pose is written out", () => {
-    // The scene looks at the origin when no target is given, and the card puts
-    // the camera at (10, 6, 10) when no position is given.
-    for (const camera of [
-      { cameraPosition: [0.5, 3, 0], cameraTarget: [0.5, 3, 0] },
-      { cameraPosition: [0, 0, 0] },
-      { cameraTarget: [10, 6, 10] },
-    ]) {
-      expect(fails(camera, withoutCamera)).toBe(true);
-    }
-    for (const camera of [
-      {},
-      { cameraPosition: [0, 0, 20] },
-      { cameraTarget: [0, 2, 5] },
-      { cameraPosition: [1, 2, 20], cameraTarget: [1, 2, 0] },
-    ]) {
-      expect(fails(camera, withoutCamera)).toBe(false);
-    }
-  });
-
-  it("leaves out the circle shapes that only lessons draw", () => {
-    const arc = {
-      color: "#9333ea",
-      kind: "circle-arc",
-      radius: 1,
-      startDegrees: 0,
-      sweepDegrees: 90,
-    };
-
-    expect(fails({ data: [arc] })).toBe(true);
   });
 });
 

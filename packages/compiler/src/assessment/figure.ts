@@ -24,14 +24,7 @@ import {
 } from "#compiler/assessment/inline";
 
 /** The renderer components that a document draws as figures. */
-export const FIGURE_COMPONENTS = [
-  "Chart",
-  "LineEquation",
-  "MathVisual",
-  "Mermaid",
-  "NumberLine",
-  "UnitCircle",
-] as const;
+export const FIGURE_COMPONENTS = ["Chart", "MathVisual", "Mermaid"] as const;
 
 /** One renderer component that a document draws as a figure. */
 const FigureComponentSchema = Schema.Literals(FIGURE_COMPONENTS);
@@ -72,74 +65,17 @@ function richMembers(
   );
 }
 
-/** Checks whether a value of the tree is a list. */
-function isTreeList(
-  value: ContentTreeValue | undefined
-): value is readonly ContentTreeValue[] {
-  return Arr.isArray(value);
-}
-
-/** Converts the members of each record in one list prop. */
-function listMember(
-  record: ContentTreeProps,
-  key: string,
-  convert: (
-    item: ContentTreeProps
-  ) => Effect.Effect<Members, AssessmentSourceError>
-): Effect.Effect<Members, AssessmentSourceError> {
-  const list = record[key];
-  if (!isTreeList(list)) {
-    return Effect.succeed({});
-  }
-  return Effect.map(
-    Effect.forEach(
-      list,
-      (item): Effect.Effect<unknown, AssessmentSourceError> =>
-        isTreeRecord(item)
-          ? Effect.map(convert(item), (members) => ({ ...item, ...members }))
-          : Effect.succeed(item)
-    ),
-    (items) => ({ [key]: items })
-  );
-}
-
 /**
  * Converts the members of one figure component that its contract takes as rich
  * text. A scene without label anchors is authored without labels, so a missing
  * `labels` is the empty record that the contract checks against the scene; the
- * authoring policy refuses labels that are no object. A number line segment
- * authored without a start or an end is a ray to the edge of the axis, as the
- * renderer draws it, which the contract names minus or plus infinity.
+ * authoring policy refuses labels that are no object.
  */
 function componentMembers(
   component: FigureComponent,
   props: ContentTreeProps,
   site: AssessmentSite
 ): Effect.Effect<Members, AssessmentSourceError> {
-  if (component === "LineEquation") {
-    return listMember(props, "data", (line) =>
-      listMember(line, "labels", (label) =>
-        richMembers(label, ["text"], component, site)
-      )
-    );
-  }
-  if (component === "NumberLine") {
-    return listMember(props, "segments", (segment) =>
-      Effect.map(
-        richMembers(
-          segment,
-          ["endLabel", "label", "startLabel"],
-          component,
-          site
-        ),
-        (members) => ({
-          end: segment.end ?? "infinity",
-          start: segment.start ?? "-infinity",
-          ...members,
-        })
-      )
-    );
-  }
   const labels = props.labels ?? {};
   if (component !== "MathVisual" || !isTreeRecord(labels)) {
     return Effect.succeed({});

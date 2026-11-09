@@ -19,8 +19,9 @@ and do not add a local override file or language mapping.
 Aksara compiles every prompt, reading, explanation, and option label into an
 Assessment Document, the data that Nakafa renders and Tiptap edits. These files
 therefore hold no `export const metadata` and no module code, and they use only
-Markdown, `InlineMath`, `BlockMath`, and the six figures: `Chart`,
-`LineEquation`, `MathVisual`, `Mermaid`, `NumberLine`, and `UnitCircle`. Mark a
+Markdown, `InlineMath`, `BlockMath`, and the three figures: `Chart`,
+`MathVisual`, and `Mermaid`. Every graph, number line, unit circle, region or
+construction is a `MathVisual` scene (D36). Mark a
 decisive phrase with `**phrase**`; `<Highlight>`, `<MathContainer>`,
 `<ContentStack>`, and `<AgentContext>` belong to lessons only. Consecutive
 `BlockMath` blocks render as one derivation. A figure says in words what it
