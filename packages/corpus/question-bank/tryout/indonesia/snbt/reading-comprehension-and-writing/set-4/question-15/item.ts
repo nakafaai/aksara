@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "title",
+  },
+  stimulus: "rain-gauge",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Rata-rata sesi uji lebih tinggi. Oleh karena itu, simpulan tentang pasar tukar buku tetap dibatasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Rata-rata sesi uji lebih tinggi. Selain itu, simpulan tentang pasar tukar buku tetap dibatasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Rata-rata sesi uji lebih tinggi. Sebelumnya, simpulan tentang pasar tukar buku tetap dibatasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Rata-rata sesi uji lebih tinggi. Akibatnya, simpulan tentang pasar tukar buku tetap dibatasi.",
+          label: "Musim Hujan di Lembang",
         },
         {
           correct: true,
           label:
-            "Rata-rata sesi uji lebih tinggi. Namun, simpulan tentang pasar tukar buku tetap dibatasi.",
+            "Penakar Hujan Siswa Mengungkap Penyebab Genangan di Lapangan Sekolah",
+        },
+        {
+          correct: false,
+          label: "Cara Membuat Penakar Hujan dari Botol Bekas",
+        },
+        {
+          correct: false,
+          label: "Biaya Memperbesar Saluran Air Sekolah",
+        },
+        {
+          correct: false,
+          label: "Upacara Sekolah yang Sering Dibatalkan",
         },
       ],
     },

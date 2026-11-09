@@ -1,32 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "author-purpose",
+  },
+  stimulus: "cassava-flour",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Label foto terbukti menyebabkan kenaikan rata-rata alat yang dikembalikan dengan tepat.",
+          label: "mengajak pembaca berhenti memakai tepung terigu",
         },
         {
           correct: false,
-          label: "Setiap peminjam mengalami peningkatan yang sama.",
+          label: "membandingkan harga tepung terigu dari tahun ke tahun",
+        },
+        {
+          correct: false,
+          label: "membuktikan bahwa kue dari tepung singkong lebih enak",
         },
         {
           correct: true,
           label:
-            "Rata-rata pengembalian yang tepat pada sesi uji melebihi rata-rata awal dan sesi pembanding.",
+            "menjelaskan cara membuat tepung singkong fermentasi dan alasan pembuat kue memakainya",
         },
         {
           correct: false,
-          label: "Rata-rata awal dan rata-rata sesi pembanding sama.",
-        },
-        {
-          correct: false,
-          label: "Uji singkat memastikan hasil jangka panjang.",
+          label:
+            "melaporkan hasil penelitian tentang bakteri baik pada singkong",
         },
       ],
     },

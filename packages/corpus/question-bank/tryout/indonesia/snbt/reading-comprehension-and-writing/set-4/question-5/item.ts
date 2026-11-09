@@ -1,30 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "inference",
+  },
+  stimulus: "mangrove-nursery",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Oleh karena itu",
+          label: "Bibit bakau tumbuh lebih cepat karena tidak terhalang pagar.",
         },
         {
           correct: false,
-          label: "Demikian pula",
+          label: "Abrasi di Desa Pasir Putih langsung berhenti.",
         },
         {
           correct: true,
-          label: "Namun",
+          label:
+            "Sebagian bibit dapat hanyut tersapu ombak sebelum akarnya kuat.",
         },
         {
           correct: false,
-          label: "Setelah itu",
+          label:
+            "Kepiting dan ikan kecil tidak mau tinggal di sela-sela akar bakau.",
         },
         {
           correct: false,
-          label: "Bahkan",
+          label: "Para nelayan tidak perlu lagi menyemai buah bakau.",
         },
       ],
     },

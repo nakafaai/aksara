@@ -1,34 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "effective-sentence",
+  },
+  stimulus: "mangrove-nursery",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Pengamatan awal membuktikan bahwa label foto menyebabkan perbedaan hasil.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim perlu mengubah beberapa unsur layanan sekaligus sebelum mengukur ulang.",
-        },
-        {
-          correct: false,
-          label: "Pola awal membenarkan penerapan permanen label foto.",
-        },
-        {
-          correct: false,
-          label:
-            "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
-        },
-        {
           correct: true,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji dengan menambahkan label foto pada rak.",
+            "Selain itu, sela-sela akar bakau menjadi tempat kepiting dan ikan kecil berkembang biak.",
+        },
+        {
+          correct: false,
+          label:
+            "Selain itu, di sela-sela akar bakau, menjadi tempat kepiting dan ikan kecil berkembang biak.",
+        },
+        {
+          correct: false,
+          label:
+            "Selain itu, di sela-sela akar bakau yang menjadi tempat kepiting dan ikan kecil berkembang biak.",
+        },
+        {
+          correct: false,
+          label:
+            "Selain itu, di sela-sela akar bakau dijadikan tempat kepiting dan ikan kecil berkembang biak.",
+        },
+        {
+          correct: false,
+          label:
+            "Selain itu, di sela-sela akar bakau pun menjadi tempat kepiting dan ikan kecil berkembang biak.",
         },
       ],
     },
