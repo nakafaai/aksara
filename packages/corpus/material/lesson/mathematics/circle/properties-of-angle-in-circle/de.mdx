@@ -13,106 +13,58 @@ export const metadata = {
 
 Umfangswinkel über **demselben Bogen** sind gleich groß, wenn ihre Scheitelpunkte auf demselben verbleibenden Bogen liegen, also im selben Kreissegment.
 
-<LineEquation
-  title="Umfangswinkel über demselben Bogen"
-  description="Eine Sehne mit zwei Winkeln, deren Scheitel auf demselben Kreisbogen liegen."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Umfangswinkel über demselben Bogen</>}
+  description={<>Eine Sehne mit zwei Winkeln, deren Scheitel auf demselben Kreisbogen liegen.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <>Bogen <InlineMath math="AB" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        {
-          x: 4 * Math.cos((5 * Math.PI) / 4),
-          y: 4 * Math.sin((5 * Math.PI) / 4),
-          z: 0,
-        },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-        {
-          x: 4 * Math.cos((5 * Math.PI) / 4),
-          y: 4 * Math.sin((5 * Math.PI) / 4),
-          z: 0,
-        },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        {
-          x: 4 * Math.cos((3 * Math.PI) / 4),
-          y: 4 * Math.sin((3 * Math.PI) / 4),
-          z: 0,
-        },
-      ],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="D" />, at: 1, offset: [-0.5, 0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-        {
-          x: 4 * Math.cos((3 * Math.PI) / 4),
-          y: 4 * Math.sin((3 * Math.PI) / 4),
-          z: 0,
-        },
-      ],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 46 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4) }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }, { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4) }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 4 * Math.cos((3 * Math.PI) / 4), y: 4 * Math.sin((3 * Math.PI) / 4) }], appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
+      { id: "s5-p1", kind: "point", at: { x: -2.83, y: 2.83 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }, { x: 4 * Math.cos((3 * Math.PI) / 4), y: 4 * Math.sin((3 * Math.PI) / 4) }], appearance: "highlight" },
+      { id: "s7", kind: "polyline", vertices: Array.from({ length: 46 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 22, offset: [0.3, 0.4, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l4", objectId: "s5", at: { x: -2.83, y: 2.83 }, placement: "above-left" },
+      { key: "l5", objectId: "s7", at: { x: 3.71, y: 1.5 }, placement: "above-right" },
+    ],
+  }}
 />
 
 **Eigenschaft**: <InlineMath math="\angle ACB = \angle ADB" />
@@ -123,81 +75,47 @@ Die Punkte <InlineMath math="C" /> und <InlineMath math="D" /> liegen auf dersel
 
 Der [Mittelpunktswinkel](/de/faecher/mathematik/kreisgeometrie/mittelpunkt-und-umfangswinkel) ist **doppelt so groß** wie der Umfangswinkel über demselben Bogen.
 
-<LineEquation
-  title="Mittelpunktswinkel und Umfangswinkel"
+<MathVisual
+  title={<>Mittelpunktswinkel und Umfangswinkel</>}
   description={
     <>
     Mittelpunktswinkel <InlineMath math="= 2 \times" /> Umfangswinkel für
     denselben Bogen.
     </>
   }
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="2\theta" />,
+    "l6": <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        {
-          x: 4 * Math.cos((5 * Math.PI) / 4),
-          y: 4 * Math.sin((5 * Math.PI) / 4),
-          z: 0,
-        },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-        {
-          x: 4 * Math.cos((5 * Math.PI) / 4),
-          y: 4 * Math.sin((5 * Math.PI) / 4),
-          z: 0,
-        },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4) }], appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "s4-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }, { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4) }], appearance: "answer" },
+      { id: "s6", kind: "polyline", vertices: Array.from({ length: 106 }, (_, sampleIndex) => {
         const i = sampleIndex / 7;
         const angle = (((i * 45) / 15) * Math.PI) / 180;
         return {
@@ -205,14 +123,8 @@ Der [Mittelpunktswinkel](/de/faecher/mathematik/kreisgeometrie/mittelpunkt-und-u
           y: 1.2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="2\theta" />, at: 49, offset: [0.5, 0.3, 0] }],
-    },
-    {
-      smooth: false,
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s7", kind: "polyline", vertices: ((() => {
         const C = {
           x: 4 * Math.cos((5 * Math.PI) / 4),
           y: 4 * Math.sin((5 * Math.PI) / 4),
@@ -223,7 +135,7 @@ Der [Mittelpunktswinkel](/de/faecher/mathematik/kreisgeometrie/mittelpunkt-und-u
           y: 4 * Math.sin(Math.PI / 4),
         };
 
-        // Winkel ACB am Punkt C berechnen
+        
         const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
         const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
 
@@ -236,14 +148,17 @@ Der [Mittelpunktswinkel](/de/faecher/mathematik/kreisgeometrie/mittelpunkt-und-u
             z: 0,
           };
         });
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\theta" />, at: 7, offset: [0.5, 0.5, 0] }],
-    },
-
-]}
-cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 1.12, y: 0.43 }, placement: "above-right" },
+      { key: "l6", objectId: "s7", at: { x: -2.16, y: -2.39 }, placement: "above-right" },
+    ],
+  }}
 />
 
 **Eigenschaft**: <InlineMath math="\angle AOB = 2 \times \angle ACB" />
@@ -252,69 +167,45 @@ cameraPosition={[0, 0, 12]}
 
 Jeder Umfangswinkel über einem <Highlight>Kreisdurchmesser</Highlight> ist ein rechter Winkel mit <InlineMath math="90^\circ" />.
 
-<LineEquation
-  title="Umfangswinkel über einem Durchmesser"
+<MathVisual
+  title={<>Umfangswinkel über einem Durchmesser</>}
   description={<>Ein Umfangswinkel über einem Durchmesser beträgt immer <InlineMath math="90^\circ" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="O" />,
+    "l5": <InlineMath math="90^\circ" />,
+    "l6": <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.5, 0, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 0, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [0, 0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        { x: 0, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#d97706",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
-    },
-    {
-      smooth: false,
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 0, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: ((() => {
         const C = { x: 0, y: 4 };
         const A = { x: -4, y: 0 };
         const B = { x: 4, y: 0 };
 
-        // Winkel ACB am Punkt C berechnen (should be 90°)
+        
         const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
         const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
 
@@ -327,41 +218,21 @@ Jeder Umfangswinkel über einem <Highlight>Kreisdurchmesser</Highlight> ist ein 
             z: 0,
           };
         });
-      })(),
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="90^\circ" />, at: 7, offset: [-0.3, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        {
-          x: 4 * Math.cos((5 * Math.PI) / 4),
-          y: 4 * Math.sin((5 * Math.PI) / 4),
-          z: 0,
-        },
-      ],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="D" />, at: 1, offset: [-0.5, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        {
-          x: 4 * Math.cos((5 * Math.PI) / 4),
-          y: 4 * Math.sin((5 * Math.PI) / 4),
-          z: 0,
-        },
-      ],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-    },
-
-]}
-cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4) }], appearance: "warning" },
+      { id: "s7-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "warning" },
+      { id: "s7-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "warning" },
+      { id: "s8", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4) }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -4, y: 0 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "l5", objectId: "s6", at: { x: -0.04, y: 3.2 }, placement: "below-left" },
+      { key: "l6", objectId: "s7", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+    ],
+  }}
 />
 
 **Eigenschaft**: Wenn <InlineMath math="AB" /> ein Durchmesser ist, dann <InlineMath math="\angle ACB = \angle ADB = 90^\circ" />
@@ -374,28 +245,37 @@ Ein Sehnenviereck hat vier Eckpunkte auf einer Kreislinie. Zwei **gegenüberlieg
 
 <BlockMath math="\alpha+\gamma=\frac{1}{2}\times360^\circ=180^\circ" />
 
-<LineEquation
-  title="Viereck mit gegenüberliegenden Winkeln"
-  description="Zwei gegenüberliegende Winkel überspannen Bögen, die den Kreis vervollständigen."
-  data={(() => {
-    const point = (degrees) => ({ x: 4 * Math.cos(degrees * Math.PI / 180), y: 4 * Math.sin(degrees * Math.PI / 180), z: 0 });
-    const A = point(0), B = point(80), C = point(200), D = point(280);
-    const E = { x: A.x + 0.4 * (A.x - B.x), y: A.y + 0.4 * (A.y - B.y), z: 0 };
-    const arc = (vertex, start, end) => {
-      const a = Math.atan2(start.y - vertex.y, start.x - vertex.x);
-      let delta = Math.atan2(end.y - vertex.y, end.x - vertex.x) - a;
-      if (delta > Math.PI) delta -= 2 * Math.PI;
-      if (delta < -Math.PI) delta += 2 * Math.PI;
-      return Array.from({ length: 31 }, (_, i) => ({ x: vertex.x + 0.65 * Math.cos(a + delta * i / 30), y: vertex.y + 0.65 * Math.sin(a + delta * i / 30), z: 0 }));
-    };
-    return [
-      { kind: "circle-outline", radius: 4, color: "#9333ea", showPoints: false },
-      { points: [A, B, C, D, A], smooth: false, color: "#ea580c", showPoints: true, labels: [{ text: <InlineMath math="A" />, at: 0, offset: [0.35, 0.2, 0] }, { text: <InlineMath math="B" />, at: 1, offset: [0, 0.4, 0] }, { text: <InlineMath math="C" />, at: 2, offset: [-0.4, 0, 0] }, { text: <InlineMath math="D" />, at: 3, offset: [0, -0.4, 0] }] },
-      { points: arc(A, D, B), smooth: false, color: "#0891b2", showPoints: false, labels: [{ text: <InlineMath math="\alpha" />, at: 15, offset: [0, -0.35, 0] }] },
-      { points: arc(C, B, D), smooth: false, color: "#db2777", showPoints: false, labels: [{ text: <InlineMath math="\gamma" />, at: 15, offset: [0.3, 0.3, 0] }] },
-    ];
-  })()}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Viereck mit gegenüberliegenden Winkeln</>}
+  description={<>Zwei gegenüberliegende Winkel überspannen Bögen, die den Kreis vervollständigen.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="\alpha" />,
+    "l6": <InlineMath math="\gamma" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0.69, y: 3.94 }, { x: -3.76, y: -1.37 }, { x: 0.69, y: -3.94 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 0.69, y: -3.94 }, to: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3.58, y: -0.5 }, { x: 3.55, y: -0.47 }, { x: 3.53, y: -0.45 }, { x: 3.5, y: -0.42 }, { x: 3.48, y: -0.39 }, { x: 3.46, y: -0.36 }, { x: 3.44, y: -0.32 }, { x: 3.42, y: -0.29 }, { x: 3.4, y: -0.26 }, { x: 3.39, y: -0.22 }, { x: 3.38, y: -0.19 }, { x: 3.37, y: -0.15 }, { x: 3.36, y: -0.11 }, { x: 3.35, y: -0.08 }, { x: 3.35, y: -0.04 }, { x: 3.35, y: 0 }, { x: 3.35, y: 0.04 }, { x: 3.35, y: 0.08 }, { x: 3.36, y: 0.11 }, { x: 3.37, y: 0.15 }, { x: 3.38, y: 0.19 }, { x: 3.39, y: 0.22 }, { x: 3.4, y: 0.26 }, { x: 3.42, y: 0.29 }, { x: 3.44, y: 0.32 }, { x: 3.46, y: 0.36 }, { x: 3.48, y: 0.39 }, { x: 3.5, y: 0.42 }, { x: 3.53, y: 0.45 }, { x: 3.55, y: 0.47 }, { x: 3.58, y: 0.5 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3.34, y: -0.87 }, { x: -3.32, y: -0.89 }, { x: -3.3, y: -0.91 }, { x: -3.28, y: -0.93 }, { x: -3.26, y: -0.96 }, { x: -3.24, y: -0.98 }, { x: -3.22, y: -1 }, { x: -3.2, y: -1.03 }, { x: -3.19, y: -1.06 }, { x: -3.17, y: -1.08 }, { x: -3.16, y: -1.11 }, { x: -3.15, y: -1.14 }, { x: -3.14, y: -1.17 }, { x: -3.13, y: -1.2 }, { x: -3.12, y: -1.23 }, { x: -3.12, y: -1.26 }, { x: -3.11, y: -1.29 }, { x: -3.11, y: -1.32 }, { x: -3.11, y: -1.35 }, { x: -3.11, y: -1.38 }, { x: -3.11, y: -1.41 }, { x: -3.11, y: -1.44 }, { x: -3.12, y: -1.47 }, { x: -3.12, y: -1.5 }, { x: -3.13, y: -1.53 }, { x: -3.14, y: -1.55 }, { x: -3.15, y: -1.58 }, { x: -3.16, y: -1.61 }, { x: -3.17, y: -1.64 }, { x: -3.18, y: -1.67 }, { x: -3.2, y: -1.69 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.69, y: 3.94 }, placement: "above" },
+      { key: "l3", objectId: "s2", at: { x: -3.76, y: -1.37 }, placement: "left" },
+      { key: "l4", objectId: "s2", at: { x: 0.69, y: -3.94 }, placement: "below" },
+      { key: "l5", objectId: "s3", at: { x: 3.35, y: 0 }, placement: "below" },
+      { key: "l6", objectId: "s4", at: { x: -3.12, y: -1.26 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Im Bild beträgt Winkel <InlineMath math="A" /> <InlineMath math="100^\circ" /> und Winkel <InlineMath math="C" /> <InlineMath math="80^\circ" />. Die Winkel müssen also keine rechten Winkel sein.
@@ -408,29 +288,40 @@ Verlängere die Seite <InlineMath math="BA" /> bis <InlineMath math="E" />. Der 
 
 <BlockMath math="\varepsilon=180^\circ-\alpha=\gamma" />
 
-<LineEquation
-  title="Außenwinkel und gegenüberliegender Innenwinkel"
-  description="Eine verlängerte Seite bildet einen Außenwinkel, der dem gegenüberliegenden Innenwinkel entspricht."
-  data={(() => {
-    const point = (degrees) => ({ x: 4 * Math.cos(degrees * Math.PI / 180), y: 4 * Math.sin(degrees * Math.PI / 180), z: 0 });
-    const A = point(0), B = point(80), C = point(200), D = point(280);
-    const E = { x: A.x + 0.4 * (A.x - B.x), y: A.y + 0.4 * (A.y - B.y), z: 0 };
-    const arc = (vertex, start, end) => {
-      const a = Math.atan2(start.y - vertex.y, start.x - vertex.x);
-      let delta = Math.atan2(end.y - vertex.y, end.x - vertex.x) - a;
-      if (delta > Math.PI) delta -= 2 * Math.PI;
-      if (delta < -Math.PI) delta += 2 * Math.PI;
-      return Array.from({ length: 31 }, (_, i) => ({ x: vertex.x + 0.65 * Math.cos(a + delta * i / 30), y: vertex.y + 0.65 * Math.sin(a + delta * i / 30), z: 0 }));
-    };
-    return [
-      { kind: "circle-outline", radius: 4, color: "#9333ea", showPoints: false },
-      { points: [A, B, C, D, A], smooth: false, color: "#ea580c", showPoints: true, labels: [{ text: <InlineMath math="A" />, at: 0, offset: [0.35, 0.2, 0] }, { text: <InlineMath math="B" />, at: 1, offset: [0, 0.4, 0] }, { text: <InlineMath math="C" />, at: 2, offset: [-0.4, 0, 0] }, { text: <InlineMath math="D" />, at: 3, offset: [0, -0.4, 0] }] },
-      { points: arc(A, D, E), smooth: false, color: "#0891b2", showPoints: false, labels: [{ text: <InlineMath math="\varepsilon" />, at: 15, offset: [0, -0.35, 0] }] },
-      { points: arc(C, B, D), smooth: false, color: "#db2777", showPoints: false, labels: [{ text: <InlineMath math="\gamma" />, at: 15, offset: [0.3, 0.3, 0] }] },
-      { points: [A, E], smooth: false, color: "#0891b2", showPoints: true, labels: [{ text: <InlineMath math="E" />, at: 1, offset: [0.35, 0, 0] }] },
-    ];
-  })()}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Außenwinkel und gegenüberliegender Innenwinkel</>}
+  description={<>Eine verlängerte Seite bildet einen Außenwinkel, der dem gegenüberliegenden Innenwinkel entspricht.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="\varepsilon" />,
+    "l6": <InlineMath math="\gamma" />,
+    "l7": <InlineMath math="E" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 6.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0.69, y: 3.94 }, { x: -3.76, y: -1.37 }, { x: 0.69, y: -3.94 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 0.69, y: -3.94 }, to: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3.58, y: -0.5 }, { x: 3.61, y: -0.52 }, { x: 3.63, y: -0.53 }, { x: 3.66, y: -0.55 }, { x: 3.68, y: -0.57 }, { x: 3.71, y: -0.58 }, { x: 3.74, y: -0.59 }, { x: 3.76, y: -0.61 }, { x: 3.79, y: -0.62 }, { x: 3.82, y: -0.62 }, { x: 3.85, y: -0.63 }, { x: 3.88, y: -0.64 }, { x: 3.91, y: -0.64 }, { x: 3.94, y: -0.65 }, { x: 3.97, y: -0.65 }, { x: 4, y: -0.65 }, { x: 4.03, y: -0.65 }, { x: 4.06, y: -0.65 }, { x: 4.09, y: -0.64 }, { x: 4.12, y: -0.64 }, { x: 4.15, y: -0.63 }, { x: 4.18, y: -0.62 }, { x: 4.21, y: -0.62 }, { x: 4.24, y: -0.61 }, { x: 4.26, y: -0.59 }, { x: 4.29, y: -0.58 }, { x: 4.32, y: -0.57 }, { x: 4.34, y: -0.55 }, { x: 4.37, y: -0.53 }, { x: 4.39, y: -0.52 }, { x: 4.42, y: -0.5 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3.34, y: -0.87 }, { x: -3.32, y: -0.89 }, { x: -3.3, y: -0.91 }, { x: -3.28, y: -0.93 }, { x: -3.26, y: -0.96 }, { x: -3.24, y: -0.98 }, { x: -3.22, y: -1 }, { x: -3.2, y: -1.03 }, { x: -3.19, y: -1.06 }, { x: -3.17, y: -1.08 }, { x: -3.16, y: -1.11 }, { x: -3.15, y: -1.14 }, { x: -3.14, y: -1.17 }, { x: -3.13, y: -1.2 }, { x: -3.12, y: -1.23 }, { x: -3.12, y: -1.26 }, { x: -3.11, y: -1.29 }, { x: -3.11, y: -1.32 }, { x: -3.11, y: -1.35 }, { x: -3.11, y: -1.38 }, { x: -3.11, y: -1.41 }, { x: -3.11, y: -1.44 }, { x: -3.12, y: -1.47 }, { x: -3.12, y: -1.5 }, { x: -3.13, y: -1.53 }, { x: -3.14, y: -1.55 }, { x: -3.15, y: -1.58 }, { x: -3.16, y: -1.61 }, { x: -3.17, y: -1.64 }, { x: -3.18, y: -1.67 }, { x: -3.2, y: -1.69 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 5.32, y: -1.58 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.69, y: 3.94 }, placement: "above" },
+      { key: "l3", objectId: "s2", at: { x: -3.76, y: -1.37 }, placement: "left" },
+      { key: "l4", objectId: "s2", at: { x: 0.69, y: -3.94 }, placement: "below" },
+      { key: "l5", objectId: "s3", at: { x: 4, y: -0.65 }, placement: "below" },
+      { key: "l6", objectId: "s4", at: { x: -3.12, y: -1.26 }, placement: "above-right" },
+      { key: "l7", objectId: "s5", at: { x: 5.32, y: -1.58 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Winkelsätze anwenden
@@ -501,115 +392,46 @@ Bestimme vor dem Rechnen den **überspannten Bogen** oder das Paar gegenüberlie
 
 **Lösung 1**: Umfangswinkel über demselben Bogen bestimmen
 
-<LineEquation
-  title="Visualisierung"
+<MathVisual
+  title={<>Visualisierung</>}
   description={<>Der Mittelpunktswinkel <InlineMath math="\angle AOB = 140^\circ" /> und die Umfangswinkel stehen über demselben Bogen <InlineMath math="AB" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="D" />,
+    "l6": <InlineMath math="140^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        {
-          x: 4 * Math.cos((140 * Math.PI) / 180),
-          y: 4 * Math.sin((140 * Math.PI) / 180),
-          z: 0,
-        },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        {
-          x: 4 * Math.cos((5 * Math.PI) / 4),
-          y: 4 * Math.sin((5 * Math.PI) / 4),
-          z: 0,
-        },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
-    },
-    {
-      points: [
-        {
-          x: 4 * Math.cos((140 * Math.PI) / 180),
-          y: 4 * Math.sin((140 * Math.PI) / 180),
-          z: 0,
-        },
-        {
-          x: 4 * Math.cos((5 * Math.PI) / 4),
-          y: 4 * Math.sin((5 * Math.PI) / 4),
-          z: 0,
-        },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        {
-          x: 4 * Math.cos((7 * Math.PI) / 4),
-          y: 4 * Math.sin((7 * Math.PI) / 4),
-          z: 0,
-        },
-      ],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="D" />, at: 1, offset: [0.3, -0.5, 0] }],
-    },
-    {
-      points: [
-        {
-          x: 4 * Math.cos((140 * Math.PI) / 180),
-          y: 4 * Math.sin((140 * Math.PI) / 180),
-          z: 0,
-        },
-        {
-          x: 4 * Math.cos((7 * Math.PI) / 4),
-          y: 4 * Math.sin((7 * Math.PI) / 4),
-          z: 0,
-        },
-      ],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 106 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos((140 * Math.PI) / 180), y: 4 * Math.sin((140 * Math.PI) / 180) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: -3.06, y: 2.57 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4) }], appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "s4-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4 * Math.cos((140 * Math.PI) / 180), y: 4 * Math.sin((140 * Math.PI) / 180) }, { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4) }], appearance: "answer" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 4 * Math.cos((7 * Math.PI) / 4), y: 4 * Math.sin((7 * Math.PI) / 4) }], appearance: "highlight" },
+      { id: "s6-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
+      { id: "s6-p1", kind: "point", at: { x: 2.83, y: -2.83 }, appearance: "highlight" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 4 * Math.cos((140 * Math.PI) / 180), y: 4 * Math.sin((140 * Math.PI) / 180) }, { x: 4 * Math.cos((7 * Math.PI) / 4), y: 4 * Math.sin((7 * Math.PI) / 4) }], appearance: "highlight" },
+      { id: "s8", kind: "polyline", vertices: Array.from({ length: 106 }, (_, sampleIndex) => {
         const i = sampleIndex / 7;
         const angle = (((i * 140) / 15) * Math.PI) / 180;
         return {
@@ -617,13 +439,17 @@ Bestimme vor dem Rechnen den **überspannten Bogen** oder das Paar gegenüberlie
           y: 1.2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="140^\circ" />, at: 49, offset: [0.3, 0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: -3.06, y: 2.57 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 2.83, y: -2.83 }, placement: "below-right" },
+      { key: "l6", objectId: "s8", at: { x: 0.5, y: 1.09 }, placement: "above-right" },
+    ],
+  }}
 />
 
 **Lösung**:
@@ -667,74 +493,49 @@ Für Winkel <InlineMath math="S" /> (entgegengesetzt zu <InlineMath math="Q" />)
 
 **Lösung 3**: Winkel im gleichschenkligen Dreieck mit Durchmesser bestimmen
 
-<LineEquation
-  title="Visualisierung"
+<MathVisual
+  title={<>Visualisierung</>}
   description={
     <>
       <InlineMath math="AB" /> ist ein Durchmesser,{" "}
       <InlineMath math="BC = AC" /> (gleichschenkliges Dreieck).
     </>
   }
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="O" />,
+    "l5": <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.5, 0, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 0, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [0, 0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        { x: 0, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#d97706",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
-    },
-    {
-      smooth: false,
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 0, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: ((() => {
         const C = { x: 0, y: 4 };
         const A = { x: -4, y: 0 };
         const B = { x: 4, y: 0 };
 
-        // Winkel ACB am Punkt C berechnen (should be 90°)
+        
         const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
         const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
 
@@ -747,13 +548,16 @@ Für Winkel <InlineMath math="S" /> (entgegengesetzt zu <InlineMath math="Q" />)
             z: 0,
           };
         });
-      })(),
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="90^\circ" />, at: 7, offset: [-0.3, -0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -4, y: 0 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "l5", objectId: "s6", at: { x: -0.04, y: 3.2 }, placement: "below-left" },
+    ],
+  }}
 />
 
 **Lösung**:

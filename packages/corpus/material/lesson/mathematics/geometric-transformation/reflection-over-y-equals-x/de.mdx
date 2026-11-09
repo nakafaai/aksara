@@ -39,7 +39,7 @@ Prüfe den **Mittelpunkt des Punktepaares**: Er muss auf der Spiegelgeraden lieg
 
 <BlockMath math="M=\left(\frac{1+4}2,\frac{4+1}2\right)=\left(\frac52,\frac52\right)" />
 
-<LineEquation
+<MathVisual
   title={
     <>
     Bild von Punkten an der Geraden <InlineMath math="y=x" />
@@ -51,59 +51,41 @@ Prüfe den **Mittelpunkt des Punktepaares**: Er muss auf der Spiegelgeraden lieg
       <InlineMath math="y=x" />.
     </>
   }
-  data={[
-    { points: [{ x: 1, y: 4, z: 0 }, { x: 2.5, y: 2.5, z: 0 }, { x: 4, y: 1, z: 0 }], smooth: false, color: "#65a30d", showPoints: false, labels: [{ text: <InlineMath math="M" />, at: 1, offset: [0.3, -0.3, 0] }] },
-    {
-      points: [
-        { x: -6, y: -6, z: 0 },
-        { x: 6, y: 6, z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-0.7, -2.3, 0] }],
-    }, // Spiegelgerade
-    // Punkte A und A'
-    {
-      points: [{ x: 1, y: 4, z: 0 }],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A(1,4)" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-    {
-      points: [{ x: 4, y: 1, z: 0 }],
-      color: "#059669", // Urbild und Bildpunkt haben dieselbe Farbe
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A'(4,1)" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-    // Punkte B und B'
-    {
-      points: [{ x: -2, y: 2, z: 0 }],
-      color: "#d97706",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B(-2,2)" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-    {
-      points: [{ x: 2, y: -2, z: 0 }],
-      color: "#d97706",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B'(2,-2)" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-    // Punkte C und C'
-    {
-      points: [{ x: -1, y: -3, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C(-1,-3)" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-    {
-      points: [{ x: -3, y: -1, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C'(-3,-1)" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-  ]}
-  cameraPosition={[0.5, 0.5, 12]}
-  cameraTarget={[0.5, 0.5, 0]}
+  labels={{
+    "l1": <InlineMath math="M" />,
+    "l2": <InlineMath math="y=x" />,
+    "l3": <InlineMath math="A(1,4)" />,
+    "l4": <InlineMath math="A'(4,1)" />,
+    "l5": <InlineMath math="B(-2,2)" />,
+    "l6": <InlineMath math="B'(2,-2)" />,
+    "l7": <InlineMath math="C(-1,-3)" />,
+    "l8": <InlineMath math="C'(-3,-1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -7.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 1, y: 4 }, { x: 2.5, y: 2.5 }, { x: 4, y: 1 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -6, y: -6 }, { x: 6, y: 6 }], appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 1, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 4, y: 1 }, appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: -2, y: 2 }, appearance: "highlight" },
+      { id: "s6", kind: "point", at: { x: 2, y: -2 }, appearance: "highlight" },
+      { id: "s7", kind: "point", at: { x: -1, y: -3 }, appearance: "reference" },
+      { id: "s8", kind: "point", at: { x: -3, y: -1 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.5, y: 2.5 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 6, y: 6 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 1, y: 4 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 4, y: 1 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: -2, y: 2 }, placement: "above-right" },
+      { key: "l6", objectId: "s6", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "l7", objectId: "s7", at: { x: -1, y: -3 }, placement: "above-right" },
+      { key: "l8", objectId: "s8", at: { x: -3, y: -1 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Ein Dreieck spiegeln
@@ -118,7 +100,7 @@ Um das Dreieck zu spiegeln, spiegeln wir **jeden seiner Eckpunkte** an der Gerad
 
 Das Bilddreieck <InlineMath math="A'B'C'" /> entsteht durch die Verbindung der Punkte <InlineMath math="A'(4, -2)" />, <InlineMath math="B'(1, 3)" /> und <InlineMath math="C'(-1, -3)" />.
 
-<LineEquation
+<MathVisual
   title={
     <>
     Dreieck <InlineMath math="ABC" /> und sein Bild{" "}
@@ -130,61 +112,38 @@ Das Bilddreieck <InlineMath math="A'B'C'" /> entsteht durch die Verbindung der P
     Das Dreieck <InlineMath math="ABC" /> und sein Bilddreieck <InlineMath math="A'B'C'" /> liegen symmetrisch zur Geraden <InlineMath math="y=x" />.
     </>
   }
-  data={[
-    {
-      points: [
-        { x: -5, y: -5, z: 0 },
-        { x: 5, y: 5, z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-1, 0.2, 0] }],
-    }, // Spiegelgerade
-    // Ausgangsdreieck ABC
-    ...[
-      {
-        from: { x: -2, y: 4, z: 0, label: <InlineMath math="A(-2,4)" /> },
-        to: { x: 3, y: 1, z: 0, label: <InlineMath math="B(3,1)" /> },
-      },
-      {
-        from: { x: 3, y: 1, z: 0, label: <InlineMath math="B(3,1)" /> },
-        to: { x: -3, y: -1, z: 0, label: <InlineMath math="C(-3,-1)" /> },
-      },
-      {
-        from: { x: -3, y: -1, z: 0, label: <InlineMath math="C(-3,-1)" /> },
-        to: { x: -2, y: 4, z: 0, label: <InlineMath math="A(-2,4)" /> },
-      },
-    ].map((segment) => ({
-      points: [segment.from, segment.to],
-      smooth: false,
-      color: "#d97706",
-      showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: segment.from.x === -2 && segment.from.y === 4 ? [0.4, 0.6, 0] : segment.from.x === 3 && segment.from.y === 1 ? [0.5, 0.8, 0] : [-0.7, -0.7, 0] }],
-    })),
-    // Bilddreieck A'B'C'
-    ...[
-      {
-        from: { x: 4, y: -2, z: 0, label: <InlineMath math="A'(4,-2)" /> },
-        to: { x: 1, y: 3, z: 0, label: <InlineMath math="B'(1,3)" /> },
-      },
-      {
-        from: { x: 1, y: 3, z: 0, label: <InlineMath math="B'(1,3)" /> },
-        to: { x: -1, y: -3, z: 0, label: <InlineMath math="C'(-1,-3)" /> },
-      },
-      {
-        from: { x: -1, y: -3, z: 0, label: <InlineMath math="C'(-1,-3)" /> },
-        to: { x: 4, y: -2, z: 0, label: <InlineMath math="A'(4,-2)" /> },
-      },
-    ].map((segment) => ({
-      points: [segment.from, segment.to],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [{ text: segment.from.label, at: 0, offset: segment.from.x === 4 && segment.from.y === -2 ? [0.3, -0.8, 0] : segment.from.x === 1 && segment.from.y === 3 ? [0, 1, 0] : [-0.3, -0.8, 0] }],
-    })),
-  ]}
-  cameraPosition={[0.5, 0.5, 13]}
-  cameraTarget={[0.5, 0.5, 0]}
+  labels={{
+    "l1": <InlineMath math="y=x" />,
+    "l2": <InlineMath math="A(-2,4)" />,
+    "l3": <InlineMath math="B(3,1)" />,
+    "l4": <InlineMath math="C(-3,-1)" />,
+    "l5": <InlineMath math="A'(4,-2)" />,
+    "l6": <InlineMath math="B'(1,3)" />,
+    "l7": <InlineMath math="C'(-1,-3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -5, y: -5 }, { x: 5, y: 5 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -2, y: 4 }, { x: 3, y: 1 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3, y: 1 }, { x: -3, y: -1 }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3, y: -1 }, { x: -2, y: 4 }], appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4, y: -2 }, { x: 1, y: 3 }], appearance: "answer" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 1, y: 3 }, { x: -1, y: -3 }], appearance: "answer" },
+      { id: "s7", kind: "polyline", vertices: [{ x: -1, y: -3 }, { x: 4, y: -2 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 5, y: 5 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: -2, y: 4 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 3, y: 1 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -3, y: -1 }, placement: "below-left" },
+      { key: "l5", objectId: "s5", at: { x: 4, y: -2 }, placement: "below-right" },
+      { key: "l6", objectId: "s6", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "l7", objectId: "s7", at: { x: -1, y: -3 }, placement: "below-left" },
+    ],
+  }}
 />
 
 ## Eine Geradengleichung spiegeln
@@ -210,7 +169,7 @@ Dies ist die Gleichung der Bildgeraden. Normalerweise schreiben wir diese Gleich
 
 Die Bildgerade von <InlineMath math="y = 2x + 3" /> hat nach der Spiegelung an <InlineMath math="y=x" /> also die Gleichung <InlineMath math="y = \frac{1}{2}x - \frac{3}{2}" />.
 
-<LineEquation
+<MathVisual
   title={
     <>
     Gerade <InlineMath math="y=2x+3" /> und ihre Bildgerade an{" "}
@@ -223,43 +182,34 @@ Die Bildgerade von <InlineMath math="y = 2x + 3" /> hat nach der Spiegelung an <
       <InlineMath math="y=x" />.
     </>
   }
-  data={[
-    {
-      points: [
-        { x: -5, y: -5, z: 0 },
-        { x: 5, y: 5, z: 0 },
-      ],
-      smooth: false,
-      color: "#4f46e5",
-      labels: [{ text: <InlineMath math="y=x" />, at: 1, offset: [-1, 0.2, 0] }],
-    }, // Spiegelgerade
-    {
-      // Ursprüngliche Gerade y = 2x + 3
-      points: Array.from({ length: 7 }, (_, pointIndex) => {
+  labels={{
+    "l1": <InlineMath math="y=x" />,
+    "l2": <InlineMath math="y=2x+3" />,
+    "l3": <InlineMath math="y=(\frac{1}{2})x-\frac{3}{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 8 }, y: { min: -13, max: 7 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -5, y: -5 }, { x: 5, y: 5 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 7 }, (_, pointIndex) => {
         const i = pointIndex - 2;
         const xVal = i - 5;
         return { x: xVal, y: 2 * xVal + 3, z: 0 };
-      }),
-      showPoints: false,
-      color: "#9333ea",
-      smooth: false,
-      labels: [{ text: <InlineMath math="y=2x+3" />, at: 4, offset: [-1, 0.5, 0] }],
-    },
-    {
-      // Bildgerade y = (1/2)x - 3/2
-      points: Array.from({ length: 11 }, (_, pointIndex) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: Array.from({ length: 11 }, (_, pointIndex) => {
         const i = pointIndex - 12;
         const xVal = i - 5;
         return { x: xVal, y: (1 / 2) * xVal - 3 / 2, z: 0 };
-      }),
-      showPoints: false,
-      color: "#db2777",
-      smooth: false,
-      labels: [{ text: <InlineMath math="y=(\frac{1}{2})x-\frac{3}{2}" />, at: 8, offset: [0, -0.7, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 1, 14]}
-  cameraTarget={[0, 1, 0]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 5, y: 5 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: -3, y: -3 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: -9, y: -6 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Übungen

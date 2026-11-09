@@ -19,12 +19,22 @@ The central angle of a sector is the angle at the center of the circle formed by
 
 In both formulas, <InlineMath math="A" /> is the sector area, <InlineMath math="s" /> the arc length, and <InlineMath math="r" /> the radius. The sector diagram below has radius <InlineMath math="4" />, and its arms <InlineMath math="OA" /> and <InlineMath math="OB" /> form the central angle <InlineMath math="\alpha = 120^\circ" />.
 
-<LineEquation
-  title="Central Angle Forming a Sector"
+<MathVisual
+  title={<>Central Angle Forming a Sector</>}
   description={<>Radii <InlineMath math="OA" /> and <InlineMath math="OB" /> form the central angle <InlineMath math="\alpha = 120^\circ" />, so the sector takes one third of the circle.</>}
-  data={[
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <>Arc</>,
+    "l5": <InlineMath math="\alpha" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
         const i = sampleIndex / 2;
         const angle = (i / 100) * 2 * Math.PI;
         return {
@@ -32,40 +42,11 @@ In both formulas, <InlineMath math="A" /> is the sector area, <InlineMath math="
           y: 4 * Math.sin(angle),
           z: 0
         };
-      }),
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 }
-      ],
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.4, -0.4, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.3, 0.2, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(5 * Math.PI / 6), y: 4 * Math.sin(5 * Math.PI / 6), z: 0 }
-      ],
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.2, 0] }
-      ]
-    },
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.13 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6) }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(5 * Math.PI / 6), y: 4 * Math.sin(5 * Math.PI / 6) }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
         const i = sampleIndex / 5;
         const angle = Math.PI / 6 + (i / 40) * (2 * Math.PI / 3);
         return {
@@ -73,17 +54,8 @@ In both formulas, <InlineMath math="A" /> is the sector area, <InlineMath math="
           y: 4 * Math.sin(angle),
           z: 0
         };
-      }),
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 4,
-      labels: [
-        { text: "Arc", at: 100, offset: [-0.8, 0.6, 0] }
-      ]
-    },
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
         const i = sampleIndex / 10;
         const angle = Math.PI / 6 + (i / 20) * (2 * Math.PI / 3);
         const radius = 1.5;
@@ -92,17 +64,16 @@ In both formulas, <InlineMath math="A" /> is the sector area, <InlineMath math="
           y: radius * Math.sin(angle),
           z: 0
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 2,
-      labels: [
-        { text: <InlineMath math="\alpha" />, at: 100, offset: [0.5, 0.5, 0] }
-      ]
-    }
-  ]}
-  cameraPosition={[0, 0, 12]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3.46, y: 2 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 4 }, placement: "above-left" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 1.5 }, placement: "above-right" },
+    ],
+  }}
 />
 
 An angle of <InlineMath math="120^\circ" /> is one third of a full turn, so the sector takes one third of the circle's area. Its area is <InlineMath math="\frac{1}{3} \times \pi \times 4^2 = \frac{16\pi}{3}" />, and its arc is <InlineMath math="\frac{1}{3} \times 8\pi = \frac{8\pi}{3}" /> long.
@@ -111,17 +82,34 @@ An angle of <InlineMath math="120^\circ" /> is one third of a full turn, so the 
 
 On the same circle, a sector's area is **proportional to its central angle**. An angle twice as large gives a sector twice as large. The neighboring sectors diagram places sectors of <InlineMath math="45^\circ" />, <InlineMath math="90^\circ" />, and <InlineMath math="135^\circ" /> on one circle.
 
-<LineEquation
-  title="Neighboring Sectors on One Circle"
+<MathVisual
+  title={<>Neighboring Sectors on One Circle</>}
   description={<>The <InlineMath math="45^\circ" />, <InlineMath math="90^\circ" />, and <InlineMath math="135^\circ" /> sectors have the same radius, so their areas are in the ratio <InlineMath math="1:2:3" />.</>}
-  data={[
-    { kind: "circle-outline", radius: 3.5, color: "#0d9488", showPoints: false },
-    ...[0, 45, 135, 270].map((degrees) => ({ kind: "circle-radius", radius: 3.5, degrees, color: "#7c3aed", showPoints: false })),
-    { kind: "circle-arc", radius: 3.5, startDegrees: 0, sweepDegrees: 45, color: "#d97706", lineWidth: 4, label: { text: <InlineMath math="45^\circ" />, offset: [0.4, 0.2, 0] } },
-    { kind: "circle-arc", radius: 3.5, startDegrees: 45, sweepDegrees: 90, color: "#65a30d", lineWidth: 4, label: { text: <InlineMath math="90^\circ" />, offset: [0, 0.4, 0] } },
-    { kind: "circle-arc", radius: 3.5, startDegrees: 135, sweepDegrees: 135, color: "#c026d3", lineWidth: 4, label: { text: <InlineMath math="135^\circ" />, offset: [-0.4, -0.2, 0] } },
-  ]}
-  cameraPosition={[0, 0, 11]}
+  labels={{
+    "l1": <InlineMath math="45^\circ" />,
+    "l2": <InlineMath math="90^\circ" />,
+    "l3": <InlineMath math="135^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 3.5, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3.5, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2.47, y: 2.47 }, appearance: "secondary" },
+      { id: "s4", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2.47, y: 2.47 }, appearance: "secondary" },
+      { id: "s5", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -3.5 }, appearance: "secondary" },
+      { id: "s6", kind: "arc", center: { x: 0, y: 0 }, radius: 3.5, startDegrees: 0, sweepDegrees: 45, appearance: "answer" },
+      { id: "s7", kind: "arc", center: { x: 0, y: 0 }, radius: 3.5, startDegrees: 45, sweepDegrees: 90, appearance: "highlight" },
+      { id: "s8", kind: "arc", center: { x: 0, y: 0 }, radius: 3.5, startDegrees: 135, sweepDegrees: 135, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s6", at: { x: 3.23, y: 1.34 }, placement: "above-right" },
+      { key: "l2", objectId: "s7", at: { x: 0, y: 3.5 }, placement: "above" },
+      { key: "l3", objectId: "s8", at: { x: -3.23, y: -1.34 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Each sector in the diagram takes a different share of the circle. Writing each area as a multiple of <InlineMath math="\frac{\pi r^2}{8}" /> makes the comparison immediate.
@@ -140,12 +128,20 @@ Two neighboring sectors that do not overlap combine by adding their angles. The 
 
 The central angle formulas are the sector area and arc length formulas **rearranged**. You write the share of the circle twice, once from the area and once from the arc, and multiply by <InlineMath math="360^\circ" />. The parameter diagram shows a sector of radius <InlineMath math="4" /> with arc <InlineMath math="s" /> and central angle <InlineMath math="72^\circ" />.
 
-<LineEquation
-  title="Sector Parameters"
+<MathVisual
+  title={<>Sector Parameters</>}
   description={<>A sector with radius <InlineMath math="r = 4" /> and central angle <InlineMath math="72^\circ" /> has arc <InlineMath math="s = \frac{8\pi}{5}" />.</>}
-  data={[
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+  labels={{
+    "l1": <InlineMath math="r" />,
+    "l2": <InlineMath math="s" />,
+    "l3": <InlineMath math="72^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
         const i = sampleIndex / 2;
         const angle = (i / 100) * 2 * Math.PI;
         return {
@@ -153,36 +149,11 @@ The central angle formulas are the sector area and arc length formulas **rearran
           y: 4 * Math.sin(angle),
           z: 0
         };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 }
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="r" />, at: 1, offset: [-1.5, -0.5, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(2 * Math.PI / 5), y: 4 * Math.sin(2 * Math.PI / 5), z: 0 }
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 3
-    },
-    {
-      points: Array.from({ length: 225 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.13 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(2 * Math.PI / 5), y: 4 * Math.sin(2 * Math.PI / 5) }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 225 }, (_, sampleIndex) => {
         const i = sampleIndex / 8;
         const angle = (i / 28) * (2 * Math.PI / 5);
         return {
@@ -190,17 +161,8 @@ The central angle formulas are the sector area and arc length formulas **rearran
           y: 4 * Math.sin(angle),
           z: 0
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 4,
-      labels: [
-        { text: <InlineMath math="s" />, at: 112, offset: [0.4, 0.3, 0] }
-      ]
-    },
-    {
-      points: Array.from({ length: 295 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: Array.from({ length: 295 }, (_, sampleIndex) => {
         const i = sampleIndex / 21;
         const angle = (i / 14) * (2 * Math.PI / 5);
         const radius = 1.5;
@@ -209,17 +171,14 @@ The central angle formulas are the sector area and arc length formulas **rearran
           y: radius * Math.sin(angle),
           z: 0
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 2,
-      labels: [
-        { text: <InlineMath math="72^\circ" />, at: 147, offset: [0.6, 1, 0] }
-      ]
-    }
-  ]}
-  cameraPosition={[0, 0, 11]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 3.24, y: 2.35 }, placement: "above-right" },
+      { key: "l3", objectId: "s5", at: { x: 1.21, y: 0.88 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Suppose the sector area is known to be <InlineMath math="\frac{16\pi}{5}" /> square units. Its share of the circle is the sector area divided by the circle's area:
@@ -256,12 +215,20 @@ When a circle is split into <InlineMath math="n" /> equal sectors, every sector 
 
 A round cake cut into <InlineMath math="6" /> equal slices gives <InlineMath math="\frac{360^\circ}{6} = 60^\circ" /> per slice. The measurement diagram shows one such <InlineMath math="60^\circ" /> sector.
 
-<LineEquation
-  title="Measuring a Central Angle"
+<MathVisual
+  title={<>Measuring a Central Angle</>}
   description={<>The two radii bound a central angle of <InlineMath math="60^\circ" />, one sixth of a full turn.</>}
-  data={[
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <>Arc</>,
+    "l3": <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
         const i = sampleIndex / 2;
         const angle = (i / 100) * 2 * Math.PI;
         return {
@@ -269,36 +236,11 @@ A round cake cut into <InlineMath math="6" /> equal slices gives <InlineMath mat
           y: 3 * Math.sin(angle),
           z: 0
         };
-      }),
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 }
-      ],
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      lineWidth: 3,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3 * Math.cos(Math.PI / 3), y: 3 * Math.sin(Math.PI / 3), z: 0 }
-      ],
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      lineWidth: 3
-    },
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.09 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3 * Math.cos(Math.PI / 3), y: 3 * Math.sin(Math.PI / 3) }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
         const i = sampleIndex / 10;
         const angle = (i / 20) * (Math.PI / 3);
         return {
@@ -306,17 +248,8 @@ A round cake cut into <InlineMath math="6" /> equal slices gives <InlineMath mat
           y: 3 * Math.sin(angle),
           z: 0
         };
-      }),
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 4,
-      labels: [
-        { text: "Arc", at: 100, offset: [0.4, 0.6, 0] }
-      ]
-    },
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
         const i = sampleIndex / 20;
         const angle = (i / 10) * (Math.PI / 3);
         const radius = 1.2;
@@ -325,17 +258,14 @@ A round cake cut into <InlineMath math="6" /> equal slices gives <InlineMath mat
           y: radius * Math.sin(angle),
           z: 0
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 2,
-      labels: [
-        { text: <InlineMath math="60^\circ" />, at: 100, offset: [0.5, 0.5, 0] }
-      ]
-    }
-  ]}
-  cameraPosition={[0, 0, 9]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 2.6, y: 1.5 }, placement: "above-right" },
+      { key: "l3", objectId: "s5", at: { x: 1.04, y: 0.6 }, placement: "above-right" },
+    ],
+  }}
 />
 
 To measure a central angle with a protractor, place the protractor's center exactly on the center of the circle and its baseline along one radius. The reading at the second radius is the central angle. In the diagram the reading is <InlineMath math="60^\circ" />, the same as <InlineMath math="360^\circ" /> divided by <InlineMath math="6" />.

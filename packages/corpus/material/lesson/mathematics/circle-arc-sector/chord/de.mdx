@@ -12,60 +12,43 @@ export const metadata = {
 
 Eine Sehne ist eine Strecke mit **beiden Endpunkten auf dem Kreis**. Eine gespannte Schnur zwischen zwei Punkten des Kreisrandes ist ein Modell dafür. Eine Sehne, die kein Durchmesser ist, teilt die Kreisscheibe in ein [kleines und großes Kreissegment](/de/faecher/mathematik/kreisboegen-und-kreissektoren/kreissegment). Ein Durchmesser erzeugt zwei gleich große Halbkreise.
 
-<LineEquation
+<MathVisual
   title={<>Sehnen in einem Kreis</>}
-  description="Vergleiche Sehnen mit unterschiedlichen Längen und Abständen vom Mittelpunkt."
-  cameraPosition={[0, 0, 12]}
-  data={[
-    {
-      kind: "circle-outline", radius: 4,
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: "Kreis", at: 25, offset: [1, 0.5, 0] }]
-    },
-    {
-      kind: "circle-chord", radius: 4,
-        startDegrees: 30,
-        sweepDegrees: 120,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.3, 0] }
-      ]
-    },
-    {
-      kind: "circle-chord", radius: 4,
-        startDegrees: 60,
-        sweepDegrees: 180,
-      color: "#9333ea",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="C" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="D" />, at: 1, offset: [-0.3, -0.3, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 }
-      ],
-      color: "#d97706",
-      smooth: false,
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="E" />, at: 0, offset: [-0.3, -0.3, 0] },
-        { text: <InlineMath math="F" />, at: 1, offset: [0.3, -0.3, 0] }
-      ]
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0.3, 0.3, 0] }]
-    }
-  ]}
+  description={<>Vergleiche Sehnen mit unterschiedlichen Längen und Abständen vom Mittelpunkt.</>}
+  labels={{
+    "l1": <>Kreis</>,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="D" />,
+    "l6": <InlineMath math="E" />,
+    "l7": <InlineMath math="F" />,
+    "l8": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 3.46, y: 2 }, to: { x: -3.46, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 2, y: 3.46 }, to: { x: -2, y: -3.46 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s2", at: { x: 0, y: 2 }, placement: "above-left" },
+      { key: "l4", objectId: "s3", at: { x: 0, y: 0 }, placement: "above-right" },
+      { key: "l5", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l6", objectId: "s4", at: { x: -4, y: 0 }, placement: "below-left" },
+      { key: "l7", objectId: "s4", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "l8", objectId: "s5", at: { x: 0, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Nützliche Sehnenkonfigurationen
@@ -88,67 +71,38 @@ Ist <InlineMath math="d" /> dieser senkrechte Abstand, <InlineMath math="r" /> d
 
 Diese Formel zeigt, dass, wenn <InlineMath math="d = 0" /> (die Sehne geht durch die Mitte), <InlineMath math="l = 2r" /> der Durchmesser ist.
 
-<LineEquation
+<MathVisual
   title={<>Zusammenhang zwischen Sehnenlänge und Mittelpunktabstand</>}
-  description="Sehnen mit unterschiedlichem Abstand vom Kreismittelpunkt."
-  cameraPosition={[0, 0, 8]}
-  data={[
-    {
-      kind: "circle-outline", radius: 3,
-      color: "#0891b2",
-      showPoints: false
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: true,
-      labels: [{ text: <>Durchmesser: <InlineMath math="d=0" /></>, at: 0, offset: [2.2, -0.7, 0] }]
-    },
-    {
-      points: [
-        { x: -Math.sqrt(9 - 1), y: 1, z: 0 },
-        { x: Math.sqrt(9 - 1), y: 1, z: 0 }
-      ],
-      color: "#9333ea",
-      smooth: false,
-      showPoints: true,
-      labels: []
-    },
-    {
-      points: [
-        { x: -Math.sqrt(9 - 4), y: 2, z: 0 },
-        { x: Math.sqrt(9 - 4), y: 2, z: 0 }
-      ],
-      color: "#d97706",
-      smooth: false,
-      showPoints: true,
-      labels: []
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 1, z: 0 }
-      ],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="d=1" />, at: 1, offset: [0.8, -0.45, 0] }]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 2, z: 0 }
-      ],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="d=2" />, at: 1, offset: [0.8, -0.45, 0] }]
-    }
-  ]}
+  description={<>Sehnen mit unterschiedlichem Abstand vom Kreismittelpunkt.</>}
+  labels={{
+    "l1": <>Durchmesser: <InlineMath math="d=0" /></>,
+    "l2": <InlineMath math="d=1" />,
+    "l3": <InlineMath math="d=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -Math.sqrt(9 - 1), y: 1 }, { x: Math.sqrt(9 - 1), y: 1 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: -2.83, y: 1 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 2.83, y: 1 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -Math.sqrt(9 - 4), y: 2 }, { x: Math.sqrt(9 - 4), y: 2 }], appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: -2.24, y: 2 }, appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: 2.24, y: 2 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 2 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -3, y: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s5", at: { x: 0, y: 1 }, placement: "below-right" },
+      { key: "l3", objectId: "s6", at: { x: 0, y: 2 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ## Eigenschaften gleichlanger Sehnen
@@ -172,19 +126,41 @@ Ergänze die Strecken <InlineMath math="AC" /> und <InlineMath math="DB" />. Die
 
 <BlockMath math="\frac{AP}{PD}=\frac{CP}{PB}\quad\Longrightarrow\quad AP\cdot PB=CP\cdot PD" />
 
-<LineEquation
-  title="Sehnensatz und ähnliche Dreiecke"
-  description="Zwei Sehnen und zwei Hilfsstrecken zeigen die ähnlichen Dreiecke."
-  data={[
-    { points: Array.from({ length: 181 }, (_, i) => ({ x: 1 + Math.sqrt(65) * Math.cos(i * Math.PI / 90), y: -4 + Math.sqrt(65) * Math.sin(i * Math.PI / 90), z: 0 })), smooth: false, color: "#0891b2", showPoints: false },
-    { points: [{ x: -6, y: 0, z: 0 }, { x: 8, y: 0, z: 0 }], smooth: false, color: "#ea580c", showPoints: true, labels: [{ text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0.4, 0] }, { text: <InlineMath math="B" />, at: 1, offset: [0.5, 0.4, 0] }] },
-    { points: [{ x: 0, y: 4, z: 0 }, { x: 0, y: -12, z: 0 }], smooth: false, color: "#9333ea", showPoints: true, labels: [{ text: <InlineMath math="C" />, at: 0, offset: [0.4, 0.5, 0] }, { text: <InlineMath math="D" />, at: 1, offset: [0.4, -0.5, 0] }] },
-    { points: [{ x: -6, y: 0, z: 0 }, { x: 0, y: 4, z: 0 }], smooth: false, color: "#65a30d", showPoints: false },
-    { points: [{ x: 0, y: -12, z: 0 }, { x: 8, y: 0, z: 0 }], smooth: false, color: "#65a30d", showPoints: false },
-    { points: [{ x: 0, y: 0, z: 0 }], color: "#db2777", showPoints: true, labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0.5, 0] }] },
-  ]}
-  cameraTarget={[1, -4, 0]}
-  cameraPosition={[1, -4, 24]}
+<MathVisual
+  title={<>Sehnensatz und ähnliche Dreiecke</>}
+  description={<>Zwei Sehnen und zwei Hilfsstrecken zeigen die ähnlichen Dreiecke.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 11 }, y: { min: -14, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 181 }, (_, i) => ({ x: 1 + Math.sqrt(65) * Math.cos(i * Math.PI / 90), y: -4 + Math.sqrt(65) * Math.sin(i * Math.PI / 90), z: 0 })).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 9.06, y: -4.28 }, to: { x: 9.06, y: -4 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 8, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -6, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 8, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 4 }, { x: 0, y: -12 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 4 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 0, y: -12 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 0, y: 4 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: -12 }, { x: 8, y: 0 }], appearance: "highlight" },
+      { id: "s6", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -6, y: 0 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 8, y: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 4 }, placement: "above-right" },
+      { key: "l4", objectId: "s3", at: { x: 0, y: -12 }, placement: "below-right" },
+      { key: "l5", objectId: "s6", at: { x: 0, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 <BlockMath math="AP\cdot PB=6\times8=48=4\times12=CP\cdot PD" />

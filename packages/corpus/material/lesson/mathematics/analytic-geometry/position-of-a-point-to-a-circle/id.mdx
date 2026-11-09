@@ -19,82 +19,34 @@ Sebuah titik selalu berada **di dalam lingkaran**, **tepat pada lingkaran**, ata
 | <InlineMath math="K_A = 0" /> | <InlineMath math="d = r" /> | Pada lingkaran |
 | <InlineMath math="K_A > 0" /> | <InlineMath math="d > r" /> | Di luar lingkaran |
 
-<LineEquation
-  title="Posisi Titik Terhadap Lingkaran"
+<MathVisual
+  title={<>Posisi Titik Terhadap Lingkaran</>}
   description={<>Visualisasi ketiga kemungkinan posisi titik <InlineMath math="A" /> terhadap lingkaran.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="P(0,0)" />,
+    "l2": <><InlineMath math="A" /> (dalam)</>,
+    "l3": <><InlineMath math="B" /> (pada)</>,
+    "l4": <><InlineMath math="C" /> (luar)</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 0,
-          y: 0,
-          z: 0,
-        };
-      }),
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P(0,0)" />, at: 0, offset: [-0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 1.5,
-          y: 1,
-          z: 0,
-        };
-      }),
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <><InlineMath math="A" /> (dalam)</>, at: 0, offset: [0, -0.5, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        const angle = Math.PI / 6;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <><InlineMath math="B" /> (pada)</>, at: 0, offset: [0.5, 0.5, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 4.5,
-          y: 2,
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      showPoints: true,
-      labels: [
-        { text: <><InlineMath math="C" /> (luar)</>, at: 0, offset: [-0.8, 1.2, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 1.5, y: 1 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 2.6, y: 1.5 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 4.5, y: 2 }, appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const xMin = -5;
         const xMax = 5;
         const y = 0;
@@ -103,13 +55,8 @@ Sebuah titik selalu berada **di dalam lingkaran**, **tepat pada lingkaran**, ata
           y: y,
           z: 0,
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const yMin = -4;
         const yMax = 4;
         const x = 0;
@@ -118,14 +65,15 @@ Sebuah titik selalu berada **di dalam lingkaran**, **tepat pada lingkaran**, ata
           y: yMin + i * (yMax - yMin),
           z: 0,
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0.7, 0, 12]}
-  cameraTarget={[0.7, 0, 0]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 1.5, y: 1 }, placement: "below" },
+      { key: "l3", objectId: "s4", at: { x: 2.6, y: 1.5 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: 4.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Pada grafik, pusatnya <InlineMath math="(0, 0)" /> dan jari-jarinya <InlineMath math="3" />, jadi kuasa setiap titik adalah kuadrat jaraknya ke pusat dikurangi sembilan:

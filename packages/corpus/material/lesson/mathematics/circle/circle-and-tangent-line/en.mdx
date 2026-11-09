@@ -12,38 +12,32 @@ export const metadata = {
 
 A tangent intersects a circle at <Highlight>exactly one point</Highlight>. This intersection is the **point of tangency**.
 
-<LineEquation
-  title="Circle Tangent Line"
-  description="A tangent line intersects the circle at exactly one point."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Circle Tangent Line</>}
+  description={<>A tangent line intersects the circle at exactly one point.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <>Tangent line</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="P" />, at: 1, offset: [0.5, 0, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const points = [
           { x: 3, y: -3, z: 0 },
           { x: 3, y: 3, z: 0 },
@@ -57,14 +51,14 @@ A tangent intersects a circle at <Highlight>exactly one point</Highlight>. This 
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: "Tangent line", at: 2, offset: [-1.1, 0.8, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 10]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 3, y: 3 }, placement: "above-left" },
+    ],
+  }}
 />
 
 A tangent is <Highlight>perpendicular to the radius</Highlight> at the point of tangency.
@@ -109,54 +103,49 @@ For a circle with center <InlineMath math="(a, b)" />:
 
 From a point outside the circle, **two tangent lines** can be drawn to the circle.
 
-<LineEquation
-  title="Two Tangent Lines from External Point"
+<MathVisual
+  title={<>Two Tangent Lines from External Point</>}
   description={
     <>
       From point <InlineMath math="P" /> outside the circle, two tangent lines can
       be drawn.
     </>
   }
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="T_1" />,
+    "l4": <InlineMath math="T_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 6 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 2.5 * Math.cos(angle),
           y: 2.5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: [{ x: 5, y: 0, z: 0 }],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 2.5, y: -0.04 }, to: { x: 2.5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const P = { x: 5, y: 0 };
         const O = { x: 0, y: 0 };
         const r = 2.5;
         const d = Math.sqrt((P.x - O.x) ** 2 + (P.y - O.y) ** 2);
 
-        // Angle from center to external point
+        
         const theta = Math.atan2(P.y - O.y, P.x - O.x);
 
-        // Angle of tangent line from center
+        
         const alpha = Math.asin(r / d);
 
-        // First tangent point
+        
         const T1x = O.x + r * Math.cos(theta + Math.PI / 2 - alpha);
         const T1y = O.y + r * Math.sin(theta + Math.PI / 2 - alpha);
 
@@ -164,26 +153,20 @@ From a point outside the circle, **two tangent lines** can be drawn to the circl
           { x: P.x, y: P.y, z: 0 },
           { x: T1x, y: T1y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T_1" />, at: 1, offset: [0.3, 0.5, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const P = { x: 5, y: 0 };
         const O = { x: 0, y: 0 };
         const r = 2.5;
         const d = Math.sqrt((P.x - O.x) ** 2 + (P.y - O.y) ** 2);
 
-        // Angle from center to external point
+        
         const theta = Math.atan2(P.y - O.y, P.x - O.x);
 
-        // Angle of tangent line from center
+        
         const alpha = Math.asin(r / d);
 
-        // Second tangent point
+        
         const T2x = O.x + r * Math.cos(theta - Math.PI / 2 + alpha);
         const T2y = O.y + r * Math.sin(theta - Math.PI / 2 + alpha);
 
@@ -191,18 +174,17 @@ From a point outside the circle, **two tangent lines** can be drawn to the circl
           { x: P.x, y: P.y, z: 0 },
           { x: T2x, y: T2y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#d97706",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T_2" />, at: 1, offset: [0.3, -0.5, 0] }],
-    },
-
-    { points: [{ x: 1.25, y: 1.25 * Math.sqrt(3), z: 0 }, { x: 0, y: 0, z: 0 }, { x: 1.25, y: -1.25 * Math.sqrt(3), z: 0 }], smooth: false, color: "#ea580c", showPoints: false },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: false },
-]}
-cameraPosition={[1.5, 0, 10.5]}
-  cameraTarget={[1.5, 0, 0]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 1.25, y: 1.25 * Math.sqrt(3) }, { x: 0, y: 0 }, { x: 1.25, y: -1.25 * Math.sqrt(3) }], appearance: "secondary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 5, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s4", at: { x: 1.25, y: 2.17 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: 1.25, y: -2.17 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ### Length of Tangent Line
@@ -225,72 +207,63 @@ Two circles can share tangent lines that cross between them or pass outside. Whe
 
 External common tangent lines touch both circles **without crossing the segment** between their centers.
 
-<LineEquation
-  title="External Common Tangent Lines"
-  description="Lines that touch both circles from the same side."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>External Common Tangent Lines</>}
+  description={<>Lines that touch both circles from the same side.</>}
+  labels={{
+    "l1": <InlineMath math="O_1" />,
+    "l2": <InlineMath math="O_2" />,
+    "l3": <InlineMath math="\mathrm{ECT}" />,
+    "l4": <InlineMath math="\mathrm{ECT}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 8.5 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -3 + 1.5 * Math.cos(angle),
           y: 1.5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -1.5, y: -0.03 }, to: { x: -1.5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O_1" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="O_2" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 5, y: -0.03 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const O1 = { x: -3, y: 0 };
         const O2 = { x: 3, y: 0 };
         const r1 = 1.5;
         const r2 = 2;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // Angle between center line and common tangent
+        
         const alpha = Math.asin((r2 - r1) / d);
 
-        // Angle from O1 to O2
+        
         const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
 
-        // Tangent points on first circle
+        
         const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 + alpha);
         const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 + alpha);
 
-        // Tangent points on second circle
+        
         const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 + alpha);
         const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 + alpha);
 
-        // Extend the line beyond the tangent points
+        
         const dx = T2x - T1x;
         const dy = T2y - T1y;
         const len = Math.sqrt(dx * dx + dy * dy);
@@ -310,35 +283,29 @@ External common tangent lines touch both circles **without crossing the segment*
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 2, offset: [-3, 0.6, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const O1 = { x: -3, y: 0 };
         const O2 = { x: 3, y: 0 };
         const r1 = 1.5;
         const r2 = 2;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // Angle between center line and common tangent
+        
         const alpha = Math.asin((r2 - r1) / d);
 
-        // Angle from O1 to O2
+        
         const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
 
-        // Tangent points on first circle
+        
         const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 - alpha);
         const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 - alpha);
 
-        // Tangent points on second circle
+        
         const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 - alpha);
         const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 - alpha);
 
-        // Extend the line beyond the tangent points
+        
         const dx = T2x - T1x;
         const dy = T2y - T1y;
         const len = Math.sqrt(dx * dx + dy * dy);
@@ -358,15 +325,15 @@ External common tangent lines touch both circles **without crossing the segment*
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\mathrm{ECT}" />, at: 2, offset: [-3, -0.6, 0] }],
-    },
-
-]}
-cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: 5.82, y: 2.24 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: 5.82, y: -2.24 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Length of external common tangent line:
@@ -381,73 +348,64 @@ This positive-length external tangent segment exists only when <InlineMath math=
 
 Internal common tangent lines are lines that touch both circles and cross the **segment connecting the two centers**.
 
-<LineEquation
-  title="Internal Common Tangent Lines"
-  description="Lines that touch both circles from opposite sides."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Internal Common Tangent Lines</>}
+  description={<>Lines that touch both circles from opposite sides.</>}
+  labels={{
+    "l1": <InlineMath math="O_1" />,
+    "l2": <InlineMath math="O_2" />,
+    "l3": <InlineMath math="\mathrm{ICT}" />,
+    "l4": <InlineMath math="\mathrm{ICT}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -3 + 1.5 * Math.cos(angle),
           y: 1.5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -1.5, y: -0.03 }, to: { x: -1.5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 + 1.5 * Math.cos(angle),
           y: 1.5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O_1" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="O_2" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 4.5, y: -0.03 }, to: { x: 4.5, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const O1 = { x: -3, y: 0 };
         const O2 = { x: 3, y: 0 };
         const r1 = 1.5;
         const r2 = 1.5;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // For internal common tangent, we need to find the angle
+        
         const alpha = Math.asin((r1 + r2) / d);
 
-        // Angle from O1 to O2
+        
         const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
 
-        // For internal tangent, tangent points are on opposite sides
-        // First circle: top side
+        
+        
         const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 - alpha);
         const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 - alpha);
 
-        // Second circle: bottom side (add PI to flip to opposite side)
+        
         const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 - alpha + Math.PI);
         const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 - alpha + Math.PI);
 
-        // Extend the line beyond the tangent points
+        
         const dx = T2x - T1x;
         const dy = T2y - T1y;
         const len = Math.sqrt(dx * dx + dy * dy);
@@ -467,36 +425,30 @@ Internal common tangent lines are lines that touch both circles and cross the **
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\mathrm{ICT}" />, at: 1, offset: [0.6, 0.8, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const O1 = { x: -3, y: 0 };
         const O2 = { x: 3, y: 0 };
         const r1 = 1.5;
         const r2 = 1.5;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // For internal common tangent, we need to find the angle
+        
         const alpha = Math.asin((r1 + r2) / d);
 
-        // Angle from O1 to O2
+        
         const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
 
-        // For internal tangent, tangent points are on opposite sides
-        // First circle: bottom side
+        
+        
         const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 + alpha);
         const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 + alpha);
 
-        // Second circle: top side (add PI to flip to opposite side)
+        
         const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 + alpha + Math.PI);
         const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 + alpha + Math.PI);
 
-        // Extend the line beyond the tangent points
+        
         const dx = T2x - T1x;
         const dy = T2y - T1y;
         const len = Math.sqrt(dx * dx + dy * dy);
@@ -516,15 +468,15 @@ Internal common tangent lines are lines that touch both circles and cross the **
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\mathrm{ICT}" />, at: 1, offset: [0.6, -0.8, 0] }],
-    },
-
-]}
-cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: -3.98, y: 2.3 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: -3.98, y: -2.3 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Length of internal common tangent line:

@@ -19,83 +19,75 @@ A common tangent is a line that **touches two circles at once**. A common extern
 
 The external tangent uses the **difference of the radii**, and the internal tangent uses the **sum of the radii**. The external formula holds while <InlineMath math="d > r_2 - r_1" />, and the internal formula needs <InlineMath math="d \ge r_1 + r_2" />. The external tangent diagram shows two circles whose centers are <InlineMath math="8" /> apart, with radii <InlineMath math="2" /> and <InlineMath math="3" />. Look at the right triangle <InlineMath math="AHB" />, which is where the first formula comes from.
 
-<LineEquation
-  title="Common External Tangents"
+<MathVisual
+  title={<>Common External Tangents</>}
   description={<>Lines <InlineMath math="g_1" /> and <InlineMath math="g_2" /> touch both circles from the same side, and the helper segment <InlineMath math="AH" /> runs parallel to the tangent.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="g_1" />,
+    "l4": <InlineMath math="g_2" />,
+    "l5": <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 11.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -4 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -2, y: -0.03 }, to: { x: -2, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 + 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-        {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 7, y: -0.05 }, to: { x: 7, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const O1 = { x: -4, y: 0 };
         const O2 = { x: 4, y: 0 };
         const r1 = 2;
         const r2 = 3;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // Calculate the angle for external tangent
+        
         const sin_alpha = (r2 - r1) / d;
         const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
 
-        // Direction from O1 to O2
+        
         const dx = O2.x - O1.x;
         const dy = O2.y - O1.y;
 
-        // Normalize direction
+        
         const ux = dx / d;
         const uy = dy / d;
 
-        // Perpendicular direction (rotated 90 degrees)
+        
         const vx = -uy;
         const vy = ux;
 
-        // First tangent line (upper)
-        // Tangent point on first circle
+        
+        
         const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
         const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
 
-        // Tangent point on second circle
+        
         const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
         const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
 
-        // Extend the line
+        
         const tdx = T2x - T1x;
         const tdy = T2y - T1y;
         const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
@@ -115,46 +107,40 @@ The external tangent uses the **difference of the radii**, and the internal tang
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="g_1" />, at: 2, offset: [-5, 0.5, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const O1 = { x: -4, y: 0 };
         const O2 = { x: 4, y: 0 };
         const r1 = 2;
         const r2 = 3;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // Calculate the angle for external tangent
+        
         const sin_alpha = (r2 - r1) / d;
         const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
 
-        // Direction from O1 to O2
+        
         const dx = O2.x - O1.x;
         const dy = O2.y - O1.y;
 
-        // Normalize direction
+        
         const ux = dx / d;
         const uy = dy / d;
 
-        // Perpendicular direction (rotated 90 degrees)
+        
         const vx = -uy;
         const vy = ux;
 
-        // Second tangent line (lower)
-        // Tangent point on first circle
+        
+        
         const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
         const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
 
-        // Tangent point on second circle
+        
         const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
         const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
 
-        // Extend the line
+        
         const tdx = T2x - T1x;
         const tdy = T2y - T1y;
         const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
@@ -174,17 +160,17 @@ The external tangent uses the **difference of the radii**, and the internal tang
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="g_2" />, at: 2, offset: [-5, -0.5, 0] }],
-    },
-
-    { points: [{ x: -4, y: 0, z: 0 }, { x: 31 / 8, y: Math.sqrt(63) / 8, z: 0 }, { x: 4, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: false, labels: [{ text: <InlineMath math="H" />, at: 1, offset: [0.2, -0.4, 0] }] },
-]}
-cameraPosition={[0.5, 0, 16.5]}
-  cameraTarget={[0.5, 0, 0]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 31 / 8, y: Math.sqrt(63) / 8 }, { x: 4, y: 0 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -4, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: 7.59, y: 3.48 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: 7.59, y: -3.48 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 3.88, y: 0.99 }, placement: "below-right" },
+    ],
+  }}
 />
 
 For that pair of circles, <InlineMath math="l_{\text{ext}} = \sqrt{8^2 - 1^2} = \sqrt{63} = 3\sqrt{7}" />. The formula gives the length of the segment between the two points of tangency. If you need the equation of the line instead, that calls for [the equation of a tangent line to a circle](/en/subjects/mathematics/analytic-geometry/equation-of-a-tangent-line-to-a-circle), which works with the point of tangency or the slope rather than a length.
@@ -201,79 +187,72 @@ Call the larger radius <InlineMath math="r_2" /> so the difference is positive. 
 
 **Example**. The first circle has center <InlineMath math="A(-3, 0)" /> and radius <InlineMath math="1.5" />, and the second has center <InlineMath math="B(3, 0)" /> and radius <InlineMath math="2.5" />. Find the length of their common external tangent.
 
-<LineEquation
+<MathVisual
   title={<>Circles with <InlineMath math="r_1 = 1.5" /> and <InlineMath math="r_2 = 2.5" /></>}
   description={<>Centers <InlineMath math="A" /> and <InlineMath math="B" /> are <InlineMath math="6" /> apart, so the external tangent segment <InlineMath math="PQ" /> has length <InlineMath math="\sqrt{35}" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="P" />,
+    "l4": <InlineMath math="Q" />,
+    "l5": <InlineMath math="R" />,
+    "l6": <InlineMath math="S" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 6.5 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -3 + 1.5 * Math.cos(angle),
           y: 1.5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -1.5, y: -0.03 }, to: { x: -1.5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 + 2.5 * Math.cos(angle),
           y: 2.5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-        {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 5.5, y: -0.04 }, to: { x: 5.5, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const O1 = { x: -3, y: 0 };
         const O2 = { x: 3, y: 0 };
         const r1 = 1.5;
         const r2 = 2.5;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // Calculate the angle for external tangent
+        
         const sin_alpha = (r2 - r1) / d;
         const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
 
-        // Direction from O1 to O2
+        
         const dx = O2.x - O1.x;
         const dy = O2.y - O1.y;
 
-        // Normalize direction
+        
         const ux = dx / d;
         const uy = dy / d;
 
-        // Perpendicular direction (rotated 90 degrees)
+        
         const vx = -uy;
         const vy = ux;
 
-        // First tangent line (upper)
-        // Tangent point on first circle
+        
+        
         const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
         const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
 
-        // Tangent point on second circle
+        
         const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
         const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
 
@@ -281,45 +260,36 @@ Call the larger radius <InlineMath math="r_2" /> so the difference is positive. 
           { x: T1x, y: T1y, z: 0 },
           { x: T2x, y: T2y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [0.5, 0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const O1 = { x: -3, y: 0 };
         const O2 = { x: 3, y: 0 };
         const r1 = 1.5;
         const r2 = 2.5;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // Calculate the angle for external tangent
+        
         const sin_alpha = (r2 - r1) / d;
         const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
 
-        // Direction from O1 to O2
+        
         const dx = O2.x - O1.x;
         const dy = O2.y - O1.y;
 
-        // Normalize direction
+        
         const ux = dx / d;
         const uy = dy / d;
 
-        // Perpendicular direction (rotated 90 degrees)
+        
         const vx = -uy;
         const vy = ux;
 
-        // Second tangent line (lower)
-        // Tangent point on first circle
+        
+        
         const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
         const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
 
-        // Tangent point on second circle
+        
         const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
         const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
 
@@ -327,19 +297,17 @@ Call the larger radius <InlineMath math="r_2" /> so the difference is positive. 
           { x: T1x, y: T1y, z: 0 },
           { x: T2x, y: T2y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="R" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="S" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-
-]}
-cameraPosition={[0.5, 0, 13]}
-  cameraTarget={[0.5, 0, 0]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: -3.25, y: 1.48 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 2.58, y: 2.47 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: -3.25, y: -1.48 }, placement: "below-left" },
+      { key: "l6", objectId: "s5", at: { x: 2.58, y: -2.47 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Read the distance between the centers from the coordinates, then use the external tangent formula:
@@ -355,51 +323,43 @@ The length is <InlineMath math="\sqrt{35} \approx 5.92" /> units. Check it with 
 
 An internal tangent **crosses the segment joining the two centers**, so the circles lie on opposite sides of the line. The radii to the points of tangency now point in opposite directions, and that is why the two radii are added.
 
-<LineEquation
-  title="Common Internal Tangents"
+<MathVisual
+  title={<>Common Internal Tangents</>}
   description={<>Lines <InlineMath math="h_1" /> and <InlineMath math="h_2" /> pass between the circles, and <InlineMath math="BH" /> equals the sum of the radii.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="h_1" />,
+    "l4": <InlineMath math="h_2" />,
+    "l5": <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -4 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -2, y: -0.03 }, to: { x: -2, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 6, y: -0.03 }, to: { x: 6, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const O1 = { x: -4, y: 0 };
         const O2 = { x: 4, y: 0 };
         const r1 = 2;
@@ -434,14 +394,8 @@ An internal tangent **crosses the segment joining the two centers**, so the circ
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="h_1" />, at: 1, offset: [-1, 0.5, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const O1 = { x: -4, y: 0 };
         const O2 = { x: 4, y: 0 };
         const r1 = 2;
@@ -476,16 +430,17 @@ An internal tangent **crosses the segment joining the two centers**, so the circ
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="h_2" />, at: 1, offset: [-1, -0.5, 0] }],
-    },
-
-    { points: [{ x: -4, y: 0, z: 0 }, { x: 2, y: -2 * Math.sqrt(3), z: 0 }, { x: 4, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: false, labels: [{ text: <InlineMath math="H" />, at: 1, offset: [0.2, -0.4, 0] }] },
-]}
-cameraPosition={[0, 0, 15]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 2, y: -2 * Math.sqrt(3) }, { x: 4, y: 0 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -4, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: -5.6, y: 3.23 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: -5.6, y: -3.23 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 2, y: -3.46 }, placement: "below-right" },
+    ],
+  }}
 />
 
 In the internal tangent diagram, extend the radius from center <InlineMath math="B" /> past the point of tangency to the helper point <InlineMath math="H" />, with <InlineMath math="AH" /> parallel to the tangent. Segment <InlineMath math="BH" /> is the radius <InlineMath math="r_2" /> from <InlineMath math="B" /> to the point of tangency plus the extension of length <InlineMath math="r_1" />, so <InlineMath math="BH = r_1 + r_2" />. Triangle <InlineMath math="AHB" /> has a right angle at <InlineMath math="H" />:
@@ -499,51 +454,44 @@ In that diagram, <InlineMath math="d = 8" /> and both radii are <InlineMath math
 
 **Example**. The first circle has center <InlineMath math="P(-5, 0)" /> and radius <InlineMath math="2" />, and the second has center <InlineMath math="Q(5, 0)" /> and radius <InlineMath math="3" />. Find the length of their common internal tangent.
 
-<LineEquation
+<MathVisual
   title={<>Circles with <InlineMath math="r_1 = 2" /> and <InlineMath math="r_2 = 3" /></>}
   description={<>Centers <InlineMath math="P" /> and <InlineMath math="Q" /> are <InlineMath math="10" /> apart, so the internal tangent segment has length <InlineMath math="5\sqrt{3}" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="P" />,
+    "l2": <InlineMath math="Q" />,
+    "l3": <InlineMath math="E" />,
+    "l4": <InlineMath math="F" />,
+    "l5": <InlineMath math="G" />,
+    "l6": <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 9.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -5 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -3, y: -0.03 }, to: { x: -3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 5 + 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -5, y: 0, z: 0 },
-        { x: 5, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 8, y: -0.05 }, to: { x: 8, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -5, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 5, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const O1 = { x: -5, y: 0 };
         const O2 = { x: 5, y: 0 };
         const r1 = 2;
@@ -563,17 +511,8 @@ In that diagram, <InlineMath math="d = 8" /> and both radii are <InlineMath math
           { x: T1x, y: T1y, z: 0 },
           { x: T2x, y: T2y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="E" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="F" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const O1 = { x: -5, y: 0 };
         const O2 = { x: 5, y: 0 };
         const r1 = 2;
@@ -593,18 +532,17 @@ In that diagram, <InlineMath math="d = 8" /> and both radii are <InlineMath math
           { x: T1x, y: T1y, z: 0 },
           { x: T2x, y: T2y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#d97706",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="G" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="H" />, at: 1, offset: [0.5, 0.5, 0] },
-      ],
-    },
-
-]}
-cameraPosition={[0, 0, 18]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -5, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: -4, y: 1.73 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 3.5, y: -2.6 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: -4, y: -1.73 }, placement: "below-left" },
+      { key: "l6", objectId: "s5", at: { x: 3.5, y: 2.6 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Check the condition first. The distance between the centers, <InlineMath math="d = 10" />, is larger than <InlineMath math="r_1 + r_2 = 5" />, so an internal tangent exists:
@@ -620,69 +558,47 @@ The length is <InlineMath math="5\sqrt{3} \approx 8.66" /> units. Check: <Inline
 
 When <InlineMath math="r_1 = r_2 = r" />, the difference of the radii is zero. The external tangent formula becomes <InlineMath math="l = \sqrt{d^2 - 0} = d" />, so the external tangent is **as long as the distance between the centers** and parallel to the line through them.
 
-<LineEquation
-  title="External Tangents for Equal Radii"
+<MathVisual
+  title={<>External Tangents for Equal Radii</>}
   description={<>Both external tangents are parallel to the line of centers <InlineMath math="O_1O_2" /> and as long as the center distance <InlineMath math="6" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="O_1" />,
+    "l2": <InlineMath math="O_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -3 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -1, y: -0.03 }, to: { x: -1, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O_1" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="O_2" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: -3, y: 2, z: 0 },
-        { x: 3, y: 2, z: 0 },
-      ],
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: -3, y: -2, z: 0 },
-        { x: 3, y: -2, z: 0 },
-      ],
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 5, y: -0.03 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3, y: 2 }, { x: 3, y: 2 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3, y: -2 }, { x: 3, y: -2 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3, y: 0 }, placement: "below-right" },
+    ],
+  }}
 />
 
 In the equal radii diagram, the centers are <InlineMath math="6" /> apart and both radii are <InlineMath math="2" />. The two external tangents run <InlineMath math="2" /> units above and below the line of centers, and each one is <InlineMath math="6" /> long. The internal tangents are not drawn here. By symmetry they cross exactly at the midpoint between <InlineMath math="O_1" /> and <InlineMath math="O_2" />, and each has length <InlineMath math="\sqrt{36 - 16} = \sqrt{20} = 2\sqrt{5}" />.
@@ -693,66 +609,61 @@ For the same pair of circles, **the internal tangent is always shorter** than th
 
 **Circles far apart**. The first circle has center <InlineMath math="(-6, 0)" /> and radius <InlineMath math="1" />, and the second has center <InlineMath math="(6, 0)" /> and radius <InlineMath math="2" />.
 
-<LineEquation
-  title="Circles Far Apart"
+<MathVisual
+  title={<>Circles Far Apart</>}
   description={<>The center distance <InlineMath math="12" /> exceeds the sum of the radii <InlineMath math="3" />, so all four common tangents are drawn.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 11.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -6 + 1 * Math.cos(angle),
           y: 1 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -5, y: -0.02 }, to: { x: -5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 6 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-        {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 8, y: -0.03 }, to: { x: 8, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const O1 = { x: -6, y: 0 };
         const O2 = { x: 6, y: 0 };
         const r1 = 1;
         const r2 = 2;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // Calculate the angle for external tangent
+        
         const sin_alpha = (r2 - r1) / d;
         const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
 
-        // Direction from O1 to O2
+        
         const dx = O2.x - O1.x;
         const dy = O2.y - O1.y;
 
-        // Normalize direction
+        
         const ux = dx / d;
         const uy = dy / d;
 
-        // Perpendicular direction (rotated 90 degrees)
+        
         const vx = -uy;
         const vy = ux;
 
-        // First tangent line (upper)
-        // Tangent point on first circle
+        
+        
         const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
         const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
 
-        // Tangent point on second circle
+        
         const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
         const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
 
@@ -775,41 +686,36 @@ For the same pair of circles, **the internal tangent is always shorter** than th
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const O1 = { x: -6, y: 0 };
         const O2 = { x: 6, y: 0 };
         const r1 = 1;
         const r2 = 2;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // Calculate the angle for external tangent
+        
         const sin_alpha = (r2 - r1) / d;
         const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
 
-        // Direction from O1 to O2
+        
         const dx = O2.x - O1.x;
         const dy = O2.y - O1.y;
 
-        // Normalize direction
+        
         const ux = dx / d;
         const uy = dy / d;
 
-        // Perpendicular direction (rotated 90 degrees)
+        
         const vx = -uy;
         const vy = ux;
 
-        // Second tangent line (lower)
-        // Tangent point on first circle
+        
+        
         const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
         const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
 
-        // Tangent point on second circle
+        
         const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
         const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
 
@@ -832,13 +738,8 @@ For the same pair of circles, **the internal tangent is always shorter** than th
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const O1 = { x: -6, y: 0 };
         const O2 = { x: 6, y: 0 };
         const r1 = 1;
@@ -873,13 +774,8 @@ For the same pair of circles, **the internal tangent is always shorter** than th
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: ((() => {
         const O1 = { x: -6, y: 0 };
         const O2 = { x: 6, y: 0 };
         const r1 = 1;
@@ -914,15 +810,9 @@ For the same pair of circles, **the internal tangent is always shorter** than th
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-    },
-
-]}
-cameraPosition={[0.5, 0, 19]}
-  cameraTarget={[0.5, 0, 0]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+  }}
 />
 
 The centers are <InlineMath math="d = 12" /> apart, far more than the sum of the radii, <InlineMath math="3" />, so all four common tangents exist:
@@ -936,38 +826,33 @@ The two lengths are almost equal because the radii are small compared with the d
 
 **Circles close together**. Both circles have radius <InlineMath math="1.5" />, with centers at <InlineMath math="(-2, 0)" /> and <InlineMath math="(2, 0)" />.
 
-<LineEquation
-  title="Circles Close Together with Equal Radii"
+<MathVisual
+  title={<>Circles Close Together with Equal Radii</>}
   description={<>The external tangents are parallel to the line of centers, while the two internal tangents cross at the midpoint between the centers.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -2 + 1.5 * Math.cos(angle),
           y: 1.5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -0.5, y: -0.03 }, to: { x: -0.5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 2 + 1.5 * Math.cos(angle),
           y: 1.5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 3.5, y: -0.03 }, to: { x: 3.5, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const points = [
           { x: -5, y: 1.5, z: 0 },
           { x: 5, y: 1.5, z: 0 },
@@ -981,13 +866,8 @@ The two lengths are almost equal because the radii are small compared with the d
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const points = [
           { x: -5, y: -1.5, z: 0 },
           { x: 5, y: -1.5, z: 0 },
@@ -1001,13 +881,8 @@ The two lengths are almost equal because the radii are small compared with the d
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const O1 = { x: -2, y: 0 };
         const O2 = { x: 2, y: 0 };
         const r1 = 1.5;
@@ -1042,13 +917,8 @@ The two lengths are almost equal because the radii are small compared with the d
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: ((() => {
         const O1 = { x: -2, y: 0 };
         const O2 = { x: 2, y: 0 };
         const r1 = 1.5;
@@ -1083,14 +953,9 @@ The two lengths are almost equal because the radii are small compared with the d
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-    },
-
-]}
-cameraPosition={[0, 0, 10]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+  }}
 />
 
 The centers are <InlineMath math="d = 4" /> apart and the radii are equal, so the external tangent equals <InlineMath math="d" /> right away:

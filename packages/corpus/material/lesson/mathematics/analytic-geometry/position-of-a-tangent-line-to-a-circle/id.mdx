@@ -21,13 +21,21 @@ Hubungan tegak lurus tersebut digunakan untuk menyusun garis singgung di titik y
 
 Mulailah dengan memastikan bahwa titik singgung yang diberikan benar-benar berada pada lingkaran. Vektor jari-jarinya kemudian menjadi vektor normal garis singgung.
 
-<LineEquation
-  title="Garis Singgung Melalui Titik pada Lingkaran"
-  description="Jari-jari menuju titik sentuh yang diketahui menjadi normal garis singgung."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Garis Singgung Melalui Titik pada Lingkaran</>}
+  description={<>Jari-jari menuju titik sentuh yang diketahui menjadi normal garis singgung.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="T" />,
+    "l3": <>Garis Singgung</>,
+    "l4": <>Jari-jari</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 7 }, y: { min: -5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 3;
         return {
@@ -35,38 +43,11 @@ Mulailah dengan memastikan bahwa titik singgung yang diberikan benar-benar berad
           y: radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 0,
-          y: 0,
-          z: 0,
-        };
-      }),
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        const angle = Math.PI / 4;
-        const radius = 3;
-        return {
-          x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T" />, at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const points = Array.from({ length: 2 }, (_, i) => {
           const angle = Math.PI / 4;
           const radius = 3;
@@ -93,14 +74,8 @@ Mulailah dengan memastikan bahwa titik singgung yang diberikan benar-benar berad
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Garis Singgung", at: 2, offset: [-2.5, 4.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const angle = Math.PI / 4;
         const radius = 3;
         return {
@@ -108,14 +83,8 @@ Mulailah dengan memastikan bahwa titik singgung yang diberikan benar-benar berad
           y: i * radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Jari-jari", at: 1, offset: [-2, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const xMin = -5;
         const xMax = 5;
         const y = 0;
@@ -124,13 +93,8 @@ Mulailah dengan memastikan bahwa titik singgung yang diberikan benar-benar berad
           y: y,
           z: 0,
         };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const yMin = -4;
         const yMax = 4;
         const x = 0;
@@ -139,13 +103,15 @@ Mulailah dengan memastikan bahwa titik singgung yang diberikan benar-benar berad
           y: yMin + i * (yMax - yMin),
           z: 0,
         };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 4.12, y: 0.12 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: 2.12, y: 2.12 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Untuk lingkaran <InlineMath math="(x-a)^2+(y-b)^2=r^2" /> berpusat di <InlineMath math="C(a,b)" /> dan titik singgung <InlineMath math="T(x_1,y_1)" />, ikuti langkah berikut.
@@ -172,13 +138,20 @@ Dengan memakai syarat titik pada lingkaran dari Langkah 1, kita memperoleh **ben
 
 Jika titik singgung belum diketahui tetapi gradien diberikan, titik potong sumbu harus menempatkan garis tepat sejauh satu jari-jari dari pusat. Kasus ini sering muncul ketika garis singgung harus sejajar dengan garis lain.
 
-<LineEquation
-  title="Garis Singgung dengan Gradien Tertentu"
-  description="Satu gradien menentukan dua garis singgung sejajar di kedua sisi pusat."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Garis Singgung dengan Gradien Tertentu</>}
+  description={<>Satu gradien menentukan dua garis singgung sejajar di kedua sisi pusat.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <>Singgung 1</>,
+    "l3": <>Singgung 2</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -10.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 2.5;
         return {
@@ -186,26 +159,12 @@ Jika titik singgung belum diketahui tetapi gradien diberikan, titik potong sumbu
           y: radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 0,
-          y: 0,
-          z: 0,
-        };
-      }),
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 2.5, y: -0.04 }, to: { x: 2.5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const points = Array.from({ length: 2 }, (_, i) => {
-          const m = 1; // gradien yang diberikan
+          const m = 1; 
           const r = 2.5;
           const c1 = r * Math.sqrt(1 + m * m);
           const xRange = 6;
@@ -224,16 +183,10 @@ Jika titik singgung belum diketahui tetapi gradien diberikan, titik potong sumbu
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Singgung 1", at: 1, offset: [0.5, 2.5, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const points = Array.from({ length: 2 }, (_, i) => {
-          const m = 1; // gradien yang diberikan
+          const m = 1; 
           const r = 2.5;
           const c2 = -r * Math.sqrt(1 + m * m);
           const xRange = 6;
@@ -252,14 +205,8 @@ Jika titik singgung belum diketahui tetapi gradien diberikan, titik potong sumbu
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Singgung 2", at: 2, offset: [0.5, -1.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const xMin = -5;
         const xMax = 5;
         const y = 0;
@@ -268,13 +215,8 @@ Jika titik singgung belum diketahui tetapi gradien diberikan, titik potong sumbu
           y: y,
           z: 0,
         };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const yMin = -4;
         const yMax = 4;
         const x = 0;
@@ -283,13 +225,14 @@ Jika titik singgung belum diketahui tetapi gradien diberikan, titik potong sumbu
           y: yMin + i * (yMax - yMin),
           z: 0,
         };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -3, y: 0.54 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 3, y: -0.54 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Untuk lingkaran <InlineMath math="x^2 + y^2 = r^2" /> dan gradien <InlineMath math="m" /> yang diketahui, kita substitusikan persamaan garis <InlineMath math="y = mx + c" /> ke persamaan lingkaran:
@@ -322,13 +265,23 @@ Jadi, untuk setiap gradien berhingga <InlineMath math="m" />, lingkaran berpusat
 
 Sebuah titik di luar lingkaran menentukan tepat **dua garis singgung**. Kedua titik singgungnya berada pada satu garis bantu, yaitu garis kutub titik luar tersebut.
 
-<LineEquation
-  title="Garis Singgung melalui Titik di Luar Lingkaran"
-  description="Satu titik luar menentukan dua titik singgung dan dua garis singgung."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Garis Singgung melalui Titik di Luar Lingkaran</>}
+  description={<>Satu titik luar menentukan dua titik singgung dan dua garis singgung.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="T_1" />,
+    "l4": <InlineMath math="T_2" />,
+    "l5": <>Singgung 1</>,
+    "l6": <>Singgung 2</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6.5 }, y: { min: -3, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 2;
         return {
@@ -336,70 +289,15 @@ Sebuah titik di luar lingkaran menentukan tepat **dua garis singgung**. Kedua ti
           y: radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 0,
-          y: 0,
-          z: 0,
-        };
-      }),
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 4,
-          y: 2,
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        // Titik singgung pertama (dihitung secara matematis)
-        const px = 4, py = 2, r = 2;
-        const d = Math.sqrt(px*px + py*py);
-        const angle1 = Math.atan2(py, px) - Math.acos(r/d);
-        return {
-          x: r * Math.cos(angle1),
-          y: r * Math.sin(angle1),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T_1" />, at: 0, offset: [0.5, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        // Titik singgung kedua (dihitung secara matematis)
-        const px = 4, py = 2, r = 2;
-        const d = Math.sqrt(px*px + py*py);
-        const angle2 = Math.atan2(py, px) + Math.acos(r/d);
-        return {
-          x: r * Math.cos(angle2),
-          y: r * Math.sin(angle2),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T_2" />, at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 2, y: -0.03 }, to: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 4, y: 2 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1.6, y: -1.2 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 0, y: 2 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: ((() => {
         const points = Array.from({ length: 2 }, (_, i) => {
-          // Garis singgung pertama
+          
           const px = 4,
             py = 2,
             r = 2;
@@ -423,16 +321,10 @@ Sebuah titik di luar lingkaran menentukan tepat **dua garis singgung**. Kedua ti
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Singgung 1", at: 1, offset: [-0.3, -2.2, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: ((() => {
         const points = Array.from({ length: 2 }, (_, i) => {
-          // Garis singgung kedua
+          
           const px = 4,
             py = 2,
             r = 2;
@@ -456,14 +348,8 @@ Sebuah titik di luar lingkaran menentukan tepat **dua garis singgung**. Kedua ti
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Singgung 2", at: 1, offset: [-1.2, 1.3, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "warning" },
+      { id: "s8", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const xMin = -3;
         const xMax = 5;
         const y = 0;
@@ -472,13 +358,8 @@ Sebuah titik di luar lingkaran menentukan tepat **dua garis singgung**. Kedua ti
           y: y,
           z: 0,
         };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s9", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const yMin = -2;
         const yMax = 4;
         const x = 0;
@@ -487,14 +368,17 @@ Sebuah titik di luar lingkaran menentukan tepat **dua garis singgung**. Kedua ti
           y: yMin + i * (yMax - yMin),
           z: 0,
         };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[1, 0, 12]}
-  cameraTarget={[1, 0, 0]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 1.6, y: -1.2 }, placement: "below-right" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: 2 }, placement: "above-right" },
+      { key: "l5", objectId: "s6", at: { x: 4, y: 2 }, placement: "below-left" },
+      { key: "l6", objectId: "s7", at: { x: 4, y: 2 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Misalkan <InlineMath math="P(x_0,y_0)" /> berada di luar lingkaran <InlineMath math="(x-a)^2+(y-b)^2=r^2" />. **Garis kutubnya** adalah:

@@ -14,56 +14,42 @@ A circle is the set of all points in a plane that are **the same distance from o
 
 The diagram of a circle's parts labels the four parts you need in almost every problem: the center <InlineMath math="O" />, the radius <InlineMath math="r" />, a diameter, and a chord.
 
-<LineEquation
-  title="Parts of a Circle"
+<MathVisual
+  title={<>Parts of a Circle</>}
   description={<>The radius <InlineMath math="r = 3" /> starts at the center <InlineMath math="O" />, a diameter of length <InlineMath math="6" /> passes through the center, and the chord does not.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="r" />,
+    "l3": <>diameter</>,
+    "l4": <>chord</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1.5, y: -(3 * Math.sqrt(3)) / 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.35, 0.35, 0] },
-        { text: <InlineMath math="r" />, at: 0, offset: [0.95, -1.05, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      labels: [{ text: "diameter", at: 0, offset: [1.25, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
-        { x: -3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
-      ],
-      smooth: false,
-      color: "#d97706",
-      labels: [{ text: "chord", at: 0, offset: [-3 / Math.sqrt(2), 0.4, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 10]}
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1.5, y: -(3 * Math.sqrt(3)) / 2 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 1.5, y: -2.6 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, { x: -3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-right" },
+      { key: "l4", objectId: "s4", at: { x: 2.12, y: 2.12 }, placement: "above-left" },
+    ],
+  }}
 />
 
 The center <InlineMath math="O" /> is the reference point for every radius. A radius is a segment from the center to a point on the circle, and in the diagram it has length <InlineMath math="r = 3" />. A [chord](/en/subjects/mathematics/circle/circle-and-chord) is a segment joining two points on the circle. A diameter is the longest chord, the one that passes through the center, so <InlineMath math="d = 2r = 6" />.
@@ -78,13 +64,19 @@ On the coordinate plane, this is the standard form of [the equation of a circle]
 
 Two points on a circle split it into **two arcs at once**. The shorter one is the minor arc and the longer one is the major arc. If the two points are the ends of a diameter, the two arcs are equal and each one is a semicircle.
 
-<LineEquation
-  title="Minor Arc and Major Arc"
+<MathVisual
+  title={<>Minor Arc and Major Arc</>}
   description={<>The minor arc covers <InlineMath math="90^\circ" /> and the major arc covers <InlineMath math="270^\circ" /> of the same circle.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 271 }, (_, sampleIndex) => {
+  labels={{
+    "l1": <>Minor arc</>,
+    "l2": <>Major arc</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 271 }, (_, sampleIndex) => {
         const i = sampleIndex / 3;
         const angle = (i * Math.PI) / 180;
         return {
@@ -92,34 +84,23 @@ Two points on a circle split it into **two arcs at once**. The shorter one is th
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#7c3aed",
-      pointIndices: [0, 90],
-      showPoints: true,
-      labels: [{ text: "Minor arc", at: 135, offset: [0.7, 1.45, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 271 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1-p0", kind: "point", at: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1-p90", kind: "point", at: { x: 2.6, y: 1.5 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 271 }, (_, i) => {
         const angle = ((i + 90) * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      labels: [
-        {
-          text: "Major arc",
-          at: 135,
-          offset: [3 / Math.sqrt(2), -1.5, 0],
-        },
-      ],
-    },
-  ]}
-  cameraPosition={[0, 0, 10]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: -2.12, y: -2.12 }, placement: "below-right" },
+    ],
+  }}
 />
 
 In the minor and major arc diagram, the minor arc covers <InlineMath math="90^\circ" /> and the major arc covers the rest, <InlineMath math="270^\circ" />. The measures of the two arcs always add up to <InlineMath math="360^\circ" />.
@@ -136,49 +117,37 @@ A minor arc is named with two letters, such as <InlineMath math="\overset{\frown
 
 Every arc has two different sizes. Its arc measure is given in degrees and is **equal to the central angle** that intercepts it. Its arc length is given in units of length and depends on the radius.
 
-<LineEquation
+<MathVisual
   title={<>Central Angle <InlineMath math="\angle AOB" /></>}
   description={<>The central angle <InlineMath math="\alpha = 45^\circ" /> intercepts arc <InlineMath math="\overset{\frown}{AB}" />, so that arc also measures <InlineMath math="45^\circ" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="\overset{\frown}{AB}" />,
+    "l5": <InlineMath math="\alpha" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.35, -0.35, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 226 }, (_, sampleIndex) => {
         const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
@@ -186,14 +155,8 @@ Every arc has two different sizes. Its arc measure is given in degrees and is **
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 110, offset: [0.5, 0.2, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: Array.from({ length: 226 }, (_, sampleIndex) => {
         const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
@@ -201,13 +164,16 @@ Every arc has two different sizes. Its arc measure is given in degrees and is **
           y: 0.8 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 110, offset: [0.3, 0.2, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 10]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 2.78, y: 1.12 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: 0.74, y: 0.3 }, placement: "above-right" },
+    ],
+  }}
 />
 
 In the central angle diagram, <InlineMath math="\angle AOB = \alpha = 45^\circ" />, so arc <InlineMath math="\overset{\frown}{AB}" /> also measures <InlineMath math="45^\circ" />. Arcs with the same measure can have different lengths, for example a <InlineMath math="60^\circ" /> arc on circles of radius <InlineMath math="3\text{ cm}" /> and <InlineMath math="6\text{ cm}" />:
@@ -223,49 +189,37 @@ Doubling the radius doubles the arc length, while the arc measure stays at <Inli
 
 An inscribed angle has its vertex on the circle, and its arms are chords. An inscribed angle measures **half the arc it intercepts**. This is the same rule as the relationship between [central and inscribed angles](/en/subjects/mathematics/circle/central-angle-and-inscribed-angle), read from the arc instead.
 
-<LineEquation
+<MathVisual
   title={<>Inscribed Angle <InlineMath math="\angle ACB" /></>}
   description={<>Point <InlineMath math="C" /> intercepts arc <InlineMath math="\overset{\frown}{AB}" /> of <InlineMath math="45^\circ" />, so <InlineMath math="\angle ACB = 22.5^\circ" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="C" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="\overset{\frown}{AB}" />,
+    "l5": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 3, y: 0, z: 0 },
-        { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.35, -0.35, 0] },
-        { text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
-        { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 226 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 3, y: 0 }, { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2) }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: -2.12, y: -2.12 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: -2.12, y: -2.12 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 226 }, (_, sampleIndex) => {
         const i = sampleIndex / 5;
         const angle = (i * Math.PI) / 180;
         return {
@@ -273,98 +227,57 @@ An inscribed angle has its vertex on the circle, and its arms are chords. An ins
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\overset{\frown}{AB}" />, at: 110, offset: [0.5, 0.2, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2), z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [1, 0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 10]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: -2.12, y: -2.12 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 2.78, y: 1.12 }, placement: "above-right" },
+      { key: "l5", objectId: "s6", at: { x: 0, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 In the inscribed angle diagram, point <InlineMath math="C" /> intercepts arc <InlineMath math="\overset{\frown}{AB}" />, which measures <InlineMath math="45^\circ" />, so <InlineMath math="\angle ACB = 22.5^\circ" />. The second diagram uses an <InlineMath math="80^\circ" /> arc.
 
-<LineEquation
+<MathVisual
   title={<>Inscribed Angle on an <InlineMath math="80^\circ" /> Arc</>}
   description={<>Arc <InlineMath math="\overset{\frown}{AB}" /> measures <InlineMath math="80^\circ" />, so the inscribed angle <InlineMath math="\angle ACB = 40^\circ" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="80^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.35, -0.35, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3 * Math.cos((80 * Math.PI) / 180), y: 3 * Math.sin((80 * Math.PI) / 180), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0, 0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 3, y: 0, z: 0 },
-        { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2), z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 3 * Math.cos((80 * Math.PI) / 180), y: 3 * Math.sin((80 * Math.PI) / 180), z: 0 },
-        { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2), z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3 * Math.cos((80 * Math.PI) / 180), y: 3 * Math.sin((80 * Math.PI) / 180) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 0.52, y: 2.95 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 3, y: 0 }, { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2) }], appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "s4-p1", kind: "point", at: { x: -2.12, y: -2.12 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 3 * Math.cos((80 * Math.PI) / 180), y: 3 * Math.sin((80 * Math.PI) / 180) }, { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2) }], appearance: "answer" },
+      { id: "s6", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
         const i = sampleIndex / 3;
         const angle = (i * Math.PI) / 180;
         return {
@@ -372,13 +285,8 @@ In the inscribed angle diagram, point <InlineMath math="C" /> intercepts arc <In
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s7", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
         const i = sampleIndex / 10;
         const angle = (i * 4 * Math.PI) / 180;
         return {
@@ -386,13 +294,16 @@ In the inscribed angle diagram, point <InlineMath math="C" /> intercepts arc <In
           y: 0.8 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="80^\circ" />, at: 100, offset: [0.5, 0.2, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 10]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 0.52, y: 2.95 }, placement: "above" },
+      { key: "l4", objectId: "s4", at: { x: -2.12, y: -2.12 }, placement: "below-left" },
+      { key: "l5", objectId: "s7", at: { x: 0.61, y: 0.51 }, placement: "above-right" },
+    ],
+  }}
 />
 
 In the second diagram, arc <InlineMath math="\overset{\frown}{AB}" /> measures <InlineMath math="80^\circ" />, so:
@@ -412,44 +323,33 @@ A sector is the region bounded by two radii and the arc between them. An arc and
 
 In both formulas, <InlineMath math="l" /> is the arc length, <InlineMath math="A" /> is the sector area, <InlineMath math="\alpha" /> is the central angle in degrees, and <InlineMath math="r" /> is the radius.
 
-<LineEquation
-  title="Sector of a Circle"
+<MathVisual
+  title={<>Sector of a Circle</>}
   description={<>A <InlineMath math="60^\circ" /> sector of radius <InlineMath math="3" /> has arc length <InlineMath math="\pi" /> and area <InlineMath math="1.5\pi" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <>Sector</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1.5, y: (3 * Math.sqrt(3)) / 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1.5, y: (3 * Math.sqrt(3)) / 2 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 1.5, y: 2.6 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
         const i = sampleIndex / 4;
         const angle = (i * Math.PI) / 180;
         return {
@@ -457,13 +357,12 @@ In both formulas, <InlineMath math="l" /> is the arc length, <InlineMath math="A
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      labels: [{ text: "Sector", at: 120, offset: [-1.35, -0.75, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 10]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s4", at: { x: 2.6, y: 1.5 }, placement: "below-left" },
+    ],
+  }}
 />
 
 The sector in the diagram has radius <InlineMath math="3" /> and central angle <InlineMath math="60^\circ" />, so its share is <InlineMath math="\frac{60}{360} = \frac{1}{6}" />. Its arc length is <InlineMath math="\frac{1}{6} \times 6\pi = \pi" /> and its area is <InlineMath math="\frac{1}{6} \times 9\pi = 1.5\pi" />. Even without the angle, [the relationship between arc length and sector area](/en/subjects/mathematics/circle-arc-sector/relationship-between-arc-length-and-sector-area) gives the same result: <InlineMath math="A = \frac{1}{2} l r = \frac{1}{2} \times \pi \times 3 = 1.5\pi" />.

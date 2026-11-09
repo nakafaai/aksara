@@ -12,82 +12,68 @@ export const metadata = {
 
 Eine Sehne ist eine <Highlight>Strecke mit beiden Endpunkten auf einem Kreis</Highlight>. Ein Durchmesser ist die besondere Sehne durch den Mittelpunkt. Andere Sehnen müssen nicht durch den Mittelpunkt verlaufen.
 
-<LineEquation
-  title="Sehnen auf einem Kreis"
-  description="Zwei gleich lange Sehnen überspannen Winkel von dreißig Grad und eine längere Sehne überspannt einen Winkel von sechzig Grad."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Sehnen auf einem Kreis</>}
+  description={<>Zwei gleich lange Sehnen überspannen Winkel von dreißig Grad und eine längere Sehne überspannt einen Winkel von sechzig Grad.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="D" />,
+    "l6": <InlineMath math="E" />,
+    "l7": <InlineMath math="F" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const angle1 = Math.PI / 6;
         const angle2 = Math.PI / 3;
         return [
           { x: 3 * Math.cos(angle1), y: 3 * Math.sin(angle1), z: 0 },
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const angle1 = (2 * Math.PI) / 3;
         const angle2 = (5 * Math.PI) / 6;
         return [
           { x: 3 * Math.cos(angle1), y: 3 * Math.sin(angle1), z: 0 },
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="C" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="D" />, at: 1, offset: [-0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const angle1 = (7 * Math.PI) / 6;
         const angle2 = (3 * Math.PI) / 2;
         return [
           { x: 3 * Math.cos(angle1), y: 3 * Math.sin(angle1), z: 0 },
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="E" />, at: 0, offset: [-0.3, -0.3, 0] },
-        { text: <InlineMath math="F" />, at: 1, offset: [0, -0.5, 0] },
-      ],
-    },
-  ]}
-  cameraPosition={[0, 0, 10]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 2.6, y: 1.5 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 1.5, y: 2.6 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -1.5, y: 2.6 }, placement: "above-left" },
+      { key: "l5", objectId: "s4", at: { x: -2.6, y: 1.5 }, placement: "above-left" },
+      { key: "l6", objectId: "s5", at: { x: -2.6, y: -1.5 }, placement: "below-left" },
+      { key: "l7", objectId: "s5", at: { x: 0, y: -3 }, placement: "below" },
+    ],
+  }}
 />
 
 Die Sehnen <InlineMath math="AB" /> und <InlineMath math="CD" /> überspannen gleich große Mittelpunktswinkel und sind daher gleich lang. Die Sehne <InlineMath math="EF" /> überspannt einen größeren Mittelpunktswinkel und ist länger.
@@ -100,85 +86,62 @@ Im **selben Kreis** bestimmen Sehnenlänge und senkrechter Abstand vom Mittelpun
 
 Zwei gleich lange Sehnen haben den gleichen Abstand vom Kreismittelpunkt. <Highlight>Umgekehrt sind zwei Sehnen mit demselben Abstand</Highlight> vom Kreismittelpunkt gleich lang.
 
-<LineEquation
-  title="Sehnen gleicher Länge"
-  description="Zwei gleich lange Sehnen haben den gleichen Abstand vom Kreismittelpunkt."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Sehnen gleicher Länge</>}
+  description={<>Zwei gleich lange Sehnen haben den gleichen Abstand vom Kreismittelpunkt.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="Q" />,
+    "l4": <InlineMath math="R" />,
+    "l5": <InlineMath math="S" />,
+    "l6": <InlineMath math="d_1" />,
+    "l7": <InlineMath math="d_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const y = 2;
         const x = Math.sqrt(16 - y * y);
         return [
           { x: -x, y: y, z: 0 },
           { x: x, y: y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const y = -2;
         const x = Math.sqrt(16 - y * y);
         return [
           { x: -x, y: y, z: 0 },
           { x: x, y: y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="R" />, at: 0, offset: [-0.3, -0.3, 0] },
-        { text: <InlineMath math="S" />, at: 1, offset: [0.3, -0.3, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 2, z: 0 },
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="d_1" />, at: 1, offset: [0.5, 0, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: -2, z: 0 },
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="d_2" />, at: 1, offset: [0.5, 0, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 2 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: -2 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -3.46, y: 2 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -3.46, y: -2 }, placement: "below-left" },
+      { key: "l5", objectId: "s4", at: { x: 3.46, y: -2 }, placement: "below-right" },
+      { key: "l6", objectId: "s5", at: { x: 0, y: 2 }, placement: "right" },
+      { key: "l7", objectId: "s6", at: { x: 0, y: -2 }, placement: "right" },
+    ],
+  }}
 />
 
 Wenn <InlineMath math="PQ = RS" />, dann ist der Abstand vom Kreismittelpunkt <InlineMath math="O" /> zur Sehne <InlineMath math="PQ" /> gleich dem Abstand von <InlineMath math="O" /> zur Sehne <InlineMath math="RS" />, also <InlineMath math="d_1 = d_2" />.
@@ -187,48 +150,39 @@ Wenn <InlineMath math="PQ = RS" />, dann ist der Abstand vom Kreismittelpunkt <I
 
 Das Lot vom Kreismittelpunkt auf eine Sehne **halbiert die Sehne**.
 
-<LineEquation
-  title="Senkrechte vom Mittelpunkt auf eine Sehne"
-  description="Eine Senkrechte vom Kreismittelpunkt auf eine Sehne halbiert die Sehne."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Senkrechte vom Mittelpunkt auf eine Sehne</>}
+  description={<>Eine Senkrechte vom Kreismittelpunkt auf eine Sehne halbiert die Sehne.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="M" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 5 * Math.cos(angle),
           y: 5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 5, y: -0.09 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const angle1 = Math.PI / 4;
         const angle2 = (3 * Math.PI) / 4;
         return [
           { x: 5 * Math.cos(angle1), y: 5 * Math.sin(angle1), z: 0 },
           { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const chordMidX =
           (5 * Math.cos(Math.PI / 4) + 5 * Math.cos((3 * Math.PI) / 4)) / 2;
         const chordMidY =
@@ -237,14 +191,8 @@ Das Lot vom Kreismittelpunkt auf eine Sehne **halbiert die Sehne**.
           { x: 0, y: 0, z: 0 },
           { x: chordMidX, y: chordMidY, z: 0 },
         ];
-      })(),
-      color: "#db2777",
-      showPoints: true,
-      smooth: false,
-      labels: [{ text: <InlineMath math="M" />, at: 1, offset: [0, 0.5, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const chordMidX =
           (5 * Math.cos(Math.PI / 4) + 5 * Math.cos((3 * Math.PI) / 4)) / 2;
         const chordMidY =
@@ -254,13 +202,15 @@ Das Lot vom Kreismittelpunkt auf eine Sehne **halbiert die Sehne**.
           { x: chordMidX - 0.3, y: chordMidY - 0.3, z: 0 },
           { x: chordMidX, y: chordMidY - 0.3, z: 0 },
         ];
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3.54, y: 3.54 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3.54, y: 3.54 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 3.54 }, placement: "above" },
+    ],
+  }}
 />
 
 In der Abbildung gilt <InlineMath math="OM \perp AB" />. Der Punkt <InlineMath math="M" /> ist der Mittelpunkt der Sehne <InlineMath math="AB" />, also ist <InlineMath math="AM = MB" />.
@@ -282,73 +232,53 @@ Dabei gilt:
 
 Wenn der kleinere Mittelpunktswinkel <InlineMath math="\theta" /> von <InlineMath math="0" /> bis <InlineMath math="180^\circ" /> wächst, steigt <InlineMath math="\sin(\theta/2)" /> von <InlineMath math="0" /> bis <InlineMath math="1" />. Die Sehnenlänge wächst dadurch von <InlineMath math="0" /> bis zum Durchmesser <InlineMath math="2r" />.
 
-<LineEquation
-  title="Mittelpunktswinkel und Sehne"
-  description="Die Sehne wird länger, wenn der kleinere Mittelpunktswinkel gegen einhundertachtzig Grad wächst."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Mittelpunktswinkel und Sehne</>}
+  description={<>Die Sehne wird länger, wenn der kleinere Mittelpunktswinkel gegen einhundertachtzig Grad wächst.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="Q" />,
+    "l4": <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const angle1 = Math.PI / 6;
         const angle2 = (2 * Math.PI) / 3;
         return [
           { x: 4 * Math.cos(angle1), y: 4 * Math.sin(angle1), z: 0 },
           { x: 4 * Math.cos(angle2), y: 4 * Math.sin(angle2), z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [-0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const angle1 = Math.PI / 6;
         return [
           { x: 0, y: 0, z: 0 },
           { x: 4 * Math.cos(angle1), y: 4 * Math.sin(angle1), z: 0 },
         ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const angle2 = (2 * Math.PI) / 3;
         return [
           { x: 0, y: 0, z: 0 },
           { x: 4 * Math.cos(angle2), y: 4 * Math.sin(angle2), z: 0 },
         ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: ((() => {
         const startAngle = Math.PI / 6;
         const endAngle = (2 * Math.PI) / 3;
         const numPoints = 20;
@@ -360,13 +290,15 @@ Wenn der kleinere Mittelpunktswinkel <InlineMath math="\theta" /> von <InlineMat
             z: 0,
           };
         });
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\theta" />, at: 10, offset: [0, -0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -2, y: 3.46 }, placement: "above-left" },
+      { key: "l4", objectId: "s6", at: { x: 0.39, y: 1.45 }, placement: "below" },
+    ],
+  }}
 />
 
 ### Abstand einer Sehne vom Mittelpunkt
@@ -383,23 +315,38 @@ Ist die Sehnenlänge <InlineMath math="l" /> bekannt, verwende die **halbe Sehne
 
 Wenn sich zwei Sehnen innerhalb eines Kreises schneiden, dann ist das Produkt der Segmente einer Sehne gleich dem Produkt der Segmente der anderen Sehne.
 
-<LineEquation
-  title="Schnittpunkt zweier Sehnen"
-  description="Zwei Sehnen schneiden sich außerhalb des Kreismittelpunkts."
-  cameraPosition={[0, 0, 15]}
-  showZAxis={false}
-  data={[
-    { kind: "circle-outline", radius: 5, color: "#9333ea" },
-    { points: [{ x: 5, y: 0, z: 0 }, { x: -5, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: true, labels: [
-      { text: <InlineMath math="A" />, at: 0, offset: [0.4, 0.3, 0] },
-      { text: <InlineMath math="B" />, at: 1, offset: [-0.4, 0.3, 0] },
-    ] },
-    { points: [{ x: 1, y: Math.sqrt(24), z: 0 }, { x: 1, y: -Math.sqrt(24), z: 0 }], smooth: false, color: "#0d9488", showPoints: true, labels: [
-      { text: <InlineMath math="C" />, at: 0, offset: [0.4, 0.3, 0] },
-      { text: <InlineMath math="D" />, at: 1, offset: [0.4, -0.3, 0] },
-    ] },
-    { points: [{ x: 1, y: 0, z: 0 }], color: "#db2777", showPoints: true, labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.4, 0.3, 0] }] },
-  ]}
+<MathVisual
+  title={<>Schnittpunkt zweier Sehnen</>}
+  description={<>Zwei Sehnen schneiden sich außerhalb des Kreismittelpunkts.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 5, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 5, y: 0 }, { x: -5, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 5, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: -5, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: Math.sqrt(24) }, { x: 1, y: -Math.sqrt(24) }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: 1, y: 4.9 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 1, y: -4.9 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 5, y: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: -5, y: 0 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 1, y: 4.9 }, placement: "above-right" },
+      { key: "l4", objectId: "s3", at: { x: 1, y: -4.9 }, placement: "below-right" },
+      { key: "l5", objectId: "s4", at: { x: 1, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Der Kreis im Diagramm hat den Radius <InlineMath math="5" /> und den Schnittpunkt <InlineMath math="P(1,0)" />. Die horizontalen Teilstrecken sind unterschiedlich lang. Ihr **Produkt** entspricht aber dem Produkt der vertikalen Teilstrecken.
@@ -414,47 +361,43 @@ Der Kreis im Diagramm hat den Radius <InlineMath math="5" /> und den Schnittpunk
 
 Umfangswinkel über derselben Sehne sind gleich groß, wenn ihre Scheitelpunkte auf **derselben Seite** der Sehne liegen.
 
-<LineEquation
-  title="Umfangswinkel im selben Kreissegment"
+<MathVisual
+  title={<>Umfangswinkel im selben Kreissegment</>}
   description={
     <>
       Beide Umfangswinkel liegen auf derselben Seite der Sehne{" "}
       <InlineMath math="AB" /> und sind deshalb gleich groß.
     </>
   }
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: ((() => {
         const angleA = 0;
         const angleB = Math.PI / 2;
         return [
           { x: 4 * Math.cos(angleA), y: 4 * Math.sin(angleA), z: 0 },
           { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0, 0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const angleC = (3 * Math.PI) / 4;
         const angleA = 0;
         const angleB = Math.PI / 2;
@@ -464,14 +407,9 @@ Umfangswinkel über derselben Sehne sind gleich groß, wenn ihre Scheitelpunkte 
           { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
           { x: 4 * Math.cos(angleC), y: 4 * Math.sin(angleC), z: 0 },
         ];
-      })(),
-      color: "#db2777",
-      showPoints: true,
-      smooth: false,
-      labels: [{ text: <InlineMath math="C" />, at: 0, offset: [-0.3, 0.3, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "answer" },
+      { id: "s3-close", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2.83, y: 2.83 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const angleD = (5 * Math.PI) / 4;
         const angleA = 0;
         const angleB = Math.PI / 2;
@@ -481,14 +419,16 @@ Umfangswinkel über derselben Sehne sind gleich groß, wenn ihre Scheitelpunkte 
           { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
           { x: 4 * Math.cos(angleD), y: 4 * Math.sin(angleD), z: 0 },
         ];
-      })(),
-      color: "#d97706",
-      showPoints: true,
-      smooth: false,
-      labels: [{ text: <InlineMath math="D" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "highlight" },
+      { id: "s4-close", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2.83, y: -2.83 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "l3", objectId: "s3", at: { x: -2.83, y: 2.83 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+    ],
+  }}
 />
 
 In der Abbildung gilt <InlineMath math="\angle ACB = \angle ADB" />, weil beide Scheitelpunkte auf derselben Seite der Sehne <InlineMath math="AB" /> liegen und beide Winkel diese Sehne überspannen.
@@ -497,71 +437,52 @@ In der Abbildung gilt <InlineMath math="\angle ACB = \angle ADB" />, weil beide 
 
 Das Apothem einer Sehne ist das Lot vom Kreismittelpunkt auf die Sehne. Seine Länge ist der **kürzeste Abstand** zwischen Mittelpunkt und Sehne.
 
-<LineEquation
-  title="Apothem einer Sehne"
-  description="Das Apothem ist das Lot vom Kreismittelpunkt auf die Sehne."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Apothem einer Sehne</>}
+  description={<>Das Apothem ist das Lot vom Kreismittelpunkt auf die Sehne.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="Q" />,
+    "l4": <InlineMath math="M" />,
+    "l5": <>Apothem</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 5 * Math.cos(angle),
           y: 5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 5, y: -0.09 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const y = 3;
         const x = Math.sqrt(25 - y * y);
         return [
           { x: -x, y: y, z: 0 },
           { x: x, y: y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 3, z: 0 },
-      ],
-      color: "#db2777",
-      showPoints: true,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="M" />, at: 1, offset: [0.5, 0, 0] },
-        { text: "Apothem", at: 0, offset: [1.2, 1.5, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: -0.3, y: 3, z: 0 },
-        { x: -0.3, y: 2.7, z: 0 },
-        { x: 0, y: 2.7, z: 0 },
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3 }], appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: 0, y: 3 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -0.3, y: 3 }, { x: -0.3, y: 2.7 }, { x: 0, y: 2.7 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -4, y: 3 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 4, y: 3 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "l5", objectId: "s4", at: { x: 0, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Die Länge des Apothems kann mit der Formel berechnet werden:
@@ -579,60 +500,46 @@ Dabei gilt:
 
 Zwei parallele Sehnen begrenzen auf den gegenüberliegenden Kreisseiten **gleich lange Verbindungsbögen**. Vergleiche den kleinen Bogen links mit dem kleinen Bogen rechts, nicht mit dem langen Bogen um die andere Kreisseite.
 
-<LineEquation
-  title="Parallele Sehnen"
-  description="Bögen zwischen parallelen Sehnen haben die gleiche Länge."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Parallele Sehnen</>}
+  description={<>Bögen zwischen parallelen Sehnen haben die gleiche Länge.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: ((() => {
         const y = 2;
         const x = Math.sqrt(16 - y * y);
         return [
           { x: -x, y: y, z: 0 },
           { x: x, y: y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const y = -2;
         const x = Math.sqrt(16 - y * y);
         return [
           { x: -x, y: y, z: 0 },
           { x: x, y: y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="C" />, at: 0, offset: [-0.3, -0.3, 0] },
-        { text: <InlineMath math="D" />, at: 1, offset: [0.3, -0.3, 0] },
-      ],
-    },
-    {
-      smooth: false,
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const y1 = 2;
         const x1 = Math.sqrt(16 - y1 * y1);
         const angle1 = Math.atan2(y1, -x1);
@@ -648,13 +555,8 @@ Zwei parallele Sehnen begrenzen auf den gegenüberliegenden Kreisseiten **gleich
             z: 0,
           };
         });
-      })(),
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const y1 = 2;
         const x1 = Math.sqrt(16 - y1 * y1);
         const angle1 = Math.atan2(y1, x1);
@@ -670,12 +572,15 @@ Zwei parallele Sehnen begrenzen auf den gegenüberliegenden Kreisseiten **gleich
             z: 0,
           };
         });
-      })(),
-      color: "#d97706",
-      showPoints: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -3.46, y: 2 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3.46, y: -2 }, placement: "below-left" },
+      { key: "l4", objectId: "s3", at: { x: 3.46, y: -2 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Wenn <InlineMath math="AB \parallel CD" />, dann ist Bogen <InlineMath math="AC" /> gleich Bogen <InlineMath math="BD" />.

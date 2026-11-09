@@ -19,83 +19,75 @@ Garis singgung persekutuan adalah garis yang **menyinggung dua lingkaran sekalig
 
 Garis singgung luar memakai **selisih jari-jari**, garis singgung dalam memakai **jumlah jari-jari**. Rumus luar berlaku selama <InlineMath math="d > r_2 - r_1" />, dan rumus dalam memerlukan <InlineMath math="d \ge r_1 + r_2" />. Diagram garis singgung luar memperlihatkan dua lingkaran dengan jarak pusat <InlineMath math="8" /> dan jari-jari <InlineMath math="2" /> dan <InlineMath math="3" />. Perhatikan segitiga siku-siku <InlineMath math="AHB" />, tempat rumus pertama diturunkan.
 
-<LineEquation
-  title="Garis Singgung Persekutuan Luar"
+<MathVisual
+  title={<>Garis Singgung Persekutuan Luar</>}
   description={<>Garis <InlineMath math="g_1" /> dan <InlineMath math="g_2" /> menyinggung kedua lingkaran dari sisi yang sama, dan ruas bantu <InlineMath math="AH" /> sejajar garis singgung.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="g_1" />,
+    "l4": <InlineMath math="g_2" />,
+    "l5": <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 11.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -4 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -2, y: -0.03 }, to: { x: -2, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 + 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-        {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 7, y: -0.05 }, to: { x: 7, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const O1 = { x: -4, y: 0 };
         const O2 = { x: 4, y: 0 };
         const r1 = 2;
         const r2 = 3;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // Calculate the angle for external tangent
+        
         const sin_alpha = (r2 - r1) / d;
         const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
 
-        // Direction from O1 to O2
+        
         const dx = O2.x - O1.x;
         const dy = O2.y - O1.y;
 
-        // Normalize direction
+        
         const ux = dx / d;
         const uy = dy / d;
 
-        // Perpendicular direction (rotated 90 degrees)
+        
         const vx = -uy;
         const vy = ux;
 
-        // First tangent line (upper)
-        // Tangent point on first circle
+        
+        
         const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
         const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
 
-        // Tangent point on second circle
+        
         const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
         const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
 
-        // Extend the line
+        
         const tdx = T2x - T1x;
         const tdy = T2y - T1y;
         const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
@@ -115,46 +107,40 @@ Garis singgung luar memakai **selisih jari-jari**, garis singgung dalam memakai 
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="g_1" />, at: 2, offset: [-5, 0.5, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const O1 = { x: -4, y: 0 };
         const O2 = { x: 4, y: 0 };
         const r1 = 2;
         const r2 = 3;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // Calculate the angle for external tangent
+        
         const sin_alpha = (r2 - r1) / d;
         const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
 
-        // Direction from O1 to O2
+        
         const dx = O2.x - O1.x;
         const dy = O2.y - O1.y;
 
-        // Normalize direction
+        
         const ux = dx / d;
         const uy = dy / d;
 
-        // Perpendicular direction (rotated 90 degrees)
+        
         const vx = -uy;
         const vy = ux;
 
-        // Second tangent line (lower)
-        // Tangent point on first circle
+        
+        
         const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
         const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
 
-        // Tangent point on second circle
+        
         const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
         const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
 
-        // Extend the line
+        
         const tdx = T2x - T1x;
         const tdy = T2y - T1y;
         const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
@@ -174,17 +160,17 @@ Garis singgung luar memakai **selisih jari-jari**, garis singgung dalam memakai 
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="g_2" />, at: 2, offset: [-5, -0.5, 0] }],
-    },
-
-    { points: [{ x: -4, y: 0, z: 0 }, { x: 31 / 8, y: Math.sqrt(63) / 8, z: 0 }, { x: 4, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: false, labels: [{ text: <InlineMath math="H" />, at: 1, offset: [0.2, -0.4, 0] }] },
-]}
-cameraPosition={[0.5, 0, 16.5]}
-  cameraTarget={[0.5, 0, 0]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 31 / 8, y: Math.sqrt(63) / 8 }, { x: 4, y: 0 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -4, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: 7.59, y: 3.48 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: 7.59, y: -3.48 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 3.88, y: 0.99 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Untuk pasangan lingkaran itu, <InlineMath math="l_{\text{luar}} = \sqrt{8^2 - 1^2} = \sqrt{63} = 3\sqrt{7}" />. Rumus ini memberi panjang ruas antara dua titik singgung. Kalau yang dicari adalah persamaan garisnya, kamu memerlukan [persamaan garis singgung lingkaran](/id/materi/matematika/geometri-analitik/persamaan-garis-singgung-lingkaran), yang bekerja dengan titik singgung atau gradien, bukan dengan panjang ruas.
@@ -201,79 +187,72 @@ Beri nama <InlineMath math="r_2" /> pada jari-jari yang lebih besar agar selisih
 
 **Contoh**. Lingkaran pertama berpusat di <InlineMath math="A(-3, 0)" /> dengan jari-jari <InlineMath math="1{,}5" />, lingkaran kedua berpusat di <InlineMath math="B(3, 0)" /> dengan jari-jari <InlineMath math="2{,}5" />. Tentukan panjang garis singgung persekutuan luarnya.
 
-<LineEquation
+<MathVisual
   title={<>Lingkaran dengan <InlineMath math="r_1 = 1{,}5" /> dan <InlineMath math="r_2 = 2{,}5" /></>}
   description={<>Pusat <InlineMath math="A" /> dan <InlineMath math="B" /> berjarak <InlineMath math="6" />, sehingga ruas garis singgung luar <InlineMath math="PQ" /> panjangnya <InlineMath math="\sqrt{35}" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="P" />,
+    "l4": <InlineMath math="Q" />,
+    "l5": <InlineMath math="R" />,
+    "l6": <InlineMath math="S" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 6.5 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -3 + 1.5 * Math.cos(angle),
           y: 1.5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -1.5, y: -0.03 }, to: { x: -1.5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 + 2.5 * Math.cos(angle),
           y: 2.5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-        {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 5.5, y: -0.04 }, to: { x: 5.5, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const O1 = { x: -3, y: 0 };
         const O2 = { x: 3, y: 0 };
         const r1 = 1.5;
         const r2 = 2.5;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // Calculate the angle for external tangent
+        
         const sin_alpha = (r2 - r1) / d;
         const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
 
-        // Direction from O1 to O2
+        
         const dx = O2.x - O1.x;
         const dy = O2.y - O1.y;
 
-        // Normalize direction
+        
         const ux = dx / d;
         const uy = dy / d;
 
-        // Perpendicular direction (rotated 90 degrees)
+        
         const vx = -uy;
         const vy = ux;
 
-        // First tangent line (upper)
-        // Tangent point on first circle
+        
+        
         const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
         const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
 
-        // Tangent point on second circle
+        
         const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
         const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
 
@@ -281,45 +260,36 @@ Beri nama <InlineMath math="r_2" /> pada jari-jari yang lebih besar agar selisih
           { x: T1x, y: T1y, z: 0 },
           { x: T2x, y: T2y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [0.5, 0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const O1 = { x: -3, y: 0 };
         const O2 = { x: 3, y: 0 };
         const r1 = 1.5;
         const r2 = 2.5;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // Calculate the angle for external tangent
+        
         const sin_alpha = (r2 - r1) / d;
         const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
 
-        // Direction from O1 to O2
+        
         const dx = O2.x - O1.x;
         const dy = O2.y - O1.y;
 
-        // Normalize direction
+        
         const ux = dx / d;
         const uy = dy / d;
 
-        // Perpendicular direction (rotated 90 degrees)
+        
         const vx = -uy;
         const vy = ux;
 
-        // Second tangent line (lower)
-        // Tangent point on first circle
+        
+        
         const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
         const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
 
-        // Tangent point on second circle
+        
         const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
         const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
 
@@ -327,19 +297,17 @@ Beri nama <InlineMath math="r_2" /> pada jari-jari yang lebih besar agar selisih
           { x: T1x, y: T1y, z: 0 },
           { x: T2x, y: T2y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="R" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="S" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-
-]}
-cameraPosition={[0.5, 0, 13]}
-  cameraTarget={[0.5, 0, 0]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: -3.25, y: 1.48 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 2.58, y: 2.47 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: -3.25, y: -1.48 }, placement: "below-left" },
+      { key: "l6", objectId: "s5", at: { x: 2.58, y: -2.47 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Jarak kedua pusat dibaca dari koordinat, lalu dimasukkan ke rumus garis singgung luar:
@@ -355,51 +323,43 @@ Panjangnya <InlineMath math="\sqrt{35} \approx 5{,}92" /> satuan. Periksa dengan
 
 Garis singgung dalam **memotong ruas yang menghubungkan kedua pusat**, sehingga kedua lingkaran berada di sisi yang berlawanan dari garis itu. Jari-jari ke titik singgung kini menunjuk ke arah yang berlawanan, dan itulah sebabnya kedua jari-jari dijumlahkan.
 
-<LineEquation
-  title="Garis Singgung Persekutuan Dalam"
+<MathVisual
+  title={<>Garis Singgung Persekutuan Dalam</>}
   description={<>Garis <InlineMath math="h_1" /> dan <InlineMath math="h_2" /> melintas di antara kedua lingkaran, dan <InlineMath math="BH" /> sama dengan jumlah jari-jari.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="h_1" />,
+    "l4": <InlineMath math="h_2" />,
+    "l5": <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -4 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -2, y: -0.03 }, to: { x: -2, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 6, y: -0.03 }, to: { x: 6, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const O1 = { x: -4, y: 0 };
         const O2 = { x: 4, y: 0 };
         const r1 = 2;
@@ -434,14 +394,8 @@ Garis singgung dalam **memotong ruas yang menghubungkan kedua pusat**, sehingga 
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="h_1" />, at: 1, offset: [-1, 0.5, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const O1 = { x: -4, y: 0 };
         const O2 = { x: 4, y: 0 };
         const r1 = 2;
@@ -476,16 +430,17 @@ Garis singgung dalam **memotong ruas yang menghubungkan kedua pusat**, sehingga 
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="h_2" />, at: 1, offset: [-1, -0.5, 0] }],
-    },
-
-    { points: [{ x: -4, y: 0, z: 0 }, { x: 2, y: -2 * Math.sqrt(3), z: 0 }, { x: 4, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: false, labels: [{ text: <InlineMath math="H" />, at: 1, offset: [0.2, -0.4, 0] }] },
-]}
-cameraPosition={[0, 0, 15]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 2, y: -2 * Math.sqrt(3) }, { x: 4, y: 0 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -4, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: -5.6, y: 3.23 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: -5.6, y: -3.23 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 2, y: -3.46 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Pada diagram garis singgung dalam, perpanjang jari-jari dari pusat <InlineMath math="B" /> melewati titik singgung sampai titik bantu <InlineMath math="H" />, dengan <InlineMath math="AH" /> sejajar garis singgung. Ruas <InlineMath math="BH" /> terdiri atas jari-jari <InlineMath math="r_2" /> dari <InlineMath math="B" /> sampai titik singgung dan perpanjangan sepanjang <InlineMath math="r_1" />, jadi <InlineMath math="BH = r_1 + r_2" />. Segitiga <InlineMath math="AHB" /> siku-siku di <InlineMath math="H" />:
@@ -499,51 +454,44 @@ Untuk diagram itu, <InlineMath math="d = 8" /> dan kedua jari-jari <InlineMath m
 
 **Contoh**. Lingkaran pertama berpusat di <InlineMath math="P(-5, 0)" /> dengan jari-jari <InlineMath math="2" />, lingkaran kedua berpusat di <InlineMath math="Q(5, 0)" /> dengan jari-jari <InlineMath math="3" />. Tentukan panjang garis singgung persekutuan dalamnya.
 
-<LineEquation
+<MathVisual
   title={<>Lingkaran dengan <InlineMath math="r_1 = 2" /> dan <InlineMath math="r_2 = 3" /></>}
   description={<>Pusat <InlineMath math="P" /> dan <InlineMath math="Q" /> berjarak <InlineMath math="10" />, sehingga ruas garis singgung dalam panjangnya <InlineMath math="5\sqrt{3}" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="P" />,
+    "l2": <InlineMath math="Q" />,
+    "l3": <InlineMath math="E" />,
+    "l4": <InlineMath math="F" />,
+    "l5": <InlineMath math="G" />,
+    "l6": <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 9.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -5 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -3, y: -0.03 }, to: { x: -3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 5 + 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -5, y: 0, z: 0 },
-        { x: 5, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 8, y: -0.05 }, to: { x: 8, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -5, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 5, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const O1 = { x: -5, y: 0 };
         const O2 = { x: 5, y: 0 };
         const r1 = 2;
@@ -563,17 +511,8 @@ Untuk diagram itu, <InlineMath math="d = 8" /> dan kedua jari-jari <InlineMath m
           { x: T1x, y: T1y, z: 0 },
           { x: T2x, y: T2y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="E" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="F" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const O1 = { x: -5, y: 0 };
         const O2 = { x: 5, y: 0 };
         const r1 = 2;
@@ -593,18 +532,17 @@ Untuk diagram itu, <InlineMath math="d = 8" /> dan kedua jari-jari <InlineMath m
           { x: T1x, y: T1y, z: 0 },
           { x: T2x, y: T2y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#d97706",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="G" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="H" />, at: 1, offset: [0.5, 0.5, 0] },
-      ],
-    },
-
-]}
-cameraPosition={[0, 0, 18]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -5, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: -4, y: 1.73 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 3.5, y: -2.6 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: -4, y: -1.73 }, placement: "below-left" },
+      { key: "l6", objectId: "s5", at: { x: 3.5, y: 2.6 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Periksa dulu syaratnya. Jarak pusat <InlineMath math="d = 10" /> lebih besar daripada <InlineMath math="r_1 + r_2 = 5" />, jadi garis singgung dalam ada:
@@ -620,69 +558,47 @@ Panjangnya <InlineMath math="5\sqrt{3} \approx 8{,}66" /> satuan. Periksa: <Inli
 
 Kalau <InlineMath math="r_1 = r_2 = r" />, selisih jari-jari bernilai nol. Rumus garis singgung luar menjadi <InlineMath math="l = \sqrt{d^2 - 0} = d" />, jadi garis singgung luar **sama panjang dengan jarak pusat** dan sejajar garis penghubung pusat.
 
-<LineEquation
-  title="Garis Singgung Luar untuk Jari-jari Sama"
+<MathVisual
+  title={<>Garis Singgung Luar untuk Jari-jari Sama</>}
   description={<>Kedua garis singgung luar sejajar garis pusat <InlineMath math="O_1O_2" /> dan sama panjang dengan jarak pusat <InlineMath math="6" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="O_1" />,
+    "l2": <InlineMath math="O_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -3 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -1, y: -0.03 }, to: { x: -1, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O_1" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="O_2" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: -3, y: 2, z: 0 },
-        { x: 3, y: 2, z: 0 },
-      ],
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: -3, y: -2, z: 0 },
-        { x: 3, y: -2, z: 0 },
-      ],
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 5, y: -0.03 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3, y: 2 }, { x: 3, y: 2 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3, y: -2 }, { x: 3, y: -2 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3, y: 0 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Pada diagram jari-jari sama, kedua pusat berjarak <InlineMath math="6" /> dan kedua jari-jari <InlineMath math="2" />. Dua garis singgung luar berada pada ketinggian <InlineMath math="2" /> di atas dan di bawah garis pusat, dan masing-masing panjangnya <InlineMath math="6" />. Garis singgung dalam tidak digambar pada diagram ini. Karena kedua lingkaran simetris, kedua garis singgung dalam berpotongan tepat di titik tengah antara <InlineMath math="O_1" /> dan <InlineMath math="O_2" />, dan masing-masing panjangnya <InlineMath math="\sqrt{36 - 16} = \sqrt{20} = 2\sqrt{5}" />.
@@ -693,66 +609,61 @@ Pada pasangan lingkaran yang sama, **garis singgung dalam selalu lebih pendek** 
 
 **Kasus lingkaran berjauhan**. Lingkaran pertama berpusat di <InlineMath math="(-6, 0)" /> dengan jari-jari <InlineMath math="1" />, lingkaran kedua berpusat di <InlineMath math="(6, 0)" /> dengan jari-jari <InlineMath math="2" />.
 
-<LineEquation
-  title="Lingkaran Berjauhan"
+<MathVisual
+  title={<>Lingkaran Berjauhan</>}
   description={<>Jarak pusat <InlineMath math="12" /> melebihi jumlah jari-jari <InlineMath math="3" />, jadi keempat garis singgung persekutuan tergambar.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 11.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -6 + 1 * Math.cos(angle),
           y: 1 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -5, y: -0.02 }, to: { x: -5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 6 + 2 * Math.cos(angle),
           y: 2 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-        {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 8, y: -0.03 }, to: { x: 8, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const O1 = { x: -6, y: 0 };
         const O2 = { x: 6, y: 0 };
         const r1 = 1;
         const r2 = 2;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // Calculate the angle for external tangent
+        
         const sin_alpha = (r2 - r1) / d;
         const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
 
-        // Direction from O1 to O2
+        
         const dx = O2.x - O1.x;
         const dy = O2.y - O1.y;
 
-        // Normalize direction
+        
         const ux = dx / d;
         const uy = dy / d;
 
-        // Perpendicular direction (rotated 90 degrees)
+        
         const vx = -uy;
         const vy = ux;
 
-        // First tangent line (upper)
-        // Tangent point on first circle
+        
+        
         const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
         const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
 
-        // Tangent point on second circle
+        
         const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
         const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
 
@@ -775,41 +686,36 @@ Pada pasangan lingkaran yang sama, **garis singgung dalam selalu lebih pendek** 
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const O1 = { x: -6, y: 0 };
         const O2 = { x: 6, y: 0 };
         const r1 = 1;
         const r2 = 2;
         const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
 
-        // Calculate the angle for external tangent
+        
         const sin_alpha = (r2 - r1) / d;
         const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
 
-        // Direction from O1 to O2
+        
         const dx = O2.x - O1.x;
         const dy = O2.y - O1.y;
 
-        // Normalize direction
+        
         const ux = dx / d;
         const uy = dy / d;
 
-        // Perpendicular direction (rotated 90 degrees)
+        
         const vx = -uy;
         const vy = ux;
 
-        // Second tangent line (lower)
-        // Tangent point on first circle
+        
+        
         const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
         const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
 
-        // Tangent point on second circle
+        
         const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
         const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
 
@@ -832,13 +738,8 @@ Pada pasangan lingkaran yang sama, **garis singgung dalam selalu lebih pendek** 
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const O1 = { x: -6, y: 0 };
         const O2 = { x: 6, y: 0 };
         const r1 = 1;
@@ -873,13 +774,8 @@ Pada pasangan lingkaran yang sama, **garis singgung dalam selalu lebih pendek** 
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: ((() => {
         const O1 = { x: -6, y: 0 };
         const O2 = { x: 6, y: 0 };
         const r1 = 1;
@@ -914,15 +810,9 @@ Pada pasangan lingkaran yang sama, **garis singgung dalam selalu lebih pendek** 
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-    },
-
-]}
-cameraPosition={[0.5, 0, 19]}
-  cameraTarget={[0.5, 0, 0]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+  }}
 />
 
 Jarak pusatnya <InlineMath math="d = 12" />, jauh lebih besar daripada jumlah jari-jari <InlineMath math="3" />, sehingga keempat garis singgung ada:
@@ -936,38 +826,33 @@ Kedua panjang hampir sama karena jari-jarinya kecil dibandingkan jarak pusat.
 
 **Kasus lingkaran berdekatan**. Kedua lingkaran berjari-jari <InlineMath math="1{,}5" /> dan berpusat di <InlineMath math="(-2, 0)" /> serta <InlineMath math="(2, 0)" />.
 
-<LineEquation
-  title="Lingkaran Berdekatan dengan Jari-jari Sama"
+<MathVisual
+  title={<>Lingkaran Berdekatan dengan Jari-jari Sama</>}
   description={<>Garis singgung luar sejajar garis pusat, sedangkan kedua garis singgung dalam berpotongan di titik tengah antara kedua pusat.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: -2 + 1.5 * Math.cos(angle),
           y: 1.5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -0.5, y: -0.03 }, to: { x: -0.5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 2 + 1.5 * Math.cos(angle),
           y: 1.5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s2-close", kind: "segment", from: { x: 3.5, y: -0.03 }, to: { x: 3.5, y: 0 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const points = [
           { x: -5, y: 1.5, z: 0 },
           { x: 5, y: 1.5, z: 0 },
@@ -981,13 +866,8 @@ Kedua panjang hampir sama karena jari-jarinya kecil dibandingkan jarak pusat.
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const points = [
           { x: -5, y: -1.5, z: 0 },
           { x: 5, y: -1.5, z: 0 },
@@ -1001,13 +881,8 @@ Kedua panjang hampir sama karena jari-jarinya kecil dibandingkan jarak pusat.
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const O1 = { x: -2, y: 0 };
         const O2 = { x: 2, y: 0 };
         const r1 = 1.5;
@@ -1042,13 +917,8 @@ Kedua panjang hampir sama karena jari-jarinya kecil dibandingkan jarak pusat.
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: ((() => {
         const O1 = { x: -2, y: 0 };
         const O2 = { x: 2, y: 0 };
         const r1 = 1.5;
@@ -1083,14 +953,9 @@ Kedua panjang hampir sama karena jari-jarinya kecil dibandingkan jarak pusat.
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-    },
-
-]}
-cameraPosition={[0, 0, 10]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+  }}
 />
 
 Jarak pusatnya <InlineMath math="d = 4" />, dan jari-jarinya sama, jadi garis singgung luar langsung sama dengan <InlineMath math="d" />:

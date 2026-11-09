@@ -37,7 +37,7 @@ Somit ist das Bild des Punktes <InlineMath math="A" /> <InlineMath math="A'(-3, 
 
 Beide Punkte liegen **drei Einheiten von der Achse entfernt** auf derselben Höhe. Die waagerechte Verbindung zeigt die gleichen Abstände auf beiden Seiten:
 
-<LineEquation
+<MathVisual
   title={
     <>
     Punkt <InlineMath math="A(3,4)" /> und sein Bild{" "}
@@ -49,23 +49,24 @@ Beide Punkte liegen **drei Einheiten von der Achse entfernt** auf derselben Höh
     Der Punkt <InlineMath math="A" /> und sein Bildpunkt <InlineMath math="A'" /> liegen gleich weit von der <InlineMath math="y" />-Achse entfernt.
     </>
   }
-  data={[
-    { points: [{ x: -3, y: 4, z: 0 }, { x: 0, y: 4, z: 0 }, { x: 3, y: 4, z: 0 }], smooth: false, showPoints: false, color: "#ea580c" },
-    {
-      points: [{ x: 3, y: 4, z: 0 }],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A(3,4)" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-    {
-      points: [{ x: -3, y: 4, z: 0 }],
-      color: "#0284c7",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A'(-3,4)" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 3, 10]}
-  cameraTarget={[0, 3, 0]}
+  labels={{
+    "l1": <InlineMath math="A(3,4)" />,
+    "l2": <InlineMath math="A'(-3,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: 2.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -3, y: 4 }, { x: 0, y: 4 }, { x: 3, y: 4 }], appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -3, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "l2", objectId: "s3", at: { x: -3, y: 4 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Ein Dreieck spiegeln
@@ -80,7 +81,7 @@ Um ein Dreieck zu spiegeln, müssen wir <Highlight>jeden seiner Eckpunkte spiege
 
 Durch die Verbindung der Bildpunkte <InlineMath math="P'Q'R'" /> erhalten wir das gespiegelte Dreieck.
 
-<LineEquation
+<MathVisual
   title={
     <>
     Dreieck <InlineMath math="PQR" /> und sein Bild{" "}
@@ -92,56 +93,47 @@ Durch die Verbindung der Bildpunkte <InlineMath math="P'Q'R'" /> erhalten wir da
     Das Dreieck <InlineMath math="PQR" /> und sein Bilddreieck <InlineMath math="P'Q'R'" /> liegen symmetrisch zur <InlineMath math="y" />-Achse.
     </>
   }
-  data={[
-    ...[
-      {
-        from: { x: 1, y: 2, z: 0, label: <InlineMath math="P(1,2)" /> },
-        to: { x: 4, y: 4, z: 0, label: <InlineMath math="Q(4,4)" /> },
-      },
-      {
-        from: { x: 4, y: 4, z: 0, label: <InlineMath math="Q(4,4)" /> },
-        to: { x: 2, y: 0, z: 0, label: <InlineMath math="R(2,0)" /> },
-      },
-      {
-        from: { x: 2, y: 0, z: 0, label: <InlineMath math="R(2,0)" /> },
-        to: { x: 1, y: 2, z: 0, label: <InlineMath math="P(1,2)" /> },
-      },
-    ].map((segment) => ({
-      points: [segment.from, segment.to],
-      smooth: false,
-      color: "#d97706",
-      showPoints: true,
-      labels: [
-        { text: segment.from.label, at: 0, offset: segment.from.x === 1 && segment.from.y === 2 ? [0.5, 1.8, 0] : segment.from.x === 4 && segment.from.y === 4 ? [-0.2, 1.1, 0] : [0, -0.7, 0] },
-        { text: segment.to.label, at: 1, offset: segment.to.x === 4 && segment.to.y === 4 ? [-0.2, 1.1, 0] : segment.to.x === 2 && segment.to.y === 0 ? [0, -0.7, 0] : [0.5, 1.8, 0] },
-      ],
-    })),
-    ...[
-      {
-        from: { x: -1, y: 2, z: 0, label: <InlineMath math="P'(-1,2)" /> },
-        to: { x: -4, y: 4, z: 0, label: <InlineMath math="Q'(-4,4)" /> },
-      },
-      {
-        from: { x: -4, y: 4, z: 0, label: <InlineMath math="Q'(-4,4)" /> },
-        to: { x: -2, y: 0, z: 0, label: <InlineMath math="R'(-2,0)" /> },
-      },
-      {
-        from: { x: -2, y: 0, z: 0, label: <InlineMath math="R'(-2,0)" /> },
-        to: { x: -1, y: 2, z: 0, label: <InlineMath math="P'(-1,2)" /> },
-      },
-    ].map((segment) => ({
-      points: [segment.from, segment.to],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: segment.from.label, at: 0, offset: segment.from.x === -1 && segment.from.y === 2 ? [-0.5, 1.8, 0] : segment.from.x === -4 && segment.from.y === 4 ? [0.2, 1.1, 0] : [0, -0.7, 0] },
-        { text: segment.to.label, at: 1, offset: segment.to.x === -4 && segment.to.y === 4 ? [0.2, 1.1, 0] : segment.to.x === -2 && segment.to.y === 0 ? [0, -0.7, 0] : [-0.5, 1.8, 0] },
-      ],
-    })),
-  ]}
-  cameraPosition={[0, 2, 13]}
-  cameraTarget={[0, 2, 0]}
+  labels={{
+    "l1": <InlineMath math="P(1,2)" />,
+    "l2": <InlineMath math="Q(4,4)" />,
+    "l3": <InlineMath math="Q(4,4)" />,
+    "l4": <InlineMath math="R(2,0)" />,
+    "l5": <InlineMath math="R(2,0)" />,
+    "l6": <InlineMath math="P(1,2)" />,
+    "l7": <InlineMath math="P'(-1,2)" />,
+    "l8": <InlineMath math="Q'(-4,4)" />,
+    "l9": <InlineMath math="Q'(-4,4)" />,
+    "l10": <InlineMath math="R'(-2,0)" />,
+    "l11": <InlineMath math="R'(-2,0)" />,
+    "l12": <InlineMath math="P'(-1,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 1, y: 2 }, { x: 4, y: 4 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 4 }, { x: 2, y: 0 }], appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2, y: 0 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -1, y: 2 }, { x: -4, y: 4 }], appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -4, y: 4 }, { x: -2, y: 0 }], appearance: "secondary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -2, y: 0 }, { x: -1, y: 2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "s1", at: { x: 4, y: 4 }, placement: "above-left" },
+      { key: "l3", objectId: "s2", at: { x: 4, y: 4 }, placement: "above-left" },
+      { key: "l4", objectId: "s2", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "l5", objectId: "s3", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "l6", objectId: "s3", at: { x: 1, y: 2 }, placement: "above-right" },
+      { key: "l7", objectId: "s4", at: { x: -1, y: 2 }, placement: "above-left" },
+      { key: "l8", objectId: "s4", at: { x: -4, y: 4 }, placement: "above-right" },
+      { key: "l9", objectId: "s5", at: { x: -4, y: 4 }, placement: "above-right" },
+      { key: "l10", objectId: "s5", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "l11", objectId: "s6", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "l12", objectId: "s6", at: { x: -1, y: 2 }, placement: "above-left" },
+    ],
+  }}
 />
 
 ## Eine Geradengleichung spiegeln
@@ -162,7 +154,7 @@ Die Gleichung des Bildes lautet:
 
 Die beiden Geraden sehen so aus:
 
-<LineEquation
+<MathVisual
   title={
     <>
     Gerade <InlineMath math="y = x + 2" /> und ihre Bildgerade{" "}
@@ -170,32 +162,29 @@ Die beiden Geraden sehen so aus:
     </>
   }
   description={<>Spiegelung einer Geraden an der <InlineMath math="y" />-Achse.</>}
-  data={[
-    {
-      // Ursprüngliche Gerade y = x + 2
-      points: Array.from({ length: 11 }, (_, pointIndex) => {
+  labels={{
+    "l1": <InlineMath math="y=x+2" />,
+    "l2": <InlineMath math="y=-x+2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -3, max: 7 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 11 }, (_, pointIndex) => {
         const x = (pointIndex - 5) * 0.8;
         return { x, y: x + 2, z: 0 };
-      }),
-      showPoints: false,
-      color: "#9333ea",
-      smooth: false,
-      labels: [{ text: <InlineMath math="y=x+2" />, at: 9, offset: [0.7, -0.5, 0] }],
-    },
-    {
-      // Gespiegelte Gerade y = -x + 2
-      points: Array.from({ length: 11 }, (_, pointIndex) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 11 }, (_, pointIndex) => {
         const x = (pointIndex - 5) * 0.8;
         return { x, y: -x + 2, z: 0 };
-      }),
-      showPoints: false,
-      color: "#db2777",
-      smooth: false,
-      labels: [{ text: <InlineMath math="y=-x+2" />, at: 1, offset: [-0.7, -0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 2, 12]}
-  cameraTarget={[0, 2, 0]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.2, y: 5.2 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: -3.2, y: 5.2 }, placement: "below-left" },
+    ],
+  }}
 />
 
 ## Übungen

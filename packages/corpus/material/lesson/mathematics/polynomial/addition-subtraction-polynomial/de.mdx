@@ -103,71 +103,62 @@ Die horizontale Methode gruppiert gleichartige Terme zunächst innerhalb jedes P
 Beim Zusammenfassen von Graphen bleibt **die Eingabe gleich**. Addiere oder subtrahiere nur die Funktionswerte an dieser waagerechten Position. Die waagerechten Koordinaten werden nicht addiert. Die folgenden drei Funktionen zeigen ein lineares, ein quartisches und ein kubisches Beispiel.
 
 <ContentStack>
-  <LineEquation
+  <MathVisual
     title={
-      <>
-        Diagramm von <InlineMath math="f(x) = x + 1" />
-      </>
-    }
+        <>
+          Diagramm von <InlineMath math="f(x) = x + 1" />
+        </>
+      }
     description={<>Lineare Funktion vom Grad <InlineMath math="1" /></>}
-    cameraPosition={[0, 1, 8]}
-    cameraTarget={[0, 1, 0]}
-    showZAxis={false}
-    data={[
-      {
-        points: Array.from({ length: 201 }, (_, i) => {
-            const x = -2 + i * 0.02;
-            return { x, y: x + 1, z: 0 };
-          }),
-        smooth: false,
-        color: "#0284c7",
-        showPoints: false,
-      },
-    ]}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -1.5, max: 3.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => {
+              const x = -2 + i * 0.02;
+              return { x, y: x + 1, z: 0 };
+            }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      ],
+    }}
   />
-  <LineEquation
+  <MathVisual
     title={
-      <>
-        Diagramm von <InlineMath math="g(x) = 0{,}5x^4 - 2x^2 + 1" />
-      </>
-    }
+        <>
+          Diagramm von <InlineMath math="g(x) = 0{,}5x^4 - 2x^2 + 1" />
+        </>
+      }
     description={<>Funktion vom Grad <InlineMath math="4" /></>}
-    cameraPosition={[0, 1, 8]}
-    cameraTarget={[0, 1, 0]}
-    showZAxis={false}
-    data={[
-      {
-        smooth: false,
-        points: Array.from({ length: 201 }, (_, i) => {
-          const x = -2 + i * 0.02;
-          return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 };
-        }),
-        color: "#65a30d",
-        showPoints: false,
-      },
-    ]}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -1.5, max: 1.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => {
+            const x = -2 + i * 0.02;
+            return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 };
+          }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      ],
+    }}
   />
-  <LineEquation
+  <MathVisual
     title={
-      <>
-        Diagramm von <InlineMath math="h(x) = -0{,}5x^3 + 1{,}5x" />
-      </>
-    }
+        <>
+          Diagramm von <InlineMath math="h(x) = -0{,}5x^3 + 1{,}5x" />
+        </>
+      }
     description={<>Funktion vom Grad <InlineMath math="3" /></>}
-    cameraPosition={[0, 1, 8]}
-    cameraTarget={[0, 1, 0]}
-    showZAxis={false}
-    data={[
-      {
-        smooth: false,
-        points: Array.from({ length: 201 }, (_, i) => {
-          const x = -2 + i * 0.02;
-          return { x, y: -0.5 * x ** 3 + 1.5 * x, z: 0 };
-        }),
-        color: "#d97706",
-        showPoints: false,
-      },
-    ]}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -1.5, max: 1.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => {
+            const x = -2 + i * 0.02;
+            return { x, y: -0.5 * x ** 3 + 1.5 * x, z: 0 };
+          }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      ],
+    }}
   />
 </ContentStack>
 
@@ -190,67 +181,77 @@ Jeder neue Punkt behält dieselbe Eingabe. Verbinde die Punkte zu einer Skizze. 
 Die folgenden Graphen zeigen **Ausgangsfunktionen und Ergebnis im selben Koordinatensystem**. Vergleiche die drei Höhen bei der Eingabe eins. Addition und Subtraktion ergeben unterschiedliche Kurven, obwohl die Ausgangsfunktionen gleich bleiben.
 
 <ContentStack>
-  <LineEquation
+  <MathVisual
     title={
-      <>
-        Diagramm von <InlineMath math="f(x) + g(x)" />,{" "}
-        <InlineMath math="f(x) = x + 1" />, und{" "}
-        <InlineMath math="g(x) = 0{,}5x^4 - 2x^2 + 1" />
-      </>
-    }
+        <>
+          Diagramm von <InlineMath math="f(x) + g(x)" />,{" "}
+          <InlineMath math="f(x) = x + 1" />, und{" "}
+          <InlineMath math="g(x) = 0{,}5x^4 - 2x^2 + 1" />
+        </>
+      }
     description={
-      <>
-        Das Ergebnis von <InlineMath math="f(x) + g(x)" /> ist{" "}
-        <InlineMath math="x + 1 + 0{,}5x^4 - 2x^2 + 1" />
-      </>
-    }
-    cameraPosition={[0, 1, 8]}
-    cameraTarget={[0, 1, 0]}
-    showZAxis={false}
-    data={[
-      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: x + 1, z: 0 }; }), smooth: false, color: "#0284c7", showPoints: false, labels: [{ at: 150, text: <InlineMath math="f" />, offset: [0.2, 0.1, 0] }] },
-      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 }; }), smooth: false, color: "#65a30d", showPoints: false, labels: [{ at: 150, text: <InlineMath math="g" />, offset: [0.2, -0.2, 0] }] },
-      {
-        smooth: false,
-        points: Array.from({ length: 201 }, (_, i) => {
-          const x = -2 + i * 0.02;
-          return { x, y: x + 1 + (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
-        }),
-        color: "#7c3aed",
-        showPoints: false,
-      },
-    ]}
+        <>
+          Das Ergebnis von <InlineMath math="f(x) + g(x)" /> ist{" "}
+          <InlineMath math="x + 1 + 0{,}5x^4 - 2x^2 + 1" />
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="f" />,
+      "l2": <InlineMath math="g" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.5, max: 5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: x + 1, z: 0 }; }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 }; }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+        { id: "s3", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => {
+            const x = -2 + i * 0.02;
+            return { x, y: x + 1 + (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
+          }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 1, y: 2 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 1, y: -0.5 }, placement: "below-right" },
+      ],
+    }}
   />
-  <LineEquation
+  <MathVisual
     title={
-      <>
-        Diagramm von <InlineMath math="f(x) - g(x)" />,{" "}
-        <InlineMath math="f(x) = x + 1" />, und{" "}
-        <InlineMath math="g(x) = 0{,}5x^4 - 2x^2 + 1" />
-      </>
-    }
+        <>
+          Diagramm von <InlineMath math="f(x) - g(x)" />,{" "}
+          <InlineMath math="f(x) = x + 1" />, und{" "}
+          <InlineMath math="g(x) = 0{,}5x^4 - 2x^2 + 1" />
+        </>
+      }
     description={
-      <>
-        Das Ergebnis von <InlineMath math="f(x) - g(x)" /> ist{" "}
-        <InlineMath math="x + 1 - (0{,}5x^4 - 2x^2 + 1)" />
-      </>
-    }
-    cameraPosition={[0, 1, 8]}
-    cameraTarget={[0, 1, 0]}
-    showZAxis={false}
-    data={[
-      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: x + 1, z: 0 }; }), smooth: false, color: "#0284c7", showPoints: false, labels: [{ at: 150, text: <InlineMath math="f" />, offset: [0.2, 0.1, 0] }] },
-      { points: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 }; }), smooth: false, color: "#65a30d", showPoints: false, labels: [{ at: 150, text: <InlineMath math="g" />, offset: [0.2, -0.2, 0] }] },
-      {
-        smooth: false,
-        points: Array.from({ length: 201 }, (_, i) => {
-          const x = -2 + i * 0.02;
-          return { x, y: x + 1 - (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
-        }),
-        color: "#db2777",
-        showPoints: false,
-      },
-    ]}
+        <>
+          Das Ergebnis von <InlineMath math="f(x) - g(x)" /> ist{" "}
+          <InlineMath math="x + 1 - (0{,}5x^4 - 2x^2 + 1)" />
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="f" />,
+      "l2": <InlineMath math="g" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -3, max: 4.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: x + 1, z: 0 }; }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 }; }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+        { id: "s3", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => {
+            const x = -2 + i * 0.02;
+            return { x, y: x + 1 - (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
+          }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 1, y: 2 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 1, y: -0.5 }, placement: "below-right" },
+      ],
+    }}
   />
 </ContentStack>
 

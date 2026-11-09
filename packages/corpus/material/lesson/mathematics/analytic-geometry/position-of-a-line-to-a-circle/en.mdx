@@ -19,85 +19,61 @@ You can decide which case you have in two ways, and both always give the same an
 | Touches at one point | <InlineMath math="\Delta = 0" /> | <InlineMath math="d = r" /> |
 | Does not meet | <InlineMath math="\Delta < 0" /> | <InlineMath math="d > r" /> |
 
-<LineEquation
-  title="Three horizontal lines and a circle of radius 3"
+<MathVisual
+  title={<>Three horizontal lines and a circle of radius 3</>}
   description={<>The line <InlineMath math="y = 1" /> cuts the circle, the line <InlineMath math="y = 3" /> touches it at <InlineMath math="(0, 3)" />, and the line <InlineMath math="y = 4.5" /> misses it.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <>No intersection</>,
+    "l2": <>Tangent</>,
+    "l3": <>Intersects</>,
+    "l4": <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
           const xMin = -5;
           const xMax = 5;
-          const y = 4.5; // Garis yang tidak berpotongan
+          const y = 4.5; 
           return {
             x: xMin + i * (xMax - xMin),
             y: y,
             z: 0,
           };
-        }),
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "No intersection", at: 1, offset: [-2, 0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+        }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
           const xMin = -5;
           const xMax = 5;
-          const y = 3; // Garis singgung
+          const y = 3; 
           return {
             x: xMin + i * (xMax - xMin),
             y: y,
             z: 0,
           };
-        }),
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Tangent", at: 1, offset: [-2, 0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+        }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
           const xMin = -5;
           const xMax = 5;
-          const y = 1; // Garis memotong
+          const y = 1; 
           return {
             x: xMin + i * (xMax - xMin),
             y: y,
             z: 0,
           };
-        }),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Intersects", at: 1, offset: [-2, 0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 0,
-          y: 0,
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+        }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const xMin = -6;
         const xMax = 6;
         const y = 0;
@@ -106,13 +82,8 @@ You can decide which case you have in two ways, and both always give the same an
           y: y,
           z: 0,
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const yMin = -4;
         const yMax = 5;
         const x = 0;
@@ -121,13 +92,15 @@ You can decide which case you have in two ways, and both always give the same an
           y: yMin + i * (yMax - yMin),
           z: 0,
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 14]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 5, y: 4.5 }, placement: "above-left" },
+      { key: "l2", objectId: "s3", at: { x: 5, y: 3 }, placement: "above-left" },
+      { key: "l3", objectId: "s4", at: { x: 5, y: 1 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
 />
 
 The circle in the graph has center <InlineMath math="P(0, 0)" /> and radius <InlineMath math="3" />. The line <InlineMath math="y = 1" /> lies at distance <InlineMath math="1" /> from the center, closer than the radius, so it passes through the inside of the circle. The line <InlineMath math="y = 3" /> lies at distance exactly <InlineMath math="3" /> and only touches the point <InlineMath math="(0, 3)" />. The line <InlineMath math="y = 4.5" /> passes above the circle without touching it.

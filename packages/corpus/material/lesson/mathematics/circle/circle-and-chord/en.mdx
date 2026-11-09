@@ -12,82 +12,68 @@ export const metadata = {
 
 A chord is a <Highlight>line segment with both endpoints on a circle</Highlight>. A diameter is the special chord that passes through the center. Other chords do not need to pass through it.
 
-<LineEquation
-  title="Chords on a Circle"
-  description="Two equal chords subtend thirty degree angles and a longer chord subtends a sixty degree angle."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Chords on a Circle</>}
+  description={<>Two equal chords subtend thirty degree angles and a longer chord subtends a sixty degree angle.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="D" />,
+    "l6": <InlineMath math="E" />,
+    "l7": <InlineMath math="F" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 3 * Math.cos(angle),
           y: 3 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const angle1 = Math.PI / 6;
         const angle2 = Math.PI / 3;
         return [
           { x: 3 * Math.cos(angle1), y: 3 * Math.sin(angle1), z: 0 },
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const angle1 = (2 * Math.PI) / 3;
         const angle2 = (5 * Math.PI) / 6;
         return [
           { x: 3 * Math.cos(angle1), y: 3 * Math.sin(angle1), z: 0 },
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="C" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="D" />, at: 1, offset: [-0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const angle1 = (7 * Math.PI) / 6;
         const angle2 = (3 * Math.PI) / 2;
         return [
           { x: 3 * Math.cos(angle1), y: 3 * Math.sin(angle1), z: 0 },
           { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="E" />, at: 0, offset: [-0.3, -0.3, 0] },
-        { text: <InlineMath math="F" />, at: 1, offset: [0, -0.5, 0] },
-      ],
-    },
-  ]}
-  cameraPosition={[0, 0, 10]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 2.6, y: 1.5 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 1.5, y: 2.6 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -1.5, y: 2.6 }, placement: "above-left" },
+      { key: "l5", objectId: "s4", at: { x: -2.6, y: 1.5 }, placement: "above-left" },
+      { key: "l6", objectId: "s5", at: { x: -2.6, y: -1.5 }, placement: "below-left" },
+      { key: "l7", objectId: "s5", at: { x: 0, y: -3 }, placement: "below" },
+    ],
+  }}
 />
 
 Chords <InlineMath math="AB" /> and <InlineMath math="CD" /> subtend equal central angles, so they have equal length. Chord <InlineMath math="EF" /> subtends a larger central angle and is longer.
@@ -100,85 +86,62 @@ Within the **same circle**, chord length and perpendicular distance from the cen
 
 <Highlight>Two chords of equal length</Highlight> have the same distance from the center of the circle. Conversely, two chords at the same distance from the center have equal length.
 
-<LineEquation
-  title="Equal Length Chords"
-  description="Two chords with equal length have the same distance from the center."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Equal Length Chords</>}
+  description={<>Two chords with equal length have the same distance from the center.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="Q" />,
+    "l4": <InlineMath math="R" />,
+    "l5": <InlineMath math="S" />,
+    "l6": <InlineMath math="d_1" />,
+    "l7": <InlineMath math="d_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const y = 2;
         const x = Math.sqrt(16 - y * y);
         return [
           { x: -x, y: y, z: 0 },
           { x: x, y: y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const y = -2;
         const x = Math.sqrt(16 - y * y);
         return [
           { x: -x, y: y, z: 0 },
           { x: x, y: y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="R" />, at: 0, offset: [-0.3, -0.3, 0] },
-        { text: <InlineMath math="S" />, at: 1, offset: [0.3, -0.3, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 2, z: 0 },
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="d_1" />, at: 1, offset: [0.5, 0, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: -2, z: 0 },
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="d_2" />, at: 1, offset: [0.5, 0, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 2 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: -2 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -3.46, y: 2 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -3.46, y: -2 }, placement: "below-left" },
+      { key: "l5", objectId: "s4", at: { x: 3.46, y: -2 }, placement: "below-right" },
+      { key: "l6", objectId: "s5", at: { x: 0, y: 2 }, placement: "right" },
+      { key: "l7", objectId: "s6", at: { x: 0, y: -2 }, placement: "right" },
+    ],
+  }}
 />
 
 If <InlineMath math="PQ = RS" />, then the distance from center <InlineMath math="O" /> to chord <InlineMath math="PQ" /> equals the distance from <InlineMath math="O" /> to chord <InlineMath math="RS" />, that is <InlineMath math="d_1 = d_2" />.
@@ -187,48 +150,39 @@ If <InlineMath math="PQ = RS" />, then the distance from center <InlineMath math
 
 A line drawn from the center of a circle perpendicular to a chord divides the chord into **two equal parts**.
 
-<LineEquation
-  title="Perpendicular Line from Center"
-  description="A line from the center perpendicular to a chord bisects it."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Perpendicular Line from Center</>}
+  description={<>A line from the center perpendicular to a chord bisects it.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="M" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 5 * Math.cos(angle),
           y: 5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 5, y: -0.09 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const angle1 = Math.PI / 4;
         const angle2 = (3 * Math.PI) / 4;
         return [
           { x: 5 * Math.cos(angle1), y: 5 * Math.sin(angle1), z: 0 },
           { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const chordMidX =
           (5 * Math.cos(Math.PI / 4) + 5 * Math.cos((3 * Math.PI) / 4)) / 2;
         const chordMidY =
@@ -237,14 +191,8 @@ A line drawn from the center of a circle perpendicular to a chord divides the ch
           { x: 0, y: 0, z: 0 },
           { x: chordMidX, y: chordMidY, z: 0 },
         ];
-      })(),
-      color: "#db2777",
-      showPoints: true,
-      smooth: false,
-      labels: [{ text: <InlineMath math="M" />, at: 1, offset: [0, 0.5, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const chordMidX =
           (5 * Math.cos(Math.PI / 4) + 5 * Math.cos((3 * Math.PI) / 4)) / 2;
         const chordMidY =
@@ -254,13 +202,15 @@ A line drawn from the center of a circle perpendicular to a chord divides the ch
           { x: chordMidX - 0.3, y: chordMidY - 0.3, z: 0 },
           { x: chordMidX, y: chordMidY - 0.3, z: 0 },
         ];
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3.54, y: 3.54 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3.54, y: 3.54 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 3.54 }, placement: "above" },
+    ],
+  }}
 />
 
 In the diagram above, <InlineMath math="OM \perp AB" /> and <InlineMath math="M" /> is the midpoint of chord <InlineMath math="AB" />, so <InlineMath math="AM = MB" />.
@@ -280,73 +230,53 @@ Here:
 
 As the smaller central angle <InlineMath math="\theta" /> increases from <InlineMath math="0" /> to <InlineMath math="180^\circ" />, the factor <InlineMath math="\sin(\theta/2)" /> increases from <InlineMath math="0" /> to <InlineMath math="1" />. The chord length therefore increases from <InlineMath math="0" /> to the diameter <InlineMath math="2r" />.
 
-<LineEquation
-  title="Central Angle and Chord"
-  description="The chord becomes longer as the smaller central angle increases toward one hundred eighty degrees."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Central Angle and Chord</>}
+  description={<>The chord becomes longer as the smaller central angle increases toward one hundred eighty degrees.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="Q" />,
+    "l4": <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const angle1 = Math.PI / 6;
         const angle2 = (2 * Math.PI) / 3;
         return [
           { x: 4 * Math.cos(angle1), y: 4 * Math.sin(angle1), z: 0 },
           { x: 4 * Math.cos(angle2), y: 4 * Math.sin(angle2), z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [-0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const angle1 = Math.PI / 6;
         return [
           { x: 0, y: 0, z: 0 },
           { x: 4 * Math.cos(angle1), y: 4 * Math.sin(angle1), z: 0 },
         ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const angle2 = (2 * Math.PI) / 3;
         return [
           { x: 0, y: 0, z: 0 },
           { x: 4 * Math.cos(angle2), y: 4 * Math.sin(angle2), z: 0 },
         ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: ((() => {
         const startAngle = Math.PI / 6;
         const endAngle = (2 * Math.PI) / 3;
         const numPoints = 20;
@@ -358,13 +288,15 @@ As the smaller central angle <InlineMath math="\theta" /> increases from <Inline
             z: 0,
           };
         });
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\theta" />, at: 10, offset: [0, -0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -2, y: 3.46 }, placement: "above-left" },
+      { key: "l4", objectId: "s6", at: { x: 0.39, y: 1.45 }, placement: "below" },
+    ],
+  }}
 />
 
 ### Distance of Chord from Center
@@ -381,23 +313,38 @@ If the chord length <InlineMath math="l" /> is known, use **half the chord lengt
 
 If two chords intersect inside a circle, then the product of the segments of one chord equals the product of the segments of the other chord.
 
-<LineEquation
-  title="Intersection of Two Chords"
-  description="Two chords intersecting away from the center of the circle."
-  cameraPosition={[0, 0, 15]}
-  showZAxis={false}
-  data={[
-    { kind: "circle-outline", radius: 5, color: "#9333ea" },
-    { points: [{ x: 5, y: 0, z: 0 }, { x: -5, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: true, labels: [
-      { text: <InlineMath math="A" />, at: 0, offset: [0.4, 0.3, 0] },
-      { text: <InlineMath math="B" />, at: 1, offset: [-0.4, 0.3, 0] },
-    ] },
-    { points: [{ x: 1, y: Math.sqrt(24), z: 0 }, { x: 1, y: -Math.sqrt(24), z: 0 }], smooth: false, color: "#0d9488", showPoints: true, labels: [
-      { text: <InlineMath math="C" />, at: 0, offset: [0.4, 0.3, 0] },
-      { text: <InlineMath math="D" />, at: 1, offset: [0.4, -0.3, 0] },
-    ] },
-    { points: [{ x: 1, y: 0, z: 0 }], color: "#db2777", showPoints: true, labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.4, 0.3, 0] }] },
-  ]}
+<MathVisual
+  title={<>Intersection of Two Chords</>}
+  description={<>Two chords intersecting away from the center of the circle.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 5, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 5, y: 0 }, { x: -5, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 5, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: -5, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: Math.sqrt(24) }, { x: 1, y: -Math.sqrt(24) }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: 1, y: 4.9 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 1, y: -4.9 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 5, y: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: -5, y: 0 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 1, y: 4.9 }, placement: "above-right" },
+      { key: "l4", objectId: "s3", at: { x: 1, y: -4.9 }, placement: "below-right" },
+      { key: "l5", objectId: "s4", at: { x: 1, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 In the diagram, the circle has radius <InlineMath math="5" /> and intersection point <InlineMath math="P(1,0)" />. The horizontal pieces differ in length, but their **product** equals the product of the vertical pieces.
@@ -412,47 +359,43 @@ In the diagram, the circle has radius <InlineMath math="5" /> and intersection p
 
 Inscribed angles that subtend the same chord have equal measures when their vertices lie on the **same side** of that chord.
 
-<LineEquation
-  title="Inscribed Angles in the Same Segment"
+<MathVisual
+  title={<>Inscribed Angles in the Same Segment</>}
   description={
     <>
       These two inscribed angles subtend chord <InlineMath math="AB" /> from
       the same side, so they have equal measures.
     </>
   }
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: ((() => {
         const angleA = 0;
         const angleB = Math.PI / 2;
         return [
           { x: 4 * Math.cos(angleA), y: 4 * Math.sin(angleA), z: 0 },
           { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0, 0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const angleC = (3 * Math.PI) / 4;
         const angleA = 0;
         const angleB = Math.PI / 2;
@@ -462,14 +405,9 @@ Inscribed angles that subtend the same chord have equal measures when their vert
           { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
           { x: 4 * Math.cos(angleC), y: 4 * Math.sin(angleC), z: 0 },
         ];
-      })(),
-      color: "#db2777",
-      showPoints: true,
-      smooth: false,
-      labels: [{ text: <InlineMath math="C" />, at: 0, offset: [-0.3, 0.3, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "answer" },
+      { id: "s3-close", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2.83, y: 2.83 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const angleD = (5 * Math.PI) / 4;
         const angleA = 0;
         const angleB = Math.PI / 2;
@@ -479,14 +417,16 @@ Inscribed angles that subtend the same chord have equal measures when their vert
           { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
           { x: 4 * Math.cos(angleD), y: 4 * Math.sin(angleD), z: 0 },
         ];
-      })(),
-      color: "#d97706",
-      showPoints: true,
-      smooth: false,
-      labels: [{ text: <InlineMath math="D" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "highlight" },
+      { id: "s4-close", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2.83, y: -2.83 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "l3", objectId: "s3", at: { x: -2.83, y: 2.83 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+    ],
+  }}
 />
 
 In the diagram above, <InlineMath math="\angle ACB = \angle ADB" /> because both vertices lie on the same side of chord <InlineMath math="AB" /> and both angles subtend that chord.
@@ -495,71 +435,52 @@ In the diagram above, <InlineMath math="\angle ACB = \angle ADB" /> because both
 
 The apothem of a chord is the perpendicular segment from the center of the circle to the chord. Its length is the **shortest distance** between the center and the chord.
 
-<LineEquation
-  title="Apothem of a Chord"
-  description="The apothem is perpendicular to the chord and measures its distance from the center."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Apothem of a Chord</>}
+  description={<>The apothem is perpendicular to the chord and measures its distance from the center.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="Q" />,
+    "l4": <InlineMath math="M" />,
+    "l5": <>apothem</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 5 * Math.cos(angle),
           y: 5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 5, y: -0.09 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const y = 3;
         const x = Math.sqrt(25 - y * y);
         return [
           { x: -x, y: y, z: 0 },
           { x: x, y: y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 3, z: 0 },
-      ],
-      color: "#db2777",
-      showPoints: true,
-      smooth: false,
-      labels: [
-        { text: <InlineMath math="M" />, at: 1, offset: [0.5, 0, 0] },
-        { text: "apothem", at: 0, offset: [1.2, 1.5, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: -0.3, y: 3, z: 0 },
-        { x: -0.3, y: 2.7, z: 0 },
-        { x: 0, y: 2.7, z: 0 },
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3 }], appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: 0, y: 3 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -0.3, y: 3 }, { x: -0.3, y: 2.7 }, { x: 0, y: 2.7 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -4, y: 3 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 4, y: 3 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "l5", objectId: "s4", at: { x: 0, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 The length of the apothem can be calculated using the formula:
@@ -577,60 +498,46 @@ Here:
 
 Two parallel chords cut off **equal connecting arcs** on opposite sides of the circle. Compare the minor arcs on the left and right, not the longer arc passing around the other side.
 
-<LineEquation
-  title="Parallel Chords"
-  description="Arcs between parallel chords have equal lengths."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Parallel Chords</>}
+  description={<>Arcs between parallel chords have equal lengths.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         return {
           x: 4 * Math.cos(angle),
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: ((() => {
         const y = 2;
         const x = Math.sqrt(16 - y * y);
         return [
           { x: -x, y: y, z: 0 },
           { x: x, y: y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.3, 0.3, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const y = -2;
         const x = Math.sqrt(16 - y * y);
         return [
           { x: -x, y: y, z: 0 },
           { x: x, y: y, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="C" />, at: 0, offset: [-0.3, -0.3, 0] },
-        { text: <InlineMath math="D" />, at: 1, offset: [0.3, -0.3, 0] },
-      ],
-    },
-    {
-      smooth: false,
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const y1 = 2;
         const x1 = Math.sqrt(16 - y1 * y1);
         const angle1 = Math.atan2(y1, -x1);
@@ -646,13 +553,8 @@ Two parallel chords cut off **equal connecting arcs** on opposite sides of the c
             z: 0,
           };
         });
-      })(),
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
         const y1 = 2;
         const x1 = Math.sqrt(16 - y1 * y1);
         const angle1 = Math.atan2(y1, x1);
@@ -668,12 +570,15 @@ Two parallel chords cut off **equal connecting arcs** on opposite sides of the c
             z: 0,
           };
         });
-      })(),
-      color: "#d97706",
-      showPoints: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -3.46, y: 2 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3.46, y: -2 }, placement: "below-left" },
+      { key: "l4", objectId: "s3", at: { x: 3.46, y: -2 }, placement: "below-right" },
+    ],
+  }}
 />
 
 If <InlineMath math="AB \parallel CD" />, then arc <InlineMath math="AC" /> equals arc <InlineMath math="BD" />.

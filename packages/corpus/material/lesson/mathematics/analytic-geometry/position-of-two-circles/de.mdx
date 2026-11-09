@@ -31,13 +31,21 @@ Stell dir vor, du schiebst den zweiten Kreis geradlinig auf den ersten zu. Sind 
 
 Zwei Kreise **schneiden sich**, wenn ihre Kreislinien genau zwei gemeinsame Punkte haben. Ihre Überlappung ist eine Linse, die von den beiden Bögen zwischen diesen Punkten begrenzt wird.
 
-<LineEquation
-  title="Zwei sich schneidende Kreise"
-  description="Die beiden Kreislinien haben genau zwei gemeinsame Punkte."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Zwei sich schneidende Kreise</>}
+  description={<>Die beiden Kreislinien haben genau zwei gemeinsame Punkte.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+    "l3": <InlineMath math="A" />,
+    "l4": <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 3;
         const centerX = -1;
@@ -47,13 +55,9 @@ Zwei Kreise **schneiden sich**, wenn ihre Kreislinien genau zwei gemeinsame Punk
           y: centerY + radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 2, y: -0.05 }, to: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 2.5;
         const centerX = 1.5;
@@ -63,59 +67,40 @@ Zwei Kreise **schneiden sich**, wenn ihre Kreislinien genau zwei gemeinsame Punk
           y: centerY + radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -1, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 1.5, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_2" />, at: 0, offset: [0.5, -0.5, 0] }],
-    },
-    {
-      points: (() => {
-        // Schnittpunkte exakt berechnen
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 4, y: -0.04 }, to: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1.5, y: 0 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: ((() => {
+        
         const r1 = 3, r2 = 2.5;
         const x1 = -1, y1 = 0, x2 = 1.5, y2 = 0;
-        const d = Math.sqrt((x2-x1)**2 + (y2-y1)**2); // d = 2.5
+        const d = Math.sqrt((x2-x1)**2 + (y2-y1)**2); 
 
-        // Abstand von Mittelpunkt 1 zur Potenzgeraden
-        const a = (r1**2 - r2**2 + d**2) / (2*d); // a = (9 - 6.25 + 6.25) / 5 = 1.8
+        
+        const a = (r1**2 - r2**2 + d**2) / (2*d); 
 
-        // Höhe des Schnittpunkts über der Verbindungslinie der Mittelpunkte
-        const h = Math.sqrt(r1**2 - a**2); // h = sqrt(9 - 3.24) = sqrt(5.76) = 2.4
+        
+        const h = Math.sqrt(r1**2 - a**2); 
 
-        // Schnittpunkte
-        const px = x1 + a * (x2-x1) / d; // px = -1 + 1.8 * 2.5 / 2.5 = 0.8
-        const py1 = y1 + h; // py1 = 2.4
-        const py2 = y1 - h; // py2 = -2.4
+        
+        const px = x1 + a * (x2-x1) / d; 
+        const py1 = y1 + h; 
+        const py2 = y1 - h; 
 
         return [
           { x: px, y: py1, z: 0 },
           { x: px, y: py2, z: 0 }
         ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0.5, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] }
-      ],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -1, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 1.5, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s5", at: { x: 0.8, y: 2.4 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: 0.8, y: -2.4 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Die Bedingung lautet
@@ -128,13 +113,20 @@ Diese Bedingung stammt aus einem Dreieck. Ein Schnittpunkt <InlineMath math="A" 
 
 Zwei Kreise **berühren sich**, wenn ihre Kreislinien genau einen gemeinsamen Punkt <InlineMath math="T" /> haben. Dieser Berührpunkt liegt immer auf der Geraden durch die beiden Mittelpunkte.
 
-<LineEquation
-  title="Von außen berührende Kreise"
-  description="Die beiden Kreislinien haben genau einen gemeinsamen Punkt."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Von außen berührende Kreise</>}
+  description={<>Die beiden Kreislinien haben genau einen gemeinsamen Punkt.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+    "l3": <InlineMath math="T" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 2.5;
         const centerX = -2.5;
@@ -144,13 +136,9 @@ Zwei Kreise **berühren sich**, wenn ihre Kreislinien genau einen gemeinsamen Pu
           y: centerY + radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#059669",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 0, y: -0.04 }, to: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 2;
         const centerX = 2;
@@ -160,67 +148,40 @@ Zwei Kreise **berühren sich**, wenn ihre Kreislinien genau einen gemeinsamen Pu
           y: centerY + radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -2.5, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 2, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_2" />, at: 0, offset: [0.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T" />, at: 0, offset: [0, 0.8, 0] }],
-    },
-    {
-      points: [
-        { x: -6, y: 0, z: 0 },
-        { x: 6, y: 0, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -4, z: 0 },
-        { x: 0, y: 4, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 4, y: -0.03 }, to: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -2.5, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -2.5, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s5", at: { x: 0, y: 0 }, placement: "above" },
+    ],
+  }}
 />
 
 Eine **Berührung von außen** liegt vor, wenn <InlineMath math="d = r_1 + r_2" /> gilt. Die Kreise liegen auf verschiedenen Seiten von <InlineMath math="T" />. In diesem Fall fallen die beiden [inneren gemeinsamen Tangenten](/de/faecher/mathematik/kreisgeometrie/aeussere-und-innere-gemeinsame-tangente) zu einer Geraden durch <InlineMath math="T" /> zusammen, die senkrecht auf <InlineMath math="P_1P_2" /> steht.
 
 Eine **Berührung von innen** liegt vor, wenn <InlineMath math="d = |r_1 - r_2| > 0" /> gilt. Der kleine Kreis liegt im großen und berührt ihn von innen.
 
-<LineEquation
-  title="Von innen berührende Kreise"
-  description="Der kleinere Kreis liegt im größeren und beide Kreislinien haben einen gemeinsamen Punkt."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Von innen berührende Kreise</>}
+  description={<>Der kleinere Kreis liegt im größeren und beide Kreislinien haben einen gemeinsamen Punkt.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+    "l3": <InlineMath math="T" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 4;
         const centerX = 0;
@@ -230,13 +191,9 @@ Eine **Berührung von innen** liegt vor, wenn <InlineMath math="d = |r_1 - r_2| 
           y: centerY + radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 1.5;
         const centerX = 2.5;
@@ -246,54 +203,20 @@ Eine **Berührung von innen** liegt vor, wenn <InlineMath math="d = |r_1 - r_2| 
           y: centerY + radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 2.5, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_2" />, at: 0, offset: [0, -0.8, 0] }],
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 }
-      ],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T" />, at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: [
-        { x: -5, y: 0, z: 0 },
-        { x: 5, y: 0, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -5, z: 0 },
-        { x: 0, y: 5, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 4, y: -0.03 }, to: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 2.5, y: 0 }, appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -5 }, { x: 0, y: 5 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "l3", objectId: "s5", at: { x: 4, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Bei der Berührung von innen ist <InlineMath math="P_1" /> der Mittelpunkt des größeren Kreises. Mit dieser Wahl liegt der Berührpunkt bei beiden Arten der Berührung im Abstand <InlineMath math="r_1" /> von <InlineMath math="P_1" /> in Richtung <InlineMath math="P_1P_2" />:
@@ -304,13 +227,20 @@ Bei der Berührung von innen ist <InlineMath math="P_1" /> der Mittelpunkt des g
 
 Zwei Kreise mit verschiedenen Mittelpunkten können auf zwei Arten keinen gemeinsamen Punkt haben. Sie liegen **getrennt außerhalb voneinander**, wenn <InlineMath math="d > r_1 + r_2" /> gilt.
 
-<LineEquation
-  title="Zwei getrennte Kreise"
-  description="Beide Kreise liegen weit auseinander und berühren sich nicht."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Zwei getrennte Kreise</>}
+  description={<>Beide Kreise liegen weit auseinander und berühren sich nicht.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+    "l3": <InlineMath math="d" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 2;
         const centerX = -3;
@@ -320,13 +250,9 @@ Zwei Kreise mit verschiedenen Mittelpunkten können auf zwei Arten keinen gemein
           y: centerY + radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#4f46e5",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: -1, y: -0.03 }, to: { x: -1, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 1.5;
         const centerX = 3;
@@ -336,95 +262,54 @@ Zwei Kreise mit verschiedenen Mittelpunkten können auf zwei Arten keinen gemein
           y: centerY + radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 3, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_2" />, at: 0, offset: [0.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 }
-      ],
-      color: "#ca8a04",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="d" />, at: 1, offset: [0, 0.8, 0] }],
-    },
-    {
-      points: [
-        { x: -6, y: 0, z: 0 },
-        { x: 6, y: 0, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -4, z: 0 },
-        { x: 0, y: 4, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 4.5, y: -0.03 }, to: { x: 4.5, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s5", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+  }}
 />
 
 Die kürzeste Lücke zwischen den beiden Kreislinien liegt auf der Geraden durch die Mittelpunkte und hat die Länge <InlineMath math="d - (r_1 + r_2)" />. Kein Punkt gehört zu beiden Kreisflächen zugleich.
 
 Die zweite Art ist **ein Kreis im anderen ohne Berührung**, wenn <InlineMath math="0 < d < |r_1 - r_2|" /> gilt. Nimm einen großen Kreis mit Radius <InlineMath math="4" />, einen kleinen mit Radius <InlineMath math="1" /> und Mittelpunkte im Abstand <InlineMath math="1" />.
 
-<LineEquation
-  title="Ineinanderliegende Kreise ohne Berührung"
-  description="Die Mittelpunkte unterscheiden sich und die Kreislinien treffen sich nicht."
-  cameraPosition={[0, 0, 12]}
-  showZAxis={false}
-  data={[
-    {
-      kind: "circle-outline",
-      radius: 4,
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 181 }, (_, i) => ({
+<MathVisual
+  title={<>Ineinanderliegende Kreise ohne Berührung</>}
+  description={<>Die Mittelpunkte unterscheiden sich und die Kreislinien treffen sich nicht.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 181 }, (_, i) => ({
         x: 1 + Math.cos((i * Math.PI) / 90),
         y: Math.sin((i * Math.PI) / 90),
         z: 0,
-      })),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="P_2" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-  ]}
+      })).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 2, y: -0.03 }, to: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 1, y: 0 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Wegen <InlineMath math="0 < 1 < 4 - 1" /> liegt der kleine Kreis vollständig im großen. Die kürzeste Lücke ist <InlineMath math="|r_1 - r_2| - d = 3 - 1 = 2" />.
@@ -433,13 +318,20 @@ Wegen <InlineMath math="0 < 1 < 4 - 1" /> liegt der kleine Kreis vollständig im
 
 **Konzentrische Kreise** haben denselben Mittelpunkt, aber verschiedene Radien, wie die Ringe einer Zielscheibe beim Bogenschießen.
 
-<LineEquation
-  title="Konzentrische Kreise"
-  description="Zwei Kreise mit demselben Mittelpunkt, aber unterschiedlichen Radien."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Konzentrische Kreise</>}
+  description={<>Zwei Kreise mit demselben Mittelpunkt, aber unterschiedlichen Radien.</>}
+  labels={{
+    "l1": <InlineMath math="P" />,
+    "l2": <InlineMath math="r_1" />,
+    "l3": <InlineMath math="r_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 3.5;
         const centerX = 0;
@@ -449,13 +341,9 @@ Wegen <InlineMath math="0 < 1 < 4 - 1" /> liegt der kleine Kreis vollständig im
           y: centerY + radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#0284c7",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 3.5, y: -0.06 }, to: { x: 3.5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 2;
         const centerX = 0;
@@ -465,58 +353,20 @@ Wegen <InlineMath math="0 < 1 < 4 - 1" /> liegt der kleine Kreis vollständig im
           y: centerY + radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#65a30d",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: Math.sqrt(2), y: Math.sqrt(2), z: 0 }
-      ],
-      color: "#ca8a04",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="r_1" />, at: 1, offset: [0, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3.5, y: 0, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="r_2" />, at: 1, offset: [0, 0.8, 0] }],
-    },
-    {
-      points: [
-        { x: -5, y: 0, z: 0 },
-        { x: 5, y: 0, z: 0 }
-      ],
-      color: "#c026d3",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -5, z: 0 },
-        { x: 0, y: 5, z: 0 }
-      ],
-      color: "#c026d3",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 2, y: -0.03 }, to: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: Math.sqrt(2), y: Math.sqrt(2) }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3.5, y: 0 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -5 }, { x: 0, y: 5 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 1.41, y: 1.41 }, placement: "below" },
+      { key: "l3", objectId: "s5", at: { x: 3.5, y: 0 }, placement: "above" },
+    ],
+  }}
 />
 
 Bei konzentrischen Kreisen gilt <InlineMath math="d = 0" /> und <InlineMath math="r_1 \ne r_2" />. Ihre Kreislinien treffen sich nie, und der Abstand zwischen ihnen ist in jeder Richtung gleich, nämlich <InlineMath math="|r_1 - r_2|" />.

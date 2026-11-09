@@ -13,44 +13,33 @@ Distribusi normal adalah model peluang untuk besaran kontinu yang **mengumpul di
 
 Pada grafik interaktif, kurva normal baku dengan <InlineMath math="\mu = 0" /> dan <InlineMath math="\sigma = 1" /> berpuncak di pusat. Dua ruas tegak menandai titik belok di <InlineMath math="\mu - \sigma" /> dan <InlineMath math="\mu + \sigma" />, tempat kelengkungan kurva berganti: cekung ke bawah di antara kedua titik itu dan cekung ke atas di luarnya.
 
-<LineEquation
-  title="Kurva Distribusi Normal Baku"
+<MathVisual
+  title={<>Kurva Distribusi Normal Baku</>}
   description={<>Kepadatan normal baku berpusat di <InlineMath math="\mu = 0" />. Ruas tegak menandai titik beloknya di <InlineMath math="\mu \pm \sigma" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0, 5]}
-  data={[
-    {
-      points: Array.from({ length: 701 }, (_, index) => {
+  labels={{
+    "l1": <InlineMath math="\mu = 0" />,
+    "l2": <InlineMath math="\mu - \sigma" />,
+    "l3": <InlineMath math="\mu + \sigma" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 1 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 701 }, (_, index) => {
         const x = (index - 350) / 100;
         const y = Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
         return { x, y, z: 0 };
-      }),
-      color: "#9333ea",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\mu = 0" />, at: 350, offset: [0, 0.5, 0] }],
-    },
-    {
-      points: [
-        { x: -1, y: 0, z: 0 },
-        { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 },
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\mu - \sigma" />, at: 0, offset: [0, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 1, y: 0, z: 0 },
-        { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 },
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\mu + \sigma" />, at: 0, offset: [0, -0.3, 0] }],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -1, y: 0 }, { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5) }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0, y: 0.4 }, placement: "above" },
+      { key: "l2", objectId: "s2", at: { x: -1, y: 0 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 Rata-rata, median, dan modus berimpit di <InlineMath math="\mu" />, karena kurva simetris dan hanya punya satu puncak. Kurva tidak pernah menyentuh sumbu <InlineMath math="x" />: kepadatannya positif untuk setiap <InlineMath math="x" /> dan mendekati nol jauh dari pusat. Abraham de Moivre menurunkan kurva ini pada tahun <InlineMath math="1733" /> sebagai pendekatan [distribusi binomial](/id/materi/matematika/analisis-data-dan-peluang/fungsi-distribusi-binomial) dengan <InlineMath math="p = \frac{1}{2}" /> untuk banyak percobaan yang besar, dan Pierre-Simon Laplace kemudian memperluasnya ke peluang sukses yang lain.
@@ -69,44 +58,38 @@ Kepadatan bukan peluang. Di puncak kurva normal baku, <InlineMath math="f(0) = \
 
 Parameter <InlineMath math="\mu" /> **menggeser kurva tanpa mengubah bentuknya**, sedangkan <InlineMath math="\sigma" /> mengatur lebarnya. Luas di bawah kurva selalu <InlineMath math="1" />, jadi kurva yang lebih lebar juga lebih rendah, dengan tinggi puncak <InlineMath math="\frac{1}{\sigma\sqrt{2\pi}}" />. Grafik interaktif menggambar tiga kurva dari rumus yang sama.
 
-<LineEquation
+<MathVisual
   title={<>Kurva <InlineMath math="N(0, 1)" />, <InlineMath math="N(2, 1)" />, dan <InlineMath math="N(0, 4)" /></>}
   description={<>Mengubah <InlineMath math="\mu" /> dari <InlineMath math="0" /> ke <InlineMath math="2" /> menggeser kurva ke kanan. Mengubah <InlineMath math="\sigma" /> dari <InlineMath math="1" /> ke <InlineMath math="2" /> melebarkan kurva dan menurunkan puncaknya menjadi setengah.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0.2, 9]}
-  cameraTarget={[0, 0.2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 801 }, (_, index) => {
+  labels={{
+    "l1": <InlineMath math="N(0, 1)" />,
+    "l2": <InlineMath math="N(2, 1)" />,
+    "l3": <InlineMath math="N(0, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -0.5, max: 1 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 801 }, (_, index) => {
         const x = -4 + index / 100;
         return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
-      }),
-      color: "#9333ea",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="N(0, 1)" />, at: 400, offset: [-1, 0.1, 0] }],
-    },
-    {
-      points: Array.from({ length: 801 }, (_, index) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 801 }, (_, index) => {
         const x = -2 + index / 100;
         return { x, y: Math.exp(-0.5 * (x - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 };
-      }),
-      color: "#0d9488",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="N(2, 1)" />, at: 400, offset: [1, 0.1, 0] }],
-    },
-    {
-      points: Array.from({ length: 1201 }, (_, index) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: Array.from({ length: 1201 }, (_, index) => {
         const x = -6 + index / 100;
         return { x, y: Math.exp(-0.5 * (x / 2) ** 2) / (2 * Math.sqrt(2 * Math.PI)), z: 0 };
-      }),
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="N(0, 4)" />, at: 300, offset: [-0.5, 0.2, 0] }],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0, y: 0.4 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 0.4 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3, y: 0.06 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Kurva <InlineMath math="N(0, 1)" /> dan <InlineMath math="N(2, 1)" /> punya bentuk yang sama, hanya pusatnya bergeser <InlineMath math="2" /> satuan ke kanan. Kurva <InlineMath math="N(0, 4)" /> berpusat di tempat yang sama dengan <InlineMath math="N(0, 1)" />, tetapi dua kali lebih lebar, dan puncaknya turun dari <InlineMath math="0{,}399" /> menjadi <InlineMath math="0{,}199" />. Parameter kedua pada <InlineMath math="N(\mu, \sigma^2)" /> adalah varians, jadi <InlineMath math="N(0, 4)" /> berarti <InlineMath math="\sigma = 2" />.
@@ -155,53 +138,34 @@ Peluang normal dihitung dalam tiga langkah: bakukan batas-batasnya, baca <Inline
 
 Peluangnya sekitar <InlineMath math="0{,}5764" />, atau <InlineMath math="57{,}64\%" />. Grafik interaktif menunjukkan luas itu pada kurva normal baku, di antara <InlineMath math="z = -0{,}5" /> dan <InlineMath math="z = 1{,}2" />.
 
-<LineEquation
+<MathVisual
   title={<>Luas di antara <InlineMath math="z = -0{,}5" /> dan <InlineMath math="z = 1{,}2" /></>}
   description={<>Busur tebal adalah bagian kurva normal baku di atas selang yang dibakukan. Luas di bawah busur itu sama dengan <InlineMath math="P(45 < X < 62) \approx 0{,}5764" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0.2, 5.5]}
-  cameraTarget={[0, 0.2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 701 }, (_, index) => {
+  labels={{
+    "l1": <InlineMath math="-0{,}5" />,
+    "l2": <InlineMath math="1{,}2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 1 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 701 }, (_, index) => {
         const x = -3.5 + index / 100;
         return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
-      }),
-      color: "#9333ea",
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 341 }, (_, index) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 341 }, (_, index) => {
         const x = -0.5 + index / 200;
         return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
-      }),
-      color: "#0d9488",
-      lineWidth: 4,
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -0.5, y: 0, z: 0 },
-        { x: -0.5, y: Math.exp(-0.5 * 0.5 ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="-0{,}5" />, at: 0, offset: [0, -0.2, 0] }],
-    },
-    {
-      points: [
-        { x: 1.2, y: 0, z: 0 },
-        { x: 1.2, y: Math.exp(-0.5 * 1.2 ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="1{,}2" />, at: 0, offset: [0, -0.2, 0] }],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -0.5, y: 0 }, { x: -0.5, y: Math.exp(-0.5 * 0.5 ** 2) / Math.sqrt(2 * Math.PI) }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 1.2, y: 0 }, { x: 1.2, y: Math.exp(-0.5 * 1.2 ** 2) / Math.sqrt(2 * Math.PI) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -0.5, y: 0 }, placement: "below" },
+      { key: "l2", objectId: "s4", at: { x: 1.2, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 Periksa dengan membagi selang di pusat. Bagian kiri <InlineMath math="P(-0{,}5 < Z < 0) = 0{,}5 - 0{,}3085 = 0{,}1915" />, dan bagian kanan <InlineMath math="P(0 < Z < 1{,}2) = 0{,}8849 - 0{,}5 = 0{,}3849" />. Jumlahnya <InlineMath math="0{,}1915 + 0{,}3849 = 0{,}5764" />, sama dengan hasil pertama.

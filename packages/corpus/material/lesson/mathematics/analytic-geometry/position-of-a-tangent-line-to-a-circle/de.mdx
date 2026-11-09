@@ -21,13 +21,21 @@ Diese senkrechte Beziehung wird in drei Fällen verwendet: bei einer Tangente in
 
 Prüfe zuerst, ob der angegebene Berührpunkt wirklich auf dem Kreis liegt. Sein Radiusvektor wird dann zum Normalenvektor der Tangente.
 
-<LineEquation
-  title="Tangente durch einen Punkt auf dem Kreis"
-  description="Der Radius zum bekannten Berührpunkt ist ein Normalenvektor der Tangente."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Tangente durch einen Punkt auf dem Kreis</>}
+  description={<>Der Radius zum bekannten Berührpunkt ist ein Normalenvektor der Tangente.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="T" />,
+    "l3": <>Tangente</>,
+    "l4": <>Radius</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 7 }, y: { min: -5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 3;
         return {
@@ -35,38 +43,11 @@ Prüfe zuerst, ob der angegebene Berührpunkt wirklich auf dem Kreis liegt. Sein
           y: radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 0,
-          y: 0,
-          z: 0,
-        };
-      }),
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        const angle = Math.PI / 4;
-        const radius = 3;
-        return {
-          x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T" />, at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const points = Array.from({ length: 2 }, (_, i) => {
           const angle = Math.PI / 4;
           const radius = 3;
@@ -93,14 +74,8 @@ Prüfe zuerst, ob der angegebene Berührpunkt wirklich auf dem Kreis liegt. Sein
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Tangente", at: 2, offset: [-2.5, 4.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const angle = Math.PI / 4;
         const radius = 3;
         return {
@@ -108,14 +83,8 @@ Prüfe zuerst, ob der angegebene Berührpunkt wirklich auf dem Kreis liegt. Sein
           y: i * radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Radius", at: 1, offset: [-2, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const xMin = -5;
         const xMax = 5;
         const y = 0;
@@ -124,13 +93,8 @@ Prüfe zuerst, ob der angegebene Berührpunkt wirklich auf dem Kreis liegt. Sein
           y: y,
           z: 0,
         };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const yMin = -4;
         const yMax = 4;
         const x = 0;
@@ -139,13 +103,15 @@ Prüfe zuerst, ob der angegebene Berührpunkt wirklich auf dem Kreis liegt. Sein
           y: yMin + i * (yMax - yMin),
           z: 0,
         };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 4.12, y: 0.12 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: 2.12, y: 2.12 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Für den Kreis <InlineMath math="(x-a)^2+(y-b)^2=r^2" /> mit Mittelpunkt <InlineMath math="C(a,b)" /> und den Berührpunkt <InlineMath math="T(x_1,y_1)" /> gehen wir so vor.
@@ -172,13 +138,20 @@ Mit der Punktbedingung aus Schritt 1 erhalten wir die **Berührpunktform**:
 
 Ist der Berührpunkt unbekannt, aber die Steigung gegeben, muss der Achsenabschnitt die Gerade genau einen Radius vom Mittelpunkt entfernt platzieren. Dieser Fall tritt etwa auf, wenn die Tangente zu einer anderen Geraden parallel sein soll.
 
-<LineEquation
-  title="Tangente mit gegebener Steigung"
-  description="Eine Steigung bestimmt zwei parallele Tangenten auf beiden Seiten des Mittelpunkts."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Tangente mit gegebener Steigung</>}
+  description={<>Eine Steigung bestimmt zwei parallele Tangenten auf beiden Seiten des Mittelpunkts.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <>Tangente 1</>,
+    "l3": <>Tangente 2</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -10.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 2.5;
         return {
@@ -186,26 +159,12 @@ Ist der Berührpunkt unbekannt, aber die Steigung gegeben, muss der Achsenabschn
           y: radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 0,
-          y: 0,
-          z: 0,
-        };
-      }),
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 2.5, y: -0.04 }, to: { x: 2.5, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
         const points = Array.from({ length: 2 }, (_, i) => {
-          const m = 1; // given slope
+          const m = 1; 
           const r = 2.5;
           const c1 = r * Math.sqrt(1 + m * m);
           const xRange = 6;
@@ -224,16 +183,10 @@ Ist der Berührpunkt unbekannt, aber die Steigung gegeben, muss der Achsenabschn
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Tangente 1", at: 1, offset: [0.5, 2.5, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const points = Array.from({ length: 2 }, (_, i) => {
-          const m = 1; // given slope
+          const m = 1; 
           const r = 2.5;
           const c2 = -r * Math.sqrt(1 + m * m);
           const xRange = 6;
@@ -252,14 +205,8 @@ Ist der Berührpunkt unbekannt, aber die Steigung gegeben, muss der Achsenabschn
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Tangente 2", at: 2, offset: [0.5, -1.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const xMin = -5;
         const xMax = 5;
         const y = 0;
@@ -268,13 +215,8 @@ Ist der Berührpunkt unbekannt, aber die Steigung gegeben, muss der Achsenabschn
           y: y,
           z: 0,
         };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const yMin = -4;
         const yMax = 4;
         const x = 0;
@@ -283,13 +225,14 @@ Ist der Berührpunkt unbekannt, aber die Steigung gegeben, muss der Achsenabschn
           y: yMin + i * (yMax - yMin),
           z: 0,
         };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -3, y: 0.54 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 3, y: -0.54 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Für den Kreis <InlineMath math="x^2 + y^2 = r^2" /> und die bekannte Steigung <InlineMath math="m" /> setzen wir die Geradengleichung <InlineMath math="y = mx + c" /> in die Kreisgleichung ein:
@@ -322,13 +265,23 @@ Für jede endliche Steigung <InlineMath math="m" /> besitzt der Kreis um den Urs
 
 Ein Punkt außerhalb des Kreises bestimmt genau **zwei Tangenten**. Ihre beiden Berührpunkte liegen auf einer gemeinsamen Hilfsgeraden, der Polaren des äußeren Punkts.
 
-<LineEquation
-  title="Tangenten durch einen Punkt außerhalb des Kreises"
-  description="Ein äußerer Punkt bestimmt zwei Berührpunkte und zwei Tangenten."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Tangenten durch einen Punkt außerhalb des Kreises</>}
+  description={<>Ein äußerer Punkt bestimmt zwei Berührpunkte und zwei Tangenten.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="T_1" />,
+    "l4": <InlineMath math="T_2" />,
+    "l5": <>Tangente 1</>,
+    "l6": <>Tangente 2</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6.5 }, y: { min: -3, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 2;
         return {
@@ -336,70 +289,15 @@ Ein Punkt außerhalb des Kreises bestimmt genau **zwei Tangenten**. Ihre beiden 
           y: radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 0,
-          y: 0,
-          z: 0,
-        };
-      }),
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 4,
-          y: 2,
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        // Erster Berührpunkt (mathematisch berechnet)
-        const px = 4, py = 2, r = 2;
-        const d = Math.sqrt(px*px + py*py);
-        const angle1 = Math.atan2(py, px) - Math.acos(r/d);
-        return {
-          x: r * Math.cos(angle1),
-          y: r * Math.sin(angle1),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T_1" />, at: 0, offset: [0.5, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        // Zweiter Berührpunkt (mathematisch berechnet)
-        const px = 4, py = 2, r = 2;
-        const d = Math.sqrt(px*px + py*py);
-        const angle2 = Math.atan2(py, px) + Math.acos(r/d);
-        return {
-          x: r * Math.cos(angle2),
-          y: r * Math.sin(angle2),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T_2" />, at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 2, y: -0.03 }, to: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 4, y: 2 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1.6, y: -1.2 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 0, y: 2 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: ((() => {
         const points = Array.from({ length: 2 }, (_, i) => {
-          // Erste Tangente
+          
           const px = 4,
             py = 2,
             r = 2;
@@ -423,16 +321,10 @@ Ein Punkt außerhalb des Kreises bestimmt genau **zwei Tangenten**. Ihre beiden 
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Tangente 1", at: 1, offset: [-0.3, -2.2, 0] }],
-    },
-    {
-      points: (() => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: ((() => {
         const points = Array.from({ length: 2 }, (_, i) => {
-          // Zweite Tangente
+          
           const px = 4,
             py = 2,
             r = 2;
@@ -456,14 +348,8 @@ Ein Punkt außerhalb des Kreises bestimmt genau **zwei Tangenten**. Ihre beiden 
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Tangente 2", at: 1, offset: [-1.2, 1.3, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "warning" },
+      { id: "s8", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const xMin = -3;
         const xMax = 5;
         const y = 0;
@@ -472,13 +358,8 @@ Ein Punkt außerhalb des Kreises bestimmt genau **zwei Tangenten**. Ihre beiden 
           y: y,
           z: 0,
         };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s9", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const yMin = -2;
         const yMax = 4;
         const x = 0;
@@ -487,14 +368,17 @@ Ein Punkt außerhalb des Kreises bestimmt genau **zwei Tangenten**. Ihre beiden 
           y: yMin + i * (yMax - yMin),
           z: 0,
         };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[1, 0, 12]}
-  cameraTarget={[1, 0, 0]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 1.6, y: -1.2 }, placement: "below-right" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: 2 }, placement: "above-right" },
+      { key: "l5", objectId: "s6", at: { x: 4, y: 2 }, placement: "below-left" },
+      { key: "l6", objectId: "s7", at: { x: 4, y: 2 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Der Punkt <InlineMath math="P(x_0,y_0)" /> liege außerhalb des Kreises <InlineMath math="(x-a)^2+(y-b)^2=r^2" />. Seine **Polare** lautet:

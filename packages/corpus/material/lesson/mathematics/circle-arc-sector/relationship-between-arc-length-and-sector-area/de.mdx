@@ -19,13 +19,18 @@ Ein Bogen und der Sektor zum selben Mittelpunktswinkel nehmen **denselben Anteil
 
 Das Diagramm zum Sektor mit <InlineMath math="45^\circ" /> nutzt den Radius <InlineMath math="4" />. Sein Bogen ist ein Achtel des Umfangs, sein Sektor ein Achtel der Kreisfläche.
 
-<LineEquation
+<MathVisual
   title={<>Ein Winkel von <InlineMath math="45^\circ" /> nimmt <InlineMath math="\frac{1}{8}" /> des Kreises ein</>}
   description={<>Beim Radius <InlineMath math="4" /> ist der Bogen <InlineMath math="\pi" /> und der Sektor <InlineMath math="2\pi" />, doppelt so viel wie die Bogenlänge.</>}
-  cameraPosition={[0, 0, 12]}
-  data={[
-    {
-      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+  labels={{
+    "l1": <InlineMath math="45^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
         const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
@@ -33,34 +38,11 @@ Das Diagramm zum Sektor mit <InlineMath math="45^\circ" /> nutzt den Radius <Inl
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#4f46e5",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 1,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      color: "#9333ea",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 2,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-      ],
-      color: "#9333ea",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 2,
-    },
-    {
-      points: Array.from({ length: 211 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.1 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 211 }, (_, sampleIndex) => {
         const i = sampleIndex / 14;
         const angle = (i * Math.PI / 4) / 15;
         return {
@@ -68,20 +50,12 @@ Das Diagramm zum Sektor mit <InlineMath math="45^\circ" /> nutzt den Radius <Inl
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 4,
-      labels: [
-        {
-          text: <InlineMath math="45^\circ" />,
-          at: 112,
-          offset: [1, 0.8, 0],
-        },
-      ],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s4", at: { x: 3.65, y: 1.63 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Für diesen Sektor gilt <InlineMath math="s = \frac{1}{8} \times 8\pi = \pi" /> und <InlineMath math="A = \frac{1}{8} \times 16\pi = 2\pi" />. Die kurze Formel liefert dasselbe ohne den Winkel: <InlineMath math="A = \frac{1}{2} \times \pi \times 4 = 2\pi" />.
@@ -92,13 +66,18 @@ Auf einem Kreis ist das Verhältnis zweier Bögen gleich dem Verhältnis ihrer S
 
 <ContentStack>
 
-<LineEquation
+<MathVisual
   title={<>Ein Winkel von <InlineMath math="90^\circ" /> nimmt <InlineMath math="\frac{1}{4}" /> des Kreises ein</>}
   description={<>Beim Radius <InlineMath math="4" /> ist der Bogen <InlineMath math="2\pi" /> und der Sektor <InlineMath math="4\pi" />, doppelt so viel wie die Bogenlänge.</>}
-  cameraPosition={[0, 0, 12]}
-  data={[
-    {
-      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+  labels={{
+    "l1": <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
         const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
@@ -106,34 +85,11 @@ Auf einem Kreis ist das Verhältnis zweier Bögen gleich dem Verhältnis ihrer S
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#4f46e5",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 1,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 2,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 4, z: 0 },
-      ],
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 2,
-    },
-    {
-      points: Array.from({ length: 211 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.1 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 4 }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 211 }, (_, sampleIndex) => {
         const i = sampleIndex / 7;
         const angle = (i * Math.PI / 2) / 30;
         return {
@@ -141,29 +97,26 @@ Auf einem Kreis ist das Verhältnis zweier Bögen gleich dem Verhältnis ihrer S
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 4,
-      labels: [
-        {
-          text: <InlineMath math="90^\circ" />,
-          at: 105,
-          offset: [0.8, 1, 0],
-        },
-      ],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s4", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+    ],
+  }}
 />
 
-<LineEquation
+<MathVisual
   title={<>Ein Winkel von <InlineMath math="180^\circ" /> nimmt <InlineMath math="\frac{1}{2}" /> des Kreises ein</>}
   description={<>Beim Radius <InlineMath math="4" /> ist der Bogen <InlineMath math="4\pi" /> und der Sektor <InlineMath math="8\pi" />, doppelt so viel wie die Bogenlänge.</>}
-  cameraPosition={[0, 0, 12]}
-  data={[
-    {
-      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+  labels={{
+    "l1": <InlineMath math="180^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
         const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
@@ -171,24 +124,10 @@ Auf einem Kreis ist das Verhältnis zweier Bögen gleich dem Verhältnis ihrer S
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#4f46e5",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 1,
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      color: "#059669",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 2,
-    },
-    {
-      points: Array.from({ length: 211 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.1 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: Array.from({ length: 211 }, (_, sampleIndex) => {
         const i = sampleIndex / 7;
         const angle = (i * Math.PI) / 30;
         return {
@@ -196,29 +135,26 @@ Auf einem Kreis ist das Verhältnis zweier Bögen gleich dem Verhältnis ihrer S
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 4,
-      labels: [
-        {
-          text: <InlineMath math="180^\circ" />,
-          at: 105,
-          offset: [0, -0.5, 0],
-        },
-      ],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 4 }, placement: "below" },
+    ],
+  }}
 />
 
-<LineEquation
+<MathVisual
   title={<>Ein Winkel von <InlineMath math="120^\circ" /> nimmt <InlineMath math="\frac{1}{3}" /> des Kreises ein</>}
   description={<>Beim Radius <InlineMath math="4" /> ist der Bogen <InlineMath math="\frac{8\pi}{3}" /> und der Sektor <InlineMath math="\frac{16\pi}{3}" />, doppelt so viel wie die Bogenlänge.</>}
-  cameraPosition={[0, 0, 12]}
-  data={[
-    {
-      points: Array.from({ length: 241 }, (_, sampleIndex) => {
+  labels={{
+    "l1": <InlineMath math="\alpha=120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
         const i = sampleIndex / 4;
         const angle = (i * 2 * Math.PI) / 60;
         return {
@@ -226,34 +162,11 @@ Auf einem Kreis ist das Verhältnis zweier Bögen gleich dem Verhältnis ihrer S
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#4f46e5",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 1,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      color: "#65a30d",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 2,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(2 * Math.PI / 3), y: 4 * Math.sin(2 * Math.PI / 3), z: 0 },
-      ],
-      color: "#65a30d",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 2,
-    },
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.1 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(2 * Math.PI / 3), y: 4 * Math.sin(2 * Math.PI / 3) }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
         const i = sampleIndex / 5;
         const angle = (i * 2 * Math.PI / 3) / 40;
         return {
@@ -261,20 +174,12 @@ Auf einem Kreis ist das Verhältnis zweier Bögen gleich dem Verhältnis ihrer S
           y: 4 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#c026d3",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 4,
-      labels: [
-        {
-          text: <InlineMath math="\alpha=120^\circ" />,
-          at: 100,
-          offset: [-0.8, 1, 0],
-        },
-      ],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s4", at: { x: 2, y: 3.46 }, placement: "above-left" },
+    ],
+  }}
 />
 
 </ContentStack>
@@ -304,14 +209,22 @@ Mit demselben Verhältnis von Bogen und Mittelpunktswinkel schätzte Eratosthene
 
 Zur Mittagszeit an der Sommersonnenwende steht die Sonne der Annahme nach genau über Syene. In Alexandria bildet die Richtung zur Sonne mit der Senkrechten einen Winkel von etwa <InlineMath math="7{,}2^\circ" />. Weil die Strahlen parallel sind, ist dieser Winkel gleich dem Winkel zwischen den beiden Städten im Erdmittelpunkt.
 
-<LineEquation
-  title="Eratosthenes misst den Erdumfang"
+<MathVisual
+  title={<>Eratosthenes misst den Erdumfang</>}
   description={<>Der Winkel von <InlineMath math="7{,}2^\circ" /> im Erdmittelpunkt ist gleich dem Winkel der Sonnenstrahlen zur Senkrechten in Alexandria, den dieses Diagramm nicht zeichnet.</>}
-  cameraPosition={[2.5, 0.4, 8]}
-  cameraTarget={[2.5, 0.4, 0]}
-  data={[
-    {
-      points: Array.from({ length: 217 }, (_, sampleIndex) => {
+  labels={{
+    "l1": <>Erde</>,
+    "l2": <>Alexandria</>,
+    "l3": <>Syene</>,
+    "l4": <InlineMath math="5{.}000\,\text{Stadien}" />,
+    "l5": <InlineMath math="7{,}2^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -2, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 217 }, (_, sampleIndex) => {
         const i = sampleIndex / 3;
         const angle = (-15 + (i * 45) / 72) * Math.PI / 180;
         return {
@@ -319,55 +232,10 @@ Zur Mittagszeit an der Sommersonnenwende steht die Sonne der Annahme nach genau 
           y: 5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#4f46e5",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 2,
-      labels: [
-        {
-          text: "Erde",
-          at: 216,
-          offset: [-0.4, 0.2, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 5, y: 0, z: 0 },
-      ],
-      color: "#059669",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        {
-          text: "Alexandria",
-          at: 1,
-          offset: [-1.4, -0.75, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 5 * Math.cos((7.2 * Math.PI) / 180), y: 5 * Math.sin((7.2 * Math.PI) / 180), z: 0 },
-      ],
-      color: "#059669",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        {
-          text: "Syene",
-          at: 1,
-          offset: [-1.6, 0.85, 0],
-        },
-      ],
-    },
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 5 * Math.cos((7.2 * Math.PI) / 180), y: 5 * Math.sin((7.2 * Math.PI) / 180) }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
         const i = sampleIndex / 20;
         const angle = (i * (7.2 * Math.PI) / 180) / 10;
         return {
@@ -375,21 +243,8 @@ Zur Mittagszeit an der Sommersonnenwende steht die Sonne der Annahme nach genau 
           y: 5 * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#ea580c",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 4,
-      labels: [
-        {
-          text: <InlineMath math="5{.}000\,\text{Stadien}" />,
-          at: 100,
-          offset: [0.5, 0.4, 0],
-        },
-      ],
-    },
-    {
-      points: Array.from({ length: 201 }, (_, sampleIndex) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
         const i = sampleIndex / 20;
         const angle = (i * (7.2 * Math.PI) / 180) / 10;
         const radius = 1.5;
@@ -398,20 +253,16 @@ Zur Mittagszeit an der Sommersonnenwende steht die Sonne der Annahme nach genau 
           y: radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        {
-          text: <InlineMath math="7{,}2^\circ" />,
-          at: 100,
-          offset: [0.3, 0.8, 0],
-        },
-      ],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4.33, y: 2.5 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 5, y: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 4.96, y: 0.63 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 4.99, y: 0.31 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: 1.5, y: 0.09 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Die Entfernung der Städte auf der Oberfläche wird mit <InlineMath math="5{.}000" /> Stadien angenommen. Ein Bogen von <InlineMath math="7{,}2^\circ" /> ist ein Fünfzigstel einer Drehung, also:

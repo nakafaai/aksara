@@ -18,86 +18,52 @@ An arc is a **curved line**, while a segment is the region between an arc and it
 
 <ContentStack>
 
-<LineEquation
-  title="Circle Arc"
+<MathVisual
+  title={<>Circle Arc</>}
   description={<>An arc is a curved line on the circumference of a circle that connects two points. An arc only has length in one dimension and has no area.</>}
-  cameraPosition={[0, 0, 12]}
-  data={[
-    {
-      kind: "circle-outline", radius: 4,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 1,
-    },
-    {
-      kind: "circle-chord", radius: 4,
-        startDegrees: 30,
-        sweepDegrees: 120,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 2,
-      labels: [
-        {
-          text: "Chord",
-          at: 1,
-          offset: [3.464101615, -0.8, 0],
-        },
-      ],
-    },
-    { kind: "circle-arc", color: "#ea580c",
-      lineWidth: 4,
-      label: {
-        progress: 1 / 4,
-        text: "Arc",
-        offset: [2, 0.9, 0],
-      },
-      radius: 4,
-      startDegrees: 30,
-      sweepDegrees: 120 },
-  ]}
+  labels={{
+    "l1": <>Chord</>,
+    "l2": <>Arc</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 3.46, y: 2 }, to: { x: -3.46, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 30, sweepDegrees: 120, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 2 }, placement: "below-right" },
+      { key: "l2", objectId: "s3", at: { x: 0, y: 4 }, placement: "above-right" },
+    ],
+  }}
 />
 
-<LineEquation
-  title="Circle Segment"
+<MathVisual
+  title={<>Circle Segment</>}
   description={<>A segment is a region (area) inside a circle that is bounded by an arc and a chord. A segment has area in two dimensions and can be filled with color.</>}
-  cameraPosition={[0, 0, 12]}
-  data={[
-    {
-      kind: "circle-outline", radius: 4,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 1,
-    },
-    {
-      kind: "circle-chord", radius: 4,
-        startDegrees: 30,
-        sweepDegrees: 120,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 2,
-      labels: [
-        {
-          text: "Chord",
-          at: 1,
-          offset: [3.464101615, -0.8, 0],
-        },
-      ],
-    },
-    { kind: "circle-arc", color: "#ea580c",
-      lineWidth: 2,
-      radius: 4,
-      startDegrees: 30,
-      sweepDegrees: 120 },
-    { kind: "circle-segment", color: "#65a30d",
-      radius: 4,
-      startDegrees: 30,
-      sweepDegrees: 120,
-      label: {
-        progress: 1 / 4,
-        text: "Segment",
-        offset: [-2, -0.4, 0],
-      } },
-  ]}
+  labels={{
+    "l1": <>Chord</>,
+    "l2": <>Segment</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 3.46, y: 2 }, to: { x: -3.46, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 30, sweepDegrees: 120, appearance: "answer" },
+      { id: "s4", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 30, sweepDegrees: 120, appearance: "highlight" },
+      { id: "s4-chord", kind: "segment", from: { x: 3.46, y: 2 }, to: { x: -3.46, y: 2 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 2 }, placement: "below-right" },
+      { key: "l2", objectId: "s4", at: { x: 0, y: 4 }, placement: "below-left" },
+    ],
+  }}
 />
 
 </ContentStack>
@@ -108,178 +74,72 @@ Choose the **bounding arc** before classifying a segment. A minor arc bounds les
 
 <ContentStack>
 
-<LineEquation
+<MathVisual
   title={<>Minor Segment (<InlineMath math="\theta < 180^\circ" />)</>}
   description={<>A segment whose area is smaller than half a circle, formed when the central angle is less than <InlineMath math="180^\circ" />. This example shows a segment with a central angle of <InlineMath math="120^\circ" />.</>}
-  cameraPosition={[0, 0, 12]}
-  data={[
-    // Main circle
-    {
-      kind: "circle-outline", radius: 4,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 1,
-    },
-    // Center point O
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        {
-          text: <InlineMath math="O" />,
-          at: 0,
-          offset: [-0.4, -0.4, 0],
-        },
-      ],
-    },
-    // Radius OA
-    {
-      kind: "circle-radius", radius: 4, degrees: 30,
-      color: "#0891b2",
-      showPoints: false,
-      lineWidth: 2,
-      labels: [
-        {
-          text: <InlineMath math="A" />,
-          at: 1,
-          offset: [0.4, 0.2, 0],
-        },
-      ],
-    },
-    // Radius OB
-    {
-      kind: "circle-radius", radius: 4, degrees: 150,
-      color: "#0891b2",
-      showPoints: false,
-      lineWidth: 2,
-      labels: [
-        {
-          text: <InlineMath math="B" />,
-          at: 1,
-          offset: [-0.4, 0.2, 0],
-        },
-      ],
-    },
-    // Central angle arc to show 120°
-    { kind: "circle-arc", color: "#d97706",
-      lineWidth: 3,
-      label: {
-        text: <InlineMath math="120^\circ" />,
-        offset: [1.5, 1.3, 0],
-      },
-      radius: 1.5,
-      startDegrees: 30,
-      sweepDegrees: 120 },
-    // Chord AB
-    {
-      kind: "circle-chord", radius: 4,
-        startDegrees: 30,
-        sweepDegrees: 120,
-      color: "#9333ea",
-      showPoints: false,
-      lineWidth: 3,
-    },
-    // Segment (boundary)
-    { kind: "circle-segment", color: "#ea580c",
-      radius: 4,
-      startDegrees: 30,
-      sweepDegrees: 120,
-      label: {
-        text: "Segment",
-        offset: [2, 0.9, 0],
-      } },
-  ]}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="120^\circ" />,
+    "l5": <>Segment</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3.46, y: 2 }, appearance: "answer" },
+      { id: "s4", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3.46, y: 2 }, appearance: "answer" },
+      { id: "s5", kind: "arc", center: { x: 0, y: 0 }, radius: 1.5, startDegrees: 30, sweepDegrees: 120, appearance: "highlight" },
+      { id: "s6", kind: "segment", from: { x: 3.46, y: 2 }, to: { x: -3.46, y: 2 }, appearance: "reference" },
+      { id: "s7", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 30, sweepDegrees: 120, appearance: "warning" },
+      { id: "s7-chord", kind: "segment", from: { x: 3.46, y: 2 }, to: { x: -3.46, y: 2 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 1.73, y: 1 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: -1.73, y: 1 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: 1.5 }, placement: "above-right" },
+      { key: "l5", objectId: "s7", at: { x: 0, y: 4 }, placement: "above-right" },
+    ],
+  }}
 />
 
-<LineEquation
+<MathVisual
   title={<>Major Segment (<InlineMath math="\theta > 180^\circ" />)</>}
   description={<>A segment whose area is larger than half a circle, formed when the central angle is more than <InlineMath math="180^\circ" />. This example shows a segment with a central angle of <InlineMath math="240^\circ" />.</>}
-  cameraPosition={[0, 0, 12]}
-  data={[
-    // Main circle
-    {
-      kind: "circle-outline", radius: 4,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 1,
-    },
-    // Center point O
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      smooth: false,
-      lineWidth: 3,
-      labels: [
-        {
-          text: <InlineMath math="O" />,
-          at: 0,
-          offset: [-0.4, -0.4, 0],
-        },
-      ],
-    },
-    // Radius OA (using different angle for major)
-    {
-      kind: "circle-radius", radius: 4, degrees: 45,
-      color: "#0891b2",
-      showPoints: false,
-      lineWidth: 2,
-      labels: [
-        {
-          text: <InlineMath math="A" />,
-          at: 1,
-          offset: [0.4, 0.2, 0],
-        },
-      ],
-    },
-    // Radius OB
-    {
-      kind: "circle-radius", radius: 4, degrees: 285,
-      color: "#0891b2",
-      showPoints: false,
-      lineWidth: 2,
-      labels: [
-        {
-          text: <InlineMath math="B" />,
-          at: 1,
-          offset: [0.4, -0.4, 0],
-        },
-      ],
-    },
-    // Central angle arc to show 240° (using larger arc)
-    { kind: "circle-arc", color: "#d97706",
-      lineWidth: 3,
-      label: {
-        progress: 2 / 3,
-        text: <InlineMath math="240^\circ" />,
-        offset: [-1.2, -0.6, 0],
-      },
-      radius: 1.2,
-      startDegrees: 45,
-      sweepDegrees: 240 },
-    // Chord AB
-    {
-      kind: "circle-chord", radius: 4,
-        startDegrees: 45,
-        sweepDegrees: 240,
-      color: "#0891b2",
-      showPoints: false,
-      lineWidth: 3,
-    },
-    // Major segment (boundary)
-    { kind: "circle-segment", color: "#65a30d",
-      radius: 4,
-      startDegrees: 45,
-      sweepDegrees: 240,
-      label: {
-        progress: 1 / 2,
-        text: "Segment",
-        offset: [2.4, 1.2, 0],
-      } },
-  ]}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="240^\circ" />,
+    "l5": <>Segment</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2.83, y: 2.83 }, appearance: "answer" },
+      { id: "s4", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.04, y: -3.86 }, appearance: "answer" },
+      { id: "s5", kind: "arc", center: { x: 0, y: 0 }, radius: 1.2, startDegrees: 45, sweepDegrees: 240, appearance: "highlight" },
+      { id: "s6", kind: "segment", from: { x: 2.83, y: 2.83 }, to: { x: 1.04, y: -3.86 }, appearance: "answer" },
+      { id: "s7", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 45, sweepDegrees: 240, appearance: "reference" },
+      { id: "s7-chord", kind: "segment", from: { x: 2.83, y: 2.83 }, to: { x: 1.04, y: -3.86 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 1.41, y: 1.41 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 0.52, y: -1.93 }, placement: "below-right" },
+      { key: "l4", objectId: "s5", at: { x: -1.16, y: 0.31 }, placement: "below-left" },
+      { key: "l5", objectId: "s7", at: { x: -3.86, y: 1.04 }, placement: "above-right" },
+    ],
+  }}
 />
 
 </ContentStack>
@@ -326,8 +186,8 @@ In the 90-degree sector below, the chord joins the endpoints of two perpendicula
 
 <ContentStack>
 
-<LineEquation
-  title="Sector Minus Triangle"
+<MathVisual
+  title={<>Sector Minus Triangle</>}
   description={
     <>
       A segment is formed from sector <InlineMath math="AOB" /> minus triangle{" "}
@@ -336,70 +196,32 @@ In the 90-degree sector below, the chord joins the endpoints of two perpendicula
       <InlineMath math="4 \text{ units}" />.
     </>
   }
-  cameraPosition={[0, 0, 12]}
-  data={[
-    {
-      kind: "circle-outline", radius: 4,
-      color: "#4f46e5",
-      showPoints: false,
-      lineWidth: 1,
-    },
-    {
-      kind: "circle-radius", radius: 4, degrees: 0,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 2,
-      labels: [
-        {
-          text: <InlineMath math="O" />,
-          at: 0,
-          offset: [-0.3, -0.3, 0],
-        },
-        {
-          text: <InlineMath math="A" />,
-          at: 1,
-          offset: [0.4, -0.6, 0],
-        },
-      ],
-    },
-    {
-      kind: "circle-radius", radius: 4, degrees: 90,
-      color: "#7c3aed",
-      showPoints: false,
-      lineWidth: 2,
-      labels: [
-        {
-          text: <InlineMath math="B" />,
-          at: 1,
-          offset: [-0.6, 0.7, 0],
-        },
-      ],
-    },
-    {
-      kind: "circle-chord", radius: 4,
-        startDegrees: 0,
-        sweepDegrees: 90,
-      color: "#65a30d",
-      showPoints: false,
-      lineWidth: 3,
-      labels: [
-        {
-          text: <InlineMath math="AB" />,
-          at: 1,
-          offset: [1.4, -2.5, 0],
-        },
-      ],
-    },
-    { kind: "circle-arc", color: "#c026d3",
-      lineWidth: 4,
-      label: {
-        text: <InlineMath math="\widehat{AB}" />,
-        offset: [1.1, 0.7, 0],
-      },
-      radius: 4,
-      startDegrees: 0,
-      sweepDegrees: 90 },
-  ]}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="AB" />,
+    "l5": <InlineMath math="\widehat{AB}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 4 }, appearance: "secondary" },
+      { id: "s4", kind: "segment", from: { x: 4, y: 0 }, to: { x: 0, y: 4 }, appearance: "answer" },
+      { id: "s5", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 0, sweepDegrees: 90, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 2, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 2 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 2, y: 2 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+    ],
+  }}
 />
 
 </ContentStack>
@@ -510,23 +332,46 @@ In the tank cross-section, the **water surface is a chord**. The distance from t
 
 <BlockMath math="d=r-h=2-1.5=0.5\text{ m}" />
 
-<LineEquation
-  title="Tank Cross-Section with 1.5 Meters of Water"
-  description="Horizontal blue lines hatch the water. The surface is 0.5 meters below the center and 1.5 meters above the bottom."
-  data={[
-    { kind: "circle-outline", radius: 2, color: "#7c3aed", showPoints: false },
-    ...Array.from({ length: 14 }, (_, i) => {
-      const y = -1.9 + i * 0.1;
-      const x = Math.sqrt(4 - y * y);
-      return { points: [{ x: -x, y, z: 0 }, { x, y, z: 0 }], smooth: false, showPoints: false, color: "#0891b2" };
-    }),
-    { points: [{ x: -Math.sqrt(3.75), y: -0.5, z: 0 }, { x: Math.sqrt(3.75), y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#0891b2", lineWidth: 3 },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#ea580c", labels: [{ text: <InlineMath math="d" />, at: 0, offset: [0.25, -0.25, 0] }] },
-    { points: [{ x: 0, y: -0.5, z: 0 }, { x: 0, y: -2, z: 0 }], smooth: false, showPoints: false, color: "#65a30d", labels: [{ text: <InlineMath math="h" />, at: 1, offset: [0.25, 0.7, 0] }] },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: Math.sqrt(3.75), y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#ea580c", labels: [{ text: <InlineMath math="r=2" />, at: 1, offset: [-0.8, 0.45, 0] }] },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: -Math.sqrt(3.75), y: -0.5, z: 0 }], smooth: false, showPoints: false, color: "#ea580c" },
-  ]}
-  cameraPosition={[0, 0, 6.5]}
+<MathVisual
+  title={<>Tank Cross-Section with 1.5 Meters of Water</>}
+  description={<>Horizontal blue lines hatch the water. The surface is 0.5 meters below the center and 1.5 meters above the bottom.</>}
+  labels={{
+    "l1": <InlineMath math="d" />,
+    "l2": <InlineMath math="h" />,
+    "l3": <InlineMath math="r=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 2, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -0.62, y: -1.9 }, { x: 0.62, y: -1.9 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -0.87, y: -1.8 }, { x: 0.87, y: -1.8 }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -1.05, y: -1.7 }, { x: 1.05, y: -1.7 }], appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -1.2, y: -1.6 }, { x: 1.2, y: -1.6 }], appearance: "secondary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -1.32, y: -1.5 }, { x: 1.32, y: -1.5 }], appearance: "secondary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: -1.43, y: -1.4 }, { x: 1.43, y: -1.4 }], appearance: "secondary" },
+      { id: "s8", kind: "polyline", vertices: [{ x: -1.52, y: -1.3 }, { x: 1.52, y: -1.3 }], appearance: "secondary" },
+      { id: "s9", kind: "polyline", vertices: [{ x: -1.6, y: -1.2 }, { x: 1.6, y: -1.2 }], appearance: "secondary" },
+      { id: "s10", kind: "polyline", vertices: [{ x: -1.67, y: -1.1 }, { x: 1.67, y: -1.1 }], appearance: "secondary" },
+      { id: "s11", kind: "polyline", vertices: [{ x: -1.73, y: -1 }, { x: 1.73, y: -1 }], appearance: "secondary" },
+      { id: "s12", kind: "polyline", vertices: [{ x: -1.79, y: -0.9 }, { x: 1.79, y: -0.9 }], appearance: "secondary" },
+      { id: "s13", kind: "polyline", vertices: [{ x: -1.83, y: -0.8 }, { x: 1.83, y: -0.8 }], appearance: "secondary" },
+      { id: "s14", kind: "polyline", vertices: [{ x: -1.87, y: -0.7 }, { x: 1.87, y: -0.7 }], appearance: "secondary" },
+      { id: "s15", kind: "polyline", vertices: [{ x: -1.91, y: -0.6 }, { x: 1.91, y: -0.6 }], appearance: "secondary" },
+      { id: "s16", kind: "polyline", vertices: [{ x: -1.94, y: -0.5 }, { x: 1.94, y: -0.5 }], appearance: "secondary" },
+      { id: "s17", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: -0.5 }], appearance: "answer" },
+      { id: "s18", kind: "polyline", vertices: [{ x: 0, y: -0.5 }, { x: 0, y: -2 }], appearance: "highlight" },
+      { id: "s19", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1.94, y: -0.5 }], appearance: "answer" },
+      { id: "s20", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -1.94, y: -0.5 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s17", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s18", at: { x: 0, y: -2 }, placement: "above-right" },
+      { key: "l3", objectId: "s19", at: { x: 1.94, y: -0.5 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Draw radii to both ends of the water surface. Let half the sector angle be <InlineMath math="\varphi" />. The right triangle on the right gives:

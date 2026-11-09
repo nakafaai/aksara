@@ -76,46 +76,35 @@ Bayangannya adalah <InlineMath math="P'(1 - 2\sqrt{3}, \sqrt{3} + 2)" />, dengan
 
 Arah putarannya juga cocok. Karena <InlineMath math="P" /> memiliki <InlineMath math="y > x > 0" />, sudut <InlineMath math="OP" /> terhadap sumbu <InlineMath math="x" /> positif ada di antara <InlineMath math="45^\circ" /> dan <InlineMath math="90^\circ" />. Setelah ditambah <InlineMath math="60^\circ" />, sudutnya berada di antara <InlineMath math="105^\circ" /> dan <InlineMath math="150^\circ" />, yaitu di kuadran II, dan <InlineMath math="P'" /> memang memiliki <InlineMath math="x' < 0" /> dan <InlineMath math="y' > 0" />.
 
-<LineEquation
+<MathVisual
   title={<>Titik <InlineMath math="P(2, 4)" /> dan parabola <InlineMath math="y = x^2" /> diputar <InlineMath math="60^\circ" /></>}
   description={<>Dari titik asal, <InlineMath math="P" /> dicapai lewat <InlineMath math="A(2, 0)" />: <InlineMath math="2" /> langkah mendatar, lalu <InlineMath math="4" /> langkah tegak. Setelah putaran <InlineMath math="60^\circ" />, langkah <InlineMath math="OA'" /> tetap <InlineMath math="2" /> dan langkah <InlineMath math="A'P'" /> tetap <InlineMath math="4" />, keduanya tetap tegak lurus. Busur menunjukkan perjalanan <InlineMath math="P" /> ke <InlineMath math="P'" />.</>}
-  showZAxis={false}
-  cameraPosition={[-0.7, 2, 10]}
-  cameraTarget={[-0.7, 2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 211 }, (_, j) => {
+  labels={{
+    "l1": <InlineMath math="y = x^2" />,
+    "l2": <InlineMath math="A(2, 0)" />,
+    "l3": <InlineMath math="P(2, 4)" />,
+    "l4": <InlineMath math="A'" />,
+    "l5": <InlineMath math="P'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 3 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 211 }, (_, j) => {
         const x = (2 * j - 210) / 100;
         return { x, y: x * x, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = x^2" />, at: 196, offset: [0.44, 1.06, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 211 }, (_, j) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 211 }, (_, j) => {
         const t = (2 * j - 210) / 100;
         const cos = 1 / 2;
         const sin = Math.sqrt(3) / 2;
         return { x: t * cos - t * t * sin, y: t * sin + t * t * cos, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 2, y: 0, z: 0 }, { x: 2, y: 4, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A(2, 0)" />, at: 0, offset: [-0.09, -0.44, 0], anchorX: "right" },
-        { text: <InlineMath math="P(2, 4)" />, at: 1, offset: [0.19, -0.46, 0], anchorX: "left" },
-      ],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2, y: 0 }, { x: 2, y: 4 }], appearance: "primary" },
+      { id: "s3-p0", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s3-p1", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const cos = 1 / 2;
         const sin = Math.sqrt(3) / 2;
         return [
@@ -123,27 +112,23 @@ Arah putarannya juga cocok. Karena <InlineMath math="P" /> memiliki <InlineMath 
           { x: 2 * cos, y: 2 * sin, z: 0 },
           { x: 2 * cos - 4 * sin, y: 2 * sin + 4 * cos, z: 0 },
         ];
-      })(),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [1, 2],
-      labels: [
-        { text: <InlineMath math="A'" />, at: 1, offset: [0.0, 0.65, 0] },
-        { text: <InlineMath math="P'" />, at: 2, offset: [-0.22, -0.33, 0], anchorX: "right" },
-      ],
-    },
-    {
-      points: Array.from({ length: 61 }, (_, i) => {
+      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s4-p1", kind: "point", at: { x: 1, y: 1.73 }, appearance: "secondary" },
+      { id: "s4-p2", kind: "point", at: { x: -2.46, y: 3.73 }, appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: Array.from({ length: 61 }, (_, i) => {
         const angle = (Math.PI / 3) * (i / 60);
         return { x: 2 * Math.cos(angle) - 4 * Math.sin(angle), y: 2 * Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5-head", kind: "vector", from: { x: -2.4, y: 3.77 }, to: { x: -2.46, y: 3.73 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.82, y: 3.31 }, placement: "above-right" },
+      { key: "l2", objectId: "s3", at: { x: 2, y: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 2, y: 4 }, placement: "below-right" },
+      { key: "l4", objectId: "s4", at: { x: 1, y: 1.73 }, placement: "above" },
+      { key: "l5", objectId: "s4", at: { x: -2.46, y: 3.73 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Langkah <InlineMath math="2" /> dan <InlineMath math="4" /> pada grafik itu adalah langkah pada rumus rotasi, yaitu <InlineMath math="P' = 2(\cos 60^\circ, \sin 60^\circ) + 4(-\sin 60^\circ, \cos 60^\circ)" />. Titik <InlineMath math="P'" /> juga terletak pada parabola hasil putaran, karena setiap titik parabola ikut berputar <InlineMath math="60^\circ" /> bersama <InlineMath math="P" />.
@@ -168,56 +153,44 @@ Contohnya, titik <InlineMath math="P(3, 4)" /> diputar <InlineMath math="90^\cir
 
 Periksa jarak dan sudutnya. Jarak kedua titik ke <InlineMath math="O" /> sama, karena <InlineMath math="3^2 + 4^2 = (-4)^2 + 3^2 = 25" />. Gradien <InlineMath math="OP" /> adalah <InlineMath math="\tfrac{4}{3}" /> dan gradien <InlineMath math="OP'" /> adalah <InlineMath math="-\tfrac{3}{4}" />. Hasil kali keduanya <InlineMath math="-1" />, jadi <InlineMath math="OP" /> tegak lurus <InlineMath math="OP'" />. Titik <InlineMath math="P'" /> juga berada di kuadran II, satu kuadran berlawanan arah jarum jam dari <InlineMath math="P" />.
 
-<LineEquation
+<MathVisual
   title={<>Titik <InlineMath math="P(3, 4)" /> setelah satu, dua, dan tiga kali seperempat putaran</>}
   description={<>Titik <InlineMath math="P'" />, <InlineMath math="P''" />, dan <InlineMath math="P'''" /> adalah bayangan <InlineMath math="P" /> oleh putaran <InlineMath math="90^\circ" />, <InlineMath math="180^\circ" />, dan <InlineMath math="270^\circ" />. Keempat jari-jari sama panjang, yaitu <InlineMath math="5" />, dan dua jari-jari yang berurutan saling tegak lurus.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0, 20]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    ...Array.from({ length: 4 }, (_, quarter) => ({
-      points: Array.from({ length: 91 }, (_, i) => {
-        const angle = (Math.PI / 2) * (quarter + i / 90);
-        return { x: 3 * Math.cos(angle) - 4 * Math.sin(angle), y: 3 * Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#64748b",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    })),
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P(3, 4)" />, at: 1, offset: [0.33, 0.79, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -4, y: 3, z: 0 }],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P'(-4, 3)" />, at: 1, offset: [-0.31, 0.74, 0], anchorX: "right" }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: -4, z: 0 }],
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P''(-3, -4)" />, at: 1, offset: [-0.33, -0.79, 0], anchorX: "right" }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: -3, z: 0 }],
-      smooth: false,
-      color: "#d97706",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P'''(4, -3)" />, at: 1, offset: [0.31, -0.74, 0], anchorX: "left" }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="P(3, 4)" />,
+    "l2": <InlineMath math="P'(-4, 3)" />,
+    "l3": <InlineMath math="P''(-3, -4)" />,
+    "l4": <InlineMath math="P'''(4, -3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 3, y: 4 }, { x: 2.93, y: 4.05 }, { x: 2.86, y: 4.1 }, { x: 2.79, y: 4.15 }, { x: 2.71, y: 4.2 }, { x: 2.64, y: 4.25 }, { x: 2.57, y: 4.29 }, { x: 2.49, y: 4.34 }, { x: 2.41, y: 4.38 }, { x: 2.34, y: 4.42 }, { x: 2.26, y: 4.46 }, { x: 2.18, y: 4.5 }, { x: 2.1, y: 4.54 }, { x: 2.02, y: 4.57 }, { x: 1.94, y: 4.61 }, { x: 1.86, y: 4.64 }, { x: 1.78, y: 4.67 }, { x: 1.7, y: 4.7 }, { x: 1.62, y: 4.73 }, { x: 1.53, y: 4.76 }, { x: 1.45, y: 4.78 }, { x: 1.37, y: 4.81 }, { x: 1.28, y: 4.83 }, { x: 1.2, y: 4.85 }, { x: 1.11, y: 4.87 }, { x: 1.03, y: 4.89 }, { x: 0.94, y: 4.91 }, { x: 0.86, y: 4.93 }, { x: 0.77, y: 4.94 }, { x: 0.68, y: 4.95 }, { x: 0.6, y: 4.96 }, { x: 0.51, y: 4.97 }, { x: 0.42, y: 4.98 }, { x: 0.34, y: 4.99 }, { x: 0.25, y: 4.99 }, { x: 0.16, y: 5 }, { x: 0.08, y: 5 }, { x: -0.01, y: 5 }, { x: -0.1, y: 5 }, { x: -0.19, y: 5 }, { x: -0.27, y: 4.99 }, { x: -0.36, y: 4.99 }, { x: -0.45, y: 4.98 }, { x: -0.53, y: 4.97 }, { x: -0.62, y: 4.96 }, { x: -0.71, y: 4.95 }, { x: -0.79, y: 4.94 }, { x: -0.88, y: 4.92 }, { x: -0.97, y: 4.91 }, { x: -1.05, y: 4.89 }, { x: -1.14, y: 4.87 }, { x: -1.22, y: 4.85 }, { x: -1.31, y: 4.83 }, { x: -1.39, y: 4.8 }, { x: -1.47, y: 4.78 }, { x: -1.56, y: 4.75 }, { x: -1.64, y: 4.72 }, { x: -1.72, y: 4.69 }, { x: -1.8, y: 4.66 }, { x: -1.88, y: 4.63 }, { x: -1.96, y: 4.6 }, { x: -2.04, y: 4.56 }, { x: -2.12, y: 4.53 }, { x: -2.2, y: 4.49 }, { x: -2.28, y: 4.45 }, { x: -2.36, y: 4.41 }, { x: -2.43, y: 4.37 }, { x: -2.51, y: 4.32 }, { x: -2.58, y: 4.28 }, { x: -2.66, y: 4.23 }, { x: -2.73, y: 4.19 }, { x: -2.81, y: 4.14 }, { x: -2.88, y: 4.09 }, { x: -2.95, y: 4.04 }, { x: -3.02, y: 3.99 }, { x: -3.09, y: 3.93 }, { x: -3.16, y: 3.88 }, { x: -3.22, y: 3.82 }, { x: -3.29, y: 3.77 }, { x: -3.35, y: 3.71 }, { x: -3.42, y: 3.65 }, { x: -3.48, y: 3.59 }, { x: -3.54, y: 3.53 }, { x: -3.6, y: 3.47 }, { x: -3.66, y: 3.4 }, { x: -3.72, y: 3.34 }, { x: -3.78, y: 3.27 }, { x: -3.84, y: 3.21 }, { x: -3.89, y: 3.14 }, { x: -3.95, y: 3.07 }, { x: -4, y: 3 }], appearance: "construction" },
+      { id: "s1-head", kind: "vector", from: { x: -3.95, y: 3.07 }, to: { x: -4, y: 3 }, appearance: "construction" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: 3 }, { x: -4.05, y: 2.93 }, { x: -4.1, y: 2.86 }, { x: -4.15, y: 2.79 }, { x: -4.2, y: 2.71 }, { x: -4.25, y: 2.64 }, { x: -4.29, y: 2.57 }, { x: -4.34, y: 2.49 }, { x: -4.38, y: 2.41 }, { x: -4.42, y: 2.34 }, { x: -4.46, y: 2.26 }, { x: -4.5, y: 2.18 }, { x: -4.54, y: 2.1 }, { x: -4.57, y: 2.02 }, { x: -4.61, y: 1.94 }, { x: -4.64, y: 1.86 }, { x: -4.67, y: 1.78 }, { x: -4.7, y: 1.7 }, { x: -4.73, y: 1.62 }, { x: -4.76, y: 1.53 }, { x: -4.78, y: 1.45 }, { x: -4.81, y: 1.37 }, { x: -4.83, y: 1.28 }, { x: -4.85, y: 1.2 }, { x: -4.87, y: 1.11 }, { x: -4.89, y: 1.03 }, { x: -4.91, y: 0.94 }, { x: -4.93, y: 0.86 }, { x: -4.94, y: 0.77 }, { x: -4.95, y: 0.68 }, { x: -4.96, y: 0.6 }, { x: -4.97, y: 0.51 }, { x: -4.98, y: 0.42 }, { x: -4.99, y: 0.34 }, { x: -4.99, y: 0.25 }, { x: -5, y: 0.16 }, { x: -5, y: 0.08 }, { x: -5, y: -0.01 }, { x: -5, y: -0.1 }, { x: -5, y: -0.19 }, { x: -4.99, y: -0.27 }, { x: -4.99, y: -0.36 }, { x: -4.98, y: -0.45 }, { x: -4.97, y: -0.53 }, { x: -4.96, y: -0.62 }, { x: -4.95, y: -0.71 }, { x: -4.94, y: -0.79 }, { x: -4.92, y: -0.88 }, { x: -4.91, y: -0.97 }, { x: -4.89, y: -1.05 }, { x: -4.87, y: -1.14 }, { x: -4.85, y: -1.22 }, { x: -4.83, y: -1.31 }, { x: -4.8, y: -1.39 }, { x: -4.78, y: -1.47 }, { x: -4.75, y: -1.56 }, { x: -4.72, y: -1.64 }, { x: -4.69, y: -1.72 }, { x: -4.66, y: -1.8 }, { x: -4.63, y: -1.88 }, { x: -4.6, y: -1.96 }, { x: -4.56, y: -2.04 }, { x: -4.53, y: -2.12 }, { x: -4.49, y: -2.2 }, { x: -4.45, y: -2.28 }, { x: -4.41, y: -2.36 }, { x: -4.37, y: -2.43 }, { x: -4.32, y: -2.51 }, { x: -4.28, y: -2.58 }, { x: -4.23, y: -2.66 }, { x: -4.19, y: -2.73 }, { x: -4.14, y: -2.81 }, { x: -4.09, y: -2.88 }, { x: -4.04, y: -2.95 }, { x: -3.99, y: -3.02 }, { x: -3.93, y: -3.09 }, { x: -3.88, y: -3.16 }, { x: -3.82, y: -3.22 }, { x: -3.77, y: -3.29 }, { x: -3.71, y: -3.35 }, { x: -3.65, y: -3.42 }, { x: -3.59, y: -3.48 }, { x: -3.53, y: -3.54 }, { x: -3.47, y: -3.6 }, { x: -3.4, y: -3.66 }, { x: -3.34, y: -3.72 }, { x: -3.27, y: -3.78 }, { x: -3.21, y: -3.84 }, { x: -3.14, y: -3.89 }, { x: -3.07, y: -3.95 }, { x: -3, y: -4 }], appearance: "construction" },
+      { id: "s2-head", kind: "vector", from: { x: -3.07, y: -3.95 }, to: { x: -3, y: -4 }, appearance: "construction" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: -4 }, { x: -2.93, y: -4.05 }, { x: -2.86, y: -4.1 }, { x: -2.79, y: -4.15 }, { x: -2.71, y: -4.2 }, { x: -2.64, y: -4.25 }, { x: -2.57, y: -4.29 }, { x: -2.49, y: -4.34 }, { x: -2.41, y: -4.38 }, { x: -2.34, y: -4.42 }, { x: -2.26, y: -4.46 }, { x: -2.18, y: -4.5 }, { x: -2.1, y: -4.54 }, { x: -2.02, y: -4.57 }, { x: -1.94, y: -4.61 }, { x: -1.86, y: -4.64 }, { x: -1.78, y: -4.67 }, { x: -1.7, y: -4.7 }, { x: -1.62, y: -4.73 }, { x: -1.53, y: -4.76 }, { x: -1.45, y: -4.78 }, { x: -1.37, y: -4.81 }, { x: -1.28, y: -4.83 }, { x: -1.2, y: -4.85 }, { x: -1.11, y: -4.87 }, { x: -1.03, y: -4.89 }, { x: -0.94, y: -4.91 }, { x: -0.86, y: -4.93 }, { x: -0.77, y: -4.94 }, { x: -0.68, y: -4.95 }, { x: -0.6, y: -4.96 }, { x: -0.51, y: -4.97 }, { x: -0.42, y: -4.98 }, { x: -0.34, y: -4.99 }, { x: -0.25, y: -4.99 }, { x: -0.16, y: -5 }, { x: -0.08, y: -5 }, { x: 0.01, y: -5 }, { x: 0.1, y: -5 }, { x: 0.19, y: -5 }, { x: 0.27, y: -4.99 }, { x: 0.36, y: -4.99 }, { x: 0.45, y: -4.98 }, { x: 0.53, y: -4.97 }, { x: 0.62, y: -4.96 }, { x: 0.71, y: -4.95 }, { x: 0.79, y: -4.94 }, { x: 0.88, y: -4.92 }, { x: 0.97, y: -4.91 }, { x: 1.05, y: -4.89 }, { x: 1.14, y: -4.87 }, { x: 1.22, y: -4.85 }, { x: 1.31, y: -4.83 }, { x: 1.39, y: -4.8 }, { x: 1.47, y: -4.78 }, { x: 1.56, y: -4.75 }, { x: 1.64, y: -4.72 }, { x: 1.72, y: -4.69 }, { x: 1.8, y: -4.66 }, { x: 1.88, y: -4.63 }, { x: 1.96, y: -4.6 }, { x: 2.04, y: -4.56 }, { x: 2.12, y: -4.53 }, { x: 2.2, y: -4.49 }, { x: 2.28, y: -4.45 }, { x: 2.36, y: -4.41 }, { x: 2.43, y: -4.37 }, { x: 2.51, y: -4.32 }, { x: 2.58, y: -4.28 }, { x: 2.66, y: -4.23 }, { x: 2.73, y: -4.19 }, { x: 2.81, y: -4.14 }, { x: 2.88, y: -4.09 }, { x: 2.95, y: -4.04 }, { x: 3.02, y: -3.99 }, { x: 3.09, y: -3.93 }, { x: 3.16, y: -3.88 }, { x: 3.22, y: -3.82 }, { x: 3.29, y: -3.77 }, { x: 3.35, y: -3.71 }, { x: 3.42, y: -3.65 }, { x: 3.48, y: -3.59 }, { x: 3.54, y: -3.53 }, { x: 3.6, y: -3.47 }, { x: 3.66, y: -3.4 }, { x: 3.72, y: -3.34 }, { x: 3.78, y: -3.27 }, { x: 3.84, y: -3.21 }, { x: 3.89, y: -3.14 }, { x: 3.95, y: -3.07 }, { x: 4, y: -3 }], appearance: "construction" },
+      { id: "s3-head", kind: "vector", from: { x: 3.95, y: -3.07 }, to: { x: 4, y: -3 }, appearance: "construction" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: -3 }, { x: 4.05, y: -2.93 }, { x: 4.1, y: -2.86 }, { x: 4.15, y: -2.79 }, { x: 4.2, y: -2.71 }, { x: 4.25, y: -2.64 }, { x: 4.29, y: -2.57 }, { x: 4.34, y: -2.49 }, { x: 4.38, y: -2.41 }, { x: 4.42, y: -2.34 }, { x: 4.46, y: -2.26 }, { x: 4.5, y: -2.18 }, { x: 4.54, y: -2.1 }, { x: 4.57, y: -2.02 }, { x: 4.61, y: -1.94 }, { x: 4.64, y: -1.86 }, { x: 4.67, y: -1.78 }, { x: 4.7, y: -1.7 }, { x: 4.73, y: -1.62 }, { x: 4.76, y: -1.53 }, { x: 4.78, y: -1.45 }, { x: 4.81, y: -1.37 }, { x: 4.83, y: -1.28 }, { x: 4.85, y: -1.2 }, { x: 4.87, y: -1.11 }, { x: 4.89, y: -1.03 }, { x: 4.91, y: -0.94 }, { x: 4.93, y: -0.86 }, { x: 4.94, y: -0.77 }, { x: 4.95, y: -0.68 }, { x: 4.96, y: -0.6 }, { x: 4.97, y: -0.51 }, { x: 4.98, y: -0.42 }, { x: 4.99, y: -0.34 }, { x: 4.99, y: -0.25 }, { x: 5, y: -0.16 }, { x: 5, y: -0.08 }, { x: 5, y: 0.01 }, { x: 5, y: 0.1 }, { x: 5, y: 0.19 }, { x: 4.99, y: 0.27 }, { x: 4.99, y: 0.36 }, { x: 4.98, y: 0.45 }, { x: 4.97, y: 0.53 }, { x: 4.96, y: 0.62 }, { x: 4.95, y: 0.71 }, { x: 4.94, y: 0.79 }, { x: 4.92, y: 0.88 }, { x: 4.91, y: 0.97 }, { x: 4.89, y: 1.05 }, { x: 4.87, y: 1.14 }, { x: 4.85, y: 1.22 }, { x: 4.83, y: 1.31 }, { x: 4.8, y: 1.39 }, { x: 4.78, y: 1.47 }, { x: 4.75, y: 1.56 }, { x: 4.72, y: 1.64 }, { x: 4.69, y: 1.72 }, { x: 4.66, y: 1.8 }, { x: 4.63, y: 1.88 }, { x: 4.6, y: 1.96 }, { x: 4.56, y: 2.04 }, { x: 4.53, y: 2.12 }, { x: 4.49, y: 2.2 }, { x: 4.45, y: 2.28 }, { x: 4.41, y: 2.36 }, { x: 4.37, y: 2.43 }, { x: 4.32, y: 2.51 }, { x: 4.28, y: 2.58 }, { x: 4.23, y: 2.66 }, { x: 4.19, y: 2.73 }, { x: 4.14, y: 2.81 }, { x: 4.09, y: 2.88 }, { x: 4.04, y: 2.95 }, { x: 3.99, y: 3.02 }, { x: 3.93, y: 3.09 }, { x: 3.88, y: 3.16 }, { x: 3.82, y: 3.22 }, { x: 3.77, y: 3.29 }, { x: 3.71, y: 3.35 }, { x: 3.65, y: 3.42 }, { x: 3.59, y: 3.48 }, { x: 3.53, y: 3.54 }, { x: 3.47, y: 3.6 }, { x: 3.4, y: 3.66 }, { x: 3.34, y: 3.72 }, { x: 3.27, y: 3.78 }, { x: 3.21, y: 3.84 }, { x: 3.14, y: 3.89 }, { x: 3.07, y: 3.95 }, { x: 3, y: 4 }], appearance: "construction" },
+      { id: "s4-head", kind: "vector", from: { x: 3.07, y: 3.95 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 4 }], appearance: "primary" },
+      { id: "s5-p1", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -4, y: 3 }], appearance: "secondary" },
+      { id: "s6-p1", kind: "point", at: { x: -4, y: 3 }, appearance: "secondary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -3, y: -4 }], appearance: "answer" },
+      { id: "s7-p1", kind: "point", at: { x: -3, y: -4 }, appearance: "answer" },
+      { id: "s8", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: -3 }], appearance: "highlight" },
+      { id: "s8-p1", kind: "point", at: { x: 4, y: -3 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s5", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "l2", objectId: "s6", at: { x: -4, y: 3 }, placement: "above-left" },
+      { key: "l3", objectId: "s7", at: { x: -3, y: -4 }, placement: "below-left" },
+      { key: "l4", objectId: "s8", at: { x: 4, y: -3 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Setiap seperempat putaran menukar kedua koordinat dan mengganti satu tanda, jadi <InlineMath math="(3, 4)" /> berpindah ke <InlineMath math="(-4, 3)" />, lalu <InlineMath math="(-3, -4)" />, lalu <InlineMath math="(4, -3)" />. Seperempat putaran keempat membawa titik itu kembali ke <InlineMath math="P" />, karena empat kali <InlineMath math="90^\circ" /> adalah satu putaran penuh.
@@ -228,94 +201,62 @@ Setiap pencerminan itu sama hasilnya dengan **balikan bidang**: seluruh bidang d
 
 Ambil <InlineMath math="f(x) = (x - 2)^2 + 2" />, parabola dengan titik puncak <InlineMath math="V(2, 2)" />. Balikan pada sumbu <InlineMath math="x" /> mengangkat <InlineMath math="V" /> keluar dari bidang dan menurunkannya di <InlineMath math="(2, -2)" />. Sesudah itu, balikan pada sumbu <InlineMath math="y" /> membawa titik itu ke <InlineMath math="(-2, -2)" />.
 
-<LineEquation
+<MathVisual
   title={<>Dua balikan bidang dan setengah putaran untuk <InlineMath math="f(x) = (x - 2)^2 + 2" /></>}
   description={<>Lintasan <InlineMath math="V" /> keluar dari bidang dua kali. Setengah lingkaran pertama melintasi sumbu <InlineMath math="x" /> dan turun di <InlineMath math="(2, -2)" />, lalu setengah lingkaran kedua melintasi sumbu <InlineMath math="y" /> dan turun di <InlineMath math="V'(-2, -2)" />, ujung busur di dalam bidang yang memutar <InlineMath math="V" /> sejauh <InlineMath math="180^\circ" /> terhadap <InlineMath math="O" />.</>}
-  cameraPosition={[3, -9, 11]}
-  cameraTarget={[0, 0, 1]}
-  data={[
-    {
-      points: Array.from({ length: 201 }, (_, j) => {
+  labels={{
+    "l1": <InlineMath math="y = f(x)" />,
+    "l2": <InlineMath math="y = -f(x)" />,
+    "l3": <InlineMath math="y = -f(-x)" />,
+    "l4": <InlineMath math="V" />,
+    "l5": <InlineMath math="(2, -2)" />,
+    "l6": <InlineMath math="V'" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -5.5, max: 5.5 }, z: { min: -0.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 3, y: -9, z: 11 }, target: { x: 0, y: 0, z: 1 } },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 201 }, (_, j) => {
         const s = -1.5 + (3 * j) / 200;
         return { x: 2 + s, y: s * s + 2, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = f(x)" />, at: 182, offset: [0.48, 0.57, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 201 }, (_, j) => {
+      }), appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 201 }, (_, j) => {
         const s = -1.5 + (3 * j) / 200;
         return { x: 2 + s, y: -(s * s + 2), z: 0 };
-      }),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = -f(x)" />, at: 198, offset: [-0.21, -0.56, 0] }],
-    },
-    {
-      points: Array.from({ length: 201 }, (_, j) => {
+      }), appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: Array.from({ length: 201 }, (_, j) => {
         const s = -1.5 + (3 * j) / 200;
         return { x: -(2 + s), y: -(s * s + 2), z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = -f(-x)" />, at: 4, offset: [-1.07, -0.9, 0], anchorX: "right" }],
-    },
-    {
-      points: Array.from({ length: 181 }, (_, i) => {
+      }), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 181 }, (_, i) => {
         const turn = Math.PI * (i / 180);
         return { x: 2, y: 2 * Math.cos(turn), z: 2 * Math.sin(turn) };
-      }),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      cone: { position: "end", size: 0.25 },
-    },
-    {
-      points: Array.from({ length: 181 }, (_, i) => {
+      }), appearance: "secondary" },
+      { id: "s4-head", kind: "vector", from: { x: 2, y: -2, z: 0.03 }, to: { x: 2, y: -2, z: 0 }, appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: Array.from({ length: 181 }, (_, i) => {
         const turn = Math.PI * (i / 180);
         return { x: 2 * Math.cos(turn), y: -2, z: 2 * Math.sin(turn) };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      cone: { position: "end", size: 0.25 },
-    },
-    {
-      points: Array.from({ length: 181 }, (_, i) => {
+      }), appearance: "answer" },
+      { id: "s5-head", kind: "vector", from: { x: -2, y: -2, z: 0.03 }, to: { x: -2, y: -2, z: 0 }, appearance: "answer" },
+      { id: "s6", kind: "polyline", vertices: Array.from({ length: 181 }, (_, i) => {
         const angle = Math.PI * (i / 180);
         return { x: 2 * Math.cos(angle) - 2 * Math.sin(angle), y: 2 * Math.sin(angle) + 2 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      cone: { position: "end", size: 0.25 },
-    },
-    {
-      points: [{ x: 2, y: 2, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="V" />, at: 0, offset: [0.34, -0.94, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: 2, y: -2, z: 0 }],
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="(2, -2)" />, at: 0, offset: [0.48, 0.57, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: -2, y: -2, z: 0 }],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="V'" />, at: 0, offset: [0.57, 0.48, 0], anchorX: "left" }],
-    },
-  ]}
+      }), appearance: "highlight" },
+      { id: "s6-head", kind: "vector", from: { x: -2.03, y: -1.96, z: 0 }, to: { x: -2, y: -2, z: 0 }, appearance: "highlight" },
+      { id: "s7", kind: "point", at: { x: 2, y: 2, z: 0 }, appearance: "primary" },
+      { id: "s8", kind: "point", at: { x: 2, y: -2, z: 0 }, appearance: "secondary" },
+      { id: "s9", kind: "point", at: { x: -2, y: -2, z: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.23, y: 3.51, z: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 3.47, y: -4.16, z: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: -0.56, y: -4.07, z: 0 }, placement: "below-left" },
+      { key: "l4", objectId: "s7", at: { x: 2, y: 2, z: 0 }, placement: "below-right" },
+      { key: "l5", objectId: "s8", at: { x: 2, y: -2, z: 0 }, placement: "above-right" },
+      { key: "l6", objectId: "s9", at: { x: -2, y: -2, z: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Putar tampilan sampai kamu melihat bidang lurus dari depan. Lintasan <InlineMath math="V" /> melalui kedua balikan berakhir di titik yang sama dengan busur setengah putaran, yaitu <InlineMath math="V'(-2, -2)" />, dan parabola terakhir adalah <InlineMath math="y = -f(-x) = -(x + 2)^2 - 2" />. Periksa titik puncaknya: <InlineMath math="-(-2 + 2)^2 - 2 = -2" />.
@@ -342,55 +283,40 @@ Untuk sudut yang bukan kelipatan <InlineMath math="90^\circ" />, pakai rumus len
 
 <BlockMath math="\begin{aligned} x' &= 1 + 1 \cdot \tfrac{1}{2} - 4 \cdot \tfrac{\sqrt{3}}{2} = \tfrac{3}{2} - 2\sqrt{3} \\ y' &= 1 + 1 \cdot \tfrac{\sqrt{3}}{2} + 4 \cdot \tfrac{1}{2} = 3 + \tfrac{\sqrt{3}}{2} \end{aligned}" />
 
-<LineEquation
+<MathVisual
   title={<>Titik <InlineMath math="P(2, 5)" /> diputar terhadap <InlineMath math="C(1, 1)" /></>}
   description={<>Busur adalah lintasan <InlineMath math="P" /> pada lingkaran berpusat di <InlineMath math="C" /> dengan jari-jari <InlineMath math="\sqrt{17}" />. Busur itu melewati <InlineMath math="Q" />, bayangan oleh putaran <InlineMath math="60^\circ" />, lalu berhenti di <InlineMath math="P'(-3, 2)" />, bayangan oleh putaran <InlineMath math="90^\circ" />. Ruas <InlineMath math="CP" /> dan <InlineMath math="CP'" /> saling tegak lurus.</>}
-  showZAxis={false}
-  cameraPosition={[-0.5, 3, 10]}
-  cameraTarget={[-0.5, 3, 0]}
-  data={[
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="P(2, 5)" />,
+    "l2": <InlineMath math="Q" />,
+    "l3": <InlineMath math="P'(-3, 2)" />,
+    "l4": <InlineMath math="C(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 2.5 }, y: { min: 0.5, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 91 }, (_, i) => {
         const angle = (Math.PI / 2) * (i / 90);
         return { x: 1 + Math.cos(angle) - 4 * Math.sin(angle), y: 1 + Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    },
-    {
-      points: [{ x: 1, y: 1, z: 0 }, { x: 2, y: 5, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P(2, 5)" />, at: 1, offset: [0.17, 0.11, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: 1, y: 1, z: 0 }, { x: 3 / 2 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2, z: 0 }],
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="Q" />, at: 1, offset: [-0.22, 0.33, 0], anchorX: "right" }],
-    },
-    {
-      points: [{ x: 1, y: 1, z: 0 }, { x: -3, y: 2, z: 0 }],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P'(-3, 2)" />, at: 1, offset: [-0.83, -0.56, 0] }],
-    },
-    {
-      points: [{ x: 1, y: 1, z: 0 }],
-      smooth: false,
-      color: "#64748b",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C(1, 1)" />, at: 0, offset: [0.29, -0.19, 0], anchorX: "left" }],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1-head", kind: "vector", from: { x: -2.98, y: 2.07 }, to: { x: -3, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 5 }], appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 2, y: 5 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 3 / 2 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2 }], appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: -1.96, y: 3.87 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: -3, y: 2 }], appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: -3, y: 2 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 1, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 2, y: 5 }, placement: "above-right" },
+      { key: "l2", objectId: "s3", at: { x: -1.96, y: 3.87 }, placement: "above-left" },
+      { key: "l3", objectId: "s4", at: { x: -3, y: 2 }, placement: "below-left" },
+      { key: "l4", objectId: "s5", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
 />
 
 </ContentStack>
@@ -421,70 +347,56 @@ Untuk sudut <InlineMath math="45^\circ" />, nilai <InlineMath math="\cos 45^\cir
 
 <BlockMath math="\begin{aligned} \tfrac{\sqrt{2}}{2}(y' - x') &= \sqrt{2}(x' + y') + 1 \\ y' - x' &= 2x' + 2y' + \sqrt{2} \\ y' &= -3x' - \sqrt{2} \end{aligned}" />
 
-<LineEquation
+<MathVisual
   title={<>Garis <InlineMath math="y = 2x + 1" /> diputar <InlineMath math="45^\circ" /> dan <InlineMath math="90^\circ" /></>}
   description={<>Busur membawa <InlineMath math="(0, 1)" /> dan <InlineMath math="(1, 3)" /> lewat bayangan <InlineMath math="45^\circ" /> di tengah busur ke bayangan <InlineMath math="90^\circ" /> di ujungnya. Kedua bayangan tetap garis lurus, dan setiap titik berputar dengan sudut yang sama.</>}
-  showZAxis={false}
-  cameraPosition={[-0.75, 1, 9.5]}
-  cameraTarget={[-0.75, 1, 0]}
-  data={[
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="y = 2x + 1" />,
+    "l2": <InlineMath math="y = -3x - \sqrt{2}" />,
+    "l3": <InlineMath math="y = -\tfrac{1}{2}x - \tfrac{1}{2}" />,
+    "l4": <InlineMath math="(1, 3)" />,
+    "l5": <InlineMath math="(-3, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 3.5 }, y: { min: -3.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const x = -1.75 + 3.5 * i;
         return { x, y: 2 * x + 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = 2x + 1" />, at: 1, offset: [-3.65, -7.08, 0], anchorX: "right" }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const y = 4.5 - 7 * i;
         return { x: -(y + Math.sqrt(2)) / 3, y, z: 0 };
-      }),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = -3x - \sqrt{2}" />, at: 0, offset: [0.14, -1.19, 0], anchorX: "right" }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const x = -4 + 6.5 * i;
         return { x, y: -(x + 1) / 2, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = -\tfrac{1}{2}x - \tfrac{1}{2}" />, at: 1, offset: [-0.5, -0.44, 0] }],
-    },
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 91 }, (_, i) => {
         const angle = (Math.PI / 2) * (i / 90);
         return { x: -Math.sin(angle), y: Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      pointIndices: [0, 45, 90],
-      cone: { position: "end", size: 0.25 },
-    },
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s4-head", kind: "vector", from: { x: -1, y: 0.02 }, to: { x: -1, y: 0 }, appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: 0, y: 1 }, appearance: "highlight" },
+      { id: "s4-p45", kind: "point", at: { x: -0.71, y: 0.71 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: Array.from({ length: 91 }, (_, i) => {
         const angle = (Math.PI / 2) * (i / 90);
         return { x: Math.cos(angle) - 3 * Math.sin(angle), y: Math.sin(angle) + 3 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      pointIndices: [0, 45, 90],
-      cone: { position: "end", size: 0.3 },
-      labels: [
-        { text: <InlineMath math="(1, 3)" />, at: 0, offset: [0.21, -0.21, 0], anchorX: "left" },
-        { text: <InlineMath math="(-3, 1)" />, at: 90, offset: [-0.09, -0.44, 0], anchorX: "right" },
-      ],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5-head", kind: "vector", from: { x: -2.98, y: 1.05 }, to: { x: -3, y: 1 }, appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: 1, y: 3 }, appearance: "highlight" },
+      { id: "s5-p45", kind: "point", at: { x: -1.41, y: 2.83 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.75, y: 4.5 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: -1.97, y: 4.5 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 2.5, y: -1.75 }, placement: "below-left" },
+      { key: "l4", objectId: "s5", at: { x: 1, y: 3 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: -3, y: 1 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Garis bayangan <InlineMath math="45^\circ" /> adalah <InlineMath math="y = -3x - \sqrt{2}" />. Periksa dengan <InlineMath math="(0, 1)" />, yang berpindah ke <InlineMath math="\left(-\tfrac{\sqrt{2}}{2}, \tfrac{\sqrt{2}}{2}\right)" />: <InlineMath math="-3\left(-\tfrac{\sqrt{2}}{2}\right) - \sqrt{2} = \tfrac{\sqrt{2}}{2}" />. Hanya putaran <InlineMath math="90^\circ" /> yang membuat gradien menjadi kebalikan negatif. Putaran <InlineMath math="45^\circ" /> mengubah gradien <InlineMath math="2" /> menjadi <InlineMath math="-3" />.
@@ -493,54 +405,46 @@ Garis bayangan <InlineMath math="45^\circ" /> adalah <InlineMath math="y = -3x -
 
 Sebuah kurva adalah grafik fungsi jika setiap garis vertikal memotong kurva itu paling banyak satu kali. Pemeriksaan ini disebut [uji garis vertikal](/id/materi/matematika/fungsi-komposisi-dan-fungsi-invers/fungsi-dan-bukan-fungsi). Parabola <InlineMath math="x = -y^2" /> hasil putaran <InlineMath math="y = x^2" /> **gagal dalam uji garis vertikal**, karena garis <InlineMath math="x = -4" /> memotong parabola itu di <InlineMath math="(-4, 2)" /> dan <InlineMath math="(-4, -2)" />.
 
-<LineEquation
+<MathVisual
   title={<>Parabola <InlineMath math="y = x^2" /> dan bayangannya setelah diputar <InlineMath math="90^\circ" /></>}
   description={<>Garis vertikal <InlineMath math="x = -4" /> memotong kurva <InlineMath math="x = -y^2" /> di <InlineMath math="(-4, 2)" /> dan <InlineMath math="(-4, -2)" />, bayangan titik <InlineMath math="(2, 4)" /> dan <InlineMath math="(-2, 4)" /> yang sama-sama terletak pada garis <InlineMath math="y = 4" />.</>}
-  showZAxis={false}
-  cameraPosition={[-1.05, 1.1, 10]}
-  cameraTarget={[-1.05, 1.1, 0]}
-  data={[
-    {
-      points: Array.from({ length: 231 }, (_, j) => {
+  labels={{
+    "l1": <InlineMath math="y = x^2" />,
+    "l2": <InlineMath math="x = -y^2" />,
+    "l3": <InlineMath math="(-4, 2)" />,
+    "l4": <InlineMath math="(-4, -2)" />,
+    "l5": <InlineMath math="x = -4" />,
+    "l6": <InlineMath math="y = 4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 3.5 }, y: { min: -3.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 231 }, (_, j) => {
         const t = (2 * j - 230) / 100;
         return { x: t, y: t * t, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      pointIndices: [15, 215],
-      labels: [{ text: <InlineMath math="y = x^2" />, at: 14, offset: [-0.44, 1.06, 0], anchorX: "right" }],
-    },
-    {
-      points: Array.from({ length: 231 }, (_, j) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1-p15", kind: "point", at: { x: -2, y: 4 }, appearance: "primary" },
+      { id: "s1-p215", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 231 }, (_, j) => {
         const t = (2 * j - 230) / 100;
         return { x: -t * t, y: t, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [15, 215],
-      labels: [
-        { text: <InlineMath math="x = -y^2" />, at: 53, offset: [-0.25, 0.37, 0], anchorX: "right" },
-        { text: <InlineMath math="(-4, 2)" />, at: 215, offset: [0.19, 0.46, 0], anchorX: "left" },
-        { text: <InlineMath math="(-4, -2)" />, at: 15, offset: [0.19, -0.46, 0], anchorX: "left" },
-      ],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => ({ x: -4, y: -2.6 + 5.2 * i, z: 0 })),
-      smooth: false,
-      color: "#64748b",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="x = -4" />, at: 1, offset: [0.17, -1.62, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => ({ x: -2.6 + 5.2 * i, y: 4, z: 0 })),
-      smooth: false,
-      color: "#64748b",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = 4" />, at: 1, offset: [-5.36, 0.0, 0], anchorX: "right" }],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s2-p15", kind: "point", at: { x: -4, y: -2 }, appearance: "secondary" },
+      { id: "s2-p215", kind: "point", at: { x: -4, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => ({ x: -4, y: -2.6 + 5.2 * i, z: 0 })).map(({ x, y }) => ({ x, y })), appearance: "construction" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => ({ x: -2.6 + 5.2 * i, y: 4, z: 0 })).map(({ x, y }) => ({ x, y })), appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -2.02, y: 4.08 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: -1.54, y: -1.24 }, placement: "above-left" },
+      { key: "l3", objectId: "s2", at: { x: -4, y: 2 }, placement: "above-right" },
+      { key: "l4", objectId: "s2", at: { x: -4, y: -2 }, placement: "below-right" },
+      { key: "l5", objectId: "s3", at: { x: -4, y: 2.6 }, placement: "below-right" },
+      { key: "l6", objectId: "s4", at: { x: 2.6, y: 4 }, placement: "left" },
+    ],
+  }}
 />
 
 Kurva <InlineMath math="x = -y^2" /> tetap sebuah **relasi**, yaitu himpunan pasangan berurutan <InlineMath math="(x, y)" />. Pada kurva ini, setiap nilai <InlineMath math="y" /> memiliki tepat satu nilai <InlineMath math="x" />. Masalahnya ada pada arah sebaliknya. Satu nilai <InlineMath math="x" /> di kiri titik asal berpasangan dengan dua nilai <InlineMath math="y" />, jadi kurva itu tidak bisa ditulis sebagai satu fungsi <InlineMath math="y = g(x)" />.
@@ -555,104 +459,68 @@ Asimtot horizontal <InlineMath math="y = 0" /> pada grafik semula ikut berputar 
 
 Seperti setengah putaran, putaran <InlineMath math="90^\circ" /> juga bisa diuraikan menjadi dua balikan bidang, yaitu pertukaran <InlineMath math="x" /> dan <InlineMath math="y" />, lalu perubahan tanda. Balikan pada garis <InlineMath math="y = x" /> menukar kedua koordinat, jadi <InlineMath math="y = 2^x" /> menjadi grafik fungsi inversnya, <InlineMath math="y = \log_2 x" />. Sesudah itu, balikan pada sumbu <InlineMath math="y" /> mengganti tanda <InlineMath math="x" /> dan memberi <InlineMath math="y = \log_2(-x)" />.
 
-<LineEquation
+<MathVisual
   title={<>Putaran <InlineMath math="90^\circ" /> sebagai balikan pada <InlineMath math="y = x" /> lalu pada sumbu <InlineMath math="y" /></>}
   description={<>Balikan pertama membawa titik <InlineMath math="A(2, 4)" /> pada <InlineMath math="y = 2^x" /> keluar dari bidang ke <InlineMath math="(4, 2)" /> pada <InlineMath math="y = \log_2 x" />. Balikan kedua membawanya ke <InlineMath math="A'(-4, 2)" /> pada <InlineMath math="y = \log_2(-x)" />, ujung busur seperempat putaran di dalam bidang.</>}
-  cameraPosition={[2, -11, 9]}
-  cameraTarget={[0, 1, 1]}
-  data={[
-    {
-      points: Array.from({ length: 263 }, (_, j) => {
+  labels={{
+    "l1": <InlineMath math="y = 2^x" />,
+    "l2": <InlineMath math="y = \log_2 x" />,
+    "l3": <InlineMath math="y = \log_2(-x)" />,
+    "l4": <InlineMath math="y = x" />,
+    "l5": <InlineMath math="A" />,
+    "l6": <InlineMath math="(4, 2)" />,
+    "l7": <InlineMath math="A'" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -4, max: 6 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "camera", position: { x: 2, y: -11, z: 9 }, target: { x: 0, y: 1, z: 1 } },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 263 }, (_, j) => {
         const s = -3 + j / 50;
         return { x: s, y: 2 ** s, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = 2^x" />, at: 27, offset: [0.24, -1.38, 0] }],
-    },
-    {
-      points: Array.from({ length: 263 }, (_, j) => {
+      }), appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 263 }, (_, j) => {
         const s = -3 + j / 50;
         return { x: 2 ** s, y: s, z: 0 };
-      }),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = \log_2 x" />, at: 30, offset: [0.45, 0.78, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 263 }, (_, j) => {
+      }), appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: Array.from({ length: 263 }, (_, j) => {
         const s = -3 + j / 50;
         return { x: -(2 ** s), y: s, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = \log_2(-x)" />, at: 3, offset: [-0.16, -0.19, 0], anchorX: "right" }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const x = 4.75 * i;
         return { x, y: x, z: 0 };
-      }),
-      smooth: false,
-      color: "#64748b",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = x" />, at: 1, offset: [0.17, -0.19, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 181 }, (_, i) => {
+      }), appearance: "construction" },
+      { id: "s5", kind: "polyline", vertices: Array.from({ length: 181 }, (_, i) => {
         const turn = Math.PI * (i / 180);
         return { x: 3 - Math.cos(turn), y: 3 + Math.cos(turn), z: Math.sqrt(2) * Math.sin(turn) };
-      }),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      cone: { position: "end", size: 0.2 },
-    },
-    {
-      points: Array.from({ length: 181 }, (_, i) => {
+      }), appearance: "secondary" },
+      { id: "s5-head", kind: "vector", from: { x: 4, y: 2, z: 0.02 }, to: { x: 4, y: 2, z: 0 }, appearance: "secondary" },
+      { id: "s6", kind: "polyline", vertices: Array.from({ length: 181 }, (_, i) => {
         const turn = Math.PI * (i / 180);
         return { x: 4 * Math.cos(turn), y: 2, z: 4 * Math.sin(turn) };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      cone: { position: "end", size: 0.25 },
-    },
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
+      }), appearance: "answer" },
+      { id: "s6-head", kind: "vector", from: { x: -4, y: 2, z: 0.07 }, to: { x: -4, y: 2, z: 0 }, appearance: "answer" },
+      { id: "s7", kind: "polyline", vertices: Array.from({ length: 91 }, (_, i) => {
         const angle = (Math.PI / 2) * (i / 90);
         return { x: 2 * Math.cos(angle) - 4 * Math.sin(angle), y: 2 * Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      cone: { position: "end", size: 0.25 },
-    },
-    {
-      points: [{ x: 2, y: 4, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A" />, at: 0, offset: [-0.3, 1.67, 0], anchorX: "right" }],
-    },
-    {
-      points: [{ x: 4, y: 2, z: 0 }],
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="(4, 2)" />, at: 0, offset: [0.74, -0.42, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: -4, y: 2, z: 0 }],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A'" />, at: 0, offset: [-0.34, -0.94, 0], anchorX: "right" }],
-    },
-  ]}
+      }), appearance: "highlight" },
+      { id: "s7-head", kind: "vector", from: { x: -3.96, y: 2.07, z: 0 }, to: { x: -4, y: 2, z: 0 }, appearance: "highlight" },
+      { id: "s8", kind: "point", at: { x: 2, y: 4, z: 0 }, appearance: "primary" },
+      { id: "s9", kind: "point", at: { x: 4, y: 2, z: 0 }, appearance: "secondary" },
+      { id: "s10", kind: "point", at: { x: -4, y: 2, z: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -2.46, y: 0.18, z: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.19, y: -2.4, z: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -0.13, y: -2.94, z: 0 }, placement: "below-left" },
+      { key: "l4", objectId: "s4", at: { x: 4.75, y: 4.75, z: 0 }, placement: "below-right" },
+      { key: "l5", objectId: "s8", at: { x: 2, y: 4, z: 0 }, placement: "above-left" },
+      { key: "l6", objectId: "s9", at: { x: 4, y: 2, z: 0 }, placement: "below-right" },
+      { key: "l7", objectId: "s10", at: { x: -4, y: 2, z: 0 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Di antara kedua balikan, kurva <InlineMath math="y = \log_2 x" /> sudah grafik fungsi, karena setiap garis vertikal memotongnya paling banyak satu kali.
@@ -661,50 +529,43 @@ Pencerminan terhadap <InlineMath math="y = x" /> mengubah grafik <InlineMath mat
 
 Grafik <InlineMath math="y = \sqrt{x}" /> juga lolos uji garis horizontal, karena setiap garis <InlineMath math="y = c" /> dengan <InlineMath math="c \ge 0" /> memotongnya tepat sekali. Putaran <InlineMath math="90^\circ" /> memindahkan <InlineMath math="(t^2, t)" /> dengan <InlineMath math="t \ge 0" /> ke <InlineMath math="(-t, t^2)" />. Jika <InlineMath math="x = -t" />, maka <InlineMath math="y = t^2 = x^2" /> dengan <InlineMath math="x \le 0" />, jadi kurva hasil rotasinya adalah **separuh kiri parabola <InlineMath math="y = x^2" />**.
 
-<LineEquation
+<MathVisual
   title={<>Grafik <InlineMath math="y = \sqrt{x}" /> diputar <InlineMath math="90^\circ" /></>}
   description={<>Grafik <InlineMath math="y = \sqrt{x}" /> berubah menjadi <InlineMath math="y = x^2" /> untuk <InlineMath math="x \le 0" />. Busur membawa <InlineMath math="(4, 2)" /> ke <InlineMath math="(-2, 4)" />, dan setiap garis vertikal di kiri sumbu <InlineMath math="y" /> memotong bayangan itu tepat sekali.</>}
-  showZAxis={false}
-  cameraPosition={[1.2, 2.1, 9.5]}
-  cameraTarget={[1.2, 2.1, 0]}
-  data={[
-    {
-      points: Array.from({ length: 221 }, (_, j) => {
+  labels={{
+    "l1": <InlineMath math="y = \sqrt{x}" />,
+    "l2": <InlineMath math="y = x^2" />,
+    "l3": <InlineMath math="(4, 2)" />,
+    "l4": <InlineMath math="(-2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 221 }, (_, j) => {
         const t = j / 100;
         return { x: t * t, y: t, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      pointIndices: [200],
-      labels: [{ text: <InlineMath math="y = \sqrt{x}" />, at: 42, offset: [0.6, 0.0, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 221 }, (_, j) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1-p200", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 221 }, (_, j) => {
         const t = j / 100;
         return { x: -t, y: t * t, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [200],
-      labels: [{ text: <InlineMath math="y = x^2" />, at: 217, offset: [0.17, 0.25, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s2-p200", kind: "point", at: { x: -2, y: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: Array.from({ length: 91 }, (_, i) => {
         const angle = (Math.PI / 2) * (i / 90);
         return { x: 4 * Math.cos(angle) - 2 * Math.sin(angle), y: 4 * Math.sin(angle) + 2 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-      labels: [
-        { text: <InlineMath math="(4, 2)" />, at: 0, offset: [0.09, -0.44, 0], anchorX: "left" },
-        { text: <InlineMath math="(-2, 4)" />, at: 90, offset: [0.32, -0.32, 0], anchorX: "left" },
-      ],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: -1.93, y: 4.03 }, to: { x: -2, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0.18, y: 0.42 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: -2.17, y: 4.71 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 4, y: 2 }, placement: "below-right" },
+      { key: "l4", objectId: "s3", at: { x: -2, y: 4 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Domain grafik <InlineMath math="y = \sqrt{x}" /> adalah <InlineMath math="x \ge 0" /> dan rangenya <InlineMath math="y \ge 0" />. Pada bayangannya, domainnya <InlineMath math="x \le 0" /> dan rangenya tetap <InlineMath math="y \ge 0" />. Periksa titik <InlineMath math="(4, 2)" />: bayangannya <InlineMath math="(-2, 4)" />, dan <InlineMath math="(-2)^2 = 4" />.
@@ -749,74 +610,58 @@ Jarak ke titik asal tetap, karena <InlineMath math="(-2)^2 + 5^2 = 5^2 + 2^2 = 2
 
 Periksa dengan dua titik garis semula. Titik <InlineMath math="(0, -2)" /> berpindah ke <InlineMath math="(2, 0)" />, dan <InlineMath math="-\tfrac{2}{3} + \tfrac{2}{3} = 0" />. Titik <InlineMath math="(1, 1)" /> berpindah ke <InlineMath math="(-1, 1)" />, dan <InlineMath math="\tfrac{1}{3} + \tfrac{2}{3} = 1" />. Jadi persamaan garis bayangannya adalah <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />.
 
-<LineEquation
+<MathVisual
   title={<>Garis <InlineMath math="y = 3x - 2" /> dan bayangannya oleh putaran <InlineMath math="90^\circ" /> dan <InlineMath math="270^\circ" /></>}
   description={<>Busur membawa <InlineMath math="(0, -2)" /> ke <InlineMath math="(2, 0)" /> dan <InlineMath math="(1, 1)" /> ke <InlineMath math="(-1, 1)" />, dua titik pada jawaban <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />. Garis sejajar <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" /> adalah bayangan oleh putaran <InlineMath math="270^\circ" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0, 9]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="y = 3x - 2" />,
+    "l2": <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />,
+    "l3": <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" />,
+    "l4": <InlineMath math="(0, -2)" />,
+    "l5": <InlineMath math="(2, 0)" />,
+    "l6": <InlineMath math="(1, 1)" />,
+    "l7": <InlineMath math="(-1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const y = -3.5 + 7 * i;
         return { x: (y + 2) / 3, y, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = 3x - 2" />, at: 1, offset: [-2.48, -7.1, 0], anchorX: "right" }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const x = -3.5 + 7 * i;
         return { x, y: -x / 3 + 2 / 3, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />, at: 0, offset: [0.32, 0.32, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
         const x = -3.5 + 7 * i;
         return { x, y: -x / 3 - 2 / 3, z: 0 };
-      }),
-      smooth: false,
-      color: "#64748b",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" />, at: 1, offset: [-0.79, -0.42, 0] }],
-    },
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "construction" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 91 }, (_, i) => {
         const angle = (Math.PI / 2) * (i / 90);
         return { x: 2 * Math.sin(angle), y: -2 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      pointIndices: [0, 90],
-      cone: { position: "end", size: 0.25 },
-      labels: [
-        { text: <InlineMath math="(0, -2)" />, at: 0, offset: [-0.17, 0.25, 0], anchorX: "right" },
-        { text: <InlineMath math="(2, 0)" />, at: 90, offset: [0.09, 0.44, 0], anchorX: "left" },
-      ],
-    },
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4-head", kind: "vector", from: { x: 2, y: -0.03 }, to: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 0, y: -2 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: Array.from({ length: 91 }, (_, i) => {
         const angle = (Math.PI / 2) * (i / 90);
         return { x: Math.cos(angle) - Math.sin(angle), y: Math.sin(angle) + Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      pointIndices: [0, 90],
-      cone: { position: "end", size: 0.25 },
-      labels: [
-        { text: <InlineMath math="(1, 1)" />, at: 0, offset: [0.33, 0.22, 0], anchorX: "left" },
-        { text: <InlineMath math="(-1, 1)" />, at: 90, offset: [-0.67, -0.44, 0] },
-      ],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s5-head", kind: "vector", from: { x: -0.98, y: 1.02 }, to: { x: -1, y: 1 }, appearance: "answer" },
+      { id: "s5-p0", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.83, y: 3.5 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: -3.5, y: 1.83 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 3.5, y: -1.83 }, placement: "below-left" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: -2 }, placement: "above-left" },
+      { key: "l5", objectId: "s4", at: { x: 2, y: 0 }, placement: "above-right" },
+      { key: "l6", objectId: "s5", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "l7", objectId: "s5", at: { x: -1, y: 1 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Garis <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" /> muncul jika aturan <InlineMath math="(y, -x)" /> dipakai untuk putaran <InlineMath math="90^\circ" />. Garis itu sejajar dengan jawaban tetapi berada di sisi lain titik asal, karena putaran <InlineMath math="90^\circ" /> dan <InlineMath math="270^\circ" /> berselisih setengah putaran.
@@ -827,56 +672,51 @@ Garis <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" /> muncul jika aturan
 
 Kurva hasil rotasinya adalah <InlineMath math="y = 4 - x^2" />, sama dengan <InlineMath math="y = -f(-x)" />. Titik puncak <InlineMath math="(0, -4)" /> berpindah ke <InlineMath math="(0, 4)" />, dan <InlineMath math="4 - 0^2 = 4" />. Titik potong sumbu <InlineMath math="x" /> di <InlineMath math="(2, 0)" /> berpindah ke <InlineMath math="(-2, 0)" />, dan <InlineMath math="4 - (-2)^2 = 0" />. Parabola <InlineMath math="y = 4 - x^2" /> membuka ke bawah dan setiap garis vertikal memotongnya tepat sekali, jadi kurva hasil rotasi **masih grafik fungsi**.
 
-<LineEquation
+<MathVisual
   title={<>Parabola <InlineMath math="y = x^2 - 4" /> dan bayangannya oleh setengah putaran</>}
   description={<>Titik puncak <InlineMath math="(0, -4)" /> berpindah ke <InlineMath math="(0, 4)" />. Kedua parabola melewati <InlineMath math="(-2, 0)" /> dan <InlineMath math="(2, 0)" />, dan busur setengah putaran membawa yang satu ke yang lain.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0, 12.5]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      points: Array.from({ length: 241 }, (_, j) => {
+  labels={{
+    "l1": <InlineMath math="y = x^2 - 4" />,
+    "l2": <InlineMath math="(0, -4)" />,
+    "l3": <InlineMath math="y = 4 - x^2" />,
+    "l4": <InlineMath math="(0, 4)" />,
+    "l5": <InlineMath math="(2, 0)" />,
+    "l6": <InlineMath math="(-2, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 241 }, (_, j) => {
         const x = (j - 120) / 40;
         return { x, y: x * x - 4, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      pointIndices: [40, 120, 200],
-      labels: [
-        { text: <InlineMath math="y = x^2 - 4" />, at: 216, offset: [0.19, -0.46, 0], anchorX: "left" },
-        { text: <InlineMath math="(0, -4)" />, at: 120, offset: [0.23, -0.55, 0], anchorX: "left" },
-      ],
-    },
-    {
-      points: Array.from({ length: 241 }, (_, j) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1-p40", kind: "point", at: { x: -2, y: 0 }, appearance: "primary" },
+      { id: "s1-p120", kind: "point", at: { x: 0, y: -4 }, appearance: "primary" },
+      { id: "s1-p200", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 241 }, (_, j) => {
         const x = (j - 120) / 40;
         return { x, y: 4 - x * x, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [40, 120, 200],
-      labels: [
-        { text: <InlineMath math="y = 4 - x^2" />, at: 24, offset: [-0.19, 0.46, 0], anchorX: "right" },
-        { text: <InlineMath math="(0, 4)" />, at: 120, offset: [-0.23, 0.55, 0], anchorX: "right" },
-      ],
-    },
-    {
-      points: Array.from({ length: 181 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s2-p40", kind: "point", at: { x: -2, y: 0 }, appearance: "secondary" },
+      { id: "s2-p120", kind: "point", at: { x: 0, y: 4 }, appearance: "secondary" },
+      { id: "s2-p200", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: Array.from({ length: 181 }, (_, i) => {
         const angle = Math.PI * (i / 180);
         return { x: 2 * Math.cos(angle), y: 2 * Math.sin(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-      labels: [
-        { text: <InlineMath math="(2, 0)" />, at: 0, offset: [0.57, -0.57, 0], anchorX: "left" },
-        { text: <InlineMath math="(-2, 0)" />, at: 180, offset: [-0.57, 0.57, 0], anchorX: "right" },
-      ],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: -2, y: 0.03 }, to: { x: -2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.4, y: 1.76 }, placement: "below-right" },
+      { key: "l2", objectId: "s1", at: { x: 0, y: -4 }, placement: "below-right" },
+      { key: "l3", objectId: "s2", at: { x: -2.4, y: -1.76 }, placement: "above-left" },
+      { key: "l4", objectId: "s2", at: { x: 0, y: 4 }, placement: "above-left" },
+      { key: "l5", objectId: "s3", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "l6", objectId: "s3", at: { x: -2, y: 0 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Kedua parabola memotong sumbu <InlineMath math="x" /> di titik yang sama. Setengah putaran membawa <InlineMath math="(2, 0)" /> ke <InlineMath math="(-2, 0)" /> dan membawa <InlineMath math="(-2, 0)" /> ke <InlineMath math="(2, 0)" />, sedangkan kedua titik itu memang titik potong <InlineMath math="y = x^2 - 4" /> dengan sumbu <InlineMath math="x" />.
@@ -891,64 +731,49 @@ Jaraknya ke pusat tetap, karena <InlineMath math="|CV|^2 = 2^2 + (-1)^2 = 5" /> 
 
 Setelah tanda aksen dihapus, kurva hasil rotasinya adalah <InlineMath math="x = 2 - (y - 4)^2" />, parabola yang membuka ke kiri dengan puncak <InlineMath math="(2, 4)" />, cocok dengan <InlineMath math="V'" />. Kurva itu **bukan grafik fungsi**. Titik <InlineMath math="(2, 2)" /> dan <InlineMath math="(4, 2)" /> pada parabola semula berpindah ke <InlineMath math="(1, 3)" /> dan <InlineMath math="(1, 5)" />, dua titik pada garis vertikal <InlineMath math="x = 1" />. Keduanya memenuhi persamaan baru, karena <InlineMath math="2 - (3 - 4)^2 = 1" /> dan <InlineMath math="2 - (5 - 4)^2 = 1" />.
 
-<LineEquation
+<MathVisual
   title={<>Parabola <InlineMath math="y = (x - 3)^2 + 1" /> diputar <InlineMath math="90^\circ" /> terhadap <InlineMath math="C(1, 2)" /></>}
   description={<>Parabola yang membuka ke atas adalah <InlineMath math="y = (x - 3)^2 + 1" />, dan parabola yang membuka ke kiri adalah hasil rotasinya, <InlineMath math="x = 2 - (y - 4)^2" />. Busur membawa <InlineMath math="V(3, 1)" /> ke <InlineMath math="V'(2, 4)" /> dengan jarak tetap <InlineMath math="\sqrt{5}" /> dari <InlineMath math="C" />, dan garis <InlineMath math="x = 1" /> memotong hasil rotasi di <InlineMath math="(1, 3)" /> dan <InlineMath math="(1, 5)" />.</>}
-  showZAxis={false}
-  cameraPosition={[1.5, 3.4, 10]}
-  cameraTarget={[1.5, 3.4, 0]}
-  data={[
-    {
-      points: Array.from({ length: 321 }, (_, i) => {
+  labels={{
+    "l1": <InlineMath math="V(3, 1)" />,
+    "l2": <InlineMath math="V'(2, 4)" />,
+    "l3": <InlineMath math="x = 1" />,
+    "l4": <InlineMath math="C(1, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 5.5 }, y: { min: 0, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 321 }, (_, i) => {
         const x = 1.4 + i / 100;
         return { x, y: (x - 3) ** 2 + 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      pointIndices: [60, 160, 260],
-      labels: [
-        { text: <InlineMath math="V(3, 1)" />, at: 160, offset: [-0.19, -0.46, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 321 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1-p60", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "s1-p160", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "s1-p260", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: Array.from({ length: 321 }, (_, i) => {
         const x = 1.4 + i / 100;
         return { x: 2 - (x - 3) ** 2, y: x + 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [60, 160, 260],
-      labels: [
-        { text: <InlineMath math="V'(2, 4)" />, at: 160, offset: [0.17, 0.42, 0], anchorX: "left" },
-      ],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => ({ x: 1, y: 2.5 + 4.2 * i, z: 0 })),
-      smooth: false,
-      color: "#64748b",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="x = 1" />, at: 1, offset: [0.17, -0.29, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
+      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s2-p60", kind: "point", at: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "s2-p160", kind: "point", at: { x: 2, y: 4 }, appearance: "secondary" },
+      { id: "s2-p260", kind: "point", at: { x: 1, y: 5 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => ({ x: 1, y: 2.5 + 4.2 * i, z: 0 })).map(({ x, y }) => ({ x, y })), appearance: "construction" },
+      { id: "s4", kind: "polyline", vertices: Array.from({ length: 91 }, (_, i) => {
         const angle = (Math.PI / 2) * (i / 90);
         return { x: 1 + 2 * Math.cos(angle) + Math.sin(angle), y: 2 + 2 * Math.sin(angle) - Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      cone: { position: "end", size: 0.25 },
-    },
-    {
-      points: [{ x: 1, y: 2, z: 0 }],
-      smooth: false,
-      color: "#64748b",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C(1, 2)" />, at: 0, offset: [0.12, -0.59, 0] }],
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4-head", kind: "vector", from: { x: 2.03, y: 3.98 }, to: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 1, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 1 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 4 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 1, y: 6.7 }, placement: "below-right" },
+      { key: "l4", objectId: "s5", at: { x: 1, y: 2 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Garis vertikal <InlineMath math="x = 1" /> memotong kurva hasil rotasi dua kali, jadi kurva itu gagal dalam uji garis vertikal. Parabola semula gagal dalam uji garis horizontal dengan cara yang sama, karena garis <InlineMath math="y = 2" /> memotongnya di <InlineMath math="(2, 2)" /> dan <InlineMath math="(4, 2)" />.

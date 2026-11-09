@@ -21,13 +21,21 @@ The geometry is the same in each situation. A tangent touches the circle at <Hig
 
 When the point of tangency is known, first verify that the point lies on the circle. Then the radius to that point becomes a normal vector for the tangent.
 
-<LineEquation
-  title="Tangent at a Known Point"
-  description="Constructing the tangent line equation when the point of tangency is known."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Tangent at a Known Point</>}
+  description={<>Constructing the tangent line equation when the point of tangency is known.</>}
+  labels={{
+    "l1": <>Center</>,
+    "l2": <InlineMath math="M" />,
+    "l3": <>Tangent</>,
+    "l4": <InlineMath math="r" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 7.5 }, y: { min: -6.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 4;
         return {
@@ -35,44 +43,17 @@ When the point of tangency is known, first verify that the point lies on the cir
           y: radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#4f46e5",
-      showPoints: false,
-    },
-    {
-      points: [
-        {
-          x: 0,
-          y: 0,
-          z: 0,
-        }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: "Center", at: 0, offset: [-0.8, -0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const angle = Math.PI * 5/6; // 150 degrees
-        const radius = 4;
-        return [{
-          x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle),
-          z: 0,
-        }];
-      })(),
-      color: "#65a30d",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="M" />, at: 0, offset: [-0.8, 0.5, 0] }],
-    },
-    {
-      points: (() => {
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -3.46, y: 2 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
         const angle = (Math.PI * 5) / 6;
         const radius = 4;
         const pointX = radius * Math.cos(angle);
         const pointY = radius * Math.sin(angle);
 
-        // Direction perpendicular to radius (negative reciprocal gradient)
+        
         const perpSlope = -pointX / pointY;
 
         const range = 3;
@@ -97,54 +78,18 @@ When the point of tangency is known, first verify that the point lies on the cir
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#059669",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Tangent", at: 2, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const angle = Math.PI * 5/6;
-        const radius = 4;
-        return [
-          { x: 0, y: 0, z: 0 },
-          {
-            x: radius * Math.cos(angle),
-            y: radius * Math.sin(angle),
-            z: 0,
-          }
-        ];
-      })(),
-      color: "#ca8a04",
-      showPoints: false,
-      smooth: false,
-      cone: {
-        position: "end",
-        size: 0.3,
-      },
-      labels: [{ text: <InlineMath math="r" />, at: 1, offset: [1, -1, 0] }],
-    },
-    {
-      points: [
-        { x: -6, y: 0, z: 0 },
-        { x: 6, y: 0, z: 0 }
-      ],
-      color: "#c026d3",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -5, z: 0 },
-        { x: 0, y: 5, z: 0 }
-      ],
-      color: "#c026d3",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "vector", from: { x: 0, y: 0 }, to: { x: -3.46, y: 2 }, appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -5 }, { x: 0, y: 5 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -3.46, y: 2 }, placement: "above-left" },
+      { key: "l3", objectId: "s4", at: { x: -0.46, y: 7.2 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: -3.46, y: 2 }, placement: "below-right" },
+    ],
+  }}
 />
 
 For the circle <InlineMath math="x^2 + y^2 = r^2" /> and a point of tangency <InlineMath math="M(p, q)" /> on that circle, the **point-tangent form** is:
@@ -163,13 +108,20 @@ For the circle <InlineMath math="(x-h)^2 + (y-k)^2 = r^2" /> with point of tange
 
 If the slope is known but the intercept is not, use the defining distance condition: the perpendicular distance from the center to a tangent equals the radius.
 
-<LineEquation
-  title="Tangents with a Given Slope"
-  description="The center-to-line distance determines the two possible intercepts."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Tangents with a Given Slope</>}
+  description={<>The center-to-line distance determines the two possible intercepts.</>}
+  labels={{
+    "l1": <>Center</>,
+    "l2": <>Upper Tangent</>,
+    "l3": <>Lower Tangent</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 8.5 }, y: { min: -11.5, max: 9 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 3.5;
         const h = 1, k = -0.5;
@@ -178,21 +130,11 @@ If the slope is known but the intercept is not, use the defining distance condit
           y: k + radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 1, y: -0.5, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: "Center", at: 0, offset: [-0.8, -0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const m = -0.75; // desired gradient
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 4.5, y: -0.56 }, to: { x: 4.5, y: -0.5 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 1, y: -0.5 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: ((() => {
+        const m = -0.75; 
         const h = 1,
           k = -0.5,
           r = 3.5;
@@ -212,15 +154,9 @@ If the slope is known but the intercept is not, use the defining distance condit
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#0284c7",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Upper Tangent", at: 2, offset: [-3, 4.8, 0] }],
-    },
-    {
-      points: (() => {
-        const m = -0.75; // desired gradient
+      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: ((() => {
+        const m = -0.75; 
         const h = 1,
           k = -0.5,
           r = 3.5;
@@ -240,57 +176,17 @@ If the slope is known but the intercept is not, use the defining distance condit
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#059669",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Lower Tangent", at: 1, offset: [1, -2.4, 0] }],
-    },
-    {
-      points: (() => {
-        const m = -0.75;
-        const h = 1, k = -0.5, r = 3.5;
-
-        // Calculate tangent point for upper line
-        const c1 = k - m*h + r * Math.sqrt(1 + m * m);
-
-        // Find tangent point by substitution
-        const tangentX = (h + m * (k - c1)) / (1 + m * m);
-          const tangentY = m * tangentX + c1;
-
-        return [
-          { x: h, y: k, z: 0 },
-          { x: tangentX, y: tangentY, z: 0 }
-        ];
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      cone: {
-        position: "end",
-        size: 0.2,
-      },
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 7, y: 0, z: 0 }
-      ],
-      color: "#db2777",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -5, z: 0 },
-        { x: 0, y: 4, z: 0 }
-      ],
-      color: "#db2777",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s5", kind: "vector", from: { x: 1, y: -0.5 }, to: { x: 3.1, y: 2.3 }, appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 7, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -5 }, { x: 0, y: 4 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 1, y: -0.5 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 6, y: 0.13 }, placement: "above-left" },
+      { key: "l3", objectId: "s4", at: { x: -2, y: -2.62 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Suppose the circle is <InlineMath math="(x-h)^2 + (y-k)^2 = r^2" /> and the tangent has slope <InlineMath math="m" />. Write the line as <InlineMath math="y=mx+c" />.
@@ -319,13 +215,23 @@ The two parallel tangents are:
 
 From a point outside a circle, **exactly two tangent lines** can be drawn. When both tangents have finite slopes, their slopes can be found from one quadratic equation.
 
-<LineEquation
-  title="Tangents Through an Outside Point"
-  description="The repeated-intersection condition determines the two possible slopes."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
+<MathVisual
+  title={<>Tangents Through an Outside Point</>}
+  description={<>The repeated-intersection condition determines the two possible slopes.</>}
+  labels={{
+    "l1": <>Center</>,
+    "l2": <>Outside point</>,
+    "l3": <InlineMath math="S_1" />,
+    "l4": <InlineMath math="S_2" />,
+    "l5": <>Tangent 1</>,
+    "l6": <>Tangent 2</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -10.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
         const angle = (i * Math.PI) / 180;
         const radius = 2.8;
         const h = -1, k = 1.5;
@@ -334,83 +240,14 @@ From a point outside a circle, **exactly two tangent lines** can be drawn. When 
           y: k + radius * Math.sin(angle),
           z: 0,
         };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -1, y: 1.5, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: "Center", at: 0, offset: [-0.8, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 3.5, y: 4, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: true,
-      labels: [{ text: "Outside point", at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: (() => {
-        // First tangent point - intersection of tangent line with circle
-        const px = 3.5, py = 4, h = -1, k = 1.5, r = 2.8;
-
-        // Calculate gradient of first tangent line
-        const a = (h - px)*(h - px) - r*r;
-        const b = -2*(h - px)*(k - py);
-        const c = (k - py)*(k - py) - r*r;
-
-        const discriminant = b*b - 4*a*c;
-        const m1 = (-b + Math.sqrt(discriminant)) / (2*a);
-
-        // Tangent line equation: y = m1*x + c1
-        const c1 = py - m1*px;
-
-        // Substitute y = m1*x + c1 into (x-h)^2 + (y-k)^2 = r^2
-        // (x-h)^2 + (m1*x + c1 - k)^2 = r^2
-        const xTangent = (h + m1 * (k - c1)) / (1 + m1 * m1);
-          const yTangent = m1 * xTangent + c1;
-
-        return [{ x: xTangent, y: yTangent, z: 0 }];
-      })(),
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="S_1" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: (() => {
-        // Second tangent point - intersection of tangent line with circle
-        const px = 3.5, py = 4, h = -1, k = 1.5, r = 2.8;
-
-        // Calculate gradient of second tangent line
-        const a = (h - px)*(h - px) - r*r;
-        const b = -2*(h - px)*(k - py);
-        const c = (k - py)*(k - py) - r*r;
-
-        const discriminant = b*b - 4*a*c;
-        const m2 = (-b - Math.sqrt(discriminant)) / (2*a);
-
-        // Tangent line equation: y = m2*x + c2
-        const c2 = py - m2*px;
-
-        // Substitute y = m2*x + c2 into (x-h)^2 + (y-k)^2 = r^2
-        // (x-h)^2 + (m2*x + c2 - k)^2 = r^2
-        const xTangent = (h + m2 * (k - c2)) / (1 + m2 * m2);
-          const yTangent = m2 * xTangent + c2;
-
-        return [{ x: xTangent, y: yTangent, z: 0 }];
-      })(),
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="S_2" />, at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: (() => {
-        // First tangent line
+      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 1.8, y: 1.45 }, to: { x: 1.8, y: 1.5 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: -1, y: 1.5 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 3.5, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1.47, y: 0.19 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: -0.81, y: 4.29 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: ((() => {
+        
         const px = 3.5,
           py = 4,
           h = -1,
@@ -425,7 +262,7 @@ From a point outside a circle, **exactly two tangent lines** can be drawn. When 
 
         const c1 = py - m1 * px;
 
-        // Determine consistent line length
+        
         const lineLength = 6;
 
         const points = [
@@ -441,15 +278,9 @@ From a point outside a circle, **exactly two tangent lines** can be drawn. When 
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Tangent 1", at: 1, offset: [0.5, -1, 0] }],
-    },
-    {
-      points: (() => {
-        // Second tangent line
+      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: ((() => {
+        
         const px = 3.5,
           py = 4,
           h = -1,
@@ -464,7 +295,7 @@ From a point outside a circle, **exactly two tangent lines** can be drawn. When 
 
         const c2 = py - m2 * px;
 
-        // Use same line length for visual consistency
+        
         const lineLength = 6;
 
         const points = [
@@ -480,32 +311,19 @@ From a point outside a circle, **exactly two tangent lines** can be drawn. When 
           ...points,
           { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
         ];
-      })(),
-      color: "#4f46e5",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Tangent 2", at: 1, offset: [0.5, 1, 0] }],
-    },
-    {
-      points: [
-        { x: -5, y: 0, z: 0 },
-        { x: 5, y: 0, z: 0 }
-      ],
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -2, z: 0 },
-        { x: 0, y: 6, z: 0 }
-      ],
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
+      })()).map(({ x, y }) => ({ x, y })), appearance: "warning" },
+      { id: "s8", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "primary" },
+      { id: "s9", kind: "polyline", vertices: [{ x: 0, y: -2 }, { x: 0, y: 6 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -1, y: 1.5 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3.5, y: 4 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 1.47, y: 0.19 }, placement: "below-left" },
+      { key: "l4", objectId: "s5", at: { x: -0.81, y: 4.29 }, placement: "above-right" },
+      { key: "l5", objectId: "s6", at: { x: 3.5, y: 4 }, placement: "below-right" },
+      { key: "l6", objectId: "s7", at: { x: 3.5, y: 4 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Let the outside point be <InlineMath math="P(x_0,y_0)" /> and the circle be <InlineMath math="x^2+y^2=r^2" />. A nonvertical line through <InlineMath math="P" /> has slope <InlineMath math="m" />.

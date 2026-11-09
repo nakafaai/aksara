@@ -45,24 +45,21 @@ We choose several <InlineMath math="x" /> values and calculate <InlineMath math=
 
 Plot the points and connect them:
 
-<LineEquation
+<MathVisual
   title={
     <>
       Graph of <InlineMath math="f(x) = 2x + 5" />
     </>
   }
   description={<>Graph of a linear function with degree <InlineMath math="1" />.</>}
-  cameraPosition={[0, 5, 16]}
-  showZAxis={false}
-  cameraTarget={[0, 5, 0]}
-  data={[
-    {
-      points: Array.from({ length: 7 }, (_, i) => { const x = -3 + i; return { x, y: 2 * x + 5, z: 0 }; }),
-      smooth: false,
-      pointIndices: [0, 1, 2, 3, 4, 5, 6],
-      color: "#ca8a04",
-    },
-  ]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.5, max: 12.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 7 }, (_, i) => { const x = -3 + i; return { x, y: 2 * x + 5, z: 0 }; }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+    ],
+  }}
 />
 
 ### Quadratic Function Degree Two
@@ -87,27 +84,25 @@ Table of values:
 
 Plot the points and connect with a smooth curve (parabola):
 
-<LineEquation
+<MathVisual
   title={
     <>
       Graph of <InlineMath math="g(x) = x^2 - 2x - 3" />
     </>
   }
   description={<>Graph of a quadratic function with degree <InlineMath math="2" />.</>}
-  cameraPosition={[0, 0, 10]}
-  showZAxis={false}
-  data={[
-    {
-      pointIndices: [0, 16, 32, 48, 64, 80, 96],
-      smooth: false,
-      points: Array.from({ length: 97 }, (_, sampleIndex) => {
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -5, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 97 }, (_, sampleIndex) => {
         const i = sampleIndex / 16;
         const x = -2 + i;
         return { x, y: x * x - 2 * x - 3, z: 0 };
-      }),
-      color: "#0891b2",
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+    ],
+  }}
 />
 
 ### Cubic Function Degree Three
@@ -134,26 +129,24 @@ Plot the points and connect with a smooth curve:
 
 The view focuses on <InlineMath math="-3\le x\le1.25" /> so that both turning points and both roots are clear. The outer table values remain correct but lie outside the plotted window.
 
-<LineEquation
+<MathVisual
   title={
     <>
       Graph of <InlineMath math="h(x) = x^3 + 3x^2 - 4" />
     </>
   }
   description={<>Graph of a cubic function with degree <InlineMath math="3" />.</>}
-  cameraPosition={[0, 0, 12]}
-  showZAxis={false}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 171 }, (_, i) => {
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 2 }, y: { min: -5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 171 }, (_, i) => {
         const x = -3 + i * 0.025;
         return { x, y: x * x * x + 3 * x * x - 4, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+    ],
+  }}
 />
 
 ## General Characteristics of Polynomial Graphs
@@ -187,91 +180,83 @@ Every additional fraction tends to zero as the input magnitude grows without bou
 | Odd | Negative | Up | Down |
 
 <ContentStack>
-<LineEquation
+<MathVisual
   title={
     <>
       Graph of <InlineMath math="y = x^2" /> (Even, Positive)
     </>
   }
-  description="Graph rises to the left and right."
-  cameraPosition={[0, 0, 12]}
-  showZAxis={false}
-  data={[
-    {
-      pointIndices: [0, 16, 32, 48, 64, 80, 96],
-      smooth: false,
-      points: Array.from({ length: 97 }, (_, sampleIndex) => {
+  description={<>Graph rises to the left and right.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 97 }, (_, sampleIndex) => {
         const i = sampleIndex / 16;
         const x = -2 + i * (2 / 3);
         return { x, y: x * x, z: 0 };
-      }),
-      color: "#65a30d",
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+    ],
+  }}
 />
-<LineEquation
+<MathVisual
   title={
     <>
       Graph of <InlineMath math="y = -x^2" /> (Even, Negative)
     </>
   }
-  description="Graph falls to the left and right."
-  cameraPosition={[0, 0, 12]}
-  showZAxis={false}
-  data={[
-    {
-      pointIndices: [0, 16, 32, 48, 64, 80, 96],
-      smooth: false,
-      points: Array.from({ length: 97 }, (_, sampleIndex) => {
+  description={<>Graph falls to the left and right.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -4.5, max: 0.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 97 }, (_, sampleIndex) => {
         const i = sampleIndex / 16;
         const x = -2 + i * (2 / 3);
         return { x, y: -(x * x), z: 0 };
-      }),
-      color: "#e11d48",
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+    ],
+  }}
 />
-<LineEquation
+<MathVisual
   title={
     <>
       Graph of <InlineMath math="y = x^3" /> (Odd, Positive)
     </>
   }
-  description="Graph falls to the left and rises to the right."
-  cameraPosition={[0, 0, 12]}
-  showZAxis={false}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
+  description={<>Graph falls to the left and rises to the right.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 41 }, (_, i) => {
         const x = -1.5 + i * 0.075;
         return { x, y: x * x * x, z: 0 };
-      }),
-      color: "#0284c7",
-      showPoints: false,
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+    ],
+  }}
 />
-<LineEquation
+<MathVisual
   title={
     <>
       Graph of <InlineMath math="y = -x^3" /> (Odd, Negative)
     </>
   }
-  description="Graph rises to the left and falls to the right."
-  cameraPosition={[0, 0, 12]}
-  showZAxis={false}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
+  description={<>Graph rises to the left and falls to the right.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: Array.from({ length: 41 }, (_, i) => {
         const x = -1.5 + i * 0.075;
         return { x, y: -(x * x * x), z: 0 };
-      }),
-      color: "#d97706",
-      showPoints: false,
-    },
-  ]}
+      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+    ],
+  }}
 />
 </ContentStack>
 
@@ -287,32 +272,30 @@ Leading coefficient <InlineMath math="a_n=1" /> (Positive)
 End behavior: Rises left (<InlineMath math="\nwarrow" />), Rises right (<InlineMath math="\nearrow" />)
 
 <ContentBlock>
-      <LineEquation
+      <MathVisual
         title={
-          <>
-            Graph of <InlineMath math="f(x) = x^4 + 2x^3 - 2x - 3" />
-          </>
-        }
+                <>
+                  Graph of <InlineMath math="f(x) = x^4 + 2x^3 - 2x - 3" />
+                </>
+              }
         description={
-          <>
-            End Behavior: <InlineMath math="\nwarrow" />{" "}
-            <InlineMath math="\nearrow" />
-          </>
-        }
-        cameraPosition={[0, 0, 12]}
-  showZAxis={false}
-        data={[
-          {
-            smooth: false,
-            points: Array.from({ length: 51 }, (_, i) => {
-              const x = -2.25 + i * (3.75 / 50);
-              const y = x ** 4 + 2 * x ** 3 - 2 * x - 3;
-              return { x, y, z: 0 };
-            }),
-            color: "#0d9488",
-            showPoints: false,
-          },
-        ]}
+                <>
+                  End Behavior: <InlineMath math="\nwarrow" />{" "}
+                  <InlineMath math="\nearrow" />
+                </>
+              }
+        scene={{
+          space: "plane",
+          frame: { kind: "cartesian", x: { min: -3, max: 2 }, y: { min: -5, max: 7 } },
+          view: { kind: "fit", padding: 0.2 },
+          objects: [
+            { id: "s1", kind: "polyline", vertices: Array.from({ length: 51 }, (_, i) => {
+                    const x = -2.25 + i * (3.75 / 50);
+                    const y = x ** 4 + 2 * x ** 3 - 2 * x - 3;
+                    return { x, y, z: 0 };
+                  }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+          ],
+        }}
       />
 </ContentBlock>
 
@@ -324,33 +307,31 @@ Leading coefficient <InlineMath math="a_n=-1" /> (Negative)
 End behavior: Rises left (<InlineMath math="\nwarrow" />), Falls right (<InlineMath math="\searrow" />)
 
 <ContentBlock>
-      <LineEquation
+      <MathVisual
         title={
-          <>
-            Graph of <InlineMath math="g(x) = -x^3 + 2x^2 - x + 1" />
-          </>
-        }
+                <>
+                  Graph of <InlineMath math="g(x) = -x^3 + 2x^2 - x + 1" />
+                </>
+              }
         description={
-          <>
-            End Behavior: <InlineMath math="\nwarrow" />{" "}
-            <InlineMath math="\searrow" />
-          </>
-        }
-        cameraPosition={[0, 0, 12]}
-  showZAxis={false}
-        data={[
-          {
-            smooth: false,
-            points: Array.from({ length: 113 }, (_, pointIndex) => {
-              const i = pointIndex / 2 + 0;
-              const x = -1 + i * (3.5 / 56);
-              const y = -(x ** 3) + 2 * x ** 2 - x + 1;
-              return { x, y, z: 0 };
-            }),
-            color: "#ea580c",
-            showPoints: false,
-          },
-        ]}
+                <>
+                  End Behavior: <InlineMath math="\nwarrow" />{" "}
+                  <InlineMath math="\searrow" />
+                </>
+              }
+        scene={{
+          space: "plane",
+          frame: { kind: "cartesian", x: { min: -1.5, max: 3 }, y: { min: -6, max: 6 } },
+          view: { kind: "fit", padding: 0.2 },
+          objects: [
+            { id: "s1", kind: "polyline", vertices: Array.from({ length: 113 }, (_, pointIndex) => {
+                    const i = pointIndex / 2 + 0;
+                    const x = -1 + i * (3.5 / 56);
+                    const y = -(x ** 3) + 2 * x ** 2 - x + 1;
+                    return { x, y, z: 0 };
+                  }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+          ],
+        }}
       />
 </ContentBlock>
 
@@ -362,33 +343,31 @@ Leading coefficient <InlineMath math="a_n=-1" /> (Negative)
 End behavior: Falls left (<InlineMath math="\swarrow" />), Falls right (<InlineMath math="\searrow" />)
 
 <ContentBlock>
-      <LineEquation
+      <MathVisual
         title={
-          <>
-            Graph of{" "}
-            <InlineMath math="h(x) = -x^6 - \frac{11}{4}x^5 + x^4 + 5x^3 + 2" />
-          </>
-        }
+                <>
+                  Graph of{" "}
+                  <InlineMath math="h(x) = -x^6 - \frac{11}{4}x^5 + x^4 + 5x^3 + 2" />
+                </>
+              }
         description={
-          <>
-            End Behavior: <InlineMath math="\swarrow" />{" "}
-            <InlineMath math="\searrow" />
-          </>
-        }
-        cameraPosition={[0, 0, 12]}
-  showZAxis={false}
-        data={[
-          {
-            smooth: false,
-            points: Array.from({ length: 111 }, (_, i) => {
-              const x = -2.4 + i * (3.8 / 110);
-              const y = -(x ** 6) - (11 / 4) * x ** 5 + x ** 4 + 5 * x ** 3 + 2;
-              return { x, y, z: 0 };
-            }),
-            color: "#c026d3",
-            showPoints: false,
-          },
-        ]}
+                <>
+                  End Behavior: <InlineMath math="\swarrow" />{" "}
+                  <InlineMath math="\searrow" />
+                </>
+              }
+        scene={{
+          space: "plane",
+          frame: { kind: "cartesian", x: { min: -3, max: 2 }, y: { min: -7.5, max: 5.5 } },
+          view: { kind: "fit", padding: 0.2 },
+          objects: [
+            { id: "s1", kind: "polyline", vertices: Array.from({ length: 111 }, (_, i) => {
+                    const x = -2.4 + i * (3.8 / 110);
+                    const y = -(x ** 6) - (11 / 4) * x ** 5 + x ** 4 + 5 * x ** 3 + 2;
+                    return { x, y, z: 0 };
+                  }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+          ],
+        }}
       />
 </ContentBlock>
 
@@ -400,34 +379,32 @@ Leading coefficient <InlineMath math="a_n=25" /> (Positive)
 End behavior: Falls left (<InlineMath math="\swarrow" />), Rises right (<InlineMath math="\nearrow" />)
 
 <ContentBlock>
-      <LineEquation
+      <MathVisual
         title={
-          <>
-            Graph of{" "}
-            <InlineMath math="k(x) = 25x^5 - 20x^4 - 26x^3 + 12x^2 + 9x - 1" />
-          </>
-        }
+                <>
+                  Graph of{" "}
+                  <InlineMath math="k(x) = 25x^5 - 20x^4 - 26x^3 + 12x^2 + 9x - 1" />
+                </>
+              }
         description={
-          <>
-            End Behavior: <InlineMath math="\swarrow" />{" "}
-            <InlineMath math="\nearrow" />
-          </>
-        }
-        cameraPosition={[0, 0, 12]}
-  showZAxis={false}
-        data={[
-          {
-            smooth: false,
-            points: Array.from({ length: 301 }, (_, pointIndex) => {
-              const i = pointIndex / 4 + 0;
-              const x = -0.75 + i * (1.9 / 75);
-              const y = 25 * x ** 5 - 20 * x ** 4 - 26 * x ** 3 + 12 * x ** 2 + 9 * x - 1;
-              return { x, y, z: 0 };
-            }),
-            color: "#4f46e5",
-            showPoints: false,
-          },
-        ]}
+                <>
+                  End Behavior: <InlineMath math="\swarrow" />{" "}
+                  <InlineMath math="\nearrow" />
+                </>
+              }
+        scene={{
+          space: "plane",
+          frame: { kind: "cartesian", x: { min: -1, max: 1.5 }, y: { min: -3, max: 3.5 } },
+          view: { kind: "fit", padding: 0.2 },
+          objects: [
+            { id: "s1", kind: "polyline", vertices: Array.from({ length: 301 }, (_, pointIndex) => {
+                    const i = pointIndex / 4 + 0;
+                    const x = -0.75 + i * (1.9 / 75);
+                    const y = 25 * x ** 5 - 20 * x ** 4 - 26 * x ** 3 + 12 * x ** 2 + 9 * x - 1;
+                    return { x, y, z: 0 };
+                  }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+          ],
+        }}
       />
 </ContentBlock>
 
