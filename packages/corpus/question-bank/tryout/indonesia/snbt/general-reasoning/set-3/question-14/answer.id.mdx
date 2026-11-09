@@ -1,31 +1,27 @@
-Berdasarkan grafik, kita dapat menyusun data penjualan (dalam ton) dan pola kenaikannya sebagai berikut:
+Cari semua susunan yang mungkin. Mulailah dari **pasangan K dan L**, karena keduanya harus berada di rak yang sama dan memakan dua tempat sekaligus.
 
-| Bulan | Bawang Putih | Bawang Merah | Cabai Merah |
-| :--- | :---: | :---: | :---: |
-| Agust | <InlineMath math="58" /> | <InlineMath math="48" /> | <InlineMath math="54" /> |
-| Sept | <InlineMath math="61" /> (<InlineMath math="+3" />) | <InlineMath math="54" /> (<InlineMath math="+6" />) | <InlineMath math="58" /> |
-| Okt | <InlineMath math="67" /> (<InlineMath math="+6" />) | <InlineMath math="60" /> (<InlineMath math="+6" />) | <InlineMath math="62" /> |
-| Nov | <InlineMath math="76" /> (<InlineMath math="+9" />) | <InlineMath math="66" /> (<InlineMath math="+6" />) | <InlineMath math="68" /> |
-| Des | <InlineMath math="88" /> (<InlineMath math="+12" />) | <InlineMath math="72" /> (<InlineMath math="+6" />) | <InlineMath math="72" /> |
-| **Jan (prediksi)** | <InlineMath math="103" /> (<InlineMath math="+15" />) | <InlineMath math="78" /> (<InlineMath math="+6" />) | Tidak diperlukan |
+O sudah menempati satu tempat di rak tengah, jadi rak tengah hanya punya dua tempat lagi. K dan L bisa berada di rak atas, rak tengah, atau rak bawah.
 
-Kenaikan bulanan bawang putih adalah <InlineMath math="3,6,9,12" />. **Besar kenaikan penjualan bertambah** <InlineMath math="3" /> setiap bulan, sehingga kenaikan
-berikutnya <InlineMath math="15" /> dan prediksi Januari menjadi
-<InlineMath math="88+15=103" />. Bawang merah naik tetap
-<InlineMath math="6" /> ton per bulan, sehingga prediksinya
-<InlineMath math="72+6=78" /> ton.
+**K dan L di rak atas**. Rak atas penuh. P harus lebih tinggi daripada Q, jadi P di rak tengah dan Q di rak bawah. M dan N mengisi sisa satu tempat di rak tengah dan satu tempat di rak bawah, dengan dua kemungkinan.
 
-# Analisis Pernyataan
+**K dan L di rak tengah**. Rak tengah berisi K, L, dan O. Rak atas dan bawah masing-masing punya dua tempat untuk M, N, P, dan Q. N tidak boleh di atas, jadi N di bawah. M harus berbeda rak dengan N, jadi M di atas. P harus lebih tinggi daripada Q, jadi P di atas dan Q di bawah.
 
-Cek kebenaran setiap pernyataan berdasarkan tabel di atas:
+**K dan L di rak bawah**. Rak atas dan sisa dua tempat di rak tengah diisi M, N, P, dan Q. N tidak boleh di atas, jadi N di tengah. M harus berbeda rak dengan N, jadi M di atas. Q tidak boleh lebih tinggi daripada P, jadi P di atas dan Q di tengah.
 
-- Semua seri mencapai nilai tertinggi yang ditampilkan pada Desember, sehingga pernyataan tentang November salah.
-- Prediksi bawang merah pada Januari adalah <InlineMath math="78" /> ton,
-  sehingga nilai <InlineMath math="76" /> ton salah.
-- Prediksi bawang putih pada Januari adalah <InlineMath math="103" /> ton,
-  sehingga benar-benar melebihi <InlineMath math="100" /> ton.
-- Pada Desember, bawang merah dan cabai merah **sama-sama**
-  <InlineMath math="72" /> ton. Kesamaan ini membantah pernyataan bahwa bawang
-  merah selalu lebih rendah atau selalu menjadi satu-satunya penjualan terendah.
+| Susunan | Rak atas | Rak tengah | Rak bawah |
+| --- | --- | --- | --- |
+| I | K, L | M, O, P | N, Q |
+| II | K, L | N, O, P | M, Q |
+| III | M, P | K, L, O | N, Q |
+| IV | M, P | N, O, Q | K, L |
 
-Dengan asumsi pola berlanjut, pernyataan yang paling tepat adalah penjualan bawang putih pada bulan Januari <InlineMath math="2021" /> akan melebihi <InlineMath math="100" /> ton.
+Pada keempat susunan, **K tidak pernah berada di rak yang sama dengan M**. Pernyataan ini pasti benar.
+
+Pernyataan lain tidak berlaku pada semua susunan:
+
+- P berada di rak atas pada susunan III dan IV.
+- Q berada di rak tengah pada susunan IV.
+- N berada di rak tengah pada susunan II dan IV.
+- M berada di rak tengah pada susunan I dan di rak bawah pada susunan II.
+
+Jadi, pernyataan yang pasti benar adalah K tidak berada di rak yang sama dengan M.

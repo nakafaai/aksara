@@ -1,35 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
+  },
+  stimulus: "lebah",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Satu terjemahan yang lulus uji kedua pasti dapat digunakan tanpa perubahan di seluruh daerah.",
+          label: "Lebah madu lebih penting daripada lebah liar bagi petani.",
         },
         {
           correct: false,
           label:
-            "Terjemahan harus mengikuti setiap kata sumber meskipun warga salah memahami tindakan yang diminta.",
+            "Pestisida adalah satu-satunya penyebab berkurangnya lebah, sehingga larangan pestisida sudah cukup untuk memulihkan populasi lebah di semua negara.",
+        },
+        {
+          correct: false,
+          label: "Peternak lebah harus memeriksa koloninya setiap hari.",
+        },
+        {
+          correct: false,
+          label: "Populasi lebah menurun di semua negara.",
         },
         {
           correct: true,
           label:
-            "Terjemahan yang komunikatif dapat lebih tepat daripada terjemahan harfiah jika tetap menjaga tingkat bahaya dan tindakan yang diwajibkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim menempatkan tindakan sebelum alasan dalam susunan pesan baru.",
-        },
-        {
-          correct: false,
-          label:
-            "Setiap versi akan diuji lagi bersama warga sebelum digunakan.",
+            "Populasi lebah menurun karena beberapa penyebab yang saling berkaitan, sehingga perlindungannya memerlukan berbagai langkah.",
         },
       ],
     },

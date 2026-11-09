@@ -1,15 +1,22 @@
-Kedua kotak masing-masing berisi <InlineMath math="12" /> buah. Pengambilan yang saling bebas dan sama peluangnya menghasilkan <InlineMath math="12\times12=144" /> pasangan yang sama mungkin.
+Setiap pasangan terdiri atas dua huruf, jadi periksa **huruf pertama dan huruf kedua secara terpisah** dengan memakai urutan abjad: A = 1, B = 2, sampai Z = 26.
 
-<BlockMath math="\begin{aligned}1+2+4+5&amp;=12\\4+2+3+3&amp;=12\end{aligned}" />
+| Pasangan | Huruf pertama | Huruf kedua |
+| --- | --- | --- |
+| AY | <InlineMath math="1" /> | <InlineMath math="25" /> |
+| DW | <InlineMath math="4" /> | <InlineMath math="23" /> |
+| HT | <InlineMath math="8" /> | <InlineMath math="20" /> |
+| MP | <InlineMath math="13" /> | <InlineMath math="16" /> |
+| SK | <InlineMath math="19" /> | <InlineMath math="11" /> |
 
-| Kombinasi | Banyak pasangan | Peluang |
-| :--- | :---: | :---: |
-| <InlineMath math="2" /> Apel besar | <InlineMath math="1\times4=4" /> | <InlineMath math="\frac{4}{144}" /> |
-| <InlineMath math="2" /> Apel kecil | <InlineMath math="2\times2=4" /> | <InlineMath math="\frac{4}{144}" /> |
-| <InlineMath math="2" /> Jeruk besar | <InlineMath math="4\times3=12" /> | <InlineMath math="\frac{12}{144}" /> |
-| <InlineMath math="2" /> Jeruk kecil | <InlineMath math="5\times3=15" /> | <InlineMath math="\frac{15}{144}" /> |
-| Apel besar dan jeruk kecil | <InlineMath math="3+20=23" /> | <InlineMath math="\frac{23}{144}" /> |
+Huruf pertama bertambah <InlineMath math="3, 4, 5, 6" />, jadi berikutnya bertambah <InlineMath math="7" />: <InlineMath math="19+7=26" />, yaitu Z. Huruf kedua berkurang <InlineMath math="2, 3, 4, 5" />, jadi berikutnya berkurang <InlineMath math="6" />: <InlineMath math="11-6=5" />, yaitu E.
 
-Untuk kombinasi campuran, apel besar dapat berasal dari kotak pertama atau kedua. Kedua **kasus terpisah** itu memberi <InlineMath math="1\times3=3" /> dan <InlineMath math="5\times4=20" /> pasangan. Karena itu, jumlah pasangan campuran adalah <InlineMath math="3+20=23" />.
+Ada cara pemeriksaan lain: jumlah nomor kedua huruf adalah <InlineMath math="26, 27, 28, 29, 30" />, selalu **naik satu**. Pasangan berikutnya harus berjumlah <InlineMath math="31" />, dan Z dengan E memenuhi <InlineMath math="26+5=31" />.
 
-Di antara pilihan jawaban, peluang terbesar adalah <InlineMath math="\frac{23}{144}" />, yaitu **satu apel besar dan satu jeruk kecil**.
+Pilihan lain muncul dari kesalahan berikut:
+
+- YE menambah huruf pertama dengan <InlineMath math="6" /> lagi, padahal langkahnya selalu naik satu.
+- YF mengulang langkah terakhir pada kedua huruf, yaitu <InlineMath math="+6" /> dan <InlineMath math="-5" />.
+- ZD mengurangi huruf kedua dengan <InlineMath math="7" />, padahal langkah huruf kedua selalu satu lebih kecil daripada langkah huruf pertama.
+- ZF mengurangi huruf kedua dengan <InlineMath math="5" /> lagi.
+
+Jadi, pasangan huruf berikutnya adalah ZE.

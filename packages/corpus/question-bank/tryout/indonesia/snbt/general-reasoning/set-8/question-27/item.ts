@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "fraction",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$60$$ halaman",
+        },
+        {
           correct: true,
-          label: "$$66$$",
+          label: "$$80$$ halaman",
         },
         {
           correct: false,
-          label: "$$54$$",
+          label: "$$90$$ halaman",
         },
         {
           correct: false,
-          label: "$$60$$",
+          label: "$$100$$ halaman",
         },
         {
           correct: false,
-          label: "$$72$$",
-        },
-        {
-          correct: false,
-          label: "$$78$$",
+          label: "$$120$$ halaman",
         },
       ],
     },

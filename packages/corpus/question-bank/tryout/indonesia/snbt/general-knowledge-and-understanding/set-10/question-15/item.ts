@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "application",
+  },
+  stimulus: "bekantan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan.",
+          label: "pisang dan pepaya yang sudah matang dan manis",
         },
         {
           correct: false,
-          label:
-            "Dokumen yang tidak muncul dalam pencarian otomatis pasti tidak tersimpan di arsip.",
+          label: "roti manis dan buah kalengan",
         },
         {
           correct: false,
-          label:
-            "Koreksi pengguna lebih sering diberikan pada koleksi populer.",
+          label: "biji-bijian kering dan kacang tanah yang disangrai",
         },
         {
           correct: true,
-          label:
-            "Koleksi populer dapat menjadi makin mudah dicari daripada koleksi lain karena menerima lebih banyak koreksi.",
+          label: "daun muda segar dan buah yang belum matang",
         },
         {
           correct: false,
-          label:
-            "Tim akan mengaudit perbedaan kinerja menurut jenis tulisan dan periode.",
+          label: "ikan sungai segar dan udang kecil dari tepi sungai",
         },
       ],
     },

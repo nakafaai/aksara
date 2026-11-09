@@ -1,34 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "application",
+  },
+  stimulus: "hoaks",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Semua nama lokal harus memiliki kedudukan hukum yang sama dengan nama administrasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Agar peta konsisten, semua nama selain nama resmi harus dihapus dari pencarian dan arsip.",
-        },
-        {
-          correct: false,
-          label: "Nama administrasi ditetapkan sebagai indeks utama.",
-        },
-        {
-          correct: false,
-          label:
-            "Penyimpanan nama lokal sebagai alias otomatis memberinya kedudukan resmi yang sama dengan nama administrasi.",
-        },
-        {
           correct: true,
           label:
-            "Menetapkan nama utama tidak mengharuskan penghapusan nama lain yang memiliki jejak penggunaan.",
+            "Mencari apakah media lain yang tepercaya juga memuat klaim yang sama.",
+        },
+        {
+          correct: false,
+          label: "Langsung membagikannya agar teman-teman segera waspada.",
+        },
+        {
+          correct: false,
+          label:
+            "Memeriksa apakah tata letak dan logo situs itu benar-benar mirip dengan media terkenal.",
+        },
+        {
+          correct: false,
+          label: "Membaca judulnya sekali lagi dengan lebih teliti.",
+        },
+        {
+          correct: false,
+          label: "Mempercayainya karena situs itu tampak profesional.",
         },
       ],
     },

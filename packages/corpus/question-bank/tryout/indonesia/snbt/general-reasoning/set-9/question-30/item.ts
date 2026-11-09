@@ -1,31 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "installment",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label: "$$0$$",
-        },
-        {
-          correct: true,
-          label: "$$2$$",
-        },
-        {
-          correct: false,
-          label: "$$1$$",
-        },
-        {
-          correct: false,
-          label: "$$3$$",
-        },
-        {
-          correct: false,
-          label: "$$4$$",
-        },
-      ],
+      kind: "numericEntry",
+      unit: "bulan",
+      value: "12",
     },
   },
 };

@@ -1,32 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "biopori",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "membuat bangunan terlihat setua mungkin bagi pengunjung",
-        },
-        {
-          correct: false,
-          label: "mempertahankan setiap bahan lama meskipun tidak aman",
-        },
-        {
           correct: true,
-          label:
-            "setia pada bukti asal, bahan, dan perubahan yang benar-benar terjadi",
+          label: "secara teratur pada waktu tertentu",
         },
         {
           correct: false,
-          label:
-            "mengembalikan seluruh bangunan secara seragam ke satu tahun pilihan",
+          label: "sekali saja ketika lubang dibuat",
         },
         {
           correct: false,
-          label: "menyalin persis gambar lama yang paling populer",
+          label: "tanpa aturan dan sesuka hati",
+        },
+        {
+          correct: false,
+          label: "hanya ketika lubang sudah penuh air hujan",
+        },
+        {
+          correct: false,
+          label: "secara bersamaan oleh semua warga",
         },
       ],
     },

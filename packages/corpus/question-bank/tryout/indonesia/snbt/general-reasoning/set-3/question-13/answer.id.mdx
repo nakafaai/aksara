@@ -1,21 +1,16 @@
-Aturan soal berlaku pada **kenaikan mingguan**, bukan langsung pada jumlah penjualan. Hitung selisih setiap dua minggu berurutan sebelum meneruskan pola.
+Implikasi <InlineMath math="p \Rightarrow q" /> hanya salah ketika <InlineMath math="p" /> benar dan <InlineMath math="q" /> salah. Karena itu, **negasi implikasi adalah "p dan bukan q"**:
 
-# Hitung kenaikan berikutnya
+<BlockMath math="\neg(p \Rightarrow q) \equiv p \wedge \neg q" />
 
-| Jenis | Kenaikan yang diketahui | Kenaikan berikutnya |
-| --- | --- | --- |
-| Segiempat | <InlineMath math="15-12=3" />, <InlineMath math="21-15=6" />, <InlineMath math="30-21=9" /> | Bertambah tiga, jadi <InlineMath math="9+3=12" /> |
-| Bergo | <InlineMath math="16-14=2" />, <InlineMath math="18-16=2" />, <InlineMath math="20-18=2" /> | Tetap <InlineMath math="2" /> |
-| Pasmina | <InlineMath math="14-9=5" />, <InlineMath math="20-14=6" />, <InlineMath math="27-20=7" /> | Bertambah satu, jadi <InlineMath math="7+1=8" /> |
+Di sini <InlineMath math="p" /> adalah "hari ini libur" dan <InlineMath math="q" /> adalah "semua toko di pasar itu tutup". Negasi <InlineMath math="q" /> bukan "semua toko buka", melainkan **"ada toko yang tidak tutup"**, karena satu toko yang tetap buka sudah cukup untuk membantah "semua toko tutup".
 
-Ketiga deret kenaikan membentuk **barisan aritmetika** dengan beda masing-masing tiga, nol, dan satu. Beda nol pada bergo berarti kenaikan penjualan tetap sama.
+Hasilnya: hari ini libur dan ada toko di pasar itu yang tidak tutup.
 
-# Tambahkan ke penjualan minggu keempat
+Pilihan lain tidak tepat:
 
-Tambahkan kenaikan yang baru dihitung ke jumlah terakhir, bukan ke jumlah awal:
+- "Hari ini tidak libur dan semua toko buka" salah menegasikan <InlineMath math="p" /> dan <InlineMath math="q" /> sekaligus.
+- "Jika hari ini tidak libur, ada toko yang buka" masih berbentuk implikasi, bukan negasi.
+- "Hari ini libur dan semua toko buka" terlalu kuat. Negasi hanya memerlukan satu toko yang tidak tutup.
+- "Hari ini tidak libur atau semua toko tutup" adalah bentuk lain dari pernyataan semula, <InlineMath math="\neg p \vee q" />, jadi justru setara, bukan negasi.
 
-<BlockMath math="\begin{aligned}S_5&amp;=30+12=42\\B_5&amp;=20+2=22\\P_5&amp;=27+8=35\end{aligned}" />
-
-Huruf <InlineMath math="S" />, <InlineMath math="B" />, dan <InlineMath math="P" /> berturut-turut menyatakan segiempat, bergo, dan pasmina. Urutan prediksi penjualannya adalah <InlineMath math="42>35>22" />. Jadi, **segiempat paling banyak terjual**, sedangkan bergo paling sedikit.
-
-Pilihan yang benar menyebut penjualan segiempat sebanyak <InlineMath math="42" /> buah. Prediksi bergo bukan <InlineMath math="24" />, pasmina bukan yang terbanyak, dan pasmina tetap lebih banyak daripada bergo.
+Jadi, negasinya adalah "Hari ini libur dan ada toko di pasar itu yang tidak tutup".

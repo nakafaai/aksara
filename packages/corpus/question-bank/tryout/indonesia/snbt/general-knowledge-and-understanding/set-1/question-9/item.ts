@@ -1,30 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "conclusion",
+  },
+  stimulus: "elektronik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "peningkatan minat terhadap olahraga selama pandemi COVID-19.",
+          label:
+            "Pengolahan oleh pengepul kecil tidak menghasilkan keuntungan sehingga perlu diganti.",
         },
         {
           correct: false,
-          label: "dampak positif berolahraga bagi tubuh kita.",
+          label:
+            "Fasilitas pengolahan yang aman akan berjalan baik selama peralatannya memadai.",
         },
         {
           correct: false,
-          label: "ragam kegiatan olahraga pada masa pandemi.",
+          label:
+            "Bahaya pengolahan sampah elektronik hanya dirasakan oleh para pekerjanya.",
         },
         {
           correct: true,
           label:
-            "perlunya membedakan panduan olahraga berbasis bukti dari mitos selama pandemi.",
+            "Pengolahan sampah elektronik yang aman memerlukan pemilahan, fasilitas penangkap bahan berbahaya, dan sistem pengumpulan dari warga.",
         },
         {
           correct: false,
-          label: "olahraga merupakan satu di antara cara mencegah corona.",
+          label:
+            "Pemilahan komponen sejak awal sudah cukup untuk membuat seluruh proses pengolahan sampah elektronik menjadi aman bagi pekerja dan warga.",
         },
       ],
     },

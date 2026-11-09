@@ -1,35 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "term-meaning",
+  },
+  stimulus: "hoaks",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Pembayaran digital terbukti selalu lebih cepat dan harus menggantikan uang tunai di semua pasar.",
+          label: "Membaca berita dengan cepat dari atas ke bawah.",
+        },
+        {
+          correct: false,
+          label: "Membaca judul berita tanpa membuka isinya.",
         },
         {
           correct: false,
           label:
-            "Karena sebagian pengguna mengalami kendala, jalur digital sebaiknya dihapus meskipun bermanfaat bagi kelompok lain.",
-        },
-        {
-          correct: false,
-          label:
-            "Keluhan sinyal terkonsentrasi pada satu lorong di sisi pasar.",
+            "Membaca berita yang sama berulang kali di satu situs sampai seluruh isinya benar-benar dipahami.",
         },
         {
           correct: true,
           label:
-            "Data awal mendukung perluasan terbatas, tetapi belum mendukung kewajiban digital bagi semua transaksi.",
+            "Memeriksa apa yang dikatakan sumber lain tentang klaim atau situs yang sedang dibaca.",
         },
         {
           correct: false,
-          label:
-            "Uji berikutnya akan memperbaiki jaringan dan membandingkan jumlah barang yang sebanding.",
+          label: "Membaca komentar pembaca di bawah berita.",
         },
       ],
     },

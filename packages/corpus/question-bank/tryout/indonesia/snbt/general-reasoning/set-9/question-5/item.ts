@@ -1,31 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "inductive-reasoning",
+    topic: "data-comparison",
+  },
+  stimulus: "antrean",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Banjir dapat mencemari sumber air minum",
-        },
-        {
-          correct: false,
-          label: "Genangan air dapat menjadi tempat berkembang biak nyamuk",
-        },
-        {
-          correct: false,
-          label: "Banjir saja tidak membuktikan bahwa wabah pasti terjadi",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "Genangan air tidak pernah menjadi tempat berkembang biak nyamuk",
+            "Pada bulan Mei, lebih dari separuh pasien datang pukul 09.00 atau sesudahnya.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Kondisi setempat dan tindakan pengendalian dapat memengaruhi risiko wabah",
+            "Waktu tunggu pada setiap rentang jam kedatangan turun dari Maret ke Mei.",
+        },
+        {
+          column: 1,
+          label:
+            "Banyak pasien per hari pada bulan Mei $$10$$ orang lebih banyak daripada bulan Maret.",
+        },
+        {
+          column: 2,
+          label:
+            "Pada bulan Mei, waktu tunggu terlama terjadi pada rentang 07.00 sampai 08.00.",
         },
       ],
     },

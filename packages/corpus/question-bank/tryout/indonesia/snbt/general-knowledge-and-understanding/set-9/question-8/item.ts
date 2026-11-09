@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "rabies",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            'Bagian awal mengajukan klaim "Pengamat anonim memakai kriteria volume yang telah ditetapkan", lalu bagian kedua memakai "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang" sebagai dukungan utama.',
+            "Mencuci luka gigitan dengan sabun dan air mengalir termasuk langkah awal yang dianjurkan.",
         },
         {
-          correct: false,
-          label:
-            'Bagian pertama menetapkan "Karena keluhan berkurang, jumlah seluruh percakapan keras pasti turun dengan ukuran yang sama" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Pengelola akan menggunakan angka mayoritas yang berasal dari pengamatan terbaru".',
+          column: 2,
+          label: "Rabies hanya dapat ditularkan oleh anjing.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            'Kedua bagian mempertahankan klaim "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+            "Memvaksin tiga puluh persen anjing di suatu wilayah sudah cukup untuk menghentikan penularan.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Karena keluhan berkurang, jumlah seluruh percakapan keras pasti turun dengan ukuran yang sama" dari bukti "Pengamat anonim memakai kriteria volume yang telah ditetapkan".',
-        },
-        {
-          correct: true,
-          label:
-            "Hasil awal memunculkan hipotesis, pengendalian faktor pengganggu mengujinya, dan temuan lanjutan membatasi penerapannya.",
+            "Gejala rabies tidak selalu muncul segera setelah seseorang digigit.",
         },
       ],
     },

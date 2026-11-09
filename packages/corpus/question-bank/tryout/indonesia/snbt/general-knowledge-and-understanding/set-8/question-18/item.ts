@@ -1,33 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "gambut",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Kesalahan klasifikasi membuat seluruh data relawan tidak memiliki nilai ilmiah.",
+            "Kebakaran gambut pasti sudah padam ketika api di permukaan tidak terlihat lagi.",
         },
         {
-          correct: false,
-          label: "Daerah tanpa laporan pasti tidak memiliki bibit mangrove.",
-        },
-        {
-          correct: false,
-          label: "Kesepakatan pada foto saat air pasang tetap lebih rendah.",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "Peningkatan laporan tidak dengan sendirinya membuktikan peningkatan populasi yang sama besar.",
+            "Mencegah kebakaran gambut lebih hemat biaya daripada memadamkannya.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Peta publik akan memisahkan laporan, intensitas pengamatan, dan validasi.",
+            "Asap kebakaran gambut hanya berdampak pada daerah di sekitar lahan yang terbakar.",
+        },
+        {
+          column: 1,
+          label:
+            "Sekat kanal yang jebol dapat membuat gambut di sekitarnya kembali kering.",
         },
       ],
     },

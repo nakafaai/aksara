@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "sentence-meaning",
+    topic: "referent",
+  },
+  stimulus: "tempe",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "perendaman kedelai selama semalam",
+        },
+        {
+          correct: false,
+          label: "perebusan kedelai sampai matang",
+        },
+        {
+          correct: false,
+          label: "pembungkusan kedelai dengan daun pisang",
+        },
+        {
+          correct: false,
+          label: "pengupasan kulit ari kedelai",
+        },
+        {
           correct: true,
-          label:
-            "Penurunan keluhan awal belum cukup membuktikan mekanisme pesan karena perlakuan lain juga berbeda.",
-        },
-        {
-          correct: false,
-          label:
-            "Setiap pesan yang menyebut mayoritas pasti mengubah perilaku semua penumpang.",
-        },
-        {
-          correct: false,
-          label:
-            "Karena keluhan berkurang, jumlah seluruh percakapan keras pasti turun dengan ukuran yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengamat anonim memakai kriteria volume yang telah ditetapkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengelola akan menggunakan angka mayoritas yang berasal dari pengamatan terbaru.",
+          label: "fermentasi kedelai oleh kapang",
         },
       ],
     },

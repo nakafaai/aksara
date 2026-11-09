@@ -1,32 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "arrangement",
+  },
+  stimulus: "loker",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Jika honor kegiatan dibayarkan, pimpinan dapat menugaskan karyawan membuat laporan",
+          column: 1,
+          label: "Loker Fajar dan loker Eli berada di kolom yang sama.",
         },
         {
-          correct: false,
-          label:
-            "Laporan kegiatan belum diserahkan berarti honor pimpinan tidak dibayarkan",
+          column: 1,
+          label: "Loker Caca dan loker Beni berada di baris yang berbeda.",
         },
         {
-          correct: false,
-          label: "Jika pimpinan meminta laporan, kegiatan segera dilaksanakan",
+          column: 2,
+          label: "Loker Doni berada di kolom $$3$$.",
         },
         {
-          correct: false,
-          label: "Jika honor tidak ada, kegiatan tidak dapat dilaksanakan",
-        },
-        {
-          correct: true,
-          label:
-            "Honor karyawan tidak dibayarkan berarti kegiatan belum dilaksanakan",
+          column: 2,
+          label: "Loker Eli berada di baris yang sama dengan loker Ana.",
         },
       ],
     },

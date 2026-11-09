@@ -1,6 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "strengthening",
+  },
+  stimulus: "rumpon",
   versions: {
     id: {
       kind: "choice",
@@ -8,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Luas panen di tahun $$2018$$ lebih dari dua kali lipat luas panen di tahun $$2016$$",
+            "Harga ikan di pasar kabupaten itu tidak berubah selama enam bulan setelah rumpon dipasang.",
         },
         {
           correct: false,
           label:
-            "Produksi bawang putih di tahun $$2018$$ lebih dari dua kali lipat dari produksi bawang putih di tahun $$2017$$",
-        },
-        {
-          correct: false,
-          label:
-            "Periode $$2015\\text{-}2017$$, luas panen bawang putih mengalami penurunan terus menerus",
+            "Sebagian besar ikan dari sekitar rumpon adalah jenis yang sebelumnya tidak pernah tertangkap di perairan kabupaten itu.",
         },
         {
           correct: true,
           label:
-            "Pada tahun $$2017$$ terjadi penurunan dalam luas panen, produksi dan impor bawang putih",
+            "Hasil tangkapan per melaut di perairan yang jauh dari rumpon turun dibandingkan periode yang sama tahun sebelumnya.",
         },
         {
           correct: false,
           label:
-            "Terjadi kenaikan terus menerus pada jumlah impor bawang putih di dua tahun terakhir",
+            "Daun kelapa pada rumpon perlu diganti setiap tiga bulan agar tetap menarik ikan.",
+        },
+        {
+          correct: false,
+          label:
+            "Rumpon di ketiga titik itu dipasang pada kedalaman laut yang berbeda-beda.",
         },
       ],
     },

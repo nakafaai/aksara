@@ -1,31 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "analogy",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "Pemakaian melebihi batas dan aliran listrik tidak terputus",
-        },
-        {
-          correct: false,
-          label: "Pemakaian melebihi batas dan aliran listrik terputus",
+          label:
+            "Seperti di Kota P, kemacetan di persimpangan tersibuk Kota Q terutama disebabkan oleh kendaraan yang melintas lurus.",
         },
         {
           correct: false,
           label:
-            "Jika aliran listrik tidak terputus, pemakaian tidak melebihi batas",
-        },
-        {
-          correct: false,
-          label: "Pemakaian tidak melebihi batas atau aliran listrik terputus",
+            "Kota Q dan Kota P sama-sama memiliki taman kota di dekat persimpangan tersibuknya.",
         },
         {
           correct: false,
           label:
-            "Tidak benar bahwa pemakaian melebihi batas sementara listrik tetap menyala",
+            "Biaya pembangunan jalan layang di Kota P ternyata lebih rendah daripada perkiraan awal.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebagian besar kendaraan di persimpangan tersibuk Kota Q berbelok ke pasar yang berada tepat di sudut persimpangan itu, bukan melintas lurus.",
+        },
+        {
+          correct: false,
+          label:
+            "Waktu tempuh melewati persimpangan tersibuk Kota P memang turun setelah jalan layangnya dibuka.",
         },
       ],
     },

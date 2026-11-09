@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "arrangement",
+  },
+  stimulus: "meja",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Satu kali pengukuran berat badan cukup untuk membuktikan bahwa seorang anak sepenuhnya sehat.",
+          label: "$$2$$",
         },
         {
           correct: false,
-          label:
-            "Lingkar kepala saja menentukan status gizi anak pada semua kelompok umur.",
-        },
-        {
-          correct: false,
-          label:
-            "Setiap kenaikan berat atau tinggi badan otomatis berarti pertumbuhan anak sudah sesuai.",
+          label: "$$3$$",
         },
         {
           correct: true,
-          label:
-            "Pertumbuhan anak dinilai melalui beberapa pengukuran yang sesuai dengan umur serta polanya dari waktu ke waktu.",
+          label: "$$4$$",
         },
         {
           correct: false,
-          label:
-            "Kurva pertumbuhan menggantikan seluruh penilaian profesional lain terhadap kesehatan anak.",
+          label: "$$6$$",
+        },
+        {
+          correct: false,
+          label: "$$8$$",
         },
       ],
     },

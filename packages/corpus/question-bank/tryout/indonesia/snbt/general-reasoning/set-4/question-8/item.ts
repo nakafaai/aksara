@@ -1,6 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "strengthening",
+  },
+  stimulus: "kantor",
   versions: {
     id: {
       kind: "choice",
@@ -8,27 +14,24 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tempe mengandung energi lebih tinggi daripada daging sapi gemuk",
+            "Karyawan yang merasa lebih nyaman bekerja cenderung lebih jarang datang terlambat ke kantor setiap pagi.",
         },
         {
           correct: false,
-          label:
-            "Daging sapi gemuk mengandung protein $$3{,}3\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada tempe",
+          label: "Tanaman hias yang dipakai mudah dirawat dan jarang layu.",
+        },
+        {
+          correct: false,
+          label: "Survei kenyamanan dilakukan secara daring.",
+        },
+        {
+          correct: false,
+          label: "Sebagian karyawan membawa tanaman sendiri ke rumah.",
         },
         {
           correct: true,
           label:
-            "Tempe mengandung protein $$3{,}3\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada daging sapi gemuk",
-        },
-        {
-          correct: false,
-          label:
-            "Tempe mengandung lemak $$13{,}2\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada daging sapi gemuk",
-        },
-        {
-          correct: false,
-          label:
-            "Daging sapi gemuk mengandung lemak $$12{,}2\\text{ g}$$ lebih banyak per $$100\\text{ g}$$ daripada tempe",
+            "Di kantor cabang yang tidak diberi tanaman hias, jumlah izin sakit pada periode yang sama tidak berubah.",
         },
       ],
     },

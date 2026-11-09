@@ -1,34 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "conditional-chain",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Peserta menyatakan bahwa pendamping memberikan masukan karier yang berguna.",
+          label: "Kereta itu berangkat tepat waktu hari ini.",
         },
         {
           correct: false,
-          label:
-            "Jumlah pendaftar program pendampingan meningkat sepanjang tahun.",
+          label: "Pintu peron dibuka lebih awal daripada biasanya.",
         },
         {
           correct: false,
-          label:
-            "Audit independen membenarkan angka perpanjangan kontrak yang dilaporkan.",
+          label: "Kereta itu berangkat pukul 07.15 hari ini.",
         },
         {
           correct: false,
-          label:
-            "Beberapa departemen berencana menambah sesi pendampingan tahun depan.",
+          label: "Semua penumpang sudah naik ketika kereta itu berangkat.",
         },
         {
           correct: true,
-          label:
-            "Kontrak diperpanjang otomatis kecuali pekerja mengirim formulir penolakan.",
+          label: "Kereta itu tidak berangkat tepat waktu hari ini.",
         },
       ],
     },

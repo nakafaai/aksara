@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "general-term",
+  },
+  stimulus: "gerhana",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "gondrong berantakan.",
-        },
-        {
-          correct: false,
-          label: "pipinya kasar.",
-        },
-        {
-          correct: false,
-          label: "lingkaran hitam.",
+          label: "dipantulkan",
         },
         {
           correct: true,
-          label: "tubuhnya tampak makin ramping.",
+          label: "dibiaskan",
         },
         {
           correct: false,
-          label: "bercukur.",
+          label: "diserap",
+        },
+        {
+          correct: false,
+          label: "dipadamkan",
+        },
+        {
+          correct: false,
+          label: "dipancarkan",
         },
       ],
     },

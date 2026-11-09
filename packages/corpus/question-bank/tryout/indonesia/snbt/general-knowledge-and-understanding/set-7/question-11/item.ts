@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "term-meaning",
+  },
+  stimulus: "panas",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Setelah hambatan akses dikurangi, usulan dari dusun yang sebelumnya tidak terwakili mulai muncul dalam hasil musyawarah.",
+            "pulau kecil yang suhunya tinggi karena letaknya dekat dengan garis khatulistiwa",
+        },
+        {
+          correct: false,
+          label: "bagian kota yang paling banyak ditumbuhi pepohonan peneduh",
         },
         {
           correct: false,
           label:
-            "Undangan yang direvisi membuat waktu dan lokasi musyawarah lebih mudah ditemukan tanpa mengubah jalur partisipasi yang tersedia.",
+            "gedung yang membuang udara panas dari pendingin ruangan ke jalan",
         },
         {
           correct: false,
           label:
-            "Keputusan akhir akan mencatat pilihan, keberatan, dan pengaruh masukan.",
-        },
-        {
-          correct: false,
-          label:
-            "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat.",
+            "daerah pinggiran yang suhunya lebih tinggi daripada pusat kota",
         },
         {
           correct: true,
           label:
-            "Catatan perjalanan terverifikasi menunjukkan warga yang pulang lebih awal memiliki angkutan pulang yang setara setelah sesi keputusan, tetapi memilih pergi karena alasan pribadi.",
+            "keadaan ketika pusat kota lebih panas daripada daerah pinggiran di sekitarnya",
         },
       ],
     },

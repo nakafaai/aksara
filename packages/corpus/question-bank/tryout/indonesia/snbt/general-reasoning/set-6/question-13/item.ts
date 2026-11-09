@@ -1,31 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "logical-equivalence",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Jika pemiliknya hadir, toko itu buka.",
+        },
+        {
+          correct: false,
+          label: "Jika toko itu tidak buka, pemiliknya tidak hadir.",
+        },
+        {
+          correct: false,
+          label: "Toko itu buka dan pemiliknya tidak hadir.",
+        },
+        {
           correct: true,
-          label: "Peternak ayam mandiri mengalami kerugian.",
+          label: "Jika pemiliknya tidak hadir, toko itu tidak buka.",
         },
         {
           correct: false,
-          label: "Mitra dagang telah membatasi ekspor negara tersebut.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebuah putusan dagang secara langsung menyebabkan penurunan harga di tingkat peternak.",
-        },
-        {
-          correct: false,
-          label:
-            "Retaliasi merupakan satu-satunya faktor yang menentukan neraca perdagangan.",
-        },
-        {
-          correct: false,
-          label: "Impor ayam yang diusulkan telah masuk ke pasar lokal.",
+          label: "Pemiliknya hadir hanya jika toko itu buka.",
         },
       ],
     },

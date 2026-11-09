@@ -1,33 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "rempah",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "hanya memuat kelompok yang jumlahnya paling besar",
+          label: "Penjual pertama di pulau asal",
         },
         {
           correct: false,
-          label:
-            "membagi jumlah responden sama rata tanpa melihat komposisi populasi",
+          label: "Pembeli akhir di pasar Eropa",
+        },
+        {
+          correct: false,
+          label: "Petani yang menanam rempah",
         },
         {
           correct: true,
-          label: "cukup mencerminkan ragam kelompok yang hendak dijelaskan",
+          label:
+            "Pihak yang menghubungkan penjual dan pembeli lalu mengambil keuntungan",
         },
         {
           correct: false,
           label:
-            "mengutamakan kelompok yang paling mudah dijangkau pengumpul data",
-        },
-        {
-          correct: false,
-          label:
-            "memiliki responden banyak meskipun ragam kelompok penting tidak tercakup",
+            "Pelaut yang mengemudikan kapal pengangkut rempah dari pulau asal ke pelabuhan-pelabuhan lain",
         },
       ],
     },

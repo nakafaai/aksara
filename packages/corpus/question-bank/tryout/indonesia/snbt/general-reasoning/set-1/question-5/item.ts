@@ -1,33 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "inductive-reasoning",
+    topic: "data-comparison",
+  },
+  stimulus: "bibit",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Angka itu merupakan bagian anggaran yang tersisa untuk kebutuhan kementerian lainnya.",
+            "Pada penyiraman pagi, tambahan tinggi akibat kompos dua kali tambahan tinggi akibat pupuk cair.",
         },
         {
-          correct: false,
-          label: "Angka itu merupakan kenaikan produksi padi yang dilaporkan.",
+          column: 1,
+          label:
+            "Rata-rata tinggi seluruh bibit berpupuk cair lebih besar daripada rata-rata tinggi seluruh bibit berkompos.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Angka itu merupakan bagian dari total anggaran kementerian yang dibelanjakan untuk sarana dan prasarana produksi pertanian.",
+            "Pada penyiraman sore, tambahan tinggi akibat pupuk cair dua kali tambahan tinggi akibat kompos.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Angka itu merupakan kenaikan produksi jagung yang dilaporkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Angka itu merupakan bagian anggaran yang hanya digunakan untuk mengatur impor.",
+            "Kombinasi perlakuan yang menghasilkan bibit tertinggi adalah pupuk cair dengan penyiraman pagi.",
         },
       ],
     },

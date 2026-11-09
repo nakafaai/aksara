@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "sentence-meaning",
+    topic: "referent",
+  },
+  stimulus: "mikroplastik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Dokumen tertulis membuktikan bahwa kesaksian lisan tidak memiliki nilai sejarah.",
+          label: "ikan yang memangsa hewan berukuran kecil",
         },
         {
           correct: false,
-          label:
-            "Arsip harus memilih narasumber yang paling yakin dan menghapus rekaman yang tidak sesuai.",
+          label: "butiran penggosok dalam produk pembersih wajah",
         },
         {
           correct: false,
-          label:
-            "Upacara peresmian berlangsung beberapa bulan setelah sebagian kelas pindah.",
+          label: "serat pakaian yang terbawa air limbah",
         },
         {
           correct: true,
-          label:
-            "Perbedaan kesaksian dapat menjadi informasi tentang cara ingatan bekerja, bukan alasan otomatis untuk membuang salah satu sumber.",
+          label: "plankton dan kerang yang memakan mikroplastik",
         },
         {
           correct: false,
-          label:
-            "Rekaman asli disimpan agar tafsir dapat dinilai ulang oleh peneliti berikutnya.",
+          label: "manusia yang memakan ikan dari laut",
         },
       ],
     },

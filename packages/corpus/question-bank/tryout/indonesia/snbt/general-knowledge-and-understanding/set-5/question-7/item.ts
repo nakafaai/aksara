@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "word-relation",
+    topic: "analogy",
+  },
+  stimulus: "petir",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Rekonstruksi sejarah yang bertanggung jawab membandingkan sumber, menjelaskan sudut pandang, dan mempertahankan bahan asli untuk penilaian ulang.",
+          label: "hujan : payung",
         },
         {
           correct: true,
-          label:
-            "Jadwal, foto, surat penggunaan ruang, dan wawancara tambahan menunjukkan perpindahan berlangsung bertahap.",
+          label: "api : asap",
         },
         {
           correct: false,
-          label:
-            "Perbedaan ingatan dapat muncul karena setiap narasumber menyaksikan bagian peristiwa yang berbeda.",
+          label: "awan : langit",
         },
         {
           correct: false,
-          label:
-            "Rekaman asli disimpan agar tafsir dapat dinilai ulang oleh peneliti berikutnya.",
+          label: "guru : sekolah",
         },
         {
           correct: false,
-          label:
-            "Dokumen tertulis membuktikan bahwa kesaksian lisan tidak memiliki nilai sejarah.",
+          label: "angin : topan",
         },
       ],
     },

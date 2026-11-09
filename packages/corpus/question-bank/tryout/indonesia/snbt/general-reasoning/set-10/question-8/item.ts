@@ -1,29 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "assumption",
+  },
+  stimulus: "membaca",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Semua siswa di sekolah itu membaca judul buku yang sama selama waktu membaca pagi.",
+        },
+        {
+          correct: false,
+          label:
+            "Nilai tes membaca para siswa pada akhir semester berikutnya pasti akan naik lagi.",
+        },
+        {
           correct: true,
-          label: "$$45$$ dan $$186$$ orang",
+          label:
+            "Siswa benar-benar membaca selama lima belas menit itu, bukan melakukan kegiatan lain.",
         },
         {
           correct: false,
-          label: "$$45$$ dan $$187$$ orang",
+          label:
+            "Beberapa sekolah lain di kota itu sudah lebih dulu menjalankan program membaca serupa.",
         },
         {
           correct: false,
-          label: "$$45$$ dan $$188$$ orang",
-        },
-        {
-          correct: false,
-          label: "$$46$$ dan $$189$$ orang",
-        },
-        {
-          correct: false,
-          label: "$$46$$ dan $$190$$ orang",
+          label:
+            "Waktu membaca setiap pagi harus diperpanjang menjadi tiga puluh menit agar berhasil.",
         },
       ],
     },

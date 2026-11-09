@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "deductive-reasoning",
+    topic: "rule-application",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "A, C, D",
+        },
+        {
+          correct: false,
+          label: "C, D, A",
+        },
+        {
+          correct: false,
+          label: "A, D, C",
+        },
+        {
+          correct: false,
+          label: "D, C, A",
+        },
+        {
           correct: true,
-          label: "$$\\text{D}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{A}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{B}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{C}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{E}$$",
+          label: "C, A, D",
         },
       ],
     },

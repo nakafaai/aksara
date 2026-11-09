@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "word-relation",
+    topic: "analogy",
+  },
+  stimulus: "komodo",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Katalog yang dapat ditelusuri perlu menjaga berbagai nama beserta sumbernya agar kemudahan pencarian tidak menghapus atribusi.",
+          label: "ikan : air",
         },
         {
           correct: false,
-          label:
-            "Pengelola dapat memilih satu nama yang paling mudah dicari dan menghapus sebutan lainnya.",
+          label: "burung : sarang",
+        },
+        {
+          correct: false,
+          label: "ayam : telur",
         },
         {
           correct: true,
-          label:
-            "Foto tanpa nama pembuat beredar, sedangkan label kurator lebih sering dikutip daripada keterangan keluarga.",
+          label: "kucing : tikus",
         },
         {
           correct: false,
-          label: "Hasil pencarian akan menampilkan sumber setiap nama.",
-        },
-        {
-          correct: false,
-          label:
-            "Setiap objek harus ditampilkan tanpa judul utama agar semua nama benar-benar setara.",
+          label: "petani : sawah",
         },
       ],
     },

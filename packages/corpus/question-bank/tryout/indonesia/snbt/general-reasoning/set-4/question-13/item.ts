@@ -1,29 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "logical-equivalence",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Semua peserta yang tidak terlambat diizinkan masuk ruang ujian.",
+        },
+        {
+          correct: false,
+          label: "Ada peserta terlambat yang diizinkan masuk ruang ujian.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebagian peserta yang terlambat tidak diizinkan masuk ruang ujian.",
+        },
+        {
           correct: true,
-          label: "bo bluwpz mwckeeck?",
+          label:
+            "Semua peserta yang diizinkan masuk ruang ujian tidak terlambat.",
         },
         {
           correct: false,
-          label: "bo ckeeck? bluwwppz",
-        },
-        {
-          correct: false,
-          label: "ckeeck? mwbluwpz bo",
-        },
-        {
-          correct: false,
-          label: "bo mwbluwpz ckeeck?",
-        },
-        {
-          correct: false,
-          label: "mwbluwpz ckeeck? bo",
+          label:
+            "Setiap peserta yang tidak diizinkan masuk ruang ujian pasti terlambat.",
         },
       ],
     },

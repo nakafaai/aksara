@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "paragraph-relation",
+  },
+  stimulus: "rempah",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pembayaran digital terbukti selalu lebih cepat dan harus menggantikan uang tunai di semua pasar.",
+            "Paragraf pertama dan kedua membandingkan cengkih dengan pala.",
+        },
+        {
+          correct: false,
+          label:
+            "Paragraf kedua membantah keterangan harga pada paragraf pertama.",
+        },
+        {
+          correct: false,
+          label:
+            "Paragraf pertama berisi contoh-contoh perdagangan rempah, sedangkan paragraf kedua berisi definisi tentang rempah dan cara menanamnya di luar Maluku.",
+        },
+        {
+          correct: false,
+          label:
+            "Kedua paragraf menceritakan riwayat hidup seorang pedagang rempah.",
         },
         {
           correct: true,
           label:
-            "Rata-rata keseluruhan dapat menyesatkan ketika kelompok pengguna dan ukuran transaksi berbeda secara sistematis.",
-        },
-        {
-          correct: false,
-          label:
-            "Karena sebagian pengguna mengalami kendala, jalur digital sebaiknya dihapus meskipun bermanfaat bagi kelompok lain.",
-        },
-        {
-          correct: false,
-          label:
-            "Keluhan sinyal terkonsentrasi pada satu lorong di sisi pasar.",
-        },
-        {
-          correct: false,
-          label:
-            "Uji berikutnya akan memperbaiki jaringan dan membandingkan jumlah barang yang sebanding.",
+            "Paragraf pertama menjelaskan kelangkaan dan mahalnya rempah, sedangkan paragraf kedua menjelaskan akibat yang ditimbulkannya.",
         },
       ],
     },

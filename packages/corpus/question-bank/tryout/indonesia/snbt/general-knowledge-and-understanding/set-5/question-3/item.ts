@@ -1,34 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "subak",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Ukuran sampel dan sumber daya ditambah sepadan dengan luas klaim yang hendak dibuat.",
+            "Menanam pada waktu yang sama dalam satu kawasan dapat membantu menekan populasi hama.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
+            "Setiap anggota subak selalu mendapat jatah air yang sama besar.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Tim memperoleh keluaran setara dengan waktu dan energi lebih sedikit tanpa menurunkan mutu.",
+            "Subak ditetapkan sebagai Warisan Budaya Dunia karena mampu mengendalikan hama.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Prosedur lapangan disesuaikan saat cuaca berubah tanpa mengubah tujuan dan aturan ukur utama.",
-        },
-        {
-          correct: false,
-          label:
-            "Dampaknya cukup besar untuk mengubah hasil utama, bukan sekadar variasi kecil di tepi.",
+            "Hilangnya satu petak sawah dapat memengaruhi pengairan petak lain di bawahnya.",
         },
       ],
     },

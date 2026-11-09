@@ -1,11 +1,18 @@
-Sei <InlineMath math="P" /> die Aussage "Es ereignete sich ein Raub" und <InlineMath math="Q" /> die Aussage "Es ereignete sich ein Diebstahl." Die beiden Prämissen lauten:
+Unterscheide die Fälle nach der Stelle von **T**, denn T darf nur zuerst oder zuletzt kommen. P und Q stehen immer zusammen, also behandle PQ als einen Block.
 
-<BlockMath math="P\lor Q" />
+**Fall T zuletzt**. Die Plätze 1 bis 5 belegen der Block PQ, R, S und U, mit R vor S, S nicht zuletzt (schon erfüllt, da T zuletzt ist) und U nicht neben R. Alle Möglichkeiten:
 
-<BlockMath math="\neg P" />
+| Plätze 1 bis 5 | Regel 4 erfüllt? |
+| --- | --- |
+| P, Q, R, S, U | ja |
+| R, P, Q, S, U | ja |
+| R, P, Q, U, S | ja |
+| R, S, P, Q, U | ja |
+| R, S, U, P, Q | ja |
+| U, P, Q, R, S | ja |
 
-Die zweite Prämisse schließt einen Raub aus. Damit die erste Prämisse wahr bleibt, muss ein Diebstahl stattgefunden haben:
+Andere Anordnungen mit R vor S scheitern, weil U neben R steht, zum Beispiel P, Q, U, R, S oder U, R, P, Q, S. Das sind **6** Reihenfolgen.
 
-<BlockMath math="Q" />
+**Fall T zuerst**. Die Plätze 2 bis 6 belegen der Block PQ, R, S und U, wobei S nicht auf Platz 6 steht. Möglich sind T, P, Q, R, S, U, dann T, R, P, Q, S, U, dann T, R, S, P, Q, U und T, R, S, U, P, Q. Das sind **4** Reihenfolgen.
 
-Diese Schlussform heißt disjunktiver Syllogismus. Daher ereignete sich am vergangenen Sonntag in Kampung Bambu **ein Diebstahl**.
+Insgesamt gibt es <InlineMath math="6+4=10" /> Reihenfolgen.

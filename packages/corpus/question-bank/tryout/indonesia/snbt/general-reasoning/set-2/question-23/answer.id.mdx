@@ -1,13 +1,18 @@
-Setiap irisan dua layanan mencakup <InlineMath math="10" /> pengguna ketiga layanan. Untuk memperoleh pengguna **tepat dua layanan**, kurangi kelompok tersebut dari masing-masing irisan.
+Stok pada akhir suatu bulan bergantung pada **semua bulan sebelumnya**, bukan hanya produksi bulan itu. Hitung stok akhir bulan satu per satu dengan rumus
 
-| Dua layanan saja | Jumlah pengguna |
-| :--- | :---: |
-| <InlineMath math="A,B" /> | <InlineMath math="25-10=15" /> |
-| <InlineMath math="A,C" /> | <InlineMath math="20-10=10" /> |
-| <InlineMath math="B,C" /> | <InlineMath math="18-10=8" /> |
+<BlockMath math="\text{stok akhir}=\text{stok awal}+\text{produksi}-\text{penjualan}" />
 
-Ketiga kelompok hasil pengurangan **tidak saling tumpang tindih**. Karena setiap peserta hanya masuk satu kelompok, kamu dapat menjumlahkan ketiga jumlah pengguna.
+| Bulan | Perhitungan | Stok akhir |
+| --- | --- | --- |
+| Januari | <InlineMath math="10+30-25" /> | <InlineMath math="15" /> |
+| Februari | <InlineMath math="15+40-30" /> | <InlineMath math="25" /> |
+| Maret | <InlineMath math="25+25-35" /> | <InlineMath math="15" /> |
+| April | <InlineMath math="15+35-20" /> | <InlineMath math="30" /> |
+| Mei | <InlineMath math="30+30-40" /> | <InlineMath math="20" /> |
+| Juni | <InlineMath math="20+20-25" /> | <InlineMath math="15" /> |
 
-<BlockMath math="15+10+8=33" />
+Stok paling banyak adalah <InlineMath math="30" /> lemari pada akhir April.
 
-Jadi, <InlineMath math="33" /> peserta menggunakan tepat dua layanan.
+Pilihan Februari menjebak karena produksi Februari paling banyak, yaitu <InlineMath math="40" />. Namun, stok akhir Februari hanya <InlineMath math="25" />, karena penjualannya juga besar dan stok awalnya lebih kecil. Maret, Mei, dan Juni memiliki penjualan lebih besar daripada produksi, sehingga stoknya turun pada bulan-bulan itu.
+
+Jadi, stok lemari paling banyak terjadi pada akhir April.

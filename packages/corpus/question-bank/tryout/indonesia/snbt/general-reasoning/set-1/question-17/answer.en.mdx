@@ -1,8 +1,11 @@
-The passage gives two clues:
+Count the arrangements by splitting into cases according to **the pair of facing chairs that L and M occupy**. K stays in chair 1, so the only available pairs are chairs 2 and 5 or chairs 3 and 6.
 
-- Growth is represented by **several measurements**, including more than weight.
-- Those measurements are interpreted against age-appropriate curves and followed **over time**.
+**Case chairs 2 and 5**. N cannot sit in chair 2 or 6 because those are next to K, and chair 5 is taken. So N is in chair 3 or 4. If N were in chair 4, O would need chair 5, which is taken. So N is in chair 3, O in chair 4, and P in chair 6. Only the order of L and M is still free, giving <InlineMath math="2" /> arrangements.
 
-The conclusion about several measurements and their pattern over time combines both ideas. The other options turn one measurement into a complete diagnosis, treat any increase as automatically appropriate, or claim that growth charts replace all other health assessment. None of those claims appears in the text.
+**Case chairs 3 and 6**. N is in chair 4 or 5. If N were in chair 5, O would need chair 6, which is taken. So N is in chair 4, O in chair 5, and P in chair 2. Chair 2 is even, so the condition on P holds. The order of L and M gives <InlineMath math="2" /> arrangements.
 
-Therefore, growth assessment uses several suitable measurements and follows their development over time.
+<BlockMath math="\text{Number of arrangements} = 2+2=4" />
+
+The answer <InlineMath math="2" /> comes from counting only one case. The answer <InlineMath math="8" /> comes from counting the order of L and M twice, or from letting N sit freely in chair 4 or 5 without checking O's chair. The answers <InlineMath math="3" /> and <InlineMath math="6" /> do not fit the case split, because each case always yields a pair of arrangements in which L and M swap places.
+
+So <InlineMath math="4" /> seating arrangements satisfy all the conditions.

@@ -1,15 +1,22 @@
-All arrangements are equally likely, so the probability denominator is <InlineMath math="6!=720" />. Count the valid arrangements in stages.
+Mark each statement Benar (true) or Salah (false). Write each plan's cost as a function of the usage <InlineMath math="u" /> GB. Extra charges start only **after the included quota is used up**.
 
-First put <InlineMath math="E" /> in one of the <InlineMath math="4" /> interior positions. The other reports can be arranged in <InlineMath math="5!" /> ways, giving <InlineMath math="4\times5!=480" /> arrangements.
+<BlockMath math="\begin{aligned}
+A(u) &= 50{,}000+6{,}000(u-10) &&\text{for } u>10 \\
+B(u) &= 80{,}000 &&\text{for } u\le 20 \\
+B(u) &= 80{,}000+4{,}000(u-20) &&\text{for } u>20
+\end{aligned}" />
 
-Subtract arrangements in which <InlineMath math="A" /> and <InlineMath math="B" /> are adjacent. Treat them as **one block**, with two internal orders: <InlineMath math="AB" /> and <InlineMath math="BA" />. There are <InlineMath math="2\times5!" /> block arrangements, but <InlineMath math="2\times2\times4!" /> of them put <InlineMath math="E" /> at an end.
+**Statement 1** is false. For <InlineMath math="15" /> GB, <InlineMath math="A(15)=50{,}000+5\times6{,}000=80{,}000" /> and <InlineMath math="B(15)=80{,}000" />. The costs are equal, so Plan A is not cheaper.
 
-In the end-position count, the first factor of <InlineMath math="2" /> chooses the block order, the second chooses the end for <InlineMath math="E" />, and <InlineMath math="4!" /> arranges the four remaining objects.
+**Statement 2** is true. <InlineMath math="A(12)=50{,}000+2\times6{,}000=62{,}000" />, which is cheaper than <InlineMath math="80{,}000" />.
 
-<BlockMath math="\begin{aligned} N_{AB} &amp;=2\times5!-2\times2\times4! \\ &amp;=240-96=144 \\ N &amp;=480-144=336 \end{aligned}" />
+**Statement 3** is false. <InlineMath math="A(25)=50{,}000+15\times6{,}000=140{,}000" /> and <InlineMath math="B(25)=80{,}000+5\times4{,}000=100{,}000" />. The difference is <InlineMath math="\text{Rp}40{,}000" />.
 
-Among arrangements with <InlineMath math="A" /> and <InlineMath math="B" /> apart and <InlineMath math="E" /> inside, swapping <InlineMath math="C" /> and <InlineMath math="D" /> pairs every arrangement with one having their order reversed. Exactly half put <InlineMath math="C" /> before <InlineMath math="D" />.
+**Statement 4** is true. Check two usage ranges:
 
-<BlockMath math="\begin{aligned} N_{\mathrm{valid}} &amp;=336\div2=168 \\ P &amp;=\frac{168}{720}=\frac{7}{30} \end{aligned}" />
+- For <InlineMath math="16\le u\le 20" />, <InlineMath math="A(u)" /> is at least <InlineMath math="A(16)=86{,}000" />, while <InlineMath math="B(u)=80{,}000" />.
+- For <InlineMath math="u>20" />, the difference is <InlineMath math="A(u)-B(u)=(6{,}000u-10{,}000)-4{,}000u=2{,}000u-10{,}000" />, which is positive because <InlineMath math="u>5" />.
 
-The probability of satisfying all constraints is <InlineMath math="\frac{7}{30}" />.
+In both ranges, Plan B is cheaper.
+
+So statements 2 and 4 are true, and statements 1 and 3 are false.

@@ -1,35 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "sentence-relation",
+  },
+  stimulus: "tempe",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            'Bagian awal mengajukan klaim "Bagian tengah jembatan diganti besar-besaran pada 1958", lalu bagian kedua memakai "Karena ada beberapa tanggal, tidak ada satu pun fakta tentang riwayat jembatan yang dapat dipastikan" sebagai dukungan utama.',
-        },
-        {
-          correct: false,
-          label:
-            'Bagian pertama menetapkan "Satu tanggal paling tua selalu paling tepat untuk semua jenis sejarah" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Plakat baru akan menampilkan garis waktu dengan arti setiap tanggal".',
-        },
-        {
           correct: true,
           label:
-            "Temuan beberapa tanggal memunculkan ambiguitas, lalu pembedaan konsep digunakan untuk menyusun label yang lebih tepat.",
+            "memberi peringatan setelah keunggulan tempe disebut pada kalimat (7)",
         },
         {
           correct: false,
           label:
-            'Kedua bagian mempertahankan klaim "Karena ada beberapa tanggal, tidak ada satu pun fakta tentang riwayat jembatan yang dapat dipastikan" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+            "menjelaskan penyebab tempe lebih mudah dicerna pada kalimat (7)",
         },
         {
           correct: false,
           label:
-            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Satu tanggal paling tua selalu paling tepat untuk semua jenis sejarah" dari bukti "Bagian tengah jembatan diganti besar-besaran pada 1958".',
+            "menyebutkan langkah yang harus dilakukan sebelum kedelai direbus sampai matang",
+        },
+        {
+          correct: false,
+          label: "membandingkan tempe dengan kedelai rebus dari segi rasanya",
+        },
+        {
+          correct: false,
+          label:
+            "memberikan contoh zat sederhana yang dihasilkan kapang selama fermentasi",
         },
       ],
     },

@@ -1,6 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "parallel-reasoning",
+  },
+  stimulus: "kopi",
   versions: {
     id: {
       kind: "choice",
@@ -8,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Simpulan itu pasti benar karena tutupan lahan hijau berkurang.",
+            "Semua anggota paduan suara sekolah hadir pada latihan hari Sabtu. Sinta anggota paduan suara, jadi Sinta hadir pada latihan itu.",
         },
         {
           correct: true,
           label:
-            "Simpulan itu tidak didukung oleh informasi karena memperkenalkan hasil yang tidak diukur dan tidak dihubungkan oleh aturan apa pun.",
+            "Semua pemain inti tim basket kota bertinggi badan di atas $$180$$ cm. Raka bertinggi $$185$$ cm, jadi Raka pasti menjadi pemain inti.",
         },
         {
           correct: false,
           label:
-            "Simpulan itu mungkin benar karena suhu permukaan lahan meningkat.",
+            "Jika hujan turun, lapangan menjadi basah. Lapangan tidak basah, jadi hujan tidak turun.",
         },
         {
           correct: false,
           label:
-            "Simpulan itu pasti salah karena proyek tidak mencatat data banjir.",
+            "Tiga teman Dodi menyukai film itu, jadi Dodi yakin semua penonton pasti menyukainya.",
         },
         {
           correct: false,
           label:
-            "Simpulan itu didukung karena partikel di udara dan banjir merupakan hasil yang setara.",
+            "Bu Tini memilih jalan memutar karena seorang tetangga mengatakan jalan utama sedang macet.",
         },
       ],
     },

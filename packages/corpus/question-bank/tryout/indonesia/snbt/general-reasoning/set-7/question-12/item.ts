@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "conditional-chain",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$1{,}75\\text{ meter}$$",
-        },
-        {
-          correct: false,
-          label: "$$1{,}85\\text{ meter}$$",
-        },
-        {
-          correct: false,
-          label: "$$1{,}90\\text{ meter}$$",
-        },
-        {
           correct: true,
-          label: "$$2{,}00\\text{ meter}$$",
+          label: "Hari ini tidak hujan dan tidak ada angin kencang.",
         },
         {
           correct: false,
-          label: "$$2{,}10\\text{ meter}$$",
+          label: "Hari ini hujan, tetapi tidak ada angin kencang.",
+        },
+        {
+          correct: false,
+          label: "Pertunjukan wayang hari ini dipindahkan ke dalam gedung.",
+        },
+        {
+          correct: false,
+          label:
+            "Penonton pertunjukan wayang hari ini lebih dari $$200$$ orang.",
+        },
+        {
+          correct: false,
+          label: "Hari ini ada angin kencang, tetapi tidak hujan.",
         },
       ],
     },

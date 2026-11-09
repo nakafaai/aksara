@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "quantitative-reasoning",
+    topic: "absolute-value",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\frac1{21}$$",
+          column: 2,
+          label: "Ada tepat $$10$$ bilangan bulat $$x$$ yang memenuhi.",
         },
         {
-          correct: true,
-          label: "$$\\frac1{14}$$",
+          column: 2,
+          label: "Nilai $$x$$ terkecil yang memenuhi adalah $$-2$$.",
         },
         {
-          correct: false,
-          label: "$$\\frac1{18}$$",
+          column: 1,
+          label: "Jumlah semua nilai $$x$$ yang memenuhi adalah $$27$$.",
         },
         {
-          correct: false,
-          label: "$$\\frac1{12}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac1{10}$$",
+          column: 1,
+          label: "Ada tepat $$4$$ bilangan genap $$x$$ yang memenuhi.",
         },
       ],
     },

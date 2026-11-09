@@ -1,31 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "scheduling",
+  },
+  stimulus: "pentas",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Harga Mie A tidak pernah turun",
+          label: "P tampil pada sesi malam.",
         },
         {
           correct: false,
-          label: "Harga Mie B naik pada setiap periode",
+          label: "R tampil pada sesi malam.",
         },
         {
           correct: false,
-          label: "Setiap produk lebih sering naik daripada turun",
+          label: "U tampil pada sesi sore.",
+        },
+        {
+          correct: false,
+          label: "Q tampil pada hari Jumat.",
         },
         {
           correct: true,
-          label:
-            "Ada satu produk mie yang mengalami tepat satu kali penurunan harga",
-        },
-        {
-          correct: false,
-          label:
-            "Harga Mie A selalu di bawah $$\\text{Rp}\\,3000$$ setiap tahun",
+          label: "T tampil pada sesi sore.",
         },
       ],
     },

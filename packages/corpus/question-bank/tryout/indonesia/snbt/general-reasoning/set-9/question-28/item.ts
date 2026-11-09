@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "quantitative-reasoning",
+    topic: "percent",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\frac18$$",
+          column: 2,
+          label:
+            "Karena harga barang A $$20\\%$$ lebih murah daripada barang B, harga barang B juga $$20\\%$$ lebih mahal daripada barang A.",
         },
         {
-          correct: false,
-          label: "$$\\frac17$$",
+          column: 2,
+          label:
+            "Jika harga kedua barang sama-sama naik $$10\\%$$, selisih harganya tetap $$\\text{Rp}20{.}000$$.",
         },
         {
-          correct: true,
-          label: "$$\\frac16$$",
+          column: 1,
+          label: "Harga barang B sama dengan $$125\\%$$ dari harga barang A.",
         },
         {
-          correct: false,
-          label: "$$\\frac15$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac14$$",
+          column: 1,
+          label:
+            "Jika harga barang A naik $$\\text{Rp}20{.}000$$, harganya sama dengan harga barang B.",
         },
       ],
     },

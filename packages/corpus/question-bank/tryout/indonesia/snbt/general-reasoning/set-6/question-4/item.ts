@@ -1,29 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "data-inference",
+  },
+  stimulus: "tangga",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "menurunkan tekanan darah",
+          label:
+            "Poster membuat banyak perjalanan seluruhnya di gedung itu bertambah.",
         },
         {
           correct: false,
-          label: "mencegah penyakit kardiovaskular",
+          label:
+            "Pada minggu ke-$$8$$, pemakaian tangga sudah kembali sama dengan sebelum poster dipasang.",
         },
         {
           correct: true,
-          label: "meningkatkan tekanan darah",
+          label:
+            "Pengaruh poster terhadap pemakaian tangga paling besar pada minggu pertama pemasangannya, lalu melemah.",
         },
         {
           correct: false,
-          label: "mempercepat pencernaan",
+          label:
+            "Karyawan yang beralih ke tangga sebagian besar adalah karyawan yang berkantor di lantai-lantai rendah gedung itu.",
         },
         {
           correct: false,
-          label: "menghilangkan kebutuhan tubuh akan kalium",
+          label:
+            "Poster membuat pemakaian lift turun lebih dari separuh pada minggu ke-$$5$$.",
         },
       ],
     },

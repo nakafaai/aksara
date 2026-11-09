@@ -1,17 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "figure-pattern",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: true, label: "nit" },
-        { correct: false, label: "it" },
-        { correct: false, label: "pit" },
-        { correct: false, label: "sit" },
         {
           correct: false,
-          label: "tidak ada satu pun",
+          label: "△△△△△",
+        },
+        {
+          correct: true,
+          label: "▲▲▲▲▲",
+        },
+        {
+          correct: false,
+          label: "▶▶▶▶▶",
+        },
+        {
+          correct: false,
+          label: "▲▲▲▲",
+        },
+        {
+          correct: false,
+          label: "▷▷▷▷▷",
         },
       ],
     },

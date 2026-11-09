@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "conditional-chain",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$1{,}1$$ juta ton",
+          column: 1,
+          label: "Pada hari Kamis, hujan tidak turun sebelum pukul $$15.00$$.",
         },
         {
-          correct: false,
-          label: "$$2{,}5$$ juta ton",
+          column: 2,
+          label: "Pada hari Kamis, latihan sepak bola dipindahkan ke aula.",
         },
         {
-          correct: false,
-          label: "$$3{,}0$$ juta ton",
+          column: 2,
+          label: "Pada hari Kamis, hujan turun setelah pukul $$15.00$$.",
         },
         {
-          correct: true,
-          label: "$$1{,}8$$ juta ton",
-        },
-        {
-          correct: false,
-          label: "Tidak dapat ditentukan",
+          column: 1,
+          label: "Pada hari Kamis, tim basket tidak berlatih di halaman.",
         },
       ],
     },

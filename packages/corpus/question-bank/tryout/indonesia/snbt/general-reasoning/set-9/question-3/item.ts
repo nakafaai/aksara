@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "inductive-reasoning",
+    topic: "inference",
+  },
+  stimulus: "ulat",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$37$$",
+          column: 2,
+          label:
+            "Penurunan ulat di petak berperangkap dua kali penurunan ulat di petak tanpa perangkap.",
         },
         {
-          correct: false,
-          label: "$$38$$",
+          column: 1,
+          label: "Banyak ulat di petak tanpa perangkap turun $$40\\%$$.",
         },
         {
-          correct: false,
-          label: "$$39$$",
+          column: 1,
+          label:
+            "Pada akhir bulan, ulat di petak tanpa perangkap $$50\\%$$ lebih banyak daripada ulat di petak berperangkap.",
         },
         {
-          correct: false,
-          label: "$$40$$",
-        },
-        {
-          correct: false,
-          label: "$$41$$",
+          column: 2,
+          label: "Teks membuktikan bahwa hujan menurunkan banyak ulat.",
         },
       ],
     },

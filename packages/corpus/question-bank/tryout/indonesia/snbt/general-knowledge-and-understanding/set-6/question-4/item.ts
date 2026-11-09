@@ -1,34 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "paragraph-relation",
+  },
+  stimulus: "karst",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Penilai memakai rubrik yang ditetapkan sebelum mengetahui identitas peserta atau hasil akhirnya.",
-        },
-        {
-          correct: false,
-          label:
-            "Sumber, metode, dan jejak data dapat diperiksa secara mandiri sebelum klaim diterima.",
-        },
-        {
-          correct: false,
-          label:
-            "Instrumen diuji untuk memastikan bahwa skor benar-benar mewakili konsep yang hendak diukur.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim memeriksa rekaman asli beserta asal dan riwayat perubahannya sebelum menggunakannya.",
-        },
-        {
           correct: true,
           label:
-            "Klaim disusun dari pengamatan berulang dan hasil pengukuran, bukan dari dugaan semata.",
+            "Kalimat (6) menyatakan gagasan umum yang dijelaskan dengan contoh pada kalimat (7) dan (8).",
+        },
+        {
+          correct: false,
+          label:
+            "Kalimat (6) menyimpulkan seluruh isi paragraf pertama tentang terbentuknya karst.",
+        },
+        {
+          correct: false,
+          label:
+            "Kalimat (6) membantah manfaat sungai bawah tanah yang disebut pada kalimat (5).",
+        },
+        {
+          correct: false,
+          label:
+            "Kalimat (6) memberikan contoh dari pernyataan umum pada kalimat (7).",
+        },
+        {
+          correct: false,
+          label:
+            "Kalimat (6) mengulang isi kalimat (9) dengan kata-kata yang lebih singkat, lebih jelas, dan lebih mudah diingat.",
         },
       ],
     },

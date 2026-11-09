@@ -1,30 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "inference",
+  },
+  stimulus: "rumpon",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Stunting berarti berat badan rendah menurut tinggi badan",
-        },
-        {
-          correct: false,
-          label: "Stunting hanya dapat disebabkan oleh faktor genetik",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "Stunting adalah tinggi badan rendah menurut usia dan umumnya berkaitan dengan kekurangan gizi kronis atau berulang",
+            "Jumlah ekor ikan yang dibawa pulang per melaut oleh perahu di sekitar rumpon rata-rata lebih banyak daripada perahu di perairan lain.",
         },
         {
-          correct: false,
-          label: "Stunting selalu menyebabkan disabilitas kognitif",
+          column: 2,
+          label:
+            "Hasil tangkapan seluruh nelayan kabupaten itu naik sejak rumpon dipasang.",
         },
         {
-          correct: false,
-          label: "Kelebihan gizi adalah satu-satunya penyebab stunting",
+          column: 1,
+          label:
+            "Hasil tangkapan per melaut di sekitar rumpon lebih dari $$1{,}5$$ kali hasil tangkapan per melaut di perairan lain.",
+        },
+        {
+          column: 2,
+          label:
+            "Rumpon dipasang agar nelayan dapat menangkap ikan dengan jarak tempuh yang lebih pendek.",
         },
       ],
     },

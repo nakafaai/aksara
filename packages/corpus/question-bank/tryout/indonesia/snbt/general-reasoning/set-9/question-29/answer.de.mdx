@@ -1,27 +1,11 @@
-Die Reihenfolge der beiden Kugeln spielt keine Rolle. Die Anzahl gleich wahrscheinlicher Paare beträgt:
+Zähle zuerst alle Anordnungen, in denen Ani und Budi nebeneinander sitzen, und **ziehe** dann die ab, in denen Citra am Rand sitzt.
 
-<BlockMath math="\binom{12}{2}=\frac{12\times11}{2}=66" />
+Fasse Ani und Budi zu einem Block zusammen. Der Block bildet mit Citra, Dedi und Eka <InlineMath math="4" /> Einheiten, die sich auf <InlineMath math="4!=24" /> Arten anordnen lassen. Im Block können Ani und Budi auf <InlineMath math="2" /> Arten tauschen.
 
-| Paar | Anzahl | Auszahlung |
-| --- | ---: | ---: |
-| Rot und Rot | <InlineMath math="\binom62=15" /> | <InlineMath math="40" /> |
-| Rot und Blau | <InlineMath math="6\times6=36" /> | <InlineMath math="20" /> |
-| Blau und Blau | <InlineMath math="\binom62=15" /> | <InlineMath math="0" /> |
+<BlockMath math="24\times2=48" />
 
-Alle Auszahlungen in der Tabelle sind in Tausend Rupiah angegeben. <InlineMath math="X" /> bezeichnet die Auszahlung einer Ziehung. Ihr Erwartungswert beträgt:
+Anordnungen mit Citra ganz links: Die übrigen drei Einheiten lassen sich auf <InlineMath math="3!=6" /> Arten anordnen, mal <InlineMath math="2" /> für den Block, also <InlineMath math="12" />. Mit Citra ganz rechts sind es ebenfalls <InlineMath math="12" />.
 
-<BlockMath math="\begin{aligned}\mathrm{E}[X]&amp;=\frac{40\times15+20\times36}{66}\\&amp;=\frac{600+720}{66}\\&amp;=20\end{aligned}" />
+<BlockMath math="48-12-12=24" />
 
-Einen Wiederholungsversuch gibt es nur nach zwei blauen Kugeln. Die Wahrscheinlichkeit dafür beträgt:
-
-<BlockMath math="\frac{15}{66}=\frac5{22}" />
-
-Nach dem Zurücklegen hat der Wiederholungsversuch wieder die erwartete Auszahlung <InlineMath math="20" />. Wir addieren zur erwarteten ersten Auszahlung den Erwartungswert der Wiederholung, gewichtet mit der Wahrscheinlichkeit, sie zu erhalten:
-
-<BlockMath math="\begin{aligned}20+\frac5{22}\times20&amp;=20+\frac{50}{11}\\&amp;=\frac{270}{11}\end{aligned}" />
-
-Die Teilnahmegebühr wird **einmal** bezahlt. Der erwartete Nettogewinn beträgt:
-
-<BlockMath math="\frac{270}{11}-20=\frac{50}{11}" />
-
-Der erwartete Nettogewinn beträgt somit **<InlineMath math="50/11" /> Tausend Rupiah**.
+Es gibt also <InlineMath math="24" /> mögliche Sitzordnungen.

@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "grouping",
+  },
+  stimulus: "rak",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Minum teh hijau setiap hari terbukti mampu menghilangkan jerawat.",
+          label: "M berada di rak tengah.",
         },
         {
           correct: false,
-          label:
-            "Studi klinis telah membuktikan bahwa teh hijau mencegah semua bentuk kerusakan kulit akibat UV.",
+          label: "N berada di rak bawah.",
         },
         {
           correct: false,
-          label:
-            "Minum teh hijau terbukti dapat menggantikan perlindungan matahari yang sudah mapan.",
+          label: "P berada di rak tengah.",
+        },
+        {
+          correct: false,
+          label: "L berada di rak atas.",
         },
         {
           correct: true,
-          label:
-            "Teh hijau oral sedang diteliti untuk kemungkinan efek pada kulit, tetapi buktinya belum cukup untuk menjanjikan bahwa teh hijau mengatasi jerawat atau mencegah penuaan akibat cahaya.",
-        },
-        {
-          correct: false,
-          label:
-            "Suplemen ekstrak teh hijau pekat terbukti aman untuk semua orang karena berasal dari tumbuhan.",
+          label: "K berada di rak bawah.",
         },
       ],
     },

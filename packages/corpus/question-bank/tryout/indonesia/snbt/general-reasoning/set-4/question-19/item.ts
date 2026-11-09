@@ -1,34 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "impossibility",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Nasi beras pecah kulit mengandung energi $$7\\,\\text{kkal}$$ lebih rendah daripada nasi putih",
-        },
-        {
-          correct: false,
-          label:
-            "Nasi beras pecah kulit mengandung serat $$1{,}2\\,\\text{g}$$ lebih tinggi daripada nasi putih",
-        },
-        {
-          correct: false,
-          label:
-            "Nasi beras pecah kulit mengandung magnesium $$27\\,\\text{mg}$$ lebih tinggi daripada nasi putih",
-        },
-        {
-          correct: false,
-          label:
-            "Nasi beras pecah kulit mengandung fosfor $$60\\,\\text{mg}$$ lebih tinggi daripada nasi putih",
-        },
-        {
           correct: true,
-          label:
-            "Nasi beras pecah kulit mengandung karbohidrat $$2{,}59\\,\\text{g}$$ lebih tinggi daripada nasi putih",
+          label: "Ada panitia yang merupakan guru.",
+        },
+        {
+          correct: false,
+          label: "Ada peserta pelatihan yang merupakan guru.",
+        },
+        {
+          correct: false,
+          label: "Semua guru menerima sertifikat.",
+        },
+        {
+          correct: false,
+          label: "Ada penerima sertifikat yang menjadi panitia.",
+        },
+        {
+          correct: false,
+          label: "Tidak ada panitia yang menjadi peserta pelatihan.",
         },
       ],
     },

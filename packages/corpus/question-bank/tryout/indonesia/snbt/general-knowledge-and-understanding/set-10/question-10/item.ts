@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
+  },
+  stimulus: "jamu",
   versions: {
     id: {
       kind: "choice",
@@ -9,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Audit kedua menunjukkan catatan yang diperbarui pada setiap tahap dapat melacak batch bermasalah tanpa menarik produk yang tidak terkait.",
+            "Jamu adalah warisan budaya Indonesia yang diakui oleh UNESCO pada akhir tahun 2023.",
         },
         {
           correct: false,
           label:
-            "Simulasi lain menunjukkan bahwa kode satu lokasi mempercepat penelusuran, tetapi tidak dapat membedakan dua pemasok yang beroperasi di lokasi yang sama.",
+            "Resep jamu sebaiknya tidak lagi diwariskan dari orang tua kepada generasi berikutnya.",
         },
         {
           correct: false,
           label:
-            "Kode kemasan akan mengarah ke catatan rantai pasok yang lebih lengkap.",
+            "Fitofarmaka selalu lebih enak rasanya daripada jamu tradisional buatan rumah tangga.",
         },
         {
           correct: false,
-          label: "Singkong diiris di Desa Rawa dan digoreng di kota.",
+          label:
+            "Obat herbal terstandar tidak perlu lagi diawasi oleh BPOM karena sudah diuji pada hewan.",
         },
         {
           correct: true,
           label:
-            "Pada simulasi lanjutan dengan kasus yang sebanding, catatan berlapis dan label satu lokasi menghasilkan cakupan penarikan yang sama persis meskipun semua data telah diperbarui.",
+            "BPOM membagi obat bahan alam ke dalam tiga kelompok menurut kuatnya bukti khasiat.",
         },
       ],
     },

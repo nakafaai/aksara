@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "sentence-meaning",
+    topic: "referent",
+  },
+  stimulus: "bekantan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Semua tahap produksi harus dicetak lengkap di bagian depan setiap kemasan.",
+          label: "pohon di tepi sungai",
         },
         {
           correct: true,
-          label:
-            "Ketertelusuran menghubungkan produk dengan catatan perjalanan yang terus diperbarui, bukan hanya sebuah lokasi.",
+          label: "kelompok bekantan itu",
         },
         {
           correct: false,
-          label:
-            "Jika kode tersedia, catatan pemasok tidak perlu lagi diperbarui.",
+          label: "perkebunan dan permukiman",
         },
         {
           correct: false,
-          label: "Singkong diiris di Desa Rawa dan digoreng di kota.",
+          label: "bakteri di dalam lambung",
         },
         {
           correct: false,
-          label:
-            "Ketertelusuran cukup menghubungkan produk dengan alamat distributor terakhir tanpa catatan tahap sebelumnya.",
+          label: "hutan bakau dan rawa",
         },
       ],
     },

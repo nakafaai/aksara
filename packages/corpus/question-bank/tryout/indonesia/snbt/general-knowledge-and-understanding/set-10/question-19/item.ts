@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
+  },
+  stimulus: "kunang",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pencarian arsip otomatis bermanfaat jika hasil diperlakukan sebagai indeks terbatas yang dapat diperiksa dan dikoreksi.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengelola dapat menampilkan hanya dokumen yang mudah dibaca mesin agar hasil pencarian tampak bersih.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan mengaudit perbedaan kinerja menurut jenis tulisan dan periode.",
+            "Kunang-kunang adalah sejenis lalat yang cahayanya berasal dari panas di dalam tubuhnya.",
         },
         {
           correct: true,
           label:
-            "Surat ketikan lebih mudah ditemukan daripada catatan tangan dan ejaan lama sering tidak muncul.",
+            "Kunang-kunang berpasangan lewat cahaya, tetapi terancam lampu dan hilangnya habitat.",
         },
         {
           correct: false,
           label:
-            "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan.",
+            "Lampu jalan sebaiknya dimatikan di seluruh kota setiap malam demi menjaga kunang-kunang.",
+        },
+        {
+          correct: false,
+          label:
+            "Larva kunang-kunang hanya dapat hidup di dalam air sungai yang dalam dan sangat jernih.",
+        },
+        {
+          correct: false,
+          label:
+            "Enzim lusiferase menjadi satu-satunya penyebab berkurangnya jumlah kunang-kunang.",
         },
       ],
     },

@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "ordering",
+  },
+  stimulus: "urutan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Direktur membatalkan kedua program pada tahun ini.",
+          label: "pertama",
         },
         {
           correct: true,
-          label: "PT Batik menjual produk baru pada tahun ini.",
+          label: "kedua",
         },
         {
           correct: false,
-          label: "Direktur menunda kedua program sampai izin selesai.",
+          label: "ketiga",
         },
         {
           correct: false,
-          label: "PT Batik tidak menjual produk baru pada tahun ini.",
+          label: "kelima",
         },
         {
           correct: false,
-          label: "Izin pembukaan cabang selesai pada tahun ini.",
+          label: "keenam",
         },
       ],
     },

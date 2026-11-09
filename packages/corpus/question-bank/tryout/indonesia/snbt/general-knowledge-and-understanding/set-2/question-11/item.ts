@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "tabungan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Naik sedikit demi sedikit",
+        },
+        {
           correct: true,
-          label:
-            "produk susu yang diubah oleh mikroorganisme melalui fermentasi.",
+          label: "Turun dengan tajam",
         },
         {
           correct: false,
-          label: "produk susu yang dijamin tidak mengandung laktosa.",
+          label: "Tidak berubah sama sekali",
         },
         {
           correct: false,
-          label: "produk susu yang hanya ditujukan bagi lansia.",
+          label: "Naik dan turun berganti-ganti",
         },
         {
           correct: false,
-          label: "obat untuk menangani penyakit pencernaan.",
-        },
-        {
-          correct: false,
-          label: "produk susu yang dicampur oksigen sebelum diminum.",
+          label: "Hilang dari pasaran",
         },
       ],
     },

@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "negation",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$39$$",
+          label: "Jika tidak hujan, jalan di depan sekolah tidak tergenang.",
         },
         {
           correct: false,
-          label: "$$41$$",
+          label:
+            "Jika jalan di depan sekolah tidak tergenang, maka tidak hujan.",
         },
         {
           correct: false,
-          label: "$$49$$",
+          label: "Tidak hujan dan jalan di depan sekolah tergenang.",
         },
         {
           correct: false,
-          label: "$$52$$",
+          label: "Tidak hujan atau jalan di depan sekolah tergenang.",
         },
         {
           correct: true,
-          label: "$$46$$",
+          label: "Hujan dan jalan di depan sekolah tidak tergenang.",
         },
       ],
     },

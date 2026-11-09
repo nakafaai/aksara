@@ -1,29 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "inductive-reasoning",
+    topic: "data-comparison",
+  },
+  stimulus: "cabai",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$57\\text{ kkal}$$",
+          column: 1,
+          label:
+            "Harga rata-rata pada minggu ke-$$3$$ sepertiga lebih tinggi daripada harga pada minggu ke-$$1$$.",
         },
         {
-          correct: true,
-          label: "$$75\\text{ kkal}$$",
+          column: 1,
+          label:
+            "Pasokan pada minggu ke-$$6$$ lebih dari $$1{,}5$$ kali pasokan pada minggu ke-$$3$$.",
         },
         {
-          correct: false,
-          label: "$$70\\text{ kkal}$$",
+          column: 2,
+          label:
+            "Rata-rata harga selama enam minggu lebih dari $$\\text{Rp}33{.}000$$ per kg.",
         },
         {
-          correct: false,
-          label: "$$72\\text{ kkal}$$",
-        },
-        {
-          correct: false,
-          label: "$$87{,}72\\text{ kkal}$$",
+          column: 2,
+          label:
+            "Penurunan harga terbesar dari satu minggu ke minggu berikutnya terjadi antara minggu ke-$$3$$ dan minggu ke-$$4$$.",
         },
       ],
     },

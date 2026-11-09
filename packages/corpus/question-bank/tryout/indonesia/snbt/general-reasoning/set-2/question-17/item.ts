@@ -1,15 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "arrangement",
+  },
+  stimulus: "loker",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "Sains" },
-        { correct: false, label: "Agama" },
-        { correct: false, label: "Sastra" },
-        { correct: true, label: "Kamus" },
-        { correct: false, label: "Sejarah" },
+        {
+          correct: false,
+          label: "Ana",
+        },
+        {
+          correct: false,
+          label: "Beni",
+        },
+        {
+          correct: false,
+          label: "Caca",
+        },
+        {
+          correct: false,
+          label: "Doni",
+        },
+        {
+          correct: true,
+          label: "Eli",
+        },
       ],
     },
   },

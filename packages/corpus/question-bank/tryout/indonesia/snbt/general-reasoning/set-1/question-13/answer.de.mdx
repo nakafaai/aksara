@@ -1,13 +1,22 @@
-Der Vergleich wird einfacher, wenn alle **Dezimalfaktoren** als <InlineMath math="0{,}44" /> geschrieben werden. Zunächst formen wir den Vergleichswert um:
+Schreib die Aussage in Symbolen, damit ihre Form sichtbar wird. Sei <InlineMath math="p" />: Die Zugtickets sind ausverkauft, <InlineMath math="q" />: Rani fährt mit dem Bus, und <InlineMath math="r" />: Rani verschiebt die Reise. Die Aussage lautet <InlineMath math="p \Rightarrow (q \vee r)" />.
 
-<BlockMath math="0{,}44 \times \frac{17}{18} = 0{,}44 \times \frac{34}{36}" />
+Eine Implikation ist nur falsch, wenn der Wenn-Teil wahr und der Dann-Teil falsch ist. Diese Aussage wird also **nur verletzt, wenn die Tickets ausverkauft sind, Rani nicht mit dem Bus fährt und die Reise nicht verschiebt**. Eine gleichwertige Aussage muss genau in derselben Situation verletzt werden.
 
-# Alle Antwortmöglichkeiten umformen
+Forme sie algebraisch um:
 
-**Multipliziert man einen Faktor und dividiert den anderen** durch dieselbe Zahl, bleibt das Produkt unverändert. Der verwendete Faktor muss ungleich null sein. Bei der ersten Antwort wird der Dezimalfaktor mit vier multipliziert und der Bruch durch vier dividiert:
+<BlockMath math="\begin{aligned}
+p \Rightarrow (q \vee r) &\equiv \neg p \vee q \vee r \\
+&\equiv \neg(p \wedge \neg q) \vee r \\
+&\equiv (p \wedge \neg q) \Rightarrow r
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}0{,}11\times\frac{35}{9}&amp;=(0{,}11\times4)\times\left(\frac{35}{9}\div4\right)\\&amp;=0{,}44\times\frac{35}{36}\end{aligned}" />
+Die letzte Form lautet: Wenn die Zugtickets ausverkauft sind und Rani nicht mit dem Bus fährt, verschiebt Rani die Reise. Auch sie wird nur verletzt, wenn die Tickets ausverkauft sind, Rani nicht mit dem Bus fährt und die Reise nicht verschiebt.
 
-<BlockMath math="\begin{aligned} 0{,}11 \times \frac{35}{9} &amp;= 0{,}44 \times \frac{35}{36} \\ 0{,}22 \times \frac{17}{9} &amp;= 0{,}44 \times \frac{17}{18} \\ 0{,}33 \times \frac{34}{27} &amp;= 0{,}44 \times \frac{17}{18} \\ 0{,}55 \times \frac{34}{45} &amp;= 0{,}44 \times \frac{17}{18} \\ 0{,}66 \times \frac{17}{27} &amp;= 0{,}44 \times \frac{17}{18} \end{aligned}" />
+Die anderen Optionen sind nicht gleichwertig:
 
-Die vier Formen mit einem anderen Dezimalfaktor als <InlineMath math="0{,}11" /> entsprechen dem Vergleichswert. Bei der Form mit dem Dezimalfaktor <InlineMath math="0{,}11" /> ist der positive Faktor <InlineMath math="0{,}44" /> ebenfalls gleich, aber <InlineMath math="\frac{35}{36} > \frac{34}{36}" />. Daher ist nur <InlineMath math="0{,}11 \times \frac{35}{9}" /> größer.
+- "Wenn Rani mit dem Bus fährt oder verschiebt, sind die Tickets ausverkauft" ist die Umkehrung. Sie wird verletzt, wenn Rani mit dem Bus fährt, obwohl es noch Tickets gibt, und diese Situation verletzt die ursprüngliche Aussage nicht.
+- "Wenn die Tickets nicht ausverkauft sind, fährt Rani weder mit dem Bus, noch wird die Reise verschoben" ist die Inversion und ebenfalls nicht gleichwertig.
+- "Wenn Rani nicht mit dem Bus fährt oder nicht verschiebt, sind die Tickets nicht ausverkauft" verneint <InlineMath math="q \vee r" /> falsch. Richtig wäre "fährt nicht mit dem Bus **und** verschiebt nicht".
+- "Die Tickets sind ausverkauft, aber Rani fährt weder mit dem Bus, noch wird die Reise verschoben" ist die Verneinung der ursprünglichen Aussage.
+
+Gleichwertig ist also "Wenn die Zugtickets ausverkauft sind und Rani nicht mit dem Bus fährt, verschiebt Rani die Reise".

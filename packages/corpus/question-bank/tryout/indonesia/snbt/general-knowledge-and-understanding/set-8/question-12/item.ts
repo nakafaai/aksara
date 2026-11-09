@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "sentence-meaning",
+    topic: "referent",
+  },
+  stimulus: "rumput",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "pengolahan karagenan di pabrik",
+        },
+        {
           correct: true,
-          label:
-            "Atribusi berlapis mempertahankan beberapa sebutan sekaligus menjelaskan asal dan konteks masing-masing.",
+          label: "budi daya rumput laut pada tali yang diuraikan sebelumnya",
         },
         {
           correct: false,
-          label:
-            "Setiap objek harus ditampilkan tanpa judul utama agar semua nama benar-benar setara.",
+          label: "pembuatan pasta gigi dan kosmetik",
         },
         {
           correct: false,
-          label:
-            "Nama yang paling sering dikutip pasti merupakan nama yang diberikan pembuat kain.",
+          label: "penjemuran hasil panen sampai kering",
         },
         {
           correct: false,
-          label: "Salah satu nama dalam buku lama dibuat oleh kurator.",
-        },
-        {
-          correct: false,
-          label:
-            "Atribusi berlapis menghapus informasi tentang pemberi nama agar setiap sebutan terlihat netral.",
+          label: "pembelian rumput laut kering oleh para pengepul di pesisir",
         },
       ],
     },

@@ -1,33 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "negation",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Banyak kerudung jenis bergo yang terjual adalah $$24$$ buah.",
-        },
-        {
           correct: true,
-          label:
-            "Penjualan jenis kerudung segiempat adalah sebanyak $$42$$ buah.",
+          label: "Hari ini libur dan ada toko di pasar itu yang tidak tutup.",
         },
         {
           correct: false,
-          label:
-            "Kerudung jenis pasmina paling banyak terjual yaitu sebesar $$35$$ buah.",
+          label: "Hari ini tidak libur dan semua toko di pasar itu buka.",
         },
         {
           correct: false,
-          label:
-            "Kerudung jenis pasmina lebih sedikit terjual dibandingkan kerudung jenis bergo.",
+          label: "Jika hari ini tidak libur, ada toko di pasar itu yang buka.",
         },
         {
           correct: false,
-          label:
-            "Kerudung jenis bergo adalah kerudung yang paling banyak terjual.",
+          label: "Hari ini libur dan semua toko di pasar itu buka.",
+        },
+        {
+          correct: false,
+          label: "Hari ini tidak libur atau semua toko di pasar itu tutup.",
         },
       ],
     },

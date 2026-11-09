@@ -1,25 +1,17 @@
-Use variables for **each person’s age**: <InlineMath math="F" /> for Father, <InlineMath math="M" /> for Mother, and <InlineMath math="C" /> for their child.
+A conclusion is Benar (true) only if it **holds in every situation that satisfies all four premises**. If even one situation satisfies the premises but makes the conclusion false, the conclusion is Salah (false).
 
-# Translate the age differences
+**Conclusion 1** is true. Premise 4 says Dimas passed the basic training (pelatihan dasar), and premise 1 says everyone who passed may serve at the post.
 
-Mother and Father differ in age by **at most** <InlineMath math="5\text{ years}" />, so
+**Conclusion 2** is false. Premise 2 says only that **some** volunteers allowed at the post are health workers. Dimas may or may not be one of them.
 
-<BlockMath math="|F-M| \le 5" />
+**Conclusion 3** is true. By premise 2, some volunteers allowed at the post (posko) are health workers (tenaga kesehatan). By premise 3, those health workers do not serve in the public kitchen (dapur umum). So some volunteers allowed at the post do not serve in the public kitchen.
 
-Father is <InlineMath math="35\text{ years}" /> older than the child, while Mother is <InlineMath math="x\text{ years}" /> older than the child:
+**Conclusion 4** is true. Premise 3 can be written as "if someone is a health worker, they do not serve in the public kitchen". Its contrapositive is equivalent:
 
-<BlockMath math="\begin{aligned} F-C &amp;= 35 \\ M-C &amp;= x \end{aligned}" />
+<BlockMath math="(p \Rightarrow \neg q) \equiv (q \Rightarrow \neg p)" />
 
-Subtracting the second age difference from the first gives <InlineMath math="F-M=35-x" />. Therefore,
+Here <InlineMath math="p" /> means "is a health worker" and <InlineMath math="q" /> means "serves in the public kitchen". So if Dimas serves in the public kitchen, Dimas is not a health worker.
 
-<BlockMath math="|35-x| \le 5" />
+**Conclusion 5** is false. It reverses premise 1. Premise 1 does not forbid volunteers without the basic training from serving at the post for some other reason.
 
-# Solve the inequality
-
-The **absolute-value inequality** means that <InlineMath math="35-x" /> lies between <InlineMath math="-5" /> and <InlineMath math="5" />:
-
-Subtract 35 from all three parts. Multiplying by negative one **reverses both inequality signs**. Then put the values back in increasing order.
-
-<BlockMath math="\begin{aligned} -5 &amp;\le 35-x \le 5 \\ -40 &amp;\le -x \le -30 \\ 30 &amp;\le x \le 40 \end{aligned}" />
-
-Thus, Mother's age difference from the child must satisfy <InlineMath math="30 \le x \le 40" />.
+So conclusions 1, 3, and 4 are true, and conclusions 2 and 5 are false.

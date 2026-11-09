@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "scheduling",
+  },
+  stimulus: "pentas",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "Mie A pada tahun $$2017\\text{-}2018$$",
+          label: "S tidak tampil pada hari Sabtu.",
         },
         {
           correct: false,
-          label: "Mie A pada tahun $$2019\\text{-}2020$$",
+          label: "T tampil pada hari Sabtu.",
         },
         {
           correct: false,
-          label: "Mie B pada tahun $$2017\\text{-}2018$$",
+          label: "Q tampil pada sesi sore.",
         },
         {
           correct: false,
-          label: "Mie B pada tahun $$2018\\text{-}2019$$",
+          label: "P tampil pada sesi sore.",
         },
         {
           correct: false,
-          label: "Mie C pada tahun $$2019\\text{-}2020$$",
+          label: "U tampil pada hari Minggu.",
         },
       ],
     },

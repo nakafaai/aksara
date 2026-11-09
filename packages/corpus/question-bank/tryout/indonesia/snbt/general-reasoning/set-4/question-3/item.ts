@@ -1,30 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "inductive-reasoning",
+    topic: "inference",
+  },
+  stimulus: "lampu",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Sedikitnya satu hidangan tidak sekaligus asam dan pedas",
-        },
-        {
-          correct: false,
-          label: "Sedikitnya satu hidangan tidak asam dan tidak pedas",
-        },
-        {
-          correct: false,
-          label: "Setiap hidangan mengandung sayuran mentah",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "Sedikitnya satu hidangan tidak mengandung sayuran mentah serta terasa asam dan pedas",
+            "Perangkap di bawah lampu LED rata-rata menangkap lebih dari dua kali jumlah serangga di bawah lampu natrium.",
         },
         {
-          correct: false,
-          label: "Tidak ada hidangan yang mengandung sayuran mentah",
+          column: 2,
+          label:
+            "Penutup penyaring cahaya biru membuat lampu LED sama sekali tidak menarik serangga.",
+        },
+        {
+          column: 1,
+          label:
+            "Menurut pengelola kota, penggantian lampu natrium dengan lampu LED mengurangi pemakaian listrik.",
+        },
+        {
+          column: 2,
+          label:
+            "Kelelawar lebih sering terlihat berburu di sekitar lampu natrium daripada di sekitar lampu LED.",
         },
       ],
     },

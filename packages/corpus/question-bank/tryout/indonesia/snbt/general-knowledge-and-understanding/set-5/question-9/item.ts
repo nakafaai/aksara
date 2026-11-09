@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "petir",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Dokumen tertulis membuktikan bahwa kesaksian lisan tidak memiliki nilai sejarah.",
-        },
-        {
-          correct: false,
-          label:
-            "Arsip harus memilih narasumber yang paling yakin dan menghapus rekaman yang tidak sesuai.",
-        },
-        {
           correct: true,
-          label:
-            "Keyakinan seorang saksi tidak sama dengan kelengkapan sudut pandangnya.",
+          label: "lebih sering menyambar benda tinggi, walaupun tidak selalu",
         },
         {
           correct: false,
           label:
-            "Upacara peresmian berlangsung beberapa bulan setelah sebagian kelas pindah.",
+            "selalu menyambar benda yang paling tinggi di setiap tempat yang dilaluinya",
         },
         {
           correct: false,
-          label:
-            "Rekaman asli disimpan agar tafsir dapat dinilai ulang oleh peneliti berikutnya.",
+          label: "tidak pernah menyambar benda yang letaknya rendah",
+        },
+        {
+          correct: false,
+          label: "hanya menyambar pohon yang berdiri sendiri",
+        },
+        {
+          correct: false,
+          label: "menyambar benda tinggi hanya ketika hujan turun",
         },
       ],
     },

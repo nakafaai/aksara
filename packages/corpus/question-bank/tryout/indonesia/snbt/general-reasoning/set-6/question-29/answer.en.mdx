@@ -1,21 +1,11 @@
-All pairs of balls are equally likely. From <InlineMath math="5+7=12" /> balls, the number of possible pairs is:
+Every route from A to B has <InlineMath math="4" /> steps east and <InlineMath math="2" /> steps north. Count all routes, then **subtract the routes through X**.
 
-<BlockMath math="\binom{12}{2}=\frac{12\times11}{2}=66" />
+All routes: choose which <InlineMath math="2" /> of the <InlineMath math="6" /> steps go north.
 
-Count the pairs for each outcome:
+<BlockMath math="\binom{6}{2}=15" />
 
-- Two red balls can be chosen in <InlineMath math="\binom{5}{2}=10" /> ways.
-- One red and one blue ball can be chosen in <InlineMath math="5\times7=35" /> ways.
-- Two blue balls can be chosen in <InlineMath math="\binom{7}{2}=21" /> ways.
+Routes through X: from A to X there are <InlineMath math="2" /> steps east and <InlineMath math="1" /> north, <InlineMath math="\binom{3}{1}=3" /> ways. From X to B it is again <InlineMath math="2" /> east and <InlineMath math="1" /> north, <InlineMath math="3" /> ways. So <InlineMath math="3\times3=9" /> routes pass through X.
 
-Their sum is <InlineMath math="10+35+21=66" />, so these cases cover every possibility. All payouts below are in thousand rupiah.
+<BlockMath math="15-9=6" />
 
-Let <InlineMath math="X" /> be the payout in one round. Multiply **each payout by its probability** to obtain its expected value. The two-blue outcome contributes zero:
-
-<BlockMath math="\begin{aligned}\mathrm{E}[X]&amp;=60\frac{10}{66}\\&amp;\quad+30\frac{35}{66}\\&amp;=\frac{600+1{,}050}{66}\\&amp;=25\end{aligned}" />
-
-The box is restored for each round, so all three rounds have the same expected payout. The administration fee is paid **only once**:
-
-<BlockMath math="\begin{aligned}\mathrm{E}[\text{net}]&amp;=3(25)-10\\&amp;=75-10\\&amp;=65\end{aligned}" />
-
-The expected net payout is <InlineMath math="65" /> thousand rupiah. Expected value describes the theoretical average over many repetitions of the game.
+So Dina can choose from <InlineMath math="6" /> routes.

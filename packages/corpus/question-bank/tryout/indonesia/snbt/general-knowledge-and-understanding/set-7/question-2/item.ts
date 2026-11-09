@@ -1,34 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "angklung",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Prosedur lapangan disesuaikan saat cuaca berubah tanpa mengubah tujuan dan aturan ukur utama.",
+          label: "Satu angklung dapat memainkan seluruh nada sebuah lagu.",
         },
         {
           correct: true,
           label:
-            "Prosedur direvisi setelah keluhan terverifikasi menunjukkan hambatan yang tidak terdeteksi pada uji awal.",
+            "Setiap angklung dibuat untuk menghasilkan satu nada tertentu.",
         },
         {
           correct: false,
           label:
-            "Peralatan diperiksa dan komponen aus diganti sebelum kegagalan terjadi.",
+            "Tabung-tabung dalam satu angklung berbunyi pada nada yang berbeda-beda.",
         },
         {
           correct: false,
           label:
-            "Metode menyediakan beberapa jalur pelaksanaan yang tetap tunduk pada kriteria hasil yang sama.",
+            "Sebuah lagu angklung cukup dimainkan oleh satu orang yang terampil.",
         },
         {
           correct: false,
           label:
-            "Evaluasi melibatkan kelompok terdampak dengan kebutuhan mobilitas, bahasa, dan akses yang berbeda.",
+            "Panjang tabung bambu tidak memengaruhi bunyi yang dihasilkan angklung.",
         },
       ],
     },

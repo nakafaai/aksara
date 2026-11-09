@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "cause",
+  },
+  stimulus: "panas",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima.",
+            "matahari bersinar lebih lama di pusat kota daripada di daerah pinggiran",
         },
         {
           correct: false,
           label:
-            "Karena undangan terbuka, asal peserta dan alasan ketidakhadiran tidak perlu diperiksa.",
+            "aspal dan beton memantulkan seluruh panas matahari kembali ke udara",
         },
         {
           correct: true,
           label:
-            "Banyaknya peserta tidak cukup untuk membuktikan keterwakilan jika akses antarkelompok berbeda.",
+            "panas yang diserap aspal dan beton pada siang hari dilepaskan perlahan",
         },
         {
           correct: false,
           label:
-            "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat.",
+            "pepohonan di kota menguapkan terlalu banyak air pada malam hari",
         },
         {
           correct: false,
           label:
-            "Keputusan akhir akan mencatat pilihan, keberatan, dan pengaruh masukan.",
+            "angin malam membawa udara panas dari daerah pinggiran ke kota",
         },
       ],
     },
