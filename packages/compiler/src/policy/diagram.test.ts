@@ -34,21 +34,24 @@ describe("createDiagramPolicy", () => {
 
   it.effect("accepts every static way to write a chart", () =>
     validateDiagrams(
-      [
-        "<Mermaid",
-        "  title={<>Shifting and scaling the expected value</>}",
-        "  chart={`flowchart LR",
-        '  A["C with E(C) = 28"] -->|"times 1.8"| B["1.8C with E = 50.4"]',
-        '  B -->|"plus 32"| C["F = 1.8C + 32 with E(F) = 82.4"]`}',
-        "/>",
-        "",
-        '<Mermaid chart="pie title Share" />',
-        "",
-        '<Mermaid chart={"sequenceDiagram\\n  A->>B: hi"} />',
-        "",
-        'A sentence with <Mermaid chart="pie title Inline" /> inline.',
-        "",
-      ].join("\n")
+      Arr.join(
+        [
+          "<Mermaid",
+          "  title={<>Shifting and scaling the expected value</>}",
+          "  chart={`flowchart LR",
+          '  A["C with E(C) = 28"] -->|"times 1.8"| B["1.8C with E = 50.4"]',
+          '  B -->|"plus 32"| C["F = 1.8C + 32 with E(F) = 82.4"]`}',
+          "/>",
+          "",
+          '<Mermaid chart="pie title Share" />',
+          "",
+          '<Mermaid chart={"sequenceDiagram\\n  A->>B: hi"} />',
+          "",
+          'A sentence with <Mermaid chart="pie title Inline" /> inline.',
+          "",
+        ],
+        "\n"
+      )
     )
   );
 
@@ -58,15 +61,18 @@ describe("createDiagramPolicy", () => {
       Effect.gen(function* () {
         const error = yield* Effect.flip(
           validateDiagrams(
-            [
-              "# Expected value",
-              "",
-              "<Mermaid",
-              "  chart={`flowchart LR",
-              '  A["C with E("C") = 28"] --> B`}',
-              "/>",
-              "",
-            ].join("\n")
+            Arr.join(
+              [
+                "# Expected value",
+                "",
+                "<Mermaid",
+                "  chart={`flowchart LR",
+                '  A["C with E("C") = 28"] --> B`}',
+                "/>",
+                "",
+              ],
+              "\n"
+            )
           )
         );
         assert.strictEqual(error._tag, "DiagramPolicyError");
@@ -86,30 +92,34 @@ describe("createDiagramPolicy", () => {
     Effect.gen(function* () {
       const error = yield* Effect.flip(
         validateDiagrams(
-          [
-            `<Mermaid chart={\`flowchart LR\n  A --> ${DOLLAR}{1}\`} />`,
-            "",
-            "<Mermaid chart={1} />",
-            "",
-            "<Mermaid chart={diagram} />",
-            "",
-            '<Mermaid title="No chart" />',
-            "",
-            '<Mermaid chart="not a diagram" />',
-            "",
-          ].join("\n")
+          Arr.join(
+            [
+              `<Mermaid chart={\`flowchart LR\n  A --> ${DOLLAR}{1}\`} />`,
+              "",
+              "<Mermaid chart={1} />",
+              "",
+              "<Mermaid chart={diagram} />",
+              "",
+              '<Mermaid title="No chart" />',
+              "",
+              '<Mermaid chart="not a diagram" />',
+              "",
+            ],
+            "\n"
+          )
         )
       );
       assert.deepStrictEqual(
         Arr.map(error.violations, ({ line }) => line),
         [1, 4, 6, 8, 10]
       );
-      assert.include(error.violations[0]?.message, "static Mermaid text");
-      assert.include(error.violations[3]?.message, "has no chart");
-      assert.include(
-        error.violations[4]?.message,
-        "UnknownDiagramError: No diagram type detected"
+      const [dynamic, , , missing, unknown] = Arr.map(
+        error.violations,
+        ({ message }) => message
       );
+      assert.include(dynamic, "static Mermaid text");
+      assert.include(missing, "has no chart");
+      assert.include(unknown, "UnknownDiagramError: No diagram type detected");
     })
   );
 

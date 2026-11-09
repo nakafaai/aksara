@@ -2,7 +2,14 @@ import type {
   ContentKey,
   CorpusSourcePath,
 } from "@nakafa/aksara-contracts/ids";
-import { Array as Arr, Effect, MutableList, Option, Predicate } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  MutableList,
+  Option,
+  Predicate,
+  Schema,
+} from "effect";
 import type { Root } from "mdast";
 import type {
   MdxJsxAttribute,
@@ -16,19 +23,23 @@ import { attributeExpression } from "#compiler/ast/attribute";
 import {
   DiagramPolicyError,
   type DiagramPolicyViolation,
+  DiagramPolicyViolationSchema,
 } from "#compiler/errors";
 
 /** One authored diagram: its Mermaid source and where that source starts. */
-interface DiagramCandidate {
-  readonly chart: string;
-  readonly column: number;
-  readonly line: number;
-}
+const DiagramCandidateSchema = Schema.Struct({
+  chart: Schema.String,
+  column: Schema.Finite,
+  line: Schema.Finite,
+});
+type DiagramCandidate = typeof DiagramCandidateSchema.Type;
 
 /** What one `Mermaid` element yields: its diagram, or why it has none to parse. */
-type DiagramInspection =
-  | { readonly candidate: DiagramCandidate }
-  | { readonly violation: DiagramPolicyViolation };
+const DiagramInspectionSchema = Schema.Union([
+  Schema.Struct({ candidate: DiagramCandidateSchema }),
+  Schema.Struct({ violation: DiagramPolicyViolationSchema }),
+]);
+type DiagramInspection = typeof DiagramInspectionSchema.Type;
 
 /** Mermaid for this process, loaded on the first diagram. */
 let mermaidLoad: Promise<Mermaid> | undefined;

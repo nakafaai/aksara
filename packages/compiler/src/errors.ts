@@ -154,7 +154,7 @@ export class MathVisualPolicyError extends Schema.TaggedError<
 }) {}
 
 /** One authored Mermaid diagram that Mermaid cannot parse, where its source starts in the file. */
-const DiagramPolicyViolationSchema = Schema.Struct({
+export const DiagramPolicyViolationSchema = Schema.Struct({
   column: Schema.Finite.pipe(
     Schema.check(Schema.isInt()),
     Schema.check(Schema.isGreaterThan(0))
