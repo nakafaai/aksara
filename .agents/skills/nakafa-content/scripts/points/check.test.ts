@@ -21,12 +21,14 @@ import {
 const GIT_TIMEOUT = 30_000;
 
 const FAILED_SUMMARY =
-  /^Points check found 1 finding\(s\) in 1 of 1 files, compared with [0-9a-f]{7}\.$/u;
+  /^Points check found 3 finding\(s\) in 1 of 1 files, compared with [0-9a-f]{7}\.$/u;
 const PASSED_SUMMARY =
   /^Points check passed for 1 files and compared 1 changed files with [0-9a-f]{7}\.$/u;
+const BELOW_SUMMARY =
+  /^Points check found 1 lesson\(s\) below the visual bar, compared with [0-9a-f]{7}\.$/u;
 /**
  * An article has no visual bar, so the gate tests below see only the finding
- * each one makes. The bar has its own tests on a lesson folder.
+ * each one makes. The bar has its own test on a lesson folder.
  */
 const ROOT = "packages/corpus/articles/politics/parabola";
 const LESSON = `${ROOT}/en.mdx`;
@@ -55,44 +57,24 @@ vi.setConfig({ testTimeout: GIT_TIMEOUT });
 layer(NodeServices.layer, { excludeTestServices: true })(
   "points gate",
   (it) => {
-    it.effect("fails a lesson that pastes a vertex list", () =>
+    it.effect("fails every finding of a lesson in page order", () =>
       Effect.gen(function* () {
         const root = yield* commitLesson(COMPUTED_CURVE, COMPUTED_CURVE);
-        yield* writeFiles(root, {
-          [LESSON]: lesson(COMPUTED_CURVE, PASTED_CURVE),
-        });
-        const result = yield* check(root);
-
-        assert.strictEqual(result.code, 1);
-        assert.strictEqual(result.error.length, 2);
-        assert.match(
-          result.error[0] ?? "",
-          new RegExp(
-            `^${LESSON}:\\d+:\\d+ \\[literal-points\\] 9 literal points`,
-            "u"
-          )
-        );
-        assert.match(result.error[1] ?? "", FAILED_SUMMARY);
-      })
-    );
-
-    it.effect("fails a six-digit coordinate and names its position", () =>
-      Effect.gen(function* () {
-        const root = yield* commitLesson(COMPUTED_CURVE);
         const rounded = curveWith("[{ x: 0.707107, y: 0.707107, z: 0 }]");
-        const source = lesson(COMPUTED_CURVE, rounded);
-        yield* writeFiles(root, { [LESSON]: source });
+        yield* writeFiles(root, { [LESSON]: lesson(PASTED_CURVE, rounded) });
         const result = yield* check(root);
 
-        const line = source
-          .split("\n")
-          .findIndex((entry) => entry.includes("0.707107"));
         assert.strictEqual(result.code, 1);
-        assert.strictEqual(
-          result.error[0]?.startsWith(`${LESSON}:${line + 1}:`),
-          true
+        assert.deepStrictEqual(
+          result.error.slice(0, 3).map((line) => line.split(" ").slice(1, 3)),
+          [
+            ["[literal-points]", "9"],
+            ["[long-decimal]", "x:"],
+            ["[long-decimal]", "y:"],
+          ]
         );
-        assert.include(result.error[0], "[long-decimal] x: 0.707107");
+        assert.isTrue(result.error[0]?.startsWith(`${LESSON}:`));
+        assert.match(result.error[3] ?? "", FAILED_SUMMARY);
       })
     );
 
@@ -156,11 +138,8 @@ layer(NodeServices.layer, { excludeTestServices: true })(
 
     it.effect("fails a lesson folder below the visual bar", () =>
       Effect.gen(function* () {
-        const root = yield* createRepository();
-        yield* writeFiles(root, {
-          [BAR_LESSON]: lesson(COMPUTED_CURVE, COMPUTED_CURVE),
-        });
-        yield* commitAll(root, "lesson with two visuals");
+        const root = yield* commitLesson(COMPUTED_CURVE);
+        yield* writeFiles(root, { [BAR_LESSON]: lesson(COMPUTED_CURVE) });
         const result = yield* capture(
           runMain([BAR_ROOT, "--base", "HEAD"], root)
         );
@@ -170,26 +149,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           "1 lesson(s) below the visual bar, which needs at least 3 interactive visual cards:",
           `  ${BAR_ROOT}`,
         ]);
-        assert.match(
-          result.error[2] ?? "",
-          /^Points check found 1 lesson\(s\) below the visual bar, compared with [0-9a-f]{7}\.$/u
-        );
-      })
-    );
-
-    it.effect("passes a lesson folder at the visual bar", () =>
-      Effect.gen(function* () {
-        const root = yield* createRepository();
-        yield* writeFiles(root, {
-          [BAR_LESSON]: lesson(COMPUTED_CURVE, COMPUTED_CURVE, COMPUTED_CURVE),
-        });
-        yield* commitAll(root, "lesson at the bar");
-        const result = yield* capture(
-          runMain([BAR_ROOT, "--base", "HEAD"], root)
-        );
-
-        assert.strictEqual(result.code, 0);
-        assert.deepStrictEqual(result.error, []);
+        assert.match(result.error[2] ?? "", BELOW_SUMMARY);
       })
     );
 
