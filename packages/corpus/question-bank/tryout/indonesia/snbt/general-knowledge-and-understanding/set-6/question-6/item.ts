@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "abu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Satu loket dipindahkan dan jam layanannya diperpanjang.",
-        },
-        {
-          correct: false,
-          label:
-            "Tingkat pengembalian malam pertama membuktikan sistem harus diterapkan permanen tanpa perubahan.",
+          label: "terlempar keluar",
         },
         {
           correct: true,
-          label:
-            "Uang jaminan dapat mengurangi sampah, tetapi keberhasilannya harus dinilai bersama akses layanan dan biaya bagi berbagai pihak.",
+          label: "tertarik masuk",
         },
         {
           correct: false,
-          label:
-            "Karena ada keluhan, uang jaminan tidak mungkin memengaruhi perilaku pengunjung.",
+          label: "terbakar habis",
         },
         {
           correct: false,
-          label:
-            "Evaluasi akhir akan memasukkan biaya pencucian dan kehilangan wadah.",
+          label: "tersaring keluar",
+        },
+        {
+          correct: false,
+          label: "tertiup menjauh",
         },
       ],
     },

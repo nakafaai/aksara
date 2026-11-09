@@ -3,7 +3,7 @@ export const metadata = {
     description: "Turunkan enam fungsi trigonometri dasar dalam radian dan terapkan aturan jumlah, hasil kali, serta hasil bagi melalui contoh bertahap.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Turunan Fungsi",
 };
 
@@ -32,19 +32,25 @@ Tabel memasangkan setiap fungsi dengan turunannya dan syarat agar fungsi tersebu
 
 Untuk <InlineMath math="f(x)=\sin x" />, turunan <InlineMath math="f'(x)=\cos x" /> menentukan **kemiringan kurva sinus**. Pada <InlineMath math="x=0" />, gradien sinus adalah <InlineMath math="1" />. Pada puncak sinus di <InlineMath math="x=\pi/2" />, gradiennya menjadi <InlineMath math="0" />.
 
-<LineEquation
-  title="Sinus dan Fungsi Turunannya"
-  description="Kurva ungu adalah sinus dan kurva jingga adalah kosinus. Sumbu mendatar mengukur sudut dalam radian. Bandingkan tanda kosinus dengan arah naik atau turun kurva sinus."
-  data={[
-    { points: Array.from({ length: 161 }, (_, i) => { const x = -Math.PI + i * Math.PI / 80; return { x, y: Math.sin(x), z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ at: 120, text: <InlineMath math="\sin x" />, offset: [0, 0.5, 0] }] },
-    { points: Array.from({ length: 161 }, (_, i) => { const x = -Math.PI + i * Math.PI / 80; return { x, y: Math.cos(x), z: 0 }; }), smooth: false, color: "#ea580c", showPoints: false, labels: [{ at: 80, text: <InlineMath math="\cos x" />, offset: [0, 0.5, 0] }] },
-  ]}
-  showZAxis={false}
-  cameraTarget={[0, 0, 0]}
-  cameraPosition={[0, 0, 10]}
+<BarChart
+  title={<>Kemiringan sinus adalah kosinus</>}
+  description={<>Batang <InlineMath math="\cos x" />, kemiringan <InlineMath math="\sin x" />, di <InlineMath math="x = 0, \tfrac{\pi}{6}, \tfrac{\pi}{3}, \tfrac{\pi}{2}, \tfrac{2\pi}{3}, \tfrac{5\pi}{6}, \pi" /> dalam radian. Kemiringannya 1 di 0, 0 di titik maksimum <InlineMath math="\tfrac{\pi}{2}" />, dan negatif setelahnya.</>}
+  yAxisLabel="Kemiringan sin x"
+  data={[["0", 0], ["π/6", 1 / 6], ["π/3", 1 / 3], ["π/2", 1 / 2], ["2π/3", 2 / 3], ["5π/6", 5 / 6], ["π", 1]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.cos(k * Math.PI)) / 1000 }))}
+  chartConfig={{ value: { label: "Kemiringan sin x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 Pada <InlineMath math="-\pi/2<x<\pi/2" />, kosinus positif sehingga sinus naik. Pada <InlineMath math="\pi/2<x<\pi" />, kosinus negatif sehingga sinus turun. **Turunan nol** pada puncak berarti garis singgung mendatar.
+
+Sekarang tinggi <InlineMath math="\sin x" /> pada sudut yang sama: 0, <InlineMath math="\tfrac12" />, sekitar 0,866, 1, lalu turun lagi. Batangnya naik tepat ketika batang kosinus positif dan turun ketika batang kosinus negatif.
+
+<BarChart
+  title={<>Tinggi <InlineMath math="\sin x" /> dari 0 sampai <InlineMath math="\pi" /></>}
+  description={<>Batang <InlineMath math="\sin x" /> di <InlineMath math="x = 0, \tfrac{\pi}{6}, \tfrac{\pi}{3}, \tfrac{\pi}{2}, \tfrac{2\pi}{3}, \tfrac{5\pi}{6}, \pi" />.</>}
+  yAxisLabel="sin x"
+  data={[["0", 0], ["π/6", 1 / 6], ["π/3", 1 / 3], ["π/2", 1 / 2], ["2π/3", 2 / 3], ["5π/6", 5 / 6], ["π", 1]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.sin(k * Math.PI)) / 1000 }))}
+  chartConfig={{ value: { label: "sin x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Menerapkan Aturan pada Fungsi Trigonometri
 
@@ -166,3 +172,13 @@ Setiap soal meminta turunan pertama suatu bentuk trigonometri, dan soal kedua be
     <BlockMath math="f'(x) = \cos(2x)" />
 
     Jadi, turunan dari fungsi tersebut adalah <InlineMath math="\cos(2x)" />.
+
+Latihan 2 dalam bentuk diagram: turunan <InlineMath math="\cos 2x" /> dari <InlineMath math="\sin x \cos x = \tfrac12 \sin 2x" /> positif sampai <InlineMath math="x = \tfrac{\pi}{4}" /> dan negatif setelahnya, jadi <InlineMath math="\sin x \cos x" /> mencapai nilai terbesarnya <InlineMath math="\tfrac12" /> di <InlineMath math="\tfrac{\pi}{4}" />.
+
+<BarChart
+  title={<>Nilai <InlineMath math="\cos 2x" /></>}
+  description={<>Batang <InlineMath math="\cos 2x" /> di <InlineMath math="x = 0, \tfrac{\pi}{8}, \tfrac{\pi}{4}, \tfrac{3\pi}{8}, \tfrac{\pi}{2}" />.</>}
+  yAxisLabel="cos 2x"
+  data={[["0", 0], ["π/8", 1 / 8], ["π/4", 1 / 4], ["3π/8", 3 / 8], ["π/2", 1 / 2]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.cos(2 * k * Math.PI)) / 1000 }))}
+  chartConfig={{ value: { label: "cos 2x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

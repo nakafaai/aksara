@@ -1,34 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "sentence-relation",
+  },
+  stimulus: "noken",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Kalimat (8) membantah pernyataan pada kalimat (7).",
+        },
+        {
           correct: true,
           label:
-            "Keaslian dapat mencakup jejak perubahan lintas masa, bukan tiruan sempurna atas satu tahap sejarah.",
+            "Kalimat (8) menyebutkan penyebab terancamnya noken yang dinyatakan pada kalimat (7).",
         },
         {
           correct: false,
           label:
-            "Semua bahan lama harus dipertahankan meskipun membahayakan pengunjung.",
+            "Kalimat (8) menjelaskan cara melindungi noken dari kepunahan.",
+        },
+        {
+          correct: false,
+          label: "Kalimat (8) menyimpulkan isi seluruh bacaan tentang noken.",
         },
         {
           correct: false,
           label:
-            "Bangunan hanya dapat disebut autentik jika seluruh permukaannya dikembalikan ke satu warna lama.",
-        },
-        {
-          correct: false,
-          label: "Cat tertua hanya ditemukan di beberapa ruang.",
-        },
-        {
-          correct: false,
-          label:
-            "Keaslian mensyaratkan penghapusan seluruh jejak perawatan yang dilakukan setelah bangunan pertama kali digunakan.",
+            "Kalimat (8) memberikan contoh lain kegunaan noken dalam kehidupan sehari-hari masyarakat Papua.",
         },
       ],
     },

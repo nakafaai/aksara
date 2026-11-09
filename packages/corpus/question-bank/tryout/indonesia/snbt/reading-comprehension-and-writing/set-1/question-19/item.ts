@@ -1,31 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "effective-sentence",
+  },
+  stimulus: "waste-bank",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "mendorong pembeli untuk membeli mobil penumpang.",
+          label:
+            "Bagi warga yang rajin menabung sampah akan mendapat bingkisan dari pengurus pada akhir tahun.",
         },
         {
           correct: true,
           label:
-            "memaparkan skala dan perjalanan penurunan serta pemulihan penjualan wholesales mobil Indonesia pada 2020.",
+            "Warga yang rajin menabung sampah mendapat bingkisan dari pengurus pada akhir tahun.",
         },
         {
           correct: false,
           label:
-            "membandingkan keuntungan mobil penumpang dan kendaraan niaga.",
+            "Bagi warga-warga yang rajin menabung sampah mendapat bingkisan dari pengurus pada akhir tahun.",
         },
         {
           correct: false,
-          label: "menjelaskan sejarah dan struktur organisasi GAIKINDO.",
+          label:
+            "Kepada warga yang rajin menabung sampah mendapat bingkisan dari pengurus pada akhir tahun.",
         },
         {
           correct: false,
-          label: "meramalkan jumlah kendaraan yang akan terjual pada 2021.",
+          label:
+            "Warga yang rajin menabung sampah, mendapat bingkisan dari pengurus pada akhir tahun.",
         },
       ],
     },

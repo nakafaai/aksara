@@ -3,7 +3,7 @@ export const metadata = {
    description: "Compare arithmetic sequences with a constant difference and geometric sequences with a constant ratio, then choose the matching term and sum formulas.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-04-06",
-   dateModified: "2026-09-23",
+   dateModified: "2026-11-08",
    subject: "Sequence and Series",
 };
 
@@ -69,6 +69,16 @@ To determine whether a sequence is arithmetic or geometric:
 
    <BlockMath math="r = \frac{a_2}{a_1} = \frac{a_3}{a_2} = \frac{a_4}{a_3} = ..." />
 
+Test the savings sequence the way the flow above says: subtract each deposit from the next. Every bar shows the same change, <InlineMath math="2{,}000" />, so the sequence is arithmetic with <InlineMath math="b = 2{,}000" />.
+
+<BarChart
+  title={<>The change from one month to the next</>}
+  description={<>The difference between each monthly deposit and the deposit before it, from month 2 to month 10.</>}
+  yAxisLabel="Change (Rp)"
+  data={[["2", (5000 + (2 - 1) * 2000) - (5000 + (2 - 2) * 2000)], ["3", (5000 + (3 - 1) * 2000) - (5000 + (3 - 2) * 2000)], ["4", (5000 + (4 - 1) * 2000) - (5000 + (4 - 2) * 2000)], ["5", (5000 + (5 - 1) * 2000) - (5000 + (5 - 2) * 2000)], ["6", (5000 + (6 - 1) * 2000) - (5000 + (6 - 2) * 2000)], ["7", (5000 + (7 - 1) * 2000) - (5000 + (7 - 2) * 2000)], ["8", (5000 + (8 - 1) * 2000) - (5000 + (8 - 2) * 2000)], ["9", (5000 + (9 - 1) * 2000) - (5000 + (9 - 2) * 2000)], ["10", (5000 + (10 - 1) * 2000) - (5000 + (10 - 2) * 2000)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Change (Rp)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Pattern and Formula Compared
 
 The table places the two types **side by side**, so the two formulas can be compared row by row.
@@ -123,6 +133,19 @@ Every step adds the same amount, so the difference <InlineMath math="b" /> stays
 
    <BlockMath math="H(3)=15+3\cdot3=24\text{ cm}" />
 
+Here are the savings deposits month by month, <InlineMath math="U_n = 5{,}000 + (n-1)2{,}000" />. Every bar is exactly <InlineMath math="2{,}000" /> taller than the one before, so the tops line up along a straight line. That steady climb is what a constant difference looks like.
+
+<BarChart
+  title={<>Savings deposits grow by the same amount</>}
+  description={<>Monthly deposits from month 1 to month 10, each 2,000 rupiah more than the month before.</>}
+  yAxisLabel="Deposit (Rp)"
+  data={Array.from({ length: 10 }, (_, i) => {
+    const n = i + 1;
+    return { name: `${n}`, value: 5000 + (n - 1) * 2000 };
+  })}
+  chartConfig={{ value: { label: "Deposit (Rp)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Examples of Geometric Sequences
 
 Every step multiplies by the same factor, so the ratio <InlineMath math="r" /> stays constant.
@@ -138,6 +161,16 @@ Every step multiplies by the same factor, so the ratio <InlineMath math="r" /> s
    After three doubling intervals, the bacterial count equals eight times the initial count:
 
    <BlockMath math="B(3)=B_0\cdot2^3=8B_0" />
+
+Now let the doubling model start at <InlineMath math="100" /> bacteria, so after <InlineMath math="t" /> hours there are <InlineMath math="100 \cdot 2^t" />. Each bar is twice the one before. The first steps look small, but by hour 8 the count reaches <InlineMath math="25{,}600" />. A constant ratio makes the growth speed up.
+
+<BarChart
+  title={<>A population that doubles every hour</>}
+  description={<>The bacterial count <InlineMath math="100 \cdot 2^t" /> for <InlineMath math="t = 0" /> to <InlineMath math="8" /> hours, each bar twice the previous one.</>}
+  yAxisLabel="Bacteria"
+  data={Array.from({ length: 9 }, (_, t) => ({ name: `${t}`, value: 100 * 2 ** t }))}
+  chartConfig={{ value: { label: "Bacteria", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Exercise
 

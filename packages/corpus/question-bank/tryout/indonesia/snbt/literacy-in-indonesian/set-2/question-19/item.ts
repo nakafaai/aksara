@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "essay-scoring",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Luas, terang, dan terbuka langsung ke jalan",
-        },
-        {
-          correct: false,
-          label: "Sempit, lembap, dan seluruh dindingnya terbuat dari besi",
-        },
-        {
-          correct: false,
-          label: "Mewah, berhias lukisan, dan memiliki banyak pintu",
-        },
-        {
           correct: true,
-          label:
-            "Sempit, tanpa pandangan ke luar, dan berjendela kecil berjeruji",
+          label: "90 esai",
         },
         {
           correct: false,
-          label: "Berada di bawah tanah dan hanya dapat dicapai melalui tangga",
+          label: "570 esai",
+        },
+        {
+          correct: false,
+          label: "660 esai",
+        },
+        {
+          correct: false,
+          label: "2.340 esai",
+        },
+        {
+          correct: false,
+          label: "2.910 esai",
         },
       ],
     },

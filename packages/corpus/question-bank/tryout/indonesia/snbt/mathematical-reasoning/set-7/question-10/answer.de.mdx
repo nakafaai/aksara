@@ -1,11 +1,19 @@
-# Anteil unbeschädigter Artikel bestimmen
+Der Abstand zweier Kreuzungen ist **die Differenz der x-Werte plus die Differenz der y-Werte**. Berechne einige Reihenfolgen und stelle sicher, dass keine Route kürzer ist.
 
-Sei <InlineMath math="A" /> das Ereignis, einen unbeschädigten Artikel zu wählen. Die **unbeschädigten Artikel bilden das Gegenereignis** zu den beschädigten Artikeln:
+# Länge einiger Reihenfolgen
 
-<BlockMath math="n(A)=80-20=60" />
+Vergleiche **die Länge jeder Besuchsreihenfolge**, den Rückweg nach G eingeschlossen.
 
-Alle <InlineMath math="80" /> Artikel werden gleichwahrscheinlich gewählt. Teile deshalb die Zahl der günstigen Fälle durch die Gesamtzahl:
+| Reihenfolge | Länge in Abschnitten |
+| :---: | :---: |
+| G, B, A, C, G | <InlineMath math="6+5+4+7=22" /> |
+| G, A, C, B, G | <InlineMath math="7+4+9+6=26" /> |
+| G, C, B, A, G | <InlineMath math="7+9+5+7=28" /> |
 
-<BlockMath math="P(A)=\frac{n(A)}{n(S)}=\frac{60}{80}=\frac34" />
+# Eine untere Schranke für jede Route
 
-Die Wahrscheinlichkeit beträgt <InlineMath math="\frac34" />. Sie stimmt mit <InlineMath math="1-\frac{20}{80}" /> überein, was das Ergebnis über den beschädigten Anteil bestätigt.
+Die Route muss den x-Wert 5 erreichen, bei B, und zurück zu 0, also mindestens <InlineMath math="2\cdot5=10" /> waagerechte Abschnitte. Sie muss auch den y-Wert 6 erreichen, bei C, und zurück zu 0, also mindestens <InlineMath math="2\cdot6=12" /> senkrechte Abschnitte. **Jede Route hat also mindestens 22 Abschnitte**.
+
+Die Reihenfolge G, B, A, C, G erreicht diese Schranke, also sind 22 Abschnitte oder 2 200 m das Minimum. Die Werte 2 600 m und 2 800 m stammen aus ungünstigeren Reihenfolgen.
+
+Die kürzeste Route ist also **2 200 m** lang.

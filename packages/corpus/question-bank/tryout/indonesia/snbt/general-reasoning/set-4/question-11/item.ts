@@ -1,29 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "biconditional",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Dito menyelesaikan latihan prasyarat",
+          column: 1,
+          label: "Rara membayar dengan kartu anggota.",
         },
         {
-          correct: false,
-          label: "Dito mengikuti tes latihan",
+          column: 1,
+          label: "Rara sudah mendaftar di aplikasi kafe.",
         },
         {
-          correct: false,
-          label: "Dito bukan seorang siswa",
+          column: 1,
+          label: "Dimas tidak mendapat poin bonus.",
         },
         {
-          correct: true,
-          label: "Dito tidak menyelesaikan latihan prasyarat",
+          column: 2,
+          label:
+            "Semua pelanggan yang sudah mendaftar di aplikasi kafe mendapat poin bonus.",
         },
         {
-          correct: false,
-          label: "Dito menerima laporan evaluasi",
+          column: 2,
+          label:
+            "Dimas membayar tanpa kartu anggota, tetapi tetap mendapat poin bonus.",
         },
       ],
     },

@@ -1,31 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "author-purpose",
+  },
+  stimulus: "silted-pond",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "analisa efektivitas jadwal digital setelah pembatalan",
+          label: "mengajak pemerintah membangun embung baru di setiap desa",
         },
         {
           correct: false,
-          label: "analisis efektifitas jadwal digital setelah pembatalan",
-        },
-        {
-          correct: false,
-          label: "analisa efektifitas jadwal digital setelah pembatalan",
+          label: "menceritakan sejarah pembangunan embung di Desa Watugede",
         },
         {
           correct: true,
-          label: "analisis efektivitas jadwal digital setelah pembatalan",
+          label:
+            "menjelaskan penyebab dangkalnya embung dan upaya warga memulihkannya",
         },
         {
           correct: false,
-          label:
-            "analisis efektivitas jadwal digital dalam kontek ruang latihan musik",
+          label: "membandingkan embung dengan sumur sebagai sumber air",
+        },
+        {
+          correct: false,
+          label: "mengkritik warga yang menebang pohon di lereng bukit",
         },
       ],
     },

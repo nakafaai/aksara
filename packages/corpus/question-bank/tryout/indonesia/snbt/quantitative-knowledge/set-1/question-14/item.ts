@@ -3,27 +3,27 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$15$$",
+          column: 2,
+          label: "Luas bidang diagonal $$ACGE$$ adalah $$162\\text{ cm}^2$$.",
         },
         {
-          correct: false,
-          label: "$$-15$$",
+          column: 1,
+          label:
+            "Panjang diagonal ruang $$AG$$ adalah $$9\\sqrt3\\text{ cm}$$.",
         },
         {
-          correct: false,
-          label: "$$-12$$",
+          column: 2,
+          label:
+            "Besar sudut antara garis $$AG$$ dan bidang $$ABCD$$ adalah $$45^\\circ$$.",
         },
         {
-          correct: false,
-          label: "$$12$$",
-        },
-        {
-          correct: false,
-          label: "$$18$$",
+          column: 1,
+          label:
+            "Jarak titik $$E$$ ke bidang $$BDG$$ adalah $$6\\sqrt3\\text{ cm}$$.",
         },
       ],
     },

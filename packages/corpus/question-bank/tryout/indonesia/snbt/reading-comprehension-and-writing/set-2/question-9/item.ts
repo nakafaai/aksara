@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "word-meaning",
+  },
+  stimulus: "plastic-free-market",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            'Ganti tanda titik dua setelah kata "yaitu" dengan tanda titik koma.',
-        },
-        {
-          correct: false,
-          label: 'Hapus tanda koma sebelum kata "yaitu".',
+          label: "mudah dicapai dari rumah pembeli",
         },
         {
           correct: true,
-          label: 'Hapus tanda titik dua setelah kata "yaitu".',
+          label: "harganya dapat dibayar oleh pembeli",
         },
         {
           correct: false,
-          label: 'Tambahkan tanda titik dua tepat setelah kata "lembaga".',
+          label: "tersedia dalam jumlah yang banyak",
         },
         {
           correct: false,
-          label: "Ganti setiap tanda koma dalam perincian dengan tanda titik.",
+          label: "dibuat dari bahan yang kuat",
+        },
+        {
+          correct: false,
+          label: "diberikan tanpa bayaran",
         },
       ],
     },

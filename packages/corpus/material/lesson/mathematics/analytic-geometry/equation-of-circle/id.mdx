@@ -3,7 +3,7 @@ export const metadata = {
   description: "Ubah persamaan lingkaran antara bentuk baku dan bentuk umum, lalu tentukan pusat serta jari-jarinya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Geometri Analitik",
 };
 
@@ -31,74 +31,27 @@ Jika **kedua ruas dikuadratkan**, kita memperoleh persamaan lingkaran dengan pus
 
 Grafik berikut memperlihatkan batasan jari-jari tersebut.
 
-<LineEquation
-  title="Lingkaran dengan Pusat di Titik Asal"
-  description={<>Lingkaran dengan pusat <InlineMath math="O(0,0)" /> dan jari-jari <InlineMath math="3" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const center = { x: 0, y: 0 };
-        const radius = 3;
-        const angle = 0;
-        return {
-          x: center.x + i * radius * Math.cos(angle),
-          y: center.y + i * radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O(0,0)" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="r=3" />, at: 1, offset: [0, -0.5, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -4;
-        const xMax = 4;
-        const y = 0;
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const yMin = -4;
-        const yMax = 4;
-        const x = 0;
-        return {
-          x: x,
-          y: yMin + i * (yMax - yMin),
-          z: 0,
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 10]}
+<MathVisual
+  title={<><InlineMath math="x^2 + y^2 = 9" /></>}
+  description={<>Lingkaran dengan pusat <InlineMath math="O(0, 0)" /> dan jari-jari 3: setiap titik padanya berjarak 3 satuan dari <InlineMath math="O" />.</>}
+  labels={{
+    o: <InlineMath math="O(0, 0)" />,
+    r: <InlineMath math="r = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "r", objectId: "r", at: { x: 3 / 2, y: 0 }, placement: "above" },
+    ],
+  }}
 />
 
 Untuk lingkaran di atas, persamaannya adalah <InlineMath math="x^2 + y^2 = 9" /> karena jari-jarinya <InlineMath math="3" />, jadi <InlineMath math="r^2 = 3^2 = 9" />.
@@ -117,75 +70,27 @@ Setelah dikuadratkan, kita memperoleh <Highlight>persamaan baku lingkaran dengan
 
 Pergeseran pusatnya terlihat pada grafik berikut.
 
-<LineEquation
-  title="Lingkaran dengan Pusat Sembarang"
-  description={<>Lingkaran dengan pusat <InlineMath math="P(2,-1)" /> dan jari-jari <InlineMath math="2" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 2 + 2 * Math.cos(angle),
-          y: -1 + 2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const center = { x: 2, y: -1 };
-        const radius = 2;
-        const angle = 0;
-        return {
-          x: center.x + i * radius * Math.cos(angle),
-          y: center.y + i * radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P(2,-1)" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="r=2" />, at: 1, offset: [0, -0.5, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -1;
-        const xMax = 5;
-        const y = 0;
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const yMin = -4;
-        const yMax = 2;
-        const x = 0;
-        return {
-          x: x,
-          y: yMin + i * (yMax - yMin),
-          z: 0,
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[2, -1, 10]}
-  cameraTarget={[2, -1, 0]}
+<MathVisual
+  title={<><InlineMath math="(x - 2)^2 + (y + 1)^2 = 4" /></>}
+  description={<>Lingkaran dengan pusat <InlineMath math="P(2, -1)" /> dan jari-jari 2.</>}
+  labels={{
+    p: <InlineMath math="P(2, -1)" />,
+    r: <InlineMath math="r = 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -3.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 2, y: -1 }, radius: 2, appearance: "primary" },
+      { id: "r", kind: "segment", from: { x: 2, y: -1 }, to: { x: 4, y: -1 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: -1 }, placement: "below-left" },
+      { key: "r", objectId: "r", at: { x: 3, y: -1 }, placement: "above" },
+    ],
+  }}
 />
 
 Persamaan lingkaran di atas adalah <InlineMath math="(x-2)^2 + (y+1)^2 = 4" /> karena pusatnya <InlineMath math="P(2,-1)" /> dan jari-jarinya <InlineMath math="2" />, jadi <InlineMath math="r^2 = 2^2 = 4" />.
@@ -294,3 +199,32 @@ Jari-jari adalah setengah panjang diameter:
 </MathContainer>
 
 Persamaan lingkarannya: <InlineMath math="(x-4)^2 + (y-1)^2 = (\sqrt{13})^2 = 13" />
+
+Pada Pembahasan 4, diameter <InlineMath math="AB" /> menentukan segalanya. Titik tengahnya <InlineMath math="(4, 1)" /> adalah pusat, dan setengah panjangnya, <InlineMath math="\sqrt{13}" />, adalah jari-jari, jadi <InlineMath math="A(1, 3)" /> dan <InlineMath math="B(7, -1)" /> sama-sama terletak pada <InlineMath math="(x - 4)^2 + (y - 1)^2 = 13" />.
+
+<MathVisual
+  title={<>Lingkaran dari ujung-ujung diameter</>}
+  description={<>Diameter dari <InlineMath math="A(1, 3)" /> ke <InlineMath math="B(7, -1)" />, titik tengahnya <InlineMath math="(4, 1)" />, dan lingkaran berjari-jari <InlineMath math="\sqrt{13}" /> yang melalui kedua ujungnya.</>}
+  labels={{
+    a: <InlineMath math="A(1, 3)" />,
+    b: <InlineMath math="B(7, -1)" />,
+    c: <InlineMath math="(4, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: -3, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 4, y: 1 }, radius: Math.sqrt(13), appearance: "primary" },
+      { id: "ab", kind: "segment", from: { x: 1, y: 3 }, to: { x: 7, y: -1 }, appearance: "construction" },
+      { id: "a", kind: "point", at: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "b", kind: "point", at: { x: 7, y: -1 }, appearance: "secondary" },
+      { id: "c", kind: "point", at: { x: 4, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: 3 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 7, y: -1 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 4, y: 1 }, placement: "above" },
+    ],
+  }}
+/>

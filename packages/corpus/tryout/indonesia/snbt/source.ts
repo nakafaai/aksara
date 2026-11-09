@@ -9,7 +9,7 @@ import {
 
 const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
   {
-    interactions: ["choice"],
+    interactions: ["choice", "matrix", "numericEntry"],
     items: 30,
     key: "general-reasoning",
     language: "id",
@@ -27,7 +27,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     visibility: "visible",
   },
   {
-    interactions: ["choice"],
+    interactions: ["choice", "matrix"],
     items: 20,
     key: "general-knowledge-and-understanding",
     language: "id",
@@ -45,7 +45,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     visibility: "visible",
   },
   {
-    interactions: ["choice"],
+    interactions: ["choice", "matrix"],
     items: 20,
     key: "reading-comprehension-and-writing",
     language: "id",
@@ -63,7 +63,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     visibility: "visible",
   },
   {
-    interactions: ["choice"],
+    interactions: ["choice", "matrix", "numericEntry"],
     items: 20,
     key: "quantitative-knowledge",
     language: "id",
@@ -81,7 +81,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     visibility: "visible",
   },
   {
-    interactions: ["choice"],
+    interactions: ["choice", "matrix"],
     items: 30,
     key: "literacy-in-indonesian",
     language: "id",
@@ -99,7 +99,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     visibility: "visible",
   },
   {
-    interactions: ["choice"],
+    interactions: ["choice", "matrix"],
     items: 20,
     key: "literacy-in-english",
     language: "en",
@@ -117,7 +117,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     visibility: "visible",
   },
   {
-    interactions: ["choice"],
+    interactions: ["choice", "matrix", "numericEntry"],
     items: 20,
     key: "mathematical-reasoning",
     language: "id",

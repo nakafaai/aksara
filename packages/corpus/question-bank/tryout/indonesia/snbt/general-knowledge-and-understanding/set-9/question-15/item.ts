@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "application",
+  },
+  stimulus: "tempe",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Bagian tengah jembatan diganti besar-besaran pada 1958.",
+          label: "tempe dibiarkan terlalu lama sehingga kapang membentuk spora",
+        },
+        {
+          correct: false,
+          label: "kedelai sudah direbus sampai matang sebelum diberi ragi",
         },
         {
           correct: true,
-          label:
-            "Tanggal sejarah harus disertai peristiwa yang dirujuk karena satu objek dapat memiliki beberapa awal dan perubahan penting.",
+          label: "bungkusnya tertutup rapat sehingga kapang kekurangan udara",
         },
         {
           correct: false,
-          label:
-            "Karena ada beberapa tanggal, tidak ada satu pun fakta tentang riwayat jembatan yang dapat dipastikan.",
+          label: "kulit ari kedelai sudah dikupas sebelum kedelai direbus",
         },
         {
           correct: false,
-          label:
-            "Satu tanggal paling tua selalu paling tepat untuk semua jenis sejarah.",
-        },
-        {
-          correct: false,
-          label:
-            "Plakat baru akan menampilkan garis waktu dengan arti setiap tanggal.",
+          label: "ragi yang ditaburkan berisi spora kapang *Rhizopus*",
         },
       ],
     },

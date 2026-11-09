@@ -1,31 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "rabies",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "aturan moral tentang perilaku yang seharusnya dilakukan",
+          label: "harga vaksin untuk setiap dosis",
+        },
+        {
+          correct: false,
+          label: "jenis vaksin yang dipakai petugas",
+        },
+        {
+          correct: false,
+          label: "waktu pemberian vaksin dalam setahun",
+        },
+        {
+          correct: false,
+          label: "tempat menyimpan vaksin agar tetap dingin",
         },
         {
           correct: true,
-          label:
-            "gambaran mengenai perilaku yang lazim dilakukan orang dalam suatu kelompok",
-        },
-        {
-          correct: false,
-          label: "sanksi hukum bagi perilaku yang dilarang",
-        },
-        {
-          correct: false,
-          label: "kesukaan pribadi seorang penumpang",
-        },
-        {
-          correct: false,
-          label: "catatan tentang tindakan satu orang pada satu perjalanan",
+          label: "besarnya bagian yang sudah terjangkau",
         },
       ],
     },

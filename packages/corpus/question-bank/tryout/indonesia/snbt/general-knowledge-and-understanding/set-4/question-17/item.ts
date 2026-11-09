@@ -1,34 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
+  },
+  stimulus: "puter",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Garam membuat campuran es menjadi jauh lebih dingin daripada es batu biasa.",
+        },
+        {
+          correct: false,
+          label: "Tabung es puter terbuat dari logam.",
+        },
+        {
+          correct: false,
+          label: "Es puter tradisional dibuat dari santan.",
+        },
+        {
+          correct: false,
+          label: "Serutan es lebih disukai daripada es puter.",
+        },
+        {
           correct: true,
           label:
-            "Pemetaan yang tertib dapat memakai satu indeks resmi sambil mempertahankan nama lain beserta bukti dan konteksnya.",
-        },
-        {
-          correct: false,
-          label: "Nama administrasi ditetapkan sebagai indeks utama.",
-        },
-        {
-          correct: false,
-          label:
-            "Semua nama lokal harus memiliki kedudukan hukum yang sama dengan nama administrasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Agar peta konsisten, semua nama selain nama resmi harus dihapus dari pencarian dan arsip.",
-        },
-        {
-          correct: false,
-          label:
-            "Bukti baru dapat mengubah catatan tanpa menghapus riwayat nama sebelumnya.",
+            "Pengadukan membuat adonan membeku merata dan teksturnya lembut.",
         },
       ],
     },

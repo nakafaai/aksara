@@ -1,42 +1,22 @@
-Kita perlu menentukan secara pasti kapan <InlineMath math="a_n" /> habis dibagi <InlineMath math="5" />. Menghitung beberapa suku dapat menunjukkan dugaan pola, tetapi belum membuktikan bahwa pola itu selalu berlaku. Karena itu, kita turunkan **rumus untuk seluruh suku barisan**.
+Perbandingan <InlineMath math="AP:PB=1:2" /> berarti <InlineMath math="P" /> berada **sepertiga jalan dari <InlineMath math="A" /> menuju <InlineMath math="B" />**, bukan di tengah dan bukan sepertiga dari <InlineMath math="B" />.
 
-# Menentukan Suku Pertama
+# Menentukan koordinat P
 
-Mulai dari <InlineMath math="a_4 = 85" /> dan **hitung mundur**:
+Vektor dari <InlineMath math="A" /> ke <InlineMath math="B" /> adalah <InlineMath math="(8-(-1),\,-5-7)=(9,-12)" />. Titik <InlineMath math="P" /> diperoleh dengan **menambahkan sepertiga vektor itu** ke <InlineMath math="A" />.
 
-<BlockMath math="a_3 = \frac{85 - 1}{4} = 21" />
+<BlockMath math="\begin{aligned}
+P&=A+\tfrac13(9,-12)\\
+&=(-1+3,\ 7-4)=(2,3)
+\end{aligned}" />
 
-<BlockMath math="a_2 = \frac{21 - 1}{4} = 5" />
+Cek: <InlineMath math="AP=\sqrt{3^2+4^2}=5" /> dan <InlineMath math="PB=\sqrt{6^2+8^2}=10" />, jadi <InlineMath math="AP:PB=1:2" />.
 
-<BlockMath math="a_1 = \frac{5 - 1}{4} = 1" />
+# Jarak ke titik asal
 
-# Menurunkan Rumus untuk Setiap Suku
+Gunakan **rumus jarak dari titik asal**, yaitu akar jumlah kuadrat kedua koordinat.
 
-Kalikan relasi rekursif dengan <InlineMath math="3" />, lalu tambahkan <InlineMath math="1" />. Relasi tersebut berubah menjadi **relasi geometri**:
+<BlockMath math="OP=\sqrt{2^2+3^2}=\sqrt{13}" />
 
-<BlockMath math="3a_{n+1} + 1 = 3(4a_n + 1) + 1" />
+Nilai 5 adalah panjang <InlineMath math="AP" />, bukan jarak <InlineMath math="P" /> ke titik asal. Nilai <InlineMath math="\sqrt{26}" /> memakai titik <InlineMath math="(5,-1)" />, yaitu titik yang sepertiga jalan dari <InlineMath math="B" />. Nilai <InlineMath math="\tfrac12\sqrt{53}" /> memakai titik tengah <InlineMath math="AB" />, dan nilai 15 adalah panjang <InlineMath math="AB" />.
 
-<BlockMath math="3a_{n+1} + 1 = 4(3a_n + 1)" />
-
-Karena <InlineMath math="3a_1 + 1 = 4" />, perkalian berulang dengan <InlineMath math="4" /> memberikan
-
-<BlockMath math="3a_n + 1 = 4^n" />
-
-<BlockMath math="a_n = \frac{4^n - 1}{3}" />
-
-# Memeriksa Keterbagian oleh Lima
-
-Dalam modulo <InlineMath math="5" />, berlaku <InlineMath math="4 \equiv -1" />. Oleh karena itu,
-
-<BlockMath math="3a_n \equiv (-1)^n - 1 \pmod{5}" />
-
-- Jika <InlineMath math="n" /> genap, maka <InlineMath math="(-1)^n - 1 = 0" />, sehingga <InlineMath math="a_n \equiv 0 \pmod{5}" />.
-- Jika <InlineMath math="n" /> ganjil, maka <InlineMath math="(-1)^n - 1 \equiv 3 \pmod{5}" />, sehingga <InlineMath math="a_n \equiv 1 \pmod{5}" />.
-
-Invers dari tiga dalam modulo lima adalah dua, sebab <InlineMath math="3\cdot2=6\equiv1\pmod5" />. Jadi, kalikan kedua ruas kongruensi dengan dua:
-
-<BlockMath math="a_n\equiv2\bigl((-1)^n-1\bigr)\pmod5" />
-
-Faktor <InlineMath math="3" /> boleh dicoret karena <InlineMath math="3" /> memiliki **invers perkalian** dalam modulo <InlineMath math="5" />. Jadi, <InlineMath math="a_n" /> habis dibagi <InlineMath math="5" /> tepat ketika <InlineMath math="n" /> genap.
-
-Di antara <InlineMath math="1, 29, 73, 364" /> dan <InlineMath math="473" />, hanya <InlineMath math="364" /> yang genap. Jadi, nilai yang diminta adalah <InlineMath math="n = 364" />.
+Jadi, jarak titik <InlineMath math="P" /> ke titik asal adalah <InlineMath math="\sqrt{13}" />.

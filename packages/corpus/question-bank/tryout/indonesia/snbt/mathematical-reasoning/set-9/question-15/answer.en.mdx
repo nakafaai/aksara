@@ -1,55 +1,23 @@
-Let <InlineMath math="x" /> be the distance from the pole's base to the anchor of the <InlineMath math="25" />-metre cable. The **other distance** is <InlineMath math="17-x" />. If the pole height is <InlineMath math="h" />, then
+Each statement needs **a different way of handling the data**: a sum, a ratio, consecutive differences, and a count of values meeting a condition.
 
-<BlockMath math="x^2+h^2=25^2" />
+# Sums and ratio
 
-<BlockMath math="(17-x)^2+h^2=26^2" />
+The first six months add up to <InlineMath math="310+280+250+190+120+80=1{,}230" /> mm, the last six to <InlineMath math="50+40+70+140+230+340=870" /> mm. **They are not equal**, so the first statement is false.
 
-Subtracting the first equation from the second gives <InlineMath math="(17-x)^2-x^2=26^2-25^2\Rightarrow289-34x=51" />, so <InlineMath math="x=\frac{289-51}{34}=7" />. Thus <InlineMath math="h^2=625-49=576" />, and <InlineMath math="h=24" /> metres.
+December against August is <InlineMath math="\tfrac{340}{40}=8.5" />, more than 8. The second statement is true.
 
-<MathVisual
-  title="Pole and support cables"
-  description="A vertical pole with two support cables and anchors on opposite sides on level ground."
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -8, max: 11 },
-      y: { min: -1, max: 25 },
-    },
-    view: { kind: "fit", padding: 0.75 },
-    objects: [
-      {
-        id: "ground",
-        kind: "segment",
-        appearance: "reference",
-        from: { x: -7, y: 0 },
-        to: { x: 10, y: 0 },
-      },
-      {
-        id: "pole",
-        kind: "segment",
-        appearance: "primary",
-        from: { x: 0, y: 0 },
-        to: { x: 0, y: 24 },
-      },
-      {
-        id: "left-cable",
-        kind: "segment",
-        appearance: "secondary",
-        from: { x: -7, y: 0 },
-        to: { x: 0, y: 24 },
-      },
-      {
-        id: "right-cable",
-        kind: "segment",
-        appearance: "secondary",
-        from: { x: 0, y: 24 },
-        to: { x: 10, y: 0 },
-      },
-      { id: "left-anchor", kind: "point", appearance: "highlight", at: { x: -7, y: 0 } },
-      { id: "pole-base", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
-      { id: "pole-top", kind: "point", appearance: "highlight", at: { x: 0, y: 24 } },
-      { id: "right-anchor", kind: "point", appearance: "highlight", at: { x: 10, y: 0 } },
-    ],
-  }}
-/>
+# Consecutive drops
+
+| From to | Drop |
+| :--- | :---: |
+| March to April | 60 mm |
+| April to May | 70 mm |
+| May to June | 40 mm |
+
+The other drops from January to August are at most 30 mm. **The largest drop is from April to May**, so the third statement is false.
+
+# Wet and dry months
+
+The wet months are January, February, March, April, May, October, November and December, 8 months. The dry months are only July and August, 2 months. Since 8 is more than <InlineMath math="2\cdot2=4" />, the fourth statement is true.
+
+So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.

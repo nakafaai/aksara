@@ -1,43 +1,20 @@
-Kita cari **batas jumlah siswa yang menyukai kedua pelajaran** dari total 800 siswa, dengan 400 menyukai Matematika dan 500 menyukai Fisika.
+Kedua bangun memiliki luas permukaan yang sama, jadi hitung ukuran masing-masing dari luas itu, lalu **bandingkan volumenya secara tepat** tanpa pembulatan yang kasar.
 
-# Mencari Irisan Maksimum
+# Volume kubus
 
-Jumlah siswa yang menyukai keduanya akan maksimum jika **himpunan kecil berada seluruhnya di dalam himpunan besar**.
-Di sini, jumlah siswa yang suka Matematika (<InlineMath math="400" />) lebih sedikit daripada Fisika (<InlineMath math="500" />).
-Maka, nilai maksimum irisannya adalah jumlah siswa pada grup terkecil.
+Kubus memiliki **6 sisi persegi yang sama**. Dari <InlineMath math="6s^2=24" /> diperoleh <InlineMath math="s=2" />, sehingga volume kubus <InlineMath math="Q=2^3=8" />.
 
-<BlockMath math="x = 400" />
+# Volume bola
 
-# Mencari Irisan Minimum
-
-Irisan menjadi paling kecil ketika **gabungan kedua himpunan sebesar mungkin**. Karena sekolah hanya memiliki <InlineMath math="800" /> siswa, nilai <InlineMath math="n(M \cup F)" /> tidak mungkin melebihi <InlineMath math="800" />.
-
-Rumus banyak anggota gabungan dua himpunan adalah:
+Dari <InlineMath math="4\pi r^2=24" /> diperoleh <InlineMath math="r^2=\frac6\pi" />. Tulis volume bola dengan <InlineMath math="r^2" /> agar **hasilnya dapat dibandingkan dengan 8**.
 
 <BlockMath math="\begin{aligned}
-n(M\cup F)&=n(M)+n(F) \\
-&\quad{}-n(M\cap F)
+P&=\tfrac43\pi r^3=\tfrac43\pi\cdot r^2\cdot r\\
+&=\tfrac43\pi\cdot\frac6\pi\cdot r=8r=8\sqrt{\frac6\pi}
 \end{aligned}" />
 
-Irisan minimum terjadi saat gabungan mencapai batas tersebut. Susunan ini mungkin terjadi jika setiap siswa menyukai setidaknya satu dari kedua pelajaran.
+Karena <InlineMath math="\pi<6" />, pecahan <InlineMath math="\frac6\pi" /> lebih dari 1, sehingga <InlineMath math="\sqrt{\frac6\pi}>1" /> dan <InlineMath math="P>8" />. Secara numerik <InlineMath math="P\approx8\times1{,}38\approx11{,}1" />.
 
-<BlockMath math="800 = 400 + 500 - y" />
+Pilihan <InlineMath math="P=Q" /> menganggap luas permukaan sama berarti volume sama. Pilihan <InlineMath math="Q>P" /> muncul jika jari-jari bola dihitung terlalu kecil, misalnya dengan memakai <InlineMath math="\pi r^2=24" />. Untuk luas permukaan yang sama, bola selalu memuat volume lebih besar daripada kubus.
 
-<BlockMath math="800 = 900 - y" />
-
-<BlockMath math="y = 900 - 800" />
-
-<BlockMath math="y = 100" />
-
-# Menghitung Selisih
-
-Kedua batas dapat dicapai melalui **pembagian siswa ke kelompok yang terpisah** berikut. Tidak ada siswa yang dihitung dua kali dalam satu baris.
-
-| Irisan | Hanya Matematika | Kedua pelajaran | Hanya Fisika | Tidak keduanya |
-| --- | --- | --- | --- | --- |
-| Maksimum | 0 | 400 | 100 | 300 |
-| Minimum | 300 | 100 | 400 | 0 |
-
-<BlockMath math="x - y = 400 - 100 = 300" />
-
-Jadi, nilai dari <InlineMath math="x - y" /> adalah <InlineMath math="300\text{ orang}" />.
+Jadi, hubungan yang benar adalah **volume bola lebih besar**, yaitu <InlineMath math="P>Q" />.

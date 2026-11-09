@@ -3,7 +3,7 @@ export const metadata = {
   description: "Find tangent lines to parabolas, ellipses, and hyperbolas from a point on the curve, a given slope, or an external point.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Analytic Geometry",
 };
 
@@ -14,6 +14,41 @@ A ruler placed against a smooth curve can meet it at just one point without cros
 When substituting a line into a conic produces a quadratic equation, a tangent is identified by a <Highlight>repeated root</Highlight>. Two distinct roots mean two intersections. Check the quadratic coefficient before using the discriminant. For example, a line parallel to a hyperbola asymptote can produce a linear equation.
 
 The given information determines the method: a known tangent point gives a point form, a known slope gives a line with an unknown intercept, and an external point gives a family of lines through that point.
+
+Substitute three parallel lines into <InlineMath math="y = x^2" />. For <InlineMath math="y = 2x - 1" />, <InlineMath math="x^2 - 2x + 1 = (x - 1)^2 = 0" /> has one repeated root, so the line touches the parabola at <InlineMath math="(1, 1)" />. The line <InlineMath math="y = 2x" /> cuts it twice, at <InlineMath math="x = 0" /> and <InlineMath math="x = 2" />, and <InlineMath math="y = 2x - 2" /> misses it, because <InlineMath math="x^2 - 2x + 2 = 0" /> has no real root.
+
+<MathVisual
+  title={<>Two roots, one repeated root, no root</>}
+  description={<>The parabola <InlineMath math="y = x^2" /> with the secant <InlineMath math="y = 2x" />, the tangent <InlineMath math="y = 2x - 1" /> at <InlineMath math="(1, 1)" /> and the line <InlineMath math="y = 2x - 2" /> that misses it.</>}
+  labels={{
+    parabola: <InlineMath math="y = x^2" />,
+    secant: <InlineMath math="y = 2x" />,
+    tangent: <InlineMath math="y = 2x - 1" />,
+    miss: <InlineMath math="y = 2x - 2" />,
+    touch: <InlineMath math="(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 3.4 }, y: { min: -3.4, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -5 / 4, max: 5 / 2 }, appearance: "secondary" },
+      { id: "secant", kind: "segment", from: { x: -1 / 2, y: -1 }, to: { x: 3, y: 6 }, appearance: "primary" },
+      { id: "tangent", kind: "segment", from: { x: -1, y: -3 }, to: { x: 3, y: 5 }, appearance: "answer" },
+      { id: "miss", kind: "segment", from: { x: -1 / 2, y: -3 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "x0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "x2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "touch", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: 5 / 2, y: 25 / 4 }, placement: "left" },
+      { key: "secant", objectId: "secant", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "tangent", objectId: "tangent", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "miss", objectId: "miss", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Point on the Curve
 
@@ -48,6 +83,33 @@ From parabola <InlineMath math="y^2 = 8x" />, we know <InlineMath math="4p = 8" 
 </MathContainer>
 
 > The point form is valid only after the stated point has been verified on the conic. It packages the derivative calculation into a reusable algebraic substitution.
+
+At <InlineMath math="(2, 4)" /> the point form gives <InlineMath math="y = x + 2" />. The line touches <InlineMath math="y^2 = 8x" /> only there: substituting <InlineMath math="x = y - 2" /> gives <InlineMath math="y^2 - 8y + 16 = (y - 4)^2 = 0" />, a repeated root.
+
+<MathVisual
+  title={<>The tangent <InlineMath math="y = x + 2" /> at <InlineMath math="(2, 4)" /></>}
+  description={<>The parabola <InlineMath math="y^2 = 8x" /> and its tangent <InlineMath math="y = x + 2" />, which meets it only at <InlineMath math="(2, 4)" />.</>}
+  labels={{
+    parabola: <InlineMath math="y^2 = 8x" />,
+    tangent: <InlineMath math="y = x + 2" />,
+    p: <InlineMath math="(2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 8.6 }, y: { min: -4.6, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "y", coefficients: { a: 1 / 8, b: 0, c: 0 }, domain: { min: -4, max: 8 }, appearance: "secondary" },
+      { id: "tangent", kind: "segment", from: { x: -2, y: 0 }, to: { x: 6, y: 8 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: 2, y: -4 }, placement: "right" },
+      { key: "tangent", objectId: "tangent", at: { x: 6, y: 8 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 2, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
 
 ## Given Slope
 
@@ -106,22 +168,39 @@ Now we substitute into the parabola equation to find the tangent points:
 
 Using [the quadratic formula](/en/subjects/mathematics/quadratic-function/quadratic-equation-formula), we get <InlineMath math="x_1 = \frac{1}{2}" /> and <InlineMath math="x_2 = 8" />. The tangent points are <InlineMath math="(\frac{1}{2}, 2)" /> and <InlineMath math="(8, 8)" />. Joining each one to <InlineMath math="A(2,5)" /> gives the two tangents <InlineMath math="y = 2x + 1" /> and <InlineMath math="y = \frac{1}{2}x + 4" />.
 
-<LineEquation
-  title="Two Tangents and the Chord of Contact"
-  description="A parabola, two tangent points, and the line connecting those points."
-  showZAxis={false}
-  cameraPosition={[5, 4, 18]}
-  cameraTarget={[5, 4, 0]}
-  data={[
-    { points: Array.from({ length: 111 }, (_, i) => { const y = -2 + i / 10; return { x: y * y / 8, y, z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false },
-    { points: [{ x: 0, y: 1, z: 0 }, { x: 4, y: 9, z: 0 }], smooth: false, color: "#0d9488", showPoints: false },
-    { points: [{ x: 0, y: 4, z: 0 }, { x: 10, y: 9, z: 0 }], smooth: false, color: "#ea580c", showPoints: false },
-    { points: [{ x: 0.5, y: 2, z: 0 }, { x: 8, y: 8, z: 0 }], smooth: false, color: "#db2777", showPoints: true, labels: [
-      { text: <InlineMath math="T_1" />, at: 0, offset: [-0.5, -0.5, 0] },
-      { text: <InlineMath math="T_2" />, at: 1, offset: [0.5, -0.5, 0] },
-    ] },
-    { points: [{ x: 2, y: 5, z: 0 }], color: "#0284c7", showPoints: true, labels: [{ text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0.5, 0] }] },
-  ]}
+<MathVisual
+  title={<>Two tangents from <InlineMath math="A(2, 5)" /> and the chord of contact</>}
+  description={<>The parabola <InlineMath math="y^2 = 8x" />, the tangents <InlineMath math="y = 2x + 1" /> and <InlineMath math="y = \tfrac12 x + 4" /> through <InlineMath math="A(2, 5)" />, and the pink chord joining the tangent points <InlineMath math="\left(\tfrac12, 2\right)" /> and <InlineMath math="(8, 8)" />.</>}
+  labels={{
+    parabola: <InlineMath math="y^2 = 8x" />,
+    t1: <InlineMath math="T_1" />,
+    t2: <InlineMath math="T_2" />,
+    a: <InlineMath math="A" />,
+    l1: <InlineMath math="y = 2x + 1" />,
+    l2: <InlineMath math="y = \tfrac12 x + 4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.5, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "y", coefficients: { a: 1 / 8, b: 0, c: 0 }, domain: { min: -2, max: 9 }, appearance: "secondary" },
+      { id: "l1", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 9 }, appearance: "construction" },
+      { id: "l2", kind: "segment", from: { x: 0, y: 4 }, to: { x: 10, y: 9 }, appearance: "highlight" },
+      { id: "chord", kind: "segment", from: { x: 1 / 2, y: 2 }, to: { x: 8, y: 8 }, appearance: "warning" },
+      { id: "t1", kind: "point", at: { x: 1 / 2, y: 2 }, appearance: "warning" },
+      { id: "t2", kind: "point", at: { x: 8, y: 8 }, appearance: "warning" },
+      { id: "a", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: 81 / 8, y: 9 }, placement: "left" },
+      { key: "t1", objectId: "t1", at: { x: 1 / 2, y: 2 }, placement: "right" },
+      { key: "t2", objectId: "t2", at: { x: 8, y: 8 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: 2, y: 5 }, placement: "left" },
+      { key: "l1", objectId: "l1", at: { x: 4, y: 9 }, placement: "left" },
+      { key: "l2", objectId: "l2", at: { x: 10, y: 9 }, placement: "above" },
+    ],
+  }}
 />
 
 Compare the **two lines through the external point** with the pink chord of contact. Both tangents pass through <InlineMath math="A" />, while the chord joins <InlineMath math="T_1" /> to <InlineMath math="T_2" /> and intersects the parabola at those two points.

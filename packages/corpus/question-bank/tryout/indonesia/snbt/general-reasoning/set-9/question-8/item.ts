@@ -1,34 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "assumption",
+  },
+  stimulus: "kolam",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Setiap siswa yang masuk Universitas $$P$$ telah lulus sekolah",
-        },
-        {
-          correct: false,
-          label:
-            "Tidak ada siswa yang mengundurkan diri lalu masuk Universitas $$P$$ pada angkatan yang sama",
-        },
-        {
-          correct: false,
-          label:
-            "Setiap siswa yang mengundurkan diri mengikuti program penempatan kerja sekolah",
-        },
-        {
-          correct: false,
-          label:
-            "Kategori lulus dan kategori mengundurkan diri tidak saling tumpang tindih",
-        },
-        {
           correct: true,
           label:
-            "Siswa yang masuk Universitas $$P$$ termasuk kategori mengundurkan diri",
+            "anak-anak di Kota Tepian akan memanfaatkan kolam renang umum yang dibangun",
+        },
+        {
+          correct: false,
+          label: "semua anak di Kota Tepian sudah pandai berenang sejak kecil",
+        },
+        {
+          correct: false,
+          label:
+            "kolam renang umum yang dibangun harus dapat dipakai tanpa membayar",
+        },
+        {
+          correct: false,
+          label:
+            "semua sungai di Kota Tepian akan dipagari setelah kolam renang umum selesai dibangun",
+        },
+        {
+          correct: false,
+          label: "kasus tenggelam di sungai hanya pernah menimpa anak-anak",
         },
       ],
     },

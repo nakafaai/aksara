@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "argument-evaluation",
+  },
+  stimulus: "sign-language",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Tim akan memperpanjang uji sambil mengubah ukuran kesesuaian pesanan.",
+          label: "Relawan tuli mengajar peserta dengan sabar.",
         },
         {
           correct: false,
-          label:
-            "Tim akan mengulang hanya sesi dengan jumlah pesanan sesuai tertinggi.",
+          label: "Banyak peserta merasa kelas itu menyenangkan.",
         },
         {
           correct: true,
           label:
-            "Tim akan memperpanjang uji pemesanan awal, mencatat kehadiran dan sisa makanan, serta mempertahankan ukuran kesesuaian pesanan.",
+            "Peserta kelas bahasa isyarat baru berjumlah tiga puluh orang, sedangkan pekerja di wilayah kelurahan itu ribuan orang.",
         },
         {
           correct: false,
-          label:
-            "Tim akan menerapkan pemesanan awal permanen sebagai pengganti uji lanjutan.",
+          label: "Balai warga juga membuka kelas menulis setiap Minggu.",
         },
         {
           correct: false,
-          label:
-            "Tim akan memperpanjang uji tanpa mencatat kehadiran dan sisa makanan.",
+          label: "Peserta belajar mengeja abjad dengan jari.",
         },
       ],
     },

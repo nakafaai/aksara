@@ -3,7 +3,7 @@ export const metadata = {
   description: "Die Ableitung ist die lokale Änderungsrate und Tangentensteigung aus dem Grenzwert der Sekantensteigungen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Ableitungsfunktionen",
 };
 
@@ -27,71 +27,33 @@ Die Steigung der Sekante durch <InlineMath math="P" /> und <InlineMath math="Q" 
 
 Diese Steigung ist die **mittlere Änderungsrate** von <InlineMath math="f(x)" /> zwischen <InlineMath math="P" /> und <InlineMath math="Q" />.
 
-<LineEquation
-  title="Sekante und Tangente"
-  description={
-    <>
-      Die Sekante verbindet zwei verschiedene Punkte der Kurve{" "}
-      <InlineMath math="y=x^2" />. Die Steigung der Tangente stimmt dagegen in
-      <InlineMath math="P" /> mit der lokalen Steigung der Kurve überein. In
-      diesem Beispiel trifft sie die Parabel in <InlineMath math="P" />.
-      Allgemein kann eine Tangente dieselbe Kurve an anderer Stelle erneut
-      schneiden.
-    </>
-  }
-  cameraPosition={[1, 3.5, 16]}
-  cameraTarget={[1, 3.5, 0]}
-  data={(() => {
-    // Kurvenfunktion festlegen
-    const f = (x) => x * x;
-
-    // 1. Hauptkurve festlegen: Parabel y = x^2
-    const curvePoints = Array.from({ length: 101 }, (_, i) => {
-      const x = (i - 50) / 10; // x von -5 bis 5
-      return { x, y: f(x), z: 0 };
-    });
-
-    // 2. Sekante festlegen
-    const p1_secant = { x: 1, y: f(1), z: 0 };
-    const p2_secant = { x: 3, y: f(3), z: 0 };
-
-    // 3. Tangente am Punkt P festlegen
-    const tangentPointX = 1;
-    const tangentPoint = { x: tangentPointX, y: f(tangentPointX), z: 0 };
-    const slope = 2 * tangentPointX; // Die Ableitung von x^2 ist 2x
-    // Geradengleichung: y - y1 = m(x - x1) => y = m(x - x1) + y1
-    const tangentLineFunc = (x) => slope * (x - tangentPointX) + tangentPoint.y;
-    const tangentLinePoints = [
-      { x: -1, y: tangentLineFunc(-1), z: 0 },
-      { x: 3, y: tangentLineFunc(3), z: 0 },
-    ];
-
-    return [
-      {
-        points: curvePoints,
-        smooth: false,
-        color: "#9333ea",
-        showPoints: false,
-      },
-      {
-        points: [p1_secant, p2_secant],
-        color: "#0891b2",
-        smooth: false,
-        labels: [
-          { text: <InlineMath math="P" />, at: 0, offset: [-0.5, -0.5, 0] },
-          { text: <InlineMath math="Q" />, at: 1, offset: [0.5, 0.5, 0] },
-          { text: "Sekante", at: 0, offset: [-1.5, 2.5, 0] },
-        ],
-      },
-      {
-        points: tangentLinePoints,
-        color: "#d97706",
-        smooth: false,
-        showPoints: false,
-        labels: [{ text: "Tangente", at: 1, offset: [2, -0.5, 0] }],
-      },
-    ];
-  })()}
+<MathVisual
+  title={<>Sekante und Tangente</>}
+  description={<>Die Sekante durch <InlineMath math="P(1, 1)" /> und <InlineMath math="Q(3, 9)" /> auf <InlineMath math="y = x^2" /> hat die Steigung 4. Die Tangente in <InlineMath math="P" />, <InlineMath math="y = 2x - 1" />, hat die Steigung 2, die Steigung der Kurve in <InlineMath math="P" />.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    secant: <InlineMath math="m = 4" />,
+    tangent: <InlineMath math="m = 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 3.6 }, y: { min: -3.6, max: 10.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -3 / 2, max: 16 / 5 }, appearance: "primary" },
+      { id: "secant", kind: "segment", from: { x: 1, y: 1 }, to: { x: 3, y: 9 }, appearance: "secondary" },
+      { id: "tangent", kind: "segment", from: { x: -1, y: -3 }, to: { x: 3, y: 5 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "q", kind: "point", at: { x: 3, y: 9 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 1 }, placement: "below-right" },
+      { key: "q", objectId: "q", at: { x: 3, y: 9 }, placement: "left" },
+      { key: "secant", objectId: "secant", at: { x: 2, y: 5 }, placement: "left" },
+      { key: "tangent", objectId: "tangent", at: { x: 3, y: 5 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Von der Sekante zur Tangente
@@ -120,6 +82,16 @@ Der Faktor <InlineMath math="h" /> darf gekürzt werden, weil die beiden Punkte 
 
 Wenn der **waagerechte Abstand von beiden Seiten gegen null** geht, nähert sich die Steigung dem Wert <InlineMath math="2" />. Die Tangentensteigung in <InlineMath math="P" /> beträgt also <InlineMath math="2" />. Wir bilden den Grenzwert erst nach dem Kürzen und teilen daher nie durch null.
 
+Tabellier die Sekantensteigung <InlineMath math="2 + h" />, während <InlineMath math="Q" /> auf <InlineMath math="P" /> zurückt. Von <InlineMath math="h = 1" /> bis <InlineMath math="h = -0{,}5" /> nähern sich die Balken von beiden Seiten der 2, der Steigung der Tangente in <InlineMath math="P" />.
+
+<BarChart
+  title={<>Sekantensteigungen, wenn <InlineMath math="h" /> schrumpft</>}
+  description={<>Balken der Sekantensteigung <InlineMath math="2 + h" /> für <InlineMath math="h = -0{,}5;\ -0{,}1;\ 0{,}1;\ 0{,}5;\ 1" />.</>}
+  yAxisLabel="Sekantensteigung"
+  data={[-0.5, -0.1, 0.1, 0.5, 1].map((x) => ({ name: String(x), value: 2 + x }))}
+  chartConfig={{ value: { label: "Sekantensteigung", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Definition der Ableitung
 
 <Highlight>[Der Grenzwert der Sekantensteigungen](/de/faecher/mathematik/grenzwerte/begriff-des-grenzwerts)</Highlight> für <InlineMath math="\Delta x" /> gegen Null heißt **Ableitung**.
@@ -131,3 +103,34 @@ Die Ableitung einer Funktion <InlineMath math="f(x)" />, bezeichnet als <InlineM
 Das Bestimmen einer Ableitung heißt **Differenzieren**.
 
 Die Ableitung <InlineMath math="f'(x)" /> ist eine neue Funktion. Für jeden Wert <InlineMath math="x" />, an dem der Grenzwert existiert, gibt sie die **momentane Änderungsrate** von <InlineMath math="f(x)" /> und damit die dortige Tangentensteigung an. Die Differentialrechnung verwendet die Ableitungsfunktion, um beide Größen zu untersuchen.
+
+Während <InlineMath math="Q" /> auf <InlineMath math="P" /> zurückt, drehen sich die Sekanten zur Tangente. <InlineMath math="h = 1" /> liefert die Steigung 3, <InlineMath math="h = \tfrac12" /> liefert 2,5, und die Tangente in <InlineMath math="P" /> hat die Steigung 2: den Grenzwert der Sekantensteigungen.
+
+<MathVisual
+  title={<>Sekanten, die zur Tangente werden</>}
+  description={<>Die Kurve <InlineMath math="y = x^2" /> mit den Sekanten von <InlineMath math="P(1, 1)" /> nach <InlineMath math="(2, 4)" /> und nach <InlineMath math="\left(\tfrac32, \tfrac94\right)" /> und der Tangente der Steigung 2 in <InlineMath math="P" />.</>}
+  labels={{
+    s1: <InlineMath math="m = 3" />,
+    s2: <InlineMath math="m = 2{,}5" />,
+    t: <InlineMath math="m = 2" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 2.6 }, y: { min: -1.4, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 2 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 1, y: 1 }, to: { x: 2, y: 4 }, appearance: "secondary" },
+      { id: "s2", kind: "segment", from: { x: 1, y: 1 }, to: { x: 3 / 2, y: 9 / 4 }, appearance: "highlight" },
+      { id: "t", kind: "segment", from: { x: 0, y: -1 }, to: { x: 2, y: 3 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s1", objectId: "s1", at: { x: 2, y: 4 }, placement: "left" },
+      { key: "s2", objectId: "s2", at: { x: 3 / 2, y: 9 / 4 }, placement: "left" },
+      { key: "t", objectId: "t", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>

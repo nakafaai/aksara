@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "argument-evaluation",
+  },
+  stimulus: "rain-gauge",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Data di kumpulkan di pasar tukar buku dan kemudian dibandingkan.",
+            "Biaya membersihkan saluran setiap minggu lebih mahal daripada biaya memperbesar saluran.",
         },
         {
           correct: false,
           label:
-            "Data dikumpulkan didepan pasar tukar buku dan kemudian dibandingkan.",
+            "Lapangan sekolah lain di Lembang juga sering tergenang pada musim hujan.",
         },
         {
           correct: false,
           label:
-            "Data mengumpulkan di pasar tukar buku dan kemudian membandingkan.",
+            "Siswa kelompok ilmiah remaja juga mencatat suhu udara setiap pagi.",
         },
         {
           correct: true,
           label:
-            "Data dikumpulkan di pasar tukar buku dan kemudian dibandingkan.",
+            "Selama tiga minggu saluran dibersihkan rutin, lapangan tidak pernah tergenang walaupun hujan deras turun.",
         },
         {
           correct: false,
-          label:
-            "Data dikumpulkan pada di pasar tukar buku lalu di bandingkan.",
+          label: "Sebagian guru lebih suka upacara diadakan di dalam aula.",
         },
       ],
     },

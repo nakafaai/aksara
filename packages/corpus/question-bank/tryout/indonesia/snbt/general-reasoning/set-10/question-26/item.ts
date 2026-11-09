@@ -1,29 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "quantitative-reasoning",
+    topic: "data-sufficiency",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$A$$",
+          label:
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (2) saja tidak cukup.",
+        },
+        {
+          correct: false,
+          label:
+            "Pernyataan (2) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (1) saja tidak cukup.",
+        },
+        {
+          correct: false,
+          label:
+            "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
         },
         {
           correct: true,
-          label: "$$B$$",
+          label:
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan dan pernyataan (2) saja juga cukup.",
         },
         {
           correct: false,
-          label: "$$C$$",
-        },
-        {
-          correct: false,
-          label: "$$A$$ dan $$C$$ sama-sama terbaik",
-        },
-        {
-          correct: false,
-          label: "$$B$$ dan $$C$$ sama-sama terbaik",
+          label:
+            "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
         },
       ],
     },

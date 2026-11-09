@@ -1,31 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "application",
+  },
+  stimulus: "half-sleep",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Measuring enzyme concentration in one preliminary comparison",
+          label:
+            "Resting on a quiet, sheltered beach after a long day of feeding",
+        },
+        {
+          correct: false,
+          label: "Lying on rocks on land beside other seals in its colony",
         },
         {
           correct: false,
           label:
-            "Treating the enzyme as the sole explanation for the observed result",
-        },
-        {
-          correct: false,
-          label: "A final rule derived from the first enzyme trial",
+            "Sleeping in a protected enclosure where no predators can reach it",
         },
         {
           correct: true,
-          label: "Testing temperature and enzyme activity in a classroom model",
+          label: "Resting in the open water some distance from the shore",
         },
         {
           correct: false,
-          label: "A limitation that makes another enzyme trial unnecessary",
+          label:
+            "Lying on land during a warm afternoon when the beach is empty",
         },
       ],
     },

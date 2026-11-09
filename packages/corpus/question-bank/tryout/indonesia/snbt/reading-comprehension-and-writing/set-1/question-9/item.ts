@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "coherence",
+  },
+  stimulus: "rooftop-garden",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Kalimat (2).",
-        },
-        {
-          correct: false,
-          label: "Kalimat (4).",
+          label: "sesudah kalimat (2)",
         },
         {
           correct: true,
-          label: "Kalimat (8).",
+          label: "sesudah kalimat (3)",
         },
         {
           correct: false,
-          label: "Kalimat (6).",
+          label: "sesudah kalimat (5)",
         },
         {
           correct: false,
-          label: "Kalimat (7).",
+          label: "sesudah kalimat (6)",
+        },
+        {
+          correct: false,
+          label: "sesudah kalimat (8)",
         },
       ],
     },

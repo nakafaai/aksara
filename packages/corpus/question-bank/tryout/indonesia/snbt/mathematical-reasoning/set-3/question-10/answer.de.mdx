@@ -1,29 +1,15 @@
-# Wahrscheinlichkeit für eine grüne Kugel beim ersten Zug
+Andra gewinnt mit **mehr als der Hälfte der gültigen Stimmen**. Die Hälfte von 240 ist 120, also braucht Andra mindestens 121 Stimmen.
 
-Der Beutel enthält <InlineMath math="4" /> grüne Kugeln und <InlineMath math="5" /> schwarze Kugeln.
+# Die Ungleichung aufstellen
 
-<BlockMath math="4 + 5 = 9" />
+Es mögen <InlineMath math="k" /> Wählende zu Andra wechseln. **Die Zahl gültiger Stimmen bleibt 240**, weil die Stimmen nur von anderen Kandidaten wandern.
 
-Die Wahrscheinlichkeit für eine grüne Kugel beim ersten Zug ist die **Anzahl der grünen Kugeln geteilt durch die Gesamtzahl aller Kugeln**.
+<BlockMath math="96+k>120\;\Longleftrightarrow\;k>24" />
 
-<BlockMath math="P(G_1) = \frac{4}{9}" />
+# Die kleinste ganze Zahl
 
-# Wahrscheinlichkeit für eine grüne Kugel beim zweiten Zug
+Die Zahl der Wählenden ist ganzzahlig, der kleinste Wert ist also <InlineMath math="k=25" />, und Andra hat 121 Stimmen. Bei <InlineMath math="k=24" /> hat Andra genau 120 Stimmen, **genau 50 %, also nicht mehr als 50 %**.
 
-Da **ohne Zurücklegen** gezogen wird, bleiben nach einer zuerst gezogenen grünen Kugel noch <InlineMath math="3" /> grüne von insgesamt <InlineMath math="8" /> Kugeln übrig.
+Der Wert 121 ist die nötige Stimmenzahl für Andra, nicht die Zahl der Wechselnden. Die Werte 48 und 49 entstehen, wenn man annimmt, dass Wechselnde gültige Stimmen entfernen, oder wenn man die zusätzlichen Stimmen verdoppelt.
 
-<BlockMath math="P(G_2 \mid G_1) = \frac{3}{8}" />
-
-# Berechnung der Gesamtwahrscheinlichkeit
-
-Die Wahrscheinlichkeit, dass beide Kugeln grün sind, ist das Produkt aus der Wahrscheinlichkeit des ersten Zuges und der **bedingten Wahrscheinlichkeit des zweiten Zuges**:
-
-<BlockMath math="\begin{aligned}&P(G_1 \cap G_2) \\ &=P(G_1)\,P(G_2 \mid G_1)\end{aligned}" />
-
-<BlockMath math="P(G_1 \cap G_2) = \frac{4}{9} \times \frac{3}{8}" />
-
-<BlockMath math="P(G_1 \cap G_2) = \frac{12}{72}" />
-
-<BlockMath math="P(G_1 \cap G_2) = \frac{1}{6}" />
-
-Damit beträgt die Wahrscheinlichkeit, zwei grüne Kugeln zu ziehen, <InlineMath math="\frac{1}{6}" />.
+Es müssen also mindestens **25 Wählende** wechseln.

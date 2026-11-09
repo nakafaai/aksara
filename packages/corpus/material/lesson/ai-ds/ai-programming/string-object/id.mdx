@@ -46,6 +46,23 @@ hello
 
 Prompt interaktif menampilkan representasi string, sehingga Python dapat memilih kutip tunggal atau ganda agar representasinya mudah dibaca. `print()` menulis nilai string itu sendiri tanpa tanda kutip pembatas literal.
 
+String adalah barisan karakter Unicode yang berurutan, dan setiap karakter punya kode bilangan bulat yang dibaca `ord()`. Huruf kapital `P` punya kode <InlineMath math="80" />, sedangkan huruf kecil berada di antara <InlineMath math="97" /> dan <InlineMath math="122" />.
+
+<BarChart
+  title={<><code>ord()</code> setiap karakter <code>'Python'</code></>}
+  description={<>Setiap batang adalah kode Unicode karakter yang tertulis di bawahnya, dalam urutan karakter di dalam string.</>}
+  yAxisLabel="Kode Unicode"
+  data={[
+    { name: "P", value: 80 },
+    { name: "y", value: 121 },
+    { name: "t", value: 116 },
+    { name: "h", value: 104 },
+    { name: "o", value: 111 },
+    { name: "n", value: 110 },
+  ]}
+  chartConfig={{ value: { label: "Kode Unicode", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
 ## String Kosong dan Fungsi Str
 
 Python mendukung string kosong dan **konversi tipe data lain menjadi string**. String kosong tidak memuat karakter dan **panjangnya nol**, sedangkan `str()` membangun representasi teks dari nilai apa pun.
@@ -86,6 +103,22 @@ Fungsi `str()` menghasilkan **representasi string yang mudah dibaca** dari suatu
 3.4`
     }
   ]}
+/>
+
+`str()` mengubah nilai apa pun menjadi teksnya, dan `len()` menghitung karakter teks itu. Tanda minus dan titik desimal juga dihitung, dan string kosong `''` adalah satu-satunya string dengan panjang <InlineMath math="0" />.
+
+<BarChart
+  title={<><code>len(str(x))</code> untuk lima nilai</>}
+  description={<>Setiap batang adalah panjang teks yang dibuat <code>str()</code> dari nilai di bawahnya. String kosong tidak punya batang.</>}
+  yAxisLabel="Panjang teks"
+  data={[
+    { name: "42", value: 2 },
+    { name: "3.5", value: 3 },
+    { name: "-7", value: 2 },
+    { name: "True", value: 4 },
+    { name: "''", value: 0 },
+  ]}
+  chartConfig={{ value: { label: "Panjang teks", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
 />
 
 ## String Multibaris
@@ -280,4 +313,62 @@ SyntaxError ...
 SyntaxError ...`
     }
   ]}
+/>
+
+Lihat bagaimana tiga string disambung menjadi satu di gambar ini. Setiap potongan mempertahankan urutan karakternya dan langsung ditempel di belakang potongan sebelumnya, jadi `W` mulai di indeks <InlineMath math="6" />, tepat setelah <InlineMath math="5" /> karakter `Hello` dan satu spasi. Panjang hasilnya adalah jumlah panjang potongan, <InlineMath math="5+1+5=11" />. Ketiga string asli tidak berubah, karena operator `+` membuat string baru.
+
+<MathVisual
+  title={<>Menyambung <code>'Hello' + ' ' + 'World'</code></>}
+  description={<>Setiap potongan punya warna sendiri, dan ruas di bawahnya menandai panjangnya. Simbol ␣ adalah spasi.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "hello-a", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "hello-b", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "hello-c", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "hello-d", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "hello-e", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "space-a", kind: "point", at: { x: 5, y: 0 }, appearance: "construction" },
+      { id: "world-a", kind: "point", at: { x: 6, y: 0 }, appearance: "answer" },
+      { id: "world-b", kind: "point", at: { x: 7, y: 0 }, appearance: "answer" },
+      { id: "world-c", kind: "point", at: { x: 8, y: 0 }, appearance: "answer" },
+      { id: "world-d", kind: "point", at: { x: 9, y: 0 }, appearance: "answer" },
+      { id: "world-e", kind: "point", at: { x: 10, y: 0 }, appearance: "answer" },
+      { id: "hello-length", kind: "segment", from: { x: 0, y: -0.4 }, to: { x: 4, y: -0.4 }, appearance: "secondary" },
+      { id: "space-length", kind: "point", at: { x: 5, y: -0.4 }, appearance: "construction" },
+      { id: "world-length", kind: "segment", from: { x: 6, y: -0.4 }, to: { x: 10, y: -0.4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "hello-a", objectId: "hello-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "hello-b", objectId: "hello-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "hello-c", objectId: "hello-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "hello-d", objectId: "hello-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "hello-e", objectId: "hello-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "space-a", objectId: "space-a", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "world-a", objectId: "world-a", at: { x: 6, y: 0 }, placement: "above" },
+      { key: "world-b", objectId: "world-b", at: { x: 7, y: 0 }, placement: "above" },
+      { key: "world-c", objectId: "world-c", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "world-d", objectId: "world-d", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "world-e", objectId: "world-e", at: { x: 10, y: 0 }, placement: "above" },
+      { key: "hello-length", objectId: "hello-length", at: { x: 2, y: -0.4 }, placement: "below" },
+      { key: "world-length", objectId: "world-length", at: { x: 8, y: -0.4 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "hello-a": "H",
+    "hello-b": "e",
+    "hello-c": "l",
+    "hello-d": "l",
+    "hello-e": "o",
+    "space-a": "␣",
+    "world-a": "W",
+    "world-b": "o",
+    "world-c": "r",
+    "world-d": "l",
+    "world-e": "d",
+    "hello-length": "len('Hello') = 5",
+    "world-length": "len('World') = 5",
+  }}
 />

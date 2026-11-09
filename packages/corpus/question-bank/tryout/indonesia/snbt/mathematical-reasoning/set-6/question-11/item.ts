@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "parcel-weight",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$20$$",
+          column: 2,
+          label:
+            "Memperkecil ukuran kardus selalu menurunkan biaya pengiriman.",
         },
         {
-          correct: false,
-          label: "$$60$$",
+          column: 1,
+          label:
+            "Buku dalam kardus berukuran 20 cm × 15 cm × 5 cm dengan berat aktual 2,3 kg ditagih sebagai 3 kg.",
         },
         {
-          correct: true,
-          label: "$$30$$",
+          column: 1,
+          label:
+            "Kardus berukuran 60 cm × 50 cm × 40 cm berisi barang seberat 8 kg ditagih sebagai 20 kg.",
         },
         {
-          correct: false,
-          label: "$$90$$",
-        },
-        {
-          correct: false,
-          label: "$$360$$",
+          column: 2,
+          label:
+            "Berat volume kardus berbentuk kubus dengan panjang rusuk 30 cm adalah 5 kg.",
         },
       ],
     },

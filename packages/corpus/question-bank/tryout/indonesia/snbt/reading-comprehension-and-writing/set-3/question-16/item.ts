@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "night-watch",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Peserta lokakarya kompos memberikan komentar singkat yang singkat.",
+          label: "$$20$$ orang",
         },
         {
           correct: false,
-          label:
-            "Peserta lokakarya kompos memberikan komentar singkat dengan panjang komentar yang singkat.",
+          label: "$$24$$ orang",
         },
         {
           correct: true,
-          label: "Peserta lokakarya kompos memberikan komentar singkat.",
+          label: "$$25$$ orang",
         },
         {
           correct: false,
-          label:
-            "Peserta lokakarya kompos memberikan komentar singkat dalam bentuk pendek.",
+          label: "$$30$$ orang",
         },
         {
           correct: false,
-          label:
-            "Peserta lokakarya kompos memberikan komentar singkat di lokakarya kompos tersebut.",
+          label: "$$32$$ orang",
         },
       ],
     },

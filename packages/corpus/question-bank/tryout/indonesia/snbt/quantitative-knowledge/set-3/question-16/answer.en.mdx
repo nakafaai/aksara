@@ -1,19 +1,21 @@
-Count the **initial position** as one rotational symmetry. Compare positions that map the shape onto itself with reflection axes that divide it into mirror images.
+Let the largest number be <InlineMath math="L" /> and the smallest <InlineMath math="K" />. The change in the mean gives **the sum of these two numbers**, and their difference is already known.
 
-| Figure | Rotational symmetries | Reflection axes |
-| --- | --- | --- |
-| Regular octagon | 8: multiples of 45° from 0° to 315° | 8: four through opposite vertices and four through the midpoints of opposite sides |
-| Rhombus that is not a square | 2: rotations of 0° and 180° | 2: both diagonals |
-| Isosceles triangle that is not equilateral | 1: the initial position only | 1: the line from the apex to the base midpoint |
-| Kite that is not a rhombus | 1: the initial position only | 1: the diagonal joining the vertices where the equal adjacent sides meet |
+# The sum of the largest and smallest
 
-The rhombus below has **two reflection axes**, its diagonals. A 180° rotation exchanges opposite vertices and maps the shape onto itself.
+The ten numbers add up to <InlineMath math="10\times20=200" />. The remaining eight add up to <InlineMath math="8\times19=152" />. **The difference of the two totals** is the sum of the two numbers removed.
 
-<MathVisual
- title="Both diagonals are reflection axes"
- description="The horizontal and vertical diagonals each divide the rhombus into a pair of mirror-image triangles."
- scene={{space:"plane",frame:{kind:"cartesian",x:{min:-4,max:4},y:{min:-3,max:3}},view:{kind:"fit",padding:0.15},objects:[{id:"rhombus",kind:"polygon",appearance:"primary",vertices:[{x:-3,y:0},{x:0,y:2},{x:3,y:0},{x:0,y:-2}]},{id:"horizontal",kind:"segment",appearance:"highlight",from:{x:-3,y:0},to:{x:3,y:0}},{id:"vertical",kind:"segment",appearance:"secondary",from:{x:0,y:-2},to:{x:0,y:2}}],labels:[]}}
- labels={{}}
-/>
+<BlockMath math="L+K=200-152=48" />
 
-The two counts are equal in every row. No figure has more rotational symmetries, so the answer is 0.
+# Solving the system
+
+<BlockMath math="\begin{aligned}
+L+K&=48\\
+L-K&=30\\
+2L&=78\quad\Rightarrow\quad L=39,\ K=9
+\end{aligned}" />
+
+Check: <InlineMath math="39-9=30" />, and the remaining eight numbers add up to 152 with mean 19, which sits sensibly between 9 and 39.
+
+The value 48 is the sum <InlineMath math="L+K" /> before it is split. The value 30 is the difference, and the value 9 is the smallest number. The value 35 computes the total of the eight numbers with mean 20, which gives <InlineMath math="L+K=40" />.
+
+So the largest number is **39**.

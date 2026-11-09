@@ -1,30 +1,27 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-23
 const item: ItemSource = {
+  stimulus: "rain-tank",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "Kapasitas tangki adalah $$3{,}08\\text{ m}^3$$." },
         {
-          correct: true,
-          label: "$$\\frac{13}{21}$$",
+          column: 2,
+          label:
+            "Hujan dengan curah hujan 40 mm dalam sehari cukup untuk mengisi penuh tangki yang semula kosong.",
         },
         {
-          correct: false,
-          label: "$$\\frac{11}{21}$$",
+          column: 1,
+          label:
+            "Jika seluruh air hujan dari atap masuk ke tangki, hujan dengan curah hujan 25 mm menghasilkan $$1{,}925\\text{ m}^3$$ air di tangki.",
         },
         {
-          correct: false,
-          label: "$$\\frac{4}{7}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{2}{3}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{5}{7}$$",
+          column: 2,
+          label:
+            "Jika keluarga itu memakai $$0{,}14\\text{ m}^3$$ air setiap hari, tangki yang penuh cukup untuk 25 hari tanpa hujan.",
         },
       ],
     },

@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "word-choice",
+  },
+  stimulus: "silted-pond",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "pada Senin, tim menguji jadwal digital setelah pembatalan.",
+          label: "kalimat (1)",
+        },
+        {
+          correct: false,
+          label: "kalimat (2)",
+        },
+        {
+          correct: false,
+          label: "kalimat (3)",
+        },
+        {
+          correct: false,
+          label: "kalimat (4)",
         },
         {
           correct: true,
-          label: "Pada Senin, tim menguji jadwal digital setelah pembatalan.",
-        },
-        {
-          correct: false,
-          label: "Pada senin, tim menguji jadwal digital setelah pembatalan.",
-        },
-        {
-          correct: false,
-          label: "Pada Senin, Tim menguji jadwal digital setelah pembatalan.",
-        },
-        {
-          correct: false,
-          label: "Pada Senin tim menguji jadwal digital setelah pembatalan",
+          label: "kalimat (5)",
         },
       ],
     },

@@ -1,23 +1,32 @@
-Given the **recursive formula** for the sequence:
+Write the three terms as <InlineMath math="\tfrac{a}{r}" />, <InlineMath math="a" /> and <InlineMath math="ar" />. The key is **dividing the sum of squares by the sum of the terms**, because the quotient is an expression very close to the sum of the terms.
 
-<BlockMath math="a_{n+1} = a_{n+2} + 2a_n" />
+# The sum of squares identity
 
-We are given <InlineMath math="a_3 = -1" /> and <InlineMath math="a_5 = 3" />. We need to find the value of <InlineMath math="a_2" />.
+For three geometric terms,
 
-First, we find the value of <InlineMath math="a_4" /> by using the recursive formula and substituting <InlineMath math="n = 3" /> to relate <InlineMath math="a_3" />, <InlineMath math="a_4" />, and <InlineMath math="a_5" />.
+<BlockMath math="\frac{a^2}{r^2}+a^2+a^2r^2=\left(\frac ar+a+ar\right)\left(\frac ar-a+ar\right)" />
 
-<BlockMath math="\begin{align*} a_{3+1} &= a_{3+2} + 2a_3 \\ a_4 &= a_5 + 2a_3 \end{align*}" />
+You can check the right side by multiplying out: the cross terms cancel. So **the sum of squares divided by the sum** equals <InlineMath math="\tfrac ar-a+ar" />.
 
-Substitute the values <InlineMath math="a_5 = 3" /> and <InlineMath math="a_3 = -1" />:
+<BlockMath math="\begin{aligned}
+\frac ar+a+ar&=38\\
+\frac ar-a+ar&=\frac{532}{38}=14
+\end{aligned}" />
 
-<BlockMath math="\begin{align*} a_4 &= 3 + 2(-1) \\ a_4 &= 3 - 2 \\ a_4 &= 1 \end{align*}" />
+# Finding the terms
 
-Next, we find the value of <InlineMath math="a_2" />. Since we now have the values of <InlineMath math="a_3" /> and <InlineMath math="a_4" />, we can use the recursive formula with <InlineMath math="n = 2" /> to relate <InlineMath math="a_2" />, <InlineMath math="a_3" />, and <InlineMath math="a_4" />.
+Subtract the two equations: <InlineMath math="2a=24" />, so <InlineMath math="a=12" /> and **the sum of the two outer terms** is <InlineMath math="\tfrac{12}{r}+12r=26" />.
 
-<BlockMath math="\begin{align*} a_{2+1} &= a_{2+2} + 2a_2 \\ a_3 &= a_4 + 2a_2 \end{align*}" />
+<BlockMath math="\begin{aligned}
+12r^2-26r+12&=0\\
+6r^2-13r+6&=0\\
+(3r-2)(2r-3)&=0
+\end{aligned}" />
 
-Substitute the values <InlineMath math="a_3 = -1" /> and <InlineMath math="a_4 = 1" />:
+The value <InlineMath math="r=\tfrac32" /> gives 8, 12, 18, and <InlineMath math="r=\tfrac23" /> gives the same numbers in reverse order. Check: <InlineMath math="8+12+18=38" /> and <InlineMath math="64+144+324=532" />.
 
-<BlockMath math="\begin{align*} -1 &= 1 + 2a_2 \\ -1 - 1 &= 2a_2 \\ -2 &= 2a_2 \\ a_2 &= -1 \end{align*}" />
+The difference between the largest and the smallest number is <InlineMath math="18-8=10" />.
 
-Thus, the value of <InlineMath math="a_2" /> is <InlineMath math="-1" />.
+The value 12 is the middle term, 14 is the quotient <InlineMath math="532:38" />, 18 is the largest term, and 26 is the sum of the two outer terms.
+
+So the difference between the largest and the smallest number is **10**.

@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "indigo-batik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Data awal membuktikan bahwa contoh foto menyebabkan perbedaan kesepakatan.",
+          label: "kalimat (1)",
         },
         {
           correct: false,
-          label:
-            "Tim perlu mengubah beberapa unsur pendataan sekaligus sebelum mengukur ulang.",
-        },
-        {
-          correct: false,
-          label: "Pola awal membenarkan penerapan permanen contoh foto.",
+          label: "kalimat (3)",
         },
         {
           correct: true,
-          label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji dengan menambahkan contoh foto untuk setiap kategori kondisi.",
+          label: "kalimat (4)",
         },
         {
           correct: false,
-          label:
-            "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
+          label: "kalimat (6)",
+        },
+        {
+          correct: false,
+          label: "kalimat (8)",
         },
       ],
     },

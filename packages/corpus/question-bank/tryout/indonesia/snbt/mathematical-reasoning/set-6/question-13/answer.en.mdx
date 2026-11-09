@@ -1,24 +1,19 @@
-# Calculating Cost Components
+Count how many days after 1 January the date 17 August lies, then take **the remainder on division by 7**, because the days of the week repeat every 7 days.
 
-The total cost Bedu has to pay is the sum of the base fare (for the **first kilometer**) and the total fare for the subsequent kilometers.
+# Position in the year
 
-Given:
-- Total distance is <InlineMath math="18\text{ km}" />.
-- Base fare (first <InlineMath math="1 \text{ km }" />) is <InlineMath math="\text{Rp}2{,}500" />.
-- Additional fare per km is <InlineMath math="\text{Rp}1{,}000" />.
+Add the days from January to July, then add 17.
 
-Remaining distance subject to additional fare:
+<BlockMath math="31+28+31+30+31+30+31+17=229" />
 
-<BlockMath math="18\text{ km}-1\text{ km}=17\text{ km}" />
+So 17 August is day 229, which is **228 days after 1 January**.
 
-# Calculating Total Fare
+# Shifting the weekday
 
-Let <InlineMath math="T" /> be the total fare in rupiah. Add the **base fare and the cost of the remaining distance**:
+<BlockMath math="228=7\cdot32+4" />
 
-<BlockMath math="T=2{,}500+(17\times1{,}000)" />
+After 32 full weeks the day is Friday again, then it moves 4 more days: Saturday, Sunday, Monday, Tuesday.
 
-<BlockMath math="T=2{,}500+17{,}000" />
+A common mistake is using 229 as the number of days after 1 January, which shifts the weekday by one, to Wednesday.
 
-<BlockMath math="T=19{,}500" />
-
-Thus, the total fare Bedu has to pay is <InlineMath math="\text{Rp}19{,}500.00" />.
+So 17 August 2027 falls on a **Tuesday**.

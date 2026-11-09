@@ -1,32 +1,25 @@
-Bei einer Teilmenge spielt die **Reihenfolge der Elemente keine Rolle**. Deshalb zählen wir mit Kombinationen.
+Quadriere beide Seiten, um die Wurzel zu entfernen. Dabei können Scheinlösungen entstehen, also **muss jedes Ergebnis in der ursprünglichen Gleichung geprüft werden**.
 
-Eine Menge mit <InlineMath math="n" /> Elementen besitzt insgesamt <InlineMath math="2^n" /> Teilmengen. Für <InlineMath math="n = 10" /> sind das:
+# Beide Seiten quadrieren
 
-<BlockMath math="2^{10} = 1024" />
+<BlockMath math="\begin{aligned}
+x+10&=(x-2)^2\\
+x+10&=x^2-4x+4\\
+x^2-5x-6&=0\\
+(x-6)(x+1)&=0
+\end{aligned}" />
 
-Gesucht sind Teilmengen mit **mehr als <InlineMath math="3" />** Elementen, also mit <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="6" />, ..., <InlineMath math="10" /> Elementen.
+# Beide Kandidaten prüfen
 
-Einfacher ist das Komplement: Von allen Teilmengen ziehen wir diejenigen mit **<InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" /> oder <InlineMath math="3" />** Elementen ab.
+Die linke Seite ist eine Quadratwurzel und nie negativ. Deshalb **muss auch die rechte Seite nicht negativ sein**, also <InlineMath math="x\ge2" />.
 
-Die Kombinationsformel lautet:
+<BlockMath math="\begin{aligned}
+x=6&:\quad \sqrt{16}=4=6-2\\
+x=-1&:\quad \sqrt{9}=3\ne-1-2
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}C(n, r)&=\binom{n}{r}\\&=\frac{n!}{r!(n-r)!}\end{aligned}" />
+Nur <InlineMath math="x=6" /> passt. Der Kandidat <InlineMath math="x=-1" /> entsteht, weil <InlineMath math="3^2" /> und <InlineMath math="(-3)^2" /> beide 9 sind.
 
-| Ausgewählte Elemente | Rechnung | Anzahl der Teilmengen |
-| --- | --- | --- |
-| 0 | <InlineMath math="\frac{10!}{0!10!}=1" /> | 1 |
-| 1 | <InlineMath math="\frac{10!}{1!9!}=10" /> | 10 |
-| 2 | <InlineMath math="\frac{10\times9}{2\times1}=45" /> | 45 |
-| 3 | <InlineMath math="\frac{10\times9\times8}{3\times2\times1}=120" /> | 120 |
+Der Wert 5 addiert beide Kandidaten ohne Probe. Der Wert <InlineMath math="-1" /> ist die Scheinlösung, 4 ist der Wert von <InlineMath math="\sqrt{x+10}" />, und 1 entsteht durch einen Vorzeichenfehler beim Faktorisieren.
 
-Die einzige Teilmenge mit null Elementen ist die **leere Menge**. Sie wird mitgezählt.
-
-Zusammen gibt es so viele Teilmengen mit <InlineMath math="\leq 3" /> Elementen:
-
-<BlockMath math="1 + 10 + 45 + 120 = 176" />
-
-Für die Teilmengen mit **mehr als <InlineMath math="3" />** Elementen bleibt:
-
-<BlockMath math="1024-176=848" />
-
-Damit gibt es <InlineMath math="848" /> Teilmengen von <InlineMath math="A" /> mit mehr als <InlineMath math="3" /> Elementen.
+Die Summe aller Lösungen ist also **6**.

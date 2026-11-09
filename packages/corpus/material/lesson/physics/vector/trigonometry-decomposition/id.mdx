@@ -113,6 +113,36 @@ Dengan pembulatan tersebut, komponen gaya <InlineMath math="50\text{ N}" /> mend
 
 Nilai yang dihitung tanpa pembulatan awal adalah sekitar <InlineMath math="39{,}93\text{ N}" /> dan <InlineMath math="30{,}09\text{ N}" />. Model memakai sudut <InlineMath math="37^\circ" /> secara langsung, sehingga angka koordinat tidak persis <InlineMath math="4" /> dan <InlineMath math="3" />.
 
+Inilah gaya tali yang diuraikan ke sumbu. Kosinus memberi bagian mendatar dan sinus memberi bagian tegak, sekitar <InlineMath math="40\text{ N}" /> dan <InlineMath math="30\text{ N}" />, dan kedua bagian itu menyusun kembali gaya <InlineMath math="50\text{ N}" />.
+
+<MathVisual
+  title={<>Menguraikan Gaya Tarik</>}
+  description={<><InlineMath math="F=50\text{ N}" /> dengan sudut 37° di atas mendatar beserta komponennya. Satu kotak grid sama dengan 10 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "fx", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 } },
+      { id: "fx-head", kind: "polygon", appearance: "construction", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.25, y: 0.125 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.25, y: -0.125 }] },
+      { id: "fy", kind: "segment", appearance: "secondary", from: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) } },
+      { id: "fy-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) }, { x: 5 * Math.cos((37 * Math.PI) / 180) + 0.125, y: 5 * Math.sin((37 * Math.PI) / 180) + -0.25 }, { x: 5 * Math.cos((37 * Math.PI) / 180) + -0.125, y: 5 * Math.sin((37 * Math.PI) / 180) + -0.25 }] },
+      { id: "f", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) } },
+      { id: "f-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5 * Math.cos((37 * Math.PI) / 180), y: 5 * Math.sin((37 * Math.PI) / 180) }, { x: 5 * Math.cos((37 * Math.PI) / 180) - (0.25 * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) + ((0.25 / 2) * -3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416), y: 5 * Math.sin((37 * Math.PI) / 180) - (0.25 * 3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416) + ((0.25 / 2) * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) }, { x: 5 * Math.cos((37 * Math.PI) / 180) - (0.25 * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) - ((0.25 / 2) * -3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416), y: 5 * Math.sin((37 * Math.PI) / 180) - (0.25 * 3.0090751157602416) / Math.hypot(3.993177550236464, 3.0090751157602416) - ((0.25 / 2) * 3.993177550236464) / Math.hypot(3.993177550236464, 3.0090751157602416) }] },
+    ],
+    labels: [
+      { key: "fx", objectId: "fx", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "fy", objectId: "fy", at: { x: 5 * Math.cos((37 * Math.PI) / 180), y: 1.5 }, placement: "right" },
+      { key: "f", objectId: "f", at: { x: 2, y: 1.5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    fx: <InlineMath math="F_x=F\cos37^\circ\approx40\text{ N}" />,
+    fy: <InlineMath math="F_y=F\sin37^\circ\approx30\text{ N}" />,
+    f: <InlineMath math="F=50\text{ N}" />,
+  }}
+/>
+
 ## Jika Sudut Diukur dari Sumbu Vertikal
 
 Sekarang pertahankan gaya di kuadran I, tetapi ukur **sudut dari sumbu vertikal positif** ke arah gaya. Komponen yang berdekatan dengan sudut <InlineMath math="\theta" /> sekarang adalah <InlineMath math="F_y" />, sedangkan <InlineMath math="F_x" /> berada di hadapannya.
@@ -136,3 +166,39 @@ Jika <InlineMath math="\theta" /> adalah **sudut posisi standar** yang diukur be
 | kanan bawah | positif | negatif |
 
 Jika gaya miring ke kiri atas, komponen horizontalnya bernilai negatif karena berlawanan dengan sumbu <InlineMath math="x" /> positif, sedangkan komponen vertikalnya tetap positif.
+
+Ukur sudutnya dari sumbu x positif, berlawanan arah jarum jam, maka kuadrannya memberi tanda. Setiap panah sama besar, tetapi komponennya mengikuti tanda kuadran yang ditujunya. Perbesar tiap ujung panah.
+
+<MathVisual
+  title={<>Tanda Komponen Menurut Kuadran</>}
+  description={<>Empat gaya yang sama besar pada sudut 30, 150, 210, dan 330 derajat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 3 } },
+      { id: "q30", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 } },
+      { id: "q30-head", kind: "polygon", appearance: "primary", vertices: [{ x: (3 * Math.sqrt(3)) / 2, y: 1.5 }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) + ((0.25 / 2) * -1.5) / Math.hypot(2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(2.598076211353316, 1.5) + ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) - ((0.25 / 2) * -1.5) / Math.hypot(2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(2.598076211353316, 1.5) - ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, 1.5) }] },
+      { id: "q150", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: 1.5 } },
+      { id: "q150-head", kind: "polygon", appearance: "secondary", vertices: [{ x: -(3 * Math.sqrt(3)) / 2, y: 1.5 }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) + ((0.25 / 2) * -1.5) / Math.hypot(-2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(-2.598076211353316, 1.5) + ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) - ((0.25 / 2) * -1.5) / Math.hypot(-2.598076211353316, 1.5), y: 1.5 - (0.25 * 1.5) / Math.hypot(-2.598076211353316, 1.5) - ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, 1.5) }] },
+      { id: "q210", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -(3 * Math.sqrt(3)) / 2, y: -1.5 } },
+      { id: "q210-head", kind: "polygon", appearance: "construction", vertices: [{ x: -(3 * Math.sqrt(3)) / 2, y: -1.5 }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) + ((0.25 / 2) * 1.5) / Math.hypot(-2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(-2.598076211353316, -1.5) + ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) }, { x: -(3 * Math.sqrt(3)) / 2 - (0.25 * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) - ((0.25 / 2) * 1.5) / Math.hypot(-2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(-2.598076211353316, -1.5) - ((0.25 / 2) * -2.598076211353316) / Math.hypot(-2.598076211353316, -1.5) }] },
+      { id: "q330", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: (3 * Math.sqrt(3)) / 2, y: -1.5 } },
+      { id: "q330-head", kind: "polygon", appearance: "answer", vertices: [{ x: (3 * Math.sqrt(3)) / 2, y: -1.5 }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) + ((0.25 / 2) * 1.5) / Math.hypot(2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(2.598076211353316, -1.5) + ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) }, { x: (3 * Math.sqrt(3)) / 2 - (0.25 * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) - ((0.25 / 2) * 1.5) / Math.hypot(2.598076211353316, -1.5), y: -1.5 - (0.25 * -1.5) / Math.hypot(2.598076211353316, -1.5) - ((0.25 / 2) * 2.598076211353316) / Math.hypot(2.598076211353316, -1.5) }] },
+    ],
+    labels: [
+      { key: "q30", objectId: "q30", at: { x: (3 * Math.sqrt(3)) / 2, y: 1.5 }, placement: "above" },
+      { key: "q150", objectId: "q150", at: { x: -(3 * Math.sqrt(3)) / 2, y: 1.5 }, placement: "above" },
+      { key: "q210", objectId: "q210", at: { x: -(3 * Math.sqrt(3)) / 2, y: -1.5 }, placement: "below" },
+      { key: "q330", objectId: "q330", at: { x: (3 * Math.sqrt(3)) / 2, y: -1.5 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    q30: <InlineMath math="F_x>0,\ F_y>0" />,
+    q150: <InlineMath math="F_x<0,\ F_y>0" />,
+    q210: <InlineMath math="F_x<0,\ F_y<0" />,
+    q330: <InlineMath math="F_x>0,\ F_y<0" />,
+  }}
+/>

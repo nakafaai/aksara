@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "bike-parking",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Relawan pencatatan kebisingan memberikan komentar singkat yang tidak panjang.",
+          label: "$$20$$ siswa",
         },
         {
           correct: false,
-          label:
-            "Relawan pencatatan kebisingan memberikan komentar singkat sebagai relawan yang mencatat kebisingan.",
-        },
-        {
-          correct: false,
-          label:
-            "Relawan pencatatan kebisingan memberikan komentar singkat dalam bentuk yang singkat.",
+          label: "$$25$$ siswa",
         },
         {
           correct: true,
-          label: "Relawan pencatatan kebisingan memberikan komentar singkat.",
+          label: "$$70$$ siswa",
         },
         {
           correct: false,
-          label:
-            "Relawan pencatatan kebisingan memberikan komentar singkat, yaitu komentar yang pendek.",
+          label: "$$110$$ siswa",
+        },
+        {
+          correct: false,
+          label: "$$150$$ siswa",
         },
       ],
     },

@@ -1,27 +1,68 @@
-We need an exact expression for the **difference between two consecutive terms**. From <InlineMath math="a_4 = 85" />, working backwards gives
+Every statement can be checked directly from the coordinates. Side <InlineMath math="AB" /> lies on the <InlineMath math="x" />-axis, so **the height of the triangle to <InlineMath math="AB" /> is the <InlineMath math="y" />-coordinate of <InlineMath math="C" />**, which is 4.
 
-<BlockMath math="a_3 = \frac{85 - 1}{4} = 21" />
+# Area and side length
 
-<BlockMath math="a_2 = \frac{21 - 1}{4} = 5" />
+<BlockMath math="\begin{aligned}
+A&=\tfrac12\cdot AB\cdot h=\tfrac12\cdot6\cdot4=12\\
+AC&=\sqrt{(2-0)^2+(4-0)^2}=\sqrt{20}=2\sqrt5
+\end{aligned}" />
 
-<BlockMath math="a_1 = \frac{5 - 1}{4} = 1" />
+The first and third statements are **true**.
 
-# Deriving the Difference Formula
+# The angle at C
 
-Multiplying the recurrence by <InlineMath math="3" /> and adding <InlineMath math="1" /> gives
+The angle at <InlineMath math="C" /> is a right angle if the vectors <InlineMath math="\overrightarrow{CA}" /> and <InlineMath math="\overrightarrow{CB}" /> are perpendicular, that is, if **their dot product is zero**.
 
-<BlockMath math="3a_{n+1} + 1 = 3(4a_n + 1) + 1" />
+<BlockMath math="\overrightarrow{CA}\cdot\overrightarrow{CB}=(-2,-4)\cdot(4,-4)=-8+16=8\ne0" />
 
-<BlockMath math="3a_{n+1} + 1 = 4(3a_n + 1)" />
+The angle at <InlineMath math="C" /> is not a right angle, so the second statement is false.
 
-Since <InlineMath math="3a_1 + 1 = 4" />, it follows that <InlineMath math="3a_n + 1 = 4^n" />. The original recurrence then yields
+# The circumcenter
 
-<BlockMath math="a_{n+1} - a_n = 4a_n + 1 - a_n" />
+The circumcenter is where the perpendicular bisectors of the sides meet. The perpendicular bisector of <InlineMath math="AB" /> is the line <InlineMath math="x=3" />. The perpendicular bisector of <InlineMath math="AC" /> passes through the midpoint <InlineMath math="(1,2)" /> and is perpendicular to <InlineMath math="AC" />, whose gradient is 2, so its gradient is <InlineMath math="-\tfrac12" />. Substitute <InlineMath math="x=3" /> into that bisector.
 
-<BlockMath math="a_{n+1} - a_n = 3a_n + 1 = 4^n" />
+<BlockMath math="y-2=-\tfrac12(3-1)\quad\Rightarrow\quad y=1" />
 
-For <InlineMath math="n = 2024" />,
+The circumcenter is <InlineMath math="(3,1)" />. **Check the distances**: <InlineMath math="OA^2=9+1" />, <InlineMath math="OB^2=9+1" />, and <InlineMath math="OC^2=1+9" /> are all 10. The point <InlineMath math="(3,2)" /> is <InlineMath math="\sqrt{13}" /> from <InlineMath math="A" /> but <InlineMath math="\sqrt5" /> from <InlineMath math="C" />, so the fourth statement is false.
 
-<BlockMath math="a_{2025} - a_{2024} = 4^{2024} = 2^{4048}" />
+<MathVisual
+  title={<>Triangle <InlineMath math="ABC" /> and its circumcircle</>}
+  description={<>The circumcenter <InlineMath math="O(3,1)" /> is the same distance, <InlineMath math="\sqrt{10}" />, from all three vertices.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 9 },
+      y: { min: -3, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.12 },
+    objects: [
+      {
+        id: "triangle",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 6, y: 0 },
+          { x: 2, y: 4 },
+        ],
+      },
+      { id: "circumcircle", kind: "circle", appearance: "secondary", center: { x: 3, y: 1 }, radius: Math.sqrt(10) },
+      { id: "center", kind: "point", appearance: "highlight", at: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "triangle", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "triangle", at: { x: 2, y: 4 }, placement: "above" },
+      { key: "o", objectId: "center", at: { x: 3, y: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A(0,0)" />,
+    b: <InlineMath math="B(6,0)" />,
+    c: <InlineMath math="C(2,4)" />,
+    o: <InlineMath math="O(3,1)" />,
+  }}
+/>
 
-This number has no **prime factor** other than <InlineMath math="2" />. Among <InlineMath math="3, 4, 5, 6," /> and <InlineMath math="7" />, only <InlineMath math="4 = 2^2" /> divides it. Therefore, the required divisor is <InlineMath math="4" />.
+So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.

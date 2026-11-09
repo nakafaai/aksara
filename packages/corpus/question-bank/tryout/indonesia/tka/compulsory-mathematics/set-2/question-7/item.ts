@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "knowledge-understanding",
+    cognitiveLevel: "application",
     contentDomain: "algebra",
     topic: "functions",
   },
@@ -11,24 +11,24 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$6$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{20}{3}$$",
-        },
-        {
-          correct: false,
-          label: "$$8$$",
-        },
-        {
           correct: true,
-          label: "$$\\frac{22}{3}$$",
+          label: "$$4$$ detik",
         },
         {
           correct: false,
-          label: "$$\\frac{26}{3}$$",
+          label: "$$2$$ detik",
+        },
+        {
+          correct: false,
+          label: "$$6$$ detik",
+        },
+        {
+          correct: false,
+          label: "$$8$$ detik",
+        },
+        {
+          correct: false,
+          label: "$$5$$ detik",
         },
       ],
     },

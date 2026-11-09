@@ -44,6 +44,32 @@ For respiratory spread, exposure risk depends on **respiratory particles, ventil
 
 Prevention usually combines several measures suited to the transmission route. For respiratory viruses, distance, ventilation, masks during higher risk, and hand hygiene support one another. For mosquito-borne viruses, use standing-water control, bite prevention, and environmental monitoring.
 
+Here's why layering measures matters. Call <InlineMath math="R" /> the average number of people one case infects. With illustrative numbers, a chain where each case infects <InlineMath math="2" /> others grows to <InlineMath math="2^5=32" /> new cases in the fifth generation. If masks, ventilation and handwashing together bring each case down to <InlineMath math="0.8" /> infections on average, the same chain shrinks instead, to about <InlineMath math="0.33" />. Follow both lines from left to right and notice that the turning point is <InlineMath math="R=1" />.
+
+<MathVisual
+  title={<>One Case, Five Generations</>}
+  description={<>Illustrative chains of infection starting from one case. Horizontal: generation. Vertical: new cases in units of 4.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "unchecked", kind: "polyline", appearance: "warning", vertices: [{ x: 1.5 * 0, y: 2 ** 0 / 4 }, { x: 1.5 * 1, y: 2 ** 1 / 4 }, { x: 1.5 * 2, y: 2 ** 2 / 4 }, { x: 1.5 * 3, y: 2 ** 3 / 4 }, { x: 1.5 * 4, y: 2 ** 4 / 4 }, { x: 1.5 * 5, y: 2 ** 5 / 4 }] },
+      { id: "unchecked-end", kind: "point", appearance: "warning", at: { x: 1.5 * 5, y: 2 ** 5 / 4 } },
+      { id: "layered", kind: "polyline", appearance: "construction", vertices: [{ x: 1.5 * 0, y: 0.8 ** 0 / 4 }, { x: 1.5 * 1, y: 0.8 ** 1 / 4 }, { x: 1.5 * 2, y: 0.8 ** 2 / 4 }, { x: 1.5 * 3, y: 0.8 ** 3 / 4 }, { x: 1.5 * 4, y: 0.8 ** 4 / 4 }, { x: 1.5 * 5, y: 0.8 ** 5 / 4 }] },
+      { id: "layered-end", kind: "point", appearance: "construction", at: { x: 1.5 * 5, y: 0.8 ** 5 / 4 } },
+    ],
+    labels: [
+      { key: "unchecked", objectId: "unchecked-end", at: { x: 1.5 * 5, y: 2 ** 5 / 4 }, placement: "left" },
+      { key: "layered", objectId: "layered-end", at: { x: 1.5 * 5, y: 0.8 ** 5 / 4 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    unchecked: <InlineMath math="R=2:\ 2^5=32" />,
+    layered: <InlineMath math="R=0.8:\ 0.8^5\approx0.33" />,
+  }}
+/>
+
 Dengue viruses spread mainly through [bites from Aedes mosquitoes](https://www.cdc.gov/dengue/prevention/index.html), so prevention focuses on avoiding bites and controlling mosquitoes around homes. Prevention for respiratory viruses instead addresses particles released into shared air and close-range exposure.
 
 ### How Soap Removes Dirt and Microbes
@@ -51,6 +77,36 @@ Dengue viruses spread mainly through [bites from Aedes mosquitoes](https://www.c
 Hand hygiene removes dirt, oils, and microbes that may be too small to see. A soap molecule has one part that mixes well with water and another that binds to oil. Rubbing loosens the material, and **rinsing carries it away from the skin**.
 
 [Handwashing](https://www.cdc.gov/clean-hands/data-research/facts-stats/) can physically remove both enveloped and non-enveloped viruses. Soap can also disrupt the lipid outer layer of enveloped viruses. Friction loosens soil and microbes, and running water carries them away. Physical removal and lipid-envelope disruption are complementary mechanisms. Because hands often move material from surfaces to the face, handwashing can interrupt this route.
+
+Ventilation interrupts the airborne route because fresh air keeps replacing room air. With <InlineMath math="\lambda" /> air changes per hour, the share of particles still in the air after <InlineMath math="t" /> hours is <InlineMath math="e^{-\lambda t}" />, once nobody adds new ones. After one hour that leaves about <InlineMath math="37\%" /> at one air change, <InlineMath math="5\%" /> at three and less than <InlineMath math="1\%" /> at six. Zoom in on the first minutes, where the lines split apart.
+
+<MathVisual
+  title={<>Fresh Air Clears the Room</>}
+  description={<>Share of airborne particles left in a well-mixed room after the source stops, at 1 (gray), 3 (orange) and 6 (teal) air changes per hour. Horizontal: one grid step is 10 minutes. Vertical: one grid step is 20 percent.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ach-1", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: 5 * Math.exp((-1 * 5) / 60) }, { x: 1, y: 5 * Math.exp((-1 * 10) / 60) }, { x: 1.5, y: 5 * Math.exp((-1 * 15) / 60) }, { x: 2, y: 5 * Math.exp((-1 * 20) / 60) }, { x: 2.5, y: 5 * Math.exp((-1 * 25) / 60) }, { x: 3, y: 5 * Math.exp((-1 * 30) / 60) }, { x: 3.5, y: 5 * Math.exp((-1 * 35) / 60) }, { x: 4, y: 5 * Math.exp((-1 * 40) / 60) }, { x: 4.5, y: 5 * Math.exp((-1 * 45) / 60) }, { x: 5, y: 5 * Math.exp((-1 * 50) / 60) }, { x: 5.5, y: 5 * Math.exp((-1 * 55) / 60) }, { x: 6, y: 5 * Math.exp((-1 * 60) / 60) }] },
+      { id: "end-1", kind: "point", appearance: "reference", at: { x: 6, y: 5 * Math.exp(-1) } },
+      { id: "ach-3", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: 5 * Math.exp((-3 * 5) / 60) }, { x: 1, y: 5 * Math.exp((-3 * 10) / 60) }, { x: 1.5, y: 5 * Math.exp((-3 * 15) / 60) }, { x: 2, y: 5 * Math.exp((-3 * 20) / 60) }, { x: 2.5, y: 5 * Math.exp((-3 * 25) / 60) }, { x: 3, y: 5 * Math.exp((-3 * 30) / 60) }, { x: 3.5, y: 5 * Math.exp((-3 * 35) / 60) }, { x: 4, y: 5 * Math.exp((-3 * 40) / 60) }, { x: 4.5, y: 5 * Math.exp((-3 * 45) / 60) }, { x: 5, y: 5 * Math.exp((-3 * 50) / 60) }, { x: 5.5, y: 5 * Math.exp((-3 * 55) / 60) }, { x: 6, y: 5 * Math.exp((-3 * 60) / 60) }] },
+      { id: "end-3", kind: "point", appearance: "primary", at: { x: 6, y: 5 * Math.exp(-3) } },
+      { id: "ach-6", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: 5 * Math.exp((-6 * 5) / 60) }, { x: 1, y: 5 * Math.exp((-6 * 10) / 60) }, { x: 1.5, y: 5 * Math.exp((-6 * 15) / 60) }, { x: 2, y: 5 * Math.exp((-6 * 20) / 60) }, { x: 2.5, y: 5 * Math.exp((-6 * 25) / 60) }, { x: 3, y: 5 * Math.exp((-6 * 30) / 60) }, { x: 3.5, y: 5 * Math.exp((-6 * 35) / 60) }, { x: 4, y: 5 * Math.exp((-6 * 40) / 60) }, { x: 4.5, y: 5 * Math.exp((-6 * 45) / 60) }, { x: 5, y: 5 * Math.exp((-6 * 50) / 60) }, { x: 5.5, y: 5 * Math.exp((-6 * 55) / 60) }, { x: 6, y: 5 * Math.exp((-6 * 60) / 60) }] },
+      { id: "end-6", kind: "point", appearance: "construction", at: { x: 6, y: 5 * Math.exp(-6) } },
+    ],
+    labels: [
+      { key: "one", objectId: "end-1", at: { x: 6, y: 5 * Math.exp(-1) }, placement: "right" },
+      { key: "three", objectId: "end-3", at: { x: 6, y: 5 * Math.exp(-3) }, placement: "right" },
+      { key: "six", objectId: "end-6", at: { x: 6, y: 5 * Math.exp(-6) }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    one: <InlineMath math="e^{-1}\approx37\%" />,
+    three: <InlineMath math="e^{-3}\approx5\%" />,
+    six: <InlineMath math="e^{-6}<1\%" />,
+  }}
+/>
 
 ## Vaccines Trigger Immune Responses and Antivirals Inhibit Replication
 
@@ -77,3 +133,35 @@ The diagram below places each measure at the step it affects. Masks, ventilation
 For mosquitoes, address **breeding sites and bites**. For contact spread, address hands, surfaces, and wounds.
 
 Each action has a biological basis in the way a virus moves, enters a host, and replicates.
+
+A mosquito needs about a week in standing water to grow from egg to adult, around <InlineMath math="8" /> days in warm weather. If you empty and scrub water containers every <InlineMath math="7" /> days, every brood is thrown out before day <InlineMath math="8" />, so none of them ever flies. Zoom along each row and check where the drain cuts it.
+
+<MathVisual
+  title={<>A Weekly Drain Beats the Mosquito Clock</>}
+  description={<>Three broods of eggs laid on days 0, 7 and 14. Each row grows toward day 8 and stops at the next drain (pink points). One grid step across is one day.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 22.5 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "brood-0", kind: "segment", appearance: "secondary", from: { x: 0, y: 3 }, to: { x: 7, y: 3 } },
+      { id: "drain-0", kind: "point", appearance: "warning", at: { x: 7, y: 3 } },
+      { id: "adult-0", kind: "segment", appearance: "reference", from: { x: 7, y: 3 }, to: { x: 8, y: 3 } },
+      { id: "brood-1", kind: "segment", appearance: "secondary", from: { x: 7, y: 2 }, to: { x: 14, y: 2 } },
+      { id: "drain-1", kind: "point", appearance: "warning", at: { x: 14, y: 2 } },
+      { id: "adult-1", kind: "segment", appearance: "reference", from: { x: 14, y: 2 }, to: { x: 15, y: 2 } },
+      { id: "brood-2", kind: "segment", appearance: "secondary", from: { x: 14, y: 1 }, to: { x: 21, y: 1 } },
+      { id: "drain-2", kind: "point", appearance: "warning", at: { x: 21, y: 1 } },
+      { id: "adult-2", kind: "segment", appearance: "reference", from: { x: 21, y: 1 }, to: { x: 22, y: 1 } },
+      { id: "would", kind: "point", appearance: "reference", at: { x: 8, y: 3 } },
+    ],
+    labels: [
+      { key: "drain", objectId: "drain-0", at: { x: 7, y: 3 }, placement: "above" },
+      { key: "adult", objectId: "would", at: { x: 8, y: 3 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    drain: <>drained on day 7</>,
+    adult: <>adult would emerge on day 8</>,
+  }}
+/>

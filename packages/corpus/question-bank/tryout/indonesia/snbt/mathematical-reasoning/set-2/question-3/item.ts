@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "ride-fare",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\text{Rp}67{.}500{.}000{,}00$$",
+          column: 1,
+          label:
+            "Tarif Aplikasi Cepat untuk perjalanan 3,2 km adalah $$\\text{Rp}12{.}000{,}00$$.",
         },
         {
-          correct: false,
-          label: "$$\\text{Rp}69{.}187{.}500{,}00$$",
+          column: 2,
+          label:
+            "Tarif Aplikasi Cepat untuk perjalanan 1 km adalah $$\\text{Rp}3{.}000{,}00$$.",
         },
         {
-          correct: false,
-          label: "$$\\text{Rp}69{.}375{.}000{,}00$$",
+          column: 2,
+          label:
+            "Di luar jam sibuk, untuk perjalanan 6 km, Aplikasi Jalan lebih murah daripada Aplikasi Cepat.",
         },
         {
-          correct: true,
-          label: "$$\\text{Rp}67{.}687{.}500{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}67{.}312{.}500{,}00$$",
+          column: 1,
+          label:
+            "Di luar jam sibuk, untuk perjalanan 12 km, Aplikasi Jalan lebih murah daripada Aplikasi Cepat.",
         },
       ],
     },

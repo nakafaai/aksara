@@ -271,6 +271,21 @@ print(f"Aktueller Wert von x: {x}")`
   }]}
 />
 
+Die grundlegenden Rechenoperatoren liefern für dieselben Zahlen verschiedene Ergebnisse. Mit `7` und `2` ergibt `/` den Wert `3.5`, `//` den ganzzahligen Quotienten `3`, `%` den Rest `1` und `**` die Potenz `49`.
+
+<BarChart
+  title={<>Vier Operatoren auf <code>7</code> und <code>2</code></>}
+  description={<>Jeder Balken ist das Ergebnis von <code>7</code>, dem Operator darunter und dann <code>2</code>. Die echte Division liefert einen Float, die anderen drei Ergebnisse sind ganze Zahlen.</>}
+  yAxisLabel="Ergebnis"
+  data={[
+    { name: "/", value: 7 / 2 },
+    { name: "//", value: Math.floor(7 / 2) },
+    { name: "%", value: 7 % 2 },
+    { name: "**", value: 7 ** 2 },
+  ]}
+  chartConfig={{ value: { label: "Ergebnis", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Praktische Übungen
 
 Bearbeite die folgenden Übungen zu **Variablen, Ein- und Ausgabe** sowie grundlegenden Operationen. Schreibe jede Lösung zuerst selbst auf, denn geübt wird der Lösungsweg. Die Lösungen folgen derselben Reihenfolge wie die Aufgaben.
@@ -411,3 +426,65 @@ else:
 - Der Rechner fragt nach zwei Zahlen und einem Operator und zeigt dann das Ergebnis der ausgewählten Operation an.
 - Der Temperaturkonverter zeigt Fahrenheit- und Kelvin-Werte vom Celsius-Eingang an.
 - Im Studierendenprofil werden die eingegebenen Daten, das Eintrittsjahr, das voraussichtliche Abschlussjahr und die semesterbezogene Nachricht angezeigt.
+
+Setz `number1 = 2` fest und stell dir vor, du probierst im Rechner oben viele Werte für `number2` aus. Jeder Operator liefert seinen eigenen Graphen: `+` und `-` sind Geraden mit entgegengesetzter Neigung, `*` ist eine steilere Gerade und `/` liefert die magentafarbenen Punkte. Die Division hat bei `number2 = 0` keinen Punkt, weil Python eine Division durch null mit `ZeroDivisionError` ablehnt, während alle Geraden dort problemlos durchlaufen.
+
+<MathVisual
+  title={<>Die vier Rechenoperatoren für <code>number1 = 2</code></>}
+  description={<>Jede Linie ist das Ergebnis des Rechners, wenn sich <code>number2</code> ändert und <code>number1</code> bei <InlineMath math="2" /> bleibt. Magentafarbene Punkte sind <code>2 / number2</code> für fünf Eingaben, und wo <code>number2</code> gleich <InlineMath math="0" /> ist, gibt es keinen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -8.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plus", kind: "segment", from: { x: -4, y: -2 }, to: { x: 4, y: 6 }, appearance: "secondary" },
+      { id: "minus", kind: "segment", from: { x: -4, y: 6 }, to: { x: 4, y: -2 }, appearance: "construction" },
+      { id: "times", kind: "segment", from: { x: -4, y: -8 }, to: { x: 4, y: 8 }, appearance: "highlight" },
+      { id: "divide-a", kind: "point", at: { x: -2, y: -1 }, appearance: "answer" },
+      { id: "divide-b", kind: "point", at: { x: -1, y: -2 }, appearance: "answer" },
+      { id: "divide-c", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "divide-d", kind: "point", at: { x: 2, y: 1 }, appearance: "answer" },
+      { id: "divide-e", kind: "point", at: { x: 4, y: 1 / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "plus", objectId: "plus", at: { x: 4, y: 6 }, placement: "above-left" },
+      { key: "minus", objectId: "minus", at: { x: 4, y: -2 }, placement: "below-left" },
+      { key: "times", objectId: "times", at: { x: 4, y: 8 }, placement: "left" },
+      { key: "divide", objectId: "divide-e", at: { x: 4, y: 1 / 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "plus": "2 + number2",
+    "minus": "2 - number2",
+    "times": "2 * number2",
+    "divide": "2 / number2",
+  }}
+/>
+
+Das Temperaturprogramm rechnet `fahrenheit = (celsius * 9/5) + 32`. Diese Formel ist die Gerade <InlineMath math="F=\tfrac95C+32" />: Jeder Schritt von <InlineMath math="1^\circ\mathrm{C}" /> fügt <InlineMath math="1.8^\circ\mathrm{F}" /> hinzu, und die Gerade trifft die senkrechte Achse bei <InlineMath math="32" />.
+
+<MathVisual
+  title={<>Die Umrechnungsgerade <InlineMath math="F=\tfrac95C+32" /></>}
+  description={<>Die violette Gerade ordnet jeder Celsius-Temperatur nach rechts eine Fahrenheit-Temperatur nach oben zu. Die drei Punkte sind die Ausgaben des Programms für den Gefrierpunkt von Wasser, die Körpertemperatur und den Siedepunkt von Wasser.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 110 }, y: { min: 0, max: 230 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "conversion", kind: "line", through: [{ x: 0, y: 32 }, { x: 100, y: 212 }], appearance: "secondary" },
+      { id: "freezing", kind: "point", at: { x: 0, y: 0 * 9 / 5 + 32 }, appearance: "construction" },
+      { id: "body", kind: "point", at: { x: 37, y: 37 * 9 / 5 + 32 }, appearance: "answer" },
+      { id: "boiling", kind: "point", at: { x: 100, y: 100 * 9 / 5 + 32 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "freezing", objectId: "freezing", at: { x: 0, y: 0 * 9 / 5 + 32 }, placement: "right" },
+      { key: "body", objectId: "body", at: { x: 37, y: 37 * 9 / 5 + 32 }, placement: "right" },
+      { key: "boiling", objectId: "boiling", at: { x: 100, y: 100 * 9 / 5 + 32 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "freezing": <InlineMath math="0^\circ\mathrm{C}=32^\circ\mathrm{F}" />,
+    "body": <InlineMath math="37^\circ\mathrm{C}=98.6^\circ\mathrm{F}" />,
+    "boiling": <InlineMath math="100^\circ\mathrm{C}=212^\circ\mathrm{F}" />,
+  }}
+/>

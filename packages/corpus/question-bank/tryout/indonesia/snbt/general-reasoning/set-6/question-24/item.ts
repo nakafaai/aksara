@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "data-interpretation",
+  },
+  stimulus: "panen",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$9$$",
+          column: 1,
+          label: "Hasil panen keempat kelompok seluruhnya adalah $$271$$ ton.",
         },
         {
-          correct: false,
-          label: "$$10$$",
+          column: 2,
+          label:
+            "Produktivitas kelompok A lebih tinggi daripada produktivitas gabungan keempat kelompok.",
         },
         {
-          correct: true,
-          label: "$$11$$",
+          column: 2,
+          label:
+            "Luas lahan kelompok D adalah $$25\\%$$ dari luas lahan seluruhnya.",
         },
         {
-          correct: false,
-          label: "$$12$$",
-        },
-        {
-          correct: false,
-          label: "$$14$$",
+          column: 1,
+          label:
+            "Produktivitas gabungan keempat kelompok lebih dari $$6$$ ton per hektare.",
         },
       ],
     },

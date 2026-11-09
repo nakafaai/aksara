@@ -1,37 +1,30 @@
-Kita membandingkan **dua kelompok pemelihara hewan**:
-- Orang yang memelihara kambing: <InlineMath math="K = 450" />
-- Orang yang memelihara ayam: <InlineMath math="A = 300" />
-- Total penduduk: <InlineMath math="S = 600" />
+Misalkan perajin membuat <InlineMath math="x" /> tas jenis A dan <InlineMath math="y" /> tas jenis B. Ini soal **program linear**: keuntungan dimaksimumkan pada daerah yang dibatasi jam kerja dan bahan.
 
-Misalkan <InlineMath math="M" /> dan <InlineMath math="m" /> berturut-turut menyatakan jumlah maksimum dan minimum orang yang memelihara kedua hewan.
+# Model dan titik pojok
 
-# Jumlah Maksimum yang Memelihara Keduanya
+<BlockMath math="\begin{aligned}
+\text{jam kerja}&:\quad 2x+3y\le60\\
+\text{bahan}&:\quad x+y\le25\\
+\text{keuntungan}&:\quad K=40{.}000x+50{.}000y
+\end{aligned}" />
 
-Jumlah maksimum orang yang memelihara kedua hewan adalah jumlah anggota dari kelompok yang lebih kecil. Ini terjadi jika **seluruh anggota kelompok yang lebih kecil** juga merupakan anggota kelompok yang lebih besar.
+Kedua variabel juga tidak negatif, <InlineMath math="x\ge0" /> dan <InlineMath math="y\ge0" />. Nilai maksimum fungsi linear dicapai **di salah satu titik pojok daerah**. Titik potong kedua garis batas didapat dari mengurangkan dua kali persamaan bahan dari persamaan jam kerja.
 
-<BlockMath math="\begin{aligned}M&=\min(K,A)\\&=\min(450,300)\\&=300\end{aligned}" />
+<BlockMath math="\begin{aligned}
+(2x+3y)-2(x+y)&=60-50\\
+y&=10,\quad x=15
+\end{aligned}" />
 
-# Jumlah Minimum yang Memelihara Keduanya
+# Membandingkan keuntungan
 
-Irisan minimum terjadi ketika **gabungan kedua kelompok sebesar mungkin**, yaitu 600 orang. Jumlah anggota kedua kelompok adalah <InlineMath math="450+300=750" />. Selisih <InlineMath math="750-600" /> merupakan orang yang terhitung dua kali:
+| Titik pojok | Keuntungan |
+| :---: | :---: |
+| <InlineMath math="(25,0)" /> | <InlineMath math="\text{Rp}1{.}000{.}000{,}00" /> |
+| <InlineMath math="(15,10)" /> | <InlineMath math="\text{Rp}1{.}100{.}000{,}00" /> |
+| <InlineMath math="(0,20)" /> | <InlineMath math="\text{Rp}1{.}000{.}000{,}00" /> |
 
-<BlockMath math="m=\max(0,K+A-S)" />
+Keuntungan terbesar ada di <InlineMath math="(15,10)" />, yang memakai tepat 60 jam dan tepat 25 tas. **Kedua batasan habis terpakai** di titik ini.
 
-Substitusikan nilai yang diketahui:
+Keuntungan <InlineMath math="\text{Rp}1{.}250{.}000{,}00" /> membuat 25 tas jenis B, padahal itu perlu 75 jam. Keuntungan <InlineMath math="\text{Rp}1{.}200{.}000{,}00" /> membuat 30 tas jenis A dan melanggar batas bahan. Keuntungan <InlineMath math="\text{Rp}1{.}150{.}000{,}00" /> muncul jika jam kerja tas A dan tas B tertukar.
 
-<BlockMath math="\begin{aligned}m&=\max(0,750-600)\\&=\max(0,150)\\&=150\end{aligned}" />
-
-Kedua batas dapat dicapai dengan pembagian penduduk berikut.
-
-| Batas | Kambing saja | Keduanya | Ayam saja | Tidak keduanya |
-| --- | --- | --- | --- | --- |
-| M | 150 | 300 | 0 | 150 |
-| m | 300 | 150 | 150 | 0 |
-
-# Total Jumlah Maksimum dan Minimum
-
-Kita diminta mencari **jumlah nilai maksimum dan minimum** tersebut.
-
-<BlockMath math="\begin{aligned}M+m&=300+150\\&=450\end{aligned}" />
-
-Jadi, jumlah dari banyak maksimum dan minimum orang yang memelihara kedua hewan adalah <InlineMath math="450" />.
+Jadi, keuntungan maksimumnya adalah **<InlineMath math="\text{Rp}1{.}100{.}000{,}00" />**.

@@ -1,23 +1,15 @@
-Wassertiefe <InlineMath math="h" /> und Radius <InlineMath math="r" /> der Wasseroberfläche werden in Zentimetern gemessen. Aus der **Ähnlichkeit** folgt <InlineMath math="r/h=4/12=1/3" />, also <InlineMath math="r=h/3" />. Das **Wasservolumen** in Kubikzentimetern ist
+Zähle **die Runden, die ein Spieler durchläuft**. Jede gespielte Runde bedeutet ein Spiel.
 
-<BlockMath math="\begin{aligned}V(h)&=\frac13\pi\left(\frac h3\right)^2h \\ &=\frac{\pi h^3}{27}\end{aligned}" />
+# Spiele eines Siegers
 
-Anfangs ist <InlineMath math="V(6)=\pi(6)^3/27=8\pi" />. Nach Zugabe von <InlineMath math="19\pi" /> beträgt das Volumen <InlineMath math="27\pi" />. Also <InlineMath math="\pi h^3/27=27\pi\Rightarrow h^3=729" />, woraus <InlineMath math="h=9\text{ cm}" /> folgt.
+Von der zweiten Runde bis zum Finale gibt es 5 Runden: 32 auf 16, 16 auf 8, 8 auf 4, 4 auf 2 und das Finale. Ein Sieger mit Freilos spielt nur **5 Spiele**, die erste Aussage ist also falsch.
 
-<LineEquation
-  title="Ähnliche Wasserkegel"
-  description="Die Kreise markieren den alten Wasserstand, den neuen Wasserstand und den Rand. Alle Längen sind in Zentimetern. Drehe das Modell und vergleiche Radius und Tiefe."
-  cameraPosition={[12, 10, 15]}
-  cameraTarget={[0, 6, 0]}
-  data={[
-    { points: Array.from({ length: 73 }, (_, i) => ({ x: 2 * Math.cos(2 * Math.PI * i / 72), y: 6, z: 2 * Math.sin(2 * Math.PI * i / 72) })), color: "#0d9488", smooth: false, showPoints: false, labels: [{ at: 0, text: <InlineMath math="h=6,\ r=2" />, offset: [1, 0.3, 0] }] },
-    { points: Array.from({ length: 73 }, (_, i) => ({ x: 3 * Math.cos(2 * Math.PI * i / 72), y: 9, z: 3 * Math.sin(2 * Math.PI * i / 72) })), color: "#0284c7", smooth: false, showPoints: false, labels: [{ at: 0, text: <InlineMath math="h=9,\ r=3" />, offset: [1, 0.3, 0] }] },
-    { points: Array.from({ length: 73 }, (_, i) => ({ x: 4 * Math.cos(2 * Math.PI * i / 72), y: 12, z: 4 * Math.sin(2 * Math.PI * i / 72) })), color: "#64748b", smooth: false, showPoints: false, labels: [{ at: 0, text: <InlineMath math="h=12,\ r=4" />, offset: [1, 0.3, 0] }] },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 12, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: -4, y: 12, z: 0 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 12, z: 4 }], color: "#64748b", smooth: false, showPoints: false },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 12, z: -4 }], color: "#64748b", smooth: false, showPoints: false }
-  ]}
-/>
+Ein Sieger, der ab der ersten Runde spielt, bestreitet <InlineMath math="1+5=6" /> Spiele, und kein Sieger spielt mehr. Die zweite Aussage ist wahr.
 
-Bei der neuen Tiefe gelten <InlineMath math="r=9/3=3\text{ cm}" /> und <InlineMath math="V=\frac13\pi(3)^2(9)=27\pi\text{ cm}^3" />. Wegen <InlineMath math="9<12" /> bleibt das Wasser unterhalb des Randes und läuft nicht über.
+# Spiele pro Runde
+
+Im Viertelfinale stehen 8 Spieler, also gibt es <InlineMath math="\tfrac82=4" /> Spiele. Die dritte Aussage ist wahr.
+
+Die zweite Runde hat 16 Spiele, alle späteren Runden zusammen <InlineMath math="8+4+2+1=15" />. **Der Unterschied beträgt eins**, die vierte Aussage ist also falsch.
+
+Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **wahr** und die vierte **falsch**.

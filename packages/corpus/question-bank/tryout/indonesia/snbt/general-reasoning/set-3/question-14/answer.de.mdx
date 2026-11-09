@@ -1,33 +1,27 @@
-Aus dem Diagramm lassen sich die Verkaufswerte in Tonnen ablesen:
+Suche alle möglichen Anordnungen. Beginne mit **dem Paar K und L**, denn beide müssen auf demselben Brett stehen und belegen zwei Plätze auf einmal. Die Bretter heißen *rak atas* (oben), *rak tengah* (Mitte) und *rak bawah* (unten).
 
-| Monat | Knoblauch | Schalotten | Rote Chili |
-| :--- | :---: | :---: | :---: |
-| Aug. | <InlineMath math="58" /> | <InlineMath math="48" /> | <InlineMath math="54" /> |
-| Sep. | <InlineMath math="61" /> (<InlineMath math="+3" />) | <InlineMath math="54" /> (<InlineMath math="+6" />) | <InlineMath math="58" /> |
-| Okt. | <InlineMath math="67" /> (<InlineMath math="+6" />) | <InlineMath math="60" /> (<InlineMath math="+6" />) | <InlineMath math="62" /> |
-| Nov. | <InlineMath math="76" /> (<InlineMath math="+9" />) | <InlineMath math="66" /> (<InlineMath math="+6" />) | <InlineMath math="68" /> |
-| Dez. | <InlineMath math="88" /> (<InlineMath math="+12" />) | <InlineMath math="72" /> (<InlineMath math="+6" />) | <InlineMath math="72" /> |
-| **Jan. (Vorhersage)** | <InlineMath math="103" /> (<InlineMath math="+15" />) | <InlineMath math="78" /> (<InlineMath math="+6" />) | Nicht benötigt |
+O belegt schon einen Platz auf dem mittleren Brett, dort sind also nur noch zwei Plätze frei. K und L können oben, in der Mitte oder unten stehen.
 
-Beim Knoblauch betragen die monatlichen Zuwächse
-<InlineMath math="3,6,9,12" />. Sie werden jeweils **um denselben Betrag** von
-<InlineMath math="3" /> größer. Der nächste Zuwachs beträgt daher
-<InlineMath math="15" />, und es ergibt sich
-<InlineMath math="88+15=103" />. Bei den Schalotten beträgt der Zuwachs
-konstant <InlineMath math="6" /> Tonnen, also
-<InlineMath math="72+6=78" /> Tonnen.
+**K und L oben**. Das obere Brett ist voll. P muss höher stehen als Q, also steht P in der Mitte und Q unten. M und N füllen den letzten Platz in der Mitte und den letzten unten, auf zwei Arten.
 
-# Aussageanalyse
+**K und L in der Mitte**. Das mittlere Brett trägt K, L und O. Oben und unten sind je zwei Plätze für M, N, P und Q. N darf nicht oben stehen, also steht N unten. M muss auf einem anderen Brett als N stehen, also oben. P muss höher stehen als Q, also steht P oben und Q unten.
 
-Prüfen wir jede Aussage anhand der obigen Tabelle:
+**K und L unten**. Das obere Brett und die zwei freien Plätze in der Mitte nehmen M, N, P und Q auf. N darf nicht oben stehen, also steht N in der Mitte. M muss auf einem anderen Brett stehen, also oben. Q darf nicht höher stehen als P, also steht P oben und Q in der Mitte.
 
-- Jede Reihe erreicht ihr dargestelltes Maximum im Dezember. Damit ist die Aussage über November falsch.
-- Für Januar werden <InlineMath math="78" /> Tonnen Schalotten vorhergesagt.
-  Die Angabe von <InlineMath math="76" /> Tonnen ist daher falsch.
-- Für Knoblauch ergeben sich im Januar <InlineMath math="103" /> Tonnen. Dieser
-  Wert liegt über <InlineMath math="100" /> Tonnen.
-- Im Dezember liegen Schalotten und rote Chili **beide bei**
-  <InlineMath math="72" /> Tonnen. Dieser Gleichstand widerlegt die Aussage,
-  dass Schalotten immer niedriger liegen oder stets allein den niedrigsten Wert haben.
+| Anordnung | Oberes Brett | Mittleres Brett | Unteres Brett |
+| --- | --- | --- | --- |
+| I | K, L | M, O, P | N, Q |
+| II | K, L | N, O, P | M, Q |
+| III | M, P | K, L, O | N, Q |
+| IV | M, P | N, O, Q | K, L |
 
-Unter der vorgegebenen Annahme zur Fortsetzung gilt also, dass die Knoblauchverkäufe im Januar <InlineMath math="2021" /> <InlineMath math="100" /> Tonnen überschreiten werden.
+In allen vier Anordnungen **steht K nie auf demselben Brett wie M**. Diese Aussage stimmt sicher.
+
+Die anderen Aussagen gelten nicht in jeder Anordnung:
+
+- P steht in III und IV oben.
+- Q steht in IV in der Mitte.
+- N steht in II und IV in der Mitte.
+- M steht in I in der Mitte und in II unten.
+
+Sicher stimmt also, dass K nicht auf demselben Brett steht wie M.

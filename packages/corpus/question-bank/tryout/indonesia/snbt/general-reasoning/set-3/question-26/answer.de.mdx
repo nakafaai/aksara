@@ -1,9 +1,11 @@
-Prüfe zuerst die **geforderte fehlerfreie Produktion**, bevor du Indizes vergleichst. Fehlerhafte Einheiten werden vom gesamten Ausstoß abgezogen, weil die Grenze von <InlineMath math="650" /> für fehlerfreie Einheiten gilt.
+Eine Zahl ist genau dann durch <InlineMath math="6" /> teilbar, wenn sie **durch <InlineMath math="2" /> und durch <InlineMath math="3" /> teilbar ist**, denn <InlineMath math="6=2\times3" />, und <InlineMath math="2" /> und <InlineMath math="3" /> haben außer <InlineMath math="1" /> keinen gemeinsamen Teiler.
 
-| Maschine | Fehlerfreie Produktion | Grenze erreicht? |
-| --- | --- | --- |
-| <InlineMath math="A" /> | <InlineMath math="620-20=600" /> | Nein, <InlineMath math="600<650" /> |
-| <InlineMath math="B" /> | <InlineMath math="540-18=522" /> | Nein, <InlineMath math="522<650" /> |
-| <InlineMath math="C" /> | <InlineMath math="700-28=672" /> | Ja, <InlineMath math="672\geq650" /> |
+**Aussage (1) allein**. <InlineMath math="n" /> ist durch <InlineMath math="3" /> teilbar, aber nicht unbedingt gerade. Zum Beispiel ist <InlineMath math="n=6" /> durch <InlineMath math="6" /> teilbar, <InlineMath math="n=9" /> nicht. Das reicht nicht.
 
-Nur Maschine <InlineMath math="C" /> erfüllt die Bedingung und wird daher ausgewählt. Die Indizes von <InlineMath math="A" /> und <InlineMath math="B" /> ändern nichts daran, dass beide die Produktionsgrenze verfehlen. Ein Indexvergleich ist erst nötig, wenn mehr als eine Maschine die Grenze erreicht.
+**Aussage (2) allein**. Wäre <InlineMath math="n" /> ungerade, wäre auch <InlineMath math="n^2" /> ungerade und nicht durch <InlineMath math="4" /> teilbar. Ist <InlineMath math="n^2" /> durch <InlineMath math="4" /> teilbar, ist <InlineMath math="n" /> also gerade. Durch <InlineMath math="3" /> muss <InlineMath math="n" /> aber nicht teilbar sein. Zum Beispiel ist <InlineMath math="n=2" /> nicht durch <InlineMath math="6" /> teilbar, <InlineMath math="n=12" /> schon. Das reicht nicht.
+
+**Beide Aussagen zusammen**. Aussage (2) macht <InlineMath math="n" /> gerade, Aussage (1) macht es durch <InlineMath math="3" /> teilbar. Also ist <InlineMath math="n" /> sicher durch <InlineMath math="6" /> teilbar. Das reicht.
+
+Ein häufiger Fehler ist zu glauben, Aussage (2) sage nur etwas über <InlineMath math="n^2" /> und sei daher nutzlos. Tatsächlich garantiert sie, dass <InlineMath math="n" /> gerade ist.
+
+Beide Aussagen zusammen reichen also, jede allein nicht.

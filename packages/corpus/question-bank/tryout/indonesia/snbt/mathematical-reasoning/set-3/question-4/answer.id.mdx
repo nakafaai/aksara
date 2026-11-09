@@ -1,35 +1,18 @@
-# Identifikasi Hubungan Geometris
+Kecepatan sepeda adalah **jarak per putaran pedal dikali banyak putaran pedal per menit**. Laju kayuhan tetap, jadi yang berubah hanya jarak per putaran pedal.
 
-Diketahui bahwa jari-jari (<InlineMath math="r" />) kemasan adalah **setengah dari tinggi tabung** (<InlineMath math="t" />), sehingga kita dapat menuliskan <InlineMath math="r = \frac{1}{2}t" />. Volume kemasan silindris diberikan sebagai <InlineMath math="V = \frac{729\pi}{4} \text{ cm}^3" />.
+# Kecepatan dengan kedua gir
 
-# Menghitung Tinggi Kemasan
+**Gir 24 gigi memberi 4,4 m per putaran pedal**, dan gir 16 gigi memberi <InlineMath math="\tfrac{48}{16}\cdot2{,}2=6{,}6" /> m.
 
-Dengan menggunakan **rumus volume silinder**, kita substitusikan nilai <InlineMath math="r" /> untuk mencari nilai <InlineMath math="t" />.
+<BlockMath math="\begin{aligned}
+v_{24}&=50\cdot4{,}4=220\text{ m/menit}=13{,}2\text{ km/jam}\\
+v_{16}&=50\cdot6{,}6=330\text{ m/menit}=19{,}8\text{ km/jam}
+\end{aligned}" />
 
-<BlockMath math="V = \pi r^2 t" />
+# Pertambahan kecepatan
 
-<BlockMath math="\frac{729\pi}{4} = \pi \left(\frac{1}{2}t\right)^2 t" />
+<BlockMath math="19{,}8-13{,}2=6{,}6\text{ km/jam}" />
 
-<BlockMath math="\frac{729}{4} = \frac{1}{4}t^2 \cdot t" />
+Untuk mengubah meter per menit menjadi kilometer per jam, **kalikan 60 lalu bagi 1.000**. Nilai 13,2 dan 19,8 km/jam adalah kecepatan masing-masing gir, bukan pertambahannya. Nilai 2,2 km/jam menganggap selisih jarak per pedal hanya satu keliling roda, dan 4,4 km/jam memakai selisih jarak per pedal 2,2 m dengan konversi yang salah.
 
-<BlockMath math="729 = t^3" />
-
-<BlockMath math="t = \sqrt[3]{729} = 9" />
-
-Jadi, tinggi kemasan tersebut adalah <InlineMath math="9 \text{ cm}" />.
-
-Pada gambar, satu satuan mewakili 1 cm. Putar tabung untuk membandingkan jari-jari alas dengan tinggi tabung.
-
-<LineEquation
-  title="Jari-jari dan tinggi tabung"
-  description="Jari-jari 4,5 cm dan tinggi 9 cm. Garis hijau menunjukkan jari-jari, garis jingga menunjukkan tinggi."
-  cameraPosition={[16, -20, 14]}
-  cameraTarget={[0, 0, 4.5]}
-  data={[
-    {points:Array.from({length:81},(_,i)=>({x:4.5*Math.cos(i*Math.PI/40),y:4.5*Math.sin(i*Math.PI/40),z:0})),color:"#6366f1",showPoints:false,smooth:false},
-    {points:Array.from({length:81},(_,i)=>({x:4.5*Math.cos(i*Math.PI/40),y:4.5*Math.sin(i*Math.PI/40),z:9})),color:"#6366f1",showPoints:false,smooth:false},
-    {points:[{x:-4.5,y:0,z:0},{x:-4.5,y:0,z:9}],color:"#6366f1",showPoints:false,smooth:false},
-    {points:[{x:4.5,y:0,z:0},{x:4.5,y:0,z:4.5},{x:4.5,y:0,z:9}],color:"#f97316",showPoints:false,smooth:false,labels:[{at:1,text:<InlineMath math="t=9" />,offset:[0.5,0,0]}]},
-    {points:[{x:0,y:0,z:0},{x:2.25,y:0,z:0},{x:4.5,y:0,z:0}],color:"#10b981",showPoints:false,smooth:false,labels:[{at:1,text:<InlineMath math="r=9/2" />,offset:[0,-0.5,0]}]}
-  ]}
-/>
+Jadi, kecepatan sepeda bertambah **6,6 km/jam**.

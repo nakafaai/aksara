@@ -31,6 +31,24 @@ export const kssmForm4ChemistryTopicNodes = [
       }),
     ],
     key: "form-4-chemistry-matter-and-the-atomic-structure",
+    materialCard: {
+      de: {
+        description: "Sieh, wie Atome jede Art von Materie aufbauen.",
+        title: "Materie und Atombau",
+      },
+      en: {
+        description: "See how atoms build every kind of matter.",
+        title: "Matter and the Atomic Structure",
+      },
+      id: {
+        description: "Lihat bagaimana atom menyusun semua materi.",
+        title: "Materi dan Struktur Atom",
+      },
+      ms: {
+        description: "Lihat cara atom membina semua jenis jirim.",
+        title: "Jirim dan Struktur Atom",
+      },
+    },
     order: 20,
     translations: {
       de: { routeSlug: "materie-und-atombau", title: "Materie und Atombau" },
@@ -58,6 +76,24 @@ export const kssmForm4ChemistryTopicNodes = [
       }),
     ],
     key: "form-4-chemistry-the-mole-concept-chemical-formula-and-equation",
+    materialCard: {
+      de: {
+        description: "Zähle Teilchen und gleiche Reaktionen mit dem Mol aus.",
+        title: "Stoffmenge, chemische Formeln und Reaktionsgleichungen",
+      },
+      en: {
+        description: "Count particles and balance reactions with the mole.",
+        title: "The Mole Concept, Chemical Formula and Equation",
+      },
+      id: {
+        description: "Hitung partikel dan setarakan reaksi dengan konsep mol.",
+        title: "Konsep Mol, Rumus Kimia, dan Persamaan Reaksi",
+      },
+      ms: {
+        description: "Kira zarah dan seimbangkan tindak balas dengan mol.",
+        title: "Konsep Mol, Formula dan Persamaan Kimia",
+      },
+    },
     order: 30,
     translations: {
       de: {
@@ -88,6 +124,24 @@ export const kssmForm4ChemistryTopicNodes = [
       }),
     ],
     key: "form-4-chemistry-the-periodic-table-of-elements",
+    materialCard: {
+      de: {
+        description: "Lies das Periodensystem aus dem Atombau ab.",
+        title: "Das Periodensystem der Elemente",
+      },
+      en: {
+        description: "Read the periodic table from the atom's structure.",
+        title: "The Periodic Table of Elements",
+      },
+      id: {
+        description: "Baca tabel periodik dari struktur atomnya.",
+        title: "Sistem Periodik Unsur",
+      },
+      ms: {
+        description: "Baca jadual berkala daripada struktur atom.",
+        title: "Jadual Berkala Unsur",
+      },
+    },
     order: 40,
     translations: {
       de: {

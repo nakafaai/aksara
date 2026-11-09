@@ -1,6 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "evaluation",
+  },
+  stimulus: "kantong",
   versions: {
     id: {
       kind: "choice",
@@ -8,26 +14,24 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Setiap orang yang mengalami delirium pasti terinfeksi SARS-CoV-2.",
+            "Perbandingan jumlah plastik dari kantong belanja yang berkurang dengan jumlah plastik dari kantong sampah yang bertambah, misalnya dalam satuan berat.",
         },
         {
           correct: false,
-          label: "Delirium dapat terjadi pada penyakit akut selain COVID-19.",
+          label: "Harga satu kantong sampah plastik di minimarket.",
         },
         {
           correct: false,
-          label:
-            "Sebagian orang lanjut usia dengan COVID-19 dapat mengalami delirium.",
-        },
-        {
-          correct: false,
-          label:
-            "Delirium muncul secara akut dan tanda-tandanya dapat berfluktuasi.",
+          label: "Banyak minimarket di kota tersebut.",
         },
         {
           correct: false,
           label:
-            "Dugaan delirium perlu diperiksa untuk mencari penyebab dasarnya.",
+            "Alasan warga membawa tas belanja sendiri, misalnya karena ingin menghemat pengeluaran atau karena mengikuti anjuran pemerintah kota tentang sampah plastik.",
+        },
+        {
+          correct: false,
+          label: "Warna kantong sampah yang paling banyak terjual.",
         },
       ],
     },

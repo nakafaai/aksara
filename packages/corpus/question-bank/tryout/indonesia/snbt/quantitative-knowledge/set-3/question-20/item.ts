@@ -3,27 +3,28 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$P > Q$$",
+          column: 2,
+          label:
+            "Rata-rata nilai kelas A lebih besar daripada rata-rata nilai kelas B.",
         },
         {
-          correct: false,
-          label: "$$P < Q$$",
+          column: 2,
+          label:
+            "Median nilai kelas A lebih besar daripada median nilai kelas B.",
         },
         {
-          correct: false,
-          label: "$$P = Q$$",
+          column: 1,
+          label:
+            "Jangkauan nilai kelas A lebih besar daripada jangkauan nilai kelas B.",
         },
         {
-          correct: true,
-          label: "$$P\\ge Q$$",
-        },
-        {
-          correct: false,
-          label: "$$P = 2Q$$",
+          column: 1,
+          label:
+            "Jika nilai 95 di kelas A diganti 85, rata-rata nilai kelas A menjadi lebih kecil daripada rata-rata nilai kelas B.",
         },
       ],
     },

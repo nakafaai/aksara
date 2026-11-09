@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "tourist-map",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$\\frac45$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{16}{25}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac23$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac34$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac9{10}$$",
-        },
+        { correct: false, label: "2,4 menit" },
+        { correct: true, label: "24 menit" },
+        { correct: false, label: "40 menit" },
+        { correct: false, label: "2 jam 30 menit" },
+        { correct: false, label: "4 jam" },
       ],
     },
   },

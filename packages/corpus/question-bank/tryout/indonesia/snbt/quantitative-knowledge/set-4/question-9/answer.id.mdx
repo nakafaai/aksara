@@ -1,41 +1,23 @@
-Diketahui **rumus rekursif barisan** adalah <InlineMath math="b_{n+2} = b_{n+1} - 3b_n" />.
-Kita juga mengetahui nilai <InlineMath math="b_4 = 5" /> dan <InlineMath math="b_5 = -1" />.
-Kita diminta untuk mencari nilai <InlineMath math="b_2" />. Kita akan mencarinya dengan mundur dari <InlineMath math="b_5" /> ke <InlineMath math="b_3" />, lalu ke <InlineMath math="b_2" />.
+Suku ke-<InlineMath math="n" /> barisan geometri adalah <InlineMath math="u_n=ar^{n-1}" />. Dari suku pertama dan suku keempat, **rasio dapat ditentukan lebih dulu**, lalu semua pernyataan lain mengikuti.
 
-# Mencari Suku Sebelumnya
+# Menentukan rasio
 
-Pilih **indeks yang menghubungkan dua suku diketahui**, yaitu <InlineMath math="n=3" />:
+<BlockMath math="\begin{aligned}
+u_4&=ar^3=48r^3=6\\
+r^3&=\tfrac18\\
+r&=\tfrac12
+\end{aligned}" />
 
-<BlockMath math="b_{3+2} = b_{3+1} - 3b_3" />
+Bilangan real yang pangkat tiganya <InlineMath math="\tfrac18" /> hanya <InlineMath math="\tfrac12" />, jadi **rasionya tunggal**. Pernyataan pertama benar.
 
-<BlockMath math="b_5 = b_4 - 3b_3" />
+# Suku dan jumlah
 
-Substitusikan nilai <InlineMath math="b_5 = -1" /> dan <InlineMath math="b_4 = 5" />:
+<BlockMath math="\begin{aligned}
+u_6&=48\left(\tfrac12\right)^5=\tfrac{48}{32}=1{,}5\\
+S_5&=\frac{48\left(1-\left(\tfrac12\right)^5\right)}{1-\tfrac12}=96\cdot\tfrac{31}{32}=93\\
+S_\infty&=\frac{48}{1-\tfrac12}=96
+\end{aligned}" />
 
-<BlockMath math="-1 = 5 - 3b_3" />
+Pernyataan ketiga benar. Suku keenam 1,5, bukan 3, jadi pernyataan keempat salah. Angka 3 adalah suku kelima. Jumlah tak hingga ada karena <InlineMath math="\lvert r\rvert<1" />, dan nilainya 96. Angka 64 muncul jika rasio dianggap <InlineMath math="\tfrac14" />, jadi **pernyataan kedua salah**.
 
-<BlockMath math="3b_3 = 5 + 1" />
-
-<BlockMath math="3b_3 = 6" />
-
-<BlockMath math="b_3 = 2" />
-
-# Mencari Suku yang Diminta
-
-Sekarang **mundur satu indeks** ke <InlineMath math="n=2" />:
-
-<BlockMath math="b_{2+2} = b_{2+1} - 3b_2" />
-
-<BlockMath math="b_4 = b_3 - 3b_2" />
-
-Substitusikan nilai <InlineMath math="b_4 = 5" /> dan <InlineMath math="b_3 = 2" />:
-
-<BlockMath math="5 = 2 - 3b_2" />
-
-<BlockMath math="3b_2 = 2 - 5" />
-
-<BlockMath math="3b_2 = -3" />
-
-<BlockMath math="b_2 = -1" />
-
-Jadi, nilai <InlineMath math="b_2" /> adalah <InlineMath math="-1" />.
+Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **benar**, dan keempat **salah**.

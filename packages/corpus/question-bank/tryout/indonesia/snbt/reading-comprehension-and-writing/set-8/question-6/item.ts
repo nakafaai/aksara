@@ -1,33 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "explicit-information",
+  },
+  stimulus: "infiltration-well",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Kartu pertanyaan terbukti menjadi satu-satunya penyebab rata-rata yang lebih tinggi.",
-        },
-        {
-          correct: false,
-          label: "Setiap pengunjung mengalami peningkatan yang sama.",
-        },
-        {
-          correct: false,
-          label: "Rata-rata awal dan pembanding sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Uji tersebut menetapkan hasil jangka panjang untuk seluruh tur laboratorium.",
+          label: "Sumur warga terlalu dalam.",
         },
         {
           correct: true,
-          label:
-            "Rata-rata pengunjung yang bertanya pada sesi uji melebihi rata-rata awal dan pembanding.",
+          label: "Sebagian besar halaman rumah sudah ditutup semen.",
+        },
+        {
+          correct: false,
+          label: "Kampung itu jarang diguyur hujan.",
+        },
+        {
+          correct: false,
+          label: "Selokan kampung tersumbat sampah.",
+        },
+        {
+          correct: false,
+          label: "Atap rumah warga bocor.",
         },
       ],
     },

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Kalikan matriks dengan memeriksa kecocokan ordo, menghitung hasil kali baris dan kolom, serta menerapkan sifat perkalian matriks.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -95,6 +95,94 @@ Matriks <InlineMath math="B" /> berordo <InlineMath math="3 \times 2" /> dan mat
 Jumlah kolom matriks <InlineMath math="B" /> (yaitu <InlineMath math="2" />) **tidak sama** dengan jumlah baris matriks <InlineMath math="A" /> (yaitu <InlineMath math="3" />).
 
 Oleh karena itu, perkalian <InlineMath math="BA" /> **tidak terdefinisi**. Karena itu, urutan kedua matriks menentukan apakah perkalian dapat dilakukan.
+
+Perkalian matriks bisa memindahkan satu bangun sekaligus. Tulis titik sudut segitiga sebagai kolom <InlineMath math="T = \begin{bmatrix} 0 & 2 & 1 \\ 0 & 0 & 2 \end{bmatrix}" />, lalu kalikan dengan <InlineMath math="M = \begin{bmatrix} 2 & -1 \\ 1 & 1 \end{bmatrix}" />. Setiap entri <InlineMath math="MT" /> tetap baris <InlineMath math="M" /> kali kolom <InlineMath math="T" />. Baris 1 kali kolom 2 menghasilkan <InlineMath math="2(2) + (-1)(0) = 4" />, dan baris 2 kali kolom 2 menghasilkan <InlineMath math="1(2) + 1(0) = 2" />, jadi titik <InlineMath math="(2, 0)" /> pindah ke <InlineMath math="(4, 2)" />. Dengan cara yang sama, titik <InlineMath math="(1, 2)" /> pindah ke <InlineMath math="(0, 3)" />.
+
+<MathVisual
+  title={<><InlineMath math="MT" /> memindahkan setiap titik sudut yang disimpan di <InlineMath math="T" /></>}
+  description={<>Kolom-kolom <InlineMath math="T" /> adalah titik sudut segitiga. Setiap kolom <InlineMath math="MT" /> adalah titik sudut yang seletak setelah dikalikan dengan <InlineMath math="M" />.</>}
+  labels={{
+    t2: <InlineMath math="T: (2, 0)" />,
+    t3: <InlineMath math="T: (1, 2)" />,
+    m2: <InlineMath math="MT: (4, 2)" />,
+    m3: <InlineMath math="MT: (0, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "t", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "mt", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 2 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "move2", kind: "segment", from: { x: 2, y: 0 }, to: { x: 4, y: 2 }, appearance: "construction" },
+      { id: "move3", kind: "segment", from: { x: 1, y: 2 }, to: { x: 0, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "t2", objectId: "t", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "t3", objectId: "t", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "m2", objectId: "mt", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "m3", objectId: "mt", at: { x: 0, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
+
+Urutan itu penting. Ambil <InlineMath math="N = \begin{bmatrix} 1 & 0 \\ 0 & 2 \end{bmatrix}" /> dan titik <InlineMath math="(1, 1)" />. Kebetulan <InlineMath math="N" /> dan <InlineMath math="M" /> sama-sama mengirimnya dulu ke <InlineMath math="(1, 2)" />. <InlineMath math="MN" /> menerapkan <InlineMath math="N" /> lalu <InlineMath math="M" />, jadi titiknya mendarat di <InlineMath math="(0, 3)" />. <InlineMath math="NM" /> menerapkan <InlineMath math="M" /> lalu <InlineMath math="N" />, jadi titiknya mendarat di <InlineMath math="(1, 4)" />. Titiknya berbeda, jadi <InlineMath math="MN \neq NM" />.
+
+<MathVisual
+  title={<><InlineMath math="MN" /> dan <InlineMath math="NM" /> mengirim <InlineMath math="(1, 1)" /> ke titik berbeda</>}
+  description={<>Dari <InlineMath math="(1, 1)" /> kedua urutan melewati <InlineMath math="(1, 2)" />, lalu <InlineMath math="MN" /> berakhir di <InlineMath math="(0, 3)" /> dan <InlineMath math="NM" /> di <InlineMath math="(1, 4)" />.</>}
+  labels={{
+    start: <InlineMath math="(1, 1)" />,
+    middle: <InlineMath math="(1, 2)" />,
+    mn: <InlineMath math="MN: (0, 3)" />,
+    nm: <InlineMath math="NM: (1, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "mn", kind: "segment", from: { x: 1, y: 2 }, to: { x: 0, y: 3 }, appearance: "secondary" },
+      { id: "nm", kind: "segment", from: { x: 1, y: 2 }, to: { x: 1, y: 4 }, appearance: "answer" },
+      { id: "start", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "middle", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "middle", objectId: "middle", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "mn", objectId: "mn", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "nm", objectId: "nm", at: { x: 1, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+Ukuran menentukan apakah hasil kali ada. Pada contoh, <InlineMath math="A" /> berordo <InlineMath math="3 \times 3" /> dan <InlineMath math="B" /> berordo <InlineMath math="3 \times 2" />: ukuran dalamnya, <InlineMath math="3" /> kolom <InlineMath math="A" /> dan <InlineMath math="3" /> baris <InlineMath math="B" />, sama. Hasil kalinya mempertahankan ukuran luar, jadi <InlineMath math="AB" /> berordo <InlineMath math="3 \times 2" />, satu entri untuk setiap baris <InlineMath math="A" /> dan kolom <InlineMath math="B" />.
+
+<MathVisual
+  title={<>Ukuran dalam sama, ukuran luar tersisa</>}
+  description={<>Blok untuk <InlineMath math="A" />, 3 kali 3, <InlineMath math="B" />, 3 kali 2, dan hasil kali <InlineMath math="AB" />, 3 kali 2.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    ab: <InlineMath math="AB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -0.8, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 3 }, { x: 4, y: 3 }], appearance: "secondary" },
+      { id: "ab", kind: "polygon", vertices: [{ x: 7.5, y: 0 }, { x: 9.5, y: 0 }, { x: 9.5, y: 3 }, { x: 7.5, y: 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 1.5 }, placement: "center" },
+      { key: "b", objectId: "b", at: { x: 5, y: 1.5 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 8.5, y: 1.5 }, placement: "center" },
+    ],
+  }}
+/>
 
 ## Sifat Perkalian Matriks
 

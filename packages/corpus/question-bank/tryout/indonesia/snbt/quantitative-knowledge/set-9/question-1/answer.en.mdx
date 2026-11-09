@@ -1,9 +1,20 @@
-Because the circle is **tangent to all four square sides**, its diameter equals the side length of the large square. The small square is not needed to find the circumference.
+Trying primes one by one never ends. The complete method is **checking the remainder of <InlineMath math="p" /> on division by 3**, because 10 and 14 leave different remainders.
 
-The square area equals the square of its side length. A length must be positive, so:
+# Small primes
 
-<BlockMath math="\begin{aligned}s^2&=256\\s&=\sqrt{256}=16\text{ cm}\\d&=s=16\text{ cm}\end{aligned}" />
+For <InlineMath math="p=2" />, <InlineMath math="p+10=12" /> is not prime. For <InlineMath math="p=3" />, we get <InlineMath math="13" /> and <InlineMath math="17" />, **both prime**. So <InlineMath math="p=3" /> works.
 
-Using the **diameter**, the circumference is:
+# Primes greater than 3
 
-<BlockMath math="\begin{aligned}C&=\pi d\\&=\pi\cdot16\\&=16\pi\text{ cm}\end{aligned}" />
+Every prime <InlineMath math="p>3" /> is not divisible by 3, so its remainder is 1 or 2.
+
+<BlockMath math="\begin{aligned}
+p=3k+1&:\quad p+14=3k+15=3(k+5)\\
+p=3k+2&:\quad p+10=3k+12=3(k+4)
+\end{aligned}" />
+
+In both cases one of the numbers is **divisible by 3 and larger than 3**, so it is not prime. No other prime works.
+
+The choice infinitely many comes from assuming that infinitely many primes guarantee this. The value 0 misses <InlineMath math="p=3" />, and 2 or 3 usually wrongly accepts 7 or 13, although <InlineMath math="7+14=21" /> and <InlineMath math="13+14=27" />.
+
+So the number of such primes is **1**.

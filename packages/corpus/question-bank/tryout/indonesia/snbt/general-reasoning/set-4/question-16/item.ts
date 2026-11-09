@@ -1,29 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "scheduling",
+  },
+  stimulus: "pentas",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$12$$",
+          column: 1,
+          label: "U tidak tampil pada hari Jumat.",
         },
         {
-          correct: false,
-          label: "$$20$$",
+          column: 2,
+          label: "T tampil pada sesi sore.",
         },
         {
-          correct: true,
-          label: "$$16$$",
+          column: 2,
+          label: "S tampil pada hari Minggu.",
         },
         {
-          correct: false,
-          label: "$$24$$",
-        },
-        {
-          correct: false,
-          label: "$$32$$",
+          column: 1,
+          label: "Jika Q tampil pada hari Jumat, U tampil pada hari Minggu.",
         },
       ],
     },

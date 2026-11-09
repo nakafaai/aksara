@@ -102,6 +102,37 @@ print('nested[1][2][1] =', nested[1][2][1])  # Output: nested[1][2][1] = e`
   ]}
 />
 
+You can also assign through an index. After `x = [0, 1, 2, 3, 4, 5]` and `x[2] = 9`, the same list now holds `[0, 1, 9, 3, 4, 5]`, because a list can change in place. A negative index still counts from the end, so `x[-1]` is still `5`.
+
+<MathVisual
+  title={<><code>x[2] = 9</code> changes one element in place</>}
+  description={<>Each point is one element, with its index across and its value up. The orange segment moves the element at index <InlineMath math="2" /> from <InlineMath math="2" /> to the magenta point <InlineMath math="9" />. The teal point is <code>x[-1]</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 9.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "value-0", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "value-1", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "value-3", kind: "point", at: { x: 3, y: 3 }, appearance: "reference" },
+      { id: "value-4", kind: "point", at: { x: 4, y: 4 }, appearance: "reference" },
+      { id: "value-5", kind: "point", at: { x: 5, y: 5 }, appearance: "reference" },
+      { id: "change", kind: "segment", from: { x: 2, y: 2 }, to: { x: 2, y: 9 }, appearance: "primary" },
+      { id: "old", kind: "point", at: { x: 2, y: 2 }, appearance: "reference" },
+      { id: "new", kind: "point", at: { x: 2, y: 9 }, appearance: "answer" },
+      { id: "last", kind: "point", at: { x: 5, y: 5 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "new", objectId: "new", at: { x: 2, y: 9 }, placement: "right" },
+      { key: "last", objectId: "last", at: { x: 5, y: 5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "new": <code>x[2] = 9</code>,
+    "last": <code>x[-1]</code>,
+  }}
+/>
+
 ## Slicing with Stride
 
 Slicing takes part of a list. The step sets the **distance between selected elements**.
@@ -138,6 +169,80 @@ print('x[::-1] =', x[::-1])                  # Output: x[::-1] = [5, 4, 3, 2, 1,
 />
 
 Slicing selects a contiguous or regularly spaced part of a list. For `x = [0, 1, 2, 3, 4, 5]`, `x[1:4]` returns the elements at indices <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="3" />. The end index <InlineMath math="4" /> is excluded. The expression `x[1:4:2]` uses a step of <InlineMath math="2" />, so it selects indices <InlineMath math="1" /> and <InlineMath math="3" />.
+
+The top row takes `x[1:4:2]`: it starts at index <InlineMath math="1" />, jumps two steps, and stops before index <InlineMath math="4" />, so the result is `[1, 3]`. The bottom row is `x[::-1]`. The step <InlineMath math="-1" /> reads from the back, and the teal lines show each element moving from position <InlineMath math="i" /> to position <InlineMath math="5-i" />. All the lines cross in the middle, right between elements <InlineMath math="2" /> and <InlineMath math="3" />.
+
+<MathVisual
+  title={<>Slicing with a step on <code>x = [0, 1, 2, 3, 4, 5]</code></>}
+  description={<>The middle row is <code>x</code>. The magenta top row is <code>x[1:4:2]</code>, and the teal bottom row is <code>x[::-1]</code>, with lines that show where each element moves.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "value-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "value-b", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "value-c", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "value-d", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "value-e", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "value-f", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "swap-a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: -1.2 }, appearance: "construction" },
+      { id: "swap-b", kind: "segment", from: { x: 1, y: 0 }, to: { x: 4, y: -1.2 }, appearance: "construction" },
+      { id: "swap-c", kind: "segment", from: { x: 2, y: 0 }, to: { x: 3, y: -1.2 }, appearance: "construction" },
+      { id: "swap-d", kind: "segment", from: { x: 3, y: 0 }, to: { x: 2, y: -1.2 }, appearance: "construction" },
+      { id: "swap-e", kind: "segment", from: { x: 4, y: 0 }, to: { x: 1, y: -1.2 }, appearance: "construction" },
+      { id: "swap-f", kind: "segment", from: { x: 5, y: 0 }, to: { x: 0, y: -1.2 }, appearance: "construction" },
+      { id: "back-a", kind: "point", at: { x: 5, y: -1.2 }, appearance: "construction" },
+      { id: "back-b", kind: "point", at: { x: 4, y: -1.2 }, appearance: "construction" },
+      { id: "back-c", kind: "point", at: { x: 3, y: -1.2 }, appearance: "construction" },
+      { id: "back-d", kind: "point", at: { x: 2, y: -1.2 }, appearance: "construction" },
+      { id: "back-e", kind: "point", at: { x: 1, y: -1.2 }, appearance: "construction" },
+      { id: "back-f", kind: "point", at: { x: 0, y: -1.2 }, appearance: "construction" },
+      { id: "pick-b", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 1.2 }, appearance: "answer" },
+      { id: "pick-d", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 1.2 }, appearance: "answer" },
+      { id: "picked-b", kind: "point", at: { x: 1, y: 1.2 }, appearance: "answer" },
+      { id: "picked-d", kind: "point", at: { x: 3, y: 1.2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "value-a", objectId: "value-a", at: { x: 0, y: 0 }, placement: "above-right" },
+      { key: "value-b", objectId: "value-b", at: { x: 1, y: 0 }, placement: "above-right" },
+      { key: "value-c", objectId: "value-c", at: { x: 2, y: 0 }, placement: "above-right" },
+      { key: "value-d", objectId: "value-d", at: { x: 3, y: 0 }, placement: "above-right" },
+      { key: "value-e", objectId: "value-e", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "value-f", objectId: "value-f", at: { x: 5, y: 0 }, placement: "above-right" },
+      { key: "back-a", objectId: "back-a", at: { x: 5, y: -1.2 }, placement: "below" },
+      { key: "back-b", objectId: "back-b", at: { x: 4, y: -1.2 }, placement: "below" },
+      { key: "back-c", objectId: "back-c", at: { x: 3, y: -1.2 }, placement: "below" },
+      { key: "back-d", objectId: "back-d", at: { x: 2, y: -1.2 }, placement: "below" },
+      { key: "back-e", objectId: "back-e", at: { x: 1, y: -1.2 }, placement: "below" },
+      { key: "back-f", objectId: "back-f", at: { x: 0, y: -1.2 }, placement: "below" },
+      { key: "picked-b", objectId: "picked-b", at: { x: 1, y: 1.2 }, placement: "above" },
+      { key: "picked-d", objectId: "picked-d", at: { x: 3, y: 1.2 }, placement: "above" },
+      { key: "row-x", objectId: "value-a", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "row-slice", objectId: "picked-b", at: { x: 1, y: 1.2 }, placement: "left" },
+      { key: "row-back", objectId: "back-f", at: { x: 0, y: -1.2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "value-a": "0",
+    "value-b": "1",
+    "value-c": "2",
+    "value-d": "3",
+    "value-e": "4",
+    "value-f": "5",
+    "back-a": "0",
+    "back-b": "1",
+    "back-c": "2",
+    "back-d": "3",
+    "back-e": "4",
+    "back-f": "5",
+    "picked-b": "1",
+    "picked-d": "3",
+    "row-x": "x",
+    "row-slice": "x[1:4:2]",
+    "row-back": "x[::-1]",
+  }}
+/>
 
 ## Lists and Strings
 
@@ -443,3 +548,18 @@ The four built-in collections differ in **order, mutability, and duplicate handl
 | **Set** | `{1, 2, 3}` | No | Yes | No | Unique elements, set operations |
 
 > Dictionary iteration preserves insertion order as a language guarantee since Python `3.7`. Updating an existing key keeps its position. Deleting and reinserting it places it at the end.
+
+Build each container from the same data, `[3, 1, 3, 2, 1]`. A `list` and a `tuple` keep all five elements in order, while a `set` and the keys of `dict.fromkeys` keep only the unique values `3`, `1`, and `2`.
+
+<BarChart
+  title={<><code>len()</code> of each container built from <code>[3, 1, 3, 2, 1]</code></>}
+  description={<>Each bar is the <code>len()</code> of the container named below it, filled with the same data. The <code>set</code> and <code>dict</code> bars are shorter because duplicates are dropped.</>}
+  yAxisLabel="Number of elements"
+  data={[
+    { name: "list", value: 5 },
+    { name: "tuple", value: 5 },
+    { name: "set", value: 3 },
+    { name: "dict", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Number of elements", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Convert complex numbers among Cartesian, polar, and exponential forms with Euler's formula.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Complex Number",
 };
 
@@ -25,50 +25,36 @@ We can also view the complex number <InlineMath math="z = x + iy" /> as an order
 
 Each complex number <InlineMath math="z = x + iy" /> can be placed at the point <InlineMath math="(x, y)" /> in the complex plane. The **position vector** from the origin <InlineMath math="(0, 0)" /> to that point represents the same number geometrically.
 
-<LineEquation
-  title="Complex Numbers on the Complex Plane"
-  description="Visualization of several complex numbers as points and vectors on the complex plane."
-  cameraPosition={[0.7, 0.5, 8.5]}
-  cameraTarget={[0.7, 0.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-    points: [
-      { x: 0, y: 0, z: 0 },
-      { x: 3, y: 2, z: 0 },
+<MathVisual
+  title={<>Four complex numbers on the complex plane</>}
+  description={<><InlineMath math="z_1 = 3 + 2i" />, <InlineMath math="z_2 = -1 - i" />, <InlineMath math="z_3 = 2" /> and <InlineMath math="z_4 = i" /> as position vectors from the origin.</>}
+  labels={{
+    z1: <InlineMath math="z_1 = 3 + 2i" />,
+    z2: <InlineMath math="z_2 = -1 - i" />,
+    z3: <InlineMath math="z_3 = 2" />,
+    z4: <InlineMath math="z_4 = i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 3.8 }, y: { min: -1.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 3, y: 2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: -1 }, appearance: "secondary" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: -1, y: -1 }, { x: (-1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)) }, { x: (-1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)) }], appearance: "secondary" },
+      { id: "z3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "z3-head", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 7 / 4, y: 1 / 10 }, { x: 7 / 4, y: -1 / 10 }], appearance: "construction" },
+      { id: "z4", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "highlight" },
+      { id: "z4-head", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: -1 / 10, y: 3 / 4 }, { x: 1 / 10, y: 3 / 4 }], appearance: "highlight" },
     ],
-    smooth: false,
-    color: "#e11d48",
-    labels: [{ text: <InlineMath math="z_1=3+2i" />, at: 1, offset: [0, 0.6, 0] }],
-    },
-    {
-    points: [
-      { x: 0, y: 0, z: 0 },
-      { x: -1, y: -1, z: 0 },
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "z2", objectId: "z2", at: { x: -1, y: -1 }, placement: "below" },
+      { key: "z3", objectId: "z3", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "z4", objectId: "z4", at: { x: 0, y: 1 }, placement: "above" },
     ],
-    smooth: false,
-    color: "#059669",
-    labels: [{ text: <InlineMath math="z_2=-1-i" />, at: 1, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-    points: [
-      { x: 0, y: 0, z: 0 },
-      { x: 2, y: 0, z: 0 },
-    ],
-    smooth: false,
-    color: "#7c3aed",
-    labels: [{ text: <InlineMath math="z_3=2" />, at: 1, offset: [0.5, 0.5, 0] }],
-    },
-    {
-    points: [
-      { x: 0, y: 0, z: 0 },
-      { x: 0, y: 1, z: 0 },
-    ],
-    smooth: false,
-    color: "#d97706",
-    labels: [{ text: <InlineMath math="z_4=i" />, at: 1, offset: [-1, 0.5, 0] }],
-    },
-  ]}
+  }}
 />
 
 ## Polar Form
@@ -130,6 +116,37 @@ So, the polar form is:
 
 <BlockMath math="z = \sqrt{2} (\cos 45^\circ + i \sin 45^\circ)" />
 
+For <InlineMath math="z = 1 + i" /> the arrow has length <InlineMath math="r = \sqrt2" /> and makes the angle <InlineMath math="\theta = 45^\circ" /> with the positive real axis, so <InlineMath math="z = \sqrt2(\cos 45^\circ + i\sin 45^\circ)" />.
+
+<MathVisual
+  title={<><InlineMath math="1 + i" /> in polar form</>}
+  description={<>The arrow to <InlineMath math="1 + i" /> with length <InlineMath math="r = \sqrt2" /> and angle <InlineMath math="\theta = 45^\circ" />, and its components 1 and 1.</>}
+  labels={{
+    z: <InlineMath math="r = \sqrt2" />,
+    theta: <InlineMath math="45^\circ" />,
+    x: <InlineMath math="1" />,
+    y: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 1.6 }, y: { min: -0.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 1 }, appearance: "highlight" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 2 / 5, startDegrees: 0, sweepDegrees: 45, appearance: "highlight" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: (1) + (-1 / 8 / Math.sqrt(2)) + (-1 / 20 / Math.sqrt(2)), y: (1) + (-1 / 8 / Math.sqrt(2)) + (1 / 20 / Math.sqrt(2)) }, { x: (1) + (-1 / 8 / Math.sqrt(2)) + (1 / 20 / Math.sqrt(2)), y: (1) + (-1 / 8 / Math.sqrt(2)) + (-1 / 20 / Math.sqrt(2)) }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 1 / 2, y: 1 / 2 }, placement: "above-left" },
+      { key: "theta", objectId: "theta", at: { x: 0.4 * Math.cos(Math.PI / 8), y: 0.4 * Math.sin(Math.PI / 8) }, placement: "right" },
+      { key: "x", objectId: "x", at: { x: 1 / 2, y: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: 1, y: 1 / 2 }, placement: "right" },
+    ],
+  }}
+/>
+
 ### Polar Form Exercise
 
 Find the **modulus and argument** of each number. For a point on an axis, read the direction directly instead of dividing by a zero real component.
@@ -179,6 +196,38 @@ Express the following complex numbers in polar form:
     The coterminal angle <InlineMath math="270^\circ" /> gives the equivalent form
 
     <BlockMath math="z = 1(\cos 270^\circ + i \sin 270^\circ)" />
+
+Put both exercise numbers on one plane. <InlineMath math="1 + i\sqrt3" /> has <InlineMath math="r = 2" /> and <InlineMath math="\theta = 60^\circ" />, while <InlineMath math="-i" /> has <InlineMath math="r = 1" /> and <InlineMath math="\theta = -90^\circ" />, measured clockwise from the positive real axis.
+
+<MathVisual
+  title={<><InlineMath math="1 + i\sqrt3" /> and <InlineMath math="-i" /> with their angles</>}
+  description={<>The arrow to <InlineMath math="1 + i\sqrt3" /> with angle <InlineMath math="60^\circ" /> and the arrow to <InlineMath math="-i" /> with angle <InlineMath math="-90^\circ" />.</>}
+  labels={{
+    a: <InlineMath math="1 + i\sqrt3" />,
+    b: <InlineMath math="-i" />,
+    ta: <InlineMath math="60^\circ" />,
+    tb: <InlineMath math="-90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 1.8 }, y: { min: -1.4, max: 2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ta", kind: "arc", center: { x: 0, y: 0 }, radius: 1 / 2, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "tb", kind: "arc", center: { x: 0, y: 0 }, radius: 2 / 5, startDegrees: 0, sweepDegrees: -90, appearance: "construction" },
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: Math.sqrt(3) }, appearance: "primary" },
+      { id: "a-head", kind: "polygon", vertices: [{ x: 1, y: Math.sqrt(3) }, { x: 1 - 1 / 6 * (1 / 2) - 1 / 15 * (Math.sqrt(3) / 2), y: Math.sqrt(3) - 1 / 6 * (Math.sqrt(3) / 2) + 1 / 15 * (1 / 2) }, { x: 1 - 1 / 6 * (1 / 2) + 1 / 15 * (Math.sqrt(3) / 2), y: Math.sqrt(3) - 1 / 6 * (Math.sqrt(3) / 2) - 1 / 15 * (1 / 2) }], appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "b-head", kind: "polygon", vertices: [{ x: 0, y: -1 }, { x: 1 / 15, y: -5 / 6 }, { x: -1 / 15, y: -5 / 6 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: Math.sqrt(3) }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 0, y: -1 }, placement: "right" },
+      { key: "ta", objectId: "ta", at: { x: 0.5 * Math.cos(Math.PI / 6), y: 0.5 * Math.sin(Math.PI / 6) }, placement: "right" },
+      { key: "tb", objectId: "tb", at: { x: 0.4 * Math.cos(Math.PI / 4), y: -0.4 * Math.sin(Math.PI / 4) }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Exponential Form
 

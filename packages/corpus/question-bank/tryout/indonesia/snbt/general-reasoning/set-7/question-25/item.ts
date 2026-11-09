@@ -1,31 +1,17 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "quantitative-reasoning",
+    topic: "target-value",
+  },
+  stimulus: "minuman",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label: "$$68$$",
-        },
-        {
-          correct: false,
-          label: "$$70$$",
-        },
-        {
-          correct: false,
-          label: "$$74$$",
-        },
-        {
-          correct: true,
-          label: "$$72$$",
-        },
-        {
-          correct: false,
-          label: "$$76$$",
-        },
-      ],
+      kind: "numericEntry",
+      unit: "gelas",
+      value: "192",
     },
   },
 };

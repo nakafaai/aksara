@@ -1,34 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "sentence-relation",
+  },
+  stimulus: "angklung",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Sumber, metode, dan jejak data dapat diperiksa secara mandiri sebelum klaim diterima.",
+          label: "Kalimat (7) membantah pernyataan pada kalimat (6).",
         },
         {
           correct: false,
           label:
-            "Klaim disusun dari pengamatan berulang dan hasil pengukuran, bukan dari dugaan semata.",
+            "Kalimat (7) memberikan contoh lagu modern yang dimainkan dengan angklung.",
         },
         {
           correct: false,
           label:
-            "Tim membuka data, metode, alasan pengecualian, dan keterbatasan agar proses dapat diperiksa.",
+            "Kalimat (7) menjelaskan cara membuat angklung bertangga nada diatonis.",
+        },
+        {
+          correct: false,
+          label:
+            "Kalimat (7) mengulang isi kalimat (6) dengan kata-kata yang berbeda tetapi bermakna sama.",
         },
         {
           correct: true,
           label:
-            "Tim memeriksa rekaman asli beserta asal dan riwayat perubahannya sebelum menggunakannya.",
-        },
-        {
-          correct: false,
-          label:
-            "Asumsi, batas data, dan kriteria keputusan dinyatakan langsung dalam laporan.",
+            "Kalimat (7) menyebutkan akibat dari perubahan yang dijelaskan pada kalimat (6).",
         },
       ],
     },

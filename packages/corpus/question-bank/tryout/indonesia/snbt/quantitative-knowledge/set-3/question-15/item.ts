@@ -3,27 +3,22 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 2, label: "Sudut $$AOB$$ adalah sudut lancip." },
         {
-          correct: false,
-          label: "$$4$$",
+          column: 1,
+          label:
+            "Jarak titik $$O$$ ke tali busur $$AB$$ adalah $$6\\text{ cm}$$.",
         },
         {
-          correct: false,
-          label: "$$5$$",
+          column: 1,
+          label: "Luas segitiga $$AOB$$ adalah $$48\\text{ cm}^2$$.",
         },
         {
-          correct: true,
-          label: "$$6$$",
-        },
-        {
-          correct: false,
-          label: "$$7$$",
-        },
-        {
-          correct: false,
-          label: "$$8$$",
+          column: 2,
+          label: "Panjang busur kecil $$AB$$ kurang dari $$16\\text{ cm}$$.",
         },
       ],
     },

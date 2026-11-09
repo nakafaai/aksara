@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "scheduling",
+  },
+  stimulus: "pentas",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$40\\text{ km}$$",
+          label: "$$4$$",
+        },
+        {
+          correct: false,
+          label: "$$6$$",
         },
         {
           correct: true,
-          label: "$$10\\text{ km}$$",
+          label: "$$8$$",
         },
         {
           correct: false,
-          label: "$$30\\text{ km}$$",
+          label: "$$10$$",
         },
         {
           correct: false,
-          label: "$$20\\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$5\\text{ km}$$",
+          label: "$$12$$",
         },
       ],
     },

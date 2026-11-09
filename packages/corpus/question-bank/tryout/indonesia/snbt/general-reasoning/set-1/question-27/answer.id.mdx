@@ -1,13 +1,20 @@
-Gunakan ribu rupiah sebagai satuan perhitungan. Urutan perubahan harga harus **dibalik**: hapus pajak, kembalikan potongan voucher, lalu hapus kenaikan harga.
+Soal ini membutuhkan **hari pertama bulan Februari**, karena hari itu menentukan tanggal berapa saja yang jatuh pada hari Minggu. Setelah itu, periksa apakah ada hari Minggu yang juga tanggal kelipatan <InlineMath math="5" />, supaya hari tutup tidak dihitung dua kali.
 
-Pajak dihitung dari harga sesudah voucher. Karena harga akhir adalah <InlineMath math="110\%" /> dari harga tersebut, kita membagi dengan <InlineMath math="1{,}10" /> untuk kembali ke harga sebelum pajak.
+Januari memiliki <InlineMath math="31" /> hari, jadi <InlineMath math="1" /> Februari berada <InlineMath math="31" /> hari setelah <InlineMath math="1" /> Januari. Satu minggu berisi <InlineMath math="7" /> hari, sehingga yang menentukan adalah sisa pembagiannya:
 
-Sebelum pajak <InlineMath math="10\%" />, harga sesudah voucher adalah
+<BlockMath math="31=4\times7+3" />
 
-<BlockMath math="605\div1{,}10=550" />
+Hari Jumat maju <InlineMath math="3" /> hari menjadi Senin. Jadi, <InlineMath math="1" /> Februari <InlineMath math="2027" /> jatuh pada hari Senin.
 
-Tambahkan kembali voucher <InlineMath math="50" /> ribu rupiah, kemudian bagi dengan faktor kenaikan <InlineMath math="1{,}20" />.
+Februari <InlineMath math="2027" /> memiliki <InlineMath math="28" /> hari. Hari Minggu jatuh pada tanggal <InlineMath math="7" />, <InlineMath math="14" />, <InlineMath math="21" />, dan <InlineMath math="28" />. Tanggal kelipatan <InlineMath math="5" /> adalah <InlineMath math="5" />, <InlineMath math="10" />, <InlineMath math="15" />, <InlineMath math="20" />, dan <InlineMath math="25" />. Tidak ada tanggal yang muncul di kedua daftar, jadi **tidak ada hari tutup yang terhitung dua kali**.
 
-<BlockMath math="\begin{aligned} 550+50 &amp;=600 \\ P_0 &amp;=600\div1{,}20=500 \\ 605-P_0 &amp;=605-500=105 \end{aligned}" />
+<BlockMath math="\text{Hari buka}=28-4-5=19" />
 
-Jadi, harga akhir lebih tinggi <InlineMath math="105" /> ribu rupiah daripada harga awal.
+Pilihan lain berasal dari kesalahan berikut:
+
+- <InlineMath math="24" /> muncul jika hanya hari Minggu yang dikurangi.
+- <InlineMath math="23" /> muncul jika hanya tanggal kelipatan <InlineMath math="5" /> yang dikurangi.
+- <InlineMath math="20" /> muncul jika <InlineMath math="1" /> Februari dianggap tetap hari Jumat. Hari Minggu lalu jatuh pada tanggal <InlineMath math="3" />, <InlineMath math="10" />, <InlineMath math="17" />, dan <InlineMath math="24" />, sehingga tanggal <InlineMath math="10" /> terhitung sekali dan hanya <InlineMath math="8" /> hari yang tutup.
+- <InlineMath math="18" /> muncul jika Februari dianggap memiliki lima hari Minggu.
+
+Jadi, toko roti itu buka <InlineMath math="19" /> hari pada bulan Februari <InlineMath math="2027" />.

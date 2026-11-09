@@ -3,7 +3,7 @@ export const metadata = {
   description: "Check the assumptions of a binomial model and calculate exact probabilities with its probability mass function.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-24",
+    dateModified: "2026-11-08",
     subject: "Data Analysis and Probability",
 };
 
@@ -105,8 +105,8 @@ So the complete calculation is:
 The probability of getting <InlineMath math="5" /> tails in <InlineMath math="7" /> flips is <InlineMath math="\frac{21}{128}" /> or approximately <InlineMath math="16.4\%" />.
 
 <BarChart
-  title="Tails Count Probabilities in Seven Flips"
-  description="The horizontal axis counts tails, rather than the position of a flip. Each bar gives the probability of exactly that count."
+  title={<>Tails Count Probabilities in Seven Flips</>}
+  description={<>The horizontal axis counts tails, rather than the position of a flip. Each bar gives the probability of exactly that count.</>}
   yAxisLabel="Probability"
   data={[
     { name: "0", value: 0.0078125 },
@@ -220,3 +220,23 @@ Then:
 </MathContainer>
 
 The probability of the student answering exactly <InlineMath math="2" /> questions correctly is approximately <InlineMath math="0.3115" />, or <InlineMath math="31.15\%" />.
+
+The archer's whole distribution for 6 shots with <InlineMath math="p = 0.8" />: the bars pile up on the right. The bar at 4 hits is <InlineMath math="0.2458" />, the answer to Problem 2, while 5 hits is the most likely count, with probability <InlineMath math="0.3932" />.
+
+<BarChart
+  title={<>All outcomes of <InlineMath math="X \sim B(6;\ 0.8)" /></>}
+  description={<>Bars of <InlineMath math="P(X = k) = \binom{6}{k} 0.8^k 0.2^{6-k}" /> for <InlineMath math="k = 0" /> to 6 hits.</>}
+  yAxisLabel="Probability"
+  data={[1, 6, 15, 20, 15, 6, 1].map((c, k) => ({ name: String(k), value: c * 0.8 ** k * 0.2 ** (6 - k) }))}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Guessing 8 questions with <InlineMath math="p = \tfrac14" />: the most likely count is 2 correct, with probability <InlineMath math="0.3115" />, the answer to Problem 3. Six or more correct answers together have a probability below <InlineMath math="0.005" />.
+
+<BarChart
+  title={<>All outcomes of <InlineMath math="X \sim B\left(8,\ \tfrac14\right)" /></>}
+  description={<>Bars of <InlineMath math="P(X = k) = \binom{8}{k} 0.25^k 0.75^{8-k}" /> for <InlineMath math="k = 0" /> to 8 correct answers.</>}
+  yAxisLabel="Probability"
+  data={[1, 8, 28, 56, 70, 56, 28, 8, 1].map((c, k) => ({ name: String(k), value: c * 0.25 ** k * 0.75 ** (8 - k) }))}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

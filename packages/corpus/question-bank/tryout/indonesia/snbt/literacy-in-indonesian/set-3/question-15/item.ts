@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "canteen-labels",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "data dasar sebagai ukuran utama dalam uji layanan",
+          column: 1,
+          label: "Penjualan jajanan berlabel hijau naik lebih dari 40 persen.",
         },
         {
-          correct: false,
-          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
+          column: 2,
+          label:
+            "Jumlah seluruh porsi yang terjual di kantin bertambah setelah label dipasang.",
         },
         {
-          correct: false,
-          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
+          column: 1,
+          label:
+            "Jumlah porsi jajanan merah yang berkurang lebih banyak daripada jumlah porsi jajanan hijau yang bertambah.",
         },
         {
-          correct: false,
-          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
-        },
-        {
-          correct: true,
-          label: "Keputusan Berbasis Bukti dalam Layanan Perpustakaan Keliling",
+          column: 2,
+          label:
+            "Survei menunjukkan bahwa semua siswa mengurangi konsumsi gorengan.",
         },
       ],
     },

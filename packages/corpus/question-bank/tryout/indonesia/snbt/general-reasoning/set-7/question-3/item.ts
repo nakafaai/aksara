@@ -1,29 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "inductive-reasoning",
+    topic: "data-comparison",
+  },
+  stimulus: "burung",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Sensor mengalami gangguan.",
+          column: 2,
+          label:
+            "Banyak jenis burung di Taman Kenanga bertambah lebih banyak pada 2025 daripada pada 2024.",
         },
         {
-          correct: true,
-          label: "Pembersihan harian yang dijadwalkan tidak dilewatkan.",
+          column: 1,
+          label:
+            "Pada akhir 2025, Taman Kenanga memiliki $$5$$ jenis burung lebih banyak daripada Taman Melati.",
         },
         {
-          correct: false,
-          label: "Lampu peringatan menyala.",
+          column: 2,
+          label:
+            "Banyak jenis burung di Taman Melati tidak berubah selama ketiga pencatatan.",
         },
         {
-          correct: false,
-          label: "Residu tertinggal pada sensor.",
-        },
-        {
-          correct: false,
-          label: "Pembersihan harian yang dijadwalkan dilewatkan.",
+          column: 1,
+          label:
+            "Banyak jenis burung di Taman Kenanga dari awal 2024 sampai akhir 2025 naik lebih dari $$80\\%$$.",
         },
       ],
     },

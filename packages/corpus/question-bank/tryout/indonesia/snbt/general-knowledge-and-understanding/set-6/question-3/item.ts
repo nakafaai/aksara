@@ -1,34 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "karst",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Dua sensor merekam kejadian pada selang waktu yang sama, bukan secara bergantian.",
+            "Gua dan dolina terbentuk karena batu kapur larut oleh air yang bersifat sedikit asam.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Catatan disusun dari kejadian paling awal hingga paling akhir agar urutan perubahan dapat ditelusuri.",
+            "Penambangan batu kapur hanya merusak pemandangan di atas permukaan kawasan karst.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
+            "Limbah yang dibuang ke dolina dapat mencemari sungai bawah tanah.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Lonjakan muncul pada waktu yang tidak teratur tanpa pola selang yang tetap.",
-        },
-        {
-          correct: false,
-          label:
-            "Nilai pengukuran berulang tetap berada dalam rentang sempit meskipun waktu pengambilan berbeda.",
+            "Sungai bawah tanah di kawasan karst terbentuk hanya dalam beberapa tahun.",
         },
       ],
     },

@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "scale-rate",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$800$$",
+          label: "pukul 08.27",
         },
         {
           correct: false,
-          label: "$$850$$",
+          label: "pukul 08.35",
         },
         {
           correct: true,
-          label: "$$900$$",
+          label: "pukul 08.42",
         },
         {
           correct: false,
-          label: "$$950$$",
+          label: "pukul 08.50",
         },
         {
           correct: false,
-          label: "$$1000$$",
+          label: "pukul 08.57",
         },
       ],
     },

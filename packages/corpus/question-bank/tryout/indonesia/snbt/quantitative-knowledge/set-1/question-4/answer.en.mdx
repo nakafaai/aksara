@@ -1,27 +1,32 @@
-Given map scale <InlineMath math="1 : 200{,}000" />, map distance <InlineMath math="12 \text{ cm}" />, and travel time <InlineMath math="12 \text{ minutes}" />.
+All four statements can be checked without finding each root separately. Use **the sum and product of the roots** from the coefficients of the equation.
 
-Calculate the actual distance using the **map scale**
+<BlockMath math="p+q=6,\qquad pq=k" />
 
-Let <InlineMath math="x" /> be the actual distance in centimeters. The ratio of map distance to actual distance is the map scale.
+# Finding the value of k
 
-<BlockMath math="\frac{12 \text{ cm}}{x} = \frac{1}{200{,}000}" />
+The difference of the roots is linked to their sum and product through the identity for the square of a difference.
 
-<BlockMath math="\begin{aligned}x&=12 \times 200{,}000\\&=2{,}400{,}000 \text{ cm}\end{aligned}" />
+<BlockMath math="\begin{aligned}
+(p-q)^2&=(p+q)^2-4pq\\
+\left(2\sqrt2\right)^2&=6^2-4k\\
+8&=36-4k\\
+k&=7
+\end{aligned}" />
 
-Convert to kilometers
+The statement <InlineMath math="k=7" /> is **true**. The discriminant is <InlineMath math="36-28=8>0" />, so both roots really are real.
 
-<BlockMath math="\begin{aligned}x&=2{,}400{,}000 \text{ cm}\\&=\frac{2{,}400{,}000}{100{,}000} \text{ km}\\&=24 \text{ km}\end{aligned}" />
+# Checking the other three statements
 
-Convert time to hours
+With <InlineMath math="p+q=6" /> and <InlineMath math="pq=7" />, express each quantity through the sum and product of the roots.
 
-<BlockMath math="\begin{aligned}t&=12 \text{ minutes}\\&=\frac{12}{60} \text{ hours}\\&=\frac{1}{5} \text{ hours}\end{aligned}" />
+<BlockMath math="\begin{aligned}
+p^2+q^2&=(p+q)^2-2pq=36-14=22\\
+\frac1p+\frac1q&=\frac{p+q}{pq}=\frac67\\
+p^3+q^3&=(p+q)^3-3pq(p+q)=216-126=90
+\end{aligned}" />
 
-Calculate average speed
+The statement <InlineMath math="p^2+q^2=22" /> is **true**. The statement <InlineMath math="\frac1p+\frac1q=\frac76" /> is false because the fraction is flipped: the correct value is <InlineMath math="\frac67" />. The statement <InlineMath math="p^3+q^3=132" /> is false because the value is 90. The number 132 comes from <InlineMath math="(p+q)(p^2+q^2)=6\times22" />, which drops the term <InlineMath math="-pq" /> in <InlineMath math="p^3+q^3=(p+q)(p^2-pq+q^2)" />.
 
-<BlockMath math="v = \frac{x}{t}" />
+As a check, the roots are <InlineMath math="3+\sqrt2" /> and <InlineMath math="3-\sqrt2" />. Their squares add up to <InlineMath math="(11+6\sqrt2)+(11-6\sqrt2)=22" />.
 
-<BlockMath math="v = \frac{24 \text{ km}}{\frac{1}{5} \text{ hours}}" />
-
-<BlockMath math="\begin{aligned}v&=24 \times 5\\&=120 \text{ km/h}\end{aligned}" />
-
-Therefore, the average speed of the airplane is <InlineMath math="120 \text{ km/h}" />.
+So the first and second statements are **true**, and the third and fourth statements are **false**.

@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "sriwijaya-stones",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Kemajuan bergantung pada penyelesaian tugas besar sebelum meminta orang lain meninjaunya.",
+            "Prasasti Kedukan Bukit lebih tua daripada Prasasti Kota Kapur.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Benda atau latar membentuk hasil lebih kuat daripada pilihan khusus yang dibuat tokoh.",
+            "I-Tsing menganjurkan biksu Tiongkok langsung belajar ke India tanpa singgah di Sriwijaya.",
         },
         {
-          correct: false,
-          label:
-            "Bukti yang belum pasti sebaiknya disimpan sampai tokoh dapat menawarkan hasil lengkap.",
+          column: 1,
+          label: "Para ahli belum sepakat tentang letak pusat Sriwijaya.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Tindakan kecil terutama berguna karena menunda bagian konflik yang belum selesai.",
-        },
-        {
-          correct: true,
-          label:
-            "Kemampuan Dimas menemukan kesalahan melalui substitusi setelah bantuan dikurangi menunjukkan kemajuan pemahaman yang tidak terlihat dari jumlah soal selesai saja.",
+            "Prasasti-prasasti Sriwijaya ditulis dalam bahasa Sanskerta dengan aksara Latin.",
         },
       ],
     },

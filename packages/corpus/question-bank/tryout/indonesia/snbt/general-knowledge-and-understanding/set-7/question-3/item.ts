@@ -1,34 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "angklung",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Evaluasi melibatkan kelompok terdampak dengan kebutuhan mobilitas, bahasa, dan akses yang berbeda.",
+            "Angklung bertangga nada diatonis sudah ada sebelum tahun 1938.",
         },
         {
-          correct: true,
-          label:
-            "Laporan menilai manfaat, risiko, biaya, dan dampak pada berbagai kelompok sebelum memberi rekomendasi.",
+          column: 1,
+          label: "Kini angklung dimainkan juga di luar upacara adat.",
         },
         {
-          correct: false,
-          label:
-            "Model mempertimbangkan interaksi cuaca, perilaku pengguna, dan jadwal layanan alih-alih mencari satu penyebab tunggal.",
+          column: 2,
+          label: "Satu tabung bambu sudah cukup untuk membuat sebuah angklung.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Tim membuka data, metode, alasan pengecualian, dan keterbatasan agar proses dapat diperiksa.",
-        },
-        {
-          correct: false,
-          label:
-            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
+            "Keterlambatan seorang pemain dapat merusak lagu yang dimainkan bersama.",
         },
       ],
     },

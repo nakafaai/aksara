@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "ordering",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "phipllowg cz ?hmmphng",
+          label: "Q adalah kotak paling ringan.",
         },
         {
           correct: false,
-          label: "?hhmmpowg cz ?hmmphng",
+          label: "S lebih berat daripada T.",
         },
         {
           correct: false,
-          label: "ng?hmmphowg ?hmmp cz",
-        },
-        {
-          correct: false,
-          label: "ng?hmmph ?hmmpowg cz",
+          label: "R lebih ringan daripada Q.",
         },
         {
           correct: true,
-          label: "?hhmmphng ?hmmpowg cz",
+          label: "P adalah kotak paling berat.",
+        },
+        {
+          correct: false,
+          label: "T adalah kotak terberat kedua.",
         },
       ],
     },

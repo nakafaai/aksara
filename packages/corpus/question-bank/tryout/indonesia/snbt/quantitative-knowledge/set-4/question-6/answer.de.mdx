@@ -1,49 +1,25 @@
-Für die Tangentengleichung benötigen wir **Steigung und Berührpunkt**.
+Beide Seiten zu quadrieren ist nur sicher, wenn **keine Seite negativ ist**. Bestimme deshalb zuerst, wann die Ungleichung sinnvoll ist, und quadriere erst danach.
 
-# Die Steigung bestimmen
+# Bedingungen vor dem Quadrieren
 
-Die Steigung liefert die **erste Ableitung** <InlineMath math="y'" />.
+Die Wurzel ist für <InlineMath math="x+3\ge0" /> definiert, also für <InlineMath math="x\ge-3" />. Die linke Seite ist nie negativ, deshalb muss die rechte Seite **positiv** sein, damit die linke kleiner sein kann.
 
-<BlockMath math="y = x^2 - x + 2" />
+<BlockMath math="x-3>0\quad\Rightarrow\quad x>3" />
 
-<BlockMath math="y' = 2x - 1" />
+Die Bedingung <InlineMath math="x>3" /> enthält bereits <InlineMath math="x\ge-3" />.
 
-Setzen wir <InlineMath math="x = 1" /> in <InlineMath math="y'" /> ein, erhalten wir die Steigung.
+# Beide Seiten quadrieren
 
-<BlockMath math="m = y'(1) = 2(1) - 1 = 1" />
+Für <InlineMath math="x>3" /> sind beide Seiten positiv, deshalb **bleibt die Richtung der Ungleichung beim Quadrieren erhalten**.
 
-# Bestimmung des Tangentenpunktes
+<BlockMath math="\begin{aligned}
+x+3&<x^2-6x+9\\
+0&<x^2-7x+6\\
+0&<(x-1)(x-6)
+\end{aligned}" />
 
-Den **vertikalen Koordinatenwert des Berührpunkts** <InlineMath math="y" /> erhalten wir ebenfalls für <InlineMath math="x = 1" />.
+Das Produkt ist positiv für <InlineMath math="x<1" /> oder <InlineMath math="x>6" />. Die Schnittmenge mit <InlineMath math="x>3" /> ist <InlineMath math="x>6" />. Probe mit <InlineMath math="x=7" />: <InlineMath math="\sqrt{10}\approx3{,}16<4" />, dagegen liefert <InlineMath math="x=6" /> die falsche Aussage <InlineMath math="3<3" />.
 
-<BlockMath math="y = (1)^2 - 1 + 2" />
+Die Menge <InlineMath math="x<1" /> oder <InlineMath math="x>6" /> quadriert ohne jede Bedingung. Die Menge mit <InlineMath math="-3\le x<1" /> nutzt nur die Wurzelbedingung, obwohl die rechte Seite dort negativ ist. Die Menge <InlineMath math="1<x<6" /> dreht das Zeichen um, und die Menge <InlineMath math="x\ge3" /> bleibt bei der Bedingung für die rechte Seite stehen.
 
-<BlockMath math="y = 1 - 1 + 2 = 2" />
-
-Der Tangentenpunkt ist also <InlineMath math="(1, 2)" />.
-
-# Bestimmung der Gleichung der Tangente
-
-Nun setzen wir <InlineMath math="m = 1" /> und den Punkt <InlineMath math="(1, 2)" /> in die **Punkt-Steigungs-Form** <InlineMath math="y - y_1 = m(x - x_1)" /> ein.
-
-<BlockMath math="y - 2 = 1(x - 1)" />
-
-<BlockMath math="y - 2 = x - 1" />
-
-<BlockMath math="y = x - 1 + 2" />
-
-<BlockMath math="y = x + 1" />
-
-Die Gleichung der Tangente lautet also <InlineMath math="y = x + 1" />.
-
-<LineEquation
- title="Kurve und Tangente"
- description="Die violette Kurve und die orange Gerade haben im Punkt (1,2) dieselbe Steigung 1."
- cameraPosition={[1,2.5,7]}
- cameraTarget={[1,2.5,0]}
- showZAxis={false}
- data={[
-  {points:Array.from({length:81},(_,i)=>{const x=i/40;return {x,y:x*x-x+2,z:0};}),smooth:false,showPoints:true,pointIndices:[40],color:"#7c3aed",labels:[{at:40,text:<InlineMath math="(1,2)" />,offset:[0.3,-0.3,0]}]},
-  {points:[{x:0,y:1,z:0},{x:2,y:3,z:0}],smooth:false,showPoints:false,color:"#ea580c"}
- ]}
-/>
+Die Lösungsmenge ist also <InlineMath math="\{x\mid x>6\}" />.

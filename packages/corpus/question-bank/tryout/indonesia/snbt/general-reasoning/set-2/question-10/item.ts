@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "letter-pattern",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "YE",
+        },
+        {
+          correct: false,
+          label: "YF",
+        },
+        {
+          correct: false,
+          label: "ZD",
+        },
+        {
           correct: true,
-          label: "$$1$$ apel besar dan $$1$$ jeruk kecil",
+          label: "ZE",
         },
         {
           correct: false,
-          label: "$$2$$ apel besar",
-        },
-        {
-          correct: false,
-          label: "$$2$$ apel kecil",
-        },
-        {
-          correct: false,
-          label: "$$2$$ jeruk besar",
-        },
-        {
-          correct: false,
-          label: "$$2$$ jeruk kecil",
+          label: "ZF",
         },
       ],
     },

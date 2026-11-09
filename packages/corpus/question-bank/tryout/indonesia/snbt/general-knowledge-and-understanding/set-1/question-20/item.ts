@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "karang",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "perlunya peringatan dini bencana guna pengurangan risiko.",
+          column: 1,
+          label:
+            "Warna putih pada karang yang memutih berasal dari kerangka kapurnya.",
         },
         {
-          correct: true,
-          label: "investasi pembangunan sebagai elemen mitigasi bencana.",
+          column: 2,
+          label: "Karang yang memutih pasti mati.",
         },
         {
-          correct: false,
-          label: "perlunya pengawasan ketat terhadap kontraktor bangunan.",
+          column: 1,
+          label: "Alga memperoleh tempat berlindung dari karang.",
         },
         {
-          correct: false,
-          label: "banyaknya bangunan yang berada di daerah rawan bencana.",
-        },
-        {
-          correct: false,
-          label: "investasi pembangunan dalam kerentanan kemanusiaan.",
+          column: 2,
+          label:
+            "Pemutihan karang terjadi ketika suhu air laut naik selama satu hari.",
         },
       ],
     },

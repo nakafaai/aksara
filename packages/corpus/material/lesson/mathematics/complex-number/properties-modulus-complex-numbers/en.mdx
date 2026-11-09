@@ -3,7 +3,7 @@ export const metadata = {
   description: "Modulus rules for products, quotients, conjugates, and triangle inequalities, with proofs and worked examples.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Complex Number",
 };
 
@@ -67,6 +67,36 @@ This follows from multiplying each number by its conjugate:
 
 Both moduli are non-negative, so taking the square root gives the product rule.
 
+Take <InlineMath math="z_1 = 6 + 8i" /> and <InlineMath math="z_2 = 3 - i" /> from the exercise. Their product is <InlineMath math="26 + 18i" />, and its length <InlineMath math="\sqrt{1000} = 10\sqrt{10}" /> equals <InlineMath math="|z_1| \cdot |z_2| = 10 \cdot \sqrt{10}" />.
+
+<MathVisual
+  title={<>The modulus of a product</>}
+  description={<>The factors <InlineMath math="6 + 8i" /> and <InlineMath math="3 - i" /> and their product <InlineMath math="26 + 18i" />, of length <InlineMath math="10\sqrt{10}" />.</>}
+  labels={{
+    z1: <InlineMath math="6 + 8i" />,
+    z2: <InlineMath math="3 - i" />,
+    p: <InlineMath math="26 + 18i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 28 }, y: { min: -2, max: 20 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 127 / 25, y: 186 / 25 }, { x: 143 / 25, y: 174 / 25 }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 3, y: -1 }, { x: (3) + (-3 / Math.sqrt(10)) + (2 / 5 / Math.sqrt(10)), y: (-1) + (1 / Math.sqrt(10)) + (6 / 5 / Math.sqrt(10)) }, { x: (3) + (-3 / Math.sqrt(10)) + (-2 / 5 / Math.sqrt(10)), y: (-1) + (1 / Math.sqrt(10)) + (-6 / 5 / Math.sqrt(10)) }], appearance: "secondary" },
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 26, y: 18 }, appearance: "answer" },
+      { id: "p-head", kind: "polygon", vertices: [{ x: 26, y: 18 }, { x: (26) + (-26 / Math.sqrt(1000)) + (-36 / 5 / Math.sqrt(1000)), y: (18) + (-18 / Math.sqrt(1000)) + (52 / 5 / Math.sqrt(1000)) }, { x: (26) + (-26 / Math.sqrt(1000)) + (36 / 5 / Math.sqrt(1000)), y: (18) + (-18 / Math.sqrt(1000)) + (-52 / 5 / Math.sqrt(1000)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 6, y: 8 }, placement: "above-left" },
+      { key: "z2", objectId: "z2", at: { x: 3, y: -1 }, placement: "below" },
+      { key: "p", objectId: "p", at: { x: 26, y: 18 }, placement: "left" },
+    ],
+  }}
+/>
+
 ### Modulus of Quotient
 
 The modulus of the quotient of two complex numbers is equal to the **quotient of their individual moduli** (provided the denominator is non-zero).
@@ -92,8 +122,8 @@ The direct distance is shorter than the path through the right-angle corner:
 <BlockMath math="|3+4i|=\sqrt{3^2+4^2}=5\leq3+4=7" />
 
 <MathVisual
-  title="Direct distance and a two-side path"
-  description="A horizontal vector of length 3 and a vertical vector of length 4 produce a direct vector of length 5. The length 5 does not exceed the path length 3 plus 4."
+  title={<>Direct distance and a two-side path</>}
+  description={<>A horizontal vector of length 3 and a vertical vector of length 4 produce a direct vector of length 5. The length 5 does not exceed the path length 3 plus 4.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -0.5, max: 4.5 } },
@@ -204,3 +234,13 @@ Calculate the moduli before multiplying, use conjugation for the squared modulus
 Both endpoints are attainable: opposite directions give the lower bound, while the same direction gives the upper bound.
 
 <BlockMath math="\begin{aligned}|3+(-5)|&amp;=2\\|3+5|&amp;=8\end{aligned}" />
+
+Turn <InlineMath math="z_2" /> with <InlineMath math="|z_2| = 5" /> around while <InlineMath math="z_1 = 3" /> stays fixed. The length <InlineMath math="|z_1 + z_2| = \sqrt{34 + 30\cos\theta}" /> falls from 8 at <InlineMath math="\theta = 0^\circ" /> to 2 at <InlineMath math="\theta = 180^\circ" />, so it always stays between <InlineMath math="5 - 3 = 2" /> and <InlineMath math="3 + 5 = 8" />.
+
+<BarChart
+  title={<><InlineMath math="|z_1 + z_2|" /> as <InlineMath math="z_2" /> turns</>}
+  description={<>Bars of <InlineMath math="|3 + 5(\cos\theta + i\sin\theta)|" /> for <InlineMath math="\theta = 0^\circ, 60^\circ, 90^\circ, 120^\circ, 180^\circ" />: 8, 7, <InlineMath math="\sqrt{34}" />, <InlineMath math="\sqrt{19}" /> and 2.</>}
+  yAxisLabel="Modulus"
+  data={[0, 60, 90, 120, 180].map((d) => ({ name: d + "°", value: Math.sqrt(34 + 30 * Math.cos((d * Math.PI) / 180)) }))}
+  chartConfig={{ value: { label: "Modulus", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

@@ -1,31 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
+  },
+  stimulus: "borrowed-words",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Mengganti Petugas Klinik dengan Kartu Bergambar",
+          label:
+            "Kata itu dipinjam pada masa penjajahan yang penuh penderitaan.",
         },
         {
           correct: false,
-          label: "Empat Tahap yang Berlaku bagi Setiap Pasien",
+          label:
+            "Orang Indonesia tidak mengenal ajaran Hindu dan Buddha sama sekali.",
         },
         {
           correct: true,
           label:
-            "Dari Salah Meja ke Kartu yang Diperiksa: Literasi Kesehatan Arum",
+            "Dalam ajaran asalnya, hidup yang terus berputar dipandang sebagai penderitaan.",
         },
         {
           correct: false,
-          label: "Literasi Kesehatan sebagai Kemampuan Membaca Nomor Meja",
+          label:
+            "Lembaga bahasa menetapkan makna baru itu dalam dokumen resmi.",
         },
         {
           correct: false,
-          label: "Panah Lantai sebagai Penyebab Tunggal Kesalahan Pasien",
+          label:
+            "Bunyi kata itu terdengar sedih bagi sebagian besar penutur bahasa Indonesia.",
         },
       ],
     },

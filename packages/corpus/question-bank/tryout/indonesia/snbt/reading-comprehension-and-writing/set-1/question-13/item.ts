@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "word-choice",
+  },
+  stimulus: "grain-barn",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Kata _diuji_ pada kalimat (2).",
+          label: "kalimat (2)",
         },
         {
           correct: false,
-          label: "Kata _membantu_ pada kalimat (3).",
+          label: "kalimat (3)",
         },
         {
           correct: false,
-          label: "Kata _memungkinkan_ pada kalimat (4).",
+          label: "kalimat (4)",
+        },
+        {
+          correct: false,
+          label: "kalimat (5)",
         },
         {
           correct: true,
-          label: "Kata _menghasilkan_ pada kalimat (8).",
-        },
-        {
-          correct: false,
-          label: "Kata _mengancam_ pada kalimat (9).",
+          label: "kalimat (6)",
         },
       ],
     },

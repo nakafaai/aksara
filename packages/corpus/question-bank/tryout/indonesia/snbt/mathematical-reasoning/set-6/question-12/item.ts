@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "parcel-weight",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$1\\text{ jam }20\\text{ menit}$$",
-        },
-        {
-          correct: true,
-          label: "$$1\\text{ jam }15\\text{ menit}$$",
-        },
-        {
-          correct: false,
-          label: "$$1\\text{ jam }25\\text{ menit}$$",
-        },
-        {
-          correct: false,
-          label: "$$2\\text{ jam }15\\text{ menit}$$",
-        },
-        {
-          correct: false,
-          label: "$$2\\text{ jam }20\\text{ menit}$$",
-        },
+        { correct: false, label: "$$\\text{Rp}9{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}18{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}27{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}36{.}000{,}00$$" },
+        { correct: true, label: "$$\\text{Rp}45{.}000{,}00$$" },
       ],
     },
   },

@@ -59,6 +59,33 @@ For nonzero real vectors, this inequality ensures that the angle can be defined 
 
 Vectors are <InlineMath math="A" />-orthogonal when <InlineMath math="\langle x,y\rangle_A=0" />. Changing <InlineMath math="A" /> changes the geometry, so vectors that are perpendicular in the Euclidean metric <Highlight>need not be perpendicular in a weighted metric</Highlight>.
 
+With the standard inner product, <InlineMath math="\langle x,y\rangle=3+2=5" />, <InlineMath math="\|x\|=\sqrt{10}" />, and <InlineMath math="\|y\|=\sqrt5" />. Cauchy-Schwarz holds because <InlineMath math="5\le\sqrt{50}" />, and <InlineMath math="\cos\theta=5/\sqrt{50}=1/\sqrt2" /> gives <InlineMath math="\theta=45^\circ" />.
+
+<MathVisual
+  title={<>Projection and the angle between <InlineMath math="x=(3,1)" /> and <InlineMath math="y=(1,2)" /></>}
+  description={<>The violet vector <InlineMath math="x" /> and the teal vector <InlineMath math="y" />. The magenta point is the projection <InlineMath math="\tfrac{\langle x,y\rangle}{\langle y,y\rangle}y=y" />, and the gray segment from <InlineMath math="x" /> to it is perpendicular to <InlineMath math="y" />. The orange arc marks <InlineMath math="45^\circ" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "drop", kind: "segment", from: { x: 3, y: 1 }, to: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "foot", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.6, startDegrees: Math.atan2(1, 3) * 180 / Math.PI, sweepDegrees: 45, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1, y: 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="x" />,
+    "second": <InlineMath math="y" />,
+  }}
+/>
+
 ## Comparing Euclidean and Weighted Angles
 
 Let
@@ -77,6 +104,33 @@ The positive eigenvalues confirm that <InlineMath math="A" /> is symmetric posit
 </MathContainer>
 
 The same coordinate vectors are perpendicular in the Euclidean geometry but form a <InlineMath math="60^\circ" /> angle in the <InlineMath math="A" />-geometry.
+
+For <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />, you get <InlineMath math="\langle e_1,e_2\rangle_A=1" /> and <InlineMath math="\|e_1\|_A=\|e_2\|_A=\sqrt2" />, so <InlineMath math="\cos\theta_A=\tfrac12" /> and <InlineMath math="\theta_A=60^\circ" />. Writing <InlineMath math="A=LL^T" /> turns the weighted inner product into the ordinary one, <InlineMath math="\langle x,y\rangle_A=(L^Tx)^T(L^Ty)" />, so you can draw the angle.
+
+<MathVisual
+  title={<><InlineMath math="e_1" /> and <InlineMath math="e_2" /> meet at <InlineMath math="60^\circ" /> in the weighted geometry</>}
+  description={<>The gray segments are <InlineMath math="e_1" /> and <InlineMath math="e_2" /> at <InlineMath math="90^\circ" />. With <InlineMath math="A=LL^T" /> and <InlineMath math="L=\begin{pmatrix}\sqrt2&0\\1/\sqrt2&\sqrt{3/2}\end{pmatrix}" />, the violet <InlineMath math="L^Te_1" /> and the teal <InlineMath math="L^Te_2" /> show the same pair measured by <InlineMath math="\langle\cdot,\cdot\rangle_A" />. The magenta arc marks <InlineMath math="60^\circ" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.6 }, y: { min: -0.3, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "image-first", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT2, y: 0 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "reference" },
+      { id: "image-second", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.sqrt(3 / 2) }, appearance: "construction" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.35, startDegrees: 0, sweepDegrees: 60, appearance: "answer" },
+    ],
+    labels: [
+      { key: "image-first", objectId: "image-first", at: { x: Math.SQRT2, y: 0 }, placement: "below" },
+      { key: "image-second", objectId: "image-second", at: { x: Math.SQRT1_2, y: Math.sqrt(3 / 2) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "image-first": <InlineMath math="L^Te_1" />,
+    "image-second": <InlineMath math="L^Te_2" />,
+  }}
+/>
 
 ## Orthogonal Complex Vectors with Conjugation
 
@@ -105,6 +159,39 @@ This is the same geometric principle behind weighted least squares: the fitted r
 Using the same <InlineMath math="A" /> as above, project <InlineMath math="x=e_2" /> onto <InlineMath math="u=e_1" />. The weighted coefficient is <InlineMath math="1/2" />, not the Euclidean coefficient zero:
 
 <BlockMath math="\operatorname{proj}^{A}_{e_1}(e_2)=\frac12e_1,\qquad r=\begin{pmatrix}-1/2\\1\end{pmatrix},\qquad e_1^TAr=2(-1/2)+1=0" />
+
+Rotate or zoom the scene below. The vectors <InlineMath math="e_1" /> and <InlineMath math="e_2" /> lie on the gray unit circle, so their Euclidean length is <InlineMath math="1" />, but under <InlineMath math="A" /> their length is <InlineMath math="\sqrt2" />, because <InlineMath math="e_1^TAe_1=2" />. The orange residual <InlineMath math="r" />, from <InlineMath math="\tfrac12e_1" /> to <InlineMath math="e_2" />, doesn't look perpendicular to <InlineMath math="e_1" />, and in the Euclidean sense it isn't. Under <InlineMath math="A" /> it is, because <InlineMath math="e_1^TAr=2(-\tfrac12)+1=0" />.
+
+<MathVisual
+  title={<>A residual that is <InlineMath math="A" />-orthogonal to <InlineMath math="e_1" /></>}
+  description={<>The gray circle is <InlineMath math="x^Tx=1" />. The orange segment is the residual <InlineMath math="r=e_2-\tfrac12e_1" /> of the weighted projection of <InlineMath math="e_2" /> onto <InlineMath math="e_1" /> for <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "construction" },
+      { id: "residual", kind: "segment", from: { x: 1 / 2, y: 0 }, to: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "foot", kind: "point", at: { x: 1 / 2, y: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "unit", objectId: "unit", at: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-left" },
+      { key: "first", objectId: "first", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "second", objectId: "second", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "residual", objectId: "residual", at: { x: 1 / 4, y: 1 / 2 }, placement: "right" },
+      { key: "foot", objectId: "foot", at: { x: 1 / 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "unit": <InlineMath math="x^Tx=1" />,
+    "first": <InlineMath math="e_1" />,
+    "second": <InlineMath math="e_2" />,
+    "residual": <InlineMath math="r" />,
+    "foot": <InlineMath math="\tfrac12e_1" />,
+  }}
+/>
 
 ## Writing an Inner Product as a Matrix
 

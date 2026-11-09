@@ -3,7 +3,7 @@ export const metadata = {
    description: "Model an event with a sample space, calculate the event probability, and explain what that probability means in context.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Combinatorics",
 };
 
@@ -47,6 +47,16 @@ The quantities in this formula are:
 
 **Complement**: The complement of <InlineMath math="A" /> contains every outcome in the sample space that is **not** in <InlineMath math="A" />. If <InlineMath math="A" /> is “rolling an even number,” then <InlineMath math="A'" /> is “rolling an odd number.”
 
+An event and its complement share the whole probability. For two dice, <InlineMath math="P(\text{sum} = 9) = \frac{4}{36}" /> and <InlineMath math="P(\text{sum} \neq 9) = \frac{32}{36}" />. The two bars always add up to <InlineMath math="1" />, which is why counting the smaller side is often faster.
+
+<BarChart
+  title={<>An event and its complement</>}
+  description={<>The probabilities that two dice sum to 9 and that they do not, which add up to 1.</>}
+  yAxisLabel="Probability"
+  data={[["sum is 9", 4 / 36], ["sum is not 9", 32 / 36]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Probability That Two Dice Sum to Nine
 
 **Analysis of Rolling Two Dice**:
@@ -65,6 +75,63 @@ List the **ordered pairs** whose sum is nine. Swapping the first and second die 
 Four pairs meet the condition, so <InlineMath math="n(A)=4" />.
 
 <BlockMath math="P(\text{sum}=9)=\frac{4}{36}=\frac{1}{9}\approx 0.111" />
+
+Every dot is one outcome of two dice: the first die across, the second up, <InlineMath math="36" /> dots in all. The four highlighted dots sit on the line <InlineMath math="x + y = 9" />: <InlineMath math="(3, 6)" />, <InlineMath math="(4, 5)" />, <InlineMath math="(5, 4)" /> and <InlineMath math="(6, 3)" />. So <InlineMath math="P(\text{sum} = 9) = \frac{4}{36} = \frac19" />.
+
+<MathVisual
+  title={<>Four of 36 outcomes sum to nine</>}
+  description={<>The 36 outcomes of two dice as a 6 by 6 grid, with the four outcomes on <InlineMath math="x + y = 9" /> highlighted.</>}
+  labels={{
+    nine: <InlineMath math="x + y = 9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "nine", kind: "line", through: [{ x: 3, y: 6 }, { x: 6, y: 3 }], appearance: "construction" },
+      { id: "d11", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "d12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "d13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "d14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "d15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "d16", kind: "point", at: { x: 1, y: 6 }, appearance: "reference" },
+      { id: "d21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "d22", kind: "point", at: { x: 2, y: 2 }, appearance: "reference" },
+      { id: "d23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "d24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "d25", kind: "point", at: { x: 2, y: 5 }, appearance: "reference" },
+      { id: "d26", kind: "point", at: { x: 2, y: 6 }, appearance: "reference" },
+      { id: "d31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "d32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "d33", kind: "point", at: { x: 3, y: 3 }, appearance: "reference" },
+      { id: "d34", kind: "point", at: { x: 3, y: 4 }, appearance: "reference" },
+      { id: "d35", kind: "point", at: { x: 3, y: 5 }, appearance: "reference" },
+      { id: "d36", kind: "point", at: { x: 3, y: 6 }, appearance: "answer" },
+      { id: "d41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "d42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "d43", kind: "point", at: { x: 4, y: 3 }, appearance: "reference" },
+      { id: "d44", kind: "point", at: { x: 4, y: 4 }, appearance: "reference" },
+      { id: "d45", kind: "point", at: { x: 4, y: 5 }, appearance: "answer" },
+      { id: "d46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "d51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "d52", kind: "point", at: { x: 5, y: 2 }, appearance: "reference" },
+      { id: "d53", kind: "point", at: { x: 5, y: 3 }, appearance: "reference" },
+      { id: "d54", kind: "point", at: { x: 5, y: 4 }, appearance: "answer" },
+      { id: "d55", kind: "point", at: { x: 5, y: 5 }, appearance: "reference" },
+      { id: "d56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "d61", kind: "point", at: { x: 6, y: 1 }, appearance: "reference" },
+      { id: "d62", kind: "point", at: { x: 6, y: 2 }, appearance: "reference" },
+      { id: "d63", kind: "point", at: { x: 6, y: 3 }, appearance: "answer" },
+      { id: "d64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "d65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "d66", kind: "point", at: { x: 6, y: 6 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "nine", objectId: "nine", at: { x: 6, y: 3 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ### Estimating the Number of Prize Coupons
 
@@ -85,6 +152,20 @@ There are <InlineMath math="6" /> ways to get a sum of <InlineMath math="7" />: 
 <BlockMath math="P(\text{sum} = 7) = \frac{6}{36} = \frac{1}{6} \approx 0.167" />
 
 This is the largest probability among the possible sums. It does not guarantee that the next roll will be <InlineMath math="7" />. It describes the long-run model.
+
+Count the outcomes for every sum and the pattern appears: <InlineMath math="1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1" /> out of <InlineMath math="36" /> for the sums <InlineMath math="2" /> to <InlineMath math="12" />. Sum <InlineMath math="7" /> is the most likely with <InlineMath math="\frac{6}{36}" />, and sum <InlineMath math="9" /> has <InlineMath math="\frac{4}{36}" />.
+
+<BarChart
+  title={<>Probability of each sum of two dice</>}
+  description={<>Bar <InlineMath math="s" /> shows the probability <InlineMath math="\frac{6 - |s - 7|}{36}" /> that two dice sum to <InlineMath math="s" />.</>}
+  yAxisLabel="Probability"
+  data={Array.from({ length: 11 }, (_, i) => {
+    const s = i + 2;
+    return { name: `${s}`, value: (6 - Math.abs(s - 7)) / 36 };
+  })}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Practice Problems
 
 Solve each problem before reading the worked solution. Define the sample space and event explicitly before substituting numbers into a formula. All four problems count **equally likely outcomes**, so write the counts first and divide them on the last step.
@@ -107,12 +188,12 @@ Solve each problem before reading the worked solution. Define the sample space a
 Sample space for rolling two dice: <InlineMath math="n(S) = 36" />
 
 **Identify all even sums and ways to obtain them**:
-- Sum <InlineMath math="2" />: <InlineMath math="(1,1)" /> → <InlineMath math="1" /> way
-- Sum <InlineMath math="4" />: <InlineMath math="(1,3), (2,2), (3,1)" /> → <InlineMath math="3 \text{ ways}" />
-- Sum <InlineMath math="6" />: <InlineMath math="(1,5), (2,4), (3,3), (4,2), (5,1)" /> → <InlineMath math="5 \text{ ways}" />
-- Sum <InlineMath math="8" />: <InlineMath math="(2,6), (3,5), (4,4), (5,3), (6,2)" /> → <InlineMath math="5 \text{ ways}" />
-- Sum <InlineMath math="10" />: <InlineMath math="(4,6), (5,5), (6,4)" /> → <InlineMath math="3 \text{ ways}" />
-- Sum <InlineMath math="12" />: <InlineMath math="(6,6)" /> → <InlineMath math="1" /> way
+- Sum <InlineMath math="2" />: <InlineMath math="(1,1)" /> <InlineMath math="\rightarrow 1" /> way
+- Sum <InlineMath math="4" />: <InlineMath math="(1,3), (2,2), (3,1)" /> <InlineMath math="\rightarrow 3 \text{ ways}" />
+- Sum <InlineMath math="6" />: <InlineMath math="(1,5), (2,4), (3,3), (4,2), (5,1)" /> <InlineMath math="\rightarrow 5 \text{ ways}" />
+- Sum <InlineMath math="8" />: <InlineMath math="(2,6), (3,5), (4,4), (5,3), (6,2)" /> <InlineMath math="\rightarrow 5 \text{ ways}" />
+- Sum <InlineMath math="10" />: <InlineMath math="(4,6), (5,5), (6,4)" /> <InlineMath math="\rightarrow 3 \text{ ways}" />
+- Sum <InlineMath math="12" />: <InlineMath math="(6,6)" /> <InlineMath math="\rightarrow 1" /> way
 
 **Total favorable outcomes**: <InlineMath math="n(A) = 1 + 3 + 5 + 5 + 3 + 1 = 18" />
 

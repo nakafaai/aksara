@@ -1,30 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "explicit-information",
+  },
+  stimulus: "larva-monitors",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "kerjasama tim dalam uji peta dengan waktu tempuh",
+          label: "melapor langsung ke puskesmas",
+        },
+        {
+          correct: false,
+          label: "membuang wadah yang berisi jentik",
         },
         {
           correct: true,
-          label: "kerja sama tim dalam uji peta dengan waktu tempuh",
+          label:
+            "menguras wadah itu dan mencatat temuannya di kartu pemantauan",
         },
         {
           correct: false,
-          label: "kerja-sama tim dalam uji peta dengan waktu tempuh",
+          label: "menyemprotkan obat nyamuk ke seluruh rumah",
         },
         {
           correct: false,
-          label: "kerja samah tim dalam uji peta dengan waktu tempuh",
-        },
-        {
-          correct: false,
-          label: "kerja sama-sama tim dalam uji peta dengan waktu tempuh",
+          label: "mengumpulkan kartu pemantauan kepada kader kesehatan",
         },
       ],
     },

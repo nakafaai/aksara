@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "bike-share",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Peta membuktikan lampu menyala, sedangkan buku harian hanya menggambarkan perasaan yang tidak dapat dibandingkan dengan lokasi.",
+            "Jumlah sepeda yang rusak atau hilang di kota itu selama bulan Juni saja",
         },
         {
           correct: false,
           label:
-            "Buku harian menunjukkan seluruh lokasi lampu, sedangkan peta menjelaskan berapa lama setiap lampu menyala.",
+            "Pendapat warga tentang warna dan bentuk sepeda sewa yang dipakai",
+        },
+        {
+          correct: false,
+          label:
+            "Jumlah perjalanan harian di kota itu selama bulan Januari saja",
         },
         {
           correct: true,
           label:
-            "Peta menunjukkan status dan sebaran pemasangan, sedangkan buku harian menunjukkan bagaimana beberapa warga mengalami penerangan pada rute serta waktu tertentu.",
+            "Jumlah perjalanan bulanan di kota serupa yang sepedanya tetap 200",
         },
         {
           correct: false,
           label:
-            "Kedua sumber memberi informasi yang sama karena titik peta dan lokasi dalam catatan dapat disejajarkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Perbedaan tujuan membuat kedua sumber tidak dapat dipakai bersama dalam satu penyelidikan.",
+            "Jumlah penduduk kota itu menurut sensus terakhir yang dilakukan",
         },
       ],
     },

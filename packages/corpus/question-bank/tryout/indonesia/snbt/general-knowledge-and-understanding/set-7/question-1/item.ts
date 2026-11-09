@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "angklung",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Prosedur direvisi setelah keluhan terverifikasi menunjukkan hambatan yang tidak terdeteksi pada uji awal.",
+          label: "dipukul dengan tongkat",
         },
         {
           correct: false,
-          label:
-            "Prosedur lapangan disesuaikan saat cuaca berubah tanpa mengubah tujuan dan aturan ukur utama.",
+          label: "ditiup dengan kuat",
         },
         {
           correct: false,
-          label:
-            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
+          label: "dipetik dengan jari",
         },
         {
           correct: true,
-          label:
-            "Peralatan diperiksa dan komponen aus diganti sebelum kegagalan terjadi.",
+          label: "digerakkan bolak-balik",
         },
         {
           correct: false,
-          label:
-            "Nilai pengukuran berulang tetap berada dalam rentang sempit meskipun waktu pengambilan berbeda.",
+          label: "diputar perlahan-lahan",
         },
       ],
     },

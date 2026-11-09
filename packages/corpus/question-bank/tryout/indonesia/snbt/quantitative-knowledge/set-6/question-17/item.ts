@@ -7,23 +7,28 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Hanya (2) dan (4) yang benar.",
+          label:
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (2) saja tidak cukup.",
         },
         {
           correct: false,
-          label: "Hanya (1), (2), dan (3) yang benar.",
+          label:
+            "Pernyataan (2) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (1) saja tidak cukup.",
         },
         {
           correct: false,
-          label: "Hanya (1) dan (3) yang benar.",
+          label:
+            "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
         },
         {
           correct: false,
-          label: "Hanya (4) yang benar.",
+          label:
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan dan pernyataan (2) saja cukup.",
         },
         {
           correct: false,
-          label: "Semua pernyataan benar.",
+          label:
+            "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
         },
       ],
     },

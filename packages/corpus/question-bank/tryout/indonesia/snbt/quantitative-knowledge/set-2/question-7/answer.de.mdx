@@ -1,37 +1,27 @@
-Zunächst lösen wir die lineare Ungleichung.
+Gefragt ist **ein einziger Wert von <InlineMath math="x" />**. Eine Aussage reicht nur aus, wenn genau ein Wert übrig bleibt.
 
-Gegeben ist
+# Erste Aussage allein
 
-<BlockMath math="5a - 7 \leq 3a + 9" />
+Bringe alle Terme auf eine Seite und klammere aus. Teile nicht durch <InlineMath math="x" />, denn dabei **geht die Lösung <InlineMath math="x=0" /> verloren**.
 
-Wir bringen die Terme mit <InlineMath math="a" /> auf die linke und die Konstanten auf die rechte Seite:
+<BlockMath math="x^2-4x=x(x-4)=0\quad\Rightarrow\quad x=0\ \text{oder}\ x=4" />
 
-<BlockMath math="5a - 3a \leq 9 + 7" />
+Es gibt zwei Werte, Aussage (1) allein reicht also nicht aus.
 
-<BlockMath math="2a \leq 16" />
+# Zweite Aussage allein
 
-Nach der Division durch <InlineMath math="2" /> folgt
+Genauso gilt:
 
-<BlockMath math="a \leq 8" />
+<BlockMath math="x^3-16x=x(x-4)(x+4)=0\quad\Rightarrow\quad x\in\{-4,0,4\}" />
 
-Zusätzlich ist <InlineMath math="a" /> eine **ganze Zahl**, die größer als <InlineMath math="7" /> ist (<InlineMath math="a > 7" />).
+Es gibt **drei Werte**, Aussage (2) allein reicht also nicht aus.
 
-Wir suchen also nach einer ganzen Zahl, die beide der folgenden Bedingungen erfüllt:
-1. <InlineMath math="a \leq 8" />
-2. <InlineMath math="a > 7" />
+# Beide Aussagen zusammen
 
-Das bedeutet <InlineMath math="7 < a \leq 8" />.
+Die Werte, die beide Aussagen erfüllen, bilden **die Schnittmenge der beiden Lösungsmengen**.
 
-Die einzige ganze Zahl in diesem Intervall ist
+<BlockMath math="\{0,4\}\cap\{-4,0,4\}=\{0,4\}" />
 
-<BlockMath math="a = 8" />
+Es bleiben zwei Werte, 0 und 4. Wer beide Gleichungen durch <InlineMath math="x" /> teilt, erhält nur <InlineMath math="x=4" /> und schließt fälschlich, dass beide Aussagen zusammen ausreichen.
 
-Somit ist <InlineMath math="a" /> gleich <InlineMath math="8" />.
-
-<NumberLine
-  title="Intervall und ganze Zahlen"
-  description="Der Endpunkt 7 ist ausgeschlossen, 8 ist eingeschlossen. In diesem Intervall liegt genau eine ganze Zahl."
-  min={6}
-  max={9}
-  segments={[{start:7,end:8,startInclusive:false,endInclusive:true,shaded:true,showPoints:true,startLabel:<InlineMath math="7" />,endLabel:<InlineMath math="8" />} ]}
-/>
+**Aussage (1) und Aussage (2) reichen also auch zusammen nicht aus**, um die Frage zu beantworten.

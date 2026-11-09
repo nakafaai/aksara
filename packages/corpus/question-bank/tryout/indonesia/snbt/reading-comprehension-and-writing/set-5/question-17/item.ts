@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "seed-soak",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Tim akan mengulang kembali uji daftar pemeriksaan sebelum merekam untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+            "Biji yang direndam 6 jam lebih banyak berkecambah daripada biji yang tidak direndam.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Untuk memperoleh bukti yang lebih kuat, uji daftar pemeriksaan sebelum merekam akan diulang kembali oleh tim.",
+            "Makin lama biji direndam, makin banyak biji yang berkecambah.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Tim akan melakukan kegiatan berupa pengulangan uji daftar pemeriksaan sebelum merekam demi memperoleh bukti yang lebih kuat.",
+            "Kelompok yang direndam 24 jam menghasilkan kecambah paling sedikit.",
         },
         {
-          correct: true,
-          label:
-            "Tim akan mengulang uji daftar pemeriksaan sebelum merekam untuk memperoleh bukti yang lebih kuat.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan mengulang uji untuk memperoleh bukti yang lebih kuat tentang daftar pemeriksaan sebelum merekam yang telah diuji sebelumnya.",
+          column: 1,
+          label: "Pada setiap kelompok, lebih dari separuh biji berkecambah.",
         },
       ],
     },

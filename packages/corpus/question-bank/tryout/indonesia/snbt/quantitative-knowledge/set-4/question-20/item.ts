@@ -3,27 +3,25 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$-3$$",
+          column: 1,
+          label:
+            "Jika dipilih satu siswa secara acak dari peserta Pramuka, peluang siswa itu perempuan adalah $$\\tfrac58$$.",
         },
         {
-          correct: false,
-          label: "$$6$$",
+          column: 2,
+          label: "Lebih dari setengah siswa kelas itu mengikuti Basket.",
         },
         {
-          correct: false,
-          label: "$$9$$",
+          column: 2,
+          label: "Lebih dari $$65\\%$$ siswa laki-laki mengikuti Basket.",
         },
         {
-          correct: false,
-          label: "$$-6$$",
-        },
-        {
-          correct: true,
-          label: "$$3$$",
+          column: 1,
+          label: "Banyak siswa laki-laki sama dengan banyak siswa perempuan.",
         },
       ],
     },

@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
+  },
+  stimulus: "gambut",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Data warga dapat mendukung pemantauan mangrove jika peluang pengamatan dan ketepatan klasifikasi dikalibrasi.",
+            "Lahan gambut terbentuk dari sisa tumbuhan yang membusuk sempurna dalam waktu yang sangat singkat.",
+        },
+        {
+          correct: false,
+          label:
+            "Asap kebakaran gambut hanya mengganggu penerbangan dan tidak berdampak pada kesehatan manusia.",
+        },
+        {
+          correct: false,
+          label:
+            "Kebakaran gambut selalu dapat dipadamkan dengan cepat dan mudah apabila api di permukaan sudah tidak terlihat.",
+        },
+        {
+          correct: false,
+          label:
+            "Sekat kanal tidak perlu dirawat karena sekali dibangun sekat itu akan menahan air selamanya.",
         },
         {
           correct: true,
           label:
-            "Lokasi dekat jalan memiliki banyak laporan sekaligus paling mudah dikunjungi.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian relawan mengusulkan agar seluruh pengamatan langsung dimasukkan tanpa pemeriksaan karena jumlah data akan lebih besar.",
-        },
-        {
-          correct: false,
-          label:
-            "Peta publik akan memisahkan laporan, intensitas pengamatan, dan validasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Kesalahan klasifikasi membuat seluruh data relawan tidak memiliki nilai ilmiah.",
+            "Gambut yang dikeringkan mudah terbakar, sehingga menjaganya tetap basah menjadi pencegahan penting.",
         },
       ],
     },

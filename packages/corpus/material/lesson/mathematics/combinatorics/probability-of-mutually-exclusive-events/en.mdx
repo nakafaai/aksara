@@ -3,7 +3,7 @@ export const metadata = {
    description: "Recognize disjoint events, distinguish them from independent events, and apply the addition rule without double counting.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Combinatorics",
 };
 
@@ -18,6 +18,31 @@ As a simple illustration, imagine you draw one card from a deck. The card you dr
 ## How Mutually Exclusive Events Behave
 
 Mutually exclusive events **share no outcome**, so their overlap contributes nothing to the total. The three checks below describe that idea in terms of outcomes and probabilities.
+
+In a diagram, mutually exclusive events are two circles that do not overlap. With one die, <InlineMath math="A" /> = an even number <InlineMath math="\{2, 4, 6\}" /> and <InlineMath math="B" /> = the number <InlineMath math="1" />: no outcome lies in both, so nothing is counted twice.
+
+<MathVisual
+  title={<>Two events with no overlap</>}
+  description={<>Two separate circles for the events A and B, which share no outcome.</>}
+  labels={{
+    a: <InlineMath math="A = \{2, 4, 6\}" />,
+    b: <InlineMath math="B = \{1\}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "circle", center: { x: -1.5, y: 0 }, radius: 1.1, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 1.5, y: 0 }, radius: 1.1, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1.5, y: 0 }, placement: "center" },
+      { key: "b", objectId: "b", at: { x: 1.5, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
 ### No Intersection
 
 The main characteristic of mutually exclusive events is **having no intersection or common elements**. In mathematical notation, if <InlineMath math="A" /> and <InlineMath math="B" /> are mutually exclusive events, then:
@@ -171,6 +196,64 @@ To add <InlineMath math="\frac{1}{9} + \frac{1}{6}" />, we need the least common
 <BlockMath math="P(A \cup B) = \frac{2}{18} + \frac{3}{18} = \frac{5}{18}" />
 </MathContainer>
 
+On the grid of two dice, the doubles lie on one diagonal and the sums of <InlineMath math="7" /> on the other. The two diagonals never share a dot, because a double <InlineMath math="(k, k)" /> has an even sum. So the events are mutually exclusive and <InlineMath math="P = \frac{6}{36} + \frac{6}{36} = \frac13" />.
+
+<MathVisual
+  title={<>Doubles and sums of seven never meet</>}
+  description={<>The 36 outcomes of two dice. The six doubles and the six outcomes with sum 7 share no dot.</>}
+  labels={{
+    d11: <>doubles</>,
+    d16: <InlineMath math="x + y = 7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "d11", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "d12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "d13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "d14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "d15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "d16", kind: "point", at: { x: 1, y: 6 }, appearance: "secondary" },
+      { id: "d21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "d22", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "d23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "d24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "d25", kind: "point", at: { x: 2, y: 5 }, appearance: "secondary" },
+      { id: "d26", kind: "point", at: { x: 2, y: 6 }, appearance: "reference" },
+      { id: "d31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "d32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "d33", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "d34", kind: "point", at: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "d35", kind: "point", at: { x: 3, y: 5 }, appearance: "reference" },
+      { id: "d36", kind: "point", at: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "d41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "d42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "d43", kind: "point", at: { x: 4, y: 3 }, appearance: "secondary" },
+      { id: "d44", kind: "point", at: { x: 4, y: 4 }, appearance: "primary" },
+      { id: "d45", kind: "point", at: { x: 4, y: 5 }, appearance: "reference" },
+      { id: "d46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "d51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "d52", kind: "point", at: { x: 5, y: 2 }, appearance: "secondary" },
+      { id: "d53", kind: "point", at: { x: 5, y: 3 }, appearance: "reference" },
+      { id: "d54", kind: "point", at: { x: 5, y: 4 }, appearance: "reference" },
+      { id: "d55", kind: "point", at: { x: 5, y: 5 }, appearance: "primary" },
+      { id: "d56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "d61", kind: "point", at: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "d62", kind: "point", at: { x: 6, y: 2 }, appearance: "reference" },
+      { id: "d63", kind: "point", at: { x: 6, y: 3 }, appearance: "reference" },
+      { id: "d64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "d65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "d66", kind: "point", at: { x: 6, y: 6 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "d11", objectId: "d11", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "d16", objectId: "d16", at: { x: 1, y: 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 ## How to Work Through a Mutually Exclusive Problem
 
 Before adding two probabilities, <Highlight>check whether the events share an outcome</Highlight>. The steps below put that test first and confirm the result afterwards. Adding without that check counts any shared outcome twice.
@@ -184,6 +267,16 @@ To solve probability problems for mutually exclusive events, follow these steps:
 3. **Check intersection** between events to ensure they are mutually exclusive
 4. **Calculate the probability of each** event separately
 5. **Apply the formula** <InlineMath math="P(A \cup B) = P(A) + P(B)" />
+
+When two events cannot happen together, their bars simply stack. Doubles have <InlineMath math="\frac{6}{36}" />, sums of 7 have <InlineMath math="\frac{6}{36}" />, and either one has <InlineMath math="\frac{12}{36}" />, with nothing to subtract.
+
+<BarChart
+  title={<>Adding two mutually exclusive events</>}
+  description={<>Bars for doubles, sums of 7 and either event, with <InlineMath math="\frac{6}{36} + \frac{6}{36} = \frac{12}{36}" />.</>}
+  yAxisLabel="Probability"
+  data={[["doubles", 6 / 36], ["sum 7", 6 / 36], ["either", 12 / 36]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Checks for the Final Answer
 

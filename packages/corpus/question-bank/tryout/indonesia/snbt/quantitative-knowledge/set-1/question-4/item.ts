@@ -3,28 +3,13 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label: "$$24 \\text{ km/jam}$$",
-        },
-        {
-          correct: false,
-          label: "$$48 \\text{ km/jam}$$",
-        },
-        {
-          correct: false,
-          label: "$$72 \\text{ km/jam}$$",
-        },
-        {
-          correct: true,
-          label: "$$120 \\text{ km/jam}$$",
-        },
-        {
-          correct: false,
-          label: "$$96 \\text{ km/jam}$$",
-        },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "$$k=7$$" },
+        { column: 1, label: "$$p^2+q^2=22$$" },
+        { column: 2, label: "$$\\dfrac{1}{p}+\\dfrac{1}{q}=\\dfrac{7}{6}$$" },
+        { column: 2, label: "$$p^3+q^3=132$$" },
       ],
     },
   },

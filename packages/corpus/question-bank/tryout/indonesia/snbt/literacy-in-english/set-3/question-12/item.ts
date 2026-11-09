@@ -1,35 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "meat-survey",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["True", "False"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Leah reduced the plan to one interview and wrote down what evidence was still missing. The choice resolves the whole conflict at once and makes any later review unnecessary.",
+            "The youngest age group had the highest percentage of its members saying they ate less meat.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "By narrowing the plan to one interview and recording the missing evidence, Leah replaces avoidance with a bounded action whose result can be reviewed.",
+            "More respondents aged 45 to 64 than aged 30 to 44 said they ate less meat.",
         },
         {
-          correct: false,
-          label:
-            "Leah reduced the plan to one interview and wrote down what evidence was still missing. The action transfers responsibility for the unresolved task to another character.",
+          column: 2,
+          label: "Health was the most common main reason in every age group.",
         },
         {
-          correct: false,
-          label:
-            "Leah reduced the plan to one interview and wrote down what evidence was still missing. The decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
-        },
-        {
-          correct: false,
-          label:
-            "Leah reduced the plan to one interview and wrote down what evidence was still missing. The setting alone produces the change, so the character's decision has no role in the development.",
+          column: 2,
+          label: "The survey asked respondents how much less meat they ate.",
         },
       ],
     },

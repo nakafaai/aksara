@@ -79,6 +79,36 @@ Gaya, usaha, dan daya juga bisa dibaca sebagai susunan dimensi.
 [P] &= \frac{[W]}{[t]} = [\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-3}
 \end{aligned}" />
 
+Letakkan tiap besaran di pangkat panjang, massa, dan waktunya: mendatar, tegak, dan ke dalam. Perkalian menjumlahkan pangkatnya, jadi massa <InlineMath math="\mathrm{M}" /> ditambah percepatan <InlineMath math="\mathrm{LT^{-2}}" /> membawa gaya ke <InlineMath math="\mathrm{LMT^{-2}}" />. Putar adegannya dan ikuti langkah-langkahnya.
+
+<MathVisual
+  title={<>Tiga Langkah Analisis Dimensi</>}
+  description={<>Pangkat L (mendatar), M (tegak), dan T (kedalaman) untuk massa, percepatan, dan gaya.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -2.5, max: 0.5 } },
+    view: { kind: "camera", position: { x: 4, y: 3, z: 3 }, target: { x: 0.5, y: 0.5, z: -1 } },
+    objects: [
+      { id: "m", kind: "segment", appearance: "secondary", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 1, z: 0 } },
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 1, z: 0 }, to: { x: 1, y: 1, z: -2 } },
+      { id: "f", kind: "segment", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: -2 } },
+      { id: "m-end", kind: "point", appearance: "secondary", at: { x: 0, y: 1, z: 0 } },
+      { id: "f-end", kind: "point", appearance: "answer", at: { x: 1, y: 1, z: -2 } },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0, z: 0 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m-end", at: { x: 0, y: 1, z: 0 }, placement: "above" },
+      { key: "f", objectId: "f-end", at: { x: 1, y: 1, z: -2 }, placement: "right" },
+      { key: "o", objectId: "origin", at: { x: 0, y: 0, z: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    m: <InlineMath math="m:\ \mathrm{M}" />,
+    f: <InlineMath math="F=ma:\ \mathrm{LMT^{-2}}" />,
+    o: <InlineMath math="(0,0,0)" />,
+  }}
+/>
+
 ## Memeriksa Konsistensi Dimensi Rumus
 
 Dimensi bisa dipakai untuk mengecek apakah bentuk rumus mungkin benar. Setiap suku yang dijumlahkan <Highlight>harus punya dimensi yang sama</Highlight>.
@@ -97,6 +127,43 @@ Cek dimensinya:
 Kedua suku di kanan sama-sama berdimensi <InlineMath math="[\mathrm{L}]" />, sehingga rumus itu lolos pemeriksaan dimensi. Pemeriksaan ini belum membuktikan rumus pasti benar, tetapi bisa cepat menemukan rumus yang mustahil.
 
 <InlineMath math="s+t" /> tidak valid di sini karena dimensinya berbeda: <InlineMath math="[\mathrm L]\ne[\mathrm T]" />.
+
+Tulis tiap dimensi sebagai pangkat L dan T, maka perkalian menjumlahkan pangkatnya seperti panah. <InlineMath math="v_0t" /> dan <InlineMath math="\tfrac12at^2" /> sama-sama sampai di titik fuchsia, <InlineMath math="\mathrm{L}" />, dimensi yang sama dengan <InlineMath math="s" />, jadi <InlineMath math="s=v_0t+\tfrac12at^2" /> konsisten. Perbesar tempat panah-panahnya bertemu.
+
+<MathVisual
+  title={<>Setiap Suku Harus Berdimensi Sama</>}
+  description={<>Pangkat panjang (mendatar) dan waktu (tegak) untuk suku-suku rumus gerak.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.5 }, y: { min: -2.4, max: 0.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "v0", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1, y: -1 } },
+      { id: "v0-head", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: -1 }, { x: 1 - (0.25 * 1) / Math.hypot(1, -1) + ((0.25 / 2) * 1) / Math.hypot(1, -1), y: -1 - (0.25 * -1) / Math.hypot(1, -1) + ((0.25 / 2) * 1) / Math.hypot(1, -1) }, { x: 1 - (0.25 * 1) / Math.hypot(1, -1) - ((0.25 / 2) * 1) / Math.hypot(1, -1), y: -1 - (0.25 * -1) / Math.hypot(1, -1) - ((0.25 / 2) * 1) / Math.hypot(1, -1) }] },
+      { id: "t", kind: "segment", appearance: "secondary", from: { x: 1, y: -1 }, to: { x: 1, y: 0 } },
+      { id: "t-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: 0 }, { x: 1.125, y: -0.25 }, { x: 0.875, y: -0.25 }] },
+      { id: "a", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 1, y: -2 } },
+      { id: "a-head", kind: "polygon", appearance: "construction", vertices: [{ x: 1, y: -2 }, { x: 1 - (0.25 * 1) / Math.hypot(1, -2) + ((0.25 / 2) * 2) / Math.hypot(1, -2), y: -2 - (0.25 * -2) / Math.hypot(1, -2) + ((0.25 / 2) * 1) / Math.hypot(1, -2) }, { x: 1 - (0.25 * 1) / Math.hypot(1, -2) - ((0.25 / 2) * 2) / Math.hypot(1, -2), y: -2 - (0.25 * -2) / Math.hypot(1, -2) - ((0.25 / 2) * 1) / Math.hypot(1, -2) }] },
+      { id: "t2", kind: "segment", appearance: "highlight", from: { x: 1, y: -2 }, to: { x: 1, y: 0 } },
+      { id: "t2-head", kind: "polygon", appearance: "highlight", vertices: [{ x: 1, y: 0 }, { x: 1.125, y: -0.25 }, { x: 0.875, y: -0.25 }] },
+      { id: "length", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 0.5, y: -0.5 }, placement: "above-left" },
+      { key: "a", objectId: "a", at: { x: 0.5, y: -1 }, placement: "left" },
+      { key: "t", objectId: "t", at: { x: 1, y: -0.5 }, placement: "right" },
+      { key: "t2", objectId: "t2", at: { x: 1, y: -1.5 }, placement: "right" },
+      { key: "length", objectId: "length", at: { x: 1, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    v0: <InlineMath math="v_0:\ \mathrm{LT^{-1}}" />,
+    a: <InlineMath math="a:\ \mathrm{LT^{-2}}" />,
+    t: <InlineMath math="\cdot t:\ \mathrm{T}" />,
+    t2: <InlineMath math="\cdot t^2:\ \mathrm{T^2}" />,
+    length: <InlineMath math="\mathrm{L}" />,
+  }}
+/>
 
 ## Satu Benda Dapat Memiliki Banyak Besaran
 

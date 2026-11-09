@@ -77,6 +77,21 @@ print("Erste", "Zeile", "Zweite", "Zeile", sep="\\n")    # Zeilenumbruch`
 
 Wähle das Trennzeichen passend zum Ausgabeformat, etwa ein Komma für eine einfache Aufzählung oder einen Tabulator für grob ausgerichtete Terminaldaten.
 
+`print(1, 2, 3, sep=s)` schreibt drei Ziffernzeichen und setzt `s` zweimal dazwischen. Die Länge der Ausgabezeile ohne den letzten Zeilenumbruch ist <InlineMath math="3+2k" />, wobei <InlineMath math="k" /> gleich `len(s)` ist.
+
+<BarChart
+  title={<>Ausgabelänge von <code>print(1, 2, 3, sep=s)</code></>}
+  description={<>Jeder Balken ist die Anzahl der geschriebenen Zeichen für den <code>sep</code>-Wert darunter: <InlineMath math="5" /> für ein Leerzeichen, <InlineMath math="3" /> für den leeren String, <InlineMath math="7" /> für Komma mit Leerzeichen und <InlineMath math="9" /> für <code>' | '</code>.</>}
+  yAxisLabel="Zeichen"
+  data={[
+    { name: "' '", value: 3 + 2 * 1 },
+    { name: "''", value: 3 + 2 * 0 },
+    { name: "', '", value: 3 + 2 * 2 },
+    { name: "' | '", value: 3 + 2 * 3 },
+  ]}
+  chartConfig={{ value: { label: "Zeichen", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
 ## Der Parameter End
 
 Der Parameter `end` legt das Zeichen oder die Zeichenfolge fest, die nach den ausgegebenen Objekten steht. Standardmäßig ist das ein **Zeilenumbruch** (`\n`), sodass der nächste Aufruf von `print` in einer neuen Zeile beginnt.
@@ -123,6 +138,54 @@ print("D", "E", "F", sep="-", end="\\n")`
 
 Mit einem anderen `end` können mehrere Aufrufe in derselben Zeile fortfahren. Soll die Ausgabe sofort sichtbar werden, statt zunächst in einem Puffer zu warten, verwendest du zusätzlich `flush=True`.
 
+Dieses Bild führt `print("A", "B", "C", sep="-")`, dann `print("x", end=" ")` und dann `print("y")` aus und setzt jedes Zeichen dorthin, wo es erscheint. `sep` wird nur zwischen Argumenten eingefügt, also erscheint der türkise Bindestrich bei drei Argumenten zweimal. `end` kommt einmal ans Ende jedes Aufrufs: Der Zeilenumbruch ↵ setzt den Cursor in die nächste Zeile, während `end=" "` das `y` in derselben Zeile wie `x` hält.
+
+<MathVisual
+  title={<>Drei <code>print</code>-Aufrufe im Ausgabestrom</>}
+  description={<>Violette Zeichen stammen aus den Argumenten, türkise aus <code>sep</code> und orange aus <code>end</code>. Das Symbol ↵ ist ein Zeilenumbruch und ␣ ein Leerzeichen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-a", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "first-b", kind: "point", at: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "first-c", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "first-d", kind: "point", at: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "first-e", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "first-f", kind: "point", at: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "second-a", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "second-b", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "second-c", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "second-d", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-a", objectId: "first-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "first-b", objectId: "first-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "first-c", objectId: "first-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "first-d", objectId: "first-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "first-e", objectId: "first-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "first-f", objectId: "first-f", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "second-a", objectId: "second-a", at: { x: 0, y: -1 }, placement: "above" },
+      { key: "second-b", objectId: "second-b", at: { x: 1, y: -1 }, placement: "above" },
+      { key: "second-c", objectId: "second-c", at: { x: 2, y: -1 }, placement: "above" },
+      { key: "second-d", objectId: "second-d", at: { x: 3, y: -1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "first-a": "A",
+    "first-b": "-",
+    "first-c": "B",
+    "first-d": "-",
+    "first-e": "C",
+    "first-f": "↵",
+    "second-a": "x",
+    "second-b": "␣",
+    "second-c": "y",
+    "second-d": "↵",
+  }}
+/>
+
 ## Anzeige verschiedener Datentypen
 
 `print()` akzeptiert Objekte verschiedener Typen und ermittelt vor dem Schreiben ihre **lesbare String-Darstellung**. Eigene Klassen können diese Darstellung mit `__str__()` festlegen.
@@ -160,6 +223,23 @@ print("Ergebnis:", integer_num, "+", decimal_num, "=", integer_num + decimal_num
 />
 
 Ein einziger Aufruf von `print()` kann Werte verschiedener Typen annehmen, sie in Text umwandeln und der Reihe nach ausgeben. Das genügt für eine schnelle Prüfung während der Programmausführung.
+
+`print` wandelt jedes Argument mit `str()` um, bevor es geschrieben wird, also entscheidet der Datentyp, was erscheint. Der Float `3.0` behält seinen Dezimalpunkt, `None` erscheint als Wort, und eine Liste schreibt Klammern, Kommas und Leerzeichen.
+
+<BarChart
+  title={<>Zeichen, die <code>print</code> für sechs Werte schreibt</>}
+  description={<>Jeder Balken ist <code>len(str(x))</code> für den darunter stehenden Wert <code>x</code>, also die Anzahl der Zeichen auf dem Bildschirm.</>}
+  yAxisLabel="Zeichen"
+  data={[
+    { name: "42", value: 2 },
+    { name: "3.0", value: 3 },
+    { name: "3.14", value: 4 },
+    { name: "True", value: 4 },
+    { name: "None", value: 4 },
+    { name: "[1, 2]", value: 6 },
+  ]}
+  chartConfig={{ value: { label: "Zeichen", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>
 
 ## Ausgabeformatierungstechniken
 

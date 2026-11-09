@@ -1,19 +1,12 @@
-Let <InlineMath math="x" /> and <InlineMath math="y" /> be the counts of packages <InlineMath math="X" /> and <InlineMath math="Y" />. Both are **non-negative integers**. The material and labour constraints are
+A mean of <InlineMath math="12" /> for five numbers fixes **their sum**:
 
-<BlockMath math="\begin{aligned} 2x+3y &amp;\le18 \\ 3x+y &amp;\le14 \end{aligned}" />
+<BlockMath math="5\times12=60" />
 
-Profit is <InlineMath math="L=5x+4y" />. Since <InlineMath math="3x\le14" />, only <InlineMath math="x" /> from <InlineMath math="0" /> through <InlineMath math="4" /> needs checking. For each <InlineMath math="x" />, choose the largest <InlineMath math="y" /> satisfying both constraints, because every additional <InlineMath math="Y" /> increases profit.
+Order the numbers from smallest: <InlineMath math="a<b<10<d<e" />. A median of <InlineMath math="10" /> means the third number is <InlineMath math="10" />. To make <InlineMath math="e" /> as large as possible, **the other four numbers must be as small as possible**, because the sum stays <InlineMath math="60" />.
 
-For example, at <InlineMath math="x=3" />, the material limit gives <InlineMath math="6+3y\le18" />, so <InlineMath math="y\le4" />. The labour limit gives <InlineMath math="9+y\le14" />, so <InlineMath math="y\le5" />. Use the **tighter limit**, which allows <InlineMath math="y=4" />.
+- <InlineMath math="a" /> and <InlineMath math="b" /> are the two smallest different positive integers, <InlineMath math="1" /> and <InlineMath math="2" />.
+- <InlineMath math="d" /> must be greater than <InlineMath math="10" /> and different from it, so its smallest value is <InlineMath math="11" />.
 
-| <InlineMath math="X" /> count | Largest <InlineMath math="Y" /> count | Profit |
-| ---: | ---: | ---: |
-| <InlineMath math="0" /> | <InlineMath math="6" /> | <InlineMath math="24" /> |
-| <InlineMath math="1" /> | <InlineMath math="5" /> | <InlineMath math="25" /> |
-| <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="26" /> |
-| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="31" /> |
-| <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="28" /> |
+<BlockMath math="e=60-(1+2+10+11)=60-24=36" />
 
-The maximum profit of <InlineMath math="31" /> occurs only at <InlineMath math="x=3" /> and <InlineMath math="y=4" />. This uses <InlineMath math="18" /> material units and <InlineMath math="13" /> labour hours, satisfying both constraints.
-
-The total number of packages is <InlineMath math="3+4=7" />.
+Check: <InlineMath math="1, 2, 10, 11, 36" /> are all different, the median is <InlineMath math="10" />, and the mean is <InlineMath math="\frac{60}{5}=12" />. Setting <InlineMath math="d=10" /> would repeat a number, so <InlineMath math="d=11" /> really is the smallest choice. The largest possible value is <InlineMath math="36" />.

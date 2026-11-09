@@ -110,6 +110,19 @@ print(phone)
 
 Da Schlüssel eindeutig sind, bleibt bei einem wiederholten Schlüssel in einer Dictionary-Darstellung nur der zuletzt zugewiesene Wert erhalten. Der überlebende Schlüssel behält die Position seines ersten Auftretens.
 
+Schlüssel in einem Dictionary sind immer eindeutig. In `d = {'a': 1, 'b': 2, 'a': 3}` kommt der Schlüssel `'a'` zweimal vor, und die letzte Zuweisung gewinnt, also hat `d` nur zwei Paare, mit `d['a']` gleich `3`.
+
+<BarChart
+  title={<>Der Inhalt von <code>d</code>, nachdem der Schlüssel <code>'a'</code> zweimal geschrieben wurde</>}
+  description={<>Jeder Balken ist der Wert zum darunter stehenden Schlüssel. Es gibt nur zwei Balken, weil das zweite <code>'a'</code> den Wert <code>1</code> mit <code>3</code> überschreibt.</>}
+  yAxisLabel="Wert"
+  data={[
+    { name: "'a'", value: 3 },
+    { name: "'b'", value: 2 },
+  ]}
+  chartConfig={{ value: { label: "Wert", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
 ## Zugriff auf Wörterbücher
 
 Um einen Wert aus einem Dictionary abzurufen, **gibst du seinen Schlüssel an**. Ein verständlicher Schlüssel wie ein Name oder ein Datum übernimmt dabei die Aufgabe eines fortlaufenden Zahlenindex.
@@ -143,6 +156,20 @@ print(phone)
 />
 
 Der Zugriff mit eckigen Klammern liest einen vorhandenen Wert. Eine Zuweisung mit eckigen Klammern **aktualisiert einen vorhandenen Schlüssel** oder hängt ein neues Schlüssel-Wert-Paar an die Einfügereihenfolge an.
+
+Für `phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}` liefern `phone['ann']` und `phone.get('ann', 0)` beide `110`. Der Schlüssel `'eve'` fehlt: `phone['eve']` löst einen `KeyError` aus, `phone.get('eve', 0)` gibt dagegen den Ersatzwert `0` zurück.
+
+<BarChart
+  title={<><code>phone.get(key, 0)</code> für drei Schlüssel</>}
+  description={<>Jeder Balken ist das Ergebnis von <code>phone.get(key, 0)</code> für den darunter stehenden Schlüssel. Der Schlüssel <code>'eve'</code> fehlt im Dictionary, also ist sein Balken der Ersatzwert <InlineMath math="0" />.</>}
+  yAxisLabel="Ergebnis von get"
+  data={[
+    { name: "'ann'", value: 110 },
+    { name: "'bob'", value: 991 },
+    { name: "'eve'", value: 0 },
+  ]}
+  chartConfig={{ value: { label: "Ergebnis von get", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>
 
 ## Wörterbuch Iteration
 
@@ -287,3 +314,30 @@ print("Ergebnis get('ann'):", result)
 />
 
 `get()` gibt den gespeicherten Wert zurück, wenn der Schlüssel vorhanden ist. Andernfalls liefert die Methode den **angegebenen Standardwert** oder `None`, wenn kein Standardwert übergeben wurde. Wähle einen Standard, der nicht mit einem gültigen gespeicherten Wert verwechselt werden kann, falls diese Unterscheidung wichtig ist.
+
+Zähl die Buchstaben in `"banana"` mit `counts[ch] = counts.get(ch, 0) + 1`. Taucht ein Buchstabe zum ersten Mal auf, gibt `get` den Standardwert `0` zurück, also gibt es keinen `KeyError`. Das Ergebnis steht im Bild: `{"b": 1, "a": 3, "n": 2}`, mit den Schlüsseln in der Reihenfolge ihres ersten Auftretens. Die Höhen aller Balken ergeben zusammen `6`, genau `len("banana")`.
+
+<MathVisual
+  title={<>Buchstaben mit <code>get</code> zählen</>}
+  description={<>Jeder Balken ist ein Schlüssel des Dictionarys <code>counts</code> für das Wort <code>banana</code>, und seine Höhe ist der Wert.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.3, max: 3.7 }, y: { min: -0.3, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "bar-b", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "bar-a", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 3 }, appearance: "answer" },
+      { id: "bar-n", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "bar-b", objectId: "bar-b", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "bar-a", objectId: "bar-a", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "bar-n", objectId: "bar-n", at: { x: 3, y: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "bar-b": "'b': 1",
+    "bar-a": "'a': 3",
+    "bar-n": "'n': 2",
+  }}
+/>

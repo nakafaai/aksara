@@ -3,7 +3,7 @@ export const metadata = {
   description: "Lineare Ungleichungssysteme grafisch lösen, Nebenbedingungen modellieren und zulässige Bereiche in interaktiven Darstellungen lesen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Systeme linearer Gleichungen und Ungleichungen",
 };
 
@@ -96,6 +96,34 @@ Die **Schnittmenge** enthält Punkte, die beide Bedingungen gleichzeitig erfüll
 
 Der Punkt <InlineMath math="(0,0)" /> erfüllt nur die erste Bedingung und löst das System daher nicht. Bei strengen Ungleichungen **gehören Randpunkte nicht dazu**, auch nicht der Schnittpunkt der beiden Grenzgeraden.
 
+Schattier beide Bedingungen zugleich. Der Punkt <InlineMath math="(2, 1)" /> besteht beide Tests, <InlineMath math="9 < 10" /> und <InlineMath math="14 > 10" />, also liegt er in der Schnittmenge: dem Keil, der dort beginnt, wo sich die Randgeraden in <InlineMath math="\left(\tfrac{15}{13}, \tfrac{20}{13}\right)" /> treffen. Die Randgeraden gehören nicht zur Lösung, weil beide Ungleichungen streng sind.
+
+<MathVisual
+  title={<>Die Schnittmenge enthält <InlineMath math="(2, 1)" /></>}
+  description={<>Die Randgeraden <InlineMath math="2x + 5y = 10" /> und <InlineMath math="6x + 2y = 10" />, der Keil, in dem <InlineMath math="2x + 5y < 10" /> und <InlineMath math="6x + 2y > 10" /> beide gelten, gezeichnet bis <InlineMath math="x = 4" />, und der Testpunkt <InlineMath math="(2, 1)" />.</>}
+  labels={{
+    l1: <InlineMath math="2x + 5y = 10" />,
+    l2: <InlineMath math="6x + 2y = 10" />,
+    test: <InlineMath math="(2, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -7.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "region", kind: "polygon", vertices: [{ x: 15 / 13, y: 20 / 13 }, { x: 4, y: 2 / 5 }, { x: 4, y: -7 }], appearance: "answer" },
+      { id: "l1", kind: "line", through: [{ x: 0, y: 2 }, { x: 5, y: 0 }], appearance: "primary" },
+      { id: "l2", kind: "line", through: [{ x: 0, y: 5 }, { x: 5 / 3, y: 0 }], appearance: "secondary" },
+      { id: "test", kind: "point", at: { x: 2, y: 1 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 0, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "l2", at: { x: 0, y: 5 }, placement: "right" },
+      { key: "test", objectId: "test", at: { x: 2, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 ### Grafische Darstellung
 
 Für die Darstellung gilt:
@@ -133,6 +161,40 @@ Prüfe nun <InlineMath math="(1,5)" />:
 </MathContainer>
 
 Die zweite Aussage ist falsch, also ist <InlineMath math="(1,5)" /> keine Lösung. Die beiden Grenzgeraden schneiden sich in <InlineMath math="(2,4)" />, doch dieser Punkt ist nur ein Teil der Lösung. Die vollständige Lösung ist der gesamte Überlappungsbereich einschließlich der Teile jeder Grenzgeraden, die auch die andere Ungleichung erfüllen.
+
+Zeichne beide Randgeraden durch ihren Schnittpunkt <InlineMath math="(2, 4)" />. Der Lösungsbereich liegt unter <InlineMath math="x + y = 6" /> und unter <InlineMath math="y = 2x" />. Der Punkt <InlineMath math="(2, 3)" /> liegt darin, während <InlineMath math="(1, 5)" /> über der Geraden <InlineMath math="y = 2x" /> liegt, darum scheitert <InlineMath math="2(1) - 5 = -3" /> an der zweiten Ungleichung.
+
+<MathVisual
+  title={<><InlineMath math="(2, 3)" /> und <InlineMath math="(1, 5)" /> testen</>}
+  description={<>Der Bereich, in dem <InlineMath math="x + y \leq 6" /> und <InlineMath math="2x - y \geq 0" /> gelten, gezeichnet bis <InlineMath math="y = -2" />, mit der Ecke <InlineMath math="(2, 4)" />, der Lösung <InlineMath math="(2, 3)" /> und der Nichtlösung <InlineMath math="(1, 5)" />.</>}
+  labels={{
+    l1: <InlineMath math="x + y = 6" />,
+    l2: <InlineMath math="y = 2x" />,
+    corner: <InlineMath math="(2, 4)" />,
+    yes: <InlineMath math="(2, 3)" />,
+    no: <InlineMath math="(1, 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 9 }, y: { min: -3, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "region", kind: "polygon", vertices: [{ x: 2, y: 4 }, { x: 8, y: -2 }, { x: -1, y: -2 }], appearance: "answer" },
+      { id: "l1", kind: "line", through: [{ x: 0, y: 6 }, { x: 6, y: 0 }], appearance: "primary" },
+      { id: "l2", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "secondary" },
+      { id: "corner", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "yes", kind: "point", at: { x: 2, y: 3 }, appearance: "highlight" },
+      { id: "no", kind: "point", at: { x: 1, y: 5 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 6, y: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "l2", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "corner", objectId: "corner", at: { x: 2, y: 4 }, placement: "right" },
+      { key: "yes", objectId: "yes", at: { x: 2, y: 3 }, placement: "below" },
+      { key: "no", objectId: "no", at: { x: 1, y: 5 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Zulässige Entscheidungen modellieren
 
@@ -212,30 +274,30 @@ Der violette Bereich erfüllt <InlineMath math="15x + 9y \geq 120" />. Er enthä
 Der Überlappungsbereich erfüllt beide Bedingungen und ist damit die Lösung des Systems.
 
 <MathVisual
-  title="Lineares Ungleichungssystem"
-  description={
-    <>
-      Visualisierung des Systems der Ungleichungen{" "}
-      <InlineMath math="x + y \leq 10" /> und{" "}
-      <InlineMath math="15x + 9y \geq 120" />.
-    </>
-  }
+  title={<>Der Bereich, in dem beide Ungleichungen gelten</>}
+  description={<>Die Randgeraden <InlineMath math="x + y = 10" /> (orange) und <InlineMath math="15x + 9y = 120" /> (violett) treffen sich in <InlineMath math="(5, 5)" />. Die orange Halbebene ist <InlineMath math="x + y \leq 10" />, die violette Halbebene <InlineMath math="15x + 9y \geq 120" />, und ihre Schnittmenge ist der Keil rechts von <InlineMath math="(5, 5)" />.</>}
+  labels={{
+    l1: <InlineMath math="x + y \le 10" />,
+    l2: <InlineMath math="15x + 9y \ge 120" />,
+    corner: <InlineMath math="(5, 5)" />,
+  }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -2, max: 14 }, y: { min: -4, max: 16 } },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 12.5 }, y: { min: -6.5, max: 14.5 } },
+    view: { kind: "fit", padding: 0.3 },
     objects: [
-      { id: "first", kind: "region", inequalities: ["x + y <= 10"], appearance: "primary" },
-      { id: "second", kind: "region", inequalities: ["15x + 9y >= 120"], appearance: "secondary" },
+      { id: "h1", kind: "polygon", vertices: [{ x: -1, y: -6 }, { x: 12, y: -6 }, { x: 12, y: -2 }, { x: -1, y: 11 }], appearance: "primary" },
+      { id: "h2", kind: "polygon", vertices: [{ x: -2 / 5, y: 14 }, { x: 12, y: 14 }, { x: 12, y: -6 }, { x: 58 / 5, y: -6 }], appearance: "secondary" },
+      { id: "region", kind: "polygon", vertices: [{ x: 5, y: 5 }, { x: 12, y: -2 }, { x: 12, y: -6 }, { x: 58 / 5, y: -6 }], appearance: "answer" },
+      { id: "l1", kind: "line", through: [{ x: 0, y: 10 }, { x: 10, y: 0 }], appearance: "primary" },
+      { id: "l2", kind: "line", through: [{ x: 8, y: 0 }, { x: 2, y: 10 }], appearance: "secondary" },
+      { id: "corner", kind: "point", at: { x: 5, y: 5 }, appearance: "answer" },
     ],
     labels: [
-      { key: "first", objectId: "first", at: { x: 3, y: 7 }, placement: "above-right" },
-      { key: "second", objectId: "second", at: { x: 0, y: 120 / 9 }, placement: "above-right" },
+      { key: "l1", objectId: "l1", at: { x: 1, y: 9 }, placement: "right" },
+      { key: "l2", objectId: "l2", at: { x: 16 / 5, y: 8 }, placement: "right" },
+      { key: "corner", objectId: "corner", at: { x: 5, y: 5 }, placement: "right" },
     ],
-  }}
-  labels={{
-    first: <InlineMath math="x + y \le 10" />,
-    second: <InlineMath math="15x + 9y \ge 120" />,
   }}
 />
 

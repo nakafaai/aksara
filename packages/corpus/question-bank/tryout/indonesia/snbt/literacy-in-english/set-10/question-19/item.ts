@@ -1,35 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-view",
+  },
+  stimulus: "golden-record",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "The definition explains why the missing final budget is a deliberate part of the story, allowing the changed decision process to matter before the outcome is known.",
+          label: "Its discovery is unlikely, but it was still worth making.",
+        },
+        {
+          correct: false,
+          label: "It was a waste of effort, since no one will ever find it.",
         },
         {
           correct: false,
           label:
-            "The term confirms that the team will approve the larger concert, even though the story withholds its decision.",
+            "It will certainly be found and played by another civilisation.",
         },
         {
           correct: false,
           label:
-            "The definition identifies the pencil-worn ledger itself as an open ending rather than describing the unresolved conclusion.",
+            "Its music was badly chosen by a committee that was too small.",
         },
         {
           correct: false,
           label:
-            "The term allows any prediction about the final budget to be correct, even if it ignores the unresolved quotes.",
-        },
-        {
-          correct: false,
-          label:
-            "The definition explains why the hall is empty and therefore makes Iris's changes to the ledger irrelevant.",
+            "It matters mainly because it is made of valuable gold-plated copper.",
         },
       ],
     },

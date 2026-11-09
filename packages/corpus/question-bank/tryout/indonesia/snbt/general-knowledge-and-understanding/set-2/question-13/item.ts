@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "polysemy",
+  },
+  stimulus: "tabungan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Ketika hujan turun, jalan menjadi basah.",
+          label: "Menyelidiki dengan teliti",
         },
         {
           correct: false,
-          label: "Jika makan malam sudah siap, anak-anak dapat makan.",
+          label: "Membiarkan begitu saja",
         },
         {
           correct: false,
-          label: "Sebelum matahari terbit, burung berkicau nyaring.",
+          label: "Melaporkan kepada pemerintah",
+        },
+        {
+          correct: false,
+          label: "Menolak dengan tegas",
         },
         {
           correct: true,
-          label:
-            "Setelah pelajaran berakhir, setiap siswa harus segera menyerahkan tugas.",
-        },
-        {
-          correct: false,
-          label: "Ketika bel berbunyi, lorong sekolah menjadi ramai.",
+          label: "Mencari cara untuk mengatasi",
         },
       ],
     },

@@ -1,29 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "conclusion",
+  },
+  stimulus: "lampu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$96$$",
+          label: "Lampu natrium sama sekali tidak menarik serangga.",
         },
         {
           correct: false,
-          label: "$$54$$",
+          label:
+            "Penggantian lampu menjadi LED membuat populasi serangga di kota meningkat.",
         },
         {
           correct: false,
-          label: "$$48$$",
+          label:
+            "Penutup penyaring cahaya biru menghemat listrik lebih banyak daripada lampu LED tanpa penutup.",
         },
         {
           correct: true,
-          label: "$$72$$",
+          label:
+            "Lampu LED putih menarik lebih banyak serangga terutama karena cahaya biru yang dipancarkannya.",
         },
         {
           correct: false,
-          label: "$$32$$",
+          label:
+            "Kelelawar menyebabkan serangga berkumpul di sekitar lampu LED.",
         },
       ],
     },

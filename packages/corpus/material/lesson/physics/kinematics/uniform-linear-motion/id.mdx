@@ -79,6 +79,33 @@ x_t &= x_0+\Delta x \\
 
 Perhitungan ini bekerja karena **kecepatan tidak berubah**. Jika kecepatannya berubah, kita tidak boleh langsung memakai satu nilai <InlineMath math="v" /> tetap untuk seluruh gerak.
 
+Titik-titik di bawah adalah tanda posisi, satu setiap sekon. Titik itu naik <InlineMath math="2\text{ m}" /> yang sama setiap sekon, jadi semuanya jatuh pada satu garis lurus, dan kemiringannya adalah kecepatan.
+
+<MathVisual
+  title={<>Langkah Sama Membentuk Garis Lurus</>}
+  description={<><InlineMath math="x=1\text{ m}+(2\text{ m/s})\,t" /> selama 5 s. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 2 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "position", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: (1 + 2 * 0) / 2 }, { x: 1, y: (1 + 2 * 1) / 2 }, { x: 2, y: (1 + 2 * 2) / 2 }, { x: 3, y: (1 + 2 * 3) / 2 }, { x: 4, y: (1 + 2 * 4) / 2 }, { x: 5, y: (1 + 2 * 5) / 2 }] },
+      { id: "t-0", kind: "point", appearance: "primary", at: { x: 0, y: (1 + 2 * 0) / 2 } },
+      { id: "t-1", kind: "point", appearance: "primary", at: { x: 1, y: (1 + 2 * 1) / 2 } },
+      { id: "t-2", kind: "point", appearance: "primary", at: { x: 2, y: (1 + 2 * 2) / 2 } },
+      { id: "t-3", kind: "point", appearance: "primary", at: { x: 3, y: (1 + 2 * 3) / 2 } },
+      { id: "t-4", kind: "point", appearance: "primary", at: { x: 4, y: (1 + 2 * 4) / 2 } },
+      { id: "t-5", kind: "point", appearance: "primary", at: { x: 5, y: (1 + 2 * 5) / 2 } },
+    ],
+    labels: [
+      { key: "end", objectId: "t-5", at: { x: 5, y: 5.5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    end: <InlineMath math="x(5\text{ s})=11\text{ m}" />,
+  }}
+/>
+
 ## Membaca GLB dari Grafik
 
 Dua grafik menandai GLB. Grafik kecepatan terhadap waktu harus mendatar, sedangkan grafik posisi terhadap waktu harus berupa garis lurus dengan **gradien tetap**.
@@ -91,6 +118,27 @@ Dua grafik menandai GLB. Grafik kecepatan terhadap waktu harus mendatar, sedangk
 Luas bertanda antara grafik kecepatan-waktu dan sumbu waktu sama dengan perpindahan. Untuk kecepatan tetap, luasnya berbentuk persegi panjang, sehingga <InlineMath math="\Delta x=v\Delta t" />. Daerah di bawah sumbu waktu menyumbang perpindahan negatif.
 
 Pada grafik posisi-waktu, kemiringan garis menyatakan kecepatan. Tanda kemiringan memberi arah, sedangkan nilai mutlak kemiringan yang lebih besar berarti kelajuan yang lebih besar. Untuk GLB, garisnya tetap lurus karena kemiringannya tidak berubah dari awal sampai akhir.
+
+Pada grafik kecepatan terhadap waktu, gerak yang sama menjadi garis datar di <InlineMath math="2\text{ m/s}" />. Luas di bawahnya adalah perpindahan, <InlineMath math="10\text{ m}" />, yang ditambah <InlineMath math="x_0=1\text{ m}" /> memberi posisi akhir <InlineMath math="11\text{ m}" />.
+
+<MathVisual
+  title={<>Kecepatan Tetap dan Luasnya</>}
+  description={<><InlineMath math="v=2\text{ m/s}" /> selama 5 s. Mendatar: waktu dalam s. Tegak: kecepatan dalam m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "area", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 2 }, { x: 0, y: 2 }] },
+    ],
+    labels: [
+      { key: "area", objectId: "area", at: { x: 2.5, y: 1 }, placement: "center" },
+    ],
+  }}
+  labels={{
+    area: <InlineMath math="\Delta x=2\times5=10\text{ m}" />,
+  }}
+/>
 
 ## Arah Membedakan Kelajuan Tetap dan Kecepatan Tetap
 

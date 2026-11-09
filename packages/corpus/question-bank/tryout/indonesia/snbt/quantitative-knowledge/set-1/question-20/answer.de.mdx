@@ -1,59 +1,25 @@
-Die erste Zahl sei <InlineMath math="A" /> und die zweite Zahl sei <InlineMath math="B" />.
+Die Angabe, dass das Produkt gerade ist, macht dies zu einer **bedingten Wahrscheinlichkeit**. Der Ergebnisraum besteht nicht mehr aus allen 36 Paaren, sondern nur aus den Paaren mit geradem Produkt.
 
-Die Angaben ergeben das folgende **Gleichungssystem**:
+# Der neue Ergebnisraum
 
-<BlockMath math="2A - 3B = 14 \quad \ldots \text{(1)}" />
+Ein Produkt zweier Zahlen ist genau dann ungerade, wenn beide Zahlen ungerade sind. Von den 36 Paaren sind <InlineMath math="3\times3=9" /> ungerade-ungerade, also **haben 27 Paare ein gerades Produkt**. Weil die Würfel fair sind, ist jedes Paar gleich wahrscheinlich.
 
-<BlockMath math="Ak + 2B = 4 \quad \ldots \text{(2)}" />
+# Das gesuchte Ereignis
 
-<BlockMath math="A + B = -3 \quad \ldots \text{(3)}" />
+Es gibt 15 Paare, deren Summe mindestens 8 ist.
 
-# Die Werte von A und B bestimmen
+| Summe | Paare | Anzahl |
+| :---: | :---: | :---: |
+| 8 | (2,6), (3,5), (4,4), (5,3), (6,2) | 5 |
+| 9 | (3,6), (4,5), (5,4), (6,3) | 4 |
+| 10 | (4,6), (5,5), (6,4) | 3 |
+| 11 | (5,6), (6,5) | 2 |
+| 12 | (6,6) | 1 |
 
-Wir lösen zuerst **die beiden Gleichungen ohne k**, also (1) und (3), nach <InlineMath math="A" /> und <InlineMath math="B" /> auf.
+Von diesen 15 Paaren **fallen die mit zwei ungeraden Augenzahlen weg**: (3,5), (5,3) und (5,5). Es bleiben 12 Paare.
 
-Wir multiplizieren Gleichung (3) mit <InlineMath math="2" />:
+<BlockMath math="P=\frac{12}{27}=\frac49" />
 
-<BlockMath math="2(A + B) = 2(-3)" />
+Der Wert <InlineMath math="\tfrac13=\tfrac{12}{36}" /> vergisst, den Ergebnisraum zu ändern. Der Wert <InlineMath math="\tfrac59=\tfrac{15}{27}" /> vergisst, die drei ungeraden Paare aus dem Ereignis zu nehmen. Der Wert <InlineMath math="\tfrac23=\tfrac{12}{18}" /> nimmt an, dass nur die Hälfte der Paare ein gerades Produkt hat. Der Wert <InlineMath math="\tfrac45=\tfrac{12}{15}" /> vertauscht die Bedingung: Er ist die Wahrscheinlichkeit für ein gerades Produkt, wenn die Summe mindestens 8 ist.
 
-<BlockMath math="2A + 2B = -6 \quad \ldots \text{(3a)}" />
-
-Nun ziehen wir Gleichung (3a) von Gleichung (1) ab:
-
-<BlockMath math="\begin{aligned}&(2A-3B)-(2A+2B)\\&=14-(-6)\end{aligned}" />
-
-<BlockMath math="2A - 3B - 2A - 2B = 14 + 6" />
-
-<BlockMath math="-5B = 20" />
-
-<BlockMath math="B = -4" />
-
-Wir setzen <InlineMath math="B = -4" /> in Gleichung (3) ein:
-
-<BlockMath math="A + (-4) = -3" />
-
-<BlockMath math="A = -3 + 4" />
-
-<BlockMath math="A = 1" />
-
-Daher <InlineMath math="A = 1" /> und <InlineMath math="B = -4" />.
-
-# Den Wert von k bestimmen
-
-Nun verwenden wir die **bekannten Werte** und setzen <InlineMath math="A = 1" /> und <InlineMath math="B = -4" /> in Gleichung (2) ein:
-
-<BlockMath math="Ak + 2B = 4" />
-
-<BlockMath math="1 \cdot k + 2(-4) = 4" />
-
-<BlockMath math="k - 8 = 4" />
-
-<BlockMath math="k = 4 + 8" />
-
-<BlockMath math="k = 12" />
-
-Daher ist der Wert von <InlineMath math="k" /> <InlineMath math="12" />.
-
-Alle drei ursprünglichen Gleichungen sind erfüllt:
-
-<BlockMath math="\begin{aligned}2(1)-3(-4)&=14\\12(1)+2(-4)&=4\\1+(-4)&=-3\end{aligned}" />
+Die gesuchte Wahrscheinlichkeit ist also <InlineMath math="\tfrac49" />.

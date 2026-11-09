@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "figurative-meaning",
+  },
+  stimulus: "bambu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Uji pembaca menunjukkan garis waktu mengurangi anggapan bahwa konstruksi, penggunaan, dan peresmian terjadi pada saat yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Pemandu kini menggunakan garis waktu yang sama dengan plakat, walaupun tidak ada bukti baru mengenai keempat peristiwa.",
-        },
-        {
-          correct: false,
-          label:
-            "Plakat baru akan menampilkan garis waktu dengan arti setiap tanggal.",
-        },
-        {
-          correct: false,
-          label: "Bagian tengah jembatan diganti besar-besaran pada 1958.",
+          label: "logam yang dicat hijau supaya tidak berkarat",
         },
         {
           correct: true,
-          label:
-            "Pemeriksaan asal sumber membuktikan bahwa dokumen 1914 dan 1916 serta foto penggantian 1958 merujuk pada jembatan lain.",
+          label: "bahan dari tumbuhan yang kuat seperti baja",
+        },
+        {
+          correct: false,
+          label: "tanaman hijau yang batangnya mudah patah",
+        },
+        {
+          correct: false,
+          label: "bahan yang hanya dipakai untuk membuat jembatan",
+        },
+        {
+          correct: false,
+          label: "tumbuhan yang daunnya tetap hijau sepanjang tahun",
         },
       ],
     },

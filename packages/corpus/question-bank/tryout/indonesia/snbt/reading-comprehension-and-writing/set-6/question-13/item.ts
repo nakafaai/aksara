@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "explicit-information",
+  },
+  stimulus: "water-turn",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "kerjasama tim dalam uji contoh pencatatan waktu",
+          label: "setiap petani di bagian hulu",
         },
         {
           correct: false,
-          label: "kerja-sama tim dalam uji contoh pencatatan waktu",
-        },
-        {
-          correct: false,
-          label: "kerja samah tim dalam uji contoh pencatatan waktu",
+          label: "setiap petani di bagian hilir",
         },
         {
           correct: true,
-          label: "kerja sama tim dalam uji contoh pencatatan waktu",
+          label: "petugas yang ditunjuk kelompok tani",
         },
         {
           correct: false,
-          label: "kerja sama-sama tim dalam uji contoh pencatatan waktu",
+          label: "kepala Desa Sukadamai",
+        },
+        {
+          correct: false,
+          label: "petani yang sawahnya sedang kekeringan",
         },
       ],
     },

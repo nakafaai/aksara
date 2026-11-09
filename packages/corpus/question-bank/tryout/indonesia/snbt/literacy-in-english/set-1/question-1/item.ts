@@ -1,29 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "main-idea",
+  },
+  stimulus: "octopus-arms",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "showing that octopuses have more neurons than any other invertebrate.",
+        },
+        {
           correct: true,
-          label: "the conditions under which technology can support education.",
+          label:
+            "explaining how an octopus shares control of movement between brain and arms.",
         },
         {
           correct: false,
-          label: "the rapid growth of internet access worldwide.",
+          label:
+            "arguing that octopus arms can survive and act as independent animals.",
         },
         {
           correct: false,
-          label: "the replacement of teachers by digital tools.",
+          label:
+            "describing laboratory methods for separating an octopus arm from its body.",
         },
         {
           correct: false,
-          label: "the superiority of online learning over classrooms.",
-        },
-        {
-          correct: false,
-          label: "the features of one educational device.",
+          label:
+            "proposing that engineers should build robots shaped like octopuses.",
         },
       ],
     },

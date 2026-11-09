@@ -154,6 +154,48 @@ print("Automatischer Datentyp:", arr_mixed.dtype)  # Ausgabe: Automatischer Date
   ]}
 />
 
+Eine verschachtelte Liste wird zu einem zweidimensionalen Array. `np.array([[1, 2, 3], [4, 5, 6]])` hat zwei Zeilen und drei Spalten, also ist `shape` gleich `(2, 3)`, `ndim` gleich <InlineMath math="2" /> und `size` gleich <InlineMath math="6" />. Alle Elemente teilen sich einen `dtype`.
+
+<MathVisual
+  title={<>Ein Array mit <code>shape</code> <code>(2, 3)</code></>}
+  description={<>Jeder violette Punkt ist ein Element mit seinem Wert. Die türkise Strecke zeigt entlang <code>axis 0</code> von Zeile zu Zeile, die orange Strecke entlang <code>axis 1</code> von Spalte zu Spalte.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.6 }, y: { min: -1.8, max: 0.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis-one", kind: "segment", from: { x: -0.5, y: 0.5 }, to: { x: 2.3, y: 0.5 }, appearance: "primary" },
+      { id: "axis-zero", kind: "segment", from: { x: -0.5, y: 0.5 }, to: { x: -0.5, y: -1.4 }, appearance: "construction" },
+      { id: "cell-0-0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "cell-0-1", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "cell-0-2", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "cell-1-0", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "cell-1-1", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "cell-1-2", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "cell-0-0", objectId: "cell-0-0", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "cell-0-1", objectId: "cell-0-1", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "cell-0-2", objectId: "cell-0-2", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "cell-1-0", objectId: "cell-1-0", at: { x: 0, y: -1 }, placement: "below-right" },
+      { key: "cell-1-1", objectId: "cell-1-1", at: { x: 1, y: -1 }, placement: "below-right" },
+      { key: "cell-1-2", objectId: "cell-1-2", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "axis-one", objectId: "axis-one", at: { x: 2.3, y: 0.5 }, placement: "right" },
+      { key: "axis-zero", objectId: "axis-zero", at: { x: -0.5, y: -1.4 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "cell-0-0": <InlineMath math="1" />,
+    "cell-0-1": <InlineMath math="2" />,
+    "cell-0-2": <InlineMath math="3" />,
+    "cell-1-0": <InlineMath math="4" />,
+    "cell-1-1": <InlineMath math="5" />,
+    "cell-1-2": <InlineMath math="6" />,
+    "axis-one": <code>axis 1</code>,
+    "axis-zero": <code>axis 0</code>,
+  }}
+/>
+
 ## Funktionen zum Erstellen von Arrays
 
 Jedes Element von Hand zu schreiben lohnt sich nur für sehr kleine Beispiele. NumPy bringt deshalb eigene Erzeugungsfunktionen mit, die ein **Array aus einer Regel** statt aus einer literalen Liste aufbauen, wodurch der Code kurz bleibt und die Form ausdrücklich dasteht. Die folgenden Funktionen bilden drei Gruppen: Arrays mit einem konstanten Wert, Arrays mit Zufallszahlen und Arrays nach einem mathematischen Muster.
@@ -333,6 +375,55 @@ print("Dtype:", a.dtype)  # Ausgabe: Dtype: float64`
   ]}
 />
 
+Vergleich die zwei Punktreihen unten. `np.linspace(0, 10, 5)` teilt das Intervall in fünf gleich weit entfernte Punkte und nimmt das Ende `10` mit. `np.arange(0, 10, 2.5)` geht jedes Mal `2.5` weiter und hört vor `10` auf, also gibt es nur vier Werte. Merk dir die Regel: `linspace` legt die Anzahl der Punkte fest, `arange` die Schrittweite.
+
+<MathVisual
+  title={<><code>np.linspace</code> und <code>np.arange</code> auf dem Zahlenstrahl</>}
+  description={<>Die obere Zeile ist <code>np.linspace(0, 10, 5)</code>, die untere <code>np.arange(0, 10, 2.5)</code>. Der Wert <InlineMath math="10" /> fehlt in der unteren Zeile.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "lin-a", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "lin-b", kind: "point", at: { x: 5 / 2, y: 1 }, appearance: "secondary" },
+      { id: "lin-c", kind: "point", at: { x: 5, y: 1 }, appearance: "secondary" },
+      { id: "lin-d", kind: "point", at: { x: 15 / 2, y: 1 }, appearance: "secondary" },
+      { id: "lin-e", kind: "point", at: { x: 10, y: 1 }, appearance: "secondary" },
+      { id: "ar-a", kind: "point", at: { x: 0, y: 0 }, appearance: "construction" },
+      { id: "ar-b", kind: "point", at: { x: 5 / 2, y: 0 }, appearance: "construction" },
+      { id: "ar-c", kind: "point", at: { x: 5, y: 0 }, appearance: "construction" },
+      { id: "ar-d", kind: "point", at: { x: 15 / 2, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "lin-a", objectId: "lin-a", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "lin-b", objectId: "lin-b", at: { x: 5 / 2, y: 1 }, placement: "above" },
+      { key: "lin-c", objectId: "lin-c", at: { x: 5, y: 1 }, placement: "above" },
+      { key: "lin-d", objectId: "lin-d", at: { x: 15 / 2, y: 1 }, placement: "above" },
+      { key: "lin-e", objectId: "lin-e", at: { x: 10, y: 1 }, placement: "above" },
+      { key: "ar-a", objectId: "ar-a", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "ar-b", objectId: "ar-b", at: { x: 5 / 2, y: 0 }, placement: "below" },
+      { key: "ar-c", objectId: "ar-c", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "ar-d", objectId: "ar-d", at: { x: 15 / 2, y: 0 }, placement: "below" },
+      { key: "lin-row", objectId: "lin-a", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "ar-row", objectId: "ar-a", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "lin-a": "0",
+    "lin-b": "2.5",
+    "lin-c": "5",
+    "lin-d": "7.5",
+    "lin-e": "10",
+    "ar-a": "0",
+    "ar-b": "2.5",
+    "ar-c": "5",
+    "ar-d": "7.5",
+    "lin-row": "np.linspace(0, 10, 5)",
+    "ar-row": "np.arange(0, 10, 2.5)",
+  }}
+/>
+
 ## Arrays aus Sequenzen
 
 Manche Arrays lassen sich leichter als Sequenz beschreiben denn als Regel für jedes einzelne Element: alle Werte zwischen zwei Grenzen oder eine **feste Anzahl gleichmäßig verteilter Punkte**. `np.arange` und `np.linspace` erzeugen solche Arrays, und der Unterschied liegt darin, wie das Ende der Sequenz festgelegt wird.
@@ -478,5 +569,52 @@ print(d)
 #  [ 6  7  8]
 #  [ 9 10 11]]`
     }
+  ]}
+/>
+
+Arithmetik auf einem Array wirkt auf jedes Element zugleich, ohne Schleife. Für `arr = np.array([1, 2, 3])` liefert `arr + 1` den Wert `[2, 3, 4]`, `arr * 2` den Wert `[2, 4, 6]` und `arr ** 2` den Wert `[1, 4, 9]`.
+
+<ScatterDiagram
+  title={<>Drei elementweise Operationen auf <code>[1, 2, 3]</code></>}
+  description={<>Nach rechts stehen die Indizes <InlineMath math="0" />, <InlineMath math="1" /> und <InlineMath math="2" />. Jede Reihe ist ein Ergebnis: das ursprüngliche Array, <code>arr + 1</code>, <code>arr * 2</code> und <code>arr ** 2</code>. An einem Index benutzt jede Operation nur das Element an diesem Index.</>}
+  xAxisLabel="Index"
+  yAxisLabel="Wert"
+  datasets={[
+    {
+      name: "Original",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 1 },
+        { x: 1, y: 2 },
+        { x: 2, y: 3 },
+      ],
+    },
+    {
+      name: "plus eins",
+      color: "var(--chart-2)",
+      points: [
+        { x: 0, y: 1 + 1 },
+        { x: 1, y: 2 + 1 },
+        { x: 2, y: 3 + 1 },
+      ],
+    },
+    {
+      name: "mal zwei",
+      color: "var(--chart-3)",
+      points: [
+        { x: 0, y: 1 * 2 },
+        { x: 1, y: 2 * 2 },
+        { x: 2, y: 3 * 2 },
+      ],
+    },
+    {
+      name: "quadriert",
+      color: "var(--chart-4)",
+      points: [
+        { x: 0, y: 1 ** 2 },
+        { x: 1, y: 2 ** 2 },
+        { x: 2, y: 3 ** 2 },
+      ],
+    },
   ]}
 />

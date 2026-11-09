@@ -1,32 +1,20 @@
-We need to find the number of days in April <InlineMath math="2024" /> on which Pak Saiful does receive **no shipments** from either Supplier B or C.
+The payback time is **the installation cost divided by the saving per unit of time**. Compute both for 10 panels.
 
-April has a total of <InlineMath math="30\text{ days}" />.
+# Cost and saving
 
-Next, we determine the delivery dates for each supplier, starting from April <InlineMath math="1" />:
+One panel makes 0.9 kWh a day, so **10 panels are needed**.
 
-| Set | Delivery dates |
-| :--- | :--- |
-| <InlineMath math="B" /> | <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="9" />, <InlineMath math="13" />, <InlineMath math="17" />, <InlineMath math="21" />, <InlineMath math="25" />, <InlineMath math="29" /> |
-| <InlineMath math="C" /> | <InlineMath math="1" />, <InlineMath math="8" />, <InlineMath math="15" />, <InlineMath math="22" />, <InlineMath math="29" /> |
+<BlockMath math="\begin{aligned}
+\text{cost}&=10\cdot2{,}430{,}000=24{,}300{,}000\\
+\text{saving per month}&=9\cdot1{,}500\cdot30=405{,}000
+\end{aligned}" />
 
-The days on which Pak Saiful receives a shipment from one or both suppliers are the **union of sets** <InlineMath math="B" /> and <InlineMath math="C" />:
+# Payback time
 
-| Set | Delivery dates |
-| :--- | :--- |
-| <InlineMath math="B\cup C" /> | <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="8" />, <InlineMath math="9" />, <InlineMath math="13" />, <InlineMath math="15" />, <InlineMath math="17" />, <InlineMath math="21" />, <InlineMath math="22" />, <InlineMath math="25" />, <InlineMath math="29" /> |
+<BlockMath math="\frac{24{,}300{,}000}{405{,}000}=60\text{ months}=5\text{ years}" />
 
-April 1 and April 29 appear in both lists. Count each of these overlapping dates only once.
+Each month the saving covers **one sixtieth of the installation cost**, so 60 months are needed.
 
-<BlockMath math="|B\cup C|=8+5-2=11" />
+The value 6 years appears if 12 panels are installed without higher use. The value 10 years appears if only half the saving is counted, and 4 years if the monthly saving is inflated to more than Rp500,000.
 
-The number of days with shipments is <InlineMath math="11\text{ days}" />.
-
-To find the days **without** shipments, we subtract the number of shipment days from the total days in April:
-
-<BlockMath math="30-|B\cup C|" />
-
-<BlockMath math="= 30 - 11" />
-
-<BlockMath math="= 19 \text{ days}" />
-
-Thus, there are <InlineMath math="19\text{ days}" /> where Pak Saiful receives no shipments from B or C.
+So the installation cost is covered after **5 years**.

@@ -1,9 +1,18 @@
-Let <InlineMath math="P" /> be the list price in thousand rupiah. All calculations below use thousand rupiah. Undo the price stages in **reverse order**. The amount before tax was
+A plan works only if it **meets the oven limit and the flour limit at once**: <InlineMath math="x+y\le100" /> and <InlineMath math="50x+100y\le7{,}000" />.
 
-<BlockMath math="\frac{674.325}{1.11}=607.5" />
+# Checking each plan
 
-Before the member discount, it was <InlineMath math="607.5/0.9=675" />. The voucher had been subtracted from <InlineMath math="675+45=720" /> thousand rupiah. This amount is <InlineMath math="80\%" /> of the list price, so
+| Plan | Buns | Flour | Possible? |
+| :--- | :---: | :---: | :---: |
+| 80 chocolate, 30 cheese | 110 | 7,000 g | no, oven |
+| 30 chocolate, 60 cheese | 90 | 7,500 g | no, flour |
+| 70 cheese only | 70 | 7,000 g | yes |
+| 100 chocolate only | 100 | 5,000 g | yes |
 
-<BlockMath math="P=\frac{720}{0.8}=900" />
+The first plan exceeds the oven, while the second **needs more flour than there is**, even though the oven is fine.
 
-The list price was <InlineMath math="900" /> thousand rupiah.
+# Limit on cheese buns
+
+With cheese buns only, the flour is enough for <InlineMath math="\tfrac{7{,}000}{100}=70" /> buns, and 70 buns still fit in the oven. So the third statement is true.
+
+So the first statement is **false**, the second is **false**, the third is **true**, and the fourth is **true**.

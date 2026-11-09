@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "sentence-relation",
+  },
+  stimulus: "rumput",
   versions: {
     id: {
       kind: "choice",
@@ -9,25 +14,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kesalahan klasifikasi membuat seluruh data relawan tidak memiliki nilai ilmiah.",
+            "Kalimat (7) memberikan contoh dari pernyataan pada kalimat (6).",
         },
         {
           correct: false,
-          label: "Daerah tanpa laporan pasti tidak memiliki bibit mangrove.",
+          label: "Kalimat (7) menjelaskan penyebab modal budi daya yang kecil.",
         },
         {
           correct: false,
-          label: "Kesepakatan pada foto saat air pasang tetap lebih rendah.",
+          label: "Kalimat (7) mengulang isi kalimat (6) dengan kata-kata lain.",
         },
         {
           correct: false,
           label:
-            "Kalibrasi dilakukan dengan merata-ratakan seluruh laporan tanpa membedakan jumlah kunjungan dan hasil validasi.",
+            "Kalimat (7) menyimpulkan seluruh isi bacaan tentang budi daya dan pengolahan rumput laut.",
         },
         {
           correct: true,
           label:
-            "Kalibrasi menempatkan kontribusi warga dalam ukuran ketidakpastian yang dapat diperiksa.",
+            "Kalimat (7) menyatakan kelemahan budi daya setelah kalimat (6) menyebut kelebihannya.",
         },
       ],
     },

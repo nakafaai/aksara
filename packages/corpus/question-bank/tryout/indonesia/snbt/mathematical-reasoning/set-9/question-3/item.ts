@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "phone-credit",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$1:1$$",
+          column: 1,
+          label:
+            "Uang muka pembelian kredit adalah $$\\text{Rp}720{.}000{,}00$$.",
         },
         {
-          correct: false,
-          label: "$$2:1$$",
+          column: 2,
+          label:
+            "Bunga flat $$2\\%$$ per bulan berarti total bunga selama 12 bulan sebesar $$2\\%$$ dari pokok.",
         },
         {
-          correct: true,
-          label: "$$3:2$$",
+          column: 1,
+          label:
+            "Dengan bunga flat, besar bunga yang dibayar pada bulan ke-12 sama dengan besar bunga pada bulan pertama.",
         },
         {
-          correct: false,
-          label: "$$5:3$$",
-        },
-        {
-          correct: false,
-          label: "$$2:3$$",
+          column: 2,
+          label:
+            "Jika uang muka dinaikkan, total bunga yang dibayar pembeli kredit ikut naik.",
         },
       ],
     },

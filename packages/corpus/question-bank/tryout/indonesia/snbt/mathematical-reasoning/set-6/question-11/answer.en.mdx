@@ -1,31 +1,18 @@
-This problem asks us to select team members based on their expertise. Since the order of selection does not matter (who is chosen first or second does not change the team composition), we use the concept of **combinations**.
+For each box, compute the volumetric weight, compare it with the actual weight, then **round the larger one up**.
 
-The combination formula is:
+# A small, heavy box
 
-<BlockMath math="C^n_r = \frac{n!}{r!(n - r)!}" />
+The book: its volumetric weight is <InlineMath math="\tfrac{20\cdot15\cdot5}{6{,}000}=0.25" /> kg, far below the actual 2.3 kg. The charge uses 2.3 kg rounded up to 3 kg, so the second statement is true.
 
-# Selecting both specialist groups
+This example also shows that for heavy parcels **the cost is set by the actual weight**. A smaller box for the book would not change the cost, so the first statement is false.
 
-From <InlineMath math="3" /> **mathematicians**, <InlineMath math="2" /> will be chosen:
+# A large box and a cube
 
-<BlockMath math="C^3_2 = \frac{3!}{2!(3 - 2)!}" />
+<BlockMath math="\begin{aligned}
+\frac{60\cdot50\cdot40}{6{,}000}&=\frac{120{,}000}{6{,}000}=20\text{ kg}\\
+\frac{30\cdot30\cdot30}{6{,}000}&=\frac{27{,}000}{6{,}000}=4.5\text{ kg}
+\end{aligned}" />
 
-<BlockMath math="C^3_2 = \frac{3 \times 2!}{2! \times 1!} = 3" />
+The large box is charged 20 kg because 20 kg is more than 8 kg, so the third statement is true. The cube's volumetric weight is 4.5 kg, **not 5 kg**. Rounding up applies only to the charged weight, so the fourth statement is false.
 
-From <InlineMath math="5" /> physicists, <InlineMath math="3" /> will be chosen:
-
-<BlockMath math="C^5_3 = \frac{5!}{3!(5 - 3)!}" />
-
-<BlockMath math="C^5_3 = \frac{5 \times 4 \times 3!}{3! \times 2!}" />
-
-<BlockMath math="C^5_3 = \frac{20}{2} = 10" />
-
-# Calculating Total Ways
-
-**Each pair of mathematicians** can be combined with each group of three physicists. We therefore multiply the two counts:
-
-<BlockMath math="C^3_2 \times C^5_3" />
-
-<BlockMath math="3 \times 10 = 30" />
-
-Thus, there are <InlineMath math="30" /> ways to form the team.
+So the first statement is **false**, the second is **true**, the third is **true**, and the fourth is **false**.

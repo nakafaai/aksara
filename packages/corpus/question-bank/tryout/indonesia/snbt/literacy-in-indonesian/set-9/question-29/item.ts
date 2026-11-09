@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "author-view",
+  },
+  stimulus: "film-review",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Menyatakan bahwa setiap benda yang disebut lebih dari sekali pasti memiliki satu arti yang tetap.",
+          label: "dialog yang panjang dan penuh penjelasan dalam film itu",
+        },
+        {
+          correct: false,
+          label: "jumlah adegan lomba layang-layang yang banyak dalam film",
         },
         {
           correct: false,
           label:
-            "Menggantikan kebutuhan membaca tindakan Wulan karena makna benang sudah ditentukan oleh definisi istilah.",
-        },
-        {
-          correct: false,
-          label:
-            "Membuktikan bahwa penafsiran akhir benar hanya karena benang putih muncul pada awal dan akhir cerita.",
+            "kecepatan cerita yang bergerak dari satu adegan ke adegan lain",
         },
         {
           correct: true,
-          label:
-            "Mengarahkan pembaca menelusuri bagaimana pengulangan benang memperoleh arti berbeda melalui keputusan Wulan dan respons Raka.",
+          label: "cara film menyampaikan perasaan tanpa banyak kata",
         },
         {
           correct: false,
-          label:
-            "Menetapkan bahwa benang putih merupakan lambang sejarah yang berlaku sama dalam setiap cerita tentang kostum.",
+          label: "musik latar yang menjelaskan perasaan setiap tokohnya",
         },
       ],
     },

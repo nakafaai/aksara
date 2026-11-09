@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "data-interpretation",
+  },
+  stimulus: "mebel",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$23$$",
+          label: "Februari",
         },
         {
           correct: false,
-          label: "$$30$$",
-        },
-        {
-          correct: false,
-          label: "$$43$$",
+          label: "Maret",
         },
         {
           correct: true,
-          label: "$$33$$",
+          label: "April",
         },
         {
           correct: false,
-          label: "$$53$$",
+          label: "Mei",
+        },
+        {
+          correct: false,
+          label: "Juni",
         },
       ],
     },

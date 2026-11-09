@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "text-structure",
+  },
+  stimulus: "coffee-picking",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Rata-rata pengembalian dalam dua hari lebih tinggi. Oleh karena itu, simpulan tentang peminjaman payung tetap dibatasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Rata-rata pengembalian dalam dua hari lebih tinggi. Selain itu, simpulan tentang peminjaman payung tetap dibatasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Rata-rata pengembalian dalam dua hari lebih tinggi. Sebelumnya, simpulan tentang peminjaman payung tetap dibatasi.",
-        },
-        {
           correct: true,
           label:
-            "Rata-rata pengembalian dalam dua hari lebih tinggi. Namun, simpulan tentang peminjaman payung tetap dibatasi.",
+            "keadaan dulu dan masalahnya, perubahan cara, lalu hasil perubahan itu",
         },
         {
           correct: false,
-          label:
-            "Rata-rata pengembalian dalam dua hari lebih tinggi. Akibatnya, simpulan tentang peminjaman payung tetap dibatasi.",
+          label: "hasil, lalu penyebab hasil itu",
+        },
+        {
+          correct: false,
+          label: "pendapat, lalu bukti yang mendukung pendapat itu",
+        },
+        {
+          correct: false,
+          label: "perbandingan keadaan dua desa",
+        },
+        {
+          correct: false,
+          label: "langkah-langkah mengolah kopi dari awal sampai akhir",
         },
       ],
     },

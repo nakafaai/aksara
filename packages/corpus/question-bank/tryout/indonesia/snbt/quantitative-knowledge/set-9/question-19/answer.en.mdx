@@ -1,37 +1,20 @@
-# Finding the Number of Male and Female Students
+The point is chosen by area, so the probability is **the area of the favourable region divided by the area of the whole triangle**.
 
-It is known that the **total number of students** is <InlineMath math="50" />.
-Let <InlineMath math="n_L" /> be the number of male students and <InlineMath math="n_P" /> be the number of female students.
-It is also known that the number of female students is <InlineMath math="4" /> more than the number of male students, so:
+# The favourable region
 
-<BlockMath math="n_P = n_L + 4" />
+The line <InlineMath math="x+y=2" /> meets the two legs at <InlineMath math="(2,0)" /> and <InlineMath math="(0,2)" />. The points with <InlineMath math="x+y<2" /> form **a small triangle near the origin** with vertices <InlineMath math="(0,0)" />, <InlineMath math="(2,0)" /> and <InlineMath math="(0,2)" />.
 
-Since the total number of students is <InlineMath math="50" />, then:
+<BlockMath math="\begin{aligned}
+L_{\text{small}}&=\tfrac12\cdot2\cdot2=2\\
+L_{\text{large}}&=\tfrac12\cdot4\cdot4=8
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned} n_L + n_P &= 50 \\ n_L + (n_L + 4) &= 50 \\ 2n_L + 4 &= 50 \\ 2n_L &= 46 \\ n_L &= 23 \end{aligned}" />
+# Probability
 
-So the number of female students is:
+<BlockMath math="P=\frac{2}{8}=\frac14" />
 
-<BlockMath math="\begin{aligned}n_P&=23 + 4\\&=27\end{aligned}" />
+The small triangle is similar to the large one with side ratio <InlineMath math="1:2" />, so **their area ratio is <InlineMath math="1:4" />**.
 
-# Calculating Total Scores
+The value <InlineMath math="\tfrac12" /> uses the side ratio instead of the area ratio. The value <InlineMath math="\tfrac34" /> is the probability of the opposite event, and <InlineMath math="\tfrac18" /> divides by the area of a 4 by 4 square.
 
-Given that the average score of male students (<InlineMath math="\bar{x}_L" />) is <InlineMath math="76" />. Then the **total score of male students** is:
-
-<BlockMath math="\begin{aligned}S_L&=n_L \times \bar{x}_L\\&=23 \times 76\\&=1748\end{aligned}" />
-
-Given that the average score of the entire class (<InlineMath math="\bar x" />) is <InlineMath math="70" />. Then the total score of the entire class is:
-
-<BlockMath math="\begin{aligned}S&=50 \times 70\\&=3500\end{aligned}" />
-
-# Calculating the Average Score of Female Students
-
-The total score of female students can be found by **subtracting the male students’ total from the class total**:
-
-<BlockMath math="\begin{aligned}S_P&=3500 - 1748\\&=1752\end{aligned}" />
-
-Thus, the average score of female students (<InlineMath math="\bar{x}_P" />) is:
-
-<BlockMath math="\begin{aligned}\bar{x}_P&=\frac{S_P}{n_P}\\&=\frac{1752}{27}\\&=64.\overline{8}\\&\approx 64.89\end{aligned}" />
-
-So, rounded to two decimal places, the average score of the female students is <InlineMath math="64.89" />.
+So the probability that the point satisfies <InlineMath math="x+y<2" /> is **<InlineMath math="\tfrac14" />**.

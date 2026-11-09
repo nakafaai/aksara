@@ -1,29 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "weakening",
+  },
+  stimulus: "lampu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$2$$ boneka beruang",
+          label: "Lampu natrium lebih murah dipasang daripada lampu LED.",
         },
         {
           correct: true,
-          label: "$$1$$ boneka beruang dan $$1$$ bola",
+          label:
+            "Penutup penyaring cahaya biru juga mengurangi kecerahan lampu hingga kira-kira separuhnya.",
         },
         {
           correct: false,
-          label: "$$2$$ kelereng",
+          label:
+            "Perangkap di bawah kedua jenis lampu diganti dan dihitung isinya dengan jadwal yang sama setiap minggu.",
         },
         {
           correct: false,
-          label: "$$1$$ bola dan $$1$$ boneka Barbie",
+          label: "Sebagian besar serangga yang tertangkap adalah ngengat.",
         },
         {
           correct: false,
-          label: "$$1$$ boneka Barbie dan $$1$$ kelereng",
+          label:
+            "Penggantian lampu menghemat pemakaian listrik sekitar $$50\\%$$.",
         },
       ],
     },

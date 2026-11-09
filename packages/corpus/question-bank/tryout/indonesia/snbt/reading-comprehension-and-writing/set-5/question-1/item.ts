@@ -1,31 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "main-idea",
+  },
+  stimulus: "indigo-batik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Catatan Awal Sebelum Contoh Foto Diuji",
+          label:
+            "Sisa pewarna sintetis membuat air sungai berwarna gelap dan berbau.",
         },
         {
           correct: false,
-          label: "Pengujian Beberapa Perubahan Serentak dalam Pendataan Pohon",
+          label: "Kain harus dicelup dan dijemur sampai dua puluh kali.",
+        },
+        {
+          correct: false,
+          label: "Wisatawan banyak mencari batik berwarna alami.",
         },
         {
           correct: true,
-          label: "Pengujian Contoh Foto dalam Pendataan Kondisi Pohon Jalan",
-        },
-        {
-          correct: false,
           label:
-            "Tanggapan Pencatat terhadap Perancangan Ulang Permanen Pendataan",
+            "Pewarnaan dengan daun tom lebih lama, tetapi menguntungkan perajin dan lingkungan.",
         },
         {
           correct: false,
-          label: "Evaluasi Menyeluruh atas Semua Kegiatan Pendataan Pohon",
+          label: "Sisa air rendaman daun tom dapat dipakai sebagai pupuk.",
         },
       ],
     },

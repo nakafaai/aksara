@@ -8,26 +8,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pernyataan (1) saja cukup, tetapi pernyataan (2) saja tidak cukup.",
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (2) saja tidak cukup.",
         },
         {
           correct: false,
           label:
-            "Kedua pernyataan cukup jika digunakan bersama-sama, tetapi masing-masing saja tidak cukup.",
+            "Pernyataan (2) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (1) saja tidak cukup.",
         },
         {
           correct: false,
-          label: "Setiap pernyataan cukup jika digunakan sendiri.",
+          label:
+            "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
         },
         {
           correct: true,
           label:
-            "Pernyataan (2) saja cukup, tetapi pernyataan (1) saja tidak cukup.",
+            "Pernyataan (1) saja cukup untuk menjawab pertanyaan dan pernyataan (2) saja cukup.",
         },
         {
           correct: false,
           label:
-            "Kedua pernyataan tetap tidak cukup meskipun digunakan bersama-sama.",
+            "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
         },
       ],
     },

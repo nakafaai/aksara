@@ -1,35 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "awan",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Manfaat pembayaran digital perlu dinilai dengan data yang sebanding dan akses pengguna, sehingga penambahannya tidak otomatis berarti penghapusan tunai.",
+          column: 2,
+          label: "Hujan buatan dapat dibuat walaupun langit benar-benar cerah.",
         },
         {
-          correct: false,
-          label:
-            "Perbedaan waktu transaksi dapat dipengaruhi jenis barang dan bukan hanya cara pembayaran.",
+          column: 1,
+          label: "Garam membantu uap air membentuk tetes yang lebih besar.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Setelah data dipisahkan, keunggulan waktu hampir hilang pada transaksi dengan banyak barang.",
+            "Penyemaian awan dapat dipakai untuk mengurangi hujan yang menumpuk di atas kota.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Uji berikutnya akan memperbaiki jaringan dan membandingkan jumlah barang yang sebanding.",
-        },
-        {
-          correct: false,
-          label:
-            "Pembayaran digital terbukti selalu lebih cepat dan harus menggantikan uang tunai di semua pasar.",
+            "Hasil penyemaian paling mudah dipastikan pada musim kemarau panjang.",
         },
       ],
     },

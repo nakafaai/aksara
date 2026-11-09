@@ -1,30 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "inference",
+  },
+  stimulus: "net-recycling",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Oleh karena itu",
-        },
-        {
-          correct: false,
-          label: "Selain itu",
-        },
-        {
-          correct: false,
-          label: "Dengan kata lain",
-        },
-        {
-          correct: false,
-          label: "Sebelumnya",
-        },
-        {
           correct: true,
-          label: "Meskipun demikian",
+          label:
+            "Nelayan kembali membuang jaring rusak ke pantai atau ke laut.",
+        },
+        {
+          correct: false,
+          label: "Penyu makin aman dari jeratan jaring.",
+        },
+        {
+          correct: false,
+          label: "Pabrik karpet mengambil jaring langsung dari laut.",
+        },
+        {
+          correct: false,
+          label: "Pantai desa menjadi makin bersih.",
+        },
+        {
+          correct: false,
+          label: "Nelayan mendapat penghasilan tambahan yang lebih besar.",
         },
       ],
     },

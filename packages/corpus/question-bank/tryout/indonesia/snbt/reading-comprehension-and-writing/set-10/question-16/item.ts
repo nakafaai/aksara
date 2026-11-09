@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "running-club",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Pengunjung taman memberikan komentar singkat yang tidak panjang.",
+          label: "$$1$$ menit",
+        },
+        {
+          correct: false,
+          label: "$$2$$ menit",
+        },
+        {
+          correct: false,
+          label: "$$3$$ menit",
         },
         {
           correct: true,
-          label: "Pengunjung taman memberikan komentar singkat.",
+          label: "$$5$$ menit",
         },
         {
           correct: false,
-          label:
-            "Pengunjung taman memberikan komentar singkat sebagai orang yang mengunjungi taman.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengunjung taman memberikan komentar singkat dalam bentuk yang singkat.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengunjung taman memberikan komentar singkat, yaitu komentar yang pendek.",
+          label: "$$6$$ menit",
         },
       ],
     },

@@ -1,46 +1,18 @@
-Rani bezahlt **zwei Setzlingspakete und Dünger für die bepflanzte Fläche**. Für die Düngerkosten zählt nicht die gesamte Grundstücksfläche, da ein Teil unbepflanzt bleibt.
+Rechne von der Rechnung zurück zum Verbrauch. Ziehe zuerst die Grundgebühr ab und **verbrauche dann das restliche Geld Stufe für Stufe**, bis nichts übrig bleibt.
 
-# Bepflanzte Fläche berechnen
+# Verbrauchskosten und durchlaufene Stufen
 
-Zwei Pakete enthalten 4 Erdbeer-, 2 Orangen- und 8 Mangosetzlinge. Das Feld für einen Orangensetzling ist doppelt so lang und doppelt so breit wie ein Erdbeerfeld. Die **Fläche ist daher viermal so groß**, nicht nur doppelt so groß.
+<BlockMath math="550\,000-20\,000=530\,000" />
 
-| Setzling | Anzahl | Fläche pro Setzling (cm²) | Gesamtfläche (cm²) |
-| --- | --- | --- | --- |
-| Erdbeere | <InlineMath math="2\times2=4" /> | <InlineMath math="10\times5=50" /> | <InlineMath math="4\times50=200" /> |
-| Orange | <InlineMath math="2\times1=2" /> | <InlineMath math="(2\times10)(2\times5)=200" /> | <InlineMath math="2\times200=400" /> |
-| Mango | <InlineMath math="2\times4=8" /> | <InlineMath math="5\times2{,}5=12{,}5" /> | <InlineMath math="8\times12{,}5=100" /> |
+Eine volle Stufe 1 kostet <InlineMath math="100\cdot1\,000=100\,000" />, eine volle Stufe 2 mit 200 kWh kostet <InlineMath math="200\cdot1\,500=300\,000" />. Zusammen sind das 400 000 für 300 kWh. Da 530 000 mehr als 400 000 ist, **reicht der Verbrauch bis in Stufe 3**.
 
-Addiere die Flächen der drei Gruppen. Zur Umrechnung von cm² in m² teilst du durch <InlineMath math="100^2=10{.}000" />, weil beide Längenmaße umgerechnet werden.
+# Verbrauch in Stufe 3
 
 <BlockMath math="\begin{aligned}
-A&=200+400+100=700\,\mathrm{cm}^2 \\
-&=\frac{700}{10{.}000}\,\mathrm{m}^2 \\
-&=0{,}07\,\mathrm{m}^2
+530\,000-400\,000&=130\,000\\
+\frac{130\,000}{2\,000}&=65\text{ kWh}
 \end{aligned}" />
 
-Die Felder lassen sich auch ohne Überlappung anordnen. Die zwei Orangenfelder bilden eine Reihe von 40 cm × 10 cm, die vier Erdbeerfelder eine Reihe von 40 cm × 5 cm und die acht Mangofelder eine Reihe von 40 cm × 2,5 cm. Zusammen entsteht ein Rechteck von 40 cm × 17,5 cm. Es passt in das 100 cm × 35 cm große Grundstück.
+Der Gesamtverbrauch beträgt <InlineMath math="300+65=365" /> kWh. Kontrolle: <InlineMath math="20\,000+100\,000+300\,000+65\cdot2\,000=550\,000" />.
 
-<LineEquation
-  title="Anordnung der Setzlingsfelder"
-  description="Jedes Rechteck steht für einen Setzling. Violett zeigt Orange, Gelborange Erdbeere und Blaugrün Mango. Die Koordinaten sind in Zentimetern angegeben."
-  cameraPosition={[20,8.75,50]}
-  cameraTarget={[20,8.75,0]}
-  showZAxis={false}
-  data={[
-    ...[{ count: 2, width: 20, bottom: 0, height: 10, color: "#9333ea" }, { count: 4, width: 10, bottom: 10, height: 5, color: "#d97706" }, { count: 8, width: 5, bottom: 15, height: 2.5, color: "#0d9488" }].flatMap(({ count, width, bottom, height, color }) => Array.from({ length: count }, (_,i) => ({ points: [{ x: i*width, y: bottom, z: 0 }, { x: (i+1)*width, y: bottom, z: 0 }, { x: (i+1)*width, y: bottom+height, z: 0 }, { x: i*width, y: bottom+height, z: 0 }, { x: i*width, y: bottom, z: 0 }], color, smooth: false, showPoints: false }))),
-  ]}
-/>
-
-# Kosten für Setzlinge und Dünger berechnen
-
-Setzlinge werden pro Paket bezahlt. Die Düngerkosten richten sich nach **der bepflanzten Fläche von 0,07 m²**. Alle folgenden Geldbeträge sind in Rupiah angegeben.
-
-Dabei bezeichnet <InlineMath math="C_b" /> die Setzlingskosten und <InlineMath math="C_p" /> die Düngerkosten.
-
-<BlockMath math="\begin{aligned}
-C_b&=2\times45{.}000=90{.}000 \\
-C_p&=0{,}07\times100{.}000=7{.}000 \\
-C&=90{.}000+7{.}000=97{.}000
-\end{aligned}" />
-
-Rani bezahlt also **Rp97.000,00**.
+Die Familie hat also **365 kWh** Strom verbraucht.

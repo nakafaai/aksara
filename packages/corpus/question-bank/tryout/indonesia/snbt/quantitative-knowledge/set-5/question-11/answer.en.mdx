@@ -1,32 +1,20 @@
-Given:
-- <InlineMath math="700" /> students in total.
-- <InlineMath math="350" /> students choosing sports.
-- <InlineMath math="450" /> students choosing arts.
+The new square cuts off four right triangles at the corners of the large square. Because every side is divided in the same way, the four triangles are **congruent**, each with legs 3 and 1.
 
-We want to find the value of <InlineMath math="P" /> (**maximum intersection**) and <InlineMath math="Q" /> (minimum intersection).
+# The area of the new square
 
-# Maximum intersection
-The maximum number of students participating in both occurs if the **smaller set is contained in the larger set** (or as many members of the smaller set as possible are included in the larger set).
+Two routes give the same result. The side of the new square is the hypotenuse of a corner triangle, or its area is the large square minus **the four corner triangles**.
 
-<BlockMath math="P = \min(350, 450) = 350 " />
+<BlockMath math="\begin{aligned}
+s^2&=3^2+1^2=10\\
+16-4\cdot\tfrac12\cdot3\cdot1&=16-6=10
+\end{aligned}" />
 
-# Minimum intersection
-The minimum number of students participating in both occurs if the **union is as large as possible** (equal to the total universe, which is <InlineMath math="700" />).
-Using the Inclusion-Exclusion Principle:
+# The ratio of the areas
 
-<BlockMath math="Q = (350 + 450) - 700" />
+Divide **the area of the new square by the area of the large square**.
 
-<BlockMath math="Q = 800 - 700 = 100 " />
+<BlockMath math="\frac{10}{16}=\frac58" />
 
-# Difference between the bounds
+The value <InlineMath math="\tfrac12" /> holds when the points are midpoints of the sides, not a <InlineMath math="3:1" /> division. The value <InlineMath math="\tfrac9{16}" /> uses only <InlineMath math="3^2" /> as the area of the new square. The value <InlineMath math="\tfrac34" /> uses the length ratio <InlineMath math="3:4" /> as the area ratio. The value <InlineMath math="\tfrac14" /> forgets the factor <InlineMath math="\tfrac12" /> in the triangle area and so subtracts 12.
 
-Both bounds are attainable. These **nonoverlapping groups** account for all 700 students in each case.
-
-| Intersection | Sports only | Both | Arts only | Neither |
-| --- | --- | --- | --- | --- |
-| P | 0 | 350 | 100 | 250 |
-| Q | 250 | 100 | 350 | 0 |
-
-<BlockMath math="P - Q = 350 - 100 = 250 " />
-
-Thus, the difference between <InlineMath math="P" /> and <InlineMath math="Q" /> is <InlineMath math="250" /> students.
+So the ratio of the areas is <InlineMath math="\tfrac58" />.

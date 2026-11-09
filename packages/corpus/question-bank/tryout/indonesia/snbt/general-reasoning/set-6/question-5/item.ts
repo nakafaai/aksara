@@ -1,32 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "inductive-reasoning",
+    topic: "data-comparison",
+  },
+  stimulus: "tangga",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Jumlah peminat basket meningkat pada setiap jenjang kelas",
-        },
-        {
-          correct: false,
+          column: 2,
           label:
-            "Peminat seni tari lebih sedikit daripada menyanyi di setiap kelas",
+            "Pada minggu ke-$$5$$, perjalanan naik tangga lebih dari $$30\\%$$ dari seluruh perjalanan.",
         },
         {
-          correct: false,
-          label: "Jumlah peminat melukis meningkat pada setiap jenjang kelas",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "Seni peran paling tidak diminati siswa karena pesertanya selalu paling sedikit pada setiap jenjangnya",
+            "Rata-rata perjalanan naik tangga per hari pada minggu ke-$$1$$ sampai ke-$$4$$ adalah $$305$$.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Di setiap jenjang kelas, menyanyi menjadi kegemaran yang paling sedikit peminatnya",
+            "Perjalanan naik tangga pada minggu ke-$$8$$ masih lebih dari $$20\\%$$ di atas rata-rata minggu ke-$$1$$ sampai ke-$$4$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Penurunan perjalanan naik lift dari minggu ke-$$4$$ ke minggu ke-$$5$$ sama dengan kenaikan perjalanan naik tangga pada minggu yang sama.",
         },
       ],
     },

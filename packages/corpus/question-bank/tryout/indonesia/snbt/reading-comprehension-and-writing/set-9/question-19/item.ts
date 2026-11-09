@@ -1,35 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "sentence-relation",
+  },
+  stimulus: "tooth-brushing",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
+          label: "Kalimat (6) membantah isi kalimat (5).",
+        },
+        {
+          correct: false,
           label:
-            "Tim merubah satu faktor saja, yaitu pemakaian jadwal digital yang langsung diperbarui setelah pembatalan.",
+            "Kalimat (6) menyimpulkan bahwa kegiatan sikat gigi tidak berguna.",
+        },
+        {
+          correct: false,
+          label: "Kalimat (6) memberi contoh siswa kelas IV.",
+        },
+        {
+          correct: false,
+          label: "Kalimat (6) mengulang isi kalimat (5) dengan kata lain.",
         },
         {
           correct: true,
           label:
-            "Tim mengubah satu faktor saja, yaitu pemakaian jadwal digital yang langsung diperbarui setelah pembatalan.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim mengrubah satu faktor saja, yaitu pemakaian jadwal digital yang langsung diperbarui setelah pembatalan.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim hanya mengubah satu faktor saja, yaitu pemakaian jadwal digital yang langsung diperbarui setelah pembatalan.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim mengubah terhadap satu faktor saja, yaitu pemakaian jadwal digital yang langsung diperbarui setelah pembatalan.",
+            "Kalimat (6) menjelaskan penyebab peristiwa dalam kalimat (5).",
         },
       ],
     },

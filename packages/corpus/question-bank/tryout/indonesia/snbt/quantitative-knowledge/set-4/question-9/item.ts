@@ -3,28 +3,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "Rasio barisan tersebut adalah $$\\tfrac12$$." },
         {
-          correct: false,
-          label: "$$-2$$",
+          column: 2,
+          label:
+            "Jumlah semua suku barisan tersebut sampai tak hingga adalah $$64$$.",
         },
         {
-          correct: true,
-          label: "$$-1$$",
+          column: 1,
+          label: "Jumlah lima suku pertama barisan tersebut adalah $$93$$.",
         },
-        {
-          correct: false,
-          label: "$$0$$",
-        },
-        {
-          correct: false,
-          label: "$$1$$",
-        },
-        {
-          correct: false,
-          label: "$$2$$",
-        },
+        { column: 2, label: "Suku keenam barisan tersebut adalah $$3$$." },
       ],
     },
   },

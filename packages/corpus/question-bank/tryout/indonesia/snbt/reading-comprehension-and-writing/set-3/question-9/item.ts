@@ -1,30 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "coherence",
+  },
+  stimulus: "stingless-bees",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "(3)-(4)-(2)-(1)",
+          label:
+            "Madu klanceng paling enak diminum bersama air hangat pada pagi hari.",
         },
         {
           correct: false,
-          label: "(4)-(2)-(3)-(1)",
+          label:
+            "Oleh karena itu, semua petani kopi di Indonesia wajib beternak lebah klanceng.",
+        },
+        {
+          correct: false,
+          label:
+            "Lebah klanceng biasa bersarang di rongga batang kayu atau bambu.",
         },
         {
           correct: true,
-          label: "(4)-(3)-(1)-(2)",
+          label:
+            "Jadi, lebah klanceng tidak hanya menghasilkan madu, tetapi juga membantu panen kopi warga.",
         },
         {
           correct: false,
-          label: "(1)-(4)-(3)-(2)",
-        },
-        {
-          correct: false,
-          label: "(4)-(3)-(2)-(1)",
+          label:
+            "Pakaian pelindung peternak lebah biasanya dibuat dari kain tebal.",
         },
       ],
     },

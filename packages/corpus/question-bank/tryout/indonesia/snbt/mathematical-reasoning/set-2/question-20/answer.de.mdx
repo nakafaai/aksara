@@ -1,30 +1,17 @@
-# Lieferplananalyse
+Die Arzneimenge ist **direkt vor der nächsten Einnahme** am niedrigsten. Prüfe also diese Zeitpunkte für jeden Wert von <InlineMath math="T" />.
 
-Wir müssen das Zeitintervall ermitteln, in dem alle drei Lieferanten gleichzeitig Waren liefern können. Das verwendete Konzept ist das **kleinste gemeinsame Vielfache** (kgV).
+# Der erste Tiefpunkt
 
-Gegebene Liefertermine:
-*   Öl <InlineMath math="A" />: alle <InlineMath math="3\text{ Tage}" />.
-*   Öl <InlineMath math="B" />: alle <InlineMath math="4\text{ Tage}" />.
-*   Öl <InlineMath math="C" />: alle <InlineMath math="x\text{ Tage}" />.
+Direkt vor der zweiten Dosis enthält der Körper nur den Rest der ersten, <InlineMath math="360\cdot\left(\tfrac12\right)^{T/8}" />. **Die Grenze von 90 mg muss hier eingehalten werden**, also
 
-Die erste gemeinsame Lieferung fand am <InlineMath math="1" />. April <InlineMath math="2023" /> statt. Die elfte gemeinsame Lieferung findet <InlineMath math="120\text{ Tage}" /> später statt.
+<BlockMath math="360\cdot\left(\tfrac12\right)^{T/8}\ge90\;\Longleftrightarrow\;\left(\tfrac12\right)^{T/8}\ge\tfrac14\;\Longleftrightarrow\;\tfrac{T}{8}\le2\;\Longleftrightarrow\;T\le16" />
 
-# Abstand gemeinsamer Lieferungen
+# T gleich 16 und 24 prüfen
 
-Zwischen der ersten und der elften gemeinsamen Lieferung liegen <InlineMath math="11-1=10" /> **gleich lange Zeitabstände**. Die insgesamt verstrichene Zeit beträgt <InlineMath math="120\text{ Tage}" />.
+Für <InlineMath math="T=16" /> sind um 22.00 Uhr genau 90 mg vorhanden, was **die Bedingung nicht weniger als 90 mg noch erfüllt**. Nach der zweiten Dosis sind es 450 mg, und am Ende der ersten 24 Stunden noch <InlineMath math="450\cdot\tfrac12=225" /> mg.
 
-<BlockMath math="\frac{120}{10}=12\text{ Tage}" />
+Für <InlineMath math="T=24" /> gibt es vor Stunde 24 keine zweite Dosis, und direkt vor Stunde 24 sind nur noch 45 mg übrig. Dieser Wert scheidet aus.
 
-Das bedeutet, dass alle drei Lieferanten alle <InlineMath math="12\text{ Tage}" /> gleichzeitig Waren liefern. Dies ist der kgV-Wert ihrer Lieferpläne.
+Auch 4, 8 und 12 Stunden erfüllen die Bedingung, sind aber kleiner als 16. Die 8 Stunden locken, weil sie der Halbwertszeit entsprechen, doch die Bedingung ist nur die Grenze von 90 mg.
 
-<BlockMath math="\text{kgV}(3, 4, x) = 12" />
-
-# Bestimmung des unbekannten Werts
-
-Wir wissen, dass <InlineMath math="\text{kgV}(3, 4) = 12" />. Für <InlineMath math="\text{kgV}(12, x) = 12" /> muss <InlineMath math="x" /> ein **Teiler** von <InlineMath math="12" /> sein (eine Zahl, die <InlineMath math="12" /> ohne Rest teilt).
-
-Überprüfen der verfügbaren Optionen:
-*   <InlineMath math="5, 7, 8, 9" /> sind keine Teiler von <InlineMath math="12" />.
-*   <InlineMath math="6" /> ist ein Teiler von <InlineMath math="12" />.
-
-Von den angegebenen Werten ist <InlineMath math="x=6" /> möglich. Auch die anderen positiven Teiler von <InlineMath math="12" /> erfüllen die Gleichung, stehen aber nicht zur Auswahl.
+Der größte passende Wert von <InlineMath math="T" /> ist also **16 Stunden**.

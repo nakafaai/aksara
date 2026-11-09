@@ -1,29 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "word-relation",
+    topic: "synonym",
+  },
+  stimulus: "tabungan",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "**Ruangan** itu dibersihkan kemarin.",
+          column: 1,
+          label: "tidak bersedia",
         },
         {
-          correct: false,
-          label: "**Tarian** itu dimulai siang hari.",
+          column: 1,
+          label: "tidak mau",
         },
         {
-          correct: true,
-          label: "**Tulisan** itu akan segera diterbitkan.",
+          column: 2,
+          label: "bersedia",
         },
         {
-          correct: false,
-          label: "Ia mendengar **panggilan** dari arah belakang.",
-        },
-        {
-          correct: false,
-          label: "Ia memakai **timbangan** untuk menakar tepung.",
+          column: 2,
+          label: "berani",
         },
       ],
     },

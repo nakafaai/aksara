@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "quantitative-reasoning",
+    topic: "data-interpretation",
+  },
+  stimulus: "motor",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "$$64$$",
+          label: "R, S, P, Q",
         },
         {
           correct: false,
-          label: "$$56$$",
+          label: "S, Q, P, R",
         },
         {
           correct: false,
-          label: "$$60$$",
+          label: "R, P, S, Q",
         },
         {
           correct: false,
-          label: "$$68$$",
+          label: "S, R, P, Q",
         },
         {
           correct: false,
-          label: "$$72$$",
+          label: "Q, S, P, R",
         },
       ],
     },

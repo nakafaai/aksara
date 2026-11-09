@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "explicit-information",
+  },
+  stimulus: "medicine-return",
   versions: {
     id: {
       kind: "choice",
@@ -9,24 +14,23 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Pengujian Pemesanan Menu Sehari Sebelumnya dalam Program Sarapan Sekolah",
+            "diserahkan kepada dinas kesehatan, lalu dimusnahkan dengan alat pembakar khusus",
         },
         {
           correct: false,
-          label: "Pengujian Beberapa Perubahan Serentak pada Program Sarapan",
+          label: "dijual kembali kepada warga dengan harga murah",
         },
         {
           correct: false,
-          label: "Catatan Awal Sebelum Pemesanan Sehari Sebelumnya Diuji",
+          label: "dibuang ke saluran air setelah dipilah",
         },
         {
           correct: false,
-          label:
-            "Tanggapan Siswa terhadap Perancangan Ulang Permanen Program Sarapan",
+          label: "dipakai lagi oleh puskesmas untuk pasien lain",
         },
         {
           correct: false,
-          label: "Evaluasi Menyeluruh atas Semua Kegiatan Program Sarapan",
+          label: "disimpan di kotak sampai tanggal kedaluwarsanya lewat",
         },
       ],
     },

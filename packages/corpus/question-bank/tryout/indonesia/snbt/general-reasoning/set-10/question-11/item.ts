@@ -1,29 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "modus-tollens",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$21$$",
+          column: 2,
+          label: "Kelas XI-2 mendapat piala bergilir.",
         },
         {
-          correct: false,
-          label: "$$22$$",
+          column: 1,
+          label: "Kelas XI-2 tidak menjuarai lomba kebersihan.",
         },
         {
-          correct: true,
-          label: "$$24$$",
+          column: 1,
+          label:
+            "Setiap kelas yang menjuarai lomba kebersihan boleh memilih tujuan karyawisata.",
         },
         {
-          correct: false,
-          label: "$$27$$",
-        },
-        {
-          correct: false,
-          label: "$$30$$",
+          column: 2,
+          label:
+            "Setiap kelas yang boleh memilih tujuan karyawisata pasti menjuarai lomba kebersihan.",
         },
       ],
     },

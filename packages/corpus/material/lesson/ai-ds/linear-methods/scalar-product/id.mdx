@@ -59,6 +59,33 @@ Bagi vektor real tak nol, ketaksamaan ini memastikan bahwa sudut dapat didefinis
 
 Dua vektor <InlineMath math="x" /> dan <InlineMath math="y" /> disebut saling ortogonal dalam metrik berbobot <InlineMath math="A" /> ketika <InlineMath math="\langle x,y\rangle_A=0" />. Mengubah <InlineMath math="A" /> berarti mengubah geometri yang dipakai, sehingga vektor yang tegak lurus dalam metrik Euklides <Highlight>belum tentu tegak lurus dalam metrik berbobot</Highlight>.
 
+Dengan produk dalam standar, <InlineMath math="\langle x,y\rangle=3+2=5" />, <InlineMath math="\|x\|=\sqrt{10}" />, dan <InlineMath math="\|y\|=\sqrt5" />. Cauchy-Schwarz berlaku karena <InlineMath math="5\le\sqrt{50}" />, dan <InlineMath math="\cos\theta=5/\sqrt{50}=1/\sqrt2" /> memberi <InlineMath math="\theta=45^\circ" />.
+
+<MathVisual
+  title={<>Proyeksi dan sudut antara <InlineMath math="x=(3,1)" /> dan <InlineMath math="y=(1,2)" /></>}
+  description={<>Vektor ungu <InlineMath math="x" /> dan vektor hijau toska <InlineMath math="y" />. Titik magenta adalah proyeksi <InlineMath math="\tfrac{\langle x,y\rangle}{\langle y,y\rangle}y=y" />, dan ruas abu-abu dari <InlineMath math="x" /> ke titik itu tegak lurus dengan <InlineMath math="y" />. Busur oranye menandai <InlineMath math="45^\circ" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "drop", kind: "segment", from: { x: 3, y: 1 }, to: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "foot", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.6, startDegrees: Math.atan2(1, 3) * 180 / Math.PI, sweepDegrees: 45, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1, y: 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="x" />,
+    "second": <InlineMath math="y" />,
+  }}
+/>
+
 ## Membandingkan Sudut Euklides dan Sudut Berbobot
 
 Misalkan
@@ -77,6 +104,33 @@ Nilai eigen positif memastikan bahwa <InlineMath math="A" /> simetris definit po
 </MathContainer>
 
 Jadi, vektor koordinat yang sama tegak lurus dalam geometri Euklides, tetapi membentuk sudut <InlineMath math="60^\circ" /> dalam geometri <InlineMath math="A" />.
+
+Untuk <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />, kamu dapat <InlineMath math="\langle e_1,e_2\rangle_A=1" /> dan <InlineMath math="\|e_1\|_A=\|e_2\|_A=\sqrt2" />, jadi <InlineMath math="\cos\theta_A=\tfrac12" /> dan <InlineMath math="\theta_A=60^\circ" />. Menulis <InlineMath math="A=LL^T" /> mengubah produk dalam berbobot menjadi produk dalam biasa, <InlineMath math="\langle x,y\rangle_A=(L^Tx)^T(L^Ty)" />, sehingga sudutnya bisa digambar.
+
+<MathVisual
+  title={<><InlineMath math="e_1" /> dan <InlineMath math="e_2" /> membentuk <InlineMath math="60^\circ" /> dalam geometri berbobot</>}
+  description={<>Ruas abu-abu adalah <InlineMath math="e_1" /> dan <InlineMath math="e_2" /> dengan sudut <InlineMath math="90^\circ" />. Dengan <InlineMath math="A=LL^T" /> dan <InlineMath math="L=\begin{pmatrix}\sqrt2&0\\1/\sqrt2&\sqrt{3/2}\end{pmatrix}" />, vektor ungu <InlineMath math="L^Te_1" /> dan vektor hijau toska <InlineMath math="L^Te_2" /> menunjukkan pasangan yang sama diukur dengan <InlineMath math="\langle\cdot,\cdot\rangle_A" />. Busur magenta menandai <InlineMath math="60^\circ" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.6 }, y: { min: -0.3, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "image-first", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT2, y: 0 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "reference" },
+      { id: "image-second", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.sqrt(3 / 2) }, appearance: "construction" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.35, startDegrees: 0, sweepDegrees: 60, appearance: "answer" },
+    ],
+    labels: [
+      { key: "image-first", objectId: "image-first", at: { x: Math.SQRT2, y: 0 }, placement: "below" },
+      { key: "image-second", objectId: "image-second", at: { x: Math.SQRT1_2, y: Math.sqrt(3 / 2) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "image-first": <InlineMath math="L^Te_1" />,
+    "image-second": <InlineMath math="L^Te_2" />,
+  }}
+/>
 
 ## Vektor Kompleks Ortogonal dengan Konjugasi
 
@@ -105,6 +159,39 @@ Prinsip yang sama digunakan dalam kuadrat terkecil berbobot. Residual hasil penc
 Dengan <InlineMath math="A" /> yang sama, proyeksikan <InlineMath math="x=e_2" /> pada <InlineMath math="u=e_1" />. Koefisien berbobotnya <InlineMath math="1/2" />, sedangkan koefisien Euklidesnya nol:
 
 <BlockMath math="\operatorname{proj}^{A}_{e_1}(e_2)=\frac12e_1,\qquad r=\begin{pmatrix}-1/2\\1\end{pmatrix},\qquad e_1^TAr=2(-1/2)+1=0" />
+
+Putar atau perbesar adegan di bawah. Vektor <InlineMath math="e_1" /> dan <InlineMath math="e_2" /> ada di lingkaran satuan abu-abu, jadi panjang Euclides keduanya <InlineMath math="1" />, tapi menurut <InlineMath math="A" /> panjangnya <InlineMath math="\sqrt2" />, karena <InlineMath math="e_1^TAe_1=2" />. Ruas oranye <InlineMath math="r" /> dari <InlineMath math="\tfrac12e_1" /> ke <InlineMath math="e_2" /> tidak kelihatan tegak lurus terhadap <InlineMath math="e_1" />, dan secara Euclides memang tidak. Terhadap <InlineMath math="A" />, keduanya tegak lurus karena <InlineMath math="e_1^TAr=2(-\tfrac12)+1=0" />.
+
+<MathVisual
+  title={<>Residual yang tegak lurus terhadap <InlineMath math="e_1" /> menurut <InlineMath math="A" /></>}
+  description={<>Lingkaran abu-abu adalah <InlineMath math="x^Tx=1" />. Ruas oranye adalah residual <InlineMath math="r=e_2-\tfrac12e_1" /> dari proyeksi berbobot <InlineMath math="e_2" /> ke <InlineMath math="e_1" /> untuk <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "construction" },
+      { id: "residual", kind: "segment", from: { x: 1 / 2, y: 0 }, to: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "foot", kind: "point", at: { x: 1 / 2, y: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "unit", objectId: "unit", at: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-left" },
+      { key: "first", objectId: "first", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "second", objectId: "second", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "residual", objectId: "residual", at: { x: 1 / 4, y: 1 / 2 }, placement: "right" },
+      { key: "foot", objectId: "foot", at: { x: 1 / 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "unit": <InlineMath math="x^Tx=1" />,
+    "first": <InlineMath math="e_1" />,
+    "second": <InlineMath math="e_2" />,
+    "residual": <InlineMath math="r" />,
+    "foot": <InlineMath math="\tfrac12e_1" />,
+  }}
+/>
 
 ## Menuliskan Hasil Kali Dalam sebagai Matriks
 

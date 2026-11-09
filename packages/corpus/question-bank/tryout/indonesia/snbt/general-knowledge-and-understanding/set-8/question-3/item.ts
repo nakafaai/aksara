@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "komodo",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Catatan disusun dari kejadian paling awal hingga paling akhir agar urutan perubahan dapat ditelusuri.",
+            "Di alam, komodo hanya hidup di sebagian wilayah Nusa Tenggara Timur.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Data dikumpulkan menurut urutan langkah yang direncanakan dan diulang dengan aturan yang sama.",
+            "Komodo berburu dengan mengejar mangsanya dalam jarak yang jauh.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Nilai pengukuran berulang tetap berada dalam rentang sempit meskipun waktu pengambilan berbeda.",
+            "Taman Nasional Komodo dimasukkan ke dalam daftar Warisan Dunia pada tahun 1980.",
         },
         {
-          correct: false,
-          label:
-            "Lonjakan muncul pada waktu yang tidak teratur tanpa pola selang yang tetap.",
-        },
-        {
-          correct: true,
-          label:
-            "Dua sensor merekam kejadian pada selang waktu yang sama, bukan secara bergantian.",
+          column: 1,
+          label: "Naiknya permukaan laut dapat mengurangi habitat komodo.",
         },
       ],
     },

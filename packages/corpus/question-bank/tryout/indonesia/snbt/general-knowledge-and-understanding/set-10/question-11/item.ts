@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "term-meaning",
+  },
+  stimulus: "bekantan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "Satu nama tempat dapat benar tetapi tetap menyesatkan jika pembaca menganggapnya mewakili seluruh perjalanan produk.",
+          label: "terbagi menjadi beberapa ruang",
         },
         {
           correct: false,
-          label:
-            "Semua tahap produksi harus dicetak lengkap di bagian depan setiap kemasan.",
+          label: "berukuran sangat kecil dan sempit",
         },
         {
           correct: false,
-          label:
-            "Jika kode tersedia, catatan pemasok tidak perlu lagi diperbarui.",
+          label: "dipenuhi oleh buah yang manis",
         },
         {
           correct: false,
-          label: "Singkong diiris di Desa Rawa dan digoreng di kota.",
+          label: "mudah sekali terluka oleh daun",
         },
         {
           correct: false,
-          label:
-            "Kode kemasan akan mengarah ke catatan rantai pasok yang lebih lengkap.",
+          label: "tidak dapat mencerna daun muda",
         },
       ],
     },

@@ -1,40 +1,28 @@
-Dengan <InlineMath math="f(x)=2x-1" />, kita mencari **jumlah kedua akar** persamaan berikut:
+Bilangan kuadrat sempurna memiliki pangkat genap pada setiap faktor prima, sedangkan bilangan pangkat tiga sempurna memiliki pangkat kelipatan 3. Jadi tulis <InlineMath math="n=2^a\,3^b\,5^c" /> dan tentukan **setiap pangkat secara terpisah**. Faktor prima lain hanya akan membuat <InlineMath math="n" /> lebih besar.
 
-<BlockMath math="6f(x^2)-f^2(x)=6x^2-x" />
+# Syarat untuk setiap pangkat
 
-Pertama, kita cari bentuk dari <InlineMath math="f(x^2)" /> dan <InlineMath math="f^2(x)" /> atau <InlineMath math="(f(x))^2" /> terlebih dahulu.
-
-<BlockMath math="f(x^2) = 2(x^2) - 1 = 2x^2 - 1" />
+Dengan <InlineMath math="20=2^2\cdot5" /> dan <InlineMath math="12=2^2\cdot3" />:
 
 <BlockMath math="\begin{aligned}
-f^2(x)&=(2x-1)^2 \\
-&=4x^2-4x+1
+20n&=2^{a+2}\,3^{b}\,5^{c+1}\\
+12n&=2^{a+2}\,3^{b+1}\,5^{c}
 \end{aligned}" />
 
-Selanjutnya, kita substitusikan hasil tersebut ke dalam persamaan yang diketahui.
+| Faktor prima | Syarat kuadrat dari <InlineMath math="20n" /> | Syarat pangkat tiga dari <InlineMath math="12n" /> | Pangkat terkecil |
+| :---: | :---: | :---: | :---: |
+| 2 | <InlineMath math="a+2" /> genap | <InlineMath math="a+2" /> kelipatan 3 | <InlineMath math="a=4" /> |
+| 3 | <InlineMath math="b" /> genap | <InlineMath math="b+1" /> kelipatan 3 | <InlineMath math="b=2" /> |
+| 5 | <InlineMath math="c+1" /> genap | <InlineMath math="c" /> kelipatan 3 | <InlineMath math="c=3" /> |
 
-<BlockMath math="\begin{gathered}
-6(2x^2-1)-(4x^2-4x+1) \\
-=6x^2-x \\
-12x^2-6-4x^2+4x-1 \\
-=6x^2-x \\
-8x^2+4x-7=6x^2-x
-\end{gathered}" />
+Setiap pangkat harus **memenuhi dua syarat sekaligus**. Misalnya <InlineMath math="a" /> genap dan <InlineMath math="a+2" /> kelipatan 3, sehingga nilai terkecilnya 4.
 
-Kita pindahkan semua suku ke ruas kiri untuk membentuk persamaan kuadrat <InlineMath math="ax^2 + bx + c = 0" />.
+# Menghitung dan memeriksa
 
-<BlockMath math="8x^2 - 6x^2 + 4x + x - 7 = 0" />
+<BlockMath math="n=2^4\cdot3^2\cdot5^3=16\cdot9\cdot125=18{.}000" />
 
-<BlockMath math="2x^2 + 5x - 7 = 0" />
+Cek: <InlineMath math="20n=360{.}000=600^2" /> dan <InlineMath math="12n=216{.}000=60^3" />.
 
-Dari persamaan kuadrat <InlineMath math="2x^2 + 5x - 7 = 0" />, kita peroleh nilai <InlineMath math="a = 2" />, <InlineMath math="b = 5" />, dan <InlineMath math="c = -7" />.
+Nilai 5 hanya memenuhi syarat kuadrat, karena <InlineMath math="20\cdot5=100" />. Nilai 18 hanya memenuhi syarat pangkat tiga, karena <InlineMath math="12\cdot18=216" />. Nilai 90 adalah KPK keduanya, tetapi <InlineMath math="20\cdot90=1800" /> bukan kuadrat sempurna. Nilai 720 memenuhi syarat kuadrat, tetapi <InlineMath math="12\cdot720" /> hanya memuat <InlineMath math="5^1" />.
 
-**Jumlah akar-akar persamaan kuadrat** (<InlineMath math="x_1 + x_2" />) dapat dihitung dengan rumus <InlineMath math="-\frac{b}{a}" />.
-
-<BlockMath math="x_1 + x_2 = -\frac{5}{2}" />
-
-Jadi, nilai <InlineMath math="x_1 + x_2" /> adalah <InlineMath math="-\frac{5}{2}" />.
-
-Sebagai pemeriksaan, persamaan dapat difaktorkan sehingga kedua akar dapat dihitung langsung:
-
-<BlockMath math="(2x+7)(x-1)=0\quad\Rightarrow\quad x_1=1,\ x_2=-\frac72,\ x_1+x_2=-\frac52" />
+Jadi, nilai <InlineMath math="n" /> terkecil adalah **18.000**.

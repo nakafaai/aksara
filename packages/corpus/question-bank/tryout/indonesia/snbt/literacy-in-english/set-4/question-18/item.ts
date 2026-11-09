@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "antikythera",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["True", "False"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "The recurring object gains meaning mainly from its physical description rather than its relation to the choice.",
+            "The mechanism could be used to predict when eclipses were likely.",
         },
         {
-          correct: false,
-          label:
-            "The ending shows that the setting, rather than the character's action, resolves the conflict.",
+          column: 2,
+          label: "Fewer than ten gears have survived from the mechanism.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The object's meaning remains fixed even though the character uses it differently.",
+            "Medieval astronomical clocks were built before the Antikythera mechanism.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "The blank card gains meaning through the curator's hesitation, Eli's invitation to look, and the visitors' closer observation.",
-        },
-        {
-          correct: false,
-          label:
-            "The final action matters because it confirms the interpretation established at the start.",
+            "One dial followed a four-year cycle that included the Olympics.",
         },
       ],
     },

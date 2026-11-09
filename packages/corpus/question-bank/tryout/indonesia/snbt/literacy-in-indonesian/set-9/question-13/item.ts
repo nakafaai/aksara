@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "theme-message",
+  },
+  stimulus: "tea-picker",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Memasang papan baru secara tetap, lalu menganggap berkurangnya pertanyaan kepada petugas sebagai bukti bahwa semua kebutuhan sudah terpenuhi.",
+          label: "persaingan antara para pemetik teh untuk menjadi mandor",
         },
         {
           correct: false,
-          label:
-            "Mengulang uji hanya pada pengunjung berpenglihatan biasa karena kelompok itu memiliki jumlah peserta terbesar.",
+          label: "kehidupan mahasiswa yang merekam tugas kuliah di desa",
         },
         {
           correct: true,
-          label:
-            "Melibatkan kelompok pengguna yang belum terwakili, mengacak kondisi pada blok yang sebanding, lalu melaporkan hasil dan pengalaman setiap kelompok secara terpisah.",
+          label: "nilai keahlian tangan manusia di tengah datangnya mesin",
         },
         {
           correct: false,
-          label:
-            "Menggabungkan semua kelompok ke dalam satu persentase yang lebih besar agar hasil mudah dibandingkan dengan uji pertama.",
+          label: "kerasnya cuaca di perkebunan teh pada pagi hari",
         },
         {
           correct: false,
-          label:
-            "Meminta perancang papan menilai produknya sendiri tanpa pengamatan perjalanan pengguna di jalur tersebut.",
+          label: "hubungan nenek dan cucu yang tinggal berjauhan di kota",
         },
       ],
     },

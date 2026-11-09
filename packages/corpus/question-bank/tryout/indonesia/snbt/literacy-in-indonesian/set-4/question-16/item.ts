@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "coffee-plots",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang perubahan fungsi bangunan bersejarah untuk menyusun penjelasan yang final dan dianggap berlaku untuk semua masa.",
-        },
-        {
-          correct: false,
-          label:
-            "Siswa membandingkan dua jenis sumber tentang perubahan fungsi bangunan bersejarah untuk menyusun penjelasan yang menghapus perbedaan tujuan kedua sumber.",
-        },
-        {
-          correct: false,
-          label:
-            "Siswa membandingkan dua jenis sumber tentang perubahan fungsi bangunan bersejarah untuk menyusun penjelasan dengan mengikuti sumber yang lebih baru secara otomatis.",
-        },
-        {
-          correct: false,
-          label:
-            "Siswa membandingkan dua jenis sumber tentang perubahan fungsi bangunan bersejarah untuk menyusun penjelasan tanpa menilai asal serta tujuan tiap sumber.",
+            "Pohon pelindung merugikan karena hasil biji turun 120 kilogram per hektare.",
         },
         {
           correct: true,
           label:
-            "Siswa membandingkan dua jenis sumber tentang perubahan fungsi bangunan bersejarah untuk menyusun penjelasan yang terbatas dan dapat diperiksa.",
+            "Hasil turun, tetapi harga per kilogram naik sehingga pendapatan bertambah.",
+        },
+        {
+          correct: false,
+          label:
+            "Pohon pelindung tidak berpengaruh karena skor kedua kebun sama-sama di bawah 85.",
+        },
+        {
+          correct: false,
+          label:
+            "Pohon pelindung menaikkan hasil dan skor cita rasa sekaligus.",
+        },
+        {
+          correct: false,
+          label: "Pohon pelindung hanya berguna di ketinggian 1.400 mdpl.",
         },
       ],
     },

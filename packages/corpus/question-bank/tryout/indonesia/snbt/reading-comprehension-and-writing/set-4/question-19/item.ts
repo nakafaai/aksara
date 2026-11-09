@@ -1,35 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "sentence-relation",
+  },
+  stimulus: "water-tank",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
+          label: "Kalimat (5) membantah data bulan April pada tabel.",
+        },
+        {
+          correct: false,
+          label: "Kalimat (5) menyimpulkan bahwa tandon tidak berguna.",
+        },
+        {
+          correct: false,
+          label: "Kalimat (5) memberi contoh rumah yang tidak memakai tandon.",
+        },
+        {
+          correct: false,
           label:
-            "Tim merubah satu faktor saja, yaitu tanda genre di setiap meja.",
+            "Kalimat (5) menjelaskan penyebab turunnya pemakaian air rumah tanpa tandon.",
         },
         {
           correct: true,
           label:
-            "Tim mengubah satu faktor saja, yaitu tanda genre di setiap meja.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim mengrubah satu faktor saja, yaitu tanda genre di setiap meja.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim hanya mengubah satu faktor saja, yaitu tanda genre di setiap meja.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim mengubah terhadap satu faktor saja, yaitu tanda genre di setiap meja.",
+            "Kalimat (5) menjelaskan penyebab naiknya pemakaian air rumah dengan tandon pada bulan April.",
         },
       ],
     },

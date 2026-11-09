@@ -1,33 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "deductive-reasoning",
+    topic: "rule-application",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Pertumbuhan menurun setiap tahun dari $$2013$$ hingga $$2018$$",
-        },
-        {
-          correct: false,
-          label:
-            "Pertumbuhan tidak pernah menurun antara $$2014$$ dan $$2017$$",
+          label: "$$\\text{Rp}94{.}000$$",
         },
         {
           correct: true,
-          label:
-            "Tingkat pertumbuhan $$2013$$ lebih tinggi daripada setiap tingkat pada $$2014$$ hingga $$2018$$",
+          label: "$$\\text{Rp}100{.}000$$",
         },
         {
           correct: false,
-          label: "Pertumbuhan tidak menunjukkan pemulihan setelah $$2015$$",
+          label: "$$\\text{Rp}125{.}000$$",
         },
         {
           correct: false,
-          label:
-            "Penurunan dari $$2014$$ ke $$2015$$ lebih besar daripada kenaikan dari $$2015$$ ke $$2016$$",
+          label: "$$\\text{Rp}135{.}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}150{.}000$$",
         },
       ],
     },

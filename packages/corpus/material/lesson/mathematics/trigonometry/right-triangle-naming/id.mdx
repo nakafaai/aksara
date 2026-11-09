@@ -4,7 +4,7 @@ export const metadata = {
   description: "Kenali sisi depan, sisi samping, dan sisi miring terhadap sudut lancip acuan pada segitiga siku-siku.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-13",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Trigonometri",
 };
 
@@ -13,6 +13,37 @@ export const metadata = {
 Dalam trigonometri segitiga siku-siku, nama sebuah sisi menunjukkan posisinya <Highlight>terhadap sudut lancip yang dipilih</Highlight>. Setelah setiap sisi dikenali dengan benar, perbandingan panjangnya dapat digunakan untuk menghitung jarak atau tinggi yang sulit diukur secara langsung.
 
 Sebagai contoh, tinggi menara dapat dimodelkan sebagai salah satu sisi segitiga siku-siku. Jarak mendatar dan sudut elevasi yang diukur kemudian menentukan perbandingan trigonometri yang digunakan.
+
+Ini contoh menara sebagai segitiga siku-siku. Dilihat dari jarak 40 m, garis pandang ke puncak menara setinggi 30 m adalah sisi miring yang panjangnya <InlineMath math="\sqrt{30^2 + 40^2} = 50" /> m. Terhadap sudut elevasi <InlineMath math="\theta" /> di matamu, menara adalah sisi depan dan jarak di tanah adalah sisi samping.
+
+<MathVisual
+  title={<>Menara sebagai segitiga siku-siku</>}
+  description={<>Menara setinggi 30 m dilihat dari jarak 40 m, dengan garis pandang 50 m dan sudut elevasi <InlineMath math="\theta" /> di pengamat.</>}
+  labels={{
+    tower: <>Menara</>,
+    ground: <>Jarak di tanah</>,
+    sight: <>Garis pandang</>,
+    theta: <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 46 }, y: { min: -3, max: 34 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "sight", kind: "segment", from: { x: 0, y: 0 }, to: { x: 40, y: 30 }, appearance: "primary" },
+      { id: "tower", kind: "segment", from: { x: 40, y: 0 }, to: { x: 40, y: 30 }, appearance: "secondary" },
+      { id: "ground", kind: "segment", from: { x: 0, y: 0 }, to: { x: 40, y: 0 }, appearance: "construction" },
+      { id: "right", kind: "polygon", vertices: [{ x: 40, y: 0 }, { x: 75 / 2, y: 0 }, { x: 75 / 2, y: 5 / 2 }, { x: 40, y: 5 / 2 }], appearance: "reference" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 6, startDegrees: 0, sweepDegrees: Math.atan2(30, 40) * 180 / Math.PI, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "sight", objectId: "sight", at: { x: 20, y: 15 }, placement: "above-left" },
+      { key: "tower", objectId: "tower", at: { x: 40, y: 15 }, placement: "right" },
+      { key: "ground", objectId: "ground", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "theta", objectId: "theta", at: { x: 6 * Math.cos(Math.atan2(30, 40) / 2), y: 6 * Math.sin(Math.atan2(30, 40) / 2) }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Tiga Nama Sisi dalam Segitiga dengan Sudut Siku
 
@@ -25,19 +56,38 @@ Pilih salah satu sudut lancip sebagai sudut acuan. Jika sudut itu adalah <Inline
 3. **Sisi miring atau hipotenusa**: sisi yang berada di seberang sudut siku-siku, <InlineMath math="90^\circ" />. Sisi ini selalu menjadi sisi terpanjang pada segitiga siku-siku.
 
 <ContentBlock>
-  <Triangle
-    title="Segitiga Siku-siku"
-    description={
-      <>
-        Segitiga siku-siku dengan sudut <InlineMath math="\theta" /> dan sisi
-        depan, sisi samping, dan sisi miring.
-      </>
-    }
-    angle={30}
+  <MathVisual
+    title={<>Nama sisi terhadap <InlineMath math="\theta" /></>}
+    description={<>Segitiga siku-siku dengan sudut acuan <InlineMath math="\theta = 30^\circ" /> di <InlineMath math="A" />: sisi miring <InlineMath math="AB" />, sisi depan <InlineMath math="BC" />, dan sisi samping <InlineMath math="AC" />.</>}
     labels={{
-      opposite: "Sisi Depan",
-      adjacent: "Sisi Samping",
-      hypotenuse: "Sisi Miring",
+      opp: <>Sisi Depan</>,
+      adj: <>Sisi Samping</>,
+      hyp: <>Sisi Miring</>,
+      theta: <InlineMath math="\theta" />,
+      a: <InlineMath math="A" />,
+      b: <InlineMath math="B" />,
+      c: <InlineMath math="C" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 6.4 }, y: { min: -0.7, max: 3.6 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "hyp", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "primary" },
+        { id: "opp", kind: "segment", from: { x: 3 * Math.sqrt(3), y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "secondary" },
+        { id: "adj", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 0 }, appearance: "construction" },
+        { id: "right", kind: "polygon", vertices: [{ x: 3 * Math.sqrt(3), y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 7 / 20 }, { x: 3 * Math.sqrt(3), y: 7 / 20 }], appearance: "reference" },
+        { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 30, appearance: "highlight" },
+      ],
+      labels: [
+        { key: "hyp", objectId: "hyp", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "above-left" },
+        { key: "opp", objectId: "opp", at: { x: 3 * Math.sqrt(3), y: 3 / 2 }, placement: "right" },
+        { key: "adj", objectId: "adj", at: { x: 3 * Math.sqrt(3) / 2, y: 0 }, placement: "below" },
+        { key: "theta", objectId: "theta", at: { x: Math.cos(Math.PI / 12), y: Math.sin(Math.PI / 12) }, placement: "right" },
+        { key: "a", objectId: "hyp", at: { x: 0, y: 0 }, placement: "below-left" },
+        { key: "b", objectId: "hyp", at: { x: 3 * Math.sqrt(3), y: 3 }, placement: "above-right" },
+        { key: "c", objectId: "right", at: { x: 3 * Math.sqrt(3), y: 0 }, placement: "below-right" },
+      ],
     }}
   />
 </ContentBlock>
@@ -56,3 +106,40 @@ Misalkan <InlineMath math="ABC" /> siku-siku di <InlineMath math="C" />. Kedua p
 | <InlineMath math="B" /> | <InlineMath math="AC" /> | <InlineMath math="BC" /> | <InlineMath math="AB" /> |
 
 Tabel tersebut menunjukkan **pertukaran nama kedua kaki**. Jika kamu berpindah dari sudut <InlineMath math="A" /> ke sudut <InlineMath math="B" />, panjang <InlineMath math="BC" /> tidak berubah, tetapi perannya berubah dari sisi depan menjadi sisi samping.
+
+Pindahkan sudut acuan ke <InlineMath math="B" /> lalu lihat lagi. <InlineMath math="AB" /> tetap sisi miring karena menghadap sudut siku-siku di <InlineMath math="C" />, tetapi sekarang <InlineMath math="AC" /> menjadi sisi depan dan <InlineMath math="BC" /> menjadi sisi samping.
+
+<MathVisual
+  title={<>Segitiga yang sama dilihat dari sudut <InlineMath math="B" /></>}
+  description={<>Segitiga <InlineMath math="ABC" /> dengan sudut siku-siku di <InlineMath math="C" /> dan sudut acuan di <InlineMath math="B" />: <InlineMath math="AC" /> sisi depan, <InlineMath math="BC" /> sisi samping, <InlineMath math="AB" /> sisi miring.</>}
+  labels={{
+    opp: <>Sisi Depan</>,
+    adj: <>Sisi Samping</>,
+    hyp: <>Sisi Miring</>,
+    theta: <InlineMath math="\theta" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 6.4 }, y: { min: -0.7, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "hyp", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "primary" },
+      { id: "adj", kind: "segment", from: { x: 3 * Math.sqrt(3), y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "construction" },
+      { id: "opp", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 0 }, appearance: "secondary" },
+      { id: "right", kind: "polygon", vertices: [{ x: 3 * Math.sqrt(3), y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 7 / 20 }, { x: 3 * Math.sqrt(3), y: 7 / 20 }], appearance: "reference" },
+      { id: "theta", kind: "arc", center: { x: 3 * Math.sqrt(3), y: 3 }, radius: 4 / 5, startDegrees: 210, sweepDegrees: 60, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "hyp", objectId: "hyp", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "above-left" },
+      { key: "opp", objectId: "opp", at: { x: 3 * Math.sqrt(3) / 2, y: 0 }, placement: "below" },
+      { key: "adj", objectId: "adj", at: { x: 3 * Math.sqrt(3), y: 3 / 2 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 3 * Math.sqrt(3) - 0.5, y: 3 - 0.8 }, placement: "below-left" },
+      { key: "a", objectId: "hyp", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "hyp", at: { x: 3 * Math.sqrt(3), y: 3 }, placement: "above-right" },
+      { key: "c", objectId: "right", at: { x: 3 * Math.sqrt(3), y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>

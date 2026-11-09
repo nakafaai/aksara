@@ -1,31 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "biconditional",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Setiap distrik di kota pasti berstatus banjir.",
+          column: 2,
+          label: "Jika hari sudah gelap, lampu taman pasti menyala.",
         },
         {
-          correct: false,
-          label: "Distrik X tidak mungkin berstatus banjir.",
+          column: 1,
+          label: "Jika lampu taman menyala, hari pasti sudah gelap.",
         },
         {
-          correct: false,
-          label: "Semua warga kota harus segera meninggalkan kota.",
-        },
-        {
-          correct: true,
+          column: 2,
           label:
-            "Penduduk Distrik X yang terdaftar menerima perintah evakuasi.",
+            "Jika sensor tidak mendeteksi gerakan, lampu taman tetap dapat menyala asalkan hari sudah gelap.",
         },
         {
-          correct: false,
-          label:
-            "Tidak dapat ditentukan apakah penduduk Distrik X yang terdaftar menerima perintah evakuasi.",
+          column: 1,
+          label: "Jika hari masih terang, lampu taman pasti tidak menyala.",
         },
       ],
     },

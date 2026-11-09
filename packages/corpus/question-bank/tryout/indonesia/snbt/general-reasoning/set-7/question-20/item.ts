@@ -1,31 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "ordering",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Simpulan tersebut mungkin benar, tetapi tidak pasti benar.",
+          label: "Gedung E adalah gedung yang paling rendah.",
         },
         {
           correct: false,
-          label: "Simpulan tersebut pasti salah.",
+          label: "Gedung B adalah gedung tertinggi kedua.",
         },
         {
           correct: true,
-          label: "Simpulan tersebut pasti benar.",
+          label: "Gedung A adalah gedung yang paling tinggi.",
         },
         {
           correct: false,
-          label:
-            "Simpulan tersebut tidak relevan dengan informasi yang diberikan.",
+          label: "Gedung E lebih tinggi daripada gedung D.",
         },
         {
           correct: false,
-          label:
-            "Simpulan tersebut tidak dapat dinilai karena informasi tidak cukup.",
+          label: "Gedung C adalah gedung yang paling rendah.",
         },
       ],
     },

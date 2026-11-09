@@ -88,6 +88,39 @@ open document.html`
   }]}
 />
 
+Die Anzahl der `#`-Zeichen am Zeilenanfang bestimmt die Überschriftenebene, und diese Ebenen bilden die Gliederung des Dokuments. Eine `##`-Überschrift gehört unter die nächste `#`-Überschrift darüber, eine `###`-Überschrift unter die nächste `##`.
+
+<MathVisual
+  title={<>Die Gliederung aus Markdown-Überschriften</>}
+  description={<>Der violette Punkt ist die <code>#</code>-Überschrift, die türkisen Punkte sind zwei <code>##</code>-Überschriften, und der orange Punkt ist eine <code>###</code>-Überschrift im ersten Teil. Die grauen Linien zeigen, welcher Teil welchen enthält.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.6, max: 0.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "to-first", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1.2, y: -1 }, appearance: "reference" },
+      { id: "to-second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.2, y: -1 }, appearance: "reference" },
+      { id: "to-detail", kind: "segment", from: { x: -1.2, y: -1 }, to: { x: -1.2, y: -2 }, appearance: "reference" },
+      { id: "title", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "first", kind: "point", at: { x: -1.2, y: -1 }, appearance: "construction" },
+      { id: "second", kind: "point", at: { x: 1.2, y: -1 }, appearance: "construction" },
+      { id: "detail", kind: "point", at: { x: -1.2, y: -2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "title", objectId: "title", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "first", objectId: "first", at: { x: -1.2, y: -1 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 1.2, y: -1 }, placement: "right" },
+      { key: "detail", objectId: "detail", at: { x: -1.2, y: -2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "title": <code># Notes</code>,
+    "first": <code>## Setup</code>,
+    "second": <code>## Usage</code>,
+    "detail": <code>### Install</code>,
+  }}
+/>
+
 ## Grundlagen der Befehlszeilenschnittstelle
 
 Eine Befehlszeilenschnittstelle oder CLI nimmt **Textbefehle über eine Shell** entgegen. Jeder Befehl besteht aus einem Programmnamen, optionalen Schaltern und Argumenten wie Pfaden.
@@ -348,3 +381,61 @@ chmod +x scripts/build-docs.sh
 />
 
 Markdown hält die Dokumentstruktur in der Versionsverwaltung lesbar. Mit einer CLI lassen sich dieselben Prüf- und Umwandlungsschritte erneut ausführen. Ein verlässlicher Ablauf bewahrt diese Grenze: Bearbeite die Quelle, prüfe Befehle und Pfade, erzeuge die Ausgabe neu und begutachte die entstandenen Änderungen.
+
+Stell dir vor, dein aktueller Arbeitsordner ist `/home/user`, der magentafarbene Punkt in diesem Baum. `cd projects` geht entlang der türkisen Strecke eine Ebene tiefer in einen Unterordner, und dort würde `ls` die Datei `notes.md` zeigen. `cd ..` geht über die orange Strecke zurück zum übergeordneten Ordner. Ein relativer Pfad wie `projects` zählt vom Arbeitsordner aus, ein absoluter Pfad wie `/home/user/docs` beginnt immer bei der Wurzel.
+
+<MathVisual
+  title={<>Mit <code>cd</code> zwischen Ordnern wechseln</>}
+  description={<>Jeder Punkt ist ein Ordner oder eine Datei. Der magentafarbene Punkt ist der aktuelle Arbeitsordner, die türkise Strecke ist <code>cd projects</code> und die orange Strecke <code>cd ..</code></>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 4.2 }, y: { min: -3.6, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "home", kind: "point", at: { x: 1.5, y: 1 }, appearance: "reference" },
+      { id: "user", kind: "point", at: { x: 1.5, y: 0 }, appearance: "answer" },
+      { id: "docs", kind: "point", at: { x: 0, y: -1.5 }, appearance: "reference" },
+      { id: "projects", kind: "point", at: { x: 3, y: -1.5 }, appearance: "reference" },
+      { id: "notes", kind: "point", at: { x: 3, y: -3 }, appearance: "reference" },
+      { id: "edge-a", kind: "segment", from: { x: 1.5, y: 1 }, to: { x: 1.5, y: 0 }, appearance: "reference" },
+      { id: "edge-b", kind: "segment", from: { x: 1.5, y: 0 }, to: { x: 0, y: -1.5 }, appearance: "reference" },
+      { id: "edge-c", kind: "segment", from: { x: 1.5, y: 0 }, to: { x: 3, y: -1.5 }, appearance: "reference" },
+      { id: "edge-d", kind: "segment", from: { x: 3, y: -1.5 }, to: { x: 3, y: -3 }, appearance: "reference" },
+      { id: "down", kind: "segment", from: { x: 1.8, y: -0.1 }, to: { x: 2.9, y: -1.2 }, appearance: "construction" },
+      { id: "up", kind: "segment", from: { x: 2.7, y: -1.6 }, to: { x: 1.6, y: -0.4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "home", objectId: "home", at: { x: 1.5, y: 1 }, placement: "above" },
+      { key: "user", objectId: "user", at: { x: 1.5, y: 0 }, placement: "left" },
+      { key: "docs", objectId: "docs", at: { x: 0, y: -1.5 }, placement: "below" },
+      { key: "projects", objectId: "projects", at: { x: 3, y: -1.5 }, placement: "right" },
+      { key: "notes", objectId: "notes", at: { x: 3, y: -3 }, placement: "below" },
+      { key: "down", objectId: "down", at: { x: 2.9, y: -1.2 }, placement: "above-right" },
+      { key: "up", objectId: "up", at: { x: 1.6, y: -0.4 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "home": "/home",
+    "user": "user",
+    "docs": "docs",
+    "projects": "projects",
+    "notes": "notes.md",
+    "down": "cd projects",
+    "up": "cd ..",
+  }}
+/>
+
+Ein absoluter Pfad beginnt bei der Wurzel `/`, und jeder weitere Schrägstrich geht eine Ebene tiefer. `pwd` gibt diesen Pfad für den aktuellen Arbeitsordner aus, und `cd ..` steigt eine Ebene zum übergeordneten Ordner hinauf.
+
+<BarChart
+  title={<>Ordnertiefe entlang eines absoluten Pfads</>}
+  description={<>Jeder Balken ist die Anzahl der Ebenen unter der Wurzel für den darunter stehenden Pfad. Die Wurzel <code>/</code> liegt in Tiefe <InlineMath math="0" />, und jeder Ordnername fügt eins hinzu.</>}
+  yAxisLabel="Tiefe"
+  data={[
+    { name: "/", value: 0 },
+    { name: "/home", value: 1 },
+    { name: "/home/user", value: 2 },
+    { name: "/home/user/projects", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Tiefe", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>

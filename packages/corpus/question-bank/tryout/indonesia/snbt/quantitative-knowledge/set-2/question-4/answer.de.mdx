@@ -1,49 +1,22 @@
-Für die Bestehensquote prüfen wir bei jeder Person **zwei Bedingungen**:
-1. Die Punktzahl in Naturwissenschaften muss höher sein als der Median der Naturwissenschaftsergebnisse aller Schüler.
-2. Der Mittelwert der beiden Prüfungsergebnisse muss größer als <InlineMath math="85" /> sein. Addiere die Ergebnisse in Mathematik und Naturwissenschaften und teile durch <InlineMath math="2" />.
+Beide Gleichungen sind symmetrisch in <InlineMath math="x" /> und <InlineMath math="y" />, deshalb **setzt du <InlineMath math="s=x+y" /> und <InlineMath math="p=xy" />**. Die zweite Gleichung lässt sich als <InlineMath math="xy(x+y)" /> faktorisieren.
 
-# Median der naturwissenschaftlichen Punktzahlen
+<BlockMath math="s+p=11,\qquad sp=30" />
 
-Die Ergebnisse in Naturwissenschaften sind: <InlineMath math="78, 82, 87, 85, 79, 88, 81, 80" />.
+# s und p bestimmen
 
-**Aufsteigend sortiert** lauten die Werte:
-<InlineMath math="78, 79, 80, 81, 82, 85, 87, 88" />.
+Die Zahlen <InlineMath math="s" /> und <InlineMath math="p" /> haben die Summe 11 und das Produkt 30, sie sind also die Lösungen von <InlineMath math="t^2-11t+30=0" />, nämlich 5 und 6. Es gibt **zwei Möglichkeiten**: <InlineMath math="(s,p)=(5,6)" /> oder <InlineMath math="(s,p)=(6,5)" />.
 
-Da es <InlineMath math="8" /> Datenpunkte gibt, ist der Median der Durchschnitt des <InlineMath math="4" />-ten und <InlineMath math="5" />-ten Datenpunkts:
+Jede Möglichkeit muss reelle Werte für <InlineMath math="x" /> und <InlineMath math="y" /> liefern. Diese sind die Lösungen von <InlineMath math="t^2-st+p=0" />.
 
-<BlockMath math="\begin{aligned}\text{Median}&=\frac{81 + 82}{2}\\&=81{,}5\end{aligned}" />
+| <InlineMath math="(s,p)" /> | Gleichung | <InlineMath math="(x,y)" /> | <InlineMath math="x^2+y^2=s^2-2p" /> |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="(5,6)" /> | <InlineMath math="t^2-5t+6=0" /> | 2 und 3 | <InlineMath math="25-12=13" /> |
+| <InlineMath math="(6,5)" /> | <InlineMath math="t^2-6t+5=0" /> | 1 und 5 | <InlineMath math="36-10=26" /> |
 
-Die erste Bedingung erfüllen die folgenden Schüler mit einer naturwissenschaftlichen Punktzahl von <InlineMath math="> 81{,}5" />:
-- Boni (<InlineMath math="82" />)
-- Cindy (<InlineMath math="87" />)
-- Dita (<InlineMath math="85" />)
-- Fani (<InlineMath math="88" />)
+# Größten Wert wählen
 
-Die naturwissenschaftlichen Punktzahlen der anderen Schüler (Ayu, Erfan, Gilang und Herman) liegen nicht über dem Median. Sie erfüllen daher bereits die erste Bedingung nicht.
+Beide Paare sind reell und erfüllen das System. Probe für das zweite Paar: <InlineMath math="1+5+5=11" /> und <InlineMath math="1^2(5)+1(5^2)=30" />. Der **größte** Wert ist 26.
 
-# Den Durchschnitt der beiden Prüfungen prüfen
+Der Wert 13 verwendet nur die erste Möglichkeit. Die Werte 25 und 36 sind <InlineMath math="s^2" />, dort fehlt die Subtraktion von <InlineMath math="2p" />. Der Wert 31 zieht nur <InlineMath math="p" /> statt <InlineMath math="2p" /> ab.
 
-Nun prüfen wir die zweite Bedingung für die vier Personen, die über dem Median liegen:
-
-Mit <InlineMath math="\bar x" /> bezeichnen wir den Mittelwert der beiden Prüfungsergebnisse einer Person.
-
-| Person | Mittelwert | Zweite Bedingung erfüllt |
-| --- | --- | --- |
-| Boni | <InlineMath math="\frac{92+82}2=\frac{174}2=87" /> | Ja, <InlineMath math="87>85" /> |
-| Cindy | <InlineMath math="\frac{90+87}2=\frac{177}2=88{,}5" /> | Ja, <InlineMath math="88{,}5>85" /> |
-| Dita | <InlineMath math="\frac{86+85}2=\frac{171}2=85{,}5" /> | Ja, <InlineMath math="85{,}5>85" /> |
-| Fani | <InlineMath math="\frac{88+88}2=\frac{176}2=88" /> | Ja, <InlineMath math="88>85" /> |
-
-Alle vier erfüllen **beide Bedingungen zugleich**. Somit bestehen vier von acht Personen.
-
-# Berechnung der ersten Größe
-
-Im Nenner stehen **alle acht Personen**, nicht nur die Personen oberhalb des Medians:
-
-<BlockMath math="\begin{aligned}P&=\frac{4}{8} \times 100\%\\&=50\%\end{aligned}" />
-
-Es gilt <InlineMath math="Q = 65\%" />.
-
-Damit folgt:
-
-<BlockMath math="\begin{gathered}50\%<65\%\\P<Q\quad\Longleftrightarrow\quad Q>P\end{gathered}" />
+Der größtmögliche Wert von <InlineMath math="x^2+y^2" /> ist also **26**.

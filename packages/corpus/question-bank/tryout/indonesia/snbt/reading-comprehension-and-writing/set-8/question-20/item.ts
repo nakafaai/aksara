@@ -1,35 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "conclusion",
+  },
+  stimulus: "minibus-schedule",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
+          label: "Penumpang angkutan kota itu terus bertambah setiap bulan.",
+        },
+        {
+          correct: false,
           label:
-            "Karena 29 lebih tinggi daripada 19 dan 21, tim langsung mengganti seluruh laporan bebas dengan formulir pilihan.",
+            "Jadwal tetap membuat angkutan selalu berangkat dengan penumpang penuh.",
         },
         {
           correct: true,
           label:
-            "Tim membandingkan rata-rata 29, 19, dan 21, belum membenarkan penggantian seluruh kolom bebas, serta merencanakan uji lebih panjang atas pilihan lokasi tambahan dengan ukuran pencocokan pada hari yang sama.",
+            "Sejak angkutan berangkat menurut jadwal tetap, waktu tunggu menjadi jauh lebih singkat dan penumpang bertambah.",
         },
         {
           correct: false,
           label:
-            "Tim membandingkan 29, 19, dan 21 serta merencanakan uji lanjutan tanpa membatasi cakupan klaim.",
+            "Papan jadwal di halte membuat penumpang bertambah pada bulan April.",
         },
         {
           correct: false,
-          label:
-            "Tim mempertahankan laporan bebas dan merencanakan uji lanjutan tanpa menyebut perbandingan hasil.",
-        },
-        {
-          correct: false,
-          label:
-            "Nilai 29, 19, dan 21 tidak menunjukkan pola yang relevan sehingga tim akan mengubah ukuran pencocokan.",
+          label: "Waktu tunggu yang lama membuat penumpang bertambah.",
         },
       ],
     },

@@ -1,53 +1,19 @@
-Gegeben sind die **ersten beiden Glieder** <InlineMath math="a_1 = -6" /> und <InlineMath math="a_2 = -8" /> sowie die Rekursionsgleichung:
+Du musst <InlineMath math="N" /> nicht direkt ausrechnen. Jedes Paar aus einem Faktor 2 und einem Faktor 5 ergibt einen Faktor 10, deshalb **bildest du möglichst viele Paare aus 2 und 5**.
 
-<BlockMath math="a_{n+1} = 2a_{n+2} + 3a_n" />
+# Zehnerpotenz bilden
 
-Für <InlineMath math="a_3 + 2a_4" /> bestimmen wir nacheinander <InlineMath math="a_3" /> und <InlineMath math="2a_4" />.
+Es gibt **sieben Faktoren 5**, also lassen sich sieben Faktoren 2 mit ihnen paaren. Drei Faktoren 2 bleiben übrig.
 
-# Drittes Glied bestimmen
+<BlockMath math="\begin{aligned}
+N&=2^{3}\times\left(2^{7}\times5^{7}\right)\times3\\
+&=2^3\times3\times10^7\\
+&=24\times10^7=240{.}000{.}000
+\end{aligned}" />
 
-Zuerst setzen wir <InlineMath math="n = 1" /> in die Rekursionsgleichung ein:
+# Ziffern zählen
 
-<BlockMath math="a_{1+1} = 2a_{1+2} + 3a_1" />
+Die Zahl <InlineMath math="24\times10^7" /> besteht aus den Ziffern 2 und 4, gefolgt von **sieben Nullen**, sie hat also <InlineMath math="2+7=9" /> Ziffern.
 
-<BlockMath math="a_2 = 2a_3 + 3a_1" />
+Der Wert 7 zählt nur die Endnullen. Der Wert 8 behandelt <InlineMath math="2^3\times3" /> wie eine einzige Ziffer. Der Wert 10 ist der Exponent von 2, und der Wert 17 addiert die beiden Exponenten <InlineMath math="10+7" />.
 
-Dann setzen wir die bekannten Werte von <InlineMath math="a_1" /> und <InlineMath math="a_2" /> ein:
-
-<BlockMath math="-8 = 2a_3 + 3(-6)" />
-
-<BlockMath math="-8 = 2a_3 - 18" />
-
-Wir **addieren 18 auf beiden Seiten**, um das dritte Glied zu isolieren:
-
-<BlockMath math="2a_3 = -8 + 18" />
-
-<BlockMath math="2a_3 = 10" />
-
-<BlockMath math="a_3 = 5" />
-
-# Doppeltes des vierten Glieds bestimmen
-
-Nun setzen wir <InlineMath math="n = 2" /> ein, sodass <InlineMath math="a_4" /> in der Gleichung erscheint:
-
-<BlockMath math="a_{2+1} = 2a_{2+2} + 3a_2" />
-
-<BlockMath math="a_3 = 2a_4 + 3a_2" />
-
-Wir setzen <InlineMath math="a_3 = 5" /> und <InlineMath math="a_2 = -8" /> ein:
-
-<BlockMath math="5 = 2a_4 + 3(-8)" />
-
-<BlockMath math="5 = 2a_4 - 24" />
-
-Da die Aufgabe direkt nach <InlineMath math="a_3 + 2a_4" /> fragt, bestimmen wir direkt das **Doppelte des vierten Glieds** <InlineMath math="2a_4" />:
-
-<BlockMath math="2a_4 = 5 + 24" />
-
-<BlockMath math="2a_4 = 29" />
-
-Nun summieren wir die erhaltenen Werte:
-
-<BlockMath math="a_3 + 2a_4 = 5 + 29 = 34" />
-
-Damit hat <InlineMath math="a_3 + 2a_4" /> den Wert <InlineMath math="34" />.
+Die Zahl <InlineMath math="N" /> hat also **9 Ziffern**.

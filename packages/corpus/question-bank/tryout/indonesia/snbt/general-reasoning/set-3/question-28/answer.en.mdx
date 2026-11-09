@@ -1,32 +1,20 @@
-# Place exactly one report at an end
+Mark each statement Benar (true) or Salah (false). The path lies outside the garden, so **its outer edge forms a larger rectangle**. Each side grows by twice the path width, once at each end.
 
-Choose one report from <InlineMath math="A" /> and <InlineMath math="B" />, then choose the left or right end. There are <InlineMath math="2\times2=4" /> choices. For each choice, the other seven reports have <InlineMath math="7!" /> arrangements.
+<BlockMath math="\begin{aligned}
+\text{outer size} &= (26+2\times1.5)\times(18+2\times1.5)=29\times21 \\
+\text{path area} &= 29\times21-26\times18=609-468=141\text{ m}^2
+\end{aligned}" />
 
-The condition is **exactly one**, so we must exclude the <InlineMath math="6!" /> arrangements with the other member of the pair at the opposite end. The remaining six reports freely occupy the six middle positions. Our initial count is
+**Statement 1** is true, as computed above.
 
-<BlockMath math="4(7!-6!)=4(5040-720)=17\,280." />
+**Statement 2** is true. The outer perimeter is <InlineMath math="2(29+21)=100\text{ m}" />.
 
-# Exclude adjacent pairs
+**Statement 3** is false. With a width of <InlineMath math="3\text{ m}" />:
 
-To count the forbidden arrangements, treat <InlineMath math="E" /> and <InlineMath math="F" /> as **one block**. The block can contain <InlineMath math="EF" /> or <InlineMath math="FE" />, giving a factor of <InlineMath math="2" />.
+<BlockMath math="32\times24-468=768-468=300\text{ m}^2" />
 
-| Fixed positions | Objects still to arrange | Number of arrangements |
-| --- | --- | --- |
-| One member of the pair at an end | The block and five reports | <InlineMath math="2\times6!=1440" /> |
-| Both members at opposite ends | The block and four reports | <InlineMath math="2\times5!=240" /> |
+Twice the original area is <InlineMath math="282\text{ m}^2" />, not <InlineMath math="300\text{ m}^2" />. The path area is not proportional to its width, because the four corner pieces grow faster.
 
-The second row was already excluded in the previous step, so we must not subtract it twice. Across all four report-and-end choices, the number of forbidden arrangements still included is
+**Statement 4** is false. <InlineMath math="\frac{141}{468}\approx30.1\%" />, less than <InlineMath math="35\%" />.
 
-<BlockMath math="4(1440-240)=4800." />
-
-This leaves <InlineMath math="17\,280-4800=12\,480" /> arrangements satisfying the end-position and non-adjacency conditions.
-
-# Apply the order condition and calculate the probability
-
-Swapping <InlineMath math="C" /> and <InlineMath math="D" /> preserves the previous two conditions. Every arrangement pairs with exactly one arrangement in which their order is reversed. Thus **half the arrangements** place <InlineMath math="C" /> before <InlineMath math="D" />.
-
-<BlockMath math="N=\frac{12\,480}{2}=6240." />
-
-All <InlineMath math="8!" /> arrangements are equally likely. Therefore,
-
-<BlockMath math="P=\frac{6240}{8!}=\frac{6240}{40\,320}=\frac{13}{84}." />
+So statements 1 and 2 are true, and statements 3 and 4 are false.

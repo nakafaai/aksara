@@ -1,22 +1,21 @@
-# Die beiden Summen berechnen
+Der lineare Zusammenhang zwischen Anzeige <InlineMath math="R" /> und wahrer Temperatur <InlineMath math="C" /> ist durch **die zwei bekannten Wertepaare** festgelegt, so wie die Fahrenheitformel durch Gefrier- und Siedepunkt.
 
-Nutze **Summe gleich Anzahl mal Mittelwert**, bevor du die Datensätze vergleichst:
+# Die Formel des Thermometers bestimmen
 
-| Datensatz | Anzahl | Mittelwert | Summe |
-| --- | ---: | ---: | ---: |
-| Ursprünglich | <InlineMath math="22" /> | <InlineMath math="5" /> | <InlineMath math="22\times5=110" /> |
-| Nach dem Entfernen zweier Werte | <InlineMath math="22-2=20" /> | <InlineMath math="4{,}9" /> | <InlineMath math="20\times4{,}9=98" /> |
+Von 0 °C bis 100 °C steigt die Anzeige von <InlineMath math="-4" /> auf 86, also um 90. **Jedes 1 °C erhöht die Anzeige also um 0,9**.
 
-Die beiden entfernten Werte haben somit die Summe <InlineMath math="110-98=12" />.
+<BlockMath math="R=0{,}9C-4" />
 
-# Summe und Spannweite verbinden
+# Die wahre Temperatur bestimmen
 
-Sei <InlineMath math="m" /> das Minimum und <InlineMath math="M" /> das Maximum. Die **Spannweite ist Maximum minus Minimum**, also:
+<BlockMath math="\begin{aligned}
+0{,}9C-4&=32\\
+0{,}9C&=36\\
+C&=40
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}m+M&=12 \\ M-m&=4\quad\Rightarrow\quad M=m+4\end{aligned}" />
+Kontrolle: <InlineMath math="0{,}9\cdot40-4=32" />. Bei dieser Temperatur **zeigt das Thermometer zu wenig an**.
 
-Setze die Beziehung aus der Spannweite in die Summengleichung ein:
+Der Wert 32 °C vertraut der Anzeige. Der Wert 36 °C korrigiert nur die Verschiebung um 4, nicht den Faktor 0,9.
 
-<BlockMath math="\begin{aligned}m+(m+4)&=12 \\ 2m&=12-4=8 \\ m&=4\end{aligned}" />
-
-Der kleinste Testwert beträgt <InlineMath math="4" />. Zur Kontrolle ist das Maximum <InlineMath math="8" />. Damit ergeben sich die Spannweite <InlineMath math="8-4=4" /> und die ursprüngliche Summe <InlineMath math="98+4+8=110" />.
+Die wahre Temperatur beträgt also **40 °C**.

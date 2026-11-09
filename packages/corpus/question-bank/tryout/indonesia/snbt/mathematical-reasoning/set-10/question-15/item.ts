@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "juice-mix",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$30$$",
+          column: 2,
+          label:
+            "Menambahkan air ke suatu campuran mengubah volume sari jeruk di dalam campuran itu.",
         },
         {
-          correct: true,
-          label: "$$60$$",
+          column: 1,
+          label:
+            "Mencampur sirup A dan sirup B sama banyak menghasilkan kadar sari jeruk $$40\\%$$.",
         },
         {
-          correct: false,
-          label: "$$30\\sqrt2$$",
+          column: 1,
+          label:
+            "Kadar sari jeruk campuran sirup A dan sirup B, tanpa air, selalu berada di antara $$20\\%$$ dan $$60\\%$$.",
         },
         {
-          correct: false,
-          label: "$$30\\sqrt3$$",
-        },
-        {
-          correct: false,
-          label: "$$60\\sqrt3$$",
+          column: 2,
+          label:
+            "Mencampur sirup A dengan sedikit air dapat menghasilkan kadar sari jeruk $$70\\%$$.",
         },
       ],
     },

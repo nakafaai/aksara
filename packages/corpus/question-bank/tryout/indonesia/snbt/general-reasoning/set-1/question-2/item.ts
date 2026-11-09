@@ -1,6 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "weakening",
+  },
+  stimulus: "atap",
   versions: {
     id: {
       kind: "choice",
@@ -8,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Petani setempat menghasilkan Agri Gardina 45 hanya melalui metode seleksi.",
+            "Harga cat putih reflektif dua kali lipat harga cat atap biasa.",
         },
         {
           correct: false,
           label:
-            "Denarum Agrihorti diseleksi dari mangga komersial yang ditanam di California.",
+            "Sebagian penghuni rumah yang tidak dicat juga jarang menyalakan kipas angin.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebelum pengecatan dilakukan, rata-rata suhu ruang utama di kedua kelompok rumah tercatat hampir sama, baik pada rumah berplafon maupun pada rumah tanpa plafon.",
+        },
+        {
+          correct: false,
+          label:
+            "Pada hari cerah, selisih suhu antara kedua kelompok rumah lebih besar daripada pada hari berawan.",
         },
         {
           correct: true,
           label:
-            "Periset menggunakan metode seleksi dan persilangan untuk mengembangkan koleksi plasma nutfah mangga.",
-        },
-        {
-          correct: false,
-          label:
-            "Denarum Agrihorti memiliki serat buah kasar dalam jumlah tinggi.",
-        },
-        {
-          correct: false,
-          label:
-            "Setiap aksesi dalam koleksi Cukurgondang sudah siap diekspor.",
+            "Tiga puluh dari $$40$$ rumah beratap putih ternyata berada di bawah naungan pohon besar, sedangkan hanya delapan dari $$40$$ rumah lainnya yang demikian.",
         },
       ],
     },

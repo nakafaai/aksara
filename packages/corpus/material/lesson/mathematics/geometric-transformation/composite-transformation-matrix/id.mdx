@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gabungkan pencerminan, rotasi, dan dilatasi melalui perkalian matriks dengan urutan transformasi yang jelas.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Transformasi Geometri",
 };
 
@@ -94,15 +94,39 @@ Bandingkan cermin sumbu vertikal <InlineMath math="F" /> dan rotasi positif sepe
 | Cermin lalu rotasi | <InlineMath math="(2,1)" /> | <InlineMath math="(-2,1)" /> | <InlineMath math="(-1,-2)" /> |
 | Rotasi lalu cermin | <InlineMath math="(2,1)" /> | <InlineMath math="(-1,2)" /> | <InlineMath math="(1,2)" /> |
 
-<LineEquation title="Urutan cermin dan rotasi mengubah titik akhir" description="Jalur hijau mencerminkan dahulu, lalu berotasi. Jalur jingga berotasi dahulu, lalu mencerminkan. Busur menunjukkan putaran, ruas lurus menghubungkan pasangan cermin."
-  data={[
-    { points: [{ x: 2, y: 1, z: 0 }, { x: -2, y: 1, z: 0 }], smooth: false, color: "#059669", showPoints: true, cone: { position: "end", size: 0.14 }, labels: [{ text: <InlineMath math="P(2,1)" />, at: 0, offset: [0.4, -0.3, 0] }, { text: <InlineMath math="F(P)" />, at: 1, offset: [-0.4, 0, 0] }] },
-    { points: Array.from({ length: 33 }, (_, i) => { const angle = Math.atan2(1,-2) + i * Math.PI / 64; return { x: Math.sqrt(5)*Math.cos(angle), y: Math.sqrt(5)*Math.sin(angle), z: 0 }; }), smooth: false, color: "#059669", showPoints: false, cone: { position: "end", size: 0.14 }, labels: [{ text: <InlineMath math="RF(P)=(-1,-2)" />, at: 32, offset: [0.5, -0.4, 0] }] },
-    { points: Array.from({ length: 33 }, (_, i) => { const angle = Math.atan2(1,2) + i * Math.PI / 64; return { x: Math.sqrt(5)*Math.cos(angle), y: Math.sqrt(5)*Math.sin(angle), z: 0 }; }), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.14 }, labels: [{ text: <InlineMath math="R(P)" />, at: 32, offset: [-0.2, 0.4, 0] }] },
-    { points: [{ x: -1, y: 2, z: 0 }, { x: 1, y: 2, z: 0 }], smooth: false, color: "#d97706", showPoints: true, cone: { position: "end", size: 0.14 }, labels: [{ text: <InlineMath math="FR(P)=(1,2)" />, at: 1, offset: [0.3, 0.5, 0] }] },
-  ]}
-  cameraTarget={[0, 0, 0]}
-  cameraPosition={[0, 0, 8]}
+<MathVisual
+  title={<>Pencerminan dan rotasi dalam dua urutan</>}
+  description={<>Jalur toska: cerminkan <InlineMath math="P(2, 1)" /> terhadap sumbu y, lalu putar <InlineMath math="90^\circ" /> ke <InlineMath math="RF(P) = (-1, -2)" />. Jalur kuning: putar dulu, lalu cerminkan, ke <InlineMath math="FR(P) = (1, 2)" />.</>}
+  labels={{
+    p: <InlineMath math="P(2, 1)" />,
+    f: <InlineMath math="(-2, 1)" />,
+    rf: <InlineMath math="RF(P) = (-1, -2)" />,
+    r: <InlineMath math="(-1, 2)" />,
+    fr: <InlineMath math="FR(P) = (1, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "reflect-first", kind: "segment", from: { x: 2, y: 1 }, to: { x: -2, y: 1 }, appearance: "construction" },
+      { id: "rotate-after", kind: "arc", center: { x: 0, y: 0 }, radius: Math.sqrt(5), startDegrees: Math.atan2(1, -2) * 180 / Math.PI, sweepDegrees: 90, appearance: "construction" },
+      { id: "rotate-first", kind: "arc", center: { x: 0, y: 0 }, radius: Math.sqrt(5), startDegrees: Math.atan2(1, 2) * 180 / Math.PI, sweepDegrees: 90, appearance: "highlight" },
+      { id: "reflect-after", kind: "segment", from: { x: -1, y: 2 }, to: { x: 1, y: 2 }, appearance: "highlight" },
+      { id: "p", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "f", kind: "point", at: { x: -2, y: 1 }, appearance: "construction" },
+      { id: "rf", kind: "point", at: { x: -1, y: -2 }, appearance: "secondary" },
+      { id: "r", kind: "point", at: { x: -1, y: 2 }, appearance: "highlight" },
+      { id: "fr", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "f", objectId: "f", at: { x: -2, y: 1 }, placement: "left" },
+      { key: "rf", objectId: "rf", at: { x: -1, y: -2 }, placement: "below" },
+      { key: "r", objectId: "r", at: { x: -1, y: 2 }, placement: "above-left" },
+      { key: "fr", objectId: "fr", at: { x: 1, y: 2 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Menggabungkan Pencerminan dan Rotasi dengan Matriks
@@ -138,6 +162,37 @@ Bayangan titik <InlineMath math="(2,5)" /> adalah:
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= M \begin{pmatrix} 2 \\ 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 \\ 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} (-1)(2)+(0)(5) \\ (0)(2)+(-1)(5) \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 \\ -5 \end{pmatrix} \end{aligned}" />
 
 Jadi, bayangan titik <InlineMath math="(2,5)" /> adalah <InlineMath math="(-2,-5)" />.
+
+Ikuti <InlineMath math="(2, 5)" /> melalui kedua cermin. Sumbu x mengirimnya ke <InlineMath math="(2, -5)" />, lalu sumbu y mengirim titik itu ke <InlineMath math="(-2, -5)" />. Ruas dari <InlineMath math="(2, 5)" /> ke <InlineMath math="(-2, -5)" /> melewati titik asal, jadi kedua pencerminan bekerja seperti satu setengah putaran, sesuai dengan <InlineMath math="M = -I" />.
+
+<MathVisual
+  title={<>Dua pencerminan menghasilkan setengah putaran</>}
+  description={<>Titik <InlineMath math="(2, 5)" />, pencerminannya <InlineMath math="(2, -5)" /> terhadap sumbu x, dan bayangan akhir <InlineMath math="(-2, -5)" /> terhadap sumbu y.</>}
+  labels={{
+    p: <InlineMath math="(2, 5)" />,
+    mid: <InlineMath math="(2, -5)" />,
+    image: <InlineMath math="(-2, -5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 2, y: 5 }, to: { x: 2, y: -5 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 2, y: -5 }, to: { x: -2, y: -5 }, appearance: "construction" },
+      { id: "half", kind: "segment", from: { x: 2, y: 5 }, to: { x: -2, y: -5 }, appearance: "highlight" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "p", kind: "point", at: { x: 2, y: 5 }, appearance: "primary" },
+      { id: "mid", kind: "point", at: { x: 2, y: -5 }, appearance: "construction" },
+      { id: "image", kind: "point", at: { x: -2, y: -5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: 5 }, placement: "right" },
+      { key: "mid", objectId: "mid", at: { x: 2, y: -5 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -2, y: -5 }, placement: "left" },
+    ],
+  }}
+/>
 
 ### Komposisi Refleksi dan Rotasi
 
@@ -213,6 +268,40 @@ Bayangan <InlineMath math="P(2,5)" /> adalah:
 <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= M \begin{pmatrix} 2 \\ 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix} \begin{pmatrix} 2 \\ 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(2)+(-1)(5) \\ (-1)(2)+(0)(5) \end{pmatrix} \\ &amp;= \begin{pmatrix} -5 \\ -2 \end{pmatrix} \end{aligned}" />
 
 Jadi, bayangan titik <InlineMath math="P(2,5)" /> adalah <InlineMath math="P'(-5,-2)" />.
+
+Lacak <InlineMath math="(2, 5)" /> langkah demi langkah. Pencerminan terhadap sumbu x memberi <InlineMath math="(2, -5)" />, rotasi <InlineMath math="90^\circ" /> memberi <InlineMath math="(5, 2)" />, dan setengah putaran memberi <InlineMath math="(-5, -2)" />, titik yang sama dengan hasil <InlineMath math="M = M_3M_2M_1" /> dalam satu perkalian.
+
+<MathVisual
+  title={<>Tiga transformasi berturut-turut</>}
+  description={<>Titik <InlineMath math="(2, 5)" /> dicerminkan ke <InlineMath math="(2, -5)" />, diputar <InlineMath math="90^\circ" /> ke <InlineMath math="(5, 2)" />, lalu diputar setengah putaran ke <InlineMath math="(-5, -2)" />.</>}
+  labels={{
+    p: <InlineMath math="(2, 5)" />,
+    s1: <InlineMath math="(2, -5)" />,
+    s2: <InlineMath math="(5, 2)" />,
+    image: <InlineMath math="(-5, -2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "reflect", kind: "segment", from: { x: 2, y: 5 }, to: { x: 2, y: -5 }, appearance: "construction" },
+      { id: "rotate", kind: "arc", center: { x: 0, y: 0 }, radius: Math.sqrt(29), startDegrees: Math.atan2(-5, 2) * 180 / Math.PI + 360, sweepDegrees: 90, appearance: "highlight" },
+      { id: "half", kind: "segment", from: { x: 5, y: 2 }, to: { x: -5, y: -2 }, appearance: "construction" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "p", kind: "point", at: { x: 2, y: 5 }, appearance: "primary" },
+      { id: "s1", kind: "point", at: { x: 2, y: -5 }, appearance: "construction" },
+      { id: "s2", kind: "point", at: { x: 5, y: 2 }, appearance: "highlight" },
+      { id: "image", kind: "point", at: { x: -5, y: -2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: 5 }, placement: "left" },
+      { key: "s1", objectId: "s1", at: { x: 2, y: -5 }, placement: "below" },
+      { key: "s2", objectId: "s2", at: { x: 5, y: 2 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -5, y: -2 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Latihan
 

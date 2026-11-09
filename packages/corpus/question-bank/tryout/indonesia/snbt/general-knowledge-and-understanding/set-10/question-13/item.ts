@@ -1,35 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "paragraph-meaning",
+    topic: "detail",
+  },
+  stimulus: "bekantan",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            'Bagian awal mengajukan klaim "Koreksi pengguna lebih sering diberikan pada koleksi populer", lalu bagian kedua memakai "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan" sebagai dukungan utama.',
+            "Hidung bekantan betina lebih besar daripada hidung jantan dewasa.",
         },
         {
-          correct: false,
-          label:
-            'Bagian pertama menetapkan "Dokumen yang tidak muncul dalam pencarian otomatis pasti tidak tersimpan di arsip" sebagai simpulan final; bagian berikutnya hanya menyebut rencana "Tim akan mengaudit perbedaan kinerja menurut jenis tulisan dan periode".',
+          column: 2,
+          label: "Buah matang adalah makanan utama bekantan.",
         },
         {
-          correct: false,
-          label:
-            'Kedua bagian mempertahankan klaim "Karena sistem membuat kesalahan, semua pencarian otomatis harus dihentikan" dari sudut yang sama tanpa menambahkan pemeriksaan.',
+          column: 1,
+          label: "Bakteri di dalam lambung membantu bekantan mencerna daun.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            'Bagian kedua membalik arah pembahasan dengan menyimpulkan "Dokumen yang tidak muncul dalam pencarian otomatis pasti tidak tersimpan di arsip" dari bukti "Koreksi pengguna lebih sering diberikan pada koleksi populer".',
-        },
-        {
-          correct: true,
-          label:
-            "Perbedaan hasil pencarian mengungkap rantai kesalahan, lalu antarmuka dan audit dirancang untuk membuat batas itu dapat diperiksa.",
+            "Jari-jari kaki yang sebagian berselaput membantu bekantan berenang.",
         },
       ],
     },

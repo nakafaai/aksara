@@ -1,31 +1,22 @@
-Gegeben sei die **rekursive Formel** für die Folge:
+Die Schnittebene trennt einen kleinen Kegel oben vom unteren Teil, der die Grundfläche enthält. Das Volumen des unteren Teils ist **das Volumen des ganzen Kegels minus das Volumen des kleinen Kegels**.
 
-<BlockMath math="a_{n+1} = 4a_n + 1" />
+# Der ähnliche kleine Kegel
 
-Mit <InlineMath math="a_4 = 85" /> bestimmen wir das vorherige Folgenglied <InlineMath math="a_3" />.
+Der kleine Kegel hat dieselbe Spitze wie der ganze Kegel und die Höhe <InlineMath math="8-4=4\text{ cm}" />, also die halbe ursprüngliche Höhe. Beide Kegel sind **ähnlich mit dem Streckfaktor <InlineMath math="\tfrac12" />**, der Grundkreisradius des kleinen Kegels ist also 3 cm.
 
-Für <InlineMath math="n = 3" /> lautet die Rekursion:
+<BlockMath math="\begin{aligned}
+V_{\text{ganz}}&=\tfrac13\pi(6)^2(8)=96\pi\\
+V_{\text{klein}}&=\tfrac13\pi(3)^2(4)=12\pi
+\end{aligned}" />
 
-<BlockMath math="a_{3+1} = 4a_3 + 1" />
+Der kleine Kegel hat <InlineMath math="\left(\tfrac12\right)^3=\tfrac18" /> des Volumens des ganzen Kegels, denn Volumina skalieren mit der dritten Potenz des Streckfaktors.
 
-<BlockMath math="a_4 = 4a_3 + 1" />
+# Unteren Teil berechnen
 
-Nun setzen wir <InlineMath math="a_4 = 85" /> ein:
+Der untere Teil ist **der Rest des ganzen Kegels, wenn der kleine Kegel entfernt ist**.
 
-<BlockMath math="85 = 4a_3 + 1" />
+<BlockMath math="V=96\pi-12\pi=84\pi\text{ cm}^3" />
 
-<BlockMath math="85 - 1 = 4a_3" />
+Der Wert <InlineMath math="48\pi" /> nimmt an, dass ein Schnitt auf halber Höhe auch das Volumen halbiert. Der Wert <InlineMath math="72\pi" /> verwendet das Flächenverhältnis <InlineMath math="\tfrac14" /> als Volumenverhältnis und zieht deshalb <InlineMath math="24\pi" /> ab. Der Wert <InlineMath math="12\pi" /> ist der kleine Kegel, <InlineMath math="96\pi" /> der ganze Kegel.
 
-<BlockMath math="84 = 4a_3" />
-
-Nach der Division durch <InlineMath math="4" /> folgt:
-
-<BlockMath math="a_3 = \frac{84}{4}" />
-
-<BlockMath math="a_3 = 21" />
-
-Somit ist <InlineMath math="a_3" /> gleich <InlineMath math="21" />.
-
-Zur Probe setzen wir <InlineMath math="a_3=21" /> wieder in die Rekursion ein:
-
-<BlockMath math="a_4=4(21)+1=84+1=85" />
+Das Volumen des Teils mit der Grundfläche beträgt also **<InlineMath math="84\pi\text{ cm}^3" />**.

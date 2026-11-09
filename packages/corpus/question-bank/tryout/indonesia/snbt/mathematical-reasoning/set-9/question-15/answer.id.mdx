@@ -1,55 +1,23 @@
-Misalkan <InlineMath math="x" /> adalah jarak kaki tiang ke jangkar kabel <InlineMath math="25" /> meter. **Jarak ke jangkar lainnya** adalah <InlineMath math="17-x" />. Jika tinggi tiang <InlineMath math="h" />, maka
+Setiap pernyataan meminta **jenis pengolahan data yang berbeda**: jumlah, perbandingan, selisih berurutan, dan banyak data yang memenuhi syarat.
 
-<BlockMath math="x^2+h^2=25^2" />
+# Jumlah dan perbandingan
 
-<BlockMath math="(17-x)^2+h^2=26^2" />
+Enam bulan pertama berjumlah <InlineMath math="310+280+250+190+120+80=1{.}230" /> mm, sedangkan enam bulan terakhir <InlineMath math="50+40+70+140+230+340=870" /> mm. **Keduanya tidak sama**, jadi pernyataan pertama salah.
 
-Mengurangi persamaan kedua dengan persamaan pertama menghasilkan <InlineMath math="(17-x)^2-x^2=26^2-25^2\Rightarrow289-34x=51" />, sehingga <InlineMath math="x=\frac{289-51}{34}=7" />. Jadi, <InlineMath math="h^2=625-49=576" /> dan <InlineMath math="h=24" /> meter.
+Perbandingan Desember dan Agustus adalah <InlineMath math="\tfrac{340}{40}=8{,}5" />, lebih dari 8. Pernyataan kedua benar.
 
-<MathVisual
-  title="Tiang dan kabel penopang"
-  description="Tiang tegak dengan dua kabel penopang dan jangkar di kedua sisinya pada tanah mendatar."
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -8, max: 11 },
-      y: { min: -1, max: 25 },
-    },
-    view: { kind: "fit", padding: 0.75 },
-    objects: [
-      {
-        id: "ground",
-        kind: "segment",
-        appearance: "reference",
-        from: { x: -7, y: 0 },
-        to: { x: 10, y: 0 },
-      },
-      {
-        id: "pole",
-        kind: "segment",
-        appearance: "primary",
-        from: { x: 0, y: 0 },
-        to: { x: 0, y: 24 },
-      },
-      {
-        id: "left-cable",
-        kind: "segment",
-        appearance: "secondary",
-        from: { x: -7, y: 0 },
-        to: { x: 0, y: 24 },
-      },
-      {
-        id: "right-cable",
-        kind: "segment",
-        appearance: "secondary",
-        from: { x: 0, y: 24 },
-        to: { x: 10, y: 0 },
-      },
-      { id: "left-anchor", kind: "point", appearance: "highlight", at: { x: -7, y: 0 } },
-      { id: "pole-base", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
-      { id: "pole-top", kind: "point", appearance: "highlight", at: { x: 0, y: 24 } },
-      { id: "right-anchor", kind: "point", appearance: "highlight", at: { x: 10, y: 0 } },
-    ],
-  }}
-/>
+# Penurunan berurutan
+
+| Dari ke | Penurunan |
+| :--- | :---: |
+| Maret ke April | 60 mm |
+| April ke Mei | 70 mm |
+| Mei ke Juni | 40 mm |
+
+Penurunan lain dari Januari sampai Agustus paling besar 30 mm. **Penurunan terbesar terjadi dari April ke Mei**, jadi pernyataan ketiga salah.
+
+# Bulan basah dan bulan kering
+
+Bulan basah adalah Januari, Februari, Maret, April, Mei, Oktober, November, dan Desember, yaitu 8 bulan. Bulan kering hanya Juli dan Agustus, yaitu 2 bulan. Karena 8 lebih dari <InlineMath math="2\cdot2=4" />, pernyataan keempat benar.
+
+Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **salah**, dan keempat **benar**.

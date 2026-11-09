@@ -1,13 +1,18 @@
-# Calculate the Interest
+The speed needed is **the file size in megabits divided by the time in seconds**. Both units must be matched first.
 
-Flat simple interest uses the **original principal every month**. Let <InlineMath math="I" /> be one month's interest and <InlineMath math="B" /> the total interest, in rupiah.
+# Size and time in suitable units
 
-<BlockMath math="\begin{aligned}I&=3{,}000{,}000\times\frac{2}{100} \\ &=60{,}000 \\ B&=60{,}000\times10=600{,}000\end{aligned}" />
+<BlockMath math="\begin{aligned}
+1.5\text{ GB}&=1{,}500\text{ MB}=1{,}500\cdot8=12{,}000\text{ megabits}\\
+4\text{ minutes}&=240\text{ seconds}
+\end{aligned}" />
 
-# Divide the Total Repayment
+# Minimum speed
 
-The installments must cover **principal plus total interest**. Let <InlineMath math="T" /> be the total repayment and <InlineMath math="A" /> the monthly installment, in rupiah.
+<BlockMath math="\frac{12{,}000}{240}=50\text{ Mbps}" />
 
-<BlockMath math="\begin{aligned}T&=3{,}000{,}000+600{,}000 \\ &=3{,}600{,}000 \\ A&=\frac{3{,}600{,}000}{10}=360{,}000\end{aligned}" />
+A lower speed makes the download **take longer than 4 minutes**, so 50 Mbps is the lowest speed that works. The home's 40 Mbps is not enough, since it needs 300 seconds.
 
-Each monthly installment is <InlineMath math="\text{Rp}360{,}000.00" />. As a check, it consists of <InlineMath math="\text{Rp}300{,}000.00" /> toward the principal and <InlineMath math="\text{Rp}60{,}000.00" /> in interest.
+The value 6.25 Mbps forgets to multiply by 8. The value 375 Mbps divides by 4 minutes instead of 240 seconds while still using megabits.
+
+So the lowest speed needed is **50 Mbps**.

@@ -1,10 +1,21 @@
-We need numbers that **fail at least one condition**. Every candidate leaves remainder 3 on division by 7, but each must also be odd.
+Let the length and width of the rectangle be <InlineMath math="p" /> and <InlineMath math="l" />. Its area is <InlineMath math="pl" />, so what you need is **the product of <InlineMath math="p" /> and <InlineMath math="l" />**, not necessarily each value.
 
-| Entry | Number | Division by 7 | Division by 2 |
-| --- | --- | --- | --- |
-| 1 | 94 | <InlineMath math="94=7\cdot13+3" /> | <InlineMath math="94=2\cdot47+0" /> |
-| 2 | 80 | <InlineMath math="80=7\cdot11+3" /> | <InlineMath math="80=2\cdot40+0" /> |
-| 3 | 38 | <InlineMath math="38=7\cdot5+3" /> | <InlineMath math="38=2\cdot19+0" /> |
-| 4 | 17 | <InlineMath math="17=7\cdot2+3" /> | <InlineMath math="17=2\cdot8+1" /> |
+# Each statement alone
 
-The numbers 94, 80, and 38 are **even**, so they fail the required remainder 1 on division by 2. The number 17 satisfies both conditions. The requested entries are therefore (1), (2), and (3).
+Statement (1) gives <InlineMath math="p+l=14" />. Sides 7 and 7 give area 49, while 10 and 4 give area 40, so **the area is not yet unique**.
+
+Statement (2) gives <InlineMath math="p^2+l^2=100" />. Sides 8 and 6 give area 48, while <InlineMath math="5\sqrt2" /> and <InlineMath math="5\sqrt2" /> give area 50. Statement (2) alone is not sufficient either.
+
+# Both statements together
+
+The square of the sum links the sum, the sum of squares, and **the product** we need.
+
+<BlockMath math="\begin{aligned}
+(p+l)^2&=p^2+l^2+2pl\\
+196&=100+2pl\\
+pl&=48
+\end{aligned}" />
+
+The area is unique, <InlineMath math="48\text{ cm}^2" />, with sides 8 cm and 6 cm.
+
+So **both statements together are sufficient**, but neither statement alone is sufficient.

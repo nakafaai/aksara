@@ -1,32 +1,25 @@
-**Urutan anggota tidak diperhatikan** dalam himpunan, sehingga kita menggunakan konsep kombinasi.
+Kuadratkan kedua ruas untuk menghilangkan akar. Langkah ini bisa memunculkan akar palsu, jadi **setiap hasil harus diperiksa pada persamaan awal**.
 
-Total banyaknya himpunan bagian dari suatu himpunan dengan <InlineMath math="n" /> anggota adalah <InlineMath math="2^n" />. Diketahui <InlineMath math="n = 10" />, maka total himpunan bagian adalah:
+# Mengkuadratkan kedua ruas
 
-<BlockMath math="2^{10} = 1024" />
+<BlockMath math="\begin{aligned}
+x+10&=(x-2)^2\\
+x+10&=x^2-4x+4\\
+x^2-5x-6&=0\\
+(x-6)(x+1)&=0
+\end{aligned}" />
 
-Kita diminta mencari banyaknya himpunan bagian yang memiliki anggota **lebih dari <InlineMath math="3" />**. Artinya, kita mencari jumlah himpunan bagian dengan <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="6" />, ..., <InlineMath math="10" /> anggota.
+# Memeriksa kedua calon
 
-Cara yang lebih mudah adalah dengan menggunakan prinsip komplemen: Total himpunan bagian dikurangi himpunan bagian dengan anggota **<InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, atau <InlineMath math="3" />**.
+Ruas kiri adalah akar kuadrat, jadi nilainya tidak pernah negatif. Akibatnya **ruas kanan juga harus tidak negatif**, yaitu <InlineMath math="x\ge2" />.
 
-Rumus kombinasi adalah:
+<BlockMath math="\begin{aligned}
+x=6&:\quad \sqrt{16}=4=6-2\\
+x=-1&:\quad \sqrt{9}=3\ne-1-2
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}C(n, r)&=\binom{n}{r}\\&=\frac{n!}{r!(n-r)!}\end{aligned}" />
+Hanya <InlineMath math="x=6" /> yang memenuhi. Calon <InlineMath math="x=-1" /> muncul karena <InlineMath math="3^2" /> dan <InlineMath math="(-3)^2" /> sama-sama 9.
 
-| Anggota yang dipilih | Perhitungan | Banyak himpunan bagian |
-| --- | --- | --- |
-| 0 | <InlineMath math="\frac{10!}{0!10!}=1" /> | 1 |
-| 1 | <InlineMath math="\frac{10!}{1!9!}=10" /> | 10 |
-| 2 | <InlineMath math="\frac{10\times9}{2\times1}=45" /> | 45 |
-| 3 | <InlineMath math="\frac{10\times9\times8}{3\times2\times1}=120" /> | 120 |
+Nilai 5 menjumlahkan kedua calon tanpa pemeriksaan. Nilai <InlineMath math="-1" /> adalah akar palsu, nilai 4 adalah nilai <InlineMath math="\sqrt{x+10}" />, dan nilai 1 muncul dari salah tanda saat memfaktorkan.
 
-Satu himpunan bagian dengan nol anggota adalah **himpunan kosong**, sehingga tetap dihitung.
-
-Jumlah himpunan bagian dengan anggota <InlineMath math="\leq 3" /> adalah:
-
-<BlockMath math="1 + 10 + 45 + 120 = 176" />
-
-Maka, banyaknya himpunan bagian dengan anggota **lebih dari <InlineMath math="3" />** adalah:
-
-<BlockMath math="1024-176=848" />
-
-Jadi, banyaknya himpunan bagian dari <InlineMath math="A" /> yang memiliki anggota lebih dari <InlineMath math="3" /> adalah <InlineMath math="848" />.
+Jadi, jumlah semua penyelesaiannya adalah **6**.

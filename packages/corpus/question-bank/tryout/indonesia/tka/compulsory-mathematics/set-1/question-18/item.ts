@@ -6,30 +6,29 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "park-and-pond",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$124$$",
+          label: "$$4$$",
+        },
+        {
+          correct: false,
+          label: "$$6$$",
         },
         {
           correct: true,
-          label: "$$127$$",
+          label: "$$7$$",
         },
         {
           correct: false,
-          label: "$$126$$",
+          label: "$$8$$",
         },
         {
           correct: false,
-          label: "$$128$$",
-        },
-        {
-          correct: false,
-          label: "$$130$$",
+          label: "$$10$$",
         },
       ],
     },

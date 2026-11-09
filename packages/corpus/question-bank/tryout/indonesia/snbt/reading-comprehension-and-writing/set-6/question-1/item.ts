@@ -1,31 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "author-purpose",
+  },
+  stimulus: "senior-exercise",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Catatan Awal Sebelum Pengujian Panah Arah",
-        },
-        {
-          correct: true,
-          label: "Pengujian Panah Arah pada Rute Pameran Karya Siswa",
+          label: "mengajak semua warga lanjut usia di Indonesia ikut senam",
         },
         {
           correct: false,
-          label: "Pengujian Beberapa Perubahan Serentak pada Pameran",
+          label: "membandingkan senam lansia dengan olahraga lain",
+        },
+        {
+          correct: false,
+          label: "menjelaskan cara mengukur tekanan darah",
         },
         {
           correct: false,
           label:
-            "Tanggapan Pengunjung terhadap Perancangan Ulang Permanen Pameran",
+            "mengkritik petugas puskesmas yang jarang datang ke rumah warga",
         },
         {
-          correct: false,
-          label: "Evaluasi Menyeluruh atas Semua Kegiatan Pameran",
+          correct: true,
+          label:
+            "menggambarkan kegiatan senam lansia di posyandu dan manfaatnya bagi peserta",
         },
       ],
     },

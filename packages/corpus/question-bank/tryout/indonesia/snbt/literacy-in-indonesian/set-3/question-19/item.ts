@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "village-tourism",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Istilah *sumber sezaman* membuktikan bahwa sumber yang lebih baru pasti lebih akurat daripada sumber lainnya.",
+            "Teks 1 berencana menggelar upacara syukur panen setiap Sabtu.",
         },
         {
-          correct: false,
-          label:
-            "Definisi itu menyamakan *sumber sezaman* dengan kesalahan sehingga perbedaan antarsumber tidak perlu dianalisis.",
+          column: 2,
+          label: "Teks 2 menolak semua kegiatan wisata di desa itu.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Penyebutan *sumber sezaman* mengizinkan bagian sumber yang hilang diisi dengan dugaan pembaca.",
+            "Menurut Teks 2, warga boleh memasuki area keramat kapan saja.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Definisi *sumber sezaman* memberi dasar untuk membandingkan posisi kedua sumber tanpa menganggap salah satunya sebagai catatan yang sepenuhnya netral.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi tersebut hanya menamai bentuk dokumen dan tidak memengaruhi cara asal serta tujuan sumber dibandingkan.",
+            "Teks 2 mengusulkan agar lahan parkir dipindahkan ke luar kampung.",
         },
       ],
     },

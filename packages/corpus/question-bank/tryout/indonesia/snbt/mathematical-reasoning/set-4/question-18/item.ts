@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "school-raffle",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$12\\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$10\\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$15\\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$16\\text{ km}$$",
-        },
-        {
-          correct: false,
-          label: "$$20\\text{ km}$$",
-        },
+        { correct: true, label: "$$\\dfrac{7}{19}$$" },
+        { correct: false, label: "$$\\dfrac25$$" },
+        { correct: false, label: "$$\\dfrac12$$" },
+        { correct: false, label: "$$\\dfrac{12}{19}$$" },
+        { correct: false, label: "$$\\dfrac45$$" },
       ],
     },
   },

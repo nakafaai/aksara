@@ -3,7 +3,7 @@ export const metadata = {
     description: "Terapkan limit pada model kesehatan, ekonomi, populasi, sinyal, dan reaksi yang disederhanakan sambil memeriksa batas kesimpulan setiap model.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-23",
+    dateModified: "2026-11-08",
     subject: "Limit",
 };
 
@@ -88,16 +88,30 @@ Ambil <InlineMath math="A=4" /> dan gunakan koordinat tanpa satuan <InlineMath m
 
 Pada <InlineMath math="u=0" />, <InlineMath math="q=1/5" />. Pada <InlineMath math="u=\ln4" />, <InlineMath math="q=1/(1+4/4)=1/2" />. Kurva mendekati <InlineMath math="q=1" /> tanpa mencapainya pada waktu berhingga.
 
-<LineEquation
-  title="Populasi sebagai Bagian dari Daya Dukung"
-  description="Sumbu horizontal adalah u sama dengan r kali t. Sumbu vertikal adalah q sama dengan P dibagi K. Garis oranye menandai batas satu."
-  showZAxis={false}
-  cameraTarget={[3, 0.5, 0]}
-  cameraPosition={[3, 0.5, 11]}
-  data={[
-    { points: Array.from({ length: 121 }, (_, i) => { const x = i * 0.05; return { x, y: 1 / (1 + 4 * Math.exp(-x)), z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false },
-    { points: [{ x: 0, y: 1, z: 0 }, { x: 6, y: 1, z: 0 }], color: "#ea580c", smooth: false, showPoints: false, labels: [{ at: 1, text: <InlineMath math="q=1" />, offset: [0, 0.3, 0] }] },
-  ]}
+<MathVisual
+  title={<>Populasi sebagai bagian dari daya tampung</>}
+  description={<>Kurva <InlineMath math="q = \frac{1}{1 + 4e^{-u}}" /> untuk <InlineMath math="0 \le u \le 6" />, dengan <InlineMath math="u = rt" /> dan <InlineMath math="q = P/K" />. Kurva mulai di <InlineMath math="\tfrac15" />, mencapai <InlineMath math="\tfrac12" /> di <InlineMath math="u = \ln 4" />, dan mendekati garis <InlineMath math="q = 1" /> tanpa mencapainya.</>}
+  labels={{
+    limit: <InlineMath math="q = 1" />,
+    start: <InlineMath math="\left(0, \tfrac15\right)" />,
+    half: <InlineMath math="\left(\ln 4, \tfrac12\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 6.4 }, y: { min: -0.1, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "limit", kind: "line", through: [{ x: 0, y: 1 }, { x: 6, y: 1 }], appearance: "reference" },
+      { id: "q", kind: "polyline", vertices: [{ x: 0, y: 1 / (1 + 4 * Math.exp(-(0))) }, { x: 1 / 10, y: 1 / (1 + 4 * Math.exp(-(1 / 10))) }, { x: 1 / 5, y: 1 / (1 + 4 * Math.exp(-(1 / 5))) }, { x: 3 / 10, y: 1 / (1 + 4 * Math.exp(-(3 / 10))) }, { x: 2 / 5, y: 1 / (1 + 4 * Math.exp(-(2 / 5))) }, { x: 1 / 2, y: 1 / (1 + 4 * Math.exp(-(1 / 2))) }, { x: 3 / 5, y: 1 / (1 + 4 * Math.exp(-(3 / 5))) }, { x: 7 / 10, y: 1 / (1 + 4 * Math.exp(-(7 / 10))) }, { x: 4 / 5, y: 1 / (1 + 4 * Math.exp(-(4 / 5))) }, { x: 9 / 10, y: 1 / (1 + 4 * Math.exp(-(9 / 10))) }, { x: 1, y: 1 / (1 + 4 * Math.exp(-(1))) }, { x: 11 / 10, y: 1 / (1 + 4 * Math.exp(-(11 / 10))) }, { x: 6 / 5, y: 1 / (1 + 4 * Math.exp(-(6 / 5))) }, { x: 13 / 10, y: 1 / (1 + 4 * Math.exp(-(13 / 10))) }, { x: 7 / 5, y: 1 / (1 + 4 * Math.exp(-(7 / 5))) }, { x: 3 / 2, y: 1 / (1 + 4 * Math.exp(-(3 / 2))) }, { x: 8 / 5, y: 1 / (1 + 4 * Math.exp(-(8 / 5))) }, { x: 17 / 10, y: 1 / (1 + 4 * Math.exp(-(17 / 10))) }, { x: 9 / 5, y: 1 / (1 + 4 * Math.exp(-(9 / 5))) }, { x: 19 / 10, y: 1 / (1 + 4 * Math.exp(-(19 / 10))) }, { x: 2, y: 1 / (1 + 4 * Math.exp(-(2))) }, { x: 21 / 10, y: 1 / (1 + 4 * Math.exp(-(21 / 10))) }, { x: 11 / 5, y: 1 / (1 + 4 * Math.exp(-(11 / 5))) }, { x: 23 / 10, y: 1 / (1 + 4 * Math.exp(-(23 / 10))) }, { x: 12 / 5, y: 1 / (1 + 4 * Math.exp(-(12 / 5))) }, { x: 5 / 2, y: 1 / (1 + 4 * Math.exp(-(5 / 2))) }, { x: 13 / 5, y: 1 / (1 + 4 * Math.exp(-(13 / 5))) }, { x: 27 / 10, y: 1 / (1 + 4 * Math.exp(-(27 / 10))) }, { x: 14 / 5, y: 1 / (1 + 4 * Math.exp(-(14 / 5))) }, { x: 29 / 10, y: 1 / (1 + 4 * Math.exp(-(29 / 10))) }, { x: 3, y: 1 / (1 + 4 * Math.exp(-(3))) }, { x: 31 / 10, y: 1 / (1 + 4 * Math.exp(-(31 / 10))) }, { x: 16 / 5, y: 1 / (1 + 4 * Math.exp(-(16 / 5))) }, { x: 33 / 10, y: 1 / (1 + 4 * Math.exp(-(33 / 10))) }, { x: 17 / 5, y: 1 / (1 + 4 * Math.exp(-(17 / 5))) }, { x: 7 / 2, y: 1 / (1 + 4 * Math.exp(-(7 / 2))) }, { x: 18 / 5, y: 1 / (1 + 4 * Math.exp(-(18 / 5))) }, { x: 37 / 10, y: 1 / (1 + 4 * Math.exp(-(37 / 10))) }, { x: 19 / 5, y: 1 / (1 + 4 * Math.exp(-(19 / 5))) }, { x: 39 / 10, y: 1 / (1 + 4 * Math.exp(-(39 / 10))) }, { x: 4, y: 1 / (1 + 4 * Math.exp(-(4))) }, { x: 41 / 10, y: 1 / (1 + 4 * Math.exp(-(41 / 10))) }, { x: 21 / 5, y: 1 / (1 + 4 * Math.exp(-(21 / 5))) }, { x: 43 / 10, y: 1 / (1 + 4 * Math.exp(-(43 / 10))) }, { x: 22 / 5, y: 1 / (1 + 4 * Math.exp(-(22 / 5))) }, { x: 9 / 2, y: 1 / (1 + 4 * Math.exp(-(9 / 2))) }, { x: 23 / 5, y: 1 / (1 + 4 * Math.exp(-(23 / 5))) }, { x: 47 / 10, y: 1 / (1 + 4 * Math.exp(-(47 / 10))) }, { x: 24 / 5, y: 1 / (1 + 4 * Math.exp(-(24 / 5))) }, { x: 49 / 10, y: 1 / (1 + 4 * Math.exp(-(49 / 10))) }, { x: 5, y: 1 / (1 + 4 * Math.exp(-(5))) }, { x: 51 / 10, y: 1 / (1 + 4 * Math.exp(-(51 / 10))) }, { x: 26 / 5, y: 1 / (1 + 4 * Math.exp(-(26 / 5))) }, { x: 53 / 10, y: 1 / (1 + 4 * Math.exp(-(53 / 10))) }, { x: 27 / 5, y: 1 / (1 + 4 * Math.exp(-(27 / 5))) }, { x: 11 / 2, y: 1 / (1 + 4 * Math.exp(-(11 / 2))) }, { x: 28 / 5, y: 1 / (1 + 4 * Math.exp(-(28 / 5))) }, { x: 57 / 10, y: 1 / (1 + 4 * Math.exp(-(57 / 10))) }, { x: 29 / 5, y: 1 / (1 + 4 * Math.exp(-(29 / 5))) }, { x: 59 / 10, y: 1 / (1 + 4 * Math.exp(-(59 / 10))) }, { x: 6, y: 1 / (1 + 4 * Math.exp(-(6))) }], appearance: "secondary" },
+      { id: "start", kind: "point", at: { x: 0, y: 1 / 5 }, appearance: "answer" },
+      { id: "half", kind: "point", at: { x: Math.log(4), y: 1 / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 6, y: 1 }, placement: "above" },
+      { key: "start", objectId: "start", at: { x: 0, y: 1 / 5 }, placement: "right" },
+      { key: "half", objectId: "half", at: { x: Math.log(4), y: 1 / 2 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ## Penerapan dalam Teknologi dan Sains
@@ -120,6 +134,16 @@ Nilai limitnya memperjelas perilaku ideal model:
 Model analog ini meneruskan frekuensi sangat rendah dengan penguatan mendekati satu dan semakin meredam frekuensi tinggi. Pada frekuensi cutoff, hasil substitusi adalah:
 
 <BlockMath math="|H(i\omega_c)|=\frac1{\sqrt{1+1^2}}=\frac1{\sqrt2}" />
+
+Penguatan <InlineMath math="|H(i\omega)| = \frac{1}{\sqrt{1 + (\omega/\omega_c)^2}}" /> bernilai 1 di <InlineMath math="\omega = 0" />, <InlineMath math="\tfrac{1}{\sqrt2} \approx 0{,}707" /> di frekuensi potong <InlineMath math="\omega = \omega_c" />, dan turun menuju 0 saat frekuensinya membesar.
+
+<BarChart
+  title={<>Penguatan filter</>}
+  description={<>Batang <InlineMath math="|H(i\omega)|" /> untuk <InlineMath math="\omega/\omega_c = 0;\ 0{,}5;\ 1;\ 2;\ 5;\ 10" />.</>}
+  yAxisLabel="Penguatan"
+  data={[0, 0.5, 1, 2, 5, 10].map((x) => ({ name: String(x), value: 1 / Math.sqrt(1 + x ** 2) }))}
+  chartConfig={{ value: { label: "Penguatan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Laju Reaksi Kimia
 
@@ -286,3 +310,13 @@ Tambahan biaya tepat untuk unit utuh berikutnya adalah:
 </MathContainer>
 
 Untuk model ini, turunan lebih kecil <InlineMath math="0{,}01" /> satuan mata uang daripada tambahan biaya satu unit yang sebenarnya. Perbandingan ini memperjelas bahwa biaya marginal adalah laju sesaat dan hanya mendekati biaya unit diskret berikutnya.
+
+Soal 2 dalam bentuk diagram: <InlineMath math="I(t) = \frac{100.000t}{t + 50}" /> merayap naik menuju <InlineMath math="100.000" />. Nilainya setengahnya di <InlineMath math="t = 50" />, <InlineMath math="80.000" /> di <InlineMath math="t = 200" />, dan sekitar <InlineMath math="99.010" /> di <InlineMath math="t = 5.000" />.
+
+<BarChart
+  title={<>Infeksi yang mendekati limit</>}
+  description={<>Batang <InlineMath math="I(t)" /> untuk <InlineMath math="t = 50, 100, 200, 500, 1000, 5000" />.</>}
+  yAxisLabel="Orang"
+  data={[50, 100, 200, 500, 1000, 5000].map((x) => ({ name: String(x), value: (100000 * x) / (x + 50) }))}
+  chartConfig={{ value: { label: "Orang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

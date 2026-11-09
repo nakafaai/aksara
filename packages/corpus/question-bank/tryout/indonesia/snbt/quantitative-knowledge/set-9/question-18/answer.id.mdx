@@ -1,41 +1,22 @@
-Kita belum bisa langsung menghitung volume karena nilai <InlineMath math="x" /> belum diketahui. Gunakan **luas permukaan** untuk menentukan nilai <InlineMath math="x" />.
+Kata PELANGI terdiri atas 7 huruf yang semuanya berbeda: vokal E, A, I dan konsonan P, L, N, G. Cara yang menjamin vokal tidak bersebelahan adalah **menyusun konsonan lebih dulu, lalu menyisipkan vokal di celah-celahnya**.
 
-Dengan <InlineMath math="p" />, <InlineMath math="l" />, dan <InlineMath math="t" /> berturut-turut sebagai panjang, lebar, dan tinggi, rumus luas permukaannya adalah:
+# Menyusun konsonan
 
-<BlockMath math="L = 2(pl+pt+lt)" />
+Empat konsonan dapat disusun dalam <InlineMath math="4!=24" /> cara. Setiap susunan memiliki **lima celah**: sebelum huruf pertama, di antara huruf, dan sesudah huruf terakhir.
 
-Substitusi ukuran balok memberi:
+<BlockMath math="\_\,\text{K}\,\_\,\text{K}\,\_\,\text{K}\,\_\,\text{K}\,\_" />
 
-<BlockMath math="\begin{aligned}88&=2\bigl(6x^2+6x+4x\bigr)\\&=12x^2+20x\\0&=12x^2+20x-88\\0&=3x^2+5x-22\\&=(3x+11)(x-2)\end{aligned}" />
+# Menyisipkan vokal
 
-Faktor pertama memberi <InlineMath math="x=-\frac{11}{3}" />, sedangkan faktor kedua memberi <InlineMath math="x=2" />.
+Tiga vokal yang berbeda ditempatkan di **3 celah yang berbeda**, dan urutannya diperhatikan.
 
-Karena <InlineMath math="x>0" />, nilai yang dipakai adalah <InlineMath math="x=2" />. Ukuran baloknya menjadi <InlineMath math="6\text{ cm}" />, <InlineMath math="4\text{ cm}" />, dan <InlineMath math="2\text{ cm}" />.
+<BlockMath math="\begin{aligned}
+P(5,3)&=5\cdot4\cdot3=60\\
+\text{banyak susunan}&=24\cdot60=1{.}440
+\end{aligned}" />
 
-Setiap kubus satuan memiliki volume <InlineMath math="1\text{ cm}^3" />, sehingga banyak kubus sama dengan volume balok:
+Karena setiap celah berisi paling banyak satu vokal, dua vokal tidak mungkin bersebelahan.
 
-<BlockMath math="6\times4\times2=48" />
+Nilai 5.040 adalah <InlineMath math="7!" />, semua susunan tanpa syarat. Nilai 576 hanya memakai 4 celah di antara konsonan dan melupakan kedua ujung. Nilai 720 adalah <InlineMath math="6!" />, dan nilai 2.880 menggandakan hasil tanpa alasan.
 
-Jadi, balok tersebut memerlukan <InlineMath math="48" /> kubus satuan.
-
-Bayangkan **dua lapis kubus satuan**. Setiap lapis memuat <InlineMath math="6\times4=24" /> kubus, jadi seluruh balok memuat <InlineMath math="2\times24=48" /> kubus.
-
-<MathVisual
- title="Balok berukuran 6, 4, dan 2 sentimeter"
- description="Balok berukuran 6, 4, dan 2 sentimeter"
- scene={{
- space: "space",
- frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 3 }, z: { min: -3, max: 3 } },
- view: { kind: "camera", position: { x: 8, y: 6, z: 10 }, target: { x: 0, y: 1, z: 0 } },
- objects: [
- { id: "prism", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: 0 }, size: { length: 6, height: 2, width: 4 } },
- { id: "layer", kind: "polygon", appearance: "highlight", vertices: [{ x: -3, y: 1, z: -2 }, { x: 3, y: 1, z: -2 }, { x: 3, y: 1, z: 2 }, { x: -3, y: 1, z: 2 }] },
- ],
- labels: [
- { key: "length", objectId: "prism", at: { x: 0, y: 0, z: 2 }, placement: "below" },
- { key: "width", objectId: "prism", at: { x: 3, y: 0, z: 0 }, placement: "right" },
- { key: "height", objectId: "prism", at: { x: -3, y: 1, z: 2 }, placement: "left" },
- ],
- }}
- labels={{ length: <InlineMath math="6" />, width: <InlineMath math="4" />, height: <InlineMath math="2" /> }}
-/>
+Jadi, banyak susunan yang mungkin adalah **1.440**.

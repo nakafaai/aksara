@@ -4,7 +4,7 @@ export const metadata = {
   description: "Derive the dilation matrix and use it to calculate images from the origin or an arbitrary center.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-10",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Geometric Transformation",
 };
 
@@ -38,6 +38,36 @@ A dilation matrix centered at the origin is a **multiple of the identity matrix*
   <BlockMath math="D_{1/k}D_k=\begin{pmatrix}1/k&0\\0&1/k\end{pmatrix}\begin{pmatrix}k&0\\0&k\end{pmatrix}=\begin{pmatrix}1&0\\0&1\end{pmatrix}" />
 </MathContainer>
 
+<InlineMath math="D_2" /> doubles every position vector. The triangle with vertices <InlineMath math="(1, 1)" />, <InlineMath math="(3, 1)" /> and <InlineMath math="(1, 2)" /> becomes <InlineMath math="(2, 2)" />, <InlineMath math="(6, 2)" /> and <InlineMath math="(2, 4)" />: each image vertex lies on the ray from <InlineMath math="O" /> through the original vertex, twice as far out, and every side doubles in length.
+
+<MathVisual
+  title={<>Dilation by 2 about the origin</>}
+  description={<>A triangle and its image under <InlineMath math="D_2" />, with rays from <InlineMath math="O" /> through each pair of matching vertices.</>}
+  labels={{
+    tri: <InlineMath math="ABC" />,
+    image: <InlineMath math="A'B'C'" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ra", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 }, appearance: "construction" },
+      { id: "rb", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 2 }, appearance: "construction" },
+      { id: "rc", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 4 }, appearance: "construction" },
+      { id: "tri", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: 3, y: 1 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "image", kind: "polygon", vertices: [{ x: 2, y: 2 }, { x: 6, y: 2 }, { x: 2, y: 4 }], appearance: "secondary" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "tri", objectId: "tri", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "image", objectId: "image", at: { x: 6, y: 2 }, placement: "above" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 ## Matrix Operation for Dilation with Respect to an Arbitrary Point
 
 A point <InlineMath math="(x,y)" /> dilated by a factor <InlineMath math="k \neq 0" /> and center <InlineMath math="(a,b)" /> will be mapped to <InlineMath math="(k(x-a)+a,\, k(y-b)+b)" />.
@@ -58,6 +88,34 @@ An equivalent form is:
 
 <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \\ &amp;= \begin{pmatrix} k &amp; 0 \\ 0 &amp; k \end{pmatrix} \left( \begin{pmatrix} x \\ y \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \right) \end{aligned}" />
 
+With <InlineMath math="k = \tfrac12" /> and center <InlineMath math="(1, 1)" />, the vector from the center to <InlineMath math="(5, 3)" /> is <InlineMath math="(4, 2)" />. Half of it is <InlineMath math="(2, 1)" />, so the image is <InlineMath math="(1, 1) + (2, 1) = (3, 2)" />, exactly halfway along the segment from the center to the point.
+
+<MathVisual
+  title={<>Dilation by <InlineMath math="\tfrac12" /> about <InlineMath math="(1, 1)" /></>}
+  description={<>The point <InlineMath math="(5, 3)" /> and its image <InlineMath math="(3, 2)" />, halfway between the center <InlineMath math="(1, 1)" /> and the point.</>}
+  labels={{
+    c: <InlineMath math="(1, 1)" />,
+    a: <InlineMath math="(5, 3)" />,
+    image: <InlineMath math="(3, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ray", kind: "segment", from: { x: 1, y: 1 }, to: { x: 5, y: 3 }, appearance: "construction" },
+      { id: "c", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "a", kind: "point", at: { x: 5, y: 3 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 3, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "c", objectId: "c", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 5, y: 3 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: 3, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 ## Finding the Image of a Dilation Using Matrices
 
 Determine the image of point <InlineMath math="A(2,4)" /> transformed by a dilation with a factor of <InlineMath math="2" /> with respect to the center point <InlineMath math="P(1,1)" />!
@@ -75,63 +133,30 @@ Use the **vector from the center to the point**, not the point coordinates alone
 
 The image of point <InlineMath math="A(2,4)" /> is <InlineMath math="A'(3,7)" />.
 
-<LineEquation
-  title={
-    <>
-      Visualization of Dilation of Point <InlineMath math="A(2,4)" /> with
-      Center <InlineMath math="P(1,1)" /> and Scale Factor{" "}
-      <InlineMath math="k=2" />
-    </>
-  }
-  description={
-    <>
-      Point <InlineMath math="A(2,4)" /> is dilated with respect to the center{" "}
-      <InlineMath math="P(1,1)" /> with a scale factor <InlineMath math="k=2" />{" "}
-      to produce the image <InlineMath math="A'(3,7)" />. The line from the
-      center to the original point and from the center to the image lie on the
-      same line, and the distance <InlineMath math="PA'" /> is twice the
-      distance <InlineMath math="PA" />.
-    </>
-  }
-  data={[
-    {
-      points: [{ x: 1, y: 1, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P(1,1)" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: [{ x: 2, y: 4, z: 0 }],
-      color: "#0284c7",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A(2,4)" />, at: 0, offset: [1.5, 0.2, 0] }],
-    },
-    {
-      points: [{ x: 3, y: 7, z: 0 }],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A'(3,7)" />, at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 1, y: 1, z: 0 }, // P
-        { x: 2, y: 4, z: 0 }, // A
-      ],
-      smooth: false,
-      color: "#d97706",
-    },
-    {
-      points: [
-        { x: 2, y: 4, z: 0 }, // A
-        { x: 3, y: 7, z: 0 }, // A'
-      ],
-      smooth: false,
-      color: "#0284c7",
-      cone: { position: "end", size: 0.3 },
-    },
-  ]}
-  cameraPosition={[2, 4, 11]}
-  cameraTarget={[2, 4, 0]}
+<MathVisual
+  title={<>Dilation of <InlineMath math="A(2, 4)" /> by 2 about <InlineMath math="P(1, 1)" /></>}
+  description={<>The image <InlineMath math="A'(3, 7)" /> lies on the ray from <InlineMath math="P(1, 1)" /> through <InlineMath math="A(2, 4)" />, twice as far from <InlineMath math="P" />.</>}
+  labels={{
+    p: <InlineMath math="P(1, 1)" />,
+    a: <InlineMath math="A(2, 4)" />,
+    image: <InlineMath math="A'(3, 7)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: 0, max: 8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ray", kind: "segment", from: { x: 1, y: 1 }, to: { x: 3, y: 7 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "a", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 3, y: 7 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 2, y: 4 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 3, y: 7 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Exercises
@@ -206,97 +231,39 @@ Image of point <InlineMath math="M(3,4)" />:
 
   <BlockMath math="\begin{aligned} \begin{pmatrix} x_M' \\ y_M' \end{pmatrix} &amp;= \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 3 \\ 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} 6 \\ 8 \end{pmatrix} \\ &amp;\implies M'(6,8) \end{aligned}" />
 
-  <LineEquation
-    title={
-      <>
-        Visualization of Dilation of Triangle <InlineMath math="KLM" /> with
-        Center <InlineMath math="O(0,0)" /> and Scale Factor{" "}
-        <InlineMath math="k=2" />
-      </>
-    }
-    description={
-      <>
-        Triangle <InlineMath math="KLM" /> is dilated to become triangle{" "}
-        <InlineMath math="K'L'M'" />. The center of dilation is{" "}
-        <InlineMath math="O(0,0)" />.
-      </>
-    }
-    data={[
-      // Original Triangle KLM
-      {
-        points: [
-          { x: 1, y: 1, z: 0 }, // K
-          { x: 5, y: 1, z: 0 }, // L
-        ],
-        smooth: false,
-        color: "#0284c7",
-        labels: [
-          { text: <InlineMath math="K(1,1)" />, at: 0, offset: [-0.3, -0.75, 0] },
-          { text: <InlineMath math="L(5,1)" />, at: 1, offset: [0.7, -0.2, 0] },
-        ],
-        showPoints: true,
-      },
-      {
-        points: [
-          { x: 5, y: 1, z: 0 }, // L
-          { x: 3, y: 4, z: 0 }, // M
-        ],
-        smooth: false,
-        color: "#ea580c",
-        labels: [{ text: <InlineMath math="M(3,4)" />, at: 1, offset: [0, 0.5, 0] }],
-        showPoints: true,
-      },
-      {
-        points: [
-          { x: 3, y: 4, z: 0 }, // M
-          { x: 1, y: 1, z: 0 }, // K
-        ],
-        smooth: false,
-        color: "#9333ea",
-        showPoints: true,
-      },
-      // Dilated Triangle K'L'M'
-      {
-        points: [
-          { x: 2, y: 2, z: 0 }, // K'
-          { x: 10, y: 2, z: 0 }, // L'
-        ],
-        smooth: false,
-        color: "#0d9488",
-        labels: [
-          { text: <InlineMath math="K'(2,2)" />, at: 0, offset: [-1.8, 0.7, 0] },
-          { text: <InlineMath math="L'(10,2)" />, at: 1, offset: [0, -0.7, 0] },
-        ],
-        showPoints: true,
-      },
-      {
-        points: [
-          { x: 10, y: 2, z: 0 }, // L'
-          { x: 6, y: 8, z: 0 }, // M'
-        ],
-        smooth: false,
-        color: "#db2777",
-        labels: [{ text: <InlineMath math="M'(6,8)" />, at: 1, offset: [0, 0.6, 0] }],
-        showPoints: true,
-      },
-      {
-        points: [
-          { x: 6, y: 8, z: 0 }, // M'
-          { x: 2, y: 2, z: 0 }, // K'
-        ],
-        smooth: false,
-        color: "#4f46e5",
-        showPoints: true,
-      },
-      // Origin
-      {
-        points: [{ x: 0, y: 0, z: 0 }],
-        color: "#4f46e5",
-        showPoints: true,
-        labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -1.1, 0] }],
-      },
-    ]}
-    cameraPosition={[5, 4, 16]}
-    cameraTarget={[5, 4, 0]}
+  <MathVisual
+    title={<>Triangle <InlineMath math="KLM" /> dilated by 2 about <InlineMath math="O" /></>}
+    description={<>Triangle <InlineMath math="KLM" /> with <InlineMath math="K(1, 1)" />, <InlineMath math="L(5, 1)" />, <InlineMath math="M(3, 4)" /> and its image <InlineMath math="K'(2, 2)" />, <InlineMath math="L'(10, 2)" />, <InlineMath math="M'(6, 8)" />, each image vertex on the ray from <InlineMath math="O" /> twice as far out.</>}
+    labels={{
+      k: <InlineMath math="K" />,
+      l: <InlineMath math="L" />,
+      m: <InlineMath math="M" />,
+      "k-image": <InlineMath math="K'" />,
+      "l-image": <InlineMath math="L'" />,
+      "m-image": <InlineMath math="M'" />,
+      o: <InlineMath math="O" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 10.6 }, y: { min: -0.6, max: 8.6 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "rk", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 }, appearance: "construction" },
+        { id: "rl", kind: "segment", from: { x: 0, y: 0 }, to: { x: 10, y: 2 }, appearance: "construction" },
+        { id: "rm", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "construction" },
+        { id: "tri", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: 5, y: 1 }, { x: 3, y: 4 }], appearance: "primary" },
+        { id: "image", kind: "polygon", vertices: [{ x: 2, y: 2 }, { x: 10, y: 2 }, { x: 6, y: 8 }], appearance: "secondary" },
+        { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "k", objectId: "tri", at: { x: 1, y: 1 }, placement: "above-left" },
+        { key: "l", objectId: "tri", at: { x: 5, y: 1 }, placement: "below" },
+        { key: "m", objectId: "tri", at: { x: 3, y: 4 }, placement: "left" },
+        { key: "k-image", objectId: "image", at: { x: 2, y: 2 }, placement: "above-left" },
+        { key: "l-image", objectId: "image", at: { x: 10, y: 2 }, placement: "below" },
+        { key: "m-image", objectId: "image", at: { x: 6, y: 8 }, placement: "above" },
+        { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-left" },
+      ],
+    }}
   />
 </ContentStack>

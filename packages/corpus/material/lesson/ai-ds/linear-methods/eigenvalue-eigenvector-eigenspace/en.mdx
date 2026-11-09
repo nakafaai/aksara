@@ -77,6 +77,45 @@ The vector <InlineMath math="v_2" /> below is an eigenvector for <InlineMath mat
 <BlockMath math="A \cdot v_2 = \begin{pmatrix} 4 \\ 4 \end{pmatrix} = 4 \cdot v_2" />
 </MathContainer>
 
+Rotate or zoom this scene to compare each segment with its image under the symmetric matrix above. The violet unit vectors <InlineMath math="v_1" /> and <InlineMath math="v_2" /> only get longer: their orange images stay on the same lines, scaled by <InlineMath math="\lambda_1=2" /> and <InlineMath math="\lambda_2=4" />. The vector <InlineMath math="e_1" /> doesn't, because <InlineMath math="Ae_1=(3,1)^T" /> turns away from the <InlineMath math="x" />-axis. Only eigendirections survive, and the length of each image shows its eigenvalue directly.
+
+<MathVisual
+  title={<>Eigenvectors stay on their lines</>}
+  description={<>Violet segments are unit vectors, orange segments are their images under <InlineMath math="A=\begin{pmatrix}3&1\\1&3\end{pmatrix}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.4, max: 3.4 }, y: { min: -1.6, max: 3.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "av1", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT2, y: Math.SQRT2 }, appearance: "primary" },
+      { id: "av2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.SQRT2, y: 2 * Math.SQRT2 }, appearance: "primary" },
+      { id: "ae1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "v1", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "v2", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "e1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "unit", objectId: "unit", at: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-left" },
+      { key: "av1", objectId: "av1", at: { x: -Math.SQRT2, y: Math.SQRT2 }, placement: "above-left" },
+      { key: "av2", objectId: "av2", at: { x: 2 * Math.SQRT2, y: 2 * Math.SQRT2 }, placement: "above-right" },
+      { key: "ae1", objectId: "ae1", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "v1", objectId: "v1", at: { x: -Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "below-left" },
+      { key: "v2", objectId: "v2", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "below-right" },
+      { key: "e1", objectId: "e1", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "unit": <InlineMath math="\|v\|=1" />,
+    "av1": <InlineMath math="Av_1=2v_1" />,
+    "av2": <InlineMath math="Av_2=4v_2" />,
+    "ae1": <InlineMath math="Ae_1" />,
+    "v1": <InlineMath math="v_1" />,
+    "v2": <InlineMath math="v_2" />,
+    "e1": <InlineMath math="e_1" />,
+  }}
+/>
+
 ## Linear Independence of Eigenvectors
 
 Let <InlineMath math="A \in \mathbb{K}^{n \times n}" /> and <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> be **pairwise distinct eigenvalues** of <InlineMath math="A" />, so <InlineMath math="\lambda_i \neq \lambda_j" /> whenever <InlineMath math="i \neq j" />. Then corresponding eigenvectors <InlineMath math="v_1, \ldots, v_k \in \mathbb{K}^n" /> are linearly independent.
@@ -115,6 +154,34 @@ Each eigenspace satisfies the following properties:
 
 7. **Intersection of eigenspaces**: If <InlineMath math="\lambda_1 \neq \lambda_2" />, then <InlineMath math="E_A(\lambda_1) \cap E_A(\lambda_2) = \{0\}" />.
 
+With <InlineMath math="A=\operatorname{diag}(2,2,1)" />, every vector of the form <InlineMath math="(a,b,0)" /> satisfies <InlineMath math="Av=2v" />. So <InlineMath math="E_A(2)" /> is a whole plane with geometric multiplicity <InlineMath math="2" />, while <InlineMath math="E_A(1)" /> is the line spanned by <InlineMath math="e_3" />.
+
+<MathVisual
+  title={<>The eigenspace <InlineMath math="E_A(2)" /> is a plane</>}
+  description={<>For <InlineMath math="A=\operatorname{diag}(2,2,1)" />, the violet square lies in <InlineMath math="E_A(2)" />, the plane <InlineMath math="z=0" />. The teal vector <InlineMath math="v=(1,1,0)" /> goes to the magenta vector <InlineMath math="Av=(2,2,0)" /> inside that plane. The orange segment spans <InlineMath math="E_A(1)" />, the line through <InlineMath math="e_3" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 2.5 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 1, y: 1, z: 0.5 } },
+    objects: [
+      { id: "plane", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }, { x: 0, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 2, z: 0 }, appearance: "answer" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: 0 }, appearance: "construction" },
+      { id: "axis", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "vector", objectId: "vector", at: { x: 1, y: 1, z: 0 }, placement: "below-right" },
+      { key: "image", objectId: "image", at: { x: 2, y: 2, z: 0 }, placement: "right" },
+      { key: "axis", objectId: "axis", at: { x: 0, y: 0, z: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "vector": <InlineMath math="v" />,
+    "image": <InlineMath math="Av" />,
+    "axis": <InlineMath math="e_3" />,
+  }}
+/>
+
 ## Relationship with Invertibility
 
 Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> is invertible if and only if **zero is not one** of its eigenvalues.
@@ -128,6 +195,32 @@ If matrix <InlineMath math="A" /> is invertible and <InlineMath math="v \neq 0" 
 **Applying** <InlineMath math="A^{-1}" /> to <InlineMath math="A \cdot v = \lambda \cdot v" /> gives:
 
 <BlockMath math="v = \lambda A^{-1}v \quad \Longrightarrow \quad A^{-1}v = \frac{1}{\lambda}v" />
+
+For <InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" />, the vector <InlineMath math="v=(2,-1)" /> gives <InlineMath math="Av=(2-2,4-4)=(0,0)=0\cdot v" />. The eigenvalue <InlineMath math="0" /> means that <InlineMath math="A" /> squeezes a whole direction to the origin, so no inverse can bring it back.
+
+<MathVisual
+  title={<>A zero eigenvalue flattens the plane</>}
+  description={<><InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" /> sends the gray unit square onto the violet segment from <InlineMath math="(0,0)" /> to <InlineMath math="(3,6)" />. The teal eigenvector <InlineMath math="v=(2,-1)" /> goes to the magenta point <InlineMath math="Av=0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -1.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 6 }, appearance: "secondary" },
+      { id: "kernel", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1 }, appearance: "construction" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "kernel", objectId: "kernel", at: { x: 2, y: -1 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "kernel": <InlineMath math="v" />,
+    "zero": <InlineMath math="Av=0" />,
+  }}
+/>
 
 ## Invertibility Criteria
 

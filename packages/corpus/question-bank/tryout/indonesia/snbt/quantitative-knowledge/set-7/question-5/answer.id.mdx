@@ -1,23 +1,32 @@
-Diketahui **rumus rekursif** barisan bilangan:
+Tulis ketiga suku sebagai <InlineMath math="\tfrac{a}{r}" />, <InlineMath math="a" />, dan <InlineMath math="ar" />. Kuncinya adalah **membagi jumlah kuadrat dengan jumlah suku**, karena hasil baginya menyisakan bentuk yang sangat mirip dengan jumlah suku.
 
-<BlockMath math="a_{n+1} = a_{n+2} + 2a_n" />
+# Identitas jumlah kuadrat
 
-Kita diberikan nilai <InlineMath math="a_3 = -1" /> dan <InlineMath math="a_5 = 3" />. Kita diminta untuk mencari nilai <InlineMath math="a_2" />.
+Untuk tiga suku geometri berlaku
 
-Pertama, kita mencari nilai <InlineMath math="a_4" /> menggunakan rumus rekursif dengan menyubstitusi <InlineMath math="n = 3" /> untuk menghubungkan <InlineMath math="a_3" />, <InlineMath math="a_4" />, dan <InlineMath math="a_5" />.
+<BlockMath math="\frac{a^2}{r^2}+a^2+a^2r^2=\left(\frac ar+a+ar\right)\left(\frac ar-a+ar\right)" />
 
-<BlockMath math="\begin{align*} a_{3+1} &= a_{3+2} + 2a_3 \\ a_4 &= a_5 + 2a_3 \end{align*}" />
+Ruas kanan dapat diperiksa dengan mengalikan: suku-suku silangnya saling menghapus. Jadi **hasil bagi jumlah kuadrat oleh jumlah suku** adalah <InlineMath math="\tfrac ar-a+ar" />.
 
-Substitusikan nilai <InlineMath math="a_5 = 3" /> dan <InlineMath math="a_3 = -1" />:
+<BlockMath math="\begin{aligned}
+\frac ar+a+ar&=38\\
+\frac ar-a+ar&=\frac{532}{38}=14
+\end{aligned}" />
 
-<BlockMath math="\begin{align*} a_4 &= 3 + 2(-1) \\ a_4 &= 3 - 2 \\ a_4 &= 1 \end{align*}" />
+# Mencari suku-suku
 
-Selanjutnya, kita mencari nilai <InlineMath math="a_2" />. Karena kita sudah memiliki nilai <InlineMath math="a_3" /> dan <InlineMath math="a_4" />, kita bisa menggunakan rumus rekursif dengan <InlineMath math="n = 2" /> untuk menghubungkan <InlineMath math="a_2" />, <InlineMath math="a_3" />, dan <InlineMath math="a_4" />.
+Kurangkan kedua persamaan: <InlineMath math="2a=24" />, jadi <InlineMath math="a=12" /> dan **jumlah kedua suku luar** adalah <InlineMath math="\tfrac{12}{r}+12r=26" />.
 
-<BlockMath math="\begin{align*} a_{2+1} &= a_{2+2} + 2a_2 \\ a_3 &= a_4 + 2a_2 \end{align*}" />
+<BlockMath math="\begin{aligned}
+12r^2-26r+12&=0\\
+6r^2-13r+6&=0\\
+(3r-2)(2r-3)&=0
+\end{aligned}" />
 
-Substitusikan nilai <InlineMath math="a_3 = -1" /> dan <InlineMath math="a_4 = 1" />:
+Nilai <InlineMath math="r=\tfrac32" /> memberi 8, 12, 18, dan <InlineMath math="r=\tfrac23" /> memberi bilangan yang sama dalam urutan terbalik. Pemeriksaan: <InlineMath math="8+12+18=38" /> dan <InlineMath math="64+144+324=532" />.
 
-<BlockMath math="\begin{align*} -1 &= 1 + 2a_2 \\ -1 - 1 &= 2a_2 \\ -2 &= 2a_2 \\ a_2 &= -1 \end{align*}" />
+Selisih bilangan terbesar dan terkecil adalah <InlineMath math="18-8=10" />.
 
-Jadi, nilai <InlineMath math="a_2" /> adalah <InlineMath math="-1" />.
+Nilai 12 adalah suku tengah, nilai 14 adalah hasil bagi <InlineMath math="532:38" />, nilai 18 adalah suku terbesar, dan nilai 26 adalah jumlah kedua suku luar.
+
+Jadi, selisih bilangan terbesar dan terkecil adalah **10**.

@@ -1,29 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "quantitative-reasoning",
+    topic: "number-properties",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$\\frac1{56}$$",
+          column: 1,
+          label: "Setiap bilangan seperti itu habis dibagi $$9$$.",
         },
         {
-          correct: false,
-          label: "$$\\frac1{72}$$",
+          column: 2,
+          label: "Ada tepat $$10$$ bilangan seperti itu.",
         },
         {
-          correct: false,
-          label: "$$\\frac1{63}$$",
+          column: 2,
+          label: "Bilangan terbesar seperti itu adalah $$99$$.",
         },
         {
-          correct: false,
-          label: "$$\\frac1{48}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac1{42}$$",
+          column: 1,
+          label:
+            "Jika kedua angka sebuah bilangan seperti itu ditukar letaknya, selisih bilangan baru dan bilangan semula selalu merupakan kelipatan $$9$$.",
         },
       ],
     },

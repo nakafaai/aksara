@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "general-term",
+  },
+  stimulus: "karang",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Kakinya *terinjak* saat menonton konser semalam.",
+          label: "Parasitisme",
         },
         {
           correct: false,
-          label: "Arman menjadi siswa *terbaik* di kelas.",
-        },
-        {
-          correct: false,
-          label: "Dia tidak sengaja *tertidur* di sofa semalam.",
+          label: "Komensalisme",
         },
         {
           correct: true,
-          label: "Kayu-kayu balok itu *terikat* dengan kuat.",
+          label: "Mutualisme",
         },
         {
           correct: false,
-          label: "Dian menjadi peserta *termuda* dalam acara tersebut.",
+          label: "Predasi",
+        },
+        {
+          correct: false,
+          label: "Kompetisi",
         },
       ],
     },

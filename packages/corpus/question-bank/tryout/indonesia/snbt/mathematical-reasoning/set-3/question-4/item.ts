@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "bicycle-gears",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$6 \\text{ cm}$$",
-        },
-        {
-          correct: true,
-          label: "$$9 \\text{ cm}$$",
-        },
-        {
-          correct: false,
-          label: "$$7 \\text{ cm}$$",
-        },
-        {
-          correct: false,
-          label: "$$8 \\text{ cm}$$",
-        },
-        {
-          correct: false,
-          label: "$$10 \\text{ cm}$$",
-        },
+        { correct: false, label: "$$2{,}2\\text{ km/jam}$$" },
+        { correct: false, label: "$$4{,}4\\text{ km/jam}$$" },
+        { correct: true, label: "$$6{,}6\\text{ km/jam}$$" },
+        { correct: false, label: "$$13{,}2\\text{ km/jam}$$" },
+        { correct: false, label: "$$19{,}8\\text{ km/jam}$$" },
       ],
     },
   },

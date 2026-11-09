@@ -1,29 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "waste-bank",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "sebelum kalimat (7).",
+          column: 1,
+          label:
+            "Kaleng aluminium mempunyai harga beli per kilogram paling tinggi.",
         },
         {
-          correct: true,
-          label: "antara kalimat (5) dan (6).",
+          column: 2,
+          label:
+            "Sampah ditimbang di rumah warga sebelum dibawa ke bank sampah.",
         },
         {
-          correct: false,
-          label: "antara kalimat (1) dan (2).",
+          column: 1,
+          label:
+            "Pada bulan Agustus, berat kardus yang diterima lebih besar daripada berat botol plastik bening.",
         },
         {
-          correct: false,
-          label: "setelah kalimat (3).",
-        },
-        {
-          correct: false,
-          label: "antara kalimat (4) dan (5).",
+          column: 2,
+          label:
+            "Seluruh uang hasil penjualan sampah dipakai untuk membeli tempat sampah terpilah.",
         },
       ],
     },

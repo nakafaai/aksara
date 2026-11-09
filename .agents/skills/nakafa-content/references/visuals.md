@@ -106,6 +106,17 @@ For assessed content, also apply the
   a visual. Longer localized text must not clip, overlap, obscure data, or
   detach from the representation it explains.
 
+## Math in visual text
+
+A visual's title, description, labels, facts, and legends are JSX nodes, never
+strings, so every mathematical or chemical expression in them renders through
+`<InlineMath />`: `title={<>Fungsi <InlineMath math="f(x) = x^2" /></>}`. The
+[mathematics rules](math.md) own what counts as math. `LineEquation`,
+`Triangle`, `UnitCircle`, `NumberLine`, `Inequality`, and `VectorChart` are
+retired: draw with `MathVisual` (D36). The voice gate reports each string text
+prop as `string-visual-text`, each retired visual as `retired-visual`, and each
+plain-text expression as `plain-math-text`.
+
 ## Computed and exact visuals
 
 These rules cover every value a formula draws, because a single wrong or jagged
@@ -258,8 +269,12 @@ graph teaches the wrong mathematics on an education platform.
   observations are data. It reads coordinates and typed lists, so a printed
   constant that code turns into a coordinate, such as
   `parameters.push(1.9700042649107503)`, and the density of a computed series
-  stay review items. The local verification runs the gate on both corpus roots
-  against `origin/main`, its default base, before a pull request merges.
+  stay review items. The gate also lists every lesson folder with a locale
+  file below the [visual bar](#interactive-visual-in-every-lesson), fewer
+  than three interactive visual cards, with their count. The list reports without failing until the change that lifts the
+  last lesson over the bar, which turns it into a finding in the same change;
+  no allowlist or baseline file holds lessons back. The local verification runs the gate on both corpus
+  roots against `origin/main`, its default base, before a pull request merges.
 
 When removing an external visual or interactive resource, inspect the existing
 lesson and renderer manifest first. Reuse a Nakafa-owned visual that already
@@ -281,6 +296,16 @@ usually one for each main idea a learner can see, because learners understand
 and remember a concept they can see and change, and they skim long text. The
 research in the [evidence basis](research.md) governs how the visual is
 designed: it carries a teaching job and never decorates.
+
+- Every lesson in every subject carries at least three interactive visual
+  cards in every locale, each modelling part of its concept: a 3D scene, a p5
+  animation, an interactive chart, or a formula-driven `MathVisual`, inside
+  its renderer-owned card. A Mermaid diagram, a table, a code block, or a
+  video never counts toward the three and is never added as filler, because
+  none of them lets the learner change, step through, rotate, or run the
+  idea. A learner never meets a
+  lesson of only text and formulas. The [points gate](#computed-and-exact-visuals)
+  lists every lesson below this bar.
 
 - The interaction answers a question the lesson asks: change a parameter and
   watch the result, step through a process, rotate a structure, or run a

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Jumlahkan matriks seordo dan buktikan sifat komutatif serta asosiatifnya dalam soal bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-06",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Matriks",
 };
 
@@ -54,6 +54,97 @@ Maka, <InlineMath math="P+Q" /> adalah:
 </MathContainer>
 
 Matriks di atas adalah hasil penjumlahan <InlineMath math="P+Q" />.
+
+Penjumlahan ini bisa kamu lihat langsung. Baca setiap baris <InlineMath math="P" /> sebagai titik <InlineMath math="(x, y)" />, jadi <InlineMath math="P" /> membentuk segitiga. Menambahkan <InlineMath math="Q" /> menggeser setiap titik sudut sejauh baris <InlineMath math="Q" /> yang seletak: titik <InlineMath math="(1, 5)" /> bergeser <InlineMath math="(6, -3)" /> dan mendarat di <InlineMath math="(7, 2)" />, baris pertama <InlineMath math="P+Q" />. Setiap titik bergeser menurut barisnya sendiri. Itulah arti menjumlahkan entri yang seletak.
+
+<MathVisual
+  title={<>Menambahkan <InlineMath math="Q" /> menggeser setiap baris <InlineMath math="P" /></>}
+  description={<>Setiap baris <InlineMath math="P" /> adalah titik sudut segitiga. Baris <InlineMath math="Q" /> yang seletak menggeser titik itu ke baris <InlineMath math="P+Q" /> yang seletak.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    sum: <InlineMath math="P + Q" />,
+    q1: <InlineMath math="+(6, -3)" />,
+    q2: <InlineMath math="+(8, 1)" />,
+    q3: <InlineMath math="+(-2, 9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 8 }, y: { min: -1, max: 17 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "p", kind: "polygon", vertices: [{ x: 1, y: 5 }, { x: -2, y: 0 }, { x: 4, y: 7 }], appearance: "primary" },
+      { id: "sum", kind: "polygon", vertices: [{ x: 7, y: 2 }, { x: 6, y: 1 }, { x: 2, y: 16 }], appearance: "secondary" },
+      { id: "q1", kind: "segment", from: { x: 1, y: 5 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "q2", kind: "segment", from: { x: -2, y: 0 }, to: { x: 6, y: 1 }, appearance: "construction" },
+      { id: "q3", kind: "segment", from: { x: 4, y: 7 }, to: { x: 2, y: 16 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: -2, y: 0 }, placement: "left" },
+      { key: "sum", objectId: "sum", at: { x: 2, y: 16 }, placement: "left" },
+      { key: "q1", objectId: "q1", at: { x: 4, y: 3.5 }, placement: "below-left" },
+      { key: "q2", objectId: "q2", at: { x: 2, y: 0.5 }, placement: "below" },
+      { key: "q3", objectId: "q3", at: { x: 3, y: 11.5 }, placement: "left" },
+    ],
+  }}
+/>
+
+Urutan kedua matriks tidak berpengaruh. Mulai dari titik asal, melangkah sejauh baris 1 <InlineMath math="P" />, yaitu <InlineMath math="(1, 5)" />, lalu sejauh baris 1 <InlineMath math="Q" />, yaitu <InlineMath math="(6, -3)" />. Atau ambil kedua langkah dengan urutan terbalik. Kedua rute berakhir di <InlineMath math="(7, 2)" />, dan jajargenjang itulah alasan <InlineMath math="P+Q=Q+P" />.
+
+<MathVisual
+  title={<>Dua rute menuju baris 1 <InlineMath math="P+Q" /></>}
+  description={<>Melangkah <InlineMath math="(1, 5)" /> lalu <InlineMath math="(6, -3)" />, atau dengan urutan terbalik, berakhir di titik yang sama, <InlineMath math="(7, 2)" />.</>}
+  labels={{
+    p: <InlineMath math="(1, 5)" />,
+    q: <InlineMath math="(6, -3)" />,
+    sum: <InlineMath math="(7, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -4, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "q", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: -3 }, appearance: "secondary" },
+      { id: "pq", kind: "segment", from: { x: 1, y: 5 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "qp", kind: "segment", from: { x: 6, y: -3 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "sum", kind: "point", at: { x: 7, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: 6, y: -3 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 7, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Dua matriks khusus melengkapi gambarnya. Menambahkan matriks nol <InlineMath math="O" /> tidak menggeser titik mana pun, jadi <InlineMath math="P + O = P" />. Menambahkan <InlineMath math="-P" /> mengirim setiap baris ke titik asal: baris 1, <InlineMath math="(1, 5)" />, ditambah <InlineMath math="(-1, -5)" /> sama dengan <InlineMath math="(0, 0)" />, jadi <InlineMath math="P + (-P) = O" />.
+
+<MathVisual
+  title={<>Matriks nol dan matriks lawan</>}
+  description={<>Baris 1 <InlineMath math="P" /> di <InlineMath math="(1, 5)" />, lawannya di <InlineMath math="(-1, -5)" />, dan jumlahnya di titik asal.</>}
+  labels={{
+    p: <InlineMath math="(1, 5)" />,
+    n: <InlineMath math="(-1, -5)" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "link", kind: "segment", from: { x: 1, y: 5 }, to: { x: -1, y: -5 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "n", kind: "point", at: { x: -1, y: -5 }, appearance: "secondary" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "n", objectId: "n", at: { x: -1, y: -5 }, placement: "left" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
 ### Matriks yang Tidak Dapat Dijumlahkan
 
 Kedua matriks ini **berordo berbeda**:

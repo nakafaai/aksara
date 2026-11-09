@@ -1,34 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "quantifiers",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Perubahan sosial hanya disebabkan oleh hubungan antarindividu",
+          label: "Semua pemakai lencana biru lulus ujian bahasa Jepang.",
         },
         {
           correct: false,
           label:
-            "Kontak dari luar merupakan satu-satunya sumber perubahan sosial",
+            "Sebagian pemandu yang lulus ujian bahasa Jepang bertugas di galeri lantai dua.",
+        },
+        {
+          correct: false,
+          label:
+            "Tidak ada petugas akhir pekan yang lulus ujian bahasa Jepang.",
         },
         {
           correct: true,
           label:
-            "Setiap masyarakat berubah, dan sumber perubahan sosial dapat berasal dari dalam maupun luar masyarakat",
+            "Sebagian pemakai lencana biru tidak bertugas pada akhir pekan.",
         },
         {
           correct: false,
-          label:
-            "Peneliti harus mengkaji semua perubahan tanpa menentukan perubahan utama",
-        },
-        {
-          correct: false,
-          label:
-            "Masyarakat hanya berubah ketika dipengaruhi oleh masyarakat lain",
+          label: "Semua petugas galeri lantai dua memakai lencana biru.",
         },
       ],
     },

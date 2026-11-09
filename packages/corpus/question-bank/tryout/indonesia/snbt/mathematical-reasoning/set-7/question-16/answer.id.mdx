@@ -1,22 +1,21 @@
-# Menghitung Dua Jumlah Nilai
+Hubungan linear antara angka yang ditunjukkan <InlineMath math="R" /> dan suhu sebenarnya <InlineMath math="C" /> ditentukan oleh **dua pasangan data yang diketahui**, seperti rumus Fahrenheit ditentukan oleh titik beku dan titik didih.
 
-Gunakan hubungan **jumlah nilai sama dengan banyak data dikali rata-rata** sebelum membandingkan kedua kelompok data:
+# Menentukan rumus termometer
 
-| Kelompok data | Banyak data | Rata-rata | Jumlah nilai |
-| --- | ---: | ---: | ---: |
-| Semula | <InlineMath math="22" /> | <InlineMath math="5" /> | <InlineMath math="22\times5=110" /> |
-| Setelah dua nilai dikeluarkan | <InlineMath math="22-2=20" /> | <InlineMath math="4{,}9" /> | <InlineMath math="20\times4{,}9=98" /> |
+Dari 0 °C ke 100 °C, angka termometer naik dari <InlineMath math="-4" /> ke 86, yaitu naik 90. Jadi **setiap 1 °C menaikkan angka 0,9**.
 
-Jadi, jumlah kedua nilai yang dikeluarkan adalah <InlineMath math="110-98=12" />.
+<BlockMath math="R=0{,}9C-4" />
 
-# Menggabungkan Jumlah dan Jangkauan
+# Mencari suhu sebenarnya
 
-Misalkan <InlineMath math="m" /> adalah nilai minimum dan <InlineMath math="M" /> nilai maksimum. **Jangkauan adalah maksimum dikurangi minimum**, sehingga:
+<BlockMath math="\begin{aligned}
+0{,}9C-4&=32\\
+0{,}9C&=36\\
+C&=40
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}m+M&=12 \\ M-m&=4\quad\Rightarrow\quad M=m+4\end{aligned}" />
+Pemeriksaan: <InlineMath math="0{,}9\cdot40-4=32" />. Termometer itu **menunjukkan angka lebih rendah** daripada suhu sebenarnya pada suhu ini.
 
-Substitusikan hubungan jangkauan ke persamaan jumlah:
+Nilai 32 °C menganggap angka termometer benar. Nilai 36 °C hanya memperbaiki selisih 4 tanpa memperbaiki faktor 0,9.
 
-<BlockMath math="\begin{aligned}m+(m+4)&=12 \\ 2m&=12-4=8 \\ m&=4\end{aligned}" />
-
-Nilai terendah adalah <InlineMath math="4" />. Periksa: nilai tertinggi <InlineMath math="8" />, sehingga jangkauan <InlineMath math="8-4=4" /> dan jumlah nilai semula <InlineMath math="98+4+8=110" />.
+Jadi, suhu sebenarnya adalah **40 °C**.

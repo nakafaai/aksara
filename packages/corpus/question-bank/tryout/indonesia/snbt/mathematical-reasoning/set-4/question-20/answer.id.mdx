@@ -1,32 +1,20 @@
-Misalkan harga satu barang <InlineMath math="x" /> adalah <InlineMath math="x" /> dan harga satu barang <InlineMath math="y" /> adalah <InlineMath math="y" />. Informasi pembelian membentuk **sistem persamaan** berikut.
+Jika Rafi memiliki <InlineMath math="k" /> tiket, peluang paling sedikit satu hadiah tidak kurang dari <InlineMath math="\tfrac12" /> berarti **peluang tidak mendapat hadiah paling besar <InlineMath math="\tfrac12" />**.
 
-<BlockMath math="4x + 2y = 4000" />
+# Menyusun syarat
 
-<BlockMath math="10x + 4y = 9500" />
+Tidak mendapat hadiah berarti **kedua tiket pemenang bukan milik Rafi**, yaitu berasal dari <InlineMath math="20-k" /> tiket lain.
 
-Eliminasi <InlineMath math="y" /> dengan mengalikan persamaan pertama dengan <InlineMath math="2" /> sehingga koefisien <InlineMath math="y" /> sama.
- Kurangkan persamaan pertama yang sudah dikalikan dua dari persamaan kedua.
+<BlockMath math="\frac{\binom{20-k}{2}}{190}\le\frac12\;\Longleftrightarrow\;(20-k)(19-k)\le190" />
 
-<BlockMath math="8x + 4y = 8000" />
+# Memeriksa nilai k
 
-<BlockMath math="10x + 4y = 9500" />
+| <InlineMath math="k" /> | <InlineMath math="(20-k)(19-k)" /> | Memenuhi? |
+| :---: | :---: | :---: |
+| 5 | <InlineMath math="15\cdot14=210" /> | tidak |
+| 6 | <InlineMath math="14\cdot13=182" /> | ya |
 
-<BlockMath math="2x = 1500" />
+Dengan 6 tiket, peluang paling sedikit satu hadiah adalah <InlineMath math="1-\tfrac{91}{190}=\tfrac{99}{190}" />, **sedikit di atas setengah**. Dengan 5 tiket, peluangnya <InlineMath math="1-\tfrac{105}{190}=\tfrac{85}{190}" />, masih di bawah setengah.
 
-<BlockMath math="x = 750" />
+Nilai 10 menganggap Rafi perlu separuh dari semua tiket. Nilai 4 dan 5 belum cukup.
 
-Substitusikan <InlineMath math="x" /> ke persamaan pertama.
-
-<BlockMath math="4(750) + 2y = 4000" />
-
-<BlockMath math="3000 + 2y = 4000" />
-
-<BlockMath math="2y = 1000" />
-
-<BlockMath math="y = 500" />
-
-Harga yang dibayar Japri adalah <InlineMath math="x + y" />.
-
-<BlockMath math="x + y = 750 + 500 = 1250" />
-
-Jadi, harga yang harus dibayar adalah <InlineMath math="\text{Rp }1{.}250{,}00" />.
+Jadi, Rafi perlu paling sedikit **6 tiket**.

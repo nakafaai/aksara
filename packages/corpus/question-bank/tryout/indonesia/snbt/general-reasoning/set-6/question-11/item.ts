@@ -1,32 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "conditional",
+  },
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Konsumsi melebihi produksi dalam negeri pada setiap tahun yang tercantum, dan impor menutup selisihnya.",
+            "Dodi tidak hadir pada salah satu latihan pekan ini, jadi Dodi tidak ikut final.",
         },
         {
-          correct: false,
-          label: "Impor naik dan turun dari tahun ke tahun.",
+          column: 2,
+          label: "Eka hadir pada semua latihan pekan ini, jadi Eka ikut final.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Produksi, konsumsi, dan impor bertambah dengan jumlah yang sama setiap tahun.",
+            "Gita ikut final, jadi Gita hadir pada semua latihan pekan ini dan mendapat kaus khusus.",
         },
         {
-          correct: false,
-          label: "Konsumsi tertinggi terjadi pada tahun A.",
-        },
-        {
-          correct: false,
-          label:
-            "Impor melebihi produksi dalam negeri pada setiap tahun yang tercantum.",
+          column: 2,
+          label: "Fajar mendapat kaus khusus, jadi Fajar ikut final.",
         },
       ],
     },

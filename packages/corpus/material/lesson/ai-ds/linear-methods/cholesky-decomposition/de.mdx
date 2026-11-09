@@ -43,6 +43,31 @@ Wir definieren die diagonale Wurzelmatrix wie folgt.
 
 Diese Matrix erfüllt <InlineMath math="D^{\frac{1}{2}} \cdot D^{\frac{1}{2}} = D" />.
 
+Für <InlineMath math="A=\begin{pmatrix}4&2\\2&5\end{pmatrix}" /> betrachte <InlineMath math="q(t)=(t,1)\,A\,(t,1)^T=4t^2+4t+5" />. Weil <InlineMath math="A" /> positiv definit ist, gilt <InlineMath math="q(t)>0" /> für jedes <InlineMath math="t" />. Das Minimum <InlineMath math="5-\tfrac{2^2}4=4" /> ist das zweite Pivotelement, also ist es positiv, und ein Zeilentausch ist nie nötig.
+
+<MathVisual
+  title={<>Das zweite Pivotelement ist das Minimum von <InlineMath math="q(t)=4t^2+4t+5" /></>}
+  description={<>Die violette Parabel berührt die Achse nie. Ihr magentafarbener tiefster Punkt liegt bei <InlineMath math="t=-\tfrac12" /> mit dem Wert <InlineMath math="4" />, dem zweiten Pivotelement <InlineMath math="a_{22}-a_{21}^2/a_{11}" />. Der gelbe Punkt ist <InlineMath math="q(0)=a_{22}=5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 1 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "form", kind: "quadratic", coefficients: { a: 4, b: 4, c: 5 }, domain: { min: -1.5, max: 0.5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "pivot", kind: "point", at: { x: -1 / 2, y: 4 }, appearance: "answer" },
+      { id: "corner", kind: "point", at: { x: 0, y: 5 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "pivot", objectId: "pivot", at: { x: -1 / 2, y: 4 }, placement: "below" },
+      { key: "corner", objectId: "corner", at: { x: 0, y: 5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "pivot": <InlineMath math="q(-\tfrac12)=4" />,
+    "corner": <InlineMath math="a_{22}=5" />,
+  }}
+/>
+
 ## Ein eindeutiger Faktor mit positiver Diagonale
 
 Jede reelle symmetrische positiv definite Matrix <InlineMath math="A \in \mathbb{R}^{n \times n}" /> besitzt einen eindeutigen Cholesky-Faktor mit positiven Diagonaleinträgen:
@@ -108,6 +133,34 @@ Damit gilt
 
 Ist der Faktor bekannt, lösen wir <InlineMath math="Ax=b" /> mit **zwei Dreieckssystemen** statt mit einer Inversen: zuerst <InlineMath math="\tilde Ly=b" />, danach <InlineMath math="\tilde L^Tx=y" />.
 
+Der Faktor <InlineMath math="L" /> aus diesem Beispiel bildet das Einheitsquadrat auf das Parallelogramm ab, das seine Spalten aufspannen. Achte in der Szene auf die Dreiecksform: Die erste Spalte <InlineMath math="\ell_1=(2,1)^T" /> darf schief stehen, aber die zweite Spalte <InlineMath math="\ell_2=(0,2)^T" /> zeigt gerade nach oben, weil der Eintrag oben rechts in <InlineMath math="L" /> null ist. Die Fläche des Parallelogramms ist <InlineMath math="\det L=2\cdot2=4" />, und weil <InlineMath math="A=LL^T" /> gilt, ist sie gleich <InlineMath math="\sqrt{\det A}=\sqrt{16}" />.
+
+<MathVisual
+  title={<>Der Faktor <InlineMath math="L" /> bildet das Einheitsquadrat ab</>}
+  description={<>Das graue Quadrat wird von <InlineMath math="L=\begin{pmatrix}2&0\\1&2\end{pmatrix}" /> auf das magentafarbene Parallelogramm abgebildet, das die Spalten <InlineMath math="\ell_1" /> und <InlineMath math="\ell_2" /> aufspannen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.6 }, y: { min: -0.5, max: 3.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 2, y: 3 }, { x: 0, y: 2 }], appearance: "answer" },
+      { id: "l1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "l2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "image", objectId: "image", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "l1", objectId: "l1", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "l2", objectId: "l2", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "image": <InlineMath math="L\cdot\text{square}" />,
+    "l1": <InlineMath math="\ell_1=(2,1)^T" />,
+    "l2": <InlineMath math="\ell_2=(0,2)^T" />,
+  }}
+/>
+
 ## Komplexität des Choleskyalgorithmus
 
 Der Cholesky-Algorithmus zur Berechnung des Cholesky-Faktors <InlineMath math="\tilde{L}" /> aus <InlineMath math="A \in \mathbb{R}^{n \times n}" /> erfordert:
@@ -116,3 +169,38 @@ Der Cholesky-Algorithmus zur Berechnung des Cholesky-Faktors <InlineMath math="\
 
 
 Der führende Term enthält ungefähr <InlineMath math="n^3/6" /> Multiplikationen und <InlineMath math="n^3/6" /> Additionen. Zusammen sind das etwa <InlineMath math="n^3/3" /> Gleitkommaoperationen und damit ungefähr die Hälfte des führenden Aufwands <InlineMath math="2n^3/3" /> einer <InlineMath math="\mathrm{LU}" />-Zerlegung für eine allgemeine dichte Matrix. Cholesky spart Arbeit, weil die **Symmetrie genutzt** und nur eine Dreieckshälfte der Faktorisierung gespeichert wird.
+
+Beide Kosten wachsen wie <InlineMath math="n^3" />, also verachtfacht eine Verdopplung von <InlineMath math="n" /> den Aufwand. Bei jeder Größe braucht Cholesky trotzdem nur die Hälfte der Operationen von <InlineMath math="\mathrm{LU}" />, weil es die Symmetrie nutzt und nur einen Dreiecksfaktor berechnet.
+
+<ScatterDiagram
+  title={<><InlineMath math="\tfrac13n^3" /> für Cholesky gegen <InlineMath math="\tfrac23n^3" /> für <InlineMath math="\mathrm{LU}" /></>}
+  description={<>Für <InlineMath math="n=100" /> bis <InlineMath math="600" /> zeigt die erste Reihe <InlineMath math="n^3/3" /> und die zweite <InlineMath math="2n^3/3" /> Gleitkommaoperationen. Bei <InlineMath math="n=600" /> sind das <InlineMath math="72" /> Millionen gegen <InlineMath math="144" /> Millionen.</>}
+  xAxisLabel="Matrixgröße"
+  yAxisLabel="Gleitkommaoperationen"
+  datasets={[
+    {
+      name: "Cholesky",
+      color: "var(--chart-1)",
+      points: [
+        { x: 100, y: 100 ** 3 / 3 },
+        { x: 200, y: 200 ** 3 / 3 },
+        { x: 300, y: 300 ** 3 / 3 },
+        { x: 400, y: 400 ** 3 / 3 },
+        { x: 500, y: 500 ** 3 / 3 },
+        { x: 600, y: 600 ** 3 / 3 },
+      ],
+    },
+    {
+      name: "LU",
+      color: "var(--chart-2)",
+      points: [
+        { x: 100, y: 2 * 100 ** 3 / 3 },
+        { x: 200, y: 2 * 200 ** 3 / 3 },
+        { x: 300, y: 2 * 300 ** 3 / 3 },
+        { x: 400, y: 2 * 400 ** 3 / 3 },
+        { x: 500, y: 2 * 500 ** 3 / 3 },
+        { x: 600, y: 2 * 600 ** 3 / 3 },
+      ],
+    },
+  ]}
+/>

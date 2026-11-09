@@ -1,30 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
+  },
+  stimulus: "antikythera",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Other ancient shipwrecks have yielded several devices built with similar gears.",
+        },
+        {
+          correct: false,
+          label:
+            "Ancient writers may have described such machines, though no account names one.",
+        },
+        {
+          correct: false,
+          label:
+            "The device's manual mentions a workshop that produced copies for sale.",
+        },
+        {
           correct: true,
-          label: "From a blank caption to an invitation to look",
+          label:
+            "Bronze was often melted down for reuse, so similar devices may simply be lost.",
         },
         {
           correct: false,
-          label: "A recurring object that remains part of the setting",
-        },
-        {
-          correct: false,
-          label: "A conflict settled before the character's final choice",
-        },
-        {
-          correct: false,
-          label: "Tone as a term without a role in the story",
-        },
-        {
-          correct: false,
-          label: "An ending that removes the object's interpretive tension",
+          label:
+            "Medieval clocks were modelled on ancient devices that still survive today.",
         },
       ],
     },

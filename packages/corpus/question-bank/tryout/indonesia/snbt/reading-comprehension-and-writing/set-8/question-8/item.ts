@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "referent",
+  },
+  stimulus: "infiltration-well",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Meskipun demikian tim belum mengukur pemahaman pengunjung.",
+          label: "sumur warga yang kering pada musim kemarau",
         },
         {
           correct: false,
-          label: "Meskipun demikian: tim belum mengukur pemahaman pengunjung.",
+          label: "selokan di depan rumah",
         },
         {
           correct: false,
-          label: "Meskipun demikian, tim, belum mengukur pemahaman pengunjung.",
+          label: "halaman yang ditutup semen",
         },
         {
           correct: true,
-          label: "Meskipun demikian, tim belum mengukur pemahaman pengunjung.",
+          label: "sumur resapan yang diisi batu dan ijuk",
         },
         {
           correct: false,
-          label: "Meskipun demikian, tim belum mengukur pemahaman pengunjung?",
+          label: "atap rumah warga",
         },
       ],
     },

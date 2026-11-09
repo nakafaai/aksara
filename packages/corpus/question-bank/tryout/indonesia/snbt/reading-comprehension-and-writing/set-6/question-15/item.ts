@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "text-structure",
+  },
+  stimulus: "water-turn",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Rata-rata laporan dengan waktu lengkap lebih tinggi. Oleh karena itu, simpulan tentang pencatatan kebisingan tetap dibatasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Rata-rata laporan dengan waktu lengkap lebih tinggi. Selain itu, simpulan tentang pencatatan kebisingan tetap dibatasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Rata-rata laporan dengan waktu lengkap lebih tinggi. Sebelumnya, simpulan tentang pencatatan kebisingan tetap dibatasi.",
+          label: "pendapat, alasan, lalu contoh",
         },
         {
           correct: true,
-          label:
-            "Rata-rata laporan dengan waktu lengkap lebih tinggi. Namun, simpulan tentang pencatatan kebisingan tetap dibatasi.",
+          label: "masalah dan akibatnya, lalu cara mengatasinya dan hasilnya",
         },
         {
           correct: false,
-          label:
-            "Rata-rata laporan dengan waktu lengkap lebih tinggi. Akibatnya, simpulan tentang pencatatan kebisingan tetap dibatasi.",
+          label: "hasil, lalu penyebab hasil itu",
+        },
+        {
+          correct: false,
+          label: "cara mengatasi masalah, lalu masalahnya",
+        },
+        {
+          correct: false,
+          label: "perbandingan keadaan dua desa",
         },
       ],
     },

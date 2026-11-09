@@ -1,33 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "cause",
+  },
+  stimulus: "gambut",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Kesepakatan pada foto saat air pasang tetap lebih rendah.",
+          label:
+            "Kanal menjadi jalan bagi api untuk menyeberang ke lahan lain.",
         },
         {
           correct: true,
           label:
-            "Data warga dapat mendukung pemantauan mangrove jika peluang pengamatan dan ketepatan klasifikasi dikalibrasi.",
+            "Kanal mengalirkan air keluar sehingga gambut kering dan mudah terbakar.",
+        },
+        {
+          correct: false,
+          label: "Air di dalam kanal mengandung bahan yang mudah terbakar.",
+        },
+        {
+          correct: false,
+          label: "Para penggali kanal membakar sisa tumbuhan di sekitar kanal.",
         },
         {
           correct: false,
           label:
-            "Kesalahan klasifikasi membuat seluruh data relawan tidak memiliki nilai ilmiah.",
-        },
-        {
-          correct: false,
-          label: "Daerah tanpa laporan pasti tidak memiliki bibit mangrove.",
-        },
-        {
-          correct: false,
-          label:
-            "Peta publik akan memisahkan laporan, intensitas pengamatan, dan validasi.",
+            "Kanal membuat sisa tumbuhan di dalam lapisan gambut membusuk jauh lebih cepat daripada biasanya.",
         },
       ],
     },

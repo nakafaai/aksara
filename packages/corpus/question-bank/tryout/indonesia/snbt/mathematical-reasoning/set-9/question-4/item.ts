@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "phone-credit",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$15$$",
-        },
-        {
-          correct: true,
-          label: "$$\\frac{216}{13}$$",
-        },
-        {
-          correct: false,
-          label: "$$16$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{225}{13}$$",
-        },
-        {
-          correct: false,
-          label: "$$18$$",
-        },
+        { correct: false, label: "$$0{,}5\\%$$" },
+        { correct: false, label: "$$1\\%$$" },
+        { correct: false, label: "$$1{,}2\\%$$" },
+        { correct: false, label: "$$1{,}25\\%$$" },
+        { correct: true, label: "$$1{,}5\\%$$" },
       ],
     },
   },

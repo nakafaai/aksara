@@ -1,34 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
+  },
+  stimulus: "jamu",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Semua tahap produksi harus dicetak lengkap di bagian depan setiap kemasan.",
+            "Khasiat obat herbal terstandar didukung bukti ilmiah yang lebih kuat daripada khasiat jamu.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Jika kode tersedia, catatan pemasok tidak perlu lagi diperbarui.",
+            "Produk yang khasiatnya hanya didasarkan pada pengalaman turun-temurun termasuk kelompok jamu.",
         },
         {
-          correct: false,
-          label: "Singkong diiris di Desa Rawa dan digoreng di kota.",
+          column: 2,
+          label:
+            "Semua jamu pasti tidak berkhasiat karena belum diuji pada manusia.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Kode kemasan akan mengarah ke catatan rantai pasok yang lebih lengkap.",
-        },
-        {
-          correct: true,
-          label:
-            "Kegunaan kode bergantung pada mutu dan pembaruan catatan di belakangnya.",
+            "Obat herbal terstandar sudah diuji secara klinis pada manusia.",
         },
       ],
     },

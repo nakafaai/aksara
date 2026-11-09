@@ -3,27 +3,28 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$P < Q$$",
+          column: 1,
+          label:
+            "Produksi padi Desa Mekarsari naik $$20\\%$$ dari tahun 2024 ke tahun 2025.",
         },
         {
-          correct: false,
-          label: "$$P = Q$$",
+          column: 1,
+          label:
+            "Total produksi padi ketiga desa pada tahun 2026 adalah 414 ton.",
         },
         {
-          correct: false,
-          label: "$$P = 2Q$$",
+          column: 2,
+          label:
+            "Rata-rata produksi padi Desa Sukamaju selama tiga tahun itu lebih tinggi daripada rata-rata Desa Harapan.",
         },
         {
-          correct: true,
-          label: "$$P > Q$$",
-        },
-        {
-          correct: false,
-          label: "Hubungan tidak dapat ditentukan.",
+          column: 2,
+          label:
+            "Setiap desa mengalami kenaikan produksi padi dari tahun 2025 ke tahun 2026.",
         },
       ],
     },

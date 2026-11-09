@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "grid-logic",
+  },
+  stimulus: "bazar",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$4:7$$",
+          label: "4",
         },
         {
           correct: true,
-          label: "$$27:28$$",
+          label: "5",
         },
         {
           correct: false,
-          label: "$$5:7$$",
+          label: "6",
         },
         {
           correct: false,
-          label: "$$28:27$$",
+          label: "7",
         },
         {
           correct: false,
-          label: "$$7:4$$",
+          label: "8",
         },
       ],
     },

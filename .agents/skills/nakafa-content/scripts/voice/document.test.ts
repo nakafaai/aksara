@@ -105,6 +105,43 @@ it("retains lesson opening requirements and contract-owned body roles", () => {
   assert.equal(documentProfile("/corpus/en.mdx"), "lesson");
   assert.equal(documentProfile("/corpus/notes.en.mdx"), "lesson");
   assert.equal(documentProfile("/corpus/articles/topic/en.mdx"), "article");
+  assert.equal(documentProfile("/corpus/pages/terms/de.mdx"), "page");
+});
+
+it("holds a public page to the address rules alone", () => {
+  const formal = [
+    [
+      "de",
+      `${METADATA}## Konto\n\nWenn eine Schule Ihr Konto angelegt hat, verwaltet die Schule dieses Konto.`,
+      "german-formal-address",
+    ],
+    [
+      "id",
+      `${METADATA}## Akun\n\nAnda bertanggung jawab atas akun yang Anda gunakan.`,
+      "indonesian-formal-learner-address",
+    ],
+  ] as const;
+  for (const [locale, source, rule] of formal) {
+    assert.deepEqual(
+      findDocumentIssues(
+        `/corpus/pages/terms/${locale}.mdx`,
+        locale,
+        source,
+        parseLessonMdx(source)
+      ).map((issue) => issue.rule),
+      [rule]
+    );
+  }
+  const casual = `${METADATA}## Wichtige Begriffe\n\nDiese Bedingungen gelten für dich. Sie regeln deinen Zugriff auf die Dienste.\n\n- Dienste sind unsere Websites.\n\n## Datenschutz\n\n## Kontakt\n\nSchreib uns.`;
+  assert.deepEqual(
+    findDocumentIssues(
+      "/corpus/pages/terms/de.mdx",
+      "de",
+      casual,
+      parseLessonMdx(casual)
+    ),
+    []
+  );
 });
 
 it("keeps article evidence and journal style outside lesson pedagogy", () => {
@@ -120,7 +157,38 @@ it("keeps article evidence and journal style outside lesson pedagogy", () => {
   );
 });
 
-it("allows scientific sections, citations, formal address and unmarked prose", () => {
+it("refuses formal address in an article in every locale that has one", () => {
+  const sources = [
+    [
+      "id",
+      `${METADATA}## Pendahuluan\n\nSaya menggunakan hasil penelitian yang menunjukkan kenaikan empat persen (Lee et al., 2025).`,
+      "indonesian-formal-author-self-reference",
+    ],
+    [
+      "id",
+      `${METADATA}## Pendahuluan\n\nAnda dapat membaca metodenya di Lee et al. (2025).`,
+      "indonesian-formal-learner-address",
+    ],
+    [
+      "de",
+      `${METADATA}## Einführung\n\nSie finden die Messmethode in Lee et al. (2025).`,
+      "german-formal-address",
+    ],
+  ] as const;
+  for (const [locale, source, rule] of sources) {
+    assert.deepEqual(
+      findDocumentIssues(
+        `/corpus/articles/topic/${locale}.mdx`,
+        locale,
+        source,
+        parseLessonMdx(source)
+      ).map((issue) => issue.rule),
+      [rule]
+    );
+  }
+});
+
+it("allows scientific sections, citations, informal address and unmarked prose", () => {
   const sources = [
     [
       "en",
@@ -128,11 +196,11 @@ it("allows scientific sections, citations, formal address and unmarked prose", (
     ],
     [
       "id",
-      `${METADATA}## Pendahuluan\n\nSaya menggunakan hasil penelitian yang menunjukkan kenaikan empat persen (Lee et al., 2025).\n\n## Daftar Pustaka\n\nLee et al. (2025).`,
+      `${METADATA}## Pendahuluan\n\nAku memakai hasil penelitian yang menunjukkan kenaikan empat persen (Lee et al., 2025).\n\n## Daftar Pustaka\n\nLee et al. (2025).`,
     ],
     [
       "de",
-      `${METADATA}## Einführung\n\nSie finden die Messmethode in Lee et al. (2025). Die Studie zeigt einen Anstieg von vier Prozent.\n\n## Literaturverzeichnis\n\nLee et al. (2025).`,
+      `${METADATA}## Einführung\n\nDu findest die Messmethode in Lee et al. (2025). Die Studie zeigt einen Anstieg von vier Prozent. Sie stützt sich auf zwei Messreihen.\n\n## Literaturverzeichnis\n\nLee et al. (2025).`,
     ],
   ] as const;
   for (const [locale, source] of sources) {

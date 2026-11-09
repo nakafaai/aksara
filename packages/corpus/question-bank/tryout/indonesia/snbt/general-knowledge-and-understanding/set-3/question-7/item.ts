@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "word-relation",
+    topic: "synonym",
+  },
+  stimulus: "tsunami",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Museum meningkatkan keandalan keterangan dengan membedakan dokumen, ingatan, dan ketidakpastian, bukan dengan memaksa satu versi menang.",
+          label: "pasang",
         },
         {
           correct: true,
-          label:
-            "Buku inventaris menyebut pasar sore, sedangkan empat mantan pedagang mengingat kegiatan utama sejak pagi.",
+          label: "berkurang",
         },
         {
           correct: false,
-          label:
-            "Perbedaan keterangan mungkin muncul karena istilah pasar sore dipakai untuk kawasan, bukan jam transaksi.",
+          label: "meluap ke daratan",
         },
         {
           correct: false,
-          label:
-            "Museum akan menerima koreksi yang dilengkapi asal sumber yang dapat diperiksa.",
+          label: "membeku",
         },
         {
           correct: false,
-          label:
-            "Catatan tertulis selalu benar, sedangkan semua kesaksian lisan harus ditolak.",
+          label: "menguap",
         },
       ],
     },

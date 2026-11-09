@@ -1,29 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "deductive-reasoning",
+    topic: "rule-application",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Sensor aktif dan alarm tercatat.",
+          label: "Rp166.500",
         },
         {
           correct: false,
-          label: "Sensor aktif, tetapi alarm tidak tercatat.",
+          label: "Rp175.500",
         },
         {
           correct: false,
-          label: "Alarm tercatat, tetapi teknisi tidak diberi tahu.",
+          label: "Rp185.000",
         },
         {
           correct: true,
-          label: "Sensor tidak aktif dan alarm tidak tercatat.",
+          label: "Rp216.000",
         },
         {
           correct: false,
-          label: "Hanya status teknisi yang dapat diketahui.",
+          label: "Rp221.500",
         },
       ],
     },

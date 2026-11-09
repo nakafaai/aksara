@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "title",
+  },
+  stimulus: "waste-bank",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "tekanan terhadap pasar mobil Indonesia selama 2020.",
+          label: "Harga Kardus yang Terus Naik",
         },
         {
           correct: false,
-          label: "jumlah kendaraan yang dikirim pada April.",
-        },
-        {
-          correct: false,
-          label: "titik terendah penjualan pada Mei.",
-        },
-        {
-          correct: false,
-          label: "pemulihan penjualan pada Desember.",
+          label: "Jenis-Jenis Sampah Anorganik",
         },
         {
           correct: true,
-          label: "turunnya penjualan wholesales dari 2019 ke 2020.",
+          label: "Menabung Sampah di Bank Sampah Sejahtera",
+        },
+        {
+          correct: false,
+          label: "Pembagian Tempat Sampah Terpilah",
+        },
+        {
+          correct: false,
+          label: "Kegiatan Warga Kelurahan Mekar pada Hari Sabtu",
         },
       ],
     },

@@ -1,30 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "ordering",
+  },
+  stimulus: "lagu",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Mungkin", "Tidak mungkin"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Simpulan tersebut pasti benar.",
+          column: 1,
+          label: "P, S, R, T, Q, U",
         },
         {
-          correct: false,
-          label: "Simpulan tersebut kemungkinan besar benar.",
+          column: 1,
+          label: "S, R, U, P, T, Q",
         },
         {
-          correct: true,
-          label:
-            "Simpulan relevan, tetapi tidak dapat dinilai karena informasi tidak cukup.",
+          column: 2,
+          label: "S, R, T, U, P, Q",
         },
         {
-          correct: false,
-          label: "Simpulan tersebut pasti salah.",
-        },
-        {
-          correct: false,
-          label: "Simpulan tidak relevan dengan informasi yang diberikan.",
+          column: 2,
+          label: "T, P, S, R, U, Q",
         },
       ],
     },

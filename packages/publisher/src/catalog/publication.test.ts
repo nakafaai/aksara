@@ -35,6 +35,7 @@ const baseComponents = [
   "Highlight",
   "InlineMath",
   "MathContainer",
+  "MathVisual",
 ];
 vi.mock("@nakafa/aksara-compiler/compile", async (importOriginal) => {
   const original =

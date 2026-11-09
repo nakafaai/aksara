@@ -1,29 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "deductive-reasoning",
+    topic: "quantifiers",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$60$$ dan $$155$$ orang",
+          label:
+            "Semua peserta rapat hari Senin adalah karyawan yang bekerja jarak jauh.",
         },
         {
           correct: true,
-          label: "$$60$$ dan $$145$$ orang",
+          label: "Sebagian peserta rapat hari Senin tidak bekerja jarak jauh.",
         },
         {
           correct: false,
-          label: "$$62$$ dan $$155$$ orang",
+          label: "Tidak ada karyawan baru yang menghadiri rapat hari Senin.",
         },
         {
           correct: false,
-          label: "$$62$$ dan $$145$$ orang",
+          label: "Semua karyawan baru menghadiri rapat hari Senin.",
         },
         {
           correct: false,
-          label: "$$65$$ dan $$155$$ orang",
+          label:
+            "Sebagian karyawan yang bekerja jarak jauh adalah karyawan baru.",
         },
       ],
     },

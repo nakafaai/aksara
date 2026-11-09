@@ -1,29 +1,27 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "floor-tiles",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$\\text{Rp}2{.}400{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}3{.}000{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}3{.}600{.}000{,}00$$",
-        },
-        {
           correct: true,
-          label: "$$\\text{Rp}9{.}000{.}000{,}00$$",
+          label: "Ubin 30 cm lebih murah $$\\text{Rp}348{.}000{,}00$$.",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}6{.}000{.}000{,}00$$",
+          label: "Ubin 30 cm lebih murah $$\\text{Rp}238{.}000{,}00$$.",
+        },
+        { correct: false, label: "Biaya kedua pilihan sama." },
+        {
+          correct: false,
+          label: "Ubin 45 cm lebih murah $$\\text{Rp}88{.}000{,}00$$.",
+        },
+        {
+          correct: false,
+          label: "Ubin 45 cm lebih murah $$\\text{Rp}348{.}000{,}00$$.",
         },
       ],
     },

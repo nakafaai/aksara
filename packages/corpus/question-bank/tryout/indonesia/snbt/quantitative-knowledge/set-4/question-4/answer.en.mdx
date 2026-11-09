@@ -1,20 +1,19 @@
-Given the functions <InlineMath math="f(x) = x^2 - x" /> and <InlineMath math="g(x) = 2x - 1" />.
-We need the **composite function** <InlineMath math="(f \circ g)(x)" />.
+Let <InlineMath math="t=2^x" />, so <InlineMath math="t>0" /> and <InlineMath math="2^{-x}=\frac1t" />. The function becomes <InlineMath math="f(x)=t+\frac1t" />, **a positive number plus its reciprocal**.
 
-<BlockMath math="(f \circ g)(x) = f(g(x))" />
+# The minimum value of the function
 
-We substitute <InlineMath math="g(x)" /> into the function <InlineMath math="f(x)" />.
+The difference <InlineMath math="f(x)-2" /> can be written as a square.
 
-<BlockMath math="(f \circ g)(x) = f(2x - 1)" />
+<BlockMath math="t+\frac1t-2=\frac{t^2-2t+1}{t}=\frac{(t-1)^2}{t}\ge0" />
 
-<BlockMath math="\begin{aligned}(f\circ g)(x)&=(2x-1)^2\\&\quad-(2x-1)\end{aligned}" />
+The numerator is a square and the denominator is positive, so **<InlineMath math="f(x)\ge2" /> for every <InlineMath math="x" />**. The second statement is true. Equality holds only when <InlineMath math="t=1" />, that is, <InlineMath math="x=0" />. So the equation <InlineMath math="f(x)=2" /> has only one solution, and the first statement is false.
 
-Next, we expand the square and **combine like terms**.
+# The other two statements
 
-<BlockMath math="\begin{aligned}
-(f\circ g)(x)&=4x^2-4x+1 \\
-&\quad{}-2x+1 \\
-&=4x^2-6x+2
-\end{aligned}" />
+Square <InlineMath math="f(1)" />. Its middle term is <InlineMath math="2\cdot2^1\cdot2^{-1}=2" />, so **subtracting 2 leaves <InlineMath math="f(2)" />**.
 
-Therefore, <InlineMath math="(f \circ g)(x)" /> equals <InlineMath math="4x^2 - 6x + 2" />.
+<BlockMath math="\bigl(f(1)\bigr)^2-2=\left(2+\tfrac12\right)^2-2=4+2+\tfrac14-2=4\tfrac14=f(2)" />
+
+The third statement is true. For the fourth statement one counterexample is enough: <InlineMath math="f(1)=2.5" />, while <InlineMath math="2f(0)=2\cdot2=4" />. The factor 2 multiplies only the term <InlineMath math="2^x" />, while the term <InlineMath math="2^{-x}" /> is halved. The fourth statement is false.
+
+So the first statement is **false**, the second is **true**, the third is **true**, and the fourth is **false**.

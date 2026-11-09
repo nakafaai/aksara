@@ -1,35 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "ibn-battuta",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["True", "False"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Mei wrote both versions of the greeting on opposite sides of the same card. The recurring object's physical appearance fixes its complete meaning from the first mention.",
+            "Ibn Battuta wrote the *Rihla* himself from detailed daily notes.",
         },
         {
-          correct: false,
-          label:
-            "Mei wrote both versions of the greeting on opposite sides of the same card. The ending states the object's meaning directly, making the earlier actions irrelevant.",
+          column: 2,
+          label: "Samudra Pasai was on the southern coast of Java.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Mei wrote both versions of the greeting on opposite sides of the same card. The setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+            "Ibn Battuta served as a judge in both Delhi and the Maldives.",
         },
         {
-          correct: false,
-          label:
-            "Mei wrote both versions of the greeting on opposite sides of the same card. The object keeps one fixed meaning even as the character's action and the final response change.",
-        },
-        {
-          correct: true,
-          label:
-            "Putting both greetings on the card preserves their different contexts, and turning the card for each visitor shows that suitability depends on relationship rather than one version being wrong.",
+          column: 1,
+          label: "Ibn Battuta was twenty-one when he set out for Mecca.",
         },
       ],
     },

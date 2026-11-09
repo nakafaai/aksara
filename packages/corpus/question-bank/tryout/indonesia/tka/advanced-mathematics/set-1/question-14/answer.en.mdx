@@ -1,0 +1,55 @@
+The center is already known, so only **the radius** is missing. A tangent line touches the circle at one point, and the radius to that point is perpendicular to the line. So the radius equals **the distance from the center to the tangent line**.
+
+The distance from a point <InlineMath math="(x_0,y_0)" /> to the line <InlineMath math="ax+by+c=0" /> is <InlineMath math="\frac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}" />. For the center <InlineMath math="(3,-2)" /> and the line <InlineMath math="4x-3y+2=0" />, watch the sign of the term <InlineMath math="-3y" /> when <InlineMath math="y=-2" />.
+
+<BlockMath math="r=\frac{|4\cdot3-3\cdot(-2)+2|}{\sqrt{4^2+(-3)^2}}=\frac{|12+6+2|}{\sqrt{25}}=\frac{20}{5}=4" />
+
+A circle with center <InlineMath math="(a,b)" /> and radius <InlineMath math="r" /> has the equation <InlineMath math="(x-a)^2+(y-b)^2=r^2" />. Substitute the center and radius, then expand into general form.
+
+<BlockMath math="\begin{aligned}
+(x-3)^2+(y+2)^2&=16 \\
+x^2-6x+9+y^2+4y+4&=16 \\
+x^2+y^2-6x+4y-3&=0
+\end{aligned}" />
+
+As a check, the point of tangency is <InlineMath math="\left(-\frac15,\frac25\right)" />. It lies on the line, because <InlineMath math="4\left(-\frac15\right)-3\cdot\frac25+2=-\frac45-\frac65+2=0" />, and its distance from the center is <InlineMath math="\sqrt{\left(\frac{16}{5}\right)^2+\left(\frac{12}{5}\right)^2}=\sqrt{\frac{400}{25}}=4" />.
+
+<MathVisual
+  title="Circle touching a line"
+  description={<>The circle has center <InlineMath math="(3,-2)" /> and radius <InlineMath math="4" />. The line <InlineMath math="4x-3y+2=0" /> touches it at <InlineMath math="\left(-\frac15,\frac25\right)" />, and the segment from the center to that point is perpendicular to the line.</>}
+  labels={{
+    center: <InlineMath math="(3,-2)" />,
+    contact: <InlineMath math="\left(-\frac15,\frac25\right)" />,
+    radius: <InlineMath math="r=4" />,
+    tangent: <InlineMath math="4x-3y+2=0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 8 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 3, y: -2 }, radius: 4 },
+      { id: "line", kind: "segment", appearance: "secondary", from: { x: -2, y: -2 }, to: { x: 4, y: 6 } },
+      { id: "radius-segment", kind: "segment", appearance: "construction", from: { x: 3, y: -2 }, to: { x: -1 / 5, y: 2 / 5 } },
+      { id: "center-point", kind: "point", appearance: "reference", at: { x: 3, y: -2 } },
+      { id: "contact-point", kind: "point", appearance: "answer", at: { x: -1 / 5, y: 2 / 5 } },
+    ],
+    labels: [
+      { key: "center", objectId: "center-point", at: { x: 3, y: -2 }, placement: "below-right" },
+      { key: "contact", objectId: "contact-point", at: { x: -1 / 5, y: 2 / 5 }, placement: "left" },
+      { key: "radius", objectId: "radius-segment", at: { x: 1.4, y: -0.8 }, placement: "below-left" },
+      { key: "tangent", objectId: "line", at: { x: 2.5, y: 4 }, placement: "left" },
+    ],
+  }}
+/>
+
+So the equation of the circle is <InlineMath math="x^2+y^2-6x+4y-3=0" />.
+
+- <InlineMath math="x^2+y^2+6x-4y-3=0" /> is the circle with center <InlineMath math="(-3,2)" />. The signs of the center coordinates were reversed when writing <InlineMath math="(x-a)^2+(y-b)^2" />.
+- <InlineMath math="x^2+y^2-6x+4y+9=0" /> comes from <InlineMath math="(x-3)^2+(y+2)^2=4" />, with the radius <InlineMath math="4" /> written on the right side without squaring it.
+- <InlineMath math="x^2+y^2-6x+4y-7=0" /> comes from <InlineMath math="r^2=20" />. The numerator of the distance formula, <InlineMath math="20" />, was used as <InlineMath math="r^2" /> without dividing by <InlineMath math="\sqrt{25}=5" />.
+- <InlineMath math="x^2+y^2-6x+4y-12=0" /> comes from <InlineMath math="r=5" />, mistaking the length <InlineMath math="\sqrt{4^2+(-3)^2}" /> in the denominator of the distance formula for the radius.

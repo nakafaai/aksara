@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
+  },
+  stimulus: "sasando",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Informasi asal produk perlu memisahkan tahap rantai pasok agar ringkas bagi pembeli sekaligus dapat ditelusuri saat pemeriksaan.",
-        },
-        {
           correct: true,
           label:
-            "Dalam simulasi, catatan berlapis mempersempit produk yang harus ditarik dibanding label satu lokasi.",
+            "Sasando, alat petik dari Rote, bunyinya diperkuat wadah lontar dan terus berkembang.",
         },
         {
           correct: false,
           label:
-            "Pengelola pasar mengusulkan satu label asal berdasarkan tempat produk terakhir dikemas.",
+            "Sasando hanya dapat dimainkan oleh pemain yang memetik dawainya dengan satu tangan saja.",
         },
         {
           correct: false,
           label:
-            "Kode kemasan akan mengarah ke catatan rantai pasok yang lebih lengkap.",
+            "Sasando listrik lebih disukai karena wadah daun lontar sulit dibuat dan juga mudah rusak.",
         },
         {
           correct: false,
           label:
-            "Semua tahap produksi harus dicetak lengkap di bagian depan setiap kemasan.",
+            "Nama sasando berasal dari bahasa Jawa yang berarti alat musik yang terbuat dari bambu.",
+        },
+        {
+          correct: false,
+          label:
+            "Jumlah dawai sasando tidak pernah berubah sejak alat musik itu pertama kali dibuat orang.",
         },
       ],
     },

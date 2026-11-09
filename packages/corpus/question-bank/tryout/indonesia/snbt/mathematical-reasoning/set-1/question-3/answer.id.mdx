@@ -1,38 +1,23 @@
-Kita akan menghitung bunga per bulan yang harus dibayarkan Juju berdasarkan harga laptop, uang muka, dan tingkat bunga yang berlaku. Perhatikan bahwa diskon <InlineMath math="20\%" /> **hanya berlaku untuk laptop seri A**, sedangkan Juju membeli laptop seri <InlineMath math="B" />, sehingga harga yang digunakan adalah harga normal.
+Hitung tagihan untuk setiap pemakaian yang disebut dengan cara yang sama: **biaya beban ditambah biaya setiap blok yang terlewati**.
 
-# Menghitung Uang Muka
-
-Juju membeli laptop seharga <InlineMath math="\text{Rp}20{.}000{.}000{,}00" /> dan membayar **uang muka sebesar <InlineMath math="10\%" />**.
-
-<BlockMath math="\begin{aligned}&10\% \times 20{.}000{.}000 \\ &=2{.}000{.}000\end{aligned}" />
-
-Jadi, uang muka yang dibayarkan adalah <InlineMath math="\text{Rp}2{.}000{.}000{,}00" />.
-
-# Menghitung Sisa Pinjaman
-
-Sisa pinjaman (pokok utang) adalah **harga awal dikurangi uang muka**.
-
-<BlockMath math="\begin{aligned}&20{.}000{.}000 - 2{.}000{.}000 \\ &=18{.}000{.}000\end{aligned}" />
-
-Sisa yang harus diangsur adalah <InlineMath math="\text{Rp}18{.}000{.}000{,}00" />.
-
-# Menentukan Suku Bunga
-
-Diketahui bunga tunggal normal adalah <InlineMath math="6\%" /> per tahun. Ada ketentuan pengurangan bunga jika uang muka lebih besar dari <InlineMath math="10\%" /> (kelipatan selanjutnya). Karena Juju hanya membayar uang muka minimal sebesar <InlineMath math="10\%" />, maka ia **tidak mendapatkan pengurangan bunga**.
-
-Suku bunga yang berlaku tetap <InlineMath math="6\%" /> per tahun.
-
-# Menghitung Bunga per Bulan
-
-Bunga per tahun dihitung dari sisa pinjaman:
-
-<BlockMath math="6\% \times 18{.}000{.}000" />
-
-Karena yang ditanyakan adalah bunga per bulan, kita **bagi bunga per tahun dengan <InlineMath math="12" />**:
+# Tagihan 100 kWh dan 200 kWh
 
 <BlockMath math="\begin{aligned}
-B_{\text{tahun}}&=\frac{6}{100}\times18{.}000{.}000=1{.}080{.}000 \\
-B_{\text{bulan}}&=\frac{1{.}080{.}000}{12}=90{.}000
+T(100)&=20{.}000+100\cdot1{.}000=120{.}000\\
+T(200)&=20{.}000+100{.}000+100\cdot1{.}500=270{.}000
 \end{aligned}" />
 
-Jadi, bunga yang harus dibayar Juju per bulan adalah <InlineMath math="\text{Rp}90{.}000{,}00" />.
+Pernyataan pertama benar. Dua kali <InlineMath math="T(100)" /> adalah 240.000, bukan 270.000, karena **biaya beban hanya dibayar sekali** dan 100 kWh kedua dikenai tarif blok 2. Pernyataan ketiga salah.
+
+# kWh ke-301 dan pemakaian 400 kWh
+
+kWh ke-301 sudah masuk blok 3, jadi **tambahannya <InlineMath math="\text{Rp}2{.}000{,}00" />**, bukan Rp1.500,00. Pernyataan kedua salah.
+
+<BlockMath math="\begin{aligned}
+T(400)&=20{.}000+100{.}000+300{.}000+100\cdot2{.}000=620{.}000\\
+\frac{620{.}000}{400}&=1{.}550
+\end{aligned}" />
+
+Pernyataan keempat benar.
+
+Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.

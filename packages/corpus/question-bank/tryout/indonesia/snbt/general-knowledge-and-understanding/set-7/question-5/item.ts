@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
+  },
+  stimulus: "angklung",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Partisipasi yang inklusif menuntut pengurangan hambatan nyata dan pemeriksaan keterwakilan, bukan sekadar undangan terbuka.",
+            "Angklung berkembang dari pengiring upacara adat menjadi alat musik yang dimainkan secara luas.",
         },
         {
           correct: false,
           label:
-            "Hampir seluruh pembicara pertama berasal dari tiga rukun tetangga terdekat.",
+            "Daeng Soetigna adalah satu-satunya orang yang pernah membuat angklung di Jawa Barat.",
         },
         {
           correct: false,
           label:
-            "Musyawarah hanya sah jika setiap usulan warga akhirnya diterima.",
+            "UNESCO melarang angklung dimainkan dalam pertunjukan musik modern di luar upacara adat di Jawa Barat.",
         },
         {
           correct: false,
           label:
-            "Karena undangan terbuka, asal peserta dan alasan ketidakhadiran tidak perlu diperiksa.",
+            "Setiap pemain angklung harus menguasai semua nada agar sebuah lagu dapat dimainkan.",
         },
         {
           correct: false,
           label:
-            "Keputusan akhir akan mencatat pilihan, keberatan, dan pengaruh masukan.",
+            "Angklung tidak lagi dipakai dalam upacara adat sejak tahun 1938 karena sudah diatonis.",
         },
       ],
     },

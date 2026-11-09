@@ -117,6 +117,39 @@ Für den Vektor im Modell nehmen wir <InlineMath math="\vec{a}=(4,2,0)" />. Mult
 
 Der ursprüngliche Betrag ist <InlineMath math="\sqrt{4^2+2^2}=2\sqrt{5}" />. Der neue Betrag <InlineMath math="6\sqrt{5}" /> ist genau dreimal so groß, passend zum Faktor <InlineMath math="\lvert-3\rvert=3" />.
 
+Jeder Pfeil unten ist <InlineMath math="k\vec a" /> für <InlineMath math="\vec a=(4,2)" />, im halben Maßstab gezeichnet. Mal zwei macht ihn doppelt so lang, mal einhalb nur halb so lang, und <InlineMath math="k=-1" /> behält die Länge, dreht ihn aber um. Die Steigung jedes Pfeils bleibt gleich.
+
+<MathVisual
+  title={<>Skalare Vielfache eines Vektors</>}
+  description={<><InlineMath math="2\vec a" />, <InlineMath math="\vec a" />, <InlineMath math="0{,}5\vec a" /> und <InlineMath math="-\vec a" /> für <InlineMath math="\vec a=(4,2)" />, im halben Maßstab auf getrennten Zeilen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -6, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "k0", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 2 } },
+      { id: "k0-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 2 }, { x: 4 - (0.25 * 4) / Math.hypot(4, 2) + ((0.25 / 2) * -2) / Math.hypot(4, 2), y: 2 - (0.25 * 2) / Math.hypot(4, 2) + ((0.25 / 2) * 4) / Math.hypot(4, 2) }, { x: 4 - (0.25 * 4) / Math.hypot(4, 2) - ((0.25 / 2) * -2) / Math.hypot(4, 2), y: 2 - (0.25 * 2) / Math.hypot(4, 2) - ((0.25 / 2) * 4) / Math.hypot(4, 2) }] },
+      { id: "k1", kind: "segment", appearance: "primary", from: { x: 0, y: -1.5 }, to: { x: 2, y: -0.5 } },
+      { id: "k1-head", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: -0.5 }, { x: 2 - (0.25 * 2) / Math.hypot(2, 1.0) + ((0.25 / 2) * -1.0) / Math.hypot(2, 1.0), y: -0.5 - (0.25 * 1.0) / Math.hypot(2, 1.0) + ((0.25 / 2) * 2) / Math.hypot(2, 1.0) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 1.0) - ((0.25 / 2) * -1.0) / Math.hypot(2, 1.0), y: -0.5 - (0.25 * 1.0) / Math.hypot(2, 1.0) - ((0.25 / 2) * 2) / Math.hypot(2, 1.0) }] },
+      { id: "k2", kind: "segment", appearance: "construction", from: { x: 0, y: -3 }, to: { x: 1, y: -2.5 } },
+      { id: "k2-head", kind: "polygon", appearance: "construction", vertices: [{ x: 1, y: -2.5 }, { x: 1.0 - (0.25 * 1.0) / Math.hypot(1.0, 0.5) + ((0.25 / 2) * -0.5) / Math.hypot(1.0, 0.5), y: -2.5 - (0.25 * 0.5) / Math.hypot(1.0, 0.5) + ((0.25 / 2) * 1.0) / Math.hypot(1.0, 0.5) }, { x: 1.0 - (0.25 * 1.0) / Math.hypot(1.0, 0.5) - ((0.25 / 2) * -0.5) / Math.hypot(1.0, 0.5), y: -2.5 - (0.25 * 0.5) / Math.hypot(1.0, 0.5) - ((0.25 / 2) * 1.0) / Math.hypot(1.0, 0.5) }] },
+      { id: "k3", kind: "segment", appearance: "secondary", from: { x: 4, y: -4.5 }, to: { x: 2, y: -5.5 } },
+      { id: "k3-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: -5.5 }, { x: 2 - (0.25 * -2) / Math.hypot(-2, -1.0) + ((0.25 / 2) * 1.0) / Math.hypot(-2, -1.0), y: -5.5 - (0.25 * -1.0) / Math.hypot(-2, -1.0) + ((0.25 / 2) * -2) / Math.hypot(-2, -1.0) }, { x: 2 - (0.25 * -2) / Math.hypot(-2, -1.0) - ((0.25 / 2) * 1.0) / Math.hypot(-2, -1.0), y: -5.5 - (0.25 * -1.0) / Math.hypot(-2, -1.0) - ((0.25 / 2) * -2) / Math.hypot(-2, -1.0) }] },
+    ],
+    labels: [
+      { key: "k0", objectId: "k0", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "k1", objectId: "k1", at: { x: 2, y: -0.5 }, placement: "right" },
+      { key: "k2", objectId: "k2", at: { x: 1, y: -2.5 }, placement: "right" },
+      { key: "k3", objectId: "k3", at: { x: 2, y: -5.5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    k0: <InlineMath math="2\,\vec a" />,
+    k1: <InlineMath math="1\,\vec a" />,
+    k2: <InlineMath math="0{,}5\,\vec a" />,
+    k3: <InlineMath math="-1\,\vec a" />,
+  }}
+/>
 
 ## Der Nullvektor als Ergebnis einer Aufhebung
 
@@ -127,3 +160,31 @@ Ein Nullvektor entsteht häufig, wenn sich Vektoren gegenseitig aufheben. Ziehen
 <BlockMath math="\vec{F}_1+\vec{F}_2=\vec{0}" />
 
 Im Gleichgewicht kann ein Körper in Ruhe bleiben, obwohl mehrere Kräfte auf ihn wirken, weil ihre Resultierende null ist.
+
+Mit <InlineMath math="k" /> zu multiplizieren skaliert die Länge auf <InlineMath math="\lvert k\rvert\,\lvert\vec a\rvert" />, und das Vorzeichen von <InlineMath math="k" /> entscheidet die Richtung. Das V ist die Länge für einen Einheitsvektor: Sie wächst auf beiden Seiten, aber nur rechts bleibt die Richtung. Zoom nah an <InlineMath math="k=0" />.
+
+<MathVisual
+  title={<>Was ein Skalar mit einem Vektor macht</>}
+  description={<>Länge von <InlineMath math="k\vec a" /> über <InlineMath math="k" /> für einen Vektor der Länge 1. Die grauen Marken zeigen <InlineMath math="k=\tfrac12" /> und <InlineMath math="k=1" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.8, max: 2.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "length", kind: "polyline", appearance: "primary", vertices: [{ x: -2, y: 2 }, { x: 0, y: 0 }, { x: 2, y: 2 }] },
+      { id: "zero", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "one", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 1 } },
+      { id: "half", kind: "segment", appearance: "reference", from: { x: 0.5, y: 0 }, to: { x: 0.5, y: 0.5 } },
+    ],
+    labels: [
+      { key: "neg", objectId: "length", at: { x: -1.5, y: 1.5 }, placement: "left" },
+      { key: "pos", objectId: "length", at: { x: 1.5, y: 1.5 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    neg: <InlineMath math="k<0:\ \text{umgekehrt}" />,
+    pos: <InlineMath math="k>0:\ \text{gleiche Richtung}" />,
+    zero: <InlineMath math="k=0:\ \vec 0" />,
+  }}
+/>

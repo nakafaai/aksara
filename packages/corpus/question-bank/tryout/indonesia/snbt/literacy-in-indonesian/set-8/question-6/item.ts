@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-view",
+  },
+  stimulus: "school-distance",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Percobaan membuktikan bahwa konduksi merupakan satu-satunya mekanisme yang menurunkan suhu air di kedua wadah.",
+            "Aturan jarak sebaiknya dihapus dan diganti dengan seleksi nilai seperti dulu.",
+        },
+        {
+          correct: false,
+          label:
+            "Aturan jarak sudah berjalan sempurna sehingga tidak perlu diubah sama sekali.",
         },
         {
           correct: true,
           label:
-            "Air dalam aluminium mendingin lebih cepat daripada dalam polipropilena, tetapi perbedaan bahan belum terpisah dari ketebalan dinding dan mekanisme perpindahan panas lain.",
+            "Aturan jarak perlu dipertahankan, tetapi kelemahannya di lapangan harus diatasi.",
         },
         {
           correct: false,
           label:
-            "Perbedaan suhu akhir membuktikan bahwa aluminium selalu menjadi wadah yang lebih buruk untuk setiap penggunaan.",
+            "Aturan jarak hanya cocok diterapkan di kecamatan yang memiliki tiga SMA negeri.",
         },
         {
           correct: false,
           label:
-            "Kesamaan volume dan suhu awal sudah cukup mengisolasi bahan sebagai penyebab tunggal perbedaan laju pendinginan.",
-        },
-        {
-          correct: false,
-          label:
-            "Karena wadah berbeda ketebalan, tabel suhu tidak dapat digunakan untuk menyusun hipotesis apa pun tentang perpindahan panas.",
+            "Aturan jarak lebih adil jika setiap keluarga boleh memilih alamatnya sendiri.",
         },
       ],
     },

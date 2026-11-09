@@ -1,32 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "figurative-meaning",
+  },
+  stimulus: "gambut",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "berwarna kuning dan berpori besar seperti busa sabun",
+        },
+        {
+          correct: false,
+          label: "mudah dipindahkan dari satu tempat ke tempat lain",
+        },
+        {
           correct: true,
-          label:
-            "pemeriksaan hasil terhadap acuan agar hasil dapat ditafsirkan secara tepat",
+          label: "dapat menyerap dan menyimpan banyak air",
         },
         {
           correct: false,
-          label: "menambah jumlah laporan tanpa memeriksa ketepatannya",
+          label: "terbuat dari bahan buatan yang ringan",
         },
         {
           correct: false,
-          label: "menghapus semua hasil yang berbeda dari dugaan awal",
-        },
-        {
-          correct: false,
-          label:
-            "merata-ratakan seluruh pengamatan tanpa memperhitungkan peluang kunjungan",
-        },
-        {
-          correct: false,
-          label: "menganggap penilaian ahli selalu benar dan tidak perlu diuji",
+          label: "selalu kering pada musim hujan",
         },
       ],
     },

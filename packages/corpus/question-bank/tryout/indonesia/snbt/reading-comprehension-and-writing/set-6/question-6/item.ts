@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "main-idea",
+  },
+  stimulus: "larva-compost",
   versions: {
     id: {
       kind: "choice",
@@ -9,25 +14,25 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Rata-rata penyelesaian rute pada sesi uji lebih tinggi daripada rata-rata awal dan pembanding.",
+            "Pasar Sentul mengurangi sampah yang dibuang dengan memanfaatkan larva lalat tentara hitam.",
         },
         {
           correct: false,
           label:
-            "Panah terbukti menjadi satu-satunya penyebab rata-rata penyelesaian yang lebih tinggi.",
+            "Biaya mengangkut sampah ke tempat pembuangan akhir tidak sedikit.",
         },
         {
           correct: false,
-          label: "Setiap pengunjung mengalami peningkatan yang sama.",
+          label: "Larva yang sudah besar dijual kepada peternak sebagai pakan.",
         },
         {
           correct: false,
-          label: "Rata-rata awal dan pembanding sama.",
+          label: "Pupuk dari sisa sampah dibeli oleh petani sayur.",
         },
         {
           correct: false,
           label:
-            "Uji tersebut menetapkan hasil jangka panjang untuk semua pameran.",
+            "Pasar Sentul menghasilkan hampir satu ton sampah setiap hari.",
         },
       ],
     },

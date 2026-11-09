@@ -1,30 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "inductive-reasoning",
+    topic: "operation-pattern",
+  },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Dito telah menyelesaikan latihan prasyarat",
+          label: "$$25$$",
         },
         {
           correct: false,
-          label: "Dito tidak mengikuti tes simulasi",
+          label: "$$43$$",
+        },
+        {
+          correct: false,
+          label: "$$67$$",
         },
         {
           correct: true,
-          label: "Dito menerima laporan evaluasi",
+          label: "$$73$$",
         },
         {
           correct: false,
-          label: "Dito tidak menerima laporan evaluasi",
-        },
-        {
-          correct: false,
-          label:
-            "Dito telah menyelesaikan latihan prasyarat dan menerima laporan evaluasi",
+          label: "$$91$$",
         },
       ],
     },

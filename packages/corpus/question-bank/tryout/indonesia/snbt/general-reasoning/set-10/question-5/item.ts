@@ -1,34 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "inductive-reasoning",
+    topic: "data-comparison",
+  },
+  stimulus: "perpustakaan",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Nia pasti tidak tertular karena paparan tidak menimbulkan risiko infeksi.",
+          column: 2,
+          label: "Pengunjung di Desa Pasirjaya naik lebih dari 80%.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Nia mungkin tidak tertular, tetapi tertular maupun tidak tertular masih sesuai dengan informasi.",
+            "Pada bulan Juni, setiap desa meminjam lebih banyak buku daripada jumlah pengunjungnya.",
         },
         {
-          correct: false,
-          label:
-            "Nia pasti tertular karena setiap paparan selalu menyebabkan infeksi.",
+          column: 1,
+          label: "Total pengunjung keempat desa naik 70 orang.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Simpulan tidak relevan karena bacaan tidak membahas penularan influenza.",
-        },
-        {
-          correct: false,
-          label:
-            "Tidak ada informasi tentang apakah Nia terpapar partikel dari orang yang flu.",
+            "Di Desa Mekarsari, jumlah pengunjung tetap, tetapi buku yang dipinjam berkurang.",
         },
       ],
     },

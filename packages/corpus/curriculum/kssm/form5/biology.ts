@@ -157,6 +157,24 @@ export const kssmForm5BiologyTopicNodes = [
       }),
     ],
     key: "form-5-biology-biodiversity",
+    materialCard: {
+      de: {
+        description: "Ordne Lebewesen und sieh, warum Vielfalt zählt.",
+        title: "Biodiversität",
+      },
+      en: {
+        description: "Sort living things and see why their variety matters.",
+        title: "Biodiversity",
+      },
+      id: {
+        description: "Kelompokkan makhluk hidup dan pahami keragamannya.",
+        title: "Keanekaragaman Hayati",
+      },
+      ms: {
+        description: "Kelaskan hidupan dan fahami kepelbagaiannya.",
+        title: "Biodiversiti",
+      },
+    },
     order: 80,
     translations: {
       de: { routeSlug: "biodiversitaet", title: "Biodiversität" },
@@ -188,6 +206,24 @@ export const kssmForm5BiologyTopicNodes = [
       }),
     ],
     key: "form-5-biology-environmental-sustainability",
+    materialCard: {
+      de: {
+        description: "Versteh, wie der Klimawandel unsere Zukunft prägt.",
+        title: "Ökologische Nachhaltigkeit",
+      },
+      en: {
+        description: "See how climate change shapes a sustainable future.",
+        title: "Environmental Sustainability",
+      },
+      id: {
+        description: "Pahami cara perubahan iklim memengaruhi masa depan.",
+        title: "Kelestarian Lingkungan",
+      },
+      ms: {
+        description: "Fahami cara perubahan iklim membentuk masa depan.",
+        title: "Kelestarian Alam Sekitar",
+      },
+    },
     order: 100,
     translations: {
       de: {

@@ -1,30 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "inference",
+  },
+  stimulus: "senior-exercise",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Oleh sebab itu",
-        },
-        {
-          correct: false,
-          label: "Bahkan",
+          label: "Peserta tidak dapat lagi mengikuti senam.",
         },
         {
           correct: true,
-          label: "Sebaliknya",
+          label:
+            "Petugas puskesmas lebih sulit memantau tekanan darah peserta tanpa mendatangi rumah mereka.",
         },
         {
           correct: false,
-          label: "Sebelumnya",
+          label: "Gerakan senam menjadi lebih cepat.",
         },
         {
           correct: false,
-          label: "Sesudahnya",
+          label: "Peserta tidur lebih nyenyak.",
+        },
+        {
+          correct: false,
+          label: "Jumlah peserta senam bertambah dua kali lipat.",
         },
       ],
     },

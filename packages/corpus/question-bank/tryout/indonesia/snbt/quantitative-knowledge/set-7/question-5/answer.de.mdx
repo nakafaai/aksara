@@ -1,23 +1,32 @@
-Für die Folge gilt die **Rekursionsgleichung**
+Schreibe die drei Glieder als <InlineMath math="\tfrac{a}{r}" />, <InlineMath math="a" /> und <InlineMath math="ar" />. Der Schlüssel ist, **die Quadratsumme durch die Summe der Glieder zu teilen**, denn der Quotient ist ein Term, der der Summe sehr ähnlich ist.
 
-<BlockMath math="a_{n+1} = a_{n+2} + 2a_n" />
+# Die Identität für die Quadratsumme
 
-Gegeben sind <InlineMath math="a_3 = -1" /> und <InlineMath math="a_5 = 3" />. Gesucht ist <InlineMath math="a_2" />.
+Für drei geometrische Glieder gilt
 
-Zunächst bestimmen wir <InlineMath math="a_4" />. Dazu setzen wir <InlineMath math="n = 3" /> ein und verknüpfen <InlineMath math="a_3" />, <InlineMath math="a_4" /> und <InlineMath math="a_5" />.
+<BlockMath math="\frac{a^2}{r^2}+a^2+a^2r^2=\left(\frac ar+a+ar\right)\left(\frac ar-a+ar\right)" />
 
-<BlockMath math="\begin{align*} a_{3+1} &= a_{3+2} + 2a_3 \\ a_4 &= a_5 + 2a_3 \end{align*}" />
+Die rechte Seite kannst du durch Ausmultiplizieren prüfen: Die gemischten Glieder heben sich auf. Also ist **die Quadratsumme geteilt durch die Summe** gleich <InlineMath math="\tfrac ar-a+ar" />.
 
-Mit <InlineMath math="a_5 = 3" /> und <InlineMath math="a_3 = -1" /> folgt:
+<BlockMath math="\begin{aligned}
+\frac ar+a+ar&=38\\
+\frac ar-a+ar&=\frac{532}{38}=14
+\end{aligned}" />
 
-<BlockMath math="\begin{align*} a_4 &= 3 + 2(-1) \\ a_4 &= 3 - 2 \\ a_4 &= 1 \end{align*}" />
+# Die Glieder bestimmen
 
-Als Nächstes bestimmen wir <InlineMath math="a_2" />. Da <InlineMath math="a_3" /> und <InlineMath math="a_4" /> bekannt sind, setzen wir <InlineMath math="n = 2" /> ein und verknüpfen <InlineMath math="a_2" />, <InlineMath math="a_3" /> und <InlineMath math="a_4" />.
+Ziehe die beiden Gleichungen voneinander ab: <InlineMath math="2a=24" />, also <InlineMath math="a=12" />, und **die Summe der beiden äußeren Glieder** ist <InlineMath math="\tfrac{12}{r}+12r=26" />.
 
-<BlockMath math="\begin{align*} a_{2+1} &= a_{2+2} + 2a_2 \\ a_3 &= a_4 + 2a_2 \end{align*}" />
+<BlockMath math="\begin{aligned}
+12r^2-26r+12&=0\\
+6r^2-13r+6&=0\\
+(3r-2)(2r-3)&=0
+\end{aligned}" />
 
-Wir setzen <InlineMath math="a_3 = -1" /> und <InlineMath math="a_4 = 1" /> ein:
+Der Wert <InlineMath math="r=\tfrac32" /> liefert 8, 12, 18, und <InlineMath math="r=\tfrac23" /> dieselben Zahlen rückwärts. Kontrolle: <InlineMath math="8+12+18=38" /> und <InlineMath math="64+144+324=532" />.
 
-<BlockMath math="\begin{align*} -1 &= 1 + 2a_2 \\ -1 - 1 &= 2a_2 \\ -2 &= 2a_2 \\ a_2 &= -1 \end{align*}" />
+Die Differenz zwischen größter und kleinster Zahl ist <InlineMath math="18-8=10" />.
 
-Somit ist der Wert von <InlineMath math="a_2" /> <InlineMath math="-1" />.
+Der Wert 12 ist das mittlere Glied, 14 der Quotient <InlineMath math="532:38" />, 18 das größte Glied und 26 die Summe der beiden äußeren Glieder.
+
+Die Differenz zwischen größter und kleinster Zahl ist also **10**.

@@ -6,25 +6,19 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$10{:}01$$",
-        },
-        {
-          correct: false,
-          label: "$$10{:}20$$",
-        },
-        {
-          correct: false,
-          label: "$$10{:}36$$",
-        },
-        {
-          correct: false,
-          label: "$$11{:}02$$",
-        },
-        {
           correct: true,
-          label: "$$10{:}57$$",
+          label: "$$\\left(50-25\\sqrt3\\right)\\text{ cm}^2$$",
         },
+        {
+          correct: false,
+          label: "$$\\left(100-50\\sqrt3\\right)\\text{ cm}^2$$",
+        },
+        { correct: false, label: "$$25\\text{ cm}^2$$" },
+        {
+          correct: false,
+          label: "$$\\left(50\\sqrt3-50\\right)\\text{ cm}^2$$",
+        },
+        { correct: false, label: "$$25\\sqrt3\\text{ cm}^2$$" },
       ],
     },
   },

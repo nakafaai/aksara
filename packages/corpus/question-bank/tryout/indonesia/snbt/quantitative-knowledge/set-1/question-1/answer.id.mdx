@@ -1,45 +1,22 @@
-Gunakan **eliminasi** pada dua hasil operasi untuk menentukan <InlineMath math="k" /> dan <InlineMath math="m" />. Setelah kedua konstanta diketahui, substitusikan masukan yang ditanyakan ke aturan operasi.
+Karena <InlineMath math="55=5\times11" /> dan 5 tidak memiliki faktor persekutuan dengan 11 selain 1, sisa <InlineMath math="n^2+n" /> terhadap 55 **ditentukan oleh sisanya terhadap 5 dan terhadap 11**. Hitung kedua sisa itu, lalu gabungkan.
 
-Dari <InlineMath math="\triangle(2, 4) = 8" />, diperoleh
+# Sisa terhadap setiap pembagi
 
-<BlockMath math="\triangle(2, 4) = 2k + \frac{4}{m} = 8" />
+Sisa sebuah hasil operasi cukup dihitung dari sisa bilangannya.
 
-Kalikan kedua ruas dengan <InlineMath math="m" />
+<BlockMath math="\begin{aligned}
+n^2+n&\equiv 2^2+2=6\equiv1 \pmod 5\\
+n^2+n&\equiv 4^2+4=20\equiv9 \pmod{11}
+\end{aligned}" />
 
-<BlockMath math="2km + 4 = 8m \quad \ldots \text{(1)}" />
+Jadi kita mencari bilangan <InlineMath math="r" /> dengan <InlineMath math="0\le r<55" /> yang **bersisa 9 jika dibagi 11 dan bersisa 1 jika dibagi 5**.
 
-Dari <InlineMath math="\triangle(3, 5) = 11" />, diperoleh
+# Menggabungkan kedua sisa
 
-<BlockMath math="\triangle(3, 5) = 3k + \frac{5}{m} = 11" />
+Calon <InlineMath math="r" /> adalah 9, 20, 31, 42, dan 53. Sisanya jika dibagi 5 berturut-turut 4, 0, 1, 2, dan 3. **Hanya 31** yang bersisa 1, jadi <InlineMath math="r=31" />.
 
-Kalikan kedua ruas dengan <InlineMath math="m" />
+Cek dengan bilangan nyata. Bilangan <InlineMath math="n=37" /> memenuhi kedua syarat, karena <InlineMath math="37=7(5)+2" /> dan <InlineMath math="37=3(11)+4" />. Hasilnya <InlineMath math="37^2+37=1406=25(55)+31" />.
 
-<BlockMath math="3km + 5 = 11m \quad \ldots \text{(2)}" />
+Nilai 37 adalah sisa <InlineMath math="n" /> sendiri. Nilai 49 adalah sisa <InlineMath math="n^2" /> tanpa suku <InlineMath math="n" />. Nilai 6 dan 20 hanya memakai salah satu syarat, yaitu <InlineMath math="2^2+2" /> dan <InlineMath math="4^2+4" />, tanpa digabungkan.
 
-Eliminasi <InlineMath math="km" /> dengan mengalikan persamaan (1) dengan <InlineMath math="3" /> dan persamaan (2) dengan <InlineMath math="2" />
-
-<BlockMath math="6km + 12 = 24m \quad \ldots \text{(1a)}" />
-
-<BlockMath math="6km + 10 = 22m \quad \ldots \text{(2a)}" />
-
-Kurangkan persamaan (2a) dari persamaan (1a)
-
-<BlockMath math="\begin{aligned}&(6km+12)-(6km+10)\\&=24m-22m\end{aligned}" />
-
-<BlockMath math="2 = 2m" />
-
-<BlockMath math="m = 1" />
-
-Substitusikan <InlineMath math="m = 1" /> ke persamaan (1)
-
-<BlockMath math="2k(1) + 4 = 8(1)" />
-
-<BlockMath math="2k + 4 = 8" />
-
-<BlockMath math="2k = 4" />
-
-<BlockMath math="k = 2" />
-
-Dengan <InlineMath math="k = 2" /> dan <InlineMath math="m = 1" />, nilai <InlineMath math="\triangle(5, 9)" /> adalah
-
-<BlockMath math="\begin{aligned}\triangle(5,9)&amp;=2(5)+\frac91\\&amp;=10+9\\&amp;=19\end{aligned}" />
+Jadi, sisa pembagian <InlineMath math="n^2+n" /> oleh 55 adalah **31**.

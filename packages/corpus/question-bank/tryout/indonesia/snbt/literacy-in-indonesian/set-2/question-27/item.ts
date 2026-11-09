@@ -1,30 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "fiction",
+    topic: "conflict",
+  },
+  stimulus: "rice-field-drama",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Memiliki penduduk yang berpengetahuan sangat luas",
-        },
-        {
-          correct: false,
-          label: "Berada di wilayah pesisir yang mudah dicapai",
-        },
-        {
-          correct: false,
-          label: "Telah berkembang menjadi kota yang sepenuhnya modern",
-        },
-        {
-          correct: false,
-          label: "Menutup diri dari pengaruh budaya luar",
-        },
-        {
           correct: true,
           label:
-            "Tersusun dari orang atau unsur yang berasal dari berbagai tempat",
+            "perbedaan pendapat tentang menjual sawah warisan untuk modal usaha Bayu",
+        },
+        {
+          correct: false,
+          label:
+            "larangan Bu Karta terhadap anak-anaknya yang ingin bekerja di kota",
+        },
+        {
+          correct: false,
+          label: "penolakan Ningsih untuk melanjutkan kuliah pertanian",
+        },
+        {
+          correct: false,
+          label: "pertengkaran Pak Karta dengan pembeli dari kota",
+        },
+        {
+          correct: false,
+          label: "keinginan Bayu pindah dari satu bengkel ke bengkel lain",
         },
       ],
     },

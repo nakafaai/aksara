@@ -1,30 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "conclusion",
+  },
+  stimulus: "carnegie-libraries",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "A recurring object that remains part of the setting",
+          label:
+            "It caused most Carnegie libraries to close within a few years.",
+        },
+        {
+          correct: false,
+          label:
+            "It was dropped soon after the first libraries had been built.",
         },
         {
           correct: true,
-          label: "Cutting a warning down to action",
+          label:
+            "It may have helped the buildings last by building a habit of care.",
         },
         {
           correct: false,
-          label: "A conflict settled before the character's final choice",
+          label:
+            "It proved that towns valued free gifts more than paid services.",
         },
         {
           correct: false,
-          label: "Narrative conflict as a term without a role in the story",
-        },
-        {
-          correct: false,
-          label: "An ending that removes the object's interpretive tension",
+          label:
+            "It was probably the reason the buildings became museums and offices.",
         },
       ],
     },

@@ -1,41 +1,22 @@
-Das Volumen lässt sich noch nicht berechnen, weil <InlineMath math="x" /> unbekannt ist. Zuerst bestimmen wir <InlineMath math="x" /> mithilfe der **Oberfläche**.
+Das Wort PELANGI hat 7 Buchstaben, alle verschieden: die Vokale E, A, I und die Konsonanten P, L, N, G. Damit keine zwei Vokale nebeneinander stehen, **ordnest du zuerst die Konsonanten an und setzt dann die Vokale in die Lücken**.
 
-Mit <InlineMath math="l" />, <InlineMath math="b" /> und <InlineMath math="h" /> für Länge, Breite und Höhe lautet die Oberflächenformel:
+# Die Konsonanten anordnen
 
-<BlockMath math="O = 2(lb+lh+bh)" />
+Die vier Konsonanten lassen sich auf <InlineMath math="4!=24" /> Arten anordnen. Jede Anordnung hat **fünf Lücken**: vor dem ersten Buchstaben, zwischen den Buchstaben und nach dem letzten.
 
-Wir setzen die Maße des Quaders ein:
+<BlockMath math="\_\,\text{K}\,\_\,\text{K}\,\_\,\text{K}\,\_\,\text{K}\,\_" />
 
-<BlockMath math="\begin{aligned}88&=2\bigl(6x^2+6x+4x\bigr)\\&=12x^2+20x\\0&=12x^2+20x-88\\0&=3x^2+5x-22\\&=(3x+11)(x-2)\end{aligned}" />
+# Die Vokale einsetzen
 
-Der erste Faktor liefert <InlineMath math="x=-\frac{11}{3}" />, der zweite <InlineMath math="x=2" />.
+Die drei verschiedenen Vokale kommen in **3 verschiedene Lücken**, und ihre Reihenfolge zählt.
 
-Wegen <InlineMath math="x>0" /> gilt <InlineMath math="x=2" />. Der Quader misst also <InlineMath math="6\text{ cm}" /> mal <InlineMath math="4\text{ cm}" /> mal <InlineMath math="2\text{ cm}" />.
+<BlockMath math="\begin{aligned}
+P(5,3)&=5\cdot4\cdot3=60\\
+\text{Anordnungen}&=24\cdot60=1\,440
+\end{aligned}" />
 
-Jeder Einheitswürfel hat das Volumen <InlineMath math="1\text{ cm}^3" />. Daher entspricht die benötigte Anzahl dem Volumen des Quaders:
+Da jede Lücke höchstens einen Vokal enthält, können keine zwei Vokale nebeneinander stehen.
 
-<BlockMath math="6\times4\times2=48" />
+Der Wert 5 040 ist <InlineMath math="7!" />, alle Anordnungen ohne Bedingung. Der Wert 576 verwendet nur die 4 Lücken zwischen den Konsonanten und vergisst beide Enden. Der Wert 720 ist <InlineMath math="6!" />, und 2 880 verdoppelt das Ergebnis ohne Grund.
 
-Es werden <InlineMath math="48" /> Einheitswürfel benötigt.
-
-Stelle dir **zwei Schichten aus Einheitswürfeln** vor. Jede Schicht enthält <InlineMath math="6\times4=24" /> Würfel, insgesamt also <InlineMath math="2\times24=48" />.
-
-<MathVisual
- title="Ein Quader mit den Maßen 6, 4 und 2 Zentimeter"
- description="Ein Quader mit den Maßen 6, 4 und 2 Zentimeter"
- scene={{
- space: "space",
- frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 3 }, z: { min: -3, max: 3 } },
- view: { kind: "camera", position: { x: 8, y: 6, z: 10 }, target: { x: 0, y: 1, z: 0 } },
- objects: [
- { id: "prism", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: 0 }, size: { length: 6, height: 2, width: 4 } },
- { id: "layer", kind: "polygon", appearance: "highlight", vertices: [{ x: -3, y: 1, z: -2 }, { x: 3, y: 1, z: -2 }, { x: 3, y: 1, z: 2 }, { x: -3, y: 1, z: 2 }] },
- ],
- labels: [
- { key: "length", objectId: "prism", at: { x: 0, y: 0, z: 2 }, placement: "below" },
- { key: "width", objectId: "prism", at: { x: 3, y: 0, z: 0 }, placement: "right" },
- { key: "height", objectId: "prism", at: { x: -3, y: 1, z: 2 }, placement: "left" },
- ],
- }}
- labels={{ length: <InlineMath math="6" />, width: <InlineMath math="4" />, height: <InlineMath math="2" /> }}
-/>
+Es gibt also **1 440** mögliche Anordnungen.

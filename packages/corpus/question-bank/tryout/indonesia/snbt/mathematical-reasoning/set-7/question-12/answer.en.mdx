@@ -1,22 +1,17 @@
-# Convert the Map Scale
+A travel distance of 300 m means 3 blocks, so the intersection <InlineMath math="(a,b)" /> must satisfy **<InlineMath math="\lvert a\rvert+\lvert b\rvert=3" />**. **Coordinates may be negative**, because the robot can go west and south.
 
-The scale applies to distances expressed in **the same unit**. Since <InlineMath math="1\text{ km}=100{,}000\text{ cm}" />:
+# Intersections on the axes
 
-<BlockMath math="2{,}000{,}000\text{ cm}=\frac{2{,}000{,}000}{100{,}000}\text{ km}=20\text{ km}" />
+If **one coordinate is zero**, the intersections are <InlineMath math="(3,0)" />, <InlineMath math="(-3,0)" />, <InlineMath math="(0,3)" /> and <InlineMath math="(0,-3)" />, which is 4 intersections.
 
-Thus, every <InlineMath math="1\text{ cm}" /> on the map represents <InlineMath math="20\text{ km}" />. Convert each segment:
+# Intersections off the axes
 
-| Segment | Map length in centimeters | Actual length in kilometers |
-| --- | ---: | ---: |
-| <InlineMath math="A\to x" /> | <InlineMath math="2.5" /> | <InlineMath math="2.5\times20=50" /> |
-| <InlineMath math="x\to B" /> | <InlineMath math="3" /> | <InlineMath math="3\times20=60" /> |
-| <InlineMath math="A\to y" /> | <InlineMath math="4" /> | <InlineMath math="4\times20=80" /> |
-| <InlineMath math="y\to B" /> | <InlineMath math="4.5" /> | <InlineMath math="4.5\times20=90" /> |
+If neither coordinate is zero, their absolute values are 1 and 2 in some order, and **each coordinate may be positive or negative**.
 
-# Compare the Complete Routes
+<BlockMath math="2\cdot2\cdot2=8" />
 
-Each traveler uses **two segments**, so add both before comparing. Let <InlineMath math="J_B" /> be Benu's distance and <InlineMath math="J_M" /> Mamang's distance, in kilometers.
+The first factor 2 picks the order of 1 and 2, and the next two pick the sign of each coordinate. So there are <InlineMath math="4+8=12" /> intersections, which together form a tilted square around G.
 
-<BlockMath math="\begin{aligned}J_B&=50+60=110 \\ J_M&=80+90=170 \\ J_M-J_B&=170-110=60\end{aligned}" />
+The value 4 counts only the intersections on the axes, or only those to the north-east. The value 8 forgets the intersections on the axes.
 
-Mamang travels <InlineMath math="60\text{ km}" /> farther. As a check, the map routes differ by <InlineMath math="(4+4.5)-(2.5+3)=3\text{ cm}" />, corresponding to <InlineMath math="3\times20=60\text{ km}" />.
+So there are **12 intersections** exactly 300 m of travel from G.

@@ -1,29 +1,27 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "temperature-scales",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\text{Rp}16{.}000{,}00$$",
+          column: 1,
+          label:
+            "Kenaikan suhu sebesar $$5^\\circ\\text{C}$$ sama dengan kenaikan suhu sebesar $$9^\\circ\\text{F}$$.",
+        },
+        { column: 2, label: "Suhu 300 K sama dengan $$37^\\circ\\text{C}$$." },
+        {
+          column: 1,
+          label:
+            "Suhu $$100^\\circ\\text{F}$$ lebih tinggi daripada suhu $$37^\\circ\\text{C}$$.",
         },
         {
-          correct: false,
-          label: "$$\\text{Rp}18{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}25{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}32{.}000{,}00$$",
-        },
-        {
-          correct: true,
-          label: "$$\\text{Rp}20{.}000{,}00$$",
+          column: 2,
+          label:
+            "Jika angka suhu dalam Celsius menjadi dua kali semula, angka suhu dalam Fahrenheit juga menjadi dua kali semula.",
         },
       ],
     },

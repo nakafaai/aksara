@@ -1,32 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
+  },
+  stimulus: "puter",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "penggambaran batas wilayah tanpa memeriksa nama yang dipakai masyarakat",
+          label: "memancarkan",
         },
         {
           correct: false,
-          label: "pengukuran jarak perjalanan antara dua lokasi",
+          label: "menolak",
         },
         {
           correct: true,
-          label:
-            "kajian dan pencatatan nama tempat beserta asal serta konteks pemakaiannya",
+          label: "mengambil",
         },
         {
           correct: false,
-          label: "penyeragaman seluruh nama tempat menjadi satu bentuk resmi",
+          label: "menghasilkan",
         },
         {
           correct: false,
-          label: "daftar nama baru tanpa riwayat asal dan konteks pemakaiannya",
+          label: "menaikkan",
         },
       ],
     },

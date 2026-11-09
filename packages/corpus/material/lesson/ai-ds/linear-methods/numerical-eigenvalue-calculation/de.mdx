@@ -56,6 +56,22 @@ Eine skalierungsbewusste Bedingung lautet
 
 Dabei ist <InlineMath math="\tau" /> die geforderte Toleranz. Ein kleines Residuum bestätigt, dass <Highlight>das berechnete Paar die Eigenwertgleichung annähernd erfüllt</Highlight>. Welcher benachbarte Eigenwert gefunden wurde, muss getrennt geprüft werden.
 
+Im Beispiel weiter unten erfüllen die Schätzungen <InlineMath math="\mu_k" /> für <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> die Gleichung <InlineMath math="3-\mu_k=\tfrac2{9^k+1}" />. Der Fehler wird bei jedem Schritt ungefähr durch <InlineMath math="9=(\lambda_1/\lambda_2)^2" /> geteilt, weil der Rayleigh-Quotient einer symmetrischen Matrix die Konvergenzrate der Vektoren verdoppelt.
+
+<BarChart
+  title={<>Der Fehler <InlineMath math="3-\mu_k" /> fällt pro Schritt etwa um den Faktor <InlineMath math="9" /></>}
+  description={<>Jeder Balken ist <InlineMath math="\tfrac2{9^k+1}" /> für die darunter stehende Iteration <InlineMath math="k" />: <InlineMath math="1" />, dann <InlineMath math="0.2" />, dann etwa <InlineMath math="0.024" />.</>}
+  yAxisLabel="Fehler der Schätzung"
+  data={[
+    { name: "0", value: 2 / (9 ** 0 + 1) },
+    { name: "1", value: 2 / (9 ** 1 + 1) },
+    { name: "2", value: 2 / (9 ** 2 + 1) },
+    { name: "3", value: 2 / (9 ** 3 + 1) },
+    { name: "4", value: 2 / (9 ** 4 + 1) },
+  ]}
+  chartConfig={{ value: { label: "Fehler der Schätzung", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Beispiel zur Potenziteration
 
 Betrachte
@@ -91,6 +107,36 @@ Der andere Eigenwert ist <InlineMath math="1" />. Der erwartete **Konvergenzfakt
 | 1 | <InlineMath math="14/5" /> | <InlineMath math="3/5" /> |
 | 2 | <InlineMath math="122/41" /> | <InlineMath math="9/41" /> |
 
+Für diese Matrix zeigt die Iterierte <InlineMath math="q_k" /> in Richtung <InlineMath math="(3^k+1,3^k-1)^T" />, und ihre Rayleigh-Schätzung ist <InlineMath math="\mu_k=q_k^TAq_k=3-\frac{2}{9^k+1}" />. Folg den magentafarbenen Punkten unten: <InlineMath math="\mu_0=2" />, <InlineMath math="\mu_1=14/5" />, dann <InlineMath math="\mu_2=122/41" />. Der Abstand zur violetten Linie <InlineMath math="3" /> schrumpft pro Schritt um einen Faktor, der sich <InlineMath math="9" /> nähert, dem Quadrat des Faktors <InlineMath math="1/3" /> für die Richtung. Deshalb liegt die Schätzung des Eigenwerts schon sehr nah an <InlineMath math="3" />, obwohl <InlineMath math="q_k" /> noch leicht daneben zeigt.
+
+<MathVisual
+  title={<>Rayleigh-Schätzungen steigen bis <InlineMath math="\lambda_1=3" /></>}
+  description={<>Magentafarbene Punkte sind die Rayleigh-Schätzungen <InlineMath math="\mu_k" /> der Potenzmethode für <InlineMath math="k=0,1,2" />. Die violette Linie ist der größte Eigenwert <InlineMath math="3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3 }, y: { min: 1.6, max: 3.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "top", kind: "line", through: [{ x: 0, y: 3 }, { x: 1, y: 3 }], appearance: "secondary" },
+      { id: "mu0", kind: "point", at: { x: 0, y: 2 }, appearance: "answer" },
+      { id: "mu1", kind: "point", at: { x: 1, y: 14 / 5 }, appearance: "answer" },
+      { id: "mu2", kind: "point", at: { x: 2, y: 122 / 41 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 3, y: 3 }, placement: "above-left" },
+      { key: "mu0", objectId: "mu0", at: { x: 0, y: 2 }, placement: "below" },
+      { key: "mu1", objectId: "mu1", at: { x: 1, y: 14 / 5 }, placement: "below-right" },
+      { key: "mu2", objectId: "mu2", at: { x: 2, y: 122 / 41 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "top": <InlineMath math="\lambda_1=3" />,
+    "mu0": <InlineMath math="\mu_0=2" />,
+    "mu1": <InlineMath math="\mu_1=\tfrac{14}{5}" />,
+    "mu2": <InlineMath math="\mu_2=\tfrac{122}{41}" />,
+  }}
+/>
+
 ## Verschobene inverse
 
 Wähle eine Verschiebung, die **kein Eigenwert** ist. Die Konvergenz zu einer Eigenrichtung verlangt einen eindeutig nächsten Eigenwert und einen Startkoeffizienten ungleich null in seiner Eigenbasisrichtung. Gleiche Abstände können die Konvergenz zu einer Richtung verhindern. Iteration
@@ -106,6 +152,19 @@ Die Potenziteration bevorzugt den größten Betrag. Um einen Eigenwert nahe der 
 Die Eigenwerte von <InlineMath math="(A-\sigma I)^{-1}" /> sind <InlineMath math="1/(\lambda_i-\sigma)" />. Daher wird der Eigenwert mit dem kleinsten Abstand zu <InlineMath math="\sigma" /> dominant. Bilde die Inverse niemals explizit. **Faktorisiere** <InlineMath math="A-\sigma I" /> und löse in jeder Iteration ein lineares Gleichungssystem. Bei fester Verschiebung kann die Faktorisierung wiederverwendet werden.
 
 Liegt <InlineMath math="\sigma" /> sehr nahe an einem Eigenwert, ist das verschobene System schlecht konditioniert. Genaue lineare Lösungen und Residuenprüfungen sind deshalb unverzichtbar.
+
+Nimm für dieselbe Matrix mit den Eigenwerten <InlineMath math="3" /> und <InlineMath math="1" /> die Verschiebung <InlineMath math="\sigma=0.9" />. Die Matrix <InlineMath math="(A-\sigma I)^{-1}" /> hat die Eigenwerte <InlineMath math="1/(1-0.9)=10" /> und <InlineMath math="1/(3-0.9)\approx0.48" />, also verstärkt die inverse Iteration die Eigenrichtung zu <InlineMath math="1" /> etwa um den Faktor <InlineMath math="21" /> stärker als die zu <InlineMath math="3" />.
+
+<BarChart
+  title={<>Die Verschiebung <InlineMath math="\sigma=0.9" /> verstärkt den Eigenwert <InlineMath math="1" /></>}
+  description={<>Die Balken zeigen <InlineMath math="1/|\lambda_i-\sigma|" /> für den Eigenwert <InlineMath math="\lambda_i" /> unter jedem Balken. Der Eigenwert, der <InlineMath math="\sigma" /> am nächsten liegt, bekommt den höchsten Balken.</>}
+  yAxisLabel="Verstärkungsfaktor"
+  data={[
+    { name: "1", value: 1 / Math.abs(1 - 0.9) },
+    { name: "3", value: 1 / Math.abs(3 - 0.9) },
+  ]}
+  chartConfig={{ value: { label: "Verstärkungsfaktor", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
 
 ## Algorithmus mit QR für das vollständige Spektrum
 

@@ -1,17 +1,15 @@
-Wir zählen **gleich wahrscheinliche Kugelpaare**, statt die drei Farbergebnisse als gleich wahrscheinlich anzusehen. Da die Reihenfolge der beiden Kugeln keine Rolle spielt, gibt es insgesamt folgende Anzahl möglicher Paare:
+Schreib die Zahl als <InlineMath math="\overline{abc}" /> mit <InlineMath math="a+b+c=5" />. Entscheidend ist, dass **die Hunderterziffer <InlineMath math="a" /> nicht null sein darf**, weil die Zahl dreistellig sein muss.
 
-<BlockMath math="\binom{10}{2}=\frac{10\times9}{2}=45" />
+Zähle nach dem Wert von <InlineMath math="a" />. Für jedes <InlineMath math="a" /> wird der Rest <InlineMath math="5-a" /> auf <InlineMath math="b" /> und <InlineMath math="c" /> verteilt, jeweils von <InlineMath math="0" /> bis <InlineMath math="9" />. Die Anzahl der Paare <InlineMath math="(b,c)" /> mit <InlineMath math="b+c=s" /> ist <InlineMath math="s+1" />.
 
-| Farben des Paares | Anzahl der Paare | Angegebener Gewinn, Tausend Rupiah |
-| --- | --- | ---: |
-| Rot und Rot | <InlineMath math="\binom{6}{2}=\frac{6\times5}{2}=15" /> | 30 |
-| Rot und Blau | <InlineMath math="6\times4=24" /> | 15 |
-| Blau und Blau | <InlineMath math="\binom{4}{2}=\frac{4\times3}{2}=6" /> | 0 |
+| <InlineMath math="a" /> | <InlineMath math="b+c" /> | Anzahl der Paare |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
+| <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+| <InlineMath math="4" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
+| <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
 
-Die Tabelle erfasst <InlineMath math="15+24+6=45" /> Paare, also alle Möglichkeiten. Für den Erwartungswert gewichten wir jeden Gewinn mit der Wahrscheinlichkeit des zugehörigen Ergebnisses:
+<BlockMath math="5+4+3+2+1=15" />
 
-<BlockMath math="\begin{aligned} E&amp;=\frac{30(15)+15(24)+0(6)}{45} \\ &amp;=\frac{450+360+0}{45} \\ &amp;=\frac{810}{45}=18. \end{aligned}" />
-
-Der Betreiber zahlt **denselben Anteil jedes Gewinns** aus, nämlich <InlineMath math="90\%" />. Deshalb wird auch der Erwartungswert mit diesem Faktor multipliziert:
-
-<BlockMath math="0{,}9\times18=16{,}2=\frac{81}{5}\text{ Tausend Rupiah}." />
+Zum Beispiel sind es für <InlineMath math="a=3" /> die Zahlen <InlineMath math="302" />, <InlineMath math="311" /> und <InlineMath math="320" />. Zählt man auch eine Hunderterziffer null mit, erhält man <InlineMath math="21" />, aber eine Zahl wie <InlineMath math="023" /> ist nicht dreistellig. Es gibt also <InlineMath math="15" /> Zahlen.

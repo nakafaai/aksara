@@ -1,40 +1,15 @@
-Kita akan mencari perbandingan jumlah karyawan laki-laki dan perempuan menggunakan konsep **rata-rata gabungan**.
+Ruang sampelnya **10.000 PIN yang sama mungkin**. Peluangnya adalah banyak PIN dengan digit berbeda dibagi 10.000.
 
-Misalkan:
-- <InlineMath math="n_L" /> = jumlah karyawan laki-laki
-- <InlineMath math="n_P" /> = jumlah karyawan perempuan
-- <InlineMath math="\bar{x}_L = 320{.}000" /> (rata-rata laki-laki)
-- <InlineMath math="\bar{x}_P = 285{.}000" /> (rata-rata perempuan)
-- <InlineMath math="\bar{x} = 300{.}000" /> (rata-rata gabungan)
+# Banyak PIN dengan digit berbeda
 
-Rumus rata-rata gabungan adalah:
+**Digit pertama boleh 0**, jadi banyaknya <InlineMath math="10\cdot9\cdot8\cdot7=5{.}040" />.
 
-<BlockMath math="\bar{x} = \frac{n_L \cdot \bar{x}_L + n_P \cdot \bar{x}_P}{n_L + n_P}" />
+# Peluang
 
-Nyatakan total pendapatan semua karyawan dalam rupiah sebagai <InlineMath math="S" />. Substitusi nilai yang diketahui memberikan:
+<BlockMath math="\frac{5{.}040}{10{.}000}=0{,}504" />
 
-<BlockMath math="\begin{aligned}S&=320{.}000n_L \\ &\quad+285{.}000n_P \\ 300{.}000&=\frac{S}{n_L+n_P}\end{aligned}" />
+Peluang ini sedikit lebih dari setengah, jadi **hampir separuh PIN memiliki digit yang berulang**.
 
-Untuk mempermudah perhitungan, kita bagi semua nilai pendapatan dengan <InlineMath math="1{.}000" />:
+Nilai 0,496 adalah peluang kejadian sebaliknya, yaitu ada digit berulang. Nilai 0,4536 melarang digit pertama 0, padahal PIN boleh diawali 0. Nilai 0,3024 memakai <InlineMath math="9\cdot8\cdot7\cdot6" />, dan 0,0504 salah meletakkan koma.
 
-<BlockMath math="300 = \frac{320 n_L + 285 n_P}{n_L + n_P}" />
-
-Kalikan kedua ruas dengan **jumlah seluruh karyawan**:
-
-<BlockMath math="\begin{aligned}&300(n_L+n_P) \\ &\quad=320n_L+285n_P\end{aligned}" />
-
-<BlockMath math="\begin{aligned}&300n_L+300n_P \\ &\quad=320n_L+285n_P\end{aligned}" />
-
-Kumpulkan suku sejenis:
-
-<BlockMath math="\begin{aligned}&300n_P-285n_P \\ &\quad=320n_L-300n_L\end{aligned}" />
-
-<BlockMath math="15 n_P = 20 n_L" />
-
-Cari perbandingan <InlineMath math="n_L : n_P" />:
-
-<BlockMath math="\frac{n_L}{n_P} = \frac{15}{20}" />
-
-<BlockMath math="\frac{n_L}{n_P} = \frac{3}{4}" />
-
-Jadi, untuk setiap <InlineMath math="3" /> karyawan laki-laki terdapat <InlineMath math="4" /> karyawan perempuan. Perbandingan yang diminta adalah <InlineMath math="3:4" />.
+Jadi, peluangnya adalah **0,504**.

@@ -1,35 +1,20 @@
-We need to find the value of <InlineMath math="Q" /> first, which is the **composite function** <InlineMath math="f(g(a))" /> for <InlineMath math="a = 4" /> or <InlineMath math="a = -4" />.
+"The second red ball comes on the third draw" means two things happen together: **exactly one red ball appears in the first two draws**, and the third draw is red.
 
-# Calculating the Inner Function Value
+# The two possible orders
 
-Since <InlineMath math="a = 4" /> or <InlineMath math="a = -4" />, and the function <InlineMath math="g(x)" /> contains <InlineMath math="x^2" />, **both inputs have the same square**, so the result of <InlineMath math="g(a)" /> will be the same for both values of <InlineMath math="a" />.
+The first red ball can come on the first or the second draw. Since there is no replacement, each probability uses what is left in the bag.
 
-<BlockMath math="\begin{aligned}g(4)&=4^2 - 1\\&=16 - 1\\&=15\end{aligned}" />
+<BlockMath math="\begin{aligned}
+P(\text{R, W, R})&=\frac4{10}\cdot\frac69\cdot\frac38=\frac{72}{720}\\
+P(\text{W, R, R})&=\frac6{10}\cdot\frac49\cdot\frac38=\frac{72}{720}
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}g(-4)&=(-4)^2 - 1\\&=16 - 1\\&=15\end{aligned}" />
+The two orders are **mutually exclusive**, so their probabilities add.
 
-So, <InlineMath math="g(a) = 15" />.
+<BlockMath math="P=\frac{72+72}{720}=\frac{144}{720}=\frac15" />
 
-# Calculating the Composite Function Value
+# The wrong options
 
-Now we **substitute the inner function value** <InlineMath math="g(a) = 15" /> into the function <InlineMath math="f(x)" />.
+The value <InlineMath math="\tfrac1{10}" /> counts only one order. The value <InlineMath math="\tfrac3{10}" /> is the probability of exactly two reds in three draws, without requiring the second red to be third. The value <InlineMath math="\tfrac25" /> is only the probability that the third draw is red. The value <InlineMath math="\tfrac8{15}" /> stops at the probability of **exactly one red in the first two draws**.
 
-<BlockMath math="f(15) = 7 + \sqrt{\frac{4}{15 + 10}}" />
-
-<BlockMath math="= 7 + \sqrt{\frac{4}{25}}" />
-
-<BlockMath math="= 7 + \frac{\sqrt{4}}{\sqrt{25}}" />
-
-<BlockMath math="= 7 + \frac{2}{5}" />
-
-<BlockMath math="= \frac{37}{5}" />
-
-So, <InlineMath math="Q = \frac{37}{5}" />.
-
-# Comparing the Quantities
-
-Write both quantities with a **common denominator** to compare them directly:
-
-<BlockMath math="7 = \frac{35}{5} < \frac{37}{5} \Rightarrow P < Q" />
-
-So, Quantity <InlineMath math="P" /> is less than <InlineMath math="Q" />.
+So the required probability is <InlineMath math="\tfrac15" />.

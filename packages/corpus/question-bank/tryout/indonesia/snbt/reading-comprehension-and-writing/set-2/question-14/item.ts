@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "medicine-delivery",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "mengganti *menyediakan* dengan *disediakan*.",
-        },
-        {
-          correct: false,
-          label: "menghilangkan kata *juga*.",
-        },
-        {
-          correct: false,
-          label: "mengganti *tolok ukur* dengan *perkiraan*.",
-        },
-        {
-          correct: false,
-          label: "menambahkan kata *yang* sebelum *terkini*.",
+          label: "mengambil",
         },
         {
           correct: true,
-          label: "menghilangkan kata *mengenai* pada awal kalimat.",
+          label: "apotik",
+        },
+        {
+          correct: false,
+          label: "mengantarkannya",
+        },
+        {
+          correct: false,
+          label: "puskesmas",
+        },
+        {
+          correct: false,
+          label: "sama",
         },
       ],
     },

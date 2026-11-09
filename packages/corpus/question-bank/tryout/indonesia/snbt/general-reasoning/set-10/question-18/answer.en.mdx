@@ -1,9 +1,12 @@
-Trace the rules backward from an **outcome that did not occur**. Let <InlineMath math="S" /> mean the sensor was active, <InlineMath math="A" /> mean an alarm was logged, and <InlineMath math="T" /> mean the technician was notified.
+Count **the paid tickets** first. The 4-year-old is free, so there are <InlineMath math="2+9=11" /> paid tickets, enough for the group discount.
 
-<BlockMath math="S\Rightarrow A\Rightarrow T" />
+<BlockMath math="\begin{aligned}
+\text{tickets} &= 2\times25{,}000+9\times15{,}000=185{,}000 \\
+\text{Saturday extra} &= 11\times5{,}000=55{,}000 \\
+\text{total} &= 185{,}000+55{,}000=240{,}000 \\
+\text{after discount} &= 240{,}000-10\%\times240{,}000=216{,}000
+\end{aligned}" />
 
-The technician was not notified, so <InlineMath math="T" /> is false. If an alarm had been logged, the second rule would require notification. To avoid contradicting the stated fact, **no alarm was logged**. Next, an active sensor would require an alarm log. With no alarm logged, the sensor cannot have been active.
+Watch the order: the discount applies to the total that **already includes** the weekend extra.
 
-<BlockMath math="\neg T\Rightarrow\neg A\Rightarrow\neg S" />
-
-This is contraposition: when a rule says that a condition guarantees an outcome, the absence of that outcome rules out the condition. Therefore the sensor was inactive and no alarm was logged.
+So the group pays Rp216,000.

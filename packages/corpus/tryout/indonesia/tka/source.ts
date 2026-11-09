@@ -1,9 +1,11 @@
 import { Effect } from "effect";
 
 import { indonesiaTryoutCountry } from "#corpus/tryout/indonesia/country";
+import { tkaAdvancedMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/advanced";
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
 import { tkaEnglishReadiness } from "#corpus/tryout/indonesia/tka/readiness/english";
 import { tkaIndonesianReadiness } from "#corpus/tryout/indonesia/tka/readiness/indonesian";
+import { tkaAdvancedMathematicsTrack } from "#corpus/tryout/indonesia/tka/tracks/advanced";
 import { tkaCompulsoryMathematicsTrack } from "#corpus/tryout/indonesia/tka/tracks/compulsory";
 import { tkaEnglishTrack } from "#corpus/tryout/indonesia/tka/tracks/english";
 import { tkaIndonesianTrack } from "#corpus/tryout/indonesia/tka/tracks/indonesian";
@@ -55,7 +57,12 @@ const tkaTryoutCatalog = defineExamSource({
     ],
   },
   sourceRevision: "2026-09-27",
-  tracks: [tkaCompulsoryMathematicsTrack, tkaIndonesianTrack, tkaEnglishTrack],
+  tracks: [
+    tkaCompulsoryMathematicsTrack,
+    tkaIndonesianTrack,
+    tkaEnglishTrack,
+    tkaAdvancedMathematicsTrack,
+  ],
 });
 
 /** Validates the active TKA catalog against official and editorial readiness. */
@@ -65,6 +72,7 @@ export const tkaTryoutSource = Effect.gen(function* () {
     tkaCompulsoryMathematicsReadiness,
     tkaIndonesianReadiness,
     tkaEnglishReadiness,
+    tkaAdvancedMathematicsReadiness,
   ]);
   for (const readiness of readinessEntries) {
     yield* validateAssessmentSourceReadiness(source, readiness);

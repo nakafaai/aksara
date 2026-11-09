@@ -1,33 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "word-relation",
+    topic: "antonym",
+  },
+  stimulus: "lontar",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Sesudah sumber nama ditampilkan, keluarga dan perajin dapat menunjukkan label yang salah tanpa mengurangi keberhasilan pencarian.",
-        },
-        {
           correct: true,
-          label:
-            "Penelitian arsip membuktikan bahwa semua nama lokal muncul setelah label kurator dan sengaja menyalinnya.",
+          label: "kuat",
         },
         {
           correct: false,
-          label:
-            "Pemindai baru membuat label yang pudar lebih mudah dibaca, tetapi tidak mengubah asal maupun urutan waktu kemunculan nama.",
+          label: "lapuk",
         },
         {
           correct: false,
-          label: "Hasil pencarian akan menampilkan sumber setiap nama.",
+          label: "tipis",
         },
         {
           correct: false,
-          label: "Salah satu nama dalam buku lama dibuat oleh kurator.",
+          label: "usang",
+        },
+        {
+          correct: false,
+          label: "kering",
         },
       ],
     },

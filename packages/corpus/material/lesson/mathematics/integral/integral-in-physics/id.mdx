@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan integral untuk menghitung usaha oleh gaya berubah, energi pegas, distribusi massa, dan pusat massa.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
    subject: "Integral",
 };
 
@@ -33,6 +33,16 @@ Selesaikan:
 </MathContainer>
 
 Jadi, gaya tersebut melakukan usaha sebesar <InlineMath math="\frac{50}{3}" /> Joule, atau sekitar <InlineMath math="16{,}67" /> Joule.
+
+Gaya <InlineMath math="F(x) = x^2 + 2x" /> bertambah sepanjang lintasan, dari 3 N di <InlineMath math="x = 1" /> sampai 15 N di <InlineMath math="x = 3" />. Usaha <InlineMath math="W = \tfrac{50}{3} \approx 16{,}67" /> J menjumlahkan nilai yang berubah itu sepanjang 2 meter.
+
+<BarChart
+  title={<>Gaya sepanjang lintasan</>}
+  description={<>Batang <InlineMath math="F(x) = x^2 + 2x" /> dalam newton untuk <InlineMath math="x = 1;\ 1{,}5;\ 2;\ 2{,}5;\ 3" /> meter.</>}
+  yAxisLabel="Gaya (N)"
+  data={[1, 1.5, 2, 2.5, 3].map((x) => ({ name: String(x), value: x ** 2 + 2 * x }))}
+  chartConfig={{ value: { label: "Gaya (N)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Hukum Hooke dan Energi Pegas
 
@@ -68,6 +78,16 @@ Kita bisa menghitung usaha dengan integral:
 <BlockMath math="\begin{aligned} W &amp;= 400[0{,}0064 - 0{,}0025] \\ &amp;= 400 \times 0{,}0039 \\ &amp;= 1{,}56 \text{ Joule} \end{aligned}" />
 </MathContainer>
 
+Antara 0,05 m dan 0,08 m gaya pegas <InlineMath math="F = 800x" /> naik dari 40 N sampai 64 N. Usahanya adalah trapesium di bawah garis gaya: <InlineMath math="\frac{40 + 64}{2} \times 0{,}03 = 1{,}56" /> J, sama dengan integralnya.
+
+<BarChart
+  title={<>Gaya pegas selama peregangan</>}
+  description={<>Batang <InlineMath math="F = 800x" /> dalam newton untuk <InlineMath math="x = 0{,}05;\ 0{,}06;\ 0{,}07;\ 0{,}08" /> meter.</>}
+  yAxisLabel="Gaya (N)"
+  data={[0.05, 0.06, 0.07, 0.08].map((x) => ({ name: String(x), value: 800 * x }))}
+  chartConfig={{ value: { label: "Gaya (N)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Menghitung Massa dari Fungsi Densitas
 
 Jika densitas benda berubah terhadap posisi, **massa** benda adalah integral fungsi densitas terhadap panjang, luas, atau volumenya.
@@ -100,16 +120,32 @@ Untuk batang dengan densitas <InlineMath math="\rho(x) = 3x + 2" /> di atas:
 
 Densitas bertambah dari <InlineMath math="2 \text{ kg/m}" /> pada ujung kiri menjadi <InlineMath math="8 \text{ kg/m}" /> pada ujung kanan. Karena **bagian kanan lebih rapat**, pusat massa <InlineMath math="1{,}2 \text{ m}" /> berada di kanan titik tengah <InlineMath math="1 \text{ m}" />.
 
-<LineEquation
-  title="Densitas Batang yang Bertambah"
-  description="Sumbu horizontal menunjukkan posisi dalam meter, sumbu vertikal densitas linear dalam kilogram per meter. Garis oranye menandai posisi pusat massa."
-  showZAxis={false}
-  cameraTarget={[1, 4, 0]}
-  cameraPosition={[1, 4, 17]}
-  data={[
-    { points: [{ x: 0, y: 2, z: 0 }, { x: 2, y: 8, z: 0 }], color: "#9333ea", smooth: false, showPoints: true, labels: [{ at: 0, text: <InlineMath math="(0,2)" />, offset: [0.5, -0.4, 0] }, { at: 1, text: <InlineMath math="(2,8)" />, offset: [0.5, 0.4, 0] }] },
-    { points: [{ x: 1.2, y: 0, z: 0 }, { x: 1.2, y: 5.6, z: 0 }], color: "#ea580c", smooth: false, showPoints: false, labels: [{ at: 0, text: <InlineMath math="1{,}2" />, offset: [0, -0.5, 0] }] },
-  ]}
+<MathVisual
+  title={<>Kepadatan batang yang bertambah</>}
+  description={<>Garis ungu adalah kepadatan <InlineMath math="\rho(x) = 3x + 2" /> dari <InlineMath math="(0, 2)" /> sampai <InlineMath math="(2, 8)" />, dalam kilogram per meter sepanjang batang. Ruas oranye menandai pusat massa di <InlineMath math="\bar x = 1{,}2" /> m, di kanan titik tengah 1.</>}
+  labels={{
+    rho: <InlineMath math="\rho(x) = 3x + 2" />,
+    center: <InlineMath math="\bar x = 1{,}2" />,
+    a: <InlineMath math="(0, 2)" />,
+    b: <InlineMath math="(2, 8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 2.6 }, y: { min: -0.4, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rho", kind: "segment", from: { x: 0, y: 2 }, to: { x: 2, y: 8 }, appearance: "secondary" },
+      { id: "center", kind: "segment", from: { x: 6 / 5, y: 0 }, to: { x: 6 / 5, y: 28 / 5 }, appearance: "primary" },
+      { id: "a", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+      { id: "b", kind: "point", at: { x: 2, y: 8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "rho", objectId: "rho", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "center", objectId: "center", at: { x: 6 / 5, y: 14 / 5 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 0, y: 2 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 2, y: 8 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Menghitung Momen Inersia

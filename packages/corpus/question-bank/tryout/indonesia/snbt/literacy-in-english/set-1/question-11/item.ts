@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "campus-commute",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "the architectural history of UNESCO's offices.",
+          label: "Walking",
         },
         {
           correct: false,
-          label: "a list of the capitals of UNESCO Member States.",
+          label: "Bicycle",
         },
         {
           correct: false,
-          label: "an unrelated comparison of national budgets.",
-        },
-        {
-          correct: false,
-          label: "a personal biography of one UNESCO employee.",
+          label: "Public bus",
         },
         {
           correct: true,
-          label:
-            "a current UNESCO initiative that puts its mission into practice.",
+          label: "Car or motorbike",
+        },
+        {
+          correct: false,
+          label: "None of the other groups",
         },
       ],
     },

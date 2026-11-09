@@ -68,6 +68,61 @@ E_p &= mgh \\
 
 If no energy crosses into the surroundings, that <InlineMath math="120 \text{ J}" /> changes into the kinetic energy of the water. In a real device, some energy moves to the surroundings as heat, sound, and vibration.
 
+Follow the water down the graph below, from <InlineMath math="h=12\text{ m}" /> on the right to the ground on the left. The orange potential energy shrinks by exactly as much as the teal kinetic energy grows, so the violet line for their sum never moves from <InlineMath math="120\text{ J}" />. Halfway down, at <InlineMath math="6\text{ m}" />, the two forms share the energy equally.
+
+<MathVisual
+  title={<>Potential Energy Turns into Kinetic Energy</>}
+  description={<>Water of 1 kg falling from 12 m with <InlineMath math="g=10\text{ m/s}^2" /> and no losses. Horizontal: height in units of 2 m. Vertical: energy in units of 20 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.8, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
+      { id: "kinetic", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 6, y: 0 } },
+      { id: "mechanical", kind: "segment", appearance: "secondary", from: { x: 0, y: 6 }, to: { x: 6, y: 6 } },
+      { id: "half", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "ep", objectId: "potential", at: { x: 5, y: 5 }, placement: "below-right" },
+      { key: "ek", objectId: "kinetic", at: { x: 1, y: 5 }, placement: "above-right" },
+      { key: "em", objectId: "mechanical", at: { x: 3, y: 6 }, placement: "above" },
+      { key: "half", objectId: "half", at: { x: 3, y: 3 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    ep: <InlineMath math="E_p=mgh" />,
+    ek: <InlineMath math="E_k=mg(12\text{ m}-h)" />,
+    em: <InlineMath math="E_m=120\text{ J}" />,
+    half: <InlineMath math="h=6\text{ m}:\ E_p=E_k=60\text{ J}" />,
+  }}
+/>
+
+Without friction, every joule of potential energy becomes kinetic energy: <InlineMath math="mgh=\tfrac12mv^2" />, so <InlineMath math="v=\sqrt{2gh}" /> and the mass cancels. Four times the height gives only twice the speed. Follow the curve from <InlineMath math="5\text{ m}" /> to <InlineMath math="20\text{ m}" />.
+
+<MathVisual
+  title={<>Height Becomes Speed</>}
+  description={<>Speed at the bottom against the drop height with <InlineMath math="g=10\text{ m/s}^2" />. Horizontal: one grid step is 2 m. Vertical: one grid step is 4 m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11 }, y: { min: -0.5, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "speed", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: Math.sqrt(2 * 10 * 1) / 4 }, { x: 1, y: Math.sqrt(2 * 10 * 2) / 4 }, { x: 1.5, y: Math.sqrt(2 * 10 * 3) / 4 }, { x: 2, y: Math.sqrt(2 * 10 * 4) / 4 }, { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, { x: 3, y: Math.sqrt(2 * 10 * 6) / 4 }, { x: 3.5, y: Math.sqrt(2 * 10 * 7) / 4 }, { x: 4, y: Math.sqrt(2 * 10 * 8) / 4 }, { x: 4.5, y: Math.sqrt(2 * 10 * 9) / 4 }, { x: 5, y: Math.sqrt(2 * 10 * 10) / 4 }, { x: 5.5, y: Math.sqrt(2 * 10 * 11) / 4 }, { x: 6, y: Math.sqrt(2 * 10 * 12) / 4 }, { x: 6.5, y: Math.sqrt(2 * 10 * 13) / 4 }, { x: 7, y: Math.sqrt(2 * 10 * 14) / 4 }, { x: 7.5, y: Math.sqrt(2 * 10 * 15) / 4 }, { x: 8, y: Math.sqrt(2 * 10 * 16) / 4 }, { x: 8.5, y: Math.sqrt(2 * 10 * 17) / 4 }, { x: 9, y: Math.sqrt(2 * 10 * 18) / 4 }, { x: 9.5, y: Math.sqrt(2 * 10 * 19) / 4 }, { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }] },
+      { id: "five", kind: "point", appearance: "secondary", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 } },
+      { id: "twenty", kind: "point", appearance: "answer", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 } },
+    ],
+    labels: [
+      { key: "five", objectId: "five", at: { x: 2.5, y: Math.sqrt(2 * 10 * 5) / 4 }, placement: "below-right" },
+      { key: "twenty", objectId: "twenty", at: { x: 10, y: Math.sqrt(2 * 10 * 20) / 4 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    five: <InlineMath math="h=5\text{ m}:\ v=10\text{ m/s}" />,
+    twenty: <InlineMath math="h=20\text{ m}:\ v=20\text{ m/s}" />,
+  }}
+/>
+
 ## Useful Energy Depends on the Device Purpose
 
 In renewable-energy technology, the desired output is usually **useful energy**, such as electrical energy. Energy conservation still applies, but the energy input does not all become electricity.
@@ -86,6 +141,33 @@ E_{\text{surroundings}}
 So the <InlineMath math="30 \text{ J}" /> has not vanished. It may leave through heat transfer from the shaft, sound carried away through the air, or vibration transferred to surrounding structures.
 
 [Hydropower plants](https://www.energy.gov/cmei/water/how-hydropower-works) use a difference in water height to drive turbines and generators.
+
+Rotate the columns: the energy that goes into the turbine all comes out again. Useful electrical energy and the share lost to heat, sound and vibration add back to the input.
+
+<MathVisual
+  title={<>The Turbine's Energy Balance</>}
+  description={<>Energy into the turbine and generator (gray) and out as electricity (teal) and to the surroundings (pink). One grid step up is 20 J.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 7 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 5, z: 10 }, target: { x: 1.5, y: 3, z: 0 } },
+    objects: [
+      { id: "input", kind: "cuboid", appearance: "reference", center: { x: 0, y: 3, z: 0 }, size: { length: 1.6, height: 6, width: 1.6 } },
+      { id: "useful", kind: "cuboid", appearance: "construction", center: { x: 3, y: 2.25, z: 0 }, size: { length: 1.6, height: 4.5, width: 1.6 } },
+      { id: "lost", kind: "cuboid", appearance: "warning", center: { x: 3, y: 5.25, z: 0 }, size: { length: 1.6, height: 1.5, width: 1.6 } },
+    ],
+    labels: [
+      { key: "input", objectId: "input", at: { x: 0, y: 6, z: 0 }, placement: "above" },
+      { key: "useful", objectId: "useful", at: { x: 3, y: 2.25, z: 0.85 }, placement: "right" },
+      { key: "lost", objectId: "lost", at: { x: 3, y: 6, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    input: <InlineMath math="120\text{ J}" />,
+    useful: <InlineMath math="90\text{ J},\ \eta=\tfrac{90}{120}=75\%" />,
+    lost: <InlineMath math="120-90=30\text{ J}" />,
+  }}
+/>
 
 ## Testing Energy Claims with Conservation
 

@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "canteen-labels",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan yang final dan dianggap berlaku untuk semua masa.",
+            "Jumlah siswa yang disurvei terlalu banyak untuk menggambarkan seluruh sekolah.",
         },
         {
           correct: false,
           label:
-            "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan yang menghapus perbedaan tujuan kedua sumber.",
-        },
-        {
-          correct: false,
-          label:
-            "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan dengan mengikuti sumber yang lebih baru secara otomatis.",
-        },
-        {
-          correct: false,
-          label:
-            "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan tanpa menilai asal serta tujuan tiap sumber.",
+            "Penjualan makanan berlabel kuning tidak berubah sama sekali selama pencatatan.",
         },
         {
           correct: true,
           label:
-            "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan yang terbatas dan dapat diperiksa.",
+            "Kenaikan penjualan hijau mungkin disebabkan turunnya harga, bukan oleh labelnya.",
+        },
+        {
+          correct: false,
+          label:
+            "Pencatatan seharusnya dilakukan oleh kepala sekolah, bukan oleh guru IPA.",
+        },
+        {
+          correct: false,
+          label:
+            "Label merah membuat makanan tampak lebih menarik bagi sebagian siswa.",
         },
       ],
     },

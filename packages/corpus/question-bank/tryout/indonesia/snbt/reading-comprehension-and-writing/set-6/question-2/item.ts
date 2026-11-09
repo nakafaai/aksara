@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "senior-exercise",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "menyebabkan nilai awal menjadi lebih rendah",
+          label: "kalimat (1)",
         },
         {
           correct: false,
-          label: "menggantikan nilai pembanding dalam perhitungan",
+          label: "kalimat (2)",
         },
         {
           correct: true,
-          label: "memiliki nilai numerik yang lebih tinggi daripada",
+          label: "kalimat (4)",
         },
         {
           correct: false,
-          label: "berada di luar rentang yang boleh diukur",
+          label: "kalimat (7)",
         },
         {
           correct: false,
-          label: "membuktikan perubahan sebagai satu-satunya penyebab",
+          label: "kalimat (8)",
         },
       ],
     },

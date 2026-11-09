@@ -3,7 +3,7 @@ export const metadata = {
   description: "Perkalian polinomial dengan sifat distributif dan metode tabel, dari perkalian suku tunggal sampai bentuk yang lebih panjang.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-13",
+  dateModified: "2026-11-08",
   subject: "Polinomial",
 };
 
@@ -33,6 +33,16 @@ Perhatikan dua hasil kali bertanda negatif pada faktor kedua. Misalnya, <InlineM
 
 <BlockMath math="\begin{aligned}(x^2-2x+7)(2x-5)&amp;=x^2(2x-5)-2x(2x-5)+7(2x-5) \\ &amp;=2x^3-5x^2-4x^2+10x+14x-35 \\ &amp;=2x^3+(-5-4)x^2+(10+14)x-35 \\ &amp;=2x^3-9x^2+24x-35\end{aligned}" />
 
+Kumpulkan hasil kali <InlineMath math="(x - 5)(x^2 + 3x - 1)" /> derajat demi derajat. Suku pangkat tiganya <InlineMath math="x^3" />, suku kuadratnya <InlineMath math="3x^2 - 5x^2 = -2x^2" />, suku linearnya <InlineMath math="-x - 15x = -16x" />, dan konstantanya <InlineMath math="(-5)(-1) = 5" />.
+
+<BarChart
+  title={<>Koefisien <InlineMath math="x^3 - 2x^2 - 16x + 5" /></>}
+  description={<>Batang koefisien 1, <InlineMath math="-2" />, <InlineMath math="-16" />, dan 5 pada derajat 3, 2, 1, dan 0.</>}
+  yAxisLabel="Koefisien"
+  data={[["derajat 3", 1], ["derajat 2", 3 - 5], ["derajat 1", -1 - 15], ["derajat 0", (-5) * (-1)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Koefisien", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Metode Tabel dengan Model Luas Daerah
 
 Metode ini mengorganisir perkalian setiap suku menggunakan tabel, mirip dengan cara mencari luas daerah saat mengalikan dua bilangan.
@@ -51,8 +61,8 @@ Cara yang sama bisa diterapkan pada polinomial.
 **Empat bagian luas** menjelaskan empat hasil kali pada tabel. Setiap bagian memiliki lebar dari satu kolom dan tinggi dari satu baris. Jumlah seluruh luas sama dengan luas persegi panjang utuh.
 
 <MathVisual
-  title="Persegi panjang 16 kali 12"
-  description="Empat bidang berukuran 10 kali 10, 6 kali 10, 10 kali 2, dan 6 kali 2 membentuk satu persegi panjang."
+  title={<>Persegi panjang 16 kali 12</>}
+  description={<>Empat bidang berukuran 10 kali 10, 6 kali 10, 10 kali 2, dan 6 kali 2 membentuk satu persegi panjang.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -1, max: 13 } },
@@ -102,6 +112,36 @@ Jumlahkan semua hasil di dalam sel tabel:
 Tabel polinomial juga dapat memuat suku negatif. Dalam kasus itu, sel menunjukkan **hasil kali aljabar**, bukan luas geometris negatif.
 
 Kedua metode memberikan hasil yang sama. Metode tabel menyusun hasil kali parsial agar tidak ada suku yang terlewat.
+
+Masukkan sebuah bilangan untuk <InlineMath math="x" /> untuk memeriksa Contoh 3. Dengan <InlineMath math="x = 3" />, persegi panjang <InlineMath math="(x + 6)" /> kali <InlineMath math="(x + 2)" /> berukuran 9 kali 5. Daerahnya <InlineMath math="x^2 = 9" />, <InlineMath math="6x = 18" />, <InlineMath math="2x = 6" />, dan <InlineMath math="12" /> berjumlah 45, nilai <InlineMath math="x^2 + 8x + 12" /> di <InlineMath math="x = 3" />.
+
+<MathVisual
+  title={<><InlineMath math="(x + 6)(x + 2)" /> sebagai luas di <InlineMath math="x = 3" /></>}
+  description={<>Persegi panjang 9 kali 5 yang dibagi menjadi daerah seluas 9, 18, 6, dan 12 untuk <InlineMath math="x^2" />, <InlineMath math="6x" />, <InlineMath math="2x" />, dan 12.</>}
+  labels={{
+    sq: <InlineMath math="x^2" />,
+    wide: <InlineMath math="6x" />,
+    top: <InlineMath math="2x" />,
+    corner: <InlineMath math="12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 9.6 }, y: { min: -0.6, max: 5.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "sq", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "wide", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 9, y: 0 }, { x: 9, y: 3 }, { x: 3, y: 3 }], appearance: "secondary" },
+      { id: "top", kind: "polygon", vertices: [{ x: 0, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 5 }, { x: 0, y: 5 }], appearance: "construction" },
+      { id: "corner", kind: "polygon", vertices: [{ x: 3, y: 3 }, { x: 9, y: 3 }, { x: 9, y: 5 }, { x: 3, y: 5 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "sq", objectId: "sq", at: { x: 3 / 2, y: 3 / 2 }, placement: "center" },
+      { key: "wide", objectId: "wide", at: { x: 6, y: 3 / 2 }, placement: "center" },
+      { key: "top", objectId: "top", at: { x: 3 / 2, y: 4 }, placement: "center" },
+      { key: "corner", objectId: "corner", at: { x: 6, y: 4 }, placement: "center" },
+    ],
+  }}
+/>
 
 ## Latihan
 

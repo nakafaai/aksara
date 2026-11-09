@@ -3,7 +3,7 @@ export const metadata = {
   description: "Bedakan busur kecil, busur besar, dan setengah lingkaran, lalu hitung panjang busur dari sudut pusatnya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Busur dan Juring Lingkaran",
 };
 
@@ -14,37 +14,37 @@ Busur lingkaran adalah <Highlight>bagian keliling di antara dua titik</Highlight
 
 Setiap busur memiliki dua ujung pada lingkaran. Pada lingkaran yang tetap, panjangnya bergantung pada besar sudut pusat yang membentangnya: sudut pusat yang lebih besar menghasilkan busur yang lebih panjang.
 
-<LineEquation
-  title={<>Visualisasi Busur Lingkaran</>}
-  description="Busur lingkaran dengan berbagai ukuran sudut pusat."
-  cameraPosition={[0, 0, 12]}
-  data={[
-    {
-      kind: "circle-outline", radius: 4,
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: "Lingkaran", at: 56, offset: [1.5, 0.5, 0] }]
-    },
-    { kind: "circle-arc", radius: 4,
-      startDegrees: 30,
-      sweepDegrees: 120,
-      segments: 12,
-      color: "#ea580c",
-      label: { text: <>Busur <InlineMath math="AB" /></>, offset: [1.5, 0.5, 0] } },
-    { kind: "circle-arc", radius: 4, startDegrees: 150, sweepDegrees: 240, color: "#db2777", label: { text: "Busur besar", offset: [0, -0.5, 0] } },
-    {
-      kind: "circle-radius", radius: 4, degrees: 30,
-      color: "#9333ea",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A" />, at: 1, offset: [0.3, 0.3, 0] }]
-    },
-    {
-      kind: "circle-radius", radius: 4, degrees: 150,
-      color: "#9333ea",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.3, 0] }]
-    }
-  ]}
+<MathVisual
+  title={<>Busur kecil dan busur besar <InlineMath math="AB" /></>}
+  description={<>Pada lingkaran berjari-jari 4, titik <InlineMath math="A" /> dan <InlineMath math="B" /> pada <InlineMath math="30^\circ" /> dan <InlineMath math="150^\circ" /> membagi lingkaran menjadi busur kecil <InlineMath math="120^\circ" /> dan busur besar <InlineMath math="240^\circ" />.</>}
+  labels={{
+    minor: <>Busur kecil</>,
+    major: <>Busur besar</>,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.6, max: 4.6 }, y: { min: -4.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "major", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 150, sweepDegrees: 240, appearance: "secondary" },
+      { id: "minor", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 30, sweepDegrees: 120, appearance: "primary" },
+      { id: "oa", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(3), y: 2 }, appearance: "construction" },
+      { id: "ob", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2 * Math.sqrt(3), y: 2 }, appearance: "construction" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "a", kind: "point", at: { x: 2 * Math.sqrt(3), y: 2 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: -2 * Math.sqrt(3), y: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "minor", objectId: "minor", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "major", objectId: "major", at: { x: 0, y: -4 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 2 * Math.sqrt(3), y: 2 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -2 * Math.sqrt(3), y: 2 }, placement: "left" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Jenis Busur Berdasarkan Ukuran
@@ -73,29 +73,31 @@ Sudut dalam radian didefinisikan sebagai **panjang busur dibagi jari-jari**. Kar
 
 Pada rumus kedua, <InlineMath math="\alpha" /> adalah besar sudut pusat dalam radian.
 
-<LineEquation
-  title={<>Perbandingan Panjang Busur</>}
-  description="Busur dengan sudut pusat berbeda pada lingkaran yang sama."
-  cameraPosition={[0, 0, 10]}
-  data={[
-    {
-      kind: "circle-outline", radius: 3,
-      color: "#0891b2",
-      showPoints: false
-    },
-    { kind: "circle-arc", radius: 3,
-      startDegrees: 0,
-      sweepDegrees: 60,
-      segments: 6,
-      color: "#ea580c",
-      label: { text: <InlineMath math="60^\circ" />, offset: [0.8, 0.3, 0] } },
-    { kind: "circle-arc", radius: 3,
-      startDegrees: 180,
-      sweepDegrees: 120,
-      segments: 12,
-      color: "#9333ea",
-      label: { text: <InlineMath math="120^\circ" />, offset: [-1.5, 0.3, 0] } }
-  ]}
+<MathVisual
+  title={<>Panjang busur bertambah bersama sudutnya</>}
+  description={<>Pada lingkaran berjari-jari 3, busur <InlineMath math="60^\circ" /> dan busur <InlineMath math="120^\circ" />. Busur kedua dua kali lebih panjang: <InlineMath math="\pi" /> dan <InlineMath math="2\pi" />.</>}
+  labels={{
+    small: <InlineMath math="60^\circ" />,
+    large: <InlineMath math="120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "reference" },
+      { id: "r1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "r2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 2, y: 3 * Math.sqrt(3) / 2 }, appearance: "construction" },
+      { id: "r3", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: 0 }, appearance: "construction" },
+      { id: "r4", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 2, y: -3 * Math.sqrt(3) / 2 }, appearance: "construction" },
+      { id: "small", kind: "arc", center: { x: 0, y: 0 }, radius: 3, startDegrees: 0, sweepDegrees: 60, appearance: "primary" },
+      { id: "large", kind: "arc", center: { x: 0, y: 0 }, radius: 3, startDegrees: 180, sweepDegrees: 120, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "small", objectId: "small", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "above-right" },
+      { key: "large", objectId: "large", at: { x: -3 * Math.sqrt(3) / 2, y: -3 / 2 }, placement: "below-left" },
+    ],
+  }}
 />
 
 ## Hubungan Busur dengan Sudut Pusat
@@ -186,3 +188,29 @@ Menggunakan konsep perbandingan:
 <BlockMath math="= \frac{45^\circ}{360^\circ} \times 88" />
 <BlockMath math="= \frac{1}{8} \times 88 = 11 \text{ cm}" />
 </MathContainer>
+
+Pada Pembahasan 1, sudut pusat <InlineMath math="90^\circ" /> adalah seperempat putaran, jadi busurnya seperempat keliling: <InlineMath math="\frac{90}{360} \times 2\pi \times 14 = 7\pi \approx 21{,}99" /> cm.
+
+<MathVisual
+  title={<>Busur <InlineMath math="90^\circ" /> pada lingkaran berjari-jari 14 cm</>}
+  description={<>Busur seperempat lingkaran berjari-jari 14 cm, sepanjang <InlineMath math="7\pi \approx 21{,}99" /> cm.</>}
+  labels={{
+    arc: <InlineMath math="7\pi \approx 21{,}99" />,
+    r: <InlineMath math="14" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 15 }, y: { min: -15, max: 15 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 14, appearance: "reference" },
+      { id: "r1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 14, y: 0 }, appearance: "construction" },
+      { id: "r2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 14 }, appearance: "construction" },
+      { id: "arc", kind: "arc", center: { x: 0, y: 0 }, radius: 14, startDegrees: 0, sweepDegrees: 90, appearance: "primary" },
+    ],
+    labels: [
+      { key: "arc", objectId: "arc", at: { x: 14 * Math.cos(Math.PI / 4), y: 14 * Math.sin(Math.PI / 4) }, placement: "above-right" },
+      { key: "r", objectId: "r1", at: { x: 7, y: 0 }, placement: "below" },
+    ],
+  }}
+/>

@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "vocabulary",
+    topic: "idiom",
+  },
+  stimulus: "rempah",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Keluhan sinyal terkonsentrasi pada satu lorong di sisi pasar.",
+          label: "Dipindahkan dengan tangan dari satu kapal ke kapal lain",
         },
         {
           correct: false,
-          label:
-            "Pembayaran digital terbukti selalu lebih cepat dan harus menggantikan uang tunai di semua pasar.",
+          label: "Disimpan lama di dalam gudang pelabuhan",
         },
         {
           correct: true,
-          label:
-            "Manfaat pembayaran digital perlu dinilai dengan data yang sebanding dan akses pengguna, sehingga penambahannya tidak otomatis berarti penghapusan tunai.",
+          label: "Beralih dari satu pemilik atau pedagang ke pemilik lain",
         },
         {
           correct: false,
-          label:
-            "Karena sebagian pengguna mengalami kendala, jalur digital sebaiknya dihapus meskipun bermanfaat bagi kelompok lain.",
+          label: "Dicuri oleh bajak laut di tengah perjalanan",
         },
         {
           correct: false,
-          label:
-            "Uji berikutnya akan memperbaiki jaringan dan membandingkan jumlah barang yang sebanding.",
+          label: "Ditimbang ulang oleh petugas pelabuhan",
         },
       ],
     },

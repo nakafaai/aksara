@@ -1,36 +1,19 @@
-Given the **custom operation definition** as follows:
+First find the total of every row and column. Each statement uses **a different reference group**, so pay attention to which group counts as the whole.
 
-<BlockMath math="\begin{gathered}
-P(a\odot b\#c) \\
-=a^2+4\sqrt b-2c
-\end{gathered}" />
+| Gender | Scouts | Basketball | Total |
+| :--- | :---: | :---: | :---: |
+| Boys | 12 | 18 | 30 |
+| Girls | 20 | 10 | 30 |
+| Total | 32 | 28 | 60 |
 
-We are asked to find the value of:
+# Conditional probability and group sizes
 
-<BlockMath math="\frac{P(3 \odot 9 \# 6)}{3}" />
+The first statement chooses a student **only from the Scouts members**, so the sample space has 32 students, not 60. The probability is <InlineMath math="\frac{20}{32}=\frac58" />, so the first statement is true. There are 30 boys and 30 girls, so the fourth statement is true as well.
 
-# Value Substitution
+# The two percentage statements
 
-Match the **argument order** in <InlineMath math="3 \odot 9 \# 6" /> to identify each variable:
-*   <InlineMath math="a = 3" />
-*   <InlineMath math="b = 9" />
-*   <InlineMath math="c = 6" />
+Basketball has 28 of the 60 students, that is, <InlineMath math="\frac{28}{60}\approx46.7\%" />, less than half. The second statement is false.
 
-# Calculation
+Among the 30 boys, 18 play basketball, that is, <InlineMath math="\frac{18}{30}=60\%" />. This is **not more than 65%**, so the third statement is false. Note that the divisor is the 30 boys, not the 28 basketball players.
 
-Substitute these values into the function formula <InlineMath math="P" />:
-
-Write the operation value as <InlineMath math="R=P(3\odot9\#6)" />. Substitution gives:
-
-<BlockMath math="\begin{aligned}
-R&=3^2+4\sqrt9-2\cdot6 \\
-&=9+4\cdot3-12 \\
-&=9+12-12 \\
-&=9
-\end{aligned}" />
-
-Finally, **divide the operation result** by <InlineMath math="3" /> as requested:
-
-<BlockMath math="\frac R3=\frac93=3" />
-
-So, the value sought is <InlineMath math="3" />.
+So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.

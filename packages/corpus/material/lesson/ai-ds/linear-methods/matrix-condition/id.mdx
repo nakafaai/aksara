@@ -48,6 +48,35 @@ Jika <InlineMath math="A" /> adalah matriks simetris real, nilai singularnya ada
 
 Untuk matriks nonnormal umum, radius spektral dan norma spektral **tidak harus sama**.
 
+Geseran <InlineMath math="A=\begin{pmatrix}1&1\\0&1\end{pmatrix}" /> punya satu nilai eigen <InlineMath math="1" />, jadi <InlineMath math="\rho(A)=1" />. Matriks <InlineMath math="A^{\mathsf T}A=\begin{pmatrix}1&1\\1&2\end{pmatrix}" /> punya nilai eigen terbesar <InlineMath math="\tfrac{3+\sqrt5}2=\varphi^2" />, jadi <InlineMath math="\|A\|_2=\varphi\approx1.618" />. Matriks yang tidak normal bisa meregangkan suatu vektor lebih jauh daripada yang ditunjukkan nilai eigennya.
+
+<MathVisual
+  title={<><InlineMath math="\rho(A)=1" /> tetapi <InlineMath math="\|A\|_2=\varphi" /></>}
+  description={<>Untuk geseran <InlineMath math="A=\begin{pmatrix}1&1\\0&1\end{pmatrix}" />, vektor eigen magenta <InlineMath math="e_1" /> tetap sepanjang <InlineMath math="1" />. Vektor satuan hijau toska <InlineMath math="v_1" /> menjadi vektor ungu <InlineMath math="Av_1" /> sepanjang <InlineMath math="\varphi=\tfrac{1+\sqrt5}2" />, yang mencapai lingkaran kuning berjari-jari <InlineMath math="\|A\|_2" />. Lingkaran abu-abu adalah lingkaran satuan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "norm", kind: "circle", center: { x: 0, y: 0 }, radius: (1 + Math.sqrt(5)) / 2, appearance: "highlight" },
+      { id: "eigen", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "singular", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, appearance: "construction" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: (3 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "eigen", objectId: "eigen", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "singular", objectId: "singular", at: { x: 1 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, placement: "above-left" },
+      { key: "image", objectId: "image", at: { x: (3 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "eigen": <InlineMath math="e_1" />,
+    "singular": <InlineMath math="v_1" />,
+    "image": <InlineMath math="Av_1" />,
+  }}
+/>
+
 ## Bilangan kondisi penyelesaian linear
 
 Untuk matriks persegi yang dapat diinverskan dan sebuah norma terinduksi, definisikan
@@ -98,6 +127,36 @@ Ambil <InlineMath math="\varepsilon=1/1000" /> dan bandingkan dua ruas kanan. Ha
 <BlockMath math="\kappa_2(A)=\frac1{1/1000}=1000" />
 </MathContainer>
 
+Supaya pembesarannya kelihatan, ambil <InlineMath math="\varepsilon=1/3" /> agar gambarnya muat. Setiap gangguan <InlineMath math="\Delta b" /> dengan komponen paling besar <InlineMath math="1" /> ada di persegi abu-abu, dan akibatnya <InlineMath math="\Delta x=A^{-1}\Delta b" /> ada di persegi panjang magenta. Putar atau perbesar adegannya: arah kedua diregangkan tiga kali dan arah pertama sama sekali tidak, seperti sudut <InlineMath math="\Delta b=(1,1)^T" /> yang menjadi <InlineMath math="\Delta x=(1,3)^T" />. Perbandingan <InlineMath math="3" /> itu adalah <InlineMath math="\kappa_2(A)=1/\varepsilon" />. Untuk <InlineMath math="\varepsilon=1/1000" />, persegi panjang itu akan seribu kali lebih tinggi daripada lebarnya.
+
+<MathVisual
+  title={<>Gangguan <InlineMath math="\Delta b" /> diperbesar oleh <InlineMath math="A^{-1}" /></>}
+  description={<>Untuk <InlineMath math="\varepsilon=1/3" />, setiap gangguan di persegi abu-abu <InlineMath math="|\Delta b_i|\le1" /> dipetakan ke persegi panjang magenta selebar <InlineMath math="2" /> dan setinggi <InlineMath math="6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -3.4, max: 3.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: -1, y: -1 }, { x: 1, y: -1 }, { x: 1, y: 1 }, { x: -1, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: -1, y: -3 }, { x: 1, y: -3 }, { x: 1, y: 3 }, { x: -1, y: 3 }], appearance: "answer" },
+      { id: "db", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "dx", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: -1, y: -1 }, placement: "below-left" },
+      { key: "image", objectId: "image", at: { x: -1, y: 3 }, placement: "above-left" },
+      { key: "db", objectId: "db", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "dx", objectId: "dx", at: { x: 1, y: 3 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "square": <InlineMath math="|\Delta b_i|\le1" />,
+    "image": <InlineMath math="A^{-1}\Delta b" />,
+    "db": <InlineMath math="\Delta b" />,
+    "dx": <InlineMath math="\Delta x" />,
+  }}
+/>
+
 ## Batas Perubahan Solusi
 
 Asumsikan <InlineMath math="A" /> dapat diinverskan dan <InlineMath math="b\ne0" />, agar galat relatif berikut memiliki **penyebut tak nol**. Bandingkan sistem awal <InlineMath math="Ax=b" /> dengan sistem yang matriks dan vektornya berubah sedikit.
@@ -122,3 +181,22 @@ Batas ini menunjukkan perubahan solusi **terbesar yang mungkin terjadi**. Pada b
 Algoritma stabil tidak dapat menghilangkan sensitivitas yang memang terdapat pada masalah berkondisi buruk. Sebaliknya, masalah berkondisi baik masih dapat diselesaikan dengan buruk oleh implementasi yang tidak stabil. Residual kecil <InlineMath math="\|b-A\hat{x}\|" /> saja juga tidak menjamin galat maju kecil <InlineMath math="\|x-\hat{x}\|" /> ketika <InlineMath math="\kappa(A)" /> besar.
 
 Dalam komputasi numerik, estimasikan kebalikan bilangan kondisi dari faktorisasi yang tepercaya. Jangan membentuk <InlineMath math="A^{-1}" /> secara eksplisit hanya untuk mengevaluasi <InlineMath math="\kappa(A)" />.
+
+Pada sistem dengan <InlineMath math="A=\begin{pmatrix}1&1\\1&1.01\end{pmatrix}" />, kedua barisnya hampir searah. Perubahan <InlineMath math="0.01" /> pada satu entri <InlineMath math="b" /> memindahkan solusi sejauh <InlineMath math="\sqrt2" />. Itu sifat masalahnya, jadi algoritma stabil apa pun tidak bisa menghapusnya. Algoritma yang stabil hanya menjaga agar tidak ada galat besar yang ditambahkan di atasnya.
+
+<MathVisual
+  title={<>Garis yang hampir sejajar membuat penyelesaian peka</>}
+  description={<>Garis ungu <InlineMath math="x+y=2" /> dan garis hijau toska <InlineMath math="x+1.01y=2.01" /> bertemu di titik magenta <InlineMath math="(1,1)" />. Mengubah ruas kanan menjadi <InlineMath math="2.02" /> memberi garis oranye dan memindahkan solusi ke titik kuning <InlineMath math="(0,2)" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 0, y: 2 }, { x: 2, y: 0 }], appearance: "secondary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 1 }, { x: 2.01, y: 0 }], appearance: "construction" },
+      { id: "shifted", kind: "line", through: [{ x: 0, y: 2 }, { x: 2.02, y: 0 }], appearance: "primary" },
+      { id: "solution", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "moved", kind: "point", at: { x: 0, y: 2 }, appearance: "highlight" },
+    ],
+  }}
+/>
