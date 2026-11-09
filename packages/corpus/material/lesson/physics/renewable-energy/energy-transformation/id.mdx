@@ -66,6 +66,39 @@ Pada [panel fotovoltaik](https://www.eia.gov/energyexplained/solar/photovoltaics
 
 [Pembangkit panas bumi](https://www.energy.gov/hgeo/geothermal/geothermal-electricity-generation) memakai fluida panas atau uap dari bawah permukaan Bumi untuk menggerakkan turbin dan menghasilkan listrik.
 
+Pembangkit listrik mengubah energi dalam beberapa tahap, dan setiap tahap hanya meneruskan sebagian dari yang diterimanya, jadi efisiensi tiap tahap saling dikalikan. Dengan nilai ilustratif <InlineMath math="90\%" /> untuk turbin serta masing-masing <InlineMath math="95\%" /> untuk generator dan saluran, rantai ini menyalurkan <InlineMath math="\eta=0{,}9\times0{,}95\times0{,}95\approx81\%" /> dari energi airnya. Putar batangnya dan perhatikan bagian abu-abu yang terus bertambah.
+
+<MathVisual
+  title={<>Efisiensi Tiap Tahap Saling Dikalikan</>}
+  description={<>Energi yang tersisa di setiap tahap rantai pembangkit listrik tenaga air ilustratif dari 100 J energi air (teal, depan) dan energi yang hilang sejauh ini (abu-abu, belakang). Satu kotak grid ke atas berarti 20 J.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 6.5 }, z: { min: -1.8, max: 1.8 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 12 }, target: { x: 3.75, y: 2.5, z: 0 } },
+    objects: [
+      { id: "useful-0", kind: "cuboid", appearance: "construction", center: { x: 0, y: 2.5, z: 0.7 }, size: { length: 1.2, height: 5, width: 1.2 } },
+      { id: "useful-1", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: ((100 * 90 * 100 * 100) / (20 * 100 * 100 * 100)) / 2, z: 0.7 }, size: { length: 1.2, height: (100 * 90 * 100 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "lost-1", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: ((100 * 100 * 100 * 100 - 100 * 90 * 100 * 100) / (20 * 100 * 100 * 100)) / 2, z: -0.7 }, size: { length: 1.2, height: (100 * 100 * 100 * 100 - 100 * 90 * 100 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "useful-2", kind: "cuboid", appearance: "construction", center: { x: 5, y: ((100 * 90 * 95 * 100) / (20 * 100 * 100 * 100)) / 2, z: 0.7 }, size: { length: 1.2, height: (100 * 90 * 95 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "lost-2", kind: "cuboid", appearance: "reference", center: { x: 5, y: ((100 * 100 * 100 * 100 - 100 * 90 * 95 * 100) / (20 * 100 * 100 * 100)) / 2, z: -0.7 }, size: { length: 1.2, height: (100 * 100 * 100 * 100 - 100 * 90 * 95 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "useful-3", kind: "cuboid", appearance: "construction", center: { x: 7.5, y: ((100 * 90 * 95 * 95) / (20 * 100 * 100 * 100)) / 2, z: 0.7 }, size: { length: 1.2, height: (100 * 90 * 95 * 95) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "lost-3", kind: "cuboid", appearance: "reference", center: { x: 7.5, y: ((100 * 100 * 100 * 100 - 100 * 90 * 95 * 95) / (20 * 100 * 100 * 100)) / 2, z: -0.7 }, size: { length: 1.2, height: (100 * 100 * 100 * 100 - 100 * 90 * 95 * 95) / (20 * 100 * 100 * 100), width: 1.2 } },
+    ],
+    labels: [
+      { key: "stage0", objectId: "useful-0", at: { x: 0, y: 5, z: 0.7 }, placement: "above" },
+      { key: "stage1", objectId: "useful-1", at: { x: 2.5, y: 5, z: 0.7 }, placement: "above" },
+      { key: "stage2", objectId: "useful-2", at: { x: 5, y: 5, z: 0.7 }, placement: "above" },
+      { key: "stage3", objectId: "useful-3", at: { x: 7.5, y: 5, z: 0.7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    stage0: <InlineMath math="\text{air}:\ 100\text{ J}" />,
+    stage1: <InlineMath math="\text{turbin}:\ 90\text{ J}" />,
+    stage2: <InlineMath math="\text{generator}:\ 85{,}5\text{ J}" />,
+    stage3: <InlineMath math="\text{saluran}:\ \approx81{,}2\text{ J}" />,
+  }}
+/>
+
 ## Efisiensi Mengukur Bagian Energi yang Berguna
 
 Karena tidak semua energi masuk menjadi keluaran yang kita butuhkan, kita memakai **efisiensi**. Efisiensi menunjukkan perbandingan antara energi berguna dan energi masuk.
@@ -101,6 +134,45 @@ E_{\text{lingkungan}}
 Jadi, efisiensi <InlineMath math="20\%" /> bukan berarti sisa <InlineMath math="80\%" /> hilang. Sisa energinya berpindah ke lingkungan, misalnya sebagai kalor dan cahaya yang tidak terserap panel.
 
 [Efisiensi energi](https://www.eia.gov/energyexplained/use-of-energy/efficiency-and-conservation.php) mengukur bagian energi masuk yang berhasil diubah alat menjadi keluaran berguna.
+
+Geser efisiensi panelnya dan perhatikan bagaimana <InlineMath math="800\text{ J}" /> itu terbagi. Pada <InlineMath math="\eta=20\%" />, pita kuning adalah <InlineMath math="160\text{ J}" /> listrik dari contoh tadi, dan pita merah muda adalah <InlineMath math="640\text{ J}" /> yang pergi ke lingkungan. Kedua pita selalu berjumlah sama dengan masukannya.
+
+<MathVisual
+  title={<>Efisiensi Membagi Masukan</>}
+  description={<>800 J cahaya yang masuk ke panel (abu-abu) terbagi menjadi listrik (kuning) dan energi ke lingkungan (merah muda), dengan lebar pita sesuai skala. Satu kotak grid berarti 100 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "input", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 8 }, { x: 0, y: 8 }] },
+      { id: "useful", kind: "loop", appearance: "highlight", points: [{ x: "3", y: "8 - 8a" }, { x: "8", y: "8 - 8a" }, { x: "8", y: "8" }, { x: "3", y: "8" }] },
+      { id: "lost", kind: "loop", appearance: "warning", points: [{ x: "3", y: "0" }, { x: "8", y: "0" }, { x: "8", y: "8 - 8a" }, { x: "3", y: "8 - 8a" }] },
+    ],
+    labels: [
+      { key: "input", objectId: "input", at: { x: 1.5, y: 8 }, placement: "above" },
+      { key: "useful", objectId: "useful", at: { x: "8", y: "8 - 4a" }, placement: "right" },
+      { key: "lost", objectId: "lost", at: { x: "8", y: "4 - 4a" }, placement: "right" },
+    ],
+    parameters: [
+      { name: "a", min: 0.05, max: 0.95, value: 0.2, step: 0.01, label: "slider" },
+    ],
+    readouts: [
+      { key: "eta", formula: "100 a" },
+      { key: "out", formula: "800 a" },
+      { key: "rest", formula: "800 (1 - a)" },
+    ],
+  }}
+  labels={{
+    slider: <InlineMath math="\eta" />,
+    input: <InlineMath math="800\text{ J cahaya}" />,
+    useful: <InlineMath math="\text{listrik}" />,
+    lost: <InlineMath math="\text{ke lingkungan}" />,
+    eta: <InlineMath math="\eta\ (\%)" />,
+    out: <InlineMath math="E_{\text{useful}}=\eta E_{\text{input}}\ (\text{J})" />,
+    rest: <InlineMath math="E_{\text{input}}-E_{\text{useful}}\ (\text{J})" />,
+  }}
+/>
 
 ## Membandingkan Jalur Konversi Beberapa Alat
 

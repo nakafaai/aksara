@@ -76,8 +76,8 @@ For assessed content, also apply the
   taught. A label anchors at the exact coordinates of the point it names,
   never at a nearby vertex.
   A set of isolated observations uses `point` objects, without connecting
-  them into an additional curve. Declarative circle and arc objects own their
-  exact sampling.
+  them into an additional curve. Declarative circle, arc, and formula objects
+  own their exact sampling.
   Author a balok as one declarative cuboid with positive dimensions:
   `{ id, kind: "cuboid", appearance, center, size: { length, width, height } }`.
   Verify eight vertices, twelve straight edges, four edges of each
@@ -129,25 +129,15 @@ graph teaches the wrong mathematics on an education platform.
   code, or images. A p5 sketch meets the same bar as a 3D scene: every drawn
   value is computed, the motion teaches, and the still frame reads on its own.
 - **Every plotted coordinate is computed from its formula.** In a
-  `MathVisual` scene a parabola is the exact `quadratic` object, and every
-  other curve is a `polyline` whose every vertex is the constant expression
-  that computes it from the formula the lesson teaches, the parameter written
-  once per vertex as an exact fraction:
+  `MathVisual` scene a curve is the formula object that names it, described
+  below, and the renderer samples it:
 
   ```tsx
-  // y = x^3 - 3x for -2 <= x <= 2, one vertex every 1/20
-  { id: "cubic", kind: "polyline", appearance: "primary", vertices: [
-    { x: -2, y: (-2) ** 3 - 3 * (-2) },
-    { x: -39 / 20, y: (-39 / 20) ** 3 - 3 * (-39 / 20) },
-    // ... one vertex per step, through
-    { x: 2, y: (2) ** 3 - 3 * (2) },
-  ] },
+  { id: "curve", kind: "function", appearance: "primary", formula: "(3x - 1)^2", domain: { min: -1 / 3, max: 1 } }
   ```
 
-  A trigonometric or exponential vertex is written the same way, such as
-  `{ x: 3 * Math.PI / 40, y: Math.sin(3 * Math.PI / 40) }`. A chart whose
-  props the compiler evaluates, such as `BarChart`, builds its data from the
-  formula with `Array.from` or `map` over its inputs.
+  A chart whose props the compiler evaluates, such as `BarChart`, builds its
+  data from the formula with `Array.from` or `map` over its inputs.
 
   Never type a list of coordinates, never paste values an external script
   printed, and never round a computed value into the source. A literal
@@ -170,17 +160,54 @@ graph teaches the wrong mathematics on an education platform.
   last digits. A plane scene draws points, lines, rays, segments, polylines,
   polygons, circles, arcs, and the exact `quadratic` object, which draws a
   parabola without sampling. A space scene draws points, lines, rays,
-  segments, polylines, polygons, and cuboids. A sampled curve is a `polyline`
-  whose every vertex is such an expression, as shown above.
-- **A smooth function renders smooth.** Sample only the part of the domain
-  that stays inside the frame: solve for the frame bounds instead of sampling
-  far outside them, so the visible part gets the vertices. Space the vertices
-  closely, and more closely where the slope or curvature is high, until no
+  segments, polylines, polygons, and cuboids, plus the formula objects below.
+- **`MathVisual` draws a formula, not its points.** A formula object names
+  what the lesson teaches, and the renderer samples it: at least two hundred
+  samples per visible branch, exact samples at the domain ends and at every
+  label, a split at every break and asymptote, and only the part inside the
+  frame. It replaces a `LineEquation` series built with `Array.from`, which
+  no new lesson writes. A formula is text that the contract parses without running code: numbers,
+  `+ - * / ^`, implied multiplication (`2x`, `a sin(t)`), parentheses, the
+  constants `pi` and `e`, and the functions `abs acos asin atan cbrt ceil cos
+  cosh cot csc exp floor ln log sec sign sin sinh sqrt tan tanh`, plus `min`,
+  `max`, and `log_b(x)`. Angles are in radians.
+
+  | Scene | `kind` | Fields | Draws |
+  | --- | --- | --- | --- |
+  | plane | `function` | `formula`, optional `domain`, optional `inputAxis: "y"` | `y = f(x)`, or `x = f(y)` |
+  | plane | `parametric` | `x`, `y` in `t`, `parameter: { min, max }` | a curve traced by `t` |
+  | plane | `polar` | `radius` in `theta`, `angle: { min, max }` | `r = f(theta)` |
+  | plane | `implicit` | `equation`, such as `"x^2 + y^2 = 4"` | every point where it holds, such as a conic |
+  | plane | `region` | `inequalities`, such as `["x + y <= 10", "y > 0"]` | the shaded part where all hold; `<=` and `>=` edges solid, `<` and `>` dashed |
+  | space | `function` | `formula` in `x` and `y`, optional `domain: { x, y }` | the surface `z = f(x, y)` |
+  | space | `parametric` | `x`, `y`, `z` in `t`, `parameter` | a space curve, such as a helix |
+  | space | `surface` | `x`, `y`, `z` in `u` and `v`, `u`, `v` | a parametric surface, such as a sphere or torus |
+  | space | `revolution` | `axis`, `formula` (the radius, in that axis's variable), `domain` | the solid a profile sweeps around the axis |
+  | space | `prism` | `base` (coplanar corners), `offset` | the base moved along the offset |
+  | space | `pyramid` | `base`, `apex` | a pyramid or a cone of straight edges |
+  | plane | `marker` | `x`, `y` formulas | a point the sliders move, such as `(cos(a), sin(a))` |
+  | plane | `path` | `points`, at least two `{ x, y }` formula points | open segments through them, such as a moving radius |
+  | plane | `loop` | `points`, at least three formula points | a closed outline, such as a right triangle of angle `a` |
+
+  A scene's `parameters` add sliders: `{ name, min, max, value, step?,
+  label? }`, with a one-letter name other than `e`, `t`, `u`, `v`, `x`, `y`,
+  or `z`. Every formula that reads the name redraws as the learner moves its
+  slider, such as `a` in `{ kind: "function", formula: "a sin(x)" }`. A
+  slider's `label` names a key of the visual's `labels`, so an angle slider
+  named `a` can show theta. A plane label's `at` may be a formula point,
+  `{ x: "cos(a)", y: "sin(a)" }`, and follows the sliders. A plane scene's
+  `readouts`, `[{ key, formula }]`, show values such as `cos(a)` under the
+  picture, each beside the rich label its key names. Labels, readouts, and
+  slider labels read only the declared slider names. Exact points, segments,
+  and polygons keep constant coordinates.
+- **A smooth function renders smooth.** Draw a smooth curve as its formula
+  object, which the renderer samples densely and only inside the frame, so no
   corner shows at the largest card size, including full screen.
-- **Corners and breaks appear exactly where the mathematics puts them.** Put
-  an exact sample at every corner, cusp, piecewise boundary, and named point,
-  such as the vertex of `|x|`. Split the curve into one polyline per branch at
-  every discontinuity and asymptote instead of joining across it.
+- **Corners and breaks appear exactly where the mathematics puts them.** The
+  renderer splits a formula object at every break and asymptote. Give a
+  piecewise function one formula object per piece, each domain ending at the
+  exact boundary, so every corner, cusp, and named point, such as the vertex
+  of `|x|`, is an exact sample.
 - **A revision never removes 3D or animation.** Inventory every interactive
   visual before editing. Fix a visual that is wrong, rebuild it when its
   component cannot carry the job, and add visuals where a main idea has none.
@@ -191,9 +218,9 @@ graph teaches the wrong mathematics on an education platform.
   concept exactly or smoothly, improve the component in Nakafa's renderer, and
   Aksara's source policy where it rejects the source, with the best
   composition, and ship it in the same change as the content that uses it.
-  Never work around a component limit with hard-coded data. A curve that a
-  `MathVisual` polyline of formula vertices cannot draw exactly or smoothly is
-  such a limit: raise the gap in the renderer instead of typing points.
+  Never work around a component limit with hard-coded data. A curve that no
+  `MathVisual` formula object can draw is such a limit: raise the gap in the
+  renderer instead of typing points.
 - **The `points` gate enforces this.** Run
   `node --conditions=aksara-source .agents/skills/nakafa-content/scripts/points/check.ts <directory or file>`
   on every changed lesson and article, or `bun run points` for both corpus roots.

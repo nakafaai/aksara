@@ -91,6 +91,41 @@ Für die Geschwindigkeit zur Zeit <InlineMath math="t" /> bestimmst du **beide K
 
 Die Richtung der Geschwindigkeit gegen die Waagerechte ist <InlineMath math="\alpha = \operatorname{atan2}(v_y, v_x)" />. Für <InlineMath math="v_x > 0" /> ist das gleichbedeutend mit <InlineMath math="\tan\alpha = \frac{v_y}{v_x}" />. Ein positives <InlineMath math="v_y" /> bedeutet, dass sich der Körper schräg nach oben bewegt, ein negatives, dass er schräg nach unten fliegt.
 
+Verschieb die Zeit und folge der Kanonenkugel. Der violette Pfeil ist die Geschwindigkeit in diesem Moment: Ihr waagerechter Anteil ändert sich nie, ihr senkrechter sinkt jede Sekunde um <InlineMath math="10\text{ m/s}" />, und oben, bei etwa <InlineMath math="t\approx3{,}46\text{ s}" />, liegt der Pfeil flach.
+
+<MathVisual
+  title={<>Folge der Geschwindigkeit durch die Zeit</>}
+  description={<>Die mit <InlineMath math="40\text{ m/s}" /> unter <InlineMath math="60^\circ" /> abgeschossene Kanonenkugel, ihre Position zur gewählten Zeit (fuchsia) und die Strecke, die sie in der nächsten Sekunde mit dieser Geschwindigkeit zurücklegt (violett). Ein Gitterschritt entspricht 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: -1, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "path", kind: "parametric", appearance: "construction", x: "2t", y: "2 sqrt(3) t - t^2/2", parameter: { min: 0, max: 4 * Math.sqrt(3) } },
+      { id: "ball", kind: "marker", appearance: "answer", x: "2s", y: "2 sqrt(3) s - s^2/2" },
+      { id: "velocity", kind: "path", appearance: "secondary", points: [{ x: "2s", y: "2 sqrt(3) s - s^2/2" }, { x: "2s + 2", y: "2 sqrt(3) s - s^2/2 + 2 sqrt(3) - s" }] },
+    ],
+    labels: [
+      { key: "ball", objectId: "ball", at: { x: "2s", y: "2 sqrt(3) s - s^2/2" }, placement: "below" },
+    ],
+    parameters: [
+      { name: "s", min: 0, max: 4 * Math.sqrt(3), value: 2, step: 0.01, label: "time" },
+    ],
+    readouts: [
+      { key: "vx", formula: "20" },
+      { key: "vy", formula: "20 sqrt(3) - 10 s" },
+      { key: "speed", formula: "sqrt(400 + (20 sqrt(3) - 10 s)^2)" },
+    ],
+  }}
+  labels={{
+    time: <InlineMath math="t\ (\text{s})" />,
+    ball: <InlineMath math="(x,y)" />,
+    vx: <InlineMath math="v_x\ (\text{m/s})" />,
+    vy: <InlineMath math="v_y=v_0\sin60^\circ-gt\ (\text{m/s})" />,
+    speed: <InlineMath math="v=\sqrt{v_x^2+v_y^2}\ (\text{m/s})" />,
+  }}
+/>
+
 ## Eine Kanonenkugel unter sechzig Grad
 
 Eine Kugel wird mit <InlineMath math="40\text{ m/s}" /> unter einem Winkel von <InlineMath math="60^\circ" /> abgefeuert. Weil <InlineMath math="\sin 60^\circ" /> und <InlineMath math="\cos 60^\circ" /> **exakte Werte** haben, lässt sich jedes Ergebnis bis zum letzten Schritt ohne Runden schreiben.
@@ -116,55 +151,41 @@ Probe der Schnelligkeit: <InlineMath math="v^2 = 20^2 + 14{,}64^2 \approx 614{,}
 
 Bei <InlineMath math="t = 2\text{ s}" /> steigt die Kugel noch, weil <InlineMath math="v_y" /> positiv ist, und dieser Zeitpunkt liegt tatsächlich vor der Steigzeit von <InlineMath math="3{,}46\text{ s}" />.
 
-<LineEquation
-  title="Die Geschwindigkeit der Kanonenkugel entlang der Bahn"
-  description="Ein Kästchen steht für 10 m. Jeder Pfeil zeigt die Strecke, die in einer Sekunde mit der Geschwindigkeit dieses Moments zurückgelegt wird. Der waagerechte Anteil bleibt 20 m/s, der senkrechte nimmt jede Sekunde um 10 m/s ab."
-  showZAxis={false}
-  cameraPosition={[8, 1.5, 23]}
-  cameraTarget={[8, 1.5, 0]}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, index) => {
-        const t = (4 * Math.sqrt(3) * index) / 400;
-        return { x: (20 * t) / 10, y: (20 * Math.sqrt(3) * t - 5 * t ** 2) / 10, z: 0 };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [{ x: (20 * (0)) / 10, y: (20 * Math.sqrt(3) * (0) - 5 * (0) ** 2) / 10, z: 0 }, { x: (20 * (0)) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (0) - 5 * (0) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (0)) / 10, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="v = 40\text{ m/s}" />, at: 1, offset: [-0.6, 0.4, 0] }],
-    },
-    {
-      points: [{ x: (20 * (2)) / 10, y: (20 * Math.sqrt(3) * (2) - 5 * (2) ** 2) / 10, z: 0 }, { x: (20 * (2)) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (2) - 5 * (2) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (2)) / 10, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="v \approx 24{,}8\text{ m/s}" />, at: 1, offset: [0, 0.4, 0] }],
-    },
-    {
-      points: [{ x: (20 * (2 * Math.sqrt(3))) / 10, y: (20 * Math.sqrt(3) * (2 * Math.sqrt(3)) - 5 * (2 * Math.sqrt(3)) ** 2) / 10, z: 0 }, { x: (20 * (2 * Math.sqrt(3))) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (2 * Math.sqrt(3)) - 5 * (2 * Math.sqrt(3)) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (2 * Math.sqrt(3))) / 10, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="v = v_x = 20\text{ m/s}" />, at: 1, offset: [0, 0.4, 0] }],
-    },
-    {
-      points: [{ x: (20 * (4 * Math.sqrt(3))) / 10, y: (20 * Math.sqrt(3) * (4 * Math.sqrt(3)) - 5 * (4 * Math.sqrt(3)) ** 2) / 10, z: 0 }, { x: (20 * (4 * Math.sqrt(3))) / 10 + 20 / 10, y: (20 * Math.sqrt(3) * (4 * Math.sqrt(3)) - 5 * (4 * Math.sqrt(3)) ** 2) / 10 + (20 * Math.sqrt(3) - 10 * (4 * Math.sqrt(3))) / 10, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="v = 40\text{ m/s}" />, at: 1, offset: [0.3, -0.3, 0] }],
-    }
-  ]}
+<MathVisual
+  title={<>Die Geschwindigkeit der Kanonenkugel entlang ihrer Bahn</>}
+  description={<>Ein Gitterkästchen steht für 10 m. Jeder Pfeil zeigt die Strecke, die in einer Sekunde mit der Geschwindigkeit dieses Moments zurückgelegt wird. Sein waagerechter Anteil bleibt immer <InlineMath math="20\text{ m/s}" />, sein senkrechter Anteil sinkt jede Sekunde um <InlineMath math="10\text{ m/s}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -4.2, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "path", kind: "parametric", appearance: "construction", x: "2t", y: "2 sqrt(3) t - t^2/2", parameter: { min: 0, max: 4 * Math.sqrt(3) } },
+      { id: "at-0", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "v0", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) } },
+      { id: "v0-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },
+      { id: "at-1", kind: "point", appearance: "secondary", at: { x: 4, y: 4 * Math.sqrt(3) - 2 } },
+      { id: "v1", kind: "segment", appearance: "secondary", from: { x: 4, y: 4 * Math.sqrt(3) - 2 }, to: { x: 6, y: 6 * Math.sqrt(3) - 4 } },
+      { id: "v1-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 6, y: 6 * Math.sqrt(3) - 4 }, { x: 6 - (0.25 * 2) / Math.hypot(2, 1.4641016151377553) + ((0.25 / 2) * -1.4641016151377553) / Math.hypot(2, 1.4641016151377553), y: 6 * Math.sqrt(3) - 4 - (0.25 * 1.4641016151377553) / Math.hypot(2, 1.4641016151377553) + ((0.25 / 2) * 2) / Math.hypot(2, 1.4641016151377553) }, { x: 6 - (0.25 * 2) / Math.hypot(2, 1.4641016151377553) - ((0.25 / 2) * -1.4641016151377553) / Math.hypot(2, 1.4641016151377553), y: 6 * Math.sqrt(3) - 4 - (0.25 * 1.4641016151377553) / Math.hypot(2, 1.4641016151377553) - ((0.25 / 2) * 2) / Math.hypot(2, 1.4641016151377553) }] },
+      { id: "at-2", kind: "point", appearance: "secondary", at: { x: 4 * Math.sqrt(3), y: 6 } },
+      { id: "v2", kind: "segment", appearance: "secondary", from: { x: 4 * Math.sqrt(3), y: 6 }, to: { x: 4 * Math.sqrt(3) + 2, y: 6 } },
+      { id: "v2-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4 * Math.sqrt(3) + 2, y: 6 }, { x: 4 * Math.sqrt(3) + 2 + -0.25, y: 6.125 }, { x: 4 * Math.sqrt(3) + 2 + -0.25, y: 5.875 }] },
+      { id: "at-3", kind: "point", appearance: "secondary", at: { x: 8 * Math.sqrt(3), y: 0 } },
+      { id: "v3", kind: "segment", appearance: "secondary", from: { x: 8 * Math.sqrt(3), y: 0 }, to: { x: 8 * Math.sqrt(3) + 2, y: -2 * Math.sqrt(3) } },
+      { id: "v3-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 8 * Math.sqrt(3) + 2, y: -2 * Math.sqrt(3) }, { x: 8 * Math.sqrt(3) + 2 - (0.25 * 2.0) / Math.hypot(2.0, -3.4641016151377544) + ((0.25 / 2) * 3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544), y: -2 * Math.sqrt(3) - (0.25 * -3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544) + ((0.25 / 2) * 2.0) / Math.hypot(2.0, -3.4641016151377544) }, { x: 8 * Math.sqrt(3) + 2 - (0.25 * 2.0) / Math.hypot(2.0, -3.4641016151377544) - ((0.25 / 2) * 3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544), y: -2 * Math.sqrt(3) - (0.25 * -3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544) - ((0.25 / 2) * 2.0) / Math.hypot(2.0, -3.4641016151377544) }] },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "left" },
+      { key: "v1", objectId: "v1", at: { x: 6, y: 6 * Math.sqrt(3) - 4 }, placement: "above" },
+      { key: "v2", objectId: "v2", at: { x: 4 * Math.sqrt(3) + 2, y: 6 }, placement: "above" },
+      { key: "v3", objectId: "v3", at: { x: 8 * Math.sqrt(3) + 2, y: -2 * Math.sqrt(3) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    v0: <InlineMath math="v=40\text{ m/s}" />,
+    v1: <InlineMath math="v\approx24{,}8\text{ m/s}" />,
+    v2: <InlineMath math="v=v_x=20\text{ m/s}" />,
+    v3: <InlineMath math="v=40\text{ m/s}" />,
+  }}
 />
 
 ## Ein Schuss unter fünfundvierzig Grad

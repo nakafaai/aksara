@@ -67,6 +67,39 @@ In einem [Photovoltaikmodul](https://www.eia.gov/energyexplained/solar/photovolt
 
 [Geothermiekraftwerke](https://www.energy.gov/hgeo/geothermal/geothermal-electricity-generation) nutzen heiße Flüssigkeiten oder Dampf aus dem Untergrund, um Turbinen anzutreiben und Strom zu erzeugen.
 
+Ein Kraftwerk wandelt Energie in Stufen um, und jede Stufe gibt nur einen Teil dessen weiter, was sie bekommt, also multiplizieren sich die Wirkungsgrade der Stufen. Mit beispielhaften <InlineMath math="90\%" /> für die Turbine und je <InlineMath math="95\%" /> für Generator und Leitungen liefert die Kette <InlineMath math="\eta=0{,}9\times0{,}95\times0{,}95\approx81\%" /> der Energie des Wassers. Dreh die Balken und sieh zu, wie der graue Teil wächst.
+
+<MathVisual
+  title={<>Wirkungsgrade der Stufen multiplizieren sich</>}
+  description={<>Restenergie auf jeder Stufe einer beispielhaften Wasserkraftkette aus 100 J Wasserenergie (türkis, vorne) und die bis dahin verlorene Energie (grau, hinten). Ein Gitterschritt nach oben entspricht 20 J.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9 }, y: { min: 0, max: 6.5 }, z: { min: -1.8, max: 1.8 } },
+    view: { kind: "camera", position: { x: 10, y: 7, z: 12 }, target: { x: 3.75, y: 2.5, z: 0 } },
+    objects: [
+      { id: "useful-0", kind: "cuboid", appearance: "construction", center: { x: 0, y: 2.5, z: 0.7 }, size: { length: 1.2, height: 5, width: 1.2 } },
+      { id: "useful-1", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: ((100 * 90 * 100 * 100) / (20 * 100 * 100 * 100)) / 2, z: 0.7 }, size: { length: 1.2, height: (100 * 90 * 100 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "lost-1", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: ((100 * 100 * 100 * 100 - 100 * 90 * 100 * 100) / (20 * 100 * 100 * 100)) / 2, z: -0.7 }, size: { length: 1.2, height: (100 * 100 * 100 * 100 - 100 * 90 * 100 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "useful-2", kind: "cuboid", appearance: "construction", center: { x: 5, y: ((100 * 90 * 95 * 100) / (20 * 100 * 100 * 100)) / 2, z: 0.7 }, size: { length: 1.2, height: (100 * 90 * 95 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "lost-2", kind: "cuboid", appearance: "reference", center: { x: 5, y: ((100 * 100 * 100 * 100 - 100 * 90 * 95 * 100) / (20 * 100 * 100 * 100)) / 2, z: -0.7 }, size: { length: 1.2, height: (100 * 100 * 100 * 100 - 100 * 90 * 95 * 100) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "useful-3", kind: "cuboid", appearance: "construction", center: { x: 7.5, y: ((100 * 90 * 95 * 95) / (20 * 100 * 100 * 100)) / 2, z: 0.7 }, size: { length: 1.2, height: (100 * 90 * 95 * 95) / (20 * 100 * 100 * 100), width: 1.2 } },
+      { id: "lost-3", kind: "cuboid", appearance: "reference", center: { x: 7.5, y: ((100 * 100 * 100 * 100 - 100 * 90 * 95 * 95) / (20 * 100 * 100 * 100)) / 2, z: -0.7 }, size: { length: 1.2, height: (100 * 100 * 100 * 100 - 100 * 90 * 95 * 95) / (20 * 100 * 100 * 100), width: 1.2 } },
+    ],
+    labels: [
+      { key: "stage0", objectId: "useful-0", at: { x: 0, y: 5, z: 0.7 }, placement: "above" },
+      { key: "stage1", objectId: "useful-1", at: { x: 2.5, y: 5, z: 0.7 }, placement: "above" },
+      { key: "stage2", objectId: "useful-2", at: { x: 5, y: 5, z: 0.7 }, placement: "above" },
+      { key: "stage3", objectId: "useful-3", at: { x: 7.5, y: 5, z: 0.7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    stage0: <InlineMath math="\text{Wasser}:\ 100\text{ J}" />,
+    stage1: <InlineMath math="\text{Turbine}:\ 90\text{ J}" />,
+    stage2: <InlineMath math="\text{Generator}:\ 85{,}5\text{ J}" />,
+    stage3: <InlineMath math="\text{Leitungen}:\ \approx81{,}2\text{ J}" />,
+  }}
+/>
+
 ## Der Wirkungsgrad zeigt den nutzbaren Anteil
 
 Da nicht die gesamte zugeführte Energie zur gewünschten Nutzenergie wird, verwenden wir den **Wirkungsgrad**. Er vergleicht Nutzenergie und zugeführte Energie.
@@ -102,6 +135,45 @@ E_{\text{Umgebung}}
 Ein Wirkungsgrad von <InlineMath math="20\%" /> bedeutet nicht, dass die übrigen <InlineMath math="80\%" /> verschwinden. Die übrigen <InlineMath math="80\%" /> werden an die Umgebung übertragen, zum Beispiel durch Erwärmung sowie reflektierte oder durchgelassene Strahlung.
 
 Der [Wirkungsgrad](https://www.eia.gov/energyexplained/use-of-energy/efficiency-and-conservation.php) gibt an, welcher Anteil der zugeführten Energie von einem Gerät in Nutzenergie umgewandelt wird.
+
+Verschieb den Wirkungsgrad des Moduls und sieh zu, wie sich die <InlineMath math="800\text{ J}" /> aufteilen. Bei <InlineMath math="\eta=20\%" /> ist das gelbe Band die <InlineMath math="160\text{ J}" /> Strom aus dem Beispiel und das rosa Band die <InlineMath math="640\text{ J}" />, die an die Umgebung gehen, und beide Bänder ergeben zusammen immer den Eingang.
+
+<MathVisual
+  title={<>Der Wirkungsgrad teilt den Eingang</>}
+  description={<>800 J Licht in ein Modul (grau), aufgeteilt in Strom (gelb) und Energie an die Umgebung (rosa), die Bandbreiten maßstabsgetreu. Ein Gitterschritt entspricht 100 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "input", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 8 }, { x: 0, y: 8 }] },
+      { id: "useful", kind: "loop", appearance: "highlight", points: [{ x: "3", y: "8 - 8a" }, { x: "8", y: "8 - 8a" }, { x: "8", y: "8" }, { x: "3", y: "8" }] },
+      { id: "lost", kind: "loop", appearance: "warning", points: [{ x: "3", y: "0" }, { x: "8", y: "0" }, { x: "8", y: "8 - 8a" }, { x: "3", y: "8 - 8a" }] },
+    ],
+    labels: [
+      { key: "input", objectId: "input", at: { x: 1.5, y: 8 }, placement: "above" },
+      { key: "useful", objectId: "useful", at: { x: "8", y: "8 - 4a" }, placement: "right" },
+      { key: "lost", objectId: "lost", at: { x: "8", y: "4 - 4a" }, placement: "right" },
+    ],
+    parameters: [
+      { name: "a", min: 0.05, max: 0.95, value: 0.2, step: 0.01, label: "slider" },
+    ],
+    readouts: [
+      { key: "eta", formula: "100 a" },
+      { key: "out", formula: "800 a" },
+      { key: "rest", formula: "800 (1 - a)" },
+    ],
+  }}
+  labels={{
+    slider: <InlineMath math="\eta" />,
+    input: <InlineMath math="800\text{ J Licht}" />,
+    useful: <InlineMath math="\text{Strom}" />,
+    lost: <InlineMath math="\text{an die Umgebung}" />,
+    eta: <InlineMath math="\eta\ (\%)" />,
+    out: <InlineMath math="E_{\text{useful}}=\eta E_{\text{input}}\ (\text{J})" />,
+    rest: <InlineMath math="E_{\text{input}}-E_{\text{useful}}\ (\text{J})" />,
+  }}
+/>
 
 ## Umwandlungspfade verschiedener Anlagen vergleichen
 

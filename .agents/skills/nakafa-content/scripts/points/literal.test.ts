@@ -61,8 +61,8 @@ describe("expressions that a component owns", () => {
       ["literal-points"]
     );
     assert.include(found[0]?.message, "MathVisual folds only constant");
-    assert.include(found[0]?.message, "quadratic object");
-    assert.include(found[0]?.message, "{ x: 7 / 5, y: (7 / 5) ** 2 }");
+    assert.include(found[0]?.message, "formula object");
+    assert.include(found[0]?.message, 'formula: "x^3 - 3x"');
   });
 
   it("gives a MathVisual nested in another component its own advice", () => {

@@ -74,52 +74,40 @@ Für <InlineMath math="\theta=90^\circ" /> geht der Kosinussatz in den Satz des 
 
 An einem Punkt wirken zwei Kräfte. Die erste hat den Betrag <InlineMath math="10\text{ N}" />, die zweite den Betrag <InlineMath math="8\text{ N}" />. Der Winkel zwischen ihnen beträgt <InlineMath math="60^\circ" />. Gesucht ist der Betrag der Resultierenden.
 
-<LineEquation
-  cameraPosition={[7, 3, 20]}
-  cameraTarget={[7, 3, 0]}
-  title="Resultierendendreieck zweier Kräfte"
-  description="Der violette Pfeil ist die Resultierende. Der orange Pfeil beginnt an der Spitze des türkisfarbenen Pfeils. Der Innenwinkel ergänzt deshalb den Zwischenwinkel der Kräfte."
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((10) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 10, y: 0, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\vec{A}" />,
-        at: 1,
-        offset: [0, -1, 0],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 10, y: 0, z: 0 }, { x: (10) + 0.5 * ((14) - (10)), y: (0) + 0.5 * ((4 * Math.sqrt(3)) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 14, y: 4 * Math.sqrt(3), z: 0 }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\vec{B}" />,
-        at: 1,
-        offset: [1, 0, 0],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((14) - (0)), y: (0) + 0.5 * ((4 * Math.sqrt(3)) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 14, y: 4 * Math.sqrt(3), z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\vec{R}" />,
-        at: 1,
-        offset: [-1, 1, 0],
-        anchorX: "left",
-      }],
-    }
-  ]}
+<MathVisual
+  title={<>Resultierendes Dreieck zweier Kräfte</>}
+  description={<>Verschieb den Winkel zwischen den Kräften. Der orange Pfeil beginnt an der Spitze des türkisen Pfeils, und der violette Pfeil ist die Resultierende, die das Dreieck schließt. Ein Gitterschritt entspricht 2 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 10 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "b", kind: "path", appearance: "primary", points: [{ x: "5", y: "0" }, { x: "5 + 4 cos(a)", y: "4 sin(a)" }] },
+      { id: "r", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "5 + 4 cos(a)", y: "4 sin(a)" }] },
+      { id: "tip", kind: "marker", appearance: "answer", x: "5 + 4 cos(a)", y: "4 sin(a)" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: "5 + 2 cos(a)", y: "2 sin(a)" }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: "(5 + 4 cos(a))/2", y: "2 sin(a)" }, placement: "above-left" },
+    ],
+    parameters: [
+      { name: "a", min: 0, max: Math.PI, value: Math.PI / 3, step: 0.01, label: "angle" },
+    ],
+    readouts: [
+      { key: "deg", formula: "a * 180 / pi" },
+      { key: "result", formula: "2 sqrt(41 + 40 cos(a))" },
+    ],
+  }}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    a: <InlineMath math="\vec A=10\text{ N}" />,
+    b: <InlineMath math="\vec B=8\text{ N}" />,
+    r: <InlineMath math="\vec R" />,
+    deg: <InlineMath math="\theta\ (^\circ)" />,
+    result: <InlineMath math="R=\sqrt{A^2+B^2+2AB\cos\theta}\ (\text{N})" />,
+  }}
 />
 
 Setze **beide Kraftbeträge und den Zwischenwinkel** ein. Die Kraftwerte werden in Newton eingesetzt:
@@ -159,6 +147,37 @@ Für <InlineMath math="180^\circ" /> muss sie die Differenz der Beträge liefern
 <BlockMath math="\begin{aligned} R &amp;=\sqrt{A^2+B^2-2AB} \\ &amp;=\sqrt{(A-B)^2} \\ &amp;=\lvert A-B\rvert \end{aligned}" />
 
 Diese Prüfung verbindet den Kosinussatz mit den einfacheren Fällen gleichgerichteter, entgegengesetzter und senkrechter Vektoren.
+
+Prüf jede Antwort an den Enden dieser Kurve. <InlineMath math="R=\sqrt{A^2+B^2+2AB\cos\theta}" /> fällt von <InlineMath math="A+B" />, wenn die Kräfte in dieselbe Richtung zeigen, bis <InlineMath math="\lvert A-B\rvert" />, wenn sie entgegengesetzt zeigen, also liegt jede Resultierende aus <InlineMath math="10\text{ N}" /> und <InlineMath math="8\text{ N}" /> zwischen 2 N und 18 N.
+
+<MathVisual
+  title={<>Die Resultierende zwischen ihren Grenzfällen</>}
+  description={<>Resultierende aus einer Kraft von 10 N und einer von 8 N über dem Winkel zwischen ihnen. Waagerecht: Ein Gitterschritt entspricht <InlineMath math="30^\circ" />. Senkrecht: Ein Gitterschritt entspricht 2 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "secondary", formula: "sqrt(41 + 40 cos(pi x / 6))", domain: { min: 0, max: 6 } },
+      { id: "same", kind: "point", appearance: "answer", at: { x: 0, y: 9 } },
+      { id: "sixty", kind: "point", appearance: "primary", at: { x: 2, y: Math.sqrt(61) } },
+      { id: "right", kind: "point", appearance: "construction", at: { x: 3, y: Math.sqrt(41) } },
+      { id: "opposite", kind: "point", appearance: "answer", at: { x: 6, y: 1 } },
+    ],
+    labels: [
+      { key: "same", objectId: "same", at: { x: 0, y: 9 }, placement: "right" },
+      { key: "sixty", objectId: "sixty", at: { x: 2, y: Math.sqrt(61) }, placement: "above-right" },
+      { key: "right", objectId: "right", at: { x: 3, y: Math.sqrt(41) }, placement: "above-right" },
+      { key: "opposite", objectId: "opposite", at: { x: 6, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    same: <InlineMath math="0^\circ:\ R=10+8=18\text{ N}" />,
+    sixty: <InlineMath math="60^\circ:\ R=\sqrt{244}\approx15{,}6\text{ N}" />,
+    right: <InlineMath math="90^\circ:\ R=\sqrt{164}\approx12{,}8\text{ N}" />,
+    opposite: <InlineMath math="180^\circ:\ R=10-8=2\text{ N}" />,
+  }}
+/>
 
 ## Der passende Einsatz des Kosinussatzes
 
