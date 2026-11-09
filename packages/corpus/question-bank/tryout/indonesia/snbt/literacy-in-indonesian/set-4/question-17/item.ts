@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "research-design",
+  },
+  stimulus: "coffee-plots",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kedua sumber membantu menjelaskan fungsi bangunan pada masa yang berbeda. Perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
+            "Skor cita rasa tidak berhubungan dengan harga yang dibayar koperasi.",
+        },
+        {
+          correct: false,
+          label: "Kebun yang dicatat ditanami varietas kopi yang berbeda-beda.",
+        },
+        {
+          correct: false,
+          label:
+            "Pohon pelindung hanya ditanam di kebun yang berada paling tinggi.",
+        },
+        {
+          correct: false,
+          label: "Koperasi tidak mencatat hasil biji dari setiap kebun.",
         },
         {
           correct: true,
           label:
-            "Denah dan wawancara sama-sama membantu melacak fungsi bangunan, tetapi perubahan ruang tidak identik dengan pengalaman dua mantan penghuni.",
-        },
-        {
-          correct: false,
-          label:
-            "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
-        },
-        {
-          correct: false,
-          label:
-            "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
+            "Setiap perlakuan hanya diwakili satu kebun dalam satu musim panen.",
         },
       ],
     },

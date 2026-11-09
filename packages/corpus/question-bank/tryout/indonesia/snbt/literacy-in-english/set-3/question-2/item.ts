@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "word-meaning",
+  },
+  stimulus: "bird-compass",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
+          label: "hidden away behind.",
+        },
+        {
+          correct: false,
+          label: "replaced entirely by.",
         },
         {
           correct: true,
-          label:
-            "The changed condition produced a mean of $$16$$ in the six-day seed-orientation trial. The number belongs to those controlled conditions and does not establish a universal effect.",
+          label: "laid on top of.",
         },
         {
           correct: false,
-          label:
-            "The mean result with the change was $$16$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
+          label: "reflected back off.",
         },
         {
           correct: false,
-          label:
-            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
-        },
-        {
-          correct: false,
-          label:
-            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+          label: "blurred together into.",
         },
       ],
     },

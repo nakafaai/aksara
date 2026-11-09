@@ -1,30 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "application",
+  },
+  stimulus: "machine-pictures",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Why fixed costs never change",
+          label:
+            "A user who typed a one-line prompt and posted the first picture unchanged",
+        },
+        {
+          correct: false,
+          label:
+            "A buyer who commissioned a portrait and described what it should show",
         },
         {
           correct: true,
-          label: "Testing a clearer budget sheet before a real event",
+          label:
+            "A comic artist who redrew AI backgrounds and laid out every panel by hand",
         },
         {
           correct: false,
-          label: "From one workshop to permanent adoption",
+          label:
+            "A company that owns the computers on which the image generator runs",
         },
         {
           correct: false,
-          label: "Accurate supplier totals from estimated prices",
-        },
-        {
-          correct: false,
-          label: "Three rounds that settled every budgeting question",
+          label:
+            "A website that stores and displays the picture after a user uploads it",
         },
       ],
     },

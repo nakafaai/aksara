@@ -1,29 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "application",
+  },
+  stimulus: "kawi-script",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Kesiapan persenjataan",
+          column: 1,
+          label:
+            "Satu huruf konsonan tanpa tanda tambahan dibaca dengan vokal /a/.",
         },
         {
-          correct: false,
-          label: "Perlindungan terhadap pemimpin",
+          column: 2,
+          label:
+            "Untuk menulis suku kata *ki*, juru tulis memakai huruf yang sama sekali berbeda dari huruf untuk *ka*.",
         },
         {
-          correct: false,
-          label: "Jumlah tentara yang tersedia",
+          column: 1,
+          label:
+            "Suku kata yang diakhiri konsonan, seperti *tan*, memerlukan tanda yang mematikan vokal.",
         },
         {
-          correct: false,
-          label: "Ketersediaan rumah sakit dan obat-obatan",
-        },
-        {
-          correct: true,
-          label: "Biaya dan dampak perang",
+          column: 2,
+          label:
+            "Setiap vokal ditulis sebagai huruf tersendiri yang selalu berdiri di samping konsonan.",
         },
       ],
     },

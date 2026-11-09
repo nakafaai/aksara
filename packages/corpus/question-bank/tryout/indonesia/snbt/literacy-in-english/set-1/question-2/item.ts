@@ -1,23 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "word-meaning",
+  },
+  stimulus: "octopus-arms",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "expensive" },
-        { correct: false, label: "experimental" },
         {
           correct: false,
-          label: "widely available",
+          label: "spoken aloud.",
+        },
+        {
+          correct: false,
+          label: "recorded.",
         },
         {
           correct: true,
-          label: "not equal or consistent",
+          label: "commanded.",
         },
         {
           correct: false,
-          label: "carefully planned",
+          label: "predicted.",
+        },
+        {
+          correct: false,
+          label: "interrupted.",
         },
       ],
     },

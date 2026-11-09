@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
+  },
+  stimulus: "pollinators",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Benda berulang memperoleh makna terutama dari bentuk fisiknya, bukan dari hubungannya dengan pilihan tokoh.",
+            "petani durian tidak tertarik mempelajari cara kelelawar menyerbuki bunga",
         },
         {
           correct: true,
           label:
-            "Pilihan pelanggan atas jahitan merah menunjukkan perubahan dari keinginan menghapus bekas kerusakan menuju penerimaan riwayat perawatan blus.",
+            "sumber masalah panen dapat berada jauh di luar kebun yang terdampak",
         },
         {
           correct: false,
           label:
-            "Akhir cerita menunjukkan bahwa latar, bukan tindakan tokoh, menyelesaikan konflik.",
+            "kerusakan gua selalu terjadi diam-diam tanpa diketahui oleh siapa pun",
         },
         {
           correct: false,
           label:
-            "Makna benda tetap sama meskipun tokoh menggunakannya dengan cara berbeda.",
+            "kelelawar pemakan nektar menyerbuki durian hanya pada malam tertentu",
         },
         {
           correct: false,
-          label:
-            "Tindakan akhir penting karena mengukuhkan penafsiran yang sudah terbentuk sejak awal.",
+          label: "panen durian turun karena bunga mekar pada waktu yang salah",
         },
       ],
     },

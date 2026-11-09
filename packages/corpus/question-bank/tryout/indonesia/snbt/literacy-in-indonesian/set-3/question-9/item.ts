@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "figurative-language",
+  },
+  stimulus: "sugar-tax",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Definisi *jaring-jaring makanan* membuktikan bahwa hasil model selalu sama dengan keadaan ekosistem di lapangan.",
+            "Ajakan agar pemerintah mencari kebijakan lain yang lebih sempurna daripada cukai.",
+        },
+        {
+          correct: false,
+          label:
+            "Pengakuan bahwa cukai tidak terbukti mengubah perilaku produsen dan konsumen.",
+        },
+        {
+          correct: false,
+          label:
+            "Peringatan bahwa iklan dan harga sayur lebih berpengaruh daripada cukai.",
         },
         {
           correct: true,
           label:
-            "Definisi *jaring-jaring makanan* menghubungkan proses pada model dengan proses yang diwakilinya sehingga kegunaan model dapat dibedakan dari batas penerapannya.",
+            "Kritik terhadap penolakan kebijakan yang bermanfaat hanya karena tidak sempurna.",
         },
         {
           correct: false,
           label:
-            "Definisi itu menjadikan *jaring-jaring makanan* nama untuk seluruh alat, bukan proses tertentu yang disimulasikan.",
-        },
-        {
-          correct: false,
-          label:
-            "Istilah *jaring-jaring makanan* menghapus keterbatasan representasi karena prosesnya dapat diulang di kelas.",
-        },
-        {
-          correct: false,
-          label:
-            "Definisi tersebut hanya menjelaskan bahan pembuat model dan tidak berhubungan dengan proses yang diamati.",
+            "Pernyataan bahwa masalah gizi tidak akan pernah dapat diselesaikan.",
         },
       ],
     },

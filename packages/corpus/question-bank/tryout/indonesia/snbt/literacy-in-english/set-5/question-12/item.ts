@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
+  },
+  stimulus: "screens-sleep",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["True", "False"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Mina asked each member to state one concern before choosing the next step. The choice resolves the whole conflict at once and makes any later review unnecessary.",
+            'More students in the "more than 3 hours" group than in the "1 to 2 hours" group often felt sleepy.',
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Mina asked each member to state one concern before choosing the next step. The action transfers responsibility for the unresolved task to another character.",
+            "The survey measured screen time with tracking apps on students' phones.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Mina asked each member to state one concern before choosing the next step. The decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
+            "The largest group of students reported 1 to 2 hours of screen time after 8 p.m.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Mina asked each member to state one concern before choosing the next step. The setting alone produces the change, so the character's decision has no role in the development.",
-        },
-        {
-          correct: true,
-          label:
-            "Asking for one concern from each member lets Mina convert disagreement into information before choosing a next step, rather than forcing instant consensus.",
+            "On average, students with more than 3 hours slept 1.7 hours less than those with less than 1 hour.",
         },
       ],
     },

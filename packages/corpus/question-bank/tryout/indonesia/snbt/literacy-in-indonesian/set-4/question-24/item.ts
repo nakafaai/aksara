@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
+  },
+  stimulus: "banda-nutmeg",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Istilah *advokasi diri* membuktikan bahwa pilihan pertama tokoh sudah benar sebelum ia mengamati kebutuhan orang lain.",
+            "Belanda menyesal telah melepaskan New Amsterdam kepada Inggris di Amerika Utara.",
         },
         {
           correct: false,
           label:
-            "Definisi itu membatasi *advokasi diri* pada perasaan tokoh sehingga tindakan dan akibat pilihannya tidak perlu diperiksa.",
+            "New Amsterdam lebih banyak menghasilkan pala daripada Pulau Run.",
         },
         {
           correct: true,
           label:
-            "Definisi *advokasi diri* menjelaskan cara Nisa menyampaikan kebutuhan akses dengan bukti rute, mengusulkan perubahan, dan mendapat kesempatan menilai hasil uji.",
+            "Penilaian atas sebuah tempat dapat berubah jauh dari zaman ke zaman.",
         },
         {
           correct: false,
           label:
-            "Penyebutan *advokasi diri* menjadikan perubahan tokoh selesai seketika, padahal bacaan menunjukkan perkembangan bertahap.",
+            "Pulau Run masih menjadi pusat perdagangan pala dunia hingga kini.",
         },
         {
           correct: false,
           label:
-            "Definisi tersebut hanya menamai latar kegiatan dan tidak berkaitan dengan keputusan tokoh.",
+            "Inggris tidak pernah tertarik pada perdagangan rempah di Maluku.",
         },
       ],
     },

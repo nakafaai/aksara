@@ -1,30 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "jikji-printing",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["True", "False"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Who invented the first electronic computer?",
-        },
-        {
-          correct: false,
-          label: "Which country has the cheapest office rent?",
-        },
-        {
-          correct: true,
+          column: 2,
           label:
-            "How could GenAI transform occupational tasks, and what factors shape the outcome?",
+            "Both volumes of *Jikji* are kept at the National Library of France.",
         },
         {
-          correct: false,
-          label: "How can every human task be removed immediately?",
+          column: 1,
+          label: "Bi Sheng made his movable type from baked clay.",
         },
         {
-          correct: false,
-          label: "Why should all workers avoid digital tools?",
+          column: 2,
+          label:
+            "The passage states that the metal-type book from about 1234 is kept in a Korean museum.",
+        },
+        {
+          column: 1,
+          label: "*Jikji* was printed before Gutenberg's Bible.",
         },
       ],
     },

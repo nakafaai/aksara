@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "theme-message",
+  },
+  stimulus: "radio-repair",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Nilai $$43$$ membuktikan bahwa label besar menghilangkan semua kesalahan pengiriman dan keterlambatan antarpulau.",
+            "Barang lama sebaiknya segera diganti dengan barang yang memakai teknologi baru.",
         },
         {
           correct: false,
           label:
-            "Selisih satu kotak per hari antara nilai dasar dan pembanding membuat hasil uji $$43$$ tidak relevan bagi keputusan logistik.",
+            "Anak muda sebaiknya selalu menuruti nasihat orang tuanya tentang barang lama.",
         },
         {
           correct: false,
           label:
-            "Masukan awak kapal dan sekolah penerima dapat menggantikan kebutuhan membandingkan hasil uji dengan kondisi pembanding.",
+            "Pekerjaan yang dikerjakan dengan sabar pasti dibayar dengan harga yang mahal.",
+        },
+        {
+          correct: false,
+          label:
+            "Kejujuran merugikan pedagang kecil yang sedang kehilangan pelanggan.",
         },
         {
           correct: true,
           label:
-            "Nilai $$43$$ dibandingkan $$32$$ mendukung penggunaan label besar secara terbatas untuk ketepatan tujuan, tetapi uji itu belum menunjukkan dampaknya terhadap keterlambatan akibat cuaca laut.",
-        },
-        {
-          correct: false,
-          label:
-            "Cuaca laut hanya memengaruhi waktu tiba, sehingga tidak perlu dipertimbangkan ketika label tujuan diterapkan pada rute lain.",
+            "Masa lalu tidak bisa diputar ulang, tetapi sisa-sisanya masih dapat dirawat.",
         },
       ],
     },

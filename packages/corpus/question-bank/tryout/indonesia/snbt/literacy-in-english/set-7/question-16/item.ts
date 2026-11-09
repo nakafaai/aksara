@@ -1,35 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "carnegie-libraries",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Name the library after Andrew Carnegie and display his portrait inside.",
+        },
+        {
+          correct: false,
+          label:
+            "Agree to buy all of the library's books from Carnegie's own company.",
+        },
+        {
+          correct: false,
+          label: "Show that it already had more readers than any nearby town.",
+        },
+        {
           correct: true,
           label:
-            "Asha removes distracting detail and adds the safe street and meeting point, turning a flood description into guidance that reaches the final house in time.",
+            "Provide the land and promise to pay yearly for running the library.",
         },
         {
           correct: false,
           label:
-            "The recurring object mainly establishes the setting and changes little in relation to the conflict.",
-        },
-        {
-          correct: false,
-          label:
-            "The character's final decision removes the ambiguity that the recurring object previously carried.",
-        },
-        {
-          correct: false,
-          label:
-            "The passage uses narrative conflict as a descriptive label without tying it to the character's choice.",
-        },
-        {
-          correct: false,
-          label:
-            "The conflict is settled by the setting before the character's final action changes the object's meaning.",
+            "Promise to open the library to working boys only on Saturdays.",
         },
       ],
     },

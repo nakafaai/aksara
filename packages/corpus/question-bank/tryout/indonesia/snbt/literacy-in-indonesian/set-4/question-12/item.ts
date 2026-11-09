@@ -1,35 +1,34 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "fiction",
+    topic: "explicit-information",
+  },
+  stimulus: "island-teacher",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Kondisi pembanding menghasilkan nilai rata-rata $$19$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Bu Asih menyeberang ke Pulau Gesik dengan kapal motor seperti biasa.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
+            "Bu Asih menulis surat pengunduran diri setelah usulan kenaikan honornya ditolak.",
         },
         {
-          correct: true,
-          label:
-            "Nilai $$19$$ adalah rata-rata pengunjung per periode pada kondisi pembanding untuk penunjuk arah. Pasar malam yang lebih ramai belum termasuk dalam cakupan pengamatan.",
+          column: 2,
+          label: "Semua murid datang ke sekolah pada hari itu.",
         },
         {
-          correct: false,
-          label:
-            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
+          column: 1,
+          label: "Murid-murid membersihkan ruang kelas sebelum Bu Asih tiba.",
         },
       ],
     },

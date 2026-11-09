@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
+  },
+  stimulus: "cultivated-meat",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Cultivated meat costs several times more than farmed chicken in shops.",
+        },
+        {
           correct: true,
           label:
-            "The definition explains why glossary entries need context: suitable wording depends on the situation and purpose, not on a single universal equivalent.",
+            "Standard food reviews cannot detect the risks cultivated meat could pose.",
         },
         {
           correct: false,
           label:
-            "Defining *register* proves that every participant should use the same wording in every setting.",
+            "Consumers in Singapore have bought cultivated chicken in a few restaurants since 2020.",
         },
         {
           correct: false,
           label:
-            "The definition makes regional and family usage irrelevant to the glossary.",
+            "Many traditional dishes were once considered strange new foods.",
         },
         {
           correct: false,
           label:
-            "The term *register* replaces the measured comparison and peer review evidence.",
-        },
-        {
-          correct: false,
-          label:
-            "The definition shows that an informal family expression is unsuitable in every public or private situation.",
+            "Labels on new foods are read by most shoppers before they buy them.",
         },
       ],
     },

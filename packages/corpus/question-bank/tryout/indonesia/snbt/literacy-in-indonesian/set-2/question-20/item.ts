@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "essay-scoring",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Kereta seremonial",
+          column: 1,
+          label:
+            "Kedua teks mengakui bahwa mesin dapat memberikan umpan balik dengan cepat.",
         },
         {
-          correct: true,
-          label: "Perbudakan dan kerja paksa",
+          column: 2,
+          label:
+            "Teks 1 menjelaskan cara mesin menilai esai yang tidak menjawab pertanyaan.",
         },
         {
-          correct: false,
-          label: "Kedai makanan siap saji Romawi",
+          column: 1,
+          label: "Teks 2 menyarankan agar nilai akhir tetap ditentukan guru.",
         },
         {
-          correct: false,
-          label: "Lukisan dinding erotis",
-        },
-        {
-          correct: false,
-          label: "Kampanye pemilihan umum",
+          column: 2,
+          label:
+            "Teks 2 menyatakan bahwa angka kecocokan dalam Teks 1 dihitung dengan cara yang salah.",
         },
       ],
     },

@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "conclusion",
+  },
+  stimulus: "mangrove-carbon",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
+            "Sebagian besar karbon di ekosistem mangrove tersimpan di dalam tanah.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Pada kondisi dengan perubahan, hasil rata-rata tercatat $$18$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Mengubah hutan mangrove menjadi tambak hanya menghilangkan karbon yang tersimpan di batang dan daun.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
+            "Menanam bibit sebanyak-banyaknya di dataran lumpur yang hampir selalu tergenang menjamin keberhasilan pemulihan mangrove.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Nilai $$18$$ adalah rata-rata pada pencahayaan enam jam dengan jarak lampu tetap. Jumlah wadah dan delapan hari pengamatan membatasi penafsiran di luar uji.",
-        },
-        {
-          correct: false,
-          label:
-            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+            "Akar mangrove membantu menahan endapan sehingga garis pantai tidak mudah terkikis.",
         },
       ],
     },

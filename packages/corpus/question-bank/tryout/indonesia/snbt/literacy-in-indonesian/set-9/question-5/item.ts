@@ -1,32 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-purpose",
+  },
+  stimulus: "peat-fire",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Cara Mengubah Selisih Desibel Menjadi Persentase Energi",
-        },
-        {
-          correct: false,
-          label: "Waktu Dengung sebagai Satu-satunya Ukuran Mutu Auditorium",
-        },
-        {
-          correct: false,
-          label: "Panel Gabus yang Pasti Cocok untuk Setiap Ruang",
-        },
-        {
-          correct: false,
           label:
-            "Mengapa Pengukuran pada $$250\\,\\text{Hz}$$ Tidak Lagi Diperlukan",
+            "membuktikan bahwa kebakaran gambut hanya terjadi di Indonesia",
         },
         {
           correct: true,
+          label: "menunjukkan betapa luas dampak asap dari kebakaran gambut",
+        },
+        {
+          correct: false,
+          label: "menjelaskan cara gambut terbentuk selama ribuan tahun",
+        },
+        {
+          correct: false,
+          label: "menyalahkan negara tetangga atas kabut asap yang terjadi",
+        },
+        {
+          correct: false,
           label:
-            "Menguji Pengaruh Panel Gabus terhadap Bunyi dan Waktu Dengung",
+            "menyarankan agar kanal-kanal baru segera digali di lahan gambut",
         },
       ],
     },

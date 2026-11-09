@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "glacier-flow",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["True", "False"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "The $$2.78\\,\\text{V}$$ series mean proves that placing two cells in series will produce the same voltage in every circuit.",
+            "Glacier ice forms as new snow presses on older snow and squeezes out the air.",
         },
         {
-          correct: false,
-          label:
-            "The similar one-cell and parallel means show that cell arrangement has no effect, so the series result should be ignored as an outlier.",
+          column: 2,
+          label: "Most mountain glaciers move more than ten kilometres a year.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The measurements provide no useful evidence until a later experiment reproduces every mean to the same decimal places.",
+            "In the stake experiment, the stakes near the valley walls moved farthest.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Under one fixed load, the series mean was $$2.78\\,\\text{V}$$ compared with $$1.46\\,\\text{V}$$ and $$1.44\\,\\text{V}$$. Unmeasured internal resistance and the single load limit broader claims.",
-        },
-        {
-          correct: false,
-          label:
-            "Because the series mean was the largest, the one-cell and parallel conditions are unnecessary when interpreting the result.",
+            "Some outlet glaciers in Greenland carry ice from the ice sheet to the sea.",
         },
       ],
     },

@@ -1,29 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "character",
+  },
+  stimulus: "sewing-machine",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Bagaimana cara mengambil buah ceri dengan pohon berduri?",
+          label:
+            "Ia tidak menyukai kebiasaan cucunya memotret kebaya di depan dinding putih.",
         },
         {
           correct: false,
-          label: "Mengapa buah ceri rasanya enak sekali?",
-        },
-        {
-          correct: false,
-          label: "Mengapa Enjin dan Ensi belum datang?",
+          label:
+            "Ia ingin kebaya buatannya dijual dengan harga yang lebih mahal di toko daring.",
         },
         {
           correct: true,
-          label: "Mengapa siput bisa berjalan di atas duri?",
+          label:
+            "Ia menganggap mutu jahitan harus dijaga demi pemakai walau tidak tampak di foto.",
         },
         {
           correct: false,
-          label: "Kenapa pohon ceri berduri?",
+          label:
+            "Ia tersinggung karena tidak pernah diajak ikut berfoto bersama kebayanya.",
+        },
+        {
+          correct: false,
+          label:
+            "Ia menolak gagasan menjual kebaya melalui toko daring milik cucunya.",
         },
       ],
     },

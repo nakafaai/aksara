@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-3",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "fiction",
+    topic: "explicit-information",
+  },
+  stimulus: "last-angkot",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
+            "Jumlah penumpang angkot 07 menurun setelah bus koridor beroperasi.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Kondisi pembanding menghasilkan nilai rata-rata $$26$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
+            "Mak Inah menyebut tarif yang mahal sebagai alasannya menolak bus koridor.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
+            "Pak Damar meminta Mak Inah membayar ongkos pada hari terakhir.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
-        },
-        {
-          correct: true,
-          label:
-            "Nilai $$26$$ adalah rata-rata peminjaman selesai per kunjungan pada kondisi pembanding untuk ringkasan jadwal. Selisih terhadap nilai uji $$35$$ tetap harus dibaca bersama pengaruh cuaca dan kegiatan sekolah.",
+            "Halte bus terdekat berjarak sekitar dua ratus meter dari pasar.",
         },
       ],
     },

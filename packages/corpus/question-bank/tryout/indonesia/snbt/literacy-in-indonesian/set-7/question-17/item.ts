@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "application",
+  },
+  stimulus: "rooftop-solar",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Poster lebih kuat untuk mengetahui pengalaman pengunjung karena berasal dari lima kota, sedangkan buku tamu hanya berasal dari dua kota.",
+            "Menambah panel surya agar listrik yang mengalir ke jaringan pada siang hari makin besar.",
         },
         {
           correct: false,
           label:
-            "Buku tamu lebih kuat untuk mengetahui keberhasilan pameran secara keseluruhan karena memuat $$240$$ catatan setelah kunjungan.",
+            "Mematikan panel surya pada siang hari agar listrik di jaringan tidak berlebih.",
         },
         {
           correct: false,
           label:
-            "Kesamaan topik membuat poster dan buku tamu dapat digabungkan tanpa membedakan siapa pembuat dan kapan keduanya dibuat.",
+            "Menyalakan pompa air pada malam hari ketika panel tidak bekerja.",
         },
         {
           correct: false,
           label:
-            "Keluhan pada buku tamu membuktikan bahwa slogan pada poster dibuat untuk menutupi masalah akses yang sudah diketahui penyelenggara.",
+            "Menjual sebagian panel kepada Rumah R yang pemakaiannya paling besar.",
         },
         {
           correct: true,
           label:
-            "Poster mendukung simpulan tentang citra yang ingin dibangun di lima kota, sedangkan buku tamu mendukung simpulan tentang sebagian pengalaman yang dicatat secara sukarela di dua kota.",
+            "Memindahkan pemakaian alat yang boros listrik dari malam hari ke siang hari.",
         },
       ],
     },
