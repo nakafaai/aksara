@@ -26,11 +26,7 @@ In der interaktiven Grafik hat die Kurve der Standardnormalverteilung mit <Inlin
     frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 1 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 701 }, (_, index) => {
-        const x = (index - 350) / 100;
-        const y = Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
-        return { x, y, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((t - 350) / 100)", y: "(exp((((-0.5) * ((t - 350) / 100)) * ((t - 350) / 100))) / sqrt((2 * pi)))", parameter: { min: 0, max: 700 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: -1, y: 0 }, { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5) }], appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5) }], appearance: "secondary" },
     ],
@@ -71,18 +67,9 @@ Der Parameter <InlineMath math="\mu" /> **verschiebt die Kurve, ohne ihre Form z
     frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -0.5, max: 1 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 801 }, (_, index) => {
-        const x = -4 + index / 100;
-        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 801 }, (_, index) => {
-        const x = -2 + index / 100;
-        return { x, y: Math.exp(-0.5 * (x - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: Array.from({ length: 1201 }, (_, index) => {
-        const x = -6 + index / 100;
-        return { x, y: Math.exp(-0.5 * (x / 2) ** 2) / (2 * Math.sqrt(2 * Math.PI)), z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s1", kind: "parametric", x: "((-4) + (t / 100))", y: "(exp((((-0.5) * ((-4) + (t / 100))) * ((-4) + (t / 100)))) / sqrt((2 * pi)))", parameter: { min: 0, max: 800 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 100))", y: "(exp(((-0.5) * ((((-2) + (t / 100)) - 2))^(2))) / sqrt((2 * pi)))", parameter: { min: 0, max: 800 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-6) + (t / 100))", y: "(exp(((-0.5) * ((((-6) + (t / 100)) / 2))^(2))) / (2 * sqrt((2 * pi))))", parameter: { min: 0, max: 1200 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 0, y: 0.4 }, placement: "above-left" },
@@ -150,14 +137,8 @@ Die Wahrscheinlichkeit beträgt etwa <InlineMath math="0{,}5764" />, also <Inlin
     frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 1 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 701 }, (_, index) => {
-        const x = -3.5 + index / 100;
-        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 341 }, (_, index) => {
-        const x = -0.5 + index / 200;
-        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s1", kind: "parametric", x: "((-3.5) + (t / 100))", y: "(exp((((-0.5) * ((-3.5) + (t / 100))) * ((-3.5) + (t / 100)))) / sqrt((2 * pi)))", parameter: { min: 0, max: 700 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-0.5) + (t / 200))", y: "(exp((((-0.5) * ((-0.5) + (t / 200))) * ((-0.5) + (t / 200)))) / sqrt((2 * pi)))", parameter: { min: 0, max: 340 }, appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: -0.5, y: 0 }, { x: -0.5, y: Math.exp(-0.5 * 0.5 ** 2) / Math.sqrt(2 * Math.PI) }], appearance: "answer" },
       { id: "s4", kind: "polyline", vertices: [{ x: 1.2, y: 0 }, { x: 1.2, y: Math.exp(-0.5 * 1.2 ** 2) / Math.sqrt(2 * Math.PI) }], appearance: "answer" },
     ],

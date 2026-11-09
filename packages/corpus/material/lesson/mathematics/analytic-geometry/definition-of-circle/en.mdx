@@ -32,45 +32,10 @@ Imagine you tie a string to a nail, then pull the string tight and draw a comple
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const center = { x: 0, y: 0 };
-        const radius = 3;
-        const angle = 0; 
-        return {
-          x: center.x + i * radius * Math.cos(angle),
-          y: center.y + i * radius * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const center = { x: 0, y: 0 };
-        const radius = 3;
-        const angle = Math.PI / 4; 
-        return {
-          x: center.x + i * radius * Math.cos(angle),
-          y: center.y + i * radius * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const center = { x: 0, y: 0 };
-        const radius = 3;
-        const angle = Math.PI; 
-        return {
-          x: center.x + i * radius * Math.cos(angle),
-          y: center.y + i * radius * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(0 + ((t * 3) * cos(0)))", y: "(0 + ((t * 3) * sin(0)))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(0 + ((t * 3) * cos((pi / 4))))", y: "(0 + ((t * 3) * sin((pi / 4))))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(0 + ((t * 3) * cos(pi)))", y: "(0 + ((t * 3) * sin(pi)))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
       { id: "s5", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
       { id: "s6", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "answer" },
       { id: "s7", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
@@ -125,45 +90,10 @@ This is the **standard equation of a circle** with center <InlineMath math="(a, 
     frame: { kind: "cartesian", x: { min: -2, max: 6 }, y: { min: -3, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 2 + 2 * Math.cos(angle),
-          y: 1 + 2 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: 0.97 }, to: { x: 4, y: 1 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const center = { x: 2, y: 1 };
-        const radius = 2;
-        const angle = 0; 
-        return {
-          x: center.x + i * radius * Math.cos(angle),
-          y: center.y + i * radius * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -1;
-        const xMax = 5;
-        const y = 0; 
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const yMin = -2;
-        const yMax = 4;
-        const x = 0; 
-        return {
-          x: x,
-          y: yMin + i * (yMax - yMin),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s1", kind: "parametric", x: "(2 + (2 * cos(((t * pi) / 180))))", y: "(1 + (2 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 + ((t * 2) * cos(0)))", y: "(1 + ((t * 2) * sin(0)))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-1) + (t * (5 - (-1))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "0", y: "((-2) + (t * (4 - (-2))))", parameter: { min: 0, max: 1 }, appearance: "answer" },
       { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
     ],
     labels: [
@@ -213,37 +143,9 @@ The visualization shows how the radius and diameter share the same center:
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const center = { x: 0, y: 0 };
-        const radius = 3;
-        const angle = Math.PI / 4; 
-        return {
-          x: center.x + i * radius * Math.cos(angle),
-          y: center.y + i * radius * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const center = { x: 0, y: 0 };
-        const radius = 3;
-        const angle = 0; 
-        
-        const direction = i === 0 ? -1 : 1;
-        return {
-          x: center.x + direction * radius * Math.cos(angle),
-          y: center.y + direction * radius * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(0 + ((t * 3) * cos((pi / 4))))", y: "(0 + ((t * 3) * sin((pi / 4))))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below" },

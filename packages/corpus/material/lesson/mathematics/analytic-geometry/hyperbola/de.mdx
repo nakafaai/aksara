@@ -17,50 +17,49 @@ Geometrisch entsteht eine Hyperbel, wenn eine Ebene beide Hälften eines Doppelk
 
 Eine Hyperbel ist die Ortskurve aller Punkte, für die <Highlight>der Betrag der Differenz der Abstände</Highlight> zu zwei festen Punkten konstant ist. Diese beiden festen Punkte heißen **Brennpunkte**. Für jeden Punkt <InlineMath math="P" /> auf der Hyperbel gilt <InlineMath math="|PF_1 - PF_2| = 2a" />. Bei einer [Ellipse](/de/faecher/mathematik/analytische-geometrie/ellipse) ist dagegen die Summe der Abstände konstant: <InlineMath math="PF_1 + PF_2 = 2a" />.
 
-<MathVisual
-  title={<>Grundkonzept der Hyperbel</>}
-  description={<>Hyperbel mit zwei Brennpunkten, die einen konstanten Abstandsunterschied aufweisen</>}
-  labels={{
-    "l1": <InlineMath math="F_1" />,
-    "l2": <InlineMath math="F_2" />,
-    "l3": <InlineMath math="P" />,
-    "l4": <InlineMath math="r_1" />,
-    "l5": <InlineMath math="r_2" />,
-    "l6": <InlineMath math="O" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -14, max: 14 }, y: { min: -9, max: 8 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: ((() => {
+<LineEquation
+  title="Grundkonzept der Hyperbel"
+  description="Hyperbel mit zwei Brennpunkten, die einen konstanten Abstandsunterschied aufweisen"
+  data={[
+    {
+      smooth: false,
+      points: (() => {
         const points = [];
         const a = 3;
         const b = 2;
         const c = Math.sqrt(a * a + b * b);
 
-        
+        // Rechter Ast der Hyperbel
         for (let t = -2; t <= 2; t += 0.1) {
           const x = a * Math.cosh(t);
           const y = b * Math.sinh(t);
           points.push({ x, y, z: 0 });
         }
         return points;
-      })()).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: ((() => {
+      })(),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: (() => {
         const points = [];
         const a = 3;
         const b = 2;
 
-        
+        // Linker Ast der Hyperbel
         for (let t = -2; t <= 2; t += 0.1) {
           const x = -a * Math.cosh(t);
           const y = b * Math.sinh(t);
           points.push({ x, y, z: 0 });
         }
         return points;
-      })()).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
+      })(),
+      color: "#9333ea",
+      showPoints: false,
+    },
+    {
+      points: (() => {
         const a = 3;
         const b = 2;
         const c = Math.sqrt(a * a + b * b);
@@ -68,9 +67,32 @@ Eine Hyperbel ist die Ortskurve aller Punkte, für die <Highlight>der Betrag der
           { x: -c, y: 0, z: 0 },
           { x: c, y: 0, z: 0 }
         ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s4", kind: "point", at: { x: 3.77, y: 1.52 }, appearance: "answer" },
-      { id: "s5", kind: "polyline", vertices: ((() => {
+      })(),
+      smooth: false,
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, -0.5, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, -0.5, 0] }
+      ],
+    },
+    {
+      points: (() => {
+        const a = 3;
+        const b = 2;
+        const t = 0.7;
+        return [{
+          x: a * Math.cosh(t),
+          y: b * Math.sinh(t),
+          z: 0,
+        }];
+      })(),
+      color: "#65a30d",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0.5, 0] }],
+    },
+    {
+      points: (() => {
         const a = 3;
         const b = 2;
         const c = Math.sqrt(a * a + b * b);
@@ -79,8 +101,14 @@ Eine Hyperbel ist die Ortskurve aller Punkte, für die <Highlight>der Betrag der
           { x: -c, y: 0, z: 0 },
           { x: a * Math.cosh(t), y: b * Math.sinh(t), z: 0 }
         ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
-      { id: "s6", kind: "polyline", vertices: ((() => {
+      })(),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="r_1" />, at: 1, offset: [-1, 0.5, 0] }],
+    },
+    {
+      points: (() => {
         const a = 3;
         const b = 2;
         const c = Math.sqrt(a * a + b * b);
@@ -89,20 +117,40 @@ Eine Hyperbel ist die Ortskurve aller Punkte, für die <Highlight>der Betrag der
           { x: c, y: 0, z: 0 },
           { x: a * Math.cosh(t), y: b * Math.sinh(t), z: 0 }
         ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
-      { id: "s7", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
-      { id: "s8", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "warning" },
-      { id: "s9", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "warning" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s3", at: { x: -3.61, y: 0 }, placement: "below-left" },
-      { key: "l2", objectId: "s3", at: { x: 3.61, y: 0 }, placement: "below-right" },
-      { key: "l3", objectId: "s4", at: { x: 3.77, y: 1.52 }, placement: "above-right" },
-      { key: "l4", objectId: "s5", at: { x: 3.77, y: 1.52 }, placement: "above-left" },
-      { key: "l5", objectId: "s6", at: { x: 3.61, y: 0 }, placement: "above-right" },
-      { key: "l6", objectId: "s7", at: { x: 0, y: 0 }, placement: "below-left" },
-    ],
-  }}
+      })(),
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: <InlineMath math="r_2" />, at: 0, offset: [0.5, 1, 0] }],
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
+    },
+    {
+      points: [
+        { x: -6, y: 0, z: 0 },
+        { x: 6, y: 0, z: 0 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: 0, y: -4, z: 0 },
+        { x: 0, y: 4, z: 0 }
+      ],
+      color: "#e11d48",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
 />
 
 Die Darstellung zeigt beide Äste, die beiden Brennpunkte und einen Punkt <InlineMath math="P" /> auf der Kurve. Die beiden Strecken haben die Längen <InlineMath math="r_1=PF_1" /> und <InlineMath math="r_2=PF_2" />. Wenn <InlineMath math="P" /> auf einem der Äste wandert, ändern sich beide Längen, ihr absoluter Unterschied bleibt jedoch <InlineMath math="|r_1-r_2|=2a" />.
@@ -111,51 +159,56 @@ Die Darstellung zeigt beide Äste, die beiden Brennpunkte und einen Punkt <Inlin
 
 Bevor wir die Formeln verwenden, betrachten wir die Teile, die Form und Lage der Kurve bestimmen.
 
-<MathVisual
-  title={<>Teile einer Hyperbel</>}
-  description={<>Wichtige Bestandteile einer Hyperbel mit horizontaler Transversalachse.</>}
-  labels={{
-    "l1": <>Mitte</>,
-    "l2": <InlineMath math="F_1" />,
-    "l3": <InlineMath math="F_2" />,
-    "l4": <InlineMath math="A_1" />,
-    "l5": <InlineMath math="A_2" />,
-    "l6": <>Asymptote</>,
-    "l7": <>Asymptote</>,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -6.5, max: 6.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: ((() => {
+<LineEquation
+  title="Teile einer Hyperbel"
+  description="Wichtige Bestandteile einer Hyperbel mit horizontaler Transversalachse."
+  data={[
+    {
+      smooth: false,
+      points: (() => {
         const points = [];
         const a = 3;
         const b = 2.5;
 
-        
+        // Right branch
         for (let t = -1.5; t <= 1.5; t += 0.1) {
           const x = a * Math.cosh(t);
           const y = b * Math.sinh(t);
           points.push({ x, y, z: 0 });
         }
         return points;
-      })()).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: ((() => {
+      })(),
+      color: "#4f46e5",
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: (() => {
         const points = [];
         const a = 3;
         const b = 2.5;
 
-        
+        // Left branch
         for (let t = -1.5; t <= 1.5; t += 0.1) {
           const x = -a * Math.cosh(t);
           const y = b * Math.sinh(t);
           points.push({ x, y, z: 0 });
         }
         return points;
-      })()).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
+      })(),
+      color: "#4f46e5",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: "Mitte", at: 0, offset: [-0.5, -0.5, 0] }],
+    },
+    {
+      points: (() => {
         const a = 3;
         const b = 2.5;
         const c = Math.sqrt(a * a + b * b);
@@ -163,23 +216,50 @@ Bevor wir die Formeln verwenden, betrachten wir die Teile, die Form und Lage der
           { x: -c, y: 0, z: 0 },
           { x: c, y: 0, z: 0 }
         ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s5", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
-      { id: "s5-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "highlight" },
-      { id: "s5-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "highlight" },
-      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: -5 }, { x: 6, y: 5 }], appearance: "reference" },
-      { id: "s7", kind: "polyline", vertices: [{ x: -6, y: 5 }, { x: 6, y: -5 }], appearance: "reference" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "l2", objectId: "s4", at: { x: -3.91, y: 0 }, placement: "below-left" },
-      { key: "l3", objectId: "s4", at: { x: 3.91, y: 0 }, placement: "below-right" },
-      { key: "l4", objectId: "s5", at: { x: -3, y: 0 }, placement: "above-left" },
-      { key: "l5", objectId: "s5", at: { x: 3, y: 0 }, placement: "above-right" },
-      { key: "l6", objectId: "s6", at: { x: 6, y: 5 }, placement: "below-left" },
-      { key: "l7", objectId: "s7", at: { x: -6, y: 5 }, placement: "below-right" },
-    ],
-  }}
+      })(),
+      smooth: false,
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.6, -0.9, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.6, -0.9, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 }
+      ],
+      smooth: false,
+      color: "#0d9488",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A_1" />, at: 0, offset: [-0.5, 0.5, 0] },
+        { text: <InlineMath math="A_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: -6, y: -5, z: 0 },
+        { x: 6, y: 5, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Asymptote", at: 1, offset: [-2, -0.2, 0] }],
+    },
+    {
+      points: [
+        { x: -6, y: 5, z: 0 },
+        { x: 6, y: -5, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+      labels: [{ text: "Asymptote", at: 0, offset: [2, -0.2, 0] }],
+    },
+  ]}
+  cameraPosition={[0, 0, 15]}
 />
 
 Die Grafik lässt sich anhand von fünf Merkmalen lesen:
@@ -204,49 +284,56 @@ Wir setzen <InlineMath math="a > 0" /> und <InlineMath math="b > 0" /> voraus. D
 
 Liegt der Mittelpunkt der Hyperbel bei <InlineMath math="O(0,0)" />, gibt es zwei mögliche Orientierungen:
 
-<MathVisual
-  title={<>Horizontale Transversalachse</>}
+<LineEquation
+  title="Horizontale Transversalachse"
   description={<>Hyperbel <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" /> mit horizontaler Transversalachse.</>}
-  labels={{
-    "l1": <InlineMath math="O(0,0)" />,
-    "l2": <InlineMath math="F_1" />,
-    "l3": <InlineMath math="F_2" />,
-    "l4": <InlineMath math="A_1" />,
-    "l5": <InlineMath math="A_2" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -11.5, max: 11.5 }, y: { min: -7.5, max: 6.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: ((() => {
+  data={[
+    {
+      smooth: false,
+      points: (() => {
         const points = [];
         const a = 3;
         const b = 2;
 
-        
+        // Right branch
         for (let t = -1.8; t <= 1.8; t += 0.1) {
           const x = a * Math.cosh(t);
           const y = b * Math.sinh(t);
           points.push({ x, y, z: 0 });
         }
         return points;
-      })()).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: ((() => {
+      })(),
+      color: "#7c3aed",
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: (() => {
         const points = [];
         const a = 3;
         const b = 2;
 
-        
+        // Left branch
         for (let t = -1.8; t <= 1.8; t += 0.1) {
           const x = -a * Math.cosh(t);
           const y = b * Math.sinh(t);
           points.push({ x, y, z: 0 });
         }
         return points;
-      })()).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
+      })(),
+      color: "#7c3aed",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [-0.8, -0.5, 0] }],
+    },
+    {
+      points: (() => {
         const a = 3;
         const b = 2;
         const c = Math.sqrt(a * a + b * b);
@@ -254,21 +341,48 @@ Liegt der Mittelpunkt der Hyperbel bei <InlineMath math="O(0,0)" />, gibt es zwe
           { x: -c, y: 0, z: 0 },
           { x: c, y: 0, z: 0 }
         ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s5", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
-      { id: "s5-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "highlight" },
-      { id: "s5-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "highlight" },
-      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: -4 }, { x: 6, y: 4 }], appearance: "reference" },
-      { id: "s7", kind: "polyline", vertices: [{ x: -6, y: 4 }, { x: 6, y: -4 }], appearance: "reference" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "l2", objectId: "s4", at: { x: -3.61, y: 0 }, placement: "above-left" },
-      { key: "l3", objectId: "s4", at: { x: 3.61, y: 0 }, placement: "above-right" },
-      { key: "l4", objectId: "s5", at: { x: -3, y: 0 }, placement: "above-left" },
-      { key: "l5", objectId: "s5", at: { x: 3, y: 0 }, placement: "above-right" },
-    ],
-  }}
+      })(),
+      smooth: false,
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, 0.5, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: -3, y: 0, z: 0 },
+        { x: 3, y: 0, z: 0 }
+      ],
+      smooth: false,
+      color: "#0d9488",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A_1" />, at: 0, offset: [-0.5, 0.5, 0] },
+        { text: <InlineMath math="A_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: -6, y: -4, z: 0 },
+        { x: 6, y: 4, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -6, y: 4, z: 0 },
+        { x: 6, y: -4, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
 />
 
 Wenn die **Transversalachse parallel** zur <InlineMath math="x" />-Achse verläuft, lautet die Gleichung der Hyperbel:
@@ -277,49 +391,56 @@ Wenn die **Transversalachse parallel** zur <InlineMath math="x" />-Achse verläu
 
 Die entsprechende vertikale Grafik ist unten dargestellt:
 
-<MathVisual
-  title={<>Vertikale Transversalachse</>}
+<LineEquation
+  title="Vertikale Transversalachse"
   description={<>Hyperbel <InlineMath math="\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1" /> mit vertikaler Transversalachse.</>}
-  labels={{
-    "l1": <InlineMath math="O(0,0)" />,
-    "l2": <InlineMath math="F_1" />,
-    "l3": <InlineMath math="F_2" />,
-    "l4": <InlineMath math="A_1" />,
-    "l5": <InlineMath math="A_2" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -7.5, max: 6.5 }, y: { min: -11.5, max: 11.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: ((() => {
+  data={[
+    {
+      smooth: false,
+      points: (() => {
         const points = [];
         const a = 3;
         const b = 2;
 
-        
+        // Top branch
         for (let t = -1.8; t <= 1.8; t += 0.1) {
           const x = b * Math.sinh(t);
           const y = a * Math.cosh(t);
           points.push({ x, y, z: 0 });
         }
         return points;
-      })()).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: ((() => {
+      })(),
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      smooth: false,
+      points: (() => {
         const points = [];
         const a = 3;
         const b = 2;
 
-        
+        // Bottom branch
         for (let t = -1.8; t <= 1.8; t += 0.1) {
           const x = b * Math.sinh(t);
           const y = -a * Math.cosh(t);
           points.push({ x, y, z: 0 });
         }
         return points;
-      })()).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
+      })(),
+      color: "#0d9488",
+      showPoints: false,
+    },
+    {
+      points: [
+        { x: 0, y: 0, z: 0 }
+      ],
+      color: "#ea580c",
+      showPoints: true,
+      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [-0.8, -0.5, 0] }],
+    },
+    {
+      points: (() => {
         const a = 3;
         const b = 2;
         const c = Math.sqrt(a * a + b * b);
@@ -327,21 +448,48 @@ Die entsprechende vertikale Grafik ist unten dargestellt:
           { x: 0, y: -c, z: 0 },
           { x: 0, y: c, z: 0 }
         ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: -3 }, { x: 0, y: 3 }], appearance: "highlight" },
-      { id: "s5-p0", kind: "point", at: { x: 0, y: -3 }, appearance: "highlight" },
-      { id: "s5-p1", kind: "point", at: { x: 0, y: 3 }, appearance: "highlight" },
-      { id: "s6", kind: "polyline", vertices: [{ x: -4, y: -6 }, { x: 4, y: 6 }], appearance: "reference" },
-      { id: "s7", kind: "polyline", vertices: [{ x: -4, y: 6 }, { x: 4, y: -6 }], appearance: "reference" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "l2", objectId: "s4", at: { x: 0, y: -3.61 }, placement: "below-right" },
-      { key: "l3", objectId: "s4", at: { x: 0, y: 3.61 }, placement: "above-right" },
-      { key: "l4", objectId: "s5", at: { x: 0, y: -3 }, placement: "below-right" },
-      { key: "l5", objectId: "s5", at: { x: 0, y: 3 }, placement: "above-right" },
-    ],
-  }}
+      })(),
+      smooth: false,
+      color: "#0891b2",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="F_1" />, at: 0, offset: [0.5, -0.5, 0] },
+        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: 0, y: -3, z: 0 },
+        { x: 0, y: 3, z: 0 }
+      ],
+      smooth: false,
+      color: "#7c3aed",
+      showPoints: true,
+      labels: [
+        { text: <InlineMath math="A_1" />, at: 0, offset: [0.5, -0.5, 0] },
+        { text: <InlineMath math="A_2" />, at: 1, offset: [0.5, 0.5, 0] }
+      ],
+    },
+    {
+      points: [
+        { x: -4, y: -6, z: 0 },
+        { x: 4, y: 6, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+    {
+      points: [
+        { x: -4, y: 6, z: 0 },
+        { x: 4, y: -6, z: 0 }
+      ],
+      color: "#d97706",
+      showPoints: false,
+      smooth: false,
+    },
+  ]}
+  cameraPosition={[0, 0, 12]}
 />
 
 Wenn die Transversalachse parallel zur <InlineMath math="y" />-Achse verläuft, lautet die Gleichung der Hyperbel:

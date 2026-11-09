@@ -33,66 +33,13 @@ You can decide which case you have in two ways, and both always give the same an
     frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 6 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-          const xMin = -5;
-          const xMax = 5;
-          const y = 4.5; 
-          return {
-            x: xMin + i * (xMax - xMin),
-            y: y,
-            z: 0,
-          };
-        }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-          const xMin = -5;
-          const xMax = 5;
-          const y = 3; 
-          return {
-            x: xMin + i * (xMax - xMin),
-            y: y,
-            z: 0,
-          };
-        }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-          const xMin = -5;
-          const xMax = 5;
-          const y = 1; 
-          return {
-            x: xMin + i * (xMax - xMin),
-            y: y,
-            z: 0,
-          };
-        }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "4.5", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "3", parameter: { min: 0, max: 1 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "1", parameter: { min: 0, max: 1 }, appearance: "highlight" },
       { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
-      { id: "s6", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -6;
-        const xMax = 6;
-        const y = 0;
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "warning" },
-      { id: "s7", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const yMin = -4;
-        const yMax = 5;
-        const x = 0;
-        return {
-          x: x,
-          y: yMin + i * (yMax - yMin),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "warning" },
+      { id: "s6", kind: "parametric", x: "((-6) + (t * (6 - (-6))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "warning" },
+      { id: "s7", kind: "parametric", x: "0", y: "((-4) + (t * (5 - (-4))))", parameter: { min: 0, max: 1 }, appearance: "warning" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 5, y: 4.5 }, placement: "above-left" },

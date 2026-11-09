@@ -141,8 +141,7 @@ Ergänze die Strecken <InlineMath math="AC" /> und <InlineMath math="DB" />. Die
     frame: { kind: "cartesian", x: { min: -9, max: 11 }, y: { min: -14, max: 6 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 181 }, (_, i) => ({ x: 1 + Math.sqrt(65) * Math.cos(i * Math.PI / 90), y: -4 + Math.sqrt(65) * Math.sin(i * Math.PI / 90), z: 0 })).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 9.06, y: -4.28 }, to: { x: 9.06, y: -4 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(1 + (sqrt(65) * cos(((t * pi) / 90))))", y: "((-4) + (sqrt(65) * sin(((t * pi) / 90))))", parameter: { min: 0, max: 180 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 8, y: 0 }], appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: -6, y: 0 }, appearance: "secondary" },
       { id: "s2-p1", kind: "point", at: { x: 8, y: 0 }, appearance: "secondary" },

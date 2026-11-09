@@ -172,14 +172,8 @@ Grafik berikut membandingkan garis asli dan bayangannya:
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -3, max: 7 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 11 }, (_, pointIndex) => {
-        const x = (pointIndex - 5) * 0.8;
-        return { x, y: x + 2, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 11 }, (_, pointIndex) => {
-        const x = (pointIndex - 5) * 0.8;
-        return { x, y: -x + 2, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s1", kind: "parametric", x: "((t - 5) * 0.8)", y: "(((t - 5) * 0.8) + 2)", parameter: { min: 0, max: 10 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((t - 5) * 0.8)", y: "((-((t - 5) * 0.8)) + 2)", parameter: { min: 0, max: 10 }, appearance: "secondary" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 3.2, y: 5.2 }, placement: "below-right" },

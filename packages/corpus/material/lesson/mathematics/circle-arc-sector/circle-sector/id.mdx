@@ -27,27 +27,10 @@ Kalau sudut pusatnya dalam radian, rumusnya menjadi <InlineMath math="L = \frac{
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
-        const i = sampleIndex / 4;
-        const angle = (i * 2 * Math.PI) / 60;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.08 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((((t / 4) * 2) * pi) / 60)))", y: "(3 * sin(((((t / 4) * 2) * pi) / 60)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3 * Math.cos(Math.PI / 3), y: 3 * Math.sin(Math.PI / 3) }], appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
-        const i = sampleIndex / 10;
-        const angle = (i * Math.PI / 3) / 20;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(3 * cos(((((t / 10) * pi) / 3) / 20)))", y: "(3 * sin(((((t / 10) * pi) / 3) / 20)))", parameter: { min: 0, max: 200 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s4", at: { x: 2.6, y: 1.5 }, placement: "above-right" },
@@ -74,27 +57,10 @@ Pada jari-jari yang sama, luas juring **sebanding dengan sudut pusat**. Empat di
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
-        const i = sampleIndex / 4;
-        const angle = (i * 2 * Math.PI) / 60;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.08 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((((t / 4) * 2) * pi) / 60)))", y: "(3 * sin(((((t / 4) * 2) * pi) / 60)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3 }], appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 211 }, (_, sampleIndex) => {
-        const i = sampleIndex / 7;
-        const angle = (i * Math.PI / 2) / 30;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(3 * cos(((((t / 7) * pi) / 2) / 30)))", y: "(3 * sin(((((t / 7) * pi) / 2) / 30)))", parameter: { min: 0, max: 210 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s4", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
@@ -113,27 +79,10 @@ Pada jari-jari yang sama, luas juring **sebanding dengan sudut pusat**. Empat di
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
-        const i = sampleIndex / 4;
-        const angle = (i * 2 * Math.PI) / 60;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.08 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((((t / 4) * 2) * pi) / 60)))", y: "(3 * sin(((((t / 4) * 2) * pi) / 60)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3 * Math.cos(2 * Math.PI / 3), y: 3 * Math.sin(2 * Math.PI / 3) }], appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = (i * 2 * Math.PI / 3) / 40;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(3 * cos((((((t / 5) * 2) * pi) / 3) / 40)))", y: "(3 * sin((((((t / 5) * 2) * pi) / 3) / 40)))", parameter: { min: 0, max: 200 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s4", at: { x: 1.5, y: 2.6 }, placement: "above-left" },
@@ -152,26 +101,9 @@ Pada jari-jari yang sama, luas juring **sebanding dengan sudut pusat**. Empat di
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
-        const i = sampleIndex / 4;
-        const angle = (i * 2 * Math.PI) / 60;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.08 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((((t / 4) * 2) * pi) / 60)))", y: "(3 * sin(((((t / 4) * 2) * pi) / 60)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: Array.from({ length: 211 }, (_, sampleIndex) => {
-        const i = sampleIndex / 7;
-        const angle = (i * Math.PI) / 30;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s3", kind: "parametric", x: "(3 * cos((((t / 7) * pi) / 30)))", y: "(3 * sin((((t / 7) * pi) / 30)))", parameter: { min: 0, max: 210 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s3", at: { x: 0, y: 3 }, placement: "above" },
@@ -190,29 +122,10 @@ Pada jari-jari yang sama, luas juring **sebanding dengan sudut pusat**. Empat di
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
-        const i = sampleIndex / 4;
-        const angle = (i * 2 * Math.PI) / 60;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.08 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((((t / 4) * 2) * pi) / 60)))", y: "(3 * sin(((((t / 4) * 2) * pi) / 60)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: -3 }], appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 244 }, (_, sampleIndex) => {
-        const i = sampleIndex / 3;
-        const startAngle = 0;
-        const endAngle = (3 * Math.PI) / 2;
-        const angle = startAngle + (i * endAngle) / 81;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(3 * cos((0 + (((t / 3) * ((3 * pi) / 2)) / 81))))", y: "(3 * sin((0 + (((t / 3) * ((3 * pi) / 2)) / 81))))", parameter: { min: 0, max: 243 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s4", at: { x: -2.06, y: 2.18 }, placement: "below-right" },

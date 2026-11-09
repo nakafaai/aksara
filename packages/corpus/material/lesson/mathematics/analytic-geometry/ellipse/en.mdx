@@ -31,49 +31,12 @@ An ellipse is the set of all points for which the <Highlight>sum of the distance
     frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const a = 4;
-        const b = 2.5;
-        return {
-          x: a * Math.cos(angle),
-          y: b * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.04 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(2.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const a = 4, b = 2.5;
-        const c = Math.sqrt(a*a - b*b);
-        return [
-          { x: -c, y: 0, z: 0 },
-          { x: c, y: 0, z: 0 }
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.12, y: 0 }, { x: 3.12, y: 0 }], appearance: "answer" },
       { id: "s4", kind: "point", at: { x: 2, y: 2.17 }, appearance: "highlight" },
-      { id: "s5", kind: "polyline", vertices: ((() => {
-        const angle = Math.PI / 3;
-        const a = 4, b = 2.5;
-        const c = Math.sqrt(a*a - b*b);
-        const px = a * Math.cos(angle);
-        const py = b * Math.sin(angle);
-        return [
-          { x: -c, y: 0, z: 0 },
-          { x: px, y: py, z: 0 }
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
-      { id: "s6", kind: "polyline", vertices: ((() => {
-        const angle = Math.PI / 3;
-        const a = 4, b = 2.5;
-        const c = Math.sqrt(a*a - b*b);
-        const px = a * Math.cos(angle);
-        const py = b * Math.sin(angle);
-        return [
-          { x: c, y: 0, z: 0 },
-          { x: px, y: py, z: 0 }
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3.12, y: 0 }, { x: 2, y: 2.17 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 3.12, y: 0 }, { x: 2, y: 2.17 }], appearance: "reference" },
       { id: "s7", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "warning" },
       { id: "s8", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "warning" },
     ],
@@ -113,26 +76,9 @@ Before using the formulas, identify the parts that determine an ellipse's positi
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -3.5, max: 3.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const a = 4;
-        const b = 2.8;
-        return {
-          x: a * Math.cos(angle),
-          y: b * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.05 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(2.8 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const a = 4, b = 2.8;
-        const c = Math.sqrt(a*a - b*b);
-        return [
-          { x: -c, y: 0, z: 0 },
-          { x: c, y: 0, z: 0 }
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -2.86, y: 0 }, { x: 2.86, y: 0 }], appearance: "answer" },
       { id: "s4", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "highlight" },
       { id: "s4-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "highlight" },
       { id: "s4-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
@@ -216,26 +162,9 @@ If the ellipse center is at <InlineMath math="O(0,0)" />, there are two possible
     frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const a = 4.5;
-        const b = 3;
-        return {
-          x: a * Math.cos(angle),
-          y: b * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4.5, y: -0.05 }, to: { x: 4.5, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4.5 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const a = 4.5, b = 3;
-        const c = Math.sqrt(a*a - b*b);
-        return [
-          { x: -c, y: 0, z: 0 },
-          { x: c, y: 0, z: 0 }
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.35, y: 0 }, { x: 3.35, y: 0 }], appearance: "answer" },
       { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4.5, y: 0 }], appearance: "highlight" },
       { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3 }], appearance: "reference" },
       { id: "s6", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "warning" },
@@ -272,26 +201,9 @@ This equation applies when <InlineMath math="a > b > 0" />.
     frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -7.5, max: 7.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const a = 4.5;
-        const b = 3;
-        return {
-          x: b * Math.cos(angle),
-          y: a * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.08 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(4.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const a = 4.5, b = 3;
-        const c = Math.sqrt(a*a - b*b);
-        return [
-          { x: 0, y: -c, z: 0 },
-          { x: 0, y: c, z: 0 }
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: -3.35 }, { x: 0, y: 3.35 }], appearance: "answer" },
       { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
       { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 4.5 }], appearance: "reference" },
       { id: "s6", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "warning" },
@@ -341,28 +253,9 @@ Visualization:
     frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: -6, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const a = 3.5;
-        const b = 2.5;
-        const h = 2, k = -1;
-        return {
-          x: h + a * Math.cos(angle),
-          y: k + b * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 5.5, y: -1.04 }, to: { x: 5.5, y: -1 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(2 + (3.5 * cos(((t * pi) / 180))))", y: "((-1) + (2.5 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const a = 3.5, b = 2.5;
-        const c = Math.sqrt(a*a - b*b);
-        const h = 2, k = -1;
-        return [
-          { x: h - c, y: k, z: 0 },
-          { x: h + c, y: k, z: 0 }
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -0.45, y: -1 }, { x: 4.45, y: -1 }], appearance: "answer" },
       { id: "s4", kind: "polyline", vertices: [{ x: 2, y: -1 }, { x: 5.5, y: -1 }], appearance: "highlight" },
       { id: "s5", kind: "polyline", vertices: [{ x: 2, y: -1 }, { x: 2, y: 1.5 }], appearance: "reference" },
       { id: "s6", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 7, y: 0 }], appearance: "warning" },

@@ -67,7 +67,7 @@ The range also depends on the **maximum radicand value**. For comparison, the fo
 
 The parent graph exists only for <InlineMath math="x \geq 0" /> and passes through <InlineMath math="(0,0)" />, <InlineMath math="(1,1)" />, and <InlineMath math="(4,2)" />. **To raise the output** by one more unit, the input must grow by a larger amount than before.
 
-<MathVisual
+<LineEquation
   title={
     <>
       Basic Square Root Function: <InlineMath math="f(x) = \sqrt{x}" />
@@ -78,15 +78,10 @@ The parent graph exists only for <InlineMath math="x \geq 0" /> and passes throu
       The graph of the basic square root function starts from point <InlineMath math="(0,0)" /> and rises at an increasingly slower rate.
     </>
   }
-  labels={{
-    "l1": <InlineMath math="f(x)=\sqrt{x}" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -2, max: 18 }, y: { min: -0.5, max: 4.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: ((() => {
+  data={[
+    {
+      smooth: false,
+      points: (() => {
         const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(1.5811388300841898);
         return parameters
@@ -95,12 +90,21 @@ The parent graph exists only for <InlineMath math="x \geq 0" /> and passes throu
             const x = t * t;
             return { x, y: t, z: 0 };
           });
-      })()).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: 2.5, y: 1.58 }, placement: "above" },
-    ],
-  }}
+      })(),
+      color: "#9333ea",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="f(x)=\sqrt{x}" />,
+          at: 64,
+          offset: [0, 1, 0],
+        },
+      ],
+    },
+  ]}
+  cameraTarget={[5, 2, 0]}
+  showZAxis={false}
+  cameraPosition={[5, 2, 14]}
 />
 
 ## Transformations of Square Root Functions
@@ -111,8 +115,8 @@ Translation changes the **starting-point position**. Vertical scaling changes th
 
 The function <InlineMath math="f(x) = \sqrt{x-h}" /> shifts the graph of the basic square root function by <InlineMath math="h \text{ units}" /> **to the right** (if <InlineMath math="h > 0" />) or to the left (if <InlineMath math="h < 0" />).
 
-<MathVisual
-  title={<>Horizontal Translation of Square Root Functions</>}
+<LineEquation
+  title="Horizontal Translation of Square Root Functions"
   description={
     <>
       Comparison of <InlineMath math="f(x) = \sqrt{x}" />,{" "}
@@ -120,17 +124,10 @@ The function <InlineMath math="f(x) = \sqrt{x-h}" /> shifts the graph of the bas
       <InlineMath math="h(x) = \sqrt{x+2}" />.
     </>
   }
-  labels={{
-    "l1": <InlineMath math="\sqrt{x}" />,
-    "l2": <InlineMath math="\sqrt{x-2}" />,
-    "l3": <InlineMath math="\sqrt{x+2}" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 20 }, y: { min: -0.5, max: 4.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: ((() => {
+  data={[
+    {
+      smooth: false,
+      points: (() => {
         const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(1.5811388300841898);
         return parameters
@@ -139,8 +136,20 @@ The function <InlineMath math="f(x) = \sqrt{x-h}" /> shifts the graph of the bas
             const x = t * t;
             return { x, y: t, z: 0 };
           });
-      })()).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: ((() => {
+      })(),
+      color: "#9333ea",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\sqrt{x}" />,
+          at: 64,
+          offset: [-2.7, 0.418861, 0],
+        },
+      ],
+    },
+    {
+      smooth: false,
+      points: (() => {
         const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(2.23606797749979);
         return parameters
@@ -149,8 +158,20 @@ The function <InlineMath math="f(x) = \sqrt{x-h}" /> shifts the graph of the bas
             const x = t * t + 2;
             return { x, y: t, z: 0 };
           });
-      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
+      })(),
+      color: "#ea580c",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\sqrt{x-2}" />,
+          at: 90,
+          offset: [-1, -2.986068, 0],
+        },
+      ],
+    },
+    {
+      smooth: false,
+      points: (() => {
         const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(2.23606797749979);
         return parameters
@@ -159,14 +180,21 @@ The function <InlineMath math="f(x) = \sqrt{x-h}" /> shifts the graph of the bas
             const x = t * t + -2;
             return { x, y: t, z: 0 };
           });
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: 2.5, y: 1.58 }, placement: "above-left" },
-      { key: "l2", objectId: "s2", at: { x: 7, y: 2.24 }, placement: "below-left" },
-      { key: "l3", objectId: "s3", at: { x: 3, y: 2.24 }, placement: "above" },
-    ],
-  }}
+      })(),
+      color: "#0891b2",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\sqrt{x+2}" />,
+          at: 90,
+          offset: [0, 1.413932, 0],
+        },
+      ],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[3, 1, 13]}
+  cameraTarget={[3, 1, 0]}
 />
 
 ### Vertical Translation
@@ -183,8 +211,8 @@ The function <InlineMath math="f(x) = \sqrt{x} + k" /> shifts the graph of the b
 
 For <InlineMath math="f(x) = a\sqrt{x}" />, a value <InlineMath math="|a|>1" /> **stretches the graph vertically**, while <InlineMath math="0<|a|<1" /> compresses it. A negative <InlineMath math="a" /> also reflects the graph across the <InlineMath math="x" />-axis.
 
-<MathVisual
-  title={<>Vertical Dilation of Square Root Functions</>}
+<LineEquation
+  title="Vertical Dilation of Square Root Functions"
   description={
     <>
       Comparison of <InlineMath math="f(x) = \sqrt{x}" />,{" "}
@@ -192,17 +220,10 @@ For <InlineMath math="f(x) = a\sqrt{x}" />, a value <InlineMath math="|a|>1" /> 
       <InlineMath math="h(x) = \frac{1}{2}\sqrt{x}" />.
     </>
   }
-  labels={{
-    "l1": <InlineMath math="\sqrt{x}" />,
-    "l2": <InlineMath math="2\sqrt{x}" />,
-    "l3": <InlineMath math="\frac{1}{2}\sqrt{x}" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -2, max: 18 }, y: { min: -1, max: 9 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: ((() => {
+  data={[
+    {
+      smooth: false,
+      points: (() => {
         const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(1.5811388300841898);
         return parameters
@@ -211,8 +232,20 @@ For <InlineMath math="f(x) = a\sqrt{x}" />, a value <InlineMath math="|a|>1" /> 
             const x = t * t;
             return { x, y: t, z: 0 };
           });
-      })()).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: ((() => {
+      })(),
+      color: "#9333ea",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\sqrt{x}" />,
+          at: 64,
+          offset: [0, -0.5, 0],
+        },
+      ],
+    },
+    {
+      smooth: false,
+      points: (() => {
         const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(2.23606797749979);
         return parameters
@@ -221,8 +254,20 @@ For <InlineMath math="f(x) = a\sqrt{x}" />, a value <InlineMath math="|a|>1" /> 
             const x = t * t;
             return { x, y: 2 * t, z: 0 };
           });
-      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
+      })(),
+      color: "#059669",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="2\sqrt{x}" />,
+          at: 90,
+          offset: [0, -0.5, 0],
+        },
+      ],
+    },
+    {
+      smooth: false,
+      points: (() => {
         const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(2.23606797749979);
         return parameters
@@ -231,14 +276,21 @@ For <InlineMath math="f(x) = a\sqrt{x}" />, a value <InlineMath math="|a|>1" /> 
             const x = t * t;
             return { x, y: 0.5 * t, z: 0 };
           });
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: 2.5, y: 1.58 }, placement: "below" },
-      { key: "l2", objectId: "s2", at: { x: 5, y: 4.47 }, placement: "below" },
-      { key: "l3", objectId: "s3", at: { x: 5, y: 1.12 }, placement: "above" },
-    ],
-  }}
+      })(),
+      color: "#d97706",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="\frac{1}{2}\sqrt{x}" />,
+          at: 90,
+          offset: [0, 0.5, 0],
+        },
+      ],
+    },
+  ]}
+  cameraTarget={[5, 2, 0]}
+  showZAxis={false}
+  cameraPosition={[5, 2, 14]}
 />
 
 ## General Form of Square Root Functions
@@ -356,23 +408,17 @@ Therefore, <InlineMath math="D_f=\{x\in\mathbb{R}\mid x\geq 2\}" />. As <InlineM
 | <InlineMath math="5" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="-3" /> | <InlineMath math="-1" /> |
 | <InlineMath math="12" /> | <InlineMath math="16" /> | <InlineMath math="4" /> | <InlineMath math="-4" /> | <InlineMath math="-2" /> |
 
-<MathVisual
+<LineEquation
   title={
     <>
       Graph of <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
     </>
   }
   description={<>Graph of a square root function that undergoes reflection across the <InlineMath math="x" />-axis and translation.</>}
-  labels={{
-    "l1": <InlineMath math="g(x)=-\sqrt{x+4}+2" />,
-    "l2": <InlineMath math="(-4,2)" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -6, max: 14 }, y: { min: -2.5, max: 2.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: ((() => {
+  data={[
+    {
+      smooth: false,
+      points: (() => {
         const parameters = Array.from({ length: 161 }, (_, i) => i / 40);
         parameters.push(2.5298221281347035);
         return parameters
@@ -381,13 +427,26 @@ Therefore, <InlineMath math="D_f=\{x\in\mathbb{R}\mid x\geq 2\}" />. As <InlineM
             const x = t * t + -4;
             return { x, y: -1 * t + 2, z: 0 };
           });
-      })()).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: 2.4, y: -0.53 }, placement: "below" },
-      { key: "l2", objectId: "s1", at: { x: -4, y: 2 }, placement: "above-right" },
-    ],
-  }}
+      })(),
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [
+        {
+          text: <InlineMath math="g(x)=-\sqrt{x+4}+2" />,
+          at: 102,
+          offset: [0, -1, 0],
+        },
+        {
+          text: <InlineMath math="(-4,2)" />,
+          at: 0,
+          offset: [0.5, 0.5, 0],
+        },
+      ],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 0.4, 14]}
+  cameraTarget={[1, 0.4, 0]}
 />
 
 The graph begins at <InlineMath math="(-4,2)" />. The negative sign reflects the parent graph across the <InlineMath math="x" />-axis, so the curve falls to the right and its outputs stay at or below <InlineMath math="2" />.

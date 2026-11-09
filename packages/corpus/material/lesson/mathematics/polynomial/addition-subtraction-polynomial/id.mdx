@@ -120,10 +120,7 @@ Untuk menggabungkan grafik, pertahankan **input yang sama**. Hanya nilai keluara
       frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -1.5, max: 3.5 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => {
-              const x = -2 + i * 0.02;
-              return { x, y: x + 1, z: 0 };
-            }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+        { id: "s1", kind: "parametric", x: "((-2) + (t * 0.02))", y: "(((-2) + (t * 0.02)) + 1)", parameter: { min: 0, max: 200 }, appearance: "primary" },
       ],
     }}
   />
@@ -139,10 +136,7 @@ Untuk menggabungkan grafik, pertahankan **input yang sama**. Hanya nilai keluara
       frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -1.5, max: 1.5 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => {
-            const x = -2 + i * 0.02;
-            return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 };
-          }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+        { id: "s1", kind: "parametric", x: "((-2) + (t * 0.02))", y: "(((0.5 * (((-2) + (t * 0.02)))^(4)) - (2 * (((-2) + (t * 0.02)))^(2))) + 1)", parameter: { min: 0, max: 200 }, appearance: "primary" },
       ],
     }}
   />
@@ -158,10 +152,7 @@ Untuk menggabungkan grafik, pertahankan **input yang sama**. Hanya nilai keluara
       frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -1.5, max: 1.5 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => {
-            const x = -2 + i * 0.02;
-            return { x, y: -0.5 * x ** 3 + 1.5 * x, z: 0 };
-          }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+        { id: "s1", kind: "parametric", x: "((-2) + (t * 0.02))", y: "(((-0.5) * (((-2) + (t * 0.02)))^(3)) + (1.5 * ((-2) + (t * 0.02))))", parameter: { min: 0, max: 200 }, appearance: "primary" },
       ],
     }}
   />
@@ -209,12 +200,9 @@ Grafik berikut memperlihatkan **fungsi asal dan hasil operasi pada sumbu yang sa
       frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.5, max: 5 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: x + 1, z: 0 }; }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-        { id: "s2", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 }; }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-        { id: "s3", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => {
-            const x = -2 + i * 0.02;
-            return { x, y: x + 1 + (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
-          }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+        { id: "s1", kind: "parametric", x: "((-2) + (t * 0.02))", y: "(((-2) + (t * 0.02)) + 1)", parameter: { min: 0, max: 200 }, appearance: "primary" },
+        { id: "s2", kind: "parametric", x: "((-2) + (t * 0.02))", y: "(((0.5 * (((-2) + (t * 0.02)))^(4)) - (2 * (((-2) + (t * 0.02)))^(2))) + 1)", parameter: { min: 0, max: 200 }, appearance: "secondary" },
+        { id: "s3", kind: "parametric", x: "((-2) + (t * 0.02))", y: "((((-2) + (t * 0.02)) + 1) + (((0.5 * (((-2) + (t * 0.02)))^(4)) - (2 * (((-2) + (t * 0.02)))^(2))) + 1))", parameter: { min: 0, max: 200 }, appearance: "answer" },
       ],
       labels: [
         { key: "l1", objectId: "s1", at: { x: 1, y: 2 }, placement: "above-right" },
@@ -245,12 +233,9 @@ Grafik berikut memperlihatkan **fungsi asal dan hasil operasi pada sumbu yang sa
       frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -3, max: 4.5 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: x + 1, z: 0 }; }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-        { id: "s2", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => { const x = -2 + i * 0.02; return { x, y: 0.5 * x ** 4 - 2 * x ** 2 + 1, z: 0 }; }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-        { id: "s3", kind: "polyline", vertices: Array.from({ length: 201 }, (_, i) => {
-            const x = -2 + i * 0.02;
-            return { x, y: x + 1 - (0.5 * x ** 4 - 2 * x ** 2 + 1), z: 0 };
-          }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+        { id: "s1", kind: "parametric", x: "((-2) + (t * 0.02))", y: "(((-2) + (t * 0.02)) + 1)", parameter: { min: 0, max: 200 }, appearance: "primary" },
+        { id: "s2", kind: "parametric", x: "((-2) + (t * 0.02))", y: "(((0.5 * (((-2) + (t * 0.02)))^(4)) - (2 * (((-2) + (t * 0.02)))^(2))) + 1)", parameter: { min: 0, max: 200 }, appearance: "secondary" },
+        { id: "s3", kind: "parametric", x: "((-2) + (t * 0.02))", y: "((((-2) + (t * 0.02)) + 1) - (((0.5 * (((-2) + (t * 0.02)))^(4)) - (2 * (((-2) + (t * 0.02)))^(2))) + 1))", parameter: { min: 0, max: 200 }, appearance: "answer" },
       ],
       labels: [
         { key: "l1", objectId: "s1", at: { x: 1, y: 2 }, placement: "above-right" },

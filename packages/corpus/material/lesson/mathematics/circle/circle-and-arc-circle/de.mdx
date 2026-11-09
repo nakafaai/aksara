@@ -28,15 +28,7 @@ Das Diagramm zu den Teilen des Kreises zeigt die vier Teile, die du in fast jede
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1.5, y: -(3 * Math.sqrt(3)) / 2 }], appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s2-p1", kind: "point", at: { x: 1.5, y: -2.6 }, appearance: "secondary" },
@@ -76,25 +68,10 @@ Zwei Punkte auf einem Kreis teilen ihn in **zwei Bögen zugleich**. Der kürzere
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 271 }, (_, sampleIndex) => {
-        const i = sampleIndex / 3;
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos((((t / 3) * pi) / 180)))", y: "(3 * sin((((t / 3) * pi) / 180)))", parameter: { min: 0, max: 270 }, appearance: "primary" },
       { id: "s1-p0", kind: "point", at: { x: 3, y: 0 }, appearance: "primary" },
       { id: "s1-p90", kind: "point", at: { x: 2.6, y: 1.5 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 271 }, (_, i) => {
-        const angle = ((i + 90) * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s2", kind: "parametric", x: "(3 * cos((((t + 90) * pi) / 180)))", y: "(3 * sin((((t + 90) * pi) / 180)))", parameter: { min: 0, max: 270 }, appearance: "secondary" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
@@ -132,39 +109,15 @@ Jeder Bogen hat zwei verschiedene Größen. Sein Maß in Grad ist **gleich dem M
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s2-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }], appearance: "secondary" },
       { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s3-p1", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 226 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s5", kind: "polyline", vertices: Array.from({ length: 226 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 0.8 * Math.cos(angle),
-          y: 0.8 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s4", kind: "parametric", x: "(3 * cos((((t / 5) * pi) / 180)))", y: "(3 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(0.8 * cos((((t / 5) * pi) / 180)))", y: "(0.8 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "highlight" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
@@ -204,30 +157,14 @@ Ein Umfangswinkel hat seinen Scheitel auf dem Kreis, und seine Schenkel sind Seh
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 3, y: 0 }, { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2) }], appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
       { id: "s2-p1", kind: "point", at: { x: -2.12, y: -2.12 }, appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2) }], appearance: "secondary" },
       { id: "s3-p0", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "secondary" },
       { id: "s3-p1", kind: "point", at: { x: -2.12, y: -2.12 }, appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 226 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(3 * cos((((t / 5) * pi) / 180)))", y: "(3 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "answer" },
       { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
       { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }], appearance: "highlight" },
     ],
@@ -258,15 +195,7 @@ Im Diagramm zum Umfangswinkel steht der Winkel bei <InlineMath math="C" /> über
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s2-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
@@ -277,24 +206,8 @@ Im Diagramm zum Umfangswinkel steht der Winkel bei <InlineMath math="C" /> über
       { id: "s4-p0", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
       { id: "s4-p1", kind: "point", at: { x: -2.12, y: -2.12 }, appearance: "answer" },
       { id: "s5", kind: "polyline", vertices: [{ x: 3 * Math.cos((80 * Math.PI) / 180), y: 3 * Math.sin((80 * Math.PI) / 180) }, { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2) }], appearance: "answer" },
-      { id: "s6", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
-        const i = sampleIndex / 3;
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
-      { id: "s7", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
-        const i = sampleIndex / 10;
-        const angle = (i * 4 * Math.PI) / 180;
-        return {
-          x: 0.8 * Math.cos(angle),
-          y: 0.8 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s6", kind: "parametric", x: "(3 * cos((((t / 3) * pi) / 180)))", y: "(3 * sin((((t / 3) * pi) / 180)))", parameter: { min: 0, max: 240 }, appearance: "highlight" },
+      { id: "s7", kind: "parametric", x: "(0.8 * cos(((((t / 10) * 4) * pi) / 180)))", y: "(0.8 * sin(((((t / 10) * 4) * pi) / 180)))", parameter: { min: 0, max: 200 }, appearance: "reference" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
@@ -334,30 +247,14 @@ In beiden Formeln ist <InlineMath math="b" /> die Bogenlänge, <InlineMath math=
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s2-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1.5, y: (3 * Math.sqrt(3)) / 2 }], appearance: "secondary" },
       { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s3-p1", kind: "point", at: { x: 1.5, y: 2.6 }, appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
-        const i = sampleIndex / 4;
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(3 * cos((((t / 4) * pi) / 180)))", y: "(3 * sin((((t / 4) * pi) / 180)))", parameter: { min: 0, max: 240 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s4", at: { x: 2.6, y: 1.5 }, placement: "below-left" },

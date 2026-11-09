@@ -33,39 +33,13 @@ Sebuah titik selalu berada **di dalam lingkaran**, **tepat pada lingkaran**, ata
     frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s3", kind: "point", at: { x: 1.5, y: 1 }, appearance: "answer" },
       { id: "s4", kind: "point", at: { x: 2.6, y: 1.5 }, appearance: "highlight" },
       { id: "s5", kind: "point", at: { x: 4.5, y: 2 }, appearance: "reference" },
-      { id: "s6", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -5;
-        const xMax = 5;
-        const y = 0;
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "warning" },
-      { id: "s7", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const yMin = -4;
-        const yMax = 4;
-        const x = 0;
-        return {
-          x: x,
-          y: yMin + i * (yMax - yMin),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "warning" },
+      { id: "s6", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "warning" },
+      { id: "s7", kind: "parametric", x: "0", y: "((-4) + (t * (4 - (-4))))", parameter: { min: 0, max: 1 }, appearance: "warning" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },

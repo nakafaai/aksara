@@ -32,15 +32,7 @@ Pada diagram hubungan sudut pusat dan sudut keliling, kaki-kaki sudut pusat <Inl
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
@@ -51,24 +43,8 @@ Pada diagram hubungan sudut pusat dan sudut keliling, kaki-kaki sudut pusat <Inl
       { id: "s4-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
       { id: "s4-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
       { id: "s5", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }, { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4) }], appearance: "answer" },
-      { id: "s6", kind: "polyline", vertices: Array.from({ length: 226 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
-      { id: "s7", kind: "polyline", vertices: Array.from({ length: 226 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 1.2 * Math.cos(angle),
-          y: 1.2 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s6", kind: "parametric", x: "(4 * cos((((t / 5) * pi) / 180)))", y: "(4 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "highlight" },
+      { id: "s7", kind: "parametric", x: "(1.2 * cos((((t / 5) * pi) / 180)))", y: "(1.2 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "reference" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
@@ -107,30 +83,14 @@ Sudut pusat dibentuk oleh dua jari-jari, sehingga titik sudutnya berada **tepat 
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }], appearance: "secondary" },
       { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s3-p1", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 226 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 1.2 * Math.cos(angle),
-          y: 1.2 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(1.2 * cos((((t / 5) * pi) / 180)))", y: "(1.2 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
@@ -161,15 +121,7 @@ Sudut keliling dibentuk oleh dua [tali busur](/id/materi/matematika/lingkaran/li
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4) }], appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
       { id: "s2-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "secondary" },
@@ -212,15 +164,7 @@ Buktinya memakai satu garis bantu, yaitu diameter yang melalui titik <InlineMath
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
@@ -271,15 +215,7 @@ Kasus kedua terjadi ketika diameter <InlineMath math="CD" /> jatuh **di luar sud
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 4 * Math.cos((160 * Math.PI) / 180), y: 4 * Math.sin((160 * Math.PI) / 180) }, { x: 4 * Math.cos((340 * Math.PI) / 180), y: 4 * Math.sin((340 * Math.PI) / 180) }], appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: -3.76, y: 1.37 }, appearance: "secondary" },
       { id: "s2-p1", kind: "point", at: { x: 3.76, y: -1.37 }, appearance: "secondary" },
@@ -329,15 +265,7 @@ Diameter membagi lingkaran menjadi dua setengah lingkaran, dan sudut pusat yang 
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
       { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
@@ -346,26 +274,7 @@ Diameter membagi lingkaran menjadi dua setengah lingkaran, dan sudut pusat yang 
       { id: "s3-p1", kind: "point", at: { x: 0, y: 4 }, appearance: "answer" },
       { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
       { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
-      { id: "s6", kind: "polyline", vertices: ((() => {
-        const C = { x: 0, y: 4 };
-        const A = { x: -4, y: 0 };
-        const B = { x: 4, y: 0 };
-
-        
-        const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
-        const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
-
-        return Array.from({ length: 211 }, (_, sampleIndex) => {
-          const i = sampleIndex / 14;
-          const t = i / 15;
-          const angle = angleCA + t * (angleCB - angleCA);
-          return {
-            x: C.x + 0.8 * Math.cos(angle),
-            y: C.y + 0.8 * Math.sin(angle),
-            z: 0,
-          };
-        });
-      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s6", kind: "parametric", x: "(0 + (0.8 * cos(((2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0))))) + (((t / 14) / 15) * ((2 * atan(((0 - 4)) / (sqrt(((4 - 0))^2 + ((0 - 4))^2) + ((4 - 0))))) - (2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0)))))))))))", y: "(4 + (0.8 * sin(((2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0))))) + (((t / 14) / 15) * ((2 * atan(((0 - 4)) / (sqrt(((4 - 0))^2 + ((0 - 4))^2) + ((4 - 0))))) - (2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0)))))))))))", parameter: { min: 0, max: 210 }, appearance: "reference" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: -4, y: 0 }, placement: "left" },
@@ -402,15 +311,7 @@ Sudut keliling ditentukan oleh busur yang dihadapinya, bukan oleh letak titik su
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }], appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
       { id: "s2-p1", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "secondary" },
@@ -422,15 +323,7 @@ Sudut keliling ditentukan oleh busur yang dihadapinya, bukan oleh letak titik su
       { id: "s5-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
       { id: "s5-p1", kind: "point", at: { x: -2.83, y: 2.83 }, appearance: "highlight" },
       { id: "s6", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }, { x: 4 * Math.cos((3 * Math.PI) / 4), y: 4 * Math.sin((3 * Math.PI) / 4) }], appearance: "highlight" },
-      { id: "s7", kind: "polyline", vertices: Array.from({ length: 226 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s7", kind: "parametric", x: "(4 * cos((((t / 5) * pi) / 180)))", y: "(4 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "reference" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
@@ -469,15 +362,7 @@ Setiap contoh dimulai dengan **menentukan busur yang dihadapi** kedua sudut. Set
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
@@ -488,15 +373,7 @@ Setiap contoh dimulai dengan **menentukan busur yang dihadapi** kedua sudut. Set
       { id: "s4-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
       { id: "s4-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
       { id: "s5", kind: "polyline", vertices: [{ x: 4 * Math.cos((80 * Math.PI) / 180), y: 4 * Math.sin((80 * Math.PI) / 180) }, { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4) }], appearance: "answer" },
-      { id: "s6", kind: "polyline", vertices: Array.from({ length: 205 }, (_, sampleIndex) => {
-        const i = sampleIndex / 12;
-        const angle = ((i * 80) / 17) * Math.PI / 180;
-        return {
-          x: 1.2 * Math.cos(angle),
-          y: 1.2 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s6", kind: "parametric", x: "(1.2 * cos((((((t / 12) * 80) / 17) * pi) / 180)))", y: "(1.2 * sin((((((t / 12) * 80) / 17) * pi) / 180)))", parameter: { min: 0, max: 204 }, appearance: "highlight" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },

@@ -36,40 +36,49 @@ Die Formel bestimmt die Form jedes Teilstücks. Eine **lineare Formel** ergibt e
 
 Eine lineare stückweise Funktion verwendet in jedem Intervall eine lineare Funktion. Diese Form tritt häufig auf, wenn die **Änderungsrate eine Zeit lang konstant** bleibt und sich dann ab einem bestimmten Punkt ändert.
 
-<MathVisual
-  title={<>Lineare stückweise Funktion</>}
-  description={<>Beispiel einer linearen stückweisen Funktion mit drei verschiedenen Teilen.</>}
-  labels={{
-    "l1": <InlineMath math="y=2x+3" />,
-    "l2": <InlineMath math="y=-x+3" />,
-    "l3": <InlineMath math="y=0{,}5x" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -1.5, max: 3.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 21 }, (_, i) => {
+<LineEquation
+  title="Lineare stückweise Funktion"
+  description="Beispiel einer linearen stückweisen Funktion mit drei verschiedenen Teilen."
+  data={[
+    {
+      endpoints: { start: "closed", end: "open" },
+      points: Array.from({ length: 21 }, (_, i) => {
         const x = -2 + i * 0.1;
         return { x, y: 2 * x + 3, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 21 }, (_, i) => {
+      }),
+      smooth: false,
+      color: "#9333ea",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=2x+3" />, at: 10, offset: [-1.5, 1, 0] }],
+    },
+    {
+      endpoints: { start: "closed", end: "open" },
+      points: Array.from({ length: 21 }, (_, i) => {
         const x = 0 + i * 0.1;
         return { x, y: -x + 3, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ([
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=-x+3" />, at: 10, offset: [1, 1, 0] }],
+    },
+    {
+      endpoints: { start: "closed" },
+      points: [
         ...Array.from({ length: 21 }, (_, i) => {
           const x = 2 + i * 0.1;
           return { x, y: 0.5 * x, z: 0 };
         }),
-      ]).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: -1, y: 1 }, placement: "above-left" },
-      { key: "l2", objectId: "s2", at: { x: 1, y: 2 }, placement: "above-right" },
-      { key: "l3", objectId: "s3", at: { x: 3, y: 1.5 }, placement: "below-right" },
-    ],
-  }}
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=0{,}5x" />, at: 10, offset: [1, -0.5, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
 
 Die obige Funktion kann wie folgt geschrieben werden:
@@ -82,34 +91,38 @@ Die drei Reihen sind keine drei separaten Funktionen. Sie arbeiten als eine Funk
 
 Stückweise Funktionen können auch quadratische Teile verwenden. Ein quadratisches Teilstück kann einen **gekrümmten Abschnitt** des Modells beschreiben.
 
-<MathVisual
-  title={<>Kombinierte stückweise Funktion</>}
-  description={<>Kombination quadratischer und linearer Funktionen in einer stückweisen Funktion.</>}
-  labels={{
-    "l1": <InlineMath math="y=x^2" />,
-    "l2": <InlineMath math="y=2x" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 10 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 151 }, (_, sampleIndex) => {
+<LineEquation
+  title="Kombinierte stückweise Funktion"
+  description="Kombination quadratischer und linearer Funktionen in einer stückweisen Funktion."
+  data={[
+    {
+      smooth: false,
+      endpoints: { end: "open" },
+      points: Array.from({ length: 151 }, (_, sampleIndex) => {
         const x = (sampleIndex - 150) / 50;
         return { x, y: x * x, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: ([
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=x^2" />, at: 75, offset: [-1, -1, 0] }],
+    },
+    {
+      endpoints: { start: "closed" },
+      points: [
         ...Array.from({ length: 31 }, (_, i) => {
           const x = 0 + i * 0.1;
           return { x, y: 2 * x, z: 0 };
         }),
-      ]).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: -1.5, y: 2.25 }, placement: "below-left" },
-      { key: "l2", objectId: "s2", at: { x: 1.5, y: 3 }, placement: "below-right" },
-    ],
-  }}
+      ],
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=2x" />, at: 15, offset: [1, -1, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
 
 Der Graph verbindet die folgenden **zwei Vorschriften**. An der Grenze <InlineMath math="x=0" /> legt die zweite Vorschrift den Funktionswert fest. Der offene Punkt der ersten Vorschrift ergibt keinen weiteren Wert.
@@ -146,41 +159,45 @@ Beispielsweise treffen die beiden folgenden Regeln bei <InlineMath math="x=1" />
 
 <BlockMath math="f(x)=\begin{cases}x+2,&amp;\text{wenn }x&lt;1\\2x-3,&amp;\text{wenn }x\geq1\end{cases}" />
 
-<MathVisual
-  title={<>Diskontinuierliche stückweise Funktion</>}
+<LineEquation
+  title="Diskontinuierliche stückweise Funktion"
   description={
     <>
     Beispiel einer Funktion mit Sprungunstetigkeit bei{" "}
       <InlineMath math="x = 1" />.
     </>
   }
-  labels={{
-    "l1": <InlineMath math="y=x+2" />,
-    "l2": <InlineMath math="y=2x-3" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 3.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: ([
+  data={[
+    {
+      endpoints: { end: "open" },
+      points: [
         ...Array.from({ length: 21 }, (_, i) => {
           const x = -1 + i * 0.1;
           return { x, y: x + 2, z: 0 };
         }),
-      ]).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: ([
+      ],
+      smooth: false,
+      color: "#e11d48",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=x+2" />, at: 10, offset: [-1, 1, 0] }],
+    },
+    {
+      endpoints: { start: "closed" },
+      points: [
         ...Array.from({ length: 21 }, (_, i) => {
           const x = 1 + i * 0.1;
           return { x, y: 2 * x - 3, z: 0 };
         }),
-      ]).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: 0, y: 2 }, placement: "above-left" },
-      { key: "l2", objectId: "s2", at: { x: 2, y: 1 }, placement: "above-right" },
-    ],
-  }}
+      ],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=2x-3" />, at: 10, offset: [1, 1, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
 
 ## Modellierung mit stückweisen Funktionen
@@ -331,7 +348,7 @@ Da <InlineMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^+} g(x) = g(1) = 2" /
 
 **Aufgabe 4**. Beachte die **offenen und geschlossenen Punkte**: Bei <InlineMath math="x=0" /> beträgt der Funktionswert <InlineMath math="0" /> und nicht <InlineMath math="2" />. Bei <InlineMath math="x=2" /> beträgt er <InlineMath math="4" />.
 
-<MathVisual
+<LineEquation
   title={
     <>
  Funktionsgraph <InlineMath math="h(x)" />
@@ -343,40 +360,49 @@ Da <InlineMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^+} g(x) = g(1) = 2" /
  konstant
     </>
   }
-  labels={{
-    "l1": <InlineMath math="y=-x+2" />,
-    "l2": <InlineMath math="y=x^2" />,
-    "l3": <InlineMath math="y=4" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -0.5, max: 4.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: ([
+  data={[
+    {
+      endpoints: { end: "open" },
+      points: [
         ...Array.from({ length: 21 }, (_, i) => {
           const x = -2 + i * 0.1;
           return { x, y: -x + 2, z: 0 };
         }),
-      ]).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 101 }, (_, sampleIndex) => {
+      ],
+      smooth: false,
+      color: "#9333ea",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=-x+2" />, at: 10, offset: [0, 0.5, 0] }],
+    },
+    {
+      smooth: false,
+      endpoints: { start: "closed", end: "open" },
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
         const i = sampleIndex / 5;
         const x = 0 + i * 0.1;
         return { x, y: x * x, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ([
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=x^2" />, at: 50, offset: [0, 0.5, 0] }],
+    },
+    {
+      endpoints: { start: "closed" },
+      points: [
         ...Array.from({ length: 21 }, (_, i) => {
           const x = 2 + i * 0.1;
           return { x, y: 4, z: 0 };
         }),
-      ]).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: -1, y: 3 }, placement: "above" },
-      { key: "l2", objectId: "s2", at: { x: 1, y: 1 }, placement: "above" },
-      { key: "l3", objectId: "s3", at: { x: 3, y: 4 }, placement: "above" },
-    ],
-  }}
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=4" />, at: 10, offset: [0, 0.5, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
 
 **Aufgabe 5**. Der Lohn nach acht Stunden enthält den **bereits verdienten Betrag** und zusätzlich die Vergütung für Überstunden.

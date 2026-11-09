@@ -33,18 +33,10 @@ Parabola memiliki **sifat refleksi**. Sinar yang datang sejajar sumbu akan dipan
     frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -2, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 81 }, (_, pointIndex) => {
-        const x = (pointIndex - 40) / 10;
-        const y = 0.2 * x * x; 
-        return { x, y, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((t - 40) / 10)", y: "((0.2 * ((t - 40) / 10)) * ((t - 40) / 10))", parameter: { min: 0, max: 80 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 1.25 }, appearance: "secondary" },
       { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 2 }, (_, pointIndex) => {
-        const x = -5 + pointIndex * 10;
-        const y = -1.25; 
-        return { x, y, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s4", kind: "parametric", x: "((-5) + (t * 10))", y: "(-1.25)", parameter: { min: 0, max: 1 }, appearance: "highlight" },
       { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 1.25 }, { x: 2, y: 0.8 }, { x: 2, y: -1.25 }], appearance: "reference" },
       { id: "s5-p0", kind: "point", at: { x: 0, y: 1.25 }, appearance: "reference" },
       { id: "s5-p1", kind: "point", at: { x: 2, y: 0.8 }, appearance: "reference" },
@@ -98,26 +90,10 @@ Mulailah dengan parabola yang puncaknya berada di titik asal <InlineMath math="O
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 61 }, (_, i) => {
-        const x = (i - 30) / 10; 
-        const y = 0.25 * x * x; 
-        return { x, y, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 61 }, (_, i) => {
-        const x = (i - 30) / 10; 
-        const y = -0.25 * x * x; 
-        return { x, y, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: Array.from({ length: 61 }, (_, i) => {
-        const y = (i - 30) / 10; 
-        const x = 0.25 * y * y; 
-        return { x, y, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 61 }, (_, i) => {
-        const y = (i - 30) / 10; 
-        const x = -0.25 * y * y; 
-        return { x, y, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s1", kind: "parametric", x: "((t - 30) / 10)", y: "((0.25 * ((t - 30) / 10)) * ((t - 30) / 10))", parameter: { min: 0, max: 60 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((t - 30) / 10)", y: "(((-0.25) * ((t - 30) / 10)) * ((t - 30) / 10))", parameter: { min: 0, max: 60 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((0.25 * ((t - 30) / 10)) * ((t - 30) / 10))", y: "((t - 30) / 10)", parameter: { min: 0, max: 60 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(((-0.25) * ((t - 30) / 10)) * ((t - 30) / 10))", y: "((t - 30) / 10)", parameter: { min: 0, max: 60 }, appearance: "highlight" },
       { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
     ],
     labels: [
@@ -167,21 +143,10 @@ Parabola tidak harus berpuncak di titik asal. Jika puncaknya berada di <InlineMa
     frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: -2, max: 6.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 121 }, (_, pointIndex) => {
-        const x = -1 + pointIndex / 20;
-        const h = 2,
-          k = 1,
-          p = 0.5;
-        const y = k + (1 / (4 * p)) * Math.pow(x - h, 2); 
-        return { x, y, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-1) + (t / 20))", y: "(1 + ((1 / (4 * 0.5)) * ((((-1) + (t / 20)) - 2))^(2)))", parameter: { min: 0, max: 120 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
       { id: "s3", kind: "point", at: { x: 2, y: 1.5 }, appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 2 }, (_, pointIndex) => {
-        const x = -2 + pointIndex * 8;
-        const y = 0.5; 
-        return { x, y, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s4", kind: "parametric", x: "((-2) + (t * 8))", y: "0.5", parameter: { min: 0, max: 1 }, appearance: "highlight" },
       { id: "s5", kind: "line", through: [{ x: 2, y: -1 }, { x: 2, y: 5 }], appearance: "reference" },
     ],
     labels: [
@@ -264,21 +229,10 @@ Maka unsur-unsur parabola adalah:
     frame: { kind: "cartesian", x: { min: -6.5, max: 10.5 }, y: { min: -3, max: 7 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 121 }, (_, pointIndex) => {
-        const x = -4 + pointIndex / 10;
-        const h = 2,
-          k = 1,
-          p = 2;
-        const y = k + (1 / (4 * p)) * Math.pow(x - h, 2); 
-        return { x, y, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-4) + (t / 10))", y: "(1 + ((1 / (4 * 2)) * ((((-4) + (t / 10)) - 2))^(2)))", parameter: { min: 0, max: 120 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
       { id: "s3", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 2 }, (_, pointIndex) => {
-        const x = -5 + pointIndex * 14;
-        const y = -1; 
-        return { x, y, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s4", kind: "parametric", x: "((-5) + (t * 14))", y: "(-1)", parameter: { min: 0, max: 1 }, appearance: "highlight" },
       { id: "s5", kind: "line", through: [{ x: 2, y: -2 }, { x: 2, y: 6 }], appearance: "reference" },
     ],
     labels: [

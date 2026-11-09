@@ -36,40 +36,49 @@ Bentuk rumus menentukan bentuk setiap potongan. **Rumus linear** menghasilkan ru
 
 Fungsi piecewise linear memakai fungsi linear pada setiap interval. Bentuk ini sering muncul ketika perubahan berlangsung dengan **laju tetap**, tetapi lajunya berubah setelah melewati titik tertentu.
 
-<MathVisual
-  title={<>Fungsi Piecewise Linear</>}
-  description={<>Contoh fungsi piecewise linear dengan tiga potongan berbeda.</>}
-  labels={{
-    "l1": <InlineMath math="y=2x+3" />,
-    "l2": <InlineMath math="y=-x+3" />,
-    "l3": <InlineMath math="y=0{,}5x" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -1.5, max: 3.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 21 }, (_, i) => {
+<LineEquation
+  title="Fungsi Piecewise Linear"
+  description="Contoh fungsi piecewise linear dengan tiga potongan berbeda."
+  data={[
+    {
+      endpoints: { start: "closed", end: "open" },
+      points: Array.from({ length: 21 }, (_, i) => {
         const x = -2 + i * 0.1;
         return { x, y: 2 * x + 3, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 21 }, (_, i) => {
+      }),
+      smooth: false,
+      color: "#9333ea",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=2x+3" />, at: 10, offset: [-1.5, 1, 0] }],
+    },
+    {
+      endpoints: { start: "closed", end: "open" },
+      points: Array.from({ length: 21 }, (_, i) => {
         const x = 0 + i * 0.1;
         return { x, y: -x + 3, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ([
+      }),
+      smooth: false,
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=-x+3" />, at: 10, offset: [1, 1, 0] }],
+    },
+    {
+      endpoints: { start: "closed" },
+      points: [
         ...Array.from({ length: 21 }, (_, i) => {
           const x = 2 + i * 0.1;
           return { x, y: 0.5 * x, z: 0 };
         }),
-      ]).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: -1, y: 1 }, placement: "above-left" },
-      { key: "l2", objectId: "s2", at: { x: 1, y: 2 }, placement: "above-right" },
-      { key: "l3", objectId: "s3", at: { x: 3, y: 1.5 }, placement: "below-right" },
-    ],
-  }}
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=0{,}5x" />, at: 10, offset: [1, -0.5, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
 
 Fungsi di atas dapat ditulis sebagai:
@@ -82,34 +91,38 @@ Perhatikan bahwa tiga baris pada rumus itu bukan tiga fungsi yang terpisah. Keti
 
 Fungsi piecewise juga bisa memakai potongan kuadratik. Potongan kuadratik dapat menggambarkan **bagian model yang melengkung**.
 
-<MathVisual
-  title={<>Fungsi Piecewise Kombinasi</>}
-  description={<>Kombinasi fungsi kuadratik dan linear dalam satu fungsi piecewise.</>}
-  labels={{
-    "l1": <InlineMath math="y=x^2" />,
-    "l2": <InlineMath math="y=2x" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 10 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 151 }, (_, sampleIndex) => {
+<LineEquation
+  title="Fungsi Piecewise Kombinasi"
+  description="Kombinasi fungsi kuadratik dan linear dalam satu fungsi piecewise."
+  data={[
+    {
+      smooth: false,
+      endpoints: { end: "open" },
+      points: Array.from({ length: 151 }, (_, sampleIndex) => {
         const x = (sampleIndex - 150) / 50;
         return { x, y: x * x, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: ([
+      }),
+      color: "#7c3aed",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=x^2" />, at: 75, offset: [-1, -1, 0] }],
+    },
+    {
+      endpoints: { start: "closed" },
+      points: [
         ...Array.from({ length: 31 }, (_, i) => {
           const x = 0 + i * 0.1;
           return { x, y: 2 * x, z: 0 };
         }),
-      ]).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: -1.5, y: 2.25 }, placement: "below-left" },
-      { key: "l2", objectId: "s2", at: { x: 1.5, y: 3 }, placement: "below-right" },
-    ],
-  }}
+      ],
+      smooth: false,
+      color: "#0d9488",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=2x" />, at: 15, offset: [1, -1, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
 
 Grafik menggabungkan **dua aturan** berikut. Pada batas <InlineMath math="x=0" />, aturan kedua memberi nilai fungsi. Lingkaran terbuka pada aturan pertama tidak menambah nilai lain.
@@ -146,40 +159,44 @@ Sebagai contoh, dua aturan berikut bertemu di <InlineMath math="x=1" />, tetapi 
 
 <BlockMath math="f(x)=\begin{cases}x+2,&\text{jika }x<1\\2x-3,&\text{jika }x\geq1\end{cases}" />
 
-<MathVisual
-  title={<>Fungsi Piecewise Diskontinu</>}
+<LineEquation
+  title="Fungsi Piecewise Diskontinu"
   description={
     <>
       Contoh fungsi dengan diskontinuitas lompat di <InlineMath math="x = 1" />.
     </>
   }
-  labels={{
-    "l1": <InlineMath math="y=x+2" />,
-    "l2": <InlineMath math="y=2x-3" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 3.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: ([
+  data={[
+    {
+      endpoints: { end: "open" },
+      points: [
         ...Array.from({ length: 21 }, (_, i) => {
           const x = -1 + i * 0.1;
           return { x, y: x + 2, z: 0 };
         }),
-      ]).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: ([
+      ],
+      smooth: false,
+      color: "#e11d48",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=x+2" />, at: 10, offset: [-1, 1, 0] }],
+    },
+    {
+      endpoints: { start: "closed" },
+      points: [
         ...Array.from({ length: 21 }, (_, i) => {
           const x = 1 + i * 0.1;
           return { x, y: 2 * x - 3, z: 0 };
         }),
-      ]).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: 0, y: 2 }, placement: "above-left" },
-      { key: "l2", objectId: "s2", at: { x: 2, y: 1 }, placement: "above-right" },
-    ],
-  }}
+      ],
+      smooth: false,
+      color: "#d97706",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=2x-3" />, at: 10, offset: [1, 1, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
 
 ## Pemodelan dengan Fungsi Piecewise
@@ -330,7 +347,7 @@ Karena <InlineMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^+} g(x) = g(1) = 
 
 **Soal 4**. Perhatikan **titik terbuka dan tertutup**: pada <InlineMath math="x=0" /> nilai fungsi adalah <InlineMath math="0" />, bukan <InlineMath math="2" />. Pada <InlineMath math="x=2" /> nilai fungsi adalah <InlineMath math="4" />.
 
-<MathVisual
+<LineEquation
   title={
     <>
       Grafik Fungsi <InlineMath math="h(x)" />
@@ -342,40 +359,49 @@ Karena <InlineMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^+} g(x) = g(1) = 
       konstan
     </>
   }
-  labels={{
-    "l1": <InlineMath math="y=-x+2" />,
-    "l2": <InlineMath math="y=x^2" />,
-    "l3": <InlineMath math="y=4" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -0.5, max: 4.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "polyline", vertices: ([
+  data={[
+    {
+      endpoints: { end: "open" },
+      points: [
         ...Array.from({ length: 21 }, (_, i) => {
           const x = -2 + i * 0.1;
           return { x, y: -x + 2, z: 0 };
         }),
-      ]).map(({ x, y }) => ({ x, y })), appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 101 }, (_, sampleIndex) => {
+      ],
+      smooth: false,
+      color: "#9333ea",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=-x+2" />, at: 10, offset: [0, 0.5, 0] }],
+    },
+    {
+      smooth: false,
+      endpoints: { start: "closed", end: "open" },
+      points: Array.from({ length: 101 }, (_, sampleIndex) => {
         const i = sampleIndex / 5;
         const x = 0 + i * 0.1;
         return { x, y: x * x, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ([
+      }),
+      color: "#ea580c",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=x^2" />, at: 50, offset: [0, 0.5, 0] }],
+    },
+    {
+      endpoints: { start: "closed" },
+      points: [
         ...Array.from({ length: 21 }, (_, i) => {
           const x = 2 + i * 0.1;
           return { x, y: 4, z: 0 };
         }),
-      ]).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: -1, y: 3 }, placement: "above" },
-      { key: "l2", objectId: "s2", at: { x: 1, y: 1 }, placement: "above" },
-      { key: "l3", objectId: "s3", at: { x: 3, y: 4 }, placement: "above" },
-    ],
-  }}
+      ],
+      smooth: false,
+      color: "#0891b2",
+      showPoints: false,
+      labels: [{ text: <InlineMath math="y=4" />, at: 10, offset: [0, 0.5, 0] }],
+    },
+  ]}
+  showZAxis={false}
+  cameraPosition={[1, 2, 12]}
+  cameraTarget={[1, 2, 0]}
 />
 
 **Soal 5**. Upah setelah delapan jam memuat **upah yang sudah terkumpul**, lalu tambahan untuk jam lembur.

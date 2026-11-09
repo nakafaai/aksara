@@ -34,133 +34,13 @@ Garis singgung luar memakai **selisih jari-jari**, garis singgung dalam memakai 
     frame: { kind: "cartesian", x: { min: -12, max: 11.5 }, y: { min: -4.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: -4 + 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: -2, y: -0.03 }, to: { x: -2, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 + 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s2-close", kind: "segment", from: { x: 7, y: -0.05 }, to: { x: 7, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-4) + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(4 + (3 * cos(((t * pi) / 180))))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
       { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
       { id: "s3-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
-        const O1 = { x: -4, y: 0 };
-        const O2 = { x: 4, y: 0 };
-        const r1 = 2;
-        const r2 = 3;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        
-        const sin_alpha = (r2 - r1) / d;
-        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
-
-        
-        const dx = O2.x - O1.x;
-        const dy = O2.y - O1.y;
-
-        
-        const ux = dx / d;
-        const uy = dy / d;
-
-        
-        const vx = -uy;
-        const vy = ux;
-
-        
-        
-        const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
-        const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
-
-        
-        const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
-        const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
-
-        
-        const tdx = T2x - T1x;
-        const tdy = T2y - T1y;
-        const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
-        const tux = tdx / tlen;
-        const tuy = tdy / tlen;
-
-        const points = [
-          { x: T1x - 4 * tux, y: T1y - 4 * tuy, z: 0 },
-          { x: T2x + 4 * tux, y: T2y + 4 * tuy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s5", kind: "polyline", vertices: ((() => {
-        const O1 = { x: -4, y: 0 };
-        const O2 = { x: 4, y: 0 };
-        const r1 = 2;
-        const r2 = 3;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        
-        const sin_alpha = (r2 - r1) / d;
-        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
-
-        
-        const dx = O2.x - O1.x;
-        const dy = O2.y - O1.y;
-
-        
-        const ux = dx / d;
-        const uy = dy / d;
-
-        
-        const vx = -uy;
-        const vy = ux;
-
-        
-        
-        const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
-        const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
-
-        
-        const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
-        const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
-
-        
-        const tdx = T2x - T1x;
-        const tdy = T2y - T1y;
-        const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
-        const tux = tdx / tlen;
-        const tuy = tdy / tlen;
-
-        const points = [
-          { x: T1x - 4 * tux, y: T1y - 4 * tuy, z: 0 },
-          { x: T2x + 4 * tux, y: T2y + 4 * tuy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -9.8, y: 1.29 }, { x: -8.22, y: 1.48 }, { x: 7.59, y: 3.48 }, { x: 9.17, y: 3.68 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -9.8, y: -1.29 }, { x: -8.22, y: -1.48 }, { x: 7.59, y: -3.48 }, { x: 9.17, y: -3.68 }], appearance: "highlight" },
       { id: "s6", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 31 / 8, y: Math.sqrt(63) / 8 }, { x: 4, y: 0 }], appearance: "answer" },
     ],
     labels: [
@@ -203,101 +83,13 @@ Beri nama <InlineMath math="r_2" /> pada jari-jari yang lebih besar agar selisih
     frame: { kind: "cartesian", x: { min: -5.5, max: 6.5 }, y: { min: -3, max: 3 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: -3 + 1.5 * Math.cos(angle),
-          y: 1.5 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: -1.5, y: -0.03 }, to: { x: -1.5, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 + 2.5 * Math.cos(angle),
-          y: 2.5 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s2-close", kind: "segment", from: { x: 5.5, y: -0.04 }, to: { x: 5.5, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-3) + (1.5 * cos(((t * pi) / 180))))", y: "(1.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(3 + (2.5 * cos(((t * pi) / 180))))", y: "(2.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
       { id: "s3-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
       { id: "s3-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
-        const O1 = { x: -3, y: 0 };
-        const O2 = { x: 3, y: 0 };
-        const r1 = 1.5;
-        const r2 = 2.5;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        
-        const sin_alpha = (r2 - r1) / d;
-        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
-
-        
-        const dx = O2.x - O1.x;
-        const dy = O2.y - O1.y;
-
-        
-        const ux = dx / d;
-        const uy = dy / d;
-
-        
-        const vx = -uy;
-        const vy = ux;
-
-        
-        
-        const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
-        const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
-
-        
-        const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
-        const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
-
-        return [
-          { x: T1x, y: T1y, z: 0 },
-          { x: T2x, y: T2y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s5", kind: "polyline", vertices: ((() => {
-        const O1 = { x: -3, y: 0 };
-        const O2 = { x: 3, y: 0 };
-        const r1 = 1.5;
-        const r2 = 2.5;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        
-        const sin_alpha = (r2 - r1) / d;
-        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
-
-        
-        const dx = O2.x - O1.x;
-        const dy = O2.y - O1.y;
-
-        
-        const ux = dx / d;
-        const uy = dy / d;
-
-        
-        const vx = -uy;
-        const vy = ux;
-
-        
-        
-        const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
-        const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
-
-        
-        const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
-        const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
-
-        return [
-          { x: T1x, y: T1y, z: 0 },
-          { x: T2x, y: T2y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3.25, y: 1.48 }, { x: 2.58, y: 2.47 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3.25, y: -1.48 }, { x: 2.58, y: -2.47 }], appearance: "highlight" },
     ],
     labels: [
       { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
@@ -338,99 +130,13 @@ Garis singgung dalam **memotong ruas yang menghubungkan kedua pusat**, sehingga 
     frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: -4 + 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: -2, y: -0.03 }, to: { x: -2, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 + 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s2-close", kind: "segment", from: { x: 6, y: -0.03 }, to: { x: 6, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-4) + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(4 + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
       { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
       { id: "s3-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
-        const O1 = { x: -4, y: 0 };
-        const O2 = { x: 4, y: 0 };
-        const r1 = 2;
-        const r2 = 2;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 - alpha);
-        const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 - alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 - alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 - alpha + Math.PI);
-
-        const dx = T2x - T1x;
-        const dy = T2y - T1y;
-        const len = Math.sqrt(dx * dx + dy * dy);
-        const ux = dx / len;
-        const uy = dy / len;
-
-        const points = [
-          { x: T1x - 3 * ux, y: T1y - 3 * uy, z: 0 },
-          { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s5", kind: "polyline", vertices: ((() => {
-        const O1 = { x: -4, y: 0 };
-        const O2 = { x: 4, y: 0 };
-        const r1 = 2;
-        const r2 = 2;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 + alpha);
-        const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 + alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 + alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 + alpha + Math.PI);
-
-        const dx = T2x - T1x;
-        const dy = T2y - T1y;
-        const len = Math.sqrt(dx * dx + dy * dy);
-        const ux = dx / len;
-        const uy = dy / len;
-
-        const points = [
-          { x: T1x - 3 * ux, y: T1y - 3 * uy, z: 0 },
-          { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -6.72, y: 3.88 }, { x: -5.6, y: 3.23 }, { x: 5.6, y: -3.23 }, { x: 6.72, y: -3.88 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -6.72, y: -3.88 }, { x: -5.6, y: -3.23 }, { x: 5.6, y: 3.23 }, { x: 6.72, y: 3.88 }], appearance: "highlight" },
       { id: "s6", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 2, y: -2 * Math.sqrt(3) }, { x: 4, y: 0 }], appearance: "reference" },
     ],
     labels: [
@@ -470,69 +176,13 @@ Untuk diagram itu, <InlineMath math="d = 8" /> dan kedua jari-jari <InlineMath m
     frame: { kind: "cartesian", x: { min: -8.5, max: 9.5 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: -5 + 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: -3, y: -0.03 }, to: { x: -3, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 5 + 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s2-close", kind: "segment", from: { x: 8, y: -0.05 }, to: { x: 8, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-5) + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(5 + (3 * cos(((t * pi) / 180))))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s3", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "secondary" },
       { id: "s3-p0", kind: "point", at: { x: -5, y: 0 }, appearance: "secondary" },
       { id: "s3-p1", kind: "point", at: { x: 5, y: 0 }, appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
-        const O1 = { x: -5, y: 0 };
-        const O2 = { x: 5, y: 0 };
-        const r1 = 2;
-        const r2 = 3;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 - alpha);
-        const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 - alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 - alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 - alpha + Math.PI);
-
-        return [
-          { x: T1x, y: T1y, z: 0 },
-          { x: T2x, y: T2y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s5", kind: "polyline", vertices: ((() => {
-        const O1 = { x: -5, y: 0 };
-        const O2 = { x: 5, y: 0 };
-        const r1 = 2;
-        const r2 = 3;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 + alpha);
-        const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 + alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 + alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 + alpha + Math.PI);
-
-        return [
-          { x: T1x, y: T1y, z: 0 },
-          { x: T2x, y: T2y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -4, y: 1.73 }, { x: 3.5, y: -2.6 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -4, y: -1.73 }, { x: 3.5, y: 2.6 }], appearance: "highlight" },
     ],
     labels: [
       { key: "l1", objectId: "s3", at: { x: -5, y: 0 }, placement: "below-left" },
@@ -570,24 +220,8 @@ Kalau <InlineMath math="r_1 = r_2 = r" />, selisih jari-jari bernilai nol. Rumus
     frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -2.5, max: 2.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: -3 + 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: -1, y: -0.03 }, to: { x: -1, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 + 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s2-close", kind: "segment", from: { x: 5, y: -0.03 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-3) + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(3 + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
       { id: "s3-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
       { id: "s3-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
@@ -617,200 +251,12 @@ Pada pasangan lingkaran yang sama, **garis singgung dalam selalu lebih pendek** 
     frame: { kind: "cartesian", x: { min: -12, max: 11.5 }, y: { min: -3.5, max: 3.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: -6 + 1 * Math.cos(angle),
-          y: 1 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: -5, y: -0.02 }, to: { x: -5, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 6 + 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s2-close", kind: "segment", from: { x: 8, y: -0.03 }, to: { x: 8, y: 0 }, appearance: "primary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const O1 = { x: -6, y: 0 };
-        const O2 = { x: 6, y: 0 };
-        const r1 = 1;
-        const r2 = 2;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        
-        const sin_alpha = (r2 - r1) / d;
-        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
-
-        
-        const dx = O2.x - O1.x;
-        const dy = O2.y - O1.y;
-
-        
-        const ux = dx / d;
-        const uy = dy / d;
-
-        
-        const vx = -uy;
-        const vy = ux;
-
-        
-        
-        const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
-        const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
-
-        
-        const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
-        const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
-
-        const tdx = T2x - T1x;
-        const tdy = T2y - T1y;
-        const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
-        const tux = tdx / tlen;
-        const tuy = tdy / tlen;
-
-        const points = [
-          { x: T1x - 2 * tux, y: T1y - 2 * tuy, z: 0 },
-          { x: T2x + 2 * tux, y: T2y + 2 * tuy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
-        const O1 = { x: -6, y: 0 };
-        const O2 = { x: 6, y: 0 };
-        const r1 = 1;
-        const r2 = 2;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        
-        const sin_alpha = (r2 - r1) / d;
-        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
-
-        
-        const dx = O2.x - O1.x;
-        const dy = O2.y - O1.y;
-
-        
-        const ux = dx / d;
-        const uy = dy / d;
-
-        
-        const vx = -uy;
-        const vy = ux;
-
-        
-        
-        const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
-        const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
-
-        
-        const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
-        const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
-
-        const tdx = T2x - T1x;
-        const tdy = T2y - T1y;
-        const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
-        const tux = tdx / tlen;
-        const tuy = tdy / tlen;
-
-        const points = [
-          { x: T1x - 2 * tux, y: T1y - 2 * tuy, z: 0 },
-          { x: T2x + 2 * tux, y: T2y + 2 * tuy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s5", kind: "polyline", vertices: ((() => {
-        const O1 = { x: -6, y: 0 };
-        const O2 = { x: 6, y: 0 };
-        const r1 = 1;
-        const r2 = 2;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 - alpha);
-        const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 - alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 - alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 - alpha + Math.PI);
-
-        const dx = T2x - T1x;
-        const dy = T2y - T1y;
-        const len = Math.sqrt(dx * dx + dy * dy);
-        const ux = dx / len;
-        const uy = dy / len;
-
-        const points = [
-          { x: T1x - 1 * ux, y: T1y - 1 * uy, z: 0 },
-          { x: T2x + 1 * ux, y: T2y + 1 * uy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
-      { id: "s6", kind: "polyline", vertices: ((() => {
-        const O1 = { x: -6, y: 0 };
-        const O2 = { x: 6, y: 0 };
-        const r1 = 1;
-        const r2 = 2;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 + alpha);
-        const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 + alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 + alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 + alpha + Math.PI);
-
-        const dx = T2x - T1x;
-        const dy = T2y - T1y;
-        const len = Math.sqrt(dx * dx + dy * dy);
-        const ux = dx / len;
-        const uy = dy / len;
-
-        const points = [
-          { x: T1x - 1 * ux, y: T1y - 1 * uy, z: 0 },
-          { x: T2x + 1 * ux, y: T2y + 1 * uy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s1", kind: "parametric", x: "((-6) + (1 * cos(((t * pi) / 180))))", y: "(1 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(6 + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -9.67, y: 0.7 }, { x: -8.08, y: 0.83 }, { x: 7.83, y: 2.16 }, { x: 9.42, y: 2.29 }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -9.67, y: -0.7 }, { x: -8.08, y: -0.83 }, { x: 7.83, y: -2.16 }, { x: 9.42, y: -2.29 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -8.04, y: 1.56 }, { x: -6.72, y: 1.22 }, { x: 6.47, y: -2.19 }, { x: 7.79, y: -2.53 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -8.04, y: -1.56 }, { x: -6.72, y: -1.22 }, { x: 6.47, y: 2.19 }, { x: 7.79, y: 2.53 }], appearance: "reference" },
     ],
   }}
 />
@@ -834,126 +280,12 @@ Kedua panjang hampir sama karena jari-jarinya kecil dibandingkan jarak pusat.
     frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: -2 + 1.5 * Math.cos(angle),
-          y: 1.5 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: -0.5, y: -0.03 }, to: { x: -0.5, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 2 + 1.5 * Math.cos(angle),
-          y: 1.5 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s2-close", kind: "segment", from: { x: 3.5, y: -0.03 }, to: { x: 3.5, y: 0 }, appearance: "primary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const points = [
-          { x: -5, y: 1.5, z: 0 },
-          { x: 5, y: 1.5, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
-        const points = [
-          { x: -5, y: -1.5, z: 0 },
-          { x: 5, y: -1.5, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s5", kind: "polyline", vertices: ((() => {
-        const O1 = { x: -2, y: 0 };
-        const O2 = { x: 2, y: 0 };
-        const r1 = 1.5;
-        const r2 = 1.5;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 - alpha);
-        const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 - alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 - alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 - alpha + Math.PI);
-
-        const dx = T2x - T1x;
-        const dy = T2y - T1y;
-        const len = Math.sqrt(dx * dx + dy * dy);
-        const ux = dx / len;
-        const uy = dy / len;
-
-        const points = [
-          { x: T1x - 2 * ux, y: T1y - 2 * uy, z: 0 },
-          { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
-      { id: "s6", kind: "polyline", vertices: ((() => {
-        const O1 = { x: -2, y: 0 };
-        const O2 = { x: 2, y: 0 };
-        const r1 = 1.5;
-        const r2 = 1.5;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 + alpha);
-        const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 + alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 + alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 + alpha + Math.PI);
-
-        const dx = T2x - T1x;
-        const dy = T2y - T1y;
-        const len = Math.sqrt(dx * dx + dy * dy);
-        const ux = dx / len;
-        const uy = dy / len;
-
-        const points = [
-          { x: T1x - 2 * ux, y: T1y - 2 * uy, z: 0 },
-          { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s1", kind: "parametric", x: "((-2) + (1.5 * cos(((t * pi) / 180))))", y: "(1.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 + (1.5 * cos(((t * pi) / 180))))", y: "(1.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -6, y: 1.5 }, { x: -5, y: 1.5 }, { x: 5, y: 1.5 }, { x: 6, y: 1.5 }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -6, y: -1.5 }, { x: -5, y: -1.5 }, { x: 5, y: -1.5 }, { x: 6, y: -1.5 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -2.64, y: 2.99 }, { x: -2.2, y: 2.49 }, { x: 2.2, y: -2.49 }, { x: 2.64, y: -2.99 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -2.64, y: -2.99 }, { x: -2.2, y: -2.49 }, { x: 2.2, y: 2.49 }, { x: 2.64, y: 2.99 }], appearance: "reference" },
     ],
   }}
 />

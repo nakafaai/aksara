@@ -57,7 +57,7 @@ Plot the points and connect them:
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.5, max: 12.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 7 }, (_, i) => { const x = -3 + i; return { x, y: 2 * x + 5, z: 0 }; }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-3) + t)", y: "((2 * ((-3) + t)) + 5)", parameter: { min: 0, max: 6 }, appearance: "primary" },
     ],
   }}
 />
@@ -96,11 +96,7 @@ Plot the points and connect with a smooth curve (parabola):
     frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -5, max: 6 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 97 }, (_, sampleIndex) => {
-        const i = sampleIndex / 16;
-        const x = -2 + i;
-        return { x, y: x * x - 2 * x - 3, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 16))", y: "(((((-2) + (t / 16)) * ((-2) + (t / 16))) - (2 * ((-2) + (t / 16)))) - 3)", parameter: { min: 0, max: 96 }, appearance: "primary" },
     ],
   }}
 />
@@ -141,10 +137,7 @@ The view focuses on <InlineMath math="-3\le x\le1.25" /> so that both turning po
     frame: { kind: "cartesian", x: { min: -3.5, max: 2 }, y: { min: -5, max: 3.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 171 }, (_, i) => {
-        const x = -3 + i * 0.025;
-        return { x, y: x * x * x + 3 * x * x - 4, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-3) + (t * 0.025))", y: "((((((-3) + (t * 0.025)) * ((-3) + (t * 0.025))) * ((-3) + (t * 0.025))) + ((3 * ((-3) + (t * 0.025))) * ((-3) + (t * 0.025)))) - 4)", parameter: { min: 0, max: 170 }, appearance: "primary" },
     ],
   }}
 />
@@ -192,11 +185,7 @@ Every additional fraction tends to zero as the input magnitude grows without bou
     frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -0.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 97 }, (_, sampleIndex) => {
-        const i = sampleIndex / 16;
-        const x = -2 + i * (2 / 3);
-        return { x, y: x * x, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-2) + ((t / 16) * (2 / 3)))", y: "(((-2) + ((t / 16) * (2 / 3))) * ((-2) + ((t / 16) * (2 / 3))))", parameter: { min: 0, max: 96 }, appearance: "primary" },
     ],
   }}
 />
@@ -212,11 +201,7 @@ Every additional fraction tends to zero as the input magnitude grows without bou
     frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -4.5, max: 0.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 97 }, (_, sampleIndex) => {
-        const i = sampleIndex / 16;
-        const x = -2 + i * (2 / 3);
-        return { x, y: -(x * x), z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-2) + ((t / 16) * (2 / 3)))", y: "(-(((-2) + ((t / 16) * (2 / 3))) * ((-2) + ((t / 16) * (2 / 3)))))", parameter: { min: 0, max: 96 }, appearance: "primary" },
     ],
   }}
 />
@@ -232,10 +217,7 @@ Every additional fraction tends to zero as the input magnitude grows without bou
     frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -4.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 41 }, (_, i) => {
-        const x = -1.5 + i * 0.075;
-        return { x, y: x * x * x, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-1.5) + (t * 0.075))", y: "((((-1.5) + (t * 0.075)) * ((-1.5) + (t * 0.075))) * ((-1.5) + (t * 0.075)))", parameter: { min: 0, max: 40 }, appearance: "primary" },
     ],
   }}
 />
@@ -251,10 +233,7 @@ Every additional fraction tends to zero as the input magnitude grows without bou
     frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -4.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 41 }, (_, i) => {
-        const x = -1.5 + i * 0.075;
-        return { x, y: -(x * x * x), z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-1.5) + (t * 0.075))", y: "(-((((-1.5) + (t * 0.075)) * ((-1.5) + (t * 0.075))) * ((-1.5) + (t * 0.075))))", parameter: { min: 0, max: 40 }, appearance: "primary" },
     ],
   }}
 />
@@ -289,11 +268,7 @@ End behavior: Rises left (<InlineMath math="\nwarrow" />), Rises right (<InlineM
           frame: { kind: "cartesian", x: { min: -3, max: 2 }, y: { min: -5, max: 7 } },
           view: { kind: "fit", padding: 0.2 },
           objects: [
-            { id: "s1", kind: "polyline", vertices: Array.from({ length: 51 }, (_, i) => {
-                    const x = -2.25 + i * (3.75 / 50);
-                    const y = x ** 4 + 2 * x ** 3 - 2 * x - 3;
-                    return { x, y, z: 0 };
-                  }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+            { id: "s1", kind: "parametric", x: "((-2.25) + (t * (3.75 / 50)))", y: "((((((-2.25) + (t * (3.75 / 50))))^(4) + (2 * (((-2.25) + (t * (3.75 / 50))))^(3))) - (2 * ((-2.25) + (t * (3.75 / 50))))) - 3)", parameter: { min: 0, max: 50 }, appearance: "primary" },
           ],
         }}
       />
@@ -324,12 +299,7 @@ End behavior: Rises left (<InlineMath math="\nwarrow" />), Falls right (<InlineM
           frame: { kind: "cartesian", x: { min: -1.5, max: 3 }, y: { min: -6, max: 6 } },
           view: { kind: "fit", padding: 0.2 },
           objects: [
-            { id: "s1", kind: "polyline", vertices: Array.from({ length: 113 }, (_, pointIndex) => {
-                    const i = pointIndex / 2 + 0;
-                    const x = -1 + i * (3.5 / 56);
-                    const y = -(x ** 3) + 2 * x ** 2 - x + 1;
-                    return { x, y, z: 0 };
-                  }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+            { id: "s1", kind: "parametric", x: "((-1) + (((t / 2) + 0) * (3.5 / 56)))", y: "((((-(((-1) + (((t / 2) + 0) * (3.5 / 56))))^(3)) + (2 * (((-1) + (((t / 2) + 0) * (3.5 / 56))))^(2))) - ((-1) + (((t / 2) + 0) * (3.5 / 56)))) + 1)", parameter: { min: 0, max: 112 }, appearance: "primary" },
           ],
         }}
       />
@@ -361,11 +331,7 @@ End behavior: Falls left (<InlineMath math="\swarrow" />), Falls right (<InlineM
           frame: { kind: "cartesian", x: { min: -3, max: 2 }, y: { min: -7.5, max: 5.5 } },
           view: { kind: "fit", padding: 0.2 },
           objects: [
-            { id: "s1", kind: "polyline", vertices: Array.from({ length: 111 }, (_, i) => {
-                    const x = -2.4 + i * (3.8 / 110);
-                    const y = -(x ** 6) - (11 / 4) * x ** 5 + x ** 4 + 5 * x ** 3 + 2;
-                    return { x, y, z: 0 };
-                  }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+            { id: "s1", kind: "parametric", x: "((-2.4) + (t * (3.8 / 110)))", y: "(((((-(((-2.4) + (t * (3.8 / 110))))^(6)) - ((11 / 4) * (((-2.4) + (t * (3.8 / 110))))^(5))) + (((-2.4) + (t * (3.8 / 110))))^(4)) + (5 * (((-2.4) + (t * (3.8 / 110))))^(3))) + 2)", parameter: { min: 0, max: 110 }, appearance: "primary" },
           ],
         }}
       />
@@ -397,12 +363,7 @@ End behavior: Falls left (<InlineMath math="\swarrow" />), Rises right (<InlineM
           frame: { kind: "cartesian", x: { min: -1, max: 1.5 }, y: { min: -3, max: 3.5 } },
           view: { kind: "fit", padding: 0.2 },
           objects: [
-            { id: "s1", kind: "polyline", vertices: Array.from({ length: 301 }, (_, pointIndex) => {
-                    const i = pointIndex / 4 + 0;
-                    const x = -0.75 + i * (1.9 / 75);
-                    const y = 25 * x ** 5 - 20 * x ** 4 - 26 * x ** 3 + 12 * x ** 2 + 9 * x - 1;
-                    return { x, y, z: 0 };
-                  }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+            { id: "s1", kind: "parametric", x: "((-0.75) + (((t / 4) + 0) * (1.9 / 75)))", y: "((((((25 * (((-0.75) + (((t / 4) + 0) * (1.9 / 75))))^(5)) - (20 * (((-0.75) + (((t / 4) + 0) * (1.9 / 75))))^(4))) - (26 * (((-0.75) + (((t / 4) + 0) * (1.9 / 75))))^(3))) + (12 * (((-0.75) + (((t / 4) + 0) * (1.9 / 75))))^(2))) + (9 * ((-0.75) + (((t / 4) + 0) * (1.9 / 75))))) - 1)", parameter: { min: 0, max: 300 }, appearance: "primary" },
           ],
         }}
       />

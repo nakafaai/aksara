@@ -29,40 +29,11 @@ A chord is a <Highlight>line segment with both endpoints on a circle</Highlight>
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const angle1 = Math.PI / 6;
-        const angle2 = Math.PI / 3;
-        return [
-          { x: 3 * Math.cos(angle1), y: 3 * Math.sin(angle1), z: 0 },
-          { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
-        const angle1 = (2 * Math.PI) / 3;
-        const angle2 = (5 * Math.PI) / 6;
-        return [
-          { x: 3 * Math.cos(angle1), y: 3 * Math.sin(angle1), z: 0 },
-          { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
-      { id: "s5", kind: "polyline", vertices: ((() => {
-        const angle1 = (7 * Math.PI) / 6;
-        const angle2 = (3 * Math.PI) / 2;
-        return [
-          { x: 3 * Math.cos(angle1), y: 3 * Math.sin(angle1), z: 0 },
-          { x: 3 * Math.cos(angle2), y: 3 * Math.sin(angle2), z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2.6, y: 1.5 }, { x: 1.5, y: 2.6 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -1.5, y: 2.6 }, { x: -2.6, y: 1.5 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -2.6, y: -1.5 }, { x: 0, y: -3 }], appearance: "reference" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
@@ -103,32 +74,10 @@ Within the **same circle**, chord length and perpendicular distance from the cen
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const y = 2;
-        const x = Math.sqrt(16 - y * y);
-        return [
-          { x: -x, y: y, z: 0 },
-          { x: x, y: y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
-        const y = -2;
-        const x = Math.sqrt(16 - y * y);
-        return [
-          { x: -x, y: y, z: 0 },
-          { x: x, y: y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.46, y: 2 }, { x: 3.46, y: 2 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3.46, y: -2 }, { x: 3.46, y: -2 }], appearance: "highlight" },
       { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 2 }], appearance: "reference" },
       { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: -2 }], appearance: "reference" },
     ],
@@ -164,45 +113,11 @@ A line drawn from the center of a circle perpendicular to a chord divides the ch
     frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 5 * Math.cos(angle),
-          y: 5 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 5, y: -0.09 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(5 * cos(((t * pi) / 180)))", y: "(5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const angle1 = Math.PI / 4;
-        const angle2 = (3 * Math.PI) / 4;
-        return [
-          { x: 5 * Math.cos(angle1), y: 5 * Math.sin(angle1), z: 0 },
-          { x: 5 * Math.cos(angle2), y: 5 * Math.sin(angle2), z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
-        const chordMidX =
-          (5 * Math.cos(Math.PI / 4) + 5 * Math.cos((3 * Math.PI) / 4)) / 2;
-        const chordMidY =
-          (5 * Math.sin(Math.PI / 4) + 5 * Math.sin((3 * Math.PI) / 4)) / 2;
-        return [
-          { x: 0, y: 0, z: 0 },
-          { x: chordMidX, y: chordMidY, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
-      { id: "s5", kind: "polyline", vertices: ((() => {
-        const chordMidX =
-          (5 * Math.cos(Math.PI / 4) + 5 * Math.cos((3 * Math.PI) / 4)) / 2;
-        const chordMidY =
-          (5 * Math.sin(Math.PI / 4) + 5 * Math.sin((3 * Math.PI) / 4)) / 2;
-        return [
-          { x: chordMidX - 0.3, y: chordMidY, z: 0 },
-          { x: chordMidX - 0.3, y: chordMidY - 0.3, z: 0 },
-          { x: chordMidX, y: chordMidY - 0.3, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3.54, y: 3.54 }, { x: -3.54, y: 3.54 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3.54 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -0.3, y: 3.54 }, { x: -0.3, y: 3.24 }, { x: 0, y: 3.24 }], appearance: "reference" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
@@ -244,51 +159,12 @@ As the smaller central angle <InlineMath math="\theta" /> increases from <Inline
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const angle1 = Math.PI / 6;
-        const angle2 = (2 * Math.PI) / 3;
-        return [
-          { x: 4 * Math.cos(angle1), y: 4 * Math.sin(angle1), z: 0 },
-          { x: 4 * Math.cos(angle2), y: 4 * Math.sin(angle2), z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
-        const angle1 = Math.PI / 6;
-        return [
-          { x: 0, y: 0, z: 0 },
-          { x: 4 * Math.cos(angle1), y: 4 * Math.sin(angle1), z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
-      { id: "s5", kind: "polyline", vertices: ((() => {
-        const angle2 = (2 * Math.PI) / 3;
-        return [
-          { x: 0, y: 0, z: 0 },
-          { x: 4 * Math.cos(angle2), y: 4 * Math.sin(angle2), z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
-      { id: "s6", kind: "polyline", vertices: ((() => {
-        const startAngle = Math.PI / 6;
-        const endAngle = (2 * Math.PI) / 3;
-        const numPoints = 20;
-        return Array.from({ length: numPoints + 1 }, (_, i) => {
-          const angle = startAngle + (endAngle - startAngle) * (i / numPoints);
-          return {
-            x: 1.5 * Math.cos(angle),
-            y: 1.5 * Math.sin(angle),
-            z: 0,
-          };
-        });
-      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3.46, y: 2 }, { x: -2, y: 3.46 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3.46, y: 2 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -2, y: 3.46 }], appearance: "highlight" },
+      { id: "s6", kind: "parametric", x: "(1.5 * cos(((pi / 6) + ((((2 * pi) / 3) - (pi / 6)) * (t / 20)))))", y: "(1.5 * sin(((pi / 6) + ((((2 * pi) / 3) - (pi / 6)) * (t / 20)))))", parameter: { min: 0, max: 20 }, appearance: "reference" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
@@ -378,46 +254,11 @@ Inscribed angles that subtend the same chord have equal measures when their vert
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: ((() => {
-        const angleA = 0;
-        const angleB = Math.PI / 2;
-        return [
-          { x: 4 * Math.cos(angleA), y: 4 * Math.sin(angleA), z: 0 },
-          { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const angleC = (3 * Math.PI) / 4;
-        const angleA = 0;
-        const angleB = Math.PI / 2;
-        return [
-          { x: 4 * Math.cos(angleC), y: 4 * Math.sin(angleC), z: 0 },
-          { x: 4 * Math.cos(angleA), y: 4 * Math.sin(angleA), z: 0 },
-          { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
-          { x: 4 * Math.cos(angleC), y: 4 * Math.sin(angleC), z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "answer" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -2.83, y: 2.83 }, { x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
       { id: "s3-close", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2.83, y: 2.83 }, appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
-        const angleD = (5 * Math.PI) / 4;
-        const angleA = 0;
-        const angleB = Math.PI / 2;
-        return [
-          { x: 4 * Math.cos(angleD), y: 4 * Math.sin(angleD), z: 0 },
-          { x: 4 * Math.cos(angleA), y: 4 * Math.sin(angleA), z: 0 },
-          { x: 4 * Math.cos(angleB), y: 4 * Math.sin(angleB), z: 0 },
-          { x: 4 * Math.cos(angleD), y: 4 * Math.sin(angleD), z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "highlight" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -2.83, y: -2.83 }, { x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "highlight" },
       { id: "s4-close", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2.83, y: -2.83 }, appearance: "highlight" },
     ],
     labels: [
@@ -450,24 +291,9 @@ The apothem of a chord is the perpendicular segment from the center of the circl
     frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 5 * Math.cos(angle),
-          y: 5 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 5, y: -0.09 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(5 * cos(((t * pi) / 180)))", y: "(5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const y = 3;
-        const x = Math.sqrt(25 - y * y);
-        return [
-          { x: -x, y: y, z: 0 },
-          { x: x, y: y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 3 }, { x: 4, y: 3 }], appearance: "answer" },
       { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3 }], appearance: "highlight" },
       { id: "s4-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
       { id: "s4-p1", kind: "point", at: { x: 0, y: 3 }, appearance: "highlight" },
@@ -512,65 +338,11 @@ Two parallel chords cut off **equal connecting arcs** on opposite sides of the c
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.07 }, to: { x: 4, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: ((() => {
-        const y = 2;
-        const x = Math.sqrt(16 - y * y);
-        return [
-          { x: -x, y: y, z: 0 },
-          { x: x, y: y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const y = -2;
-        const x = Math.sqrt(16 - y * y);
-        return [
-          { x: -x, y: y, z: 0 },
-          { x: x, y: y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
-        const y1 = 2;
-        const x1 = Math.sqrt(16 - y1 * y1);
-        const angle1 = Math.atan2(y1, -x1);
-        const y2 = -2;
-        const x2 = Math.sqrt(16 - y2 * y2);
-        const angle2 = Math.atan2(y2, -x2) + 2 * Math.PI;
-        const numPoints = 20;
-        return Array.from({ length: numPoints + 1 }, (_, i) => {
-          const angle = angle1 + (angle2 - angle1) * (i / numPoints);
-          return {
-            x: 4 * Math.cos(angle),
-            y: 4 * Math.sin(angle),
-            z: 0,
-          };
-        });
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
-      { id: "s5", kind: "polyline", vertices: ((() => {
-        const y1 = 2;
-        const x1 = Math.sqrt(16 - y1 * y1);
-        const angle1 = Math.atan2(y1, x1);
-        const y2 = -2;
-        const x2 = Math.sqrt(16 - y2 * y2);
-        const angle2 = Math.atan2(y2, x2);
-        const numPoints = 20;
-        return Array.from({ length: numPoints + 1 }, (_, i) => {
-          const angle = angle1 + (angle2 - angle1) * (i / numPoints);
-          return {
-            x: 4 * Math.cos(angle),
-            y: 4 * Math.sin(angle),
-            z: 0,
-          };
-        });
-      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -3.46, y: 2 }, { x: 3.46, y: 2 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.46, y: -2 }, { x: 3.46, y: -2 }], appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(4 * cos(((2 * atan((2) / (sqrt(((-sqrt((16 - (2 * 2)))))^2 + (2)^2) + ((-sqrt((16 - (2 * 2)))))))) + ((((2 * atan(((-2)) / (sqrt(((-sqrt((16 - ((-2) * (-2))))))^2 + ((-2))^2) + ((-sqrt((16 - ((-2) * (-2))))))))) + (2 * pi)) - (2 * atan((2) / (sqrt(((-sqrt((16 - (2 * 2)))))^2 + (2)^2) + ((-sqrt((16 - (2 * 2))))))))) * (t / 20)))))", y: "(4 * sin(((2 * atan((2) / (sqrt(((-sqrt((16 - (2 * 2)))))^2 + (2)^2) + ((-sqrt((16 - (2 * 2)))))))) + ((((2 * atan(((-2)) / (sqrt(((-sqrt((16 - ((-2) * (-2))))))^2 + ((-2))^2) + ((-sqrt((16 - ((-2) * (-2))))))))) + (2 * pi)) - (2 * atan((2) / (sqrt(((-sqrt((16 - (2 * 2)))))^2 + (2)^2) + ((-sqrt((16 - (2 * 2))))))))) * (t / 20)))))", parameter: { min: 0, max: 20 }, appearance: "highlight" },
+      { id: "s5", kind: "parametric", x: "(4 * cos(((2 * atan((2) / (sqrt((sqrt((16 - (2 * 2))))^2 + (2)^2) + (sqrt((16 - (2 * 2))))))) + (((2 * atan(((-2)) / (sqrt((sqrt((16 - ((-2) * (-2)))))^2 + ((-2))^2) + (sqrt((16 - ((-2) * (-2)))))))) - (2 * atan((2) / (sqrt((sqrt((16 - (2 * 2))))^2 + (2)^2) + (sqrt((16 - (2 * 2)))))))) * (t / 20)))))", y: "(4 * sin(((2 * atan((2) / (sqrt((sqrt((16 - (2 * 2))))^2 + (2)^2) + (sqrt((16 - (2 * 2))))))) + (((2 * atan(((-2)) / (sqrt((sqrt((16 - ((-2) * (-2)))))^2 + ((-2))^2) + (sqrt((16 - ((-2) * (-2)))))))) - (2 * atan((2) / (sqrt((sqrt((16 - (2 * 2))))^2 + (2)^2) + (sqrt((16 - (2 * 2)))))))) * (t / 20)))))", parameter: { min: 0, max: 20 }, appearance: "reference" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: -3.46, y: 2 }, placement: "above-left" },

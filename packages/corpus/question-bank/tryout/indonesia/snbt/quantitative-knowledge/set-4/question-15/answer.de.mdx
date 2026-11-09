@@ -13,14 +13,11 @@ Der Graph von <InlineMath math="y=\lvert x-2\rvert" /> ist V-förmig mit dem Sch
     frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: -0.5, max: 5.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 101 }, (_, i) => {
-        const x = -3 + i / 10;
-        return { x, y: Math.abs(x - 2), z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "((-3) + (t / 10))", y: "abs((((-3) + (t / 10)) - 2))", parameter: { min: 0, max: 100 }, appearance: "primary" },
       { id: "s1-p10", kind: "point", at: { x: -2, y: 4 }, appearance: "primary" },
       { id: "s1-p50", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
       { id: "s1-p90", kind: "point", at: { x: 6, y: 4 }, appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => ({ x: -3 + 10 * i, y: 4, z: 0 })).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
+      { id: "s2", kind: "parametric", x: "((-3) + (10 * t))", y: "4", parameter: { min: 0, max: 1 }, appearance: "secondary" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: -2, y: 4 }, placement: "above-left" },

@@ -194,16 +194,8 @@ So, the equation of the image of the line <InlineMath math="y = 2x + 3" /> after
     view: { kind: "fit", padding: 0.2 },
     objects: [
       { id: "s1", kind: "polyline", vertices: [{ x: -5, y: -5 }, { x: 5, y: 5 }], appearance: "primary" },
-      { id: "s2", kind: "polyline", vertices: Array.from({ length: 7 }, (_, pointIndex) => {
-        const i = pointIndex - 2;
-        const xVal = i - 5;
-        return { x: xVal, y: 2 * xVal + 3, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: Array.from({ length: 11 }, (_, pointIndex) => {
-        const i = pointIndex - 12;
-        const xVal = i - 5;
-        return { x: xVal, y: (1 / 2) * xVal - 3 / 2, z: 0 };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s2", kind: "parametric", x: "((t - 2) - 5)", y: "((2 * ((t - 2) - 5)) + 3)", parameter: { min: 0, max: 6 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((t - 12) - 5)", y: "(((1 / 2) * ((t - 12) - 5)) - (3 / 2))", parameter: { min: 0, max: 10 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 5, y: 5 }, placement: "above-left" },

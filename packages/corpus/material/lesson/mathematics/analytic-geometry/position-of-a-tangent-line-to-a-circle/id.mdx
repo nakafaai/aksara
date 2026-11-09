@@ -35,75 +35,13 @@ Mulailah dengan memastikan bahwa titik singgung yang diberikan benar-benar berad
     frame: { kind: "cartesian", x: { min: -6.5, max: 7 }, y: { min: -5, max: 6.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 3;
-        return {
-          x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 3, y: -0.05 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s3", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
-        const points = Array.from({ length: 2 }, (_, i) => {
-          const angle = Math.PI / 4;
-          const radius = 3;
-          const tangentPoint = {
-            x: radius * Math.cos(angle),
-            y: radius * Math.sin(angle),
-          };
-          const radiusSlope = tangentPoint.y / tangentPoint.x;
-          const tangentSlope = -1 / radiusSlope;
-
-          const xRange = 4;
-          return {
-            x: tangentPoint.x + (i - 0.5) * xRange,
-            y: tangentPoint.y + tangentSlope * (i - 0.5) * xRange,
-            z: 0,
-          };
-        });
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.35,
-          y: (points[1].y - points[0].y) * 0.35,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
-      { id: "s5", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const angle = Math.PI / 4;
-        const radius = 3;
-        return {
-          x: i * radius * Math.cos(angle),
-          y: i * radius * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
-      { id: "s6", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -5;
-        const xMax = 5;
-        const y = 0;
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "warning" },
-      { id: "s7", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const yMin = -4;
-        const yMax = 4;
-        const x = 0;
-        return {
-          x: x,
-          y: yMin + i * (yMax - yMin),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "warning" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -1.28, y: 5.52 }, { x: 0.12, y: 4.12 }, { x: 4.12, y: 0.12 }, { x: 5.52, y: -1.28 }], appearance: "highlight" },
+      { id: "s5", kind: "parametric", x: "((t * 3) * cos((pi / 4)))", y: "((t * 3) * sin((pi / 4)))", parameter: { min: 0, max: 1 }, appearance: "reference" },
+      { id: "s6", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "warning" },
+      { id: "s7", kind: "parametric", x: "0", y: "((-4) + (t * (4 - (-4))))", parameter: { min: 0, max: 1 }, appearance: "warning" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
@@ -151,81 +89,12 @@ Jika titik singgung belum diketahui tetapi gradien diberikan, titik potong sumbu
     frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -10.5, max: 10.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 2.5;
-        return {
-          x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 2.5, y: -0.04 }, to: { x: 2.5, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(2.5 * cos(((t * pi) / 180)))", y: "(2.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: ((() => {
-        const points = Array.from({ length: 2 }, (_, i) => {
-          const m = 1; 
-          const r = 2.5;
-          const c1 = r * Math.sqrt(1 + m * m);
-          const xRange = 6;
-          return {
-            x: -xRange / 2 + i * xRange,
-            y: m * (-xRange / 2 + i * xRange) + c1,
-            z: 0,
-          };
-        });
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.35,
-          y: (points[1].y - points[0].y) * 0.35,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s4", kind: "polyline", vertices: ((() => {
-        const points = Array.from({ length: 2 }, (_, i) => {
-          const m = 1; 
-          const r = 2.5;
-          const c2 = -r * Math.sqrt(1 + m * m);
-          const xRange = 6;
-          return {
-            x: -xRange / 2 + i * xRange,
-            y: m * (-xRange / 2 + i * xRange) + c2,
-            z: 0,
-          };
-        });
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.35,
-          y: (points[1].y - points[0].y) * 0.35,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
-      { id: "s5", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -5;
-        const xMax = 5;
-        const y = 0;
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
-      { id: "s6", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const yMin = -4;
-        const yMax = 4;
-        const x = 0;
-        return {
-          x: x,
-          y: yMin + i * (yMax - yMin),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "reference" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -5.1, y: -1.56 }, { x: -3, y: 0.54 }, { x: 3, y: 6.54 }, { x: 5.1, y: 8.64 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -5.1, y: -8.64 }, { x: -3, y: -6.54 }, { x: 3, y: -0.54 }, { x: 5.1, y: 1.56 }], appearance: "highlight" },
+      { id: "s5", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "reference" },
+      { id: "s6", kind: "parametric", x: "0", y: "((-4) + (t * (4 - (-4))))", parameter: { min: 0, max: 1 }, appearance: "reference" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
@@ -281,94 +150,15 @@ Sebuah titik di luar lingkaran menentukan tepat **dua garis singgung**. Kedua ti
     frame: { kind: "cartesian", x: { min: -4, max: 6.5 }, y: { min: -3, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 2;
-        return {
-          x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 2, y: -0.03 }, to: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(2 * cos(((t * pi) / 180)))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s3", kind: "point", at: { x: 4, y: 2 }, appearance: "answer" },
       { id: "s4", kind: "point", at: { x: 1.6, y: -1.2 }, appearance: "highlight" },
       { id: "s5", kind: "point", at: { x: 0, y: 2 }, appearance: "highlight" },
-      { id: "s6", kind: "polyline", vertices: ((() => {
-        const points = Array.from({ length: 2 }, (_, i) => {
-          
-          const px = 4,
-            py = 2,
-            r = 2;
-          const d = Math.sqrt(px * px + py * py);
-          const angle1 = Math.atan2(py, px) - Math.acos(r / d);
-          const t1x = r * Math.cos(angle1);
-          const t1y = r * Math.sin(angle1);
-
-          return {
-            x: i === 0 ? px : t1x,
-            y: i === 0 ? py : t1y,
-            z: 0,
-          };
-        });
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.35,
-          y: (points[1].y - points[0].y) * 0.35,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "reference" },
-      { id: "s7", kind: "polyline", vertices: ((() => {
-        const points = Array.from({ length: 2 }, (_, i) => {
-          
-          const px = 4,
-            py = 2,
-            r = 2;
-          const d = Math.sqrt(px * px + py * py);
-          const angle2 = Math.atan2(py, px) + Math.acos(r / d);
-          const t2x = r * Math.cos(angle2);
-          const t2y = r * Math.sin(angle2);
-
-          return {
-            x: i === 0 ? px : t2x,
-            y: i === 0 ? py : t2y,
-            z: 0,
-          };
-        });
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.35,
-          y: (points[1].y - points[0].y) * 0.35,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })()).map(({ x, y }) => ({ x, y })), appearance: "warning" },
-      { id: "s8", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -3;
-        const xMax = 5;
-        const y = 0;
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s9", kind: "polyline", vertices: Array.from({ length: 2 }, (_, i) => {
-        const yMin = -2;
-        const yMax = 4;
-        const x = 0;
-        return {
-          x: x,
-          y: yMin + i * (yMax - yMin),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 4.84, y: 3.12 }, { x: 4, y: 2 }, { x: 1.6, y: -1.2 }, { x: 0.76, y: -2.32 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 5.4, y: 2 }, { x: 4, y: 2 }, { x: 0, y: 2 }, { x: -1.4, y: 2 }], appearance: "warning" },
+      { id: "s8", kind: "parametric", x: "((-3) + (t * (5 - (-3))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "answer" },
+      { id: "s9", kind: "parametric", x: "0", y: "((-2) + (t * (4 - (-2))))", parameter: { min: 0, max: 1 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },

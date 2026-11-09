@@ -30,27 +30,10 @@ The <InlineMath math="45^\circ" /> sector diagram uses radius <InlineMath math="
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
-        const i = sampleIndex / 4;
-        const angle = (i * 2 * Math.PI) / 60;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.1 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((((t / 4) * 2) * pi) / 60)))", y: "(4 * sin(((((t / 4) * 2) * pi) / 60)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }], appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 211 }, (_, sampleIndex) => {
-        const i = sampleIndex / 14;
-        const angle = (i * Math.PI / 4) / 15;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(4 * cos(((((t / 14) * pi) / 4) / 15)))", y: "(4 * sin(((((t / 14) * pi) / 4) / 15)))", parameter: { min: 0, max: 210 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s4", at: { x: 3.65, y: 1.63 }, placement: "above-right" },
@@ -77,27 +60,10 @@ On one circle, the ratio of two arcs equals the ratio of their sectors and the r
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
-        const i = sampleIndex / 4;
-        const angle = (i * 2 * Math.PI) / 60;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.1 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((((t / 4) * 2) * pi) / 60)))", y: "(4 * sin(((((t / 4) * 2) * pi) / 60)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 4 }], appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 211 }, (_, sampleIndex) => {
-        const i = sampleIndex / 7;
-        const angle = (i * Math.PI / 2) / 30;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(4 * cos(((((t / 7) * pi) / 2) / 30)))", y: "(4 * sin(((((t / 7) * pi) / 2) / 30)))", parameter: { min: 0, max: 210 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s4", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
@@ -116,26 +82,9 @@ On one circle, the ratio of two arcs equals the ratio of their sectors and the r
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
-        const i = sampleIndex / 4;
-        const angle = (i * 2 * Math.PI) / 60;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.1 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((((t / 4) * 2) * pi) / 60)))", y: "(4 * sin(((((t / 4) * 2) * pi) / 60)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
-      { id: "s3", kind: "polyline", vertices: Array.from({ length: 211 }, (_, sampleIndex) => {
-        const i = sampleIndex / 7;
-        const angle = (i * Math.PI) / 30;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s3", kind: "parametric", x: "(4 * cos((((t / 7) * pi) / 30)))", y: "(4 * sin((((t / 7) * pi) / 30)))", parameter: { min: 0, max: 210 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s3", at: { x: 0, y: 4 }, placement: "below" },
@@ -154,27 +103,10 @@ On one circle, the ratio of two arcs equals the ratio of their sectors and the r
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 241 }, (_, sampleIndex) => {
-        const i = sampleIndex / 4;
-        const angle = (i * 2 * Math.PI) / 60;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })).slice(0, -1), appearance: "primary" },
-      { id: "s1-close", kind: "segment", from: { x: 4, y: -0.1 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(4 * cos(((((t / 4) * 2) * pi) / 60)))", y: "(4 * sin(((((t / 4) * 2) * pi) / 60)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(2 * Math.PI / 3), y: 4 * Math.sin(2 * Math.PI / 3) }], appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = (i * 2 * Math.PI / 3) / 40;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(4 * cos((((((t / 5) * 2) * pi) / 3) / 40)))", y: "(4 * sin((((((t / 5) * 2) * pi) / 3) / 40)))", parameter: { min: 0, max: 200 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s4", at: { x: 2, y: 3.46 }, placement: "above-left" },
@@ -224,36 +156,11 @@ At noon on the summer solstice, the Sun is taken to be straight above Syene. In 
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -2, max: 3 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "polyline", vertices: Array.from({ length: 217 }, (_, sampleIndex) => {
-        const i = sampleIndex / 3;
-        const angle = (-15 + (i * 45) / 72) * Math.PI / 180;
-        return {
-          x: 5 * Math.cos(angle),
-          y: 5 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "primary" },
+      { id: "s1", kind: "parametric", x: "(5 * cos(((((-15) + (((t / 3) * 45) / 72)) * pi) / 180)))", y: "(5 * sin(((((-15) + (((t / 3) * 45) / 72)) * pi) / 180)))", parameter: { min: 0, max: 216 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }], appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 5 * Math.cos((7.2 * Math.PI) / 180), y: 5 * Math.sin((7.2 * Math.PI) / 180) }], appearance: "secondary" },
-      { id: "s4", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
-        const i = sampleIndex / 20;
-        const angle = (i * (7.2 * Math.PI) / 180) / 10;
-        return {
-          x: 5 * Math.cos(angle),
-          y: 5 * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "answer" },
-      { id: "s5", kind: "polyline", vertices: Array.from({ length: 201 }, (_, sampleIndex) => {
-        const i = sampleIndex / 20;
-        const angle = (i * (7.2 * Math.PI) / 180) / 10;
-        const radius = 1.5;
-        return {
-          x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle),
-          z: 0,
-        };
-      }).map(({ x, y }) => ({ x, y })), appearance: "highlight" },
+      { id: "s4", kind: "parametric", x: "(5 * cos(((((t / 20) * (7.2 * pi)) / 180) / 10)))", y: "(5 * sin(((((t / 20) * (7.2 * pi)) / 180) / 10)))", parameter: { min: 0, max: 200 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(1.5 * cos(((((t / 20) * (7.2 * pi)) / 180) / 10)))", y: "(1.5 * sin(((((t / 20) * (7.2 * pi)) / 180) / 10)))", parameter: { min: 0, max: 200 }, appearance: "highlight" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 4.33, y: 2.5 }, placement: "above-left" },
