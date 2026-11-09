@@ -21,6 +21,7 @@ import {
   MATH_POLYLINE_MESSAGE,
   MATH_RAY_MESSAGE,
   MATH_SEGMENT_MESSAGE,
+  MATH_VECTOR_MESSAGE,
   MathObjectFields,
   mathLabelAnchorFields,
 } from "#contracts/math/object";
@@ -82,6 +83,23 @@ const SpaceSegmentObjectSchema = Schema.Struct({
   )
 );
 
+/**
+ * An arrow from its tail to its head, such as a displacement, a force, or a
+ * position vector: a segment that ends in an arrowhead.
+ */
+const SpaceVectorObjectSchema = Schema.Struct({
+  ...MathObjectFields,
+  from: SpacePointSchema,
+  kind: Schema.Literal("vector"),
+  to: SpacePointSchema,
+}).pipe(
+  Schema.check(
+    Schema.makeFilter(({ from, to }) => !sameSpacePoint(from, to), {
+      message: MATH_VECTOR_MESSAGE,
+    })
+  )
+);
+
 const SpacePolylineObjectSchema = Schema.Struct({
   ...MathObjectFields,
   kind: Schema.Literal("polyline"),
@@ -137,6 +155,7 @@ export const SpaceMathObjectSchema = Schema.Union([
   SpacePolylineObjectSchema,
   SpaceRayObjectSchema,
   SpaceSegmentObjectSchema,
+  SpaceVectorObjectSchema,
 ]);
 export type SpaceMathObject = typeof SpaceMathObjectSchema.Type;
 
