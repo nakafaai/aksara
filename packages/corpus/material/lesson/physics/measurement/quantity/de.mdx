@@ -48,6 +48,32 @@ v &= \frac{s}{t} \\
 \dim v &= \frac{\mathrm{L}}{\mathrm{T}} = \mathrm{L}\mathrm{T}^{-1}
 \end{aligned}" />
 
+Das Tempo setzt sich aus zwei Basisgrößen zusammen, <InlineMath math="v=s/t" />, also ist seine Einheit <InlineMath math="\text{m/s}=\text{m s}^{-1}" /> und seine Dimension <InlineMath math="\mathrm{LT^{-1}}" />. Im Weg-Zeit-Diagramm ist es die Steigung. Zoom auf jedes kleine Dreieck.
+
+<MathVisual
+  title={<>Tempo aus Basisgrößen</>}
+  description={<>Weg über der Zeit bei 2 m/s (violett) und 5 m/s (orange). Waagerecht: Sekunden. Senkrecht: Ein Gitterschritt entspricht 2 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "slow", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "fast", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: 5 } },
+      { id: "slow-step", kind: "polyline", appearance: "secondary", vertices: [{ x: 2, y: 2 }, { x: 3, y: 2 }, { x: 3, y: 3 }] },
+      { id: "fast-step", kind: "polyline", appearance: "primary", vertices: [{ x: 1, y: 2.5 }, { x: 1.4, y: 2.5 }, { x: 1.4, y: 3.5 }] },
+    ],
+    labels: [
+      { key: "slow", objectId: "slow-step", at: { x: 3, y: 2.5 }, placement: "right" },
+      { key: "fast", objectId: "fast-step", at: { x: 1.4, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    slow: <InlineMath math="v=\frac{2\text{ m}}{1\text{ s}}=2\text{ m/s}" />,
+    fast: <InlineMath math="v=\frac{2\text{ m}}{0{,}4\text{ s}}=5\text{ m/s}" />,
+  }}
+/>
+
 ## Dimensionen und Formelprüfung
 
 Eine Dimension zeigt in kompakter Form, <Highlight>aus welchen Grundgrößen eine Größe aufgebaut ist</Highlight>. Sie ersetzt keine Einheit, hilft aber dabei, Formeln auf Plausibilität zu prüfen.
@@ -64,6 +90,36 @@ Die Fläche eines Schreibtisches und die eines Papierblatts können unterschiedl
 
 Ebenso können Länge, Breite, Höhe, Durchmesser, Radius, Abstand und Verschiebung alle in Längeneinheiten gemessen werden. Ihre gemeinsame Dimension ist <InlineMath math="\mathrm{L}" />.
 
+Eine abgeleitete Größe entsteht aus Basisgrößen. Das Volumen multipliziert drei Längen, <InlineMath math="V=lwh" />, also ist seine Dimension <InlineMath math="\mathrm{L^3}" />. Die Kiste fasst sechs Würfel mit <InlineMath math="0{,}10\text{ m}" /> Kantenlänge, drei der Länge nach, zwei in der Breite und einen nach oben, wie die türkise Dreierreihe obendrauf. Dreh die Kiste.
+
+<MathVisual
+  title={<>Ein Volumen aus drei Längen</>}
+  description={<>Eine Kiste von 0,30 m mal 0,20 m mal 0,10 m (orange) und eine Reihe Würfel mit 0,10 m Kante obendrauf (türkis).</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: 0, max: 2.5 }, z: { min: -0.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 6, y: 4, z: 6 }, target: { x: 1.5, y: 0.8, z: 1 } },
+    objects: [
+      { id: "box", kind: "cuboid", appearance: "primary", center: { x: 1.5, y: 0.5, z: 1 }, size: { length: 3, height: 1, width: 2 } },
+      { id: "cube-0", kind: "cuboid", appearance: "construction", center: { x: 0.5, y: 1.5, z: 0.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "cube-1", kind: "cuboid", appearance: "construction", center: { x: 1.5, y: 1.5, z: 0.5 }, size: { length: 1, height: 1, width: 1 } },
+      { id: "cube-2", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: 1.5, z: 0.5 }, size: { length: 1, height: 1, width: 1 } },
+    ],
+    labels: [
+      { key: "l", objectId: "box", at: { x: 1.5, y: 0, z: 2 }, placement: "below" },
+      { key: "w", objectId: "box", at: { x: 3, y: 0, z: 1 }, placement: "right" },
+      { key: "h", objectId: "box", at: { x: 3, y: 0.5, z: 2 }, placement: "right" },
+      { key: "v", objectId: "cube-1", at: { x: 1.5, y: 2, z: 0.5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    l: <InlineMath math="l=0{,}30\text{ m}" />,
+    w: <InlineMath math="w=0{,}20\text{ m}" />,
+    h: <InlineMath math="h=0{,}10\text{ m}" />,
+    v: <InlineMath math="V=lwh=0{,}006\text{ m}^3:\ \mathrm{L^3}" />,
+  }}
+/>
+
 ## Die Fläche eines Papierblatts berechnen
 
 Ein Blatt Papier ist <InlineMath math="0{,}30 \text{ m}" /> lang und <InlineMath math="0{,}20 \text{ m}" /> breit. Seine Fläche beträgt:
@@ -73,6 +129,34 @@ A &= l \times w \\
 &= 0{,}30 \text{ m} \times 0{,}20 \text{ m} \\
 &= 0{,}060 \text{ m}^2
 \end{aligned}" />
+
+Die Szene unten zeichnet das Blatt mit einem Gitterschritt pro <InlineMath math="0{,}10\text{ m}" />. Zähl die kleinen Quadrate: <InlineMath math="3" /> entlang der Länge und <InlineMath math="2" /> entlang der Breite ergeben <InlineMath math="6" /> Quadrate. Jedes Quadrat hat <InlineMath math="0{,}10\text{ m}\times0{,}10\text{ m}=0{,}010\text{ m}^2" />, also ergeben sechs davon <InlineMath math="0{,}060\text{ m}^2" />, genau wie die Formel. Deshalb ist die Fläche eine Größe, die aus zwei Längen entsteht.
+
+<MathVisual
+  title={<>Fläche in Quadraten gezählt</>}
+  description={<>Das Blatt Papier mit einem Gitterschritt pro 0,10 m. Jedes kleine Quadrat hat <InlineMath math="0{,}010\text{ m}^2" /> Fläche.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 2.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "sheet", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 0, y: 2 }] },
+      { id: "col-1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 2 } },
+      { id: "col-2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 2 } },
+      { id: "row-1", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "length", objectId: "sheet", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "width", objectId: "sheet", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "count", objectId: "sheet", at: { x: 1.5, y: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    length: <InlineMath math="l=0{,}30\text{ m}" />,
+    width: <InlineMath math="w=0{,}20\text{ m}" />,
+    count: <InlineMath math="3\times2=6\text{ Quadrate}" />,
+  }}
+/>
 
 Der Wert <InlineMath math="0{,}060 \text{ m}^2" /> ist der Größenwert der Fläche. Weil die Fläche aus <InlineMath math="2" /> Längengrößen aufgebaut ist, gehört sie zu den **abgeleiteten Größen**.
 

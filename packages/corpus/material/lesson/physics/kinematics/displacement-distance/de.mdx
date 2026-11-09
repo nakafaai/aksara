@@ -96,6 +96,38 @@ Wenn ein Objekt eine Runde zurücklegt und zum Startpunkt zurückkehrt, ist die 
 
 Die Wegstrecke gibt somit die Länge des tatsächlich zurückgelegten Weges an, während die Verschiebung die gesamte Positionsänderung beschreibt.
 
+Drei Fahrten starten am selben Punkt. Bei der geraden ist die Strecke so groß wie die Verschiebung, der Umweg ist bei gleicher Verschiebung länger, und die Runde kommt mit Verschiebung null zurück. Zoom auf jeden Weg.
+
+<MathVisual
+  title={<>Drei Fahrten, ein Start</>}
+  description={<>Eine gerade Fahrt (türkis), ein Umweg (orange) und eine Runde zurück zum Start (violett).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -2.5, max: 2.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "straight", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "straight-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: 0 }, { x: 3.75, y: 0.125 }, { x: 3.75, y: -0.125 }] },
+      { id: "detour", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 2 }, { x: 4, y: 0 }] },
+      { id: "loop", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 1, y: -1.5 }, { x: 3, y: -1.5 }, { x: 2, y: -0.5 }] },
+      { id: "start", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "finish", kind: "point", appearance: "answer", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "straight", objectId: "straight", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "detour", objectId: "detour", at: { x: 2, y: 2 }, placement: "above" },
+      { key: "loop", objectId: "loop", at: { x: 2, y: -1.5 }, placement: "below" },
+      { key: "start", objectId: "start", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    straight: <InlineMath math="s=\lvert\Delta x\rvert=4\text{ m}" />,
+    detour: <InlineMath math="s=2\sqrt8\approx5{,}66\text{ m},\ \Delta x=4\text{ m}" />,
+    loop: <InlineMath math="s>0,\ \Delta x=0" />,
+    start: <>Start</>,
+  }}
+/>
+
 ## Wegstrecke und Verschiebung auf einer abgewinkelten Route
 
 Ein Schüler geht <InlineMath math="8 \text{ m}" /> nach Osten und dann <InlineMath math="6 \text{ m}" /> nach Norden. Die zurückgelegte Strecke beträgt:
@@ -111,3 +143,33 @@ Der Verschiebungsbetrag beträgt:
 \end{aligned}" />
 
 Die Wegstrecke beträgt <InlineMath math="14 \text{ m}" />, der Betrag der Verschiebung dagegen <InlineMath math="10 \text{ m}" />. Die Werte unterscheiden sich, weil der tatsächlich zurückgelegte Weg nicht mit der **geraden Verbindung vom Start zum Ziel** übereinstimmt.
+
+Dreh den Weg unten. Der orange und der violette Pfeil sind die Strecke, <InlineMath math="8+6=14\text{ m}" /> Weg. Der fuchsiafarbene Pfeil verbindet Start und Ziel direkt, seine Länge ist also die Verschiebung, <InlineMath math="10\text{ m}" />, aus dem rechtwinkligen Dreieck.
+
+<MathVisual
+  title={<>Strecke und Verschiebung mit Abbiegen</>}
+  description={<>8 m nach Osten, dann 6 m nach Norden, von oben gesehen. Ein Gitterschritt entspricht 2 m.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 1 }, z: { min: -3.5, max: 0.5 } },
+    view: { kind: "camera", position: { x: 2, y: 7, z: 5 }, target: { x: 2, y: 0, z: -1.5 } },
+    objects: [
+      { id: "east", kind: "segment", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 } },
+      { id: "east-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0, z: 0 }, { x: 3.75, y: 0, z: 0.125 }, { x: 3.75, y: 0, z: -0.125 }] },
+      { id: "north", kind: "segment", appearance: "secondary", from: { x: 4, y: 0, z: 0 }, to: { x: 4, y: 0, z: -3 } },
+      { id: "north-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 0, z: -3 }, { x: 4.125, y: 0, z: -2.75 }, { x: 3.875, y: 0, z: -2.75 }] },
+      { id: "straight", kind: "segment", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: -3 } },
+      { id: "straight-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 0, z: -3 }, { x: 4 - (0.25 * 4) / Math.hypot(4, -3) + ((0.25 / 2) * 3) / Math.hypot(4, -3), y: 0, z: -3 - (0.25 * -3) / Math.hypot(4, -3) + ((0.25 / 2) * 4) / Math.hypot(4, -3) }, { x: 4 - (0.25 * 4) / Math.hypot(4, -3) - ((0.25 / 2) * 3) / Math.hypot(4, -3), y: 0, z: -3 - (0.25 * -3) / Math.hypot(4, -3) - ((0.25 / 2) * 4) / Math.hypot(4, -3) }] },
+    ],
+    labels: [
+      { key: "east", objectId: "east", at: { x: 2, y: 0, z: 0 }, placement: "below" },
+      { key: "north", objectId: "north", at: { x: 4, y: 0, z: -1.5 }, placement: "right" },
+      { key: "straight", objectId: "straight", at: { x: 2, y: 0, z: -1.5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    east: <InlineMath math="8\text{ m}" />,
+    north: <InlineMath math="6\text{ m}" />,
+    straight: <InlineMath math="\sqrt{8^2+6^2}=10\text{ m}" />,
+  }}
+/>

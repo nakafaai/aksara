@@ -19,6 +19,29 @@ In this model, <InlineMath math="X\in\mathbb{R}^{m\times p}" /> is a fixed desig
 
 The second assumption is that <InlineMath math="X" /> has full column rank. Under these two assumptions, the observation vector <InlineMath math="y" /> follows <InlineMath math="\mathcal N(X\beta,\sigma^2I_m)" />. Its mean is <InlineMath math="X\beta" />, and its covariance matrix is <InlineMath math="\sigma^2I_m" />.
 
+Take the three observations from the weighted example at the end of this lesson, <InlineMath math="(0,1)" />, <InlineMath math="(1,2)" />, and <InlineMath math="(2,5)" />, with equal weights. Ordinary least squares gives <InlineMath math="\hat\beta=(X^TX)^{-1}X^Ty=(\tfrac23,2)" /> with residuals <InlineMath math="\tfrac13" />, <InlineMath math="-\tfrac23" />, and <InlineMath math="\tfrac13" />. In the model <InlineMath math="y=X\beta+\varepsilon" />, these residuals estimate the errors <InlineMath math="\varepsilon" />, and their squares add up to <InlineMath math="\tfrac23" />.
+
+<ScatterDiagram
+  title={<>The least-squares line <InlineMath math="y=\tfrac23+2t" /> and its residuals</>}
+  description={<>The three points <InlineMath math="(0,1)" />, <InlineMath math="(1,2)" />, and <InlineMath math="(2,5)" /> with the fitted line. The residual segments have lengths <InlineMath math="\tfrac13" />, <InlineMath math="\tfrac23" />, and <InlineMath math="\tfrac13" />, so the residual sum of squares is <InlineMath math="\tfrac23" />.</>}
+  xAxisLabel="Input value"
+  yAxisLabel="Response"
+  datasets={[
+    {
+      name: "Observations",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 1 },
+        { x: 1, y: 2 },
+        { x: 2, y: 5 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+  showResiduals
+/>
+
 ## Fisher Information and Estimator Covariance
 
 Up to a constant that does not depend on <InlineMath math="\beta" />, the log-likelihood is
@@ -51,6 +74,29 @@ The covariance is <Highlight>exactly the inverse Fisher information</Highlight> 
 The diagonal entry <InlineMath math="c_{jj}" /> is the variance of <InlineMath math="\hat\beta_j" />. An off-diagonal entry <InlineMath math="c_{jk}" /> measures how two coefficient estimates vary together, and their correlation is
 
 <BlockMath math="\rho_{jk}=\frac{c_{jk}}{\sqrt{c_{jj}c_{kk}}}" />
+
+For the same data, <InlineMath math="(X^TX)^{-1}=\tfrac16\begin{pmatrix}5&-3\\-3&3\end{pmatrix}" /> and <InlineMath math="\hat\sigma^2=\tfrac{2/3}{3-2}=\tfrac23" />. The estimator covariance <InlineMath math="\hat\sigma^2(X^TX)^{-1}" /> gives the standard errors <InlineMath math="\sqrt{5/9}\approx0.75" /> for the intercept and <InlineMath math="\sqrt{1/3}\approx0.58" /> for the slope.
+
+<MathVisual
+  title={<>Standard errors from <InlineMath math="\hat\sigma^2(X^TX)^{-1}" /></>}
+  description={<>The magenta point is <InlineMath math="\hat\beta" /> in the parameter plane, with the intercept across and the slope up. The violet segment reaches one intercept standard error to each side, and the teal segment one slope standard error.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.8 }, y: { min: 1.2, max: 2.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "intercept", kind: "segment", from: { x: 2 / 3 - Math.sqrt(5 / 9), y: 2 }, to: { x: 2 / 3 + Math.sqrt(5 / 9), y: 2 }, appearance: "secondary" },
+      { id: "slope", kind: "segment", from: { x: 2 / 3, y: 2 - Math.sqrt(1 / 3) }, to: { x: 2 / 3, y: 2 + Math.sqrt(1 / 3) }, appearance: "construction" },
+      { id: "estimate", kind: "point", at: { x: 2 / 3, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "estimate", objectId: "estimate", at: { x: 2 / 3, y: 2 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "estimate": <InlineMath math="\hat\beta=(\tfrac23,2)" />,
+  }}
+/>
 
 ## Confidence Intervals When the Variance Is Unknown
 
@@ -133,3 +179,33 @@ Solving the weighted normal equations gives
 </MathContainer>
 
 The weighting has a probabilistic meaning only if the variance model is defensible. Incorrect weights can produce misleading standard errors, and exact Gaussian confidence intervals also require the linear mean, covariance, and normal-error assumptions to be adequate.
+
+Compare the two lines for this example data. The gray bar at each point shows its standard deviation <InlineMath math="\sigma_i" />, which is <InlineMath math="1" />, <InlineMath math="1" />, and <InlineMath math="2" />. Ordinary least squares treats all three points equally and gives the amber line <InlineMath math="y=\tfrac23+2t" />. The weighted version gives the third point weight <InlineMath math="1/4" />, because its variance is four times larger, so the magenta line <InlineMath math="y=\tfrac79+\tfrac53t" /> is flatter and follows the first two points more closely.
+
+<MathVisual
+  title={<>Ordinary and weighted least-squares lines</>}
+  description={<>Violet points are the data <InlineMath math="(0,1),(1,2),(2,5)" /> with gray bars of length <InlineMath math="\pm\sigma_i" />. The amber line is ordinary least squares, the magenta line is the weighted fit.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.7, max: 2.7 }, y: { min: -1.2, max: 7.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "bar-0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 2 }, appearance: "reference" },
+      { id: "bar-1", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "bar-2", kind: "segment", from: { x: 2, y: 3 }, to: { x: 2, y: 7 }, appearance: "reference" },
+      { id: "data-0", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "data-1", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "data-2", kind: "point", at: { x: 2, y: 5 }, appearance: "secondary" },
+      { id: "ordinary", kind: "segment", from: { x: -0.5, y: 2 / 3 - 1 }, to: { x: 2.5, y: 2 / 3 + 5 }, appearance: "highlight" },
+      { id: "weighted", kind: "segment", from: { x: -0.5, y: 7 / 9 - 5 / 6 }, to: { x: 2.5, y: 7 / 9 + 25 / 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "ordinary", objectId: "ordinary", at: { x: 2.5, y: 2 / 3 + 5 }, placement: "above-left" },
+      { key: "weighted", objectId: "weighted", at: { x: 2.5, y: 7 / 9 + 25 / 6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "ordinary": <InlineMath math="y=\tfrac23+2t" />,
+    "weighted": <InlineMath math="y=\tfrac79+\tfrac53t" />,
+  }}
+/>

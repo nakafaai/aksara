@@ -271,6 +271,21 @@ print(f"Nilai x sekarang: {x}")`
   }]}
 />
 
+Operator matematika dasar memberi hasil yang berbeda untuk angka yang sama. Dengan `7` dan `2`, `/` memberi `3.5`, `//` memberi hasil bagi bulat `3`, `%` memberi sisa `1`, dan `**` memberi pangkat `49`.
+
+<BarChart
+  title={<>Empat operator pada <code>7</code> dan <code>2</code></>}
+  description={<>Setiap batang adalah hasil <code>7</code>, operator di bawahnya, lalu <code>2</code>. Hasil pembagian biasa adalah float, sedangkan tiga hasil lainnya bilangan bulat.</>}
+  yAxisLabel="Hasil"
+  data={[
+    { name: "/", value: 7 / 2 },
+    { name: "//", value: Math.floor(7 / 2) },
+    { name: "%", value: 7 % 2 },
+    { name: "**", value: 7 ** 2 },
+  ]}
+  chartConfig={{ value: { label: "Hasil", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Latihan Praktis
 
 Kerjakan latihan berikut untuk mempraktikkan **variabel, input, output, dan operasi dasar**. Tulis jawabanmu sendiri sebelum memeriksanya, karena latihan ini melatih langkah pengerjaan. Pembahasan mengikuti urutan soal yang sama.
@@ -411,3 +426,65 @@ else:
 - Kalkulator meminta dua angka dan satu operator, lalu menampilkan hasil operasi yang dipilih.
 - Konverter suhu menampilkan nilai Fahrenheit dan Kelvin dari input Celsius.
 - Profil mahasiswa menampilkan data yang dimasukkan, tahun masuk, perkiraan lulus, dan pesan sesuai semester.
+
+Tetapkan `number1 = 2` dan bayangkan kamu mencoba banyak nilai `number2` di kalkulator tadi. Setiap operator memberi grafik sendiri: `+` dan `-` adalah garis miring ke arah berlawanan, `*` adalah garis yang lebih curam, dan `/` memberi titik-titik magenta. Pembagian tidak punya titik di `number2 = 0`, karena Python menolak pembagian dengan nol dengan `ZeroDivisionError`, sedangkan semua garis lewat di situ tanpa masalah.
+
+<MathVisual
+  title={<>Empat operator kalkulator untuk <code>number1 = 2</code></>}
+  description={<>Setiap garis adalah hasil kalkulator saat <code>number2</code> berubah dan <code>number1</code> tetap <InlineMath math="2" />. Titik magenta adalah <code>2 / number2</code> untuk lima masukan, dan tidak ada titik di <code>number2</code> sama dengan <InlineMath math="0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -8.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plus", kind: "segment", from: { x: -4, y: -2 }, to: { x: 4, y: 6 }, appearance: "secondary" },
+      { id: "minus", kind: "segment", from: { x: -4, y: 6 }, to: { x: 4, y: -2 }, appearance: "construction" },
+      { id: "times", kind: "segment", from: { x: -4, y: -8 }, to: { x: 4, y: 8 }, appearance: "highlight" },
+      { id: "divide-a", kind: "point", at: { x: -2, y: -1 }, appearance: "answer" },
+      { id: "divide-b", kind: "point", at: { x: -1, y: -2 }, appearance: "answer" },
+      { id: "divide-c", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "divide-d", kind: "point", at: { x: 2, y: 1 }, appearance: "answer" },
+      { id: "divide-e", kind: "point", at: { x: 4, y: 1 / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "plus", objectId: "plus", at: { x: 4, y: 6 }, placement: "above-left" },
+      { key: "minus", objectId: "minus", at: { x: 4, y: -2 }, placement: "below-left" },
+      { key: "times", objectId: "times", at: { x: 4, y: 8 }, placement: "left" },
+      { key: "divide", objectId: "divide-e", at: { x: 4, y: 1 / 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "plus": "2 + number2",
+    "minus": "2 - number2",
+    "times": "2 * number2",
+    "divide": "2 / number2",
+  }}
+/>
+
+Program konversi suhu menghitung `fahrenheit = (celsius * 9/5) + 32`. Rumus itu adalah garis lurus <InlineMath math="F=\tfrac95C+32" />: setiap kenaikan <InlineMath math="1^\circ\mathrm{C}" /> menambah <InlineMath math="1.8^\circ\mathrm{F}" />, dan garisnya memotong sumbu tegak di <InlineMath math="32" />.
+
+<MathVisual
+  title={<>Garis konversi <InlineMath math="F=\tfrac95C+32" /></>}
+  description={<>Garis ungu memasangkan setiap suhu Celsius mendatar dengan suhu Fahrenheit tegak. Tiga titik adalah keluaran program untuk titik beku air, suhu tubuh, dan titik didih air.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 110 }, y: { min: 0, max: 230 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "conversion", kind: "line", through: [{ x: 0, y: 32 }, { x: 100, y: 212 }], appearance: "secondary" },
+      { id: "freezing", kind: "point", at: { x: 0, y: 0 * 9 / 5 + 32 }, appearance: "construction" },
+      { id: "body", kind: "point", at: { x: 37, y: 37 * 9 / 5 + 32 }, appearance: "answer" },
+      { id: "boiling", kind: "point", at: { x: 100, y: 100 * 9 / 5 + 32 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "freezing", objectId: "freezing", at: { x: 0, y: 0 * 9 / 5 + 32 }, placement: "right" },
+      { key: "body", objectId: "body", at: { x: 37, y: 37 * 9 / 5 + 32 }, placement: "right" },
+      { key: "boiling", objectId: "boiling", at: { x: 100, y: 100 * 9 / 5 + 32 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "freezing": <InlineMath math="0^\circ\mathrm{C}=32^\circ\mathrm{F}" />,
+    "body": <InlineMath math="37^\circ\mathrm{C}=98.6^\circ\mathrm{F}" />,
+    "boiling": <InlineMath math="100^\circ\mathrm{C}=212^\circ\mathrm{F}" />,
+  }}
+/>

@@ -38,6 +38,21 @@ The interactive shell evaluates a numeric literal and displays its value. Compar
 
 Python parses each literal from its notation. <InlineMath math="4" /> creates an integer, while the decimal point in <InlineMath math="4." /> makes it a floating-point literal whose displayed value is <InlineMath math="4.0" />.
 
+In scientific notation, the number after `e` shifts the decimal point. `3.2e5` means <InlineMath math="3.2\cdot10^5=320000" />, and `2e-2` means <InlineMath math="2\cdot10^{-2}=0.02" />. The base-ten logarithm shows that shift as a number close to the exponent.
+
+<BarChart
+  title={<><InlineMath math="\log_{10}" /> of four scientific notation literals</>}
+  description={<>Each bar is <InlineMath math="\log_{10}" /> of the literal written below it. Negative bars belong to numbers below <InlineMath math="1" />, such as <code>9.99e-05</code>, which is almost exactly <InlineMath math="-4" />.</>}
+  yAxisLabel="Power of ten"
+  data={[
+    { name: "2.e4", value: Math.log10(2.e4) },
+    { name: "2e-2", value: Math.log10(2e-2) },
+    { name: "3.2e5", value: Math.log10(3.2e5) },
+    { name: "9.99e-05", value: Math.log10(9.99e-05) },
+  ]}
+  chartConfig={{ value: { label: "Power of ten", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
 ## Types of Number Data
 
 Python's **three core built-in numeric types** are `int`, `float`, and `complex`. An `int` stores a whole number of unlimited size, a `float` stores an approximation of a real number, and a `complex` stores a real and an imaginary part.
@@ -92,6 +107,41 @@ Complex numbers have **real and imaginary parts**. In a Python literal, the suff
 </MathContainer>
 
 A complex number can be plotted on a coordinate plane. Its real part sets the horizontal coordinate, and its imaginary part sets the vertical coordinate.
+
+The three number types live in different places. An `int` sits only on whole-number points, a `float` can sit between them, and a `complex` such as `1+2j` leaves the number line because it has an imaginary part.
+
+<MathVisual
+  title={<>Where <code>int</code>, <code>float</code>, and <code>complex</code> live</>}
+  description={<>The violet points are <code>int</code> values from <InlineMath math="-3" /> to <InlineMath math="3" /> on the gray line. The teal points are the <code>float</code> values <code>2.5</code> and <code>-0.75</code>. The magenta point <code>1+2j</code> sits in the plane, with real part <InlineMath math="1" /> and imaginary part <InlineMath math="2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -3.5, y: 0 }, to: { x: 3.5, y: 0 }, appearance: "reference" },
+      { id: "int-0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "int-1", kind: "point", at: { x: -2, y: 0 }, appearance: "secondary" },
+      { id: "int-2", kind: "point", at: { x: -1, y: 0 }, appearance: "secondary" },
+      { id: "int-3", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "int-4", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "int-5", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "int-6", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "float-a", kind: "point", at: { x: 2.5, y: 0 }, appearance: "construction" },
+      { id: "float-b", kind: "point", at: { x: -0.75, y: 0 }, appearance: "construction" },
+      { id: "complex", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "float-a", objectId: "float-a", at: { x: 2.5, y: 0 }, placement: "above" },
+      { key: "float-b", objectId: "float-b", at: { x: -0.75, y: 0 }, placement: "above" },
+      { key: "complex", objectId: "complex", at: { x: 1, y: 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "float-a": <code>2.5</code>,
+    "float-b": <code>-0.75</code>,
+    "complex": <code>1+2j</code>,
+  }}
+/>
 
 ## The type Function for Checking Data Types
 
@@ -182,6 +232,42 @@ The `complex()` constructor creates complex numbers from **one or two real numbe
 />
 
 `complex(2.)` creates a complex number with real part <InlineMath math="2" /> and imaginary part <InlineMath math="0" />. Meanwhile, `complex(0., 2.)` creates a pure imaginary number <InlineMath math="2j" />.
+
+Compare the violet staircase with the gray line <InlineMath math="y=x" />. For positive numbers, `int()` drops the decimal part, so the result sits below the line, for example `int(2.9)` becomes `2`. For negative numbers, the result sits above the line, because `int(-2.9)` becomes `-2`, not `-3`. So `int()` always cuts toward zero, and the step around zero is wider than the others.
+
+<MathVisual
+  title={<><code>int()</code> truncates toward zero</>}
+  description={<>The violet staircase is <code>int(x)</code>, the gray line is the identity line. Magenta points mark <code>int(2.9)</code> and <code>int(-2.9)</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "identity", kind: "segment", from: { x: -3.5, y: -3.5 }, to: { x: 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "step-a", kind: "segment", from: { x: -1, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "step-b", kind: "segment", from: { x: 1, y: 1 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "step-c", kind: "segment", from: { x: 2, y: 2 }, to: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "step-d", kind: "segment", from: { x: 3, y: 3 }, to: { x: 3.5, y: 3 }, appearance: "secondary" },
+      { id: "step-e", kind: "segment", from: { x: -2, y: -1 }, to: { x: -1, y: -1 }, appearance: "secondary" },
+      { id: "step-f", kind: "segment", from: { x: -3, y: -2 }, to: { x: -2, y: -2 }, appearance: "secondary" },
+      { id: "step-g", kind: "segment", from: { x: -3.5, y: -3 }, to: { x: -3, y: -3 }, appearance: "secondary" },
+      { id: "positive", kind: "point", at: { x: 2.9, y: 2 }, appearance: "answer" },
+      { id: "negative", kind: "point", at: { x: -2.9, y: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "identity", objectId: "identity", at: { x: 3.5, y: 3.5 }, placement: "above-left" },
+      { key: "step", objectId: "step-d", at: { x: 3.5, y: 3 }, placement: "right" },
+      { key: "positive", objectId: "positive", at: { x: 2.9, y: 2 }, placement: "below-right" },
+      { key: "negative", objectId: "negative", at: { x: -2.9, y: -2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "identity": <InlineMath math="y=x" />,
+    "step": "int(x)",
+    "positive": "int(2.9) = 2",
+    "negative": "int(-2.9) = -2",
+  }}
+/>
 
 ## Number Data Types Summary Table
 

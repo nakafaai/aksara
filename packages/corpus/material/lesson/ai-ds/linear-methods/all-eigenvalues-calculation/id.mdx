@@ -15,7 +15,7 @@ Versi di bawah adalah iterasi <InlineMath math="\mathrm{QR}" /> tanpa geseran. A
 
 ## Satu Iterasi QR
 
-Untuk uji deflasi berikut, terlebih dahulu ubah matriks melalui keserupaan uniter ke **bentuk Hessenberg atas**, yaitu semua entri di bawah subdiagonal pertama nol. Mulai iterasi dari matriks tersebut. Contoh 2×2 di bawah sudah memenuhi syarat ini.
+Untuk uji deflasi berikut, terlebih dahulu ubah matriks melalui keserupaan uniter ke **bentuk Hessenberg atas**, yaitu semua entri di bawah subdiagonal pertama nol. Mulai iterasi dari matriks tersebut. Contoh <InlineMath math="2\times2" /> di bawah sudah memenuhi syarat ini.
 
 1. Mulai dengan <InlineMath math="A_0=A" />.
 
@@ -44,6 +44,43 @@ Karena <InlineMath math="Q_k" /> bersifat uniter, <InlineMath math="Q_k^{*}Q_k=I
 
 Jadi, <InlineMath math="A_{k+1}" /> serupa secara uniter dengan <InlineMath math="A_k" />. <Highlight>Matriks serupa memiliki polinom karakteristik</Highlight> dan nilai eigen yang sama. Setiap langkah <InlineMath math="\mathrm{QR}" /> menuliskan transformasi linear yang sama dalam koordinat baru.
 
+Untuk matriks simetris <InlineMath math="A_0=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> dari contoh kerja di bawah, entri diagonal <InlineMath math="A_k" /> adalah <InlineMath math="3-\tfrac2{9^k+1}" /> dan <InlineMath math="1+\tfrac2{9^k+1}" />. Keduanya bergerak di setiap langkah, tetapi jumlahnya tetap <InlineMath math="\operatorname{tr}A_k=4" />, karena setiap <InlineMath math="A_k" /> serupa dengan <InlineMath math="A_0" />.
+
+<ScatterDiagram
+  title={<>Entri diagonal <InlineMath math="A_k" /> menuju <InlineMath math="3" /> dan <InlineMath math="1" /></>}
+  description={<>Untuk iterasi <InlineMath math="k=0" /> sampai <InlineMath math="6" />, titik pertama menunjukkan <InlineMath math="3-\tfrac2{9^k+1}" /> dan titik kedua <InlineMath math="1+\tfrac2{9^k+1}" />. Pada setiap <InlineMath math="k" />, jumlah kedua titik sama dengan <InlineMath math="4" />.</>}
+  xAxisLabel="Iterasi"
+  yAxisLabel="Entri diagonal"
+  datasets={[
+    {
+      name: "Entri diagonal pertama",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 3 - 2 / (9 ** 0 + 1) },
+        { x: 1, y: 3 - 2 / (9 ** 1 + 1) },
+        { x: 2, y: 3 - 2 / (9 ** 2 + 1) },
+        { x: 3, y: 3 - 2 / (9 ** 3 + 1) },
+        { x: 4, y: 3 - 2 / (9 ** 4 + 1) },
+        { x: 5, y: 3 - 2 / (9 ** 5 + 1) },
+        { x: 6, y: 3 - 2 / (9 ** 6 + 1) },
+      ],
+    },
+    {
+      name: "Entri diagonal kedua",
+      color: "var(--chart-2)",
+      points: [
+        { x: 0, y: 1 + 2 / (9 ** 0 + 1) },
+        { x: 1, y: 1 + 2 / (9 ** 1 + 1) },
+        { x: 2, y: 1 + 2 / (9 ** 2 + 1) },
+        { x: 3, y: 1 + 2 / (9 ** 3 + 1) },
+        { x: 4, y: 1 + 2 / (9 ** 4 + 1) },
+        { x: 5, y: 1 + 2 / (9 ** 5 + 1) },
+        { x: 6, y: 1 + 2 / (9 ** 6 + 1) },
+      ],
+    },
+  ]}
+/>
+
 ## Bentuk Hasil Konvergensi
 
 Bentuk akhir bergantung pada jenis matriks dan **sistem bilangan** yang digunakan.
@@ -60,7 +97,25 @@ Iterasi tanpa geseran **tidak selalu berkonvergensi ke bentuk tersebut**. Sebaga
 
 <BlockMath math="C=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad C=CI,\qquad RQ=IC=C" />
 
-Nilai eigennya 1 dan −1. Magnitudo yang sama menjelaskan kebutuhan geseran yang sesuai serta pemeriksaan konvergensi dalam algoritma numerik.
+Nilai eigennya <InlineMath math="1" /> dan <InlineMath math="-1" />. Magnitudo yang sama menjelaskan kebutuhan geseran yang sesuai serta pemeriksaan konvergensi dalam algoritma numerik.
+
+Pada contoh kerja di bawah, entri luar diagonal <InlineMath math="A_k" /> punya besar <InlineMath math="\tfrac{2\cdot3^k}{9^k+1}" />. Setiap iterasi mengalikannya kira-kira dengan <InlineMath math="\lambda_2/\lambda_1=1/3" />, jadi kecepatan konvergensi bergantung pada seberapa jauh besar nilai eigennya berbeda.
+
+<BarChart
+  title={<>Entri luar diagonal menyusut sekitar <InlineMath math="1/3" /> per langkah</>}
+  description={<>Setiap batang adalah <InlineMath math="\tfrac{2\cdot3^k}{9^k+1}" /> untuk iterasi <InlineMath math="k" /> yang tertulis di bawahnya, dari <InlineMath math="1" /> pada <InlineMath math="k=0" /> dan <InlineMath math="3/5" /> pada <InlineMath math="k=1" />.</>}
+  yAxisLabel="Besar entri luar diagonal"
+  data={[
+    { name: "0", value: 2 * 3 ** 0 / (9 ** 0 + 1) },
+    { name: "1", value: 2 * 3 ** 1 / (9 ** 1 + 1) },
+    { name: "2", value: 2 * 3 ** 2 / (9 ** 2 + 1) },
+    { name: "3", value: 2 * 3 ** 3 / (9 ** 3 + 1) },
+    { name: "4", value: 2 * 3 ** 4 / (9 ** 4 + 1) },
+    { name: "5", value: 2 * 3 ** 5 / (9 ** 5 + 1) },
+    { name: "6", value: 2 * 3 ** 6 / (9 ** 6 + 1) },
+  ]}
+  chartConfig={{ value: { label: "Besar entri luar diagonal", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
 
 ## Contoh Kerja Matriks Simetris
 
@@ -80,3 +135,38 @@ Satu faktorisasi <InlineMath math="\mathrm{QR}" /> dan perkalian terbalik mengha
 <BlockMath math="A_k\longrightarrow\begin{pmatrix}3&0\\0&1\end{pmatrix}" />
 
 Diagonal hasil limit memuat nilai eigen <InlineMath math="3" /> dan <InlineMath math="1" />. Setiap hasil iterasi serupa dengan <InlineMath math="A_0" />, sehingga kedua nilai tersebut memang milik matriks semula.
+
+Untuk matriks ini, vektor eigen <InlineMath math="A_k" /> untuk nilai eigen <InlineMath math="3" /> searah <InlineMath math="(3^k,1)^T" />, dan vektor eigen untuk <InlineMath math="1" /> tegak lurus terhadapnya. Perbesar adegan di bawah: arah eigen <InlineMath math="A_0" /> miring <InlineMath math="45^\circ" />, lalu <InlineMath math="A_1" /> dan <InlineMath math="A_2" /> makin dekat ke sumbu koordinat, sampai limit <InlineMath math="\operatorname{diag}(3,1)" /> tepat di sumbu. Nilai eigennya tidak pernah berubah, karena setiap langkah adalah kesamaan <InlineMath math="A_{k+1}=Q_k^TA_kQ_k" />. Hanya arahnya yang berputar, dan entri di luar diagonal <InlineMath math="2\cdot3^k/(9^k+1)" /> mengecil dari <InlineMath math="1" /> ke <InlineMath math="3/5" /> lalu <InlineMath math="9/41" />.
+
+<MathVisual
+  title={<>Iterasi <InlineMath math="\mathrm{QR}" /> memutar arah eigen ke sumbu</>}
+  description={<>Setiap pasangan ruas tegak lurus adalah arah eigen satu iterasi <InlineMath math="A_k" />: ungu <InlineMath math="A_0" />, kuning <InlineMath math="A_1" />, oranye <InlineMath math="A_2" />, dan magenta limit <InlineMath math="\operatorname{diag}(3,1)" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 1.3 }, y: { min: -1.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "a0", kind: "segment", from: { x: -(3 ** 0 / Math.sqrt(9 ** 0 + 1)), y: -(1 / Math.sqrt(9 ** 0 + 1)) }, to: { x: 3 ** 0 / Math.sqrt(9 ** 0 + 1), y: 1 / Math.sqrt(9 ** 0 + 1) }, appearance: "secondary" },
+      { id: "a1", kind: "segment", from: { x: -(3 ** 1 / Math.sqrt(9 ** 1 + 1)), y: -(1 / Math.sqrt(9 ** 1 + 1)) }, to: { x: 3 ** 1 / Math.sqrt(9 ** 1 + 1), y: 1 / Math.sqrt(9 ** 1 + 1) }, appearance: "highlight" },
+      { id: "a2", kind: "segment", from: { x: -(3 ** 2 / Math.sqrt(9 ** 2 + 1)), y: -(1 / Math.sqrt(9 ** 2 + 1)) }, to: { x: 3 ** 2 / Math.sqrt(9 ** 2 + 1), y: 1 / Math.sqrt(9 ** 2 + 1) }, appearance: "primary" },
+      { id: "a0-small", kind: "segment", from: { x: 1 / Math.sqrt(9 ** 0 + 1), y: -(3 ** 0 / Math.sqrt(9 ** 0 + 1)) }, to: { x: -(1 / Math.sqrt(9 ** 0 + 1)), y: 3 ** 0 / Math.sqrt(9 ** 0 + 1) }, appearance: "secondary" },
+      { id: "a1-small", kind: "segment", from: { x: 1 / Math.sqrt(9 ** 1 + 1), y: -(3 ** 1 / Math.sqrt(9 ** 1 + 1)) }, to: { x: -(1 / Math.sqrt(9 ** 1 + 1)), y: 3 ** 1 / Math.sqrt(9 ** 1 + 1) }, appearance: "highlight" },
+      { id: "a2-small", kind: "segment", from: { x: 1 / Math.sqrt(9 ** 2 + 1), y: -(3 ** 2 / Math.sqrt(9 ** 2 + 1)) }, to: { x: -(1 / Math.sqrt(9 ** 2 + 1)), y: 3 ** 2 / Math.sqrt(9 ** 2 + 1) }, appearance: "primary" },
+      { id: "limit", kind: "segment", from: { x: -1, y: 0 }, to: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "limit-small", kind: "segment", from: { x: 0, y: -1 }, to: { x: 0, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a0", objectId: "a0", at: { x: 3 ** 0 / Math.sqrt(9 ** 0 + 1), y: 1 / Math.sqrt(9 ** 0 + 1) }, placement: "above-right" },
+      { key: "a1", objectId: "a1", at: { x: 3 ** 1 / Math.sqrt(9 ** 1 + 1), y: 1 / Math.sqrt(9 ** 1 + 1) }, placement: "right" },
+      { key: "a2", objectId: "a2", at: { x: 3 ** 2 / Math.sqrt(9 ** 2 + 1), y: 1 / Math.sqrt(9 ** 2 + 1) }, placement: "right" },
+      { key: "limit", objectId: "limit-small", at: { x: 0, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "a0": <InlineMath math="A_0" />,
+    "a1": <InlineMath math="A_1" />,
+    "a2": <InlineMath math="A_2" />,
+    "limit": <InlineMath math="A_\infty" />,
+  }}
+/>

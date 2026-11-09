@@ -90,6 +90,21 @@ Escape sequence untuk baris baru adalah \\n.`
 
 Prefix raw string seperti `r` mempertahankan sebagian besar backslash tanpa menafsirkannya sebagai notasi khusus. Tanda kutip tetap harus mengikuti aturan pembatas literal, dan raw string tidak dapat diakhiri dengan jumlah backslash yang ganjil.
 
+Garis miring terbalik di depan tanda kutip hanya memberi tahu Python bahwa kutip itu bagian dari teks. Garis miringnya sendiri tidak masuk ke string, jadi `'It\'s'` dan `"It's"` sama-sama berisi empat karakter.
+
+<BarChart
+  title={<><code>len()</code> string dengan tanda kutip di dalamnya</>}
+  description={<>Setiap batang adalah <code>len()</code> literal yang tertulis di bawahnya. Pasangan yang memakai escape dan yang memakai jenis kutip lain punya panjang yang sama, <InlineMath math="4" /> dan <InlineMath math="8" />.</>}
+  yAxisLabel="Panjang string"
+  data={[
+    { name: "'It\\'s'", value: 4 },
+    { name: "\"It's\"", value: 4 },
+    { name: "'Say \"hi\"'", value: 8 },
+    { name: "\"Say \\\"hi\\\"\"", value: 8 },
+  ]}
+  chartConfig={{ value: { label: "Panjang string", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
 ## Daftar Escape Sequence
 
 Tabel berikut memuat **notasi escape** yang sering dipakai dalam Python.
@@ -132,6 +147,22 @@ Dalam `str.format()` dan f-string, kurung kurawal menandai **bagian yang akan di
 
 Tulis `{{` untuk menghasilkan `{` dan `}}` untuk menghasilkan `}`. Pada `'{{{}}}'`, pasangan kurung terluar menjadi teks biasa, sedangkan `{}` di tengah tetap menjadi tempat untuk memasukkan nilai.
 
+Setiap escape sequence menghasilkan tepat satu karakter, dan `ord()` membaca kode Unicode karakter itu. Tab dan baris baru adalah karakter kontrol dengan kode <InlineMath math="9" /> dan <InlineMath math="10" />, sedangkan kutip dan garis miring terbalik adalah karakter biasa dengan kode yang lebih besar.
+
+<BarChart
+  title={<><code>ord()</code> karakter dari setiap escape sequence</>}
+  description={<>Setiap batang adalah kode Unicode dari karakter yang dihasilkan escape sequence di bawahnya, dari <code>\t</code> dengan kode <InlineMath math="9" /> sampai <code>\\</code> dengan kode <InlineMath math="92" />.</>}
+  yAxisLabel="Kode Unicode"
+  data={[
+    { name: "\\t", value: 9 },
+    { name: "\\n", value: 10 },
+    { name: "\\\"", value: 34 },
+    { name: "\\'", value: 39 },
+    { name: "\\\\", value: 92 },
+  ]}
+  chartConfig={{ value: { label: "Kode Unicode", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
 ## Menggabungkan Escape Sequence
 
 Contoh berikut menggabungkan **tab dan baris baru** bersama tanda kutip dan backslash literal dalam satu output.
@@ -161,3 +192,66 @@ print("Baris pertama\\nBaris kedua\\t(dengan tab)\\nBaris ketiga")`
 Dalam contoh ini, `\t` membuat kolom yang rapi, `\n` memisahkan baris, dan `\\` menampilkan path file Windows dengan benar.
 
 Bedakan notasi di dalam kode sumber dari string yang dihasilkan. `\n`, misalnya, ditulis dengan dua karakter dalam kode sumber tetapi mewakili satu karakter baris baru di dalam string.
+
+Gambar ini mencetak `"Name\tAge\nBob\t25"` di terminal dengan tab setiap delapan kolom. Ruas kuning menunjukkan `\t` melompat ke kelipatan delapan berikutnya, jadi `Age` dan `25` mulai di kolom yang sama walaupun `Name` dan `Bob` beda panjang. Ruas oranye menunjukkan `\n` membawa kursor ke awal baris berikutnya. Walaupun kelihatan lebar, setiap escape sequence tetap satu karakter, sehingga `len()` string ini <InlineMath math="15" />.
+
+<MathVisual
+  title={<>Ke mana kursor pergi untuk <code>\t</code> dan <code>\n</code></>}
+  description={<>Karakter ungu adalah teks biasa, ruas kuning adalah lompatan tab, dan ruas oranye adalah baris baru, untuk terminal dengan tab setiap delapan kolom.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -1.6, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "name-a", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "name-b", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "name-c", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "name-d", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "age-a", kind: "point", at: { x: 8, y: 0 }, appearance: "secondary" },
+      { id: "age-b", kind: "point", at: { x: 9, y: 0 }, appearance: "secondary" },
+      { id: "age-c", kind: "point", at: { x: 10, y: 0 }, appearance: "secondary" },
+      { id: "bob-a", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "bob-b", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "bob-c", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "num-a", kind: "point", at: { x: 8, y: -1 }, appearance: "secondary" },
+      { id: "num-b", kind: "point", at: { x: 9, y: -1 }, appearance: "secondary" },
+      { id: "tab-a", kind: "segment", from: { x: 4, y: 0 }, to: { x: 8, y: 0 }, appearance: "highlight" },
+      { id: "newline", kind: "segment", from: { x: 11, y: 0 }, to: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "tab-b", kind: "segment", from: { x: 3, y: -1 }, to: { x: 8, y: -1 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "name-a", objectId: "name-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "name-b", objectId: "name-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "name-c", objectId: "name-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "name-d", objectId: "name-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "age-a", objectId: "age-a", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "age-b", objectId: "age-b", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "age-c", objectId: "age-c", at: { x: 10, y: 0 }, placement: "above" },
+      { key: "bob-a", objectId: "bob-a", at: { x: 0, y: -1 }, placement: "above" },
+      { key: "bob-b", objectId: "bob-b", at: { x: 1, y: -1 }, placement: "above" },
+      { key: "bob-c", objectId: "bob-c", at: { x: 2, y: -1 }, placement: "above" },
+      { key: "num-a", objectId: "num-a", at: { x: 8, y: -1 }, placement: "above" },
+      { key: "num-b", objectId: "num-b", at: { x: 9, y: -1 }, placement: "above" },
+      { key: "tab-a", objectId: "tab-a", at: { x: 6, y: 0 }, placement: "above" },
+      { key: "newline", objectId: "newline", at: { x: 11 / 2, y: -1 / 2 }, placement: "below-right" },
+      { key: "tab-b", objectId: "tab-b", at: { x: 11 / 2, y: -1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "name-a": "N",
+    "name-b": "a",
+    "name-c": "m",
+    "name-d": "e",
+    "age-a": "A",
+    "age-b": "g",
+    "age-c": "e",
+    "bob-a": "B",
+    "bob-b": "o",
+    "bob-c": "b",
+    "num-a": "2",
+    "num-b": "5",
+    "tab-a": "\\t",
+    "newline": "\\n",
+    "tab-b": "\\t",
+  }}
+/>

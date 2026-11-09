@@ -42,6 +42,29 @@ So, the box receives <InlineMath math="30 \text{ J}" /> of energy through that p
 
 > If a force is applied but the object does not move, the mechanical work on the object is <InlineMath math="0 \text{ J}" />. The person still uses metabolic energy and may feel tired, but the stationary object receives no energy through displacement.
 
+Draw the push as force against displacement and the work becomes an area. The rectangle below is <InlineMath math="15\text{ N}" /> tall and <InlineMath math="2\text{ m}" /> wide, so it holds exactly the <InlineMath math="30\text{ J}" /> the box received.
+
+<MathVisual
+  title={<>Work as an Area</>}
+  description={<>A constant force of 15 N over 2 m. Horizontal: displacement in m. Vertical: force in units of 5 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "work", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }] },
+    ],
+    labels: [
+      { key: "force", objectId: "work", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "area", objectId: "work", at: { x: 1, y: 1.5 }, placement: "center" },
+    ],
+  }}
+  labels={{
+    force: <InlineMath math="F=15\text{ N}" />,
+    area: <InlineMath math="W=15\times2=30\text{ J}" />,
+  }}
+/>
+
 ## Energy Is Measured in Joules
 
 In SI, the unit for energy is the joule, with symbol <InlineMath math="\text{J}" />. Because energy can be calculated from **force times displacement**, a joule can be read as:
@@ -70,6 +93,35 @@ Energy can be **transferred from a source to a device**. The device can then con
     E --> F["Muscles move"]`}/>
 
 In a solar panel, light energy changes into electrical energy. In hydropower, gravitational potential energy of water changes into turbine motion, then into electrical energy. In the body, chemical energy from food helps muscles do work.
+
+Energy is never lost in a conversion, only shared out. In this illustrative lamp every <InlineMath math="100\text{ J}" /> splits into <InlineMath math="20\text{ J}" /> of light and <InlineMath math="80\text{ J}" /> of heat, so the efficiency is <InlineMath math="\eta=\tfrac{20}{100}=20\%" />. Zoom in on the two branches.
+
+<MathVisual
+  title={<>Efficiency Is the Useful Share</>}
+  description={<>An illustrative energy flow through a lamp, with band widths drawn to scale. One grid step is 10 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -1.5, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "in", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 10 }, { x: 0, y: 10 }] },
+      { id: "to-light", kind: "polygon", appearance: "highlight", vertices: [{ x: 3, y: 8 }, { x: 5, y: 8 }, { x: 5, y: 10 }, { x: 3, y: 10 }] },
+      { id: "to-heat", kind: "polygon", appearance: "warning", vertices: [{ x: 3, y: 0 }, { x: 5, y: -1 }, { x: 5, y: 7 }, { x: 3, y: 8 }] },
+      { id: "light", kind: "polygon", appearance: "highlight", vertices: [{ x: 5, y: 8 }, { x: 8, y: 8 }, { x: 8, y: 10 }, { x: 5, y: 10 }] },
+      { id: "heat", kind: "polygon", appearance: "warning", vertices: [{ x: 5, y: -1 }, { x: 8, y: -1 }, { x: 8, y: 7 }, { x: 5, y: 7 }] },
+    ],
+    labels: [
+      { key: "in", objectId: "in", at: { x: 1.5, y: 10 }, placement: "above" },
+      { key: "light", objectId: "light", at: { x: 8, y: 9 }, placement: "right" },
+      { key: "heat", objectId: "heat", at: { x: 8, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    in: <InlineMath math="100\text{ J in}" />,
+    light: <InlineMath math="\text{light }20\text{ J},\ \eta=20\%" />,
+    heat: <InlineMath math="\text{heat }80\text{ J}" />,
+  }}
+/>
 
 ## Power Measures the Rate of Energy Transfer
 
@@ -108,6 +160,34 @@ E &= P t \\
 \end{aligned}" />
 
 If the same lamp stays on longer, its energy use increases. If the power is higher, the energy use also increases for the same duration.
+
+The graph below shows both statements at once. Walk along the orange line for the <InlineMath math="10\text{ W}" /> lamp: the longer it stays on, the higher the energy, and at <InlineMath math="5\text{ h}" /> it reaches <InlineMath math="50\text{ Wh}" />. The violet line for a <InlineMath math="20\text{ W}" /> lamp climbs twice as steeply, because power is how fast the energy piles up.
+
+<MathVisual
+  title={<>Energy Use Grows with Time</>}
+  description={<>E = Pt for a 10 W and a 20 W lamp. Horizontal: time in hours. Vertical: energy in units of 20 Wh.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ten", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 3 } },
+      { id: "twenty", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
+      { id: "used", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 5, y: 2.5 } },
+      { id: "used-top", kind: "point", appearance: "answer", at: { x: 5, y: 2.5 } },
+    ],
+    labels: [
+      { key: "ten", objectId: "ten", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "twenty", objectId: "twenty", at: { x: 6, y: 6 }, placement: "right" },
+      { key: "used", objectId: "used-top", at: { x: 5, y: 2.5 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    ten: <InlineMath math="P=10\text{ W}" />,
+    twenty: <InlineMath math="P=20\text{ W}" />,
+    used: <InlineMath math="E=50\text{ Wh}" />,
+  }}
+/>
 
 ## Energy Analysis for Renewable Sources
 

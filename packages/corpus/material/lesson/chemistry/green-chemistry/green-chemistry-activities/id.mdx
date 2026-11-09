@@ -43,6 +43,35 @@ Mulailah dengan mencatat setiap bahan yang dipakai, perubahan yang terjadi, prod
 
 Klaim hijau <Highlight>baru dapat diuji jika disertai bukti</Highlight>. Kata "alami", "hemat", atau "ramah lingkungan" belum menjelaskan bahaya atau limbah apa yang berkurang. Perbandingan juga harus mempertahankan fungsi yang sama. Memakai lebih sedikit pembersih bukan perbaikan jika permukaannya tetap kotor, dan bahan pengganti harus mampu menjalankan fungsi yang sama.
 
+Telusuri satu kegiatan sebagai massa masuk dan massa keluar. Setiap kilogram yang masuk keluar lagi sebagai produk atau residu, jadi <InlineMath math="m_\text{masuk}=m_\text{produk}+m_\text{residu}" />. Pitanya terbelah menurut massa: dengan angka ilustrasi, <InlineMath math="10\ \mathrm{kg}" /> yang masuk menghasilkan <InlineMath math="8\ \mathrm{kg}" /> produk dan <InlineMath math="2\ \mathrm{kg}" /> residu. Perbesar cabang merah muda, bagian yang ingin diperkecil oleh proses yang lebih hijau.
+
+<MathVisual
+  title={<>Massa Masuk Sama dengan Massa Keluar</>}
+  description={<>Aliran massa ilustratif: pita masukan (abu-abu) terbelah menjadi produk (teal) dan residu (merah muda), dengan lebar sesuai skala. Satu kotak grid berarti 1 kilogram.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12 }, y: { min: -1.5, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "input", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 10 }, { x: 0, y: 10 }] },
+      { id: "product", kind: "polygon", appearance: "construction", vertices: [{ x: 5, y: 2 }, { x: 8, y: 2 }, { x: 8, y: 10 }, { x: 5, y: 10 }] },
+      { id: "residue", kind: "polygon", appearance: "warning", vertices: [{ x: 5, y: -1 }, { x: 8, y: -1 }, { x: 8, y: 1 }, { x: 5, y: 1 }] },
+      { id: "to-product", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 2 }, { x: 5, y: 2 }, { x: 5, y: 10 }, { x: 3, y: 10 }] },
+      { id: "to-residue", kind: "polygon", appearance: "warning", vertices: [{ x: 3, y: 0 }, { x: 5, y: -1 }, { x: 5, y: 1 }, { x: 3, y: 2 }] },
+    ],
+    labels: [
+      { key: "input", objectId: "input", at: { x: 1.5, y: 10 }, placement: "above" },
+      { key: "product", objectId: "product", at: { x: 6.5, y: 10 }, placement: "above" },
+      { key: "residue", objectId: "residue", at: { x: 8, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    input: <InlineMath math="10\ \mathrm{kg}\ \text{masuk}" />,
+    product: <InlineMath math="8\ \mathrm{kg}\ \text{produk}" />,
+    residue: <InlineMath math="10-8=2\ \mathrm{kg}\ \text{residu}" />,
+  }}
+/>
+
 ## Gunakan Sabun Secukupnya tanpa Menambah Residu
 
 Busa yang banyak sering disangka sebagai tanda bahwa sabun membersihkan lebih baik. Padahal, terlalu banyak sabun cuci piring dapat memperlama pembilasan dan menambah sisa zat pembersih di air buangan. Bandingkan dosis yang cukup membersihkan dengan dosis yang lebih besar, lalu periksa residu dan air bilas. Perbandingan ini hanya menilai dosis sabun saat dipakai. Rancangan bahan pembersih tetap sama.
@@ -61,6 +90,33 @@ Sebagai **contoh data rekaan**, dua formula pembersih diuji pada noda dan luas p
 
 <BlockMath math="\frac{10-8}{10}\times100\%=\frac{2}{10}\times100\%=20\%" />
 
+Pada adegan di bawah, setiap kolom adalah dosis yang dibutuhkan untuk permukaan yang sama bersihnya, dengan satu kotak grid untuk <InlineMath math="2 \mathrm{mL}" />. Balok abu-abu di atas B adalah bagian yang tidak lagi dibutuhkan B. Ukurannya tepat seperlima kolom A, yaitu <InlineMath math="20\%" /> dari perhitungan tadi. Putar adegannya: penghematan itu baru bermakna karena kedua kolom mengerjakan tugas yang sama.
+
+<MathVisual
+  title={<>Permukaan Sama Bersih dengan Produk Lebih Sedikit</>}
+  description={<>Dosis hipotetis dua formulasi pembersih untuk noda dan luas permukaan yang sama. Satu kotak grid ke atas sama dengan 2 mL.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6.5 }, z: { min: -1, max: 1 } },
+    view: { kind: "camera", position: { x: 6, y: 6, z: 10 }, target: { x: 1.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "dose-a", kind: "cuboid", appearance: "primary", center: { x: 0, y: 10 / 4, z: 0 }, size: { length: 1.4, height: 10 / 2, width: 1.4 } },
+      { id: "dose-b", kind: "cuboid", appearance: "construction", center: { x: 3, y: 8 / 4, z: 0 }, size: { length: 1.4, height: 8 / 2, width: 1.4 } },
+      { id: "saved", kind: "cuboid", appearance: "reference", center: { x: 3, y: 8 / 2 + (10 - 8) / 4, z: 0 }, size: { length: 1.4, height: (10 - 8) / 2, width: 1.4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "dose-a", at: { x: 0, y: 10 / 2 + 0.5, z: 0 }, placement: "above" },
+      { key: "saved", objectId: "saved", at: { x: 3, y: 10 / 2 + 0.5, z: 0 }, placement: "above" },
+      { key: "b", objectId: "dose-b", at: { x: 3, y: 8 / 4, z: 0.9 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A:\ 10\ \mathrm{mL}" />,
+    saved: <InlineMath math="\frac{10-8}{10}\times100\%=20\%" />,
+    b: <InlineMath math="B:\ 8\ \mathrm{mL}" />,
+  }}
+/>
+
 Hasil ini membuktikan pengurangan volume produk pada uji tersebut. Untuk menyatakan B lebih aman atau lebih hemat air, kita masih perlu data komposisi, bahaya, dan air bilas.
 
 ## Pengomposan Mengolah Limbah yang Sudah Terbentuk
@@ -74,6 +130,34 @@ Daun kering, kulit buah, dan sisa makanan mengandung bahan organik. Pembakaran m
 | Dikomposkan dengan benar | Mikroorganisme mengurai bahan organik secara bertahap. | Pengolahan biologis menangani limbah organik setelah limbah terbentuk. |
 
 [Pengomposan](https://www.epa.gov/sustainable-management-food/approaches-composting) tetap membutuhkan pengaturan kelembapan, aliran oksigen, struktur tumpukan, dan keseimbangan nutrien. Tumpukan yang kekurangan oksigen dapat berbau atau melepaskan lindi, yaitu cairan yang keluar dari tumpukan dan membawa zat terlarut. Kondisi tersebut memengaruhi aktivitas mikroba dan suhu. Pada contoh ini, pengomposan termasuk pengolahan limbah. Suatu kegiatan termasuk perancangan ulang produk atau proses jika desain kimianya diubah untuk mencegah limbah sejak awal.
+
+Ikuti karbon dalam tumpukan daun yang sama. Pembakaran mengoksidasi hampir semuanya dalam hitungan menit, jadi karbonnya keluar sebagai asap dan karbon dioksida. Dalam model kompos ilustratif, karbon yang tersisa adalah <InlineMath math="40+60e^{-t/4}" /> persen setelah <InlineMath math="t" /> minggu, jadi mikroorganisme bekerja pelan-pelan dan sebagian karbon tetap tersimpan di kompos untuk tanah. Perbesar kedua kurva di dekat awal.
+
+<MathVisual
+  title={<>Membakar atau Mengompos Daun yang Sama</>}
+  description={<>Bagian karbon tumpukan yang tersisa setelah dibakar (merah muda) dan selama dikompos (teal). Mendatar: satu kotak grid berarti satu minggu. Tegak: satu kotak grid berarti 20 persen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.3, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "burn", kind: "polyline", appearance: "warning", vertices: [{ x: 0, y: 5 }, { x: 0.003, y: 0.25 }, { x: 12, y: 0.25 }] },
+      { id: "compost", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 5 }, { x: 0.5, y: (40 + 60 * Math.exp(-0.5 / 4)) / 20 }, { x: 1, y: (40 + 60 * Math.exp(-1 / 4)) / 20 }, { x: 1.5, y: (40 + 60 * Math.exp(-1.5 / 4)) / 20 }, { x: 2, y: (40 + 60 * Math.exp(-2 / 4)) / 20 }, { x: 2.5, y: (40 + 60 * Math.exp(-2.5 / 4)) / 20 }, { x: 3, y: (40 + 60 * Math.exp(-3 / 4)) / 20 }, { x: 3.5, y: (40 + 60 * Math.exp(-3.5 / 4)) / 20 }, { x: 4, y: (40 + 60 * Math.exp(-4 / 4)) / 20 }, { x: 4.5, y: (40 + 60 * Math.exp(-4.5 / 4)) / 20 }, { x: 5, y: (40 + 60 * Math.exp(-5 / 4)) / 20 }, { x: 5.5, y: (40 + 60 * Math.exp(-5.5 / 4)) / 20 }, { x: 6, y: (40 + 60 * Math.exp(-6 / 4)) / 20 }, { x: 6.5, y: (40 + 60 * Math.exp(-6.5 / 4)) / 20 }, { x: 7, y: (40 + 60 * Math.exp(-7 / 4)) / 20 }, { x: 7.5, y: (40 + 60 * Math.exp(-7.5 / 4)) / 20 }, { x: 8, y: (40 + 60 * Math.exp(-8 / 4)) / 20 }, { x: 8.5, y: (40 + 60 * Math.exp(-8.5 / 4)) / 20 }, { x: 9, y: (40 + 60 * Math.exp(-9 / 4)) / 20 }, { x: 9.5, y: (40 + 60 * Math.exp(-9.5 / 4)) / 20 }, { x: 10, y: (40 + 60 * Math.exp(-10 / 4)) / 20 }, { x: 10.5, y: (40 + 60 * Math.exp(-10.5 / 4)) / 20 }, { x: 11, y: (40 + 60 * Math.exp(-11 / 4)) / 20 }, { x: 11.5, y: (40 + 60 * Math.exp(-11.5 / 4)) / 20 }, { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 }] },
+      { id: "kept", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 12, y: 2 } },
+      { id: "compost-end", kind: "point", appearance: "construction", at: { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 } },
+    ],
+    labels: [
+      { key: "burn", objectId: "burn", at: { x: 0.003, y: 0.25 }, placement: "above-right" },
+      { key: "compost", objectId: "compost-end", at: { x: 12, y: (40 + 60 * Math.exp(-12 / 4)) / 20 }, placement: "above-left" },
+      { key: "kept", objectId: "kept", at: { x: 12, y: 2 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    burn: <>dibakar: habis dalam hitungan menit</>,
+    compost: <>dikompos: berminggu-minggu</>,
+    kept: <>karbon tersimpan di kompos</>,
+  }}
+/>
 
 ## Bahan Alami Tetap Perlu Bukti
 

@@ -43,6 +43,31 @@ Definisikan matriks akar diagonal sebagai berikut.
 
 Matriks tersebut memenuhi <InlineMath math="D^{\frac{1}{2}} \cdot D^{\frac{1}{2}} = D" />.
 
+Untuk <InlineMath math="A=\begin{pmatrix}4&2\\2&5\end{pmatrix}" />, lihat <InlineMath math="q(t)=(t,1)\,A\,(t,1)^T=4t^2+4t+5" />. Karena <InlineMath math="A" /> positif definit, <InlineMath math="q(t)>0" /> untuk setiap <InlineMath math="t" />. Nilai minimumnya, <InlineMath math="5-\tfrac{2^2}4=4" />, adalah pivot kedua, jadi pivot itu pasti positif dan tidak ada baris yang perlu ditukar.
+
+<MathVisual
+  title={<>Pivot kedua adalah minimum <InlineMath math="q(t)=4t^2+4t+5" /></>}
+  description={<>Parabola ungu tidak pernah menyentuh sumbu. Titik terendahnya yang magenta ada di <InlineMath math="t=-\tfrac12" /> dengan nilai <InlineMath math="4" />, sama dengan pivot kedua <InlineMath math="a_{22}-a_{21}^2/a_{11}" />. Titik kuning <InlineMath math="q(0)=a_{22}=5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 1 }, y: { min: -0.5, max: 9 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "form", kind: "quadratic", coefficients: { a: 4, b: 4, c: 5 }, domain: { min: -1.5, max: 0.5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "pivot", kind: "point", at: { x: -1 / 2, y: 4 }, appearance: "answer" },
+      { id: "corner", kind: "point", at: { x: 0, y: 5 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "pivot", objectId: "pivot", at: { x: -1 / 2, y: 4 }, placement: "below" },
+      { key: "corner", objectId: "corner", at: { x: 0, y: 5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "pivot": <InlineMath math="q(-\tfrac12)=4" />,
+    "corner": <InlineMath math="a_{22}=5" />,
+  }}
+/>
+
 ## Faktor Segitiga Bawah dengan Diagonal Positif
 
 Setiap matriks real simetris positif definit <InlineMath math="A \in \mathbb{R}^{n \times n}" /> memiliki faktor Cholesky tunggal dengan elemen diagonal positif:
@@ -108,6 +133,34 @@ Jadi,
 
 Setelah faktor diketahui, selesaikan <InlineMath math="Ax=b" /> melalui **dua sistem segitiga**: <InlineMath math="\tilde Ly=b" /> terlebih dahulu, kemudian <InlineMath math="\tilde L^Tx=y" />. Cara ini menghindari perhitungan invers matriks.
 
+Faktor <InlineMath math="L" /> dari contoh ini memetakan persegi satuan ke jajar genjang yang direntang kolom-kolomnya. Perhatikan bentuk segitiganya di adegan ini: kolom pertama <InlineMath math="\ell_1=(2,1)^T" /> boleh miring, tapi kolom kedua <InlineMath math="\ell_2=(0,2)^T" /> lurus ke atas karena entri kanan atas <InlineMath math="L" /> nol. Luas jajar genjang itu <InlineMath math="\det L=2\cdot2=4" />, dan karena <InlineMath math="A=LL^T" />, luas itu sama dengan <InlineMath math="\sqrt{\det A}=\sqrt{16}" />.
+
+<MathVisual
+  title={<>Faktor <InlineMath math="L" /> memetakan persegi satuan</>}
+  description={<>Persegi abu-abu dipetakan oleh <InlineMath math="L=\begin{pmatrix}2&0\\1&2\end{pmatrix}" /> ke jajar genjang magenta yang direntang kolom <InlineMath math="\ell_1" /> dan <InlineMath math="\ell_2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.6 }, y: { min: -0.5, max: 3.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 2, y: 3 }, { x: 0, y: 2 }], appearance: "answer" },
+      { id: "l1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "l2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "image", objectId: "image", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "l1", objectId: "l1", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "l2", objectId: "l2", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "image": <InlineMath math="L\cdot\text{square}" />,
+    "l1": <InlineMath math="\ell_1=(2,1)^T" />,
+    "l2": <InlineMath math="\ell_2=(0,2)^T" />,
+  }}
+/>
+
 ## Kompleksitas Algoritma Cholesky
 
 Algoritma Cholesky untuk menghitung faktor Cholesky <InlineMath math="\tilde{L}" /> dari <InlineMath math="A \in \mathbb{R}^{n \times n}" /> memerlukan:
@@ -117,3 +170,38 @@ Algoritma Cholesky untuk menghitung faktor Cholesky <InlineMath math="\tilde{L}"
 Rumus tersebut menyatakan jumlah operasi aritmetika.
 
 Biaya utama faktorisasi Cholesky terdiri atas sekitar <InlineMath math="n^3/6" /> perkalian dan <InlineMath math="n^3/6" /> penjumlahan. Jika digabungkan, totalnya sekitar <InlineMath math="n^3/3" /> operasi titik mengambang, kira-kira separuh biaya utama <InlineMath math="2n^3/3" /> untuk faktorisasi <InlineMath math="\mathrm{LU}" /> matriks rapat umum. Cholesky menghemat kerja dengan **memanfaatkan kesimetrian** dan hanya menyimpan satu bagian segitiga dari faktorisasi.
+
+Kedua biaya tumbuh seperti <InlineMath math="n^3" />, jadi menggandakan <InlineMath math="n" /> melipatkan biaya delapan kali. Pada setiap ukuran, Cholesky tetap butuh separuh operasi <InlineMath math="\mathrm{LU}" />, karena ia memanfaatkan simetri dan hanya menghitung satu faktor segitiga.
+
+<ScatterDiagram
+  title={<><InlineMath math="\tfrac13n^3" /> untuk Cholesky melawan <InlineMath math="\tfrac23n^3" /> untuk <InlineMath math="\mathrm{LU}" /></>}
+  description={<>Untuk <InlineMath math="n=100" /> sampai <InlineMath math="600" />, titik pertama adalah <InlineMath math="n^3/3" /> dan titik kedua <InlineMath math="2n^3/3" /> operasi titik mengambang. Pada <InlineMath math="n=600" />, nilainya <InlineMath math="72" /> juta melawan <InlineMath math="144" /> juta.</>}
+  xAxisLabel="Ukuran matriks"
+  yAxisLabel="Operasi titik mengambang"
+  datasets={[
+    {
+      name: "Cholesky",
+      color: "var(--chart-1)",
+      points: [
+        { x: 100, y: 100 ** 3 / 3 },
+        { x: 200, y: 200 ** 3 / 3 },
+        { x: 300, y: 300 ** 3 / 3 },
+        { x: 400, y: 400 ** 3 / 3 },
+        { x: 500, y: 500 ** 3 / 3 },
+        { x: 600, y: 600 ** 3 / 3 },
+      ],
+    },
+    {
+      name: "LU",
+      color: "var(--chart-2)",
+      points: [
+        { x: 100, y: 2 * 100 ** 3 / 3 },
+        { x: 200, y: 2 * 200 ** 3 / 3 },
+        { x: 300, y: 2 * 300 ** 3 / 3 },
+        { x: 400, y: 2 * 400 ** 3 / 3 },
+        { x: 500, y: 2 * 500 ** 3 / 3 },
+        { x: 600, y: 2 * 600 ** 3 / 3 },
+      ],
+    },
+  ]}
+/>

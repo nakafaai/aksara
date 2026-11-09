@@ -23,11 +23,11 @@ Dabei bezeichnet <InlineMath math="A_{ij}" /> die <InlineMath math="(n-1) \times
 
 Dieses Vorzeichenmuster für drei Zeilen und Spalten zeigt: Jeder Schritt nach rechts oder unten kehrt das Vorzeichen um.
 
-| | j = 1 | j = 2 | j = 3 |
+| | <InlineMath math="j=1" /> | <InlineMath math="j=2" /> | <InlineMath math="j=3" /> |
 |---|---|---|---|
-| i = 1 | + | − | + |
-| i = 2 | − | + | − |
-| i = 3 | + | − | + |
+| <InlineMath math="i=1" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="+" /> |
+| <InlineMath math="i=2" /> | <InlineMath math="-" /> | <InlineMath math="+" /> | <InlineMath math="-" /> |
+| <InlineMath math="i=3" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="+" /> |
 
 Die Entwicklung nach einer beliebigen Spalte <InlineMath math="j" /> ergibt
 
@@ -92,6 +92,36 @@ Die Sarrus-Regel verwendet diagonale Muster, um zu bestimmen, welche Terme addie
 
 Die Regel von Sarrus gilt ausschließlich für <InlineMath math="3 \times 3" />-Matrizen. Bei größeren Matrizen verwendet man die Kofaktorentwicklung oder ein faktorisierungsbasiertes Verfahren, weil das Diagonalmuster dort nicht mehr greift.
 
+Für <InlineMath math="A=\begin{pmatrix}2&1&0\\0&2&1\\1&0&2\end{pmatrix}" /> liefert die Regel von Sarrus <InlineMath math="2\cdot2\cdot2+1\cdot1\cdot1+0\cdot0\cdot0-(0\cdot2\cdot1+2\cdot1\cdot0+1\cdot0\cdot2)=9" />. Dieser Wert ist das Volumen des Parallelepipeds, das die Spalten <InlineMath math="a=(2,0,1)" />, <InlineMath math="b=(1,2,0)" /> und <InlineMath math="c=(0,1,2)" /> aufspannen.
+
+<MathVisual
+  title={<>Ein Parallelepiped mit dem Volumen <InlineMath math="\det A=9" /></>}
+  description={<>Das Parallelepiped wird von den Spalten <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" /> von <InlineMath math="A" /> aufgespannt. Je zwei parallele Seitenflächen haben dieselbe Farbe: violett, türkis und orange.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -0.5, max: 3.5 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 1.5, z: 1.5 } },
+    objects: [
+      { id: "bottom", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 1 }, { x: 3, y: 2, z: 1 }, { x: 1, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "top", kind: "polygon", vertices: [{ x: 0, y: 1, z: 2 }, { x: 2, y: 1, z: 3 }, { x: 3, y: 3, z: 3 }, { x: 1, y: 3, z: 2 }], appearance: "secondary" },
+      { id: "left", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 2, z: 0 }, { x: 1, y: 3, z: 2 }, { x: 0, y: 1, z: 2 }], appearance: "construction" },
+      { id: "right", kind: "polygon", vertices: [{ x: 2, y: 0, z: 1 }, { x: 3, y: 2, z: 1 }, { x: 3, y: 3, z: 3 }, { x: 2, y: 1, z: 3 }], appearance: "construction" },
+      { id: "front", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 2 }, { x: 2, y: 1, z: 3 }, { x: 2, y: 0, z: 1 }], appearance: "primary" },
+      { id: "back", kind: "polygon", vertices: [{ x: 1, y: 2, z: 0 }, { x: 1, y: 3, z: 2 }, { x: 3, y: 3, z: 3 }, { x: 3, y: 2, z: 1 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "bottom", objectId: "bottom", at: { x: 2, y: 0, z: 1 }, placement: "below" },
+      { key: "left", objectId: "left", at: { x: 1, y: 2, z: 0 }, placement: "right" },
+      { key: "front", objectId: "front", at: { x: 0, y: 1, z: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "bottom": <InlineMath math="a" />,
+    "left": <InlineMath math="b" />,
+    "front": <InlineMath math="c" />,
+  }}
+/>
+
 ## Rechenaufwand
 
 Bei einer dichten <InlineMath math="n \times n" />-Matrix berechnet eine direkte rekursive Implementierung auf jeder Stufe <InlineMath math="n" /> Determinanten der Größe <InlineMath math="n-1" />. Der Aufwand erfüllt daher die Rekursion
@@ -102,6 +132,43 @@ Bei einer dichten <InlineMath math="n \times n" />-Matrix berechnet eine direkte
 </MathContainer>
 
 Das **faktorielle Wachstum** macht die rekursive Laplace-Entwicklung für große dichte Matrizen unpraktisch. Mit dem Gauß-Verfahren oder einer <InlineMath math="\mathrm{LU}" />-Zerlegung lässt sich eine Determinante in <InlineMath math="O(n^3)" /> Rechenoperationen bestimmen.
+
+Die vollständige Entwicklung erzeugt <InlineMath math="n!" /> Produkte, die Elimination braucht dagegen etwa <InlineMath math="\tfrac23n^3" /> Operationen. Selbst wenn jedes Produkt nur als ein Schritt zählt, überholt <InlineMath math="n!" /> ab <InlineMath math="n=5" /> den Wert <InlineMath math="\tfrac23n^3" />, mit <InlineMath math="120" /> gegen etwa <InlineMath math="83" />.
+
+<ScatterDiagram
+  title={<><InlineMath math="n!" /> gegen <InlineMath math="\tfrac23n^3" /></>}
+  description={<>Für die Größen <InlineMath math="n=1" /> bis <InlineMath math="7" /> zeigt die erste Reihe die <InlineMath math="n!" /> Produkte der Laplace-Entwicklung und die zweite die <InlineMath math="\tfrac23n^3" /> Operationen der Elimination. Bei <InlineMath math="n=7" /> steht <InlineMath math="5040" /> gegen etwa <InlineMath math="229" />.</>}
+  xAxisLabel="Matrixgröße"
+  yAxisLabel="Anzahl der Schritte"
+  datasets={[
+    {
+      name: "Laplace-Entwicklung",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 1 },
+        { x: 2, y: 1 * 2 },
+        { x: 3, y: 1 * 2 * 3 },
+        { x: 4, y: 1 * 2 * 3 * 4 },
+        { x: 5, y: 1 * 2 * 3 * 4 * 5 },
+        { x: 6, y: 1 * 2 * 3 * 4 * 5 * 6 },
+        { x: 7, y: 1 * 2 * 3 * 4 * 5 * 6 * 7 },
+      ],
+    },
+    {
+      name: "Elimination",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 2 / 3 * 1 ** 3 },
+        { x: 2, y: 2 / 3 * 2 ** 3 },
+        { x: 3, y: 2 / 3 * 3 ** 3 },
+        { x: 4, y: 2 / 3 * 4 ** 3 },
+        { x: 5, y: 2 / 3 * 5 ** 3 },
+        { x: 6, y: 2 / 3 * 6 ** 3 },
+        { x: 7, y: 2 / 3 * 7 ** 3 },
+      ],
+    },
+  ]}
+/>
 
 ## Nulleinträge nutzen
 
@@ -126,6 +193,39 @@ Da das **erste Element Null** ist, lautet die Berechnung:
 </MathContainer>
 
 Durch die Auswahl von Zeilen oder Spalten mit vielen Nullen können wir Berechnungen einsparen.
+
+Entwickelst du dieselbe Matrix nach der ersten Spalte, bekommst du die Kofaktoren <InlineMath math="C_{11}=2" />, <InlineMath math="C_{21}=-3" /> und <InlineMath math="C_{31}=-6" />, also <InlineMath math="\det A=0\cdot2+2\cdot(-3)+1\cdot(-6)=-12" />. In der Szene zeigt jede Gerade die Determinante, wenn du einen Eintrag der ersten Spalte durch einen Wert <InlineMath math="v" /> ersetzt und den Rest behältst. Alle drei Geraden gehen durch einen magentafarbenen Punkt bei <InlineMath math="\det A=-12" />, und jede Steigung ist genau der Kofaktor ihres Eintrags. Die grauen Punkte bei <InlineMath math="v=6" />, <InlineMath math="v=-2" /> und <InlineMath math="v=-1" /> markieren die Werte, bei denen die Matrix singulär wird.
+
+<MathVisual
+  title={<>Die Determinante ist linear in jedem Eintrag der ersten Spalte</>}
+  description={<>Jede Gerade zeigt <InlineMath math="\det A" />, wenn ein Eintrag der ersten Spalte durch <InlineMath math="v" /> ersetzt wird. Ihre Steigung ist der Kofaktor dieses Eintrags.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 8.5 }, y: { min: -21, max: 5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "c11", kind: "segment", from: { x: -4, y: -20 }, to: { x: 8, y: 4 }, appearance: "secondary" },
+      { id: "c21", kind: "segment", from: { x: -10 / 3, y: 4 }, to: { x: 14 / 3, y: -20 }, appearance: "construction" },
+      { id: "c31", kind: "segment", from: { x: -5 / 3, y: 4 }, to: { x: 7 / 3, y: -20 }, appearance: "primary" },
+      { id: "now-a", kind: "point", at: { x: 0, y: -12 }, appearance: "answer" },
+      { id: "now-b", kind: "point", at: { x: 2, y: -12 }, appearance: "answer" },
+      { id: "now-c", kind: "point", at: { x: 1, y: -12 }, appearance: "answer" },
+      { id: "zero-a", kind: "point", at: { x: 6, y: 0 }, appearance: "reference" },
+      { id: "zero-b", kind: "point", at: { x: -2, y: 0 }, appearance: "reference" },
+      { id: "zero-c", kind: "point", at: { x: -1, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "c11", objectId: "c11", at: { x: 8, y: 4 }, placement: "above-left" },
+      { key: "c21", objectId: "c21", at: { x: -10 / 3, y: 4 }, placement: "above-right" },
+      { key: "c31", objectId: "c31", at: { x: 7 / 3, y: -20 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "c11": <InlineMath math="a_{11}:\ C_{11}=2" />,
+    "c21": <InlineMath math="a_{21}:\ C_{21}=-3" />,
+    "c31": <InlineMath math="a_{31}:\ C_{31}=-6" />,
+  }}
+/>
 
 ## Determinante der transponierten Matrix
 

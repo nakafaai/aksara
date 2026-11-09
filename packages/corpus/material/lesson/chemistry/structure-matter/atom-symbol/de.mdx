@@ -89,6 +89,39 @@ Sind Massenzahl und Ordnungszahl bekannt, ergibt sich die Neutronenzahl aus ihre
 
 <BlockMath math="n^0 = A - Z" />
 
+Jede Teilchenzahl kommt aus den zwei Zahlen im Symbol <InlineMath math="^{A}_{Z}\mathrm{X}" />: <InlineMath math="Z" /> Protonen, <InlineMath math="Z" /> Elektronen in einem neutralen Atom und <InlineMath math="A-Z" /> Neutronen. Dreh die Balken für drei Atome: In jeder Gruppe stehen Protonen, Neutronen und Elektronen nebeneinander.
+
+<MathVisual
+  title={<>Von A und Z zu den Teilchenzahlen</>}
+  description={<>Protonen (orange), Neutronen (grau) und Elektronen (violett) in neutralem Kohlenstoff-12, Natrium-23 und Chlor-35. Ein Gitterschritt nach oben entspricht 4 Teilchen.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2, max: 11 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 8, z: 13 }, target: { x: 4.5, y: 2.5, z: 0 } },
+    objects: [
+      { id: "c-p", kind: "cuboid", appearance: "primary", center: { x: -1.1, y: 0.75, z: 0 }, size: { length: 0.9, height: 1.5, width: 0.9 } },
+      { id: "c-n", kind: "cuboid", appearance: "reference", center: { x: 0, y: 0.75, z: 0 }, size: { length: 0.9, height: 1.5, width: 0.9 } },
+      { id: "c-e", kind: "cuboid", appearance: "secondary", center: { x: 1.1, y: 0.75, z: 0 }, size: { length: 0.9, height: 1.5, width: 0.9 } },
+      { id: "na-p", kind: "cuboid", appearance: "primary", center: { x: 3.4, y: 1.375, z: 0 }, size: { length: 0.9, height: 2.75, width: 0.9 } },
+      { id: "na-n", kind: "cuboid", appearance: "reference", center: { x: 4.5, y: 1.5, z: 0 }, size: { length: 0.9, height: 3, width: 0.9 } },
+      { id: "na-e", kind: "cuboid", appearance: "secondary", center: { x: 5.6, y: 1.375, z: 0 }, size: { length: 0.9, height: 2.75, width: 0.9 } },
+      { id: "cl-p", kind: "cuboid", appearance: "primary", center: { x: 7.9, y: 2.125, z: 0 }, size: { length: 0.9, height: 4.25, width: 0.9 } },
+      { id: "cl-n", kind: "cuboid", appearance: "reference", center: { x: 9, y: 2.25, z: 0 }, size: { length: 0.9, height: 4.5, width: 0.9 } },
+      { id: "cl-e", kind: "cuboid", appearance: "secondary", center: { x: 10.1, y: 2.125, z: 0 }, size: { length: 0.9, height: 4.25, width: 0.9 } },
+    ],
+    labels: [
+      { key: "c", objectId: "c-n", at: { x: 0, y: 1.5, z: 0 }, placement: "above" },
+      { key: "na", objectId: "na-n", at: { x: 4.5, y: 3, z: 0 }, placement: "above" },
+      { key: "cl", objectId: "cl-n", at: { x: 9, y: 4.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    c: <InlineMath math="^{12}_{6}\mathrm{C}:\ 6,\ 12-6=6,\ 6" />,
+    na: <InlineMath math="^{23}_{11}\mathrm{Na}:\ 11,\ 23-11=12,\ 11" />,
+    cl: <InlineMath math="^{35}_{17}\mathrm{Cl}:\ 17,\ 35-17=18,\ 17" />,
+  }}
+/>
+
 ## Beispiel mit Kohlenstoff
 
 Für ein Kohlenstoffatom mit der Massenzahl <InlineMath math="12" /> lautet das Symbol:
@@ -104,6 +137,33 @@ n^0 &= 12 - 6 = 6
 \end{aligned}" />
 
 Ist dieses <InlineMath math="{}^{12}_{6}\mathrm{C}" />-Atom **neutral**, besitzt es außerdem <InlineMath math="6" /> Elektronen.
+
+Hier sind die drei Anzahlen für Kohlenstoff-12 als Säulen, ein Gitterschritt für <InlineMath math="2" /> Teilchen. Alle drei sind <InlineMath math="6" />, aber aus verschiedenen Gründen: <InlineMath math="Z=6" />, das Atom ist neutral, und <InlineMath math="12-6=6" />.
+
+<MathVisual
+  title={<>Teilchen in Kohlenstoff-12</>}
+  description={<>Protonen, Neutronen und Elektronen eines neutralen Kohlenstoff-12-Atoms. Ein Gitterschritt nach oben sind 2 Teilchen.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 1.5, z: 0 } },
+    objects: [
+      { id: "protons", kind: "cuboid", appearance: "primary", center: { x: 0, y: (6 / 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 6 / 2, width: 1.2 } },
+      { id: "neutrons", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: ((12 - 6) / 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: (12 - 6) / 2, width: 1.2 } },
+      { id: "electrons", kind: "cuboid", appearance: "secondary", center: { x: 5, y: (6 / 2) / 2 + 0, z: 0 }, size: { length: 1.2, height: 6 / 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "protons", objectId: "protons", at: { x: 0, y: 3.5, z: 0 }, placement: "above" },
+      { key: "neutrons", objectId: "neutrons", at: { x: 2.5, y: 3.5, z: 0 }, placement: "above" },
+      { key: "electrons", objectId: "electrons", at: { x: 5, y: 3.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    protons: <InlineMath math="p^+=Z=6" />,
+    neutrons: <InlineMath math="n^0=12-6=6" />,
+    electrons: <InlineMath math="e^-=6" />,
+  }}
+/>
 
 ## Massenzahl und relative Atommasse
 

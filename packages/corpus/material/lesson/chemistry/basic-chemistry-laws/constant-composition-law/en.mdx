@@ -30,6 +30,32 @@ Even when different amounts of water form, the **mass ratio of hydrogen to oxyge
 
 <BlockMath math="\begin{aligned} M(\mathrm{H_2O}) &amp;=2(1.0080)+15.999 \\ &amp;=18.015\ \mathrm{g\,mol^{-1}} \end{aligned}" />
 
+Compare two samples of water, with hydrogen in violet and oxygen in orange and one grid step for <InlineMath math="4\ \mathrm{g}" />. The large sample is twice as heavy, but both split the same way, about <InlineMath math="1:8" /> by mass. That fixed split is what constant composition means.
+
+<MathVisual
+  title={<>Two Samples, One Mass Ratio</>}
+  description={<>9 g and 18 g of water split into hydrogen (violet) and oxygen (orange) at about 1:8. One grid step up is 4 g.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 5, z: 9 }, target: { x: 1.5, y: 2, z: 0 } },
+    objects: [
+      { id: "small-h", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (1 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1 / 4, width: 1.2 } },
+      { id: "small-o", kind: "cuboid", appearance: "primary", center: { x: 0, y: (8 / 4) / 2 + 1 / 4, z: 0 }, size: { length: 1.2, height: 8 / 4, width: 1.2 } },
+      { id: "large-h", kind: "cuboid", appearance: "secondary", center: { x: 3, y: (2 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2 / 4, width: 1.2 } },
+      { id: "large-o", kind: "cuboid", appearance: "primary", center: { x: 3, y: (16 / 4) / 2 + 2 / 4, z: 0 }, size: { length: 1.2, height: 16 / 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "small", objectId: "small-o", at: { x: 0, y: 2.75, z: 0 }, placement: "above" },
+      { key: "large", objectId: "large-o", at: { x: 3, y: 5.0, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    small: <InlineMath math="9\ \mathrm{g}:\ 1+8" />,
+    large: <InlineMath math="18\ \mathrm{g}:\ 2+16" />,
+  }}
+/>
+
 ## Extra Reactant Stays Extra
 
 Change the starting masses in the model. A different starting mixture may **leave hydrogen or oxygen behind**. The hydrogen and oxygen that form water always react in a <InlineMath math="1:8" /> mass ratio.
@@ -132,6 +158,36 @@ This model counts the mass of each element. The next equation shows how the mole
 In the excess-hydrogen case, <InlineMath math="16 \mathrm{g}" /> of oxygen requires hydrogen in the mass ratio <InlineMath math="1:8" />. Calculate the reacting amount before finding what remains:
 
 <BlockMath math="\begin{aligned} m_{\mathrm{H,reacting}} &= \frac{1}{8}\times16=2\ \mathrm{g} \\ m_{\mathrm{H,remaining}} &=3-2=1\ \mathrm{g} \end{aligned}" />
+
+Water always holds hydrogen and oxygen in the mass ratio <InlineMath math="1:8" />. From <InlineMath math="3\ \mathrm{g}" /> of hydrogen and <InlineMath math="16\ \mathrm{g}" /> of oxygen, the oxygen can only use <InlineMath math="2\ \mathrm{g}" /> of hydrogen. Rotate the bars: the pink part of the hydrogen is left over, and the water is exactly the used hydrogen plus the oxygen.
+
+<MathVisual
+  title={<>The Extra Hydrogen Stays Extra</>}
+  description={<>Hydrogen (violet, leftover in pink), oxygen (orange) and the water formed (teal). One grid step up is 2 grams.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 10 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 12, z: 11 }, target: { x: 3, y: 4.5, z: 0 } },
+    objects: [
+      { id: "h-used", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.6, height: 1, width: 1.6 } },
+      { id: "h-left", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.25, z: 0 }, size: { length: 1.6, height: 0.5, width: 1.6 } },
+      { id: "o-used", kind: "cuboid", appearance: "primary", center: { x: 3, y: 4, z: 0 }, size: { length: 1.6, height: 8, width: 1.6 } },
+      { id: "water", kind: "cuboid", appearance: "construction", center: { x: 6, y: 4.5, z: 0 }, size: { length: 1.6, height: 9, width: 1.6 } },
+    ],
+    labels: [
+      { key: "used", objectId: "h-used", at: { x: 0, y: 0.5, z: 0.8 }, placement: "right" },
+      { key: "left", objectId: "h-left", at: { x: 0, y: 1.5, z: 0 }, placement: "above" },
+      { key: "oxygen", objectId: "o-used", at: { x: 3, y: 8, z: 0 }, placement: "above" },
+      { key: "water", objectId: "water", at: { x: 6, y: 9, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    used: <InlineMath math="\mathrm{H}:\ 2\ \mathrm{g}" />,
+    left: <InlineMath math="\mathrm{H}:\ 3-2=1\ \mathrm{g}" />,
+    oxygen: <InlineMath math="\mathrm{O}:\ 16\ \mathrm{g}" />,
+    water: <InlineMath math="\mathrm{H_2O}:\ 2+16=18\ \mathrm{g}" />,
+  }}
+/>
 
 ## Testing Calcium Oxide Data
 

@@ -60,6 +60,32 @@ Deshalb vergleichen Forschende **Satellitendaten, Ozeanmessungen, Temperaturreih
 
 > Ein einzelnes Wetterereignis kann täuschen. Eine belastbare Klimaaussage vergleicht mehrere Indikatoren über einen langen Zeitraum.
 
+Ein kühles Jahr hebt einen Erwärmungstrend nicht auf. Die Jahreswerte hier springen auf und ab um eine Linie, die pro Jahr um <InlineMath math="0{,}02\ ^\circ\mathrm{C}" /> steigt, also um <InlineMath math="0{,}8\ ^\circ\mathrm{C}" /> in 40 Jahren. Zoom auf einzelne Jahre und dann heraus, um den Trend zu sehen, den erst Jahrzehnte an Messungen zeigen.
+
+<MathVisual
+  title={<>Einzelne Jahre schwanken, Jahrzehnte steigen</>}
+  description={<>Beispielhafte jährliche Temperaturabweichungen über 40 Jahre mit ihrer Trendgeraden. Waagerecht: Ein Gitterschritt entspricht 4 Jahren. Senkrecht: Ein Gitterschritt entspricht <InlineMath math="0{,}2\ ^\circ\mathrm{C}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "years", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: (2 * 0 + 12) / 20 }, { x: 0.25, y: (2 * 1 + -18) / 20 }, { x: 0.5, y: (2 * 2 + 5) / 20 }, { x: 0.75, y: (2 * 3 + 20) / 20 }, { x: 1, y: (2 * 4 + -10) / 20 }, { x: 1.25, y: (2 * 5 + -22) / 20 }, { x: 1.5, y: (2 * 6 + 15) / 20 }, { x: 1.75, y: (2 * 7 + 2) / 20 }, { x: 2, y: (2 * 8 + -14) / 20 }, { x: 2.25, y: (2 * 9 + 18) / 20 }, { x: 2.5, y: (2 * 10 + -5) / 20 }, { x: 2.75, y: (2 * 11 + 10) / 20 }, { x: 3, y: (2 * 12 + -20) / 20 }, { x: 3.25, y: (2 * 13 + 8) / 20 }, { x: 3.5, y: (2 * 14 + 16) / 20 }, { x: 3.75, y: (2 * 15 + -12) / 20 }, { x: 4, y: (2 * 16 + 0) / 20 }, { x: 4.25, y: (2 * 17 + -24) / 20 }, { x: 4.5, y: (2 * 18 + 14) / 20 }, { x: 4.75, y: (2 * 19 + 6) / 20 }, { x: 5, y: (2 * 20 + -8) / 20 }, { x: 5.25, y: (2 * 21 + 22) / 20 }, { x: 5.5, y: (2 * 22 + -16) / 20 }, { x: 5.75, y: (2 * 23 + 4) / 20 }, { x: 6, y: (2 * 24 + 10) / 20 }, { x: 6.25, y: (2 * 25 + -20) / 20 }, { x: 6.5, y: (2 * 26 + 12) / 20 }, { x: 6.75, y: (2 * 27 + -2) / 20 }, { x: 7, y: (2 * 28 + 18) / 20 }, { x: 7.25, y: (2 * 29 + -14) / 20 }, { x: 7.5, y: (2 * 30 + 6) / 20 }, { x: 7.75, y: (2 * 31 + -22) / 20 }, { x: 8, y: (2 * 32 + 16) / 20 }, { x: 8.25, y: (2 * 33 + 0) / 20 }, { x: 8.5, y: (2 * 34 + -10) / 20 }, { x: 8.75, y: (2 * 35 + 20) / 20 }, { x: 9, y: (2 * 36 + -6) / 20 }, { x: 9.25, y: (2 * 37 + 8) / 20 }, { x: 9.5, y: (2 * 38 + -18) / 20 }, { x: 9.75, y: (2 * 39 + 14) / 20 }, { x: 10, y: (2 * 40 + 4) / 20 }] },
+      { id: "trend", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 10, y: 4 } },
+      { id: "cool", kind: "point", appearance: "secondary", at: { x: 7.75, y: (2 * 31 + -22) / 20 } },
+      { id: "trend-end", kind: "point", appearance: "primary", at: { x: 10, y: 4 } },
+    ],
+    labels: [
+      { key: "cool", objectId: "cool", at: { x: 7.75, y: (2 * 31 + -22) / 20 }, placement: "below" },
+      { key: "trend", objectId: "trend-end", at: { x: 10, y: 4 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    cool: <>ein kühles Jahr</>,
+    trend: <InlineMath math="+0{,}02\ ^\circ\mathrm{C}\ \text{pro Jahr}" />,
+  }}
+/>
+
 ## Durchschnittstemperatur ist nicht dasselbe wie Hitzegefühl
 
 Wie heiß sich ein Nachmittag anfühlt, hängt vom lokalen Wetter ab. Die globale mittlere Oberflächentemperatur wird dagegen aus **vielen Messungen über lange Zeiträume** geschätzt. Ein beständiger Anstieg ist ein Anzeichen für ein planetarisches Energieungleichgewicht. Ozeanwärme, schmelzendes Eis und weitere Messungen zeigen, wo ein großer Teil der zusätzlichen Energie verbleibt.
@@ -102,6 +128,35 @@ Temperatur, Ozeanwärme, Eis, Niederschlag, Dürre und Küstenereignisse müssen
     C --> F
     D --> F
     E --> F`}
+/>
+
+Verschieb die ganze Verteilung der Tagestemperaturen um <InlineMath math="1\ ^\circ\mathrm{C}" /> nach oben, und der heiße Rand wächst viel stärker als die Mitte. Bei einer Glockenkurve mit Streuung <InlineMath math="\sigma=1\ ^\circ\mathrm{C}" /> steigen Tage mit mehr als <InlineMath math="2\ ^\circ\mathrm{C}" /> über dem alten Mittel von etwa <InlineMath math="2{,}3\%" /> auf etwa <InlineMath math="15{,}9\%" />, fast siebenmal so oft. Deshalb muss man Extreme über Jahrzehnte vergleichen. Zoom auf die Fläche rechts der rosa Linie.
+
+<MathVisual
+  title={<>Kleine Verschiebung, viel mehr heiße Tage</>}
+  description={<>Glockenkurven der täglichen Temperaturabweichung vor (grau) und nach (orange) einer Verschiebung um <InlineMath math="1\ ^\circ\mathrm{C}" />. Waagerecht: Grad vom alten Mittel. Senkrecht: wie oft jeder Wert vorkommt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 5.5 }, y: { min: -0.3, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "before", kind: "polyline", appearance: "reference", vertices: [{ x: -4, y: (10 * Math.exp(-((-4 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3.75, y: (10 * Math.exp(-((-3.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3.5, y: (10 * Math.exp(-((-3.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3.25, y: (10 * Math.exp(-((-3.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3, y: (10 * Math.exp(-((-3 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2.75, y: (10 * Math.exp(-((-2.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2.5, y: (10 * Math.exp(-((-2.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2.25, y: (10 * Math.exp(-((-2.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2, y: (10 * Math.exp(-((-2 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1.75, y: (10 * Math.exp(-((-1.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1.5, y: (10 * Math.exp(-((-1.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1.25, y: (10 * Math.exp(-((-1.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1, y: (10 * Math.exp(-((-1 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -0.75, y: (10 * Math.exp(-((-0.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -0.5, y: (10 * Math.exp(-((-0.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -0.25, y: (10 * Math.exp(-((-0.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0, y: (10 * Math.exp(-((0 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0.25, y: (10 * Math.exp(-((0.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0.5, y: (10 * Math.exp(-((0.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0.75, y: (10 * Math.exp(-((0.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1, y: (10 * Math.exp(-((1 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1.25, y: (10 * Math.exp(-((1.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1.5, y: (10 * Math.exp(-((1.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1.75, y: (10 * Math.exp(-((1.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2, y: (10 * Math.exp(-((2 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2.25, y: (10 * Math.exp(-((2.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2.5, y: (10 * Math.exp(-((2.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2.75, y: (10 * Math.exp(-((2.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3, y: (10 * Math.exp(-((3 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3.25, y: (10 * Math.exp(-((3.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3.5, y: (10 * Math.exp(-((3.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3.75, y: (10 * Math.exp(-((3.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4, y: (10 * Math.exp(-((4 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4.25, y: (10 * Math.exp(-((4.25 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4.5, y: (10 * Math.exp(-((4.5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4.75, y: (10 * Math.exp(-((4.75 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 5, y: (10 * Math.exp(-((5 - 0) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }] },
+      { id: "after", kind: "polyline", appearance: "primary", vertices: [{ x: -4, y: (10 * Math.exp(-((-4 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3.75, y: (10 * Math.exp(-((-3.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3.5, y: (10 * Math.exp(-((-3.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3.25, y: (10 * Math.exp(-((-3.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -3, y: (10 * Math.exp(-((-3 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2.75, y: (10 * Math.exp(-((-2.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2.5, y: (10 * Math.exp(-((-2.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2.25, y: (10 * Math.exp(-((-2.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -2, y: (10 * Math.exp(-((-2 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1.75, y: (10 * Math.exp(-((-1.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1.5, y: (10 * Math.exp(-((-1.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1.25, y: (10 * Math.exp(-((-1.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -1, y: (10 * Math.exp(-((-1 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -0.75, y: (10 * Math.exp(-((-0.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -0.5, y: (10 * Math.exp(-((-0.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: -0.25, y: (10 * Math.exp(-((-0.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0, y: (10 * Math.exp(-((0 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0.25, y: (10 * Math.exp(-((0.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0.5, y: (10 * Math.exp(-((0.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 0.75, y: (10 * Math.exp(-((0.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1, y: (10 * Math.exp(-((1 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1.25, y: (10 * Math.exp(-((1.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1.5, y: (10 * Math.exp(-((1.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 1.75, y: (10 * Math.exp(-((1.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2, y: (10 * Math.exp(-((2 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2.25, y: (10 * Math.exp(-((2.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2.5, y: (10 * Math.exp(-((2.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 2.75, y: (10 * Math.exp(-((2.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3, y: (10 * Math.exp(-((3 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3.25, y: (10 * Math.exp(-((3.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3.5, y: (10 * Math.exp(-((3.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 3.75, y: (10 * Math.exp(-((3.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4, y: (10 * Math.exp(-((4 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4.25, y: (10 * Math.exp(-((4.25 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4.5, y: (10 * Math.exp(-((4.5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 4.75, y: (10 * Math.exp(-((4.75 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, { x: 5, y: (10 * Math.exp(-((5 - 1) ** 2) / 2)) / Math.sqrt(2 * Math.PI) }] },
+      { id: "hot", kind: "segment", appearance: "warning", from: { x: 2, y: 0 }, to: { x: 2, y: 4.4 } },
+      { id: "tail-before", kind: "point", appearance: "reference", at: { x: 2.75, y: (10 * Math.exp(-(2.75 ** 2) / 2)) / Math.sqrt(2 * Math.PI) } },
+      { id: "tail-after", kind: "point", appearance: "primary", at: { x: 2.75, y: (10 * Math.exp(-(1.75 ** 2) / 2)) / Math.sqrt(2 * Math.PI) } },
+    ],
+    labels: [
+      { key: "line", objectId: "hot", at: { x: 2, y: 4.4 }, placement: "right" },
+      { key: "before", objectId: "tail-before", at: { x: 2.75, y: (10 * Math.exp(-(2.75 ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, placement: "right" },
+      { key: "after", objectId: "tail-after", at: { x: 2.75, y: (10 * Math.exp(-(1.75 ** 2) / 2)) / Math.sqrt(2 * Math.PI) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    line: <>Schwelle für heiße Tage</>,
+    before: <InlineMath math="\approx2{,}3\%" />,
+    after: <InlineMath math="\approx15{,}9\%" />,
+  }}
 />
 
 ## Klimaanzeichen erkennen ohne sich vom Tageswetter täuschen zu lassen

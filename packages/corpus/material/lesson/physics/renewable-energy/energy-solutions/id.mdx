@@ -20,6 +20,30 @@ Mulai dari kebutuhan, <Highlight>tentukan sumber lokal yang sesuai</Highlight>, 
 
 Sistem dapat gagal jika perawatan, biaya, keselamatan, atau pengelolaan dampak lingkungan tidak masuk dalam rencana. Sumber energi dan seluruh bagian pendukung sistem harus sesuai dengan kondisi lokasi.
 
+Mulai dari kebutuhannya, lalu periksa sumbernya. Desa dengan 50 rumah yang masing-masing memakai <InlineMath math="1\text{ kWh}" /> per hari butuh <InlineMath math="50\text{ kWh}" />, dan mikrohidro <InlineMath math="2{,}5\text{ kW}" /> yang menyala sepanjang hari memberi <InlineMath math="60\text{ kWh}" />. Putar batangnya dan bandingkan.
+
+<MathVisual
+  title={<>Dari Kebutuhan ke Layanan Energi</>}
+  description={<>Kebutuhan energi harian 50 rumah (ungu) dan hasil harian mikrohidro 2,5 kW (teal). Satu kotak grid ke atas berarti 10 kWh.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 7.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 6, z: 10 }, target: { x: 1.25, y: 3, z: 0 } },
+    objects: [
+      { id: "need", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 2.5, z: 0 }, size: { length: 1.2, height: 5, width: 1.2 } },
+      { id: "supply", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: 3, z: 0 }, size: { length: 1.2, height: 6, width: 1.2 } },
+    ],
+    labels: [
+      { key: "need", objectId: "need", at: { x: 0, y: 5, z: 0 }, placement: "above" },
+      { key: "supply", objectId: "supply", at: { x: 2.5, y: 6, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    need: <InlineMath math="50\cdot1=50\text{ kWh}" />,
+    supply: <InlineMath math="2{,}5\cdot24=60\text{ kWh}" />,
+  }}
+/>
+
 ## Contoh Mikrohidro dari Plaosan
 
 Pembangkit Listrik Tenaga Mikrohidro (PLTMH) adalah pembangkit listrik tenaga air skala kecil. Istilah "mikro" mengacu pada kapasitas yang jauh lebih kecil daripada pembangkit listrik tenaga air besar.
@@ -48,6 +72,41 @@ Rumus tersebut memperkirakan daya dari massa jenis air, gravitasi, debit, beda t
 Untuk **contoh hitung rekaan**, ambil massa jenis air <InlineMath math="1\,000 \text{ kg/m}^3" />, <InlineMath math="g=10 \text{ m/s}^2" />, debit <InlineMath math="0{,}02 \text{ m}^3/\text{s}" />, beda tinggi <InlineMath math="10 \text{ m}" />, dan efisiensi <InlineMath math="0{,}7" />. Angka ini bukan hasil pengukuran proyek yang dibahas setelahnya.
 
 <BlockMath math="\begin{aligned} P &\approx \rho g Q h \eta \\ &= (1\,000)(10)(0{,}02)(10)(0{,}7) \text{ W} \\ &= 1\,400 \text{ W} \end{aligned}" />
+
+Putar permukaan di bawah. Setiap titik di permukaan itu adalah rumus tadi dengan satu debit ke kanan dan satu beda tinggi ke arah dalam layar, sedangkan tingginya adalah daya dalam kilowatt. Titik fuchsia adalah contoh hipotetis di atas, <InlineMath math="1\,400\text{ W}" />. Telusuri garis oranye mana saja, dayanya naik teratur bersama beda tinggi. Telusuri garis hijau toska, dayanya naik bersama debit. Sudut terjauh, tempat air paling banyak jatuh paling tinggi, adalah bagian permukaan yang paling tinggi.
+
+<MathVisual
+  title={<>Daya Mikrohidro dari Debit dan Beda Tinggi</>}
+  description={<><InlineMath math="P=\rho gQh\eta" /> dengan <InlineMath math="\rho=1000\text{ kg/m}^3" />, <InlineMath math="g=10\text{ m/s}^2" />, dan <InlineMath math="\eta=0{,}7" />. Ke kanan: debit dalam satuan <InlineMath math="0{,}01\text{ m}^3\text{/s}" />. Ke dalam layar: beda tinggi dalam satuan 5 m. Ke atas: daya dalam kW.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "camera", position: { x: 9, y: 7, z: 9 }, target: { x: 2, y: 1.5, z: 2 } },
+    objects: [
+      { id: "head-0", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: (1000 * 10 * 0.04 * 0 * 0.7) / 1000, z: 0 } },
+      { id: "head-5", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 1 }, to: { x: 4, y: (1000 * 10 * 0.04 * 5 * 0.7) / 1000, z: 1 } },
+      { id: "head-10", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 2 }, to: { x: 4, y: (1000 * 10 * 0.04 * 10 * 0.7) / 1000, z: 2 } },
+      { id: "head-15", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 3 }, to: { x: 4, y: (1000 * 10 * 0.04 * 15 * 0.7) / 1000, z: 3 } },
+      { id: "head-20", kind: "segment", appearance: "construction", from: { x: 0, y: 0, z: 4 }, to: { x: 4, y: (1000 * 10 * 0.04 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-0", kind: "segment", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: (1000 * 10 * 0.0 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-1", kind: "segment", appearance: "primary", from: { x: 1, y: 0, z: 0 }, to: { x: 1, y: (1000 * 10 * 0.01 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-2", kind: "segment", appearance: "primary", from: { x: 2, y: 0, z: 0 }, to: { x: 2, y: (1000 * 10 * 0.02 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-3", kind: "segment", appearance: "primary", from: { x: 3, y: 0, z: 0 }, to: { x: 3, y: (1000 * 10 * 0.03 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "flow-4", kind: "segment", appearance: "primary", from: { x: 4, y: 0, z: 0 }, to: { x: 4, y: (1000 * 10 * 0.04 * 20 * 0.7) / 1000, z: 4 } },
+      { id: "design", kind: "point", appearance: "answer", at: { x: 2, y: (1000 * 10 * 0.02 * 10 * 0.7) / 1000, z: 2 } },
+    ],
+    labels: [
+      { key: "power", objectId: "design", at: { x: 2, y: (1000 * 10 * 0.02 * 10 * 0.7) / 1000, z: 2 }, placement: "above" },
+      { key: "q", objectId: "head-0", at: { x: 4, y: 0, z: 0 }, placement: "right" },
+      { key: "h", objectId: "flow-0", at: { x: 0, y: 0, z: 4 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    power: <InlineMath math="1\,400\text{ W}" />,
+    q: <InlineMath math="Q" />,
+    h: <InlineMath math="h" />,
+  }}
+/>
 
 [Pengelola proyek PLTMH di sekitar Air Terjun Kali Pedati](https://paitonenergy.com/en/energy-learning-house-program-for-climate-change-mitigation/) melaporkan kapasitas terpasang sebesar <InlineMath math="7 \text{ kW}" />. Proyek ini dikelola oleh kelompok yang terdiri atas <InlineMath math="14" /> rumah tangga, dan pengelola yang sama menyebut sekitar <InlineMath math="500 \text{ W}" /> per rumah tangga. Coba cek apakah kedua angka itu cocok: <InlineMath math="14\times500 \text{ W}=7\,000 \text{ W}" />, atau <InlineMath math="7 \text{ kW}" />. Angka tersebut berasal dari pengelola proyek. Pengukuran jangka panjang oleh pihak independen masih diperlukan untuk menilai kinerja pembangkit dari waktu ke waktu.
 
@@ -79,6 +138,38 @@ Pemenuhan kebutuhan energi berkaitan langsung dengan SDG <InlineMath math="7" />
 SDG <InlineMath math="7" /> menargetkan [**akses energi** yang terjangkau, andal, berkelanjutan, dan modern](https://sdgs.un.org/goals/goal7) untuk semua orang.
 
 Keempat unsur akses energi tersebut dapat diperiksa melalui pertanyaan. Bisakah rumah tangga dan layanan publik membayar energi sambil memenuhi kebutuhan pokok lain? Apakah pasokan energi tersedia saat dibutuhkan? Bisakah sistem terus berjalan sambil melindungi manusia, ekosistem, dan generasi berikutnya? Apakah layanan energi aman dan mampu mendukung penerangan, komunikasi, pekerjaan produktif, serta layanan kesehatan?
+
+Beri nilai tiap pilihan pada keempat pertanyaan, maka bentuknya bercerita. Dalam nilai ilustratif dari 4 ini, jaringan mini tenaga surya dengan baterai menutupi bagian yang lebih luas daripada generator diesel, terutama pada sumbu berkelanjutan. Perbesar tiap sudutnya.
+
+<MathVisual
+  title={<>Empat Pertanyaan untuk Akses Energi</>}
+  description={<>Nilai ilustratif dari 4 untuk jaringan mini tenaga surya dengan baterai (teal) dan generator diesel (merah muda).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "axis-affordable", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "axis-reliable", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "axis-sustainable", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: -4 } },
+      { id: "axis-modern", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: -4, y: 0 } },
+      { id: "solar", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 3 }, { x: 3, y: 0 }, { x: 0, y: -4 }, { x: -4, y: 0 }] },
+      { id: "diesel", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 2 }, { x: 3, y: 0 }, { x: 0, y: -1 }, { x: -3, y: 0 }] },
+    ],
+    labels: [
+      { key: "affordable", objectId: "axis-affordable", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "reliable", objectId: "axis-reliable", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "sustainable", objectId: "axis-sustainable", at: { x: 0, y: -4 }, placement: "below" },
+      { key: "modern", objectId: "axis-modern", at: { x: -4, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    affordable: <>terjangkau</>,
+    reliable: <>andal</>,
+    sustainable: <>berkelanjutan</>,
+    modern: <>modern</>,
+  }}
+/>
 
 ## Rencana Energi Lokal yang Dapat Diuji
 

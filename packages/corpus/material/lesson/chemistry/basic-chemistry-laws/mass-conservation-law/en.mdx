@@ -97,6 +97,33 @@ The open view starts with the same <InlineMath math="10.00\ \mathrm{g}" /> of zi
 
 The balance measures only the matter that remains inside the chosen boundary, so it reads <InlineMath math="11.00\ \mathrm{g}" /> after <InlineMath math="1.00\ \mathrm{g}" /> of sulfur vapor leaves. If the escaping vapor is included in the system, the total mass remains <InlineMath math="12.00\ \mathrm{g}" />.
 
+The three columns below are what the balance reads, with one grid step for <InlineMath math="4\ \mathrm{g}" />. With every substance kept inside, the closed column stays at <InlineMath math="12.00\ \mathrm{g}" />. In the open view, <InlineMath math="1.00\ \mathrm{g}" /> of sulfur crosses the boundary before it reacts, so the balance shows only <InlineMath math="11.00\ \mathrm{g}" />. The mass didn't vanish: it left the system you're weighing.
+
+<MathVisual
+  title={<>What the Balance Reads</>}
+  description={<>10.00 g of zinc and 2.00 g of sulfur before the reaction, then after it in a closed and in an open system. One grid step up is 4 g.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 3, y: 1.5, z: 0 } },
+    objects: [
+      { id: "before", kind: "cuboid", appearance: "primary", center: { x: 0, y: (12 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 12 / 4, width: 1.2 } },
+      { id: "closed", kind: "cuboid", appearance: "construction", center: { x: 3, y: (12 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 12 / 4, width: 1.2 } },
+      { id: "open", kind: "cuboid", appearance: "warning", center: { x: 6, y: (11 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 11 / 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "before", objectId: "before", at: { x: 0, y: 3.5, z: 0 }, placement: "above" },
+      { key: "closed", objectId: "closed", at: { x: 3, y: 3.5, z: 0 }, placement: "above" },
+      { key: "open", objectId: "open", at: { x: 6, y: 3.25, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    before: <InlineMath math="12.00\ \mathrm{g}" />,
+    closed: <InlineMath math="12.00\ \mathrm{g}" />,
+    open: <InlineMath math="11.00\ \mathrm{g}" />,
+  }}
+/>
+
 ## Zinc and Sulfur
 
 In one experiment, <InlineMath math="10.00\ \mathrm{g}" /> of zinc is heated with <InlineMath math="2.00\ \mathrm{g}" /> of sulfur. After the reaction, <InlineMath math="6.08\ \mathrm{g}" /> of zinc sulfide forms and <InlineMath math="5.92\ \mathrm{g}" /> of zinc **remains unreacted**.
@@ -131,3 +158,32 @@ Keep three questions separate.
 Chemical equations must be balanced because both sides contain the same number of atoms of each element. Mass calculations follow conservation of matter.
 
 The law of constant composition answers a different question. When two elements form the same compound, does their mass ratio stay fixed?
+
+Keep the three masses of the zinc and sulfur experiment apart. Before the reaction the column holds the zinc that will react, the zinc that won't, and the sulfur. After it, the reacted part has become <InlineMath math="6.08\ \mathrm{g}" /> of <InlineMath math="\mathrm{ZnS}" /> beside the same leftover zinc. Rotate the columns: both totals are <InlineMath math="12.00\ \mathrm{g}" />.
+
+<MathVisual
+  title={<>Three Mass Questions</>}
+  description={<>Before (left): leftover zinc (gray), reacting zinc (orange) and sulfur (amber). After (right): leftover zinc (gray) and zinc sulfide (teal). One grid step up is 1 gram.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 13 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8.5, y: 15, z: 11 }, target: { x: 1.5, y: 6, z: 0 } },
+    objects: [
+      { id: "zn-left-before", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2.96, z: 0 }, size: { length: 1.6, height: 5.92, width: 1.6 } },
+      { id: "zn-reacted", kind: "cuboid", appearance: "primary", center: { x: 0, y: 7.96, z: 0 }, size: { length: 1.6, height: 4.08, width: 1.6 } },
+      { id: "sulfur", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 11, z: 0 }, size: { length: 1.6, height: 2, width: 1.6 } },
+      { id: "zn-left-after", kind: "cuboid", appearance: "reference", center: { x: 3, y: 2.96, z: 0 }, size: { length: 1.6, height: 5.92, width: 1.6 } },
+      { id: "zns", kind: "cuboid", appearance: "construction", center: { x: 3, y: 8.96, z: 0 }, size: { length: 1.6, height: 6.08, width: 1.6 } },
+    ],
+    labels: [
+      { key: "before", objectId: "sulfur", at: { x: 0, y: 12, z: 0 }, placement: "above" },
+      { key: "after", objectId: "zns", at: { x: 3, y: 12, z: 0 }, placement: "above" },
+      { key: "left", objectId: "zn-left-after", at: { x: 3, y: 2.96, z: 0.8 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    before: <InlineMath math="4.08+5.92+2.00=12.00\ \mathrm{g}" />,
+    after: <InlineMath math="6.08+5.92=12.00\ \mathrm{g}" />,
+    left: <InlineMath math="\mathrm{Zn}:\ 5.92\ \mathrm{g}" />,
+  }}
+/>

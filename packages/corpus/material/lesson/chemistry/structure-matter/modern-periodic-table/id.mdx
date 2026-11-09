@@ -88,6 +88,45 @@ Karena jumlah proton menentukan identitas unsur, kenaikan <InlineMath math="Z" /
 
 Unsur dalam satu golongan tidak selalu identik. Pada golongan utama, jumlah dan susunan elektron valensi yang mirip <Highlight>sering menghasilkan pola reaksi yang mirip</Highlight>.
 
+Hitung unsur di setiap periode tabel modern, maka muncul pola: <InlineMath math="2, 8, 8, 18, 18, 32, 32" />. Setiap kolom di bawah adalah satu periode, dengan satu kotak grid untuk <InlineMath math="4" /> unsur. Lonjakan ke <InlineMath math="18" /> dan <InlineMath math="32" /> adalah tempat logam transisi, lalu lantanida dan aktinida, ikut masuk.
+
+<MathVisual
+  title={<>Banyak Unsur di Setiap Periode</>}
+  description={<>Banyaknya unsur pada periode 1 sampai 7 tabel periodik modern. Satu kotak grid ke atas sama dengan 4 unsur.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 14, y: 8, z: 15 }, target: { x: 6, y: 3, z: 0 } },
+    objects: [
+      { id: "period-1", kind: "cuboid", appearance: "construction", center: { x: 0, y: (2 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2 / 4, width: 1.2 } },
+      { id: "period-2", kind: "cuboid", appearance: "construction", center: { x: 2, y: (8 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 4, width: 1.2 } },
+      { id: "period-3", kind: "cuboid", appearance: "construction", center: { x: 4, y: (8 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 8 / 4, width: 1.2 } },
+      { id: "period-4", kind: "cuboid", appearance: "construction", center: { x: 6, y: (18 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 18 / 4, width: 1.2 } },
+      { id: "period-5", kind: "cuboid", appearance: "construction", center: { x: 8, y: (18 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 18 / 4, width: 1.2 } },
+      { id: "period-6", kind: "cuboid", appearance: "construction", center: { x: 10, y: (32 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 32 / 4, width: 1.2 } },
+      { id: "period-7", kind: "cuboid", appearance: "construction", center: { x: 12, y: (32 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 32 / 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "p1", objectId: "period-1", at: { x: 0, y: 1.0, z: 0 }, placement: "above" },
+      { key: "p2", objectId: "period-2", at: { x: 2, y: 2.5, z: 0 }, placement: "above" },
+      { key: "p3", objectId: "period-3", at: { x: 4, y: 2.5, z: 0 }, placement: "above" },
+      { key: "p4", objectId: "period-4", at: { x: 6, y: 5.0, z: 0 }, placement: "above" },
+      { key: "p5", objectId: "period-5", at: { x: 8, y: 5.0, z: 0 }, placement: "above" },
+      { key: "p6", objectId: "period-6", at: { x: 10, y: 8.5, z: 0 }, placement: "above" },
+      { key: "p7", objectId: "period-7", at: { x: 12, y: 8.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    p1: <InlineMath math="2" />,
+    p2: <InlineMath math="8" />,
+    p3: <InlineMath math="8" />,
+    p4: <InlineMath math="18" />,
+    p5: <InlineMath math="18" />,
+    p6: <InlineMath math="32" />,
+    p7: <InlineMath math="32" />,
+  }}
+/>
+
 ## Warna Menandai Daerah Unsur
 
 Tabel periodik juga membagi unsur menjadi beberapa daerah.
@@ -119,3 +158,52 @@ Gunakan tabel periodik pada kartu interaktif untuk mengecek jawabanmu sendiri.
 | Mengapa unsur satu golongan utama sering memiliki sifat kimia mirip? | Elektron valensinya sama atau berpola mirip, sehingga cara unsur itu bereaksi juga sering mirip. |
 
 [Tabel periodik modern](https://iupac.org/what-we-do/periodic-table-of-elements/) memuat nama dan nomor atom setiap unsur. Susunan unsur berdasarkan nomor atom dalam periode dan golongan menunjukkan pola yang berulang.
+
+Ikuti nomor atom dari 1 sampai 18, dan kamu menelusuri tabel baris demi baris. Jalurnya melintasi satu periode, lalu melompat kembali ke kiri untuk memulai periode berikutnya, jadi baris tiap unsur menunjukkan periodenya dan kolomnya menunjukkan golongannya. Perbesar tiga titik fuchsia yang memulai periode baru.
+
+<MathVisual
+  title={<>Membaca Tabel Menurut Urutan Nomor Atom</>}
+  description={<>18 unsur pertama menurut urutan nomor atom, diletakkan menurut golongan (mendatar) dan periode (baris).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9.5 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "order", kind: "polyline", appearance: "reference", vertices: [{ x: 1 / 2, y: (4 - 1) * 1.5 }, { x: 18 / 2, y: (4 - 1) * 1.5 }, { x: 1 / 2, y: (4 - 2) * 1.5 }, { x: 2 / 2, y: (4 - 2) * 1.5 }, { x: 13 / 2, y: (4 - 2) * 1.5 }, { x: 14 / 2, y: (4 - 2) * 1.5 }, { x: 15 / 2, y: (4 - 2) * 1.5 }, { x: 16 / 2, y: (4 - 2) * 1.5 }, { x: 17 / 2, y: (4 - 2) * 1.5 }, { x: 18 / 2, y: (4 - 2) * 1.5 }, { x: 1 / 2, y: (4 - 3) * 1.5 }, { x: 2 / 2, y: (4 - 3) * 1.5 }, { x: 13 / 2, y: (4 - 3) * 1.5 }, { x: 14 / 2, y: (4 - 3) * 1.5 }, { x: 15 / 2, y: (4 - 3) * 1.5 }, { x: 16 / 2, y: (4 - 3) * 1.5 }, { x: 17 / 2, y: (4 - 3) * 1.5 }, { x: 18 / 2, y: (4 - 3) * 1.5 }] },
+      { id: "z1", kind: "point", appearance: "answer", at: { x: 1 / 2, y: (4 - 1) * 1.5 } },
+      { id: "z2", kind: "point", appearance: "secondary", at: { x: 18 / 2, y: (4 - 1) * 1.5 } },
+      { id: "z3", kind: "point", appearance: "answer", at: { x: 1 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z4", kind: "point", appearance: "secondary", at: { x: 2 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z5", kind: "point", appearance: "secondary", at: { x: 13 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z6", kind: "point", appearance: "secondary", at: { x: 14 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z7", kind: "point", appearance: "secondary", at: { x: 15 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z8", kind: "point", appearance: "secondary", at: { x: 16 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z9", kind: "point", appearance: "secondary", at: { x: 17 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z10", kind: "point", appearance: "secondary", at: { x: 18 / 2, y: (4 - 2) * 1.5 } },
+      { id: "z11", kind: "point", appearance: "answer", at: { x: 1 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z12", kind: "point", appearance: "secondary", at: { x: 2 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z13", kind: "point", appearance: "secondary", at: { x: 13 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z14", kind: "point", appearance: "secondary", at: { x: 14 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z15", kind: "point", appearance: "secondary", at: { x: 15 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z16", kind: "point", appearance: "secondary", at: { x: 16 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z17", kind: "point", appearance: "secondary", at: { x: 17 / 2, y: (4 - 3) * 1.5 } },
+      { id: "z18", kind: "point", appearance: "secondary", at: { x: 18 / 2, y: (4 - 3) * 1.5 } },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1 / 2, y: (4 - 1) * 1.5 }, placement: "above" },
+      { key: "z2", objectId: "z2", at: { x: 18 / 2, y: (4 - 1) * 1.5 }, placement: "above" },
+      { key: "z3", objectId: "z3", at: { x: 1 / 2, y: (4 - 2) * 1.5 }, placement: "above" },
+      { key: "z10", objectId: "z10", at: { x: 18 / 2, y: (4 - 2) * 1.5 }, placement: "above" },
+      { key: "z11", objectId: "z11", at: { x: 1 / 2, y: (4 - 3) * 1.5 }, placement: "below" },
+      { key: "z18", objectId: "z18", at: { x: 18 / 2, y: (4 - 3) * 1.5 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    z1: <InlineMath math="1\ \mathrm{H}" />,
+    z2: <InlineMath math="2\ \mathrm{He}" />,
+    z3: <InlineMath math="3\ \mathrm{Li}" />,
+    z10: <InlineMath math="10\ \mathrm{Ne}" />,
+    z11: <InlineMath math="11\ \mathrm{Na}" />,
+    z18: <InlineMath math="18\ \mathrm{Ar}" />,
+  }}
+/>

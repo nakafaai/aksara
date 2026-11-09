@@ -118,6 +118,33 @@ True`
 
 The `and` and `or` operators use <Highlight>short-circuit evaluation</Highlight>, meaning evaluation stops when the result can be determined without evaluating all operands. Both return the last evaluated argument, while the `not` operator always creates a new boolean value.
 
+Each comparison is `True` on one region of the number line. In this picture, the violet row marks every <InlineMath math="x" /> with `x > 2`, and the teal row every <InlineMath math="x" /> with `x < 5`. The operator `and` only gives `True` where both rows overlap, which is the magenta row between <InlineMath math="2" /> and <InlineMath math="5" />. The values <InlineMath math="2" /> and <InlineMath math="5" /> themselves are not included, because `2 > 2` and `5 < 5` are both `False`.
+
+<MathVisual
+  title={<>Comparisons as regions on the number line</>}
+  description={<>The violet row is <InlineMath math="x>2" />, the teal row is <InlineMath math="x<5" />, and the magenta row is where both hold, so <code>and</code> keeps <InlineMath math="2<x<5" />. Each row stops exactly at <InlineMath math="2" /> or <InlineMath math="5" />, and those values themselves are not included.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "above", kind: "segment", from: { x: 2, y: 3 }, to: { x: 8, y: 3 }, appearance: "secondary" },
+      { id: "below", kind: "segment", from: { x: -1, y: 2 }, to: { x: 5, y: 2 }, appearance: "construction" },
+      { id: "both", kind: "segment", from: { x: 2, y: 1 }, to: { x: 5, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "above", objectId: "above", at: { x: 8, y: 3 }, placement: "right" },
+      { key: "below", objectId: "below", at: { x: -1, y: 2 }, placement: "left" },
+      { key: "both", objectId: "both", at: { x: 5, y: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "above": "x > 2",
+    "below": "x < 5",
+    "both": "x > 2 and x < 5",
+  }}
+/>
+
 ## Values in Boolean Context
 
 Any Python object can undergo **truth testing**, including objects that are not the values `True` and `False`. Python then decides for itself which values count as false. Under that rule an empty list, the number zero, and the empty string all behave like `False` inside an `if`, while a non-empty container behaves like `True`.
@@ -178,6 +205,24 @@ False
   ]}
 />
 
+Inside an `if`, Python calls `bool()` on any value. Zero and empty containers become `False`, while nonzero numbers and filled containers become `True`, even `[0]`, because that list holds one element.
+
+<BarChart
+  title={<>The result of <code>bool()</code> for seven values</>}
+  description={<>A bar of height <InlineMath math="1" /> means <code>True</code> and no bar means <code>False</code>, for the value written below it. Only <code>0</code>, <code>''</code>, and <code>[]</code> are falsy.</>}
+  yAxisLabel="Boolean value"
+  data={[
+    { name: "0", value: 0 },
+    { name: "1", value: 1 },
+    { name: "-2", value: 1 },
+    { name: "''", value: 0 },
+    { name: "'a'", value: 1 },
+    { name: "[]", value: 0 },
+    { name: "[0]", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Boolean value", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Combining Operators
 
 You can combine comparison operators with boolean operators to create **combined conditions**. Python also allows more natural comparison chaining like `1 < 2 < 3`.
@@ -205,6 +250,24 @@ True
 True`
     }
   ]}
+/>
+
+Combine two comparisons on points <InlineMath math="(x,y)" /> with <InlineMath math="0\le x\le5" /> and <InlineMath math="0\le y\le5" />. `and` keeps only the points with <InlineMath math="x>1" /> and <InlineMath math="y<3" /> at once, while `or` accepts the points that satisfy either one.
+
+<MathVisual
+  title={<><code>and</code> and <code>or</code> as regions</>}
+  description={<>The violet line is <InlineMath math="x=1" /> and the orange line is <InlineMath math="y=3" />. The magenta rectangle is where <InlineMath math="x>1" /> and <InlineMath math="y<3" /> both hold. The teal L-shaped region is where at least one comparison holds.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "either", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 5 }, { x: 1, y: 5 }, { x: 1, y: 3 }, { x: 0, y: 3 }], appearance: "construction" },
+      { id: "both", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 3 }, { x: 1, y: 3 }], appearance: "answer" },
+      { id: "first", kind: "line", through: [{ x: 1, y: 0 }, { x: 1, y: 5 }], appearance: "secondary" },
+      { id: "second", kind: "line", through: [{ x: 0, y: 3 }, { x: 5, y: 3 }], appearance: "primary" },
+    ],
+  }}
 />
 
 ## Floating Point Number Comparison

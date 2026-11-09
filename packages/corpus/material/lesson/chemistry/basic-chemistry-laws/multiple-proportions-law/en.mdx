@@ -142,8 +142,67 @@ Now that the oxygen mass is the same, compare the nitrogen masses:
 
 Multiplying <InlineMath math="\mathrm{N_2O}" /> to <InlineMath math="2\mathrm{N_2O}" /> puts oxygen on the same mass basis. The compound formula stays <InlineMath math="\mathrm{N_2O}" />.
 
+The scene below puts both comparisons side by side, one grid step for <InlineMath math="8\ \mathrm{g}" />. With hydrogen fixed at <InlineMath math="2\ \mathrm{g}" />, the oxygen bars stand <InlineMath math="16:32=1:2" />. With oxygen fixed at <InlineMath math="32\ \mathrm{g}" />, the nitrogen bars stand <InlineMath math="56:14=4:1" />. Each pair is a simple whole-number ratio only because one element was held fixed first.
+
+<MathVisual
+  title={<>Fix One Element, Compare the Other</>}
+  description={<>Orange: oxygen with 2 g of hydrogen in <InlineMath math="\mathrm{H_2O}" /> and <InlineMath math="\mathrm{H_2O_2}" />. Violet: nitrogen with 32 g of oxygen in <InlineMath math="2\mathrm{N_2O}" /> and <InlineMath math="\mathrm{NO_2}" />. One grid step up is 8 g.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 8.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: 11 }, target: { x: 3.5, y: 3, z: 0 } },
+    objects: [
+      { id: "water-o", kind: "cuboid", appearance: "primary", center: { x: 0, y: (16 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 16 / 8, width: 1.2 } },
+      { id: "peroxide-o", kind: "cuboid", appearance: "primary", center: { x: 2, y: (32 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 32 / 8, width: 1.2 } },
+      { id: "dinitrogen-n", kind: "cuboid", appearance: "secondary", center: { x: 5, y: (56 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 56 / 8, width: 1.2 } },
+      { id: "dioxide-n", kind: "cuboid", appearance: "secondary", center: { x: 7, y: (14 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 14 / 8, width: 1.2 } },
+    ],
+    labels: [
+      { key: "water", objectId: "water-o", at: { x: 0, y: 2.5, z: 0 }, placement: "above" },
+      { key: "peroxide", objectId: "peroxide-o", at: { x: 2, y: 4.5, z: 0 }, placement: "above" },
+      { key: "dinitrogen", objectId: "dinitrogen-n", at: { x: 5, y: 7.5, z: 0 }, placement: "above" },
+      { key: "dioxide", objectId: "dioxide-n", at: { x: 7, y: 2.25, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    water: <InlineMath math="\mathrm{H_2O}:\ 16" />,
+    peroxide: <InlineMath math="\mathrm{H_2O_2}:\ 32" />,
+    dinitrogen: <InlineMath math="2\mathrm{N_2O}:\ 56" />,
+    dioxide: <InlineMath math="\mathrm{NO_2}:\ 14" />,
+  }}
+/>
+
 ## Mistakes to Avoid
 
 Do not compare the total masses of water and hydrogen peroxide, because each total includes both hydrogen and oxygen. Compare only the **oxygen masses after fixing the hydrogen mass**. Water and carbon dioxide are not a suitable pair either, because their other elements differ.
 
 For one compound, the law of constant composition compares the mass ratio of its elements. For two or more compounds made from the same element pair, the law of multiple proportions compares those ratios. The resulting small whole-number ratios supported Dalton's claim that atoms combine in whole-number counts.
+
+Each line gives the oxygen that combines with a mass of carbon: <InlineMath math="m_\mathrm{O}=\tfrac{4}{3}m_\mathrm{C}" /> in <InlineMath math="\mathrm{CO}" /> and <InlineMath math="m_\mathrm{O}=\tfrac{8}{3}m_\mathrm{C}" /> in <InlineMath math="\mathrm{CO_2}" />. Fix the carbon at <InlineMath math="12\ \mathrm{g}" /> on the gray line and read both oxygen masses. Zoom in: they compare as <InlineMath math="1:2" />, a simple whole-number ratio.
+
+<MathVisual
+  title={<>Fix the Carbon, Read the Oxygen</>}
+  description={<>Oxygen mass against carbon mass in <InlineMath math="\mathrm{CO}" /> (violet) and <InlineMath math="\mathrm{CO_2}" /> (orange). Horizontal: one grid step is 1 gram of carbon. Vertical: one grid step is 4 grams of oxygen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 15.5 }, y: { min: -1, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "co", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 15, y: 5 } },
+      { id: "co2", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 15, y: 10 } },
+      { id: "fixed", kind: "segment", appearance: "reference", from: { x: 12, y: 0 }, to: { x: 12, y: 9 } },
+      { id: "co-12", kind: "point", appearance: "secondary", at: { x: 12, y: 4 } },
+      { id: "co2-12", kind: "point", appearance: "primary", at: { x: 12, y: 8 } },
+    ],
+    labels: [
+      { key: "co", objectId: "co-12", at: { x: 12, y: 4 }, placement: "below-right" },
+      { key: "co2", objectId: "co2-12", at: { x: 12, y: 8 }, placement: "above-left" },
+      { key: "ratio", objectId: "fixed", at: { x: 12, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    co: <InlineMath math="\mathrm{CO}:\ 16\ \mathrm{g}" />,
+    co2: <InlineMath math="\mathrm{CO_2}:\ 32\ \mathrm{g}" />,
+    ratio: <InlineMath math="16:32=1:2" />,
+  }}
+/>
