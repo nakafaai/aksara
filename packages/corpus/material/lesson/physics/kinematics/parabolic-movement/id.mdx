@@ -107,47 +107,79 @@ Periksa dengan lemparan <InlineMath math="60^\circ" />: <InlineMath math="v_x = 
 
 Setiap waktu di udara adalah dua kali waktu naik <InlineMath math="\frac{v_0 \sin\theta}{g}" />. Lemparan <InlineMath math="60^\circ" /> lebih lama di udara, tetapi bergerak mendatar lebih lambat, sehingga jangkauannya sama dengan lemparan <InlineMath math="30^\circ" />. Ketiga jangkauan itu juga keluar langsung dari rumus <InlineMath math="R = \frac{v_0^2 \sin 2\theta}{g}" /> yang dipakai dalam [analisis gerak parabola](/id/materi/fisika/kinematika/analisis-gerak-parabola). Nilai <InlineMath math="\sin 2\theta" /> paling besar, yaitu <InlineMath math="1" />, tercapai pada <InlineMath math="\theta = 45^\circ" />.
 
-<LineEquation
-  title="Lintasan tiga sudut lontar dengan v₀ = 20 m/s"
-  description="Satu kotak grafik mewakili 5 m. Lemparan 30° dan 60° mendarat di titik yang sama, sekitar 34,6 m, sedangkan lemparan 45° mendarat paling jauh di 40 m."
-  showZAxis={false}
-  cameraPosition={[4, 1.5, 12]}
-  cameraTarget={[4, 1.5, 0]}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, index) => {
-        const angle = (30 * Math.PI) / 180;
-        const t = (4 * Math.sin(angle) * index) / 400;
-        return { x: (20 * Math.cos(angle) * t) / 5, y: (20 * Math.sin(angle) * t - 5 * t ** 2) / 5, z: 0 };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="30^\circ" />, at: 200, offset: [0, 0.3, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, index) => {
-        const angle = (45 * Math.PI) / 180;
-        const t = (4 * Math.sin(angle) * index) / 400;
-        return { x: (20 * Math.cos(angle) * t) / 5, y: (20 * Math.sin(angle) * t - 5 * t ** 2) / 5, z: 0 };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="45^\circ" />, at: 200, offset: [0, 0.3, 0] }],
-    },
-    {
-      points: Array.from({ length: 401 }, (_, index) => {
-        const angle = (60 * Math.PI) / 180;
-        const t = (4 * Math.sin(angle) * index) / 400;
-        return { x: (20 * Math.cos(angle) * t) / 5, y: (20 * Math.sin(angle) * t - 5 * t ** 2) / 5, z: 0 };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="60^\circ" />, at: 200, offset: [0, 0.3, 0] }],
-    }
-  ]}
+<MathVisual
+  title={<>Lintasan untuk tiga sudut lempar dengan <InlineMath math="v_0=20\text{ m/s}" /></>}
+  description={<>Satu kotak grid mewakili 5 m. Lemparan <InlineMath math="30^\circ" /> dan <InlineMath math="60^\circ" /> mendarat di titik yang sama, sekitar 34,6 m jauhnya, sedangkan lemparan <InlineMath math="45^\circ" /> mendarat paling jauh, di 40 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8.5, y: 0 } },
+      { id: "thirty", kind: "parametric", appearance: "construction", x: "4 cos(pi/6) t", y: "4 sin(pi/6) t - t^2", parameter: { min: 0, max: 2 } },
+      { id: "fortyfive", kind: "parametric", appearance: "secondary", x: "4 cos(pi/4) t", y: "4 sin(pi/4) t - t^2", parameter: { min: 0, max: 2 * Math.SQRT2 } },
+      { id: "sixty", kind: "parametric", appearance: "highlight", x: "4 cos(pi/3) t", y: "4 sin(pi/3) t - t^2", parameter: { min: 0, max: 2 * Math.sqrt(3) } },
+      { id: "thirty-top", kind: "point", appearance: "construction", at: { x: 2 * Math.sqrt(3), y: 1 } },
+      { id: "fortyfive-top", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
+      { id: "sixty-top", kind: "point", appearance: "highlight", at: { x: 2 * Math.sqrt(3), y: 3 } },
+      { id: "land-same", kind: "point", appearance: "answer", at: { x: 4 * Math.sqrt(3), y: 0 } },
+      { id: "land-far", kind: "point", appearance: "answer", at: { x: 8, y: 0 } },
+    ],
+    labels: [
+      { key: "thirty", objectId: "thirty-top", at: { x: 2 * Math.sqrt(3), y: 1 }, placement: "above" },
+      { key: "fortyfive", objectId: "fortyfive-top", at: { x: 4, y: 2 }, placement: "above" },
+      { key: "sixty", objectId: "sixty-top", at: { x: 2 * Math.sqrt(3), y: 3 }, placement: "above" },
+      { key: "same", objectId: "land-same", at: { x: 4 * Math.sqrt(3), y: 0 }, placement: "below" },
+      { key: "far", objectId: "land-far", at: { x: 8, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    thirty: <InlineMath math="30^\circ" />,
+    fortyfive: <InlineMath math="45^\circ" />,
+    sixty: <InlineMath math="60^\circ" />,
+    same: <InlineMath math="20\sqrt3\approx34{,}6\text{ m}" />,
+    far: <InlineMath math="40\text{ m}" />,
+  }}
+/>
+
+Sekarang coba sendiri setiap sudutnya. Dengan <InlineMath math="v_0=20\text{ m/s}" /> dan <InlineMath math="g=10\text{ m/s}^2" />, geser <InlineMath math="\theta" /> dan perhatikan titik pendaratannya: jangkauannya bertambah sampai <InlineMath math="45^\circ" />, lalu berkurang lagi, dan dua sudut yang jumlahnya <InlineMath math="90^\circ" /> selalu mendarat di tempat yang sama.
+
+<MathVisual
+  title={<>Geser Sudut Lemparnya</>}
+  description={<>Lintasan bola yang dilempar dengan <InlineMath math="v_0=20\text{ m/s}" />, titik tertingginya (ungu), dan titik pendaratannya (fuchsia). Satu kotak grid berarti 5 m. Penggeser sudut memakai radian, dan pembacaannya menampilkan derajat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8.5, y: 0 } },
+      { id: "path", kind: "parametric", appearance: "primary", x: "4 cos(a) t", y: "4 sin(a) t - t^2", parameter: { min: 0, max: 4 } },
+      { id: "landing", kind: "marker", appearance: "answer", x: "8 sin(2a)", y: "0" },
+      { id: "apex", kind: "marker", appearance: "secondary", x: "4 sin(2a)", y: "4 sin(a)^2" },
+    ],
+    labels: [
+      { key: "land", objectId: "landing", at: { x: "8 sin(2a)", y: "0" }, placement: "below" },
+      { key: "top", objectId: "apex", at: { x: "4 sin(2a)", y: "4 sin(a)^2" }, placement: "above" },
+    ],
+    parameters: [
+      { name: "a", min: 0.1, max: 1.5, value: Math.PI / 4, step: 0.01, label: "angle" },
+    ],
+    readouts: [
+      { key: "deg", formula: "a * 180 / pi" },
+      { key: "range", formula: "40 sin(2a)" },
+      { key: "height", formula: "20 sin(a)^2" },
+      { key: "time", formula: "4 sin(a)" },
+    ],
+  }}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    land: <InlineMath math="R" />,
+    top: <InlineMath math="H" />,
+    deg: <InlineMath math="\theta\ (^\circ)" />,
+    range: <InlineMath math="R=\tfrac{v_0^2\sin2\theta}{g}\ (\text{m})" />,
+    height: <InlineMath math="H=\tfrac{v_0^2\sin^2\theta}{2g}\ (\text{m})" />,
+    time: <InlineMath math="T=\tfrac{2v_0\sin\theta}{g}\ (\text{s})" />,
+  }}
 />
 
 ## Kesalahan yang Sering Terjadi
