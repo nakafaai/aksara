@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "explicit-information",
+  },
+  stimulus: "gut-bacteria",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Keliling rata-rata $$23$$ sentimeter pada $$35^\\circ\\text{C}$$ adalah yang terbesar dari tiga suhu, tetapi ukuran itu belum sama dengan volume gas yang diukur langsung.",
+            "Perhitungan pada 2016 menunjukkan jumlah sel bakteri kira-kira sebanding dengan jumlah sel manusia.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+            "Butirat menjadi sumber energi utama bagi sel-sel dinding usus besar.",
         },
         {
-          correct: false,
-          label:
-            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
+          column: 2,
+          label: "Antibiotik hanya membunuh bakteri yang menyebabkan penyakit.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Pada kondisi dengan perubahan, hasil rata-rata tercatat $$23$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
-        },
-        {
-          correct: false,
-          label:
-            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
+            "Pemindahan bakteri usus sudah terbukti mengobati obesitas pada manusia.",
         },
       ],
     },

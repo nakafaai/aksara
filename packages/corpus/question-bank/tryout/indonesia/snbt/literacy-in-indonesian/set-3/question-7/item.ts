@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "cause-effect",
+  },
+  stimulus: "sugar-tax",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            'Karena langkah "siswa menghubungkan kartu tumbuhan, ulat, burung, dan pengurai dengan benang" dapat diulang, model sudah mencakup faktor yang hilang ketika kartu tidak menggambarkan musim, penyakit, atau perpindahan hewan dan dapat menggantikan pengamatan lapangan.',
+            "Gula dalam minuman lebih cepat merusak gigi daripada gula dalam makanan.",
         },
         {
           correct: true,
           label:
-            "Pengulangan langkah pada model membantu memeriksa bahwa perubahan satu populasi dapat memengaruhi lebih dari satu hubungan makan. Karena kartu tidak menggambarkan musim, penyakit, atau perpindahan hewan, pola itu menjadi hipotesis untuk pengamatan nyata, bukan bukti langsung tentang seluruh keadaan lapangan.",
+            "Minuman manis tidak membuat kenyang sehingga porsi makan jarang dikurangi.",
         },
         {
           correct: false,
           label:
-            "Keterbatasan bahwa kartu tidak menggambarkan musim, penyakit, atau perpindahan hewan membuat hubungan bahwa perubahan satu populasi dapat memengaruhi lebih dari satu hubungan makan tidak dapat diperiksa, bahkan di dalam model.",
+            "Gula dalam minuman kemasan selalu berasal dari pemanis buatan.",
         },
         {
           correct: false,
           label:
-            "Hubungan bahwa perubahan satu populasi dapat memengaruhi lebih dari satu hubungan makan dapat diterapkan langsung pada keadaan nyata selama urutan model diulang dengan cara yang sama.",
+            "Minuman manis harganya lebih murah daripada makanan yang sama manisnya.",
         },
         {
           correct: false,
-          label:
-            "Definisi istilah pada akhir bacaan sudah cukup membuktikan hubungan sebab dalam model jaring-jaring makanan di kebun sekolah, meskipun bagian model tidak dibandingkan.",
+          label: "Gula dalam minuman tidak tercantum pada label kemasan.",
         },
       ],
     },

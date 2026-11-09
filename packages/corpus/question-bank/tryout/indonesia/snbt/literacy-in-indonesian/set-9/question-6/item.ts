@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-view",
+  },
+  stimulus: "national-exam",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Simulasi menetapkan bahwa mangrove nyata menyimpan lima unit karbon per tahun karena semua aliran penting sudah tercantum pada tabel.",
+            "Ujian nasional sebaiknya dihapus karena nilai rapor sudah cukup untuk dibandingkan.",
         },
         {
           correct: false,
           label:
-            "Perbedaan hasil perhitungan menunjukkan bahwa salah satu siswa salah memahami operasi pengurangan, bukan berbeda dalam menentukan komponen yang dihitung.",
+            "Ujian nasional perlu kembali menjadi penentu kelulusan agar siswa bersungguh-sungguh.",
         },
         {
           correct: true,
           label:
-            "Simulasi menunjukkan bahwa hasil neraca karbon bergantung pada batas sistem dan kelengkapan aliran, tetapi angkanya belum dapat diperlakukan sebagai data mangrove nyata.",
+            "Ujian bersama tetap perlu, tetapi tidak menjadi satu-satunya penentu kelulusan.",
         },
         {
           correct: false,
           label:
-            "Karena serasah tetap berada di ekosistem, perpindahan tumbuhan ke tanah tidak perlu dihitung dalam batas sistem apa pun.",
+            "Ujian nasional hanya perlu diadakan di wilayah yang mutu pendidikannya tertinggal.",
         },
         {
           correct: false,
           label:
-            "Kegunaan utama model adalah mengganti pengukuran pasang dan emisi metana dengan kartu yang lebih mudah dihitung.",
+            "Ujian nasional sebaiknya diganti dengan bimbingan belajar untuk semua siswa.",
         },
       ],
     },

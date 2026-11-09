@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "theme-message",
+  },
+  stimulus: "tin-roof",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Pengecatan Putih pada Hari Terakhir",
+          label: "sedih dan putus asa menghadapi kemiskinan",
+        },
+        {
+          correct: false,
+          label: "tegang dan menakutkan karena badai besar",
         },
         {
           correct: true,
-          label: "Jejak Biru di Balik Dinding Putih",
+          label: "hangat dan tabah dalam kesederhanaan",
         },
         {
           correct: false,
-          label: "Foto Tahun $$1978$$ di Ruang Arsip",
+          label: "marah terhadap keadaan rumah yang rusak",
         },
         {
           correct: false,
-          label: "Mengapa Semua Lapisan Lama Harus Ditutup",
-        },
-        {
-          correct: false,
-          label: "Retakan yang Tidak Berkaitan dengan Sejarah",
+          label: "riang karena hujan menyenangkan anak-anak",
         },
       ],
     },

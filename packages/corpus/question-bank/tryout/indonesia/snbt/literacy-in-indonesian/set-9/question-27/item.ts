@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-6",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "author-view",
+  },
+  stimulus: "film-review",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Dengan memotong ujung benang, Wulan akhirnya kembali pada penilaian awal bahwa seluruh jejak lama merupakan kerusakan.",
+            "buruk, karena bagian tengahnya berisi tiga adegan lomba yang sama",
         },
         {
           correct: false,
           label:
-            "Dengan mempertahankan jahitan, Wulan menolak setiap perubahan baru agar kostum tetap sama persis dengan keadaan tahun $$1998$$.",
-        },
-        {
-          correct: false,
-          label:
-            "Dengan menaruh kartu $$2026$$ di depan label lama, Wulan menyembunyikan sejarah kostum dari pemain baru.",
+            "sempurna, karena tidak ada satu pun adegan yang perlu diperbaiki",
         },
         {
           correct: true,
           label:
-            "Wulan memperbaiki bagian yang mengganggu pemakaian, tetapi mempertahankan jahitan yang membawa riwayat, sehingga perawatan tidak disamakan dengan menghapus masa lalu.",
+            "layak ditonton, walaupun bagian tengahnya terasa berlarut-larut",
+        },
+        {
+          correct: false,
+          label: "membosankan, karena kamera terlalu lama diam di wajah pemain",
         },
         {
           correct: false,
           label:
-            "Wulan memotong benang agar label lama terlepas perlahan setelah kartu katalog baru dipasang.",
+            "hanya cocok untuk penonton dewasa yang pernah kehilangan pekerjaan",
         },
       ],
     },

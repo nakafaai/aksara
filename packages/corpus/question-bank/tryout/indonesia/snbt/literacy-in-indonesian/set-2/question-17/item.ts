@@ -1,30 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "conclusion",
+  },
+  stimulus: "rice-irrigation",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Tiga korban yang ditemukan di bagian hunian",
+          label:
+            "Pengairan berselang selalu meningkatkan hasil gabah pada musim apa pun.",
         },
         {
           correct: false,
-          label: "Lukisan dinding mewah di atrium rumah",
+          label:
+            "Pengairan berselang mengurangi kebutuhan tenaga kerja petani selama musim tanam.",
         },
         {
           correct: false,
-          label: "Prasasti pemilihan umum pada dinding bangunan",
+          label:
+            "Penggenangan terus-menerus menghasilkan lebih banyak gabah daripada pengairan berselang.",
         },
         {
           correct: true,
           label:
-            "Jendela berjeruji dan satu-satunya jalan keluar menuju atrium",
+            "Di desa itu pada musim kemarau, cara berselang menghemat air tanpa menurunkan hasil, tetapi menambah penyiangan.",
         },
         {
           correct: false,
-          label: "Oven besar dan wadah untuk mengaduk adonan",
+          label:
+            "Uji coba ini membuktikan bahwa semua desa di lereng Gunung Lawu sebaiknya beralih ke pengairan berselang.",
         },
       ],
     },

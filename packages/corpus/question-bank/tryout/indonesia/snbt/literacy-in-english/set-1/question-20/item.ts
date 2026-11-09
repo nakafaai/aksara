@@ -1,33 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "application",
+  },
+  stimulus: "shipping-container",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "The Kīholo Bay fishery can be harvested without ecological limits.",
-        },
-        {
           correct: true,
           label:
-            "Commercial sales records alone would greatly underestimate the fishery's value to the community.",
+            "Phone makers agree on one connector so any charger fits any phone.",
         },
         {
           correct: false,
           label:
-            "Every small-scale reef fishery distributes its catch in exactly the same way.",
+            "A company builds a larger factory to meet rising demand for its products.",
+        },
+        {
+          correct: false,
+          label: "A bakery hires more workers before the holiday season.",
         },
         {
           correct: false,
           label:
-            "Most of the Kīholo Bay catch was sold through commercial markets.",
+            "A city adds extra buses to its busiest route during rush hour.",
         },
         {
           correct: false,
-          label: "Sharing seafood at cultural events has no social value.",
+          label:
+            "A publisher translates a popular novel into several languages.",
         },
       ],
     },

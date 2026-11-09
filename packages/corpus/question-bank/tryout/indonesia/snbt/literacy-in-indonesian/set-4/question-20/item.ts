@@ -1,32 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "text-comparison",
+  },
+  stimulus: "regional-language",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Bahasa daerah sebaiknya menggantikan bahasa Indonesia di sekolah.",
+        },
+        {
           correct: true,
           label:
-            "Membaca Dua Sumber tentang Perubahan Fungsi Bangunan Bersejarah",
-        },
-        {
-          correct: false,
-          label: "Kesamaan Isi sebagai Bukti bahwa Dua Sumber Identik",
-        },
-        {
-          correct: false,
-          label: "Mengutamakan Sumber Terbaru dalam Kajian triangulasi",
-        },
-        {
-          correct: false,
-          label: "Menggabungkan Dua Sumber tanpa Memeriksa Konteks",
+            "Bahasa daerah perlu diselamatkan dan sekolah dapat ikut berperan.",
         },
         {
           correct: false,
           label:
-            "Perbedaan Format yang Membuat Dua Sumber Tidak Dapat Dibandingkan",
+            "Setiap sekolah wajib memakai bahasa daerah provinsi setiap hari.",
+        },
+        {
+          correct: false,
+          label:
+            "Orang tua sebaiknya dilarang berbahasa Indonesia kepada anaknya.",
+        },
+        {
+          correct: false,
+          label:
+            "Murid perlu belajar sembilan bahasa daerah sekaligus di kelas.",
         },
       ],
     },

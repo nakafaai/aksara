@@ -1,35 +1,40 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "main-idea",
+  },
+  stimulus: "half-sleep",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "The class tested how holding the mixture at $$37^{\\circ}\\text{C}$$ affected enzyme activity in a classroom model, while controlling the listed factors but treating one short trial as proof of a universal effect.",
-        },
-        {
           correct: true,
           label:
-            "The class found a higher colour-change score at $$37^{\\circ}\\text{C}$$ under controlled conditions, while eye-based estimation limited the precision and reach of the conclusion.",
+            "Some animals sleep with half the brain at a time, which keeps them safe or moving.",
         },
         {
           correct: false,
           label:
-            "The class tested how holding the mixture at $$37^{\\circ}\\text{C}$$ affected enzyme activity in a classroom model, while reporting the limitation but leaving the comparison conditions out of the interpretation.",
+            "Dolphins are the only animals that are able to sleep while they keep swimming.",
         },
         {
           correct: false,
           label:
-            "The class tested how holding the mixture at $$37^{\\circ}\\text{C}$$ affected enzyme activity in a classroom model, while treating the scientific term as the measured outcome that settles the investigation.",
+            "Humans sleep badly in hotels because half of the brain stays fully awake all night.",
         },
         {
           correct: false,
           label:
-            "The class tested how holding the mixture at $$37^{\\circ}\\text{C}$$ affected enzyme activity in a classroom model, while using the comparison only to confirm the initial hypothesis and excluding the remaining uncertainty.",
+            "Frigatebirds sleep for more hours in the air than they do when resting on land.",
+        },
+        {
+          correct: false,
+          label:
+            "Sleep matters less for birds than for mammals, since birds can fly while resting.",
         },
       ],
     },

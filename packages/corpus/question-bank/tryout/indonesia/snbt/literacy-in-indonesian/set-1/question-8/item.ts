@@ -1,30 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-view",
+  },
+  stimulus: "class-ranking",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Seluruh pantai di Indonesia akan bebas sampah",
-        },
-        {
-          correct: false,
-          label: "Tidak akan ada lagi sampah dari kapal dan perikanan",
-        },
-        {
-          correct: false,
-          label: "Semua bentuk polusi laut di Seychelles akan hilang",
-        },
-        {
-          correct: false,
-          label: "Seychelles tidak lagi mengalami musim penumpukan sampah",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "Indonesia diperkirakan menjadi sumber tunggal terbesar sampah berbasis daratan di banyak lokasi Seychelles",
+            "Kenaikan nilai seorang siswa dapat tidak tampak dalam peringkatnya.",
+        },
+        {
+          column: 2,
+          label:
+            "Persaingan antarsiswa akan hilang sepenuhnya jika peringkat dihapus dari rapor.",
+        },
+        {
+          column: 1,
+          label:
+            "Selisih kecil antarperingkat dapat disalahpahami sebagai perbedaan besar.",
+        },
+        {
+          column: 2,
+          label:
+            "Rapor yang diusulkan penulis akan mengurangi beban kerja guru.",
         },
       ],
     },

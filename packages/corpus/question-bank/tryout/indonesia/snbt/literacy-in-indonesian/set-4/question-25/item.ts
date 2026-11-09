@@ -1,31 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-5",
+  blueprint: {
+    cognitiveLevel: "textual",
+    contentDomain: "informational-text",
+    topic: "cause-effect",
+  },
+  stimulus: "banda-nutmeg",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Menunggu orang lain menyelesaikan langkah berikutnya",
-        },
-        {
-          correct: false,
-          label: "Menyembunyikan bukti yang belum tuntas dalam proyek besar",
-        },
-        {
-          correct: true,
-          label: "Dari Lorong Sempit ke Usulan Akses Nisa",
+          label: "VOC memindahkan seluruh kebun pala dari Banda ke Batavia.",
         },
         {
           correct: false,
           label:
-            "advokasi diri sebagai definisi tanpa tindakan yang dapat diperiksa",
+            "Permintaan pala di Eropa hilang setelah ditemukan bumbu lain.",
         },
         {
           correct: false,
-          label: "Rencana lengkap tanpa langkah kecil yang bertanggung jawab",
+          label:
+            "Penduduk Banda kembali menguasai perdagangan pala secara bebas.",
+        },
+        {
+          correct: true,
+          label: "Bibit pala ditanam di tempat lain sehingga harga pala turun.",
+        },
+        {
+          correct: false,
+          label: "Perjanjian Breda melarang perdagangan pala dari Maluku.",
         },
       ],
     },

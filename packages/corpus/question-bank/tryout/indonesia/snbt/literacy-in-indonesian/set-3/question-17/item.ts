@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-4",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "conclusion",
+  },
+  stimulus: "canteen-labels",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Surat panitia dan foto sama-sama menempatkan kegiatan baca di ruang tunggu, tetapi yang satu merekam tujuan pendirian dan yang lain merekam pemakaian.",
+            "Turunnya penjualan merah di kantin belum tentu berarti siswa makan lebih sedikit gorengan.",
         },
         {
           correct: false,
           label:
-            "Kedua sumber menunjukkan bahwa kegiatan baca pernah hadir di ruang tunggu. Perbedaan bentuk membuktikan bahwa salah satu sumber tidak dapat digunakan.",
+            "Siswa makan lebih sedikit gorengan karena penjualan merah di kantin turun 250 porsi.",
         },
         {
           correct: false,
           label:
-            "Karena membahas peristiwa yang sama, kedua sumber pasti mempunyai sudut pandang dan tujuan yang sama.",
+            "Konsumsi gorengan siswa kemungkinan besar justru meningkat sejak label dipasang.",
         },
         {
           correct: false,
           label:
-            "Menggabungkan dua sumber memberi izin untuk mengisi bagian yang hilang dengan dugaan yang masuk akal.",
+            "Warung depan sekolah menjual gorengan dengan harga lebih murah daripada kantin.",
         },
         {
           correct: false,
           label:
-            "Perbedaan antarsumber hanya berkaitan dengan pilihan kata dan tidak memengaruhi simpulan.",
+            "Sebagian besar siswa kini membeli gorengan di warung, bukan di kantin.",
         },
       ],
     },

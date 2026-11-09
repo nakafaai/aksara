@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "author-view",
+  },
+  stimulus: "free-transit",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Mengulang model daur air dalam kotak dengan lebih banyak unit, tetapi tetap memakai penyederhanaan yang sama tanpa pengamatan lapangan.",
+            "Waktu tempuh dan keandalan lebih menentukan pilihan orang daripada harga tiket.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Mengubah seluruh faktor lapangan sekaligus, lalu membandingkan satu hasil akhir tanpa kondisi acuan.",
+            "Pendapatan tiket ikut membiayai sopir, bahan bakar, dan perawatan bus.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Mengambil satu kejadian nyata yang sesuai dengan model sebagai konfirmasi bahwa pola selalu berlaku.",
+            "Kekhawatiran bahwa ongkos memberatkan sebagian warga tidak berdasar.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Mengganti pengukuran dengan survei tentang apakah peserta memahami definisi istilah pada model.",
-        },
-        {
-          correct: true,
-          label:
-            "Mencatat suhu, kelembapan, penguapan, dan kondensasi pada beberapa kondisi cuaca nyata.",
+            "Tiket gratis untuk semua orang adalah cara terbaik membantu warga berpenghasilan rendah.",
         },
       ],
     },

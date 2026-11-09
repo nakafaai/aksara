@@ -1,35 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
+  },
+  stimulus: "machine-pictures",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The $$35$$ correct classifications support permanent adoption because controlling the scenario removes the need to test real supplier quotes.",
+          label: "To show that photographs are more creative than paintings",
         },
         {
           correct: false,
-          label:
-            "The two old-sheet rounds show that mentor instructions, rather than the sheet, must explain the difference in the trial round.",
-        },
-        {
-          correct: false,
-          label:
-            "Because fixed costs stay unchanged, replacing estimates with supplier quotes cannot affect the usefulness of the budget sheet.",
+          label: "To argue that cameras should also be refused copyright",
         },
         {
           correct: true,
           label:
-            "The controlled comparison supports trying the separated sheet at one real event, where final supplier quotes can test whether better classification also yields a reliable total.",
+            "To reject the idea that a tool doing much work rules out authorship",
+        },
+        {
+          correct: false,
+          label: "To explain how image generators were first invented",
         },
         {
           correct: false,
           label:
-            "A real-event trial should change the sheet, instructions, price source, and classification rules together so the result covers more possibilities.",
+            "To prove that a prompt also involves choosing the light and the camera angle",
         },
       ],
     },
