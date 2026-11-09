@@ -35,7 +35,7 @@ export const tkaAdvancedMathematicsTrack = {
     en: "advanced-mathematics",
     id: "matematika-tingkat-lanjut",
   },
-  sets: Arr.map([1], (setNumber) => {
+  sets: Arr.map([1, 2, 3], (setNumber) => {
     const setKey = `set-${setNumber}`;
     return {
       key: setKey,

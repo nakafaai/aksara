@@ -1,0 +1,20 @@
+Ein Teiler vom Grad zwei lässt immer einen Rest vom Grad höchstens eins, also schreib den gesuchten Rest als <InlineMath math="ax+b" />. Für <InlineMath math="a" /> und <InlineMath math="b" /> brauchst du <InlineMath math="P(1)" /> und <InlineMath math="P(3)" />. Entscheidend ist, dass **jeder Wert aus der Division stammt, die diesen Faktor enthält**.
+
+Aus <InlineMath math="P(x)=(x-1)(x-2)H_1(x)+4x-1" /> wird der erste Summand für <InlineMath math="x=1" /> null. Aus <InlineMath math="P(x)=(x-2)(x-3)H_2(x)+7x-7" /> wird er für <InlineMath math="x=3" /> null.
+
+<BlockMath math="P(1)=4(1)-1=3,\qquad P(3)=7(3)-7=14" />
+
+Beide Divisionen liefern außerdem <InlineMath math="P(2)=7" />, die Angaben passen also zusammen. Nun gilt <InlineMath math="P(x)=(x-1)(x-3)H_3(x)+ax+b" />, also <InlineMath math="P(1)=a+b" /> und <InlineMath math="P(3)=3a+b" />.
+
+<BlockMath math="\begin{aligned}
+a+b&=3 \\
+3a+b&=14 \\
+2a&=11\ \Rightarrow\ a=\frac{11}{2},\quad b=3-\frac{11}{2}=-\frac52
+\end{aligned}" />
+
+Der Rest ist also <InlineMath math="\frac{11}{2}x-\frac52=\frac{11x-5}{2}" />.
+
+- <InlineMath math="11x-5" /> vergisst beim Lösen von <InlineMath math="2a=11" /> die Division durch <InlineMath math="2" />.
+- <InlineMath math="4x-1" /> nimmt <InlineMath math="P(3)" /> aus dem ersten Rest, <InlineMath math="4(3)-1=11" />. Dieser Rest gilt aber nur bei <InlineMath math="x=1" /> und <InlineMath math="x=2" />.
+- <InlineMath math="7x-7" /> nimmt <InlineMath math="P(1)" /> aus dem zweiten Rest, <InlineMath math="7(1)-7=0" />. Dieser Rest gilt aber nur bei <InlineMath math="x=2" /> und <InlineMath math="x=3" />.
+- <InlineMath math="\frac{11x+5}{2}" /> macht beim Berechnen von <InlineMath math="b=3-\frac{11}{2}" /> einen Vorzeichenfehler.
