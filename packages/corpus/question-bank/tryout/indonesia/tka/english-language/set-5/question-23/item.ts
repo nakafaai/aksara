@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "synthesis",
   },
-  stimulus: "library-hours",
+  stimulus: "swim-lessons",
   versions: {
     en: {
       kind: "choice",
@@ -14,22 +14,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The log proves that 58 different students visit the library every afternoon.",
+            "The course proves that every student could learn to swim in four weeks.",
         },
         {
           correct: true,
           label:
-            "Visits are highest in the two hours before the library closes.",
+            "More volunteers could float on their back for one minute after the course than before it.",
         },
         {
           correct: false,
           label:
-            "Most of the survey answers came from students who do not use the library.",
+            "The volunteers were chosen at random from all of the school's students.",
         },
         {
           correct: true,
           label:
-            "The number of visits rises from the morning to the early afternoon.",
+            "The number of volunteers who could swim 25 meters rose by 13.",
         },
       ],
     },

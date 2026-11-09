@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "reader-response",
   },
-  stimulus: "library-hours",
+  stimulus: "swim-lessons",
   versions: {
     en: {
       kind: "choice",
@@ -14,22 +14,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "“I disagree, because the log shows that students rarely use the library.”",
+            "“I disagree, because the course shows that most students cannot learn to swim.”",
         },
         {
           correct: false,
           label:
-            "“I agree completely, because the survey proves that every student needs a quiet place to study.”",
+            "“I agree completely, because the survey proves that every student at the school is in danger.”",
         },
         {
           correct: false,
           label:
-            "“The idea is pointless, because the writer admits that the log counts some students twice.”",
+            "“The idea is pointless, because the writer admits that the volunteers may have been keener than others.”",
         },
         {
           correct: true,
           label:
-            "“The plan sounds reasonable, and counting visits after a trial semester would show whether the longer hours are really used.”",
+            "“The plan seems worth trying, and recording how many students reach 25 meters would show whether it works for students who did not volunteer.”",
         },
         {
           correct: false,

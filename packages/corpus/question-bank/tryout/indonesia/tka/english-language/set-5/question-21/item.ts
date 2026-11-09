@@ -6,31 +6,32 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "main-idea-purpose",
   },
-  stimulus: "library-hours",
+  stimulus: "swim-lessons",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "to describe the books and equipment in the school library",
+          label: "to describe the town pool and its prices for school groups",
         },
         {
           correct: false,
-          label: "to report how the library club carried out its survey",
+          label: "to report the results of the sports club's swimming course",
         },
         {
           correct: false,
-          label: "to argue that the library should also open on weekends",
+          label:
+            "to argue that every school should build its own swimming pool",
         },
         {
           correct: false,
-          label: "to complain that the librarian works too few hours",
+          label: "to explain how to float on your back for one minute",
         },
         {
           correct: true,
           label:
-            "to persuade the school to keep the library open until five in the afternoon",
+            "to persuade the school to add swimming lessons to physical education",
         },
       ],
     },

@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "supporting-detail",
   },
-  stimulus: "library-hours",
+  stimulus: "swim-lessons",
   versions: {
     en: {
       kind: "choice",
@@ -14,24 +14,26 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "64 of the 200 students who answered share a room with younger siblings or live next to a busy road.",
+            "74 of the 180 students who answered the survey could not swim 25 meters without stopping.",
         },
         {
           correct: false,
           label:
-            "The library receives an average of 58 visits per day between 12.00 and 14.00.",
+            "After the course, 26 volunteers could float on their back for one minute.",
         },
         {
           correct: false,
-          label: "The library already has tables, fans, and Wi-Fi.",
+          label:
+            "Swimming works the whole body and puts little strain on the knees.",
         },
         {
           correct: false,
-          label: "Members of the library club have offered to help on a rota.",
+          label: "The town pool is a ten-minute walk from the school.",
         },
         {
           correct: false,
-          label: "The library closes at two o'clock, right when lessons end.",
+          label:
+            "The town pool offers school groups a lower price on weekday mornings.",
         },
       ],
     },
