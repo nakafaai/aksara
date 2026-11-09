@@ -164,7 +164,7 @@ describe("createDiagramPolicy", () => {
         ],
         type: "root",
       };
-      unified().use(policy.remarkPlugin).runSync(tree);
+      yield* Effect.promise(() => unified().use(policy.remarkPlugin).run(tree));
       const error = yield* Effect.flip(policy.validate());
       assert.deepStrictEqual(
         Arr.map(error.violations, ({ column, line }) => ({ column, line })),
