@@ -95,6 +95,33 @@ The positive sign means the net velocity points right. If the result is negative
 
 Average velocity must therefore be read together with the **positive direction chosen** at the start. Without that reference direction, a positive or negative sign has no clear meaning.
 
+Both trips below take <InlineMath math="4\text{ s}" /> and both reach <InlineMath math="8\text{ m}" />. The orange one returns to <InlineMath math="4\text{ m}" />: speed <InlineMath math="12/4=3\text{ m/s}" />, velocity <InlineMath math="+4/4=+1\text{ m/s}" />. The violet one comes all the way back: speed <InlineMath math="4\text{ m/s}" />, velocity <InlineMath math="0" />. Count the climb and the fall of each line to get the distance, and compare only the end points to get the displacement.
+
+<MathVisual
+  title={<>Two Trips, Two Speeds, Two Velocities</>}
+  description={<>Out to 8 m and back to 4 m or to 0 m, each in 4 s at constant speed. Horizontal: time in s. Vertical: position in units of 2 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "to-four", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: (4 * 8) / 12, y: 4 }, { x: 4, y: 2 }] },
+      { id: "to-zero", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 4 }, { x: 4, y: 0 }] },
+      { id: "four-end", kind: "point", appearance: "primary", at: { x: 4, y: 2 } },
+      { id: "zero-top", kind: "point", appearance: "secondary", at: { x: 2, y: 4 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "four", objectId: "four-end", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "zero", objectId: "zero-top", at: { x: 2, y: 4 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    four: <InlineMath math="12\text{ m},\ \Delta x=+4\text{ m}" />,
+    zero: <InlineMath math="16\text{ m},\ \Delta x=0" />,
+  }}
+/>
+
 ## When Speed and Velocity Have Different Values
 
 Now imagine the object moves from <InlineMath math="0 \text{ m}" /> to <InlineMath math="8 \text{ m}" />, then returns to <InlineMath math="0 \text{ m}" /> in <InlineMath math="4 \text{ s}" />.
@@ -117,3 +144,29 @@ So average speed can be nonzero while average velocity over the trip is zero. <H
 | Average velocity | Displacement | Yes | <InlineMath math="\text{m/s}" /> to the right |
 
 If the question asks how fast the path is traveled, use distance and speed. If the question asks how fast position changes in a direction, use **displacement** and velocity.
+
+Run around a track and the two averages split. After a full lap your distance is the whole circle, but you are back where you started, so the average velocity is zero. After half a lap the displacement is the diameter. Zoom in on both labels.
+
+<MathVisual
+  title={<>Distance Gives Speed, Displacement Gives Velocity</>}
+  description={<>A circular track of radius 3 m with the start (fuchsia) and the half-lap displacement (orange).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 9 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "track", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "start", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "half", kind: "segment", appearance: "primary", from: { x: 3, y: 0 }, to: { x: -3, y: 0 } },
+      { id: "half-end", kind: "point", appearance: "primary", at: { x: -3, y: 0 } },
+    ],
+    labels: [
+      { key: "lap", objectId: "start", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "half", objectId: "half", at: { x: 0, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    lap: <InlineMath math="\text{1 lap: } s=2\pi r\approx18.85\text{ m},\ \Delta x=0" />,
+    half: <InlineMath math="\text{half: } s=\pi r,\ \lvert\Delta x\rvert=2r=6\text{ m}" />,
+  }}
+/>

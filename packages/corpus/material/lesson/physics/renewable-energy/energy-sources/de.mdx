@@ -20,6 +20,33 @@ Verfolge die Energie von ihrer Quelle durch eine [Umwandlungsanlage](/de/faecher
 
 Eine erneuerbare Energiequelle wird durch natürliche Prozesse <Highlight>im menschlichen Zeitmaßstab wieder aufgefüllt</Highlight>. Sie ist jedoch nicht jederzeit verfügbar. Sonnenlicht hängt von Tag und Wetter ab, Wind von den Luftbedingungen und fließendes Wasser von der Jahreszeit und davon, wie viel Wasser sich tatsächlich bewegt.
 
+Am Wind siehst du, wie stark „gerade verfügbar“ schwanken kann. Die Leistung, die der Wind durch einen Rotor mit der Fläche <InlineMath math="A" /> trägt, ist <InlineMath math="P=\tfrac12\rho Av^3" />, weil schnellere Luft jede Sekunde mehr Kilogramm heranbringt und jedes Kilogramm mehr Energie trägt. Im Diagramm unten hat der Rotor einen Radius von <InlineMath math="1\text{ m}" />, und die Luft hat <InlineMath math="\rho=1{,}2\text{ kg/m}^3" />. Vergleich die beiden Punkte: Verdoppelt sich die Windgeschwindigkeit von <InlineMath math="4" /> auf <InlineMath math="8\text{ m/s}" />, wird die Leistung <InlineMath math="2^3=8" />-mal so groß.
+
+<MathVisual
+  title={<>Windleistung hängt von der Windgeschwindigkeit ab</>}
+  description={<>Leistung des Windes durch einen Rotor mit 1 m Radius bei einer Luftdichte von <InlineMath math="1{,}2\text{ kg/m}^3" />. Waagrecht: Windgeschwindigkeit in Einheiten von 2 m/s. Senkrecht: Leistung in Einheiten von 500 W.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -0.3, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "power", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 0.25 / 2, y: (0.5 * 1.2 * Math.PI * 0.25 ** 3) / 500 }, { x: 0.5 / 2, y: (0.5 * 1.2 * Math.PI * 0.5 ** 3) / 500 }, { x: 0.75 / 2, y: (0.5 * 1.2 * Math.PI * 0.75 ** 3) / 500 }, { x: 1.0 / 2, y: (0.5 * 1.2 * Math.PI * 1.0 ** 3) / 500 }, { x: 1.25 / 2, y: (0.5 * 1.2 * Math.PI * 1.25 ** 3) / 500 }, { x: 1.5 / 2, y: (0.5 * 1.2 * Math.PI * 1.5 ** 3) / 500 }, { x: 1.75 / 2, y: (0.5 * 1.2 * Math.PI * 1.75 ** 3) / 500 }, { x: 1, y: (0.5 * 1.2 * Math.PI * 2.0 ** 3) / 500 }, { x: 2.25 / 2, y: (0.5 * 1.2 * Math.PI * 2.25 ** 3) / 500 }, { x: 2.5 / 2, y: (0.5 * 1.2 * Math.PI * 2.5 ** 3) / 500 }, { x: 2.75 / 2, y: (0.5 * 1.2 * Math.PI * 2.75 ** 3) / 500 }, { x: 3.0 / 2, y: (0.5 * 1.2 * Math.PI * 3.0 ** 3) / 500 }, { x: 3.25 / 2, y: (0.5 * 1.2 * Math.PI * 3.25 ** 3) / 500 }, { x: 3.5 / 2, y: (0.5 * 1.2 * Math.PI * 3.5 ** 3) / 500 }, { x: 3.75 / 2, y: (0.5 * 1.2 * Math.PI * 3.75 ** 3) / 500 }, { x: 2, y: (0.5 * 1.2 * Math.PI * 4.0 ** 3) / 500 }, { x: 4.25 / 2, y: (0.5 * 1.2 * Math.PI * 4.25 ** 3) / 500 }, { x: 4.5 / 2, y: (0.5 * 1.2 * Math.PI * 4.5 ** 3) / 500 }, { x: 4.75 / 2, y: (0.5 * 1.2 * Math.PI * 4.75 ** 3) / 500 }, { x: 5.0 / 2, y: (0.5 * 1.2 * Math.PI * 5.0 ** 3) / 500 }, { x: 5.25 / 2, y: (0.5 * 1.2 * Math.PI * 5.25 ** 3) / 500 }, { x: 5.5 / 2, y: (0.5 * 1.2 * Math.PI * 5.5 ** 3) / 500 }, { x: 5.75 / 2, y: (0.5 * 1.2 * Math.PI * 5.75 ** 3) / 500 }, { x: 3, y: (0.5 * 1.2 * Math.PI * 6.0 ** 3) / 500 }, { x: 6.25 / 2, y: (0.5 * 1.2 * Math.PI * 6.25 ** 3) / 500 }, { x: 6.5 / 2, y: (0.5 * 1.2 * Math.PI * 6.5 ** 3) / 500 }, { x: 6.75 / 2, y: (0.5 * 1.2 * Math.PI * 6.75 ** 3) / 500 }, { x: 7.0 / 2, y: (0.5 * 1.2 * Math.PI * 7.0 ** 3) / 500 }, { x: 7.25 / 2, y: (0.5 * 1.2 * Math.PI * 7.25 ** 3) / 500 }, { x: 7.5 / 2, y: (0.5 * 1.2 * Math.PI * 7.5 ** 3) / 500 }, { x: 7.75 / 2, y: (0.5 * 1.2 * Math.PI * 7.75 ** 3) / 500 }, { x: 4, y: (0.5 * 1.2 * Math.PI * 8.0 ** 3) / 500 }, { x: 8.25 / 2, y: (0.5 * 1.2 * Math.PI * 8.25 ** 3) / 500 }, { x: 8.5 / 2, y: (0.5 * 1.2 * Math.PI * 8.5 ** 3) / 500 }, { x: 8.75 / 2, y: (0.5 * 1.2 * Math.PI * 8.75 ** 3) / 500 }, { x: 9.0 / 2, y: (0.5 * 1.2 * Math.PI * 9.0 ** 3) / 500 }, { x: 9.25 / 2, y: (0.5 * 1.2 * Math.PI * 9.25 ** 3) / 500 }, { x: 9.5 / 2, y: (0.5 * 1.2 * Math.PI * 9.5 ** 3) / 500 }, { x: 9.75 / 2, y: (0.5 * 1.2 * Math.PI * 9.75 ** 3) / 500 }, { x: 5, y: (0.5 * 1.2 * Math.PI * 10.0 ** 3) / 500 }] },
+      { id: "v4", kind: "point", appearance: "primary", at: { x: 2, y: (0.5 * 1.2 * Math.PI * 4 ** 3) / 500 } },
+      { id: "v8", kind: "point", appearance: "answer", at: { x: 4, y: (0.5 * 1.2 * Math.PI * 8 ** 3) / 500 } },
+    ],
+    labels: [
+      { key: "rule", objectId: "power", at: { x: 4.5, y: (0.5 * 1.2 * Math.PI * 9 ** 3) / 500 }, placement: "left" },
+      { key: "v4", objectId: "v4", at: { x: 2, y: (0.5 * 1.2 * Math.PI * 4 ** 3) / 500 }, placement: "right" },
+      { key: "v8", objectId: "v8", at: { x: 4, y: (0.5 * 1.2 * Math.PI * 8 ** 3) / 500 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    rule: <InlineMath math="P=\tfrac12\rho Av^3" />,
+    v4: <InlineMath math="v=4\text{ m/s}:\ P\approx121\text{ W}" />,
+    v8: <InlineMath math="v=8\text{ m/s}:\ P\approx965\text{ W}" />,
+  }}
+/>
+
 <Mermaid
   title="Bedingungen für die Verfügbarkeit von Energie"
   description="Die Darstellung trennt natürliche Erneuerung von den Standort-, Wetter- und Technikbedingungen der tatsächlichen Nutzung."
@@ -33,6 +60,31 @@ Eine erneuerbare Energiequelle wird durch natürliche Prozesse <Highlight>im men
     E --> H["Natürliche Grenzen prüfen"]`}/>
 
 [Erneuerbare Quellen](https://www.eia.gov/energyexplained/renewable-sources/) werden durch natürliche Prozesse nachgeliefert, ihre nutzbare Leistung bleibt jedoch von den örtlichen Bedingungen begrenzt. Zu diesen Quellen gehören Biomasse, Wasserkraft, Geothermie, Wind- und Solarenergie.
+
+Dasselbe Modul sammelt weniger, wenn die Sonne tief steht, weil sich ihr Licht auf eine größere Fläche verteilt. Auf einem flachen Modul liegt die Leistung bei etwa <InlineMath math="1000\sin\alpha\text{ W/m}^2" /> für eine Sonne in der Höhe <InlineMath math="\alpha" />, also liefert eine Sonne bei <InlineMath math="30^\circ" /> die Hälfte des Mittagswerts. Folge der Kurve durch die Winkel des Tages.
+
+<MathVisual
+  title={<>Tiefe Sonne, weniger Leistung</>}
+  description={<>Ungefähre Leistung des Sonnenlichts auf einem flachen Modul über der Sonnenhöhe über dem Horizont. Waagerecht: Ein Gitterschritt entspricht 10 Grad. Senkrecht: Ein Gitterschritt entspricht 200 W pro Quadratmeter.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -0.5, max: 5.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "sun", kind: "polyline", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 0.5, y: (1000 * Math.sin((5 * Math.PI) / 180)) / 200 }, { x: 1, y: (1000 * Math.sin((10 * Math.PI) / 180)) / 200 }, { x: 1.5, y: (1000 * Math.sin((15 * Math.PI) / 180)) / 200 }, { x: 2, y: (1000 * Math.sin((20 * Math.PI) / 180)) / 200 }, { x: 2.5, y: (1000 * Math.sin((25 * Math.PI) / 180)) / 200 }, { x: 3, y: (1000 * Math.sin((30 * Math.PI) / 180)) / 200 }, { x: 3.5, y: (1000 * Math.sin((35 * Math.PI) / 180)) / 200 }, { x: 4, y: (1000 * Math.sin((40 * Math.PI) / 180)) / 200 }, { x: 4.5, y: (1000 * Math.sin((45 * Math.PI) / 180)) / 200 }, { x: 5, y: (1000 * Math.sin((50 * Math.PI) / 180)) / 200 }, { x: 5.5, y: (1000 * Math.sin((55 * Math.PI) / 180)) / 200 }, { x: 6, y: (1000 * Math.sin((60 * Math.PI) / 180)) / 200 }, { x: 6.5, y: (1000 * Math.sin((65 * Math.PI) / 180)) / 200 }, { x: 7, y: (1000 * Math.sin((70 * Math.PI) / 180)) / 200 }, { x: 7.5, y: (1000 * Math.sin((75 * Math.PI) / 180)) / 200 }, { x: 8, y: (1000 * Math.sin((80 * Math.PI) / 180)) / 200 }, { x: 8.5, y: (1000 * Math.sin((85 * Math.PI) / 180)) / 200 }, { x: 9, y: 5 }] },
+      { id: "low", kind: "point", appearance: "primary", at: { x: 3, y: (1000 * Math.sin((30 * Math.PI) / 180)) / 200 } },
+      { id: "noon", kind: "point", appearance: "answer", at: { x: 9, y: 5 } },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 3, y: (1000 * Math.sin((30 * Math.PI) / 180)) / 200 }, placement: "above-left" },
+      { key: "noon", objectId: "noon", at: { x: 9, y: 5 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    low: <InlineMath math="30^\circ:\ 1000\sin30^\circ=500\text{ W/m}^2" />,
+    noon: <InlineMath math="90^\circ:\ 1000\text{ W/m}^2" />,
+  }}
+/>
 
 ## Quellen werden anhand ihrer Umwandlungsketten verglichen
 
@@ -70,3 +122,28 @@ Bei einem Dampfkraftwerk, Windkraftwerk, Solarkraftwerk, Wasserkraftwerk oder Ge
 Bestimme die Quelle und ihre anfängliche Energieform. Betrachte anschließend die Anlage, die daraus elektrische Energie erzeugt.
 
 Nach Klärung der Umwandlungskette lassen sich physikalische Bedingungen, Kosten, Emissionen, Flächen- oder Wasserbedarf und Wartung vergleichen.
+
+Jedes Dampfkraftwerk macht aus Wärme Arbeit, und Wärme kann nie ganz zu Arbeit werden. Selbst eine ideale Maschine schafft nur <InlineMath math="\eta=1-T_c/T_h" />, also erlaubt heißerer Dampf mehr. Mit Kühlwasser bei <InlineMath math="300\text{ K}" /> bleibt geothermischer Dampf um <InlineMath math="450\text{ K}" /> weit unter einem befeuerten Kessel. Folge der Kurve.
+
+<MathVisual
+  title={<>Die Obergrenze eines Dampfkraftwerks</>}
+  description={<>Die ideale Wirkungsgradgrenze über der Dampftemperatur bei Kühlung mit 300 K. Waagerecht: Ein Gitterschritt entspricht 100 K. Senkrecht: Ein Gitterschritt entspricht 10 Prozent.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2.5, max: 9.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "limit", kind: "polyline", appearance: "primary", vertices: [{ x: 3, y: 0 }, { x: 3.25, y: 10 * (1 - 300 / 325) }, { x: 3.5, y: 10 * (1 - 300 / 350) }, { x: 3.75, y: 10 * (1 - 300 / 375) }, { x: 4, y: 10 * (1 - 300 / 400) }, { x: 4.25, y: 10 * (1 - 300 / 425) }, { x: 4.5, y: 10 * (1 - 300 / 450) }, { x: 4.75, y: 10 * (1 - 300 / 475) }, { x: 5, y: 10 * (1 - 300 / 500) }, { x: 5.25, y: 10 * (1 - 300 / 525) }, { x: 5.5, y: 10 * (1 - 300 / 550) }, { x: 5.75, y: 10 * (1 - 300 / 575) }, { x: 6, y: 10 * (1 - 300 / 600) }, { x: 6.25, y: 10 * (1 - 300 / 625) }, { x: 6.5, y: 10 * (1 - 300 / 650) }, { x: 6.75, y: 10 * (1 - 300 / 675) }, { x: 7, y: 10 * (1 - 300 / 700) }, { x: 7.25, y: 10 * (1 - 300 / 725) }, { x: 7.5, y: 10 * (1 - 300 / 750) }, { x: 7.75, y: 10 * (1 - 300 / 775) }, { x: 8, y: 10 * (1 - 300 / 800) }, { x: 8.25, y: 10 * (1 - 300 / 825) }, { x: 8.5, y: 10 * (1 - 300 / 850) }, { x: 8.75, y: 10 * (1 - 300 / 875) }, { x: 9, y: 10 * (1 - 300 / 900) }] },
+      { id: "geo", kind: "point", appearance: "construction", at: { x: 4.5, y: 10 * (1 - 300 / 450) } },
+      { id: "coal", kind: "point", appearance: "answer", at: { x: 8, y: 10 * (1 - 300 / 800) } },
+    ],
+    labels: [
+      { key: "geo", objectId: "geo", at: { x: 4.5, y: 10 * (1 - 300 / 450) }, placement: "below-right" },
+      { key: "coal", objectId: "coal", at: { x: 8, y: 10 * (1 - 300 / 800) }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    geo: <InlineMath math="450\text{ K}:\ 1-\tfrac{300}{450}\approx33\%" />,
+    coal: <InlineMath math="800\text{ K}:\ 1-\tfrac{300}{800}=62{,}5\%" />,
+  }}
+/>

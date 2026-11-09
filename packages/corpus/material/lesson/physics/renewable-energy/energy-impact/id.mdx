@@ -22,6 +22,39 @@ Mulai dari eksplorasi sumber energi, lalu pengambilan, konversi, distribusi, dan
 
 Dampak dapat muncul di tambang, sumur, bendungan, jaringan listrik, panel surya, turbin, dan baterai. Pada setiap tahap, dampak tersebut dapat memengaruhi udara, air, tanah, serta masyarakat di sekitarnya.
 
+Hitung emisi setiap tahap, dari penambangan dan pembangunan sampai pengoperasian dan pembongkaran, lalu bagi dengan listrik yang dihasilkan. Putar batangnya: nilai median siklus hidup dari IPCC dalam <InlineMath math="\mathrm{g\,CO_2\text{-}eq/kWh}" /> menempatkan batu bara jauh di atas rantai terbarukan.
+
+<MathVisual
+  title={<>Setiap Tahap Dihitung</>}
+  description={<>Median emisi siklus hidup per kWh dari IPCC (2014). Satu kotak grid ke atas berarti 100 <InlineMath math="\mathrm{g\,CO_2\text{-}eq/kWh}" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 8, z: 14 }, target: { x: 4, y: 3, z: 0 } },
+    objects: [
+      { id: "coal", kind: "cuboid", appearance: "reference", center: { x: 0, y: (820 / 100) / 2, z: 0 }, size: { length: 1.2, height: 820 / 100, width: 1.2 } },
+      { id: "gas", kind: "cuboid", appearance: "highlight", center: { x: 2, y: (490 / 100) / 2, z: 0 }, size: { length: 1.2, height: 490 / 100, width: 1.2 } },
+      { id: "solar", kind: "cuboid", appearance: "primary", center: { x: 4, y: (48 / 100) / 2, z: 0 }, size: { length: 1.2, height: 48 / 100, width: 1.2 } },
+      { id: "hydro", kind: "cuboid", appearance: "construction", center: { x: 6, y: (24 / 100) / 2, z: 0 }, size: { length: 1.2, height: 24 / 100, width: 1.2 } },
+      { id: "wind", kind: "cuboid", appearance: "secondary", center: { x: 8, y: (11 / 100) / 2, z: 0 }, size: { length: 1.2, height: 11 / 100, width: 1.2 } },
+    ],
+    labels: [
+      { key: "coal", objectId: "coal", at: { x: 0, y: 820 / 100, z: 0 }, placement: "above" },
+      { key: "gas", objectId: "gas", at: { x: 2, y: 490 / 100, z: 0 }, placement: "above" },
+      { key: "solar", objectId: "solar", at: { x: 4, y: 48 / 100, z: 0 }, placement: "above" },
+      { key: "hydro", objectId: "hydro", at: { x: 6, y: 24 / 100, z: 0 }, placement: "above" },
+      { key: "wind", objectId: "wind", at: { x: 8, y: 11 / 100, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    coal: <InlineMath math="\text{batu bara: }820" />,
+    gas: <InlineMath math="\text{gas: }490" />,
+    solar: <InlineMath math="\text{surya PV: }48" />,
+    hydro: <InlineMath math="\text{air: }24" />,
+    wind: <InlineMath math="\text{angin: }11" />,
+  }}
+/>
+
 ## Dampak di Seluruh Rantai Energi
 
 **Dampak lingkungan** adalah perubahan pada udara, air, tanah, makhluk hidup, atau bentang alam akibat suatu kegiatan. **Emisi** adalah zat atau energi yang dilepaskan ke lingkungan, misalnya gas buang dari pembakaran bahan bakar.
@@ -37,6 +70,41 @@ Hampir semua bagian [sistem listrik](https://www.epa.gov/energy/about-us-electri
 | Penggunaan | Energi dipakai untuk alat, transportasi, rumah, atau industri. | Cek efisiensi alat, pola pemakaian, dan limbah yang tersisa saat masa pakai alat berakhir. |
 
 Pada setiap tahap, bandingkan besar dampak, lamanya dampak, wilayah yang terkena, dan bukti yang tersedia. Sebagian dampak terlihat langsung, sedangkan dampak lain baru terlihat setelah berlangsung lama atau menyebar ke wilayah yang luas.
+
+Kehilangan energi adalah salah satu dampak yang bisa kamu ukur tahap demi tahap. Ambil efisiensi bulat sebagai ilustrasi: pembangkit mengubah <InlineMath math="35\%" /> energi bahan bakar menjadi listrik, lalu jaringan menyalurkan <InlineMath math="95\%" /> dari listrik itu. Pada adegan di bawah, setiap kolom tetap setinggi <InlineMath math="100\text{ J}" />, karena energi kekal. Yang berubah hanya pembagiannya: bagian hijau toska adalah energi yang masih berguna, bagian abu-abu adalah kalor yang sudah lepas ke lingkungan. Putar adegannya dan bandingkan seberapa banyak bagian abu-abu muncul pada tahap konversi.
+
+<MathVisual
+  title={<>Sisa 100 J di Sepanjang Rantai</>}
+  description={<>Rantai energi ilustrasi dengan efisiensi konversi 0,35 dan efisiensi jaringan 0,95. Satu kotak grid ke atas sama dengan 20 J.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: -1, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 3.5, y: 3.5, z: 10 }, target: { x: 2.5, y: 2.3, z: 0 } },
+    objects: [
+      { id: "useful-0", kind: "cuboid", appearance: "construction", center: { x: 0, y: ((100) / 20) / 2, z: 0 }, size: { length: 1.2, height: (100) / 20, width: 1.2 } },
+      { id: "useful-1", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: ((100 * 0.35) / 20) / 2, z: 0 }, size: { length: 1.2, height: (100 * 0.35) / 20, width: 1.2 } },
+      { id: "lost-1", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: (100 * 0.35) / 20 + ((100 - 100 * 0.35) / 20) / 2, z: 0 }, size: { length: 1.2, height: (100 - 100 * 0.35) / 20, width: 1.2 } },
+      { id: "useful-2", kind: "cuboid", appearance: "construction", center: { x: 5, y: ((100 * 0.35 * 0.95) / 20) / 2, z: 0 }, size: { length: 1.2, height: (100 * 0.35 * 0.95) / 20, width: 1.2 } },
+      { id: "lost-2", kind: "cuboid", appearance: "reference", center: { x: 5, y: (100 * 0.35 * 0.95) / 20 + ((100 - 100 * 0.35 * 0.95) / 20) / 2, z: 0 }, size: { length: 1.2, height: (100 - 100 * 0.35 * 0.95) / 20, width: 1.2 } },
+    ],
+    labels: [
+      { key: "value0", objectId: "useful-0", at: { x: 0, y: -0.5, z: 0.6 }, placement: "below" },
+      { key: "value1", objectId: "useful-1", at: { x: 2.5, y: -0.5, z: 0.6 }, placement: "below" },
+      { key: "value2", objectId: "useful-2", at: { x: 5, y: -0.5, z: 0.6 }, placement: "below" },
+      { key: "name0", objectId: "useful-0", at: { x: 0, y: 5.5, z: 0.6 }, placement: "above" },
+      { key: "name1", objectId: "useful-1", at: { x: 2.5, y: 5.5, z: 0.6 }, placement: "above" },
+      { key: "name2", objectId: "useful-2", at: { x: 5, y: 5.5, z: 0.6 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    value0: <InlineMath math="100\text{ J}" />,
+    value1: <InlineMath math="35\text{ J}" />,
+    value2: <InlineMath math="33{,}25\text{ J}" />,
+    name0: <>Bahan bakar</>,
+    name1: <>Pembangkit</>,
+    name2: <>Rumah</>,
+  }}
+/>
 
 ## Dampak Berbeda menurut Sumber dan Tahap
 
@@ -59,6 +127,37 @@ Pada tambang terbuka batu bara, lapisan tanah dan batuan di atas cadangan batu b
 [Penambangan batu bara](https://www.eia.gov/energyexplained/coal/coal-and-the-environment.php) dapat memengaruhi tanah, air, udara, dan habitat sekitar.
 
 Saat mengamati area tambang, periksa tanah yang dipindahkan, arah aliran air, sebaran debu oleh angin, dan kemungkinan pemulihan lahan setelah kegiatan selesai.
+
+Setiap pertanyaan tentang tambang menunjuk satu tempat pada penampang ini. Daerah kuning adalah batuan dan tanah yang dipindahkan, 2.400 meter kubik untuk setiap meter sepanjang lubang, air berkumpul di dasarnya, dan angin mengangkat debu dari tepinya. Perbesar tiap bagiannya.
+
+<MathVisual
+  title={<>Pertanyaan di Tambang Terbuka</>}
+  description={<>Penampang tambang terbuka dengan tiga jenjang setinggi 10 m. Satu kotak grid berarti 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -4, max: 2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "layer-0", kind: "polygon", appearance: "highlight", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }, { x: 5, y: -1 }, { x: -5, y: -1 }] },
+      { id: "layer-1", kind: "polygon", appearance: "highlight", vertices: [{ x: -4, y: -1 }, { x: 4, y: -1 }, { x: 4, y: -2 }, { x: -4, y: -2 }] },
+      { id: "layer-2", kind: "polygon", appearance: "highlight", vertices: [{ x: -3, y: -2 }, { x: 3, y: -2 }, { x: 3, y: -3 }, { x: -3, y: -3 }] },
+      { id: "wall-left", kind: "polyline", appearance: "reference", vertices: [{ x: -7, y: 0 }, { x: -5, y: 0 }, { x: -5, y: -1 }, { x: -4, y: -1 }, { x: -4, y: -2 }, { x: -3, y: -2 }, { x: -3, y: -3 }, { x: 0, y: -3 }] },
+      { id: "wall-right", kind: "polyline", appearance: "reference", vertices: [{ x: 7, y: 0 }, { x: 5, y: 0 }, { x: 5, y: -1 }, { x: 4, y: -1 }, { x: 4, y: -2 }, { x: 3, y: -2 }, { x: 3, y: -3 }, { x: 0, y: -3 }] },
+      { id: "water", kind: "polygon", appearance: "construction", vertices: [{ x: -3, y: -3 }, { x: 3, y: -3 }, { x: 3, y: -2.7 }, { x: -3, y: -2.7 }] },
+      { id: "dust", kind: "segment", appearance: "warning", from: { x: 5, y: 0.3 }, to: { x: 7, y: 1.3 } },
+    ],
+    labels: [
+      { key: "removed", objectId: "layer-1", at: { x: 0, y: -1.5 }, placement: "center" },
+      { key: "water", objectId: "water", at: { x: 0, y: -3 }, placement: "below" },
+      { key: "dust", objectId: "dust", at: { x: 7, y: 1.3 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    removed: <InlineMath math="\text{penampang: }(100+80+60)\cdot10=2400\text{ m}^2" />,
+    water: <>air terkumpul</>,
+    dust: <>debu terbawa angin</>,
+  }}
+/>
 
 ## Bandingkan Manfaat dan Dampak di Setiap Tahap
 

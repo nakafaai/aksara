@@ -68,6 +68,36 @@ Jika kita menulis hasil diameter dengan ketidakpastian sebaran data, bentuknya m
 
 Angka <InlineMath math="3{,}13 \text{ cm}" /> adalah nilai wakil data. Angka <InlineMath math="0{,}02 \text{ cm}" /> menunjukkan bahwa hasil pengukuran berulang tidak persis sama.
 
+Inilah kelima bacaan dari tabel pada satu garis. Garis fuchsia adalah rata-ratanya, dan pita teal menjangkau satu simpangan baku ke tiap sisi, yang mencakup sebagian besar bacaan. Perbesar dan hitung titik di dalam pita.
+
+<MathVisual
+  title={<>Dari Bacaan ke Sebaran</>}
+  description={<>Lima bacaan diameter (oranye), rata-ratanya (fuchsia), dan pita satu simpangan baku (teal). Satu kotak grid berarti 0,01 cm mulai dari 3,10 cm.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 2.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "band", kind: "polygon", appearance: "construction", vertices: [{ x: 3.2 - Math.sqrt(0.00108 / 4) * 100, y: 0 }, { x: 3.2 + Math.sqrt(0.00108 / 4) * 100, y: 0 }, { x: 3.2 + Math.sqrt(0.00108 / 4) * 100, y: 1.6 }, { x: 3.2 - Math.sqrt(0.00108 / 4) * 100, y: 1.6 }] },
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "mean", kind: "segment", appearance: "answer", from: { x: 3.2, y: 0 }, to: { x: 3.2, y: 1.6 } },
+      { id: "reading-0", kind: "point", appearance: "primary", at: { x: 2, y: 0.4 } },
+      { id: "reading-1", kind: "point", appearance: "primary", at: { x: 4, y: 0.4 } },
+      { id: "reading-2", kind: "point", appearance: "primary", at: { x: 5, y: 0.4 } },
+      { id: "reading-3", kind: "point", appearance: "primary", at: { x: 1, y: 0.4 } },
+      { id: "reading-4", kind: "point", appearance: "primary", at: { x: 4, y: 0.9 } },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 3.2, y: 1.6 }, placement: "above" },
+      { key: "band", objectId: "band", at: { x: 3.2 + Math.sqrt(0.00108 / 4) * 100, y: 1.6 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    mean: <InlineMath math="\bar d=3{,}132\text{ cm}" />,
+    band: <InlineMath math="\pm s_d=\pm0{,}0164\text{ cm}" />,
+  }}
+/>
+
 ## Sebaran Data dan Ketidakpastian Rata-rata
 
 Beberapa soal pengukuran berulang memakai bentuk aljabar ringkas berikut.
@@ -94,7 +124,85 @@ Untuk pembacaan yang independen dengan sebaran yang sama, **ketidakpastian baku 
 
 <BlockMath math="u(\bar d)=\frac{\sqrt{0{,}00027}}{\sqrt 5}\text{ cm}\approx0{,}00735\text{ cm}" />
 
+Adegan di bawah menjajarkan kelima bacaan. Setiap batang hijau toska adalah jarak satu bacaan dari rata-rata, digambar <InlineMath math="100" /> kali lebih besar. Garis oranye di <InlineMath math="\pm s_d" /> menunjukkan seberapa jauh bacaan tunggal menyebar, sedangkan garis ungu yang lebih rapat di <InlineMath math="\pm u(\bar d)" /> menunjukkan seberapa baik rata-ratanya diketahui. Coba jumlahkan batang di atas garis abu-abu dan batang di bawahnya: hasilnya saling menghapus, karena simpangan dari rata-rata selalu berjumlah nol.
+
+<MathVisual
+  title={<>Lima Bacaan di Sekitar Rata-ratanya</>}
+  description={<>Setiap batang adalah bacaan dikurangi rata-rata, dalam satuan 0,01 cm. Garis oranye menandai sebaran s, garis ungu ketidakpastian rata-rata u.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: -2.8, max: 2.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "mean", kind: "segment", appearance: "reference", from: { x: 0.5, y: 0 }, to: { x: 5.5, y: 0 } },
+      { id: "plus-s", kind: "segment", appearance: "primary", from: { x: 0.5, y: Math.sqrt(0.00108 / 4) * 100 }, to: { x: 5.5, y: Math.sqrt(0.00108 / 4) * 100 } },
+      { id: "minus-s", kind: "segment", appearance: "primary", from: { x: 0.5, y: -Math.sqrt(0.00108 / 4) * 100 }, to: { x: 5.5, y: -Math.sqrt(0.00108 / 4) * 100 } },
+      { id: "plus-u", kind: "segment", appearance: "secondary", from: { x: 0.5, y: (Math.sqrt(0.00108 / 4) / Math.sqrt(5)) * 100 }, to: { x: 5.5, y: (Math.sqrt(0.00108 / 4) / Math.sqrt(5)) * 100 } },
+      { id: "minus-u", kind: "segment", appearance: "secondary", from: { x: 0.5, y: -((Math.sqrt(0.00108 / 4) / Math.sqrt(5)) * 100) }, to: { x: 5.5, y: -((Math.sqrt(0.00108 / 4) / Math.sqrt(5)) * 100) } },
+      { id: "reading-1", kind: "segment", appearance: "construction", from: { x: 1, y: 0 }, to: { x: 1, y: (3.12 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "value-1", kind: "point", appearance: "construction", at: { x: 1, y: (3.12 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "reading-2", kind: "segment", appearance: "construction", from: { x: 2, y: 0 }, to: { x: 2, y: (3.14 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "value-2", kind: "point", appearance: "construction", at: { x: 2, y: (3.14 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "reading-3", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: (3.15 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "value-3", kind: "point", appearance: "construction", at: { x: 3, y: (3.15 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "reading-4", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: (3.11 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "value-4", kind: "point", appearance: "construction", at: { x: 4, y: (3.11 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "reading-5", kind: "segment", appearance: "construction", from: { x: 5, y: 0 }, to: { x: 5, y: (3.14 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+      { id: "value-5", kind: "point", appearance: "construction", at: { x: 5, y: (3.14 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 } },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 5.5, y: 0 }, placement: "right" },
+      { key: "ps", objectId: "plus-s", at: { x: 5.5, y: Math.sqrt(0.00108 / 4) * 100 }, placement: "right" },
+      { key: "ms", objectId: "minus-s", at: { x: 5.5, y: -Math.sqrt(0.00108 / 4) * 100 }, placement: "right" },
+      { key: "pu", objectId: "plus-u", at: { x: 5.5, y: (Math.sqrt(0.00108 / 4) / Math.sqrt(5)) * 100 }, placement: "right" },
+      { key: "mu", objectId: "minus-u", at: { x: 5.5, y: -((Math.sqrt(0.00108 / 4) / Math.sqrt(5)) * 100) }, placement: "right" },
+      { key: "d1", objectId: "value-1", at: { x: 1, y: (3.12 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 }, placement: "below" },
+      { key: "d2", objectId: "value-2", at: { x: 2, y: (3.14 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 }, placement: "above" },
+      { key: "d3", objectId: "value-3", at: { x: 3, y: (3.15 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 }, placement: "above" },
+      { key: "d4", objectId: "value-4", at: { x: 4, y: (3.11 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 }, placement: "below" },
+      { key: "d5", objectId: "value-5", at: { x: 5, y: (3.14 - (3.12 + 3.14 + 3.15 + 3.11 + 3.14) / 5) * 100 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    mean: <InlineMath math="\bar d" />,
+    ps: <InlineMath math="+s_d" />,
+    ms: <InlineMath math="-s_d" />,
+    pu: <InlineMath math="+u(\bar d)" />,
+    mu: <InlineMath math="-u(\bar d)" />,
+    d1: <InlineMath math="d_1" />,
+    d2: <InlineMath math="d_2" />,
+    d3: <InlineMath math="d_3" />,
+    d4: <InlineMath math="d_4" />,
+    d5: <InlineMath math="d_5" />,
+  }}
+/>
+
 Ikuti notasi yang ditetapkan pada soal pengukuran. Jika <InlineMath math="\Delta x" /> menyatakan rumus ringkas di atas, maka <InlineMath math="\Delta x" /> adalah simpangan baku sampel dari setiap hasil ukur. Jangan samakan sebaran ini dengan ketidakpastian baku nilai rata-rata <InlineMath math="u(\bar x)=s_x/\sqrt N" />.
+
+Grafik di bawah memakai sebaran <InlineMath math="s_d" /> yang sama lalu bertanya apa yang terjadi kalau bacaannya lebih banyak. Ketidakpastian rata-rata turun cepat di awal lalu makin pelan, karena mengecil sebanding dengan <InlineMath math="\sqrt N" />: empat kali lebih banyak bacaan hanya membuatnya separuh.
+
+<MathVisual
+  title={<>Bacaan Lebih Banyak, Rata-rata Lebih Tajam</>}
+  description={<><InlineMath math="u=s/\sqrt N" /> untuk <InlineMath math="N=1" /> sampai 20 bacaan dengan sebaran <InlineMath math="s_d" /> tutup botol. Mendatar: N dalam satuan 4. Tegak: u dalam satuan 0,004 cm.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -0.3, max: 4.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "shrink", kind: "polyline", appearance: "secondary", vertices: [{ x: 1 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(1) / 0.004 }, { x: 2 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(2) / 0.004 }, { x: 3 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(3) / 0.004 }, { x: 1, y: Math.sqrt(0.00108 / 4) / Math.sqrt(4) / 0.004 }, { x: 5 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(5) / 0.004 }, { x: 6 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(6) / 0.004 }, { x: 7 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(7) / 0.004 }, { x: 2, y: Math.sqrt(0.00108 / 4) / Math.sqrt(8) / 0.004 }, { x: 9 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(9) / 0.004 }, { x: 10 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(10) / 0.004 }, { x: 11 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(11) / 0.004 }, { x: 3, y: Math.sqrt(0.00108 / 4) / Math.sqrt(12) / 0.004 }, { x: 13 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(13) / 0.004 }, { x: 14 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(14) / 0.004 }, { x: 15 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(15) / 0.004 }, { x: 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(16) / 0.004 }, { x: 17 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(17) / 0.004 }, { x: 18 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(18) / 0.004 }, { x: 19 / 4, y: Math.sqrt(0.00108 / 4) / Math.sqrt(19) / 0.004 }, { x: 5, y: Math.sqrt(0.00108 / 4) / Math.sqrt(20) / 0.004 }] },
+      { id: "five", kind: "point", appearance: "answer", at: { x: 1.25, y: Math.sqrt(0.00108 / 4) / Math.sqrt(5) / 0.004 } },
+      { id: "fifteen", kind: "point", appearance: "secondary", at: { x: 3.75, y: Math.sqrt(0.00108 / 4) / Math.sqrt(15) / 0.004 } },
+    ],
+    labels: [
+      { key: "rule", objectId: "fifteen", at: { x: 3.75, y: Math.sqrt(0.00108 / 4) / Math.sqrt(15) / 0.004 }, placement: "above" },
+      { key: "five", objectId: "five", at: { x: 1.25, y: Math.sqrt(0.00108 / 4) / Math.sqrt(5) / 0.004 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    rule: <InlineMath math="u=\frac{s_d}{\sqrt N}" />,
+    five: <InlineMath math="N=5:\ u\approx0{,}00735\text{ cm}" />,
+  }}
+/>
 
 ## Luas dari Data Diameter
 

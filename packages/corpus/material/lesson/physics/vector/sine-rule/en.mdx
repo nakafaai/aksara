@@ -59,6 +59,37 @@ The calculation gives:
 
 So the resultant force is about <InlineMath math="15.6\text{ N}" /> at <InlineMath math="26.3^\circ" /> from <InlineMath math="\vec{A}" /> toward <InlineMath math="\vec{B}" />.
 
+Here are the two forces with their parallelogram. The fuchsia resultant leans toward the larger force, and the angle it makes with <InlineMath math="\vec A" /> is the <InlineMath math="\phi\approx26.3^\circ" /> from the sine rule.
+
+<MathVisual
+  title={<>Direction of the Resultant</>}
+  description={<><InlineMath math="A=10\text{ N}" /> and <InlineMath math="B=8\text{ N}" /> at 60° with the parallelogram that gives R. One grid step is 2 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 0 }, { x: 4.75, y: 0.125 }, { x: 4.75, y: -0.125 }] },
+      { id: "b", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) } },
+      { id: "b-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },
+      { id: "sides", kind: "polyline", appearance: "reference", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 7, y: 2 * Math.sqrt(3) }, { x: 5, y: 0 }] },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
+      { id: "r-head", kind: "polygon", appearance: "answer", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }] },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 1, y: Math.sqrt(3) }, placement: "above-left" },
+      { key: "r", objectId: "r", at: { x: 7, y: 2 * Math.sqrt(3) }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A=10\text{ N}" />,
+    b: <InlineMath math="B=8\text{ N}" />,
+    r: <InlineMath math="R\approx15.62\text{ N},\ \phi\approx26.3^\circ" />,
+  }}
+/>
+
 ## Checking with Components
 
 The same direction can be checked using **resultant components**. If <InlineMath math="\vec{A}" /> is placed on the positive <InlineMath math="x" /> axis, then:
@@ -145,6 +176,42 @@ The horizontal component is **negative** and the vertical component is **positiv
 </ContentStack>
 
 Inverse sine returns <InlineMath math="60^\circ" />, but the resultant direction is <InlineMath math="180^\circ-60^\circ=120^\circ" />. The component signs distinguish the two candidate angles.
+
+Join the vectors head to tail and you get a triangle. The cosine rule gives the magnitude, <InlineMath math="R=\sqrt{244}\approx15.62\text{ N}" />, and the sine rule or the components give the direction. Zoom in on both angles: the same <InlineMath math="\phi" /> from either method checks the answer.
+
+<MathVisual
+  title={<>Magnitude, Direction, Check</>}
+  description={<>The vector triangle of A (orange), B (violet) and their resultant R (fuchsia), with the angle between A and B (teal) and the direction of R (amber). One grid step is 2 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 0 }, { x: 4.75, y: 0.125 }, { x: 4.75, y: -0.125 }] },
+      { id: "b", kind: "segment", appearance: "secondary", from: { x: 5, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
+      { id: "b-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 7 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
+      { id: "r-head", kind: "polygon", appearance: "answer", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }] },
+      { id: "phi", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 1.5, startDegrees: 0, sweepDegrees: (Math.atan2(2 * Math.sqrt(3), 7) * 180) / Math.PI },
+      { id: "theta", kind: "arc", appearance: "construction", center: { x: 5, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 60 },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 6, y: Math.sqrt(3) }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 3.5, y: Math.sqrt(3) }, placement: "above-left" },
+      { key: "phi", objectId: "phi", at: { x: 1.5, y: 0.35 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 6, y: 0.3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A=10\text{ N}" />,
+    b: <InlineMath math="B=8\text{ N}" />,
+    r: <InlineMath math="R^2=10^2+8^2+2\cdot10\cdot8\cos60^\circ=244" />,
+    phi: <InlineMath math="\phi\approx26.3^\circ" />,
+    theta: <InlineMath math="\theta=60^\circ" />,
+  }}
+/>
 
 ## Component Methods for More than Two Vectors
 

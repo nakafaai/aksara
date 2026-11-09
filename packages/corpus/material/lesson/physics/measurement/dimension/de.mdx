@@ -79,6 +79,36 @@ Auf dieselbe Weise lassen sich Kraft, Arbeit und Leistung als Dimensionsstruktur
 [P] &= \frac{[W]}{[t]} = [\mathrm{M}][\mathrm{L}]^2[\mathrm{T}]^{-3}
 \end{aligned}" />
 
+Setz jede Größe an ihre Potenzen von Länge, Masse und Zeit: nach rechts, nach oben und in die Tiefe. Multiplizieren addiert die Potenzen, also landet die Kraft aus Masse <InlineMath math="\mathrm{M}" /> und Beschleunigung <InlineMath math="\mathrm{LT^{-2}}" /> bei <InlineMath math="\mathrm{LMT^{-2}}" />. Dreh die Szene und folge den Schritten.
+
+<MathVisual
+  title={<>Drei Schritte der Dimensionsanalyse</>}
+  description={<>Potenzen von L (rechts), M (oben) und T (Tiefe) für Masse, Beschleunigung und Kraft.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -2.5, max: 0.5 } },
+    view: { kind: "camera", position: { x: 4, y: 3, z: 3 }, target: { x: 0.5, y: 0.5, z: -1 } },
+    objects: [
+      { id: "m", kind: "segment", appearance: "secondary", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 1, z: 0 } },
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 1, z: 0 }, to: { x: 1, y: 1, z: -2 } },
+      { id: "f", kind: "segment", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: -2 } },
+      { id: "m-end", kind: "point", appearance: "secondary", at: { x: 0, y: 1, z: 0 } },
+      { id: "f-end", kind: "point", appearance: "answer", at: { x: 1, y: 1, z: -2 } },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0, z: 0 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m-end", at: { x: 0, y: 1, z: 0 }, placement: "above" },
+      { key: "f", objectId: "f-end", at: { x: 1, y: 1, z: -2 }, placement: "right" },
+      { key: "o", objectId: "origin", at: { x: 0, y: 0, z: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    m: <InlineMath math="m:\ \mathrm{M}" />,
+    f: <InlineMath math="F=ma:\ \mathrm{LMT^{-2}}" />,
+    o: <InlineMath math="(0,0,0)" />,
+  }}
+/>
+
 ## Die Dimensionskonsistenz einer Formel prüfen
 
 Mit Dimensionen lässt sich prüfen, ob eine Formel überhaupt stimmen kann. Größen, die addiert werden, <Highlight>müssen dieselbe Dimension besitzen</Highlight>.
@@ -97,6 +127,43 @@ Ersetze nun jeden Term durch seine Dimension:
 Beide Terme auf der rechten Seite haben die Dimension <InlineMath math="[\mathrm{L}]" />. Die Formel besteht damit die Dimensionsprüfung. Das beweist noch nicht, dass sie vollständig korrekt ist, schließt aber viele unmögliche Formeln sofort aus.
 
 <InlineMath math="s+t" /> ist hier ungültig, weil die Dimensionen verschieden sind: <InlineMath math="[\mathrm L]\ne[\mathrm T]" />.
+
+Schreib jede Dimension als Potenzen von L und T, dann addiert das Multiplizieren die Potenzen wie Pfeile. <InlineMath math="v_0t" /> und <InlineMath math="\tfrac12at^2" /> landen beide auf dem fuchsia Punkt, <InlineMath math="\mathrm{L}" />, derselben Dimension wie <InlineMath math="s" />, also ist <InlineMath math="s=v_0t+\tfrac12at^2" /> stimmig. Zoom dorthin, wo sich die Pfeile treffen.
+
+<MathVisual
+  title={<>Jeder Term braucht dieselbe Dimension</>}
+  description={<>Potenzen der Länge (waagerecht) und der Zeit (senkrecht) für die Terme der Bewegungsformel.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.5 }, y: { min: -2.4, max: 0.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "v0", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1, y: -1 } },
+      { id: "v0-head", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: -1 }, { x: 1 - (0.25 * 1) / Math.hypot(1, -1) + ((0.25 / 2) * 1) / Math.hypot(1, -1), y: -1 - (0.25 * -1) / Math.hypot(1, -1) + ((0.25 / 2) * 1) / Math.hypot(1, -1) }, { x: 1 - (0.25 * 1) / Math.hypot(1, -1) - ((0.25 / 2) * 1) / Math.hypot(1, -1), y: -1 - (0.25 * -1) / Math.hypot(1, -1) - ((0.25 / 2) * 1) / Math.hypot(1, -1) }] },
+      { id: "t", kind: "segment", appearance: "secondary", from: { x: 1, y: -1 }, to: { x: 1, y: 0 } },
+      { id: "t-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: 0 }, { x: 1.125, y: -0.25 }, { x: 0.875, y: -0.25 }] },
+      { id: "a", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 1, y: -2 } },
+      { id: "a-head", kind: "polygon", appearance: "construction", vertices: [{ x: 1, y: -2 }, { x: 1 - (0.25 * 1) / Math.hypot(1, -2) + ((0.25 / 2) * 2) / Math.hypot(1, -2), y: -2 - (0.25 * -2) / Math.hypot(1, -2) + ((0.25 / 2) * 1) / Math.hypot(1, -2) }, { x: 1 - (0.25 * 1) / Math.hypot(1, -2) - ((0.25 / 2) * 2) / Math.hypot(1, -2), y: -2 - (0.25 * -2) / Math.hypot(1, -2) - ((0.25 / 2) * 1) / Math.hypot(1, -2) }] },
+      { id: "t2", kind: "segment", appearance: "highlight", from: { x: 1, y: -2 }, to: { x: 1, y: 0 } },
+      { id: "t2-head", kind: "polygon", appearance: "highlight", vertices: [{ x: 1, y: 0 }, { x: 1.125, y: -0.25 }, { x: 0.875, y: -0.25 }] },
+      { id: "length", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 0.5, y: -0.5 }, placement: "above-left" },
+      { key: "a", objectId: "a", at: { x: 0.5, y: -1 }, placement: "left" },
+      { key: "t", objectId: "t", at: { x: 1, y: -0.5 }, placement: "right" },
+      { key: "t2", objectId: "t2", at: { x: 1, y: -1.5 }, placement: "right" },
+      { key: "length", objectId: "length", at: { x: 1, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    v0: <InlineMath math="v_0:\ \mathrm{LT^{-1}}" />,
+    a: <InlineMath math="a:\ \mathrm{LT^{-2}}" />,
+    t: <InlineMath math="\cdot t:\ \mathrm{T}" />,
+    t2: <InlineMath math="\cdot t^2:\ \mathrm{T^2}" />,
+    length: <InlineMath math="\mathrm{L}" />,
+  }}
+/>
 
 ## An einem Objekt lassen sich mehrere Größen messen
 

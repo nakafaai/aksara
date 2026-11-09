@@ -22,6 +22,39 @@ Start with exploration of the resource, then its extraction, conversion, distrib
 
 Energy systems can affect mines, wells, dams, transmission lines, solar panels, turbines, batteries, air, water, soil, and nearby communities at different stages of the energy chain.
 
+Count the emissions of every stage, from mining and building to running and taking apart, and divide by the electricity made. Rotate the bars: the IPCC's median lifecycle values in <InlineMath math="\mathrm{g\,CO_2\text{-}eq/kWh}" /> put coal far above the renewable chains.
+
+<MathVisual
+  title={<>Every Stage Counts</>}
+  description={<>Median lifecycle emissions per kWh from the IPCC (2014). One grid step up is 100 <InlineMath math="\mathrm{g\,CO_2\text{-}eq/kWh}" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9.5 }, y: { min: 0, max: 9.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 8, z: 14 }, target: { x: 4, y: 3, z: 0 } },
+    objects: [
+      { id: "coal", kind: "cuboid", appearance: "reference", center: { x: 0, y: (820 / 100) / 2, z: 0 }, size: { length: 1.2, height: 820 / 100, width: 1.2 } },
+      { id: "gas", kind: "cuboid", appearance: "highlight", center: { x: 2, y: (490 / 100) / 2, z: 0 }, size: { length: 1.2, height: 490 / 100, width: 1.2 } },
+      { id: "solar", kind: "cuboid", appearance: "primary", center: { x: 4, y: (48 / 100) / 2, z: 0 }, size: { length: 1.2, height: 48 / 100, width: 1.2 } },
+      { id: "hydro", kind: "cuboid", appearance: "construction", center: { x: 6, y: (24 / 100) / 2, z: 0 }, size: { length: 1.2, height: 24 / 100, width: 1.2 } },
+      { id: "wind", kind: "cuboid", appearance: "secondary", center: { x: 8, y: (11 / 100) / 2, z: 0 }, size: { length: 1.2, height: 11 / 100, width: 1.2 } },
+    ],
+    labels: [
+      { key: "coal", objectId: "coal", at: { x: 0, y: 820 / 100, z: 0 }, placement: "above" },
+      { key: "gas", objectId: "gas", at: { x: 2, y: 490 / 100, z: 0 }, placement: "above" },
+      { key: "solar", objectId: "solar", at: { x: 4, y: 48 / 100, z: 0 }, placement: "above" },
+      { key: "hydro", objectId: "hydro", at: { x: 6, y: 24 / 100, z: 0 }, placement: "above" },
+      { key: "wind", objectId: "wind", at: { x: 8, y: 11 / 100, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    coal: <InlineMath math="\text{coal: }820" />,
+    gas: <InlineMath math="\text{gas: }490" />,
+    solar: <InlineMath math="\text{solar PV: }48" />,
+    hydro: <InlineMath math="\text{hydro: }24" />,
+    wind: <InlineMath math="\text{wind: }11" />,
+  }}
+/>
+
 ## Assess Impacts across the Full Energy Chain
 
 **Environmental impact** means a change in air, water, soil, living things, or landscape caused by an activity. **Emission** means matter or energy released into the environment, such as exhaust gas from burning fuel.
@@ -37,6 +70,41 @@ Nearly every part of the [electricity system](https://www.epa.gov/energy/about-u
 | Use | Energy runs devices, transportation, homes, or industry. | Check device efficiency, use patterns, and waste left when equipment reaches the end of its service life. |
 
 For each stage, record the magnitude, duration, affected area, and available evidence. A short, visible impact may be less severe than one that lasts for years or affects a much larger area.
+
+Energy losses are one impact you can measure stage by stage. Take round, illustrative efficiencies: the power plant turns <InlineMath math="35\%" /> of the fuel energy into electricity, and the grid delivers <InlineMath math="95\%" /> of that. In the scene below, each column is still <InlineMath math="100\text{ J}" /> tall, because energy is conserved. Only the split changes: the teal part is the energy still useful, the gray part is the heat already released to the surroundings. Rotate it and compare how much gray appears at the conversion stage.
+
+<MathVisual
+  title={<>What Is Left of 100 J along the Chain</>}
+  description={<>An illustrative energy chain with a conversion efficiency of 0.35 and a grid efficiency of 0.95. One grid step up is 20 J.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: -1, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 3.5, y: 3.5, z: 10 }, target: { x: 2.5, y: 2.3, z: 0 } },
+    objects: [
+      { id: "useful-0", kind: "cuboid", appearance: "construction", center: { x: 0, y: ((100) / 20) / 2, z: 0 }, size: { length: 1.2, height: (100) / 20, width: 1.2 } },
+      { id: "useful-1", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: ((100 * 0.35) / 20) / 2, z: 0 }, size: { length: 1.2, height: (100 * 0.35) / 20, width: 1.2 } },
+      { id: "lost-1", kind: "cuboid", appearance: "reference", center: { x: 2.5, y: (100 * 0.35) / 20 + ((100 - 100 * 0.35) / 20) / 2, z: 0 }, size: { length: 1.2, height: (100 - 100 * 0.35) / 20, width: 1.2 } },
+      { id: "useful-2", kind: "cuboid", appearance: "construction", center: { x: 5, y: ((100 * 0.35 * 0.95) / 20) / 2, z: 0 }, size: { length: 1.2, height: (100 * 0.35 * 0.95) / 20, width: 1.2 } },
+      { id: "lost-2", kind: "cuboid", appearance: "reference", center: { x: 5, y: (100 * 0.35 * 0.95) / 20 + ((100 - 100 * 0.35 * 0.95) / 20) / 2, z: 0 }, size: { length: 1.2, height: (100 - 100 * 0.35 * 0.95) / 20, width: 1.2 } },
+    ],
+    labels: [
+      { key: "value0", objectId: "useful-0", at: { x: 0, y: -0.5, z: 0.6 }, placement: "below" },
+      { key: "value1", objectId: "useful-1", at: { x: 2.5, y: -0.5, z: 0.6 }, placement: "below" },
+      { key: "value2", objectId: "useful-2", at: { x: 5, y: -0.5, z: 0.6 }, placement: "below" },
+      { key: "name0", objectId: "useful-0", at: { x: 0, y: 5.5, z: 0.6 }, placement: "above" },
+      { key: "name1", objectId: "useful-1", at: { x: 2.5, y: 5.5, z: 0.6 }, placement: "above" },
+      { key: "name2", objectId: "useful-2", at: { x: 5, y: 5.5, z: 0.6 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    value0: <InlineMath math="100\text{ J}" />,
+    value1: <InlineMath math="35\text{ J}" />,
+    value2: <InlineMath math="33.25\text{ J}" />,
+    name0: <>Fuel</>,
+    name1: <>Power plant</>,
+    name2: <>Home</>,
+  }}
+/>
 
 ## Impacts Differ by Source and Stage
 
@@ -59,6 +127,37 @@ In open-pit coal mining, layers of soil and rock above the coal deposit can be r
 [Coal mining](https://www.eia.gov/energyexplained/coal/coal-and-the-environment.php) can affect land, water, air, and nearby habitats.
 
 When examining a mining area, ask what soil is moved, where water flows, where wind carries the dust, and whether the land can be restored after the activity ends.
+
+Each question about the mine points at a place in this cross-section. The amber area is rock and soil that was moved, 2,400 cubic meters for every meter along the pit, water gathers at the bottom, and the wind lifts dust from the edge. Zoom in on each part.
+
+<MathVisual
+  title={<>Questions at an Open Pit Mine</>}
+  description={<>Cross-section of an open pit with three 10 m benches. One grid step is 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -4, max: 2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "layer-0", kind: "polygon", appearance: "highlight", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }, { x: 5, y: -1 }, { x: -5, y: -1 }] },
+      { id: "layer-1", kind: "polygon", appearance: "highlight", vertices: [{ x: -4, y: -1 }, { x: 4, y: -1 }, { x: 4, y: -2 }, { x: -4, y: -2 }] },
+      { id: "layer-2", kind: "polygon", appearance: "highlight", vertices: [{ x: -3, y: -2 }, { x: 3, y: -2 }, { x: 3, y: -3 }, { x: -3, y: -3 }] },
+      { id: "wall-left", kind: "polyline", appearance: "reference", vertices: [{ x: -7, y: 0 }, { x: -5, y: 0 }, { x: -5, y: -1 }, { x: -4, y: -1 }, { x: -4, y: -2 }, { x: -3, y: -2 }, { x: -3, y: -3 }, { x: 0, y: -3 }] },
+      { id: "wall-right", kind: "polyline", appearance: "reference", vertices: [{ x: 7, y: 0 }, { x: 5, y: 0 }, { x: 5, y: -1 }, { x: 4, y: -1 }, { x: 4, y: -2 }, { x: 3, y: -2 }, { x: 3, y: -3 }, { x: 0, y: -3 }] },
+      { id: "water", kind: "polygon", appearance: "construction", vertices: [{ x: -3, y: -3 }, { x: 3, y: -3 }, { x: 3, y: -2.7 }, { x: -3, y: -2.7 }] },
+      { id: "dust", kind: "segment", appearance: "warning", from: { x: 5, y: 0.3 }, to: { x: 7, y: 1.3 } },
+    ],
+    labels: [
+      { key: "removed", objectId: "layer-1", at: { x: 0, y: -1.5 }, placement: "center" },
+      { key: "water", objectId: "water", at: { x: 0, y: -3 }, placement: "below" },
+      { key: "dust", objectId: "dust", at: { x: 7, y: 1.3 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    removed: <InlineMath math="\text{cross-section: }(100+80+60)\cdot10=2400\text{ m}^2" />,
+    water: <>water collects</>,
+    dust: <>dust on the wind</>,
+  }}
+/>
 
 ## Compare Benefits and Impacts at Every Stage
 

@@ -30,6 +30,39 @@ Die Reihenfolge der Buchstaben ist wichtig. <InlineMath math="\overrightarrow{AB
 
 <Highlight>Der Pfeil über den Buchstaben</Highlight> kennzeichnet die Größe als Vektor. Die Betragsstriche zeigen dagegen an, dass nur der Betrag gemeint ist.
 
+Beide Pfeile unten sind gleich lang, aber die Reihenfolge der Buchstaben dreht die Richtung um: <InlineMath math="\overrightarrow{AB}" /> beginnt bei <InlineMath math="A" />, <InlineMath math="\overrightarrow{BA}" /> bei <InlineMath math="B" />. Also gilt <InlineMath math="\overrightarrow{BA}=-\overrightarrow{AB}" />.
+
+<MathVisual
+  title={<>Die Reihenfolge der Punkte bestimmt die Richtung</>}
+  description={<>Die Vektoren AB und BA zwischen A(1, 1) und B(4, 3), der zweite nach unten verschoben, damit er neben dem ersten liegt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: -1, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ab-line", kind: "segment", appearance: "reference", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "b", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "ab-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 3) / Math.hypot(3, 2) + ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 3 - (0.25 * 2) / Math.hypot(3, 2) + ((0.25 / 2) * 3) / Math.hypot(3, 2) }, { x: 4 - (0.25 * 3) / Math.hypot(3, 2) - ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 3 - (0.25 * 2) / Math.hypot(3, 2) - ((0.25 / 2) * 3) / Math.hypot(3, 2) }] },
+      { id: "ba", kind: "segment", appearance: "secondary", from: { x: 4, y: 1.5 }, to: { x: 1, y: -0.5 } },
+      { id: "ba-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: -0.5 }, { x: 1 - (0.25 * -3) / Math.hypot(-3, -2.0) + ((0.25 / 2) * 2.0) / Math.hypot(-3, -2.0), y: -0.5 - (0.25 * -2.0) / Math.hypot(-3, -2.0) + ((0.25 / 2) * -3) / Math.hypot(-3, -2.0) }, { x: 1 - (0.25 * -3) / Math.hypot(-3, -2.0) - ((0.25 / 2) * 2.0) / Math.hypot(-3, -2.0), y: -0.5 - (0.25 * -2.0) / Math.hypot(-3, -2.0) - ((0.25 / 2) * -3) / Math.hypot(-3, -2.0) }] },
+    ],
+    labels: [
+      { key: "ab", objectId: "ab", at: { x: 2.5, y: 2 }, placement: "above-left" },
+      { key: "ba", objectId: "ba", at: { x: 2.5, y: 0.5 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 1 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    ab: <InlineMath math="\overrightarrow{AB}" />,
+    ba: <InlineMath math="\overrightarrow{BA}" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
+/>
+
 ## Notation mit einem Buchstaben
 
 In Rechnungen werden Vektoren häufig mit **einem Buchstaben mit Vektorpfeil** bezeichnet, etwa <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" /> oder <InlineMath math="\vec{F}" />. Der Buchstabe verweist auf die jeweilige physikalische Größe.
@@ -118,6 +151,35 @@ Ein **Einheitsvektor** hat den Betrag <InlineMath math="1" /> und kennzeichnet e
 Alle drei Pfeile haben **dieselbe tatsächliche Länge**. Beim Drehen ändert sich ihre Projektion auf den Bildschirm, aber nicht der Betrag der Einheitsvektoren.
 
 Wird ein Vektor als <InlineMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" /> geschrieben, geben <InlineMath math="\hat{i}" /> und <InlineMath math="\hat{j}" /> die positiven Achsenrichtungen an. Die vorzeichenbehafteten Skalare <InlineMath math="A_x" /> und <InlineMath math="A_y" /> geben die Komponenten entlang dieser Achsen an.
+
+Leg die beiden Kräfte Spitze an Fuß. Der zweite Pfeil endet genau dort, wo der erste begonnen hat, die Summe ist also der Nullvektor: ohne Länge und ohne Richtung.
+
+<MathVisual
+  title={<>Zwei Kräfte, die sich aufheben</>}
+  description={<><InlineMath math="\vec F_1=20\hat i\text{ N}" /> und <InlineMath math="\vec F_2=-20\hat i\text{ N}" />, Spitze an Fuß gelegt. Ein Gitterschritt entspricht 5 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "f1", kind: "segment", appearance: "primary", from: { x: 0, y: 0.6 }, to: { x: 4, y: 0.6 } },
+      { id: "f1-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0.6 }, { x: 3.75, y: 0.725 }, { x: 3.75, y: 0.475 }] },
+      { id: "f2", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "f2-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.25, y: 0.125 }, { x: 0.25, y: -0.125 }] },
+      { id: "sum", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 2, y: 0.6 }, placement: "above" },
+      { key: "f2", objectId: "f2", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    f1: <InlineMath math="\vec F_1=20\hat i\text{ N}" />,
+    f2: <InlineMath math="\vec F_2=-20\hat i\text{ N}" />,
+    sum: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />,
+  }}
+/>
 
 ## Häufige Lesefehler
 
