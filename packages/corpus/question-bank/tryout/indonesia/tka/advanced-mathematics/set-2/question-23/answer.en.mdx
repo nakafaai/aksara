@@ -1,0 +1,19 @@
+Both terms grow without bound, so the form is <InlineMath math="\infty-\infty" />, which does not give the limit yet. Multiply by **the conjugate** to turn the difference into a fraction. For large <InlineMath math="x" />, <InlineMath math="2x-1>0" />, so <InlineMath math="2x-1=\sqrt{(2x-1)^2}=\sqrt{4x^2-4x+1}" />.
+
+<BlockMath math="\begin{aligned}
+\sqrt{4x^2+12x-1}-\sqrt{4x^2-4x+1}&=\frac{(4x^2+12x-1)-(4x^2-4x+1)}{\sqrt{4x^2+12x-1}+\sqrt{4x^2-4x+1}} \\
+&=\frac{16x-2}{\sqrt{4x^2+12x-1}+\sqrt{4x^2-4x+1}}
+\end{aligned}" />
+
+Divide numerator and denominator by <InlineMath math="x" />. Inside a square root, dividing by <InlineMath math="x" /> means dividing by <InlineMath math="x^2" />, because <InlineMath math="x>0" />.
+
+<BlockMath math="\lim_{x\to\infty}\frac{16-\frac2x}{\sqrt{4+\frac{12}{x}-\frac{1}{x^2}}+\sqrt{4-\frac4x+\frac{1}{x^2}}}=\frac{16}{2+2}=4" />
+
+This matches the shortcut <InlineMath math="\frac{b-q}{2\sqrt a}=\frac{12-(-4)}{2\sqrt4}=4" /> for <InlineMath math="\sqrt{ax^2+bx+c}-\sqrt{ax^2+qx+r}" />.
+
+So the limit is <InlineMath math="4" />.
+
+- <InlineMath math="3" /> treats <InlineMath math="2x-1" /> as <InlineMath math="\sqrt{4x^2-1}" />, which loses the <InlineMath math="-4x" /> term.
+- <InlineMath math="2" /> gets the sign of <InlineMath math="q" /> wrong and computes <InlineMath math="\frac{12-4}{4}" />.
+- <InlineMath math="\infty" /> assumes the bigger root wins. The <InlineMath math="2x" /> parts of both terms cancel.
+- <InlineMath math="8" /> forgets the factor <InlineMath math="2" /> in the denominator <InlineMath math="2\sqrt a" />.
