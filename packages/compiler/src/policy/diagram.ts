@@ -47,12 +47,13 @@ let mermaidLoad: Promise<Mermaid> | undefined;
 /**
  * Loads Mermaid with a DOM window in place. Mermaid sanitizes every label with
  * DOMPurify, and DOMPurify works only when a window stood on the global object
- * while its module evaluated, so a jsdom window stands there until Mermaid has
- * loaded and is then removed.
+ * while its module evaluated, so a happy-dom window stands there until Mermaid
+ * has loaded and is then removed. Happy DOM's own types leave the DOM library
+ * out of every program that includes this module.
  */
 async function importMermaid() {
-  const { JSDOM } = await import("jsdom");
-  Reflect.set(globalThis, "window", new JSDOM("").window);
+  const { Window } = await import("happy-dom");
+  Reflect.set(globalThis, "window", new Window());
   try {
     return (await import("mermaid")).default;
   } finally {
