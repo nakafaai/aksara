@@ -35,7 +35,7 @@ export const tkaCompulsoryMathematicsTrack = {
     en: "compulsory-mathematics",
     id: "matematika-wajib",
   },
-  sets: Arr.map([1, 2, 3, 4, 5, 6], (setNumber) => {
+  sets: Arr.map([1, 2, 3, 4, 5, 6, 7, 8], (setNumber) => {
     const setKey = `set-${setNumber}`;
     return {
       key: setKey,
