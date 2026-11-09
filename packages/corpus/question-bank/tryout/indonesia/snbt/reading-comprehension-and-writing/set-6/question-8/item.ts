@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Larva yang sudah besar dijual kepada peternak: ikan, ayam, dan bebek sebagai pakan.",
+            "Larva yang sudah besar dijual kepada peternak ikan-ayam-dan bebek sebagai pakan.",
         },
         {
           correct: false,
