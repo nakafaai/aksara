@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$8$$ Liter",
+          label: "$$16$$ Liter",
         },
         {
           correct: false,
-          label: "$$80$$ Liter",
+          label: "$$1{.}600$$ Liter",
         },
         {
           correct: false,
-          label: "$$800$$ Liter",
+          label: "$$16{.}000$$ Liter",
         },
         {
           correct: false,
-          label: "$$80{.}000$$ Liter",
+          label: "$$160{.}000$$ Liter",
         },
         {
           correct: false,
-          label: "$$8{.}000{.}000$$ Liter",
+          label: "$$1{,}6$$ Liter",
         },
         {
           correct: true,
-          label: "$$8{.}000$$ Liter",
+          label: "$$160$$ Liter",
         },
       ],
     },
