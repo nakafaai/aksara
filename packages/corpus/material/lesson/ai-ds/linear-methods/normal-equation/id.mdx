@@ -21,6 +21,28 @@ Peminimumnya memenuhi sistem linear berikut:
 
 Persamaan ini disebut **persamaan normal** karena residual pada titik minimum <Highlight>bersifat normal, atau tegak lurus, terhadap ruang kolom</Highlight> <InlineMath math="A" />.
 
+Untuk contoh di akhir pelajaran ini, <InlineMath math="\|Ax-b\|_2^2=(x-2)^2+(2x-1)^2=5x^2-8x+5" />. Minimumnya berada saat turunan <InlineMath math="10x-8" /> bernilai nol, dan itu persis persamaan normal <InlineMath math="A^TAx=A^Tb" />, di sini <InlineMath math="5x=4" />.
+
+<MathVisual
+  title={<>Fungsi objektif <InlineMath math="5x^2-8x+5" /> dan minimumnya</>}
+  description={<>Parabola ungu adalah kuadrat residual untuk setiap <InlineMath math="x" />. Titik terendahnya yang magenta adalah <InlineMath math="(\tfrac45,\tfrac95)" />, solusi dari <InlineMath math="5x=4" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.2 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "objective", kind: "function", formula: "5*x^2 - 8*x + 5", domain: { min: -0.4, max: 2 }, appearance: "secondary" },
+      { id: "minimum", kind: "point", at: { x: 4 / 5, y: 9 / 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "minimum", objectId: "minimum", at: { x: 4 / 5, y: 9 / 5 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "minimum": <InlineMath math="(\tfrac45,\tfrac95)" />,
+  }}
+/>
+
 ## Kuadrat Terkecil dan Persamaan Normal
 
 Vektor <InlineMath math="\hat{x} \in \mathbb{R}^n" /> meminimumkan <InlineMath math="\|A \cdot x - b\|_2^2" /> jika dan hanya jika memenuhi <InlineMath math="A^T A \cdot \hat{x} = A^T b" />. Jadi, masalah optimasi dan persamaan normal memiliki **himpunan solusi yang sama**. Kesetaraan itulah yang mengubah masalah minimisasi menjadi sistem linear yang dapat diselesaikan dengan eliminasi atau faktorisasi.
@@ -83,6 +105,29 @@ Jika <InlineMath math="A" /> tidak berperingkat penuh, persamaan normal tetap me
 
 Semua vektor parameter tersebut menghasilkan vektor hasil pencocokan <InlineMath math="A\hat{x}" /> yang sama.
 
+Saat <InlineMath math="A" /> tidak berperingkat kolom penuh, peminimumnya tidak tunggal. Untuk <InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" /> dan <InlineMath math="b=(1,2)" />, setiap <InlineMath math="x" /> dengan <InlineMath math="x_1+2x_2=1" /> menyelesaikan <InlineMath math="Ax=b" /> secara eksak. Di antara semuanya, <InlineMath math="(\tfrac15,\tfrac25)" /> punya norma terkecil, karena vektor itu tegak lurus dengan garisnya.
+
+<MathVisual
+  title={<>Satu garis penuh berisi peminimum</>}
+  description={<>Di bidang <InlineMath math="(x_1,x_2)" />, garis hijau toska adalah <InlineMath math="x_1+2x_2=1" />. Ruas oranye dari titik asal bertemu garis itu secara tegak lurus di titik magenta <InlineMath math="(\tfrac15,\tfrac25)" />, peminimum dengan norma terkecil.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2.5 }, y: { min: -1, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "minimizers", kind: "function", formula: "(1 - x)/2", domain: { min: -1.5, max: 2.5 }, appearance: "construction" },
+      { id: "shortest", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / 5, y: 2 / 5 }, appearance: "primary" },
+      { id: "minimum", kind: "point", at: { x: 1 / 5, y: 2 / 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "minimum", objectId: "minimum", at: { x: 1 / 5, y: 2 / 5 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "minimum": <InlineMath math="(\tfrac15,\tfrac25)" />,
+  }}
+/>
+
 ## Pembuktian Ruang Nol dan Sifat Definit
 
 Untuk setiap <InlineMath math="z\in\mathbb{R}^n" />,
@@ -120,14 +165,35 @@ Misalkan <InlineMath math="A=(1,2)^T" /> dan <InlineMath math="b=(2,1)^T" />. Sa
 
 Residual tegak lurus terhadap garis yang memuat semua prediksi. Perpindahan di sepanjang garis menambahkan kuadrat jarak tak negatif, sesuai dengan pembuktian Pythagoras.
 
-<LineEquation
-  title="Prediksi dan Residual Tegak Lurus"
-  description={<>Garis hijau memuat semua prediksi <InlineMath math="Ax" />. Ruas oranye menghubungkan <InlineMath math="(\frac{4}{5},\frac{8}{5})" /> dengan pengamatan <InlineMath math="(2,1)" />.</>}
-  cameraPosition={[1, 1, 6]}
-  cameraTarget={[1, 1, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 0.8, y: 1.6, z: 0 }, { x: 1.5, y: 3, z: 0 }], smooth: false, showPoints: true, pointIndices: [1], color: "#0d9488", labels: [{ text: <InlineMath math="Ax" />, at: 1 }] },
-    { points: [{ x: 0.8, y: 1.6, z: 0 }, { x: 2, y: 1, z: 0 }], smooth: false, showPoints: true, pointIndices: [1], color: "#f97316", labels: [{ text: <InlineMath math="b" />, at: 1 }] },
-  ]}
+<MathVisual
+  title={<>Calon <InlineMath math="Ax" /> pada garis dan pengamatan <InlineMath math="b=(2,1)" /></>}
+  description={<>Garis hijau toska memuat setiap prediksi <InlineMath math="Ax=(x,2x)" />, dan titik ungu adalah prediksi dari slider. Residual magenta paling pendek, dengan nilai <InlineMath math="\tfrac95" />, di titik abu-abu <InlineMath math="A\hat x=(\tfrac45,\tfrac85)" />, tempat residual itu tegak lurus dengan garis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.8, max: 3.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "s", min: -0.3, max: 1.5, value: 0.3, step: 0.01, label: "s" },
+    ],
+    objects: [
+      { id: "predictions", kind: "function", formula: "2*x", domain: { min: -0.3, max: 1.6 }, appearance: "construction" },
+      { id: "residual", kind: "path", points: [{ x: "s", y: "2*s" }, { x: "2", y: "1" }], appearance: "answer" },
+      { id: "observation", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "projection", kind: "point", at: { x: 4 / 5, y: 8 / 5 }, appearance: "reference" },
+      { id: "candidate", kind: "marker", x: "s", y: "2*s", appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b", objectId: "observation", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "best", objectId: "projection", at: { x: 4 / 5, y: 8 / 5 }, placement: "left" },
+    ],
+    readouts: [
+      { key: "distance", formula: "5*s^2 - 8*s + 5" },
+    ],
+  }}
+  labels={{
+    "s": <InlineMath math="x" />,
+    "b": <InlineMath math="b" />,
+    "best": <InlineMath math="A\hat x" />,
+    "distance": <InlineMath math="\|Ax-b\|_2^2" />,
+  }}
 />

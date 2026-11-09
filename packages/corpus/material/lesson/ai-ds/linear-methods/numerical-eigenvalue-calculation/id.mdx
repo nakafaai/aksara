@@ -60,7 +60,7 @@ Pada contoh di bawah, estimasi <InlineMath math="\mu_k" /> untuk <InlineMath mat
 
 <BarChart
   title={<>Galat <InlineMath math="3-\mu_k" /> turun sekitar <InlineMath math="9" /> kali per langkah</>}
-  description={<>Setiap batang adalah <InlineMath math="\tfrac2{9^k+1}" /> untuk iterasi <InlineMath math="k" /> yang tertulis di bawahnya: <InlineMath math="1" />, lalu <InlineMath math="0.2" />, lalu sekitar <InlineMath math="0.024" />.</>}
+  description={<>Setiap batang adalah <InlineMath math="\tfrac2{9^k+1}" /> untuk iterasi <InlineMath math="k" /> yang tertulis di bawahnya: <InlineMath math="1" />, lalu <InlineMath math="0{,}2" />, lalu sekitar <InlineMath math="0{,}024" />.</>}
   yAxisLabel="Galat estimasi"
   data={[
     { name: "0", value: 2 / (9 ** 0 + 1) },
@@ -153,10 +153,10 @@ Nilai eigen <InlineMath math="(A-\sigma I)^{-1}" /> adalah <InlineMath math="1/(
 
 Jika <InlineMath math="\sigma" /> sangat dekat dengan suatu nilai eigen, sistem bergeser tersebut berkondisi buruk. Karena itu, selesaikan sistem linearnya dengan akurat dan **periksa residual pasangan eigen**.
 
-Untuk matriks yang sama dengan nilai eigen <InlineMath math="3" /> dan <InlineMath math="1" />, ambil pergeseran <InlineMath math="\sigma=0.9" />. Matriks <InlineMath math="(A-\sigma I)^{-1}" /> punya nilai eigen <InlineMath math="1/(1-0.9)=10" /> dan <InlineMath math="1/(3-0.9)\approx0.48" />, jadi iterasi invers memperbesar arah eigen untuk <InlineMath math="1" /> sekitar <InlineMath math="21" /> kali lebih kuat daripada arah untuk <InlineMath math="3" />.
+Untuk matriks yang sama dengan nilai eigen <InlineMath math="3" /> dan <InlineMath math="1" />, ambil pergeseran <InlineMath math="\sigma=0{,}9" />. Matriks <InlineMath math="(A-\sigma I)^{-1}" /> punya nilai eigen <InlineMath math="1/(1-0{,}9)=10" /> dan <InlineMath math="1/(3-0{,}9)\approx0.48" />, jadi iterasi invers memperbesar arah eigen untuk <InlineMath math="1" /> sekitar <InlineMath math="21" /> kali lebih kuat daripada arah untuk <InlineMath math="3" />.
 
 <BarChart
-  title={<>Pergeseran <InlineMath math="\sigma=0.9" /> menguatkan nilai eigen <InlineMath math="1" /></>}
+  title={<>Pergeseran <InlineMath math="\sigma=0{,}9" /> menguatkan nilai eigen <InlineMath math="1" /></>}
   description={<>Batang menunjukkan <InlineMath math="1/|\lambda_i-\sigma|" /> untuk nilai eigen <InlineMath math="\lambda_i" /> yang tertulis di bawahnya. Nilai eigen terdekat dengan <InlineMath math="\sigma" /> mendapat batang tertinggi.</>}
   yAxisLabel="Faktor penguatan"
   data={[

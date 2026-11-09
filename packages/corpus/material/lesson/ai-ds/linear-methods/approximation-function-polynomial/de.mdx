@@ -64,35 +64,35 @@ Die **ungeraden Terme** integrieren sich auf dem symmetrischen Intervall zu null
 
 Die beste Gerade ist waagerecht. Das ist keine Vermutung: Die Symmetrie von <InlineMath math="x^2" /> zwingt den Koeffizienten der ungeraden Basisfunktion <InlineMath math="x" /> auf null.
 
-<LineEquation
-  title="Quadratische Funktion und beste lineare Approximation"
-  description={<>Die cyanfarbene Parabel ist <InlineMath math="x^2" />, die orange Gerade ist <InlineMath math="\frac{1}{3}" />. Violette Strecken zeigen die vertikalen Differenzen, deren Quadrate integriert werden.</>}
-  cameraPosition={[0, 0.5, 3.5]}
-  cameraTarget={[0, 0.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 81 }, (_, index) => {
-        const x = -1 + index / 40;
-        return { x, y: x * x, z: 0 };
-      }),
-      color: "#0891b2",
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: [{ x: -1, y: 1 / 3, z: 0 }, { x: 1, y: 1 / 3, z: 0 }],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-    },
-    ...[-0.8, 0, 0.8].map((x) => ({
-      points: [{ x, y: 1 / 3, z: 0 }, { x, y: x * x, z: 0 }],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: false,
-    })),
-  ]} />
+<MathVisual
+  title={<>Eine Gerade <InlineMath math="c+mx" /> an <InlineMath math="x^2" /> auf <InlineMath math="[-1,1]" /> anpassen</>}
+  description={<>Die türkise Parabel ist <InlineMath math="x^2" />, die violette Gerade <InlineMath math="c+mx" /> aus den beiden Schiebereglern, und die magentafarbenen Strecken sind die Abstände bei <InlineMath math="x=-0{,}8" />, <InlineMath math="0" /> und <InlineMath math="0{,}8" />. Die Anzeige ist der quadratische Fehler <InlineMath math="\tfrac25-\tfrac43c+2c^2+\tfrac23m^2" />, der bei der orangen Geraden <InlineMath math="c=\tfrac13" />, <InlineMath math="m=0" /> am kleinsten ist.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -0.3, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "c", min: 0, max: 1, value: 0.6, step: 0.01, label: "c" },
+      { name: "m", min: -1, max: 1, value: 0.4, step: 0.01, label: "m" },
+    ],
+    objects: [
+      { id: "square", kind: "function", formula: "x^2", domain: { min: -1, max: 1 }, appearance: "construction" },
+      { id: "best", kind: "function", formula: "1/3", domain: { min: -1, max: 1 }, appearance: "primary" },
+      { id: "line", kind: "function", formula: "c + m*x", domain: { min: -1, max: 1 }, appearance: "secondary" },
+      { id: "gap-a", kind: "path", points: [{ x: "-0.8", y: "c - 0.8*m" }, { x: "-0.8", y: "0.64" }], appearance: "answer" },
+      { id: "gap-b", kind: "path", points: [{ x: "0", y: "c" }, { x: "0", y: "0" }], appearance: "answer" },
+      { id: "gap-c", kind: "path", points: [{ x: "0.8", y: "c + 0.8*m" }, { x: "0.8", y: "0.64" }], appearance: "answer" },
+    ],
+    readouts: [
+      { key: "error", formula: "2/5 - 4*c/3 + 2*c^2 + 2*m^2/3" },
+    ],
+  }}
+  labels={{
+    "c": <InlineMath math="c" />,
+    "m": <InlineMath math="m" />,
+    "error": <InlineMath math="\|x^2-(c+mx)\|^2" />,
+  }}
+/>
 
 ## Polynomiale Approximationsräume
 
@@ -101,6 +101,24 @@ Für algebraische Polynome vom Grad höchstens <InlineMath math="n" /> verwenden
 <BlockMath math="P_n([a,b])=\operatorname{span}\{1,x,x^2,\ldots,x^n\}" />
 
 Ein größeres <InlineMath math="n" /> erweitert den Approximationsraum. Der kleinstmögliche <InlineMath math="L^2" />-Fehler kann deshalb **nicht wachsen**. In numerischen Rechnungen sind orthogonale Polynombasen häufig günstiger als einfache Potenzen, weil sie besser konditionierte Systeme ergeben.
+
+Nimm <InlineMath math="f(x)=e^x" /> auf <InlineMath math="[-1,1]" />. Mit der Orthogonalbasis <InlineMath math="1" />, <InlineMath math="x" />, <InlineMath math="\tfrac12(3x^2-1)" /> sind die Projektionen auf <InlineMath math="P_0" />, <InlineMath math="P_1" /> und <InlineMath math="P_2" /> gleich <InlineMath math="\sinh 1" />, <InlineMath math="\sinh 1+\tfrac3ex" /> und diese Gerade plus <InlineMath math="\tfrac52\bigl(e-\tfrac7e\bigr)\cdot\tfrac12(3x^2-1)" />. Jeder größere Raum enthält den kleineren, also kann der Fehler nur schrumpfen.
+
+<MathVisual
+  title={<>Beste Approximationen von <InlineMath math="e^x" /> in <InlineMath math="P_0" />, <InlineMath math="P_1" /> und <InlineMath math="P_2" /></>}
+  description={<>Die graue Kurve ist <InlineMath math="e^x" />. Die gelbe Gerade ist die Konstante <InlineMath math="\sinh 1" />, die violette Gerade addiert <InlineMath math="\tfrac3ex" />, und die magentafarbene Parabel addiert den quadratischen Term. Jeder Schritt liegt näher an <InlineMath math="e^x" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -0.3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "target", kind: "function", formula: "exp(x)", domain: { min: -1, max: 1 }, appearance: "reference" },
+      { id: "constant", kind: "function", formula: "sinh(1)", domain: { min: -1, max: 1 }, appearance: "highlight" },
+      { id: "linear", kind: "function", formula: "sinh(1) + (3/e)*x", domain: { min: -1, max: 1 }, appearance: "secondary" },
+      { id: "quadratic", kind: "function", formula: "sinh(1) + (3/e)*x + (5/2)*(e - 7/e)*(3*x^2 - 1)/2", domain: { min: -1, max: 1 }, appearance: "answer" },
+    ],
+  }}
+/>
 
 ## Trigonometrische Approximationsräume
 
@@ -120,3 +138,20 @@ Für eine Periode <InlineMath math="\omega>0" /> besteht der Raum <InlineMath ma
 | <InlineMath math="T_n(\omega)" /> | Periodisches Verhalten | Das Residuum ist zu den Sinus- und Kosinusfunktionen der Basis orthogonal |
 
 > <Highlight>Eine beste Approximation ist die orthogonale Projektion</Highlight>, die durch den gewählten Funktionenraum, das Intervall und die Norm festgelegt wird. Optische Ähnlichkeit allein genügt dafür nicht.
+
+Mit der Periode <InlineMath math="\omega=2\pi" /> sind die Basisfunktionen <InlineMath math="\cos(ix)" /> und <InlineMath math="\sin(ix)" />. Für <InlineMath math="f(x)=x" /> auf <InlineMath math="[-\pi,\pi]" /> ist jedes <InlineMath math="a_i" /> gleich <InlineMath math="0" />, weil <InlineMath math="f" /> ungerade ist, und <InlineMath math="b_i=\tfrac1\pi\int_{-\pi}^{\pi}x\sin(ix)\,dx=\tfrac{2(-1)^{i+1}}i" />. Mehr Terme bringen die Summe näher an die Gerade, außer in der Nähe der Sprünge bei <InlineMath math="\pm\pi" />.
+
+<MathVisual
+  title={<>Projektionen von <InlineMath math="x" /> auf <InlineMath math="T_1(2\pi)" /> und <InlineMath math="T_3(2\pi)" /></>}
+  description={<>Die graue Gerade ist <InlineMath math="f(x)=x" />. Die türkise Kurve ist <InlineMath math="2\sin x" />, die violette Kurve <InlineMath math="2\sin x-\sin 2x+\tfrac23\sin 3x" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "identity", kind: "function", formula: "x", domain: { min: -Math.PI, max: Math.PI }, appearance: "reference" },
+      { id: "first", kind: "function", formula: "2*sin(x)", domain: { min: -Math.PI, max: Math.PI }, appearance: "construction" },
+      { id: "third", kind: "function", formula: "2*sin(x) - sin(2*x) + (2/3)*sin(3*x)", domain: { min: -Math.PI, max: Math.PI }, appearance: "secondary" },
+    ],
+  }}
+/>

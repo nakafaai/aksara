@@ -77,32 +77,37 @@ Daher gilt
 <BlockMath math="\|f-g\|_2=\sqrt5" />
 </MathContainer>
 
-<LineEquation
+<MathVisual
   title={<>Projektion von <InlineMath math="f" /> auf <InlineMath math="\operatorname{span}\{u\}" /></>}
-  description={<>Der cyanfarbene Vektor ist <InlineMath math="f" />, der orangefarbene Vektor ist <InlineMath math="g=P_Sf" />, und die violette Strecke ist das senkrechte Residuum <InlineMath math="r=f-g" />.</>}
-  cameraPosition={[1, 1.5, 7]}
-  cameraTarget={[1, 1.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 3, z: 0 }],
-      color: "#0891b2",
-      smooth: false,
-      showPoints: true
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: true
-    },
-    {
-      points: [{ x: 2, y: 1, z: 0 }, { x: 1, y: 3, z: 0 }],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: true
-    }
-  ]}
+  description={<>Die graue Gerade ist <InlineMath math="S=\operatorname{span}\{u\}" /> mit <InlineMath math="u=(2,1)" />, und die türkise Strecke ist <InlineMath math="f=(1,3)" />. Verschiebe <InlineMath math="s" />: Die magentafarbene Strecke verbindet <InlineMath math="su" /> mit <InlineMath math="f" />, und die Anzeige ist bei <InlineMath math="s=1" /> mit <InlineMath math="5" /> am kleinsten, wo <InlineMath math="su" /> der orange Punkt <InlineMath math="g=P_Sf" /> ist.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3.8 }, y: { min: -0.8, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "s", min: -0.5, max: 1.8, value: 0.5, step: 0.01, label: "s" },
+    ],
+    objects: [
+      { id: "span", kind: "function", formula: "x/2", domain: { min: -1, max: 3.6 }, appearance: "reference" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "construction" },
+      { id: "residual", kind: "path", points: [{ x: "2*s", y: "s" }, { x: "1", y: "3" }], appearance: "answer" },
+      { id: "projection", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "candidate", kind: "marker", x: "2*s", y: "s", appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "vector", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "g", objectId: "projection", at: { x: 2, y: 1 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "distance", formula: "5*s^2 - 10*s + 10" },
+    ],
+  }}
+  labels={{
+    "s": <InlineMath math="s" />,
+    "f": <InlineMath math="f" />,
+    "g": <InlineMath math="g=P_Sf" />,
+    "distance": <InlineMath math="\|f-su\|_2^2" />,
+  }}
 />
 
 ## Konstruktion aus einer beliebigen Basis
@@ -152,6 +157,24 @@ Damit gilt
 
 Der lineare Term verschwindet, weil <InlineMath math="x^3" /> auf dem symmetrischen Intervall **ungerade** ist.
 
+Die schraffierte Fläche zeigt den Fehler, den die Projektion übrig lässt. Seine quadrierte Norm <InlineMath math="\int_{-1}^1\bigl(x^2-\tfrac13\bigr)^2dx=\tfrac8{45}" /> ist unter allen Funktionen <InlineMath math="c_0+c_1x" /> die kleinste.
+
+<MathVisual
+  title={<><InlineMath math="x^2" /> und die Projektion <InlineMath math="\tfrac13" /> auf <InlineMath math="\operatorname{span}\{1,x\}" /></>}
+  description={<>Die türkise Kurve ist <InlineMath math="x^2" /> und die orange Gerade <InlineMath math="P_Sf=\tfrac13" />. Die magentafarbenen Bereiche liegen dazwischen, nahe den Enden oberhalb der Geraden und nahe <InlineMath math="0" /> unterhalb.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -0.2, max: 1.15 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "above", kind: "region", inequalities: ["y <= x^2", "y >= 1/3", "x >= -1", "x <= 1"], appearance: "answer" },
+      { id: "below", kind: "region", inequalities: ["y >= x^2", "y <= 1/3"], appearance: "answer" },
+      { id: "square", kind: "function", formula: "x^2", domain: { min: -1, max: 1 }, appearance: "construction" },
+      { id: "projection", kind: "function", formula: "1/3", domain: { min: -1, max: 1 }, appearance: "primary" },
+    ],
+  }}
+/>
+
 ## Eigenschaften eines orthogonalen Projektors
 
 | Eigenschaft | Bedeutung |
@@ -162,3 +185,32 @@ Der lineare Term verschwindet, weil <InlineMath math="x^3" /> auf dem symmetrisc
 | <InlineMath math="\ker(P)=S^\perp" /> | senkrechte Komponenten werden entfernt |
 
 Auch ein schiefer Projektor kann <InlineMath math="P^2=P" /> erfüllen. Da er nicht symmetrisch sein muss, kennzeichnet die Bedingung <InlineMath math="P^T=P" /> <Highlight>den euklidischen orthogonalen Projektor</Highlight>.
+
+Für <InlineMath math="u=(2,1)" /> ist der Projektor <InlineMath math="P=\tfrac{uu^T}{u^Tu}=\tfrac15\begin{pmatrix}4&2\\2&1\end{pmatrix}" />. Dann liegt <InlineMath math="Pf=(2,1)" /> auf <InlineMath math="S" />, <InlineMath math="(I-P)f=(-1,2)" /> auf <InlineMath math="S^\perp" />, und es gilt <InlineMath math="P(Pf)=Pf" />, weil sich ein Vektor, der schon in <InlineMath math="S" /> liegt, nicht bewegt.
+
+<MathVisual
+  title={<><InlineMath math="P" /> und <InlineMath math="I-P" /> zerlegen <InlineMath math="f=(1,3)" /></>}
+  description={<>Die türkise Gerade ist <InlineMath math="S" /> und die violette Gerade <InlineMath math="S^\perp" />. Die graue Strecke <InlineMath math="f" /> ist die Summe der orangen Strecke <InlineMath math="Pf" /> auf <InlineMath math="S" /> und der magentafarbenen Strecke <InlineMath math="(I-P)f" /> auf <InlineMath math="S^\perp" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2.5 }, y: { min: -1, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "subspace", kind: "function", formula: "x/2", domain: { min: -1.5, max: 2.5 }, appearance: "construction" },
+      { id: "complement", kind: "function", formula: "-2*x", domain: { min: -1.75, max: 0.5 }, appearance: "secondary" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "inside", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "outside", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "f", objectId: "vector", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "pf", objectId: "inside", at: { x: 2, y: 1 }, placement: "below" },
+      { key: "qf", objectId: "outside", at: { x: -1, y: 2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "f": <InlineMath math="f" />,
+    "pf": <InlineMath math="Pf" />,
+    "qf": <InlineMath math="(I-P)f" />,
+  }}
+/>

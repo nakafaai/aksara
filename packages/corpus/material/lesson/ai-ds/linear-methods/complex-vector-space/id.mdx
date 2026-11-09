@@ -33,16 +33,38 @@ Untuk <InlineMath math="z=3+4i" />, konjugasi mengubah tanda koordinat imajiner 
 <BlockMath math="|z|=|\overline z|=\sqrt{3^2+4^2}=5" />
 </MathContainer>
 
-<LineEquation
-  title="Konjugasi Mencerminkan terhadap Sumbu Real"
-  description={<>Koordinat horizontal adalah bagian real. Koordinat vertikal adalah bagian imajiner. Titik <InlineMath math="3+4i" /> dan <InlineMath math="3-4i" /> memiliki jarak yang sama dari nol.</>}
-  cameraPosition={[1.5, 0, 12]}
-  cameraTarget={[1.5, 0, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }], color: "#0d9488", smooth: false, showPoints: true, pointIndices: [1], labels: [{ text: <InlineMath math="3+4i" />, at: 1 }] },
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: -4, z: 0 }], color: "#f97316", smooth: false, showPoints: true, pointIndices: [1], labels: [{ text: <InlineMath math="3-4i" />, at: 1 }] },
-  ]}
+<MathVisual
+  title={<><InlineMath math="z=a+bi" /> dan sekawannya <InlineMath math="\bar z=a-bi" /></>}
+  description={<>Geser <InlineMath math="a" /> dan <InlineMath math="b" />. Titik hijau toska <InlineMath math="z" /> dan titik oranye <InlineMath math="\bar z" /> saling mencerminkan terhadap sumbu real, dan keduanya terletak di lingkaran abu-abu berjari-jari <InlineMath math="|z|=\sqrt{a^2+b^2}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: -4, max: 4, value: 3, step: 0.1, label: "a" },
+      { name: "b", min: -4, max: 4, value: 4, step: 0.1, label: "b" },
+    ],
+    objects: [
+      { id: "modulus", kind: "implicit", equation: "x^2 + y^2 = a^2 + b^2", appearance: "reference" },
+      { id: "mirror", kind: "path", points: [{ x: "a", y: "b" }, { x: "a", y: "-b" }], appearance: "reference" },
+      { id: "number", kind: "marker", x: "a", y: "b", appearance: "construction" },
+      { id: "conjugate", kind: "marker", x: "a", y: "-b", appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "number", at: { x: "a", y: "b" }, placement: "right" },
+      { key: "zbar", objectId: "conjugate", at: { x: "a", y: "-b" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "abs", formula: "sqrt(a^2 + b^2)" },
+    ],
+  }}
+  labels={{
+    "a": <InlineMath math="\operatorname{Re}z" />,
+    "b": <InlineMath math="\operatorname{Im}z" />,
+    "z": <InlineMath math="z" />,
+    "zbar": <InlineMath math="\bar z" />,
+    "abs": <InlineMath math="|z|=|\bar z|" />,
+  }}
 />
 
 ## Teorema Fundamental Aljabar
@@ -60,6 +82,35 @@ Penerapan teorema secara berulang menunjukkan bahwa polinom berderajat <InlineMa
 <BlockMath math="p(z)=a_n\prod_{j=1}^n(z-z_j)" />
 
 Jadi, polinom tersebut memiliki tepat <InlineMath math="n" /> akar kompleks jika **multiplisitas dihitung**. Syarat "tidak konstan" penting: polinom konstanta tak nol tidak memiliki akar.
+
+Polinomial <InlineMath math="p(z)=z^3-1" /> hanya memotong sumbu real di <InlineMath math="1" />, tetapi teorema menjamin akar di <InlineMath math="\mathbb C" />, dan dengan menghitung multiplisitas ada tepat tiga: <InlineMath math="1" /> dan <InlineMath math="-\tfrac12\pm\tfrac{\sqrt3}2i" />. Ketiganya terletak di lingkaran satuan dengan jarak sudut <InlineMath math="120^\circ" />.
+
+<MathVisual
+  title={<>Tiga akar <InlineMath math="z^3=1" /></>}
+  description={<>Titik magenta adalah akar <InlineMath math="z^3-1" /> di bidang kompleks, pada lingkaran satuan abu-abu. Segitiga ungu menghubungkannya, dan hanya akar <InlineMath math="1" /> yang terletak di sumbu real.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "triangle", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: -1 / 2, y: Math.sqrt(3) / 2 }, { x: -1 / 2, y: -Math.sqrt(3) / 2 }], appearance: "secondary" },
+      { id: "root-a", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "root-b", kind: "point", at: { x: -1 / 2, y: Math.sqrt(3) / 2 }, appearance: "answer" },
+      { id: "root-c", kind: "point", at: { x: -1 / 2, y: -Math.sqrt(3) / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "ra", objectId: "root-a", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "rb", objectId: "root-b", at: { x: -1 / 2, y: Math.sqrt(3) / 2 }, placement: "above-left" },
+      { key: "rc", objectId: "root-c", at: { x: -1 / 2, y: -Math.sqrt(3) / 2 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "ra": <InlineMath math="1" />,
+    "rb": <InlineMath math="-\tfrac12+\tfrac{\sqrt3}2i" />,
+    "rc": <InlineMath math="-\tfrac12-\tfrac{\sqrt3}2i" />,
+  }}
+/>
 
 ## Definisi dan Aksioma Ruang Vektor Kompleks
 
@@ -117,6 +168,42 @@ Himpunan <InlineMath math="V=\mathbb C^2" /> adalah ruang vektor kompleks dengan
 |---|---|---|
 | <InlineMath math="\mathbb C" /> | <InlineMath math="\mathbb C" /> | <InlineMath math="1" /> |
 | <InlineMath math="\mathbb C" /> | <InlineMath math="\mathbb R" /> | <InlineMath math="2" /> |
+
+Mengalikan dengan skalar kompleks <InlineMath math="c=\sqrt2\,e^{i\theta}" /> memutar setiap komponen sebesar <InlineMath math="\theta" /> dan meregangkannya <InlineMath math="\sqrt2" /> kali. Pada <InlineMath math="\theta=\tfrac\pi4" /> skalarnya adalah <InlineMath math="1+i" />, dan vektor <InlineMath math="(1,-i)" /> menjadi <InlineMath math="(1+i,\,1-i)" />, persis seperti perhitungan di atas.
+
+<MathVisual
+  title={<><InlineMath math="c\cdot(1,-i)" /> untuk <InlineMath math="c=\sqrt2\,e^{i\theta}" /></>}
+  description={<>Ruas abu-abu adalah komponen <InlineMath math="1" /> dan <InlineMath math="-i" />. Geser <InlineMath math="\theta" />: ruas hijau toska <InlineMath math="c\cdot1" /> dan ruas oranye <InlineMath math="c\cdot(-i)" /> berputar bersama dan tetap membentuk sudut siku-siku. Nilai yang tampil adalah <InlineMath math="c" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: 0, max: 2 * Math.PI, value: Math.PI / 4, step: 0.01, label: "angle" },
+    ],
+    objects: [
+      { id: "one", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "minus-i", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -1 }, appearance: "reference" },
+      { id: "first", kind: "path", points: [{ x: "0", y: "0" }, { x: "sqrt(2)*cos(a)", y: "sqrt(2)*sin(a)" }], appearance: "construction" },
+      { id: "second", kind: "path", points: [{ x: "0", y: "0" }, { x: "sqrt(2)*sin(a)", y: "-sqrt(2)*cos(a)" }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-tip", objectId: "first", at: { x: "sqrt(2)*cos(a)", y: "sqrt(2)*sin(a)" }, placement: "right" },
+      { key: "second-tip", objectId: "second", at: { x: "sqrt(2)*sin(a)", y: "-sqrt(2)*cos(a)" }, placement: "right" },
+    ],
+    readouts: [
+      { key: "re", formula: "sqrt(2)*cos(a)" },
+      { key: "im", formula: "sqrt(2)*sin(a)" },
+    ],
+  }}
+  labels={{
+    "angle": <InlineMath math="\arg c" />,
+    "re": <InlineMath math="\operatorname{Re}c" />,
+    "im": <InlineMath math="\operatorname{Im}c" />,
+    "first-tip": <InlineMath math="c\cdot1" />,
+    "second-tip": <InlineMath math="c\cdot(-i)" />,
+  }}
+/>
 
 ## Perbedaan dengan Ruang Vektor Real
 

@@ -31,6 +31,31 @@ Bei den vier definiten oder semidefiniten Klassen muss die Ungleichung für **je
 
 Diese Identität zeigt, dass die quadratische Form nur vom symmetrischen Anteil von <InlineMath math="A" /> abhängt.
 
+Die quadratische Form <InlineMath math="q(x)=x_1^2+2bx_1x_2+x_2^2" /> gehört zu <InlineMath math="A=\begin{pmatrix}1&b\\b&1\end{pmatrix}" /> mit den Eigenwerten <InlineMath math="1\pm b" />. Sie ist genau für <InlineMath math="|b|<1" /> positiv definit, und dann ist ihre Niveaumenge <InlineMath math="q=1" /> eine Ellipse. Bei <InlineMath math="|b|=1" /> entartet sie zu zwei Geraden, danach öffnet sie sich zu einer Hyperbel.
+
+<MathVisual
+  title={<>Die Niveaumenge <InlineMath math="q(x)=1" /> für <InlineMath math="A=\begin{pmatrix}1&b\\b&1\end{pmatrix}" /></>}
+  description={<>Verschiebe <InlineMath math="b" />. Solange die Anzeige <InlineMath math="\det A=1-b^2" /> positiv ist, ist die violette Kurve eine geschlossene Ellipse. Wird sie negativ, öffnet sich die Kurve zu einer Hyperbel, und <InlineMath math="A" /> ist nicht mehr positiv definit.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "b", min: -1.5, max: 1.5, value: 0.5, step: 0.01, label: "b" },
+    ],
+    objects: [
+      { id: "level", kind: "implicit", equation: "x^2 + 2*b*x*y + y^2 = 1", appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "det", formula: "1 - b^2" },
+    ],
+  }}
+  labels={{
+    "b": <InlineMath math="b" />,
+    "det": <InlineMath math="\det\begin{pmatrix}1&b\\b&1\end{pmatrix}" />,
+  }}
+/>
+
 ## Spektralkriterium
 
 Nach dem Spektralsatz lässt sich eine reelle symmetrische Matrix schreiben als
@@ -70,28 +95,20 @@ Für <InlineMath math="A=\operatorname{diag}(1,1/4,1/9)" /> ergeben sich die Hal
 
 <BlockMath math="x^2+\frac{y^2}{4}+\frac{z^2}{9}=1" />
 
-<LineEquation
-  title="Eigenwerte bestimmen die Halbachsenlängen"
-  description={<>Schnitte von <InlineMath math="x^2 + \frac{y^2}{4} + \frac{z^2}{9} = 1" />. Die Halbachsen in x-, y- und z-Richtung haben die Längen 1, 2 und 3.</>}
-  cameraPosition={[6, 5, 7]}
-  data={[
-    ...Array.from({ length: 4 }, (_, meridian) => ({
-      points: Array.from({ length: 73 }, (_, index) => {
-        const angle = index * Math.PI / 36;
-        const turn = meridian * Math.PI / 4;
-        return { x: Math.cos(turn) * Math.sin(angle), y: 2 * Math.sin(turn) * Math.sin(angle), z: 3 * Math.cos(angle) };
-      }),
-      smooth: false, showPoints: false, color: "#0d9488",
-    })),
-    ...Array.from({ length: 5 }, (_, latitude) => ({
-      points: Array.from({ length: 73 }, (_, index) => {
-        const angle = index * Math.PI / 36;
-        const tilt = (latitude + 1) * Math.PI / 6;
-        return { x: Math.sin(tilt) * Math.cos(angle), y: 2 * Math.sin(tilt) * Math.sin(angle), z: 3 * Math.cos(tilt) };
-      }),
-      smooth: false, showPoints: false, color: "#f97316",
-    })),
-  ]}
+<MathVisual
+  title={<>Das Ellipsoid <InlineMath math="x^2+\tfrac{y^2}4+\tfrac{z^2}9=1" /></>}
+  description={<>Die türkise Fläche ist <InlineMath math="x^TAx=1" /> für <InlineMath math="A=\operatorname{diag}(1,\tfrac14,\tfrac19)" />. Die violette, orange und magentafarbene Strecke sind die Halbachsen <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" />, also die Werte <InlineMath math="1/\sqrt{\lambda_i}" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -2.5, max: 2.5 }, z: { min: -3.5, max: 3.5 } },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
+    objects: [
+      { id: "ellipsoid", kind: "surface", x: "sin(u)*cos(v)", y: "2*sin(u)*sin(v)", z: "3*cos(u)", u: { min: 0, max: Math.PI }, v: { min: 0, max: 2 * Math.PI }, appearance: "construction" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 0 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 2, z: 0 }, appearance: "primary" },
+      { id: "third", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 3 }, appearance: "answer" },
+    ],
+  }}
 />
 
 ## Hauptminorentests
@@ -179,6 +196,30 @@ Der numerische Aufwand hängt außerdem von der Konditionszahl ab. Sie ist das V
 <BlockMath math="\kappa_2(A)=\frac{\lambda_{\max}(A)}{\lambda_{\min}(A)}" />
 
 Eine große Konditionszahl führt zu langgestreckten Konturen. Numerische Algorithmen können dann langsam oder empfindlich gegenüber Rundungsfehlern werden.
+
+Für <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> und <InlineMath math="b=(1,1)" /> hat die Zielfunktion <InlineMath math="f(x)=\tfrac12x^TAx-b^Tx=x_1^2+x_1x_2+x_2^2-x_1-x_2" /> den eindeutigen Minimierer <InlineMath math="x^*=A^{-1}b=(\tfrac13,\tfrac13)" /> mit <InlineMath math="f(x^*)=-\tfrac13" />. Jede Niveaumenge um ihn herum ist eine geschlossene Ellipse, weil <InlineMath math="A" /> positiv definit ist.
+
+<MathVisual
+  title={<>Niveaumengen von <InlineMath math="f(x)=\tfrac12x^TAx-b^Tx" /></>}
+  description={<>Die türkise, violette und orange Ellipse sind <InlineMath math="f=-\tfrac14" />, <InlineMath math="0" /> und <InlineMath math="1" />. Sie liegen ineinander um den magentafarbenen Minimierer <InlineMath math="x^*=(\tfrac13,\tfrac13)" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2 }, y: { min: -1.5, max: 2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "inner", kind: "implicit", equation: "x^2 + x*y + y^2 - x - y = -1/4", appearance: "construction" },
+      { id: "middle", kind: "implicit", equation: "x^2 + x*y + y^2 - x - y = 0", appearance: "secondary" },
+      { id: "outer", kind: "implicit", equation: "x^2 + x*y + y^2 - x - y = 1", appearance: "primary" },
+      { id: "minimum", kind: "point", at: { x: 1 / 3, y: 1 / 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "minimum", objectId: "minimum", at: { x: 1 / 3, y: 1 / 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "minimum": <InlineMath math="x^*" />,
+  }}
+/>
 
 ## Spektralverschiebungen und Inversen
 

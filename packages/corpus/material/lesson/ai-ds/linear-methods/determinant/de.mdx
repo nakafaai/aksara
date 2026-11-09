@@ -30,9 +30,21 @@ Der türkisfarbene Einheitswürfel wird durch die folgende Matrix zum orangefarb
 
 <BlockMath math="A=\begin{pmatrix}2&1&0\\0&1&0\\0&0&1\end{pmatrix},\qquad \det A=2\cdot1\cdot1=2" />
 
-<LineEquation title="Würfelvolumen nach Streckung und Scherung" description="Der türkisfarbene Einheitswürfel und sein orangefarbenes Bild haben denselben Ursprung. Drehe das Modell, um senkrechte Höhen und schräge Kanten zu vergleichen." data={[{"points":[{"x":0,"y":0,"z":0},{"x":1,"y":0,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":1,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":0,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":0},{"x":1,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":0},{"x":0,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":1},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":0},{"x":1,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":0},{"x":1,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":1},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":2,"y":0,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":1,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":2,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":1,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":3,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":1,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":1},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":0},{"x":3,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":0},{"x":2,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":1},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":3,"y":1,"z":0},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false}]} cameraPosition={[5,3,4]} cameraTarget={[1.5,0.5,0.5]} />
+<MathVisual
+  title={<>Der Einheitswürfel und sein Bild unter <InlineMath math="A" /></>}
+  description={<>Der türkise Einheitswürfel hat das Volumen <InlineMath math="1" />. Sein oranges Bild unter <InlineMath math="A" /> hat die Grundkantenlänge <InlineMath math="2" /> und dieselbe Höhe <InlineMath math="1" />, also ist sein Volumen <InlineMath math="\det A=2" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 0.5, z: 0.5 } },
+    objects: [
+      { id: "cube", kind: "prism", base: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 0, y: 1, z: 0 }], offset: { x: 0, y: 0, z: 1 }, appearance: "construction" },
+      { id: "image", kind: "prism", base: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }, { x: 1, y: 1, z: 0 }], offset: { x: 0, y: 0, z: 1 }, appearance: "primary" },
+    ],
+  }}
+/>
 
-Die Grundkantenlänge wird 2, beide senkrechten Höhen bleiben 1. Das Volumen wächst deshalb von 1 auf 2. Die Länge einer schrägen Kante ist keine senkrechte Höhe.
+Die Grundkantenlänge wird <InlineMath math="2" />, beide senkrechten Höhen bleiben <InlineMath math="1" />. Das Volumen wächst deshalb von <InlineMath math="1" /> auf <InlineMath math="2" />. Die Länge einer schrägen Kante ist keine senkrechte Höhe.
 
 
 ## Drei bestimmende Eigenschaften der Determinante
@@ -89,6 +101,32 @@ Das Addieren eines Vielfachen einer Zeile zu einer anderen Zeile verändert die 
 <BlockMath math="= \det \begin{pmatrix} \vdots \\ a_j \\ \vdots \\ a_i \\ \vdots \end{pmatrix}" />
 </MathContainer>
 
+In zwei Dimensionen gilt <InlineMath math="\det(\lambda A)=\lambda^2\det A" />. Nimm <InlineMath math="A=I" />: Werden beide Zeilen mit <InlineMath math="\lambda" /> multipliziert, wird das Einheitsquadrat zu einem Quadrat der Seitenlänge <InlineMath math="\lambda" /> mit dem Flächeninhalt <InlineMath math="\lambda^2" />, ein Faktor <InlineMath math="\lambda" /> für jede Zeile.
+
+<MathVisual
+  title={<><InlineMath math="\det(\lambda I)=\lambda^2" /> in der Ebene</>}
+  description={<>Das graue Einheitsquadrat hat den Flächeninhalt <InlineMath math="1" />. Verschiebe <InlineMath math="\lambda" />: Das violette Quadrat hat die Seitenlänge <InlineMath math="\lambda" />, und die Anzeige zeigt seinen Flächeninhalt <InlineMath math="\lambda^2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 2.3 }, y: { min: -0.3, max: 2.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "l", min: 0.2, max: 2, value: 1.5, step: 0.01, label: "lambda" },
+    ],
+    objects: [
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "scaled", kind: "loop", points: [{ x: "0", y: "0" }, { x: "l", y: "0" }, { x: "l", y: "l" }, { x: "0", y: "l" }], appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "area", formula: "l^2" },
+    ],
+  }}
+  labels={{
+    "lambda": <InlineMath math="\lambda" />,
+    "area": <InlineMath math="\det(\lambda I)=\lambda^2" />,
+  }}
+/>
+
 ## Beziehung zur Matrixinvertibilität
 
 Die Determinante entscheidet, ob eine quadratische Matrix <InlineMath math="A" /> invertierbar ist. Die folgenden Bedingungen sind äquivalent:
@@ -104,6 +142,33 @@ Die Determinante entscheidet, ob eine quadratische Matrix <InlineMath math="A" /
 > Wenn die Determinante null ist, bildet die Transformation den Raum auf eine Menge niedrigerer Dimension ab und ist deshalb nicht umkehrbar.
 
 Sind die Zeilen linear abhängig, ist eine Zeile eine Linearkombination der übrigen. Die Multilinearität zerlegt die Determinante dann in Terme mit wiederholten Zeilen, die wegen der alternierenden Eigenschaft alle null sind.
+
+Für <InlineMath math="A=\begin{pmatrix}1&k\\2&4\end{pmatrix}" /> spannen die Spalten <InlineMath math="(1,2)" /> und <InlineMath math="(k,4)" /> ein Parallelogramm mit dem Flächeninhalt <InlineMath math="|4-2k|" /> auf. Bei <InlineMath math="k=2" /> zeigen beide Spalten in dieselbe Richtung, der Flächeninhalt ist <InlineMath math="0" />, und <InlineMath math="A" /> hat keine Inverse.
+
+<MathVisual
+  title={<>Die Spalten von <InlineMath math="\begin{pmatrix}1&k\\2&4\end{pmatrix}" /> fallen bei <InlineMath math="k=2" /> zusammen</>}
+  description={<>Die türkise Strecke ist die Spalte <InlineMath math="(1,2)" />, die orange Strecke die Spalte <InlineMath math="(k,4)" />. Verschiebe <InlineMath math="k" />: Das violette Parallelogramm wird bei <InlineMath math="k=2" /> zu einer Strecke, wo die Anzeige <InlineMath math="\det A=4-2k" /> gleich <InlineMath math="0" /> ist.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "k", min: 0, max: 4, value: 1, step: 0.01, label: "k" },
+    ],
+    objects: [
+      { id: "cell", kind: "loop", points: [{ x: "0", y: "0" }, { x: "1", y: "2" }, { x: "1 + k", y: "6" }, { x: "k", y: "4" }], appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "second", kind: "path", points: [{ x: "0", y: "0" }, { x: "k", y: "4" }], appearance: "primary" },
+    ],
+    readouts: [
+      { key: "det", formula: "4 - 2*k" },
+    ],
+  }}
+  labels={{
+    "k": <InlineMath math="k" />,
+    "det": <InlineMath math="\det\begin{pmatrix}1&k\\2&4\end{pmatrix}" />,
+  }}
+/>
 
 ## Multiplikationseigenschaften und ähnliche Matrizen
 

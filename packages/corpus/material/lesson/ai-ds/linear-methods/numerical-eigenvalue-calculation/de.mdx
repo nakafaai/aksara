@@ -60,7 +60,7 @@ Im Beispiel weiter unten erfüllen die Schätzungen <InlineMath math="\mu_k" /> 
 
 <BarChart
   title={<>Der Fehler <InlineMath math="3-\mu_k" /> fällt pro Schritt etwa um den Faktor <InlineMath math="9" /></>}
-  description={<>Jeder Balken ist <InlineMath math="\tfrac2{9^k+1}" /> für die darunter stehende Iteration <InlineMath math="k" />: <InlineMath math="1" />, dann <InlineMath math="0.2" />, dann etwa <InlineMath math="0.024" />.</>}
+  description={<>Jeder Balken ist <InlineMath math="\tfrac2{9^k+1}" /> für die darunter stehende Iteration <InlineMath math="k" />: <InlineMath math="1" />, dann <InlineMath math="0{,}2" />, dann etwa <InlineMath math="0{,}024" />.</>}
   yAxisLabel="Fehler der Schätzung"
   data={[
     { name: "0", value: 2 / (9 ** 0 + 1) },
@@ -153,10 +153,10 @@ Die Eigenwerte von <InlineMath math="(A-\sigma I)^{-1}" /> sind <InlineMath math
 
 Liegt <InlineMath math="\sigma" /> sehr nahe an einem Eigenwert, ist das verschobene System schlecht konditioniert. Genaue lineare Lösungen und Residuenprüfungen sind deshalb unverzichtbar.
 
-Nimm für dieselbe Matrix mit den Eigenwerten <InlineMath math="3" /> und <InlineMath math="1" /> die Verschiebung <InlineMath math="\sigma=0.9" />. Die Matrix <InlineMath math="(A-\sigma I)^{-1}" /> hat die Eigenwerte <InlineMath math="1/(1-0.9)=10" /> und <InlineMath math="1/(3-0.9)\approx0.48" />, also verstärkt die inverse Iteration die Eigenrichtung zu <InlineMath math="1" /> etwa um den Faktor <InlineMath math="21" /> stärker als die zu <InlineMath math="3" />.
+Nimm für dieselbe Matrix mit den Eigenwerten <InlineMath math="3" /> und <InlineMath math="1" /> die Verschiebung <InlineMath math="\sigma=0{,}9" />. Die Matrix <InlineMath math="(A-\sigma I)^{-1}" /> hat die Eigenwerte <InlineMath math="1/(1-0{,}9)=10" /> und <InlineMath math="1/(3-0{,}9)\approx0.48" />, also verstärkt die inverse Iteration die Eigenrichtung zu <InlineMath math="1" /> etwa um den Faktor <InlineMath math="21" /> stärker als die zu <InlineMath math="3" />.
 
 <BarChart
-  title={<>Die Verschiebung <InlineMath math="\sigma=0.9" /> verstärkt den Eigenwert <InlineMath math="1" /></>}
+  title={<>Die Verschiebung <InlineMath math="\sigma=0{,}9" /> verstärkt den Eigenwert <InlineMath math="1" /></>}
   description={<>Die Balken zeigen <InlineMath math="1/|\lambda_i-\sigma|" /> für den Eigenwert <InlineMath math="\lambda_i" /> unter jedem Balken. Der Eigenwert, der <InlineMath math="\sigma" /> am nächsten liegt, bekommt den höchsten Balken.</>}
   yAxisLabel="Verstärkungsfaktor"
   data={[

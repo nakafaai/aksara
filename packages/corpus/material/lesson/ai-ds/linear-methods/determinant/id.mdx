@@ -30,9 +30,21 @@ Kubus satuan berwarna hijau kebiruan berubah menjadi bangun jingga melalui matri
 
 <BlockMath math="A=\begin{pmatrix}2&1&0\\0&1&0\\0&0&1\end{pmatrix},\qquad \det A=2\cdot1\cdot1=2" />
 
-<LineEquation title="Volume kubus setelah peregangan dan geseran" description="Kubus satuan hijau kebiruan dan bangun jingga memakai titik asal yang sama. Putar model untuk melihat tinggi tegak lurus dan sisi miringnya." data={[{"points":[{"x":0,"y":0,"z":0},{"x":1,"y":0,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":1,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":0,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":0},{"x":1,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":0},{"x":0,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":1},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":0},{"x":1,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":0},{"x":1,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":1},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":2,"y":0,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":1,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":2,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":1,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":3,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":1,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":1},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":0},{"x":3,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":0},{"x":2,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":1},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":3,"y":1,"z":0},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false}]} cameraPosition={[5,3,4]} cameraTarget={[1.5,0.5,0.5]} />
+<MathVisual
+  title={<>Kubus satuan dan bayangannya oleh <InlineMath math="A" /></>}
+  description={<>Kubus satuan hijau toska bervolume <InlineMath math="1" />. Bayangannya yang oranye oleh <InlineMath math="A" /> punya panjang alas <InlineMath math="2" /> dan tinggi yang sama, <InlineMath math="1" />, jadi volumenya <InlineMath math="\det A=2" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 0.5, z: 0.5 } },
+    objects: [
+      { id: "cube", kind: "prism", base: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 0, y: 1, z: 0 }], offset: { x: 0, y: 0, z: 1 }, appearance: "construction" },
+      { id: "image", kind: "prism", base: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }, { x: 1, y: 1, z: 0 }], offset: { x: 0, y: 0, z: 1 }, appearance: "primary" },
+    ],
+  }}
+/>
 
-Panjang alas berubah menjadi 2, sedangkan kedua tinggi tetap 1. Jadi, volumenya berubah dari 1 menjadi 2. Panjang sisi miring bukan tinggi tegak lurus.
+Panjang alas berubah menjadi <InlineMath math="2" />, sedangkan kedua tinggi tetap <InlineMath math="1" />. Jadi, volumenya berubah dari <InlineMath math="1" /> menjadi <InlineMath math="2" />. Panjang sisi miring bukan tinggi tegak lurus.
 
 
 ## Tiga Sifat Penentu Determinan
@@ -89,6 +101,32 @@ Penambahan kelipatan satu baris ke baris lain yang berbeda tidak mengubah determ
 <BlockMath math="= \det \begin{pmatrix} \vdots \\ a_j \\ \vdots \\ a_i \\ \vdots \end{pmatrix}" />
 </MathContainer>
 
+Di dua dimensi, <InlineMath math="\det(\lambda A)=\lambda^2\det A" />. Ambil <InlineMath math="A=I" />: mengalikan kedua baris dengan <InlineMath math="\lambda" /> mengubah persegi satuan menjadi persegi bersisi <InlineMath math="\lambda" />, yang luasnya <InlineMath math="\lambda^2" />, satu faktor <InlineMath math="\lambda" /> untuk setiap baris.
+
+<MathVisual
+  title={<><InlineMath math="\det(\lambda I)=\lambda^2" /> di bidang</>}
+  description={<>Persegi satuan abu-abu punya luas <InlineMath math="1" />. Geser <InlineMath math="\lambda" />: persegi ungu bersisi <InlineMath math="\lambda" />, dan nilai yang tampil adalah luasnya, <InlineMath math="\lambda^2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 2.3 }, y: { min: -0.3, max: 2.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "l", min: 0.2, max: 2, value: 1.5, step: 0.01, label: "lambda" },
+    ],
+    objects: [
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "scaled", kind: "loop", points: [{ x: "0", y: "0" }, { x: "l", y: "0" }, { x: "l", y: "l" }, { x: "0", y: "l" }], appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "area", formula: "l^2" },
+    ],
+  }}
+  labels={{
+    "lambda": <InlineMath math="\lambda" />,
+    "area": <InlineMath math="\det(\lambda I)=\lambda^2" />,
+  }}
+/>
+
 ## Syarat Matriks Dapat Dibalik
 
 Determinan menentukan apakah matriks persegi <InlineMath math="A" /> dapat dibalik. Kondisi berikut ekuivalen:
@@ -104,6 +142,33 @@ Determinan menentukan apakah matriks persegi <InlineMath math="A" /> dapat dibal
 > Jika determinan nol, transformasi memetakan ruang ke himpunan berdimensi lebih rendah, sehingga transformasi tidak dapat dibalik.
 
 Jika baris-barisnya bergantung linear, satu baris merupakan kombinasi linear baris lain. Multilinearitas menguraikan determinan menjadi suku-suku dengan baris berulang, dan setiap suku tersebut nol karena sifat berselang-seling.
+
+Untuk <InlineMath math="A=\begin{pmatrix}1&k\\2&4\end{pmatrix}" />, kolom <InlineMath math="(1,2)" /> dan <InlineMath math="(k,4)" /> membentuk jajar genjang dengan luas <InlineMath math="|4-2k|" />. Pada <InlineMath math="k=2" /> kedua kolom searah, luasnya <InlineMath math="0" />, dan <InlineMath math="A" /> tidak punya invers.
+
+<MathVisual
+  title={<>Kolom <InlineMath math="\begin{pmatrix}1&k\\2&4\end{pmatrix}" /> berimpit pada <InlineMath math="k=2" /></>}
+  description={<>Ruas hijau toska adalah kolom <InlineMath math="(1,2)" /> dan ruas oranye adalah kolom <InlineMath math="(k,4)" />. Geser <InlineMath math="k" />: jajar genjang ungu memipih menjadi ruas pada <InlineMath math="k=2" />, saat nilai <InlineMath math="\det A=4-2k" /> sama dengan <InlineMath math="0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "k", min: 0, max: 4, value: 1, step: 0.01, label: "k" },
+    ],
+    objects: [
+      { id: "cell", kind: "loop", points: [{ x: "0", y: "0" }, { x: "1", y: "2" }, { x: "1 + k", y: "6" }, { x: "k", y: "4" }], appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "second", kind: "path", points: [{ x: "0", y: "0" }, { x: "k", y: "4" }], appearance: "primary" },
+    ],
+    readouts: [
+      { key: "det", formula: "4 - 2*k" },
+    ],
+  }}
+  labels={{
+    "k": <InlineMath math="k" />,
+    "det": <InlineMath math="\det\begin{pmatrix}1&k\\2&4\end{pmatrix}" />,
+  }}
+/>
 
 ## Sifat Perkalian dan Matriks Serupa
 

@@ -30,9 +30,21 @@ The teal unit cube becomes the orange parallelepiped under the following matrix.
 
 <BlockMath math="A=\begin{pmatrix}2&1&0\\0&1&0\\0&0&1\end{pmatrix},\qquad \det A=2\cdot1\cdot1=2" />
 
-<LineEquation title="Cube volume after stretching and shearing" description="The teal unit cube and orange image share the origin. Rotate the model to compare perpendicular heights with sloping edges." data={[{"points":[{"x":0,"y":0,"z":0},{"x":1,"y":0,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":1,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":0,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":0},{"x":1,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":0},{"x":0,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":1,"z":1},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":0},{"x":1,"y":1,"z":0}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":0},{"x":1,"y":0,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":0,"z":1},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":1,"y":1,"z":1}],"color":"teal","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":2,"y":0,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":1,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":0},{"x":0,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":2,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":0,"y":0,"z":1},{"x":1,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":3,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":0},{"x":1,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":1,"y":1,"z":1},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":0},{"x":3,"y":1,"z":0}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":0},{"x":2,"y":0,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":2,"y":0,"z":1},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false},{"points":[{"x":3,"y":1,"z":0},{"x":3,"y":1,"z":1}],"color":"orange","showPoints":false,"smooth":false}]} cameraPosition={[5,3,4]} cameraTarget={[1.5,0.5,0.5]} />
+<MathVisual
+  title={<>The unit cube and its image under <InlineMath math="A" /></>}
+  description={<>The teal unit cube has volume <InlineMath math="1" />. Its orange image under <InlineMath math="A" /> has base length <InlineMath math="2" /> and the same height <InlineMath math="1" />, so its volume is <InlineMath math="\det A=2" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 0.5, z: 0.5 } },
+    objects: [
+      { id: "cube", kind: "prism", base: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 0, y: 1, z: 0 }], offset: { x: 0, y: 0, z: 1 }, appearance: "construction" },
+      { id: "image", kind: "prism", base: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }, { x: 1, y: 1, z: 0 }], offset: { x: 0, y: 0, z: 1 }, appearance: "primary" },
+    ],
+  }}
+/>
 
-The base length becomes 2, while both perpendicular heights remain 1. The volume therefore changes from 1 to 2. The sloping edge length is not a perpendicular height.
+The base length becomes <InlineMath math="2" />, while both perpendicular heights remain <InlineMath math="1" />. The volume therefore changes from <InlineMath math="1" /> to <InlineMath math="2" />. The sloping edge length is not a perpendicular height.
 
 
 ## Three Determining Properties of Determinant
@@ -89,6 +101,32 @@ Adding a multiple of one row to a different row does not change the determinant:
 <BlockMath math="= \det \begin{pmatrix} \vdots \\ a_j \\ \vdots \\ a_i \\ \vdots \end{pmatrix}" />
 </MathContainer>
 
+In two dimensions, <InlineMath math="\det(\lambda A)=\lambda^2\det A" />. Take <InlineMath math="A=I" />: scaling both rows by <InlineMath math="\lambda" /> turns the unit square into a square of side <InlineMath math="\lambda" />, whose area is <InlineMath math="\lambda^2" />, one factor of <InlineMath math="\lambda" /> for each row.
+
+<MathVisual
+  title={<><InlineMath math="\det(\lambda I)=\lambda^2" /> in the plane</>}
+  description={<>The gray unit square has area <InlineMath math="1" />. Move <InlineMath math="\lambda" />: the violet square has side <InlineMath math="\lambda" />, and the readout shows its area <InlineMath math="\lambda^2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 2.3 }, y: { min: -0.3, max: 2.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "l", min: 0.2, max: 2, value: 1.5, step: 0.01, label: "lambda" },
+    ],
+    objects: [
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "scaled", kind: "loop", points: [{ x: "0", y: "0" }, { x: "l", y: "0" }, { x: "l", y: "l" }, { x: "0", y: "l" }], appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "area", formula: "l^2" },
+    ],
+  }}
+  labels={{
+    "lambda": <InlineMath math="\lambda" />,
+    "area": <InlineMath math="\det(\lambda I)=\lambda^2" />,
+  }}
+/>
+
 ## Relationship with Matrix Invertibility
 
 The determinant decides whether a square matrix <InlineMath math="A" /> is invertible. The following conditions are equivalent:
@@ -104,6 +142,33 @@ The determinant decides whether a square matrix <InlineMath math="A" /> is inver
 > If the determinant is zero, the transformation maps space into a lower dimensional set, so it cannot be inverted.
 
 If the rows are linearly dependent, one row is a linear combination of the others. Multilinearity expands the determinant into terms with repeated rows, and every such term is zero by the alternating property.
+
+For <InlineMath math="A=\begin{pmatrix}1&k\\2&4\end{pmatrix}" />, the columns <InlineMath math="(1,2)" /> and <InlineMath math="(k,4)" /> span a parallelogram of area <InlineMath math="|4-2k|" />. At <InlineMath math="k=2" /> the columns point the same way, the area is <InlineMath math="0" />, and <InlineMath math="A" /> has no inverse.
+
+<MathVisual
+  title={<>The columns of <InlineMath math="\begin{pmatrix}1&k\\2&4\end{pmatrix}" /> collapse at <InlineMath math="k=2" /></>}
+  description={<>The teal segment is the column <InlineMath math="(1,2)" /> and the orange segment the column <InlineMath math="(k,4)" />. Move <InlineMath math="k" />: the violet parallelogram flattens to a segment at <InlineMath math="k=2" />, where the readout <InlineMath math="\det A=4-2k" /> is <InlineMath math="0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "k", min: 0, max: 4, value: 1, step: 0.01, label: "k" },
+    ],
+    objects: [
+      { id: "cell", kind: "loop", points: [{ x: "0", y: "0" }, { x: "1", y: "2" }, { x: "1 + k", y: "6" }, { x: "k", y: "4" }], appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "second", kind: "path", points: [{ x: "0", y: "0" }, { x: "k", y: "4" }], appearance: "primary" },
+    ],
+    readouts: [
+      { key: "det", formula: "4 - 2*k" },
+    ],
+  }}
+  labels={{
+    "k": <InlineMath math="k" />,
+    "det": <InlineMath math="\det\begin{pmatrix}1&k\\2&4\end{pmatrix}" />,
+  }}
+/>
 
 ## Multiplication Properties and Similar Matrices
 

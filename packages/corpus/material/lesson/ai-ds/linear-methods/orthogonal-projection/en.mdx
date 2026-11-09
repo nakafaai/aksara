@@ -77,32 +77,37 @@ The calculation gives:
 <BlockMath math="\|f-g\|_2=\sqrt5" />
 </MathContainer>
 
-<LineEquation
+<MathVisual
   title={<>Projection of <InlineMath math="f" /> onto <InlineMath math="\operatorname{span}\{u\}" /></>}
-  description={<>The cyan vector is <InlineMath math="f" />, the orange vector is <InlineMath math="g=P_Sf" />, and the purple segment is the perpendicular residual <InlineMath math="r=f-g" />.</>}
-  cameraPosition={[1, 1.5, 7]}
-  cameraTarget={[1, 1.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 3, z: 0 }],
-      color: "#0891b2",
-      smooth: false,
-      showPoints: true
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: true
-    },
-    {
-      points: [{ x: 2, y: 1, z: 0 }, { x: 1, y: 3, z: 0 }],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: true
-    }
-  ]}
+  description={<>The gray line is <InlineMath math="S=\operatorname{span}\{u\}" /> with <InlineMath math="u=(2,1)" />, and the teal segment is <InlineMath math="f=(1,3)" />. Move <InlineMath math="s" />: the magenta segment joins <InlineMath math="su" /> to <InlineMath math="f" />, and the readout is smallest, <InlineMath math="5" />, at <InlineMath math="s=1" />, where <InlineMath math="su" /> is the orange point <InlineMath math="g=P_Sf" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3.8 }, y: { min: -0.8, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "s", min: -0.5, max: 1.8, value: 0.5, step: 0.01, label: "s" },
+    ],
+    objects: [
+      { id: "span", kind: "function", formula: "x/2", domain: { min: -1, max: 3.6 }, appearance: "reference" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "construction" },
+      { id: "residual", kind: "path", points: [{ x: "2*s", y: "s" }, { x: "1", y: "3" }], appearance: "answer" },
+      { id: "projection", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "candidate", kind: "marker", x: "2*s", y: "s", appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "vector", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "g", objectId: "projection", at: { x: 2, y: 1 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "distance", formula: "5*s^2 - 10*s + 10" },
+    ],
+  }}
+  labels={{
+    "s": <InlineMath math="s" />,
+    "f": <InlineMath math="f" />,
+    "g": <InlineMath math="g=P_Sf" />,
+    "distance": <InlineMath math="\|f-su\|_2^2" />,
+  }}
 />
 
 ## Construction from an Arbitrary Basis
@@ -152,6 +157,24 @@ The calculation gives:
 
 The linear term vanishes because <InlineMath math="x^3" /> is **odd on the symmetric interval**.
 
+The shaded area shows the error that the projection leaves. Its squared norm, <InlineMath math="\int_{-1}^1\bigl(x^2-\tfrac13\bigr)^2dx=\tfrac8{45}" />, is the smallest over all functions <InlineMath math="c_0+c_1x" />.
+
+<MathVisual
+  title={<><InlineMath math="x^2" /> and its projection <InlineMath math="\tfrac13" /> onto <InlineMath math="\operatorname{span}\{1,x\}" /></>}
+  description={<>The teal curve is <InlineMath math="x^2" /> and the orange line is <InlineMath math="P_Sf=\tfrac13" />. The magenta regions lie between them, above the line near the ends and below it near <InlineMath math="0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -0.2, max: 1.15 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "above", kind: "region", inequalities: ["y <= x^2", "y >= 1/3", "x >= -1", "x <= 1"], appearance: "answer" },
+      { id: "below", kind: "region", inequalities: ["y >= x^2", "y <= 1/3"], appearance: "answer" },
+      { id: "square", kind: "function", formula: "x^2", domain: { min: -1, max: 1 }, appearance: "construction" },
+      { id: "projection", kind: "function", formula: "1/3", domain: { min: -1, max: 1 }, appearance: "primary" },
+    ],
+  }}
+/>
+
 ## Properties of an Orthogonal Projector
 
 | Property | Meaning |
@@ -162,3 +185,32 @@ The linear term vanishes because <InlineMath math="x^3" /> is **odd on the symme
 | <InlineMath math="\ker(P)=S^\perp" /> | perpendicular components are removed |
 
 Idempotence alone is not enough. An oblique projector also satisfies <InlineMath math="P^2=P" /> and may be asymmetric. <Highlight>Symmetry distinguishes the Euclidean orthogonal projector</Highlight>.
+
+For <InlineMath math="u=(2,1)" />, the projector is <InlineMath math="P=\tfrac{uu^T}{u^Tu}=\tfrac15\begin{pmatrix}4&2\\2&1\end{pmatrix}" />. Then <InlineMath math="Pf=(2,1)" /> lies on <InlineMath math="S" />, <InlineMath math="(I-P)f=(-1,2)" /> lies on <InlineMath math="S^\perp" />, and <InlineMath math="P(Pf)=Pf" />, because a vector already in <InlineMath math="S" /> does not move.
+
+<MathVisual
+  title={<><InlineMath math="P" /> and <InlineMath math="I-P" /> split <InlineMath math="f=(1,3)" /></>}
+  description={<>The teal line is <InlineMath math="S" /> and the violet line is <InlineMath math="S^\perp" />. The gray segment <InlineMath math="f" /> is the sum of the orange segment <InlineMath math="Pf" /> on <InlineMath math="S" /> and the magenta segment <InlineMath math="(I-P)f" /> on <InlineMath math="S^\perp" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2.5 }, y: { min: -1, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "subspace", kind: "function", formula: "x/2", domain: { min: -1.5, max: 2.5 }, appearance: "construction" },
+      { id: "complement", kind: "function", formula: "-2*x", domain: { min: -1.75, max: 0.5 }, appearance: "secondary" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "inside", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "outside", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "f", objectId: "vector", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "pf", objectId: "inside", at: { x: 2, y: 1 }, placement: "below" },
+      { key: "qf", objectId: "outside", at: { x: -1, y: 2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "f": <InlineMath math="f" />,
+    "pf": <InlineMath math="Pf" />,
+    "qf": <InlineMath math="(I-P)f" />,
+  }}
+/>
