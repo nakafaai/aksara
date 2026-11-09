@@ -3,7 +3,7 @@ export const metadata = {
   description: "Calculate work from variable forces, spring energy, distributed mass, and center of mass with integrals.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-23",
+   dateModified: "2026-11-08",
    subject: "Integrals",
 };
 
@@ -33,6 +33,16 @@ Solve it:
 </MathContainer>
 
 So, the force does <InlineMath math="\frac{50}{3}" /> Joules of work, approximately <InlineMath math="16.67" /> Joules.
+
+The force <InlineMath math="F(x) = x^2 + 2x" /> grows along the path, from 3 N at <InlineMath math="x = 1" /> to 15 N at <InlineMath math="x = 3" />. The work <InlineMath math="W = \tfrac{50}{3} \approx 16.67" /> J adds up these changing values over the 2 metres.
+
+<BarChart
+  title={<>Force along the path</>}
+  description={<>Bars of <InlineMath math="F(x) = x^2 + 2x" /> in newtons for <InlineMath math="x = 1, 1.5, 2, 2.5, 3" /> metres.</>}
+  yAxisLabel="Force (N)"
+  data={[1, 1.5, 2, 2.5, 3].map((x) => ({ name: String(x), value: x ** 2 + 2 * x }))}
+  chartConfig={{ value: { label: "Force (N)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Law of Hooke and Spring Energy
 
@@ -68,6 +78,16 @@ We can calculate the work with integrals:
 <BlockMath math="\begin{aligned} W &amp;= 400[0.0064 - 0.0025] \\ &amp;= 400 \times 0.0039 \\ &amp;= 1.56 \text{ Joule} \end{aligned}" />
 </MathContainer>
 
+Between 0.05 m and 0.08 m the spring force <InlineMath math="F = 800x" /> rises from 40 N to 64 N. The work is the trapezoid under the force line: <InlineMath math="\frac{40 + 64}{2} \times 0.03 = 1.56" /> J, the same as the integral.
+
+<BarChart
+  title={<>Spring force during the stretch</>}
+  description={<>Bars of <InlineMath math="F = 800x" /> in newtons for <InlineMath math="x = 0.05, 0.06, 0.07, 0.08" /> metres.</>}
+  yAxisLabel="Force (N)"
+  data={[0.05, 0.06, 0.07, 0.08].map((x) => ({ name: String(x), value: 800 * x }))}
+  chartConfig={{ value: { label: "Force (N)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Calculating Mass from Density Functions
 
 If an object's density varies with position, its **mass** is the integral of the density function over the object's length, area, or volume.
@@ -100,16 +120,32 @@ For the rod with density <InlineMath math="\rho(x) = 3x + 2" /> above:
 
 Density increases from <InlineMath math="2 \text{ kg/m}" /> at the left end to <InlineMath math="8 \text{ kg/m}" /> at the right end. Since the **right side is denser**, the center of mass at <InlineMath math="1.2 \text{ m}" /> lies to the right of the midpoint at <InlineMath math="1 \text{ m}" />.
 
-<LineEquation
-  title="Increasing Rod Density"
-  description="The horizontal axis is position in meters and the vertical axis is linear density in kilograms per meter. The orange line marks the center of mass position."
-  showZAxis={false}
-  cameraTarget={[1, 4, 0]}
-  cameraPosition={[1, 4, 17]}
-  data={[
-    { points: [{ x: 0, y: 2, z: 0 }, { x: 2, y: 8, z: 0 }], color: "#9333ea", smooth: false, showPoints: true, labels: [{ at: 0, text: <InlineMath math="(0,2)" />, offset: [0.5, -0.4, 0] }, { at: 1, text: <InlineMath math="(2,8)" />, offset: [0.5, 0.4, 0] }] },
-    { points: [{ x: 1.2, y: 0, z: 0 }, { x: 1.2, y: 5.6, z: 0 }], color: "#ea580c", smooth: false, showPoints: false, labels: [{ at: 0, text: <InlineMath math="1.2" />, offset: [0, -0.5, 0] }] },
-  ]}
+<MathVisual
+  title={<>Increasing rod density</>}
+  description={<>The violet line is the density <InlineMath math="\rho(x) = 3x + 2" /> from <InlineMath math="(0, 2)" /> to <InlineMath math="(2, 8)" />, in kilograms per meter along the rod. The orange segment marks the center of mass at <InlineMath math="\bar x = 1.2" /> m, right of the midpoint 1.</>}
+  labels={{
+    rho: <InlineMath math="\rho(x) = 3x + 2" />,
+    center: <InlineMath math="\bar x = 1.2" />,
+    a: <InlineMath math="(0, 2)" />,
+    b: <InlineMath math="(2, 8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 2.6 }, y: { min: -0.4, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rho", kind: "segment", from: { x: 0, y: 2 }, to: { x: 2, y: 8 }, appearance: "secondary" },
+      { id: "center", kind: "segment", from: { x: 6 / 5, y: 0 }, to: { x: 6 / 5, y: 28 / 5 }, appearance: "primary" },
+      { id: "a", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+      { id: "b", kind: "point", at: { x: 2, y: 8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "rho", objectId: "rho", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "center", objectId: "center", at: { x: 6 / 5, y: 14 / 5 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 0, y: 2 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 2, y: 8 }, placement: "left" },
+    ],
+  }}
 />
 
 ## Calculating Moment of Inertia

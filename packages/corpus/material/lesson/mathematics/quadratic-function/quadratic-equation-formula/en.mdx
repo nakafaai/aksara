@@ -3,7 +3,7 @@ export const metadata = {
   description: "Derive and apply the quadratic formula, use the discriminant to count real roots, and construct equations from known or transformed roots.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Quadratic Functions",
 };
 
@@ -110,6 +110,33 @@ For <InlineMath math="x_2" />, take the **negative sign**:
 
 The roots of the equation are <InlineMath math="x_1 = 3" /> and <InlineMath math="x_2 = \frac{1}{2}" />
 
+Example 2 on the graph: <InlineMath math="y = 2x^2 - 7x + 3" /> crosses the x-axis at <InlineMath math="x = \tfrac12" /> and <InlineMath math="x = 3" />, the two values the formula gives as <InlineMath math="\frac{7 \pm 5}{4}" />.
+
+<MathVisual
+  title={<>The roots of <InlineMath math="2x^2 - 7x + 3 = 0" /></>}
+  description={<>The parabola <InlineMath math="y = 2x^2 - 7x + 3" />, which crosses the x-axis at <InlineMath math="\tfrac12" /> and 3.</>}
+  labels={{
+    curve: <InlineMath math="y = 2x^2 - 7x + 3" />,
+    r1: <InlineMath math="\tfrac12" />,
+    r2: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -7, c: 3 }, domain: { min: 0, max: 7 / 2 }, appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: 1 / 2, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 7 / 2, y: 3 }, placement: "left" },
+      { key: "r1", objectId: "r1", at: { x: 1 / 2, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "r2", at: { x: 3, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 ## The Discriminant of a Quadratic Equation
 
 The value of <InlineMath math="D" /> determines the <Highlight>number of horizontal-axis intercepts</Highlight>. Only the constant changes between these three equations. Increasing the constant moves the vertex upward.
@@ -123,8 +150,8 @@ The value of <InlineMath math="D" /> determines the <Highlight>number of horizon
 For the first equation, the formula gives <InlineMath math="-3" /> and <InlineMath math="-2" />. The graph shows those values as the horizontal coordinates where the function is zero. The vertex lies below the horizontal axis.
 
 <MathVisual
-  title="Two roots as intercepts"
-  description="The parabola x² + 5x + 6 crosses the horizontal axis at -3 and -2. Its vertex is (-2.5, -0.25)."
+  title={<>Two roots as intercepts</>}
+  description={<>The parabola <InlineMath math="x^2 + 5x + 6" /> crosses the horizontal axis at -3 and -2. Its vertex is (-2.5, -0.25).</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.2, max: -0.8 }, y: { min: -0.75, max: 2.5 } },
@@ -140,6 +167,36 @@ For the first equation, the formula gives <InlineMath math="-3" /> and <InlineMa
     ],
   }}
   labels={{ left: <InlineMath math="(-3,0)" />, right: <InlineMath math="(-2,0)" /> }}
+/>
+
+Raise the constant term and the parabola slides up. With <InlineMath math="c = 6" /> it crosses the x-axis twice (<InlineMath math="D = 1" />), with <InlineMath math="c = 6.25" /> it only touches it at <InlineMath math="-2.5" /> (<InlineMath math="D = 0" />), and with <InlineMath math="c = 7" /> it stays above it (<InlineMath math="D = -3" />).
+
+<MathVisual
+  title={<>The discriminant as a shift</>}
+  description={<>The parabolas <InlineMath math="y = x^2 + 5x + c" /> for <InlineMath math="c = 6" />, <InlineMath math="6.25" /> and 7, with two crossings, one touching point and none.</>}
+  labels={{
+    c6: <InlineMath math="c = 6" />,
+    c625: <InlineMath math="c = 6.25" />,
+    c7: <InlineMath math="c = 7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.3, max: -0.7 }, y: { min: -0.6, max: 3.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c6", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 6 }, domain: { min: -4, max: -1 }, appearance: "primary" },
+      { id: "c625", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 25 / 4 }, domain: { min: -4, max: -1 }, appearance: "highlight" },
+      { id: "c7", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 7 }, domain: { min: -4, max: -1 }, appearance: "secondary" },
+      { id: "r1", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "touch", kind: "point", at: { x: -5 / 2, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "c6", objectId: "c6", at: { x: -1, y: 2 }, placement: "right" },
+      { key: "c625", objectId: "c625", at: { x: -4, y: 9 / 4 }, placement: "left" },
+      { key: "c7", objectId: "c7", at: { x: -1, y: 3 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Relationship Between Roots and Coefficients

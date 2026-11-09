@@ -3,7 +3,7 @@ export const metadata = {
     description: "Differentiate the six basic trigonometric functions in radians and apply sum, product, and quotient rules in worked examples.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Derivative Functions",
 };
 
@@ -32,19 +32,25 @@ The table pairs each function with its derivative and the condition under which 
 
 For <InlineMath math="f(x)=\sin x" />, the derivative <InlineMath math="f'(x)=\cos x" /> gives the **slope of the sine curve**. At <InlineMath math="x=0" />, the sine slope is <InlineMath math="1" />. At the sine maximum <InlineMath math="x=\pi/2" />, the slope becomes <InlineMath math="0" />.
 
-<LineEquation
-  title="Sine and Its Derivative Function"
-  description="The purple curve is sine and the orange curve is cosine. The horizontal axis measures angles in radians. Compare the sign of cosine with the direction in which sine rises or falls."
-  data={[
-    { points: Array.from({ length: 161 }, (_, i) => { const x = -Math.PI + i * Math.PI / 80; return { x, y: Math.sin(x), z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ at: 120, text: <InlineMath math="\sin x" />, offset: [0, 0.5, 0] }] },
-    { points: Array.from({ length: 161 }, (_, i) => { const x = -Math.PI + i * Math.PI / 80; return { x, y: Math.cos(x), z: 0 }; }), smooth: false, color: "#ea580c", showPoints: false, labels: [{ at: 80, text: <InlineMath math="\cos x" />, offset: [0, 0.5, 0] }] },
-  ]}
-  showZAxis={false}
-  cameraTarget={[0, 0, 0]}
-  cameraPosition={[0, 0, 10]}
+<BarChart
+  title={<>The slope of sine is cosine</>}
+  description={<>Bars of <InlineMath math="\cos x" />, the slope of <InlineMath math="\sin x" />, at <InlineMath math="x = 0, \tfrac{\pi}{6}, \tfrac{\pi}{3}, \tfrac{\pi}{2}, \tfrac{2\pi}{3}, \tfrac{5\pi}{6}, \pi" /> in radians. The slope is 1 at 0, 0 at the maximum <InlineMath math="\tfrac{\pi}{2}" /> and negative after it.</>}
+  yAxisLabel="Slope of sin x"
+  data={[["0", 0], ["π/6", 1 / 6], ["π/3", 1 / 3], ["π/2", 1 / 2], ["2π/3", 2 / 3], ["5π/6", 5 / 6], ["π", 1]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.cos(k * Math.PI)) / 1000 }))}
+  chartConfig={{ value: { label: "Slope of sin x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 On <InlineMath math="-\pi/2<x<\pi/2" />, cosine is positive, so sine increases. On <InlineMath math="\pi/2<x<\pi" />, cosine is negative, so sine decreases. A **zero derivative** at the maximum means the tangent is horizontal.
+
+Now the heights of <InlineMath math="\sin x" /> at the same angles: 0, <InlineMath math="\tfrac12" />, about 0.866, 1, then back down. The bars rise exactly where the cosine bars are positive and fall where they are negative.
+
+<BarChart
+  title={<>Heights of <InlineMath math="\sin x" /> from 0 to <InlineMath math="\pi" /></>}
+  description={<>Bars of <InlineMath math="\sin x" /> at <InlineMath math="x = 0, \tfrac{\pi}{6}, \tfrac{\pi}{3}, \tfrac{\pi}{2}, \tfrac{2\pi}{3}, \tfrac{5\pi}{6}, \pi" />.</>}
+  yAxisLabel="sin x"
+  data={[["0", 0], ["π/6", 1 / 6], ["π/3", 1 / 3], ["π/2", 1 / 2], ["2π/3", 2 / 3], ["5π/6", 5 / 6], ["π", 1]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.sin(k * Math.PI)) / 1000 }))}
+  chartConfig={{ value: { label: "sin x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Applying the Rules to Trigonometric Functions
 
@@ -166,3 +172,13 @@ Each problem asks for the first derivative of a trigonometric expression, and **
     <BlockMath math="f'(x) = \cos(2x)" />
 
     So, the derivative of the function is <InlineMath math="\cos(2x)" />.
+
+Exercise 2 as a chart: the derivative <InlineMath math="\cos 2x" /> of <InlineMath math="\sin x \cos x = \tfrac12 \sin 2x" /> is positive up to <InlineMath math="x = \tfrac{\pi}{4}" /> and negative after it, so <InlineMath math="\sin x \cos x" /> reaches its largest value <InlineMath math="\tfrac12" /> at <InlineMath math="\tfrac{\pi}{4}" />.
+
+<BarChart
+  title={<>Values of <InlineMath math="\cos 2x" /></>}
+  description={<>Bars of <InlineMath math="\cos 2x" /> at <InlineMath math="x = 0, \tfrac{\pi}{8}, \tfrac{\pi}{4}, \tfrac{3\pi}{8}, \tfrac{\pi}{2}" />.</>}
+  yAxisLabel="cos 2x"
+  data={[["0", 0], ["π/8", 1 / 8], ["π/4", 1 / 4], ["3π/8", 3 / 8], ["π/2", 1 / 2]].map(([name, k]) => ({ name, value: Math.round(1000 * Math.cos(2 * k * Math.PI)) / 1000 }))}
+  chartConfig={{ value: { label: "cos 2x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

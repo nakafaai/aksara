@@ -3,7 +3,7 @@ export const metadata = {
   description: "Menurunkan dan menggunakan rumus kuadrat, memakai diskriminan untuk menentukan jumlah akar real, serta membentuk persamaan dari akar yang diketahui atau diubah.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Persamaan dan Fungsi Kuadrat",
 };
 
@@ -112,6 +112,33 @@ Untuk <InlineMath math="x_2" />, ambil **tanda negatif**:
 
 Jadi, akar-akar persamaan adalah <InlineMath math="x_1 = 3" /> dan <InlineMath math="x_2 = \frac{1}{2}" />
 
+Contoh 2 pada grafik: <InlineMath math="y = 2x^2 - 7x + 3" /> memotong sumbu x di <InlineMath math="x = \tfrac12" /> dan <InlineMath math="x = 3" />, dua nilai yang diberikan rumus sebagai <InlineMath math="\frac{7 \pm 5}{4}" />.
+
+<MathVisual
+  title={<>Akar <InlineMath math="2x^2 - 7x + 3 = 0" /></>}
+  description={<>Parabola <InlineMath math="y = 2x^2 - 7x + 3" />, yang memotong sumbu x di <InlineMath math="\tfrac12" /> dan 3.</>}
+  labels={{
+    curve: <InlineMath math="y = 2x^2 - 7x + 3" />,
+    r1: <InlineMath math="\tfrac12" />,
+    r2: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -7, c: 3 }, domain: { min: 0, max: 7 / 2 }, appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: 1 / 2, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 7 / 2, y: 3 }, placement: "left" },
+      { key: "r1", objectId: "r1", at: { x: 1 / 2, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "r2", at: { x: 3, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 ## Diskriminan Persamaan Kuadrat
 
 Nilai <InlineMath math="D" /> menentukan <Highlight>banyaknya titik potong dengan sumbu horizontal</Highlight>. Untuk tiga persamaan berikut, hanya konstanta yang berubah. Titik puncak naik saat konstanta bertambah.
@@ -125,8 +152,8 @@ Nilai <InlineMath math="D" /> menentukan <Highlight>banyaknya titik potong denga
 Pada contoh pertama, rumus memberi <InlineMath math="-3" /> dan <InlineMath math="-2" />. Grafik memperlihatkan dua hasil itu sebagai koordinat horizontal saat nilai fungsi nol. Titik puncak terletak di bawah sumbu horizontal.
 
 <MathVisual
-  title="Dua akar sebagai titik potong"
-  description="Parabola x² + 5x + 6 memotong sumbu horizontal pada -3 dan -2. Titik puncaknya memiliki x = -2,5 dan y = -0,25."
+  title={<>Dua akar sebagai titik potong</>}
+  description={<>Parabola <InlineMath math="x^2 + 5x + 6" /> memotong sumbu horizontal pada -3 dan -2. Titik puncaknya memiliki <InlineMath math="x = -2{,}5" /> dan <InlineMath math="y = -0{,}25" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4.2, max: -0.8 }, y: { min: -0.75, max: 2.5 } },
@@ -142,6 +169,36 @@ Pada contoh pertama, rumus memberi <InlineMath math="-3" /> dan <InlineMath math
     ],
   }}
   labels={{ left: <InlineMath math="(-3,0)" />, right: <InlineMath math="(-2,0)" /> }}
+/>
+
+Naikkan suku konstanta dan parabola bergeser ke atas. Dengan <InlineMath math="c = 6" /> parabola memotong sumbu x dua kali (<InlineMath math="D = 1" />), dengan <InlineMath math="c = 6{,}25" /> hanya menyinggungnya di <InlineMath math="-2{,}5" /> (<InlineMath math="D = 0" />), dan dengan <InlineMath math="c = 7" /> tetap di atasnya (<InlineMath math="D = -3" />).
+
+<MathVisual
+  title={<>Diskriminan sebagai pergeseran</>}
+  description={<>Parabola <InlineMath math="y = x^2 + 5x + c" /> untuk <InlineMath math="c = 6" />, <InlineMath math="6{,}25" />, dan 7, dengan dua titik potong, satu titik singgung, dan tanpa titik potong.</>}
+  labels={{
+    c6: <InlineMath math="c = 6" />,
+    c625: <InlineMath math="c = 6{,}25" />,
+    c7: <InlineMath math="c = 7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.3, max: -0.7 }, y: { min: -0.6, max: 3.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c6", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 6 }, domain: { min: -4, max: -1 }, appearance: "primary" },
+      { id: "c625", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 25 / 4 }, domain: { min: -4, max: -1 }, appearance: "highlight" },
+      { id: "c7", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 7 }, domain: { min: -4, max: -1 }, appearance: "secondary" },
+      { id: "r1", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "touch", kind: "point", at: { x: -5 / 2, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "c6", objectId: "c6", at: { x: -1, y: 2 }, placement: "right" },
+      { key: "c625", objectId: "c625", at: { x: -4, y: 9 / 4 }, placement: "left" },
+      { key: "c7", objectId: "c7", at: { x: -1, y: 3 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Hubungan Antara Akar dan Koefisien

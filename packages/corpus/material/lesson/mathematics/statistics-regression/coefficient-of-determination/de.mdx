@@ -4,7 +4,7 @@ export const metadata = {
     description: "Berechne aus Streudiagramm und Formel, welchen Anteil der beobachteten Streuung ein lineares Regressionsmodell erfasst.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistik",
 };
 
@@ -30,7 +30,7 @@ Die gestrichelten Strecken zeigen die **vertikalen Residuen**, also die Differen
       Hohes <InlineMath math="r^2" />
     </>
   }
-  description="Datenpunkte liegen sehr nahe an der Regressionslinie."
+  description={<>Datenpunkte liegen sehr nahe an der Regressionslinie.</>}
   xAxisLabel="Variable X"
   yAxisLabel="Variable Y"
   datasets={[
@@ -63,7 +63,7 @@ Für diese Punkte ergibt die Rechnung <InlineMath math="R^2\approx0{,}997" />, a
       Niedriges <InlineMath math="r^2" />
     </>
   }
-  description="Datenpunkte sind weit von der Regressionslinie entfernt."
+  description={<>Datenpunkte sind weit von der Regressionslinie entfernt.</>}
   xAxisLabel="Variable X"
   yAxisLabel="Variable Y"
   datasets={[
@@ -118,6 +118,43 @@ Beim zweiten dargestellten Datensatz gilt <InlineMath math="\bar x=4{,}5" /> und
 </MathContainer>
 
 Dieses Verhältnis setzt Streuung in beiden Variablen voraus, also <InlineMath math="SS_{xx}>0" /> und <InlineMath math="SS_{yy}>0" />. Sind alle <InlineMath math="y" />-Werte identisch, ist die Gesamtstreuung null und das übliche Verhältnis für den Determinationskoeffizienten nicht definiert.
+
+<InlineMath math="SS_{yy}" /> addiert die quadrierten senkrechten Abstände zum Mittelwert <InlineMath math="\bar y = 5" />: <InlineMath math="9 + 9 + 4 + 1 + 16 + 16 + 1 + 4 = 60" />. Die Regressionsgerade erklärt nur <InlineMath math="\frac{196}{2520} \approx 7{,}8\%" /> dieser Gesamtstreuung.
+
+<MathVisual
+  title={<>Abweichungen vom Mittelwert</>}
+  description={<>Die acht Punkte des zweiten Datensatzes mit der Mittelwertlinie <InlineMath math="y = 5" /> und einer senkrechten Strecke von jedem Punkt zu ihr.</>}
+  labels={{
+    mean: <InlineMath math="\bar y = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.4, max: 8.6 }, y: { min: 0.4, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mean", kind: "line", through: [{ x: 0, y: 5 }, { x: 9, y: 5 }], appearance: "reference" },
+      { id: "d1", kind: "segment", from: { x: 1, y: 2 }, to: { x: 1, y: 5 }, appearance: "construction" },
+      { id: "d2", kind: "segment", from: { x: 2, y: 8 }, to: { x: 2, y: 5 }, appearance: "construction" },
+      { id: "d3", kind: "segment", from: { x: 3, y: 3 }, to: { x: 3, y: 5 }, appearance: "construction" },
+      { id: "d4", kind: "segment", from: { x: 4, y: 6 }, to: { x: 4, y: 5 }, appearance: "construction" },
+      { id: "d5", kind: "segment", from: { x: 5, y: 1 }, to: { x: 5, y: 5 }, appearance: "construction" },
+      { id: "d6", kind: "segment", from: { x: 6, y: 9 }, to: { x: 6, y: 5 }, appearance: "construction" },
+      { id: "d7", kind: "segment", from: { x: 7, y: 4 }, to: { x: 7, y: 5 }, appearance: "construction" },
+      { id: "d8", kind: "segment", from: { x: 8, y: 7 }, to: { x: 8, y: 5 }, appearance: "construction" },
+      { id: "p1", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "p2", kind: "point", at: { x: 2, y: 8 }, appearance: "primary" },
+      { id: "p3", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "p4", kind: "point", at: { x: 4, y: 6 }, appearance: "primary" },
+      { id: "p5", kind: "point", at: { x: 5, y: 1 }, appearance: "primary" },
+      { id: "p6", kind: "point", at: { x: 6, y: 9 }, appearance: "primary" },
+      { id: "p7", kind: "point", at: { x: 7, y: 4 }, appearance: "primary" },
+      { id: "p8", kind: "point", at: { x: 8, y: 7 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 8, y: 5 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Interpretation als Prozentsatz
 

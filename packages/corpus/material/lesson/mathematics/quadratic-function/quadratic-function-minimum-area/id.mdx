@@ -3,7 +3,7 @@ export const metadata = {
   description: "Menyusun model kuadrat untuk luas yang memenuhi syarat tertentu, menentukan nilai minimumnya, lalu memeriksa apakah hasilnya dapat digunakan pada soal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Fungsi Kuadrat",
 };
 
@@ -80,8 +80,8 @@ Bentuk kuadrat sempurna menunjukkan alasan nilai ini minimum. Bagian kuadrat **t
 <BlockMath math="A(x)=2(x-5)^2+50\ge50" />
 
 <MathVisual
-  title="Luas dan Ukuran yang Dipilih"
-  description="Sumbu mendatar menunjukkan sisi persegi pertama dalam sentimeter. Satu unit pada sumbu tegak mewakili sepuluh sentimeter persegi, sehingga yang digambar adalah A(x)/10. Titik (5,5) berarti sisi 5 cm dan luas total 50 cm²."
+  title={<>Luas dan Ukuran yang Dipilih</>}
+  description={<>Sumbu mendatar menunjukkan sisi persegi pertama dalam sentimeter. Satu unit pada sumbu tegak mewakili sepuluh sentimeter persegi, sehingga yang digambar adalah A(x)/10. Titik (5,5) berarti sisi 5 cm dan luas total <InlineMath math="50\ \text{cm}^2" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -0.5, max: 11 } },
@@ -98,6 +98,16 @@ Bentuk kuadrat sempurna menunjukkan alasan nilai ini minimum. Bagian kuadrat **t
 Ujung grafik hanya menunjukkan batas model. Ukuran nol dan sepuluh tidak termasuk pilihan bangun dengan sisi positif.
 
 Jumlah luas minimum adalah <InlineMath math="50\text{ cm}^2" />, yang diperoleh ketika kedua persegi memiliki sisi <InlineMath math="5\text{ cm}" />.
+
+Coba sisi bilangan bulat: <InlineMath math="A(1) = 82" />, <InlineMath math="A(3) = 58" />, <InlineMath math="A(5) = 50" />, <InlineMath math="A(7) = 58" />, dan <InlineMath math="A(9) = 82" />. Luas totalnya simetris terhadap <InlineMath math="x = 5" /> dan paling kecil di sana.
+
+<BarChart
+  title={<>Luas total untuk setiap sisi pertama</>}
+  description={<>Batang <InlineMath math="A(x) = 2x^2 - 20x + 100" /> dalam sentimeter persegi untuk <InlineMath math="x = 1" /> sampai 9.</>}
+  yAxisLabel="Luas total (cm²)"
+  data={[1, 2, 3, 4, 5, 6, 7, 8, 9].map((x) => ({ name: String(x), value: 2 * x ** 2 - 20 * x + 100 }))}
+  chartConfig={{ value: { label: "Luas total (cm²)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Menentukan Domain Model dan Titik Puncak
 
@@ -125,6 +135,16 @@ Karena <InlineMath math="a=3>0" />, model ini memiliki minimum:
 </MathContainer>
 
 Model tersebut memprediksi biaya minimum sebesar <InlineMath math="\text{Rp }200\,000" /> pada produksi <InlineMath math="10" /> barang. Sebelum memakai hasil ini, periksa apakah <InlineMath math="10" /> barang berada dalam domain model dan dapat diproduksi dengan kapasitas yang tersedia.
+
+Batang biaya turun dari 500 di <InlineMath math="x = 0" /> ke 200 di <InlineMath math="x = 10" /> lalu naik lagi ke 500 di <InlineMath math="x = 20" />, saling bercermin di sekitar titik puncak.
+
+<BarChart
+  title={<>Biaya produksi di sekitar titik puncak</>}
+  description={<>Batang <InlineMath math="C(x) = 3x^2 - 60x + 500" /> dalam ribu rupiah untuk <InlineMath math="x = 0, 5, 10, 15, 20" />.</>}
+  yAxisLabel="Biaya (ribu rupiah)"
+  data={[0, 5, 10, 15, 20].map((x) => ({ name: String(x), value: 3 * x ** 2 - 60 * x + 500 }))}
+  chartConfig={{ value: { label: "Biaya (ribu rupiah)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Latihan
 

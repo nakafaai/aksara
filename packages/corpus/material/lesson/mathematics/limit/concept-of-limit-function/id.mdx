@@ -3,7 +3,7 @@ export const metadata = {
   description: "Perkirakan limit dari tabel nilai dan perilaku satu sisi, lalu jelaskan arti definisi epsilon delta.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-23",
+    dateModified: "2026-11-08",
     subject: "Limit",
 };
 
@@ -27,6 +27,16 @@ Tabel berikut mencatat perubahan <InlineMath math="f(x) = x + 2" /> saat <Inline
 | Dari kanan | <InlineMath math="3{,}1" /> | <InlineMath math="5{,}1" /> |
 
 Saat <InlineMath math="x" /> mendekati <InlineMath math="3" /> dari kedua sisi, nilai <InlineMath math="f(x)" /> pada tabel mendekati <InlineMath math="5" />. <Highlight>Nilai yang didekati itu disebut limit</Highlight>.
+
+Lihat jaraknya ke limit, bukan nilainya. <InlineMath math="|f(x) - 5| = |x - 3|" /> menyusut dari <InlineMath math="0{,}1" /> ke <InlineMath math="0{,}01" /> lalu ke <InlineMath math="0{,}001" /> saat <InlineMath math="x" /> mendekati 3 dari kedua sisi.
+
+<BarChart
+  title={<>Jarak dari limit 5</>}
+  description={<>Batang <InlineMath math="|f(x) - 5|" /> untuk <InlineMath math="f(x) = x + 2" /> pada input tabel dari <InlineMath math="2{,}9" /> sampai <InlineMath math="3{,}1" />.</>}
+  yAxisLabel="Jarak dari 5"
+  data={[2.9, 2.99, 2.999, 3.001, 3.01, 3.1].map((x) => ({ name: String(x), value: Math.round(10000 * Math.abs(x + 2 - 5)) / 10000 }))}
+  chartConfig={{ value: { label: "Jarak dari 5", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Notasi Limit Satu Sisi dan Makna Formal
 
@@ -98,6 +108,31 @@ Karena limit memakai nilai di sekitar titik dengan <InlineMath math="x \neq 2" /
 
 <BlockMath math="\lim_{x\to2}\frac{x^2-4}{x-2}= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
 
+Grafik <InlineMath math="\frac{x^2 - 4}{x - 2}" /> adalah garis <InlineMath math="y = x + 2" /> dengan lubang di <InlineMath math="(2, 4)" />. Fungsinya tidak bernilai di 2, tetapi limitnya adalah tinggi lubang itu, yaitu 4.
+
+<MathVisual
+  title={<>Garis <InlineMath math="y = x + 2" /> dengan lubang di <InlineMath math="(2, 4)" /></>}
+  description={<>Grafik <InlineMath math="\frac{x^2 - 4}{x - 2}" />: garis <InlineMath math="y = x + 2" /> dengan lingkaran kosong di <InlineMath math="(2, 4)" />.</>}
+  labels={{
+    line: <InlineMath math="y = x + 2" />,
+    hole: <InlineMath math="(2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 5.6 }, y: { min: -0.6, max: 7.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "left", kind: "segment", from: { x: -1, y: 1 }, to: { x: 2 - 0.12 / Math.sqrt(2), y: 4 - 0.12 / Math.sqrt(2) }, appearance: "primary" },
+      { id: "right", kind: "segment", from: { x: 2 + 0.12 / Math.sqrt(2), y: 4 + 0.12 / Math.sqrt(2) }, to: { x: 5, y: 7 }, appearance: "primary" },
+      { id: "hole", kind: "circle", center: { x: 2, y: 4 }, radius: 3 / 25, appearance: "warning" },
+    ],
+    labels: [
+      { key: "line", objectId: "right", at: { x: 5, y: 7 }, placement: "left" },
+      { key: "hole", objectId: "hole", at: { x: 2, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Sifat Dasar Limit
 
 Aturan berikut berlaku jika kedua limit <InlineMath math="L=\lim_{x\to c}f(x)" /> dan <InlineMath math="M=\lim_{x\to c}g(x)" /> **ada dan berhingga**, serta <InlineMath math="a,b" /> konstan.
@@ -161,14 +196,26 @@ Karena <InlineMath math="\lim_{x \to 2^-} f(x) = 3 \neq 4 = \lim_{x \to 2^+} f(x
 
 Grafik memperlihatkan **dua tinggi pendekatan yang berbeda**. Titik pada cabang kanan menyatakan <InlineMath math="f(2)=4" />, tetapi menetapkan nilai itu tidak mengubah limit kiri yang bernilai <InlineMath math="3" />.
 
-<LineEquation
-  title="Lompatan pada Fungsi Sepotong"
-  description="Cabang kiri mendekati tinggi tiga, tetapi cabang kanan mulai pada tinggi empat. Titik oranye menunjukkan nilai fungsi ketika x sama dengan dua."
-  showZAxis={false}
-  cameraTarget={[1.5, 3.5, 0]}
-  cameraPosition={[1.5, 3.5, 14]}
-  data={[
-    { points: [{ x: 0, y: 1, z: 0 }, { x: 1.99, y: 2.99, z: 0 }], color: "#9333ea", smooth: false, showPoints: false, labels: [{ at: 1, text: <InlineMath math="3" />, offset: [0.4, -0.3, 0] }] },
-    { points: [{ x: 2, y: 4, z: 0 }, { x: 3, y: 7, z: 0 }], color: "#ea580c", smooth: false, showPoints: true, pointIndices: [0], labels: [{ at: 0, text: <InlineMath math="(2,4)" />, offset: [0.8, 0.2, 0] }] },
-  ]}
+<MathVisual
+  title={<>Lompatan pada fungsi sepotong-sepotong</>}
+  description={<>Cabang kiri <InlineMath math="x + 1" /> mendekati ketinggian 3, tetapi cabang kanan <InlineMath math="3x - 2" /> mulai di ketinggian 4. Lingkaran kosong di <InlineMath math="(2, 3)" /> dan titik <InlineMath math="(2, 4)" /> menunjukkan bahwa kedua limit sepihak berbeda.</>}
+  labels={{
+    hole: <InlineMath math="3" />,
+    value: <InlineMath math="(2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 3.4 }, y: { min: -0.4, max: 7.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "left", kind: "segment", from: { x: 0, y: 1 }, to: { x: 2 - 0.12 / Math.sqrt(2), y: 3 - 0.12 / Math.sqrt(2) }, appearance: "secondary" },
+      { id: "hole", kind: "circle", center: { x: 2, y: 3 }, radius: 3 / 25, appearance: "warning" },
+      { id: "branch", kind: "segment", from: { x: 2, y: 4 }, to: { x: 3, y: 7 }, appearance: "primary" },
+      { id: "value", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "hole", objectId: "hole", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "value", objectId: "value", at: { x: 2, y: 4 }, placement: "left" },
+    ],
+  }}
 />

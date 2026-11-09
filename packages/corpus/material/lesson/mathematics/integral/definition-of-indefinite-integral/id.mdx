@@ -3,7 +3,7 @@ export const metadata = {
   description: "Integral tak tentu memuat semua antiturunan yang hanya berbeda pada nilai konstanta integrasi.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Integral",
 };
 
@@ -32,20 +32,65 @@ Kesimpulan tentang selisih konstanta berlaku pada **satu interval** tempat antit
 
 Ketiga parabola mewakili <InlineMath math="2x^2" />, <InlineMath math="2x^2+1" />, dan <InlineMath math="2x^2+5" />. Pada nilai <InlineMath math="x" /> yang sama, ketinggian kurva berbeda, tetapi kemiringan garis singgung sama. Geser atau putar tampilan untuk membandingkan bentuk ketiga kurva.
 
-<LineEquation
-  title="Antiturunan yang Berbeda Konstanta"
-  description="Kurva ungu memiliki konstanta nol, kurva jingga konstanta satu, dan kurva hijau kebiruan konstanta lima."
-  data={[
-    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x, z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=0" />, offset: [0, -0.5, 0] }] },
-    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x + 1, z: 0 }; }), smooth: false, color: "#ea580c", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=1" />, offset: [0, 0.5, 0] }] },
-    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x + 5, z: 0 }; }), smooth: false, color: "#0d9488", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=5" />, offset: [0, 0.5, 0] }] },
-  ]}
-  showZAxis={false}
-  cameraTarget={[0, 4.5, 0]}
-  cameraPosition={[0, 4.5, 17]}
+<MathVisual
+  title={<>Antiturunan yang berbeda sebesar konstanta</>}
+  description={<>Kurva ungu <InlineMath math="y = 2x^2" /> berkonstanta 0, kurva oranye <InlineMath math="y = 2x^2 + 1" /> berkonstanta 1, dan kurva toska <InlineMath math="y = 2x^2 + 5" /> berkonstanta 5. Di <InlineMath math="x = 1" /> tingginya 2, 3, dan 7.</>}
+  labels={{
+    c0: <InlineMath math="C = 0" />,
+    c1: <InlineMath math="C = 1" />,
+    c5: <InlineMath math="C = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -0.6, max: 9.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c0", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 0 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "secondary" },
+      { id: "c1", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 1 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "primary" },
+      { id: "c5", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 5 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "construction" },
+      { id: "h0", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "h1", kind: "point", at: { x: 1, y: 3 }, appearance: "primary" },
+      { id: "h5", kind: "point", at: { x: 1, y: 7 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "c0", objectId: "c0", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "c1", objectId: "c1", at: { x: 0, y: 1 }, placement: "below" },
+      { key: "c5", objectId: "c5", at: { x: 0, y: 5 }, placement: "below" },
+    ],
+  }}
 />
 
 Perubahan konstanta menghasilkan **pergeseran vertikal**. Misalnya, pada <InlineMath math="x=1" />, ketiga nilai fungsi berturut-turut adalah <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="7" />, sedangkan semua turunannya bernilai <InlineMath math="4" />.
+
+Gambar garis singgung di <InlineMath math="x = 1" /> pada setiap kurva. Ketiga garis singgung bergradien 4, karena setiap antiturunan <InlineMath math="4x" /> memiliki turunan yang sama. Hanya tingginya 2, 3, dan 7 yang berbeda, jadi garis-garis singgungnya sejajar.
+
+<MathVisual
+  title={<>Garis singgung sejajar di <InlineMath math="x = 1" /></>}
+  description={<>Kurva <InlineMath math="y = 2x^2 + C" /> untuk <InlineMath math="C = 0, 1, 5" /> dengan garis singgung bergradien 4 di <InlineMath math="x = 1" />.</>}
+  labels={{
+    c0: <InlineMath math="C = 0" />,
+    c1: <InlineMath math="C = 1" />,
+    c5: <InlineMath math="C = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -0.6, max: 9.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c0", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 0 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "secondary" },
+      { id: "c1", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 1 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "primary" },
+      { id: "c5", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 5 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "construction" },
+      { id: "t0", kind: "segment", from: { x: 1 / 2, y: 0 }, to: { x: 3 / 2, y: 4 }, appearance: "secondary" },
+      { id: "t1", kind: "segment", from: { x: 1 / 2, y: 1 }, to: { x: 3 / 2, y: 5 }, appearance: "primary" },
+      { id: "t5", kind: "segment", from: { x: 1 / 2, y: 5 }, to: { x: 3 / 2, y: 9 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "c0", objectId: "c0", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "c1", objectId: "c1", at: { x: 0, y: 1 }, placement: "below" },
+      { key: "c5", objectId: "c5", at: { x: 0, y: 5 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Notasi Integral Tak Tentu
 
@@ -72,3 +117,13 @@ Misalkan <InlineMath math="F'(x)=4x" /> dan <InlineMath math="F(1)=7" />. Antitu
 <BlockMath math="\begin{aligned}F(1)&=2(1)^2+C=7\\2+C&=7\\C&=5\end{aligned}" />
 
 Jadi, <InlineMath math="F(x)=2x^2+5" />. Periksa kedua syarat: turunan <InlineMath math="2x^2+5" /> adalah <InlineMath math="4x" />, dan <InlineMath math="F(1)=2+5=7" />. Satu nilai fungsi memilih satu kurva dari semua antiturunan pada interval yang sama.
+
+Uji keempat antiturunan dari tabel terhadap syarat <InlineMath math="F(1) = 7" />. Nilai <InlineMath math="F(1) = 2 + C" />-nya 3, 7, <InlineMath math="-8" />, dan 2, dan hanya <InlineMath math="C = 5" /> yang memberi 7.
+
+<BarChart
+  title={<>Konstanta mana yang memberi <InlineMath math="F(1) = 7" /></>}
+  description={<>Batang <InlineMath math="F(1) = 2 + C" /> untuk <InlineMath math="C = 1, 5, -10, 0" />.</>}
+  yAxisLabel="F(1)"
+  data={[1, 5, -10, 0].map((c) => ({ name: "C = " + c, value: 2 * 1 ** 2 + c }))}
+  chartConfig={{ value: { label: "F(1)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

@@ -4,7 +4,7 @@ export const metadata = {
   description: "Koefisien determinasi mengukur variasi yang dijelaskan oleh model regresi melalui contoh visual dan perhitungan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-30",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -30,7 +30,7 @@ Garis putus-putus menunjukkan **residu vertikal**, yaitu selisih nilai pengamata
       <InlineMath math="r^2" /> Tinggi
     </>
   }
-  description="Titik-titik data sangat dekat dengan garis regresi."
+  description={<>Titik-titik data sangat dekat dengan garis regresi.</>}
   xAxisLabel="Variabel X"
   yAxisLabel="Variabel Y"
   datasets={[
@@ -63,7 +63,7 @@ Perhitungan untuk titik-titik ini menghasilkan <InlineMath math="R^2\approx0{,}9
       <InlineMath math="r^2" /> Rendah
     </>
   }
-  description="Titik-titik data tersebar jauh dari garis regresi."
+  description={<>Titik-titik data tersebar jauh dari garis regresi.</>}
   xAxisLabel="Variabel X"
   yAxisLabel="Variabel Y"
   datasets={[
@@ -118,6 +118,43 @@ Untuk kumpulan data kedua pada diagram, <InlineMath math="\bar x=4{,}5" /> dan <
 </MathContainer>
 
 Rasio ini memerlukan variasi pada kedua variabel, sehingga <InlineMath math="SS_{xx}>0" /> dan <InlineMath math="SS_{yy}>0" />. Jika semua nilai <InlineMath math="y" /> identik, variasi totalnya nol dan rasio koefisien determinasi yang biasa digunakan tidak terdefinisi.
+
+<InlineMath math="SS_{yy}" /> menjumlahkan kuadrat jarak tegak ke rata-rata <InlineMath math="\bar y = 5" />: <InlineMath math="9 + 9 + 4 + 1 + 16 + 16 + 1 + 4 = 60" />. Garis regresi hanya menjelaskan <InlineMath math="\frac{196}{2520} \approx 7{,}8\%" /> dari total variasi ini.
+
+<MathVisual
+  title={<>Simpangan dari rata-rata</>}
+  description={<>Delapan titik data kedua dengan garis rata-rata <InlineMath math="y = 5" /> dan ruas tegak dari setiap titik ke garis itu.</>}
+  labels={{
+    mean: <InlineMath math="\bar y = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.4, max: 8.6 }, y: { min: 0.4, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mean", kind: "line", through: [{ x: 0, y: 5 }, { x: 9, y: 5 }], appearance: "reference" },
+      { id: "d1", kind: "segment", from: { x: 1, y: 2 }, to: { x: 1, y: 5 }, appearance: "construction" },
+      { id: "d2", kind: "segment", from: { x: 2, y: 8 }, to: { x: 2, y: 5 }, appearance: "construction" },
+      { id: "d3", kind: "segment", from: { x: 3, y: 3 }, to: { x: 3, y: 5 }, appearance: "construction" },
+      { id: "d4", kind: "segment", from: { x: 4, y: 6 }, to: { x: 4, y: 5 }, appearance: "construction" },
+      { id: "d5", kind: "segment", from: { x: 5, y: 1 }, to: { x: 5, y: 5 }, appearance: "construction" },
+      { id: "d6", kind: "segment", from: { x: 6, y: 9 }, to: { x: 6, y: 5 }, appearance: "construction" },
+      { id: "d7", kind: "segment", from: { x: 7, y: 4 }, to: { x: 7, y: 5 }, appearance: "construction" },
+      { id: "d8", kind: "segment", from: { x: 8, y: 7 }, to: { x: 8, y: 5 }, appearance: "construction" },
+      { id: "p1", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "p2", kind: "point", at: { x: 2, y: 8 }, appearance: "primary" },
+      { id: "p3", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "p4", kind: "point", at: { x: 4, y: 6 }, appearance: "primary" },
+      { id: "p5", kind: "point", at: { x: 5, y: 1 }, appearance: "primary" },
+      { id: "p6", kind: "point", at: { x: 6, y: 9 }, appearance: "primary" },
+      { id: "p7", kind: "point", at: { x: 7, y: 4 }, appearance: "primary" },
+      { id: "p8", kind: "point", at: { x: 8, y: 7 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 8, y: 5 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Koefisien Determinasi dalam Persen
 

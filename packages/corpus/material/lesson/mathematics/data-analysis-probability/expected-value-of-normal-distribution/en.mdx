@@ -17,73 +17,12 @@ The expected value is the **probability-weighted average** of all values of <Inl
 
 Exam scores distributed as <InlineMath math="N(75, 10^2)" /> have an expected value of <InlineMath math="75" />. On a normal curve, the mean, median, mode, and expected value all meet at the axis of symmetry. The interactive graph marks that center together with two pairs of equally tall values on its left and right.
 
-<LineEquation
+<BarChart
   title={<>Pairs of equally tall values around <InlineMath math="\mu = 2" /></>}
-  description={<>The density curve of <InlineMath math="N(2, 1)" />. The vertical segments at <InlineMath math="x = 1" /> and <InlineMath math="x = 3" /> are equally tall, and so are the segments at <InlineMath math="x = 0.5" /> and <InlineMath math="x = 3.5" />, because they lie the same distance from the center.</>}
-  showZAxis={false}
-  cameraPosition={[2, 0.2, 5.5]}
-  cameraTarget={[2, 0.2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 701 }, (_, index) => {
-        const x = -1.5 + index / 100;
-        return { x, y: Math.exp(-0.5 * (x - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 };
-      }),
-      color: "#9333ea",
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 2, y: 0, z: 0 },
-        { x: 2, y: 1 / Math.sqrt(2 * Math.PI), z: 0 },
-      ],
-      color: "#0d9488",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\mu = 2" />, at: 1, offset: [0, 0.12, 0] }],
-    },
-    {
-      points: [
-        { x: 1, y: 0, z: 0 },
-        { x: 1, y: Math.exp(-0.5 * (1 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="1" />, at: 0, offset: [0, -0.15, 0] }],
-    },
-    {
-      points: [
-        { x: 3, y: 0, z: 0 },
-        { x: 3, y: Math.exp(-0.5 * (3 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="3" />, at: 0, offset: [0, -0.15, 0] }],
-    },
-    {
-      points: [
-        { x: 0.5, y: 0, z: 0 },
-        { x: 0.5, y: Math.exp(-0.5 * (0.5 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
-      ],
-      color: "#2563eb",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="0.5" />, at: 0, offset: [0, -0.15, 0] }],
-    },
-    {
-      points: [
-        { x: 3.5, y: 0, z: 0 },
-        { x: 3.5, y: Math.exp(-0.5 * (3.5 - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
-      ],
-      color: "#2563eb",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="3.5" />, at: 0, offset: [0, -0.15, 0] }],
-    },
-  ]}
+  description={<>Heights of the <InlineMath math="N(2, 1)" /> density at <InlineMath math="x = 0.5, 1, 2, 3, 3.5" />. The values at 1 and 3 are equal, about <InlineMath math="0.242" />, and so are those at 0.5 and 3.5, about <InlineMath math="0.130" />, because they lie the same distance from the center.</>}
+  yAxisLabel="Density"
+  data={[0.5, 1, 2, 3, 3.5].map((x) => ({ name: String(x), value: Math.exp(-0.5 * (x - 2) ** 2) / Math.sqrt(2 * Math.PI) }))}
+  chartConfig={{ value: { label: "Density", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Pairs of Values That Balance Each Other
@@ -119,22 +58,12 @@ The first integral is zero because <InlineMath math="g(t) = t e^{-t^2/2}" /> is 
   <BlockMath math="\int_{-\infty}^0 te^{-t^2/2}\,dt=\left[-e^{-t^2/2}\right]_{-\infty}^0=-1-0=-1" />
 </MathContainer>
 
-<LineEquation
-  title="Opposite Contributions Cancel"
-  description={<>The graph of <InlineMath math="g(t) = t e^{-t^2/2}" /> for <InlineMath math="-3 \le t \le 3" />. At <InlineMath math="t" /> and <InlineMath math="-t" /> the heights have equal size and opposite signs, and the tails beyond the view are symmetric too.</>}
-  cameraPosition={[0, 0, 8]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 601 }, (_, index) => {
-        const t = (index - 300) / 100;
-        return { x: t, y: t * Math.exp(-t * t / 2), z: 0 };
-      }),
-      color: "#0d9488",
-      smooth: false,
-      showPoints: false,
-    },
-  ]}
+<BarChart
+  title={<>Opposite contributions cancel</>}
+  description={<>Values of <InlineMath math="g(t) = t e^{-t^2/2}" /> at <InlineMath math="t = \pm 0.5, \pm 1, \pm 2" />. At <InlineMath math="t" /> and <InlineMath math="-t" /> the values have equal size and opposite signs.</>}
+  yAxisLabel="g(t)"
+  data={[-2, -1, -0.5, 0.5, 1, 2].map((t) => ({ name: String(t), value: t * Math.exp(-(t ** 2) / 2) }))}
+  chartConfig={{ value: { label: "g(t)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 The second integral is the Gaussian integral, with value <InlineMath math="\sqrt{2\pi}" />. The result is:
@@ -163,8 +92,8 @@ Two rules settle most problems. For fixed numbers <InlineMath math="a" /> and <I
 </MathContainer>
 
 <Mermaid
-  title="Shifting and scaling the expected value"
-  description="Every step applied to the temperature applies to its expected value too."
+  title={<>Shifting and scaling the expected value</>}
+  description={<>Every step applied to the temperature applies to its expected value too.</>}
   chart={`flowchart LR
   A["C with E(C) = 28"] -->|"times 1.8"| B["1.8C with E = 50.4"]
   B -->|"plus 32"| C["F = 1.8C + 32 with E(F) = 82.4"]`}
@@ -181,6 +110,34 @@ Check with a symmetric pair of temperatures. The temperatures <InlineMath math="
 <BlockMath math="E(X_1 + X_2 + \cdots + X_{20}) = 20 \cdot 1{,}000 = 20{,}000\text{ g}" />
 
 Check with ten pairs of bags: each pair has an expected weight of <InlineMath math="1{,}000 + 1{,}000 = 2{,}000\text{ g}" />, and <InlineMath math="10 \cdot 2{,}000 = 20{,}000\text{ g}" />. The standard deviation of <InlineMath math="15\text{ g}" /> plays no part, because it affects only the spread of the total weight, not its center.
+
+On the line <InlineMath math="F = 1.8C + 32" /> the midpoint stays the midpoint. <InlineMath math="25^\circ\text{C}" /> and <InlineMath math="31^\circ\text{C}" /> map to <InlineMath math="77^\circ\text{F}" /> and <InlineMath math="87.8^\circ\text{F}" />, and their center <InlineMath math="28^\circ\text{C}" /> maps to <InlineMath math="82.4^\circ\text{F}" />, the center of the images. That is why <InlineMath math="E(F) = 1.8E(C) + 32" />.
+
+<MathVisual
+  title={<>A linear change keeps the center</>}
+  description={<>The line <InlineMath math="F = 1.8C + 32" /> with the points <InlineMath math="(25, 77)" />, <InlineMath math="(28, 82.4)" /> and <InlineMath math="(31, 87.8)" />.</>}
+  labels={{
+    low: <InlineMath math="25 \to 77" />,
+    mid: <InlineMath math="28 \to 82.4" />,
+    high: <InlineMath math="31 \to 87.8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 23.5, max: 32.5 }, y: { min: 75, max: 90 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "map", kind: "segment", from: { x: 24, y: 376 / 5 }, to: { x: 32, y: 448 / 5 }, appearance: "construction" },
+      { id: "low", kind: "point", at: { x: 25, y: 77 }, appearance: "primary" },
+      { id: "mid", kind: "point", at: { x: 28, y: 412 / 5 }, appearance: "answer" },
+      { id: "high", kind: "point", at: { x: 31, y: 439 / 5 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 25, y: 77 }, placement: "right" },
+      { key: "mid", objectId: "mid", at: { x: 28, y: 412 / 5 }, placement: "right" },
+      { key: "high", objectId: "high", at: { x: 31, y: 439 / 5 }, placement: "left" },
+    ],
+  }}
+/>
 
 ## Finding the Center from Given Probabilities
 

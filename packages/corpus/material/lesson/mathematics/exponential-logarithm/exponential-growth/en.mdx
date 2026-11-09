@@ -4,7 +4,7 @@ export const metadata = {
     "Repeated multiplication by the same factor produces exponential growth. Bacterial and population models show this pattern through formulas, tables, and graphs.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-03",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Exponents and Logarithms",
 };
 
@@ -55,7 +55,7 @@ The table records completed divisions at **integer values** of <InlineMath math=
 <FunctionChart
   p={30}
   a={2}
-  title="Idealized Bacterial Growth"
+  title={<>Idealized Bacterial Growth</>}
   description={
     <>
       The count doubles every <InlineMath math="30\text{ minutes}" />.
@@ -102,6 +102,16 @@ Suppose a culture contains <InlineMath math="8{,}000" /> bacteria after <InlineM
 
 The culture started with <InlineMath math="2{,}000" /> bacteria.
 
+Work forward from the recovered initial value <InlineMath math="P_0 = 2{,}000" />: the count doubles every interval, so after two intervals it is <InlineMath math="8{,}000" />, matching the observation.
+
+<BarChart
+  title={<>Growth from <InlineMath math="P_0 = 2{,}000" /></>}
+  description={<>Bars of <InlineMath math="2{,}000 \cdot 2^x" /> for <InlineMath math="x = 0" /> to 4 intervals.</>}
+  yAxisLabel="Bacteria"
+  data={[0, 1, 2, 3, 4].map((x) => ({ name: String(x), value: 2000 * 2 ** x }))}
+  chartConfig={{ value: { label: "Bacteria", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Extending the Same Interval Model
 
 After <InlineMath math="10" /> doubling intervals, the same culture has:
@@ -140,7 +150,7 @@ The first six values are:
   p={50}
   a={2}
   n={6}
-  title="Idealized Bacterial Growth"
+  title={<>Idealized Bacterial Growth</>}
   description={
     <>
       The count doubles every <InlineMath math="15\text{ minutes}" />.
