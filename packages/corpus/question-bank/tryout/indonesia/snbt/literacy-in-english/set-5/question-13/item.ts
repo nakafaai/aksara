@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "conclusion",
-  },
-  stimulus: "screens-sleep",
+  stimulus: "passage-3",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Using screens after 8 p.m. is the main cause of sleepiness in morning lessons.",
+            "Progress depends on completing the larger task before asking another person to review it.",
         },
         {
           correct: false,
           label:
-            "Students who sleep less use screens because they find it hard to fall asleep.",
-        },
-        {
-          correct: false,
-          label:
-            "Switching off screens at 9 p.m. would give every student eight hours of sleep.",
+            "The object or setting shapes the outcome more strongly than the character's specific choice.",
         },
         {
           correct: true,
           label:
-            "More evening screen time goes with less sleep, but the survey cannot show why.",
+            "Mina's progress began when the difficulty was turned into a specific, reviewable action.",
         },
         {
           correct: false,
           label:
-            "Evening screen time has no connection with how long students sleep.",
+            "The unresolved evidence should remain private until the character can offer a complete result.",
+        },
+        {
+          correct: false,
+          label:
+            "The small action matters mainly because it postpones the unresolved part of the conflict.",
         },
       ],
     },

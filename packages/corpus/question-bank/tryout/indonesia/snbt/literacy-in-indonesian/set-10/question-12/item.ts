@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
-  },
-  stimulus: "village-postman",
+  stimulus: "passage-3",
   versions: {
     id: {
       kind: "choice",
@@ -14,23 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "tidak mengerti cara memakai ponsel yang dipinjam dari tetangganya",
+            "Semua kelompok memperoleh peningkatan yang sebanding karena penyebut pada setiap baris tidak berubah.",
         },
         {
           correct: false,
-          label: "menganggap telepon video lebih mahal daripada surat",
+          label:
+            "Kelompok tanpa kebutuhan akses menunjukkan peningkatan terbesar karena $$19$$ dari $$20$$ merupakan hasil tertinggi.",
         },
         {
           correct: false,
-          label: "merasa anaknya tidak jujur ketika meneleponnya",
+          label:
+            "Hasil kelompok sensorik turun karena $$13$$ dari $$20$$ lebih kecil daripada $$16$$ dari $$20$$ pada kelompok mobilitas.",
         },
         {
           correct: true,
-          label: "menghargai surat karena dapat disimpan dan dibaca ulang",
+          label:
+            "Manfaat tampak paling besar pada kelompok mobilitas dan kebutuhan majemuk, sedangkan perubahan kecil pada kelompok sensorik menunjukkan ikon masih perlu diperbaiki.",
         },
         {
           correct: false,
-          label: "ingin Pak Darto berhenti mengantar tagihan ke dusun",
+          label:
+            "Perbedaan antarkelompok tidak dapat dibandingkan karena setiap kebutuhan pasti memiliki definisi keberhasilan yang berbeda dalam tabel.",
         },
       ],
     },

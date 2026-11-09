@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
-  },
-  stimulus: "dawn-market",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "hiperbola, karena keramaian pasar dilebih-lebihkan hingga tidak masuk akal",
-        },
-        {
-          correct: false,
-          label:
-            'simile, karena pasar dibandingkan dengan sesuatu memakai kata "seperti"',
+            "Reno memilih untuk membaca ulang kartu kondisi sebelum memutuskan apakah lukisan terakhir akan dipindahkan. Bentuk fisik benda menetapkan seluruh maknanya sejak penyebutan pertama.",
         },
         {
           correct: true,
           label:
-            "personifikasi, karena pasar digambarkan dapat membuka mata seperti manusia",
+            "Catatan $$2019$$, pembacaan ulang, dan nama Reno pada catatan baru mengubah kartu kondisi dari formulir rutin menjadi hubungan tanggung jawab antarpengelola karya.",
         },
         {
           correct: false,
           label:
-            "ironi, karena pasar disebut terjaga padahal sebenarnya masih tertidur",
+            "Reno memilih untuk membaca ulang kartu kondisi sebelum memutuskan apakah lukisan terakhir akan dipindahkan. Akhir cerita menyatakan makna benda secara langsung sehingga rincian tindakan sebelumnya tidak diperlukan.",
         },
         {
           correct: false,
-          label: 'metonimia, karena kata "pasar" menggantikan nama pemiliknya',
+          label:
+            "Reno memilih untuk membaca ulang kartu kondisi sebelum memutuskan apakah lukisan terakhir akan dipindahkan. Perubahan suasana hanya berasal dari latar dan tidak berkaitan dengan pilihan tokoh.",
+        },
+        {
+          correct: false,
+          label:
+            "Reno memilih untuk membaca ulang kartu kondisi sebelum memutuskan apakah lukisan terakhir akan dipindahkan. Benda berulang mempertahankan satu arti meskipun tindakan dan respons akhir tokoh berubah.",
         },
       ],
     },

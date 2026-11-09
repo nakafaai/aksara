@@ -1,40 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "application",
-  },
-  stimulus: "right-repair",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "A rule that only the original manufacturer may replace phone batteries",
-        },
-        {
-          correct: false,
-          label:
-            "A tax on independent repair shops to fund manufacturers' service centres",
-        },
-        {
-          correct: false,
-          label:
-            "A ban on selling any phone or appliance that contains a glued battery",
+          label: "Migration immediately strengthens every bird's immunity.",
         },
         {
           correct: true,
           label:
-            "A rule that phone makers publish repair manuals and sell parts to anyone",
+            "Different pathogen environments can alter selection on immune-gene diversity over evolutionary time.",
         },
         {
           correct: false,
-          label:
-            "A law requiring owners to keep every device for at least five years",
+          label: "Bird migration provides direct medical advice for humans.",
+        },
+        {
+          correct: false,
+          label: "Greater MHC-I diversity can have benefits but never costs.",
+        },
+        {
+          correct: false,
+          label: "All songbird lineages originated in the Palaearctic.",
         },
       ],
     },

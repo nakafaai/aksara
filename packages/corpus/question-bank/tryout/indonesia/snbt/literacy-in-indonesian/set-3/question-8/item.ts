@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
-  },
-  stimulus: "sugar-tax",
+  stimulus: "passage-2",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Penerimaan cukai dapat dipakai untuk meringankan beban warga berpenghasilan rendah.",
+            "Mengulang model jaring-jaring makanan dengan lebih banyak unit, tetapi tetap memakai penyederhanaan yang sama tanpa pengamatan lapangan.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Cukai minuman berpemanis cukup untuk menyelesaikan seluruh masalah gizi.",
+            "Mengubah seluruh faktor lapangan sekaligus, lalu membandingkan satu hasil akhir tanpa kondisi acuan.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Biaya pengobatan penyakit akibat gula berlebih pada akhirnya ikut ditanggung bersama.",
+            "Mengambil satu kejadian nyata yang sesuai dengan model sebagai konfirmasi bahwa pola selalu berlaku.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Kebijakan cukai sebaiknya ditunda sampai ada solusi yang menyelesaikan semua masalah gizi.",
+            "Mengganti pengukuran dengan survei tentang apakah peserta memahami definisi istilah pada model.",
+        },
+        {
+          correct: true,
+          label:
+            "Memantau perubahan populasi serta beberapa hubungan makan di kebun pada musim yang berbeda.",
         },
       ],
     },

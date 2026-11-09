@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
-  },
-  stimulus: "coral-bleaching",
+  stimulus: "passage-1",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Jeda yang pendek membuat alga lain tidak sempat tumbuh di terumbu.",
+            "Mengulang sudut $$45$$ derajat saja pada hari paling cerah agar suhu maksimumnya dapat dipastikan.",
         },
         {
           correct: true,
-          label: "Karang belum sempat pulih sebelum panas berikutnya datang.",
-        },
-        {
-          correct: false,
-          label: "Jeda yang pendek menurunkan suhu air laut secara mendadak.",
+          label:
+            "Menguji sudut di sekitar $$45$$ derajat dengan interval lebih rapat, mengacak atau memutar posisi oven, dan mengulangnya pada berbagai kondisi iradiansi sambil mencatat angin serta awan.",
         },
         {
           correct: false,
           label:
-            "Karang membutuhkan pemutihan berulang agar dapat bertahan hidup.",
+            "Mengubah volume air dan warna wadah pada setiap sudut supaya rancangan menyerupai penggunaan rumah tangga.",
         },
         {
           correct: false,
           label:
-            "Anak karang tumbuh terlalu cepat sehingga terumbu menjadi rapuh.",
+            "Menempatkan oven $$45$$ derajat di lokasi tanpa bayangan dan oven lain di lokasi yang tersedia agar hasil terbaik lebih mudah dibedakan.",
+        },
+        {
+          correct: false,
+          label:
+            "Membandingkan suhu akhir dari hari yang berbeda tanpa mencatat iradiansi karena semua percobaan berlangsung selama $$40$$ menit.",
         },
       ],
     },

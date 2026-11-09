@@ -1,40 +1,33 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "main-idea",
-  },
-  stimulus: "right-repair",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Ramadan fasting guarantees permanent weight loss.",
+        },
+        {
           correct: true,
           label:
-            "Laws should open up parts, manuals, and repair, protecting safety in less restrictive ways.",
+            "The studies show modest, varied, short-term average changes rather than a universal long-term result.",
         },
         {
           correct: false,
           label:
-            "Manufacturers should be banned from producing devices with glued batteries.",
+            "The $$2025$$ review found large permanent losses of muscle and water.",
         },
         {
           correct: false,
           label:
-            "Only authorised service centres should be allowed to repair modern devices.",
+            "Religious fasting and clinical weight treatment have the same purpose.",
         },
         {
           correct: false,
           label:
-            "Safety concerns about repairs are invented by manufacturers to increase profits.",
-        },
-        {
-          correct: false,
-          label:
-            "Owners should be required to repair their devices instead of replacing them.",
+            "The studies prove that no participant experiences any change.",
         },
       ],
     },

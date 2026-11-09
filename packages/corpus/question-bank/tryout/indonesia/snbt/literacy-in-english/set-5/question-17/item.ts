@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "great-stink",
+  stimulus: "passage-4",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "John Snow's conclusion about cholera was widely accepted in 1854.",
+            "Samira wrote the entry date on the last unmarked package. The recurring object's physical appearance fixes its complete meaning from the first mention.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "The new sewers carried waste to outfalls downstream of central London.",
+            "Dating the final unmarked package changes the blue stamp into a cue for shared care, and the next volunteer's response shows that meaning being carried forward.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Some of the new sewers were built inside embankments that also created new roads.",
+            "Samira wrote the entry date on the last unmarked package. The ending states the object's meaning directly, making the earlier actions irrelevant.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Since the new system was finished, the sewers have never overflowed into the Thames.",
+            "Samira wrote the entry date on the last unmarked package. The setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+        },
+        {
+          correct: false,
+          label:
+            "Samira wrote the entry date on the last unmarked package. The object keeps one fixed meaning even as the character's action and the final response change.",
         },
       ],
     },

@@ -1,36 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "application",
-  },
-  stimulus: "golden-record",
+  stimulus: "passage-4",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Include music only from the town's own region and culture.",
-        },
-        {
-          correct: false,
-          label: "Add a map of pulsars to show where the town is located.",
-        },
-        {
-          correct: false,
-          label:
-            "Write every instruction in today's language so it stays clear.",
+          label: "A ledger passed between student treasurers",
         },
         {
           correct: true,
-          label: "Explain how to open and use the contents through diagrams.",
+          label: "The blank line after the balanced total",
         },
         {
           correct: false,
-          label: "Fill the capsule only with items that can be found quickly.",
+          label: "The supplier reply that settled the concert budget",
+        },
+        {
+          correct: false,
+          label: "Why every budget needs one final number",
+        },
+        {
+          correct: false,
+          label: "A morning meeting with no unanswered questions",
         },
       ],
     },

@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
-  },
-  stimulus: "letter-poem",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "aku lirik menanam bunga di halaman rumah kosnya untuk mengingat kampung halamannya",
-        },
-        {
-          correct: false,
-          label:
-            "aku lirik ingin segera pulang dan bertani lagi di sawah ibunya",
-        },
-        {
-          correct: false,
-          label: "aku lirik sudah melupakan kampungnya sejak bekerja di kota",
-        },
-        {
-          correct: false,
-          label: "aku lirik sakit dada karena udara kota yang kotor",
+            "Perkembangan Jati terlihat karena jumlah pertanyaannya berkurang setelah Mira menjelaskan kalimat tersebut.",
         },
         {
           correct: true,
           label:
-            "aku lirik berusaha merawat ingatan dan ikatannya dengan kampung halaman",
+            "Perkembangan Jati ditandai oleh perubahan cara memperlakukan pertanyaan: dari sesuatu yang disembunyikan menjadi bahan penafsiran yang dapat diuji bersama.",
+        },
+        {
+          correct: false,
+          label:
+            "Kesediaan membuka pertemuan berikutnya membuktikan bahwa Jati sudah menjadi pembaca paling mahir dalam kelompok.",
+        },
+        {
+          correct: false,
+          label:
+            "Dua pertanyaan pada akhir cerita menunjukkan bahwa Jati gagal berkembang karena masalahnya bertambah.",
+        },
+        {
+          correct: false,
+          label:
+            "Perubahan Jati hanya disebabkan oleh pujian Mira, meskipun cerita tidak menyebut adanya pujian.",
         },
       ],
     },

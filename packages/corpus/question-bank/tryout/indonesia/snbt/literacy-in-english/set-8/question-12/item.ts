@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "scooter-pilot",
+  stimulus: "passage-3",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "The number of injuries reported was highest in month 3.",
-        },
-        {
-          column: 2,
+          correct: false,
           label:
-            "Each scooter was used for fewer trips in month 4 than in month 1.",
+            "Jonas kept two translations and added a note describing where each was appropriate. The choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "The injury figures include every injury anywhere in the city.",
+            "Jonas kept two translations and added a note describing where each was appropriate. The action transfers responsibility for the unresolved task to another character.",
         },
         {
-          column: 1,
-          label: "Each month's average trip was longer than the month before.",
+          correct: false,
+          label:
+            "Jonas kept two translations and added a note describing where each was appropriate. The decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
+        },
+        {
+          correct: true,
+          label:
+            "Keeping both translations with a scope note shows Jonas treating meaning as context-dependent rather than hiding the ambiguity behind one choice.",
+        },
+        {
+          correct: false,
+          label:
+            "Jonas kept two translations and added a note describing where each was appropriate. The setting alone produces the change, so the character's decision has no role in the development.",
         },
       ],
     },

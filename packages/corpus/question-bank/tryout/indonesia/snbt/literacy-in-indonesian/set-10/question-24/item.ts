@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "application",
-  },
-  stimulus: "taman-siswa",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "di depan memberi teladan",
-        },
-        {
-          correct: false,
-          label: "di tengah membangun semangat",
-        },
-        {
-          correct: false,
-          label: "di depan memberi perintah",
-        },
-        {
           correct: true,
-          label: "di belakang memberi dorongan",
+          label:
+            "Menunjukkan bahwa empati perlu tampak dalam pemeriksaan asumsi dan respons terhadap umpan balik, bukan berhenti pada niat merasa peduli.",
         },
         {
           correct: false,
-          label: "di belakang memberi hukuman",
+          label:
+            "Membuktikan Tari dapat memahami kebutuhan anak hanya dengan membayangkan dirinya berada dalam situasi mereka.",
+        },
+        {
+          correct: false,
+          label:
+            "Mengubah semua permintaan peserta menjadi aturan tetap yang tidak boleh diuji kembali.",
+        },
+        {
+          correct: false,
+          label:
+            "Menetapkan bahwa pencatatan hambatan merupakan tanda kegagalan empati karena masalah masih tersisa.",
+        },
+        {
+          correct: false,
+          label:
+            "Menjelaskan perasaan tiga anak secara lengkap meskipun cerita hanya menunjukkan beberapa pilihan mereka.",
         },
       ],
     },

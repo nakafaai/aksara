@@ -1,40 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
-  },
-  stimulus: "cultivated-meat",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "The organisers of a multilingual youth translation club evaluated a shared glossary with examples from each participant through consultation alone, without comparing the measured outcome across conditions.",
+        },
+        {
           correct: true,
           label:
-            "Cultivated meat should be reviewed and labelled rather than banned outright.",
+            "The translation club compared a participant-built glossary across measured conditions, consulted its community, and supported only a limited extension because usage varies by region and family.",
         },
         {
           correct: false,
           label:
-            "Cultivated meat should replace farmed meat as soon as it becomes cheaper.",
+            "The organisers of a multilingual youth translation club evaluated a shared glossary with examples from each participant through the measured comparison alone, while excluding the affected groups' experience from the decision.",
         },
         {
           correct: false,
           label:
-            "Governments should ban cultivated meat until it has been eaten for decades.",
+            "The organisers of a multilingual youth translation club evaluated a shared glossary with examples from each participant through a comparison and consultation, then treated the short trial as sufficient for permanent adoption.",
         },
         {
           correct: false,
           label:
-            "Traditional farmers should be paid to produce cultivated meat in their regions.",
-        },
-        {
-          correct: false,
-          label:
-            "Food regulators are unable to judge the safety of entirely new products.",
+            "The organisers of a multilingual youth translation club evaluated a shared glossary with examples from each participant mainly by defining a technical term, with the proposed change serving only as background information.",
         },
       ],
     },

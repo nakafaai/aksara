@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
-  },
-  stimulus: "waste-meeting",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "teguran keras Pak Karto karena usulnya membakar sampah",
-        },
-        {
-          correct: false,
-          label: "rasa malu karena dituduh menjadi penyebab batuk anak Bu Ning",
-        },
-        {
-          correct: false,
-          label: "keputusan kelurahan menambah jadwal kedatangan truk sampah",
-        },
-        {
-          correct: false,
-          label: "kemungkinan ia diberi upah untuk mengolah kompos sendiri",
-        },
-        {
           correct: true,
-          label: "tawaran Dina dan temannya mengambil sisa makanan setiap sore",
+          label:
+            "Definisi *atmosfer* mengarahkan pembaca menghubungkan bunyi aula, gerak pengunjung, dan percakapan di meja untuk menafsirkan perubahan suasana.",
+        },
+        {
+          correct: false,
+          label:
+            "Istilah *atmosfer* memastikan satu kelanjutan cerita sehingga pembaca tidak lagi perlu menafsirkan akhir.",
+        },
+        {
+          correct: false,
+          label:
+            "Definisi itu menyamakan *atmosfer* dengan tingkat kebisingan, sehingga suasana tidak mungkin berubah selama bunyi aula tetap ada.",
+        },
+        {
+          correct: false,
+          label:
+            "Penyebutan *atmosfer* membuat kesan pribadi pembaca cukup meskipun bertentangan dengan rincian cerita.",
+        },
+        {
+          correct: false,
+          label:
+            "Definisi tersebut membuat pertanyaan pada kartu menjadi jawaban ilmiah yang menyelesaikan perdebatan kedua anak.",
         },
       ],
     },

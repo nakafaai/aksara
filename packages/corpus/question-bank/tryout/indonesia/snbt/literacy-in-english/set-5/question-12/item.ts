@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "screens-sleep",
+  stimulus: "passage-3",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            'More students in the "more than 3 hours" group than in the "1 to 2 hours" group often felt sleepy.',
+            "Mina asked each member to state one concern before choosing the next step. The choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "The survey measured screen time with tracking apps on students' phones.",
+            "Mina asked each member to state one concern before choosing the next step. The action transfers responsibility for the unresolved task to another character.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "The largest group of students reported 1 to 2 hours of screen time after 8 p.m.",
+            "Mina asked each member to state one concern before choosing the next step. The decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "On average, students with more than 3 hours slept 1.7 hours less than those with less than 1 hour.",
+            "Mina asked each member to state one concern before choosing the next step. The setting alone produces the change, so the character's decision has no role in the development.",
+        },
+        {
+          correct: true,
+          label:
+            "Asking for one concern from each member lets Mina convert disagreement into information before choosing a next step, rather than forcing instant consensus.",
         },
       ],
     },

@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "research-design",
-  },
-  stimulus: "half-sleep",
+  stimulus: "passage-1",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It shows that ducks sleep better when they are surrounded by other ducks.",
+            "The definition of *enzyme* proves that the tested change caused the recorded result, even without the comparison conditions.",
         },
         {
           correct: true,
           label:
-            "It shows that the behaviour changes with how exposed a duck is.",
+            "The definition identifies the biological process represented by the colour-change measure without turning that indirect measure into proof of concentration.",
         },
         {
           correct: false,
           label:
-            "It proves that ducks at the ends were older than ducks in the middle.",
+            "The definition makes *enzyme* a substitute for the controls, so the unmeasured factor no longer limits the conclusion.",
         },
         {
           correct: false,
           label:
-            "It allows the researchers to count how many ducks were in the row.",
+            "The definition broadens *enzyme* from this short investigation to every similar system under any condition.",
         },
         {
           correct: false,
-          label: "It shows that ducks in the middle never sleep at all.",
+          label:
+            "The term *enzyme* names the report's limitation rather than the concept represented by the measurements.",
         },
       ],
     },

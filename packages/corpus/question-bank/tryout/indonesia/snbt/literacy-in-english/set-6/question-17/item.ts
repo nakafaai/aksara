@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "railway-time",
+  stimulus: "passage-4",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Bristol's local noon came about ten minutes after London's.",
-        },
-        {
-          column: 2,
+          correct: false,
           label:
-            "Greenwich time became the legal time in Great Britain in 1840.",
+            "Miles left one repaired seam visible instead of colouring it to match. The recurring object's physical appearance fixes its complete meaning from the first mention.",
         },
         {
-          column: 2,
-          label: "The American railroads agreed on six time zones in 1883.",
-        },
-        {
-          column: 1,
+          correct: false,
           label:
-            "The United States government made the time zones law in 1918.",
+            "Miles left one repaired seam visible instead of colouring it to match. The ending states the object's meaning directly, making the earlier actions irrelevant.",
+        },
+        {
+          correct: true,
+          label:
+            "Choosing the gold seam turns the repair from something to conceal into evidence of care, and the thin line of light confirms that change.",
+        },
+        {
+          correct: false,
+          label:
+            "Miles left one repaired seam visible instead of colouring it to match. The setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+        },
+        {
+          correct: false,
+          label:
+            "Miles left one repaired seam visible instead of colouring it to match. The object keeps one fixed meaning even as the character's action and the final response change.",
         },
       ],
     },

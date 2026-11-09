@@ -1,40 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "conclusion",
-  },
-  stimulus: "liquefaction",
+  stimulus: "passage-1",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Likuefaksi dapat dihentikan dengan alat yang meredam getaran gempa di permukiman.",
-        },
-        {
-          correct: false,
-          label:
-            "Pondasi yang dalam selalu lebih murah daripada memilih lahan yang aman untuk dihuni.",
-        },
-        {
-          correct: false,
-          label:
-            "Setelah 2018, warga boleh membangun kembali di semua bekas lokasi likuefaksi.",
+          label: "Mengukur periode melalui satu perbandingan awal",
         },
         {
           correct: true,
-          label:
-            "Kerugian likuefaksi dapat dikurangi, antara lain dengan memilih lahan yang tepat.",
+          label: "Panjang Tali dan Periode Bandul dalam Pengukuran Manual",
+        },
+        {
+          correct: false,
+          label: "Menjadikan periode penjelasan tunggal atas hasil pengamatan",
+        },
+        {
+          correct: false,
+          label: "Kaidah akhir dari perbandingan pertama tentang periode",
         },
         {
           correct: false,
           label:
-            "Mengeringkan tanah sebelum dibangun mungkin justru memperparah likuefaksi.",
+            "Keterbatasan yang membuat uji lanjutan periode tidak diperlukan",
         },
       ],
     },

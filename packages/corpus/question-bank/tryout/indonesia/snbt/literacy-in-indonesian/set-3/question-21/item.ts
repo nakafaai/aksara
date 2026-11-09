@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
-  },
-  stimulus: "village-tourism",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menghentikan kunjungan wisatawan pada akhir pekan secara bertahap.",
+            "Raka menghadapi hambatan dalam menyelesaikan proyek dokumentasi kampung dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
+        },
+        {
+          correct: false,
+          label:
+            "Raka menghadapi hambatan dalam menyelesaikan proyek dokumentasi kampung dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
+        },
+        {
+          correct: false,
+          label:
+            "Raka menghadapi hambatan dalam menyelesaikan proyek dokumentasi kampung dan memahami metakognisi sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
         },
         {
           correct: true,
           label:
-            "Melayani minat wisatawan tanpa mengubah upacara menjadi pertunjukan.",
+            "Raka mengatasi kebiasaan menunda proyek dokumentasi dengan tiga langkah terukur dan pemeriksaan teman, lalu menyelesaikan wawancara pertama serta memperbaiki jadwal.",
         },
         {
           correct: false,
           label:
-            "Memindahkan upacara syukur panen ke hari Sabtu agar lebih ramai.",
-        },
-        {
-          correct: false,
-          label:
-            "Mengganti upacara syukur panen dengan pertunjukan tari dan musik.",
-        },
-        {
-          correct: false,
-          label: "Membuka area keramat bagi wisatawan pada akhir pekan saja.",
+            "Raka menghadapi hambatan dalam menyelesaikan proyek dokumentasi kampung dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
         },
       ],
     },

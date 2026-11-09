@@ -1,40 +1,29 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "plot-function",
-  },
-  stimulus: "ferry-ticket",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Menjelaskan alasan Pak Rasyid memilih bekerja sebagai petugas loket pelabuhan.",
-        },
-        {
-          correct: false,
-          label:
-            "Menunjukkan bahwa pelayaran dari Teluk Sari ke kota selalu berbahaya.",
+          label: "Kalimat (1)",
         },
         {
           correct: true,
-          label:
-            "Menunjukkan bahwa melepas Laila memaksanya menghadapi ketakutan lama akan kehilangan.",
+          label: "Kalimat (10)",
         },
         {
           correct: false,
-          label:
-            "Menggambarkan ketegasan Pak Rasyid terhadap penumpang yang melanggar aturan.",
+          label: "Kalimat (7)",
         },
         {
           correct: false,
-          label:
-            "Menyiratkan bahwa Laila akan mengalami nasib yang sama dengan istri Pak Rasyid.",
+          label: "Kalimat (3)",
+        },
+        {
+          correct: false,
+          label: "Kalimat (8)",
         },
       ],
     },

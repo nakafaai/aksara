@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "zoo-purpose",
+  stimulus: "passage-2",
   versions: {
     en: {
-      columns: ["Yes", "No"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "The Arabian oryx was bred in captivity and returned to its homeland.",
+            "The comparison condition produced a mean value of $$37$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
         },
         {
-          column: 1,
-          label: "Elephants in captivity may repeatedly pace the same route.",
-        },
-        {
-          column: 2,
-          label: "Most animals in most zoos belong to endangered species.",
-        },
-        {
-          column: 2,
+          correct: false,
           label:
-            "Large, well-designed enclosures fully meet the needs of polar bears.",
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
+        },
+        {
+          correct: false,
+          label:
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
+        },
+        {
+          correct: false,
+          label:
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
+        },
+        {
+          correct: true,
+          label:
+            "The trial averaged $$54$$ correctly sorted bags per period, compared with $$36$$ and $$37$$. Changing visitor numbers and food types support further testing across more evenings.",
         },
       ],
     },

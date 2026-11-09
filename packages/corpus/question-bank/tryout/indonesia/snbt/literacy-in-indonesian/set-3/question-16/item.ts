@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "research-design",
-  },
-  stimulus: "canteen-labels",
+  stimulus: "passage-4",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Jumlah siswa yang disurvei terlalu banyak untuk menggambarkan seluruh sekolah.",
+            "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan yang final dan dianggap berlaku untuk semua masa.",
         },
         {
           correct: false,
           label:
-            "Penjualan makanan berlabel kuning tidak berubah sama sekali selama pencatatan.",
+            "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan yang menghapus perbedaan tujuan kedua sumber.",
+        },
+        {
+          correct: false,
+          label:
+            "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan dengan mengikuti sumber yang lebih baru secara otomatis.",
+        },
+        {
+          correct: false,
+          label:
+            "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan tanpa menilai asal serta tujuan tiap sumber.",
         },
         {
           correct: true,
           label:
-            "Kenaikan penjualan hijau mungkin disebabkan turunnya harga, bukan oleh labelnya.",
-        },
-        {
-          correct: false,
-          label:
-            "Pencatatan seharusnya dilakukan oleh kepala sekolah, bukan oleh guru IPA.",
-        },
-        {
-          correct: false,
-          label:
-            "Label merah membuat makanan tampak lebih menarik bagi sebagian siswa.",
+            "Siswa membandingkan dua jenis sumber tentang panggung baca di terminal untuk menyusun penjelasan yang terbatas dan dapat diperiksa.",
         },
       ],
     },

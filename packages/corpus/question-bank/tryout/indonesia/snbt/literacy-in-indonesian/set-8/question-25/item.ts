@@ -1,40 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
-  },
-  stimulus: "bandung-conference",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "semua peserta konferensi sebenarnya mendukung blok Uni Soviet",
+          label: "Merata-ratakan Semua Angka agar Laporan Cepat Selesai",
         },
         {
           correct: true,
-          label:
-            "peserta konferensi tidak selalu sepakat walaupun memiliki tujuan bersama",
+          label: "Angka Menyimpang yang Tidak Dihapus Dito",
         },
         {
           correct: false,
-          label:
-            "konferensi itu dibatalkan sebelum Dasasila Bandung disepakati",
+          label: "Membuktikan Kedalaman Sumur Tepat $$4{,}81$$ Meter",
         },
         {
           correct: false,
-          label:
-            "Eropa Timur menjadi salah satu peserta Konferensi Asia Afrika",
+          label: "Integritas Ilmiah sebagai Alasan Memakai Semua Pengukuran",
         },
         {
           correct: false,
-          label:
-            "negara-negara Afrika tidak diizinkan berbicara sama sekali dalam konferensi itu",
+          label: "Bekas Lumpur yang Membuat Pengukuran Tidak Berguna",
         },
       ],
     },

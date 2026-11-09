@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
-  },
-  stimulus: "grading-curve",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,23 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Teachers should be paid more for grading against detailed standards.",
+            "Product-life extension as the main measure in a service trial",
+        },
+        {
+          correct: false,
+          label: "From a short comparison to a permanent service change",
         },
         {
           correct: true,
-          label:
-            "A curve is easy to run, but it teaches students to value beating others.",
+          label: "Testing tool cards for cautious repair-café improvement",
         },
         {
           correct: false,
-          label:
-            "Students should learn to value simple answers over complicated ones.",
+          label: "Consultation without comparable outcome measures",
         },
         {
           correct: false,
-          label:
-            "Simple tests are better than difficult tests for students of every level.",
-        },
-        {
-          correct: false,
-          label:
-            "Students would learn more if their teachers had fewer papers to read.",
+          label: "A local service trial with no follow-up decision",
         },
       ],
     },

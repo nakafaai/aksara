@@ -1,39 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "text-comparison",
-  },
-  stimulus: "remote-work",
+  stimulus: "passage-4",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "semua karyawan sebaiknya bekerja di kantor lima hari seminggu",
+          label: "Mantel M-17 yang Pasti Bertahan Selama Dua Puluh Satu Tahun",
         },
         {
           correct: true,
-          label: "kerja dari rumah membawa manfaat bagi sebagian pekerja",
+          label: "Menelusuri Mantel Teater melalui Foto dan Catatan Perawatan",
         },
         {
           correct: false,
-          label:
-            "karyawan baru belajar paling banyak dari pelatihan lewat layar",
+          label: "Mengisi Celah Arsip dengan Kemiripan Visual",
         },
         {
           correct: false,
-          label:
-            "perusahaan sebaiknya hanya merekrut orang dari kota yang sama",
+          label: "Buku Perawatan sebagai Bukti Lengkap Penggunaan Panggung",
         },
         {
           correct: false,
-          label:
-            "rapat dadakan adalah cara terbaik untuk menyelesaikan laporan",
+          label: "Foto Publikasi yang Lebih Netral daripada Catatan Internal",
         },
       ],
     },

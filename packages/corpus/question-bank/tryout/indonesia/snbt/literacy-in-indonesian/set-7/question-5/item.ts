@@ -1,40 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-view",
-  },
-  stimulus: "gut-bacteria",
+  stimulus: "passage-1",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "yakin bahwa bakteri usus adalah penyebab utama obesitas pada manusia",
-        },
-        {
           correct: true,
-          label:
-            "mengakui ada hubungan, tetapi berhati-hati soal sebab-akibatnya pada manusia",
+          label: "Suhu, Pengembangan Balon, dan Hipotesis Produksi Gas Ragi",
+        },
+        {
+          correct: false,
+          label: "Mengukur hipotesis melalui satu perbandingan awal",
         },
         {
           correct: false,
           label:
-            "menolak semua penelitian yang memakai tikus sebagai hewan percobaan",
+            "Menjadikan hipotesis penjelasan tunggal atas hasil pengamatan",
+        },
+        {
+          correct: false,
+          label: "Kaidah akhir dari perbandingan pertama tentang hipotesis",
         },
         {
           correct: false,
           label:
-            "menganggap mikrobioma tidak berperan apa pun dalam kesehatan manusia",
-        },
-        {
-          correct: false,
-          label:
-            "menyarankan agar setiap orang gemuk segera menjalani pemindahan bakteri usus",
+            "Keterbatasan yang membuat uji lanjutan hipotesis tidak diperlukan",
         },
       ],
     },

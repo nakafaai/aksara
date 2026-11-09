@@ -1,40 +1,29 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
-  },
-  stimulus: "lichen-air",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Mencuci beras akan mengurangi jumlah beras",
+        },
+        {
           correct: true,
-          label:
-            "Simpulan itu lemah karena sebagian lumut kerak jingga justru subur di tempat kaya nitrogen.",
+          label: "Pati bebas pada permukaan butiran beras berkurang",
         },
         {
           correct: false,
-          label:
-            "Simpulan itu tepat karena lumut kerak hanya dapat hidup di udara yang bersih.",
+          label: "Mencuci beras akan merusak bentuk beras",
         },
         {
           correct: false,
-          label:
-            "Simpulan itu tepat karena lumut kerak berwarna jingga termasuk jenis yang paling peka.",
+          label: "Beras yang dicuci akan mengurangi cita rasa khas dari beras",
         },
         {
           correct: false,
-          label:
-            "Simpulan itu lemah karena lumut kerak tidak dapat tumbuh di sekitar peternakan.",
-        },
-        {
-          correct: false,
-          label:
-            "Simpulan itu lemah karena pengamatan seharusnya dilakukan pada musim hujan.",
+          label: "Kualitas beras yang dicuci tidak sebaik yang tidak dicuci",
         },
       ],
     },

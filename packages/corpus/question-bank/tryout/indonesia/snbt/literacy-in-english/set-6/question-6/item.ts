@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
-  },
-  stimulus: "grading-curve",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Grades should be abolished because they turn students into rivals.",
+            "The organisers of a community repair café evaluated a card listing the tools needed for each repair through consultation alone, without comparing the measured outcome across conditions.",
         },
         {
           correct: false,
           label:
-            "A strict curve is the fairest way to deal with tests that are too hard.",
+            "The organisers of a community repair café evaluated a card listing the tools needed for each repair through the measured comparison alone, while excluding the affected groups' experience from the decision.",
+        },
+        {
+          correct: false,
+          label:
+            "The organisers of a community repair café evaluated a card listing the tools needed for each repair through a comparison and consultation, then treated the short trial as sufficient for permanent adoption.",
+        },
+        {
+          correct: false,
+          label:
+            "The organisers of a community repair café evaluated a card listing the tools needed for each repair mainly by defining a technical term, with the proposed change serving only as background information.",
         },
         {
           correct: true,
           label:
-            "Grades should measure students against clear standards, not each other.",
-        },
-        {
-          correct: false,
-          label:
-            "Teachers should give more A grades so that weaker classes are protected.",
-        },
-        {
-          correct: false,
-          label:
-            "Study groups are more useful than grades for judging what students know.",
+            "The repair café compared tool-list cards across measured conditions, consulted the people involved, and supported only a limited extension because repair difficulty varied by object.",
         },
       ],
     },

@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
-  },
-  stimulus: "machine-pictures",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Many people enjoy making pictures with image generators in their free time.",
+            "Calling a cost fixed establishes that its quoted price is accurate and that the event is affordable.",
         },
         {
           correct: false,
           label:
-            "Some image generators can now produce a finished picture in under a second.",
+            "The definition makes every event-level cost permanent, even when the activity range or contract changes.",
         },
         {
           correct: false,
           label:
-            "The Copyright Office receives more applications each year than it did before.",
-        },
-        {
-          correct: false,
-          label:
-            "Most pictures made with image generators are shared online without any credit.",
+            "The term replaces the workshop data by proving that shared costs can never be counted more than once.",
         },
         {
           correct: true,
           label:
-            "Detailed prompts can fix layout, colour and style so each run looks alike.",
+            "The definition makes the classification depend on a stated activity range, so fixed does not mean that a cost is immune to every later change.",
+        },
+        {
+          correct: false,
+          label:
+            "The definition explains why estimated prices and final supplier quotes can be treated as identical evidence.",
         },
       ],
     },

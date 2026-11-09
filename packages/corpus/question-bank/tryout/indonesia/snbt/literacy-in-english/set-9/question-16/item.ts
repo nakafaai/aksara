@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "braille-code",
+  stimulus: "passage-4",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "It could only be used by soldiers who were writing at night.",
+          label:
+            "The recurring object mainly establishes the setting and changes little in relation to the conflict.",
         },
         {
           correct: false,
           label:
-            "It was printed in large raised letters that were slow to read.",
-        },
-        {
-          correct: false,
-          label: "It represented spelling instead of the sounds of words.",
+            "The character's final decision removes the ambiguity that the recurring object previously carried.",
         },
         {
           correct: true,
-          label: "Its symbols used too many dots to be felt with one touch.",
+          label:
+            "Ravi traces a wrongly sorted bag backward from the final bin to a mismatched permit, revealing how one early symbol can spread an error through the market.",
         },
         {
           correct: false,
-          label: "It was too expensive for the school in Paris to buy.",
+          label:
+            "The passage uses plot structure as a descriptive label without tying it to the character's choice.",
+        },
+        {
+          correct: false,
+          label:
+            "The conflict is settled by the setting before the character's final action changes the object's meaning.",
         },
       ],
     },

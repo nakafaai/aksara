@@ -1,40 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
-  },
-  stimulus: "taman-siswa",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "menolaknya sepenuhnya karena gagasan itu berasal dari bangsa penjajah",
+          label: "Aturan yang Sama untuk Semua Peserta",
         },
         {
           correct: false,
-          label:
-            "menganggapnya lebih unggul daripada semua gagasan dari bangsanya sendiri",
+          label: "Tiga Jawaban yang Menyelesaikan Semua Hambatan",
         },
         {
           correct: false,
-          label:
-            "menilainya hanya cocok untuk anak-anak keturunan Eropa di Hindia Belanda",
-        },
-        {
-          correct: false,
-          label:
-            "baru mempelajarinya setelah Taman Siswa membuka cabang di banyak kota",
+          label: "Permainan Sempurna setelah Peluit Diganti",
         },
         {
           correct: true,
-          label:
-            "mempelajarinya, tetapi tetap mendasarkan pendidikan pada budaya sendiri",
+          label: "Tari Mengubah Aturan setelah Mendengar",
+        },
+        {
+          correct: false,
+          label: "Meja Tinggi sebagai Satu-satunya Masalah Taman",
         },
       ],
     },

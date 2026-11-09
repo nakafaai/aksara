@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "grading-curve",
+  stimulus: "passage-2",
   versions: {
     en: {
-      columns: ["Yes", "No"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Under a curve, helping a classmate can lower your own chances.",
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "The author grants that the concerns of curving's supporters are real.",
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "A strict curve ensures that every student with an A has mastered the material.",
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Teachers should never adjust marks after a test turns out to be difficult.",
+            "The comparison condition produced a mean value of $$15$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
+        },
+        {
+          correct: true,
+          label:
+            "The trial mean reached $$25$$ repairs per session completed without fetching a missing tool, compared with $$14$$ and $$15$$. Differences in repair difficulty support a limited follow-up rather than a general rule.",
         },
       ],
     },

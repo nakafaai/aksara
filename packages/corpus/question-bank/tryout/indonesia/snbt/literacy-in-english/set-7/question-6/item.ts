@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
-  },
-  stimulus: "classroom-points",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Schools should ban all games because they distract pupils from learning.",
+            "The organisers of a neighbourhood flood-warning exercise evaluated an alert that named the street, expected depth, and safe route through consultation alone, without comparing the measured outcome across conditions.",
         },
         {
           correct: false,
           label:
-            "Points and badges are the most effective way to keep pupils reading for years.",
+            "The organisers of a neighbourhood flood-warning exercise evaluated an alert that named the street, expected depth, and safe route through the measured comparison alone, while excluding the affected groups' experience from the decision.",
         },
         {
           correct: true,
           label:
-            "Schools should borrow games' feedback and challenge, not just their points.",
+            "The flood exercise compared a specific route-based alert across measured conditions, consulted affected groups, and supported only a limited extension because a drill cannot reproduce real emergency stress.",
         },
         {
           correct: false,
           label:
-            "Leaderboards should show every pupil's rank so that all try harder.",
+            "The organisers of a neighbourhood flood-warning exercise evaluated an alert that named the street, expected depth, and safe route through a comparison and consultation, then treated the short trial as sufficient for permanent adoption.",
         },
         {
           correct: false,
           label:
-            "Pupils would learn more if teachers gave certificates for every task.",
+            "The organisers of a neighbourhood flood-warning exercise evaluated an alert that named the street, expected depth, and safe route mainly by defining a technical term, with the proposed change serving only as background information.",
         },
       ],
     },

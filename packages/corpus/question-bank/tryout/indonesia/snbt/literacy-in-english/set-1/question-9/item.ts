@@ -1,37 +1,29 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-structure",
-  },
-  stimulus: "parking-minimums",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "a deliberate strategy by car makers to raise their sales.",
-        },
-        {
-          correct: false,
-          label:
-            "a temporary inconvenience that ends once construction is finished.",
-        },
-        {
-          correct: false,
-          label: "a benefit for cyclists that planners had not expected.",
+          label: "a ranking of sports by the calories they burn.",
         },
         {
           correct: true,
-          label:
-            "an unintended effect that worsens the problem the rule was meant to manage.",
+          label: "when and how to seek additional support for stress.",
         },
         {
           correct: false,
-          label: "a contradiction in the reasoning of the critics of reform.",
+          label: "replacing balanced meals with dietary supplements.",
+        },
+        {
+          correct: false,
+          label: "ways to eliminate every source of stress.",
+        },
+        {
+          correct: false,
+          label: "the history of international nutrition guidance.",
         },
       ],
     },

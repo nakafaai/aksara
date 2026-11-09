@@ -1,40 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "conclusion",
-  },
-  stimulus: "railway-time",
+  stimulus: "passage-4",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "Practical needs led companies to agree on a standard before the law did.",
+          label: "A seam that carries the past forward",
         },
         {
           correct: false,
-          label:
-            "Governments invented standard time and then forced railways to accept it.",
+          label: "A recurring object that remains part of the setting",
         },
         {
           correct: false,
-          label:
-            "Local time was abolished as soon as the first railway timetable appeared.",
+          label: "A conflict settled before the character's final choice",
         },
         {
           correct: false,
-          label:
-            "Standard time spread from the United States to Britain after 1883.",
+          label: "Sensory imagery as a term without a role in the story",
         },
         {
           correct: false,
-          label:
-            "Private companies always choose better standards than governments do.",
+          label: "An ending that removes the object's interpretive tension",
         },
       ],
     },

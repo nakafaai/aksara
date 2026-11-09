@@ -1,33 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "fiction",
-    topic: "explicit-information",
-  },
-  stimulus: "mobile-library",
+  stimulus: "passage-2",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Dimas selalu datang paling awal ke balai dusun.",
+          correct: false,
+          label: "Mengukur daya dukung melalui satu perbandingan awal",
         },
         {
-          column: 1,
-          label: "Wulan membawa buku dari perpustakaan kecamatan.",
-        },
-        {
-          column: 1,
+          correct: false,
           label:
-            "Kalimat yang diucapkan Dimas tentang paus biru tidak tertulis di halaman itu.",
+            "Menjadikan daya dukung penjelasan tunggal atas hasil pengamatan",
         },
         {
-          column: 2,
-          label: "Wulan menegur Dimas karena berpura-pura dapat membaca.",
+          correct: true,
+          label: "Daya Dukung dalam Simulasi Keping: Aturan dan Batas",
+        },
+        {
+          correct: false,
+          label: "Kaidah akhir dari perbandingan pertama tentang daya dukung",
+        },
+        {
+          correct: false,
+          label:
+            "Keterbatasan yang membuat uji lanjutan daya dukung tidak diperlukan",
         },
       ],
     },

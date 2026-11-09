@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
-  },
-  stimulus: "mobile-library",
+  stimulus: "passage-3",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Ia ingin menghafal seluruh isi buku itu untuk mengikuti lomba di sekolahnya.",
+            "Klinik menetapkan penanda baru sebagai sistem tetap karena jumlah pasien yang tidak kembali ke meja sebelumnya meningkat dari $$40$$ menjadi $$56$$.",
         },
         {
           correct: false,
           label:
-            "Buku-buku lain di kotak Wulan sudah selesai ia baca semuanya.",
+            "Klinik membatalkan penanda baru karena panah di lantai tidak dapat digunakan oleh semua pasien dalam setiap keadaan.",
         },
         {
           correct: false,
           label:
-            "Wulan melarang anak-anak meminjam buku selain buku bergambar.",
+            "Klinik menyimpulkan bahwa penanda baru memperbaiki seluruh mutu layanan karena jadwal dan jumlah petugas tidak berubah.",
+        },
+        {
+          correct: false,
+          label:
+            "Klinik mengutamakan masukan pengguna dan mengabaikan perbandingan angka karena kebutuhan medis pasien berbeda.",
         },
         {
           correct: true,
           label:
-            "Ia belum lancar membaca dan menutupinya dengan buku yang gambarnya ia kenal.",
-        },
-        {
-          correct: false,
-          label: "Ia ingin menjadi nelayan yang mencari ikan paus.",
+            "Klinik memakai hasil perbandingan dan masukan aksesibilitas untuk memperbaiki penanda, lalu melanjutkan pengujian secara terbatas sebelum memutuskan penerapan tetap.",
         },
       ],
     },

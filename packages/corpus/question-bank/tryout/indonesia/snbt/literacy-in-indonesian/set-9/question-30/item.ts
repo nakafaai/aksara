@@ -1,37 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "fiction",
-    topic: "explicit-information",
-  },
-  stimulus: "film-review",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Tokoh ibu hanya muncul dalam satu adegan di awal film.",
+          label: "Menghapus Label Lama demi Katalog Baru",
+        },
+        {
+          correct: false,
+          label: "Kostum $$1998$$ yang Tidak Boleh Diubah",
         },
         {
           correct: true,
-          label:
-            "Ia muncul di banyak adegan, tetapi pikirannya tidak pernah ditunjukkan.",
+          label: "Benang Putih di Balik Mantel",
         },
         {
           correct: false,
-          label: "Pemeran tokoh ibu baru pertama kali berakting dalam film.",
+          label: "Raka dan Riwayat Kostum yang Sudah Lengkap",
         },
         {
           correct: false,
-          label:
-            "Tokoh ibu tidak pernah ikut menonton lomba layang-layang bersama Bima.",
-        },
-        {
-          correct: false,
-          label: "Tokoh ibu menentang Bima menjual layang-layang di lapangan.",
+          label: "Pindah Gedung tanpa Menyimpan Jejak Lama",
         },
       ],
     },

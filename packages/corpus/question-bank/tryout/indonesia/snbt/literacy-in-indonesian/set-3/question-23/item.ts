@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "youth-pledge",
+  stimulus: "passage-5",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: true,
           label:
-            "Ikrar 1928 menyatakan bahwa para pemuda mengaku berbahasa satu.",
+            "Perubahan terjadi ketika Raka memecah hambatan menjadi tindakan yang dapat diperiksa.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Bahasa Melayu dipahami di banyak daerah karena lama menjadi bahasa perdagangan.",
+            "Kemajuan bergantung pada penyelesaian tugas besar sebelum meminta orang lain meninjaunya.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Nama bahasa Indonesia sudah disepakati pada Kongres Pemuda I tahun 1926.",
+            "Benda atau latar membentuk hasil lebih kuat daripada pilihan khusus yang dibuat tokoh.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Bahasa Indonesia ditetapkan sebagai bahasa negara dalam Undang-Undang Dasar 1945.",
+            "Bukti yang belum pasti sebaiknya disimpan sampai tokoh dapat menawarkan hasil lengkap.",
+        },
+        {
+          correct: false,
+          label:
+            "Tindakan kecil terutama berguna karena menunda bagian konflik yang belum selesai.",
         },
       ],
     },

@@ -1,12 +1,6 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-purpose",
-  },
-  stimulus: "octopus-arms",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +8,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "show that octopuses feel pain in the same way that humans do.",
+            "the other sentences list devices without explaining the opening claim.",
         },
         {
           correct: false,
           label:
-            "contrast fast human reflexes with the slower responses of octopus arms.",
+            "the other sentences give historical examples that are unrelated to the opening claim.",
         },
         {
           correct: false,
           label:
-            "argue that human arms are more independent than octopus arms.",
+            "the first sentence contradicts the warnings in the other sentences.",
+        },
+        {
+          correct: false,
+          label:
+            "the other sentences repeat the first sentence without adding detail.",
         },
         {
           correct: true,
           label:
-            "illustrate a response that can begin before the central brain is involved.",
-        },
-        {
-          correct: false,
-          label:
-            "warn readers about the risks of handling octopuses in laboratories.",
+            "the other sentences explain what successful integration looks like and how it supports the opening claim.",
         },
       ],
     },

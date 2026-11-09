@@ -1,39 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
-  },
-  stimulus: "antikythera",
+  stimulus: "passage-4",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "The term *tone* confirms one final outcome and therefore removes the need to interpret the ending.",
+        },
+        {
+          correct: false,
+          label:
+            "The definition treats *tone* as the physical object itself rather than as a feature of the narrative ending.",
+        },
+        {
+          correct: false,
+          label:
+            "The term *tone* makes the reader's personal impression sufficient even when it conflicts with story details.",
+        },
+        {
           correct: true,
           label:
-            "They modelled how the Moon's speed changes, not just its average position.",
+            "The definition of *tone* explains how Eli's direct invitation shifts the display's attitude from distant expertise toward welcoming curiosity.",
         },
         {
           correct: false,
           label:
-            "They believed the Moon moved at exactly the same speed at all times.",
-        },
-        {
-          correct: false,
-          label:
-            "They used the gears mainly to decorate the outside of the box.",
-        },
-        {
-          correct: false,
-          label: "They copied the design from medieval astronomical clocks.",
-        },
-        {
-          correct: false,
-          label:
-            "They could not predict where the Moon would appear in the sky.",
+            "The definition explains only the setting, so the recurring object and the character's action are irrelevant.",
         },
       ],
     },

@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "social-media-age",
+  stimulus: "passage-2",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Penulis menilai pemindaian wajah sebagai cara pemeriksaan usia yang paling aman.",
+            'Karena langkah "siswa membandingkan susunan seri dan paralel sambil menjaga jenis baterai tetap sama" dapat diulang, model sudah mencakup faktor yang hilang ketika model memakai tegangan rendah dan tidak mewakili instalasi rumah dan dapat menggantikan pengamatan lapangan.',
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Sebagian besar platform selama ini memeriksa usia hanya dengan menanyakan tanggal lahir.",
+            "Keterbatasan bahwa model memakai tegangan rendah dan tidak mewakili instalasi rumah membuat hubungan bahwa susunan komponen menentukan jalur arus dan perilaku setiap lampu tidak dapat diperiksa, bahkan di dalam model.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Menurut penulis, larangan dapat mendorong remaja pindah ke aplikasi yang lebih sulit diawasi.",
+            "Hubungan bahwa susunan komponen menentukan jalur arus dan perilaku setiap lampu dapat diterapkan langsung pada keadaan nyata selama urutan model diulang dengan cara yang sama.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Penulis mengusulkan agar notifikasi akun remaja dimatikan sepanjang hari.",
+            "Pengulangan model dapat menguji hubungan susunan dan perilaku lampu, tetapi hasilnya menjadi hipotesis untuk pengamatan nyata karena model bertegangan rendah dan bukan instalasi rumah.",
+        },
+        {
+          correct: false,
+          label:
+            "Definisi istilah pada akhir bacaan sudah cukup membuktikan hubungan sebab dalam rangkaian listrik dengan dua lampu, meskipun bagian model tidak dibandingkan.",
         },
       ],
     },

@@ -1,39 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "text-comparison",
-  },
-  stimulus: "electric-cars",
+  stimulus: "passage-4",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "penilaian tentang ke mana dana insentif sebaiknya diarahkan",
+          label:
+            "Buku pesanan menunjukkan perubahan jenis perbaikan, sedangkan cerita penjahit memberi kemungkinan alasan pelanggan. Gabungan keduanya mendukung penafsiran perubahan kebutuhan, tetapi tidak menetapkan motif semua pelanggan.",
         },
         {
           correct: false,
           label:
-            "pengakuan bahwa pembuatan baterai mobil listrik menghasilkan emisi",
+            "Buku pesanan membuktikan alasan setiap pelanggan memilih reparasi karena jenis perbaikan selalu menunjukkan motifnya.",
         },
         {
           correct: false,
           label:
-            "anggapan bahwa motor listrik lebih boros energi daripada mesin bensin",
+            "Cerita tiga penjahit lebih dapat dipercaya daripada catatan dua puluh tahun karena kesaksian lisan selalu menjelaskan konteks secara lengkap.",
         },
         {
           correct: false,
           label:
-            "keyakinan bahwa emisi mobil listrik sama persis dengan mobil bensin",
+            "Jika jenis perbaikan dan alasan pelanggan berbeda, salah satu sumber tidak dapat dipakai untuk menulis sejarah reparasi.",
         },
         {
           correct: false,
           label:
-            "kemungkinan bahwa listrik bersih tidak pernah tersedia di negara itu",
+            "Setelah kedua sumber dibandingkan, siapa yang membuat catatan dan kapan cerita direkam tidak lagi memengaruhi penafsiran.",
         },
       ],
     },

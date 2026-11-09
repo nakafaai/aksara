@@ -1,38 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "application",
-  },
-  stimulus: "deep-vents",
+  stimulus: "passage-1",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Europa is known to have tube worms living beneath its ice.",
+          label: "Measuring solute concentration in one preliminary comparison",
         },
         {
           correct: false,
           label:
-            "Vent animals could be carried to Europa by deep ocean currents.",
+            "Treating the solute as the sole explanation for the observed result",
+        },
+        {
+          correct: false,
+          label: "A final rule derived from the first solute trial",
+        },
+        {
+          correct: false,
+          label: "A limitation that makes another solute trial unnecessary",
         },
         {
           correct: true,
-          label:
-            "Chemical energy like that at vents might support life without light.",
-        },
-        {
-          correct: false,
-          label: "Europa's ice is made mostly of hydrogen sulphide from vents.",
-        },
-        {
-          correct: false,
-          label:
-            "Scientists plan to move vent bacteria to Europa to start life there.",
+          label: "Testing dissolved salt and the temperature of ice formation",
         },
       ],
     },
