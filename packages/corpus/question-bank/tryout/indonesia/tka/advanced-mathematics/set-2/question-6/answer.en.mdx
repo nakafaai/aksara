@@ -1,0 +1,21 @@
+By the remainder theorem, the remainder on division by <InlineMath math="x-c" /> equals <InlineMath math="P(c)" />. So the problem says <InlineMath math="P(1)=P(2)=P(4)=5" />, and you want <InlineMath math="P(3)" />.
+
+The key is the helper polynomial <InlineMath math="Q(x)=P(x)-5" />. It **is zero at** <InlineMath math="x=1" />, <InlineMath math="x=2" /> **and** <InlineMath math="x=4" />, so by the factor theorem <InlineMath math="Q(x)" /> is divisible by <InlineMath math="(x-1)(x-2)(x-4)" />. <InlineMath math="Q" /> has degree three and its <InlineMath math="x^3" />-coefficient is still <InlineMath math="2" />, so the only other factor is the constant <InlineMath math="2" />.
+
+<BlockMath math="\begin{aligned}
+P(x)-5&=2(x-1)(x-2)(x-4) \\
+P(x)&=2(x-1)(x-2)(x-4)+5
+\end{aligned}" />
+
+Now substitute <InlineMath math="x=3" />.
+
+<BlockMath math="P(3)=2(2)(1)(-1)+5=-4+5=1" />
+
+As a check, <InlineMath math="P(1)" />, <InlineMath math="P(2)" /> and <InlineMath math="P(4)" /> each equal <InlineMath math="0+5=5" />, because one factor is zero.
+
+So the remainder when <InlineMath math="P(x)" /> is divided by <InlineMath math="x-3" /> is <InlineMath math="1" />.
+
+- <InlineMath math="-4" /> forgets to add the <InlineMath math="5" /> back, so it is <InlineMath math="Q(3)" />, not <InlineMath math="P(3)" />.
+- <InlineMath math="5" /> assumes the remainder is the same for every linear divisor. That only holds at the three given points.
+- <InlineMath math="9" /> comes from writing the factor <InlineMath math="3-4" /> as <InlineMath math="1" />, which makes the product positive.
+- <InlineMath math="3" /> forgets the leading coefficient <InlineMath math="2" /> and uses <InlineMath math="P(x)=(x-1)(x-2)(x-4)+5" />.
