@@ -18,10 +18,33 @@ Trigonometrische Werte gelten für **Winkel in jedem Quadranten**, also auch au�
 
 Um trigonometrische Funktionen beliebiger Winkel zu verstehen, verwenden wir den Einheitskreis. Er hat den **Radius** <InlineMath math="1" /> und seinen Mittelpunkt im Ursprung <InlineMath math="O(0,0)" />.
 
-<UnitCircle
-  title="Erkundung des Einheitskreises"
-  description="Ändere den Winkel im Eingabefeld und beobachte, wie sich die Koordinaten des Kreispunkts ändern."
-  angle={30}
+<MathVisual
+  title={<>Erkundung des Einheitskreises</>}
+  description={<>Ändere den Winkel im Eingabefeld und beobachte, wie sich die Koordinaten des Kreispunkts ändern.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 30, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+    ],
+  }}
 />
 
 Dabei gilt:
@@ -45,10 +68,33 @@ Dabei gilt:
 
 Bei einer Bewegung um den Kreis können die Koordinaten <InlineMath math="x" /> und <InlineMath math="y" /> positiv oder negativ sein. Deshalb ändern sich die **Vorzeichen der trigonometrischen Funktionen** je nach Quadrant.
 
-<UnitCircle
-  title="Visualisierung von Vorzeichenänderungen"
+<MathVisual
+  title={<>Visualisierung von Vorzeichenänderungen</>}
   description={<>Beobachte, wie sich die Werte von <InlineMath math="\sin" />, <InlineMath math="\cos" /> und <InlineMath math="\tan" /> ändern, wenn der Winkel die vier Quadranten durchläuft.</>}
-  angle={135}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 135, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+    ],
+  }}
 />
 
 **Zeichen in jedem Quadranten**:
@@ -66,10 +112,33 @@ Die Vorzeichen lassen sich aus den Koordinaten ablesen: <InlineMath math="\sin\t
 
 Für einen Winkel, dessen Endschenkel auf keiner Koordinatenachse liegt, ist der Referenzwinkel der **eindeutige spitze Winkel** <InlineMath math="0^\circ<\alpha<90^\circ" /> zwischen diesem Endschenkel und der nächstgelegenen <InlineMath math="x" />-Achse. So lassen sich bekannte Werte spitzer Winkel wiederverwenden. Bei einem Quadrantenwinkel wie <InlineMath math="90^\circ" /> oder <InlineMath math="180^\circ" /> werden die Koordinaten direkt am Einheitskreis abgelesen.
 
-<UnitCircle
-  title="Referenzwinkel verstehen"
+<MathVisual
+  title={<>Referenzwinkel verstehen</>}
   description={<>Bestimme den spitzen Referenzwinkel zur <InlineMath math="x" />-Achse.</>}
-  angle={135}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 135, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+    ],
+  }}
 />
 
 **So wird der Referenzwinkel <InlineMath math="\alpha" /> für einen Nichtquadrantenwinkel <InlineMath math="0^\circ<\theta<360^\circ" /> bestimmt**:
@@ -280,8 +349,31 @@ Winkel <InlineMath math="330^\circ" /> liegt im Quadranten IV mit **Referenzwink
 </MathContainer>
 Die Blattspitze hat die Koordinaten <InlineMath math="\left(\frac{\sqrt3}{2},-\frac12\right)" />.
 
-<UnitCircle
-  title="Koordinaten nach der Drehung"
-  description="Ändere den Winkel von 330 auf 1050 Grad: Der Endpunkt bleibt gleich, weil sich die Winkel um zwei volle Umdrehungen unterscheiden."
-  angle={330}
+<MathVisual
+  title={<>Koordinaten nach der Drehung</>}
+  description={<>Ändere den Winkel von 330 auf 1050 Grad: Der Endpunkt bleibt gleich, weil sich die Winkel um zwei volle Umdrehungen unterscheiden.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 1080, step: 1, value: 330, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+    ],
+  }}
 />

@@ -21,7 +21,7 @@ In **zwei Dimensionen** verwenden wir die <InlineMath math="x" />-Achse (horizon
 
 Das bedeutet, dass der Punkt <InlineMath math="P" /> vom Ursprung <InlineMath math="O(0, 0)" /> aus <InlineMath math="3 \text{ Einheiten}" /> nach rechts in positive <InlineMath math="x" />-Richtung und <InlineMath math="4 \text{ Einheiten}" /> nach oben in positive <InlineMath math="y" />-Richtung liegt.
 
-<VectorChart
+<MathVisual
   title={
     <>
       Ortsvektor von <InlineMath math="P(3, 4)" />
@@ -33,16 +33,21 @@ Das bedeutet, dass der Punkt <InlineMath math="P" /> vom Ursprung <InlineMath ma
       <InlineMath math="P(3, 4)" />.
     </>
   }
-  vectors={[
-    {
-      id: "OP",
-      name: <InlineMath math="OP" />,
-      points: [
-        { x: 0, y: 0 },
-        { x: 3, y: 4 },
-      ],
-    },
-  ]}
+  labels={{
+    op: <InlineMath math="OP" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "op", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "op-tip", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "op", objectId: "op", at: { x: 1.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
 />
 
 ### Dreidimensionaler Raum
@@ -100,8 +105,8 @@ Ein Vektor, der zwei beliebige Punkte verbindet, zum Beispiel den Punkt <InlineM
 
 Beispiele sind die Verschiebungsvektoren von <InlineMath math="P(3, 4)" /> nach <InlineMath math="Q(-2, -8)" /> und von <InlineMath math="Q(-2, -8)" /> nach <InlineMath math="R(1, 3)" />.
 
-<VectorChart
-  title="Verschiebungsvektoren"
+<MathVisual
+  title={<>Verschiebungsvektoren</>}
   description={
     <>
       Verschiebungsvektoren von <InlineMath math="P" /> nach{" "}
@@ -109,24 +114,25 @@ Beispiele sind die Verschiebungsvektoren von <InlineMath math="P(3, 4)" /> nach 
       <InlineMath math="R" />
     </>
   }
-  vectors={[
-    {
-      id: "QR",
-      name: <InlineMath math="QR" />,
-      points: [
-        { x: -2, y: -8 },
-        { x: 1, y: 3 },
-      ],
-    },
-    {
-      id: "PQ",
-      name: <InlineMath math="PQ" />,
-      points: [
-        { x: 3, y: 4 },
-        { x: -2, y: -8 },
-      ],
-    },
-  ]}
+  labels={{
+    qr: <InlineMath math="QR" />,
+    pq: <InlineMath math="PQ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 4 }, y: { min: -9.8, max: 5.8 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "qr", kind: "segment", from: { x: -2, y: -8 }, to: { x: 1, y: 3 }, appearance: "primary" },
+      { id: "qr-tip", kind: "point", at: { x: 1, y: 3 }, appearance: "primary" },
+      { id: "pq", kind: "segment", from: { x: 3, y: 4 }, to: { x: -2, y: -8 }, appearance: "secondary" },
+      { id: "pq-tip", kind: "point", at: { x: -2, y: -8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "qr", objectId: "qr", at: { x: -0.5, y: -2.5 }, placement: "above-left" },
+      { key: "pq", objectId: "pq", at: { x: 0.5, y: -2 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Berechne die Verschiebung als **Endkoordinaten minus Anfangskoordinaten**. Für die beiden Pfeile im Diagramm gilt:

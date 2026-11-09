@@ -14,7 +14,7 @@ Setiap vektor tak nol <Highlight>memiliki dua ciri utama</Highlight>: **besar** 
 
 Pada vektor <InlineMath math="\overrightarrow{CD}" />, kedua ciri itu tampak langsung:
 
-<VectorChart
+<MathVisual
   title={
     <>
       Vektor <InlineMath math="CD" />
@@ -25,16 +25,21 @@ Pada vektor <InlineMath math="\overrightarrow{CD}" />, kedua ciri itu tampak lan
       Vektor <InlineMath math="CD" /> dengan panjang <InlineMath math="4 \text{ cm}" /> dan arah <InlineMath math="45^\circ" /> terhadap garis horizontal.
     </>
   }
-  vectors={[
-    {
-      id: "cd",
-      name: <InlineMath math="CD" />,
-      points: [
-        { x: 0, y: 0 },
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) },
-      ],
-    },
-  ]}
+  labels={{
+    cd: <InlineMath math="CD" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3.83 }, y: { min: -1, max: 3.83 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "cd", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }, appearance: "primary" },
+      { id: "cd-tip", kind: "point", at: { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "cd", objectId: "cd", at: { x: 1.4142, y: 1.4142 }, placement: "above-left" },
+    ],
+  }}
 />
 
 - **Besar vektor** <InlineMath math="\overrightarrow{CD}" /> adalah <InlineMath math="4 \text{ cm}" />. Nilai ini menunjukkan _ukuran_ vektor. Besar vektor <InlineMath math="\vec{v}" /> dinotasikan dengan <InlineMath math="|\vec{v}|" />. Jadi, <InlineMath math="|\overrightarrow{CD}| = 4 \text{ cm}" />.
@@ -46,33 +51,33 @@ Untuk vektor tak nol, vektor negatif atau vektor lawannya memiliki **panjang yan
 
 Bayangkan Andi berjalan sejauh <InlineMath math="100 \text{ m}" /> dengan sudut <InlineMath math="30^\circ" />. Kita sebut perpindahan ini <InlineMath math="\vec{A}" />. Jika Andi kemudian kembali langsung melalui lintasan yang sama, perpindahan pulangnya adalah vektor lawan dari <InlineMath math="\vec{A}" />, yang ditulis sebagai <InlineMath math="-\vec{A}" />.
 
-<VectorChart
-  title="Vektor dan Vektor Lawan"
+<MathVisual
+  title={<>Vektor dan Vektor Lawan</>}
   description={
     <>
       Vektor <InlineMath math="A" /> dan vektor <InlineMath math="-A" />{" "}
       memiliki panjang yang sama tetapi arah berlawanan.
     </>
   }
-  vectors={[
-    {
-      id: "A",
-      name: <InlineMath math="A" />,
-      points: [
-        { x: 0, y: 0 },
-        { x: 50 * Math.sqrt(3), y: 50 },
-      ],
-    },
-    {
-      id: "-A",
-      name: <InlineMath math="-A" />,
-      points: [
-        { x: 0, y: 10 },
-        { x: 50 * Math.sqrt(3), y: 60 },
-      ],
-      direction: "backward",
-    },
-  ]}
+  labels={{
+    a: <InlineMath math="A" />,
+    minus-a: <InlineMath math="-A" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12.99, max: 99.59 }, y: { min: -9, max: 69 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 50 * Math.sqrt(3), y: 50 }, appearance: "primary" },
+      { id: "a-tip", kind: "point", at: { x: 50 * Math.sqrt(3), y: 50 }, appearance: "primary" },
+      { id: "minus-a", kind: "segment", from: { x: 50 * Math.sqrt(3), y: 60 }, to: { x: 0, y: 10 }, appearance: "secondary" },
+      { id: "minus-a-tip", kind: "point", at: { x: 0, y: 10 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 43.3013, y: 25 }, placement: "above-left" },
+      { key: "minus-a", objectId: "minus-a", at: { x: 43.3013, y: 35 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Kedua pangkal panah digeser agar tidak bertumpuk. Pergeseran pangkal tidak mengubah besar atau arah vektor. Komponen perpindahan berangkat adalah <InlineMath math="(50\sqrt3,50)\,\text{m}" />, sedangkan komponen perpindahan pulang adalah negatifnya.
@@ -98,40 +103,37 @@ Dua vektor dikatakan **ekuivalen** atau **sama** jika komponen-komponen yang ber
 
 Perhatikan grafik di bawah ini yang menunjukkan tiga vektor ekuivalen: <InlineMath math="\overrightarrow{CD}" />, <InlineMath math="\overrightarrow{EF}" />, dan <InlineMath math="\overrightarrow{KL}" />.
 
-<VectorChart
-  title="Vektor-Vektor Ekuivalen"
+<MathVisual
+  title={<>Vektor-Vektor Ekuivalen</>}
   description={
     <>
       Vektor <InlineMath math="CD" />, <InlineMath math="EF" />, dan{" "}
       <InlineMath math="KL" /> memiliki panjang dan arah yang sama.
     </>
   }
-  vectors={[
-    {
-      id: "CD",
-      name: <InlineMath math="CD" />,
-      points: [
-        { x: 2, y: 1 }, // C
-        { x: 5, y: 3 }, // D
-      ],
-    },
-    {
-      id: "EF",
-      name: <InlineMath math="EF" />,
-      points: [
-        { x: 4, y: 2 }, // E
-        { x: 7, y: 4 }, // F
-      ],
-    },
-    {
-      id: "KL",
-      name: <InlineMath math="KL" />,
-      points: [
-        { x: 3, y: 0 }, // K
-        { x: 6, y: 2 }, // L
-      ],
-    },
-  ]}
+  labels={{
+    cd: <InlineMath math="CD" />,
+    ef: <InlineMath math="EF" />,
+    kl: <InlineMath math="KL" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.05, max: 8.05 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "cd", kind: "segment", from: { x: 2, y: 1 }, to: { x: 5, y: 3 }, appearance: "primary" },
+      { id: "cd-tip", kind: "point", at: { x: 5, y: 3 }, appearance: "primary" },
+      { id: "ef", kind: "segment", from: { x: 4, y: 2 }, to: { x: 7, y: 4 }, appearance: "secondary" },
+      { id: "ef-tip", kind: "point", at: { x: 7, y: 4 }, appearance: "secondary" },
+      { id: "kl", kind: "segment", from: { x: 3, y: 0 }, to: { x: 6, y: 2 }, appearance: "answer" },
+      { id: "kl-tip", kind: "point", at: { x: 6, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "cd", objectId: "cd", at: { x: 3.5, y: 2 }, placement: "above-left" },
+      { key: "ef", objectId: "ef", at: { x: 5.5, y: 3 }, placement: "above-left" },
+      { key: "kl", objectId: "kl", at: { x: 4.5, y: 1 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Ketiga vektor di atas memiliki panjang dan arah yang sama, sehingga mereka ekuivalen. Kita dapat menuliskannya sebagai:
@@ -142,33 +144,33 @@ Titik pangkalnya berbeda, tetapi setiap anak panah berpindah tiga satuan ke kana
 
 ## Latihan
 
-<VectorChart
+<MathVisual
   title={
     <>
       Perbandingan Vektor <InlineMath math="A" /> dan Vektor{" "}
       <InlineMath math="B" />
     </>
   }
-  description="Bandingkan panjang dan arah kedua anak panah."
-  vectors={[
-    {
-      id: "A",
-      name: <InlineMath math="A" />,
-      points: [
-        { x: 1, y: 4 },
-        { x: 0, y: 0 },
-      ],
-      direction: "forward",
-    },
-    {
-      id: "B",
-      name: <InlineMath math="B" />,
-      points: [
-        { x: 1, y: 4 },
-        { x: 5, y: 5 },
-      ],
-    },
-  ]}
+  description={<>Bandingkan panjang dan arah kedua anak panah.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 1, y: 4 }, to: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "a-tip", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 1, y: 4 }, to: { x: 5, y: 5 }, appearance: "secondary" },
+      { id: "b-tip", kind: "point", at: { x: 5, y: 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0.5, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3, y: 4.5 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Apakah vektor <InlineMath math="\vec{A}" /> merupakan vektor lawan dari <InlineMath math="\vec{B}" />?
@@ -186,33 +188,32 @@ Bagaimana cara membuat vektor <InlineMath math="\vec{A}" /> dan <InlineMath math
 
 Dengan mempertahankan <InlineMath math="\vec{A}" />, kita dapat membuat <InlineMath math="\vec{B}" /> menjadi vektor lawannya dengan mengubah titik ujung <InlineMath math="\vec{B}" />:
 
-<VectorChart
+<MathVisual
   title={
     <>
       Vektor <InlineMath math="A" /> dan <InlineMath math="B" />
     </>
   }
-  description="Kedua vektor sama panjang dan arahnya berlawanan."
-  vectors={[
-    {
-      id: "A",
-      name: <InlineMath math="A" />,
-      points: [
-        { x: 1, y: 4 },
-        { x: 0, y: 0 },
-      ],
-      direction: "forward",
-    },
-    {
-      id: "B",
-      name: <InlineMath math="B" />,
-      points: [
-        { x: 1, y: 4 },
-        { x: 2, y: 8 },
-      ],
-      direction: "forward",
-    },
-  ]}
+  description={<>Kedua vektor sama panjang dan arahnya berlawanan.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3 }, y: { min: -1.2, max: 9.2 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 1, y: 4 }, to: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "a-tip", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 1, y: 4 }, to: { x: 2, y: 8 }, appearance: "secondary" },
+      { id: "b-tip", kind: "point", at: { x: 2, y: 8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0.5, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 1.5, y: 6 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Dengan pangkal tetap di <InlineMath math="(1,4)" /> dan komponen yang diperlukan <InlineMath math="-\vec A=(1,4)" />, titik ujung baru diperoleh sebagai:

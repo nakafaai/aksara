@@ -21,10 +21,33 @@ Bei einem Funktionsgraphen ändert die Drehung auch die Gleichung. Die Gleichung
 
 Beginne mit dem Punkt <InlineMath math="(1, 0)" />, der vom Ursprung den Abstand <InlineMath math="1" /> hat. Weil **eine Drehung den Abstand zum Zentrum nicht ändert**, bleibt sein Bildpunkt auf dem Kreis mit Radius <InlineMath math="1" />, genau am Ende des Radius, der mit der positiven <InlineMath math="x" />-Achse den Winkel <InlineMath math="\theta" /> bildet. Am Einheitskreis hat der Punkt am Ende des Radius zum Winkel <InlineMath math="\theta" /> die Koordinaten <InlineMath math="(\cos\theta, \sin\theta)" />. So sind Kosinus und Sinus für jeden Winkel definiert.
 
-<UnitCircle
+<MathVisual
   title={<>Bildpunkt von <InlineMath math="(1, 0)" /> nach einer Drehung um <InlineMath math="\theta" /></>}
   description={<>Ändere <InlineMath math="\theta" /> im Winkelfeld. Das Ende des Radius ist der Bildpunkt von <InlineMath math="(1, 0)" />, seine Koordinaten sind also immer <InlineMath math="(\cos\theta, \sin\theta)" />, und sein Abstand zum Ursprung bleibt <InlineMath math="1" />.</>}
-  angle={60}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 60, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+    ],
+  }}
 />
 
 Das Winkelfeld startet bei <InlineMath math="60" />, also liegt das Ende des Radius bei <InlineMath math="\left(\tfrac{1}{2}, \tfrac{\sqrt{3}}{2}\right)" />, passend zu den Werten <InlineMath math="\cos 60^\circ = \tfrac{1}{2}" /> und <InlineMath math="\sin 60^\circ = \tfrac{\sqrt{3}}{2}" /> unter dem Kreis.
