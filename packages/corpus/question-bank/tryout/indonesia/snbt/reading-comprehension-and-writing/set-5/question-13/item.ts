@@ -22,12 +22,13 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Guru pembina menilai siswa tidak panik ketika gempa terjadi.",
+          label:
+            "Guru pembina akan menilai kesiapan siswa ketika gempa sungguhan terjadi.",
         },
         {
           correct: true,
           label:
-            "Waktu siswa berkumpul di lapangan makin singkat karena latihan diulang.",
+            "Latihan yang diulang membuat siswa makin cepat dan tertib menuju lapangan serta tidak panik.",
         },
         {
           correct: false,

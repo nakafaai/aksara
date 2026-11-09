@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Hasil percobaan ini akan dipresentasikan pada hari sabtu tanggal 14 November di aula sekolah.",
+            "Hasil percobaan ini akan dipresentasikan kepada tiga kelas-kelas lain pada pekan depan.",
         },
         {
           correct: true,
           label:
-            "Hasil percobaan ini akan dipresentasikan pada hari Sabtu tanggal 14 November di aula sekolah.",
+            "Hasil percobaan ini akan dipresentasikan kepada tiga kelas lain pada pekan depan.",
         },
         {
           correct: false,
           label:
-            "Hasil percobaan ini akan dipresentasikan pada Hari Sabtu Tanggal 14 November di aula sekolah.",
+            "Hasil percobaan ini akan di presentasikan kepada tiga kelas lain pada pekan depan.",
         },
         {
           correct: false,
           label:
-            "Hasil percobaan ini akan dipresentasikan pada hari Sabtu tanggal 14 november di Aula Sekolah.",
+            "Hasil percobaan ini akan dipresentasikan kepada tiga kelas lain pada Pekan Depan.",
         },
         {
           correct: false,
           label:
-            "Hasil percobaan ini akan di presentasikan pada hari Sabtu tanggal 14 November di aula sekolah.",
+            "Hasil percobaan ini akan dipresentasikan kepada 3 kelas-kelas lain pada pekan depan.",
         },
       ],
     },

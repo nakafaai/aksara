@@ -23,7 +23,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Harga yoghurt di pasar naik pada tahun itu.",
+          label: "Harga yogurt di pasar naik pada tahun itu.",
         },
         {
           correct: true,

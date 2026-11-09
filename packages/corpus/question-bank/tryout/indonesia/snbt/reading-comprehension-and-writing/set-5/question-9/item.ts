@@ -21,7 +21,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "Susu sudah diolah menjadi yoghurt.",
+          label: "Susu sudah diolah menjadi yogurt.",
         },
         {
           correct: false,
