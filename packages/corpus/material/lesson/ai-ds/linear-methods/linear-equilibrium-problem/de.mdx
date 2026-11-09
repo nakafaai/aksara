@@ -40,58 +40,33 @@ Der Vektor <InlineMath math="A\hat{x}" /> ist der Punkt in <InlineMath math="\op
 
 Die zweite Gleichung heißt **[Normalgleichung](/de/faecher/ki-und-data-science/lineare-methoden-der-ki/normalengleichung)**.
 
-<LineEquation
-  title="Orthogonale Projektion beim Ausgleichsproblem"
-  description={<>Der blaue Vektor endet bei <InlineMath math="A\hat{x}" />, der orangefarbene bei <InlineMath math="b" />, und der violette Vektor ist das Residuum <InlineMath math="A\hat{x}-b" />.</>}
-  cameraPosition={[9, 8, 12]}
-  cameraTarget={[1.5, 1.5, 3]}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1.5, y: 1.5, z: 1.5 },
-        { x: 3, y: 3, z: 3 }
-      ],
-      smooth: false,
-      color: "#0284c7",
-      cone: { position: "end" },
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="A\hat{x}" />, at: 2, offset: [0.5, 0.5, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0.5, y: 1, z: 3 },
-        { x: 1, y: 2, z: 6 }
-      ],
-      smooth: false,
-      color: "#d97706",
-      cone: { position: "end" },
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="b" />, at: 2, offset: [0.5, 0, 0.5] }
-      ]
-    },
-    {
-      points: [
-        { x: 1, y: 2, z: 6 },
-        { x: 2, y: 2.5, z: 4.5 },
-        { x: 3, y: 3, z: 3 }
-      ],
-      smooth: false,
-      color: "#9333ea",
-      cone: { position: "end" },
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="A\hat{x}-b" />, at: 1, offset: [0, -0.5, 0] }
-      ]
-    }
-  ]}
+<MathVisual
+  title={<>Die Projektion <InlineMath math="A\hat x" /> von <InlineMath math="b=(1,2,6)" /></>}
+  description={<>Die graue Strecke ist der Spaltenraum, die Gerade durch <InlineMath math="(1,1,1)" />. Die türkise Strecke endet bei <InlineMath math="A\hat x=(3,3,3)" />, die orange Strecke bei <InlineMath math="b" />, und das magentafarbene Residuum <InlineMath math="A\hat x-b" /> steht senkrecht auf dem Spaltenraum.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 6.5 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 1.5, z: 3 } },
+    objects: [
+      { id: "column", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 4, z: 4 }, appearance: "reference" },
+      { id: "fit", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 3, z: 3 }, appearance: "construction" },
+      { id: "target", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 2, z: 6 }, appearance: "primary" },
+      { id: "residual", kind: "segment", from: { x: 3, y: 3, z: 3 }, to: { x: 1, y: 2, z: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "fit", objectId: "fit", at: { x: 3, y: 3, z: 3 }, placement: "right" },
+      { key: "target", objectId: "target", at: { x: 1, y: 2, z: 6 }, placement: "above" },
+      { key: "residual", objectId: "residual", at: { x: 2, y: 2.5, z: 4.5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "fit": <InlineMath math="A\hat x" />,
+    "target": <InlineMath math="b" />,
+    "residual": <InlineMath math="A\hat x-b" />,
+  }}
 />
 
-Das Diagramm beschriftet den Zielvektor <InlineMath math="b" />, den Projektionspunkt <InlineMath math="A\hat{x}" /> und das Residuum <InlineMath math="A\hat{x}-b" /> zwischen beiden. Der blaue Vektor <InlineMath math="A\hat{x}" /> liegt im Spaltenraum. Die Orthogonalitätsbedingung oben beweist, dass dieser Punkt im Spaltenraum den kleinsten Abstand zu <InlineMath math="b" /> besitzt.
+Das Diagramm beschriftet den Zielvektor <InlineMath math="b" />, den Projektionspunkt <InlineMath math="A\hat{x}" /> und das Residuum <InlineMath math="A\hat{x}-b" /> zwischen beiden. Der türkise Vektor <InlineMath math="A\hat{x}" /> liegt im Spaltenraum. Die Orthogonalitätsbedingung oben beweist, dass dieser Punkt im Spaltenraum den kleinsten Abstand zu <InlineMath math="b" /> besitzt.
 
 ## Eine Konstante an drei Beobachtungen anpassen
 
@@ -119,6 +94,37 @@ Die Residualkomponenten summieren sich zu null:
 
 Damit ist die Normalgleichung erfüllt.
 
+Eine Konstante <InlineMath math="x" /> an die Beobachtungen <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="6" /> anzupassen heißt, <InlineMath math="(x-1)^2+(x-2)^2+(x-6)^2" /> zu minimieren. Die Ableitung verschwindet bei <InlineMath math="3x=9" />, also ist die beste Konstante der Mittelwert <InlineMath math="x=3" />, mit der Residuenquadratsumme <InlineMath math="4+1+9=14" />.
+
+<MathVisual
+  title={<>Die beste Konstante für <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="6" /></>}
+  description={<>Die violetten Punkte sind die Beobachtungen, die türkise Gerade die Konstante <InlineMath math="x" /> und die magentafarbenen Strecken die Residuen. Verschiebe <InlineMath math="x" />: Die Anzeige fällt bei <InlineMath math="x=3" /> auf ihr Minimum <InlineMath math="14" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "c", min: 0, max: 7, value: 2, step: 0.01, label: "c" },
+    ],
+    objects: [
+      { id: "constant", kind: "function", formula: "c", domain: { min: 0.5, max: 3.5 }, appearance: "construction" },
+      { id: "gap-a", kind: "path", points: [{ x: "1", y: "1" }, { x: "1", y: "c" }], appearance: "answer" },
+      { id: "gap-b", kind: "path", points: [{ x: "2", y: "2" }, { x: "2", y: "c" }], appearance: "answer" },
+      { id: "gap-c", kind: "path", points: [{ x: "3", y: "6" }, { x: "3", y: "c" }], appearance: "answer" },
+      { id: "first", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "second", kind: "point", at: { x: 2, y: 2 }, appearance: "secondary" },
+      { id: "third", kind: "point", at: { x: 3, y: 6 }, appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "sum", formula: "(1 - c)^2 + (2 - c)^2 + (6 - c)^2" },
+    ],
+  }}
+  labels={{
+    "c": <InlineMath math="x" />,
+    "sum": <InlineMath math="F(x)=\|x\mathbf 1-b\|_2^2" />,
+  }}
+/>
+
 ## Andere Residualnormen
 
 Die gewählte Norm bestimmt, **welche Fehlerart** bei der Anpassung im Vordergrund steht.
@@ -138,6 +144,26 @@ Bei denselben Beobachtungen 1, 2 und 6 verändert die Norm die angepasste Konsta
 | <InlineMath math="\ell_2^2" /> | <InlineMath math="(1+2+6)/3=3" /> | <InlineMath math="2^2+1^2+(-3)^2=14" /> |
 | <InlineMath math="\ell_1" /> | <InlineMath math="2" /> | <InlineMath math="1+0+4=5" /> |
 | <InlineMath math="\ell_\infty" /> | <InlineMath math="(1+6)/2=7/2" /> | <InlineMath math="\max(5/2,3/2,5/2)=5/2" /> |
+
+Andere Normen wählen für dieselben Daten andere Konstanten. Die Summe der Beträge der Residuen ist beim Median <InlineMath math="2" /> am kleinsten, die euklidische Norm beim Mittelwert <InlineMath math="3" /> und das größte Residuum bei der Spannweitenmitte <InlineMath math="\tfrac{1+6}2=3.5" />.
+
+<MathVisual
+  title={<>Drei Normen des Residuums <InlineMath math="x\mathbf 1-b" /></>}
+  description={<>Mit <InlineMath math="x" /> nach rechts ist die violette Kurve <InlineMath math="\|x\mathbf 1-b\|_1" />, die türkise Kurve <InlineMath math="\|x\mathbf 1-b\|_2" /> und die orange Kurve <InlineMath math="\|x\mathbf 1-b\|_\infty" />. Die magentafarbenen Punkte markieren ihre Minima bei <InlineMath math="x=2" />, <InlineMath math="3" /> und <InlineMath math="3.5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 7.3 }, y: { min: 0, max: 13 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sum", kind: "function", formula: "abs(1 - x) + abs(2 - x) + abs(6 - x)", domain: { min: 0, max: 7 }, appearance: "secondary" },
+      { id: "euclid", kind: "function", formula: "sqrt((1 - x)^2 + (2 - x)^2 + (6 - x)^2)", domain: { min: 0, max: 7 }, appearance: "construction" },
+      { id: "largest", kind: "function", formula: "max(abs(1 - x), max(abs(2 - x), abs(6 - x)))", domain: { min: 0, max: 7 }, appearance: "primary" },
+      { id: "median", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+      { id: "mean", kind: "point", at: { x: 3, y: Math.sqrt(14) }, appearance: "answer" },
+      { id: "midrange", kind: "point", at: { x: 3.5, y: 2.5 }, appearance: "answer" },
+    ],
+  }}
+/>
 
 ## Ein stabiles numerisches Verfahren wählen
 

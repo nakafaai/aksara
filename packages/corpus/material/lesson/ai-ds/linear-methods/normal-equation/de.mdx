@@ -21,6 +21,28 @@ Ein Minimierer erfüllt das folgende lineare Gleichungssystem:
 
 Diese Gleichung heißt **Normalgleichung**, weil das Residuum am Minimum <Highlight>normal, also senkrecht, zum Spaltenraum</Highlight> von <InlineMath math="A" /> steht.
 
+Für das Beispiel am Ende dieser Lektion gilt <InlineMath math="\|Ax-b\|_2^2=(x-2)^2+(2x-1)^2=5x^2-8x+5" />. Das Minimum liegt dort, wo die Ableitung <InlineMath math="10x-8" /> verschwindet, und das ist genau die Normalgleichung <InlineMath math="A^TAx=A^Tb" />, hier <InlineMath math="5x=4" />.
+
+<MathVisual
+  title={<>Die Zielfunktion <InlineMath math="5x^2-8x+5" /> und ihr Minimum</>}
+  description={<>Die violette Parabel ist das quadrierte Residuum für jedes <InlineMath math="x" />. Ihr magentafarbener tiefster Punkt ist <InlineMath math="(\tfrac45,\tfrac95)" />, die Lösung von <InlineMath math="5x=4" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.2 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "objective", kind: "function", formula: "5*x^2 - 8*x + 5", domain: { min: -0.4, max: 2 }, appearance: "secondary" },
+      { id: "minimum", kind: "point", at: { x: 4 / 5, y: 9 / 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "minimum", objectId: "minimum", at: { x: 4 / 5, y: 9 / 5 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "minimum": <InlineMath math="(\tfrac45,\tfrac95)" />,
+  }}
+/>
+
 ## Kleinste Quadrate und die Normalgleichung
 
 Ein Vektor <InlineMath math="\hat{x} \in \mathbb{R}^n" /> minimiert <InlineMath math="\|A \cdot x - b\|_2^2" /> genau dann, wenn er <InlineMath math="A^T A \cdot \hat{x} = A^T b" /> erfüllt. Das Optimierungsproblem und die Normalgleichung haben daher **dieselbe Lösungsmenge**. Genau diese Äquivalenz macht aus einem Minimierungsproblem ein lineares Gleichungssystem, das du mit Elimination oder einer Faktorisierung lösen kannst.
@@ -83,6 +105,29 @@ Ist <InlineMath math="A" /> rangdefizient, besitzt die Normalgleichung weiterhin
 
 Alle diese Parametervektoren erzeugen denselben angepassten Vektor <InlineMath math="A\hat{x}" />.
 
+Hat <InlineMath math="A" /> keinen vollen Spaltenrang, ist der Minimierer nicht eindeutig. Für <InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" /> und <InlineMath math="b=(1,2)" /> löst jedes <InlineMath math="x" /> mit <InlineMath math="x_1+2x_2=1" /> die Gleichung <InlineMath math="Ax=b" /> exakt. Unter ihnen hat <InlineMath math="(\tfrac15,\tfrac25)" /> die kleinste Norm, weil dieser Vektor senkrecht auf der Geraden steht.
+
+<MathVisual
+  title={<>Eine ganze Gerade von Minimierern</>}
+  description={<>In der Ebene von <InlineMath math="(x_1,x_2)" /> ist die türkise Gerade <InlineMath math="x_1+2x_2=1" />. Die orange Strecke vom Ursprung trifft sie senkrecht im magentafarbenen Punkt <InlineMath math="(\tfrac15,\tfrac25)" />, dem Minimierer mit der kleinsten Norm.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2.5 }, y: { min: -1, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "minimizers", kind: "function", formula: "(1 - x)/2", domain: { min: -1.5, max: 2.5 }, appearance: "construction" },
+      { id: "shortest", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / 5, y: 2 / 5 }, appearance: "primary" },
+      { id: "minimum", kind: "point", at: { x: 1 / 5, y: 2 / 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "minimum", objectId: "minimum", at: { x: 1 / 5, y: 2 / 5 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "minimum": <InlineMath math="(\tfrac15,\tfrac25)" />,
+  }}
+/>
+
 ## Beweis über Nullraum und Definitheit
 
 Für jedes <InlineMath math="z\in\mathbb{R}^n" /> gilt
@@ -120,14 +165,35 @@ Seien <InlineMath math="A=(1,2)^T" /> und <InlineMath math="b=(2,1)^T" />. Ein s
 
 Das Residuum steht senkrecht auf der Geraden aller möglichen Vorhersagen. Eine Verschiebung entlang dieser Geraden addiert einen nichtnegativen quadratischen Abstand, wie im Pythagorasbeweis.
 
-<LineEquation
-  title="Vorhersage und senkrechtes Residuum"
-  description={<>Die grüne Gerade enthält alle Vorhersagen <InlineMath math="Ax" />. Die orange Strecke verbindet <InlineMath math="(\frac{4}{5},\frac{8}{5})" /> mit der Beobachtung <InlineMath math="(2,1)" />.</>}
-  cameraPosition={[1, 1, 6]}
-  cameraTarget={[1, 1, 0]}
-  showZAxis={false}
-  data={[
-    { points: [{ x: 0, y: 0, z: 0 }, { x: 0.8, y: 1.6, z: 0 }, { x: 1.5, y: 3, z: 0 }], smooth: false, showPoints: true, pointIndices: [1], color: "#0d9488", labels: [{ text: <InlineMath math="Ax" />, at: 1 }] },
-    { points: [{ x: 0.8, y: 1.6, z: 0 }, { x: 2, y: 1, z: 0 }], smooth: false, showPoints: true, pointIndices: [1], color: "#f97316", labels: [{ text: <InlineMath math="b" />, at: 1 }] },
-  ]}
+<MathVisual
+  title={<>Kandidaten <InlineMath math="Ax" /> auf der Geraden und die Beobachtung <InlineMath math="b=(2,1)" /></>}
+  description={<>Die türkise Gerade enthält jede Vorhersage <InlineMath math="Ax=(x,2x)" />, und der violette Punkt ist die Vorhersage des Schiebereglers. Das magentafarbene Residuum ist mit der Anzeige <InlineMath math="\tfrac95" /> am kürzesten im grauen Punkt <InlineMath math="A\hat x=(\tfrac45,\tfrac85)" />, wo es senkrecht auf der Geraden steht.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.8, max: 3.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "s", min: -0.3, max: 1.5, value: 0.3, step: 0.01, label: "s" },
+    ],
+    objects: [
+      { id: "predictions", kind: "function", formula: "2*x", domain: { min: -0.3, max: 1.6 }, appearance: "construction" },
+      { id: "residual", kind: "path", points: [{ x: "s", y: "2*s" }, { x: "2", y: "1" }], appearance: "answer" },
+      { id: "observation", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "projection", kind: "point", at: { x: 4 / 5, y: 8 / 5 }, appearance: "reference" },
+      { id: "candidate", kind: "marker", x: "s", y: "2*s", appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b", objectId: "observation", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "best", objectId: "projection", at: { x: 4 / 5, y: 8 / 5 }, placement: "left" },
+    ],
+    readouts: [
+      { key: "distance", formula: "5*s^2 - 8*s + 5" },
+    ],
+  }}
+  labels={{
+    "s": <InlineMath math="x" />,
+    "b": <InlineMath math="b" />,
+    "best": <InlineMath math="A\hat x" />,
+    "distance": <InlineMath math="\|Ax-b\|_2^2" />,
+  }}
 />

@@ -26,6 +26,35 @@ It is symmetric positive semidefinite. It may be singular when features are line
 
 Centering is mandatory. <Highlight>Standardizing each feature to unit variance</Highlight> is a <Highlight>separate modeling choice</Highlight> that is often appropriate when features use incomparable units. It changes the question from directions of largest absolute variance to directions of largest standardized variance.
 
+Take three observations <InlineMath math="(2,3)" />, <InlineMath math="(4,4)" />, and <InlineMath math="(6,8)" />. The feature means are <InlineMath math="4" /> and <InlineMath math="5" />, so centering subtracts <InlineMath math="(4,5)" /> from each row and gives <InlineMath math="(-2,-2)" />, <InlineMath math="(0,-1)" />, and <InlineMath math="(2,3)" />. The cloud keeps its shape but now sits around the origin.
+
+<ScatterDiagram
+  title={<>Centering moves the data to the origin</>}
+  description={<>The first series is the raw data, the second the centered data <InlineMath math="X_c=X-\mathbf1\mu^T" />. Every point moves by the same vector <InlineMath math="-(4,5)" />.</>}
+  xAxisLabel="First feature"
+  yAxisLabel="Second feature"
+  datasets={[
+    {
+      name: "Raw data",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: 3 },
+        { x: 4, y: 4 },
+        { x: 6, y: 8 },
+      ],
+    },
+    {
+      name: "Centered data",
+      color: "var(--chart-2)",
+      points: [
+        { x: 2 - 4, y: 3 - 5 },
+        { x: 4 - 4, y: 4 - 5 },
+        { x: 6 - 4, y: 8 - 5 },
+      ],
+    },
+  ]}
+/>
+
 ## Principal Directions
 
 By the spectral theorem,
@@ -71,6 +100,19 @@ Among all linear reconstructions of rank at most <InlineMath math="k" />, this c
 
 <BlockMath math="\|X_c-\widehat{X}_c\|_F^2=(m-1)\sum_{j=k+1}^n\lambda_j" />
 
+Each principal component explains its eigenvalue's share of the total variance. In the worked example below, <InlineMath math="\lambda_1=9" /> and <InlineMath math="\lambda_2=2.25" />, so the first component explains <InlineMath math="\tfrac9{11.25}=80\%" /> and the second the remaining <InlineMath math="20\%" />.
+
+<BarChart
+  title={<>Explained variance of each component</>}
+  description={<>Each bar is <InlineMath math="\lambda_i/(\lambda_1+\lambda_2)" /> for the component <InlineMath math="i" /> written below it: <InlineMath math="0.8" /> and <InlineMath math="0.2" />.</>}
+  yAxisLabel="Explained variance"
+  data={[
+    { name: "1", value: 9 / (9 + 2.25) },
+    { name: "2", value: 2.25 / (9 + 2.25) },
+  ]}
+  chartConfig={{ value: { label: "Explained variance", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
 ## Equivalent Computation with Singular Value Decomposition
 
 <InlineMath math="\mathrm{PCA}" /> can also be computed through the following thin singular value decomposition:
@@ -110,71 +152,36 @@ The **variance ratio** explained by the first component is calculated from the t
 
 The result <InlineMath math="80\%" /> is the fraction of the total variance explained by the first component.
 
-<LineEquation
+<MathVisual
   title={<>Covariance ellipse and principal directions <InlineMath math="v_1,v_2" /></>}
-  description={<>The cyan ellipse has semiaxis lengths <InlineMath math="\sqrt{\lambda_1}=3" /> and <InlineMath math="\sqrt{\lambda_2}=1.5" />. The orange directions are its eigenvectors.</>}
-  data={[
-    {
-      points: Array.from({ length: 100 }, (_, index) => {
-        const angle = (index / 99) * 2 * Math.PI;
-        const localX = 3 * Math.cos(angle);
-        const localY = 1.5 * Math.sin(angle);
-        const rotation = Math.PI / 6;
-        const x = localX * Math.cos(rotation) - localY * Math.sin(rotation);
-        const y = localX * Math.sin(rotation) + localY * Math.cos(rotation);
-        return { x, y, z: 0 };
-      }),
-      color: "#0891b2",
-      smooth: false,
-      showPoints: false
-    },
-    {
-      points: [{ x: -4, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: false,
-      labels: [{
-        text: <InlineMath math="x_1" />,
-        at: 1,
-        offset: [0.3, -0.5, 0]
-      }]
-    },
-    {
-      points: [{ x: 0, y: -3, z: 0 }, { x: 0, y: 3, z: 0 }],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: false,
-      labels: [{
-        text: <InlineMath math="x_2" />,
-        at: 1,
-        offset: [0.8, 0.3, 0]
-      }]
-    },
-    {
-      points: [{ x: -2 * Math.sqrt(3), y: -2, z: 0 }, { x: 2 * Math.sqrt(3), y: 2, z: 0 }],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{
-        text: <InlineMath math="v_1" />,
-        at: 1,
-        offset: [0.3, 0.3, 0]
-      }]
-    },
-    {
-      points: [{ x: -1.5, y: 1.5 * Math.sqrt(3), z: 0 }, { x: 1.5, y: -1.5 * Math.sqrt(3), z: 0 }],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{
-        text: <InlineMath math="v_2" />,
-        at: 0,
-        offset: [-0.8, 0.3, 0]
-      }]
-    }
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 11]}
+  description={<>The teal ellipse has semiaxes <InlineMath math="\sqrt{\lambda_1}=3" /> along the orange <InlineMath math="v_1" /> and <InlineMath math="\sqrt{\lambda_2}=1.5" /> along the violet <InlineMath math="v_2" />. Move <InlineMath math="\varphi" />: the readout is the variance <InlineMath math="u^TCu" /> along the magenta direction <InlineMath math="u=(\cos\varphi,\sin\varphi)" />, largest, <InlineMath math="9" />, at <InlineMath math="\varphi=\tfrac\pi6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: 0, max: Math.PI, value: 0.3, step: 0.01, label: "angle" },
+    ],
+    objects: [
+      { id: "ellipse", kind: "parametric", x: "3*cos(t)*sqrt(3)/2 - 1.5*sin(t)/2", y: "3*cos(t)/2 + 1.5*sin(t)*sqrt(3)/2", parameter: { min: 0, max: 2 * Math.PI }, appearance: "construction" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3 / 4, y: 3 * Math.sqrt(3) / 4 }, appearance: "secondary" },
+      { id: "direction", kind: "path", points: [{ x: "-3.5*cos(a)", y: "-3.5*sin(a)" }, { x: "3.5*cos(a)", y: "3.5*sin(a)" }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "v1", objectId: "first", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "right" },
+      { key: "v2", objectId: "second", at: { x: -3 / 4, y: 3 * Math.sqrt(3) / 4 }, placement: "left" },
+    ],
+    readouts: [
+      { key: "variance", formula: "9*cos(a - pi/6)^2 + 2.25*sin(a - pi/6)^2" },
+    ],
+  }}
+  labels={{
+    "angle": <InlineMath math="\varphi" />,
+    "variance": <InlineMath math="u^TCu" />,
+    "v1": <InlineMath math="v_1" />,
+    "v2": <InlineMath math="v_2" />,
+  }}
 />
 
 ## Interpretation Boundaries

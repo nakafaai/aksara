@@ -40,58 +40,33 @@ Vektor <InlineMath math="A\hat{x}" /> adalah titik di <InlineMath math="\operato
 
 Persamaan kedua disebut **[persamaan normal](/id/materi/ai-ds/metode-linear-ai/sistem-persamaan-normal)**.
 
-<LineEquation
-  title="Proyeksi ortogonal pada masalah kuadrat terkecil"
-  description={<>Vektor biru berujung di <InlineMath math="A\hat{x}" />, vektor jingga berujung di <InlineMath math="b" />, dan vektor ungu adalah residual <InlineMath math="A\hat{x}-b" />.</>}
-  cameraPosition={[9, 8, 12]}
-  cameraTarget={[1.5, 1.5, 3]}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1.5, y: 1.5, z: 1.5 },
-        { x: 3, y: 3, z: 3 }
-      ],
-      smooth: false,
-      color: "#0284c7",
-      cone: { position: "end" },
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="A\hat{x}" />, at: 2, offset: [0.5, 0.5, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0.5, y: 1, z: 3 },
-        { x: 1, y: 2, z: 6 }
-      ],
-      smooth: false,
-      color: "#d97706",
-      cone: { position: "end" },
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="b" />, at: 2, offset: [0.5, 0, 0.5] }
-      ]
-    },
-    {
-      points: [
-        { x: 1, y: 2, z: 6 },
-        { x: 2, y: 2.5, z: 4.5 },
-        { x: 3, y: 3, z: 3 }
-      ],
-      smooth: false,
-      color: "#9333ea",
-      cone: { position: "end" },
-      showPoints: false,
-      labels: [
-        { text: <InlineMath math="A\hat{x}-b" />, at: 1, offset: [0, -0.5, 0] }
-      ]
-    }
-  ]}
+<MathVisual
+  title={<>Proyeksi <InlineMath math="A\hat x" /> dari <InlineMath math="b=(1,2,6)" /></>}
+  description={<>Ruas abu-abu adalah ruang kolom, yaitu garis yang memuat <InlineMath math="(1,1,1)" />. Ruas hijau toska berakhir di <InlineMath math="A\hat x=(3,3,3)" />, ruas oranye berakhir di <InlineMath math="b" />, dan residual magenta <InlineMath math="A\hat x-b" /> tegak lurus dengan ruang kolom.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 6.5 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 1.5, z: 3 } },
+    objects: [
+      { id: "column", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 4, z: 4 }, appearance: "reference" },
+      { id: "fit", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 3, z: 3 }, appearance: "construction" },
+      { id: "target", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 2, z: 6 }, appearance: "primary" },
+      { id: "residual", kind: "segment", from: { x: 3, y: 3, z: 3 }, to: { x: 1, y: 2, z: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "fit", objectId: "fit", at: { x: 3, y: 3, z: 3 }, placement: "right" },
+      { key: "target", objectId: "target", at: { x: 1, y: 2, z: 6 }, placement: "above" },
+      { key: "residual", objectId: "residual", at: { x: 2, y: 2.5, z: 4.5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "fit": <InlineMath math="A\hat x" />,
+    "target": <InlineMath math="b" />,
+    "residual": <InlineMath math="A\hat x-b" />,
+  }}
 />
 
-Diagram memberi label pada vektor target <InlineMath math="b" />, titik proyeksi <InlineMath math="A\hat{x}" />, dan residual <InlineMath math="A\hat{x}-b" /> di antara keduanya. Vektor biru <InlineMath math="A\hat{x}" /> berada di dalam ruang kolom. Syarat ortogonal di atas membuktikan bahwa titik proyeksi <InlineMath math="A\hat{x}" /> itu paling dekat dengan <InlineMath math="b" />.
+Diagram memberi label pada vektor target <InlineMath math="b" />, titik proyeksi <InlineMath math="A\hat{x}" />, dan residual <InlineMath math="A\hat{x}-b" /> di antara keduanya. Vektor hijau toska <InlineMath math="A\hat{x}" /> berada di dalam ruang kolom. Syarat ortogonal di atas membuktikan bahwa titik proyeksi <InlineMath math="A\hat{x}" /> itu paling dekat dengan <InlineMath math="b" />.
 
 ## Mencocokkan Satu Konstanta dengan Tiga Observasi
 
@@ -119,6 +94,37 @@ Jumlah komponen residual sama dengan nol, sehingga
 
 Hasil nol tersebut memenuhi persamaan normal.
 
+Mencocokkan satu konstanta <InlineMath math="x" /> dengan pengamatan <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="6" /> berarti meminimumkan <InlineMath math="(x-1)^2+(x-2)^2+(x-6)^2" />. Turunannya nol saat <InlineMath math="3x=9" />, jadi konstanta terbaik adalah rata-rata <InlineMath math="x=3" />, dengan jumlah kuadrat residual <InlineMath math="4+1+9=14" />.
+
+<MathVisual
+  title={<>Konstanta terbaik untuk <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="6" /></>}
+  description={<>Titik ungu adalah pengamatan, garis hijau toska adalah konstanta <InlineMath math="x" />, dan ruas magenta adalah residualnya. Geser <InlineMath math="x" />: nilai yang tampil turun ke minimum <InlineMath math="14" /> pada <InlineMath math="x=3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "c", min: 0, max: 7, value: 2, step: 0.01, label: "c" },
+    ],
+    objects: [
+      { id: "constant", kind: "function", formula: "c", domain: { min: 0.5, max: 3.5 }, appearance: "construction" },
+      { id: "gap-a", kind: "path", points: [{ x: "1", y: "1" }, { x: "1", y: "c" }], appearance: "answer" },
+      { id: "gap-b", kind: "path", points: [{ x: "2", y: "2" }, { x: "2", y: "c" }], appearance: "answer" },
+      { id: "gap-c", kind: "path", points: [{ x: "3", y: "6" }, { x: "3", y: "c" }], appearance: "answer" },
+      { id: "first", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "second", kind: "point", at: { x: 2, y: 2 }, appearance: "secondary" },
+      { id: "third", kind: "point", at: { x: 3, y: 6 }, appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "sum", formula: "(1 - c)^2 + (2 - c)^2 + (6 - c)^2" },
+    ],
+  }}
+  labels={{
+    "c": <InlineMath math="x" />,
+    "sum": <InlineMath math="F(x)=\|x\mathbf 1-b\|_2^2" />,
+  }}
+/>
+
 ## Norma residual lain
 
 Norma yang dipilih menentukan **jenis galat** yang diprioritaskan oleh pencocokan.
@@ -138,6 +144,26 @@ Untuk data yang sama, yaitu 1, 2, dan 6, pilihan norma menghasilkan konstanta ya
 | <InlineMath math="\ell_2^2" /> | <InlineMath math="(1+2+6)/3=3" /> | <InlineMath math="2^2+1^2+(-3)^2=14" /> |
 | <InlineMath math="\ell_1" /> | <InlineMath math="2" /> | <InlineMath math="1+0+4=5" /> |
 | <InlineMath math="\ell_\infty" /> | <InlineMath math="(1+6)/2=7/2" /> | <InlineMath math="\max(5/2,3/2,5/2)=5/2" /> |
+
+Norma lain memilih konstanta lain untuk data yang sama. Jumlah nilai mutlak residual paling kecil di median <InlineMath math="2" />, norma Euclides di rata-rata <InlineMath math="3" />, dan residual terbesar di titik tengah rentang <InlineMath math="\tfrac{1+6}2=3.5" />.
+
+<MathVisual
+  title={<>Tiga norma residual <InlineMath math="x\mathbf 1-b" /></>}
+  description={<>Dengan <InlineMath math="x" /> mendatar, kurva ungu adalah <InlineMath math="\|x\mathbf 1-b\|_1" />, kurva hijau toska <InlineMath math="\|x\mathbf 1-b\|_2" />, dan kurva oranye <InlineMath math="\|x\mathbf 1-b\|_\infty" />. Titik magenta menandai minimumnya di <InlineMath math="x=2" />, <InlineMath math="3" />, dan <InlineMath math="3.5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 7.3 }, y: { min: 0, max: 13 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sum", kind: "function", formula: "abs(1 - x) + abs(2 - x) + abs(6 - x)", domain: { min: 0, max: 7 }, appearance: "secondary" },
+      { id: "euclid", kind: "function", formula: "sqrt((1 - x)^2 + (2 - x)^2 + (6 - x)^2)", domain: { min: 0, max: 7 }, appearance: "construction" },
+      { id: "largest", kind: "function", formula: "max(abs(1 - x), max(abs(2 - x), abs(6 - x)))", domain: { min: 0, max: 7 }, appearance: "primary" },
+      { id: "median", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+      { id: "mean", kind: "point", at: { x: 3, y: Math.sqrt(14) }, appearance: "answer" },
+      { id: "midrange", kind: "point", at: { x: 3.5, y: 2.5 }, appearance: "answer" },
+    ],
+  }}
+/>
 
 ## Memilih Metode Numerik yang Stabil
 

@@ -64,35 +64,35 @@ The **odd terms** integrate to zero on the symmetric interval. The second equati
 
 The best line is horizontal. That conclusion is not a guess: the symmetry of <InlineMath math="x^2" /> forces the coefficient of the odd basis function <InlineMath math="x" /> to vanish.
 
-<LineEquation
-  title="The quadratic and its best linear approximation"
-  description={<>The cyan parabola is <InlineMath math="x^2" />, the orange line is <InlineMath math="\frac{1}{3}" />. Purple segments show signed vertical differences whose squares are integrated.</>}
-  cameraPosition={[0, 0.5, 3.5]}
-  cameraTarget={[0, 0.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 81 }, (_, index) => {
-        const x = -1 + index / 40;
-        return { x, y: x * x, z: 0 };
-      }),
-      color: "#0891b2",
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: [{ x: -1, y: 1 / 3, z: 0 }, { x: 1, y: 1 / 3, z: 0 }],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-    },
-    ...[-0.8, 0, 0.8].map((x) => ({
-      points: [{ x, y: 1 / 3, z: 0 }, { x, y: x * x, z: 0 }],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: false,
-    })),
-  ]} />
+<MathVisual
+  title={<>Fit a line <InlineMath math="c+mx" /> to <InlineMath math="x^2" /> on <InlineMath math="[-1,1]" /></>}
+  description={<>The teal parabola is <InlineMath math="x^2" />, the violet line is <InlineMath math="c+mx" /> from the two sliders, and the magenta segments are the differences at <InlineMath math="x=-0.8" />, <InlineMath math="0" />, and <InlineMath math="0.8" />. The readout is the squared error <InlineMath math="\tfrac25-\tfrac43c+2c^2+\tfrac23m^2" />, which is smallest at the orange line <InlineMath math="c=\tfrac13" />, <InlineMath math="m=0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -0.3, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "c", min: 0, max: 1, value: 0.6, step: 0.01, label: "c" },
+      { name: "m", min: -1, max: 1, value: 0.4, step: 0.01, label: "m" },
+    ],
+    objects: [
+      { id: "square", kind: "function", formula: "x^2", domain: { min: -1, max: 1 }, appearance: "construction" },
+      { id: "best", kind: "function", formula: "1/3", domain: { min: -1, max: 1 }, appearance: "primary" },
+      { id: "line", kind: "function", formula: "c + m*x", domain: { min: -1, max: 1 }, appearance: "secondary" },
+      { id: "gap-a", kind: "path", points: [{ x: "-0.8", y: "c - 0.8*m" }, { x: "-0.8", y: "0.64" }], appearance: "answer" },
+      { id: "gap-b", kind: "path", points: [{ x: "0", y: "c" }, { x: "0", y: "0" }], appearance: "answer" },
+      { id: "gap-c", kind: "path", points: [{ x: "0.8", y: "c + 0.8*m" }, { x: "0.8", y: "0.64" }], appearance: "answer" },
+    ],
+    readouts: [
+      { key: "error", formula: "2/5 - 4*c/3 + 2*c^2 + 2*m^2/3" },
+    ],
+  }}
+  labels={{
+    "c": <InlineMath math="c" />,
+    "m": <InlineMath math="m" />,
+    "error": <InlineMath math="\|x^2-(c+mx)\|^2" />,
+  }}
+/>
 
 ## Polynomial Approximation Spaces
 
@@ -101,6 +101,24 @@ For algebraic polynomials of degree at most <InlineMath math="n" />, use
 <BlockMath math="P_n([a,b])=\operatorname{span}\{1,x,x^2,\ldots,x^n\}" />
 
 Increasing <InlineMath math="n" /> enlarges the approximation space, so the smallest possible <InlineMath math="L^2" /> error **cannot increase**. In computation, orthogonal polynomial bases are often preferable to raw powers because they produce better-conditioned systems.
+
+Take <InlineMath math="f(x)=e^x" /> on <InlineMath math="[-1,1]" />. With the orthogonal basis <InlineMath math="1" />, <InlineMath math="x" />, <InlineMath math="\tfrac12(3x^2-1)" />, the projections onto <InlineMath math="P_0" />, <InlineMath math="P_1" />, and <InlineMath math="P_2" /> are <InlineMath math="\sinh 1" />, <InlineMath math="\sinh 1+\tfrac3ex" />, and that line plus <InlineMath math="\tfrac52\bigl(e-\tfrac7e\bigr)\cdot\tfrac12(3x^2-1)" />. Each larger space contains the smaller one, so the error can only shrink.
+
+<MathVisual
+  title={<>Best approximations of <InlineMath math="e^x" /> in <InlineMath math="P_0" />, <InlineMath math="P_1" />, and <InlineMath math="P_2" /></>}
+  description={<>The gray curve is <InlineMath math="e^x" />. The amber line is the constant <InlineMath math="\sinh 1" />, the violet line adds <InlineMath math="\tfrac3ex" />, and the magenta parabola adds the quadratic term. Each step stays closer to <InlineMath math="e^x" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -0.3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "target", kind: "function", formula: "exp(x)", domain: { min: -1, max: 1 }, appearance: "reference" },
+      { id: "constant", kind: "function", formula: "sinh(1)", domain: { min: -1, max: 1 }, appearance: "highlight" },
+      { id: "linear", kind: "function", formula: "sinh(1) + (3/e)*x", domain: { min: -1, max: 1 }, appearance: "secondary" },
+      { id: "quadratic", kind: "function", formula: "sinh(1) + (3/e)*x + (5/2)*(e - 7/e)*(3*x^2 - 1)/2", domain: { min: -1, max: 1 }, appearance: "answer" },
+    ],
+  }}
+/>
 
 ## Trigonometric Approximation Spaces
 
@@ -120,3 +138,20 @@ Over one full period, these sine and cosine basis functions are **mutually ortho
 | <InlineMath math="T_n(\omega)" /> | Periodic behavior | Orthogonality of the residual to sine and cosine basis functions |
 
 > A <Highlight>best approximation is the orthogonal projection</Highlight> defined by a chosen function space, interval, and norm. Visual similarity alone does not establish it.
+
+With period <InlineMath math="\omega=2\pi" />, the basis functions are <InlineMath math="\cos(ix)" /> and <InlineMath math="\sin(ix)" />. For <InlineMath math="f(x)=x" /> on <InlineMath math="[-\pi,\pi]" />, every <InlineMath math="a_i" /> is <InlineMath math="0" /> because <InlineMath math="f" /> is odd, and <InlineMath math="b_i=\tfrac1\pi\int_{-\pi}^{\pi}x\sin(ix)\,dx=\tfrac{2(-1)^{i+1}}i" />. Adding terms brings the sum closer to the line, except near the jumps at <InlineMath math="\pm\pi" />.
+
+<MathVisual
+  title={<>Projections of <InlineMath math="x" /> onto <InlineMath math="T_1(2\pi)" /> and <InlineMath math="T_3(2\pi)" /></>}
+  description={<>The gray line is <InlineMath math="f(x)=x" />. The teal curve is <InlineMath math="2\sin x" />, and the violet curve is <InlineMath math="2\sin x-\sin 2x+\tfrac23\sin 3x" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "identity", kind: "function", formula: "x", domain: { min: -Math.PI, max: Math.PI }, appearance: "reference" },
+      { id: "first", kind: "function", formula: "2*sin(x)", domain: { min: -Math.PI, max: Math.PI }, appearance: "construction" },
+      { id: "third", kind: "function", formula: "2*sin(x) - sin(2*x) + (2/3)*sin(3*x)", domain: { min: -Math.PI, max: Math.PI }, appearance: "secondary" },
+    ],
+  }}
+/>

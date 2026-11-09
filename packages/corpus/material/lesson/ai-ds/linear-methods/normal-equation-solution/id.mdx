@@ -62,6 +62,35 @@ Pseudoinvers ditentukan secara unik oleh empat identitas Penrose:
 <BlockMath math="(A^{\dagger}A)^T=A^{\dagger}A" />
 </MathContainer>
 
+Ambil <InlineMath math="\Sigma=\operatorname{diag}(2,\,0.5,\,0)" />. Pseudoinvers membalik setiap nilai singular positif dan membiarkan nol tetap nol: <InlineMath math="\Sigma^\dagger=\operatorname{diag}(0.5,\,2,\,0)" />. Nilai singular kecil menjadi entri besar, itulah sebabnya nilai singular yang hampir nol membuat <InlineMath math="x^\dagger" /> peka.
+
+<ScatterDiagram
+  title={<><InlineMath math="\Sigma" /> dan <InlineMath math="\Sigma^\dagger" /> entri demi entri</>}
+  description={<>Untuk <InlineMath math="i=1" />, <InlineMath math="2" />, <InlineMath math="3" />, seri pertama adalah <InlineMath math="\sigma_i" /> dan seri kedua adalah <InlineMath math="\Sigma^\dagger_{ii}" />. Nilai singular nol tetap <InlineMath math="0" />, bukan menjadi tak hingga.</>}
+  xAxisLabel="Indeks"
+  yAxisLabel="Nilai"
+  datasets={[
+    {
+      name: "Nilai singular",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 2 },
+        { x: 2, y: 0.5 },
+        { x: 3, y: 0 },
+      ],
+    },
+    {
+      name: "Entri pseudoinvers",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 1 / 2 },
+        { x: 2, y: 1 / 0.5 },
+        { x: 3, y: 0 },
+      ],
+    },
+  ]}
+/>
+
 ## Penyelesaian Langsung dengan Dekomposisi QR
 
 Untuk matriks dengan rank kolom penuh dan <InlineMath math="m\ge n" />, gunakan dekomposisi <InlineMath math="\mathrm{QR}" /> tipis
@@ -118,48 +147,24 @@ Dengan demikian,
 <BlockMath math="\|A\hat{x}-b\|_2\approx0{,}41861" />
 </MathContainer>
 
-<LineEquation
-  title={<>Fitting kuadrat terkecil <InlineMath math="\hat{y}(t)=0{,}98095t^2+3{,}02857t-2{,}00952" /></>}
-  description={<>Kurva sian adalah polinomial hasil fitting, sedangkan titik jingga adalah tujuh pengamatan dalam <InlineMath math="b" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 6, 26]}
-  cameraTarget={[0, 6, 0]}
-  data={(() => {
-    // Pengamatan yang dikodekan oleh A dan b
-    const originalData = [
-      [-3, -2.2],
-      [-2, -4.2],
-      [-1, -4.2],
-      [0, -1.8],
-      [1, 1.8],
-      [2, 8.2],
-      [3, 15.8]
-    ];
-
-    // Koefisien dari penyelesaian QR
-    const a = 0.98095;
-    const b = 3.02857;
-    const c = -2.00952;
-
-    return [
-      {
-        points: Array.from({ length: 50 }, (_, i) => {
-          const t = -3 + (i * 6) / 49;
-          const y = a * t * t + b * t + c;
-          return { x: t, y: y, z: 0 };
-        }),
-        color: "#0891b2",
-        smooth: false,
-        showPoints: false
-      },
-      ...originalData.map(([t, y]) => ({
-        points: [{ x: t, y, z: 0 }],
-        color: "#ea580c",
-        smooth: false,
-        showPoints: true
-      }))
-    ];
-  })()}
+<MathVisual
+  title={<>Parabola kuadrat terkecil <InlineMath math="\hat y(t)=\tfrac{103}{105}t^2+\tfrac{106}{35}t-\tfrac{211}{105}" /></>}
+  description={<>Kurva hijau toska adalah polinomial hasil pencocokan, dengan <InlineMath math="t" /> mendatar, dan titik oranye adalah tujuh pengamatan di <InlineMath math="b" />. Koefisiennya adalah solusi eksak persamaan normal, yaitu <InlineMath math="0.98095" />, <InlineMath math="3.02857" />, dan <InlineMath math="-2.00952" /> setelah dibulatkan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -5.5, max: 17 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "fit", kind: "function", formula: "103/105*x^2 + 106/35*x - 211/105", domain: { min: -3, max: 3 }, appearance: "construction" },
+      { id: "obs-0", kind: "point", at: { x: -3, y: -2.2 }, appearance: "primary" },
+      { id: "obs-1", kind: "point", at: { x: -2, y: -4.2 }, appearance: "primary" },
+      { id: "obs-2", kind: "point", at: { x: -1, y: -4.2 }, appearance: "primary" },
+      { id: "obs-3", kind: "point", at: { x: 0, y: -1.8 }, appearance: "primary" },
+      { id: "obs-4", kind: "point", at: { x: 1, y: 1.8 }, appearance: "primary" },
+      { id: "obs-5", kind: "point", at: { x: 2, y: 8.2 }, appearance: "primary" },
+      { id: "obs-6", kind: "point", at: { x: 3, y: 15.8 }, appearance: "primary" },
+    ],
+  }}
 />
 
 ## Memilih Metode Numerik
@@ -171,3 +176,38 @@ Dengan demikian,
 | <InlineMath math="\mathrm{SVD}" /> | lebih mahal daripada <InlineMath math="\mathrm{QR}" /> | memperlihatkan rank dan memberikan **solusi bernorma minimum** | biaya tertinggi di antara ketiganya |
 
 Gunakan <InlineMath math="\mathrm{QR}" /> sebagai pilihan umum untuk masalah padat ber-rank penuh. Gunakan <InlineMath math="\mathrm{SVD}" /> ketika matriks kekurangan rank, kondisinya sangat buruk, atau solusi bernorma minimum dibutuhkan. Bentuk matriks normal hanya jika peningkatan kecepatannya sepadan dengan penurunan stabilitas numerik. Jangan menghitung invers secara eksplisit dalam kode produksi.
+
+Membentuk <InlineMath math="A^TA" /> mengkuadratkan bilangan kondisi, <InlineMath math="\kappa(A^TA)=\kappa(A)^2" />. Dengan sekitar <InlineMath math="16" /> digit pada presisi ganda, masalah dengan <InlineMath math="\kappa(A)=10^6" /> bisa kehilangan sekitar <InlineMath math="6" /> digit lewat <InlineMath math="\mathrm{QR}" />, tetapi sekitar <InlineMath math="12" /> digit lewat persamaan normal.
+
+<ScatterDiagram
+  title={<>Digit yang terancam dengan <InlineMath math="\mathrm{QR}" /> dan dengan <InlineMath math="A^TA" /></>}
+  description={<>Dengan <InlineMath math="\log_{10}\kappa(A)" /> mendatar, seri pertama kehilangan sebanyak itu digit dan seri kedua dua kali lipatnya, karena <InlineMath math="\kappa(A^TA)=\kappa(A)^2" />.</>}
+  xAxisLabel="Pangkat bilangan kondisi"
+  yAxisLabel="Digit yang terancam"
+  datasets={[
+    {
+      name: "Dengan QR",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 1 },
+        { x: 2, y: 2 },
+        { x: 3, y: 3 },
+        { x: 4, y: 4 },
+        { x: 5, y: 5 },
+        { x: 6, y: 6 },
+      ],
+    },
+    {
+      name: "Dengan persamaan normal",
+      color: "var(--chart-3)",
+      points: [
+        { x: 1, y: 2 * 1 },
+        { x: 2, y: 2 * 2 },
+        { x: 3, y: 2 * 3 },
+        { x: 4, y: 2 * 4 },
+        { x: 5, y: 2 * 5 },
+        { x: 6, y: 2 * 6 },
+      ],
+    },
+  ]}
+/>

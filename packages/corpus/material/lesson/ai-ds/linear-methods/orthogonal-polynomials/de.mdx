@@ -78,27 +78,35 @@ Ihre gewichtete Orthogonalität lautet
 
 Da <InlineMath math="|T_k(x)|\le1" /> auf <InlineMath math="[-1,1]" /> gilt und der Leitkoeffizient für <InlineMath math="k\ge1" /> gleich <InlineMath math="2^{k-1}" /> ist, hat das monische Polynom <InlineMath math="2^{1-k}T_k" /> unter allen monischen Polynomen vom Grad <InlineMath math="k" /> die **kleinste Maximumsnorm**. Es löst damit das Minimax-Approximationsproblem für monische Polynome vom Grad <InlineMath math="k" />.
 
-<LineEquation
-  title={<>Die ersten Chebyshev-Polynome <InlineMath math="T_0,T_1,T_2,T_3" /></>}
-  description={<>Alle vier bleiben im Intervall <InlineMath math="[-1,1]" /> zwischen <InlineMath math="-1" /> und <InlineMath math="1" />.</>}
-  cameraPosition={[0, 0, 4.5]}
-  showZAxis={false}
-  data={(() => {
-    const samples = Array.from({ length: 81 }, (_, index) => -1 + index / 40);
-    const polynomials = [
-      { color: "#0891b2", evaluate: (x) => 1 },
-      { color: "#ea580c", evaluate: (x) => x },
-      { color: "#7c3aed", evaluate: (x) => 2 * x * x - 1 },
-      { color: "#db2777", evaluate: (x) => 4 * x * x * x - 3 * x }
-    ];
-
-    return polynomials.map(({ color, evaluate }) => ({
-      points: samples.map((x) => ({ x, y: evaluate(x), z: 0 })),
-      color,
-      smooth: false,
-      showPoints: false
-    }));
-  })()}
+<MathVisual
+  title={<>Die ersten Tschebyschow-Polynome <InlineMath math="T_0,T_1,T_2,T_3" /></>}
+  description={<>Die graue, türkise, violette und orange Kurve sind <InlineMath math="T_0=1" />, <InlineMath math="T_1=x" />, <InlineMath math="T_2=2x^2-1" /> und <InlineMath math="T_3=4x^3-3x" />. Verschiebe <InlineMath math="\theta" />: Der magentafarbene Punkt <InlineMath math="(\cos\theta,\cos3\theta)" /> bleibt auf <InlineMath math="T_3" />. Weil <InlineMath math="T_k(\cos\theta)=\cos k\theta" /> gilt, bleibt jedes <InlineMath math="T_k" /> auf <InlineMath math="[-1,1]" /> zwischen <InlineMath math="-1" /> und <InlineMath math="1" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -1.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: 0, max: Math.PI, value: 1, step: 0.01, label: "angle" },
+    ],
+    objects: [
+      { id: "t0", kind: "function", formula: "1", domain: { min: -1, max: 1 }, appearance: "reference" },
+      { id: "t1", kind: "function", formula: "x", domain: { min: -1, max: 1 }, appearance: "construction" },
+      { id: "t2", kind: "function", formula: "2*x^2 - 1", domain: { min: -1, max: 1 }, appearance: "secondary" },
+      { id: "t3", kind: "function", formula: "4*x^3 - 3*x", domain: { min: -1, max: 1 }, appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a)", y: "cos(3*a)", appearance: "answer" },
+    ],
+    labels: [
+      { key: "point", objectId: "point", at: { x: "cos(a)", y: "cos(3*a)" }, placement: "above" },
+    ],
+    readouts: [
+      { key: "value", formula: "cos(3*a)" },
+    ],
+  }}
+  labels={{
+    "angle": <InlineMath math="\theta" />,
+    "value": <InlineMath math="T_3(\cos\theta)=\cos3\theta" />,
+    "point": <InlineMath math="(\cos\theta,\cos3\theta)" />,
+  }}
 />
 
 ## Polynome nach Legendre
@@ -130,6 +138,24 @@ Zum Beispiel gilt
 </MathContainer>
 
 Die zweite Identität ist eine **exakte orthogonale Entwicklung** und keine Näherung.
+
+Mit dem Gewicht <InlineMath math="1" /> auf <InlineMath math="[-1,1]" /> liefert Gram-Schmidt auf <InlineMath math="1,x,x^2,x^3" /> die Legendre-Polynome <InlineMath math="P_0=1" />, <InlineMath math="P_1=x" />, <InlineMath math="P_2=\tfrac12(3x^2-1)" /> und <InlineMath math="P_3=\tfrac12(5x^3-3x)" />, so skaliert, dass <InlineMath math="P_k(1)=1" /> gilt.
+
+<MathVisual
+  title={<>Die ersten Legendre-Polynome <InlineMath math="P_0,P_1,P_2,P_3" /></>}
+  description={<>Die graue, türkise, violette und orange Kurve sind <InlineMath math="P_0" /> bis <InlineMath math="P_3" />. Jede Kurve geht durch <InlineMath math="(1,1)" />, und <InlineMath math="P_k" /> hat <InlineMath math="k" /> Nullstellen in <InlineMath math="[-1,1]" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -1.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p0", kind: "function", formula: "1", domain: { min: -1, max: 1 }, appearance: "reference" },
+      { id: "p1", kind: "function", formula: "x", domain: { min: -1, max: 1 }, appearance: "construction" },
+      { id: "p2", kind: "function", formula: "(3*x^2 - 1)/2", domain: { min: -1, max: 1 }, appearance: "secondary" },
+      { id: "p3", kind: "function", formula: "(5*x^3 - 3*x)/2", domain: { min: -1, max: 1 }, appearance: "primary" },
+    ],
+  }}
+/>
 
 ## Das Intervall orthogonaler Polynome ändern
 
@@ -167,3 +193,23 @@ Bei zwei Gauß-Legendre-Knoten liefert <InlineMath math="P_2(x)=0" /> die Werte 
 | Legendre <InlineMath math="P_k" /> | <InlineMath math="1" /> | ungewichtete <InlineMath math="L^2" />-Projektion und Gauß-Legendre-Quadratur |
 
 Polynomfamilie, Skalarprodukt, Approximationsziel und Quadraturgewicht müssen zusammenpassen. Wird eines davon geändert, ändert sich das gelöste Problem.
+
+Die Gauß-Regel mit zwei Punkten nimmt die Nullstellen <InlineMath math="\pm\tfrac1{\sqrt3}" /> von <InlineMath math="P_2" /> als Knoten, beide mit dem Gewicht <InlineMath math="1" />. Sie integriert jedes kubische Polynom exakt: Für <InlineMath math="f(x)=x^3+x^2" /> gilt <InlineMath math="f(\tfrac1{\sqrt3})+f(-\tfrac1{\sqrt3})=\tfrac23=\int_{-1}^1f(x)\,dx" />.
+
+<MathVisual
+  title={<>Gauß-Knoten in den Nullstellen von <InlineMath math="P_2" /></>}
+  description={<>Die türkise Kurve ist <InlineMath math="P_2" /> mit den magentafarbenen Nullstellen <InlineMath math="\pm\tfrac1{\sqrt3}" />. Die violette Kurve ist <InlineMath math="f(x)=x^3+x^2" />, und die orangen Punkte sind ihre Werte in den Knoten, die zusammen <InlineMath math="\tfrac23" /> ergeben.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -0.7, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "p2", kind: "function", formula: "(3*x^2 - 1)/2", domain: { min: -1, max: 1 }, appearance: "construction" },
+      { id: "cubic", kind: "function", formula: "x^3 + x^2", domain: { min: -1, max: 1 }, appearance: "secondary" },
+      { id: "left-node", kind: "point", at: { x: -1 / Math.sqrt(3), y: 0 }, appearance: "answer" },
+      { id: "right-node", kind: "point", at: { x: 1 / Math.sqrt(3), y: 0 }, appearance: "answer" },
+      { id: "left-value", kind: "point", at: { x: -1 / Math.sqrt(3), y: -1 / (3 * Math.sqrt(3)) + 1 / 3 }, appearance: "primary" },
+      { id: "right-value", kind: "point", at: { x: 1 / Math.sqrt(3), y: 1 / (3 * Math.sqrt(3)) + 1 / 3 }, appearance: "primary" },
+    ],
+  }}
+/>

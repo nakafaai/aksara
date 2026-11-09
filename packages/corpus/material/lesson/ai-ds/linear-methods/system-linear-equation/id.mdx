@@ -82,6 +82,28 @@ Minor tak nol ini menunjukkan bahwa <InlineMath math="\operatorname{rank}(A\mid 
 
 Karena <InlineMath math="\operatorname{rank}(A) \ne \operatorname{rank}(A\mid b)" />, sistem ini **tidak memiliki solusi eksak**. Tidak ada satu polinom kuadrat yang melewati seluruh <InlineMath math="7" /> pengamatan.
 
+Parabola yang melewati tiga titik masih bisa meleset dari titik lain. Parabola yang melewati <InlineMath math="t=-3" />, <InlineMath math="-2" />, dan <InlineMath math="-1" /> adalah <InlineMath math="y=t^2+3t-2.2" />, dan kebetulan juga melewati <InlineMath math="t=1" /> dan <InlineMath math="t=3" />. Di <InlineMath math="t=0" /> nilainya <InlineMath math="-2.2" />, bukan <InlineMath math="-1.8" />, dan di <InlineMath math="t=2" /> nilainya <InlineMath math="7.8" />, bukan <InlineMath math="8.2" />, jadi tidak ada satu parabola yang cocok dengan ketujuh titik.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="y=t^2+3t-2.2" /> meleset dari dua pengamatan</>}
+  description={<>Kurva ungu melewati lima titik abu-abu. Dua titik magenta di <InlineMath math="t=0" /> dan <InlineMath math="t=2" /> berjarak <InlineMath math="0.4" /> dari kurva.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -5.5, max: 17 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "through", kind: "function", formula: "x^2 + 3*x - 2.2", domain: { min: -3, max: 3 }, appearance: "secondary" },
+      { id: "hit-0", kind: "point", at: { x: -3, y: -2.2 }, appearance: "reference" },
+      { id: "hit-1", kind: "point", at: { x: -2, y: -4.2 }, appearance: "reference" },
+      { id: "hit-2", kind: "point", at: { x: -1, y: -4.2 }, appearance: "reference" },
+      { id: "hit-4", kind: "point", at: { x: 1, y: 1.8 }, appearance: "reference" },
+      { id: "hit-6", kind: "point", at: { x: 3, y: 15.8 }, appearance: "reference" },
+      { id: "miss-zero", kind: "point", at: { x: 0, y: -1.8 }, appearance: "answer" },
+      { id: "miss-two", kind: "point", at: { x: 2, y: 8.2 }, appearance: "answer" },
+    ],
+  }}
+/>
+
 ## Solusi dengan Kuadrat Terkecil
 
 Jika sistem berlebih tidak memiliki solusi eksak, kita dapat mencari polinom yang paling dekat dengan semua pengamatan menurut kriteria **kuadrat terkecil**.
@@ -128,48 +150,55 @@ Persamaan <InlineMath math="A^Tr=0" /> berarti galat yang tersisa ortogonal terh
 
 Sistem berlebih banyak muncul dalam rekayasa dan sains karena eksperimen biasanya menghasilkan banyak pengukuran untuk model dengan sedikit parameter. Kuadrat terkecil memanfaatkan seluruh pengukuran tanpa menganggap data yang berisik cocok sempurna dengan model.
 
-Kurva memperlihatkan hasil pencocokan, sedangkan titik menandai pengamatan. Putar atau perbesar diagram untuk membandingkan titik dengan kurva. Selisih vertikal setiap titik merupakan residual pada nilai waktu yang sama.
+Kurva memperlihatkan hasil pencocokan, sedangkan titik menandai pengamatan. Bandingkan setiap titik dengan kurva: selisih vertikalnya merupakan residual pada nilai waktu yang sama.
 
-<LineEquation
-  title={<>Fitting kuadrat terkecil <InlineMath math="\hat{y}(t)=0{,}98095t^2+3{,}02857t-2{,}00952" /></>}
-  description={<>Kurva sian adalah polinomial hasil fitting, sedangkan titik jingga adalah tujuh pengamatan dalam <InlineMath math="b" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 6, 26]}
-  cameraTarget={[0, 6, 0]}
-  data={(() => {
-    // Pengamatan yang dikodekan oleh A dan b
-    const originalData = [
-      [-3, -2.2],
-      [-2, -4.2],
-      [-1, -4.2],
-      [0, -1.8],
-      [1, 1.8],
-      [2, 8.2],
-      [3, 15.8]
-    ];
+<MathVisual
+  title={<>Parabola kuadrat terkecil dan residualnya</>}
+  description={<>Kurva hijau toska adalah <InlineMath math="\hat y(t)" />, titik oranye adalah tujuh pengamatan, dan setiap ruas magenta adalah residual, yaitu selisih vertikal pada <InlineMath math="t" /> yang sama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -5.5, max: 17 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "fit", kind: "function", formula: "103/105*x^2 + 106/35*x - 211/105", domain: { min: -3, max: 3 }, appearance: "construction" },
+      { id: "gap-0", kind: "segment", from: { x: -3, y: -2.2 }, to: { x: -3, y: 103 / 105 * (-3) ** 2 + 106 / 35 * (-3) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-1", kind: "segment", from: { x: -2, y: -4.2 }, to: { x: -2, y: 103 / 105 * (-2) ** 2 + 106 / 35 * (-2) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-2", kind: "segment", from: { x: -1, y: -4.2 }, to: { x: -1, y: 103 / 105 * (-1) ** 2 + 106 / 35 * (-1) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-3", kind: "segment", from: { x: 0, y: -1.8 }, to: { x: 0, y: 103 / 105 * (0) ** 2 + 106 / 35 * (0) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-4", kind: "segment", from: { x: 1, y: 1.8 }, to: { x: 1, y: 103 / 105 * (1) ** 2 + 106 / 35 * (1) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-5", kind: "segment", from: { x: 2, y: 8.2 }, to: { x: 2, y: 103 / 105 * (2) ** 2 + 106 / 35 * (2) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-6", kind: "segment", from: { x: 3, y: 15.8 }, to: { x: 3, y: 103 / 105 * (3) ** 2 + 106 / 35 * (3) - 211 / 105 }, appearance: "answer" },
+      { id: "obs-0", kind: "point", at: { x: -3, y: -2.2 }, appearance: "primary" },
+      { id: "obs-1", kind: "point", at: { x: -2, y: -4.2 }, appearance: "primary" },
+      { id: "obs-2", kind: "point", at: { x: -1, y: -4.2 }, appearance: "primary" },
+      { id: "obs-3", kind: "point", at: { x: 0, y: -1.8 }, appearance: "primary" },
+      { id: "obs-4", kind: "point", at: { x: 1, y: 1.8 }, appearance: "primary" },
+      { id: "obs-5", kind: "point", at: { x: 2, y: 8.2 }, appearance: "primary" },
+      { id: "obs-6", kind: "point", at: { x: 3, y: 15.8 }, appearance: "primary" },
+    ],
+  }}
+/>
 
-    // Koefisien dari penyelesaian QR
-    const a = 0.98095;
-    const b = 3.02857;
-    const c = -2.00952;
+Residual hasil kuadrat terkecil kecil dan berganti tanda: <InlineMath math="\tfrac1{15}" />, <InlineMath math="-\tfrac2{35}" />, <InlineMath math="-\tfrac17" />, <InlineMath math="\tfrac{22}{105}" />, <InlineMath math="-\tfrac15" />, <InlineMath math="\tfrac8{35}" />, dan <InlineMath math="-\tfrac{11}{105}" />. Jumlahnya <InlineMath math="0" />, karena model memuat suku konstanta dan residualnya ortogonal terhadap setiap kolom <InlineMath math="A" />.
 
-    return [
-      {
-        points: Array.from({ length: 50 }, (_, i) => {
-          const t = -3 + (i * 6) / 49;
-          const y = a * t * t + b * t + c;
-          return { x: t, y: y, z: 0 };
-        }),
-        color: "#0891b2",
-        smooth: false,
-        showPoints: false
-      },
-      ...originalData.map(([t, y]) => ({
-        points: [{ x: t, y, z: 0 }],
-        color: "#ea580c",
-        smooth: false,
-        showPoints: true
-      }))
-    ];
-  })()}
+<ScatterDiagram
+  title={<>Residual <InlineMath math="b_i-\hat y(t_i)" /> dari pencocokan</>}
+  description={<>Setiap titik adalah residual satu pengamatan, dengan <InlineMath math="t" /> mendatar. Residual positif dan negatif saling mengimbangi sampai jumlahnya <InlineMath math="0" />.</>}
+  xAxisLabel="Waktu"
+  yAxisLabel="Residual"
+  datasets={[
+    {
+      name: "Residual",
+      color: "var(--chart-4)",
+      points: [
+        { x: -3, y: -2.2 - (103 / 105 * (-3) ** 2 + 106 / 35 * (-3) - 211 / 105) },
+        { x: -2, y: -4.2 - (103 / 105 * (-2) ** 2 + 106 / 35 * (-2) - 211 / 105) },
+        { x: -1, y: -4.2 - (103 / 105 * (-1) ** 2 + 106 / 35 * (-1) - 211 / 105) },
+        { x: 0, y: -1.8 - (103 / 105 * (0) ** 2 + 106 / 35 * (0) - 211 / 105) },
+        { x: 1, y: 1.8 - (103 / 105 * (1) ** 2 + 106 / 35 * (1) - 211 / 105) },
+        { x: 2, y: 8.2 - (103 / 105 * (2) ** 2 + 106 / 35 * (2) - 211 / 105) },
+        { x: 3, y: 15.8 - (103 / 105 * (3) ** 2 + 106 / 35 * (3) - 211 / 105) },
+      ],
+    },
+  ]}
 />

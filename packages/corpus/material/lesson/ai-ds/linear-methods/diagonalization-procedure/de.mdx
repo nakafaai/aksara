@@ -13,6 +13,33 @@ Die Diagonalisierung verändert nicht die <Highlight>lineare Transformation selb
 
 Zur Diagonalisierung einer Matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> bestimmen wir ihre Eigenwerte und Eigenräume. Gibt es <InlineMath math="n" /> linear unabhängige Eigenvektoren, bilden diese Vektoren die Spalten einer Basiswechselmatrix.
 
+In einer Basis aus Eigenvektoren skaliert eine diagonalisierbare Matrix nur die Koordinaten. Für die Matrix im Beispiel weiter unten schreibe <InlineMath math="w=(2,3,3)" /> als <InlineMath math="v_1+v_3" /> mit <InlineMath math="v_1=(1,0,1)" /> in der Ebene <InlineMath math="E_A(1)" /> und <InlineMath math="v_3=(1,3,2)" /> in <InlineMath math="E_A(-1)" />. Dann gilt <InlineMath math="Aw=v_1-v_3=(0,-3,-1)" />: Der Anteil in der Ebene bleibt, der Anteil <InlineMath math="v_3" /> klappt um.
+
+<MathVisual
+  title={<><InlineMath math="Aw=v_1-v_3" /> in der Eigenvektorbasis</>}
+  description={<>Die türkise Fläche ist die Ebene <InlineMath math="E_A(1)" /> mit der violetten Strecke <InlineMath math="v_1" /> darin. Die orange Strecke ist <InlineMath math="v_3" />. Die graue Strecke <InlineMath math="w=v_1+v_3" /> wird auf die magentafarbene Strecke <InlineMath math="Aw=v_1-v_3" /> abgebildet.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 2.5 }, y: { min: -3.5, max: 3.5 }, z: { min: -3.5, max: 3.5 } },
+    view: { kind: "isometric", target: { x: 0.5, y: 0, z: 0 } },
+    objects: [
+      { id: "fixed", kind: "function", formula: "x + y", domain: { x: { min: -1, max: 2 }, y: { min: -1.5, max: 1.5 } }, appearance: "construction" },
+      { id: "inside", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 1 }, appearance: "secondary" },
+      { id: "outside", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 3, z: 2 }, appearance: "primary" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 3, z: 3 }, appearance: "reference" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: -3, z: -1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "w", objectId: "vector", at: { x: 2, y: 3, z: 3 }, placement: "right" },
+      { key: "aw", objectId: "image", at: { x: 0, y: -3, z: -1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "w": <InlineMath math="w" />,
+    "aw": <InlineMath math="Aw" />,
+  }}
+/>
+
 ## Diagonalisierungsschritte
 
 Das Verfahren besteht aus drei aufeinander aufbauenden Schritten:
@@ -40,6 +67,31 @@ Das Verfahren besteht aus drei aufeinander aufbauenden Schritten:
 
    <BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
 
+Der erste Schritt zerlegt das charakteristische Polynom. Für das Beispiel weiter unten schneidet <InlineMath math="\chi_A(t)=(1-t)^2(-1-t)" /> die Achse bei <InlineMath math="t=-1" /> und berührt sie bei <InlineMath math="t=1" /> nur, also <InlineMath math="\mu_A(-1)=1" /> und <InlineMath math="\mu_A(1)=2" />. Das Verfahren braucht dann zwei unabhängige Eigenvektoren zu <InlineMath math="1" /> und einen zu <InlineMath math="-1" />.
+
+<MathVisual
+  title={<><InlineMath math="\chi_A(t)=(1-t)^2(-1-t)" /> für die Beispielmatrix</>}
+  description={<>Die violette Kurve ist das charakteristische Polynom, mit <InlineMath math="t" /> nach rechts. Sie schneidet die Achse in der magentafarbenen Nullstelle <InlineMath math="-1" /> und berührt sie in der orangen doppelten Nullstelle <InlineMath math="1" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2.5 }, y: { min: -4.2, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "polynomial", kind: "function", formula: "(1 - x)^2*(-1 - x)", domain: { min: -1.6, max: 2.1 }, appearance: "secondary" },
+      { id: "simple", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+      { id: "double", kind: "point", at: { x: 1, y: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "simple", objectId: "simple", at: { x: -1, y: 0 }, placement: "above-left" },
+      { key: "double", objectId: "double", at: { x: 1, y: 0 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "simple": <InlineMath math="-1" />,
+    "double": <InlineMath math="1" />,
+  }}
+/>
+
 ## Beispielanwendung des Verfahrens
 
 Betrachten wir die Matrix:
@@ -65,7 +117,7 @@ Nun führen wir die drei Schritte durch:
    <BlockMath math="\begin{aligned} E_A(-1) &amp;= \ker(A + I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}\right\} \end{aligned}" />
    </MathContainer>
 
-   Für den Eigenwert 1 liefert jede Zeile von <InlineMath math="A-I" /> dieselbe **Ebenengleichung** <InlineMath math="z=x+y" />. Für den Eigenwert −1 lösen wir die ersten beiden Gleichungen in <InlineMath math="(A+I)v=0" />:
+   Für den Eigenwert <InlineMath math="1" /> liefert jede Zeile von <InlineMath math="A-I" /> dieselbe **Ebenengleichung** <InlineMath math="z=x+y" />. Für den Eigenwert <InlineMath math="-1" /> lösen wir die ersten beiden Gleichungen in <InlineMath math="(A+I)v=0" />:
 
    <BlockMath math="\begin{aligned}x-y+z&=0\Rightarrow y=x+z\\-3x-y+3z&=0\Rightarrow -4x+2z=0\\z&=2x,\qquad y=3x\end{aligned}" />
 
@@ -90,6 +142,27 @@ Somit wird die Matrix <InlineMath math="A" /> zu <InlineMath math="\Lambda" /> d
 
 Das Verfahren weist damit beide Voraussetzungen nach: Die Eigenvektoren bilden eine Basis, und die Matrixdarstellung in dieser Basis ist diagonal.
 
-Drehe das Modell, um die **beiden Eigenräume** zu unterscheiden. Jeder Punkt der grünen Ebene <InlineMath math="z=x+y" /> bleibt wegen des Eigenwerts 1 fest. Der orange Vektor <InlineMath math="v_3" /> liegt außerhalb der Ebene und wird auf den roten Vektor <InlineMath math="Av_3=-v_3" /> abgebildet. Zusammen spannen diese Richtungen den ganzen Raum auf.
+Drehe das Modell, um die **beiden Eigenräume** zu unterscheiden. Jeder Punkt der türkisen Ebene <InlineMath math="z=x+y" /> bleibt wegen des Eigenwerts <InlineMath math="1" /> fest. Der orange Vektor <InlineMath math="v_3" /> liegt außerhalb der Ebene und wird auf den magentafarbenen Vektor <InlineMath math="Av_3=-v_3" /> abgebildet. Zusammen spannen diese Richtungen den ganzen Raum auf.
 
-<LineEquation description="Die grüne Ebene bleibt fest, während der orangefarbene Vektor zum entgegengesetzten roten Vektor wird. Drehe das Modell, um zu sehen, dass der orangefarbene Vektor außerhalb der Ebene liegt." title="Eine feste Ebene und eine umgekehrte Richtung" cameraPosition={[7, 6, 9]} cameraTarget={[0, 0, 0]} data={[{"points": [{"x": -1, "y": -1, "z": -2}, {"x": 1, "y": -1, "z": 0}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": -1, "z": -2}, {"x": -1, "y": 1, "z": 0}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": 0, "z": -1}, {"x": 1, "y": 0, "z": 1}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 0, "y": -1, "z": -1}, {"x": 0, "y": 1, "z": 1}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": 1, "z": 0}, {"x": 1, "y": 1, "z": 2}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 1, "y": -1, "z": 0}, {"x": 1, "y": 1, "z": 2}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 1, "y": 0, "z": 1}], "color": "#0284c7", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="v_1" />, "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 0, "y": 1, "z": 1}], "color": "#9333ea", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="v_2" />, "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 1, "y": 3, "z": 2}], "color": "#ea580c", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="v_3" />, "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": -1, "y": -3, "z": -2}], "color": "#be123c", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="Av_3" />, "at": 1}]}]} />
+<MathVisual
+  title={<>Die Eigenräume von <InlineMath math="A" /> im Raum</>}
+  description={<>Die türkise Fläche ist die Ebene <InlineMath math="z=x+y" />, der Eigenraum <InlineMath math="E_A(1)" />, den <InlineMath math="A" /> festhält. Die orange Strecke ist <InlineMath math="v_3=(1,3,2)" /> und die magentafarbene Strecke ihr Bild <InlineMath math="Av_3=-v_3" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -3.5, max: 3.5 }, z: { min: -3.5, max: 3.5 } },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
+    objects: [
+      { id: "fixed", kind: "function", formula: "x + y", domain: { x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } }, appearance: "construction" },
+      { id: "outside", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 3, z: 2 }, appearance: "primary" },
+      { id: "flipped", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: -1, y: -3, z: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "v3", objectId: "outside", at: { x: 1, y: 3, z: 2 }, placement: "right" },
+      { key: "av3", objectId: "flipped", at: { x: -1, y: -3, z: -2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "v3": <InlineMath math="v_3" />,
+    "av3": <InlineMath math="Av_3=-v_3" />,
+  }}
+/>

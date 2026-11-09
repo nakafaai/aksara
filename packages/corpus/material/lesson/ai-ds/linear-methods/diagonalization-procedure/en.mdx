@@ -13,6 +13,33 @@ Diagonalization does not change the <Highlight>linear transformation itself</Hig
 
 To diagonalize a matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" />, compute its eigenvalues and eigenspaces. If there are <InlineMath math="n" /> linearly independent eigenvectors, place those vectors in a change-of-basis matrix.
 
+In an eigenvector basis, a diagonalizable matrix only scales coordinates. For the matrix in the example below, write <InlineMath math="w=(2,3,3)" /> as <InlineMath math="v_1+v_3" /> with <InlineMath math="v_1=(1,0,1)" /> in the plane <InlineMath math="E_A(1)" /> and <InlineMath math="v_3=(1,3,2)" /> in <InlineMath math="E_A(-1)" />. Then <InlineMath math="Aw=v_1-v_3=(0,-3,-1)" />: the plane part stays, and the <InlineMath math="v_3" /> part flips.
+
+<MathVisual
+  title={<><InlineMath math="Aw=v_1-v_3" /> in the eigenvector basis</>}
+  description={<>The teal surface is the plane <InlineMath math="E_A(1)" />, with the violet segment <InlineMath math="v_1" /> inside it. The orange segment is <InlineMath math="v_3" />. The gray segment <InlineMath math="w=v_1+v_3" /> maps to the magenta segment <InlineMath math="Aw=v_1-v_3" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 2.5 }, y: { min: -3.5, max: 3.5 }, z: { min: -3.5, max: 3.5 } },
+    view: { kind: "isometric", target: { x: 0.5, y: 0, z: 0 } },
+    objects: [
+      { id: "fixed", kind: "function", formula: "x + y", domain: { x: { min: -1, max: 2 }, y: { min: -1.5, max: 1.5 } }, appearance: "construction" },
+      { id: "inside", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 1 }, appearance: "secondary" },
+      { id: "outside", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 3, z: 2 }, appearance: "primary" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 3, z: 3 }, appearance: "reference" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: -3, z: -1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "w", objectId: "vector", at: { x: 2, y: 3, z: 3 }, placement: "right" },
+      { key: "aw", objectId: "image", at: { x: 0, y: -3, z: -1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "w": <InlineMath math="w" />,
+    "aw": <InlineMath math="Aw" />,
+  }}
+/>
+
 ## Diagonalization Steps
 
 The diagonalization procedure consists of three main steps that must be performed sequentially:
@@ -40,6 +67,31 @@ The diagonalization procedure consists of three main steps that must be performe
 
    <BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
 
+Step one factors the characteristic polynomial. For the example below, <InlineMath math="\chi_A(t)=(1-t)^2(-1-t)" /> crosses the axis at <InlineMath math="t=-1" /> and only touches it at <InlineMath math="t=1" />, so <InlineMath math="\mu_A(-1)=1" /> and <InlineMath math="\mu_A(1)=2" />. The procedure then needs two independent eigenvectors for <InlineMath math="1" /> and one for <InlineMath math="-1" />.
+
+<MathVisual
+  title={<><InlineMath math="\chi_A(t)=(1-t)^2(-1-t)" /> for the example matrix</>}
+  description={<>The violet curve is the characteristic polynomial, with <InlineMath math="t" /> across. It crosses the axis at the magenta root <InlineMath math="-1" /> and touches it at the orange double root <InlineMath math="1" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2.5 }, y: { min: -4.2, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "polynomial", kind: "function", formula: "(1 - x)^2*(-1 - x)", domain: { min: -1.6, max: 2.1 }, appearance: "secondary" },
+      { id: "simple", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+      { id: "double", kind: "point", at: { x: 1, y: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "simple", objectId: "simple", at: { x: -1, y: 0 }, placement: "above-left" },
+      { key: "double", objectId: "double", at: { x: 1, y: 0 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "simple": <InlineMath math="-1" />,
+    "double": <InlineMath math="1" />,
+  }}
+/>
+
 ## Example Application of the Procedure
 
 Consider the matrix:
@@ -65,7 +117,7 @@ Apply the diagonalization procedure to this example:
    <BlockMath math="\begin{aligned} E_A(-1) &amp;= \ker(A + I) \\ &amp;= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix}\right\} \end{aligned}" />
    </MathContainer>
 
-   For eigenvalue 1, every row of <InlineMath math="A-I" /> gives the same **plane equation** <InlineMath math="z=x+y" />. For eigenvalue −1, solve the first two equations in <InlineMath math="(A+I)v=0" />:
+   For eigenvalue <InlineMath math="1" />, every row of <InlineMath math="A-I" /> gives the same **plane equation** <InlineMath math="z=x+y" />. For eigenvalue <InlineMath math="-1" />, solve the first two equations in <InlineMath math="(A+I)v=0" />:
 
    <BlockMath math="\begin{aligned}x-y+z&=0\Rightarrow y=x+z\\-3x-y+3z&=0\Rightarrow -4x+2z=0\\z&=2x,\qquad y=3x\end{aligned}" />
 
@@ -90,6 +142,27 @@ The matrix <InlineMath math="A" /> is successfully diagonalized to <InlineMath m
 
 The procedure therefore proves both requirements: the eigenvectors form a basis, and the matrix representation in that basis is diagonal.
 
-Rotate the model to separate the **two eigenspaces**. Every point of the green plane <InlineMath math="z=x+y" /> stays fixed because its eigenvalue is 1. The orange vector <InlineMath math="v_3" /> lies outside that plane and maps to the red vector <InlineMath math="Av_3=-v_3" />. Together, these directions span the whole space.
+Rotate the model to separate the **two eigenspaces**. Every point of the teal plane <InlineMath math="z=x+y" /> stays fixed because its eigenvalue is <InlineMath math="1" />. The orange vector <InlineMath math="v_3" /> lies outside that plane and maps to the magenta vector <InlineMath math="Av_3=-v_3" />. Together, these directions span the whole space.
 
-<LineEquation description="The green plane stays fixed, while the orange vector becomes the opposite red vector. Rotate the model to see that the orange vector lies outside the plane." title="An invariant plane and a reversed direction" cameraPosition={[7, 6, 9]} cameraTarget={[0, 0, 0]} data={[{"points": [{"x": -1, "y": -1, "z": -2}, {"x": 1, "y": -1, "z": 0}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": -1, "z": -2}, {"x": -1, "y": 1, "z": 0}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": 0, "z": -1}, {"x": 1, "y": 0, "z": 1}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 0, "y": -1, "z": -1}, {"x": 0, "y": 1, "z": 1}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": -1, "y": 1, "z": 0}, {"x": 1, "y": 1, "z": 2}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 1, "y": -1, "z": 0}, {"x": 1, "y": 1, "z": 2}], "color": "#0d9488", "smooth": false, "showPoints": false}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 1, "y": 0, "z": 1}], "color": "#0284c7", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="v_1" />, "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 0, "y": 1, "z": 1}], "color": "#9333ea", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="v_2" />, "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": 1, "y": 3, "z": 2}], "color": "#ea580c", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="v_3" />, "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": -1, "y": -3, "z": -2}], "color": "#be123c", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="Av_3" />, "at": 1}]}]} />
+<MathVisual
+  title={<>The eigenspaces of <InlineMath math="A" /> in space</>}
+  description={<>The teal surface is the plane <InlineMath math="z=x+y" />, the eigenspace <InlineMath math="E_A(1)" />, which <InlineMath math="A" /> keeps fixed. The orange segment is <InlineMath math="v_3=(1,3,2)" /> and the magenta segment is its image <InlineMath math="Av_3=-v_3" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -3.5, max: 3.5 }, z: { min: -3.5, max: 3.5 } },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
+    objects: [
+      { id: "fixed", kind: "function", formula: "x + y", domain: { x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } }, appearance: "construction" },
+      { id: "outside", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 3, z: 2 }, appearance: "primary" },
+      { id: "flipped", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: -1, y: -3, z: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "v3", objectId: "outside", at: { x: 1, y: 3, z: 2 }, placement: "right" },
+      { key: "av3", objectId: "flipped", at: { x: -1, y: -3, z: -2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "v3": <InlineMath math="v_3" />,
+    "av3": <InlineMath math="Av_3=-v_3" />,
+  }}
+/>

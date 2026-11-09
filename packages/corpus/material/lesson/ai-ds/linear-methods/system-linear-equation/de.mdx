@@ -82,6 +82,28 @@ Dieser von null verschiedene Minor zeigt, dass <InlineMath math="\operatorname{r
 
 Da <InlineMath math="\operatorname{rank}(A) \ne \operatorname{rank}(A\mid b)" /> gilt, **hat das System keine exakte Lösung**. Kein einziges quadratisches Polynom verläuft durch alle <InlineMath math="7" /> Beobachtungen.
 
+Eine Parabel durch drei der Punkte kann andere trotzdem verfehlen. Die Parabel durch <InlineMath math="t=-3" />, <InlineMath math="-2" /> und <InlineMath math="-1" /> ist <InlineMath math="y=t^2+3t-2.2" />, und sie geht zufällig auch durch <InlineMath math="t=1" /> und <InlineMath math="t=3" />. Bei <InlineMath math="t=0" /> liefert sie <InlineMath math="-2.2" /> statt <InlineMath math="-1.8" /> und bei <InlineMath math="t=2" /> den Wert <InlineMath math="7.8" /> statt <InlineMath math="8.2" />, also passt keine einzelne Parabel zu allen sieben Punkten.
+
+<MathVisual
+  title={<>Die Parabel <InlineMath math="y=t^2+3t-2.2" /> verfehlt zwei Beobachtungen</>}
+  description={<>Die violette Kurve geht durch die fünf grauen Punkte. Die beiden magentafarbenen Punkte bei <InlineMath math="t=0" /> und <InlineMath math="t=2" /> liegen <InlineMath math="0.4" /> neben der Kurve.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -5.5, max: 17 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "through", kind: "function", formula: "x^2 + 3*x - 2.2", domain: { min: -3, max: 3 }, appearance: "secondary" },
+      { id: "hit-0", kind: "point", at: { x: -3, y: -2.2 }, appearance: "reference" },
+      { id: "hit-1", kind: "point", at: { x: -2, y: -4.2 }, appearance: "reference" },
+      { id: "hit-2", kind: "point", at: { x: -1, y: -4.2 }, appearance: "reference" },
+      { id: "hit-4", kind: "point", at: { x: 1, y: 1.8 }, appearance: "reference" },
+      { id: "hit-6", kind: "point", at: { x: 3, y: 15.8 }, appearance: "reference" },
+      { id: "miss-zero", kind: "point", at: { x: 0, y: -1.8 }, appearance: "answer" },
+      { id: "miss-two", kind: "point", at: { x: 2, y: 8.2 }, appearance: "answer" },
+    ],
+  }}
+/>
+
 ## Lösung mit kleinsten Quadraten
 
 Besitzt ein überbestimmtes System keine exakte Lösung, bestimmen wir das Polynom, das den Beobachtungen im Sinne der **kleinsten Quadrate** am nächsten liegt.
@@ -128,48 +150,55 @@ Die Gleichung <InlineMath math="A^Tr=0" /> besagt, dass der verbleibende Fehler 
 
 Überbestimmte Systeme treten in Technik und Naturwissenschaften häufig auf, weil Experimente viele Messwerte für Modelle mit wenigen Parametern liefern. Die Methode der kleinsten Quadrate nutzt alle Messwerte, ohne vorzugeben, verrauschte Daten passten exakt zum Modell.
 
-Die Kurve zeigt das angepasste Modell, die Punkte markieren die Beobachtungen. Drehe oder vergrößere die Darstellung und vergleiche jeden Punkt mit der Kurve. Der vertikale Unterschied ist das Residuum beim selben Zeitwert.
+Die Kurve zeigt das angepasste Modell, die Punkte markieren die Beobachtungen. Vergleiche jeden Punkt mit der Kurve: Der vertikale Unterschied ist das Residuum beim selben Zeitwert.
 
-<LineEquation
-  title={<>Ausgleichskurve <InlineMath math="\hat{y}(t)=0{,}98095t^2+3{,}02857t-2{,}00952" /></>}
-  description={<>Die cyanfarbene Kurve ist das angepasste Polynom. Die orangefarbenen Punkte sind die sieben Messwerte aus <InlineMath math="b" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 6, 26]}
-  cameraTarget={[0, 6, 0]}
-  data={(() => {
-    // Die von A und b codierten Messwerte
-    const originalData = [
-      [-3, -2.2],
-      [-2, -4.2],
-      [-1, -4.2],
-      [0, -1.8],
-      [1, 1.8],
-      [2, 8.2],
-      [3, 15.8]
-    ];
+<MathVisual
+  title={<>Die Ausgleichsparabel und ihre Residuen</>}
+  description={<>Die türkise Kurve ist <InlineMath math="\hat y(t)" />, die orangen Punkte sind die sieben Beobachtungen, und jede magentafarbene Strecke ist ein Residuum, der senkrechte Abstand beim selben <InlineMath math="t" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -5.5, max: 17 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "fit", kind: "function", formula: "103/105*x^2 + 106/35*x - 211/105", domain: { min: -3, max: 3 }, appearance: "construction" },
+      { id: "gap-0", kind: "segment", from: { x: -3, y: -2.2 }, to: { x: -3, y: 103 / 105 * (-3) ** 2 + 106 / 35 * (-3) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-1", kind: "segment", from: { x: -2, y: -4.2 }, to: { x: -2, y: 103 / 105 * (-2) ** 2 + 106 / 35 * (-2) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-2", kind: "segment", from: { x: -1, y: -4.2 }, to: { x: -1, y: 103 / 105 * (-1) ** 2 + 106 / 35 * (-1) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-3", kind: "segment", from: { x: 0, y: -1.8 }, to: { x: 0, y: 103 / 105 * (0) ** 2 + 106 / 35 * (0) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-4", kind: "segment", from: { x: 1, y: 1.8 }, to: { x: 1, y: 103 / 105 * (1) ** 2 + 106 / 35 * (1) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-5", kind: "segment", from: { x: 2, y: 8.2 }, to: { x: 2, y: 103 / 105 * (2) ** 2 + 106 / 35 * (2) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-6", kind: "segment", from: { x: 3, y: 15.8 }, to: { x: 3, y: 103 / 105 * (3) ** 2 + 106 / 35 * (3) - 211 / 105 }, appearance: "answer" },
+      { id: "obs-0", kind: "point", at: { x: -3, y: -2.2 }, appearance: "primary" },
+      { id: "obs-1", kind: "point", at: { x: -2, y: -4.2 }, appearance: "primary" },
+      { id: "obs-2", kind: "point", at: { x: -1, y: -4.2 }, appearance: "primary" },
+      { id: "obs-3", kind: "point", at: { x: 0, y: -1.8 }, appearance: "primary" },
+      { id: "obs-4", kind: "point", at: { x: 1, y: 1.8 }, appearance: "primary" },
+      { id: "obs-5", kind: "point", at: { x: 2, y: 8.2 }, appearance: "primary" },
+      { id: "obs-6", kind: "point", at: { x: 3, y: 15.8 }, appearance: "primary" },
+    ],
+  }}
+/>
 
-    // Koeffizienten aus der QR-Lösung
-    const a = 0.98095;
-    const b = 3.02857;
-    const c = -2.00952;
+Die Residuen der Ausgleichsrechnung sind klein und wechseln das Vorzeichen: <InlineMath math="\tfrac1{15}" />, <InlineMath math="-\tfrac2{35}" />, <InlineMath math="-\tfrac17" />, <InlineMath math="\tfrac{22}{105}" />, <InlineMath math="-\tfrac15" />, <InlineMath math="\tfrac8{35}" /> und <InlineMath math="-\tfrac{11}{105}" />. Ihre Summe ist <InlineMath math="0" />, weil das Modell einen konstanten Term enthält und das Residuum zu jeder Spalte von <InlineMath math="A" /> orthogonal ist.
 
-    return [
-      {
-        points: Array.from({ length: 50 }, (_, i) => {
-          const t = -3 + (i * 6) / 49;
-          const y = a * t * t + b * t + c;
-          return { x: t, y: y, z: 0 };
-        }),
-        color: "#0891b2",
-        smooth: false,
-        showPoints: false
-      },
-      ...originalData.map(([t, y]) => ({
-        points: [{ x: t, y, z: 0 }],
-        color: "#ea580c",
-        smooth: false,
-        showPoints: true
-      }))
-    ];
-  })()}
+<ScatterDiagram
+  title={<>Residuen <InlineMath math="b_i-\hat y(t_i)" /> der Anpassung</>}
+  description={<>Jeder Punkt ist das Residuum einer Beobachtung, mit <InlineMath math="t" /> nach rechts. Positive und negative Residuen gleichen sich zu <InlineMath math="0" /> aus.</>}
+  xAxisLabel="Zeit"
+  yAxisLabel="Residuum"
+  datasets={[
+    {
+      name: "Residuum",
+      color: "var(--chart-4)",
+      points: [
+        { x: -3, y: -2.2 - (103 / 105 * (-3) ** 2 + 106 / 35 * (-3) - 211 / 105) },
+        { x: -2, y: -4.2 - (103 / 105 * (-2) ** 2 + 106 / 35 * (-2) - 211 / 105) },
+        { x: -1, y: -4.2 - (103 / 105 * (-1) ** 2 + 106 / 35 * (-1) - 211 / 105) },
+        { x: 0, y: -1.8 - (103 / 105 * (0) ** 2 + 106 / 35 * (0) - 211 / 105) },
+        { x: 1, y: 1.8 - (103 / 105 * (1) ** 2 + 106 / 35 * (1) - 211 / 105) },
+        { x: 2, y: 8.2 - (103 / 105 * (2) ** 2 + 106 / 35 * (2) - 211 / 105) },
+        { x: 3, y: 15.8 - (103 / 105 * (3) ** 2 + 106 / 35 * (3) - 211 / 105) },
+      ],
+    },
+  ]}
 />

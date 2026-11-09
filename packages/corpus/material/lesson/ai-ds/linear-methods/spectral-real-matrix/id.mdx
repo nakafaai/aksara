@@ -27,6 +27,24 @@ Buktinya menghubungkan keempat pernyataan secara langsung. Basis eigen ortonorma
 | Simetris real | <InlineMath math="\mathbb{R}" /> | Diagonalisasi ortogonal dengan nilai eigen real |
 | Ortogonal real | <InlineMath math="\mathbb{R}" /> | Umumnya berbentuk blok rotasi real. Bentuk diagonal real hanya jika semua nilai eigen real |
 
+Matriks simetris <InlineMath math="A=\begin{pmatrix}1&2\\2&1\end{pmatrix}" /> normal, dengan nilai eigen real <InlineMath math="3" /> dan <InlineMath math="-1" /> serta vektor eigen ortonormal <InlineMath math="\tfrac1{\sqrt2}(1,1)" /> dan <InlineMath math="\tfrac1{\sqrt2}(1,-1)" />. Matriks itu memetakan lingkaran satuan ke elips yang sumbunya terletak sepanjang kedua vektor eigen tersebut.
+
+<MathVisual
+  title={<><InlineMath math="A=\begin{pmatrix}1&2\\2&1\end{pmatrix}" /> memetakan lingkaran satuan ke elips</>}
+  description={<>Lingkaran abu-abu adalah lingkaran satuan dan elips ungu adalah bayangannya. Ruas hijau toska sepanjang <InlineMath math="(1,1)" /> punya setengah panjang <InlineMath math="3" /> dan ruas oranye sepanjang <InlineMath math="(1,-1)" /> setengah panjang <InlineMath math="1" />, yaitu nilai mutlak nilai eigen, dan keduanya tegak lurus.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "image", kind: "parametric", x: "cos(t) + 2*sin(t)", y: "2*cos(t) + sin(t)", parameter: { min: 0, max: 2 * Math.PI }, appearance: "secondary" },
+      { id: "major", kind: "segment", from: { x: -3 * Math.SQRT1_2, y: -3 * Math.SQRT1_2 }, to: { x: 3 * Math.SQRT1_2, y: 3 * Math.SQRT1_2 }, appearance: "construction" },
+      { id: "minor", kind: "segment", from: { x: -Math.SQRT1_2, y: Math.SQRT1_2 }, to: { x: Math.SQRT1_2, y: -Math.SQRT1_2 }, appearance: "primary" },
+    ],
+  }}
+/>
+
 ## Matriks Normal tanpa Basis Eigen Real
 
 Perhatikan rotasi sebesar sudut <InlineMath math="\alpha" /> yang bukan kelipatan bulat dari <InlineMath math="\pi" />:
@@ -46,9 +64,38 @@ Diskriminannya
 
 Karena <InlineMath math="\alpha" /> bukan kelipatan bulat dari <InlineMath math="\pi" />, berlaku <InlineMath math="\sin\alpha\neq0" />. Jadi, polinomial karakteristik **tidak memiliki akar real** dan <InlineMath math="R_\alpha" /> tidak mempunyai basis vektor eigen real. Di <InlineMath math="\mathbb{C}" />, nilai eigennya adalah <InlineMath math="e^{i\alpha}" /> dan <InlineMath math="e^{-i\alpha}" />.
 
-Saat <InlineMath math="\alpha=\pi/2" />, vektor biru <InlineMath math="v=(1,1)^T" /> menjadi vektor jingga <InlineMath math="Rv=(-1,1)^T" />. Hasil kali titik kedua vektor adalah nol. Secara umum, <InlineMath math="(x,y)\cdot(-y,x)=0" />, sehingga setiap vektor real tak nol berputar 90°, bukan tetap pada garis semula.
+Saat <InlineMath math="\alpha=\pi/2" />, vektor hijau toska <InlineMath math="v=(1,1)^T" /> menjadi vektor oranye <InlineMath math="Rv=(-1,1)^T" />. Hasil kali titik kedua vektor adalah nol. Secara umum, <InlineMath math="(x,y)\cdot(-y,x)=0" />, sehingga setiap vektor real tak nol berputar <InlineMath math="90^\circ" />, bukan tetap pada garis semula.
 
-<LineEquation description="Vektor biru dan bayangannya yang berwarna jingga saling tegak lurus. Rotasi seperempat putaran tidak mempertahankan garis arah vektor real tak nol." title="Seperempat putaran mengubah setiap arah real" cameraPosition={[0, 0.5, 5]} cameraTarget={[0, 0.5, 0]} showZAxis={false} data={[{"points": [{"x": 0, "y": 0, "z": 0}, {"x": 1, "y": 1, "z": 0}], "color": "#0284c7", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="v" />, "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": -1, "y": 1, "z": 0}], "color": "#ea580c", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="Rv" />, "at": 1}]}]} />
+<MathVisual
+  title={<><InlineMath math="v=(1,1)" /> dan <InlineMath math="R_\alpha v" /></>}
+  description={<>Ruas hijau toska adalah <InlineMath math="v" /> dan ruas oranye adalah rotasinya <InlineMath math="R_\alpha v" />, keduanya di lingkaran abu-abu berjari-jari <InlineMath math="\sqrt2" />. Geser <InlineMath math="\alpha" />: nilai <InlineMath math="v\cdot R_\alpha v=2\cos\alpha" /> bernilai <InlineMath math="0" /> pada <InlineMath math="\alpha=\tfrac\pi2" />, dan <InlineMath math="R_\alpha v" /> hanya tetap pada garis <InlineMath math="v" /> saat <InlineMath math="\alpha=0" /> dan <InlineMath math="\alpha=\pi" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: 0, max: 2 * Math.PI, value: Math.PI / 2, step: 0.01, label: "angle" },
+    ],
+    objects: [
+      { id: "radius", kind: "circle", center: { x: 0, y: 0 }, radius: Math.SQRT2, appearance: "reference" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "turned", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a) - sin(a)", y: "sin(a) + cos(a)" }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "vector", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "rv", objectId: "turned", at: { x: "cos(a) - sin(a)", y: "sin(a) + cos(a)" }, placement: "left" },
+    ],
+    readouts: [
+      { key: "dot", formula: "2*cos(a)" },
+    ],
+  }}
+  labels={{
+    "angle": <InlineMath math="\alpha" />,
+    "dot": <InlineMath math="v\cdot R_\alpha v" />,
+    "v": <InlineMath math="v" />,
+    "rv": <InlineMath math="R_\alpha v" />,
+  }}
+/>
 
 ## Matriks Diagonalisabel yang Tidak Normal
 
@@ -82,3 +129,22 @@ Perkalian langsung juga menunjukkan bahwa <InlineMath math="A" /> tidak normal:
 </MathContainer>
 
 Contoh ini memisahkan kedua gagasan tersebut. Diagonalisasi biasa mengizinkan sembarang matriks vektor eigen <InlineMath math="S" /> yang invertibel, sedangkan <Highlight>diagonalisasi ortogonal memerlukan basis eigen ortonormal</Highlight> dan karena itu memerlukan matriks simetris real.
+
+Matriks <InlineMath math="A=\begin{pmatrix}1&1\\0&2\end{pmatrix}" /> punya nilai eigen berbeda <InlineMath math="1" /> dan <InlineMath math="2" />, jadi dapat didiagonalisasi dengan vektor eigen <InlineMath math="(1,0)" /> dan <InlineMath math="(1,1)" />. Keduanya bertemu pada <InlineMath math="45^\circ" />, bukan <InlineMath math="90^\circ" />: <InlineMath math="A^TA=\begin{pmatrix}1&1\\1&5\end{pmatrix}" /> berbeda dari <InlineMath math="AA^T=\begin{pmatrix}2&2\\2&4\end{pmatrix}" />, jadi <InlineMath math="A" /> tidak normal dan tidak punya basis eigen ortonormal.
+
+<MathVisual
+  title={<>Vektor eigen <InlineMath math="\begin{pmatrix}1&1\\0&2\end{pmatrix}" /> pada <InlineMath math="45^\circ" /></>}
+  description={<>Garis hijau toska adalah arah vektor eigen <InlineMath math="(1,0)" /> dan garis oranye arah <InlineMath math="(1,1)" />, dengan busur kuning menandai <InlineMath math="45^\circ" /> di antaranya. Kurva ungu adalah bayangan lingkaran satuan abu-abu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.2, max: 2.2 }, y: { min: -2.2, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "image", kind: "parametric", x: "cos(t) + sin(t)", y: "2*sin(t)", parameter: { min: 0, max: 2 * Math.PI }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: -1.5, y: 0 }, to: { x: 1.5, y: 0 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: -1.5, y: -1.5 }, to: { x: 1.5, y: 1.5 }, appearance: "primary" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.5, startDegrees: 0, sweepDegrees: 45, appearance: "highlight" },
+    ],
+  }}
+/>

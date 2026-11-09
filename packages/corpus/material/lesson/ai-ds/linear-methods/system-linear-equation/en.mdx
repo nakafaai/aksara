@@ -82,6 +82,28 @@ This nonzero minor shows that <InlineMath math="\operatorname{rank}(A\mid b)=4" 
 
 Because <InlineMath math="\operatorname{rank}(A) \ne \operatorname{rank}(A\mid b)" />, the system **has no exact solution**. No single quadratic polynomial passes through all <InlineMath math="7" /> observations.
 
+A parabola through three of the points can still miss others. The one through <InlineMath math="t=-3" />, <InlineMath math="-2" />, and <InlineMath math="-1" /> is <InlineMath math="y=t^2+3t-2.2" />, and it happens to pass through <InlineMath math="t=1" /> and <InlineMath math="t=3" /> as well. At <InlineMath math="t=0" /> it gives <InlineMath math="-2.2" /> instead of <InlineMath math="-1.8" />, and at <InlineMath math="t=2" /> it gives <InlineMath math="7.8" /> instead of <InlineMath math="8.2" />, so no single parabola fits all seven.
+
+<MathVisual
+  title={<>The parabola <InlineMath math="y=t^2+3t-2.2" /> misses two observations</>}
+  description={<>The violet curve passes through the five gray points. The two magenta points at <InlineMath math="t=0" /> and <InlineMath math="t=2" /> lie <InlineMath math="0.4" /> off the curve.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -5.5, max: 17 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "through", kind: "function", formula: "x^2 + 3*x - 2.2", domain: { min: -3, max: 3 }, appearance: "secondary" },
+      { id: "hit-0", kind: "point", at: { x: -3, y: -2.2 }, appearance: "reference" },
+      { id: "hit-1", kind: "point", at: { x: -2, y: -4.2 }, appearance: "reference" },
+      { id: "hit-2", kind: "point", at: { x: -1, y: -4.2 }, appearance: "reference" },
+      { id: "hit-4", kind: "point", at: { x: 1, y: 1.8 }, appearance: "reference" },
+      { id: "hit-6", kind: "point", at: { x: 3, y: 15.8 }, appearance: "reference" },
+      { id: "miss-zero", kind: "point", at: { x: 0, y: -1.8 }, appearance: "answer" },
+      { id: "miss-two", kind: "point", at: { x: 2, y: 8.2 }, appearance: "answer" },
+    ],
+  }}
+/>
+
 ## Solution with Least Squares
 
 When an overdetermined system has no exact solution, we can instead find the polynomial that is closest to the observations in the **least-squares** sense.
@@ -128,48 +150,55 @@ The equation <InlineMath math="A^Tr=0" /> says that the remaining error is ortho
 
 Overdetermined systems are common in engineering and science because experiments often provide many measurements for a model with relatively few parameters. Least squares uses all of those measurements without pretending that noisy data fit the model exactly.
 
-The curve shows the fitted model, while the points mark observations. Rotate or zoom to compare each point with the curve. Its vertical difference is the residual at the same time value.
+The curve shows the fitted model, while the points mark observations. Compare each point with the curve: its vertical difference is the residual at the same time value.
 
-<LineEquation
-  title={<>Least-squares fit <InlineMath math="\hat{y}(t)=0.98095t^2+3.02857t-2.00952" /></>}
-  description={<>The cyan curve is the fitted polynomial, while the orange points are the seven observations in <InlineMath math="b" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 6, 26]}
-  cameraTarget={[0, 6, 0]}
-  data={(() => {
-    // Observations encoded by A and b
-    const originalData = [
-      [-3, -2.2],
-      [-2, -4.2],
-      [-1, -4.2],
-      [0, -1.8],
-      [1, 1.8],
-      [2, 8.2],
-      [3, 15.8]
-    ];
+<MathVisual
+  title={<>The least-squares parabola and its residuals</>}
+  description={<>The teal curve is <InlineMath math="\hat y(t)" />, the orange points are the seven observations, and each magenta segment is a residual, the vertical gap at the same <InlineMath math="t" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -5.5, max: 17 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "fit", kind: "function", formula: "103/105*x^2 + 106/35*x - 211/105", domain: { min: -3, max: 3 }, appearance: "construction" },
+      { id: "gap-0", kind: "segment", from: { x: -3, y: -2.2 }, to: { x: -3, y: 103 / 105 * (-3) ** 2 + 106 / 35 * (-3) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-1", kind: "segment", from: { x: -2, y: -4.2 }, to: { x: -2, y: 103 / 105 * (-2) ** 2 + 106 / 35 * (-2) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-2", kind: "segment", from: { x: -1, y: -4.2 }, to: { x: -1, y: 103 / 105 * (-1) ** 2 + 106 / 35 * (-1) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-3", kind: "segment", from: { x: 0, y: -1.8 }, to: { x: 0, y: 103 / 105 * (0) ** 2 + 106 / 35 * (0) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-4", kind: "segment", from: { x: 1, y: 1.8 }, to: { x: 1, y: 103 / 105 * (1) ** 2 + 106 / 35 * (1) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-5", kind: "segment", from: { x: 2, y: 8.2 }, to: { x: 2, y: 103 / 105 * (2) ** 2 + 106 / 35 * (2) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-6", kind: "segment", from: { x: 3, y: 15.8 }, to: { x: 3, y: 103 / 105 * (3) ** 2 + 106 / 35 * (3) - 211 / 105 }, appearance: "answer" },
+      { id: "obs-0", kind: "point", at: { x: -3, y: -2.2 }, appearance: "primary" },
+      { id: "obs-1", kind: "point", at: { x: -2, y: -4.2 }, appearance: "primary" },
+      { id: "obs-2", kind: "point", at: { x: -1, y: -4.2 }, appearance: "primary" },
+      { id: "obs-3", kind: "point", at: { x: 0, y: -1.8 }, appearance: "primary" },
+      { id: "obs-4", kind: "point", at: { x: 1, y: 1.8 }, appearance: "primary" },
+      { id: "obs-5", kind: "point", at: { x: 2, y: 8.2 }, appearance: "primary" },
+      { id: "obs-6", kind: "point", at: { x: 3, y: 15.8 }, appearance: "primary" },
+    ],
+  }}
+/>
 
-    // Coefficients obtained from the QR solve
-    const a = 0.98095;
-    const b = 3.02857;
-    const c = -2.00952;
+The residuals of the least-squares fit are small and change sign: <InlineMath math="\tfrac1{15}" />, <InlineMath math="-\tfrac2{35}" />, <InlineMath math="-\tfrac17" />, <InlineMath math="\tfrac{22}{105}" />, <InlineMath math="-\tfrac15" />, <InlineMath math="\tfrac8{35}" />, and <InlineMath math="-\tfrac{11}{105}" />. They add up to <InlineMath math="0" />, because the model contains a constant term and the residual is orthogonal to every column of <InlineMath math="A" />.
 
-    return [
-      {
-        points: Array.from({ length: 50 }, (_, i) => {
-          const t = -3 + (i * 6) / 49;
-          const y = a * t * t + b * t + c;
-          return { x: t, y: y, z: 0 };
-        }),
-        color: "#0891b2",
-        smooth: false,
-        showPoints: false
-      },
-      ...originalData.map(([t, y]) => ({
-        points: [{ x: t, y, z: 0 }],
-        color: "#ea580c",
-        smooth: false,
-        showPoints: true
-      }))
-    ];
-  })()}
+<ScatterDiagram
+  title={<>Residuals <InlineMath math="b_i-\hat y(t_i)" /> of the fit</>}
+  description={<>Each point is one observation's residual, with <InlineMath math="t" /> across. Positive and negative residuals balance out to <InlineMath math="0" />.</>}
+  xAxisLabel="Time"
+  yAxisLabel="Residual"
+  datasets={[
+    {
+      name: "Residual",
+      color: "var(--chart-4)",
+      points: [
+        { x: -3, y: -2.2 - (103 / 105 * (-3) ** 2 + 106 / 35 * (-3) - 211 / 105) },
+        { x: -2, y: -4.2 - (103 / 105 * (-2) ** 2 + 106 / 35 * (-2) - 211 / 105) },
+        { x: -1, y: -4.2 - (103 / 105 * (-1) ** 2 + 106 / 35 * (-1) - 211 / 105) },
+        { x: 0, y: -1.8 - (103 / 105 * (0) ** 2 + 106 / 35 * (0) - 211 / 105) },
+        { x: 1, y: 1.8 - (103 / 105 * (1) ** 2 + 106 / 35 * (1) - 211 / 105) },
+        { x: 2, y: 8.2 - (103 / 105 * (2) ** 2 + 106 / 35 * (2) - 211 / 105) },
+        { x: 3, y: 15.8 - (103 / 105 * (3) ** 2 + 106 / 35 * (3) - 211 / 105) },
+      ],
+    },
+  ]}
 />

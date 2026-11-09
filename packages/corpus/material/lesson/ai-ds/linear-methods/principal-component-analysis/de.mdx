@@ -26,6 +26,35 @@ Sie ist <Highlight>symmetrisch positiv semidefinit</Highlight>. Sie kann singul�
 
 Die Zentrierung ist zwingend. Jedes Merkmal auf Varianz eins zu standardisieren ist eine eigene Modellierungsentscheidung, die bei nicht vergleichbaren Einheiten oft sinnvoll ist. Dadurch ändert sich die Frage von den Richtungen größter absoluter Varianz zu den Richtungen größter standardisierter Varianz.
 
+Nimm drei Beobachtungen <InlineMath math="(2,3)" />, <InlineMath math="(4,4)" /> und <InlineMath math="(6,8)" />. Die Merkmalsmittelwerte sind <InlineMath math="4" /> und <InlineMath math="5" />, also zieht das Zentrieren <InlineMath math="(4,5)" /> von jeder Zeile ab und liefert <InlineMath math="(-2,-2)" />, <InlineMath math="(0,-1)" /> und <InlineMath math="(2,3)" />. Die Punktwolke behält ihre Form, liegt aber jetzt um den Ursprung.
+
+<ScatterDiagram
+  title={<>Zentrieren verschiebt die Daten in den Ursprung</>}
+  description={<>Die erste Reihe sind die Rohdaten, die zweite die zentrierten Daten <InlineMath math="X_c=X-\mathbf1\mu^T" />. Jeder Punkt verschiebt sich um denselben Vektor <InlineMath math="-(4,5)" />.</>}
+  xAxisLabel="Erstes Merkmal"
+  yAxisLabel="Zweites Merkmal"
+  datasets={[
+    {
+      name: "Rohdaten",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: 3 },
+        { x: 4, y: 4 },
+        { x: 6, y: 8 },
+      ],
+    },
+    {
+      name: "Zentrierte Daten",
+      color: "var(--chart-2)",
+      points: [
+        { x: 2 - 4, y: 3 - 5 },
+        { x: 4 - 4, y: 4 - 5 },
+        { x: 6 - 4, y: 8 - 5 },
+      ],
+    },
+  ]}
+/>
+
 ## Hauptkomponentenrichtungen
 
 Nach dem Spektralsatz gilt
@@ -71,6 +100,19 @@ Unter allen linearen Rekonstruktionen vom Rang höchstens <InlineMath math="k" /
 
 <BlockMath math="\|X_c-\widehat{X}_c\|_F^2=(m-1)\sum_{j=k+1}^n\lambda_j" />
 
+Jede Hauptkomponente erklärt den Anteil ihres Eigenwerts an der Gesamtvarianz. Im Rechenbeispiel weiter unten sind <InlineMath math="\lambda_1=9" /> und <InlineMath math="\lambda_2=2.25" />, also erklärt die erste Komponente <InlineMath math="\tfrac9{11.25}=80\%" /> und die zweite die übrigen <InlineMath math="20\%" />.
+
+<BarChart
+  title={<>Erklärte Varianz jeder Komponente</>}
+  description={<>Jeder Balken ist <InlineMath math="\lambda_i/(\lambda_1+\lambda_2)" /> für die darunter stehende Komponente <InlineMath math="i" />: <InlineMath math="0.8" /> und <InlineMath math="0.2" />.</>}
+  yAxisLabel="Erklärte Varianz"
+  data={[
+    { name: "1", value: 9 / (9 + 2.25) },
+    { name: "2", value: 2.25 / (9 + 2.25) },
+  ]}
+  chartConfig={{ value: { label: "Erklärte Varianz", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
 ## Gleichwertige Berechnung mit der Singulärwertzerlegung
 
 Die <InlineMath math="\mathrm{PCA}" /> kann auch mit der folgenden dünnen Singulärwertzerlegung berechnet werden:
@@ -110,71 +152,36 @@ Der von der ersten Komponente **erklärte Varianzanteil** wird aus den beiden Ei
 
 Das Ergebnis <InlineMath math="80\%" /> ist der Anteil der Gesamtvarianz, den die erste Komponente erklärt.
 
-<LineEquation
-  title={<>Kovarianzellipse und Hauptkomponentenrichtungen <InlineMath math="v_1,v_2" /></>}
-  description={<>Die cyanfarbene Ellipse hat die Halbachsenlängen <InlineMath math="\sqrt{\lambda_1}=3" /> und <InlineMath math="\sqrt{\lambda_2}=1{,}5" />. Die orangefarbenen Richtungen sind ihre Eigenvektoren.</>}
-  data={[
-    {
-      points: Array.from({ length: 100 }, (_, index) => {
-        const angle = (index / 99) * 2 * Math.PI;
-        const localX = 3 * Math.cos(angle);
-        const localY = 1.5 * Math.sin(angle);
-        const rotation = Math.PI / 6;
-        const x = localX * Math.cos(rotation) - localY * Math.sin(rotation);
-        const y = localX * Math.sin(rotation) + localY * Math.cos(rotation);
-        return { x, y, z: 0 };
-      }),
-      color: "#0891b2",
-      smooth: false,
-      showPoints: false
-    },
-    {
-      points: [{ x: -4, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: false,
-      labels: [{
-        text: <InlineMath math="x_1" />,
-        at: 1,
-        offset: [0.3, -0.5, 0]
-      }]
-    },
-    {
-      points: [{ x: 0, y: -3, z: 0 }, { x: 0, y: 3, z: 0 }],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: false,
-      labels: [{
-        text: <InlineMath math="x_2" />,
-        at: 1,
-        offset: [0.8, 0.3, 0]
-      }]
-    },
-    {
-      points: [{ x: -2 * Math.sqrt(3), y: -2, z: 0 }, { x: 2 * Math.sqrt(3), y: 2, z: 0 }],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{
-        text: <InlineMath math="v_1" />,
-        at: 1,
-        offset: [0.3, 0.3, 0]
-      }]
-    },
-    {
-      points: [{ x: -1.5, y: 1.5 * Math.sqrt(3), z: 0 }, { x: 1.5, y: -1.5 * Math.sqrt(3), z: 0 }],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{
-        text: <InlineMath math="v_2" />,
-        at: 0,
-        offset: [-0.8, 0.3, 0]
-      }]
-    }
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 11]}
+<MathVisual
+  title={<>Kovarianzellipse und Hauptrichtungen <InlineMath math="v_1,v_2" /></>}
+  description={<>Die türkise Ellipse hat die Halbachsen <InlineMath math="\sqrt{\lambda_1}=3" /> entlang des orangen <InlineMath math="v_1" /> und <InlineMath math="\sqrt{\lambda_2}=1.5" /> entlang des violetten <InlineMath math="v_2" />. Verschiebe <InlineMath math="\varphi" />: Die Anzeige ist die Varianz <InlineMath math="u^TCu" /> entlang der magentafarbenen Richtung <InlineMath math="u=(\cos\varphi,\sin\varphi)" />, am größten mit <InlineMath math="9" /> bei <InlineMath math="\varphi=\tfrac\pi6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: 0, max: Math.PI, value: 0.3, step: 0.01, label: "angle" },
+    ],
+    objects: [
+      { id: "ellipse", kind: "parametric", x: "3*cos(t)*sqrt(3)/2 - 1.5*sin(t)/2", y: "3*cos(t)/2 + 1.5*sin(t)*sqrt(3)/2", parameter: { min: 0, max: 2 * Math.PI }, appearance: "construction" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3 / 4, y: 3 * Math.sqrt(3) / 4 }, appearance: "secondary" },
+      { id: "direction", kind: "path", points: [{ x: "-3.5*cos(a)", y: "-3.5*sin(a)" }, { x: "3.5*cos(a)", y: "3.5*sin(a)" }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "v1", objectId: "first", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "right" },
+      { key: "v2", objectId: "second", at: { x: -3 / 4, y: 3 * Math.sqrt(3) / 4 }, placement: "left" },
+    ],
+    readouts: [
+      { key: "variance", formula: "9*cos(a - pi/6)^2 + 2.25*sin(a - pi/6)^2" },
+    ],
+  }}
+  labels={{
+    "angle": <InlineMath math="\varphi" />,
+    "variance": <InlineMath math="u^TCu" />,
+    "v1": <InlineMath math="v_1" />,
+    "v2": <InlineMath math="v_2" />,
+  }}
 />
 
 ## Grenzen der Interpretation

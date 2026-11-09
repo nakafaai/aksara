@@ -62,6 +62,35 @@ Die Pseudoinverse wird durch die vier Penrose-Identitäten eindeutig bestimmt:
 <BlockMath math="(A^{\dagger}A)^T=A^{\dagger}A" />
 </MathContainer>
 
+Nimm <InlineMath math="\Sigma=\operatorname{diag}(2,\,0.5,\,0)" />. Die Pseudoinverse invertiert jeden positiven Singulärwert und lässt die Null stehen: <InlineMath math="\Sigma^\dagger=\operatorname{diag}(0.5,\,2,\,0)" />. Ein kleiner Singulärwert wird zu einem großen Eintrag, deshalb machen Singulärwerte nahe null <InlineMath math="x^\dagger" /> empfindlich.
+
+<ScatterDiagram
+  title={<><InlineMath math="\Sigma" /> und <InlineMath math="\Sigma^\dagger" /> Eintrag für Eintrag</>}
+  description={<>Für <InlineMath math="i=1" />, <InlineMath math="2" />, <InlineMath math="3" /> zeigt die erste Reihe <InlineMath math="\sigma_i" /> und die zweite <InlineMath math="\Sigma^\dagger_{ii}" />. Der Singulärwert null bleibt <InlineMath math="0" />, statt unendlich zu werden.</>}
+  xAxisLabel="Index"
+  yAxisLabel="Wert"
+  datasets={[
+    {
+      name: "Singulärwert",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 2 },
+        { x: 2, y: 0.5 },
+        { x: 3, y: 0 },
+      ],
+    },
+    {
+      name: "Eintrag der Pseudoinversen",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 1 / 2 },
+        { x: 2, y: 1 / 0.5 },
+        { x: 3, y: 0 },
+      ],
+    },
+  ]}
+/>
+
 ## Direkte Lösung mit der Zerlegung mit QR
 
 Für eine Matrix mit vollem Spaltenrang und <InlineMath math="m\ge n" /> verwendet man die dünne <InlineMath math="\mathrm{QR}" />-Zerlegung
@@ -118,48 +147,24 @@ Damit gilt
 <BlockMath math="\|A\hat{x}-b\|_2\approx0{,}41861" />
 </MathContainer>
 
-<LineEquation
-  title={<>Ausgleichskurve <InlineMath math="\hat{y}(t)=0{,}98095t^2+3{,}02857t-2{,}00952" /></>}
-  description={<>Die cyanfarbene Kurve ist das angepasste Polynom. Die orangefarbenen Punkte sind die sieben Messwerte aus <InlineMath math="b" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 6, 26]}
-  cameraTarget={[0, 6, 0]}
-  data={(() => {
-    // Die von A und b codierten Messwerte
-    const originalData = [
-      [-3, -2.2],
-      [-2, -4.2],
-      [-1, -4.2],
-      [0, -1.8],
-      [1, 1.8],
-      [2, 8.2],
-      [3, 15.8]
-    ];
-
-    // Koeffizienten aus der QR-Lösung
-    const a = 0.98095;
-    const b = 3.02857;
-    const c = -2.00952;
-
-    return [
-      {
-        points: Array.from({ length: 50 }, (_, i) => {
-          const t = -3 + (i * 6) / 49;
-          const y = a * t * t + b * t + c;
-          return { x: t, y: y, z: 0 };
-        }),
-        color: "#0891b2",
-        smooth: false,
-        showPoints: false
-      },
-      ...originalData.map(([t, y]) => ({
-        points: [{ x: t, y, z: 0 }],
-        color: "#ea580c",
-        smooth: false,
-        showPoints: true
-      }))
-    ];
-  })()}
+<MathVisual
+  title={<>Die Ausgleichsparabel <InlineMath math="\hat y(t)=\tfrac{103}{105}t^2+\tfrac{106}{35}t-\tfrac{211}{105}" /></>}
+  description={<>Die türkise Kurve ist das angepasste Polynom, mit <InlineMath math="t" /> nach rechts, und die orangen Punkte sind die sieben Beobachtungen in <InlineMath math="b" />. Die Koeffizienten sind die exakte Lösung der Normalgleichungen, gerundet <InlineMath math="0.98095" />, <InlineMath math="3.02857" /> und <InlineMath math="-2.00952" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -5.5, max: 17 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "fit", kind: "function", formula: "103/105*x^2 + 106/35*x - 211/105", domain: { min: -3, max: 3 }, appearance: "construction" },
+      { id: "obs-0", kind: "point", at: { x: -3, y: -2.2 }, appearance: "primary" },
+      { id: "obs-1", kind: "point", at: { x: -2, y: -4.2 }, appearance: "primary" },
+      { id: "obs-2", kind: "point", at: { x: -1, y: -4.2 }, appearance: "primary" },
+      { id: "obs-3", kind: "point", at: { x: 0, y: -1.8 }, appearance: "primary" },
+      { id: "obs-4", kind: "point", at: { x: 1, y: 1.8 }, appearance: "primary" },
+      { id: "obs-5", kind: "point", at: { x: 2, y: 8.2 }, appearance: "primary" },
+      { id: "obs-6", kind: "point", at: { x: 3, y: 15.8 }, appearance: "primary" },
+    ],
+  }}
 />
 
 ## Wahl des numerischen Verfahrens
@@ -171,3 +176,38 @@ Damit gilt
 | <InlineMath math="\mathrm{SVD}" /> | aufwendiger als <InlineMath math="\mathrm{QR}" /> | gibt den Rang an und liefert die **Lösung kleinster Norm** | höchste Kosten der drei Verfahren |
 
 Verwende <InlineMath math="\mathrm{QR}" /> als übliche Wahl für dichte Probleme mit vollem Rang. Verwende die <InlineMath math="\mathrm{SVD}" />, wenn die Matrix rangdefizient oder stark fehlkonditioniert ist oder eine Lösung kleinster Norm benötigt wird. Bilde die Normalmatrix nur, wenn der Geschwindigkeitsgewinn den Verlust an numerischer Stabilität rechtfertigt. Berechne in Produktionscode keine Inverse explizit.
+
+Das Bilden von <InlineMath math="A^TA" /> quadriert die Konditionszahl, <InlineMath math="\kappa(A^TA)=\kappa(A)^2" />. Mit etwa <InlineMath math="16" /> Stellen in doppelter Genauigkeit kann ein Problem mit <InlineMath math="\kappa(A)=10^6" /> über <InlineMath math="\mathrm{QR}" /> etwa <InlineMath math="6" /> Stellen verlieren, über die Normalgleichungen aber etwa <InlineMath math="12" />.
+
+<ScatterDiagram
+  title={<>Gefährdete Stellen mit <InlineMath math="\mathrm{QR}" /> und mit <InlineMath math="A^TA" /></>}
+  description={<>Mit <InlineMath math="\log_{10}\kappa(A)" /> nach rechts verliert die erste Reihe so viele Stellen und die zweite doppelt so viele, weil <InlineMath math="\kappa(A^TA)=\kappa(A)^2" /> gilt.</>}
+  xAxisLabel="Exponent der Konditionszahl"
+  yAxisLabel="Gefährdete Stellen"
+  datasets={[
+    {
+      name: "Mit QR",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 1 },
+        { x: 2, y: 2 },
+        { x: 3, y: 3 },
+        { x: 4, y: 4 },
+        { x: 5, y: 5 },
+        { x: 6, y: 6 },
+      ],
+    },
+    {
+      name: "Mit Normalgleichungen",
+      color: "var(--chart-3)",
+      points: [
+        { x: 1, y: 2 * 1 },
+        { x: 2, y: 2 * 2 },
+        { x: 3, y: 2 * 3 },
+        { x: 4, y: 2 * 4 },
+        { x: 5, y: 2 * 5 },
+        { x: 6, y: 2 * 6 },
+      ],
+    },
+  ]}
+/>

@@ -27,6 +27,24 @@ The proof links the four statements directly. An orthonormal eigenbasis gives th
 | Real symmetric | <InlineMath math="\mathbb{R}" /> | Orthogonal diagonalization with real eigenvalues |
 | Real orthogonal | <InlineMath math="\mathbb{R}" /> | In general, the spectral form contains real rotation blocks. A real diagonal form exists only when all eigenvalues are real |
 
+The symmetric matrix <InlineMath math="A=\begin{pmatrix}1&2\\2&1\end{pmatrix}" /> is normal, with real eigenvalues <InlineMath math="3" /> and <InlineMath math="-1" /> and the orthonormal eigenvectors <InlineMath math="\tfrac1{\sqrt2}(1,1)" /> and <InlineMath math="\tfrac1{\sqrt2}(1,-1)" />. It maps the unit circle to an ellipse whose axes lie along those eigenvectors.
+
+<MathVisual
+  title={<><InlineMath math="A=\begin{pmatrix}1&2\\2&1\end{pmatrix}" /> maps the unit circle to an ellipse</>}
+  description={<>The gray circle is the unit circle and the violet ellipse its image. The teal segment along <InlineMath math="(1,1)" /> has half-length <InlineMath math="3" /> and the orange segment along <InlineMath math="(1,-1)" /> half-length <InlineMath math="1" />, the absolute eigenvalues, at a right angle.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "image", kind: "parametric", x: "cos(t) + 2*sin(t)", y: "2*cos(t) + sin(t)", parameter: { min: 0, max: 2 * Math.PI }, appearance: "secondary" },
+      { id: "major", kind: "segment", from: { x: -3 * Math.SQRT1_2, y: -3 * Math.SQRT1_2 }, to: { x: 3 * Math.SQRT1_2, y: 3 * Math.SQRT1_2 }, appearance: "construction" },
+      { id: "minor", kind: "segment", from: { x: -Math.SQRT1_2, y: Math.SQRT1_2 }, to: { x: Math.SQRT1_2, y: -Math.SQRT1_2 }, appearance: "primary" },
+    ],
+  }}
+/>
+
 ## A Normal Matrix without a Real Eigenbasis
 
 Consider the rotation through an angle <InlineMath math="\alpha" /> that is not an integer multiple of <InlineMath math="\pi" />:
@@ -46,9 +64,38 @@ Its discriminant is
 
 Because <InlineMath math="\alpha" /> is not an integer multiple of <InlineMath math="\pi" />, <InlineMath math="\sin\alpha\neq0" />. Thus the characteristic polynomial has **no real root**, and <InlineMath math="R_\alpha" /> has no real eigenvector basis. Over <InlineMath math="\mathbb{C}" />, the eigenvalues are <InlineMath math="e^{i\alpha}" /> and <InlineMath math="e^{-i\alpha}" />.
 
-At <InlineMath math="\alpha=\pi/2" />, the blue vector <InlineMath math="v=(1,1)^T" /> becomes the orange vector <InlineMath math="Rv=(-1,1)^T" />. Their dot product is zero. More generally, <InlineMath math="(x,y)\cdot(-y,x)=0" />, so every nonzero real vector turns by 90°, rather than staying on its original line.
+At <InlineMath math="\alpha=\pi/2" />, the teal vector <InlineMath math="v=(1,1)^T" /> becomes the orange vector <InlineMath math="Rv=(-1,1)^T" />. Their dot product is zero. More generally, <InlineMath math="(x,y)\cdot(-y,x)=0" />, so every nonzero real vector turns by <InlineMath math="90^\circ" />, rather than staying on its original line.
 
-<LineEquation description="The blue vector and its orange image are perpendicular. A quarter-turn preserves no direction line of a nonzero real vector." title="A quarter-turn changes every real direction" cameraPosition={[0, 0.5, 5]} cameraTarget={[0, 0.5, 0]} showZAxis={false} data={[{"points": [{"x": 0, "y": 0, "z": 0}, {"x": 1, "y": 1, "z": 0}], "color": "#0284c7", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="v" />, "at": 1}]}, {"points": [{"x": 0, "y": 0, "z": 0}, {"x": -1, "y": 1, "z": 0}], "color": "#ea580c", "smooth": false, "pointIndices": [1], "labels": [{"text": <InlineMath math="Rv" />, "at": 1}]}]} />
+<MathVisual
+  title={<><InlineMath math="v=(1,1)" /> and <InlineMath math="R_\alpha v" /></>}
+  description={<>The teal segment is <InlineMath math="v" /> and the orange segment its rotation <InlineMath math="R_\alpha v" />, both on the gray circle of radius <InlineMath math="\sqrt2" />. Move <InlineMath math="\alpha" />: the readout <InlineMath math="v\cdot R_\alpha v=2\cos\alpha" /> is <InlineMath math="0" /> at <InlineMath math="\alpha=\tfrac\pi2" />, and <InlineMath math="R_\alpha v" /> stays on the line of <InlineMath math="v" /> only at <InlineMath math="\alpha=0" /> and <InlineMath math="\alpha=\pi" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: 0, max: 2 * Math.PI, value: Math.PI / 2, step: 0.01, label: "angle" },
+    ],
+    objects: [
+      { id: "radius", kind: "circle", center: { x: 0, y: 0 }, radius: Math.SQRT2, appearance: "reference" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "turned", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a) - sin(a)", y: "sin(a) + cos(a)" }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "vector", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "rv", objectId: "turned", at: { x: "cos(a) - sin(a)", y: "sin(a) + cos(a)" }, placement: "left" },
+    ],
+    readouts: [
+      { key: "dot", formula: "2*cos(a)" },
+    ],
+  }}
+  labels={{
+    "angle": <InlineMath math="\alpha" />,
+    "dot": <InlineMath math="v\cdot R_\alpha v" />,
+    "v": <InlineMath math="v" />,
+    "rv": <InlineMath math="R_\alpha v" />,
+  }}
+/>
 
 ## A Diagonalizable Matrix That Is Not Normal
 
@@ -82,3 +129,22 @@ Direct multiplication also shows that <InlineMath math="A" /> is not normal:
 </MathContainer>
 
 This example separates the two ideas: ordinary diagonalization permits any invertible eigenvector matrix <InlineMath math="S" />, while <Highlight>orthogonal diagonalization requires an orthonormal eigenbasis</Highlight> and therefore a real symmetric matrix.
+
+The matrix <InlineMath math="A=\begin{pmatrix}1&1\\0&2\end{pmatrix}" /> has the distinct eigenvalues <InlineMath math="1" /> and <InlineMath math="2" />, so it is diagonalizable, with eigenvectors <InlineMath math="(1,0)" /> and <InlineMath math="(1,1)" />. They meet at <InlineMath math="45^\circ" />, not <InlineMath math="90^\circ" />: <InlineMath math="A^TA=\begin{pmatrix}1&1\\1&5\end{pmatrix}" /> differs from <InlineMath math="AA^T=\begin{pmatrix}2&2\\2&4\end{pmatrix}" />, so <InlineMath math="A" /> is not normal and has no orthonormal eigenbasis.
+
+<MathVisual
+  title={<>Eigenvectors of <InlineMath math="\begin{pmatrix}1&1\\0&2\end{pmatrix}" /> at <InlineMath math="45^\circ" /></>}
+  description={<>The teal line is the eigenvector direction <InlineMath math="(1,0)" /> and the orange line <InlineMath math="(1,1)" />, with the amber arc marking <InlineMath math="45^\circ" /> between them. The violet curve is the image of the gray unit circle.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.2, max: 2.2 }, y: { min: -2.2, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "image", kind: "parametric", x: "cos(t) + sin(t)", y: "2*sin(t)", parameter: { min: 0, max: 2 * Math.PI }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: -1.5, y: 0 }, to: { x: 1.5, y: 0 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: -1.5, y: -1.5 }, to: { x: 1.5, y: 1.5 }, appearance: "primary" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.5, startDegrees: 0, sweepDegrees: 45, appearance: "highlight" },
+    ],
+  }}
+/>

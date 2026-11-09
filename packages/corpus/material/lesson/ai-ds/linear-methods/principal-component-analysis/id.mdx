@@ -26,6 +26,35 @@ Matriks <InlineMath math="C" /> simetris positif semidefinit. Matriks <InlineMat
 
 Data harus dipusatkan sebelum <InlineMath math="\mathrm{PCA}" />. <Highlight>Standardisasi setiap fitur agar variansnya satu</Highlight> adalah <Highlight>pilihan model</Highlight>, dan biasanya berguna ketika fitur memakai satuan yang tidak sebanding. Standardisasi mengubah pertanyaan dari arah dengan varians absolut terbesar menjadi arah dengan varians terstandardisasi terbesar.
 
+Ambil tiga pengamatan <InlineMath math="(2,3)" />, <InlineMath math="(4,4)" />, dan <InlineMath math="(6,8)" />. Rata-rata fiturnya <InlineMath math="4" /> dan <InlineMath math="5" />, jadi pemusatan mengurangkan <InlineMath math="(4,5)" /> dari setiap baris dan menghasilkan <InlineMath math="(-2,-2)" />, <InlineMath math="(0,-1)" />, dan <InlineMath math="(2,3)" />. Awan titik tetap berbentuk sama, tetapi kini berada di sekitar titik asal.
+
+<ScatterDiagram
+  title={<>Pemusatan memindahkan data ke titik asal</>}
+  description={<>Seri pertama adalah data mentah dan seri kedua adalah data terpusat <InlineMath math="X_c=X-\mathbf1\mu^T" />. Setiap titik bergeser dengan vektor yang sama, <InlineMath math="-(4,5)" />.</>}
+  xAxisLabel="Fitur pertama"
+  yAxisLabel="Fitur kedua"
+  datasets={[
+    {
+      name: "Data mentah",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: 3 },
+        { x: 4, y: 4 },
+        { x: 6, y: 8 },
+      ],
+    },
+    {
+      name: "Data terpusat",
+      color: "var(--chart-2)",
+      points: [
+        { x: 2 - 4, y: 3 - 5 },
+        { x: 4 - 4, y: 4 - 5 },
+        { x: 6 - 4, y: 8 - 5 },
+      ],
+    },
+  ]}
+/>
+
 ## Arah Komponen Utama
 
 Berdasarkan teorema spektral,
@@ -71,6 +100,19 @@ Di antara semua rekonstruksi linear dengan rank paling tinggi <InlineMath math="
 
 <BlockMath math="\|X_c-\widehat{X}_c\|_F^2=(m-1)\sum_{j=k+1}^n\lambda_j" />
 
+Setiap komponen utama menjelaskan bagian dari variansi total sebesar nilai eigennya. Pada contoh kerja di bawah, <InlineMath math="\lambda_1=9" /> dan <InlineMath math="\lambda_2=2.25" />, jadi komponen pertama menjelaskan <InlineMath math="\tfrac9{11.25}=80\%" /> dan komponen kedua sisanya, <InlineMath math="20\%" />.
+
+<BarChart
+  title={<>Variansi yang dijelaskan setiap komponen</>}
+  description={<>Setiap batang adalah <InlineMath math="\lambda_i/(\lambda_1+\lambda_2)" /> untuk komponen <InlineMath math="i" /> yang tertulis di bawahnya: <InlineMath math="0.8" /> dan <InlineMath math="0.2" />.</>}
+  yAxisLabel="Variansi yang dijelaskan"
+  data={[
+    { name: "1", value: 9 / (9 + 2.25) },
+    { name: "2", value: 2.25 / (9 + 2.25) },
+  ]}
+  chartConfig={{ value: { label: "Variansi yang dijelaskan", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
 ## Perhitungan Ekuivalen dengan Dekomposisi Nilai Singular
 
 <InlineMath math="\mathrm{PCA}" /> juga dapat dihitung melalui dekomposisi nilai singular tipis berikut:
@@ -110,71 +152,36 @@ Arah komponen utama adalah kolom <InlineMath math="R" />:
 
 Hasil <InlineMath math="80\%" /> adalah bagian dari varians total yang dijelaskan oleh komponen pertama.
 
-<LineEquation
-  title={<>Elips kovarians dan arah komponen utama <InlineMath math="v_1,v_2" /></>}
-  description={<>Elips sian memiliki panjang semisumbu <InlineMath math="\sqrt{\lambda_1}=3" /> dan <InlineMath math="\sqrt{\lambda_2}=1{,}5" />. Garis jingga menunjukkan arah kedua vektor eigen.</>}
-  data={[
-    {
-      points: Array.from({ length: 100 }, (_, index) => {
-        const angle = (index / 99) * 2 * Math.PI;
-        const localX = 3 * Math.cos(angle);
-        const localY = 1.5 * Math.sin(angle);
-        const rotation = Math.PI / 6;
-        const x = localX * Math.cos(rotation) - localY * Math.sin(rotation);
-        const y = localX * Math.sin(rotation) + localY * Math.cos(rotation);
-        return { x, y, z: 0 };
-      }),
-      color: "#0891b2",
-      smooth: false,
-      showPoints: false
-    },
-    {
-      points: [{ x: -4, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: false,
-      labels: [{
-        text: <InlineMath math="x_1" />,
-        at: 1,
-        offset: [0.3, -0.5, 0]
-      }]
-    },
-    {
-      points: [{ x: 0, y: -3, z: 0 }, { x: 0, y: 3, z: 0 }],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: false,
-      labels: [{
-        text: <InlineMath math="x_2" />,
-        at: 1,
-        offset: [0.8, 0.3, 0]
-      }]
-    },
-    {
-      points: [{ x: -2 * Math.sqrt(3), y: -2, z: 0 }, { x: 2 * Math.sqrt(3), y: 2, z: 0 }],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{
-        text: <InlineMath math="v_1" />,
-        at: 1,
-        offset: [0.3, 0.3, 0]
-      }]
-    },
-    {
-      points: [{ x: -1.5, y: 1.5 * Math.sqrt(3), z: 0 }, { x: 1.5, y: -1.5 * Math.sqrt(3), z: 0 }],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{
-        text: <InlineMath math="v_2" />,
-        at: 0,
-        offset: [-0.8, 0.3, 0]
-      }]
-    }
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 11]}
+<MathVisual
+  title={<>Elips kovarians dan arah utama <InlineMath math="v_1,v_2" /></>}
+  description={<>Elips hijau toska punya setengah sumbu <InlineMath math="\sqrt{\lambda_1}=3" /> sepanjang <InlineMath math="v_1" /> yang oranye dan <InlineMath math="\sqrt{\lambda_2}=1.5" /> sepanjang <InlineMath math="v_2" /> yang ungu. Geser <InlineMath math="\varphi" />: nilai yang tampil adalah variansi <InlineMath math="u^TCu" /> sepanjang arah magenta <InlineMath math="u=(\cos\varphi,\sin\varphi)" />, yang terbesar, <InlineMath math="9" />, pada <InlineMath math="\varphi=\tfrac\pi6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: 0, max: Math.PI, value: 0.3, step: 0.01, label: "angle" },
+    ],
+    objects: [
+      { id: "ellipse", kind: "parametric", x: "3*cos(t)*sqrt(3)/2 - 1.5*sin(t)/2", y: "3*cos(t)/2 + 1.5*sin(t)*sqrt(3)/2", parameter: { min: 0, max: 2 * Math.PI }, appearance: "construction" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3 / 4, y: 3 * Math.sqrt(3) / 4 }, appearance: "secondary" },
+      { id: "direction", kind: "path", points: [{ x: "-3.5*cos(a)", y: "-3.5*sin(a)" }, { x: "3.5*cos(a)", y: "3.5*sin(a)" }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "v1", objectId: "first", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "right" },
+      { key: "v2", objectId: "second", at: { x: -3 / 4, y: 3 * Math.sqrt(3) / 4 }, placement: "left" },
+    ],
+    readouts: [
+      { key: "variance", formula: "9*cos(a - pi/6)^2 + 2.25*sin(a - pi/6)^2" },
+    ],
+  }}
+  labels={{
+    "angle": <InlineMath math="\varphi" />,
+    "variance": <InlineMath math="u^TCu" />,
+    "v1": <InlineMath math="v_1" />,
+    "v2": <InlineMath math="v_2" />,
+  }}
 />
 
 ## Batas Penggunaan PCA

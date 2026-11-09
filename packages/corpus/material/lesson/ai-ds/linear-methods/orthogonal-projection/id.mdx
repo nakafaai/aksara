@@ -77,32 +77,37 @@ Karena itu,
 <BlockMath math="\|f-g\|_2=\sqrt5" />
 </MathContainer>
 
-<LineEquation
-  title={<>Proyeksi <InlineMath math="f" /> pada <InlineMath math="\operatorname{span}\{u\}" /></>}
-  description={<>Vektor sian adalah <InlineMath math="f" />, vektor jingga adalah <InlineMath math="g=P_Sf" />, dan ruas ungu adalah residual tegak lurus <InlineMath math="r=f-g" />.</>}
-  cameraPosition={[1, 1.5, 7]}
-  cameraTarget={[1, 1.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 3, z: 0 }],
-      color: "#0891b2",
-      smooth: false,
-      showPoints: true
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: true
-    },
-    {
-      points: [{ x: 2, y: 1, z: 0 }, { x: 1, y: 3, z: 0 }],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: true
-    }
-  ]}
+<MathVisual
+  title={<>Proyeksi <InlineMath math="f" /> ke <InlineMath math="\operatorname{span}\{u\}" /></>}
+  description={<>Garis abu-abu adalah <InlineMath math="S=\operatorname{span}\{u\}" /> dengan <InlineMath math="u=(2,1)" />, dan ruas hijau toska adalah <InlineMath math="f=(1,3)" />. Geser <InlineMath math="s" />: ruas magenta menghubungkan <InlineMath math="su" /> dengan <InlineMath math="f" />, dan nilai yang tampil paling kecil, <InlineMath math="5" />, pada <InlineMath math="s=1" />, saat <InlineMath math="su" /> berada di titik oranye <InlineMath math="g=P_Sf" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3.8 }, y: { min: -0.8, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "s", min: -0.5, max: 1.8, value: 0.5, step: 0.01, label: "s" },
+    ],
+    objects: [
+      { id: "span", kind: "function", formula: "x/2", domain: { min: -1, max: 3.6 }, appearance: "reference" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "construction" },
+      { id: "residual", kind: "path", points: [{ x: "2*s", y: "s" }, { x: "1", y: "3" }], appearance: "answer" },
+      { id: "projection", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "candidate", kind: "marker", x: "2*s", y: "s", appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "vector", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "g", objectId: "projection", at: { x: 2, y: 1 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "distance", formula: "5*s^2 - 10*s + 10" },
+    ],
+  }}
+  labels={{
+    "s": <InlineMath math="s" />,
+    "f": <InlineMath math="f" />,
+    "g": <InlineMath math="g=P_Sf" />,
+    "distance": <InlineMath math="\|f-su\|_2^2" />,
+  }}
 />
 
 ## Konstruksi dari Basis Sembarang
@@ -152,6 +157,24 @@ Dengan demikian,
 
 Suku linear hilang karena <InlineMath math="x^3" /> merupakan **fungsi ganjil pada interval simetris**.
 
+Daerah berarsir memperlihatkan galat yang ditinggalkan proyeksi. Kuadrat normanya, <InlineMath math="\int_{-1}^1\bigl(x^2-\tfrac13\bigr)^2dx=\tfrac8{45}" />, adalah yang terkecil di antara semua fungsi <InlineMath math="c_0+c_1x" />.
+
+<MathVisual
+  title={<><InlineMath math="x^2" /> dan proyeksinya <InlineMath math="\tfrac13" /> ke <InlineMath math="\operatorname{span}\{1,x\}" /></>}
+  description={<>Kurva hijau toska adalah <InlineMath math="x^2" /> dan garis oranye adalah <InlineMath math="P_Sf=\tfrac13" />. Daerah magenta terletak di antara keduanya, di atas garis dekat ujung interval dan di bawah garis dekat <InlineMath math="0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -0.2, max: 1.15 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "above", kind: "region", inequalities: ["y <= x^2", "y >= 1/3", "x >= -1", "x <= 1"], appearance: "answer" },
+      { id: "below", kind: "region", inequalities: ["y >= x^2", "y <= 1/3"], appearance: "answer" },
+      { id: "square", kind: "function", formula: "x^2", domain: { min: -1, max: 1 }, appearance: "construction" },
+      { id: "projection", kind: "function", formula: "1/3", domain: { min: -1, max: 1 }, appearance: "primary" },
+    ],
+  }}
+/>
+
 ## Sifat Proyektor Ortogonal
 
 | Sifat | Makna |
@@ -162,3 +185,32 @@ Suku linear hilang karena <InlineMath math="x^3" /> merupakan **fungsi ganjil pa
 | <InlineMath math="\ker(P)=S^\perp" /> | komponen tegak lurus dihilangkan |
 
 Proyektor miring juga dapat memenuhi <InlineMath math="P^2=P" />. Karena proyektor itu belum tentu simetris, syarat <InlineMath math="P^T=P" /> <Highlight>membedakan proyektor ortogonal Euklides</Highlight>.
+
+Untuk <InlineMath math="u=(2,1)" />, proyektornya adalah <InlineMath math="P=\tfrac{uu^T}{u^Tu}=\tfrac15\begin{pmatrix}4&2\\2&1\end{pmatrix}" />. Maka <InlineMath math="Pf=(2,1)" /> terletak di <InlineMath math="S" />, <InlineMath math="(I-P)f=(-1,2)" /> terletak di <InlineMath math="S^\perp" />, dan <InlineMath math="P(Pf)=Pf" />, karena vektor yang sudah berada di <InlineMath math="S" /> tidak bergerak.
+
+<MathVisual
+  title={<><InlineMath math="P" /> dan <InlineMath math="I-P" /> membelah <InlineMath math="f=(1,3)" /></>}
+  description={<>Garis hijau toska adalah <InlineMath math="S" /> dan garis ungu adalah <InlineMath math="S^\perp" />. Ruas abu-abu <InlineMath math="f" /> adalah jumlah ruas oranye <InlineMath math="Pf" /> di <InlineMath math="S" /> dan ruas magenta <InlineMath math="(I-P)f" /> di <InlineMath math="S^\perp" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2.5 }, y: { min: -1, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "subspace", kind: "function", formula: "x/2", domain: { min: -1.5, max: 2.5 }, appearance: "construction" },
+      { id: "complement", kind: "function", formula: "-2*x", domain: { min: -1.75, max: 0.5 }, appearance: "secondary" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "inside", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "outside", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "f", objectId: "vector", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "pf", objectId: "inside", at: { x: 2, y: 1 }, placement: "below" },
+      { key: "qf", objectId: "outside", at: { x: -1, y: 2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "f": <InlineMath math="f" />,
+    "pf": <InlineMath math="Pf" />,
+    "qf": <InlineMath math="(I-P)f" />,
+  }}
+/>
