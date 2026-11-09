@@ -54,6 +54,34 @@ Wirkt dieselbe konstante Kraft entgegen der Verschiebung, beträgt der Winkel <I
 
 <BlockMath math="W=40(5)\cos180^\circ=200(-1)=-200\text{ J}" />
 
+Das Diagramm unten nimmt denselben Zug von <InlineMath math="40\text{ N}" /> über <InlineMath math="5\text{ m}" /> für jeden Winkel von <InlineMath math="0^\circ" /> bis <InlineMath math="180^\circ" />. Die Arbeit beginnt bei <InlineMath math="200\text{ J}" />, fällt auf null, wenn die Kraft senkrecht steht, und endet bei <InlineMath math="-200\text{ J}" />, wenn die Kraft gegen die Bewegung zeigt.
+
+<MathVisual
+  title={<>Arbeit folgt dem Kosinus des Winkels</>}
+  description={<><InlineMath math="W=Fs\cos\theta" /> für <InlineMath math="F=40\text{ N}" /> und <InlineMath math="s=5\text{ m}" />. Waagrecht: Winkel in Einheiten von 30°. Senkrecht: Arbeit in Einheiten von 50 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "work", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 0.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 3, y: 0 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 3.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 3.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 3.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 4) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 4.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 4.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 4.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 5) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 5.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 5.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 5.75) / 6) }, { x: 6, y: -4 }] },
+      { id: "zero", kind: "point", appearance: "primary", at: { x: 0, y: 4 } },
+      { id: "right", kind: "point", appearance: "primary", at: { x: 3, y: 0 } },
+      { id: "back", kind: "point", appearance: "primary", at: { x: 6, y: -4 } },
+    ],
+    labels: [
+      { key: "zero", objectId: "zero", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "right", objectId: "right", at: { x: 3, y: 0 }, placement: "above-right" },
+      { key: "back", objectId: "back", at: { x: 6, y: -4 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    zero: <InlineMath math="0^\circ:\ W=200\text{ J}" />,
+    right: <InlineMath math="90^\circ:\ W=0" />,
+    back: <InlineMath math="180^\circ:\ W=-200\text{ J}" />,
+  }}
+/>
+
 ## Das Kreuzprodukt misst die Drehwirkung
 
 Das Kreuzprodukt von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> hat den Betrag:
@@ -164,3 +192,27 @@ Vergleiche die Operationen bei **festen Vektorbeträgen ungleich null**. Das Ska
 | <InlineMath math="180^\circ" /> | negativ | null |
 
 Das Skalarprodukt beschreibt damit die gegenseitige Ausrichtung zweier Vektoren. Das Kreuzprodukt erfasst dagegen senkrechte Wirkungen, etwa eine Drehung.
+
+Halt beide Beträge fest und dreh den Winkel. Das orange Skalarprodukt ist am größten, wenn die Vektoren in einer Linie liegen, der Betrag des violetten Kreuzprodukts erreicht bei <InlineMath math="90^\circ" /> sein Maximum. Bei <InlineMath math="0^\circ" /> und <InlineMath math="180^\circ" /> verschwindet das Kreuzprodukt, weil parallele Vektoren keine Drehwirkung haben.
+
+<MathVisual
+  title={<>Skalar- und Kreuzprodukt gegen den Winkel</>}
+  description={<><InlineMath math="AB\cos\theta" /> und <InlineMath math="AB\sin\theta" /> mit <InlineMath math="AB=200" /> für Winkel von 0° bis 180°. Waagrecht: Winkel in Einheiten von 30°. Senkrecht: Wert in Einheiten von 50.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -4.6, max: 4.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "dot", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 4 }, { x: 0.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 3, y: 0 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 3.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 3.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 3.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 4) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 4.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 4.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 4.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 5) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 5.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 5.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 5.75) / 6) }, { x: 6, y: -4 }] },
+      { id: "cross", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.25, y: 4 * Math.cos((Math.PI * -2.75) / 6) }, { x: 0.5, y: 4 * Math.cos((Math.PI * -2.5) / 6) }, { x: 0.75, y: 4 * Math.cos((Math.PI * -2.25) / 6) }, { x: 1, y: 4 * Math.cos((Math.PI * -2) / 6) }, { x: 1.25, y: 4 * Math.cos((Math.PI * -1.75) / 6) }, { x: 1.5, y: 4 * Math.cos((Math.PI * -1.5) / 6) }, { x: 1.75, y: 4 * Math.cos((Math.PI * -1.25) / 6) }, { x: 2, y: 4 * Math.cos((Math.PI * -1) / 6) }, { x: 2.25, y: 4 * Math.cos((Math.PI * -0.75) / 6) }, { x: 2.5, y: 4 * Math.cos((Math.PI * -0.5) / 6) }, { x: 2.75, y: 4 * Math.cos((Math.PI * -0.25) / 6) }, { x: 3, y: 4 }, { x: 3.25, y: 4 * Math.cos((Math.PI * 0.25) / 6) }, { x: 3.5, y: 4 * Math.cos((Math.PI * 0.5) / 6) }, { x: 3.75, y: 4 * Math.cos((Math.PI * 0.75) / 6) }, { x: 4, y: 4 * Math.cos((Math.PI * 1) / 6) }, { x: 4.25, y: 4 * Math.cos((Math.PI * 1.25) / 6) }, { x: 4.5, y: 4 * Math.cos((Math.PI * 1.5) / 6) }, { x: 4.75, y: 4 * Math.cos((Math.PI * 1.75) / 6) }, { x: 5, y: 4 * Math.cos((Math.PI * 2) / 6) }, { x: 5.25, y: 4 * Math.cos((Math.PI * 2.25) / 6) }, { x: 5.5, y: 4 * Math.cos((Math.PI * 2.5) / 6) }, { x: 5.75, y: 4 * Math.cos((Math.PI * 2.75) / 6) }, { x: 6, y: 0 }] },
+    ],
+    labels: [
+      { key: "dot", objectId: "dot", at: { x: 1, y: 4 * Math.cos((Math.PI * 1) / 6) }, placement: "above-right" },
+      { key: "cross", objectId: "cross", at: { x: 3, y: 4 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    dot: <InlineMath math="\vec A\cdot\vec B" />,
+    cross: <InlineMath math="\lvert\vec A\times\vec B\rvert" />,
+  }}
+/>

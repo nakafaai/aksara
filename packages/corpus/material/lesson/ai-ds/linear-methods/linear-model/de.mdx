@@ -67,6 +67,69 @@ Betrachte die Beobachtungen <InlineMath math="(t,y)=(0,1),(1,3),(2,5)" /> und di
 
 Die dritte Beobachtung stimmt mit den ersten beiden überein. Ein Parametervektor <InlineMath math="(a,b)=(1,2)" /> erklärt alle drei Werte.
 
+Dreh die Fläche des Wechselwirkungsmodells <InlineMath math="y=1+\tfrac t2+\tfrac s2+\tfrac{ts}2" /> unten. Jede violette Gerade hält <InlineMath math="s" /> fest und jede türkise Gerade hält <InlineMath math="t" /> fest, und alle sind gerade. Die Verdrehung kommt nur vom Term <InlineMath math="\tfrac{ts}2" />, der die Steigung in <InlineMath math="t" /> zu <InlineMath math="\tfrac12+\tfrac s2" /> macht. Alle vier Koeffizienten gehen trotzdem linear ein, also kann die Methode der kleinsten Quadrate sie mit der Zeile <InlineMath math="(1,t,s,ts)" /> der Designmatrix schätzen.
+
+<MathVisual
+  title={<>Das Wechselwirkungsmodell <InlineMath math="y=1+\tfrac t2+\tfrac s2+\tfrac{ts}2" /></>}
+  description={<>Violette Geraden halten <InlineMath math="s" /> fest, türkise Geraden halten <InlineMath math="t" /> fest. Die <InlineMath math="t" />-Achse zeigt nach rechts, <InlineMath math="s" /> zu dir und <InlineMath math="y" /> nach oben.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -1.5, max: 5.5 }, z: { min: -2.5, max: 2.5 } },
+    view: { kind: "isometric", target: { x: 0, y: 1.5, z: 0 } },
+    objects: [
+      { id: "along-a", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-2) / 2 + (-2) * (-2) / 2, z: -2 }, to: { x: 2, y: 1 + (2) / 2 + (-2) / 2 + (2) * (-2) / 2, z: -2 }, appearance: "secondary" },
+      { id: "along-b", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-1.5) / 2 + (-2) * (-1.5) / 2, z: -1.5 }, to: { x: 2, y: 1 + (2) / 2 + (-1.5) / 2 + (2) * (-1.5) / 2, z: -1.5 }, appearance: "secondary" },
+      { id: "along-c", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-1) / 2 + (-2) * (-1) / 2, z: -1 }, to: { x: 2, y: 1 + (2) / 2 + (-1) / 2 + (2) * (-1) / 2, z: -1 }, appearance: "secondary" },
+      { id: "along-d", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-0.5) / 2 + (-2) * (-0.5) / 2, z: -0.5 }, to: { x: 2, y: 1 + (2) / 2 + (-0.5) / 2 + (2) * (-0.5) / 2, z: -0.5 }, appearance: "secondary" },
+      { id: "along-e", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (0) / 2 + (-2) * (0) / 2, z: 0 }, to: { x: 2, y: 1 + (2) / 2 + (0) / 2 + (2) * (0) / 2, z: 0 }, appearance: "secondary" },
+      { id: "along-f", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (0.5) / 2 + (-2) * (0.5) / 2, z: 0.5 }, to: { x: 2, y: 1 + (2) / 2 + (0.5) / 2 + (2) * (0.5) / 2, z: 0.5 }, appearance: "secondary" },
+      { id: "along-g", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (1) / 2 + (-2) * (1) / 2, z: 1 }, to: { x: 2, y: 1 + (2) / 2 + (1) / 2 + (2) * (1) / 2, z: 1 }, appearance: "secondary" },
+      { id: "along-h", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (1.5) / 2 + (-2) * (1.5) / 2, z: 1.5 }, to: { x: 2, y: 1 + (2) / 2 + (1.5) / 2 + (2) * (1.5) / 2, z: 1.5 }, appearance: "secondary" },
+      { id: "along-i", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (2) / 2 + (-2) * (2) / 2, z: 2 }, to: { x: 2, y: 1 + (2) / 2 + (2) / 2 + (2) * (2) / 2, z: 2 }, appearance: "secondary" },
+      { id: "across-a", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-2) / 2 + (-2) * (-2) / 2, z: -2 }, to: { x: -2, y: 1 + (-2) / 2 + (2) / 2 + (-2) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-b", kind: "segment", from: { x: -1.5, y: 1 + (-1.5) / 2 + (-2) / 2 + (-1.5) * (-2) / 2, z: -2 }, to: { x: -1.5, y: 1 + (-1.5) / 2 + (2) / 2 + (-1.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-c", kind: "segment", from: { x: -1, y: 1 + (-1) / 2 + (-2) / 2 + (-1) * (-2) / 2, z: -2 }, to: { x: -1, y: 1 + (-1) / 2 + (2) / 2 + (-1) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-d", kind: "segment", from: { x: -0.5, y: 1 + (-0.5) / 2 + (-2) / 2 + (-0.5) * (-2) / 2, z: -2 }, to: { x: -0.5, y: 1 + (-0.5) / 2 + (2) / 2 + (-0.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-e", kind: "segment", from: { x: 0, y: 1 + (0) / 2 + (-2) / 2 + (0) * (-2) / 2, z: -2 }, to: { x: 0, y: 1 + (0) / 2 + (2) / 2 + (0) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-f", kind: "segment", from: { x: 0.5, y: 1 + (0.5) / 2 + (-2) / 2 + (0.5) * (-2) / 2, z: -2 }, to: { x: 0.5, y: 1 + (0.5) / 2 + (2) / 2 + (0.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-g", kind: "segment", from: { x: 1, y: 1 + (1) / 2 + (-2) / 2 + (1) * (-2) / 2, z: -2 }, to: { x: 1, y: 1 + (1) / 2 + (2) / 2 + (1) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-h", kind: "segment", from: { x: 1.5, y: 1 + (1.5) / 2 + (-2) / 2 + (1.5) * (-2) / 2, z: -2 }, to: { x: 1.5, y: 1 + (1.5) / 2 + (2) / 2 + (1.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-i", kind: "segment", from: { x: 2, y: 1 + (2) / 2 + (-2) / 2 + (2) * (-2) / 2, z: -2 }, to: { x: 2, y: 1 + (2) / 2 + (2) / 2 + (2) * (2) / 2, z: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "along", objectId: "along-i", at: { x: 2, y: 1 + (2) / 2 + (2) / 2 + (2) * (2) / 2, z: 2 }, placement: "right" },
+      { key: "across", objectId: "across-i", at: { x: 2, y: 1 + (2) / 2 + (-2) / 2 + (2) * (-2) / 2, z: -2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "along": <InlineMath math="s=2" />,
+    "across": <InlineMath math="t=2" />,
+  }}
+/>
+
+Das Modell <InlineMath math="y=a+bt" /> hat die Zeilen <InlineMath math="(1,t_i)" />. Die ersten beiden Beobachtungen liefern <InlineMath math="a=1" /> und <InlineMath math="a+b=3" />, also <InlineMath math="b=2" />, und die dritte Beobachtung <InlineMath math="1+2\cdot2=5" /> liegt genau auf der Geraden.
+
+<ScatterDiagram
+  title={<>Drei Beobachtungen auf der Geraden <InlineMath math="y=1+2t" /></>}
+  description={<>Die Punkte <InlineMath math="(0,1)" />, <InlineMath math="(1,3)" /> und <InlineMath math="(2,5)" /> mit der angepassten Geraden. Jedes Residuum ist <InlineMath math="0" />, also bestätigt die dritte Zeile <InlineMath math="a=1" /> und <InlineMath math="b=2" />.</>}
+  xAxisLabel="Eingabewert"
+  yAxisLabel="Messwert"
+  datasets={[
+    {
+      name: "Beobachtungen",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 1 },
+        { x: 1, y: 3 },
+        { x: 2, y: 5 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+  showResiduals
+/>
+
 ## Mehrere Antworten
 
 Liefert jede Eingabe mehrere Antworten, ordnet man ihre Parametervektoren in einer Matrix <InlineMath math="B" /> an. Für eine Zeile von Basiswerten <InlineMath math="\phi(t)^{\mathsf T}" /> gilt
@@ -88,6 +151,30 @@ Bei bekannter Temperatur <InlineMath math="T" /> und bekanntem Volumen <InlineMa
 Der Druck <InlineMath math="p" /> hängt linear von der **unbekannten Stoffmenge** <InlineMath math="n" /> ab, die in Mol gemessen wird. Die Größe <InlineMath math="n" /> ist nicht selbst die Anzahl der Moleküle. Die Anzahl der angegebenen Teilchen ist <InlineMath math="N=nN_A" />.
 
 Wiederholte Druckmessungen bei mehreren bekannten Werten <InlineMath math="(T_i,V_i)" /> liefern für jede Beobachtung eine Designmatrixzeile <InlineMath math="RT_i/V_i" />.
+
+Fünf Messungen bei verschiedenen <InlineMath math="(T_i,V_i)" /> ergeben fünf Zeilen <InlineMath math="RT_i/V_i" />, hier mit <InlineMath math="R=8.314\ \mathrm{kPa\,L/(mol\,K)}" />, Temperaturen in Kelvin und Volumina in Litern. Für ein Gas mit <InlineMath math="n=2\ \mathrm{mol}" /> ist jeder Druck doppelt so groß wie sein Designeintrag. Deshalb liegen die Punkte auf einer Geraden durch den Ursprung.
+
+<ScatterDiagram
+  title={<>Der Druck ist linear in der Stoffmenge <InlineMath math="n" /></>}
+  description={<>Jeder Punkt verbindet den Designeintrag <InlineMath math="RT_i/V_i" /> mit dem Druck <InlineMath math="p_i=(RT_i/V_i)\,n" /> für <InlineMath math="n=2\ \mathrm{mol}" />. Die angepasste Gerade geht mit Steigung <InlineMath math="2" /> durch den Ursprung.</>}
+  xAxisLabel="Designeintrag (kPa/mol)"
+  yAxisLabel="Druck (kPa)"
+  datasets={[
+    {
+      name: "Messungen",
+      color: "var(--chart-2)",
+      points: [
+        { x: 8.314 * 280 / 10, y: 2 * 8.314 * 280 / 10 },
+        { x: 8.314 * 300 / 12, y: 2 * 8.314 * 300 / 12 },
+        { x: 8.314 * 320 / 8, y: 2 * 8.314 * 320 / 8 },
+        { x: 8.314 * 350 / 10, y: 2 * 8.314 * 350 / 10 },
+        { x: 8.314 * 300 / 6, y: 2 * 8.314 * 300 / 6 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
 
 ## Lokale Linearisierung eines nichtlinearen Modells
 

@@ -21,6 +21,33 @@ The following list connects each type of data with the appropriate law.
 - If two different compounds are made from the same two elements, use multiple proportions.
 - If all compared substances are gases at the same temperature and pressure, use combining volumes.
 
+Before you pick a law, check whether the system was closed. Each point is one experiment, mass before across and mass after up, so a closed system sits on the gray line. When <InlineMath math="2\ \mathrm{g}" /> of <InlineMath math="\mathrm{CaCO_3}" /> reacts with acid in an open beaker, <InlineMath math="2\ \mathrm{g}\cdot\tfrac{44}{100}=0.88\ \mathrm{g}" /> of carbon dioxide escapes, and the point drops below the line. Zoom in on the pink point.
+
+<MathVisual
+  title={<>Points on the Line Kept Their Mass</>}
+  description={<>Mass before (across) and after (up) for three closed experiments and one open beaker, in grams.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 46, max: 51 }, y: { min: 46, max: 51 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "same", kind: "segment", appearance: "reference", from: { x: 46, y: 46 }, to: { x: 51, y: 51 } },
+      { id: "flask", kind: "point", appearance: "secondary", at: { x: 47, y: 47 } },
+      { id: "bag", kind: "point", appearance: "secondary", at: { x: 48.5, y: 48.5 } },
+      { id: "sealed", kind: "point", appearance: "secondary", at: { x: 50, y: 50 } },
+      { id: "open", kind: "point", appearance: "warning", at: { x: 50, y: 49.12 } },
+    ],
+    labels: [
+      { key: "closed", objectId: "bag", at: { x: 48.5, y: 48.5 }, placement: "above-left" },
+      { key: "open", objectId: "open", at: { x: 50, y: 49.12 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    closed: <>closed systems</>,
+    open: <InlineMath math="\text{open: }50.00-0.88=49.12\ \mathrm{g}" />,
+  }}
+/>
+
 ## Mass and Volume Patterns
 
 Before calculating, identify **which quantity stays fixed** and which quantities are being compared. That choice determines the law and ratio used in the calculation. The patterns below separate mass ratios from volume ratios, because the two follow different laws.
@@ -79,6 +106,36 @@ V_{\mathrm{H_2}} &= 3 \times 300 = 900\ \mathrm{mL} \\
 V_{\mathrm{N_2}} &= 1 \times 300 = 300\ \mathrm{mL}
 \end{aligned}" />
 
+The scene below stacks the gases as equal blocks, one block for each coefficient and every block worth <InlineMath math="300\ \mathrm{mL}" />. Rotate it and count: two blocks of ammonia become three blocks of hydrogen and one block of nitrogen. The block size never changes, so the volume ratio <InlineMath math="2:3:1" /> is just the coefficient ratio, and it only works because every gas is measured at the same temperature and pressure.
+
+<MathVisual
+  title={<>Gas Volumes Follow the Coefficients</>}
+  description={<>Each block is one part of 300 mL at the same temperature and pressure. Count the blocks in each column of <InlineMath math="2\mathrm{NH_3}\rightarrow3\mathrm{H_2}+\mathrm{N_2}" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 9, z: 13 }, target: { x: 3, y: 3, z: 0 } },
+    objects: [
+      { id: "ammonia-1", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "ammonia-2", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "hydrogen-1", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 1 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "hydrogen-2", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 2 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "hydrogen-3", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 3 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "nitrogen-1", kind: "cuboid", appearance: "construction", center: { x: 6, y: 1 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+    ],
+    labels: [
+      { key: "ammonia", objectId: "ammonia-2", at: { x: 0, y: 2 * 2 + 0.6, z: 0 }, placement: "above" },
+      { key: "hydrogen", objectId: "hydrogen-3", at: { x: 3, y: 3 * 2 + 0.6, z: 0 }, placement: "above" },
+      { key: "nitrogen", objectId: "nitrogen-1", at: { x: 6, y: 1 * 2 + 0.6, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    ammonia: <InlineMath math="2\,\mathrm{NH_3}:\ 600\ \mathrm{mL}" />,
+    hydrogen: <InlineMath math="3\,\mathrm{H_2}:\ 900\ \mathrm{mL}" />,
+    nitrogen: <InlineMath math="1\,\mathrm{N_2}:\ 300\ \mathrm{mL}" />,
+  }}
+/>
+
 A balanced equation has the same number of atoms on the reactant and product sides. At the same temperature and pressure, gas volume ratios follow the equation coefficients.
 
 ## When One Problem Uses Two Laws
@@ -114,3 +171,33 @@ V_{\mathrm{CO_2}} &= 1 \times 50 = 50\ \mathrm{mL}
 The answer is <InlineMath math="100\ \mathrm{mL}" /> of oxygen gas and <InlineMath math="50\ \mathrm{mL}" /> of carbon dioxide gas. If the water product has condensed into liquid, its volume is not read directly from the gas ratio.
 
 The laws of definite and multiple proportions show mass patterns that support the idea that atoms combine in fixed ratios.
+
+Read the coefficients of <InlineMath math="\mathrm{CH_4(g)}+2\mathrm{O_2(g)}\rightarrow\mathrm{CO_2(g)}+2\mathrm{H_2O(g)}" /> as volumes and scale every one by the same <InlineMath math="50\ \mathrm{mL}" />. Rotate the bars: the gases react in the ratio <InlineMath math="1:2:1:2" />. The water volume only holds while the water stays a gas.
+
+<MathVisual
+  title={<>Methane Combustion by Volume</>}
+  description={<>Gas volumes at one temperature and pressure: reactants at the back, products at the front. One grid step up is 25 mL.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 1.25, y: 2, z: 0 } },
+    objects: [
+      { id: "ch4", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o2", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2, z: -0.75 }, size: { length: 1.2, height: 4, width: 1.2 } },
+      { id: "co2", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "h2o", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: 2, z: 0.75 }, size: { length: 1.2, height: 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "ch4", objectId: "ch4", at: { x: 0, y: 2.3, z: -0.75 }, placement: "above" },
+      { key: "o2", objectId: "o2", at: { x: 2.5, y: 4.3, z: -0.75 }, placement: "above" },
+      { key: "co2", objectId: "co2", at: { x: 0, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "h2o", objectId: "h2o", at: { x: 2.5, y: 4.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    ch4: <InlineMath math="\mathrm{CH_4}:\ 50\ \mathrm{mL}" />,
+    o2: <InlineMath math="2\mathrm{O_2}:\ 100\ \mathrm{mL}" />,
+    co2: <InlineMath math="\mathrm{CO_2}:\ 50\ \mathrm{mL}" />,
+    h2o: <InlineMath math="2\mathrm{H_2O(g)}:\ 100\ \mathrm{mL}" />,
+  }}
+/>

@@ -145,6 +145,30 @@ info_siswa("Maya", umur=20, jurusan="Informatika", ipk=3.8)
 
 Parameter `*args` mengumpulkan argumen posisi tambahan ke dalam `tuple`, sedangkan `**kwargs` mengumpulkan argumen kata kunci tambahan ke dalam `dictionary`.
 
+Misalkan `def power(x, n=2): return x ** n`. Kalau kamu memanggil `power(x)` tanpa argumen kedua, Python memakai nilai bawaan `n=2`, dan hasilnya kurva ungu. Argumen kedua menimpa nilai bawaan: `power(x, 1)` memberi garis abu-abu. Keduanya bertemu di `x = 0` dan `x = 1`, karena `0 ** n` bernilai `0` dan `1 ** n` bernilai `1` untuk setiap `n` positif.
+
+<MathVisual
+  title={<>Parameter bawaan <code>n</code> pada <code>power</code></>}
+  description={<>Setiap kurva adalah hasil <code>power</code> untuk satu nilai <code>n</code>. Kurva ungu memakai nilai bawaan <InlineMath math="n=2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "linear", kind: "segment", from: { x: -1.5, y: -1.5 }, to: { x: 1.5, y: 1.5 }, appearance: "reference" },
+      { id: "square", kind: "quadratic", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -1.5, max: 1.5 }, inputAxis: "x", appearance: "secondary" },
+    ],
+    labels: [
+      { key: "linear", objectId: "linear", at: { x: 1.5, y: 1.5 }, placement: "right" },
+      { key: "square", objectId: "square", at: { x: 1.5, y: 2.25 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "linear": "power(x, 1)",
+    "square": "power(x)",
+  }}
+/>
+
 ## Return Value
 
 Fungsi dapat **mengembalikan nilai** dengan statement `return`. Jika tidak ada `return`, atau jika `return` ditulis tanpa nilai, fungsi mengembalikan `None`.
@@ -181,6 +205,33 @@ hasil = cetak_pesan("Hello World")  # Output: Pesan: Hello World
 print(f"Hasil fungsi cetak_pesan: {hasil}")  # Output: Hasil fungsi cetak_pesan: None`
     }
   ]}
+/>
+
+Sebuah fungsi bisa mengembalikan beberapa nilai sekaligus sebagai tuple. `def min_max(data): return min(data), max(data)` lalu `low, high = min_max([4, 1, 7, 3])` memberi `low = 1` dan `high = 7` dalam satu panggilan.
+
+<MathVisual
+  title={<><code>min_max([4, 1, 7, 3])</code> mengembalikan <code>(1, 7)</code></>}
+  description={<>Setiap titik adalah satu elemen data di posisinya. Titik magenta adalah nilai <code>min</code> dan titik oranye adalah nilai <code>max</code>, dua nilai yang dikembalikan bersama dalam satu tuple.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "values", kind: "polyline", vertices: [{ x: 0, y: 4 }, { x: 1, y: 1 }, { x: 2, y: 7 }, { x: 3, y: 3 }], appearance: "reference" },
+      { id: "other-a", kind: "point", at: { x: 0, y: 4 }, appearance: "secondary" },
+      { id: "other-b", kind: "point", at: { x: 3, y: 3 }, appearance: "secondary" },
+      { id: "smallest", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "largest", kind: "point", at: { x: 2, y: 7 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "smallest", objectId: "smallest", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "largest", objectId: "largest", at: { x: 2, y: 7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "smallest": <code>min</code>,
+    "largest": <code>max</code>,
+  }}
 />
 
 ## Scope dalam Fungsi
@@ -380,6 +431,32 @@ print(calc['kurang'](10, 4)) # Output: 6
 print(calc['kali'](6, 7))    # Output: 42`
     }
   ]}
+/>
+
+Setiap panggilan `create_multiplier(factor)` membuat closure yang mengingat `factor`-nya sendiri. `multiply_two` menggambar garis <InlineMath math="y=2x" />, dan `multiply_five` menggambar garis <InlineMath math="y=5x" />. Karena itu, `multiply_two(10)` dan `multiply_five(4)` sama-sama memberi `20`.
+
+<MathVisual
+  title={<>Dua closure dari <code>create_multiplier</code></>}
+  description={<>Garis ungu adalah <code>multiply_two</code> dan garis hijau toska adalah <code>multiply_five</code>. Titik magenta dan titik kuning adalah dua panggilan dari contoh, keduanya di ketinggian <InlineMath math="20" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 25 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "secondary" },
+      { id: "five", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 5 }], appearance: "construction" },
+      { id: "two-call", kind: "point", at: { x: 10, y: 20 }, appearance: "answer" },
+      { id: "five-call", kind: "point", at: { x: 4, y: 20 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "two-call", objectId: "two-call", at: { x: 10, y: 20 }, placement: "left" },
+      { key: "five-call", objectId: "five-call", at: { x: 4, y: 20 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "two-call": <code>multiply_two(10)</code>,
+    "five-call": <code>multiply_five(4)</code>,
+  }}
 />
 
 ## Error Handling dalam Fungsi

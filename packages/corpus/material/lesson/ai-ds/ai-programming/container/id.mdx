@@ -102,6 +102,37 @@ print('nested[1][2][1] =', nested[1][2][1])  # Hasil: nested[1][2][1] = e`
   ]}
 />
 
+Indeks juga bisa dipakai untuk menulis. Setelah `x = [0, 1, 2, 3, 4, 5]` dan `x[2] = 9`, list yang sama sekarang berisi `[0, 1, 9, 3, 4, 5]`, karena list bisa diubah di tempat. Indeks negatif tetap menghitung dari belakang, jadi `x[-1]` masih `5`.
+
+<MathVisual
+  title={<><code>x[2] = 9</code> mengubah satu elemen di tempat</>}
+  description={<>Setiap titik adalah satu elemen, dengan indeksnya mendatar dan nilainya tegak. Ruas oranye memindahkan elemen indeks <InlineMath math="2" /> dari <InlineMath math="2" /> ke titik magenta <InlineMath math="9" />. Titik hijau toska adalah <code>x[-1]</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 9.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "value-0", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "value-1", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "value-3", kind: "point", at: { x: 3, y: 3 }, appearance: "reference" },
+      { id: "value-4", kind: "point", at: { x: 4, y: 4 }, appearance: "reference" },
+      { id: "value-5", kind: "point", at: { x: 5, y: 5 }, appearance: "reference" },
+      { id: "change", kind: "segment", from: { x: 2, y: 2 }, to: { x: 2, y: 9 }, appearance: "primary" },
+      { id: "old", kind: "point", at: { x: 2, y: 2 }, appearance: "reference" },
+      { id: "new", kind: "point", at: { x: 2, y: 9 }, appearance: "answer" },
+      { id: "last", kind: "point", at: { x: 5, y: 5 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "new", objectId: "new", at: { x: 2, y: 9 }, placement: "right" },
+      { key: "last", objectId: "last", at: { x: 5, y: 5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "new": <code>x[2] = 9</code>,
+    "last": <code>x[-1]</code>,
+  }}
+/>
+
 ## Slicing dengan Step
 
 Slicing mengambil sebagian elemen dari `list`. Nilai `step` menentukan **jarak antarelemen yang dipilih**.
@@ -138,6 +169,80 @@ print('x[::-1] =', x[::-1])                  # Hasil: x[::-1] = [5, 4, 3, 2, 1, 
 />
 
 Slicing dapat memilih elemen berurutan atau elemen dengan jarak tetap. Untuk `x = [0, 1, 2, 3, 4, 5]`, `x[1:4]` mengambil elemen pada indeks <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" />. Indeks akhir <InlineMath math="4" /> tidak ikut diambil. Bentuk `x[1:4:2]` memakai `step` <InlineMath math="2" />, sehingga Python mengambil indeks <InlineMath math="1" /> dan <InlineMath math="3" />.
+
+Baris atas mengambil `x[1:4:2]`: mulai di indeks <InlineMath math="1" />, melompat dua langkah, dan berhenti sebelum indeks <InlineMath math="4" />, jadi hasilnya `[1, 3]`. Baris bawah adalah `x[::-1]`. Langkah <InlineMath math="-1" /> membaca dari belakang, dan garis hijau toska menunjukkan setiap elemen pindah dari posisi <InlineMath math="i" /> ke posisi <InlineMath math="5-i" />. Semua garis bersilang di tengah, tepat di antara elemen <InlineMath math="2" /> dan <InlineMath math="3" />.
+
+<MathVisual
+  title={<>Slicing dengan langkah pada <code>x = [0, 1, 2, 3, 4, 5]</code></>}
+  description={<>Baris tengah adalah <code>x</code>. Baris atas magenta adalah <code>x[1:4:2]</code>, dan baris bawah hijau toska adalah <code>x[::-1]</code> dengan garis yang menunjukkan ke mana setiap elemen pindah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "value-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "value-b", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "value-c", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "value-d", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "value-e", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "value-f", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "swap-a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: -1.2 }, appearance: "construction" },
+      { id: "swap-b", kind: "segment", from: { x: 1, y: 0 }, to: { x: 4, y: -1.2 }, appearance: "construction" },
+      { id: "swap-c", kind: "segment", from: { x: 2, y: 0 }, to: { x: 3, y: -1.2 }, appearance: "construction" },
+      { id: "swap-d", kind: "segment", from: { x: 3, y: 0 }, to: { x: 2, y: -1.2 }, appearance: "construction" },
+      { id: "swap-e", kind: "segment", from: { x: 4, y: 0 }, to: { x: 1, y: -1.2 }, appearance: "construction" },
+      { id: "swap-f", kind: "segment", from: { x: 5, y: 0 }, to: { x: 0, y: -1.2 }, appearance: "construction" },
+      { id: "back-a", kind: "point", at: { x: 5, y: -1.2 }, appearance: "construction" },
+      { id: "back-b", kind: "point", at: { x: 4, y: -1.2 }, appearance: "construction" },
+      { id: "back-c", kind: "point", at: { x: 3, y: -1.2 }, appearance: "construction" },
+      { id: "back-d", kind: "point", at: { x: 2, y: -1.2 }, appearance: "construction" },
+      { id: "back-e", kind: "point", at: { x: 1, y: -1.2 }, appearance: "construction" },
+      { id: "back-f", kind: "point", at: { x: 0, y: -1.2 }, appearance: "construction" },
+      { id: "pick-b", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 1.2 }, appearance: "answer" },
+      { id: "pick-d", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 1.2 }, appearance: "answer" },
+      { id: "picked-b", kind: "point", at: { x: 1, y: 1.2 }, appearance: "answer" },
+      { id: "picked-d", kind: "point", at: { x: 3, y: 1.2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "value-a", objectId: "value-a", at: { x: 0, y: 0 }, placement: "above-right" },
+      { key: "value-b", objectId: "value-b", at: { x: 1, y: 0 }, placement: "above-right" },
+      { key: "value-c", objectId: "value-c", at: { x: 2, y: 0 }, placement: "above-right" },
+      { key: "value-d", objectId: "value-d", at: { x: 3, y: 0 }, placement: "above-right" },
+      { key: "value-e", objectId: "value-e", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "value-f", objectId: "value-f", at: { x: 5, y: 0 }, placement: "above-right" },
+      { key: "back-a", objectId: "back-a", at: { x: 5, y: -1.2 }, placement: "below" },
+      { key: "back-b", objectId: "back-b", at: { x: 4, y: -1.2 }, placement: "below" },
+      { key: "back-c", objectId: "back-c", at: { x: 3, y: -1.2 }, placement: "below" },
+      { key: "back-d", objectId: "back-d", at: { x: 2, y: -1.2 }, placement: "below" },
+      { key: "back-e", objectId: "back-e", at: { x: 1, y: -1.2 }, placement: "below" },
+      { key: "back-f", objectId: "back-f", at: { x: 0, y: -1.2 }, placement: "below" },
+      { key: "picked-b", objectId: "picked-b", at: { x: 1, y: 1.2 }, placement: "above" },
+      { key: "picked-d", objectId: "picked-d", at: { x: 3, y: 1.2 }, placement: "above" },
+      { key: "row-x", objectId: "value-a", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "row-slice", objectId: "picked-b", at: { x: 1, y: 1.2 }, placement: "left" },
+      { key: "row-back", objectId: "back-f", at: { x: 0, y: -1.2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "value-a": "0",
+    "value-b": "1",
+    "value-c": "2",
+    "value-d": "3",
+    "value-e": "4",
+    "value-f": "5",
+    "back-a": "0",
+    "back-b": "1",
+    "back-c": "2",
+    "back-d": "3",
+    "back-e": "4",
+    "back-f": "5",
+    "picked-b": "1",
+    "picked-d": "3",
+    "row-x": "x",
+    "row-slice": "x[1:4:2]",
+    "row-back": "x[::-1]",
+  }}
+/>
 
 ## Operasi dan Kesamaan dengan String
 
@@ -443,3 +548,18 @@ Keempat tipe koleksi bawaan berbeda pada **urutan, sifat yang dapat diubah, dan 
 | **Set** | `{1, 2, 3}` | Tidak | Ya | Tidak | Anggota unik dan operasi himpunan |
 
 > Sejak Python `3.7`, iterasi `dict` mengikuti urutan penyisipan kunci. Memperbarui kunci tidak mengubah posisinya. Jika kunci dihapus lalu dimasukkan kembali, posisinya berpindah ke akhir.
+
+Bangun setiap wadah dari data yang sama, `[3, 1, 3, 2, 1]`. `list` dan `tuple` menyimpan kelima elemen beserta urutannya, sedangkan `set` dan kunci `dict.fromkeys` hanya menyimpan nilai unik, yaitu `3`, `1`, dan `2`.
+
+<BarChart
+  title={<><code>len()</code> setiap wadah dari <code>[3, 1, 3, 2, 1]</code></>}
+  description={<>Setiap batang adalah <code>len()</code> wadah yang tertulis di bawahnya setelah diisi dengan data yang sama. Batang <code>set</code> dan <code>dict</code> lebih pendek karena nilai ganda dibuang.</>}
+  yAxisLabel="Banyak elemen"
+  data={[
+    { name: "list", value: 5 },
+    { name: "tuple", value: 5 },
+    { name: "set", value: 3 },
+    { name: "dict", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Banyak elemen", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>

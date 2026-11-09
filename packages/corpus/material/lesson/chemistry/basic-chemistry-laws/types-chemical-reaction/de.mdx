@@ -44,8 +44,7 @@ Wähle einen Reaktionstyp aus. Beobachte zuerst die sichtbare Veränderung und o
         tab: "Verbrennung",
         helperCaption: (
           <>
-            Vier Phosphoratome und fünf Sauerstoffmoleküle bilden eine Einheit
-            <InlineMath math="\mathrm{P_4O_{10}}" /> und setzen dabei Wärme und
+            Vier Phosphoratome und fünf Sauerstoffmoleküle bilden eine Einheit <InlineMath math="\mathrm{P_4O_{10}}" /> und setzen dabei Wärme und
             Licht frei.
           </>
         ),
@@ -150,6 +149,32 @@ Prüfe die **Atomzahl** jedes Elements auf beiden Seiten. Jedes Ethanolmolekül 
 | H | 12 | <InlineMath math="2\times6=12" /> |
 | O | 6 | <InlineMath math="2\times1+2\times2=6" /> |
 
+Das Verbrennungsbeispiel <InlineMath math="\mathrm{P_4}+5\mathrm{O_2}\rightarrow\mathrm{P_4O_{10}}" /> setzt Energie als Licht und Wärme frei, und seine Atome zeigen dir, dass es ausgeglichen ist. Dreh die Balken: vier Phosphor- und zehn Sauerstoffatome auf jeder Seite.
+
+<MathVisual
+  title={<>Atome auf beiden Seiten</>}
+  description={<>Atome von Phosphor (gelb) und Sauerstoff (orange) in den Edukten (hinten) und den Produkten (vorne). Ein Gitterschritt nach oben entspricht 2 Atomen.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 6.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 9, z: 11 }, target: { x: 1.25, y: 2.5, z: 0 } },
+    objects: [
+      { id: "p-left", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "p-right", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o-left", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2.5, z: -0.75 }, size: { length: 1.2, height: 5, width: 1.2 } },
+      { id: "o-right", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2.5, z: 0.75 }, size: { length: 1.2, height: 5, width: 1.2 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p-right", at: { x: 0, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "o", objectId: "o-right", at: { x: 2.5, y: 5.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    p: <InlineMath math="\mathrm{P}:\ 4=4" />,
+    o: <InlineMath math="\mathrm{O}:\ 5\cdot2=10" />,
+  }}
+/>
+
 ## Koeffizienten ändern Formeln nicht
 
 Ein Koeffizient ist die Zahl, die einer chemischen Formel vorangestellt wird. Wir können die Koeffizienten ändern, damit die Anzahl der Atome vor und nach der Reaktion übereinstimmt.
@@ -172,3 +197,30 @@ Prüfe jeden Reaktionstyp mit der folgenden Tabelle.
 | Gasbildung | Blasen oder Gas verlassen die Mischung. | Ein Gasprodukt wie <InlineMath math="\mathrm{CO_2(g)}" /> nachweisen und Sieden ausschließen. |
 
 Ist der Reaktionstyp erkannt, wird die Gleichung sauber notiert: Reaktanten links, Produkte rechts. Anschließend werden die Koeffizienten angepasst, bis die Atomzahlen auf beiden Seiten übereinstimmen.
+
+Blasen sind der erste Hinweis, und die Gleichung <InlineMath math="\mathrm{C_6H_{12}O_6}\rightarrow2\mathrm{C_2H_5OH}+2\mathrm{CO_2}" /> bestätigt die Gärung. Nimm ein Mol Glucose und rechne mit <InlineMath math="\mathrm{C}=12" />, <InlineMath math="\mathrm{H}=1" /> und <InlineMath math="\mathrm{O}=16" />: <InlineMath math="180\ \mathrm{g}" /> Zucker werden zu Ethanol und Kohlenstoffdioxid mit derselben Summe. Dreh die Säulen und vergleiche ihre Höhen.
+
+<MathVisual
+  title={<>Gärung behält die Masse</>}
+  description={<>Ein Mol Glucose (links) und das entstandene Ethanol und Kohlenstoffdioxid (rechts). Ein Gitterschritt nach oben entspricht 20 Gramm.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 10 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8.5, y: 12, z: 11 }, target: { x: 1.5, y: 4.5, z: 0 } },
+    objects: [
+      { id: "glucose", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 4.5, z: 0 }, size: { length: 1.6, height: 9, width: 1.6 } },
+      { id: "ethanol", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 2.3, z: 0 }, size: { length: 1.6, height: 4.6, width: 1.6 } },
+      { id: "carbon-dioxide", kind: "cuboid", appearance: "reference", center: { x: 3, y: 6.8, z: 0 }, size: { length: 1.6, height: 4.4, width: 1.6 } },
+    ],
+    labels: [
+      { key: "glucose", objectId: "glucose", at: { x: 0, y: 9, z: 0 }, placement: "above" },
+      { key: "ethanol", objectId: "ethanol", at: { x: 3, y: 2.3, z: 0.85 }, placement: "right" },
+      { key: "gas", objectId: "carbon-dioxide", at: { x: 3, y: 6.8, z: 0.85 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    glucose: <InlineMath math="\mathrm{C_6H_{12}O_6}:\ 180\ \mathrm{g}" />,
+    ethanol: <InlineMath math="2\mathrm{C_2H_5OH}:\ 2\cdot46=92\ \mathrm{g}" />,
+    gas: <InlineMath math="2\mathrm{CO_2}:\ 2\cdot44=88\ \mathrm{g}" />,
+  }}
+/>

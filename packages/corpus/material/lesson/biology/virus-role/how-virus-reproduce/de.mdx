@@ -100,6 +100,62 @@ Während der Synthese werden Virusgenome kopiert und Virusproteine **als getrenn
     D --> E(["Lyse"])`}
 />
 
+Dreh diesen Bakteriophagen genau im Moment des Andockens. Seine Schwanzfasern halten sich an der Zelloberfläche fest, und das Genom aus dem zwanzigflächigen Kopf wandert durch den Schwanz in die Zelle. Nur das Genom gelangt hinein, die leere Proteinhülle bleibt draußen.
+
+<MathVisual
+  title={<>Ein Phage dockt an und injiziert</>}
+  description={<>Ein Bakteriophage auf einer Bakterienoberfläche: ein ikosaedrischer Kopf, ein Schwanz, sechs Schwanzfasern und das injizierte Genom unter der Oberfläche.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1.5, max: 6 }, z: { min: -3, max: 3 } },
+    view: { kind: "camera", position: { x: 6, y: 5, z: 8 }, target: { x: 0, y: 2, z: 0 } },
+    objects: [
+      { id: "head-0", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 4.2 - 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 - (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "head-1", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 4.2 - 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 - (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 - (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }] },
+      { id: "head-2", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 4.2 - 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 0, y: 4.2 + 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "head-3", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 4.2 - 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 0, y: 4.2 + 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "head-4", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 4.2 - 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 - (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }] },
+      { id: "head-5", kind: "polygon", appearance: "secondary", vertices: [{ x: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 - (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "head-6", kind: "polygon", appearance: "secondary", vertices: [{ x: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 - (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: 0, y: 4.2 - 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 - (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }] },
+      { id: "head-7", kind: "polygon", appearance: "secondary", vertices: [{ x: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 - (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: 0, y: 4.2 - 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "head-8", kind: "polygon", appearance: "secondary", vertices: [{ x: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 + (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: 0, y: 4.2 + 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "head-9", kind: "polygon", appearance: "secondary", vertices: [{ x: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 + (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "head-10", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 4.2 - 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 - (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "head-11", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 4.2 - 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 0, y: 4.2 + 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "head-12", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 4.2 - 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 0, y: 4.2 + 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "head-13", kind: "polygon", appearance: "secondary", vertices: [{ x: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 + (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: 0, y: 4.2 + 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 + (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }] },
+      { id: "head-14", kind: "polygon", appearance: "secondary", vertices: [{ x: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 + (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 0, y: 4.2 + 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "head-15", kind: "polygon", appearance: "secondary", vertices: [{ x: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 + (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: 0, y: 4.2 + 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 + (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }] },
+      { id: "head-16", kind: "polygon", appearance: "secondary", vertices: [{ x: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 0, y: 4.2 + 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: -(1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 + (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }] },
+      { id: "head-17", kind: "polygon", appearance: "secondary", vertices: [{ x: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 - (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "head-18", kind: "polygon", appearance: "secondary", vertices: [{ x: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: -1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 + (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "head-19", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 4.2 + 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }, { x: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2 + (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), z: 0 }, { x: (1 + Math.sqrt(5)) / 2 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2), y: 4.2, z: 1 * 1.2 / Math.sqrt(1 + ((1 + Math.sqrt(5)) / 2) ** 2) }] },
+      { id: "tail", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2.1, z: 0 }, size: { length: 0.45, height: 2.2, width: 0.45 } },
+      { id: "plate", kind: "cuboid", appearance: "construction", center: { x: 0, y: 0.9, z: 0 }, size: { length: 1.2, height: 0.2, width: 1.2 } },
+      { id: "surface", kind: "polygon", appearance: "reference", vertices: [{ x: -3, y: 0, z: -3 }, { x: 3, y: 0, z: -3 }, { x: 3, y: 0, z: 3 }, { x: -3, y: 0, z: 3 }] },
+      { id: "fiber-0", kind: "segment", appearance: "primary", from: { x: 0.6 * Math.cos((15 * Math.PI) / 180), y: 0.85, z: 0.6 * Math.sin((15 * Math.PI) / 180) }, to: { x: 1.7 * Math.cos((15 * Math.PI) / 180), y: 0, z: 1.7 * Math.sin((15 * Math.PI) / 180) } },
+      { id: "fiber-1", kind: "segment", appearance: "primary", from: { x: 0.6 * Math.cos((75 * Math.PI) / 180), y: 0.85, z: 0.6 * Math.sin((75 * Math.PI) / 180) }, to: { x: 1.7 * Math.cos((75 * Math.PI) / 180), y: 0, z: 1.7 * Math.sin((75 * Math.PI) / 180) } },
+      { id: "fiber-2", kind: "segment", appearance: "primary", from: { x: 0.6 * Math.cos((135 * Math.PI) / 180), y: 0.85, z: 0.6 * Math.sin((135 * Math.PI) / 180) }, to: { x: 1.7 * Math.cos((135 * Math.PI) / 180), y: 0, z: 1.7 * Math.sin((135 * Math.PI) / 180) } },
+      { id: "fiber-3", kind: "segment", appearance: "primary", from: { x: 0.6 * Math.cos((195 * Math.PI) / 180), y: 0.85, z: 0.6 * Math.sin((195 * Math.PI) / 180) }, to: { x: 1.7 * Math.cos((195 * Math.PI) / 180), y: 0, z: 1.7 * Math.sin((195 * Math.PI) / 180) } },
+      { id: "fiber-4", kind: "segment", appearance: "primary", from: { x: 0.6 * Math.cos((255 * Math.PI) / 180), y: 0.85, z: 0.6 * Math.sin((255 * Math.PI) / 180) }, to: { x: 1.7 * Math.cos((255 * Math.PI) / 180), y: 0, z: 1.7 * Math.sin((255 * Math.PI) / 180) } },
+      { id: "fiber-5", kind: "segment", appearance: "primary", from: { x: 0.6 * Math.cos((315 * Math.PI) / 180), y: 0.85, z: 0.6 * Math.sin((315 * Math.PI) / 180) }, to: { x: 1.7 * Math.cos((315 * Math.PI) / 180), y: 0, z: 1.7 * Math.sin((315 * Math.PI) / 180) } },
+      { id: "genome", kind: "polyline", appearance: "answer", vertices: [{ x: 0, y: 0.8, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 0.3, y: -0.4, z: 0.1 }, { x: -0.3, y: -0.8, z: -0.1 }, { x: 0.25, y: -1.2, z: 0.1 }] },
+    ],
+    labels: [
+      { key: "head", objectId: "head-0", at: { x: 0, y: 5.4, z: 0 }, placement: "above" },
+      { key: "tail", objectId: "tail", at: { x: 0.25, y: 2.1, z: 0 }, placement: "right" },
+      { key: "fibers", objectId: "fiber-0", at: { x: 1.7 * Math.cos((15 * Math.PI) / 180), y: 0, z: 1.7 * Math.sin((15 * Math.PI) / 180) }, placement: "below-right" },
+      { key: "genome", objectId: "genome", at: { x: 0.25, y: -1.2, z: 0.1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    head: <>Kopf mit dem Genom</>,
+    tail: <>Schwanz</>,
+    fibers: <>Schwanzfasern</>,
+    genome: <>injiziertes Genom</>,
+  }}
+/>
+
 ## Ein Prophage kann im Wirtsgenom verbleiben
 
 Im lysogenen Zyklus entstehen nicht sofort zahlreiche neue Virionen. Das Virusgenom kann in die Wirts-DNA eingebaut und bei der Teilung der Wirtszelle mitkopiert werden.
@@ -107,6 +163,40 @@ Im lysogenen Zyklus entstehen nicht sofort zahlreiche neue Virionen. Das Virusge
 Bestimmte Bedingungen können das Virusgenom erneut aktivieren und den Wechsel in den lytischen Zyklus auslösen.
 
 Ein im lysogenen Zustand erhaltenes Phagengenom heißt **Prophage**, unabhängig davon, ob es integriert oder vom Chromosom getrennt ist. Sein Übergang zurück in den lytischen Zyklus wird **Induktion** genannt. Auch tierische Viren können lang andauernde oder inaktive Infektionen hervorrufen. Die Begriffe Latenz und persistierende Infektion beschreiben andere biologische Vorgänge als ein Prophage im Bakterienchromosom.
+
+Beide Zyklen kopieren das Virusgenom, aber sehr unterschiedlich schnell. Im lytischen Zyklus kann eine Zelle platzen und etwa <InlineMath math="100" /> neue Phagen freisetzen, also kann es nach <InlineMath math="k" /> Runden <InlineMath math="100^k" /> geben. Ein Prophage wird nur mit seinem Wirt kopiert, also gibt es nach <InlineMath math="n" /> Teilungen <InlineMath math="2^n" /> Kopien, alle versteckt in lebenden Zellen. Jeder Gitterschritt nach oben verzehnfacht die Anzahl.
+
+<MathVisual
+  title={<>Platzen oder still mitkopieren</>}
+  description={<>Beispielhafte Kopien nach jeder Runde im lytischen Zyklus (orange) und im lysogenen Zyklus (violett). Senkrecht: Ein Gitterschritt entspricht zehnmal so vielen Kopien.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "lytic", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 2 }, { x: 2, y: 4 }, { x: 3, y: 6 }, { x: 4, y: 8 }] },
+      { id: "lysogenic", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 1 * Math.log10(2) }, { x: 2, y: 2 * Math.log10(2) }, { x: 3, y: 3 * Math.log10(2) }, { x: 4, y: 4 * Math.log10(2) }] },
+      { id: "lytic-0", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "lytic-1", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "lytic-2", kind: "point", appearance: "primary", at: { x: 2, y: 4 } },
+      { id: "lytic-3", kind: "point", appearance: "primary", at: { x: 3, y: 6 } },
+      { id: "lytic-4", kind: "point", appearance: "primary", at: { x: 4, y: 8 } },
+      { id: "lyso-0", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "lyso-1", kind: "point", appearance: "secondary", at: { x: 1, y: 1 * Math.log10(2) } },
+      { id: "lyso-2", kind: "point", appearance: "secondary", at: { x: 2, y: 2 * Math.log10(2) } },
+      { id: "lyso-3", kind: "point", appearance: "secondary", at: { x: 3, y: 3 * Math.log10(2) } },
+      { id: "lyso-4", kind: "point", appearance: "secondary", at: { x: 4, y: 4 * Math.log10(2) } },
+    ],
+    labels: [
+      { key: "lytic", objectId: "lytic-4", at: { x: 4, y: 8 }, placement: "left" },
+      { key: "lyso", objectId: "lyso-4", at: { x: 4, y: 4 * Math.log10(2) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    lytic: <InlineMath math="100^4=10^8" />,
+    lyso: <InlineMath math="2^4=16" />,
+  }}
+/>
 
 ## Synthese und Assemblierung unterscheiden
 

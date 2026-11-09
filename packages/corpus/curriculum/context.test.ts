@@ -7,6 +7,7 @@ import { Effect, Schema } from "effect";
 import {
   addMaterialContext,
   CurriculumContextError,
+  CurriculumMaterialCardError,
 } from "#corpus/curriculum/context";
 
 const subject = Schema.decodeSync(CurriculumRouteSchema)({
@@ -26,6 +27,8 @@ const subject = Schema.decodeSync(CurriculumRouteSchema)({
 const group = Schema.decodeSync(CurriculumRouteSchema)({
   ...subject,
   level: "topic",
+  materialCardDescription: "Solve equations and read their graphs.",
+  materialCardTitle: "Algebra",
   nodeKey: "class-10-mathematics-algebra",
   parentPath: subject.publicPath,
   publicPath: `${subject.publicPath}/algebra`,
@@ -86,6 +89,40 @@ describe("curriculum material context", () => {
 
         expect(error).toBeInstanceOf(CurriculumContextError);
         expect(error).toMatchObject({ nodeKey: leaf.nodeKey });
+      })
+  );
+
+  it.effect(
+    "rejects a material leaf whose card group declares no card copy",
+    () =>
+      Effect.gen(function* () {
+        const bare = yield* Schema.decodeEffect(CurriculumRouteSchema)({
+          ...subject,
+          level: "topic",
+          nodeKey: "class-10-mathematics-geometry",
+          parentPath: subject.publicPath,
+          publicPath: `${subject.publicPath}/geometry`,
+          sitemap: false,
+          title: "Geometry",
+        });
+        const leaf = yield* Schema.decodeEffect(CurriculumRouteDraftSchema)({
+          ...bare,
+          canonicalPath: "subjects/mathematics/matrix",
+          materialKey: "lesson.mathematics.matrix",
+          nodeKey: "class-10-mathematics-matrix",
+          parentPath: bare.publicPath,
+          publicPath: `${bare.publicPath}/matrix`,
+          title: "Matrices",
+        });
+        const error = yield* addMaterialContext([subject, bare, leaf]).pipe(
+          Effect.flip
+        );
+
+        expect(error).toBeInstanceOf(CurriculumMaterialCardError);
+        expect(error).toMatchObject({
+          nodeKey: bare.nodeKey,
+          programKey: "merdeka",
+        });
       })
   );
 

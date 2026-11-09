@@ -74,6 +74,34 @@ Ruang nol <InlineMath math="A^T" /> berisi semua vektor <InlineMath math="x" /> 
 
 Untuk matriks dengan peringkat kolom penuh, faktorisasi tipis <InlineMath math="A=Q_1R_1" /> bersifat unik jika semua **elemen diagonal** <InlineMath math="R_1" /> **positif**. Syarat tanda itu menghapus kebebasan yang tersisa, karena mengalikan satu kolom <InlineMath math="Q_1" /> dan baris <InlineMath math="R_1" /> yang bersesuaian dengan <InlineMath math="-1" /> tidak mengubah hasil kalinya.
 
+Untuk kolom <InlineMath math="a_1=(1,1,0)" /> dan <InlineMath math="a_2=(1,0,1)" />, Gram-Schmidt memberi <InlineMath math="q_1=\tfrac1{\sqrt2}(1,1,0)" /> dan <InlineMath math="q_2=\tfrac1{\sqrt6}(1,-1,2)" />. Dekomposisi tipis berhenti di sini. Dekomposisi lengkap menambahkan <InlineMath math="q_3=\tfrac1{\sqrt3}(1,-1,-1)" />, yang tegak lurus dengan bidang kolom, dan sebaris nol di bawah <InlineMath math="R" />.
+
+<MathVisual
+  title={<><InlineMath math="Q" /> tipis dan <InlineMath math="Q" /> lengkap untuk dua kolom di <InlineMath math="\mathbb R^3" /></>}
+  description={<>Jajar genjang abu-abu adalah bidang yang direntang <InlineMath math="a_1" /> dan <InlineMath math="a_2" />. Ruas ungu <InlineMath math="q_1" /> dan ruas hijau toska <InlineMath math="q_2" /> terletak di bidang itu dan membentuk <InlineMath math="Q" /> tipis. Ruas oranye <InlineMath math="q_3" /> tegak lurus dengan bidang dan melengkapi <InlineMath math="Q" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 2.2 }, y: { min: -1.2, max: 1.2 }, z: { min: -1, max: 1.2 } },
+    view: { kind: "isometric", target: { x: 0.6, y: 0, z: 0.3 } },
+    objects: [
+      { id: "span", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 2, y: 1, z: 1 }, { x: 1, y: 0, z: 1 }], appearance: "reference" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(2), y: 1 / Math.sqrt(2), z: 0 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }, appearance: "construction" },
+      { id: "third", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(3), y: -1 / Math.sqrt(3), z: -1 / Math.sqrt(3) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1 / Math.sqrt(2), y: 1 / Math.sqrt(2), z: 0 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }, placement: "above" },
+      { key: "third", objectId: "third", at: { x: 1 / Math.sqrt(3), y: -1 / Math.sqrt(3), z: -1 / Math.sqrt(3) }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="q_1" />,
+    "second": <InlineMath math="q_2" />,
+    "third": <InlineMath math="q_3" />,
+  }}
+/>
+
 ## Contoh Dekomposisi QR Tipis
 
 Misalkan
@@ -96,6 +124,42 @@ Dengan demikian,
 <BlockMath math="R_1=\begin{pmatrix}\sqrt2&1/\sqrt2\\0&\sqrt6/2\end{pmatrix}" />
 <BlockMath math="Q_1^TQ_1=I,\qquad Q_1R_1=A" />
 </MathContainer>
+
+Putar adegan tiga dimensi ini untuk melihat contoh tadi dari segala arah. Proyeksi kuning <InlineMath math="r_{12}q_1=(1/2,1/2,0)^T" /> adalah bagian <InlineMath math="a_2" /> yang searah <InlineMath math="q_1" />. Sisa oranye <InlineMath math="\widetilde q_2" /> dari ujung proyeksi ke ujung <InlineMath math="a_2" /> tegak lurus terhadap <InlineMath math="q_1" />, dan kalau dinormalkan kamu dapat <InlineMath math="q_2" />. Dari sudut mana pun, kedua ruas magenta selalu membentuk sudut siku-siku.
+
+<MathVisual
+  title={<>Gram-Schmidt pada <InlineMath math="a_1,a_2" /></>}
+  description={<>Ruas ungu dan hijau toska adalah kolom <InlineMath math="A" />, ruas kuning adalah proyeksi <InlineMath math="r_{12}q_1" />, ruas oranye adalah sisa <InlineMath math="\widetilde q_2" />, dan ruas magenta adalah <InlineMath math="q_1,q_2" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.8, max: 1.5 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 0.5, y: 0.4, z: 0.4 } },
+    objects: [
+      { id: "a1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: 0 }, appearance: "secondary" },
+      { id: "a2", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 1 }, appearance: "construction" },
+      { id: "projection", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / 2, y: 1 / 2, z: 0 }, appearance: "highlight" },
+      { id: "remainder", kind: "segment", from: { x: 1 / 2, y: 1 / 2, z: 0 }, to: { x: 1, y: 0, z: 1 }, appearance: "primary" },
+      { id: "q1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }, appearance: "answer" },
+      { id: "q2", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a1", objectId: "a1", at: { x: 1, y: 1, z: 0 }, placement: "above-right" },
+      { key: "a2", objectId: "a2", at: { x: 1, y: 0, z: 1 }, placement: "right" },
+      { key: "projection", objectId: "projection", at: { x: 1 / 2, y: 1 / 2, z: 0 }, placement: "below-right" },
+      { key: "remainder", objectId: "remainder", at: { x: 3 / 4, y: 1 / 4, z: 1 / 2 }, placement: "right" },
+      { key: "q1", objectId: "q1", at: { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }, placement: "above-left" },
+      { key: "q2", objectId: "q2", at: { x: 1 / Math.sqrt(6), y: -1 / Math.sqrt(6), z: 2 / Math.sqrt(6) }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "a1": <InlineMath math="a_1" />,
+    "a2": <InlineMath math="a_2" />,
+    "projection": <InlineMath math="r_{12}q_1" />,
+    "remainder": <InlineMath math="\widetilde q_2" />,
+    "q1": <InlineMath math="q_1" />,
+    "q2": <InlineMath math="q_2" />,
+  }}
+/>
 
 ## Metode Householder untuk Dekomposisi QR
 
@@ -120,6 +184,35 @@ Untuk <InlineMath math="S=I-2vv^T" /> dan <InlineMath math="\|v\|_2=1" />, berla
 3. <InlineMath math="Sx" /> memantulkan <InlineMath math="x\in\mathbb{R}^m" /> terhadap hiperbidang yang tegak lurus pada <InlineMath math="v" />
 
 4. <InlineMath math="\text{cond}_2(S) = 1" />
+
+Untuk <InlineMath math="x=(3,4)" /> dengan <InlineMath math="\|x\|_2=5" />, pilih <InlineMath math="v=\tfrac{x-5e_1}{\|x-5e_1\|_2}=\tfrac1{\sqrt5}(-1,2)" />. Maka <InlineMath math="S=I-2vv^T" /> mencerminkan <InlineMath math="x" /> terhadap garis yang tegak lurus dengan <InlineMath math="v" /> dan memetakannya ke <InlineMath math="(5,0)" />. Satu refleksi saja sudah membuat entri kedua nol tanpa mengubah panjang.
+
+<MathVisual
+  title={<>Refleksi Householder memetakan <InlineMath math="(3,4)" /> ke <InlineMath math="(5,0)" /></>}
+  description={<>Garis cermin abu-abu tegak lurus dengan vektor satuan hijau toska <InlineMath math="v" />. Vektor ungu <InlineMath math="x" /> dan bayangan magentanya <InlineMath math="Sx" /> sama panjang, dan ruas oranye di antara keduanya sejajar dengan <InlineMath math="v" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 5.5 }, y: { min: -1.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 2, y: 1 }], appearance: "reference" },
+      { id: "jump", kind: "segment", from: { x: 3, y: 4 }, to: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1 / Math.sqrt(5), y: 2 / Math.sqrt(5) }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "vector", objectId: "vector", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "normal", objectId: "normal", at: { x: -1 / Math.sqrt(5), y: 2 / Math.sqrt(5) }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "vector": <InlineMath math="x=(3,4)" />,
+    "image": <InlineMath math="Sx=(5,0)" />,
+    "normal": <InlineMath math="v" />,
+  }}
+/>
 
 ## Prosedur Householder
 

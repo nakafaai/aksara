@@ -3,7 +3,7 @@ export const metadata = {
   description: "Estimate population variance and standard deviation from grouped frequency data and class midpoints.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Statistics",
 };
 
@@ -33,6 +33,17 @@ The first term is the frequency-weighted mean of the squared midpoints. The seco
 Just like with ungrouped data, the standard deviation is the **square root of the variance**:
 
 <BlockMath math="\sigma = \sqrt{\sigma^2}" />
+
+Each class contributes its midpoint times its frequency to the total <InlineMath math="\sum f_i x_i = 1645" />. The class <InlineMath math="21\text{-}25" /> dominates with <InlineMath math="45 \cdot 23 = 1035" />, which is why the mean <InlineMath math="\frac{1645}{80} \approx 20.56" /> sits close to it.
+
+<BarChart
+  title={<>Frequency times midpoint for each class</>}
+  description={<>Bar for each battery duration class showing <InlineMath math="f_i x_i" />, which add up to 1645.</>}
+  yAxisLabel="Frequency times midpoint"
+  data={[["6-10", 2 * 8], ["11-15", 10 * 13], ["16-20", 18 * 18], ["21-25", 45 * 23], ["26-30", 5 * 28]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Frequency times midpoint", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Calculating Variance and Standard Deviation of Phone Battery Duration
 
 Suppose battery durations are recorded to the **nearest hour**, then grouped into the following intervals. The first class therefore contains recorded values of 6, 7, 8, 9, and 10 hours.
@@ -46,6 +57,16 @@ Suppose battery durations are recorded to the **nearest hour**, then grouped int
 | <InlineMath math="26\text{-}30" /> | <InlineMath math="5" />  |
 
 We will estimate the population variance and standard deviation of these durations.
+
+The battery durations as a histogram: <InlineMath math="45" /> of the <InlineMath math="80" /> phones last between <InlineMath math="21" /> and <InlineMath math="25" /> hours, so the data lean toward the high end.
+
+<HistogramChart
+  title={<>Battery duration of 80 phones</>}
+  description={<>The number of phones in each battery duration class, in hours.</>}
+  yAxisLabel="Phones"
+  data={[{ name: "6-10", value: 2 }, { name: "11-15", value: 10 }, { name: "16-20", value: 18 }, { name: "21-25", value: 45 }, { name: "26-30", value: 5 }]}
+  chartConfig={{ value: { label: "Phones", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Create a Helper Table
 
@@ -82,3 +103,31 @@ Take the square root of the variance:
 The estimated standard deviation is <InlineMath math="4.4 \text{ hours}" />. Around the estimated mean of <InlineMath math="\frac{1645}{80} \approx 20.56 \text{ hours}" />, durations differ by about <InlineMath math="4.4 \text{ hours}" /> in the root-mean-square sense.
 
 When datasets use the same unit and a comparable scale, a smaller standard deviation indicates that values are <Highlight>clustered more tightly around their mean</Highlight>.
+
+Mark the mean <InlineMath math="\bar{x} = 1645 / 80 \approx 20.56" /> on the frequency polygon and step one standard deviation <InlineMath math="\sigma \approx 4.4" /> to each side. The band from about <InlineMath math="16.2" /> to <InlineMath math="25.0" /> hours holds the tall peak at <InlineMath math="23" /> hours, the bulk of the phones.
+
+<MathVisual
+  title={<>One standard deviation around the mean</>}
+  description={<>The frequency polygon of the battery durations with the mean about <InlineMath math="20.56" /> and the lines one standard deviation, about <InlineMath math="4.4" /> hours, to either side.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x}" />,
+    lo: <InlineMath math="\bar{x} - \sigma" />,
+    hi: <InlineMath math="\bar{x} + \sigma" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 6, max: 30 }, y: { min: -0.5, max: 48 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "poly", kind: "polyline", vertices: [{ x: 8, y: 2 }, { x: 13, y: 10 }, { x: 18, y: 18 }, { x: 23, y: 45 }, { x: 28, y: 5 }], appearance: "secondary" },
+      { id: "mean", kind: "segment", from: { x: 1645 / 80, y: 0 }, to: { x: 1645 / 80, y: 47 }, appearance: "primary" },
+      { id: "lo", kind: "segment", from: { x: 1645 / 80 - Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 0 }, to: { x: 1645 / 80 - Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 47 }, appearance: "construction" },
+      { id: "hi", kind: "segment", from: { x: 1645 / 80 + Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 0 }, to: { x: 1645 / 80 + Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 47 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 1645 / 80, y: 47 }, placement: "above" },
+      { key: "lo", objectId: "lo", at: { x: 1645 / 80 - Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 47 }, placement: "above-left" },
+      { key: "hi", objectId: "hi", at: { x: 1645 / 80 + Math.sqrt(35375 / 80 - (1645 / 80) * (1645 / 80)), y: 47 }, placement: "above-right" },
+    ],
+  }}
+/>

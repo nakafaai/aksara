@@ -62,6 +62,27 @@ describe("formula fields", () => {
       [["radius", "theta"]]
     );
     assert.deepStrictEqual(
+      variables({ ...fields, kind: "marker", x: "a", y: "b" }),
+      [
+        ["x", ""],
+        ["y", ""],
+      ]
+    );
+    assert.deepStrictEqual(
+      Arr.map(
+        variables({
+          ...fields,
+          kind: "path",
+          points: [
+            { x: "0", y: "0" },
+            { x: "a", y: "1" },
+          ],
+        }),
+        ([path]) => path
+      ),
+      ["points.0.x", "points.0.y", "points.1.x", "points.1.y"]
+    );
+    assert.deepStrictEqual(
       variables({ ...fields, equation: "x = y", kind: "implicit" }),
       [["equation", "x,y"]]
     );
@@ -214,10 +235,12 @@ describe("geometryVisible", () => {
   const inside = { x: 0.5, y: 0.5, z: 0.5 };
   const outside = { x: 2, y: 0.5, z: 0.5 };
 
-  it("reads curves, regions, grids, and faces", () => {
+  it("reads curves, points, regions, grids, and faces", () => {
     assert.isTrue(
       geometryVisible({ branches: [[inside]], kind: "curves" }, box)
     );
+    assert.isTrue(geometryVisible({ kind: "points", points: [inside] }, box));
+    assert.isFalse(geometryVisible({ kind: "points", points: [outside] }, box));
     assert.isFalse(geometryVisible({ branches: [[]], kind: "curves" }, box));
     assert.isTrue(
       geometryVisible({ boundary: [], fill: [[inside]], kind: "region" }, box)

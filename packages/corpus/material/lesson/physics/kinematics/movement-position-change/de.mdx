@@ -36,6 +36,38 @@ Vergleiche diese beiden Fälle. Objekt A bleibt während der gesamten Beobachtun
 
 Beide haben die Verschiebung <InlineMath math="20-20=0\text{ m}" />. A legt keinen Weg zurück, B dagegen <InlineMath math="(50-20)+(50-20)=60\text{ m}" />. Die Zwischenposition zeigt den Unterschied zwischen den beiden Fällen.
 
+Zeichne beide Fälle als Position über der Zeit und folge jeder Linie von links nach rechts. A bleibt flach bei <InlineMath math="20\text{ m}" />, B steigt bis <InlineMath math="50\text{ m}" /> bei <InlineMath math="3\text{ s}" /> und kommt wieder zurück. Beide Linien beginnen und enden im selben Punkt, genau deshalb ist die Verschiebung bei beiden null.
+
+<MathVisual
+  title={<>Gleiche Endpunkte, andere Bewegung</>}
+  description={<>Die Zeit in Sekunden läuft nach rechts. Die Position steigt in Einheiten von 10 m, also bedeutet 5 genau 50 m. Vergleiche, wo A und B bei 3 s sind.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 2 }, { x: 3, y: 2 }, { x: 6, y: 2 }] },
+      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 2 }, { x: 3, y: 5 }, { x: 6, y: 2 }] },
+      { id: "a-0", kind: "point", appearance: "construction", at: { x: 0, y: 2 } },
+      { id: "a-3", kind: "point", appearance: "construction", at: { x: 3, y: 2 } },
+      { id: "a-6", kind: "point", appearance: "construction", at: { x: 6, y: 2 } },
+      { id: "b-0", kind: "point", appearance: "primary", at: { x: 0, y: 2 } },
+      { id: "b-3", kind: "point", appearance: "primary", at: { x: 3, y: 5 } },
+      { id: "b-6", kind: "point", appearance: "primary", at: { x: 6, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a-6", at: { x: 6, y: 2 }, placement: "below-left" },
+      { key: "b", objectId: "b-3", at: { x: 3, y: 5 }, placement: "above" },
+      { key: "top", objectId: "b-3", at: { x: 3, y: 5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    top: <InlineMath math="50\text{ m}" />,
+  }}
+/>
+
 ## Der Bezugspunkt muss derselbe bleiben
 
 Für eine Positionsänderung müssen Anfangs- und Endposition **vom selben Bezugspunkt** aus gemessen werden. Eine Anfangsposition relativ zum Geschäft darf nicht mit einer Endposition relativ zu einem anderen Haus verrechnet werden. Sonst stammen beide Werte aus verschiedenen Bezugssystemen.
@@ -58,6 +90,36 @@ Auf einer Geraden können wir eine Richtung als positiv wählen. In diesem Beisp
 
 Ein negatives Vorzeichen bedeutet nicht, dass die Bewegung kleiner oder falsch ist. Es gibt nur die Richtung der Positionsänderung an.
 
+Nimm beide Positionen vom selben Bezugspunkt, rechne <InlineMath math="\Delta x=x_\text{Ende}-x_\text{Anfang}" /> und lies das Vorzeichen. Dieselben zwei Positionen ergeben <InlineMath math="+30\text{ m}" /> nach Osten und <InlineMath math="-30\text{ m}" /> zurück.
+
+<MathVisual
+  title={<>Vier Schritte zur Verschiebung</>}
+  description={<>Zwei Bewegungen zwischen 20 m und 50 m auf einer Achse. Ein Gitterschritt entspricht 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "east", kind: "segment", appearance: "primary", from: { x: 2, y: 1 }, to: { x: 5, y: 1 } },
+      { id: "east-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 1 }, { x: 4.75, y: 1.125 }, { x: 4.75, y: 0.875 }] },
+      { id: "west", kind: "segment", appearance: "secondary", from: { x: 5, y: 0.5 }, to: { x: 2, y: 0.5 } },
+      { id: "west-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 0.5 }, { x: 2.25, y: 0.625 }, { x: 2.25, y: 0.375 }] },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "east", objectId: "east", at: { x: 3.5, y: 1 }, placement: "above" },
+      { key: "west", objectId: "west", at: { x: 3.5, y: 0.5 }, placement: "below" },
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    east: <InlineMath math="\Delta x=50-20=+30\text{ m}" />,
+    west: <InlineMath math="\Delta x=20-50=-30\text{ m}" />,
+    origin: <InlineMath math="x=0" />,
+  }}
+/>
+
 ## Endposition minus Anfangsposition
 
 Eine Person beginnt <InlineMath math="10 \text{ m}" /> östlich eines Tores. Einige Sekunden später befindet sie sich <InlineMath math="40 \text{ m}" /> östlich des Tores. Die Positionsänderung beträgt:
@@ -72,3 +134,29 @@ Eine Person beginnt <InlineMath math="10 \text{ m}" /> östlich eines Tores. Ein
 Die **Verschiebung der Person** beträgt also <InlineMath math="30 \text{ m}" /> nach Osten. Diese zwei Positionen bestimmen die zurückgelegte Wegstrecke noch nicht. Hat die Person unterwegs die Richtung gewechselt, ist die Wegstrecke länger als <InlineMath math="30 \text{ m}" />.
 
 Die Reihenfolge der Subtraktion ist entscheidend: Immer wird <Highlight>die Anfangsposition von der Endposition abgezogen</Highlight>. Das Vorzeichen des Ergebnisses zeigt anschließend die Richtung der Positionsänderung.
+
+Der Pfeil unten beginnt bei der Anfangsposition und endet bei der Endposition. Seine Länge ist der Betrag der Verschiebung, und weil er nach Osten zeigt, ist das Vorzeichen positiv.
+
+<MathVisual
+  title={<>Die Verschiebung der Schülerin</>}
+  description={<>Positionen östlich des Tors, ein Gitterschritt pro 10 m. Der Pfeil läuft von 10 m bis 40 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "gate", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "walk", kind: "segment", appearance: "primary", from: { x: 1, y: 0.6 }, to: { x: 4, y: 0.6 } },
+      { id: "walk-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0.6 }, { x: 3.78, y: 0.71 }, { x: 3.78, y: 0.49 }] },
+      { id: "walk-start", kind: "point", appearance: "primary", at: { x: 1, y: 0.6 } },
+    ],
+    labels: [
+      { key: "gate", objectId: "gate", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "change", objectId: "walk", at: { x: 2.5, y: 0.6 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    gate: <>Tor</>,
+    change: <InlineMath math="\Delta x=40-10=+30\text{ m}" />,
+  }}
+/>

@@ -4,7 +4,7 @@ export const metadata = {
     "Hubungkan pangkat pecahan dengan akar, ubah kedua bentuk secara setara, dan sederhanakan bentuk akar tanpa jalan pintas yang keliru.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-04",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Eksponen dan Logaritma",
 };
 
@@ -34,6 +34,32 @@ Untuk <InlineMath math="a>0" />, <InlineMath math="m\in\mathbb{Z}" />, dan bilan
 
 Definisi ini menyatakan bahwa **pangkat pecahan dan bentuk akar** tersebut bernilai sama. Jika <InlineMath math="n" /> ganjil, bilangan real negatif juga dapat memiliki akar pangkat <InlineMath math="n" /> yang real. Jika <InlineMath math="n" /> genap, bilangan negatif di dalam akar tidak memiliki akar real.
 
+Bentuk akar bisa berupa panjang yang bisa digambar. Diagonal persegi satuan panjangnya <InlineMath math="\sqrt{1^2 + 1^2} = \sqrt{2}" />. Putar diagonal itu ke bawah dengan busur jangka, maka ia mendarat di garis bilangan pada <InlineMath math="\sqrt 2 = 2^{1/2}" />, sedikit lewat <InlineMath math="1{,}4" />.
+
+<MathVisual
+  title={<>Menemukan akar 2 di garis bilangan</>}
+  description={<>Persegi satuan, diagonalnya sepanjang <InlineMath math="\sqrt 2" />, dan busur yang membawa diagonal itu turun ke titik <InlineMath math="\sqrt 2" /> pada sumbu x.</>}
+  labels={{
+    diag: <InlineMath math="\sqrt 2" />,
+    root: <InlineMath math="\sqrt 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.8 }, y: { min: -0.4, max: 1.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "diag", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "swing", kind: "arc", center: { x: 0, y: 0 }, radius: Math.SQRT2, startDegrees: 0, sweepDegrees: 45, appearance: "construction" },
+      { id: "root", kind: "point", at: { x: Math.SQRT2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "diag", objectId: "diag", at: { x: 0.5, y: 0.5 }, placement: "above-left" },
+      { key: "root", objectId: "root", at: { x: Math.SQRT2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 ## Menyederhanakan Bentuk Akar
 
 Sederhanakan <InlineMath math="(2\sqrt{x})(3\sqrt[3]{x})" /> untuk <InlineMath math="x>0" />.
@@ -51,6 +77,32 @@ Tulis kedua akar sebagai pangkat. **Kalikan koefisien** dan **jumlahkan pangkat*
 />
 
 Jadi, bentuk sederhana yang setara adalah <InlineMath math="6x^{\frac56}" /> dan <InlineMath math="6\sqrt[6]{x^5}" />.
+
+Menyederhanakan <InlineMath math="\sqrt 8 = 2\sqrt 2" /> juga punya gambar. Diagonal persegi <InlineMath math="2 \times 2" /> adalah <InlineMath math="\sqrt{2^2 + 2^2} = \sqrt 8" />, dan panjangnya tepat dua kali diagonal <InlineMath math="\sqrt 2" /> dari persegi satuan di dalamnya.
+
+<MathVisual
+  title={<>Akar 8 sama dengan dua kali akar 2</>}
+  description={<>Persegi 2 kali 2 dengan diagonal <InlineMath math="\sqrt 8" />, dan persegi satuan di dalamnya dengan diagonal <InlineMath math="\sqrt 2" />, setengah panjangnya.</>}
+  labels={{
+    big: <InlineMath math="\sqrt 8 = 2\sqrt 2" />,
+    small: <InlineMath math="\sqrt 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 2.5 }, y: { min: -0.3, max: 2.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "outer", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }], appearance: "reference" },
+      { id: "inner", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "big", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 }, appearance: "secondary" },
+      { id: "small", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "big", objectId: "big", at: { x: 1.5, y: 1.5 }, placement: "above-left" },
+      { key: "small", objectId: "small", at: { x: 0.5, y: 0.5 }, placement: "below-right" },
+    ],
+  }}
+/>
 
 ## Jalan Pintas yang Keliru
 
@@ -70,3 +122,30 @@ Pilih kuadrat sempurna agar kedua bentuk menghasilkan bilangan bulat yang dapat 
 </MathContainer>
 
 Karena <InlineMath math="5\neq7" />, kedua bentuk itu tidak dapat saling menggantikan. Biarkan penjumlahan tetap berada di dalam akar sampai ada langkah aljabar sah yang mengubahnya.
+
+Segitiga siku-siku ini menunjukkan mengapa <InlineMath math="\sqrt{a + b} \ne \sqrt a + \sqrt b" />. Kakinya <InlineMath math="\sqrt 9 = 3" /> dan <InlineMath math="\sqrt{16} = 4" />, dan sisi miringnya <InlineMath math="\sqrt{9 + 16} = 5" />. Jalan pintas itu akan menyatakan <InlineMath math="3 + 4 = 7" />, padahal berjalan menyusuri dua kaki selalu lebih panjang daripada sisi miring yang lurus.
+
+<MathVisual
+  title={<>Akar dari jumlah bukan jumlah akar</>}
+  description={<>Segitiga siku-siku dengan kaki 3 dan 4 serta sisi miring <InlineMath math="\sqrt{9 + 16} = 5" />, lebih pendek daripada jalur <InlineMath math="3 + 4 = 7" />.</>}
+  labels={{
+    a: <InlineMath math="\sqrt 9 = 3" />,
+    b: <InlineMath math="\sqrt{16} = 4" />,
+    c: <InlineMath math="\sqrt{25} = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -0.7, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "c", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 1.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Gunakan Teorema Pembuat Nol Rasional untuk menyusun kandidat akar polinomial dan mengujinya secara bertahap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-04",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Polinomial",
 };
 
@@ -94,6 +94,80 @@ Faktorkan <InlineMath math="x^2 + 5x + 6" />.
 **Langkah 8**. Faktorisasi Lengkap
 
 <BlockMath math="P(x) = (x-3)(x+2)(x+3)" />
+
+Teorema ini mengubah pencarian tanpa ujung menjadi daftar pendek. Untuk <InlineMath math="x^3 + 2x^2 - 9x - 18" />, setiap akar rasional pasti salah satu dari dua belas calon <InlineMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />. Setelah diuji, tersisa tepat tiga akar, <InlineMath math="-3" />, <InlineMath math="-2" />, dan <InlineMath math="3" />, yang disorot pada garis.
+
+<MathVisual
+  title={<>Dua belas calon, tiga akar</>}
+  description={<>Dua belas calon akar rasional pada garis bilangan, dengan tiga akar sebenarnya <InlineMath math="-3" />, <InlineMath math="-2" />, dan <InlineMath math="3" /> disorot.</>}
+  labels={{
+    m3: <InlineMath math="-3" />,
+    m2: <InlineMath math="-2" />,
+    p3: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -19, max: 19 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -19, y: 0 }, to: { x: 19, y: 0 }, appearance: "reference" },
+      { id: "m18", kind: "point", at: { x: -18, y: 0 }, appearance: "reference" },
+      { id: "m9", kind: "point", at: { x: -9, y: 0 }, appearance: "reference" },
+      { id: "m6", kind: "point", at: { x: -6, y: 0 }, appearance: "reference" },
+      { id: "m3", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "m2", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "m1", kind: "point", at: { x: -1, y: 0 }, appearance: "reference" },
+      { id: "p1", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "p2", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "p3", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "p6", kind: "point", at: { x: 6, y: 0 }, appearance: "reference" },
+      { id: "p9", kind: "point", at: { x: 9, y: 0 }, appearance: "reference" },
+      { id: "p18", kind: "point", at: { x: 18, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "m3", objectId: "m3", at: { x: -3, y: 0 }, placement: "above" },
+      { key: "m2", objectId: "m2", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "p3", objectId: "p3", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+Hitung <InlineMath math="P(x) = x^3 + 2x^2 - 9x - 18" /> di kandidat dari <InlineMath math="-3" /> sampai <InlineMath math="3" />: batangnya turun ke nol tepat di <InlineMath math="-3" />, <InlineMath math="-2" />, dan <InlineMath math="3" />, yaitu ketiga akarnya, sedangkan setiap kandidat lain memberi nilai tidak nol, sama seperti di tabel.
+
+<BarChart
+  title={<><InlineMath math="P(x)" /> di enam kandidat</>}
+  description={<>Batang <InlineMath math="P(x) = x^3 + 2x^2 - 9x - 18" /> di <InlineMath math="x = -3, -2, -1, 1, 2, 3" />, bernilai nol di akar <InlineMath math="-3" />, <InlineMath math="-2" />, dan <InlineMath math="3" />.</>}
+  yAxisLabel="Nilai"
+  data={[-3, -2, -1, 1, 2, 3].map((x) => ({ name: String(x), value: x ** 3 + 2 * x ** 2 - 9 * x - 18 }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Hasil bagi <InlineMath math="H(x) = x^2 + 5x + 6" /> dari Langkah 6 berupa parabola. Parabola itu memotong sumbu x tepat di <InlineMath math="-3" /> dan <InlineMath math="-2" />, dua akar yang tersisa setelah <InlineMath math="P(x)" /> dibagi dengan <InlineMath math="x - 3" />, jadi faktornya <InlineMath math="(x + 3)" /> dan <InlineMath math="(x + 2)" />.
+
+<MathVisual
+  title={<>Hasil bagi memotong di dua akar lainnya</>}
+  description={<>Parabola <InlineMath math="H(x) = x^2 + 5x + 6" /> untuk <InlineMath math="-4{,}5 \le x \le -0{,}5" />, memotong sumbu x di <InlineMath math="-3" /> dan <InlineMath math="-2" />.</>}
+  labels={{
+    quotient: <InlineMath math="H(x) = x^2 + 5x + 6" />,
+    left: <InlineMath math="-3" />,
+    right: <InlineMath math="-2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.9, max: 0.6 }, y: { min: -0.7, max: 4.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "quotient", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 6 }, domain: { min: -4.5, max: -0.5 }, appearance: "primary" },
+      { id: "left", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "right", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "quotient", objectId: "quotient", at: { x: -0.5, y: 3.75 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: -3, y: 0 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: -2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Latihan
 

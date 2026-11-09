@@ -108,6 +108,20 @@ with open('file.txt', 'w', encoding='utf-8') as f:
 
 Das Argument `file` verwendet die Formatierung von `print()` weiter, leitet den fertigen Text aber an das gewählte Dateiobjekt.
 
+`f.write(text)` gibt die Anzahl der geschriebenen Zeichen zurück, und der Zeilenumbruch `\n` zählt als ein Zeichen. Schreibst du `'Hello\n'`, `'Python\n'` und dann `'!'`, enthält die Datei <InlineMath math="6+7+1=14" /> Zeichen.
+
+<BarChart
+  title={<>Rückgabewerte von <code>f.write()</code> für drei Strings</>}
+  description={<>Jeder Balken ist die Zahl, die <code>f.write()</code> für den String darunter zurückgibt. Jedes <code>\n</code> fügt ein Zeichen hinzu.</>}
+  yAxisLabel="Geschriebene Zeichen"
+  data={[
+    { name: "'Hello\\n'", value: 6 },
+    { name: "'Python\\n'", value: 7 },
+    { name: "'!'", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Geschriebene Zeichen", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
 ## Dateiöffnungsmodi
 
 Python bietet verschiedene **Modi zum Öffnen** von Dateien entsprechend den Anforderungen der auszuführenden Vorgänge.
@@ -159,6 +173,21 @@ with open('data.txt', 'r+', encoding='utf-8') as f:
 />
 
 Der Modus bestimmt, **ob die Datei bereits existieren muss**, ob ihr alter Inhalt beim Öffnen gelöscht wird und welche Operationen erlaubt sind. `r` und `r+` benötigen eine vorhandene Datei. `w` erstellt oder leert sie, während `a` sie erstellt oder Daten anhängt. Das Suffix `b` wählt den Binärmodus, in dem keine `encoding`-Angabe verwendet wird.
+
+Starte mit einer Datei, die `'abc\n'` enthält, also vier Zeichen. Öffnen mit `'r'` und Lesen ändert nichts. Öffnen mit `'w'` und Schreiben von `'xy'` löscht den alten Inhalt, `'a'` hängt `'xy'` dagegen ans Ende.
+
+<BarChart
+  title={<>Dateigröße nach jedem Modus</>}
+  description={<>Jeder Balken ist die Anzahl der Zeichen in der Datei, nachdem sie mit dem Modus darunter geöffnet und bei <code>'w'</code> und <code>'a'</code> <code>'xy'</code> geschrieben wurde. Jeder Modus beginnt wieder mit der Datei aus vier Zeichen.</>}
+  yAxisLabel="Zeichen in der Datei"
+  data={[
+    { name: "Start", value: 4 },
+    { name: "'r'", value: 4 },
+    { name: "'w'", value: 2 },
+    { name: "'a'", value: 4 + 2 },
+  ]}
+  chartConfig={{ value: { label: "Zeichen in der Datei", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
 
 ## Methoden zum Lesen von Dateien
 
@@ -218,6 +247,69 @@ with open('sample.txt', 'r', encoding='utf-8') as f:
 />
 
 Im Textmodus geben `read()` und `readline()` Strings zurück. Ist kein Text mehr vorhanden, liefern sie `''`. Im Binärmodus geben sie `bytes` zurück und verwenden am Dateiende `b''`. Eine Iteration endet dort automatisch.
+
+Eine geöffnete Datei hat eine Position, und jedes Lesen schiebt sie weiter. Beim Inhalt `"Hi!\nPython\n"` steht die Position nach `open()` am Anfang. `read(3)` nimmt `Hi!` und hält bei Position `3`, das erste `readline()` nimmt den Rest dieser Zeile bis `\n`, und das zweite `readline()` nimmt `Python\n` bis zum Dateiende. Das nächste Lesen liefert einen leeren String, weil die Position schon am Ende steht.
+
+<MathVisual
+  title={<>Die Dateiposition beim Lesen</>}
+  description={<>Jedes Zeichen der Datei ist ein Punkt, und ↵ ist ein Zeilenumbruch. Die Strecken zeigen die Position nach jedem Aufruf.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.4, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "char-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "char-b", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "char-c", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "char-d", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "char-e", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "char-f", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "char-g", kind: "point", at: { x: 6, y: 0 }, appearance: "reference" },
+      { id: "char-h", kind: "point", at: { x: 7, y: 0 }, appearance: "reference" },
+      { id: "char-i", kind: "point", at: { x: 8, y: 0 }, appearance: "reference" },
+      { id: "char-j", kind: "point", at: { x: 9, y: 0 }, appearance: "reference" },
+      { id: "char-k", kind: "point", at: { x: 10, y: 0 }, appearance: "reference" },
+      { id: "stop-a", kind: "segment", from: { x: -1 / 2, y: -0.6 }, to: { x: -1 / 2, y: -0.2 }, appearance: "reference" },
+      { id: "stop-b", kind: "segment", from: { x: 5 / 2, y: -1.1 }, to: { x: 5 / 2, y: -0.2 }, appearance: "secondary" },
+      { id: "stop-c", kind: "segment", from: { x: 7 / 2, y: -1.6 }, to: { x: 7 / 2, y: -0.2 }, appearance: "construction" },
+      { id: "stop-d", kind: "segment", from: { x: 21 / 2, y: -2.1 }, to: { x: 21 / 2, y: -0.2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "char-a", objectId: "char-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "char-b", objectId: "char-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "char-c", objectId: "char-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "char-d", objectId: "char-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "char-e", objectId: "char-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "char-f", objectId: "char-f", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "char-g", objectId: "char-g", at: { x: 6, y: 0 }, placement: "above" },
+      { key: "char-h", objectId: "char-h", at: { x: 7, y: 0 }, placement: "above" },
+      { key: "char-i", objectId: "char-i", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "char-j", objectId: "char-j", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "char-k", objectId: "char-k", at: { x: 10, y: 0 }, placement: "above" },
+      { key: "stop-a", objectId: "stop-a", at: { x: -1 / 2, y: -0.6 }, placement: "right" },
+      { key: "stop-b", objectId: "stop-b", at: { x: 5 / 2, y: -1.1 }, placement: "right" },
+      { key: "stop-c", objectId: "stop-c", at: { x: 7 / 2, y: -1.6 }, placement: "right" },
+      { key: "stop-d", objectId: "stop-d", at: { x: 21 / 2, y: -2.1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "char-a": "H",
+    "char-b": "i",
+    "char-c": "!",
+    "char-d": "↵",
+    "char-e": "P",
+    "char-f": "y",
+    "char-g": "t",
+    "char-h": "h",
+    "char-i": "o",
+    "char-j": "n",
+    "char-k": "↵",
+    "stop-a": "open()",
+    "stop-b": "read(3)",
+    "stop-c": "readline()",
+    "stop-d": "readline()",
+  }}
+/>
 
 ## Sicherer Umgang mit Dateien
 

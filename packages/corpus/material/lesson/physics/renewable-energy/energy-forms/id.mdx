@@ -40,6 +40,31 @@ Sistem energi terbarukan sering melibatkan **gerak, ketinggian, perbedaan suhu**
 
 Biomassa dan baterai juga memiliki energi kimia, sedangkan panel surya menerima energi yang dibawa cahaya Matahari. Keempat rumus pada tabel menghitung energi dari gerak, ketinggian, perubahan suhu, dan daya listrik.
 
+Pegas yang diregangkan menyimpan energi elastis <InlineMath math="E=\tfrac12kx^2" />. Dengan <InlineMath math="k=200\text{ N/m}" />, regangan tiga kali lipat menyimpan energi sembilan kali lipat, <InlineMath math="1\text{ J}" /> pada <InlineMath math="10\text{ cm}" /> dan <InlineMath math="9\text{ J}" /> pada <InlineMath math="30\text{ cm}" />. Ikuti kurvanya.
+
+<MathVisual
+  title={<>Energi Elastis Tumbuh Mengikuti Kuadrat</>}
+  description={<>Energi elastis pegas dengan <InlineMath math="k=200\text{ N/m}" /> terhadap regangannya. Mendatar: satu kotak grid berarti 5 cm. Tegak: joule.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "spring", kind: "quadratic", appearance: "secondary", coefficients: { a: 0.25, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
+      { id: "ten", kind: "point", appearance: "primary", at: { x: 2, y: 1 } },
+      { id: "thirty", kind: "point", appearance: "answer", at: { x: 6, y: 9 } },
+    ],
+    labels: [
+      { key: "ten", objectId: "ten", at: { x: 2, y: 1 }, placement: "above-left" },
+      { key: "thirty", objectId: "thirty", at: { x: 6, y: 9 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    ten: <InlineMath math="x=0{,}1\text{ m}:\ E=1\text{ J}" />,
+    thirty: <InlineMath math="x=0{,}3\text{ m}:\ E=9\text{ J}" />,
+  }}
+/>
+
 ## Pilih Rumus Berdasarkan Keadaan
 
 Energi kinetik adalah energi yang dimiliki benda **karena geraknya**.
@@ -61,6 +86,33 @@ E_k &= \frac{1}{2}mv^2 \\
 &= \frac{1}{2}(2 \text{ kg})(3 \text{ m/s})^2 \\
 &= 9 \text{ J}
 \end{aligned}" />
+
+Grafik di bawah menjalankan rumus yang sama untuk setiap kelajuan dari <InlineMath math="0" /> sampai <InlineMath math="6\text{ m/s}" />. Bandingkan dua titik yang ditandai. Menggandakan kelajuan dari <InlineMath math="3\text{ m/s}" /> menjadi <InlineMath math="6\text{ m/s}" /> tidak menggandakan energinya: energinya naik dari <InlineMath math="9\text{ J}" /> menjadi <InlineMath math="36\text{ J}" />, empat kali lipat, karena kelajuannya dikuadratkan. Itulah sebabnya kenaikan kecil kelajuan angin sangat berpengaruh bagi turbin.
+
+<MathVisual
+  title={<>Energi Kinetik Tumbuh Sebanding Kuadrat Kelajuan</>}
+  description={<>Energi kinetik 2 kg udara pada kelajuan 0 sampai 6 m/s. Mendatar: kelajuan dalam m/s. Tegak: energi dalam satuan 8 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "kinetic", kind: "quadratic", appearance: "construction", coefficients: { a: 0.125, b: 0, c: 0 }, domain: { min: 0, max: 6 }, inputAxis: "x" },
+      { id: "v3", kind: "point", appearance: "primary", at: { x: 3, y: 1.125 } },
+      { id: "v6", kind: "point", appearance: "answer", at: { x: 6, y: 4.5 } },
+    ],
+    labels: [
+      { key: "rule", objectId: "kinetic", at: { x: 5, y: 3.125 }, placement: "left" },
+      { key: "v3", objectId: "v3", at: { x: 3, y: 1.125 }, placement: "right" },
+      { key: "v6", objectId: "v6", at: { x: 6, y: 4.5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    rule: <InlineMath math="E_k=\tfrac{1}{2}mv^2" />,
+    v3: <InlineMath math="v=3\text{ m/s}:\ E_k=9\text{ J}" />,
+    v6: <InlineMath math="v=6\text{ m/s}:\ E_k=36\text{ J}" />,
+  }}
+/>
 
 Teorema usaha-energi menghubungkan usaha total dengan perubahan energi kinetik.
 
@@ -123,6 +175,28 @@ Di sini <InlineMath math="E" /> menyatakan energi listrik. Huruf <InlineMath mat
 Sebuah alat bekerja pada tegangan tetap <InlineMath math="12 \text{ V}" /> dan arus tetap <InlineMath math="0{,}5 \text{ A}" /> selama <InlineMath math="60 \text{ s}" />. Hitung daya lebih dahulu, lalu energi:
 
 <BlockMath math="\begin{aligned} P &= VI = (12 \text{ V})(0{,}5 \text{ A})=6 \text{ W} \\ E &= Pt = (6 \text{ W})(60 \text{ s})=360 \text{ J} \end{aligned}" />
+
+Bandingkan garis lurus ini dengan kurva energi kinetik di atas. Energi potensial tumbuh sebanding dengan ketinggian, jadi setiap tambahan satu meter menambah <InlineMath math="mg=20\text{ J}" /> yang sama.
+
+<MathVisual
+  title={<>Energi Potensial Tumbuh Rata seiring Ketinggian</>}
+  description={<><InlineMath math="E_p=mgh" /> untuk 2 kg dengan <InlineMath math="g=10\text{ m/s}^2" />. Mendatar: ketinggian dalam m. Tegak: energi dalam satuan 20 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "potential", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 5 } },
+      { id: "top", kind: "point", appearance: "primary", at: { x: 5, y: 5 } },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 5, y: 5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    top: <InlineMath math="h=5\text{ m}:\ E_p=100\text{ J}" />,
+  }}
+/>
 
 ## Satu Pembangkit Mengubah Beberapa Bentuk Energi
 

@@ -94,4 +94,10 @@ export const ADDRESS_VOICE_RULES = [
     patterns: { id: /\bkalian\b/iu },
     protectInlineQuotations: true,
   },
+  {
+    id: "indonesian-formal-request",
+    inspectLinkLabels: true,
+    patterns: { id: /\b(?:silakan|silahkan|mohon|dimohon)\b/iu },
+    protectInlineQuotations: true,
+  },
 ] satisfies readonly LessonVoiceRule[];

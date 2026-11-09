@@ -107,6 +107,30 @@ Jika massa karbon dibuat sama, massa oksigen pada <InlineMath math="\mathrm{CO}"
 
 Rasio <InlineMath math="1:2" /> adalah bilangan bulat sederhana. Pola seperti ini mendukung hukum perbandingan berganda: jika dua unsur membentuk beberapa senyawa, massa salah satu unsur yang bergabung dengan massa tetap unsur lain memiliki rasio bilangan bulat sederhana.
 
+Dengan karbon tetap <InlineMath math="12\ \mathrm{g}" />, karbon monoksida mengandung <InlineMath math="16\ \mathrm{g}" /> oksigen dan karbon dioksida <InlineMath math="32\ \mathrm{g}" />, dengan satu kotak grid untuk <InlineMath math="8\ \mathrm{g}" />. Batang kedua tepat dua kali batang pertama, dan Dalton membacanya sebagai satu atom oksigen melawan dua.
+
+<MathVisual
+  title={<>Oksigen per 12 g Karbon</>}
+  description={<>Oksigen yang bergabung dengan 12 g karbon dalam <InlineMath math="\mathrm{CO}" /> dan <InlineMath math="\mathrm{CO_2}" />. Satu kotak grid ke atas sama dengan 8 g.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 5, z: 8 }, target: { x: 1.5, y: 2, z: 0 } },
+    objects: [
+      { id: "monoxide", kind: "cuboid", appearance: "primary", center: { x: 0, y: (16 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 16 / 8, width: 1.2 } },
+      { id: "dioxide", kind: "cuboid", appearance: "primary", center: { x: 3, y: (32 / 8) / 2 + 0, z: 0 }, size: { length: 1.2, height: 32 / 8, width: 1.2 } },
+    ],
+    labels: [
+      { key: "monoxide", objectId: "monoxide", at: { x: 0, y: 2.5, z: 0 }, placement: "above" },
+      { key: "dioxide", objectId: "dioxide", at: { x: 3, y: 4.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    monoxide: <InlineMath math="\mathrm{CO}:\ 16\ \mathrm{g}" />,
+    dioxide: <InlineMath math="\mathrm{CO_2}:\ 32\ \mathrm{g}" />,
+  }}
+/>
+
 ## Keterbatasan Teori Atom Dalton
 
 Model Dalton menjelaskan pola massa dalam reaksi kimia, tetapi belum dapat menjelaskan semua gejala. Jika atom benar-benar berupa bola pejal tanpa bagian dalam, mengapa logam dapat menghantarkan listrik? Mengapa medan listrik dan medan magnet dapat membelokkan sinar katode?
@@ -126,3 +150,31 @@ Eksperimen sinar katode J. J. Thomson menunjukkan adanya **partikel bermuatan ne
 Dalton menganggap semua atom dari unsur yang sama memiliki massa yang sama. Anggapan ini tidak dapat menjelaskan isotop, yaitu atom dengan jumlah proton sama tetapi jumlah neutron berbeda. Penemuan partikel subatom menjelaskan mengapa atom dari satu unsur dapat memiliki massa yang berbeda.
 
 Model Dalton menjelaskan kekekalan massa, komposisi tetap, dan perbandingan berganda. Model ini belum menjelaskan muatan listrik, isotop, atau struktur bagian dalam atom. Bukti tersebut memerlukan model yang memuat partikel subatom.
+
+Bola pejal Dalton tidak bisa menjelaskan partikel alfa yang memantul balik dari lempeng emas. Kalau semua muatan positif terkumpul di inti yang mungil, partikel yang lewat pada jarak <InlineMath math="b" /> dibelokkan sebesar <InlineMath math="\theta=2\arctan\tfrac{b_0}{b}" />, dengan <InlineMath math="b_0" /> bergantung pada energi dan muatannya. Hanya partikel yang lewat sangat dekat, jauh lebih dekat daripada <InlineMath math="b_0" />, yang berbalik jauh. Perbesar ujung kiri kurvanya.
+
+<MathVisual
+  title={<>Hanya yang Nyaris Menabrak yang Memantul</>}
+  description={<>Sudut belok partikel alfa terhadap jarak lewatnya dari inti. Mendatar: satu kotak grid berarti setengah jarak <InlineMath math="b_0" />. Tegak: satu kotak grid berarti 30 derajat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 10.5 }, y: { min: -0.3, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "deflection", kind: "polyline", appearance: "primary", vertices: [{ x: 0.5, y: (2 * Math.atan(4 / 1) * 180) / Math.PI / 30 }, { x: 1, y: (2 * Math.atan(4 / 2) * 180) / Math.PI / 30 }, { x: 1.5, y: (2 * Math.atan(4 / 3) * 180) / Math.PI / 30 }, { x: 2, y: (2 * Math.atan(4 / 4) * 180) / Math.PI / 30 }, { x: 2.5, y: (2 * Math.atan(4 / 5) * 180) / Math.PI / 30 }, { x: 3, y: (2 * Math.atan(4 / 6) * 180) / Math.PI / 30 }, { x: 3.5, y: (2 * Math.atan(4 / 7) * 180) / Math.PI / 30 }, { x: 4, y: (2 * Math.atan(4 / 8) * 180) / Math.PI / 30 }, { x: 4.5, y: (2 * Math.atan(4 / 9) * 180) / Math.PI / 30 }, { x: 5, y: (2 * Math.atan(4 / 10) * 180) / Math.PI / 30 }, { x: 5.5, y: (2 * Math.atan(4 / 11) * 180) / Math.PI / 30 }, { x: 6, y: (2 * Math.atan(4 / 12) * 180) / Math.PI / 30 }, { x: 6.5, y: (2 * Math.atan(4 / 13) * 180) / Math.PI / 30 }, { x: 7, y: (2 * Math.atan(4 / 14) * 180) / Math.PI / 30 }, { x: 7.5, y: (2 * Math.atan(4 / 15) * 180) / Math.PI / 30 }, { x: 8, y: (2 * Math.atan(4 / 16) * 180) / Math.PI / 30 }, { x: 8.5, y: (2 * Math.atan(4 / 17) * 180) / Math.PI / 30 }, { x: 9, y: (2 * Math.atan(4 / 18) * 180) / Math.PI / 30 }, { x: 9.5, y: (2 * Math.atan(4 / 19) * 180) / Math.PI / 30 }, { x: 10, y: (2 * Math.atan(4 / 20) * 180) / Math.PI / 30 }] },
+      { id: "near", kind: "point", appearance: "answer", at: { x: 0.5, y: (2 * Math.atan(4 / 1) * 180) / Math.PI / 30 } },
+      { id: "edge", kind: "point", appearance: "secondary", at: { x: 2, y: 3 } },
+      { id: "far", kind: "point", appearance: "reference", at: { x: 10, y: (2 * Math.atan(4 / 20) * 180) / Math.PI / 30 } },
+    ],
+    labels: [
+      { key: "near", objectId: "near", at: { x: 0.5, y: (2 * Math.atan(4 / 1) * 180) / Math.PI / 30 }, placement: "right" },
+      { key: "edge", objectId: "edge", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "far", objectId: "far", at: { x: 10, y: (2 * Math.atan(4 / 20) * 180) / Math.PI / 30 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    near: <InlineMath math="b=0{,}25\,b_0:\ \theta\approx152^\circ" />,
+    edge: <InlineMath math="b=b_0:\ \theta=90^\circ" />,
+    far: <InlineMath math="b=5\,b_0:\ \theta\approx23^\circ" />,
+  }}
+/>

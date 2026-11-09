@@ -6,6 +6,8 @@ import {
   countVisuals,
   findVisualLoss,
   isInteractiveVisual,
+  lessonFolder,
+  lessonsBelowBar,
 } from "#nakafa-content/points/visual";
 
 /** Parses and inspects one lesson that holds the given teaching blocks. */
@@ -140,5 +142,40 @@ describe("visual loss", () => {
     assert.isUndefined(findVisualLoss(base, parse(LINE, UNIT_CIRCLE)));
     assert.isUndefined(findVisualLoss(base, parse(LINE, LINE, UNIT_CIRCLE)));
     assert.isUndefined(findVisualLoss(parse(), parse()));
+  });
+});
+
+describe("lessons without a visual", () => {
+  const ROOT = "packages/corpus/material/lesson/mathematics";
+
+  it("names the lesson folder of a locale file and nothing else", () => {
+    assert.strictEqual(
+      lessonFolder(`${ROOT}/matrix/matrix-concept/id.mdx`),
+      `${ROOT}/matrix/matrix-concept`
+    );
+    assert.strictEqual(
+      lessonFolder(`/repo/${ROOT}/matrix/matrix-concept/de.mdx`),
+      `${ROOT}/matrix/matrix-concept`
+    );
+    assert.isUndefined(
+      lessonFolder("packages/corpus/articles/politics/a/en.mdx")
+    );
+    assert.isUndefined(lessonFolder(`${ROOT}/matrix/readme.md`));
+  });
+
+  it("lists a lesson once when any locale has fewer than three interactive cards", () => {
+    const MERMAID = '<Mermaid chart="graph TD; A-->B" />';
+    const three = parse(LINE, LINE, UNIT_CIRCLE);
+    const below = lessonsBelowBar([
+      [`${ROOT}/b/en.mdx`, parse(LINE, LINE, MERMAID)],
+      [`${ROOT}/a/en.mdx`, three],
+      [`${ROOT}/a/id.mdx`, parse(LINE)],
+      [`${ROOT}/c/en.mdx`, three],
+      [`${ROOT}/c/id.mdx`, parse(LINE, LINE, LINE, MERMAID)],
+      [`${ROOT}/d/en.mdx`, parse(MERMAID, MERMAID, MERMAID)],
+      ["packages/corpus/articles/politics/x/en.mdx", parse()],
+    ]);
+
+    assert.deepStrictEqual(below, [`${ROOT}/a`, `${ROOT}/b`, `${ROOT}/d`]);
   });
 });

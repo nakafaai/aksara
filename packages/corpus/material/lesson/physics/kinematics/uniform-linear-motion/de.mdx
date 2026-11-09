@@ -79,6 +79,33 @@ x_t &= x_0+\Delta x \\
 
 Diese Berechnung funktioniert, weil sich die **Geschwindigkeit nicht ändert**. Wenn sich die Geschwindigkeit ändert, können wir nicht einen festen Wert von <InlineMath math="v" /> für die gesamte Bewegung verwenden.
 
+Die Punkte unten sind die Positionsmarken, eine pro Sekunde. Sie steigen jede Sekunde um dieselben <InlineMath math="2\text{ m}" />, liegen also auf einer Geraden, und deren Steigung ist die Geschwindigkeit.
+
+<MathVisual
+  title={<>Gleiche Schritte ergeben eine Gerade</>}
+  description={<><InlineMath math="x=1\text{ m}+(2\text{ m/s})\,t" /> für 5 s. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 2 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "position", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: (1 + 2 * 0) / 2 }, { x: 1, y: (1 + 2 * 1) / 2 }, { x: 2, y: (1 + 2 * 2) / 2 }, { x: 3, y: (1 + 2 * 3) / 2 }, { x: 4, y: (1 + 2 * 4) / 2 }, { x: 5, y: (1 + 2 * 5) / 2 }] },
+      { id: "t-0", kind: "point", appearance: "primary", at: { x: 0, y: (1 + 2 * 0) / 2 } },
+      { id: "t-1", kind: "point", appearance: "primary", at: { x: 1, y: (1 + 2 * 1) / 2 } },
+      { id: "t-2", kind: "point", appearance: "primary", at: { x: 2, y: (1 + 2 * 2) / 2 } },
+      { id: "t-3", kind: "point", appearance: "primary", at: { x: 3, y: (1 + 2 * 3) / 2 } },
+      { id: "t-4", kind: "point", appearance: "primary", at: { x: 4, y: (1 + 2 * 4) / 2 } },
+      { id: "t-5", kind: "point", appearance: "primary", at: { x: 5, y: (1 + 2 * 5) / 2 } },
+    ],
+    labels: [
+      { key: "end", objectId: "t-5", at: { x: 5, y: 5.5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    end: <InlineMath math="x(5\text{ s})=11\text{ m}" />,
+  }}
+/>
+
 ## Gleichförmige Bewegung in Diagrammen erkennen
 
 Eine gleichförmige geradlinige Bewegung lässt sich in zwei grundlegenden Diagrammen erkennen. Das **Geschwindigkeits-Zeit-Diagramm** zeigt, ob sich die Geschwindigkeit ändert. Das Positions-Zeit-Diagramm zeigt, wie sich die Position mit der Zeit entwickelt.
@@ -91,6 +118,27 @@ Eine gleichförmige geradlinige Bewegung lässt sich in zwei grundlegenden Diagr
 Die vorzeichenbehaftete Fläche zwischen dem Geschwindigkeits-Zeit-Diagramm und der Zeitachse entspricht der Verschiebung. Bei konstanter Geschwindigkeit ist diese Fläche ein Rechteck, also <InlineMath math="\Delta x=v\Delta t" />. Eine Fläche unterhalb der Zeitachse trägt eine negative Verschiebung bei.
 
 In einem Positions-Zeit-Diagramm entspricht die Steigung der Geschwindigkeit. Ihr Vorzeichen gibt die Richtung an, während eine größere absolute Steilheit einen größeren Geschwindigkeitsbetrag bedeutet. Bei gleichförmiger geradliniger Bewegung bleibt die Linie gerade, weil sich ihre Steigung vom Anfang bis zum Ende nicht ändert.
+
+Im Geschwindigkeit-Zeit-Diagramm ist dieselbe Bewegung eine flache Linie bei <InlineMath math="2\text{ m/s}" />. Die Fläche darunter ist die Verschiebung, <InlineMath math="10\text{ m}" />, und mit <InlineMath math="x_0=1\text{ m}" /> ergibt sich die Endposition <InlineMath math="11\text{ m}" />.
+
+<MathVisual
+  title={<>Konstante Geschwindigkeit und ihre Fläche</>}
+  description={<><InlineMath math="v=2\text{ m/s}" /> für 5 s. Waagrecht: Zeit in s. Senkrecht: Geschwindigkeit in m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "area", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 2 }, { x: 0, y: 2 }] },
+    ],
+    labels: [
+      { key: "area", objectId: "area", at: { x: 2.5, y: 1 }, placement: "center" },
+    ],
+  }}
+  labels={{
+    area: <InlineMath math="\Delta x=2\times5=10\text{ m}" />,
+  }}
+/>
 
 ## Die Richtung unterscheidet konstante Schnelligkeit von konstanter Geschwindigkeit
 

@@ -27,6 +27,35 @@ For every nonnegative integer <InlineMath math="m" />:
 
 Because <InlineMath math="\Lambda^m" /> is obtained by raising each diagonal entry to the power <InlineMath math="m" />, diagonalization turns a matrix-power problem into scalar arithmetic.
 
+For <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />, the eigenvectors <InlineMath math="v_1=(1,1)" /> and <InlineMath math="v_2=(-1,1)" /> become the columns of <InlineMath math="S=\begin{pmatrix}1&-1\\1&1\end{pmatrix}" />, and the eigenvalues fill <InlineMath math="D=\operatorname{diag}(3,1)" />. In the basis <InlineMath math="v_1,v_2" />, the matrix only stretches the direction <InlineMath math="v_1" /> by three, which is exactly <InlineMath math="A=SDS^{-1}" />.
+
+<MathVisual
+  title={<><InlineMath math="A=SDS^{-1}" /> stretches the eigenbasis cell</>}
+  description={<>The gray parallelogram is the cell of the teal <InlineMath math="v_1" /> and the orange <InlineMath math="v_2" />. <InlineMath math="A" /> sends it to the violet parallelogram: <InlineMath math="v_1" /> becomes the magenta <InlineMath math="Av_1=3v_1" />, while <InlineMath math="v_2" /> stays.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cell", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 2 }, { x: -1, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 }, { x: 2, y: 4 }, { x: -1, y: 1 }], appearance: "secondary" },
+      { id: "stretched", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "answer" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "stretched", objectId: "stretched", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="v_1" />,
+    "stretched": <InlineMath math="Av_1=3v_1" />,
+    "second": <InlineMath math="v_2=Av_2" />,
+  }}
+/>
+
 ## Basic Conditions for Diagonalization
 
 When can a matrix <InlineMath math="A \in \mathbb{K}^{n \times n}" /> be diagonalized? The answer is when we can find a basis of <InlineMath math="\mathbb{K}^n" /> that consists entirely of eigenvectors <InlineMath math="v_1, \ldots, v_n \in \mathbb{K}^n" /> of <InlineMath math="A" /> with corresponding eigenvalues <InlineMath math="\lambda_1, \ldots, \lambda_n \in \mathbb{K}" />.
@@ -63,6 +92,37 @@ The span shown above contains all scalar multiples of the displayed vector and h
 | --- | --- | --- | --- |
 | Identity <InlineMath math="I_2" /> | 2 | 2 | Yes |
 | Matrix <InlineMath math="A" /> above | 2 | 1 | No |
+
+Try to find a second direction that stays put in this scene. The gray unit square is pushed sideways into the magenta parallelogram: its bottom edge, along <InlineMath math="e_1" />, stays in place, but every other vector tilts toward the <InlineMath math="x" />-axis, like <InlineMath math="e_2" />, which becomes <InlineMath math="Ae_2=(2,1)^T" />. The only eigendirection is <InlineMath math="E_A(1)=\operatorname{span}\{e_1\}" />, and that is not enough for a basis of the plane.
+
+<MathVisual
+  title={<>The shear <InlineMath math="A=\begin{pmatrix}1&2\\0&1\end{pmatrix}" /> leaves only one eigendirection</>}
+  description={<>The gray unit square maps to the magenta parallelogram. The vector <InlineMath math="e_1" /> stays put, while <InlineMath math="e_2" /> tilts to <InlineMath math="Ae_2=(2,1)^T" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }], appearance: "answer" },
+      { id: "e2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "construction" },
+      { id: "ae2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "e1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "image", objectId: "image", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "e2", objectId: "e2", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "ae2", objectId: "ae2", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "e1", objectId: "e1", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "image": <InlineMath math="A\cdot\text{square}" />,
+    "e2": <InlineMath math="e_2" />,
+    "ae2": <InlineMath math="Ae_2" />,
+    "e1": <InlineMath math="e_1=Ae_1" />,
+  }}
+/>
 
 ## Requirements for Matrix Diagonalization
 
@@ -111,3 +171,31 @@ For each <InlineMath math="i = 1, \ldots, k" />, let <InlineMath math="v_1^{(i)}
 <BlockMath math="\begin{aligned} &amp;v_1^{(1)},\ldots,v_{d_1}^{(1)}, \\ &amp;v_1^{(2)},\ldots,v_{d_2}^{(2)},\ldots, \\ &amp;v_1^{(k)},\ldots,v_{d_k}^{(k)} \end{aligned}" />
 
 These vectors form a basis of <InlineMath math="\mathbb{K}^n" /> consisting of eigenvectors of <InlineMath math="A" />. Therefore, <InlineMath math="A" /> is diagonalizable.
+
+Take <InlineMath math="A=\begin{pmatrix}2&0&-1\\0&2&-1\\0&0&1\end{pmatrix}" /> with <InlineMath math="\chi_A(t)=(2-t)^2(1-t)" />. The eigenspace <InlineMath math="E_A(2)" /> is the plane <InlineMath math="z=0" /> of dimension <InlineMath math="2" />, equal to its algebraic multiplicity, and <InlineMath math="E_A(1)" /> is the line through <InlineMath math="(1,1,1)" />. The dimensions <InlineMath math="2+1=3" /> fill the whole space, so <InlineMath math="A" /> is diagonalizable.
+
+<MathVisual
+  title={<>Eigenspaces that fill <InlineMath math="\mathbb R^3" /></>}
+  description={<>The violet plane is <InlineMath math="E_A(2)" /> and the teal segment spans <InlineMath math="E_A(1)" />. The magenta vector <InlineMath math="w=(2,1,1)=(1,0,0)+(1,1,1)" /> goes to the orange vector <InlineMath math="Aw=2\,(1,0,0)+(1,1,1)=(3,1,1)" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 2 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 1.2, y: 0.8, z: 0.5 } },
+    objects: [
+      { id: "plane", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }, { x: 3, y: 2, z: 0 }, { x: 0, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "line", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: 1 }, appearance: "construction" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 1, z: 1 }, appearance: "answer" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 1, z: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 1, y: 1, z: 1 }, placement: "above" },
+      { key: "vector", objectId: "vector", at: { x: 2, y: 1, z: 1 }, placement: "above-left" },
+      { key: "image", objectId: "image", at: { x: 3, y: 1, z: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "line": <InlineMath math="(1,1,1)" />,
+    "vector": <InlineMath math="w" />,
+    "image": <InlineMath math="Aw" />,
+  }}
+/>

@@ -3,7 +3,7 @@ export const metadata = {
    description: "Wende Integrale auf wirtschaftliche Situationen an und berechne Absatz, Umsatzänderungen, Produktionskosten und Konsumentenrente.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2026-08-22",
-   dateModified: "2026-09-23",
+   dateModified: "2026-11-08",
    subject: "Integrale",
 };
 
@@ -46,6 +46,16 @@ Für den Wurzelausdruck eignet sich die Substitution <InlineMath math="u = t + 1
 
 Das kontinuierliche Modell liefert für die ersten <InlineMath math="3 \text{ Monate}" /> den Wert <InlineMath math="S = \frac{35200}{3} \approx 11733{,}33" />. Als ganze Geräte sind das ungefähr <InlineMath math="11733" /> Smartphones.
 
+Ein Integral summiert eine Rate auf. Bei der Verkaufsrate <InlineMath math="2000\sqrt{t + 1} + 800" /> Einheiten pro Monat zeigen die Balken die Gesamtverkäufe nach <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" /> Monaten, jeweils berechnet als <InlineMath math="\int_0^t (2000\sqrt{u + 1} + 800)\,du" />. Der letzte Balken liegt bei etwa <InlineMath math="11.733" /> Einheiten, dem Ergebnis oben.
+
+<BarChart
+  title={<>Gesamtverkäufe aus einer Rate</>}
+  description={<>Gesamtverkäufe nach 1, 2 und 3 Monaten, jeweils das Integral der Verkaufsrate von 0 bis zu diesem Monat.</>}
+  yAxisLabel="Verkaufte Einheiten"
+  data={[1, 2, 3].map((t) => ({ name: `${t}`, value: (4000 / 3) * ((t + 1) ** 1.5 - 1) + 800 * t }))}
+  chartConfig={{ value: { label: "Verkaufte Einheiten", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Analyse des Umsatzwachstums
 
 Ein zweites Modell beschreibt die Umsatzwachstumsrate eines Technologie-Startups durch <InlineMath math="R'(t) = 5000e^{0{,}1t}" /> Tausend Rupiah pro Monat. Dabei wird <InlineMath math="t" /> in Monaten gemessen.
@@ -82,6 +92,16 @@ Unter der Annahme <InlineMath math="VC(0)=0" /> betragen die variablen Gesamtkos
 
 > In wirtschaftlichen Anwendungen wandeln Integrale Grenzgrößen oder Änderungsraten in Gesamtgrößen um. So wird aus Grenzkosten beispielsweise die Änderung der Gesamtkosten.
 
+Sieh zu, wie sich die variablen Kosten aufsummieren. <InlineMath math="VC(x) = 0{,}1x^3 - 6x^2 + 200x" /> beträgt nach 5, 10, 15 und 20 Einheiten <InlineMath math="862{,}5" />, <InlineMath math="1500" />, <InlineMath math="1987{,}5" /> und <InlineMath math="2400" /> Tausend Rupiah. Jeder Block von 5 Einheiten fügt weniger hinzu als der vorige, nämlich <InlineMath math="862{,}5" />, <InlineMath math="637{,}5" />, <InlineMath math="487{,}5" /> und <InlineMath math="412{,}5" />, weil die Grenzkosten bis zu ihrem Minimum bei <InlineMath math="x = 20" /> fallen.
+
+<BarChart
+  title={<>Variable Kosten über die ersten 20 Einheiten</>}
+  description={<>Balken von <InlineMath math="VC(x) = 0{,}1x^3 - 6x^2 + 200x" /> Tausend Rupiah bei <InlineMath math="x = 0, 5, 10, 15, 20" /> Einheiten, mit Ende bei 2400.</>}
+  yAxisLabel="Variable Kosten (Tausend Rupiah)"
+  data={[0, 5, 10, 15, 20].map((x) => ({ name: String(x), value: 0.1 * x ** 3 - 6 * x ** 2 + 200 * x }))}
+  chartConfig={{ value: { label: "Variable Kosten (Tausend Rupiah)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Analyse der Konsumentenrente
 
 Auch die Konsumentenrente lässt sich mit einem Integral bestimmen. Gegeben sind die Nachfragefunktion <InlineMath math="P = 100 - 0{,}5Q" /> und der Gleichgewichtspreis <InlineMath math="60 \text{ Rupiah pro Einheit}" />. Die zugehörige Gleichgewichtsmenge auf dieser Nachfragekurve folgt aus:
@@ -104,6 +124,34 @@ Die Konsumentenrente von <InlineMath math="1600 \text{ Rupiah}" /> misst den ges
 Die Preisdifferenz bildet ein **Dreieck**: Bei <InlineMath math="Q=0" /> beträgt seine Höhe <InlineMath math="40" /> Rupiah pro Stück, bei <InlineMath math="Q=80" /> ist sie null. Prüfe das Integral mit der Dreiecksfläche:
 
 <BlockMath math="CS=\frac12(80)(100-60)=1600" />
+
+Die Konsumentenrente ist die Fläche eines Dreiecks. Käufer würden bis zur Nachfragegeraden <InlineMath math="P = 100 - 0{,}5Q" /> zahlen, aber alle zahlen den Marktpreis <InlineMath math="60" />. Die Lücke zwischen beiden über die ersten <InlineMath math="80" /> Einheiten ist ein Dreieck mit Grundseite <InlineMath math="80" /> und Höhe <InlineMath math="40" />: <InlineMath math="\tfrac12 \cdot 80 \cdot 40 = 1600" />, genau wie das Integral.
+
+<MathVisual
+  title={<>Die Konsumentenrente als Dreieck</>}
+  description={<>Die Nachfragegerade <InlineMath math="P = 100 - 0{,}5Q" />, die Preisgerade 60 und das Dreieck dazwischen bis <InlineMath math="Q = 80" />, mit Fläche 1600.</>}
+  labels={{
+    demand: <InlineMath math="P = 100 - 0{,}5Q" />,
+    price: <InlineMath math="P = 60" />,
+    surplus: <InlineMath math="1600" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 200 }, y: { min: 0, max: 110 } },
+    view: { kind: "fit", padding: 5 },
+    objects: [
+      { id: "demand", kind: "line", through: [{ x: 0, y: 100 }, { x: 200, y: 0 }], appearance: "reference" },
+      { id: "price", kind: "line", through: [{ x: 0, y: 60 }, { x: 200, y: 60 }], appearance: "secondary" },
+      { id: "surplus", kind: "polygon", vertices: [{ x: 0, y: 100 }, { x: 0, y: 60 }, { x: 80, y: 60 }], appearance: "primary" },
+      { id: "market", kind: "point", at: { x: 80, y: 60 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "demand", objectId: "demand", at: { x: 140, y: 30 }, placement: "above-right" },
+      { key: "price", objectId: "price", at: { x: 170, y: 60 }, placement: "above" },
+      { key: "surplus", objectId: "surplus", at: { x: 80 / 3, y: 220 / 3 }, placement: "center" },
+    ],
+  }}
+/>
 
 ## Übungen
 

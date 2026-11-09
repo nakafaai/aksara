@@ -3,7 +3,7 @@ export const metadata = {
    description: "Kenali kejadian saling lepas, bedakan dari kejadian saling bebas, dan gunakan aturan penjumlahan tanpa menghitung irisan dua kali.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Kombinatorik",
 };
 
@@ -18,6 +18,31 @@ Sebagai ilustrasi sederhana, bayangkan kamu mengambil satu kartu dari satu deck.
 ## Cara Kejadian Saling Lepas Berperilaku
 
 Kejadian saling lepas **tidak berbagi hasil**, sehingga irisannya tidak menyumbang apa pun pada total. Tiga pemeriksaan berikut menjelaskan gagasan itu lewat hasil dan peluang. Setiap pemeriksaan memakai dua kejadian yang sama agar perbedaannya terlihat.
+
+Dalam diagram, kejadian saling lepas adalah dua lingkaran yang tidak beririsan. Dengan satu dadu, <InlineMath math="A" /> = bilangan genap <InlineMath math="\{2, 4, 6\}" /> dan <InlineMath math="B" /> = bilangan <InlineMath math="1" />: tidak ada hasil yang masuk keduanya, jadi tidak ada yang terhitung dua kali.
+
+<MathVisual
+  title={<>Dua kejadian tanpa irisan</>}
+  description={<>Dua lingkaran terpisah untuk kejadian A dan B, yang tidak berbagi hasil.</>}
+  labels={{
+    a: <InlineMath math="A = \{2, 4, 6\}" />,
+    b: <InlineMath math="B = \{1\}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "circle", center: { x: -1.5, y: 0 }, radius: 1.1, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 1.5, y: 0 }, radius: 1.1, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1.5, y: 0 }, placement: "center" },
+      { key: "b", objectId: "b", at: { x: 1.5, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
 ### Tidak Ada Irisan
 
 Ciri utama kejadian saling lepas adalah **tidak memiliki irisan atau elemen yang sama**. Dalam notasi matematika, jika <InlineMath math="A" /> dan <InlineMath math="B" /> adalah kejadian saling lepas, maka:
@@ -171,6 +196,64 @@ Untuk menjumlahkan <InlineMath math="\frac{1}{9} + \frac{1}{6}" />, kita memerlu
 <BlockMath math="P(A \cup B) = \frac{2}{18} + \frac{3}{18} = \frac{5}{18}" />
 </MathContainer>
 
+Pada kisi dua dadu, hasil kembar terletak di satu diagonal dan jumlah <InlineMath math="7" /> di diagonal lainnya. Kedua diagonal tidak pernah berbagi titik, karena hasil kembar <InlineMath math="(k, k)" /> jumlahnya genap. Jadi kedua kejadian saling lepas dan <InlineMath math="P = \frac{6}{36} + \frac{6}{36} = \frac13" />.
+
+<MathVisual
+  title={<>Hasil kembar dan jumlah tujuh tidak pernah bertemu</>}
+  description={<>Ke-36 hasil dua dadu. Enam hasil kembar dan enam hasil berjumlah 7 tidak berbagi titik.</>}
+  labels={{
+    d11: <>kembar</>,
+    d16: <InlineMath math="x + y = 7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "d11", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "d12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "d13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "d14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "d15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "d16", kind: "point", at: { x: 1, y: 6 }, appearance: "secondary" },
+      { id: "d21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "d22", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "d23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "d24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "d25", kind: "point", at: { x: 2, y: 5 }, appearance: "secondary" },
+      { id: "d26", kind: "point", at: { x: 2, y: 6 }, appearance: "reference" },
+      { id: "d31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "d32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "d33", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "d34", kind: "point", at: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "d35", kind: "point", at: { x: 3, y: 5 }, appearance: "reference" },
+      { id: "d36", kind: "point", at: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "d41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "d42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "d43", kind: "point", at: { x: 4, y: 3 }, appearance: "secondary" },
+      { id: "d44", kind: "point", at: { x: 4, y: 4 }, appearance: "primary" },
+      { id: "d45", kind: "point", at: { x: 4, y: 5 }, appearance: "reference" },
+      { id: "d46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "d51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "d52", kind: "point", at: { x: 5, y: 2 }, appearance: "secondary" },
+      { id: "d53", kind: "point", at: { x: 5, y: 3 }, appearance: "reference" },
+      { id: "d54", kind: "point", at: { x: 5, y: 4 }, appearance: "reference" },
+      { id: "d55", kind: "point", at: { x: 5, y: 5 }, appearance: "primary" },
+      { id: "d56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "d61", kind: "point", at: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "d62", kind: "point", at: { x: 6, y: 2 }, appearance: "reference" },
+      { id: "d63", kind: "point", at: { x: 6, y: 3 }, appearance: "reference" },
+      { id: "d64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "d65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "d66", kind: "point", at: { x: 6, y: 6 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "d11", objectId: "d11", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "d16", objectId: "d16", at: { x: 1, y: 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 ## Cara Mengerjakan Soal Kejadian Saling Lepas
 
 Sebelum menjumlahkan dua peluang, <Highlight>periksa apakah kedua kejadian berbagi hasil</Highlight>. Langkah di bawah menempatkan pemeriksaan itu lebih dulu, lalu memastikan hasilnya. Menjumlahkan tanpa pemeriksaan itu membuat hasil bersama terhitung dua kali.
@@ -184,6 +267,16 @@ Untuk menyelesaikan soal peluang kejadian saling lepas, ikuti langkah berikut:
 3. **Periksa irisan** antara kejadian untuk memastikan saling lepas
 4. **Hitung peluang masing-masing** kejadian secara terpisah
 5. **Terapkan rumus** <InlineMath math="P(A \cup B) = P(A) + P(B)" />
+
+Jika dua kejadian tidak bisa terjadi bersamaan, batangnya tinggal ditumpuk. Hasil kembar berpeluang <InlineMath math="\frac{6}{36}" />, jumlah 7 berpeluang <InlineMath math="\frac{6}{36}" />, dan salah satunya berpeluang <InlineMath math="\frac{12}{36}" />, tanpa ada yang perlu dikurangkan.
+
+<BarChart
+  title={<>Menjumlahkan dua kejadian saling lepas</>}
+  description={<>Batang untuk hasil kembar, jumlah 7, dan salah satunya, dengan <InlineMath math="\frac{6}{36} + \frac{6}{36} = \frac{12}{36}" />.</>}
+  yAxisLabel="Peluang"
+  data={[["kembar", 6 / 36], ["jumlah 7", 6 / 36], ["salah satunya", 12 / 36]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Peluang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Pemeriksaan Hasil Akhir
 
