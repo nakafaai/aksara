@@ -13,19 +13,19 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Grafik $$g$$ memotong sumbu $$Y$$ di titik $$(0,-6)$$.",
+          label: "$$f(2)+f(0)=\\frac{10}{3}$$",
         },
         {
           column: 1,
-          label: "Grafik $$g$$ memotong sumbu $$X$$ di titik $$(2,0)$$.",
+          label: "$$f^{-1}(x)=1+{}^{3}\\log x$$ untuk $$x>0$$.",
         },
         {
           column: 2,
-          label: "Daerah hasil $$g$$ adalah $$\\{y\\mid y>0\\}$$.",
+          label: "$$f(x+1)=3f(x)$$ hanya berlaku untuk $$x>0$$.",
         },
         {
           column: 2,
-          label: "$$g(x)<0$$ untuk setiap $$x>2$$.",
+          label: "$$f^{-1}\\left(\\frac19\\right)=-2$$",
         },
       ],
     },

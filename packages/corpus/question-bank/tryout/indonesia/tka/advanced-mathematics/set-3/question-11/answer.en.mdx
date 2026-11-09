@@ -1,18 +1,19 @@
-The point <InlineMath math="P" /> lies between <InlineMath math="A" /> and <InlineMath math="B" />, twice as far from <InlineMath math="A" /> as from <InlineMath math="B" />. So <InlineMath math="P" /> is **two thirds of the way from <InlineMath math="A" /> to <InlineMath math="B" />**.
+The position vector of the centroid is **the average of the three vertices' position vectors**. This comes from the centroid dividing every median in the ratio <InlineMath math="2:1" /> from its vertex.
 
-<BlockMath math="\vec{p}=\vec{a}+\frac23\overrightarrow{AB}=\frac{1\cdot\vec{a}+2\cdot\vec{b}}{2+1}" />
+<BlockMath math="\vec{g}=\frac{\vec{a}+\vec{b}+\vec{c}}{3}=\frac{(1+5+3,\ -2+4+1,\ 3-1+7)}{3}=\frac{(9,3,9)}{3}=(3,1,3)" />
 
-Each end point is weighted by the part of the ratio on the opposite side, so <InlineMath math="\vec{b}" /> gets weight <InlineMath math="2" />.
+Compute <InlineMath math="\overrightarrow{AG}" /> and its length.
 
-<BlockMath math="\vec{p}=\frac{(1,-2,3)+2(7,4,-3)}{3}=\frac{(15,6,-3)}{3}=(5,2,-1)" />
+<BlockMath math="\begin{aligned}
+\overrightarrow{AG}&=(3-1,\ 1+2,\ 3-3)=(2,3,0) \\
+|\overrightarrow{AG}|&=\sqrt{4+9+0}=\sqrt{13}
+\end{aligned}" />
 
-Check: <InlineMath math="\overrightarrow{AP}=(4,4,-4)" /> and <InlineMath math="\overrightarrow{PB}=(2,2,-2)" />, so indeed <InlineMath math="\overrightarrow{AP}=2\overrightarrow{PB}" />.
+Check with the median: the midpoint of <InlineMath math="BC" /> is <InlineMath math="M\left(4,\frac52,3\right)" />, and <InlineMath math="\overrightarrow{AM}=\left(3,\frac92,0\right)" />. Indeed <InlineMath math="\overrightarrow{AG}=\frac23\overrightarrow{AM}" />.
 
-<BlockMath math="|\overrightarrow{OP}|=\sqrt{5^2+2^2+(-1)^2}=\sqrt{25+4+1}=\sqrt{30}" />
+So <InlineMath math="AG" /> has length <InlineMath math="\sqrt{13}" />.
 
-So the length of <InlineMath math="\overrightarrow{OP}" /> is <InlineMath math="\sqrt{30}" />.
-
-- <InlineMath math="\sqrt{10}" /> swaps the weights and uses <InlineMath math="\frac{2\vec{a}+\vec{b}}{3}=(3,0,1)" />, the point nearer to <InlineMath math="A" />.
-- <InlineMath math="\sqrt{17}" /> uses the midpoint <InlineMath math="(4,1,0)" />.
-- <InlineMath math="\sqrt{14}" /> is the length of <InlineMath math="\overrightarrow{OA}" />.
-- <InlineMath math="5\sqrt{14}" /> uses the external division point <InlineMath math="2\vec{b}-\vec{a}=(13,10,-9)" />.
+- <InlineMath math="\sqrt{19}" /> is the length of <InlineMath math="\overrightarrow{OG}" />, the centroid's distance from the origin.
+- <InlineMath math="\frac32\sqrt{13}" /> is the whole median <InlineMath math="AM" />, not two thirds of it.
+- <InlineMath math="5\sqrt5" /> uses <InlineMath math="\vec{a}+\vec{b}+\vec{c}" /> without dividing by <InlineMath math="3" />.
+- <InlineMath math="2\sqrt{13}" /> doubles the correct answer, for example by dividing <InlineMath math="\vec{a}+\vec{b}+\vec{c}" /> by <InlineMath math="3" /> and then applying the <InlineMath math="2:1" /> ratio a second time.

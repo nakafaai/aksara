@@ -12,24 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Nilai $$a$$ adalah $$3$$.",
+          label: "Nilai $$a$$ adalah $$2$$.",
         },
         {
           correct: true,
-          label: "Nilai $$b$$ adalah $$1$$.",
+          label: "$$a+b=-4$$",
         },
         {
           correct: true,
-          label: "$$x+3$$ adalah faktor dari $$P(x)$$.",
+          label: "Persamaan $$P(x)=0$$ memiliki tepat satu akar real.",
         },
         {
           correct: false,
-          label: "Sisa pembagian $$P(x)$$ oleh $$x-2$$ adalah $$12$$.",
+          label: "$$x+1$$ adalah faktor dari $$P(x)$$.",
         },
         {
           correct: true,
-          label:
-            "Jumlah kuadrat semua akar persamaan $$P(x)=0$$ adalah $$14$$.",
+          label: "Sisa pembagian $$P(x)$$ oleh $$x-1$$ adalah $$-6$$.",
         },
       ],
     },

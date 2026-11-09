@@ -13,20 +13,21 @@ const item: ItemSource = {
       statements: [
         {
           column: 2,
-          label: "$$L_1$$ dan $$L_2$$ bersinggungan di luar.",
+          label: "Titik $$P$$ terletak di luar lingkaran $$L$$.",
         },
         {
           column: 2,
-          label: "Pusat $$L_2$$ terletak di dalam $$L_1$$.",
+          label: "Tali busur terpanjang yang melalui $$P$$ panjangnya $$5$$.",
         },
         {
           column: 1,
           label:
-            "Tali busur persekutuan $$L_1$$ dan $$L_2$$ terletak pada garis $$8x+4y-41=0$$.",
+            "Tali busur terpendek yang melalui $$P$$ panjangnya $$2\\sqrt{15}$$.",
         },
         {
           column: 1,
-          label: "Garis $$y=6$$ menyinggung $$L_2$$.",
+          label:
+            "Tali busur yang titik tengahnya $$P$$ terletak pada garis $$x+3y-19=0$$.",
         },
       ],
     },

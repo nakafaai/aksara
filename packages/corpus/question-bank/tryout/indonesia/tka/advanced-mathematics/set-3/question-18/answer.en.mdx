@@ -1,16 +1,12 @@
-A rotation about a point other than the origin takes three steps: **shift the centre to the origin, rotate, then shift back**. A <InlineMath math="90^\circ" /> clockwise rotation about the origin maps <InlineMath math="(a,b)" /> to <InlineMath math="(b,-a)" />.
+Reflection in the line <InlineMath math="y=-x" /> **swaps the two coordinates and changes both signs**: <InlineMath math="(x,y)\mapsto(-y,-x)" />. In matrix form:
 
-<BlockMath math="\begin{aligned}
-P-C&=(3-1,\ -2-1)=(2,-3) \\
-\text{rotated}&:\ (2,-3)\mapsto(-3,-2) \\
-P'&=(-3+1,\ -2+1)=(-2,-1)
-\end{aligned}" />
+<BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}\begin{pmatrix} -3 \\ 5 \end{pmatrix}=\begin{pmatrix} -5 \\ 3 \end{pmatrix}" />
 
-Check: the distance to the centre is unchanged, since <InlineMath math="|CP|^2=4+9=13" /> and <InlineMath math="|CP'|^2=9+4=13" />. The vectors <InlineMath math="(2,-3)" /> and <InlineMath math="(-3,-2)" /> are also perpendicular, because <InlineMath math="-6+6=0" />.
+Check: the line <InlineMath math="y=-x" /> must be the perpendicular bisector of <InlineMath math="PP'" />. The midpoint <InlineMath math="\left(\frac{-3-5}{2},\frac{5+3}{2}\right)=(-4,4)" /> lies on <InlineMath math="y=-x" />, and <InlineMath math="\overrightarrow{PP'}=(-2,-2)" /> is perpendicular to the line's direction <InlineMath math="(1,-1)" />, since <InlineMath math="-2+2=0" />.
 
-So the image of <InlineMath math="P" /> is <InlineMath math="(-2,-1)" />.
+So the image of <InlineMath math="P" /> is <InlineMath math="(-5,3)" />.
 
-- <InlineMath math="(4,3)" /> rotates anticlockwise, <InlineMath math="(a,b)\mapsto(-b,a)" />.
-- <InlineMath math="(-2,-3)" /> rotates about the origin and ignores the centre <InlineMath math="C" />.
-- <InlineMath math="(-3,-2)" /> forgets to shift back by adding the coordinates of <InlineMath math="C" />.
-- <InlineMath math="(-1,4)" /> is the <InlineMath math="180^\circ" /> rotation about <InlineMath math="C" />.
+- <InlineMath math="(5,-3)" /> is the image under reflection in <InlineMath math="y=x" />, which only swaps the coordinates.
+- <InlineMath math="(3,-5)" /> is the <InlineMath math="180^\circ" /> rotation about the origin, which only changes the signs.
+- <InlineMath math="(5,3)" /> is the <InlineMath math="90^\circ" /> clockwise rotation, <InlineMath math="(x,y)\mapsto(y,-x)" />.
+- <InlineMath math="(-3,-5)" /> is the reflection in the <InlineMath math="x" />-axis.
