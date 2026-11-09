@@ -18,10 +18,35 @@ Trigonometric values apply to **angles in every quadrant**, extending beyond the
 
 To understand trigonometric functions of arbitrary angles, we use the **unit circle, which has radius** <InlineMath math="1" /> and center <InlineMath math="O(0,0)" />.
 
-<UnitCircle
-  title="Unit Circle Exploration"
-  description="Change the angle in the input below to see how the coordinates of the point on the circle change."
-  angle={30}
+<MathVisual
+  title={<>Unit Circle Exploration</>}
+  description={<>Change the angle in the input below to see how the coordinates of the point on the circle change.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 30, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
 />
 
 The following details connect the angle to its coordinates:
@@ -45,10 +70,35 @@ The following details connect the angle to its coordinates:
 
 As the point moves around the circle, the <InlineMath math="x" /> and <InlineMath math="y" /> coordinates can be positive or negative. The **signs of those coordinates** determine the signs of the trigonometric functions in each quadrant.
 
-<UnitCircle
-  title="Sign Change Visualization"
+<MathVisual
+  title={<>Sign Change Visualization</>}
   description={<>Observe how <InlineMath math="\sin" />, <InlineMath math="\cos" />, and <InlineMath math="\tan" /> values change as the angle passes through each quadrant.</>}
-  angle={135}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 135, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
 />
 
 **Signs in each quadrant**:
@@ -66,10 +116,35 @@ Read the signs from the coordinates: <InlineMath math="\sin\theta" /> has the si
 
 For an angle whose terminal side does not lie on an axis, the reference angle is the **unique acute angle** <InlineMath math="0^\circ<\alpha<90^\circ" /> between that terminal side and the nearest <InlineMath math="x" />-axis. Its acute-angle values give the magnitudes of the original angle's trigonometric values. The quadrant determines their signs. For a quadrantal angle, such as <InlineMath math="90^\circ" /> or <InlineMath math="180^\circ" />, read the coordinates directly from the unit circle instead.
 
-<UnitCircle
-  title="Understanding Reference Angle"
+<MathVisual
+  title={<>Understanding Reference Angle</>}
   description={<>Identify the acute angle between the radius and the <InlineMath math="x" />-axis as the angle changes.</>}
-  angle={135}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 135, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
 />
 
 **How to determine the reference angle <InlineMath math="\alpha" /> for a nonquadrantal angle <InlineMath math="0^\circ<\theta<360^\circ" />**:
@@ -278,8 +353,33 @@ Angle <InlineMath math="330^\circ" /> is in quadrant IV with **reference angle**
 </MathContainer>
 The blade tip has coordinates <InlineMath math="\left(\frac{\sqrt3}{2},-\frac12\right)" />.
 
-<UnitCircle
-  title="Coordinates After Rotation"
-  description="Change the angle from 330 to 1050 degrees: the endpoint stays the same because the difference is two full turns."
-  angle={330}
+<MathVisual
+  title={<>Coordinates After Rotation</>}
+  description={<>Change the angle from 330 to 1050 degrees: the endpoint stays the same because the difference is two full turns.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 1080, step: 1, value: 330, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
 />

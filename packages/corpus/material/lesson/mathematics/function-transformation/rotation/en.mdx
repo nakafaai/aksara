@@ -21,10 +21,35 @@ For a function graph, the rotation also changes the equation. To get the new equ
 
 Start with the point <InlineMath math="(1, 0)" />, which lies at distance <InlineMath math="1" /> from the origin. Because **a rotation keeps every distance to the center**, its image stays on the circle of radius <InlineMath math="1" />, at the end of the radius that makes the angle <InlineMath math="\theta" /> with the positive <InlineMath math="x" />-axis. On the unit circle, the point at the end of the radius with angle <InlineMath math="\theta" /> has coordinates <InlineMath math="(\cos\theta, \sin\theta)" />. That is how cosine and sine are defined for any angle.
 
-<UnitCircle
+<MathVisual
   title={<>Image of the point <InlineMath math="(1, 0)" /> after a turn by <InlineMath math="\theta" /></>}
   description={<>Change <InlineMath math="\theta" /> in the angle field. The end of the radius is the image of <InlineMath math="(1, 0)" />, so its coordinates are always <InlineMath math="(\cos\theta, \sin\theta)" /> and its distance from the origin stays <InlineMath math="1" />.</>}
-  angle={60}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 60, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
 />
 
 The angle field starts at <InlineMath math="60" />, so the end of the radius sits at <InlineMath math="\left(\tfrac{1}{2}, \tfrac{\sqrt{3}}{2}\right)" />, matching the values <InlineMath math="\cos 60^\circ = \tfrac{1}{2}" /> and <InlineMath math="\sin 60^\circ = \tfrac{\sqrt{3}}{2}" /> shown below the circle.

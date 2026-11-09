@@ -21,7 +21,7 @@ Pada **dua dimensi**, kita menggunakan sumbu <InlineMath math="x" /> (horizontal
 
 Artinya, titik <InlineMath math="P" /> berada <InlineMath math="3 \text{ satuan}" /> ke kanan (sumbu <InlineMath math="x" /> positif) dan <InlineMath math="4 \text{ satuan}" /> ke atas (sumbu <InlineMath math="y" /> positif) dari titik asal <InlineMath math="O(0, 0)" />.
 
-<VectorChart
+<MathVisual
   title={
     <>
       Vektor Posisi <InlineMath math="P(3, 4)" />
@@ -33,16 +33,21 @@ Artinya, titik <InlineMath math="P" /> berada <InlineMath math="3 \text{ satuan}
       <InlineMath math="P(3, 4)" />.
     </>
   }
-  vectors={[
-    {
-      id: "OP",
-      name: <InlineMath math="OP" />,
-      points: [
-        { x: 0, y: 0 },
-        { x: 3, y: 4 },
-      ],
-    },
-  ]}
+  labels={{
+    op: <InlineMath math="OP" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "op", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "op-tip", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "op", objectId: "op", at: { x: 1.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
 />
 
 ### Ruang tiga dimensi
@@ -100,8 +105,8 @@ Vektor yang menghubungkan dua titik sembarang, misalnya dari titik <InlineMath m
 
 Contohnya: vektor perpindahan dari <InlineMath math="P(3, 4)" /> ke <InlineMath math="Q(-2, -8)" /> atau dari <InlineMath math="Q(-2, -8)" /> ke <InlineMath math="R(1, 3)" />.
 
-<VectorChart
-  title="Vektor Perpindahan"
+<MathVisual
+  title={<>Vektor Perpindahan</>}
   description={
     <>
       Vektor perpindahan dari <InlineMath math="P" /> ke{" "}
@@ -109,24 +114,25 @@ Contohnya: vektor perpindahan dari <InlineMath math="P(3, 4)" /> ke <InlineMath 
       <InlineMath math="R" />
     </>
   }
-  vectors={[
-    {
-      id: "QR",
-      name: <InlineMath math="QR" />,
-      points: [
-        { x: -2, y: -8 },
-        { x: 1, y: 3 },
-      ],
-    },
-    {
-      id: "PQ",
-      name: <InlineMath math="PQ" />,
-      points: [
-        { x: 3, y: 4 },
-        { x: -2, y: -8 },
-      ],
-    },
-  ]}
+  labels={{
+    qr: <InlineMath math="QR" />,
+    pq: <InlineMath math="PQ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 4 }, y: { min: -9.8, max: 5.8 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "qr", kind: "segment", from: { x: -2, y: -8 }, to: { x: 1, y: 3 }, appearance: "primary" },
+      { id: "qr-tip", kind: "point", at: { x: 1, y: 3 }, appearance: "primary" },
+      { id: "pq", kind: "segment", from: { x: 3, y: 4 }, to: { x: -2, y: -8 }, appearance: "secondary" },
+      { id: "pq-tip", kind: "point", at: { x: -2, y: -8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "qr", objectId: "qr", at: { x: -0.5, y: -2.5 }, placement: "above-left" },
+      { key: "pq", objectId: "pq", at: { x: 0.5, y: -2 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Hitung perpindahan dengan **koordinat akhir dikurangi koordinat awal**. Untuk kedua panah pada diagram:

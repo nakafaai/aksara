@@ -18,10 +18,35 @@ Nilai trigonometri berlaku untuk **sudut di setiap kuadran**. Lingkaran satuan m
 
 Untuk memahami fungsi trigonometri sebarang sudut, kita menggunakan **lingkaran satuan yang berjari-jari** <InlineMath math="1" /> dan berpusat di <InlineMath math="O(0,0)" />.
 
-<UnitCircle
-  title="Eksplorasi Lingkaran Satuan"
-  description="Ubah nilai sudut pada kolom di bawah untuk melihat perubahan koordinat titik pada lingkaran."
-  angle={30}
+<MathVisual
+  title={<>Eksplorasi Lingkaran Satuan</>}
+  description={<>Ubah nilai sudut pada kolom di bawah untuk melihat perubahan koordinat titik pada lingkaran.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 30, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
 />
 
 Pahami dengan detail:
@@ -45,10 +70,35 @@ Pahami dengan detail:
 
 Saat titik bergerak mengelilingi lingkaran, koordinat <InlineMath math="x" /> dan <InlineMath math="y" /> dapat bernilai positif atau negatif. **Tanda kedua koordinat** tersebut menentukan tanda fungsi trigonometri pada setiap kuadran.
 
-<UnitCircle
-  title="Visualisasi Perubahan Tanda"
+<MathVisual
+  title={<>Visualisasi Perubahan Tanda</>}
   description={<>Amati bagaimana nilai <InlineMath math="\sin" />, <InlineMath math="\cos" />, dan <InlineMath math="\tan" /> berubah saat sudut melewati setiap kuadran.</>}
-  angle={135}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 135, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
 />
 
 **Tanda di setiap kuadran**:
@@ -66,10 +116,35 @@ Tentukan tanda fungsi dari koordinat titiknya. <InlineMath math="\sin\theta" /> 
 
 Untuk sudut yang sisi terminalnya tidak terletak pada sumbu koordinat, sudut referensi adalah **sudut lancip tunggal** <InlineMath math="0^\circ<\alpha<90^\circ" /> antara sisi terminal itu dan sumbu <InlineMath math="x" /> terdekat. Dengan sudut ini, kita dapat memakai kembali nilai sudut lancip yang sudah dikenal. Untuk sudut kuadrantal, seperti <InlineMath math="90^\circ" /> atau <InlineMath math="180^\circ" />, baca koordinatnya langsung dari lingkaran satuan.
 
-<UnitCircle
-  title="Memahami Sudut Referensi"
+<MathVisual
+  title={<>Memahami Sudut Referensi</>}
   description={<>Tentukan sudut lancip antara jari-jari dan sumbu <InlineMath math="x" /> saat sudut berubah.</>}
-  angle={135}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 135, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
 />
 
 **Cara menentukan sudut referensi <InlineMath math="\alpha" /> untuk sudut nonkuadrantal <InlineMath math="0^\circ<\theta<360^\circ" />**:
@@ -280,8 +355,33 @@ Sudut <InlineMath math="330^\circ" /> berada di kuadran IV dengan **sudut refere
 </MathContainer>
 Koordinat ujung bilah adalah <InlineMath math="\left(\frac{\sqrt3}{2},-\frac12\right)" />.
 
-<UnitCircle
-  title="Koordinat Setelah Putaran"
-  description="Ubah sudut dari 330 ke 1050 derajat: titik akhirnya sama karena selisihnya dua putaran penuh."
-  angle={330}
+<MathVisual
+  title={<>Koordinat Setelah Putaran</>}
+  description={<>Ubah sudut dari 330 ke 1050 derajat: titik akhirnya sama karena selisihnya dua putaran penuh.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 1080, step: 1, value: 330, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
 />
