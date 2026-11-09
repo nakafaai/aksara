@@ -16,7 +16,11 @@ For assessed content, also apply the
   `Cek cepat:`, `Kurzer Check:`, `Kurze Kontrolle:`, or `Kurz geprüft:`.
 - Use Mermaid for a sequence, flow, hierarchy, state change, or relationship
   that is materially harder to understand in prose. Do not convert a simple
-  list or one-step process into a diagram.
+  list or one-step process into a diagram. Write the chart as static text in
+  a template literal, and quote any label that holds punctuation, such as
+  `A["E(C) = 28"]`. The compiler parses every chart with the Mermaid version
+  Nakafa draws it with and refuses one it cannot parse, naming its file and
+  line.
 - Use math components for notation and derivation. Use a domain component such
   as a graph, number line, simulation, or interactive model only when it models
   the concept the learner is studying.

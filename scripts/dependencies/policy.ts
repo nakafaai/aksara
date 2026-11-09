@@ -131,6 +131,16 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     reviewedLatest: "1.4.4",
     source: "package-manager",
   },
+  {
+    approvedCurrent: "12.3.0",
+    cohort: "Mermaid",
+    dependency: "mermaid",
+    reason:
+      "The compiler parses every authored Mermaid diagram with the Mermaid that nakafa.com draws it with, the exact pin in nakafa.com's packages/design-system/package.json, so a diagram that passes here draws there. Both repositories move to a new release in one step: nakafa.com first, then this hold.",
+    registry: "mermaid@latest",
+    reviewedLatest: "12.3.0",
+    source: "catalog",
+  },
 ];
 
 /** Extracts the exact version from a direct, alias, or package-manager spec. */
