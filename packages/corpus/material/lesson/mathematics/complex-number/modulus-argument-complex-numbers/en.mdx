@@ -18,51 +18,33 @@ A complex number <InlineMath math="z = x + iy" /> is drawn as the point <InlineM
 
 For <InlineMath math="z = 3 + 4i" />, the modulus is <InlineMath math="\sqrt{9 + 16} = 5" />, and the argument is <InlineMath math="\arctan\frac{4}{3} \approx 53.13^\circ" />. The interactive graph draws that vector with its components <InlineMath math="x = 3" /> and <InlineMath math="y = 4" />, which form a right triangle with hypotenuse <InlineMath math="|z|" />.
 
-<LineEquation
-  title="The Modulus as a Hypotenuse"
-  description={<>The vector <InlineMath math="z = 3 + 4i" /> with its components <InlineMath math="x = 3" /> and <InlineMath math="y = 4" />. The modulus <InlineMath math="|z| = 5" /> is the hypotenuse of that right triangle.</>}
-  cameraPosition={[1.5, 2, 8]}
-  cameraTarget={[1.5, 2, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#0284c7",
-      labels: [
-        { text: <InlineMath math="z=3+4i" />, at: 1, offset: [0.5, 0.5, 0] },
-        {
-          text: <InlineMath math="|z|" />,
-          at: 1,
-          offset: [-2, -1.5, 0],
-
-        },
-      ],
-      cone: { position: "end" },
-    },
-    // Helper lines for x and y
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="x=3" />, at: 1, offset: [-1.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 3, y: 0, z: 0 },
-        { x: 3, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#059669",
-      labels: [{ text: <InlineMath math="y=4" />, at: 1, offset: [0.65, -2, 0] }],
-    },
-  ]}
+<MathVisual
+  title={<><InlineMath math="|z| = 5" /> is the hypotenuse</>}
+  description={<>The vector <InlineMath math="z = 3 + 4i" /> with components <InlineMath math="x = 3" /> and <InlineMath math="y = 4" />. Its modulus <InlineMath math="|z| = 5" /> is the hypotenuse of that right triangle, and its argument is about <InlineMath math="53.13^\circ" />.</>}
+  labels={{
+    z: <InlineMath math="|z| = 5" />,
+    x: <InlineMath math="x = 3" />,
+    y: <InlineMath math="y = 4" />,
+    theta: <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.4 }, y: { min: -0.7, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "highlight" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 4 / 5, startDegrees: 0, sweepDegrees: Math.atan2(4, 3) * 180 / Math.PI, appearance: "highlight" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 3, y: 4 }, { x: 277 / 100, y: 193 / 50 }, { x: 293 / 100, y: 187 / 50 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 3 / 2, y: 2 }, placement: "above-left" },
+      { key: "x", objectId: "x", at: { x: 3 / 2, y: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 0.8 * Math.cos(Math.atan2(4, 3) / 2), y: 0.8 * Math.sin(Math.atan2(4, 3) / 2) }, placement: "right" },
+    ],
+  }}
 />
 
 The origin has modulus <InlineMath math="0" />, but **the argument of zero is undefined**, because the zero vector has no direction.
@@ -96,8 +78,8 @@ A calculator returns <InlineMath math="\arctan\frac{y}{x}" /> only between <Inli
 The interactive graph shows four numbers with modulus <InlineMath math="2" />, one in each quadrant, with the arc of each argument. The arcs in quadrants III and IV turn clockwise, because those arguments are negative.
 
 <MathVisual
-  title="Arguments in all four quadrants"
-  description="Four vectors with modulus 2. The arcs above the real axis turn counterclockwise, and the arcs below it turn clockwise."
+  title={<>Arguments in all four quadrants</>}
+  description={<>Four vectors with modulus 2. The arcs above the real axis turn counterclockwise, and the arcs below it turn clockwise.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2.4, max: 2.4 }, y: { min: -2.2, max: 2.2 } },
@@ -138,8 +120,8 @@ The interactive graph shows four numbers with modulus <InlineMath math="2" />, o
 Points on an axis need no quotient <InlineMath math="\frac{y}{x}" />. Their direction reads off directly: the positive real axis is <InlineMath math="0^\circ" />, the positive imaginary axis <InlineMath math="90^\circ" />, the negative real axis <InlineMath math="180^\circ" />, and the negative imaginary axis <InlineMath math="-90^\circ" />.
 
 <Mermaid
-  title="Choosing the argument from the quadrant"
-  description="The same reference angle gives a different argument in each quadrant."
+  title={<>Choosing the argument from the quadrant</>}
+  description={<>The same reference angle gives a different argument in each quadrant.</>}
   chart={`flowchart TD
   A["Find r and the acute reference angle α"] --> B{"Signs of x and y?"}
   B -->|"x positive, y positive"| C["θ = α"]
@@ -236,3 +218,34 @@ Check: <InlineMath math="\cos(-90^\circ) = 0" /> and <InlineMath math="\sin(-90^
 </MathContainer>
 
 Check: <InlineMath math="13\cos(-67.38^\circ) \approx 5.00" /> and <InlineMath math="13\sin(-67.38^\circ) \approx -12.00" />, so **quadrant IV gives a negative argument**.
+
+Problem 4 on the plane: <InlineMath math="5 - 12i" /> lies in quadrant IV, 5 to the right and 12 down. The modulus is <InlineMath math="\sqrt{25 + 144} = 13" />, and the argument is measured clockwise: <InlineMath math="\arg z \approx -67.38^\circ" />.
+
+<MathVisual
+  title={<>The modulus and argument of <InlineMath math="5 - 12i" /></>}
+  description={<>The vector to <InlineMath math="5 - 12i" /> with components 5 and <InlineMath math="-12" />, modulus 13 and a clockwise arc for <InlineMath math="\arg z \approx -67.38^\circ" />.</>}
+  labels={{
+    z: <InlineMath math="|z| = 13" />,
+    x: <InlineMath math="5" />,
+    y: <InlineMath math="-12" />,
+    theta: <InlineMath math="\arg z" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6.4 }, y: { min: -13, max: 1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 5, y: 0 }, to: { x: 5, y: -12 }, appearance: "highlight" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 2, startDegrees: 0, sweepDegrees: -Math.atan2(12, 5) * 180 / Math.PI, appearance: "answer" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: -12 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 5, y: -12 }, { x: 649 / 130, y: -149 / 13 }, { x: 601 / 130, y: -151 / 13 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 5 / 2, y: -6 }, placement: "left" },
+      { key: "x", objectId: "x", at: { x: 5 / 2, y: 0 }, placement: "above" },
+      { key: "y", objectId: "y", at: { x: 5, y: -6 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 2 * Math.cos(Math.atan2(12, 5) / 2), y: -2 * Math.sin(Math.atan2(12, 5) / 2) }, placement: "right" },
+    ],
+  }}
+/>

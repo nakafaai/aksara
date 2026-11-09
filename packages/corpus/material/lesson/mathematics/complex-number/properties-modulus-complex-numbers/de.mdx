@@ -3,7 +3,7 @@ export const metadata = {
   description: "Regeln für Beträge von Produkten, Quotienten und Konjugierten sowie Dreiecksungleichungen mit Beweisen und vollständigen Beispielen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Komplexe Zahlen",
 };
 
@@ -67,6 +67,36 @@ Der Zusammenhang lässt sich zeigen, indem das Produkt mit seinem Konjugierten m
 
 Da beide Beträge nicht negativ sind, liefert das Ziehen der Quadratwurzel die Produktregel.
 
+Nimm <InlineMath math="z_1 = 6 + 8i" /> und <InlineMath math="z_2 = 3 - i" /> aus der Übung. Ihr Produkt ist <InlineMath math="26 + 18i" />, und seine Länge <InlineMath math="\sqrt{1000} = 10\sqrt{10}" /> ist gleich <InlineMath math="|z_1| \cdot |z_2| = 10 \cdot \sqrt{10}" />.
+
+<MathVisual
+  title={<>Der Betrag eines Produkts</>}
+  description={<>Die Faktoren <InlineMath math="6 + 8i" /> und <InlineMath math="3 - i" /> und ihr Produkt <InlineMath math="26 + 18i" /> der Länge <InlineMath math="10\sqrt{10}" />.</>}
+  labels={{
+    z1: <InlineMath math="6 + 8i" />,
+    z2: <InlineMath math="3 - i" />,
+    p: <InlineMath math="26 + 18i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 28 }, y: { min: -2, max: 20 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 127 / 25, y: 186 / 25 }, { x: 143 / 25, y: 174 / 25 }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 3, y: -1 }, { x: (3) + (-3 / Math.sqrt(10)) + (2 / 5 / Math.sqrt(10)), y: (-1) + (1 / Math.sqrt(10)) + (6 / 5 / Math.sqrt(10)) }, { x: (3) + (-3 / Math.sqrt(10)) + (-2 / 5 / Math.sqrt(10)), y: (-1) + (1 / Math.sqrt(10)) + (-6 / 5 / Math.sqrt(10)) }], appearance: "secondary" },
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 26, y: 18 }, appearance: "answer" },
+      { id: "p-head", kind: "polygon", vertices: [{ x: 26, y: 18 }, { x: (26) + (-26 / Math.sqrt(1000)) + (-36 / 5 / Math.sqrt(1000)), y: (18) + (-18 / Math.sqrt(1000)) + (52 / 5 / Math.sqrt(1000)) }, { x: (26) + (-26 / Math.sqrt(1000)) + (36 / 5 / Math.sqrt(1000)), y: (18) + (-18 / Math.sqrt(1000)) + (-52 / 5 / Math.sqrt(1000)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 6, y: 8 }, placement: "above-left" },
+      { key: "z2", objectId: "z2", at: { x: 3, y: -1 }, placement: "below" },
+      { key: "p", objectId: "p", at: { x: 26, y: 18 }, placement: "left" },
+    ],
+  }}
+/>
+
 ### Betrag eines Quotienten
 
 Der Betrag eines Quotienten ist der **Quotient der beiden Beträge**, sofern der Nenner nicht null ist.
@@ -92,8 +122,8 @@ Der direkte Abstand ist kürzer als der Weg über die Ecke des rechtwinkligen Dr
 <BlockMath math="|3+4i|=\sqrt{3^2+4^2}=5\leq3+4=7" />
 
 <MathVisual
-  title="Direkter Abstand und Weg über zwei Seiten"
-  description="Ein waagerechter Vektor der Länge 3 und ein senkrechter Vektor der Länge 4 ergeben einen direkten Vektor der Länge 5. Die Länge 5 überschreitet die Weglänge 3 plus 4 nicht."
+  title={<>Direkter Abstand und Weg über zwei Seiten</>}
+  description={<>Ein waagerechter Vektor der Länge 3 und ein senkrechter Vektor der Länge 4 ergeben einen direkten Vektor der Länge 5. Die Länge 5 überschreitet die Weglänge 3 plus 4 nicht.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -0.5, max: 4.5 } },
@@ -204,3 +234,13 @@ Berechne zuerst die Beträge, verwende das Konjugierte für das Betragsquadrat u
 Beide Grenzen sind erreichbar: Entgegengesetzte Richtungen liefern die Untergrenze, dieselbe Richtung liefert die Obergrenze.
 
 <BlockMath math="\begin{aligned}|3+(-5)|&amp;=2\\|3+5|&amp;=8\end{aligned}" />
+
+Dreh <InlineMath math="z_2" /> mit <InlineMath math="|z_2| = 5" /> herum, während <InlineMath math="z_1 = 3" /> fest bleibt. Die Länge <InlineMath math="|z_1 + z_2| = \sqrt{34 + 30\cos\theta}" /> fällt von 8 bei <InlineMath math="\theta = 0^\circ" /> auf 2 bei <InlineMath math="\theta = 180^\circ" />, bleibt also immer zwischen <InlineMath math="5 - 3 = 2" /> und <InlineMath math="3 + 5 = 8" />.
+
+<BarChart
+  title={<><InlineMath math="|z_1 + z_2|" />, während sich <InlineMath math="z_2" /> dreht</>}
+  description={<>Balken von <InlineMath math="|3 + 5(\cos\theta + i\sin\theta)|" /> für <InlineMath math="\theta = 0^\circ, 60^\circ, 90^\circ, 120^\circ, 180^\circ" />: 8, 7, <InlineMath math="\sqrt{34}" />, <InlineMath math="\sqrt{19}" /> und 2.</>}
+  yAxisLabel="Betrag"
+  data={[0, 60, 90, 120, 180].map((d) => ({ name: d + "°", value: Math.sqrt(34 + 30 * Math.cos((d * Math.PI) / 180)) }))}
+  chartConfig={{ value: { label: "Betrag", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

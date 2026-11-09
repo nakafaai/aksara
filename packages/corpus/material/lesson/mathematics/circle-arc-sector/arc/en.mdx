@@ -3,7 +3,7 @@ export const metadata = {
   description: "Distinguish minor, major, and semicircular arcs and calculate arc length from the central angle.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Circle Arcs and Sectors",
 };
 
@@ -14,37 +14,37 @@ A circle arc is <Highlight>the part of a circle's circumference</Highlight> betw
 
 Each arc has two endpoints on the circle. On a fixed circle, its length depends on the measure of the central angle that subtends it: a larger central angle gives a longer arc.
 
-<LineEquation
-  title={<>Circle Arc Visualization</>}
-  description="Circle arcs with various central angle sizes."
-  cameraPosition={[0, 0, 12]}
-  data={[
-    {
-      kind: "circle-outline", radius: 4,
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: "Circle", at: 56, offset: [1.5, 0.5, 0] }]
-    },
-    { kind: "circle-arc", radius: 4,
-      startDegrees: 30,
-      sweepDegrees: 120,
-      segments: 12,
-      color: "#ea580c",
-      label: { text: <>Arc <InlineMath math="AB" /></>, offset: [1.5, 0.5, 0] } },
-    { kind: "circle-arc", radius: 4, startDegrees: 150, sweepDegrees: 240, color: "#db2777", label: { text: "Major arc", offset: [0, -0.5, 0] } },
-    {
-      kind: "circle-radius", radius: 4, degrees: 30,
-      color: "#9333ea",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A" />, at: 1, offset: [0.3, 0.3, 0] }]
-    },
-    {
-      kind: "circle-radius", radius: 4, degrees: 150,
-      color: "#9333ea",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.3, 0] }]
-    }
-  ]}
+<MathVisual
+  title={<>Minor and major arc <InlineMath math="AB" /></>}
+  description={<>On a circle of radius 4, the points <InlineMath math="A" /> and <InlineMath math="B" /> at <InlineMath math="30^\circ" /> and <InlineMath math="150^\circ" /> split the circle into a <InlineMath math="120^\circ" /> minor arc and a <InlineMath math="240^\circ" /> major arc.</>}
+  labels={{
+    minor: <>Minor arc</>,
+    major: <>Major arc</>,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.6, max: 4.6 }, y: { min: -4.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "major", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 150, sweepDegrees: 240, appearance: "secondary" },
+      { id: "minor", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 30, sweepDegrees: 120, appearance: "primary" },
+      { id: "oa", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(3), y: 2 }, appearance: "construction" },
+      { id: "ob", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2 * Math.sqrt(3), y: 2 }, appearance: "construction" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "a", kind: "point", at: { x: 2 * Math.sqrt(3), y: 2 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: -2 * Math.sqrt(3), y: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "minor", objectId: "minor", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "major", objectId: "major", at: { x: 0, y: -4 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 2 * Math.sqrt(3), y: 2 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -2 * Math.sqrt(3), y: 2 }, placement: "left" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Types of Arcs Based on Size
@@ -73,29 +73,31 @@ An angle in radians is **arc length divided by radius**, so an angle in radians 
 
 In the second formula, <InlineMath math="\alpha" /> is the central angle in radians.
 
-<LineEquation
-  title={<>Arc Length Comparison</>}
-  description="Arcs with different central angles on the same circle."
-  cameraPosition={[0, 0, 10]}
-  data={[
-    {
-      kind: "circle-outline", radius: 3,
-      color: "#0891b2",
-      showPoints: false
-    },
-    { kind: "circle-arc", radius: 3,
-      startDegrees: 0,
-      sweepDegrees: 60,
-      segments: 6,
-      color: "#ea580c",
-      label: { text: <InlineMath math="60^\circ" />, offset: [0.8, 0.3, 0] } },
-    { kind: "circle-arc", radius: 3,
-      startDegrees: 180,
-      sweepDegrees: 120,
-      segments: 12,
-      color: "#9333ea",
-      label: { text: <InlineMath math="120^\circ" />, offset: [-1.5, 0.3, 0] } }
-  ]}
+<MathVisual
+  title={<>Arc length grows with the angle</>}
+  description={<>On a circle of radius 3, a <InlineMath math="60^\circ" /> arc and a <InlineMath math="120^\circ" /> arc. The second is twice as long: <InlineMath math="\pi" /> and <InlineMath math="2\pi" />.</>}
+  labels={{
+    small: <InlineMath math="60^\circ" />,
+    large: <InlineMath math="120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "reference" },
+      { id: "r1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "r2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 2, y: 3 * Math.sqrt(3) / 2 }, appearance: "construction" },
+      { id: "r3", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: 0 }, appearance: "construction" },
+      { id: "r4", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / 2, y: -3 * Math.sqrt(3) / 2 }, appearance: "construction" },
+      { id: "small", kind: "arc", center: { x: 0, y: 0 }, radius: 3, startDegrees: 0, sweepDegrees: 60, appearance: "primary" },
+      { id: "large", kind: "arc", center: { x: 0, y: 0 }, radius: 3, startDegrees: 180, sweepDegrees: 120, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "small", objectId: "small", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "above-right" },
+      { key: "large", objectId: "large", at: { x: -3 * Math.sqrt(3) / 2, y: -3 / 2 }, placement: "below-left" },
+    ],
+  }}
 />
 
 ## Relationship Between Arc and Central Angle
@@ -186,3 +188,29 @@ Using the ratio concept:
 <BlockMath math="= \frac{45^\circ}{360^\circ} \times 88" />
 <BlockMath math="= \frac{1}{8} \times 88 = 11 \text{ cm}" />
 </MathContainer>
+
+In Solution 1 the central angle <InlineMath math="90^\circ" /> is a quarter turn, so the arc is a quarter of the circumference: <InlineMath math="\frac{90}{360} \times 2\pi \times 14 = 7\pi \approx 21.99" /> cm.
+
+<MathVisual
+  title={<>A <InlineMath math="90^\circ" /> arc on a circle of radius 14 cm</>}
+  description={<>The quarter arc of a circle with radius 14 cm, of length <InlineMath math="7\pi \approx 21.99" /> cm.</>}
+  labels={{
+    arc: <InlineMath math="7\pi \approx 21.99" />,
+    r: <InlineMath math="14" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 15 }, y: { min: -15, max: 15 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 14, appearance: "reference" },
+      { id: "r1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 14, y: 0 }, appearance: "construction" },
+      { id: "r2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 14 }, appearance: "construction" },
+      { id: "arc", kind: "arc", center: { x: 0, y: 0 }, radius: 14, startDegrees: 0, sweepDegrees: 90, appearance: "primary" },
+    ],
+    labels: [
+      { key: "arc", objectId: "arc", at: { x: 14 * Math.cos(Math.PI / 4), y: 14 * Math.sin(Math.PI / 4) }, placement: "above-right" },
+      { key: "r", objectId: "r1", at: { x: 7, y: 0 }, placement: "below" },
+    ],
+  }}
+/>

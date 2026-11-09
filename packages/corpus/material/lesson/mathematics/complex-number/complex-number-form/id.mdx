@@ -3,7 +3,7 @@ export const metadata = {
   description: "Ubah bilangan kompleks di antara bentuk Kartesius, polar, dan eksponensial dengan formula Euler.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-01",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Bilangan Kompleks",
 };
 
@@ -25,50 +25,36 @@ Bilangan kompleks <InlineMath math="z = x + iy" /> juga dapat dipandang sebagai 
 
 Setiap bilangan kompleks <InlineMath math="z = x + iy" /> dapat ditempatkan pada titik <InlineMath math="(x, y)" /> di bidang kompleks. **Vektor posisi** dari titik asal <InlineMath math="(0, 0)" /> ke titik tersebut mewakili bilangan yang sama secara geometris.
 
-<LineEquation
-  title="Bilangan Kompleks di Bidang Kompleks"
-  description="Visualisasi beberapa bilangan kompleks sebagai titik dan vektor pada bidang kompleks."
-  cameraPosition={[0.7, 0.5, 8.5]}
-  cameraTarget={[0.7, 0.5, 0]}
-  showZAxis={false}
-  data={[
-    {
-    points: [
-      { x: 0, y: 0, z: 0 },
-      { x: 3, y: 2, z: 0 },
+<MathVisual
+  title={<>Empat bilangan kompleks pada bidang kompleks</>}
+  description={<><InlineMath math="z_1 = 3 + 2i" />, <InlineMath math="z_2 = -1 - i" />, <InlineMath math="z_3 = 2" />, dan <InlineMath math="z_4 = i" /> sebagai vektor posisi dari titik asal.</>}
+  labels={{
+    z1: <InlineMath math="z_1 = 3 + 2i" />,
+    z2: <InlineMath math="z_2 = -1 - i" />,
+    z3: <InlineMath math="z_3 = 2" />,
+    z4: <InlineMath math="z_4 = i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 3.8 }, y: { min: -1.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 3, y: 2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: -1 }, appearance: "secondary" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: -1, y: -1 }, { x: (-1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)) }, { x: (-1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)) }], appearance: "secondary" },
+      { id: "z3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "z3-head", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 7 / 4, y: 1 / 10 }, { x: 7 / 4, y: -1 / 10 }], appearance: "construction" },
+      { id: "z4", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "highlight" },
+      { id: "z4-head", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: -1 / 10, y: 3 / 4 }, { x: 1 / 10, y: 3 / 4 }], appearance: "highlight" },
     ],
-    smooth: false,
-    color: "#e11d48",
-    labels: [{ text: <InlineMath math="z_1=3+2i" />, at: 1, offset: [0, 0.6, 0] }],
-    },
-    {
-    points: [
-      { x: 0, y: 0, z: 0 },
-      { x: -1, y: -1, z: 0 },
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "z2", objectId: "z2", at: { x: -1, y: -1 }, placement: "below" },
+      { key: "z3", objectId: "z3", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "z4", objectId: "z4", at: { x: 0, y: 1 }, placement: "above" },
     ],
-    smooth: false,
-    color: "#059669",
-    labels: [{ text: <InlineMath math="z_2=-1-i" />, at: 1, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-    points: [
-      { x: 0, y: 0, z: 0 },
-      { x: 2, y: 0, z: 0 },
-    ],
-    smooth: false,
-    color: "#7c3aed",
-    labels: [{ text: <InlineMath math="z_3=2" />, at: 1, offset: [0.5, 0.5, 0] }],
-    },
-    {
-    points: [
-      { x: 0, y: 0, z: 0 },
-      { x: 0, y: 1, z: 0 },
-    ],
-    smooth: false,
-    color: "#d97706",
-    labels: [{ text: <InlineMath math="z_4=i" />, at: 1, offset: [-1, 0.5, 0] }],
-    },
-  ]}
+  }}
 />
 
 ## Bentuk Polar atau Kutub
@@ -131,6 +117,37 @@ Jadi, bentuk polarnya:
 
 <BlockMath math="z = \sqrt{2} (\cos 45^\circ + i \sin 45^\circ)" />
 
+Untuk <InlineMath math="z = 1 + i" />, panjang panahnya <InlineMath math="r = \sqrt2" /> dan sudutnya terhadap sumbu real positif <InlineMath math="\theta = 45^\circ" />, jadi <InlineMath math="z = \sqrt2(\cos 45^\circ + i\sin 45^\circ)" />.
+
+<MathVisual
+  title={<><InlineMath math="1 + i" /> dalam bentuk polar</>}
+  description={<>Panah ke <InlineMath math="1 + i" /> dengan panjang <InlineMath math="r = \sqrt2" /> dan sudut <InlineMath math="\theta = 45^\circ" />, beserta komponennya 1 dan 1.</>}
+  labels={{
+    z: <InlineMath math="r = \sqrt2" />,
+    theta: <InlineMath math="45^\circ" />,
+    x: <InlineMath math="1" />,
+    y: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 1.6 }, y: { min: -0.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 1 }, appearance: "highlight" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 2 / 5, startDegrees: 0, sweepDegrees: 45, appearance: "highlight" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "z-head", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: (1) + (-1 / 8 / Math.sqrt(2)) + (-1 / 20 / Math.sqrt(2)), y: (1) + (-1 / 8 / Math.sqrt(2)) + (1 / 20 / Math.sqrt(2)) }, { x: (1) + (-1 / 8 / Math.sqrt(2)) + (1 / 20 / Math.sqrt(2)), y: (1) + (-1 / 8 / Math.sqrt(2)) + (-1 / 20 / Math.sqrt(2)) }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 1 / 2, y: 1 / 2 }, placement: "above-left" },
+      { key: "theta", objectId: "theta", at: { x: 0.4 * Math.cos(Math.PI / 8), y: 0.4 * Math.sin(Math.PI / 8) }, placement: "right" },
+      { key: "x", objectId: "x", at: { x: 1 / 2, y: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: 1, y: 1 / 2 }, placement: "right" },
+    ],
+  }}
+/>
+
 ### Latihan Bentuk Polar
 
 Cari **modulus dan argumen** kedua bilangan. Jika titik berada pada sumbu, baca arah langsung tanpa membagi dengan komponen real nol.
@@ -179,6 +196,38 @@ Nyatakan bilangan kompleks berikut dalam bentuk polar:
     Sudut koterminal <InlineMath math="270^\circ" /> memberikan bentuk yang setara:
 
     <BlockMath math="z = 1(\cos 270^\circ + i \sin 270^\circ)" />
+
+Letakkan kedua bilangan latihan pada satu bidang. <InlineMath math="1 + i\sqrt3" /> memiliki <InlineMath math="r = 2" /> dan <InlineMath math="\theta = 60^\circ" />, sedangkan <InlineMath math="-i" /> memiliki <InlineMath math="r = 1" /> dan <InlineMath math="\theta = -90^\circ" />, diukur searah jarum jam dari sumbu real positif.
+
+<MathVisual
+  title={<><InlineMath math="1 + i\sqrt3" /> dan <InlineMath math="-i" /> dengan sudutnya</>}
+  description={<>Panah ke <InlineMath math="1 + i\sqrt3" /> dengan sudut <InlineMath math="60^\circ" /> dan panah ke <InlineMath math="-i" /> dengan sudut <InlineMath math="-90^\circ" />.</>}
+  labels={{
+    a: <InlineMath math="1 + i\sqrt3" />,
+    b: <InlineMath math="-i" />,
+    ta: <InlineMath math="60^\circ" />,
+    tb: <InlineMath math="-90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 1.8 }, y: { min: -1.4, max: 2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ta", kind: "arc", center: { x: 0, y: 0 }, radius: 1 / 2, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "tb", kind: "arc", center: { x: 0, y: 0 }, radius: 2 / 5, startDegrees: 0, sweepDegrees: -90, appearance: "construction" },
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: Math.sqrt(3) }, appearance: "primary" },
+      { id: "a-head", kind: "polygon", vertices: [{ x: 1, y: Math.sqrt(3) }, { x: 1 - 1 / 6 * (1 / 2) - 1 / 15 * (Math.sqrt(3) / 2), y: Math.sqrt(3) - 1 / 6 * (Math.sqrt(3) / 2) + 1 / 15 * (1 / 2) }, { x: 1 - 1 / 6 * (1 / 2) + 1 / 15 * (Math.sqrt(3) / 2), y: Math.sqrt(3) - 1 / 6 * (Math.sqrt(3) / 2) - 1 / 15 * (1 / 2) }], appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "b-head", kind: "polygon", vertices: [{ x: 0, y: -1 }, { x: 1 / 15, y: -5 / 6 }, { x: -1 / 15, y: -5 / 6 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1, y: Math.sqrt(3) }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 0, y: -1 }, placement: "right" },
+      { key: "ta", objectId: "ta", at: { x: 0.5 * Math.cos(Math.PI / 6), y: 0.5 * Math.sin(Math.PI / 6) }, placement: "right" },
+      { key: "tb", objectId: "tb", at: { x: 0.4 * Math.cos(Math.PI / 4), y: -0.4 * Math.sin(Math.PI / 4) }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Bentuk Eksponen
 

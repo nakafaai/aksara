@@ -4,7 +4,7 @@ export const metadata = {
   description: "Distinguish histograms from bar charts, read frequency patterns, and choose the chart that matches the data type.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-22",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Statistics",
 };
 
@@ -21,8 +21,8 @@ First decide whether the horizontal axis contains **separate categories** or int
 Bar charts are used for categorical data (such as phone brands or favorite sports):
 
 <BarChart
-  title="Bar Chart of Phone Brands Used by High School Students"
-  description="Shows the number of students per phone brand."
+  title={<>Bar Chart of Phone Brands Used by High School Students</>}
+  description={<>Shows the number of students per phone brand.</>}
   data={[
     { name: "Apple", value: 12 },
     { name: "Samsung", value: 10 },
@@ -58,8 +58,8 @@ Histograms, on the other hand, are used for numerical data grouped into interval
 These duration data contain <InlineMath math="90" /> observations. To avoid counting a class boundary twice, **include the left endpoint and exclude the right endpoint**, for example <InlineMath math="0\le t<2" /> and <InlineMath math="2\le t<4" />. The final class includes <InlineMath math="8\le t\le10" />. The variable <InlineMath math="t" /> is duration in hours.
 
 <HistogramChart
-  title="Histogram of Mobile Phone Usage by High School Students"
-  description="Shows the distribution of time students spend on their phones daily."
+  title={<>Histogram of Mobile Phone Usage by High School Students</>}
+  description={<>Shows the distribution of time students spend on their phones daily.</>}
   data={[
     { name: "0-2", value: 10 },
     { name: "2-4", value: 12 },
@@ -88,6 +88,24 @@ The histogram above shows the following phone-use pattern among high school stud
 - <InlineMath math="8" /> students use their phones for <InlineMath math="8\text{-}10 \text{ hours}" /> per day
 
 Together, <InlineMath math="32+28=60" /> of the <InlineMath math="90" /> observations fall between <InlineMath math="4\text{-}8 \text{ hours}" /> per day, so this range contains the majority. The single most frequent interval is <InlineMath math="4\text{-}6 \text{ hours}" />.
+
+Divide each frequency by the 90 observations to compare the classes as shares. The classes 4-6 and 6-8 hold <InlineMath math="\frac{32}{90} \approx 35.6\%" /> and <InlineMath math="\frac{28}{90} \approx 31.1\%" />, together two thirds of the students.
+
+<HistogramChart
+  title={<>Phone use as percentages</>}
+  description={<>Bars of <InlineMath math="\frac{f}{90} \times 100\%" /> for the classes 0-2, 2-4, 4-6, 6-8 and 8-10 hours.</>}
+  data={[["0-2", 10], ["2-4", 12], ["4-6", 32], ["6-8", 28], ["8-10", 8]].map(([name, f]) => ({ name, value: (100 * f) / 90 }))}
+  chartConfig={{
+    value: {
+      label: "Percentage of students",
+      colors: {
+        light: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+        dark: ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"],
+      },
+    },
+  }}
+  yAxisLabel="Percentage of students"
+/>
 
 ## Differences in Data Type and Bar Shape
 

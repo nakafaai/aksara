@@ -3,7 +3,7 @@ export const metadata = {
   description: "Connect infinite geometric series to a bouncing ball, then derive the convergence condition and infinite-sum formula.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-08",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Sequence and Series",
 };
 
@@ -23,6 +23,16 @@ The first term (<InlineMath math="a" />) is <InlineMath math="1" />, and the rat
 What _total distance_ does the ball travel from the moment it is released until it comes to rest?
 
 In the idealized model, the ball moves down, then up, down again, and so on without a final bounce. The total distance is built from all downward and upward paths. Because their lengths form an infinite geometric pattern, the calculation uses an **infinite geometric series**.
+
+Each bounce reaches a quarter of the previous height: 1 m, then <InlineMath math="\tfrac14" /> m, <InlineMath math="\tfrac{1}{16}" /> m, <InlineMath math="\tfrac{1}{64}" /> m. The bars shrink so fast that after a few bounces they are almost invisible.
+
+<BarChart
+  title={<>Heights of the first five bounces</>}
+  description={<>Bars of <InlineMath math="\left(\tfrac14\right)^{n-1}" /> metres for <InlineMath math="n = 1" /> to 5.</>}
+  yAxisLabel="Height (m)"
+  data={[1, 2, 3, 4, 5].map((n) => ({ name: String(n), value: (1 / 4) ** (n - 1) }))}
+  chartConfig={{ value: { label: "Height (m)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### The Ratio Condition for Convergence
 
@@ -69,25 +79,32 @@ Here <InlineMath math="a=1" /> and <InlineMath math="r=\frac12" />, so:
 No finite partial sum equals <InlineMath math="2" />, but the partial sums can get as close to <InlineMath math="2" /> as desired. The infinite sum is the limit of those finite partial sums.
 
 
-<LineEquation
-  title="Partial sums approaching two"
-  description="Points show the sum after 1 through 6 terms. Connecting lines indicate their order, while the horizontal line marks the limit 2. Rotate or zoom to compare the points with the limit line."
-  cameraPosition={[3, 1, 9]}
-  cameraTarget={[3, 1, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: Array.from({ length: 6 }, (_, i) => {
-        const n = i + 1;
-        return { x: n, y: 2 - 2 ** (1 - n), z: 0 };
-      }),
-      smooth: false,
-      showPoints: true,
-      color: "blue",
-      labels: [{ text: <InlineMath math="S(n)" />, at: 3, offset: [0, -0.25, 0] }],
-    },
-    { points: [{ x: 0, y: 2, z: 0 }, { x: 7, y: 2, z: 0 }], smooth: false, color: "red", labels: [{ text: <InlineMath math="2" />, at: 1, offset: [0, 0.2, 0] }] }
-  ]}
+<MathVisual
+  title={<>Partial sums approaching 2</>}
+  description={<>The sums <InlineMath math="S_n = 2 - 2^{1-n}" /> after 1 to 6 terms climb toward the line <InlineMath math="y = 2" /> without reaching it.</>}
+  labels={{
+    limit: <InlineMath math="2" />,
+    s: <InlineMath math="S_n" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 7.2 }, y: { min: -0.3, max: 2.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "limit", kind: "line", through: [{ x: 0, y: 2 }, { x: 7, y: 2 }], appearance: "secondary" },
+      { id: "order", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 3 / 2 }, { x: 3, y: 7 / 4 }, { x: 4, y: 15 / 8 }, { x: 5, y: 31 / 16 }, { x: 6, y: 63 / 32 }], appearance: "construction" },
+      { id: "s1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 3 / 2 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 3, y: 7 / 4 }, appearance: "primary" },
+      { id: "s4", kind: "point", at: { x: 4, y: 15 / 8 }, appearance: "primary" },
+      { id: "s5", kind: "point", at: { x: 5, y: 31 / 16 }, appearance: "primary" },
+      { id: "s6", kind: "point", at: { x: 6, y: 63 / 32 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 7, y: 2 }, placement: "above" },
+      { key: "s", objectId: "s4", at: { x: 4, y: 15 / 8 }, placement: "below" },
+    ],
+  }}
 />
 
 We can also calculate the gap to the limit. After six terms, the sum is <InlineMath math="1.96875" /> and the gap is <InlineMath math="0.03125" />. Each additional term halves **the remaining gap to the limit**.
@@ -141,3 +158,31 @@ Here <InlineMath math="a=12" /> and <InlineMath math="r=-\frac12" />. Since <Inl
 <BlockMath math="\begin{aligned}S_\infty&amp;=\frac{12}{1-(-1/2)}\\&amp;=\frac{12}{3/2}\\&amp;=12\cdot\frac23=8\end{aligned}" />
 
 The negative ratio makes the terms alternate in sign, but their magnitudes shrink quickly enough for the partial sums to approach <InlineMath math="8" />.
+
+The partial sums of <InlineMath math="12 - 6 + 3 - \tfrac32 + \cdots" /> are 12, 6, 9, 7.5, 8.25 and 7.875. They land alternately above and below 8 and close in on it from both sides.
+
+<MathVisual
+  title={<>Partial sums on both sides of 8</>}
+  description={<>The partial sums <InlineMath math="S_1" /> to <InlineMath math="S_6" /> of the series with <InlineMath math="a = 12" /> and <InlineMath math="r = -\tfrac12" />, around the line <InlineMath math="y = 8" />.</>}
+  labels={{
+    limit: <InlineMath math="8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 7.2 }, y: { min: 4.6, max: 12.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "limit", kind: "line", through: [{ x: 0, y: 8 }, { x: 7, y: 8 }], appearance: "secondary" },
+      { id: "order", kind: "polyline", vertices: [{ x: 1, y: 12 }, { x: 2, y: 6 }, { x: 3, y: 9 }, { x: 4, y: 15 / 2 }, { x: 5, y: 33 / 4 }, { x: 6, y: 63 / 8 }], appearance: "construction" },
+      { id: "s1", kind: "point", at: { x: 1, y: 12 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 6 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 3, y: 9 }, appearance: "primary" },
+      { id: "s4", kind: "point", at: { x: 4, y: 15 / 2 }, appearance: "primary" },
+      { id: "s5", kind: "point", at: { x: 5, y: 33 / 4 }, appearance: "primary" },
+      { id: "s6", kind: "point", at: { x: 6, y: 63 / 8 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 7, y: 8 }, placement: "above" },
+    ],
+  }}
+/>
