@@ -3,7 +3,7 @@ export const metadata = {
   description: "An indefinite integral includes all antiderivatives that differ by a constant of integration.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2025-05-26",
-    dateModified: "2026-09-19",
+    dateModified: "2026-11-08",
     subject: "Integrals",
 };
 
@@ -32,20 +32,65 @@ The conclusion about a constant difference applies on **one interval** where the
 
 The three parabolas represent <InlineMath math="2x^2" />, <InlineMath math="2x^2+1" />, and <InlineMath math="2x^2+5" />. At the same value of <InlineMath math="x" />, their heights differ but their tangent slopes agree. Pan or rotate the view to compare the shapes of the curves.
 
-<LineEquation
-  title="Antiderivatives Differing by a Constant"
-  description="The purple curve has constant zero, the orange curve constant one, and the teal curve constant five."
-  data={[
-    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x, z: 0 }; }), smooth: false, color: "#9333ea", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=0" />, offset: [0, -0.5, 0] }] },
-    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x + 1, z: 0 }; }), smooth: false, color: "#ea580c", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=1" />, offset: [0, 0.5, 0] }] },
-    { points: Array.from({ length: 61 }, (_, i) => { const x = -1.5 + i / 20; return { x, y: 2 * x * x + 5, z: 0 }; }), smooth: false, color: "#0d9488", showPoints: false, labels: [{ at: 30, text: <InlineMath math="C=5" />, offset: [0, 0.5, 0] }] },
-  ]}
-  showZAxis={false}
-  cameraTarget={[0, 4.5, 0]}
-  cameraPosition={[0, 4.5, 17]}
+<MathVisual
+  title={<>Antiderivatives differing by a constant</>}
+  description={<>The violet curve <InlineMath math="y = 2x^2" /> has constant 0, the orange curve <InlineMath math="y = 2x^2 + 1" /> constant 1, and the teal curve <InlineMath math="y = 2x^2 + 5" /> constant 5. At <InlineMath math="x = 1" /> their heights are 2, 3 and 7.</>}
+  labels={{
+    c0: <InlineMath math="C = 0" />,
+    c1: <InlineMath math="C = 1" />,
+    c5: <InlineMath math="C = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -0.6, max: 9.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c0", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 0 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "secondary" },
+      { id: "c1", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 1 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "primary" },
+      { id: "c5", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 5 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "construction" },
+      { id: "h0", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "h1", kind: "point", at: { x: 1, y: 3 }, appearance: "primary" },
+      { id: "h5", kind: "point", at: { x: 1, y: 7 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "c0", objectId: "c0", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "c1", objectId: "c1", at: { x: 0, y: 1 }, placement: "below" },
+      { key: "c5", objectId: "c5", at: { x: 0, y: 5 }, placement: "below" },
+    ],
+  }}
 />
 
 Changing the constant produces a **vertical translation**. At <InlineMath math="x=1" />, for example, the function values are <InlineMath math="2" />, <InlineMath math="3" />, and <InlineMath math="7" />, while all three derivatives have value <InlineMath math="4" />.
+
+Draw the tangent at <InlineMath math="x = 1" /> on each curve. All three tangents have slope 4, because every antiderivative of <InlineMath math="4x" /> has the same derivative. Only their heights 2, 3 and 7 differ, so the tangents are parallel.
+
+<MathVisual
+  title={<>Parallel tangents at <InlineMath math="x = 1" /></>}
+  description={<>The curves <InlineMath math="y = 2x^2 + C" /> for <InlineMath math="C = 0, 1, 5" /> with their tangents of slope 4 at <InlineMath math="x = 1" />.</>}
+  labels={{
+    c0: <InlineMath math="C = 0" />,
+    c1: <InlineMath math="C = 1" />,
+    c5: <InlineMath math="C = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -0.6, max: 9.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c0", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 0 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "secondary" },
+      { id: "c1", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 1 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "primary" },
+      { id: "c5", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 0, c: 5 }, domain: { min: -3 / 2, max: 3 / 2 }, appearance: "construction" },
+      { id: "t0", kind: "segment", from: { x: 1 / 2, y: 0 }, to: { x: 3 / 2, y: 4 }, appearance: "secondary" },
+      { id: "t1", kind: "segment", from: { x: 1 / 2, y: 1 }, to: { x: 3 / 2, y: 5 }, appearance: "primary" },
+      { id: "t5", kind: "segment", from: { x: 1 / 2, y: 5 }, to: { x: 3 / 2, y: 9 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "c0", objectId: "c0", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "c1", objectId: "c1", at: { x: 0, y: 1 }, placement: "below" },
+      { key: "c5", objectId: "c5", at: { x: 0, y: 5 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Formal Notation of Integrals
 
@@ -72,3 +117,13 @@ Suppose <InlineMath math="F'(x)=4x" /> and <InlineMath math="F(1)=7" />. The gen
 <BlockMath math="\begin{aligned}F(1)&=2(1)^2+C=7\\2+C&=7\\C&=5\end{aligned}" />
 
 Thus <InlineMath math="F(x)=2x^2+5" />. Check both conditions: the derivative of <InlineMath math="2x^2+5" /> is <InlineMath math="4x" />, and <InlineMath math="F(1)=2+5=7" />. One function value selects one curve from all the antiderivatives on the same interval.
+
+Test the four antiderivatives from the table against the condition <InlineMath math="F(1) = 7" />. Their values <InlineMath math="F(1) = 2 + C" /> are 3, 7, <InlineMath math="-8" /> and 2, and only <InlineMath math="C = 5" /> gives 7.
+
+<BarChart
+  title={<>Which constant gives <InlineMath math="F(1) = 7" /></>}
+  description={<>Bars of <InlineMath math="F(1) = 2 + C" /> for <InlineMath math="C = 1, 5, -10, 0" />.</>}
+  yAxisLabel="F(1)"
+  data={[1, 5, -10, 0].map((c) => ({ name: "C = " + c, value: 2 * 1 ** 2 + c }))}
+  chartConfig={{ value: { label: "F(1)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

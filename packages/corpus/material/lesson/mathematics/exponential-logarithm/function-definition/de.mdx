@@ -4,7 +4,7 @@ export const metadata = {
     "Definitionsmenge, Wertemenge, Achsenschnittpunkte und Monotonie von Exponentialfunktionen verstehen und zulässige Basen erkennen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Potenzen und Logarithmen",
 };
 
@@ -54,7 +54,7 @@ Der Funktionswert ändert sich nicht. Deshalb handelt es sich um eine **konstant
 <FunctionChart
   a={1}
   p={1}
-  title="Konstante Funktion"
+  title={<>Konstante Funktion</>}
   description={
     <>
       Jede Eingabe ergibt <InlineMath math="y=1" />.
@@ -86,7 +86,7 @@ Für <InlineMath math="x=0" /> wird dem Ausdruck <InlineMath math="0^0" /> in di
 <FunctionChart
   a={0.5}
   p={1}
-  title="Exponentieller Zerfall"
+  title={<>Exponentieller Zerfall</>}
   description={
     <>
       Der Faktor <InlineMath math="0{,}5" /> halbiert den Funktionswert bei jeder Zunahme von <InlineMath math="x" /> um <InlineMath math="1" />.
@@ -108,3 +108,13 @@ Beim Wachstum mit Zinseszinseffekt bezeichnet <InlineMath math="P" /> den Anfang
 <BlockMath math="A(2)=100(1+0{,}1)^2=100(1{,}21)=121" />
 
 Der zweite Zuwachs wird aus <InlineMath math="110" /> berechnet. Deshalb **wächst auch der hinzugefügte Betrag**, obwohl der Prozentsatz gleich bleibt.
+
+Zinseszinswachstum multipliziert in jeder Periode mit 1,1: <InlineMath math="A(t) = 100(1{,}1)^t" /> ergibt 100, 110, 121, 133,1 und so weiter. Der zweite Zuwachs ist 11, nicht 10, weil er von 110 aus berechnet wird.
+
+<BarChart
+  title={<>Zinseszins mit 10%</>}
+  description={<>Balken von <InlineMath math="A(t) = 100(1{,}1)^t" /> für <InlineMath math="t = 0" /> bis 5.</>}
+  yAxisLabel="Betrag"
+  data={[0, 1, 2, 3, 4, 5].map((x) => ({ name: String(x), value: 100 * 1.1 ** x }))}
+  chartConfig={{ value: { label: "Betrag", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

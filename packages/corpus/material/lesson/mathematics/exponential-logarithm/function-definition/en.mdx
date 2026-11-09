@@ -4,7 +4,7 @@ export const metadata = {
     "Exponential functions have defined domains, ranges, intercepts, and monotonic behavior, with specific valid bases and excluded cases.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-02",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Exponents and Logarithms",
 };
 
@@ -54,7 +54,7 @@ The output never changes, so this is a **constant function**. Exponential growth
 <FunctionChart
   a={1}
   p={1}
-  title="Constant Function"
+  title={<>Constant Function</>}
   description={
     <>
       Every input gives <InlineMath math="y=1" />.
@@ -86,7 +86,7 @@ At <InlineMath math="x=0" />, the expression <InlineMath math="0^0" /> is not as
 <FunctionChart
   a={0.5}
   p={1}
-  title="Exponential Decay"
+  title={<>Exponential Decay</>}
   description={
     <>
       The factor <InlineMath math="0.5" /> halves the output for every increase of <InlineMath math="1" /> in <InlineMath math="x" />.
@@ -108,3 +108,13 @@ For compound growth, <InlineMath math="P" /> is the initial value and <InlineMat
 <BlockMath math="A(2)=100(1+0.1)^2=100(1.21)=121" />
 
 The second increase is calculated from <InlineMath math="110" />, so the **amount added also grows** even though the percentage stays constant.
+
+Compound growth multiplies by 1.1 every period: <InlineMath math="A(t) = 100(1.1)^t" /> gives 100, 110, 121, 133.1 and so on. The second increase is 11, not 10, because it is calculated from 110.
+
+<BarChart
+  title={<>Compound growth at 10%</>}
+  description={<>Bars of <InlineMath math="A(t) = 100(1.1)^t" /> for <InlineMath math="t = 0" /> to 5.</>}
+  yAxisLabel="Amount"
+  data={[0, 1, 2, 3, 4, 5].map((x) => ({ name: String(x), value: 100 * 1.1 ** x }))}
+  chartConfig={{ value: { label: "Amount", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
