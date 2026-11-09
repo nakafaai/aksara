@@ -17,11 +17,11 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label: "sehingga",
+          label: "meskipun",
         },
         {
           correct: false,
-          label: "meskipun",
+          label: "sehingga",
         },
         {
           correct: false,
@@ -29,7 +29,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "bahkan",
+          label: "lalu",
         },
       ],
     },

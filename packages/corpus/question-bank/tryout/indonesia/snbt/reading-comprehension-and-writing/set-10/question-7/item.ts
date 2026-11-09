@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sablon dengan cat berbahan air lebih mahal. Tetapi hasilnya tidak berbau dan aman bagi kulit.",
+            "Sablon dengan cat berbahan air lebih mahal, tetapi, hasilnya tidak berbau dan aman bagi kulit.",
         },
         {
           correct: false,

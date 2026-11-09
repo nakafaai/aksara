@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Pada dua tahun itu, kasus demam berdarah di seluruh kota juga turun dengan besar yang sama, termasuk di kelurahan yang tidak memiliki juru pemantau jentik.",
+            "Pada dua tahun itu, kasus demam berdarah di kelurahan lain yang tidak memiliki juru pemantau jentik juga turun hampir sebanyak itu.",
         },
         {
           correct: false,
