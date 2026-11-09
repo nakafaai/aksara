@@ -157,11 +157,18 @@ function corpusDocuments(
   });
 }
 
-/** Reads every corpus document whose props compute data, with its repository-relative path. */
+/**
+ * Reads every document whose props compute data, with its repository-relative
+ * path: the corpus, and the frozen baseline fixtures, which keep computed props
+ * covered now that lessons draw their curves as MathVisual formula objects.
+ */
 export const dataComputingDocuments = Effect.gen(function* () {
   const fs = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
-  const documents = yield* corpusDocuments(path.resolve("../corpus"));
+  const documents = [
+    ...(yield* corpusDocuments(path.resolve("../corpus"))),
+    ...(yield* corpusDocuments(path.resolve("src/test/baseline"))),
+  ];
   const sources = yield* Effect.forEach(documents, (document) =>
     Effect.map(fs.readFileString(document), (rawMdx) => ({
       rawMdx,

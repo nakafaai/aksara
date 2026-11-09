@@ -491,49 +491,26 @@ The rule <InlineMath math="\left[\frac{d}{b}, \frac{c}{b}\right] = \left[\frac{8
 
 The function <InlineMath math="2^t" /> is increasing, so <InlineMath math="2^{6b} = 2^3" /> holds only for <InlineMath math="6b = 3" />. Because <InlineMath math="0 < b < 1" />, the graph of <InlineMath math="y = 2^x" /> is stretched away from the <InlineMath math="y" />-axis by the factor <InlineMath math="\frac{1}{b} = 2" />: **every distance to the <InlineMath math="y" />-axis doubles**. Check: the point <InlineMath math="(3, 8)" /> on <InlineMath math="y = 2^x" /> moves to <InlineMath math="\left(\frac{3}{1/2}, 8\right) = (6, 8)" />, exactly the given point. The intercept <InlineMath math="(0, 1)" /> and the asymptote <InlineMath math="y = 0" /> stay where they are.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Curves <InlineMath math="y = 2^x" /> and <InlineMath math="g(x) = 2^{x/2}" /></>}
   description={<>The arrow takes <InlineMath math="(3, 8)" /> to <InlineMath math="(6, 8)" />, so its distance to the <InlineMath math="y" />-axis doubles, while <InlineMath math="(0, 1)" /> stays.</>}
-  cameraPosition={[1.5, 4.2, 11]}
-  cameraTarget={[1.5, 4.2, 0]}
-  data={(() => {
-    // f(x) = 2^x stays inside the frame x >= -10, y <= 16 up to x = 4, and g(x) = f(x / 2) up to x = 8.
-    // g reaches the height f(t) at x = 2t, so it reuses the inputs t of f from -5 to 4.
-    const f = (x) => 2 ** x;
-    const g = (x) => f(x / 2);
-    const t = Array.from({ length: 449 }, (_, j) => -10 + j / 32);
-    return [
-      {
-        points: t.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="2^x" />, at: 416, offset: [-0.3, 0, 0], anchorX: "right" }],
-      },
-      {
-        points: t.filter((s) => s >= -5).map((s) => 2 * s).map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: 224, offset: [0.3, -0.3, 0], anchorX: "left" }],
-      },
-      {
-        points: [
-          { x: 3, y: f(3), z: 0 },
-          { x: 6, y: g(6), z: 0 },
-        ],
-        smooth: false,
-        color: "#d97706",
-        showPoints: false,
-        cone: { position: "end", size: 0.3 },
-      },
-      {
-        points: [{ x: 0, y: f(0), z: 0 }],
-        smooth: false,
-        color: "#64748b",
-        showPoints: true,
-      },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="2^x" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 10 }, y: { min: -2, max: 18 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-10) + (t / 32))", y: "(2)^(((-10) + (t / 32)))", parameter: { min: 0, max: 448 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 * ((-10) + ((t + 160) / 32)))", y: "(2)^(((2 * ((-10) + ((t + 160) / 32))) / 2))", parameter: { min: 0, max: 288 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 3, y: 8 }, to: { x: 6, y: 8 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 0, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 8 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 4 }, placement: "below-right" },
+    ],
+  }}
 />

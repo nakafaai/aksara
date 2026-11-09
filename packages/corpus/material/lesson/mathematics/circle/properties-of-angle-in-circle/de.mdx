@@ -164,28 +164,37 @@ Ein Sehnenviereck hat vier Eckpunkte auf einer Kreislinie. Zwei **gegenüberlieg
 
 <BlockMath math="\alpha+\gamma=\frac{1}{2}\times360^\circ=180^\circ" />
 
-<LineEquation
-  title="Viereck mit gegenüberliegenden Winkeln"
-  description="Zwei gegenüberliegende Winkel überspannen Bögen, die den Kreis vervollständigen."
-  data={(() => {
-    const point = (degrees) => ({ x: 4 * Math.cos(degrees * Math.PI / 180), y: 4 * Math.sin(degrees * Math.PI / 180), z: 0 });
-    const A = point(0), B = point(80), C = point(200), D = point(280);
-    const E = { x: A.x + 0.4 * (A.x - B.x), y: A.y + 0.4 * (A.y - B.y), z: 0 };
-    const arc = (vertex, start, end) => {
-      const a = Math.atan2(start.y - vertex.y, start.x - vertex.x);
-      let delta = Math.atan2(end.y - vertex.y, end.x - vertex.x) - a;
-      if (delta > Math.PI) delta -= 2 * Math.PI;
-      if (delta < -Math.PI) delta += 2 * Math.PI;
-      return Array.from({ length: 31 }, (_, i) => ({ x: vertex.x + 0.65 * Math.cos(a + delta * i / 30), y: vertex.y + 0.65 * Math.sin(a + delta * i / 30), z: 0 }));
-    };
-    return [
-      { kind: "circle-outline", radius: 4, color: "#9333ea", showPoints: false },
-      { points: [A, B, C, D, A], smooth: false, color: "#ea580c", showPoints: true, labels: [{ text: <InlineMath math="A" />, at: 0, offset: [0.35, 0.2, 0] }, { text: <InlineMath math="B" />, at: 1, offset: [0, 0.4, 0] }, { text: <InlineMath math="C" />, at: 2, offset: [-0.4, 0, 0] }, { text: <InlineMath math="D" />, at: 3, offset: [0, -0.4, 0] }] },
-      { points: arc(A, D, B), smooth: false, color: "#0891b2", showPoints: false, labels: [{ text: <InlineMath math="\alpha" />, at: 15, offset: [0, -0.35, 0] }] },
-      { points: arc(C, B, D), smooth: false, color: "#db2777", showPoints: false, labels: [{ text: <InlineMath math="\gamma" />, at: 15, offset: [0.3, 0.3, 0] }] },
-    ];
-  })()}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Viereck mit gegenüberliegenden Winkeln</>}
+  description={<>Zwei gegenüberliegende Winkel überspannen Bögen, die den Kreis vervollständigen.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="\alpha" />,
+    "l6": <InlineMath math="\gamma" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0.69, y: 3.94 }, { x: -3.76, y: -1.37 }, { x: 0.69, y: -3.94 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 0.69, y: -3.94 }, to: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((4 * cos(((0 * pi) / 180))) + (0.65 * cos(((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))))) + (((((2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))))) - (2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180))))))))) - (2 * pi)) * t) / 30)))))", y: "((4 * sin(((0 * pi) / 180))) + (0.65 * sin(((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))))) + (((((2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))))) - (2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180))))))))) - (2 * pi)) * t) / 30)))))", parameter: { min: 0, max: 30 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((4 * cos(((200 * pi) / 180))) + (0.65 * cos(((2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) + ((((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) - (2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180))))))))) * t) / 30)))))", y: "((4 * sin(((200 * pi) / 180))) + (0.65 * sin(((2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) + ((((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) - (2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180))))))))) * t) / 30)))))", parameter: { min: 0, max: 30 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.69, y: 3.94 }, placement: "above" },
+      { key: "l3", objectId: "s2", at: { x: -3.76, y: -1.37 }, placement: "left" },
+      { key: "l4", objectId: "s2", at: { x: 0.69, y: -3.94 }, placement: "below" },
+      { key: "l5", objectId: "s3", at: { x: 3.35, y: 0 }, placement: "below" },
+      { key: "l6", objectId: "s4", at: { x: -3.12, y: -1.26 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Im Bild beträgt Winkel <InlineMath math="A" /> <InlineMath math="100^\circ" /> und Winkel <InlineMath math="C" /> <InlineMath math="80^\circ" />. Die Winkel müssen also keine rechten Winkel sein.
@@ -198,29 +207,40 @@ Verlängere die Seite <InlineMath math="BA" /> bis <InlineMath math="E" />. Der 
 
 <BlockMath math="\varepsilon=180^\circ-\alpha=\gamma" />
 
-<LineEquation
-  title="Außenwinkel und gegenüberliegender Innenwinkel"
-  description="Eine verlängerte Seite bildet einen Außenwinkel, der dem gegenüberliegenden Innenwinkel entspricht."
-  data={(() => {
-    const point = (degrees) => ({ x: 4 * Math.cos(degrees * Math.PI / 180), y: 4 * Math.sin(degrees * Math.PI / 180), z: 0 });
-    const A = point(0), B = point(80), C = point(200), D = point(280);
-    const E = { x: A.x + 0.4 * (A.x - B.x), y: A.y + 0.4 * (A.y - B.y), z: 0 };
-    const arc = (vertex, start, end) => {
-      const a = Math.atan2(start.y - vertex.y, start.x - vertex.x);
-      let delta = Math.atan2(end.y - vertex.y, end.x - vertex.x) - a;
-      if (delta > Math.PI) delta -= 2 * Math.PI;
-      if (delta < -Math.PI) delta += 2 * Math.PI;
-      return Array.from({ length: 31 }, (_, i) => ({ x: vertex.x + 0.65 * Math.cos(a + delta * i / 30), y: vertex.y + 0.65 * Math.sin(a + delta * i / 30), z: 0 }));
-    };
-    return [
-      { kind: "circle-outline", radius: 4, color: "#9333ea", showPoints: false },
-      { points: [A, B, C, D, A], smooth: false, color: "#ea580c", showPoints: true, labels: [{ text: <InlineMath math="A" />, at: 0, offset: [0.35, 0.2, 0] }, { text: <InlineMath math="B" />, at: 1, offset: [0, 0.4, 0] }, { text: <InlineMath math="C" />, at: 2, offset: [-0.4, 0, 0] }, { text: <InlineMath math="D" />, at: 3, offset: [0, -0.4, 0] }] },
-      { points: arc(A, D, E), smooth: false, color: "#0891b2", showPoints: false, labels: [{ text: <InlineMath math="\varepsilon" />, at: 15, offset: [0, -0.35, 0] }] },
-      { points: arc(C, B, D), smooth: false, color: "#db2777", showPoints: false, labels: [{ text: <InlineMath math="\gamma" />, at: 15, offset: [0.3, 0.3, 0] }] },
-      { points: [A, E], smooth: false, color: "#0891b2", showPoints: true, labels: [{ text: <InlineMath math="E" />, at: 1, offset: [0.35, 0, 0] }] },
-    ];
-  })()}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Außenwinkel und gegenüberliegender Innenwinkel</>}
+  description={<>Eine verlängerte Seite bildet einen Außenwinkel, der dem gegenüberliegenden Innenwinkel entspricht.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="\varepsilon" />,
+    "l6": <InlineMath math="\gamma" />,
+    "l7": <InlineMath math="E" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 6.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0.69, y: 3.94 }, { x: -3.76, y: -1.37 }, { x: 0.69, y: -3.94 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 0.69, y: -3.94 }, to: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((4 * cos(((0 * pi) / 180))) + (0.65 * cos(((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))))) + ((((2 * atan(((((4 * sin(((0 * pi) / 180))) + (0.4 * ((4 * sin(((0 * pi) / 180))) - (4 * sin(((80 * pi) / 180)))))) - (4 * sin(((0 * pi) / 180))))) / (sqrt(((((4 * cos(((0 * pi) / 180))) + (0.4 * ((4 * cos(((0 * pi) / 180))) - (4 * cos(((80 * pi) / 180)))))) - (4 * cos(((0 * pi) / 180)))))^2 + ((((4 * sin(((0 * pi) / 180))) + (0.4 * ((4 * sin(((0 * pi) / 180))) - (4 * sin(((80 * pi) / 180)))))) - (4 * sin(((0 * pi) / 180)))))^2) + ((((4 * cos(((0 * pi) / 180))) + (0.4 * ((4 * cos(((0 * pi) / 180))) - (4 * cos(((80 * pi) / 180)))))) - (4 * cos(((0 * pi) / 180)))))))) - (2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180))))))))) * t) / 30)))))", y: "((4 * sin(((0 * pi) / 180))) + (0.65 * sin(((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))))) + ((((2 * atan(((((4 * sin(((0 * pi) / 180))) + (0.4 * ((4 * sin(((0 * pi) / 180))) - (4 * sin(((80 * pi) / 180)))))) - (4 * sin(((0 * pi) / 180))))) / (sqrt(((((4 * cos(((0 * pi) / 180))) + (0.4 * ((4 * cos(((0 * pi) / 180))) - (4 * cos(((80 * pi) / 180)))))) - (4 * cos(((0 * pi) / 180)))))^2 + ((((4 * sin(((0 * pi) / 180))) + (0.4 * ((4 * sin(((0 * pi) / 180))) - (4 * sin(((80 * pi) / 180)))))) - (4 * sin(((0 * pi) / 180)))))^2) + ((((4 * cos(((0 * pi) / 180))) + (0.4 * ((4 * cos(((0 * pi) / 180))) - (4 * cos(((80 * pi) / 180)))))) - (4 * cos(((0 * pi) / 180)))))))) - (2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((0 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((0 * pi) / 180))))))))) * t) / 30)))))", parameter: { min: 0, max: 30 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((4 * cos(((200 * pi) / 180))) + (0.65 * cos(((2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) + ((((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) - (2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180))))))))) * t) / 30)))))", y: "((4 * sin(((200 * pi) / 180))) + (0.65 * sin(((2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) + ((((2 * atan((((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((280 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((280 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))))) - (2 * atan((((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180))))) / (sqrt((((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180)))))^2 + (((4 * sin(((80 * pi) / 180))) - (4 * sin(((200 * pi) / 180)))))^2) + (((4 * cos(((80 * pi) / 180))) - (4 * cos(((200 * pi) / 180))))))))) * t) / 30)))))", parameter: { min: 0, max: 30 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 5.32, y: -1.58 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.69, y: 3.94 }, placement: "above" },
+      { key: "l3", objectId: "s2", at: { x: -3.76, y: -1.37 }, placement: "left" },
+      { key: "l4", objectId: "s2", at: { x: 0.69, y: -3.94 }, placement: "below" },
+      { key: "l5", objectId: "s3", at: { x: 4, y: -0.65 }, placement: "below" },
+      { key: "l6", objectId: "s4", at: { x: -3.12, y: -1.26 }, placement: "above-right" },
+      { key: "l7", objectId: "s5", at: { x: 5.32, y: -1.58 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Winkelsätze anwenden

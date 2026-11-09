@@ -42,38 +42,29 @@ The three common sample points, for <InlineMath math="i = 1, 2, \ldots, n" />, a
 
 **Problem**: Determine the Riemann sum for <InlineMath math="f(x) = x" /> on <InlineMath math="[0, 7]" /> with <InlineMath math="7" /> subintervals of equal width, using the **left endpoint** of each subinterval as the sample point.
 
-<LineEquation
-  showZAxis={false}
-  title="Riemann Sum Visualization"
+<MathVisual
+  title={<>Riemann Sum Visualization</>}
   description={<>Graph of the function <InlineMath math="f(x)=x" /> with <InlineMath math="7" /> rectangular partitions using the left endpoint.</>}
-  data={[
-    {
-      points: Array.from({ length: 8 }).map((_, i) => ({ x: i, y: i, z: 0 })),
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="f(x)=x" />, at: 4, offset: [-1.5, 0.8, 0] }],
-    },
-    ...Array.from({ length: 7 }).map((_, i) => {
-        const x_left = i;
-        const x_right = i + 1;
-        const y_height = x_left; // f(x) = x, so height is taken from x_left
-        return {
-            points: [
-                {x: x_left, y: 0, z: 0},
-                {x: x_right, y: 0, z: 0},
-                {x: x_right, y: y_height, z: 0},
-                {x: x_left, y: y_height, z: 0},
-                {x: x_left, y: 0, z: 0},
-            ],
-            color: "#0284c7",
-            smooth: false,
-            showPoints: false,
-        }
-    })
-  ]}
-  cameraTarget={[3.5, 3.5, 0]}
-  cameraPosition={[3.5, 3.5, 10]}
+  labels={{
+    "l1": <InlineMath math="f(x)=x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "line", kind: "function", formula: "x", domain: { min: 0, max: 7 }, appearance: "primary" },
+      { id: "r1", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 }, { x: 1, y: 1 }], appearance: "secondary" },
+      { id: "r2", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "r3", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 3, y: 3 }], appearance: "secondary" },
+      { id: "r4", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 4 }, { x: 4, y: 4 }], appearance: "secondary" },
+      { id: "r5", kind: "polygon", vertices: [{ x: 5, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 5 }, { x: 5, y: 5 }], appearance: "secondary" },
+      { id: "r6", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 6 }, { x: 6, y: 6 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "line", at: { x: 4, y: 4 }, placement: "above-left" },
+    ],
+  }}
 />
 
 **Step 1**: Find the width and the sample points.

@@ -134,56 +134,40 @@ Zum Beispiel wird der Punkt <InlineMath math="P(3, 4)" /> um <InlineMath math="9
 
 Prüfe Abstand und Winkel. Beide Punkte haben denselben Abstand zu <InlineMath math="O" />, denn <InlineMath math="3^2 + 4^2 = (-4)^2 + 3^2 = 25" />. Die Steigung von <InlineMath math="OP" /> ist <InlineMath math="\tfrac{4}{3}" />, die Steigung von <InlineMath math="OP'" /> ist <InlineMath math="-\tfrac{3}{4}" />. Ihr Produkt ist <InlineMath math="-1" />, also steht <InlineMath math="OP" /> senkrecht auf <InlineMath math="OP'" />. Der Bildpunkt <InlineMath math="P'" /> liegt außerdem im zweiten Quadranten, einen Quadranten gegen den Uhrzeigersinn von <InlineMath math="P" /> entfernt.
 
-<LineEquation
+<MathVisual
   title={<>Der Punkt <InlineMath math="P(3, 4)" /> nach einer, zwei und drei Vierteldrehungen</>}
   description={<>Die Punkte <InlineMath math="P'" />, <InlineMath math="P''" /> und <InlineMath math="P'''" /> sind die Bildpunkte von <InlineMath math="P" /> bei Drehungen um <InlineMath math="90^\circ" />, <InlineMath math="180^\circ" /> und <InlineMath math="270^\circ" />. Alle vier Radien sind gleich lang, nämlich <InlineMath math="5" />, und aufeinanderfolgende Radien stehen senkrecht aufeinander.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0, 20]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    ...Array.from({ length: 4 }, (_, quarter) => ({
-      points: Array.from({ length: 91 }, (_, i) => {
-        const angle = (Math.PI / 2) * (quarter + i / 90);
-        return { x: 3 * Math.cos(angle) - 4 * Math.sin(angle), y: 3 * Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#64748b",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    })),
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P(3, 4)" />, at: 1, offset: [0.33, 0.79, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -4, y: 3, z: 0 }],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P'(-4, 3)" />, at: 1, offset: [-0.31, 0.74, 0], anchorX: "right" }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: -4, z: 0 }],
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P''(-3, -4)" />, at: 1, offset: [-0.33, -0.79, 0], anchorX: "right" }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: -3, z: 0 }],
-      smooth: false,
-      color: "#d97706",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P'''(4, -3)" />, at: 1, offset: [0.31, -0.74, 0], anchorX: "left" }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="P(3, 4)" />,
+    "l2": <InlineMath math="P'(-4, 3)" />,
+    "l3": <InlineMath math="P''(-3, -4)" />,
+    "l4": <InlineMath math="P'''(4, -3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "3 cos(t) - 4 sin(t)", y: "3 sin(t) + 4 cos(t)", parameter: { min: 0, max: 1 * Math.PI / 2 }, appearance: "construction" },
+      { id: "s2", kind: "parametric", x: "3 cos(t) - 4 sin(t)", y: "3 sin(t) + 4 cos(t)", parameter: { min: Math.PI / 2, max: Math.PI }, appearance: "construction" },
+      { id: "s3", kind: "parametric", x: "3 cos(t) - 4 sin(t)", y: "3 sin(t) + 4 cos(t)", parameter: { min: 2 * Math.PI / 2, max: 3 * Math.PI / 2 }, appearance: "construction" },
+      { id: "s4", kind: "parametric", x: "3 cos(t) - 4 sin(t)", y: "3 sin(t) + 4 cos(t)", parameter: { min: 3 * Math.PI / 2, max: 2 * Math.PI }, appearance: "construction" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 4 }], appearance: "primary" },
+      { id: "s5-p1", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -4, y: 3 }], appearance: "secondary" },
+      { id: "s6-p1", kind: "point", at: { x: -4, y: 3 }, appearance: "secondary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -3, y: -4 }], appearance: "answer" },
+      { id: "s7-p1", kind: "point", at: { x: -3, y: -4 }, appearance: "answer" },
+      { id: "s8", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: -3 }], appearance: "highlight" },
+      { id: "s8-p1", kind: "point", at: { x: 4, y: -3 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s5", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "l2", objectId: "s6", at: { x: -4, y: 3 }, placement: "above-left" },
+      { key: "l3", objectId: "s7", at: { x: -3, y: -4 }, placement: "below-left" },
+      { key: "l4", objectId: "s8", at: { x: 4, y: -3 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Jede Vierteldrehung vertauscht die beiden Koordinaten und wechselt ein Vorzeichen, also wandert <InlineMath math="(3, 4)" /> nach <InlineMath math="(-4, 3)" />, dann nach <InlineMath math="(-3, -4)" /> und dann nach <InlineMath math="(4, -3)" />. Eine vierte Vierteldrehung bringt den Punkt zurück nach <InlineMath math="P" />, weil vier Drehungen um <InlineMath math="90^\circ" /> eine volle Drehung ergeben.

@@ -206,7 +206,7 @@ layer(NodeServices.layer)("content tree equivalence", (test) => {
     () =>
       Effect.gen(function* () {
         const documents = yield* dataComputingDocuments;
-        assert.isAtLeast(documents.length, 30);
+        assert.isAtLeast(documents.length, 2);
         for (const entry of documents) {
           const sourcePath = CorpusSourcePathSchema.make(entry.sourcePath);
           const compiledCode = String(

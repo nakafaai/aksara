@@ -273,70 +273,34 @@ Weil sich nur Höhen ändern, wird **jedes Merkmal, das von einer Höhe abhängt
 
 Der Graph von <InlineMath math="f(x) = 2^x - 4" /> nähert sich der [waagerechten Asymptote](/de/faecher/mathematik/funktionen-und-modelle/asymptoten) <InlineMath math="y = -4" /> und hat den Wertebereich <InlineMath math="(-4, \infty)" />. Mit <InlineMath math="a = \frac{1}{2}" /> wird daraus <InlineMath math="\frac{1}{2} \cdot 2^x - 2" />. Die Asymptote ist dann <InlineMath math="y = -2" />, der Wertebereich <InlineMath math="(-2, \infty)" />, und der <InlineMath math="y" />-Achsenabschnitt ändert sich von <InlineMath math="(0, -3)" /> zu <InlineMath math="\left(0, -\frac{3}{2}\right)" />. Für <InlineMath math="a \ne 1" /> bleibt nur die waagerechte Asymptote <InlineMath math="y = 0" /> an ihrem Platz, weil <InlineMath math="a \cdot 0 = 0" /> ist.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Kurven <InlineMath math="f(x) = 2^x - 4" /> und <InlineMath math="g(x) = \tfrac{1}{2}f(x)" /></>}
   description={<>Dünne Linien markieren die Asymptoten <InlineMath math="y = -4" /> und <InlineMath math="y = -2" />. Der Pfeil bringt <InlineMath math="(3, 4)" /> nach <InlineMath math="(3, 2)" />, während der Schnittpunkt <InlineMath math="(2, 0)" /> mit der <InlineMath math="x" />-Achse bleibt.</>}
-  cameraPosition={[0.5, -0.5, 12]}
-  cameraTarget={[0.5, -0.5, 0]}
-  data={(() => {
-    // f(x) = 2^x - 4 stays inside the frame x >= -12, y <= 12 up to x = 4, where 2^x = 16.
-    // g(x) = f(x) / 2 reaches y = 12 where 2^x = 28; it uses the same grid plus that exact exit.
-    const f = (x) => 2 ** x - 4;
-    const g = (x) => f(x) / 2;
-    const xs = Array.from({ length: 273 }, (_, j) => -12 + j / 16);
-    const asymptote = (y) => [-12, 12.6].map((x) => ({ x, y, z: 0 }));
-    return [
-      {
-        points: xs.filter((x) => x <= 4).map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [192],
-        labels: [{ text: <InlineMath math="f" />, at: 241, offset: [-0.3, 0, 0], anchorX: "right" }],
-      },
-      {
-        points: [...xs.filter((x) => 2 ** x < 28), Math.log2(28)].map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [192],
-        labels: [{ text: <InlineMath math="g" />, at: 250, offset: [0.3, -0.2, 0], anchorX: "left" }],
-      },
-      {
-        points: asymptote(-4),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: false,
-        lineWidth: 1,
-        labels: [{ text: <InlineMath math="y = -4" />, at: 0, offset: [7.6, -0.6, 0], anchorX: "left" }],
-      },
-      {
-        points: asymptote(-2),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        lineWidth: 1,
-        labels: [{ text: <InlineMath math="y = -2" />, at: 0, offset: [7.6, -0.6, 0], anchorX: "left" }],
-      },
-      {
-        points: [
-          { x: 3, y: f(3), z: 0 },
-          { x: 3, y: g(3), z: 0 },
-        ],
-        smooth: false,
-        color: "#d97706",
-        showPoints: false,
-        cone: { position: "end", size: 0.3 },
-      },
-      {
-        points: [{ x: 2, y: f(2), z: 0 }],
-        smooth: false,
-        color: "#64748b",
-        showPoints: true,
-      },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+    "l3": <InlineMath math="y = -4" />,
+    "l4": <InlineMath math="y = -2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -15, max: 16 }, y: { min: -6, max: 14 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "2^x - 4", domain: { min: -12, max: 4 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "(2^x - 4) / 2", domain: { min: -12, max: Math.log2(28) }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -12, y: -4 }, { x: 12.6, y: -4 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -12, y: -2 }, { x: 12.6, y: -2 }], appearance: "secondary" },
+      { id: "s5", kind: "vector", from: { x: 3, y: 4 }, to: { x: 3, y: 2 }, appearance: "answer" },
+      { id: "s6", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.06, y: 4.35 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 3.63, y: 4.17 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: -12, y: -4 }, placement: "below-right" },
+      { key: "l4", objectId: "s4", at: { x: -12, y: -2 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Die Asymptote <InlineMath math="y = -4" /> wandert nach <InlineMath math="y = -2" />, weil auch ihre Höhe mit <InlineMath math="\frac{1}{2}" /> multipliziert wird, während die Nullstelle <InlineMath math="x = 2" /> bleibt, weil <InlineMath math="f(2) = 0" /> ist.
@@ -355,57 +319,30 @@ Die erste Zeile nutzt <InlineMath math="(2x)^2 = 4x^2" />, die zweite <InlineMat
 
 Die beiden Lesarten der dritten Zeile treffen sich in einem Punkt. Der Punkt <InlineMath math="(1, 2)" /> auf <InlineMath math="y = 2^x" /> steigt senkrecht nach <InlineMath math="(1, 4)" />, weil seine Höhe mit <InlineMath math="2" /> multipliziert wird, während der Punkt <InlineMath math="(2, 4)" /> um eine Einheit nach links auf denselben Punkt rückt.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Kurven <InlineMath math="f(x) = 2^x" /> und <InlineMath math="g(x) = 2f(x) = 2^{x + 1}" /></>}
   description={<>Der senkrechte Pfeil bringt <InlineMath math="(1, 2)" /> nach <InlineMath math="(1, 4)" />, der waagerechte Pfeil bringt <InlineMath math="(2, 4)" /> zum selben Punkt. Der <InlineMath math="y" />-Achsenabschnitt <InlineMath math="(0, 1)" /> wandert nach <InlineMath math="(0, 2)" />.</>}
-  cameraPosition={[0.5, 3.5, 10]}
-  cameraTarget={[0.5, 3.5, 0]}
-  data={(() => {
-    // f(x) = 2^x stays inside the frame x >= -12, y <= 16 up to x = 4, and g(x) = 2 f(x) up to x = 3.
-    // Both use the grid x = -12 + j / 16; sample 192 is x = 0.
-    const f = (x) => 2 ** x;
-    const g = (x) => 2 * f(x);
-    const xs = Array.from({ length: 257 }, (_, j) => -12 + j / 16);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [192],
-        labels: [{ text: <InlineMath math="f" />, at: 232, offset: [0.3, -0.2, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.filter((x) => x <= 3).map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [192],
-        labels: [{ text: <InlineMath math="g" />, at: 220, offset: [-0.3, 0.2, 0], anchorX: "right" }],
-      },
-      {
-        points: [
-          { x: 1, y: f(1), z: 0 },
-          { x: 1, y: g(1), z: 0 },
-        ],
-        smooth: false,
-        color: "#d97706",
-        showPoints: false,
-        cone: { position: "end", size: 0.3 },
-      },
-      {
-        points: [
-          { x: 2, y: f(2), z: 0 },
-          { x: 2 - 1, y: g(2 - 1), z: 0 },
-        ],
-        smooth: false,
-        color: "#d97706",
-        showPoints: false,
-        cone: { position: "end", size: 0.3 },
-      },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -14, max: 6 }, y: { min: -2, max: 18 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-12) + (t / 16))", y: "(2)^(((-12) + (t / 16)))", parameter: { min: 0, max: 256 }, appearance: "primary" },
+      { id: "s1-p192", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-12) + ((t + 0) / 16))", y: "(2 * (2)^(((-12) + ((t + 0) / 16))))", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s2-p192", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 1, y: 2 }, to: { x: 1, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 2, y: 4 }, to: { x: 1, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.5, y: 5.66 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 1.75, y: 6.73 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Die erste Zeile erklärt auch die Form von <InlineMath math="y = a x^2" />. Bei positivem <InlineMath math="a" /> gilt <InlineMath math="a x^2 = \left(\sqrt{a}\, x\right)^2" />. Den Leitkoeffizienten, der bei den [Eigenschaften quadratischer Funktionen](/de/faecher/mathematik/quadratische-funktionen/eigenschaften-quadratischer-funktionen) bestimmt, wie schmal eine Parabel ist, kannst du deshalb als vertikale Streckung oder Stauchung mit dem Faktor <InlineMath math="a" /> oder als horizontale Streckung oder Stauchung mit dem Faktor <InlineMath math="\sqrt{a}" /> im Argument lesen.
@@ -546,65 +483,35 @@ Der Punkt <InlineMath math="(4, 2)" /> wandert nach <InlineMath math="(4, 1)" />
 
 Die Asymptote <InlineMath math="y = 1" /> wird zu <InlineMath math="y = -3" />. Weil <InlineMath math="2^x + 1 > 1" /> für jedes <InlineMath math="x" /> gilt, **kehrt die Multiplikation mit <InlineMath math="-3" /> die Ungleichung um** zu <InlineMath math="H(x) < -3" />. Der Wertebereich ist also <InlineMath math="(-\infty, -3)" />. Der <InlineMath math="y" />-Achsenabschnitt ist <InlineMath math="(0, -6)" />, weil <InlineMath math="H(0) = -3 \cdot 2 = -6" /> ist.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Kurven <InlineMath math="f(x) = 2^x + 1" /> und <InlineMath math="H(x) = -3f(x)" /></>}
   description={<>Dünne Linien markieren die Asymptoten <InlineMath math="y = 1" /> und <InlineMath math="y = -3" />. Der Pfeil bringt <InlineMath math="(1, 3)" /> nach <InlineMath math="(1, -9)" />, und der <InlineMath math="y" />-Achsenabschnitt <InlineMath math="(0, 2)" /> wandert nach <InlineMath math="(0, -6)" />.</>}
-  cameraPosition={[0, -2, 15]}
-  cameraTarget={[0, -2, 0]}
-  data={(() => {
-    // f(x) = 2^x + 1 stays inside the frame x >= -16, -15 <= y <= 9 up to x = 3, where 2^x = 8.
-    // H(x) = -3 f(x) reaches y = -15 where 2^x = 4, so it stops at x = 2. Both use the grid x = -16 + j / 12;
-    // sample 192 is x = 0.
-    const f = (x) => 2 ** x + 1;
-    const H = (x) => -3 * f(x);
-    const xs = Array.from({ length: 229 }, (_, j) => -16 + j / 12);
-    const asymptote = (y) => [-16, 16].map((x) => ({ x, y, z: 0 }));
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [192],
-        labels: [{ text: <InlineMath math="f" />, at: 211, offset: [-0.3, 0, 0], anchorX: "right" }],
-      },
-      {
-        points: xs.filter((x) => x <= 2).map((x) => ({ x, y: H(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [192],
-        labels: [{ text: <InlineMath math="H" />, at: 199, offset: [-0.3, 0, 0], anchorX: "right" }],
-      },
-      {
-        points: asymptote(1),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: false,
-        lineWidth: 1,
-        labels: [{ text: <InlineMath math="y = 1" />, at: 0, offset: [9.5, 0.8, 0], anchorX: "left" }],
-      },
-      {
-        points: asymptote(-3),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        lineWidth: 1,
-        labels: [{ text: <InlineMath math="y = -3" />, at: 0, offset: [9.5, 0.8, 0], anchorX: "left" }],
-      },
-      {
-        points: [
-          { x: 1, y: f(1), z: 0 },
-          { x: 1, y: H(1), z: 0 },
-        ],
-        smooth: false,
-        color: "#d97706",
-        showPoints: false,
-        cone: { position: "end", size: 0.3 },
-      },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="H" />,
+    "l3": <InlineMath math="y = 1" />,
+    "l4": <InlineMath math="y = -3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -20, max: 20 }, y: { min: -18, max: 12 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-16) + (t / 12))", y: "((2)^(((-16) + (t / 12))) + 1)", parameter: { min: 0, max: 228 }, appearance: "primary" },
+      { id: "s1-p192", kind: "point", at: { x: 0, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-16) + ((t + 0) / 12))", y: "((-3) * ((2)^(((-16) + ((t + 0) / 12))) + 1))", parameter: { min: 0, max: 216 }, appearance: "secondary" },
+      { id: "s2-p192", kind: "point", at: { x: 0, y: -6 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -16, y: 1 }, { x: 16, y: 1 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -16, y: -3 }, { x: 16, y: -3 }], appearance: "secondary" },
+      { id: "s5", kind: "vector", from: { x: 1, y: 3 }, to: { x: 1, y: -9 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.58, y: 4 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 0.58, y: -7.49 }, placement: "left" },
+      { key: "l3", objectId: "s3", at: { x: -16, y: 1 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -16, y: -3 }, placement: "above-right" },
+    ],
+  }}
 />
 
 **Aufgabe 4**. Setze den Punkt <InlineMath math="(2, 12)" /> in die Gleichung des Graphen ein:
