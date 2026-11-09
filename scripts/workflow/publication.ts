@@ -60,7 +60,7 @@ const verifyPlans = Effect.fn("AksaraScripts.verifyPublicationPlans")(
       const plan = yield* workflowPlan(release, mainRun(dispatch));
       yield* ensure(
         samePlan(plan, intendedPlan(dispatch)),
-        `The ${dispatch.operation} on ${dispatch.target} must start only the legs, the paired acceptance, and the final parity that its target calls for`
+        `The ${dispatch.operation} on ${dispatch.target} must start only the legs, at the parallelism, the paired acceptance, and the final parity that its target calls for`
       );
     }
     for (const [reason, change] of PARITY_BLOCKERS) {

@@ -130,6 +130,8 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Audit dependencies
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: bun run security:audit
 
       - name: Build exact contract archive
@@ -179,6 +181,8 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Audit dependencies
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: bun run security:audit
 
       - name: Verify exact main revision
@@ -233,6 +237,10 @@ jobs:
     needs: [ contracts, verify ]
     strategy:
       fail-fast: false
+      # An acceptance of both runs development, then production: the paired
+      # acceptance refuses a peer whose inverse is still being discarded, so
+      # the second leg starts only after the first has accepted.
+      max-parallel: ${{ inputs.operation == 'accept' && 1 || 2 }}
       matrix:
         # One leg for production or development alone, two legs for both.
         target: ${{ fromJSON(inputs.target == 'both' && '["development","production"]' || format('["{0}"]', inputs.target)) }}
@@ -269,6 +277,8 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Audit dependencies
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: bun run security:audit
 
       - name: Verify exact main revision

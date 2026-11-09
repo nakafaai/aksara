@@ -49,6 +49,8 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Audit dependencies
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: bun run security:audit
 
       - name: Capture immutable contract releases
