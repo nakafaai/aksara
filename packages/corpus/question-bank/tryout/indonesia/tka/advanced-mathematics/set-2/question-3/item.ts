@@ -13,8 +13,7 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label:
-            "$$(A+B)^T=\\begin{pmatrix} 2 & 2 \\\\ 0 & 8 \\end{pmatrix}$$",
+          label: "$$(A+B)^T=\\begin{pmatrix} 2 & 2 \\\\ 0 & 8 \\end{pmatrix}$$",
         },
         {
           column: 2,

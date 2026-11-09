@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Titik $$D(3,5,-1)$$ membuat $$ABDC$$ sebuah jajargenjang.",
+            "Jika $$D=(3,5,-1)$$, segi empat $$ABDC$$ adalah jajargenjang.",
         },
       ],
     },

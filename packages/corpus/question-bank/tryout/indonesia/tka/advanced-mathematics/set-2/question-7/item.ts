@@ -16,8 +16,7 @@ const item: ItemSource = {
         },
         {
           correct: true,
-          label:
-            "Jumlah semua akar persamaan $$P(x)=0$$ adalah $$\\frac32$$.",
+          label: "Jumlah semua akar persamaan $$P(x)=0$$ adalah $$\\frac32$$.",
         },
         {
           correct: false,
@@ -29,8 +28,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "Hasil kali semua akar persamaan $$P(x)=0$$ adalah $$3$$.",
+          label: "Hasil kali semua akar persamaan $$P(x)=0$$ adalah $$3$$.",
         },
       ],
     },
