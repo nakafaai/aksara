@@ -11,10 +11,12 @@ const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
  * only after the source check reports zero findings here at that commit. The
  * Effect cohort pins and the compiler rule block move with the pin, in the same
  * change, because `bun run native` compares them with nakafa.com. This pin names
- * the nakafa.com main commit that gives every Schema class its brand and turns
- * `schemaClassMissingBrand` into an error (nakafa.com#2290).
+ * the nakafa.com main commit whose `scripts/osv` downloads with the job's token,
+ * retries an outage for three minutes, and caches its checksummed scanner
+ * (nakafa.com#2351), and whose check leaves path names to the repository it
+ * judges (nakafa.com#2354).
  */
-export const NAKAFA_COMMIT = "3db290e84d630a1deae9985c02249d41a6b39eb0";
+export const NAKAFA_COMMIT = "f195acf85144251e3c36dcbdf5ae71a8e8f7ee0c";
 
 /** The steps of the native check, in the order they run. */
 const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);
