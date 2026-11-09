@@ -144,21 +144,19 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
 const snbtTryoutCatalog = defineExamSource({
   ...indonesiaTryoutCountry,
   examKey: "snbt",
+  examName: "SNBT",
   examOrder: 1,
   examRouteSlugs: { de: "snbt", en: "snbt", id: "snbt" },
   examTranslations: {
     de: {
       description:
         "Probetest für das indonesische Auswahlverfahren zur Hochschulzulassung.",
-      title: "SNBT",
     },
     en: {
       description: "Indonesian university entrance try-outs.",
-      title: "SNBT",
     },
     id: {
       description: "Try out seleksi masuk perguruan tinggi Indonesia.",
-      title: "SNBT",
     },
   },
   grouping: {

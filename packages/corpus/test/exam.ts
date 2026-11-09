@@ -13,6 +13,11 @@ export function titled(title: string) {
   return { de: { title }, en: { title }, id: { title } };
 }
 
+/** One description in every app locale, as an exam translates only its description. */
+export function described(description: string) {
+  return { de: { description }, en: { description }, id: { description } };
+}
+
 /** One route slug in every app locale. */
 export function slugged(slug: string) {
   return { de: slug, en: slug, id: slug };
@@ -105,9 +110,10 @@ export const testExamInput: ExamSourceInput = {
   countryRouteSlugs: slugged("test-country"),
   countryTranslations: titled("Test Country"),
   examKey: "test-exam",
+  examName: "Test Exam",
   examOrder: 1,
   examRouteSlugs: slugged("test-exam"),
-  examTranslations: titled("Test Exam"),
+  examTranslations: described("A test exam."),
   grouping: {
     axis: "grade",
     groups: [

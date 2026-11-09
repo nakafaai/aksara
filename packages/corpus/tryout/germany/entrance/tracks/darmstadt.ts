@@ -15,9 +15,9 @@ export const tuDarmstadtEntranceTrack = {
     names: {
       de: { title: "Mathematiktest im Aufnahmeverfahren der TU Darmstadt" },
       en: {
-        title: "TU Darmstadt Entrance Examination, Mathematics Test",
+        title: "Mathematics test of the TU Darmstadt Aufnahmeverfahren",
       },
-      id: { title: "Tes Matematika Ujian Masuk TU Darmstadt" },
+      id: { title: "Tes Matematika Aufnahmeverfahren TU Darmstadt" },
     },
     report: { sections: false, standardError: false, total: true },
     scoring: { kind: "raw" },

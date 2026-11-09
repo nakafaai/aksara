@@ -2,7 +2,7 @@ import { describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, Option } from "effect";
-import { testExamInput, titled } from "#corpus/test/exam";
+import { described, testExamInput, titled } from "#corpus/test/exam";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import { defineExamSource } from "#corpus/tryout/schema";
 import { paperId } from "#corpus/tryout/track";
@@ -21,10 +21,7 @@ const describedExam = defineExamSource({
     ...titled("Test Country"),
     en: { description: "A test country.", title: "Test Country" },
   },
-  examTranslations: {
-    ...titled("Test Exam"),
-    en: { description: "A test exam.", title: "Test Exam" },
-  },
+  examTranslations: described("A test exam."),
 });
 
 describe("projectTryoutCatalog", () => {
@@ -61,6 +58,13 @@ describe("projectTryoutCatalog", () => {
         description: "A test exam.",
         groupAxis: "grade",
       });
+      // An exam's official name is a proper noun, the same in every locale.
+      expect(
+        Arr.map(
+          Arr.filter(rows, ({ kind }) => kind === "exam"),
+          (row) => [row.appLocale, row.title]
+        )
+      ).toEqual(Arr.map(ACTIVE_APP_LOCALES, (locale) => [locale, "Test Exam"]));
       expect(english[2]).toMatchObject({
         groupKey: "test-lower",
         order: 1,
@@ -114,7 +118,7 @@ describe("projectTryoutCatalog", () => {
         const invalid = yield* projectTryoutCatalog([exam], () =>
           Option.some({ hash, id: "Not a paper" })
         ).pipe(Effect.flip);
-        const { de: _de, ...partial } = titled("Test Exam");
+        const { de: _de, ...partial } = described("A test exam.");
         const untranslated = yield* projectTryoutCatalog(
           [{ ...exam, examTranslations: partial }],
           paperOf
