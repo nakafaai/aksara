@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$0{,}6\\text{ m}$$",
+          label: "$$0{,}4\\text{ m}$$",
         },
         {
           correct: true,
-          label: "$$5{,}4\\text{ m}$$",
+          label: "$$0{,}6\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$2{,}7\\text{ m}$$",
+          label: "$$0{,}9\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$3{,}6\\text{ m}$$",
+          label: "$$1{,}5\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$6\\text{ m}$$",
+          label: "$$3{,}75\\text{ m}$$",
         },
         {
           correct: false,
-          label: "$$10{,}8\\text{ m}$$",
+          label: "$$1\\text{ m}$$",
         },
       ],
     },
