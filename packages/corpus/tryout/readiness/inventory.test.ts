@@ -73,7 +73,7 @@ describe("validateAssessmentQuestionReadiness", () => {
         const { readiness, sets, source } = yield* loadTkaReadiness;
 
         expect(Arr.flatMap(sets, ({ questions }) => questions)).toHaveLength(
-          200
+          250
         );
         expect(
           yield* validateAssessmentQuestionReadiness(source, readiness, sets)
