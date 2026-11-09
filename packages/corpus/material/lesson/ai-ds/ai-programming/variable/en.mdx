@@ -66,6 +66,45 @@ print(z == x)   # Output: True
 
 Assignment `y = x` guarantees that both names refer to the same object at that moment. Creating another equal value guarantees that the values compare equal. It may create a separate object. Some Python implementations reuse immutable objects, but correct code never depends on that optimization.
 
+Run `x = 5`, then `y = x`, then `x = 7`, and follow the segments. `y = x` does not copy a number, it makes `y` point at the same object `5` as `x`. When `x = 7` runs, only the segment of `x` moves to a new object, from the gray segment to the violet one. The segment of `y` stays where it was, so `print(y)` still shows `5`.
+
+<MathVisual
+  title={<>Rebinding <code>x</code> does not change <code>y</code></>}
+  description={<>Python first binds <code>x</code> to <code>5</code>, then <code>y</code> to the same object, then <code>x</code> to <code>7</code>. The gray segment is the old binding of <code>x</code>, the violet segment the new one, and the teal segment from <code>y</code> still points at <code>5</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1.2, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x", kind: "point", at: { x: 0, y: 0.6 }, appearance: "secondary" },
+      { id: "y", kind: "point", at: { x: 0, y: -0.6 }, appearance: "construction" },
+      { id: "seven", kind: "point", at: { x: 4, y: 1.2 }, appearance: "secondary" },
+      { id: "five", kind: "point", at: { x: 4, y: -0.6 }, appearance: "construction" },
+      { id: "new", kind: "segment", from: { x: 0.2, y: 0.6 }, to: { x: 3.8, y: 1.2 }, appearance: "secondary" },
+      { id: "copy", kind: "segment", from: { x: 0.2, y: -0.6 }, to: { x: 3.8, y: -0.6 }, appearance: "construction" },
+      { id: "old", kind: "segment", from: { x: 0.2, y: 0.6 }, to: { x: 3.8, y: -0.5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "x", objectId: "x", at: { x: 0, y: 0.6 }, placement: "left" },
+      { key: "y", objectId: "y", at: { x: 0, y: -0.6 }, placement: "left" },
+      { key: "seven", objectId: "seven", at: { x: 4, y: 1.2 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 4, y: -0.6 }, placement: "right" },
+      { key: "new", objectId: "new", at: { x: 2, y: 0.9 }, placement: "above" },
+      { key: "copy", objectId: "copy", at: { x: 2, y: -0.6 }, placement: "below" },
+      { key: "old", objectId: "old", at: { x: 2, y: 0.6 - 1.8 * 1.1 / 3.6 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "x": "x",
+    "y": "y",
+    "seven": "7",
+    "five": "5",
+    "new": "x = 7",
+    "copy": "y = x",
+    "old": "x = 5",
+  }}
+/>
+
 ## Python Variable Characteristics
 
 When you assign a value to a name, remember two things. Python binds the name to an object **without a separate declaration**. You can later bind the same name to an object of a different type.
@@ -192,6 +231,23 @@ print(nama == Nama)         # Output: False
 print(Nama == NAMA)         # Output: False`
     }
   ]}
+/>
+
+A valid variable name starts with a letter or `_`, contains only letters, digits, and `_`, and is not a keyword. `2nd` fails the first rule, `my-var` fails the second, and `class` fails the third.
+
+<BarChart
+  title={<>Six candidate variable names</>}
+  description={<>A bar of height <InlineMath math="1" /> means the name below it is valid, and no bar means Python rejects it with a <code>SyntaxError</code>.</>}
+  yAxisLabel="Valid"
+  data={[
+    { name: "total", value: 1 },
+    { name: "_count", value: 1 },
+    { name: "2nd", value: 0 },
+    { name: "my-var", value: 0 },
+    { name: "class", value: 0 },
+    { name: "my_var2", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Valid", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
 ## Keywords That Cannot Be Used
@@ -426,3 +482,30 @@ print(f"Perimeter: {perimeter} cm")`
 In this program, `length` and `width` name the two inputs, while `area` and `perimeter` name the calculated results. The check rejects nonpositive or nonfinite dimensions before calculating. Length `5` and width `3` produce area `15.0 cm²` and perimeter `16.0 cm`. Non-numeric text is rejected by `float()`.
 
 Name binding, identifier rules, and consistent conventions make Python code easier to read. Distinguishing equality, identity, and reassignment also prepares you for mutability, function arguments, and object models.
+
+Variables give the numbers in a program clear names. With `length = 4` and `width = 3`, the line `area = length * width` stores <InlineMath math="4\cdot3=12" />, and the name `area` tells you what that number means when you read the code again.
+
+<MathVisual
+  title={<><code>area = length * width</code></>}
+  description={<>The violet rectangle measures <code>length</code> by <code>width</code>. The teal segment is the length <InlineMath math="4" />, the orange segment is the width <InlineMath math="3" />, and the area is <InlineMath math="12" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rectangle", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "length", kind: "segment", from: { x: 0, y: -0.4 }, to: { x: 4, y: -0.4 }, appearance: "construction" },
+      { id: "width", kind: "segment", from: { x: 4.4, y: 0 }, to: { x: 4.4, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "length", objectId: "length", at: { x: 2, y: -0.4 }, placement: "below" },
+      { key: "width", objectId: "width", at: { x: 4.4, y: 1.5 }, placement: "right" },
+      { key: "rectangle", objectId: "rectangle", at: { x: 2, y: 1.5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "length": <code>length = 4</code>,
+    "width": <code>width = 3</code>,
+    "rectangle": <code>area = 12</code>,
+  }}
+/>
