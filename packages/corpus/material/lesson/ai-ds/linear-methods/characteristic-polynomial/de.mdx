@@ -43,6 +43,33 @@ Das bedeutet:
 - Der zweithöchste Koeffizient bezieht sich auf die Matrixspur
 - Der **konstante Term** ist die Determinante der Matrix
 
+Für eine <InlineMath math="2\times2" />-Matrix gilt <InlineMath math="\chi_A(t)=t^2-(\operatorname{tr}A)\,t+\det A" />. Mit <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> ist die Spur <InlineMath math="4" /> und die Determinante <InlineMath math="3" />, also <InlineMath math="\chi_A(t)=t^2-4t+3=(t-1)(t-3)" />.
+
+<MathVisual
+  title={<>Die Parabel <InlineMath math="\chi_A(t)=t^2-4t+3" /></>}
+  description={<>Die magentafarbenen Punkte sind die Nullstellen <InlineMath math="1" /> und <InlineMath math="3" />, die Eigenwerte von <InlineMath math="A" />. Der gelbe Punkt ist <InlineMath math="\chi_A(0)=\det A=3" />, und der graue Scheitel liegt bei <InlineMath math="t=\operatorname{tr}A/2=2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "polynomial", kind: "quadratic", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: -0.5, max: 4.5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "small", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "large", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: 3 }, appearance: "highlight" },
+      { id: "vertex", kind: "point", at: { x: 2, y: -1 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "vertex", objectId: "vertex", at: { x: 2, y: -1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "intercept": <InlineMath math="\det A=3" />,
+    "vertex": <InlineMath math="t=\tfrac{\operatorname{tr}A}2" />,
+  }}
+/>
+
 ## Eigenwerte als Polynomwurzeln
 
 Der Wert <InlineMath math="\lambda \in \mathbb{K}" /> ist genau dann ein Eigenwert von <InlineMath math="A" />, wenn <InlineMath math="\det(A - \lambda \cdot I) = 0" />.
@@ -64,6 +91,30 @@ Was passiert nun, wenn ein Eigenwert mehrmals als Wurzel des charakteristischen 
 Für jeden Eigenwert <InlineMath math="\lambda" /> gilt für seine **algebraische Vielfachheit**
 
 <BlockMath math="1 \leq \mu_A(\lambda) \leq n" />
+
+Drei <InlineMath math="2\times2" />-Matrizen mit derselben Spur <InlineMath math="4" />, aber mit den Determinanten <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="5" /> ergeben drei Arten von Nullstellen. <InlineMath math="\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> hat zwei einfache Nullstellen, <InlineMath math="\begin{pmatrix}2&1\\0&2\end{pmatrix}" /> hat die Nullstelle <InlineMath math="2" /> mit algebraischer Vielfachheit <InlineMath math="2" />, und <InlineMath math="\begin{pmatrix}2&-1\\1&2\end{pmatrix}" /> hat die komplexen Nullstellen <InlineMath math="2\pm i" />.
+
+<MathVisual
+  title={<>Einfache Nullstellen, eine doppelte Nullstelle und keine reelle</>}
+  description={<>Die graue Parabel <InlineMath math="t^2-4t+3" /> schneidet die Achse zweimal. Die türkise Parabel <InlineMath math="(t-2)^2" /> berührt die Achse nur im magentafarbenen Punkt <InlineMath math="t=2" />, also zählt diese Nullstelle doppelt. Die orange Parabel <InlineMath math="t^2-4t+5" /> erreicht die Achse nie.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two-roots", kind: "quadratic", coefficients: { a: 1, b: -4, c: 3 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "reference" },
+      { id: "double-root", kind: "quadratic", coefficients: { a: 1, b: -4, c: 4 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "construction" },
+      { id: "no-root", kind: "quadratic", coefficients: { a: 1, b: -4, c: 5 }, domain: { min: 0, max: 4 }, inputAxis: "x", appearance: "primary" },
+      { id: "touch", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "touch", objectId: "touch", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "touch": <InlineMath math="t=2" />,
+  }}
+/>
 
 ## Beziehung zwischen geometrischer und algebraischer Vielfachheit
 
@@ -178,6 +229,45 @@ Ihr charakteristisches Polynom lautet:
 <BlockMath math="\chi_A(t) = (1-t)^2 = t^2 - 2 \cdot t + 1" />
 
 Der Eigenwert ist <InlineMath math="\lambda = 1" /> mit <InlineMath math="\mu_A(1) = 2" />.
+
+Vergleich die fünf Parabeln unten, eine für jeden Drehwinkel. Der tiefste Punkt jeder Parabel liegt bei <InlineMath math="t=\cos\alpha" /> mit dem Wert <InlineMath math="1-\cos^2\alpha=\sin^2\alpha" />. Nur für <InlineMath math="\alpha=0" /> und <InlineMath math="\alpha=\pi" /> ist dieser Wert null, und die Parabel berührt die <InlineMath math="t" />-Achse bei <InlineMath math="t=1" /> oder <InlineMath math="t=-1" />. Für jeden anderen Winkel schwebt die Parabel über der Achse, ihre Nullstellen sind komplex, und die Drehung erhält keine einzige Richtung.
+
+<MathVisual
+  title={<>Charakteristisches Polynom einer Drehung <InlineMath math="t^2-2t\cos\alpha+1" /></>}
+  description={<>Eine Parabel für jeden Winkel <InlineMath math="\alpha" />. Ihr tiefster Punkt liegt bei <InlineMath math="t=\cos\alpha" /> mit dem Wert <InlineMath math="\sin^2\alpha" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.3, max: 3.3 }, y: { min: -0.6, max: 5.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "zero", kind: "quadratic", coefficients: { a: 1, b: -2 * (1), c: 1 }, domain: { min: -1, max: 3 }, inputAxis: "x", appearance: "secondary" },
+      { id: "third", kind: "quadratic", coefficients: { a: 1, b: -2 * (1 / 2), c: 1 }, domain: { min: -3 / 2, max: 5 / 2 }, inputAxis: "x", appearance: "construction" },
+      { id: "half", kind: "quadratic", coefficients: { a: 1, b: -2 * (0), c: 1 }, domain: { min: -7 / 4, max: 7 / 4 }, inputAxis: "x", appearance: "highlight" },
+      { id: "twothirds", kind: "quadratic", coefficients: { a: 1, b: -2 * (-1 / 2), c: 1 }, domain: { min: -5 / 2, max: 3 / 2 }, inputAxis: "x", appearance: "primary" },
+      { id: "full", kind: "quadratic", coefficients: { a: 1, b: -2 * (-1), c: 1 }, domain: { min: -3, max: 1 }, inputAxis: "x", appearance: "answer" },
+      { id: "root-plus", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "root-minus", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "zero", objectId: "zero", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "third", objectId: "third", at: { x: -3 / 2, y: 19 / 4 }, placement: "above-left" },
+      { key: "half", objectId: "half", at: { x: 7 / 4, y: 65 / 16 }, placement: "above-right" },
+      { key: "twothirds", objectId: "twothirds", at: { x: -5 / 2, y: 19 / 4 }, placement: "above-left" },
+      { key: "full", objectId: "full", at: { x: 1, y: 4 }, placement: "above-right" },
+      { key: "root-plus", objectId: "root-plus", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "root-minus", objectId: "root-minus", at: { x: -1, y: 0 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    "zero": <InlineMath math="\alpha=0" />,
+    "third": <InlineMath math="\alpha=\tfrac\pi3" />,
+    "half": <InlineMath math="\alpha=\tfrac\pi2" />,
+    "twothirds": <InlineMath math="\alpha=\tfrac{2\pi}3" />,
+    "full": <InlineMath math="\alpha=\pi" />,
+    "root-plus": <InlineMath math="t=1" />,
+    "root-minus": <InlineMath math="t=-1" />,
+  }}
+/>
 
 ## Eigenschaften ähnlicher Matrizen
 
