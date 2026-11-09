@@ -1,37 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
-  },
-  stimulus: "island-teacher",
+  stimulus: "passage-2",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Ia sudah menyerahkan surat itu ke kantor dinas dan menyimpan salinannya.",
+          label: "Mengukur kondensasi melalui satu perbandingan awal",
         },
         {
           correct: false,
-          label: "Ia ingin murid-muridnya menemukan surat itu dan membacanya.",
+          label:
+            "Menjadikan kondensasi penjelasan tunggal atas hasil pengamatan",
         },
         {
           correct: true,
+          label: "Kegunaan dan Batas Model Daur Air dalam Kotak Transparan",
+        },
+        {
+          correct: false,
+          label: "Kaidah akhir dari perbandingan pertama tentang kondensasi",
+        },
+        {
+          correct: false,
           label:
-            "Ia menunda niat mundur tanpa sepenuhnya membuang kemungkinan itu.",
-        },
-        {
-          correct: false,
-          label: "Ia lupa membawa surat itu ke kantor dinas karena kelelahan.",
-        },
-        {
-          correct: false,
-          label: "Ia memutuskan pindah mengajar ke sekolah lain di pulau itu.",
+            "Keterbatasan yang membuat uji lanjutan kondensasi tidak diperlukan",
         },
       ],
     },

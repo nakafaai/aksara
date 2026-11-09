@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "conclusion",
-  },
-  stimulus: "antibiotic-resistance",
+  stimulus: "passage-1",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Antibiotik efektif untuk menyembuhkan pilek dan flu.",
+          correct: true,
+          label:
+            "Nilai $$25$$ adalah rata-rata ketika panel peneduh dipasang empat jam. Hari berawan dan perubahan angin belum tercakup dalam simulasi.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Gen kekebalan dapat berpindah antarbakteri dari jenis yang berbeda.",
+            "Pada kondisi dengan perubahan, hasil rata-rata tercatat $$25$$. Karena berbeda dari kondisi lain, perubahan yang diuji merupakan satu-satunya penjelasan yang masuk akal.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Sebelum antibiotik diberikan, bakteri yang tahan tidak lebih unggul daripada bakteri lain.",
+            "Durasi singkat membatasi ketelitian, tetapi pola yang terlihat sudah dapat digeneralisasi ke setiap keadaan sejenis.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Banyak golongan antibiotik baru dipasarkan sejak akhir 1980-an.",
+            "Perbedaan yang tercatat belum dapat dianggap sebagai bukti sama sekali sebelum pengulangan menghasilkan rata-rata yang persis sama.",
+        },
+        {
+          correct: false,
+          label:
+            "Kondisi pembanding membuat data dasar tidak diperlukan, sehingga nilai pada kondisi perubahan saja cukup untuk menyusun simpulan.",
         },
       ],
     },

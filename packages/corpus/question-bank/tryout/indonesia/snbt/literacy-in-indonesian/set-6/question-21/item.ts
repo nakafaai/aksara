@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
-  },
-  stimulus: "food-estate",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Konsumsi beras per orang di negara itu terus naik selama sepuluh tahun terakhir.",
+            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan menunggu seluruh proyek selesai sebelum meminta satu pun peninjauan.",
         },
         {
           correct: false,
           label:
-            "Mesin panen modern mempercepat panen di lahan yang sangat luas.",
+            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan menyerahkan langkah berikutnya kepada tokoh lain agar masalah segera berakhir.",
         },
         {
           correct: true,
           label:
-            "Banyak sawah baru di lahan gambut panennya jauh di bawah perkiraan.",
+            "Sari mengurangi bantuan dari contoh lengkap menjadi pemeriksaan mandiri, lalu mengukur keberhasilan melalui kemampuan Dimas menjelaskan dan memperbaiki langkahnya.",
         },
         {
           correct: false,
           label:
-            "Harga beras dunia melonjak tajam dalam beberapa tahun terakhir.",
+            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan memahami penyangga belajar sebagai gagasan yang tidak berubah melalui pilihan tokoh.",
         },
         {
           correct: false,
-          label: "Sebagian warga kota lebih menyukai nasi daripada sagu.",
+          label:
+            "Sari menghadapi hambatan dalam membantu teman belajar tanpa mengambil alih tugasnya dan menempatkan pencatatan ketidakpastian di atas tindakan kecil yang dapat diperiksa.",
         },
       ],
     },

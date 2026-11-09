@@ -1,39 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "figurative-language",
-  },
-  stimulus: "urban-heat",
+  stimulus: "passage-1",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Pendingin ruangan rusak lebih cepat jika dipakai terus-menerus.",
-        },
-        {
-          correct: false,
-          label: "Pendingin ruangan membuat udara di dalam gedung makin panas.",
-        },
-        {
-          correct: false,
-          label:
-            "Pemakaian pendingin ruangan memaksa kota membangun lebih banyak jalan.",
-        },
-        {
           correct: true,
-          label:
-            "Kota yang makin panas mendorong pemakaian alat yang membuang panas ke luar.",
+          label: "Menguji Susunan Bahan pada Model Penyaringan Air Keruh",
+        },
+        {
+          correct: false,
+          label: "Mengukur indikator melalui satu perbandingan awal",
         },
         {
           correct: false,
           label:
-            "Warga cenderung berhenti memakai pendingin ruangan ketika listrik mahal.",
+            "Menjadikan indikator penjelasan tunggal atas hasil pengamatan",
+        },
+        {
+          correct: false,
+          label: "Kaidah akhir dari perbandingan pertama tentang indikator",
+        },
+        {
+          correct: false,
+          label:
+            "Keterbatasan yang membuat uji lanjutan indikator tidak diperlukan",
         },
       ],
     },

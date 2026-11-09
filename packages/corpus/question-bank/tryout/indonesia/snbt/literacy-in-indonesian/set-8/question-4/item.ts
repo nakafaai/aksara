@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "application",
-  },
-  stimulus: "tempe-mold",
+  stimulus: "passage-1",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tempe jadi lebih cepat karena kapang tumbuh jauh lebih subur tanpa udara.",
+            "Definisi *transpirasi* membuktikan bahwa seluruh penurunan massa pasti berupa uap air yang keluar melalui stomata.",
         },
         {
           correct: false,
           label:
-            "Tempe mengandung lebih banyak vitamin B12 karena kapangnya murni.",
+            "Definisi itu menjadikan *transpirasi* pengganti variabel kontrol sehingga faktor yang belum diukur tidak lagi membatasi simpulan.",
         },
         {
           correct: false,
           label:
-            "Butir kedelai merekat lebih kuat karena airnya membantu miselium.",
+            "Definisi tersebut memperluas *transpirasi* dari percobaan singkat ini ke semua keadaan yang menyerupainya.",
+        },
+        {
+          correct: false,
+          label:
+            "Istilah *transpirasi* dipakai untuk menamai keterbatasan laporan, bukan konsep yang diwakili hasil pengukuran.",
         },
         {
           correct: true,
           label:
-            "Bakteri lain tumbuh lebih cepat daripada kapang sehingga tempe busuk.",
-        },
-        {
-          correct: false,
-          label:
-            "Tempe mungkin lebih mudah dicerna karena kedelainya masih basah.",
+            "Definisi *transpirasi* menghubungkan kehilangan massa dengan perpindahan uap air yang sedang dipelajari, tetapi perbandingan perlakuan tetap diperlukan untuk menafsirkan hasilnya.",
         },
       ],
     },

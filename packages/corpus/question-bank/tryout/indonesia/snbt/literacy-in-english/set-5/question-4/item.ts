@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
-  },
-  stimulus: "placebo-effect",
+  stimulus: "passage-1",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Naloxone is itself a powerful painkiller for patients after dental surgery.",
+            "The definition of *friction* proves that the tested change caused the recorded result, even without the comparison conditions.",
         },
         {
           correct: false,
           label:
-            "Patients recovering from dental surgery do not feel any real pain at all.",
+            "The definition makes *friction* a substitute for the controls, so the unmeasured factor no longer limits the conclusion.",
+        },
+        {
+          correct: false,
+          label:
+            "The definition broadens *friction* from this short investigation to every similar system under any condition.",
         },
         {
           correct: true,
           label:
-            "Part of the relief a placebo brings depends on chemicals the body itself releases.",
+            "The definition of *friction* clarifies the force being investigated, while the travel-time comparison and possible surface wear determine what the results support.",
         },
         {
           correct: false,
           label:
-            "The placebo pills in the experiment secretly contained opioid drugs.",
-        },
-        {
-          correct: false,
-          label:
-            "Expectation has little or no effect on what happens in the brain.",
+            "The term *friction* names the report's limitation rather than the concept represented by the measurements.",
         },
       ],
     },

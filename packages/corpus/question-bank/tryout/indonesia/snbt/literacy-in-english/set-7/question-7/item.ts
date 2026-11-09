@@ -1,33 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "classroom-points",
+  stimulus: "passage-2",
   versions: {
     en: {
-      columns: ["Yes", "No"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Pupils often work harder when points are on offer.",
-        },
-        {
-          column: 2,
+          correct: false,
           label:
-            "In the 1973 experiment, every child was promised a certificate.",
+            "The recorded difference should count as no evidence at all until a longer repetition produces exactly the same mean.",
         },
         {
-          column: 2,
-          label: "Leaderboards mainly help pupils who are near the bottom.",
+          correct: false,
+          label:
+            "The comparison condition makes the baseline unnecessary, so the changed value alone is sufficient for the conclusion.",
         },
         {
-          column: 1,
-          label: "Good games let players fail and try again without penalty.",
+          correct: false,
+          label:
+            "The comparison condition produced a mean value of $$43$$. Because it differs from the other conditions, the tested change is the only plausible explanation.",
+        },
+        {
+          correct: false,
+          label:
+            "The short duration limits precision, but the observed pattern can already be generalized to every comparable setting.",
+        },
+        {
+          correct: true,
+          label:
+            "The trial averaged $$62$$ households per round identifying the safe route, compared with $$41$$ and $$43$$. The drill did not reproduce real emergency stress, so the result supports a limited follow-up rather than a permanent rule.",
         },
       ],
     },

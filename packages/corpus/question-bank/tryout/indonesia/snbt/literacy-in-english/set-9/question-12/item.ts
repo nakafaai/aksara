@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "recycling-rate",
+  stimulus: "passage-3",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "More tonnes of mixed plastics were recycled than of plastic bottles.",
+            "Hana followed one bag from a stall to collection instead of judging the whole market at a glance. The choice resolves the whole conflict at once and makes any later review unnecessary.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Glass had the highest share of bin material that was actually recycled.",
+            "Hana followed one bag from a stall to collection instead of judging the whole market at a glance. The action transfers responsibility for the unresolved task to another character.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Paper and cardboard made up the largest amount put in recycling bins.",
+            "Following one bag through the full route gives Hana a traceable chain of evidence and replaces a broad impression with a testable account.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Everything put in the recycling bins was sent to recycling companies.",
+            "Hana followed one bag from a stall to collection instead of judging the whole market at a glance. The decision shows an immediate, complete transformation unrelated to the earlier uncertainty.",
+        },
+        {
+          correct: false,
+          label:
+            "Hana followed one bag from a stall to collection instead of judging the whole market at a glance. The setting alone produces the change, so the character's decision has no role in the development.",
         },
       ],
     },

@@ -1,40 +1,32 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
-  },
-  stimulus: "ferry-ticket",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Indonesia memproduksi semua jenis plastik yang ditemukan di Seychelles",
+        },
+        {
+          correct: false,
+          label:
+            "Indonesia merupakan negara yang paling dekat dengan Seychelles",
+        },
+        {
+          correct: false,
+          label: "Semua sampah di Seychelles memiliki label produk Indonesia",
+        },
+        {
           correct: true,
           label:
-            "Tanda bahwa ia dengan sadar merelakan Laila pergi meskipun berat.",
+            "Model memperkirakan Indonesia sebagai negara sumber tunggal terbesar untuk banyak sampah daratan yang lama mengapung",
         },
         {
           correct: false,
-          label:
-            "Ungkapan marah karena Laila tidak menghiraukan peringatannya tentang ombak.",
-        },
-        {
-          correct: false,
-          label:
-            "Kebiasaan baru yang muncul karena permukaan stempelnya sudah licin dan aus.",
-        },
-        {
-          correct: false,
-          label:
-            "Isyarat bahwa ia ingin segera melayani antrean penumpang yang mulai gelisah.",
-        },
-        {
-          correct: false,
-          label:
-            "Tanda bahwa ia yakin Laila akan pulang ke pulau sebelum Lebaran.",
+          label: "Peneliti menganggap jumlah penduduk sebagai bukti yang cukup",
         },
       ],
     },

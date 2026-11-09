@@ -1,40 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "theme-message",
-  },
-  stimulus: "dawn-market",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "ajakan agar pembeli datang ke pasar setelah matahari terbit saja",
+          label: "Garis yang Pasti Disebabkan Kelembapan Tinggi",
+        },
+        {
+          correct: false,
+          label: "Perintah Supervisor yang Sudah Dipahami Sepenuhnya",
         },
         {
           correct: false,
           label:
-            "keluhan bahwa harga di pasar subuh selalu lebih mahal daripada siang",
+            "Sudut Pandang Terbatas sebagai Istilah Tanpa Peran dalam Cerita",
+        },
+        {
+          correct: false,
+          label: "Pemindahan Rutin yang Tidak Memerlukan Catatan Lama",
         },
         {
           correct: true,
-          label:
-            "gambaran kerja keras yang selesai sebelum kebanyakan orang memulai hari",
-        },
-        {
-          correct: false,
-          label:
-            "pujian bahwa matahari membawa keuntungan besar bagi para pedagang",
-        },
-        {
-          correct: false,
-          label:
-            "kritik bahwa orang-orang di pasar subuh malas dan pulang terlalu cepat",
+          label: "Satu Kartu sebelum Lukisan Dipindahkan",
         },
       ],
     },

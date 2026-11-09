@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
-  },
-  stimulus: "social-media-age",
+  stimulus: "passage-2",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Aplikasi pesan berkelompok makin populer di kalangan pengguna dewasa dalam beberapa tahun terakhir.",
-        },
-        {
-          correct: false,
-          label:
-            "Situs kecil tanpa tim moderasi memuat lebih banyak konten berbahaya daripada platform besar.",
-        },
-        {
-          correct: false,
-          label:
-            "Banyak remaja yang kehilangan akun beralih ke aplikasi pesan yang tidak dimoderasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian orang tua mungkin merasa lebih tenang setelah larangan media sosial berlaku.",
+            "Mengulang rangkaian seri dan paralel dengan lebih banyak unit sambil hanya mencatat nyala lampu, tanpa mengukur arus atau tegangan.",
         },
         {
           correct: true,
           label:
-            "Di negara yang melarang, kebanyakan remaja yang kehilangan akun tidak pindah ke aplikasi lain.",
+            "Mengukur arus dan tegangan pada rangkaian seri serta paralel bertegangan rendah dengan kondisi komponen yang sebanding dan alat ukur terkalibrasi.",
+        },
+        {
+          correct: false,
+          label:
+            "Mengubah seluruh faktor lapangan sekaligus, lalu membandingkan satu hasil akhir tanpa kondisi acuan.",
+        },
+        {
+          correct: false,
+          label:
+            "Mengambil satu kejadian nyata yang sesuai dengan model sebagai konfirmasi bahwa pola selalu berlaku.",
+        },
+        {
+          correct: false,
+          label:
+            "Mengganti pengukuran dengan survei tentang apakah peserta memahami definisi istilah pada model.",
         },
       ],
     },

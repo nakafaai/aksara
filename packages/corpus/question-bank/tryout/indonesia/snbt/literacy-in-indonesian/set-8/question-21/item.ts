@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
-  },
-  stimulus: "nickel-processing",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Nilai ekspor produk olahan nikel naik setiap tahun sejak 2020.",
-        },
-        {
-          correct: false,
-          label:
-            "Jumlah pekerja di kawasan industri pengolahan terus bertambah.",
+            "Dito menghapus angka $$4{,}35$$ meter agar hasil pengukuran terlihat konsisten dan laporan dapat segera diselesaikan.",
         },
         {
           correct: true,
           label:
-            "Penyakit saluran napas warga sekitar smelter naik sejak smelter beroperasi.",
+            "Dito menelusuri penyebab angka menyimpang, mengulang pengukuran, mempertahankan jejak data, dan melaporkan $$4{,}81$$ meter sebagai hasil dengan ketidakpastian.",
         },
         {
           correct: false,
           label:
-            "Harga nikel dunia naik ketika permintaan baterai kendaraan listrik meningkat tajam.",
+            "Dito merata-ratakan $$4{,}35$$ dan $$4{,}82$$ meter karena semua hasil ukur harus memiliki bobot yang sama tanpa melihat cara memperolehnya.",
         },
         {
           correct: false,
-          label: "Sebagian smelter akan memakai listrik tenaga surya kelak.",
+          label:
+            "Dito memilih $$4{,}82$$ meter sebagai nilai pasti karena hasil temannya sama dengan salah satu pengukuran ulang.",
+        },
+        {
+          correct: false,
+          label:
+            "Dito menyimpan angka pertama sebagai nilai sah meskipun bukti fisik menunjukkan pemberat mungkin belum mencapai air.",
         },
       ],
     },

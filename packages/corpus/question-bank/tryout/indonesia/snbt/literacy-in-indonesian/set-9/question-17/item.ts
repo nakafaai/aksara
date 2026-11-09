@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "research-design",
-  },
-  stimulus: "water-stunting",
+  stimulus: "passage-4",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Jumlah puskesmas di seluruh kabupaten itu pada tahun yang sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Rata-rata pendapatan rumah tangga di keempat desa itu pada tahun pendataan berikutnya.",
-        },
-        {
-          correct: false,
-          label:
-            "Jumlah balita di setiap desa yang lahir pada tahun pendataan.",
+            "Foto menunjukkan identitas mantel melalui tampilannya, sedangkan buku perawatan hanya mengulang informasi visual tersebut dalam bentuk tulisan.",
         },
         {
           correct: true,
           label:
-            "Persentase stunting pada keluarga berpendapatan setara yang akses airnya berbeda.",
+            "Foto menunjukkan kemunculan mantel berciri serupa di panggung, sedangkan buku perawatan melacak tindakan pada M-17 tanpa memastikan kemunculannya di panggung.",
         },
         {
           correct: false,
           label:
-            "Pendapat para ibu tentang rasa air minum di desa masing-masing.",
+            "Buku perawatan membuktikan kemunculan mantel pada $$2019$$ karena catatan terakhir tahun $$2009$$ menyebut kostum telah dikembalikan.",
+        },
+        {
+          correct: false,
+          label:
+            "Foto lebih lengkap daripada buku perawatan karena rentang tahunnya lebih panjang, sehingga celah provenans dapat diabaikan.",
+        },
+        {
+          correct: false,
+          label:
+            "Kedua sumber tidak dapat dibandingkan karena salah satunya merekam benda, sedangkan yang lain merekam tindakan perawatan.",
         },
       ],
     },

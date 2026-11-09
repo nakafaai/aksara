@@ -1,39 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
-  },
-  stimulus: "tea-picker",
+  stimulus: "passage-3",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Angka gabungan naik terutama karena jumlah peserta pada kondisi papan baru lebih besar daripada pada kondisi papan lama.",
+        },
+        {
+          correct: false,
+          label:
+            "Kenaikan angka gabungan menunjukkan setiap peserta memperoleh manfaat yang sama, meskipun hasil per kelompok berbeda.",
+        },
+        {
           correct: true,
           label:
-            "pucuk terbaik hanya dapat dipilih oleh tangan yang terampil dan teliti",
+            "Kenaikan gabungan terutama mencerminkan perbaikan pada kelompok berpenglihatan rendah. Kelompok berpenglihatan biasa bertahan di sekitar $$84$$ persen.",
         },
         {
           correct: false,
           label:
-            "mesin pemetik di kebun itu belum pernah dicoba di lereng timur",
+            "Angka $$52$$ dari $$65$$ lebih rendah daripada $$46$$ dari $$70$$ karena jumlah seluruh pesertanya lebih sedikit.",
         },
         {
           correct: false,
           label:
-            "Laras harus menyimpan pucuk itu agar tidak dipetik oleh mesin",
-        },
-        {
-          correct: false,
-          label: "pucuk itu tumbuh di tempat yang tidak dapat dijangkau mesin",
-        },
-        {
-          correct: false,
-          label:
-            "Mak Inah akan menolak dipindahkan ke bagian pengeringan mulai bulan depan",
+            "Perbandingan kelompok tidak dapat dilakukan karena pembilang dan penyebut pada dua kondisi tidak sama persis.",
         },
       ],
     },

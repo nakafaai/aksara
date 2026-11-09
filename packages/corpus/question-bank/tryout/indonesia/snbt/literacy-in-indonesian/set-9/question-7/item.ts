@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "national-exam",
+  stimulus: "passage-2",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Penulis menganggap masalah perbandingan nilai antarsekolah tidak nyata.",
+            "Dalam batas tumbuhan, serasah tidak mengurangi cadangan karena karbonnya masih berada di dalam kawasan mangrove.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Menurut penulis, ujian yang menentukan kelulusan dapat mendorong sekolah memangkas pelajaran yang tidak diujikan.",
+            "Dalam batas gabungan tumbuhan dan tanah, serasah harus dihitung dua kali karena keluar dari tumbuhan sekaligus masuk ke tanah.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Penulis mengusulkan agar hasil ujian bersama tidak dipakai untuk apa pun.",
+            "Perubahan batas sistem hanya mengubah istilah yang digunakan, sedangkan arus yang masuk dan keluar selalu menghasilkan jumlah bersih yang sama.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Menurut penulis, taruhan yang lebih rendah menghasilkan data yang lebih dapat dipercaya.",
+            "Serasah merupakan arus keluar jika hanya tumbuhan yang dihitung, tetapi menjadi perpindahan internal jika tumbuhan dan tanah ditempatkan dalam satu batas sistem.",
+        },
+        {
+          correct: false,
+          label:
+            "Serasah dapat diabaikan pada kedua batas karena nilainya lebih kecil daripada fotosintesis dan tidak mengubah arah perhitungan.",
         },
       ],
     },

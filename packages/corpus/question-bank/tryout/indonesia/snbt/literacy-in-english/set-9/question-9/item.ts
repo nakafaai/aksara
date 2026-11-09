@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
-  },
-  stimulus: "zoo-purpose",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Many visitors say that elephants are their favourite animals at the zoo by far.",
+            "Defining *system alignment* proves that matching symbols alone caused every correctly sorted bag.",
         },
         {
           correct: false,
           label:
-            "Elephants in the wild walk long distances every day in search of food.",
+            "The definition makes evening-to-evening variation irrelevant to the follow-up.",
         },
         {
           correct: false,
           label:
-            "Zoos spend a large share of their budgets on elephant and polar bear enclosures.",
-        },
-        {
-          correct: false,
-          label:
-            "Polar bears in the wild are threatened by the loss of sea ice.",
+            "The term *system alignment* replaces the measured comparison and consultation evidence.",
         },
         {
           correct: true,
           label:
-            "Elephants in good enclosures show no more stress than wild elephants.",
+            "The definition explains why permits and bins need the same symbols: the disposal decision begins at the stall and must remain consistent at collection.",
+        },
+        {
+          correct: false,
+          label:
+            "The definition shows that correctly coloured bins are enough even when stall permits use different symbols.",
         },
       ],
     },

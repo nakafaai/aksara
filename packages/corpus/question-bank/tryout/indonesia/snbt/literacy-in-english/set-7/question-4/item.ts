@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-purpose",
-  },
-  stimulus: "slime-mould",
+  stimulus: "passage-1",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "To argue that railway engineers should stop studying slime moulds",
+            "The definition of *confounding variable* proves that the tested change caused the recorded result, even without the comparison conditions.",
         },
         {
           correct: false,
           label:
-            "To admit that the Tokyo experiment was carried out incorrectly",
+            "The definition makes *confounding variable* a substitute for the controls, so the unmeasured factor no longer limits the conclusion.",
         },
         {
           correct: false,
           label:
-            "To suggest that slime moulds design networks better than people",
+            "The definition broadens *confounding variable* from this short investigation to every similar system under any condition.",
+        },
+        {
+          correct: false,
+          label:
+            "The term *confounding variable* names the measured leaf area and shows that colour was successfully isolated from intensity.",
         },
         {
           correct: true,
-          label: "To correct the idea that the slime mould plans its networks",
-        },
-        {
-          correct: false,
           label:
-            "To claim that the slime mould's network was probably a coincidence",
+            "The definition explains why reduced light intensity weakens a colour-only interpretation: intensity changed together with the filter and could affect growth.",
         },
       ],
     },

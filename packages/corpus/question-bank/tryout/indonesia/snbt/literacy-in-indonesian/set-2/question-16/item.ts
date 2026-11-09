@@ -1,40 +1,29 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
-  },
-  stimulus: "rice-irrigation",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "Apakah tambahan gabah dan air yang dihemat sepadan dengan upah delapan hari penyiangan tambahan.",
+          label: "Membantu memahami kehidupan masyarakat Pompeii pada masa itu",
         },
         {
           correct: false,
-          label:
-            "Apakah varietas padi yang dipakai dalam uji coba sama dengan varietas yang ditanam di desa lain.",
+          label: "Membuktikan bahwa semua catatan Romawi keliru",
         },
         {
           correct: false,
-          label:
-            "Apakah masa berbunga padi pada pengairan berselang lebih cepat daripada pada penggenangan terus-menerus.",
+          label: "Menentukan secara pasti identitas setiap penduduk Pompeii",
         },
         {
           correct: false,
-          label:
-            "Apakah air irigasi pada musim hujan cukup untuk menggenangi seluruh sawah.",
+          label: "Menetapkan harga setiap benda peninggalan Romawi",
         },
         {
           correct: false,
-          label:
-            "Apakah tanah yang retak halus dapat merusak saluran irigasi milik tiga desa lain.",
+          label: "Menunjukkan bahwa kehidupan Romawi hanya berpusat pada seni",
         },
       ],
     },

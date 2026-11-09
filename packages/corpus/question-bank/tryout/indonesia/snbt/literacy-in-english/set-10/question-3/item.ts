@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
-  },
-  stimulus: "glacier-flow",
+  stimulus: "passage-1",
   versions: {
     en: {
       kind: "choice",
@@ -14,25 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The ice crystals harden in the heat and push one another forward.",
-        },
-        {
-          correct: false,
-          label: "More snow falls in summer, which adds weight to the ice.",
+            "Repeat the three arrangements with more cells but keep the same single resistor. This alone would establish their current, power, and operating time under every load.",
         },
         {
           correct: false,
           label:
-            "Friction with the valley walls increases sharply in warmer weather.",
+            "Use a different resistor, meter, cell pack, and measurement interval for each arrangement so that the follow-up covers more conditions at once.",
         },
         {
           correct: true,
           label:
-            "More meltwater collects at the base, and the glacier slides on it.",
+            "Test several resistor values while measuring voltage, current, and each cell's internal resistance. This would show whether the series pattern persists and clarify what it implies for power.",
         },
         {
           correct: false,
-          label: "The melting snout pulls the rest of the glacier downhill.",
+          label:
+            "Measure the open-circuit voltage more precisely but omit current and load resistance, because terminal voltage alone determines operating time.",
+        },
+        {
+          correct: false,
+          label:
+            "Repeat only the series arrangement until its mean is exactly twice $$1.46\\,\\text{V}$$, then treat that equality as evidence that the original limitation no longer matters.",
         },
       ],
     },

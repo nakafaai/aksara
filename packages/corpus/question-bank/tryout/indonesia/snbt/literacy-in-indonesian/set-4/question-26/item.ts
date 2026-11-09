@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "summary",
-  },
-  stimulus: "banda-nutmeg",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pala Banda pertama kali dibawa ke Eropa oleh VOC pada abad ke-17.",
-        },
-        {
-          correct: false,
-          label:
-            "Perjanjian Breda adalah peristiwa terpenting dalam seluruh sejarah Kepulauan Banda.",
-        },
-        {
-          correct: false,
-          label:
-            "Pala menjadi mahal karena hanya tumbuh di Mauritius dan Grenada.",
-        },
-        {
-          correct: false,
-          label:
-            "Orang Banda berhasil mempertahankan perdagangan bebas hingga abad ke-19.",
+            "Benda yang berulang terutama membangun latar dan hanya sedikit berhubungan dengan konflik.",
         },
         {
           correct: true,
           label:
-            "Monopoli pala VOC dibangun dengan kekerasan, lalu runtuh setelah pala menyebar.",
+            "Galih menelusuri serpihan biru yang berulang, mencocokkannya dengan foto arsip, lalu membantu tim menyisakan bukti pintu ruang baca lama di tengah pemugaran.",
+        },
+        {
+          correct: false,
+          label:
+            "Keputusan akhir tokoh menghapus ketegangan makna yang sebelumnya dimiliki benda tersebut.",
+        },
+        {
+          correct: false,
+          label:
+            "Bacaan memakai foreshadowing sebagai label deskriptif tanpa menghubungkannya dengan pilihan tokoh.",
+        },
+        {
+          correct: false,
+          label:
+            "Latar menyelesaikan konflik sebelum tindakan akhir tokoh mengubah makna benda.",
         },
       ],
     },

@@ -1,37 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "tone-attitude",
-  },
-  stimulus: "dawn-market",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "tegang dan mencekam karena pasar dipenuhi pertengkaran",
-        },
-        {
           correct: true,
           label:
-            "sibuk tetapi akrab, digambarkan dengan rincian kerja yang hangat",
-        },
-        {
-          correct: false,
-          label: "sepi dan muram karena para pedagang tidak mendapat pembeli",
-        },
-        {
-          correct: false,
-          label: "meriah dan gemerlap seperti pasar malam pada hari raya",
+            "Sudut pandang terbatas membuat pembaca menilai keputusan dari bukti yang Reno lihat, sambil menahan kepastian tentang niat supervisor dan penyebab garis pada lukisan.",
         },
         {
           correct: false,
           label:
-            "marah dan getir karena para pedagang merasa diperas oleh pembeli",
+            "Istilah *sudut pandang terbatas* memastikan satu kelanjutan cerita sehingga pembaca tidak lagi perlu menafsirkan akhir.",
+        },
+        {
+          correct: false,
+          label:
+            "Definisi itu menyamakan *sudut pandang terbatas* dengan benda yang berulang, bukan dengan sifat penutup cerita.",
+        },
+        {
+          correct: false,
+          label:
+            "Penyebutan *sudut pandang terbatas* membuat kesan pribadi pembaca cukup meskipun bertentangan dengan rincian cerita.",
+        },
+        {
+          correct: false,
+          label:
+            "Definisi tersebut hanya menerangkan latar sehingga tindakan tokoh dan perubahan makna benda tidak relevan.",
         },
       ],
     },

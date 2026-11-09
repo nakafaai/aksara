@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "text-comparison",
-  },
-  stimulus: "regional-language",
+  stimulus: "passage-4",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Teks 1 mengusulkan satu kewajiban yang tegas, sedangkan Teks 2 meminta pelajaran disesuaikan dengan bahasa ibu murid.",
+            "Denah membantu melacak perubahan ruang antarmasa, sedangkan wawancara menjelaskan pengalaman penghuni. Keduanya dapat menguji perubahan fungsi, tetapi ingatan dua narasumber tidak mewakili semua penghuni.",
         },
         {
           correct: false,
           label:
-            "Teks 1 ingin menyelamatkan bahasa daerah, sedangkan Teks 2 menganggap bahasa daerah tidak perlu lagi diselamatkan di sekolah.",
+            "Denah tiga periode sudah cukup menjelaskan pengalaman seluruh penghuni karena perubahan ruang menentukan fungsi bangunan.",
         },
         {
           correct: false,
           label:
-            "Teks 1 menolak bahasa Indonesia di sekolah, sedangkan Teks 2 mendukung bahasa Indonesia sebagai satu-satunya bahasa.",
+            "Wawancara harus diutamakan karena mantan penghuni mengalami bangunan secara langsung, sedangkan denah hanya bersifat teknis.",
         },
         {
           correct: false,
           label:
-            "Teks 1 membahas sekolah di kota, sedangkan Teks 2 membahas sekolah di desa.",
+            "Kesamaan fungsi pada beberapa periode membuktikan bahwa pengalaman penghuni tidak berubah ketika denah direnovasi.",
         },
         {
           correct: false,
           label:
-            "Teks 1 menyalahkan sekolah, sedangkan Teks 2 menyalahkan orang tua murid.",
+            "Perbedaan antara denah dan wawancara menunjukkan bahwa salah satu sumber keliru dan harus dikeluarkan.",
         },
       ],
     },

@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "ibn-battuta",
+  stimulus: "passage-4",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Ibn Battuta wrote the *Rihla* himself from detailed daily notes.",
+            "Mei wrote both versions of the greeting on opposite sides of the same card. The recurring object's physical appearance fixes its complete meaning from the first mention.",
         },
         {
-          column: 2,
-          label: "Samudra Pasai was on the southern coast of Java.",
-        },
-        {
-          column: 1,
+          correct: false,
           label:
-            "Ibn Battuta served as a judge in both Delhi and the Maldives.",
+            "Mei wrote both versions of the greeting on opposite sides of the same card. The ending states the object's meaning directly, making the earlier actions irrelevant.",
         },
         {
-          column: 1,
-          label: "Ibn Battuta was twenty-one when he set out for Mecca.",
+          correct: false,
+          label:
+            "Mei wrote both versions of the greeting on opposite sides of the same card. The setting alone changes the atmosphere, independently of the character's use of the recurring object.",
+        },
+        {
+          correct: false,
+          label:
+            "Mei wrote both versions of the greeting on opposite sides of the same card. The object keeps one fixed meaning even as the character's action and the final response change.",
+        },
+        {
+          correct: true,
+          label:
+            "Putting both greetings on the card preserves their different contexts, and turning the card for each visitor shows that suitability depends on relationship rather than one version being wrong.",
         },
       ],
     },

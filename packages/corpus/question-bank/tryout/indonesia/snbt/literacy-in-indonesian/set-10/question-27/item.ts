@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "fiction",
-    topic: "explicit-information",
-  },
-  stimulus: "wall-clock",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Membetulkan letak jarum jam yang sering terlambat.",
+          label:
+            "Nara belum dapat menentukan warga yang paling dapat dipercaya, sehingga semua catatan harus ditampilkan tanpa penjelasan.",
+        },
+        {
+          correct: false,
+          label:
+            "Nara ingin memenuhi permintaan kepala kantor dengan membuat peta yang lebih bersih dan sederhana.",
+        },
+        {
+          correct: false,
+          label:
+            "Kedua warga sebenarnya mengamati lampu yang berbeda, meskipun cerita menyebut lokasi yang sama.",
+        },
+        {
+          correct: false,
+          label:
+            "Perbedaan catatan membuktikan bahwa lampu rusak tepat di antara pukul $$19.00$$ dan $$22.00$$.",
         },
         {
           correct: true,
-          label: "Memutar jam tujuh putaran sambil menghitung pelan.",
-        },
-        {
-          correct: false,
-          label: "Berdoa di ruang tengah bersama Ibu dan cucunya.",
-        },
-        {
-          correct: false,
-          label: "Mengantar tamu yang datang sampai ke depan pintu.",
-        },
-        {
-          correct: false,
-          label: "Memutar jam sebanyak mungkin agar tidak berhenti.",
+          label:
+            "Kedua catatan berasal dari waktu yang berbeda dan sama-sama dapat memuat pengalaman yang benar. Legenda menjaga konteks itu agar kondisi lampu tidak dianggap tetap.",
         },
       ],
     },

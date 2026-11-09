@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "text-comparison",
-  },
-  stimulus: "nickel-processing",
+  stimulus: "passage-4",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "ekspor bijih nikel mentah sebaiknya dibuka kembali",
+          label:
+            "Kenaikan peminjaman membuktikan bahwa seluruh anggota menyelesaikan dan memahami lebih banyak buku setelah jadwal malam dimulai.",
+        },
+        {
+          correct: false,
+          label:
+            "Tiga catatan peserta baru cukup untuk mewakili pengalaman semua anggota, termasuk peserta yang memilih diam.",
+        },
+        {
+          correct: false,
+          label:
+            "Jadwal malam pasti menyebabkan kenaikan pilihan buku cerita pendek karena kedua perubahan terjadi pada tahun yang sama.",
         },
         {
           correct: true,
-          label: "pengolahan nikel di dalam negeri perlu dilanjutkan",
+          label:
+            "Sesudah jadwal berubah, pilihan cerita pendek bergambar meningkat dan beberapa peserta baru mengaitkannya dengan keberanian berdiskusi, tetapi arsip belum membuktikan penyebab atau pengalaman seluruh anggota.",
         },
         {
           correct: false,
-          label: "pembangkit batu bara untuk smelter harus segera ditutup",
-        },
-        {
-          correct: false,
-          label: "larangan ekspor perlu diterapkan pada semua bahan tambang",
-        },
-        {
-          correct: false,
-          label: "daerah penghasil nikel tidak memerlukan bagian manfaat",
+          label:
+            "Perbedaan bentuk sumber membuat data peminjaman dan catatan percakapan tidak dapat dibandingkan sama sekali.",
         },
       ],
     },

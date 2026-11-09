@@ -1,39 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
-  },
-  stimulus: "railway-time",
+  stimulus: "passage-4",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Trains could only run safely during the hours of daylight.",
+          label:
+            "The recurring object mainly establishes the setting and changes little in relation to the conflict.",
         },
         {
           correct: false,
           label:
-            "Passengers wanted their watches to match the sun more closely.",
+            "The character's final decision removes the ambiguity that the recurring object previously carried.",
         },
         {
           correct: false,
           label:
-            "Parliament ordered the railways to use Greenwich time in 1840.",
+            "The passage uses sensory imagery as a descriptive label without tying it to the character's choice.",
         },
         {
           correct: true,
           label:
-            "With faster trains, one timetable holding several local times caused confusion.",
+            "Miles chooses a contrasting gold repair seam, and its line of light reframes repair as continuing an object's history rather than erasing it.",
         },
         {
           correct: false,
           label:
-            "Towns in the west refused to let trains from London stop at their stations.",
+            "The conflict is settled by the setting before the character's final action changes the object's meaning.",
         },
       ],
     },

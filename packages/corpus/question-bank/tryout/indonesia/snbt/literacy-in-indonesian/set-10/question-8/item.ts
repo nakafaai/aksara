@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
-  },
-  stimulus: "front-labels",
+  stimulus: "passage-2",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pembelian minuman bertanda di Cile turun setelah aturan itu berlaku.",
+            "$$35$$ mililiter, karena $$150$$ dikurangi $$24$$ dan $$91$$.",
+        },
+        {
+          correct: false,
+          label:
+            "$$43$$ mililiter, karena $$150$$ dikurangi $$16$$ dan $$91$$.",
+        },
+        {
+          correct: false,
+          label:
+            "$$59$$ mililiter, karena seluruh air yang belum keluar dianggap sudah tersimpan.",
+        },
+        {
+          correct: false,
+          label:
+            "$$67$$ mililiter, karena $$8$$ mililiter air permukaan ditambahkan ke selisih $$150$$ dan $$91$$ mililiter.",
         },
         {
           correct: true,
           label:
-            "Pembeli umumnya menganggap produk tanpa logo kurang sehat dan menghindarinya.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian besar pembeli tidak sempat membaca tabel nilai gizi di toko.",
-        },
-        {
-          correct: false,
-          label:
-            "Tanda segi delapan hitam di Cile dicetak dengan warna yang sangat mencolok mata.",
-        },
-        {
-          correct: false,
-          label:
-            "Produsen lebih suka memasang logo daripada tanda peringatan di kemasannya.",
+            "$$51$$ mililiter, karena $$150$$ mililiter dikurangi $$8$$ mililiter di permukaan dan $$91$$ mililiter yang keluar.",
         },
       ],
     },

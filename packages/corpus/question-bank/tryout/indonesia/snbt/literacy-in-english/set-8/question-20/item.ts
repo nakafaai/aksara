@@ -1,40 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-purpose",
-  },
-  stimulus: "ibn-battuta",
+  stimulus: "passage-4",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "To give a concrete example of the welcome his learning brought him",
+          label: "Two sides of welcome",
         },
         {
           correct: false,
-          label:
-            "To prove that Ibn Battuta's account of China is entirely reliable",
+          label: "A recurring object that remains part of the setting",
         },
         {
           correct: false,
-          label:
-            "To show that Samudra Pasai was the largest port in the Indian Ocean",
+          label: "A conflict settled before the character's final choice",
         },
         {
           correct: false,
-          label:
-            "To explain why Ibn Battuta kept so few written records of his voyage",
+          label: "Metaphor as a term without a role in the story",
         },
         {
           correct: false,
-          label:
-            "To argue that the sultan of Pasai later wrote the *Rihla* himself",
+          label: "An ending that removes the object's interpretive tension",
         },
       ],
     },

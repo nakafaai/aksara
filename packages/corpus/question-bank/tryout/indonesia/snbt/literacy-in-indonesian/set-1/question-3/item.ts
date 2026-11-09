@@ -1,36 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "conclusion",
-  },
-  stimulus: "sleep-memory",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: true,
           label:
-            "Setiap aroma yang dialirkan selama tidur akan memperbaiki ingatan peserta.",
+            "Peluang pertumbuhan ekonomi karena besarnya proporsi penduduk usia produktif",
         },
         {
-          column: 1,
-          label:
-            "Aroma mawar tidak memperbaiki ingatan jika diberikan ketika peserta terjaga.",
+          correct: false,
+          label: "Letak geografis Indonesia yang strategis",
         },
         {
-          column: 1,
-          label:
-            "Percobaan ini mendukung gagasan bahwa ingatan diolah ulang selama tidur gelombang lambat.",
+          correct: false,
+          label: "Keunggulan produk pertanian Indonesia",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Peserta yang menerima aroma selama tidur REM mengingat letak kartu lebih baik daripada peserta yang menerima aroma selama tidur gelombang lambat.",
+            "Indonesia menjadi pengekspor nomor satu dunia dan menuju negara maju",
+        },
+        {
+          correct: false,
+          label: "Peningkatan produktivitas Indonesia",
         },
       ],
     },

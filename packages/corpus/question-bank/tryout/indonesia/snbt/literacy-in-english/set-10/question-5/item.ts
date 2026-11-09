@@ -1,38 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-purpose",
-  },
-  stimulus: "glacier-flow",
+  stimulus: "passage-1",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Potential difference in a classroom circuit",
+        },
+        {
+          correct: false,
+          label:
+            "Why parallel cells always produce the greatest terminal voltage",
+        },
+        {
           correct: true,
-          label:
-            "To show that the middle of a glacier moves faster than its edges",
+          label: "How cell arrangement changed terminal voltage under one load",
         },
         {
           correct: false,
-          label: "To prove that glaciers move faster in summer than in winter",
+          label: "Proving that two cells in series double a circuit's power",
         },
         {
           correct: false,
-          label: "To explain how fresh snow is slowly turned into dense ice",
-        },
-        {
-          correct: false,
-          label:
-            "To show that the researchers were able to measure Greenland's glaciers",
-        },
-        {
-          correct: false,
-          label:
-            "To argue that a retreating glacier is really flowing backwards",
+          label: "A universal voltage law derived from one resistor value",
         },
       ],
     },

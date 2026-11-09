@@ -1,40 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
-  },
-  stimulus: "classroom-points",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Defining *actionable information* proves that the alert will work equally well during a real flood.",
+        },
+        {
+          correct: false,
+          label:
+            "The definition makes the measured comparison and consultation unnecessary.",
+        },
+        {
+          correct: false,
+          label:
+            "The term applies to any detailed flood description, even when no next action is stated.",
+        },
+        {
           correct: true,
           label:
-            "Pupils who once read for badges kept reading after the badges stopped.",
+            "The definition explains why the safe route is essential: the message must tell households what to do and why the stated flood depth makes that action necessary.",
         },
         {
           correct: false,
           label:
-            "Pupils in classes with leaderboards finished more exercises each week.",
-        },
-        {
-          correct: false,
-          label:
-            "Pupils near the bottom of leaderboards often felt discouraged by them.",
-        },
-        {
-          correct: false,
-          label:
-            "Teachers found points quick and easy to add to their existing lessons.",
-        },
-        {
-          correct: false,
-          label:
-            "Some pupils prefer badges to certificates as a type of reward.",
+            "The definition shows that naming the street alone is enough, even if the alert omits the safe route.",
         },
       ],
     },

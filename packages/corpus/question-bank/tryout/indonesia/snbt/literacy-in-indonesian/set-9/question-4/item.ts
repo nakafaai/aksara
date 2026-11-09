@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "application",
-  },
-  stimulus: "peat-fire",
+  stimulus: "passage-1",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menggali kanal baru agar air hujan lebih cepat keluar dari lahan.",
+            "Definisi itu mengubah selisih desibel menjadi persentase penurunan energi agar ketiga frekuensi dapat langsung dijumlahkan.",
         },
         {
           correct: false,
           label:
-            "Menyiapkan lebih banyak pesawat penyiram air untuk musim kemarau.",
+            "Definisi itu membuktikan bahwa panel merupakan satu-satunya penyebab perubahan karena waktu dengung diukur setelah sumber dihentikan.",
         },
         {
           correct: false,
           label:
-            "Membakar sisa tanaman sebelum musim kemarau agar bahan bakar habis.",
+            "Definisi itu memperluas hasil dari satu posisi mikrofon ke seluruh auditorium karena bunyi akhirnya melemah $$60\\,\\text{dB}$$.",
         },
         {
           correct: true,
           label:
-            "Menyekat kanal agar air tertahan dan permukaan air tanah naik.",
+            "Definisi itu membedakan ukuran lamanya bunyi bertahan dari tingkat bunyi pada tabel, sehingga pembaca memahami mengapa keduanya menjadi bukti yang saling melengkapi.",
         },
         {
           correct: false,
           label:
-            "Menanam lebih banyak tanaman di permukaan gambut agar tanah tidak ikut menyusut.",
+            "Definisi itu menunjukkan bahwa waktu dengung lebih objektif daripada desibel sehingga keterbatasan posisi mikrofon dapat diabaikan.",
         },
       ],
     },

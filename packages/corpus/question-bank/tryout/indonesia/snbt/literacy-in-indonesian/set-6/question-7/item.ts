@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "fact-opinion",
-  },
-  stimulus: "homework-debate",
+  stimulus: "passage-2",
   versions: {
     id: {
-      columns: ["Fakta", "Opini"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Tinjauan penelitian menemukan hubungan pekerjaan rumah dan prestasi lebih kuat pada siswa sekolah menengah.",
+            'Karena langkah "air dengan volume sama dituangkan pada tanah terbuka dan tanah yang ditutup serat tumbuhan" dapat diulang, model sudah mencakup faktor yang hilang ketika baki kecil tidak meniru seluruh kemiringan, akar, dan curah hujan suatu lereng dan dapat menggantikan pengamatan lapangan.',
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Tinjauan itu mencakup puluhan penelitian yang dilakukan di Amerika Serikat.",
+            "Selisih yang muncul pada kedua ulangan mendukung dugaan bahwa penutup mengurangi tanah terbawa, tetapi model belum dapat memprediksi besarnya erosi pada lereng dengan akar, tanah, dan hujan yang berbeda.",
         },
         {
-          column: 2,
-          label: "Pekerjaan rumah sebaiknya dihapus di sekolah dasar.",
+          correct: false,
+          label:
+            "Keterbatasan bahwa baki kecil tidak meniru seluruh kemiringan, akar, dan curah hujan suatu lereng membuat hubungan bahwa penutup permukaan dapat mengubah banyaknya tanah yang terbawa aliran tidak dapat diperiksa, bahkan di dalam model.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Waktu sore anak-anak lebih berguna untuk membaca, bermain, dan tidur cukup.",
+            "Hubungan bahwa penutup permukaan dapat mengubah banyaknya tanah yang terbawa aliran dapat diterapkan langsung pada keadaan nyata selama urutan model diulang dengan cara yang sama.",
+        },
+        {
+          correct: false,
+          label:
+            "Definisi istilah pada akhir bacaan sudah cukup membuktikan hubungan sebab dalam model erosi menggunakan baki tanah, meskipun bagian model tidak dibandingkan.",
         },
       ],
     },

@@ -1,39 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
-  },
-  stimulus: "braille-code",
+  stimulus: "passage-4",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "They believed six dots could not represent all the letters.",
-        },
-        {
           correct: true,
-          label:
-            "They favoured a script that teachers with sight could read too.",
+          label: "Tracing a wrong bag to its first symbol",
         },
         {
           correct: false,
-          label:
-            "They thought Barbier's twelve-dot system was easier to learn.",
+          label: "A recurring object that remains part of the setting",
         },
         {
           correct: false,
-          label:
-            "They did not know that Braille had already published his system in 1829.",
+          label: "A conflict settled before the character's final choice",
         },
         {
           correct: false,
-          label:
-            "They wanted the army to use the system before the school did.",
+          label: "Plot structure as a term without a role in the story",
+        },
+        {
+          correct: false,
+          label: "An ending that removes the object's interpretive tension",
         },
       ],
     },

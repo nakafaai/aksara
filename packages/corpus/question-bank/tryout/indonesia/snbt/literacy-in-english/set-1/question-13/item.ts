@@ -1,36 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "campus-commute",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label:
-            "More than half of the surveyed students travel mainly by public bus or by train.",
+          correct: false,
+          label: "To advertise employment opportunities at UNESCO.",
         },
         {
-          column: 1,
-          label:
-            "Students who cycle have a shorter average trip than students who travel by car or motorbike.",
+          correct: false,
+          label: "To argue that culture is UNESCO's only field of work.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "The survey shows that secure bicycle parking would reduce lateness by 40 percent.",
+            "To explain why UNESCO was created and how its mission guides its current work.",
         },
         {
-          column: 1,
-          label:
-            "The lateness figures may not match the university's attendance records.",
+          correct: false,
+          label: "To compare UNESCO with every other United Nations agency.",
+        },
+        {
+          correct: false,
+          label: "To criticize Member States for refusing all cooperation.",
         },
       ],
     },

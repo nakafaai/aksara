@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "ibn-battuta",
+  stimulus: "passage-4",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "His great wealth, which he had inherited from a merchant family in Tangier",
-        },
-        {
-          correct: false,
-          label:
-            "His skill as a ship's captain on long voyages across the Indian Ocean",
-        },
-        {
-          correct: false,
-          label:
-            "His letters of introduction from the sultan of Morocco before he left",
+            "The recurring object mainly establishes the setting and changes little in relation to the conflict.",
         },
         {
           correct: true,
           label:
-            "His training in Islamic law, which made him valued as a judge",
+            "Mei places a home greeting and a public greeting on opposite sides of one card, then chooses the side that fits each arriving relationship.",
         },
         {
           correct: false,
           label:
-            "His fame as the author of the *Rihla*, which rulers had already read",
+            "The character's final decision removes the ambiguity that the recurring object previously carried.",
+        },
+        {
+          correct: false,
+          label:
+            "The passage uses metaphor as a descriptive label without tying it to the character's choice.",
+        },
+        {
+          correct: false,
+          label:
+            "The conflict is settled by the setting before the character's final action changes the object's meaning.",
         },
       ],
     },

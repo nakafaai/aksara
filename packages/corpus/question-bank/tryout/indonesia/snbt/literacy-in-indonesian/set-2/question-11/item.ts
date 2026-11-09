@@ -1,39 +1,29 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
-  },
-  stimulus: "sewing-machine",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "(7)",
+        },
+        {
+          correct: false,
+          label: "(12)",
+        },
+        {
+          correct: false,
+          label: "(29)",
+        },
+        {
           correct: true,
-          label:
-            "Mbah Darsih mulai menerima Sekar sebagai penerus yang layak menjahit bersamanya.",
+          label: "(2)",
         },
         {
           correct: false,
-          label:
-            "Mbah Darsih ingin berhenti menjahit dan menyerahkan semua pesanan kepada Sekar.",
-        },
-        {
-          correct: false,
-          label:
-            "Mbah Darsih marah karena Sekar memakai mesin jahitnya tanpa izin.",
-        },
-        {
-          correct: false,
-          label:
-            "Mbah Darsih menyiapkan tempat duduk bagi pembeli yang datang ke rumah.",
-        },
-        {
-          correct: false,
-          label: "Mbah Darsih berencana membeli mesin jahit kedua untuk Sekar.",
+          label: "(32)",
         },
       ],
     },

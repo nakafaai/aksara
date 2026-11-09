@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
-  },
-  stimulus: "food-estate",
+  stimulus: "passage-4",
   versions: {
     id: {
-      columns: ["Ya", "Tidak"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Teks 2 menolak setiap bentuk perbaikan irigasi sawah.",
+          correct: false,
+          label:
+            "Istilah *provenans* membuktikan bahwa sumber yang lebih baru pasti lebih akurat daripada sumber lainnya.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Teks 1 menyebut lonjakan harga beras dunia dapat mengguncang negara pengimpor.",
+            "Definisi *provenans* menuntut riwayat kepemilikan, penguasaan, dan perpindahan dibedakan, sehingga satu catatan lokasi tidak langsung dianggap sebagai bukti hak milik.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Teks 1 mengusulkan agar dana dialihkan untuk mengembangkan pangan lokal.",
+            "Definisi itu menyamakan *provenans* dengan kesalahan sehingga perbedaan antarsumber tidak perlu dianalisis.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Teks 2 menyebut sagu, jagung, dan umbi-umbian sebagai makanan di banyak daerah.",
+            "Penyebutan *provenans* mengizinkan bagian sumber yang hilang diisi dengan dugaan pembaca.",
+        },
+        {
+          correct: false,
+          label:
+            "Definisi tersebut hanya menamai bentuk dokumen dan tidak memengaruhi cara asal serta tujuan sumber dibandingkan.",
         },
       ],
     },

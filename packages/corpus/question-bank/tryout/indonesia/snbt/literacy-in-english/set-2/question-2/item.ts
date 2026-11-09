@@ -1,40 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "word-meaning",
-  },
-  stimulus: "tardigrade-survival",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Water exercise can be helpful for some people with arthritis.",
+        },
+        {
+          correct: false,
+          label: "Water exercise may improve older adults' quality of life.",
+        },
+        {
+          correct: false,
+          label: "Swimming may improve mood for some people.",
+        },
+        {
           correct: true,
-          label:
-            "survive by going inactive until conditions improve, not by withstanding them.",
+          label: "Swimming has health benefits and therefore carries no risks.",
         },
         {
           correct: false,
-          label:
-            "move away from harsh conditions as soon as they detect a change in moisture.",
-        },
-        {
-          correct: false,
-          label:
-            "become stronger the longer they are exposed to harsh conditions in the wild.",
-        },
-        {
-          correct: false,
-          label:
-            "avoid harsh conditions by living only in deep lakes and oceans.",
-        },
-        {
-          correct: false,
-          label:
-            "fight harsh conditions by producing large amounts of trehalose in their cells.",
+          label: "A balanced decision includes suitable safety measures.",
         },
       ],
     },

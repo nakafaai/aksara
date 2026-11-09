@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
-  },
-  stimulus: "basic-income",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Basic income pilots have proved that a universal scheme would succeed.",
+            "The organisers of a community food pantry evaluated shelf labels showing the date each package entered through consultation alone, without comparing the measured outcome across conditions.",
+        },
+        {
+          correct: false,
+          label:
+            "The organisers of a community food pantry evaluated shelf labels showing the date each package entered through the measured comparison alone, while excluding the affected groups' experience from the decision.",
+        },
+        {
+          correct: false,
+          label:
+            "The organisers of a community food pantry evaluated shelf labels showing the date each package entered through a comparison and consultation, then treated the short trial as sufficient for permanent adoption.",
         },
         {
           correct: true,
           label:
-            "Pilots are useful but cannot show what a permanent universal scheme would do.",
+            "The pantry team compared entry-date labels with baseline and comparison conditions, consulted affected groups, and supported only a limited extension because demand varied.",
         },
         {
           correct: false,
           label:
-            "A basic income should be rejected because recipients stop working.",
-        },
-        {
-          correct: false,
-          label:
-            "Pilots waste public money and should be ended as soon as possible.",
-        },
-        {
-          correct: false,
-          label:
-            "A universal scheme would work better if charities paid for it instead of taxes.",
+            "The organisers of a community food pantry evaluated shelf labels showing the date each package entered mainly by defining a technical term, with the proposed change serving only as background information.",
         },
       ],
     },

@@ -1,36 +1,29 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "fiction",
-    topic: "explicit-information",
-  },
-  stimulus: "ferry-ticket",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label:
-            "Pak Rasyid pernah menolak menstempel karcis seorang penumpang.",
+          correct: false,
+          label: "Ilmu",
         },
         {
-          column: 2,
-          label:
-            "Pak Rasyid menulis nama Laila dengan tergesa-gesa karena antrean mulai gelisah.",
+          correct: true,
+          label: "Nasihat",
         },
         {
-          column: 1,
-          label:
-            "Permainan masa kecil Laila menunjukkan bahwa keinginannya pergi ke kota sudah lama ada.",
+          correct: false,
+          label: "Pengalaman",
         },
         {
-          column: 2,
-          label:
-            "Suara KM Cahaya Laut digambarkan serak seperti batuk orang tua.",
+          correct: false,
+          label: "Kesan",
+        },
+        {
+          correct: false,
+          label: "Perasaan",
         },
       ],
     },

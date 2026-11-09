@@ -1,35 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "breakfast-survey",
+  stimulus: "passage-3",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label:
-            "Lebih dari separuh siswa sarapan 4 atau 5 hari dalam seminggu.",
+          correct: false,
+          label: "Mengubah Semua Catatan Sumur Menjadi Meter",
         },
         {
-          column: 2,
-          label: "Rata-rata nilai kuis seluruh 400 siswa adalah 69.",
+          correct: false,
+          label: "Formulir Baru yang Menyamakan Setiap Kedalaman Air",
         },
         {
-          column: 1,
-          label:
-            "Dilihat dari persentasenya, kelompok yang paling jarang sarapan paling banyak sulit berkonsentrasi.",
+          correct: false,
+          label: "Pendapat Warga sebagai Pengganti Uji Keterbandingan",
         },
         {
-          column: 2,
-          label:
-            "Jumlah siswa yang sulit berkonsentrasi paling banyak terdapat pada kelompok 0 atau 1 hari.",
+          correct: false,
+          label: "Menghapus Nilai Asli setelah Konversi Satuan",
+        },
+        {
+          correct: true,
+          label: "Perbandingan Catatan Sumur tanpa Menghapus Jejak Asli",
         },
       ],
     },

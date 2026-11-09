@@ -1,35 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "data-interpretation",
-  },
-  stimulus: "coffee-plots",
+  stimulus: "passage-3",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label:
-            "Kebun dengan hasil biji terbanyak juga memperoleh pendapatan terbesar.",
+          correct: true,
+          label: "Keputusan Berbasis Bukti untuk Akses Ruang Laktasi di Pasar",
         },
         {
-          column: 2,
-          label: "Kebun C memperoleh harga per kilogram tertinggi.",
+          correct: false,
+          label: "pemangku kepentingan sebagai ukuran utama dalam uji layanan",
         },
         {
-          column: 1,
-          label:
-            "Pada ketinggian yang sama, kebun berpohon pelindung menghasilkan biji lebih sedikit daripada kebun tanpa pohon pelindung.",
+          correct: false,
+          label: "Dari perbandingan singkat menuju perubahan layanan tetap",
         },
         {
-          column: 1,
-          label:
-            "Dengan perlakuan pohon pelindung yang sama, kebun di ketinggian 1.400 mdpl memiliki skor cita rasa lebih tinggi daripada kebun di 1.100 mdpl.",
+          correct: false,
+          label: "Konsultasi tanpa pengukuran hasil yang dapat dibandingkan",
+        },
+        {
+          correct: false,
+          label: "Uji layanan lokal tanpa keputusan tindak lanjut",
         },
       ],
     },

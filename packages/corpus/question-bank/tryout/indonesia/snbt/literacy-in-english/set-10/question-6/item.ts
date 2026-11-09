@@ -1,40 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
-  },
-  stimulus: "machine-pictures",
+  stimulus: "passage-2",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Anything made with the help of AI should never receive copyright.",
-        },
-        {
-          correct: false,
-          label:
-            "Photographs should lose copyright, since cameras do most of the work.",
-        },
-        {
-          correct: false,
-          label:
-            "People who type prompts are authors in the same way as photographers.",
-        },
-        {
-          correct: false,
-          label:
-            "AI image generators should be banned until their training is proved fair.",
-        },
-        {
           correct: true,
           label:
-            "Copyright should follow a person's creative choices, not a prompt alone.",
+            "Across comparable workshop rounds, the separated budget sheet was linked to fewer classification errors, which justified a limited real-event trial rather than permanent adoption.",
+        },
+        {
+          correct: false,
+          label:
+            "The separated budget sheet proved that teams using it would calculate accurate totals even when supplier prices changed after the workshop.",
+        },
+        {
+          correct: false,
+          label:
+            "The two old-sheet rounds produced different results, so the comparison cannot contribute any evidence about the new sheet.",
+        },
+        {
+          correct: false,
+          label:
+            "Because the event scenario and instructions stayed the same, the trial established the separated sheet as the only possible cause of every corrected budget.",
+        },
+        {
+          correct: false,
+          label:
+            "The report mainly redefined fixed cost, while the three rounds and the proposed real-event trial served only as background details.",
         },
       ],
     },

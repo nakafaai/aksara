@@ -1,12 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "main-idea",
-  },
-  stimulus: "sriwijaya-stones",
+  stimulus: "passage-5",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +9,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sriwijaya adalah kerajaan terbesar di Asia Tenggara karena memiliki ribuan biksu.",
-        },
-        {
-          correct: false,
-          label:
-            "I-Tsing adalah orang pertama yang menemukan prasasti-prasasti Sriwijaya.",
-        },
-        {
-          correct: false,
-          label:
-            "Prasasti Sriwijaya membuktikan bahwa bahasa Indonesia tidak berubah sejak abad ke-7.",
-        },
-        {
-          correct: false,
-          label:
-            "Pusat Sriwijaya berada di Jambi, bukan di Palembang seperti dugaan banyak ahli.",
+            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar jumlah soal menjadi memahami satu konsep. Tindakan itu menyelesaikan seluruh konflik secara langsung sehingga langkah lanjutan tidak diperlukan.",
         },
         {
           correct: true,
           label:
-            "Sejarah Sriwijaya disusun dari prasasti dan catatan musafir, yang memiliki batas.",
+            "Mengurangi bantuan pada tiap soal memberi Dimas ruang mengambil alih penalaran, sehingga Sari beralih dari pemberi langkah menjadi perancang dukungan sementara.",
+        },
+        {
+          correct: false,
+          label:
+            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar jumlah soal menjadi memahami satu konsep. Perubahan tokoh terjadi karena orang lain mengambil alih tanggung jawab utama.",
+        },
+        {
+          correct: false,
+          label:
+            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar jumlah soal menjadi memahami satu konsep. Latar tempat menjadi penyebab tunggal perubahan tanpa peran keputusan tokoh.",
+        },
+        {
+          correct: false,
+          label:
+            "Sari memilih untuk mengubah tujuan pertemuan dari mengejar jumlah soal menjadi memahami satu konsep. Definisi istilah pada akhir bacaan sudah cukup menjelaskan perkembangan tokoh tanpa bukti dari tindakan.",
         },
       ],
     },

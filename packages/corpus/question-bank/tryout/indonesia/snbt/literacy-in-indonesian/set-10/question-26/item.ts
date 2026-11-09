@@ -1,36 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-purpose",
-  },
-  stimulus: "taman-siswa",
+  stimulus: "passage-6",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "menjelaskan alasan peraturan tahun 1932 akhirnya dicabut",
+          correct: true,
+          label:
+            "Peta berubah dari daftar lokasi lampu terpasang menjadi catatan bersama yang membedakan data resmi, kondisi teramati, waktu, sumber, dan bagian yang belum diketahui.",
         },
         {
           correct: false,
           label:
-            "membuktikan bahwa Taman Siswa kini menjadi satu-satunya sekolah",
-        },
-        {
-          correct: true,
-          label: "menunjukkan bahwa jasa Ki Hadjar masih dihargai hingga kini",
+            "Peta berubah dari dokumen kantor menjadi kumpulan ingatan warga yang menggantikan seluruh data resmi.",
         },
         {
           correct: false,
-          label: "mengkritik pemerintah kolonial yang mencurigai Taman Siswa",
+          label:
+            "Peta berubah menjadi bukti bahwa catatan warga tidak dapat dipercaya ketika keterangannya berbeda.",
         },
         {
           correct: false,
-          label: "memberi tahu tanggal berdirinya perguruan Taman Siswa",
+          label:
+            "Peta berubah menjadi karya pajangan yang terutama menunjukkan kemampuan Nara menggambar lingkaran cahaya.",
+        },
+        {
+          correct: false,
+          label:
+            "Peta berubah menjadi penetapan akhir tentang jalan yang aman dilewati pada setiap waktu dan cuaca.",
         },
       ],
     },
