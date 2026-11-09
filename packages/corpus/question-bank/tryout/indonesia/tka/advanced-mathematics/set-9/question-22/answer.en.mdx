@@ -1,0 +1,16 @@
+Direct substitution gives <InlineMath math="\frac00" />. The numerator is a sum, so **split the fraction into two parts** and take each limit.
+
+<BlockMath math="\frac{x^2+\sin^23x}{x\tan2x}=\frac{x}{\tan2x}+\frac{\sin3x}{x}\cdot\frac{\sin3x}{\tan2x}" />
+
+Use <InlineMath math="\lim_{x\to0}\frac{x}{\tan ax}=\frac1a" />, <InlineMath math="\lim_{x\to0}\frac{\sin ax}{x}=a" /> and <InlineMath math="\lim_{x\to0}\frac{\sin ax}{\tan bx}=\frac ab" />.
+
+<BlockMath math="\lim_{x\to0}\frac{x^2+\sin^23x}{x\tan2x}=\frac12+3\cdot\frac32=\frac12+\frac92=5" />
+
+Numerical check: at <InlineMath math="x=0.01" /> the fraction is about <InlineMath math="4.998" />.
+
+So the limit is <InlineMath math="5" />.
+
+- <InlineMath math="\frac12" /> only counts the part <InlineMath math="\frac{x^2}{x\tan2x}" />.
+- <InlineMath math="\frac92" /> only counts the part <InlineMath math="\frac{\sin^23x}{x\tan2x}" />.
+- <InlineMath math="10" /> treats <InlineMath math="\tan2x" /> like <InlineMath math="x" />, losing the factor <InlineMath math="2" />.
+- <InlineMath math="2" /> takes <InlineMath math="\sin^23x" /> to behave like <InlineMath math="3x^2" />, but it behaves like <InlineMath math="(3x)^2=9x^2" />.
