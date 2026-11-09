@@ -26,11 +26,12 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Penambahan koleksi komik pengetahuan dan novel remaja diikuti naiknya peminjaman kedua jenis buku itu, sedangkan peminjaman buku pelajaran hampir tidak berubah.",
+            "Penambahan koleksi komik pengetahuan dan novel remaja diikuti naiknya peminjaman kedua jenis buku itu, sedangkan peminjaman buku pelajaran hanya turun sedikit.",
         },
         {
           correct: false,
-          label: "Diskusi buku membuat peminjaman komik pengetahuan naik.",
+          label:
+            "Pemantauan setiap bulan membuat peminjaman komik pengetahuan naik.",
         },
       ],
     },
