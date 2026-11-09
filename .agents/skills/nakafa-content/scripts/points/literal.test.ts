@@ -44,6 +44,15 @@ describe("expressions that a component owns", () => {
     assert.deepStrictEqual(literalRules(exact), []);
   });
 
+  it("accepts a sampled curve whose every vertex is its formula", () => {
+    const cubic = Array.from({ length: 41 }, (_, index) => {
+      const x = `${index - 20} / 10`;
+      return `{ x: ${x}, y: (${x}) ** 3 - 3 * (${x}) }`;
+    }).join(", ");
+
+    assert.deepStrictEqual(literalRules(scene(`[${cubic}]`)), []);
+  });
+
   it("rejects a typed MathVisual list with advice that fits the component", () => {
     const found = literalFindings(lesson(scene(typedObjects(9))));
 
@@ -52,7 +61,8 @@ describe("expressions that a component owns", () => {
       ["literal-points"]
     );
     assert.include(found[0]?.message, "MathVisual folds only constant");
-    assert.include(found[0]?.message, "LineEquation");
+    assert.include(found[0]?.message, "formula object");
+    assert.include(found[0]?.message, 'formula: "x^3 - 3x"');
   });
 
   it("gives a MathVisual nested in another component its own advice", () => {

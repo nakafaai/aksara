@@ -44,9 +44,9 @@ For assessed content, also apply the
   so hidden intersections, incorrect depth, or misleading camera angles are
   not accepted from one static view.
 - Mathematical geometry uses Nakafa's shared React Three Fiber foundation:
-  `CoordinateSystem` owns the scene, grid, and camera;
-  `LineEquation` and the owning geometry primitives compose its objects.
-  `MathVisual` adapts authored scene contracts to that same foundation. Never
+  `CoordinateSystem` owns the scene, grid, and camera, and `MathVisual`
+  adapts authored scene contracts to that foundation, where the owning
+  geometry primitives compose its objects. Never
   introduce a custom SVG math renderer, a parallel canvas shell, or a
   content-local implementation. Plane geometry remains in a fixed coordinate
   plane; choose a frontal or oblique camera for the teaching task. Preserve
@@ -73,12 +73,11 @@ For assessed content, also apply the
   mathematical functions under
   [computed and exact visuals](#computed-and-exact-visuals). Do not smooth
   polygon edges or use interpolated points that change the equation being
-  taught. When adding samples, remap label indices to their original
-  mathematical anchors and use `pointIndices` to preserve the intended visible
-  markers.
-  A set of isolated observations uses one-point series, without connecting
-  them into an additional curve. Declarative circle objects own their exact
-  sampling and accept no authored `smooth` override.
+  taught. A label anchors at the exact coordinates of the point it names,
+  never at a nearby vertex.
+  A set of isolated observations uses `point` objects, without connecting
+  them into an additional curve. Declarative circle, arc, and formula objects
+  own their exact sampling.
   Author a balok as one declarative cuboid with positive dimensions:
   `{ id, kind: "cuboid", appearance, center, size: { length, width, height } }`.
   Verify eight vertices, twelve straight edges, four edges of each
@@ -92,8 +91,8 @@ For assessed content, also apply the
   objects, and keep each label the same color as its owning object. Keep
   authored color descriptions consistent with the rendered scene.
 - Every `MathVisual` label names its owning object's `objectId`. Its color comes
-  from that object's appearance, matching `LineEquation` lesson labels. Never
-  duplicate a label color or infer its owner from visual proximity.
+  from that object's appearance. Never duplicate a label color or infer its
+  owner from visual proximity.
 - Place labels in open regions clear of every subject line, including their
   owning line. An anchor on the correct object does not prove that the rendered
   label is clear. Check the full label bounds, especially equations, against
@@ -124,23 +123,21 @@ graph teaches the wrong mathematics on an education platform.
 
 - **Only three.js and p5 draw illustrations.** Geometry, graphs, vectors,
   fields, structures, and simulations render through Nakafa's React Three
-  Fiber foundation (`CoordinateSystem`, `LineEquation`, `MathVisual`, and the
-  owned 3D components) or, once the renderer manifest lists it, a p5 sketch.
+  Fiber foundation (`CoordinateSystem`, `MathVisual`, and the owned 3D
+  components) or, once the renderer manifest lists it, a p5 sketch.
   Never author hand-written SVG, raw SVG paths, HTML or CSS drawings, canvas
   code, or images. A p5 sketch meets the same bar as a 3D scene: every drawn
   value is computed, the motion teaches, and the still frame reads on its own.
-- **Every plotted coordinate is computed from its formula.** A sinusoid or
-  tangent series declares its `curve` instead of points, as described below.
-  Every other series builds each point in the MDX expression from the formula
-  the lesson teaches, with `Array.from` over a parameter:
+- **Every plotted coordinate is computed from its formula.** In a
+  `MathVisual` scene a curve is the formula object that names it, described
+  below, and the renderer samples it:
 
   ```tsx
-  // F(x) = (3x - 1)^2 stays inside a frame of height 4 for -1/3 <= x <= 1.
-  points: Array.from({ length: 401 }, (_, i) => {
-    const x = -1 / 3 + (i / 400) * (4 / 3);
-    return { x, y: (3 * x - 1) ** 2, z: 0 };
-  }),
+  { id: "curve", kind: "function", appearance: "primary", formula: "(3x - 1)^2", domain: { min: -1 / 3, max: 1 } }
   ```
+
+  A chart whose props the compiler evaluates, such as `BarChart`, builds its
+  data from the formula with `Array.from` or `map` over its inputs.
 
   Never type a list of coordinates, never paste values an external script
   printed, and never round a computed value into the source. A literal
@@ -150,35 +147,6 @@ graph teaches the wrong mathematics on an education platform.
   numbers. Observations are the one thing no formula draws, so a chart of
   observed data such as `ScatterDiagram` keeps its measured values as typed
   data.
-- **A sinusoid or tangent series declares its `curve`.** When a `LineEquation`
-  series plots `y = amplitude * f(frequency * x + phase) + shift`, with `f` equal
-  to `sin`, `cos`, or `tan`, declare those parameters and the domain instead of
-  listing points. This is the preferred form for these families:
-
-  ```tsx
-  // y = 2 sin(x - pi / 4) + 1 for -2 pi <= x <= 2 pi
-  curve: {
-    kind: "sin",
-    amplitude: 2,
-    frequency: 1,
-    phase: -Math.PI / 4,
-    shift: 1,
-    domain: [-2 * Math.PI, 2 * Math.PI],
-  },
-  ```
-
-  The component samples the formula in the browser, so the source never lists
-  the points of these families. `samples` sets the grid and is at least two
-  hundred (the default). Sine and cosine sample evenly in `x` across the
-  domain, ends included. A tangent samples evenly in `frequency * x + phase`
-  across its domain, ends included, so its steep ends keep their points. A
-  label's `at` indexes that grid, so choose `samples` so that every anchor
-  lands on the point it names. A tangent may cover asymptotes: the component
-  splits it at every asymptote inside the domain and clips it to the graph's y
-  limit. Keep one series per branch when the lesson shows each branch on its
-  own. Other families, such as
-  polynomial, exponential, and logarithm, keep their points until a lesson needs
-  a declared form for them.
 - **`MathVisual` holds exact named geometry, written as expressions.** The
   compiler reads its `scene` without running code. It accepts literals and
   constant numeric expressions, such as `Math.sqrt(3)`, `Math.SQRT1_2`,
@@ -232,19 +200,14 @@ graph teaches the wrong mathematics on an education platform.
   picture, each beside the rich label its key names. Labels, readouts, and
   slider labels read only the declared slider names. Exact points, segments,
   and polygons keep constant coordinates.
-- **A smooth function renders smooth.** Sample only the part of the domain
-  that stays inside the frame: solve for the frame bounds instead of sampling
-  far outside them, so the visible part gets the samples. Use at least two
-  hundred samples per visible branch and more where the slope or curvature is
-  high, until no corner shows at the largest card size, including full
-  screen. Keep `smooth: false`, so the path follows the exact samples instead
-  of an interpolating spline. A `curve` series receives these samples from the
-  component, so its source declares only the domain.
-- **Corners and breaks appear exactly where the mathematics puts them.** Put
-  an exact sample at every corner, cusp, piecewise boundary, and named point,
-  such as the vertex of `|x|`. Split the series at every discontinuity and
-  asymptote instead of joining across it. For a tangent `curve`, the component
-  makes that split.
+- **A smooth function renders smooth.** Draw a smooth curve as its formula
+  object, which the renderer samples densely and only inside the frame, so no
+  corner shows at the largest card size, including full screen.
+- **Corners and breaks appear exactly where the mathematics puts them.** The
+  renderer splits a formula object at every break and asymptote. Give a
+  piecewise function one formula object per piece, each domain ending at the
+  exact boundary, so every corner, cusp, and named point, such as the vertex
+  of `|x|`, is an exact sample.
 - **A revision never removes 3D or animation.** Inventory every interactive
   visual before editing. Fix a visual that is wrong, rebuild it when its
   component cannot carry the job, and add visuals where a main idea has none.
@@ -255,9 +218,9 @@ graph teaches the wrong mathematics on an education platform.
   concept exactly or smoothly, improve the component in Nakafa's renderer, and
   Aksara's source policy where it rejects the source, with the best
   composition, and ship it in the same change as the content that uses it.
-  Never work around a component limit with hard-coded data. A `MathVisual` scene
-  that needs a curve its exact objects cannot draw is such a limit: draw the
-  curve with `LineEquation` and raise the gap.
+  Never work around a component limit with hard-coded data. A curve that no
+  `MathVisual` formula object can draw is such a limit: raise the gap in the
+  renderer instead of typing points.
 - **The `points` gate enforces this.** Run
   `node --conditions=aksara-source .agents/skills/nakafa-content/scripts/points/check.ts <directory or file>`
   on every changed lesson and article, or `bun run points` for both corpus roots.
@@ -280,9 +243,8 @@ graph teaches the wrong mathematics on an education platform.
   `parameters.push(1.9700042649107503)`, and the density of a computed series
   stay review items. The gate also lists every lesson folder with a locale
   file below the [visual bar](#interactive-visual-in-every-lesson), fewer
-  than three interactive visual cards, with their count. The list reports without failing until the change that lifts the
-  last lesson over the bar, which turns it into a finding in the same change;
-  no allowlist or baseline file holds lessons back. The local verification runs the gate on both corpus
+  than three interactive visual cards, with their count, and fails while any
+  lesson is below it. No allowlist or baseline file holds a lesson back. The local verification runs the gate on both corpus
   roots against `origin/main`, its default base, before a pull request merges.
 
 When removing an external visual or interactive resource, inspect the existing
