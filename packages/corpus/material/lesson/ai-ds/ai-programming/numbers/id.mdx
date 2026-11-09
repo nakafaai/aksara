@@ -38,6 +38,21 @@ Python shell mengevaluasi literal numerik dan menampilkan nilai literal. Banding
 
 Python menentukan tipe setiap literal dari cara penulisannya. <InlineMath math="4" /> menghasilkan `int`, sedangkan titik desimal pada <InlineMath math="4." /> menjadikannya `float` yang ditampilkan sebagai <InlineMath math="4.0" />.
 
+Dalam notasi ilmiah, angka setelah `e` menggeser titik desimal. `3.2e5` berarti <InlineMath math="3.2\cdot10^5=320000" />, dan `2e-2` berarti <InlineMath math="2\cdot10^{-2}=0.02" />. Logaritma basis sepuluh memperlihatkan pergeseran itu sebagai bilangan yang dekat dengan pangkatnya.
+
+<BarChart
+  title={<><InlineMath math="\log_{10}" /> dari empat literal notasi ilmiah</>}
+  description={<>Setiap batang adalah <InlineMath math="\log_{10}" /> dari literal yang tertulis di bawahnya. Batang negatif milik bilangan di bawah <InlineMath math="1" />, misalnya <code>9.99e-05</code> yang hampir tepat <InlineMath math="-4" />.</>}
+  yAxisLabel="Pangkat sepuluh"
+  data={[
+    { name: "2.e4", value: Math.log10(2.e4) },
+    { name: "2e-2", value: Math.log10(2e-2) },
+    { name: "3.2e5", value: Math.log10(3.2e5) },
+    { name: "9.99e-05", value: Math.log10(9.99e-05) },
+  ]}
+  chartConfig={{ value: { label: "Pangkat sepuluh", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
 ## Jenis Tipe Data Angka
 
 **Tiga tipe numerik bawaan** utama Python adalah `int`, `float`, dan `complex`. Tipe `int` menyimpan bilangan bulat dengan ukuran tak terbatas, `float` menyimpan hampiran bilangan riil, dan `complex` menyimpan bagian riil serta bagian imajiner.
@@ -92,6 +107,41 @@ Bilangan kompleks memiliki **bagian real dan imajiner**. Dalam literal Python, s
 </MathContainer>
 
 Bilangan kompleks dapat digambar pada bidang koordinat. Bagian real menentukan koordinat horizontal, sedangkan bagian imajiner menentukan koordinat vertikal.
+
+Ketiga tipe angka menempati tempat yang berbeda. `int` hanya mengisi titik bilangan bulat, `float` bisa berada di antara titik-titik itu, dan `complex` seperti `1+2j` keluar dari garis bilangan karena punya bagian imajiner.
+
+<MathVisual
+  title={<>Tempat <code>int</code>, <code>float</code>, dan <code>complex</code></>}
+  description={<>Titik ungu adalah nilai <code>int</code> dari <InlineMath math="-3" /> sampai <InlineMath math="3" /> pada garis abu-abu. Titik hijau toska adalah nilai <code>float</code> <code>2.5</code> dan <code>-0.75</code>. Titik magenta <code>1+2j</code> berada di bidang, dengan bagian real <InlineMath math="1" /> dan bagian imajiner <InlineMath math="2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -3.5, y: 0 }, to: { x: 3.5, y: 0 }, appearance: "reference" },
+      { id: "int-0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "int-1", kind: "point", at: { x: -2, y: 0 }, appearance: "secondary" },
+      { id: "int-2", kind: "point", at: { x: -1, y: 0 }, appearance: "secondary" },
+      { id: "int-3", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "int-4", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "int-5", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "int-6", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "float-a", kind: "point", at: { x: 2.5, y: 0 }, appearance: "construction" },
+      { id: "float-b", kind: "point", at: { x: -0.75, y: 0 }, appearance: "construction" },
+      { id: "complex", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "float-a", objectId: "float-a", at: { x: 2.5, y: 0 }, placement: "above" },
+      { key: "float-b", objectId: "float-b", at: { x: -0.75, y: 0 }, placement: "above" },
+      { key: "complex", objectId: "complex", at: { x: 1, y: 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "float-a": <code>2.5</code>,
+    "float-b": <code>-0.75</code>,
+    "complex": <code>1+2j</code>,
+  }}
+/>
 
 ## Memeriksa Tipe dengan Fungsi Type
 
@@ -182,6 +232,42 @@ Constructor `complex()` membuat bilangan kompleks dari **satu atau dua bilangan 
 />
 
 `complex(2.)` membuat bilangan kompleks dengan bagian real <InlineMath math="2" /> dan bagian imajiner <InlineMath math="0" />. Sedangkan `complex(0., 2.)` membuat bilangan imajiner murni <InlineMath math="2j" />.
+
+Bandingkan tangga ungu dengan garis abu-abu <InlineMath math="y=x" />. Untuk bilangan positif, `int()` membuang bagian desimal sehingga hasilnya berada di bawah garis, misalnya `int(2.9)` menjadi `2`. Untuk bilangan negatif, hasilnya berada di atas garis, karena `int(-2.9)` menjadi `-2`, bukan `-3`. Jadi `int()` selalu memotong ke arah nol, dan anak tangga di sekitar nol lebih lebar dari yang lain.
+
+<MathVisual
+  title={<><code>int()</code> memotong ke arah nol</>}
+  description={<>Tangga ungu adalah <code>int(x)</code>, garis abu-abu adalah garis identitas. Titik magenta menandai <code>int(2.9)</code> dan <code>int(-2.9)</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "identity", kind: "segment", from: { x: -3.5, y: -3.5 }, to: { x: 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "step-a", kind: "segment", from: { x: -1, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "step-b", kind: "segment", from: { x: 1, y: 1 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "step-c", kind: "segment", from: { x: 2, y: 2 }, to: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "step-d", kind: "segment", from: { x: 3, y: 3 }, to: { x: 3.5, y: 3 }, appearance: "secondary" },
+      { id: "step-e", kind: "segment", from: { x: -2, y: -1 }, to: { x: -1, y: -1 }, appearance: "secondary" },
+      { id: "step-f", kind: "segment", from: { x: -3, y: -2 }, to: { x: -2, y: -2 }, appearance: "secondary" },
+      { id: "step-g", kind: "segment", from: { x: -3.5, y: -3 }, to: { x: -3, y: -3 }, appearance: "secondary" },
+      { id: "positive", kind: "point", at: { x: 2.9, y: 2 }, appearance: "answer" },
+      { id: "negative", kind: "point", at: { x: -2.9, y: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "identity", objectId: "identity", at: { x: 3.5, y: 3.5 }, placement: "above-left" },
+      { key: "step", objectId: "step-d", at: { x: 3.5, y: 3 }, placement: "right" },
+      { key: "positive", objectId: "positive", at: { x: 2.9, y: 2 }, placement: "below-right" },
+      { key: "negative", objectId: "negative", at: { x: -2.9, y: -2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "identity": <InlineMath math="y=x" />,
+    "step": "int(x)",
+    "positive": "int(2.9) = 2",
+    "negative": "int(-2.9) = -2",
+  }}
+/>
 
 ## Tabel Ringkasan Tipe Data Angka
 

@@ -66,6 +66,33 @@ The word “smallest” is ambiguous, so the target should always be stated prec
 
 For an indefinite matrix, the eigenvalue with **smallest absolute value need not** be the most negative eigenvalue. This distinction prevents a common interpretation error.
 
+For <InlineMath math="A=\operatorname{diag}(2,5)" /> from the example below, power iteration multiplies the component along <InlineMath math="\lambda_i" /> by <InlineMath math="\lambda_i" />, while inverse iteration with shift <InlineMath math="\mu=1" /> multiplies it by <InlineMath math="1/(\lambda_i-1)" />. The largest factor wins, so the first method heads to <InlineMath math="5" /> and the second to <InlineMath math="2" />.
+
+<ScatterDiagram
+  title={<>The factor per step for each eigenvalue</>}
+  description={<>Across are the eigenvalues <InlineMath math="2" /> and <InlineMath math="5" />. The power iteration points sit at <InlineMath math="\lambda_i" />, the shifted inverse points at <InlineMath math="1/(\lambda_i-1)" />, which is <InlineMath math="1" /> and <InlineMath math="1/4" />.</>}
+  xAxisLabel="Eigenvalue"
+  yAxisLabel="Factor per step"
+  datasets={[
+    {
+      name: "Power iteration",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: 2 },
+        { x: 5, y: 5 },
+      ],
+    },
+    {
+      name: "Shifted inverse iteration",
+      color: "var(--chart-2)",
+      points: [
+        { x: 2, y: 1 / (2 - 1) },
+        { x: 5, y: 1 / (5 - 1) },
+      ],
+    },
+  ]}
+/>
+
 ## Worked Shifted Inverse Example
 
 Consider
@@ -89,6 +116,40 @@ Check the first residual as well. The estimate is improving but has not converge
 
 <BlockMath math="r_1=\frac1{17\sqrt{17}}\begin{pmatrix}-12\\48\end{pmatrix},\qquad \|r_1\|_2=\frac{12}{17}" />
 
+Both methods below start from the same violet vector <InlineMath math="q_0" />. Inverse iteration with shift <InlineMath math="\mu=1" /> multiplies the second component by <InlineMath math="1/4" /> at every step, so the teal segments <InlineMath math="q_k\propto(1,4^{-k})^T" /> fall onto the first axis, the eigenvector for <InlineMath math="2" />. Plain power iteration uses <InlineMath math="A" /> itself, so the orange segments <InlineMath math="p_k\propto(2^k,5^k)^T" /> climb toward the eigenvector for <InlineMath math="5" />. The shift decides which eigenvalue you get.
+
+<MathVisual
+  title={<>Shifted inverse iteration and power iteration head in different directions</>}
+  description={<>For <InlineMath math="A=\operatorname{diag}(2,5)" /> and <InlineMath math="q_0=(1,1)^T/\sqrt2" />: teal segments are <InlineMath math="q_k" /> with shift <InlineMath math="\mu=1" />, orange segments are power iterates <InlineMath math="p_k" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.3 }, y: { min: -0.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "quarter", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 90, appearance: "reference" },
+      { id: "q0", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "q1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 / Math.hypot(4, 1), y: 1 / Math.hypot(4, 1) }, appearance: "construction" },
+      { id: "q2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 16 / Math.hypot(16, 1), y: 1 / Math.hypot(16, 1) }, appearance: "construction" },
+      { id: "p1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 / Math.hypot(2, 5), y: 5 / Math.hypot(2, 5) }, appearance: "primary" },
+      { id: "p2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 / Math.hypot(4, 25), y: 25 / Math.hypot(4, 25) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "q0", objectId: "q0", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "above-right" },
+      { key: "q1", objectId: "q1", at: { x: 4 / Math.hypot(4, 1), y: 1 / Math.hypot(4, 1) }, placement: "right" },
+      { key: "q2", objectId: "q2", at: { x: 16 / Math.hypot(16, 1), y: 1 / Math.hypot(16, 1) }, placement: "below-right" },
+      { key: "p1", objectId: "p1", at: { x: 2 / Math.hypot(2, 5), y: 5 / Math.hypot(2, 5) }, placement: "above-right" },
+      { key: "p2", objectId: "p2", at: { x: 4 / Math.hypot(4, 25), y: 25 / Math.hypot(4, 25) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "q0": <InlineMath math="q_0" />,
+    "q1": <InlineMath math="q_1" />,
+    "q2": <InlineMath math="q_2" />,
+    "p1": <InlineMath math="p_1" />,
+    "p2": <InlineMath math="p_2" />,
+  }}
+/>
+
 ## Practical Checks
 
 These checks decide whether a computed eigenvalue and eigenvector pair is correct without repeating the whole determinant. Work through them in order for the pair you obtained.
@@ -97,3 +158,19 @@ These checks decide whether a computed eigenvalue and eigenvector pair is correc
 2. Stop using a **residual norm**. A small change in consecutive eigenvalue estimates alone does not prove that the eigenpair is accurate.
 3. Eigenvector sign is arbitrary: <InlineMath math="q" /> and <InlineMath math="-q" /> represent the same eigendirection.
 4. For clustered eigenvalues or general nonnormal matrices, use algorithms designed for multiple vectors or Schur form, using Lanczos for symmetric problems and Arnoldi or <InlineMath math="\mathrm{QR}" />-based eigensolvers.
+
+In the example above, <InlineMath math="q_k\propto(4^k,1)" /> gives <InlineMath math="\rho_k=\tfrac{2\cdot16^k+5}{16^k+1}" /> and the residual <InlineMath math="\|r_k\|_2=\tfrac{3\cdot4^k}{16^k+1}" />. For <InlineMath math="k=1" /> that is <InlineMath math="12/17" />, the value computed above, and every step divides it by about <InlineMath math="4" />.
+
+<BarChart
+  title={<>The residual norm <InlineMath math="\|r_k\|_2" /> shrinks about fourfold per step</>}
+  description={<>Each bar is <InlineMath math="\tfrac{3\cdot4^k}{16^k+1}" /> for the iteration <InlineMath math="k" /> written below it. Stop the iteration once this residual is small enough.</>}
+  yAxisLabel="Residual norm"
+  data={[
+    { name: "1", value: 3 * 4 ** 1 / (16 ** 1 + 1) },
+    { name: "2", value: 3 * 4 ** 2 / (16 ** 2 + 1) },
+    { name: "3", value: 3 * 4 ** 3 / (16 ** 3 + 1) },
+    { name: "4", value: 3 * 4 ** 4 / (16 ** 4 + 1) },
+    { name: "5", value: 3 * 4 ** 5 / (16 ** 5 + 1) },
+  ]}
+  chartConfig={{ value: { label: "Residual norm", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>

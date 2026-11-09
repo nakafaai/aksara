@@ -119,6 +119,40 @@ Karena transformasi kesebangunan uniter **mempertahankan normalitas**, kita dapa
 
 Oleh karena itu matriks blok diagonal juga normal, yang berarti <InlineMath math="A'" /> juga normal.
 
+Bukti ini memakai <InlineMath math="\|Ax\|_2=\|A^Hx\|_2" /> untuk matriks normal, karena <InlineMath math="\|Ax\|_2^2=x^HA^HAx=x^HAA^Hx=\|A^Hx\|_2^2" />. Ambil <InlineMath math="x=(2,1)" />. Matriks normal <InlineMath math="N=\begin{pmatrix}1&-1\\1&1\end{pmatrix}" /> memberi <InlineMath math="Nx=(1,3)" /> dan <InlineMath math="N^Tx=(3,-1)" />, keduanya sepanjang <InlineMath math="\sqrt{10}" />. Geseran <InlineMath math="J=\begin{pmatrix}1&1\\0&1\end{pmatrix}" /> tidak normal, dan <InlineMath math="Jx=(3,1)" /> lebih pendek daripada <InlineMath math="J^Tx=(2,3)" />.
+
+<MathVisual
+  title={<><InlineMath math="\|Nx\|_2=\|N^Tx\|_2" /> untuk matriks normal <InlineMath math="N" /></>}
+  description={<>Dari vektor ungu <InlineMath math="x=(2,1)" />, kedua ruas hijau toska <InlineMath math="Nx" /> dan <InlineMath math="N^Tx" /> berakhir di lingkaran abu-abu berjari-jari <InlineMath math="\sqrt{10}" />. Untuk geseran <InlineMath math="J" />, ruas oranye <InlineMath math="Jx" /> menyentuh lingkaran, tetapi ruas magenta <InlineMath math="J^Tx" /> sepanjang <InlineMath math="\sqrt{13}" /> keluar darinya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 4 }, y: { min: -3.5, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "radius", kind: "circle", center: { x: 0, y: 0 }, radius: Math.sqrt(10), appearance: "reference" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "normal-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "construction" },
+      { id: "normal-adjoint", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -1 }, appearance: "construction" },
+      { id: "shear-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "shear-adjoint", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "vector", objectId: "vector", at: { x: 2, y: 1 }, placement: "below" },
+      { key: "normal-image", objectId: "normal-image", at: { x: 1, y: 3 }, placement: "above-left" },
+      { key: "normal-adjoint", objectId: "normal-adjoint", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "shear-image", objectId: "shear-image", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "shear-adjoint", objectId: "shear-adjoint", at: { x: 2, y: 3 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "vector": <InlineMath math="x" />,
+    "normal-image": <InlineMath math="Nx" />,
+    "normal-adjoint": <InlineMath math="N^Tx" />,
+    "shear-image": <InlineMath math="Jx" />,
+    "shear-adjoint": <InlineMath math="J^Tx" />,
+  }}
+/>
+
 ## Konstruksi Basis Ortonormal Lengkap
 
 Berdasarkan **hipotesis induksi**, terdapat basis ortonormal <InlineMath math="v'_2, \ldots, v'_n" /> yang terdiri atas vektor-vektor eigen <InlineMath math="A'" />. Misalkan <InlineMath math="S'" /> adalah matriks uniter dengan kolom tersebut.
@@ -144,6 +178,34 @@ Substitusi matriks <InlineMath math="S" /> ke transformasi kesebangunan memberik
 <BlockMath math="\begin{aligned} &amp;S^H \cdot A \cdot S \\ &amp;= \begin{pmatrix} 1 &amp; 0^T \\ 0 &amp; S'^H \end{pmatrix} \cdot T^H \cdot A \cdot T \\ &amp;\quad{}\cdot \begin{pmatrix} 1 &amp; 0^T \\ 0 &amp; S' \end{pmatrix} \\ &amp;= \begin{pmatrix} \lambda_1 &amp; 0^T \\ 0 &amp; S'^H A' S' \end{pmatrix} \\ &amp;= \begin{pmatrix} \lambda_1 &amp; &amp; \\ &amp; \ddots &amp; \\ &amp; &amp; \lambda_n \end{pmatrix} \end{aligned}" />
 
 Kolom dari <InlineMath math="S" /> membentuk basis ortonormal dari vektor eigen matriks <InlineMath math="A" />.
+
+Ambil <InlineMath math="A=\begin{pmatrix}2&1&0\\1&2&0\\0&0&5\end{pmatrix}" />. Langkah pertama memilih vektor eigen <InlineMath math="u_1=e_3" /> untuk <InlineMath math="\lambda=5" />. Karena <InlineMath math="A" /> normal, <InlineMath math="A" /> memetakan bidang <InlineMath math="u_1^\perp" /> ke dirinya sendiri, jadi konstruksi berlanjut di bidang itu dan menemukan <InlineMath math="u_2=\tfrac1{\sqrt2}(1,1,0)" /> untuk <InlineMath math="\lambda=3" /> dan <InlineMath math="u_3=\tfrac1{\sqrt2}(-1,1,0)" /> untuk <InlineMath math="\lambda=1" />.
+
+<MathVisual
+  title={<>Basis ortonormal dibangun satu vektor eigen demi satu</>}
+  description={<>Ruas oranye <InlineMath math="u_1" /> tegak lurus dengan persegi ungu, yaitu bidang <InlineMath math="u_1^\perp" />. Di dalam bidang itu, ruas hijau toska <InlineMath math="u_2" /> dan ruas magenta <InlineMath math="u_3" /> saling tegak lurus dan melengkapi basis.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 1.2 }, y: { min: -1.2, max: 1.2 }, z: { min: -0.3, max: 1.3 } },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0.4 } },
+    objects: [
+      { id: "complement", kind: "polygon", vertices: [{ x: -1, y: -1, z: 0 }, { x: 1, y: -1, z: 0 }, { x: 1, y: 1, z: 0 }, { x: -1, y: 1, z: 0 }], appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 1 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }, appearance: "construction" },
+      { id: "third", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: -Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 0, y: 0, z: 1 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }, placement: "right" },
+      { key: "third", objectId: "third", at: { x: -Math.SQRT1_2, y: Math.SQRT1_2, z: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="u_1" />,
+    "second": <InlineMath math="u_2" />,
+    "third": <InlineMath math="u_3" />,
+  }}
+/>
 
 ## Kasus Matriks Riil
 
@@ -186,3 +248,38 @@ Matriks <InlineMath math="R" /> bersifat real dan ortogonal, sehingga normal. Ni
 </MathContainer>
 
 Jadi, <InlineMath math="R" /> dapat didiagonalkan secara uniter pada <InlineMath math="\mathbb{C}" />, tetapi tidak dapat didiagonalkan dengan matriks ortogonal real. Pada <InlineMath math="\mathbb{R}" />, rotasi itu sendiri merupakan blok <InlineMath math="2\times2" /> yang diperlukan.
+
+Matriks real normal <InlineMath math="A=0.9R(30^\circ)" /> tidak punya vektor eigen real, karena nilai eigennya <InlineMath math="0.9e^{\pm i\pi/6}" /> kompleks. Ikuti titik magenta di bawah: setiap perkalian dengan <InlineMath math="A" /> memutar titik sejauh <InlineMath math="30^\circ" />, yaitu argumen nilai eigen, dan memperpendek jaraknya ke titik asal dengan faktor <InlineMath math="0.9" />, yaitu modulusnya. Inilah arti geometri blok real <InlineMath math="2\times2" /> yang muncul di bentuk normal real.
+
+<MathVisual
+  title={<>Blok real dengan nilai eigen <InlineMath math="0.9e^{\pm i\pi/6}" /></>}
+  description={<>Titik magenta adalah <InlineMath math="x_k=A^kx_0" /> untuk <InlineMath math="A=0.9R(30^\circ)" /> dan <InlineMath math="x_0=(1.5,0)^T" />. Setiap titik berikutnya berputar 30 derajat lebih jauh dan jaraknya ke titik asal dikali 0,9.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.7 }, y: { min: -1.2, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "step-0", kind: "point", at: { x: 1.5, y: 0 }, appearance: "answer" },
+      { id: "step-1", kind: "point", at: { x: 1.5 * 0.9 ** 1 * Math.cos((Math.PI / 6) * 1), y: 1.5 * 0.9 ** 1 * Math.sin((Math.PI / 6) * 1) }, appearance: "answer" },
+      { id: "step-2", kind: "point", at: { x: 1.5 * 0.9 ** 2 * Math.cos((Math.PI / 6) * 2), y: 1.5 * 0.9 ** 2 * Math.sin((Math.PI / 6) * 2) }, appearance: "answer" },
+      { id: "step-3", kind: "point", at: { x: 0, y: 1.5 * 0.9 ** 3 }, appearance: "answer" },
+      { id: "step-4", kind: "point", at: { x: 1.5 * 0.9 ** 4 * Math.cos((Math.PI / 6) * 4), y: 1.5 * 0.9 ** 4 * Math.sin((Math.PI / 6) * 4) }, appearance: "answer" },
+      { id: "step-5", kind: "point", at: { x: 1.5 * 0.9 ** 5 * Math.cos((Math.PI / 6) * 5), y: 1.5 * 0.9 ** 5 * Math.sin((Math.PI / 6) * 5) }, appearance: "answer" },
+      { id: "step-6", kind: "point", at: { x: -1.5 * 0.9 ** 6, y: 0 }, appearance: "answer" },
+      { id: "step-7", kind: "point", at: { x: 1.5 * 0.9 ** 7 * Math.cos((Math.PI / 6) * 7), y: 1.5 * 0.9 ** 7 * Math.sin((Math.PI / 6) * 7) }, appearance: "answer" },
+      { id: "step-8", kind: "point", at: { x: 1.5 * 0.9 ** 8 * Math.cos((Math.PI / 6) * 8), y: 1.5 * 0.9 ** 8 * Math.sin((Math.PI / 6) * 8) }, appearance: "answer" },
+      { id: "step-9", kind: "point", at: { x: 0, y: -1.5 * 0.9 ** 9 }, appearance: "answer" },
+      { id: "step-10", kind: "point", at: { x: 1.5 * 0.9 ** 10 * Math.cos((Math.PI / 6) * 10), y: 1.5 * 0.9 ** 10 * Math.sin((Math.PI / 6) * 10) }, appearance: "answer" },
+      { id: "step-11", kind: "point", at: { x: 1.5 * 0.9 ** 11 * Math.cos((Math.PI / 6) * 11), y: 1.5 * 0.9 ** 11 * Math.sin((Math.PI / 6) * 11) }, appearance: "answer" },
+      { id: "step-12", kind: "point", at: { x: 1.5 * 0.9 ** 12, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "step-0", objectId: "step-0", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "step-1", objectId: "step-1", at: { x: 1.5 * 0.9 ** 1 * Math.cos((Math.PI / 6) * 1), y: 1.5 * 0.9 ** 1 * Math.sin((Math.PI / 6) * 1) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "step-0": <InlineMath math="x_0" />,
+    "step-1": <InlineMath math="x_1=Ax_0" />,
+  }}
+/>

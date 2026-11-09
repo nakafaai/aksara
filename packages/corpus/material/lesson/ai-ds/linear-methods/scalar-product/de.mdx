@@ -59,6 +59,33 @@ Für reelle Vektoren ungleich null stellt diese Ungleichung sicher, dass der Win
 
 Der Winkel <InlineMath math="\theta_A" /> ist damit wohldefiniert. Vektoren sind <InlineMath math="A" />-orthogonal, wenn <InlineMath math="\langle x,y\rangle_A=0" /> gilt. Eine Änderung von <InlineMath math="A" /> ändert die Geometrie. Daher müssen euklidisch senkrechte Vektoren <Highlight>in einer gewichteten Metrik nicht senkrecht sein</Highlight>.
 
+Mit dem Standardskalarprodukt gilt <InlineMath math="\langle x,y\rangle=3+2=5" />, <InlineMath math="\|x\|=\sqrt{10}" /> und <InlineMath math="\|y\|=\sqrt5" />. Cauchy-Schwarz gilt, weil <InlineMath math="5\le\sqrt{50}" />, und <InlineMath math="\cos\theta=5/\sqrt{50}=1/\sqrt2" /> ergibt <InlineMath math="\theta=45^\circ" />.
+
+<MathVisual
+  title={<>Projektion und Winkel zwischen <InlineMath math="x=(3,1)" /> und <InlineMath math="y=(1,2)" /></>}
+  description={<>Der violette Vektor <InlineMath math="x" /> und der türkise Vektor <InlineMath math="y" />. Der magentafarbene Punkt ist die Projektion <InlineMath math="\tfrac{\langle x,y\rangle}{\langle y,y\rangle}y=y" />, und die graue Strecke von <InlineMath math="x" /> dorthin steht senkrecht auf <InlineMath math="y" />. Der orange Bogen markiert <InlineMath math="45^\circ" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "drop", kind: "segment", from: { x: 3, y: 1 }, to: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "foot", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.6, startDegrees: Math.atan2(1, 3) * 180 / Math.PI, sweepDegrees: 45, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1, y: 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="x" />,
+    "second": <InlineMath math="y" />,
+  }}
+/>
+
 ## Euklidische und gewichtete Winkel vergleichen
 
 Sei
@@ -77,6 +104,33 @@ Die positiven Eigenwerte bestätigen, dass <InlineMath math="A" /> symmetrisch p
 </MathContainer>
 
 Dieselben Koordinatenvektoren stehen somit in der euklidischen Geometrie senkrecht, bilden in der <InlineMath math="A" />-Geometrie aber einen Winkel von <InlineMath math="60^\circ" />.
+
+Für <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> bekommst du <InlineMath math="\langle e_1,e_2\rangle_A=1" /> und <InlineMath math="\|e_1\|_A=\|e_2\|_A=\sqrt2" />, also <InlineMath math="\cos\theta_A=\tfrac12" /> und <InlineMath math="\theta_A=60^\circ" />. Schreibst du <InlineMath math="A=LL^T" />, wird das gewichtete Skalarprodukt zum gewöhnlichen, <InlineMath math="\langle x,y\rangle_A=(L^Tx)^T(L^Ty)" />, und du kannst den Winkel zeichnen.
+
+<MathVisual
+  title={<><InlineMath math="e_1" /> und <InlineMath math="e_2" /> bilden in der gewichteten Geometrie <InlineMath math="60^\circ" /></>}
+  description={<>Die grauen Strecken sind <InlineMath math="e_1" /> und <InlineMath math="e_2" /> mit <InlineMath math="90^\circ" />. Mit <InlineMath math="A=LL^T" /> und <InlineMath math="L=\begin{pmatrix}\sqrt2&0\\1/\sqrt2&\sqrt{3/2}\end{pmatrix}" /> zeigen der violette Vektor <InlineMath math="L^Te_1" /> und der türkise Vektor <InlineMath math="L^Te_2" /> dasselbe Paar, gemessen mit <InlineMath math="\langle\cdot,\cdot\rangle_A" />. Der magentafarbene Bogen markiert <InlineMath math="60^\circ" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.6 }, y: { min: -0.3, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "image-first", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT2, y: 0 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "reference" },
+      { id: "image-second", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.sqrt(3 / 2) }, appearance: "construction" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.35, startDegrees: 0, sweepDegrees: 60, appearance: "answer" },
+    ],
+    labels: [
+      { key: "image-first", objectId: "image-first", at: { x: Math.SQRT2, y: 0 }, placement: "below" },
+      { key: "image-second", objectId: "image-second", at: { x: Math.SQRT1_2, y: Math.sqrt(3 / 2) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "image-first": <InlineMath math="L^Te_1" />,
+    "image-second": <InlineMath math="L^Te_2" />,
+  }}
+/>
 
 ## Orthogonale komplexe Vektoren mit Konjugation
 
@@ -105,6 +159,39 @@ Dasselbe geometrische Prinzip liegt der gewichteten Methode der kleinsten Quadra
 Projiziere mit demselben <InlineMath math="A" /> den Vektor <InlineMath math="x=e_2" /> auf <InlineMath math="u=e_1" />. Der gewichtete Koeffizient ist <InlineMath math="1/2" />, der euklidische Koeffizient dagegen null:
 
 <BlockMath math="\operatorname{proj}^{A}_{e_1}(e_2)=\frac12e_1,\qquad r=\begin{pmatrix}-1/2\\1\end{pmatrix},\qquad e_1^TAr=2(-1/2)+1=0" />
+
+Dreh oder zoom die Szene unten. Die Vektoren <InlineMath math="e_1" /> und <InlineMath math="e_2" /> liegen auf dem grauen Einheitskreis, ihre euklidische Länge ist also <InlineMath math="1" />, bezüglich <InlineMath math="A" /> ist sie aber <InlineMath math="\sqrt2" />, weil <InlineMath math="e_1^TAe_1=2" /> gilt. Das orange Residuum <InlineMath math="r" /> von <InlineMath math="\tfrac12e_1" /> nach <InlineMath math="e_2" /> sieht nicht senkrecht zu <InlineMath math="e_1" /> aus, und euklidisch ist es das auch nicht. Bezüglich <InlineMath math="A" /> steht es senkrecht, denn <InlineMath math="e_1^TAr=2(-\tfrac12)+1=0" />.
+
+<MathVisual
+  title={<>Ein Residuum, das bezüglich <InlineMath math="A" /> senkrecht auf <InlineMath math="e_1" /> steht</>}
+  description={<>Der graue Kreis ist <InlineMath math="x^Tx=1" />. Die orange Strecke ist das Residuum <InlineMath math="r=e_2-\tfrac12e_1" /> der gewichteten Projektion von <InlineMath math="e_2" /> auf <InlineMath math="e_1" /> für <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "construction" },
+      { id: "residual", kind: "segment", from: { x: 1 / 2, y: 0 }, to: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "foot", kind: "point", at: { x: 1 / 2, y: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "unit", objectId: "unit", at: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-left" },
+      { key: "first", objectId: "first", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "second", objectId: "second", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "residual", objectId: "residual", at: { x: 1 / 4, y: 1 / 2 }, placement: "right" },
+      { key: "foot", objectId: "foot", at: { x: 1 / 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "unit": <InlineMath math="x^Tx=1" />,
+    "first": <InlineMath math="e_1" />,
+    "second": <InlineMath math="e_2" />,
+    "residual": <InlineMath math="r" />,
+    "foot": <InlineMath math="\tfrac12e_1" />,
+  }}
+/>
 
 ## Ein Skalarprodukt als Matrix schreiben
 
