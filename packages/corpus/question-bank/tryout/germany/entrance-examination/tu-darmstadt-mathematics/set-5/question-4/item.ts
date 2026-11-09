@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$(2\\mid9)$$",
+          label: "$$2{,}5$$ Stunden",
         },
         {
           correct: false,
-          label: "$$(-2\\mid-9)$$",
+          label: "$$6{,}5$$ Stunden",
         },
         {
           correct: false,
-          label: "$$(2\\mid-5)$$",
+          label: "$$12$$ Stunden",
         },
         {
           correct: false,
-          label: "$$(4\\mid-5)$$",
+          label: "$$\\frac{19}{3}$$ Stunden",
         },
         {
           correct: true,
-          label: "$$(2\\mid-9)$$",
+          label: "$$9{,}5$$ Stunden",
         },
         {
           correct: false,
-          label: "$$(3\\mid-8)$$",
+          label: "$$14{,}5$$ Stunden",
         },
       ],
     },

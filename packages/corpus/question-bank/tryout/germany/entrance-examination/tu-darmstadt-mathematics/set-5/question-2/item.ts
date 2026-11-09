@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$x=4$$",
+          label: "$$3\\le x\\le7$$",
         },
         {
           correct: false,
-          label: "$$x=-4$$",
+          label: "$$3<x<7$$",
         },
         {
           correct: false,
-          label: "$$x=9$$",
+          label: "$$0<x\\le3$$ oder $$7\\le x<10$$",
         },
         {
           correct: false,
-          label: "$$x=-7$$",
+          label: "$$3\\le x<10$$",
         },
         {
           correct: false,
-          label: "$$x=7$$",
+          label: "$$-7\\le x\\le-3$$",
         },
         {
           correct: false,
-          label: "$$x=-3$$",
+          label: "$$0<x\\le7$$",
         },
       ],
     },

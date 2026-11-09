@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "nur $$a=2$$",
+          label: "$$8$$",
         },
         {
           correct: false,
-          label: "für alle $$a$$ mit $$-2<a<2$$",
+          label: "$$12$$",
         },
         {
           correct: false,
-          label: "$$a=-1$$ und $$a=1$$",
+          label: "$$15$$",
         },
         {
           correct: true,
-          label: "$$a=-2$$ und $$a=2$$",
+          label: "$$6$$",
         },
         {
           correct: false,
-          label: "für keinen Wert von $$a$$",
+          label: "$$16$$",
         },
         {
           correct: false,
-          label: "für alle $$a$$ mit $$a<-2$$ oder $$a>2$$",
+          label: "$$30$$",
         },
       ],
     },

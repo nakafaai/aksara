@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$8$$",
+          label: "ein rechtwinkliges und gleichschenkliges Dreieck",
         },
         {
           correct: false,
-          label: "$$12$$",
+          label: "ein Quadrat",
         },
         {
           correct: false,
-          label: "$$27$$",
+          label: "ein Rechteck, das kein Quadrat ist",
         },
         {
           correct: false,
-          label: "$$60$$",
+          label: "ein regelmäßiges Sechseck",
         },
         {
           correct: true,
-          label: "$$36$$",
+          label: "ein gleichseitiges Dreieck",
         },
         {
           correct: false,
-          label: "$$54$$",
+          label: "ein gleichschenkliges Dreieck, das nicht gleichseitig ist",
         },
       ],
     },
