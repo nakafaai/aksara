@@ -25,11 +25,15 @@ const DispatchSchema = Schema.Struct({
 });
 type Dispatch = typeof DispatchSchema.Type;
 
-/** What a dispatch starts: the target legs, the paired acceptance, and the final parity job. */
+/**
+ * What a dispatch starts: the target legs, whether they run one at a time, the
+ * paired acceptance, and the final parity job.
+ */
 const PlanSchema = Schema.Struct({
   legs: Schema.Array(Schema.String),
   pairedAcceptance: Schema.Boolean,
   parity: Schema.Boolean,
+  sequential: Schema.Boolean,
 });
 type Plan = typeof PlanSchema.Type;
 
@@ -54,6 +58,9 @@ const PlannedWorkflowSchema = Schema.Struct({
       ),
       strategy: Schema.Struct({
         matrix: Schema.Struct({ target: Schema.String }),
+        "max-parallel": Schema.optional(
+          Schema.Union([Schema.String, Schema.Int])
+        ),
       }),
     }),
     parity: Schema.Struct({ if: Schema.String }),
@@ -72,7 +79,9 @@ export const ACCEPTED_DISPATCHES: readonly Dispatch[] = [
 
 /**
  * Describes what the release decision says one dispatch starts: development and
- * production side by side, and their comparison, only when both are chosen.
+ * production side by side, and their comparison, only when both are chosen. An
+ * acceptance of both runs its legs one at a time, because the paired acceptance
+ * refuses a peer whose inverse is still being discarded (9 Nov 2026).
  */
 export function intendedPlan({ operation, target }: Dispatch): Plan {
   const both = target === "both";
@@ -80,6 +89,7 @@ export function intendedPlan({ operation, target }: Dispatch): Plan {
     legs: both ? ["development", "production"] : [target],
     pairedAcceptance: both && operation === "accept",
     parity: both && Arr.contains(PAIRED_OPERATIONS, operation),
+    sequential: both && operation === "accept",
   };
 }
 
@@ -152,9 +162,24 @@ const legsOf = Effect.fn("AksaraScripts.planLegs")(function* (
   );
 });
 
+/** Reads how many legs the matrix runs at once; GitHub runs every leg together when it declares no limit. */
+const maxParallelOf = Effect.fn("AksaraScripts.planMaxParallel")(function* (
+  value: string | number | undefined,
+  run: Run
+) {
+  if (value === undefined) {
+    return Number.POSITIVE_INFINITY;
+  }
+  if (typeof value === "number") {
+    return value;
+  }
+  return (yield* evaluate(value, run)).number();
+});
+
 /**
  * Evaluates the expressions that the release workflow declares for the matrix,
- * the paired acceptance, and the final parity job, as GitHub Actions would.
+ * its parallelism, the paired acceptance, and the final parity job, as GitHub
+ * Actions would.
  */
 export const workflowPlan = Effect.fn("AksaraScripts.workflowPlan")(function* (
   release: string,
@@ -181,12 +206,19 @@ export const workflowPlan = Effect.fn("AksaraScripts.workflowPlan")(function* (
       message: `${PAIRED_ACCEPTANCE_STEP} must declare when it runs`,
     });
   }
-  const legs = yield* evaluate(operate.strategy.matrix.target, run);
+  const legs = yield* legsOf(
+    yield* evaluate(operate.strategy.matrix.target, run)
+  );
+  const maxParallel = yield* maxParallelOf(
+    operate.strategy["max-parallel"],
+    run
+  );
   const paired = yield* evaluate(pairedAcceptance.value.if, run);
   const parityValue = yield* evaluate(parity.if, run);
   return {
-    legs: yield* legsOf(legs),
+    legs,
     pairedAcceptance: truthy(paired),
     parity: truthy(parityValue),
+    sequential: legs.length > 1 && maxParallel === 1,
   };
 });
