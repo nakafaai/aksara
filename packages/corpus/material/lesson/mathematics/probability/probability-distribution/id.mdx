@@ -3,7 +3,7 @@ export const metadata = {
   description: "Susun distribusi peluang untuk satu dadu dan dua dadu, lalu hitung peluang kejadian dari ruang sampelnya.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-21",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Peluang",
 };
 
@@ -109,6 +109,63 @@ Karena kedua dadu adil dan saling bebas, setiap pasangan berurutan memiliki pelu
 
 Karena warna dadu berbeda, hasil <InlineMath math="3" /> pada dadu merah dan <InlineMath math="2" /> pada dadu putih berbeda dari hasil <InlineMath math="2" /> pada dadu merah dan <InlineMath math="3" /> pada dadu putih. Urutan menunjukkan dadu mana yang menghasilkan setiap angka.
 
+Setiap titik dari 36 titik adalah satu pasangan terurut (merah, putih). Enam pasangan pada garis <InlineMath math="\text{merah} + \text{putih} = 7" /> menjadikan 7 jumlah yang paling mungkin, dengan peluang <InlineMath math="\tfrac{6}{36} = \tfrac16" />.
+
+<MathVisual
+  title={<>36 hasil dua dadu</>}
+  description={<>Kisi 6 kali 6 pasangan terurut, dengan enam pasangan berjumlah 7 ditandai pada garis <InlineMath math="x + y = 7" />.</>}
+  labels={{
+    seven: <InlineMath math="x + y = 7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.4, max: 6.6 }, y: { min: 0.4, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "seven", kind: "segment", from: { x: 1, y: 6 }, to: { x: 6, y: 1 }, appearance: "construction" },
+      { id: "o11", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "o12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "o13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "o14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "o15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "o16", kind: "point", at: { x: 1, y: 6 }, appearance: "answer" },
+      { id: "o21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "o22", kind: "point", at: { x: 2, y: 2 }, appearance: "reference" },
+      { id: "o23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "o24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "o25", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+      { id: "o26", kind: "point", at: { x: 2, y: 6 }, appearance: "reference" },
+      { id: "o31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "o32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "o33", kind: "point", at: { x: 3, y: 3 }, appearance: "reference" },
+      { id: "o34", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "o35", kind: "point", at: { x: 3, y: 5 }, appearance: "reference" },
+      { id: "o36", kind: "point", at: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "o41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "o42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "o43", kind: "point", at: { x: 4, y: 3 }, appearance: "answer" },
+      { id: "o44", kind: "point", at: { x: 4, y: 4 }, appearance: "reference" },
+      { id: "o45", kind: "point", at: { x: 4, y: 5 }, appearance: "reference" },
+      { id: "o46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "o51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "o52", kind: "point", at: { x: 5, y: 2 }, appearance: "answer" },
+      { id: "o53", kind: "point", at: { x: 5, y: 3 }, appearance: "reference" },
+      { id: "o54", kind: "point", at: { x: 5, y: 4 }, appearance: "reference" },
+      { id: "o55", kind: "point", at: { x: 5, y: 5 }, appearance: "reference" },
+      { id: "o56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "o61", kind: "point", at: { x: 6, y: 1 }, appearance: "answer" },
+      { id: "o62", kind: "point", at: { x: 6, y: 2 }, appearance: "reference" },
+      { id: "o63", kind: "point", at: { x: 6, y: 3 }, appearance: "reference" },
+      { id: "o64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "o65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "o66", kind: "point", at: { x: 6, y: 6 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "seven", objectId: "seven", at: { x: 6, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 ### Distribusi Peluang untuk Jumlah Angka Dua Dadu
 
 Jika variabel acaknya adalah _jumlah_ kedua dadu, nilai terkecilnya <InlineMath math="1+1=2" /> dan nilai terbesarnya <InlineMath math="6+6=12" />. Setiap jumlah memiliki **banyak pasangan berurutan yang berbeda**, sehingga peluangnya juga berbeda:
@@ -130,8 +187,8 @@ Jika variabel acaknya adalah _jumlah_ kedua dadu, nilai terkecilnya <InlineMath 
 Jumlah <InlineMath math="7" /> paling mungkin karena dihasilkan oleh <InlineMath math="6" /> pasangan berurutan. Sebaliknya, jumlah <InlineMath math="2" /> dan <InlineMath math="12" /> masing-masing hanya berasal dari satu pasangan. Perbedaan ini penting saat sebuah permainan atau model memakai jumlah dari kedua dadu.
 
 <BarChart
-  title="Banyak Pasangan untuk Setiap Jumlah Dadu"
-  description="Batang tengah paling tinggi karena lebih banyak pasangan menghasilkan jumlah tersebut."
+  title={<>Banyak Pasangan untuk Setiap Jumlah Dadu</>}
+  description={<>Batang tengah paling tinggi karena lebih banyak pasangan menghasilkan jumlah tersebut.</>}
   data={[{ name: "2", value: 1 }, { name: "3", value: 2 }, { name: "4", value: 3 }, { name: "5", value: 4 }, { name: "6", value: 5 }, { name: "7", value: 6 }, { name: "8", value: 5 }, { name: "9", value: 4 }, { name: "10", value: 3 }, { name: "11", value: 2 }, { name: "12", value: 1 }]}
   chartConfig={{ value: { label: "Banyak pasangan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
   yAxisLabel="Banyak pasangan"
@@ -174,3 +231,13 @@ Jadi, distribusinya valid. Sedikitnya dua sisi gambar berarti <InlineMath math="
 <BlockMath math="P(X \geq 2)=P(X=2)+P(X=3)=\frac{3}{8}+\frac{1}{8}=\frac{1}{2}" />
 
 Dengan menuliskan ruang sampel terlebih dahulu, distribusi dapat diperiksa langsung: setiap satu dari <InlineMath math="8" /> urutan hasil muncul di _tepat satu baris_.
+
+Pembahasan dalam bentuk diagram: batang <InlineMath math="\tfrac18, \tfrac38, \tfrac38, \tfrac18" /> untuk 0 sampai 3 sisi angka berjumlah 1, dan dua batang di kanan memberi <InlineMath math="P(X \geq 2) = \tfrac12" />.
+
+<BarChart
+  title={<>Sisi angka dalam tiga lemparan koin</>}
+  description={<>Batang <InlineMath math="P(X = x)" /> untuk <InlineMath math="x = 0" /> sampai 3 sisi angka.</>}
+  yAxisLabel="Peluang"
+  data={[1, 3, 3, 1].map((c, x) => ({ name: String(x), value: c / 8 }))}
+  chartConfig={{ value: { label: "Peluang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

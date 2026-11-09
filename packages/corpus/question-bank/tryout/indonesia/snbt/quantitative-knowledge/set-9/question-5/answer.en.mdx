@@ -1,33 +1,21 @@
-Let <InlineMath math="A" /> be the event that the number of green balls drawn is **twice the number of white balls drawn**.
+Computing the roots <InlineMath math="x=\tfrac{-1\pm\sqrt5}{2}" /> and raising them to the fourth power takes long. It is faster to **look for <InlineMath math="x^2+x" /> inside the expression**, because the equation gives <InlineMath math="x^2+x=1" />.
 
-There are <InlineMath math="9" /> balls in the box:
+# Factorising the expression
 
-<BlockMath math="1 \text{ red} + 6 \text{ green} + 2 \text{ white} = 9" />
+<BlockMath math="\begin{aligned}
+x^4+2x^3+x^2&=x^2\left(x^2+2x+1\right)\\
+&=x^2(x+1)^2\\
+&=\left(x^2+x\right)^2
+\end{aligned}" />
 
-The balls are drawn uniformly at random without replacement, so every unordered selection of <InlineMath math="7" /> balls is equally likely. The number of possible selections is:
+# Substitution
 
-<BlockMath math="n(S) = C^9_7 = \frac{9!}{7!(9-7)!} = \frac{9\cdot8}{2\cdot1}=36" />
+From the equation, **<InlineMath math="x^2+x=1" />**.
 
-Let <InlineMath math="w" />, <InlineMath math="g" />, and <InlineMath math="r" /> denote the numbers of white, green, and red balls drawn. The condition is <InlineMath math="g=2w" />, while <InlineMath math="r+g+w=7" />. Since at most two white balls are available, we check <InlineMath math="w=0" />, <InlineMath math="w=1" />, and <InlineMath math="w=2" />.
+<BlockMath math="\left(x^2+x\right)^2=1^2=1" />
 
-| White | Green | Red required | Within the available counts? |
-| --- | --- | --- | --- |
-| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="7-0-0=7" /> | No, only one red ball is available |
-| <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="7-1-2=4" /> | No, only one red ball is available |
-| <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="7-2-4=1" /> | Yes |
+This holds for both roots at once, so there is no need to choose one.
 
-The number of favorable selections is:
+The value 0 appears if <InlineMath math="x^2+x" /> is taken as 0, ignoring the constant <InlineMath math="-1" />. The value <InlineMath math="-1" /> forgets that the expression is squared.
 
-For four green balls, <InlineMath math="C^6_4=\frac{6\cdot5}{2\cdot1}=15" />. Both white balls and the sole red ball must be selected, so each of those choices has one possibility.
-
-<BlockMath math="n(A) = C^2_2 \cdot C^6_4 \cdot C^1_1" />
-
-<BlockMath math="= 1 \cdot 15 \cdot 1" />
-
-<BlockMath math="= 15" />
-
-Therefore:
-
-<BlockMath math="P(A) = \frac{n(A)}{n(S)} = \frac{15}{36} = \frac{5}{12}" />
-
-The required probability is <InlineMath math="\frac{5}{12}" />.
+So the value of <InlineMath math="x^4+2x^3+x^2" /> is **1**.

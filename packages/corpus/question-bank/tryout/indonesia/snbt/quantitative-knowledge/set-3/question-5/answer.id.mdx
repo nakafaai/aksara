@@ -1,30 +1,28 @@
-Keliling menjumlahkan **keempat sisi persegi panjang**. Dua sisi memiliki panjang yang sama dan dua sisi lainnya memiliki lebar yang sama.
+Tanda <InlineMath math="x+1" /> belum diketahui, jadi kedua ruas **tidak boleh langsung dikalikan dengan <InlineMath math="x+1" />**. Pindahkan semua suku ke satu ruas, lalu periksa tanda pecahan yang terbentuk.
 
-Misalkan <InlineMath math="K,p,l" /> berturut-turut adalah nilai numerik keliling, panjang, dan lebar dalam sentimeter.
+# Menyusun satu pecahan
 
-<MathVisual
- title="Pasangan sisi persegi panjang"
- description="Sketsa tidak berskala. Setiap ukuran dalam sentimeter muncul dua kali dalam keliling, karena sisi berhadapan sama panjang."
- scene={{space:"plane",frame:{kind:"cartesian",x:{min:-1,max:7},y:{min:-1,max:4}},view:{kind:"fit",padding:0.2},objects:[{id:"rectangle",kind:"polygon",appearance:"primary",vertices:[{x:0,y:0},{x:6,y:0},{x:6,y:3},{x:0,y:3}]}],labels:[{key:"length",objectId:"rectangle",at:{x:3,y:0},placement:"below"},{key:"width",objectId:"rectangle",at:{x:6,y:1.5},placement:"right"}]}}
- labels={{length:<InlineMath math="8y+5" />,width:<InlineMath math="6y+1" />}}
-/>
+<BlockMath math="\begin{aligned}
+\frac{x-3}{x+1}-2&\ge0\\
+\frac{x-3-2(x+1)}{x+1}&\ge0\\
+\frac{-x-5}{x+1}&\ge0\\
+\frac{x+5}{x+1}&\le0
+\end{aligned}" />
 
-Rumus keliling persegi panjang adalah <InlineMath math="K = 2(p + l)" />. Kita substitusikan nilai-nilai yang diketahui ke dalam rumus tersebut.
+Baris terakhir dikalikan dengan <InlineMath math="-1" />, sehingga **tanda pertidaksamaan berbalik**.
 
-<BlockMath math="x = 2((8y + 5) + (6y + 1))" />
+# Memeriksa tanda
 
-<BlockMath math="x = 2(14y + 6)" />
+Pembuat nol pembilang adalah <InlineMath math="x=-5" />, dan pembuat nol penyebut adalah <InlineMath math="x=-1" />.
 
-<BlockMath math="x = 28y + 12" />
+| Selang | Tanda <InlineMath math="x+5" /> | Tanda <InlineMath math="x+1" /> | Tanda pecahan |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="x<-5" /> | negatif | negatif | positif |
+| <InlineMath math="-5<x<-1" /> | positif | negatif | negatif |
+| <InlineMath math="x>-1" /> | positif | positif | positif |
 
-Selanjutnya, kita ubah persamaan tersebut untuk mencari nilai <InlineMath math="y" />.
+Pecahan bernilai negatif pada <InlineMath math="-5<x<-1" /> dan bernilai nol di <InlineMath math="x=-5" />. Titik <InlineMath math="x=-1" /> **tidak termasuk** karena penyebutnya nol. Cek <InlineMath math="x=-3" />: <InlineMath math="\frac{-6}{-2}=3\ge2" />.
 
-<BlockMath math="28y = x - 12" />
+Himpunan <InlineMath math="x\le-5" /> muncul jika kedua ruas langsung dikalikan dengan <InlineMath math="x+1" /> seolah-olah positif. Himpunan yang memakai <InlineMath math="-5<x" /> membuang <InlineMath math="x=-5" />, padahal di titik itu ruas kiri tepat 2. Himpunan yang memakai <InlineMath math="x\le-1" /> memasukkan titik yang membuat penyebut nol. Himpunan <InlineMath math="x\le-5" /> atau <InlineMath math="x>-1" /> adalah daerah dengan tanda yang terbalik.
 
-<BlockMath math="y = \frac{x - 12}{28}" />
-
-<BlockMath math="y = \frac{x}{28} - \frac{12}{28}" />
-
-<BlockMath math="y = \frac{x}{28} - \frac{3}{7}" />
-
-Jadi, nilai <InlineMath math="y" /> yang tidak berdimensi adalah <InlineMath math="\frac{x}{28} - \frac{3}{7}" />.
+Jadi, himpunan penyelesaiannya adalah <InlineMath math="\{x\mid -5\le x<-1\}" />.

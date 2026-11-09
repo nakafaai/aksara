@@ -1,115 +1,22 @@
-Diketahui garis <InlineMath math="g_1" /> melalui titik <InlineMath math="A(-1, 1)" /> dan <InlineMath math="B(2, 3)" />, serta persamaan garis <InlineMath math="g_2" />: <InlineMath math="mx + ny - 7 = 0" />.
+Ada dua syarat yang saling memengaruhi: Banu dan Citra menempati **dua kursi bersebelahan**, sedangkan Ayu harus berada di salah satu kursi tengah. Cara yang paling aman adalah menghitung per posisi pasangan Banu dan Citra.
 
-Kita memakai **gradien dan substitusi titik** untuk memeriksa empat pernyataan.
+# Menghitung per posisi pasangan
 
-# Gradien garis pertama
+Beri nomor kursi 1 sampai 5. Pasangan Banu dan Citra dapat menempati kursi 1 dan 2, 2 dan 3, 3 dan 4, atau 4 dan 5. Untuk setiap posisi, hitung kursi tengah yang masih kosong untuk Ayu, lalu Dodi dan Eka mengisi dua kursi sisanya dengan 2 cara.
 
-Gradien garis yang **melalui dua titik** dapat dihitung dengan:
+| Kursi Banu dan Citra | Kursi kosong | Pilihan kursi Ayu | Susunan Ayu, Dodi, Eka |
+| :---: | :---: | :---: | :---: |
+| 1 dan 2 | 3, 4, 5 | 3 atau 4 | <InlineMath math="2\times2=4" /> |
+| 2 dan 3 | 1, 4, 5 | 4 | <InlineMath math="1\times2=2" /> |
+| 3 dan 4 | 1, 2, 5 | 2 | <InlineMath math="1\times2=2" /> |
+| 4 dan 5 | 1, 2, 3 | 2 atau 3 | <InlineMath math="2\times2=4" /> |
 
-<BlockMath math="m_1 = \frac{y_2-y_1}{x_2-x_1}" />
+Jumlahnya <InlineMath math="4+2+2+4=12" />. **Banu dan Citra dapat bertukar tempat**, jadi setiap susunan dihitung dua kali urutannya.
 
-Untuk garis <InlineMath math="g_1" /> yang melalui <InlineMath math="A(-1, 1)" /> dan <InlineMath math="B(2, 3)" />:
+<BlockMath math="12\times2=24" />
 
-<BlockMath math="m_1 = \frac{3 - 1}{2 - (-1)}" />
+# Memeriksa pilihan lain
 
-<BlockMath math="= \frac{2}{3}" />
+Nilai 48 adalah susunan dengan Banu dan Citra bersebelahan tanpa syarat Ayu, yaitu <InlineMath math="4!\times2" />. Nilai 12 lupa bahwa Banu dan Citra dapat bertukar tempat. Nilai 16 hanya menghitung pasangan di kursi 1 dan 2 atau 4 dan 5. Nilai 36 menempatkan Ayu di salah satu dari 3 kursi tengah lalu menganggap pasangan Banu dan Citra **selalu muat** di sisa kursi, padahal Ayu dapat memisahkan kursi kosong.
 
-Jadi, gradien garis <InlineMath math="g_1" /> adalah <InlineMath math="m_1 = \frac{2}{3}" />.
-
-# Gradien garis kedua
-
-Persamaan garis <InlineMath math="g_2" />: <InlineMath math="mx + ny - 7 = 0" />.
-
-Karena <InlineMath math="n\ne0" />, kita boleh **membagi kedua ruas dengan n**. Ubah ke bentuk <InlineMath math="y = m_2x + c" />:
-
-<BlockMath math="mx + ny - 7 = 0" />
-
-<BlockMath math="ny = -mx + 7" />
-
-<BlockMath math="y = -\frac{m}{n}x + \frac{7}{n}" />
-
-Jadi, gradien garis <InlineMath math="g_2" /> adalah <InlineMath math="m_2 = -\frac{m}{n}" />.
-
-# Evaluasi Pernyataan Pertama
-
-Pernyataan: Garis <InlineMath math="g_1" /> dan <InlineMath math="g_2" /> sejajar jika <InlineMath math="m = 4" /> dan <InlineMath math="n = 6" />.
-
-Dua garis sejajar jika **gradiennya sama**.
-
-Jika <InlineMath math="m = 4" /> dan <InlineMath math="n = 6" />, maka:
-
-<BlockMath math="m_2 = -\frac{m}{n} = -\frac{4}{6} = -\frac{2}{3}" />
-
-Karena <InlineMath math="m_1 = \frac{2}{3}" /> dan <InlineMath math="m_2 = -\frac{2}{3}" />, maka <InlineMath math="m_1 \neq m_2" />.
-
-Jadi, pernyataan (1) bernilai salah.
-
-# Evaluasi Pernyataan Kedua
-
-Pernyataan: Titik <InlineMath math="B" /> terletak pada garis <InlineMath math="g_2" /> apabila <InlineMath math="m = 2" /> dan <InlineMath math="n = -1" />.
-
-Titik <InlineMath math="B(2, 3)" /> terletak pada garis <InlineMath math="g_2" /> jika **memenuhi persamaan** <InlineMath math="mx + ny - 7 = 0" />.
-
-Substitusi <InlineMath math="m = 2" />, <InlineMath math="n = -1" />, dan <InlineMath math="B(2, 3)" />:
-
-<BlockMath math="\begin{aligned}&mx+ny-7\\&=2(2)+(-1)(3)-7\end{aligned}" />
-
-<BlockMath math="= 4 - 3 - 7" />
-
-<BlockMath math="= -6" />
-
-<BlockMath math="\neq 0" />
-
-Karena hasilnya tidak sama dengan <InlineMath math="0" />, titik <InlineMath math="B" /> tidak terletak pada garis <InlineMath math="g_2" />.
-
-Jadi, pernyataan (2) bernilai salah.
-
-# Evaluasi Pernyataan Ketiga
-
-Pernyataan: Jika <InlineMath math="g_1" /> dan <InlineMath math="g_2" /> sejajar, maka <InlineMath math="\frac{m}{n} = -\frac{3}{2}" />.
-
-Untuk **gradien yang sama** pada dua garis sejajar, maka <InlineMath math="m_1 = m_2" />:
-
-<BlockMath math="\frac{2}{3} = -\frac{m}{n}" />
-
-<BlockMath math="\frac{m}{n} = -\frac{2}{3}" />
-
-Jika <InlineMath math="g_1" /> dan <InlineMath math="g_2" /> sejajar, diperoleh <InlineMath math="\frac{m}{n} = -\frac{2}{3}" />. Jadi, nilai <InlineMath math="-\frac{3}{2}" /> pada pernyataan tersebut salah.
-
-Jadi, pernyataan (3) bernilai salah.
-
-# Evaluasi Pernyataan Keempat
-
-Pernyataan: Jika <InlineMath math="m = 3" /> dan <InlineMath math="n = 2" />, maka <InlineMath math="g_1" /> dan <InlineMath math="g_2" /> saling tegak lurus.
-
-Dua garis saling tegak lurus jika **hasil kali gradiennya** sama dengan <InlineMath math="-1" />, yaitu <InlineMath math="m_1 \times m_2 = -1" />.
-
-Jika <InlineMath math="m = 3" /> dan <InlineMath math="n = 2" />, maka:
-
-<BlockMath math="m_2 = -\frac{m}{n} = -\frac{3}{2}" />
-
-Periksa apakah <InlineMath math="m_1 \times m_2 = -1" />:
-
-<BlockMath math="m_1 \times m_2 = \frac{2}{3} \times \left(-\frac{3}{2}\right)" />
-
-<BlockMath math="= -\frac{6}{6}" />
-
-<BlockMath math="= -1" />
-
-Karena <InlineMath math="m_1 \times m_2 = -1" />, maka <InlineMath math="g_1" /> dan <InlineMath math="g_2" /> saling tegak lurus.
-
-Jadi, pernyataan (4) bernilai benar.
-
-<LineEquation
-  title="Dua Garis Tegak Lurus pada Pernyataan (4)"
-  description="Garis pertama naik dua satuan untuk setiap tiga satuan ke kanan. Garis kedua turun tiga satuan untuk setiap dua satuan ke kanan."
-  data={[
-    { points: [{x:-2,y:1/3,z:0},{x:-1,y:1,z:0},{x:2,y:3,z:0},{x:4,y:13/3,z:0}], smooth: false, showPoints: true, pointIndices: [1,2], color: "#9333ea", labels: [{at:1,text:<InlineMath math="A(-1,1)" />,offset:[-0.5,0.6,0]},{at:2,text:<InlineMath math="B(2,3)" />,offset:[0,0.7,0]}] },
-    { points: [{x:-1,y:5,z:0},{x:4,y:-2.5,z:0}], smooth: false, showPoints: false, color: "#ea580c", labels: [{at:1,text:<InlineMath math="3x+2y=7" />,offset:[-0.5,-0.6,0]}] },
-  ]}
-  cameraPosition={[1, 1.5, 14]}
-  cameraTarget={[1, 1.5, 0]}
-  showZAxis={false}
-/>
-
-Jadi, hanya pernyataan (4) yang benar.
+Jadi, banyak susunan duduk yang mungkin adalah **24**.

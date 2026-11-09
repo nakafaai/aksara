@@ -1,35 +1,14 @@
-Diketahui panjang total kawat adalah <InlineMath math="20\text{ m}" />. Panjang kawat ini akan menjadi **keliling persegi panjang** kandang ayam. Jika kita misalkan panjang kandang adalah <InlineMath math="p" /> dan lebarnya adalah <InlineMath math="l" />, maka kita dapat menuliskan persamaan kelilingnya:
+Banyak penumpang di dalam bus berubah di setiap tempat: **ditambah yang naik dan dikurangi yang turun**. Jalankan perhitungan itu dari terminal awal.
 
-<BlockMath math="2(p + l) = 20" />
+# Menghitung tempat demi tempat
 
-<BlockMath math="p + l = 10 \implies l = 10 - p" />
+<BlockMath math="\begin{aligned}
+\text{terminal awal}&:\quad 0+25=25\\
+\text{Halte A}&:\quad 25+12-8=29\\
+\text{Halte B}&:\quad 29+6-10=25\\
+\text{Halte C}&:\quad 25+9-7=27
+\end{aligned}" />
 
-Selanjutnya, kita ingin memaksimumkan luas kandang (<InlineMath math="L" />). Luas persegi panjang dirumuskan sebagai <InlineMath math="L = p \times l" />. Substitusikan persamaan <InlineMath math="l = 10 - p" /> ke dalam rumus luas:
+Hitungan harus dijalankan **berurutan dari awal**, karena setiap halte bergantung pada banyak penumpang sebelumnya.
 
-<BlockMath math="L(p) = p(10 - p)" />
-
-<BlockMath math="L(p) = 10p - p^2" />
-
-Persamaan ini merupakan fungsi kuadrat yang kurvanya berbentuk parabola terbuka ke bawah (karena koefisien <InlineMath math="p^2" /> negatif), sehingga memiliki nilai maksimum di **titik puncak**. Absis titik puncak (<InlineMath math="p_{\max}" />) dapat dicari dengan rumus <InlineMath math="-\frac{b}{2a}" />:
-
-<BlockMath math="\begin{aligned}p_{\max} &=-\frac{10}{2(-1)} \\ &=-\frac{10}{-2} \\ &=5\text{ m}\end{aligned}" />
-
-Setelah mendapatkan panjang <InlineMath math="p = 5\text{ m}" />, kita dapat mencari lebar <InlineMath math="l" />:
-
-<BlockMath math="l = 10 - 5 = 5\text{ m}" />
-
-Jadi, agar luasnya maksimum, panjang dan lebar kandang haruslah masing-masing <InlineMath math="5\text{ m}" /> dan <InlineMath math="5\text{ m}" />.
-
-Grafik memperlihatkan luas <InlineMath math="L" /> pada berbagai panjang <InlineMath math="p" />. Panjang dan lebar harus positif, sehingga <InlineMath math="0\lt p\lt 10" />. Kedua ujung grafik menunjukkan batas ketika salah satu ukuran menjadi nol.
-
-<LineEquation
-  title="Luas maksimum dengan keliling tetap"
-  description="Sumbu mendatar adalah panjang p dalam meter, sumbu tegak adalah luas L dalam meter persegi. Titik puncak berada di (5, 25)."
-  cameraPosition={[5,12.5,38]}
-  cameraTarget={[5,12.5,0]}
-  showZAxis={false}
-  data={[
-    {points:Array.from({length:101},(_,i)=>({x:i/10,y:10*(i/10)-(i/10)**2,z:0})),color:"#6366f1",smooth:false,showPoints:false},
-    {points:[{x:5,y:0,z:0},{x:5,y:25,z:0}],color:"#f97316",smooth:false,pointIndices:[1],labels:[{at:1,text:<InlineMath math="(5,25)" />,offset:[0,1,0]}]}
-  ]}
-/>
+Jadi, ketika meninggalkan Halte C, di dalam bus ada **27 orang**.

@@ -1,43 +1,20 @@
-Wir suchen die **Grenzen der Schülerzahl, die beide Fächer mag**: Insgesamt gibt es 800 Schüler, davon mögen 400 Mathematik und 500 Physik.
+Beide Körper haben dieselbe Oberfläche. Berechne daraus die Maße jedes Körpers und **vergleiche dann die Volumina exakt**, ohne grobes Runden.
 
-# Größtmögliche Schnittmenge
+# Volumen des Würfels
 
-Die Zahl der Schüler, die beide Fächer mögen, ist am größten, wenn die **kleinere Menge vollständig in der größeren liegt**.
-Da <InlineMath math="400" /> Schüler Mathematik mögen und <InlineMath math="500" /> Physik, ist die Mathematikgruppe die kleinere Menge.
-Die größte mögliche Schnittmenge entspricht daher der Größe dieser kleineren Gruppe.
+Ein Würfel hat **6 gleiche quadratische Seitenflächen**. Aus <InlineMath math="6s^2=24" /> folgt <InlineMath math="s=2" />, das Würfelvolumen ist also <InlineMath math="Q=2^3=8" />.
 
-<BlockMath math="x = 400" />
+# Volumen der Kugel
 
-# Kleinstmögliche Schnittmenge
-
-Die Schnittmenge ist am kleinsten, wenn die **Vereinigung beider Mengen möglichst groß ist**. Da die Schule nur <InlineMath math="800" /> Schüler hat, kann <InlineMath math="n(M \cup F)" /> den Wert <InlineMath math="800" /> nicht überschreiten.
-
-Für die Anzahl der Elemente der Vereinigungsmenge gilt:
+Aus <InlineMath math="4\pi r^2=24" /> folgt <InlineMath math="r^2=\frac6\pi" />. Schreibe das Kugelvolumen mit <InlineMath math="r^2" />, damit **sich das Ergebnis mit 8 vergleichen lässt**.
 
 <BlockMath math="\begin{aligned}
-n(M\cup F)&=n(M)+n(F) \\
-&\quad{}-n(M\cap F)
+P&=\tfrac43\pi r^3=\tfrac43\pi\cdot r^2\cdot r\\
+&=\tfrac43\pi\cdot\frac6\pi\cdot r=8r=8\sqrt{\frac6\pi}
 \end{aligned}" />
 
-Die kleinste mögliche Schnittmenge liegt vor, wenn die Vereinigung diese Obergrenze erreicht. Das ist möglich, wenn jeder Schüler mindestens eines der beiden Fächer mag.
+Wegen <InlineMath math="\pi<6" /> ist der Bruch <InlineMath math="\frac6\pi" /> größer als 1, also gilt <InlineMath math="\sqrt{\frac6\pi}>1" /> und <InlineMath math="P>8" />. Numerisch ist <InlineMath math="P\approx8\times1{,}38\approx11{,}1" />.
 
-<BlockMath math="800 = 400 + 500 - y" />
+Die Wahl <InlineMath math="P=Q" /> nimmt an, dass gleiche Oberfläche gleiches Volumen bedeutet. Die Wahl <InlineMath math="Q>P" /> entsteht durch einen zu kleinen Kugelradius, etwa mit <InlineMath math="\pi r^2=24" />. Bei gleicher Oberfläche fasst eine Kugel immer mehr Volumen als ein Würfel.
 
-<BlockMath math="800 = 900 - y" />
-
-<BlockMath math="y = 900 - 800" />
-
-<BlockMath math="y = 100" />
-
-# Berechnung der Differenz
-
-Beide Grenzen lassen sich mit diesen **überschneidungsfreien Schülergruppen** erreichen. Jede Zeile zählt jeden Schüler genau einmal.
-
-| Schnittmenge | Nur Mathematik | Beide Fächer | Nur Physik | Keines von beiden |
-| --- | --- | --- | --- | --- |
-| Maximum | 0 | 400 | 100 | 300 |
-| Minimum | 300 | 100 | 400 | 0 |
-
-<BlockMath math="x - y = 400 - 100 = 300" />
-
-Der Wert von <InlineMath math="x - y" /> ist also <InlineMath math="300\text{ Schüler}" />.
+Die richtige Beziehung lautet also: **Die Kugel hat das größere Volumen**, also <InlineMath math="P>Q" />.

@@ -1,10 +1,21 @@
-Gesucht sind Zahlen, die **mindestens eine Bedingung verletzen**. Alle Kandidaten haben bei Division durch 7 den Rest 3. Zusätzlich müsste die Zahl ungerade sein.
+Länge und Breite des Rechtecks seien <InlineMath math="p" /> und <InlineMath math="l" />. Der Flächeninhalt ist <InlineMath math="pl" />, du brauchst also **das Produkt von <InlineMath math="p" /> und <InlineMath math="l" />** und nicht unbedingt beide Werte einzeln.
 
-| Eintrag | Zahl | Division durch 7 | Division durch 2 |
-| --- | --- | --- | --- |
-| 1 | 94 | <InlineMath math="94=7\cdot13+3" /> | <InlineMath math="94=2\cdot47+0" /> |
-| 2 | 80 | <InlineMath math="80=7\cdot11+3" /> | <InlineMath math="80=2\cdot40+0" /> |
-| 3 | 38 | <InlineMath math="38=7\cdot5+3" /> | <InlineMath math="38=2\cdot19+0" /> |
-| 4 | 17 | <InlineMath math="17=7\cdot2+3" /> | <InlineMath math="17=2\cdot8+1" /> |
+# Jede Aussage allein
 
-Die Zahlen 94, 80 und 38 sind **gerade**. Sie verletzen daher die Bedingung Rest 1 bei Division durch 2. Die Zahl 17 erfüllt beide Bedingungen. Gesucht sind somit die Einträge (1), (2) und (3).
+Aussage (1) liefert <InlineMath math="p+l=14" />. Die Seiten 7 und 7 ergeben den Flächeninhalt 49, die Seiten 10 und 4 dagegen 40. Der Flächeninhalt ist also **noch nicht eindeutig**.
+
+Aussage (2) liefert <InlineMath math="p^2+l^2=100" />. Die Seiten 8 und 6 ergeben 48, die Seiten <InlineMath math="5\sqrt2" /> und <InlineMath math="5\sqrt2" /> dagegen 50. Auch Aussage (2) allein reicht nicht aus.
+
+# Beide Aussagen zusammen
+
+Das Quadrat der Summe verbindet Summe, Quadratsumme und **das gesuchte Produkt**.
+
+<BlockMath math="\begin{aligned}
+(p+l)^2&=p^2+l^2+2pl\\
+196&=100+2pl\\
+pl&=48
+\end{aligned}" />
+
+Der Flächeninhalt ist eindeutig, nämlich <InlineMath math="48\text{ cm}^2" />, mit den Seiten 8 cm und 6 cm.
+
+**Beide Aussagen zusammen reichen also aus**, eine Aussage allein reicht nicht.

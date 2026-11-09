@@ -1,9 +1,20 @@
-Weil der Kreis **alle vier Quadratseiten berührt**, entspricht sein Durchmesser der Seitenlänge des großen Quadrats. Das kleine Quadrat wird zur Berechnung des Kreisumfangs nicht benötigt.
+Primzahlen einzeln auszuprobieren endet nie. Vollständig ist es, **den Rest von <InlineMath math="p" /> bei Division durch 3 zu prüfen**, weil 10 und 14 verschiedene Reste lassen.
 
-Die Quadratfläche ist das Quadrat der Seitenlänge. Eine Länge muss positiv sein, daher gilt:
+# Kleine Primzahlen
 
-<BlockMath math="\begin{aligned}s^2&=256\\s&=\sqrt{256}=16\text{ cm}\\d&=s=16\text{ cm}\end{aligned}" />
+Für <InlineMath math="p=2" /> ist <InlineMath math="p+10=12" /> keine Primzahl. Für <InlineMath math="p=3" /> erhältst du <InlineMath math="13" /> und <InlineMath math="17" />, **beide prim**. Also passt <InlineMath math="p=3" />.
 
-Mit dem **Durchmesser** berechnen wir den Umfang:
+# Primzahlen größer als 3
 
-<BlockMath math="\begin{aligned}C&=\pi d\\&=\pi\cdot16\\&=16\pi\text{ cm}\end{aligned}" />
+Jede Primzahl <InlineMath math="p>3" /> ist nicht durch 3 teilbar, ihr Rest ist also 1 oder 2.
+
+<BlockMath math="\begin{aligned}
+p=3k+1&:\quad p+14=3k+15=3(k+5)\\
+p=3k+2&:\quad p+10=3k+12=3(k+4)
+\end{aligned}" />
+
+In beiden Fällen ist eine der Zahlen **durch 3 teilbar und größer als 3**, also keine Primzahl. Keine weitere Primzahl passt.
+
+Die Wahl unendlich viele beruht auf der Annahme, dass unendlich viele Primzahlen das garantieren. Der Wert 0 übersieht <InlineMath math="p=3" />, und 2 oder 3 lässt meist fälschlich 7 oder 13 zu, obwohl <InlineMath math="7+14=21" /> und <InlineMath math="13+14=27" /> ist.
+
+Es gibt also **1** solche Primzahl.

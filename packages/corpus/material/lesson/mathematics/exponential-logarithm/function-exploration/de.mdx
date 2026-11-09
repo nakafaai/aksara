@@ -4,7 +4,7 @@ export const metadata = {
     "Eine einfache Geschichte zur Ansteckung trennt einzelne Phasen von der Gesamtsumme. Danach vergleichen wir exponentielle, lineare und logarithmische Kurven und klären, wo das Modell an seine Grenzen kommt.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Potenzen und Logarithmen",
 };
 
@@ -35,6 +35,16 @@ Die Summe der neuen Infektionen von Phase eins bis Phase <InlineMath math="x" />
 <BlockMath math="\begin{aligned} S(x) &=3+3^2+\cdots+3^x \\ &=3\frac{3^x-1}{3-1} \\ &=\frac{3^{x+1}-3}{2} \end{aligned}" />
 
 Die beiden Formeln beantworten also verschiedene Fragen: <InlineMath math="N(x)" /> beschreibt eine einzelne Phase, <InlineMath math="S(x)" /> addiert alle abgeschlossenen Phasen.
+
+Die Neuinfektionen verdreifachen sich von Phase zu Phase: <InlineMath math="N(x) = 3^x" /> ergibt 3, 9, 27, 81 und 243. Jeder Balken ist dreimal so hoch wie der vorige.
+
+<BarChart
+  title={<>Neuinfektionen pro Phase</>}
+  description={<>Balken von <InlineMath math="N(x) = 3^x" /> für die Phasen 1 bis 5.</>}
+  yAxisLabel="Neuinfektionen"
+  data={[1, 2, 3, 4, 5].map((x) => ({ name: String(x), value: 3 ** x }))}
+  chartConfig={{ value: { label: "Neuinfektionen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Drei Funktionstypen vergleichen
 
@@ -77,6 +87,16 @@ Nur die Exponentialkurve entspricht der Regel „in jeder Phase mit drei multipl
 Allein in Phase <InlineMath math="20" /> stecken sich in unserem Beispiel <InlineMath math="3{.}486{.}784{.}401" /> Menschen neu an. Addieren wir die Phasen <InlineMath math="1" /> bis <InlineMath math="20" />, kommen wir auf <InlineMath math="5{.}230{.}176{.}600" /> neue Infektionen. Die eine Person, die schon vor der ersten Phase infiziert war, ist in dieser Summe noch nicht enthalten.
 
 Die riesigen Zahlen entstehen durch unsere einfachen Annahmen: Jede neu infizierte Person steckt genau drei weitere Menschen an, niemand wird doppelt gezählt und noch niemand ist genesen. So lässt sich exponentielles Wachstum gut verstehen. Wie viele Menschen sich bei einem echten Ausbruch anstecken, kann dieses Beispiel jedoch nicht vorhersagen.
+
+Die laufenden Summen <InlineMath math="S(x) = \frac{3^{x+1} - 3}{2}" /> sind 3, 12, 39, 120 und 363. Jede Summe liegt genau 1,5 unter der Hälfte der nächsten Neuinfektionen, also übertrifft die nächste Phase allein immer alle früheren zusammen.
+
+<BarChart
+  title={<>Gesamtinfektionen seit Phase eins</>}
+  description={<>Balken von <InlineMath math="S(x) = \frac{3^{x+1} - 3}{2}" /> für die Phasen 1 bis 5.</>}
+  yAxisLabel="Gesamtinfektionen"
+  data={[1, 2, 3, 4, 5].map((x) => ({ name: String(x), value: (3 ** (x + 1) - 3) / 2 }))}
+  chartConfig={{ value: { label: "Gesamtinfektionen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Eigenschaften von Exponentialfunktionen
 

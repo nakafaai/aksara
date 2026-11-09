@@ -3,7 +3,7 @@ export const metadata = {
   description: "Solve quadratic equations by completing the square and rewriting each expression as a perfect-square trinomial.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-04-19",
-   dateModified: "2026-09-24",
+   dateModified: "2026-11-08",
    subject: "Quadratic Functions",
 };
 
@@ -30,8 +30,8 @@ Start with <InlineMath math="a\ne0" />. Divide the whole equation by <InlineMath
 Two rectangles each have area <InlineMath math="px" />. Placing them beside a square of area <InlineMath math="x^2" /> leaves a corner of area <InlineMath math="p^2" />. Adding that corner completes a square with side <InlineMath math="x+p" />.
 
 <MathVisual
-  title="The corner that completes the square"
-  description="For x = 2 and p = 1, area 4 plus two rectangles of area 2 and a corner of area 1 gives a square of area 9."
+  title={<>The corner that completes the square</>}
+  description={<>For <InlineMath math="x = 2" /> and <InlineMath math="p = 1" />, area 4 plus two rectangles of area 2 and a corner of area 1 gives a square of area 9.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },
@@ -99,6 +99,34 @@ Solve the equation: <InlineMath math="x^2 + 5x + 6 = 0" />
 </MathContainer>
 
 The roots of the equation are <InlineMath math="x = -2" /> and <InlineMath math="x = -3" />.
+
+Completing the square puts the vertex on display: <InlineMath math="x^2 + 5x + 6 = \left(x + \tfrac52\right)^2 - \tfrac14" />, so the lowest point is <InlineMath math="\left(-\tfrac52, -\tfrac14\right)" />, and the parabola crosses the axis <InlineMath math="\tfrac12" /> to each side of it, at <InlineMath math="-3" /> and <InlineMath math="-2" />.
+
+<MathVisual
+  title={<>The vertex form of <InlineMath math="x^2 + 5x + 6" /></>}
+  description={<>The parabola <InlineMath math="y = \left(x + \tfrac52\right)^2 - \tfrac14" /> with its vertex <InlineMath math="\left(-\tfrac52, -\tfrac14\right)" /> and roots <InlineMath math="-3" /> and <InlineMath math="-2" />.</>}
+  labels={{
+    vertex: <InlineMath math="\left(-\tfrac52, -\tfrac14\right)" />,
+    r1: <InlineMath math="-3" />,
+    r2: <InlineMath math="-2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.3, max: -0.7 }, y: { min: -0.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 6 }, domain: { min: -4, max: -1 }, appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "vertex", kind: "point", at: { x: -5 / 2, y: -1 / 4 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex", at: { x: -5 / 2, y: -1 / 4 }, placement: "below" },
+      { key: "r1", objectId: "r1", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "r2", at: { x: -2, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
 
 ### Equation with Leading Coefficient Not One
 
@@ -178,6 +206,30 @@ Since no real number has a square of <InlineMath math="-1" />, this equation has
 Over the complex numbers, use <InlineMath math="i^2=-1" /> to obtain:
 
 <BlockMath math="(x+1)^2=-1\quad\Rightarrow\quad x+1=\pm i\quad\Rightarrow\quad x=-1\pm i" />
+
+<InlineMath math="x^2 + 2x + 2 = (x + 1)^2 + 1" /> is at least 1 for every real <InlineMath math="x" />: its lowest point is <InlineMath math="(-1, 1)" />, above the x-axis. That is why <InlineMath math="(x + 1)^2 = -1" /> has no real solution, only <InlineMath math="x = -1 \pm i" />.
+
+<MathVisual
+  title={<>A parabola above the axis</>}
+  description={<>The parabola <InlineMath math="y = (x + 1)^2 + 1" /> with its lowest point <InlineMath math="(-1, 1)" />, which never reaches the x-axis.</>}
+  labels={{
+    curve: <InlineMath math="y = (x + 1)^2 + 1" />,
+    vertex: <InlineMath math="(-1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 1.5 }, y: { min: -0.6, max: 5.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 2, c: 2 }, domain: { min: -3, max: 1 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: -1, y: 1 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "vertex", objectId: "vertex", at: { x: -1, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
 
 ### For Incomplete Quadratic Equations
 

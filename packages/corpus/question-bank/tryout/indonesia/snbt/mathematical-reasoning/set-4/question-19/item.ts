@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "school-raffle",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$250\\sqrt{2}\\text{ m}$$",
+          column: 1,
+          label:
+            "Peluang kedua hadiah jatuh pada tiket milik Rafi adalah $$\\dfrac{3}{95}$$.",
         },
         {
-          correct: false,
-          label: "$$500\\sqrt{3}\\text{ m}$$",
+          column: 1,
+          label:
+            "Jika kedua hadiah berbeda, yaitu hadiah pertama untuk tiket yang terambil lebih dulu dan hadiah kedua untuk tiket berikutnya, banyak kemungkinan hasil undian adalah 380.",
         },
         {
-          correct: false,
-          label: "$$500\\sqrt{2}\\text{ m}$$",
+          column: 2,
+          label:
+            "Peluang Rafi mendapat tepat satu hadiah adalah $$\\dfrac{16}{95}$$.",
         },
         {
-          correct: false,
-          label: "$$250\\text{ m}$$",
-        },
-        {
-          correct: true,
-          label: "$$250\\sqrt{3}\\text{ m}$$",
+          column: 2,
+          label:
+            "Peluang Rafi mendapat paling sedikit satu hadiah lebih dari $$\\dfrac12$$.",
         },
       ],
     },

@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "dice-game",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\text{Rp}24{.}750{.}000{,}00$$",
+          column: 1,
+          label:
+            "Peluang jumlah kedua mata dadu sama dengan 11 adalah $$\\dfrac{1}{18}$$.",
         },
         {
-          correct: false,
-          label: "$$\\text{Rp}25{.}000{.}000{,}00$$",
+          column: 1,
+          label:
+            "Jika pemain bermain dua kali, peluang jumlah mata dadu 12 muncul pada kedua permainan adalah $$\\dfrac{1}{1{.}296}$$.",
         },
         {
-          correct: false,
-          label: "$$\\text{Rp}28{.}000{.}000{,}00$$",
+          column: 2,
+          label:
+            "Jika permainan dimainkan 360 kali, banyak kejadian jumlah mata dadu 12 yang diharapkan adalah 20 kali.",
         },
         {
-          correct: true,
-          label: "$$\\text{Rp}26{.}250{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}32{.}750{.}000{,}00$$",
+          column: 2,
+          label:
+            "Peluang jumlah kedua mata dadu sama dengan 6 sama besar dengan peluang jumlah kedua mata dadu sama dengan 7.",
         },
       ],
     },

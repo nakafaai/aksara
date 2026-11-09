@@ -1,26 +1,11 @@
-We evaluate **groups selected by mass order**, not merely their average. The value <InlineMath math="x=180" /> is given, so the two apples weighing 180 grams must still count as two separate apples.
+Each match is determined by **a pair of teams**, and the order of the two teams does not matter. So the number of matches equals the number of ways to choose 2 teams from 6.
 
-# Sorting All Apples
+# Counting pairs of teams
 
-Combine both columns and arrange **all twelve masses from lightest to heaviest**. The table uses grams and retains every apple, including repeated masses.
+<BlockMath math="\binom62=\frac{6\cdot5}{2}=15" />
 
-| Position | Masses (grams) |
-| --- | --- |
-| 1 to 3 | 154, 157, 161 |
-| 4 to 6 | 162, 163, 167 |
-| 7 to 9 | 170, 171, 175 |
-| 10 to 12 | 180, 180, 182 |
+# Check from each team's side
 
-# Checking Each Group against Its Bound
+Each team plays the 5 other teams, giving <InlineMath math="6\cdot5=30" /> match records. Each match **is recorded twice**, once by each team in it, so the number of matches is <InlineMath math="\tfrac{30}{2}=15" />.
 
-A quarter of twelve apples contains three apples, while half contains six. The signs **less than and greater than are strict**: a value equal to the bound does not satisfy them.
-
-<BlockMath math="\begin{aligned}25\%\times12&=\frac{25}{100}\times12=3\\50\%\times12&=\frac{50}{100}\times12=6\end{aligned}" />
-
-| Statement | Selected apples (grams) | Check | Result |
-| --- | --- | --- | --- |
-| First, three lightest | 154, 157, 161 | Largest mass 161 is below 162 | True |
-| Second, three heaviest | 180, 180, 182 | Two apples equal 180 rather than exceeding it | False |
-| Third, six lightest | 154, 157, 161, 162, 163, 167 | Largest mass 167 is below 170 | True |
-
-The second statement fails even though the 182-gram apple exceeds the bound. The claim concerns every apple in the group, so all three must satisfy it. The sequence is **true, false, true**, or TFT.
+So the competition has **15 matches**.

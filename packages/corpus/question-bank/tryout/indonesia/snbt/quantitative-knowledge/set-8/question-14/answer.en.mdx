@@ -1,17 +1,30 @@
-The balls are drawn together, so **order does not matter** and we use combinations. Each pair of red balls can be combined with each choice of one white ball. The number of ways to choose two red balls is:
+The dice have different colours, so the sample space consists of **36 equally likely ordered pairs**, from <InlineMath math="(1,1)" /> to <InlineMath math="(6,6)" />.
 
-<BlockMath math="\begin{aligned}C(5,2)&=\frac{5!}{2!3!}\\&=\frac{5\cdot4}{2\cdot1}\\&=10\end{aligned}" />
+# At least one six
 
-The number of ways to choose white balls is:
+It is easier to count **the opposite event**, no six at all. Each die has 5 outcomes other than 6.
 
-<BlockMath math="\begin{aligned}C(4,1)&=\frac{4!}{3!1!}\\&=4\end{aligned}" />
+<BlockMath math="P=1-\frac{5\cdot5}{36}=\frac{11}{36}" />
 
-The total number of possible ways to choose the balls is:
+The value <InlineMath math="\tfrac{11}{36}" /> is less than <InlineMath math="\tfrac{12}{36}=\tfrac13" />, because the pair <InlineMath math="(6,6)" /> is counted only once. The first statement is false.
 
-<BlockMath math="\begin{aligned}C(12,3)&=\frac{12!}{9!3!}\\&=\frac{12\cdot11\cdot10}{3\cdot2\cdot1}\\&=220\end{aligned}" />
+# Sum 7 and sum 8
 
-Let <InlineMath math="A" /> be the event of drawing <InlineMath math="2" /> red balls and <InlineMath math="1" /> white ball.
+List the pairs for each sum.
 
-The probability of drawing <InlineMath math="2" /> red balls and <InlineMath math="1" /> white ball is:
+| Sum | Pairs (red, blue) | Count |
+| :---: | :---: | :---: |
+| 7 | <InlineMath math="(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)" /> | 6 |
+| 8 | <InlineMath math="(2,6),(3,5),(4,4),(5,3),(6,2)" /> | 5 |
 
-<BlockMath math="\begin{aligned} P(A) &= \frac{C(5,2)C(4,1)}{C(12,3)} \\ &= \frac{10 \cdot 4}{220} \\ &= \frac{40}{220} \\ &= \frac{2}{11} \end{aligned}" />
+The probability of sum 7 is <InlineMath math="\tfrac{6}{36}=\tfrac16" />, so the second statement is true. The probability of sum 8 is <InlineMath math="\tfrac{5}{36}" />, because **the pair <InlineMath math="(4,4)" /> has no mirror pair**. The third statement is false.
+
+# Odd product
+
+The product is odd only when **both dice show odd numbers**. Each die has 3 odd faces.
+
+<BlockMath math="P=\frac{3\cdot3}{36}=\frac14" />
+
+The fourth statement is true.
+
+So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.

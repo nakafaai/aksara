@@ -1,51 +1,15 @@
-# Modeling truck counts and loads
+For each date, count **the number of days after 1 January 2027**, then shift Friday by the remainder on division by 7.
 
-Because every truck is **fully loaded**, the total of their capacities equals the cargo weight. The variables count trucks of each type.
+# The end of the year and the next new year
 
-| Type | Count | Capacity per truck |
-| --- | --- | --- |
-| I | <InlineMath math="x=4" /> | <InlineMath math="3\text{ t}" /> |
-| II | <InlineMath math="y" /> | <InlineMath math="4\text{ t}" /> |
-| III | <InlineMath math="z" /> | <InlineMath math="6\text{ t}" /> |
+31 December is 364 days after 1 January, and <InlineMath math="364=7\cdot52" /> is divisible by 7. So 31 December is a Friday, and the second statement is true.
 
-<BlockMath math="x+y+z=20\quad(1)" />
+1 January 2028 is 365 days after 1 January 2027, and <InlineMath math="365=7\cdot52+1" />. The weekday **moves one on from Friday**, to Saturday. The first statement is true.
 
-<BlockMath math="3x+4y+6z=96\quad(2)" />
+# 1 March and the number of Saturdays
 
-# Solving the System
+1 March is <InlineMath math="31+28=59" /> days after 1 January, and <InlineMath math="59=7\cdot8+3" />. Three days after Friday is Monday, **not Sunday**. The third statement is false.
 
-Substitute <InlineMath math="x = 4" /> into equation (1):
+Since <InlineMath math="365=7\cdot52+1" />, only Friday appears 53 times. Saturday appears 52 times, so the fourth statement is false.
 
-<BlockMath math="4 + y + z = 20" />
-
-<BlockMath math="y + z = 16 \quad (3)" />
-
-Substitute <InlineMath math="x = 4" /> into equation (2):
-
-<BlockMath math="3(4) + 4y + 6z = 96" />
-
-<BlockMath math="12 + 4y + 6z = 96" />
-
-<BlockMath math="4y + 6z = 84" />
-
-Simplify the equation above by dividing both sides by <InlineMath math="2" />:
-
-<BlockMath math="2y + 3z = 42 \quad (4)" />
-
-Match the **coefficients of the variable to eliminate**. To remove <InlineMath math="z" />, multiply equation (3) by <InlineMath math="3" />. Both equations then have the same coefficient of <InlineMath math="z" />:
-
-<BlockMath math="\begin{aligned}3(y+z)&=3(16) \\ 3y+3z&=48 \\ 2y+3z&=42\end{aligned}" />
-
-Subtract the second equation from the first:
-
-<BlockMath math="\begin{aligned}&(3y+3z)-(2y+3z) \\ &\quad=48-42\end{aligned}" />
-
-<BlockMath math="y = 6" />
-
-Thus, the number of type <InlineMath math="\text{II}" /> trucks rented is <InlineMath math="6" />.
-
-As a check, <InlineMath math="z=16-6=10" />.
-
-<BlockMath math="4+6+10=20" />
-
-<BlockMath math="3(4)+4(6)+6(10)=12+24+60=96" />
+So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.

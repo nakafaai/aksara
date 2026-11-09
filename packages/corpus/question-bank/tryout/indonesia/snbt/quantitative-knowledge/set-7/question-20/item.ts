@@ -3,27 +3,27 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$1$$",
+          column: 2,
+          label:
+            "Ada tiga keluarga yang pemakaian airnya turun dari Juli ke Agustus.",
         },
         {
-          correct: false,
-          label: "$$0$$",
+          column: 2,
+          label:
+            "Kenaikan pemakaian air terbesar, dihitung dalam persen, dialami keluarga A.",
         },
         {
-          correct: true,
-          label: "$$2$$",
+          column: 1,
+          label:
+            "Rata-rata pemakaian air bulan Agustus $$2\\text{ m}^3$$ lebih besar daripada rata-rata bulan Juli.",
         },
         {
-          correct: false,
-          label: "$$-1$$",
-        },
-        {
-          correct: false,
-          label: "$$-2$$",
+          column: 1,
+          label: "Median pemakaian air bulan Juli adalah $$18\\text{ m}^3$$.",
         },
       ],
     },

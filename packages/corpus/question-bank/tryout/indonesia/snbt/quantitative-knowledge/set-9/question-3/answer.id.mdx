@@ -1,135 +1,15 @@
-<LineEquation
-  title="Visualisasi Pembahasan"
-  description={
-    <>
-      Garis bantu membagi sudut <InlineMath math="\alpha" /> menjadi{" "}
-      <InlineMath math="\beta" /> dan <InlineMath math="\gamma" />.
-    </>
-  }
-  cameraPosition={[0.5, 0, 12.5]}
-  cameraTarget={[0.5, 0, 0]}
-  data={[
-    {
-      points: [
-        { x: -4, y: 2, z: 0 },
-        { x: 3.289013841, y: 2, z: 0 },
-      ],
-      color: "#4f46e5",
-      smooth: false,
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="P" />,
-          at: 0,
-          offset: [0, 0.5, 0],
-        },
-        {
-          text: <InlineMath math="Q" />,
-          at: 1,
-          offset: [0, 0.5, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: 1, y: -2, z: 0 },
-        { x: 5, y: -2, z: 0 },
-      ],
-      color: "#4f46e5",
-      smooth: false,
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="R" />,
-          at: 0,
-          offset: [0, -0.5, 0],
-        },
-        {
-          text: <InlineMath math="S" />,
-          at: 1,
-          offset: [0, -0.5, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: 3.289013841, y: 2, z: 0 },
-        { x: -1, y: 0, z: 0 },
-        { x: 1, y: -2, z: 0 },
-      ],
-      color: "#4f46e5",
-      smooth: false,
-      showPoints: true,
-      labels: [
-        {
-          text: <InlineMath math="25^\circ" />,
-          at: 0,
-          offset: [-2, -0.5, 0],
-        },
-        {
-          text: <InlineMath math="\alpha" />,
-          at: 1,
-          offset: [1.45, -0.6, 0],
-        },
-        {
-          text: <InlineMath math="135^\circ" />,
-          at: 2,
-          offset: [1, 0.5, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: -1, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      color: "#0d9488",
-      smooth: false,
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="\beta" />,
-          at: 1,
-          offset: [2, 0.5, 0],
-        },
-        {
-          text: <InlineMath math="\gamma" />,
-          at: 1,
-          offset: [2, -0.5, 0],
-        },
-      ],
-    },
-  ]}
-/>
+Kuadratkan <InlineMath math="x" /> agar bentuk akarnya menjadi lebih sederhana, lalu bandingkan **suku akar yang tersisa** dengan selisihnya terhadap 9,8.
 
-Kita buat **garis bantu yang sejajar** dengan garis <InlineMath math="PQ" /> dan <InlineMath math="RS" /> yang melalui titik sudut <InlineMath math="\alpha" />.
-Garis ini membagi sudut <InlineMath math="\alpha" /> menjadi dua bagian, yaitu <InlineMath math="\beta" /> dan <InlineMath math="\gamma" />.
+# Menghitung x kuadrat
 
-# Sudut dalam berseberangan
+<BlockMath math="x^2=(\sqrt2+\sqrt3)^2=2+2\sqrt6+3=5+2\sqrt6" />
 
-Perhatikan bahwa sudut <InlineMath math="\beta" /> dan sudut <InlineMath math="25^\circ" /> adalah pasangan **sudut dalam berseberangan**.
-Karena garis-garis tersebut sejajar, maka besar sudutnya sama:
+# Membandingkan dengan 9,8
 
-<BlockMath math="\beta = 25^\circ" />
+Bandingkan <InlineMath math="5+2\sqrt6" /> dengan <InlineMath math="9{,}8" />, atau setara, <InlineMath math="2\sqrt6" /> dengan <InlineMath math="4{,}8" />. Kedua bilangan positif, jadi **membandingkan kuadratnya** menjaga arah ketidaksamaan.
 
-# Sudut dalam sepihak
+<BlockMath math="\left(2\sqrt6\right)^2=24\qquad\text{dan}\qquad4{,}8^2=23{,}04" />
 
-Sudut <InlineMath math="\gamma" /> dan sudut <InlineMath math="135^\circ" /> adalah pasangan **sudut dalam sepihak**.
-Jumlah kedua sudut ini adalah <InlineMath math="180^\circ" />:
+Karena <InlineMath math="24>23{,}04" />, maka <InlineMath math="2\sqrt6>4{,}8" /> dan <InlineMath math="x^2>9{,}8" />. Taksiran <InlineMath math="\sqrt6\approx2{,}45" /> memberi <InlineMath math="x^2\approx9{,}90" />, sejalan dengan hasil ini.
 
-<BlockMath math="\gamma + 135^\circ = 180^\circ" />
-
-<BlockMath math="\gamma = 180^\circ - 135^\circ = 45^\circ" />
-
-# Jumlah sudut
-
-Nilai <InlineMath math="\alpha" /> adalah **jumlah dua sudut bagian**, yaitu <InlineMath math="\beta" /> dan <InlineMath math="\gamma" />:
-
-<BlockMath math="\alpha = \beta + \gamma" />
-
-<BlockMath math="\alpha = 25^\circ + 45^\circ" />
-
-<BlockMath math="\alpha = 70^\circ" />
-
-Jadi, nilai <InlineMath math="\alpha" /> adalah <InlineMath math="70^\circ" />.
+Jadi, hubungan yang benar adalah **<InlineMath math="P>Q" />**.

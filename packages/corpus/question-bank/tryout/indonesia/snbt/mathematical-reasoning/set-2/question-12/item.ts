@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "exam-scoring",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$2{,}4$$",
-        },
-        {
-          correct: false,
-          label: "$$1{,}8$$",
-        },
-        {
-          correct: false,
-          label: "$$2{,}0$$",
-        },
-        {
-          correct: false,
-          label: "$$3{,}2$$",
-        },
-        {
-          correct: false,
-          label: "$$3{,}6$$",
-        },
+        { correct: false, label: "$$40$$" },
+        { correct: true, label: "$$41$$" },
+        { correct: false, label: "$$81$$" },
+        { correct: false, label: "$$160$$" },
+        { correct: false, label: "$$201$$" },
       ],
     },
   },

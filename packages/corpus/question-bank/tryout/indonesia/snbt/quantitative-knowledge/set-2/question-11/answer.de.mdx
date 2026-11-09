@@ -1,30 +1,65 @@
-Gesucht sind alle <InlineMath math="x" />-Werte, für die der Funktionswert <InlineMath math="f(x)" /> **mindestens** <InlineMath math="5" /> beträgt (<InlineMath math="f(x) \geq 5" />).
+Nenne die Mittelpunkte <InlineMath math="A" /> und <InlineMath math="B" /> und die Schnittpunkte <InlineMath math="P" /> und <InlineMath math="Q" />. Die Sehne <InlineMath math="PQ" /> teilt die Schnittfläche in **zwei gleich große Kreisabschnitte**, einen von jedem Kreis.
 
-Wir prüfen die vier Teilintervalle:
-
-| Intervall | Funktionswert | Prüfung | Erfüllt |
-| --- | --- | --- | --- |
-| <InlineMath math="[0,2)" /> | <InlineMath math="3" /> | <InlineMath math="3 < 5" /> | Nein |
-| <InlineMath math="[2,5)" /> | <InlineMath math="5" /> | <InlineMath math="5 \ge5" /> | Ja |
-| <InlineMath math="[5,8)" /> | <InlineMath math="7" /> | <InlineMath math="7 \ge5" /> | Ja |
-| <InlineMath math="[8,10)" /> | <InlineMath math="9" /> | <InlineMath math="9 \ge5" /> | Ja |
-
-# Intervalle kombinieren
-
-Wir kombinieren alle Intervalle, die die Bedingung erfüllen:
-
-<BlockMath math="[2, 5) \cup [5, 8) \cup [8, 10)" />
-
-Die Teilintervalle schließen direkt aneinander an. Die Randpunkte <InlineMath math="5" /> und <InlineMath math="8" /> gehören jeweils zum folgenden Intervall, sodass **keine Lücke entsteht**. Deshalb lassen sie sich zu einem Intervall zusammenfassen.
-
-<BlockMath math="[2, 10)" />
-
-Somit ist das Intervall von <InlineMath math="x" />-Werten, das die Bedingung erfüllt, <InlineMath math="x \in [2, 10)" />.
-
-<NumberLine
- title="Vereinigung der passenden Intervalle"
- description="Der Punkt 2 gehört dazu, weil f(2)=5 gilt. Der Punkt 10 ist ausgeschlossen, da die Funktion dort nicht definiert ist."
- min={0}
- max={11}
- segments={[{start:2,end:10,startInclusive:true,endInclusive:false,shaded:true,showPoints:true,startLabel:<InlineMath math="2" />,endLabel:<InlineMath math="10" />} ]}
+<MathVisual
+  title={<>Schnittfläche zweier Kreise</>}
+  description={<>Die Mittelpunkte <InlineMath math="A" /> und <InlineMath math="B" /> sind 4 cm voneinander entfernt. Die Schnittpunkte <InlineMath math="P" /> und <InlineMath math="Q" /> bilden mit den Mittelpunkten zwei gleichseitige Dreiecke, und die Sehne <InlineMath math="PQ" /> teilt die Schnittfläche in zwei gleiche Kreisabschnitte.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 9 },
+      y: { min: -5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.12 },
+    objects: [
+      { id: "circle-left", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "circle-right", kind: "circle", appearance: "secondary", center: { x: 4, y: 0 }, radius: 4 },
+      {
+        id: "rhombus",
+        kind: "polygon",
+        appearance: "construction",
+        vertices: [
+          { x: 0, y: 0 },
+          { x: 2, y: 2 * Math.sqrt(3) },
+          { x: 4, y: 0 },
+          { x: 2, y: -2 * Math.sqrt(3) },
+        ],
+      },
+      { id: "chord-pq", kind: "segment", appearance: "highlight", from: { x: 2, y: 2 * Math.sqrt(3) }, to: { x: 2, y: -2 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "a", objectId: "circle-left", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "b", objectId: "circle-right", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "p", objectId: "chord-pq", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "above" },
+      { key: "q", objectId: "chord-pq", at: { x: 2, y: -2 * Math.sqrt(3) }, placement: "below" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+  }}
 />
+
+# Mittelpunktswinkel jedes Abschnitts
+
+Die Strecken <InlineMath math="AB" />, <InlineMath math="AP" /> und <InlineMath math="BP" /> sind alle 4 cm lang, weil jeder Kreis durch den anderen Mittelpunkt geht. Das Dreieck <InlineMath math="ABP" /> ist also **gleichseitig**, und der Winkel <InlineMath math="PAB" /> beträgt <InlineMath math="60^\circ" />. Dieselbe Überlegung für <InlineMath math="Q" /> liefert den Mittelpunktswinkel <InlineMath math="PAQ=120^\circ" />.
+
+# Flächeninhalt eines Abschnitts
+
+Ein Kreisabschnitt ist ein Kreisausschnitt minus das Dreieck <InlineMath math="APQ" />.
+
+<BlockMath math="\begin{aligned}
+A_{\text{Ausschnitt}}&=\frac{120^\circ}{360^\circ}\cdot\pi\cdot4^2=\frac{16\pi}{3}\\
+A_{\triangle APQ}&=\tfrac12\cdot4\cdot4\cdot\sin120^\circ=4\sqrt3\\
+A_{\text{Abschnitt}}&=\frac{16\pi}{3}-4\sqrt3
+\end{aligned}" />
+
+Die Schnittfläche besteht aus **zwei Kreisabschnitten**.
+
+<BlockMath math="A=2\left(\frac{16\pi}{3}-4\sqrt3\right)=\frac{32\pi}{3}-8\sqrt3" />
+
+Die Wahl <InlineMath math="\frac{16\pi}{3}-4\sqrt3" /> zählt nur einen Abschnitt. Die Wahl <InlineMath math="\frac{32\pi}{3}-4\sqrt3" /> verdoppelt den Ausschnitt, zieht aber nur ein Dreieck ab. Die Wahlen <InlineMath math="\frac{32\pi}{3}-16\sqrt3" /> und <InlineMath math="\frac{16\pi}{3}-8\sqrt3" /> ziehen von jedem Ausschnitt die Raute <InlineMath math="APBQ" /> ab, obwohl nur das Dreieck <InlineMath math="APQ" /> abgezogen werden darf.
+
+Die Schnittfläche beträgt also **<InlineMath math="\left(\frac{32\pi}{3}-8\sqrt3\right)\text{ cm}^2" />**.

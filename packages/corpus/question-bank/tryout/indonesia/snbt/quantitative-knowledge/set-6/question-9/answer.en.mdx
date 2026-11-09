@@ -1,19 +1,22 @@
-Compare **rotational symmetries and reflection axes**. Count the full <InlineMath math="360^\circ" /> turn once, as specified in the question.
+The diagonals of a rhombus **cross at right angles and bisect each other**. They split the rhombus into four congruent right triangles with legs 5 cm and 12 cm.
 
-| Figure | Rotational symmetries | Reflection axes |
-| --- | --- | --- |
-| Isosceles right triangle | 1: 360° | 1: from the right angle to the hypotenuse midpoint |
-| Right trapezoid that is not a rectangle | 1: 360° | 0 |
-| Rectangle that is not a square | 2: 180° and 360° | 2: through the midpoints of opposite sides |
-| Rhombus that is not a square | 2: 180° and 360° | 2: both diagonals |
+# Side and area
 
-In this rhombus, **both diagonals** divide the shape into mirror images. A 180° turn swaps opposite vertices.
+The side of the rhombus is the hypotenuse of that triangle, and the area is half the product of the diagonals.
 
-<MathVisual
- title="Both diagonals are reflection axes"
- description="The horizontal and vertical diagonals each divide the rhombus into a pair of mirror-image triangles."
- scene={{space:"plane",frame:{kind:"cartesian",x:{min:-4,max:4},y:{min:-3,max:3}},view:{kind:"fit",padding:0.15},objects:[{id:"rhombus",kind:"polygon",appearance:"primary",vertices:[{x:-3,y:0},{x:0,y:2},{x:3,y:0},{x:0,y:-2}]},{id:"horizontal",kind:"segment",appearance:"highlight",from:{x:-3,y:0},to:{x:3,y:0}},{id:"vertical",kind:"segment",appearance:"secondary",from:{x:0,y:-2},to:{x:0,y:2}}],labels:[]}}
- labels={{}}
-/>
+<BlockMath math="\begin{aligned}
+s&=\sqrt{5^2+12^2}=13\\
+A&=\tfrac12\cdot10\cdot24=120
+\end{aligned}" />
 
-The counts match for the triangle, rectangle, and rhombus. Thus <InlineMath math="3" /> figures meet the condition.
+The perimeter is <InlineMath math="4\cdot13=52" /> cm, so the first statement is **true**. The area is 120, not 240, so the second statement is false. The number 240 forgets the factor <InlineMath math="\tfrac12" />.
+
+# Height and incircle
+
+A rhombus is also a parallelogram, so its area equals **side times height**. This height is the distance between two parallel sides.
+
+<BlockMath math="13t=120\quad\Rightarrow\quad t=\frac{120}{13}" />
+
+The fourth statement is true. The incircle touches all four sides, so its diameter equals the distance between two parallel sides. Its radius is <InlineMath math="\tfrac{60}{13}" />, half the height, so the third statement is false.
+
+So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.

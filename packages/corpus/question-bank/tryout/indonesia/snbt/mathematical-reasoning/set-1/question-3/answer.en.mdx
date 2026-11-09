@@ -1,38 +1,23 @@
-We will calculate the monthly interest Juju has to pay based on the laptop price, down payment, and applicable interest rate. Note that the <InlineMath math="20\%" /> discount **only applies to series A laptops**, while Juju buys a series <InlineMath math="B" /> laptop, so the normal price applies.
+Compute the bill for each usage in the same way: **the fixed charge plus the cost of every block passed**.
 
-# Calculating Down Payment
-
-Juju buys a laptop for <InlineMath math="\text{Rp}20{,}000{,}000.00" /> and pays a **down payment of <InlineMath math="10\%" />**.
-
-<BlockMath math="\begin{aligned}&10\% \times 20{,}000{,}000 \\ &=2{,}000{,}000\end{aligned}" />
-
-So, the down payment paid is <InlineMath math="\text{Rp}2{,}000{,}000.00" />.
-
-# Calculating Remaining Loan Amount
-
-The remaining loan amount (principal) is the **initial price minus the down payment**.
-
-<BlockMath math="\begin{aligned}&20{,}000{,}000 - 2{,}000{,}000 \\ &=18{,}000{,}000\end{aligned}" />
-
-The remaining amount to be paid in installments is <InlineMath math="\text{Rp}18{,}000{,}000.00" />.
-
-# Determining Interest Rate
-
-The normal simple interest is known to be <InlineMath math="6\%" /> per year. There is a provision for interest reduction if the down payment is greater than <InlineMath math="10\%" /> (subsequent multiples). Since Juju only pays the minimum down payment of <InlineMath math="10\%" />, she **does not get an interest reduction**.
-
-The applicable interest rate remains <InlineMath math="6\%" /> per year.
-
-# Calculating Monthly Interest
-
-Annual interest is calculated from the remaining loan:
-
-<BlockMath math="6\% \times 18{,}000{,}000" />
-
-Since the question asks for monthly interest, we **divide the annual interest by <InlineMath math="12" />**:
+# Bills for 100 kWh and 200 kWh
 
 <BlockMath math="\begin{aligned}
-B_{\text{year}}&=\frac{6}{100}\times18{,}000{,}000=1{,}080{,}000 \\
-B_{\text{month}}&=\frac{1{,}080{,}000}{12}=90{,}000
+T(100)&=20{,}000+100\cdot1{,}000=120{,}000\\
+T(200)&=20{,}000+100{,}000+100\cdot1{,}500=270{,}000
 \end{aligned}" />
 
-So, the interest Juju has to pay per month is <InlineMath math="\text{Rp}90{,}000.00" />.
+The first statement is true. Twice <InlineMath math="T(100)" /> is 240,000, not 270,000, because **the fixed charge is paid only once** and the second 100 kWh fall in block 2. The third statement is false.
+
+# The 301st kWh and a usage of 400 kWh
+
+The 301st kWh is already in block 3, so **it adds Rp2,000**, not Rp1,500. The second statement is false.
+
+<BlockMath math="\begin{aligned}
+T(400)&=20{,}000+100{,}000+300{,}000+100\cdot2{,}000=620{,}000\\
+\frac{620{,}000}{400}&=1{,}550
+\end{aligned}" />
+
+The fourth statement is true.
+
+So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.

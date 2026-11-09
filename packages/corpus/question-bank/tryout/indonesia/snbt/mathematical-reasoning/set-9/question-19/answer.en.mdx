@@ -1,34 +1,21 @@
-On a surface net, the shortest route for a fixed sequence of faces becomes a **straight segment**. Points <InlineMath math="P" /> and <InlineMath math="Q" /> are midpoints of vertical edges of height <InlineMath math="2\text{ cm}" />, so each lies <InlineMath math="1\text{ cm}" /> from either the top or the bottom face.
+A slope is **the rise divided by the horizontal length**. The smaller the quotient, the gentler the ramp.
 
-The four side faces form a band of length <InlineMath math="2(4+8)=24\text{ cm}" />. The two points are opposite on that band at the same height, so a route using **only side faces** has length <InlineMath math="4+8=12\text{ cm}" />.
+# Reading slopes
 
-For a net through the top face, take the top as a <InlineMath math="4\times8" /> rectangle. The bottom face gives the same three lengths.
+<InlineMath math="\tfrac{1}{12}\approx0.083" />, which is about <InlineMath math="8.3\%" />. The first statement is true.
 
-- The two faces attached to the edges of length <InlineMath math="8\text{ cm}" /> place the points at <InlineMath math="(-1,0)" /> and <InlineMath math="(5,8)" />, giving <InlineMath math="\sqrt{6^2+8^2}=10" />.
-- The two faces attached to the edges of length <InlineMath math="4\text{ cm}" /> place them at <InlineMath math="(0,-1)" /> and <InlineMath math="(4,9)" />, giving <InlineMath math="\sqrt{4^2+10^2}=\sqrt{116}" />.
-- Two adjacent side faces place them at <InlineMath math="(-1,0)" /> and <InlineMath math="(4,9)" />, giving <InlineMath math="\sqrt{5^2+9^2}=\sqrt{106}" />.
+A 1 : 10 slope is <InlineMath math="10\%" />, more than <InlineMath math="8.3\%" />, so **1 : 10 is steeper**, not gentler. The second statement is false.
 
-The complete set of candidate lengths is <InlineMath math="12,10,\sqrt{116},\sqrt{106}" />. The **minimum** is <InlineMath math="10" />, so the shortest surface route from <InlineMath math="P" /> to <InlineMath math="Q" /> is <InlineMath math="10\text{ cm}" />.
+# Length of the sloped surface
 
-<MathVisual
-  title="Unfold the Shortest Surface Route"
-  description="The middle rectangle is the top face. The adjacent strips are the two side faces. The highlighted segment stays within the unfolded faces."
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: -1, max: 9 } },
-    view: { kind: "fit", padding: 0.5 },
-    objects: [
-      { id: "top", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 8 }, { x: 0, y: 8 }] },
-      { id: "left", kind: "polygon", appearance: "reference", vertices: [{ x: -2, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 8 }, { x: -2, y: 8 }] },
-      { id: "right", kind: "polygon", appearance: "reference", vertices: [{ x: 4, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 8 }, { x: 4, y: 8 }] },
-      { id: "path", kind: "segment", appearance: "highlight", from: { x: -1, y: 0 }, to: { x: 5, y: 8 } }
-    ],
-    labels: [
-      { key: "start", objectId: "path", at: { x: -1, y: 0 }, placement: "below" },
-      { key: "end", objectId: "path", at: { x: 5, y: 8 }, placement: "above" }
-    ]
-  }}
-  labels={{ start: <InlineMath math="P" />, end: <InlineMath math="Q" /> }}
-/>
+A 6 m section at 1 : 12 rises <InlineMath math="\tfrac{600}{12}=50" /> cm. By Pythagoras,
 
-In this net, the horizontal displacement is <InlineMath math="1+4+1=6" /> and the vertical displacement is <InlineMath math="8" />. The straight segment crosses the two folds at <InlineMath math="y=4/3" /> and <InlineMath math="y=20/3" />, both within the side length <InlineMath math="8" />. Thus the <InlineMath math="10\text{ cm}" /> candidate is a valid surface route.
+<BlockMath math="\sqrt{600^2+50^2}=\sqrt{362{,}500}\approx602\text{ cm}" />
+
+That is about 6.02 m, **less than 6.1 m**. The third statement is false.
+
+# Checking the two-section design
+
+Each 3.6 m section is at most 6 m, and there is one landing between them. At 1 : 12 each section rises <InlineMath math="\tfrac{360}{12}=30" /> cm, so together they rise exactly 60 cm. The fourth statement is true.
+
+So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.

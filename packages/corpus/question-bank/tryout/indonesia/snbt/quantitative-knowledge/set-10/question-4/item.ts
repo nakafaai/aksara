@@ -3,27 +3,28 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$-14$$",
+          column: 1,
+          label:
+            "Jika $$a=1$$ dan $$b=12$$, sistem itu memiliki tak hingga banyak penyelesaian.",
         },
         {
-          correct: true,
-          label: "$$14$$",
+          column: 2,
+          label:
+            "Jika $$a=1$$ dan $$b=10$$, sistem itu memiliki tepat satu penyelesaian.",
         },
         {
-          correct: false,
-          label: "$$-15$$",
+          column: 2,
+          label:
+            "Jika $$a=2$$ dan $$b=12$$, penyelesaian sistem itu adalah $$x=2$$ dan $$y=0$$.",
         },
         {
-          correct: false,
-          label: "$$-18$$",
-        },
-        {
-          correct: false,
-          label: "$$18$$",
+          column: 1,
+          label:
+            "Jika $$a=2$$ dan $$b=12$$, sistem itu memiliki tepat satu penyelesaian.",
         },
       ],
     },

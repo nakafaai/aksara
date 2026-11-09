@@ -1,172 +1,28 @@
-Diketahui limas beraturan <InlineMath math="T.ABCD" /> dengan <InlineMath math="AB = 4 \text{ cm}" /> dan titik <InlineMath math="O" /> merupakan titik potong garis <InlineMath math="AC" /> dengan <InlineMath math="BD" />.
+Kedua kuantitas dapat dihitung tanpa mengetahui panjang setiap sisi lebih dulu. Kuncinya adalah **rumus luas yang memakai jari-jari lingkaran dalam** dan panjang sisi miring.
 
-Volume limas dapat dihitung dengan rumus:
+# Menghitung kuantitas P
 
-<BlockMath math="\begin{aligned}V&=\frac{1}{3} \times G \times t\\&=\frac{1}{3} \times s^2 \times t\end{aligned}" />
+Untuk setiap segitiga, **luas sama dengan jari-jari lingkaran dalam dikali setengah keliling**, <InlineMath math="L=r\cdot s" />. Di sini <InlineMath math="s=\tfrac{24}{2}=12" />.
 
-Dalam rumus ini, <InlineMath math="G" /> adalah luas alas, <InlineMath math="s" /> adalah panjang sisi alas dan <InlineMath math="t" /> adalah **tinggi limas**.
+<BlockMath math="r=\frac{L}{s}=\frac{24}{12}=2" />
 
-Karena <InlineMath math="AB = 4 \text{ cm}" />, maka luas alas <InlineMath math="G = 4^2 = 16 \text{ cm}^2" />.
+Jadi <InlineMath math="P=2" />.
 
-Untuk menghitung volume, kita perlu mengetahui tinggi limas <InlineMath math="t = TO" />.
+# Menghitung kuantitas Q
 
-**Analisis Pernyataan (1)**: <InlineMath math="AC = 4\sqrt{2} \text{ cm}" />
+Misalkan sisi siku-sikunya <InlineMath math="a" /> dan <InlineMath math="b" /> serta sisi miringnya <InlineMath math="c" />. Dari luas, <InlineMath math="ab=48" />. Dari keliling, <InlineMath math="a+b=24-c" />. **Teorema Pythagoras** menghubungkan keduanya.
 
-Diagonal persegi dengan sisi <InlineMath math="s" /> adalah <InlineMath math="s\sqrt{2}" />.
+<BlockMath math="\begin{aligned}
+(a+b)^2&=a^2+b^2+2ab\\
+(24-c)^2&=c^2+96\\
+576-48c&=96\\
+c&=10
+\end{aligned}" />
 
-Jika <InlineMath math="AC = 4\sqrt{2} \text{ cm}" />, maka:
+Tinggi terhadap sisi miring diperoleh dari dua cara menulis luas yang sama, <InlineMath math="\tfrac12ab=\tfrac12c\,t" />.
 
-<BlockMath math="s\sqrt{2} = 4\sqrt{2}" />
+<BlockMath math="t=\frac{ab}{c}=\frac{48}{10}=4{,}8" />
 
-<BlockMath math="s = 4" />
+Jadi <InlineMath math="Q=\tfrac12(4{,}8)=2{,}4" />. Sisi segitiganya 6, 8, dan 10, yang memang memberi keliling 24 dan luas 24.
 
-Ini konsisten dengan informasi yang diberikan (<InlineMath math="AB = 4 \text{ cm}" />).
-
-Titik <InlineMath math="O" /> adalah titik tengah diagonal, sehingga:
-
-<BlockMath math="\begin{aligned}AO&=OC\\&=\frac{AC}{2}\\&=\frac{4\sqrt{2}}{2}\\&=2\sqrt{2} \text{ cm}\end{aligned}" />
-
-Namun, pernyataan (1) tidak memberikan informasi tentang tinggi limas <InlineMath math="TO" />. Tanpa informasi tinggi, volume tidak dapat ditentukan.
-
-Jadi, pernyataan (1) SAJA tidak cukup.
-
-**Analisis Pernyataan (2)**: <InlineMath math="AT = \sqrt{17} \text{ cm}" />
-
-Karena <InlineMath math="AB = 4 \text{ cm}" />, diagonal alas <InlineMath math="AC = 4\sqrt{2} \text{ cm}" />.
-
-Titik <InlineMath math="O" /> adalah titik tengah diagonal, sehingga:
-
-<BlockMath math="\begin{aligned}AO&=\frac{AC}{2}\\&=\frac{4\sqrt{2}}{2}\\&=2\sqrt{2} \text{ cm}\end{aligned}" />
-
-Perhatikan segitiga siku-siku <InlineMath math="AOT" /> dengan sudut siku-siku di <InlineMath math="O" /> (karena <InlineMath math="TO" /> tegak lurus alas).
-
-Dengan menggunakan teorema Pythagoras:
-
-<BlockMath math="AT^2 = AO^2 + TO^2" />
-
-<BlockMath math="(\sqrt{17})^2 = (2\sqrt{2})^2 + TO^2" />
-
-<BlockMath math="17 = 8 + TO^2" />
-
-<BlockMath math="TO^2 = 9" />
-
-<BlockMath math="TO = 3 \text{ cm}" />
-
-Dengan tinggi <InlineMath math="TO = 3 \text{ cm}" /> dan luas alas <InlineMath math="G = 16 \text{ cm}^2" />, volume limas dapat dihitung:
-
-<BlockMath math="\begin{aligned}V&=\frac{1}{3} \times 16 \times 3\\&=16 \text{ cm}^3\end{aligned}" />
-
-Jadi, pernyataan (2) SAJA cukup untuk menjawab pertanyaan.
-
-<MathVisual
-  title={<>Limas beraturan <InlineMath math="T.ABCD" /> dengan label panjang sisi</>}
-  description={<>Visualisasi limas beraturan <InlineMath math="T.ABCD" /> dengan label panjang sisi-sisinya.</>}
-  scene={{
-    space: "space",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3, max: 3 },
-      y: { min: -1, max: 4 },
-      z: { min: -3, max: 3 },
-    },
-    view: { kind: "camera", position: { x: -6, y: 7, z: 8 }, target: { x: 0, y: 1, z: 0 } },
-    objects: [
-      {
-        id: "base-abcd",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: -2, y: 0, z: -2 },
-          { x: 2, y: 0, z: -2 },
-          { x: 2, y: 0, z: 2 },
-          { x: -2, y: 0, z: 2 },
-        ],
-      },
-      {
-        id: "diagonal-ac",
-        kind: "segment",
-        appearance: "secondary",
-        from: { x: -2, y: 0, z: -2 },
-        to: { x: 2, y: 0, z: 2 },
-      },
-      {
-        id: "diagonal-bd",
-        kind: "segment",
-        appearance: "secondary",
-        from: { x: 2, y: 0, z: -2 },
-        to: { x: -2, y: 0, z: 2 },
-      },
-      {
-        id: "center-o",
-        kind: "point",
-        appearance: "highlight",
-        at: { x: 0, y: 0, z: 0 },
-      },
-      {
-        id: "height-ot",
-        kind: "segment",
-        appearance: "highlight",
-        from: { x: 0, y: 0, z: 0 },
-        to: { x: 0, y: 3, z: 0 },
-      },
-      {
-        id: "edge-at",
-        kind: "segment",
-        appearance: "primary",
-        from: { x: -2, y: 0, z: -2 },
-        to: { x: 0, y: 3, z: 0 },
-      },
-      {
-        id: "edge-bt",
-        kind: "segment",
-        appearance: "primary",
-        from: { x: 2, y: 0, z: -2 },
-        to: { x: 0, y: 3, z: 0 },
-      },
-      {
-        id: "edge-ct",
-        kind: "segment",
-        appearance: "primary",
-        from: { x: 2, y: 0, z: 2 },
-        to: { x: 0, y: 3, z: 0 },
-      },
-      {
-        id: "edge-dt",
-        kind: "segment",
-        appearance: "primary",
-        from: { x: -2, y: 0, z: 2 },
-        to: { x: 0, y: 3, z: 0 },
-      },
-    ],
-    labels: [
-      { key: "point-o", objectId: "center-o", at: { x: 0, y: 0, z: 0 }, placement: "below" },
-      { key: "point-a", objectId: "base-abcd", at: { x: -2, y: 0, z: -2 }, placement: "above-left" },
-      { key: "point-b", objectId: "base-abcd", at: { x: 2, y: 0, z: -2 }, placement: "below-right" },
-      { key: "point-c", objectId: "base-abcd", at: { x: 2, y: 0, z: 2 }, placement: "below" },
-      { key: "point-d", objectId: "base-abcd", at: { x: -2, y: 0, z: 2 }, placement: "above-left" },
-      { key: "point-t", objectId: "height-ot", at: { x: 0, y: 3, z: 0 }, placement: "above-left" },
-      { key: "side-cd", objectId: "base-abcd", at: { x: 0, y: 0, z: 2 }, placement: "below" },
-      { key: "diagonal-ac-length", objectId: "diagonal-ac", at: { x: 2, y: 0, z: 2 }, placement: "right" },
-      { key: "radius-ao-length", objectId: "diagonal-ac", at: { x: -2, y: 0, z: -2 }, placement: "below-left" },
-      { key: "height-length", objectId: "height-ot", at: { x: 0, y: 3, z: 0 }, placement: "above-right" },
-      { key: "edge-at-length", objectId: "edge-at", at: { x: -0.6, y: 2.1, z: -0.6 }, placement: "above-left" },
-    ],
-  }}
-  labels={{
-    "point-o": <><InlineMath math="O" /></>,
-    "point-a": <><InlineMath math="A" /></>,
-    "point-b": <><InlineMath math="B" /></>,
-    "point-c": <><InlineMath math="C" /></>,
-    "point-d": <><InlineMath math="D" /></>,
-    "point-t": <><InlineMath math="T" /></>,
-    "side-cd": <><InlineMath math="4" /></>,
-    "diagonal-ac-length": <><InlineMath math="4\sqrt{2}" /></>,
-    "radius-ao-length": <><InlineMath math="2\sqrt{2}" /></>,
-    "height-length": <><InlineMath math="3" /></>,
-    "edge-at-length": <><InlineMath math="\sqrt{17}" /></>,
-  }}
-/>
-
-**Kesimpulan**:
-
-Pernyataan (1) SAJA tidak cukup, tetapi pernyataan (2) SAJA cukup untuk menjawab pertanyaan.
+Karena <InlineMath math="2{,}4>2" />, berlaku **<InlineMath math="Q>P" />**. Pilihan informasi tidak cukup keliru karena keliling dan luas bersama-sama menentukan segitiga siku-siku itu.

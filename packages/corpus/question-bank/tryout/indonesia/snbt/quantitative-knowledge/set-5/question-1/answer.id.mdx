@@ -1,53 +1,19 @@
-Kita diberikan **dua suku pertama barisan**, yaitu <InlineMath math="a_1 = -6" /> dan <InlineMath math="a_2 = -8" />, serta persamaan rekursif:
+Menghitung <InlineMath math="N" /> secara langsung tidak perlu. Setiap pasangan faktor 2 dan 5 menghasilkan faktor 10, jadi **pasangkan faktor 2 dengan faktor 5** sebanyak mungkin.
 
-<BlockMath math="a_{n+1} = 2a_{n+2} + 3a_n" />
+# Membentuk pangkat sepuluh
 
-Tujuan kita adalah mencari nilai <InlineMath math="a_3 + 2a_4" />. Kita akan mencari nilai <InlineMath math="a_3" /> dan <InlineMath math="2a_4" /> secara bertahap.
+Ada **tujuh faktor 5**, sehingga tujuh faktor 2 dapat dipasangkan dengannya. Tiga faktor 2 tersisa.
 
-# Mencari Nilai Suku Ketiga
+<BlockMath math="\begin{aligned}
+N&=2^{3}\times\left(2^{7}\times5^{7}\right)\times3\\
+&=2^3\times3\times10^7\\
+&=24\times10^7=240{.}000{.}000
+\end{aligned}" />
 
-Kita gunakan persamaan rekursif dengan menyubstitusi <InlineMath math="n = 1" />:
+# Menghitung angka
 
-<BlockMath math="a_{1+1} = 2a_{1+2} + 3a_1" />
+Bilangan <InlineMath math="24\times10^7" /> terdiri atas angka 2 dan 4 yang diikuti **tujuh angka nol**, jadi banyak angkanya <InlineMath math="2+7=9" />.
 
-<BlockMath math="a_2 = 2a_3 + 3a_1" />
+Nilai 7 hanya menghitung angka nol di akhir. Nilai 8 menganggap <InlineMath math="2^3\times3" /> hanya satu angka. Nilai 10 adalah pangkat dari 2, dan nilai 17 menjumlahkan kedua pangkat <InlineMath math="10+7" />.
 
-Substitusikan nilai <InlineMath math="a_1" /> dan <InlineMath math="a_2" /> yang diketahui:
-
-<BlockMath math="-8 = 2a_3 + 3(-6)" />
-
-<BlockMath math="-8 = 2a_3 - 18" />
-
-**Tambahkan 18 pada kedua ruas** untuk mengisolasi suku ketiga:
-
-<BlockMath math="2a_3 = -8 + 18" />
-
-<BlockMath math="2a_3 = 10" />
-
-<BlockMath math="a_3 = 5" />
-
-# Mencari Nilai Dua Kali Suku Keempat
-
-Selanjutnya, kita gunakan kembali persamaan rekursif dengan <InlineMath math="n = 2" /> untuk memunculkan suku <InlineMath math="a_4" />:
-
-<BlockMath math="a_{2+1} = 2a_{2+2} + 3a_2" />
-
-<BlockMath math="a_3 = 2a_4 + 3a_2" />
-
-Substitusikan nilai <InlineMath math="a_3 = 5" /> dan <InlineMath math="a_2 = -8" />:
-
-<BlockMath math="5 = 2a_4 + 3(-8)" />
-
-<BlockMath math="5 = 2a_4 - 24" />
-
-Kita bisa langsung mencari **dua kali suku keempat**, yaitu nilai <InlineMath math="2a_4" /> (karena soal menanyakan <InlineMath math="a_3 + 2a_4" />):
-
-<BlockMath math="2a_4 = 5 + 24" />
-
-<BlockMath math="2a_4 = 29" />
-
-Sekarang kita jumlahkan nilai yang sudah didapat:
-
-<BlockMath math="a_3 + 2a_4 = 5 + 29 = 34" />
-
-Jadi, nilai dari <InlineMath math="a_3 + 2a_4" /> adalah <InlineMath math="34" />.
+Jadi, bilangan <InlineMath math="N" /> tersusun atas **9 angka**.

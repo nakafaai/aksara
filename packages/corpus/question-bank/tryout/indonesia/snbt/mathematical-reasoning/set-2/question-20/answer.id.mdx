@@ -1,30 +1,17 @@
-# Analisis Jadwal Pengiriman
+Banyak obat paling rendah terjadi **tepat sebelum dosis berikutnya diminum**. Jadi periksa titik-titik itu untuk setiap nilai <InlineMath math="T" />.
 
-Kita perlu mencari interval waktu agar ketiga pemasok mengirim barang secara bersamaan. Konsep yang digunakan adalah **kelipatan persekutuan terkecil** (KPK).
+# Titik terendah pertama
 
-Diketahui jadwal pengiriman:
-*   Minyak <InlineMath math="A" />: setiap <InlineMath math="3\text{ hari}" />.
-*   Minyak <InlineMath math="B" />: setiap <InlineMath math="4\text{ hari}" />.
-*   Minyak <InlineMath math="C" />: setiap <InlineMath math="x\text{ hari}" />.
+Tepat sebelum dosis kedua, tubuh hanya berisi sisa dosis pertama, yaitu <InlineMath math="360\cdot\left(\tfrac12\right)^{T/8}" />. **Batas 90 mg harus terpenuhi di titik ini**, jadi
 
-Pengiriman bersamaan pertama terjadi pada <InlineMath math="1" /> April <InlineMath math="2023" />. Pengiriman bersamaan ke-<InlineMath math="11" /> terjadi <InlineMath math="120\text{ hari}" /> kemudian.
+<BlockMath math="360\cdot\left(\tfrac12\right)^{T/8}\ge90\;\Longleftrightarrow\;\left(\tfrac12\right)^{T/8}\ge\tfrac14\;\Longleftrightarrow\;\tfrac{T}{8}\le2\;\Longleftrightarrow\;T\le16" />
 
-# Menghitung Interval Pengiriman bersamaan
+# Memeriksa T sama dengan 16 dan 24
 
-Karena **pengiriman bersamaan pertama sudah terjadi**, pengiriman bersamaan ke-<InlineMath math="11" /> berarti ada selisih <InlineMath math="11 - 1 = 10\text{ kali}" /> interval pengiriman bersamaan. Total waktu yang berlalu adalah <InlineMath math="120\text{ hari}" />.
+Untuk <InlineMath math="T=16" />, banyak obat pukul 22.00 tepat 90 mg, dan nilai ini **masih memenuhi syarat tidak kurang dari 90 mg**. Setelah dosis kedua banyaknya menjadi 450 mg, dan pada akhir 24 jam pertama masih <InlineMath math="450\cdot\tfrac12=225" /> mg.
 
-<BlockMath math="\frac{120}{10}=12\text{ hari}" />
+Untuk <InlineMath math="T=24" />, tidak ada dosis kedua sebelum jam ke-24, dan tepat sebelum jam ke-24 obat tinggal 45 mg. Nilai ini tidak memenuhi.
 
-Artinya, ketiga pemasok mengirim barang bersamaan setiap <InlineMath math="12\text{ hari}" /> sekali. Ini adalah nilai KPK dari jadwal pengiriman mereka.
+Nilai 4, 8, dan 12 jam juga memenuhi, tetapi semuanya lebih kecil dari 16. Nilai 8 jam sering dipilih karena sama dengan waktu paruh, padahal syaratnya hanya batas 90 mg.
 
-<BlockMath math="\text{KPK}(3, 4, x) = 12" />
-
-# Menentukan Nilai yang Dicari
-
-Kita tahu bahwa <InlineMath math="\text{KPK}(3, 4) = 12" />. Agar <InlineMath math="\text{KPK}(12, x) = 12" />, maka <InlineMath math="x" /> haruslah **faktor** dari <InlineMath math="12" /> (bilangan yang dapat membagi habis <InlineMath math="12" />).
-
-Dari pilihan jawaban yang tersedia:
-*   <InlineMath math="5, 7, 8, 9" /> bukan faktor dari <InlineMath math="12" />.
-*   <InlineMath math="6" /> adalah faktor dari <InlineMath math="12" />.
-
-Dari pilihan yang tersedia, nilai yang mungkin adalah <InlineMath math="x=6" />. Faktor positif lain dari <InlineMath math="12" /> juga memenuhi persamaan, tetapi tidak tercantum dalam pilihan.
+Jadi, nilai <InlineMath math="T" /> terbesar yang memenuhi adalah **16 jam**.

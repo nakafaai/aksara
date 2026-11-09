@@ -1,46 +1,25 @@
-Compare the **simplified algebraic expressions**. Since <InlineMath math="0<x<1" />, we have <InlineMath math="1-x^3>0" />, so the denominator factor can be cancelled.
+Rewrite each logarithm in terms of <InlineMath math="{}^{2}\log5" />. Three properties are needed: **the logarithm of a product, the logarithm of a power, and swapping the base**.
 
-# Simplifying the first quantity
+# Statements with a product
 
-Given
-
-<BlockMath math="P=\frac{1-x^6}{1-x^3}" />
-
-Recall the **difference of squares** <InlineMath math="a^2 - b^2 = (a - b)(a + b)" />. We can view <InlineMath math="1 - x^6" /> as <InlineMath math="1^2 - (x^3)^2" />.
-
-<BlockMath math="P = \frac{(1 - x^3)(1 + x^3)}{1 - x^3}" />
-
-<BlockMath math="P = 1 + x^3" />
-
-# Simplifying the second quantity
-
-Given <InlineMath math="Q = (1 + x)^3" />.
-We expand it using **binomial expansion**:
-
-<BlockMath math="Q = 1 + 3x + 3x^2 + x^3" />
-
-# Comparing the Quantities
-
-We calculate the **second quantity minus the first**:
+Split 10 and 40 into products of powers of 2 and 5.
 
 <BlockMath math="\begin{aligned}
-Q-P&=1+3x+3x^2+x^3 \\
-&\quad{}-(1+x^3)
+{}^{2}\log10&={}^{2}\log2+{}^{2}\log5=1+p\\
+{}^{2}\log40&={}^{2}\log8+{}^{2}\log5=3+p
 \end{aligned}" />
 
-<BlockMath math="Q - P = 3x + 3x^2" />
+The logarithm of a product **becomes a sum**, not a product, so <InlineMath math="1+p\ne2p" /> and <InlineMath math="3+p\ne3p" /> because <InlineMath math="p\ne1" />. The first and fourth statements are false.
 
-Given the condition <InlineMath math="0 < x < 1" />.
-Since <InlineMath math="x" /> is positive (<InlineMath math="x > 0" />), then:
-- <InlineMath math="3x > 0" />
-- <InlineMath math="3x^2 > 0" />
+# Statements with a power and a base
 
-Thus, their sum must be positive:
+When the base and the number are both squared, **the value stays the same**, because <InlineMath math="{}^{a^n}\log b^n={}^{a}\log b" />.
 
-<BlockMath math="3x + 3x^2 > 0" />
+<BlockMath math="\begin{aligned}
+{}^{4}\log25&={}^{2^2}\log5^2={}^{2}\log5=p\\
+{}^{5}\log2&=\frac{1}{{}^{2}\log5}=\frac1p
+\end{aligned}" />
 
-<BlockMath math="Q - P > 0" />
+The second and third statements are true.
 
-<BlockMath math="Q > P" />
-
-Or it can be written as <InlineMath math="P < Q" />.
+So the first statement is **false**, the second is **true**, the third is **true**, and the fourth is **false**.

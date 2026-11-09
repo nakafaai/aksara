@@ -1,43 +1,23 @@
-Die Grafik zeigt die **Gerade** <InlineMath math="y=2x+6" /> und die Exponentialkurve <InlineMath math="y=(1/2)^x-3" />. Wir prüfen jede angegebene Koordinate an der zugehörigen Funktion.
+Dass die gezogene Kugel rot ist, steht schon fest. Gesucht ist also **die bedingte Wahrscheinlichkeit für Kiste I unter der Bedingung einer roten Kugel**. Der Ergebnisraum schrumpft auf alle Wege zu einer roten Kugel.
 
-# Analyse der ersten Aussage
+# Wahrscheinlichkeit jedes roten Pfads
 
-Punkt <InlineMath math="A" /> ist der **Schnittpunkt der Exponentialkurve** <InlineMath math="y=(1/2)^x-3" /> mit der <InlineMath math="y" />-Achse. Wir setzen <InlineMath math="x=0" /> ein:
+Eine rote Kugel kann über zwei Pfade kommen. Multipliziere die Wahrscheinlichkeit für die Wahl der Kiste mit **der Wahrscheinlichkeit für Rot aus dieser Kiste**.
 
-<BlockMath math="\begin{aligned}y&=\left(\frac12\right)^0-3\\&=1-3\\&=-2\end{aligned}" />
+<BlockMath math="\begin{aligned}
+P(\text{I und rot})&=\tfrac12\cdot\tfrac35=\tfrac{3}{10}\\
+P(\text{II und rot})&=\tfrac12\cdot\tfrac15=\tfrac{1}{10}\\
+P(\text{rot})&=\tfrac{3}{10}+\tfrac{1}{10}=\tfrac{4}{10}
+\end{aligned}" />
 
-Punkt <InlineMath math="A" /> ist also <InlineMath math="(0, -2)" />. Aussage 1 ist richtig.
+# Bedingte Wahrscheinlichkeit
 
-# Analyse der zweiten Aussage
+Teile die Wahrscheinlichkeit des Pfads über Kiste I durch **die Wahrscheinlichkeit des ganzen Ereignisses Rot**.
 
-Punkt <InlineMath math="B" /> ist der **Schnittpunkt der Geraden** <InlineMath math="y=2x+6" /> mit der <InlineMath math="y" />-Achse. Erneut setzen wir <InlineMath math="x=0" /> ein:
+<BlockMath math="P(\text{I}\mid\text{rot})=\frac{3/10}{4/10}=\frac34" />
 
-<BlockMath math="y = 2(0) + 6 = 6" />
+Das Ergebnis passt: Von den 4 roten Kugeln liegen 3 in Kiste I, und beide Kisten enthalten 5 Kugeln.
 
-Punkt <InlineMath math="B" /> ist also <InlineMath math="(0, 6)" />. Aussage 2 ist richtig.
+Der Wert <InlineMath math="\tfrac{3}{10}" /> ist die Wahrscheinlichkeit, Kiste I zu wählen und Rot zu ziehen, noch ohne Division durch die Wahrscheinlichkeit für Rot. Der Wert <InlineMath math="\tfrac25" /> ist die Wahrscheinlichkeit für Rot. Der Wert <InlineMath math="\tfrac35" /> ist die Wahrscheinlichkeit für Rot, wenn Kiste I schon gewählt ist, also die umgekehrte Bedingung. Der Wert <InlineMath math="\tfrac12" /> übersieht die Farbe der Kugel.
 
-# Analyse der dritten Aussage
-
-Punkt <InlineMath math="C" /> ist der **Schnittpunkt der Geraden** <InlineMath math="y=2x+6" /> mit der <InlineMath math="x" />-Achse. Deshalb setzen wir <InlineMath math="y=0" />:
-
-<BlockMath math="\begin{aligned} 2x + 6 &= 0 \\ 2x &= -6 \\ x &= -3 \end{aligned}" />
-
-Punkt <InlineMath math="C" /> ist also <InlineMath math="(-3, 0)" />. Aussage 3 ist richtig.
-
-# Analyse der vierten Aussage
-
-Aussage 4 behauptet, dass Punkt <InlineMath math="D" /> die Koordinaten <InlineMath math="(-2, 2)" /> besitzt. Im Diagramm bezeichnet <InlineMath math="D" /> den Schnittpunkt der beiden Graphen. Wir prüfen deshalb, ob <InlineMath math="(-2, 2)" /> **auf beiden Graphen liegt**.
-
-Für die Gerade <InlineMath math="y=2x+6" /> gilt:
-
-<BlockMath math="y = 2(-2) + 6 = -4 + 6 = 2" />
-
-Der Punkt <InlineMath math="(-2, 2)" /> liegt also auf der Geraden.
-
-Für die Kurve <InlineMath math="y = (1/2)^x - 3" />:
-
-<BlockMath math="\begin{aligned}y&=\left(\frac12\right)^{-2}-3\\&=2^2-3\\&=4-3\\&=1\end{aligned}" />
-
-Da <InlineMath math="y = 1 \neq 2" /> gilt, liegt der Punkt <InlineMath math="(-2, 2)" /> nicht auf der Kurve. Daher ist <InlineMath math="D" /> nicht <InlineMath math="(-2, 2)" />. Aussage 4 ist falsch.
-
-Daher sind die richtigen Aussagen 1, 2 und 3.
+Die Wahrscheinlichkeit, dass die rote Kugel aus Kiste I stammt, ist also **<InlineMath math="\tfrac34" />**.

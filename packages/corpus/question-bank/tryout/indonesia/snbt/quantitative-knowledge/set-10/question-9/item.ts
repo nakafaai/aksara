@@ -3,27 +3,23 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$0{,}62$$",
+          column: 2,
+          label: "Banyak batang korek api pada pola ke-$$n$$ adalah $$4n$$.",
+        },
+        { column: 1, label: "Pola ke-10 memerlukan 31 batang korek api." },
+        {
+          column: 2,
+          label:
+            "Selisih banyak batang korek api pada pola ke-20 dan pola ke-10 adalah 31.",
         },
         {
-          correct: false,
-          label: "$$0{,}65$$",
-        },
-        {
-          correct: false,
-          label: "$$0{,}68$$",
-        },
-        {
-          correct: true,
-          label: "$$0{,}52$$",
-        },
-        {
-          correct: false,
-          label: "$$0{,}70$$",
+          column: 1,
+          label:
+            "Tepat 100 batang korek api dapat membentuk satu pola utuh tanpa sisa.",
         },
       ],
     },

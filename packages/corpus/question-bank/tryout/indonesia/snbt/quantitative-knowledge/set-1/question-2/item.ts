@@ -5,26 +5,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$\\begin{pmatrix} 4 & 1 \\\\ 7 & 9 \\end{pmatrix}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\begin{pmatrix} 9 & 4 \\\\ 14 & 10 \\end{pmatrix}$$",
-        },
-        {
-          correct: true,
-          label: "$$\\begin{pmatrix} 8 & -1 \\\\ 15 & 10 \\end{pmatrix}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\begin{pmatrix} 8 & 5 \\\\ 13 & 6 \\end{pmatrix}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\begin{pmatrix} 11 & 5 \\\\ 10 & 6 \\end{pmatrix}$$",
-        },
+        { correct: true, label: "$$c<a<b$$" },
+        { correct: false, label: "$$a<c<b$$" },
+        { correct: false, label: "$$a<b<c$$" },
+        { correct: false, label: "$$b<a<c$$" },
+        { correct: false, label: "$$c<b<a$$" },
       ],
     },
   },

@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "class-election",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "$$36$$ Orang",
-        },
-        {
-          correct: false,
-          label: "$$60$$ Orang",
-        },
-        {
-          correct: false,
-          label: "$$48$$ Orang",
-        },
-        {
-          correct: false,
-          label: "$$30$$ Orang",
-        },
-        {
-          correct: false,
-          label: "$$20$$ Orang",
-        },
+        { correct: true, label: "Andra menang dengan selisih 12 suara." },
+        { correct: false, label: "Andra menang dengan selisih 24 suara." },
+        { correct: false, label: "Kedua kandidat memperoleh suara yang sama." },
+        { correct: false, label: "Bunga menang dengan selisih 12 suara." },
+        { correct: false, label: "Bunga menang dengan selisih 6 suara." },
       ],
     },
   },

@@ -1,49 +1,15 @@
-# Analisis Laju Perubahan Volume
+Samakan satuan dulu: 1 meter sama dengan 1.000 mm. Lalu cari **bilangan bulat terkecil <InlineMath math="n" />** dengan <InlineMath math="0{,}1\cdot2^n>1{.}000" />.
 
-Diketahui bahwa **laju penuangan pasir sama** untuk kedua kerucut. Ini berarti dalam waktu <InlineMath math="t" /> yang sama, volume pasir yang dituangkan juga sama.
+# Menyederhanakan syarat
 
-<BlockMath math="V_A = V_B" />
+<BlockMath math="0{,}1\cdot2^n>1{.}000\;\Longleftrightarrow\;2^n>10{.}000" />
 
-Rumus volume kerucut adalah:
+# Mencari pangkat dua yang cukup
 
-<BlockMath math="V = \frac{1}{3}\pi R^2 h" />
+<BlockMath math="2^{13}=8{.}192,\qquad 2^{14}=16{.}384" />
 
-# Substitusi Hubungan Radius dan Tinggi
+Pangkat 13 **belum melewati 10.000**, sedangkan pangkat 14 sudah. Setelah 13 lipatan tumpukan baru setebal 819,2 mm, dan setelah 14 lipatan menjadi 1.638,4 mm.
 
-Nyatakan setiap volume **hanya dalam variabel tinggi** dengan mengganti radius sesuai hubungan pada soal.
+Nilai 13 berhenti satu langkah terlalu cepat. Nilai 100 muncul jika setiap lipatan dianggap menambah tebal 10 mm, dan nilai 10 memakai <InlineMath math="2^{10}" /> yang hanya memberi 102,4 mm.
 
-Untuk kerucut A, diketahui <InlineMath math="R_1 = h_1" />. Maka volumenya:
-
-<BlockMath math="V_A = \frac{1}{3}\pi (h_1)^2 h_1" />
-
-<BlockMath math="V_A = \frac{1}{3}\pi h_1^3" />
-
-Untuk kerucut B, diketahui <InlineMath math="R_2 = 2h_2" />. Maka volumenya:
-
-<BlockMath math="V_B = \frac{1}{3}\pi (2h_2)^2 h_2" />
-
-<BlockMath math="V_B = \frac{1}{3}\pi (4h_2^2) h_2" />
-
-<BlockMath math="V_B = \frac{4}{3}\pi h_2^3" />
-
-# Menentukan Perbandingan Tinggi
-
-Karena <InlineMath math="V_A = V_B" />, maka:
-
-<BlockMath math="\frac{1}{3}\pi h_1^3 = \frac{4}{3}\pi h_2^3" />
-
-Sederhanakan dengan membagi kedua ruas dengan <InlineMath math="\frac{1}{3}\pi" />:
-
-<BlockMath math="h_1^3 = 4h_2^3" />
-
-Susun menjadi perbandingan:
-
-<BlockMath math="\frac{h_1^3}{h_2^3} = \frac{4}{1}" />
-
-<BlockMath math="\left(\frac{h_1}{h_2}\right)^3 = 4" />
-
-Ambil **akar pangkat tiga** dari kedua ruas:
-
-<BlockMath math="\frac{h_1}{h_2} = \sqrt[3]{4}" />
-
-Jadi, perbandingan tinggi kedua kerucut adalah <InlineMath math="h_1 : h_2 = \sqrt[3]{4} : 1" />.
+Jadi, diperlukan paling sedikit **14 lipatan**.

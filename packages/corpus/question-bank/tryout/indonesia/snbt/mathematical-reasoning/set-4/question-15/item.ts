@@ -1,29 +1,30 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "can-design",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$82{,}5\\text{ km/jam}$$",
+          column: 1,
+          label: "Volume kaleng desain A sama dengan volume kaleng desain B.",
         },
         {
-          correct: false,
-          label: "$$97{,}5\\text{ km/jam}$$",
+          column: 2,
+          label:
+            "Kaleng desain B memerlukan bahan lebih sedikit daripada kaleng desain A.",
         },
         {
-          correct: false,
-          label: "$$95{,}0\\text{ km/jam}$$",
+          column: 1,
+          label:
+            "Jika jari-jari desain A dijadikan dua kali semula dan tingginya tetap, volumenya menjadi empat kali semula.",
         },
         {
-          correct: false,
-          label: "$$87{,}5\\text{ km/jam}$$",
-        },
-        {
-          correct: false,
-          label: "$$85{,}0\\text{ km/jam}$$",
+          column: 2,
+          label:
+            "Luas selimut kaleng desain B lebih besar daripada luas selimut kaleng desain A.",
         },
       ],
     },

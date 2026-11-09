@@ -1,40 +1,15 @@
-We will determine the ratio of the number of male to female employees using the concept of combined average (**weighted average**).
+The sample space is **10,000 equally likely PINs**. The probability is the number of PINs with different digits divided by 10,000.
 
-Let:
-- <InlineMath math="n_L" /> = number of male employees
-- <InlineMath math="n_P" /> = number of female employees
-- <InlineMath math="\bar{x}_L = 320{,}000" /> (average income of males)
-- <InlineMath math="\bar{x}_P = 285{,}000" /> (average income of females)
-- <InlineMath math="\bar{x} = 300{,}000" /> (combined average income)
+# PINs with different digits
 
-The formula for the combined average is:
+**The first digit may be 0**, so there are <InlineMath math="10\cdot9\cdot8\cdot7=5{,}040" />.
 
-<BlockMath math="\bar{x} = \frac{n_L \cdot \bar{x}_L + n_P \cdot \bar{x}_P}{n_L + n_P}" />
+# Probability
 
-Let <InlineMath math="S" /> be the total monthly income of all employees in rupiah. Substituting the given values gives:
+<BlockMath math="\frac{5{,}040}{10{,}000}=0.504" />
 
-<BlockMath math="\begin{aligned}S&=320{,}000n_L \\ &\quad+285{,}000n_P \\ 300{,}000&=\frac{S}{n_L+n_P}\end{aligned}" />
+This is just over one half, so **almost half of all PINs repeat a digit**.
 
-To simplify the calculation, divide all income amounts by <InlineMath math="1{,}000" />:
+The value 0.496 is the probability of the opposite event, a repeated digit. The value 0.4536 forbids a leading 0, although a PIN may start with 0. The value 0.3024 uses <InlineMath math="9\cdot8\cdot7\cdot6" />, and 0.0504 misplaces the decimal point.
 
-<BlockMath math="300 = \frac{320 n_L + 285 n_P}{n_L + n_P}" />
-
-Multiply both sides by the **total number of employees**:
-
-<BlockMath math="\begin{aligned}&300(n_L+n_P) \\ &\quad=320n_L+285n_P\end{aligned}" />
-
-<BlockMath math="\begin{aligned}&300n_L+300n_P \\ &\quad=320n_L+285n_P\end{aligned}" />
-
-Group like terms:
-
-<BlockMath math="\begin{aligned}&300n_P-285n_P \\ &\quad=320n_L-300n_L\end{aligned}" />
-
-<BlockMath math="15 n_P = 20 n_L" />
-
-Find the ratio <InlineMath math="n_L : n_P" />:
-
-<BlockMath math="\frac{n_L}{n_P} = \frac{15}{20}" />
-
-<BlockMath math="\frac{n_L}{n_P} = \frac{3}{4}" />
-
-There are therefore <InlineMath math="3" /> male employees for every <InlineMath math="4" /> female employees, so the required ratio is <InlineMath math="3:4" />.
+So the probability is **0.504**.

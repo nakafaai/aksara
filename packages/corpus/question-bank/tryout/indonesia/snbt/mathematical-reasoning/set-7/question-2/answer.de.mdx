@@ -1,13 +1,18 @@
-# Zinsen berechnen
+Die nötige Geschwindigkeit ist **die Dateigröße in Megabit geteilt durch die Zeit in Sekunden**. Beide Einheiten müssen zuerst passen.
 
-Der feste einfache Zins wird jeden Monat aus dem **ursprünglichen Kreditbetrag** berechnet. Sei <InlineMath math="I" /> der Monatszins und <InlineMath math="B" /> der gesamte Zinsbetrag, jeweils in Rupiah.
+# Größe und Zeit in passenden Einheiten
 
-<BlockMath math="\begin{aligned}I&=3{.}000{.}000\times\frac{2}{100} \\ &=60{.}000 \\ B&=60{.}000\times10=600{.}000\end{aligned}" />
+<BlockMath math="\begin{aligned}
+1{,}5\text{ GB}&=1\,500\text{ MB}=1\,500\cdot8=12\,000\text{ Megabit}\\
+4\text{ Minuten}&=240\text{ Sekunden}
+\end{aligned}" />
 
-# Rückzahlungsbetrag aufteilen
+# Mindestgeschwindigkeit
 
-Die Raten müssen **Kreditbetrag und sämtliche Zinsen** abdecken. Sei <InlineMath math="T" /> die gesamte Rückzahlung und <InlineMath math="A" /> die Monatsrate, jeweils in Rupiah.
+<BlockMath math="\frac{12\,000}{240}=50\text{ Mbps}" />
 
-<BlockMath math="\begin{aligned}T&=3{.}000{.}000+600{.}000 \\ &=3{.}600{.}000 \\ A&=\frac{3{.}600{.}000}{10}=360{.}000\end{aligned}" />
+Eine geringere Geschwindigkeit lässt den Download **länger als 4 Minuten dauern**, also sind 50 Mbps die Untergrenze. Die 40 Mbps im Haus reichen nicht, denn damit dauert es 300 Sekunden.
 
-Jede Monatsrate beträgt <InlineMath math="\text{Rp}360{.}000{,}00" />. Zur Kontrolle setzt sie sich aus <InlineMath math="\text{Rp}300{.}000{,}00" /> Tilgung und <InlineMath math="\text{Rp}60{.}000{,}00" /> Zinsen zusammen.
+Der Wert 6,25 Mbps vergisst, mit 8 zu multiplizieren. Der Wert 375 Mbps teilt durch 4 Minuten statt durch 240 Sekunden und rechnet trotzdem in Megabit.
+
+Die geringste nötige Geschwindigkeit beträgt also **50 Mbps**.

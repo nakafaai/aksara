@@ -3,27 +3,28 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "$$\\frac{1}{11}$$",
+          column: 2,
+          label:
+            "Peluang muncul paling sedikit satu mata dadu 6 adalah $$\\dfrac13$$.",
         },
         {
-          correct: true,
-          label: "$$\\frac{2}{11}$$",
+          column: 1,
+          label:
+            "Peluang jumlah kedua mata dadu sama dengan 7 adalah $$\\dfrac16$$.",
         },
         {
-          correct: false,
-          label: "$$\\frac{4}{11}$$",
+          column: 2,
+          label:
+            "Peluang jumlah kedua mata dadu sama dengan 8 adalah $$\\dfrac16$$.",
         },
         {
-          correct: false,
-          label: "$$\\frac{3}{5}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{5}{7}$$",
+          column: 1,
+          label:
+            "Peluang hasil kali kedua mata dadu merupakan bilangan ganjil adalah $$\\dfrac14$$.",
         },
       ],
     },

@@ -1,133 +1,15 @@
-<LineEquation
-  title="Lösungsvisualisierung"
-  description={
-    <>
-      Eine Hilfslinie teilt den Winkel <InlineMath math="\alpha" /> in{" "}
-      <InlineMath math="\beta" /> und <InlineMath math="\gamma" />.
-    </>
-  }
-  cameraPosition={[0.5, 0, 12.5]}
-  cameraTarget={[0.5, 0, 0]}
-  data={[
-    {
-      points: [
-        { x: -4, y: 2, z: 0 },
-        { x: 3.289013841, y: 2, z: 0 },
-      ],
-      color: "#4f46e5",
-      smooth: false,
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="P" />,
-          at: 0,
-          offset: [0, 0.5, 0],
-        },
-        {
-          text: <InlineMath math="Q" />,
-          at: 1,
-          offset: [0, 0.5, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: 1, y: -2, z: 0 },
-        { x: 5, y: -2, z: 0 },
-      ],
-      color: "#4f46e5",
-      smooth: false,
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="R" />,
-          at: 0,
-          offset: [0, -0.5, 0],
-        },
-        {
-          text: <InlineMath math="S" />,
-          at: 1,
-          offset: [0, -0.5, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: 3.289013841, y: 2, z: 0 },
-        { x: -1, y: 0, z: 0 },
-        { x: 1, y: -2, z: 0 },
-      ],
-      color: "#4f46e5",
-      smooth: false,
-      showPoints: true,
-      labels: [
-        {
-          text: <InlineMath math="25^\circ" />,
-          at: 0,
-          offset: [-2, -0.5, 0],
-        },
-        {
-          text: <InlineMath math="\alpha" />,
-          at: 1,
-          offset: [1.45, -0.6, 0],
-        },
-        {
-          text: <InlineMath math="135^\circ" />,
-          at: 2,
-          offset: [1, 0.5, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: -1, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      color: "#0d9488",
-      smooth: false,
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="\beta" />,
-          at: 1,
-          offset: [2, 0.5, 0],
-        },
-        {
-          text: <InlineMath math="\gamma" />,
-          at: 1,
-          offset: [2, -0.5, 0],
-        },
-      ],
-    },
-  ]}
-/>
+Quadriere <InlineMath math="x" />, damit sich die Wurzel vereinfacht, und vergleiche dann **den verbleibenden Wurzelterm** mit seinem Abstand zu 9,8.
 
-Wir zeichnen eine **Hilfslinie parallel** zu den Linien <InlineMath math="PQ" /> und <InlineMath math="RS" />, die durch den Scheitelpunkt des Winkels <InlineMath math="\alpha" /> verläuft.
-Diese Linie teilt den Winkel <InlineMath math="\alpha" /> in zwei Teile, <InlineMath math="\beta" /> und <InlineMath math="\gamma" />.
+# x zum Quadrat
 
-# Wechselwinkel
+<BlockMath math="x^2=(\sqrt2+\sqrt3)^2=2+2\sqrt6+3=5+2\sqrt6" />
 
-Die Winkel <InlineMath math="\beta" /> und <InlineMath math="25^\circ" /> sind **Wechselwinkel** an parallelen Geraden. Deshalb sind sie gleich groß:
+# Vergleich mit 9,8
 
-<BlockMath math="\beta = 25^\circ" />
+Vergleiche <InlineMath math="5+2\sqrt6" /> mit <InlineMath math="9{,}8" />, also gleichwertig <InlineMath math="2\sqrt6" /> mit <InlineMath math="4{,}8" />. Beide Zahlen sind positiv, also bleibt beim **Vergleich der Quadrate** die Richtung erhalten.
 
-# Innenwinkel auf derselben Seite
+<BlockMath math="\left(2\sqrt6\right)^2=24\qquad\text{und}\qquad4{,}8^2=23{,}04" />
 
-Die Winkel <InlineMath math="\gamma" /> und <InlineMath math="135^\circ" /> liegen **auf derselben Seite zwischen den parallelen Geraden**. Zusammen ergeben sie <InlineMath math="180^\circ" />:
+Wegen <InlineMath math="24>23{,}04" /> gilt <InlineMath math="2\sqrt6>4{,}8" /> und <InlineMath math="x^2>9{,}8" />. Die Schätzung <InlineMath math="\sqrt6\approx2{,}45" /> liefert <InlineMath math="x^2\approx9{,}90" />, was dazu passt.
 
-<BlockMath math="\gamma + 135^\circ = 180^\circ" />
-
-<BlockMath math="\gamma = 180^\circ - 135^\circ = 45^\circ" />
-
-# Summe der Winkel
-
-Der Wert von <InlineMath math="\alpha" /> ist die **Summe der beiden Teilwinkel** <InlineMath math="\beta" /> und <InlineMath math="\gamma" />:
-
-<BlockMath math="\alpha = \beta + \gamma" />
-
-<BlockMath math="\alpha = 25^\circ + 45^\circ" />
-
-<BlockMath math="\alpha = 70^\circ" />
-
-Damit hat <InlineMath math="\alpha" /> den Wert <InlineMath math="70^\circ" />.
+Die richtige Beziehung ist also **<InlineMath math="P>Q" />**.

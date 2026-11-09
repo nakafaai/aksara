@@ -1,32 +1,21 @@
-Bei gleicher Arbeitsmenge sind Beschäftigtenzahl und Arbeitszeit **umgekehrt proportional**. Alle arbeiten mit derselben konstanten Leistung. Viermal so viele Personen benötigen deshalb ein Viertel der Zeit.
+Schreibe die Zahl als <InlineMath math="\overline{abc}" /> mit <InlineMath math="a" /> von 1 bis 9, <InlineMath math="b" /> von 0 bis 9 und geradem <InlineMath math="c" />, weil die Zahl gerade ist. Lege zuerst <InlineMath math="c" /> fest und **zähle dann die Paare <InlineMath math="(a,b)" /> mit der Summe <InlineMath math="10-c" />**.
 
-Gegeben:
+# Nach der Einerziffer zählen
 
-- <InlineMath math="x\text{ Beschäftigte}" /> erledigen die Bestellung in <InlineMath math="20\text{ Tagen}" />.
-- Für <InlineMath math="5\text{ Tage}" /> werden <InlineMath math="P\text{ Beschäftigte}" /> benötigt.
+Für eine Summe <InlineMath math="a+b=s" /> mit <InlineMath math="1\le s\le10" /> darf <InlineMath math="a" /> von 1 bis <InlineMath math="s" /> laufen, solange <InlineMath math="b=s-a" /> **höchstens 9** ist. Bei <InlineMath math="s=10" /> ist <InlineMath math="a=10" /> unmöglich, es bleiben also 9 Paare.
 
-Mit <InlineMath math="n" /> als Anzahl der Arbeitskräfte und <InlineMath math="t" /> als Arbeitszeit in Tagen folgt aus dem gleichen Arbeitsumfang:
+| Einerziffer <InlineMath math="c" /> | <InlineMath math="a+b" /> | Anzahl der Paare <InlineMath math="(a,b)" /> |
+| :---: | :---: | :---: |
+| 0 | 10 | 9 |
+| 2 | 8 | 8 |
+| 4 | 6 | 6 |
+| 6 | 4 | 4 |
+| 8 | 2 | 2 |
 
-<BlockMath math="n_1t_1=n_2t_2" />
+<BlockMath math="9+8+6+4+2=29" />
 
-Wir setzen die bekannten Werte ein:
+# Andere Wahlmöglichkeiten prüfen
 
-<BlockMath math="x \cdot 20 = P \cdot 5" />
+Insgesamt gibt es 54 dreistellige Zahlen mit der Quersumme 10, davon sind 25 ungerade. **Gerade und ungerade Zahlen verteilen sich nicht gleichmäßig**, deshalb ist 27, die Hälfte von 54, falsch. Der Wert 54 zählt alle Zahlen ohne die Bedingung „gerade“, der Wert 25 die ungeraden. Der Wert 31 zählt im Fall <InlineMath math="c=0" /> 11 Paare, als wären <InlineMath math="a=0" /> oder <InlineMath math="a=10" /> erlaubt.
 
-<BlockMath math="20x = 5P" />
-
-Dann ist der Wert von <InlineMath math="P" />:
-
-<BlockMath math="P = \frac{20x}{5}" />
-
-<BlockMath math="P = 4x" />
-
-Laut Aufgabe gilt zugleich <InlineMath math="Q = 4x" />.
-
-Deshalb:
-
-<BlockMath math="P = 4x \quad \text{und} \quad Q = 4x" />
-
-<BlockMath math="P = Q" />
-
-Folglich gilt <InlineMath math="P = Q" />.
+Es gibt also **29** solche Zahlen.

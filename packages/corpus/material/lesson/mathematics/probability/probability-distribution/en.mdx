@@ -3,7 +3,7 @@ export const metadata = {
   description: "Construct probability distributions for one die and two dice, then calculate event probabilities from their sample spaces.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-21",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Probability",
 };
 
@@ -106,6 +106,63 @@ Because the dice are fair and independent, each ordered pair has probability <In
 
 Because the dice have different colors, a red <InlineMath math="3" /> with a white <InlineMath math="2" /> differs from a red <InlineMath math="2" /> with a white <InlineMath math="3" />. The order records which die produced each number.
 
+Each of the 36 points is one ordered pair (red, white). The six pairs on the line <InlineMath math="\text{red} + \text{white} = 7" /> make 7 the most likely sum, with probability <InlineMath math="\tfrac{6}{36} = \tfrac16" />.
+
+<MathVisual
+  title={<>The 36 outcomes of two dice</>}
+  description={<>A 6 by 6 grid of ordered pairs, with the six pairs whose sum is 7 marked on the line <InlineMath math="x + y = 7" />.</>}
+  labels={{
+    seven: <InlineMath math="x + y = 7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.4, max: 6.6 }, y: { min: 0.4, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "seven", kind: "segment", from: { x: 1, y: 6 }, to: { x: 6, y: 1 }, appearance: "construction" },
+      { id: "o11", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "o12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "o13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "o14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "o15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "o16", kind: "point", at: { x: 1, y: 6 }, appearance: "answer" },
+      { id: "o21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "o22", kind: "point", at: { x: 2, y: 2 }, appearance: "reference" },
+      { id: "o23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "o24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "o25", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+      { id: "o26", kind: "point", at: { x: 2, y: 6 }, appearance: "reference" },
+      { id: "o31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "o32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "o33", kind: "point", at: { x: 3, y: 3 }, appearance: "reference" },
+      { id: "o34", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "o35", kind: "point", at: { x: 3, y: 5 }, appearance: "reference" },
+      { id: "o36", kind: "point", at: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "o41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "o42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "o43", kind: "point", at: { x: 4, y: 3 }, appearance: "answer" },
+      { id: "o44", kind: "point", at: { x: 4, y: 4 }, appearance: "reference" },
+      { id: "o45", kind: "point", at: { x: 4, y: 5 }, appearance: "reference" },
+      { id: "o46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "o51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "o52", kind: "point", at: { x: 5, y: 2 }, appearance: "answer" },
+      { id: "o53", kind: "point", at: { x: 5, y: 3 }, appearance: "reference" },
+      { id: "o54", kind: "point", at: { x: 5, y: 4 }, appearance: "reference" },
+      { id: "o55", kind: "point", at: { x: 5, y: 5 }, appearance: "reference" },
+      { id: "o56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "o61", kind: "point", at: { x: 6, y: 1 }, appearance: "answer" },
+      { id: "o62", kind: "point", at: { x: 6, y: 2 }, appearance: "reference" },
+      { id: "o63", kind: "point", at: { x: 6, y: 3 }, appearance: "reference" },
+      { id: "o64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "o65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "o66", kind: "point", at: { x: 6, y: 6 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "seven", objectId: "seven", at: { x: 6, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 ### Probability Distribution for the Sum of Two Dice
 
 If the random variable is the _sum_ of the two dice, its smallest value is <InlineMath math="1+1=2" /> and its largest value is <InlineMath math="6+6=12" />. Different sums contain **different numbers of ordered pairs**, so their probabilities differ:
@@ -127,8 +184,8 @@ If the random variable is the _sum_ of the two dice, its smallest value is <Inli
 The sum <InlineMath math="7" /> is most likely because <InlineMath math="6" /> ordered pairs produce it, while the sums <InlineMath math="2" /> and <InlineMath math="12" /> each come from only one pair. This difference matters when a game or model uses the total from both dice.
 
 <BarChart
-  title="Outcome Counts for Each Dice Sum"
-  description="The middle bar is tallest because more ordered pairs produce that sum."
+  title={<>Outcome Counts for Each Dice Sum</>}
+  description={<>The middle bar is tallest because more ordered pairs produce that sum.</>}
   data={[{ name: "2", value: 1 }, { name: "3", value: 2 }, { name: "4", value: 3 }, { name: "5", value: 4 }, { name: "6", value: 5 }, { name: "7", value: 6 }, { name: "8", value: 5 }, { name: "9", value: 4 }, { name: "10", value: 3 }, { name: "11", value: 2 }, { name: "12", value: 1 }]}
   chartConfig={{ value: { label: "Number of pairs", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
   yAxisLabel="Number of pairs"
@@ -171,3 +228,13 @@ The distribution is therefore valid. At least two heads means <InlineMath math="
 <BlockMath math="P(X \geq 2)=P(X=2)+P(X=3)=\frac{3}{8}+\frac{1}{8}=\frac{1}{2}" />
 
 Listing the sample space first makes the distribution auditable: each of the <InlineMath math="8" /> outcomes appears in _exactly one row_.
+
+The worked solution as a chart: the bars <InlineMath math="\tfrac18, \tfrac38, \tfrac38, \tfrac18" /> for 0 to 3 heads add up to 1, and the two right bars give <InlineMath math="P(X \geq 2) = \tfrac12" />.
+
+<BarChart
+  title={<>Heads in three coin tosses</>}
+  description={<>Bars of <InlineMath math="P(X = x)" /> for <InlineMath math="x = 0" /> to 3 heads.</>}
+  yAxisLabel="Probability"
+  data={[1, 3, 3, 1].map((c, x) => ({ name: String(x), value: c / 8 }))}
+  chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

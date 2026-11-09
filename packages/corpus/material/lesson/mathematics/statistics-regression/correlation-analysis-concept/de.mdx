@@ -4,7 +4,7 @@ export const metadata = {
     "Beschreibe mit Korrelation die Richtung und Stärke eines linearen Zusammenhangs, deute Pearsons r und erkläre, warum Korrelation keine Kausalität beweist.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-01",
+  dateModified: "2026-11-08",
   subject: "Statistik",
 };
 
@@ -40,8 +40,8 @@ Ein Wert nahe null schließt nicht jede Beziehung aus. Die Punkte können einer 
 Die Datenpaare erfüllen <InlineMath math="y=x^2" /> für <InlineMath math="x=-2,-1,0,1,2" />. Im Diagramm erkennst du ein **U-förmiges Muster**, obwohl die lineare Korrelation null ist.
 
 <ScatterDiagram
-  title="Ein gekrümmter Zusammenhang in fünf Datenpaaren"
-  description="Die Werte fallen zur Mitte hin und steigen dann wieder, sodass eine Gerade das Muster nicht beschreibt."
+  title={<>Ein gekrümmter Zusammenhang in fünf Datenpaaren</>}
+  description={<>Die Werte fallen zur Mitte hin und steigen dann wieder, sodass eine Gerade das Muster nicht beschreibt.</>}
   datasets={[{ name: "Datenpaare", color: "var(--chart-1)", points: [{ x: -2, y: 4 }, { x: -1, y: 1 }, { x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 4 }] }]}
 />
 
@@ -50,6 +50,41 @@ Die Mittelwerte der Koordinaten sind <InlineMath math="\bar x=0" /> und <InlineM
 <BlockMath math="\begin{aligned}\sum(x_i-\bar x)(y_i-\bar y)&=(-2)(2)+(-1)(-1)+0(-2) \\ &\quad+1(-1)+2(2) \\ &=-4+1+0-1+4=0\end{aligned}" />
 
 Beide Variablen streuen weiterhin. Die Summe der quadrierten horizontalen Abweichungen beträgt <InlineMath math="10" />, die der vertikalen Abweichungen <InlineMath math="14" />. Daher gilt <InlineMath math="r=0/\sqrt{10\cdot14}=0" />. Die **Korrelation null** geht hier mit einem exakten quadratischen Zusammenhang einher.
+
+Teil das Diagramm bei <InlineMath math="\bar x = 0" /> und <InlineMath math="\bar y = 2" />. Die Produkte der Abweichungen sind <InlineMath math="-4" />, 1, 0, <InlineMath math="-1" /> und 4: Jeder Punkt links hat rechts einen Partner mit dem entgegengesetzten Produkt, also heben sie sich auf und <InlineMath math="r = 0" />.
+
+<MathVisual
+  title={<>Produkte der Abweichungen heben sich auf</>}
+  description={<>Die fünf Punkte von <InlineMath math="y = x^2" /> mit den Mittelwertlinien <InlineMath math="x = 0" /> und <InlineMath math="y = 2" />, beschriftet mit ihren Produkten <InlineMath math="(x - \bar x)(y - \bar y)" />.</>}
+  labels={{
+    a: <InlineMath math="-4" />,
+    b: <InlineMath math="1" />,
+    c: <InlineMath math="0" />,
+    d: <InlineMath math="-1" />,
+    e: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.8, max: 2.8 }, y: { min: -0.6, max: 4.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mx", kind: "line", through: [{ x: 0, y: 0 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "my", kind: "line", through: [{ x: 0, y: 2 }, { x: 1, y: 2 }], appearance: "reference" },
+      { id: "a", kind: "point", at: { x: -2, y: 4 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "d", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "e", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -2, y: 4 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -1, y: 1 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "d", objectId: "d", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "e", objectId: "e", at: { x: 2, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
 
 ## Variablen vertauschen und Einheiten ändern
 
@@ -72,6 +107,16 @@ Der lineare Zusammenhang erfasst in diesem Datensatz <InlineMath math="64\%" /> 
 Für den Determinationskoeffizienten gilt:
 
 <BlockMath math="0\le r^2\le1" />
+
+Quadrieren verkleinert eine Korrelation umso stärker, je schwächer sie ist: <InlineMath math="r = 0{,}5" /> erklärt nur <InlineMath math="r^2 = 25\%" /> der Streuung, <InlineMath math="r = 0{,}8" /> erklärt <InlineMath math="64\%" /> und <InlineMath math="r = 0{,}9" /> erklärt <InlineMath math="81\%" />.
+
+<BarChart
+  title={<><InlineMath math="r^2" /> für fünf Korrelationen</>}
+  description={<>Balken von <InlineMath math="r^2" /> in Prozent für <InlineMath math="r = 0{,}2;\ 0{,}5;\ 0{,}8;\ 0{,}9;\ 1" />.</>}
+  yAxisLabel="Anteil der Streuung (%)"
+  data={[0.2, 0.5, 0.8, 0.9, 1].map((r) => ({ name: String(r), value: 100 * r ** 2 }))}
+  chartConfig={{ value: { label: "Anteil der Streuung (%)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Korrelation und kausale Zusammenhänge
 

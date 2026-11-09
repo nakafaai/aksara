@@ -4,7 +4,7 @@ export const metadata = {
   description: "Garis regresi kuadrat terkecil merangkum tren linear, mendukung prediksi, dan ditentukan dari pasangan pengamatan.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-30",
-  dateModified: "2026-09-07",
+  dateModified: "2026-11-08",
   subject: "Statistika",
 };
 
@@ -27,8 +27,8 @@ Untuk setiap pengamatan, **residu** adalah nilai teramati dikurangi nilai predik
 Coba bandingkan lama belajar dan nilai ujian pada setiap pasangan data berikut. Ketika lama belajar bertambah, titik-titiknya cenderung naik. Pola itulah yang membentuk tren linear positif.
 
 <ScatterDiagram
-  title="Garis Regresi untuk Hubungan Lama Belajar dan Nilai Ujian"
-  description="Garis menunjukkan tren linear (garis regresi) dari data."
+  title={<>Garis Regresi untuk Hubungan Lama Belajar dan Nilai Ujian</>}
+  description={<>Garis menunjukkan tren linear (garis regresi) dari data.</>}
   xAxisLabel="Lama Belajar (Jam)"
   yAxisLabel="Nilai Ujian"
   datasets={[
@@ -101,6 +101,16 @@ Keterangan rumus:
 Rumus ini menentukan satu garis kuadrat terkecil yang unik selama nilai <InlineMath math="x" /> yang diamati tidak semuanya sama. Jika semua nilai <InlineMath math="x" /> identik, penyebut rumus kemiringan bernilai nol dan data tidak menentukan satu kemiringan regresi yang unik.
 
 
+Pertahankan garis melalui titik rata-rata dan ubah gradiennya <InlineMath math="b" />. Untuk data belajar, jumlah kuadrat residu <InlineMath math="S_{yy} - 2bS_{xy} + b^2S_{xx}" /> paling kecil di <InlineMath math="b = \tfrac{9184}{1331} \approx 6{,}900" />, sekitar 94,45, dan lebih besar untuk setiap gradien lain.
+
+<BarChart
+  title={<>Jumlah kuadrat residu terhadap gradien</>}
+  description={<>Batang jumlah kuadrat residu untuk gradien <InlineMath math="b = 5;\ 6;\ 6{,}900;\ 8;\ 9" />, setiap garis melalui titik rata-rata.</>}
+  yAxisLabel="Jumlah kuadrat residu"
+  data={[5, 6, 9184 / 1331, 8, 9].map((b) => ({ name: b === 9184 / 1331 ? "6.900" : String(b), value: 4244 / 3 - 2 * b * (574 / 3) + b ** 2 * (1331 / 48) }))}
+  chartConfig={{ value: { label: "Jumlah kuadrat residu", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Menghitung Koefisien dari Data
 
 Gunakan semua pasangan pada diagram. Kolom hasil kali dan kuadrat menjaga agar setiap nilai ikut dihitung tepat satu kali. Setelah itu, **jumlah setiap kolom** masuk ke rumus kemiringan.
@@ -141,3 +151,13 @@ Pada <InlineMath math="7\text{ jam}" />, perhitungan yang sama memberi:
 <BlockMath math="\hat y(7)=\frac{73066+9184(7)}{1331}=\frac{137354}{1331}\approx103{,}20" />
 
 Waktu belajar yang diamati hanya <InlineMath math="1" /> sampai <InlineMath math="6\text{ jam}" />. Prediksi kedua adalah **ekstrapolasi**. Data yang tersedia tidak memeriksa apakah tren linear tetap berlaku di luar rentang itu. Jika skor ujian dibatasi sampai <InlineMath math="100" />, hasil prediksi kedua bahkan melampaui batas skor. Garis regresi perlu diperiksa terhadap rentang data dan batas besaran yang diprediksi.
+
+Taksiran nilai dari <InlineMath math="\hat y = \frac{73066 + 9184x}{1331}" /> untuk 1 sampai 7 jam. Di dalam rentang teramati 1 sampai 6 jam taksirannya tetap masuk akal, tetapi pada 7 jam garis itu menaksir sekitar 103,2, lebih dari nilai maksimum 100.
+
+<BarChart
+  title={<>Taksiran di dalam dan di luar data</>}
+  description={<>Batang taksiran nilai <InlineMath math="\hat y" /> untuk <InlineMath math="x = 1" /> sampai 7 jam belajar.</>}
+  yAxisLabel="Taksiran nilai"
+  data={[1, 2, 3, 4, 5, 6, 7].map((x) => ({ name: String(x), value: (73066 + 9184 * x) / 1331 }))}
+  chartConfig={{ value: { label: "Taksiran nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

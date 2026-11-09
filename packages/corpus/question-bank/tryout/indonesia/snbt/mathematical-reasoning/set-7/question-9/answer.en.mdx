@@ -1,25 +1,15 @@
-# Position Equation
+The robot moves only along streets, so it cannot travel in a straight line. Its shortest travel distance is **the number of blocks east plus the number of blocks north** it must cover.
 
-The two objects meet when their position functions have the **same value**.
+# Number of blocks
 
-<BlockMath math="s_D(t) = s_R(t)" />
+From <InlineMath math="(0,0)" /> to <InlineMath math="(3,4)" />, the robot must travel 3 blocks east and 4 blocks north, **in any order**.
 
-<BlockMath math="60t = 4000 - t^2" />
+<BlockMath math="3+4=7\text{ blocks}" />
 
-<BlockMath math="t^2 + 60t - 4000 = 0" />
+# Travel distance
 
-Factor the quadratic equation:
+<BlockMath math="7\cdot100=700\text{ m}" />
 
-<BlockMath math="(t - 40)(t + 100) = 0" />
+The straight-line distance <InlineMath math="\sqrt{3^2+4^2}=5" /> blocks, or 500 m, **is not available to the robot**, because it cuts through city blocks.
 
-<BlockMath math="\begin{aligned}t-40&=0 \\ \text{or}\quad t+100&=0\end{aligned}" />
-
-<BlockMath math="t = 40 \quad \text{or} \quad t = -100" />
-
-Because the model requires <InlineMath math="t \ge 0" />, the **negative root is rejected**. The drone and robot meet at <InlineMath math="t = 40\text{ seconds}" />.
-
-Check the positive root in both original functions:
-
-<BlockMath math="\begin{aligned}s_D(40)&=4000-40^2=2400 \\ s_R(40)&=60(40)=2400\end{aligned}" />
-
-Both positions are <InlineMath math="2400\text{ m}" />, confirming that they meet after <InlineMath math="40\text{ seconds}" />.
+So the shortest travel distance from G to A is **700 m**.

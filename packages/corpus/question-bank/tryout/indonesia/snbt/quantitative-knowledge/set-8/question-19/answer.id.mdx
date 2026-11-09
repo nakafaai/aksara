@@ -1,9 +1,27 @@
-Siswa yang mengikuti **dua kegiatan terhitung dua kali** jika jumlah peserta pramuka dan futsal langsung dijumlahkan. Kurangi irisan satu kali. Dengan <InlineMath math="P" /> sebagai himpunan peserta pramuka dan <InlineMath math="F" /> sebagai himpunan peserta futsal, kita memperoleh:
+Jumlah dua bilangan habis dibagi 3 bergantung pada **sisa pembagian masing-masing bilangan oleh 3**. Kelompokkan bilangan 1 sampai 20 menurut sisanya.
 
-<BlockMath math="\begin{aligned}n(P\cup F)&=n(P)+n(F)\\&\quad{}-n(P\cap F)\\&=12+15-7\\&=20\end{aligned}" />
+# Tiga kelompok sisa
 
-Siswa di luar gabungan tidak mengikuti satu pun dari kedua kegiatan:
+| Sisa | Bilangan | Banyak |
+| :---: | :---: | :---: |
+| 0 | 3, 6, 9, 12, 15, 18 | 6 |
+| 1 | 1, 4, 7, 10, 13, 16, 19 | 7 |
+| 2 | 2, 5, 8, 11, 14, 17, 20 | 7 |
 
-<BlockMath math="\begin{aligned}n\left((P\cup F)^c\right)&=30-20\\&=10\end{aligned}" />
+Ketiga kelompok **tidak sama besar**, karena 20 bukan kelipatan 3.
 
-Jadi, <InlineMath math="10" /> siswa tidak mengikuti satu pun dari kedua kegiatan tersebut.
+# Pasangan yang jumlahnya kelipatan 3
+
+Jumlahnya habis dibagi 3 jika **kedua bilangan bersisa 0**, atau **satu bersisa 1 dan yang lain bersisa 2**.
+
+<BlockMath math="\begin{aligned}
+\text{sisa 0 dan 0}&:\quad \binom62=15\\
+\text{sisa 1 dan 2}&:\quad 7\cdot7=49\\
+n(A)&=15+49=64,\qquad n(S)=\binom{20}{2}=190
+\end{aligned}" />
+
+<BlockMath math="P(A)=\frac{64}{190}=\frac{32}{95}" />
+
+Nilai <InlineMath math="\tfrac13" /> menganggap ketiga kelompok sama besar. Nilai <InlineMath math="\tfrac{3}{38}=\tfrac{15}{190}" /> hanya menghitung pasangan kelipatan 3, dan nilai <InlineMath math="\tfrac{49}{190}" /> hanya menghitung pasangan sisa 1 dan 2.
+
+Jadi, peluang jumlah kedua bilangan habis dibagi 3 adalah **<InlineMath math="\tfrac{32}{95}" />**.

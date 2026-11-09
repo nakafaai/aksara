@@ -1,30 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "train-departures",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$12:13$$",
-        },
-        {
-          correct: false,
-          label: "$$13:14$$",
-        },
-        {
-          correct: false,
-          label: "$$7:6$$",
-        },
-        {
-          correct: true,
-          label: "$$14:13$$",
-        },
-        {
-          correct: false,
-          label: "$$15:13$$",
-        },
+        { correct: true, label: "2 menit" },
+        { correct: false, label: "6 menit" },
+        { correct: false, label: "8 menit" },
+        { correct: false, label: "14 menit" },
+        { correct: false, label: "18 menit" },
       ],
     },
   },

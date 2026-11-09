@@ -1,20 +1,24 @@
-Kita membentuk bilangan empat angka dari <InlineMath math="1,2,3,4,5,6" /> dengan **tanpa pengulangan angka**. Syarat ganjil hanya membatasi angka satuan, jadi tentukan satuan terlebih dahulu.
+Parabola dengan koefisien <InlineMath math="x^2" /> positif terbuka ke atas. Nilainya selalu positif, atau grafiknya berada di atas sumbu <InlineMath math="x" />, tepat ketika **tidak memotong dan tidak menyinggung sumbu <InlineMath math="x" />**, yaitu ketika diskriminannya negatif.
 
-# Menentukan Pilihan Setiap Posisi
+# Syarat diskriminan
 
-Posisi satuan harus diisi **angka ganjil**, yaitu <InlineMath math="1,3,5" />. Setelah satu angka terpakai, angka tersebut tidak boleh digunakan lagi. Semua angka yang tersedia bukan nol, sehingga tidak ada larangan tambahan pada posisi ribuan.
+Dengan <InlineMath math="a=1" />, <InlineMath math="b=-2k" />, dan <InlineMath math="c=k+6" />:
 
-| Urutan pemilihan | Posisi | Banyak pilihan | Alasan |
-| --- | --- | --- | --- |
-| 1 | Satuan | <InlineMath math="3" /> | Pilih 1, 3, atau 5 |
-| 2 | Ribuan | <InlineMath math="6-1=5" /> | Satu angka sudah digunakan |
-| 3 | Ratusan | <InlineMath math="6-2=4" /> | Dua angka sudah digunakan |
-| 4 | Puluhan | <InlineMath math="6-3=3" /> | Tiga angka sudah digunakan |
+<BlockMath math="\begin{aligned}
+D=(-2k)^2-4(1)(k+6)&<0\\
+4k^2-4k-24&<0\\
+k^2-k-6&<0\\
+(k-3)(k+2)&<0
+\end{aligned}" />
 
-# Mengalikan Banyak Pilihan
+Hasil kali dua faktor negatif ketika kedua faktor **berlawanan tanda**, yaitu untuk <InlineMath math="-2<k<3" />.
 
-Gunakan **aturan perkalian** karena setiap pilihan pada satu tahap dilanjutkan dengan semua pilihan yang masih tersedia pada tahap berikutnya. Menghitung satuan terlebih dahulu tidak mengubah letak angka satuan dalam bilangan akhir.
+# Menjumlahkan bilangan bulat
 
-<BlockMath math="N=3\times5\times4\times3=180" />
+Bilangan bulat dalam selang itu adalah <InlineMath math="-1" />, 0, 1, dan 2. Ujung <InlineMath math="k=-2" /> dan <InlineMath math="k=3" /> tidak termasuk karena pada ujung itu <InlineMath math="D=0" /> dan parabola menyinggung sumbu <InlineMath math="x" />.
 
-Sebagai contoh, setelah satuan dipilih 5, ribuan dapat dipilih 1, ratusan 2, dan puluhan 3. Hasilnya adalah <InlineMath math="1235" />, bilangan ganjil dengan empat angka berbeda. Jadi, ada <InlineMath math="180" /> bilangan yang memenuhi syarat.
+<BlockMath math="-1+0+1+2=2" />
+
+Nilai 3 memasukkan kedua ujung. Nilai 5 memasukkan <InlineMath math="k=3" />, sedangkan nilai 0 memasukkan <InlineMath math="k=-2" />. Nilai <InlineMath math="-2" /> muncul dari kesalahan tanda <InlineMath math="k^2+k-6<0" />, yang memberi <InlineMath math="-3<k<2" />.
+
+Jadi, jumlah semua bilangan bulat <InlineMath math="k" /> yang memenuhi adalah **2**.

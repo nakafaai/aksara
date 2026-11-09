@@ -1,35 +1,21 @@
-# Finding the two speeds
+Compute the volume, curved-side area and material area of both designs. **Being equal in one measure does not mean being equal in another**, so check each statement with its own formula.
 
-We start by defining variables for speed and time. Let <InlineMath math="v_1" /> be the speed of the first car, so the speed of the second car is <InlineMath math="v_2 = v_1 + 15" />. We know the difference in their travel times is <InlineMath math="1 \text{ hour }" />.
+# Volume and changing the radius
 
-Since time is distance divided by speed (<InlineMath math="t = \frac{s}{v}" />), we can set up an equation based on this **time difference**:
+<BlockMath math="\begin{aligned}
+V_A&=\pi\cdot4^2\cdot10=160\pi\\
+V_B&=\pi\cdot5^2\cdot6.4=160\pi
+\end{aligned}" />
 
-<BlockMath math="t_1 - t_2 = 1" />
+The volumes are equal, so the first statement is true. Volume is proportional to <InlineMath math="r^2" />, so **doubling the radius multiplies the volume by 4**. The third statement is true.
 
-<BlockMath math="\frac{450}{v_1} - \frac{450}{v_1 + 15} = 1" />
+# Curved side and material area
 
-Next, we solve this equation to find <InlineMath math="v_1" />. Multiply both sides by <InlineMath math="v_1(v_1 + 15)" /> to eliminate the denominators:
+<BlockMath math="\begin{aligned}
+\text{side A}&=2\pi\cdot4\cdot10=80\pi,\quad \text{material A}=32\pi+80\pi=112\pi\\
+\text{side B}&=2\pi\cdot5\cdot6.4=64\pi,\quad \text{material B}=50\pi+64\pi=114\pi
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}&450(v_1+15)-450v_1 \\ &=v_1(v_1+15)\end{aligned}" />
+Design B needs slightly more material, <InlineMath math="114\pi" /> against <InlineMath math="112\pi" />, so the second statement is false. B's curved side is smaller than A's, so the fourth statement is false.
 
-<BlockMath math="\begin{aligned}&450v_1+6750-450v_1 \\ &=v_1^2+15v_1\end{aligned}" />
-
-<BlockMath math="6750 = v_1^2 + 15v_1" />
-
-<BlockMath math="v_1^2 + 15v_1 - 6750 = 0" />
-
-We factor the quadratic equation:
-
-<BlockMath math="(v_1 + 90)(v_1 - 75) = 0" />
-
-Since speed cannot be negative, we take <InlineMath math="v_1 = 75\text{ km/h}" />. Thus, the speed of the second car is:
-
-<BlockMath math="v_2 = 75 + 15 = 90 \text{ km/h}" />
-
-# Calculating the arithmetic mean
-
-Finally, we calculate the **arithmetic mean** of the two speeds:
-
-<BlockMath math="\begin{aligned}\bar{v} &=\frac{v_1+v_2}{2} \\ &=\frac{75+90}{2} \\ &=\frac{165}{2} \\ &=82.5\text{ km/h}\end{aligned}" />
-
-The travel times confirm the solution: <InlineMath math="450/75=6" /> and <InlineMath math="450/90=5" /> hours. Their difference is exactly one hour.
+So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.

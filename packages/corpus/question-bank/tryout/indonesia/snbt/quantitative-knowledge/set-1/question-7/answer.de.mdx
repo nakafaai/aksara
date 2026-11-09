@@ -1,85 +1,19 @@
-Gegeben sind <InlineMath math="\sin A = \frac{5}{13}" /> und <InlineMath math="\cos B = \frac{8}{17}" />, wobei <InlineMath math="A" /> und <InlineMath math="B" /> **spitze Winkel** sind.
+Gefragt ist ein sicheres Ja oder ein sicheres Nein. Eine Aussage reicht nur dann aus, wenn **jedes Zahlenpaar, das sie erfüllt, dieselbe Antwort liefert**. Um zu zeigen, dass eine Aussage nicht ausreicht, genügen ein Beispiel mit Ja und eines mit Nein.
 
-Aus <InlineMath math="\sin A = \frac{5}{13}" /> lesen wir für ein passendes rechtwinkliges Dreieck die Gegenkathete <InlineMath math="5" /> und die Hypotenuse <InlineMath math="13" /> ab. Die Ankathete ist daher:
+# Erste Aussage allein
 
-<BlockMath math="\begin{aligned}&\sqrt{13^2 - 5^2}\\&=\sqrt{169 - 25}\\&=\sqrt{144}\\&=12\end{aligned}" />
+Das Paar <InlineMath math="x=3,\ y=1" /> erfüllt <InlineMath math="9>1" /> und liefert <InlineMath math="x>y" />. Das Paar <InlineMath math="x=-3,\ y=1" /> erfüllt ebenfalls <InlineMath math="9>1" />, aber hier gilt <InlineMath math="x<y" />. Das Quadrieren **löscht die Information über das Vorzeichen**, deshalb reicht Aussage (1) allein nicht aus.
 
-Damit gilt für den Winkel <InlineMath math="A" />:
+# Zweite Aussage allein
 
-<BlockMath math="\begin{aligned}\sin A&=\frac{5}{13}\\\cos A&=\frac{12}{13}\\\tan A&=\frac{5}{12}\end{aligned}" />
+Das Paar <InlineMath math="x=3,\ y=1" /> erfüllt <InlineMath math="x+y>0" /> und liefert <InlineMath math="x>y" />. Das Paar <InlineMath math="x=1,\ y=3" /> erfüllt ebenfalls <InlineMath math="x+y>0" />, aber hier gilt <InlineMath math="x<y" />. Eine positive Summe **legt nicht fest, welche Zahl größer ist**, deshalb reicht Aussage (2) allein nicht aus.
 
-<UnitCircle
-  title={<>Winkel <InlineMath math="A" /></>}
-  description={<>Visualisierung des Winkels <InlineMath math="A" /> mit <InlineMath math="\sin A = \frac{5}{13}" />, <InlineMath math="\cos A = \frac{12}{13}" /> und <InlineMath math="\tan A = \frac{5}{12}" />.</>}
-  angle={Math.asin(5 / 13) * 180 / Math.PI}
-  trigValues={{
-    sin: "5/13",
-    cos: "12/13",
-    tan: "5/12",
-  }}
-/>
+# Beide Aussagen zusammen
 
-Aus <InlineMath math="\cos B = \frac{8}{17}" /> erhalten wir die Ankathete <InlineMath math="8" /> und die Hypotenuse <InlineMath math="17" />. Die Gegenkathete ist:
+Schreibe Aussage (1) als Produkt zweier Faktoren.
 
-<BlockMath math="\begin{aligned}&\sqrt{17^2 - 8^2}\\&=\sqrt{289 - 64}\\&=\sqrt{225}\\&=15\end{aligned}" />
+<BlockMath math="x^2-y^2=(x-y)(x+y)>0" />
 
-Damit gilt für den Winkel <InlineMath math="B" />:
+Ein Produkt ist nur dann positiv, wenn beide Faktoren dasselbe Vorzeichen haben. Aussage (2) sichert <InlineMath math="x+y>0" />, also **muss auch der Faktor <InlineMath math="x-y" /> positiv sein**. Damit gilt <InlineMath math="x>y" /> für jedes Paar, das beide Aussagen erfüllt.
 
-<BlockMath math="\begin{aligned}\sin B&=\frac{15}{17}\\\cos B&=\frac{8}{17}\\\tan B&=\frac{15}{8}\end{aligned}" />
-
-<UnitCircle
-  title={<>Winkel <InlineMath math="B" /></>}
-  description={<>Visualisierung des Winkels <InlineMath math="B" /> mit <InlineMath math="\sin B = \frac{15}{17}" />, <InlineMath math="\cos B = \frac{8}{17}" /> und <InlineMath math="\tan B = \frac{15}{8}" />.</>}
-  angle={Math.acos(8 / 17) * 180 / Math.PI}
-  trigValues={{
-    sin: "15/17",
-    cos: "8/17",
-    tan: "15/8",
-  }}
-/>
-
-**Aussage (1)**: <InlineMath math="\tan A + \tan B = \frac{19}{20}" />
-
-<BlockMath math="\tan A + \tan B = \frac{5}{12} + \frac{15}{8}" />
-
-<BlockMath math="= \frac{10}{24} + \frac{45}{24}" />
-
-<BlockMath math="= \frac{55}{24}" />
-
-Die Rechnung ergibt <InlineMath math="\tan A + \tan B = \frac{55}{24}" />. In Aussage (1) steht <InlineMath math="\frac{19}{20}" />, daher ist sie falsch.
-
-**Aussage (2)**: <InlineMath math="\cos A \sin B + \cos B \sin A = \frac{220}{221}" />
-
-<BlockMath math="\begin{aligned}&\cos A\sin B+\cos B\sin A\\&=\frac{12}{13}\cdot\frac{15}{17}\\&\quad+\frac8{17}\cdot\frac5{13}\end{aligned}" />
-
-<BlockMath math="= \frac{180}{221} + \frac{40}{221}" />
-
-<BlockMath math="= \frac{220}{221}" />
-
-Aussage (2) ist wahr.
-
-**Aussage (3)**: <InlineMath math="\frac{\tan A}{\tan B} = \frac{25}{32}" />
-
-<BlockMath math="\frac{\tan A}{\tan B} = \frac{\frac{5}{12}}{\frac{15}{8}}" />
-
-<BlockMath math="= \frac{5}{12} \cdot \frac{8}{15}" />
-
-<BlockMath math="= \frac{40}{180}" />
-
-<BlockMath math="= \frac{2}{9}" />
-
-Die Rechnung ergibt <InlineMath math="\frac{\tan A}{\tan B} = \frac{2}{9}" />. In Aussage (3) steht <InlineMath math="\frac{25}{32}" />, daher ist sie falsch.
-
-**Aussage (4)**: <InlineMath math="\frac{\sin A \cos B}{\sin B \cos A} = \frac{2}{9}" />
-
-<BlockMath math="\frac{\sin A \cos B}{\sin B \cos A} = \frac{\sin A}{\cos A} \cdot \frac{\cos B}{\sin B}" />
-
-<BlockMath math="= \tan A \cdot \frac{1}{\tan B}" />
-
-<BlockMath math="= \frac{\tan A}{\tan B}" />
-
-<BlockMath math="= \frac{2}{9}" />
-
-Aussage (4) ist wahr.
-
-Daher sind die wahren Aussagen (2) und (4). Die Anzahl wahrer Aussagen beträgt <InlineMath math="2" />.
+**Beide Aussagen zusammen reichen also aus**, eine Aussage allein reicht nicht.

@@ -1,49 +1,20 @@
-The panels cover **all four walls of the coop**. Each panel is as tall as a wall, so it contributes 0.8 m along the perimeter. We first need base dimensions that use whole panels, then we can calculate the cost.
+A tiered tariff means **each part of the usage is charged at its own block rate**, not one rate for all of it. A usage of 250 kWh passes through block 1 and stops in block 2.
 
-# Finding the Base Dimensions
+# Splitting the usage into blocks
 
-Write the width as <InlineMath math="w=0.8m" /> and the length as <InlineMath math="l=0.8n" />. The positive integers <InlineMath math="m" /> and <InlineMath math="n" /> count the panels along one short wall and one long wall. The base area is 256 m², so:
+The 250 kWh **split into 100 kWh in block 1 and 150 kWh in block 2**.
 
-<BlockMath math="\begin{aligned}
-lw&=256 \\
-(0.8n)(0.8m)&=256 \\
-0.64mn&=256 \\
-mn&=\frac{256}{0.64}=400
-\end{aligned}" />
+| Part | kWh | Cost |
+| :---: | :---: | :---: |
+| Block 1 | 100 | <InlineMath math="100\cdot1{,}000=100{,}000" /> |
+| Block 2 | 150 | <InlineMath math="150\cdot1{,}500=225{,}000" /> |
 
-The width must be between 5 m and 7.5 m, which limits the short wall's panel count.
+# Adding the fixed charge
 
-<BlockMath math="\begin{aligned}
-5\le0.8m&\le7.5 \\
-6.25\le m&\le9.375
-\end{aligned}" />
+<BlockMath math="20{,}000+100{,}000+225{,}000=345{,}000" />
 
-Thus <InlineMath math="m" /> can only be 7, 8, or 9. The key condition is that **both panel counts must be integers**.
+The bill **always includes the fixed charge**, whatever the usage.
 
-| Short-wall panels <InlineMath math="m" /> | Width (m) | Long-wall panels <InlineMath math="n=400/m" /> | Whole panels? |
-| ---: | ---: | --- | --- |
-| 7 | 5.6 | <InlineMath math="400/7=57+1/7" /> | No |
-| 8 | 6.4 | <InlineMath math="400/8=50" /> | Yes |
-| 9 | 7.2 | <InlineMath math="400/9=44+4/9" /> | No |
+A bill of Rp395,000 charges the block 2 rate for all 250 kWh, and Rp520,000 charges the block 3 rate for all of it. A bill of Rp325,000 forgets the fixed charge, and Rp270,000 charges the block 1 rate for all of the usage.
 
-The width is therefore 6.4 m and the length is <InlineMath math="0.8(50)=40\,\mathrm{m}" />. Check the area: <InlineMath math="6.4\times40=256\,\mathrm{m}^2" />.
-
-# Counting Panels and Calculating Cost
-
-There are **two pairs of equal walls**. Each short wall uses 8 panels, and each long wall uses 50.
-
-<BlockMath math="\begin{aligned}
-N&=2(8)+2(50) \\
-&=16+100=116
-\end{aligned}" />
-
-Multiply 116 panels by Rp40,000.00 per panel.
-
-<BlockMath math="\begin{aligned}
-C&=116\times40{,}000 \\
-&=(100+16)\times40{,}000 \\
-&=4{,}000{,}000+640{,}000 \\
-&=4{,}640{,}000
-\end{aligned}" />
-
-The panels cost **Rp4,640,000.00**.
+So the electricity bill for that month is **Rp345,000**.

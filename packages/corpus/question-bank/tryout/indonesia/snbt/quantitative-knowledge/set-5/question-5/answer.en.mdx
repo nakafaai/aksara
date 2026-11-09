@@ -1,35 +1,19 @@
-We want to find the **composite function** <InlineMath math="(g \circ f)(x)" />.
+A piecewise function uses a different rule on each interval. Solve <InlineMath math="f(x)=5" /> on each piece, then **keep only the solutions that lie in that piece's own interval**.
 
-# Definition of Function Composition
+# The piece for x less than three
 
-The composite function <InlineMath math="(g \circ f)(x)" /> is defined as:
+<BlockMath math="2x+1=5\quad\Rightarrow\quad x=2" />
 
-<BlockMath math="(g \circ f)(x) = g(f(x))" />
+The value <InlineMath math="x=2" /> is indeed less than 3, so **this solution is valid**.
 
-This means we will substitute the **entire inner function expression** <InlineMath math="f(x)" /> into the variable <InlineMath math="x" /> in the function <InlineMath math="g(x)" />.
+# The piece for x at least three
 
-# Function Substitution
+<BlockMath math="x^2-4=5\quad\Rightarrow\quad x^2=9\quad\Rightarrow\quad x=3\ \text{or}\ x=-3" />
 
-Given:
-- <InlineMath math="f(x) = x^2 + 4x - 5" />
-- <InlineMath math="g(x) = 2x - 1" />
+This piece applies only for <InlineMath math="x\ge3" />. The value <InlineMath math="x=3" /> is valid, while <InlineMath math="x=-3" /> is **rejected**, because for <InlineMath math="x=-3" /> the rule in force is <InlineMath math="2x+1" />, which gives <InlineMath math="f(-3)=-5" />.
 
-We substitute <InlineMath math="f(x)" /> into <InlineMath math="g(x)" />:
+The solutions are 2 and 3, so their sum is <InlineMath math="2+3=5" />.
 
-<BlockMath math="(g \circ f)(x) = g(x^2 + 4x - 5)" />
+The value 2 uses only the first piece, and the value 3 uses only the second. The value <InlineMath math="-1" /> uses <InlineMath math="-3" /> instead of 3. The value 6 counts <InlineMath math="x=3" /> twice.
 
-Since <InlineMath math="g(x) = 2x - 1" />, we replace **every input variable**, namely every <InlineMath math="x" /> in <InlineMath math="g(x)" /> with <InlineMath math="(x^2 + 4x - 5)" />:
-
-<BlockMath math="\begin{aligned}&(g\circ f)(x)\\&=2(x^2+4x-5)\\&\quad-1\end{aligned}" />
-
-# Simplifying the Result
-
-Now we **distribute the multiplication** and simplify:
-
-<BlockMath math="\begin{aligned}&(g\circ f)(x)\\&=(2\cdot x^2)+(2\cdot4x)\\&\quad-(2\cdot5)-1\end{aligned}" />
-
-<BlockMath math="\begin{aligned}&(g\circ f)(x)\\&=2x^2+8x\\&\quad-10-1\end{aligned}" />
-
-<BlockMath math="(g \circ f)(x) = 2x^2 + 8x - 11" />
-
-Thus, the composite function is <InlineMath math="2x^2 + 8x - 11" />.
+So the sum of all values of <InlineMath math="x" /> that work is **5**.

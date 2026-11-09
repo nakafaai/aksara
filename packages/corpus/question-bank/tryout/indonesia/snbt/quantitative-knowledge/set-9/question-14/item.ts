@@ -3,32 +3,18 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label:
-            "$$\\frac{17}{14}$$, $$123\\%$$, $$1{,}45$$, $$\\frac{5}{3}$$, $$\\sqrt{12}$$",
+          column: 2,
+          label: "Jika nilai 90 diganti menjadi 100, median data berubah.",
         },
+        { column: 1, label: "Rata-rata data adalah 80." },
+        { column: 2, label: "Jangkauan data adalah 25." },
         {
-          correct: false,
-          label:
-            "$$\\frac{17}{14}$$, $$123\\%$$, $$1{,}45$$, $$\\sqrt{12}$$, $$\\frac{5}{3}$$",
-        },
-        {
-          correct: false,
-          label:
-            "$$\\frac{5}{3}$$, $$\\frac{17}{14}$$, $$123\\%$$, $$1{,}45$$, $$\\sqrt{12}$$",
-        },
-        {
-          correct: false,
-          label:
-            "$$\\frac{5}{3}$$, $$123\\%$$, $$1{,}45$$, $$\\sqrt{12}$$, $$\\frac{17}{14}$$",
-        },
-        {
-          correct: false,
-          label:
-            "$$123\\%$$, $$\\frac{5}{3}$$, $$1{,}45$$, $$\\sqrt{12}$$, $$\\frac{17}{14}$$",
+          column: 1,
+          label: "Jika setiap nilai ditambah 5, median data menjadi 85.",
         },
       ],
     },

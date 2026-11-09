@@ -17,11 +17,12 @@ import {
 } from "#compiler/test/reference";
 import { evaluateContentTree } from "#compiler/tree/evaluate";
 
-/** One baseline document: its recorded render evidence and the signed tree hash that the test pins. */
+/** One baseline document: its recorded render evidence, its frozen bytes, and the signed tree hash that the test pins. */
 const BaselineDocumentSchema = Schema.Struct({
   baselineHtmlBytes: Schema.Finite,
   baselineHtmlSha256: Sha256HashSchema,
   candidateHtmlSha256: Sha256HashSchema,
+  fixture: Schema.NonEmptyString,
   sourcePath: CorpusSourcePathSchema,
   treeSha256: Sha256HashSchema,
 });
@@ -35,6 +36,9 @@ const BaselineManifestSchema = Schema.Struct({
 
 /** Repository path of the baseline manifest, relative to this package. */
 const BASELINE_MANIFEST_PATH = "src/test/baseline.json";
+
+/** Folder of the frozen baseline documents, relative to this package, so a corpus rewrite never moves the pins. */
+const BASELINE_FIXTURE_ROOT = "src/test/baseline";
 
 const input = {
   componentNames: ["InlineMath"],
@@ -177,7 +181,7 @@ layer(NodeServices.layer)("content tree equivalence", (test) => {
       );
       for (const entry of manifest.documents) {
         const rawMdx = yield* fs.readFileString(
-          path.resolve("../..", entry.sourcePath)
+          path.join(BASELINE_FIXTURE_ROOT, entry.fixture)
         );
         const compiledCode = String(
           yield* Effect.promise(() => compile(rawMdx, COMPILE_OPTIONS))

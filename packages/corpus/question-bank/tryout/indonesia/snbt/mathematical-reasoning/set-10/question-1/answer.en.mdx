@@ -1,3 +1,22 @@
-There are <InlineMath math="\lfloor1000/6\rfloor=166" /> multiples of <InlineMath math="6" />, <InlineMath math="100" /> multiples of <InlineMath math="10" />, and <InlineMath math="66" /> multiples of <InlineMath math="15" />. The least common multiple of any pair is <InlineMath math="30" />, so every number divisible by at least two of the three is divisible by all three. There are <InlineMath math="\lfloor1000/30\rfloor=33" /> such numbers. The count <InlineMath math="N" /> **divisible by exactly one** is
+Say Bu Sari bakes <InlineMath math="x" /> chocolate buns and <InlineMath math="y" /> cheese buns. The largest profit always occurs at **a corner of the region that meets every constraint**.
 
-<BlockMath math="\begin{aligned}N&=(166-33)+(100-33)+(66-33)\\&=133+67+33=233\end{aligned}" />
+# Constraints
+
+<BlockMath math="\begin{aligned}
+x+y&\le100\\
+50x+100y&\le7{,}000\iff x+2y\le140
+\end{aligned}" />
+
+**The two boundary lines meet** when <InlineMath math="y=140-100=40" /> and <InlineMath math="x=60" />.
+
+# Profit at each corner
+
+| Corner | Profit |
+| :---: | :---: |
+| <InlineMath math="(100,0)" /> | Rp150,000 |
+| <InlineMath math="(60,40)" /> | Rp170,000 |
+| <InlineMath math="(0,70)" /> | Rp140,000 |
+
+**The corner (60, 40) gives the largest profit**, <InlineMath math="60\cdot1{,}500+40\cdot2{,}000=170{,}000" />.
+
+So the largest profit is **170 thousand rupiah**, from 60 chocolate buns and 40 cheese buns.

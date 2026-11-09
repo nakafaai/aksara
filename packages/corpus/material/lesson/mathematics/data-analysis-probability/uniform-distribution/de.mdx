@@ -3,7 +3,7 @@ export const metadata = {
   description: "Berechne Wahrscheinlichkeiten für gleich wahrscheinliche diskrete Ergebnisse bei Würfeln und Karten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Datenanalyse und Wahrscheinlichkeit",
 };
 
@@ -44,13 +44,23 @@ Eine <InlineMath math="1" /> ist genauso wahrscheinlich wie eine <InlineMath mat
 
 <BlockMath math="P(X\text{ gerade})=\frac{3}{6}=\frac{1}{2}" />
 
+Jede Augenzahl eines fairen Würfels bekommt denselben Balken, <InlineMath math="\tfrac16 \approx 16{,}67\%" />. Die sechs gleichen Balken ergeben zusammen 1, und das Ereignis "gerade" sammelt drei davon: <InlineMath math="\tfrac36 = \tfrac12" />.
+
+<BarChart
+  title={<>Ein Wurf mit einem fairen Würfel</>}
+  description={<>Sechs gleiche Balken <InlineMath math="P(X = x) = \tfrac16" /> für <InlineMath math="x = 1" /> bis 6.</>}
+  yAxisLabel="Wahrscheinlichkeit"
+  data={[1, 2, 3, 4, 5, 6].map((x) => ({ name: String(x), value: 1 / 6 }))}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Ein Rad mit acht Sektoren
 
 Ein faires Glücksrad besteht aus **acht gleich großen Sektoren** mit den Nummern <InlineMath math="1" /> bis <InlineMath math="8" />. Vergleiche Sektor <InlineMath math="5" /> mit den anderen. Jeder Sektor hat den Mittelpunktswinkel <InlineMath math="360^\circ/8=45^\circ" />.
 
 <MathVisual
-  title="Acht gleich große Sektoren"
-  description="Jede Nummer belegt einen Sektor mit 45 Grad. Alle Sektoren haben dieselbe Fläche."
+  title={<>Acht gleich große Sektoren</>}
+  description={<>Jede Nummer belegt einen Sektor mit 45 Grad. Alle Sektoren haben dieselbe Fläche.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1.25, max: 1.25 }, y: { min: -1.25, max: 1.25 } },
@@ -84,6 +94,17 @@ Ein faires Glücksrad besteht aus **acht gleich großen Sektoren** mit den Numme
 Der Ergebnisraum lautet <InlineMath math="S=\{1,2,3,4,5,6,7,8\}" />, also ist <InlineMath math="k=8" />. Jeder Sektor ist gleich wahrscheinlich. Die Massenfunktion lautet daher <InlineMath math="P(X=x)=1/8" /> für jeden Wert <InlineMath math="x\in S" />. Für Sektor fünf ergibt sich:
 
 <BlockMath math="P(X=5)=\frac{1}{8}=0{,}125=12{,}5\%" />
+
+Addier die gleichen Wahrscheinlichkeiten Sektor für Sektor. <InlineMath math="P(X \le x) = \frac{x}{8}" /> steigt in gleichen Schritten von <InlineMath math="\tfrac18" /> und erreicht 1 bei <InlineMath math="x = 8" />.
+
+<BarChart
+  title={<>Kumulierte Wahrscheinlichkeit am Glücksrad</>}
+  description={<>Balken von <InlineMath math="P(X \le x) = \frac{x}{8}" /> für <InlineMath math="x = 1" /> bis 8.</>}
+  yAxisLabel="Kumulierte Wahrscheinlichkeit"
+  data={[1, 2, 3, 4, 5, 6, 7, 8].map((x) => ({ name: String(x), value: x / 8 }))}
+  chartConfig={{ value: { label: "Kumulierte Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Übungen
 
 Bestimme die Ergebnismenge, zähle die **gleich wahrscheinlichen Ergebnisse** und berechne die gesuchte Wahrscheinlichkeit. Prüfe vor dem Teilen, ob das gesuchte Objekt überhaupt zur Ergebnismenge gehört.

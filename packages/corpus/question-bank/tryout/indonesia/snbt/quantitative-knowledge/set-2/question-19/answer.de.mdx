@@ -1,35 +1,20 @@
-Zunächst bestimmen wir den Wert von <InlineMath math="Q" />, also den Wert der **verketteten Funktion** <InlineMath math="f(g(a))" />, für <InlineMath math="a = 4" /> und <InlineMath math="a = -4" />.
+„Die zweite rote Kugel kommt beim dritten Zug“ bedeutet, dass zwei Dinge zusammen eintreten: **In den ersten beiden Zügen kommt genau eine rote Kugel**, und der dritte Zug ist ebenfalls rot.
 
-# Berechnung des inneren Funktionswerts
+# Die zwei möglichen Reihenfolgen
 
-Da <InlineMath math="a = 4" /> oder <InlineMath math="a = -4" /> und die Funktion <InlineMath math="g(x)" /> <InlineMath math="x^2" /> enthält, haben **beide Eingaben dasselbe Quadrat**. Deshalb ergibt <InlineMath math="g(a)" /> in beiden Fällen denselben Wert.
+Die erste rote Kugel kann beim ersten oder beim zweiten Zug kommen. Weil nicht zurückgelegt wird, rechnest du jede Wahrscheinlichkeit mit dem, was noch im Beutel ist.
 
-<BlockMath math="\begin{aligned}g(4)&=4^2 - 1\\&=16 - 1\\&=15\end{aligned}" />
+<BlockMath math="\begin{aligned}
+P(\text{R, W, R})&=\frac4{10}\cdot\frac69\cdot\frac38=\frac{72}{720}\\
+P(\text{W, R, R})&=\frac6{10}\cdot\frac49\cdot\frac38=\frac{72}{720}
+\end{aligned}" />
 
-<BlockMath math="\begin{aligned}g(-4)&=(-4)^2 - 1\\&=16 - 1\\&=15\end{aligned}" />
+Die beiden Reihenfolgen **schließen sich gegenseitig aus**, ihre Wahrscheinlichkeiten werden also addiert.
 
-In beiden Fällen gilt also <InlineMath math="g(a) = 15" />.
+<BlockMath math="P=\frac{72+72}{720}=\frac{144}{720}=\frac15" />
 
-# Den Wert der verketteten Funktion berechnen
+# Die falschen Wahlmöglichkeiten
 
-Nun setzen wir den **inneren Funktionswert** <InlineMath math="g(a) = 15" /> in <InlineMath math="f(x)" /> ein.
+Der Wert <InlineMath math="\tfrac1{10}" /> zählt nur eine Reihenfolge. Der Wert <InlineMath math="\tfrac3{10}" /> ist die Wahrscheinlichkeit für genau zwei rote Kugeln in drei Zügen, ohne dass die zweite rote an dritter Stelle stehen muss. Der Wert <InlineMath math="\tfrac25" /> ist nur die Wahrscheinlichkeit, dass der dritte Zug rot ist. Der Wert <InlineMath math="\tfrac8{15}" /> bleibt bei der Wahrscheinlichkeit für **genau eine rote Kugel in den ersten beiden Zügen** stehen.
 
-<BlockMath math="f(15) = 7 + \sqrt{\frac{4}{15 + 10}}" />
-
-<BlockMath math="= 7 + \sqrt{\frac{4}{25}}" />
-
-<BlockMath math="= 7 + \frac{\sqrt{4}}{\sqrt{25}}" />
-
-<BlockMath math="= 7 + \frac{2}{5}" />
-
-<BlockMath math="= \frac{37}{5}" />
-
-Damit ist <InlineMath math="Q = \frac{37}{5}" />.
-
-# Vergleich der Größen
-
-Wir schreiben beide Größen mit einem **gemeinsamen Nenner** und vergleichen:
-
-<BlockMath math="7 = \frac{35}{5} < \frac{37}{5} \Rightarrow P < Q" />
-
-Daher ist die Größe <InlineMath math="P" /> kleiner als die Größe <InlineMath math="Q" />.
+Die gesuchte Wahrscheinlichkeit ist also <InlineMath math="\tfrac15" />.

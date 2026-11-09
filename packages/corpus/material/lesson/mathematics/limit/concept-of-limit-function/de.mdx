@@ -3,7 +3,7 @@ export const metadata = {
     description: "Grenzwerte mit Wertetabellen, einseitigem Verhalten, der Epsilon-Delta-Definition und vollständig gelösten Beispielen verstehen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-23",
+    dateModified: "2026-11-08",
     subject: "Grenzwerte",
 };
 
@@ -27,6 +27,16 @@ Die folgende Tabelle zeigt die Werte von <InlineMath math="f(x) = x + 2" />, wä
 | Von rechts | <InlineMath math="3{,}1" /> | <InlineMath math="5{,}1" /> |
 
 Die Tabelle zeigt: Nähert sich <InlineMath math="x" /> dem Wert <InlineMath math="3" /> von links, also mit <InlineMath math="x < 3" />, oder von rechts, also mit <InlineMath math="x > 3" />, dann nähert sich <InlineMath math="f(x)" /> dem Wert <InlineMath math="5" />. <Highlight>Dieser Annäherungswert heißt Grenzwert</Highlight>.
+
+Sieh auf den Abstand zum Grenzwert statt auf die Werte. <InlineMath math="|f(x) - 5| = |x - 3|" /> schrumpft von <InlineMath math="0{,}1" /> über <InlineMath math="0{,}01" /> auf <InlineMath math="0{,}001" />, wenn <InlineMath math="x" /> sich von beiden Seiten 3 nähert.
+
+<BarChart
+  title={<>Abstand vom Grenzwert 5</>}
+  description={<>Balken von <InlineMath math="|f(x) - 5|" /> für <InlineMath math="f(x) = x + 2" /> an den Tabellenstellen von <InlineMath math="2{,}9" /> bis <InlineMath math="3{,}1" />.</>}
+  yAxisLabel="Abstand von 5"
+  data={[2.9, 2.99, 2.999, 3.001, 3.01, 3.1].map((x) => ({ name: String(x), value: Math.round(10000 * Math.abs(x + 2 - 5)) / 10000 }))}
+  chartConfig={{ value: { label: "Abstand von 5", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Schreibweise einseitige Grenzwerte und formale Bedeutung
 
@@ -98,6 +108,31 @@ Ein Grenzwert betrachtet benachbarte Werte mit <InlineMath math="x \neq 2" />. D
 
 <BlockMath math="\lim_{x\to2}\frac{x^2-4}{x-2}= \lim_{x \to 2} (x + 2) = 2 + 2 = 4" />
 
+Der Graph von <InlineMath math="\frac{x^2 - 4}{x - 2}" /> ist die Gerade <InlineMath math="y = x + 2" /> mit einem Loch bei <InlineMath math="(2, 4)" />. Die Funktion hat bei 2 keinen Wert, aber der Grenzwert ist die Höhe des Lochs, 4.
+
+<MathVisual
+  title={<>Die Gerade <InlineMath math="y = x + 2" /> mit einem Loch bei <InlineMath math="(2, 4)" /></>}
+  description={<>Der Graph von <InlineMath math="\frac{x^2 - 4}{x - 2}" />: die Gerade <InlineMath math="y = x + 2" /> mit einem offenen Kreis bei <InlineMath math="(2, 4)" />.</>}
+  labels={{
+    line: <InlineMath math="y = x + 2" />,
+    hole: <InlineMath math="(2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 5.6 }, y: { min: -0.6, max: 7.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "left", kind: "segment", from: { x: -1, y: 1 }, to: { x: 2 - 0.12 / Math.sqrt(2), y: 4 - 0.12 / Math.sqrt(2) }, appearance: "primary" },
+      { id: "right", kind: "segment", from: { x: 2 + 0.12 / Math.sqrt(2), y: 4 + 0.12 / Math.sqrt(2) }, to: { x: 5, y: 7 }, appearance: "primary" },
+      { id: "hole", kind: "circle", center: { x: 2, y: 4 }, radius: 3 / 25, appearance: "warning" },
+    ],
+    labels: [
+      { key: "line", objectId: "right", at: { x: 5, y: 7 }, placement: "left" },
+      { key: "hole", objectId: "hole", at: { x: 2, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 ## Grundlegende Rechenregeln
 
 Für diese Regeln müssen beide Grenzwerte <InlineMath math="L=\lim_{x\to c}f(x)" /> und <InlineMath math="M=\lim_{x\to c}g(x)" /> **existieren und endlich sein**. Die Koeffizienten <InlineMath math="a,b" /> sind konstant.
@@ -161,14 +196,26 @@ Weil <InlineMath math="\lim_{x \to 2^-} f(x) = 3 \neq 4 = \lim_{x \to 2^+} f(x)"
 
 Der Graph zeigt **zwei unterschiedliche Annäherungshöhen**. Der Punkt am rechten Ast steht für <InlineMath math="f(2)=4" />. Dieser Funktionswert ändert den linksseitigen Grenzwert <InlineMath math="3" /> jedoch nicht.
 
-<LineEquation
-  title="Sprung einer abschnittsweise definierten Funktion"
-  description="Der linke Ast nähert sich der Höhe drei, der rechte Ast beginnt bei vier. Der orange Punkt zeigt den Funktionswert bei x gleich zwei."
-  showZAxis={false}
-  cameraTarget={[1.5, 3.5, 0]}
-  cameraPosition={[1.5, 3.5, 14]}
-  data={[
-    { points: [{ x: 0, y: 1, z: 0 }, { x: 1.99, y: 2.99, z: 0 }], color: "#9333ea", smooth: false, showPoints: false, labels: [{ at: 1, text: <InlineMath math="3" />, offset: [0.4, -0.3, 0] }] },
-    { points: [{ x: 2, y: 4, z: 0 }, { x: 3, y: 7, z: 0 }], color: "#ea580c", smooth: false, showPoints: true, pointIndices: [0], labels: [{ at: 0, text: <InlineMath math="(2,4)" />, offset: [0.8, 0.2, 0] }] },
-  ]}
+<MathVisual
+  title={<>Ein Sprung in einer abschnittsweise definierten Funktion</>}
+  description={<>Der linke Ast <InlineMath math="x + 1" /> nähert sich der Höhe 3, der rechte Ast <InlineMath math="3x - 2" /> beginnt aber bei der Höhe 4. Der offene Kreis bei <InlineMath math="(2, 3)" /> und der Punkt <InlineMath math="(2, 4)" /> zeigen, dass die beiden einseitigen Grenzwerte verschieden sind.</>}
+  labels={{
+    hole: <InlineMath math="3" />,
+    value: <InlineMath math="(2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 3.4 }, y: { min: -0.4, max: 7.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "left", kind: "segment", from: { x: 0, y: 1 }, to: { x: 2 - 0.12 / Math.sqrt(2), y: 3 - 0.12 / Math.sqrt(2) }, appearance: "secondary" },
+      { id: "hole", kind: "circle", center: { x: 2, y: 3 }, radius: 3 / 25, appearance: "warning" },
+      { id: "branch", kind: "segment", from: { x: 2, y: 4 }, to: { x: 3, y: 7 }, appearance: "primary" },
+      { id: "value", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "hole", objectId: "hole", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "value", objectId: "value", at: { x: 2, y: 4 }, placement: "left" },
+    ],
+  }}
 />

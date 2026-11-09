@@ -1,26 +1,11 @@
-Wir prüfen **nach ihrer Masse geordnete Apfelgruppen**, nicht nur deren Mittelwert. Der Wert <InlineMath math="x=180" /> ist gegeben. Die zwei Äpfel mit je 180 Gramm zählen weiterhin als zwei einzelne Äpfel.
+Jedes Spiel ist durch **ein Paar von Mannschaften** festgelegt, und die Reihenfolge der beiden spielt keine Rolle. Die Anzahl der Spiele ist also die Anzahl der Möglichkeiten, 2 von 6 Mannschaften auszuwählen.
 
-# Alle Äpfel ordnen
+# Paare von Mannschaften zählen
 
-Fasse beide Spalten zusammen und ordne **alle zwölf Massen aufsteigend**. Die Tabelle nennt Grammwerte und behält jeden Apfel bei, auch bei gleichen Massen.
+<BlockMath math="\binom62=\frac{6\cdot5}{2}=15" />
 
-| Rang | Massen (Gramm) |
-| --- | --- |
-| 1 bis 3 | 154, 157, 161 |
-| 4 bis 6 | 162, 163, 167 |
-| 7 bis 9 | 170, 171, 175 |
-| 10 bis 12 | 180, 180, 182 |
+# Kontrolle aus Sicht jeder Mannschaft
 
-# Grenzen für die Gruppen prüfen
+Jede Mannschaft spielt gegen die 5 anderen, das ergibt <InlineMath math="6\cdot5=30" /> Spieleinträge. Jedes Spiel **wird doppelt eingetragen**, einmal von jeder beteiligten Mannschaft, also gibt es <InlineMath math="\tfrac{30}{2}=15" /> Spiele.
 
-Ein Viertel von zwölf Äpfeln sind drei Äpfel, die Hälfte sind sechs. Die Zeichen **kleiner als und größer als sind strikt**: Ein Wert genau an der Grenze erfüllt sie nicht.
-
-<BlockMath math="\begin{aligned}25\%\times12&=\frac{25}{100}\times12=3\\50\%\times12&=\frac{50}{100}\times12=6\end{aligned}" />
-
-| Aussage | Gewählte Äpfel (Gramm) | Prüfung | Ergebnis |
-| --- | --- | --- | --- |
-| Erste, drei leichteste | 154, 157, 161 | Größte Masse 161 liegt unter 162 | Wahr |
-| Zweite, drei schwerste | 180, 180, 182 | Zwei Äpfel wiegen genau 180 und nicht mehr | Falsch |
-| Dritte, sechs leichteste | 154, 157, 161, 162, 163, 167 | Größte Masse 167 liegt unter 170 | Wahr |
-
-Die zweite Aussage ist falsch, obwohl der Apfel mit 182 Gramm die Grenze überschreitet. Die Behauptung betrifft jeden Apfel der Gruppe, also müssen alle drei die Bedingung erfüllen. Die Folge lautet **wahr, falsch, wahr**, also WFW.
+Der Wettbewerb umfasst also **15 Spiele**.

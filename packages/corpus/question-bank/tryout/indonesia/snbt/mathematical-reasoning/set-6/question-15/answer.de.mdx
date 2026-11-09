@@ -1,51 +1,15 @@
-# Anzahl und Ladung modellieren
+Zähle für jedes Datum **die Tage nach dem 1. Januar 2027** und verschiebe den Freitag um den Rest bei Division durch 7.
 
-Da alle Lastwagen **voll beladen** sind, entspricht die Summe ihrer Tragfähigkeiten der gesamten Fracht. Die Variablen zählen die Lastwagen jedes Typs.
+# Jahresende und nächster Jahresbeginn
 
-| Typ | Anzahl | Tragfähigkeit je LKW |
-| --- | --- | --- |
-| I | <InlineMath math="x=4" /> | <InlineMath math="3\text{ t}" /> |
-| II | <InlineMath math="y" /> | <InlineMath math="4\text{ t}" /> |
-| III | <InlineMath math="z" /> | <InlineMath math="6\text{ t}" /> |
+Der 31. Dezember liegt 364 Tage nach dem 1. Januar, und <InlineMath math="364=7\cdot52" /> ist durch 7 teilbar. Der 31. Dezember ist also ein Freitag, und die zweite Aussage ist wahr.
 
-<BlockMath math="x+y+z=20\quad(1)" />
+Der 1. Januar 2028 liegt 365 Tage nach dem 1. Januar 2027, und <InlineMath math="365=7\cdot52+1" />. Der Wochentag **rückt vom Freitag um eins weiter**, auf Samstag. Die erste Aussage ist wahr.
 
-<BlockMath math="3x+4y+6z=96\quad(2)" />
+# Der 1. März und die Anzahl der Samstage
 
-# Das System lösen
+Der 1. März liegt <InlineMath math="31+28=59" /> Tage nach dem 1. Januar, und <InlineMath math="59=7\cdot8+3" />. Drei Tage nach Freitag ist Montag, **nicht Sonntag**. Die dritte Aussage ist falsch.
 
-Wir setzen <InlineMath math="x = 4" /> in Gleichung (1) ein:
+Wegen <InlineMath math="365=7\cdot52+1" /> kommt nur der Freitag 53-mal vor. Der Samstag kommt 52-mal vor, also ist die vierte Aussage falsch.
 
-<BlockMath math="4 + y + z = 20" />
-
-<BlockMath math="y + z = 16 \quad (3)" />
-
-Danach setzen wir <InlineMath math="x = 4" /> in Gleichung (2) ein:
-
-<BlockMath math="3(4) + 4y + 6z = 96" />
-
-<BlockMath math="12 + 4y + 6z = 96" />
-
-<BlockMath math="4y + 6z = 84" />
-
-Wir teilen beide Seiten durch <InlineMath math="2" />:
-
-<BlockMath math="2y + 3z = 42 \quad (4)" />
-
-Gleiche die **Koeffizienten der zu eliminierenden Variablen** an. Um <InlineMath math="z" /> zu entfernen, multiplizieren wir Gleichung (3) mit <InlineMath math="3" />. Beide Gleichungen haben dann denselben Koeffizienten von <InlineMath math="z" />:
-
-<BlockMath math="\begin{aligned}3(y+z)&=3(16) \\ 3y+3z&=48 \\ 2y+3z&=42\end{aligned}" />
-
-Wir subtrahieren die zweite Gleichung von der ersten:
-
-<BlockMath math="\begin{aligned}&(3y+3z)-(2y+3z) \\ &\quad=48-42\end{aligned}" />
-
-<BlockMath math="y = 6" />
-
-Das Unternehmen mietet somit <InlineMath math="6" /> Lastwagen vom Typ <InlineMath math="\text{II}" />.
-
-Zur Kontrolle folgt <InlineMath math="z=16-6=10" />.
-
-<BlockMath math="4+6+10=20" />
-
-<BlockMath math="3(4)+4(6)+6(10)=12+24+60=96" />
+Die erste Aussage ist also **wahr**, die zweite **wahr**, die dritte **falsch** und die vierte **falsch**.

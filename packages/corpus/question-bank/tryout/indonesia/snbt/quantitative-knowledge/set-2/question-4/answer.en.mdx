@@ -1,49 +1,22 @@
-To determine the passing percentage, we must check **two passing conditions** for each student:
-1. The Science score must be higher than the median Science score of all students.
-2. The mean of the two exam scores must exceed <InlineMath math="85" />. Add the Math and Science scores, then divide by <InlineMath math="2" />.
+Both equations are symmetric in <InlineMath math="x" /> and <InlineMath math="y" />, so **let <InlineMath math="s=x+y" /> and <InlineMath math="p=xy" />**. The second equation factors as <InlineMath math="xy(x+y)" />.
 
-# Determining the Median Science Score
+<BlockMath math="s+p=11,\qquad sp=30" />
 
-The Science scores are: <InlineMath math="78, 82, 87, 85, 79, 88, 81, 80" />.
+# Finding s and p
 
-**Sort the data** from smallest to largest:
-<InlineMath math="78, 79, 80, 81, 82, 85, 87, 88" />.
+The numbers <InlineMath math="s" /> and <InlineMath math="p" /> add up to 11 and multiply to 30, so they are the roots of <InlineMath math="t^2-11t+30=0" />, namely 5 and 6. There are **two possibilities**: <InlineMath math="(s,p)=(5,6)" /> or <InlineMath math="(s,p)=(6,5)" />.
 
-Since there are <InlineMath math="8" /> data points, the median is the average of the <InlineMath math="4" />th and <InlineMath math="5" />th data points:
+Each possibility must give real values of <InlineMath math="x" /> and <InlineMath math="y" />. They are the roots of <InlineMath math="t^2-st+p=0" />.
 
-<BlockMath math="\begin{aligned}\text{Median}&=\frac{81 + 82}{2}\\&=81.5\end{aligned}" />
+| <InlineMath math="(s,p)" /> | Equation | <InlineMath math="(x,y)" /> | <InlineMath math="x^2+y^2=s^2-2p" /> |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="(5,6)" /> | <InlineMath math="t^2-5t+6=0" /> | 2 and 3 | <InlineMath math="25-12=13" /> |
+| <InlineMath math="(6,5)" /> | <InlineMath math="t^2-6t+5=0" /> | 1 and 5 | <InlineMath math="36-10=26" /> |
 
-Students who satisfy the first condition (Science Score <InlineMath math="> 81.5" />) are:
-- Boni (<InlineMath math="82" />)
-- Cindy (<InlineMath math="87" />)
-- Dita (<InlineMath math="85" />)
-- Fani (<InlineMath math="88" />)
+# Choosing the largest value
 
-The other students (Ayu, Erfan, Gilang, Herman) have Science scores below the median, so they automatically do not pass.
+Both pairs are real and satisfy the system. Check the second pair: <InlineMath math="1+5+5=11" /> and <InlineMath math="1^2(5)+1(5^2)=30" />. The **largest** value is 26.
 
-# Checking the Average Score Condition
+The value 13 uses only the first possibility. The values 25 and 36 are <InlineMath math="s^2" />, which forgets to subtract <InlineMath math="2p" />. The value 31 subtracts <InlineMath math="p" /> instead of <InlineMath math="2p" />.
 
-Now we check the second condition for students who passed the first condition:
-
-Use <InlineMath math="\bar x" /> for the mean of a student’s two scores.
-
-| Student | Mean | Meets second condition |
-| --- | --- | --- |
-| Boni | <InlineMath math="\frac{92+82}2=\frac{174}2=87" /> | Yes, <InlineMath math="87>85" /> |
-| Cindy | <InlineMath math="\frac{90+87}2=\frac{177}2=88.5" /> | Yes, <InlineMath math="88.5>85" /> |
-| Dita | <InlineMath math="\frac{86+85}2=\frac{171}2=85.5" /> | Yes, <InlineMath math="85.5>85" /> |
-| Fani | <InlineMath math="\frac{88+88}2=\frac{176}2=88" /> | Yes, <InlineMath math="88>85" /> |
-
-All four meet **both conditions at once**. Therefore, four of the eight students pass.
-
-# Calculating the First Quantity
-
-The denominator is **all eight students**, rather than only those above the median:
-
-<BlockMath math="\begin{aligned}P&=\frac{4}{8} \times 100\%\\&=50\%\end{aligned}" />
-
-Given <InlineMath math="Q = 65\%" />.
-
-Thus:
-
-<BlockMath math="\begin{gathered}50\%<65\%\\P<Q\quad\Longleftrightarrow\quad Q>P\end{gathered}" />
+So the largest possible value of <InlineMath math="x^2+y^2" /> is **26**.

@@ -3,7 +3,7 @@ export const metadata = {
   description: "Menyusun model luas kuadrat dari syarat geometri, menentukan nilai maksimum, lalu menjelaskan arti nilai tersebut bagi ukuran bangun pada soal.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-19",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Fungsi Kuadrat",
 };
 
@@ -80,8 +80,8 @@ Bentuk kuadrat sempurna menunjukkan alasan nilai ini maksimum. Kita mengurangkan
 <BlockMath math="A(l)=25-(l-5)^2\le25" />
 
 <MathVisual
-  title="Luas dan Ukuran yang Dipilih"
-  description="Sumbu mendatar menunjukkan lebar kandang dalam meter, sumbu tegak menunjukkan luas dalam meter persegi. Titik (5,25) adalah maksimum."
+  title={<>Luas dan Ukuran yang Dipilih</>}
+  description={<>Sumbu mendatar menunjukkan lebar kandang dalam meter, sumbu tegak menunjukkan luas dalam meter persegi. Titik (5,25) adalah maksimum.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -3, max: 28 } },
@@ -129,6 +129,16 @@ Karena <InlineMath math="a=-2<0" />, model ini memiliki maksimum:
 
 Model tersebut memprediksi keuntungan maksimum sebesar <InlineMath math="\text{Rp }1\,250\,000" /> ketika <InlineMath math="25" /> mainan terjual. Titik puncaknya sudah berupa bilangan bulat, sehingga kita tidak perlu membandingkan hasil pembulatan.
 
+Tabelkan keuntungan <InlineMath math="P(x) = -2x^2 + 100x" />: nilainya naik sampai 1250 ribu rupiah di <InlineMath math="x = 25" /> lalu turun lagi secara simetris, 1200 di 20 dan di 30, serta 800 di 10 dan di 40.
+
+<BarChart
+  title={<>Keuntungan di sekitar titik puncak</>}
+  description={<>Batang <InlineMath math="P(x) = -2x^2 + 100x" /> dalam ribu rupiah untuk <InlineMath math="x = 0, 10, 20, 25, 30, 40, 50" />.</>}
+  yAxisLabel="Keuntungan (ribu rupiah)"
+  data={[0, 10, 20, 25, 30, 40, 50].map((x) => ({ name: String(x), value: -2 * x ** 2 + 100 * x }))}
+  chartConfig={{ value: { label: "Keuntungan (ribu rupiah)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Ketinggian proyektil
 
 Misalkan ketinggian roket mainan setelah <InlineMath math="t\text{ s}" /> dinyatakan oleh
@@ -150,6 +160,16 @@ Model tersebut dimulai di permukaan tanah ketika <InlineMath math="t=0" /> dan k
 </MathContainer>
 
 Roket mencapai ketinggian maksimum <InlineMath math="80\text{ m}" /> setelah <InlineMath math="4\text{ s}" />.
+
+Tinggi pada setiap detik bulat simetris terhadap <InlineMath math="t = 4" />: 35 m pada 1 s dan 7 s, 60 m pada 2 s dan 6 s, 75 m pada 3 s dan 5 s, dan puncaknya, 80 m, pada 4 s.
+
+<BarChart
+  title={<>Tinggi roket detik demi detik</>}
+  description={<>Batang <InlineMath math="h(t) = -5t^2 + 40t" /> dalam meter untuk <InlineMath math="t = 0" /> sampai 8 detik.</>}
+  yAxisLabel="Tinggi (m)"
+  data={[0, 1, 2, 3, 4, 5, 6, 7, 8].map((t) => ({ name: String(t), value: -5 * t ** 2 + 40 * t }))}
+  chartConfig={{ value: { label: "Tinggi (m)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Latihan
 

@@ -1,71 +1,21 @@
-Diketahui fungsi <InlineMath math="f(x) = \frac{x-a}{x+a}" /> untuk <InlineMath math="x \neq -a" /> dan <InlineMath math="g(x) = bx^2 - x + 2" />.
+Volume air tidak berubah, tetapi kubus mengambil sebagian ruang di dasar akuarium. Hal yang harus diputuskan lebih dulu adalah **apakah kubus terendam seluruhnya atau tidak**, karena rumus ketinggian air berbeda untuk kedua keadaan.
 
-Yang kita cari adalah **tanda hasil bagi**, bukan nilai tepat hasil bagi. Pertanyaan yang harus dijawab adalah apakah <InlineMath math="\frac{g(-2)}{f(-2)} > 0" />.
+# Menguji dugaan terendam
 
-# Menghitung Nilai Fungsi
+Volume air adalah <InlineMath math="30\times20\times8=4800\text{ cm}^3" />. Seandainya kubus terendam seluruhnya, seluruh volume kubus menaikkan air pada alas <InlineMath math="600\text{ cm}^2" />.
 
-Pertama, kita hitung nilai dari <InlineMath math="g(-2)" /> dan <InlineMath math="f(-2)" />.
+<BlockMath math="h=\frac{4800+1000}{600}=\frac{29}{3}\approx9{,}67\text{ cm}" />
 
-Untuk <InlineMath math="g(-2)" />, substitusi <InlineMath math="x = -2" /> ke dalam fungsi <InlineMath math="g(x)" />:
+Ketinggian ini **lebih kecil daripada rusuk kubus**, yaitu 10 cm. Jadi dugaan terendam keliru, dan puncak kubus tetap berada di atas air.
 
-<BlockMath math="g(-2) = b(-2)^2 - (-2) + 2" />
+# Menghitung tinggi air
 
-<BlockMath math="g(-2) = 4b + 2 + 2" />
+Karena kubus menembus permukaan, air **hanya mengisi ruang di sekeliling kubus**. Luas alas yang tersedia untuk air adalah <InlineMath math="600-10\times10=500\text{ cm}^2" />, dan volume air tetap <InlineMath math="4800\text{ cm}^3" />.
 
-<BlockMath math="g(-2) = 4b + 4" />
+<BlockMath math="500h=4800\quad\Rightarrow\quad h=9{,}6\text{ cm}" />
 
-Untuk <InlineMath math="f(-2)" />, substitusi <InlineMath math="x = -2" /> ke dalam fungsi <InlineMath math="f(x)" />:
+Cek: <InlineMath math="9{,}6<10" />, jadi kubus memang tidak terendam seluruhnya.
 
-<BlockMath math="f(-2) = \frac{-2-a}{-2+a}" />
+Pilihan <InlineMath math="\tfrac{29}{3}" /> cm menganggap kubus terendam. Pilihan 10 cm menganggap air tepat mencapai puncak kubus. Pilihan 11,6 cm menambahkan volume kubus sekaligus mengurangi luas alas, sehingga ruang kubus dihitung dua kali. Pilihan 18 cm menambahkan rusuk kubus ke tinggi air.
 
-<BlockMath math="f(-2) = \frac{-(2+a)}{-(2-a)}" />
-
-<BlockMath math="f(-2) = \frac{2+a}{2-a}" />
-
-Sehingga perbandingan yang kita cari adalah:
-
-<BlockMath math="\begin{aligned}
-\frac{g(-2)}{f(-2)} &= \frac{4b + 4}{\frac{2+a}{2-a}} \\
-&= \frac{(4b + 4)(2-a)}{2+a}
-\end{aligned}" />
-
-Kita dapat menyederhanakan dengan **memfaktorkan pembilang**:
-
-<BlockMath math="\frac{g(-2)}{f(-2)} = \frac{4(b + 1)(2-a)}{2+a}" />
-
-Agar hasil bagi terdefinisi, harus pula berlaku <InlineMath math="a \neq 2" /> dan <InlineMath math="a \neq -2" />.
-
-Agar <InlineMath math="\frac{g(-2)}{f(-2)} > 0" />, maka <InlineMath math="\frac{4(b + 1)(2-a)}{2+a} > 0" />.
-
-Karena <InlineMath math="4" /> selalu positif, maka kita perlu menganalisis tanda dari <InlineMath math="\frac{(b + 1)(2-a)}{2+a}" />.
-
-# Analisis Pernyataan
-
-**Analisis Pernyataan (1)**: <InlineMath math="a < 5" /> dan <InlineMath math="b < 5" />
-
-Dari pernyataan ini, kita hanya tahu bahwa <InlineMath math="a" /> dan <InlineMath math="b" /> keduanya kurang dari <InlineMath math="5" />. Namun, tidak ada informasi pasti mengenai tanda dari faktor-faktor yang terlibat.
-
-Dua pasangan berikut sama-sama memenuhi pernyataan (1), tetapi memberi **tanda yang berbeda**:
-
-| <InlineMath math="a" /> | <InlineMath math="b" /> | <InlineMath math="\frac{4(b+1)(2-a)}{2+a}" /> |
-| :---: | :---: | :---: |
-| 0 | 0 | <InlineMath math="\frac{4(1)(2)}2=4" /> |
-| 0 | -2 | <InlineMath math="\frac{4(-1)(2)}2=-4" /> |
-
-Pada pasangan pertama, hasil bagi positif. Pada pasangan kedua, hasil bagi negatif. Karena pertanyaan mendapat dua jawaban berbeda, pernyataan (1) saja tidak cukup.
-
-**Analisis Pernyataan (2)**: <InlineMath math="a > 2" /> dan <InlineMath math="b > 0" />
-
-Dari pernyataan ini, analisis tanda dari setiap faktor:
-
-1. Karena <InlineMath math="b > 0" />, maka <InlineMath math="b + 1 > 1 > 0" /> (positif)
-2. Karena <InlineMath math="a > 2" />, maka <InlineMath math="2 - a < 0" /> (negatif)
-3. Karena <InlineMath math="a > 2" />, maka <InlineMath math="2 + a > 4 > 0" /> (positif)
-
-Sehingga kita punya:
-
-<BlockMath math="\frac{(b + 1)(2-a)}{2+a} < 0" />
-
-Karena hasilnya negatif, maka <InlineMath math="\frac{g(-2)}{f(-2)} < 0" />, sehingga jawabannya adalah tidak, <InlineMath math="\frac{g(-2)}{f(-2)}" /> tidak lebih besar dari <InlineMath math="0" />.
-
-Dengan demikian, pernyataan (2) SAJA cukup untuk menjawab pertanyaan dengan pasti (jawabannya adalah tidak).
+Jadi, tinggi permukaan air menjadi **<InlineMath math="9{,}6\text{ cm}" />**.

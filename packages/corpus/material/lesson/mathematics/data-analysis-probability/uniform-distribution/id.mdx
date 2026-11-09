@@ -3,7 +3,7 @@ export const metadata = {
   description: "Hitung peluang hasil diskret yang memiliki kemungkinan sama, seperti hasil pelemparan dadu atau pengambilan kartu.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-05-26",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Analisis Data dan Peluang",
 };
 
@@ -44,13 +44,23 @@ Peluang angka <InlineMath math="1" /> sama dengan peluang angka <InlineMath math
 
 <BlockMath math="P(X\text{ genap})=\frac{3}{6}=\frac{1}{2}" />
 
+Setiap mata dadu yang adil mendapat batang yang sama, <InlineMath math="\tfrac16 \approx 16{,}67\%" />. Keenam batang yang sama itu berjumlah 1, dan kejadian "genap" mengumpulkan tiga di antaranya: <InlineMath math="\tfrac36 = \tfrac12" />.
+
+<BarChart
+  title={<>Satu lemparan dadu adil</>}
+  description={<>Enam batang sama tinggi <InlineMath math="P(X = x) = \tfrac16" /> untuk <InlineMath math="x = 1" /> sampai 6.</>}
+  yAxisLabel="Peluang"
+  data={[1, 2, 3, 4, 5, 6].map((x) => ({ name: String(x), value: 1 / 6 }))}
+  chartConfig={{ value: { label: "Peluang", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ### Roda dengan Delapan Sektor
 
 Roda putar adil dibagi menjadi delapan **sektor sama besar**, bernomor <InlineMath math="1" /> sampai <InlineMath math="8" />. Bandingkan sektor bernomor <InlineMath math="5" /> dengan sektor lainnya. Setiap sektor mempunyai sudut pusat <InlineMath math="360^\circ/8=45^\circ" />.
 
 <MathVisual
-  title="Delapan sektor yang sama besar"
-  description="Setiap nomor menempati satu sektor bersudut 45 derajat. Luas semua sektor sama."
+  title={<>Delapan sektor yang sama besar</>}
+  description={<>Setiap nomor menempati satu sektor bersudut 45 derajat. Luas semua sektor sama.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1.25, max: 1.25 }, y: { min: -1.25, max: 1.25 } },
@@ -84,6 +94,17 @@ Roda putar adil dibagi menjadi delapan **sektor sama besar**, bernomor <InlineMa
 Ruang sampelnya adalah <InlineMath math="S=\{1,2,3,4,5,6,7,8\}" /> dan <InlineMath math="k=8" />. Karena setiap sektor sama mungkin, fungsi massa peluangnya adalah <InlineMath math="P(X=x)=1/8" /> untuk setiap <InlineMath math="x\in S" />. Sektor bernomor lima memberi
 
 <BlockMath math="P(X=5)=\frac{1}{8}=0{,}125=12{,}5\%" />
+
+Jumlahkan peluang yang sama itu satu juring demi satu juring. <InlineMath math="P(X \le x) = \frac{x}{8}" /> naik dengan langkah sama sebesar <InlineMath math="\tfrac18" /> dan mencapai 1 di <InlineMath math="x = 8" />.
+
+<BarChart
+  title={<>Peluang kumulatif pada roda</>}
+  description={<>Batang <InlineMath math="P(X \le x) = \frac{x}{8}" /> untuk <InlineMath math="x = 1" /> sampai 8.</>}
+  yAxisLabel="Peluang kumulatif"
+  data={[1, 2, 3, 4, 5, 6, 7, 8].map((x) => ({ name: String(x), value: x / 8 }))}
+  chartConfig={{ value: { label: "Peluang kumulatif", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
 ## Latihan
 
 Tentukan himpunan hasil, banyak **hasil yang sama mungkin**, dan peluang kejadian yang diminta. Pastikan objek yang ditanyakan memang ada dalam himpunan hasil sebelum kamu membagi.

@@ -3,28 +3,16 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "Bilangan terbesarnya adalah $$20$$." },
+        { column: 1, label: "Jangkauan keempat bilangan itu adalah $$8$$." },
         {
-          correct: true,
-          label: "$$-\\frac{3}{5}$$",
+          column: 2,
+          label: "Setelah diurutkan, bilangan ketiganya adalah $$14$$.",
         },
-        {
-          correct: false,
-          label: "$$\\frac{1}{5}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{4}{3}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{2}{3}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{3}{5}$$",
-        },
+        { column: 2, label: "Jumlah dua bilangan terbesarnya adalah $$30$$." },
       ],
     },
   },

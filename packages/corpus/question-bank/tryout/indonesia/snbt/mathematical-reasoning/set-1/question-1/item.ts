@@ -1,31 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
-// Date: 2025-11-23
 const item: ItemSource = {
+  stimulus: "electricity-tariff",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$\\text{Rp}4{.}400{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}4{.}560{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}4{.}720{.}000{,}00$$",
-        },
-        {
-          correct: true,
-          label: "$$\\text{Rp}4{.}640{.}000{,}00$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}4{.}800{.}000{,}00$$",
-        },
+        { correct: false, label: "$$\\text{Rp}270{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}325{.}000{,}00$$" },
+        { correct: true, label: "$$\\text{Rp}345{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}395{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}520{.}000{,}00$$" },
       ],
     },
   },

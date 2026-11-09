@@ -1,29 +1,27 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "tourist-map",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$\\frac{24}{\\sqrt{61}}$$",
+          column: 1,
+          label:
+            "Jarak sebenarnya 10 km digambar sepanjang 4 cm pada peta itu.",
+        },
+        { column: 2, label: "Setiap 1 cm pada peta itu mewakili 25 km." },
+        {
+          column: 1,
+          label:
+            "Pada peta lain berskala 1 : 500.000, panjang gambar jalan dari P ke Q adalah setengah dari 6,4 cm.",
         },
         {
-          correct: false,
-          label: "$$\\frac{12}{\\sqrt{61}}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{18}{\\sqrt{61}}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{30}{\\sqrt{61}}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\frac{36}{\\sqrt{61}}$$",
+          column: 2,
+          label:
+            "Jika peta itu difotokopi dan diperbesar sehingga setiap panjang pada peta menjadi dua kali semula, skala peta hasil fotokopi menjadi 1 : 500.000.",
         },
       ],
     },

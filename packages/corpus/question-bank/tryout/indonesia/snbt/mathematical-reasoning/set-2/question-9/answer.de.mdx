@@ -1,27 +1,20 @@
-# Kollisionsbedingung
+Es gibt zwei Unbekannte, die Anzahl richtiger Antworten <InlineMath math="b" /> und falscher Antworten <InlineMath math="w" />. Die Aufgabe liefert **zwei Gleichungen**: die Anzahl beantworteter Aufgaben und die Gesamtpunktzahl.
 
-Zu einer Kollision zwischen der Rakete und dem Flugzeugträger kommt es, wenn sich beide **gleichzeitig an derselben Position** befinden. Daher müssen wir die Positionsfunktion der Rakete mit der Positionsfunktion des Flugzeugträgers gleichsetzen.
+# Das Gleichungssystem aufstellen
 
-<BlockMath math="s_R(t) = s_K(t)" />
+<BlockMath math="\begin{aligned}
+b+w&=34\\
+4b-w&=106
+\end{aligned}" />
 
-<BlockMath math="4000 - t^2 = 60t" />
+# Das System lösen
 
-# Bestimmung der Kollisionszeit
+Addiere beide Gleichungen, damit **<InlineMath math="w" /> wegfällt**.
 
-Wir ordnen die quadratische Gleichung in die Standardform um, um sie nach <InlineMath math="t" /> aufzulösen.
+<BlockMath math="5b=140\;\Longrightarrow\;b=28,\quad w=6" />
 
-<BlockMath math="t^2 + 60t - 4000 = 0" />
+Kontrolle: <InlineMath math="4\cdot28-6=112-6=106" />. Anders gedacht: Wären alle 34 Antworten richtig, gäbe es 136 Punkte. Jede falsche Antwort zieht 5 davon ab, denn 4 Punkte fehlen und <InlineMath math="-1" /> kommt hinzu. Die Differenz <InlineMath math="136-106=30" /> bedeutet 6 falsche Antworten.
 
-Als nächstes faktorisieren wir diese quadratische Gleichung. Gesucht sind zwei Zahlen mit dem Produkt <InlineMath math="-4000" /> und der Summe <InlineMath math="60" />. Das sind <InlineMath math="100" /> und <InlineMath math="-40" />.
+Der Wert 26 entsteht, wenn man 106 durch 4 teilt und den Abzug für falsche Antworten übersieht. Die anderen Werte erfüllen nicht beide Gleichungen.
 
-<BlockMath math="(t + 100)(t - 40) = 0" />
-
-Aus dieser Faktorisierung erhalten wir zwei mögliche Werte für <InlineMath math="t" />:
-
-<BlockMath math="t = -100 \quad \text{oder} \quad t = 40" />
-
-Da die Zeit (<InlineMath math="t" />) **nicht negativ sein kann**, ist der gültige Wert <InlineMath math="40\text{ Sekunden}" />. Somit findet die Kollision genau bei <InlineMath math="40\text{ Sekunden}" /> statt.
-
-Prüfe beide Positionen zum selben Zeitpunkt:
-
-<BlockMath math="\begin{aligned}s_R(40)&=4000-40^2=2400\text{ m}\\s_K(40)&=60(40)=2400\text{ m}\end{aligned}" />
+Die Person hat also **28 Aufgaben** richtig beantwortet.

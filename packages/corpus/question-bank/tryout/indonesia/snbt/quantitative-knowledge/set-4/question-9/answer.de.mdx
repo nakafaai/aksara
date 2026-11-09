@@ -1,41 +1,23 @@
-Gegeben ist die **rekursive Formel** <InlineMath math="b_{n+2} = b_{n+1} - 3b_n" />.
-Wir kennen auch die Werte <InlineMath math="b_4 = 5" /> und <InlineMath math="b_5 = -1" />.
-Gesucht ist <InlineMath math="b_2" />. Dazu rechnen wir die Rekursion von <InlineMath math="b_5" /> über <InlineMath math="b_3" /> bis <InlineMath math="b_2" /> rückwärts.
+Das <InlineMath math="n" />-te Glied einer geometrischen Folge ist <InlineMath math="u_n=ar^{n-1}" />. Aus dem ersten und dem vierten Glied **bestimmst du zuerst den Quotienten**, alle anderen Aussagen folgen daraus.
 
-# Das vorherige Glied bestimmen
+# Quotienten bestimmen
 
-Wir wählen den **Index, der beide bekannten Glieder verbindet**, also <InlineMath math="n=3" />:
+<BlockMath math="\begin{aligned}
+u_4&=ar^3=48r^3=6\\
+r^3&=\tfrac18\\
+r&=\tfrac12
+\end{aligned}" />
 
-<BlockMath math="b_{3+2} = b_{3+1} - 3b_3" />
+Die einzige reelle Zahl mit der dritten Potenz <InlineMath math="\tfrac18" /> ist <InlineMath math="\tfrac12" />, **der Quotient ist also eindeutig**. Die erste Aussage ist wahr.
 
-<BlockMath math="b_5 = b_4 - 3b_3" />
+# Glieder und Summen
 
-Setzen wir <InlineMath math="b_5 = -1" /> und <InlineMath math="b_4 = 5" /> ein:
+<BlockMath math="\begin{aligned}
+u_6&=48\left(\tfrac12\right)^5=\tfrac{48}{32}=1{,}5\\
+S_5&=\frac{48\left(1-\left(\tfrac12\right)^5\right)}{1-\tfrac12}=96\cdot\tfrac{31}{32}=93\\
+S_\infty&=\frac{48}{1-\tfrac12}=96
+\end{aligned}" />
 
-<BlockMath math="-1 = 5 - 3b_3" />
+Die dritte Aussage ist wahr. Das sechste Glied ist 1,5 und nicht 3, die vierte Aussage ist also falsch. Die Zahl 3 ist das fünfte Glied. Die unendliche Summe existiert, weil <InlineMath math="\lvert r\rvert<1" /> ist, und sie beträgt 96. Die Zahl 64 entsteht, wenn der Quotient als <InlineMath math="\tfrac14" /> genommen wird, also **ist die zweite Aussage falsch**.
 
-<BlockMath math="3b_3 = 5 + 1" />
-
-<BlockMath math="3b_3 = 6" />
-
-<BlockMath math="b_3 = 2" />
-
-# Das gesuchte Glied bestimmen
-
-Nun gehen wir **einen Index zurück** zu <InlineMath math="n=2" />:
-
-<BlockMath math="b_{2+2} = b_{2+1} - 3b_2" />
-
-<BlockMath math="b_4 = b_3 - 3b_2" />
-
-Setzen wir <InlineMath math="b_4 = 5" /> und <InlineMath math="b_3 = 2" /> ein:
-
-<BlockMath math="5 = 2 - 3b_2" />
-
-<BlockMath math="3b_2 = 2 - 5" />
-
-<BlockMath math="3b_2 = -3" />
-
-<BlockMath math="b_2 = -1" />
-
-Der Wert von <InlineMath math="b_2" /> ist also <InlineMath math="-1" />.
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.

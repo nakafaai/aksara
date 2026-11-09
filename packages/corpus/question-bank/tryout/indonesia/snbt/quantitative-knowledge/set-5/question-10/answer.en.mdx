@@ -1,17 +1,26 @@
-Compare the **number of reflection axes and rotational symmetry order**. Count the initial position once, equivalent to the position after a 360° turn.
+Rewrite the equation of <InlineMath math="g" /> in the form <InlineMath math="y=mx+c" /> so that its gradient and intercepts can be read. A line perpendicular to <InlineMath math="g" /> has **a gradient whose product with the gradient of <InlineMath math="g" /> is <InlineMath math="-1" />**.
 
-| Figure | Reflection axes | Rotational order | Equal? |
-| --- | --- | --- | --- |
-| Regular hexagon | 6: three through opposite vertices and three through opposite side midpoints | 6: multiples of 60° | Yes |
-| Isosceles right triangle | 1: from the right-angle vertex to the hypotenuse midpoint | 1: initial position only | Yes |
-| Right trapezoid with exactly one parallel side pair | 0: no reflection axis | 1: initial position only | No |
-| Non-square rectangle | 2: through the midpoints of opposite sides | 2: initial position and 180° | Yes |
+# The equations of both lines
 
-The line in this triangle is its **only reflection axis**. A half turn does not map the triangle onto itself.
+<BlockMath math="\begin{aligned}
+g:\ 2x-3y=6\quad&\Rightarrow\quad y=\tfrac23x-2\\
+h:\ m_h=-\tfrac32\quad&\Rightarrow\quad y=-\tfrac32x+4
+\end{aligned}" />
 
-<MathVisual title="Reflection axis of an isosceles right triangle" description="The line in this triangle is its only reflection axis. A half turn does not map the triangle onto itself."
- scene={{space:"plane",frame:{kind:"cartesian",x:{min:-0.5,max:3.5},y:{min:-0.5,max:3.5}},view:{kind:"fit",padding:0.1},objects:[{id:"triangle",kind:"polygon",appearance:"primary",vertices:[{x:0,y:0},{x:3,y:0},{x:0,y:3}]},{id:"axis",kind:"segment",appearance:"highlight",from:{x:0,y:0},to:{x:1.5,y:1.5}}],labels:[]}}
- labels={{}}
-/>
+The gradient of <InlineMath math="g" /> is <InlineMath math="\tfrac23" />, so the first statement is **true**. Line <InlineMath math="h" /> meets the <InlineMath math="x" />-axis where <InlineMath math="y=0" />, at <InlineMath math="x=\tfrac83" />, not 6. The second statement is false.
 
-Figures (1), (2), and (4) meet the condition, giving 3 figures.
+# The intersection and the triangle area
+
+Substitute the equation of <InlineMath math="h" /> into the equation of <InlineMath math="g" />.
+
+<BlockMath math="\begin{aligned}
+2x-3\left(-\tfrac32x+4\right)&=6\\
+\tfrac{13}{2}x&=18\\
+x=\tfrac{36}{13},\qquad y&=-\tfrac32\cdot\tfrac{36}{13}+4=-\tfrac{2}{13}
+\end{aligned}" />
+
+The intersection has a negative <InlineMath math="y" />-coordinate, so it **lies in quadrant IV**, not quadrant I. The third statement is false.
+
+Line <InlineMath math="g" /> meets the <InlineMath math="x" />-axis at <InlineMath math="(3,0)" /> and the <InlineMath math="y" />-axis at <InlineMath math="(0,-2)" />. The triangle it forms with the two axes is right-angled with legs 3 and 2, so its area is <InlineMath math="\tfrac12\cdot3\cdot2=3" />. The fourth statement is true.
+
+So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.

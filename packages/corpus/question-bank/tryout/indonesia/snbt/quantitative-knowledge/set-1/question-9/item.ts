@@ -3,27 +3,19 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$\\text{I dan II}$$",
+          column: 2,
+          label: "Banyak faktor positif $$n$$ yang ganjil adalah $$8$$.",
         },
+        { column: 1, label: "$$5n$$ merupakan bilangan kuadrat sempurna." },
+        { column: 1, label: "Banyak faktor positif $$n$$ adalah $$30$$." },
         {
-          correct: false,
-          label: "$$\\text{I, II, dan III}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{II dan III}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{I}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{III}$$",
+          column: 2,
+          label:
+            "Banyak faktor positif $$n$$ yang merupakan bilangan kuadrat sempurna adalah $$4$$.",
         },
       ],
     },

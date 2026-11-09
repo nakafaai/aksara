@@ -3,27 +3,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "Keliling belah ketupat itu $$52\\text{ cm}$$." },
+        { column: 2, label: "Luas belah ketupat itu $$240\\text{ cm}^2$$." },
         {
-          correct: false,
-          label: "$$0$$",
+          column: 2,
+          label:
+            "Jari-jari lingkaran dalam belah ketupat itu $$\\tfrac{120}{13}\\text{ cm}$$.",
         },
         {
-          correct: false,
-          label: "$$1$$",
-        },
-        {
-          correct: false,
-          label: "$$2$$",
-        },
-        {
-          correct: true,
-          label: "$$3$$",
-        },
-        {
-          correct: false,
-          label: "$$4$$",
+          column: 1,
+          label:
+            "Jarak antara dua sisi yang sejajar adalah $$\\tfrac{120}{13}\\text{ cm}$$.",
         },
       ],
     },

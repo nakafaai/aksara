@@ -1,17 +1,26 @@
-Bandingkan **banyak sumbu simetri dan tingkat simetri putar**. Posisi awal dihitung satu kali, sama dengan keadaan setelah rotasi 360°.
+Ubah persamaan <InlineMath math="g" /> ke bentuk <InlineMath math="y=mx+c" /> agar gradien dan titik potongnya terbaca. Garis yang tegak lurus <InlineMath math="g" /> memiliki **gradien yang hasil kalinya dengan gradien <InlineMath math="g" /> sama dengan <InlineMath math="-1" />**.
 
-| Bangun | Sumbu simetri | Tingkat simetri putar | Sama? |
-| --- | --- | --- | --- |
-| Segienam beraturan | 6: tiga melalui titik sudut berhadapan dan tiga melalui titik tengah sisi berhadapan | 6: kelipatan 60° | Ya |
-| Segitiga siku-siku sama kaki | 1: dari sudut siku-siku ke titik tengah hipotenusa | 1: hanya posisi awal | Ya |
-| Trapesium siku-siku dengan tepat satu pasang sisi sejajar | 0: tidak ada sumbu simetri | 1: hanya posisi awal | Tidak |
-| Persegi panjang bukan persegi | 2: melalui titik tengah pasangan sisi berhadapan | 2: posisi awal dan 180° | Ya |
+# Persamaan kedua garis
 
-Garis pada segitiga berikut adalah **satu-satunya sumbu simetri**. Rotasi setengah putaran tidak membuat segitiga berimpit kembali.
+<BlockMath math="\begin{aligned}
+g:\ 2x-3y=6\quad&\Rightarrow\quad y=\tfrac23x-2\\
+h:\ m_h=-\tfrac32\quad&\Rightarrow\quad y=-\tfrac32x+4
+\end{aligned}" />
 
-<MathVisual title="Sumbu simetri segitiga siku-siku sama kaki" description="Garis pada segitiga berikut adalah satu-satunya sumbu simetri. Rotasi setengah putaran tidak membuat segitiga berimpit kembali."
- scene={{space:"plane",frame:{kind:"cartesian",x:{min:-0.5,max:3.5},y:{min:-0.5,max:3.5}},view:{kind:"fit",padding:0.1},objects:[{id:"triangle",kind:"polygon",appearance:"primary",vertices:[{x:0,y:0},{x:3,y:0},{x:0,y:3}]},{id:"axis",kind:"segment",appearance:"highlight",from:{x:0,y:0},to:{x:1.5,y:1.5}}],labels:[]}}
- labels={{}}
-/>
+Gradien <InlineMath math="g" /> adalah <InlineMath math="\tfrac23" />, jadi pernyataan pertama **benar**. Garis <InlineMath math="h" /> memotong sumbu <InlineMath math="x" /> saat <InlineMath math="y=0" />, yaitu <InlineMath math="x=\tfrac83" />, bukan 6. Pernyataan kedua salah.
 
-Bangun (1), (2), dan (4) memenuhi syarat. Jadi, ada 3 bangun.
+# Titik potong dan luas segitiga
+
+Substitusikan persamaan <InlineMath math="h" /> ke persamaan <InlineMath math="g" />.
+
+<BlockMath math="\begin{aligned}
+2x-3\left(-\tfrac32x+4\right)&=6\\
+\tfrac{13}{2}x&=18\\
+x=\tfrac{36}{13},\qquad y&=-\tfrac32\cdot\tfrac{36}{13}+4=-\tfrac{2}{13}
+\end{aligned}" />
+
+Titik potongnya memiliki ordinat negatif, jadi **berada di kuadran IV**, bukan kuadran I. Pernyataan ketiga salah.
+
+Garis <InlineMath math="g" /> memotong sumbu <InlineMath math="x" /> di <InlineMath math="(3,0)" /> dan sumbu <InlineMath math="y" /> di <InlineMath math="(0,-2)" />. Segitiga yang terbentuk bersama kedua sumbu siku-siku dengan sisi 3 dan 2, sehingga luasnya <InlineMath math="\tfrac12\cdot3\cdot2=3" />. Pernyataan keempat benar.
+
+Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.

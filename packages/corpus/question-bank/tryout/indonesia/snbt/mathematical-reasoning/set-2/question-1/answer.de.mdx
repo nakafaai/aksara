@@ -1,34 +1,15 @@
-Wir erhalten drei verschiedene Grundstücksflächen: <InlineMath math="120\text{ m}^2" />, <InlineMath math="180\text{ m}^2" /> und <InlineMath math="240\text{ m}^2" />. Ziel ist es, diese Grundstücke in Parzellen gleicher Größe aufzuteilen und so die Fläche jeder Parzelle zu maximieren.
+Zwei Schritte werden leicht übersehen: **Die Strecke wird zuerst aufgerundet**, und der Grundpreis deckt schon die ersten 2 km ab.
 
-Dieses Problem kann gelöst werden, indem der **größte gemeinsame Teiler (ggT)** der drei Zahlen ermittelt wird. Der ggT liefert uns den größten Wert, der alle drei Landflächen gleichmäßig aufteilt.
+# Die Strecke runden
 
-Zunächst führen wir für jede Flächenzahl eine Primfaktorzerlegung durch:
+Die Strecke von 7,3 km wird auf 8 km aufgerundet. Davon sind die ersten 2 km im Grundpreis enthalten, also werden **die übrigen 6 km** pro Kilometer berechnet.
 
-<BlockMath math="120 = 2^3 \times 3 \times 5" />
+# Den Fahrpreis berechnen
 
-<BlockMath math="180 = 2^2 \times 3^2 \times 5" />
+<BlockMath math="10\,000+6\cdot2\,500=10\,000+15\,000=25\,000" />
 
-<BlockMath math="240 = 2^4 \times 3 \times 5" />
+Die Fahrt liegt außerhalb der Stoßzeit, der Preis wird also nicht mit 1,2 multipliziert.
 
-Um den ggT zu bestimmen, nehmen wir die gemeinsamen Primfaktoren mit dem **niedrigsten Exponenten**:
-- Faktor <InlineMath math="2" />: Der kleinste Exponent ist <InlineMath math="2" />, also verwenden wir den Faktor <InlineMath math="2^2" />.
-- Faktor <InlineMath math="3" />: Der kleinste Exponent ist <InlineMath math="1" />, also verwenden wir den Faktor <InlineMath math="3^1=3" />.
-- Faktor <InlineMath math="5" />: Der kleinste Exponent ist <InlineMath math="1" />, also verwenden wir den Faktor <InlineMath math="5^1=5" />.
+Ein Preis von 22 500 Rupiah rundet 7,3 km auf 7 km ab. Ein Preis von 23 250 Rupiah rundet gar nicht. Ein Preis von 30 000 Rupiah entsteht, wenn man wie zur Stoßzeit mit 1,2 multipliziert oder auch die ersten 2 km mit 2 500 Rupiah pro Kilometer berechnet.
 
-Damit ergibt sich der ggT:
-
-<BlockMath math="\text{ggT} = 2^2 \times 3 \times 5" />
-
-<BlockMath math="\text{ggT} = 4 \times 3 \times 5" />
-
-<BlockMath math="\text{ggT} = 60" />
-
-Daher beträgt die größtmögliche Fläche für jedes Grundstück <InlineMath math="60\text{ m}^2" />.
-
-Prüfe, dass diese Fläche alle Grundstücke ohne Rest aufteilt:
-
-| Standort | Anzahl der Parzellen |
-| --- | --- |
-| A | <InlineMath math="120/60=2" /> |
-| B | <InlineMath math="180/60=3" /> |
-| C | <InlineMath math="240/60=4" /> |
+Dewi zahlt also **25 000 Rupiah**.

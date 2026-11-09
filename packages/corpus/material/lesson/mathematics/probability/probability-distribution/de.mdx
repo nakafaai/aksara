@@ -3,7 +3,7 @@ export const metadata = {
   description: "Erstelle Wahrscheinlichkeitsverteilungen für einen und zwei Würfel und berechne Ereigniswahrscheinlichkeiten aus den Ergebnismengen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-24",
+  dateModified: "2026-11-08",
   subject: "Wahrscheinlichkeit",
 };
 
@@ -107,6 +107,63 @@ Da die Würfel fair und unabhängig sind, hat jedes geordnete Paar die Wahrschei
 
 Da die Würfel verschiedene Farben haben, unterscheidet sich eine rote <InlineMath math="3" /> mit einer weißen <InlineMath math="2" /> von einer roten <InlineMath math="2" /> mit einer weißen <InlineMath math="3" />. Die Reihenfolge hält fest, welcher Würfel welche Zahl zeigt.
 
+Jeder der 36 Punkte ist ein geordnetes Paar (rot, weiß). Die sechs Paare auf der Geraden <InlineMath math="\text{rot} + \text{weiß} = 7" /> machen 7 zur wahrscheinlichsten Summe, mit der Wahrscheinlichkeit <InlineMath math="\tfrac{6}{36} = \tfrac16" />.
+
+<MathVisual
+  title={<>Die 36 Ergebnisse zweier Würfel</>}
+  description={<>Ein 6-mal-6-Gitter geordneter Paare, die sechs Paare mit der Summe 7 auf der Geraden <InlineMath math="x + y = 7" /> markiert.</>}
+  labels={{
+    seven: <InlineMath math="x + y = 7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.4, max: 6.6 }, y: { min: 0.4, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "seven", kind: "segment", from: { x: 1, y: 6 }, to: { x: 6, y: 1 }, appearance: "construction" },
+      { id: "o11", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "o12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "o13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "o14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "o15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "o16", kind: "point", at: { x: 1, y: 6 }, appearance: "answer" },
+      { id: "o21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "o22", kind: "point", at: { x: 2, y: 2 }, appearance: "reference" },
+      { id: "o23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "o24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "o25", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+      { id: "o26", kind: "point", at: { x: 2, y: 6 }, appearance: "reference" },
+      { id: "o31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "o32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "o33", kind: "point", at: { x: 3, y: 3 }, appearance: "reference" },
+      { id: "o34", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "o35", kind: "point", at: { x: 3, y: 5 }, appearance: "reference" },
+      { id: "o36", kind: "point", at: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "o41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "o42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "o43", kind: "point", at: { x: 4, y: 3 }, appearance: "answer" },
+      { id: "o44", kind: "point", at: { x: 4, y: 4 }, appearance: "reference" },
+      { id: "o45", kind: "point", at: { x: 4, y: 5 }, appearance: "reference" },
+      { id: "o46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "o51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "o52", kind: "point", at: { x: 5, y: 2 }, appearance: "answer" },
+      { id: "o53", kind: "point", at: { x: 5, y: 3 }, appearance: "reference" },
+      { id: "o54", kind: "point", at: { x: 5, y: 4 }, appearance: "reference" },
+      { id: "o55", kind: "point", at: { x: 5, y: 5 }, appearance: "reference" },
+      { id: "o56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "o61", kind: "point", at: { x: 6, y: 1 }, appearance: "answer" },
+      { id: "o62", kind: "point", at: { x: 6, y: 2 }, appearance: "reference" },
+      { id: "o63", kind: "point", at: { x: 6, y: 3 }, appearance: "reference" },
+      { id: "o64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "o65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "o66", kind: "point", at: { x: 6, y: 6 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "seven", objectId: "seven", at: { x: 6, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
 ### Wahrscheinlichkeitsverteilung für die Summe zweier Würfel
 
 Ist die Zufallsgröße die _Summe_ beider Würfel, beträgt ihr kleinster Wert <InlineMath math="1+1=2" /> und ihr größter Wert <InlineMath math="6+6=12" />. Die Summen entstehen aus **unterschiedlich vielen geordneten Paaren** und haben daher verschiedene Wahrscheinlichkeiten:
@@ -128,8 +185,8 @@ Ist die Zufallsgröße die _Summe_ beider Würfel, beträgt ihr kleinster Wert <
 Die Summe <InlineMath math="7" /> ist am wahrscheinlichsten, weil <InlineMath math="6" /> geordnete Paare zu ihr führen. Die Summen <InlineMath math="2" /> und <InlineMath math="12" /> entstehen dagegen jeweils nur aus einem Paar. Dieser Unterschied ist entscheidend, wenn ein Spiel oder Modell die Summe beider Würfel verwendet.
 
 <BarChart
-  title="Ergebnisanzahl für jede Würfelsumme"
-  description="Der mittlere Balken ist am höchsten, weil mehr geordnete Paare diese Summe ergeben."
+  title={<>Ergebnisanzahl für jede Würfelsumme</>}
+  description={<>Der mittlere Balken ist am höchsten, weil mehr geordnete Paare diese Summe ergeben.</>}
   data={[{ name: "2", value: 1 }, { name: "3", value: 2 }, { name: "4", value: 3 }, { name: "5", value: 4 }, { name: "6", value: 5 }, { name: "7", value: 6 }, { name: "8", value: 5 }, { name: "9", value: 4 }, { name: "10", value: 3 }, { name: "11", value: 2 }, { name: "12", value: 1 }]}
   chartConfig={{ value: { label: "Anzahl der Paare", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
   yAxisLabel="Anzahl der Paare"
@@ -172,3 +229,13 @@ Die Verteilung ist somit gültig. Mindestens zwei Köpfe bedeuten <InlineMath ma
 <BlockMath math="P(X \geq 2)=P(X=2)+P(X=3)=\frac{3}{8}+\frac{1}{8}=\frac{1}{2}" />
 
 Da die Ergebnismenge zuerst vollständig aufgeschrieben wurde, lässt sich die Verteilung prüfen: Jedes der <InlineMath math="8" /> Ergebnisse erscheint in _genau einer Zeile_.
+
+Die Lösung als Diagramm: Die Balken <InlineMath math="\tfrac18, \tfrac38, \tfrac38, \tfrac18" /> für 0 bis 3 Mal Kopf ergeben zusammen 1, und die beiden rechten Balken liefern <InlineMath math="P(X \geq 2) = \tfrac12" />.
+
+<BarChart
+  title={<>Kopf bei drei Münzwürfen</>}
+  description={<>Balken von <InlineMath math="P(X = x)" /> für <InlineMath math="x = 0" /> bis 3 Mal Kopf.</>}
+  yAxisLabel="Wahrscheinlichkeit"
+  data={[1, 3, 3, 1].map((c, x) => ({ name: String(x), value: c / 8 }))}
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

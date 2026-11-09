@@ -1,46 +1,22 @@
-Die **Gesamtzahl der Befragten** begrenzt die Vereinigung beider Gruppen:
+Zähle zuerst die Zahlen, die durch 4 oder 6 teilbar sind, und entferne dann diejenigen, die auch durch 9 teilbar sind. Für den ersten Schritt brauchst du **das Prinzip von Inklusion und Exklusion**, weil die Vielfachen von 12 doppelt gezählt werden.
 
-- Die Grundmenge <InlineMath math="S" /> umfasst <InlineMath math="300" /> Jugendliche.
-- Die Sportmenge <InlineMath math="O" /> enthält <InlineMath math="135" /> Jugendliche.
-- Die Naturmenge <InlineMath math="C" /> enthält <InlineMath math="255" /> Jugendliche.
+# Teilbar durch 4 oder 6
 
-Gesucht ist die Differenz zwischen der größtmöglichen Anzahl <InlineMath math="B" /> und der kleinstmöglichen Anzahl <InlineMath math="A" /> in der Schnittmenge <InlineMath math="O \cap C" />.
+Die gemeinsamen Vielfachen von 4 und 6 sind **die Vielfachen ihres kleinsten gemeinsamen Vielfachen** 12.
 
-# Kleinstmögliche Schnittmenge
+<BlockMath math="\begin{aligned}
+\left\lfloor\tfrac{300}{4}\right\rfloor+\left\lfloor\tfrac{300}{6}\right\rfloor-\left\lfloor\tfrac{300}{12}\right\rfloor&=75+50-25\\
+&=100
+\end{aligned}" />
 
-Die Schnittmenge ist am kleinsten, wenn die **Vereinigung möglichst groß** ist. Sie kann höchstens alle <InlineMath math="300" /> Befragten umfassen. Dieser Grenzfall ist erreichbar, wenn jede Person an mindestens einer der beiden Aktivitäten teilnimmt.
+# Auch durch 9 teilbar
 
-<BlockMath math="\begin{aligned}n(O\cup C)&=n(O)+n(C)\\&\quad{}-n(O\cap C)\end{aligned}" />
+Eine Zahl aus dieser Gruppe, die durch 9 teilbar ist, ist ein Vielfaches von <InlineMath math="\text{kgV}(4,9)=36" /> oder von <InlineMath math="\text{kgV}(6,9)=18" />. Jedes Vielfache von 36 ist auch ein Vielfaches von 18, also **genügt es, die Vielfachen von 18 zu zählen**.
 
-<BlockMath math="300 = 135 + 255 - A" />
+<BlockMath math="\left\lfloor\tfrac{300}{18}\right\rfloor=16" />
 
-<BlockMath math="300 = 390 - A" />
+Übrig bleiben <InlineMath math="100-16=84" /> Zahlen.
 
-<BlockMath math="A = 390 - 300" />
+Der Wert 100 vergisst, die Vielfachen von 9 zu entfernen. Der Wert 92 entfernt nur die 8 Vielfachen von 36. Der Wert 76 entfernt die 8 Vielfachen von 36 und die 16 Vielfachen von 18 zusammen, obwohl die Vielfachen von 36 schon unter den Vielfachen von 18 sind. Der Wert 67 entfernt alle 33 Vielfachen von 9 von 1 bis 300, auch die, die nie in der ersten Gruppe waren.
 
-<BlockMath math="A = 90" />
-
-# Größtmögliche Schnittmenge
-
-Die Schnittmenge ist am größten, wenn die kleinere Menge vollständig in der größeren liegt. Dann nehmen **alle Sportteilnehmenden** auch an den Naturaktivitäten teil.
-
-<BlockMath math="B = \min(n(O), n(C))" />
-
-<BlockMath math="B = \min(135, 255)" />
-
-<BlockMath math="B = 135" />
-
-# Berechnung der Differenz
-
-Beide Grenzen lassen sich mit folgender **Verteilung der Teilnehmenden** erreichen. Jede Zeile ergibt weiterhin 300.
-
-| Grenze | Nur Sport | Beides | Nur Natur | Keines |
-| --- | --- | --- | --- | --- |
-| A | 45 | 90 | 165 | 0 |
-| B | 0 | 135 | 120 | 45 |
-
-<BlockMath math="B - A = 135 - 90" />
-
-<BlockMath math="B - A = 45" />
-
-Damit beträgt die Differenz zwischen <InlineMath math="B" /> und <InlineMath math="A" /> genau <InlineMath math="45\text{ Jugendliche}" />.
+Es gibt also **84** solche Zahlen.

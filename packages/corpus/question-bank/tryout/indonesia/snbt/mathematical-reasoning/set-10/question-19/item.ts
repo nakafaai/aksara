@@ -1,29 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  stimulus: "photo-frame",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "$$4\\sqrt{22}$$",
+          column: 1,
+          label:
+            "Setiap kali lebar bingkai bertambah 1 cm, keliling luar bingkai bertambah 8 cm.",
         },
         {
-          correct: false,
-          label: "$$4\\sqrt{13}$$",
+          column: 2,
+          label:
+            "Jika lebar bingkai 5 cm, keliling luar bingkai adalah 140 cm.",
         },
         {
-          correct: false,
-          label: "$$4\\sqrt{18}$$",
+          column: 1,
+          label:
+            "Berapa pun lebar bingkainya, panjang luar bingkai selalu 12 cm lebih panjang daripada lebar luarnya.",
         },
         {
-          correct: false,
-          label: "$$8\\sqrt6$$",
-        },
-        {
-          correct: false,
-          label: "$$8\\sqrt{11}$$",
+          column: 2,
+          label:
+            "Perbandingan panjang dan lebar ukuran luar bingkai sama dengan perbandingan panjang dan lebar foto.",
         },
       ],
     },

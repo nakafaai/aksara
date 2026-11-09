@@ -1,48 +1,21 @@
-Cari **batas atas yang dapat dicapai** untuk jumlah <InlineMath math="x+y" /> pada sistem berikut:
+Sebelum memakai rumus jumlah dan hasil kali akar, periksa apakah persamaannya dapat difaktorkan. Ternyata **bentuknya pas dengan <InlineMath math="(x-3)(x-k)" />**, karena <InlineMath math="3+k" /> adalah jumlah dan <InlineMath math="3k" /> adalah hasil kali.
 
-<BlockMath math="\begin{cases} x \ge 0 \\ y \ge 0 \\ x + 5y \le 10 \\ 5x + y \le a^2 - 5 \end{cases}" />
+# Akar-akar persamaan
 
-Dengan menjumlahkan kedua pertidaksamaan miring, kita memperoleh batas atas untuk <InlineMath math="x + y" />:
+<BlockMath math="x^2-(k+3)x+3k=(x-3)(x-k)=0" />
 
-<BlockMath math="\begin{aligned}&(x+5y)+(5x+y)\\&\quad\le10+(a^2-5)\end{aligned}" />
+Akar-akarnya adalah 3 dan <InlineMath math="k" />, **apa pun nilai k**.
 
-<BlockMath math="6x + 6y \le 5 + a^2" />
+# Syarat selisih akar
 
-<BlockMath math="x + y \le \frac{a^2 + 5}{6}" />
+Selisih kedua akar adalah 5, jadi <InlineMath math="k" /> **berjarak 5 dari 3**.
 
-Jika <InlineMath math="a=3" /> atau <InlineMath math="a=4" />, batas ini berturut-turut bernilai <InlineMath math="\frac{7}{3}" /> atau <InlineMath math="\frac{7}{2}" />. Keduanya kurang dari <InlineMath math="5" />. Jika <InlineMath math="a=16" /> atau <InlineMath math="a=25" />, titik <InlineMath math="(6,0)" /> sudah memenuhi semua pertidaksamaan dan menghasilkan <InlineMath math="x+y=6" />. Nilai maksimumnya berarti lebih dari <InlineMath math="5" />.
+<BlockMath math="\lvert k-3\rvert=5\;\Longrightarrow\;k=8\;\text{atau}\;k=-2" />
 
-Sekarang periksa <InlineMath math="a=5" />. Batas atasnya menjadi:
+Pemeriksaan: untuk <InlineMath math="k=8" /> akarnya 3 dan 8, dan untuk <InlineMath math="k=-2" /> akarnya 3 dan <InlineMath math="-2" />. Selisih keduanya 5.
 
-<BlockMath math="x+y \le \frac{5^2+5}{6}=5" />
+<BlockMath math="8+(-2)=6" />
 
-Cari titik potong kedua garis batas dengan eliminasi:
+Nilai 8 hanya memakai satu kemungkinan. Nilai 10 adalah selisih kedua nilai <InlineMath math="k" />, bukan jumlahnya. Nilai 3 adalah akar yang tetap, dan nilai 5 adalah selisih akar yang diketahui.
 
-<BlockMath math="\begin{aligned}x+5y&=10\\5x+y&=20\\5(x+5y)-(5x+y)&=50-20\\24y&=30\\y&=\frac54\\x&=10-5\cdot\frac54=\frac{15}{4}\end{aligned}" />
-
-Titik potong <InlineMath math="\left(\frac{15}{4},\frac{5}{4}\right)" /> memenuhi kedua persamaan batas:
-
-<BlockMath math="\frac{15}{4}+5\left(\frac{5}{4}\right)=10" />
-
-<BlockMath math="\begin{aligned}5\left(\frac{15}{4}\right)+\frac54&=20\\&=5^2-5\end{aligned}" />
-
-<BlockMath math="\frac{15}{4}+\frac{5}{4}=5" />
-
-Jadi, <InlineMath math="5" /> merupakan batas atas sekaligus nilai yang dapat dicapai. Dengan demikian, <InlineMath math="a=5" />.
-
-<MathVisual
- title="Daerah layak untuk a = 5"
- description="Titik sudut tempat dua batas berpotongan mencapai jumlah koordinat lima."
- scene={{
- space: "plane",
- frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 4 } },
- view: { kind: "fit", padding: 0.5 },
- objects: [
- { id: "feasible", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 3.75, y: 1.25 }, { x: 0, y: 2 }] },
- { id: "objective", kind: "segment", appearance: "secondary", from: { x: 2, y: 3 }, to: { x: 5, y: 0 } },
- { id: "maximum", kind: "point", appearance: "answer", at: { x: 3.75, y: 1.25 } },
- ],
- labels: [{ key: "maximum", objectId: "maximum", at: { x: 3.75, y: 1.25 }, placement: "above-right" }],
- }}
- labels={{ maximum: <InlineMath math="(15/4,5/4)" /> }}
-/>
+Jadi, jumlah semua nilai <InlineMath math="k" /> adalah **6**.

@@ -1,24 +1,23 @@
-Da jede Arbeitskraft mit derselben konstanten Leistung arbeitet, bleibt der **gesamte Arbeitsaufwand** in Personentagen unverändert.
+Ein Betrag ändert seine Form dort, wo sein Inneres null ist, also bei <InlineMath math="x=1" /> und <InlineMath math="x=7" />. Diese zwei Stellen teilen die Zahlengerade in drei Bereiche, und **jeder Bereich wird einzeln gelöst**.
 
-Gegeben:
-*   <InlineMath math="15\text{ Arbeitskräfte}" /> erledigen die Arbeit in <InlineMath math="35\text{ Tagen}" />.
-*   Die Arbeit soll in <InlineMath math="3" /> Wochen <InlineMath math="= 3 \times 7 = 21\text{ Tagen}" /> abgeschlossen sein.
+# Drei Bereiche
 
-Sei <InlineMath math="P" /> die Gesamtzahl der Arbeitskräfte, die für <InlineMath math="21\text{ Tage}" /> benötigt wird.
+Für <InlineMath math="x<1" /> sind beide Inneren negativ. Für <InlineMath math="1\le x\le7" /> ist nur das zweite Innere negativ. Für <InlineMath math="x>7" /> sind beide positiv.
 
-<BlockMath math="15 \times 35 = P \times 21" />
+<BlockMath math="\begin{aligned}
+x<1:&\quad (1-x)+(7-x)=10 \;\Rightarrow\; 8-2x=10 \;\Rightarrow\; x=-1\\
+1\le x\le7:&\quad (x-1)+(7-x)=6\ne10\\
+x>7:&\quad (x-1)+(x-7)=10 \;\Rightarrow\; 2x-8=10 \;\Rightarrow\; x=9
+\end{aligned}" />
 
-<BlockMath math="525 = 21P" />
+Der Wert <InlineMath math="x=-1" /> ist tatsächlich kleiner als 1 und <InlineMath math="x=9" /> tatsächlich größer als 7, also **gelten beide Lösungen**. Der mittlere Bereich liefert keine Lösung.
 
-<BlockMath math="P = \frac{525}{21}" />
+# Deutung als Abstand
 
-<BlockMath math="P = 25" />
+Der Term <InlineMath math="\lvert x-1\rvert+\lvert x-7\rvert" /> ist **die Summe der Abstände von <InlineMath math="x" /> zu den Punkten 1 und 7**. Zwischen den beiden Punkten ist diese Summe immer 6. Damit sie 10 wird, muss <InlineMath math="x" /> 2 Einheiten außerhalb eines der Enden liegen, also bei <InlineMath math="-1" /> oder bei <InlineMath math="9" />.
 
-Insgesamt werden <InlineMath math="25\text{ Arbeitskräfte}" /> benötigt.
+<BlockMath math="(-1)(9)=-9" />
 
-In der Frage wird nach den **zusätzlichen** Arbeitskräften gefragt.
-Zu Beginn sind bereits <InlineMath math="15" /> Arbeitskräfte eingeplant.
+Die Werte 9 und <InlineMath math="-1" /> verwenden nur eine Lösung. Der Wert 8 ist die Summe der beiden Lösungen und nicht ihr Produkt. Der Wert 7 ist das Produkt der Grenzstellen 1 und 7.
 
-<BlockMath math="25-15=10" />
-
-Daher werden <InlineMath math="10" /> zusätzliche Arbeitskräfte benötigt.
+Das Produkt aller Lösungen ist also **<InlineMath math="-9" />**.

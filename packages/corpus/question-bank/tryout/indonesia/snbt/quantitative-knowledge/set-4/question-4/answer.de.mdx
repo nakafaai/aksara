@@ -1,20 +1,19 @@
-Gegeben sind die Funktionen <InlineMath math="f(x) = x^2 - x" /> und <InlineMath math="g(x) = 2x - 1" />.
-Gesucht ist die **zusammengesetzte Funktion** <InlineMath math="(f \circ g)(x)" />.
+Setze <InlineMath math="t=2^x" />, dann ist <InlineMath math="t>0" /> und <InlineMath math="2^{-x}=\frac1t" />. Die Funktion wird zu <InlineMath math="f(x)=t+\frac1t" />, also **eine positive Zahl plus ihr Kehrwert**.
 
-<BlockMath math="(f \circ g)(x) = f(g(x))" />
+# Minimalwert der Funktion
 
-Wir setzen <InlineMath math="g(x)" /> für das Argument von <InlineMath math="f" /> ein.
+Die Differenz <InlineMath math="f(x)-2" /> lässt sich als Quadrat schreiben.
 
-<BlockMath math="(f \circ g)(x) = f(2x - 1)" />
+<BlockMath math="t+\frac1t-2=\frac{t^2-2t+1}{t}=\frac{(t-1)^2}{t}\ge0" />
 
-<BlockMath math="\begin{aligned}(f\circ g)(x)&=(2x-1)^2\\&\quad-(2x-1)\end{aligned}" />
+Der Zähler ist ein Quadrat und der Nenner positiv, also **gilt <InlineMath math="f(x)\ge2" /> für jedes <InlineMath math="x" />**. Die zweite Aussage ist wahr. Gleichheit gilt nur für <InlineMath math="t=1" />, also <InlineMath math="x=0" />. Die Gleichung <InlineMath math="f(x)=2" /> hat daher nur eine Lösung, die erste Aussage ist falsch.
 
-Wir multiplizieren die Klammern aus und fassen **gleichartige Terme** zusammen.
+# Die zwei übrigen Aussagen
 
-<BlockMath math="\begin{aligned}
-(f\circ g)(x)&=4x^2-4x+1 \\
-&\quad{}-2x+1 \\
-&=4x^2-6x+2
-\end{aligned}" />
+Quadriere <InlineMath math="f(1)" />. Das gemischte Glied ist <InlineMath math="2\cdot2^1\cdot2^{-1}=2" />, deshalb **bleibt nach Abzug von 2 genau <InlineMath math="f(2)" /> übrig**.
 
-Damit ist <InlineMath math="(f \circ g)(x)" /> gleich <InlineMath math="4x^2 - 6x + 2" />.
+<BlockMath math="\bigl(f(1)\bigr)^2-2=\left(2+\tfrac12\right)^2-2=4+2+\tfrac14-2=4\tfrac14=f(2)" />
+
+Die dritte Aussage ist wahr. Für die vierte Aussage genügt ein Gegenbeispiel: <InlineMath math="f(1)=2{,}5" />, aber <InlineMath math="2f(0)=2\cdot2=4" />. Der Faktor 2 multipliziert nur den Term <InlineMath math="2^x" />, während der Term <InlineMath math="2^{-x}" /> halbiert wird. Die vierte Aussage ist falsch.
+
+Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **wahr** und die vierte **falsch**.

@@ -16,7 +16,7 @@ Two events are **not mutually exclusive** when both can happen on the same outco
 The intersection is subtracted **once** because its outcomes are already counted in <InlineMath math="P(A)" /> and counted again in <InlineMath math="P(B)" />.
 
 <MathVisual
-  title="A Venn diagram for one roll of a die"
+  title={<>A Venn diagram for one roll of a die</>}
   description={<>The event <InlineMath math="A" /> = an even result and <InlineMath math="B" /> = a result greater than 3. The results 4 and 6 lie in the overlap of the two circles.</>}
   scene={{
     space: "plane",
@@ -81,8 +81,8 @@ Count with the numbers of elements first. When you add <InlineMath math="n(A)" /
 Divide every term by <InlineMath math="n(S)" /> for a sample space whose outcomes are equally likely, and you get the probability formula. The probability formula itself holds for any sample space, and only the division by <InlineMath math="n(S)" /> needs equally likely outcomes. For the die, <InlineMath math="3 + 3 - 2 = 4" /> elements, the same as the list <InlineMath math="\{2, 4, 5, 6\}" />. Without the subtraction, the value is <InlineMath math="\frac{6}{6} = 1" />, as if every roll landed in <InlineMath math="A" /> or <InlineMath math="B" />, although the results 1 and 3 belong to neither.
 
 <Mermaid
-  title="Choosing the formula for P(A or B)"
-  description="The contents of the intersection decide whether its probability must be subtracted."
+  title={<>Choosing the formula for P(A or B)</>}
+  description={<>The contents of the intersection decide whether its probability must be subtracted.</>}
   chart={`flowchart TD
   A["Write out the intersection of A and B"] --> B{"Is the intersection empty?"}
   B -->|"yes, mutually exclusive"| C["P(A) + P(B)"]
@@ -100,7 +100,7 @@ There are <InlineMath math="13" /> hearts, <InlineMath math="4" /> kings, and **
 <BlockMath math="P(A \cup B) = \frac{13}{52} + \frac{4}{52} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13}" />
 
 <MathVisual
-  title="The number of cards in each region of the Venn diagram"
+  title={<>The number of cards in each region of the Venn diagram</>}
   description={<>The circle <InlineMath math="A" /> holds the 13 hearts and the circle <InlineMath math="B" /> holds the 4 kings. The king of hearts lies in the overlap.</>}
   scene={{
     space: "plane",
@@ -146,6 +146,43 @@ Of 40 students, 25 like mathematics, 18 like physics, and 10 like both. One stud
 </MathContainer>
 
 The second probability uses the **complement**: a student who likes neither is every student outside <InlineMath math="M \cup F" />. Check with the Venn regions: <InlineMath math="25 - 10 = 15" /> like only mathematics, <InlineMath math="18 - 10 = 8" /> like only physics, and <InlineMath math="10" /> like both. That makes <InlineMath math="33" />, and <InlineMath math="40 - 33 = 7" /> students like neither.
+
+Fill the Venn diagram from the inside out: 10 students like both, so <InlineMath math="25 - 10 = 15" /> like only mathematics and <InlineMath math="18 - 10 = 8" /> only physics. Together that is <InlineMath math="15 + 10 + 8 = 33" />, and the remaining 7 like neither.
+
+<MathVisual
+  title={<>The survey in a Venn diagram</>}
+  description={<>Circles <InlineMath math="M" /> and <InlineMath math="F" /> for mathematics and physics with 15, 10 and 8 students in their regions and 7 outside both.</>}
+  labels={{
+    m: <InlineMath math="M" />,
+    f: <InlineMath math="F" />,
+    "only-m": <InlineMath math="15" />,
+    both: <InlineMath math="10" />,
+    "only-f": <InlineMath math="8" />,
+    neither: <InlineMath math="7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "s", kind: "polygon", vertices: [{ x: -19 / 5, y: -12 / 5 }, { x: 19 / 5, y: -12 / 5 }, { x: 19 / 5, y: 12 / 5 }, { x: -19 / 5, y: 12 / 5 }], appearance: "reference" },
+      { id: "m", kind: "circle", center: { x: -9 / 10, y: 0 }, radius: 17 / 10, appearance: "primary" },
+      { id: "f", kind: "circle", center: { x: 9 / 10, y: 0 }, radius: 17 / 10, appearance: "secondary" },
+      { id: "only-m", kind: "point", at: { x: -8 / 5, y: 0 }, appearance: "primary" },
+      { id: "both", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "only-f", kind: "point", at: { x: 8 / 5, y: 0 }, appearance: "secondary" },
+      { id: "neither", kind: "point", at: { x: 3, y: -9 / 5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: -9 / 10, y: 17 / 10 }, placement: "above" },
+      { key: "f", objectId: "f", at: { x: 9 / 10, y: 17 / 10 }, placement: "above" },
+      { key: "only-m", objectId: "only-m", at: { x: -8 / 5, y: 0 }, placement: "below" },
+      { key: "both", objectId: "both", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "only-f", objectId: "only-f", at: { x: 8 / 5, y: 0 }, placement: "below" },
+      { key: "neither", objectId: "neither", at: { x: 3, y: -9 / 5 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Common Mistakes
 

@@ -1,47 +1,50 @@
-Triangles <InlineMath math="ABC" /> and <InlineMath math="DEA" /> are similar, with **corresponding vertices** <InlineMath math="A \leftrightarrow D" />, <InlineMath math="B \leftrightarrow E" />, and <InlineMath math="C \leftrightarrow A" />.
+Points <InlineMath math="A" /> and <InlineMath math="B" /> both lie above the <InlineMath math="x" />-axis, so the path <InlineMath math="A\to P\to B" /> must touch the axis and come back up. The right move is **reflecting one of the points in the <InlineMath math="x" />-axis**, which turns the path into a straight line.
 
-Point <InlineMath math="C" /> shares its horizontal coordinate with <InlineMath math="B" /> and its vertical coordinate with <InlineMath math="A" />, so <InlineMath math="C(8,1)" />.
+<MathVisual
+  title={<>Shortest path through the <InlineMath math="x" />-axis</>}
+  description={<>The reflection of <InlineMath math="B" /> in the <InlineMath math="x" />-axis is <InlineMath math="B'" />. The segment <InlineMath math="PB" /> is as long as <InlineMath math="PB'" />, so the shortest path follows the straight line from <InlineMath math="A" /> to <InlineMath math="B'" />.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.12 },
+    objects: [
+      { id: "path-ap", kind: "segment", appearance: "answer", from: { x: 1, y: 2 }, to: { x: 3, y: 0 } },
+      { id: "path-pb", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 7, y: 4 } },
+      { id: "mirror-pb", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 7, y: -4 } },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 7, y: 4 } },
+      { id: "point-b-image", kind: "point", appearance: "construction", at: { x: 7, y: -4 } },
+      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "point-b", at: { x: 7, y: 4 }, placement: "above-right" },
+      { key: "image", objectId: "point-b-image", at: { x: 7, y: -4 }, placement: "below-right" },
+      { key: "p", objectId: "point-p", at: { x: 3, y: 0 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A(1,2)" />,
+    b: <InlineMath math="B(7,4)" />,
+    image: <InlineMath math="B'(7,-4)" />,
+    p: <InlineMath math="P(3,0)" />,
+  }}
+/>
 
-# Calculating Side Lengths
+# Reflecting point B
 
-For triangle <InlineMath math="ABC" />, which is a **right triangle** at <InlineMath math="C" />:
+The reflection of <InlineMath math="B(7,4)" /> in the <InlineMath math="x" />-axis is <InlineMath math="B'(7,-4)" />. Every point <InlineMath math="P" /> on the <InlineMath math="x" />-axis is equally far from <InlineMath math="B" /> and from <InlineMath math="B'" />, so <InlineMath math="AP+PB=AP+PB'" />. A path from <InlineMath math="A" /> to <InlineMath math="B'" /> is **shortest when it is straight**, and that straight line does cross the <InlineMath math="x" />-axis because <InlineMath math="A" /> is above the axis and <InlineMath math="B'" /> is below it.
 
-<BlockMath math="AC = |8 - 2| = 6" />
+<BlockMath math="AP+PB\ge AB'=\sqrt{(7-1)^2+(-4-2)^2}=\sqrt{72}=6\sqrt2" />
 
-<BlockMath math="BC = |4 - 1| = 3" />
+# Finding point P
 
-For triangle <InlineMath math="ADE" />:
+The line <InlineMath math="AB'" /> has gradient <InlineMath math="\frac{-4-2}{7-1}=-1" />, so its equation is <InlineMath math="y-2=-(x-1)" />. It meets the <InlineMath math="x" />-axis at <InlineMath math="P(3,0)" />. **Check the value**: <InlineMath math="AP=\sqrt{4+4}=2\sqrt2" /> and <InlineMath math="PB=\sqrt{16+16}=4\sqrt2" />, which add up to <InlineMath math="6\sqrt2" />.
 
-<BlockMath math="AE = |1 - (-3)| = 4" />
+The value <InlineMath math="2\sqrt{10}" /> is the direct distance <InlineMath math="AB" />, which never touches the <InlineMath math="x" />-axis. The value <InlineMath math="5+\sqrt{13}" /> chooses <InlineMath math="P(4,0)" /> below the midpoint of the <InlineMath math="x" />-coordinates. The value <InlineMath math="2+2\sqrt{13}" /> chooses <InlineMath math="P" /> directly below <InlineMath math="A" />, and <InlineMath math="4+2\sqrt{10}" /> chooses <InlineMath math="P" /> directly below <InlineMath math="B" />. All three are longer than <InlineMath math="6\sqrt2" />.
 
-# Using Similarity
-
-Since both triangles are similar, the ratios of **corresponding sides** are equal.
-
-<BlockMath math="\frac{AE}{BC} = \frac{AD}{AC}" />
-
-Substitute the known values:
-
-<BlockMath math="\frac{4}{3} = \frac{AD}{6}" />
-
-Multiply both sides by <InlineMath math="6" /> to find the exact length from the similarity ratio:
-
-<BlockMath math="AD = \frac{4 \times 6}{3} = \frac{24}{3} = 8" />
-
-# Calculating the Similar Triangle Area
-
-Both triangles have right angles (triangle <InlineMath math="ABC" /> at <InlineMath math="C" />, triangle <InlineMath math="ADE" /> at <InlineMath math="A" />).
-
-The area is half the product of the **perpendicular base and height**.
-
-For triangle <InlineMath math="ADE" />:
-
-<BlockMath math="L_{ADE}=\frac12\times AD\times AE" />
-
-<BlockMath math="= \frac{1}{2} \times 8 \times 4" />
-
-<BlockMath math="= \frac{32}{2}" />
-
-<BlockMath math="= 16" />
-
-Therefore, the area of triangle <InlineMath math="ADE" /> is <InlineMath math="16" /> square units.
+So the smallest value of <InlineMath math="AP+PB" /> is <InlineMath math="6\sqrt2" />.
