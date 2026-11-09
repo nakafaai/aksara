@@ -3,7 +3,7 @@ export const metadata = {
    description: "Evaluate trigonometric limits with the fundamental sine limit, identities, and substitution.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-23",
+   dateModified: "2026-11-08",
    subject: "Limits",
 };
 
@@ -33,17 +33,28 @@ On the unit circle, for <InlineMath math="0<x<\pi/2" />, comparing triangle and 
 
 As <InlineMath math="x\to0^+" />, both bounds approach <InlineMath math="1" />. On the left, <InlineMath math="\sin(-x)/(-x)=\sin x/x" />, so the limit is the same. The graph illustrates this approach, while the expression remains undefined at <InlineMath math="x=0" />.
 
-<LineEquation
-  title="The Sine to Angle Ratio Approaches One"
-  description="The purple curve shows sin x divided by x on either side of zero. The orange line is at height one. Angles are measured in radians."
-  showZAxis={false}
-  cameraTarget={[0, 0.5, 0]}
-  cameraPosition={[0, 0.5, 10]}
-  data={[
-    { points: Array.from({ length: 150 }, (_, i) => { const x = -3 + i * 0.02; return { x, y: Math.sin(x) / x, z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false },
-    { points: Array.from({ length: 150 }, (_, i) => { const x = 0.02 + i * 0.02; return { x, y: Math.sin(x) / x, z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false },
-    { points: [{ x: -3, y: 1, z: 0 }, { x: 3, y: 1, z: 0 }], color: "#ea580c", smooth: false, showPoints: false, labels: [{ at: 1, text: <InlineMath math="y=1" />, offset: [0, 0.4, 0] }] },
-  ]}
+<MathVisual
+  title={<>The ratio <InlineMath math="\frac{\sin x}{x}" /> approaches 1</>}
+  description={<>The curve <InlineMath math="y = \frac{\sin x}{x}" /> for <InlineMath math="0 < |x| \le 3" />, with angles in radians. Both sides approach the line <InlineMath math="y = 1" />, and the open circle at <InlineMath math="(0, 1)" /> marks where the expression is undefined.</>}
+  labels={{
+    one: <InlineMath math="y = 1" />,
+    hole: <InlineMath math="(0, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.3, max: 3.3 }, y: { min: -0.4, max: 1.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "one", kind: "line", through: [{ x: 0, y: 1 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "left", kind: "polyline", vertices: [{ x: -3, y: Math.sin((-3)) / (-3) }, { x: -59 / 20, y: Math.sin((-59 / 20)) / (-59 / 20) }, { x: -29 / 10, y: Math.sin((-29 / 10)) / (-29 / 10) }, { x: -57 / 20, y: Math.sin((-57 / 20)) / (-57 / 20) }, { x: -14 / 5, y: Math.sin((-14 / 5)) / (-14 / 5) }, { x: -11 / 4, y: Math.sin((-11 / 4)) / (-11 / 4) }, { x: -27 / 10, y: Math.sin((-27 / 10)) / (-27 / 10) }, { x: -53 / 20, y: Math.sin((-53 / 20)) / (-53 / 20) }, { x: -13 / 5, y: Math.sin((-13 / 5)) / (-13 / 5) }, { x: -51 / 20, y: Math.sin((-51 / 20)) / (-51 / 20) }, { x: -5 / 2, y: Math.sin((-5 / 2)) / (-5 / 2) }, { x: -49 / 20, y: Math.sin((-49 / 20)) / (-49 / 20) }, { x: -12 / 5, y: Math.sin((-12 / 5)) / (-12 / 5) }, { x: -47 / 20, y: Math.sin((-47 / 20)) / (-47 / 20) }, { x: -23 / 10, y: Math.sin((-23 / 10)) / (-23 / 10) }, { x: -9 / 4, y: Math.sin((-9 / 4)) / (-9 / 4) }, { x: -11 / 5, y: Math.sin((-11 / 5)) / (-11 / 5) }, { x: -43 / 20, y: Math.sin((-43 / 20)) / (-43 / 20) }, { x: -21 / 10, y: Math.sin((-21 / 10)) / (-21 / 10) }, { x: -41 / 20, y: Math.sin((-41 / 20)) / (-41 / 20) }, { x: -2, y: Math.sin((-2)) / (-2) }, { x: -39 / 20, y: Math.sin((-39 / 20)) / (-39 / 20) }, { x: -19 / 10, y: Math.sin((-19 / 10)) / (-19 / 10) }, { x: -37 / 20, y: Math.sin((-37 / 20)) / (-37 / 20) }, { x: -9 / 5, y: Math.sin((-9 / 5)) / (-9 / 5) }, { x: -7 / 4, y: Math.sin((-7 / 4)) / (-7 / 4) }, { x: -17 / 10, y: Math.sin((-17 / 10)) / (-17 / 10) }, { x: -33 / 20, y: Math.sin((-33 / 20)) / (-33 / 20) }, { x: -8 / 5, y: Math.sin((-8 / 5)) / (-8 / 5) }, { x: -31 / 20, y: Math.sin((-31 / 20)) / (-31 / 20) }, { x: -3 / 2, y: Math.sin((-3 / 2)) / (-3 / 2) }, { x: -29 / 20, y: Math.sin((-29 / 20)) / (-29 / 20) }, { x: -7 / 5, y: Math.sin((-7 / 5)) / (-7 / 5) }, { x: -27 / 20, y: Math.sin((-27 / 20)) / (-27 / 20) }, { x: -13 / 10, y: Math.sin((-13 / 10)) / (-13 / 10) }, { x: -5 / 4, y: Math.sin((-5 / 4)) / (-5 / 4) }, { x: -6 / 5, y: Math.sin((-6 / 5)) / (-6 / 5) }, { x: -23 / 20, y: Math.sin((-23 / 20)) / (-23 / 20) }, { x: -11 / 10, y: Math.sin((-11 / 10)) / (-11 / 10) }, { x: -21 / 20, y: Math.sin((-21 / 20)) / (-21 / 20) }, { x: -1, y: Math.sin((-1)) / (-1) }, { x: -19 / 20, y: Math.sin((-19 / 20)) / (-19 / 20) }, { x: -9 / 10, y: Math.sin((-9 / 10)) / (-9 / 10) }, { x: -17 / 20, y: Math.sin((-17 / 20)) / (-17 / 20) }, { x: -4 / 5, y: Math.sin((-4 / 5)) / (-4 / 5) }, { x: -3 / 4, y: Math.sin((-3 / 4)) / (-3 / 4) }, { x: -7 / 10, y: Math.sin((-7 / 10)) / (-7 / 10) }, { x: -13 / 20, y: Math.sin((-13 / 20)) / (-13 / 20) }, { x: -3 / 5, y: Math.sin((-3 / 5)) / (-3 / 5) }, { x: -11 / 20, y: Math.sin((-11 / 20)) / (-11 / 20) }, { x: -1 / 2, y: Math.sin((-1 / 2)) / (-1 / 2) }, { x: -9 / 20, y: Math.sin((-9 / 20)) / (-9 / 20) }, { x: -2 / 5, y: Math.sin((-2 / 5)) / (-2 / 5) }, { x: -7 / 20, y: Math.sin((-7 / 20)) / (-7 / 20) }, { x: -3 / 10, y: Math.sin((-3 / 10)) / (-3 / 10) }, { x: -1 / 4, y: Math.sin((-1 / 4)) / (-1 / 4) }, { x: -1 / 5, y: Math.sin((-1 / 5)) / (-1 / 5) }, { x: -3 / 20, y: Math.sin((-3 / 20)) / (-3 / 20) }], appearance: "secondary" },
+      { id: "right", kind: "polyline", vertices: [{ x: 3 / 20, y: Math.sin((3 / 20)) / (3 / 20) }, { x: 1 / 5, y: Math.sin((1 / 5)) / (1 / 5) }, { x: 1 / 4, y: Math.sin((1 / 4)) / (1 / 4) }, { x: 3 / 10, y: Math.sin((3 / 10)) / (3 / 10) }, { x: 7 / 20, y: Math.sin((7 / 20)) / (7 / 20) }, { x: 2 / 5, y: Math.sin((2 / 5)) / (2 / 5) }, { x: 9 / 20, y: Math.sin((9 / 20)) / (9 / 20) }, { x: 1 / 2, y: Math.sin((1 / 2)) / (1 / 2) }, { x: 11 / 20, y: Math.sin((11 / 20)) / (11 / 20) }, { x: 3 / 5, y: Math.sin((3 / 5)) / (3 / 5) }, { x: 13 / 20, y: Math.sin((13 / 20)) / (13 / 20) }, { x: 7 / 10, y: Math.sin((7 / 10)) / (7 / 10) }, { x: 3 / 4, y: Math.sin((3 / 4)) / (3 / 4) }, { x: 4 / 5, y: Math.sin((4 / 5)) / (4 / 5) }, { x: 17 / 20, y: Math.sin((17 / 20)) / (17 / 20) }, { x: 9 / 10, y: Math.sin((9 / 10)) / (9 / 10) }, { x: 19 / 20, y: Math.sin((19 / 20)) / (19 / 20) }, { x: 1, y: Math.sin((1)) / (1) }, { x: 21 / 20, y: Math.sin((21 / 20)) / (21 / 20) }, { x: 11 / 10, y: Math.sin((11 / 10)) / (11 / 10) }, { x: 23 / 20, y: Math.sin((23 / 20)) / (23 / 20) }, { x: 6 / 5, y: Math.sin((6 / 5)) / (6 / 5) }, { x: 5 / 4, y: Math.sin((5 / 4)) / (5 / 4) }, { x: 13 / 10, y: Math.sin((13 / 10)) / (13 / 10) }, { x: 27 / 20, y: Math.sin((27 / 20)) / (27 / 20) }, { x: 7 / 5, y: Math.sin((7 / 5)) / (7 / 5) }, { x: 29 / 20, y: Math.sin((29 / 20)) / (29 / 20) }, { x: 3 / 2, y: Math.sin((3 / 2)) / (3 / 2) }, { x: 31 / 20, y: Math.sin((31 / 20)) / (31 / 20) }, { x: 8 / 5, y: Math.sin((8 / 5)) / (8 / 5) }, { x: 33 / 20, y: Math.sin((33 / 20)) / (33 / 20) }, { x: 17 / 10, y: Math.sin((17 / 10)) / (17 / 10) }, { x: 7 / 4, y: Math.sin((7 / 4)) / (7 / 4) }, { x: 9 / 5, y: Math.sin((9 / 5)) / (9 / 5) }, { x: 37 / 20, y: Math.sin((37 / 20)) / (37 / 20) }, { x: 19 / 10, y: Math.sin((19 / 10)) / (19 / 10) }, { x: 39 / 20, y: Math.sin((39 / 20)) / (39 / 20) }, { x: 2, y: Math.sin((2)) / (2) }, { x: 41 / 20, y: Math.sin((41 / 20)) / (41 / 20) }, { x: 21 / 10, y: Math.sin((21 / 10)) / (21 / 10) }, { x: 43 / 20, y: Math.sin((43 / 20)) / (43 / 20) }, { x: 11 / 5, y: Math.sin((11 / 5)) / (11 / 5) }, { x: 9 / 4, y: Math.sin((9 / 4)) / (9 / 4) }, { x: 23 / 10, y: Math.sin((23 / 10)) / (23 / 10) }, { x: 47 / 20, y: Math.sin((47 / 20)) / (47 / 20) }, { x: 12 / 5, y: Math.sin((12 / 5)) / (12 / 5) }, { x: 49 / 20, y: Math.sin((49 / 20)) / (49 / 20) }, { x: 5 / 2, y: Math.sin((5 / 2)) / (5 / 2) }, { x: 51 / 20, y: Math.sin((51 / 20)) / (51 / 20) }, { x: 13 / 5, y: Math.sin((13 / 5)) / (13 / 5) }, { x: 53 / 20, y: Math.sin((53 / 20)) / (53 / 20) }, { x: 27 / 10, y: Math.sin((27 / 10)) / (27 / 10) }, { x: 11 / 4, y: Math.sin((11 / 4)) / (11 / 4) }, { x: 14 / 5, y: Math.sin((14 / 5)) / (14 / 5) }, { x: 57 / 20, y: Math.sin((57 / 20)) / (57 / 20) }, { x: 29 / 10, y: Math.sin((29 / 10)) / (29 / 10) }, { x: 59 / 20, y: Math.sin((59 / 20)) / (59 / 20) }, { x: 3, y: Math.sin((3)) / (3) }], appearance: "secondary" },
+      { id: "hole", kind: "circle", center: { x: 0, y: 1 }, radius: 3 / 25, appearance: "warning" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 3, y: 1 }, placement: "above" },
+      { key: "hole", objectId: "hole", at: { x: 0, y: 1 }, placement: "above" },
+    ],
+  }}
 />
 
 ### Consequences of the Basic Limit
@@ -68,6 +79,16 @@ The identity gives both cosine limits directly, without using **derivative rules
 <BlockMath math="\begin{aligned} &amp;\frac{1-\cos x}{x} \\ &amp;=\sin\frac{x}{2}\cdot\frac{\sin(x/2)}{x/2}\;\\ &amp;\longrightarrow\;0\cdot 1 \\ &amp;=0 \end{aligned}" />
 <BlockMath math="\begin{aligned} &amp;\frac{1-\cos x}{x^2} =\frac{1}{2}\left(\frac{\sin(x/2)}{x/2}\right)^2\; \\ &amp;\longrightarrow\;\frac{1}{2} \end{aligned}" />
 </MathContainer>
+
+Check <InlineMath math="\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac12" /> with numbers. At <InlineMath math="x = 1" />, <InlineMath math="0.5" />, <InlineMath math="0.1" /> and <InlineMath math="0.01" /> the ratio is about 0.460, 0.490, 0.4996 and 0.49999, approaching <InlineMath math="\tfrac12" /> from below.
+
+<BarChart
+  title={<><InlineMath math="\frac{1 - \cos x}{x^2}" /> near 0</>}
+  description={<>Bars of <InlineMath math="\frac{1 - \cos x}{x^2}" /> for <InlineMath math="x = 1, 0.5, 0.1, 0.01" />.</>}
+  yAxisLabel="Ratio"
+  data={[1, 0.5, 0.1, 0.01].map((x) => ({ name: String(x), value: (1 - Math.cos(x)) / x ** 2 }))}
+  chartConfig={{ value: { label: "Ratio", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ## Properties of Trigonometric Limits
 
@@ -108,6 +129,16 @@ We manipulate to obtain the standard form:
 <BlockMath math="\begin{aligned} \lim_{x \to 0} \frac{\sin 2x}{3x} &amp;= \lim_{x \to 0} \frac{2 \sin 2x}{2 \cdot 3x} \\ &amp;= \lim_{x \to 0} \frac{2}{3} \cdot \frac{\sin 2x}{2x} \end{aligned}" />
 <BlockMath math="= \frac{2}{3} \lim_{x \to 0} \frac{\sin 2x}{2x} = \frac{2}{3} \cdot 1 = \frac{2}{3}" />
 </MathContainer>
+
+Check <InlineMath math="\lim_{x \to 0} \frac{\sin 2x}{3x} = \frac23" /> with numbers. At <InlineMath math="x = 0.5" />, <InlineMath math="0.1" /> and <InlineMath math="0.01" /> the ratio is about 0.561, 0.662 and 0.6666, closing in on <InlineMath math="\tfrac23 \approx 0.667" />.
+
+<BarChart
+  title={<><InlineMath math="\frac{\sin 2x}{3x}" /> near 0</>}
+  description={<>Bars of <InlineMath math="\frac{\sin 2x}{3x}" /> for <InlineMath math="x = 0.5, 0.1, 0.01" />.</>}
+  yAxisLabel="Ratio"
+  data={[0.5, 0.1, 0.01].map((x) => ({ name: String(x), value: Math.sin(2 * x) / (3 * x) }))}
+  chartConfig={{ value: { label: "Ratio", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Direct Substitution with a Nonzero Denominator
 

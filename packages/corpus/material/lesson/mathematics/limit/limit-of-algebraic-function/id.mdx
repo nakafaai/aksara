@@ -3,7 +3,7 @@ export const metadata = {
    description: "Cara menghitung limit fungsi polinomial dan rasional lewat substitusi, pemfaktoran, rasionalisasi, dan bentuk tak tentu.",
    authors: [{ name: "Nabil Akbarazzima Fatih" }],
    datePublished: "2025-05-26",
-   dateModified: "2026-09-23",
+   dateModified: "2026-11-08",
    subject: "Limit",
 };
 
@@ -122,16 +122,29 @@ Karena kedua limit satu sisi berbeda, <InlineMath math="\lim_{x \to 2}\frac{1}{x
 
 Perhatikan **tanda penyebut**. Di kiri <InlineMath math="2" />, penyebut negatif dan mendekati nol sehingga nilai fungsi menuju <InlineMath math="-\infty" />. Di kanan, penyebut positif dan nilai fungsi menuju <InlineMath math="+\infty" />. Jangan menghubungkan kedua cabang melewati asimtot.
 
-<LineEquation
-  title="Dua Arah di Dekat Asimtot Tegak"
-  description="Grafik fungsi satu dibagi x kurang dua. Kedua cabang dipisahkan karena fungsi tidak terdefinisi pada x sama dengan dua."
-  showZAxis={false}
-  cameraTarget={[2, 0, 0]}
-  cameraPosition={[2, 0, 20]}
-  data={[
-    { points: Array.from({ length: 91 }, (_, i) => { const x = i * 0.02; return { x, y: 1 / (x - 2), z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false },
-    { points: Array.from({ length: 91 }, (_, i) => { const x = 2.2 + i * 0.02; return { x, y: 1 / (x - 2), z: 0 }; }), color: "#ea580c", smooth: false, showPoints: false },
-  ]}
+<MathVisual
+  title={<>Dua arah di dekat asimtot tegak</>}
+  description={<>Kurva <InlineMath math="y = \frac{1}{x - 2}" /> turun menuju <InlineMath math="-\infty" /> saat <InlineMath math="x" /> mendekati 2 dari kiri dan naik menuju <InlineMath math="+\infty" /> dari kanan. Kedua cabang tetap terpisah di asimtot <InlineMath math="x = 2" />.</>}
+  labels={{
+    asym: <InlineMath math="x = 2" />,
+    left: <InlineMath math="x \to 2^-" />,
+    right: <InlineMath math="x \to 2^+" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 4.4 }, y: { min: -5.6, max: 5.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "asym", kind: "line", through: [{ x: 2, y: 0 }, { x: 2, y: 1 }], appearance: "reference" },
+      { id: "left", kind: "polyline", vertices: [{ x: 0, y: 1 / ((0) - 2) }, { x: 1 / 20, y: 1 / ((1 / 20) - 2) }, { x: 1 / 10, y: 1 / ((1 / 10) - 2) }, { x: 3 / 20, y: 1 / ((3 / 20) - 2) }, { x: 1 / 5, y: 1 / ((1 / 5) - 2) }, { x: 1 / 4, y: 1 / ((1 / 4) - 2) }, { x: 3 / 10, y: 1 / ((3 / 10) - 2) }, { x: 7 / 20, y: 1 / ((7 / 20) - 2) }, { x: 2 / 5, y: 1 / ((2 / 5) - 2) }, { x: 9 / 20, y: 1 / ((9 / 20) - 2) }, { x: 1 / 2, y: 1 / ((1 / 2) - 2) }, { x: 11 / 20, y: 1 / ((11 / 20) - 2) }, { x: 3 / 5, y: 1 / ((3 / 5) - 2) }, { x: 13 / 20, y: 1 / ((13 / 20) - 2) }, { x: 7 / 10, y: 1 / ((7 / 10) - 2) }, { x: 3 / 4, y: 1 / ((3 / 4) - 2) }, { x: 4 / 5, y: 1 / ((4 / 5) - 2) }, { x: 17 / 20, y: 1 / ((17 / 20) - 2) }, { x: 9 / 10, y: 1 / ((9 / 10) - 2) }, { x: 19 / 20, y: 1 / ((19 / 20) - 2) }, { x: 1, y: 1 / ((1) - 2) }, { x: 21 / 20, y: 1 / ((21 / 20) - 2) }, { x: 11 / 10, y: 1 / ((11 / 10) - 2) }, { x: 23 / 20, y: 1 / ((23 / 20) - 2) }, { x: 6 / 5, y: 1 / ((6 / 5) - 2) }, { x: 5 / 4, y: 1 / ((5 / 4) - 2) }, { x: 13 / 10, y: 1 / ((13 / 10) - 2) }, { x: 27 / 20, y: 1 / ((27 / 20) - 2) }, { x: 7 / 5, y: 1 / ((7 / 5) - 2) }, { x: 29 / 20, y: 1 / ((29 / 20) - 2) }, { x: 3 / 2, y: 1 / ((3 / 2) - 2) }, { x: 31 / 20, y: 1 / ((31 / 20) - 2) }, { x: 8 / 5, y: 1 / ((8 / 5) - 2) }, { x: 33 / 20, y: 1 / ((33 / 20) - 2) }, { x: 17 / 10, y: 1 / ((17 / 10) - 2) }, { x: 7 / 4, y: 1 / ((7 / 4) - 2) }, { x: 9 / 5, y: 1 / ((9 / 5) - 2) }], appearance: "secondary" },
+      { id: "right", kind: "polyline", vertices: [{ x: 11 / 5, y: 1 / ((11 / 5) - 2) }, { x: 9 / 4, y: 1 / ((9 / 4) - 2) }, { x: 23 / 10, y: 1 / ((23 / 10) - 2) }, { x: 47 / 20, y: 1 / ((47 / 20) - 2) }, { x: 12 / 5, y: 1 / ((12 / 5) - 2) }, { x: 49 / 20, y: 1 / ((49 / 20) - 2) }, { x: 5 / 2, y: 1 / ((5 / 2) - 2) }, { x: 51 / 20, y: 1 / ((51 / 20) - 2) }, { x: 13 / 5, y: 1 / ((13 / 5) - 2) }, { x: 53 / 20, y: 1 / ((53 / 20) - 2) }, { x: 27 / 10, y: 1 / ((27 / 10) - 2) }, { x: 11 / 4, y: 1 / ((11 / 4) - 2) }, { x: 14 / 5, y: 1 / ((14 / 5) - 2) }, { x: 57 / 20, y: 1 / ((57 / 20) - 2) }, { x: 29 / 10, y: 1 / ((29 / 10) - 2) }, { x: 59 / 20, y: 1 / ((59 / 20) - 2) }, { x: 3, y: 1 / ((3) - 2) }, { x: 61 / 20, y: 1 / ((61 / 20) - 2) }, { x: 31 / 10, y: 1 / ((31 / 10) - 2) }, { x: 63 / 20, y: 1 / ((63 / 20) - 2) }, { x: 16 / 5, y: 1 / ((16 / 5) - 2) }, { x: 13 / 4, y: 1 / ((13 / 4) - 2) }, { x: 33 / 10, y: 1 / ((33 / 10) - 2) }, { x: 67 / 20, y: 1 / ((67 / 20) - 2) }, { x: 17 / 5, y: 1 / ((17 / 5) - 2) }, { x: 69 / 20, y: 1 / ((69 / 20) - 2) }, { x: 7 / 2, y: 1 / ((7 / 2) - 2) }, { x: 71 / 20, y: 1 / ((71 / 20) - 2) }, { x: 18 / 5, y: 1 / ((18 / 5) - 2) }, { x: 73 / 20, y: 1 / ((73 / 20) - 2) }, { x: 37 / 10, y: 1 / ((37 / 10) - 2) }, { x: 15 / 4, y: 1 / ((15 / 4) - 2) }, { x: 19 / 5, y: 1 / ((19 / 5) - 2) }, { x: 77 / 20, y: 1 / ((77 / 20) - 2) }, { x: 39 / 10, y: 1 / ((39 / 10) - 2) }, { x: 79 / 20, y: 1 / ((79 / 20) - 2) }, { x: 4, y: 1 / ((4) - 2) }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "asym", objectId: "asym", at: { x: 2, y: 9 / 2 }, placement: "right" },
+      { key: "left", objectId: "left", at: { x: 3 / 2, y: -2 }, placement: "left" },
+      { key: "right", objectId: "right", at: { x: 5 / 2, y: 2 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Kontinuitas dan Limit
@@ -143,6 +156,30 @@ Suatu fungsi <InlineMath math="f" /> dikatakan **kontinu** di <InlineMath math="
 3. <InlineMath math="\lim_{x \to c} f(x) = f(c)" />
 
 Fungsi polinomial kontinu pada setiap bilangan real. Fungsi rasional kontinu di setiap titik dalam daerah asalnya, yaitu ketika penyebutnya tidak nol.
+
+Sebagai contoh, <InlineMath math="f(x) = x^2 - 2x + 1 = (x - 1)^2" /> tidak berlubang dan tidak melompat di <InlineMath math="x = 1" />. Limit 0 sama dengan nilai fungsi <InlineMath math="f(1) = 0" />, dan itulah arti kontinu di 1.
+
+<MathVisual
+  title={<>Grafik yang kontinu di <InlineMath math="x = 1" /></>}
+  description={<>Parabola <InlineMath math="y = (x - 1)^2" /> dengan titik <InlineMath math="(1, 0)" />, tempat limit dan nilai fungsi sama.</>}
+  labels={{
+    curve: <InlineMath math="y = (x - 1)^2" />,
+    point: <InlineMath math="(1, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 3.4 }, y: { min: -0.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -2, c: 1 }, domain: { min: -1, max: 3 }, appearance: "primary" },
+      { id: "point", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 3, y: 4 }, placement: "left" },
+      { key: "point", objectId: "point", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
 ## Latihan
 
@@ -201,3 +238,28 @@ Gunakan rasionalisasi dengan mengalikan **bentuk sekawan** <InlineMath math="\sq
 <BlockMath math="\begin{aligned}  &amp;= \lim_{x \to 0} \frac{x}{x(\sqrt{x + 4} + 2)} \\ &amp;= \lim_{x \to 0} \frac{1}{\sqrt{x + 4} + 2} \end{aligned}" />
 <BlockMath math="\begin{aligned}  &amp;= \frac{1}{\sqrt{0 + 4} + 2} \\ &amp;= \frac{1}{\sqrt{4} + 2} \\ &amp;= \frac{1}{2 + 2} \\ &amp;= \frac{1}{4} \end{aligned}" />
 </MathContainer>
+
+Bandingkan dengan Soal 3: <InlineMath math="\frac{x^2 - 2x + 1}{x - 1}" /> disederhanakan menjadi <InlineMath math="x - 1" />, tetapi grafiknya kehilangan titik di <InlineMath math="x = 1" />. Grafiknya adalah garis <InlineMath math="y = x - 1" /> dengan lubang di <InlineMath math="(1, 0)" />, dan limitnya adalah tinggi lubang itu, 0.
+
+<MathVisual
+  title={<>Garis <InlineMath math="y = x - 1" /> dengan lubang di <InlineMath math="(1, 0)" /></>}
+  description={<>Grafik <InlineMath math="\frac{x^2 - 2x + 1}{x - 1}" />: garis <InlineMath math="y = x - 1" /> dengan lingkaran kosong di <InlineMath math="(1, 0)" />.</>}
+  labels={{
+    line: <InlineMath math="y = x - 1" />,
+    hole: <InlineMath math="(1, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 4.6 }, y: { min: -2.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "left", kind: "segment", from: { x: -1, y: -2 }, to: { x: 1 - 0.12 / Math.sqrt(2), y: 0 - 0.12 / Math.sqrt(2) }, appearance: "primary" },
+      { id: "right", kind: "segment", from: { x: 1 + 0.12 / Math.sqrt(2), y: 0 + 0.12 / Math.sqrt(2) }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "hole", kind: "circle", center: { x: 1, y: 0 }, radius: 3 / 25, appearance: "warning" },
+    ],
+    labels: [
+      { key: "line", objectId: "right", at: { x: 4, y: 3 }, placement: "left" },
+      { key: "hole", objectId: "hole", at: { x: 1, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
