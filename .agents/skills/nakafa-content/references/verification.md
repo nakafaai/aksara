@@ -225,8 +225,8 @@ parses each MDX file with the checker's own MDX tooling and reads the ESTree of
 every JSX attribute and every expression of the page, never raw text. The
 three findings, the thresholds, and the one scoped skip live in
 [computed and exact visuals](visuals.md#computed-and-exact-visuals). It also
-lists every lesson folder below the visual bar, fewer than three interactive
-visual cards, with their count, as the
+fails every lesson folder below the visual bar, fewer than three interactive
+visual cards, and lists them with their count, as the
 [every-lesson rule](visuals.md#interactive-visual-in-every-lesson) requires.
 
 ```sh

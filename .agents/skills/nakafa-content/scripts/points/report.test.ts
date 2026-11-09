@@ -65,27 +65,26 @@ describe("points report", () => {
     })
   );
 
-  it.effect(
-    "lists the lessons below the visual bar and keeps the exit code",
-    () =>
-      Effect.gen(function* () {
-        const result = yield* capture(
-          printReport({
-            base: BASE,
-            belowBar: ["lessons/a", "lessons/b"],
-            compared: 0,
-            files: 4,
-            findings: [],
-          })
-        );
+  it.effect("fails every lesson below the visual bar", () =>
+    Effect.gen(function* () {
+      const result = yield* capture(
+        printReport({
+          base: BASE,
+          belowBar: ["lessons/a", "lessons/b"],
+          compared: 0,
+          files: 4,
+          findings: [],
+        })
+      );
 
-        assert.strictEqual(result.code, 0);
-        assert.deepStrictEqual(result.log, [
-          "2 lesson(s) below the visual bar, which needs at least 3 interactive visual cards:",
-          "  lessons/a",
-          "  lessons/b",
-          "Points check passed for 4 files and compared 0 changed files with 0123456.",
-        ]);
-      })
+      assert.strictEqual(result.code, 1);
+      assert.deepStrictEqual(result.error, [
+        "2 lesson(s) below the visual bar, which needs at least 3 interactive visual cards:",
+        "  lessons/a",
+        "  lessons/b",
+        "Points check found 2 lesson(s) below the visual bar, compared with 0123456.",
+      ]);
+      assert.deepStrictEqual(result.log, []);
+    })
   );
 });

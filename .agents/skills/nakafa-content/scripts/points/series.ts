@@ -24,8 +24,9 @@ const MAX_LITERAL_POINTS = 8;
 
 /**
  * The one component whose scene the compiler reads without running code. It
- * folds constant expressions such as Math.sqrt(3) but rejects Array.from, so a
- * sampled curve cannot be built there and belongs to LineEquation.
+ * folds constant expressions such as Math.sqrt(3) but rejects Array.from and
+ * variables, so a sampled curve there is a polyline whose every vertex is the
+ * constant expression that computes it from the formula.
  */
 const SCENE_COMPONENT = "MathVisual";
 
@@ -97,7 +98,7 @@ export function seriesFindings(
   }
   const advice =
     component === SCENE_COMPONENT
-      ? `${component} folds only constant expressions, so draw a sampled curve with LineEquation and Array.from, and keep only named exact points here`
+      ? `${component} folds only constant expressions, so draw a parabola with the quadratic object and any other curve as a polyline whose every vertex is the expression that computes it, such as { x: 7 / 5, y: (7 / 5) ** 2 }, and keep only named exact points as literals`
       : "build the series with Array.from from its formula, and keep only named exact points as literals";
   return [
     findingAt(
