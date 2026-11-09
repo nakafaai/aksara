@@ -1,0 +1,19 @@
+Computing <InlineMath math="R^{2026}" /> directly is impossible, so **find a small power that returns to the identity**. Compute the first few powers.
+
+<BlockMath math="\begin{aligned}
+R^2&=\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}=\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}=-I \\
+R^4&=\left(R^2\right)^2=(-I)^2=I
+\end{aligned}" />
+
+Since <InlineMath math="R^4=I" />, the powers of <InlineMath math="R" /> repeat every four steps. Divide <InlineMath math="2026" /> by <InlineMath math="4" />: <InlineMath math="2026=4\cdot506+2" />.
+
+<BlockMath math="R^{2026}=\left(R^4\right)^{506}R^2=I\cdot(-I)=-I,\qquad -I\begin{pmatrix} 3 \\ 1 \end{pmatrix}=\begin{pmatrix} -3 \\ -1 \end{pmatrix}" />
+
+Geometrically, <InlineMath math="R" /> is a <InlineMath math="90^\circ" /> anticlockwise rotation. The power <InlineMath math="2026" /> means <InlineMath math="506" /> full turns plus a half turn, so the point moves to the opposite side of the origin.
+
+So <InlineMath math="(x',y')=(-3,-1)" />.
+
+- <InlineMath math="(3,1)" /> assumes <InlineMath math="R^2=I" />, so every even power would return to the start.
+- <InlineMath math="(-1,3)" /> is <InlineMath math="R(3,1)" />, as if the remainder were <InlineMath math="1" />.
+- <InlineMath math="(1,-3)" /> is <InlineMath math="R^3(3,1)" />, as if the remainder were <InlineMath math="3" />.
+- <InlineMath math="(-3,1)" /> only changes the sign of the first coordinate, a reflection in the <InlineMath math="y" />-axis.

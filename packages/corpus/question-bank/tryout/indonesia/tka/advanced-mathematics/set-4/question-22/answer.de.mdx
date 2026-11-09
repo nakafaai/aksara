@@ -1,0 +1,21 @@
+Bei <InlineMath math="x=\frac{\pi}{3}" /> ist der Zähler <InlineMath math="1-2\cdot\frac12=0" /> und der Nenner <InlineMath math="\sin0=0" />. Damit die Standardgrenzwerte bei null greifen, **verschiebst du die Stelle nach null** mit <InlineMath math="t=x-\frac{\pi}{3}" />. Für <InlineMath math="x\to\frac{\pi}{3}" /> geht <InlineMath math="t\to0" />.
+
+Multipliziere <InlineMath math="\cos\left(t+\frac{\pi}{3}\right)" /> mit dem Additionstheorem aus.
+
+<BlockMath math="\begin{aligned}
+1-2\cos\left(t+\frac{\pi}{3}\right)&=1-2\left(\frac12\cos t-\frac{\sqrt3}{2}\sin t\right) \\
+&=1-\cos t+\sqrt3\sin t
+\end{aligned}" />
+
+Teile durch <InlineMath math="\sin t" /> und bestimme den Grenzwert jedes Teils.
+
+<BlockMath math="\lim_{t\to0}\frac{1-\cos t+\sqrt3\sin t}{\sin t}=\lim_{t\to0}\frac{1-\cos t}{\sin t}+\sqrt3=0+\sqrt3=\sqrt3" />
+
+Der erste Teil geht gegen <InlineMath math="0" />, denn <InlineMath math="\frac{1-\cos t}{\sin t}=\frac{2\sin^2\frac t2}{2\sin\frac t2\cos\frac t2}=\tan\frac t2\to0" />. Numerische Probe: Für <InlineMath math="x=\frac{\pi}{3}+0{,}001" /> ist der Wert etwa <InlineMath math="1{,}7326" />.
+
+Der Grenzwert ist also <InlineMath math="\sqrt3" />.
+
+- <InlineMath math="0" /> schaut nur auf den Zähler, der gegen null geht.
+- <InlineMath math="\frac12" /> nimmt <InlineMath math="\cos\frac{\pi}{3}" /> als Ergebnis, ohne die Form <InlineMath math="\frac00" /> aufzulösen.
+- <InlineMath math="-\sqrt3" /> hat das falsche Vorzeichen in <InlineMath math="\cos(A+B)=\cos A\cos B-\sin A\sin B" />.
+- <InlineMath math="2" /> behandelt den Bruch wie <InlineMath math="\frac{2\sin t}{\sin t}" />.

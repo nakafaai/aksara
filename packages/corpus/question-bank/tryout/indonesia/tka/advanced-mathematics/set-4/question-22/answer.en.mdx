@@ -1,0 +1,21 @@
+At <InlineMath math="x=\frac{\pi}{3}" />, the numerator is <InlineMath math="1-2\cdot\frac12=0" /> and the denominator is <InlineMath math="\sin0=0" />. To use the basic limits near zero, **shift the point to zero** with <InlineMath math="t=x-\frac{\pi}{3}" />. As <InlineMath math="x\to\frac{\pi}{3}" />, <InlineMath math="t\to0" />.
+
+Expand <InlineMath math="\cos\left(t+\frac{\pi}{3}\right)" /> with the angle-sum formula.
+
+<BlockMath math="\begin{aligned}
+1-2\cos\left(t+\frac{\pi}{3}\right)&=1-2\left(\frac12\cos t-\frac{\sqrt3}{2}\sin t\right) \\
+&=1-\cos t+\sqrt3\sin t
+\end{aligned}" />
+
+Divide by <InlineMath math="\sin t" /> and take the limit of each part.
+
+<BlockMath math="\lim_{t\to0}\frac{1-\cos t+\sqrt3\sin t}{\sin t}=\lim_{t\to0}\frac{1-\cos t}{\sin t}+\sqrt3=0+\sqrt3=\sqrt3" />
+
+The first part tends to <InlineMath math="0" />, because <InlineMath math="\frac{1-\cos t}{\sin t}=\frac{2\sin^2\frac t2}{2\sin\frac t2\cos\frac t2}=\tan\frac t2\to0" />. Numerical check: for <InlineMath math="x=\frac{\pi}{3}+0.001" />, the value is about <InlineMath math="1.7326" />.
+
+So the limit is <InlineMath math="\sqrt3" />.
+
+- <InlineMath math="0" /> only looks at the numerator tending to zero.
+- <InlineMath math="\frac12" /> uses <InlineMath math="\cos\frac{\pi}{3}" /> as the final answer without resolving the <InlineMath math="\frac00" /> form.
+- <InlineMath math="-\sqrt3" /> has the wrong sign in <InlineMath math="\cos(A+B)=\cos A\cos B-\sin A\sin B" />.
+- <InlineMath math="2" /> treats the fraction as <InlineMath math="\frac{2\sin t}{\sin t}" />.
