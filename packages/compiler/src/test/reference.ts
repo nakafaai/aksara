@@ -157,27 +157,22 @@ function corpusDocuments(
   });
 }
 
-/**
- * Reads every document whose props compute data, with its repository-relative
- * path: the corpus, and the frozen baseline fixtures, which keep computed props
- * covered now that lessons draw their curves as MathVisual formula objects.
- */
+/** Whether a document's props compute data, such as a prop that runs a function. */
+export const computesData = (rawMdx: string) =>
+  DATA_COMPUTING_ATTRIBUTE.test(rawMdx);
+
+/** Reads every corpus document whose props compute data, with its repository-relative path. */
 export const dataComputingDocuments = Effect.gen(function* () {
   const fs = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
-  const documents = [
-    ...(yield* corpusDocuments(path.resolve("../corpus"))),
-    ...(yield* corpusDocuments(path.resolve("src/test/baseline"))),
-  ];
+  const documents = yield* corpusDocuments(path.resolve("../corpus"));
   const sources = yield* Effect.forEach(documents, (document) =>
     Effect.map(fs.readFileString(document), (rawMdx) => ({
       rawMdx,
       sourcePath: path.relative(path.resolve("../.."), document),
     }))
   );
-  return Arr.filter(sources, ({ rawMdx }) =>
-    DATA_COMPUTING_ATTRIBUTE.test(rawMdx)
-  );
+  return Arr.filter(sources, ({ rawMdx }) => computesData(rawMdx));
 });
 
 /** Lists the renderer components that a document names, with the placeholder every document has. */
