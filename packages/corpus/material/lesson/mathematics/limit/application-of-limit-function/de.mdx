@@ -3,7 +3,7 @@ export const metadata = {
     description: "Grenzwerte auf vereinfachte Gesundheits-, Wirtschafts-, Bevölkerungs-, Signal- und Reaktionsmodelle anwenden und die Aussagegrenzen jedes Modells prüfen.",
     authors: [{ name: "Nabil Akbarazzima Fatih" }],
     datePublished: "2026-08-22",
-    dateModified: "2026-09-23",
+    dateModified: "2026-11-08",
     subject: "Grenzwerte",
 };
 
@@ -88,16 +88,30 @@ Wähle <InlineMath math="A=4" /> und die dimensionslosen Koordinaten <InlineMath
 
 Bei <InlineMath math="u=0" /> ist <InlineMath math="q=1/5" />. Bei <InlineMath math="u=\ln4" /> gilt <InlineMath math="q=1/(1+4/4)=1/2" />. Die Kurve nähert sich <InlineMath math="q=1" />, ohne diesen Wert in endlicher Zeit zu erreichen.
 
-<LineEquation
-  title="Population als Anteil der Tragfähigkeit"
-  description="Die waagerechte Achse zeigt u gleich r mal t. Die senkrechte Achse zeigt q gleich P geteilt durch K. Die orange Gerade markiert den Grenzwert eins."
-  showZAxis={false}
-  cameraTarget={[3, 0.5, 0]}
-  cameraPosition={[3, 0.5, 11]}
-  data={[
-    { points: Array.from({ length: 121 }, (_, i) => { const x = i * 0.05; return { x, y: 1 / (1 + 4 * Math.exp(-x)), z: 0 }; }), color: "#9333ea", smooth: false, showPoints: false },
-    { points: [{ x: 0, y: 1, z: 0 }, { x: 6, y: 1, z: 0 }], color: "#ea580c", smooth: false, showPoints: false, labels: [{ at: 1, text: <InlineMath math="q=1" />, offset: [0, 0.3, 0] }] },
-  ]}
+<MathVisual
+  title={<>Population als Anteil der Kapazität</>}
+  description={<>Die Kurve <InlineMath math="q = \frac{1}{1 + 4e^{-u}}" /> für <InlineMath math="0 \le u \le 6" />, mit <InlineMath math="u = rt" /> und <InlineMath math="q = P/K" />. Sie beginnt bei <InlineMath math="\tfrac15" />, erreicht bei <InlineMath math="u = \ln 4" /> den Wert <InlineMath math="\tfrac12" /> und nähert sich der Geraden <InlineMath math="q = 1" />, ohne sie zu erreichen.</>}
+  labels={{
+    limit: <InlineMath math="q = 1" />,
+    start: <InlineMath math="\left(0, \tfrac15\right)" />,
+    half: <InlineMath math="\left(\ln 4, \tfrac12\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 6.4 }, y: { min: -0.1, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "limit", kind: "line", through: [{ x: 0, y: 1 }, { x: 6, y: 1 }], appearance: "reference" },
+      { id: "q", kind: "polyline", vertices: [{ x: 0, y: 1 / (1 + 4 * Math.exp(-(0))) }, { x: 1 / 10, y: 1 / (1 + 4 * Math.exp(-(1 / 10))) }, { x: 1 / 5, y: 1 / (1 + 4 * Math.exp(-(1 / 5))) }, { x: 3 / 10, y: 1 / (1 + 4 * Math.exp(-(3 / 10))) }, { x: 2 / 5, y: 1 / (1 + 4 * Math.exp(-(2 / 5))) }, { x: 1 / 2, y: 1 / (1 + 4 * Math.exp(-(1 / 2))) }, { x: 3 / 5, y: 1 / (1 + 4 * Math.exp(-(3 / 5))) }, { x: 7 / 10, y: 1 / (1 + 4 * Math.exp(-(7 / 10))) }, { x: 4 / 5, y: 1 / (1 + 4 * Math.exp(-(4 / 5))) }, { x: 9 / 10, y: 1 / (1 + 4 * Math.exp(-(9 / 10))) }, { x: 1, y: 1 / (1 + 4 * Math.exp(-(1))) }, { x: 11 / 10, y: 1 / (1 + 4 * Math.exp(-(11 / 10))) }, { x: 6 / 5, y: 1 / (1 + 4 * Math.exp(-(6 / 5))) }, { x: 13 / 10, y: 1 / (1 + 4 * Math.exp(-(13 / 10))) }, { x: 7 / 5, y: 1 / (1 + 4 * Math.exp(-(7 / 5))) }, { x: 3 / 2, y: 1 / (1 + 4 * Math.exp(-(3 / 2))) }, { x: 8 / 5, y: 1 / (1 + 4 * Math.exp(-(8 / 5))) }, { x: 17 / 10, y: 1 / (1 + 4 * Math.exp(-(17 / 10))) }, { x: 9 / 5, y: 1 / (1 + 4 * Math.exp(-(9 / 5))) }, { x: 19 / 10, y: 1 / (1 + 4 * Math.exp(-(19 / 10))) }, { x: 2, y: 1 / (1 + 4 * Math.exp(-(2))) }, { x: 21 / 10, y: 1 / (1 + 4 * Math.exp(-(21 / 10))) }, { x: 11 / 5, y: 1 / (1 + 4 * Math.exp(-(11 / 5))) }, { x: 23 / 10, y: 1 / (1 + 4 * Math.exp(-(23 / 10))) }, { x: 12 / 5, y: 1 / (1 + 4 * Math.exp(-(12 / 5))) }, { x: 5 / 2, y: 1 / (1 + 4 * Math.exp(-(5 / 2))) }, { x: 13 / 5, y: 1 / (1 + 4 * Math.exp(-(13 / 5))) }, { x: 27 / 10, y: 1 / (1 + 4 * Math.exp(-(27 / 10))) }, { x: 14 / 5, y: 1 / (1 + 4 * Math.exp(-(14 / 5))) }, { x: 29 / 10, y: 1 / (1 + 4 * Math.exp(-(29 / 10))) }, { x: 3, y: 1 / (1 + 4 * Math.exp(-(3))) }, { x: 31 / 10, y: 1 / (1 + 4 * Math.exp(-(31 / 10))) }, { x: 16 / 5, y: 1 / (1 + 4 * Math.exp(-(16 / 5))) }, { x: 33 / 10, y: 1 / (1 + 4 * Math.exp(-(33 / 10))) }, { x: 17 / 5, y: 1 / (1 + 4 * Math.exp(-(17 / 5))) }, { x: 7 / 2, y: 1 / (1 + 4 * Math.exp(-(7 / 2))) }, { x: 18 / 5, y: 1 / (1 + 4 * Math.exp(-(18 / 5))) }, { x: 37 / 10, y: 1 / (1 + 4 * Math.exp(-(37 / 10))) }, { x: 19 / 5, y: 1 / (1 + 4 * Math.exp(-(19 / 5))) }, { x: 39 / 10, y: 1 / (1 + 4 * Math.exp(-(39 / 10))) }, { x: 4, y: 1 / (1 + 4 * Math.exp(-(4))) }, { x: 41 / 10, y: 1 / (1 + 4 * Math.exp(-(41 / 10))) }, { x: 21 / 5, y: 1 / (1 + 4 * Math.exp(-(21 / 5))) }, { x: 43 / 10, y: 1 / (1 + 4 * Math.exp(-(43 / 10))) }, { x: 22 / 5, y: 1 / (1 + 4 * Math.exp(-(22 / 5))) }, { x: 9 / 2, y: 1 / (1 + 4 * Math.exp(-(9 / 2))) }, { x: 23 / 5, y: 1 / (1 + 4 * Math.exp(-(23 / 5))) }, { x: 47 / 10, y: 1 / (1 + 4 * Math.exp(-(47 / 10))) }, { x: 24 / 5, y: 1 / (1 + 4 * Math.exp(-(24 / 5))) }, { x: 49 / 10, y: 1 / (1 + 4 * Math.exp(-(49 / 10))) }, { x: 5, y: 1 / (1 + 4 * Math.exp(-(5))) }, { x: 51 / 10, y: 1 / (1 + 4 * Math.exp(-(51 / 10))) }, { x: 26 / 5, y: 1 / (1 + 4 * Math.exp(-(26 / 5))) }, { x: 53 / 10, y: 1 / (1 + 4 * Math.exp(-(53 / 10))) }, { x: 27 / 5, y: 1 / (1 + 4 * Math.exp(-(27 / 5))) }, { x: 11 / 2, y: 1 / (1 + 4 * Math.exp(-(11 / 2))) }, { x: 28 / 5, y: 1 / (1 + 4 * Math.exp(-(28 / 5))) }, { x: 57 / 10, y: 1 / (1 + 4 * Math.exp(-(57 / 10))) }, { x: 29 / 5, y: 1 / (1 + 4 * Math.exp(-(29 / 5))) }, { x: 59 / 10, y: 1 / (1 + 4 * Math.exp(-(59 / 10))) }, { x: 6, y: 1 / (1 + 4 * Math.exp(-(6))) }], appearance: "secondary" },
+      { id: "start", kind: "point", at: { x: 0, y: 1 / 5 }, appearance: "answer" },
+      { id: "half", kind: "point", at: { x: Math.log(4), y: 1 / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 6, y: 1 }, placement: "above" },
+      { key: "start", objectId: "start", at: { x: 0, y: 1 / 5 }, placement: "right" },
+      { key: "half", objectId: "half", at: { x: Math.log(4), y: 1 / 2 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ## Anwendung in Technologie und Wissenschaft
@@ -120,6 +134,16 @@ Seine Grenzwerte zeigen das idealisierte Verhalten unmittelbar:
 Dieses analoge Modell überträgt sehr niedrige Frequenzen mit einer Verstärkung nahe eins und dämpft höhere Frequenzen zunehmend. An der Grenzkreisfrequenz ergibt Einsetzen:
 
 <BlockMath math="|H(i\omega_c)|=\frac1{\sqrt{1+1^2}}=\frac1{\sqrt2}" />
+
+Die Verstärkung <InlineMath math="|H(i\omega)| = \frac{1}{\sqrt{1 + (\omega/\omega_c)^2}}" /> ist 1 bei <InlineMath math="\omega = 0" />, <InlineMath math="\tfrac{1}{\sqrt2} \approx 0{,}707" /> bei der Grenzfrequenz <InlineMath math="\omega = \omega_c" /> und fällt mit wachsender Frequenz gegen 0.
+
+<BarChart
+  title={<>Verstärkung des Filters</>}
+  description={<>Balken von <InlineMath math="|H(i\omega)|" /> für <InlineMath math="\omega/\omega_c = 0;\ 0{,}5;\ 1;\ 2;\ 5;\ 10" />.</>}
+  yAxisLabel="Verstärkung"
+  data={[0, 0.5, 1, 2, 5, 10].map((x) => ({ name: String(x), value: 1 / Math.sqrt(1 + x ** 2) }))}
+  chartConfig={{ value: { label: "Verstärkung", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
 
 ### Chemische Reaktionsgeschwindigkeit
 
@@ -286,3 +310,13 @@ Die exakten Zusatzkosten der nächsten ganzen Einheit sind:
 </MathContainer>
 
 Bei diesem Modell liegt die Ableitung um <InlineMath math="0{,}01" /> Geldeinheit unter dem exakten Zuwachs um eine Einheit. Der Vergleich zeigt, weshalb Grenzkosten eine momentane Änderungsrate sind und die diskreten Kosten der nächsten Einheit nur annähern.
+
+Aufgabe 2 als Diagramm: <InlineMath math="I(t) = \frac{100.000t}{t + 50}" /> kriecht auf <InlineMath math="100.000" /> zu. Bei <InlineMath math="t = 50" /> ist es die Hälfte, bei <InlineMath math="t = 200" /> sind es <InlineMath math="80.000" /> und bei <InlineMath math="t = 5.000" /> etwa <InlineMath math="99.010" />.
+
+<BarChart
+  title={<>Infektionen, die sich dem Grenzwert nähern</>}
+  description={<>Balken von <InlineMath math="I(t)" /> für <InlineMath math="t = 50, 100, 200, 500, 1000, 5000" />.</>}
+  yAxisLabel="Personen"
+  data={[50, 100, 200, 500, 1000, 5000].map((x) => ({ name: String(x), value: (100000 * x) / (x + 50) }))}
+  chartConfig={{ value: { label: "Personen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

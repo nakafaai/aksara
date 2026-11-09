@@ -5,7 +5,7 @@ export const metadata = {
   description: "Tangentengleichungen mit Ableitungen, Steigungsberechnungen, einer Visualisierung und vollständig gelösten Aufgaben bestimmen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-08-22",
-  dateModified: "2026-09-23",
+  dateModified: "2026-11-08",
   subject: "Ableitungsfunktionen",
 };
 
@@ -63,61 +63,29 @@ Wir setzen beide Werte in die Punkt-Steigungs-Form ein:
 
 Die Gleichung der Tangente lautet also <InlineMath math="y = -8x + 6" />.
 
-<LineEquation
-  title={<>Visualisierung der Tangente an der Parabel</>}
-  description={
-    <>
-      Der Graph zeigt die Parabel <InlineMath math="y = 2 - 4x^2" /> und ihre
-      Tangente <InlineMath math="y = -8x + 6" />. Beide treffen sich genau im
-      Berührpunkt <InlineMath math="(1, -2)" />.
-    </>
-  }
-  cameraPosition={[0, 0, 15]}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const x = -2 + i * 0.1;
-        return { x, y: 2 - 4 * x * x, z: 0 };
-      }),
-      color: "#65a30d",
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=2 - 4x^2" />,
-          at: 5,
-          offset: [-2, 3, 0],
-        },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 6, z: 0 },
-        { x: 2, y: -10, z: 0 },
-      ],
-      color: "#ca8a04",
-      smooth: false,
-      showPoints: false,
-      labels: [
-        {
-          text: <InlineMath math="y=-8x + 6" />,
-          at: 0,
-          offset: [2.5, -2.5, 0],
-        },
-      ],
-    },
-    {
-      points: [{ x: 1, y: -2, z: 0 }],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        {
-          text: <InlineMath math="(1, -2)" />,
-          offset: [1.5, -0.5, 0],
-        },
-      ],
-    },
-  ]}
+<MathVisual
+  title={<>Die Tangente an <InlineMath math="y = 2 - 4x^2" /> in <InlineMath math="(1, -2)" /></>}
+  description={<>Die Parabel <InlineMath math="y = 2 - 4x^2" /> und ihre Tangente <InlineMath math="y = -8x + 6" />, die sie nur im Berührpunkt <InlineMath math="(1, -2)" /> trifft.</>}
+  labels={{
+    curve: <InlineMath math="y = 2 - 4x^2" />,
+    tangent: <InlineMath math="y = -8x + 6" />,
+    touch: <InlineMath math="(1, -2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 1.8 }, y: { min: -7.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: -4, b: 0, c: 2 }, domain: { min: -1 / 2, max: 3 / 2 }, appearance: "primary" },
+      { id: "tangent", kind: "segment", from: { x: 1 / 2, y: 2 }, to: { x: 3 / 2, y: -6 }, appearance: "construction" },
+      { id: "touch", kind: "point", at: { x: 1, y: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0, y: 2 }, placement: "above" },
+      { key: "tangent", objectId: "tangent", at: { x: 1 / 2, y: 2 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 1, y: -2 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Übungen
@@ -307,3 +275,62 @@ Mit dem Punkt <InlineMath math="(2, -5)" /> und der Steigung <InlineMath math="m
     <BlockMath math="y + 5 = x - 2" />
     <BlockMath math="y = x - 7" />
 </MathContainer>
+
+Aufgabe 2 im Graphen: Die Gerade <InlineMath math="y = 4" /> trifft <InlineMath math="y = 2x^2 - 3x + 5" /> bei <InlineMath math="x = \tfrac12" /> und <InlineMath math="x = 1" />. Die Steigungen dort sind <InlineMath math="-1" /> und 1, also sind die Tangenten <InlineMath math="y = -x + \tfrac92" /> und <InlineMath math="y = x + 3" /> Spiegelbilder an der Achse <InlineMath math="x = \tfrac34" />.
+
+<MathVisual
+  title={<>Zwei Tangenten in der Höhe 4</>}
+  description={<>Die Parabel <InlineMath math="y = 2x^2 - 3x + 5" /> mit den Tangenten <InlineMath math="y = -x + \tfrac92" /> in <InlineMath math="\left(\tfrac12, 4\right)" /> und <InlineMath math="y = x + 3" /> in <InlineMath math="(1, 4)" />.</>}
+  labels={{
+    left: <InlineMath math="y = -x + \tfrac92" />,
+    right: <InlineMath math="y = x + 3" />,
+    a: <InlineMath math="\left(\tfrac12, 4\right)" />,
+    b: <InlineMath math="(1, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.3 }, y: { min: 3, max: 7.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 5 }, domain: { min: -1 / 2, max: 2 }, appearance: "primary" },
+      { id: "level", kind: "line", through: [{ x: 0, y: 4 }, { x: 1, y: 4 }], appearance: "reference" },
+      { id: "left", kind: "segment", from: { x: -1 / 10, y: 23 / 5 }, to: { x: 11 / 10, y: 17 / 5 }, appearance: "construction" },
+      { id: "right", kind: "segment", from: { x: 2 / 5, y: 17 / 5 }, to: { x: 8 / 5, y: 23 / 5 }, appearance: "highlight" },
+      { id: "a", kind: "point", at: { x: 1 / 2, y: 4 }, appearance: "answer" },
+      { id: "b", kind: "point", at: { x: 1, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -1 / 10, y: 23 / 5 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 8 / 5, y: 23 / 5 }, placement: "above" },
+      { key: "a", objectId: "a", at: { x: 1 / 2, y: 4 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 1, y: 4 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Aufgabe 5 im Graphen: Eine Tangente unter <InlineMath math="45^\circ" /> hat die Steigung <InlineMath math="\tan 45^\circ = 1" />. Auf <InlineMath math="y = 2x^2 - 7x + 1" /> ist die Steigung <InlineMath math="4x - 7" /> bei <InlineMath math="x = 2" /> gleich 1, also berührt die Tangente in <InlineMath math="(2, -5)" /> und lautet <InlineMath math="y = x - 7" />.
+
+<MathVisual
+  title={<>Die <InlineMath math="45^\circ" />-Tangente an <InlineMath math="y = 2x^2 - 7x + 1" /></>}
+  description={<>Die Parabel <InlineMath math="y = 2x^2 - 7x + 1" /> und ihre Tangente <InlineMath math="y = x - 7" /> der Steigung 1 in <InlineMath math="(2, -5)" />.</>}
+  labels={{
+    curve: <InlineMath math="y = 2x^2 - 7x + 1" />,
+    tangent: <InlineMath math="y = x - 7" />,
+    touch: <InlineMath math="(2, -5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 3.9 }, y: { min: -6.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -7, c: 1 }, domain: { min: 0, max: 7 / 2 }, appearance: "primary" },
+      { id: "tangent", kind: "segment", from: { x: 1, y: -6 }, to: { x: 3, y: -4 }, appearance: "construction" },
+      { id: "touch", kind: "point", at: { x: 2, y: -5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0, y: 1 }, placement: "right" },
+      { key: "tangent", objectId: "tangent", at: { x: 3, y: -4 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 2, y: -5 }, placement: "below" },
+    ],
+  }}
+/>
