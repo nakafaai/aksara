@@ -22,10 +22,10 @@ describe("loadTryoutContent", () => {
           "tka",
           "entrance-examination",
         ]);
-        expect(sets).toHaveLength(87);
-        expect(questions).toHaveLength(1940);
+        expect(sets).toHaveLength(88);
+        expect(questions).toHaveLength(1948);
         expect(Arr.flatMap(sets, ({ stimuli }) => stimuli)).toHaveLength(338);
-        expect(papers).toHaveLength(27);
+        expect(papers).toHaveLength(28);
         expect(
           Arr.reduce(papers, 0, (total, { sections }) =>
             Arr.reduce(
@@ -34,7 +34,7 @@ describe("loadTryoutContent", () => {
               (sum, { set }) => sum + set.questions.length
             )
           )
-        ).toBe(1940);
+        ).toBe(1948);
       }),
     120_000
   );
