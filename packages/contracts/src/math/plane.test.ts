@@ -53,6 +53,10 @@ describe("plane math visual", () => {
           from: { x: -1, y: -1 },
           to: { x: 1, y: 1 },
         }),
+        object("vector", {
+          from: { x: 0, y: 0 },
+          to: { x: 2, y: 1 },
+        }),
         object("polyline", {
           vertices: [
             { x: -2, y: 0 },
@@ -89,6 +93,7 @@ describe("plane math visual", () => {
       "line",
       "ray",
       "segment",
+      "vector",
       "polyline",
       "polygon",
       "circle",
@@ -124,6 +129,7 @@ describe("plane math visual", () => {
       object("line", { through: [same, same] }),
       object("ray", { from: same, through: same }),
       object("segment", { from: same, to: same }),
+      object("vector", { from: same, to: same }),
       object("polyline", { vertices: [same, same] }),
       object("polygon", {
         vertices: [
