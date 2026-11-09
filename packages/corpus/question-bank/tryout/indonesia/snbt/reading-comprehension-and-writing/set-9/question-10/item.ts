@@ -1,34 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "argument-evaluation",
+  },
+  stimulus: "food-bank",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Sebagian keluarga penerima juga menanam sayur sendiri.",
+        },
+        {
+          correct: false,
+          label:
+            "Mahasiswa pendiri bank makanan berasal dari berbagai jurusan.",
+        },
+        {
+          correct: false,
+          label: "Harga makanan katering di kota itu naik tahun ini.",
+        },
+        {
+          correct: false,
+          label:
+            "Banyak usaha katering di kota lain belum mengenal bank makanan.",
+        },
+        {
           correct: true,
           label:
-            "Tim akan memperpanjang uji label baki, mencakup berbagai kondisi pasang, dan mempertahankan aturan pengukuran.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan memperpanjang uji sambil mengubah aturan pengukuran.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan mengulang hanya hari dengan nilai kedatangan bibit tertinggi.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan menerapkan label permanen sebagai pengganti uji lanjutan.",
-        },
-        {
-          correct: false,
-          label: "Tim akan memperpanjang uji hanya pada satu kondisi pasang.",
+            "Sejak bank makanan berdiri, makanan yang dibuang oleh sembilan usaha katering itu berkurang hampir separuhnya.",
         },
       ],
     },

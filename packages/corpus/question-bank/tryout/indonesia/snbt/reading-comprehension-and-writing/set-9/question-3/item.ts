@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "fire-volunteers",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Data awal telah membuktikan bahwa label lokasi menyebabkan perbedaan.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim perlu mengubah beberapa unsur pembagian bibit sekaligus sebelum mengukur ulang.",
+          label: "kalimat (4)",
         },
         {
           correct: true,
-          label:
-            "Oleh karena itu, dugaan tentang kegunaan label lokasi perlu diuji pada setiap baki bibit.",
+          label: "kalimat (5)",
         },
         {
           correct: false,
-          label:
-            "Pola awal membenarkan penggunaan label lokasi secara permanen.",
+          label: "kalimat (6)",
         },
         {
           correct: false,
-          label:
-            "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
+          label: "kalimat (7)",
+        },
+        {
+          correct: false,
+          label: "kalimat (8)",
         },
       ],
     },

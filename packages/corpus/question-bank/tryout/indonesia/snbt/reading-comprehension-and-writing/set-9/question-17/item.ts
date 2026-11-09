@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "tooth-brushing",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 2,
           label:
-            "Tim akan mengulang uji jadwal digital setelah pembatalan untuk memperoleh bukti yang lebih kuat.",
+            "Pada awal tahun, lebih dari separuh siswa kelas II bergigi berlubang.",
         },
         {
-          correct: false,
-          label:
-            "Tim akan mengulang kembali uji jadwal digital setelah pembatalan untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+          column: 1,
+          label: "Banyak siswa yang bergigi berlubang turun di setiap kelas.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Untuk memperoleh bukti yang lebih kuat, uji jadwal digital setelah pembatalan akan diulang kembali oleh tim.",
+            "Setelah enam bulan, kelas III memiliki siswa bergigi berlubang paling banyak.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Tim akan melakukan kegiatan berupa pengulangan uji jadwal digital setelah pembatalan demi memperoleh bukti yang lebih kuat.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan mengulang uji untuk memperoleh bukti yang lebih kuat tentang jadwal digital setelah pembatalan yang telah diuji sebelumnya.",
+            "Penurunan di kelas IV lebih besar daripada penurunan di kelas I.",
         },
       ],
     },
