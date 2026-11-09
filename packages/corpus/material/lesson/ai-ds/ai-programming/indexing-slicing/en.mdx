@@ -149,6 +149,81 @@ print(repr(s[10:]))    # Output: ''`
 
 Python clips slice bounds to the valid range of the string or list. Therefore, `s[3:10]` remains valid even when the stop index is greater than the length of `s`.
 
+Every character of `s = "Python"` has two addresses: a positive index from the left and a negative index from the right, so `s[0]` and `s[-6]` are both `P`. The amber segment shows the half-open rule: `s[1:4]` starts at index <InlineMath math="1" />, which is included, and stops before index <InlineMath math="4" />. The result is the three magenta characters `"yth"`, and its length is always <InlineMath math="4-1=3" />.
+
+<MathVisual
+  title={<>Positive indices, negative indices, and <code>s[1:4]</code></>}
+  description={<>For <code>s = 'Python'</code>: violet numbers are positive indices, teal numbers are negative indices, and the magenta characters are the result of <code>s[1:4]</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "char-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "char-b", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "char-c", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "char-d", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "char-e", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "char-f", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "pos-a", kind: "point", at: { x: 0, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-b", kind: "point", at: { x: 1, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-c", kind: "point", at: { x: 2, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-d", kind: "point", at: { x: 3, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-e", kind: "point", at: { x: 4, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-f", kind: "point", at: { x: 5, y: -0.7 }, appearance: "secondary" },
+      { id: "neg-a", kind: "point", at: { x: 0, y: -1.4 }, appearance: "construction" },
+      { id: "neg-b", kind: "point", at: { x: 1, y: -1.4 }, appearance: "construction" },
+      { id: "neg-c", kind: "point", at: { x: 2, y: -1.4 }, appearance: "construction" },
+      { id: "neg-d", kind: "point", at: { x: 3, y: -1.4 }, appearance: "construction" },
+      { id: "neg-e", kind: "point", at: { x: 4, y: -1.4 }, appearance: "construction" },
+      { id: "neg-f", kind: "point", at: { x: 5, y: -1.4 }, appearance: "construction" },
+      { id: "slice", kind: "segment", from: { x: 1, y: 0.9 }, to: { x: 4, y: 0.9 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "char-a", objectId: "char-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "char-b", objectId: "char-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "char-c", objectId: "char-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "char-d", objectId: "char-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "char-e", objectId: "char-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "char-f", objectId: "char-f", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "pos-a", objectId: "pos-a", at: { x: 0, y: -0.7 }, placement: "right" },
+      { key: "pos-b", objectId: "pos-b", at: { x: 1, y: -0.7 }, placement: "right" },
+      { key: "pos-c", objectId: "pos-c", at: { x: 2, y: -0.7 }, placement: "right" },
+      { key: "pos-d", objectId: "pos-d", at: { x: 3, y: -0.7 }, placement: "right" },
+      { key: "pos-e", objectId: "pos-e", at: { x: 4, y: -0.7 }, placement: "right" },
+      { key: "pos-f", objectId: "pos-f", at: { x: 5, y: -0.7 }, placement: "right" },
+      { key: "neg-a", objectId: "neg-a", at: { x: 0, y: -1.4 }, placement: "right" },
+      { key: "neg-b", objectId: "neg-b", at: { x: 1, y: -1.4 }, placement: "right" },
+      { key: "neg-c", objectId: "neg-c", at: { x: 2, y: -1.4 }, placement: "right" },
+      { key: "neg-d", objectId: "neg-d", at: { x: 3, y: -1.4 }, placement: "right" },
+      { key: "neg-e", objectId: "neg-e", at: { x: 4, y: -1.4 }, placement: "right" },
+      { key: "neg-f", objectId: "neg-f", at: { x: 5, y: -1.4 }, placement: "right" },
+      { key: "slice", objectId: "slice", at: { x: 4, y: 0.9 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "char-a": "P",
+    "char-b": "y",
+    "char-c": "t",
+    "char-d": "h",
+    "char-e": "o",
+    "char-f": "n",
+    "pos-a": "0",
+    "pos-b": "1",
+    "pos-c": "2",
+    "pos-d": "3",
+    "pos-e": "4",
+    "pos-f": "5",
+    "neg-a": "-6",
+    "neg-b": "-5",
+    "neg-c": "-4",
+    "neg-d": "-3",
+    "neg-e": "-2",
+    "neg-f": "-1",
+    "slice": "s[1:4]",
+  }}
+/>
+
 ## Indices Selected by a Slice
 
 The loop below rebuilds the slice with `range(start, stop, step)`, **one index at a time**.
@@ -186,6 +261,50 @@ print(f"Manual: '{result_negative}'")`
 />
 
 Comparing the slice with its `range()` model shows how start, stop, and step work together, especially when the step is negative.
+
+A slice picks the indices of `range(start, stop, step)`. For `s = 'Python'`, `s[0:6:2]` takes the indices <InlineMath math="0" />, <InlineMath math="2" />, and <InlineMath math="4" />, giving `'Pto'`. `s[5:0:-2]` walks backward from index <InlineMath math="5" /> and stops before <InlineMath math="0" />, so it gives `'nhy'`.
+
+<MathVisual
+  title={<>The indices picked by <code>s[0:6:2]</code> and <code>s[5:0:-2]</code></>}
+  description={<>The gray middle row is the characters of <code>'Python'</code>. The magenta polyline above jumps forward two steps to the indices <InlineMath math="0" />, <InlineMath math="2" />, and <InlineMath math="4" />. The teal polyline below jumps backward to the indices <InlineMath math="5" />, <InlineMath math="3" />, and <InlineMath math="1" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "char-0", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "char-1", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "char-2", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "char-3", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "char-4", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "char-5", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "forward", kind: "polyline", vertices: [{ x: 0, y: 1 }, { x: 2, y: 1 }, { x: 4, y: 1 }], appearance: "answer" },
+      { id: "pick-0", kind: "point", at: { x: 0, y: 1 }, appearance: "answer" },
+      { id: "pick-2", kind: "point", at: { x: 2, y: 1 }, appearance: "answer" },
+      { id: "pick-4", kind: "point", at: { x: 4, y: 1 }, appearance: "answer" },
+      { id: "backward", kind: "polyline", vertices: [{ x: 5, y: -1 }, { x: 3, y: -1 }, { x: 1, y: -1 }], appearance: "construction" },
+      { id: "back-5", kind: "point", at: { x: 5, y: -1 }, appearance: "construction" },
+      { id: "back-3", kind: "point", at: { x: 3, y: -1 }, appearance: "construction" },
+      { id: "back-1", kind: "point", at: { x: 1, y: -1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "char-0", objectId: "char-0", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "char-1", objectId: "char-1", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "char-2", objectId: "char-2", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "char-3", objectId: "char-3", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "char-4", objectId: "char-4", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "char-5", objectId: "char-5", at: { x: 5, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "char-0": <code>P</code>,
+    "char-1": <code>y</code>,
+    "char-2": <code>t</code>,
+    "char-3": <code>h</code>,
+    "char-4": <code>o</code>,
+    "char-5": <code>n</code>,
+  }}
+/>
 
 ## Slice Shorthand
 
@@ -231,6 +350,43 @@ print(f"Middle part: {middle}")`
 />
 
 These forms select a specific region or regularly spaced items from a larger dataset without a separate loop.
+
+The same split index cuts a string with no gap and no overlap. For `s = 'Python'`, `s[:3]` gives `'Pyt'` and `s[3:]` gives `'hon'`, so `s[:3] + s[3:] == s` always holds.
+
+<MathVisual
+  title={<><code>s[:3]</code> and <code>s[3:]</code> split <code>'Python'</code></>}
+  description={<>The violet characters are <code>s[:3]</code> and the teal characters are <code>s[3:]</code>. The gray segment stands between the indices <InlineMath math="2" /> and <InlineMath math="3" />, where the two slices meet.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "split", kind: "segment", from: { x: 2.5, y: -0.7 }, to: { x: 2.5, y: 0.7 }, appearance: "reference" },
+      { id: "char-0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "char-1", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "char-2", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "char-3", kind: "point", at: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "char-4", kind: "point", at: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "char-5", kind: "point", at: { x: 5, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "char-0", objectId: "char-0", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "char-1", objectId: "char-1", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "char-2", objectId: "char-2", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "char-3", objectId: "char-3", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "char-4", objectId: "char-4", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "char-5", objectId: "char-5", at: { x: 5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "char-0": <code>P</code>,
+    "char-1": <code>y</code>,
+    "char-2": <code>t</code>,
+    "char-3": <code>h</code>,
+    "char-4": <code>o</code>,
+    "char-5": <code>n</code>,
+  }}
+/>
 
 ## Working with Parts of Strings and Lists
 

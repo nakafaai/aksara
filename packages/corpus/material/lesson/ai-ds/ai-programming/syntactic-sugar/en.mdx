@@ -96,6 +96,48 @@ List comprehensions can express a simple transformation or filter compactly. The
 
 For example, `[i**2 for i in range(4)]` produces `[0, 1, 4, 9]`. This list of squares relates to the mathematical notation <InlineMath math="\{i^2 : i \in \{0,1,2,3\}\}" />.
 
+Run the list comprehension `[x**2 for x in range(-3, 4) if x % 2 == 0]` with your eyes on this picture. The `for` part takes every <InlineMath math="x" /> from <InlineMath math="-3" /> to <InlineMath math="3" />, the `if` part lets only even numbers through, and the expression in front computes `x**2`. The result is the three magenta points on the curve, `[4, 0, 4]`. The teal points for odd <InlineMath math="x" /> are still on the curve, but they never enter the list.
+
+<MathVisual
+  title={<>What <code>[x**2 for x in range(-3, 4) if x % 2 == 0]</code> picks</>}
+  description={<>The gray curve is <InlineMath math="y=x^2" />. Magenta points are the elements that pass the <code>if</code> condition, teal points are skipped.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1, max: 9.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "quadratic", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -3, max: 3 }, inputAxis: "x", appearance: "reference" },
+      { id: "value-a", kind: "point", at: { x: -3, y: 9 }, appearance: "construction" },
+      { id: "value-b", kind: "point", at: { x: -2, y: 4 }, appearance: "answer" },
+      { id: "value-c", kind: "point", at: { x: -1, y: 1 }, appearance: "construction" },
+      { id: "value-d", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "value-e", kind: "point", at: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "value-f", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "value-g", kind: "point", at: { x: 3, y: 9 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 3, y: 9 }, placement: "right" },
+      { key: "value-a", objectId: "value-a", at: { x: -3, y: 9 }, placement: "below" },
+      { key: "value-b", objectId: "value-b", at: { x: -2, y: 4 }, placement: "below" },
+      { key: "value-c", objectId: "value-c", at: { x: -1, y: 1 }, placement: "below" },
+      { key: "value-d", objectId: "value-d", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "value-e", objectId: "value-e", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "value-f", objectId: "value-f", at: { x: 2, y: 4 }, placement: "below" },
+      { key: "value-g", objectId: "value-g", at: { x: 3, y: 9 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "square": "x**2",
+    "value-a": "-3",
+    "value-b": "-2",
+    "value-c": "-1",
+    "value-d": "0",
+    "value-e": "1",
+    "value-f": "2",
+    "value-g": "3",
+  }}
+/>
+
 ## Lambda Functions
 
 A lambda expression creates a **function object** without a `def` statement. It is most useful for a small function passed directly as an argument.
@@ -156,6 +198,34 @@ sorted_by_grade = sorted(students, key=lambda student: student[1])
 print(sorted_by_grade)  # Output: [('Charlie', 78), ('Alice', 85), ('Bob', 90)]`
     }
   ]}
+/>
+
+`f = lambda x: x * 2` builds the same function as a `def` that returns `x * 2`. Call it for every `x` in `range(-3, 4)`, and every result lands on the line <InlineMath math="y=2x" />.
+
+<MathVisual
+  title={<><code>lambda x: x * 2</code> for <code>x</code> from <InlineMath math="-3" /> to <InlineMath math="3" /></>}
+  description={<>The violet line is <InlineMath math="y=2x" />. The magenta points are seven calls <code>f(x)</code>, from <InlineMath math="f(-3)=-6" /> to <InlineMath math="f(3)=6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -6.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "double", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "secondary" },
+      { id: "call-0", kind: "point", at: { x: -3, y: -6 }, appearance: "answer" },
+      { id: "call-1", kind: "point", at: { x: -2, y: -4 }, appearance: "answer" },
+      { id: "call-2", kind: "point", at: { x: -1, y: -2 }, appearance: "answer" },
+      { id: "call-3", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "call-4", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "call-5", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "call-6", kind: "point", at: { x: 3, y: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "call-6", objectId: "call-6", at: { x: 3, y: 6 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "call-6": <code>f(3) = 6</code>,
+  }}
 />
 
 ## Other Syntactic Sugar Features
@@ -241,6 +311,23 @@ a, b = b, a  # Swap without temporary variable
 print(f"After: a={a}, b={b}")  # Output: After: a=10, b=5`
     }
   ]}
+/>
+
+An augmented assignment computes with the old value and stores the result under the same name. Start from `x = 10`, then run `x += 5`, `x -= 3`, `x *= 2`, `x //= 5`, and `x **= 2`. The value becomes <InlineMath math="15" />, <InlineMath math="12" />, <InlineMath math="24" />, <InlineMath math="4" />, then <InlineMath math="16" />.
+
+<BarChart
+  title={<>The value of <code>x</code> after each augmented assignment</>}
+  description={<>Each bar is <code>x</code> after the operator written below it, with the operands <InlineMath math="5" />, <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="5" />, and <InlineMath math="2" /> in that order.</>}
+  yAxisLabel="Value"
+  data={[
+    { name: "start", value: 10 },
+    { name: "+=", value: 10 + 5 },
+    { name: "-=", value: 10 + 5 - 3 },
+    { name: "*=", value: (10 + 5 - 3) * 2 },
+    { name: "//=", value: Math.floor((10 + 5 - 3) * 2 / 5) },
+    { name: "**=", value: Math.floor((10 + 5 - 3) * 2 / 5) ** 2 },
+  ]}
+  chartConfig={{ value: { label: "Value", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
 ## Syntax Comparison

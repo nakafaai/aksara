@@ -77,6 +77,21 @@ print("Baris", "Pertama", "Baris", "Kedua", sep="\\n")     # newline`
 
 Nilai `sep` menentukan karakter yang ditulis di antara dua objek, misalnya spasi, koma, tab, atau baris baru.
 
+`print(1, 2, 3, sep=s)` menulis tiga karakter angka dan menyisipkan `s` dua kali di antaranya. Panjang baris keluarannya, tanpa baris baru di akhir, adalah <InlineMath math="3+2k" />, dengan <InlineMath math="k" /> sama dengan `len(s)`.
+
+<BarChart
+  title={<>Panjang keluaran <code>print(1, 2, 3, sep=s)</code></>}
+  description={<>Setiap batang adalah banyak karakter yang ditulis untuk nilai <code>sep</code> di bawahnya: <InlineMath math="5" /> untuk spasi, <InlineMath math="3" /> untuk string kosong, <InlineMath math="7" /> untuk koma dengan spasi, dan <InlineMath math="9" /> untuk <code>' | '</code>.</>}
+  yAxisLabel="Banyak karakter"
+  data={[
+    { name: "' '", value: 3 + 2 * 1 },
+    { name: "''", value: 3 + 2 * 0 },
+    { name: "', '", value: 3 + 2 * 2 },
+    { name: "' | '", value: 3 + 2 * 3 },
+  ]}
+  chartConfig={{ value: { label: "Banyak karakter", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
 ## Parameter End
 
 Parameter `end` menentukan karakter atau string yang ditulis setelah objek. Parameter ini memakai **newline** (`\n`) secara default, sehingga pemanggilan `print` berikutnya dimulai pada baris baru.
@@ -123,6 +138,54 @@ print("D", "E", "F", sep="-", end="\\n")`
 
 Mengubah `end` memungkinkan beberapa pemanggilan melanjutkan output pada baris yang sama. Jika output harus langsung terlihat tanpa menunggu buffer, gunakan juga `flush=True`.
 
+Gambar ini menjalankan `print("A", "B", "C", sep="-")`, lalu `print("x", end=" ")`, lalu `print("y")`, dan menaruh setiap karakter di tempat ia muncul. `sep` hanya disisipkan di antara argumen, jadi tanda hubung hijau toska muncul dua kali untuk tiga argumen. `end` ditambahkan sekali di akhir setiap panggilan: baris baru ↵ memindahkan kursor ke baris berikutnya, sedangkan `end=" "` membuat `y` tetap di baris yang sama dengan `x`.
+
+<MathVisual
+  title={<>Tiga panggilan <code>print</code> di aliran keluaran</>}
+  description={<>Karakter ungu berasal dari argumen, karakter hijau toska dari <code>sep</code>, dan karakter oranye dari <code>end</code>. Simbol ↵ adalah baris baru dan ␣ adalah spasi.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-a", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "first-b", kind: "point", at: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "first-c", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "first-d", kind: "point", at: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "first-e", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "first-f", kind: "point", at: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "second-a", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "second-b", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "second-c", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "second-d", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-a", objectId: "first-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "first-b", objectId: "first-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "first-c", objectId: "first-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "first-d", objectId: "first-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "first-e", objectId: "first-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "first-f", objectId: "first-f", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "second-a", objectId: "second-a", at: { x: 0, y: -1 }, placement: "above" },
+      { key: "second-b", objectId: "second-b", at: { x: 1, y: -1 }, placement: "above" },
+      { key: "second-c", objectId: "second-c", at: { x: 2, y: -1 }, placement: "above" },
+      { key: "second-d", objectId: "second-d", at: { x: 3, y: -1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "first-a": "A",
+    "first-b": "-",
+    "first-c": "B",
+    "first-d": "-",
+    "first-e": "C",
+    "first-f": "↵",
+    "second-a": "x",
+    "second-b": "␣",
+    "second-c": "y",
+    "second-d": "↵",
+  }}
+/>
+
 ## Menampilkan Berbagai Tipe Data
 
 `print()` menerima objek dari berbagai tipe dan mengambil **representasi string** yang mudah dibaca sebelum menulisnya. Class buatan sendiri dapat mengatur representasi tersebut melalui `__str__()`.
@@ -160,6 +223,23 @@ print("Hasil:", angka_bulat, "+", angka_desimal, "=", angka_bulat + angka_desima
 />
 
 Satu pemanggilan `print()` dapat menerima nilai dari beberapa tipe, mengubah setiap nilai menjadi teks, lalu menuliskannya secara berurutan. Bentuk ini cukup untuk memeriksa beberapa nilai saat program berjalan.
+
+`print` mengubah setiap argumen dengan `str()` sebelum menulisnya, jadi tipe data menentukan apa yang tampil. Float `3.0` tetap memakai titik desimal, `None` tampil sebagai kata, dan list menulis tanda kurung serta koma beserta spasinya.
+
+<BarChart
+  title={<>Banyak karakter yang ditulis <code>print</code> untuk enam nilai</>}
+  description={<>Setiap batang adalah <code>len(str(x))</code> untuk nilai <code>x</code> yang tertulis di bawahnya, yaitu banyak karakter yang tampil di layar.</>}
+  yAxisLabel="Banyak karakter"
+  data={[
+    { name: "42", value: 2 },
+    { name: "3.0", value: 3 },
+    { name: "3.14", value: 4 },
+    { name: "True", value: 4 },
+    { name: "None", value: 4 },
+    { name: "[1, 2]", value: 6 },
+  ]}
+  chartConfig={{ value: { label: "Banyak karakter", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>
 
 ## Teknik Formatting Output
 
