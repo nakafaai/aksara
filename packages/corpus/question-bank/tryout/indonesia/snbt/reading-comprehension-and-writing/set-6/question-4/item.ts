@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "referent",
+  },
+  stimulus: "senior-exercise",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Panah dipilih agar penyelesaian rute tidak perlu diukur lagi.",
+          label: "setiap peserta senam",
         },
         {
           correct: false,
-          label:
-            "Panah dipilih agar banyak unsur pameran dapat diubah sekaligus.",
+          label: "kader posyandu",
         },
         {
           correct: false,
-          label:
-            "Panah dipilih karena semua nilai pembanding telah terbukti sama.",
-        },
-        {
-          correct: false,
-          label:
-            "Panah dipilih hanya karena hasil akhir pengujiannya telah dipastikan.",
+          label: "halaman posyandu",
         },
         {
           correct: true,
-          label:
-            "Panah dipilih untuk membantu pengunjung mengikuti rute di lorong bercabang.",
+          label: "hasil pemeriksaan tekanan darah setiap peserta",
+        },
+        {
+          correct: false,
+          label: "buku kecil",
         },
       ],
     },

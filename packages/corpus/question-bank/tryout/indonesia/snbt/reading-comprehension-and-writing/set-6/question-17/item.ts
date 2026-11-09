@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "bike-parking",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Tim akan mengulang kembali uji contoh pencatatan waktu suara untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+            "Jumlah siswa yang bersepeda pada bulan September tiga kali jumlah pada bulan Juni.",
         },
         {
-          correct: true,
-          label:
-            "Tim akan mengulang uji contoh pencatatan waktu suara untuk memperoleh bukti yang lebih kuat.",
+          column: 1,
+          label: "Jumlah siswa yang diantar sepeda motor turun setiap bulan.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Untuk memperoleh bukti yang lebih kuat, uji contoh pencatatan waktu suara akan diulang kembali oleh tim.",
+            "Pertambahan siswa bersepeda dari Agustus ke September lebih kecil daripada pertambahan dari Juli ke Agustus.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Tim akan melakukan kegiatan berupa pengulangan uji contoh pencatatan waktu suara demi memperoleh bukti yang lebih kuat.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan mengulang uji untuk memperoleh bukti yang lebih kuat tentang contoh pencatatan waktu suara yang telah diuji sebelumnya.",
+            "Pada bulan September, siswa yang bersepeda lebih banyak daripada siswa yang diantar sepeda motor.",
         },
       ],
     },

@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "punctuation",
+  },
+  stimulus: "larva-compost",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Meskipun demikian tim membatasi simpulan pada pameran yang diuji.",
+            "Larva yang sudah besar dijual kepada peternak ikan ayam, dan bebek sebagai pakan.",
         },
         {
           correct: false,
           label:
-            "Meskipun demikian: tim membatasi simpulan pada pameran yang diuji.",
+            "Larva yang sudah besar, dijual kepada peternak ikan, ayam, dan bebek sebagai pakan.",
         },
         {
           correct: false,
           label:
-            "Meskipun demikian, tim, membatasi simpulan pada pameran yang diuji.",
+            "Larva yang sudah besar dijual kepada peternak: ikan, ayam, dan bebek sebagai pakan.",
         },
         {
           correct: false,
           label:
-            "Meskipun demikian, tim membatasi simpulan pada pameran yang diuji?",
+            "Larva yang sudah besar dijual kepada peternak ikan, ayam dan, bebek sebagai pakan.",
         },
         {
           correct: true,
           label:
-            "Meskipun demikian, tim membatasi simpulan pada pameran yang diuji.",
+            "Larva yang sudah besar dijual kepada peternak ikan, ayam, dan bebek sebagai pakan.",
         },
       ],
     },
