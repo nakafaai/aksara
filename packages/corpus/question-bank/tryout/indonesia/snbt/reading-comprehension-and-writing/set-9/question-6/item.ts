@@ -1,33 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "main-idea",
+  },
+  stimulus: "food-bank",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Label terbukti menjadi satu-satunya penyebab nilai yang lebih tinggi.",
-        },
-        {
-          correct: false,
-          label: "Setiap relawan mengalami peningkatan yang sama.",
-        },
-        {
-          correct: false,
-          label: "Nilai awal dan pembanding sama.",
+          label: "Banyak makanan dari usaha katering dibuang setiap malam.",
         },
         {
           correct: false,
           label:
-            "Uji tersebut menetapkan hasil jangka panjang untuk seluruh pembibitan.",
+            "Masih ada keluarga di Kota Purbaya yang kesulitan membeli makanan.",
+        },
+        {
+          correct: false,
+          label: "Makanan yang berbau atau berlendir langsung ditolak.",
         },
         {
           correct: true,
           label:
-            "Nilai bibit yang sampai tanpa dialihkan pada hari uji melebihi nilai awal dan pembanding.",
+            "Bank makanan yang didirikan mahasiswa menyalurkan sisa makanan katering yang layak santap kepada keluarga yang membutuhkan.",
+        },
+        {
+          correct: false,
+          label: "Sembilan usaha katering rutin menyumbangkan makanan.",
         },
       ],
     },

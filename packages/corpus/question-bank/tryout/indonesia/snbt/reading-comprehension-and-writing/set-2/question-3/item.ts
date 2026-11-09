@@ -1,34 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "writing",
+    topic: "effective-sentence",
+  },
+  stimulus: "weaving-class",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Rencana media keluarga perlu menetapkan batas bagi anak, karena orang dewasa juga perlu memiliki batas penggunaan media.",
+          label: "Kalimat itu tidak mempunyai predikat.",
         },
         {
           correct: false,
           label:
-            "Rencana media keluarga perlu menetapkan batas bagi anak, ketika orang dewasa juga perlu memiliki batas penggunaan media.",
-        },
-        {
-          correct: false,
-          label:
-            "Rencana media keluarga perlu menetapkan batas bagi anak, orang dewasa juga perlu memiliki batas penggunaan media.",
-        },
-        {
-          correct: false,
-          label:
-            "Rencana media keluarga perlu menetapkan batas bagi anak; oleh karena itu, orang dewasa juga perlu memiliki batas penggunaan media.",
+            "Kalimat itu memakai kata yang bermakna sama secara berlebihan.",
         },
         {
           correct: true,
-          label:
-            "Rencana media keluarga perlu menetapkan batas bagi anak, tetapi orang dewasa juga perlu memiliki batas penggunaan media.",
+          label: "Kalimat itu tidak mempunyai subjek.",
+        },
+        {
+          correct: false,
+          label: "Kalimat itu memakai tanda koma yang tidak diperlukan.",
+        },
+        {
+          correct: false,
+          label: "Kalimat itu memakai kata ulang yang tidak baku.",
         },
       ],
     },

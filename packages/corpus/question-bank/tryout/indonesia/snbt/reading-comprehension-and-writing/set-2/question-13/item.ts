@@ -1,29 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "referent",
+  },
+  stimulus: "medicine-delivery",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "meskipun.",
+          label: "dilatihnya dua puluh relawan muda",
         },
         {
           correct: false,
-          label: "agar.",
-        },
-        {
-          correct: false,
-          label: "kecuali.",
+          label: "kunjungan tambahan bagi warga yang tinggal sendiri",
         },
         {
           correct: true,
-          label: "karena.",
+          label: "berkurangnya warga lanjut usia yang lupa minum obat",
         },
         {
           correct: false,
-          label: "setelah.",
+          label: "pemeriksaan catatan kesehatan setiap Senin",
+        },
+        {
+          correct: false,
+          label: "pengantaran obat pada hari yang sama",
         },
       ],
     },

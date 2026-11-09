@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "effective-sentence",
+  },
+  stimulus: "medicine-return",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Data awal membuktikan bahwa pemesanan sehari sebelumnya menyebabkan perbedaan hasil.",
+            "Warga cukup membawa obat sisa dalam kemasannya, lalu kotak itu dimasukkan.",
+        },
+        {
+          correct: false,
+          label:
+            "Warga cukup dibawa obat sisa dalam kemasannya, lalu dimasukkan ke kotak itu.",
+        },
+        {
+          correct: false,
+          label:
+            "Warga cukup membawa obat sisa dalam kemasannya, lalu dimasukkan ke dalam kotak itu oleh warga.",
         },
         {
           correct: true,
           label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji melalui pemesanan menu sehari sebelumnya.",
+            "Warga cukup membawa obat sisa dalam kemasannya, lalu memasukkannya ke kotak itu.",
         },
         {
           correct: false,
           label:
-            "Tim perlu mengubah beberapa unsur program sarapan sekaligus sebelum mengukur ulang.",
-        },
-        {
-          correct: false,
-          label:
-            "Pola awal membenarkan pemesanan sehari sebelumnya secara permanen.",
-        },
-        {
-          correct: false,
-          label:
-            "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
+            "Warga cukup membawa obat sisa, dalam kemasannya lalu dimasukkan ke kotak itu.",
         },
       ],
     },

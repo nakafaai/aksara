@@ -1,34 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "argument-evaluation",
+  },
+  stimulus: "grain-barn",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Sebagian petani menyimpan gabah di rumah masing-masing.",
+        },
+        {
+          correct: false,
+          label:
+            "Harga gabah setelah panen biasanya lebih rendah daripada sebelum panen.",
+        },
+        {
+          correct: false,
+          label: "Pembangunan lumbung baru memerlukan biaya yang besar.",
+        },
+        {
           correct: true,
           label:
-            "Degradasi lingkungan adalah penurunan mutu lingkungan yang tampak, misalnya, pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
+            "Desa yang masih mengelola lumbung bersama lebih jarang kekurangan beras saat panen gagal.",
         },
         {
           correct: false,
-          label:
-            "Degradasi lingkungan adalah penurunan mutu lingkungan sehingga tampak pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
-        },
-        {
-          correct: false,
-          label:
-            "Degradasi lingkungan adalah penurunan mutu lingkungan karena tampak pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
-        },
-        {
-          correct: false,
-          label:
-            "Degradasi lingkungan adalah penurunan mutu lingkungan, tetapi tampak pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
-        },
-        {
-          correct: false,
-          label:
-            "Degradasi lingkungan adalah penurunan mutu lingkungan dan yang tampak pada rusaknya tanah, tercemarnya air dan udara, serta hilangnya keanekaragaman hayati.",
+          label: "Banyak warga desa kini bekerja di luar sektor pertanian.",
         },
       ],
     },

@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "tooth-brushing",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Pengguna ruang latihan musik memberikan komentar singkat yang tidak panjang.",
-        },
-        {
           correct: true,
-          label: "Pengguna ruang latihan musik memberikan komentar singkat.",
+          label: "$$40\\%$$",
         },
         {
           correct: false,
-          label:
-            "Pengguna ruang latihan musik memberikan komentar singkat sebagai pengguna yang memakai ruang latihan musik.",
+          label: "$$50\\%$$",
         },
         {
           correct: false,
-          label:
-            "Pengguna ruang latihan musik memberikan komentar singkat dalam bentuk yang singkat.",
+          label: "$$60\\%$$",
         },
         {
           correct: false,
-          label:
-            "Pengguna ruang latihan musik memberikan komentar singkat, yaitu komentar yang pendek.",
+          label: "$$70\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$80\\%$$",
         },
       ],
     },

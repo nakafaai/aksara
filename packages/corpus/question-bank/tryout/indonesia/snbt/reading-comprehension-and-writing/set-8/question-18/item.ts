@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "minibus-schedule",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "Berdasarkan data, tim menarik simpulan terbatas tentang layanan barang hilang.",
+          label: "kalimat (1)",
         },
         {
           correct: false,
-          label:
-            "Berdasarkan data, sebuah simpulan terbatas tentang layanan barang hilang.",
+          label: "kalimat (2)",
         },
         {
           correct: false,
-          label:
-            "Tim yang berdasarkan data menarik simpulan terbatas tentang layanan barang hilang.",
+          label: "kalimat (3)",
         },
         {
           correct: false,
-          label:
-            "Karena tim menarik simpulan terbatas tentang layanan barang hilang.",
+          label: "kalimat (5)",
         },
         {
           correct: false,
-          label: "Berdasarkan data, menarik tentang layanan barang hilang.",
+          label: "kalimat (6)",
         },
       ],
     },

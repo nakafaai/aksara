@@ -1,35 +1,37 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "coherence",
+  },
+  stimulus: "larva-compost",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Tim akan memperpanjang uji panah sambil mengubah ukuran penyelesaian rute.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan mengulang hanya sesi dengan jumlah penyelesaian rute tertinggi.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan menerapkan panah permanen sebagai pengganti pengujian lanjutan.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan memperpanjang uji tanpa mencatat titik pengunjung berbalik.",
+          label: "Lalat tentara hitam pertama kali ditemukan di benua Amerika.",
         },
         {
           correct: true,
           label:
-            "Tim akan memperpanjang uji panah, mencatat titik pengunjung berbalik, dan mempertahankan ukuran penyelesaian rute.",
+            "Selain mengurangi sampah, usaha itu juga memberi penghasilan bagi kelompok pemuda tersebut.",
+        },
+        {
+          correct: false,
+          label: "Sampah plastik di pasar juga harus dipilah sebelum dibuang.",
+        },
+        {
+          correct: false,
+          label: "Oleh karena itu, Pasar Sentul akan ditutup untuk sementara.",
+        },
+        {
+          correct: false,
+          label:
+            "Namun, pengelola pasar tidak pernah memikirkan masalah sampah.",
         },
       ],
     },

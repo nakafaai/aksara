@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "word-meaning",
+  },
+  stimulus: "mangrove-nursery",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Label foto dipilih agar keberhasilan pengembalian tidak perlu diukur lagi.",
+          label: "membalikkan",
         },
         {
           correct: false,
-          label:
-            "Label foto dipilih agar tim dapat mengubah banyak kondisi sekaligus.",
+          label: "menenggelamkan",
         },
         {
           correct: false,
-          label:
-            "Label foto dipilih karena semua nilai pembanding sudah terbukti sama.",
+          label: "menghentikan sama sekali",
         },
         {
           correct: false,
-          label:
-            "Label foto dipilih hanya karena hasil akhir uji sudah dipastikan.",
+          label: "membelokkan",
         },
         {
           correct: true,
-          label:
-            "Label foto dipilih untuk membantu peminjam mengenali rak pengembalian yang tepat.",
+          label: "mengurangi",
         },
       ],
     },

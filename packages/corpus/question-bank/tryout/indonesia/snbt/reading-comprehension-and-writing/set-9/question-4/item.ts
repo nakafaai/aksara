@@ -1,35 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "inference",
+  },
+  stimulus: "fire-volunteers",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Label baki membuat jumlah bibit yang sampai tanpa dialihkan tidak perlu diukur.",
+          label: "Kampung lain sudah memiliki terlalu banyak relawan.",
         },
         {
           correct: false,
           label:
-            "Label baki memungkinkan banyak unsur distribusi diubah sekaligus.",
+            "Mobil pemadam kebakaran sudah tidak dipakai lagi di kelurahan itu.",
         },
         {
           correct: false,
           label:
-            "Label dipilih karena semua nilai pembanding sudah terbukti sama.",
+            "Regu itu memadamkan api lebih lambat daripada petugas pemadam.",
         },
         {
           correct: false,
-          label:
-            "Label dipilih hanya karena hasil akhir pengujiannya telah dipastikan.",
+          label: "Kompor di semua rumah warga sering terbakar.",
         },
         {
           correct: true,
           label:
-            "Label pada baki menunjukkan petak tujuan ketika relawan harus memilih arah di percabangan.",
+            "Kampung yang gangnya sempit sulit dijangkau mobil pemadam sehingga memerlukan regu pemadam di dalam kampung.",
         },
       ],
     },

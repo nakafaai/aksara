@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "word-meaning",
+  },
+  stimulus: "fire-volunteers",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Namun",
+          label: "memadamkan",
         },
         {
           correct: false,
-          label: "Sebelum pengukuran",
-        },
-        {
-          correct: false,
-          label: "Sebaliknya",
+          label: "memakan makanan dengan rakus",
         },
         {
           correct: true,
-          label: "Dalam kondisi tersebut",
+          label: "membakar habis",
         },
         {
           correct: false,
-          label: "Misalnya",
+          label: "mendekati",
+        },
+        {
+          correct: false,
+          label: "menerangi",
         },
       ],
     },

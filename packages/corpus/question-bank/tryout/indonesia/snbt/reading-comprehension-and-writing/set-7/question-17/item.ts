@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "library-loans",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Tim akan mengulang uji kode pengembalian pada setiap gagang untuk memperoleh bukti yang lebih kuat.",
+            "Peminjaman buku pelajaran turun dari semester ganjil ke semester genap.",
         },
         {
-          correct: false,
-          label:
-            "Tim akan mengulang kembali uji kode pengembalian pada setiap gagang untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+          column: 2,
+          label: "Pada semester genap, novel remaja paling banyak dipinjam.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Untuk memperoleh bukti yang lebih kuat, uji kode pengembalian pada setiap gagang akan diulang kembali oleh tim.",
+            "Peminjaman komik pengetahuan pada semester genap lebih dari tiga kali peminjaman pada semester ganjil.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Tim akan melakukan kegiatan berupa pengulangan uji kode pengembalian pada setiap gagang demi memperoleh bukti yang lebih kuat.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan mengulang uji untuk memperoleh bukti yang lebih kuat tentang kode pengembalian pada setiap gagang yang telah diuji sebelumnya.",
+            "Peminjaman buku biografi naik lebih banyak daripada peminjaman novel remaja.",
         },
       ],
     },

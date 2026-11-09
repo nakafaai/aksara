@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "title",
+  },
+  stimulus: "suspension-bridge",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Rata-rata hasil uji lebih tinggi. Oleh karena itu, simpulannya tetap dibatasi.",
+          label: "Insinyur Sukarelawan di Kampung Lebak Muncang",
         },
         {
           correct: false,
-          label:
-            "Rata-rata hasil uji lebih tinggi. Selain itu, simpulannya tetap dibatasi.",
+          label: "Bahaya Arus Sungai pada Musim Hujan",
         },
         {
           correct: true,
-          label:
-            "Rata-rata hasil uji lebih tinggi. Namun, simpulannya tetap dibatasi.",
+          label: "Jembatan Gotong Royong untuk Sekolah dan Pasar",
         },
         {
           correct: false,
-          label:
-            "Rata-rata hasil uji lebih tinggi. Sebelumnya, simpulannya tetap dibatasi.",
+          label: "Rakit Bambu Penyeberangan Warga",
         },
         {
           correct: false,
-          label:
-            "Rata-rata hasil uji lebih tinggi. Akibatnya, simpulannya tetap dibatasi.",
+          label: "Kabel Baja dari Pemerintah Kabupaten",
         },
       ],
     },

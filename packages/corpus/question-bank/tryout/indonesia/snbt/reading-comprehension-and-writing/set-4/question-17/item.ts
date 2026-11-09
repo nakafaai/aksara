@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "water-tank",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Tim akan mengulang uji tanda genre untuk memperoleh bukti yang lebih kuat.",
+            "Pada setiap bulan, pemakaian air rumah dengan tandon lebih rendah daripada rumah tanpa tandon.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Tim akan mengulang kembali uji tanda genre untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+            "Pemakaian air rumah tanpa tandon paling tinggi pada bulan Februari.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Untuk memperoleh bukti yang lebih kuat, uji tanda genre akan diulang kembali oleh tim.",
+            "Pemakaian air rumah dengan tandon terus naik dari Januari sampai April.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Tim akan melakukan kegiatan berupa pengulangan uji tanda genre demi memperoleh bukti yang lebih kuat.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan mengulang uji untuk memperoleh bukti yang lebih kuat tentang tanda genre yang telah diuji sebelumnya.",
+            "Pada bulan Maret, pemakaian air rumah dengan tandon setengah dari pemakaian rumah tanpa tandon.",
         },
       ],
     },

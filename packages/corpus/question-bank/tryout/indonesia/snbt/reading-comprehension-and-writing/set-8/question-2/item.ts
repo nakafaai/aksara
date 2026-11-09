@@ -1,32 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "rattan-weaving",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "menggunakan hasil lama tanpa mengumpulkan data baru",
+          label: "kalimat (3)",
         },
         {
           correct: true,
-          label:
-            "mempertahankan ketentuan ukuran kelompok agar kondisi peserta tetap sebanding",
+          label: "kalimat (5)",
         },
         {
           correct: false,
-          label:
-            "mengubah jumlah peserta setiap kali hasil tidak sesuai harapan",
+          label: "kalimat (6)",
         },
         {
           correct: false,
-          label: "menyamakan semua hasil sebelum menghitung rata-rata",
+          label: "kalimat (7)",
         },
         {
           correct: false,
-          label: "mewajibkan seluruh peserta memberikan pertanyaan yang sama",
+          label: "kalimat (8)",
         },
       ],
     },

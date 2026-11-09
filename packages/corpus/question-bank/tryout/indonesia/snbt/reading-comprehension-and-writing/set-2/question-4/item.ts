@@ -1,32 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "conjunction",
+  },
+  stimulus: "weaving-class",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Hipotermia hanya mengancam orang yang berada di pegunungan.",
+          label: "sehingga",
         },
         {
           correct: false,
-          label:
-            "Menggigil merupakan satu-satunya tanda hipotermia yang dapat dipercaya.",
+          label: "karena",
+        },
+        {
+          correct: false,
+          label: "bahkan",
         },
         {
           correct: true,
-          label:
-            "Hipotermia merupakan keadaan darurat medis yang memerlukan tindakan cepat dan aman.",
+          label: "tetapi",
         },
         {
           correct: false,
-          label:
-            "Panas langsung merupakan cara terbaik untuk menangani hipotermia.",
-        },
-        {
-          correct: false,
-          label: "Orang yang masih sadar tidak memerlukan pertolongan medis.",
+          label: "lalu",
         },
       ],
     },

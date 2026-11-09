@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "conjunction",
+  },
+  stimulus: "senior-exercise",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "Oleh karena itu, hipotesis tersebut perlu diuji dengan memasang panah arah di persimpangan lorong.",
+          label: "Setelah",
         },
         {
           correct: false,
-          label:
-            "Pengamatan awal membuktikan bahwa panah menyebabkan perbedaan penyelesaian rute.",
+          label: "Sebelum",
         },
         {
           correct: false,
-          label:
-            "Tim perlu mengubah beberapa unsur pameran sekaligus sebelum mengukur ulang.",
+          label: "Meskipun",
         },
         {
           correct: false,
-          label: "Pola awal membenarkan pemasangan panah secara permanen.",
+          label: "Agar",
         },
         {
           correct: false,
-          label:
-            "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
+          label: "Sehingga",
         },
       ],
     },

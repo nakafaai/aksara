@@ -1,31 +1,39 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "main-idea",
+  },
+  stimulus: "net-recycling",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Jaring dari plastik tidak mudah hancur dan dapat menjerat penyu.",
+        },
+        {
+          correct: false,
+          label:
+            "Koperasi membeli jaring rusak dengan harga Rp2.000,00 per kilogram.",
+        },
+        {
+          correct: false,
+          label: "Para nelayan berdiskusi dalam pertemuan bulanan koperasi.",
+        },
+        {
+          correct: false,
+          label:
+            "Koperasi telah mengumpulkan lebih dari 3 ton jaring dalam setahun.",
+        },
+        {
           correct: true,
           label:
-            "Pengujian Pengelompokan Bahan menurut Tahap Resep di Kelas Memasak",
-        },
-        {
-          correct: false,
-          label: "Catatan Awal Sebelum Susunan Bahan Diuji",
-        },
-        {
-          correct: false,
-          label: "Pengujian Beberapa Perubahan Serentak di Kelas Memasak",
-        },
-        {
-          correct: false,
-          label: "Tanggapan terhadap Perancangan Ulang Permanen Kelas Memasak",
-        },
-        {
-          correct: false,
-          label: "Evaluasi Menyeluruh atas Semua Kegiatan Kelas Memasak",
+            "Koperasi nelayan Desa Tanjungrejo mengubah jaring rusak yang dulu dibuang menjadi barang bernilai sekaligus membuat pantai lebih bersih.",
         },
       ],
     },

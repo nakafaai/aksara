@@ -1,30 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "conjunction",
+  },
+  stimulus: "screen-printing",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "(2)-(4)-(1)-(3)",
+          label: "karena",
         },
         {
           correct: true,
-          label: "(4)-(3)-(1)-(2)",
+          label: "meskipun",
         },
         {
           correct: false,
-          label: "(4)-(1)-(2)-(3)",
+          label: "sehingga",
         },
         {
           correct: false,
-          label: "(4)-(2)-(3)-(1)",
+          label: "agar",
         },
         {
           correct: false,
-          label: "(3)-(4)-(2)-(1)",
+          label: "lalu",
         },
       ],
     },

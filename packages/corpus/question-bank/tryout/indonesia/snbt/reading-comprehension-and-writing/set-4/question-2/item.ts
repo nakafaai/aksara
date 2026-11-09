@@ -1,31 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "mangrove-nursery",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "kalimat (2)",
+        },
+        {
+          correct: false,
+          label: "kalimat (4)",
+        },
+        {
+          correct: false,
+          label: "kalimat (5)",
+        },
+        {
           correct: true,
-          label:
-            "sesi ketika rak hanya memakai kode huruf lama sebagai acuan bagi sesi uji",
+          label: "kalimat (7)",
         },
         {
           correct: false,
-          label: "sesi ketika hasil akhir diumumkan kepada peminjam",
-        },
-        {
-          correct: false,
-          label: "sesi pertama sebelum pencatatan nilai awal dimulai",
-        },
-        {
-          correct: false,
-          label: "sesi ketika dua perubahan diuji sekaligus",
-        },
-        {
-          correct: false,
-          label: "sesi tanpa kegiatan agar petugas dapat beristirahat",
+          label: "kalimat (8)",
         },
       ],
     },

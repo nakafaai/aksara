@@ -1,30 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "inference",
+  },
+  stimulus: "coffee-picking",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Data di kumpulkan di stasiun dan kemudian dibandingkan.",
+          label: "Panen kelompok tani itu kini berlangsung lebih cepat.",
         },
         {
           correct: false,
-          label: "Data dikumpulkan distasiun dan kemudian dibandingkan.",
-        },
-        {
-          correct: false,
-          label: "Data mengumpulkan di stasiun dan kemudian membandingkan.",
-        },
-        {
-          correct: false,
-          label: "Data dikumpulkan pada di stasiun lalu di bandingkan.",
+          label: "Kebun kelompok tani itu paling luas di kota.",
         },
         {
           correct: true,
-          label: "Data dikumpulkan di stasiun dan kemudian dibandingkan.",
+          label:
+            "Biji kopi dari kelompok tani itu kini matang merata sehingga rasanya lebih baik.",
+        },
+        {
+          correct: false,
+          label: "Petani dari desa tetangga ikut memetik kopi di kebun itu.",
+        },
+        {
+          correct: false,
+          label: "Kelompok tani itu kini memetik lebih banyak buah hijau.",
         },
       ],
     },

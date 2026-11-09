@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "referent",
+  },
+  stimulus: "cassava-flour",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "merendam irisan singkong di dalam air yang diberi bakteri baik",
+        },
+        {
           correct: true,
-          label:
-            "Dengan aturan ukur yang sama, tim merencanakan uji label foto yang lebih panjang serta pemisahan data peminjam baru dan lama.",
+          label: "mencampur tepung singkong fermentasi dengan sedikit terigu",
         },
         {
           correct: false,
-          label:
-            "Dengan aturan ukur yang diubah, tim merencanakan uji label foto yang lebih panjang.",
+          label: "membuat kue seluruhnya dari tepung singkong",
         },
         {
           correct: false,
-          label:
-            "Tim akan mengulang hanya sesi label foto yang menghasilkan nilai tertinggi.",
+          label: "menanam singkong sendiri di kabupaten itu",
         },
         {
           correct: false,
-          label:
-            "Tim akan menerapkan label foto secara permanen sebagai pengganti uji lebih panjang.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim merencanakan uji lebih panjang dengan menggabungkan data peminjam baru dan lama tanpa membedakannya.",
+          label: "mengeringkan dan menggiling irisan singkong",
         },
       ],
     },

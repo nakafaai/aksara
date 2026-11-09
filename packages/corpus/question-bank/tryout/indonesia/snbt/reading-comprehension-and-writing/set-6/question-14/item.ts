@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "argument-evaluation",
+  },
+  stimulus: "water-turn",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Data di kumpulkan di lingkungan warga dan kemudian dibandingkan.",
+            "Petani hulu ingin pintu air dibuka lebih lama untuk sawah mereka.",
+        },
+        {
+          correct: false,
+          label: "Harga gabah naik selama dua tahun terakhir.",
         },
         {
           correct: false,
           label:
-            "Data dikumpulkan dilingkungan warga dan kemudian dibandingkan.",
+            "Sebagian petani hilir mulai menanam jagung pada musim kemarau.",
         },
         {
           correct: false,
           label:
-            "Data mengumpulkan di lingkungan warga dan kemudian membandingkan.",
+            "Pada musim kemarau tahun lalu, hujan turun jauh lebih sering daripada biasanya.",
         },
         {
           correct: true,
           label:
-            "Data dikumpulkan di lingkungan warga dan kemudian dibandingkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Data dikumpulkan pada di lingkungan warga lalu di bandingkan.",
+            "Curah hujan pada dua musim kemarau terakhir sama rendahnya dengan musim kemarau sebelum jadwal dibuat.",
         },
       ],
     },

@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "effective-sentence",
+  },
+  stimulus: "rattan-weaving",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Data awal telah membuktikan bahwa kartu pertanyaan menyebabkan perbedaan.",
+            "Para perajin tua mengajarkan cara memilih rotan, merendamnya, dan menganyamnya berulang-ulang kali hingga para pemuda hafal.",
         },
         {
           correct: false,
           label:
-            "Tim perlu mengubah beberapa unsur tur sekaligus sebelum mengukur ulang.",
+            "Para perajin tua mengajarkan cara memilih rotan, merendamnya, dan menganyamnya berkali-kali kali sampai para pemuda hafal.",
+        },
+        {
+          correct: false,
+          label:
+            "Para perajin tua mengajarkan cara memilih rotan, merendamnya, dan menganyamnya ulang-ulang kali sampai para pemuda hafal.",
+        },
+        {
+          correct: false,
+          label:
+            "Para perajin tua mengajarkan cara memilih rotan, merendamnya, dan menganyamnya berulang-ulang kali, sampai para pemuda hafal.",
         },
         {
           correct: true,
           label:
-            "Oleh karena itu, dugaan tentang kegunaan kartu pertanyaan perlu diuji pada setiap meja demonstrasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Pola awal membenarkan penggunaan kartu pertanyaan secara permanen.",
-        },
-        {
-          correct: false,
-          label:
-            "Ketidakpastian yang tersisa membuat perbandingan lanjutan tidak diperlukan.",
+            "Para perajin tua mengajarkan cara memilih rotan, merendamnya, dan menganyamnya berulang kali sampai para pemuda hafal.",
         },
       ],
     },

@@ -1,30 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "inference",
+  },
+  stimulus: "medicine-return",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Obat itu dapat dipakai kembali oleh warga lain dengan aman.",
+        },
+        {
+          correct: false,
+          label: "Kotak pengembalian obat menjadi lebih cepat penuh.",
+        },
+        {
           correct: true,
-          label: "Selanjutnya",
+          label: "Air di sekitar permukiman dapat tercemar zat dari obat.",
         },
         {
           correct: false,
-          label: "Namun",
+          label:
+            "Dinas kesehatan memusnahkan obat itu dengan alat pembakar khusus.",
         },
         {
           correct: false,
-          label: "Oleh karena itu",
-        },
-        {
-          correct: false,
-          label: "Sebaliknya",
-        },
-        {
-          correct: false,
-          label: "Seandainya",
+          label: "Puskesmas menutup kotak pengembalian obat.",
         },
       ],
     },

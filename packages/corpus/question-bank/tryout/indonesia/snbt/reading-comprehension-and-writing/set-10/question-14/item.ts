@@ -1,35 +1,38 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "argument-evaluation",
+  },
+  stimulus: "larva-monitors",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Data di kumpulkan di pusat informasi taman kota dan kemudian dibandingkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Data dikumpulkan dipusat informasi taman kota dan kemudian dibandingkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Data mengumpulkan di pusat informasi taman kota dan kemudian membandingkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Data dikumpulkan pada di pusat informasi taman kota lalu di bandingkan.",
-        },
-        {
           correct: true,
           label:
-            "Data dikumpulkan di pusat informasi taman kota dan kemudian dibandingkan.",
+            "Pada dua tahun itu, kasus demam berdarah di kelurahan lain yang tidak memiliki juru pemantau jentik juga turun hampir sebanyak itu.",
+        },
+        {
+          correct: false,
+          label:
+            "Juru pemantau memeriksa bak mandi dan vas bunga setiap pekan.",
+        },
+        {
+          correct: false,
+          label: "Kartu pemantauan dikumpulkan kader kesehatan setiap bulan.",
+        },
+        {
+          correct: false,
+          label: "Anak-anak senang menjadi juru pemantau jentik.",
+        },
+        {
+          correct: false,
+          label:
+            "Rumah yang memiliki juru pemantau jarang ditemukan jentik nyamuk.",
         },
       ],
     },

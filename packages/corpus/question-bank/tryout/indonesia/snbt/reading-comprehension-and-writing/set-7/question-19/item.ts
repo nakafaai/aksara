@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "sentence-relation",
+  },
+  stimulus: "library-loans",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,24 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tim merubah satu faktor saja, yaitu penambahan kode pengembalian pada setiap gagang.",
+            "Kalimat (5) memberi contoh siswa yang jarang datang ke perpustakaan.",
         },
         {
           correct: false,
-          label:
-            "Tim mengrubah satu faktor saja, yaitu penambahan kode pengembalian pada setiap gagang.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim hanya mengubah satu faktor saja, yaitu penambahan kode pengembalian pada setiap gagang.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim mengubah terhadap satu faktor saja, yaitu penambahan kode pengembalian pada setiap gagang.",
+          label: "Kalimat (5) menjelaskan penyebab koleksi baru menarik siswa.",
         },
         {
           correct: true,
           label:
-            "Tim mengubah satu faktor saja, yaitu penambahan kode pengembalian pada setiap gagang.",
+            "Kalimat (5) menyampaikan pandangan yang berbeda dari penilaian dalam kalimat (4).",
+        },
+        {
+          correct: false,
+          label: "Kalimat (5) menyimpulkan seluruh isi tabel.",
+        },
+        {
+          correct: false,
+          label: "Kalimat (5) mengulang isi kalimat (4) dengan kata lain.",
         },
       ],
     },

@@ -1,33 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-1",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "net-recycling",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "nilai terendah yang wajib dicapai agar uji dinyatakan berhasil",
+          label: "kalimat (2)",
         },
         {
           correct: false,
-          label:
-            "rata-rata gabungan dari pertemuan uji dan pertemuan pembanding",
+          label: "kalimat (3)",
         },
         {
           correct: false,
-          label: "perkiraan yang dibuat sebelum pencatatan dimulai",
-        },
-        {
-          correct: false,
-          label: "nilai yang telah dikoreksi setelah peserta memberi tanggapan",
+          label: "kalimat (6)",
         },
         {
           correct: true,
-          label:
-            "nilai yang dicatat sebelum perubahan uji dan dipakai sebagai salah satu acuan",
+          label: "kalimat (7)",
+        },
+        {
+          correct: false,
+          label: "kalimat (8)",
         },
       ],
     },

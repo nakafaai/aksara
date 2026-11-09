@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "spelling",
+  },
+  stimulus: "running-club",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "kalimat (1)",
+        },
+        {
           correct: true,
-          label:
-            "Berdasarkan data, tim menarik simpulan terbatas tentang pusat informasi taman kota.",
+          label: "kalimat (2)",
         },
         {
           correct: false,
-          label:
-            "Berdasarkan data, sebuah simpulan terbatas tentang pusat informasi taman kota.",
+          label: "kalimat (3)",
         },
         {
           correct: false,
-          label:
-            "Tim yang berdasarkan data menarik simpulan terbatas tentang pusat informasi taman kota.",
+          label: "kalimat (5)",
         },
         {
           correct: false,
-          label:
-            "Karena tim menarik simpulan terbatas tentang pusat informasi taman kota.",
-        },
-        {
-          correct: false,
-          label:
-            "Berdasarkan data, menarik tentang pusat informasi taman kota.",
+          label: "kalimat (6)",
         },
       ],
     },

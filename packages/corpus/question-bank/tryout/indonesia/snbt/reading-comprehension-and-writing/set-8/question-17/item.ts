@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "minibus-schedule",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Tim akan mengulang kembali uji formulir dengan pilihan lokasi terstruktur untuk memperoleh bukti yang lebih kuat daripada sebelumnya.",
+            "Rata-rata penumpang per hari paling tinggi terjadi pada bulan April.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Untuk memperoleh bukti yang lebih kuat, uji formulir dengan pilihan lokasi terstruktur akan diulang kembali oleh tim.",
+            "Rata-rata waktu tunggu terus turun dari bulan Januari sampai bulan April.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Tim akan mengulang uji formulir dengan pilihan lokasi terstruktur untuk memperoleh bukti yang lebih kuat.",
+            "Rata-rata penumpang pada bulan April lebih dari satu setengah kali rata-rata penumpang pada bulan Maret.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Tim akan melakukan kegiatan berupa pengulangan uji formulir dengan pilihan lokasi terstruktur demi memperoleh bukti yang lebih kuat.",
-        },
-        {
-          correct: false,
-          label:
-            "Tim akan mengulang uji untuk memperoleh bukti yang lebih kuat tentang formulir dengan pilihan lokasi terstruktur yang telah diuji sebelumnya.",
+            "Pada bulan Februari, rata-rata penumpang paling sedikit dan rata-rata waktu tunggu paling lama.",
         },
       ],
     },

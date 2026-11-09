@@ -1,7 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "author-purpose",
+  },
+  stimulus: "quake-drill",
   versions: {
     id: {
       kind: "choice",
@@ -9,27 +14,24 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Rata-rata rekaman tanpa pengulangan teknis lebih tinggi. Oleh karena itu, simpulan tentang uji di studio sekolah tetap dibatasi.",
+            "mengajak pemerintah membangun gedung sekolah yang tahan gempa",
         },
         {
           correct: false,
-          label:
-            "Rata-rata rekaman tanpa pengulangan teknis lebih tinggi. Selain itu, simpulan tentang uji di studio sekolah tetap dibatasi.",
+          label: "menceritakan gempa besar yang pernah melanda sekolah itu",
         },
         {
           correct: true,
           label:
-            "Rata-rata rekaman tanpa pengulangan teknis lebih tinggi. Namun, simpulan tentang uji di studio sekolah tetap dibatasi.",
+            "menjelaskan manfaat latihan gempa yang diulang berdasarkan pengalaman sebuah sekolah",
         },
         {
           correct: false,
-          label:
-            "Rata-rata rekaman tanpa pengulangan teknis lebih tinggi. Sebelumnya, simpulan tentang uji di studio sekolah tetap dibatasi.",
+          label: "membandingkan latihan gempa di beberapa sekolah",
         },
         {
           correct: false,
-          label:
-            "Rata-rata rekaman tanpa pengulangan teknis lebih tinggi. Akibatnya, simpulan tentang uji di studio sekolah tetap dibatasi.",
+          label: "mengkritik siswa yang berlari di tangga",
         },
       ],
     },

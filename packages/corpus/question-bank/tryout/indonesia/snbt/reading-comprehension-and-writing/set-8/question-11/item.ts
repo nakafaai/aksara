@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "author-purpose",
+  },
+  stimulus: "jamu-label",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "analisa efektivitas formulir dengan pilihan lokasi terstruktur",
-        },
-        {
-          correct: false,
-          label:
-            "analisis efektifitas formulir dengan pilihan lokasi terstruktur",
-        },
-        {
-          correct: false,
-          label:
-            "analisa efektifitas formulir dengan pilihan lokasi terstruktur",
-        },
-        {
-          correct: false,
-          label:
-            "analisis efektivitas formulir lokasi dalam kontek layanan barang hilang",
-        },
-        {
           correct: true,
           label:
-            "analisis efektivitas formulir dengan pilihan lokasi terstruktur",
+            "menceritakan usaha seorang penjual jamu mengembangkan dagangannya melalui pengemasan dan pelabelan",
+        },
+        {
+          correct: false,
+          label: "menjelaskan resep jamu kunyit asam dan beras kencur",
+        },
+        {
+          correct: false,
+          label: "mengajak pelajar minum jamu setiap hari",
+        },
+        {
+          correct: false,
+          label: "membandingkan jamu dengan minuman kemasan buatan pabrik",
+        },
+        {
+          correct: false,
+          label: "mengkritik dinas koperasi yang jarang mengadakan pelatihan",
         },
       ],
     },

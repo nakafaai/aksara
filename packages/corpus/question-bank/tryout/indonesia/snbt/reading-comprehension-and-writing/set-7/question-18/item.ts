@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "writing",
+    topic: "word-choice",
+  },
+  stimulus: "library-loans",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Berdasarkan data, sebuah simpulan terbatas tentang peminjaman payung.",
+          label: "kalimat (1)",
         },
         {
           correct: false,
-          label:
-            "Tim yang berdasarkan data menarik simpulan terbatas tentang peminjaman payung.",
+          label: "kalimat (2)",
         },
         {
           correct: false,
-          label:
-            "Karena tim menarik simpulan terbatas tentang peminjaman payung.",
+          label: "kalimat (3)",
+        },
+        {
+          correct: false,
+          label: "kalimat (4)",
         },
         {
           correct: true,
-          label:
-            "Berdasarkan data, tim menarik simpulan terbatas tentang peminjaman payung.",
-        },
-        {
-          correct: false,
-          label: "Berdasarkan data, menarik tentang peminjaman payung.",
+          label: "kalimat (5)",
         },
       ],
     },

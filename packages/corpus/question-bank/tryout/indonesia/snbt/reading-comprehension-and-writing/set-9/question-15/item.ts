@@ -1,35 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "explicit-information",
+  },
+  stimulus: "silted-pond",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Nilai slot yang dipesan ulang sebelum waktunya dimulai lebih tinggi. Oleh karena itu, simpulan tentang ruang latihan musik tetap dibatasi.",
+          label: "warga mengambil air terlalu banyak",
         },
         {
           correct: false,
-          label:
-            "Nilai slot yang dipesan ulang sebelum waktunya dimulai lebih tinggi. Selain itu, simpulan tentang ruang latihan musik tetap dibatasi.",
+          label: "musim kemarau makin panjang",
+        },
+        {
+          correct: false,
+          label: "pohon di lereng bukit terlalu banyak",
         },
         {
           correct: true,
-          label:
-            "Nilai slot yang dipesan ulang sebelum waktunya dimulai lebih tinggi. Namun, simpulan tentang ruang latihan musik tetap dibatasi.",
+          label: "lumpur dari bukit di sekitarnya terbawa air hujan",
         },
         {
           correct: false,
-          label:
-            "Nilai slot yang dipesan ulang sebelum waktunya dimulai lebih tinggi. Sebelumnya, simpulan tentang ruang latihan musik tetap dibatasi.",
-        },
-        {
-          correct: false,
-          label:
-            "Nilai slot yang dipesan ulang sebelum waktunya dimulai lebih tinggi. Akibatnya, simpulan tentang ruang latihan musik tetap dibatasi.",
+          label: "kebun warga makin luas",
         },
       ],
     },

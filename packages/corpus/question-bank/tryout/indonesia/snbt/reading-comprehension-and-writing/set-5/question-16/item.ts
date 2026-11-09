@@ -1,34 +1,35 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "application",
+    contentDomain: "reading",
+    topic: "data-interpretation",
+  },
+  stimulus: "seed-soak",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$45\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$70\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$84\\%$$",
+        },
+        {
           correct: true,
-          label: "Operator studio rekaman sekolah memberikan komentar singkat.",
+          label: "$$90\\%$$",
         },
         {
           correct: false,
-          label:
-            "Operator studio rekaman sekolah memberikan komentar singkat yang tidak panjang.",
-        },
-        {
-          correct: false,
-          label:
-            "Operator studio rekaman sekolah memberikan komentar singkat di studio rekaman sekolah tempat mereka bertugas.",
-        },
-        {
-          correct: false,
-          label:
-            "Operator studio rekaman sekolah memberikan komentar singkat dalam bentuk yang singkat.",
-        },
-        {
-          correct: false,
-          label:
-            "Operator studio rekaman sekolah memberikan komentar yang singkat, yaitu komentar yang pendek.",
+          label: "$$95\\%$$",
         },
       ],
     },

@@ -1,35 +1,36 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "passage-2",
+  blueprint: {
+    cognitiveLevel: "understanding",
+    contentDomain: "reading",
+    topic: "title",
+  },
+  stimulus: "larva-monitors",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "analisa efektivitas peta kecil dengan waktu tempuh di taman kota",
-        },
-        {
-          correct: false,
-          label:
-            "analisis efektifitas peta kecil dengan waktu tempuh di taman kota",
+          label: "Musim Hujan di Indonesia",
         },
         {
           correct: true,
           label:
-            "analisis efektivitas peta kecil dengan waktu tempuh di taman kota",
+            "Anak-Anak Pemantau Jentik Menekan Demam Berdarah di Kelurahan Cempaka",
         },
         {
           correct: false,
-          label:
-            "analisa efektifitas peta kecil dengan waktu tempuh di taman kota",
+          label: "Bak Mandi dan Vas Bunga",
         },
         {
           correct: false,
-          label:
-            "analisis efektivitas peta kecil dengan waktu tempuh dalam kontek taman kota",
+          label: "Kartu Pemantauan Jentik",
+        },
+        {
+          correct: false,
+          label: "Burung dan Tempat Minumnya",
         },
       ],
     },
