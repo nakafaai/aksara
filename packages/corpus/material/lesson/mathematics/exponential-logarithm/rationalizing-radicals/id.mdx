@@ -4,7 +4,7 @@ export const metadata = {
     "Hilangkan bentuk akar dari penyebut dengan mengalikan satu, memakai faktor akar yang sesuai atau bentuk sekawan, disertai pembahasan lengkap.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-04",
-  dateModified: "2026-09-12",
+  dateModified: "2026-11-08",
   subject: "Eksponen dan Logaritma",
 };
 
@@ -29,6 +29,30 @@ Untuk <InlineMath math="b>0" />, kalikan dengan faktor <InlineMath math="\frac{\
 
 Faktor akar yang sama merupakan **bentuk lain dari satu**. Faktor ini tidak disebut sekawan karena hanya terdiri atas satu suku.
 
+Merasionalkan <InlineMath math="\tfrac{1}{\sqrt 2} = \tfrac{\sqrt 2}{2}" /> mengubah bentuknya, tidak pernah panjangnya. Ruas garis dari pojok persegi satuan ke pusatnya adalah setengah diagonal, <InlineMath math="\tfrac{\sqrt 2}{2}" />, dan ruas garis yang sama juga berukuran <InlineMath math="\tfrac{1}{\sqrt 2}" />.
+
+<MathVisual
+  title={<>Satu per akar 2 sama dengan akar 2 per 2</>}
+  description={<>Persegi satuan dengan ruas garis dari pojok ke pusatnya, sepanjang <InlineMath math="\tfrac{\sqrt 2}{2} = \tfrac{1}{\sqrt 2}" />.</>}
+  labels={{
+    half: <InlineMath math="\tfrac{\sqrt 2}{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.3 }, y: { min: -0.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "rest", kind: "segment", from: { x: 0.5, y: 0.5 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "half", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0.5, y: 0.5 }, appearance: "primary" },
+      { id: "center", kind: "point", at: { x: 0.5, y: 0.5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "half", objectId: "half", at: { x: 0.25, y: 0.25 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 ### Penjumlahan atau Pengurangan Dua Bentuk Akar
 
 Anggap <InlineMath math="a,b\geq0" /> dan <InlineMath math="a\neq b" />. Kalikan dengan **bentuk sekawan penyebut**:
@@ -45,6 +69,34 @@ Sebagai contoh:
   <BlockMath math="\begin{aligned} \frac2{\sqrt5-\sqrt2} &amp;=\frac{2(\sqrt5+\sqrt2)}{5-2} \\ &amp;=\frac{2(\sqrt5+\sqrt2)}3 \end{aligned}" />
 </MathContainer>
 
+Sekawan bekerja karena sebuah luas. Persegi panjang bersisi <InlineMath math="\sqrt 3 + \sqrt 2" /> dan <InlineMath math="\sqrt 3 - \sqrt 2" /> luasnya <InlineMath math="(\sqrt 3)^2 - (\sqrt 2)^2 = 3 - 2 = 1" />, tepat seperti persegi satuan yang digambar di sebelahnya. Mengalikan dengan sekawan mengubah jumlah bentuk akar menjadi bilangan bulat.
+
+<MathVisual
+  title={<>Persegi panjang tipis seluas 1</>}
+  description={<>Persegi panjang bersisi <InlineMath math="\sqrt 3 + \sqrt 2" /> dan <InlineMath math="\sqrt 3 - \sqrt 2" /> luasnya 1, sama dengan persegi satuan.</>}
+  labels={{
+    long: <InlineMath math="\sqrt 3 + \sqrt 2" />,
+    short: <InlineMath math="\sqrt 3 - \sqrt 2" />,
+    unit: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 3.5 }, y: { min: -1.6, max: 0.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rect", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: Math.sqrt(3) + Math.sqrt(2), y: 0 }, { x: Math.sqrt(3) + Math.sqrt(2), y: Math.sqrt(3) - Math.sqrt(2) }, { x: 0, y: Math.sqrt(3) - Math.sqrt(2) }], appearance: "primary" },
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: -1.4 }, { x: 1, y: -1.4 }, { x: 1, y: -0.4 }, { x: 0, y: -0.4 }], appearance: "secondary" },
+      { id: "long", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.sqrt(3) + Math.sqrt(2), y: 0 }, appearance: "primary" },
+      { id: "short", kind: "segment", from: { x: Math.sqrt(3) + Math.sqrt(2), y: 0 }, to: { x: Math.sqrt(3) + Math.sqrt(2), y: Math.sqrt(3) - Math.sqrt(2) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "long", objectId: "long", at: { x: (Math.sqrt(3) + Math.sqrt(2)) / 2, y: 0 }, placement: "below" },
+      { key: "short", objectId: "short", at: { x: Math.sqrt(3) + Math.sqrt(2), y: (Math.sqrt(3) - Math.sqrt(2)) / 2 }, placement: "right" },
+      { key: "unit", objectId: "unit", at: { x: 0.5, y: -0.9 }, placement: "center" },
+    ],
+  }}
+/>
+
 ### Suku Rasional dan Suku Bentuk Akar
 
 Anggap <InlineMath math="b\geq0" /> dan <InlineMath math="a^2\neq b" />. Bentuk sekawan kembali menghasilkan **selisih kuadrat**:
@@ -60,6 +112,36 @@ Sebagai contoh:
   <BlockMath math="\frac6{4+\sqrt3}=\frac{6(4-\sqrt3)}{16-3}=\frac{6(4-\sqrt3)}{13}" />
   <BlockMath math="\begin{aligned} \frac3{2-\sqrt5} &amp;=\frac{3(2+\sqrt5)}{4-5} \\ &amp;=-3(2+\sqrt5) \end{aligned}" />
 </MathContainer>
+
+Bentuk sekawan mengubah <InlineMath math="(4 + \sqrt3)(4 - \sqrt3)" /> menjadi <InlineMath math="4^2 - (\sqrt3)^2" />. Sebagai luas, itu persegi <InlineMath math="4" /> kali <InlineMath math="4" /> yang sudutnya dipotong persegi <InlineMath math="\sqrt3" /> kali <InlineMath math="\sqrt3" />: tersisa <InlineMath math="16 - 3 = 13" /> satuan luas, yaitu penyebut dari <InlineMath math="\frac{6(4-\sqrt3)}{13}" />.
+
+<MathVisual
+  title={<>Persegi bersisi 4 dikurangi persegi bersisi <InlineMath math="\sqrt3" /></>}
+  description={<>Daerah berbentuk L yang tersisa ketika persegi seluas 3 dipotong dari persegi seluas 16, dengan luas 13.</>}
+  labels={{
+    rest: <InlineMath math="16 - 3 = 13" />,
+    cut: <InlineMath math="3" />,
+    side: <InlineMath math="4" />,
+    "cut-side": <InlineMath math="\sqrt3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.7, max: 4.7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rest", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 - Math.sqrt(3) }, { x: 4 - Math.sqrt(3), y: 4 - Math.sqrt(3) }, { x: 4 - Math.sqrt(3), y: 4 }, { x: 0, y: 4 }], appearance: "primary" },
+      { id: "cut", kind: "polygon", vertices: [{ x: 4 - Math.sqrt(3), y: 4 - Math.sqrt(3) }, { x: 4, y: 4 - Math.sqrt(3) }, { x: 4, y: 4 }, { x: 4 - Math.sqrt(3), y: 4 }], appearance: "warning" },
+      { id: "side", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "cut-side", kind: "segment", from: { x: 4 - Math.sqrt(3), y: 4 }, to: { x: 4, y: 4 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "rest", objectId: "rest", at: { x: 1.5, y: 1.5 }, placement: "center" },
+      { key: "cut", objectId: "cut", at: { x: 4 - Math.sqrt(3) / 2, y: 4 - Math.sqrt(3) / 2 }, placement: "center" },
+      { key: "side", objectId: "side", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "cut-side", objectId: "cut-side", at: { x: 4 - Math.sqrt(3) / 2, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
 
 ## Menyederhanakan Bentuk Akar dan Eksponen
 
