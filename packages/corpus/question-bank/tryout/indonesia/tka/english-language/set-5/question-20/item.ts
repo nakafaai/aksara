@@ -18,7 +18,8 @@ const item: ItemSource = {
         },
         {
           column: 1,
-          label: "Pouring slowly helps the filter remove more dirt.",
+          label:
+            "Pouring too fast lets some water pass through without being filtered.",
         },
         { column: 1, label: "Gravel forms the top layer of the filter." },
         {

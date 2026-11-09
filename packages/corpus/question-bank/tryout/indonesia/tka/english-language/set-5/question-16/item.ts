@@ -12,7 +12,7 @@ const item: ItemSource = {
       columns: [
         "Building the layers",
         "Preparing the bottle",
-        "Testing the filter",
+        "Using and checking the filter",
       ],
       kind: "matrix",
       statements: [
@@ -20,7 +20,8 @@ const item: ItemSource = {
         { column: 1, label: "Putting the fine sand above the charcoal" },
         {
           column: 3,
-          label: "Pouring the water through the filter a second time",
+          label:
+            "Pouring the water through a second time when it still looks cloudy",
         },
         {
           column: 2,
