@@ -1,0 +1,13 @@
+The task asks how much the bicycle costs after a <InlineMath math="20\,\%" /> discount (*Rabatt*) and <InlineMath math="19\,\%" /> VAT (*Mehrwertsteuer*). Successive percentage changes are handled with **growth factors**. A <InlineMath math="20\,\%" /> discount means the factor <InlineMath math="0.8" />, a <InlineMath math="19\,\%" /> surcharge the factor <InlineMath math="1.19" />.
+
+<BlockMath math="500\cdot0.8\cdot1.19=400\cdot1.19=476" />
+
+Because the factors are multiplied, the order does not matter. As a check, go the other way round: tax first gives <InlineMath math="500\cdot1.19=595\text{ €}" />, then the discount gives <InlineMath math="595\cdot0.8=476\text{ €}" />.
+
+So you have to pay <InlineMath math="476\text{ €}" />.
+
+- <InlineMath math="495\text{ €}" /> combines the rates into <InlineMath math="-20\,\%+19\,\%=-1\,\%" />. The two rates refer to different base values.
+- <InlineMath math="400\text{ €}" /> includes only the discount and forgets the VAT.
+- <InlineMath math="595\text{ €}" /> includes only the VAT and forgets the discount.
+- <InlineMath math="324\text{ €}" /> subtracts the VAT as well, <InlineMath math="400\cdot0.81" />. The tax is added.
+- The option about the order overlooks that the factors <InlineMath math="0.8" /> and <InlineMath math="1.19" /> may be multiplied in any order.
