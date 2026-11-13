@@ -18,6 +18,30 @@ Der Zahlenwert <InlineMath math="0{,}60" /> sagt, *wie viel* gemessen wurde. Die
 
 > Ohne benannte Größe hat eine Zahl keine physikalische Bedeutung. Ohne Einheit lässt sich ihr Maßstab nicht vergleichen.
 
+Jeder Messwert im Labor unten ist eine Zahl mal einer Einheit. Der Aluminiumblock hat die Kanten <InlineMath math="5{,}0\text{ cm}" />, <InlineMath math="4{,}0\text{ cm}" /> und <InlineMath math="2{,}5\text{ cm}" />, und die Waage zeigt <InlineMath math="135\text{ g}" />. Aus diesen vier Werten bekommst du das Volumen, <InlineMath math="50\text{ cm}^3" />, und die Dichte, <InlineMath math="2{,}70\text{ g/cm}^3" />. Wechsel das Material und schau, welche Werte sich ändern.
+
+<DensityMeasurementLab
+  title={<>Dichte aus vier Messwerten</>}
+  description={
+    <>
+      Drei gleich große Blöcke aus Kiefer, Aluminium und Messing auf einer Zeigerwaage.
+    </>
+  }
+  labels={{
+    chooseMaterial: "Material wählen",
+    density: <>Dichte</>,
+    mass: <>Masse</>,
+    materials: {
+      aluminium: <>Aluminium</>,
+      brass: <>Messing</>,
+      pine: <>Kiefer</>,
+    },
+    sides: <>Kanten</>,
+    viewLabel: "Block auf einer Zeigerwaage mit markierten Kanten",
+    volume: <>Volumen</>,
+  }}
+/>
+
 ## Basisgrößen und abgeleitete Größen
 
 Das **Internationale Einheitensystem**, kurz SI, verwendet <InlineMath math="7" /> Grundgrößen. Weitere Größen entstehen durch Kombinationen dieser Grundgrößen.
@@ -71,6 +95,23 @@ Das Tempo setzt sich aus zwei Basisgrößen zusammen, <InlineMath math="v=s/t" /
   labels={{
     slow: <InlineMath math="v=\frac{2\text{ m}}{1\text{ s}}=2\text{ m/s}" />,
     fast: <InlineMath math="v=\frac{2\text{ m}}{0{,}4\text{ s}}=5\text{ m/s}" />,
+  }}
+/>
+
+Du kannst eine Geschwindigkeit auch direkt aus ihren zwei Basisgrößen messen. Unten rollt ein Wagen durch zwei Lichtschranken im Abstand von <InlineMath math="0{,}60\text{ m}" />, und der Zähler zeigt <InlineMath math="1{,}250\text{ s}" /> zwischen den Strahlen. Also ist <InlineMath math="v=\frac{0{,}60\text{ m}}{1{,}250\text{ s}}=0{,}48\text{ m/s}" />. Schieb die Schranken auseinander: Strecke und Zeit wachsen beide, ihr Verhältnis bleibt gleich.
+
+<LightGateSpeedLab
+  title={<>Geschwindigkeit aus zwei Lichtschranken</>}
+  description={
+    <>
+      Ein Lineal liefert den Abstand der Schranken, ein Zähler die Zeit zwischen den Strahlen.
+    </>
+  }
+  labels={{
+    distance: "Abstand der Lichtschranken",
+    speed: <>Geschwindigkeit</>,
+    time: <>Zeit zwischen den Strahlen</>,
+    viewLabel: "Wagen rollt auf einer Bahn durch zwei Lichtschranken",
   }}
 />
 

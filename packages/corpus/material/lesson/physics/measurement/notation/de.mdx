@@ -26,6 +26,25 @@ Die Elektronenmasse von oben lässt sich damit kürzer schreiben:
 
 <BlockMath math="9{,}11 \times 10^{-31} \text{ kg}" />
 
+Ein Haar ist ein gutes Beispiel für einen kleinen Wert. Im Mikroskop unten ist die Skala im Okular für jedes Objektiv kalibriert: Bei <InlineMath math="10\times" /> ist ein Teilstrich <InlineMath math="10\ \mu\text{m}" /> breit. Das Haar überdeckt <InlineMath math="6{,}8" /> Teilstriche, ist also <InlineMath math="68\ \mu\text{m}" /> dick, das sind <InlineMath math="0{,}000068\text{ m}=6{,}8\times10^{-5}\text{ m}" />. Wechsel zu <InlineMath math="40\times" />, dann zählst du <InlineMath math="27{,}2" /> Teilstriche und bekommst <InlineMath math="6{,}80\times10^{-5}\text{ m}" /> mit einer signifikanten Stelle mehr.
+
+<MicroscopeScaleLab
+  title={<>Ein Haar unter dem Mikroskop</>}
+  description={
+    <>
+      Miss ein Haar mit der Skala im Okular bei drei Objektiven.
+    </>
+  }
+  labels={{
+    chooseObjective: "Objektiv wählen",
+    diameter: <>Durchmesser</>,
+    divisions: <>Teilstriche über das Haar</>,
+    metres: <>In Metern</>,
+    oneDivision: <>Ein Teilstrich</>,
+    viewLabel: "Haar im Mikroskop-Okular mit Messskala",
+  }}
+/>
+
 ## Das Komma verschieben ohne den Wert zu ändern
 
 Verschiebe das Dezimalkomma so weit, bis der Koeffizient zwischen <InlineMath math="1" /> und <InlineMath math="10" /> liegt. Die Anzahl der Stellen bestimmt den Exponenten.
@@ -94,6 +113,24 @@ Die Anzahl der signifikanten Stellen liest du **am Koeffizienten** ab. Die Poten
 | <InlineMath math="1{,}000 \times 10^3 \text{ m}" /> | <InlineMath math="4" /> | Die Nullen in <InlineMath math="1{,}000" /> geben die Genauigkeit an |
 
 Die wissenschaftliche Schreibweise hält die beabsichtigte Genauigkeit eines Messwerts fest. Bei <InlineMath math="1000 \text{ m}" /> bleibt offen, ob die abschließenden Nullen signifikant sind. <InlineMath math="1{,}000 \times 10^3 \text{ m}" /> weist dagegen ausdrücklich <InlineMath math="4" /> signifikante Stellen aus.
+
+Hier siehst du, woher diese Stellen kommen. Ein Blatt Papier ist zu dünn für ein Millimeterlineal, also misst du einen Stapel und teilst durch die Zahl der Blätter, die exakt ist. Ein Stapel aus <InlineMath math="500" /> Blättern zeigt <InlineMath math="52\text{ mm}" />, zwei signifikante Stellen, also ist ein Blatt <InlineMath math="1{,}0\times10^{-4}\text{ m}" /> dick. Staple <InlineMath math="1000" /> Blätter, und das Lineal zeigt <InlineMath math="104\text{ mm}" />, drei Stellen: <InlineMath math="1{,}04\times10^{-4}\text{ m}" />.
+
+<PaperStackLab
+  title={<>Die Dicke eines Blatts messen</>}
+  description={
+    <>
+      Staple Blätter neben einem Millimeterlineal und teile durch ihre Anzahl.
+    </>
+  }
+  labels={{
+    chooseStack: "Anzahl der Blätter wählen",
+    figures: <>Signifikante Stellen</>,
+    reading: <>Höhe des Stapels</>,
+    sheet: <>Ein Blatt</>,
+    viewLabel: "Papierstapel neben einem Stahllineal, mit Lupe auf der Oberkante",
+  }}
+/>
 
 ## Rundungsreserve bis zur endgültigen Angabe behalten
 

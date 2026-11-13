@@ -60,6 +60,24 @@ Sistem Satuan Internasional atau SI memakai <InlineMath math="7" /> besaran poko
 
 Dimensi ditulis dengan kurung siku supaya tidak tertukar dengan satuan. Misalnya <InlineMath math="[\mathrm{L}]" /> adalah dimensi panjang, sedangkan <InlineMath math="\text{m}" /> adalah satuan meter.
 
+Dimensi pokok bahkan bisa menebak bentuk rumus. Misalkan periode bandul <InlineMath math="T" /> bergantung pada massa beban <InlineMath math="[\mathrm{M}]" />, panjang tali <InlineMath math="[\mathrm{L}]" />, dan percepatan gravitasi <InlineMath math="[\mathrm{L}][\mathrm{T}]^{-2}" />. Supaya hasilnya <InlineMath math="[\mathrm{T}]" />, massa harus berpangkat <InlineMath math="0" />, panjang berpangkat <InlineMath math="\tfrac12" />, dan gravitasi berpangkat <InlineMath math="-\tfrac12" />, jadi <InlineMath math="T=k\sqrt{l/g}" />. Percobaan memberi <InlineMath math="k=2\pi" />. Di bawah, tiga beban <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" />, dan <InlineMath math="500\text{ g}" /> pada tali <InlineMath math="0{,}80\text{ m}" /> berayun serempak, sekali setiap <InlineMath math="1{,}79\text{ s}" />. Ubah panjang talinya, lalu cari beban yang tertinggal: tidak ada.
+
+<PendulumPeriodLab
+  title={<>Apa yang Menentukan Periode Bandul</>}
+  description={
+    <>
+      Tiga bandul sama panjang dengan beban <InlineMath math="50\text{ g}" />, <InlineMath math="200\text{ g}" />, dan <InlineMath math="500\text{ g}" />.
+    </>
+  }
+  labels={{
+    check: <>Cek dimensi</>,
+    length: "Panjang tali",
+    masses: <>Massa beban</>,
+    period: <>Periode</>,
+    viewLabel: "Tiga bandul dengan beban kayu, kuningan, dan timbal berayun dari satu batang",
+  }}
+/>
+
 ## Menurunkan Dimensi dari Rumus
 
 Cara kerja analisis dimensi sederhana: **ganti setiap besaran dalam rumus dengan dimensinya**, lalu sederhanakan pangkatnya.
@@ -181,3 +199,28 @@ Baut dan mur terlihat seperti benda kecil, tetapi pengukurannya bisa melibatkan 
 Jadi, dua alat ukur dapat mengukur besaran berdimensi sama, tetapi dipakai untuk konteks yang berbeda. Penggaris cukup untuk panjang besar yang tidak butuh ketelitian tinggi. Jangka sorong atau mikrometer sekrup lebih cocok saat diameter kecil perlu dibaca lebih teliti.
 
 Batas pemeriksaan ini terlihat jika faktor <InlineMath math="\frac{1}{2}" /> pada rumus perpindahan dihilangkan. Rumus <InlineMath math="s=v_0t+at^2" /> tetap memiliki dimensi panjang pada kedua ruas, tetapi menghasilkan perpindahan yang salah untuk gerak dengan percepatan tetap dan tak nol. **Dimensi tidak menentukan faktor numerik** seperti <InlineMath math="\frac{1}{2}" />.
+
+Coba pada baut sungguhan. Lab berikut memakai satu baut <InlineMath math="\text{M}10" /> yang batangnya dianggap silinder berdiameter <InlineMath math="10\text{ mm}" /> dan panjang <InlineMath math="50\text{ mm}" />, lalu menampilkan setiap besaran dari tabel di atas: nilainya dalam satuan SI dan dimensinya. Panjang dan diameter sama-sama berdimensi <InlineMath math="[\mathrm{L}]" />, sedangkan massa jenis, yaitu massa dibagi volume, berdimensi <InlineMath math="[\mathrm{M}][\mathrm{L}]^{-3}" />.
+
+<BoltDimensionsLab
+  title={<>Satu Baut, Banyak Besaran</>}
+  description={
+    <>
+      Baut <InlineMath math="\text{M}10" /> yang batangnya berupa silinder baja berdiameter <InlineMath math="10\text{ mm}" /> dan panjang <InlineMath math="50\text{ mm}" />.
+    </>
+  }
+  labels={{
+    chooseQuantity: "Pilih besaran",
+    dimension: <>Dimensi</>,
+    quantities: {
+      area: <>Luas penampang</>,
+      density: <>Massa jenis</>,
+      diameter: <>Diameter</>,
+      length: <>Panjang</>,
+      mass: <>Massa</>,
+      volume: <>Volume</>,
+    },
+    value: <>Nilai dalam satuan SI</>,
+    viewLabel: "Baut baja dengan besaran yang dipilih ditandai",
+  }}
+/>

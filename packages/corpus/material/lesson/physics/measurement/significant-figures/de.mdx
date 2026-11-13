@@ -121,6 +121,32 @@ Mit <InlineMath math="4" /> signifikanten Stellen:
 
 <BlockMath math="1000\text{ m}=1{,}000\times10^3\text{ m}" />
 
+Hier liest du einen Stahlstab mit drei Werkzeugen ab. Mit dem Lineal sind es <InlineMath math="31{,}0\text{ cm}" />: drei signifikante Stellen, und die letzte Null ist wirklich gemessen. Nimm das Maßband, und die Null verschwindet (<InlineMath math="31\text{ cm}" />). Nimm den Messschieber, und du bekommst noch eine (<InlineMath math="31{,}00\text{ cm}" />). Schreib die Lineal-Ablesung jetzt in Metern, <InlineMath math="0{,}310\text{ m}" />: Die Null vorne markiert nur die Stelle des Kommas, also bleiben es drei signifikante Stellen.
+
+<SignificantZerosLab
+  title={<>Wann eine Null zählt</>}
+  description={
+    <>
+      Lies einen Stab mit Maßband, Lineal und Messschieber ab und schreib das Ergebnis in Millimetern, Zentimetern oder Metern.
+    </>
+  }
+  labels={{
+    chooseTool: "Messwerkzeug wählen",
+    chooseUnit: "Einheit wählen",
+    figures: <>Signifikante Stellen</>,
+    measuredZeros: <>Gemessene Nullen</>,
+    placeZeros: <>Platzhalter-Nullen</>,
+    reading: <>Ablesung</>,
+    scientific: <>Wissenschaftliche Schreibweise</>,
+    tools: {
+      caliper: <>Messschieber</>,
+      ruler: <>Lineal</>,
+      tape: <>Maßband</>,
+    },
+    viewLabel: "Stahlstab auf einem Messwerkzeug, mit Lupe am Ende",
+  }}
+/>
+
 ## Einmal anhand der ersten wegfallenden Ziffer runden
 
 Steht die zulässige Stellenzahl fest, entscheidet die **erste wegfallende Ziffer** über das Runden.
@@ -197,6 +223,29 @@ Ein Eisenstab mit <InlineMath math="8{,}235 \text{ cm}" /> Länge wird mit einem
 \end{aligned}" />
 
 Der Wert <InlineMath math="12{,}735 \text{ cm}" /> wird auf <InlineMath math="1" /> Nachkommastelle gerundet, weil <InlineMath math="4{,}5 \text{ cm}" /> ebenfalls nur <InlineMath math="1" /> Nachkommastelle besitzt.
+
+Warum entscheidet die Lineal-Ablesung? Leg die beiden Stäbe unten aneinander. Der Messschieber liest den Eisenstab auf <InlineMath math="0{,}005\text{ cm}" /> genau ab, das Lineal den Kupferstab aber nur auf <InlineMath math="0{,}1\text{ cm}" />. Das gemeinsame Ende kann also irgendwo im türkisfarbenen Band liegen. Das Band ist breiter als jedes Hundertstel, deshalb gibst du <InlineMath math="12{,}735\text{ cm}" /> als <InlineMath math="12{,}7\text{ cm}" /> an. Miss auch den Kupferstab mit dem Messschieber, dann wird das Band schmal und alle drei Dezimalstellen bleiben.
+
+<DecimalSumLab
+  title={<>Zwei gemessene Längen addieren</>}
+  description={
+    <>
+      Ein mit dem Messschieber gemessener Eisenstab trifft auf einen Kupferstab, gemessen mit Lineal oder Messschieber. Die Lupe zeigt, wo das gemeinsame Ende wirklich liegen kann.
+    </>
+  }
+  labels={{
+    chooseTool: "Werkzeug für den Kupferstab wählen",
+    copper: <>Kupferstab</>,
+    iron: <>Eisenstab</>,
+    raw: <>Summe im Taschenrechner</>,
+    reported: <>Angegebene Summe</>,
+    tools: {
+      caliper: <>Messschieber</>,
+      ruler: <>Lineal</>,
+    },
+    viewLabel: "Eisen- und Kupferstab aneinander auf einem Lineal, mit Lupe am Ende",
+  }}
+/>
 
 ## Produkte nach der kleinsten Anzahl signifikanter Stellen runden
 

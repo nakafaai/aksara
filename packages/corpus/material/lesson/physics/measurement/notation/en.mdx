@@ -26,6 +26,25 @@ The electron mass above can now be written more compactly:
 
 <BlockMath math="9.11 \times 10^{-31} \text{ kg}" />
 
+A hair is a good example of a small value. Under the microscope below, the scale in the eyepiece is calibrated for each objective: at <InlineMath math="10\times" />, one division covers <InlineMath math="10\ \mu\text{m}" />. The hair spans <InlineMath math="6.8" /> divisions, so it is <InlineMath math="68\ \mu\text{m}" /> wide, which is <InlineMath math="0.000068\text{ m}=6.8\times10^{-5}\text{ m}" />. Switch to <InlineMath math="40\times" />, and the count becomes <InlineMath math="27.2" /> divisions, giving <InlineMath math="6.80\times10^{-5}\text{ m}" /> with one more significant figure.
+
+<MicroscopeScaleLab
+  title={<>A Hair under the Microscope</>}
+  description={
+    <>
+      Measure a hair with the scale in the eyepiece at three objectives.
+    </>
+  }
+  labels={{
+    chooseObjective: "Choose an objective",
+    diameter: <>Diameter</>,
+    divisions: <>Divisions across the hair</>,
+    metres: <>In metres</>,
+    oneDivision: <>One division</>,
+    viewLabel: "Hair seen through a microscope eyepiece with a measuring scale",
+  }}
+/>
+
 ## Moving the Decimal Point without Changing the Value
 
 Move the decimal point until the coefficient is between <InlineMath math="1" /> and <InlineMath math="10" />. The number and direction of the moves determine the exponent.
@@ -94,6 +113,24 @@ In scientific notation, read the **significant figures from the coefficient**. T
 | <InlineMath math="1.000 \times 10^3 \text{ m}" /> | <InlineMath math="4" /> | The zeros in <InlineMath math="1.000" /> express precision |
 
 Scientific notation records the intended precision of a measurement. The value <InlineMath math="1000 \text{ m}" /> does not state whether its trailing zeros are significant, while <InlineMath math="1.000 \times 10^3 \text{ m}" /> explicitly has <InlineMath math="4" /> significant figures.
+
+Here is where those digits come from. One sheet of paper is too thin for a millimetre ruler, so measure a stack and divide by the number of sheets, which is an exact count. A stack of <InlineMath math="500" /> sheets reads <InlineMath math="52\text{ mm}" />, two significant figures, so one sheet is <InlineMath math="1.0\times10^{-4}\text{ m}" />. Stack <InlineMath math="1000" /> sheets, and the ruler reads <InlineMath math="104\text{ mm}" />, three figures: <InlineMath math="1.04\times10^{-4}\text{ m}" />.
+
+<PaperStackLab
+  title={<>Measuring One Sheet of Paper</>}
+  description={
+    <>
+      Stack sheets beside a millimetre ruler and divide by the count.
+    </>
+  }
+  labels={{
+    chooseStack: "Choose how many sheets",
+    figures: <>Significant figures</>,
+    reading: <>Stack reading</>,
+    sheet: <>One sheet</>,
+    viewLabel: "Stack of paper beside a steel ruler, with a magnifier on the top of the stack",
+  }}
+/>
 
 ## Keep Guard Digits Until the Final Report
 
