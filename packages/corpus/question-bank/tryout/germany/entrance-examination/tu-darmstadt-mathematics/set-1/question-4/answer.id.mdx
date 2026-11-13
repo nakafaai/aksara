@@ -1,17 +1,39 @@
-Dua perubahan persen berturut-turut tidak boleh kamu jumlahkan atau kurangkan begitu saja, karena perubahan kedua mengacu pada **nilai dasar yang berbeda**. Penurunan <InlineMath math="10\,\%" /> dihitung dari jumlah anggota yang lebih besar pada musim panas, bukan dari jumlah pada awal tahun. Karena itu, hitunglah dengan faktor pengali: kenaikan <InlineMath math="10\,\%" /> berarti faktor <InlineMath math="1{,}1" />, dan penurunan <InlineMath math="10\,\%" /> berarti faktor <InlineMath math="0{,}9" />.
+# Akar di dalam akar
 
-Misalkan <InlineMath math="n" /> adalah banyak anggota (*Mitglieder*) pada awal tahun. Pada akhir tahun berlaku:
+Bentuk <InlineMath math="\sqrt{11-6\sqrt2}" /> terlihat sulit, tetapi sering kali bilangan di bawah akar adalah **kuadrat dari bentuk <InlineMath math="a-b\sqrt2" />**. Coba cari <InlineMath math="a" /> dan <InlineMath math="b" /> bulat:
 
-<BlockMath math="n\cdot1{,}1\cdot0{,}9=n\cdot0{,}99" />
+<BlockMath math="(a-b\sqrt2)^2=a^2+2b^2-2ab\sqrt2" />
 
-Faktor <InlineMath math="0{,}99" /> berarti banyak anggota pada akhir tahun adalah <InlineMath math="99\,\%" /> dari jumlah semula. Jadi, jumlahnya turun <InlineMath math="1\,\%" />.
+Supaya hasilnya <InlineMath math="11-6\sqrt2" />, kamu perlu <InlineMath math="a^2+2b^2=11" /> dan <InlineMath math="2ab=6" />. Pasangan <InlineMath math="a=3" />, <InlineMath math="b=1" /> cocok, karena <InlineMath math="9+2=11" /> dan <InlineMath math="2\cdot3\cdot1=6" />.
 
-Contoh bilangan menegaskan hal ini. Dengan <InlineMath math="500" /> anggota, sampai musim panas bertambah <InlineMath math="50" /> orang sehingga menjadi <InlineMath math="550" />. Dari jumlah itu, <InlineMath math="10\,\%" /> tepat <InlineMath math="55" /> orang, jadi tersisa <InlineMath math="495" /> anggota. Itu <InlineMath math="5" /> orang lebih sedikit daripada di awal, dan <InlineMath math="5" /> adalah <InlineMath math="1\,\%" /> dari <InlineMath math="500" />.
+# Menyederhanakan kedua akar
 
-Jadi, banyak anggota secara keseluruhan turun <InlineMath math="1\,\%" />.
+<BlockMath math="\begin{aligned}
+(3-\sqrt2)^2&=9-6\sqrt2+2=11-6\sqrt2 \\
+(3+\sqrt2)^2&=9+6\sqrt2+2=11+6\sqrt2
+\end{aligned}" />
 
-- Kenaikan <InlineMath math="21\,\%" /> menganggap kedua perubahan sebagai kenaikan, karena <InlineMath math="1{,}1\cdot1{,}1=1{,}21" />.
-- Kenaikan <InlineMath math="1\,\%" /> besarnya benar, tetapi arahnya salah. Faktor <InlineMath math="0{,}99" /> lebih kecil dari <InlineMath math="1" />.
-- Tidak ada perubahan jika persentasenya langsung dikurangkan: <InlineMath math="10\,\%-10\,\%=0\,\%" />. Padahal kedua persentase itu mengacu pada nilai dasar yang berbeda.
-- Penurunan <InlineMath math="0{,}1\,\%" /> salah meletakkan koma. Selisih <InlineMath math="1-0{,}99=0{,}01" /> sama dengan <InlineMath math="1\,\%" />.
-- Penurunan <InlineMath math="10\,\%" /> hanya memperhitungkan perubahan kedua.
+Akar kuadrat selalu bernilai tidak negatif. **Karena <InlineMath math="3-\sqrt2\approx1{,}59" /> positif**, berlaku <InlineMath math="\sqrt{11-6\sqrt2}=3-\sqrt2" />. Begitu juga <InlineMath math="\sqrt{11+6\sqrt2}=3+\sqrt2" />.
+
+<BlockMath math="(3-\sqrt2)+(3+\sqrt2)=6" />
+
+# Cek dengan cara lain
+
+Sebut jumlahnya <InlineMath math="S" />. Kuadratkan, lalu pakai <InlineMath math="\sqrt{p}\sqrt{q}=\sqrt{pq}" />:
+
+<BlockMath math="\begin{aligned}
+S^2&=(11-6\sqrt2)+(11+6\sqrt2)+2\sqrt{(11-6\sqrt2)(11+6\sqrt2)} \\
+&=22+2\sqrt{121-72}=22+2\cdot7=36
+\end{aligned}" />
+
+Karena <InlineMath math="S" /> positif, <InlineMath math="S=6" />. **Hasilnya sama**.
+
+Jadi, nilai bentuk itu adalah <InlineMath math="6" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\sqrt{22}" /> menjumlahkan bilangan di bawah akar. **Jumlah dua akar tidak sama dengan akar dari jumlahnya**.
+- <InlineMath math="2\sqrt{11}" /> menghapus <InlineMath math="\pm6\sqrt2" /> di bawah akar, seolah-olah keduanya saling menghabiskan di setiap akar.
+- <InlineMath math="2\sqrt2" /> adalah <InlineMath math="(3+\sqrt2)-(3-\sqrt2)" />, yaitu selisihnya, bukan jumlahnya.
+- <InlineMath math="3+\sqrt2" /> hanya menyederhanakan satu akar dan melupakan akar yang lain.
+- <InlineMath math="36" /> adalah <InlineMath math="S^2" />. Akarnya belum diambil.

@@ -5,11 +5,12 @@ import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import { NodeRuntime, NodeServices } from "@effect/platform-node";
 import {
+  type FormulaMatch,
   type SimilarityMatch,
   scanQuestionSimilarity,
 } from "@nakafa/aksara-corpus/question-bank/similarity";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
-import { Console, Effect, Path, Schema } from "effect";
+import { Array as Arr, Console, Effect, Path, Schema } from "effect";
 
 const DEFAULT_THRESHOLD = 0.5;
 const USAGE =
@@ -57,6 +58,11 @@ function line({ exact, first, masked, score, second }: SimilarityMatch) {
   return `${score.toFixed(2)} (text ${exact.toFixed(2)}, masked ${masked.toFixed(2)}) ${first} <> ${second}`;
 }
 
+/** Formats one formula pair with the shapes it shares and the fix it needs. */
+export function formulaLine({ first, score, second, shared }: FormulaMatch) {
+  return `FORMULA ${score.toFixed(2)} ${first} <> ${second} shares ${shared.join(" ; ")}: rewrite one as a different task, not new numbers`;
+}
+
 /** Scans one question-bank directory against the whole bank. */
 const runCli = Effect.fn("SimilarityCheck.runCli")(function* (
   arguments_: readonly string[]
@@ -72,16 +78,23 @@ const runCli = Effect.fn("SimilarityCheck.runCli")(function* (
     target,
     options.threshold
   );
-  for (const match of report.items) {
-    yield* Console.error(`ITEM ${line(match)}`);
-  }
-  for (const match of report.passages) {
-    yield* Console.error(`PASSAGE ${line(match)}`);
+  const findings = [
+    ...Arr.map(report.items, (match) => `ITEM ${line(match)}`),
+    ...Arr.map(report.passages, (match) => `PASSAGE ${line(match)}`),
+    ...Arr.map(report.formulas, formulaLine),
+  ];
+  for (const finding of findings) {
+    yield* Console.error(finding);
   }
   yield* Console.log(
-    `${report.items.length} item pairs and ${report.passages.length} passages under ${target} reach ${options.threshold}.`
+    `${report.items.length} item pairs, ${report.formulas.length} formula pairs and ${report.passages.length} passages under ${target} reach ${options.threshold}.`
   );
-  return report.items.length + report.passages.length === 0 ? 0 : 1;
+  return report.items.length +
+    report.passages.length +
+    report.formulas.length ===
+    0
+    ? 0
+    : 1;
 });
 
 /** Runs the check with every typed failure reported as exit code 2. */

@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$(-1\\mid0)$$",
-        },
-        {
           correct: true,
-          label: "$$(1\\mid0)$$",
+          label: "$$20$$ Liter",
         },
         {
           correct: false,
-          label: "$$(2\\mid0)$$",
+          label: "$$10$$ Liter",
         },
         {
           correct: false,
-          label: "$$(0\\mid2)$$",
+          label: "$$15$$ Liter",
         },
         {
           correct: false,
-          label: "$$(0\\mid1)$$",
+          label: "$$25$$ Liter",
         },
         {
           correct: false,
-          label: "$$(7\\mid0)$$",
+          label: "$$30$$ Liter",
+        },
+        {
+          correct: false,
+          label: "$$35$$ Liter",
         },
       ],
     },

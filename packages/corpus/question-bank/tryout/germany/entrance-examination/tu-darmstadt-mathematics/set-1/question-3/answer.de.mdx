@@ -1,23 +1,53 @@
-Eine quadratische Gleichung bringst du zuerst in die **Normalform mit null auf einer Seite**. Erst dann kannst du faktorisieren oder eine Lösungsformel verwenden.
+# Wann die Wurzeln erlaubt sind
 
-<BlockMath math="2x^2-3x-2=0" />
+Eine Quadratwurzel gibt es nur von Zahlen, die nicht negativ sind. Also muss <InlineMath math="3x+1\ge0" /> und <InlineMath math="x-1\ge0" /> gelten. Die zweite Bedingung ist strenger, also **suchst du nur unter den <InlineMath math="x\ge1" />**.
 
-Für die Faktorisierung suchst du zwei Zahlen mit dem Produkt <InlineMath math="2\cdot(-2)=-4" /> und der Summe <InlineMath math="-3" />. Das sind <InlineMath math="-4" /> und <InlineMath math="1" />. Damit zerlegst du den mittleren Term.
+# Sicher quadrieren
+
+Bring zuerst <InlineMath math="\sqrt{x-1}" /> auf die rechte Seite, damit links nur noch eine Wurzel steht:
+
+<BlockMath math="\sqrt{3x+1}=2+\sqrt{x-1}" />
+
+**Beide Seiten sind nicht negativ**, also darfst du quadrieren. Rechts benutzt du <InlineMath math="(p+q)^2=p^2+2pq+q^2" />:
 
 <BlockMath math="\begin{aligned}
-2x^2-4x+x-2&=0 \\
-2x(x-2)+1\cdot(x-2)&=0 \\
-(2x+1)(x-2)&=0
+3x+1&=4+4\sqrt{x-1}+(x-1) \\
+2x-2&=4\sqrt{x-1} \\
+x-1&=2\sqrt{x-1}
 \end{aligned}" />
 
-Ein Produkt ist null, wenn ein Faktor null ist. Aus <InlineMath math="2x+1=0" /> folgt <InlineMath math="x=-\frac12" />, aus <InlineMath math="x-2=0" /> folgt <InlineMath math="x=2" />. Die Diskriminante <InlineMath math="(-3)^2-4\cdot2\cdot(-2)=25" /> ist positiv und bestätigt zwei verschiedene Lösungen.
+# Die Falle beim Dividieren
 
-Zur Kontrolle: Für <InlineMath math="x=-\frac12" /> ist <InlineMath math="2\cdot\frac14=\frac12" /> und <InlineMath math="3\cdot\left(-\frac12\right)+2=\frac12" />. Für <InlineMath math="x=2" /> ist <InlineMath math="8=6+2" />.
+Jetzt ist es verlockend, beide Seiten durch <InlineMath math="\sqrt{x-1}" /> zu teilen. Lass das! **<InlineMath math="\sqrt{x-1}" /> kann null sein**, und durch null teilen wirft eine Lösung weg.
 
-Die Lösungen sind also <InlineMath math="x=-\frac12" /> und <InlineMath math="x=2" />.
+Sicherer ist es, <InlineMath math="t=\sqrt{x-1}" /> zu setzen. Dann ist <InlineMath math="x-1=t^2" />, und die Gleichung wird zu:
 
-- Nur <InlineMath math="x=2" /> lässt die zweite Lösung weg. Eine quadratische Gleichung mit positiver Diskriminante hat zwei Lösungen.
-- <InlineMath math="x=\frac12" /> und <InlineMath math="x=-2" /> gehören zu <InlineMath math="(2x-1)(x+2)=2x^2+3x-2" />. Das Vorzeichen des mittleren Terms ist hier vertauscht.
-- <InlineMath math="x=-1" /> und <InlineMath math="x=2" /> entstehen aus der richtigen Zerlegung <InlineMath math="(2x+1)(x-2)=0" />, wenn bei <InlineMath math="2x+1=0" /> nicht durch <InlineMath math="2" /> geteilt wird.
-- <InlineMath math="x=1" /> und <InlineMath math="x=-2" /> entstehen aus der falschen Zerlegung <InlineMath math="(2x-1)(x+2)" />, wenn zusätzlich bei <InlineMath math="2x-1=0" /> nicht durch <InlineMath math="2" /> geteilt wird.
-- Keine reelle Lösung ist falsch, denn die Diskriminante <InlineMath math="25" /> ist positiv.
+<BlockMath math="\begin{aligned}
+t^2&=2t \\
+t^2-2t&=0 \\
+t(t-2)&=0
+\end{aligned}" />
+
+Also ist <InlineMath math="t=0" /> oder <InlineMath math="t=2" />. Mit <InlineMath math="x=t^2+1" /> kommst du zurück zu <InlineMath math="x" />:
+
+- <InlineMath math="t=0" /> ergibt <InlineMath math="x=1" />.
+- <InlineMath math="t=2" /> ergibt <InlineMath math="x=5" />.
+
+# Probe in der ursprünglichen Gleichung
+
+**Quadrieren kann Scheinlösungen erzeugen**, also prüfst du beide:
+
+<BlockMath math="\begin{aligned}
+x=1:&\quad \sqrt{4}-\sqrt{0}=2-0=2 \\
+x=5:&\quad \sqrt{16}-\sqrt{4}=4-2=2
+\end{aligned}" />
+
+Beide stimmen. Die Gleichung hat also genau zwei Lösungen, <InlineMath math="x=1" /> und <InlineMath math="x=5" />.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur <InlineMath math="x=5" /> entsteht, wenn du durch <InlineMath math="\sqrt{x-1}" /> teilst. Dabei geht <InlineMath math="x=1" /> verloren, obwohl <InlineMath math="x=1" /> die Probe besteht.
+- Nur <InlineMath math="x=1" /> entsteht, wenn du **gliedweise quadrierst**, also so tust, als wäre <InlineMath math="\left(\sqrt{3x+1}-\sqrt{x-1}\right)^2=(3x+1)-(x-1)" />. Der Mittelterm <InlineMath math="-2\sqrt{3x+1}\sqrt{x-1}" /> fehlt, und mit ihm <InlineMath math="x=5" />.
+- <InlineMath math="x=0" /> und <InlineMath math="x=5" /> verwechselt <InlineMath math="t=0" /> mit <InlineMath math="x=0" />. Dabei ist <InlineMath math="x=0" /> gar nicht erlaubt, denn <InlineMath math="\sqrt{0-1}" /> ist nicht definiert.
+- Nur <InlineMath math="x=2" /> schreibt den Wert von <InlineMath math="t" /> hin, nicht den von <InlineMath math="x" />. Für <InlineMath math="x=2" /> ergibt die linke Seite <InlineMath math="\sqrt7-1\approx1{,}65" />.
+- <InlineMath math="x=1" /> und <InlineMath math="x=2" /> rechnet <InlineMath math="t=0" /> richtig zurück, vergisst aber, <InlineMath math="t=2" /> in <InlineMath math="x=5" /> umzurechnen.

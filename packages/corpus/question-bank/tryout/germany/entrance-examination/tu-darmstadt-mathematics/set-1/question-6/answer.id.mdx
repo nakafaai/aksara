@@ -1,15 +1,41 @@
-Jalan itu adalah diagonal persegi panjang. Diagonal membagi persegi panjang menjadi dua segitiga siku-siku dengan sisi siku-siku <InlineMath math="21\text{ m}" /> dan <InlineMath math="20\text{ m}" />. Diagonal itu adalah **sisi miring**, jadi teorema Pythagoras berlaku.
+# Persamaan titik potong
+
+Titik potong punya <InlineMath math="y" /> yang sama di garis dan di parabola. **Samakan kedua rumus <InlineMath math="y" />**:
 
 <BlockMath math="\begin{aligned}
-d^2&=21^2+20^2=441+400=841 \\
-d&=\sqrt{841}=29\text{ m}
+x^2-2x+4&=mx \\
+x^2-(2+m)x+4&=0
 \end{aligned}" />
 
-Sebagai pemeriksaan, <InlineMath math="29^2=841" />, dan sisi miring lebih panjang dari setiap sisi siku-siku tetapi lebih pendek dari jumlah keduanya, <InlineMath math="41\text{ m}" />.
+Dua penyelesaian <InlineMath math="x_1" /> dan <InlineMath math="x_2" /> persamaan ini adalah absis kedua titik potong.
 
-Jadi, panjang jalan itu adalah <InlineMath math="29\text{ m}" />.
+# Selisih dua akar
 
-- <InlineMath math="\sqrt{41}\text{ m}" /> berasal dari <InlineMath math="21^2-20^2=41" />. Untuk sisi miring, kuadrat sisi siku-siku dijumlahkan.
-- <InlineMath math="21\text{ m}" /> hanyalah sisi yang lebih panjang. Diagonal selalu lebih panjang dari setiap sisi.
-- <InlineMath math="25\text{ m}" /> dan <InlineMath math="27\text{ m}" /> tidak cocok, karena <InlineMath math="25^2=625" /> dan <InlineMath math="27^2=729" /> lebih kecil dari <InlineMath math="841" />.
-- <InlineMath math="41\text{ m}" /> adalah jumlah kedua sisi, yaitu jalan menyusuri dua tepi, bukan memotong langsung.
+Rumus akar persamaan kuadrat memberi <InlineMath math="x_{1,2}=\frac{(2+m)\pm\sqrt D}{2}" />. Jadi **selisih kedua akar sama dengan <InlineMath math="\sqrt D" />**, karena bagian depannya sama dan saling menghapus:
+
+<BlockMath math="x_1-x_2=\frac{2\sqrt D}{2}=\sqrt D,\qquad D=(2+m)^2-16" />
+
+Selisihnya harus <InlineMath math="3" />:
+
+<BlockMath math="\begin{aligned}
+\sqrt{(2+m)^2-16}&=3 \\
+(2+m)^2&=25 \\
+2+m=5\quad&\text{atau}\quad 2+m=-5 \\
+m=3\quad&\text{atau}\quad m=-7
+\end{aligned}" />
+
+# Cek kedua nilai
+
+- <InlineMath math="m=3" />: <InlineMath math="x^2-5x+4=0" />, akarnya <InlineMath math="1" /> dan <InlineMath math="4" />. Selisihnya <InlineMath math="3" />.
+- <InlineMath math="m=-7" />: <InlineMath math="x^2+5x+4=0" />, akarnya <InlineMath math="-1" /> dan <InlineMath math="-4" />. Selisihnya juga <InlineMath math="3" />.
+
+**Kedua nilai memenuhi syarat soal**, karena soal tidak membatasi letak titik potongnya.
+
+Jadi, nilai <InlineMath math="m" /> yang memenuhi adalah <InlineMath math="m=3" /> atau <InlineMath math="m=-7" />.
+
+# Kenapa pilihan lain salah
+
+- Hanya <InlineMath math="m=3" /> atau hanya <InlineMath math="m=-7" /> **membuang salah satu dari dua akar kuadrat** <InlineMath math="2+m=\pm5" />.
+- <InlineMath math="m=5" /> atau <InlineMath math="m=-5" /> melupakan suku <InlineMath math="-2x" />, sehingga persamaannya menjadi <InlineMath math="m^2-16=9" />.
+- <InlineMath math="m=2" /> atau <InlineMath math="m=-6" /> memakai <InlineMath math="D=0" />. Itu syarat garis menyinggung parabola, dan selisih akarnya nol.
+- <InlineMath math="m=7" /> atau <InlineMath math="m=-3" /> salah tanda menjadi <InlineMath math="m-2=\pm5" />. Untuk <InlineMath math="m=7" />, persamaannya <InlineMath math="x^2-9x+4=0" /> dengan selisih akar <InlineMath math="\sqrt{65}" />.

@@ -1,17 +1,39 @@
-Zwei Prozentänderungen hintereinander darfst du nicht einfach verrechnen, denn die zweite Änderung bezieht sich auf **einen anderen Grundwert**. Die Abnahme um <InlineMath math="10\,\%" /> wird vom höheren Stand im Sommer berechnet, nicht vom Stand zu Jahresbeginn. Rechne deshalb mit Faktoren: Eine Zunahme um <InlineMath math="10\,\%" /> bedeutet den Faktor <InlineMath math="1{,}1" />, eine Abnahme um <InlineMath math="10\,\%" /> den Faktor <InlineMath math="0{,}9" />.
+# Eine Wurzel in der Wurzel
 
-Es sei <InlineMath math="n" /> die Mitgliederzahl zu Jahresbeginn. Dann gilt am Jahresende:
+<InlineMath math="\sqrt{11-6\sqrt2}" /> sieht schwer aus, aber oft ist die Zahl unter der Wurzel **das Quadrat eines Terms wie <InlineMath math="a-b\sqrt2" />**. Such ganze Zahlen <InlineMath math="a" /> und <InlineMath math="b" />:
 
-<BlockMath math="n\cdot1{,}1\cdot0{,}9=n\cdot0{,}99" />
+<BlockMath math="(a-b\sqrt2)^2=a^2+2b^2-2ab\sqrt2" />
 
-Der Faktor <InlineMath math="0{,}99" /> bedeutet, dass am Jahresende <InlineMath math="99\,\%" /> der ursprünglichen Mitgliederzahl erreicht sind. Die Zahl ist also um <InlineMath math="1\,\%" /> gesunken.
+Für <InlineMath math="11-6\sqrt2" /> brauchst du <InlineMath math="a^2+2b^2=11" /> und <InlineMath math="2ab=6" />. Das Paar <InlineMath math="a=3" />, <InlineMath math="b=1" /> passt, denn <InlineMath math="9+2=11" /> und <InlineMath math="2\cdot3\cdot1=6" />.
 
-Ein Zahlenbeispiel bestätigt das. Bei <InlineMath math="500" /> Mitgliedern kommen bis zum Sommer <InlineMath math="50" /> hinzu, es sind dann <InlineMath math="550" />. Davon sind <InlineMath math="10\,\%" /> genau <InlineMath math="55" />, also bleiben <InlineMath math="495" /> Mitglieder. Das sind <InlineMath math="5" /> weniger als zu Beginn, und <InlineMath math="5" /> ist <InlineMath math="1\,\%" /> von <InlineMath math="500" />.
+# Beide Wurzeln vereinfachen
 
-Die Mitgliederzahl ist also insgesamt um <InlineMath math="1\,\%" /> gesunken.
+<BlockMath math="\begin{aligned}
+(3-\sqrt2)^2&=9-6\sqrt2+2=11-6\sqrt2 \\
+(3+\sqrt2)^2&=9+6\sqrt2+2=11+6\sqrt2
+\end{aligned}" />
 
-- Eine Zunahme um <InlineMath math="21\,\%" /> zählt beide Änderungen als Zunahme, denn <InlineMath math="1{,}1\cdot1{,}1=1{,}21" />.
-- Eine Zunahme um <InlineMath math="1\,\%" /> hat den richtigen Betrag, aber die falsche Richtung. Der Faktor <InlineMath math="0{,}99" /> ist kleiner als <InlineMath math="1" />.
-- Keine Veränderung ergibt sich, wenn die Prozentsätze einfach verrechnet werden: <InlineMath math="10\,\%-10\,\%=0\,\%" />. Die beiden Prozentsätze beziehen sich aber auf verschiedene Grundwerte.
-- Eine Abnahme um <InlineMath math="0{,}1\,\%" /> verschiebt das Komma. Der Unterschied <InlineMath math="1-0{,}99=0{,}01" /> entspricht <InlineMath math="1\,\%" />.
-- Eine Abnahme um <InlineMath math="10\,\%" /> berücksichtigt nur die zweite Änderung.
+Eine Quadratwurzel ist nie negativ. **Weil <InlineMath math="3-\sqrt2\approx1{,}59" /> positiv ist**, gilt <InlineMath math="\sqrt{11-6\sqrt2}=3-\sqrt2" />. Genauso ist <InlineMath math="\sqrt{11+6\sqrt2}=3+\sqrt2" />.
+
+<BlockMath math="(3-\sqrt2)+(3+\sqrt2)=6" />
+
+# Probe auf einem zweiten Weg
+
+Nenn die Summe <InlineMath math="S" />. Quadriere sie und benutze <InlineMath math="\sqrt{p}\sqrt{q}=\sqrt{pq}" />:
+
+<BlockMath math="\begin{aligned}
+S^2&=(11-6\sqrt2)+(11+6\sqrt2)+2\sqrt{(11-6\sqrt2)(11+6\sqrt2)} \\
+&=22+2\sqrt{121-72}=22+2\cdot7=36
+\end{aligned}" />
+
+Weil <InlineMath math="S" /> positiv ist, gilt <InlineMath math="S=6" />. **Dasselbe Ergebnis**.
+
+Der Term hat also den Wert <InlineMath math="6" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\sqrt{22}" /> addiert die Zahlen unter den Wurzeln. **Eine Summe zweier Wurzeln ist nicht die Wurzel der Summe**.
+- <InlineMath math="2\sqrt{11}" /> streicht das <InlineMath math="\pm6\sqrt2" /> unter den Wurzeln, als würde es sich in jeder Wurzel aufheben.
+- <InlineMath math="2\sqrt2" /> ist <InlineMath math="(3+\sqrt2)-(3-\sqrt2)" />, also die Differenz statt der Summe.
+- <InlineMath math="3+\sqrt2" /> vereinfacht nur eine Wurzel und vergisst die andere.
+- <InlineMath math="36" /> ist <InlineMath math="S^2" />. Die Wurzel wurde noch nicht gezogen.

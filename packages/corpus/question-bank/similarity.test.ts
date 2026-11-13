@@ -135,7 +135,7 @@ describe("scanQuestionSimilarity", () => {
         [root(1, 1), root(3, 1)],
         [root(2, 1), root(3, 1)],
       ]);
-      expect(outside).toEqual({ items: [], passages: [] });
+      expect(outside).toEqual({ formulas: [], items: [], passages: [] });
     })
   );
 
@@ -195,7 +195,7 @@ describe("scanQuestionSimilarity", () => {
         set(2)
       );
 
-      expect(report).toEqual({ items: [], passages: [] });
+      expect(report).toEqual({ formulas: [], items: [], passages: [] });
     })
   );
 
@@ -224,6 +224,98 @@ describe("scanQuestionSimilarity", () => {
           second: `${setSourcePath(set(2))} (question-1, question-2)`,
         },
       ]);
+    })
+  );
+  it.effect(
+    "flags a task asked again in another language with new numbers",
+    () =>
+      Effect.gen(function* () {
+        const german: ItemSource = {
+          versions: {
+            de: {
+              kind: "choice",
+              options: [
+                { correct: true, label: "$$50$$" },
+                { correct: false, label: "$$125$$" },
+              ],
+            },
+          },
+        };
+        const report = yield* scan(
+          [
+            [
+              {
+                prompt:
+                  'Bilangan real <InlineMath math="x" /> dan <InlineMath math="y" /> memenuhi <InlineMath math="x+y=7" /> dan <InlineMath math="x^2+y^2=29" />. Nilai <InlineMath math="x^3+y^3" /> adalah ....',
+              },
+            ],
+            [
+              {
+                item: german,
+                prompt:
+                  'Für zwei reelle Zahlen gilt\n\n<BlockMath math="x+y=5\\qquad\\text{und}\\qquad x^2+y^2=15." />\n\nWelchen Wert hat <InlineMath math="x^3+y^3" />?',
+              },
+            ],
+          ],
+          set(2)
+        );
+
+        expect(report.items).toEqual([]);
+        expect(report.formulas).toEqual([
+          {
+            first: root(1, 1),
+            score: 1,
+            second: root(2, 1),
+            shared: ["x+y=#", "x^#+y^#", "x^#+y^#=#"],
+          },
+        ]);
+      })
+  );
+
+  it.effect(
+    "ignores bare numbers, lone variables, siblings, and pairs sharing two formulas",
+    () =>
+      Effect.gen(function* () {
+        const prompt = (constant: number) =>
+          `Diketahui <InlineMath math="x=${constant}" />, <InlineMath math="\\frac{1}{${constant}}" />, <InlineMath math="A(${constant},2)" />, <InlineMath math="${constant}x+3=7\\quad y=4x-${constant}" />, dan <InlineMath math="\\begin{pmatrix}${constant}\\\\-1\\end{pmatrix}" />.`;
+        const report = yield* scan(
+          [
+            [
+              { prompt: prompt(3) },
+              {
+                prompt:
+                  'Hitung <InlineMath math="a+b=5" />, <InlineMath math="a-b=1" />, dan <InlineMath math="ab=6" /> untuk bilangan positif.',
+              },
+              {
+                prompt:
+                  'Tentukan <InlineMath math="a+b=9" />, <InlineMath math="a-b=3" />, serta <InlineMath math="ab=18" /> pada soal ini.',
+              },
+            ],
+            [{ prompt: prompt(5) }],
+          ],
+          section
+        );
+
+        expect(report.formulas).toEqual([]);
+      })
+  );
+
+  it.effect("ignores formulas that most of the bank shares", () =>
+    Effect.gen(function* () {
+      const question = (n: number) => ({
+        prompt: `Soal ${n}: <InlineMath math="p+q=${n}" />, <InlineMath math="p-q=${n + 1}" />, <InlineMath math="pq=${n + 2}" />, dan <InlineMath math="p^2+q^2" />.`,
+      });
+      const few = yield* scan(
+        Arr.map(Arr.range(1, 3), (n) => [question(n)]),
+        set(1)
+      );
+      const many = yield* scan(
+        Arr.map(Arr.range(1, 65), (n) => [question(n)]),
+        set(1)
+      );
+
+      expect(few.formulas).toHaveLength(2);
+      expect(many.formulas).toEqual([]);
     })
   );
 });

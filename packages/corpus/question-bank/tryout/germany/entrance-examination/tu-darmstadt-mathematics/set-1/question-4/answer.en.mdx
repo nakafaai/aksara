@@ -1,17 +1,39 @@
-Two percentage changes in a row cannot simply be added or subtracted, because the second change refers to **a different base value**. The <InlineMath math="10\,\%" /> decrease is taken from the higher level in summer, not from the level at the start of the year. So work with factors: an increase of <InlineMath math="10\,\%" /> means the factor <InlineMath math="1.1" />, and a decrease of <InlineMath math="10\,\%" /> means the factor <InlineMath math="0.9" />.
+# A root inside a root
 
-Let <InlineMath math="n" /> be the number of members (*Mitglieder*) at the start of the year. At the end of the year:
+<InlineMath math="\sqrt{11-6\sqrt2}" /> looks hard, but often the number under the root is **the square of something like <InlineMath math="a-b\sqrt2" />**. Look for whole numbers <InlineMath math="a" /> and <InlineMath math="b" />:
 
-<BlockMath math="n\cdot1.1\cdot0.9=n\cdot0.99" />
+<BlockMath math="(a-b\sqrt2)^2=a^2+2b^2-2ab\sqrt2" />
 
-The factor <InlineMath math="0.99" /> means that the membership at the end of the year is <InlineMath math="99\,\%" /> of the original number. So the number fell by <InlineMath math="1\,\%" />.
+To get <InlineMath math="11-6\sqrt2" />, you need <InlineMath math="a^2+2b^2=11" /> and <InlineMath math="2ab=6" />. The pair <InlineMath math="a=3" />, <InlineMath math="b=1" /> works, because <InlineMath math="9+2=11" /> and <InlineMath math="2\cdot3\cdot1=6" />.
 
-A numerical example confirms this. With <InlineMath math="500" /> members, <InlineMath math="50" /> join by the summer, which makes <InlineMath math="550" />. Of these, <InlineMath math="10\,\%" /> is exactly <InlineMath math="55" />, so <InlineMath math="495" /> members remain. That is <InlineMath math="5" /> fewer than at the start, and <InlineMath math="5" /> is <InlineMath math="1\,\%" /> of <InlineMath math="500" />.
+# Simplifying both roots
 
-So the number of members fell by <InlineMath math="1\,\%" /> overall.
+<BlockMath math="\begin{aligned}
+(3-\sqrt2)^2&=9-6\sqrt2+2=11-6\sqrt2 \\
+(3+\sqrt2)^2&=9+6\sqrt2+2=11+6\sqrt2
+\end{aligned}" />
 
-- An increase of <InlineMath math="21\,\%" /> counts both changes as increases, because <InlineMath math="1.1\cdot1.1=1.21" />.
-- An increase of <InlineMath math="1\,\%" /> has the right size but the wrong direction. The factor <InlineMath math="0.99" /> is less than <InlineMath math="1" />.
-- No change comes from simply combining the percentages: <InlineMath math="10\,\%-10\,\%=0\,\%" />. The two percentages refer to different base values, though.
-- A decrease of <InlineMath math="0.1\,\%" /> misplaces the decimal point. The difference <InlineMath math="1-0.99=0.01" /> corresponds to <InlineMath math="1\,\%" />.
-- A decrease of <InlineMath math="10\,\%" /> only takes the second change into account.
+A square root is never negative. **Since <InlineMath math="3-\sqrt2\approx1.59" /> is positive**, you get <InlineMath math="\sqrt{11-6\sqrt2}=3-\sqrt2" />. In the same way, <InlineMath math="\sqrt{11+6\sqrt2}=3+\sqrt2" />.
+
+<BlockMath math="(3-\sqrt2)+(3+\sqrt2)=6" />
+
+# A check another way
+
+Call the sum <InlineMath math="S" />. Square it and use <InlineMath math="\sqrt{p}\sqrt{q}=\sqrt{pq}" />:
+
+<BlockMath math="\begin{aligned}
+S^2&=(11-6\sqrt2)+(11+6\sqrt2)+2\sqrt{(11-6\sqrt2)(11+6\sqrt2)} \\
+&=22+2\sqrt{121-72}=22+2\cdot7=36
+\end{aligned}" />
+
+Since <InlineMath math="S" /> is positive, <InlineMath math="S=6" />. **Same result**.
+
+So the value is <InlineMath math="6" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\sqrt{22}" /> adds the numbers under the roots. **A sum of two roots isn't the root of the sum**.
+- <InlineMath math="2\sqrt{11}" /> deletes the <InlineMath math="\pm6\sqrt2" /> under the roots, as if they cancelled inside each root.
+- <InlineMath math="2\sqrt2" /> is <InlineMath math="(3+\sqrt2)-(3-\sqrt2)" />, the difference instead of the sum.
+- <InlineMath math="3+\sqrt2" /> simplifies only one root and forgets the other.
+- <InlineMath math="36" /> is <InlineMath math="S^2" />. The square root hasn't been taken yet.

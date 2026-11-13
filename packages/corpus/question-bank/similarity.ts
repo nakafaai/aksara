@@ -1,6 +1,7 @@
 import {
   Array as Arr,
   Effect,
+  HashSet,
   MutableHashMap,
   MutableHashSet,
   MutableList,
@@ -35,6 +36,20 @@ const NUMBER_PATTERN = /\d+/gu;
 const SPACE_PATTERN = /\s+/u;
 const PASSAGE_WORDS = 25;
 const COMMON_SHINGLE = 64;
+const LABEL_MATH_PATTERN = /\$\$[^$]*\$\$/gu;
+const MATH_TEXT_PATTERN = /\\text\{[^{}]*\}/gu;
+const MATH_ENVIRONMENT_PATTERN = /\\(?:begin|end)\{[a-z*]+\}/gu;
+const FORMULA_BREAK_PATTERN = /\\qquad|\\quad|\\\\|&|\\[,;!]/u;
+const FORMULA_NUMBER_PATTERN = /\d+(?:\{[.,]\}\d+)*(?:[.,]\d+)?/gu;
+const FORMULA_SPACE_PATTERN = /\s+/gu;
+const FORMULA_END_PATTERN = /[.,;]+$/u;
+const FORMULA_COMMAND_PATTERN = /\\[a-z]+/giu;
+const FORMULA_VARIABLE_PATTERN = /[a-z]/iu;
+const FORMULA_RELATION_PATTERN =
+  /[=<>+-]|\\(?:le|ge|ne|cdot|times|frac|sqrt)\b/u;
+const MASK = "#";
+const FORMULA_MIN_LENGTH = 4;
+const FORMULA_MIN_SHARED = 3;
 
 /** Splits one text into comparable words, optionally masking every number. */
 function words(text: string, mask: boolean) {
@@ -46,6 +61,48 @@ function words(text: string, mask: boolean) {
   return Arr.filter(masked.split(SPACE_PATTERN), (word) => word.length > 0);
 }
 
+/**
+ * Reduces one formula to the shapes a learner reads: spacing and text dropped,
+ * every number masked, so a task with new numbers keeps its shape. A shape
+ * counts only with a variable and a relation, so a bare number or a lone
+ * variable never ties two questions together.
+ */
+function formulaShapes(math: string): readonly string[] {
+  const parts = math
+    .replace(MATH_TEXT_PATTERN, "&")
+    .replace(MATH_ENVIRONMENT_PATTERN, "&")
+    .split(FORMULA_BREAK_PATTERN);
+  const shapes = Arr.map(parts, (part) =>
+    part
+      .replace(FORMULA_SPACE_PATTERN, "")
+      .replace(FORMULA_NUMBER_PATTERN, MASK)
+      .replace(FORMULA_END_PATTERN, "")
+  );
+  return Arr.filter(
+    shapes,
+    (shape) =>
+      shape.replaceAll(MASK, "").length >= FORMULA_MIN_LENGTH &&
+      FORMULA_VARIABLE_PATTERN.test(
+        shape.replace(FORMULA_COMMAND_PATTERN, "")
+      ) &&
+      FORMULA_RELATION_PATTERN.test(shape)
+  );
+}
+
+/** Collects the formula shapes of one prompt and the labels it shows. */
+function formulas(rawMdx: string, answers: readonly string[]) {
+  const written = Arr.map(
+    rawMdx.match(MATH_ATTRIBUTE_PATTERN) ?? [],
+    (attribute) => attribute.slice('math="'.length, -1)
+  );
+  const labelled = Arr.flatMap(answers, (answer) =>
+    Arr.map(answer.match(LABEL_MATH_PATTERN) ?? [], (math) => math.slice(2, -2))
+  );
+  return HashSet.fromIterable(
+    Arr.flatMap([...written, ...labelled], formulaShapes)
+  );
+}
+
 /** Prints one text in both comparison forms. */
 function print(text: string): Print {
   return {
@@ -53,6 +110,18 @@ function print(text: string): Print {
     masked: shingles(words(text, true)),
   };
 }
+
+/**
+ * One pair of questions in different sets, in any languages, that ask with the
+ * same formulas once their numbers are masked: the same task with new numbers.
+ */
+const FormulaMatchSchema = Schema.Struct({
+  first: Schema.String,
+  score: Schema.Finite,
+  second: Schema.String,
+  shared: Schema.Array(Schema.String),
+});
+export type FormulaMatch = typeof FormulaMatchSchema.Type;
 
 /** One pair of questions or passages that read too much alike. */
 const SimilarityMatchSchema = Schema.Struct({
@@ -66,6 +135,7 @@ export type SimilarityMatch = typeof SimilarityMatchSchema.Type;
 
 /** Every item and passage pair at or above the threshold, highest first. */
 const SimilarityReportSchema = Schema.Struct({
+  formulas: Schema.Array(FormulaMatchSchema),
   items: Schema.Array(SimilarityMatchSchema),
   passages: Schema.Array(SimilarityMatchSchema),
 });
@@ -73,6 +143,7 @@ type SimilarityReport = typeof SimilarityReportSchema.Type;
 
 /** One prompt with its own wording separated from the passage it shares. */
 const UnitSchema = Schema.Struct({
+  formulas: Schema.HashSet(Schema.String),
   full: PrintSchema,
   id: Schema.Finite,
   locale: Schema.String,
@@ -147,6 +218,7 @@ function units(prompts: readonly QuestionPrompt[]) {
       );
       const own = Arr.filter(list, (part) => !isShared(part));
       return {
+        formulas: formulas(prompt.rawMdx, answers),
         full: print(Arr.join([...list, ...answers], " ")),
         locale: prompt.language,
         own: print(Arr.join([...own, ...answers], " ")),
@@ -235,6 +307,58 @@ function itemMatches(
   return MutableList.toArray(matches);
 }
 
+/**
+ * Compares questions of different sets in every language by their formula
+ * shapes, so a task copied into another exam with new numbers still shows.
+ */
+function formulaMatches(
+  all: readonly Unit[],
+  isTarget: (root: string) => boolean,
+  threshold: number
+) {
+  const index = MutableHashMap.empty<string, MutableList.MutableList<Unit>>();
+  for (const unit of all) {
+    for (const shape of unit.formulas) {
+      collect(index, shape, unit);
+    }
+  }
+  const groups = Arr.filter(
+    Arr.map([...MutableHashMap.values(index)], MutableList.toArray),
+    ({ length }) => length <= COMMON_SHINGLE
+  );
+  const seen = MutableHashSet.empty<string>();
+  const matches = MutableList.make<FormulaMatch>();
+  for (const group of groups) {
+    for (const { left, right } of pairs(group, ({ root }) => isTarget(root))) {
+      const key = `${left.id}\n${right.id}`;
+      if (left.set === right.set || MutableHashSet.has(seen, key)) {
+        continue;
+      }
+      MutableHashSet.add(seen, key);
+      const shared = Arr.sort(
+        Arr.filter([...left.formulas], (shape) =>
+          HashSet.has(right.formulas, shape)
+        ),
+        Order.String
+      );
+      const overlap =
+        shared.length /
+        (HashSet.size(left.formulas) +
+          HashSet.size(right.formulas) -
+          shared.length);
+      if (shared.length >= FORMULA_MIN_SHARED && overlap >= threshold) {
+        MutableList.append(matches, {
+          first: left.root,
+          score: overlap,
+          second: right.root,
+          shared,
+        });
+      }
+    }
+  }
+  return MutableList.toArray(matches);
+}
+
 /** One passage shared inside a set, with the questions that share it. */
 const PassageSchema = Schema.Struct({
   locale: Schema.String,
@@ -299,7 +423,19 @@ const RANKING = Order.combineAll([
   Order.mapInput(Order.String, (match: SimilarityMatch) => match.second),
 ]);
 
-/** Finds questions and passages under a target that read like others in the bank. */
+/** Orders formula matches from the most similar, then by path. */
+const FORMULA_RANKING = Order.combineAll([
+  Order.flip(
+    Order.mapInput(Order.Number, (match: FormulaMatch) => match.score)
+  ),
+  Order.mapInput(Order.String, (match: FormulaMatch) => match.first),
+  Order.mapInput(Order.String, (match: FormulaMatch) => match.second),
+]);
+
+/**
+ * Finds questions and passages under a target that read like others in the
+ * bank, and questions in any language that repeat another set's formulas.
+ */
 export const scanQuestionSimilarity = Effect.fn(
   "AksaraCorpus.scanQuestionSimilarity"
 )(function* (
@@ -314,6 +450,10 @@ export const scanQuestionSimilarity = Effect.fn(
   const isTarget = (root: string) =>
     root === target || root.startsWith(`${target}/`);
   return {
+    formulas: Arr.sort(
+      formulaMatches(all, isTarget, threshold),
+      FORMULA_RANKING
+    ),
     items: Arr.sort(itemMatches(all, isTarget, threshold), RANKING),
     passages: Arr.sort(passageMatches(all, isTarget, threshold), RANKING),
   } satisfies SimilarityReport;

@@ -1,15 +1,41 @@
-The path is a diagonal of the rectangle. It splits the rectangle into two right triangles whose legs are the sides <InlineMath math="21\text{ m}" /> and <InlineMath math="20\text{ m}" />. The diagonal is the **hypotenuse**, so the Pythagorean theorem applies.
+# The equation for the meeting points
+
+A meeting point has the same <InlineMath math="y" /> on the line and on the parabola. **Set the two formulas for <InlineMath math="y" /> equal**:
 
 <BlockMath math="\begin{aligned}
-d^2&=21^2+20^2=441+400=841 \\
-d&=\sqrt{841}=29\text{ m}
+x^2-2x+4&=mx \\
+x^2-(2+m)x+4&=0
 \end{aligned}" />
 
-As a check, <InlineMath math="29^2=841" />, and the hypotenuse is longer than each leg but shorter than their sum <InlineMath math="41\text{ m}" />.
+The two solutions <InlineMath math="x_1" /> and <InlineMath math="x_2" /> are the <InlineMath math="x" />-coordinates of the two meeting points.
 
-So the path is <InlineMath math="29\text{ m}" /> long.
+# The gap between two roots
 
-- <InlineMath math="\sqrt{41}\text{ m}" /> comes from <InlineMath math="21^2-20^2=41" />. For the hypotenuse, the squares of the legs are added.
-- <InlineMath math="21\text{ m}" /> is only the longer side. A diagonal is always longer than each side.
-- <InlineMath math="25\text{ m}" /> and <InlineMath math="27\text{ m}" /> do not fit, because <InlineMath math="25^2=625" /> and <InlineMath math="27^2=729" /> are less than <InlineMath math="841" />.
-- <InlineMath math="41\text{ m}" /> is the sum of the sides, the way along two edges instead of straight across the plot.
+The quadratic formula gives <InlineMath math="x_{1,2}=\frac{(2+m)\pm\sqrt D}{2}" />. So **the difference of the roots equals <InlineMath math="\sqrt D" />**, because the front parts are equal and cancel:
+
+<BlockMath math="x_1-x_2=\frac{2\sqrt D}{2}=\sqrt D,\qquad D=(2+m)^2-16" />
+
+The difference has to be <InlineMath math="3" />:
+
+<BlockMath math="\begin{aligned}
+\sqrt{(2+m)^2-16}&=3 \\
+(2+m)^2&=25 \\
+2+m=5\quad&\text{or}\quad 2+m=-5 \\
+m=3\quad&\text{or}\quad m=-7
+\end{aligned}" />
+
+# Checking both values
+
+- <InlineMath math="m=3" />: <InlineMath math="x^2-5x+4=0" /> has roots <InlineMath math="1" /> and <InlineMath math="4" />. The difference is <InlineMath math="3" />.
+- <InlineMath math="m=-7" />: <InlineMath math="x^2+5x+4=0" /> has roots <InlineMath math="-1" /> and <InlineMath math="-4" />. The difference is <InlineMath math="3" /> too.
+
+**Both values meet the condition**, because the problem doesn't restrict where the meeting points are.
+
+So the values are <InlineMath math="m=3" /> or <InlineMath math="m=-7" />.
+
+# Why the other options are wrong
+
+- Only <InlineMath math="m=3" /> or only <InlineMath math="m=-7" /> **drops one of the two square roots** of <InlineMath math="2+m=\pm5" />.
+- <InlineMath math="m=5" /> or <InlineMath math="m=-5" /> forgets the term <InlineMath math="-2x" />, so the equation becomes <InlineMath math="m^2-16=9" />.
+- <InlineMath math="m=2" /> or <InlineMath math="m=-6" /> uses <InlineMath math="D=0" />. That's the condition for the line to touch the parabola, where the roots are zero apart.
+- <InlineMath math="m=7" /> or <InlineMath math="m=-3" /> has a sign slip, <InlineMath math="m-2=\pm5" />. For <InlineMath math="m=7" />, the equation is <InlineMath math="x^2-9x+4=0" />, whose roots are <InlineMath math="\sqrt{65}" /> apart.

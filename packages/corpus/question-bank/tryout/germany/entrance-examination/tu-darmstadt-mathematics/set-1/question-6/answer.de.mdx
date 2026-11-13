@@ -1,15 +1,41 @@
-Der Weg ist eine Diagonale des Rechtecks. Sie teilt das Rechteck in zwei rechtwinklige Dreiecke, deren Katheten die Seiten <InlineMath math="21\text{ m}" /> und <InlineMath math="20\text{ m}" /> sind. Die Diagonale ist die **Hypotenuse**, also hilft der Satz des Pythagoras.
+# Die Gleichung für die Schnittpunkte
+
+Ein Schnittpunkt hat auf der Geraden und auf der Parabel dasselbe <InlineMath math="y" />. **Setz die beiden Terme für <InlineMath math="y" /> gleich**:
 
 <BlockMath math="\begin{aligned}
-d^2&=21^2+20^2=441+400=841 \\
-d&=\sqrt{841}=29\text{ m}
+x^2-2x+4&=mx \\
+x^2-(2+m)x+4&=0
 \end{aligned}" />
 
-Zur Kontrolle: <InlineMath math="29^2=841" />, und die Hypotenuse ist länger als jede Kathete, aber kürzer als ihre Summe <InlineMath math="41\text{ m}" />.
+Die beiden Lösungen <InlineMath math="x_1" /> und <InlineMath math="x_2" /> sind die <InlineMath math="x" />-Koordinaten der Schnittpunkte.
 
-Der Weg ist also <InlineMath math="29\text{ m}" /> lang.
+# Der Abstand zweier Lösungen
 
-- <InlineMath math="\sqrt{41}\text{ m}" /> entsteht aus <InlineMath math="21^2-20^2=41" />. Für die Hypotenuse werden die Quadrate der Katheten aber addiert.
-- <InlineMath math="21\text{ m}" /> ist nur die längere Seite. Eine Diagonale ist immer länger als jede Seite.
-- <InlineMath math="25\text{ m}" /> und <InlineMath math="27\text{ m}" /> passen nicht, denn <InlineMath math="25^2=625" /> und <InlineMath math="27^2=729" /> sind kleiner als <InlineMath math="841" />.
-- <InlineMath math="41\text{ m}" /> ist die Summe der Seiten, also der Weg entlang zweier Ränder statt quer über das Grundstück.
+Die Lösungsformel liefert <InlineMath math="x_{1,2}=\frac{(2+m)\pm\sqrt D}{2}" />. **Die Differenz der Lösungen ist also <InlineMath math="\sqrt D" />**, weil die vorderen Teile gleich sind und wegfallen:
+
+<BlockMath math="x_1-x_2=\frac{2\sqrt D}{2}=\sqrt D,\qquad D=(2+m)^2-16" />
+
+Die Differenz soll <InlineMath math="3" /> sein:
+
+<BlockMath math="\begin{aligned}
+\sqrt{(2+m)^2-16}&=3 \\
+(2+m)^2&=25 \\
+2+m=5\quad&\text{oder}\quad 2+m=-5 \\
+m=3\quad&\text{oder}\quad m=-7
+\end{aligned}" />
+
+# Beide Werte prüfen
+
+- <InlineMath math="m=3" />: <InlineMath math="x^2-5x+4=0" /> hat die Lösungen <InlineMath math="1" /> und <InlineMath math="4" />. Die Differenz ist <InlineMath math="3" />.
+- <InlineMath math="m=-7" />: <InlineMath math="x^2+5x+4=0" /> hat die Lösungen <InlineMath math="-1" /> und <InlineMath math="-4" />. Die Differenz ist ebenfalls <InlineMath math="3" />.
+
+**Beide Werte erfüllen die Bedingung**, denn die Aufgabe schränkt die Lage der Schnittpunkte nicht ein.
+
+Die gesuchten Werte sind also <InlineMath math="m=3" /> oder <InlineMath math="m=-7" />.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur <InlineMath math="m=3" /> oder nur <InlineMath math="m=-7" /> **verliert eine der beiden Wurzeln** aus <InlineMath math="2+m=\pm5" />.
+- <InlineMath math="m=5" /> oder <InlineMath math="m=-5" /> vergisst den Summanden <InlineMath math="-2x" />, dann wird daraus <InlineMath math="m^2-16=9" />.
+- <InlineMath math="m=2" /> oder <InlineMath math="m=-6" /> benutzt <InlineMath math="D=0" />. Das ist die Bedingung für eine Tangente, bei der die Lösungen zusammenfallen.
+- <InlineMath math="m=7" /> oder <InlineMath math="m=-3" /> hat einen Vorzeichenfehler, <InlineMath math="m-2=\pm5" />. Für <InlineMath math="m=7" /> lautet die Gleichung <InlineMath math="x^2-9x+4=0" />, deren Lösungen <InlineMath math="\sqrt{65}" /> auseinanderliegen.

@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: true,
+          label: "$$x=1$$ und $$x=5$$",
+        },
+        {
+          correct: false,
+          label: "nur $$x=5$$",
+        },
+        {
+          correct: false,
+          label: "nur $$x=1$$",
+        },
+        {
+          correct: false,
+          label: "$$x=0$$ und $$x=5$$",
+        },
+        {
           correct: false,
           label: "nur $$x=2$$",
         },
         {
           correct: false,
-          label: "$$x=\\frac12$$ und $$x=-2$$",
-        },
-        {
-          correct: false,
-          label: "$$x=-1$$ und $$x=2$$",
-        },
-        {
-          correct: false,
-          label: "$$x=1$$ und $$x=-2$$",
-        },
-        {
-          correct: false,
-          label: "Die Gleichung hat keine reelle Lösung.",
-        },
-        {
-          correct: true,
-          label: "$$x=-\\frac12$$ und $$x=2$$",
+          label: "$$x=1$$ und $$x=2$$",
         },
       ],
     },
