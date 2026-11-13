@@ -13,26 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "To warn visitors not to touch the mud from the boardwalk",
+          label: "I only",
         },
         {
           correct: false,
-          label:
-            "To suggest that waste from the car park has polluted the low marsh",
+          label: "I, II, and III only",
         },
         {
           correct: true,
-          label:
-            "To show that the soil has no air in it, which explains what the hollow channels in the grass stems are for",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "To show that the low marsh is saltier than the high marsh",
+          label: "II and IV only",
         },
         {
           correct: false,
-          label:
-            "To explain why no plant can root in the mudflat at the far end",
+          label: "I, II, and IV only",
         },
       ],
     },

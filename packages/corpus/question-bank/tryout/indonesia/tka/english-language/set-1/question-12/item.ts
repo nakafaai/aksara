@@ -13,28 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "Two weeks of rehearsal were too few, so the club should have practised for longer.",
+          label: "I only",
         },
         {
           correct: false,
-          label:
-            "The club should have held a full rehearsal on Monday morning instead of only testing the microphone.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "The caretaker should have asked the club before touching the amplifier.",
+          label: "III and IV only",
         },
         {
           correct: false,
-          label:
-            "Rina should have listened more carefully to her headphones during the broadcast.",
+          label: "I, III, and IV only",
         },
         {
           correct: true,
-          label:
-            "Every check the club ran listened at the studio end, so none of them could catch a fault on the way to the classrooms, which is the gap Dimas's message now covers.",
+          label: "I and III only",
         },
       ],
     },

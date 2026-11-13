@@ -13,24 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Weekend practice should not count toward a student's grade.",
+          label: "I only",
         },
         {
           correct: false,
-          label: "A weekend with nothing due will leave many students idle.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label: "Students without a quiet place at home are graded unfairly.",
+          label: "III and IV only",
         },
         {
           correct: true,
-          label:
-            "A little practice spread over many days works better than one long session.",
+          label: "I and III only",
         },
         {
           correct: false,
-          label: "Ten minutes a day is enough to keep any skill fresh.",
+          label: "I, III, and IV only",
         },
       ],
     },

@@ -13,28 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "It is flooded more often, so it collects more salt than the low marsh.",
+          label: "I and II only",
         },
         {
           correct: true,
-          label:
-            "It is flooded far less often, yet in dry months parts of it can be saltier than the sea.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "It is flooded less often, so it always holds less salt than the low marsh.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "It stays soaked and airless, while the low-marsh soil is dry and crusted with salt.",
+          label: "II and IV only",
         },
         {
           correct: false,
-          label:
-            "It is flooded by spring tides about twice a month, while the low marsh floods once a day.",
+          label: "I, II, III, and IV",
         },
       ],
     },

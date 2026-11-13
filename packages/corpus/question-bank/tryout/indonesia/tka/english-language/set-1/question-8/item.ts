@@ -13,28 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "The third paragraph reports the trial that failed, and the fourth explains how the group repaired a leak.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "The third paragraph gives the method and the results of the first trial, and the fourth explains why those results were too low.",
+          label: "II only",
         },
         {
           correct: true,
-          label:
-            "The third paragraph gives the method and the results of the trial that worked, and the fourth goes back to an earlier trial and points to its cause.",
+          label: "II and III only",
         },
         {
           correct: false,
-          label:
-            "The third paragraph sets the zero line, and the fourth gives the rules for using the gauge outdoors.",
+          label: "II, III, and IV only",
         },
         {
           correct: false,
-          label:
-            "The third paragraph gives the method and the results of the trial that worked, and the fourth explains that the earlier trial failed because of evaporation.",
+          label: "I, II, and III only",
         },
       ],
     },

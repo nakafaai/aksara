@@ -13,28 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label:
-            "Grading work done at home is unfair because the grade reflects home conditions as much as learning.",
+          label: "I, III, and IV only",
         },
         {
           correct: false,
-          label:
-            "Practice matters, and nobody on the planning committee disputes it.",
+          label: "I and III only",
         },
         {
           correct: false,
-          label:
-            "Short daily practice keeps a skill from fading between lessons.",
+          label: "I, II, III, and IV",
         },
         {
           correct: false,
-          label:
-            "Students who work in a family shop or share a phone should be excused from homework.",
+          label: "II, III, and IV only",
         },
         {
           correct: false,
-          label:
-            "Tests should be taken at school, where conditions are the same for everyone.",
+          label: "III and IV only",
         },
       ],
     },

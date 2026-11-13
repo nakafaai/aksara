@@ -13,28 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "The bottle leaked slowly through a crack near its domed base.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "Some of the water evaporated while the pours were being made.",
+          label: "IV only",
         },
         {
           correct: false,
-          label:
-            "The bottle's straight section was narrower than the funnel opening.",
+          label: "II, III, and IV only",
         },
         {
           correct: true,
-          label:
-            "Dimas stood over the cylinder, so each pour he measured held less water than it should have.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "Dimas knelt beside the table, so he could not see the lines on the cylinder clearly.",
+          label: "I, III, and IV only",
         },
       ],
     },

@@ -13,28 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "She answers in steps rather than metres, and later she points east when Laras draws the mosque west of the school.",
+          label: "I only",
         },
         {
           correct: true,
-          label:
-            "She turns up the radio when the map is first mentioned, and later she asks for the pencil and draws the tamarind herself.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "She laughs and then cries when the heron speaks, and later she plants the tamarind seed she has carried since 1987.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "She says there is nothing to map because it is all water, and later she can name a house only from the spot where it stood.",
+          label: "II and IV only",
         },
         {
           correct: false,
-          label:
-            "She turns up the radio when the map is first mentioned, and she joins in only after the heron calls her by her childhood name.",
+          label: "I, II, and IV only",
         },
       ],
     },

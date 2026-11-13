@@ -15,22 +15,22 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "A pencil line that Laras had ruled straight curves around an empty space the next morning, although nobody erased or redrew it.",
+            "A seedling planted at night reaches a girl's knee by the next morning.",
         },
         {
           column: 1,
           label:
-            "A heron standing on the minaret calls out as the boat drifts closer.",
+            "A tamarind seedling reaches a girl's knee some months after it is planted.",
         },
         {
           column: 1,
           label:
-            "A drought lowers the reservoir until the top of a drowned minaret rises out of the water.",
+            "A heron standing on a drowned minaret calls out as a boat drifts closer.",
         },
         {
           column: 2,
           label:
-            "Within one night, a seed that had been carried for decades grows a shoot as tall as a girl's knee.",
+            "A pencil line moves by itself overnight to curve around the place where a tree once stood.",
         },
       ],
     },

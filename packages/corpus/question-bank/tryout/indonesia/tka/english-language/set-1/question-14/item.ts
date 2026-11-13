@@ -13,28 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "the four minutes on the club's recording, Rina's microphone test, Pak Hadi's knock, the cable found, Dimas's message",
+          label: "I and III only",
         },
         {
           correct: false,
-          label:
-            "Rina's microphone test, Pak Hadi's knock, the four minutes on the club's recording, the cable found, Dimas's message",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "Rina's microphone test, the four minutes on the club's recording, the cable found, Pak Hadi's knock, Dimas's message",
+          label: "III and IV only",
         },
         {
           correct: false,
-          label:
-            "Dimas's message, Rina's microphone test, the four minutes on the club's recording, Pak Hadi's knock, the cable found",
+          label: "II, III, and IV only",
         },
         {
           correct: true,
-          label:
-            "Rina's microphone test, the four minutes on the club's recording, Pak Hadi's knock, the cable found, Dimas's message",
+          label: "I, III, and IV only",
         },
       ],
     },

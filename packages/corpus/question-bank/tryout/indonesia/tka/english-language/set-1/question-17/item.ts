@@ -19,12 +19,11 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The middle marsh is flooded more often than the bare mudflat.",
+            "The mudflat and the low marsh stay under the tide for the same length of time.",
         },
         {
           correct: false,
-          label:
-            "Glasswort grows around the edges of the white-crusted salt pans.",
+          label: "Glasswort keeps its stems swollen through long dry spells.",
         },
         {
           correct: true,
@@ -33,8 +32,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label:
-            "The ground drops by about $$1$$ m between the car park and the mudflat.",
+          label: "Salt pans form on ground that the tide covers twice a day.",
         },
       ],
     },

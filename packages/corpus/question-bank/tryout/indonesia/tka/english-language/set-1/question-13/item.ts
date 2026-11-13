@@ -13,28 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "The cable was pushed into AUX 2 between Rina's microphone test and the start of the broadcast.",
+          label: "I only",
         },
         {
           correct: true,
-          label:
-            "The fault that silenced the classrooms already existed when Rina tested her microphone.",
+          label: "I and III only",
         },
         {
           correct: false,
-          label:
-            "Holding the final rehearsal after the painting would have revealed the fault before Monday.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "Pak Hadi reached the studio window within a minute of the speakers going silent.",
+          label: "III and IV only",
         },
         {
           correct: false,
-          label:
-            "The club first checked the sound from a classroom on the Monday it went live.",
+          label: "I, III, and IV only",
         },
       ],
     },

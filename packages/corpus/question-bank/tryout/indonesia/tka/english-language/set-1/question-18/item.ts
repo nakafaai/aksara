@@ -13,27 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "After the first sentence of the second paragraph",
+          label: "I only",
         },
         {
           correct: true,
-          label:
-            "Between the sentence about the salt pans and the sentence about sea lavender in the second paragraph",
+          label: "I and III only",
         },
         {
           correct: false,
-          label:
-            "At the end of the third paragraph, after the glasswort stems shrivel",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "At the end of the fourth paragraph, after the leaves glitter with crystals",
+          label: "III and IV only",
         },
         {
           correct: false,
-          label:
-            "In the last paragraph, right after the sentence about the shifting mud",
+          label: "I, III, and IV only",
         },
       ],
     },

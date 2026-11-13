@@ -13,28 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label:
-            "Students who missed a weekend deadline had, on average, the same end-of-unit test scores as students who met it.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "$$31\\%$$ of weekend assignments arrived late or incomplete, against $$12\\%$$ of weekday assignments.",
+          label: "I only",
         },
         {
           correct: false,
-          label:
-            "Ms Hartono's remark that ten minutes a day keeps a skill from fading",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "Pak Darmawan's report that his son forgets half of a Sunday-night session by Wednesday",
+          label: "II and IV only",
         },
         {
           correct: false,
-          label:
-            "The plan to check an optional weekend task in class on Monday without a mark",
+          label: "I, II, and IV only",
         },
       ],
     },

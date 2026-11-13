@@ -13,28 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "A radio club's first live broadcast went unheard because the caretaker broke the amplifier, so the club now labels its sockets in red tape.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "A radio club's first live broadcast went unheard because the host's headphones were faulty, so the club now has someone listen from a classroom.",
+          label: "I, II, III, and IV",
         },
         {
           correct: true,
-          label:
-            "A radio club's first live broadcast went unheard because a cable had been moved, a fault its studio checks could not reveal, so the club now confirms from a classroom that listeners can hear.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "A radio club's first live broadcast went unheard because a cable had been moved, so the club now rehearses with headphones before every broadcast.",
+          label: "II and IV only",
         },
         {
           correct: false,
-          label:
-            "A radio club's first live broadcast went unheard because a cable had been moved, and after the room changes went wrong, the club stopped broadcasting live.",
+          label: "I and IV only",
         },
       ],
     },

@@ -9,7 +9,11 @@ const item: ItemSource = {
   stimulus: "boardwalk",
   versions: {
     en: {
-      columns: ["Flooded at least once a day", "Flooded less than once a day"],
+      columns: [
+        "Flooded twice a day",
+        "Flooded about twice a month",
+        "Flooded only by the highest tides or storms",
+      ],
       kind: "matrix",
       statements: [
         {
@@ -20,14 +24,15 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "The ground where the plant with hollow channels in its stems grows",
+            "The ground where a plant with hollow channels in its stems grows",
         },
         {
           column: 1,
-          label: "The ground beyond the last plants, where the boardwalk ends",
+          label:
+            "The bare ground beyond the last plants, where the boardwalk ends",
         },
         {
-          column: 2,
+          column: 3,
           label:
             "The ground where a plant that pushes salt out through its leaves grows beside white-crusted patches",
         },
