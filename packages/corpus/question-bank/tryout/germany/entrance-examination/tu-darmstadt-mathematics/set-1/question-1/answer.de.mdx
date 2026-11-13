@@ -1,20 +1,35 @@
-Ein Produkt von Brüchen vereinfachst du, indem du **alle Zähler und Nenner faktorisierst** und dann gleiche Faktoren kürzt. Hier helfen zwei binomische Formeln.
+# Drei Bedingungen auf einmal
+
+„Zwei verschiedene reelle Lösungen, die beide positiv sind“ sind eigentlich drei Bedingungen. **Du brauchst alle drei, nicht nur eine**:
+
+- es gibt zwei verschiedene reelle Lösungen, also ist die Diskriminante positiv
+- die Summe der Lösungen ist positiv
+- das Produkt der Lösungen ist positiv
+
+Zwei reelle Zahlen sind genau dann beide positiv, wenn ihre Summe und ihr Produkt positiv sind. Ein positives Produkt heißt gleiches Vorzeichen, und eine positive Summe macht dieses Vorzeichen positiv.
+
+# Jede Bedingung ausrechnen
+
+Für <InlineMath math="x^2-2ax+(a+6)=0" /> liefert **der Satz von Vieta** <InlineMath math="x_1+x_2=2a" /> und <InlineMath math="x_1x_2=a+6" />.
 
 <BlockMath math="\begin{aligned}
-a^2-9&=(a-3)(a+3) \\
-a^2+6a+9&=(a+3)^2
+D=4a^2-4(a+6)=4(a-3)(a+2)>0\quad&\Rightarrow\quad a<-2\ \text{oder}\ a>3 \\
+x_1+x_2=2a>0\quad&\Rightarrow\quad a>0 \\
+x_1x_2=a+6>0\quad&\Rightarrow\quad a>-6
 \end{aligned}" />
 
-Setze die Faktoren ein. Wegen <InlineMath math="a\ne3" /> und <InlineMath math="a\ne-3" /> sind <InlineMath math="a-3" /> und <InlineMath math="a+3" /> nicht null und dürfen gekürzt werden.
+# Wo sich alle drei überschneiden
 
-<BlockMath math="\frac{(a-3)(a+3)}{(a+3)^2}\cdot\frac{a+3}{a-3}=\frac{(a-3)(a+3)(a+3)}{(a+3)^2(a-3)}=1" />
+<InlineMath math="a" /> muss alle drei erfüllen. Der Teil <InlineMath math="a<-2" /> verletzt <InlineMath math="a>0" />, also **bleibt nur <InlineMath math="a>3" /> übrig**.
 
-Zur Kontrolle setzt du einen erlaubten Wert ein, etwa <InlineMath math="a=1" />: <InlineMath math="\frac{1-9}{1+6+9}\cdot\frac{4}{-2}=\frac{-8}{16}\cdot(-2)=1" />.
+Probe mit zwei Beispielen. Für <InlineMath math="a=4" /> hat <InlineMath math="x^2-8x+10=0" /> die Lösungen <InlineMath math="4\pm\sqrt6" />, beide positiv. Für <InlineMath math="a=-3" /> haben die Lösungen von <InlineMath math="x^2+6x+3=0" /> die Summe <InlineMath math="-6" />, sind also beide negativ.
 
-Der Term ist also für alle erlaubten Werte von <InlineMath math="a" /> gleich <InlineMath math="1" />.
+Die Gleichung hat also genau für <InlineMath math="a>3" /> zwei verschiedene positive Lösungen.
 
-- <InlineMath math="-1" /> entsteht, wenn <InlineMath math="a-3" /> und <InlineMath math="3-a" /> verwechselt werden. Im Term steht aber zweimal derselbe Faktor <InlineMath math="a-3" />.
-- <InlineMath math="0" /> kann nicht stimmen, denn null wäre der Term nur, wenn ein Faktor im Zähler null wird. Das passiert genau bei <InlineMath math="a=3" /> oder <InlineMath math="a=-3" />, und diese Werte sind ausgeschlossen.
-- <InlineMath math="\frac{a-3}{a+3}" /> ist nur der vereinfachte erste Bruch. Der zweite Faktor <InlineMath math="\frac{a+3}{a-3}" /> fehlt.
-- <InlineMath math="\frac{a+3}{a-3}" /> ist nur der zweite Bruch. Der erste Bruch ist nicht <InlineMath math="1" />, sondern <InlineMath math="\frac{a-3}{a+3}" />.
-- <InlineMath math="a+3" /> entsteht, wenn der Nenner <InlineMath math="a^2+6a+9" /> als <InlineMath math="a+3" /> statt als <InlineMath math="(a+3)^2" /> faktorisiert wird.
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="a<-2" /> oder <InlineMath math="a>3" /> benutzt nur die Diskriminante. Für <InlineMath math="a<-2" /> sind beide Lösungen reell, aber nicht positiv.
+- <InlineMath math="a>0" /> benutzt nur die Summe. Für <InlineMath math="a=1" /> ist die Diskriminante <InlineMath math="4(-2)(3)<0" />, es gibt also keine reelle Lösung.
+- <InlineMath math="-6<a<-2" /> oder <InlineMath math="a>3" /> **vergisst die Bedingung für die Summe**. Das Beispiel <InlineMath math="a=-3" /> oben liefert zwei negative Lösungen.
+- <InlineMath math="a\ge3" /> nimmt <InlineMath math="a=3" /> mit. Dort hat <InlineMath math="x^2-6x+9=0" /> nur eine Lösung, <InlineMath math="x=3" />.
+- <InlineMath math="-2<a<3" /> ist der Bereich mit negativer Diskriminante, das Vorzeichen wurde also verkehrt herum gelesen.
