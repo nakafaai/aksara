@@ -69,6 +69,32 @@ Dalam ketiga-tiga kes, pecutan kekal <InlineMath math="-g" /> sepanjang gerakan,
   D --> E`}
 />
 
+### Bulu Pelepah dan Syiling dalam Vakum
+
+Jatuh bebas bermaksud hanya graviti yang bertindak. Di udara, rintangan udara menahan bulu pelepah, jadi **pam keluar udara itu dan setiap objek jatuh dengan pecutan yang sama**, seperti yang ditunjukkan oleh angkasawan Apollo <InlineMath math="15" /> dengan tukul dan bulu pelepah di Bulan.
+
+<FeatherCoinVacuumLab
+  title={<>Bulu Pelepah dan Syiling dalam Vakum</>}
+  description={
+    <>
+      Jatuhkan syiling dan bulu pelepah serentak di dalam tiub kaca, mula-mula dengan udara, kemudian selepas udara dipam keluar.
+    </>
+  }
+  labels={{
+    airs: {
+      air: <>Dengan udara</>,
+      vacuum: <>Vakum</>,
+    },
+    chooseAir: "Pilih isi tiub",
+    coinTime: <>Syiling mendarat selepas</>,
+    drop: <>Tinggi jatuhan</>,
+    featherTime: <>Bulu pelepah mendarat selepas</>,
+    viewLabel: "Syiling dan bulu pelepah jatuh dalam tiub kaca",
+  }}
+/>
+
+Dalam vakum, kedua-duanya jatuh <InlineMath math="1.1\text{ m}" /> dalam <InlineMath math="\sqrt{\frac{2(1.1)}{10}}\approx0.47\text{ s}" /> dan mendarat serentak. Dengan udara, syiling masih mendarat selepas kira-kira <InlineMath math="0.47\text{ s}" />, tetapi bulu pelepah melayang turun selama kira-kira <InlineMath math="2.25\text{ s}" />.
+
 ## Objek Dilontar ke Atas
 
 Apabila objek dilontar ke atas, halajunya bermula positif dan **terus berkurang kerana graviti** sehingga menjadi sifar di titik tertinggi. Dengan menetapkan <InlineMath math="v_y = 0" />, kita memperoleh masa naik dan tinggi maksimum di atas titik lontaran:
@@ -98,7 +124,7 @@ Gerakkan gelangsar masa bagi bola yang dilontar ke atas pada <InlineMath math="2
 
 <MathVisual
   title={<>Lihat Halaju Bertukar Arah</>}
-  description={<>Bola yang dilontar tegak ke atas pada <InlineMath math="20\text{ m/s}" />, kedudukannya pada masa yang dipilih (magenta) dan halajunya (ungu). Satu petak grid ialah 5 m.</>}
+  description={<>Bola yang dilontar tegak ke atas pada <InlineMath math="20\text{ m/s}" />, kedudukannya pada masa yang dipilih (magenta) dan halajunya (ungu). Satu petak grid ialah <InlineMath math="5\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -4.5, max: 8.5 } },
@@ -127,6 +153,29 @@ Gerakkan gelangsar masa bagi bola yang dilontar ke atas pada <InlineMath math="2
   }}
 />
 
+### Lambungan dalam Foto Strob
+
+Foto strob menunjukkan satu lambungan dalam satu gambar. Bola yang dilambung ke atas pada <InlineMath math="5\text{ m/s}" /> **kehilangan <InlineMath math="1\text{ m/s}" /> halaju ke atas setiap sepersepuluh saat**, jadi imejnya berkumpul rapat berhampiran puncak.
+
+<StrobePhotoMotionLab
+  shot="toss"
+  title={<>Bola yang Dilambung, Kilatan demi Kilatan</>}
+  description={
+    <>
+      Sebuah lampu berkelip setiap <InlineMath math="0.1\text{ s}" />. Perhatikan jarak antara imej mengecil semasa naik dan membesar semasa turun.
+    </>
+  }
+  labels={{
+    airTime: <>Masa di udara</>,
+    height: <>Tinggi awal</>,
+    interval: <>Masa antara kilatan</>,
+    outcome: <>Tinggi maksimum</>,
+    viewLabel: "Foto strob yang terbina kilatan demi kilatan",
+  }}
+/>
+
+Bola berhenti naik selepas <InlineMath math="\frac{5}{10}=0.5\text{ s}" /> pada ketinggian <InlineMath math="\frac{5^2}{2(10)}=1.25\text{ m}" />, dan ia kembali ke tangan selepas <InlineMath math="1\text{ s}" />, bergerak ke bawah pada <InlineMath math="5\text{ m/s}" />.
+
 ## Objek Jatuh Bebas
 
 Dalam fizik sekolah, jatuh bebas bermaksud objek yang dilepaskan **tanpa halaju awal**, jadi <InlineMath math="v_0 = 0" />. Sesetengah buku menganggap sebarang gerakan di bawah pengaruh graviti sahaja sebagai jatuh bebas, termasuk lontaran, tetapi halaman ini menggunakan maksud yang pertama. Bagi objek yang jatuh melalui ketinggian <InlineMath math="h" />, masa jatuh dan laju ketika sampai ke tanah ialah:
@@ -141,6 +190,29 @@ Bola yang dijatuhkan dari ketinggian <InlineMath math="20\text{ m}" /> sampai ke
 <BlockMath math="v_y = 0 - 10(2) = -20\text{ m/s}" />
 
 Tanda negatif bermaksud bola sedang bergerak ke bawah. Semak lajunya dengan rumus kedua: <InlineMath math="v = \sqrt{2 \times 10 \times 20} = 20\text{ m/s}" />. Laju ini sama dengan laju bola yang dilontar ke atas pada <InlineMath math="20\text{ m/s}" /> ketika bola itu kembali ke titik lontarannya, kerana kedua-dua bola jatuh sejauh <InlineMath math="20\text{ m}" /> bermula dari keadaan pegun seketika.
+
+### Jatuh Bebas Kilatan demi Kilatan
+
+Apabila dijatuhkan dari keadaan pegun, bola jatuh <InlineMath math="5\text{ cm}" /> dalam sepersepuluh saat pertama dan **kemudian lebih jauh dalam setiap sepersepuluh saat berikutnya**, kerana lajunya bertambah <InlineMath math="1\text{ m/s}" /> setiap kali.
+
+<StrobePhotoMotionLab
+  shot="drop"
+  title={<>Bola yang Dijatuhkan, Kilatan demi Kilatan</>}
+  description={
+    <>
+      Sebuah lampu berkelip setiap <InlineMath math="0.1\text{ s}" /> sementara pengatup kekal terbuka. Bandingkan jarak antara imej dari atas ke bawah.
+    </>
+  }
+  labels={{
+    airTime: <>Masa di udara</>,
+    height: <>Tinggi awal</>,
+    interval: <>Masa antara kilatan</>,
+    outcome: <>Laju ketika mencecah lantai</>,
+    viewLabel: "Foto strob yang terbina kilatan demi kilatan",
+  }}
+/>
+
+Dari <InlineMath math="1.8\text{ m}" />, bola mendarat selepas <InlineMath math="\sqrt{\frac{2(1.8)}{10}}=0.6\text{ s}" /> pada <InlineMath math="10(0.6)=6\text{ m/s}" />. Jarak antara imej bertambah mengikut <InlineMath math="5" />, <InlineMath math="15" />, <InlineMath math="25" /> dan seterusnya hingga <InlineMath math="55\text{ cm}" />.
 
 ## Objek Dilontar ke Bawah
 
@@ -164,7 +236,7 @@ Itulah sebabnya masa projektil berada di udara ditentukan oleh gerakan menegakny
 
 <MathVisual
   title={<>Dua Bola dengan Halaju Menegak Awal yang Sama</>}
-  description={<>Satu petak grid mewakili 5 m. Bola hijau kebiruan ditendang dengan <InlineMath math="v_x=10\text{ m/s}" /> dan <InlineMath math="v_{0y}=20\text{ m/s}" />, dan bola oren dilontar tegak ke atas pada 20 m/s. Garis kelabu menyambungkan kedudukan kedua-dua bola pada saat yang sama, dan tingginya sentiasa sepadan.</>}
+  description={<>Satu petak grid mewakili <InlineMath math="5\text{ m}" />. Bola hijau kebiruan ditendang dengan <InlineMath math="v_x=10\text{ m/s}" /> dan <InlineMath math="v_{0y}=20\text{ m/s}" />, dan bola oren dilontar tegak ke atas pada <InlineMath math="20\text{ m/s}" />. Garis kelabu menyambungkan kedudukan kedua-dua bola pada saat yang sama, dan tingginya sentiasa sepadan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2.5, max: 9 }, y: { min: -0.5, max: 5 } },
@@ -194,6 +266,30 @@ Itulah sebabnya masa projektil berada di udara ditentukan oleh gerakan menegakny
     t3: <InlineMath math="t=3\text{ s}" />,
   }}
 />
+
+### Pancutan Menegak di Sebelah Pancutan Condong
+
+Hos taman yang dihalakan tegak ke atas ialah gerakan menegak yang boleh kamu lihat sekali gus. **Setiap titisan naik lalu jatuh semula ke muncung**, dan laju yang sama apabila dicondongkan menghasilkan parabola.
+
+<HoseJetProjectileLab
+  angle={90}
+  speed={8}
+  title={<>Hos Taman pada Enam Sudut</>}
+  description={
+    <>
+      Air keluar pada <InlineMath math="8\text{ m/s}" />. Mulakan dengan pancutan tegak ke atas, kemudian condongkan muncung.
+    </>
+  }
+  labels={{
+    chooseAngle: "Pilih sudut muncung",
+    flight: <>Masa di udara</>,
+    range: <>Jarak mengufuk</>,
+    top: <>Tinggi maksimum</>,
+    viewLabel: "Pancutan air daripada hos taman",
+  }}
+/>
+
+Apabila tegak ke atas, air naik <InlineMath math="\frac{8^2}{2(10)}=3.2\text{ m}" /> dan kembali selepas <InlineMath math="\frac{2(8)}{10}=1.6\text{ s}" />. Pada <InlineMath math="60^\circ" />, komponen menegaknya hanya <InlineMath math="8\sin60^\circ\approx6.9\text{ m/s}" />, jadi pancutan naik hingga <InlineMath math="2.4\text{ m}" />.
 
 ## Kesilapan Lazim
 

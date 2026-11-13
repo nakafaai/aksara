@@ -48,6 +48,29 @@ Rintangan udara diabaikan dan graviti dianggap malar. Arah ke kanan dan ke atas 
 
 Bayang bola di permukaan air bergerak dengan laju malar, seperti objek dalam [gerakan linear seragam](/ms/subjek/fizik/kinematik/gerakan-linear-seragam), kerana bayang itu hanya mengikut komponen mengufuk. Bola itu sendiri naik dan turun, kerana komponen menegaknya <InlineMath math="v_y = v_{0y} - gt" /> terus berkurang.
 
+### Halakan ke Tin yang Jatuh
+
+Satu demonstrasi klasik membuktikan pemisahan kepada dua komponen. Sebuah pelancar dihalakan tepat ke arah sebuah tin, dan tin itu jatuh sebaik sahaja bola dilancarkan. **Graviti menarik kedua-duanya ke bawah dengan amaun yang sama dalam masa yang sama**, jadi bola bertemu dengan tin.
+
+<FallingTargetAimLab
+  speed={12}
+  title={<>Halakan ke Tin yang Jatuh</>}
+  description={
+    <>
+      Tin itu tergantung <InlineMath math="4\text{ m}" /> jauhnya dan <InlineMath math="2\text{ m}" /> tingginya. Imej samar setiap <InlineMath math="0.05\text{ s}" /> menunjukkan kedua-dua lintasan. Ubah laju lontaran dan cuba supaya tersasar.
+    </>
+  }
+  labels={{
+    drop: <>Jarak tin jatuh ketika bertemu</>,
+    meetTime: <>Masa untuk bertemu</>,
+    speed: <>Laju lontaran</>,
+    speedName: "Laju lontaran",
+    viewLabel: "Pelancar dihalakan ke tin yang jatuh",
+  }}
+/>
+
+Pada <InlineMath math="12\text{ m/s}" />, kedua-duanya bertemu selepas <InlineMath math="0.37\text{ s}" />, ketika kedua-duanya telah turun <InlineMath math="0.69\text{ m}" /> di bawah garis lurus masing-masing. Sebarang laju melebihi kira-kira <InlineMath math="7.1\text{ m/s}" /> akan mengenai tin, kerana gerakan mengufuk hanya menentukan bila bola sampai.
+
 ## Masa ke Puncak dan Tinggi Maksimum
 
 Di puncak lintasan, objek masih bergerak secara mengufuk, tetapi **halaju menegaknya sifar**. Dengan menetapkan <InlineMath math="v_y = v_{0y} - gt = 0" />, kita mendapat masa ke puncak, dan persamaan menegak yang ketiga memberikan tinggi maksimum:
@@ -58,6 +81,31 @@ Di puncak lintasan, objek masih bergerak secara mengufuk, tetapi **halaju menega
 </MathContainer>
 
 Kedua-dua rumus ini menggunakan komponen menegak sahaja. Komponen itu bergerak seperti objek yang dilontar ke atas pada <InlineMath math="v_{0y}" /> dalam [gerakan menegak](/ms/subjek/fizik/kinematik/gerakan-menegak).
+
+### Laju Sama pada Sudut Berbeza
+
+Kekalkan laju lontaran dan ubah sudutnya sahaja. **Lontaran yang lebih curam mengambil masa lebih lama untuk naik jadi ia naik lebih tinggi**, kerana komponen menegak <InlineMath math="v_0\sin\theta" /> bertambah.
+
+<ParabolicMovementLab
+  title={<>Tinggi Maksimum pada Sudut Berbeza</>}
+  description={
+    <>
+      Pilih sudut lontaran dan bandingkan tinggi maksimum dengan masa untuk mencapainya.
+    </>
+  }
+  labels={{
+    chooseLaunch: "Pilih sudut pelancaran",
+    factLabels: {
+      initialSpeed: <>Laju awal</>,
+      flightTime: <>Masa di udara</>,
+      range: <>Jarak mengufuk</>,
+      peakHeight: <>Tinggi maksimum</>,
+    },
+    viewLabel: "Visual lintasan bola projektil",
+  }}
+/>
+
+Masa untuk sampai ke puncak ialah <InlineMath math="t_{\text{top}}=\frac{v_0\sin\theta}{g}" /> dan tinggi maksimum ialah <InlineMath math="h_{\max}=\frac{(v_0\sin\theta)^2}{2g}" />, jadi lontaran paling curam naik paling tinggi dan paling lama di udara.
 
 ## Masa Penerbangan dan Jarak Mengufuk
 
@@ -79,6 +127,29 @@ Langkah terakhir menggunakan identiti <InlineMath math="2\sin\theta\cos\theta = 
   B --> G["Halaju pada masa t: v_y = v₀y - gt"]`}
 />
 
+### Tendangan yang Dileraikan kepada Komponen
+
+Foto strob menunjukkan dua komponen sebagai dua corak. Sebiji bola yang ditendang dengan <InlineMath math="v_x=6\text{ m/s}" /> dan <InlineMath math="v_{0y}=8\text{ m/s}" /> difoto setiap <InlineMath math="0.2\text{ s}" />. **Anak panah mengufuk tidak pernah berubah**, sementara anak panah menegak memendek, bertukar arah, lalu memanjang.
+
+<StrobePhotoMotionLab
+  shot="components"
+  title={<>Komponen Bola yang Ditendang</>}
+  description={
+    <>
+      Anak panah hijau kebiruan ialah komponen mengufuk dan anak panah ungu ialah komponen menegak pada setiap kilatan.
+    </>
+  }
+  labels={{
+    airTime: <>Masa di udara</>,
+    height: <>Tinggi awal</>,
+    interval: <>Masa antara kilatan</>,
+    outcome: <>Jarak mengufuk</>,
+    viewLabel: "Foto strob yang terbina kilatan demi kilatan",
+  }}
+/>
+
+Bola sampai ke puncak pada <InlineMath math="\frac{8^2}{2(10)}=3.2\text{ m}" /> selepas <InlineMath math="0.8\text{ s}" />, mendarat selepas <InlineMath math="1.6\text{ s}" />, dan melalui <InlineMath math="6(1.6)=9.6\text{ m}" />. Jarak mengufuk yang sekata menunjukkan <InlineMath math="v_x" /> yang malar.
+
 ## Halaju Sepanjang Lintasan
 
 Untuk mencari halaju pada masa <InlineMath math="t" />, cari **kedua-dua komponen pada masa itu**, kemudian gabungkan kedua-duanya dengan teorem Pythagoras:
@@ -94,7 +165,7 @@ Gerakkan gelangsar masa dan ikuti bola meriam itu. Anak panah ungu ialah halaju 
 
 <MathVisual
   title={<>Ikuti Halaju Mengikut Masa</>}
-  description={<>Bola meriam yang ditembak pada <InlineMath math="40\text{ m/s}" /> dan <InlineMath math="60^\circ" />, dengan kedudukannya pada masa yang dipilih (merah jambu) dan jarak yang dilaluinya dalam satu saat berikutnya pada halaju itu (ungu). Satu langkah grid ialah 10 m.</>}
+  description={<>Bola meriam yang ditembak pada <InlineMath math="40\text{ m/s}" /> dan <InlineMath math="60^\circ" />, dengan kedudukannya pada masa yang dipilih (merah jambu) dan jarak yang dilaluinya dalam satu saat berikutnya pada halaju itu (ungu). Satu langkah grid ialah <InlineMath math="10\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: -1, max: 7.5 } },
@@ -152,7 +223,7 @@ Pada <InlineMath math="t = 2\text{ s}" />, bola masih naik kerana <InlineMath ma
 
 <MathVisual
   title={<>Halaju bola meriam sepanjang lintasannya</>}
-  description={<>Satu petak grid mewakili 10 m. Setiap anak panah menunjukkan jarak yang dilalui dalam satu saat pada halaju ketika itu. Bahagian mengufuknya sentiasa <InlineMath math="20\text{ m/s}" />, manakala bahagian menegaknya berkurang <InlineMath math="10\text{ m/s}" /> setiap saat.</>}
+  description={<>Satu petak grid mewakili <InlineMath math="10\text{ m}" />. Setiap anak panah menunjukkan jarak yang dilalui dalam satu saat pada halaju ketika itu. Bahagian mengufuknya sentiasa <InlineMath math="20\text{ m/s}" />, manakala bahagian menegaknya berkurang <InlineMath math="10\text{ m/s}" /> setiap saat.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -4.2, max: 7.5 } },
@@ -198,6 +269,30 @@ Sebiji bola ditendang dari tanah pada <InlineMath math="20\text{ m/s}" /> dengan
 </MathContainer>
 
 Semak dengan rumus terus: <InlineMath math="\frac{20^2 \sin 90^\circ}{10} = 40\text{ m}" />. Jarak mengufuk ini lebih jauh daripada lontaran <InlineMath math="30^\circ" /> atau <InlineMath math="60^\circ" /> dengan laju yang sama, yang kedua-duanya mendarat pada <InlineMath math="20\sqrt{3} \approx 34.6\text{ m}" />.
+
+### Empat Puluh Lima Darjah dengan Hos Taman
+
+Hos taman menunjukkan sudut terbaik dengan sekali pandang, kerana setiap titisan mengikut parabola yang sama. **Di atas tanah rata jarak mengufuk paling jauh pada <InlineMath math="45^\circ" />**, iaitu apabila <InlineMath math="\sin2\theta=1" />.
+
+<HoseJetProjectileLab
+  angle={45}
+  speed={8}
+  title={<>Hos Taman pada Enam Sudut</>}
+  description={
+    <>
+      Air keluar dari muncung pada <InlineMath math="8\text{ m/s}" />. Garis putus-putus ialah pancutan pada <InlineMath math="45^\circ" />. Condongkan hos dan bandingkan.
+    </>
+  }
+  labels={{
+    chooseAngle: "Pilih sudut muncung",
+    flight: <>Masa di udara</>,
+    range: <>Jarak mengufuk</>,
+    top: <>Tinggi maksimum</>,
+    viewLabel: "Pancutan air daripada hos taman",
+  }}
+/>
+
+Pada <InlineMath math="45^\circ" />, air mendarat <InlineMath math="\frac{8^2}{10}=6.4\text{ m}" /> jauhnya selepas <InlineMath math="1.13\text{ s}" />. Pada <InlineMath math="30^\circ" /> dan <InlineMath math="60^\circ" />, air mendarat pada jarak yang sama, <InlineMath math="5.54\text{ m}" />, kerana jumlah kedua-dua sudut itu ialah <InlineMath math="90^\circ" />.
 
 ## Kesilapan Lazim
 

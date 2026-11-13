@@ -50,7 +50,7 @@ Perhatikan bagaimana had itu terbentuk pada satu contoh gerakan, <InlineMath mat
 
 <MathVisual
   title={<>Mengecilkan Selang Masa</>}
-  description={<>Garis sekan bagi <InlineMath math="x=t^2" /> dari <InlineMath math="t=3\text{ s}" /> dalam selang 2 s, 1 s dan 0.5 s. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit 4 m.</>}
+  description={<>Garis sekan bagi <InlineMath math="x=t^2" /> dari <InlineMath math="t=3\text{ s}" /> dalam selang <InlineMath math="2\text{ s}" />, <InlineMath math="1\text{ s}" /> dan <InlineMath math="0.5\text{ s}" />. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit <InlineMath math="4\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
@@ -77,6 +77,29 @@ Perhatikan bagaimana had itu terbentuk pada satu contoh gerakan, <InlineMath mat
   }}
 />
 
+### Perangkap Laju dengan Jarak yang Semakin Kecil
+
+Perangkap laju mengukur masa sepanjang satu jarak, jadi ia sentiasa melaporkan purata. Kecilkan jarak itu, dan **purata itu semakin hampir dengan laju di titik tengah**. Kereta memecut dari keadaan pegun pada <InlineMath math="4\text{ m/s}^2" /> dan melepasi titik tengah pada <InlineMath math="20\text{ m/s}" />.
+
+<SpeedTrapInstantSpeedLab
+  title={<>Perangkap Laju yang Mengecil</>}
+  description={
+    <>
+      Dua get cahaya terletak di sekitar tanda <InlineMath math="50\text{ m}" />. Pilih jarak antara get dan perhatikan sekan pada graf bertukar menjadi tangen di titik tengah.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Bacaan perangkap</>,
+    chooseGap: "Pilih jarak antara get",
+    elapsed: <>Masa antara dua alur cahaya</>,
+    gap: <>Jarak antara get</>,
+    instantSpeed: <>Laju di titik tengah</>,
+    viewLabel: "Kereta melalui dua get cahaya di trek ujian",
+  }}
+/>
+
+Bacaan naik daripada <InlineMath math="19.58\text{ m/s}" /> dengan jarak <InlineMath math="40\text{ m}" /> kepada <InlineMath math="19.9" /> dan <InlineMath math="19.97\text{ m/s}" />, dan dengan jarak <InlineMath math="2\text{ m}" /> ia menunjukkan <InlineMath math="20\text{ m/s}" /> hingga dua tempat perpuluhan. Had itulah laju seketika.
+
 ## Arah Menentukan Tanda Halaju Seketika
 
 Titik pengukuran dalam simulasi merekod kereta itu pada satu ketika. Laju memberikan magnitud gerakannya. **Arah gerakan** pula menentukan tanda halajunya.
@@ -96,7 +119,7 @@ Meter laju hanya memberikan saiz. Tambahkan arah sebagai tanda, iaitu ke kanan p
 
 <MathVisual
   title={<>Daripada Bacaan Laju kepada Halaju</>}
-  description={<>Halaju pada 6 s (hijau kebiruan, ke kanan) dan pada 9 s (ungu, ke kiri). Paksi menegak: satu petak grid mewakili 5 m/s.</>}
+  description={<>Halaju pada <InlineMath math="6\text{ s}" /> (hijau kebiruan, ke kanan) dan pada <InlineMath math="9\text{ s}" /> (ungu, ke kiri). Paksi menegak: satu petak grid mewakili <InlineMath math="5\text{ m/s}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -2.5, max: 5 } },
@@ -119,6 +142,37 @@ Meter laju hanya memberikan saiz. Tambahkan arah sebagai tanda, iaitu ke kanan p
   }}
 />
 
+### Laju Sama tetapi Halaju Berubah
+
+Putar sebiji bola pada tali sepanjang <InlineMath math="0.8\text{ m}" /> sekali setiap <InlineMath math="0.8\text{ s}" />. Lajunya kekal <InlineMath math="6.28\text{ m/s}" />, tetapi **halaju seketikanya sentiasa menghala di sepanjang bulatan pada saat itu**, jadi arahnya terus berpusing.
+
+<StringWhirlReleaseLab
+  period={0.8}
+  radius={0.8}
+  title={<>Lepaskan Tali</>}
+  description={
+    <>
+      Anak panah hijau kebiruan ialah halaju bola pada saat ini. Pilih titik lepas: bola akan meninggalkan bulatan di sepanjang anak panah itu.
+    </>
+  }
+  labels={{
+    acceleration: <>Pecutan memusat</>,
+    chooseRelease: "Pilih titik lepas",
+    period: <>Masa untuk satu pusingan</>,
+    radius: <>Panjang tali</>,
+    releases: {
+      east: <>Timur</>,
+      north: <>Utara</>,
+      west: <>Barat</>,
+      south: <>Selatan</>,
+    },
+    speed: <>Laju</>,
+    viewLabel: "Bola diputar dengan tali dilihat dari atas",
+  }}
+/>
+
+Lepaskan di titik utara dan bola terbang ke barat, iaitu arah halajunya pada saat itu. Dua saat dengan laju yang sama masih boleh mempunyai halaju yang berbeza, dan tanda atau arah yang kamu baca bergantung pada saat itu.
+
 ## Perbezaan dengan Laju Purata
 
 Laju purata merumuskan seluruh perjalanan dengan membahagikan jumlah jarak dengan jumlah masa. Laju seketika pula memberikan laju pada **satu masa yang dipilih**.
@@ -127,8 +181,54 @@ Jika meter laju menunjukkan <InlineMath math="15 \text{ m/s}" /> sekarang, itu t
 
 Contohnya, kenderaan mungkin berhenti di lampu merah, kemudian bergerak laju selepas itu. Laju puratanya boleh jadi kecil kerana seluruh masa perjalanan dikira, manakala laju seketikanya semasa bergerak boleh jauh lebih besar.
 
+### Bola yang Jatuh Tidak Pernah Mengekalkan Satu Laju
+
+Bola yang dijatuhkan dari <InlineMath math="1.8\text{ m}" /> jatuh selama <InlineMath math="0.6\text{ s}" />, jadi laju puratanya <InlineMath math="\frac{1.8}{0.6}=3\text{ m/s}" />. **Laju seketikanya tidak pernah kekal pada purata itu**, kerana ia bertambah <InlineMath math="1\text{ m/s}" /> pada setiap kilatan.
+
+<StrobePhotoMotionLab
+  shot="drop"
+  title={<>Bola yang Dijatuhkan, Kilatan demi Kilatan</>}
+  description={
+    <>
+      Sebuah lampu berkelip setiap <InlineMath math="0.1\text{ s}" /> dalam bilik gelap sementara pengatup kamera kekal terbuka. Setiap imej bola ialah satu kilatan.
+    </>
+  }
+  labels={{
+    airTime: <>Masa di udara</>,
+    height: <>Tinggi awal</>,
+    interval: <>Masa antara kilatan</>,
+    outcome: <>Laju ketika mencecah lantai</>,
+    viewLabel: "Foto strob yang terbina kilatan demi kilatan",
+  }}
+/>
+
+Jarak antara imej bertambah daripada <InlineMath math="5\text{ cm}" /> kepada <InlineMath math="55\text{ cm}" />, dan bola mencecah lantai pada <InlineMath math="6\text{ m/s}" />, dua kali laju puratanya. Pada satu saat, iaitu separuh masa jatuhan pada <InlineMath math="0.3\text{ s}" />, laju seketika sama dengan purata.
+
 ## Meter Laju Mengukur Laju Semasa
 
 Had laju <InlineMath math="80 \text{ km/j}" /> yang tertera pada papan tanda berlaku pada kenderaan itu pada **setiap ketika**. Oleh itu, alat pengesan di tepi jalan membaca laju seketika ketika kenderaan itu lalu.
 
 Kenderaan yang lalu pada <InlineMath math="90 \text{ km/j}" /> melebihi had itu walaupun laju puratanya bagi seluruh perjalanan hanya <InlineMath math="60 \text{ km/j}" />. Masa yang dihabiskan semasa berhenti di lampu merah menurunkan laju purata perjalanan, tetapi tidak mengubah bacaan pada alat pengesan.
+
+### Cara Meter Basikal Membaca Laju
+
+Meter basikal mengira berapa kerap magnet pada roda melepasi sensor. Laju satu titik pada roda ialah **lilitan bulatannya dibahagi dengan masa untuk satu pusingan**. Injap terletak pada rim, <InlineMath math="0.311\text{ m}" /> dari gandar.
+
+<BicycleWheelSpeedLab
+  title={<>Satu Roda, Dua Laju</>}
+  description={
+    <>
+      Injap dan pemantul di pertengahan jejari berpusing melalui sudut yang sama setiap saat. Bandingkan panjang anak panah halaju kedua-duanya.
+    </>
+  }
+  labels={{
+    angularSpeed: <>Laju sudut</>,
+    choosePeriod: "Pilih masa untuk satu pusingan",
+    reflectorSpeed: <>Laju pemantul</>,
+    valveAcceleration: <>Pecutan memusat injap</>,
+    valveSpeed: <>Laju injap</>,
+    viewLabel: "Roda basikal berputar pada pemegang",
+  }}
+/>
+
+Pada satu pusingan sesaat, injap bergerak pada <InlineMath math="2\pi(0.311)\approx1.95\text{ m/s}" />, dan pemantul pada kira-kira <InlineMath math="0.97\text{ m/s}" />. Pilih <InlineMath math="T=0.5\text{ s}" /> dan kedua-dua laju menjadi dua kali ganda, sementara setiap anak panah kekal tangen kepada bulatannya.

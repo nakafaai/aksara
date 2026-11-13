@@ -81,6 +81,31 @@ Guna jejak itu untuk membandingkan halaju dari satu selang ke selang berikutnya.
 
 Pada graf itu, garis putus-putus menunjukkan keseluruhan graf yang bersambung. Garis tebal ialah segmen yang sedang dibaca. Jika garis itu naik, halaju bertambah. Jika garis itu mendatar, halaju tidak berubah. Jika garis itu menurun, halaju berkurang. Pecutan purata segmen itu ialah nisbah <InlineMath math="\Delta v" /> kepada <InlineMath math="\Delta t" />.
 
+### Landasan yang Menjaga Rentak
+
+Galileo memperlahankan jatuhan dengan membiarkan bola bergolek menuruni landasan yang landai. Bola itu menerima **pertambahan halaju yang sama setiap saat**, jadi jarak yang dilaluinya bertambah mengikut kuasa dua masa. Loceng yang diletakkan pada satu, empat, sembilan dan enam belas kali jarak saat pertama berbunyi dengan rentak yang sekata.
+
+<GalileoInclineBellsLab
+  title={<>Landasan dan Loceng Galileo</>}
+  description={
+    <>
+      Bola keluli bergolek dari keadaan pegun melepasi empat loceng di tempat bola itu berada
+      selepas <InlineMath math="1" />, <InlineMath math="2" />,{" "}
+      <InlineMath math="3" /> dan <InlineMath math="4\text{ s}" />. Condongkan
+      landasan itu dan bandingkan jarak antara loceng.
+    </>
+  }
+  labels={{
+    acceleration: <>Pecutan menuruni landasan</>,
+    chooseAngle: "Pilih sudut landasan",
+    firstSecond: <>Jarak dalam saat pertama</>,
+    gaps: <>Jarak antara loceng</>,
+    viewLabel: "Bola keluli bergolek menuruni landasan Galileo melepasi empat loceng",
+  }}
+/>
+
+Pada <InlineMath math="3^\circ" />, pecutan bola itu kira-kira <InlineMath math="0.374\text{ m/s}^2" />, jadi ia bergolek <InlineMath math="18.7\text{ cm}" /> dalam saat pertama. Pada setiap sudut, jarak antara loceng kekal dalam nisbah <InlineMath math="1:3:5:7" />, kerana pecutan malar menambah halaju yang sama setiap saat.
+
 ## Membaca Tanda Pecutan
 
 Tanda pecutan tidak boleh dibaca secara berasingan. Tanda itu sentiasa bergantung pada arah positif yang kita pilih. Dalam contoh satu dimensi ini, kita anggap arah ke kanan sebagai positif.
@@ -125,6 +150,37 @@ Baca kedua-dua tanda bersama. Dengan <InlineMath math="v>0" />, pecutan yang sam
   }}
 />
 
+### Jalur yang Semakin Pendek
+
+Pita detik menunjukkan bacaan yang sama di makmal. Apabila troli bergerak ke kanan dan semakin perlahan, setiap jalur sepersepuluh saat **lebih pendek daripada jalur sebelumnya** dengan amaun yang sama, jadi perubahan halaju menghala ke arah negatif.
+
+<TickerTapeMotionLab
+  motion="slowing"
+  title={<>Pita Detik bagi Troli yang Semakin Perlahan</>}
+  description={
+    <>
+      Jangka masa detik mencetak satu titik setiap <InlineMath math="0.02\text{ s}" />. Setiap
+      jalur memuatkan <InlineMath math="0.1\text{ s}" /> pita dan berdiri pada
+      carta seperti satu bar graf halaju-masa.
+    </>
+  }
+  labels={{
+    acceleration: <>Pecutan daripada jalur pita</>,
+    chooseMotion: "Pilih gerakan troli",
+    firstStrip: <>Jalur pertama</>,
+    interval: <>Masa antara titik</>,
+    lastStrip: <>Jalur terakhir</>,
+    motions: {
+      uniform: <>Seragam</>,
+      speeding: <>Semakin laju</>,
+      slowing: <>Semakin perlahan</>,
+    },
+    viewLabel: "Troli menarik pita kertas melalui jangka masa detik",
+  }}
+/>
+
+Panjang jalur berkurang daripada <InlineMath math="9.5\text{ cm}" /> kepada <InlineMath math="2.5\text{ cm}" />, iaitu <InlineMath math="1\text{ cm}" /> setiap kali. Satu jalur mengambil masa <InlineMath math="0.1\text{ s}" />, jadi pecutannya ialah <InlineMath math="\frac{-0.01\text{ m}}{(0.1\text{ s})^2}=-1\text{ m/s}^2" /> walaupun troli masih bergerak ke kanan.
+
 ## Mengira Perubahan Halaju Setiap Saat
 
 Katakan halaju sebuah kereta berubah daripada <InlineMath math="2\text{ m/s}" /> kepada <InlineMath math="18\text{ m/s}" /> dalam masa <InlineMath math="4\text{ s}" />. Pecutan puratanya ialah:
@@ -145,6 +201,31 @@ a_{\text{purata}} &= \frac{2-18}{4} \\
 \end{aligned}" />
 
 Nilai <InlineMath math="-4\text{ m/s}^2" /> bermaksud halaju berkurang <InlineMath math="4\text{ m/s}" /> setiap saat jika kereta itu masih bergerak ke arah positif.
+
+### Pecutan Purata dalam Perjalanan Harian
+
+Perjalanan sebenar jarang mengekalkan satu pecutan. Pada graf halaju-masa bagi perjalanan harian, pecutan purata dalam mana-mana selang ialah **kecerunan garis yang menyambungkan dua titiknya**.
+
+<CarTripSecantSlopeLab
+  graph="velocity"
+  trip="commute"
+  title={<>Pecutan Purata dalam Perjalanan Harian</>}
+  description={
+    <>
+      Kereta itu memecut, bergerak seragam, membrek di lampu merah, menunggu, lalu
+      bergerak semula. Pilih selang masa untuk melukis sekannya pada graf halaju-masa.
+    </>
+  }
+  labels={{
+    change: <>Perubahan halaju</>,
+    chooseInterval: "Pilih selang masa",
+    elapsed: <>Selang masa</>,
+    rate: <>Pecutan purata</>,
+    viewLabel: "Kereta dalam perjalanan harian dengan graf halaju-masa",
+  }}
+/>
+
+Dari <InlineMath math="0" /> hingga <InlineMath math="4\text{ s}" />, halaju bertambah daripada <InlineMath math="0" /> kepada <InlineMath math="10\text{ m/s}" />, jadi <InlineMath math="\bar{a}=2.5\text{ m/s}^2" />. Sepanjang <InlineMath math="20\text{ s}" />, kereta itu berakhir pada <InlineMath math="10\text{ m/s}" />, jadi <InlineMath math="\bar{a}=0.5\text{ m/s}^2" />, walaupun ia membrek dengan kuat di tengah perjalanan.
 
 ## Pecutan Sifar Masih Perlu Ditafsir
 
