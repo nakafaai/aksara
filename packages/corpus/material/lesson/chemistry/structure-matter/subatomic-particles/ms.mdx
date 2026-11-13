@@ -1,0 +1,216 @@
+
+export const metadata = {
+  title: "Zarah Subatom",
+  description:
+    "Thomson, Rutherford dan Chadwick menunjukkan bahawa atom mengandungi elektron, proton dan neutron.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-05-01",
+  dateModified: "2026-09-12",
+  subject: "Struktur Atom",
+};
+
+## Bukti Kewujudan Zarah Subatom
+
+Model Dalton menerangkan nisbah tetap dalam tindak balas kimia, tetapi model itu masih menggambarkan atom sebagai sfera pejal. Eksperimen elektrik kemudiannya menunjukkan bahawa atom mengandungi zarah bercas yang lebih kecil.
+
+Pada akhir tahun 1800-an, saintis mula menggunakan tiub kaca bertekanan rendah dan voltan tinggi. Satu alur yang dipanggil **sinar katod** muncul di dalam tiub. Alur ini boleh dibengkokkan oleh medan elektrik dan medan magnet. Berdasarkan bukti ini, atom mula kelihatan kurang seperti bebola pejal dan lebih seperti struktur yang mempunyai zarah lebih kecil di dalamnya.
+
+Urutan bukti bermula daripada eksperimen sinar katod Thomson, diikuti eksperimen kerajang emas Rutherford, hingga penemuan neutron oleh Chadwick.
+
+J. J. Thomson menemui elektron pada tahun <InlineMath math="1897" /> dan menunjukkan bahawa zarah ini jauh lebih ringan daripada atom.
+
+Setiap eksperimen menjawab satu soalan dan membuka soalan seterusnya. Dalton menggambarkan sfera pejal pada tahun 1803, Thomson menemui elektron pada tahun 1897, pasukan Rutherford menemui nukleus kecil yang tumpat pada tahun 1911, nukleus hidrogen dikenal pasti sebagai proton pada tahun 1919, dan Chadwick menemui neutron pada tahun 1932. Zum di sepanjang garis itu dan perhatikan betapa cepatnya tiga penemuan terakhir berlaku.
+
+<MathVisual
+  title={<>Daripada Sfera Pejal kepada Tiga Zarah</>}
+  description={<>Lima langkah dalam penemuan struktur atom pada satu garis masa. Satu langkah grid ialah 14 tahun.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "years", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "dalton", kind: "point", appearance: "secondary", at: { x: (1803 - 1800) / 14, y: 0 } },
+      { id: "thomson", kind: "point", appearance: "secondary", at: { x: (1897 - 1800) / 14, y: 0 } },
+      { id: "rutherford", kind: "point", appearance: "secondary", at: { x: (1911 - 1800) / 14, y: 0 } },
+      { id: "proton", kind: "point", appearance: "secondary", at: { x: (1919 - 1800) / 14, y: 0 } },
+      { id: "chadwick", kind: "point", appearance: "answer", at: { x: (1932 - 1800) / 14, y: 0 } },
+    ],
+    labels: [
+      { key: "dalton", objectId: "dalton", at: { x: (1803 - 1800) / 14, y: 0 }, placement: "above" },
+      { key: "thomson", objectId: "thomson", at: { x: (1897 - 1800) / 14, y: 0 }, placement: "below" },
+      { key: "rutherford", objectId: "rutherford", at: { x: (1911 - 1800) / 14, y: 0 }, placement: "above" },
+      { key: "proton", objectId: "proton", at: { x: (1919 - 1800) / 14, y: 0 }, placement: "below" },
+      { key: "chadwick", objectId: "chadwick", at: { x: (1932 - 1800) / 14, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    dalton: <>1803: sfera pejal</>,
+    thomson: <>1897: elektron</>,
+    rutherford: <>1911: nukleus</>,
+    proton: <>1919: proton</>,
+    chadwick: <>1932: neutron</>,
+  }}
+/>
+
+## Bukti daripada Eksperimen dan Struktur Atom
+
+Tukar mod di bawah dan bandingkan **arah gerakan**, **laluan yang membengkok** dan **laluan yang kekal lurus**. Gunakan pemerhatian itu untuk mengenal pasti zarahnya.
+
+<SubatomicParticlesLab
+  title={<>Makmal Mini Zarah Subatom</>}
+  description={
+    <>
+      Bandingkan pemerhatian yang mengenal pasti elektron, menentukan lokasi nukleus,
+      dan membuktikan struktur dalaman atom.
+    </>
+  }
+  labels={{
+    chooseMode: "Pilih bukti zarah subatom",
+    scene: {
+      alphaParticle: "Zarah alfa",
+      anode: "Anod",
+      cathode: "Katod",
+      cathodeRay: "Sinar katod",
+      negativePlate: (
+        <>
+          Plat negatif <InlineMath math="-" />
+        </>
+      ),
+      nucleus: "Nukleus",
+      positivePlate: (
+        <>
+          Plat positif <InlineMath math="+" />
+        </>
+      ),
+    },
+    modes: {
+      "cathode-ray": {
+        tab: "Sinar katod",
+        description: (
+          <>
+            Sinar katod membengkok ke arah plat positif. Ini bermaksud
+            zarah dalam alur itu membawa cas negatif.
+          </>
+        ),
+        facts: [
+          { label: "Zarah", value: <InlineMath math="e^-" /> },
+          { label: "Bukti", value: "Ditarik ke arah cas positif" },
+          { label: "Maksud", value: "Atom mempunyai bahagian dalam" },
+        ],
+      },
+      "gold-foil": {
+        tab: "Kerajang emas",
+        description: (
+          <>
+            Hampir semua zarah alfa menembusi terus. Hanya sebahagian kecil
+            yang membengkok dengan tajam atau melantun balik, jadi cas positif atom
+            mesti tertumpu dalam nukleus yang sangat kecil.
+          </>
+        ),
+        facts: [
+          { label: "Zarah penguji", value: <InlineMath math="\alpha^{2+}" /> },
+          { label: "Laluan utama", value: "Kebanyakannya lurus" },
+          { label: "Maksud", value: "Atom kebanyakannya ruang kosong" },
+        ],
+      },
+      "atom-map": {
+        tab: "Dalam atom",
+        description: (
+          <>
+            Proton dan neutron berada dalam nukleus. Elektron menduduki ruang
+            di sekeliling nukleus. Gelang nipis hanya menandakan kawasan elektron,
+            bukan laluan yang tepat.
+          </>
+        ),
+        facts: [
+          { label: "Nukleus", value: <InlineMath math="p^+ + n^0" /> },
+          { label: "Elektron", value: <InlineMath math="e^-" /> },
+          { label: "Jisim", value: "Hampir semuanya dalam nukleus" },
+        ],
+      },
+    },
+  }}
+/>
+
+## Sinar Katod Mengenal Pasti Elektron
+
+Thomson menggunakan tiub sinar katod. Kebanyakan udara di dalam tiub dikeluarkan, kemudian voltan tinggi dikenakan. Alur yang muncul sentiasa ditarik ke arah cas positif dan ditolak oleh cas negatif.
+
+Cas yang berlawanan saling menarik, manakala cas yang sama saling menolak. Oleh sebab sinar katod ditarik ke arah cas positif <InlineMath math="+" />, zarah-zarahnya membawa cas negatif <InlineMath math="-" />. Kini kita memanggil zarah itu **elektron**.
+
+Thomson juga mendapati zarah sinar katod jauh lebih ringan daripada atom dan mempunyai sifat yang sama walaupun logam elektrodnya ditukar. Sifat yang tidak berubah ini menunjukkan bahawa elektron bukan serpihan daripada satu logam tertentu. Elektron ialah <Highlight>komponen sepunya bagi semua atom</Highlight>.
+
+Dalam model Thomson, cas positif tersebar ke seluruh atom dan elektron terbenam dalam taburan cas itu. Model ini mengambil kira elektron, tetapi tidak mempunyai nukleus yang kecil dan tumpat. Eksperimen Rutherford kemudiannya mendedahkan kelemahan ini.
+
+## Nukleus yang Kecil dan Tumpat
+
+Pasukan Rutherford di Manchester menguji model Thomson. Di bawah arahan Rutherford, [Hans Geiger dan Ernest Marsden](https://history.aip.org/exhibits/rutherford/sections/alpha-particles-atom.html) menembak zarah alfa yang bercas positif ke arah kerajang logam yang sangat nipis, termasuk emas. Jika cas positif tersebar secara sekata seperti yang dicadangkan oleh model Thomson, hampir semua zarah alfa sepatutnya menembusi kerajang dengan pembengkokan yang kecil sahaja.
+
+Sebahagian kecil pemerhatian bercanggah dengan ramalan Thomson:
+
+- kebanyakan zarah alfa menembusi kerajang emas dengan sedikit sahaja perubahan arah
+- sebahagian kecil zarah membengkok
+- sebahagian yang sangat kecil melantun ke belakang
+
+Sekarang, kaitkan pemerhatian itu dengan lokasi cas positif di dalam atom. Oleh sebab hampir semua zarah alfa menembusi terus, kebanyakan bahagian atom mestilah ruang kosong. Beberapa zarah yang membengkok dengan tajam atau melantun balik menunjukkan bahawa cas positif dan kebanyakan jisim atom terkumpul dalam kawasan yang sangat kecil. Kawasan itu dipanggil **nukleus atom**.
+
+Untuk menggambarkan skalanya, bayangkan sebuah atom dibesarkan sehingga selebar stadium <InlineMath math="100\ \text{m}" />. Nukleusnya hanya kira-kira <InlineMath math="1\ \text{mm}" /> lebar, lebih kurang sebesar sebutir pasir di tengah-tengah stadium itu. Atom sebenar berdiameter kira-kira <InlineMath math="10^{-10}\ \text{m}" />, manakala nukleusnya berdiameter kira-kira <InlineMath math="10^{-15}\ \text{m}" />. Jadi, diameter nukleus kira-kira <InlineMath math="10^5" /> kali lebih kecil daripada diameter atom.
+
+## Nukleus Hidrogen Mengenal Pasti Proton
+
+Bukti kerajang emas menentukan lokasi cas positif atom, tetapi belum mengenal pasti zarah di dalam nukleus. Pada tahun <InlineMath math="1919" />, Rutherford membedil nitrogen dengan zarah alfa dan mengesan nukleus hidrogen yang laju terpancar keluar. Nukleus hidrogen membawa satu cas asas positif dan kini dipanggil **proton**.
+
+Rutherford mentafsirkan model atom bernukleus pada tahun <InlineMath math="1911" /> dan menunjukkan kewujudan [proton bebas](https://www.nobelprize.org/prizes/physics/1990/9592-the-nobel-prize-in-physics-1990/) pada tahun <InlineMath math="1919" />. Dua langkah ini berkaitan, namun kedua-duanya peristiwa yang berasingan.
+
+## Jisim dan Cas Neutron
+
+Proton menerangkan cas positif nukleus, tetapi jisim proton sahaja tidak dapat menerangkan keseluruhan jisim atom. Saintis masih perlu mencari satu lagi zarah yang menambah jisim tanpa menambah cas.
+
+Pada tahun <InlineMath math="1932" />, James Chadwick menunjukkan bukti kewujudan zarah neutral yang jisimnya hampir sama dengan proton. Zarah itu dipanggil **neutron**. Neutral bermaksud casnya bernilai <InlineMath math="0" />, jadi neutron boleh menambah jisim nukleus tanpa mengubah cas elektrik atom.
+
+[Chadwick](https://www.nobelprize.org/prizes/physics/1935/chadwick/facts/) menunjukkan bahawa sinaran daripada berilium yang dibedil dengan zarah alfa terdiri daripada zarah neutral yang jisimnya lebih kurang sama dengan proton.
+
+Isotop ialah atom bagi unsur yang sama dengan bilangan neutron yang berbeza. Unsurnya kekal sama kerana nombor proton tetap, manakala jisimnya berubah mengikut bilangan neutron.
+
+## Membandingkan Tiga Zarah Subatom
+
+Jadual ini membandingkan cas, lokasi utama dan sumbangan setiap zarah kepada jisim atom.
+
+| Zarah | Lokasi utama | Cas relatif | Jisim anggaran | Peranan dalam atom |
+| :------- | :------------ | :-------------- | :------------ | :--------------- |
+| Elektron | Ruang di sekeliling nukleus | <InlineMath math="-1" /> | Kira-kira <InlineMath math="\frac{1}{1800}" /> daripada jisim proton | Membawa cas negatif dan terlibat dalam tindak balas kimia |
+| Proton | Nukleus | <InlineMath math="+1" /> | Kira-kira <InlineMath math="1\ \text{u}" /> | Zarah yang menentukan identiti unsur |
+| Neutron | Nukleus | <InlineMath math="0" /> | Kira-kira <InlineMath math="1\ \text{u}" /> | Jisim di dalam nukleus tanpa cas tambahan |
+
+Atom neutral mempunyai bilangan proton dan elektron yang sama. Contohnya, jika satu atom mempunyai <InlineMath math="6" /> proton dan masih neutral, atom itu juga mempunyai <InlineMath math="6" /> elektron.
+
+<BlockMath math="\begin{aligned} \text{atom neutral} &amp;\Rightarrow \text{bilangan } p^+ \\ &amp;= \text{bilangan } e^- \end{aligned}" />
+
+Ingat tiga hubungan ini: **proton menentukan identiti unsur**, **neutron membantu menentukan jisim**, dan **elektron menentukan banyak kelakuan kimia**. Gunakan ketiga-tiganya bersama-sama apabila kamu membandingkan cas, jisim dan identiti atom.
+
+Inilah cas relatif yang ditunjukkan sebagai palang di atas dan di bawah sifar. Elektron mencecah ke bawah hingga <InlineMath math="-1" />, proton naik hingga <InlineMath math="+1" />, dan neutron langsung tiada palang. Satu proton dan satu elektron saling meneutralkan, sebab itulah atom neutral mempunyai bilangan proton dan elektron yang sama.
+
+<MathVisual
+  title={<>Cas Relatif Tiga Zarah</>}
+  description={<>Elektron pada <InlineMath math="-1" /> di bawah sifar, proton pada <InlineMath math="+1" /> di atas sifar, neutron pada <InlineMath math="0" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: -2, max: 2 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 2.5, y: 0, z: 0 } },
+    objects: [
+      { id: "proton", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: (1) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+      { id: "electron", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (1) / 2 + -1, z: 0 }, size: { length: 1.2, height: 1, width: 1.2 } },
+    ],
+    labels: [
+      { key: "electron", objectId: "electron", at: { x: 0, y: -1.5, z: 0 }, placement: "below" },
+      { key: "proton", objectId: "proton", at: { x: 2.5, y: 1.5, z: 0 }, placement: "above" },
+      { key: "neutron", objectId: "proton", at: { x: 5, y: 0.5, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    electron: <InlineMath math="e^-:\ -1" />,
+    proton: <InlineMath math="p^+:\ +1" />,
+    neutron: <InlineMath math="n^0:\ 0" />,
+  }}
+/>
