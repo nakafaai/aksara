@@ -5,13 +5,14 @@ export const lessonMathematicsProbabilityMaterial = defineLessonMaterial({
   domain: "mathematics",
   key: "lesson.mathematics.probability",
   kind: "lesson",
-  routeSlugs: { de: "wahrscheinlichkeit", en: "probability", id: "peluang" },
+  routeSlugs: { de: "wahrscheinlichkeit", en: "probability", id: "peluang", ms: "kebarangkalian" },
   sections: [
     {
       routeSlugs: {
         de: "additionssatz",
         en: "addition-rule",
         id: "aturan-penjumlahan",
+        ms: "petua-tambah",
       },
       slug: "addition-rule",
     },
@@ -20,6 +21,7 @@ export const lessonMathematicsProbabilityMaterial = defineLessonMaterial({
         de: "wahrscheinlichkeitsverteilung",
         en: "probability-distribution",
         id: "distribusi-peluang",
+        ms: "taburan-kebarangkalian",
       },
       slug: "probability-distribution",
     },
@@ -28,6 +30,7 @@ export const lessonMathematicsProbabilityMaterial = defineLessonMaterial({
         de: "zwei-unvereinbare-ereignisse",
         en: "two-events-mutually-exclusive",
         id: "dua-kejadian-a-dan-b-saling-lepas",
+        ms: "peristiwa-saling-eksklusif",
       },
       slug: "two-events-mutually-exclusive",
     },
@@ -36,6 +39,7 @@ export const lessonMathematicsProbabilityMaterial = defineLessonMaterial({
         de: "zwei-vereinbare-ereignisse",
         en: "two-events-not-mutually-exclusive",
         id: "dua-kejadian-a-dan-b-tidak-saling-lepas",
+        ms: "peristiwa-tidak-saling-eksklusif",
       },
       slug: "two-events-not-mutually-exclusive",
     },
@@ -53,6 +57,10 @@ export const lessonMathematicsProbabilityMaterial = defineLessonMaterial({
     id: {
       description: "Gunakan aturan penjumlahan untuk kejadian beririsan.",
       title: "Peluang",
+    },
+    ms: {
+      description: "Kira kebarangkalian peristiwa daripada ruang sampelnya.",
+      title: "Kebarangkalian",
     },
   },
 });

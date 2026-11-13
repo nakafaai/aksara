@@ -1,0 +1,235 @@
+export const metadata = {
+  title: "Kebarangkalian Peristiwa Tidak Saling Eksklusif",
+  description: "Kalau A dan B boleh berlaku bersama, P(A ∪ B) = P(A) + P(B) − P(A ∩ B). Lihat sebab pertindihan ditolak melalui gambar rajah Venn, contoh, dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-21",
+  dateModified: "2026-11-08",
+  subject: "Kebarangkalian",
+};
+
+## Kebarangkalian A atau B Apabila Dua Peristiwa Boleh Berlaku Bersama
+
+Dua peristiwa **tidak saling eksklusif** apabila kedua-duanya boleh berlaku pada kesudahan yang sama, iaitu persilangannya tidak kosong, <InlineMath math="A \cap B \ne \varnothing" />. Untuk dua peristiwa <InlineMath math="A" /> dan <InlineMath math="B" />, kebarangkalian <InlineMath math="A" /> atau <InlineMath math="B" /> datang daripada [petua tambah](/ms/subjek/matematik/kebarangkalian/petua-tambah):
+
+<BlockMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" />
+
+Persilangan ditolak **sekali** kerana kesudahannya sudah dikira dalam <InlineMath math="P(A)" /> dan dikira lagi dalam <InlineMath math="P(B)" />.
+
+<MathVisual
+  title={<>Gambar rajah Venn bagi satu lambungan dadu</>}
+  description={<>Peristiwa <InlineMath math="A" /> = keputusan genap dan <InlineMath math="B" /> = keputusan lebih besar daripada 3. Keputusan 4 dan 6 terletak dalam pertindihan dua bulatan itu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "sample-space", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "a", kind: "circle", center: { x: -0.9, y: 0 }, radius: 1.7, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 0.9, y: 0 }, radius: 1.7, appearance: "secondary" },
+      { id: "two", kind: "point", at: { x: -1.8, y: 0 }, appearance: "primary" },
+      { id: "four", kind: "point", at: { x: 0, y: 0.5 }, appearance: "highlight" },
+      { id: "six", kind: "point", at: { x: 0, y: -0.5 }, appearance: "highlight" },
+      { id: "five", kind: "point", at: { x: 1.8, y: 0 }, appearance: "secondary" },
+      { id: "one", kind: "point", at: { x: -3.2, y: 1.8 }, appearance: "reference" },
+      { id: "three", kind: "point", at: { x: 3.2, y: 1.8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -0.9, y: 1.7 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 0.9, y: 1.7 }, placement: "above" },
+      { key: "sample-space", objectId: "sample-space", at: { x: -3.8, y: -2.4 }, placement: "above-right" },
+      { key: "two", objectId: "two", at: { x: -1.8, y: 0 }, placement: "right" },
+      { key: "four", objectId: "four", at: { x: 0, y: 0.5 }, placement: "right" },
+      { key: "six", objectId: "six", at: { x: 0, y: -0.5 }, placement: "right" },
+      { key: "five", objectId: "five", at: { x: 1.8, y: 0 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: -3.2, y: 1.8 }, placement: "right" },
+      { key: "three", objectId: "three", at: { x: 3.2, y: 1.8 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    "sample-space": <InlineMath math="S" />,
+    two: <InlineMath math="2" />,
+    four: <InlineMath math="4" />,
+    six: <InlineMath math="6" />,
+    five: <InlineMath math="5" />,
+    one: <InlineMath math="1" />,
+    three: <InlineMath math="3" />,
+  }}
+/>
+
+Untuk dadu itu, <InlineMath math="A = \{2, 4, 6\}" /> dan <InlineMath math="B = \{4, 5, 6\}" />, jadi <InlineMath math="A \cap B = \{4, 6\}" />. Rumus memberikan <InlineMath math="\frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />. Semak dengan menyenaraikan: <InlineMath math="A \cup B = \{2, 4, 5, 6\}" /> mengandungi 4 daripada 6 keputusan.
+
+## Mengenal Pasti Peristiwa yang Bertindih
+
+Kamu boleh semak pertindihan dengan menulis **kesudahan yang memenuhi kedua-dua syarat serentak**. Kalau ada sekurang-kurangnya satu kesudahan sebegitu, peristiwa itu tidak saling eksklusif.
+
+| Eksperimen | Peristiwa <InlineMath math="A" /> | Peristiwa <InlineMath math="B" /> | Persilangan |
+| --- | --- | --- | --- |
+| Cabut sekeping kad terup | Kad hati | Kad raja | Raja hati |
+| Lambung sebiji dadu | <InlineMath math="\{2,4,6\}" /> | <InlineMath math="\{4,5,6\}" /> | <InlineMath math="\{4,6\}" /> |
+| Pilih seorang murid | Suka matematik | Suka fizik | Suka kedua-duanya |
+
+Kes yang bertentangan ialah [peristiwa saling eksklusif](/ms/subjek/matematik/kebarangkalian/peristiwa-saling-eksklusif), yang persilangannya kosong, jadi <InlineMath math="P(A \cap B) = 0" />. Rumus <InlineMath math="P(A \cup B) = P(A) + P(B) - P(A \cap B)" /> tetap benar untuk peristiwa saling eksklusif, kerana sebutan persilangannya sifar.
+
+## Mengapa Persilangan Ditolak Sekali
+
+Kira dengan bilangan unsur dahulu. Apabila kamu tambah <InlineMath math="n(A)" /> dan <InlineMath math="n(B)" />, setiap unsur persilangan masuk ke dalam kedua-dua kiraan, jadi ia dikira **dua kali**. Tolak persilangan sekali supaya setiap unsur direkodkan tepat sekali:
+
+<BlockMath math="n(A \cup B) = n(A) + n(B) - n(A \cap B)" />
+
+Bahagikan setiap sebutan dengan <InlineMath math="n(S)" /> untuk ruang sampel yang kesudahannya sama boleh jadi, dan kamu akan dapat rumus kebarangkalian. Rumus kebarangkalian itu sendiri benar untuk mana-mana ruang sampel, dan hanya pembahagian dengan <InlineMath math="n(S)" /> yang memerlukan kesudahan yang sama boleh jadi. Untuk dadu tadi, <InlineMath math="3 + 3 - 2 = 4" /> unsur, sama seperti senarai <InlineMath math="\{2, 4, 5, 6\}" />. Tanpa penolakan itu, nilainya <InlineMath math="\frac{6}{6} = 1" />, seolah-olah setiap lambungan jatuh dalam <InlineMath math="A" /> atau <InlineMath math="B" />, walhal keputusan 1 dan 3 tidak tergolong dalam mana-mana satu.
+
+<Mermaid
+  title={<>Memilih rumus bagi P(A atau B)</>}
+  description={<>Isi persilangan menentukan sama ada kebarangkaliannya perlu ditolak.</>}
+  chart={`flowchart TD
+  A["Tulis persilangan A dan B"] --> B{"Adakah persilangan itu kosong?"}
+  B -->|"ya, saling eksklusif"| C["P(A) + P(B)"]
+  B -->|"tidak, bertindih"| D["P(A) + P(B) - P(A dan B)"]
+  C --> E["Semak dengan menyenaraikan kesatuan"]
+  D --> E`}
+/>
+
+## Contoh dengan Kad Hati atau Kad Raja
+
+Sekeping kad dicabut daripada satu pek 52 keping. Apakah kebarangkalian mencabut kad hati atau kad raja?
+
+Ada <InlineMath math="13" /> kad hati, <InlineMath math="4" /> kad raja, dan **<InlineMath math="1" /> kad yang tergolong dalam kedua-duanya**, iaitu raja hati:
+
+<BlockMath math="P(A \cup B) = \frac{13}{52} + \frac{4}{52} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13}" />
+
+<MathVisual
+  title={<>Bilangan kad dalam setiap rantau gambar rajah Venn</>}
+  description={<>Bulatan <InlineMath math="A" /> mengandungi 13 kad hati dan bulatan <InlineMath math="B" /> mengandungi 4 kad raja. Raja hati terletak dalam pertindihan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "deck", kind: "polygon", vertices: [{ x: -3.8, y: -2.4 }, { x: 3.8, y: -2.4 }, { x: 3.8, y: 2.4 }, { x: -3.8, y: 2.4 }], appearance: "reference" },
+      { id: "hearts", kind: "circle", center: { x: -0.9, y: 0 }, radius: 1.7, appearance: "primary" },
+      { id: "kings", kind: "circle", center: { x: 0.9, y: 0 }, radius: 1.7, appearance: "secondary" },
+      { id: "hearts-only", kind: "point", at: { x: -1.6, y: 0 }, appearance: "primary" },
+      { id: "both", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "kings-only", kind: "point", at: { x: 1.6, y: 0 }, appearance: "secondary" },
+      { id: "neither", kind: "point", at: { x: 3, y: -1.8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "hearts", objectId: "hearts", at: { x: -0.9, y: 1.7 }, placement: "above" },
+      { key: "kings", objectId: "kings", at: { x: 0.9, y: 1.7 }, placement: "above" },
+      { key: "hearts-only", objectId: "hearts-only", at: { x: -1.6, y: 0 }, placement: "below" },
+      { key: "both", objectId: "both", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "kings-only", objectId: "kings-only", at: { x: 1.6, y: 0 }, placement: "below" },
+      { key: "neither", objectId: "neither", at: { x: 3, y: -1.8 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    hearts: <InlineMath math="A" />,
+    kings: <InlineMath math="B" />,
+    "hearts-only": <InlineMath math="12" />,
+    both: <InlineMath math="1" />,
+    "kings-only": <InlineMath math="3" />,
+    neither: <InlineMath math="36" />,
+  }}
+/>
+
+Semak dengan mengira setiap rantau: 12 kad hati selain raja, 1 raja hati, dan 3 kad raja yang lain, jadi <InlineMath math="12 + 1 + 3 = 16" /> keping kad. Baki <InlineMath math="52 - 16 = 36" /> keping kad tidak tergolong dalam mana-mana peristiwa.
+
+## Contoh dengan Data Tinjauan
+
+Daripada 40 orang murid, 25 orang suka matematik, 18 orang suka fizik, dan 10 orang suka kedua-duanya. Seorang murid dipilih secara rawak. Biar <InlineMath math="M" /> ialah peristiwa murid itu suka matematik dan <InlineMath math="F" /> ialah peristiwa murid itu suka fizik. Cari kebarangkalian murid itu suka matematik atau fizik, dan kebarangkalian murid itu tidak suka kedua-duanya.
+
+<MathContainer>
+  <BlockMath math="P(M \cup F) = \frac{25}{40} + \frac{18}{40} - \frac{10}{40} = \frac{33}{40}" />
+  <BlockMath math="P(\text{tidak kedua-duanya}) = 1 - \frac{33}{40} = \frac{7}{40}" />
+</MathContainer>
+
+Kebarangkalian kedua menggunakan **pelengkap**: murid yang tidak suka kedua-duanya ialah setiap murid di luar <InlineMath math="M \cup F" />. Semak dengan rantau Venn: <InlineMath math="25 - 10 = 15" /> orang suka matematik sahaja, <InlineMath math="18 - 10 = 8" /> orang suka fizik sahaja, dan <InlineMath math="10" /> orang suka kedua-duanya. Jumlahnya <InlineMath math="33" />, dan <InlineMath math="40 - 33 = 7" /> orang murid tidak suka kedua-duanya.
+
+Isi gambar rajah Venn dari dalam ke luar: 10 orang murid suka kedua-duanya, jadi <InlineMath math="25 - 10 = 15" /> orang suka matematik sahaja dan <InlineMath math="18 - 10 = 8" /> orang suka fizik sahaja. Semuanya <InlineMath math="15 + 10 + 8 = 33" />, dan baki 7 orang tidak suka kedua-duanya.
+
+<MathVisual
+  title={<>Tinjauan itu dalam gambar rajah Venn</>}
+  description={<>Bulatan <InlineMath math="M" /> dan <InlineMath math="F" /> untuk matematik dan fizik dengan 15, 10 dan 8 orang murid dalam rantaunya dan 7 orang di luar kedua-duanya.</>}
+  labels={{
+    m: <InlineMath math="M" />,
+    f: <InlineMath math="F" />,
+    "only-m": <InlineMath math="15" />,
+    both: <InlineMath math="10" />,
+    "only-f": <InlineMath math="8" />,
+    neither: <InlineMath math="7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "s", kind: "polygon", vertices: [{ x: -19 / 5, y: -12 / 5 }, { x: 19 / 5, y: -12 / 5 }, { x: 19 / 5, y: 12 / 5 }, { x: -19 / 5, y: 12 / 5 }], appearance: "reference" },
+      { id: "m", kind: "circle", center: { x: -9 / 10, y: 0 }, radius: 17 / 10, appearance: "primary" },
+      { id: "f", kind: "circle", center: { x: 9 / 10, y: 0 }, radius: 17 / 10, appearance: "secondary" },
+      { id: "only-m", kind: "point", at: { x: -8 / 5, y: 0 }, appearance: "primary" },
+      { id: "both", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "only-f", kind: "point", at: { x: 8 / 5, y: 0 }, appearance: "secondary" },
+      { id: "neither", kind: "point", at: { x: 3, y: -9 / 5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: -9 / 10, y: 17 / 10 }, placement: "above" },
+      { key: "f", objectId: "f", at: { x: 9 / 10, y: 17 / 10 }, placement: "above" },
+      { key: "only-m", objectId: "only-m", at: { x: -8 / 5, y: 0 }, placement: "below" },
+      { key: "both", objectId: "both", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "only-f", objectId: "only-f", at: { x: 8 / 5, y: 0 }, placement: "below" },
+      { key: "neither", objectId: "neither", at: { x: 3, y: -9 / 5 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Kesilapan Lazim
+
+| Kesilapan | Sebab ia salah | Cara menyemak |
+| --- | --- | --- |
+| Menambah <InlineMath math="P(A) + P(B)" /> tanpa menolak persilangan | Kesudahan dalam persilangan dikira dua kali | Untuk dadu tadi, nilainya <InlineMath math="1" />, walhal 1 dan 3 tidak tergolong dalam mana-mana peristiwa |
+| Menolak persilangan dua kali | Persilangan hanya terlebih kira sekali | Kira unsur kesatuan dengan menyenaraikannya |
+| Menganggap tidak saling eksklusif sebagai tak bersandar | Tidak saling eksklusif berkaitan persilangan, tak bersandar berkaitan <InlineMath math="P(A \cap B) = P(A)P(B)" /> | Semak dua syarat itu secara berasingan |
+| Terlupa kad yang tergolong dalam kedua-dua peristiwa | Raja hati ialah kad hati dan juga kad raja | Tulis persilangan sebelum kamu mengira |
+| Mendapat kebarangkalian melebihi 1 | Menambah tanpa menolak boleh melebihi 1 | Kebarangkalian kesatuan tidak pernah melebihi 1 |
+
+Semakan paling mudah ialah **mengira setiap rantau gambar rajah Venn** dan menambahkannya. Jumlahnya mesti sama dengan rumus.
+
+## Soalan Latihan
+
+Tulis persilangan dahulu, kemudian **semak jawapan kamu dengan menyenaraikan atau mengira rantau Venn**.
+
+1. Sebiji dadu dilambung sekali. <InlineMath math="A" /> ialah peristiwa mendapat nombor perdana dan <InlineMath math="B" /> ialah peristiwa mendapat nombor ganjil. Cari <InlineMath math="P(A \cup B)" />.
+
+2. Sekeping kad dicabut daripada satu pek 52 keping. Cari kebarangkalian mencabut kad merah atau kad As.
+
+3. Diberi <InlineMath math="P(A) = 0.5" />, <InlineMath math="P(B) = 0.4" />, dan <InlineMath math="P(A \cup B) = 0.7" />, cari <InlineMath math="P(A \cap B)" />, kemudian tentukan sama ada <InlineMath math="A" /> dan <InlineMath math="B" /> saling eksklusif.
+
+4. Satu nombor dipilih secara rawak daripada 1 hingga 30. Cari kebarangkalian nombor itu boleh dibahagi dengan 3 atau dengan 5.
+
+### Penyelesaian
+
+**Soalan 1**. <InlineMath math="A = \{2, 3, 5\}" />, <InlineMath math="B = \{1, 3, 5\}" />, dan <InlineMath math="A \cap B = \{3, 5\}" />:
+
+<BlockMath math="P(A \cup B) = \frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />
+
+Semak: <InlineMath math="A \cup B = \{1, 2, 3, 5\}" /> mengandungi 4 daripada 6 keputusan.
+
+**Soalan 2**. Ada <InlineMath math="26" /> kad merah, <InlineMath math="4" /> kad As, dan <InlineMath math="2" /> kad As merah (hati dan daiman):
+
+<BlockMath math="P = \frac{26}{52} + \frac{4}{52} - \frac{2}{52} = \frac{28}{52} = \frac{7}{13}" />
+
+Semak: 26 kad merah ditambah 2 kad As hitam menjadi 28 keping kad.
+
+**Soalan 3**. Susun semula rumus itu:
+
+<BlockMath math="P(A \cap B) = P(A) + P(B) - P(A \cup B) = 0.5 + 0.4 - 0.7 = 0.2" />
+
+Oleh sebab <InlineMath math="P(A \cap B) = 0.2 \ne 0" />, peristiwa itu **tidak saling eksklusif**. Semak: <InlineMath math="0.5 + 0.4 - 0.2 = 0.7" />, iaitu kebarangkalian kesatuan yang diberi.
+
+**Soalan 4**. Ada <InlineMath math="10" /> gandaan 3, <InlineMath math="6" /> gandaan 5, dan <InlineMath math="2" /> gandaan kedua-duanya, iaitu gandaan 15 (15 dan 30):
+
+<BlockMath math="P = \frac{10}{30} + \frac{6}{30} - \frac{2}{30} = \frac{14}{30} = \frac{7}{15}" />
+
+Semak dengan menyenaraikan: 3, 5, 6, 9, 10, 12, 15, 18, 20, 21, 24, 25, 27, 30, iaitu 14 nombor.
