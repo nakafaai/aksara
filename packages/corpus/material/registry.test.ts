@@ -106,6 +106,7 @@ layer(NodeServices.layer)("material registry", (it) => {
           "faecher/chemie/atombau/elektronenhuelle",
           "subjects/chemistry/structure-matter/atom-shell",
           "materi/kimia/struktur-atom/kulit-atom",
+          "subjek/kimia/struktur-atom/petala-atom",
           "faecher/mathematik/funktionskomposition-und-umkehrfunktion/funktionsbegriff",
           "subjects/mathematics/function-composition-inverse-function/function-concept",
           "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
