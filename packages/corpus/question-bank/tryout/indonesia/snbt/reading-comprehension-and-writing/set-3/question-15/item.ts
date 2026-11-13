@@ -17,6 +17,10 @@ const item: ItemSource = {
         },
         {
           correct: false,
+          label: "kalimat (4)",
+        },
+        {
+          correct: false,
           label: "kalimat (11)",
         },
         {
@@ -26,10 +30,6 @@ const item: ItemSource = {
         {
           correct: false,
           label: "kalimat (13)",
-        },
-        {
-          correct: false,
-          label: "kalimat (14)",
         },
       ],
     },

@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "menjelaskan mengapa jumlah pendaftar angkatan kedua lebih sedikit daripada angkatan pertama",
+            "menjelaskan mengapa jumlah peserta angkatan kedua lebih sedikit daripada angkatan pertama",
         },
         {
           correct: true,
