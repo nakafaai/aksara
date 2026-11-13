@@ -114,6 +114,7 @@ layer(NodeServices.layer)("material registry", (it) => {
           "faecher/physik/kinematik/beschleunigung",
           "subjects/physics/kinematics/acceleration",
           "materi/fisika/kinematika/percepatan",
+          "subjek/fizik/kinematik/pecutan",
         ]);
       })
   );
