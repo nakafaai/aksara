@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It concedes that reactors cost more than wind and solar, but argues that their low emissions justify the delays that Text 1 objects to.",
+            "It concedes that reactors cost more than wind and solar when compared plant by plant, but argues that their low emissions justify the long delays that Text 1 objects to.",
         },
       ],
     },

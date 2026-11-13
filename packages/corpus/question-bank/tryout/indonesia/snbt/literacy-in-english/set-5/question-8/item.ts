@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Countries that stopped building reactors for a generation cannot win back the lost skills, however many new reactors they decide to build.",
+            "Countries that stopped building reactors for a generation cannot win back the skills they lost, however many new reactors they decide to build and however long they keep the crews together.",
         },
       ],
     },

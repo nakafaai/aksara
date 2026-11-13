@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The popular version overstates how much evidence Wegener had gathered, since his fossils and rock layers were weaker than the story suggests.",
+            "The popular version overstates how much evidence Wegener had gathered, since his fossils, rock layers and coastlines were all far weaker than the story usually suggests to its readers.",
         },
         {
           correct: false,

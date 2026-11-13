@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "A doctor puts a patient's recovery down to a natural defence that no test has ever detected, and so decides the new drug played no part.",
+            "A doctor puts a patient's recovery down to a natural defence that no test has ever detected, and so decides that the new drug, whatever the trials say, played no part in it.",
         },
         {
           correct: false,

@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Geologists dismissed Wegener's fossils and coastlines because he was a meteorologist, and the seafloor findings of the 1950s and 1960s finally exposed that professional bias.",
+            "Geologists dismissed Wegener's fossils and coastlines mainly because he was a meteorologist rather than one of their own, and the seafloor findings of the 1950s and 1960s finally exposed that professional bias for what it was.",
         },
         {
           correct: false,

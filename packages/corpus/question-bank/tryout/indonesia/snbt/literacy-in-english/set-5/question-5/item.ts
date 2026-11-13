@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "To suggest that a rate of a few centimetres a year is too slow ever to have separated South America from Africa.",
+            "To suggest that a rate of only a few centimetres a year is far too slow ever to have separated South America from Africa, however long the movement had been going on.",
         },
         {
           correct: true,
