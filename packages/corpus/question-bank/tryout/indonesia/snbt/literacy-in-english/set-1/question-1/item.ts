@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It is false, because the tests show that mantis shrimp perceive fewer colours than people, honeybees and butterflies do.",
+            "It is false, because the tests show that mantis shrimp perceive fewer colours than people, honeybees and butterflies, all of which have fewer receptor types.",
         },
         {
           correct: false,
@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It is premature only because a single species was tested, so other mantis shrimp may still see unimaginable colours.",
+            "It is premature only because a single species was tested, so other species of mantis shrimp, with different eyes, may still see colours we cannot imagine.",
         },
       ],
     },

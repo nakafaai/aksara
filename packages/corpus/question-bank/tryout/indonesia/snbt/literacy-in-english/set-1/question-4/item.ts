@@ -20,7 +20,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "The shrimp's failure at a gap of about $$15$$ nanometres shows that it perceives fewer distinct colours than a person does.",
+            "The shrimp's failure at gaps of $$12$$ to $$25$$ nanometres shows that it perceives fewer distinct colours than a person does.",
         },
         {
           column: 1,

@@ -9,32 +9,28 @@ const item: ItemSource = {
   stimulus: "homework-limits",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label:
-            "What happened to pupils in Years 3 to 6 would also happen to older pupils if their homework were removed.",
+          column: 1,
+          label: "Older pupils would lose no more from dropping homework than the pupils in the pilot did.",
         },
         {
-          correct: false,
-          label:
-            "Children whose worksheets are finished by a parent learn less than children who work alone.",
+          column: 2,
+          label: "Children whose worksheets are finished by a parent learn less than children who work alone.",
         },
         {
-          correct: false,
-          label:
-            "Most older pupils already spend more than $$40$$ minutes a night on their homework.",
+          column: 1,
+          label: "One term without homework is long enough to show any cost to attainment.",
         },
         {
-          correct: false,
-          label:
-            "Reading and mathematics scores are the only outcomes that matter when homework is judged.",
+          column: 2,
+          label: "Most older pupils already spend more than $$40$$ minutes a night on homework.",
         },
         {
-          correct: false,
-          label:
-            "Pupils without a quiet room at home scored lower in the pilot than the other pupils did.",
+          column: 1,
+          label: "Last year's pupils in the same year groups make a fair comparison for the pilot pupils.",
         },
       ],
     },

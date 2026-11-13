@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Test the same shrimp with the glowing fibres on many more target colours.",
+            "Test the same shrimp with the glowing fibres on many more target colours, spread across the whole range of their receptors.",
         },
         {
           correct: false,

@@ -13,28 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "It rejects the limit as too strict, arguing that homework raises achievement at every age.",
+          label: "Text 1 treats them as proof that homework harms attainment, and Text 2 rejects them because the pilot lasted only one term.",
         },
         {
           correct: false,
-          label:
-            "It agrees that homework should be dropped at every age but doubts that the pilot measured the right outcomes.",
+          label: "Text 1 treats them as decisive only for Years 3 to 6, and Text 2 agrees but adds that the bedtime figures say more.",
         },
         {
           correct: true,
-          label:
-            "It backs the change for the youngest pupils but questions whether the pilot can justify scrapping homework for older ones.",
+          label: "Text 1 treats them as settling the debate for every age, while Text 2 says they tell less than they seem, though it still backs the change for the youngest on other grounds.",
         },
         {
           correct: false,
-          label:
-            "It disputes the figures on bedtimes and family arguments as too short-term to be trusted.",
+          label: "Text 1 gives them the same weight as the bedtime figures, and Text 2 questions the bedtime figures but accepts the scores.",
         },
         {
           correct: false,
-          label:
-            "It defends the limit against critics who find it too generous, while agreeing that test scores are the best guide.",
+          label: "Text 1 treats them as settling the debate for every age, and Text 2 rejects them outright as showing nothing about homework.",
         },
       ],
     },

@@ -9,32 +9,28 @@ const item: ItemSource = {
   stimulus: "mantis-shrimp",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "It detects movement whenever prey crosses in front of the shrimp's eye.",
+          column: 1,
+          label: "Two lights of different wavelengths that set off exactly the same receptor types would look alike to the shrimp.",
         },
         {
-          correct: false,
-          label:
-            "It is so sensitive that the shrimp often reacts to colours that are not there.",
+          column: 2,
+          label: "A brighter light within one receptor's band would be recognised as a different colour from a dimmer light in that band.",
         },
         {
-          correct: true,
-          label:
-            "It signals only whether light in its own band has arrived, and that signal is not weighed against the others.",
+          column: 1,
+          label: "The comparison fits the shrimp's failure to separate two colours that both fall inside the band of a single receptor type.",
         },
         {
-          correct: false,
-          label:
-            "It must be set off in a fixed order, so a colour is recognised only once the eye has finished scanning.",
+          column: 2,
+          label: "The comparison suggests that each receptor type reacts to movement across the narrow strip of the eye.",
         },
         {
-          correct: false,
-          label:
-            "It works like a human cone but responds to a narrower band of wavelengths.",
+          column: 1,
+          label: "On this view, part of the shrimp's speed comes from not having to weigh one signal against another.",
         },
       ],
     },

@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "shared-view",
+    topic: "text-relation",
   },
   stimulus: "homework-limits",
   versions: {
@@ -14,23 +14,23 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label:
-            "Pupils of the pilot's age can go without set homework, apart from reading, at little cost to their learning.",
+          label: "Pupils of the pilot's age can go without set homework, apart from reading, at little cost to their learning.",
         },
         {
           column: 2,
-          label:
-            "The link between homework and achievement differs between younger and older pupils.",
+          label: "The link between homework and achievement differs between younger and older pupils.",
         },
         {
           column: 1,
-          label:
-            "Pupils with little support at home should weigh heavily in decisions about homework.",
+          label: "Pupils with little support at home should weigh heavily in decisions about homework.",
         },
         {
           column: 2,
-          label:
-            "Removing homework would do most to help pupils who have little support at home.",
+          label: "Removing homework would do most to help pupils who have little support at home.",
+        },
+        {
+          column: 2,
+          label: "The pilot's end-of-term scores are good evidence that dropping homework did the pilot pupils no harm.",
         },
       ],
     },

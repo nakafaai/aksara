@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "paraphrase",
+    topic: "research-design",
   },
   stimulus: "homework-limits",
   versions: {
@@ -13,28 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "The pilot pupils' scores were in fact lower than last year's, but the way the tests were set up hid the difference.",
+          label: "Run it for a full school year with Years 3 to 6, and survey parents each month about arguments and bedtimes.",
         },
         {
           correct: true,
-          label:
-            "Matching last year's scores proves little, because the pupils were different and the tests had no stakes, so a small decline cannot be ruled out.",
+          label: "Include older pupils, and compare them with similar pupils in the same year who keep homework, on tests that count.",
         },
         {
           correct: false,
-          label:
-            "The scores would have been convincing if the tests had counted towards the pupils' grades.",
+          label: "Keep Years 3 to 6, add a second term, and compare the scores with the average of the last three years.",
         },
         {
           correct: false,
-          label:
-            "Test scores cannot show what homework does, so the pilot told the school nothing useful.",
+          label: "Include older pupils for one term, and ask their teachers to rate each pupil's effort in the end-of-term tests.",
         },
         {
           correct: false,
-          label:
-            "The pilot pupils scored lower than expected because the tests did not count and so they made less effort.",
+          label: "Compare the pilot pupils with the same year groups the year before, on tests that count towards their grades.",
         },
       ],
     },
