@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$-1$$",
+          label: "$$a<-2$$ oder $$a>3$$",
         },
         {
           correct: false,
-          label: "$$0$$",
+          label: "$$a>0$$",
         },
         {
           correct: true,
-          label: "$$1$$",
+          label: "$$a>3$$",
         },
         {
           correct: false,
-          label: "$$\\frac{a-3}{a+3}$$",
+          label: "$$-6<a<-2$$ oder $$a>3$$",
         },
         {
           correct: false,
-          label: "$$\\frac{a+3}{a-3}$$",
+          label: "$$a\\ge3$$",
         },
         {
           correct: false,
-          label: "$$a+3$$",
+          label: "$$-2<a<3$$",
         },
       ],
     },
